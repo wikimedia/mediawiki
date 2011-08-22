@@ -31,20 +31,19 @@ class SpecialPreferences extends SpecialPage {
 		parent::__construct( 'Preferences' );
 	}
 
-	function execute( $par ) {
-		global $wgOut, $wgUser, $wgRequest;
-
+	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
-		$wgOut->disallowUserJs();  # Prevent hijacked user scripts from sniffing passwords etc.
+		$out = $this->getOutput();
+		$out->disallowUserJs();  # Prevent hijacked user scripts from sniffing passwords etc.
 
-		if ( $wgUser->isAnon() ) {
-			$wgOut->showErrorPage( 'prefsnologin', 'prefsnologintext', array( $this->getTitle()->getPrefixedDBkey() ) );
+		$user = $this->getUser();
+		if ( $user->isAnon() ) {
+			$out->showErrorPage( 'prefsnologin', 'prefsnologintext', array( $this->getTitle()->getPrefixedDBkey() ) );
 			return;
 		}
 		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
+			throw new ReadOnlyError;
 		}
 
 		if ( $par == 'reset' ) {
@@ -52,44 +51,42 @@ class SpecialPreferences extends SpecialPage {
 			return;
 		}
 
-		$wgOut->addModules( 'mediawiki.special.preferences' );
+		$out->addModules( 'mediawiki.special.preferences' );
 
-		if ( $wgRequest->getCheck( 'success' ) ) {
-			$wgOut->wrapWikiMsg(
+		if ( $this->getRequest()->getCheck( 'success' ) ) {
+			$out->wrapWikiMsg(
 				"<div class=\"successbox\"><strong>\n$1\n</strong></div><div id=\"mw-pref-clear\"></div>",
 				'savedprefs'
 			);
 		}
 
-		$htmlForm = Preferences::getFormObject( $wgUser );
+		$htmlForm = Preferences::getFormObject( $user, $this->getContext() );
 		$htmlForm->setSubmitCallback( array( 'Preferences', 'tryUISubmit' ) );
 
 		$htmlForm->show();
 	}
 
-	function showResetForm() {
-		global $wgOut;
-
-		$wgOut->addWikiMsg( 'prefs-reset-intro' );
+	private function showResetForm() {
+		$this->getOutput()->addWikiMsg( 'prefs-reset-intro' );
 
 		$htmlForm = new HTMLForm( array(), $this->getContext(), 'prefs-restore' );
 
 		$htmlForm->setSubmitText( wfMsg( 'restoreprefs' ) );
 		$htmlForm->setTitle( $this->getTitle( 'reset' ) );
-		$htmlForm->setSubmitCallback( array( __CLASS__, 'submitReset' ) );
+		$htmlForm->setSubmitCallback( array( $this, 'submitReset' ) );
 		$htmlForm->suppressReset();
 
 		$htmlForm->show();
 	}
 
-	static function submitReset( $formData ) {
-		global $wgUser, $wgOut;
-		$wgUser->resetOptions();
-		$wgUser->saveSettings();
+	public function submitReset( $formData ) {
+		$user = $this->getUser();
+		$user->resetOptions();
+		$user->saveSettings();
 
 		$url = SpecialPage::getTitleFor( 'Preferences' )->getFullURL( 'success' );
 
-		$wgOut->redirect( $url );
+		$this->getOutput()->redirect( $url );
 
 		return true;
 	}
