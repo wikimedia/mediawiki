@@ -59,10 +59,23 @@ class TextPassDumper extends BackupDumper {
 
 	var $ID = 0;
 
+	var $xmlwriterobj = false;
+
+	# when we spend more than maxTimeAllowed seconds on this run, we continue
+	# processing until we write out the next complete page, then save output file(s),
+	# rename it/them and open new one(s)
+	var $maxTimeAllowed = 0;  // 0 = no limit
+	var $timeExceeded = false;
+	var $firstPageWritten = false;
+	var $lastPageWritten = false;
+	var $checkpointJustWritten = false;
+	var $checkpointFiles = array();
+
 	function initProgress( $history ) {
 		parent::initProgress();
 		$this->ID = getmypid();
 		$this->lastTime = $this->startTime;
+		$this->timeOfCheckpoint = $this->startTime;
 	}
 
 	function dump( $history, $text = WikiExporter::TEXT ) {
@@ -79,6 +92,12 @@ class TextPassDumper extends BackupDumper {
 		$this->db = $this->backupDb();
 
 		$this->egress = new ExportProgressFilter( $this->sink, $this );
+
+		# it would be nice to do it in the constructor, oh well. need egress set
+		$this->finalOptionCheck();
+
+		# we only want this so we know how to close a stream :-P
+		$this->xmlwriterobj = new XmlDumpWriter();
 
 		$input = fopen( $this->input, "rt" );
 		$result = $this->readDump( $input );
@@ -105,6 +124,12 @@ class TextPassDumper extends BackupDumper {
 			break;
 		case 'stub':
 			$this->input = $url;
+			break;
+		case 'maxtime':
+			$this->maxTimeAllowed = intval($val)*60;
+			break;
+		case 'checkpointfile':
+			$this->checkpointFiles[] = $val;
 			break;
 		case 'current':
 			$this->history = WikiExporter::CURRENT;
@@ -204,6 +229,39 @@ class TextPassDumper extends BackupDumper {
 		}
 	}
 
+	function setTimeExceeded() {
+		$this->timeExceeded = True;
+	}
+
+	function checkIfTimeExceeded() {
+		if ( $this->maxTimeAllowed &&  ( $this->lastTime - $this->timeOfCheckpoint  > $this->maxTimeAllowed ) ) {
+			return True;
+		}
+		return False;
+	}
+
+	function finalOptionCheck() {
+		if (($this->checkpointFiles && ! $this->maxTimeAllowed) ||
+			($this->maxTimeAllowed && !$this->checkpointFiles)) {
+			wfDie("Options checkpointfile and maxtime must be specified together.\n");
+		}
+		foreach ($this->checkpointFiles as $checkpointFile) {
+			$count = substr_count ($checkpointFile,"%s");
+			if (substr_count ($checkpointFile,"%s") != 2) {
+				wfDie("Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, fil
+e is $checkpointFile.\n");
+			}
+		}
+
+		$filenameList = $this->egress->getFilename();
+		if (! is_array($filenameList)) {
+			$filenameList = array( $filenameList );
+		}
+		if (count($filenameList) != count($this->checkpointFiles)) {
+			wfDie("One checkpointfile must be specified for each output option, if maxtime is used.\n");
+		}
+	}
+
 	function readDump( $input ) {
 		$this->buffer = "";
 		$this->openElement = false;
@@ -222,6 +280,9 @@ class TextPassDumper extends BackupDumper {
 		$offset = 0; // for context extraction on error reporting
 		$bufferSize = 512 * 1024;
 		do {
+			if ($this->checkIfTimeExceeded()) {
+				$this->setTimeExceeded();
+			}
 			$chunk = fread( $input, $bufferSize );
 			if ( !xml_parse( $parser, $chunk, feof( $input ) ) ) {
 				wfDebug( "TextDumpPass::readDump encountered XML parsing error\n" );
@@ -229,6 +290,24 @@ class TextPassDumper extends BackupDumper {
 			}
 			$offset += strlen( $chunk );
 		} while ( $chunk !== false && !feof( $input ) );
+		if ($this->maxTimeAllowed) {
+			$filenameList = $this->egress->getFilename();
+			# we wrote some stuff after last checkpoint that needs renamed */
+			if (! is_array($filenameList)) {
+				$filenameList = array( $filenameList );
+			}
+			if (file_exists($filenameList[0])) {
+				$newFilenames = array();
+				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
+				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+				for ($i =0; $i < count($filenameList); $i++) {
+					$checkpointNameFilledIn = sprintf($this->checkpointFiles[$i], $firstPageID, $lastPageID);
+					$fileinfo = pathinfo($filenameList[$i]);
+					$newFilenames[] = $fileinfo{'dirname'} . '/' . $checkpointNameFilledIn;
+				}
+				$this->egress->rename( $newFilenames );
+			}
+		}
 		xml_parser_free( $parser );
 
 		return true;
@@ -444,6 +523,8 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function startElement( $parser, $name, $attribs ) {
+		$this->checkpointJustWritten = false;
+
 		$this->clearOpenElement( null );
 		$this->lastName = $name;
 
@@ -472,6 +553,8 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function endElement( $parser, $name ) {
+		$this->checkpointJustWritten = false;
+
 		if ( $this->openElement ) {
 			$this->clearOpenElement( "" );
 		} else {
@@ -483,9 +566,49 @@ class TextPassDumper extends BackupDumper {
 			$this->buffer = "";
 			$this->thisRev = "";
 		} elseif ( $name == 'page' ) {
-			$this->egress->writeClosePage( $this->buffer );
-			$this->buffer = "";
-			$this->thisPage = "";
+			if (! $this->firstPageWritten) {
+				$this->firstPageWritten = trim($this->thisPage);
+			}
+			$this->lastPageWritten = trim($this->thisPage);
+			if ($this->timeExceeded) {
+				$this->egress->writeClosePage( $this->buffer );
+				# nasty hack, we can't just write the chardata after the
+				# page tag, it will include leading blanks from the next line
+				$this->egress->sink->write("\n"); 
+				
+				$this->buffer = $this->xmlwriterobj->closeStream();
+				$this->egress->writeCloseStream( $this->buffer );
+
+				$this->buffer = "";
+				$this->thisPage = "";
+				/* this could be more than one file if we had more than one output arg */
+				$checkpointFilenames = array();
+				$filenameList = $this->egress->getFilename();
+
+				if (! is_array($filenameList)) {
+					$filenameList = array( $filenameList );
+				}
+				$newFilenames = array();
+				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
+				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+				for ($i =0; $i < count($filenameList); $i++) {
+					$checkpointNameFilledIn = sprintf($this->checkpointFiles[$i], $firstPageID, $lastPageID);
+					$fileinfo = pathinfo($filenameList[$i]);
+					$newFilenames[] = $fileinfo{'dirname'} . '/' . $checkpointNameFilledIn;
+				}
+				$this->egress->closeRenameAndReopen( $newFilenames );
+				$this->buffer = $this->xmlwriterobj->openStream();
+				$this->timeExceeded = false;
+				$this->timeOfCheckpoint = $this->lastTime;
+				$this->firstPageWritten = false;
+				$this->checkpointJustWritten = true;
+			}
+			else {
+				$this->egress->writeClosePage( $this->buffer );
+				$this->buffer = "";
+				$this->thisPage = "";
+			}
+
 		} elseif ( $name == 'mediawiki' ) {
 			$this->egress->writeCloseStream( $this->buffer );
 			$this->buffer = "";
@@ -500,6 +623,14 @@ class TextPassDumper extends BackupDumper {
 			} elseif ( $this->state == "page" ) {
 				$this->thisPage .= $data;
 			}
+		}
+		# have to skip the newline left over from closepagetag line of
+		# end of checkpoint files. nasty hack!!
+		if ($this->checkpointJustWritten) {
+			if ($data[0] == "\n") {
+				$data = substr($data,1);
+			}
+			$this->checkpointJustWritten = false;
 		}
 		$this->buffer .= htmlspecialchars( $data );
 	}
@@ -531,6 +662,12 @@ Options:
   --prefetch=<type>:<file> Use a prior dump file as a text source, to save
 			  pressure on the database.
 			  (Requires the XMLReader extension)
+  --maxtime=<minutes> Write out checkpoint file after this many minutes (writing
+	          out complete page, closing xml file properly, and opening new one 
+	          with header).  This option requires the checkpointfile option.
+  --checkpointfile=<filenamepattern> Use this string for checkpoint filenames,
+		      substituting first pageid written for the first %s (required) and the 
+              last pageid written for the second %s if it exists.
   --quiet	  Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
 			  (Default: 100)
