@@ -2505,7 +2505,7 @@ $NEWPAGE
 [[Special:ProtectedPages|فهرست صفحه‌های محافظت‌شده]] را برای دیدن فهرست محافظت‌های مؤثر صفحه‌ها ببینید.',
 'protectedarticle'            => '«[[$1]]» را محافظت کرد',
 'modifiedarticleprotection'   => 'وضعیت محافظت «[[$1]]» را تغییر داد',
-'unprotectedarticle'          => 'محافظت از صفحهٔ «[[$1]]» را حذف نمود',
+'unprotectedarticle'          => 'صفحهٔ «[[$1]]» را از محافظت خارج کرد',
 'movedarticleprotection'      => 'تنظیمات محافظت را از «[[$2]]» به «[[$1]]» منتقل کرد',
 'protect-title'               => 'تغییر وضعیت محافظت «$1»',
 'prot_1movedto2'              => '[[$1]] به [[$2]] منتقل شد',

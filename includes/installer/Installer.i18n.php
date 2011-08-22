@@ -2457,11 +2457,11 @@ Dleout a rafec'h merkañ disoc'hoù ar gwiriadennoù-se m'hoc'h eus ezhomm skoaz
 
 $1
 
-Ur meziant frank eo ar programm-mañ; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre implijout, pe (evel mar karit) diouzh ne vern pe stumm nevesoc'h.
+Ur meziant frank eo ar programm-mañ; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre-implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre-implijout, pe (evel mar karit) diouzh ne vern pe stumm nevesoc'h.
 
-Ingalet eo ar programm gant ar spi e vo talvoudus met n'eus '''tamm gwarant ebet'''; hep zoken gwarant empleg ar '''varc'hadusted''' pe an '''azaster ouzh ur pal bennak'''. Gwelet ar GNU Aotre Implijout Foran Hollek evit muioc'h a ditouroù.
+Ingalet eo ar programm gant ar spi e vo talvoudus met n'eus '''tamm gwarant ebet'''; hep zoken gwarant empleg ar '''varc'hadusted''' pe an '''azaster ouzh ur pal bennak'''. Gwelet ar GNU Aotre-Implijout Foran Hollek evit muioc'h a ditouroù.
 
-Sañset oc'h bezañ resevet <doclink href=Copying>un eilskrid eus ar GNU Aotre implijout Foran Hollek</doclink> a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
+Sañset oc'h bezañ resevet <doclink href=Copying>un eilskrid eus ar GNU Aotre-implijout Foran Hollek</doclink> a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
 	'config-sidebar' => "* [http://www.mediawiki.org MediaWiki degemer]
 * [http://www.mediawiki.org/wiki/Help:Contents Sturlevr an implijerien]
 * [http://www.mediawiki.org/wiki/Manual:Contents Sturlevr ar verourien]

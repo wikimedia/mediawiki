@@ -1705,7 +1705,7 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'upload-curl-error28'      => "Aet dreist d'an termen",
 'upload-curl-error28-text' => "Re bell eo bet al lec'hienn o respont. Gwiriit mat emañ al lec'hienn enlinenn, gortozit ur pennadig ha klaskit en-dro. Mat e vo deoc'h adklask d'ur mare dibresoc'h marteze ivez.",
 
-'license'            => 'Aotre implijout :',
+'license'            => 'Aotre-implijout :',
 'license-header'     => 'Aotre implijout',
 'nolicense'          => 'Hini ebet diuzet',
 'license-nopreview'  => '(Dibosupl rakwelet)',
@@ -3536,11 +3536,11 @@ Gallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].',
 'version-license'               => 'Aotre-implijout',
 'version-poweredby-credits'     => "Mont a ra ar wiki-mañ en-dro a-drugarez da '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 're all',
-'version-license-info'          => "Ur meziant frank eo MediaWiki; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre implijout, pe (evel mar karit) ne vern pe stumm nevesoc'h.
+'version-license-info'          => "Ur meziant frank eo MediaWiki; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre-implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre-implijout, pe (evel mar karit) ne vern pe stumm nevesoc'h.
 
-Ingalet eo MediaWiki gant ar spi e vo talvoudus met n'eus TAMM GWARANT EBET; hep zoken gwarant empleg ar VARC'HADUSTED pe an AZASTER OUZH UR PAL BENNAK. Gwelet ar GNU Aotre Implijout Foran Hollek evit muioc'h a ditouroù.
+Ingalet eo MediaWiki gant ar spi e vo talvoudus met n'eus TAMM GWARANT EBET; hep zoken gwarant empleg ar VARC'HADUSTED pe an AZASTER OUZH UR PAL BENNAK. Gwelet ar GNU Aotre-Implijout Foran Hollek evit muioc'h a ditouroù.
 
-Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar GNU Aotre implijout Foran Hollek] a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
+Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar GNU Aotre-implijout Foran Hollek] a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
 'version-software'              => 'Meziant staliet',
 'version-software-product'      => 'Produ',
 'version-software-version'      => 'Stumm',

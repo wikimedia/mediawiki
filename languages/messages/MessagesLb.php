@@ -3406,7 +3406,7 @@ Dir kënnt och [[Special:EditWatchlist/raw|déi net formatéiert Iwwerwaachungsl
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufe}} vun ärer Iwwerwaachungslëscht erofgeholl:',
 'watchlistedit-raw-title'      => 'Iwwerwaachungslëscht onformatéiert änneren',
 'watchlistedit-raw-legend'     => 'Iwwerwaachungslëscht onformatéiert änneren',
-'watchlistedit-raw-explain'    => "D'Säite vun ärer Iwwerwaachungslëscht ginn hei drënner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetze oder erofhuelt; eng Säit pro Linn.
+'watchlistedit-raw-explain'    => "D'Säite vun Ärer Iwwerwaachungslëscht ginn hei drënner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetze oder erofhuelt; eng Säit pro Linn.
 Wann Dir fäerdeg sidd, klickt \"{{int:Watchlistedit-raw-submit}}\".
 Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'watchlistedit-raw-titles'     => 'Säiten:',
