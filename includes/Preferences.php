@@ -1215,12 +1215,13 @@ class Preferences {
 
 	/**
 	 * @param $user User
+	 * @param $context RequestContext
 	 * @param $formClass string
 	 * @return HtmlForm
 	 */
-	static function getFormObject( $user, $formClass = 'PreferencesForm' ) {
+	static function getFormObject( $user, RequestContext $context, $formClass = 'PreferencesForm' ) {
 		$formDescriptor = Preferences::getPreferences( $user );
-		$htmlForm = new $formClass( $formDescriptor, 'prefs' );
+		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
 
 		$htmlForm->setId( 'mw-prefs-form' );
 		$htmlForm->setSubmitText( wfMsg( 'saveprefs' ) );
