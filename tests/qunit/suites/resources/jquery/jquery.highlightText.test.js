@@ -158,10 +158,10 @@ test( 'Check', function() {
 			expected: '<span class="highlight">«</span> <span class="highlight">L\'oise</span>au est sur l’île »'
 		},
 		{
-			desc: 'Test 025a: fr French text and « french quotes » (guillemets) (fails)',
+			desc: 'Test 025a: fr French text and « french quotes » (guillemets) - does it match the single strings "«" and "L" separately?',
 			text: "« L'oiseau est sur l’île »",
 			highlight: "« L",
-			expected: '<span class="highlight">«</span> <span class="highlight">L</span> \'oiseau est sur l’île »'
+			expected: '<span class="highlight">«</span> <span class="highlight">L</span>\'oiseau est sur <span class="highlight">l</span>’île »'
 		},
 		{
 			desc: 'Test 026: ru Russian',
