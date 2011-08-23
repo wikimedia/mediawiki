@@ -14580,6 +14580,7 @@ $messages['su'] = array(
 );
 
 /** Swedish (Svenska)
+ * @author Skalman
  * @author WikiPhoenix
  */
 $messages['sv'] = array(
@@ -14609,6 +14610,7 @@ $messages['sv'] = array(
 	'config-page-releasenotes' => 'Utgivningsanteckningar',
 	'config-page-copying' => 'Kopiering',
 	'config-page-upgradedoc' => 'Uppgradering',
+	'config-page-existingwiki' => 'Befintlig wiki',
 	'config-help-restart' => 'Vill du rensa all sparad data som du har skrivit in och starta om installationen?',
 	'config-restart' => 'Ja, starta om',
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWikis hemsida]

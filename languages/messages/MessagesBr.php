@@ -711,6 +711,7 @@ Ger-tremen da c'hortoz : $2",
 'changeemail-no-info'  => "Ret eo deoc'h bezañ kevreet a-benn mont d'ar bajenn-se war-eeun.",
 'changeemail-oldemail' => "Chomlec'h postel a-vremañ :",
 'changeemail-newemail' => "Chomlec'h postel nevez :",
+'changeemail-none'     => '(hini ebet)',
 'changeemail-submit'   => "Cheñch chomlec'h postel",
 'changeemail-cancel'   => 'Nullañ',
 
@@ -2233,6 +2234,7 @@ Setu an doare a-vremañ evit ar bajenn-mañ '''$1''':",
 'protect-level-sysop'         => 'Merourien hepken',
 'protect-summary-cascade'     => 'Gwareziñ dre skalierad',
 'protect-expiring'            => "a zeu d'e dermen d'an $1",
+'protect-expiring-local'      => "a ya d'e dermen d'an $1",
 'protect-expiry-indefinite'   => 'da viken',
 'protect-cascade'             => 'Gwareziñ dre skalierad - gwareziñ a ra an holl bajennoù zo er bajenn-mañ. ARABAT IMPLIJOUT.',
 'protect-cantedit'            => "N'oc'h ket evit cheñch live gwareziñ ar bajenn-mañ rak n'oc'h ket aotreet da zegas kemmoù enni.",
@@ -3569,7 +3571,7 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'specialpages-note'              => '----
 * Pajennoù dibar boutin.
 * <span class="mw-specialpagerestricted">Pajennoù dibar miret strizh.</span>
-* <span class="mw-specialpagecached">Pajennoù dibar krubuilhet hepken.</span>',
+* <span class="mw-specialpagecached">Pajennoù dibar krubuilhet hepken (a c\'hellfe bezañ re gozh).</span>',
 'specialpages-group-maintenance' => "Rentaoù-kont trezalc'h",
 'specialpages-group-other'       => 'Pajennoù dibar all',
 'specialpages-group-login'       => 'Kevreañ / en em enrollañ',
@@ -3611,13 +3613,16 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'tags-hitcount'           => '$1 {{PLURAL:$1|kemm|kemm}}',
 
 # Special:ComparePages
-'comparepages'     => 'Keñveriañ pajennoù',
-'compare-selector' => 'Keñveriañ stummoù ar pajennoù',
-'compare-page1'    => 'Pajenn 1',
-'compare-page2'    => 'Pajenn 2',
-'compare-rev1'     => 'Adweladenn 1',
-'compare-rev2'     => 'Adweladenn 2',
-'compare-submit'   => 'Keñveriañ',
+'comparepages'                => 'Keñveriañ pajennoù',
+'compare-selector'            => 'Keñveriañ stummoù ar pajennoù',
+'compare-page1'               => 'Pajenn 1',
+'compare-page2'               => 'Pajenn 2',
+'compare-rev1'                => 'Adweladenn 1',
+'compare-rev2'                => 'Adweladenn 2',
+'compare-submit'              => 'Keñveriañ',
+'compare-invalid-title'       => "Kamm eo an titl hoc'h eus merket.",
+'compare-title-not-exists'    => "N'eus ket eus an titl spisaet ganeoc'h.",
+'compare-revision-not-exists' => "N'eus ket eus an adweladenn spisaet ganeoc'h.",
 
 # Database error messages
 'dberr-header'      => 'Ur gudenn zo gant ar wiki-mañ',
@@ -3658,8 +3663,9 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'ajax-add-category-summary'    => 'Ouzhpennañ ar rummad "$1"',
 'ajax-edit-category-summary'   => 'Cheñch ar rummad eus "$1" da "$2"',
 'ajax-remove-category-summary' => 'Diverkañ ar rummad "$1"',
+'ajax-category-question'       => "Perak e fell deoc'h ober ar c'hemmoù da-heul :",
 'ajax-error-title'             => 'Fazi',
-'ajax-remove-category-error'   => "N'eus ket bet gallet diverkañ ar rummad-mañ. 
-C'hoarvezout a ra p'eo bet ouzhpennet ar rummad er bajenn dre ur patrom",
+'ajax-remove-category-error'   => 'N\'eus ket bet gallet diverkañ ar rummad "$1". 
+C\'hoarvezout a ra p\'eo bet ouzhpennet ar rummad er bajenn dre ur patrom',
 
 );

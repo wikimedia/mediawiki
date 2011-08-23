@@ -730,7 +730,7 @@ Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus 
 'createaccountmail'          => 'per mèssageria èlèctronica',
 'createaccountreason'        => 'Rêson :',
 'badretype'                  => 'Los mots de pâssa que vos éd buchiês sont pas pariérs.',
-'userexists'                 => 'Lo nom d’utilisator que vos éd buchiê est ja utilisâ.
+'userexists'                 => 'Lo nom d’utilisator buchiê est ja utilisâ.
 Nen volyéd chouèsir un ôtro.',
 'loginerror'                 => 'Èrror de branchement',
 'createaccounterror'         => 'Empossiblo de fâre lo compto : $1',
@@ -3856,7 +3856,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'specialpages-note'              => '----
 * Pâges spèciâles normales.
 * <span class="mw-specialpagerestricted">Pâges spèciâles rètrentes.</span>
-* <span class="mw-specialpagecached">Pâges spèciâles solament en cache.</span>',
+* <span class="mw-specialpagecached">Pâges spèciâles solament en cache (porriant étre dèpassâs).</span>',
 'specialpages-group-maintenance' => 'Rapôrts de mantegnence',
 'specialpages-group-other'       => 'Ôtres pâges spèciâles',
 'specialpages-group-login'       => 'Branchement / encartâjo',
