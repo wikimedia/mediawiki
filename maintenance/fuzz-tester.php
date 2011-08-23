@@ -139,9 +139,6 @@ Wiki configuration for testing:
 
   // Install & enable Special Page extensions to increase code coverage. E.g.:
   require_once("extensions/Cite/SpecialCite.php");
-  require_once("extensions/Filepath/SpecialFilepath.php");
-  require_once("extensions/Makebot/Makebot.php");
-  require_once("extensions/Makesysop/SpecialMakesysop.php");
   require_once("extensions/Renameuser/SpecialRenameuser.php");
   require_once("extensions/LinkSearch/LinkSearch.php");
   // --------- End ---------
@@ -1892,52 +1889,6 @@ class specialFilepathPageTest extends pageTest {
 
 
 /**
- ** a test for Special:Makebot (extension Special page).
- */
-class specialMakebot extends pageTest {
-	function __construct() {
-		$this->pagePath = "index.php?title=Special:Makebot";
-
-		$this->params = array (
-				"username" => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikiFuzz::makeFuzz( 1 ) ) ),
-				"dosearch" => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
-				"grant"    => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
-				"comment"  => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
-				"token"    => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
-				);
-
-		// sometimes we don't want to specify certain parameters.
-		if ( wikiFuzz::randnum( 2 ) == 0 ) unset( $this->params["dosearch"] );
-		if ( wikiFuzz::randnum( 2 ) == 0 ) unset( $this->params["grant"] );
-		if ( wikiFuzz::randnum( 5 ) == 0 ) unset( $this->params["token"] );
-	}
-}
-
-
-/**
- ** a test for Special:Makesysop (extension Special page).
- */
-class specialMakesysop extends pageTest {
-	function __construct() {
-		$this->pagePath = "index.php?title=Special:Makesysop";
-
-		$this->params = array (
-				"wpMakesysopUser"   => wikiFuzz::chooseInput( array( "Nickj2", "192.168.0.2", wikiFuzz::makeFuzz( 1 ) ) ),
-				"action"            => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
-				"wpMakesysopSubmit" => wikiFuzz::chooseInput( array( "0", "1", "++--34234", wikiFuzz::makeFuzz( 2 ) ) ),
-				"wpEditToken"       => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
-				"wpSetBureaucrat"   => wikiFuzz::chooseInput( array( "20398702394", "", wikiFuzz::makeFuzz( 2 ) ) ),
-				);
-
-		// sometimes we don't want to specify certain parameters.
-		if ( wikiFuzz::randnum( 3 ) == 0 ) unset( $this->params["wpMakesysopSubmit"] );
-		if ( wikiFuzz::randnum( 3 ) == 0 ) unset( $this->params["wpEditToken"] );
-		if ( wikiFuzz::randnum( 3 ) == 0 ) unset( $this->params["wpSetBureaucrat"] );
-	}
-}
-
-
-/**
  ** a test for Special:Renameuser (extension Special page).
  */
 class specialRenameuserPageTest extends pageTest {
@@ -2279,13 +2230,11 @@ function selectPageTest( $count ) {
 		case 37: return new profileInfo();
 		case 38: return new specialCitePageTest();
 		case 39: return new specialFilepathPageTest();
-		case 40: return new specialMakebot();
-		case 41: return new specialMakesysop();
-		case 42: return new specialRenameuserPageTest();
-		case 43: return new specialLinksearch();
-		case 44: return new specialCategoryTree();
-		case 45: return new api();
-		case 45: return new specialChemicalsourcesTest();
+		case 40: return new specialRenameuserPageTest();
+		case 41: return new specialLinksearch();
+		case 42: return new specialCategoryTree();
+		case 43: return new api();
+		case 44: return new specialChemicalsourcesTest();
 		default: return new editPageTest();
 	}
 }
