@@ -75,6 +75,7 @@ class SpecialBlockList extends SpecialPage {
 					wfMsg( 'blocklist-userblocks' ) => 'userblocks',
 					wfMsg( 'blocklist-tempblocks' ) => 'tempblocks',
 					wfMsg( 'blocklist-addressblocks' ) => 'addressblocks',
+					wfMsg( 'blocklist-rangeblocks' ) => 'rangeblocks',
 				),
 				'flatlist' => true,
 			),
@@ -141,6 +142,9 @@ class SpecialBlockList extends SpecialPage {
 		}
 		if( in_array( 'addressblocks', $this->options ) ) {
 			$conds[] = "ipb_user != 0 OR ipb_range_end > ipb_range_start";
+		}
+		if( in_array( 'rangeblocks', $this->options ) ) {
+			$conds[] = "ipb_range_end = ipb_range_start";
 		}
 
 		# Check for other blocks, i.e. global/tor blocks
