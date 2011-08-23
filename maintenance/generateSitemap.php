@@ -162,6 +162,8 @@ class GenerateSitemap extends Maintenance {
 	}
 
 	private function setNamespacePriorities() {
+		global $wgSitemapNamespacesPriorities;
+
 		// Custom main namespaces
 		$this->priorities[self::GS_MAIN] = '0.5';
 		// Custom talk namesspaces
@@ -183,6 +185,19 @@ class GenerateSitemap extends Maintenance {
 		$this->priorities[NS_HELP_TALK] = '0.1';
 		$this->priorities[NS_CATEGORY] = '0.5';
 		$this->priorities[NS_CATEGORY_TALK] = '0.1';
+
+		// Custom priorities
+		if ( $wgSitemapNamespacesPriorities !== false ) {
+			foreach ( $wgSitemapNamespacesPriorities as $namespace => $priority ) {
+				$float = floatval( $priority );
+				if ( $float > 1.0 ) {
+					$priority = '1.0';
+				} elseif ( $float < 0.0 ) {
+					$priority = '0.0';
+				}
+				$this->priorities[$namespace] = $priority;
+			}
+		}
 	}
 
 	/**
