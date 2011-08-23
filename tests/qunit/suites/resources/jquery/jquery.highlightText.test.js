@@ -156,18 +156,6 @@ test( 'Check', function() {
 			text: "« L'oiseau est sur l’île »",
 			highlight: "« L'oise",
 			expected: '<span class="highlight">«</span> <span class="highlight">L\'oise</span>au est sur l’île »'
-		},
-		{
-			desc: 'Test 100: TESTCASE FOR QUNIT FAILS: a wrong expected string was not detected in Firefox 6.0 and Chrome',
-			text: 'Österreich',
-			highlight: 'Ö',
-			expected: '<span class="highlight">Ö</span>sterreich</span this wrong tag is not detected as test failure in Firefox 6.0 or Chrome>'
-		},
-		{
-			desc: 'Test 101: TESTCASE FOR QUNIT FAILS: a wrong expected string was not detected in Firefox 6.0 or Chrome',
-			text: 'Oesterreich',
-			highlight: 'Oe',
-			expected: '<span class="highlight">Oe</span>sterreich</span this wrong tag is not detected as test failure in Firefox 6.0 or Chrome>'
 		}
 	];
 	expect(cases.length);
