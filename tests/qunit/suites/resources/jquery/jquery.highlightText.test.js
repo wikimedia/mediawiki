@@ -110,52 +110,112 @@ test( 'Check', function() {
 			expected: 'So good. To <span class="highlight">be</span> there'
 		},
 		{
-			desc: 'Test 018: Highlighter broken on special character at the end?',
+			desc: 'Test 018: en de Highlighter broken on special character at the end?',
 			text: 'So good. xbß',
 			highlight: 'xbß',
 			expected: 'So good. <span class="highlight">xbß</span>'
 		},
 		{
-			desc: 'Test 019: Highlighter broken on special character at the end?',
+			desc: 'Test 019: en de Highlighter broken on special character at the end?',
 			text: 'So good. xbß.',
 			highlight: 'xbß.',
 			expected: 'So good. <span class="highlight">xbß.</span>'
 		},
 		{
-			desc: 'Test 020: Hebrew',
+			desc: 'Test 020: RTL he Hebrew',
 			text: 'חסיד אומות העולם',
 			highlight: 'חסיד אומות העולם',
 			expected: '<span class="highlight">חסיד</span> <span class="highlight">אומות</span> <span class="highlight">העולם</span>'
 		},
 		{
-			desc: 'Test 021: Hebrew',
+			desc: 'Test 021: RTL he Hebrew',
 			text: 'חסיד אומות העולם',
 			highlight: 'חסי',
 			expected: '<span class="highlight">חסי</span>ד אומות העולם'
 		},
 		{
-			desc: 'Test 022: Japanese',
+			desc: 'Test 022: ja Japanese',
 			text: '諸国民の中の正義の人',
 			highlight: '諸国民の中の正義の人',
 			expected: '<span class="highlight">諸国民の中の正義の人</span>'
 		},
 		{
-			desc: 'Test 023: Japanese',
+			desc: 'Test 023: ja Japanese',
 			text: '諸国民の中の正義の人',
 			highlight: '諸国',
 			expected: '<span class="highlight">諸国</span>民の中の正義の人'
 		},
 		{
-			desc: 'Test 024: French text and « french quotes » (guillemets)',
+			desc: 'Test 024: fr French text and « french quotes » (guillemets)',
 			text: "« L'oiseau est sur l’île »",
 			highlight: "« L'oiseau est sur l’île »",
 			expected: '<span class="highlight">«</span> <span class="highlight">L\'oiseau</span> <span class="highlight">est</span> <span class="highlight">sur</span> <span class="highlight">l’île</span> <span class="highlight">»</span>'
 		},
 		{
-			desc: 'Test 025: French text and « french quotes » (guillemets)',
+			desc: 'Test 025: fr French text and « french quotes » (guillemets)',
 			text: "« L'oiseau est sur l’île »",
 			highlight: "« L'oise",
 			expected: '<span class="highlight">«</span> <span class="highlight">L\'oise</span>au est sur l’île »'
+		},
+		{
+			desc: 'Test 026: ru Russian',
+			text: 'Праведники мира',
+			highlight: 'Праведники мира',
+			expected: '<span class="highlight">Праведники</span> <span class="highlight">мира</span>'
+		},
+		{
+			desc: 'Test 027: ru Russian',
+			text: 'Праведники мира',
+			highlight: 'Праве',
+			expected: '<span class="highlight">Праве</span>дники мира'
+		},
+		{
+			desc: 'Test 028 ka Georgian',
+			text: 'მთავარი გვერდი',
+			highlight: 'მთავარი გვერდი',
+			expected: '<span class="highlight">მთავარი</span> <span class="highlight">გვერდი</span>'
+		},
+		{
+			desc: 'Test 029 ka Georgian',
+			text: 'მთავარი გვერდი',
+			highlight: 'მთა',
+			expected: '<span class="highlight">მთა</span>ვარი გვერდი'
+		},
+		{
+			desc: 'Test 030 hy Armenian',
+			text: 'Նոնա Գափրինդաշվիլի',
+			highlight: 'Նոնա Գափրինդաշվիլի',
+			expected: '<span class="highlight">Նոնա</span> <span class="highlight">Գափրինդաշվիլի</span>'
+		},
+		{
+			desc: 'Test 031 hy Armenian',
+			text: 'Նոնա Գափրինդաշվիլի',
+			highlight: 'Նոն',
+			expected: '<span class="highlight">Նոն</span>ա Գափրինդաշվիլի'
+		},
+		{
+			desc: 'Test 032: th Thai',
+			text: 'พอล แอร์ดิช',
+			highlight: 'พอล แอร์ดิช',
+			expected: '<span class="highlight">พอล</span> <span class="highlight">แอร์ดิช</span>'
+		},
+		{
+			desc: 'Test 033: th Thai',
+			text: 'พอล แอร์ดิช',
+			highlight: 'พอ',
+			expected: '<span class="highlight">พอ</span>ล แอร์ดิช'
+		},
+		{
+			desc: 'Test 034: RTL ar Arabic',
+			text: 'بول إيردوس',
+			highlight: 'بول إيردوس',
+			expected: '<span class="highlight">بول</span> <span class="highlight">إيردوس</span>'
+		},
+		{
+			desc: 'Test 035: RTL ar Arabic',
+			text: 'بول إيردوس',
+			highlight: 'بو',
+			expected: '<span class="highlight">بو</span>ل إيردوس'
 		}
 	];
 	expect(cases.length);
