@@ -68,6 +68,8 @@ production.
 * (bug 11374) Improved diff readability for colorblind people.
 * (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
   warnings/notices to be thrown.
+* (bug 30335) Fix for HTMLForms using GET breaking when non-friendly URLs are
+  used
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
