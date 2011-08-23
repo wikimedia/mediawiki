@@ -16,6 +16,8 @@ production.
 * Default cookie lifetime ($wgCookieExpiration) is increased to 180 days.
 
 === New features in 1.19 ===
+* (bug 30497) Add client-nojs and client-js classes on document element
+  to let styles easily hide or show things based on general JS availability
 * (bug 19838) Possibility to get all interwiki prefixes if the interwiki
   cache is used.
 * $wgDnsBlacklistUrls now accepts an array with url and key as the
