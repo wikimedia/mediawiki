@@ -659,7 +659,7 @@ $2',
 'createaccountmail'          => '通过电子邮件',
 'createaccountreason'        => '理由：',
 'badretype'                  => '您所输入的密码并不相同。',
-'userexists'                 => '您所输入的用户名称已经存在，请另选一个名称。',
+'userexists'                 => '用户名已存在，请使用其他名称。',
 'loginerror'                 => '登录错误',
 'createaccounterror'         => '无法建立账户：$1',
 'nocookiesnew'               => '已成功创建新账户！侦测到您已关闭Cookies，请开启它并登录。',
@@ -3554,9 +3554,9 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 # Special:SpecialPages
 'specialpages'                   => '特殊页面',
 'specialpages-note'              => '----
-* 正常的特殊页面。
-* <span class="mw-specialpagerestricted">限制的特殊页面。</span>
-* <span class="mw-specialpagecached">仅用于缓存的特殊页面。</span>',
+* 常规特殊页面。
+* <span class="mw-specialpagerestricted">受限特殊页面。</span>
+* <span class="mw-specialpagecached">已缓存特殊页面（可能已过时）。</span>',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other'       => '其它特殊页面',
 'specialpages-group-login'       => '登录／注册',

@@ -3564,7 +3564,7 @@ Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 'specialpages-note'              => '----
 * Pagine speciali non riservate.
 * <span class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</span>
-* <span class="mw-specialpagecached">Pagine speciali disponibili in versione cache.</span>',
+* <span class="mw-specialpagecached">Pagine speciali disponibili in versione cache (potrebbero essere obsolete).</span>',
 'specialpages-group-maintenance' => 'Resoconti di manutenzione',
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazione',

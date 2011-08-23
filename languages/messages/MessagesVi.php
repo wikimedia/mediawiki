@@ -709,7 +709,7 @@ Tài khoản của bạn đã mở.
 'createaccountmail'          => 'qua thư điện tử',
 'createaccountreason'        => 'Lý do:',
 'badretype'                  => 'Hai mật khẩu không khớp.',
-'userexists'                 => 'Tên người dùng này đã có người lấy.
+'userexists'                 => 'Tên người dùng được nhập đã có người lấy.
 Hãy chọn một tên khác.',
 'loginerror'                 => 'Lỗi đăng nhập',
 'createaccounterror'         => 'Không thể mở tài khoản: $1',
@@ -3766,8 +3766,8 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'specialpages'                   => 'Các trang đặc biệt',
 'specialpages-note'              => '----
 * Trang đặc biệt thông thường.
-* <strong class="mw-specialpagerestricted">Trang đặc biệt có hạn chế.</strong>
-* <span class="mw-specialpagecached">Trang đặc biệt chỉ được lấy từ vùng nhớ đệm.</span>',
+* <strong class="mw-specialpagerestricted">Trang đặc biệt được hạn chế.</strong>
+* <span class="mw-specialpagecached">Trang đặc biệt được lấy từ vùng nhớ đệm (có thể lỗi thời).</span>',
 'specialpages-group-maintenance' => 'Báo cáo bảo quản',
 'specialpages-group-other'       => 'Những trang đặc biệt khác',
 'specialpages-group-login'       => 'Đăng nhập / Mở tài khoản',

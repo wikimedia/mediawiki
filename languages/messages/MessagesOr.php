@@ -1257,6 +1257,8 @@ $5
 
 # action=purge
 'confirm_purge_button' => 'ଠିକ ଅଛି',
+'confirm-purge-top'    => 'ଏହି ପୃଷ୍ଠାଟିର ନଗଦ ସଙ୍କଳନଟିକୁ ଦେଖାଇବେ?',
+'confirm-purge-bottom' => 'ପୁରୁଣା ସ୍ମୃତିସବୁକୁ ସଫା କରିଦେଲେ ତାହା ପୃଷ୍ଠାଟିର ନଗଦ ସଙ୍କଳନଟି ଦେଖାଇଥାଏ ।',
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'ଠିକ ଅଛି',
