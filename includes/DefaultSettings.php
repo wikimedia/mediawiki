@@ -4250,6 +4250,20 @@ $wgUseTwoButtonsSearchForm = true;
  */
 $wgSitemapNamespaces = false;
 
+/**
+ * Custom namespace priorities for sitemaps. Setting this will allow you to
+ * set custom priorities to namsepaces when sitemaps are generated using the
+ * maintenance/generateSitemap.php script.
+ *
+ * This should be a map of namespace IDs to priority
+ * Example:
+ *  $wgSitemapNamespacesPriorities = array(
+ *      NS_USER => '0.9',
+ *      NS_HELP => '0.0',
+ *  );
+ */
+$wgSitemapNamespacesPriorities = false;
+
 /** @} */ # end of search settings
 
 /************************************************************************//**
