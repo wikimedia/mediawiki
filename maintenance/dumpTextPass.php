@@ -222,7 +222,6 @@ class TextPassDumper extends BackupDumper {
 			$this->progress( sprintf( "%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), %d revs (%0.1f|%0.1f/sec all|curr), %0.1f%%|%0.1f%% prefetched (all|curr), ETA %s [max %d]",-
 					$now, wfWikiID(), $this->ID, $this->pageCount, $pageRate, $pageRatePart, $this->revCount, $revRate, $revRatePart, $fetchRate, $fetchRatePart, $etats, $this->maxCount ) );
 			$this->lastTime = $now;
-			$this->partCountLast = $this->partCount;
 			$this->revCountLast = $this->revCount;
 			$this->prefetchCountLast = $this->prefetchCount;
 			$this->fetchCountLast = $this->fetchCount;
@@ -248,8 +247,7 @@ class TextPassDumper extends BackupDumper {
 		foreach ($this->checkpointFiles as $checkpointFile) {
 			$count = substr_count ($checkpointFile,"%s");
 			if (substr_count ($checkpointFile,"%s") != 2) {
-				wfDie("Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, fil
-e is $checkpointFile.\n");
+				wfDie("Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n");
 			}
 		}
 
