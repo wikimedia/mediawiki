@@ -146,6 +146,18 @@ test( 'Check', function() {
 			expected: '<span class="highlight">諸国</span>民の中の正義の人'
 		},
 		{
+			desc: 'Test 024: French text and « french quotes » (guillemets)',
+			text: "« L'oiseau est sur l’île »",
+			highlight: "« L'oiseau est sur l’île »",
+			expected: '<span class="highlight">«</span> <span class="highlight">L\'oiseau</span> <span class="highlight">est</span> <span class="highlight">sur</span> <span class="highlight">l’île</span> <span class="highlight">»</span>'
+		},
+		{
+			desc: 'Test 025: French text and « french quotes » (guillemets)',
+			text: "« L'oiseau est sur l’île »",
+			highlight: "« L'oise",
+			expected: '<span class="highlight">«</span> <span class="highlight">L\'oise</span>au est sur l’île »'
+		},
+		{
 			desc: 'Test 100: TESTCASE FOR QUNIT FAILS: a wrong expected string was not detected in Firefox 6.0 and Chrome',
 			text: 'Österreich',
 			highlight: 'Ö',
