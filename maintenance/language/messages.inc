@@ -2102,6 +2102,7 @@ $wgMessageStructure = array(
 		'blocklist-userblocks',
 		'blocklist-tempblocks',
 		'blocklist-addressblocks',
+		'blocklist-rangeblocks',
 		'blocklist-timestamp',
 		'blocklist-target',
 		'blocklist-expiry',
