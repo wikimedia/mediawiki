@@ -226,7 +226,9 @@
 			var re = new RegExp( '^[^#]*[&?]' + $.escapeRE( param ) + '=([^&#]*)' );
 			var m = re.exec( url );
 			if ( m && m.length > 1 ) {
-				return decodeURIComponent( m[1] );
+				// Beware that decodeURIComponent is not required to understand '+'
+				// by spec, as encodeURIComponent does not produce it.
+				return decodeURIComponent( m[1].replace( '+', '%20' ) );
 			}
 			return null;
 		},
