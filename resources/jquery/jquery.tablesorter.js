@@ -8,8 +8,9 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * @depends on mw.config (wgDigitTransformTable, wgMonthNames, wgMonthNamesShort,
+ * Depends on mw.config (wgDigitTransformTable, wgMonthNames, wgMonthNamesShort,
  * wgDefaultDateFormat, wgContentLanguage)
+ * Uses 'tableSorterCollation' in mw.config (if available)
  */
 /**
  *
@@ -222,7 +223,7 @@
 			realCellIndex = 0,
 			$tableHeaders = $( 'thead:eq(0) tr', table );
 		if ( $tableHeaders.length > 1 ) {
-			$tableHeaders.each(function() {
+			$tableHeaders.each( function() {
 				if ( this.cells.length > maxSeen ) {
 					maxSeen = this.cells.length;
 					longest = this;

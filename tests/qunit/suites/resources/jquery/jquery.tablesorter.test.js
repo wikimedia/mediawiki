@@ -286,15 +286,20 @@ tableTest(
 	umlautWords,
 	umlautWordsSorted,
 	function( $table ) {
-		mw.config.set( 'tableSorterCollation', {'ä':'ae', 'ö' : 'oe', 'ß': 'ss', 'ü':'ue'});
+		mw.config.set( 'tableSorterCollation', {
+			'ä': 'ae',
+			'ö' : 'oe',
+			'ß': 'ss',
+			'ü':'ue'
+		} );
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 		mw.config.set( 'tableSorterCollation', {} );
 	}
 );
 
-var planetsRowspan  =[["Earth","6051.8"], jupiter, ["Mars","6051.8"], mercury, saturn, venus];
-var planetsRowspanII  =[jupiter, mercury, saturn, ['Venus', '6371.0'], venus, ['Venus', '3390.0']];
+var planetsRowspan = [["Earth","6051.8"], jupiter, ["Mars","6051.8"], mercury, saturn, venus];
+var planetsRowspanII = [jupiter, mercury, saturn, ['Venus', '6371.0'], venus, ['Venus', '3390.0']];
 
 tableTest(
 	'Basic planet table: Same value for multiple rows via rowspan',
@@ -302,9 +307,13 @@ tableTest(
 	planets,
 	planetsRowspan,
 	function( $table ) {
-		//Quick&Dirty mod
+		// Modify the table to have a multiuple-row-spanning cell:
+		// - Remove 2nd cell of 4th row, and, 2nd cell or 5th row.
 		$table.find( 'tr:eq(3) td:eq(1), tr:eq(4) td:eq(1)' ).remove();
+		// - Set rowspan for 2nd cell of 3rd row to 3.
+		//   This covers the removed cell in the 4th and 5th row.
 		$table.find( 'tr:eq(2) td:eq(1)' ).prop( 'rowspan', '3' );
+
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
@@ -315,9 +324,13 @@ tableTest(
 	planets,
 	planetsRowspanII,
 	function( $table ) {
-		//Quick&Dirty mod
+		// Modify the table to have a multiuple-row-spanning cell:
+		// - Remove 1st cell of 4th row, and, 1st cell or 5th row.
 		$table.find( 'tr:eq(3) td:eq(0), tr:eq(4) td:eq(0)' ).remove();
+		// - Set rowspan for 1st cell of 3rd row to 3.
+		//   This covers the removed cell in the 4th and 5th row.
 		$table.find( 'tr:eq(2) td:eq(0)' ).prop( 'rowspan', '3' );
+
 		$table.tablesorter();
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
