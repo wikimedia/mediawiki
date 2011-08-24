@@ -3140,7 +3140,7 @@ class Parser {
 	 * @private
 	 */
 	function braceSubstitution( $piece, $frame ) {
-		global $wgContLang, $wgNonincludableNamespaces;
+		global $wgContLang, $wgNonincludableNamespaces, $wgEnableInterwikiTranscluding, $wgEnableInterwikiTemplatesTracking;
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__.'-setup' );
 
@@ -3148,7 +3148,6 @@ class Parser {
 		$found = false;             # $text has been filled
 		$nowiki = false;            # wiki markup in $text should be escaped
 		$isHTML = false;            # $text is HTML, armour it against wikitext transformation
-		$forceRawInterwiki = false; # Force interwiki transclusion to be done in raw mode not rendered
 		$isChildObj = false;        # $text is a DOM node needing expansion in a child frame
 		$isLocalObj = false;        # $text is a DOM node needing expansion in the current frame
 
@@ -3313,6 +3312,9 @@ class Parser {
 			}
 			$title = Title::newFromText( $part1, $ns );
 			if ( $title ) {
+				if ( !$title->isExternal() && $piece['interwiki'] !== '' ) {
+					$title->setInterwiki( $piece['interwiki'] );
+				}
 				$titleText = $title->getPrefixedText();
 				# Check for language variants if the template is not found
 				if ( $wgContLang->hasVariants() && $title->getArticleID() == 0 ) {
@@ -3375,18 +3377,22 @@ class Parser {
 					$text = "[[:$titleText]]";
 					$found = true;
 				}
-			} elseif ( $title->isTrans() ) {
-				# Interwiki transclusion
-				if ( $this->ot['html'] && !$forceRawInterwiki ) {
-					$text = $this->interwikiTransclude( $title, 'render' );
-					$isHTML = true;
-				} else {
-					$text = $this->interwikiTransclude( $title, 'raw' );
+			} elseif ( $wgEnableInterwikiTranscluding && $title->isTrans() ) {
+
+				$text = Interwiki::interwikiTransclude( $title );
+				$this->registerDistantTemplate( $title );
+
+				if ( $wgEnableInterwikiTemplatesTracking ) {
+					$this->registerDistantTemplate( $title );
+				}
+
+				if ( $text !== false ) {
 					# Preprocess it like a template
 					$text = $this->preprocessToDom( $text, self::PTD_FOR_INCLUSION );
+					$found = true;
 					$isChildObj = true;
 				}
-				$found = true;
+
 			}
 
 			# Do infinite loop check
@@ -3536,10 +3542,19 @@ class Parser {
 	}
 
 	/**
-	 * Fetch the unparsed text of a template and register a reference to it.
-	 * @param Title $title
-	 * @return mixed string or false
+	 * Register a distant template as used
 	 */
+	function registerDistantTemplate( $title ) {
+		$stuff = Parser::distantTemplateCallback( $title, $this );
+		$text = $stuff['text'];
+		$finalTitle = isset( $stuff['finalTitle'] ) ? $stuff['finalTitle'] : $title;
+		if ( isset( $stuff['deps'] ) ) {
+			foreach ( $stuff['deps'] as $dep ) {
+				$this->mOutput->addDistantTemplate( $dep['title'], $dep['page_id'], $dep['rev_id'] );
+			}
+		}
+	}
+
 	function fetchTemplate( $title ) {
 		$rv = $this->fetchTemplateAndTitle( $title );
 		return $rv[0];
@@ -3668,56 +3683,21 @@ class Parser {
 		return array( $file, $title );
 	}
 
-	/**
-	 * Transclude an interwiki link.
-	 *
-	 * @param $title Title
-	 * @param $action
-	 *
-	 * @return string
-	 */
-	function interwikiTransclude( $title, $action ) {
-		global $wgEnableScaryTranscluding;
+	static function distantTemplateCallback( $title, $parser=false ) {
+		$text = '';
+		$rev_id = null;
+		$deps[] = array(
+			'title' => $title,
+			'page_id' => $title->getArticleID(),
+			'rev_id' => $rev_id );
 
-		if ( !$wgEnableScaryTranscluding ) {
-			return wfMsgForContent('scarytranscludedisabled');
+		$finalTitle = $title;
+
+		return array(
+			'text' => $text,
+			'finalTitle' => $finalTitle,
+			'deps' => $deps );
 		}
-
-		$url = $title->getFullUrl( "action=$action" );
-
-		if ( strlen( $url ) > 255 ) {
-			return wfMsgForContent( 'scarytranscludetoolong' );
-		}
-		return $this->fetchScaryTemplateMaybeFromCache( $url );
-	}
-
-	/**
-	 * @param $url string
-	 * @return Mixed|String
-	 */
-	function fetchScaryTemplateMaybeFromCache( $url ) {
-		global $wgTranscludeCacheExpiry;
-		$dbr = wfGetDB( DB_SLAVE );
-		$tsCond = $dbr->timestamp( time() - $wgTranscludeCacheExpiry );
-		$obj = $dbr->selectRow( 'transcache', array('tc_time', 'tc_contents' ),
-				array( 'tc_url' => $url, "tc_time >= " . $dbr->addQuotes( $tsCond ) ) );
-		if ( $obj ) {
-			return $obj->tc_contents;
-		}
-
-		$text = Http::get( $url );
-		if ( !$text ) {
-			return wfMsgForContent( 'scarytranscludefailed', $url );
-		}
-
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'transcache', array('tc_url'), array(
-			'tc_url' => $url,
-			'tc_time' => $dbw->timestamp( time() ),
-			'tc_contents' => $text)
-		);
-		return $text;
-	}
 
 	/**
 	 * Triple brace replacement -- used for template arguments

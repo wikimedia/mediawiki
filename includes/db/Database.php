@@ -1820,6 +1820,39 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Build a partial where clause from a 3-d array
+	 * The keys on each level may be either integers or strings.
+	 *
+	 * @param $data Array: organized as 3-d array(baseKeyVal => array(middleKeyVal => array(subKeyVal => <ignored>, ...), ...), ...)
+	 * @param $baseKey String: field name to match the base-level keys to (eg 'gtl_to_prefix')
+	 * @param $middleKey String: field name to match the middle-level keys to (eg 'gtl_to_namespace')
+	 * @param $subKey String: field name to match the sub-level keys to (eg 'gtl_to_title')
+	 * @return Mixed: string SQL fragment, or false if no items in array.
+	 */
+	function makeWhereFrom3d( $data, $baseKey, $middleKey, $subKey ) {
+		$conds = array();
+		foreach ( $data as $base => $subdata ) {
+			foreach ( $subdata as $middle => $sub ) {
+				if ( count( $sub ) ) {
+					$conds[] = $this->makeList(
+						array( $baseKey => $base,
+							$middleKey => $middle,
+							$subKey => array_keys( $sub ) ),
+						LIST_AND
+					);
+				}
+			}
+		}
+
+		if ( $conds ) {
+			return $this->makeList( $conds, LIST_OR );
+		} else {
+			// Nothing to search for...
+			return false;
+		}
+	}
+
+	/**
 	 * Bitwise operations
 	 */
 

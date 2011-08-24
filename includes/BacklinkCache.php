@@ -175,6 +175,25 @@ class BacklinkCache {
 	}
 
 	/**
+	 * Get the distant backtemplatelinks for the table globaltemplatelinks. Cached in process memory only.
+	 * @return ResultWrapper list of distant pages that use the local title
+	 */
+	public function getDistantTemplateLinks( ) {
+		global $wgGlobalDatabase, $wgLocalInterwiki;
+		
+		$dbr = $dbr = wfGetDB( DB_SLAVE, array(), $wgGlobalDatabase );
+		$res = $dbr->select(
+			array( 'globaltemplatelinks', 'globalinterwiki' ),
+			array( 'gtl_from_wiki', 'gtl_from_page', 'gtl_from_title', 'giw_prefix' ),
+			array( 'gtl_to_prefix' => $wgLocalInterwiki, 'gtl_to_title' => $this->title->getDBkey( ) ),
+			__METHOD__,
+			null,
+			array( 'gtl_from_wiki = giw_wikiid' )
+		);
+		return $res;
+	}
+
+	/**
 	 * Get the field name prefix for a given table
 	 * @param $table String
 	 */
@@ -185,6 +204,7 @@ class BacklinkCache {
 			'categorylinks' => 'cl',
 			'templatelinks' => 'tl',
 			'redirect'      => 'rd',
+			'globaltemplatelinks' => 'gtl',
 		);
 
 		if ( isset( $prefixes[$table] ) ) {
