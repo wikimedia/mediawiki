@@ -6,7 +6,7 @@
 
 class SpecialGlobalFileUsage extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 'GlobalFileUsage' );
+		parent::__construct( 'Globalfileusage' );
 	}
 
 	/**
@@ -33,7 +33,7 @@ class SpecialGlobalFileUsage extends SpecialPage {
 
 		$this->showResult();
 	}
-	
+
 	/**
 	 * Shows the search form
 	 */
@@ -57,7 +57,7 @@ class SpecialGlobalFileUsage extends SpecialPage {
 		// Filter local checkbox
 			. "\n\t<p>" . Xml::checkLabel( wfMsg( 'globalfileusage-filterlocal' ),
 					'filterlocal', 'mw-filterlocal', $this->filterLocal ) . '</p>';
-		
+
 		if ( !is_null( $this->target ) && wfFindFile( $this->target ) ) {
 			// Show the image if it exists
 			global $wgUser, $wgContLang;
@@ -69,7 +69,7 @@ class SpecialGlobalFileUsage extends SpecialPage {
 					/* $handlerParams */ array(), /* $framed */ false,
 					/* $thumb */ true );
 		}
-		
+
 		// Wrap the entire form in a nice fieldset
 		$html .= Xml::fieldSet( wfMsg( 'globalfileusage-text' ), $formContent ) . "\n</form>";
 
@@ -147,7 +147,7 @@ class SpecialGlobalFileUsage extends SpecialPage {
 
 	/**
 	 * Helper function to create the navbar, stolen from wfViewPrevNext
-	 * 
+	 *
 	 * @param $query GlobalUsageQuery An executed GlobalUsageQuery object
 	 * @return string Navbar HTML
 	 */
@@ -159,7 +159,7 @@ class SpecialGlobalFileUsage extends SpecialPage {
 		$target = $this->target->getText();
 		$limit = $query->getLimit();
 		$fmtLimit = $wgLang->formatNum( $limit );
-	
+
 		# Find out which strings are for the prev and which for the next links
 		$offset = $query->getOffsetString();
 		$continue = $query->getContinueFileString();
@@ -207,7 +207,7 @@ class SpecialGlobalFileUsage extends SpecialPage {
 		$numLinks = array();
 		foreach ( array( 20, 50, 100, 250, 500 ) as $num ) {
 			$fmtLimit = $wgLang->formatNum( $num );
-			
+
 			$q = array( 'offset' => $offset, 'limit' => $num, 'target' => $target );
 			if ( $this->filterLocal )
 				$q['filterlocal'] = '1';

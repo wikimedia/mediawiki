@@ -4,14 +4,14 @@
  * to show the usage of a template instead of a file.
  * Special page to show global template usage. Also contains hook functions for
  * showing usage on an template page.
- * 
+ *
  * @author Bryan Tong Minh <bryan.tongminh@gmail.com>
  * @author Peter Potrowl <peter017@gmail.com>
  */
 
 class SpecialGlobalTemplateUsage extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 'GlobalTemplateUsage' );
+		parent::__construct( 'Globaltemplateusage' );
 	}
 
 	/**
@@ -36,7 +36,7 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 
 		$this->showResult();
 	}
-	
+
 	/**
 	 * Shows the search form
 	 */
@@ -57,7 +57,7 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 					'type' => 'submit',
 					'value' => wfMsg( 'globaltemplateusage-ok' )
 					) );
-		
+
 		// Wrap the entire form in a nice fieldset
 		$html .= Xml::fieldSet( wfMsg( 'globaltemplateusage-text' ), $formContent ) . "\n</form>";
 
@@ -76,7 +76,7 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 		if ( $wgRequest->getText( 'from' ) ) {
 			$query->setOffset( $wgRequest->getText( 'from' ) );
 		} elseif ( $wgRequest->getText( 'to' ) ) {
-			$query->setOffset( $wgRequest->getText( 'to' ), true );			
+			$query->setOffset( $wgRequest->getText( 'to' ), true );
 		}
 		$query->setLimit( $wgRequest->getInt( 'limit', 50 ) );
 
@@ -116,7 +116,7 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 		// Bottom navbar
 		$wgOut->addHtml( $navbar );
 	}
-	
+
 	/**
 	 * Helper to format a specific item
 	 */
@@ -135,7 +135,7 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 
 	/**
 	 * Helper function to create the navbar, stolen from wfViewPrevNext
-	 * 
+	 *
 	 * @param $query GlobalTemplateUsageQuery An executed GlobalTemplateUsageQuery object
 	 * @return string Navbar HTML
 	 */
@@ -147,7 +147,7 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 		$target = $this->target->getPrefixedText();
 		$limit = $query->getLimit();
 		$fmtLimit = $wgLang->formatNum( $limit );
-	
+
 		# Find out which strings are for the prev and which for the next links
 		$offset = $query->getOffsetString();
 		$continue = $query->getContinueTemplateString();
@@ -191,7 +191,7 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 		$numLinks = array();
 		foreach ( array( 20, 50, 100, 250, 500 ) as $num ) {
 			$fmtLimit = $wgLang->formatNum( $num );
-			
+
 			$q = array( 'offset' => $offset, 'limit' => $num, 'target' => $target );
 			$lTitle = wfMsgExt( 'shown-title', array( 'parsemag', 'escape' ), $num );
 			$attr = array( 'title' => $lTitle, 'class' => 'mw-numlink' );
