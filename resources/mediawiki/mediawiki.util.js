@@ -228,7 +228,7 @@
 			if ( m && m.length > 1 ) {
 				// Beware that decodeURIComponent is not required to understand '+'
 				// by spec, as encodeURIComponent does not produce it.
-				return decodeURIComponent( m[1].replace( '+', '%20' ) );
+				return decodeURIComponent( m[1].replace( /\+/g, '%20' ) );
 			}
 			return null;
 		},
