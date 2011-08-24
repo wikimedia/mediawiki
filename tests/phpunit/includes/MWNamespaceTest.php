@@ -12,16 +12,10 @@
  */
 class MWNamespaceTest extends MediaWikiTestCase {
 	/**
-	 * @var MWNamespace
-	 */
-	protected $object;
-
-	/**
 	 * Sets up the fixture, for example, opens a network connection.
 	 * This method is called before a test is executed.
 	 */
 	protected function setUp() {
-		$this->object = new MWNamespace;
 	}
 
 	/**
@@ -87,7 +81,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * the function testGetTalkExceptions()
 	 */
 	public function testGetTalk() {
-		$this->assertEquals( MWNamespace::getTalk( NS_MAIN), NS_TALK );
+		$this->assertEquals( NS_TALK, MWNamespace::getTalk( NS_MAIN ) );
 	}
 
 	/**
@@ -101,13 +95,13 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Regular getAssociated() calls 
+	 * Regular getAssociated() calls
 	 * Namespaces without an associated page (NS_MEDIA, NS_SPECIAL) are tested in
 	 * the function testGetAssociatedExceptions()
 	 */
 	public function testGetAssociated() {
-		$this->assertEquals( MWNamespace::getAssociated( NS_MAIN ), NS_TALK );
-		$this->assertEquals( MWNamespace::getAssociated( NS_TALK ), NS_MAIN );
+		$this->assertEquals( NS_TALK,  MWNamespace::getAssociated( NS_MAIN ) );
+		$this->assertEquals( NS_MAIN, MWNamespace::getAssociated( NS_TALK ) );
 
 	}
 
@@ -131,11 +125,11 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 */
 	public function testGetSubject() {
 		// Special namespaces are their own subjects
-		$this->assertEquals( MWNamespace::getSubject( NS_MEDIA   ), NS_MEDIA   );
-		$this->assertEquals( MWNamespace::getSubject( NS_SPECIAL ), NS_SPECIAL );
+		$this->assertEquals( NS_MEDIA, MWNamespace::getSubject( NS_MEDIA ) );
+		$this->assertEquals( NS_SPECIAL, MWNamespace::getSubject( NS_SPECIAL ) );
 
-		$this->assertEquals( MWNamespace::getSubject( NS_TALK      ), NS_MAIN );
-		$this->assertEquals( MWNamespace::getSubject( NS_USER_TALK ), NS_USER );
+		$this->assertEquals( NS_MAIN, MWNamespace::getSubject( NS_TALK ) );
+		$this->assertEquals( NS_USER, MWNamespace::getSubject( NS_USER_TALK ) );
 	}
 
 	/**
@@ -230,7 +224,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * Similar to testIsContent() but alters the $wgContentNamespaces
 	 * global variable.
 	 */
-	public function testIsContentWithAdditionsInWgContentNamespaces() {	
+	public function testIsContentWithAdditionsInWgContentNamespaces() {
 		// NS_MAIN is a content namespace per DefaultSettings.php
 		// and per function definition.
 		$this->assertTrue( MWNamespace::isContent( NS_MAIN ) );
@@ -306,8 +300,8 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 */
 	public function testGetContentNamespaces() {
 		$this->assertEquals(
+			array( NS_MAIN ),
 			MWNamespace::getcontentNamespaces(),
-			array( NS_MAIN),
 			'$wgContentNamespaces is an array with only NS_MAIN by default'
 		);
 
@@ -315,37 +309,37 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 		# test !is_array( $wgcontentNamespaces )
 		$wgContentNamespaces = '';
-		$this->assertEquals( MWNamespace::getcontentNamespaces(), NS_MAIN );
+		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
 		$wgContentNamespaces = false;
-		$this->assertEquals( MWNamespace::getcontentNamespaces(), NS_MAIN );
+		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
 		$wgContentNamespaces = null;
-		$this->assertEquals( MWNamespace::getcontentNamespaces(), NS_MAIN );
+		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
 		$wgContentNamespaces = 5;
-		$this->assertEquals( MWNamespace::getcontentNamespaces(), NS_MAIN );
+		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
 
-		# test $wgContentNamespaces === array()	
+		# test $wgContentNamespaces === array()
 		$wgContentNamespaces = array();
-		$this->assertEquals( MWNamespace::getcontentNamespaces(), NS_MAIN );
+		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
 
 		# test !in_array( NS_MAIN, $wgContentNamespaces )
 		$wgContentNamespaces = array( NS_USER, NS_CATEGORY );
 		$this->assertEquals(
-			MWNamespace::getcontentNamespaces(), 
 			array( NS_MAIN, NS_USER, NS_CATEGORY ),
+			MWNamespace::getcontentNamespaces(),
 			'NS_MAIN is forced in wgContentNamespaces even if unwanted'
 		);
 
 		# test other cases, return $wgcontentNamespaces as is
 		$wgContentNamespaces = array( NS_MAIN );
 		$this->assertEquals(
-			MWNamespace::getcontentNamespaces(),
-			array( NS_MAIN )
+			array( NS_MAIN ),
+			MWNamespace::getcontentNamespaces()
 		);
 
 		$wgContentNamespaces = array( NS_MAIN, NS_USER, NS_CATEGORY );
 		$this->assertEquals(
-			MWNamespace::getcontentNamespaces(),
-			array( NS_MAIN, NS_USER, NS_CATEGORY )
+			array( NS_MAIN, NS_USER, NS_CATEGORY ),
+			MWNamespace::getcontentNamespaces()
 		);
 
 	}
@@ -456,7 +450,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_SPECIAL ) );
 		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_MAIN    ) );
 		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_TALK    ) );
-		
+
 	}
 }
 
