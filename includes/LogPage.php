@@ -416,6 +416,8 @@ class LogPage {
 	 * @param $doer User object: the user doing the action
 	 */
 	public function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
+		global $wgContLang;
+
 		if ( !is_array( $params ) ) {
 			$params = array( $params );
 		}
@@ -423,6 +425,9 @@ class LogPage {
 		if ( $comment === null ) {
 			$comment = '';
 		}
+
+		# Truncate for whole multibyte characters.
+		$comment = $wgContLang->truncate( $comment, 255 );
 
 		$this->action = $action;
 		$this->target = $target;
