@@ -219,14 +219,45 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		// and per function definition.
 		$this->assertTrue( MWNamespace::isContent( NS_MAIN ) );
 
+		global $wgContentNamespaces;
+
+		$saved = $wgContentNamespaces;
+
+		$wgContentNamespaces[] = NS_MAIN;
+		$this->assertTrue( MWNamespace::isContent( NS_MAIN ) );
+
 		// Other namespaces which are not expected to be content
-		$this->assertFalse( MWNamespace::isContent( NS_MEDIA    ) );
-		$this->assertFalse( MWNamespace::isContent( NS_SPECIAL  ) );
-		$this->assertFalse( MWNamespace::isContent( NS_TALK     ) );
-		$this->assertFalse( MWNamespace::isContent( NS_USER     ) );
+		if ( isset( $wgContentNamespaces[NS_MEDIA] ) ) {
+			unset( $wgContentNamespaces[NS_MEDIA] );
+		}
+		$this->assertFalse( MWNamespace::isContent( NS_MEDIA ) );
+
+		if ( isset( $wgContentNamespaces[NS_SPECIAL] ) ) {
+			unset( $wgContentNamespaces[NS_SPECIAL] );
+		}
+		$this->assertFalse( MWNamespace::isContent( NS_SPECIAL ) );
+
+		if ( isset( $wgContentNamespaces[NS_TALK] ) ) {
+			unset( $wgContentNamespaces[NS_TALK] );
+		}
+		$this->assertFalse( MWNamespace::isContent( NS_TALK ) );
+
+		if ( isset( $wgContentNamespaces[NS_USER] ) ) {
+			unset( $wgContentNamespaces[NS_USER] );
+		}
+		$this->assertFalse( MWNamespace::isContent( NS_USER ) );
+
+		if ( isset( $wgContentNamespaces[NS_CATEGORY] ) ) {
+			unset( $wgContentNamespaces[NS_CATEGORY] );
+		}
 		$this->assertFalse( MWNamespace::isContent( NS_CATEGORY ) );
-		// User defined namespace:
+
+		if ( isset( $wgContentNamespaces[100] ) ) {
+			unset( $wgContentNamespaces[100] );
+		}
 		$this->assertFalse( MWNamespace::isContent( 100 ) );
+
+		$wgContentNamespaces = saved;
 	}
 
 	/**
