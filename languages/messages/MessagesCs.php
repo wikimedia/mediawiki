@@ -2576,6 +2576,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'blocklist-userblocks'            => 'Skrýt zablokované účty',
 'blocklist-tempblocks'            => 'Skrýt dočasná zablokování',
 'blocklist-addressblocks'         => 'Skrýt blokování jedné IP adresy',
+'blocklist-rangeblocks'           => 'Skrýt blokování rozsahů',
 'blocklist-timestamp'             => 'Datum a čas',
 'blocklist-target'                => 'Cíl',
 'blocklist-expiry'                => 'Vypršení',

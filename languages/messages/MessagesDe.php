@@ -42,6 +42,7 @@
  * @author Red Baron
  * @author Remember the dot
  * @author Revolus
+ * @author Rillke
  * @author SVG
  * @author Spacebirdy
  * @author Srhat
@@ -1074,9 +1075,12 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 'cascadeprotectedwarning'          => "'''Achtung:''' Diese Seite wurde so geschützt, dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:",
 'titleprotectedwarning'            => "'''Achtung: Die Seitenerstellung wurde so geschützt, dass nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] diese Seite erstellen können.'''
 Zur Information folgt der aktuelle Logbucheintrag:",
-'templatesused'                    => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seite verwendet:',
+'templatesused'                    => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} auf dieser Seite verwendet:',
 'templatesusedpreview'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seitenvorschau verwendet:',
-'templatesusedsection'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von diesem Abschnitt verwendet:',
+'templatesusedsection'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} in diesem Abschnitt verwendet:',
+'distanttemplatesused'             => '{{PLURAL:$1|Die folgende globale Vorlage wird|Folgende globale Vorlagen werden}} auf dieser Seite verwendet:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Die folgende globale Vorlage wird|Folgende globalen Vorlagen werden}} von dieser Seitenvorschau verwendet:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Die folgende globale Vorlage wird|Folgende globale Vorlagen werden}} in diesem Abschnitt verwendet:',
 'template-protected'               => '(schreibgeschützt)',
 'template-semiprotected'           => '(schreibgeschützt für unangemeldete und neue Benutzer)',
 'hiddencategories'                 => 'Diese Seite ist Mitglied von {{PLURAL:$1|1 versteckter Kategorie|$1 versteckten Kategorien}}:',
@@ -1905,7 +1909,8 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'upload_source_file' => ' (eine Datei auf deinem Computer)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
+'listfiles-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. 
+Wenn nach Nutzer gefiltert wird, werden nur die Dateien gezeigt, bei denen der Benutzer die letzte Version hochgeladen hat.',
 'listfiles_search_for'  => 'Suche nach Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Dateiliste',
@@ -2607,6 +2612,7 @@ Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Spe
 'blocklist-userblocks'            => 'Benutzersperren ausblenden',
 'blocklist-tempblocks'            => 'Befristete Sperren ausblenden',
 'blocklist-addressblocks'         => 'Sperren einzelner IP-Adressen ausblenden',
+'blocklist-rangeblocks'           => 'Bereichssperren ausblenden',
 'blocklist-timestamp'             => 'Zeitstempel',
 'blocklist-target'                => 'Ziel',
 'blocklist-expiry'                => 'Sperrdauer bis',
@@ -3811,6 +3817,30 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'compare-invalid-title'       => 'Der angegebene Seitenname ist ungültig.',
 'compare-title-not-exists'    => 'Der angegebene Seitenname ist nicht vorhanden.',
 'compare-revision-not-exists' => 'Die angegebene Version ist nicht vorhanden.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Globale Dateiverwendung',
+'globalfileusage-for'         => 'Globale Dateiverwendung für „$1“',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Spezialseite]] zur Anzeige, in welchen Projekten die Dateien des gemeinsam genutzten Repositoriums verwendet werden',
+'globalfileusage-ok'          => 'Suchen',
+'globalfileusage-text'        => 'Globale Suche nach der Dateiverwendung',
+'globalfileusage-no-results'  => '[[$1]] wird nicht auf anderen Wikis verwendet.',
+'globalfileusage-on-wiki'     => 'Verwendung auf $2',
+'globalfileusage-of-file'     => 'Die nachfolgenden anderen Wikis verwenden diese Datei:',
+'globalfileusage-more'        => '[[{{#Special:GlobalUsage}}/$1|Weitere globale Verwendungen]] dieser Datei anschauen.',
+'globalfileusage-filterlocal' => 'Zeige keine lokale Dateiverwendung',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Globale Vorlagenverwendung',
+'globaltemplateusage-for'         => 'Globale Vorlagenverwendung für „$1“',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Spezialseite]] zur Anzeige, in welchen Projekten die Vorlagen des gemeinsam genutzten Repositoriums verwendet werden',
+'globaltemplateusage-ok'          => 'Suchen',
+'globaltemplateusage-text'        => 'Globale Suche nach der Vorlagenverwendung',
+'globaltemplateusage-no-results'  => '[[$1]] wird nicht auf anderen Wikis verwendet.',
+'globaltemplateusage-on-wiki'     => 'Verwendung auf $2',
+'globaltemplateusage-of-file'     => 'Die nachfolgenden anderen Wikis verwenden diese Vorlage:',
+'globaltemplateusage-more'        => '[[{{#Special:GlobalUsage}}/$1|Weitere globale Verwendungen]] dieser Vorlage anschauen.',
+'globaltemplateusage-filterlocal' => 'Zeige keine lokale Vorlagenverwendung',
 
 # Database error messages
 'dberr-header'      => 'Dieses Wiki hat ein Problem',

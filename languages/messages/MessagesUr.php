@@ -10,6 +10,7 @@
  * @author Chris H
  * @author Meno25
  * @author O.bangash
+ * @author Rachitrali
  * @author Reedy
  * @author Wisesabre
  * @author לערי ריינהארט
@@ -1204,6 +1205,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 'sp-contributions-newbies'    => 'صرف نئے کھاتوں کے مساہمات دکھاؤ',
 'sp-contributions-blocklog'   => 'نوشتۂ پابندی',
+'sp-contributions-uploads'    => 'آپلوڈ',
 'sp-contributions-logs'       => 'نوشتہ جات',
 'sp-contributions-talk'       => 'گفتگو',
 'sp-contributions-userrights' => 'صارف کے حقوق کا انتظام',
