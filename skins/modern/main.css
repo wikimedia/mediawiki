@@ -1,6 +1,6 @@
 body {
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 	/*font-size: 10pt;*/
 	font-size: x-small;
 
@@ -24,19 +24,19 @@ body {
 	position: absolute;
 	top: 0;
 	left: 0;
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0em 0 0em;
 	border: none;
 	height: 2em;
 	width: 100%;
 
-	background-color: #036;
+	background-color: #003366;
 	color: white;
 }
 
 #mw_header h1 {
-	margin: 0 0 0 .5em;
-	padding: 0;
+	margin: 0 0 0 0.5em;
+	padding: 0 0 0 0;
 	text-decoration: none;
 	font-size: 150%;
 }
@@ -46,15 +46,15 @@ body {
 	top: 2em;
 	left: 0;
 	height: 1.5em;
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 	width: 100%;
 
 }
 
 #p-personal div.pBody {
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 	height: 1.5em;
 	font-variant: small-caps;
 }
@@ -64,8 +64,8 @@ body {
 }
 
 #p-personal ul {
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 	display: block;
 	height: 1.5em;
 	background-color: #3c78b5;
@@ -75,7 +75,7 @@ body {
 	display: block;
 	float: left;
 	height: 1.5em;
-	margin: 0;
+	margin: 0 0 0 0;
 	vertical-align: middle;
 
 	font-weight: bold;
@@ -85,7 +85,7 @@ body {
 #p-personal li a {
 	text-decoration: none;
 	color: white;
-	padding: 0 1em;
+	padding: 0 1em 0 1em;
 }
 
 #p-personal li a:hover {
@@ -94,7 +94,7 @@ body {
 }
 
 #p-personal li:hover {
-	background-color: #036;
+	background-color: #003366;
 }
 
 #jump-to-nav {
@@ -111,40 +111,40 @@ body {
 	margin: 0 0 0 14em;
 
 	background-color: white;
-	border-top: solid 1px #bbb;
-	border-left: solid 1px #bbb;
-	border-bottom: solid 1px #bbb;
+	border-top: solid 1px #bbbbbb;
+	border-left: solid 1px #bbbbbb;
+	border-bottom: solid 1px #bbbbbb;
 
 	line-height: 1.5em;
-	padding: 0 1em 1em;
+	padding: 0 1em 1em 1em;
 }
 
 #mw_portlets {
 	width: 14em;
 
-	border-right: solid 1px #bbb;
+	border-right: solid 1px #bbbbbb;
 	background-color: #f0f0f0;
 }
 
 #mw_main {
-	padding: 0;
-	margin: 0;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
 	margin-top: 3.5em;
 }
 
 div.mw_clear {
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 	clear: both;
 }
 
 .portlet {
-	padding: 0;
-	margin: 0;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
 }
 
 .portlet div.pBody {
-	padding: 0 0 .5em;
+	padding: 0em 0 0.5em 0;
 }
 
 textarea {
@@ -167,9 +167,9 @@ textarea {
 }
 
 .portlet h5 {
-	padding: .1em 0 .3em 1em;
-	margin: 0;
-	background-color: #ddd;
+	padding: 0.1em 0 0.3em 1em;
+	margin: 0 0 0 0;
+	background-color: #dddddd;
 	font-weight: bold;
 	border-bottom: solid 1px #3c78b5;
 	height: 1.1em;
@@ -177,7 +177,7 @@ textarea {
 
 .portlet ul {
 	margin: 0 0 0 1.5em;
-	padding: 0;
+	padding: 0 0 0 0;
 }
 
 #mw_portlets .portlet ul {
@@ -191,13 +191,13 @@ ul {
 
 #p-cactions {
 	height: 1.5em;
-	padding: 0;
+	padding: 0 0 0 0;
 	margin: 0 0 0 14em;
 }
 
 #p-cactions div.pBody {
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 }
 
 #p-cactions a,
@@ -208,13 +208,13 @@ ul {
 
 #p-cactions ul {
 	display: inline;
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 }
 
 #p-cactions li {
-	margin: 0 .5em;
-	padding: 0 .2em;
+	margin: 0 0.5em 0 0.5em;
+	padding: 0 0.2em 0 0.2em;
 	display: block;
 	float: left;
 	height: 1.5em;
@@ -222,14 +222,14 @@ ul {
 }
 
 #p-cactions li.selected {
-	background-color: #bbb;
+	background-color: #bbbbbb;
 }
 
 #p-cactions li a,
 #p-cactions li a:hover,
 #p-cactions li a:visited {
 	text-decoration: underline;
-	color: #036;
+	color: #003366;
 }
 
 #p-cactions li.selected a,
@@ -251,15 +251,15 @@ ul {
 	background-color: #f0f0f0;
 	/* @embed */
 	background: url(footer-grad.png) repeat-x 0 0;
-	padding: 10px 1em 1em;
+	padding: 10px 1em 1em 1em;
 	clear:both;
-	color: #444;
+	color: #444444;
 }
 
 #footer a,
 #footer a:hover,
 #footer a:visited {
-	color: #444;
+	color: #444444;
 	text-decoration: underline;
 }
 
@@ -270,13 +270,13 @@ img {
 #footer li {
 	display: inline;
 	list-style-type: none;
-	padding: 0;
-	margin: 0;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
 }
 
 #footer ul {
-	padding: 0;
-	margin: 0;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
 }
 
 div.printfooter {
@@ -284,7 +284,7 @@ div.printfooter {
 }
 
 p {
-	margin: 1em 0;
+	margin: 1em 0 1em 0;
 }
 
 hr {
@@ -292,7 +292,7 @@ hr {
 	color: #aaa;
 	background-color: #aaa;
 	border: 0;
-	margin: .2em 0;
+	margin: .2em 0 .2em 0;
 }
 
 #contentSub {
@@ -302,13 +302,13 @@ hr {
 }
 
 #mw_portlets form {
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 }
 
 a {
 	text-decoration: none;
-	color: #036;
+	color: #003366;
 	background: none;
 }
 a:visited {
@@ -335,7 +335,7 @@ span.editsection {
 }
 
 h1, h2 {
-	border-bottom: solid 1px #036;
+	border-bottom: solid 1px #003366;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -344,15 +344,15 @@ h1, h2, h3, h4, h5, h6 {
 
 #preftoc {
 	width: 100%;
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 	height: 1.5em;
 	clear: right;
 }
 
 #preftoc li {
-	margin: 0 .5em;
-	padding: 0 .2em;
+	margin: 0 0.5em 0 0.5em;
+	padding: 0 0.2em 0 0.2em;
 	display: block;
 	float: left;
 	height: 1.5em;
@@ -360,9 +360,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #preferences {
-	margin: 0;
-	padding: 0 1em 1em;
-	border: solid 1px #bbb;
+	margin: 0 0 0 0;
+	padding: 0em 1em 1em 1em;
+	border: solid 1px #bbbbbb;
 	clear: left; /* Multi-line toc should not push data to horizontally */
 }
 
@@ -389,14 +389,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #preftoc li.selected {
-	background-color: #bbb;
+	background-color: #bbbbbb;
 }
 
 #preftoc li a,
 #preftoc li a:hover,
 #preftoc li a:visited {
 	text-decoration: underline;
-	color: #036;
+	color: #003366;
 }
 
 #preftoc li.selected a,
@@ -538,7 +538,7 @@ div.magnify a, div.magnify img {
 	margin: .5em 1.4em .8em 0;
 }
 img.thumbborder {
-	border: 1px solid #ddd;
+	border: 1px solid #dddddd;
 }
 .mw-warning {
 	border: 1px solid #aaa;
@@ -549,22 +549,22 @@ img.thumbborder {
 
 #toc,
 .toc {
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 	border-spacing: 0;
 	background-color: #f0f0f0;
-	border: solid 1px #bbb;
+	border: solid 1px #bbbbbb;
 }
 
 #toc tr, #toc td {
-	margin: 0;
-	padding: 0;
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
 }
 
 #toctitle {
 	border-bottom: solid 1px #3c78b5;
-	background-color: #ddd;
-	margin: 0;
+	background-color: #dddddd;
+	margin: 0 0 0 0;
 }
 
 #toc h2,
@@ -586,7 +586,7 @@ img.thumbborder {
 .toc ul {
 	list-style-type: none;
 	list-style-image: none;
-	margin: 0 1em;
+	margin: 0 1em 0 1em;
 	padding-left: 0;
 	text-align: left;
 }
@@ -615,10 +615,10 @@ img.thumbborder {
 }
 
 .catlinks {
-	border: solid 1px #bbb;
+	border: solid 1px #bbbbbb;
 	background-color: #f0f0f0;
-	padding: .1em .3em;
-	margin: 0;
+	padding: 0.1em 0.3em 0.1em 0.3em;
+	margin: 0 0 0 0;
 }
 
 #mw_header h1,
@@ -672,9 +672,9 @@ span.updatedmarker {
 
 .editExternally {
 	border: 1px solid gray;
-	background-color: #FFF;
+	background-color: #ffffff;
 	padding: 3px;
-	margin-top: .5em;
+	margin-top: 0.5em;
 	float: left;
 	font-size: small;
 	text-align: center;
@@ -699,7 +699,7 @@ input#wpSummary {
 
 /* @bug 1714 */
 input#wpSave, input#wpDiff {
-	margin-right: .33em;
+	margin-right: 0.33em;
 }
 
 #wpSave {
@@ -768,7 +768,7 @@ table.multipageimage td {
 .templatesUsed { margin-top: 1.5em; }
 
 .mw-summary-preview {
-	margin: .1em 0;
+	margin: 0.1em 0;
 }
 
 /* Friendlier slave lag warnings */
@@ -779,18 +779,18 @@ div.mw-lag-warn-high {
 	margin: 3px auto;
 }
 div.mw-lag-warn-normal {
-	border: 1px solid #FC6;
-	background-color: #FFC;
+	border: 1px solid #FFCC66;
+	background-color: #FFFFCC;
 }
 div.mw-lag-warn-high {
 	font-weight: bold;
-	border: 2px solid #F03;
-	background-color: #FCC;
+	border: 2px solid #FF0033;
+	background-color: #FFCCCC;
 }
 
 .MediaTransformError {
 	background-color: #ccc;
-	padding: .1em;
+	padding: 0.1em;
 }
 .MediaTransformError td {
 	text-align: center;
@@ -824,7 +824,7 @@ dl {
 }
 
 #p-cactions li.new a {
-	color: #c20;
+	color: #cc2200;
 }
 
 span.subpages {
@@ -834,7 +834,7 @@ span.subpages {
 
 pre {
 	border: solid 1px #3c78b5;
-	padding: .4em;
+	padding: 0.4em;
 	background-color: #f0f0f0;
 }
 
@@ -844,29 +844,29 @@ pre {
 
 .mw-topboxes {
 	border-collapse: collapse;
-	margin: 0 -1em 1em;
-	padding: 0 0 8px;
+	margin: 0 -1em 1em -1em;
+	padding: 0 0 8px 0;
 	/* @embed */
 	background: url(footer-grad.png) repeat-x bottom left;
 }
 
 .mw-topbox p {
-	padding: 0;
-	margin: 0;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
 }
 
 .mw-topbox {
 	color: black;
 	font-weight: bold;
-	margin: 0;
-	padding: 0 1em;
+	margin: 0 0 0 0;
+	padding: 0 1em 0 1em;
 	vertical-align: middle;
 	border-collapse: collapse;
-	border-bottom: solid 1px #bbb;
+	border-bottom: solid 1px #bbbbbb;
 }
 
 #siteSub {
-	background-color: #ddd;
+	background-color: #dddddd;
 }
 
 /* emulate center */
@@ -881,11 +881,11 @@ pre {
 
 /* table standards */
 .toccolours {
-	border: 1px solid #bbb;
+	border: 1px solid #bbbbbb;
 	background-color: #f0f0f0;
-	border-spacing: 0;
-	margin: 0;
-	padding: 0;
+	border-spacing: 0pt;
+	margin: 0pt;
+	padding: 0pt;
 }
 
 /* Tooltips are outside of the normal body code, so this helps make the size of the text sensible */
