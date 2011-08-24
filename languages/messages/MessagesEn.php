@@ -1751,7 +1751,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'qbsettings-fixedright'     => 'Fixed right',
 'qbsettings-floatingleft'   => 'Floating left',
 'qbsettings-floatingright'  => 'Floating right',
-'qbsettings-directionality' => 'Fixed, depending on the directionality of your script and your language',
+'qbsettings-directionality' => 'Fixed, depending on the script directionality of your language',
 
 # Preferences page
 'preferences'                   => 'Preferences',
