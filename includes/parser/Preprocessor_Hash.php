@@ -976,6 +976,7 @@ class PPFrame_Hash implements PPFrame {
 					if ( $flags & PPFrame::NO_TEMPLATES ) {
 						$newIterator = $this->virtualBracketedImplode( '{{', '|', '}}', $bits['title'], $bits['parts'] );
 					} else {
+						$bits['interwiki'] = $this->title->getInterwiki( );
 						$ret = $this->parser->braceSubstitution( $bits, $this );
 						if ( isset( $ret['object'] ) ) {
 							$newIterator = $ret['object'];
