@@ -452,8 +452,8 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'createaccountmail'          => 'pe e-mail',
 'createaccountreason'        => 'Mutive:',
 'badretype'                  => 'Le passuord ca è scritte non ge sonde uguale.',
-'userexists'                 => "'U nome de l'utende ca è scritte jè già ausete.
-Mittene n'otre.",
+'userexists'                 => "'U nome de l'utende ca è scritte jè già ausate.
+Pe piacere scacchiane n'otre.",
 'loginerror'                 => 'Errore de collegamende',
 'createaccounterror'         => "Non ge puè ccrejà 'u cunde utende: $1",
 'nocookiesnew'               => "'U cunde utende ha state ccrejete ma angore non g'è trasute jndr'à {{SITENAME}}.
@@ -2334,6 +2334,7 @@ Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'blocklist-userblocks'            => "Scunne le blocche sus a le cunde de l'utinde",
 'blocklist-tempblocks'            => 'Scunne le blocche temboranèe',
 'blocklist-addressblocks'         => 'Scunne le blocche de le IP singole',
+'blocklist-rangeblocks'           => 'Scunne le indervalle de blocche',
 'blocklist-timestamp'             => 'Orarie de stambe',
 'blocklist-target'                => 'Destinazione',
 'blocklist-expiry'                => 'Scade',
@@ -3438,10 +3439,10 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 
 # Special:SpecialPages
 'specialpages'                   => 'Pàggene speciele',
-'specialpages-note'              => '!----
+'specialpages-note'              => '----
 * Pàggene speciale normale.
 * <span class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</span>
-* <span class="mw-specialpagecached">Pàggene speciale in memorie cache.</span>',
+* <span class="mw-specialpagecached">Pàggene speciale in memorie cache (ponne essere vecchie).</span>',
 'specialpages-group-maintenance' => "Report d'a manutenzione",
 'specialpages-group-other'       => 'Otre pàggene speciele',
 'specialpages-group-login'       => 'Tràse / Reggistrete',
@@ -3542,5 +3543,6 @@ Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgen
 'ajax-category-already-present' => 'Sta pàgene già stè jndr\'à categorije "$1"',
 'ajax-category-hook-error'      => "'Na funziona locale non ge face fà le cangiaminde apprime de reggistrarle",
 'ajax-api-error'                => "L'API ha turnate 'n'errore: $1: $2",
+'ajax-api-unknown-error'        => "L'API ha turnate 'n'errore scanusciute",
 
 );

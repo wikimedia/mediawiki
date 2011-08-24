@@ -22,6 +22,7 @@
  * @author Masti
  * @author Matma Rex
  * @author McMonster
+ * @author Mikołka
  * @author Nux
  * @author Odder
  * @author Remember the dot
@@ -3722,10 +3723,9 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Strony specjalne',
-'specialpages-note'              => '----
-* Typowe strony specjalne.
+'specialpages-note'              => '* Typowe strony specjalne.
 * <span class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</span>
-* <span class="mw-specialpagecached">Buforowane strony specjalne.</span>',
+* <span class="mw-specialpagecached">Buforowane strony specjalne (mogą być nieaktualne).</span>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other'       => 'Inne strony specjalne',
 'specialpages-group-login'       => 'Logowanie i rejestracja',

@@ -3711,6 +3711,30 @@ Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
 'compare-title-not-exists'    => 'Titlul specificat nu există.',
 'compare-revision-not-exists' => 'Versiunea specificată nu există.',
 
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Utilizarea globală a fișierului',
+'globalfileusage-for'         => 'Utilizarea globală a fișierului „$1”',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Pagină specială]] pentru vizualizarea utilizării globale a fișierului',
+'globalfileusage-ok'          => 'Căutare',
+'globalfileusage-text'        => 'Căutarea utilizărilor globale ale fișierului',
+'globalfileusage-no-results'  => '[[$1]] nu este folosit la alte proiecte de tip wiki.',
+'globalfileusage-on-wiki'     => 'Utilizare la $2',
+'globalfileusage-of-file'     => 'Următoarele alte proiecte de tip wiki folosesc acest fișier:',
+'globalfileusage-more'        => 'Vizualizați [[{{#Special:GlobalUsage}}/$1|mai multe utilizări globale]] ale acestui fișier.',
+'globalfileusage-filterlocal' => 'Nu afișa utilizările locale',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Utilizarea globală a formatului',
+'globaltemplateusage-for'         => 'Utilizarea globală a formatului „$1”',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Pagină specială]] pentru vizualizarea utilizării globale a formatului',
+'globaltemplateusage-ok'          => 'Căutare',
+'globaltemplateusage-text'        => 'Căutarea utilizărilor globale ale formatului',
+'globaltemplateusage-no-results'  => '[[$1]] nu este folosit la alte proiecte de tip wiki.',
+'globaltemplateusage-on-wiki'     => 'Utilizare la $2',
+'globaltemplateusage-of-file'     => 'Următoarele alte proiecte de tip wiki folosesc acest format:',
+'globaltemplateusage-more'        => 'Vizualizați [[{{#Special:GlobalUsage}}/$1|mai multe utilizări globale]] ale acestui format.',
+'globaltemplateusage-filterlocal' => 'Nu afișa utilizările locale',
+
 # Database error messages
 'dberr-header'      => 'Acest site are o problemă',
 'dberr-problems'    => 'Ne cerem scuze! Acest site întâmpină dificultăți tehnice.',

@@ -1166,12 +1166,13 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'searchdisabled'                   => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat Hëllef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 
 # Quickbar
-'qbsettings'               => 'Geschirläischt',
-'qbsettings-none'          => 'Keen',
-'qbsettings-fixedleft'     => 'Lénks, fest',
-'qbsettings-fixedright'    => 'Riets, fest',
-'qbsettings-floatingleft'  => 'schwiewt lenks',
-'qbsettings-floatingright' => 'Schwiewt riets',
+'qbsettings'                => 'Geschirläischt',
+'qbsettings-none'           => 'Keen',
+'qbsettings-fixedleft'      => 'Lénks, fest',
+'qbsettings-fixedright'     => 'Riets, fest',
+'qbsettings-floatingleft'   => 'schwiewt lenks',
+'qbsettings-floatingright'  => 'Schwiewt riets',
+'qbsettings-directionality' => 'Fix, ofhängeg vun der Richtung vun Ärer Schrëft an Ärer Sprooch',
 
 # Preferences page
 'preferences'                   => 'Astellungen',
