@@ -1245,8 +1245,8 @@ div.mw-lag-warn-high {
 }
 
 /* God-damned hack for the crappy layout */
-.ui-autocomplete {
-	font-size: 127%!important;
+.os-suggest {
+	font-size: 127%;
 }
 
 /* Sometimes people don't want personal tools to be lowercase! */
