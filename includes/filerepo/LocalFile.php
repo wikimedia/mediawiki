@@ -993,8 +993,14 @@ class LocalFile extends File {
 		} else {
 			# This is a new file
 			# Update the image count
-			$site_stats = $dbw->tableName( 'site_stats' );
-			$dbw->query( "UPDATE $site_stats SET ss_images=ss_images+1", __METHOD__ );
+			$dbw->begin( __METHOD__ );
+			$dbw->update(
+				'site_stats',
+				array( 'ss_images' => 'ss_images+1' ),
+				array(),
+				__METHOD__
+			);
+			$dbw->commit( __METHOD__ );
 		}
 
 		$descTitle = $this->getTitle();
