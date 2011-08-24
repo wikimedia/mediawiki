@@ -708,7 +708,7 @@ class HTMLForm {
 				}
 				$attributes = array();
 				if ( $displayTitle ) {
-					$attributes["id"] = 'prefsection-' . Sanitizer::escapeId( $key, 'noninitial' );
+					$attributes["title"] = Sanitizer::escapeId( $key );
 				}
 				$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
 			}
