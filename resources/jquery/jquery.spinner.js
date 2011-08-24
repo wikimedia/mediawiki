@@ -1,39 +1,42 @@
 /**
- * Functions to replace injectSpinner which makes img tags with spinners
+ * jQuery spinner
+ *
+ * Simple jQuery plugin to create, inject and remove spinners.
  */
 ( function( $ ) {
 
 $.extend( {
 	/**
-	 * Creates a spinner element
+	 * Creates a spinner element.
 	 *
-	 * @param id String id of the spinner
-	 * @return jQuery spinner
+	 * @param id {String} id of the spinner
+	 * @return {jQuery} spinner
 	 */
 	createSpinner: function( id ) {
-		return $( '<div/>' )
-			.attr({
-				id: 'mw-spinner-' + id,
-				class: 'loading-spinner',
-				title: '...',
-				alt: '...'
-			});
+		return $( '<div>' ).attr( {
+			id: 'mw-spinner-' + id,
+			'class': 'mw-spinner',
+			title: '...',
+			alt: '...'
+		} );
 	},
 
 	/**
-	 * Removes a spinner element
+	 * Removes a spinner element.
 	 *
-	 * @param id
+	 * @param id {String}
+	 * @return {jQuery} spinner
 	 */
 	removeSpinner: function( id ) {
-		$( '#mw-spinner-' + id ).remove();
+		return $( '#mw-spinner-' + id ).remove();
 	}
 } );
 
 /**
- * Injects a spinner after the given objects
+ * Injects a spinner after the elements in the jQuery collection.
  *
  * @param id String id of the spinner
+ * @return {jQuery}
  */
 $.fn.injectSpinner = function( id ) {
 	return this.after( $.createSpinner( id ) );
