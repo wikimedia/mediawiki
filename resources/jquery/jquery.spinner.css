@@ -5,4 +5,8 @@
 	width: 20px;
 	display: inline-block;
 	vertical-align: middle;
+	
+	/* IE < 8 Hacks */
+	zoom: 1;
+	*display: inline;
 }
