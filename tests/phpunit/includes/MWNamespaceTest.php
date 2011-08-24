@@ -257,7 +257,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		}
 		$this->assertFalse( MWNamespace::isContent( 100 ) );
 
-		$wgContentNamespaces = saved;
+		$wgContentNamespaces = $saved;
 	}
 
 	/**
