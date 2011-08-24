@@ -1693,7 +1693,7 @@ abstract class DatabaseBase implements DatabaseType {
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET );
 
-		if ( $conds != '*' ) {
+		if ( $conds != '*' || ( is_array( $conds ) && count( $conds ) ) ) {
 			$sql .= " WHERE " . $this->makeList( $conds, LIST_AND );
 		}
 
