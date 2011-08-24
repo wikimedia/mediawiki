@@ -127,7 +127,7 @@ li#about,
 li#disclaimer,
 li#privacy,
 #footer-places,
-#catlinks {
+#mw-hidden-catlinks {
 	/* Hides all the elements irrelevant for printing */
 	display: none;
 }
