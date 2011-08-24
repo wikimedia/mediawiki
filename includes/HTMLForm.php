@@ -695,8 +695,9 @@ class HTMLForm {
 					: $value->getDefault();
 				$tableHtml .= $value->getTableRow( $v );
 
-				if ( $value->getLabel() != '&#160;' )
+				if ( $value->getLabel() != '&#160;' ) {
 					$hasLeftColumn = true;
+				}
 			} elseif ( is_array( $value ) ) {
 				$section = $this->displaySection( $value, $key );
 				$legend = $this->getLegend( $key );
@@ -708,7 +709,7 @@ class HTMLForm {
 				}
 				$attributes = array();
 				if ( $displayTitle ) {
-					$attributes["title"] = Sanitizer::escapeId( $key );
+					$attributes["id"] = 'prefsection-' . Sanitizer::escapeId( $key, 'noninitial' );
 				}
 				$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
 			}
