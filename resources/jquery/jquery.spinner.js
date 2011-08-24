@@ -16,8 +16,7 @@ $.extend( {
 		return $( '<div>' ).attr( {
 			id: 'mw-spinner-' + id,
 			'class': 'mw-spinner',
-			title: '...',
-			alt: '...'
+			title: '...'
 		} );
 	},
 
