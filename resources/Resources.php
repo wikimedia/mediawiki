@@ -156,6 +156,10 @@ return array(
 	'jquery.qunit.completenessTest' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.completenessTest.js',
 	),
+	'jquery.spinner' => array(
+		'scripts' => 'resources/jquery/jquery.spinner.js',
+		'styles' => 'resources/jquery/jquery.spinner.css',
+	),
 	'jquery.suggestions' => array(
 		'scripts' => 'resources/jquery/jquery.suggestions.js',
 		'styles' => 'resources/jquery/jquery.suggestions.css',

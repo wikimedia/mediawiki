@@ -1,0 +1,8 @@
+.loading-spinner {
+	/* @embed */
+	background: transparent url('images/spinner.gif');
+	height: 16px;
+	width: 16px;
+	display: inline-block;
+	vertical-align: middle;
+}
