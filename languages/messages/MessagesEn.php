@@ -2305,6 +2305,7 @@ You may want to try at a less busy time.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'This special page shows all uploaded files.
+When filtered by user, only files where that user uploaded the most recent version of the file are shown.
 By default the last uploaded files are shown at top of the list.
 A click on a column header changes the sorting.',
 'listfiles_search_for'  => 'Search for media name:',
