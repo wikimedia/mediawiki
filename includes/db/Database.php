@@ -2295,14 +2295,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 * to collide. However if you do this, you run the risk of encountering
 	 * errors which wouldn't have occurred in MySQL.
 	 *
-	 * @param $rows Can be either a single row to insert, or multiple rows,
-	 *    in the same format as for DatabaseBase::insert()
-	 * @param $uniqueIndexes is an array of indexes. Each element may be either
-	 *    a field name or an array of field names
-	 *
 	 * @param $table String: The table to replace the row(s) in.
-	 * @param $uniqueIndexes Array: An associative array of indexes
-	 * @param $rows Array: Array of rows to replace
+	 * @param $rows array Can be either a single row to insert, or multiple rows,
+	 *    in the same format as for DatabaseBase::insert()
+	 * @param $uniqueIndexes array is an array of indexes. Each element may be either
+	 *    a field name or an array of field names
 	 * @param $fname String: Calling function name (use __METHOD__) for logs/profiling
 	 */
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseBase::replace' ) {

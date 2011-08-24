@@ -117,7 +117,7 @@ class LoadBalancer {
 			return false;
 		}
 		$max = mt_getrandmax();
-		$rand = mt_rand(0, $max) / $max * $sum;
+		$rand = mt_rand( 0, $max ) / $max * $sum;
 
 		$sum = 0;
 		foreach ( $weights as $i => $w ) {
