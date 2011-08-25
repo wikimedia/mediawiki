@@ -248,6 +248,20 @@ abstract class Maintenance {
 	 */
 	protected function setBatchSize( $s = 0 ) {
 		$this->mBatchSize = $s;
+
+		// If we support $mBatchSize, show the option.
+		// Used to be in addDefaultParams, but in order for that to
+		// work, subclasses would have to call this function in the constructor
+		// before they called parent::__construct which is just weird
+		// (and really wasn't done).
+		if ( $this->mBatchSize ) {
+			$this->addOption( 'batch-size', 'Run this many operations ' .
+				'per batch, default: ' . $this->mBatchSize, false, true );
+			if ( isset( $this->mParams['batch-size'] ) ) {
+				// This seems a little ugly...
+				$this->mDependantParameters['batch-size'] = $this->mParams['batch-size'];
+			}
+		}
 	}
 
 	/**
@@ -418,11 +432,7 @@ abstract class Maintenance {
 			$this->addOption( 'dbuser', 'The DB user to use for this script', false, true );
 			$this->addOption( 'dbpass', 'The password to use for this script', false, true );
 		}
-		// If we support $mBatchSize, show the option
-		if ( $this->mBatchSize ) {
-			$this->addOption( 'batch-size', 'Run this many operations ' .
-				'per batch, default: ' . $this->mBatchSize, false, true );
-		}
+
 		# Save additional script dependant options to display
 		# them separately in help
 		$this->mDependantParameters = array_diff_key( $this->mParams, $this->mGenericParameters );
