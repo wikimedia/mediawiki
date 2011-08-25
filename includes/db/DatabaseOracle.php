@@ -1194,7 +1194,8 @@ class DatabaseOracle extends DatabaseBase {
 			$sql .= $sqlSet;
 		}
 
-		if ( $conds != '*' || ( is_array( $conds ) && count( $conds ) ) ) {
+		if ( $conds !== array() && $conds !== '*' ) {
+		if ( $conds !== array() && $conds !== '*' ) {
 			$conds = $this->wrapConditionsForWhere( $table, $conds );
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
