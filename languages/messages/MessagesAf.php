@@ -2356,7 +2356,6 @@ Die laaste inskrywing uit die blokkeerlogboek word hier ter inligting weergegee:
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
 'sp-contributions-toponly'             => 'Wys slegs die nuutste weergawes',
 'sp-contributions-submit'              => 'Vertoon',
-'sp-contributions-showsizediff'        => 'Wys verskil in bladsygrootte',
 
 # What links here
 'whatlinkshere'            => 'Skakels hierheen',

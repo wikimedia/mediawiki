@@ -2346,7 +2346,6 @@ Qhipaq hark'ay hallch'a yaykuchisqatam kay qatiqpi rikunki:",
 'sp-contributions-username'            => 'IP huchha icha ruraqpa sutin:',
 'sp-contributions-toponly'             => 'Pata musuqchasqakunallata rikuchiy',
 'sp-contributions-submit'              => 'Maskay',
-'sp-contributions-showsizediff'        => "P'anqakunap hatun kayninpi wakin kayta rikuchiy",
 
 # What links here
 'whatlinkshere'            => "Kayman t'inkimuq",

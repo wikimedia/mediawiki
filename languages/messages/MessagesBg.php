@@ -2369,7 +2369,6 @@ $1',
 'sp-contributions-username'            => 'IP-адрес или потребителско име:',
 'sp-contributions-toponly'             => 'Показване само на последните редакции',
 'sp-contributions-submit'              => 'Търсене',
-'sp-contributions-showsizediff'        => 'Показване на разлики в размера на страницата',
 
 # What links here
 'whatlinkshere'            => 'Какво сочи насам',

@@ -2327,7 +2327,6 @@ Den seneste post i blokeringsloggen vises nedenfor:',
 'sp-contributions-username'            => 'IP-adresse eller brugernavn:',
 'sp-contributions-toponly'             => 'Vis kun redigeringer, der er aktuelle versioner',
 'sp-contributions-submit'              => 'Søg',
-'sp-contributions-showsizediff'        => 'Vis forskel i sidestørrelse',
 
 # What links here
 'whatlinkshere'            => 'Hvad henviser hertil',

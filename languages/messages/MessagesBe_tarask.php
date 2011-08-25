@@ -1280,7 +1280,7 @@ $1",
 'qbsettings-fixedright'     => 'Замацаваная справа',
 'qbsettings-floatingleft'   => 'Рухомая зьлева',
 'qbsettings-floatingright'  => 'Плавае справа',
-'qbsettings-directionality' => 'Замацаваная, у залежнасьці ад накірунку Вашага напісаньня і Вашай мовы',
+'qbsettings-directionality' => 'Замацаваная, у залежнасьці ад накірунку напісаньня ў Вашай мове',
 
 # Preferences page
 'preferences'                   => 'Налады',
@@ -2429,7 +2429,6 @@ $1',
 'sp-contributions-username'            => 'IP-адрас альбо імя ўдзельніка/ўдзельніцы:',
 'sp-contributions-toponly'             => 'Паказваць толькі зьмены, якія зьяўляюцца апошнімі вэрсіямі',
 'sp-contributions-submit'              => 'Шукаць',
-'sp-contributions-showsizediff'        => 'Паказваць розьніцу ў памеры старонкі',
 
 # What links here
 'whatlinkshere'            => 'Спасылкі на старонку',
@@ -3505,7 +3504,7 @@ $1',
 'table_pager_limit'        => 'Паказваць $1 элемэнтаў на старонцы',
 'table_pager_limit_label'  => 'Запісаў на старонку:',
 'table_pager_limit_submit' => 'Перайсьці',
-'table_pager_empty'        => 'Ня знойдзена',
+'table_pager_empty'        => 'Вынікаў няма',
 
 # Auto-summaries
 'autosumm-blank'   => 'Выдалены ўвесь зьмест старонкі',
@@ -3668,6 +3667,12 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'compare-invalid-title'       => 'Пазначаная няслушная назва.',
 'compare-title-not-exists'    => 'Пазначаная старонка не існуе.',
 'compare-revision-not-exists' => 'Пазначаная вэрсія не існуе.',
+
+# Special:GlobalFileUsage
+'globalfileusage'      => 'Глябальнае выкарыстаньне файла',
+'globalfileusage-for'  => 'Глябальнае выкарыстаньне файла для «$1»',
+'globalfileusage-desc' => '[[Special:GlobalFileUsage|Спэцыяльная старонка]] для прагляду глябальнага выкарыстаньня файла',
+'globalfileusage-ok'   => 'Шукаць',
 
 # Database error messages
 'dberr-header'      => 'Гэтая вікі не функцыянуе спраўна',

@@ -33,6 +33,7 @@
  * @author Szczepan1990
  * @author Timpul
  * @author ToSter
+ * @author Woytecr
  * @author Wpedzich
  * @author Ymar
  * @author Žekřil71pl
@@ -973,6 +974,9 @@ Ostatni wpis z rejestru jest pokazany poniżej.",
 'templatesused'                    => '{{PLURAL:$1|Szablon użyty|Szablony użyte}} w tym artykule:',
 'templatesusedpreview'             => '{{PLURAL:$1|Szablon użyty|Szablony użyte}} w tym podglądzie:',
 'templatesusedsection'             => '{{PLURAL:$1|Szablon użyty|Szablony użyte}} w tej sekcji:',
+'distanttemplatesused'             => '{{PLURAL:$1|Odległy szablon wykorzystany|Odległe szablony wykorzystane}} na tej stronie:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Odległy szablon wykorzystany|Odległe szablony wykorzystane}} w tym podglądzie:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Odległy szablon wykorzystany|Odległe szablony wykorzystane}} w tej sekcji:',
 'template-protected'               => '(zabezpieczony)',
 'template-semiprotected'           => '(częściowo zabezpieczony)',
 'hiddencategories'                 => 'Ta strona jest w {{PLURAL:$1|jednej ukrytej kategorii|$1 ukrytych kategoriach}}:',
@@ -1389,7 +1393,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-help-email-others'       => 'Możesz również umożliwić innym użytkownikom wysłanie do Ciebie e‐maila poprzez Twoją stronę użytkownika lub stronę dyskusji (bez ujawniania Twojego adresu).',
 'prefs-help-email-required'     => 'Wymagany jest adres e‐mail.',
 'prefs-info'                    => 'Podstawowe informacje',
-'prefs-i18n'                    => 'Narodowość',
+'prefs-i18n'                    => 'Ustawienia międzynarodowe',
 'prefs-signature'               => 'Podpis',
 'prefs-dateformat'              => 'Format daty',
 'prefs-timeoffset'              => 'Różnica czasu',
@@ -1643,12 +1647,12 @@ Przejdź na stronę [[Special:NewFiles|galerii nowych plików]], by zobaczyć pl
 'illegalfilename'             => 'Nazwa pliku „$1” zawiera znaki niedozwolone w tytułach stron.
 Zmień nazwę pliku i prześlij go ponownie.',
 'badfilename'                 => 'Nazwa pliku została zmieniona na „$1”.',
-'filetype-mime-mismatch'      => 'Rozszerzenie pliku jest inne niż typ MIME.',
+'filetype-mime-mismatch'      => 'Rozszerzenie pliku ".$1" nie pasuje do typu MIME $2.',
 'filetype-badmime'            => 'Przesyłanie plików z typem MIME „$1” jest niedozwolone.',
 'filetype-bad-ie-mime'        => 'Nie można załadować tego pliku, ponieważ Internet Explorer wykryje go jako „$1”, a taki typ pliku jest zabronioniony jako potencjalnie niebezpieczny.',
 'filetype-unwanted-type'      => "'''„.$1”''' nie jest zalecanym typem pliku. Pożądane są pliki w {{PLURAL:$3|formacie|formatach}} $2.",
 'filetype-banned-type'        => "'''„.$1”''' nie jest dozwolonym typem pliku.
-Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2.",
+Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2. {{PLURAL:$4|Niedopuszczalny format|Niedopuszczalne formaty}}: $4.",
 'filetype-missing'            => 'Plik nie ma rozszerzenia (np. „.jpg”).',
 'empty-file'                  => 'Przesłany przez Ciebie plik jest pusty.',
 'file-too-large'              => 'Przesłany przez Ciebie plik jest zbyt duży.',
@@ -1814,9 +1818,8 @@ Możesz także spróbować w czasie mniejszego obciążenia serwera.',
 'upload_source_file' => ' (plik na twoim komputerze)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Na tej stronie specjalnej prezentowane są wszystkie pliki przesłane na serwer.
-Domyślnie na górze listy umieszczane są ostatnio przesłane pliki.
-Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
+'listfiles-summary'     => 'Na tej stronie specjalnej prezentowane są wszystkie przesłane pliki.
+Jeśli włączono filtrowanie dla konkretnego użytkownika, prezentowane są wyłącznie przesłana przez niego najnowsze wersje plików.',
 'listfiles_search_for'  => 'Szukaj pliku o nazwie',
 'imgfile'               => 'plik',
 'listfiles'             => 'Lista plików',
@@ -2447,7 +2450,6 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'sp-contributions-username'            => 'Adres IP lub nazwa użytkownika',
 'sp-contributions-toponly'             => 'Pokaż wyłącznie ostatnie wersje',
 'sp-contributions-submit'              => 'Szukaj',
-'sp-contributions-showsizediff'        => 'Wyświetl różnice w wielkości strony',
 
 # What links here
 'whatlinkshere'            => 'Linkujące',
@@ -2529,6 +2531,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'blocklist-userblocks'            => 'Ukryj blokady konta',
 'blocklist-tempblocks'            => 'Ukryj tymczasowe blokady',
 'blocklist-addressblocks'         => 'Ukryj blokady pojedynczych adresów IP',
+'blocklist-rangeblocks'           => 'Ukryj zakresy blokad',
 'blocklist-timestamp'             => 'Sygnatura czasowa',
 'blocklist-target'                => 'Cel',
 'blocklist-expiry'                => 'Upływa',
@@ -3777,6 +3780,30 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 'compare-invalid-title'       => 'Tytuł jest nieprawidłowy.',
 'compare-title-not-exists'    => 'Tytuł, który podałeś nie istnieje.',
 'compare-revision-not-exists' => 'Zmiana, którą wybrałeś nie istnieje.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Globalne wykorzystanie pliku',
+'globalfileusage-for'         => 'Globalne wykorzystanie pliku „$1“',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Strona specjalna]] wyświetlająca globalne wykorzystanie pliku',
+'globalfileusage-ok'          => 'Szukaj',
+'globalfileusage-text'        => 'Wyszukaj globalnie gdzie plik został wykorzystany',
+'globalfileusage-no-results'  => '[[$1]] nie jest używany na innych wiki.',
+'globalfileusage-on-wiki'     => 'Wykorzystanie w $2',
+'globalfileusage-of-file'     => 'Następujące inne wiki wykorzystują ten plik:',
+'globalfileusage-more'        => 'Zobacz [[{{#Special:GlobalUsage}}/$1|więcej informacji o globalnym wykorzystaniu]] tego pliku.',
+'globalfileusage-filterlocal' => 'Nie pokazuj lokalnego wykorzystania',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Globalne wykorzystanie szablonu',
+'globaltemplateusage-for'         => 'Globalne wykorzystanie szablonu „$1“',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Strona specjalna]] wyświetlająca globalne wykorzystanie szablonu',
+'globaltemplateusage-ok'          => 'Szukaj',
+'globaltemplateusage-text'        => 'Globalne wyszukiwanie wykorzystania szablonu',
+'globaltemplateusage-no-results'  => '[[$1]] nie jest używany w innych wiki.',
+'globaltemplateusage-on-wiki'     => 'Wykorzystanie w $2',
+'globaltemplateusage-of-file'     => 'Następujące inne wiki używają tego szablonu:',
+'globaltemplateusage-more'        => 'Pokaż [[{{#Special:GlobalUsage}}/$1|listę globalnego wykorzystania]] tego szablonu.',
+'globaltemplateusage-filterlocal' => 'Nie pokazuj lokalnego wykorzystania',
 
 # Database error messages
 'dberr-header'      => 'Ta wiki nie działa poprawnie',

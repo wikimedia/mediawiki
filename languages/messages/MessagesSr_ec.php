@@ -2614,7 +2614,6 @@ $1',
 'sp-contributions-username'            => 'IP адреса или корисничко име:',
 'sp-contributions-toponly'             => 'Прикажи само најновије измене',
 'sp-contributions-submit'              => 'Претражи',
-'sp-contributions-showsizediff'        => 'Прикажи разлике у величини странице',
 
 # What links here
 'whatlinkshere'            => 'Шта је повезано овде',

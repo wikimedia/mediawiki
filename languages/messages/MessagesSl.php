@@ -1232,7 +1232,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'qbsettings-fixedright'     => 'Desno nepomično',
 'qbsettings-floatingleft'   => 'Levo leteče',
 'qbsettings-floatingright'  => 'Desno leteče',
-'qbsettings-directionality' => 'Stalno, odvisno od usmerjenosti vašega skripta in vašega jezika',
+'qbsettings-directionality' => 'Stalno, odvisno od usmerjenosti pisave vašega jezika',
 
 # Preferences page
 'preferences'                   => 'Nastavitve',
@@ -1767,8 +1767,7 @@ Morda želite poskusiti ob času manjše zasedenosti.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ta posebna stran prikazuje vse naložene datoteke.
-Po privzetem so na vrhu seznama najnovejše datoteke.
-Za spremembo razvrščanja kliknete na glavo stolpca.',
+Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri katerih je izbrani uporabnik naložil najnovejšo različico datoteke.',
 'listfiles_search_for'  => 'Išči po imenu datoteke:',
 'imgfile'               => 'dat.',
 'listfiles'             => 'Seznam datotek',
@@ -2408,7 +2407,6 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'sp-contributions-username'            => 'IP-naslov ali uporabniško ime:',
 'sp-contributions-toponly'             => 'Prikaži samo vrhnje redakcije',
 'sp-contributions-submit'              => 'Išči',
-'sp-contributions-showsizediff'        => 'Prikaži razliko v velikosti strani',
 
 # What links here
 'whatlinkshere'            => 'Kaj se povezuje sem',

@@ -939,16 +939,19 @@ Polo tanto, non se pode gardar.",
 Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.'''
 
 O administrador que a fechou deu esta explicación: $1",
-'protectedpagewarning'             => "'''Aviso: esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan editar.'''
+'protectedpagewarning'             => "'''Aviso: Esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan editar.'''
 Velaquí está a última entrada no rexistro, por se quere consultala:",
-'semiprotectedpagewarning'         => "'''Nota:''' esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan editar.
+'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan editar.
 Velaquí está a última entrada no rexistro, por se quere consultala:",
-'cascadeprotectedwarning'          => "'''Aviso:''' esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina protexida|nas seguintes páxinas protexidas}} coa opción \"protección en serie\" activada:",
-'titleprotectedwarning'            => "'''Aviso: esta páxina foi protexida de xeito que [[Special:ListGroupRights|só algúns usuarios]] a poidan crear.'''
+'cascadeprotectedwarning'          => "'''Aviso:''' Esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina protexida|nas seguintes páxinas protexidas}} coa opción \"protección en serie\" activada:",
+'titleprotectedwarning'            => "'''Aviso: Esta páxina foi protexida de xeito que [[Special:ListGroupRights|só algúns usuarios]] a poidan crear.'''
 Velaquí está a última entrada no rexistro, por se quere consultala:",
 'templatesused'                    => '{{PLURAL:$1|Modelo usado|Modelos usados}} nesta páxina:',
 'templatesusedpreview'             => '{{PLURAL:$1|Modelo usado|Modelos usados}} nesta vista previa:',
 'templatesusedsection'             => '{{PLURAL:$1|Modelo usado|Modelos usados}} nesta sección:',
+'distanttemplatesused'             => '{{PLURAL:$1|Modelo distante usado|Modelos distantes usados}} nesta páxina:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Modelo distante usado|Modelos distantes usados}} nesta vista previa:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Modelo distante usado|Modelos distantes usados}} nesta sección:',
 'template-protected'               => '(protexido)',
 'template-semiprotected'           => '(semiprotexido)',
 'hiddencategories'                 => 'Esta páxina forma parte {{PLURAL:$1|dunha categoría oculta|de $1 categorías ocultas}}:',
@@ -979,15 +982,15 @@ Semella que foi borrada.',
 Esta xa existe.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Aviso: esta páxina contén moitos analizadores de funcións de chamadas moi caros.
+'expensive-parserfunction-warning'        => "'''Aviso:''' Esta páxina contén demasiados analizadores de funcións de chamadas.
 
-Debe ter menos {{PLURAL:$2|dunha chamada|de $2 chamadas}}, e agora hai $1.',
+Debe ter menos {{PLURAL:$2|dunha chamada|de $2 chamadas}}, e agora hai $1.",
 'expensive-parserfunction-category'       => 'Páxinas con moitos analizadores de funcións de chamadas moi caros',
 'post-expand-template-inclusion-warning'  => 'Aviso: o tamaño do modelo incluído é moi grande.
 Algúns modelos non serán incluídos.',
 'post-expand-template-inclusion-category' => 'Páxinas onde o tamaño dos modelos incluídos é excedido',
-'post-expand-template-argument-warning'   => 'Aviso: esta páxina contén, polo menos, un argumento dun modelo que ten un tamaño e expansión moi grande.
-Estes argumentos serán omitidos.',
+'post-expand-template-argument-warning'   => "'''Aviso:''' Esta páxina contén, polo menos, un argumento de modelo que ten un tamaño e expansión moi grande.
+Estes argumentos foron omitidos.",
 'post-expand-template-argument-category'  => 'Páxinas que conteñen argumentos de modelo omitidos',
 'parser-template-loop-warning'            => 'Detectouse un modelo en bucle: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Excedeuse o límite da profundidade do recurso do modelo ($1)',
@@ -1793,9 +1796,8 @@ Tamén pode reintentalo cando haxa menos actividade.',
 'upload_source_file' => '  (un ficheiro no seu ordenador)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Esta páxina especial amosa todos os ficheiros cargados.
-Por omisión, os ficheiros enviados máis recentemente aparecen no alto da lista.
-Premendo nunha cabeceira da columna cambia a ordenación.',
+'listfiles-summary'     => 'Esta páxina especial mostra todos os ficheiros cargados.
+Ao filtrar a lista por usuario, soamente se mostran as últimas versións dos ficheiros cargados polo usuario.',
 'listfiles_search_for'  => 'Buscar polo nome do ficheiro multimedia:',
 'imgfile'               => 'ficheiro',
 'listfiles'             => 'Lista de imaxes',
@@ -2431,7 +2433,6 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'sp-contributions-username'            => 'Enderezo IP ou nome de usuario:',
 'sp-contributions-toponly'             => 'Mostrar só as últimas revisións',
 'sp-contributions-submit'              => 'Procurar',
-'sp-contributions-showsizediff'        => 'Mostrar a diferenza no tamaño da páxina',
 
 # What links here
 'whatlinkshere'            => 'Páxinas que ligan con esta',
@@ -2511,6 +2512,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'blocklist-userblocks'            => 'Agochar os bloqueos de contas',
 'blocklist-tempblocks'            => 'Agochar os bloqueos temporais',
 'blocklist-addressblocks'         => 'Agochar os bloqueos a enderezos IP únicos',
+'blocklist-rangeblocks'           => 'Agochar os bloqueos de rango',
 'blocklist-timestamp'             => 'Data e hora',
 'blocklist-target'                => 'Destino',
 'blocklist-expiry'                => 'Caduca',
@@ -2685,9 +2687,9 @@ Quérea eliminar para facer sitio para mover?',
 'imageinvalidfilename'         => 'O nome da imaxe é inválido',
 'fix-double-redirects'         => 'Actualizar calquera redirección que apunte cara ao título orixinal',
 'move-leave-redirect'          => 'Deixar unha redirección detrás',
-'protectedpagemovewarning'     => "'''Aviso:''' esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan mover.
+'protectedpagemovewarning'     => "'''Aviso:''' Esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan mover.
 Velaquí está a última entrada no rexistro, por se quere consultala:",
-'semiprotectedpagemovewarning' => "'''Nota:''' esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan mover.
+'semiprotectedpagemovewarning' => "'''Nota:''' Esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan mover.
 Velaquí está a última entrada no rexistro, por se quere consultala:",
 'move-over-sharedrepo'         => '== O ficheiro xa existe ==
 "[[:$1]]" xa existe nun repositorio compartido. Ao mover un ficheiro a este título sobrescribirase o ficheiro compartido.',
@@ -3517,7 +3519,7 @@ $1',
 'trackbackdeleteok' => 'O trackback foi eliminado sen problemas.',
 
 # Delete conflict
-'deletedwhileediting'      => "'''Aviso:''' esta páxina foi borrada despois de que comezase a editala!",
+'deletedwhileediting'      => "'''Aviso:''' Esta páxina foi borrada despois de que comezase a editala!",
 'confirmrecreate'          => "O usuario [[User:$1|$1]] ([[User talk:$1|conversa]]) borrou este artigo despois de que vostede comezara a editalo, dando o seguinte motivo:
 : ''$2''
 Por favor, confirme que realmente quere recrear esta páxina.",
@@ -3525,7 +3527,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 'recreate'                 => 'Recrear',
 
 # action=purge
-'confirm_purge_button' => 'Si',
+'confirm_purge_button' => 'Aceptar',
 'confirm-purge-top'    => 'Quere limpar a memoria caché desta páxina?',
 'confirm-purge-bottom' => 'Ao purgar unha páxina, límpase a memoria caché e isto obriga tamén a que apareza a versión máis recente da páxina.',
 
@@ -3712,6 +3714,30 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 'compare-invalid-title'       => 'O título que especificou non é válido.',
 'compare-title-not-exists'    => 'O título que especificou non existe.',
 'compare-revision-not-exists' => 'A revisión que especificou non existe.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Uso global do ficheiro',
+'globalfileusage-for'         => 'Uso do ficheiro global "$1"',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Páxina especial]] para ver o uso global dun ficheiro',
+'globalfileusage-ok'          => 'Procurar',
+'globalfileusage-text'        => 'Procurar o uso global do ficheiro',
+'globalfileusage-no-results'  => '"[[$1]]" non se emprega noutros wikis.',
+'globalfileusage-on-wiki'     => 'Uso en $2',
+'globalfileusage-of-file'     => 'Os seguintes wikis empregan este ficheiro:',
+'globalfileusage-more'        => 'Ollar [[{{#Special:GlobalUsage}}/$1|o uso global]] deste ficheiro.',
+'globalfileusage-filterlocal' => 'Non mostrar o uso local',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Uso global do modelo',
+'globaltemplateusage-for'         => 'Uso do modelo global "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Páxina especial]] para ver o uso global dun modelo',
+'globaltemplateusage-ok'          => 'Procurar',
+'globaltemplateusage-text'        => 'Procurar o uso global do modelo',
+'globaltemplateusage-no-results'  => '"[[$1]]" non se emprega noutros wikis.',
+'globaltemplateusage-on-wiki'     => 'Uso en $2',
+'globaltemplateusage-of-file'     => 'Os seguintes wikis empregan este modelo:',
+'globaltemplateusage-more'        => 'Ollar [[{{#Special:GlobalUsage}}/$1|o uso global]] deste modelo.',
+'globaltemplateusage-filterlocal' => 'Non mostrar o uso local',
 
 # Database error messages
 'dberr-header'      => 'Este wiki ten un problema',

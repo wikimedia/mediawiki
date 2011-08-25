@@ -1192,7 +1192,7 @@ Du har ikke tilgang til det.',
 'revdelete-modify-no-access'  => 'Feil under endring av objekt datert $2, $1: dette objektet har blitt markert "begrenset".
 Du har ikke tilgang til det.',
 'revdelete-modify-missing'    => 'Feil under endring av objekt ID $1: det mangler i databasen!',
-'revdelete-no-change'         => "'''Advarsel:''' objektet datert $2, $1 hadde allerede etterspurt synlighetsinnstillinger.",
+'revdelete-no-change'         => "'''Advarsel:''' objektet datert $2 $1 hadde allerede synlighetsinnstillingene du forespurte.",
 'revdelete-concurrent-change' => 'Feil under endring av objektet datert $2, $1: dets status ser ut til å ha blitt endret av noen andre mens du prøvde å endre det.
 Vennligst sjekk loggen.',
 'revdelete-only-restricted'   => 'Feil ved gjemming av objekt datert $2, $1: du kan ikke skjule objekt fra å vises for administratorer uten også å velge en av de andre visningsalternativene.',
@@ -2462,7 +2462,6 @@ Den siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:',
 'sp-contributions-username'            => 'IP-adresse eller brukernavn:',
 'sp-contributions-toponly'             => 'Vis kun endringer som er gjeldende revisjoner',
 'sp-contributions-submit'              => 'Søk',
-'sp-contributions-showsizediff'        => 'Vis forskjellen i sidestørrelse',
 
 # What links here
 'whatlinkshere'            => 'Lenker hit',

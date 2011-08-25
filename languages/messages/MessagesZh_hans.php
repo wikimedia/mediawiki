@@ -2332,7 +2332,6 @@ $1',
 'sp-contributions-username'            => 'IP地址或用户名：',
 'sp-contributions-toponly'             => '只显示最后修订版本的编辑',
 'sp-contributions-submit'              => '搜索',
-'sp-contributions-showsizediff'        => '显示页面大小差异',
 
 # What links here
 'whatlinkshere'            => '链入页面',

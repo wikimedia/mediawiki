@@ -2223,7 +2223,6 @@ $1',
 'sp-contributions-username'            => 'IP аадырыһа эбэтэр аата:',
 'sp-contributions-toponly'             => 'Кэнники барыллары эрэ көрдөр',
 'sp-contributions-submit'              => 'Көрдөө',
-'sp-contributions-showsizediff'        => 'Сирэй кээмэйэ улырыйыытын көрдөр',
 
 # What links here
 'whatlinkshere'            => 'Манна сигэнэллэр',

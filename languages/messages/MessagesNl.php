@@ -1084,6 +1084,9 @@ De laatste logboekregel staat hieronder:",
 'templatesused'                    => 'Op deze pagina {{PLURAL:$1|gebruikt sjabloon|gebruikte sjablonen}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Sjabloon|Sjablonen}} gebruikt in deze voorvertoning:',
 'templatesusedsection'             => 'In dit subkopje {{PLURAL:$1|wordt het volgende sjabloon|worden de volgende sjablonen}} gebruikt:',
+'distanttemplatesused'             => '{{PLURAL:$1|Sjabloon|Sjablonen}} uit een andere wiki op deze pagina:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Sjabloon|Sjablonen}} uit een andere wiki in deze voorvertoning:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Sjabloon|Sjablonen}} uit een andere wiki in deze paragraaf:',
 'template-protected'               => '(beveiligd)',
 'template-semiprotected'           => '(semibeveiligd)',
 'hiddencategories'                 => 'Deze pagina valt in de volgende verborgen {{PLURAL:$1|categorie|categorieën}}:',
@@ -1947,8 +1950,7 @@ U kunt het misschien proberen als het minder druk is.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.
-Standaard worden de laatst toegevoegde bestanden bovenaan de lijst weergegeven.
-Klikken op een kolomkop verandert de sortering.',
+Als deze pagina wordt gefilterd op gebruiker, worden alleen bestanden waar de gebruiker de laatste versie van heeft geüpload weergegeven.',
 'listfiles_search_for'  => 'Zoeken naar bestand:',
 'imgfile'               => 'bestand',
 'listfiles'             => 'Bestandslijst',
@@ -2593,7 +2595,6 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
 'sp-contributions-toponly'             => 'Alleen nieuwste versies weergeven',
 'sp-contributions-submit'              => 'Bekijken',
-'sp-contributions-showsizediff'        => 'Verschil in paginagrootte weergeven',
 
 # What links here
 'whatlinkshere'            => 'Verwijzingen naar deze pagina',
@@ -2673,6 +2674,7 @@ Zie de [[Special:IPBlockList|Lijst van geblokkeerde IP-adressen]] voor recente b
 'blocklist-userblocks'            => 'Geblokkeerde gebruikers verbergen',
 'blocklist-tempblocks'            => 'Tijdelijke blokkades verbergen',
 'blocklist-addressblocks'         => 'Blokkades van één IP-adres verbergen',
+'blocklist-rangeblocks'           => 'IP-adresblokken verbergen',
 'blocklist-timestamp'             => 'Tijdstip',
 'blocklist-target'                => 'Doel',
 'blocklist-expiry'                => 'Vervalt',
@@ -3900,6 +3902,30 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'compare-invalid-title'       => 'De titel die u hebt opgegeven is ongeldig.',
 'compare-title-not-exists'    => 'De titel die u hebt opgegeven bestaat niet.',
 'compare-revision-not-exists' => 'De versie die u hebt opgegeven bestaat niet.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Globaal bestandsgebruik',
+'globalfileusage-for'         => 'Globaal gebruik voor "$1"',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Speciale pagina]] voor het bekijken van globaal bestandsgebruik',
+'globalfileusage-ok'          => 'Zoeken',
+'globalfileusage-text'        => 'Globaal bestandsgebruik bekijken',
+'globalfileusage-no-results'  => "[[$1]] wordt niet gebruikt in andere wiki's.",
+'globalfileusage-on-wiki'     => 'Gebruik in $2',
+'globalfileusage-of-file'     => "De volgende andere wiki's gebruiken dit bestand:",
+'globalfileusage-more'        => '[[{{#Special:GlobalUsage}}/$1|Globaal gebruik]] van dit bestand bekijken.',
+'globalfileusage-filterlocal' => 'Lokaal gebruik niet weergeven',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Globaal sjabloongebruik',
+'globaltemplateusage-for'         => 'Globaal sjabloongebruik voor "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Speciale pagina]] voor het bekijken van globaal sjabloongebruik',
+'globaltemplateusage-ok'          => 'Zoeken',
+'globaltemplateusage-text'        => 'Globaal sjabloongebruik bekijken',
+'globaltemplateusage-no-results'  => "[[$1]] wordt niet gebruikt in andere wiki's.",
+'globaltemplateusage-on-wiki'     => 'Gebruik in $2',
+'globaltemplateusage-of-file'     => "De volgende andere wiki's gebruiken dit sjabloon:",
+'globaltemplateusage-more'        => '[[{{#Special:GlobalUsage}}/$1|Globaal gebruik]] van dit sjabloon bekijken.',
+'globaltemplateusage-filterlocal' => 'Lokaal gebruik niet weergeven',
 
 # Database error messages
 'dberr-header'      => 'Deze wiki heeft een probleem',

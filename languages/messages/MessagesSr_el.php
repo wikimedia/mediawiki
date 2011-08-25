@@ -2362,7 +2362,6 @@ Izveštaj o blokiranim korisnicima se nalazi ispod:',
 'sp-contributions-username'            => 'IP adresa ili korisničko ime:',
 'sp-contributions-toponly'             => 'Prikaži samo najnovije izmene',
 'sp-contributions-submit'              => 'Pretraga',
-'sp-contributions-showsizediff'        => 'Prikaži razlike u veličini stranice',
 
 # What links here
 'whatlinkshere'            => 'Šta je povezano ovde',

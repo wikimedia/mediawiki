@@ -2464,7 +2464,6 @@ $1',
 'sp-contributions-username'            => 'Địa chỉ IP hay tên thành viên:',
 'sp-contributions-toponly'             => 'Chỉ hiện các phiên bản gần đây',
 'sp-contributions-submit'              => 'Tìm kiếm',
-'sp-contributions-showsizediff'        => 'Hiện khác biệt về kích thước trang',
 
 # What links here
 'whatlinkshere'            => 'Các liên kết đến đây',

@@ -2457,7 +2457,6 @@ $1',
 'sp-contributions-username'            => 'ഐ.പി. വിലാസം അഥവാ ഉപയോക്തൃനാമം:',
 'sp-contributions-toponly'             => 'ഒടുവിലത്തെ നാൾപ്പതിപ്പുകൾ മാത്രം പ്രദർശിപ്പിക്കുക',
 'sp-contributions-submit'              => 'തിരയൂ',
-'sp-contributions-showsizediff'        => 'താളിന്റെ വലിപ്പത്തിലുണ്ടായ വ്യത്യാസം പ്രദർശിപ്പിക്കുക',
 
 # What links here
 'whatlinkshere'            => 'അനുബന്ധകണ്ണികൾ',

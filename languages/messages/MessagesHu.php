@@ -2455,7 +2455,6 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'sp-contributions-username'            => 'IP-cím vagy felhasználónév:',
 'sp-contributions-toponly'             => 'Csak a jelenleg utolsónak számító változtatásokat mutassa',
 'sp-contributions-submit'              => 'Keresés',
-'sp-contributions-showsizediff'        => 'Lapméretek közötti eltérés megjelenítése',
 
 # What links here
 'whatlinkshere'            => 'Mi hivatkozik erre',

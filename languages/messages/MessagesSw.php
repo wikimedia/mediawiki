@@ -2172,7 +2172,6 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'sp-contributions-username'            => 'Anwani ya IP au jina la mtumiaji:',
 'sp-contributions-toponly'             => 'Onesha maharirio ambayo ni mapitio mapya tu',
 'sp-contributions-submit'              => 'Tafuta',
-'sp-contributions-showsizediff'        => 'Onyesha tofauti ya ukubwa wa ukurasa',
 
 # What links here
 'whatlinkshere'            => 'Viungo viungavyo ukurasa huu',

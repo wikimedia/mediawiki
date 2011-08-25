@@ -2467,7 +2467,6 @@ Catatan log pemblokiran terakhir tersedia di bawah ini sebagai rujukan:',
 'sp-contributions-username'            => 'Alamat IP atau nama pengguna:',
 'sp-contributions-toponly'             => 'Tampilkan hanya revisi teratas',
 'sp-contributions-submit'              => 'Cari',
-'sp-contributions-showsizediff'        => 'Tampilkan beda dalam ukuran halaman',
 
 # What links here
 'whatlinkshere'            => 'Pranala balik',

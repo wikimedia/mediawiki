@@ -1387,7 +1387,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'qbsettings-fixedright'     => 'Rechts, fest',
 'qbsettings-floatingleft'   => 'Links, schwebend',
 'qbsettings-floatingright'  => 'Rechts, schwebend',
-'qbsettings-directionality' => 'Fest, abhängig von der Schriftrichtung und der gewählten Sprache',
+'qbsettings-directionality' => 'Fest, abhängig von der Schreibrichtung der gewählten Sprache',
 
 # Preferences page
 'preferences'                   => 'Einstellungen',
@@ -1910,7 +1910,7 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. 
-Wenn nach Nutzer gefiltert wird, werden nur die Dateien gezeigt, bei denen der Benutzer die letzte Version hochgeladen hat.',
+Sofern nach einem bestimmten Benutzer gefiltert wird, werden nur die Dateien gezeigt, bei denen er die letzte Version hochgeladen hat.',
 'listfiles_search_for'  => 'Suche nach Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Dateiliste',
@@ -2532,7 +2532,6 @@ Zur Information folgt der aktuelle Auszug aus dem Sperr-Logbuch:',
 'sp-contributions-username'            => 'IP-Adresse oder Benutzername:',
 'sp-contributions-toponly'             => 'Nur aktuelle Versionen zeigen',
 'sp-contributions-submit'              => 'Suchen',
-'sp-contributions-showsizediff'        => 'Unterschied der Seitengröße anzeigen',
 
 # What links here
 'whatlinkshere'            => 'Links auf diese Seite',

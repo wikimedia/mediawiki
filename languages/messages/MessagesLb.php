@@ -861,6 +861,7 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'templatesused'                    => '{{PLURAL:$1|Schabloun|Schablounen}} déi op dëser Säit am Gebrauch sinn:',
 'templatesusedpreview'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dëser nach net gespäicherter Versioun benotzt ginn:',
 'templatesusedsection'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dësem Abschnitt am Gebrauch {{PLURAL:$1|ass|sinn}}:',
+'distanttemplatesused'             => 'Global {{PLURAL:$1|Schabloun|Schablounen}} déi op dëser Säit benotzt {{PLURAL:$1|gëtt|ginn}}:',
 'template-protected'               => '(gespaart)',
 'template-semiprotected'           => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories'                 => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
@@ -1172,7 +1173,7 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'qbsettings-fixedright'     => 'Riets, fest',
 'qbsettings-floatingleft'   => 'schwiewt lenks',
 'qbsettings-floatingright'  => 'Schwiewt riets',
-'qbsettings-directionality' => 'Fix, ofhängeg vun der Richtung vun Ärer Schrëft an Ärer Sprooch',
+'qbsettings-directionality' => 'Fix, ofhängeg vun der Schreiwrichtung vun Ärer Sprooch',
 
 # Preferences page
 'preferences'                   => 'Astellungen',
@@ -1682,7 +1683,9 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als éischt ugewisen. Duerch e Klick op d'Iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
+'listfiles-summary'     => 'Op dëser Spezialsäit stinn all déi eropgeluede Fichieren.
+
+Wann se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Benotzer déi lescht Versioun vum Fichier eropgelueden huet.',
 'listfiles_search_for'  => 'Sicht nom Fichier:',
 'imgfile'               => 'Fichier',
 'listfiles'             => 'Lëscht vun de Fichieren',
@@ -2314,7 +2317,6 @@ $1',
 'sp-contributions-username'            => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-toponly'             => 'Nëmmen Ännerunge weisen déi déi lescht Versioun sinn',
 'sp-contributions-submit'              => 'Sichen',
-'sp-contributions-showsizediff'        => 'Ënnerscheed vun der Gréisst vun der Säit weisen',
 
 # What links here
 'whatlinkshere'            => 'Linken op dës Säit',
@@ -3530,6 +3532,22 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 'compare-invalid-title'       => 'Den Titel deen Dir uginn hutt ass net valabel.',
 'compare-title-not-exists'    => 'Den Titel deen Dir uginn hutt gëtt et net.',
 'compare-revision-not-exists' => "D'Versioun déi Dir uginn hutt gëtt et net.",
+
+# Special:GlobalFileUsage
+'globalfileusage'            => 'Globaalt Benotze vum Fichier',
+'globalfileusage-ok'         => 'Sichen',
+'globalfileusage-no-results' => '[[$1]] gëtt net op anere Wikie benotzt.',
+'globalfileusage-on-wiki'    => 'Benotzt op $2',
+'globalfileusage-of-file'    => 'Dës aner Wikie benotzen dëse Fichier:',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Global Benotzung vun der Schabloun',
+'globaltemplateusage-for'         => 'Globale Gebrauch vun der Schabloun "$1"',
+'globaltemplateusage-ok'          => 'Sichen',
+'globaltemplateusage-no-results'  => '[[$1]] gëtt net op anere Wikie benotzt.',
+'globaltemplateusage-on-wiki'     => 'Benotzt op $2',
+'globaltemplateusage-of-file'     => 'Dës aner Wikie benotzen dëse Schabloun:',
+'globaltemplateusage-filterlocal' => 'Déi lokal Benotzung net weisen',
 
 # Database error messages
 'dberr-header'      => 'Dës Wiki huet e Problem',

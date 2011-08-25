@@ -2448,7 +2448,6 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'sp-contributions-username'            => 'IP-aadress või kasutajanimi:',
 'sp-contributions-toponly'             => 'Ainult uusimad redaktsioonid',
 'sp-contributions-submit'              => 'Otsi',
-'sp-contributions-showsizediff'        => 'Kuva lehekülje suuruse erinevus',
 
 # What links here
 'whatlinkshere'            => 'Lingid siia',

@@ -2481,7 +2481,6 @@ $1',
 'sp-contributions-username'            => 'Διεύθυνση IP ή όνομα χρήστη:',
 'sp-contributions-toponly'             => 'Δείξε μόνο τις τελευταίες αναθεωρήσεις',
 'sp-contributions-submit'              => 'Αναζήτηση',
-'sp-contributions-showsizediff'        => 'Εμφάνιση διαφοράς στο μέγεθος της σελίδας',
 
 # What links here
 'whatlinkshere'            => 'Αναφορές στη σελίδα',
