@@ -1893,9 +1893,12 @@ class OutputPage extends ContextSource {
 	/**
 	 * Output a standard error page
 	 *
+	 * showErrorPage( 'titlemsg', 'pagetextmsg', array( 'param1', 'param2' ) );
+	 * showErrorPage( 'titlemsg', $messageObject );
+	 * 
 	 * @param $title String: message key for page title
-	 * @param $msg String: message key for page text
-	 * @param $params Array: message parameters
+	 * @param $msg Mixed: message key (string) for page text, or a Message object
+	 * @param $params Array: message parameters; ignored if $msg is a Message object
 	 */
 	public function showErrorPage( $title, $msg, $params = array() ) {
 		if ( $this->getTitle() ) {
@@ -1909,7 +1912,11 @@ class OutputPage extends ContextSource {
 		$this->mRedirect = '';
 		$this->mBodytext = '';
 
-		$this->addWikiMsgArray( $msg, $params );
+		if ( $msg instanceof Message ){
+			$wgOut->addHTML( $msg->parse() );
+		} else {
+			$wgOut->addWikiMsgArray( $msg, $params );
+		}
 
 		$this->returnToMain();
 	}
