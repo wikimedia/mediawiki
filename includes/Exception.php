@@ -255,24 +255,7 @@ class ErrorPageError extends MWException {
 	function report() {
 		global $wgOut;
 
-		if ( $wgOut->getTitle() ) {
-			$wgOut->debug( 'Original title: ' . $wgOut->getTitle()->getPrefixedText() . "\n" );
-		}
-		$wgOut->setPageTitle( wfMsg( $this->title ) );
-		$wgOut->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
-		$wgOut->enableClientCache( false );
-		$wgOut->mRedirect = '';
-		$wgOut->clearHTML();
-
-		if( $this->msg instanceof Message ){
-			$wgOut->addHTML( $this->msg->parse() );
-		} else {
-			$wgOut->addWikiMsgArray( $this->msg, $this->params );
-		}
-
-		$wgOut->returnToMain();
+		$wgOut->showErrorPage( $this->title, $this->msg, $this->params );
 		$wgOut->output();
 	}
 }
