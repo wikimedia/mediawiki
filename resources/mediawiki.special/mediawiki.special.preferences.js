@@ -28,7 +28,7 @@ $legends.each( function( i, legend ) {
 	});
 	var $a = $( '<a/>', {
 		text : $legend.text(),
-		id : ident.replace('prefsection', 'preftab'),
+		id : ident.replace( 'mw-prefsection', 'preftab' ),
 		href : '#' + ident
 	}).click( function( e ) {
 		e.preventDefault();
@@ -52,8 +52,8 @@ $legends.each( function( i, legend ) {
 // On document ready:
 $( function() {
 	var hash = window.location.hash;
-	if( hash.match( /^#prefsection-[\w-]+/ ) ) {
-		var $tab = $( hash.replace('prefsection', 'preftab') );
+	if( hash.match( /^#mw-prefsection-[\w-]+/ ) ) {
+		var $tab = $( hash.replace( 'mw-prefsection', 'preftab' ) );
 		$tab.click();
 	}
 } );
