@@ -1168,7 +1168,7 @@ abstract class Skin extends ContextSource {
 
 						if ( $title ) {
 							$title = $title->fixSpecialName();
-							$href = $title->getLocalURL();
+							$href = $title->getLinkURL();
 						} else {
 							$href = 'INVALID-TITLE';
 						}
