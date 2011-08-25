@@ -681,9 +681,11 @@ class HTMLForm {
 
 	/**
 	 * TODO: Document
-	 * @param $fields
+	 * @param $fields array of fields (either arrays or objects)
+	 * @param $sectionName string ID attribute of the <table> tag for this section, ignored if empty
+	 * @param $fieldsetIDPrefix string ID prefix for the <fieldset> tag of each subsection, ignored if empty
 	 */
-	function displaySection( $fields, $sectionName = '', $displayTitle = false ) {
+	function displaySection( $fields, $sectionName = '', $fieldsetIDPrefix = '' ) {
 		$tableHtml = '';
 		$subsectionHtml = '';
 		$hasLeftColumn = false;
@@ -708,8 +710,8 @@ class HTMLForm {
 					$section .= $this->mSectionFooters[$key];
 				}
 				$attributes = array();
-				if ( $displayTitle ) {
-					$attributes["id"] = 'prefsection-' . Sanitizer::escapeId( $key, 'noninitial' );
+				if ( $fieldsetIDPrefix ) {
+					$attributes['id'] = Sanitizer::escapeId( "$fieldsetIDPrefix$key" );
 				}
 				$subsectionHtml .= Xml::fieldset( $legend, $section, $attributes ) . "\n";
 			}
