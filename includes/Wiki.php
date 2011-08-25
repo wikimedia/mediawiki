@@ -99,7 +99,7 @@ class MediaWiki {
 		}
 
 		if ( $ret === null || ( $ret->getDBkey() == '' && $ret->getInterwiki() == '' ) ) {
-			$ret = new BadTitle;
+			$ret = SpecialPage::getTitleFor( 'Badtitle' );
 		}
 
 		return $ret;
@@ -147,7 +147,9 @@ class MediaWiki {
 			array( &$title, null, &$output, &$user, $request, $this ) );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
-		if ( $title instanceof BadTitle ) {
+		if ( is_null( $title ) || ( ( $title->getDBkey() == '' ) && ( $title->getInterwiki() == '' ) ) ) {
+			$this->context->title = SpecialPage::getTitleFor( 'Badtitle' );
+			// Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
 		// If the user is not logged in, the Namespace:title of the article must be in
 		// the Read array in order for the user to see it. (We have to check here to
@@ -171,7 +173,7 @@ class MediaWiki {
 				// 301 so google et al report the target as the actual url.
 				$output->redirect( $url, 301 );
 			} else {
-				$this->context->setTitle( new BadTitle );
+				$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 				wfProfileOut( __METHOD__ );
 				throw new ErrorPageError( 'badtitle', 'badtitletext' );
 			}
