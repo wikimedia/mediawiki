@@ -10,6 +10,25 @@
  * @author Vibhijain
  */
 
+$namespaceNames = array(
+	NS_MEDIA            => 'मीडिया',
+	NS_SPECIAL          => 'विसेस',
+	NS_TALK             => 'सम्भासित',
+	NS_USER             => 'अवयव',
+	NS_USER_TALK        => 'अवयव_सम्भासित',
+	NS_PROJECT_TALK     => '$1_सम्भासित',
+	NS_FILE             => 'पटिमा',
+	NS_FILE_TALK        => 'पटिमा_सम्भासित',
+	NS_MEDIAWIKI        => 'मीडियाविकि',
+	NS_MEDIAWIKI_TALK   => 'मीडियाविकि_सम्भासित',
+	NS_TEMPLATE         => 'पटिरूप',
+	NS_TEMPLATE_TALK    => 'पटिरूप_सम्भासित',
+	NS_HELP             => 'अवस्सय',
+	NS_HELP_TALK        => 'अवस्सय_सम्भासित',
+	NS_CATEGORY         => 'विभाग',
+	NS_CATEGORY_TALK    => 'विभाग_सम्भासित',
+);
+
 $digitTransformTable = array(
 	'0' => '०', # &#x0966;
 	'1' => '१', # &#x0967;
