@@ -1913,9 +1913,9 @@ class OutputPage extends ContextSource {
 		$this->mBodytext = '';
 
 		if ( $msg instanceof Message ){
-			$wgOut->addHTML( $msg->parse() );
+			$this->addHTML( $msg->parse() );
 		} else {
-			$wgOut->addWikiMsgArray( $msg, $params );
+			$this->addWikiMsgArray( $msg, $params );
 		}
 
 		$this->returnToMain();
