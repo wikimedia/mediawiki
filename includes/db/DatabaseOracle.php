@@ -1195,7 +1195,6 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		if ( $conds !== array() && $conds !== '*' ) {
-		if ( $conds !== array() && $conds !== '*' ) {
 			$conds = $this->wrapConditionsForWhere( $table, $conds );
 			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
 		}
@@ -1284,7 +1283,8 @@ class DatabaseOracle extends DatabaseBase {
 		return 'BITOR(' . $fieldLeft . ', ' . $fieldRight . ')';
 	}
 
-	function setFakeMaster( $enabled = true ) { }
+	function setFakeMaster( $enabled = true ) {
+	}
 
 	function getDBname() {
 		return $this->mDBname;
