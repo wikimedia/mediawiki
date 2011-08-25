@@ -298,7 +298,7 @@ function wfUrlencode( $s ) {
 		$needle = null;
 		return;
 	}
-	
+
 	if ( is_null( $needle ) ) {
 		$needle = array( '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%2F' );
 		if ( !isset( $_SERVER['SERVER_SOFTWARE'] ) || ( strpos( $_SERVER['SERVER_SOFTWARE'], 'Microsoft-IIS/7' ) === false ) ) {
@@ -431,7 +431,7 @@ function wfAppendQuery( $url, $query ) {
 /**
  * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
  * is correct.
- * 
+ *
  * The meaning of the PROTO_* constants is as follows:
  * PROTO_HTTP: Output a URL starting with http://
  * PROTO_HTTPS: Output a URL starting with https://
@@ -449,15 +449,15 @@ function wfAppendQuery( $url, $query ) {
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	global $wgServer, $wgCanonicalServer;
 	$serverUrl = $defaultProto === PROTO_CANONICAL ? $wgCanonicalServer : $wgServer;
-	
+
 	if ( $defaultProto === PROTO_CURRENT ) {
 		$defaultProto = WebRequest::detectProtocol() . '://';
 	}
-	
+
 	// Analyze $serverUrl to obtain its protocol
 	$bits = wfParseUrl( $serverUrl );
 	$serverHasProto = $bits && $bits['scheme'] != '';
-	
+
 	if ( $defaultProto === PROTO_CANONICAL ) {
 		if ( $serverHasProto ) {
 			$defaultProto = $bits['scheme'] . '://';
@@ -467,9 +467,9 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 			$defaultProto = PROTO_HTTP;
 		}
 	}
-	
+
 	$defaultProtoWithoutSlashes = substr( $defaultProto, 0, -2 );
-	
+
 	if( substr( $url, 0, 2 ) == '//' ) {
 		return $defaultProtoWithoutSlashes . $url;
 	} elseif( substr( $url, 0, 1 ) == '/' ) {
@@ -516,7 +516,7 @@ function wfUrlProtocols( $includeProtocolRelative = true ) {
 		// URLs weren't supported until 1.18
 		$retval = $wgUrlProtocols;
 	}
-	
+
 	// Cache return value
 	if ( $includeProtocolRelative ) {
 		$withProtRel = $retval;
@@ -1407,6 +1407,8 @@ function wfReportTime() {
  * debug_backtrace is disabled, otherwise the output from
  * debug_backtrace() (trimmed).
  *
+ * @param $limit int This parameter can be used to limit the number of stack frames returned
+ *
  * @return array of backtrace information
  */
 function wfDebugBacktrace( $limit = 0 ) {
@@ -1432,7 +1434,7 @@ function wfDebugBacktrace( $limit = 0 ) {
 	}
 
 	if ( $limit && version_compare( PHP_VERSION, '5.4.0', '>=' ) ) {
-		return array_slice( debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, 1 ), 1 );
+		return array_slice( debug_backtrace( DEBUG_BACKTRACE_PROVIDE_OBJECT, $limit ), 1 );
 	} else {
 		return array_slice( debug_backtrace(), 1 );
 	}
