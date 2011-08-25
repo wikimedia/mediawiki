@@ -677,9 +677,8 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
 
-
-		$diffOut = ' . . ' . $wgLang->getDirMark() . ( $this->showSizeDiff ?
-			ChangesList::showCharacterDifference( $row->rc_old_len, $row->rc_new_len ) : '' );
+		$diffOut = ' . . ' . $wgLang->getDirMark() .
+			ChangesList::showCharacterDifference( $row->rc_old_len, $row->rc_new_len );
 
 		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$diffOut}{$userlink} {$comment} {$topmarktext}";
 
