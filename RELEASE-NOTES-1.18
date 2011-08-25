@@ -205,6 +205,7 @@ production.
   targets and $wgServer.
 * Introduced $wgVaryOnXFPForAPI which will cause the API to send
   Vary: X-Forwarded-Proto headers.
+* New maintenance script to refresh image metadata (maintenance/refreshImageMetadata.php)
 
 === Bug fixes in 1.18 ===
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)

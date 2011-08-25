@@ -699,7 +699,7 @@ abstract class Maintenance {
 			$this->mQuiet = true;
 		}
 		if ( $this->hasOption( 'batch-size' ) ) {
-			$this->mBatchSize = $this->getOption( 'batch-size' );
+			$this->mBatchSize = intval( $this->getOption( 'batch-size' ) );
 		}
 	}
 
