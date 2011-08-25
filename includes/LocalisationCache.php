@@ -205,9 +205,11 @@ class LocalisationCache {
 			$this->loadItem( $code, $key );
 			wfProfileOut( __METHOD__.'-load' );
 		}
+
 		if ( $key === 'fallback' && isset( $this->shallowFallbacks[$code] ) ) {
 			return $this->shallowFallbacks[$code];
 		}
+
 		return $this->data[$code][$key];
 	}
 
@@ -222,6 +224,7 @@ class LocalisationCache {
 			$this->loadSubitem( $code, $key, $subkey );
 			wfProfileOut( __METHOD__.'-load' );
 		}
+
 		if ( isset( $this->data[$code][$key][$subkey] ) ) {
 			return $this->data[$code][$key][$subkey];
 		} else {
@@ -258,14 +261,17 @@ class LocalisationCache {
 		if ( !isset( $this->initialisedLangs[$code] ) ) {
 			$this->initLanguage( $code );
 		}
+
 		// Check to see if initLanguage() loaded it for us
 		if ( isset( $this->loadedItems[$code][$key] ) ) {
 			return;
 		}
+
 		if ( isset( $this->shallowFallbacks[$code] ) ) {
 			$this->loadItem( $this->shallowFallbacks[$code], $key );
 			return;
 		}
+
 		if ( in_array( $key, self::$splitKeys ) ) {
 			$subkeyList = $this->getSubitem( $code, 'list', $key );
 			foreach ( $subkeyList as $subkey ) {
@@ -277,6 +283,7 @@ class LocalisationCache {
 		} else {
 			$this->data[$code][$key] = $this->store->get( $code, $key );
 		}
+
 		$this->loadedItems[$code][$key] = true;
 	}
 
@@ -288,19 +295,23 @@ class LocalisationCache {
 			$this->loadItem( $code, $key );
 			return;
 		}
+
 		if ( !isset( $this->initialisedLangs[$code] ) ) {
 			$this->initLanguage( $code );
 		}
+
 		// Check to see if initLanguage() loaded it for us
 		if ( isset( $this->loadedItems[$code][$key] )
 			|| isset( $this->loadedSubitems[$code][$key][$subkey] ) )
 		{
 			return;
 		}
+
 		if ( isset( $this->shallowFallbacks[$code] ) ) {
 			$this->loadSubitem( $this->shallowFallbacks[$code], $key, $subkey );
 			return;
 		}
+
 		$value = $this->store->get( $code, "$key:$subkey" );
 		$this->data[$code][$key][$subkey] = $value;
 		$this->loadedSubitems[$code][$key][$subkey] = true;
@@ -320,6 +331,7 @@ class LocalisationCache {
 			wfDebug( __METHOD__."($code): cache missing, need to make one\n" );
 			return true;
 		}
+
 		foreach ( $deps as $dep ) {
 			// Because we're unserializing stuff from cache, we
 			// could receive objects of classes that don't exist
@@ -331,6 +343,7 @@ class LocalisationCache {
 				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -341,6 +354,7 @@ class LocalisationCache {
 		if ( isset( $this->initialisedLangs[$code] ) ) {
 			return;
 		}
+
 		$this->initialisedLangs[$code] = true;
 
 		# If the code is of the wrong form for a Messages*.php file, do a shallow fallback
@@ -415,6 +429,7 @@ class LocalisationCache {
 		} else {
 			throw new MWException( __METHOD__.": Invalid file type: $_fileType" );
 		}
+
 		return $data;
 	}
 
@@ -435,6 +450,7 @@ class LocalisationCache {
 					if ( !empty( $value['inherit'] ) )  {
 						$value = array_merge( $fallbackValue, $value );
 					}
+
 					if ( isset( $value['inherit'] ) ) {
 						unset( $value['inherit'] );
 					}
@@ -477,6 +493,7 @@ class LocalisationCache {
 				$used = true;
 			}
 		}
+
 		return $used;
 	}
 
@@ -527,6 +544,7 @@ class LocalisationCache {
 		} else {
 			$coreData['fallbackSequence'] = array_map( 'trim', explode( ',', $coreData['fallback'] ) );
 			$len = count( $coreData['fallbackSequence'] );
+
 			# Ensure that the sequence ends at en
 			if ( $coreData['fallbackSequence'][$len - 1] !== 'en' ) {
 				$coreData['fallbackSequence'][] = 'en';
@@ -534,16 +552,22 @@ class LocalisationCache {
 
 			# Load the fallback localisation item by item and merge it
 			foreach ( $coreData['fallbackSequence'] as $fbCode ) {
-
 				# Load the secondary localisation from the source file to
 				# avoid infinite cycles on cyclic fallbacks
 				$fbFilename = Language::getMessagesFileName( $fbCode );
-				if ( !file_exists( $fbFilename ) ) continue;
+
+				if ( !file_exists( $fbFilename ) ) {
+					continue;
+				}
 
 				$deps[] = new FileDependency( $fbFilename );
 				$fbData = $this->readPHPFile( $fbFilename, 'core' );
+
 				foreach ( self::$allKeys as $key ) {
-					if ( !isset( $fbData[$key] ) ) continue;
+					if ( !isset( $fbData[$key] ) ) {
+						continue;
+					}
+
 					if ( is_null( $coreData[$key] ) || $this->isMergeableKey( $key ) ) {
 						$this->mergeItem( $key, $coreData[$key], $fbData[$key] );
 					}
@@ -561,11 +585,13 @@ class LocalisationCache {
 		foreach ( $wgExtensionMessagesFiles as $fileName ) {
 			$data = $this->readPHPFile( $fileName, 'extension' );
 			$used = false;
+
 			foreach ( $data as $key => $item ) {
 				if( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
 					$used = true;
 				}
 			}
+
 			if ( $used ) {
 				$deps[] = new FileDependency( $fileName );
 			}
@@ -574,11 +600,14 @@ class LocalisationCache {
 		# Load deprecated $wgExtensionAliasesFiles
 		foreach ( $wgExtensionAliasesFiles as $fileName ) {
 			$data = $this->readPHPFile( $fileName, 'aliases' );
+
 			if ( !isset( $data['aliases'] ) ) {
 				continue;
 			}
+
 			$used = $this->mergeExtensionItem( $codeSequence, 'specialPageAliases',
 				$allData['specialPageAliases'], $data['aliases'] );
+
 			if ( $used ) {
 				$deps[] = new FileDependency( $fileName );
 			}
@@ -659,6 +688,7 @@ class LocalisationCache {
 		foreach ( self::$preloadedKeys as $key ) {
 			$preload[$key] = $data[$key];
 		}
+
 		foreach ( $data['preloadedMessages'] as $subkey ) {
 			if ( isset( $data['messages'][$subkey] ) ) {
 				$subitem = $data['messages'][$subkey];
@@ -667,6 +697,7 @@ class LocalisationCache {
 			}
 			$preload['messages'][$subkey] = $subitem;
 		}
+
 		return $preload;
 	}
 
@@ -679,6 +710,7 @@ class LocalisationCache {
 		unset( $this->loadedItems[$code] );
 		unset( $this->loadedSubitems[$code] );
 		unset( $this->initialisedLangs[$code] );
+
 		foreach ( $this->shallowFallbacks as $shallowCode => $fbCode ) {
 			if ( $fbCode === $code ) {
 				$this->unload( $shallowCode );
@@ -745,7 +777,6 @@ interface LCStore {
 	 * is called, and finishWrite() must be called afterwards.
 	 */
 	function set( $key, $value );
-
 }
 
 /**
@@ -777,9 +808,11 @@ class LCStore_DB implements LCStore {
 		if ( $this->readOnly ) {
 			return;
 		}
+
 		if ( !$code ) {
 			throw new MWException( __METHOD__.": Invalid language \"$code\"" );
 		}
+
 		$this->dbw = wfGetDB( DB_MASTER );
 		try {
 			$this->dbw->begin();
@@ -794,6 +827,7 @@ class LCStore_DB implements LCStore {
 				throw $e;
 			}
 		}
+
 		$this->currentLang = $code;
 		$this->batch = array();
 	}
@@ -802,9 +836,11 @@ class LCStore_DB implements LCStore {
 		if ( $this->readOnly ) {
 			return;
 		}
+
 		if ( $this->batch ) {
 			$this->dbw->insert( 'l10n_cache', $this->batch, __METHOD__ );
 		}
+
 		$this->dbw->commit();
 		$this->currentLang = null;
 		$this->dbw = null;
@@ -816,13 +852,16 @@ class LCStore_DB implements LCStore {
 		if ( $this->readOnly ) {
 			return;
 		}
+
 		if ( is_null( $this->currentLang ) ) {
 			throw new MWException( __CLASS__.': must call startWrite() before calling set()' );
 		}
+
 		$this->batch[] = array(
 			'lc_lang' => $this->currentLang,
 			'lc_key' => $key,
 			'lc_value' => serialize( $value ) );
+
 		if ( count( $this->batch ) >= 100 ) {
 			$this->dbw->insert( 'l10n_cache', $this->batch, __METHOD__ );
 			$this->batch = array();
@@ -847,6 +886,7 @@ class LCStore_CDB implements LCStore {
 
 	function __construct( $conf = array() ) {
 		global $wgCacheDirectory;
+
 		if ( isset( $conf['directory'] ) ) {
 			$this->directory = $conf['directory'];
 		} else {
@@ -857,16 +897,19 @@ class LCStore_CDB implements LCStore {
 	public function get( $code, $key ) {
 		if ( !isset( $this->readers[$code] ) ) {
 			$fileName = $this->getFileName( $code );
+
 			if ( !file_exists( $fileName ) ) {
 				$this->readers[$code] = false;
 			} else {
 				$this->readers[$code] = CdbReader::open( $fileName );
 			}
 		}
+
 		if ( !$this->readers[$code] ) {
 			return null;
 		} else {
 			$value = $this->readers[$code]->get( $key );
+
 			if ( $value === false ) {
 				return null;
 			}
@@ -881,10 +924,12 @@ class LCStore_CDB implements LCStore {
 					"directory \"{$this->directory}\"" );
 			}
 		}
+
 		// Close reader to stop permission errors on write
 		if( !empty($this->readers[$code]) ) {
 			$this->readers[$code]->close();
 		}
+
 		$this->writer = CdbWriter::open( $this->getFileName( $code ) );
 		$this->currentLang = $code;
 	}
@@ -952,12 +997,15 @@ class LocalisationCache_BulkLoad extends LocalisationCache {
 		$serialize = $fileType === 'core';
 		if ( !isset( $this->fileCache[$fileName][$fileType] ) ) {
 			$data = parent::readPHPFile( $fileName, $fileType );
+
 			if ( $serialize ) {
 				$encData = serialize( $data );
 			} else {
 				$encData = $data;
 			}
+
 			$this->fileCache[$fileName][$fileType] = $encData;
+
 			return $data;
 		} elseif ( $serialize ) {
 			return unserialize( $this->fileCache[$fileName][$fileType] );
