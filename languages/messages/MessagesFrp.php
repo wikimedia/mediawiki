@@ -1045,6 +1045,9 @@ La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
 'templatesused'                    => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} per ceta pâge :',
 'templatesusedpreview'             => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} dens ceta prèvisualisacion :',
 'templatesusedsection'             => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} dens ceta sèccion :',
+'distanttemplatesused'             => '{{PLURAL:$1|Modèlo distant utilisâ|Modèlos distants utilisâs}} per ceta pâge :',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Modèlo distant utilisâ|Modèlos distants utilisâs}} dens ceta prèvisualisacion :',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Modèlo distant utilisâ|Modèlos distants utilisâs}} dens ceta sèccion :',
 'template-protected'               => '(protègiê)',
 'template-semiprotected'           => '(mié-protègiê)',
 'hiddencategories'                 => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}} que ceta pâge est avouéc :',
@@ -1362,7 +1365,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'qbsettings-fixedright'     => 'Drêta',
 'qbsettings-floatingleft'   => 'Fllotenta a gôche',
 'qbsettings-floatingright'  => 'Fllotenta a drêta',
-'qbsettings-directionality' => 'Fixa, d’aprés la dirèccionalitât de voutron alfabèt et de voutra lengoua',
+'qbsettings-directionality' => 'Fixa, d’aprés la dirèccionalitât d’ècritura de voutra lengoua',
 
 # Preferences page
 'preferences'                   => 'Prèferences',
@@ -1901,8 +1904,7 @@ Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ceta pâge spèciâla montre tôs los fichiérs tèlèchargiês.
-Per dèfôt, los dèrriérs fichiérs tèlèchargiês sont montrâs d’amont la lista.
-Clicar sur un en-téta de colona pèrmèt de changiér l’ôrdre de visualisacion.',
+Quand el est filtrâ per utilisator, solament los fichiérs que la vèrsion la ples novèla at étâ importâ per cél utilisator sont montrâs.',
 'listfiles_search_for'  => 'Rechèrchiér un nom de mèdia :',
 'imgfile'               => 'fichiér',
 'listfiles'             => 'Lista des fichiérs',
@@ -2548,7 +2550,6 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'sp-contributions-username'            => 'Adrèce IP ou ben nom d’utilisator :',
 'sp-contributions-toponly'             => 'Montrar ren que les novèles vèrsions',
 'sp-contributions-submit'              => 'Rechèrchiér',
-'sp-contributions-showsizediff'        => 'Fâre vêre la difèrence dens la talye de la pâge',
 
 # What links here
 'whatlinkshere'            => 'Pâges liyês',
@@ -2628,6 +2629,7 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'blocklist-userblocks'            => 'Cachiér los blocâjos de comptos',
 'blocklist-tempblocks'            => 'Cachiér los blocâjos temporèros',
 'blocklist-addressblocks'         => 'Cachiér los blocâjos d’adrèces IP solètes',
+'blocklist-rangeblocks'           => 'Cachiér los blocos de portâ',
 'blocklist-timestamp'             => 'Dâta et hora',
 'blocklist-target'                => 'Ciba',
 'blocklist-expiry'                => 'Dâta d’èxpiracion',
@@ -3908,6 +3910,30 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'compare-invalid-title'       => 'Lo titro que vos éd spècefiâ est fôx.',
 'compare-title-not-exists'    => 'Lo titro que vos éd spècefiâ ègziste pas.',
 'compare-revision-not-exists' => 'La vèrsion que vos éd spècefiâ ègziste pas.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Usâjo globâl du fichiér',
+'globalfileusage-for'         => 'Usâjo globâl du fichiér por « $1 »',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Pâge spèciâla]] por vêre l’usâjo globâl d’un fichiér.',
+'globalfileusage-ok'          => 'Rechèrchiér',
+'globalfileusage-text'        => 'Rechèrchiér l’usâjo globâl du fichiér',
+'globalfileusage-no-results'  => '[[$1]] est pas utilisâ sur d’ôtros vouiquis.',
+'globalfileusage-on-wiki'     => 'Usâjo dessus $2',
+'globalfileusage-of-file'     => 'Cetos ôtros vouiquis utilisont ceti fichiér :',
+'globalfileusage-more'        => 'Vêre [[{{#Special:GlobalUsage}}/$1|més d’usâjos globâls]] de ceti fichiér.',
+'globalfileusage-filterlocal' => 'Pas montrar l’usâjo local',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Usâjo globâl du modèlo',
+'globaltemplateusage-for'         => 'Usâjo globâl du modèlo por « $1 »',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Pâge spèciâla]] por vêre l’usâjo globâl d’un modèlo.',
+'globaltemplateusage-ok'          => 'Rechèrchiér',
+'globaltemplateusage-text'        => 'Rechèrchiér l’usâjo globâl du modèlo',
+'globaltemplateusage-no-results'  => '[[$1]] est pas utilisâ sur d’ôtros vouiquis.',
+'globaltemplateusage-on-wiki'     => 'Usâjo dessus $2',
+'globaltemplateusage-of-file'     => 'Cetos ôtros vouiquis utilisont ceti modèlo :',
+'globaltemplateusage-more'        => 'Vêre [[{{#Special:GlobalUsage}}/$1|més d’usâjos globâls]] de ceti modèlo.',
+'globaltemplateusage-filterlocal' => 'Pas montrar l’usâjo local',
 
 # Database error messages
 'dberr-header'      => 'Ceti vouiqui at un problèmo',

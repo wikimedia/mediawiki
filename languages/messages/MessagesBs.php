@@ -2479,7 +2479,6 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'sp-contributions-username'            => 'IP adresa ili korisničko ime:',
 'sp-contributions-toponly'             => 'Prikaži samo izmjene koje su posljednje revizije',
 'sp-contributions-submit'              => 'Traži',
-'sp-contributions-showsizediff'        => 'Pokaži razlike u veličini stranice',
 
 # What links here
 'whatlinkshere'            => 'Šta je povezano ovdje',

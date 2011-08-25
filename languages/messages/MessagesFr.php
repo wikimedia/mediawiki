@@ -22,6 +22,7 @@
  * @author Enzoreg
  * @author Esbardu
  * @author Fryed-peach
+ * @author Gomoko
  * @author Grondin
  * @author Guillom
  * @author Hashar
@@ -1063,6 +1064,9 @@ La dernière entrée du journal est affichée ci-dessous pour référence :",
 'templatesused'                    => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} par cette page :',
 'templatesusedpreview'             => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette prévisualisation :',
 'templatesusedsection'             => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette section :',
+'distanttemplatesused'             => '{{PLURAL:$1|Modèle distant utilisé|Modèles distants utilisés}} sur cette page:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Modèle distant utilisé|Modèles distants utilisés}} dans cet aperçu:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Modèle distant utilisé|Modèles distants utilisés}} dans cette section:',
 'template-protected'               => '(protégé)',
 'template-semiprotected'           => '(semi-protégé)',
 'hiddencategories'                 => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} dont cette page fait partie :',
@@ -1370,7 +1374,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'qbsettings-fixedright'     => 'Droite',
 'qbsettings-floatingleft'   => 'Flottante à gauche',
 'qbsettings-floatingright'  => 'Flottante à droite',
-'qbsettings-directionality' => 'Fixe, en fonction de la directionnalité de votre script et de votre langue',
+'qbsettings-directionality' => "Fixe, en fonction de la directivité d'écriture de votre langue",
 
 # Preferences page
 'preferences'                   => 'Préférences',
@@ -1893,8 +1897,7 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Cette page spéciale permet de lister tous les fichiers importés.
-Par défaut, les derniers fichiers importés sont affichés en tête de liste.
-Cliquer sur un en-tête de colonne permet de changer l’ordre d’affichage.',
+Quand elle est filtrée par utilisateur, seuls les fichiers dont la version la plus récente a été importée par cet utilisateur sont affichés.',
 'listfiles_search_for'  => 'Rechercher un nom de média :',
 'imgfile'               => 'fichier',
 'listfiles'             => 'Liste de fichiers',
@@ -2532,7 +2535,6 @@ La dernière entrée du journal des blocages est indiquée ci-dessous à titre d
 'sp-contributions-username'            => 'Adresse IP ou nom d’utilisateur :',
 'sp-contributions-toponly'             => 'Ne montrer que les articles dont je suis le dernier contributeur',
 'sp-contributions-submit'              => 'Rechercher',
-'sp-contributions-showsizediff'        => 'Afficher la différence dans la taille de la page',
 
 # What links here
 'whatlinkshere'            => 'Pages liées',
@@ -2612,6 +2614,7 @@ Consultez la [[Special:IPBlockList|liste des adresses IP et comptes bloqués]] p
 'blocklist-userblocks'            => 'Masquer les blocages de comptes',
 'blocklist-tempblocks'            => 'Masquer les blocages temporaires',
 'blocklist-addressblocks'         => 'Masquer les blocages d’adresses IP uniques',
+'blocklist-rangeblocks'           => 'Masquer les blocs de portée',
 'blocklist-timestamp'             => 'Date et heure',
 'blocklist-target'                => 'Cible',
 'blocklist-expiry'                => 'Date d’expiration',
@@ -3818,6 +3821,30 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 'compare-invalid-title'       => "Le titre que vous avez spécifié n'est pas valide.",
 'compare-title-not-exists'    => "Le titre que vous avez spécifié n'existe pas.",
 'compare-revision-not-exists' => "La révision que vous avez spécifié n'existe pas.",
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Utilisation du fichier global',
+'globalfileusage-for'         => 'Utilisation du fichier global pour "$1"',
+'globalfileusage-desc'        => "[[Special:GlobalFileUsage|Page spéciale]] pour afficher l'utilisation globale des fichiers",
+'globalfileusage-ok'          => 'Rechercher',
+'globalfileusage-text'        => "Rechercher l'utilisation du fichier global",
+'globalfileusage-no-results'  => "[[$1]] n'est pas utilisé sur d'autres wikis.",
+'globalfileusage-on-wiki'     => 'Utilisation sur $2',
+'globalfileusage-of-file'     => 'Les autres wikis suivants utilisent ce fichier:',
+'globalfileusage-more'        => "Voyez [[{{#Special:GlobalUsage}}/$1|l'utilisation plus globale]] de ce fichier.",
+'globalfileusage-filterlocal' => "Ne pas afficher l'utilisation locale",
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Utilisation globale du modèle',
+'globaltemplateusage-for'         => 'Utilisation globale du modèle pour "$1"',
+'globaltemplateusage-desc'        => "[[Special:GlobalTemplateUsage|Page spéciale]] pour afficher l'utilisation globale des modèles",
+'globaltemplateusage-ok'          => 'Rechercher',
+'globaltemplateusage-text'        => "Rechercher l'utilisation globale du modèle",
+'globaltemplateusage-no-results'  => "[[$1]] n'est pas utilisé sur d'autres wikis.",
+'globaltemplateusage-on-wiki'     => 'Utilisation sur $2',
+'globaltemplateusage-of-file'     => 'Les autres wikis suivants utilisent ce modèle:',
+'globaltemplateusage-more'        => "Voyez [[{{#Special:GlobalUsage}}/$1|l'utilisation plus globale]] de ce modèle.",
+'globaltemplateusage-filterlocal' => "Ne pas afficher l'utilisation locale",
 
 # Database error messages
 'dberr-header'      => 'Ce wiki a un problème',

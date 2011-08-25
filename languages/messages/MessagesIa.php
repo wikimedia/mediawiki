@@ -2382,7 +2382,6 @@ Le ultime entrata del registro de blocadas es reproducite hic infra pro informat
 'sp-contributions-username'            => 'Adresse IP o nomine de usator:',
 'sp-contributions-toponly'             => 'Monstrar solmente le versiones recente',
 'sp-contributions-submit'              => 'Cercar',
-'sp-contributions-showsizediff'        => 'Monstrar differentia in dimension de pagina',
 
 # What links here
 'whatlinkshere'            => 'Referentias a iste pagina',

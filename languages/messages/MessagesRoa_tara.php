@@ -2253,7 +2253,6 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'sp-contributions-username'            => "Indirizze IP o nome de l'utende:",
 'sp-contributions-toponly'             => "Sulamende facenne vedè le cangiaminde de l'urteme revisiune",
 'sp-contributions-submit'              => 'Cirche',
-'sp-contributions-showsizediff'        => "Fa fedè le differenze sus 'a dimenzione d'a pàgene",
 
 # What links here
 'whatlinkshere'            => 'Appondene aqquà',

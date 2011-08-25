@@ -951,11 +951,11 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
 'clearyourcache'                   => "'''OBS:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
-*'''Firefox / Safari:''' håll ner ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
-*'''Google Chrome:''' tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
-*'''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
-*'''Konqueror:''': klicka ''Reload'' eller tryck ''F5''
-*'''Opera:''' rensa cachen i ''Verktyg → Inställningar''",
+*'''Firefox / Safari:''' Håll ner ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
+*'''Google Chrome:''' Tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
+*'''Internet Explorer:'''  Håll ner ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
+*'''Konqueror:''' Klicka på ''Reload'' eller tryck på ''F5''
+*'''Opera:''' Rensa cachen i ''Verktyg → Inställningar''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
 'userjsyoucanpreview'              => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya JavaScript innan du sparar.",
 'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din användar-CSS.
@@ -1858,8 +1858,7 @@ För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Den här specialsidan visar alla filer som har laddats upp.
-Som standard visas de senast upladdade filerna högst upp i listan.
-Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordningen.',
+När den filtreras av en användare visas endast den senast uppladdade versionen av filen.',
 'listfiles_search_for'  => 'Sök efter filnamn:',
 'imgfile'               => 'fil',
 'listfiles'             => 'Fillista',
@@ -2485,7 +2484,6 @@ Den senaste posten i blockeringsloggen visas nedan som referens:',
 'sp-contributions-username'            => 'IP-adress eller användarnamn:',
 'sp-contributions-toponly'             => 'Visa endast aktuella sidversioner',
 'sp-contributions-submit'              => 'Sök',
-'sp-contributions-showsizediff'        => 'Visa skillnad i sidstorlek',
 
 # What links here
 'whatlinkshere'            => 'Vad som länkar hit',
@@ -3753,6 +3751,30 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'compare-invalid-title'       => 'Titeln du angav är ogiltig.',
 'compare-title-not-exists'    => 'Titeln du angav finns inte.',
 'compare-revision-not-exists' => 'Versionen du angav finns inte.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Global filanvändning',
+'globalfileusage-for'         => 'Global filanvändning för "$1"',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Specialsida]] för att visa global filanvändning',
+'globalfileusage-ok'          => 'Sök',
+'globalfileusage-text'        => 'Sök global filanvändning',
+'globalfileusage-no-results'  => '[[$1]] används inte på andra wikis.',
+'globalfileusage-on-wiki'     => 'Användande av $2',
+'globalfileusage-of-file'     => 'Följande andra wikier använder denna fil:',
+'globalfileusage-more'        => 'Visa [[{{#Special:GlobalUsage}}/$1|mer globalt användande]] av denna fil.',
+'globalfileusage-filterlocal' => 'Visa inte lokalt användande',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Global mallanvändning',
+'globaltemplateusage-for'         => 'Global mallanvändning för "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Specialsida]] för att visa global mallanvändning',
+'globaltemplateusage-ok'          => 'Sök',
+'globaltemplateusage-text'        => 'Sök global mallanvändning',
+'globaltemplateusage-no-results'  => '[[$1]] används inte på andra wikis.',
+'globaltemplateusage-on-wiki'     => 'Användande av $2',
+'globaltemplateusage-of-file'     => 'Följande andra wikier använder denna mall:',
+'globaltemplateusage-more'        => 'Visa [[{{#Special:GlobalUsage}}/$1|mer globalt användande]] av denna mall.',
+'globaltemplateusage-filterlocal' => 'Visa inte lokalt användande',
 
 # Database error messages
 'dberr-header'      => 'Den här wikin har ett problem',

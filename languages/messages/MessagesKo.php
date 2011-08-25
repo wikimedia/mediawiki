@@ -2437,7 +2437,6 @@ $1',
 'sp-contributions-username'            => 'IP 주소 혹은 계정 이름:',
 'sp-contributions-toponly'             => '최신판만 보기',
 'sp-contributions-submit'              => '찾기',
-'sp-contributions-showsizediff'        => '문서 크기 비교 표시하기',
 
 # What links here
 'whatlinkshere'            => '여기를 가리키는 문서',

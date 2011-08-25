@@ -1362,7 +1362,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'qbsettings-fixedright'     => 'Leží vpravo',
 'qbsettings-floatingleft'   => 'Plovoucí vlevo',
 'qbsettings-floatingright'  => 'Plovoucí vpravo',
-'qbsettings-directionality' => 'Pevný v závislosti na směrovosti vašeho jazyka a písma',
+'qbsettings-directionality' => 'Pevný v závislosti na směrovosti vašeho písma',
 
 # Preferences page
 'preferences'                   => 'Nastavení',
@@ -1876,8 +1876,7 @@ Z bezpečnostních důvodů je img_auth.php vypnuto.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Tato speciální stránka zobrazuje všechny načtené soubory.
-Ve výchozím stavu je poslední načtený soubor nahoře.
-Kliknutím na hlavičku sloupce můžete změnit řazení.',
+Při filtrování podle uživatele se zobrazují jen soubory, u kterých tento uživatel načetl aktuální verzi.',
 'listfiles_search_for'  => 'Hledat soubor podle názvu:',
 'imgfile'               => 'soubor',
 'listfiles'             => 'Seznam souborů',
@@ -2496,7 +2495,6 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'sp-contributions-username'            => 'IP adresa nebo uživatelské jméno:',
 'sp-contributions-toponly'             => 'Zobrazit pouze aktuální revize',
 'sp-contributions-submit'              => 'Zobrazit',
-'sp-contributions-showsizediff'        => 'Zobrazit rozdíl ve velikosti stránky',
 
 # What links here
 'whatlinkshere'            => 'Odkazuje sem',

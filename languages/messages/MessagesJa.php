@@ -2570,7 +2570,6 @@ $1',
 'sp-contributions-username'            => 'IPアドレスまたは利用者名：',
 'sp-contributions-toponly'             => '最新版の編集のみを表示',
 'sp-contributions-submit'              => '検索',
-'sp-contributions-showsizediff'        => 'ページサイズの違いを表示',
 
 # What links here
 'whatlinkshere'            => 'リンク元',

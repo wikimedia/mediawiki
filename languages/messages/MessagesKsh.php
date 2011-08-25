@@ -2572,7 +2572,6 @@ De neuste Sperr ier Enndraach em Logbooch es:',
 'sp-contributions-username'            => 'Metmaachername odder <i lang="en">IP</i>-Address:',
 'sp-contributions-toponly'             => 'Bloß neuste Versione zeije',
 'sp-contributions-submit'              => 'Söhke',
-'sp-contributions-showsizediff'        => 'Don de Veränderong vum Ömfang vun dä Sigge aanzeije',
 
 # What links here
 'whatlinkshere'            => 'Wat noh heh link',

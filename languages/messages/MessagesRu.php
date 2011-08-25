@@ -1322,7 +1322,7 @@ $1",
 'qbsettings-fixedright'     => 'Неподвижная справа',
 'qbsettings-floatingleft'   => 'Плавающая слева',
 'qbsettings-floatingright'  => 'Плавающая справа',
-'qbsettings-directionality' => 'Закреплённая, в зависимости от письменности вашего языка',
+'qbsettings-directionality' => 'Закреплённая, в зависимости от направления письменности вашего языка',
 
 # Preferences page
 'preferences'                   => 'Настройки',
@@ -1845,8 +1845,7 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Эта служебная страница показывает все загруженные файлы.
-Недавно загруженные файлы по умолчанию показываются в верху списка.
-Щелчок на заголовке колонки изменяет порядок сортировки.',
+При отборе по участнику, показываются только недавние загрузки этого участника.',
 'listfiles_search_for'  => 'Поиск по имени файла:',
 'imgfile'               => 'файл',
 'listfiles'             => 'Список файлов',
@@ -2477,7 +2476,6 @@ $1',
 'sp-contributions-username'            => 'IP-адрес или имя участника:',
 'sp-contributions-toponly'             => 'Показывать только правки, являющиеся последними версиями',
 'sp-contributions-submit'              => 'Найти',
-'sp-contributions-showsizediff'        => 'Показывать изменение размера страницы',
 
 # What links here
 'whatlinkshere'            => 'Ссылки сюда',

@@ -2410,7 +2410,6 @@ $1',
 'sp-contributions-username'            => "IP-адреса або ім'я користувача:",
 'sp-contributions-toponly'             => 'Показувати тільки редагування, що є останніми версіями',
 'sp-contributions-submit'              => 'Знайти',
-'sp-contributions-showsizediff'        => 'Показати зміну розміру сторінки',
 
 # What links here
 'whatlinkshere'            => 'Посилання сюди',

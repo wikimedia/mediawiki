@@ -1832,8 +1832,7 @@ Poate doriți să încercați la o oră mai puțin ocupată.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Această pagină specială arată toate fișierele încărcate.
-În mod normal ultimul fișier încărcat este așezat în capul listei.
-O apăsare pe antetul coloanei schimbă sortarea.',
+Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar fișierele ale căror versiune cea mai recentă a fost încărcată de către acel utilizator.',
 'listfiles_search_for'  => 'Caută imagine după nume:',
 'imgfile'               => 'fișier',
 'listfiles'             => 'Lista imaginilor',
@@ -2474,7 +2473,6 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'sp-contributions-username'            => 'Adresă IP sau nume de utilizator:',
 'sp-contributions-toponly'             => 'Afișează numai versiunile recente',
 'sp-contributions-submit'              => 'Caută',
-'sp-contributions-showsizediff'        => 'Afișează diferența dintre mărimea inițială a paginii și mărimea după efectuarea modificării',
 
 # What links here
 'whatlinkshere'            => 'Ce trimite aici',

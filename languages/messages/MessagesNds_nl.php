@@ -2461,7 +2461,6 @@ De leste regel uut t blokkeerlogboek steet as referensie',
 'sp-contributions-username'            => 'IP-adres of gebrukersnaam:',
 'sp-contributions-toponly'             => 'Allinnig de niejste versie laoten zien',
 'sp-contributions-submit'              => 'Zeuk',
-'sp-contributions-showsizediff'        => 'Verschil in paginagrootte laoten zien',
 
 # What links here
 'whatlinkshere'            => 'Verwiezingen naor disse pagina',

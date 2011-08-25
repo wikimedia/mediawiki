@@ -1059,6 +1059,9 @@ $2
 'templatesused'                    => '{{PLURAL:$1|Шаблон користен на оваа страница|Шаблони користени на оваа страница}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Шаблон користен во овој преглед|Шаблони користени во овој преглед}}:',
 'templatesusedsection'             => '{{PLURAL:$1|Шаблон користен во ова заглавие|Шаблони користени во овие заглавија}}:',
+'distanttemplatesused'             => '{{PLURAL:$1|Далечен шаблон употребен|Далечни шаблони употребени}} на страницава:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Далечен шаблон употребен|Далечни шаблони употребени}} во овој преглед:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Далечен шаблон употребен|Далечни шаблони употребени}} во овој дел:',
 'template-protected'               => '(заштитен)',
 'template-semiprotected'           => '(полузаштитен)',
 'hiddencategories'                 => 'Оваа страница припаѓа на {{PLURAL:$1|1 скриена категорија|$1 скриени категории}}:',
@@ -1371,7 +1374,7 @@ $1",
 'qbsettings-fixedright'     => 'Неподвижна десно',
 'qbsettings-floatingleft'   => 'Променлива лево',
 'qbsettings-floatingright'  => 'Променлива десно',
-'qbsettings-directionality' => 'Непроменливо зададен, во зависоност од насоката на пишување на вашиот јазик',
+'qbsettings-directionality' => 'Непроменливо зададен, во зависност од насоката на пишување на вашиот јазик',
 
 # Preferences page
 'preferences'                   => 'Нагодувања',
@@ -1905,9 +1908,8 @@ $1',
 'upload_source_file' => '(податотека на вашиот сметач)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Оваа специјална страница ги покажува сите подигнати податотеки.
-По основно последно подигнатите страници се прикажани на почеток од списокот.
-Со клик на насловот на колоната може да се промени подредувањето.',
+'listfiles-summary'     => 'Оваа специјална страница ги прикажува сите подигнати податотеки.
+Ако ги филтрирате по корисник, нема да се прикажат подигнатите што се заменети со понови верзии од други корисници.',
 'listfiles_search_for'  => 'Побарај име на податотека:',
 'imgfile'               => 'податотека',
 'listfiles'             => 'Список на податотеки',
@@ -2554,7 +2556,6 @@ $1',
 'sp-contributions-username'            => 'IP-адреса или корисничко име:',
 'sp-contributions-toponly'             => 'Прикажувај само последни ревизии',
 'sp-contributions-submit'              => 'Пребарај',
-'sp-contributions-showsizediff'        => 'Прикажи разлика во големина на страницата',
 
 # What links here
 'whatlinkshere'            => 'Што води овде',
@@ -3982,6 +3983,30 @@ $1',
 'compare-invalid-title'       => 'Наведениот наслов е неважечки.',
 'compare-title-not-exists'    => 'Наведениот наслов не постои.',
 'compare-revision-not-exists' => 'Наведената ревизија не постои.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Глобална употреба на податотека',
+'globalfileusage-for'         => 'Глобална употреба на податотеката „$1“',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Специјална страница]] за преглед на глобалната употреба на податотеки',
+'globalfileusage-ok'          => 'Пребарај',
+'globalfileusage-text'        => 'Пребарување на глобалната употреба на податотека',
+'globalfileusage-no-results'  => '[[$1]] не се користи на други викија.',
+'globalfileusage-on-wiki'     => 'Употреба на $2',
+'globalfileusage-of-file'     => 'Оваа податотека ја користат и следниве викија:',
+'globalfileusage-more'        => 'Вид. [[{{#Special:GlobalUsage}}/$1|останатата глобална употреба]] на податотекава.',
+'globalfileusage-filterlocal' => 'Не ја прикажувај локалната употреба',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Глобална употреба на шаблон',
+'globaltemplateusage-for'         => 'Глобална употреба на шаблонот „$1“',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Специјална страница]] за преглед на глобалната употреба на шаблони',
+'globaltemplateusage-ok'          => 'Пребарај',
+'globaltemplateusage-text'        => 'Пребарување на глобалната употреба на шаблон',
+'globaltemplateusage-no-results'  => '[[$1]] не се користи на други викија.',
+'globaltemplateusage-on-wiki'     => 'Употреба на $2',
+'globaltemplateusage-of-file'     => 'Овој шаблон го користат и следниве викија:',
+'globaltemplateusage-more'        => 'Вид. [[{{#Special:GlobalUsage}}/$1|останатата глобална употреба]] на шаблонов.',
+'globaltemplateusage-filterlocal' => 'Не прикажувај локална употреба',
 
 # Database error messages
 'dberr-header'      => 'Ова вики не функционира како што треба',

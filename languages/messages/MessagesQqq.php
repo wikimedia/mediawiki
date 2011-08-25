@@ -2669,7 +2669,6 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 {{Identical/IP address or username}}',
 'sp-contributions-toponly'             => '"top revision" means the "latest revision"',
 'sp-contributions-submit'              => '{{Identical|Search}}',
-'sp-contributions-showsizediff'        => 'In [[Special:Contributions/McDutchie|Special:Contributions]], this is a label for a checkbox that toggles the display of how much the size has changed in each of the listed page edits.',
 
 # What links here
 'whatlinkshere'            => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].',
@@ -2751,7 +2750,8 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 'unblocked-range'             => 'Shown when successfully lifting a rangeblock, so do not link to contributions.
 * $1 - the range that was unblocked.',
 'ipblocklist'                 => 'Title of [[Special:Ipblocklist]].',
-'blocklist-timestamp'         => 'This is a column header for dates and times in the table on the page [[Special:BlockList]].',
+'blocklist-timestamp'         => 'This is a column header for dates and times in the table on the page [[Special:BlockList]].
+{{Identical|Timestamp}}',
 'blocklist-target'            => 'The table header for the column containing the block targets, that is user names or IP-addresses linked to their respective user pages, in the table on the page [[Special:BlockList]].',
 'blocklist-expiry'            => 'This is a column header in the table on the page [[Special:BlockList]].',
 'blocklist-by'                => 'This is a column header in the table on the page [[Special:BlockList]].',
@@ -4244,6 +4244,7 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 
 # Special:GlobalFileUsage
 'globalfileusage-for'        => '$1 is a file name',
+'globalfileusage-ok'         => '{{Identical|Search}}',
 'globalfileusage-no-results' => '$1 is a file name',
 'globalfileusage-on-wiki'    => '$2 is a wiki name',
 

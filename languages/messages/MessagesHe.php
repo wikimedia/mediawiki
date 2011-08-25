@@ -2545,7 +2545,6 @@ $1',
 'sp-contributions-username'            => 'שם משתמש או כתובת IP:',
 'sp-contributions-toponly'             => 'הצגת עריכות שהן הגרסאות האחרונות בלבד',
 'sp-contributions-submit'              => 'חיפוש',
-'sp-contributions-showsizediff'        => 'הצגת הבדל בגודל הדף',
 
 # What links here
 'whatlinkshere'            => 'דפים המקושרים לכאן',

@@ -2489,7 +2489,6 @@ A continuación se muestra la última entrada del registro de bloqueos para mayo
 'sp-contributions-username'            => 'Dirección IP o nombre de usuario:',
 'sp-contributions-toponly'             => 'Mostrar solamente revisiones top',
 'sp-contributions-submit'              => 'Buscar',
-'sp-contributions-showsizediff'        => 'Mostrar la diferencia en el tamaño de página',
 
 # What links here
 'whatlinkshere'            => 'Lo que enlaza aquí',

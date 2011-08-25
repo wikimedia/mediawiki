@@ -2350,7 +2350,6 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'sp-contributions-username'            => "Anv implijer pe chomlec'h IP :",
 'sp-contributions-toponly'             => 'Na ziskouez nemet an adweladennoù diwezhañ',
 'sp-contributions-submit'              => 'Klask',
-'sp-contributions-showsizediff'        => "Diskwel an diforc'h e ment ar bajenn",
 
 # What links here
 'whatlinkshere'            => 'Pajennoù liammet',

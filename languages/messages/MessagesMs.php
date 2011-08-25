@@ -839,7 +839,7 @@ Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'sitejspreview'                    => "'''Ingat bahawa anda cuma melihat pratonton kod JavaScript ini.'''
 '''Ia belum lagi disimpan!'''",
 'userinvalidcssjstitle'            => "'''Amaran:''' Rupa \"\$1\" tidak wujud. Ingat bahawa laman tempahan .css dan .js menggunakan tajuk berhuruf kecil, contohnya {{ns:user}}:Anu/vector.css tidak sama dengan {{ns:user}}:Anu/Vector.css.",
-'updated'                          => '(Dikemaskinikan)',
+'updated'                          => '(Dikemas kini)',
 'note'                             => "'''Catatan:'''",
 'previewnote'                      => "'''Ini hanyalah pratonton. Perubahan masih belum disimpan!'''",
 'previewconflict'                  => 'Paparan ini merupakan teks di bahagian atas dalam kotak sunting teks. Teks ini akan disimpan sekiranya anda memilih berbuat demikian.',
@@ -890,8 +890,11 @@ Masukan log terakhir ditunjukkan di bawah untuk rujukan:",
 'titleprotectedwarning'            => "'''Amaran: Laman ini telah dikunci hingga [[Special:ListGroupRights|hak-hak tertentu]] diperlukan untuk menciptanya.'''
 Masukan log terakhir ditunjukkan di bawah untuk rujukan:",
 'templatesused'                    => '{{PLURAL:$1|Templat|Templat}} yang digunakan dalam laman ini:',
-'templatesusedpreview'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan dalam pratonton ini:',
+'templatesusedpreview'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan dalam pralihat ini:',
 'templatesusedsection'             => '{{PLURAL:$1|Templat|Templat}} digunakan dalam bahagian ini:',
+'distanttemplatesused'             => '{{PLURAL:$1|Templat|templat-templat}} jauh yang digunakan dalam laman ini:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Templat|templat-templat}} jauh yang digunakan dalam pralihat ini:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Templat|templat-templat}} jauh yang digunakan dalam bahagian ini:',
 'template-protected'               => '(dilindungi)',
 'template-semiprotected'           => '(dilindungi separa)',
 'hiddencategories'                 => 'Laman ini terdapat dalam $1 kategori tersembunyi:',
@@ -1202,7 +1205,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'qbsettings-fixedright'     => 'Tetap sebelah kanan',
 'qbsettings-floatingleft'   => 'Berubah-ubah sebelah kiri',
 'qbsettings-floatingright'  => 'Berubah-ubah sebelah kanan',
-'qbsettings-directionality' => 'Tetap, bergantung pada kearahan tulisan dan bahasa anda',
+'qbsettings-directionality' => 'Tetap, bergantung pada kearahan tulisan bahasa anda',
 
 # Preferences page
 'preferences'                   => 'Keutamaan',
@@ -1699,8 +1702,7 @@ Untuk keselamatan optimum, img_auth.php telah dilumpuhkan.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Laman khas ini memaparkan semua fail yang telah dimuat naik.
-Pada sediakalanya, fail-fail terkini yang dimuat naik ditunjukkan di atas sekali senarai.
-Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
+Apabila ditapis oleh pengguna, hanya fail-fail yang dimuat naik versi terkininya oleh pengguna itu ditunjukkan.',
 'listfiles_search_for'  => 'Cari nama imej:',
 'imgfile'               => 'fail',
 'listfiles'             => 'Senarai fail',
@@ -2332,7 +2334,6 @@ $1',
 'sp-contributions-username'            => 'Alamat IP atau nama pengguna:',
 'sp-contributions-toponly'             => 'Hanya paparkan suntingan yang merupakan semakan terkini',
 'sp-contributions-submit'              => 'Cari',
-'sp-contributions-showsizediff'        => 'Paparkan perbezaan saiz laman',
 
 # What links here
 'whatlinkshere'            => 'Pautan ke laman ini',
@@ -2415,6 +2416,7 @@ dirosakkan).',
 'blocklist-userblocks'            => 'Sorokkan sekatan akaun',
 'blocklist-tempblocks'            => 'Sorokkan sekatan sementara',
 'blocklist-addressblocks'         => 'Sorokkan sekatan IP tunggal',
+'blocklist-rangeblocks'           => 'Sorokkan sekatan julat',
 'blocklist-timestamp'             => 'Cop masa',
 'blocklist-target'                => 'Sasaran',
 'blocklist-expiry'                => 'Luput',
@@ -3571,6 +3573,30 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'compare-invalid-title'       => 'Tajuk yang anda nyatakan tidak sah.',
 'compare-title-not-exists'    => 'Tajuk yang anda nyatakan tidak wujud.',
 'compare-revision-not-exists' => 'Semakan yang anda nyatakan tidak wujud.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Penggunaan fail sejagat',
+'globalfileusage-for'         => 'Penggunaan fail sejagat untuk "$1"',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Laman khas]] untuk melihat penggunaan fail sejagat',
+'globalfileusage-ok'          => 'Cari',
+'globalfileusage-text'        => 'Cari penggunaan fail sejagat',
+'globalfileusage-no-results'  => '[[$1]] tidak digunakan di wiki lain.',
+'globalfileusage-on-wiki'     => 'Penggunaan di $2',
+'globalfileusage-of-file'     => 'Fail ini digunakan oleh wiki-wiki lain yang berikut:',
+'globalfileusage-more'        => 'Lihat [[{{#Special:GlobalUsage}}/$1|banyak lagi penggunaan sejagat]] bagi fail ini.',
+'globalfileusage-filterlocal' => 'Jangan tunjukkan penggunaan setempat',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Penggunaan templat sejagat',
+'globaltemplateusage-for'         => 'Penggunaan fail sejagat untuk "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Laman khas]] untuk melihat penggunaan fail sejagat',
+'globaltemplateusage-ok'          => 'Cari',
+'globaltemplateusage-text'        => 'Cari penggunaan fail sejagat',
+'globaltemplateusage-no-results'  => '[[$1]] tidak digunakan di wiki lain.',
+'globaltemplateusage-on-wiki'     => 'Penggunaan di $2',
+'globaltemplateusage-of-file'     => 'Templat ini digunakan oleh wiki-wiki lain yang berikut:',
+'globaltemplateusage-more'        => 'Lihat [[{{#Special:GlobalUsage}}/$1|banyak lagi penggunaan sejagat]] bagi templat ini.',
+'globaltemplateusage-filterlocal' => 'Jangan tunjukkan penggunaan setempat',
 
 # Database error messages
 'dberr-header'      => 'Wiki ini dilanda masalah',

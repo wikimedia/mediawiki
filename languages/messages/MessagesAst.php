@@ -2258,7 +2258,6 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'sp-contributions-username'            => "Direición IP o nome d'usuariu:",
 'sp-contributions-toponly'             => 'Amosar namái les ediciones que son les caberes revisiones',
 'sp-contributions-submit'              => 'Guetar',
-'sp-contributions-showsizediff'        => 'Amosar la diferencia de tamañu de la páxina',
 
 # What links here
 'whatlinkshere'            => "Lo qu'enllaza equí",

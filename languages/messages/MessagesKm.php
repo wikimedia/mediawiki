@@ -2442,7 +2442,6 @@ $1',
 'sp-contributions-username'            => 'អាសយដ្ឋានIP ឬអត្តនាម៖',
 'sp-contributions-toponly'             => 'បង្ហាញតែការកែប្រែណាដែលជាកំណែថ្មីៗជាងគេប៉ុណ្ណោះ',
 'sp-contributions-submit'              => 'ស្វែងរក',
-'sp-contributions-showsizediff'        => 'បង្ហាញភាពខុសគ្នាជាទំហំទំព័រ',
 
 # What links here
 'whatlinkshere'            => 'អ្វី​ដែលភ្ជាប់មកទីនេះ',

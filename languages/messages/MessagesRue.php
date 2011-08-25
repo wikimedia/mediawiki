@@ -2180,7 +2180,6 @@ $1',
 'sp-contributions-username'            => 'IP-адреса або мено хоснователя:',
 'sp-contributions-toponly'             => 'Вказати лем актуалны ревізії',
 'sp-contributions-submit'              => 'Найти',
-'sp-contributions-showsizediff'        => 'Указати роздїл у великости сторінкы',
 
 # What links here
 'whatlinkshere'            => 'Одказы на тоту сторінку',

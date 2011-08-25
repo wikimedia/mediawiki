@@ -2205,7 +2205,6 @@ $1',
 'sp-contributions-username'            => 'अनिकेत संकेत वा प्रयोक्तानाम:',
 'sp-contributions-toponly'             => 'मात्र ओइ सम्पादनकेँ देखाउ जे अद्यतन संशोधन छी।',
 'sp-contributions-submit'              => 'ताकू',
-'sp-contributions-showsizediff'        => 'पन्ना आकारमे अन्तर देखाउ',
 
 # What links here
 'whatlinkshere'            => 'एतय कोन लिंक अछि',

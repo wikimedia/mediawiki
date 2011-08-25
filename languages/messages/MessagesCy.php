@@ -2275,7 +2275,6 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'sp-contributions-username'            => 'Cyfeiriad IP neu enw defnyddiwr:',
 'sp-contributions-toponly'             => "Dangos golygiadau sy'n olygiadau diweddaraf yn unig",
 'sp-contributions-submit'              => 'Chwilier',
-'sp-contributions-showsizediff'        => 'Dangos y gwahaniaeth ym maint y dudalen',
 
 # What links here
 'whatlinkshere'            => "Beth sy'n cysylltu yma",
