@@ -371,7 +371,7 @@ class ApiEditPage extends ApiBase {
 		return true;
 	}
 
-	protected function getDescription() {
+	public function getDescription() {
 		return 'Create and edit pages.';
 	}
 
