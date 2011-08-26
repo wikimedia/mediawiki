@@ -1164,6 +1164,12 @@ abstract class ApiBase {
 		'emptynewsection' => array( 'code' => 'emptynewsection', 'info' => 'Creating empty new sections is not possible.' ),
 		'revwrongpage' => array( 'code' => 'revwrongpage', 'info' => "r\$1 is not a revision of ``\$2''" ),
 		'undo-failure' => array( 'code' => 'undofailure', 'info' => 'Undo failed due to conflicting intermediate edits' ),
+		
+		// Messages from WikiPage::doEit()
+		'edit-hook-aborted' => array( 'code' => 'edit-hook-aborted', 'info' => "Your edit was aborted by an ArticleSave hook" ),
+		'edit-gone-missing' => array( 'code' => 'edit-gone-missing', 'info' => "The page you tried to edit doesn't seem to exist anymore" ),
+		'edit-conflict' => array( 'code' => 'editconflict', 'info' => "Edit conflict detected" ),
+		'edit-already-exists' => array( 'code' => 'edit-already-exists', 'info' => "It seems the page you tried to create already exist" ),
 
 		// uploadMsgs
 		'invalid-session-key' => array( 'code' => 'invalid-session-key', 'info' => 'Not a valid session key' ),
