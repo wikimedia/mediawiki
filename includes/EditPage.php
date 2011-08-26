@@ -853,32 +853,42 @@ class EditPage {
 	 * @param $result
 	 * @param $bot bool
 	 *
-	 * @return int one of the constants describing the result
+	 * @return Status object, possibly with a message, but always with one of the AS_* constants in $status->value,
+	 *
+	 * FIXME: This interface is TERRIBLE, but hard to get rid of due to various error display idiosyncrasies. There are
+	 * also lots of cases where error metadata is set in the object and retrieved later instead of being returned, e.g.
+	 * AS_CONTENT_TOO_BIG and AS_BLOCKED_PAGE_FOR_USER. All that stuff needs to be cleaned up some time.
 	 */
 	function internalAttemptSave( &$result, $bot = false ) {
 		global $wgFilterCallback, $wgUser, $wgRequest, $wgParser;
 		global $wgMaxArticleSize;
+		
+		$status = Status::newGood();
 
 		wfProfileIn( __METHOD__  );
 		wfProfileIn( __METHOD__ . '-checks' );
 
 		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) ) {
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
+			$status->fatal( 'hookaborted' );
+			$status->value = self::AS_HOOK_ERROR;
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__  );
-			return self::AS_HOOK_ERROR;
+			return $status;
 		}
 
 		# Check image redirect
 		if ( $this->mTitle->getNamespace() == NS_FILE &&
 			Title::newFromRedirect( $this->textbox1 ) instanceof Title &&
 			!$wgUser->isAllowed( 'upload' ) ) {
-				$isAnon = $wgUser->isAnon();
+				$code = $wgUser->isAnon() ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
+				$status->setResult( false, $code );
 
 				wfProfileOut( __METHOD__ . '-checks' );
+				
 				wfProfileOut( __METHOD__  );
 
-				return $isAnon ? self::AS_IMAGE_REDIRECT_ANON : self::AS_IMAGE_REDIRECT_LOGGED;
+				return $status;
 		}
 
 		# Check for spam
@@ -892,71 +902,88 @@ class EditPage {
 			$pdbk = $this->mTitle->getPrefixedDBkey();
 			$match = str_replace( "\n", '', $match );
 			wfDebugLog( 'SpamRegex', "$ip spam regex hit [[$pdbk]]: \"$match\"" );
+			$status->fatal( 'spamprotectionmatch', $match );
+			$status->value = self::AS_SPAM_ERROR;
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return self::AS_SPAM_ERROR;
+			return $status;
 		}
 		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
 			# Error messages or other handling should be performed by the filter function
+			$status->setResult( false, self::AS_FILTERING );
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return self::AS_FILTERING;
+			return $status;
 		}
 		if ( !wfRunHooks( 'EditFilter', array( $this, $this->textbox1, $this->section, &$this->hookError, $this->summary ) ) ) {
 			# Error messages etc. could be handled within the hook...
+			$status->fatal( 'hookaborted' );
+			$status->value = self::AS_HOOK_ERROR;
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return self::AS_HOOK_ERROR;
+			return $status;
 		} elseif ( $this->hookError != '' ) {
 			# ...or the hook could be expecting us to produce an error
+			$status->fatal( 'hookaborted' );
+			$status->value = self::AS_HOOK_ERROR_EXPECTED;
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return self::AS_HOOK_ERROR_EXPECTED;
+			return $status;
 		}
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
+			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return self::AS_BLOCKED_PAGE_FOR_USER;
+			return $status;
 		}
 		$this->kblength = (int)( strlen( $this->textbox1 ) / 1024 );
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			// Error will be displayed by showEditForm()
 			$this->tooBig = true;
+			$status->setResult( false, self::AS_CONTENT_TOO_BIG );
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return self::AS_CONTENT_TOO_BIG;
+			return $status;
 		}
 
 		if ( !$wgUser->isAllowed( 'edit' ) ) {
 			if ( $wgUser->isAnon() ) {
+				$status->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 				wfProfileOut( __METHOD__ . '-checks' );
 				wfProfileOut( __METHOD__ );
-				return self::AS_READ_ONLY_PAGE_ANON;
+				return $status;
 			} else {
+				$status->fatal( 'readonlytext' );
+				$status->value = self::AS_READ_ONLY_PAGE_LOGGED;
 				wfProfileOut( __METHOD__ . '-checks' );
 				wfProfileOut( __METHOD__ );
-				return self::AS_READ_ONLY_PAGE_LOGGED;
+				return $status;
 			}
 		}
 
 		if ( wfReadOnly() ) {
+			$status->fatal( 'readonlytext' );
+			$status->value = self::AS_READ_ONLY_PAGE;
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return self::AS_READ_ONLY_PAGE;
+			return $status;
 		}
 		if ( $wgUser->pingLimiter() ) {
+			$status->fatal( 'actionthrottledtext' );
+			$status->value = self::AS_RATE_LIMITED;
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return self::AS_RATE_LIMITED;
+			return $status;
 		}
 
 		# If the article has been deleted while editing, don't save it without
 		# confirmation
 		if ( $this->wasDeletedSinceLastEdit() && !$this->recreate ) {
+			$status->setResult( false, self::AS_ARTICLE_WAS_DELETED );
 			wfProfileOut( __METHOD__ . '-checks' );
 			wfProfileOut( __METHOD__ );
-			return self::AS_ARTICLE_WAS_DELETED;
+			return $status;
 		}
 
 		wfProfileOut( __METHOD__ . '-checks' );
@@ -968,34 +995,43 @@ class EditPage {
 		if ( $new ) {
 			// Late check for create permission, just in case *PARANOIA*
 			if ( !$this->mTitle->userCan( 'create' ) ) {
+				$status->fatal( 'nocreatetext' );
+				$status->value = self::AS_NO_CREATE_PERMISSION;
 				wfDebug( __METHOD__ . ": no create permission\n" );
 				wfProfileOut( __METHOD__ );
-				return self::AS_NO_CREATE_PERMISSION;
+				return $status;
 			}
 
 			# Don't save a new article if it's blank.
 			if ( $this->textbox1 == '' ) {
+				$status->setResult( false, self::AS_BLANK_ARTICLE );
 				wfProfileOut( __METHOD__ );
-				return self::AS_BLANK_ARTICLE;
+				return $status;
 			}
 
 			// Run post-section-merge edit filter
 			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
 				# Error messages etc. could be handled within the hook...
+				$status->fatal( 'hookaborted' );
+				$status->value = self::AS_HOOK_ERROR;
 				wfProfileOut( __METHOD__ );
-				return self::AS_HOOK_ERROR;
+				return $status;
 			} elseif ( $this->hookError != '' ) {
 				# ...or the hook could be expecting us to produce an error
+				$status->fatal( 'hookaborted' );
+				$status->value = self::AS_HOOK_ERROR_EXPECTED;
 				wfProfileOut( __METHOD__ );
-				return self::AS_HOOK_ERROR_EXPECTED;
+				return $status;
 			}
 
 			# Handle the user preference to force summaries here. Check if it's not a redirect.
 			if ( !$this->allowBlankSummary && !Title::newFromRedirect( $this->textbox1 ) ) {
 				if ( md5( $this->summary ) == $this->autoSumm ) {
 					$this->missingSummary = true;
+					$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
+					$status->value = self::AS_SUMMARY_NEEDED;
 					wfProfileOut( __METHOD__ );
-					return self::AS_SUMMARY_NEEDED;
+					return $status;
 				}
 			}
 
@@ -1004,7 +1040,7 @@ class EditPage {
 				$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
 			}
 
-			$retval = self::AS_SUCCESS_NEW_ARTICLE;
+			$status->value = self::AS_SUCCESS_NEW_ARTICLE;
 
 		} else {
 
@@ -1061,19 +1097,24 @@ class EditPage {
 			}
 
 			if ( $this->isConflict ) {
+				$status->setResult( false, self::AS_CONFLICT_DETECTED );
 				wfProfileOut( __METHOD__ );
-				return self::AS_CONFLICT_DETECTED;
+				return $status;
 			}
 
 			// Run post-section-merge edit filter
 			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError, $this->summary ) ) ) {
 				# Error messages etc. could be handled within the hook...
+				$status->fatal( 'hookaborted' );
+				$status->value = self::AS_HOOK_ERROR;
 				wfProfileOut( __METHOD__ );
-				return self::AS_HOOK_ERROR;
+				return $status;
 			} elseif ( $this->hookError != '' ) {
 				# ...or the hook could be expecting us to produce an error
+				$status->fatal( 'hookaborted' );
+				$status->value = self::AS_HOOK_ERROR_EXPECTED;
 				wfProfileOut( __METHOD__ );
-				return self::AS_HOOK_ERROR_EXPECTED;
+				return $status;
 			}
 
 			# Handle the user preference to force summaries here, but not for null edits
@@ -1092,8 +1133,10 @@ class EditPage {
 			if ( $this->section == 'new' && !$this->allowBlankSummary ) {
 				if ( trim( $this->summary ) == '' ) {
 					$this->missingSummary = true;
+					$status->fatal( 'missingsummary' ); // or 'missingcommentheader' if $section == 'new'. Blegh
+					$status->value = self::AS_SUMMARY_NEEDED;
 					wfProfileOut( __METHOD__ );
-					return self::AS_SUMMARY_NEEDED;
+					return $status;
 				}
 			}
 
@@ -1103,9 +1146,11 @@ class EditPage {
 			if ( $this->section == 'new' ) {
 				if ( $this->textbox1 == '' ) {
 					$this->missingComment = true;
+					$status->fatal( 'missingcommenttext' );
+					$status->value = self::AS_TEXTBOX_EMPTY;
 					wfProfileOut( __METHOD__ . '-sectionanchor' );
 					wfProfileOut( __METHOD__ );
-					return self::AS_TEXTBOX_EMPTY;
+					return $status;
 				}
 				if ( $this->summary != '' ) {
 					$sectionanchor = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
@@ -1135,15 +1180,16 @@ class EditPage {
 			$this->textbox1 = $text;
 			$this->section = '';
 
-			$retval = self::AS_SUCCESS_UPDATE;
+			$status->value = self::AS_SUCCESS_UPDATE;
 		}
 
 		// Check for length errors again now that the section is merged in
 		$this->kblength = (int)( strlen( $text ) / 1024 );
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			$this->tooBig = true;
+			$status->setResult( false, self::AS_MAX_ARTICLE_SIZE_EXCEEDED );
 			wfProfileOut( __METHOD__ );
-			return self::AS_MAX_ARTICLE_SIZE_EXCEEDED;
+			return $status;
 		}
 
 		$flags = EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
@@ -1151,17 +1197,18 @@ class EditPage {
 			( ( $this->minoredit && !$this->isNew ) ? EDIT_MINOR : 0 ) |
 			( $bot ? EDIT_FORCE_BOT : 0 );
 
-		$status = $this->mArticle->doEdit( $text, $this->summary, $flags );
+		$doEditStatus = $this->mArticle->doEdit( $text, $this->summary, $flags );
 
-		if ( $status->isOK() ) {
+		if ( $doEditStatus->isOK() ) {
 			$result['redirect'] = Title::newFromRedirect( $text ) !== null;
 			$this->commitWatch();
 			wfProfileOut( __METHOD__ );
-			return $retval;
+			return $status;
 		} else {
 			$this->isConflict = true;
+			$doEditStatus->value = self::AS_END; // Destroys data doEdit() put in $status->value but who cares
 			wfProfileOut( __METHOD__ );
-			return self::AS_END;
+			return $doEditStatus;
 		}
 	}
 
@@ -2833,13 +2880,14 @@ HTML
 		$resultDetails = false;
 		# Allow bots to exempt some edits from bot flagging
 		$bot = $wgUser->isAllowed( 'bot' ) && $this->bot;
-		$value = $this->internalAttemptSave( $resultDetails, $bot );
+		$status = $this->internalAttemptSave( $resultDetails, $bot );
+		// FIXME: once the interface for internalAttemptSave() is made nicer, this should use the message in $status
 
-		if ( $value == self::AS_SUCCESS_UPDATE || $value == self::AS_SUCCESS_NEW_ARTICLE ) {
+		if ( $status->value == self::AS_SUCCESS_UPDATE || $status->value == self::AS_SUCCESS_NEW_ARTICLE ) {
 			$this->didSave = true;
 		}
 
-		switch ( $value ) {
+		switch ( $status->value ) {
 			case self::AS_HOOK_ERROR_EXPECTED:
 			case self::AS_CONTENT_TOO_BIG:
 			case self::AS_ARTICLE_WAS_DELETED:
