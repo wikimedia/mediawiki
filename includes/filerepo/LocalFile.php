@@ -996,7 +996,7 @@ class LocalFile extends File {
 			$dbw->begin( __METHOD__ );
 			$dbw->update(
 				'site_stats',
-				array( 'ss_images' => 'ss_images+1' ),
+				array( 'ss_images = ss_images+1' ),
 				'*',
 				__METHOD__
 			);
