@@ -3188,7 +3188,7 @@ class Title {
 		$pageCountChange = ( $createRedirect ? 1 : 0 ) - ( $nt->exists() ? 1 : 0 );
 
 		// Do the actual move
-		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
+		$err = $this->moveOverExistingRedirect( $nt, $reason, $createRedirect );
 		if ( is_array( $err ) ) {
 			# @todo FIXME: What about the File we have already moved?
 			$dbw->rollback();
