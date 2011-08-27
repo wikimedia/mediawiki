@@ -704,6 +704,10 @@ class DumpOutput {
 		return;
 	}
 
+	function closeAndRename( $newname ) {
+		return;
+	}
+
 	function rename( $newname ) {
 		return;
 	}
@@ -752,6 +756,21 @@ class DumpFileOutput extends DumpOutput {
 		}
 	}
 
+	function closeAndRename( $newname ) {
+		if ( is_array($newname) ) {
+			if (count($newname) > 1) {
+				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+			}
+			else {
+				$newname = $newname[0];
+			}
+		}
+		if ( $newname ) {
+			fclose( $this->handle );
+			rename( $this->filename, $newname );
+		}
+	}
+
 	function rename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
@@ -784,9 +803,19 @@ class DumpPipeOutput extends DumpFileOutput {
 		if ( !is_null( $file ) ) {
 			$command .=  " > " . wfEscapeShellArg( $file );
 		}
-		$this->handle = popen( $command, "w" );
+		
+		$this->startCommand($command);
 		$this->command = $command;
 		$this->filename = $file;
+	}
+
+	function startCommand($command) {
+		$spec = array(
+			0 => array( "pipe", "r" ),
+		);
+		$pipes = array();
+		$this->procOpenResource = proc_open( $command, $spec, $pipes );
+		$this->handle = $pipes[0];
 	}
 
 	/**
@@ -803,11 +832,29 @@ class DumpPipeOutput extends DumpFileOutput {
 			}
 		}
 		if ( $newname ) {
-			pclose( $this->handle );
+			fclose( $this->handle );
+			proc_close($this->procOpenResource);
 			rename( $this->filename, $newname );
 			$command = $this->command;
 			$command .=  " > " . wfEscapeShellArg( $this->filename );
-			$this->handle = popen( $command, "w" );
+			$this->startCommand($command);
+		}
+	}
+
+	function closeAndRename( $newname ) {
+		if ( is_array($newname) ) {
+			if (count($newname) > 1) {
+				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+			}
+			else {
+				$newname = $newname[0];
+			}
+		}
+		if ( $newname ) {
+#			pclose( $this->handle );
+			fclose( $this->handle );
+			proc_close($this->procOpenResource);
+			rename( $this->filename, $newname );
 		}
 	}
 
@@ -872,11 +919,28 @@ class Dump7ZipOutput extends DumpPipeOutput {
 			}
 		}
 		if ( $newname ) {
-			pclose( $this->handle );
+			fclose( $this->handle );
+			proc_close($this->procOpenResource);
 			rename( $this->filename, $newname );
 			$command = "7za a -bd -si " . wfEscapeShellArg( $file );
 			$command .= ' >' . wfGetNull() . ' 2>&1';
-			$this->handle = popen( $command, "w" );
+			$this->startCommand($command);
+		}
+	}
+
+	function closeAndRename( $newname ) {
+		if ( is_array($newname) ) {
+			if (count($newname) > 1) {
+				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+			}
+			else {
+				$newname = $newname[0];
+			}
+		}
+		if ( $newname ) {
+			fclose( $this->handle );
+			proc_close($this->procOpenResource);
+			rename( $this->filename, $newname );
 		}
 	}
 
@@ -942,6 +1006,10 @@ class DumpFilter {
 
 	function closeRenameAndReopen( $newname ) {
 		$this->sink->closeRenameAndReopen( $newname );
+	}
+
+	function closeAndRename( $newname ) {
+		$this->sink->closeAndRename( $newname );
 	}
 
 	function rename( $newname ) {
@@ -1106,6 +1174,11 @@ class DumpMultiWriter {
 		}
 	}
 
+	function closeAndRename( $newname ) {
+		for( $i = 0; $i < $this->count; $i++ ) {
+			$this->sinks[$i]->closeAndRename( $newnames[$i] );
+		}
+	}
 	function rename( $newnames ) {
 		for( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->rename( $newnames[$i] );

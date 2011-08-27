@@ -308,7 +308,7 @@ class TextPassDumper extends BackupDumper {
 					$fileinfo = pathinfo($filenameList[$i]);
 					$newFilenames[] = $fileinfo{'dirname'} . '/' . $checkpointNameFilledIn;
 				}
-				$this->egress->rename( $newFilenames );
+				$this->egress->closeAndRename( $newFilenames );
 			}
 		}
 		xml_parser_free( $parser );
