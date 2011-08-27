@@ -2087,12 +2087,15 @@ class OutputPage extends ContextSource {
 		if( is_string( $source ) ) {
 			$this->addWikiMsg( 'viewsourcetext' );
 
+			$pageLang = $this->getTitle()->getPageLanguage();
 			$params = array(
 				'id'   => 'wpTextbox1',
 				'name' => 'wpTextbox1',
 				'cols' => $this->getUser()->getOption( 'cols' ),
 				'rows' => $this->getUser()->getOption( 'rows' ),
-				'readonly' => 'readonly'
+				'readonly' => 'readonly',
+				'lang' => $pageLang->getCode(),
+				'dir' => $pageLang->getDir(),
 			);
 			$this->addHTML( Html::element( 'textarea', $params, $source ) );
 
