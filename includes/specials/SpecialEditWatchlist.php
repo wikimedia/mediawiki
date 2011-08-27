@@ -150,7 +150,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 		} else {
 			$this->clearWatchlist();
-			$this->getLang()->invalidateCache();
+			$this->getUser()->invalidateCache();
 			$this->successMessage .= wfMessage(
 				'watchlistedit-raw-removed',
 				$this->getLang()->formatNum( count( $current ) )
