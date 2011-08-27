@@ -1560,7 +1560,6 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-userrights'            => 'Ändra alla användarrättigheter',
 'right-userrights-interwiki'  => 'Ändra rättigheter för användare på andra wikier',
 'right-siteadmin'             => 'Låsa och låsa upp databasen',
-'right-reset-passwords'       => 'Återställa andra användares lösenord',
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
 'right-sendemail'             => 'Skicka e-post till andra användare',
 

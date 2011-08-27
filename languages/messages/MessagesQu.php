@@ -1465,7 +1465,6 @@ $1 {{PLURAL:$1|sanampamanta|sanampakunamanta}} aswan pisi kananmi.',
 'right-userrights'            => "Tukuy ruraqkunap hayñinkunata llamk'apuy",
 'right-userrights-interwiki'  => "Wakin wiki tiyaykunapi ruraqkunap hayñinkunata llamk'apuy",
 'right-siteadmin'             => "Willañiqintinta hark'ay, paskaypas",
-'right-reset-passwords'       => 'Huk ruraqkunap yaykuna rimanta kutichiy',
 'right-override-export-depth' => "P'anqakunata hawaman quy, t'inkisqa p'anqakunatapas pichqa ñiqin t'inkipayasqakama",
 'right-sendemail'             => 'Huk ruraqkunaman e-chaskita kachay',
 

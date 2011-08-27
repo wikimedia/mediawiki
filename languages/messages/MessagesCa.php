@@ -1388,7 +1388,6 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-userrights'            => 'Editar els drets dels usuaris',
 'right-userrights-interwiki'  => "Editar els drets dels usuaris d'altres wikis",
 'right-siteadmin'             => 'Blocar i desblocar la base de dades',
-'right-reset-passwords'       => "Reiniciar la contrasenya d'altres usuaris",
 'right-override-export-depth' => 'Exportar pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-sendemail'             => 'Enviar missatges de correu electrònic a altres usuaris',
 

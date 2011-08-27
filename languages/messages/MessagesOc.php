@@ -1450,7 +1450,6 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'right-userrights'            => "Modificar totes los dreches d'un utilizaire",
 'right-userrights-interwiki'  => "Modificar los dreches d'utilizaires que son sus un autre wiki",
 'right-siteadmin'             => 'Varrolhar e desvarrolhar la banca de donadas',
-'right-reset-passwords'       => "Cambiar lo senhal d'autres utilizaires",
 'right-override-export-depth' => 'Exportar las paginas en incluent las paginas ligadas fins a una prigondor de 5 nivèls',
 'right-sendemail'             => 'Mandar un corrièl als autres utilizaires',
 

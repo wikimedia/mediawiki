@@ -1530,7 +1530,6 @@ A műveletet nem lehet visszavonni.',
 'right-userrights'            => 'az összes szerkesztő jogainak módosítása',
 'right-userrights-interwiki'  => 'más wikik szerkesztői jogainak módosítása',
 'right-siteadmin'             => 'adatbázis lezárása, felnyitása',
-'right-reset-passwords'       => 'Más felhasználók jelszavának visszaállítása',
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-sendemail'             => 'e-mail küldése más felhasználóknak',
 

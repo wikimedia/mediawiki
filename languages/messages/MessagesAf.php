@@ -1430,7 +1430,6 @@ Die inligting is vir ander gebruikers sigbaar.',
 'right-userrights'            => 'Wysig alle gebruiker regte',
 'right-userrights-interwiki'  => 'Wysig gebruikersregte van gebruikers op ander wikis',
 'right-siteadmin'             => 'Sluit en ontsluit die datbasis',
-'right-reset-passwords'       => 'Herstel ander gebruikers se wagwoorde',
 'right-override-export-depth' => "Eksporteer bladsye insluitend geskakelde bladsye tot 'n diepte van 5",
 'right-sendemail'             => 'Stuur e-pos aan ander gebruikers',
 

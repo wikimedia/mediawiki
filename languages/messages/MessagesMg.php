@@ -1457,7 +1457,6 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'right-userrights'            => "Manova ny fahefan'ny mpikambana",
 'right-userrights-interwiki'  => "Manova ny fahefan'ny mpikambana any amin'ny wiki hafa",
 'right-siteadmin'             => 'Manidy sy manokatra ny banky angona',
-'right-reset-passwords'       => "Manova ny tenimiafin'ny mpikambana hafa",
 'right-override-export-depth' => "Mamoaka ny pejy miaraka amin'ny zana-pejy hatramin'ny ambaratonga fahadimy",
 'right-sendemail'             => "Mandefa imailaka any amin'ny mpikambana hafa",
 

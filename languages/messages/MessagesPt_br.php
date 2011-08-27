@@ -1550,7 +1550,6 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-userrights'            => 'Editar todos os direitos de usuário',
 'right-userrights-interwiki'  => 'Editar direitos de usuário de usuários outros sites wiki',
 'right-siteadmin'             => 'Bloquear e desbloquear o banco de dados',
-'right-reset-passwords'       => 'Redefinir a senha de outros usuários',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar email a outros usuários',
 

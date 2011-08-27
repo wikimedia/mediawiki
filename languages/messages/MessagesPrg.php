@@ -1061,7 +1061,6 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'right-userrights'            => 'Redigīs enwarīnsenins wisēisan tērpautajan',
 'right-userrights-interwiki'  => 'Redigīs enwarīnsenins stēisan tērpautajan en kitēimans wiki',
 'right-siteadmin'             => 'Dātanbazin auklaūsna be etklaūsna',
-'right-reset-passwords'       => 'Etkraūneis kliptaswīrdans kitēisan tērpautajan',
 'right-override-export-depth' => 'Ekspōrtis pāusans ēmpiri sen pāusans prei kawīdans tenēi autenginna, ērgi gilluwan stēisan 5 autengīnsenin',
 'right-sendemail'             => 'Tenginnais e-mailin kitēimans tērpautajans',
 

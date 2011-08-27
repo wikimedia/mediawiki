@@ -1300,7 +1300,7 @@ Pane tähele, et Google'is talletatud {{GRAMMAR:genitive|{{SITENAME}}}} sisu võ
 'qbsettings-fixedright'     => 'Püsivalt paremal',
 'qbsettings-floatingleft'   => 'Ujuvalt vasakul',
 'qbsettings-floatingright'  => 'Ujuvalt paremal',
-'qbsettings-directionality' => 'Fikseeritud, tulenevalt kirjast ja keelest.',
+'qbsettings-directionality' => 'Fikseeritud, tulenevalt sinu keeles kasutatava kirja suunast',
 
 # Preferences page
 'preferences'                   => 'Eelistused',
@@ -1524,7 +1524,6 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-userrights'            => 'Muuta kõiki kasutajaõigusi',
 'right-userrights-interwiki'  => 'Muuta teiste vikide kasutajate õigusi',
 'right-siteadmin'             => 'Panna lukku ja lukust lahti teha andmebaasi',
-'right-reset-passwords'       => 'Määrata teistele kasutajatele paroole',
 'right-override-export-depth' => 'Eksportida lehekülgi, kaasates viidatud leheküljed kuni viienda tasemeni',
 'right-sendemail'             => 'Saata teistele kasutajatele e-kirju',
 
@@ -1817,8 +1816,7 @@ Samuti võid proovida siis, kui võrgukoht on vähem hõivatud.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'See erileht kuvab kõik üleslaaditud failid.
-Vaikimisi on kõige ees viimati üleslaaditud failid.
-Tulba päisel klõpsamine muudab sortimist.',
+Kui kasutaja järgi filtrida, kuvatakse ainult need failid, mille viimase versiooni antud kasutaja on üles laadinud.',
 'listfiles_search_for'  => 'Nimeotsing:',
 'imgfile'               => 'fail',
 'listfiles'             => 'Piltide loend',
@@ -2526,6 +2524,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'blocklist-userblocks'            => 'Peida kontod',
 'blocklist-tempblocks'            => 'Peida ajutised',
 'blocklist-addressblocks'         => 'Peida üksikud IP-aadressid',
+'blocklist-rangeblocks'           => 'Peida vahemikublokeeringud',
 'blocklist-timestamp'             => 'Ajatempel',
 'blocklist-target'                => 'Blokeeritav',
 'blocklist-expiry'                => 'Aegumistähtaeg',
@@ -3601,6 +3600,18 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'compare-invalid-title'       => 'Valitud pealkiri on vigane.',
 'compare-title-not-exists'    => 'Valitud pealkirja ei ole.',
 'compare-revision-not-exists' => 'Valitud redaktsiooni ei ole.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Globaalne failikasutus',
+'globalfileusage-for'         => 'Faili "$1" globaalne kasutus',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Erilehekülg]] faili globaalse kasutuse vaatamiseks',
+'globalfileusage-ok'          => 'Otsi',
+'globalfileusage-text'        => 'Faili globaalse kasutuse otsimine',
+'globalfileusage-no-results'  => '[[$1]] pole teistes vikides kasutusel.',
+'globalfileusage-on-wiki'     => 'Kasutus vikis $2',
+'globalfileusage-of-file'     => 'Seda faili kasutatakse järgmistes teistes vikides:',
+'globalfileusage-more'        => 'Vaata selle faili [[{{#Special:GlobalUsage}}/$1|ülejäänud globaalset kasutust]].',
+'globalfileusage-filterlocal' => 'Ära näita kohalikku kasutust',
 
 # Database error messages
 'dberr-header'      => 'Selles vikis on probleem',

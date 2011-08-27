@@ -820,7 +820,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'right-userrights'            => 'taadil kol  salahiyat lmostkhdimin',
 'right-userrights-interwiki'  => 'taadil salahiyat lmostkhdim lmostkhdimin f lwikiyat lkhrin',
 'right-siteadmin'             => 'sd o zl qaidat lbayant',
-'right-reset-passwords'       => 'awd rigli lmot de passe dyal lmostkhdimin lkhrin',
 'right-override-export-depth' => 'tsdir sfahi obinha sfahi lmawsola hta lomq 5',
 'right-sendemail'             => 'sift email lmostkhdimin lkhrin',
 

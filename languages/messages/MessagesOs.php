@@ -478,7 +478,7 @@ $messages = array(
 'rev-deleted-comment'       => '(ивды афыст æппæрст æрцыд)',
 'rev-deleted-user'          => '(архайæджы ном аппæрст у)',
 'rev-deleted-event'         => '(фыст аппæрст у)',
-'rev-delundel'              => 'равдисын/бамбæхсын',
+'rev-delundel'              => 'равдисын/айсын',
 'revisiondelete'            => 'Аппар / рацараз фарсы фæлтæртæ',
 'revdel-restore-deleted'    => 'хафт ивдтытæ',
 'revdel-restore-visible'    => 'зынгæ ивдтытæ',
@@ -642,20 +642,20 @@ $messages = array(
 'rclistfrom'                      => 'Равдисын ивдтытæ амæй фæстæ: $1',
 'rcshowhideminor'                 => '$1 чысыл ивдтытæ',
 'rcshowhidebots'                  => '$1 роботты куыст',
-'rcshowhideliu'                   => '$1 ырбахизгæ архайæджы',
-'rcshowhideanons'                 => '$1 сусæг архайæджы',
+'rcshowhideliu'                   => '$1 ырбахизгæ архайджыты',
+'rcshowhideanons'                 => '$1 æнæном архайджыты',
 'rcshowhidemine'                  => '$1 мæ ивдтытæ',
 'rclinks'                         => 'Фæстаг $1 ивдтытæ (афæстаг $2 боны дæргъы чи ’рцыдысты) равдис;
 $3',
 'diff'                            => 'хицæн.',
 'hist'                            => 'лог',
-'hide'                            => 'Бамбæхсын',
+'hide'                            => 'Айсын',
 'show'                            => 'Равдисын',
 'minoreditletter'                 => 'ч',
 'newpageletter'                   => 'Н',
 'boteditletter'                   => 'б',
 'rc-enhanced-expand'              => 'Лæмбынæг информаци равдисын (JavaScript хъæуы)',
-'rc-enhanced-hide'                => 'Бамбæхсын лæмбынæг информаци',
+'rc-enhanced-hide'                => 'Айсын лæмбынæг информаци',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Баст ивдтытæ',
@@ -684,7 +684,8 @@ $3',
 
 'upload-file-error' => 'Мидæг рæдыд',
 
-'license' => 'Лицензи:',
+'license'        => 'Лицензи:',
+'license-header' => 'Лицензи',
 
 # Special:ListFiles
 'listfiles'       => 'Нывты номхыгъд',

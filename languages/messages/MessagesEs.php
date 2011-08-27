@@ -1580,7 +1580,6 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'right-userrights'            => 'Modificar todos los derechos de usuario',
 'right-userrights-interwiki'  => 'Modificar los derechos de usuarios en otros wikis',
 'right-siteadmin'             => 'Bloquear y desbloquear la base de datos',
-'right-reset-passwords'       => 'Reajustar la contraseña de otros usuarios',
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
 
@@ -2863,7 +2862,7 @@ Puedes ver su código fuente',
 'tooltip-ca-unprotect'            => 'Cambiar protección de esta página',
 'tooltip-ca-delete'               => 'Borrar esta página',
 'tooltip-ca-undelete'             => 'Restaurar las ediciones hechas a esta página antes de que fuese borrada',
-'tooltip-ca-move'                 => 'Trasladar (renombrar) esta página',
+'tooltip-ca-move'                 => 'Mover esta página',
 'tooltip-ca-watch'                => 'Añadir esta página a su lista de seguimiento',
 'tooltip-ca-unwatch'              => 'Borrar esta página de su lista de seguimiento',
 'tooltip-search'                  => 'Buscar en {{SITENAME}}',
@@ -3461,7 +3460,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-iimcategory-sci' => 'Ciencia y tecnología',
 'exif-iimcategory-soi' => 'Cuestiones sociales',
 'exif-iimcategory-spo' => 'Deportes',
-'exif-iimcategory-war' => 'Guerra, conflicto y disturbios',
+'exif-iimcategory-war' => 'Guerra, conflictos y disturbios',
 'exif-iimcategory-wea' => 'Clima',
 
 'exif-urgency-normal' => 'Normal ($1)',
@@ -3589,37 +3588,37 @@ $1",
 
 # Auto-summaries
 'autosumm-blank'   => 'Página blanqueada',
-'autosumm-replace' => "Página reemplazada por '$1'",
-'autoredircomment' => 'Redirigiendo a [[$1]]',
-'autosumm-new'     => "Página creada con '$1'",
+'autosumm-replace' => 'Página reemplazada por «$1»',
+'autoredircomment' => 'Página redirigida a [[$1]]',
+'autosumm-new'     => 'Página creada con «$1»',
 
 # Live preview
 'livepreview-loading' => 'Cargando…',
 'livepreview-ready'   => 'Cargando… ¡Listo!',
 'livepreview-failed'  => '¡La previsualización al vuelo falló!
 Prueba la previsualización normal.',
-'livepreview-error'   => 'La conexión no ha sido posible: $1 "$2"
-Intenta la previsualización normal.',
+'livepreview-error'   => 'No se pudo conectar:  $1  «$2».
+Intenta usar la previsualización normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} pueden no ser mostrados en esta lista.',
-'lag-warn-high'   => 'Debido a una alta latencia el servidor de base de datos, los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} pueden no ser mostrados en esta lista.',
+'lag-warn-normal' => 'Los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} podrían no mostrarse en esta lista.',
+'lag-warn-high'   => 'Debido a una alta latencia el servidor de base de datos, los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} podrían no mostrarse en esta lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tu lista de seguimiento tiene {{PLURAL:$1|una página |$1 páginas}}, excluyendo las páginas de discusión.',
 'watchlistedit-noitems'        => 'Tu lista de seguimiento está vacía.',
 'watchlistedit-normal-title'   => 'Editar lista de seguimiento',
 'watchlistedit-normal-legend'  => 'Borrar títulos de la lista de seguimiento',
-'watchlistedit-normal-explain' => "Los títulos de tu lista de seguimiento se muestran debajo.
-Para eliminar un título, marca la casilla junto a él, y haz clic en ''{{int:Watchlistedit-normal-submit}}''.
-También puedes [[Special:EditWatchlist/raw|editar la lista en crudo]].",
+'watchlistedit-normal-explain' => 'A continuación se listan las páginas en tu lista de seguimiento.
+Para quitar un título, marca la casilla junto a él, y pulsa «{{int:Watchlistedit-normal-submit}}».
+También puedes [[Special:EditWatchlist/raw|editar la lista en crudo]].',
 'watchlistedit-normal-submit'  => 'Borrar páginas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:',
 'watchlistedit-raw-title'      => 'Editar lista de seguimiento en crudo',
 'watchlistedit-raw-legend'     => 'Editar tu lista de seguimiento en modo texto',
-'watchlistedit-raw-explain'    => 'Los títulos de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista;
+'watchlistedit-raw-explain'    => 'A continuación se listan las páginas en tu lista de seguimiento. Esta lista puede editarse añadiendo o eliminando líneas de la lista;
 un título por línea.
-Cuando acabes, haz clic en "{{int:Watchlistedit-raw-submit}}".
+Cuando acabes, pulsa «{{int:Watchlistedit-raw-submit}}».
 También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'watchlistedit-raw-titles'     => 'Páginas:',
 'watchlistedit-raw-submit'     => 'Actualizar lista de seguimiento',
@@ -3688,9 +3687,9 @@ Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiales',
 'specialpages-note'              => '----
-* Páginas especiales normales.
+* Páginas especiales normales
 * <span class="mw-specialpagerestricted">Páginas especiales restringidas.</span>
-* <span class="mw-specialpagecached">Páginas especiales cacheadas.</span>',
+* <span class="mw-specialpagecached">Páginas especiales en caché (podrían ser obsoletas).</span>',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other'       => 'Otras páginas especiales',
 'specialpages-group-login'       => 'Iniciar sesión / Registrarse',
@@ -3743,9 +3742,34 @@ Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 'compare-title-not-exists'    => 'El título especificado no existe.',
 'compare-revision-not-exists' => 'La revisión especificada no existe.',
 
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Uso de archivo global',
+'globalfileusage-for'         => 'Uso global del archivo «$1»',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Página especial]] para ver el uso global de archivos',
+'globalfileusage-ok'          => 'Buscar',
+'globalfileusage-text'        => 'Buscar uso de archivo global',
+'globalfileusage-no-results'  => '[[$1]] no se utiliza en otros wikis.',
+'globalfileusage-on-wiki'     => 'Uso en $2',
+'globalfileusage-of-file'     => 'Los siguientes wikis utilizan este archivo:',
+'globalfileusage-more'        => 'Ver [[{{#Special:GlobalUsage}}/$1|más uso global]] de este archivo.',
+'globalfileusage-filterlocal' => 'No mostrar el uso local',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Uso global de la plantilla',
+'globaltemplateusage-for'         => 'Uso global de la plantilla «$1»',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Página especial]] para ver el uso global de una plantilla',
+'globaltemplateusage-ok'          => 'Buscar',
+'globaltemplateusage-text'        => 'Buscar uso de plantilla global',
+'globaltemplateusage-no-results'  => '[[$1]] no se utiliza en otros wikis.',
+'globaltemplateusage-on-wiki'     => 'Uso en $2',
+'globaltemplateusage-of-file'     => 'Los siguientes wikis utilizan esta plantilla:',
+'globaltemplateusage-more'        => 'Ver [[{{#Special:GlobalUsage}}/$1|más uso global]] de esta plantilla.',
+'globaltemplateusage-filterlocal' => 'No mostrar el uso local',
+
 # Database error messages
 'dberr-header'      => 'Este wiki tiene un problema',
-'dberr-problems'    => 'Lo sentimos. Este sitio está experimentando dificultades técnicas.',
+'dberr-problems'    => 'Lo sentimos.
+Este sitio está experimentando dificultades técnicas.',
 'dberr-again'       => 'Prueba a recargar dentro de unos minutos.',
 'dberr-info'        => '(No se puede contactar con la base de datos del servidor: $1)',
 'dberr-usegoogle'   => 'Mientras tanto puedes probar buscando a través de Google.',
@@ -3779,9 +3803,9 @@ Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 'ajax-confirm-save-all'         => 'Guardar todos los cambios',
 'ajax-cancel'                   => 'Cancelar edición',
 'ajax-cancel-all'               => 'Cancelar todos los cambios',
-'ajax-add-category-summary'     => 'Agregar categoría "$1"',
+'ajax-add-category-summary'     => 'Añadir categoría «$1»',
 'ajax-edit-category-summary'    => 'Cambiar la categoría «$1» a «$2»',
-'ajax-remove-category-summary'  => 'Eliminar categoría "$1"',
+'ajax-remove-category-summary'  => 'Quitar categoría «$1»',
 'ajax-category-question'        => 'Por qué deseas realizar los siguientes cambios:',
 'ajax-error-title'              => 'Error',
 'ajax-remove-category-error'    => 'No fue posible quitar la categoría «$1».
@@ -3790,5 +3814,7 @@ Esto suele ocurrir cuando la categoría se añadió a la página por una plantil
 Esto suele ocurrir cuando la categoría se añadió a la página por una plantilla.',
 'ajax-category-already-present' => 'Esta página ya pertenece a la categoría «$1»',
 'ajax-category-hook-error'      => 'Una función local impide que se guarden los cambios',
+'ajax-api-error'                => 'La API ha devuelto un error:  $1 :  $2 .',
+'ajax-api-unknown-error'        => 'La API ha devuelto un error desconocido.',
 
 );

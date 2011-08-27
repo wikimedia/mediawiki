@@ -1320,7 +1320,6 @@ Taarifa hii itakuwa wazi.',
 'right-userrights'           => 'Kubadilisha wezo zote za watumiaji',
 'right-userrights-interwiki' => 'Kuhariri wezo za watumiaji kwenye wiki zingine',
 'right-siteadmin'            => 'Kufunga na kufungua hifadhidata',
-'right-reset-passwords'      => 'Seti upya maneno ya siri ya watumiaji wengine',
 'right-sendemail'            => 'Kutuma barua-pepe kwa watumiaji wengine',
 
 # User rights log

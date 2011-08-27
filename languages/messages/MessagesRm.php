@@ -1135,7 +1135,6 @@ Questa infurmaziun è publica.',
 'right-userrights'           => 'Modifitgar ils dretgs dals utilisaders',
 'right-userrights-interwiki' => "Modifitgar ils dretgs d'utilisaders sin autras wikis",
 'right-siteadmin'            => 'Bloccar u debloccar la banca da datas',
-'right-reset-passwords'      => "Redefinir pleds-clav d'auters utilisaders",
 'right-sendemail'            => 'Trametter e-mails ad auters utilisaders',
 
 # User rights log

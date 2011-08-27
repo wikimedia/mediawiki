@@ -1390,7 +1390,6 @@ Kung pipiliin mong ibigay ito, gagamitin ito para mabigyan ka ng pagkilala para 
 'right-userrights'            => 'Baguhin ang lahat ng karapatan ng tagagamit',
 'right-userrights-interwiki'  => 'Baguhin ang karapatan ng mga tagagamit na nasa ibang mga wiki',
 'right-siteadmin'             => 'Ikandado at alisin ang pagkakakandado ng kalipunan ng dato',
-'right-reset-passwords'       => 'Mulng itakda ang mga hudyat ng iba pang mga tagagamit',
 'right-override-export-depth' => 'Iluwas ang mga pahina na kabilang ang mga pahinang nakakawing magpahanggang sa isang lalim na 5',
 'right-sendemail'             => 'Magpadala ng e-liham sa ibang mga tagagamit',
 

@@ -170,7 +170,7 @@ $messages = array(
 'vector-action-move'             => 'Poundoliho',
 'vector-action-protect'          => 'Tingoligai',
 'vector-action-undelete'         => 'Kada pugaso',
-'vector-action-unprotect'        => 'Kada tingoligai',
+'vector-action-unprotect'        => 'Alanai tingolig',
 'vector-simplesearch-preference' => 'Pasagao pogigihum ponontonudon pinoingkawas (Pongulit tuntuduk nopo)',
 'vector-view-create'             => 'Pomonsoi',
 'vector-view-edit'               => 'Idito',
@@ -207,8 +207,8 @@ $messages = array(
 'protect'           => 'Tingoligai',
 'protect_change'    => 'alanai',
 'protectthispage'   => 'Tingoligai iti bolikon',
-'unprotect'         => 'Kada tingoligai',
-'unprotectthispage' => 'Kada tingoligai iti bolikon',
+'unprotect'         => 'Alanai tingolig',
+'unprotectthispage' => 'Alanai tingoligai iti bolikon',
 'newpage'           => 'Bolikon wagu',
 'talkpage'          => 'Pitimbungakai iti bolikon',
 'talkpagelinktext'  => 'Boroson',
@@ -393,6 +393,7 @@ Montok pangawaliwboros, pomusarahai no do mongoguno [http://translatewiki.net/wi
 'cascadeprotected'     => 'Notingoligan bolikon diti mantad do pingiditan tu nokosuang  id bolikon, {{PLURAL:$1 | do | it}} pinilian tingolig  "kasading" poinsikit:
 $2',
 'namespaceprotected'   => "Ingaa kasagaannu do mongidit bobolikon it kinoingaran '''$1'''.",
+'customcssprotected'   => 'Ingaa kasagaannu do mongidit diti bolikon CSS, tu kisuang ponguludan minsosondiri momoguno.',
 'ns-specialprotected'  => 'Bolikon pinotontu awu milo iditon.',
 'titleprotected'       => 'Notingoligan tuluhon diti mantad wonsoyon do [[User:$1|$1]].
 Sasabab no do "\'\'$2\'\'".',
@@ -434,7 +435,7 @@ Soroho no do mongolon [[Special:Preferences|{{SITENAME}} komoisoonnu]].',
 'createaccountmail'          => 'Maya surat-i',
 'createaccountreason'        => 'Sabab:',
 'badretype'                  => 'Kaatalib pinosuang awu kopisangai.',
-'userexists'                 => 'Ngaranmoguno pinosuang naanu no.
+'userexists'                 => 'Ngaranmoguno pinosuang noguno no.
 Maai alanai do suai ngaran.',
 'loginerror'                 => 'Nokosilap sumuang log',
 'createaccounterror'         => 'Awu kowonsoi takaun: $1',
@@ -525,6 +526,14 @@ Baino sumuang log...',
 'resetpass-wrong-oldpass'   => 'Nokosilap kaatalib daamot toi iy maso gunoon.
 Naalanannu noh kaatalib toi nokopokianu koh no do kaatalib daamot.',
 'resetpass-temp-password'   => 'Kaatalib daamot:',
+
+# Special:PasswordReset
+'passwordreset-username'   => 'Ngarandait:',
+'passwordreset-emailtitle' => 'Kointalangan takaun id {{SITENAME}}',
+
+# Special:ChangeEmail
+'changeemail-no-info' => 'Mositi sumuang log ko do mongoguno monilombus id bolikon diti.',
+'changeemail-cancel'  => 'Kinsilo',
 
 # Edit page toolbar
 'bold_sample'     => 'Polombono tik',
@@ -627,9 +636,9 @@ Mangai intangai nung mumang ko pomonsoi/mongidit do bolikon diti.',
 'userpage-userdoesnotexist-view'   => 'Akaun momomoguno "$1" awu po nokorijisto.',
 'blocked-notice-logextract'        => 'Maso do nantaban momomoguno diti.
 Riporon id siriba kokomoi nantaban di tohuri no:',
-'clearyourcache'                   => "'''Soroho: Opongoh do pogompi, mangai  pawayao dangkob pogigihumnu do mongintong di nopingalanan.'''
+'clearyourcache'                   => "'''Soroho:''' Opongoh do pogompi, mangai  pawayao dangkob pogigihumnu do mongintong di nopingalanan.
 '''Mozilla / Firefox / Safari:''' todoso ''Shift'' maso do mongotik ''Reload'', toi piandadon mononsok ''Ctrl-F5'' toi ''Ctrl-R'' (''Command-R'' id Mac);
-'''Konqueror: '''kotiko ''Reload'' toi tonsoko ''F5'';
+'''Konqueror:''' kotiko ''Reload'' toi tonsoko ''F5'';
 '''Opera:''' imuhawai id dangkob  ''Tools → Preferences'';
 '''Internet Explorer:''' todoso ''Ctrl'' maso do mongotik ''Refresh,'' toi tonsoko ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Tutuduk:''' Momoguno do \"{{int:showpreview}}\" butang do mongumbal CSS kawawagunu pogulu do popogompi.",

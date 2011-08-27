@@ -1491,7 +1491,6 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-userrights'            => 'Editar todos os dereitos de usuario',
 'right-userrights-interwiki'  => 'Editar os dereitos de usuario dos usuarios doutros wikis',
 'right-siteadmin'             => 'Fechar e abrir a base de datos',
-'right-reset-passwords'       => 'Restablecer os contrasinais doutros usuarios',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
 

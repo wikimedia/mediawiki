@@ -539,6 +539,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'PHP मेल() क्रियामा अज्ञात त्रुटि',
+'user-mail-no-addy'      => 'इमेल ठेगाना बिना नै इमेल पठाउन खोजिएको थियो।',
 
 # Change password dialog
 'resetpass'                 => 'प्रवेशशव्द परिवर्तन गर्नुहोस्',
@@ -583,6 +584,12 @@ $2
 'passwordreset-emailelement'   => 'प्रयोगकर्ताको नाम: $1
 अस्थाई पासवर्ड: $2',
 'passwordreset-emailsent'      => 'एउटा अनुस्मारक इमेल पठाइयो।',
+
+# Special:ChangeEmail
+'changeemail'        => 'इमेल ठेगाना परिवर्तन गर्नुहोस',
+'changeemail-header' => 'खाताको इमेल ठेगाना परिवर्तन गर्नुहोस',
+'changeemail-text'   => 'आफ्नो इमेल ठेगाना परिवर्तन गर्न यो फारम भर्नुहोस। यसलाई पुष्टि गर्न तपाईले आफ्नो पासवर्ड हाल्नु पर्नेछ।',
+'changeemail-cancel' => 'रद्द गर्ने',
 
 # Edit page toolbar
 'bold_sample'     => 'गाढा अक्षर',
@@ -1266,7 +1273,6 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'right-userrights'            => 'प्रयोगकर्ताका अधिकारहरु सम्पादन गर्ने',
 'right-userrights-interwiki'  => 'अरु विकिहरुमा प्रयोगकर्ताहरुको अधिकार सम्पादन गर्ने',
 'right-siteadmin'             => 'डेटाबेसको ताल्चामार्ने र ताल्चाखोल्ने',
-'right-reset-passwords'       => 'अरु प्रयोगकर्ताको प्रवेशशव्द पुनर्प्रविष्ठीगर्ने',
 'right-override-export-depth' => 'गहिराइ ५ सम्मको लिंकगरिएका पृष्ठहरु सहित निर्यात गर्ने',
 'right-sendemail'             => 'अन्य प्रयोगकर्ताहरुलाई इमेल गर्ने',
 

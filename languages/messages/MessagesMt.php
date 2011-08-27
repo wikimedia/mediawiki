@@ -567,7 +567,7 @@ $1",
 'nosuchactiontext'  => "L-azzjoni speċifikata mill-URL mhijiex valida.
 Jista' jkun li tkun ktibt ħażin il-URL, jew ġejt imwassal għal ħolqa ħażina.
 Dan jista' jindika wkoll bug fis-softwer użat fil-{{SITENAME}}.",
-'nosuchspecialpage' => 'L-Ebda paġna speċjali',
+'nosuchspecialpage' => 'L-ebda paġna speċjali',
 'nospecialpagetext' => "<strong>Inti għamilt rikjesta għal paġna speċjali invalida.</strong>
 
 Lista ta' paġni speċjali validi tinsab hawn [[Special:SpecialPages|{{int:specialpages}}]].",
@@ -1609,8 +1609,7 @@ Jekk jogħġbok verifika li s-sit huwa attiv, stenna għal ftit u erġa' prova m
 
 # Special:ListFiles
 'listfiles-summary'     => "Din il-paġna speċjali turi l-fajls kollha mtella'.
-L-aktar ''uploads'' riċenti jiġu fuq in-naħa ta' fuq tal-lista.
-Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna stess.",
+Meta r-riżultati huma ffiltrati, jintwerew biss dawk il-fajls li l-utent tella' l-aktar verżjoni riċenti.",
 'listfiles_search_for'  => 'Fittex stampi skont l-isem:',
 'imgfile'               => 'fajl',
 'listfiles'             => 'Lista tal-fajl',

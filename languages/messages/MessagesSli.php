@@ -884,7 +884,6 @@ Miet andern Nutzern koast du au ieber de Nutzerdischkurseyta Kontakt uffnahma, o
 'right-userrights'           => 'Nutzerrechte beoarbeeta',
 'right-userrights-interwiki' => 'Nutzerrechte ei andern Wikis beoarbeeta',
 'right-siteadmin'            => 'Datenbank sperra und entsperra',
-'right-reset-passwords'      => 'Poaßwurt annes andern Nutzers zerrickesetza',
 'right-sendemail'            => 'E-Mails oa andere Nutzer senda',
 
 # User rights log

@@ -1515,7 +1515,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-userrights'            => 'Edycja uprawnień wszystkich użytkowników',
 'right-userrights-interwiki'  => 'Edycja uprawnień użytkowników innych witryn wiki',
 'right-siteadmin'             => 'Blokowanie i odblokowywanie bazy danych',
-'right-reset-passwords'       => 'Zerowanie haseł innych użytkowników',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
 

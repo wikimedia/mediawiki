@@ -775,9 +775,12 @@ La cabera entrada del rexistru s'ufre darréu pa referencia:",
 'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta candada pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
 'titleprotectedwarning'            => "'''Avisu: Esta páxina ta candada pa que necesite [[Special:ListGroupRights|permisos especiales]] pa creala.'''
 La cabera entrada del rexistru s'ufre darréu pa referencia:",
-'templatesused'                    => '{{PLURAL:$1|plantía usada|plantíes usaes}} nesta páxina:',
-'templatesusedpreview'             => '{{PLURAL:$1|plantía usada|plantíes usaes}} nesta previsualización:',
+'templatesused'                    => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta páxina:',
+'templatesusedpreview'             => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta vista previa:',
 'templatesusedsection'             => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta seición:',
+'distanttemplatesused'             => '{{PLURAL:$1|Plantía distante usada|Plantíes distantes usaes}} nesta páxina:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Plantía distante usada|Plantíes distantes usaes}} nesta vista previa:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Plantía distante usada|Plantíes distantes usaes}} nesta seición:',
 'template-protected'               => '(protexida)',
 'template-semiprotected'           => '(semi-protexida)',
 'hiddencategories'                 => 'Esta páxina pertenez a {{PLURAL:$1|una categoría oculta|$1 categoríes ocultes}}:',
@@ -1091,7 +1094,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'qbsettings-fixedright'     => 'Fixa a mandrecha',
 'qbsettings-floatingleft'   => 'Flotante a manzorga',
 'qbsettings-floatingright'  => 'Flotante a mandrecha',
-'qbsettings-directionality' => 'Fixa, según la direición de la escritura y la to llingua',
+'qbsettings-directionality' => "Fixa, según la direición d'escritura de la to llingua",
 
 # Preferences page
 'preferences'                   => 'Preferencies',
@@ -1127,7 +1130,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-edit-boxsize'            => "Tamañu de la ventana d'edición.",
 'rows'                          => 'Files:',
 'columns'                       => 'Columnes:',
-'searchresultshead'             => 'Guetes',
+'searchresultshead'             => 'Guetar',
 'resultsperpage'                => "Resultaos p'amosar per páxina:",
 'stub-threshold'                => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',
 'stub-threshold-disabled'       => 'Desactivao',
@@ -1316,7 +1319,6 @@ Esta información sedrá pública.",
 'right-userrights'            => "Editar tolos drechos d'usuariu",
 'right-userrights-interwiki'  => "Editar los drechos d'usuariu d'usuarios d'otros sitios wiki",
 'right-siteadmin'             => 'Candar y descandar la base de datos',
-'right-reset-passwords'       => "Reaniciar contraseñes d'otros usuarios",
 'right-override-export-depth' => 'Esportar páxines, incluyendo páxines enllazaes fasta una fondura de 5',
 'right-sendemail'             => 'Unviar corréu a otros usuarios',
 
@@ -1622,9 +1624,8 @@ Pa una meyor seguridá, img_auth.php ta desactiváu.",
 'upload_source_file' => ' (un archivu del to ordenador)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Esta páxina especial amuesa tolos archivos xubíos.
-Por defeutu los caberos archivos xubíos amuésense a lo cimero de la llista.
-Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
+'listfiles-summary'     => "Esta páxina especial amuesa tolos ficheros xubíos.
+Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que xubió esi usuariu.",
 'listfiles_search_for'  => "Buscar por nome d'archivu multimedia:",
 'imgfile'               => 'archivu',
 'listfiles'             => "Llista d'imáxenes",
@@ -2336,6 +2337,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'blocklist-userblocks'            => 'Anubrir los bloqueos de cuenta',
 'blocklist-tempblocks'            => 'Anubrir los bloqueos temporales',
 'blocklist-addressblocks'         => "Anubrir los bloqueos d'IP simples",
+'blocklist-rangeblocks'           => 'Anubrir los bloqueos de rangu',
 'blocklist-timestamp'             => "Marca d'hora",
 'blocklist-target'                => 'Oxetivu',
 'blocklist-expiry'                => 'Caduca',
@@ -3525,6 +3527,30 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 'compare-invalid-title'       => 'El títulu que conseñasti nun ye válidu.',
 'compare-title-not-exists'    => 'El títulu que conseñasti nun esiste.',
 'compare-revision-not-exists' => 'La revisión que conseñasti nun esiste.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Usu global del ficheru',
+'globalfileusage-for'         => 'Usu global del ficheru pa "$1"',
+'globalfileusage-desc'        => "[[Special:GlobalFileUsage|Páxina especial]] pa ver l'usu global d'un ficheru",
+'globalfileusage-ok'          => 'Guetar',
+'globalfileusage-text'        => "Guetar l'usu global del ficheru",
+'globalfileusage-no-results'  => "[[$1]] nun s'usa n'otres wikis.",
+'globalfileusage-on-wiki'     => 'Usu en $2',
+'globalfileusage-of-file'     => 'Estes otres wikis usen esti ficheru:',
+'globalfileusage-more'        => "Ver [[{{#Special:GlobalUsage}}/$1|más usos globales]] d'esti ficheru.",
+'globalfileusage-filterlocal' => "Nun amosar l'usu llocal",
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Usu global de la plantía',
+'globaltemplateusage-for'         => 'Usu global de la plantía pa "$1"',
+'globaltemplateusage-desc'        => "[[Special:GlobalTemplateUsage|Páxina especial]] pa ver l'usu global d'una plantía",
+'globaltemplateusage-ok'          => 'Guetar',
+'globaltemplateusage-text'        => "Guetar l'usu global de la plantía",
+'globaltemplateusage-no-results'  => "[[$1]] nun s'usa n'otres wikis.",
+'globaltemplateusage-on-wiki'     => 'Usu en $2',
+'globaltemplateusage-of-file'     => 'Estes otres wikis usen esta plantía:',
+'globaltemplateusage-more'        => "Ver [[{{#Special:GlobalUsage}}/$1|más usos globales]] d'esta plantía.",
+'globaltemplateusage-filterlocal' => "Nun amosar l'usu llocal",
 
 # Database error messages
 'dberr-header'      => 'Esta wiki tien un problema',

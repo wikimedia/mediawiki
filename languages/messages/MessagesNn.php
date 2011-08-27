@@ -1481,7 +1481,6 @@ Dette kan ikke tilbakestillast.',
 'right-userrights'            => 'Endre alle brukarrettar',
 'right-userrights-interwiki'  => 'Endre rettar for brukarar på andre wikiar',
 'right-siteadmin'             => 'Låse og låse opp databasen',
-'right-reset-passwords'       => 'Nullstilla passorda til andre brukarar',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkte sider til ei djupn på 5',
 'right-sendemail'             => 'Senda e-post til andre brukarar',
 

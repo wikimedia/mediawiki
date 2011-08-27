@@ -1475,7 +1475,6 @@ $1",
 'right-userrights'           => 'सर्व सदस्यांचे अधिकार संपादा',
 'right-userrights-interwiki' => 'इतर विकिंवर सदस्य अधिकार बदला',
 'right-siteadmin'            => 'माहितीसाठ्याला कुलुप लावा अथवा काढा',
-'right-reset-passwords'      => 'इतर सदस्यांचा परवलीचा शब्द पुनर्स्थापित करा',
 'right-sendemail'            => 'इतर सदस्यांना विपत्रे पाठवा',
 
 # User rights log

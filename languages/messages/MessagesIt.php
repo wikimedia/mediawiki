@@ -1470,7 +1470,6 @@ L'operazione non può essere annullata.",
 'right-userrights'            => "Modifica tutti i diritti dell'utente",
 'right-userrights-interwiki'  => 'Modifica i diritti degli utenti di altre wiki',
 'right-siteadmin'             => 'Blocca e sblocca il database',
-'right-reset-passwords'       => 'Reimposta le password di altri utenti',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-sendemail'             => 'Invia e-mail ad altri utenti',
 

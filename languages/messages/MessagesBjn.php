@@ -1288,7 +1288,6 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-userrights'            => 'Babak sabarataan hak pamuruk',
 'right-userrights-interwiki'  => 'Babak hahak pamuruk matan papamuruk wiwiki balain',
 'right-siteadmin'             => 'Sunduk wan buka sunduk basis data',
-'right-reset-passwords'       => 'Risit katasunduk pamuruk lain',
 'right-override-export-depth' => 'Ekspur tutungkaran tamasuk tutungkaran tataut sampai kadalaman 5',
 'right-sendemail'             => 'Mangirim suril ka papamuruk lain',
 

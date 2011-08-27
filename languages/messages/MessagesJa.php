@@ -1615,7 +1615,6 @@ HTMLタグを見直してください。',
 'right-userrights'            => '全利用者権限の編集',
 'right-userrights-interwiki'  => '他のウィキの利用者の利用者権限の編集',
 'right-siteadmin'             => 'データベースのロックおよびロック解除',
-'right-reset-passwords'       => '他の利用者のパスワードを再設定する',
 'right-override-export-depth' => 'リンク先ページを5階層まで含めて書き出す',
 'right-sendemail'             => '他の利用者へ電子メールを送る',
 

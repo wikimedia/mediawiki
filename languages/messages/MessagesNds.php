@@ -1352,7 +1352,6 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'right-userrights'            => 'Brukerrechten ännern',
 'right-userrights-interwiki'  => 'Brukerrechten op annere Wikis ännern',
 'right-siteadmin'             => 'Datenbank sperren un wedder apen maken',
-'right-reset-passwords'       => 'Anner Lüüd ehr Passwoord trüchsetten',
 'right-override-export-depth' => 'Exporteer Sieden, lenkt Sieden inslaten bet to en Deepd vun 5',
 
 # User rights log

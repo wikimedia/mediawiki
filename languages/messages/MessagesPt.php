@@ -1576,7 +1576,6 @@ Esta informação será pública.',
 'right-userrights'            => 'Editar todos os privilégios de utilizador',
 'right-userrights-interwiki'  => 'Editar privilégios de utilizadores noutras wikis',
 'right-siteadmin'             => 'Bloquear e desbloquear a base de dados',
-'right-reset-passwords'       => 'Repor a palavra-chave de outros utilizadores',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar correio electrónico a outros utilizadores',
 

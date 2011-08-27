@@ -1447,7 +1447,6 @@ Ova informacija će biti javna.',
 'right-userrights'            => 'Uređivanje svih korisničkih prava',
 'right-userrights-interwiki'  => 'izmena prava korisnika na drugim vikijima',
 'right-siteadmin'             => 'zaključavanje i otključavanje baze podataka',
-'right-reset-passwords'       => 'Obnavljanje lozinki drugih korisnika',
 'right-override-export-depth' => 'Izvezi strane, uključujući povezane strane, do dubine 5',
 'right-sendemail'             => 'Pošalji e-poštu ostalim korisnicima',
 

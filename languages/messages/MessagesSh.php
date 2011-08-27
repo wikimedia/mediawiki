@@ -1428,7 +1428,6 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'right-userrights'            => 'Uređivanje svih korisničkih prava',
 'right-userrights-interwiki'  => 'Uređivanje korisničkih prava korisnika na drugim wikijima',
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
-'right-reset-passwords'       => 'Resetiranje lozinke drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 

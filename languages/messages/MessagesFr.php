@@ -1598,7 +1598,6 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'right-userrights'            => 'Modifier tous les droits d’un utilisateur',
 'right-userrights-interwiki'  => 'Modifier les droits d’utilisateurs qui sont sur un autre wiki',
 'right-siteadmin'             => 'Verrouiller ou déverrouiller la base de données',
-'right-reset-passwords'       => 'Changer le mot de passe d’autres utilisateurs',
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
 

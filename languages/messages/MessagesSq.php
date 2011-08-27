@@ -1377,7 +1377,6 @@ Kjo informatë është publike.',
 'right-userrights'            => 'Redakto të gjitha të drejtat e përdoruesit',
 'right-userrights-interwiki'  => 'Ndrysho të drejtat e përdoruesve në wiki të tjera',
 'right-siteadmin'             => 'Mbyll ose hap bazën e të dhënave',
-'right-reset-passwords'       => 'Rivendos fjalëkalimet e përdoruesit të tjerë',
 'right-override-export-depth' => 'Eksoprto faqet duke përfshirë e lidhura deri në një thellësi prej 5',
 'right-sendemail'             => 'Dërgo e-mail tek përdoruesit e tjerë',
 

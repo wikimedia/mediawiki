@@ -1459,7 +1459,6 @@ Podatek bo javno prikazan.',
 'right-userrights'            => 'Urejanje vseh uporabniških pravic',
 'right-userrights-interwiki'  => 'Urejanje uporabniških pravic uporabnikov na drugih wikijih',
 'right-siteadmin'             => 'Zaklepanje in odklepanje baze podatkov',
-'right-reset-passwords'       => 'Ponastavljanje gesla drugih uporabnikov',
 'right-override-export-depth' => 'Izvoz strani, vključno s povezaimi straneh do globine 5',
 'right-sendemail'             => 'Pošiljanje e-pošte drugim uporabnikom',
 

@@ -1143,7 +1143,6 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'right-userrights'           => 'Mainīt visu lietotāju tiesības',
 'right-userrights-interwiki' => 'Mainīt lietotāju tiesības citās Vikipēdijās',
 'right-siteadmin'            => 'Bloķēt un atbloķēt datubāzi',
-'right-reset-passwords'      => 'Atiestatīt citu lietotāju paroles',
 'right-sendemail'            => 'Sūtīt e-pastu citiem lietotājiem',
 
 # User rights log

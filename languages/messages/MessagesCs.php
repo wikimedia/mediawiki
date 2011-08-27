@@ -1585,7 +1585,6 @@ Tuto operaci nelze vrátit zpět.',
 'right-userrights'            => 'Nastavování práv ostatním uživatelům',
 'right-userrights-interwiki'  => 'Nastavování práv ostatním uživatelům na jiných wiki',
 'right-siteadmin'             => 'Zamykání a odemykání databáze',
-'right-reset-passwords'       => 'Nastavování hesel jiným uživatelům',
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
 

@@ -1418,7 +1418,6 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-userrights'            => 'Kemmañ holl wirioù un implijer',
 'right-userrights-interwiki'  => 'Kemmañ ar gwirioù implijer zo war ur wiki all',
 'right-siteadmin'             => 'Prennañ ha dibrennañ ar bank-titouroù',
-'right-reset-passwords'       => 'Kemmañ ger-tremen implijerien all',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
 
