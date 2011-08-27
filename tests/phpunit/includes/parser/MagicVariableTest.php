@@ -38,8 +38,12 @@ class MagicVariableTest extends MediaWikiTestCase {
 
 		# initialize parser output
 		$this->testParser->clearState();
+
 		# Needs a title to do magic word stuff
-		$this->testParser->setTitle( Title::newFromText( 'Tests' ) );
+		$title = Title::newFromText( 'Tests' );
+		$title->mRedirect = false; # Else it needs a db connection just to check if it's a redirect (when deciding the page language)
+
+		$this->testParser->setTitle( $title );
 	}
 
 	/** destroy parser (TODO: is it really neded?)*/
