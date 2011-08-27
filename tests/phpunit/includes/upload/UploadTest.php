@@ -41,6 +41,16 @@ class UploadTest extends MediaWikiTestCase {
 			'A-B.jpg', UploadBase::OK,
 			'upload title with colon' );
 
+		/* Stripping leading File: prefix */
+		$this->assertUploadTitleAndCode( 'File:C.jpg',
+			'C.jpg', UploadBase::OK,
+			'upload title with File prefix' );
+
+		/* Test illegal suggested title (r94601) */
+		$this->assertUploadTitleAndCode( '%281%29.JPG',
+			null, UploadBase::ILLEGAL_FILENAME,
+			'illegal title for upload' );
+
 		/* A title without extension */
 		$this->assertUploadTitleAndCode( 'A',
 			null, UploadBase::FILETYPE_MISSING,

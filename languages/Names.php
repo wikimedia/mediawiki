@@ -155,8 +155,8 @@
 	'ka' => 'ქართული',	# Georgian
 	'kaa' => 'Qaraqalpaqsha',	# Karakalpak
 	'kab' => 'Taqbaylit',	# Kabyle
-	'kbd' => 'Къэбэрдеибзэ / Qabardjajəbza',	# Kabardian (multiple scripts - defaults to Cyrillic)
-	'kbd-cyrl' => 'къэбэрдеибзэ',	# Kabardian (Cyrillic)
+	'kbd' => 'Адыгэбзэ',	# Kabardian
+	'kbd-cyrl' => 'Адыгэбзэ',	# Kabardian (Cyrillic)
 	'kg' => 'Kongo',	# Kongo, (FIXME!) should probaly be KiKongo or KiKoongo
 	'khw' => 'کھوار',	# Khowar
 	'ki' => 'Gĩkũyũ',	# Gikuyu
