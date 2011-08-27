@@ -15,6 +15,9 @@
  * redirects go to, etc. $this->mTitle (as well as $mArticle) is the
  * page in the database that is actually being edited. These are
  * usually the same, but they are now allowed to be different.
+ *
+ * Sugeon General's Warning: prologned exposure to this class is known to cause
+ * headaches, which may be fatal.
  */
 class EditPage {
 	const AS_SUCCESS_UPDATE            = 200;
