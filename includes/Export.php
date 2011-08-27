@@ -739,7 +739,7 @@ class DumpFileOutput extends DumpOutput {
 	function closeRenameAndReopen( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				WfDie("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -755,7 +755,7 @@ class DumpFileOutput extends DumpOutput {
 	function rename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				WfDie("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -796,7 +796,7 @@ class DumpPipeOutput extends DumpFileOutput {
 	function closeRenameAndReopen( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				WfDie("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -814,7 +814,7 @@ class DumpPipeOutput extends DumpFileOutput {
 	function rename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				WfDie("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -865,7 +865,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	function closeRenameAndReopen( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				WfDie("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -883,7 +883,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	function rename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				WfDie("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
