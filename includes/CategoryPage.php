@@ -143,7 +143,7 @@ class CategoryViewer {
 	 * @return string HTML output
 	 */
 	public function getHTML() {
-		global $wgOut, $wgCategoryMagicGallery, $wgContLang;
+		global $wgOut, $wgCategoryMagicGallery;
 		wfProfileIn( __METHOD__ );
 
 		$this->showGallery = $wgCategoryMagicGallery && !$wgOut->mNoGallery;

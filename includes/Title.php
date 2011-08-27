@@ -849,8 +849,6 @@ class Title {
 	 * @return String the URL
 	 */
 	public function getFullURL( $query = '', $variant = false ) {
-		global $wgServer, $wgRequest;
-
 		# Hand off all the decisions on urls to getLocalURL
 		$url = $this->getLocalURL( $query, $variant );
 
@@ -3162,7 +3160,7 @@ class Title {
 	 * @return Mixed true on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
-		global $wgContLang, $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase;
+		global $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase;
 
 		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if ( is_array( $err ) ) {
@@ -3323,7 +3321,7 @@ class Title {
 	 *   if the user doesn't have the suppressredirect right
 	 */
 	private function moveOverExistingRedirect( &$nt, $reason = '', $createRedirect = true ) {
-		global $wgUseSquid, $wgUser, $wgContLang, $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase;
+		global $wgUser, $wgContLang, $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase;
 
 		$moveOverRedirect = $nt->exists();
 
