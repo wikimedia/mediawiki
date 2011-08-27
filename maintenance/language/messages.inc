@@ -1152,7 +1152,6 @@ $wgMessageStructure = array(
 		'right-userrights',
 		'right-userrights-interwiki',
 		'right-siteadmin',
-		'right-reset-passwords',
 		'right-override-export-depth',
 		'right-sendemail',
 	),
