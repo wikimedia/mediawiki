@@ -16,7 +16,7 @@
  * page in the database that is actually being edited. These are
  * usually the same, but they are now allowed to be different.
  *
- * Sugeon General's Warning: prologned exposure to this class is known to cause
+ * Surgeon General's Warning: prologned exposure to this class is known to cause
  * headaches, which may be fatal.
  */
 class EditPage {
