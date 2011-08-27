@@ -213,7 +213,7 @@ class HTMLCacheUpdate
 	 * Invalidate an array of distant pages, given the wiki ID and page ID of those pages
 	 */
 	protected function invalidateDistantTitles( $distantPageArray ) {
-		global $wgUseFileCache, $wgUseSquid, $wgLocalInterwiki;
+		global $wgUseSquid;
 		
 		$pagesByWiki = array();
 		$titleArray = array();
