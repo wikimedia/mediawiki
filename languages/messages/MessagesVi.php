@@ -1535,7 +1535,6 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-userrights'            => 'Sửa tất cả quyền thành viên',
 'right-userrights-interwiki'  => 'Sửa quyền thành viên của các thành viên ở các wiki khác',
 'right-siteadmin'             => 'Khóa và mở khóa cơ sở dữ liệu',
-'right-reset-passwords'       => 'Tái tạo mật khẩu của thành viên khác',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
 'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
 

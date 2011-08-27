@@ -1565,7 +1565,6 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'right-userrights'            => 'Menyunting seluruh hak pengguna',
 'right-userrights-interwiki'  => 'Menyunting hak para pengguna di wiki lain',
 'right-siteadmin'             => 'Mengunci dan membuka kunci basis data',
-'right-reset-passwords'       => 'Mereset kata sandi pengguna lain',
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-sendemail'             => 'Mengirim surel ke pengguna lain',
 

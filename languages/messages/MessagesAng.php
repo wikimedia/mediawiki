@@ -11,6 +11,7 @@
  * @author JJohnson
  * @author Omnipaedista
  * @author Spacebirdy
+ * @author Tsepelcory
  * @author Wōdenhelm
  */
 
@@ -618,6 +619,7 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'yourgender'         => 'Ȝecynd:',
 'gender-male'        => 'Ƿer',
 'gender-female'      => 'Frēo',
+'email'              => 'E-ǣrende',
 
 # User rights
 'userrights-user-editname' => 'Brūcendnama ƿrītan:',

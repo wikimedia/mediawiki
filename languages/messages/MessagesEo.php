@@ -1546,7 +1546,6 @@ Jen hazarde generita valoro por via uzo: $1',
 'right-userrights'            => 'Redakti ĉiujn uzanto-rajtojn',
 'right-userrights-interwiki'  => 'Redakti la rajtojn de uzantoj en aliaj vikioj',
 'right-siteadmin'             => 'Ŝlosi kaj malŝlosi la datumbazon',
-'right-reset-passwords'       => 'Reŝanĝi pasvortojn de aliaj uzantoj',
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
 'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
 

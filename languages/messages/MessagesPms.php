@@ -462,7 +462,7 @@ Che as dësmentia pa ëd cambié ij [[Special:Preferences|"sò gust" an {{SITENA
 'createaccountreason'        => 'Rason:',
 'badretype'                  => "Le doe ciav che a l'ha scrivù a resto diferente antra lor, e a venta che a sio mideme.",
 'userexists'                 => "Lë stranòm anserì a l'é già dovrà.
-Për piasì, sern në stranòm diferent.",
+Për piasì sern në stranòm diferent.",
 'loginerror'                 => 'Eror ën rintrand ant ël sistema',
 'createaccounterror'         => 'As peul pa creesse ël cont: $1',
 'nocookiesnew'               => "Sò cont a l'é duvèrt, ma chiel (ò chila) a l'ha nen podù rintré ant ël sistema.
@@ -1280,7 +1280,6 @@ Costa anformassion a sarà pùblica.",
 'right-userrights'            => "Modifiché tùit ij drit ëd n'utent",
 'right-userrights-interwiki'  => "Modifiché ij drit utent dj'utent ansima a d'àutre wiki",
 'right-siteadmin'             => 'Bloché e dësbloché la base ëd dàit',
-'right-reset-passwords'       => "Modifiché le ciav d'àutri utent",
 'right-override-export-depth' => 'Esporté le pàgine ancludend le pàgine colegà fin-a a na profondeur ëd 5',
 'right-sendemail'             => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
 
@@ -1578,9 +1577,8 @@ Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
 'upload_source_file' => "(n'archivi da sò ordinator)",
 
 # Special:ListFiles
-'listfiles-summary'     => "Sta pàgina special-sì a la smon tuti j'archivi ch'a son ëstàit carià.
-Për sòlit j'ùltim carià a resto an sima.
-Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé l'órdin.",
+'listfiles-summary'     => "Sta pàgina special-sì a smon tuti j'archivi ch'a son ëstàit carià.
+Quand filtrà da l'utent, a son mostà mach j'archivi anté che l'utent a l'ha carià la vërsion pi neuva dl'archivi.",
 'listfiles_search_for'  => "Arserché un nòm d'archivi multimojen:",
 'imgfile'               => 'archivi',
 'listfiles'             => "Lista d'archivi",
@@ -3260,6 +3258,10 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 'confirm-purge-top'    => 'Veujdé la memorisassion dë sta pàgina-sì?',
 'confirm-purge-bottom' => 'Spurghé na pàgina a scansela la "cache" e a fà aparì le revision pì neuve.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'Va bin',
+'confirm-unwatch-button' => 'Va bin',
+
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina andré',
 'imgmultipagenext' => 'pàgina anans →',
@@ -3399,7 +3401,7 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 'specialpages-note'              => '----
 * Pàgine speciaj normaj.
 * <span class="mw-specialpagerestricted">Pàgine speciaj riservà.</span>
-* <span class="mw-specialpagecached">Pàgine speciaj mach an memòria local.</span>',
+* <span class="mw-specialpagecached">Pàgine speciaj mach an memòria local (a peulo esse veje).</span>',
 'specialpages-group-maintenance' => 'Rapòrt ëd manutension',
 'specialpages-group-other'       => 'Àutre pàgine speciaj',
 'specialpages-group-login'       => 'Login / registrassion',

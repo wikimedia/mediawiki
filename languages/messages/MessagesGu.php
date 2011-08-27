@@ -1376,7 +1376,6 @@ HTML નાકું ચકાસો',
 'right-userrights'            => 'બધા સભ્યોના હક્કોમાં ફેરફાર કરો',
 'right-userrights-interwiki'  => 'અન્ય વિકિ પરના સભ્યોના હક્કો સંપાદિત કરો.',
 'right-siteadmin'             => 'માહિતી સંચયને ઉઘાડો અને વાસો.',
-'right-reset-passwords'       => 'અન્ય સભ્યોની ગુપ્ત સંજ્ઞાઓ ફરી ગોઠવો',
 'right-override-export-depth' => '૫ સ્તર સુધી જોડાયેલ પાના સહીત પાના નિકાસ કરો',
 'right-sendemail'             => ' અન્ય સભ્યોને ઈ-મેલ મોકલો',
 

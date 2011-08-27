@@ -1484,7 +1484,6 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-userrights'            => 'Muuttaa kaikkia käyttäjäoikeuksia',
 'right-userrights-interwiki'  => 'Muokata käyttäjien oikeuksia muissa wikeissä',
 'right-siteadmin'             => 'Lukita tietokanta',
-'right-reset-passwords'       => 'Alustaa muiden käyttäjien salasanoja',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
 

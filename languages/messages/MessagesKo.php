@@ -1515,7 +1515,6 @@ $1",
 'right-userrights'            => '모든 사용자의 권한 조정',
 'right-userrights-interwiki'  => '다른 위키의 사용자 권한을 조정',
 'right-siteadmin'             => '데이터베이스를 잠그거나 잠금 해제',
-'right-reset-passwords'       => '다른 사용자의 비밀번호를 변경',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail'             => '다른 사용자에게 이메일 보내기',
 

@@ -1327,7 +1327,6 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-userrights'            => "Editar totz os dreitos d'usuario",
 'right-userrights-interwiki'  => "Editar os dreitos d'usuario d'os usuarios d'atros wikis",
 'right-siteadmin'             => 'Trancar y destrancar a base de datos',
-'right-reset-passwords'       => "Reiniciar a contrasenya d'atros usuarios",
 'right-override-export-depth' => 'Exporta pachinas que incluigan as enlazadas dica un fundaria de 5',
 'right-sendemail'             => 'Ninviar un correu electronico a atros usuarios',
 

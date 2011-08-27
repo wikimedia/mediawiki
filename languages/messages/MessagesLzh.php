@@ -1166,7 +1166,6 @@ $1",
 'right-userrights'            => '纂簿權',
 'right-userrights-interwiki'  => '纂另wiki他簿之權',
 'right-siteadmin'             => '鎖與解鎖資料庫',
-'right-reset-passwords'       => '設他簿之符節',
 'right-override-export-depth' => '出有五層深之頁',
 'right-sendemail'             => '擬書傳予他簿',
 

@@ -1534,7 +1534,6 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-userrights'            => 'Upravovať oprávnenia ostatných používateľov',
 'right-userrights-interwiki'  => 'Upravovať oprávnenia používateľov na iných wiki stránkach',
 'right-siteadmin'             => 'Zamykať a odomykať databázu',
-'right-reset-passwords'       => 'Zmeniť heslo iných používateľov',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
 'right-sendemail'             => 'Posielať e-mail ostatným používateľom',
 

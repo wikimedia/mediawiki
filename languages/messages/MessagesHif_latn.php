@@ -1250,7 +1250,6 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'right-userrights'            => 'Sadasya ke adhikar ke badlo',
 'right-userrights-interwiki'  => 'Duusra wiki me sadasya ke adhikar ke badlo',
 'right-siteadmin'             => 'Database ke band karo aur kholo',
-'right-reset-passwords'       => 'Duusra sadasya ke password ke badlo',
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 'right-sendemail'             => 'Duusra sadasya ke lage e-mail bhejo',
 

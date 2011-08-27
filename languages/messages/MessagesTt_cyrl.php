@@ -706,6 +706,9 @@ $2',
 'resetpass-temp-password'   => 'Вакытлы серсүз:',
 
 # Special:PasswordReset
+'passwordreset'              => 'Серсүзне бетерү',
+'passwordreset-text'         => 'Сезнең хисап язмасының параметрлары турында хат алыр өчен, түбәндәгеләрне тутырыгыз',
+'passwordreset-legend'       => 'Серсүзне яңадан кую',
 'passwordreset-username'     => 'Кулланучы исеме:',
 'passwordreset-email'        => 'E-mail адресы',
 'passwordreset-emailelement' => 'Кулланучы исеме: $1
@@ -1017,6 +1020,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdelete-legend'            => 'Чикләүләр урнаштыр:',
 'revdelete-hide-text'         => 'Битнең бу юрамасы текстын яшер',
 'revdelete-hide-image'        => 'Файл эчендәгеләрне качыр',
+'revdelete-hide-name'         => 'Гамәлне һәм объектны яшерү',
 'revdelete-hide-user'         => 'Үзгәртүченең исемен/IP адресын яшер',
 'revdelete-radio-same'        => '(үзгәртмәү)',
 'revdelete-radio-set'         => 'Әйе',

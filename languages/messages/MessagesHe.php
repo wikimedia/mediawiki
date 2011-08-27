@@ -1610,7 +1610,6 @@ $1",
 'right-userrights'            => 'עריכת כל הרשאות המשתמש',
 'right-userrights-interwiki'  => 'עריכת הרשאות המשתמש של משתמשים באתרי ויקי אחרים',
 'right-siteadmin'             => 'נעילת וביטול נעילת בסיס הנתונים',
-'right-reset-passwords'       => 'איפוס סיסמאות של משתמשים אחרים',
 'right-override-export-depth' => 'ייצוא דפים כולל דפים מקושרים עד עומק של חמישה',
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
 

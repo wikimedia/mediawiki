@@ -1128,7 +1128,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'qbsettings-fixedright'     => 'Sefydlog ar y dde',
 'qbsettings-floatingleft'   => 'Yn arnofio ar y chwith',
 'qbsettings-floatingright'  => 'Yn arnofio ar y dde',
-'qbsettings-directionality' => 'Yn sefydlog, ar yr ochr lle ydych yn dechrau ysgrifennu eich iaith',
+'qbsettings-directionality' => "Yn sefydlog, ar yr ochr o'r ddalen lle rydych yn dechrau ysgrifennu eich iaith",
 
 # Preferences page
 'preferences'                   => 'Dewisiadau',
@@ -1353,7 +1353,6 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'right-userrights'            => 'Golygu holl alluoedd defnyddwyr',
 'right-userrights-interwiki'  => "Newid galluoedd defnyddwyr sy'n perthyn i ddefnyddwyr ar wicïau eraill",
 'right-siteadmin'             => "Cloi a datgloi'r databas",
-'right-reset-passwords'       => 'Ailosod cyfrinair defnyddwyr eraill',
 'right-override-export-depth' => 'Allforio tudalennau gan gynnwys tudalennau cysylltiedig hyd at ddyfnder o 5',
 'right-sendemail'             => 'Anfon e-bost at ddefnyddwyr eraill',
 
@@ -1641,8 +1640,7 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 
 # Special:ListFiles
 'listfiles-summary'     => "Rhestr yr holl ffeiliau sydd wedi eu huwchlwytho sydd ar y dudalen hon.
-Trefnir y rhestr yn ôl amser uwchlwytho, gyda'r diweddaraf ar flaen y rhestr.
-Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
+Pan hidlir y rhestr yn ôl defnyddiwr, yr unig rhai a ddangosir o blith y ffeiliau a uwchlwythwyd gan y defnyddiwr, yw'r rhai sydd yn parhau i fod yn ddiwygiad diweddaraf o'r ffeil i gael ei huwchlwytho.",
 'listfiles_search_for'  => "Chwilio am enw'r ddelwedd:",
 'imgfile'               => 'ffeil',
 'listfiles'             => "Rhestr o'r holl ffeiliau",

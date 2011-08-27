@@ -1428,7 +1428,6 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-userrights'            => 'Menyerahkan dan menarik balik sebarang hak pengguna',
 'right-userrights-interwiki'  => 'Menyerahkan dan menarik balik hak pengguna di wiki lain',
 'right-siteadmin'             => 'Mengunci dan membuka kunci pangkalan data',
-'right-reset-passwords'       => 'Mengeset semula kata laluan pengguna lain',
 'right-override-export-depth' => 'Mengeksport laman termasuk laman dipaut sehingga kedalaman 5',
 'right-sendemail'             => 'Mengirim e-mel kepada pengguna-pengguna lain',
 

@@ -1312,7 +1312,6 @@ Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'right-userrights'            => "Modifica tuti quanti i diriti de l'utente",
 'right-userrights-interwiki'  => 'Modifica i diriti de utenti de altri siti wiki',
 'right-siteadmin'             => 'Bloca e desbloca el database',
-'right-reset-passwords'       => 'Reinposta la password de altri utenti',
 'right-override-export-depth' => 'Esporta le pàxene, includendo le pàxene ligàe fin a na profondità de 5',
 'right-sendemail'             => 'Mandarghe e-mail a cheialtri utenti',
 

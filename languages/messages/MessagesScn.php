@@ -1228,7 +1228,6 @@ L'operazioni nun pò èssiri annullata.",
 'right-userrights'            => "Cancia tutti li diritta di l'utilizzaturi",
 'right-userrights-interwiki'  => "Cancia li diritti di l'utilizzatura di àutri wiki",
 'right-siteadmin'             => 'Blocca a sblocca lu databasi',
-'right-reset-passwords'       => 'Reimposta la password di autri utenti',
 'right-override-export-depth' => 'Esporta pàggini cumpresi li pàggini culligati finu ô quintu liveddu',
 
 # User rights log

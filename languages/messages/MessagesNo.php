@@ -1547,7 +1547,6 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'right-userrights'            => 'Redigere alle brukerrettigheter',
 'right-userrights-interwiki'  => 'Redigere rettigheter for brukere på andre wikier',
 'right-siteadmin'             => 'Låse og låse opp databasen',
-'right-reset-passwords'       => 'Nullstille andre brukeres passord',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkede sider til en dypde på 5',
 'right-sendemail'             => 'Send e-post til andre brukere',
 

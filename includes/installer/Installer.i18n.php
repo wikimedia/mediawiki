@@ -587,6 +587,7 @@ $messages['qqq'] = array(
 	'config-page-install' => '{{Identical|Install}}',
 	'config-page-copying' => 'This is a link to the full GPL text',
 	'config-restart' => 'Button text to confirm the installation procedure has to be restarted.',
+	'config-sidebar' => 'Maximum width for words is 24 characters. Only visible part of the translation counts to this limit.',
 	'config-env-php' => 'Parameters:
 * $1 is the version of PHP that has been installed.',
 	'config-no-db' => 'Do not translate: <code>./configure --with-mysql</code>.
@@ -2268,12 +2269,13 @@ $messages['bjn'] = array(
 );
 
 /** Bengali (বাংলা)
+ * @author Bellayet
  * @author Wikitanvir
  */
 $messages['bn'] = array(
 	'config-desc' => 'মিডিয়াউইকির জন্য ইন্সটলার',
 	'config-title' => 'মিডিয়াউইকি $1 ইন্সটলেশন',
-	'config-information' => 'তথ্যাদি',
+	'config-information' => 'তথ্য',
 	'config-localsettings-key' => 'হালনাগাদ কি',
 	'config-session-error' => 'সেশন শুরুতে ত্রুটি: $1',
 	'config-your-language' => 'আপনার ভাষা:',
@@ -3088,7 +3090,7 @@ Dieses Programm wird in der Hoffnung verteilt, dass es nützlich sein wird, alle
 
 Eine <doclink href=Copying>Kopie der ''GNU General Public License''</doclink> sollte zusammen mit diesem Programm verteilt worden sein. Sofern dies nicht der Fall war, kann eine Kopie bei der Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftlich angefordert oder auf deren Website [http://www.gnu.org/copyleft/gpl.html online gelesen] werden.",
 	'config-sidebar' => '* [http://www.mediawiki.org Website von MediaWiki]
-* [http://www.mediawiki.org/wiki/Help:Contents Nutzeranleitung]
+* [http://www.mediawiki.org/wiki/Help:Contents Benutzeranleitung]
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratorenanleitung]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Häufig gestellte Fragen]
 ----
@@ -3393,7 +3395,7 @@ Diese Mailingliste sollte abonniert werden. Zudem sollte die MediaWiki-Installat
 Bitte eine E-Mail-Adresse angeben, sofern die Mailingliste abonniert werden soll.',
 	'config-almost-done' => 'Der Vorgang ist fast abgeschlossen!
 Die verbliebenen Konfigurationseinstellungen können übersprungen und das Wiki umgehend installiert werden.',
-	'config-optional-continue' => 'Sollen weitere Konfigurationseinstellungen vorgenommen werden?',
+	'config-optional-continue' => 'Ja, es sollen weitere Konfigurationseinstellungen vorgenommen werden.',
 	'config-optional-skip' => 'Nein, das Wiki soll nun installiert werden.',
 	'config-profile' => 'Profil der Benutzerberechtigungen:',
 	'config-profile-wiki' => 'offenes Wiki',
@@ -3403,10 +3405,10 @@ Die verbliebenen Konfigurationseinstellungen können übersprungen und das Wiki 
 	'config-profile-help' => "Wikis sind am nützlichsten, wenn so viele Menschen als möglich Bearbeitungen vornehmen können.
 Mit MediaWiki ist es einfach die letzten Änderungen nachzuvollziehen und unbrauchbare Bearbeitungen, beispielsweise von unbedarften oder böswilligen Benutzern, rückgängig zu machen.
 
-Allerdings finden etliche Menschen Wikis auch mit anderen Bearbeitungskonzepten sinnvoll. Manchmal ist es auch nicht einfach alle Beteiligten vollständig von den Vorteilen des „Wiki-Prinzips” zu überzeugen. Darum ist eine Auswahl möglich.
+Allerdings finden etliche Menschen Wikis auch mit anderen Bearbeitungskonzepten sinnvoll. Manchmal ist es zudem nicht einfach alle Beteiligten von den Vorteilen des „Wiki-Prinzips” zu überzeugen. Darum ist diese Auswahl möglich.
 
 Ein '''{{int:config-profile-wiki}}''' ermöglicht es jedermann, sogar ohne über ein Benutzerkonto zu verfügen, Bearbeitungen vorzunehmen.
-Ein Wiki bei dem die '''{{int:config-profile-no-anon}}''' ist, bietet höhere Verantwortlichkeit des Einzelnen für seine Bearbeitungen, könnte allerdings Personen mit gelegentlichen Bearbeitungen abschrecken. Ein Wiki mit '''{{int:config-profile-fishbowl}}''' gestattet es nur ausgewählten Benutzern Bearbeitungen vorzunehmen. Allerdings kann dabei die Allgemeinheit die Seiten immer noch betrachten und Änderungen nachvollziehen. Ein '''{{int:config-profile-private}}''' gestattet es nur ausgewählten Benutzern, Seiten zu betrachten sowie zu bearbeiten.
+Ein Wiki bei dem die '''{{int:config-profile-no-anon}}''' ist, fordert von den Benutzern eine höhere Verantwortung für ihre Bearbeitungen ein, könnte allerdings Personen, die nur gelegentlich Bearbeitungen vornehmen wollen, abschrecken. Ein Wiki für '''{{int:config-profile-fishbowl}}''' gestattet es nur bestimmten Benutzern Bearbeitungen vorzunehmen. Allerdings kann dabei die Allgemeinheit die Seiten immer noch betrachten und Änderungen nachvollziehen. Ein '''{{int:config-profile-private}}''' gestattet es nur ausgewählten Benutzern, Seiten zu betrachten sowie zu bearbeiten.
 
 Komplexere Konzepte zur Zugriffssteuerung können erst nach abgeschlossenem Installationsvorgang eingerichtet werden. Hierzu gibt es weitere Informationen auf der Website mit der [http://www.mediawiki.org/wiki/Manual:User_rights entsprechenden Anleitung].",
 	'config-license' => 'Lizenz:',
@@ -3493,7 +3495,7 @@ Sie könnten zusätzliche Konfigurierung erfordern, können aber bereits jetzt a
 	'config-install-alreadydone' => "'''Warnung:''' Es wurde eine vorhandene MediaWiki-Installation gefunden.
 Es muss daher mit den nächsten Seite weitergemacht werden.",
 	'config-install-begin' => 'Durch Drücken von „{{int:config-continue}}“ wird die Installation von MediaWiki gestartet.
-Sofern Änderungen vorgenommen werden sollen, kann man auf „Zurück“ klicken.',
+Sofern Änderungen vorgenommen werden sollen, kann man auf „← Zurück“ klicken.',
 	'config-install-step-done' => 'erledigt',
 	'config-install-step-failed' => 'gescheitert',
 	'config-install-extensions' => 'Einschließlich Erweiterungen',
@@ -3540,15 +3542,15 @@ MediaWiki wurde erfolgreich installiert.
 Das Installationsprogramm hat die Datei <code>LocalSettings.php</code> erzeugt.
 Sie enthält alle Konfigurationseinstellungen.
 
-Diese Datei muss nun heruntergeladen und anschließend in das Stammverzeichnis der MediaWiki-Installation hochgeladen werden. Dies ist dasselbe Verzeichnis, in dem sich auch die Datei <code>index.php</code> befindet. Das Herunterladen sollte automatisch gestartet worden sein.
+Diese Datei muss nun heruntergeladen und anschließend in das Stammverzeichnis der MediaWiki-Installation hochgeladen werden. Dies ist dasselbe Verzeichnis, in dem sich auch die Datei <code>index.php</code> befindet. Das Herunterladen sollte inzwischen automatisch gestartet worden sein.
 
-Sofern dies nicht der Fall war, oder das Herunterladen unterbrochen wurde, kann der Vorgang durch einen Klick auf untenstehenden Link erneut gestartet werden:
+Sofern dies nicht der Fall war, oder das Herunterladen unterbrochen wurde, kann der Vorgang durch einen Klick auf den folgenden Link erneut gestartet werden:
 
 $3
 
-'''Hinweis:''' Sofern das Herunterladen der Konfigurationsdatei nicht jetzt durchgeführt wird, wird sie zu einem späteren Zeitpunkt nach dem Beenden des Installationsprogramms nicht mehr zur Verfügung stehen.
+'''Hinweis:''' Sofern das Herunterladen der Konfigurationsdatei nicht jetzt durchgeführt wird, wird sie zu einem späteren Zeitpunkt nach Beenden des Installationsprogramms, nicht mehr zur Verfügung stehen.
 
-Sobald dies alles erledigt wurde, kann auf das '''[$2 Wiki zugegriffen werden]'''.",
+Sobald alles erledigt wurde, kann auf das '''[$2 Wiki zugegriffen werden]'''. Wir wünschen viel Spaß mit dem Wiki.",
 	'config-download-localsettings' => 'LocalSettings.php herunterladen',
 	'config-help' => 'Hilfe',
 	'mainpagetext' => "'''MediaWiki wurde erfolgreich installiert.'''",

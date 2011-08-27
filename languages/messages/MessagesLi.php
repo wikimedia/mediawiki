@@ -1340,7 +1340,6 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'right-userrights'            => 'Alle gebroekersrechte bewerke',
 'right-userrights-interwiki'  => "Gebroekersrechte van gebroekers in angere wiki's wijzige",
 'right-siteadmin'             => 'De database blokkere en weer vriegaeve',
-'right-reset-passwords'       => 'Wachtwoorde van andere gebroekers opnieuw instelle',
 'right-override-export-depth' => "Export paazjes midin geslinkdje paazjes mit 'n deepdje ven 5",
 'right-sendemail'             => 'Versjik e-mail aan anger gebroekers',
 

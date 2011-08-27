@@ -1518,7 +1518,6 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'right-userrights'            => 'Uređivanje svih suradničkih prava',
 'right-userrights-interwiki'  => 'Uređivanje suradničkih prava na drugim Wikijima',
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
-'right-reset-passwords'       => "Poništi (''resetiraj'') lozinku drugog suradnika",
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 

@@ -1230,7 +1230,6 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'right-userrights'            => 'Ähli ulanyjy hukuklaryny redaktirle',
 'right-userrights-interwiki'  => 'Başga wikilerdäki ulanyjylaryň ulanyjy hukuklaryny redaktirle',
 'right-siteadmin'             => 'Maglumat bazasyny gulpla we aç',
-'right-reset-passwords'       => 'Başga ulanyjylaryň parollaryny başky ýagdaýyna getir',
 'right-override-export-depth' => 'Sahypalary, şol sanda çykgytly sahypalary 5-e çenli çuňlukda eksportirle',
 'right-sendemail'             => 'Başga ulanyjylara e-poçta iber',
 

@@ -1419,7 +1419,6 @@ teisės",
 'right-userrights'            => 'Redaguoti visų naudotojų teises',
 'right-userrights-interwiki'  => 'Keisti naudotojų teises kitose wiki svetainėse',
 'right-siteadmin'             => 'Atrakinti ir užrakinti duomenų bazę',
-'right-reset-passwords'       => 'Atstatyti kitų naudotojų slaptažodžius',
 'right-override-export-depth' => 'Eksportuoti puslapius įtraukiant susietus puslapius iki 5 lygio gylio',
 'right-sendemail'             => 'Siųsti el. laišką kitiems naudotojams',
 

@@ -910,7 +910,6 @@ Your e-mail address is not revealed when other users contact you.
 'right-mergehistory'         => 'စာမျက်နှာများ၏ရာဇဝင်များကို ပေါင်းရန်',
 'right-userrights'           => 'အသုံးပြုသူ၏အခွင့်အရေးများအားလုံးကို တည်းဖြတ်ရန်',
 'right-userrights-interwiki' => 'အခြားဝီကီများမှ အသုံးပြုသူများ၏ အသုံးပြုသူအခွင့်အရေးများကို တည်းဖြတ်ရန်',
-'right-reset-passwords'      => 'အခြားအသုံးပြုသူများ၏ စကားဝှက်များကို ပြန်သတ်မှတ်ရန်',
 'right-sendemail'            => 'အခြားအသုံးပြုသူများကို အီးမေးပို့ရန်',
 
 # User rights log

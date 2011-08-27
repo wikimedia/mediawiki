@@ -1418,7 +1418,6 @@ $1",
 'right-userrights'            => '編輯所有用戶的權限',
 'right-userrights-interwiki'  => '編輯在其它wiki上的用戶權限',
 'right-siteadmin'             => '鎖定和解除鎖定資料庫',
-'right-reset-passwords'       => '重設其他用戶的密碼',
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
 

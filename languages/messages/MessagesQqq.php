@@ -1644,7 +1644,6 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 'right-userrights'            => '{{doc-right|userrights}}',
 'right-userrights-interwiki'  => '{{doc-right|userrights-interwiki}}',
 'right-siteadmin'             => '{{doc-right|siteadmin}}',
-'right-reset-passwords'       => '{{doc-right}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
 'right-sendemail'             => '{{doc-right}}',
 

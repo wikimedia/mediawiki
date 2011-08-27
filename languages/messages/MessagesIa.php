@@ -881,6 +881,9 @@ Le administrator qui lo blocava dava iste explication: $1",
 'templatesused'                    => '{{PLURAL:$1|Patrono|Patronos}} usate in iste pagina:',
 'templatesusedpreview'             => '{{PLURAL:$1|Patrono|Patronos}} usate in iste previsualisation:',
 'templatesusedsection'             => '{{PLURAL:$1|Patrono|Patronos}} usate in iste section:',
+'distanttemplatesused'             => '{{PLURAL:$1|Patrono|Patronos}} distante usate in iste pagina:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Patrono|Patronos}} distante usate in iste previsualisation:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Patrono|Patronos}} distante usate in iste section:',
 'template-protected'               => '(protegite)',
 'template-semiprotected'           => '(semi-protegite)',
 'hiddencategories'                 => 'Iste pagina es membro de {{PLURAL:$1|1 categoria|$1 categorias}} celate:',
@@ -1200,7 +1203,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'qbsettings-fixedright'     => 'Fixe a dextra',
 'qbsettings-floatingleft'   => 'Flottante a sinistra',
 'qbsettings-floatingright'  => 'Flottante a dextra',
-'qbsettings-directionality' => 'Fixe, dependente del direction de scriptura e del lingua',
+'qbsettings-directionality' => 'Fixe, dependente del direction de scriptura de tu lingua',
 
 # Preferences page
 'preferences'                   => 'Preferentias',
@@ -1425,7 +1428,6 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-userrights'            => 'Modificar tote le derectos de usator',
 'right-userrights-interwiki'  => 'Modificar le derectos de usatores in altere wikis',
 'right-siteadmin'             => 'Blocar e disblocar le base de datos',
-'right-reset-passwords'       => 'Redefinir le contrasigno de altere usatores',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
 
@@ -1732,8 +1734,7 @@ Pote esser preferite reprovar quando le sito es minus occupate.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Iste pagina special monstra tote le files incargate.
-Per predefinition le ultime files incargate se monstra al initio del lista.
-Tu pote reordinar le lista con un clic super le titulo de un columna.',
+Si un filtro per usator es active, es monstrate solmente le files del quales le usator in question ha incargate le version le plus recente.',
 'listfiles_search_for'  => 'Cercar un nomine de media:',
 'imgfile'               => 'file',
 'listfiles'             => 'Lista de files',

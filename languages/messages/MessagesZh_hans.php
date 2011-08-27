@@ -1443,7 +1443,6 @@ $1",
 'right-userrights'            => '编辑所有用户的权限',
 'right-userrights-interwiki'  => '编辑在其它wiki上的用户权限',
 'right-siteadmin'             => '锁定和解除锁定数据库',
-'right-reset-passwords'       => '重设其他用户的密码',
 'right-override-export-depth' => '导出含有五层深度链接页面之页面',
 'right-sendemail'             => '发电子邮件给其他用户',
 

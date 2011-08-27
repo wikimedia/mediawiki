@@ -1338,7 +1338,7 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'mwsuggest-disable'                => 'Dèsactivar los consèlys AJAX',
 'searcheverything-enable'          => 'Rechèrchiér dens tôs los èspâços de noms',
 'searchrelated'                    => 'raportâ',
-'searchall'                        => 'Tôs',
+'searchall'                        => 'tot',
 'showingresults'                   => "Visualisacion de '''$1''' rèsultat{{PLURAL:$1||s}} dês lo numerô '''$2'''.",
 'showingresultsnum'                => "Visualisacion de '''$3''' rèsultat{{PLURAL:$3||s}} dês lo numerô '''$2'''.",
 'showingresultsheader'             => "{{PLURAL:$5|Rèsultat '''$1'''|Rèsultats '''$1 - $2'''}} de '''$3''' por '''$4'''",
@@ -1517,7 +1517,7 @@ Ceta enformacion serat publica.',
 'group-sysop'         => 'Administrators',
 'group-bureaucrat'    => 'Grata-papiérs',
 'group-suppress'      => 'Supèrvisors',
-'group-all'           => 'Tôs',
+'group-all'           => '(tôs)',
 
 'group-user-member'          => 'Utilisator',
 'group-autoconfirmed-member' => 'Utilisator encartâ',
@@ -1591,7 +1591,6 @@ Ceta enformacion serat publica.',
 'right-userrights'            => 'Changiér tôs los drêts a un utilisator',
 'right-userrights-interwiki'  => 'Changiér los drêts ux utilisators sur d’ôtros vouiquis',
 'right-siteadmin'             => 'Vèrrolyér ou dèvèrrolyér la bâsa de balyês',
-'right-reset-passwords'       => 'Changiér lo mot de pâssa d’ôtros utilisators',
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
 
@@ -3556,7 +3555,7 @@ Los ôtros champs seront cachiês per dèfôt.
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tot',
-'namespacesall' => 'Tôs',
+'namespacesall' => 'tôs',
 'monthsall'     => 'tôs',
 'limitall'      => 'tôs',
 

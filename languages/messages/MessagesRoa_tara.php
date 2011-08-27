@@ -1308,7 +1308,6 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'right-userrights'            => 'Cange tutte le deritte utende',
 'right-userrights-interwiki'  => "Cange le deritte utende de le utinde sus a l'otre Uicchi",
 'right-siteadmin'             => "Blocche e sblocche 'u database",
-'right-reset-passwords'       => "Azzere l'otre password de l'utinde",
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
 

@@ -1415,7 +1415,6 @@ $1",
 'right-userrights'            => '編輯全部用戶嘅權限',
 'right-userrights-interwiki'  => '編輯響其它wiki嘅用戶權限',
 'right-siteadmin'             => '鎖同解鎖資料庫',
-'right-reset-passwords'       => '重設其他用戶嘅密碼',
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-sendemail'             => '寄電郵畀其他用戶',
 

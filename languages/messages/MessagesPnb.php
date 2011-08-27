@@ -1064,10 +1064,23 @@ $messages = array(
 # Special:ListUsers
 'listusers-submit'   => 'وکھاؤ',
 'listusers-noresult' => 'ورتن آلا نئیں لبیا۔',
+'listusers-blocked'  => '(روکیا گیا)',
+
+# Special:ActiveUsers
+'activeusers'            => 'کم کرن والیاں دی لسٹ',
+'activeusers-intro'      => 'اے اوناں ورتن والیاں دی لسٹ اے جنان پچھلے $1 دناں چ کم کیتا اے۔',
+'activeusers-from'       => 'ورتن والے ایس توں شروع ہون والے دسو:',
+'activeusers-hidebots'   => 'بوٹ چھپاؤ',
+'activeusers-hidesysops' => 'مکھۓ لکاؤ',
+'activeusers-noresult'   => 'کوئی ورتن والا نئیں لبیا۔',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'ورتاوا بنان آلی لاگ',
-'newuserlog-create-entry' => 'نوا ورتن آلا',
+'newuserlogpage'              => 'ورتاوا بنان آلی لاگ',
+'newuserlogpagetext'          => 'اے ورتن والا بنان دی لاگ اے۔',
+'newuserlog-byemail'          => 'کنجی ای-میل راہ پیج دتی گئی۔',
+'newuserlog-create-entry'     => 'نوا ورتن آلا',
+'newuserlog-create2-entry'    => '$1 نواں اکاؤنٹ بنایا گیا۔',
+'newuserlog-autocreate-entry' => 'کھاتہ اپنے آپ کھولیا گیا۔',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'ٹولی',
@@ -1199,13 +1212,21 @@ $messages = array(
 'month'               => 'مہینے توں (تے پہلاں):',
 'year'                => 'سال توں (تے پہلاں):',
 
-'sp-contributions-newbies'     => 'صرف نویں ورتن والیاں دے کم وکھاؤ',
-'sp-contributions-newbies-sub' => 'نویں کھاتیاں آستے',
-'sp-contributions-blocklog'    => 'لاگ روکو',
-'sp-contributions-talk'        => 'گل بات',
-'sp-contributions-search'      => 'حصے پان آلیاں دی تلاش',
-'sp-contributions-username'    => 'آئی پی پتہ یا ورتن آلا ناں:',
-'sp-contributions-submit'      => 'کھوجو',
+'sp-contributions-newbies'             => 'صرف نویں ورتن والیاں دے کم وکھاؤ',
+'sp-contributions-newbies-sub'         => 'نویں کھاتیاں آستے',
+'sp-contributions-blocklog'            => 'لاگ روکو',
+'sp-contributions-uploads'             => 'چڑھائیاں فائلاں',
+'sp-contributions-logs'                => 'لاگز',
+'sp-contributions-talk'                => 'گل بات',
+'sp-contributions-userrights'          => 'ورتن والیاں دے حقاں دا سعاب کتاب',
+'sp-contributions-blocked-notice'      => 'ایس ورتن والے تے اجکل روک اے۔ 
+روکن لاگ چ ایدے بارے تھلے لکھیا اے۔',
+'sp-contributions-blocked-notice-anon' => 'ایس آئی پی پتے تے اجکل روک اے۔ 
+روکن لاگ چ ایدے بارے تھلے لکھیا اے۔',
+'sp-contributions-search'              => 'حصے پان آلیاں دی تلاش',
+'sp-contributions-username'            => 'آئی پی پتہ یا ورتن آلا ناں:',
+'sp-contributions-toponly'             => 'صرف اوہ تبدیلیاں وکھاؤ جیہڑیاں سب توں نیڑے ویلے ہویاں نیں۔',
+'sp-contributions-submit'              => 'کھوجو',
 
 # What links here
 'whatlinkshere'            => 'ایتھے کیدا تعلق اے',
@@ -1213,6 +1234,7 @@ $messages = array(
 'whatlinkshere-page'       => 'صفحہ:',
 'linkshere'                => "تھلے دتے گۓ صفحے اس دے نال جڑدے نے '''[[:$1]]''':",
 'nolinkshere'              => "'''[[:$1]]''' دے نال کسے دا جوڑ نہیں",
+'nolinkshere-ns'           => "چنے ناں چ کسے صفے دا '''[[:$1]]''' نال جوڑ نئیں۔",
 'isredirect'               => 'ریڈائرکٹ صفحہ',
 'istemplate'               => 'ملن',
 'isimage'                  => 'مورت دا جوڑ',
@@ -1222,43 +1244,91 @@ $messages = array(
 'whatlinkshere-hideredirs' => '$1 ریڈائریکٹس',
 'whatlinkshere-hidetrans'  => '$1 ٹرانسکلوژن',
 'whatlinkshere-hidelinks'  => '$1 جوڑ',
+'whatlinkshere-hideimages' => '$1 مورت جوڑ',
 'whatlinkshere-filters'    => 'نتارے',
 
 # Block/unblock
-'blockip'                  => 'اس ورتن والے نو روکو',
-'blockip-legend'           => 'ورتن آلے نوں روکو',
-'ipadressorusername'       => 'آئی پی پتہ یا ورتن آلے دا ناں:',
-'ipbexpiry'                => 'انت:',
-'ipbreason'                => 'وجہ:',
-'ipbreasonotherlist'       => 'ہور وجہ',
-'ipbcreateaccount'         => 'کھاتہ کھولنا روکو',
-'ipbemailban'              => 'ورتن آلے نوں ای میل پیجن توں روکو',
-'ipbsubmit'                => 'اس ورتن آلے نوں روکو',
-'ipbother'                 => 'دوجے ویلے:',
-'ipboptions'               => 'دو کینٹے:2 hours,1 دن:1 day,3 دن:3 days,1 ہفتہ:1 week,2 ہفتے:2 weeks,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year,بے انت:infinite',
-'ipbotheroption'           => 'دوجا',
-'ipbotherreason'           => 'دوجیاں ہور وجہ:',
-'badipaddress'             => 'آئی پی پتہ ٹھیک نئیں',
-'blockipsuccesssub'        => 'روک کامیاب',
-'ipb-blocklist'            => 'روکیاں گياں نوں ویکھو',
-'unblockip'                => 'ورتن آلے تے روک بند کرو',
-'ipblocklist'              => 'بند کیتے گۓ آئی پی پتے تے ورتن والیاں دے ناں',
-'ipblocklist-submit'       => 'کھوجو',
-'infiniteblock'            => 'بے انت',
-'emailblock'               => 'ای میل روک دتی گئی اے',
-'blocklink'                => 'روک',
-'unblocklink'              => 'روک ختم',
-'change-blocklink'         => 'روک نوں بدلو',
-'contribslink'             => 'حصے داری',
-'blocklogpage'             => 'لاگ روکو',
-'blocklogentry'            => 'روک دتا گیا تے اے رکاوٹ دا ویلا $2 $3 مک جاۓ گا [[$1]]',
-'unblocklogentry'          => '$1 توں روک ہٹا لئی گئی اے',
-'block-log-flags-nocreate' => 'کھاتا کھولنے تے پابندی اے',
-'block-log-flags-noemail'  => 'ای میل روکی گئی اے',
-'ipb_already_blocked'      => '"$1" پہلاں توں ہی روکیا ہویا اے۔',
-'blockme'                  => 'مینوں روکو',
-'proxyblocker-disabled'    => 'اس کم نوں روک دتا گیا اے۔',
-'proxyblocksuccess'        => 'ہوگیا۔',
+'autoblockid'                 => 'اپنے آپ روک #$1',
+'block'                       => 'ورتن آلے نوں روکو',
+'unblock'                     => 'ورتن آلے تے روک بند کرو',
+'blockip'                     => 'اس ورتن والے نو روکو',
+'blockip-title'               => 'ورتن آلے نوں روکو',
+'blockip-legend'              => 'ورتن آلے نوں روکو',
+'ipadressorusername'          => 'آئی پی پتہ یا ورتن آلے دا ناں:',
+'ipbexpiry'                   => 'انت:',
+'ipbreason'                   => 'وجہ:',
+'ipbreasonotherlist'          => 'ہور وجہ',
+'ipbreason-dropdown'          => '*روکن دیاں عام وجہاں
+** غلط جانکاری دینا
+** صفیاں توں مواد مٹانا
+** بارلیاں ویب سائٹاں نال غلط جوڑ جوڑنا
+** خراب / احمفانہ مواد صفیاں چ پانا
+** دوجیاں نوں ڈرانا
+** کھاتیاں نوں خراب کرنا
+** ناں منیا جان والا ورتن ناں ورتنا',
+'ipb-hardblock'               => 'لاگ ان ہووے ورتن والیاں نوں  ایس آئی پی پتے نوں ورتن توں روکو',
+'ipbcreateaccount'            => 'کھاتہ کھولنا روکو',
+'ipbemailban'                 => 'ورتن آلے نوں ای میل پیجن توں روکو',
+'ipbenableautoblock'          => 'اپنے آپ ای ایس ورتن والے نے جیہڑا آخری آئی پی پتہ ورتیا اے اونوں روکو، تے کوئی وی فیر ورتے جان والے آئی پی پتے۔',
+'ipbsubmit'                   => 'اس ورتن آلے نوں روکو',
+'ipbother'                    => 'دوجے ویلے:',
+'ipboptions'                  => 'دو کینٹے:2 hours,1 دن:1 day,3 دن:3 days,1 ہفتہ:1 week,2 ہفتے:2 weeks,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year,بے انت:infinite',
+'ipbotheroption'              => 'دوجا',
+'ipbotherreason'              => 'دوجیاں ہور وجہ:',
+'badipaddress'                => 'آئی پی پتہ ٹھیک نئیں',
+'blockipsuccesssub'           => 'روک کامیاب',
+'ipb-edit-dropdown'           => 'روک دی وجہ تبدیل کرو',
+'ipb-unblock-addr'            => '$1 توں روک ہٹاؤ',
+'ipb-unblock'                 => 'ورتن والا یا آئی پی پتہ کھولو',
+'ipb-blocklist'               => 'روکیاں گياں نوں ویکھو',
+'ipb-blocklist-contribs'      => '$1 دے کم',
+'unblockip'                   => 'ورتن آلے تے روک بند کرو',
+'unblocked-range'             => '$1 توں روک ہٹا دتی گئی اے',
+'unblocked-id'                => 'روک $1 ہٹادتی گئی اے۔',
+'blocklist'                   => 'روکے گۓ ورتن والے',
+'ipblocklist'                 => 'بند کیتے گۓ آئی پی پتے تے ورتن والیاں دے ناں',
+'ipblocklist-legend'          => 'روکیا گیا ورتن والا لبو',
+'blocklist-userblocks'        => 'روکے کۓ کھاتے لکاؤ',
+'blocklist-tempblocks'        => 'تھوڑے چر لئی روکے گۓ لکاؤ',
+'blocklist-addressblocks'     => 'کلے آئی پی بلاکس لکاؤ',
+'blocklist-rangeblocks'       => 'رینج روکے گۓ لکاؤ',
+'blocklist-timestamp'         => 'ویلے دی مہر',
+'blocklist-target'            => 'تارگٹ',
+'blocklist-expiry'            => 'انت ہوندا اے:',
+'blocklist-reason'            => 'وجہ:',
+'ipblocklist-submit'          => 'کھوجو',
+'ipblocklist-localblock'      => 'لوکل روک',
+'infiniteblock'               => 'بے انت',
+'anononlyblock'               => 'گمنام',
+'noautoblockblock'            => 'اپنے آپ روک نکارہ',
+'createaccountblock'          => 'کھاتا کھولنے تے پابندی اے',
+'emailblock'                  => 'ای میل روک دتی گئی اے',
+'blocklist-nousertalk'        => 'اپنا گل بات والا صفہ آپ تبدیل نئیں کرسکدا۔',
+'ipblocklist-empty'           => 'روک لسٹ خالی اے۔',
+'ipblocklist-no-results'      => 'پچھیا گیا IP پتے نوں نئیں روکیا گیا۔',
+'blocklink'                   => 'روک',
+'unblocklink'                 => 'روک ختم',
+'change-blocklink'            => 'روک نوں بدلو',
+'contribslink'                => 'حصے داری',
+'blocklogpage'                => 'لاگ روکو',
+'blocklog-showsuppresslog'    => 'اے ورتن والا روکیا گیا اے تے لکیا سی۔
+روک لاگ تھلے ویکھن لئی دتی گئی اے۔',
+'blocklogentry'               => 'روک دتا گیا تے اے رکاوٹ دا ویلا $2 $3 مک جاۓ گا [[$1]]',
+'reblock-logentry'            => 'روک سیٹنگ [[$1]] لئی بدل دتی گئی اے جیدا مکن ویلہ $2 $3 اے۔',
+'unblocklogentry'             => '$1 توں روک ہٹا لئی گئی اے',
+'block-log-flags-anononly'    => 'گم نام ورتن آلا',
+'block-log-flags-nocreate'    => 'کھاتا کھولنے تے پابندی اے',
+'block-log-flags-noautoblock' => 'اپنے آپ روک نکارہ',
+'block-log-flags-noemail'     => 'ای میل روکی گئی اے',
+'block-log-flags-nousertalk'  => 'اپنا گل بات والا صفہ آپ تبدیل نئیں کرسکدا۔',
+'block-log-flags-hiddenname'  => 'ورتن والے دا ناں لکیا',
+'ipb_expiry_invalid'          => 'مکن ویلہ مک گیا۔',
+'ipb_expiry_temp'             => 'لکے ورتن والے تے روک پکی ہونی چائیدی اے۔',
+'ipb_hide_invalid'            => 'ایس کھاتے نوں نئیں روکیا جاسکیا، ایدے چ کئی تبدیلیاں ہوسکدیاں نئیں',
+'ipb_already_blocked'         => '"$1" پہلاں توں ہی روکیا ہویا اے۔',
+'blockme'                     => 'مینوں روکو',
+'proxyblocker-disabled'       => 'اس کم نوں روک دتا گیا اے۔',
+'proxyblocksuccess'           => 'ہوگیا۔',
 
 # Developer tools
 'lockdb'              => 'ڈیٹابیس تے تالا لاؤ',
@@ -1314,14 +1384,19 @@ $messages = array(
 'export-submit'     => 'برامد کرو',
 'export-addcattext' => 'اس ٹولی توں صفحے شامل کرو:',
 'export-addcat'     => 'شامل کرو',
+'export-addnstext'  => 'ناں توں صفے جوڑو:',
+'export-addns'      => 'جوڑو',
 'export-download'   => 'فائل دے طور تے بچاؤ',
 'export-templates'  => 'سچہ شامل کرو',
+'export-pagelinks'  => 'جوڑ والے صفے جوڑو ایتھوں تک:',
 
 # Namespace 8 related
-'allmessages'        => 'سسٹم سنیآ',
-'allmessagesname'    => 'ناں',
-'allmessagesdefault' => 'ڈیفالٹ لکھائی',
-'allmessagescurrent' => 'موجودہ لکھائی',
+'allmessages'                   => 'سسٹم سنیآ',
+'allmessagesname'               => 'ناں',
+'allmessagesdefault'            => 'ڈیفالٹ لکھائی',
+'allmessagescurrent'            => 'موجودہ لکھائی',
+'allmessages-filter-legend'     => 'فلٹر',
+'allmessages-filter-unmodified' => 'ناں بدلیا گیا',
 
 # Thumbnails
 'thumbnail-more'  => 'وڈا کرو',
@@ -1595,6 +1670,8 @@ $messages = array(
 'exif-subjectdistancerange-2' => 'نیڑے دا منظر',
 'exif-subjectdistancerange-3' => 'دور دا منظر',
 
+'exif-gpsmeasuremode-3' => 'تن پاسیاں دا ناپ',
+
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'کلومیٹر فی کینٹہ',
 'exif-gpsspeed-m' => 'میل فی کینٹہ',
@@ -1602,10 +1679,59 @@ $messages = array(
 
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'کلومیٹر',
+'exif-gpsdestdistance-m' => 'میل',
+'exif-gpsdestdistance-n' => 'سمندری میل',
+
+'exif-gpsdop-excellent' => 'شاندار ($1)',
+'exif-gpsdop-good'      => 'اچھا ($1)',
+'exif-gpsdop-moderate'  => 'درمیانہ ($1)',
+'exif-gpsdop-fair'      => 'سوہنا ($1)',
+'exif-gpsdop-poor'      => 'ماڑا ($1)',
+
+'exif-objectcycle-a' => 'صرف سویرے',
+'exif-objectcycle-p' => 'صرف شام',
+'exif-objectcycle-b' => 'صرف شام تے سویرے',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'سدھا راہ',
 'exif-gpsdirection-m' => 'مقناطیسی راہ',
+
+'exif-ycbcrpositioning-1' => 'وشکار',
+'exif-ycbcrpositioning-2' => 'رلیاں تھانواں',
+
+'exif-dc-contributor' => 'حصےدار',
+'exif-dc-date'        => 'تریخ',
+'exif-dc-publisher'   => 'چھاپن والا',
+'exif-dc-relation'    => 'رلدا میڈیا',
+'exif-dc-rights'      => 'حق',
+'exif-dc-source'      => 'سورس میڈیا',
+'exif-dc-type'        => 'میڈیا منڈ',
+
+'exif-rating-rejected' => 'چھڈیا',
+
+'exif-isospeedratings-overflow' => '65535 نالوں وڈا',
+
+'exif-iimcategory-ace' => 'آرٹس، رہتل تے مزے',
+'exif-iimcategory-clj' => 'جرم تے قنون',
+'exif-iimcategory-dis' => 'تباہی تے حادسے',
+'exif-iimcategory-fin' => 'کم کاج تے کاروبار',
+'exif-iimcategory-edu' => 'پرھائی',
+'exif-iimcategory-evn' => 'محول',
+'exif-iimcategory-hth' => 'صحت',
+'exif-iimcategory-hum' => 'انسانی شوق',
+'exif-iimcategory-lab' => 'مزدور',
+'exif-iimcategory-lif' => 'جیون تے ارام',
+'exif-iimcategory-pol' => 'سیاست',
+'exif-iimcategory-rel' => 'موہب تے یقین',
+'exif-iimcategory-sci' => 'سائینس تے ٹیکنالوجی',
+'exif-iimcategory-soi' => 'سماجی اشو',
+'exif-iimcategory-spo' => 'کھیڈاں',
+'exif-iimcategory-war' => 'لڑائی چگڑے تے افراتفری',
+'exif-iimcategory-wea' => 'موسم',
+
+'exif-urgency-normal' => 'نارمل ($1)',
+'exif-urgency-low'    => 'تھلے کرکے ($1)',
+'exif-urgency-high'   => 'اچا ($1)',
 
 # External editor support
 'edit-externally'      => 'بارلا سافٹ ویئر استعال کردے ہوۓ اے فائل لکھو',
@@ -1615,9 +1741,34 @@ $messages = array(
 'watchlistall2' => 'سارے',
 'namespacesall' => 'سارے',
 'monthsall'     => 'سارے',
+'limitall'      => 'سارے',
 
 # E-mail address confirmation
-'confirmemail' => 'ای میل پتہ پکا کرو',
+'confirmemail'            => 'ای میل پتہ پکا کرو',
+'confirmemail_sendfailed' => '{{SITENAME}} توں تساں دی کنفرم ہون دی ای-میل نئیں آئی۔
+مہربانی کرکے اپنا ای-میل پتہ چیک کرو اکریاں دی غلطی لئی۔
+
+میلر واپس: $1',
+'confirmemail_invalid'    => 'ناں منیا جان والا کنفرمیشن کوڈ۔
+کوڈ لگدا اے ایکسپائر ہوچکیا اے۔',
+'confirmemail_needlogin'  => 'تھوانوں $1 دی لوڑ اے اپنا ای-میل کنفرم کرن لئی۔',
+'confirmemail_success'    => 'تھواڈا ای-میل پتہ پکا ہوچکیا اے۔
+تسی ہن لاگ ان ہوسکدے اے۔',
+'confirmemail_loggedin'   => 'تھواڈا ای-میل پتہ ہن پکا ہوچکیا اے۔',
+'confirmemail_error'      => 'تھواڈی کنفرمیشن نوں بچاندیاں ہویاں کوئی چیز غلط ہوگئی اے۔',
+'confirmemail_subject'    => '{{SITENAME}} ای-میل پتہ کنفرمیشن',
+'confirmemail_body'       => 'کسے نیں خبرے تساں ای آئی پی پتے $1 توں،
+اک کھاتہ  "$2" ایس ای میل پتے نال  {{SITENAME}}   تے بنایا اے۔
+
+اے گل پکا کرن لئی جے ایہ اکاؤنٹ تھواڈا ای اے تے ای-میل دے فیدے {{SITENAME}} تے ٹورن لئی اپنے براؤزر چ اے لنک کھولو:
+
+$3
+
+اگر تسی کھاتہ رجسٹر نئیں نئیں کیتا، تے ایس لنگ تے اؤ ای-میل پتے دی کنفرمیشن نوں واپس کرن لئی:
+
+$5
+
+ایس کنفرمیشن کوڈ دی تریخ $4 نوں مک جائیگی۔',
 
 # Delete conflict
 'recreate' => 'دوبارہ بناؤ',
@@ -1666,19 +1817,50 @@ $messages = array(
 'watchlisttools-raw'  => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
 
 # Special:Version
-'version' => 'ورژن',
+'version'                  => 'ورژن',
+'version-software'         => 'سافٹوئر چڑھ گیا۔',
+'version-software-product' => 'پراڈکٹ',
+'version-software-version' => 'ورژن',
+
+# Special:FilePath
+'filepath'        => 'فائل راہ',
+'filepath-page'   => 'فائل:',
+'filepath-submit' => 'چلو',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch' => 'دوہری فائلاں دی کھوج کرو',
 
 # Special:SpecialPages
-'specialpages' => 'خاص صفحے',
+'specialpages'                   => 'خاص صفحے',
+'specialpages-group-maintenance' => 'مرمت رپورٹ',
+'specialpages-group-other'       => 'ہور خاص صفے',
+'specialpages-group-login'       => 'لاگان / کھاتہ کھولو',
+'specialpages-group-changes'     => 'اج کل ہون والیاں تبدیلیاں تے لاگز',
+'specialpages-group-media'       => 'میڈیا رپورٹس تے چڑھیاں فائلاں',
+'specialpages-group-users'       => 'ورتن والے تے حق',
+'specialpages-group-highuse'     => 'بعوت ورتے جان والے صفے',
+'specialpages-group-pages'       => 'صفیاں دی لسٹ',
+'specialpages-group-pagetools'   => 'صفہ اوزار',
+'specialpages-group-wiki'        => 'وکی ڈیٹیا تے اوزار',
+'specialpages-group-redirects'   => 'خاص صفیاں نوں ریڈائرکٹ کرنا',
+'specialpages-group-spam'        => 'سپام روک اوزار',
+
+# Special:BlankPage
+'blankpage'              => 'خالی صفہ',
+'intentionallyblankpage' => 'اے صفہ جان بج اے خالی رکھیا گیا اے۔',
 
 # Special:Tags
+'tags'                    => 'منے ہوۓ تبدیلی دے ٹیگ',
+'tag-filter'              => '[[خاص ٹیگ]] نتارا:',
 'tag-filter-submit'       => 'فلٹر',
 'tags-title'              => 'ٹیگز',
+'tags-intro'              => 'ایس صفے تے ٹیگ دی لسٹ اے جینوں سوفٹوئیر تبدیلی دا نشان لا سکدا اے۔',
 'tags-tag'                => 'ٹیگ ناں',
 'tags-display-header'     => 'بدلی ہوئی لسٹ چ وکھالہ',
 'tags-description-header' => 'شبداں دی پوری جانکاری',
 'tags-hitcount-header'    => 'تبدیلیاں ٹیگ',
 'tags-edit'               => 'تبدیل',
+'tags-hitcount'           => '$1 {{PLURAL:$1|change|تبدیلیاں}}',
 
 # Special:ComparePages
 'comparepages'                => 'صفے سامنے کرو',
@@ -1692,14 +1874,45 @@ $messages = array(
 'compare-title-not-exists'    => 'ٹائیٹل جیہڑا تساں چنیاں اوہ ہے ای نئیں۔',
 'compare-revision-not-exists' => 'دوبارہ وکھالہ جیہڑا تساں دسیا اے ہے ای نئیں۔',
 
+# Special:GlobalFileUsage
+'globalfileusage'             => 'گلوبل فائل ورتن',
+'globalfileusage-for'         => 'گلوبل فائل ورتن "$1" لئی',
+'globalfileusage-ok'          => 'کھوج',
+'globalfileusage-text'        => 'گلوبل فائل ورتن کھوجو',
+'globalfileusage-no-results'  => '[[$1]] دوجے وکیاں تے نئیں ورتیا جاندا۔',
+'globalfileusage-on-wiki'     => '$2 تے ورتن',
+'globalfileusage-of-file'     => 'اے دوجے وکی ایس فائل نوں ورتدے نیں:',
+'globalfileusage-more'        => 'ایس فائل دے [[{{#Special:GlobalUsage}}/$1|more global usage]] ویکھو۔',
+'globalfileusage-filterlocal' => 'لوکل ورتن ناں دسو',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'گلوبل ٹمپلیٹ ورتن',
+'globaltemplateusage-for'         => 'گلوبل ٹمپلیٹ ورتن "$1" لئی',
+'globaltemplateusage-ok'          => 'کھوج',
+'globaltemplateusage-text'        => 'گلوبل ٹمپلیٹ ورتن کھوجو',
+'globaltemplateusage-no-results'  => '[[$1]] دوجے وکیاں تے نئیں ورتیا جاندا۔',
+'globaltemplateusage-on-wiki'     => '$2 تے ورتن',
+'globaltemplateusage-of-file'     => 'اے دوجے وکی ایس ٹمپلیٹ نوں ورتدے نیں:',
+'globaltemplateusage-more'        => 'ایس ٹیمپلیٹ دے [[{{#Special:GlobalUsage}}/$1|more global usage]] ویکھو۔',
+'globaltemplateusage-filterlocal' => 'لوکل ورتن ناں دسو',
+
 # Database error messages
-'dberr-header'   => 'ایس وکی چ کوئی مسلہ اے۔',
-'dberr-problems' => 'معاف کرنا !
+'dberr-header'      => 'ایس وکی چ کوئی مسلہ اے۔',
+'dberr-problems'    => 'معاف کرنا !
 ایس صفے تے تکنیکی مسلے آرۓ نیں۔',
-'dberr-again'    => 'تھو ڑے منٹ انتظار کرو تے دوبارہ لوڈ کرو۔',
-'dberr-info'     => '(ڈیٹابیس سرور نال میل نئیں ہوسکیا:$1)',
+'dberr-again'       => 'تھو ڑے منٹ انتظار کرو تے دوبارہ لوڈ کرو۔',
+'dberr-info'        => '(ڈیٹابیس سرور نال میل نئیں ہوسکیا:$1)',
+'dberr-usegoogle'   => 'تسیں گوکل راہیں کھوج کر سکدے او۔',
+'dberr-outofdate'   => 'اے نوٹ کرو جے اوناں دے انڈیکس ساڈے مواد چوں پرانے ناں ہون۔',
+'dberr-cachederror' => 'اے کاشے کاپی اے منگے ہوۓ صفے دی تے ہوسکدا اے پرانی ہووے۔',
 
 # HTML forms
+'htmlform-invalid-input'       => 'تھواڈے دتے گۓ مواد چ مسلے نیں۔',
+'htmlform-select-badoption'    => 'جیہڑا نمبر دتا اے اوہ منی ہوئی چنوتی نئیں۔',
+'htmlform-int-invalid'         => 'جیہڑا نمبر تساں دسیا اے اوہ انٹیجر نغیں۔',
+'htmlform-float-invalid'       => 'جو تسیں دسیا اے اوہ نمبر نیں۔',
+'htmlform-int-toolow'          => 'جو تساں دسیا اے اوہ کعٹ توں کعٹ  $1 توں وی تھلے اے۔',
+'htmlform-int-toohigh'         => 'جو تساں دسیا اے اوہ $1 دے سب توں چوکھے نمبر توں وی اتے اے۔',
 'htmlform-required'            => 'اے نمبر چائیدا اے۔',
 'htmlform-submit'              => 'رکھو',
 'htmlform-reset'               => 'تبدیلیاں واپس',
@@ -1725,6 +1938,10 @@ $messages = array(
 'ajax-remove-category-summary'  => 'گٹھ "$1" ہٹاؤ',
 'ajax-category-question'        => 'تسیں تھلے دتیاں تبدیلیاں کیوں کرنا چاندے او:',
 'ajax-error-title'              => 'غلطی',
+'ajax-remove-category-error'    => 'اے نئیں ہوسکدا جے گٹھ "$1". نوں ہٹایا جاۓ۔
+اے اودوں ہوندا اے جدوں گٹھ ٹمپلیٹ والے صفے تے جوڑی جاۓ۔',
+'ajax-edit-category-error'      => 'ایہ ممکن نئیں جے گٹھ "$1". نوں بدلۓ۔
+اے اودوں ہوندا اے جدوں گٹھ جوڑی دی صفے چ ٹمپلیٹ چ۔',
 'ajax-category-already-present' => 'ایس صفے تے پہلے ای "$1" گٹھ دتی گئی اے۔',
 'ajax-category-hook-error'      => 'اک لوکل کم نے تبدیلیاں نوں بچان توں روک دتا اے۔',
 'ajax-api-error'                => 'اے پی آئی نے اک غلطی ٹوری اے:$1: $2.',

@@ -1179,6 +1179,9 @@ $2
 'templatesused'                    => '{{PLURAL:$1||القالب المستخدم|القالبان المستخدمان|القوالب المستخدمة}} في هذه الصفحة:',
 'templatesusedpreview'             => '{{PLURAL:$1||القالب المستخدم|القالبان المستخدمان|القوالب المستخدمة}} في هذه المعاينة:',
 'templatesusedsection'             => '{{PLURAL:$1||القالب المستخدم|القالبان المستخدمان|القوالب المستخدمة}} في هذا القسم:',
+'distanttemplatesused'             => '{{PLURAL:$1||القالب البعيد المستخدم|القالبان البعيدان المستخدمان|القوالب البعيدة المستخدمة}} في هذه الصفحة:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1||القالب البعيد المستخدم|القالبان البعيدان المستخدمان|القوالب البعيدة المستخدمة}} في هذه المعاينة:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1||القالب البعيد المستخدم|القالبان البعيدان المستخدمان|القوالب البعيدة المستخدمة}} في هذا القسم:',
 'template-protected'               => '(حماية كاملة)',
 'template-semiprotected'           => '(حماية جزئية)',
 'hiddencategories'                 => '{{PLURAL:$1|هذه الصفحة غير موجودة في أي تصنايف مخفية|هذه الصفحة موجودة في تصنيف مخفي واحد|هذه الصفحة موجودة في تصنيفين مخفيين|هذه الصفحة موجودة في $1 تصانيف مخفية|هذه الصفحة موجودة في $1 تصنيفا مخفيا|هذه الصفحة موجودة في $1 تصنيف مخفي}}:',
@@ -1498,7 +1501,7 @@ $1",
 'qbsettings-fixedright'     => 'مثبت لليمين',
 'qbsettings-floatingleft'   => 'حر لليسار',
 'qbsettings-floatingright'  => 'حر لليمين',
-'qbsettings-directionality' => 'ثابت ، اعتمادا على اتجاهها من السيناريو الخاص ولغتك',
+'qbsettings-directionality' => 'ثابت، بناءً على اتجاه كتابة لغتك',
 
 # Preferences page
 'preferences'                   => 'تفضيلات',
@@ -1723,7 +1726,6 @@ $1",
 'right-userrights'            => 'تعديل كل صلاحيات المستخدمين',
 'right-userrights-interwiki'  => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
 'right-siteadmin'             => 'غلق ورفع غلق قاعدة البيانات',
-'right-reset-passwords'       => 'إعادة ضبط كلمة السر للمستخدمين الآخرين',
 'right-override-export-depth' => 'تصدير الصفحات متضمنة الصفحات الموصولة حتى عمق 5',
 'right-sendemail'             => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
 
@@ -2030,17 +2032,16 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'هذه الصفحة الخاصة تعرض كل الملفات المرفوعة.
-افتراضيا آخر الملفات المرفوعة تعرض أعلى القائمة.
-الضغط على رأس العامود يغير الترتيب.',
+عندما ترشحها حسب المستخدم ستعرض فقط الملفات التي رفع آخر نسخة منها ذلك المستخدم.',
 'listfiles_search_for'  => 'ابحث عن اسم الميديا:',
 'imgfile'               => 'ملف',
 'listfiles'             => 'قائمة الملفات',
 'listfiles_thumb'       => 'تصغير',
 'listfiles_date'        => 'تاريخ',
-'listfiles_name'        => 'اسم',
-'listfiles_user'        => 'مستخدم',
-'listfiles_size'        => 'حجم',
-'listfiles_description' => 'وصف',
+'listfiles_name'        => 'الاسم',
+'listfiles_user'        => 'المستخدم',
+'listfiles_size'        => 'الحجم',
+'listfiles_description' => 'الوصف',
 'listfiles_count'       => 'نسخ',
 
 # File description page
@@ -4055,7 +4056,7 @@ $1',
 'tags-description-header' => 'وصف كامل للمعنى',
 'tags-hitcount-header'    => 'تغييرات موسومة',
 'tags-edit'               => 'عدل',
-'tags-hitcount'           => '$1 {{PLURAL:$1|تغيير|تغيير}}',
+'tags-hitcount'           => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',
 
 # Special:ComparePages
 'comparepages'                => 'قارن صفحات',
@@ -4068,6 +4069,30 @@ $1',
 'compare-invalid-title'       => 'العنوان الذي حددته غير متاح.',
 'compare-title-not-exists'    => 'العنوان الذي حددته غير موجود.',
 'compare-revision-not-exists' => 'المراجعة التي حددتها غير موجودة.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'الاستخدام العام للملف',
+'globalfileusage-for'         => 'الاستخدام العام للملف "$1"',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|صفحة خاصة]] لرؤية الاستخدام العام للملف',
+'globalfileusage-ok'          => 'ابحث',
+'globalfileusage-text'        => 'ابحث عن الاستخدام العام لملف',
+'globalfileusage-no-results'  => '[[$1]] غير مستخدم في ويكيات أخرى.',
+'globalfileusage-on-wiki'     => 'الاستخدام في $2',
+'globalfileusage-of-file'     => 'الويكيات الأخرى التالية تستخدم هذا الملف:',
+'globalfileusage-more'        => 'اعرض [[{{#Special:GlobalUsage}}/$1|المزيد من الاستخدام العام]] لهذا الملف.',
+'globalfileusage-filterlocal' => 'لا تعرض الاستخدام المحلي',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'الاستخدام العام للقالب',
+'globaltemplateusage-for'         => 'الاستخدام العام للقالب "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|صفحة خاصة]] لرؤية الاستخدام العام للقالب',
+'globaltemplateusage-ok'          => 'ابحث',
+'globaltemplateusage-text'        => 'ابحث عن الاستخدام العام لقالب',
+'globaltemplateusage-no-results'  => '[[$1]] غير مستخدم في ويكيات أخرى.',
+'globaltemplateusage-on-wiki'     => 'الاستخدام في $2',
+'globaltemplateusage-of-file'     => 'الويكيات الأخرى التالية تستخدم هذا القالب:',
+'globaltemplateusage-more'        => 'اعرض [[{{#Special:GlobalUsage}}/$1|المزيد من الاستخدام العام]] لهذا القالب.',
+'globaltemplateusage-filterlocal' => 'لا تعرض الاستخدام المحلي',
 
 # Database error messages
 'dberr-header'      => 'هذا الويكي به مشكلة',
@@ -4096,8 +4121,8 @@ $1',
 
 # Add categories per AJAX
 'ajax-add-category'             => 'أضف تصنيفا',
-'ajax-remove-category'          => 'إزالة الفئة',
-'ajax-edit-category'            => 'تحرير الفئة',
+'ajax-remove-category'          => 'أزل التصنيف',
+'ajax-edit-category'            => 'عدل التصنيف',
 'ajax-add-category-submit'      => 'أضف',
 'ajax-confirm-ok'               => 'موافق',
 'ajax-confirm-title'            => 'أكد الإجراء',
@@ -4106,7 +4131,7 @@ $1',
 'ajax-cancel'                   => 'إلغاء عمليات التحرير',
 'ajax-cancel-all'               => 'إلغاء جميع التغييرات',
 'ajax-add-category-summary'     => 'إضافة التصنيف "$1"',
-'ajax-edit-category-summary'    => 'تغيير الفئة "$1" إلى "$2"',
+'ajax-edit-category-summary'    => 'تغيير التصنيف "$1" إلى "$2"',
 'ajax-remove-category-summary'  => 'إزالة التصنيف "$1"',
 'ajax-category-question'        => 'لماذا تريد القيام بالتغييرات التالية:',
 'ajax-error-title'              => 'خطأ',
@@ -4114,6 +4139,6 @@ $1',
 يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
 'ajax-edit-category-error'      => 'تعذر تعديل تصنيف "$1".
 يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
-'ajax-category-already-present' => 'هذه الصفحة بالفعل ينتمي إلى فئة $1',
+'ajax-category-already-present' => 'هذه الصفحة بالفعل تنتمي إلى تصنيف "$1"',
 
 );
