@@ -29,7 +29,7 @@
 class SpecialPasswordReset extends FormSpecialPage {
 
 	public function __construct() {
-		parent::__construct( 'PasswordReset' );
+		parent::__construct( 'PasswordReset', 'resetpassword' );
 	}
 
 	public function userCanExecute( User $user ) {
