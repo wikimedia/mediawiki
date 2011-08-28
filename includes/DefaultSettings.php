@@ -3380,7 +3380,6 @@ $wgGroupPermissions = array();
 /** @cond file_level_code */
 // Implicit group for all visitors
 $wgGroupPermissions['*']['createaccount']    = true;
-$wgGroupPermissions['*']['resetpassword']    = true;
 $wgGroupPermissions['*']['read']             = true;
 $wgGroupPermissions['*']['edit']             = true;
 $wgGroupPermissions['*']['createpage']       = true;
