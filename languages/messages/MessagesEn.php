@@ -2684,7 +2684,7 @@ There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] a
 'emailpagetext'        => 'You can use the form below to send an e-mail message to this user.
 The e-mail address you entered in [[Special:Preferences|your user preferences]] will appear as the "From" address of the e-mail, so the recipient will be able to reply directly to you.',
 'usermailererror'      => 'Mail object returned error:',
-'defemailsubject'      => '{{SITENAME}} e-mail',
+'defemailsubject'      => '{{SITENAME}} e-mail from user "$1"',
 'usermaildisabled'     => 'User e-mail disabled',
 'usermaildisabledtext' => 'You cannot send e-mail to other users on this wiki',
 'noemailtitle'         => 'No e-mail address',

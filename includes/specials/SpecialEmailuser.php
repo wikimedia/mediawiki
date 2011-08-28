@@ -61,7 +61,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			),
 			'Subject' => array(
 				'type' => 'text',
-				'default' => wfMsgExt( 'defemailsubject', array( 'content', 'parsemag' ) ),
+				'default' => wfMsgExt( 'defemailsubject', array( 'content', 'parsemag' ), $this->getUser()->getName() ),
 				'label-message' => 'emailsubject',
 				'maxlength' => 200,
 				'size' => 60,
