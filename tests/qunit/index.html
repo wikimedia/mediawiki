@@ -9,6 +9,25 @@
 	<script>
 	function startUp(){
 		mw.config = new mw.Map( false );
+
+		/**
+		 * Guess wgScriptPath (for access to /tests/qunit/data/)
+		 */
+
+		// Regular expression to extract the path for the QUnit tests
+		// Takes into account that tests could be run from a file:// URL
+		// by excluding the 'index.html' part from the URL
+		var rePath = /(?:[^#\?](?!index.html))*\/?/;
+
+		// Extract path to /tests/qunit/
+		var qunitTestsPath = rePath.exec( location.href )[0];
+
+		// Traverse up to script path
+		var pathParts = qunitTestsPath.split( '/' );
+		pathParts.pop(); pathParts.pop(); pathParts.pop();
+		var scriptPath = pathParts.join( '/' );
+		
+		mw.config.set( 'wgScriptPath', scriptPath );
 	}
 	</script>
 

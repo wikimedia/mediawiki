@@ -14,7 +14,7 @@ QUnit.fixurl = function(value) {
  *  Load TestSwarm agent
  */
 if ( QUnit.urlParams.swarmURL  ) {
-	document.write("<scr" + "ipt src='" + QUnit.fixurl( 'data/testwarm.inject.js' ) + "'></scr" + "ipt>");
+	document.write("<scr" + "ipt src='" + QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/testwarm.inject.js' ) + "'></scr" + "ipt>");
 }
 
 /**

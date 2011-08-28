@@ -39,6 +39,7 @@ test( 'wikiGetlink', function() {
 test( 'wikiScript', function() {
 	expect(2);
 
+	var prevConfig = mw.config.get([ 'wgScript', 'wgScriptPath', 'wgScriptExtension' ]);
 	mw.config.set({
 		'wgScript': '/w/index.php',
 		'wgScriptPath': '/w',
@@ -48,6 +49,8 @@ test( 'wikiScript', function() {
 	equal( mw.util.wikiScript(), mw.config.get( 'wgScript' ), 'Defaults to index.php and is equal to wgScript' );
 	equal( mw.util.wikiScript( 'api' ), '/w/api.php', 'API path' );
 
+	// Restore mw.config
+	mw.config.set( prevConfig );
 });
 
 test( 'addCSS', function() {
