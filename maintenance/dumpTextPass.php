@@ -38,9 +38,6 @@ class TextPassDumper extends BackupDumper {
 	var $history = WikiExporter::FULL;
 	var $fetchCount = 0;
 	var $prefetchCount = 0;
-	var $lastTime = 0;
-	var $pageCountLast = 0;
-	var $revCountLast = 0;
 	var $prefetchCountLast = 0;
 	var $fetchCountLast = 0;
 
@@ -57,8 +54,6 @@ class TextPassDumper extends BackupDumper {
 	var $spawnRead = false;
 	var $spawnErr = false;
 
-	var $ID = 0;
-
 	var $xmlwriterobj = false;
 
 	# when we spend more than maxTimeAllowed seconds on this run, we continue
@@ -73,8 +68,6 @@ class TextPassDumper extends BackupDumper {
 
 	function initProgress( $history ) {
 		parent::initProgress();
-		$this->ID = getmypid();
-		$this->lastTime = $this->startTime;
 		$this->timeOfCheckpoint = $this->startTime;
 	}
 
@@ -234,10 +227,6 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function checkIfTimeExceeded() {
-		$m1 = $this->maxTimeAllowed;
-		$m2 = $this->lastTime; 
-		$m3 =  $this->timeOfCheckpoint;
-		$m4 = $this->lastTime - $this->timeOfCheckpoint;
 		if ( $this->maxTimeAllowed &&  ( $this->lastTime - $this->timeOfCheckpoint  > $this->maxTimeAllowed ) ) {
 			return True;
 		}
