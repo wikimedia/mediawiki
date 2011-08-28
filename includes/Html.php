@@ -97,6 +97,8 @@ class Html {
 		'selected',
 		'truespeed',
 		'typemustmatch',
+		# HTML5 Microdata
+		'itemscope',
 	);
 
 	/**
