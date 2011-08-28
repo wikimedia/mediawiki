@@ -1037,13 +1037,15 @@ class Title {
 	 * e-mail notifications. Uses $wgCanonicalServer and the
 	 * GetCanonicalURL hook.
 	 * 
+	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
+	 * 
 	 * @param $query string An optional query string
 	 * @param $variant string Language variant of URL (for sr, zh, ...)
 	 * @return string The URL
 	 */
 	public function getCanonicalURL( $query = '', $variant = false ) {
 		global $wgCanonicalServer;
-		$url = $wgCanonicalServer . $this->getLocalURL( $query, $variant );
+		$url = $wgCanonicalServer . $this->getLocalURL( $query, $variant ) . $this->getFragmentForURL();
 		wfRunHooks( 'GetCanonicalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
