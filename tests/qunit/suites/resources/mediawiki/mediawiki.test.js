@@ -124,42 +124,12 @@ test( 'mw.msg', function() {
 });
 
 test( 'mw.loader', function() {
-	expect(5);
-
-	// Regular expression to extract the path for the QUnit tests
-	// Takes into account that tests could be run from a file:// URL
-	// by excluding the 'index.html' part from the URL
-	var rePath = /(?:[^#\?](?!index.html))*\/?/;
-
-	// Four assertions to test the above regular expression:
-	equal(
-		rePath.exec( 'http://path/to/tests/?foobar' )[0],
-		"http://path/to/tests/",
-		"Extracting path from http URL with query"
-		);
-	equal(
-		rePath.exec( 'http://path/to/tests/#frag' )[0],
-		"http://path/to/tests/",
-		"Extracting path from http URL with fragment"
-		);
-	equal(
-		rePath.exec( 'file://path/to/tests/index.html?foobar' )[0],
-		"file://path/to/tests/",
-		"Extracting path from local URL (file://) with query"
-		);
-	equal(
-		rePath.exec( 'file://path/to/tests/index.html#frag' )[0],
-		"file://path/to/tests/",
-		"Extracting path from local URL (file://) with fragment"
-		);
+	expect(1);
 
 	// Asynchronous ahead
 	stop(5000);
 
-	// Extract path
-	var tests_path = rePath.exec( location.href );
-
-	mw.loader.implement( 'is.awesome', [QUnit.fixurl( tests_path + 'data/defineTestCallback.js' )], {}, {} );
+	mw.loader.implement( 'is.awesome', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/defineTestCallback.js' )], {}, {} );
 
 	mw.loader.using( 'is.awesome', function() {
 
