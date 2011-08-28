@@ -1255,24 +1255,13 @@ abstract class Skin extends ContextSource {
 
 					if ( preg_match( '/^(?:' . wfUrlProtocols() . ')/', $link ) ) {
 						$href = $link;
-						//Parser::getExternalLinkAttribs won't work here because of the Namespace things
-						global $wgNoFollowLinks;
-						if ( $wgNoFollowLinks ) {
+						
+						// Parser::getExternalLinkAttribs won't work here because of the Namespace things
+						global $wgNoFollowLinks, $wgNoFollowDomainExceptions;
+						if ( $wgNoFollowLinks && !wfMatchesDomainList( $href, $wgNoFollowDomainExceptions ) ) {
 							$extraAttribs['rel'] = 'nofollow';
-
-							global $wgNoFollowDomainExceptions;
-							if ( $wgNoFollowDomainExceptions ) {
-								$bits = wfParseUrl( $url );
-								if ( is_array( $bits ) && isset( $bits['host'] ) ) {
-									foreach ( $wgNoFollowDomainExceptions as $domain ) {
-										if ( substr( $bits['host'], -strlen( $domain ) ) == $domain ) {
-											unset( $extraAttribs['rel'] );
-											break;
-										}
-									}
-								}
-							}
 						}
+						
 						global $wgExternalLinkTarget;
 						if ( $wgExternalLinkTarget) {
 							$extraAttribs['target'] = $wgExternalLinkTarget;

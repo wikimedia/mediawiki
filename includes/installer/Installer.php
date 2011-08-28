@@ -332,12 +332,14 @@ abstract class Installer {
 			$this->settings[$var] = $GLOBALS[$var];
 		}
 
+		$compiledDBs = array();
 		foreach ( self::getDBTypes() as $type ) {
 			$installer = $this->getDBInstaller( $type );
 
 			if ( !$installer->isCompiled() ) {
 				continue;
 			}
+			$compiledDBs[] = $type;
 
 			$defaults = $installer->getGlobalDefaults();
 
@@ -349,6 +351,7 @@ abstract class Installer {
 				}
 			}
 		}
+		$this->setVar( '_CompiledDBs', $compiledDBs );
 
 		$this->parserTitle = Title::newFromText( 'Installer' );
 		$this->parserOptions = new ParserOptions; // language will  be wrong :(
@@ -621,19 +624,13 @@ abstract class Installer {
 	protected function envCheckDB() {
 		global $wgLang;
 
-		$compiledDBs = array();
 		$allNames = array();
 
 		foreach ( self::getDBTypes() as $name ) {
-			if ( $this->getDBInstaller( $name )->isCompiled() ) {
-				$compiledDBs[] = $name;
-			}
-			$allNames[] = wfMsg( 'config-type-' . $name );
+			$allNames[] = wfMsg( "config-type-$name" );
 		}
 
-		$this->setVar( '_CompiledDBs', $compiledDBs );
-
-		if ( !$compiledDBs ) {
+		if ( !$this->getVar( '_CompiledDBs' ) ) {
 			$this->showError( 'config-no-db', $wgLang->commaList( $allNames ) );
 			// @todo FIXME: This only works for the web installer!
 			return false;
