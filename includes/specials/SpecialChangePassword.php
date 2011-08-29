@@ -35,34 +35,35 @@ class SpecialChangePassword extends SpecialPage {
 	 * Main execution point
 	 */
 	function execute( $par ) {
-		global $wgUser, $wgAuth, $wgOut, $wgRequest;
+		global $wgAuth;
 
 		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
+			throw new ReadOnlyError;
 		}
 
-		$this->mUserName = trim( $wgRequest->getVal( 'wpName' ) );
-		$this->mOldpass = $wgRequest->getVal( 'wpPassword' );
-		$this->mNewpass = $wgRequest->getVal( 'wpNewPassword' );
-		$this->mRetype = $wgRequest->getVal( 'wpRetype' );
-		$this->mDomain = $wgRequest->getVal( 'wpDomain' );
+		$request = $this->getRequest();
+		$this->mUserName = trim( $request->getVal( 'wpName' ) );
+		$this->mOldpass = $request->getVal( 'wpPassword' );
+		$this->mNewpass = $request->getVal( 'wpNewPassword' );
+		$this->mRetype = $request->getVal( 'wpRetype' );
+		$this->mDomain = $request->getVal( 'wpDomain' );
 
 		$this->setHeaders();
 		$this->outputHeader();
-		$wgOut->disallowUserJs();
+		$this->getOutput()->disallowUserJs();
 
-		if( !$wgRequest->wasPosted() && !$wgUser->isLoggedIn() ) {
+		$user = $this->getUser();
+		if( !$request->wasPosted() && !$user->isLoggedIn() ) {
 			$this->error( wfMsg( 'resetpass-no-info' ) );
 			return;
 		}
 
-		if( $wgRequest->wasPosted() && $wgRequest->getBool( 'wpCancel' ) ) {
+		if( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
 			$this->doReturnTo();
 			return;
 		}
 
-		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $wgRequest->getVal( 'token' ) ) ) {
+		if( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'token' ) ) ) {
 			try {
 				$wgAuth->setDomain( $this->mDomain );
 				if( !$wgAuth->allowPasswordChange() ) {
@@ -71,8 +72,8 @@ class SpecialChangePassword extends SpecialPage {
 				}
 
 				$this->attemptReset( $this->mNewpass, $this->mRetype );
-				$wgOut->addWikiMsg( 'resetpass_success' );
-				if( !$wgUser->isLoggedIn() ) {
+				$this->getOutput()->addWikiMsg( 'resetpass_success' );
+				if( !$user->isLoggedIn() ) {
 					LoginForm::setLoginToken();
 					$token = LoginForm::getLoginToken();
 					$data = array(
@@ -81,9 +82,9 @@ class SpecialChangePassword extends SpecialPage {
 						'wpDomain'     => $this->mDomain,
 						'wpLoginToken' => $token,
 						'wpPassword'   => $this->mNewpass,
-						'returnto'     => $wgRequest->getVal( 'returnto' ),
+						'returnto'     => $request->getVal( 'returnto' ),
 					);
-					if( $wgRequest->getCheck( 'wpRemember' ) ) {
+					if( $request->getCheck( 'wpRemember' ) ) {
 						$data['wpRemember'] = 1;
 					}
 					$login = new LoginForm( new FauxRequest( $data, true ) );
@@ -98,36 +99,33 @@ class SpecialChangePassword extends SpecialPage {
 	}
 
 	function doReturnTo() {
-		global $wgRequest, $wgOut;
-		$titleObj = Title::newFromText( $wgRequest->getVal( 'returnto' ) );
+		$titleObj = Title::newFromText( $this->getRequest()->getVal( 'returnto' ) );
 		if ( !$titleObj instanceof Title ) {
 			$titleObj = Title::newMainPage();
 		}
-		$wgOut->redirect( $titleObj->getFullURL() );
+		$this->getOutput()->redirect( $titleObj->getFullURL() );
 	}
 
 	function error( $msg ) {
-		global $wgOut;
-		$wgOut->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
+		$this->getOutput()->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
 	}
 
 	function showForm() {
-		global $wgOut, $wgUser, $wgRequest;
+		global $wgCookieExpiration;
 
-		$self = $this->getTitle();
+		$user = $this->getUser();
 		if ( !$this->mUserName ) {
-			$this->mUserName = $wgUser->getName();
+			$this->mUserName = $user->getName();
 		}
 		$rememberMe = '';
-		if ( !$wgUser->isLoggedIn() ) {
-			global $wgCookieExpiration, $wgLang;
+		if ( !$user->isLoggedIn() ) {
 			$rememberMe = '<tr>' .
 				'<td></td>' .
 				'<td class="mw-input">' .
 					Xml::checkLabel(
-						wfMsgExt( 'remembermypassword', 'parsemag', $wgLang->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
+						wfMsgExt( 'remembermypassword', 'parsemag', $this->getLang()->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
 						'wpRemember', 'wpRemember',
-						$wgRequest->getCheck( 'wpRemember' ) ) .
+						$this->getRequest()->getCheck( 'wpRemember' ) ) .
 				'</td>' .
 			'</tr>';
 			$submitMsg = 'resetpass_submit';
@@ -136,17 +134,17 @@ class SpecialChangePassword extends SpecialPage {
 			$oldpassMsg = 'oldpassword';
 			$submitMsg = 'resetpass-submit-loggedin';
 		}
-		$wgOut->addHTML(
+		$this->getOutput()->addHTML(
 			Xml::fieldset( wfMsg( 'resetpass_header' ) ) .
 			Xml::openElement( 'form',
 				array(
 					'method' => 'post',
-					'action' => $self->getLocalUrl(),
+					'action' => $this->getTitle()->getLocalUrl(),
 					'id' => 'mw-resetpass-form' ) ) . "\n" .
-			Html::hidden( 'token', $wgUser->editToken() ) . "\n" .
+			Html::hidden( 'token', $user->editToken() ) . "\n" .
 			Html::hidden( 'wpName', $this->mUserName ) . "\n" .
 			Html::hidden( 'wpDomain', $this->mDomain ) . "\n" .
-			Html::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) . "\n" .
+			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
 			wfMsgExt( 'resetpass_text', array( 'parse' ) ) . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
 			$this->pretty( array(
