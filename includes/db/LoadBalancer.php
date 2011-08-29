@@ -988,6 +988,25 @@ class LoadBalancer {
 	}
 
 	/**
+	 * Get the lag in seconds for a given connection, or zero if this load 
+	 * balancer does not have replication enabled. 
+	 *
+	 * This should be used in preference to Database::getLag() in cases where 
+	 * replication may not be in use, since there is no way to determine if 
+	 * replication is in use at the connection level without running 
+	 * potentially restricted queries such as SHOW SLAVE STATUS. Using this
+	 * function instead of Database::getLag() avoids a fatal error in this
+	 * case on many installations.
+	 */
+	function safeGetLag( $conn ) {
+		if ( $this->getServerCount() == 1 ) {
+			return 0;
+		} else {
+			return $conn->getLag();
+		}
+	}
+
+	/**
 	 * Clear the cache for getLagTimes
 	 */
 	function clearLagTimeCache() {

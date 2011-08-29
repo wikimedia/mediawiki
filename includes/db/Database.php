@@ -2980,8 +2980,12 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Get slave lag.
-	 * Currently supported only by MySQL
+	 * Get slave lag. Currently supported only by MySQL.
+	 *
+	 * Note that this function will generate a fatal error on many 
+	 * installations. Most callers should use LoadBalancer::safeGetLag() 
+	 * instead.
+	 *
 	 * @return Database replication lag in seconds
 	 */
 	function getLag() {
