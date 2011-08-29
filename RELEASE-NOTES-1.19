@@ -50,6 +50,7 @@ production.
 * Hook added to check for exempt from account creation throttle
 * (bug 30344) Add configuration variable for setting custom priorities when
   generating sitemaps
+* (bug 16428) Include permalink in printable version
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if

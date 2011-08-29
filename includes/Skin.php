@@ -616,9 +616,15 @@ abstract class Skin extends ContextSource {
 		return $bottomScriptText;
 	}
 
-	/** @return string Retrievied from HTML text */
+	/**
+	 * Text with the permalink to the source page,
+	 * usually shown on the footer of a printed page
+	 *
+	 * @return string HTML text with an URL
+	 */
 	function printSource() {
-		$url = htmlspecialchars( $this->getTitle()->getFullURL() );
+		$oldid = $this->getRevisionId();
+		$url = htmlspecialchars( $this->getTitle()->getFullURL( 'oldid=' . $oldid ) );
 		return wfMsg( 'retrievedfrom', '<a href="' . $url . '">' . $url . '</a>' );
 	}
 
