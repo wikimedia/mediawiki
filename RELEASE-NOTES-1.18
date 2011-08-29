@@ -177,8 +177,11 @@ production.
 * (bug 29441) Expose CapitalLinks config in JS to allow modules to properly
   handle titles on case-sensitive wikis.
 * (bug 29397) Implement mw.Title module in core.
-* In MySQL 4.1.9+ with replication enabled, the slave lag should come from
-  SHOW SLAVE STATUS instead of SHOW PROCESSLIST.
+* In MySQL 4.1.9+ with replication enabled, fetch the slave lag from SHOW SLAVE 
+  STATUS instead of SHOW PROCESSLIST. This ensures that lag is reported 
+  correctly in the case where there are no write events occurring. Note that 
+  the DB user now needs to have the REPLICATION CLIENT privilege if you are 
+  using replication.
 * Language codes in $wgDummyLanguageCodes are now excluded on localization
   statistics (maintenance/language/transstat.php)
 * (bug 29586) Make the (next 200) links on categories link directly to
