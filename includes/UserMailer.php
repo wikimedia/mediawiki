@@ -130,7 +130,7 @@ class UserMailer {
 		global $wgSMTP, $wgServer;
 
 		$msgid = uniqid( wfWikiID() . ".", true ); /* true required for cygwin */
-		if ( is_array($wgSMTP) && $isset($wgSMTP['IDHost']) && $wgSMTP['IDHost'] ) {
+		if ( is_array($wgSMTP) && isset($wgSMTP['IDHost']) && $wgSMTP['IDHost'] ) {
 			$domain = $wgSMTP['IDHost'];
 		} else {
 			$url = wfParseUrl($wgServer);
