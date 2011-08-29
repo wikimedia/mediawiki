@@ -215,7 +215,7 @@ class Language {
 	 * @return bool
 	 */
 	public static function isValidBuiltInCode( $code ) {
-		return preg_match( '/^[a-z0-9-]*$/i', $code );
+		return preg_match( '/^[a-z0-9-]+$/i', $code );
 	}
 
 	public static function classFromCode( $code ) {
