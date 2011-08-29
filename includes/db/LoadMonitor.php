@@ -106,6 +106,11 @@ class LoadMonitor_MySQL implements LoadMonitor {
 	 * @return array
 	 */
 	function getLagTimes( $serverIndexes, $wiki ) {
+		if ( count( $serverIndexes ) == 1 && reset( $serverIndexes ) == 0 ) {
+			// Single server only, just return zero without caching
+			return array( 0 => 0 );
+		}
+
 		wfProfileIn( __METHOD__ );
 		$expiry = 5;
 		$requestRate = 10;
