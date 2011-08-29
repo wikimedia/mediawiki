@@ -167,7 +167,8 @@ class SpecialContributions extends SpecialPage {
 				$wgOut->addWikiMsg( 'nocontribs', $target );
 			} else {
 				# Show a message about slave lag, if applicable
-				if( ( $lag = $pager->getDatabase()->getLag() ) > 0 )
+				$lag = wfGetLB()->safeGetLag( $pager->getDatabase() );
+				if( $lag > 0 )
 					$wgOut->showLagWarning( $lag );
 
 				$wgOut->addHTML(
