@@ -245,12 +245,14 @@ class TextPassDumper extends BackupDumper {
 			}
 		}
 
-		$filenameList = $this->egress->getFilename();
-		if (! is_array($filenameList)) {
-			$filenameList = array( $filenameList );
-		}
-		if (count($filenameList) != count($this->checkpointFiles)) {
-			wfDie("One checkpointfile must be specified for each output option, if maxtime is used.\n");
+		if ($this->checkpointFiles) {
+			$filenameList = $this->egress->getFilename();
+			if (! is_array($filenameList)) {
+				$filenameList = array( $filenameList );
+			}
+			if (count($filenameList) != count($this->checkpointFiles)) {
+				wfDie("One checkpointfile must be specified for each output option, if maxtime is used.\n");
+			}
 		}
 	}
 
