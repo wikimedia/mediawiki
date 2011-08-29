@@ -93,6 +93,8 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 			// Build CSS rules
 			$rules = array();
+
+			// Underline: 2 = browser default, 1 = always, 0 = never
 			if ( $options['underline'] < 2 ) {
 				$rules[] = "a { text-decoration: " . 
 					( $options['underline'] ? 'underline' : 'none' ) . "; }";
