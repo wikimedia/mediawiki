@@ -20,6 +20,7 @@
  * @author Hercule
  * @author Horacewai2
  * @author Hydra
+ * @author Hzy980512
  * @author Jding2010
  * @author Jidanni
  * @author Jimmy xu wrk
@@ -918,6 +919,9 @@ $2
 'templatesused'                    => '在这个页面上使用的{{PLURAL:$1|模板|模板}}有：',
 'templatesusedpreview'             => '此次预览中使用的{{PLURAL:$1|模板|模板}}有：',
 'templatesusedsection'             => '在这个段落上使用的{{PLURAL:$1|模板|模板}}有：',
+'distanttemplatesused'             => '间接使用于该页的{{PLURAL:$1|template|模板}}：',
+'distanttemplatesusedpreview'      => '间接使用于该预览的{{PLURAL:$1|template|模板}}：',
+'distanttemplatesusedsection'      => '间接使用于该章节的{{PLURAL:$1|template|模板}}：',
 'template-protected'               => '（保护）',
 'template-semiprotected'           => '（半保护）',
 'hiddencategories'                 => '本页面属于$1个隐藏分类：',
@@ -2334,7 +2338,7 @@ $1',
 
 # What links here
 'whatlinkshere'            => '链入页面',
-'whatlinkshere-title'      => '链接到“$1”的页面',
+'whatlinkshere-title'      => '链接至“$1”的页面',
 'whatlinkshere-page'       => '页面：',
 'linkshere'                => "下列页面链接至'''[[:$1]]'''：",
 'nolinkshere'              => "没有页面链接至'''[[:$1]]'''。",
@@ -3557,14 +3561,14 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 * <span class="mw-specialpagecached">已缓存特殊页面（可能已过时）。</span>',
 'specialpages-group-maintenance' => '维护报告',
 'specialpages-group-other'       => '其它特殊页面',
-'specialpages-group-login'       => '登录／注册',
-'specialpages-group-changes'     => '最近更改和日志',
-'specialpages-group-media'       => '媒体文件报告和上传',
-'specialpages-group-users'       => '用户和权限',
+'specialpages-group-login'       => '登录/注册',
+'specialpages-group-changes'     => '最近更改与日志',
+'specialpages-group-media'       => '媒体文件报告与上传',
+'specialpages-group-users'       => '用户与权限',
 'specialpages-group-highuse'     => '高度使用页面',
 'specialpages-group-pages'       => '页面列表',
 'specialpages-group-pagetools'   => '页面工具',
-'specialpages-group-wiki'        => 'Wiki数据和工具',
+'specialpages-group-wiki'        => 'Wiki数据与工具',
 'specialpages-group-redirects'   => '重定向特殊页面',
 'specialpages-group-spam'        => '反垃圾链接工具',
 
@@ -3637,7 +3641,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'ajax-add-category'             => '加入分类',
 'ajax-remove-category'          => '删除类别',
 'ajax-edit-category'            => '编辑类别',
-'ajax-add-category-submit'      => '加入',
+'ajax-add-category-submit'      => '添加',
 'ajax-confirm-ok'               => '确定',
 'ajax-confirm-title'            => '确认动作',
 'ajax-confirm-save'             => '保存',

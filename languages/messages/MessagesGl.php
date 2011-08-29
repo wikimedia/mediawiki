@@ -635,7 +635,7 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'userlogin-resetlink'        => 'Esqueceu os seus datos de rexistro?',
 'createaccountmail'          => 'Por correo electrónico',
 'createaccountreason'        => 'Motivo:',
-'badretype'                  => 'Os contrasinais que inseriu non coinciden entre si.',
+'badretype'                  => 'Os contrasinais que inseriu non coinciden.',
 'userexists'                 => 'O nome de usuario que inseriu xa está en uso.
 Escolla un nome diferente.',
 'loginerror'                 => 'Erro ao acceder ao sistema',
@@ -922,7 +922,7 @@ Pode mesturar os seus cambios co texto existente.
 '''Só''' se gardará o texto na área superior cando prema \"{{int:savearticle}}\".",
 'yourtext'                         => 'O seu texto',
 'storedversion'                    => 'Versión gardada',
-'nonunicodebrowser'                => "'''ATENCIÓN: o seu navegador non soporta Unicode.'''
+'nonunicodebrowser'                => "'''Atención: O seu navegador non soporta o Unicode.'''
 Existe unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.",
 'editingold'                       => "'''Atención: Está editando unha revisión vella desta páxina.'''
 Se a garda, perderanse os cambios realizados tras esta revisión.",
@@ -935,8 +935,8 @@ Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría 
 '''NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!'''",
 'longpageerror'                    => "'''Erro: o texto que pretende gardar ocupa $1 kilobytes, e existe un límite dun máximo de $2 kilobytes.'''
 Polo tanto, non se pode gardar.",
-'readonlywarning'                  => "'''ATENCIÓN: a base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.
-Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.'''
+'readonlywarning'                  => "'''Atención: A base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.'''
+Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.
 
 O administrador que a fechou deu esta explicación: $1",
 'protectedpagewarning'             => "'''Aviso: Esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan editar.'''
@@ -2122,7 +2122,7 @@ Se quere máis información acerca dos dereitos individuais, pode atopala [[{{Me
 'emailpagetext'        => 'Pode usar o formulario de embaixo para enviar unha mensaxe de correo electrónico a este usuario.
 O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]] aparecerá no campo "De:" do correo, polo que o receptor da mensaxe poderalle responder.',
 'usermailererror'      => 'O obxecto enviado deu unha mensaxe de erro:',
-'defemailsubject'      => 'Correo electrónico de {{SITENAME}}',
+'defemailsubject'      => 'Correo electrónico do usuario $1 de {{SITENAME}}',
 'usermaildisabled'     => 'O correo electrónico do usuario está desactivado',
 'usermaildisabledtext' => 'Non pode enviar correos electrónicos a outros usuarios deste wiki',
 'noemailtitle'         => 'Sen enderezo de correo electrónico',
@@ -2154,7 +2154,7 @@ O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]]
 'mywatchlist'          => 'A miña lista de vixilancia',
 'watchlistfor2'        => 'De $1 $2',
 'nowatchlist'          => 'Non ten elementos na súa lista de vixilancia.',
-'watchlistanontext'    => 'Faga o favor de $1 no sistema para ver ou editar os elementos da súa lista de vixilancia.',
+'watchlistanontext'    => 'Faga o favor de $1 ao sistema para ver ou editar os elementos da súa lista de vixilancia.',
 'watchnologin'         => 'Non accedeu ao sistema',
 'watchnologintext'     => 'Debe [[Special:UserLogin|acceder ao sistema]] para modificar a súa lista de vixilancia.',
 'addwatch'             => 'Engadir á lista vixilancia',

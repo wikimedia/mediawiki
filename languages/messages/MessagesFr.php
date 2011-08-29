@@ -2223,7 +2223,7 @@ Des [[{{MediaWiki:Listgrouprights-helppage}}|informations additionnelles]] peuve
 'emailpagetext'        => 'Vous pouvez utiliser le formulaire ci-dessous pour envoyer un courriel à cet utilisateur.
 L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos préférences]] apparaîtra dans le champ « Expéditeur » de votre message ; ainsi, le destinataire pourra vous répondre directement.',
 'usermailererror'      => 'Erreur dans l’objet du courriel :',
-'defemailsubject'      => 'Courriel de {{SITENAME}}',
+'defemailsubject'      => '{{SITENAME}} Courriel de l\'utilisateur "$1"',
 'usermaildisabled'     => 'L’envoi de courriels entre utilisateurs est désactivé',
 'usermaildisabledtext' => 'Vous ne pouvez pas envoyer de courriels à d’autres utilisateurs sur ce wiki',
 'noemailtitle'         => 'Aucune adresse de courriel',

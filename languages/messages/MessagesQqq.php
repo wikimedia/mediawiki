@@ -2749,6 +2749,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 'unblocked-range'             => 'Shown when successfully lifting a rangeblock, so do not link to contributions.
 * $1 - the range that was unblocked.',
 'ipblocklist'                 => 'Title of [[Special:Ipblocklist]].',
+'blocklist-rangeblocks'       => 'For an explanation of "range blocks", see http://www.mediawiki.org/wiki/Help:Range_blocks',
 'blocklist-timestamp'         => 'This is a column header for dates and times in the table on the page [[Special:BlockList]].
 {{Identical|Timestamp}}',
 'blocklist-target'            => 'The table header for the column containing the block targets, that is user names or IP-addresses linked to their respective user pages, in the table on the page [[Special:BlockList]].',
@@ -4242,10 +4243,27 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'compare-submit'   => 'Submit button on [[Special:ComparePages]]',
 
 # Special:GlobalFileUsage
-'globalfileusage-for'        => '$1 is a file name',
-'globalfileusage-ok'         => '{{Identical|Search}}',
-'globalfileusage-no-results' => '$1 is a file name',
-'globalfileusage-on-wiki'    => '$2 is a wiki name',
+'globalfileusage'             => 'Title of [[Special:GlobalFileUsage]] that lists all the places where one shared file has been used. "Global" refers to the usage, not to the file. "File" is singular.',
+'globalfileusage-for'         => 'Title of special page ([http://commons.wikimedia.org/w/index.php?title=Special%3AGlobalUsage&limit=50&target=Example.jpg example]).
+$1 is a file name.',
+'globalfileusage-desc'        => '{{desc}}',
+'globalfileusage-ok'          => 'Text of submit button
+
+{{Identical|Search}}',
+'globalfileusage-text'        => 'Dialog box heading on [[Special:GlobalFileUsage]]. "Global" refers to "usage" not "file".',
+'globalfileusage-no-results'  => 'Used for empty result on [[Special:GlobalUsage]].
+$1 is a file name (with namespace)',
+'globalfileusage-on-wiki'     => 'Heading for list of files. Example: [[Commons:Special:GlobalUsage/Example.jpg]] and [[Commons:File:Example.jpg]]
+
+$2 is a wiki name',
+'globalfileusage-of-file'     => 'Text introducing list of files on an image page ([http://commons.wikimedia.org/wiki/File:Example.jpg example]).
+
+The number of following wikis is unknown. For an empty result, no message is shown.',
+'globalfileusage-more'        => 'Used on an image page, when more global usage results are available. Example: [[Commons:File:Example.jpg]]
+* $1 - name of the file (without namespace)',
+'globalfileusage-filterlocal' => 'Filter option for GlobalUsage special page, ([http://commons.wikimedia.org/wiki/Special:GlobalUsage/Hacienda_jaral_de_berrios.jpg example]).
+
+"Local" here means "on this wiki".',
 
 # Special:GlobalTemplateUsage
 'globaltemplateusage-for'        => '$1 is a template name',

@@ -3667,14 +3667,21 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'compare-revision-not-exists' => 'Пазначаная вэрсія не існуе.',
 
 # Special:GlobalFileUsage
-'globalfileusage'            => 'Глябальнае выкарыстаньне файла',
-'globalfileusage-for'        => 'Глябальнае выкарыстаньне файла для «$1»',
-'globalfileusage-desc'       => '[[Special:GlobalFileUsage|Спэцыяльная старонка]] для прагляду глябальнага выкарыстаньня файла',
-'globalfileusage-ok'         => 'Шукаць',
-'globalfileusage-text'       => 'Пошук глябальнага выкарыстаньня файла',
-'globalfileusage-no-results' => '[[$1]] не выкарыстоўваецца ў іншых вікі.',
-'globalfileusage-on-wiki'    => 'Выкарыстоўваецца ў $2',
-'globalfileusage-of-file'    => 'Гэты файл выкарыстоўваецца ў наступных вікі:',
+'globalfileusage'             => 'Глябальнае выкарыстаньне файла',
+'globalfileusage-for'         => 'Глябальнае выкарыстаньне файла для «$1»',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Спэцыяльная старонка]] для прагляду глябальнага выкарыстаньня файла',
+'globalfileusage-ok'          => 'Шукаць',
+'globalfileusage-text'        => 'Пошук глябальнага выкарыстаньня файла',
+'globalfileusage-no-results'  => '[[$1]] не выкарыстоўваецца ў іншых вікі.',
+'globalfileusage-on-wiki'     => 'Выкарыстоўваецца ў $2',
+'globalfileusage-of-file'     => 'Гэты файл выкарыстоўваецца ў наступных вікі:',
+'globalfileusage-more'        => 'Паказаць [[{{#Special:GlobalUsage}}/$1|глябальнае выкарыстаньне]] гэтага файла.',
+'globalfileusage-filterlocal' => 'Не паказваць лякальнае выкарыстаньне',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'      => 'Глябальнае выкарыстаньне шаблёну',
+'globaltemplateusage-for'  => 'Глябальнае выкарыстаньне шаблёну «$1»',
+'globaltemplateusage-desc' => '[[Special:GlobalTemplateUsage|Спэцыяльная старонка]] для паказу глябальнага выкарыстаньня шаблёну',
 
 # Database error messages
 'dberr-header'      => 'Гэтая вікі не функцыянуе спраўна',

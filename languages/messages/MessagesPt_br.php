@@ -2275,7 +2275,7 @@ Para comentários e pedidos de ajuda:
 'deletepage'             => 'Eliminar página',
 'confirm'                => 'Confirmar',
 'excontent'              => "o conteúdo era: '$1'",
-'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era "[[{{#Special:Contributions}}/$2|$2]]")',
+'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era "[[Special:Contributions/$2|$2]]")',
 'exbeforeblank'          => "o conteúdo antes de esvaziar era: '$1'",
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',
@@ -3015,7 +3015,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'newimages-label'       => 'Nome de arquivo (ou parte dele):',
 'showhidebots'          => '($1 robôs)',
 'noimages'              => 'Nada para ver.',
-'ilsubmit'              => 'Procurar',
+'ilsubmit'              => 'Pesquisar',
 'bydate'                => 'por data',
 'sp-newimages-showfrom' => 'Mostrar novos arquivos a partir das $2 de $1',
 
@@ -3716,6 +3716,13 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 'compare-invalid-title'       => 'O título que você especificou é inválido.',
 'compare-title-not-exists'    => 'O título que você especificou não existe.',
 'compare-revision-not-exists' => 'A revisão que você especificou não existe.',
+
+# Special:GlobalFileUsage
+'globalfileusage'      => 'Utilização global do arquivo',
+'globalfileusage-for'  => 'Utilização global de "$1"',
+'globalfileusage-desc' => ' [[Special:GlobalFileUsage|Página especial]] para consultar a utilização global de arquivos',
+'globalfileusage-ok'   => 'Pesquisar',
+'globalfileusage-text' => 'Pesquisar utilização global de arquivos',
 
 # Database error messages
 'dberr-header'      => 'Este wiki tem um problema',

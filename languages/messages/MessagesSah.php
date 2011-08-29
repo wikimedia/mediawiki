@@ -457,7 +457,7 @@ $2',
 'createaccountreason'        => 'Төрүөтэ:',
 'badretype'                  => 'Киирии тылларыҥ сөп түбэспэтилэр.',
 'userexists'                 => 'Суруйбут аатыҥ бэлиэр баар.
-Атын аатта тал.',
+Бука диэн, атын аатта тал.',
 'loginerror'                 => 'Ааккын система билбэтэ',
 'createaccounterror'         => 'Саҥа аат бэлиэтиир кыах суох: $1',
 'nocookiesnew'               => 'Маннык ааттаах кыттааччы баар буолла гынан баран, систиэмэҕэ киирэ илик. {{SITENAME}} «cookies» туттар, оттон эн көмпүүтэргэр ону туһанар бобуллубут. Бука диэн «cookies» холбоо, онтон өссө киирэн көр.',
@@ -759,6 +759,9 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'templatesused'                    => 'Манна туттуллубут {{PLURAL:$1|халыып|халыыптар}} :',
 'templatesusedpreview'             => 'Манна туттуллубут {{PLURAL:$1|халыып|халыыптар}} бигэргэтиэх иннинэ көстүүлэрэ:',
 'templatesusedsection'             => 'Манна туттуллубут {{PLURAL:$1|халыып|халыыптар}}:',
+'distanttemplatesused'             => 'Манна туттуллубут ыраахтан туттуллар {{PLURAL:$1|халыып|халыыптар}}:',
+'distanttemplatesusedpreview'      => 'Эрдэ көрүүгэ туттуллубут ыраахтан туттуллар {{PLURAL:$1|халыып|халыыптар}}:',
+'distanttemplatesusedsection'      => 'Бу салааҕа туттуллубут ыраахтан туттуллар {{PLURAL:$1|халыып|халыыптар}}:',
 'template-protected'               => '(хатаммыт)',
 'template-semiprotected'           => '(хатаммыт аҥардаах)',
 'hiddencategories'                 => 'Бу сирэй кистэммит {{PLURAL:$1|1 категорияҕа|$1 категорияларга}} киирэр:',
@@ -1073,7 +1076,7 @@ $1",
 'qbsettings-fixedright'     => 'Уҥа өттө хамсаабат',
 'qbsettings-floatingleft'   => 'Хаҥас өттө устаҥныыр',
 'qbsettings-floatingright'  => 'Уҥа өттө устаҥныыр',
-'qbsettings-directionality' => 'Туттарыллыбыт, тылыҥ суругуттан-бичигиттэн тутулуктаах',
+'qbsettings-directionality' => 'Туттарыллыбыт, тылыҥ суругун-бичигин хайысхатыттан тутулуктаах',
 
 # Preferences page
 'preferences'                   => 'Уларытыылар',
@@ -1594,8 +1597,7 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Бу анал сирэй киллэриллибит билэлэри барытын көрдөрөр.
-Соторутааҕыта киллэриллибиттэр үөһэ сылдьаллар.
-Колонка баһын баттаатаххына наардааһын бэрээдэгэ уларыйар.',
+Киллэрээччинэн наардаатахха киллэрээччи бүтэһик көннөрүүтэ эрэ көстүөҕэ.',
 'listfiles_search_for'  => 'Миэдьийэни (ойууну) аатынан көрдөтүү:',
 'imgfile'               => 'билэ',
 'listfiles'             => 'Билэлэр',
@@ -2143,9 +2145,8 @@ $UNWATCHURL
 'undeletepagetext'             => 'Манна ыйыллыбыт {{PLURAL:$1|сирэй сотуллубут|$1 сирэй сотуллубуттар}} гынан баран архыыпка сыталлар.
 Онон оннуларыгар төннөрүөххүн сөп. Архыып кэмиттэн кэмигэр ыраастанар.',
 'undelete-fieldset-title'      => 'Торумнары төнүннэр',
-'undeleteextrahelp'            => "Сирэйи барытын оннугар төннөрөргө тугу да бэлиэтээмэ уонна '''''Төннөр''''' тимэҕи баттаа.
-Сирэй сороҕун эрэ төннөрөр буоллаххына сорох эрэ торумнарын бэлиэтээ уонна '''''Төннөр''''' тимэҕи баттаа.
-'''''Ыраастаа''''' тимэҕи баттаатаххына бэлиэлэр уонна хос быһаарыы сүтүөхтэрэ.",
+'undeleteextrahelp'            => "Сирэйи барытын оннугар төннөрөргө тугу да бэлиэтээмэ уонна '''''{{int:undeletebtn}}''''' тимэҕи баттаа.
+Сирэй сороҕун эрэ төннөрөр буоллаххына сирэй төннөрүллүөхтээх барылларын бэлиэтээ уонна '''''{{int:undeletebtn}}''''' тимэҕи баттаа.",
 'undeleterevisions'            => 'Архыыпка $1 {{PLURAL:$1|барыллаах|барыл баар}}',
 'undeletehistory'              => 'Сирэйи төннөрдөххүнэ уларытыытын устуоруйата барыта төннөрүллүө.
 Сотуллубутун кэннэ маннык ааттаах атын сирэй оҥоһуллубут түбэлтэтигэр төннөрүллүбүт торумнар уларытыы сурунаалыгар саҥа суруктар иннилэригэр суруллуохтара.',
@@ -2303,6 +2304,7 @@ $1',
 'blocklist-userblocks'            => 'Хааччахтаммыт кыттааччылары көрдөрүмэ',
 'blocklist-tempblocks'            => 'Быстаах кэмҥэ хааччахтары көрдөрүмэ',
 'blocklist-addressblocks'         => 'Биирдиилээн IP-лары хааччахтааһыны көрдөрүмэ',
+'blocklist-rangeblocks'           => 'Диапазоннар хаачахтарын кистээ',
 'blocklist-timestamp'             => 'Күнэ-дьыла',
 'blocklist-target'                => 'Сыал-сорук',
 'blocklist-expiry'                => 'Болдьоҕо',
@@ -3417,7 +3419,7 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'specialpages-note'              => '----
 * Көннөрү анал сирэйдэр.
 * <strong class="mw-specialpagerestricted">Хааччахтардаах анал сирэйдэр.</strong>
-* <span class="mw-specialpagecached">Кээстэммит анал сирэйдэр.</span>',
+* <span class="mw-specialpagecached">Кээстэммит анал сирэйдэр (эргэрбит буолуохтарын сөп).</span>',
 'specialpages-group-maintenance' => 'Техническэй отчуоттар',
 'specialpages-group-other'       => 'Атын аналлаах сирэйдэр',
 'specialpages-group-login'       => 'Киирии / бэлиэтэнии',
@@ -3470,6 +3472,30 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'compare-title-not-exists'    => 'Ыйбыт аатыҥ суох эбит.',
 'compare-revision-not-exists' => 'Ыйбыт барылыҥ суох эбит.',
 
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Билэлэри киэҥник туттуу',
+'globalfileusage-for'         => '«$1» билэни киэҥник туттуу',
+'globalfileusage-desc'        => 'Билэни киэҥник туттууну көрдөрөр [[Special:GlobalFileUsage|аналлаах сирэй]]',
+'globalfileusage-ok'          => 'Бул',
+'globalfileusage-text'        => 'Билэни киэҥник туттууну көрдөөһүн',
+'globalfileusage-no-results'  => '[[$1]] атын биикигэ туттуллубат эбит.',
+'globalfileusage-on-wiki'     => 'Манна туттуллар $2',
+'globalfileusage-of-file'     => 'Бу биикилэр бу билэни тутталлар эбит:',
+'globalfileusage-more'        => 'Билэ [[{{#Special:GlobalUsage}}/$1|атын сиргэ киэҥник туттуллуутун]] көрүү.',
+'globalfileusage-filterlocal' => 'Локаал туттууну көрдөрүмэ',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Халыыптары киэҥник туттуу',
+'globaltemplateusage-for'         => '"$1" халыыбы киэҥник туттуу',
+'globaltemplateusage-desc'        => 'Халыыбы киэҥник туттууну көрдөрөр [[Special:GlobalTemplateUsage|аналлаах сирэй]]',
+'globaltemplateusage-ok'          => 'Бул',
+'globaltemplateusage-text'        => 'Халыыбы киэҥник туттууну көрдөөһүн',
+'globaltemplateusage-no-results'  => '[[$1]] атын биикигэ туттуллубат эбит.',
+'globaltemplateusage-on-wiki'     => 'Манна туттуллар $2',
+'globaltemplateusage-of-file'     => 'Бу халыып маннык биикилэргэ туттуллар:',
+'globaltemplateusage-more'        => 'Халыып [[{{#Special:GlobalUsage}}/$1|атын сиргэ киэҥник туттуллуутун]] көрүү.',
+'globaltemplateusage-filterlocal' => 'Локаал туттууну көрдөрүмэ',
+
 # Database error messages
 'dberr-header'      => 'Бу биики туга эрэ сатаммата',
 'dberr-problems'    => 'Баалаама! Бу саайт техническэй ыарахаттары көрсүбүт.',
@@ -3518,5 +3544,6 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'ajax-category-already-present' => 'Бу сирэй уруккуттан "$1" категорияҕа киирэр эбит',
 'ajax-category-hook-error'      => 'Уларытыы оҥоһулларыгар олохтоох (локал) функция мэһэй буолла.',
 'ajax-api-error'                => 'API алҕаһы төннөрдө (көрдөрдө): $1: $2',
+'ajax-api-unknown-error'        => 'API биллибэт алҕаһы булла..',
 
 );

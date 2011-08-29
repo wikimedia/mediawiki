@@ -2026,7 +2026,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'emailpage'            => 'विपत्र (ईमेल) उपयोगकर्ता',
 'emailpagetext'        => 'जर या सदस्याने शाबीत विपत्र (ईमेल)पत्ता तीच्या अथवा त्याच्या सदस्य पसंतीत नमुद केला असेल,तर खालील सारणी तुम्हाला एक(च) संदेश पाठवेल.तुम्ही तुमच्या [[Special:Preferences|सदस्य पसंतीत]] नमुद केलेला विपत्र पत्ता "कडून" पत्त्यात येईल म्हणजे  प्राप्तकरता आपल्याला उत्तर देऊ शकेल.',
 'usermailererror'      => 'पत्र बाब त्रूटी वापस पाठवली:',
-'defemailsubject'      => '{{SITENAME}} विपत्र',
+'defemailsubject'      => '{{SITENAME}} "$1" सदस्याकडून विपत्र',
 'usermaildisabled'     => 'सदस्य विपत्र निष्क्रीय आहे',
 'usermaildisabledtext' => 'या विकीवर तुम्हाला इतर सदस्यांना विपत्रे पाठवता येत नाहीत',
 'noemailtitle'         => 'विपत्र पत्ता नाही',
@@ -2058,9 +2058,11 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'watchlistanontext'    => 'तुमच्या पहार्‍याच्या सूचीतील बाबी पाहण्याकरता किंवा संपादित करण्याकरता, कृपया $1.',
 'watchnologin'         => 'प्रवेश केलेला नाही',
 'watchnologintext'     => 'तुमची पहार्‍याची सूची बदलावयाची असेल तर तुम्ही [[Special:UserLogin|प्रवेश केलेला]] असलाच पाहीजे.',
+'addwatch'             => 'पहार्‍याच्या सूचीत टाका',
 'addedwatchtext'       => '"[[:$1]]"  हे पान तुमच्या  [[Special:Watchlist|पहार्‍याच्या सूचीत]] टाकले आहे. या पानावरील तसेच त्याच्या चर्चा पानावरील पुढील बदल येथे दाखवले जातील, आणि   [[Special:RecentChanges|अलीकडील बदलांमध्ये]] पान ठळक दिसेल.
 
 पहार्‍याच्या सूचीतून पान काढायचे असेल तर "पहारा काढा" वर टिचकी द्या.',
+'removewatch'          => 'पहार्‍याच्या सूचीतून वगळा',
 'removedwatchtext'     => '"[[:$1]]" पान तुमच्या [[Special:Watchlist|पहार्‍याच्या सूची]]तून वगळण्यात आले आहे.',
 'watch'                => 'पहारा',
 'watchthispage'        => 'या पानावर बदलांसाठी लक्ष ठेवा.',
@@ -2704,6 +2706,12 @@ $1',
 'spam_reverting'      => '$1शी दुवे नसलेल्या गेल्या आवर्तनाकडे परत उलटवत आहे',
 'spam_blanking'       => '$1शी दुवे असलेली सर्व आवर्तने,रिक्त केली जात आहेत',
 
+# Info page
+'pageinfo-header-edits'     => 'संपादने',
+'pageinfo-header-watchlist' => 'पहार्‍याची सूची',
+'pageinfo-subjectpage'      => 'पान',
+'pageinfo-talkpage'         => 'चर्चा पान',
+
 # Skin names
 'skinname-standard'    => 'अभिजात',
 'skinname-nostalgia'   => 'रम्य',
@@ -3289,8 +3297,7 @@ $1',
 
 # Special:SpecialPages
 'specialpages'                   => 'विशेष पृष्ठे',
-'specialpages-note'              => '----
-* सर्वसाधारण विशेष पृष्ठे.
+'specialpages-note'              => '* सर्वसाधारण विशेष पृष्ठे.
 * <strong class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठे.</strong>',
 'specialpages-group-maintenance' => 'व्यवस्थापन अहवाल',
 'specialpages-group-other'       => 'इतर विशेष पृष्ठे',
@@ -3328,6 +3335,9 @@ $1',
 'compare-rev2'     => 'आवर्तन २',
 'compare-submit'   => 'तुलना करा',
 
+# Special:GlobalTemplateUsage
+'globaltemplateusage-ok' => 'शोधा',
+
 # Database error messages
 'dberr-header'      => 'या विकीत एक चूक आहे',
 'dberr-problems'    => 'माफ करा, हे संकेतस्थळ सध्या तांत्रिक अडचणींना सामोरे जात आहे.',
@@ -3348,5 +3358,10 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => 'पूर्ण-मजकूर शोध समर्थनासहित $1',
 'sqlite-no-fts'  => 'पूर्ण-मजकूर शोध समर्थनाविरहित $1',
+
+# Add categories per AJAX
+'ajax-confirm-ok'       => 'ठीक',
+'ajax-confirm-save'     => 'जतन करा',
+'ajax-confirm-save-all' => 'सर्व बदल जतन करा',
 
 );
