@@ -1557,8 +1557,7 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Тота шпеціална сторінка зображує вшыткы начітаны файлы.
-Імпліцітно є послїднїй награный файл вказаный зверьху.
-Кликнутём на головку стовпця можете змінити сортованя.',
+При філтрованю подля хоснователя ся зображують лем файлы, у котрых хоснователь начітав актуалну верзію.',
 'listfiles_search_for'  => 'Глядати файл по назві:',
 'imgfile'               => 'файл',
 'listfiles'             => 'Список файлів',
@@ -1881,7 +1880,7 @@ $1',
 'emailpagetext'        => 'Помочов ниже зображеного формуларя можете тому хоснователёви послати повідомлїня ел. поштов.
 Адреса ел. пошты, котру мате зазначену в [[Special:Preferences|наставлїня]],ся обявить як адреса одосылателя пошты, жебы вам адресат міг одповісти прямо.',
 'usermailererror'      => 'Хыба поштового проґраму:',
-'defemailsubject'      => '{{SITENAME}}: лист',
+'defemailsubject'      => '{{SITENAME}}: лист од "$1"',
 'usermaildisabled'     => 'Посыланя ел. пошты є выпнуте',
 'usermaildisabledtext' => 'Не маєте право одосылати ел. пошту іншым хоснователям той вікі',
 'noemailtitle'         => 'Без адресы ел. пошты',
@@ -2146,11 +2145,12 @@ $1',
 'undelete-show-file-submit'    => 'Гей',
 
 # Namespace form on various pages
-'namespace'             => 'Простор назв:',
-'invert'                => 'Окрем выбраного',
-'tooltip-invert'        => 'зазнач тото поличко, жебы ся скрыли зміны на сторінках у выбранім просторї назв (і спрягнутый простор назв є тыж зазначеный)',
-'namespace_association' => 'Повязаный простор назв',
-'blanknamespace'        => '(Основный)',
+'namespace'                     => 'Простор назв:',
+'invert'                        => 'Окрем выбраного',
+'tooltip-invert'                => 'зазнач тото поличко, жебы ся скрыли зміны на сторінках у выбранім просторї назв (і спрягнутый простор назв є тыж зазначеный)',
+'namespace_association'         => 'Повязаный простор назв',
+'tooltip-namespace_association' => 'Позначінём того поличка загорнете і діскузный ці обсяговый простор назв приналежный ку вынраному простору назв',
+'blanknamespace'                => '(Основный)',
 
 # Contributions
 'contributions'       => 'Приспевок хоснователя',
@@ -2258,6 +2258,7 @@ $1',
 'blocklist-userblocks'            => 'Сховати заблокованы конта',
 'blocklist-tempblocks'            => 'Сховати дочасны заблокованя',
 'blocklist-addressblocks'         => 'Сховати блокованя єдной IP адресы',
+'blocklist-rangeblocks'           => 'Скрыти блокованя россягів',
 'blocklist-timestamp'             => 'Часова значка',
 'blocklist-target'                => 'Ціль',
 'blocklist-expiry'                => 'Кінчіть',
@@ -2890,12 +2891,32 @@ $1',
 'exif-copyrightowner'              => 'Властник авторьскых прав',
 'exif-usageterms'                  => 'Условія хоснованя',
 'exif-webstatement'                => 'Онлайн інформації о авторьскых правах',
+'exif-originaldocumentid'          => 'Унікатне ID оріґіналного документу',
+'exif-licenseurl'                  => 'URL ліценції',
+'exif-morepermissionsurl'          => 'Інформації о другім ліценцованю',
+'exif-attributionurl'              => 'Кідь хоснуєте тото дїло, зазначте одказ',
+'exif-preferredattributionname'    => 'Кідь хоснуєте тото дїло, зазначте автора',
 'exif-pngfilecomment'              => 'Позначкы ку файлу PNG',
 'exif-disclaimer'                  => 'Вылучіня зодповідности',
+'exif-contentwarning'              => 'Упозорнїня ку обсягу',
 'exif-giffilecomment'              => 'Позначкы ку файлу GIF',
+'exif-intellectualgenre'           => 'Тіп положкы',
+'exif-subjectnewscode'             => 'Код предмету',
+'exif-scenecode'                   => 'IPTC код сцены',
+'exif-event'                       => 'Зображена подїя',
+'exif-organisationinimage'         => 'Зображена орґанізація',
+'exif-personinimage'               => 'Зображена особа',
+'exif-originalimageheight'         => 'Вышка образчіка перед орїзанём',
+'exif-originalimagewidth'          => 'Шырка образчіка перед орїзанём',
 
 # EXIF attributes
 'exif-compression-1' => 'Нестиснутый',
+'exif-compression-2' => '1-дімензіоналне Гуффманове кодованя довжкы бігу CCITT Group 3',
+'exif-compression-3' => 'Кодованя факсів CCITT Group 3',
+'exif-compression-4' => 'Кодованя факсів CCITT Group 4',
+
+'exif-copyrighted-true'  => 'Хранене авторьскым правом',
+'exif-copyrighted-false' => 'Вольне дїло',
 
 'exif-unknowndate' => 'Незнамый датум',
 
@@ -2910,6 +2931,8 @@ $1',
 
 'exif-planarconfiguration-1' => 'формат «chunky»',
 'exif-planarconfiguration-2' => 'формат «planar»',
+
+'exif-colorspace-65535' => 'Некаліброване',
 
 'exif-componentsconfiguration-0' => 'не екзістує',
 
@@ -2974,6 +2997,8 @@ $1',
 'exif-sensingmethod-7' => 'Трёхлінеарный сензор',
 'exif-sensingmethod-8' => 'Секвенчный лінеарный сензор',
 
+'exif-filesource-3' => 'Діґіталный фотоапарат',
+
 'exif-scenetype-1' => 'Прямо фотоґрафованый образок',
 
 'exif-customrendered-0' => 'Нормалне спрацованя',
@@ -3022,6 +3047,10 @@ $1',
 'exif-gpslongitude-e' => 'Выходна довжка',
 'exif-gpslongitude-w' => 'Западна довжка',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|метр|метра|метрів}} над уровнёв моря',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|метр|метра|метрів}} під уровнёв моря',
+
 'exif-gpsstatus-a' => 'Вымірёваня не є закінчене',
 'exif-gpsstatus-v' => 'Міряня мімо роботу',
 
@@ -3056,6 +3085,7 @@ $1',
 'exif-ycbcrpositioning-2' => 'У себе',
 
 'exif-dc-contributor' => 'Приспівателї',
+'exif-dc-coverage'    => 'Просторовы або часовы россягы медія',
 'exif-dc-date'        => 'Датум (датумы)',
 'exif-dc-publisher'   => 'Выдаватель',
 'exif-dc-relation'    => 'Повязаны медія',

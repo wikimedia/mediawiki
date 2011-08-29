@@ -2233,7 +2233,7 @@ Zusätzliche Informationen über einzelne Rechte können [[{{MediaWiki:Listgroup
 'emailpagetext'        => 'Du kannst dem Benutzer mit dem unten stehenden Formular eine E-Mail senden.
 Als Absender wird die E-Mail-Adresse aus deinen [[Special:Preferences|Einstellungen]] eingetragen, damit der Benutzer dir antworten kann.',
 'usermailererror'      => 'Das E-Mail-Objekt gab einen Fehler zurück:',
-'defemailsubject'      => '{{SITENAME}}-E-Mail',
+'defemailsubject'      => '{{SITENAME}} - E-Mail von Benutzer „$1“',
 'usermaildisabled'     => 'E-Mail-Empfang deaktiviert',
 'usermaildisabledtext' => 'Du kannst in diesem Wiki keine E-Mails an andere Benutzer senden',
 'noemailtitle'         => 'Keine E-Mail-Adresse',

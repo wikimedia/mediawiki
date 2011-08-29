@@ -5159,6 +5159,8 @@ A instalación pode fallar!",
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] está instalado',
 	'config-no-cache' => "'''Atención:''' Non se puido atopar [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] ou [http://www.iis.net/download/WinCacheForPhp WinCache].
 A caché de obxectos está desactivada.",
+	'config-mod-security' => "'''Atención:''' O seu servidor web ten o [http://modsecurity.org/ mod_security] activado. Se estivese mal configurado, pode causar problemas a MediaWiki ou calquera outro software que permita aos usuarios publicar contidos arbitrarios.
+Olle a [http://modsecurity.org/documentation/ documentación do mod_security] ou póñase en contacto co soporte do seu servidor se atopa erros aleatorios.",
 	'config-diff3-bad' => 'GNU diff3 non se atopou.',
 	'config-imagemagick' => 'ImageMagick atopado: <code>$1</code>.
 As miniaturas de imaxes estarán dispoñibles se activa as cargas.',
@@ -5168,9 +5170,12 @@ As miniaturas de imaxes estarán dispoñibles se activa as cargas.',
 As miniaturas de imaxes estarán desactivadas.',
 	'config-no-uri' => "'''Erro:''' Non se puido determinar o URI actual.
 Instalación abortada.",
+	'config-no-cli-uri' => "'''Aviso:''' Non se especificou ningún --scriptpath; por defecto, usarase: <code>$1</code>.",
 	'config-using-server' => 'Usando o nome do servidor "<nowiki>$1</nowiki>".',
+	'config-using-uri' => 'Usando o URL do servidor "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe' => "'''Atención:''' O seu directorio por defecto para as cargas, <code>$1</code>, é vulnerable a execucións arbitrarias de escrituras.
 Aínda que MediaWiki comproba todos os ficheiros cargados por se houbese ameazas de seguridade, é amplamente recomendable [http://www.mediawiki.org/wiki/Manual:Security#Upload_security pechar esta vulnerabilidade de seguridade] antes de activar as cargas.",
+	'config-no-cli-uploads-check' => "'''Atención:''' Durante a instalación CLI, o seu directorio por defecto para as cargas, <code>$1</code>, non se comproba fronte a posibles vulnerabilidades de execucións arbitrarias de escrituras.",
 	'config-brokenlibxml' => 'O seu sistema ten unha combinación de versións de PHP e libxml2 que pode ser problemático e causar corrupción de datos en MediaWiki e outras aplicacións web.
 Actualice o sistema á versión 5.2.9 ou posterior do PHP e á 2.7.3 ou posterior de libxml2 ([http://bugs.php.net/bug.php?id=45996 erro presentado co PHP]).
 Instalación abortada.',
@@ -5537,6 +5542,7 @@ Saltando a lista por defecto.",
 	'config-insecure-keys' => "'''Atención:''' {{PLURAL:$2|A clave de seguridade|As claves de seguridade}} ($1) {{PLURAL:$2|xerada|xeradas}} durante a instalación non {{PLURAL:$2|é|son}} completamente {{PLURAL:$2|segura|seguras}}. Considere a posibilidade de {{PLURAL:$2|cambiala|cambialas}} manualmente.",
 	'config-install-sysop' => 'Creando a conta de usuario de administrador',
 	'config-install-subscribe-fail' => 'Non se puido subscribir á lista mediawiki-announce: $1',
+	'config-install-subscribe-notpossible' => 'cURL non está instalado e allow_url_fopen non está dispoñible.',
 	'config-install-mainpage' => 'Creando a páxina principal co contido por defecto',
 	'config-install-extension-tables' => 'Creando as táboas para as extensións activadas',
 	'config-install-mainpage-failed' => 'Non se puido inserir a páxina principal: $1',
@@ -9828,6 +9834,7 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-upload-enable' => 'Eropluede vu Fichieren aschalten',
 	'config-upload-deleted' => 'Repertoire fir geläschte Fichieren:',
 	'config-logo' => 'URL vum Logo:',
+	'config-instantcommons' => '"Instant Commons" aktivéieren',
 	'config-cc-again' => 'Nach eng kéier eraussichen...',
 	'config-advanced-settings' => 'Erweidert Astellungen',
 	'config-extensions' => 'Erweiderungen',
@@ -9845,6 +9852,8 @@ Dir kënnt elo déi Astellungen déi nach iwwreg sinn iwwersprangen an d'Wiki el
 	'config-install-stats' => 'Initialisatioun vun de Statistiken',
 	'config-install-keys' => 'Generéiere vum Geheimschlëssel',
 	'config-install-sysop' => 'Administrateur Benotzerkont gëtt ugeluecht',
+	'config-install-mainpage-failed' => "D'Haaptsäit konnt net dragesat ginn: $1",
+	'config-download-localsettings' => 'LocalSettings.php eroflueden',
 	'config-help' => 'Hëllef',
 	'mainpagetext' => "'''MediaWiki gouf installéiert.'''",
 	'mainpagedocfooter' => "Kuckt w.e.g. [http://meta.wikimedia.org/wiki/Help:Contents d'Benotzerhandbuch] fir den Interface ze personnaliséieren.

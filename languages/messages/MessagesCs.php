@@ -2198,7 +2198,7 @@ Podporované protokoly: <tt>$1</tt>',
 'emailpagetext'        => 'Pomocí níže zobrazeného formuláře můžete tomuto uživateli poslat zprávu e-mailem.
 E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se objeví jako adresa odesílatele pošty, aby vám adresát mohl odpovědět přímo.',
 'usermailererror'      => 'Chyba poštovního programu:',
-'defemailsubject'      => 'E-mail z {{grammar:2sg|{{SITENAME}}}}',
+'defemailsubject'      => 'E-mail z {{grammar:2sg|{{SITENAME}}}} od {{gender:$1|uživatele|uživatelky|uživatele}} „$1“',
 'usermaildisabled'     => 'Posílání e-mailů je vypnuto',
 'usermaildisabledtext' => 'Nemáte oprávnění odesílat e-maily ostatním uživatelům této wiki',
 'noemailtitle'         => 'Bez e-mailové adresy',

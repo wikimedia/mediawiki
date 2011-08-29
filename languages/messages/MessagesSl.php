@@ -2093,7 +2093,7 @@ Na voljo so morda [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]]
 'emailpagetext'        => 'S spodnjim obrazcem lahko uporabniku pošljete e-poštno sporočilo.
 E-poštni naslov, ki ste ga vpisali v [[Special:Preferences|uporabniških nastavitvah]], bo v e-sporočilu naveden kot naslov »Od:«, tako da bo prejemnik lahko odgovoril neposredno vam.',
 'usermailererror'      => 'Predmet e-pošte je vrnil napako:',
-'defemailsubject'      => 'Elektronska pošta {{GRAMMAR:rodilnik|{{SITENAME}}}}',
+'defemailsubject'      => 'Elektronska pošta {{GRAMMAR:rodilnik|{{SITENAME}}}} od uporabnika »$1«',
 'usermaildisabled'     => 'Uporabniška e-pošta je onemogočena',
 'usermaildisabledtext' => 'Na tem wikiju ne morete poslati e-pošte drugim uporabnikom',
 'noemailtitle'         => 'Ni e-poštnega naslova',

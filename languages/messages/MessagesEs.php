@@ -750,8 +750,8 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'createaccountmail'          => 'por correo electrónico',
 'createaccountreason'        => 'Razón:',
 'badretype'                  => 'Las contraseñas no coinciden.',
-'userexists'                 => 'El nombre indicado ya está en uso.
-Por favor, indica un nombre diferente.',
+'userexists'                 => 'El nombre de usuario indicado ya está en uso.
+Por favor escoge un nombre diferente.',
 'loginerror'                 => 'Error de inicio de sesión',
 'createaccounterror'         => 'No se pudo crear la cuenta: $1',
 'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero no has iniciado sesión.
@@ -1859,9 +1859,8 @@ Para óptima seguridad, img_auth.php está desactivado.',
 'upload_source_file' => ' (un archivo en tu disco)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Esta página muestra todos los archivos subidos.
-El último subido se muestra al principio de la lista de manera predeterminada.
-Al hacer clic en el encabezado de una columna se cambia el orden.',
+'listfiles-summary'     => 'Esta página especial muestra todos los archivos subidos.
+Cuando es filytrado por el usuario, sólo los archivos cargados por el usuario se muestran en su versión más reciente.',
 'listfiles_search_for'  => 'Buscar por nombre de imagen:',
 'imgfile'               => 'archivo',
 'listfiles'             => 'Lista de archivos',

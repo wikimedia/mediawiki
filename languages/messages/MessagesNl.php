@@ -607,7 +607,7 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'viewsourcelink'          => 'brontekst bekijken',
 'editsectionhint'         => 'Deelpagina bewerken: $1',
 'toc'                     => 'Inhoud',
-'showtoc'                 => 'bekijken',
+'showtoc'                 => 'weergeven',
 'hidetoc'                 => 'verbergen',
 'collapsible-collapse'    => 'Inklappen',
 'collapsible-expand'      => 'Uitklappen',
@@ -2282,7 +2282,7 @@ Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individu
 Het e-mailadres dat u hebt opgegeven bij [[Special:Preferences|uw voorkeuren]] wordt als afzender gebruikt.
 De ontvanger kan dus direct naar u reageren.',
 'usermailererror'      => 'Foutmelding bij het verzenden:',
-'defemailsubject'      => 'E-mail van {{SITENAME}}',
+'defemailsubject'      => 'E-mail van {{SITENAME}}-gebruiker "$1"',
 'usermaildisabled'     => 'Gebruikerse-mail uitgeschakeld',
 'usermaildisabledtext' => 'U kunt geen e-mail verzenden naar andere gebruikers op deze wiki',
 'noemailtitle'         => 'Van deze gebruiker is geen e-mailadres bekend',

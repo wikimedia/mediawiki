@@ -2167,7 +2167,7 @@ Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informații adiționale]] de
 'emailpagetext'        => 'Poți folosi formularul de mai jos pentru a trimite un e-mail acestui utilizator.
 Adresa de e-mail introdusă de tine în [[Special:Preferences|preferințele de utilizator]] va apărea ca adresa expeditorului e-mail-ului, deci destinatarul va putea să îți răspundă direct.',
 'usermailererror'      => 'Obiectul de mail a dat eroare:',
-'defemailsubject'      => 'E-mail {{SITENAME}}',
+'defemailsubject'      => 'E-mail {{SITENAME}} de la utilizatorul „$1”',
 'usermaildisabled'     => 'E-mail dezactivat',
 'usermaildisabledtext' => 'Nu puteți trimite e-mail altor utilizatori ai acestui wiki.',
 'noemailtitle'         => 'Fără adresă de e-mail',

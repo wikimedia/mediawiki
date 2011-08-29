@@ -759,12 +759,34 @@ $messages = array(
 'timezoneregion-indian'     => 'بحر ہند',
 'timezoneregion-pacific'    => 'بحر الکاحل',
 'allowemail'                => 'دوجے ورتن آلیاں توں ای-میل آن دیو',
+'prefs-searchoptions'       => 'چنوتیاں کھوجو',
+'prefs-namespaces'          => 'ناواں دی جگہ:',
+'defaultns'                 => 'نئیں تے ایناں ناں تھاواں تے کھوج کرو:',
+'default'                   => 'ڈیفالٹ',
 'prefs-files'               => 'فائلاں',
+'prefs-custom-css'          => 'کسٹم سی ایس ایس',
+'prefs-custom-js'           => 'کسٹم جاواسکرپٹ',
+'prefs-common-css-js'       => 'سی ایس ایس/جاواسکرپٹ شئیر کرو ہر وکھالے لئی:',
+'prefs-reset-intro'         => 'تسیں ایس صفے نوں کسے سائٹ دی ڈیفالٹ دی چنوتیاں مرضی دیاں کرن ورت سکدے او۔
+
+اے واپس نئیں ہوسکدا۔',
+'prefs-emailconfirm-label'  => 'ای-میل کنفرمیشن:',
+'prefs-textboxsize'         => 'تبدیلی کرن والی ونڈو دا ناپ',
 'youremail'                 => 'ای میل:',
 'username'                  => 'ورتن آلے دا ناں:',
+'uid'                       => 'ورتن والے دی آئی ڈی',
+'prefs-memberingroups'      => 'سنگی {{PLURAL:$1|ٹولی|ٹولیاں}}:',
+'prefs-registration'        => 'رجسٹریشن ویلہ:',
 'yourrealname'              => 'اصلی ناں:',
 'yourlanguage'              => 'بولی:',
 'yournick'                  => 'دسخط:',
+'badsiglength'              => 'تھواڈے دسخط بعوت لمبے نیں۔
+
+اے $1 توں لمبے ناں ہون۔',
+'yourgender'                => 'جنس',
+'gender-unknown'            => 'نئیں دسیا گیا۔',
+'gender-male'               => 'نر',
+'gender-female'             => 'مادہ',
 'email'                     => 'ای میل',
 'prefs-help-realname'       => 'اصل ناں تواڈی مرزی تے اے۔<br />
 اگر تسی اینو دے دیو گۓ تے اے تواڈا کم اس ناں نال لکھیا جاۓ گا۔',
@@ -1828,7 +1850,10 @@ $5
 'filepath-submit' => 'چلو',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch' => 'دوہری فائلاں دی کھوج کرو',
+'fileduplicatesearch'           => 'دوہری فائلاں دی کھوج کرو',
+'fileduplicatesearch-filename'  => 'فائل دا ناں',
+'fileduplicatesearch-submit'    => 'کھوج',
+'fileduplicatesearch-noresults' => '"$1" ناں دی کوئی فائل نئیں لبی۔',
 
 # Special:SpecialPages
 'specialpages'                   => 'خاص صفحے',

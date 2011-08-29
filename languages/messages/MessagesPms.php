@@ -1049,12 +1049,13 @@ Ch'a preuva a gionté dnans a soa arserca ël prefiss ''all:'' për sërché an 
 'searchdisabled'                   => "L'arserca anterna ëd {{SITENAME}} a l'é nen abilità; për adess a peul prové a dovré un motor d'arserca estern coma Google. (Però che a ten-a da ment che ij contnù ëd {{SITENAME}} listà ant ij motor pùblich a podrìo ëdcò esse nen d'autut agiornà)",
 
 # Quickbar
-'qbsettings'               => 'Regolassion dla bara dij menù',
-'qbsettings-none'          => 'Gnun',
-'qbsettings-fixedleft'     => 'Fissà a la man ësnista',
-'qbsettings-fixedright'    => 'Fissà a la man drita',
-'qbsettings-floatingleft'  => 'Flotant a la man ësnista',
-'qbsettings-floatingright' => 'Flotant a la man drita',
+'qbsettings'                => 'Regolassion dla bara dij menù',
+'qbsettings-none'           => 'Gnun',
+'qbsettings-fixedleft'      => 'Fissà a la man ësnista',
+'qbsettings-fixedright'     => 'Fissà a la man drita',
+'qbsettings-floatingleft'   => 'Flotant a la man ësnista',
+'qbsettings-floatingright'  => 'Flotant a la man drita',
+'qbsettings-directionality' => 'A pòst, an dipendensa dla diressionalità dlë script ëd toa lenga',
 
 # Preferences page
 'preferences'                   => 'Mè gust',
@@ -1284,10 +1285,11 @@ Costa anformassion a sarà pùblica.",
 'right-sendemail'             => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
 
 # User rights log
-'rightslog'      => "Argistr dij drit ëd j'utent",
-'rightslogtext'  => "Costa a l'é na lista dij cambiament aj drit ëd j'utent.",
-'rightslogentry' => "a l'ha tramudà $1 da 'nt la partìa $2 a la partìa $3",
-'rightsnone'     => '(gnun)',
+'rightslog'                  => "Argistr dij drit ëd j'utent",
+'rightslogtext'              => "Costa a l'é na lista dij cambiament aj drit ëd j'utent.",
+'rightslogentry'             => "a l'ha tramudà $1 da 'nt la partìa $2 a la partìa $3",
+'rightslogentry-autopromote' => "a l'é stàit automaticament promovù da $2 a $3",
+'rightsnone'                 => '(gnun)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'lese sta pàgina-sì',
@@ -1433,6 +1435,7 @@ Beiché la [[Special:NewFiles|galarìa dj'archivi neuv]] për na presentassion p
 'emptyfile'                   => "L'archivi che a l'ha pen-a carià a smija veujd.
 Sòn a podrìa esse rivà përchè che chiel a l'ha scrivù mal ël nòm dl'archivi midem.
 Për piasì che a contròla se a l'é pro cost l'archivi che a veul carié.",
+'windows-nonascii-filename'   => "Sta wiki-sì a apògia pa ij nòm d'archivi con caràter speciaj.",
 'fileexists'                  => "N'archivi con ës nòm-sì a-i é già, për piasì che a contròla '''<tt>[[:$1]]</tt>''' se a l'é pa sigur dë vorèj cangelo.
 [[$1|thumb]]",
 'filepageexists'              => "La pàgina ëd descrission për st'archivi-sì a l'é già stàita creà an '''<tt>[[:$1]]</tt>''', mach ch'a-i é gnun archivi ch'as ciama parèj.
@@ -1614,6 +1617,7 @@ La lista sì-sota a smon mach {{PLURAL:$1|la prima pàgina ch'a l'ha|le prime $1
 A l'é disponìbil na [[Special:WhatLinksHere/$2|lista completa]].",
 'nolinkstoimage'                    => "Pa gnun-a pàgina che a l'abia n'anliura a sta figura-sì.",
 'morelinkstoimage'                  => "Vëdde [[Special:WhatLinksHere/$1|d'àutri colegament]] a s'archivi.",
+'linkstoimage-redirect'             => "$1 (ridiression d'archivi) $2",
 'duplicatesoffile'                  => "{{PLURAL:$1|L'archivi sì-dapress a l'é un|Ij $1 archivi sì-dapress a son dij}} duplicà ëd s'archivi ([[Special:FileDuplicateSearch/$2|pì ëd detaj]]):",
 'sharedupload'                      => "St'archivi-sì a ven da $1 e a peul esse dovrà da d'àutri proget.",
 'sharedupload-desc-there'           => "Cost archivi a riva da $1 e a peul esse dovrà da d'àutri proget.
@@ -1908,11 +1912,11 @@ L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|I
 'noemailtitle'         => 'Gnun-a adrëssa ëd pòsta eletrònica',
 'noemailtext'          => "Cost utent-sì a l'ha pa spessificà n'adrëssa ëd pòsta eletrònica vàlida.",
 'nowikiemailtitle'     => "Gnun mëssagi ëd pòsta eletrònica a l'é autorisà",
-'nowikiemailtext'      => "Stutent-sì a l'ha sërnù ëd pa arseive e-mail da dj'àutri utent.",
+'nowikiemailtext'      => "Cost utent a l'ha sërnù ëd nen arsèive dij mëssagi ëd pòsta eletrònica da j'àutri utent.",
 'emailnotarget'        => 'Stranòm dël destinatari pa esistent o pa bon.',
 'emailtarget'          => "Ch'a anserissa lë stranòm dël destinatari",
 'emailusername'        => 'Stranòm:',
-'emailusernamesubmit'  => 'Spediss',
+'emailusernamesubmit'  => 'Spedì',
 'email-legend'         => "Manda n'e-mail a n'àutr utent ëd {{SITENAME}}",
 'emailfrom'            => 'Da:',
 'emailto'              => 'A:',
@@ -1982,15 +1986,17 @@ $NEWPAGE
 Resumé dl\'editor: $PAGESUMMARY $PAGEMINOREDIT
 
 Për contaté l\'editor:
-Pòsta eletrònica: $PAGEEDITOR_EMAIL
+pòsta eletrònica: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-A-i sarà pì gnun-a notìfica ëd modìfiche se chiel a vìsita nen costa pàgina.
-Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba da ten-e sot euj.
+A-i sarà pì gnun-a notìfica ëd modìfiche se chiel a vìsita nen costa pàgina. Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba da ten-e sot euj.
 
-             Comunicassion dël sistema ëd notìfica da {{SITENAME}}
+Comunicassion dël sistema ëd notìfica da {{SITENAME}}
 
 --
+Për cangé la configurassion ëd toe notìfiche email, che a vada ansima a
+{{canonicalurl:{{#special:Preferences}}}}
+
 Për cangé la configurassion ëd lòn che as ten sot euj che a vada ansima a
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
@@ -2125,9 +2131,8 @@ Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
 'undeletepagetext'             => "{{PLURAL:$1|La pàgina ambelessì sota a l'é staita scancelà, ma a resta|$1 Le pàgine ambelessì sota a son staite scancelà, ma a resto}} ancó memorisà ant l'archivi a as peulo pijesse andaré.
 L'archivi a ven polidà passaje un pòch ëd temp.",
 'undelete-fieldset-title'      => 'Arcùpera le revision',
-'undeleteextrahelp'            => "Për ripristiné l'antrega stòria dla pàgina, che a lassa tute le casele nen selessionà e che a jë sgnaca ansima a '''''Buta coma a l'era'''''.
-Për ripristiné mach chèich-còs, che a selession-a le casele corispondente a le revision da ripristiné anans che sgnaché.
-Ën sgacand-je ansima a '''''Veujda casele''''' peul polidesse d'amblé tute le casele selessionà e dësvojdé ël coment.",
+'undeleteextrahelp'            => "Për ripristiné l'antrega stòria dla pàgina, che a lassa tute le casele nen selessionà e che a jë sgnaca ansima a '''''{{int:undeletebtn}}'''''.
+Për ripristiné mach chèich-còs, che a selession-a le casele corispondente a le revision da ripristiné, e che a sgnaca ansima a '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '{{PLURAL:$1|Na|$1}} revision memorisà',
 'undeletehistory'              => "Se a pija andré st'articol-sì, ëdcò tute soe revision a saran pijaite andaré ansema a chiel ant soa cronologìa.
 Se a fussa mai staita creà na pàgina neuva con l'istess nòm dòp che la veja a l'era staita scancelà, le revision a saran buta ant la cronologìa ëd prima.",

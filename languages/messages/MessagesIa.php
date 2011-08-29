@@ -591,14 +591,15 @@ Verifica le orthographia.',
 'mailmypassword'             => 'Inviar un nove contrasigno in e-mail',
 'passwordremindertitle'      => 'Nove contrasigno temporari pro {{SITENAME}}',
 'passwordremindertext'       => 'Alcuno (probabilemente tu, ab le adresse IP $1) requestava un nove
-contrasigno pro {{SITENAME}} ($4). Un contrasigno temporari pro le usator
-"$2" ha essite create, le qual es "$3". Si isto esseva tu
-intention, tu debe ora aperir un session e seliger un nove contrasigno.
-Tu contrasigno temporari expirara in {{PLURAL:$5|un die|$5 dies}}.
+contrasigno pro {{SITENAME}} ($4).
+Un contrasigno temporari pro le usator "$2" ha essite create; iste
+contrasigno es "$3". Si isto esseva le intention, tu debe ora
+aperir un session e eliger un nove contrasigno. Le contrasigno temporari
+expirara post {{PLURAL:$5|un die|$5 dies}}.
 
-Si un altere persona ha facite iste requesta, o si tu te ha rememorate tu contrasigno,
-e tu non vole plus cambiar lo, tu pote ignorar iste message e
-continuar a usar tu contrasigno original.',
+Si un altere persona ha facite iste requesta, o si tu te ha rememorate
+le contrasigno e non plus vole cambiar lo, tu pote ignorar iste message
+e continuar a usar le contrasigno original.',
 'noemail'                    => 'Il non ha un adresse de e-mail registrate pro le usator "$1".',
 'noemailcreate'              => 'Es necessari fornir un adresse de e-mail valide',
 'passwordsent'               => 'Un nove contrasigno esseva inviate al adresse de e-mail
@@ -2466,6 +2467,7 @@ a un adresse IP blocate previemente.',
 'blocklist-userblocks'            => 'Celar blocadas de conto',
 'blocklist-tempblocks'            => 'Celar blocadas temporari',
 'blocklist-addressblocks'         => 'Celar blocadas de singule adresse IP',
+'blocklist-rangeblocks'           => 'Celar blocadas de gruppos de adresses IP',
 'blocklist-timestamp'             => 'Data e hora',
 'blocklist-target'                => 'Objectivo',
 'blocklist-expiry'                => 'Expira',
@@ -3660,6 +3662,30 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 'compare-invalid-title'       => 'Le titulo que tu specificava es invalide.',
 'compare-title-not-exists'    => 'Le titulo que tu specificava non existe.',
 'compare-revision-not-exists' => 'Le version que tu specificava non existe.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Uso global de file',
+'globalfileusage-for'         => 'Uso global del file "$1"',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Pagina special]] pro vider le uso global de files',
+'globalfileusage-ok'          => 'Cercar',
+'globalfileusage-text'        => 'Cercar uso global de files.',
+'globalfileusage-no-results'  => '[[$1]] non es usate in altere wikis.',
+'globalfileusage-on-wiki'     => 'Uso in $2',
+'globalfileusage-of-file'     => 'Le altere wikis sequente usa iste imagine:',
+'globalfileusage-more'        => 'Vider [[{{#Special:GlobalUsage}}/$1|altere usos global]] de iste file.',
+'globalfileusage-filterlocal' => 'Non monstrar uso local',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Uso global del patrono',
+'globaltemplateusage-for'         => 'Uso global del patrono "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Pagina special]] pro vider le uso global de patronos',
+'globaltemplateusage-ok'          => 'Cercar',
+'globaltemplateusage-text'        => 'Cercar uso global de patronos.',
+'globaltemplateusage-no-results'  => '[[$1]] non es usate in altere wikis.',
+'globaltemplateusage-on-wiki'     => 'Uso in $2',
+'globaltemplateusage-of-file'     => 'Le altere wikis sequente usa iste patrono:',
+'globaltemplateusage-more'        => 'Vider [[{{#Special:GlobalUsage}}/$1|altere usos global]] de iste patrono.',
+'globaltemplateusage-filterlocal' => 'Non monstrar uso local',
 
 # Database error messages
 'dberr-header'      => 'Iste wiki ha un problema',

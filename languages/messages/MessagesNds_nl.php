@@ -3737,10 +3737,10 @@ Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning veur "full-text" zeuken',
 
 # Add categories per AJAX
-'ajax-add-category'             => 'Kategorie derbie doon',
+'ajax-add-category'             => 'Kategorie derbie zetten',
 'ajax-remove-category'          => 'Kategorie vortdoon',
 'ajax-edit-category'            => 'Bewark kategorie',
-'ajax-add-category-submit'      => 'Derbie doon',
+'ajax-add-category-submit'      => 'Derbie zetten',
 'ajax-confirm-ok'               => 'Oké',
 'ajax-confirm-title'            => 'Haandeling bevestigen',
 'ajax-confirm-save'             => 'Opslaon',

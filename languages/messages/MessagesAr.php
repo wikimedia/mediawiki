@@ -45,6 +45,7 @@
  * @author Tarawneh
  * @author TheEgyptian
  * @author Uwe a
+ * @author Zack wadghiri
  * @author Zanatos
  * @author ترجمان05
  * @author عصام بايزيدي
@@ -600,7 +601,7 @@ $messages = array(
 'vector-action-move'             => 'انقل',
 'vector-action-protect'          => 'احم',
 'vector-action-undelete'         => 'استرجع الحذف',
-'vector-action-unprotect'        => 'تغيير الحماية',
+'vector-action-unprotect'        => 'غير الحماية',
 'vector-simplesearch-preference' => 'مكّن مقترحات البحث المُحسّنة (لواجهة فكتور فقط)',
 'vector-view-create'             => 'أنشئ',
 'vector-view-edit'               => 'عدل',
@@ -637,7 +638,7 @@ $messages = array(
 'protect'           => 'احم',
 'protect_change'    => 'غير',
 'protectthispage'   => 'احم هذه الصفحة',
-'unprotect'         => 'تغيير الحماية',
+'unprotect'         => 'غير الحماية',
 'unprotectthispage' => 'غير حماية هذه الصفحة',
 'newpage'           => 'صفحة جديدة',
 'talkpage'          => 'ناقش هذه الصفحة',
@@ -1002,8 +1003,8 @@ $2
 'changeemail-cancel'   => 'إلغاء',
 
 # Edit page toolbar
-'bold_sample'     => 'نص عريض',
-'bold_tip'        => 'نص عريض',
+'bold_sample'     => 'نص غليظ',
+'bold_tip'        => 'نص غليظ',
 'italic_sample'   => 'نص مائل',
 'italic_tip'      => 'نص مائل',
 'link_sample'     => 'عنوان وصلة',
@@ -2183,7 +2184,7 @@ $1',
 'withoutinterwiki'         => 'صفحات بدون وصلات لغات أخرى',
 'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى.',
 'withoutinterwiki-legend'  => 'بادئة',
-'withoutinterwiki-submit'  => 'عرض',
+'withoutinterwiki-submit'  => 'اعرض',
 
 'fewestrevisions' => 'الصفحات ذات أقل تعديل',
 
@@ -2399,7 +2400,7 @@ $1',
 'watchnologintext'     => 'يجب أن تكون [[Special:UserLogin|مسجلا الدخول]] لتعدل قائمة مراقبتك.',
 'addwatch'             => 'إضافة إلى قائمة الرغبات',
 'addedwatchtext'       => "أضيفت الصفحة  \"[[:\$1]]\" إلى [[Special:Watchlist|قائمة مراقبتك]].
-التغييرات القادمة على هذه الصفحة وصفحة نقاشها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
+التغييرات القادمة على هذه الصفحة وصفحة نقاشها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''غليظ''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
 'removewatch'          => 'إزالة من قائمة المراقبة',
 'removedwatchtext'     => 'الصفحة "[[:$1]]" تمت إزالتها من [[Special:Watchlist|قائمة مراقبتك]].',
 'watch'                => 'راقب',
@@ -2411,7 +2412,7 @@ $1',
 'watchnochange'        => 'لم يتم تعديل أي صفحة في قائمة مراقبتك خلال الفترة الزمنية المحددة.',
 'watchlist-details'    => '{{PLURAL:$1||صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}} في قائمة مراقبتك، بدون عد صفحات النقاش.',
 'wlheader-enotif'      => '* الإخطار بالبريد الإلكتروني مفعل.',
-'wlheader-showupdated' => "* الصفحات التي تم تحريرها بعد زيارتك لها لآخر مرة معروضة بالخط '''العريض'''",
+'wlheader-showupdated' => "* الصفحات التي تم تحريرها بعد زيارتك لها لآخر مرة معروضة بالخط '''الغليظ'''",
 'watchmethod-recent'   => 'فحص التعديلات الأخيرة للصفحات المراقبة',
 'watchmethod-list'     => 'فحص الصفحات المراقبة للتعديلات الحديثة',
 'watchlistcontains'    => 'تحتوي قائمة مراقبتك على $1 {{PLURAL:$1|صفحة|صفحة}}.',
@@ -2546,10 +2547,10 @@ $ أونواتشورل
 الإعدادات الحالية للصفحة '''$1''' هي:",
 'protect-cascadeon'           => 'هذه الصفحة محمية لكونها مضمنة في {{PLURAL:$1|الصفحة|الصفحات}} التالية، والتي بها خيار حماية الصفحات المدمجة فعال.
 يمكنك تغيير مستوى حماية هذه الصفحة بدون التأثير على حماية الصفحات المدمجة الأخرى.',
-'protect-default'             => 'السماح لكل المستخدمين',
+'protect-default'             => 'اسمح لكل المستخدمين',
 'protect-fallback'            => 'يتطلب السماح "$1"',
-'protect-level-autoconfirmed' => 'منع المستخدمين الجدد وغير المسجلين',
-'protect-level-sysop'         => 'مدراء النظام فقط',
+'protect-level-autoconfirmed' => 'امنع المستخدمين الجدد وغير المسجلين',
+'protect-level-sysop'         => 'الإداريون فقط',
 'protect-summary-cascade'     => 'مضمنة',
 'protect-expiring'            => 'تنتهي في $1 (UTC)',
 'protect-expiry-indefinite'   => 'غير محدد',
@@ -2576,8 +2577,8 @@ $ أونواتشورل
 # Restrictions (nouns)
 'restriction-edit'   => 'التعديل',
 'restriction-move'   => 'النقل',
-'restriction-create' => 'أنشئ',
-'restriction-upload' => 'ارفع',
+'restriction-create' => 'الإنشاء',
+'restriction-upload' => 'الرفع',
 
 # Restriction levels
 'restriction-level-sysop'         => 'حماية كاملة',
@@ -2589,12 +2590,12 @@ $ أونواتشورل
 'undeletepage'                 => 'عرض واسترجاع الصفحات المحذوفة',
 'undeletepagetitle'            => "'''التالي يتكون من المراجعات المحذوفة من [[:$1]]'''.",
 'viewdeletedpage'              => 'عرض الصفحات المحذوفة',
-'undeletepagetext'             => 'تم حذف {{PLURAL:$1|الصفحة|الصفحات $1}}  التالية ولكنها مازالت في الأرشيف ويمكن استرجاعها.
-قد ينظف الأرشيف دوريا.',
+'undeletepagetext'             => 'حُذفت {{PLURAL:$1||الصفحة التالية|الصفحتان التاليتان|$1 الصفحات التالية|ال$1 صفحة التالية}} ولكنها مازالت في الأرشيف ويمكن استرجاعها.
+قد يمسح الأرشيف دوريا.',
 'undelete-fieldset-title'      => 'استرجاع المراجعات',
 'undeleteextrahelp'            => "لاسترجاع تاريخ الصفحة كاملا، اترك جميع الصناديق فارغة واضغط '''''{{int:undeletebtn}}'''''..
 للاسترجاع بشكل انتقائي، ضع علامة في الصناديق أمام المراجعات التي تريد استرجاعها، واضغط '''''{{int:undeletebtn}}'''''.",
-'undeleterevisions'            => '$1 {{PLURAL:$1|مراجعة|مراجعة}} تمت أرشفتها',
+'undeleterevisions'            => '{{PLURAL:$1|لم تؤرشف أي مراجعة|أرشفت مراجعة واحدة|أرشفت مراجعتان|أرشفت $1 مراجعات|أرشفت $1 مراجعة}}',
 'undeletehistory'              => 'لو استرجعت الصفحة، كل المراجعات سيتم استرجاعها إلى التاريخ.
 لو كان قد تم إنشاء صفحة جديدة بالاسم نفسه بعد الحذف، المراجعات المسترجعة ستظهر في التاريخ السابق.',
 'undeleterevdel'               => 'الاسترجاع لن يتم إذا كان سينتج عنه أن تكون المراجعة أعلى الصفحة أو الملف محذوفة جزئيا.
@@ -2614,8 +2615,8 @@ $ أونواتشورل
 'undeletecomment'              => 'السبب:',
 'undeletedarticle'             => 'استرجع "[[$1]]"',
 'undeletedrevisions'           => 'تم استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
-'undeletedrevisions-files'     => '{{PLURAL:$1|1 مراجعة|$1 مراجعة}} و {{PLURAL:$2|1 ملف|$2 ملف}} تم استرجاعها',
-'undeletedfiles'               => '{{PLURAL:$1|ملف|ملفات}} $1 تم استرجاع',
+'undeletedrevisions-files'     => 'أسترجعت {{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}  و{{PLURAL:$2||ملف واحد|ملفان|$2 ملفات|$2 ملفًا|$2 ملف}}',
+'undeletedfiles'               => 'أسترجع {{PLURAL:$2||ملف واحد|ملفان|$2 ملفات|$2 ملفًا|$2 ملف}}',
 'cannotundelete'               => 'فشل الاسترجاع؛
 ربما قام شخص آخر باسترجاع الصفحة بالفعل.',
 'undeletedpage'                => "'''تم استرجاع $1'''

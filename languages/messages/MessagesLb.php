@@ -2011,7 +2011,7 @@ Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] i
 'emailpagetext'        => 'Dir kënnt mat dësem Formulaire dësem Benotzer en E-Mail-Message schécken.
 D\'E-Mailadress, déi Dir an [[Special:Preferences|Ären Astellungen]] aginn hutt, steet an der "From" Adress vun der Mail, sou datt den Destinataire Iech direkt äntwerte kann.',
 'usermailererror'      => 'E-Mail-Objet mellt deen heite Feeler:',
-'defemailsubject'      => 'E-Mail vu(n) {{SITENAME}}',
+'defemailsubject'      => '{{SITENAME}} E-Mail vum Benotzer "$1"',
 'usermaildisabled'     => 'Benotzer E-Mail ausgeschalt',
 'usermaildisabledtext' => 'Dir kënnt op dëser Wiki anere Benotzer keng E-Mail schécken',
 'noemailtitle'         => 'Keng E-Mailadress',

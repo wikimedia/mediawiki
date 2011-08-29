@@ -1440,7 +1440,7 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'emailpage'        => 'Mittere litteras electronicas huic usori',
 'emailpagetext'    => 'Forma subter nuntium ad usorem mittet.
 Inscriptio electronica quam in [[Special:Preferences|praeferentiis tuis]] dedis ut "Ab" inscriptione apparebit. Hoc modo usor tibi directe respondere poterit.',
-'defemailsubject'  => '{{SITENAME}} - Litterae electronicae',
+'defemailsubject'  => '{{SITENAME}} - Litterae electronicae ab usore "$1"',
 'noemailtitle'     => 'Nulla inscriptio electronica',
 'noemailtext'      => 'Hic usor inscriptionem electronicam ratam non dedit.',
 'nowikiemailtitle' => 'Litterae electronicae non permissae',

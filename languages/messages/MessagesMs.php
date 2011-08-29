@@ -2025,7 +2025,7 @@ terlebih dahulu dan mempunyai alamat e-mel yang sah dalam
 
 Alamat e-mel yang ditetapkan dalam [[Special:Preferences|keutamaan anda]] akan digunakan sebagai alamat "Daripada" dalam e-mel tersebut supaya si penerima boleh membalasnya.',
 'usermailererror'      => 'Objek Mail memulangkan ralat:',
-'defemailsubject'      => 'E-mel {{SITENAME}}',
+'defemailsubject'      => 'E-mel {{SITENAME}} daripada pengguna "$1"',
 'usermaildisabled'     => 'E-mel pengguna telah dilumpuhkan',
 'usermaildisabledtext' => 'Anda tidak boleh mengirim e-mel kepada pengguna lain di wiki ini',
 'noemailtitle'         => 'Tiada alamat e-mel',
