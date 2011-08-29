@@ -466,11 +466,11 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 	),
 	'mediawiki.Title' => array(
-		'scripts' => 'resources/mediawiki/mediawiki.title.js',
+		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
 		'dependencies' => 'mediawiki.util',
 	),
 	'mediawiki.Uri' => array( 
-		'scripts' => 'resources/mediawiki/mediawiki.uri.js',
+		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
 	),
 	'mediawiki.user' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.user.js',
