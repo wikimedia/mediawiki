@@ -158,7 +158,9 @@ class ApiQueryAllmessages extends ApiQueryBase {
 					} else {
 						$msgString = $msg->plain();
 					}
-					ApiResult::setContent( $a, $msgString );
+					if ( !$params['nocontent'] ) {
+						ApiResult::setContent( $a, $msgString );
+					}
 					if ( isset( $prop['default'] ) ) {
 						$default = wfMessage( $message )->inLanguage( $langObj )->useDatabase( false );
 						if ( !$default->exists() ) {
@@ -204,6 +206,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 				)
 			),
 			'enableparser' => false,
+			'nocontent' => false,
 			'args' => array(
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_ALLOW_DUPLICATES => true,
@@ -230,7 +233,8 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'messages' => 'Which messages to output. "*" (default) means all messages',
 			'prop' => 'Which properties to get',
 			'enableparser' => array( 'Set to enable parser, will preprocess the wikitext of message',
-							  'Will substitute magic words, handle templates etc.' ),
+							'Will substitute magic words, handle templates etc.' ),
+			'nocontent' => 'Set to not include the content of the messages in the output.', 
 			'title' => 'Page name to use as context when parsing message (for enableparser option)',
 			'args' => 'Arguments to be substituted into message',
 			'prefix' => 'Return messages with this prefix',

@@ -87,6 +87,7 @@ production.
 * (bug 18634) Create API to fetch MediaWiki's language fallback tree structure.
 * (bug 26885) Allow show/hide of account blocks, temporary blocks and single IP
   address blocks for list=blocks.
+* (bug 30591) Add support to only return keys in ApiAllMessages.
 
 === Languages updated in 1.19 ===
 
