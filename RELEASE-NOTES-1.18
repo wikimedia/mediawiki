@@ -621,6 +621,8 @@ changes to languages because of Bugzilla reports.
 * Removed legacy wgAjaxWatch javascript global object, no longer in use.
 * (bug 28556) Upload support for MacBinary files has been removed (Used by
   Internet Explorer 5 for Mac OS 9)
+* On wiki farm setups using $wgConf, 'wgCanonicalServer' is now expected to be
+  set for all wikis. This was already the case for 'wgServer'.
 
 == Compatibility ==
 
