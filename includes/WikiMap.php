@@ -18,7 +18,7 @@ class WikiMap {
 
 		list( $major, $minor ) = $wgConf->siteFromDB( $wikiID );
 		if( isset( $major ) ) {
-			$server = $wgConf->get( 'wgServer', $wikiID, $major,
+			$server = $wgConf->get( 'wgCanonicalServer', $wikiID, $major,
 				array( 'lang' => $minor, 'site' => $major ) );
 			$path = $wgConf->get( 'wgArticlePath', $wikiID, $major,
 				array( 'lang' => $minor, 'site' => $major ) );
