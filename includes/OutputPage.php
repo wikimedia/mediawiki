@@ -2055,8 +2055,7 @@ class OutputPage extends ContextSource {
 	 * @param $action    String: action that was denied or null if unknown
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
-		global $wgUser, $wgEnableInterwikiTranscluding, $wgEnableInterwikiTemplatesTracking;
-		$skin = $wgUser->getSkin();
+		global $wgEnableInterwikiTranscluding, $wgEnableInterwikiTemplatesTracking;
 
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
@@ -2107,11 +2106,12 @@ $templates
 </div>
 " );
 			if ( $wgEnableInterwikiTranscluding && $wgEnableInterwikiTemplatesTracking ) {
+				$distantTemplates = Linker::formatDistantTemplates( $article->getUsedDistantTemplates() );
 				$this->addHTML( "<div class='distantTemplatesUsed'>
-{$skin->formatDistantTemplates( $article->getUsedDistantTemplates( ) )}
+$distantTemplates
 </div>
 " );
-		}
+			}
 		}
 
 		# If the title doesn't exist, it's fairly pointless to print a return
