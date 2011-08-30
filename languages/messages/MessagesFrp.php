@@ -2232,7 +2232,7 @@ Y pôt avêr [[{{MediaWiki:Listgrouprights-helppage}}|més d’enformacions]] su
 'emailpagetext'        => 'Vos pouede utilisar lo formulèro ce-desot por mandar un mèssâjo a ceti utilisator.
 L’adrèce èlèctronica que vos éd endicâ dens voutres [[Special:Preferences|prèferences]] aparètrat dedens lo champ « Èxpèdior » de voutron mèssâjo ; d’ense, lo dèstinatèro vos porrat rèpondre tot drêt.',
 'usermailererror'      => 'Èrror dens lo sujèt du mèssâjo :',
-'defemailsubject'      => 'Mèssâjo de {{SITENAME}}',
+'defemailsubject'      => 'Mèssâjo de {{SITENAME}} de l’utilisator « $1 »',
 'usermaildisabled'     => 'L’èxpèdicion de mèssâjos entre-mié utilisators est dèsactivâ',
 'usermaildisabledtext' => 'Vos pouede pas mandar des mèssâjos a d’ôtros utilisators sur ceti vouiqui',
 'noemailtitle'         => 'Dèstinatèro sen adrèce èlèctronica',

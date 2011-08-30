@@ -442,8 +442,8 @@ $2',
 'createaccountmail'          => 'ई-पत्र द्वारा',
 'createaccountreason'        => 'कारण:',
 'badretype'                  => 'कूटशब्द जे अहाँ भरलहुँ से मेल नै खाइए।',
-'userexists'                 => 'जे प्रयोक्तानाम अहाँ भरलहुँ से पहिनहियेसँ प्रयोगमे अछि।
-कृपा कऽ दोसर नामक चयन करू।',
+'userexists'                 => 'सम्प्रवेशित प्रयोक्तानाम पहिनहियेसँ प्रयोगमे अछि।
+कृपा कऽ कोनो दोसर नाम चुनू।',
 'loginerror'                 => 'सम्प्रवेश भ्रम',
 'createaccounterror'         => 'खाता नै बना सकल: $1',
 'nocookiesnew'               => 'प्रयोक्ता खाता खुजि गेल, मुदा अहाँ सम्प्रवेशित नै छी।
@@ -734,6 +734,9 @@ $2
 'templatesused'                    => '{{PLURAL:$1|नमूना|नमूना सभ}} ऐ पन्नापर प्रयुक्त:',
 'templatesusedpreview'             => '{{PLURAL:$1|मास्टरफाइल|सभटा मास्टरफाइल}} used in this preview:ऐ पूर्वप्रदर्शनमे प्रयुक्त :',
 'templatesusedsection'             => '{{PLURAL:$1|नमूना|नमूना सभ}} ऐ संवर्गमे प्रयुक्त:',
+'distanttemplatesused'             => 'दूर {{PLURAL:$1|नमूना|नमूना सभ}} ऐ पन्नापर प्रयुक्त:',
+'distanttemplatesusedpreview'      => 'दूर {{PLURAL:$1|नमूना|नमूना सभ}} ऐ पूर्वप्रदर्शनमे प्रयुक्त:',
+'distanttemplatesusedsection'      => 'दूर {{PLURAL:$1|नमूना|नमूना सभ}} ऐ संवर्गमे प्रयुक्त:',
 'template-protected'               => '(सुरक्षित)',
 'template-semiprotected'           => '(अर्ध-रक्षित)',
 'hiddencategories'                 => 'ई पन्ना सदस्य अछि {{PLURAL:$1|1 नुकाएल संवर्ग|$1 नुकाएल संवर्ग सभ}}:',
@@ -1048,7 +1051,7 @@ $3 द्वारा देल कारण अछि ''$2''",
 'qbsettings-fixedright'     => 'दहिन दिस सटल',
 'qbsettings-floatingleft'   => 'वाम कात घुमैत',
 'qbsettings-floatingright'  => 'दहिन कात घुमैत',
-'qbsettings-directionality' => 'कीलित, अहाँक लिपि आ भाषाक दिशा-निर्देशपर आधारित',
+'qbsettings-directionality' => 'कीलित, अहाँक भाषाक लिपि दिशा-निर्देशपर आधारित',
 
 # Preferences page
 'preferences'                   => 'विकल्प',
@@ -1567,8 +1570,7 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'ई विशिष्ट पन्ना सभटा उपारोपित संचिका देखबैए।
-पूर्वन्यस्त रूपेँ अन्तिम उपारोपित संचिका सूचीक शीर्षपर अछि।
-स्तम्भ शीर्षपर एकटा क्लिक छटनीमे परिवर्तन करैए।',
+प्रयोक्ता द्वारा चुनलापर अन्तिम उपारोपित संचिका देखबैत अछि।',
 'listfiles_search_for'  => 'ऐ दृश्य-श्रव्य नामले ताकू:',
 'imgfile'               => 'संचिका',
 'listfiles'             => 'संचिका सूची',
@@ -1894,7 +1896,7 @@ $1',
 'emailpagetext'        => 'अहाँक नीचाँक आवेदन-पत्र ऐ प्रयोक्ताकेँ ई-पत्र संदेश पठेबा लेल प्रयोग कऽ सकै छी।
 ई-पत्र जे अहाँ [[Special:Preferences|your user preferences]] मे देलहुँ से ई-पत्र"एतएसँ" पतासँ देखाएत, से प्राप्तकर्ता सोझे अहाँकेँ उत्तर देबामे समर्थ हेताह।',
 'usermailererror'      => 'ई-पत्र बौस्तु घुरल भ्रम:',
-'defemailsubject'      => '{{जालस्थल}} ई-पत्र',
+'defemailsubject'      => '{{जालस्थल}} प्रयोक्ता "$1" सँ ई-पत्र',
 'usermaildisabled'     => 'प्रयोक्ता ई-पत्र अशक्त',
 'usermaildisabledtext' => 'अहाँ दोसर प्रयोक्ताकेँ ऐ विकीपर ई-पत्र नै पठा सकै छिऐ।',
 'noemailtitle'         => 'कोनो ई-पत्र पता नै',
@@ -2283,6 +2285,7 @@ $1',
 'blocklist-userblocks'            => 'खाता प्रतिबन्ध-सूची नुकाउ',
 'blocklist-tempblocks'            => 'अस्थायी प्रतिबन्ध-सूची नुकाउ',
 'blocklist-addressblocks'         => 'एकल अनिकेत प्रतिबन्ध नुकाउ',
+'blocklist-rangeblocks'           => 'क्षेत्र प्रतिबन्ध नुकाउ',
 'blocklist-timestamp'             => 'समएकाल',
 'blocklist-target'                => 'लक्ष्य',
 'blocklist-expiry'                => 'खतम हएत:',
@@ -3390,9 +3393,9 @@ $1',
 # Special:SpecialPages
 'specialpages'                   => 'विशेष पन्ना',
 'specialpages-note'              => '----
-*सामान्य विशेष पन्ना सभ।
-* <span class="mw-specialpagerestricted">प्रतिबन्धित विशेष पन्ना सभ।</span>
-* <span class="mw-specialpagecached">खाली उपस्मृतिबला पन्ना सभ।</span>',
+* सामान्य विशिष्ट पन्ना।
+* <span class="mw-specialpagerestricted">प्रतिबंधित विशिष्ट पन्ना।</span>
+* <span class="mw-specialpagecached">उपस्मृतिक विशिष्ट पन्ना (पुरान भऽ सकैए)।</span>',
 'specialpages-group-maintenance' => 'सुस्थापन प्रतिवेदन',
 'specialpages-group-other'       => 'दोसर विशेष पन्ना',
 'specialpages-group-login'       => 'सम्प्रवेश/ सम्प्रवेश आवेदन',
@@ -3444,6 +3447,30 @@ $1',
 'compare-invalid-title'       => 'जे शीर्षक अहाँ देलौं से अमान्य अछि।',
 'compare-title-not-exists'    => 'जे शीर्षक अहाँ कहलौं से अछिये नै।',
 'compare-revision-not-exists' => 'जे संशोधन अहाँ कहलौं से अछिये नै।',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'सार्वत्रिक संचिका प्रयोग',
+'globalfileusage-for'         => '"$1" लेल सार्वत्रिक संचिका प्रयोग',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|विशिष्ट पन्ना]] सार्वत्रिक संचिका प्रयोग देखबा लेल',
+'globalfileusage-ok'          => 'खोज',
+'globalfileusage-text'        => 'सार्वत्रिक संचिका प्रयोग ताकू',
+'globalfileusage-no-results'  => '[[$1]] दोसर विकी सभ पर प्रयोग नै होइए।',
+'globalfileusage-on-wiki'     => '$2 पर प्रयोग',
+'globalfileusage-of-file'     => 'ई दोसर विकी सभ ऐ संचिकाक प्रयोग करैए:',
+'globalfileusage-more'        => 'देखू [[{{#Special:GlobalUsage}}/$1|आर सार्वत्रिक प्रयोग]] ऐ संचिकाक।',
+'globalfileusage-filterlocal' => 'स्थानीय प्रयोग नै देखाउ',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'सार्वत्रिक नमूना प्रयोग',
+'globaltemplateusage-for'         => '"$1" लेल सार्वत्रिक नमूना प्रयोग',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|विशिष्ट पन्ना]] सार्वत्रिक नमूना देखबा लेल',
+'globaltemplateusage-ok'          => 'ताकू',
+'globaltemplateusage-text'        => 'सार्वत्रिक नमूना प्रयोग ताकू',
+'globaltemplateusage-no-results'  => '[[$1]] दोसर विकी सभ पर प्रयोग नै होइए।',
+'globaltemplateusage-on-wiki'     => '$2 पर प्रयोग',
+'globaltemplateusage-of-file'     => 'ई दोसर विकी सभ ऐ संचिकाक प्रयोग करैए:',
+'globaltemplateusage-more'        => 'देखू [[{{#Special:GlobalUsage}}/$1|आर सार्वत्रिक प्रयोग]] ऐ नमूनाक।',
+'globaltemplateusage-filterlocal' => 'स्थानीय प्रयोग नै देखाउ',
 
 # Database error messages
 'dberr-header'      => 'ऐ विकीमे एकटा समस्या अछि',

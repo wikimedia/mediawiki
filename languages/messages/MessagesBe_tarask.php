@@ -2116,7 +2116,7 @@ $1',
 'emailpagetext'        => 'Вы можаце выкарыстоўваць форму ніжэй, каб даслаць гэтаму ўдзельніку ліст па электроннай пошце.
 Адрас электроннай пошты, які Вы пазначалі ў [[Special:Preferences|сваіх наладах]], будзе пазначаны ў полі ліста «Ад», і ўдзельнік зможа даслаць на гэты адрас адказ.',
 'usermailererror'      => 'Пры адсыланьні пошты адбылася памылка:',
-'defemailsubject'      => 'Электронная пошта {{GRAMMAR:родны|{{SITENAME}}}}',
+'defemailsubject'      => 'Электронная пошта {{GRAMMAR:родны|{{SITENAME}}}} ад {{GENDER:$1|удзельніка|удзельніцы}} «$1»',
 'usermaildisabled'     => 'Электронная пошта ўдзельніка адключаная',
 'usermaildisabledtext' => 'Вы ня можаце дасылаць электронныя лісты іншым удзельнікам {{GRAMMAR:родны|{{SITENAME}}}}',
 'noemailtitle'         => 'Адрас электроннай пошты адсутнічае',
@@ -3679,9 +3679,13 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'globalfileusage-filterlocal' => 'Не паказваць лякальнае выкарыстаньне',
 
 # Special:GlobalTemplateUsage
-'globaltemplateusage'      => 'Глябальнае выкарыстаньне шаблёну',
-'globaltemplateusage-for'  => 'Глябальнае выкарыстаньне шаблёну «$1»',
-'globaltemplateusage-desc' => '[[Special:GlobalTemplateUsage|Спэцыяльная старонка]] для паказу глябальнага выкарыстаньня шаблёну',
+'globaltemplateusage'            => 'Глябальнае выкарыстаньне шаблёну',
+'globaltemplateusage-for'        => 'Глябальнае выкарыстаньне шаблёну «$1»',
+'globaltemplateusage-desc'       => '[[Special:GlobalTemplateUsage|Спэцыяльная старонка]] для паказу глябальнага выкарыстаньня шаблёну',
+'globaltemplateusage-ok'         => 'Шукаць',
+'globaltemplateusage-text'       => 'Пошук глябальнага выкарыстаньня шаблёну',
+'globaltemplateusage-no-results' => '[[$1]] не выкарыстоўваецца ў іншых вікі.',
+'globaltemplateusage-on-wiki'    => 'Выкарыстоўваецца ў $2',
 
 # Database error messages
 'dberr-header'      => 'Гэтая вікі не функцыянуе спраўна',

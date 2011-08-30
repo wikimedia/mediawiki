@@ -2065,7 +2065,7 @@ pro inviar e-mail a altere usatores.',
 Le adresse de e-mail que tu indicava in [[Special:Preferences|tu preferentias de usator]] apparera
 como le adresse del expeditor del e-mail, de modo que le destinatario pote responder directemente a te.',
 'usermailererror'      => 'Le objecto de e-mail retornava le error:',
-'defemailsubject'      => 'E-mail de {{SITENAME}}',
+'defemailsubject'      => 'E-mail del usator "$1" de {{SITENAME}}',
 'usermaildisabled'     => 'E-mail a usatores disactivate',
 'usermaildisabledtext' => 'Tu non pote inviar e-mail a altere usatores in iste wiki',
 'noemailtitle'         => 'Nulle adresse de e-mail',

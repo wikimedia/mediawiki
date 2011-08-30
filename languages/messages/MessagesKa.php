@@ -15,6 +15,7 @@
  * @author Dawid Deutschland
  * @author ITshnik
  * @author Malafaya
+ * @author Nodar Kherkheulidze
  * @author Reedy
  * @author Sopho
  * @author Temuri rajavi
@@ -1064,7 +1065,7 @@ $1",
 'viewprevnext'                     => 'იხილე  ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'ძიების დაწყობა:',
 'searchmenu-exists'                => "'''ამ ვიკიპროექტში არის გვერდი «[[:$1]]»'''",
-'searchmenu-new'                   => "'''შექმენით გვერდი «[[:$1]]» ამ ვიკიში!'''",
+'searchmenu-new'                   => "'''შექმენით გვერდი „[[:$1]]“ ამ ვიკიში!'''",
 'searchmenu-new-nocreate'          => '"$1" არის გვერდის დაუშვებელი სახელი, ან თქვენს მიერ შეუძლებელია ამ გვერდის შექმნა.',
 'searchhelp-url'                   => 'Help:დახმარება',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|აჩვენეთ გვერდები ამ პრეფიქსით]]',
@@ -2056,7 +2057,7 @@ $UNWATCHURL
 'actioncomplete'         => 'მოქმედება შესრულებულია',
 'actionfailed'           => 'მოქმედება ვერ განხორციელდა',
 'deletedtext'            => '"$1" წაშლილია. ბოლო წაშლილი გვერდების სია იხილეთ $2-ში.',
-'deletedarticle'         => 'წაშლილია "[[$1]]"',
+'deletedarticle'         => 'წაშლილია „[[$1]]“',
 'suppressedarticle'      => 'დამალა «[[$1]]»-მა',
 'dellogpage'             => 'წაშლილთა_სია',
 'dellogpagetext'         => 'ქვემოთ იხილეთ ახლად წაშლილთა სია.',

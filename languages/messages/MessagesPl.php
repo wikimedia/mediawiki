@@ -2143,7 +2143,7 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'emailpagetext'        => 'Możesz użyć poniższego formularza, aby wysłać wiadomość e‐mail do tego użytkownika.
 Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferences|Twoich preferencjach]], zostanie umieszczony w polu „Od”, dzięki czemu odbiorca będzie mógł Ci odpowiedzieć.',
 'usermailererror'      => 'Moduł obsługi poczty zwrócił błąd:',
-'defemailsubject'      => 'Wiadomość z {{GRAMMAR:D.lp|{{SITENAME}}}}',
+'defemailsubject'      => '{{SITENAME}} e-mail od użytkownika "$1"',
 'usermaildisabled'     => 'E‐mail użytkownika jest wyłączony',
 'usermaildisabledtext' => 'Nie możesz wysyłać e‐maili do innych użytkowników tej wiki',
 'noemailtitle'         => 'Brak adresu e‐mail',

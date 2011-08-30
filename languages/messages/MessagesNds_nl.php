@@ -2159,7 +2159,7 @@ Meer informasie over de rechten ku'j [[{{MediaWiki:Listgrouprights-helppage}}|hi
 t Adres da'j op-egeven hebben bie [[Special:Preferences|joew veurkeuren]] zal as aofzender gebruukt wörden.
 De ontvanger kan dus drek beantwoorden.",
 'usermailererror'      => 'Foutmelding bie t versturen:',
-'defemailsubject'      => 'Bericht van {{SITENAME}}',
+'defemailsubject'      => 'Bericht van {{SITENAME}}-gebruker "$1"',
 'usermaildisabled'     => 'n Persoonlik berichjen sturen geet niet.',
 'usermaildisabledtext' => 'Je kunnen gien berichjes sturen naor aandere gebrukers van disse wiki',
 'noemailtitle'         => 'Gebruker hef gien netpostadres op-egeven',
@@ -3430,7 +3430,7 @@ Aandere velden wörden verbörgen.
 'confirmemail'              => 'Bevestig netpostadres',
 'confirmemail_noemail'      => 'Je hebben gien geldig netpostadres in-evoerd in joew [[Special:Preferences|veurkeuren]].',
 'confirmemail_text'         => "Bie disse wiki mö'j je netpostadres bevestigen veurda'j de berichtopsies gebruken kunnen. Klik op de onderstaonde knoppe um n bevestigingsbericht te ontvangen. In dit bericht zit n kode mit n verwiezing; um je netpostadres te bevestigen mö'j disse verwiezing los doon.",
-'confirmemail_pending'      => "Der is al n bevestigingskode op-estuurd; a'j net n gebrukersnaam an-emaakt hebben, wach dan eers n paor minuten tot da'j dit bericht ontvungen hebben veurda'j n nieje kode anvragen.",
+'confirmemail_pending'      => "Der is al n bevestigingskode op-estuurd; a'j net n gebrukersnaam an-emaakt hebben, wacht dan eerst n paor minuten tot da'j dit bericht ontvöngen hebben veurda'j n nieje kode anvragen.",
 'confirmemail_send'         => 'Stuur n bevestigingskode',
 'confirmemail_sent'         => 'Bevestigingsbericht verstuurd.',
 'confirmemail_oncreate'     => "n Bevestigingskode is naor joew netpostadres verstuurd. Disse kode is niet neudig um an te melden, mer je mutten t wel bevestigen veurda'j de netpostmeugelikheen van disse wiki gebruken kunnen.",
@@ -3533,7 +3533,7 @@ $1',
 
 # Auto-summaries
 'autosumm-blank'   => 'Pagina leegemaakt',
-'autosumm-replace' => "Tekste vervungen deur '$1'",
+'autosumm-replace' => "Tekste vervöngen deur '$1'",
 'autoredircomment' => 'deurverwiezing naor [[$1]]',
 'autosumm-new'     => "Nieje pagina: '$1'",
 
