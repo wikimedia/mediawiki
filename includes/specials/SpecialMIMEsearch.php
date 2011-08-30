@@ -59,12 +59,11 @@ class MIMEsearchPage extends QueryPage {
 	}
 
 	function execute( $par ) {
-		global $wgRequest, $wgOut;
-		$mime = $par ? $par : $wgRequest->getText( 'mime' );
+		$mime = $par ? $par : $this->getRequest()->getText( 'mime' );
 
 		$this->setHeaders();
 		$this->outputHeader();
-		$wgOut->addHTML(
+		$this->getOutput()->addHTML(
 			Xml::openElement( 'form', array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => SpecialPage::getTitleFor( 'MIMEsearch' )->getLocalUrl() ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Html::hidden( 'title', SpecialPage::getTitleFor( 'MIMEsearch' )->getPrefixedText() ) .
@@ -85,24 +84,25 @@ class MIMEsearchPage extends QueryPage {
 
 
 	function formatResult( $skin, $result ) {
-		global $wgContLang, $wgLang;
+		global $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
-		$plink = $skin->link(
+		$plink = Linker::link(
 			Title::newFromText( $nt->getPrefixedText() ),
 			htmlspecialchars( $text )
 		);
 
-		$download = $skin->makeMediaLinkObj( $nt, wfMsgHtml( 'download' ) );
+		$download = Linker::makeMediaLinkObj( $nt, wfMsgHtml( 'download' ) );
+		$lang = $this->getLang();
 		$bytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $result->img_size ) );
+			$lang->formatNum( $result->img_size ) );
 		$dimensions = htmlspecialchars( wfMsg( 'widthheight',
-			$wgLang->formatNum( $result->img_width ),
-			$wgLang->formatNum( $result->img_height )
+			$lang->formatNum( $result->img_width ),
+			$lang->formatNum( $result->img_height )
 		) );
-		$user = $skin->link( Title::makeTitle( NS_USER, $result->img_user_text ), htmlspecialchars( $result->img_user_text ) );
-		$time = htmlspecialchars( $wgLang->timeanddate( $result->img_timestamp ) );
+		$user = Linker::link( Title::makeTitle( NS_USER, $result->img_user_text ), htmlspecialchars( $result->img_user_text ) );
+		$time = htmlspecialchars( $lang->timeanddate( $result->img_timestamp ) );
 
 		return "($download) $plink . . $dimensions . . $bytes . . $user . . $time";
 	}
