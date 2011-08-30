@@ -3321,7 +3321,7 @@ class Language {
 	 * @return false|string
 	 */
 	static function getFallbackFor( $code ) {
-		if ( $code === 'en' ) {
+		if ( $code === 'en' || !Language::isValidBuiltInCode( $code ) ) {
 			return false;
 		} else {
 			$fallbacks = self::getFallbacksFor( $code );
@@ -3338,7 +3338,7 @@ class Language {
 	 * @return array
 	 */
 	static function getFallbacksFor( $code ) {
-		if ( $code === 'en' ) {
+		if ( $code === 'en' || !Language::isValidBuiltInCode( $code ) ) {
 			return array();
 		} else {
 			$v = self::getLocalisationCache()->getItem( $code, 'fallback' );
