@@ -67,7 +67,7 @@ class Profiler {
 			if( is_array( $wgProfiler ) ) {
 				if( !isset( $wgProfiler['class'] ) ) {
 					wfDebug( __METHOD__ . " called without \$wgProfiler['class']"
-						. " set, falling back to ProfilerStub for safety" );
+						. " set, falling back to ProfilerStub for safety\n" );
 					$class = 'ProfilerStub';
 				} else {
 					$class = $wgProfiler['class'];
