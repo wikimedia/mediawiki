@@ -96,7 +96,7 @@ class TextPassDumper extends BackupDumper {
 		$result = $this->readDump( $input );
 
 		if ( WikiError::isError( $result ) ) {
-			wfDie( $result->getMessage() );
+			throw new MWException( $result->getMessage() );
 		}
 
 		if ( $this->spawnProc ) {
@@ -236,12 +236,12 @@ class TextPassDumper extends BackupDumper {
 	function finalOptionCheck() {
 		if (($this->checkpointFiles && ! $this->maxTimeAllowed) ||
 			($this->maxTimeAllowed && !$this->checkpointFiles)) {
-			wfDie("Options checkpointfile and maxtime must be specified together.\n");
+			throw new MWException("Options checkpointfile and maxtime must be specified together.\n");
 		}
 		foreach ($this->checkpointFiles as $checkpointFile) {
 			$count = substr_count ($checkpointFile,"%s");
 			if (substr_count ($checkpointFile,"%s") != 2) {
-				wfDie("Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n");
+				throw new MWException("Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n");
 			}
 		}
 
@@ -251,7 +251,7 @@ class TextPassDumper extends BackupDumper {
 				$filenameList = array( $filenameList );
 			}
 			if (count($filenameList) != count($this->checkpointFiles)) {
-				wfDie("One checkpointfile must be specified for each output option, if maxtime is used.\n");
+				throw new MWException("One checkpointfile must be specified for each output option, if maxtime is used.\n");
 			}
 		}
 	}
