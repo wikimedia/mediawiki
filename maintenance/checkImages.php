@@ -49,7 +49,9 @@ class CheckImages extends Maintenance {
 					$this->output( "{$row->img_name}: not locally accessible\n" );
 					continue;
 				}
-				$stat = @stat( $file->getPath() );
+				wfSuppressWarnings();
+				$stat = stat( $file->getPath() );
+				wfRestoreWarnings();
 				if ( !$stat ) {
 					$this->output( "{$row->img_name}: missing\n" );
 					continue;
