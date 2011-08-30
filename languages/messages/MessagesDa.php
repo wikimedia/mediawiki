@@ -2029,7 +2029,7 @@ Der findes muligvis [[{{MediaWiki:Listgrouprights-helppage}}|yderligere informat
 'emailpagetext'        => 'Du kan bruge formularen nedenfor til at sende en e-mail til denne bruger.
 Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] vil dukke op i "fra"-feltet på e-mailen, så modtageren kan svare dig.',
 'usermailererror'      => 'E-mail-modulet returnerede en fejl:',
-'defemailsubject'      => 'E-mail fra {{SITENAME}}',
+'defemailsubject'      => '{{SITENAME}}-email fra brugeren "$1"',
 'usermaildisabled'     => 'Bruger-e-mail deaktiveret',
 'usermaildisabledtext' => 'Du kan ikke sende e-mails til andre brugere på denne wiki',
 'noemailtitle'         => 'Ingen e-mail-adresse',

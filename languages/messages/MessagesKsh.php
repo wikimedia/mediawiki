@@ -344,7 +344,7 @@ $messages = array(
 'mypage'        => 'ming Metmaacher-Sigg',
 'mytalk'        => 'ming Klaafsigg',
 'anontalk'      => 'Klaaf för de IP-Adress',
-'navigation'    => 'Jangk noh',
+'navigation'    => 'Jangk noh de',
 'and'           => ', un',
 
 # Cologne Blue skin
@@ -1037,6 +1037,9 @@ Heh kütt der neuste Enndrach em Logbooch doh drövver:",
 'templatesused'                    => '{{PLURAL:$1|De Schablon|De $1 Schablone|Kein Schablone}}, die en dä Sigg heh jebruch {{PLURAL:$1|weed|wääde|wääde}}, sinn:',
 'templatesusedpreview'             => '{{PLURAL:$1|De Schablon|Schablone|-nix-}} en dä Vör-Aansich heh:',
 'templatesusedsection'             => '{{PLURAL:$1|De Schablon|Schablone|-nix-}} en däm Avschnedd heh:',
+'distanttemplatesused'             => '{{PLURAL:$1|De Schabloon|De Schabloone|Kein Schabloone}} vun främb Wikis heh en dä Sigg:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|De Schabloon|De Schabloone|Kein Schabloone}} vun främb Wikis en heh dä Vör-Aanseech:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|De Schabloon|De Schabloone|Kein Schabloone}} vun främb Wikis en heh däm Afschned:',
 'template-protected'               => '(jeschöz)',
 'template-semiprotected'           => '(halfjeschöz - tabu för neu Metmaacher un ohne Enlogge)',
 'hiddencategories'                 => 'Die Sigg heh is en {{PLURAL:$1|de verstoche Saachjrupp: |$1 verstoche Saachjruppe: |keij verstoche Saachjruppe dren.}}',
@@ -1900,7 +1903,9 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'upload_source_file' => ' (en Datei op Dingem Kompjuter)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Hee sin de huhjeladene Dateie opjelis. Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wa'mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wa'mer norrens klick, weed de Reiejfolg ömjedrieht.",
+'listfiles-summary'     => 'Hee sin de huhjeladene Dateie opjelis.
+Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wam_mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wam_mer norrens klick, weed de Reiejfolsch ömjedrieht.
+Wann ene Metmaacher ußjesöhk es, kritt mer bloß die Dateie, di dä Metmaacher huhjelaade hät.',
 'listfiles_search_for'  => 'Sök noh däm Name vun dä Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Dateie opleste',
@@ -2263,7 +2268,7 @@ die weed als em Avsender sing Adress en die E-Mail enjedrage.
 Domet kann, wä die E-Mail kritt, drop antwoote, un die Antwood jeiht tirek aan Dech.
 Alles klor?',
 'usermailererror'      => 'Dat E-Mail-Objek jov ene Fähler us:',
-'defemailsubject'      => 'e-mail {{GRAMMAR:fun|{{SITENAME}}}}.',
+'defemailsubject'      => 'e-mail {{GENDER:$1|fum|fum|fum Metmaacher|fun dä|fum}} $1 {{GRAMMAR:fun|{{SITENAME}}}}.',
 'usermaildisabled'     => 'De <i lang="en">e-mail</i> zwesche Metmaachere es ußjeschalt',
 'usermaildisabledtext' => 'Do kanns kein <i lang="en">e-mail</i> aan ander Metmaacher heh en dämm Wiki schecke',
 'noemailtitle'         => 'Kein E-Mail Adress',
@@ -2657,6 +2662,7 @@ Wells De dat?',
 'blocklist-userblocks'            => 'De einzel Metmaacher ier Sperre ußblende',
 'blocklist-tempblocks'            => 'De Sperre op Zick ußblende',
 'blocklist-addressblocks'         => 'De einzel <i lang="en">IP</i>-Addresse ier Sperre ußblende',
+'blocklist-rangeblocks'           => 'Don de Sperre för ene Berett ußblände',
 'blocklist-timestamp'             => 'Zick wann jesperrt',
 'blocklist-target'                => 'Jesperrt woodt',
 'blocklist-expiry'                => 'Jesperrt beß',
@@ -3867,7 +3873,7 @@ Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
 'specialpages-note'              => '----
 * {{int:nstab-special}}e för jede Metmaacher.
 * <span class="mw-specialpagerestricted">{{int:nstab-special}}e för Metmaacher met besönder Räächde.</span>
-* <span class="mw-specialpagecached">Em Zwescheshpeisher jehallde {{int:nstab-special}}e.</span>',
+* <span class="mw-specialpagecached">Em Zwescheshpeisher jehallde {{int:nstab-special}}e. Di künnte ovverhollt sind.</span>',
 'specialpages-group-maintenance' => 'Waadungsleste',
 'specialpages-group-other'       => 'Ander {{int:nstab-special}}e',
 'specialpages-group-login'       => 'Aamelde',
@@ -3921,6 +3927,30 @@ Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
 'compare-title-not-exists'    => 'De aanjejovve Sigg jidd_et nit.',
 'compare-revision-not-exists' => 'Dä aanjejovve Version jidd_et jaa nit.',
 
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Jemeinsam jebruchte Dateie',
+'globalfileusage-for'         => 'De Dattei „$1“ weed jemeinsam jebruch',
+'globalfileusage-desc'        => '[[Special:GlobalUsage|Extrasigg]] för jemeinsam jebruch Dateie ze zeije.',
+'globalfileusage-ok'          => 'Söhke',
+'globalfileusage-text'        => 'Söhk noh jemeinsam jebruchte Datteie.',
+'globalfileusage-no-results'  => '[[$1]] weed en ander Wikis nit jebruch.',
+'globalfileusage-on-wiki'     => 'Der Jebruch $2',
+'globalfileusage-of-file'     => 'Heh di ander Wikis bruche di Dattei:',
+'globalfileusage-more'        => 'Loor donoh, [[{{#Special:GlobalUsage}}/$1|woh heh di Dattei söns jebruch weed]].',
+'globalfileusage-filterlocal' => 'Donn nix drövver aanzeije, wi di Dattei heh em Wiki jebruch weed',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Jemeinsam jebruchte Schabloone',
+'globaltemplateusage-for'         => 'Di Schabloon „$1“ weed jemeinsam jebruch',
+'globaltemplateusage-desc'        => '[[Special:GlobalUsage|Extrasigg]] för jemeinsam jebruchte Schabloone ze zeije.',
+'globaltemplateusage-ok'          => 'Söhke',
+'globaltemplateusage-text'        => 'Söhk noh jemeinsam jebruchte Schabloone.',
+'globaltemplateusage-no-results'  => '[[$1]] weed en ander Wikis nit jebruch.',
+'globaltemplateusage-on-wiki'     => 'Der Jebruch op $2',
+'globaltemplateusage-of-file'     => 'Heh di ander Wikis bruche di Schabloon:',
+'globaltemplateusage-more'        => 'Loor donoh, [[{{#Special:GlobalUsage}}/$1|woh heh di Schabloon söns noch jebruch weed]].',
+'globaltemplateusage-filterlocal' => 'Donn nix drövver aanzeije, wi di Schabloon heh em Wiki jebruch weed',
+
 # Database error messages
 'dberr-header'      => 'Dat Wiki heh häd en Schwierischkeit',
 'dberr-problems'    => 'Deit uns leid, die Sigg heh häd för der Momang e teschnisch Problem.',
@@ -3968,7 +3998,8 @@ Dat es fö jewöhnlej_esu, wann di Saachjropp övver en Schabloon en di Sigg enj
 'ajax-edit-category-error'      => 'Mer kunnte di Saachjropp „$1“ nit ußtuusche.
 Dat künnt dovun kumme, dat se övver en Schabloon enjedraare weed.',
 'ajax-category-already-present' => 'Heh di Sigg es ald en dä Saachjropp „$1“dren.',
-'ajax-category-hook-error'      => 'En  lokaale Funxjuhn löht di Änderunge nit zoh.',
-'ajax-api-error'                => 'Dat API hädd ene Fähler jemäldt: $1: $2',
+'ajax-category-hook-error'      => 'En lokaale Funxjuhn löht di Änderonge nit zoh.',
+'ajax-api-error'                => 'De <i lang="en"  title="Projammierschnettschtäll för Aanwendunge">API</i> hädd ene Fähler jemäldt: $1: $2.',
+'ajax-api-unknown-error'        => 'De <i lang="en"  title="Projammierschnettschtäll för Aanwendunge">API</i> hädd ene Fähler jemäldt, dä mer nit känne.',
 
 );

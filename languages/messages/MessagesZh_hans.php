@@ -470,7 +470,7 @@ $messages = array(
 'redirectpagesub'   => '重定向页',
 'lastmodifiedat'    => '本页面最后修订于$1 $2。',
 'viewcount'         => '此页面已被浏览过$1次。',
-'protectedpage'     => '已保护页面',
+'protectedpage'     => '受保护页面',
 'jumpto'            => '跳转到：',
 'jumptonavigation'  => '导航',
 'jumptosearch'      => '搜索',
@@ -1902,12 +1902,12 @@ $1',
 'longpages'               => '长页面',
 'deadendpages'            => '断链页面',
 'deadendpagestext'        => '以下页面没有链接到{{SITENAME}}中的其它页面。',
-'protectedpages'          => '已保护页面',
+'protectedpages'          => '受保护页面',
 'protectedpages-indef'    => '只有无期之保护页面',
 'protectedpages-cascade'  => '只有连锁之保护页面',
 'protectedpagestext'      => '以下页面已经被保护以防止移移或编辑',
 'protectedpagesempty'     => '在这些参数下没有页面正在保护。',
-'protectedtitles'         => '已保护标题',
+'protectedtitles'         => '受保护标题',
 'protectedtitlestext'     => '以下的页面已经被保护以防止创建',
 'protectedtitlesempty'    => '在这些参数之下并无标题正在保护。',
 'listusers'               => '用户列表',
@@ -2066,7 +2066,7 @@ $1',
 
 # User Messenger
 'usermessage-summary' => '留下系统信息。',
-'usermessage-editor'  => '系统界面',
+'usermessage-editor'  => '系统信息编辑器',
 
 # Watchlist
 'watchlist'            => '监视列表',
@@ -2616,7 +2616,7 @@ $1被封禁的理由是：“$2”',
 'export-pagelinks'  => '包含链接页面的搜索深度：',
 
 # Namespace 8 related
-'allmessages'                   => '系统界面',
+'allmessages'                   => '系统信息',
 'allmessagesname'               => '名称',
 'allmessagesdefault'            => '默认消息文本',
 'allmessagescurrent'            => '当前消息文本',
@@ -3459,15 +3459,15 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => '清空页面',
 'autosumm-replace' => '以“$1”替换内容',
-'autoredircomment' => '重定向页面到[[$1]]',
+'autoredircomment' => '重定向页面至[[$1]]',
 'autosumm-new'     => '以内容“$1”创建新页面',
 
 # Size units
 'size-bytes' => '$1字节',
 
 # Live preview
-'livepreview-loading' => '载入中……',
-'livepreview-ready'   => '载入中……完成！',
+'livepreview-loading' => '正在载入...',
+'livepreview-ready'   => '正在载入... 完成！',
 'livepreview-failed'  => '实时预览失败！
 尝试标准预览。',
 'livepreview-error'   => '连接失败：$1“$2”。
@@ -3587,15 +3587,16 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 #在此行上方输入所有的正则表达式。请保留此行文本</pre>',
 
 # Special:Tags
-'tags'                    => '有效更改过的标签',
+'tags'                    => "有效标签
+<!-- It appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'Change tags in use'. -->",
 'tag-filter'              => '[[Special:Tags|标签]]过滤器：',
 'tag-filter-submit'       => '过滤器',
 'tags-title'              => '标签',
 'tags-intro'              => '这个页面列出了在软件中已标示的编辑，以及它们的解释。',
 'tags-tag'                => '标签名称',
-'tags-display-header'     => '在更改列表中的出现方式',
-'tags-description-header' => '解释完整描述',
-'tags-hitcount-header'    => '已加上标签的更改',
+'tags-display-header'     => '更改列表中的表现形式',
+'tags-description-header' => '完整含义说明',
+'tags-hitcount-header'    => '标记的更改',
 'tags-edit'               => '编辑',
 'tags-hitcount'           => '$1次更改',
 

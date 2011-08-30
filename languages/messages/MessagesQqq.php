@@ -312,7 +312,9 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'moredotdotdot' => '{{Identical|More...}}',
 'mytalk'        => 'In the personal urls page section - right upper corner.',
 'anontalk'      => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
-'navigation'    => '{{Identical|Navigation}}',
+'navigation'    => 'This is shown as a section header in the sidebar of most skins.
+
+{{Identical|Navigation}}',
 'and'           => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the "&". <nowiki>&#32;</nowiki> is a blank space, one character long. Please leave it as it is.
 
 This can also appear in the credits page if the credits feature is enabled,for example [http://translatewiki.net/wiki/Support&action=credits the credits of the support page]. (To view any credits page type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar.)
@@ -4255,7 +4257,8 @@ $1 is a file name.',
 $1 is a file name (with namespace)',
 'globalfileusage-on-wiki'     => 'Heading for list of files. Example: [[Commons:Special:GlobalUsage/Example.jpg]] and [[Commons:File:Example.jpg]]
 
-$2 is a wiki name',
+* $1 the file name, but unused in this message
+* $2 is a wiki name, given as a domain, e.g. en.wiktionary.org',
 'globalfileusage-of-file'     => 'Text introducing list of files on an image page ([http://commons.wikimedia.org/wiki/File:Example.jpg example]).
 
 The number of following wikis is unknown. For an empty result, no message is shown.',
@@ -4267,7 +4270,8 @@ The number of following wikis is unknown. For an empty result, no message is sho
 
 # Special:GlobalTemplateUsage
 'globaltemplateusage-for'        => '$1 is a template name',
-'globaltemplateusage-no-results' => '$1 is a template name',
+'globaltemplateusage-ok'         => '{{Identical|Search}}',
+'globaltemplateusage-no-results' => '$1 is a template name including the namespace',
 'globaltemplateusage-on-wiki'    => '$2 is a wiki name',
 
 # Database error messages

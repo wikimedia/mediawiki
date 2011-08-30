@@ -3556,7 +3556,8 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 #在這行上面輸入所有的regex。留下這行一樣的文字</pre>',
 
 # Special:Tags
-'tags'                    => '有效更改過的標籤',
+'tags'                    => "有效標籤
+<!-- It appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'Change tags in use'. -->",
 'tag-filter'              => '[[Special:Tags|標籤]]過濾器:',
 'tag-filter-submit'       => '過濾器',
 'tags-title'              => '標籤',

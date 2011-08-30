@@ -1323,7 +1323,7 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'qbsettings-fixedright'     => 'Fast høyre',
 'qbsettings-floatingleft'   => 'Flytende venstre',
 'qbsettings-floatingright'  => 'Flytende til høyre',
-'qbsettings-directionality' => 'Fast, avhengig av retningen på skriptet ditt og språket ditt',
+'qbsettings-directionality' => '"Låst", f. eks. i posisjon "låst til venstre eller til høyre". For venstre-mot-høyre-språk vil hurtigvelgeren være satt til venstre, for høyre-mot-venstre-språk til høyre.',
 
 # Preferences page
 'preferences'                   => 'Innstillinger',
@@ -1840,7 +1840,8 @@ For best mulig sikkerhet er img_auth.php slått av.',
 'upload_source_file' => ' (en fil på din datamaskin)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Denne spesialsiden viser alle opplastede filer. De sist opplastede filene vises på toppen som standard. Klikk på en kolonneoverskrift for å endre sorteringsmetode.',
+'listfiles-summary'     => 'Denne spesialsiden viser alle opplastede filer.
+Når den filtreres av en bruker, vises bare de sist opplastede versjonene av filen.',
 'listfiles_search_for'  => 'Søk etter filnavn:',
 'imgfile'               => 'fil',
 'listfiles'             => 'Filliste',
@@ -2162,7 +2163,7 @@ Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrou
 'emailpagetext'        => 'Du kan bruke skjemaet nedenfor for å sende en e-post til denne brukeren.
 Den e-postadressen du har satt i [[Special:Preferences|innstillingene dine]] vil dukke opp i «fra»-feltet på denne e-posten, så mottakeren er i stand til å svare.',
 'usermailererror'      => 'E-postobjekt returnerte feilen:',
-'defemailsubject'      => 'E-post fra {{SITENAME}}',
+'defemailsubject'      => '{{SITENAME}}-type e-post fra bruker "$1"',
 'usermaildisabled'     => 'Brukerepost deaktivert',
 'usermaildisabledtext' => 'Du kan ikke sende epost til andre brukere på denne wikien',
 'noemailtitle'         => 'Ingen e-postadresse',
