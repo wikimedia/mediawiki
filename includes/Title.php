@@ -1786,7 +1786,9 @@ class Title {
 	 * @return Bool TRUE or FALSE
 	 */
 	public function isMovable() {
-		return MWNamespace::isMovable( $this->getNamespace() ) && $this->getInterwiki() == '';
+		$result = MWNamespace::isMovable( $this->getNamespace() ) && $this->getInterwiki() == '';
+		wfRunHooks( 'TitleIsMovable', array( $this, &$result ) );
+		return $result;
 	}
 
 	/**
