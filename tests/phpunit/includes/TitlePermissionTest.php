@@ -580,7 +580,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 							 $this->title->userCan( 'move' ) );
 
 		$this->title->mInterwiki = "no";
-		$this->assertEquals( array( array( 'immobile-page' ) ),
+		$this->assertEquals( array( array( 'immobile-source-page' ) ),
 							 $this->title->getUserPermissionsErrors( 'move', $this->user ) );
 		$this->assertEquals( false,
 							 $this->title->userCan( 'move' ) );
