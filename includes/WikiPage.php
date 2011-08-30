@@ -2247,7 +2247,7 @@ class WikiPage extends Page {
 	 * @param $title Title
 	 */
 	public static function onArticleDelete( $title ) {
-		global $wgMessageCache, $wgDeferredUpdateList;
+		global $wgDeferredUpdateList;
 
 		# Update existence markers on article/talk tabs...
 		if ( $title->isTalkPage() ) {
