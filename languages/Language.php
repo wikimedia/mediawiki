@@ -341,6 +341,8 @@ class Language {
 			# The above mixing may leave namespaces out of canonical order.
 			# Re-order by namespace ID number...
 			ksort( $this->namespaceNames );
+
+			wfRunHooks( 'LanguageGetNamespaces', array( &$this->namespaceNames ) );
 		}
 		return $this->namespaceNames;
 	}
@@ -3312,7 +3314,7 @@ class Language {
 	}
 
 	/**
-	 * Get the first fallback for a given language
+	 * Get the first fallback for a given language. 
 	 *
 	 * @param $code string
 	 *
