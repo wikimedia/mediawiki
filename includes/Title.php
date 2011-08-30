@@ -1555,7 +1555,7 @@ class Title {
 				$errors[] = array( 'immobile-source-namespace', $this->getNsText() );
 			} elseif ( !$this->isMovable() ) {
 				// Less specific message for rarer cases
-				$errors[] = array( 'immobile-page' );
+				$errors[] = array( 'immobile-source-page' );
 			}
 		} elseif ( $action == 'move-target' ) {
 			if ( !MWNamespace::isMovable( $this->mNamespace ) ) {
