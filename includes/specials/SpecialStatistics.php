@@ -138,14 +138,16 @@ class SpecialStatistics extends SpecialPage {
 		return Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-pages', array( 'parseinline' ) ) ) .
 			Xml::closeElement( 'tr' ) .
-				$this->formatRow( wfMsgExt( 'statistics-articles', array( 'parseinline' ) ),
+				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'Allpages' ),
+						wfMsgExt( 'statistics-articles', array( 'parseinline' ) ) ),
 						$this->getLang()->formatNum( $this->good ),
 						array( 'class' => 'mw-statistics-articles' ) ) .
 				$this->formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) ),
 						$this->getLang()->formatNum( $this->total ),
 						array( 'class' => 'mw-statistics-pages' ),
 						'statistics-pages-desc' ) .
-				$this->formatRow( wfMsgExt( 'statistics-files', array( 'parseinline' ) ),
+				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'Filelist' ),
+						wfMsgExt( 'statistics-files', array( 'parseinline' ) ) ),
 						$this->getLang()->formatNum( $this->images ),
 						array( 'class' => 'mw-statistics-files' ) );
 	}
