@@ -67,7 +67,7 @@ class Profiler {
 			if( is_array( $wgProfiler ) ) {
 				if( !isset( $wgProfiler['class'] ) ) {
 					wfDebug( __METHOD__ . " called without \$wgProfiler['class']"
-						. ' set, falling back to ProfilerStub for safety' );
+						. " set, falling back to ProfilerStub for safety" );
 					$class = 'ProfilerStub';
 				} else {
 					$class = $wgProfiler['class'];
@@ -76,8 +76,8 @@ class Profiler {
 			} elseif( $wgProfiler instanceof Profiler ) {
 				self::$__instance = $wgProfiler; // back-compat
 			} else {
-				wfDebug( __METHOD__ . ' called without bogus $wgProfiler setting,'
-						. ' falling back to ProfilerStub for safety' );
+				wfDebug( __METHOD__ . ' called with bogus $wgProfiler setting,'
+						. " falling back to ProfilerStub for safety\n" );
 				self::$__instance = new ProfilerStub( $wgProfiler );
 			}
 		}
