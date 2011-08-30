@@ -1090,7 +1090,8 @@ $password: The password entered by the user
 $user: User the password is being validated for
 
 'LanguageGetNamespaces': Provide custom ordering for namespaces or
-remove namespaces. Do not use this hook to add namespaces.
+remove namespaces. Do not use this hook to add namespaces. Use 
+CanonicalNamespaces for that.
 &$namespaces: Array of namespaces indexed by their numbers
 
 'LanguageGetMagic': DEPRECATED, use $magicWords in a file listed in 
