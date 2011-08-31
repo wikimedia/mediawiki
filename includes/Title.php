@@ -1786,7 +1786,12 @@ class Title {
 	 * @return Bool TRUE or FALSE
 	 */
 	public function isMovable() {
-		$result = MWNamespace::isMovable( $this->getNamespace() ) && $this->getInterwiki() == '';
+		if ( !MWNamespace::isMovable( $this->getNamespace() ) || $this->getInterwiki() != '' ) {
+			// Interwiki title or immovable namespace. Hooks don't get to override here
+			return false;
+		}
+		
+		$result = true;
 		wfRunHooks( 'TitleIsMovable', array( $this, &$result ) );
 		return $result;
 	}
