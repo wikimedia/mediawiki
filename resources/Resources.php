@@ -16,13 +16,21 @@ return array(
 	/* Skins */
 
 	'skins.vector' => array(
-		'styles' => array( 'vector/screen.css' => array( 'media' => 'screen' ) ),
+		'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/commonInterface.css' => array( 'media' => 'screen' ),
+			'vector/screen.css' => array( 'media' => 'screen' ),
+		),
 		'scripts' => 'vector/vector.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.monobook' => array(
 		'styles' => array(
+			'common/commonElements.css' => array( 'media' => 'screen' ),
+			'common/commonContent.css' => array( 'media' => 'screen' ),
+			'common/commonInterface.css' => array( 'media' => 'screen' ),
 			'monobook/main.css' => array( 'media' => 'screen' ),
 		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],

@@ -135,7 +135,7 @@ class VectorTemplate extends BaseTemplate {
 		<div id="mw-page-base" class="noprint"></div>
 		<div id="mw-head-base" class="noprint"></div>
 		<!-- content -->
-		<div id="content">
+		<div id="content" class="mw-body">
 			<a id="top"></a>
 			<div id="mw-js-message" style="display:none;"<?php $this->html( 'userlangattributes' ) ?>></div>
 			<?php if ( $this->data['sitenotice'] ): ?>
