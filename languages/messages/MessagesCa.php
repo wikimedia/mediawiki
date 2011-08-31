@@ -695,6 +695,9 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 Contrasenya temporal: $2",
 'passwordreset-emailsent'    => "S'ha enviat un correu de recordatori.",
 
+# Special:ChangeEmail
+'changeemail-cancel' => 'Cancel·la',
+
 # Edit page toolbar
 'bold_sample'     => 'Text en negreta',
 'bold_tip'        => 'Text en negreta',
@@ -2024,8 +2027,10 @@ L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres prefe
 'watchnologin'         => 'No heu iniciat la sessió',
 'watchnologintext'     => "Heu d'[[Special:UserLogin|entrar]]
 per modificar el vostre llistat de seguiment.",
+'addwatch'             => 'Afegeix a llista de seguiment',
 'addedwatchtext'       => "S'ha afegit la pàgina «[[:$1]]» a la vostra [[Special:Watchlist|llista de seguiment]].
 S'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corresponent discussió. A més la pàgina estarà ressaltada '''en negreta''' a la [[Special:RecentChanges|llista de canvis recents]] perquè pugueu adonar-vos dels canvis amb més facilitat.",
+'removewatch'          => 'Treu de la llista de seguiment',
 'removedwatchtext'     => "S'ha tret la pàgina «[[:$1]]» de la vostra [[Special:Watchlist|llista de seguiment]].",
 'watch'                => 'Vigila',
 'watchthispage'        => 'Vigila aquesta pàgina',

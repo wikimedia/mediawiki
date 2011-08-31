@@ -2001,7 +2001,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'emailpagetext'        => 'তলৰ প্ৰপত্ৰখন ব্যৱহাৰ কৰি আপুনি এই সদস্যজনলৈ ই-মেইল পঠাব পাৰে ।
 আপুনি [[Special:Preferences|আপোনাৰ সদস্য পছন্দসমূহ]]ত প্ৰৱেশ কৰা ই-মেইল ঠিকনাটো প্ৰেৰকৰ ঠিকনা হিছাপে দেখা যাব, যাতে মেইলৰ প্ৰাপকে আপোনাক উত্তৰ দিব পাৰে ।',
 'usermailererror'      => 'মেইল বিষয়বস্তুৰ ত্ৰুটি:',
-'defemailsubject'      => '{{SITENAME}} ই-মেইল',
+'defemailsubject'      => '"$1" সদস্যৰ পৰা {{SITENAME}} ই-মেইল',
 'usermaildisabled'     => 'ব্যৱহাৰকাৰীৰ ই-মেইল নিষ্ক্ৰিয়',
 'usermaildisabledtext' => 'আপুনি এই ৱিকিত আন সদস্যলৈ ই-পত্ৰ পঠিয়াব নোৱাৰে',
 'noemailtitle'         => 'কোনো ই-পত্ৰ ঠিকনা নাই',

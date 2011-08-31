@@ -491,6 +491,7 @@ $messages = array(
 'revdelete-content'         => 'мидис',
 'revdelete-summary'         => 'ивддзинады мидис',
 'revdelete-uname'           => 'архайæджы ном',
+'revdelete-hid'             => 'Ист $1',
 'revdelete-reasonotherlist' => 'Æндæр аххос',
 'revdelete-offender'        => 'Фарсы фæлтæры автор:',
 
@@ -809,6 +810,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit' => 'Равдис',
 
 # Special:Log/newusers
+'newuserlogpage'          => 'Архайджыты фæзындты лог',
 'newuserlog-create-entry' => 'Ног архайæджы аккаунт',
 
 # Special:ListGroupRights

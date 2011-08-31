@@ -3679,13 +3679,16 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'globalfileusage-filterlocal' => 'Не паказваць лякальнае выкарыстаньне',
 
 # Special:GlobalTemplateUsage
-'globaltemplateusage'            => 'Глябальнае выкарыстаньне шаблёну',
-'globaltemplateusage-for'        => 'Глябальнае выкарыстаньне шаблёну «$1»',
-'globaltemplateusage-desc'       => '[[Special:GlobalTemplateUsage|Спэцыяльная старонка]] для паказу глябальнага выкарыстаньня шаблёну',
-'globaltemplateusage-ok'         => 'Шукаць',
-'globaltemplateusage-text'       => 'Пошук глябальнага выкарыстаньня шаблёну',
-'globaltemplateusage-no-results' => '[[$1]] не выкарыстоўваецца ў іншых вікі.',
-'globaltemplateusage-on-wiki'    => 'Выкарыстоўваецца ў $2',
+'globaltemplateusage'             => 'Глябальнае выкарыстаньне шаблёну',
+'globaltemplateusage-for'         => 'Глябальнае выкарыстаньне шаблёну «$1»',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Спэцыяльная старонка]] для паказу глябальнага выкарыстаньня шаблёну',
+'globaltemplateusage-ok'          => 'Шукаць',
+'globaltemplateusage-text'        => 'Пошук глябальнага выкарыстаньня шаблёну',
+'globaltemplateusage-no-results'  => '[[$1]] не выкарыстоўваецца ў іншых вікі.',
+'globaltemplateusage-on-wiki'     => 'Выкарыстоўваецца ў $2',
+'globaltemplateusage-of-file'     => 'Гэты шаблён выкарыстоўваецца ў наступных вікі:',
+'globaltemplateusage-more'        => 'Паказаць [[{{#Special:GlobalUsage}}/$1|глябальнае выкарыстаньне]] гэтага шаблёну.',
+'globaltemplateusage-filterlocal' => 'Не паказваць лякальнае выкарыстаньне',
 
 # Database error messages
 'dberr-header'      => 'Гэтая вікі не функцыянуе спраўна',

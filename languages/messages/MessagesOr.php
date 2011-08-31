@@ -243,15 +243,38 @@ $magicWords = array(
 
 $messages = array(
 # User preference toggles
-'tog-justify'             => 'ପାରାଗ୍ରାଫଗୁଡ଼ିକୁ ଯଷ୍ଟିଫାଏ କରିବେ',
-'tog-numberheadings'      => 'ଅଟୋ-ନମ୍ବର ନାମଗୁଡ଼ିକ',
-'tog-showtoolbar'         => 'ସମ୍ପାଦନା ଟୁଲବାର ଦେଖାଇବେ (ଜାଭାସ୍କ୍ରିପ୍ଟ ସଚଳ କରିବେ)',
-'tog-rememberpassword'    => 'ଏହି ବ୍ରାଉଜରରେ (ସବୁଠୁ ଅଧିକ ହେଲେ $1 {{PLURAL:$1|day|ଦିନ}}) ପାଇଁ ମୋ ଲଗଇନ ମନେ ରଖିଥିବେ',
-'tog-previewontop'        => 'ଏଡ଼ିଟ ବାକ୍ସ ଆଗରୁ ଦେଖଣା ଦେଖାଇବେ',
-'tog-previewonfirst'      => 'ପ୍ରଥମ ବଦଳର ଦେଖଣା ଦେଖାଇବେ',
-'tog-enotifrevealaddr'    => 'ସୂଚନା ଇ-ମେଲ ରେ ମୋର ଇ-ମେଲ ଠିକଣା ଦେଖାଇବେ',
-'tog-shownumberswatching' => 'ଦେଖୁଥିବା ବ୍ୟବାହାରକାରୀଙ୍କ ସଂଖ୍ୟା ଦେଖାଇବେ',
-'tog-oldsig'              => 'ଏବେ ଥିବା ଦସ୍ତଖତର ଦେଖଣା',
+'tog-underline'               => 'ତଳେ ଥିବା ଲିଙ୍କ:',
+'tog-highlightbroken'         => '<a href="" class="new"> ଭଳି</a> (ବିକଳ୍ପ: <a href="" class="internal">?</a> ଭଳି) ଭଙ୍ଗା ଲିଙ୍କସବୁକୁ ସଜାଡ଼ିବେ',
+'tog-justify'                 => 'ପାରାଗ୍ରାଫଗୁଡ଼ିକୁ ଯଷ୍ଟିଫାଏ କରିବେ',
+'tog-hideminor'               => 'ଛୋଟ ଛୋଟ ନଗଦ ବଦଳ ସବୁକୁ ଲୁଚାଇବେ',
+'tog-hidepatrolled'           => 'ନଗଦ ବଦଳରେ ଥିବା ଜଗାହୋଇଥିବା ବଦଳ ସବୁକୁ ଲୁଚାଇବେ',
+'tog-newpageshidepatrolled'   => 'ନୂଆ ପୃଷ୍ଠାତାଲିକାରୁ ଜଗାହୋଇଥିବା ବଦଳସବୁକୁ ଲୁଚାଇବେ',
+'tog-extendwatchlist'         => 'କେବଳ ନଗଦ ନୁହେଁ, ସବୁଯାକ ବଦଳକୁ ଦେଖାଇବା ନିମନ୍ତେ ଦେଖଣାତାଲିକାକୁ ବଢ଼ାଇବେ',
+'tog-usenewrc'                => 'ଉନ୍ନତ ନଗଦ ବଦଳ ବ୍ୟବହାର କରନ୍ତୁ (ଜାଭାସ୍କ୍ରିପ୍ଟ ଲୋଡ଼ା)',
+'tog-numberheadings'          => 'ଅଟୋ-ନମ୍ବର ନାମଗୁଡ଼ିକ',
+'tog-showtoolbar'             => 'ସମ୍ପାଦନା ଟୁଲବାର ଦେଖାଇବେ (ଜାଭାସ୍କ୍ରିପ୍ଟ ସଚଳ କରିବେ)',
+'tog-editondblclick'          => 'ଦୁଇଥର କ୍ଲିକରେ ପୃଷ୍ଠା ବଦଳାଇବେ (ଜାଭାସ୍କ୍ରିପ୍ଟ ଲୋଡ଼ା)',
+'tog-editsection'             => '[ବଦଳାଇବେ] ଲିଙ୍କରେ ବିଭାଗର ସମ୍ପାଦନାକୁ ସଚଳ କରିବେ',
+'tog-editsectiononrightclick' => 'ବିଭାଗ ନାମରେ ଡାହାଣ କ୍ଲିକ କରି ବିଭାଗ ସମ୍ପାଦନାକୁ ସଚଳ କରିବେ (ଜାଭାସ୍କ୍ରିପ୍ଟ ଲୋଡ଼ା)',
+'tog-showtoc'                 => 'ସୂଚୀପତ୍ର ଦେଖାଇବେ (୩ରୁ ଅଧିକ ମୁଖ୍ୟ ନାମ ଥିଲେ)',
+'tog-rememberpassword'        => 'ଏହି ବ୍ରାଉଜରରେ (ସବୁଠୁ ଅଧିକ ହେଲେ $1 {{PLURAL:$1|day|ଦିନ}}) ପାଇଁ ମୋ ଲଗଇନ ମନେ ରଖିଥିବେ',
+'tog-watchcreations'          => 'ମୋ ତିଆରି ପୃଷ୍ଠାସବୁକୁ ମୋର ଦେଖଣାତାଲିକା ଭିତରେ ରଖିବେ',
+'tog-watchdefault'            => 'ମୋ ଦେଇ ସମ୍ପାଦିତ ପୃଷ୍ଠାସବୁକୁ ମୋର ଦେଖଣାତାଲିକା ଭିତରେ ରଖିବେ',
+'tog-watchmoves'              => 'ମୋ ଦେଇ ଘୁଞ୍ଚାଯାଇଥିବା ପୃଷ୍ଠାସବୁକୁ ମୋର ଦେଖଣାତାଲିକା ଭିତରେ ରଖିବେ',
+'tog-watchdeletion'           => 'ମୋ ଦେଇ ଲିଭାଯାଇଥିବା ପୃଷ୍ଠାସବୁକୁ ମୋର ଦେଖଣାତାଲିକା ଭିତରେ ରଖିବେ',
+'tog-minordefault'            => 'ସବୁଯାକ ସମ୍ପାଦନାକୁ ଛାଏଁ ଟିକେ ବଦଳ ଭାବରେ ସୂଚିତ କରିବେ',
+'tog-previewontop'            => 'ଏଡ଼ିଟ ବାକ୍ସ ଆଗରୁ ଦେଖଣା ଦେଖାଇବେ',
+'tog-previewonfirst'          => 'ପ୍ରଥମ ବଦଳର ଦେଖଣା ଦେଖାଇବେ',
+'tog-nocache'                 => 'ବ୍ରାଉଜର ପୃଷ୍ଠା ସଂରକ୍ଷଣକୁ ଅଚଳ କରିବେ',
+'tog-enotifwatchlistpages'    => 'ମୋ ଦେଖଣାତାଲିକାରେ ଥିବା ପୃଷ୍ଠାରେ କିଛି ବଦଳ ହେଲେ ମୋତେ ଇ-ମେଲ କରିବେ',
+'tog-enotifusertalkpages'     => 'ମୋର ଆଲୋଚନା ପୃଷ୍ଠାରେ କିଛି ବଦଳ ହେଲେ ମୋତେ ଇ-ମେଲ କରିବେ',
+'tog-enotifminoredits'        => 'ପୃଷ୍ଠାରେ ଛୋଟ ଛୋଟ ବଦଳ ହେଲେ ବି ମୋତେ ଇ-ମେଲ କରିବେ',
+'tog-enotifrevealaddr'        => 'ସୂଚନା ଇ-ମେଲ ରେ ମୋର ଇ-ମେଲ ଠିକଣା ଦେଖାଇବେ',
+'tog-shownumberswatching'     => 'ଦେଖୁଥିବା ବ୍ୟବାହାରକାରୀଙ୍କ ସଂଖ୍ୟା ଦେଖାଇବେ',
+'tog-oldsig'                  => 'ଏବେ ଥିବା ଦସ୍ତଖତର ଦେଖଣା',
+'tog-fancysig'                => 'ଦସ୍ତଖତକୁ ଉଇକିଟେକ୍ସଟ ଭାବରେ ଗଣିବେ (ଆପେଆପେ ଥିବା ଲିଙ୍କ ବିନା)',
+'tog-externaleditor'          => 'ବାହାର ସମ୍ପାଦକଟି ଆପଣାଛାଏଁ ବ୍ୟବହାର କରିବେ (କେବଳ ପଟୁ ସଭ୍ୟଙ୍କ ପାଇଁ, ଏଥି ନିମନ୍ତେ ଆପଣଙ୍କ କମ୍ପୁଟରରେ ବିଶେଷ ସଜାଣି ଲୋଡ଼ା । [http://www.mediawiki.org/wiki/Manual:External_editors ଅଧିକ ସୂଚନା])',
+'tog-externaldiff'            => 'ବାହାର ବାଛିବା (external diff) ଆପଣାଛାଏଁ ବ୍ୟବହାର କରିବେ (କେବଳ ପଟୁ ସଭ୍ୟଙ୍କ ପାଇଁ, ଏଥି ନିମନ୍ତେ ଆପଣଙ୍କ କମ୍ପୁଟରରେ ବିଶେଷ ସଜାଣି ଲୋଡ଼ା । [http://www.mediawiki.org/wiki/Manual:External_editors ଅଧିକ ସୂଚନା])',
 
 'underline-always' => 'ସବୁବେଳେ',
 'underline-never'  => 'କେବେନୁହେଁ',
@@ -511,6 +534,7 @@ $messages = array(
 'gotaccount'              => 'ଆଗରୁ ଖାତାଟିଏ ଅଛି କି? $1.',
 'gotaccountlink'          => 'ଲଗଇନ',
 'userlogin-resetlink'     => 'ଲଗଇନ ତଥ୍ୟ ସବୁ ଭୁଲିଗେଲେକି?',
+'createaccountmail'       => 'ଇ-ମେଲ ରୁ',
 'createaccountreason'     => 'କାରଣ:',
 'loginerror'              => 'ଲଗ‌‌ଇନ ଭୁଲ',
 'loginsuccesstitle'       => 'ଠିକଭାବେ ଲଗଇନ ହେଲା',
@@ -524,12 +548,14 @@ $messages = array(
 'loginlanguagelabel'      => 'ଭାଷା: $1',
 
 # Change password dialog
+'resetpass'               => 'ପାସୱିର୍ଡ ପରିର୍ବତ୍ତନ କରନ୍ତୁ',
 'oldpassword'             => 'ପୁରୁଣା ପାସଉଆଡ଼:',
 'newpassword'             => 'ନୂଆ ପାସବାର୍ଡ଼:',
 'retypenew'               => 'ପାସବାର୍ଡ଼ ଆଉଥରେ ଦିଅନ୍ତୁ:',
 'resetpass-submit-cancel' => 'ବାତିଲ',
 
 # Special:PasswordReset
+'passwordreset'          => 'ପାସୱିର୍ଡ ପୁନଃ ସ୍ଥାପନ କରନ୍ତୁ',
 'passwordreset-username' => 'ବ୍ୟବାହରକାରୀଙ୍କର ନାଆଁ:',
 
 # Special:ChangeEmail
@@ -681,6 +707,7 @@ $messages = array(
 'nextn-title'                      => 'ଆଗର $1ଟି  {{PLURAL:$1|result|ଫଳସବୁ}}',
 'shown-title'                      => '$1 ପ୍ରତି ପୃଷ୍ଠାର {{PLURAL:$1|ଫଳାଫଳ|ଫଳାଫଳ}} ଦେଖାଇବେ ।',
 'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) ଟି ଦେଖିବେ',
+'searchmenu-legend'                => 'ଖୋଜିବା ବିକଳ୍ପ',
 'searchmenu-exists'                => "'''ଏହି ଉଇକିରେ \"[[:\$1]]\" ନାଆଁରେ ପୃଷ୍ଠାଟିଏ ଅଛି ।'''",
 'searchmenu-new'                   => "'''\"[[:\$1]]\"ଟି ଏହି ଉଇକିରେ ତିଆରି କରିବେ!'''",
 'searchmenu-new-nocreate'          => '"$1" ଏକ ଅଚଳ ପୃଷ୍ଠାର ନାଆଁ ବା ଏହା ଆପଣଙ୍କ ଦେଇ ତିଆରି କରାଯାଇପାରିବ ନାହିଁ ।',
@@ -731,6 +758,7 @@ $messages = array(
 'prefsnologin'              => 'ଲଗ‌‌ଇନ କରାଯାାଇନାହ୍ିଁ',
 'prefsnologintext'          => 'ବ୍ୟବହାରକାରୀଙ୍କ ପସନ୍ଦସବୁ ବଦଳାଇବା ପାଇଁ ଆପଣଙ୍କୁ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ଲଗ ଇନ]</span> କରିବାକୁ ପଡ଼ିବ ।',
 'skin-preview'              => 'ଦେଖଣା',
+'prefs-rc'                  => 'ନଗଦ ବଦଳ',
 'saveprefs'                 => 'ସାଇତିବେ',
 'rows'                      => 'ଧାଡ଼ି:',
 'columns'                   => 'ସ୍ତମ୍ଭସବୁ:',
@@ -742,6 +770,7 @@ $messages = array(
 'timezoneregion-asia'       => 'ଏସିଆ',
 'timezoneregion-australia'  => 'ଅଷ୍ଟ୍ରେଲିଆ',
 'timezoneregion-europe'     => 'ଇଉରୋପ',
+'prefs-searchoptions'       => 'ଖୋଜିବା ବିକଳ୍ପ',
 'prefs-namespaces'          => 'ନେମସ୍ପେସ',
 'default'                   => 'ପୂର୍ବ ନିର୍ଦ୍ଧାରିତ',
 'prefs-files'               => 'ଫାଇଲ',
@@ -755,6 +784,7 @@ $messages = array(
 'prefs-help-email-others'   => 'ଆପଣ ନିଜର ଇ-ମେଲଟିଏ ନିଜର ସଭ୍ୟ ବା ଆଲୋଚନା ପୃଷ୍ଠାରେ ଦେଇ ଅନ୍ୟମାନଙ୍କୁ ଇ-ମେଲରେ ଯୋଗଯୋଗ କରିବାର ସୁବିଧା ଦେଇପାରିବେ ।
 ଆପଣଙ୍କୁ କେହି ମେଲ କଲେ ଆପଣଙ୍କ ଇ-ମେଲ ତାହାଙ୍କୁ ଦେଖାଯିବ ନାହିଁ ।',
 'prefs-signature'           => 'ପରିଚାୟକ',
+'prefs-diffs'               => 'ପ୍ରଭେଦ',
 
 # User rights
 'userrights-reason' => 'କାରଣ:',
@@ -808,6 +838,7 @@ $messages = array(
 'minoreditletter'                 => 'ଟିକେ',
 'newpageletter'                   => 'ନୂଆ',
 'boteditletter'                   => 'ବଟ',
+'rc_categories'                   => 'ଶ୍ରେଣୀସମୂହ ପାଇଁ ସୀମା ( "|" ଦେଇ ଅଲଗା କରିବେ)',
 'rc_categories_any'               => 'ଯେ କୌଣସି',
 'rc-enhanced-expand'              => 'ପୁରା ଦେଖାଇବେ (ଜାଭାସ୍କ୍ରିପଟ ଦରକାର)',
 'rc-enhanced-hide'                => 'ବେଶି କଥାସବୁ ଲୁଚାଇଦିଅ',
@@ -830,6 +861,7 @@ $messages = array(
 'fileuploadsummary' => 'ସାରକଥା:',
 'filesource'        => 'ଉତ୍ସ:',
 'uploadedimage'     => '"[[$1]]" ଅପଲୋଡ କରାଗଲା',
+'upload-source'     => 'ଉତ୍ସ ଫାଇଲ',
 'sourceurl'         => 'ଉତ୍ସ ୟୁ.ଆର୍.ଏଲ୍.:',
 
 'license'        => 'ସ୍ଵତ୍ଵ:',
@@ -867,9 +899,12 @@ $messages = array(
 
 # File reversion
 'filerevert'         => '$1କୁ ଫେରାଇଦେବା',
+'filerevert-legend'  => 'ପ୍ରତ୍ୟାବୃତ କରିବା ଫାଇଲ',
 'filerevert-comment' => 'କାରଣ:',
+'filerevert-submit'  => 'ପ୍ରତ୍ୟାବୃତ କରିବା',
 
 # File deletion
+'filedelete'                  => 'ଲିଭାଇବା $1',
 'filedelete-comment'          => 'କାରଣ:',
 'filedelete-submit'           => 'ଲିଭେଇବେ',
 'filedelete-reason-otherlist' => 'ଅଲଗା କାରଣ',
@@ -894,8 +929,9 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'               => '$1 {{PLURAL:$1|byte|ବାଇଟ}}',
+'ncategories'          => '$1 {{PLURAL:$1|ଶ୍ରେଣୀ|ଶ୍ରେଣୀସମୂହ}}',
 'nmembers'             => '$1 {{PLURAL:$1|member|ସଭ୍ୟ}}',
-'wantedcategories'     => 'ଦରକାରୀ ଶ୍ରେଣୀ',
+'wantedcategories'     => 'ଦରକାରୀ ଶ୍ରେଣୀସମୂହ',
 'wantedpages'          => 'ଦରକାରି ପୃଷ୍ଠା',
 'wantedpages-badtitle' => '$1 ଉତ୍ତରସବୁରେ ଥିବା ଭୁଲ ଟାଇଟଲ',
 'wantedfiles'          => 'ଦରକାରି ଫାଇଲ',
@@ -906,6 +942,7 @@ $messages = array(
 'mostcategories'       => 'ଅଧିକ ଶ୍ରେଣୀ ଥିବା ପୃଷ୍ଠା',
 'mostimages'           => 'ଫାଇଲରେ ବେଶି ଯୋଡ଼ାଯାଇଥିବା ଥିବା',
 'prefixindex'          => 'ଆଗରୁ କିଛି ଯୋଡ଼ା ସହ ଥିବା ସବୁ ଫରଦସବୁ',
+'listusers'            => 'ବ୍ୟବହାରକାରୀଙ୍କ ତାଲିକା',
 'usercreated'          => '$2 ଠାରେ $1ରେ ତିଆରି କରାଗଲା',
 'newpages'             => 'ନୂଆ ପୃଷ୍ଠା',
 'newpages-username'    => 'ବ୍ୟବାହରକାରୀଙ୍କର ନାଆଁ:',
@@ -940,7 +977,10 @@ $messages = array(
 'allpagessubmit' => 'ଯିବେ',
 
 # Special:Categories
-'categories' => 'ଶ୍ରେଣୀସବୁ',
+'categories'         => 'ଶ୍ରେଣୀସମୂହ',
+'categoriespagetext' => 'ତଳଲିଖିତ {{PLURAL:$1|ଶ୍ରେଣୀ|ଶ୍ରେଣୀସମୂହ}}ରେ ପୃଷ୍ଠା ବା ମେଡ଼ିଆ ରହିଅଛି ।
+[[Special:UnusedCategories|ବ୍ୟବହାର ହୋଇନଥିବା ଶ୍ରେଣୀସବୁ]] ଦେଖାଯାଇନାହିଁ ।
+[[Special:WantedCategories|ଦରକାରୀ ଶ୍ରେଣୀସମୂହ]] ସବୁ ଦେଖନ୍ତୁ ।',
 
 # Special:DeletedContributions
 'deletedcontributions' => 'ଲିଭାଇ ଦିଆଯାଇଥିବା ସଭ୍ୟଙ୍କ ଅବଦାନ',
@@ -1280,23 +1320,30 @@ $messages = array(
 * ଜି.ପି.ଏସ.‌_ଉଚ୍ଚତା',
 
 # EXIF tags
-'exif-imagewidth'   => 'ଓସାର',
-'exif-imagelength'  => 'ଉଚ୍ଚତା',
-'exif-orientation'  => 'ଅନୁସ୍ଥାପନ',
-'exif-artist'       => 'ଲେଖକ',
-'exif-flash'        => 'ଫ୍ଲାସ',
-'exif-saturation'   => 'ପରିପୃକ୍ତ',
-'exif-keywords'     => 'ସୂଚକ ଶବ୍ଦ',
-'exif-source'       => 'ଉତ୍ସ',
-'exif-writer'       => 'ଲେଖକ',
-'exif-languagecode' => 'ଭାଷା',
-'exif-iimcategory'  => 'ବିଭାଗ',
-'exif-identifier'   => 'ସୂଚକ',
-'exif-label'        => 'ଛାପ',
+'exif-imagewidth'           => 'ଓସାର',
+'exif-imagelength'          => 'ଉଚ୍ଚତା',
+'exif-orientation'          => 'ଅନୁସ୍ଥାପନ (Orientation)',
+'exif-model'                => 'କ୍ୟାମେରା ମଡ଼େଲ',
+'exif-software'             => 'ବ୍ୟବହାର କରାଯାଇଥିବା ସଫ୍ଟବେର',
+'exif-artist'               => 'ଲେଖକ',
+'exif-datetimeoriginal'     => 'ତଥ୍ୟ ତିଆରିହେବାର ତାରିଖ ଓ ସମୟ',
+'exif-exposuretime'         => 'ଖୋଲାରହିବା କାଳ',
+'exif-lightsource'          => 'ଆଲୁଅର ମୂଳ',
+'exif-flash'                => 'ଫ୍ଲାସ',
+'exif-saturation'           => 'ପରିପୃକ୍ତ',
+'exif-subjectdistancerange' => 'ବସ୍ତୁର ଦୂରତା ସୀମା',
+'exif-keywords'             => 'ସୂଚକ ଶବ୍ଦ',
+'exif-source'               => 'ଉତ୍ସ',
+'exif-writer'               => 'ଲେଖକ',
+'exif-languagecode'         => 'ଭାଷା',
+'exif-iimcategory'          => 'ବିଭାଗ',
+'exif-identifier'           => 'ସୂଚକ',
+'exif-label'                => 'ଛାପ',
 
 'exif-orientation-1' => 'ସାଧାରଣ',
 
 'exif-exposureprogram-1' => 'ସହାୟକ ବହି',
+'exif-exposureprogram-2' => 'ସାଧାରଣ ପ୍ରୋଗ୍ରାମ',
 
 'exif-subjectdistance-value' => '$1 ମିଟର',
 
@@ -1321,6 +1368,7 @@ $messages = array(
 'exif-sharpness-0' => 'ସାଧାରଣ',
 
 'exif-subjectdistancerange-0' => 'ଅଜଣା',
+'exif-subjectdistancerange-3' => 'ଦୂରର ଦେଖଣା',
 
 'exif-dc-rights' => 'ଡାହାଣ',
 
@@ -1393,6 +1441,7 @@ $5
 
 # Special:Version
 'version'                  => 'ସଂସ୍କରଣ',
+'version-variables'        => 'ଚଳ',
 'version-other'            => 'ବାକି',
 'version-version'          => '(ଭାଗ $1)',
 'version-license'          => 'ଲାଇସେନ୍ସ',
@@ -1405,7 +1454,8 @@ $5
 'filepath-submit' => 'ଯିବା',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'ଖୋଜିବା',
+'fileduplicatesearch-filename' => 'ଫାଇଲ ନାମ:',
+'fileduplicatesearch-submit'   => 'ଖୋଜିବା',
 
 # Special:SpecialPages
 'specialpages'             => 'ନିଆରା ପୃଷ୍ଠା',
@@ -1434,6 +1484,9 @@ $5
 
 # Special:GlobalFileUsage
 'globalfileusage-ok' => 'ଖୋଜିବା',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage-ok' => 'ଖୋଜିବା',
 
 # HTML forms
 'htmlform-submit'              => 'ଦାଖଲକରିବା',
