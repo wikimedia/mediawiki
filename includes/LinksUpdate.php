@@ -155,8 +155,8 @@ class LinksUpdate {
 			$this->getTemplateInsertions( $existing ) );
 
 		# Distant template links
-		global $wgGlobalDB;
-		if ( $wgGlobalDB ) {
+		global $wgGlobalDatabase;
+		if ( $wgGlobalDatabase ) {
 			$existing = $this->getDistantExistingTemplates();
 			$this->incrSharedTableUpdate( 'globaltemplatelinks', 'gtl',
 				$this->getDistantTemplateDeletions( $existing ),
@@ -400,12 +400,10 @@ class LinksUpdate {
 	 * @private
 	 */
 	function incrSharedTableUpdate( $table, $prefix, $deletions, $insertions ) {
+		global $wgWikiID, $wgGlobalDatabase;
 
-		global $wgWikiID;
-		global $wgGlobalDB;
-
-		if ( $wgGlobalDB ) {
-			$dbw = wfGetDB( DB_MASTER, array(), $wgGlobalDB );
+		if ( $wgGlobalDatabase ) {
+			$dbw = wfGetDB( DB_MASTER, array(), $wgGlobalDatabase );
 			$where = array( "{$prefix}_from_wiki" => $wgWikiID,
 							"{$prefix}_from_page" => $this->mId
 					);
@@ -799,14 +797,14 @@ class LinksUpdate {
 	 */
 	function getDistantExistingTemplates() {
 		global $wgWikiID;
-		global $wgGlobalDB;
+		global $wgGlobalDatabase;
 
 		$arr = array();
-		if ( $wgGlobalDB ) {
-			$dbr = wfGetDB( DB_SLAVE, array(), $wgGlobalDB );
+		if ( $wgGlobalDatabase ) {
+			$dbr = wfGetDB( DB_SLAVE, array(), $wgGlobalDatabase );
 			$res = $dbr->select( 'globaltemplatelinks', array( 'gtl_to_wiki', 'gtl_to_namespace', 'gtl_to_title' ),
 				array( 'gtl_from_wiki' => $wgWikiID, 'gtl_from_page' => $this->mId ), __METHOD__, $this->mOptions );
-			while ( $row = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				if ( !isset( $arr[$row->gtl_to_wiki] ) ) {
 					$arr[$row->gtl_to_wiki] = array();
 				}
