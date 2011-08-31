@@ -234,7 +234,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'prop' => 'Which properties to get',
 			'enableparser' => array( 'Set to enable parser, will preprocess the wikitext of message',
 							'Will substitute magic words, handle templates etc.' ),
-			'nocontent' => 'Set to not include the content of the messages in the output.', 
+			'nocontent' => 'If set, do not include the content of the messages in the output.', 
 			'title' => 'Page name to use as context when parsing message (for enableparser option)',
 			'args' => 'Arguments to be substituted into message',
 			'prefix' => 'Return messages with this prefix',
