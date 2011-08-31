@@ -270,20 +270,17 @@ mw.ajaxCategories = function( options ) {
 	 * @param e {jQuery Event}
 	 */
 	this.handleEditLink = function( e ) {
-		var	input, category, categoryOld,
-			sortkey = '', // Wikitext for between '[[Category:Foo' and ']]'.
+		var	input, category, sortkey, categoryOld,
 			$el = $( this ),
 			$link = $el.parent().parent().find( 'a:not(.icon)' );
 
 		// Grab category text
 		input = $el.parent().find( '.mw-addcategory-input' ).val();
 
-		// Strip sortkey
+		// Split categoryname and sortkey
 		var arr = input.split( '|', 2 );
-		if ( arr.length > 1 ) {
-			category = arr[0];
-			sortkey = arr[1];
-		}
+		category = arr[0];
+		sortkey = arr[1]; // Is usually undefined, ie. if there was no '|' in the input.
 
 		// Grab text
 		var isAdded = $link.hasClass( 'mw-added-category' );
