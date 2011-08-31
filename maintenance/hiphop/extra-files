@@ -1,5 +1,4 @@
 img_auth.php
-includes/AjaxFunctions.php
 includes/AutoLoader.php
 includes/DefaultSettings.php
 includes/Defines.php
