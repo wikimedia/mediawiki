@@ -180,8 +180,8 @@ class BacklinkCache {
 	 */
 	public function getDistantTemplateLinks( ) {
 		global $wgGlobalDatabase, $wgLocalInterwiki;
-		
-		$dbr = $dbr = wfGetDB( DB_SLAVE, array(), $wgGlobalDatabase );
+
+		$dbr = wfGetDB( DB_SLAVE, array(), $wgGlobalDatabase );
 		$res = $dbr->select(
 			array( 'globaltemplatelinks', 'globalinterwiki' ),
 			array( 'gtl_from_wiki', 'gtl_from_page', 'gtl_from_title', 'giw_prefix' ),
@@ -303,7 +303,7 @@ class BacklinkCache {
 	 */
 	public function partition( $table, $batchSize ) {
 
-		// 1) try partition cache ... 
+		// 1) try partition cache ...
 
 		if ( isset( $this->partitionCache[$table][$batchSize] ) ) {
 			wfDebug( __METHOD__ . ": got from partition cache\n" );
@@ -358,7 +358,7 @@ class BacklinkCache {
 	 * Partition a DB result with backlinks in it into batches
 	 * @param $res ResultWrapper database result
 	 * @param $batchSize integer
-	 * @return array @see 
+	 * @return array @see
 	 */
 	protected function partitionResult( $res, $batchSize ) {
 		$batches = array();
