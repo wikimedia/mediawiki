@@ -998,6 +998,9 @@ Thông tin mới nhất trong nhật trình được ghi dưới đây để ti�
 'templatesused'                    => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} dùng trong trang này:',
 'templatesusedpreview'             => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} sẽ được dùng trong trang này:',
 'templatesusedsection'             => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} dùng trong phần này:',
+'distanttemplatesused'             => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} xa dùng trong trang này:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} xa sẽ được dùng trong trang này:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} xa dùng trong phần này:',
 'template-protected'               => '(khóa hoàn toàn)',
 'template-semiprotected'           => '(bị hạn chế sửa đổi)',
 'hiddencategories'                 => 'Trang này thuộc về {{PLURAL:$1|1 thể loại ẩn|$1 thể loại ẩn}}:',
@@ -1309,7 +1312,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'qbsettings-fixedright'     => 'Cố định phải',
 'qbsettings-floatingleft'   => 'Nổi bên trái',
 'qbsettings-floatingright'  => 'Nổi bên phải',
-'qbsettings-directionality' => 'Cố định, theo hướng viết ngôn ngữ của bạn',
+'qbsettings-directionality' => 'Cố định, tùy theo hướng viết ngôn ngữ của bạn',
 
 # Preferences page
 'preferences'                   => 'Tùy chọn',
@@ -1832,8 +1835,7 @@ Vì lý do bảo mật, img_auth.php đã bị tắt.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên.
-Theo mặc định, các tập tin mới nhất được xếp vào đầu danh sách.
-Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp xếp.',
+Lọc theo người dùng để chỉ hiện các tập tin mà người đó đã tải lên phiên bản gần đây nhất.',
 'listfiles_search_for'  => 'Tìm kiếm theo tên tập tin:',
 'imgfile'               => 'tập tin',
 'listfiles'             => 'Danh sách tập tin',
@@ -2156,7 +2158,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'emailpagetext'        => 'Mẫu dưới đây sẽ gửi một bức thư điện tử tới người dùng này.
 Địa chỉ thư điện tử mà bạn đã cung cấp trong [[Special:Preferences|tùy chọn cá nhân của mình]] sẽ xuất hiện trong phần địa chỉ “Người gửi” của bức thư, do đó người nhận sẽ có thể trả lời trực tiếp cho bạn.',
 'usermailererror'      => 'Lỗi gửi thư:',
-'defemailsubject'      => 'thư gửi từ {{SITENAME}}',
+'defemailsubject'      => 'Thư của người dùng "$1" tại {{SITENAME}}',
 'usermaildisabled'     => 'Chức năng gửi thư cho người dùng đã bị tắt.',
 'usermaildisabledtext' => 'Bạn không thể gửi thư điện tử cho những người dùng khác trên wiki này.',
 'noemailtitle'         => 'Không có địa chỉ nhận thư',
@@ -2546,6 +2548,7 @@ $1',
 'blocklist-userblocks'            => 'Ẩn tác vụ cấm tài khoản',
 'blocklist-tempblocks'            => 'Ẩn tác vụ cấm có thời hạn',
 'blocklist-addressblocks'         => 'Ẩn tác vụ cấm địa chỉ IP dứt khoát',
+'blocklist-rangeblocks'           => 'Ẩn tác vụ cấm hàng loạt',
 'blocklist-timestamp'             => 'Thời gian',
 'blocklist-target'                => 'Người dùng',
 'blocklist-expiry'                => 'Thời hạn',
@@ -3817,6 +3820,30 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'compare-invalid-title'       => 'Tựa trang chỉ định không hợp lệ.',
 'compare-title-not-exists'    => 'Tựa trang chỉ định không tồn tại.',
 'compare-revision-not-exists' => 'Phiên bản chỉ định không tồn tại.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Sử dụng tập tin toàn cục',
+'globalfileusage-for'         => 'Trang dùng tập tin “$1” toàn cục',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Trang đặc biệt]] để xem tập tin này đang dùng ở đâu trên toàn hệ thống',
+'globalfileusage-ok'          => 'Tìm kiếm',
+'globalfileusage-text'        => 'Tìm trang dùng tập tin toàn cục',
+'globalfileusage-no-results'  => '[[$1]] không được sử dụng tại các wiki khác.',
+'globalfileusage-on-wiki'     => 'Trang sử dụng tại $2',
+'globalfileusage-of-file'     => 'Các wiki sau đang sử dụng tập tin này:',
+'globalfileusage-more'        => 'Xem tập tin này [[{{#Special:GlobalUsage}}/$1|đang dùng ở đâu toàn hệ thống]].',
+'globalfileusage-filterlocal' => 'Ẩn trang nội bộ sử dụng',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Trang sử dụng bản mẫu toàn cục',
+'globaltemplateusage-for'         => 'Tìm trang dùng bản mẫu “$1” toàn cục',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Trang đặc biệt]] để xem bản mẫu này đang dùng ở đâu trên toàn hệ thống',
+'globaltemplateusage-ok'          => 'Tìm kiếm',
+'globaltemplateusage-text'        => 'Tìm trang dùng bản mẫu toàn cục',
+'globaltemplateusage-no-results'  => '[[$1]] không được sử dụng tại các wiki khác.',
+'globaltemplateusage-on-wiki'     => 'Trang sử dụng tại $2',
+'globaltemplateusage-of-file'     => 'Các wiki sau sử dụng bản mẫu này:',
+'globaltemplateusage-more'        => 'Xem bản mẫu này [[{{#Special:GlobalUsage}}/$1|đang dùng ở đâu toàn hệ thống]].',
+'globaltemplateusage-filterlocal' => 'Ẩn trang nội bộ sử dụng',
 
 # Database error messages
 'dberr-header'      => 'Wiki này đang gặp trục trặc',
