@@ -1,22 +1,56 @@
 /**
- * CSS in this file is used by *all* skins (that have any CSS at all).  Be
+ * CSS in this file is used by *all* skins (that have any CSS at all). Be
  * careful what you put in here, since what looks good in one skin may not in
  * another, but don't ignore the poor pre-Monobook users either.
  */
 
 /* GENERAL CLASSES FOR DIRECTIONALITY SUPPORT */
-/* These classes should be used for text depending on the content direction.
-Content stuff like editsection, ul/ol and TOC depend on this. */
- /* @noflip */.mw-content-ltr { direction: ltr; }
-/* @noflip */.mw-content-rtl { direction: rtl; }
+
+/**
+ * These classes should be used for text depending on the content direction.
+ * Content stuff like editsection, ul/ol and TOC depend on this.
+ */
+.mw-content-ltr {
+	/* @noflip */
+	direction: ltr;
+}
+.mw-content-rtl {
+	/* @noflip */
+	direction: rtl;
+}
+
 /* Most input fields should be in site direction */
-/* @noflip */.sitedir-ltr textarea, .sitedir-ltr input { direction: ltr; }
-/* @noflip */.sitedir-rtl textarea, .sitedir-rtl input { direction: rtl; }
+.sitedir-ltr textarea,
+.sitedir-ltr input {
+	/* @noflip */
+	direction: ltr;
+}
+.sitedir-rtl textarea,
+.sitedir-rtl input {
+	/* @noflip */
+	direction: rtl;
+}
+
 /* Input types that should follow user direction, like buttons */
-input[type="submit"], input[type="button"], input[type="reset"], input[type="file"] { direction: ltr; }
+/* TODO: What about buttons in wikipage content ? */
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="file"] {
+	direction: ltr;
+}
+
 /* Override default values */
-/* @noflip */textarea[dir="ltr"], input[dir="ltr"] { direction: ltr; }
-/* @noflip */textarea[dir="rtl"], input[dir="rtl"] { direction: rtl; }
+textarea[dir="ltr"],
+input[dir="ltr"] {
+	/* @noflip */
+	direction: ltr;
+}
+textarea[dir="rtl"],
+input[dir="rtl"] {
+	/* @noflip */
+	direction: rtl;
+}
 
 .mw-float-start { float: left; }
 .mw-float-end { float: right; }
@@ -24,28 +58,44 @@ input[type="submit"], input[type="button"], input[type="reset"], input[type="fil
 .mw-align-end { text-align: right; }
 
 /* The scripts of these languages are very hard to read with underlines */
-[lang="ar"] a, [lang="ckb"] a, [lang="fa"] a, [lang="kk-arab"] a,
-[lang="mzn"] a, [lang="ps"] a, [lang="ur"] a {
+[lang="ar"] a,
+[lang="ckb"] a,
+[lang="fa"] a,
+[lang="kk-arab"] a,
+[lang="mzn"] a,
+[lang="ps"] a,
+[lang="ur"] a {
 	text-decoration: none;
 }
 
 /* Default style for semantic tags */
-abbr, acronym, .explain {
+abbr,
+acronym,
+.explain {
 	border-bottom: 1px dotted black;
 	cursor: help;
 }
 
 /* Colored watchlist and recent changes numbers */
-.mw-plusminus-pos { color: #006400; } /* dark green */
-.mw-plusminus-neg { color: #8b0000; } /* dark red */
-.mw-plusminus-null { color: #aaa; } /* gray */
-
-/* Links to redirects appear italicized on [[Special:AllPages]], [[Special:PrefixIndex]],
-   [[Special:Watchlist/edit]] and in category listings */
-.allpagesredirect, .redirect-in-category, .watchlistredir {
-	font-style: italic;
+.mw-plusminus-pos {
+	color: #006400; /* dark green */
+}
+.mw-plusminus-neg {
+	color: #8b0000; /* dark red */
+}
+.mw-plusminus-null {
+	color: #aaa; /* gray */
 }
 
+/**
+ * Links to redirects appear italicized on [[Special:AllPages]], [[Special:PrefixIndex]],
+ * [[Special:Watchlist/edit]] and in category listings.
+ */
+.allpagesredirect,
+.redirect-in-category,
+.watchlistredir {
+	font-style: italic;
+}
 
 /* Comment and username portions of RC entries */
 span.comment {
@@ -61,15 +111,25 @@ span.changedby {
 	direction: ltr;
 	unicode-bidi: embed;
 }
-img.tex { vertical-align: middle; }
-span.texhtml { font-family: serif; }
+img.tex {
+	vertical-align: middle;
+}
+span.texhtml {
+	font-family: serif;
+}
 
-/* add a bit of margin space between the preview and the toolbar */
-/* this replaces the ugly <p><br /></p> we used to insert into the page source */
-#wikiPreview.ontop { margin-bottom: 1em; }
+/**
+ * Add a bit of margin space between the preview and the toolbar.
+ * This replaces the ugly <p><br /></p> we used to insert into the page source
+ */
+#wikiPreview.ontop {
+	margin-bottom: 1em;
+}
 
 /* Stop floats from intruding into edit area in previews */
-#editform, #toolbar, #wpTextbox1 {
+#editform,
+#toolbar,
+#wpTextbox1 {
 	clear: both;
 }
 #toolbar img {
@@ -89,8 +149,17 @@ div#mw-js-message {
 	unicode-bidi: embed;
 }
 /* Correct directionality when page dir is different from site/user dir */
-/* @noflip */.mw-content-ltr .editsection, .mw-content-rtl .mw-content-ltr .editsection { float: right; }
-/* @noflip */.mw-content-rtl .editsection, .mw-content-ltr .mw-content-rtl .editsection { float: left; }
+.mw-content-ltr .editsection,
+.mw-content-rtl .mw-content-ltr .editsection {
+	/* @noflip */
+	float: right;
+}
+.mw-content-rtl .editsection,
+.mw-content-ltr .mw-content-rtl .editsection {
+	/* @noflip */
+	float: left;
+}
+
 /**
  * File histories
  */
@@ -114,10 +183,11 @@ table.filehistory td.filehistory-selected {
 	font-weight: bold;
 }
 
-/*
+/**
  * rev_deleted stuff
  */
-li span.deleted, span.history-deleted {
+li span.deleted,
+span.history-deleted {
 	text-decoration: line-through;
 	color: #888;
 	font-style: italic;
@@ -143,14 +213,28 @@ div.patrollink {
 /**
  * Forms
  */
-td.mw-label { text-align: right; }
-td.mw-input { text-align: left; }
-td.mw-submit { text-align: left; }
+td.mw-label {
+	text-align: right;
+}
+td.mw-input {
+	text-align: left;
+}
+td.mw-submit {
+	text-align: left;
+}
 
-td.mw-label { vertical-align: top; }
-.prefsection td.mw-label { width: 20%; }
-.prefsection table { width: 100%; }
-td.mw-submit { white-space: nowrap; }
+td.mw-label {
+	vertical-align: top;
+}
+.prefsection td.mw-label {
+	width: 20%;
+}
+.prefsection table {
+	width: 100%;
+}
+td.mw-submit {
+	white-space: nowrap;
+}
 
 table.mw-htmlform-nolabel td.mw-label {
 	width: 0 !important;
@@ -176,29 +260,33 @@ input#wpSummary {
 /**
  * Image captions
  */
-.thumbcaption { text-align: left; }
-.magnify { float: right; }
+.thumbcaption {
+	text-align: left;
+}
+.magnify {
+	float: right;
+}
 
 /**
  * Categories
  */
 #catlinks ul {
-	display:inline;
+	display: inline;
 	margin: 0px;
-	list-style:none;
-	list-style-type:none;
-	list-style-image:none;
+	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 	vertical-align: middle !ie;
 }
 
 #catlinks li {
-	display:inline-block;
+	display: inline-block;
 	line-height: 1.35em;
 	padding: 0 .7em;
 	border-left: 1px solid #AAA;
 	margin: 0.3em 0;
 	zoom: 1;
-	display:inline !ie;
+	display: inline !ie;
 }
 
 #catlinks li:first-child {
@@ -208,18 +296,24 @@ input#wpSummary {
 /**
  * Hidden categories
  */
-.mw-hidden-cats-hidden { display: none; }
-.catlinks-allhidden { display: none; }
+.mw-hidden-cats-hidden {
+	display: none;
+}
+.catlinks-allhidden {
+	display: none;
+}
 
 /* Convenience links to edit block, delete and protect reasons */
-p.mw-ipb-conveniencelinks, p.mw-protect-editreasons,
-p.mw-filedelete-editreasons, p.mw-delete-editreasons,
+p.mw-ipb-conveniencelinks,
+p.mw-protect-editreasons,
+p.mw-filedelete-editreasons,
+p.mw-delete-editreasons,
 p.mw-revdel-editreasons {
 	font-size: 90%;
 	text-align: right;
 }
 
-/*
+/**
  * OpenSearch ajax suggestions
  */
 .os-suggest {
@@ -246,7 +340,8 @@ table.os-suggest-results {
 	width: 100%;
 }
 
-.os-suggest-result, .os-suggest-result-hl {
+.os-suggest-result,
+.os-suggest-result-hl {
 	white-space: nowrap;
 	background-color: white;
 	background-color: Window;
@@ -261,7 +356,8 @@ table.os-suggest-results {
 }
 .os-suggest-result-hl {
 	/* System colors are misimplemented in Safari 3.0 and earlier,
-	   making highlighted text illegible... */
+	 * making highlighted text illegible...
+	 */
 	background-color: Highlight;
 	color: HighlightText;
 }
@@ -280,8 +376,11 @@ table.os-suggest-results {
 }
 
 /* Page history styling */
-/* the auto-generated edit comments */
-.autocomment { color: gray; }
+
+/* The auto-generated edit comments */
+.autocomment {
+	color: gray;
+}
 #pagehistory .history-user {
 	margin-left: 0.4em;
 	margin-right: 0.2em;
@@ -297,16 +396,19 @@ table.os-suggest-results {
 	border: 1px dashed #aaa;
 }
 
-/** Generic minor/bot/newpage styling */
-.newpage, .minor, .bot {
+/** Generic minor/bot/newpage styling (recent changes) */
+.newpage,
+.minor,
+.bot {
 	font-weight: bold;
 }
 
-#shared-image-dup, #shared-image-conflict {
+#shared-image-dup,
+#shared-image-conflict {
 	font-style: italic;
 }
 
-/*
+/**
  * Recreating deleted page warning
  * Reupload file warning
  * Page protection warning
@@ -332,7 +434,8 @@ input.mw-revdelundel-hidden {
 	visibility: hidden;
 }
 
-td.mw-revdel-checkbox, th.mw-revdel-checkbox {
+td.mw-revdel-checkbox,
+th.mw-revdel-checkbox {
 	padding-right: 10px;
 	text-align: center;
 }
@@ -351,7 +454,8 @@ a.feedlink {
 	padding: 0 !important;
 }
 /* External URLs should always be treated as LTR (bug 4330) */
-/* @noflip */ .rtl a.external.free, .rtl a.external.autonumber {
+/* @noflip */ .rtl a.external.free,
+.rtl a.external.autonumber {
 	direction: ltr;
 	unicode-bidi: embed;
 }
@@ -366,7 +470,8 @@ table.wikitable {
 	border-collapse: collapse;
 	color: black;
 }
-.wikitable th, .wikitable td {
+.wikitable th,
+.wikitable td {
 	border: 1px #aaa solid;
 	padding: 0.2em;
 }
@@ -396,7 +501,9 @@ table.collapsed tr.collapsable {
 	color: red;
 	font-size: larger;
 }
-.errorbox, .warningbox, .successbox {
+.errorbox,
+.warningbox,
+.successbox {
 	font-size: larger;
 	border: 2px solid;
 	padding: .5em 1em;
@@ -416,7 +523,9 @@ table.collapsed tr.collapsable {
 	border-color: green;
 	background-color: #dfd;
 }
-.errorbox h2, .warningbox h2, .successbox h2 {
+.errorbox h2,
+.warningbox h2,
+.successbox h2 {
 	font-size: 1em;
 	font-weight: bold;
 	display: inline;
@@ -463,14 +572,14 @@ table.collapsed tr.collapsable {
 	padding: 0.2em;
 }
 
-/*
-	Table pager (e.g. Special:ListFiles)
-	- remove underlines from the navigation link
-	- collapse borders
-	- set the borders to outsets (similar to Special:AllMessages)
-	- remove line wrapping for all td and th, set background color
-	- restore line wrapping for the last two table cells (description and size)
-*/
+/**
+ * Table pager (e.g. Special:ListFiles)
+ * - remove underlines from the navigation link
+ * - collapse borders
+ * - set the borders to outsets (similar to Special:AllMessages)
+ * - remove line wrapping for all td and th, set background color
+ * - restore line wrapping for the last two table cells (description and size)
+ */
 .TablePager {
 	min-width: 80%;
 	border-collapse: collapse;
@@ -485,7 +594,9 @@ table.collapsed tr.collapsable {
 .TablePager_nav a {
 	text-decoration: none;
 }
-.TablePager, .TablePager td, .TablePager th {
+.TablePager,
+.TablePager td,
+.TablePager th {
 	border: 1px solid #aaaaaa;
 	padding: 0 0.15em 0 0.15em;
 }
@@ -499,7 +610,8 @@ table.collapsed tr.collapsable {
 	background-color: #eeeeff;
 }
 
-.imagelist td, .imagelist th {
+.imagelist td,
+.imagelist th {
 	white-space: nowrap;
 }
 .imagelist .TablePager_col_links {
@@ -555,7 +667,8 @@ table.mw_metadata {
 	border-collapse: collapse;
 }
 
-table.mw_metadata td, table.mw_metadata th {
+table.mw_metadata td,
+table.mw_metadata th {
 	text-align: center;
 	border: 1px solid #aaaaaa;
 	padding-left: 5px;
@@ -579,17 +692,25 @@ table.mw_metadata ul.metadata-langlist {
 }
 
 /* Correct directionality when page dir is different from site/user dir */
-/* @noflip */.mw-content-ltr ul, .mw-content-rtl .mw-content-ltr ul {
-	margin: .3em 0 0 1.5em;
+.mw-content-ltr ul,
+.mw-content-rtl .mw-content-ltr ul {
+	/* @noflip */
+	margin: 0.3em 0 0 1.5em;
 }
-/* @noflip */.mw-content-rtl ul, .mw-content-ltr .mw-content-rtl ul {
-	margin: .3em 1.5em 0 0;
+.mw-content-rtl ul,
+.mw-content-ltr .mw-content-rtl ul {
+	/* @noflip */
+	margin: 0.3em 1.5em 0 0;
 }
-/* @noflip */.mw-content-ltr ol, .mw-content-rtl .mw-content-ltr ol {
-	margin: .3em 0 0 3.2em;
+.mw-content-ltr ol,
+.mw-content-rtl .mw-content-ltr ol {
+	/* @noflip */
+	margin: 0.3em 0 0 3.2em;
 }
-/* @noflip */.mw-content-rtl ol, .mw-content-ltr .mw-content-rtl ol {
-	margin: .3em 3.2em 0 0;
+.mw-content-rtl ol,
+.mw-content-ltr .mw-content-rtl ol {
+	/* @noflip */
+	margin: 0.3em 3.2em 0 0;
 }
 
 /* Galleries */
@@ -608,7 +729,8 @@ ul.gallery {
 	display: inline-block;
 }
 
-ul.gallery, li.gallerybox {
+ul.gallery,
+li.gallerybox {
 	zoom: 1;
 	display: inline !ie;
 }
@@ -685,22 +807,30 @@ ol:lang(or) li {
 }
 
 /* Correct directionality when page dir is different from site/user dir */
-/* @noflip */.mw-content-ltr .toc ul, .mw-content-ltr #toc ul,
-.mw-content-rtl .mw-content-ltr .toc ul, .mw-content-rtl .mw-content-ltr #toc ul {
+/* @noflip */ .mw-content-ltr .toc ul,
+.mw-content-ltr #toc ul,
+.mw-content-rtl .mw-content-ltr .toc ul,
+.mw-content-rtl .mw-content-ltr #toc ul {
 	text-align: left;
 	margin-left: 0;
 }
-/* @noflip */.mw-content-rtl .toc ul, .mw-content-rtl #toc ul,
-.mw-content-ltr .mw-content-rtl .toc ul, .mw-content-ltr .mw-content-rtl #toc ul {
+/* @noflip */ .mw-content-rtl .toc ul,
+.mw-content-rtl #toc ul,
+.mw-content-ltr .mw-content-rtl .toc ul,
+.mw-content-ltr .mw-content-rtl #toc ul {
 	text-align: right;
 	margin-right: 0;
 }
-/* @noflip */.mw-content-ltr .toc ul ul, .mw-content-ltr #toc ul ul,
-.mw-content-rtl .mw-content-ltr .toc ul ul, .mw-content-rtl .mw-content-ltr #toc ul ul {
+/* @noflip */ .mw-content-ltr .toc ul ul,
+.mw-content-ltr #toc ul ul,
+.mw-content-rtl .mw-content-ltr .toc ul ul,
+.mw-content-rtl .mw-content-ltr #toc ul ul {
 	margin: 0 0 0 2em;
 }
-/* @noflip */.mw-content-rtl .toc ul ul, .mw-content-rtl #toc ul ul,
-.mw-content-ltr .mw-content-rtl .toc ul ul, .mw-content-ltr .mw-content-rtl #toc ul ul {
+/* @noflip */ .mw-content-rtl .toc ul ul,
+.mw-content-rtl #toc ul ul,
+.mw-content-ltr .mw-content-rtl .toc ul ul,
+.mw-content-ltr .mw-content-rtl #toc ul ul {
 	margin: 0 2em 0 0;
 }
 
@@ -758,18 +888,18 @@ ol:lang(or) li {
 	background-position: 0% 100%;
 }
 /* Table Sorting */
-th.headerSort { 
-	background-image: url(images/sort_both.gif);     
+th.headerSort {
+	background-image: url(images/sort_both.gif);
 	cursor: pointer;
-	background-repeat: no-repeat; 
-	background-position: center right; 
+	background-repeat: no-repeat;
+	background-position: center right;
 	padding-right: 21px;
 }
-th.headerSortUp { 
-	background-image: url(images/sort_up.gif); 
+th.headerSortUp {
+	background-image: url(images/sort_up.gif);
 }
-th.headerSortDown { 
-	background-image: url(images/sort_down.gif); 
+th.headerSortDown {
+	background-image: url(images/sort_down.gif);
 }
 
 /* LTR content in RTL layout */
@@ -779,13 +909,18 @@ th.headerSortDown {
 	unicode-bidi: embed;
 }
 
-#mw-clearyourcache, #mw-sitecsspreview, #mw-sitejspreview, #mw-usercsspreview, #mw-userjspreview {
+#mw-clearyourcache,
+#mw-sitecsspreview,
+#mw-sitejspreview,
+#mw-usercsspreview,
+#mw-userjspreview {
 	direction: ltr;
 	unicode-bidi: embed;
 }
 
 /* Correct user & content directionality when viewing a diff */
-.diff-currentversion-title, .diff {
+.diff-currentversion-title,
+.diff {
 	direction: ltr;
 	unicode-bidi: embed;
 }
@@ -797,27 +932,40 @@ th.headerSortDown {
 	direction: ltr;
 	unicode-bidi: embed;
 }
-.diff-otitle, .diff-ntitle, .diff-lineno {
+.diff-otitle,
+.diff-ntitle,
+.diff-lineno {
 	direction: ltr !important;
 	unicode-bidi: embed;
 }
 
-#mw-revision-info, #mw-revision-nav {
+#mw-revision-info,
+#mw-revision-nav {
 	direction: ltr;
 }
 
 /* Images */
-/* @noflip */div.tright, div.floatright, table.floatright {
+
+/* @noflip */ div.tright,
+div.floatright,
+table.floatright {
 	clear: right;
 	float: right;
 }
-/* @noflip */div.tleft, div.floatleft, table.floatleft {
+/* @noflip */ div.tleft,
+div.floatleft,
+table.floatleft {
 	float: left;
 	clear: left;
 }
-div.floatright, table.floatright, div.floatleft, table.floatleft {
+div.floatright,
+table.floatright,
+div.floatleft,
+table.floatleft {
 	position: relative;
 }
 
 /* bug 12205 */
-#mw-credits a { unicode-bidi: embed; }
+#mw-credits a {
+	unicode-bidi: embed;
+}
