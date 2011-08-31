@@ -1,0 +1,113 @@
+/*
+** MediaWiki style sheet for general styles on complex content
+*/
+
+/* Table of Contents */
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}
+
+.toccolours {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+
+/* Warning */
+.mw-warning {
+	margin-left: 50px;
+	margin-right: 50px;
+	text-align: center;
+}
+
+/* Images */
+/* @noflip */div.floatright, table.floatright {
+	margin: 0 0 .5em .5em;
+	border: 0;
+}
+div.floatright p { font-style: italic; }
+/* @noflip */div.floatleft, table.floatleft {
+	margin: 0 .5em .5em 0;
+	border: 0;
+}
+div.floatleft p { font-style: italic; }
+/* Thumbnails */
+div.thumb {
+	margin-bottom: .5em;
+	width: auto;
+	background-color: transparent;
+}
+div.thumbinner {
+	border: 1px solid #ccc;
+	padding: 3px !important;
+	background-color: #f9f9f9;
+	font-size: 94%;
+	text-align: center;
+	overflow: hidden;
+}
+html .thumbimage {
+	border: 1px solid #ccc;
+}
+html .thumbcaption {
+	border: none;
+	text-align: left;
+	line-height: 1.4em;
+	padding: 3px !important;
+	font-size: 94%;
+}
+div.magnify {
+	float: right;
+	border: none !important;
+	background: none !important;
+}
+div.magnify a, div.magnify img {
+	display: block;
+	border: none !important;
+	background: none !important;
+}
+/* @noflip */div.tright {
+	margin: .5em 0 1.3em 1.4em;
+}
+/* @noflip */div.tleft {
+	margin: .5em 1.4em 1.3em 0;
+}
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
+

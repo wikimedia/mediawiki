@@ -79,7 +79,7 @@ class MonoBookTemplate extends BaseTemplate {
 	<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 
 	<h1 id="firstHeading" class="firstHeading"><?php $this->html('title') ?></h1>
-	<div id="bodyContent">
+	<div id="bodyContent" class="mw-body">
 		<div id="siteSub"><?php $this->msg('tagline') ?></div>
 		<div id="contentSub"<?php $this->html('userlangattributes') ?>><?php $this->html('subtitle') ?></div>
 <?php if($this->data['undelete']) { ?>

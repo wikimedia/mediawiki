@@ -1,0 +1,42 @@
+/*
+** MediaWiki style sheet for common core styles on interfaces
+*/
+
+/* Categories */
+.catlinks {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	margin-top: 1em;
+	clear: both;
+}
+
+/* User Message */
+.usermessage {
+	background-color: #ffce7b;
+	border: 1px solid #ffa500;
+	color: black;
+	font-weight: bold;
+	margin: 2em 0 1em;
+	padding: .5em 1em;
+	vertical-align: middle;
+}
+
+/* Sub-navigation */
+#siteSub {
+	display: none;
+}
+#jump-to-nav {
+	display: none;
+}
+#contentSub, #contentSub2 {
+	font-size: 84%;
+	line-height: 1.2em;
+	margin: 0 0 1.4em 1em;
+	color: #7d7d7d;
+	width: auto;
+}
+span.subpages {
+	display: block;
+}
+
