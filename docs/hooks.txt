@@ -1805,7 +1805,8 @@ $title: The title in question.
 $title: Title object that is being checked
 $result: Boolean; whether MediaWiki currently thinks this is a CSS/JS page. Hooks may change this value to override the return value of Title::isCssOrJsPage()
 
-'TitleIsMovable': Called when determining if it is possible to move a page
+'TitleIsMovable': Called when determining if it is possible to move a page.
+Note that this hook is not called for interwiki pages or pages in immovable namespaces: for these, isMovable() always returns false.
 $title: Title object that is being checked
 $result: Boolean; whether MediaWiki currently thinks this page is movable. Hooks may change this value to override the return value of Title::isMovable()
 
