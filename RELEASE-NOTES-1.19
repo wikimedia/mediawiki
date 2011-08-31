@@ -74,6 +74,8 @@ production.
 * (bug 28649) Avoiding half truncated multi-byte unicode characters when 
   truncating log comments.
 * Show --batch-size option in help of maintenance scripts that support it
+* (bug 4381) Magic quotes cleaning is not comprehensive, key strings not
+  unescaped
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
