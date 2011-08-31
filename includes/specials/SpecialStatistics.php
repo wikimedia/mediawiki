@@ -146,7 +146,7 @@ class SpecialStatistics extends SpecialPage {
 						$this->getLang()->formatNum( $this->total ),
 						array( 'class' => 'mw-statistics-pages' ),
 						'statistics-pages-desc' ) .
-				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'Filelist' ),
+				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'ListFiles' ),
 						wfMsgExt( 'statistics-files', array( 'parseinline' ) ) ),
 						$this->getLang()->formatNum( $this->images ),
 						array( 'class' => 'mw-statistics-files' ) );
