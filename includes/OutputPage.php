@@ -1895,7 +1895,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * showErrorPage( 'titlemsg', 'pagetextmsg', array( 'param1', 'param2' ) );
 	 * showErrorPage( 'titlemsg', $messageObject );
-	 * 
+	 *
 	 * @param $title String: message key for page title
 	 * @param $msg Mixed: message key (string) for page text, or a Message object
 	 * @param $params Array: message parameters; ignored if $msg is a Message object
@@ -3039,7 +3039,7 @@ $distantTemplates
 					ResourceLoaderModule::TYPE_STYLES
 			);
 		}
-		
+
 		// Add stuff in $otherTags (previewed user CSS if applicable)
 		$ret .= $otherTags;
 		return $ret;

@@ -167,10 +167,16 @@ class WebRequest {
 		return $proto . '://' . IP::combineHostAndPort( $host, $port, $stdPort );
 	}
 
+	/**
+	 * @return array
+	 */
 	public static function detectProtocolAndStdPort() {
 		return ( isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] == 'on' ) ? array( 'https', 443 ) : array( 'http', 80 );
 	}
 
+	/**
+	 * @return string
+	 */
 	public static function detectProtocol() {
 		list( $proto, $stdPort ) = self::detectProtocolAndStdPort();
 		return $proto;
@@ -603,7 +609,7 @@ class WebRequest {
 	 * Return the request URI with the canonical service and hostname, path,
 	 * and query string. This will be suitable for use as an absolute link
 	 * in HTML or other output.
-	 * 
+	 *
 	 * If $wgServer is protocol-relative, this will return a fully
 	 * qualified URL with the protocol that was used for this request.
 	 *
@@ -921,6 +927,10 @@ HTML;
 	 * if there was no dot before the question mark (bug 28235).
 	 *
 	 * @deprecated Use checkUrlExtension().
+	 *
+	 * @param $extWhitelist array
+	 *
+	 * @return bool
 	 */
 	public function isPathInfoBad( $extWhitelist = array() ) {
 		global $wgScriptExtension;
@@ -1180,15 +1190,26 @@ class FauxRequest extends WebRequest {
 		throw new MWException( "{$method}() not implemented" );
 	}
 
+	/**
+	 * @param $name string
+	 * @param $default string
+	 * @return string
+	 */
 	public function getText( $name, $default = '' ) {
 		# Override; don't recode since we're using internal data
 		return (string)$this->getVal( $name, $default );
 	}
 
+	/**
+	 * @return Array
+	 */
 	public function getValues() {
 		return $this->data;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getQueryValues() {
 		if ( $this->wasPosted ) {
 			return array();
@@ -1197,6 +1218,9 @@ class FauxRequest extends WebRequest {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function wasPosted() {
 		return $this->wasPosted;
 	}
@@ -1209,10 +1233,18 @@ class FauxRequest extends WebRequest {
 		$this->notImplemented( __METHOD__ );
 	}
 
+	/**
+	 * @param $name
+	 * @return bool|string
+	 */
 	public function getHeader( $name ) {
 		return isset( $this->headers[$name] ) ? $this->headers[$name] : false;
 	}
 
+	/**
+	 * @param $name string
+	 * @param $val string
+	 */
 	public function setHeader( $name, $val ) {
 		$this->headers[$name] = $val;
 	}
@@ -1230,14 +1262,25 @@ class FauxRequest extends WebRequest {
 		return $this->session;
 	}
 
+	/**
+	 * @param array $extWhitelist
+	 * @return bool
+	 */
 	public function isPathInfoBad( $extWhitelist = array() ) {
 		return false;
 	}
 
+	/**
+	 * @param array $extWhitelist
+	 * @return bool
+	 */
 	public function checkUrlExtension( $extWhitelist = array() ) {
 		return true;
 	}
 
+	/**
+	 * @return string
+	 */
 	protected function getRawIP() {
 		return '127.0.0.1';
 	}
