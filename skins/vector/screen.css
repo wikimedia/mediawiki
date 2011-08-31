@@ -691,6 +691,11 @@ div#content {
 
 .editsection { float: right; }
 
+ul {
+	/* @embed */
+	list-style-image: url(images/bullet-icon.png);
+}
+
 pre {
 	line-height: 1.3em;
 }
