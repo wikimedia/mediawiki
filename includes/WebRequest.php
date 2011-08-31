@@ -239,16 +239,21 @@ class WebRequest {
 	 * used for undoing the evil that is magic_quotes_gpc.
 	 *
 	 * @param $arr array: will be modified
+	 * @param $recursion bool Used to modify behaviour based on recursion
 	 * @return array the original array
 	 */
-	private function &fix_magic_quotes( &$arr ) {
+	private function &fix_magic_quotes( &$arr, $recursion = false ) {
+		$clean = array();
 		foreach( $arr as $key => $val ) {
 			if( is_array( $val ) ) {
-				$this->fix_magic_quotes( $arr[$key] );
+				$cleanKey = !$recursion ? stripslashes( $key ) : $key;
+				$clean[$cleanKey] = $this->fix_magic_quotes( $arr[$key], true );
 			} else {
-				$arr[$key] = stripslashes( $val );
+				$cleanKey = stripslashes( $key );
+				$clean[$cleanKey] = stripslashes( $val );
 			}
 		}
+		$arr = $clean;
 		return $arr;
 	}
 
