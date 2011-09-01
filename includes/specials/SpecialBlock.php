@@ -28,7 +28,6 @@
  * @ingroup SpecialPage
  */
 class SpecialBlock extends SpecialPage {
-
 	/** The maximum number of edits a user can have and still be hidden
 	 * TODO: config setting? */
 	const HIDEUSER_CONTRIBLIMIT = 1000;
@@ -238,15 +237,19 @@ class SpecialBlock extends SpecialPage {
 			$fields['HardBlock']['default'] = $block->isHardblock();
 			$fields['CreateAccount']['default'] = $block->prevents( 'createaccount' );
 			$fields['AutoBlock']['default'] = $block->isAutoblocking();
+
 			if( isset( $fields['DisableEmail'] ) ){
 				$fields['DisableEmail']['default'] = $block->prevents( 'sendemail' );
 			}
+
 			if( isset( $fields['HideUser'] ) ){
 				$fields['HideUser']['default'] = $block->mHideName;
 			}
+
 			if( isset( $fields['DisableUTEdit'] ) ){
 				$fields['DisableUTEdit']['default'] = $block->prevents( 'editownusertalk' );
 			}
+
 			$fields['Reason']['default'] = $block->mReason;
 
 			if( $wgRequest->wasPosted() ){
@@ -304,15 +307,19 @@ class SpecialBlock extends SpecialPage {
 					array(),
 					wfMsgExt( 'ipb-otherblocks-header', 'parseinline', count( $otherBlockMessages ) )
 				) . "\n";
+
 				$list = '';
+
 				foreach( $otherBlockMessages as $link ) {
 					$list .= Html::rawElement( 'li', array(), $link ) . "\n";
 				}
+
 				$s .= Html::rawElement(
 					'ul',
 					array( 'class' => 'mw-blockip-alreadyblocked' ),
 					$list
 				) . "\n";
+
 				$form->addPreText( $s );
 			}
 		}
@@ -325,6 +332,7 @@ class SpecialBlock extends SpecialPage {
 	 */
 	protected function doHeaderText( HTMLForm &$form ){
 		global $wgRequest;
+
 		# Don't need to do anything if the form has been posted
 		if( !$wgRequest->wasPosted() && $this->preErrors ){
 			$s = HTMLForm::formatErrors( $this->preErrors );
@@ -419,6 +427,7 @@ class SpecialBlock extends SpecialPage {
 						'showIfEmpty' => false
 					)
 				);
+
 				$form->addPostText( $out );
 			}
 		}
@@ -435,6 +444,7 @@ class SpecialBlock extends SpecialPage {
 	public static function getTargetAndType( $par, WebRequest $request = null ){
 		$i = 0;
 		$target = null;
+
 		while( true ){
 			switch( $i++ ){
 				case 0:
@@ -463,11 +473,14 @@ class SpecialBlock extends SpecialPage {
 				case 4:
 					break 2;
 			}
+
 			list( $target, $type ) = Block::parseTarget( $target );
+
 			if( $type !== null ){
 				return array( $target, $type );
 			}
 		}
+
 		return array( null, null );
 	}
 
@@ -519,10 +532,8 @@ class SpecialBlock extends SpecialPage {
 			if( IP::isIPv6( $ip ) && $range < $wgBlockCIDRLimit['IPv6'] ) {
 				return wfMessage( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
 			}
-
 		} elseif( $type == Block::TYPE_IP ){
 			# All is well
-
 		} else {
 			return wfMessage( 'badipaddress' );
 		}
@@ -559,14 +570,11 @@ class SpecialBlock extends SpecialPage {
 			{
 				return array( 'ipb-blockingself' );
 			}
-
 		} elseif( $type == Block::TYPE_RANGE ){
 			$userId = 0;
-
 		} elseif( $type == Block::TYPE_IP ){
 			$target = $target->getName();
 			$userId = 0;
-
 		} else {
 			# This should have been caught in the form field validation
 			return array( 'badipaddress' );
@@ -587,6 +595,7 @@ class SpecialBlock extends SpecialPage {
 		if( !isset( $data['HideUser'] ) ){
 			$data['HideUser'] = false;
 		}
+
 		if( $data['HideUser'] ) {
 			if( !$wgUser->isAllowed('hideuser') ){
 				# this codepath is unreachable except by a malicious user spoofing forms,
@@ -599,16 +608,13 @@ class SpecialBlock extends SpecialPage {
 			# Recheck params here...
 			if( $type != Block::TYPE_USER ) {
 				$data['HideUser'] = false; # IP users should not be hidden
-
 			} elseif( !in_array( $data['Expiry'], array( 'infinite', 'infinity', 'indefinite' ) ) ) {
 				# Bad expiry.
 				return array( 'ipb_expiry_temp' );
-
 			} elseif( $user->getEditCount() > self::HIDEUSER_CONTRIBLIMIT ) {
 				# Typically, the user should have a handful of edits.
 				# Disallow hiding users with many edits for performance.
 				return array( 'ipb_hide_invalid' );
-
 			} elseif( !$data['Confirm'] ){
 				return array( 'ipb-confirmhideuser' );
 			}
@@ -733,9 +739,11 @@ class SpecialBlock extends SpecialPage {
 			if( strpos( $option, ':' ) === false ){
 				$option = "$option:$option";
 			}
+
 			list( $show, $value ) = explode( ':', $option );
 			$a[htmlspecialchars( $show )] = htmlspecialchars( $value );
 		}
+
 		return $a;
 	}
 
@@ -750,15 +758,19 @@ class SpecialBlock extends SpecialPage {
 		if( $infinity == null ){
 			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
+
 		if ( $expiry == 'infinite' || $expiry == 'indefinite' ) {
 			$expiry = $infinity;
 		} else {
 			$expiry = strtotime( $expiry );
+
 			if ( $expiry < 0 || $expiry === false ) {
 				return false;
 			}
+
 			$expiry = wfTimestamp( TS_MW, $expiry );
 		}
+
 		return $expiry;
 	}
 
@@ -769,6 +781,7 @@ class SpecialBlock extends SpecialPage {
 	 */
 	public static function canBlockEmail( $user ) {
 		global $wgEnableUserEmail, $wgSysopEmailBans;
+
 		return ( $wgEnableUserEmail && $wgSysopEmailBans && $user->isAllowed( 'blockemail' ) );
 	}
 
@@ -781,11 +794,13 @@ class SpecialBlock extends SpecialPage {
 	 */
 	public static function checkUnblockSelf( $user ) {
 		global $wgUser;
+
 		if ( is_int( $user ) ) {
 			$user = User::newFromId( $user );
 		} elseif ( is_string( $user ) ) {
 			$user = User::newFromName( $user );
 		}
+
 		if( $wgUser->isBlocked() ){
 			if( $user instanceof User && $user->getId() == $wgUser->getId() ) {
 				# User is trying to unblock themselves
