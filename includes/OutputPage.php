@@ -1864,7 +1864,7 @@ class OutputPage extends ContextSource {
 			wfRunHooks( 'BeforePageDisplay', array( &$this, &$sk ) );
 
 			wfProfileIn( 'Output-skin' );
-			$sk->outputPage( $this );
+			$sk->outputPage();
 			wfProfileOut( 'Output-skin' );
 		}
 
