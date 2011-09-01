@@ -2552,7 +2552,7 @@ class Title {
 	 */
 	public function resetArticleID( $newid ) {
 		$linkCache = LinkCache::singleton();
-		$linkCache->clearBadLink( $this->getPrefixedDBkey() );
+		$linkCache->clearLink( $this );
 
 		if ( $newid === false ) {
 			$this->mArticleID = -1;
