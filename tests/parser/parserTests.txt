@@ -4025,66 +4025,6 @@ pst
 !! end
 
 !! test
-pre-save transform: context links ("pipe trick") with full-width parens and no space (Japanese and Chinese style, bug 30149)
-!! options
-pst
-!! input
-[[Article（context）|]]
-[[Bar:Article（context）|]]
-[[:Bar:Article（context）|]]
-[[|Article（context）]]
-[[Bar:X （Y） Z|]]
-[[:Bar:X （Y） Z|]]
-!! result
-[[Article（context）|Article]]
-[[Bar:Article（context）|Article]]
-[[:Bar:Article（context）|Article]]
-[[Article（context）]]
-[[Bar:X （Y） Z|X （Y） Z]]
-[[:Bar:X （Y） Z|X （Y） Z]]
-!! end
-
-!! test
-pre-save transform: context links ("pipe trick") with full-width parens and space (Japanese and Chinese style, bug 30149)
-!! options
-pst
-!! input
-[[Article （context）|]]
-[[Bar:Article （context）|]]
-[[:Bar:Article （context）|]]
-[[|Article （context）]]
-[[Bar:X （Y） Z|]]
-[[:Bar:X （Y） Z|]]
-!! result
-[[Article （context）|Article]]
-[[Bar:Article （context）|Article]]
-[[:Bar:Article （context）|Article]]
-[[Article （context）]]
-[[Bar:X （Y） Z|X （Y） Z]]
-[[:Bar:X （Y） Z|X （Y） Z]]
-!! end
-
-!! test
-pre-save transform: context links ("pipe trick") with parens and no space (Korean style, bug 30149)
-!! options
-pst
-!! input
-[[Article(context)|]]
-[[Bar:Article(context)|]]
-[[:Bar:Article(context)|]]
-[[|Article(context)]]
-[[Bar:X(Y)Z|]]
-[[:Bar:X(Y)Z|]]
-!! result
-[[Article(context)|Article]]
-[[Bar:Article(context)|Article]]
-[[:Bar:Article(context)|Article]]
-[[Article(context)]]
-[[Bar:X(Y)Z|X(Y)Z]]
-[[:Bar:X(Y)Z|X(Y)Z]]
-!! end
-
-!! test
 pre-save transform: trim trailing empty lines
 !! options
 pst
