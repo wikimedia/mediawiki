@@ -400,11 +400,11 @@ class LinksUpdate {
 	 * @private
 	 */
 	function incrSharedTableUpdate( $table, $prefix, $deletions, $insertions ) {
-		global $wgWikiID, $wgGlobalDatabase;
+		global $wgGlobalDatabase;
 
 		if ( $wgGlobalDatabase ) {
 			$dbw = wfGetDB( DB_MASTER, array(), $wgGlobalDatabase );
-			$where = array( "{$prefix}_from_wiki" => $wgWikiID,
+			$where = array( "{$prefix}_from_wiki" => wfWikiID(),
 							"{$prefix}_from_page" => $this->mId
 					);
 			$baseKey = "{$prefix}_to_wiki";
@@ -472,18 +472,17 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getDistantTemplateInsertions( $existing = array() ) {
-		global $wgWikiID;
 		$arr = array();
-		foreach( $this->mDistantTemplates as $wikiid => $templatesToNS ) {
+		foreach( $this->mDistantTemplates as $prefix => $templatesToNS ) {
 			foreach( $templatesToNS as $ns => $dbkeys ) {
-				$diffs = isset( $existing[$wikiid] ) && isset( $existing[$wikiid][$ns] )
-						? array_diff_key( $dbkeys, $existing[$wikiid][$ns] )
+				$diffs = isset( $existing[$prefix] ) && isset( $existing[$prefix][$ns] )
+						? array_diff_key( $dbkeys, $existing[$prefix][$ns] )
 						: $dbkeys;
-				$interwiki = Interwiki::fetch( $wikiid );
+				$interwiki = Interwiki::fetch( $prefix );
 				$wikiid = $interwiki->getWikiID();
 				foreach ( $diffs as $dbk => $id ) {
 					$arr['globaltemplatelinks'][] = array(
-						'gtl_from_wiki'      => $wgWikiID,
+						'gtl_from_wiki'      => wfWikiID(),
 						'gtl_from_page'      => $this->mId,
 						'gtl_from_namespace' => $this->mTitle->getNamespace(),
 						'gtl_from_title'     => $this->mTitle->getText(),
@@ -493,7 +492,7 @@ class LinksUpdate {
 					);
 					$arr['globalinterwiki'][] = array(
 						'giw_wikiid'		 => $wikiid,
-						'giw_prefix'		 => $prefix // FIXME: $prefix ix undefined
+						'giw_prefix'		 => $prefix,
 					);
 					$arr['globalnamespaces'][] = array(
 						'gn_wiki'			 => wfWikiID( ),
@@ -796,14 +795,18 @@ class LinksUpdate {
 	 * @private
 	 */
 	function getDistantExistingTemplates() {
-		global $wgWikiID;
 		global $wgGlobalDatabase;
 
 		$arr = array();
 		if ( $wgGlobalDatabase ) {
 			$dbr = wfGetDB( DB_SLAVE, array(), $wgGlobalDatabase );
-			$res = $dbr->select( 'globaltemplatelinks', array( 'gtl_to_wiki', 'gtl_to_namespace', 'gtl_to_title' ),
-				array( 'gtl_from_wiki' => $wgWikiID, 'gtl_from_page' => $this->mId ), __METHOD__, $this->mOptions );
+			$res = $dbr->select(
+				'globaltemplatelinks',
+				array( 'gtl_to_wiki', 'gtl_to_namespace', 'gtl_to_title' ),
+				array( 'gtl_from_wiki' => wfWikiID(), 'gtl_from_page' => $this->mId ),
+				__METHOD__,
+				$this->mOptions
+			);
 			foreach ( $res as $row ) {
 				if ( !isset( $arr[$row->gtl_to_wiki] ) ) {
 					$arr[$row->gtl_to_wiki] = array();
@@ -813,7 +816,6 @@ class LinksUpdate {
 				}
 				$arr[$row->gtl_to_wiki][$row->gtl_to_namespace][$row->gtl_to_title] = 1;
 			}
-			$dbr->freeResult( $res );
 		}
 		return $arr;
 	}
