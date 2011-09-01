@@ -834,27 +834,33 @@ class SpecialBlock extends SpecialPage {
 
 		# when blocking a user the option 'anononly' is not available/has no effect -> do not write this into log
 		if( !$data['HardBlock'] && $type != Block::TYPE_USER ){
+			// For grepping: message block-log-flags-anononly
 			$flags[] = 'anononly';
 		}
 
 		if( $data['CreateAccount'] ){
+			// For grepping: message block-log-flags-nocreate
 			$flags[] = 'nocreate';
 		}
 
 		# Same as anononly, this is not displayed when blocking an IP address
 		if( !$data['AutoBlock'] && $type != Block::TYPE_IP ){
+			// For grepping: message block-log-flags-noautoblock
 			$flags[] = 'noautoblock';
 		}
 
 		if( $data['DisableEmail'] ){
+			// For grepping: message block-log-flags-noemail
 			$flags[] = 'noemail';
 		}
 
 		if( $wgBlockAllowsUTEdit && $data['DisableUTEdit'] ){
+			// For grepping: message block-log-flags-nousertalk
 			$flags[] = 'nousertalk';
 		}
 
 		if( $data['HideUser'] ){
+			// For grepping: message block-log-flags-hiddenname
 			$flags[] = 'hiddenname';
 		}
 
