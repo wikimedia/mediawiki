@@ -1,9 +1,12 @@
 #!/usr/bin/hphpi -f 
 <?php
 
+define( 'MW_CONFIG_CALLBACK', 'MakeHipHop::noConfigNeeded' );
 require( dirname( __FILE__ ) . '/../Maintenance.php' );
 
 class MakeHipHop extends Maintenance {
+	function noConfigNeeded() {}
+
 	function execute() {
 		global $wgHipHopBuildDirectory;
 
