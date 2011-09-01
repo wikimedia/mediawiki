@@ -1605,6 +1605,17 @@ HTML
 			}
 		}
 
+		$curUP = $wgUser->getUserPage();
+		$sk = $wgOut->getSkin();
+		if ( $this->mTitle->getNamespace() == NS_USER
+			&& substr( $this->mTitle->getPrefixedText(), 0, strlen( $curUP->getPrefixedText() ) ) != $curUP->getPrefixedText()
+			&& $this->formtype != 'preview'
+			&& $this->formtype != 'diff' )
+		{
+			$utpLink = $sk->makeKnownLinkObj( $this->mTitle->getTalkPage(), wfMsgHtml( 'editinguserpagetalklink' ), 'action=edit' );
+			$wgOut->addHTML( wfMsgWikiHtml( 'editinguserpage', $utpLink ) );
+		}
+
 		if ( wfReadOnly() ) {
 			$wgOut->wrapWikiMsg( "<div id=\"mw-read-only-warning\">\n$1\n</div>", array( 'readonlywarning', wfReadOnlyReason() ) );
 		} elseif ( $wgUser->isAnon() ) {
