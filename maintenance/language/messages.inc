@@ -664,7 +664,6 @@ $wgMessageStructure = array(
 		'edit-conflict',
 		'edit-no-change',
 		'edit-already-exists',
-		'editinguserpage',
 		'addsection-preload',
 		'addsection-editintro',
 	),
