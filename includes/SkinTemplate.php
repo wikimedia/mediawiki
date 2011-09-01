@@ -131,10 +131,10 @@ class SkinTemplate extends Skin {
 	 *
 	 * @param $out OutputPage
 	 */
-	function outputPage( OutputPage $out ) {
-		global $wgUser, $wgLang, $wgContLang;
+	function outputPage( OutputPage $out=null ) {
+		global $wgContLang;
 		global $wgScript, $wgStylePath;
-		global $wgMimeType, $wgJsMimeType, $wgRequest;
+		global $wgMimeType, $wgJsMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
 		global $wgDisableCounters, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
@@ -145,6 +145,17 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ );
 		Profiler::instance()->setTemplated( true );
 
+		$oldContext = null;
+		if ( $out !== null ) {
+			// @todo Add wfDeprecated in 1.20
+			$oldContext = $this->getContext();
+			$this->setContext( $out->getContext() );
+		}
+
+		$out = $this->getOutput();
+		$request = $this->getRequest();
+		$user = $this->getUser();
+
 		wfProfileIn( __METHOD__ . '-init' );
 		$this->initPage( $out );
 
@@ -153,19 +164,19 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-stuff' );
 		$this->thispage = $this->getTitle()->getPrefixedDBkey();
-		$this->userpage = $this->getUser()->getUserPage()->getPrefixedText();
+		$this->userpage = $user->getUserPage()->getPrefixedText();
 		$query = array();
-		if ( !$wgRequest->wasPosted() ) {
-			$query = $wgRequest->getValues();
+		if ( !$request->wasPosted() ) {
+			$query = $request->getValues();
 			unset( $query['title'] );
 			unset( $query['returnto'] );
 			unset( $query['returntoquery'] );
 		}
 		$this->thisquery = wfArrayToCGI( $query );
-		$this->loggedin = $wgUser->isLoggedIn();
-		$this->username = $wgUser->getName();
+		$this->loggedin = $user->isLoggedIn();
+		$this->username = $user->getName();
 
-		if ( $wgUser->isLoggedIn() || $this->showIPinHeader() ) {
+		if ( $user->isLoggedIn() || $this->showIPinHeader() ) {
 			$this->userpageUrlDetails = self::makeUrlDetails( $this->userpage );
 		} else {
 			# This won't be used in the standard skins, but we define it to preserve the interface
@@ -262,7 +273,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'skinclass', get_class( $this ) );
 		$tpl->setRef( 'stylename', $this->stylename );
 		$tpl->set( 'printable', $out->isPrintable() );
-		$tpl->set( 'handheld', $wgRequest->getBool( 'handheld' ) );
+		$tpl->set( 'handheld', $request->getBool( 'handheld' ) );
 		$tpl->setRef( 'loggedin', $this->loggedin );
 		$tpl->set( 'notspecialpage', $this->getTitle()->getNamespace() != NS_SPECIAL );
 		/* XXX currently unused, might get useful later
@@ -274,7 +285,7 @@ class SkinTemplate extends Skin {
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
 		$tpl->set( 'searchtitle', SpecialPage::getTitleFor( 'Search' )->getPrefixedDBKey() );
-		$tpl->set( 'search', trim( $wgRequest->getVal( 'search' ) ) );
+		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
 		$tpl->setRef( 'stylepath', $wgStylePath );
 		$tpl->setRef( 'articlepath', $wgArticlePath );
 		$tpl->setRef( 'scriptpath', $wgScriptPath );
@@ -283,16 +294,16 @@ class SkinTemplate extends Skin {
 
 		$contentlang = $wgContLang->getCode();
 		$contentdir  = $wgContLang->getDir();
-		$userlang = $wgLang->getCode();
-		$userdir  = $wgLang->getDir();
+		$userlang = $this->getLang()->getCode();
+		$userdir  = $this->getLang()->getDir();
 
 		$tpl->set( 'lang', $userlang );
 		$tpl->set( 'dir', $userdir );
-		$tpl->set( 'rtl', $wgLang->isRTL() );
+		$tpl->set( 'rtl', $this->getLang()->isRTL() );
 
-		$tpl->set( 'capitalizeallnouns', $wgLang->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
-		$tpl->set( 'showjumplinks', $wgUser->getOption( 'showjumplinks' ) );
-		$tpl->set( 'username', $wgUser->isAnon() ? null : $this->username );
+		$tpl->set( 'capitalizeallnouns', $this->getLang()->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
+		$tpl->set( 'showjumplinks', $user->getOption( 'showjumplinks' ) );
+		$tpl->set( 'username', $user->isAnon() ? null : $this->username );
 		$tpl->setRef( 'userpage', $this->userpage );
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
 		$tpl->set( 'userlang', $userlang );
@@ -324,7 +335,7 @@ class SkinTemplate extends Skin {
 			if ( $this->isRevisionCurrent() ) {
 				$article = new Article( $this->getTitle(), 0 );
 				if ( !$wgDisableCounters ) {
-					$viewcount = $wgLang->formatNum( $article->getCount() );
+					$viewcount = $this->getLang()->formatNum( $article->getCount() );
 					if ( $viewcount ) {
 						$tpl->set( 'viewcount', wfMsgExt( 'viewcount', array( 'parseinline' ), $viewcount ) );
 					}
@@ -339,7 +350,7 @@ class SkinTemplate extends Skin {
 					if( $num > 0 ) {
 						$tpl->set( 'numberofwatchingusers',
 							wfMsgExt( 'number_of_watching_users_pageview', array( 'parseinline' ),
-							$wgLang->formatNum( $num ) )
+							$this->getLang()->formatNum( $num ) )
 						);
 					}
 				}
@@ -410,7 +421,7 @@ class SkinTemplate extends Skin {
 		# not for special pages or file pages AND only when viewing AND if the page exists
 		# (or is in MW namespace, because that has default content)
 		if( !in_array( $this->getTitle()->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
-			in_array( $wgRequest->getVal( 'action', 'view' ), array( 'view', 'historysubmit' ) ) &&
+			in_array( $request->getVal( 'action', 'view' ), array( 'view', 'historysubmit' ) ) &&
 			( $this->getTitle()->exists() || $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) ) {
 			$pageLang = $this->getTitle()->getPageLanguage();
 			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
@@ -449,14 +460,14 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-stuff5' );
 		# Personal toolbar
-		$tpl->set( 'personal_urls', $this->buildPersonalUrls( $out ) );
-		$content_navigation = $this->buildContentNavigationUrls( $out );
+		$tpl->set( 'personal_urls', $this->buildPersonalUrls() );
+		$content_navigation = $this->buildContentNavigationUrls();
 		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->setRef( 'content_navigation', $content_navigation );
 		$tpl->setRef( 'content_actions', $content_actions );
 
 		$tpl->set( 'sidebar', $this->buildSidebar() );
-		$tpl->set( 'nav_urls', $this->buildNavUrls( $out ) );
+		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
 		// Set the head scripts near the end, in case the above actions resulted in added scripts
 		if ( $this->useHeadElement ) {
@@ -484,6 +495,10 @@ class SkinTemplate extends Skin {
 
 		// result may be an error
 		$this->printOrError( $res );
+
+		if ( $oldContext ) {
+			$this->setContext( $oldContext );
+		}
 		wfProfileOut( __METHOD__ );
 	}
 
@@ -516,18 +531,17 @@ class SkinTemplate extends Skin {
 	 * build array of urls for personal toolbar
 	 * @return array
 	 */
-	protected function buildPersonalUrls( OutputPage $out ) {
-		global $wgRequest;
-
-		$title = $out->getTitle();
+	protected function buildPersonalUrls() {
+		$title = $this->getTitle();
+		$request = $this->getRequest();
 		$pageurl = $title->getLocalURL();
 		wfProfileIn( __METHOD__ );
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = array();
 		
-		$page = $wgRequest->getVal( 'returnto', $this->thispage );
-		$query = $wgRequest->getVal( 'returntoquery', $this->thisquery );
+		$page = $request->getVal( 'returnto', $this->thispage );
+		$query = $request->getVal( 'returntoquery', $this->thisquery );
 		$a = array( 'returnto' => $page );
 		if( $query != '' ) {
 			$a['returntoquery'] = $query;
@@ -565,12 +579,12 @@ class SkinTemplate extends Skin {
 			# from request values or be specified in "sub page" form. The plot
 			# thickens, because $wgTitle is altered for special pages, so doesn't
 			# contain the original alias-with-subpage.
-			$origTitle = Title::newFromText( $wgRequest->getText( 'title' ) );
+			$origTitle = Title::newFromText( $request->getText( 'title' ) );
 			if( $origTitle instanceof Title && $origTitle->getNamespace() == NS_SPECIAL ) {
 				list( $spName, $spPar ) = SpecialPageFactory::resolveAlias( $origTitle->getText() );
 				$active = $spName == 'Contributions'
 					&& ( ( $spPar && $spPar == $this->username )
-						|| $wgRequest->getText( 'target' ) == $this->username );
+						|| $request->getText( 'target' ) == $this->username );
 			} else {
 				$active = false;
 			}
@@ -591,12 +605,11 @@ class SkinTemplate extends Skin {
 				'active' => false
 			);
 		} else {
-			global $wgUser;
 			$useCombinedLoginLink = $this->useCombinedLoginLink();
-			$loginlink = $wgUser->isAllowed( 'createaccount' ) && $useCombinedLoginLink
+			$loginlink = $this->getUser()->isAllowed( 'createaccount' ) && $useCombinedLoginLink
 				? 'nav-login-createaccount'
 				: 'login';
-			$is_signup = $wgRequest->getText('type') == "signup";
+			$is_signup = $request->getText('type') == "signup";
 
 			# anonlogin & login are the same
 			$login_url = array(
@@ -604,7 +617,7 @@ class SkinTemplate extends Skin {
 				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
 				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == "nav-login-createaccount" || !$is_signup )
 			);
-			if ( $wgUser->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
+			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
 				$createaccount_url = array(
 					'text' => wfMsg( 'createaccount' ),
 					'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
@@ -762,14 +775,18 @@ class SkinTemplate extends Skin {
 	 *
 	 * @return array
 	 */
-	protected function buildContentNavigationUrls( OutputPage $out ) {
-		global $wgContLang, $wgLang, $wgUser, $wgRequest;
+	protected function buildContentNavigationUrls() {
+		global $wgContLang;
 		global $wgDisableLangConversion;
 
 		wfProfileIn( __METHOD__ );
 
 		$title = $this->getRelevantTitle(); // Display tabs for the relevant title rather than always the title itself
 		$onPage = $title->equals($this->getTitle());
+
+		$out = $this->getOutput();
+		$request = $this->getRequest();
+		$user = $this->getUser();
 
 		$content_navigation = array(
 			'namespaces' => array(),
@@ -779,8 +796,8 @@ class SkinTemplate extends Skin {
 		);
 
 		// parameters
-		$action = $wgRequest->getVal( 'action', 'view' );
-		$section = $wgRequest->getVal( 'section' );
+		$action = $request->getVal( 'action', 'view' );
+		$section = $request->getVal( 'section' );
 
 		$userCanRead = $title->userCanRead();
 		$skname = $this->skinname;
@@ -898,7 +915,7 @@ class SkinTemplate extends Skin {
 					'rel' => 'archives',
 				);
 
-				if( $wgUser->isAllowed( 'delete' ) ) {
+				if( $user->isAllowed( 'delete' ) ) {
 					$content_navigation['actions']['delete'] = array(
 						'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->text(),
@@ -914,7 +931,7 @@ class SkinTemplate extends Skin {
 					);
 				}
 
-				if ( $title->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
+				if ( $title->getNamespace() !== NS_MEDIAWIKI && $user->isAllowed( 'protect' ) ) {
 					$mode = !$title->isProtected() ? 'protect' : 'unprotect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
@@ -924,23 +941,23 @@ class SkinTemplate extends Skin {
 				}
 			} else {
 				// article doesn't exist or is deleted
-				if ( $wgUser->isAllowed( 'deletedhistory' ) && !$wgUser->isBlocked() ) {
-					$includeSuppressed = $wgUser->isAllowed( 'suppressrevision' );
+				if ( $user->isAllowed( 'deletedhistory' ) && !$user->isBlocked() ) {
+					$includeSuppressed = $user->isAllowed( 'suppressrevision' );
 					$n = $title->isDeleted( $includeSuppressed );
 					if( $n ) {
 						$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
 						// If the user can't undelete but can view deleted history show them a "View .. deleted" tab instead
-						$msgKey = $wgUser->isAllowed( 'undelete' ) ? 'undelete' : 'viewdeleted';
+						$msgKey = $user->isAllowed( 'undelete' ) ? 'undelete' : 'viewdeleted';
 						$content_navigation['actions']['undelete'] = array(
 							'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
-								->params( $wgLang->formatNum( $n ) )->text(),
+								->params( $this->getLang()->formatNum( $n ) )->text(),
 							'href' => $undelTitle->getLocalURL( array( 'target' => $title->getPrefixedDBkey() ) )
 						);
 					}
 				}
 
-				if ( $title->getNamespace() !== NS_MEDIAWIKI && $wgUser->isAllowed( 'protect' ) ) {
+				if ( $title->getNamespace() !== NS_MEDIAWIKI && $user->isAllowed( 'protect' ) ) {
 					$mode = !$title->getRestrictions( 'create' ) ? 'protect' : 'unprotect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
@@ -963,7 +980,7 @@ class SkinTemplate extends Skin {
 				 * the global versions.
 				 */
 				$mode = $title->userIsWatching() ? 'unwatch' : 'watch';
-				$token = WatchAction::getWatchToken( $title, $wgUser, $mode );
+				$token = WatchAction::getWatchToken( $title, $user, $mode );
 				$content_navigation['actions'][$mode] = array(
 					'class' => $onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : false,
 					'text' => wfMsg( $mode ), // uses 'watch' or 'unwatch' message
@@ -977,7 +994,7 @@ class SkinTemplate extends Skin {
 			$content_navigation['namespaces']['special'] = array(
 				'class' => 'selected',
 				'text' => wfMsg( 'nstab-special' ),
-				'href' => $wgRequest->getRequestURL(), // @bug 2457, 2510
+				'href' => $request->getRequestURL(), // @bug 2457, 2510
 				'context' => 'subject'
 			);
 
@@ -1105,17 +1122,20 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 * @private
 	 */
-	protected function buildNavUrls( OutputPage $out ) {
-		global $wgUseTrackbacks, $wgUser, $wgRequest;
+	protected function buildNavUrls() {
+		global $wgUseTrackbacks;
 		global $wgUploadNavigationUrl;
 
 		wfProfileIn( __METHOD__ );
+
+		$out = $this->getOutput();
+		$request = $this->getRequest();
 
 		$nav_urls = array();
 		$nav_urls['mainpage'] = array( 'href' => self::makeMainPageUrl() );
 		if( $wgUploadNavigationUrl ) {
 			$nav_urls['upload'] = array( 'href' => $wgUploadNavigationUrl );
-		} elseif( UploadBase::isEnabled() && UploadBase::isAllowed( $wgUser ) === true ) {
+		} elseif( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getUser() ) === true ) {
 			$nav_urls['upload'] = array( 'href' => self::makeSpecialUrl( 'Upload' ) );
 		} else {
 			$nav_urls['upload'] = false;
@@ -1132,7 +1152,7 @@ class SkinTemplate extends Skin {
 				$nav_urls['print'] = array(
 					'text' => wfMsg( 'printableversion' ),
 					'href' => $this->getTitle()->getLocalURL(
-						$wgRequest->appendQueryValue( 'printable', 'yes', true ) )
+						$request->appendQueryValue( 'printable', 'yes', true ) )
 				);
 			}
 
@@ -1198,7 +1218,7 @@ class SkinTemplate extends Skin {
 				$nav_urls['log'] = false;
 			}
 
-			if ( $wgUser->isAllowed( 'block' ) ) {
+			if ( $this->getUser()->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
 					'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
 				);
@@ -1234,13 +1254,13 @@ class SkinTemplate extends Skin {
 	 * @todo FIXME: Why is this duplicated in/from OutputPage::getHeadScripts()??
 	 */
 	function setupUserJs( $allowUserJs ) {
-		global $wgRequest, $wgJsMimeType;
+		global $wgJsMimeType;
 		wfProfileIn( __METHOD__ );
 
 		if( $allowUserJs && $this->loggedin ) {
 			if( $this->getTitle()->isJsSubpage() and $this->getOutput()->userCanPreview() ) {
 				# XXX: additional security check/prompt?
-				$this->userjsprev = '/*<![CDATA[*/ ' . $wgRequest->getText( 'wpTextbox1' ) . ' /*]]>*/';
+				$this->userjsprev = '/*<![CDATA[*/ ' . $this->getRequest()->getText( 'wpTextbox1' ) . ' /*]]>*/';
 			} else {
 				$this->userjs = self::makeUrl( $this->userpage . '/' . $this->skinname . '.js', 'action=raw&ctype=' . $wgJsMimeType );
 			}
