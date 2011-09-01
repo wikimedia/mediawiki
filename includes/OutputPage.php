@@ -2658,7 +2658,7 @@ $distantTemplates
 		}
 
 		// Allow extensions to add their custom variables to the global JS variables
-		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars ) );
+		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars, &$this ) );
 
 		return $vars;
 	}
