@@ -97,6 +97,13 @@ class ResourceLoaderContext {
 		}
 		return $retval;
 	}
+	
+	/**
+	 * Return a dummy ResourceLoaderContext object suitable for passing into things that don't "really" need a context
+	 */
+	public static function newDummyContext() {
+		return new self( null, new FauxRequest( array() ) );
+	}
 
 	/**
 	 * @return ResourceLoader
