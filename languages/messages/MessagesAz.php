@@ -501,8 +501,8 @@ Hesabınız yaradıldı.
 'createaccountmail'          => 'e-məktub ilə',
 'createaccountreason'        => 'Səbəb:',
 'badretype'                  => 'Daxil etdiyiniz parol uyğun gəlmir.',
-'userexists'                 => 'Daxil edilmiş ad istifadədədir.
-Lütfən ayrı ad seçin.',
+'userexists'                 => 'Daxil edilmiş ad artıq istifadədədir.
+Lütfən başqa ad seçin.',
 'loginerror'                 => 'Daxil olunma xətası',
 'createaccounterror'         => '$1 Hesab açılmadı',
 'nocookiesnew'               => 'İstifadəçi qeydiyyata düşüb, lakin təmsil olunmayıb.
@@ -1034,12 +1034,12 @@ Təsadüfi yolla seçilmiş bu paroldan istifadə edə bilərsiniz: $1',
 'prefs-custom-css'              => 'Xüsusi CSS',
 'prefs-custom-js'               => 'Xüsusi JavaScript',
 'prefs-common-css-js'           => 'Bütün skinlər üçün ümumi CSS/JavaScript:',
-'prefs-emailconfirm-label'      => 'E-mailin təsdiqlənməsi:',
+'prefs-emailconfirm-label'      => 'E-poçtun təsdiqlənməsi:',
 'prefs-textboxsize'             => 'Redaktə pəncərəsinin ölçüsü',
 'youremail'                     => 'E-məktub *',
 'username'                      => 'İstifadəçi adı:',
 'uid'                           => 'İstifadəçi ID:',
-'prefs-memberingroups'          => 'Üzvü olduğu {{PLURAL:$1|qrup|qruplar}}:',
+'prefs-memberingroups'          => 'Üzvü olduğu {{PLURAL:$1|qrup|qrup}}:',
 'prefs-memberingroups-type'     => '$1',
 'prefs-registration'            => 'Qeydiyyat vaxtı:',
 'prefs-registration-date-time'  => '$1',
@@ -1049,14 +1049,14 @@ Təsadüfi yolla seçilmiş bu paroldan istifadə edə bilərsiniz: $1',
 'yournick'                      => 'Ləqəb:',
 'badsig'                        => 'Səhv xam imza.
 HTML kodu yoxla.',
-'badsiglength'                  => 'İmzanız çox uzundur. İmza $1 {{PLURAL:$1|character|simvoldan}} uzun olmamalıdır.',
+'badsiglength'                  => 'İmzanız çox uzundur. İmza $1 {{PLURAL:$1|simvoldan|simvoldan}} uzun olmamalıdır.',
 'yourgender'                    => 'Cins:',
 'gender-unknown'                => 'göstərmə',
 'gender-male'                   => 'kişi',
 'gender-female'                 => 'qadın',
 'email'                         => 'E-məktub',
-'prefs-help-realname'           => 'Həqiqi adınızı daxil etmək qeyri-məcburidir.
-Bu seçimi etdiyiniz halda, adınız işinizə görə müəlliflik hüququnuzun tanınması üçün istifadə ediləcək.',
+'prefs-help-realname'           => 'Həqiqi adınızı daxil etmək məcburi deyil.
+Bu seçimi etdiyiniz halda, adınız redaktələrinizə görə müəlliflik hüququnuzun tanınması üçün istifadə ediləcək.',
 'prefs-help-email'              => 'E-poçt ünvanınızı daxil etmək məcburi deyil.
 Bu parolunuzu unutduğunuz halda Sizə yeni parol göndərməyə imkan verir.
 Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadəçi və ya istifadəçi müzakirəsi səhifələriniz vasitəsi ilə əlaqə yaratmalarını seçə bilərsiniz.',
@@ -1065,13 +1065,7 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'prefs-i18n'                    => 'Beynəlxalqlaşdırma',
 'prefs-signature'               => 'İmza',
 'prefs-dateformat'              => 'Tarix formatı',
-'prefs-timeoffset'              => 'Zaman ofseti
-
-Zaman ofseti
-
-Zaman ofseti
-
-Zaman ofseti',
+'prefs-timeoffset'              => 'Saat qurşağının fərqi',
 'prefs-advancedediting'         => 'Ətraflı variantlar',
 'prefs-advancedrc'              => 'Ətraflı variantlar',
 'prefs-advancedrendering'       => 'Ətraflı variantlar',
@@ -1083,14 +1077,14 @@ Zaman ofseti',
 'prefs-diffs'                   => 'Fərqlər',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => 'E-poçt ünvanı keçərlidir',
-'email-address-validity-invalid' => 'Düzgünn e-mail ünvanına gir',
+'email-address-validity-valid'   => 'E-poçt ünvanı düzgündür',
+'email-address-validity-invalid' => 'Düzgün e-poçt ünvanı daxil edin',
 
 # User rights
 'userrights'                     => 'İstifadəçi hüququ idarəsi',
 'userrights-lookup-user'         => 'İstifadəçi qruplarını idarə et',
 'userrights-user-editname'       => 'İstifadəçi adınızı yazın:',
-'editusergroup'                  => 'Redaktə İstifadəçi Qrupları',
+'editusergroup'                  => 'İstifadəçi qruplarını redaktə et',
 'editinguser'                    => "Redaktə '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'       => 'İstifadəçi qruplarını redaktə et',
 'saveusergroups'                 => 'İstifadəçi qrupunu qeyd et',
@@ -1268,6 +1262,7 @@ Zaman ofseti',
 'recentchangeslinked-toolbox'  => 'Əlaqəli redaktələr',
 'recentchangeslinked-title'    => "''$1'' ilə əlaqəli dəyişikliklər",
 'recentchangeslinked-backlink' => '← $1',
+'recentchangeslinked-noresult' => 'Qeyd olunan dövrdə əlaqədar səhifələrdə heç bir dəyişiklik yoxdur.',
 'recentchangeslinked-summary'  => "Aşağıdakı siyahı, qeyd olunan səhifəyə (və ya qeyd olunan kateqoriyadakı səhifələrə) daxili keçid verən səhifələrdə edilmiş son dəyişikliklərin siyahısıdır.
 [[Special:Watchlist|İzləmə siyahınızdakı]] səhifələr '''qalın''' şriftlə göstərilmişdir.",
 'recentchangeslinked-page'     => 'Səhifə adı:',
@@ -1283,6 +1278,16 @@ Zaman ofseti',
 'upload_directory_missing'   => '($1) yükləmə qaydası axtarılır və vebserverdə yaradılması qeyri-mümkündür.',
 'upload_directory_read_only' => '"$1" kataloqunun arxivi veb-server yazıları üçün qapalıdır.',
 'uploaderror'                => 'Yükləmə xətası',
+'upload-recreate-warning'    => "'''Diqqət: Bu adda fayl silinib, yaxud adı dəyişdirilib.'''
+
+Bu səhifənin silinmə və addəyişmə jurnalı aşağıda göstərilmişdir:",
+'uploadtext'                 => "Fayl yükləmək üçün aşağıdakı formadan istifadə edin.
+Əvvəllər yüklənmiş fayllara baxmaq üçün [[Special:FileList|yüklənmiş fayllar siyahısına]] keçin, həmçinin (təkrar) yüklənmiş fayllara [[Special:Log/upload|yükləmə jurnalında]], silinmiş fayllara [[Special:Log/delete|silinmə jurnalında]] baxa bilərsiniz.
+
+Məqaləyə fayl yerləşdirmək üçün aşağıdaki formalardan birini istifadə edin:
+* Faylın tam versiyasını yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''';
+* Faylın 200 pikselədək kiçildilmiş versiyasını mətndən solda, altında izahla yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|təsvir]]</nowiki></tt>''';
+* Səhifədə faylın özünü göstərmədən ona birbaşa keçid yerləşdirmək üçün: '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''.",
 'upload-permitted'           => 'İcazə verilən fayl tipləri: $1.',
 'upload-preferred'           => 'İcazə verilən fayl tipləri: $1.',
 'upload-prohibited'          => 'İcazə verilməyən fayl tipləri: $1.',
@@ -1298,7 +1303,12 @@ Zaman ofseti',
 'uploadedfiles'              => 'Yüklənmiş fayllar',
 'ignorewarning'              => 'Xəbərdarlıqlara əhəmiyyət vermə və faylı saxla',
 'ignorewarnings'             => 'Bütün xəbərdarlıqlara məhəl qoymamaq',
+'minlength1'                 => 'Fayl adı ən azı bir hərfdən ibarət olmalıdır.',
+'illegalfilename'            => '"$1" fayl adında səhifə adlarında istifadəsinə yol verilməyən simvollar var. Lütfən faylın adını dəyişin və yenidən yükləməyə cəhd edin.',
 'badfilename'                => 'Faylın adı dəyişildi. Yeni adı: "$1".',
+'filetype-mime-mismatch'     => '".$1" fayl uzantısı faylın MIME tipinə ($2) uyğun gəlmir.',
+'filetype-badmime'           => '"$1" MIME tipindəki faylların yüklənməsinə icazə verilmir.',
+'filetype-missing'           => 'Faylın heç bir uzantısı yoxdur (məsələn, ".jpg").',
 'empty-file'                 => 'Göndərdiyiniz fayl boşdur.',
 'file-too-large'             => 'Göndərdiyiniz fayl çox böyükdür.',
 'filename-tooshort'          => 'Fayl adı qısadır.',

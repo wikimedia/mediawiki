@@ -769,6 +769,7 @@ Odota ennen kuin yrität uudelleen.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Tuntematon virhe PHP:n mail()-funktiossa',
+'user-mail-no-addy'      => 'Yritit lähettää sähköpostia ilman sähköpostiosoitetta.',
 
 # Change password dialog
 'resetpass'                 => 'Muuta salasana',
@@ -792,12 +793,18 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'passwordreset'              => 'Salasanan alustus',
 'passwordreset-text'         => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
 'passwordreset-legend'       => 'Salasanan vaihto',
+'passwordreset-disabled'     => 'Salasanojen nollaus on poistettu tässä wikissä.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Kirjoita jokin jäljempänä pyydetty tieto}}',
 'passwordreset-username'     => 'Käyttäjätunnus:',
 'passwordreset-email'        => 'Sähköpostiosoite',
+'passwordreset-emailtitle'   => 'Tunnuksen tiedot {{GRAMMAR:inessive|{{SITENAME}}}}',
 'passwordreset-emailelement' => 'Käyttäjätunnus: $1
 Väliaikainen salasana: $2',
+'passwordreset-emailsent'    => 'Sähköpostimuistutus on lähetetty.',
 
 # Special:ChangeEmail
+'changeemail'          => 'Muuta sähköpostiosoitetta',
+'changeemail-header'   => 'Muuta tilin sähköpostiosoite',
 'changeemail-oldemail' => 'Nykyinen sähköpostiosoite',
 'changeemail-newemail' => 'Uusi sähköpostiosoite',
 'changeemail-submit'   => 'Muuta sähköpostiosoite',
@@ -1488,10 +1495,11 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
 
 # User rights log
-'rightslog'      => 'Käyttöoikeusloki',
-'rightslogtext'  => 'Tämä on loki käyttäjien käyttöoikeuksien muutoksista.',
-'rightslogentry' => 'muutti käyttäjän $1 oikeudet ryhmistä $2 ryhmiin $3',
-'rightsnone'     => '(ei oikeuksia)',
+'rightslog'                  => 'Käyttöoikeusloki',
+'rightslogtext'              => 'Tämä on loki käyttäjien käyttöoikeuksien muutoksista.',
+'rightslogentry'             => 'muutti käyttäjän $1 oikeudet ryhmistä $2 ryhmiin $3',
+'rightslogentry-autopromote' => 'muutettiin automaattisesti ryhmästä $2 ryhmään $3',
+'rightsnone'                 => '(ei oikeuksia)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'lukea tätä sivua',
@@ -1630,6 +1638,7 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'large-file'                  => 'Tiedostojen enimmäiskoko on $1. Lähettämäsi tiedoston koko on $2.',
 'largefileserver'             => 'Tämä tiedosto on suurempi kuin mitä palvelin sallii.',
 'emptyfile'                   => 'Tiedosto, jota yritit lähettää, näyttää olevan tyhjä. Tarkista, että kirjoitit polun ja nimen oikein ja että se ei ole liian suuri kohdepalvelimelle.',
+'windows-nonascii-filename'   => 'Tämä wiki ei tue tiedostonimiä, joissa on erikoismerkkejä.',
 'fileexists'                  => "Samanniminen tiedosto on jo olemassa.
 Katso tiedoston sivu '''<tt>[[:$1]]</tt>''', jos et ole varma, haluatko muuttaa sitä.
 [[$1|thumb]]",
@@ -1694,7 +1703,8 @@ $1',
 'upload-http-error'         => 'HTTP-virhe: $1',
 
 # ZipDirectoryReader
-'zip-wrong-format' => 'Määritetty tiedosto ei ole ZIP-tiedosto.',
+'zip-file-open-error' => 'Tiedostossa havaittiin virhe, kun se avattiin ZIP-tarkastuksia varten.',
+'zip-wrong-format'    => 'Määritetty tiedosto ei ole ZIP-tiedosto.',
 
 # Special:UploadStash
 'uploadstash-summary'  => 'Tämä sivu tarjoaa pääsyn tiedostoihin, jotka on tallennettu tai joiden tallennus on käynnissä, mutta joita ei ole vielä julkaistu tässä wikissä. Vain tiedostot tallentanut käyttäjä voi tarkastella näitä tiedostoja.',
@@ -1743,7 +1753,8 @@ Parhaan turvallisuuden vuoksi img_auth.php on poissa käytöstä.',
 'upload_source_file' => ' (tiedosto tietokoneella)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Tämä toimintosivu näyttää kaikki tallennetut tiedostot. Viimeisin tallennettu tiedosto on listalla ensimmäisenä. Ryhmittelyperustetta voi vaihtaa napsauttamalla sarakenimeä.',
+'listfiles-summary'     => 'Tämä toimintosivu näyttää kaikki tallennetut tiedostot.
+Jos suodatusperusteena käytetään käyttäjää, tuloksissa näytetään vain tiedostot, joiden viimeisimmän version tallentajana oli valittu käyttäjä.',
 'listfiles_search_for'  => 'Nimihaku',
 'imgfile'               => 'tiedosto',
 'listfiles'             => 'Tiedostoluettelo',
@@ -2064,13 +2075,14 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'emailpage'            => 'Lähetä sähköpostia käyttäjälle',
 'emailpagetext'        => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror'      => 'Postitus palautti virheen:',
-'defemailsubject'      => 'Sähköpostia sivustolta {{SITENAME}}',
+'defemailsubject'      => 'Käyttäjä "$1" lähetti sähköpostin sivustolta {{SITENAME}}',
 'usermaildisabled'     => 'Käyttäjien sähköposti poistettu käytöstä',
 'usermaildisabledtext' => 'Et voi lähettää sähköpostia muille käyttäjille tässä wikissä',
 'noemailtitle'         => 'Ei sähköpostiosoitetta',
 'noemailtext'          => 'Tämä käyttäjä ei ole määritellyt kelvollista sähköpostiosoitetta.',
 'nowikiemailtitle'     => 'Sähköpostin lähettäminen ei sallittu',
 'nowikiemailtext'      => 'Tämä käyttäjä ei halua sähköpostia muilta käyttäjiltä.',
+'emailnotarget'        => 'Vastaanottajan käyttäjänimeä ei ole tai se on väärä.',
 'emailtarget'          => 'Vastaanottajan käyttäjätunnus',
 'emailusername'        => 'Käyttäjätunnus',
 'emailusernamesubmit'  => 'Hae lomake',
@@ -2121,8 +2133,9 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchlist-options'    => 'Tarkkailulistan asetukset',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Lisätään tarkkailulistalle...',
-'unwatching' => 'Poistetaan tarkkailulistalta...',
+'watching'       => 'Lisätään tarkkailulistalle...',
+'unwatching'     => 'Poistetaan tarkkailulistalta...',
+'watcherrortext' => 'Sivun "$1" tarkkailulista-asetusten muutoksissa tapahtui virhe.',
 
 'enotif_mailer'                => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
 'enotif_reset'                 => 'Merkitse kaikki sivut katsotuiksi',
@@ -2134,7 +2147,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'enotif_lastvisited'           => 'Osoitteessa $1 on kaikki muutokset viimeisen käyntisi jälkeen.',
 'enotif_lastdiff'              => 'Muutos on osoitteessa $1.',
 'enotif_anon_editor'           => 'kirjautumaton käyttäjä $1',
-'enotif_body'                  => 'Käyttäjä $WATCHINGUSERNAME,
+'enotif_body'                  => '$WATCHINGUSERNAME,
 
 {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Nykyinen versio on osoitteessa $PAGETITLE_URL .
 
@@ -2151,8 +2164,11 @@ Uusia ilmoituksia tästä sivusta ei tule kunnes vierailet sivulla. Voit myös n
              {{GRAMMAR:genitive|{{SITENAME}}}} ilmoitusjärjestelmä
 
 --
-Tarkkailulistan asetuksia voit muuttaa osoitteessa:
-{{canonicalurl:Special:Watchlist/edit}}
+Voit muuttaa sähköpostimuistutusten asetuksia osoitteessa:
+{{canonicalurl:{{#special:Preferences}}}}
+
+Voit muuttaa tarkkailulistasi asetuksia osoitteessa:
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Voit poistaa sivun tarkkailulistalta osoitteessa:
 $UNWATCHURL
@@ -2789,9 +2805,13 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'spam_blanking'       => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1. Sivu tyhjennetty.',
 
 # Info page
+'pageinfo-title'            => 'Sivun "$1" tietoja',
+'pageinfo-header-edits'     => 'Muokkaukset',
 'pageinfo-header-watchlist' => 'Tarkkailulista',
 'pageinfo-subjectpage'      => 'Sivu',
 'pageinfo-talkpage'         => 'Keskustelusivu',
+'pageinfo-watchers'         => 'Tarkkailijoiden lukumäärä',
+'pageinfo-edits'            => 'Muokkausten lukumäärä',
 
 # Skin names
 'skinname-standard'    => 'Perus',
@@ -3028,11 +3048,13 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-iimversion'                  => 'IIM:n versio',
 'exif-iimcategory'                 => 'Luokka',
 'exif-iimsupplementalcategory'     => 'Täydentävät luokat',
+'exif-datetimeexpires'             => 'Viimeinen käyttöpäivämäärä',
 'exif-datetimereleased'            => 'Julkaistu',
 'exif-identifier'                  => 'Tunniste',
 'exif-lens'                        => 'Objektiivi',
 'exif-serialnumber'                => 'Kameran sarjanumero',
 'exif-cameraownername'             => 'Kameran omistaja',
+'exif-datetimemetadata'            => 'Metatitietojen viimeinen muokkauspäivämäärä',
 'exif-nickname'                    => 'Kuvan epävirallinen nimi',
 'exif-copyrighted'                 => 'Tekijänoikeudellinen tila',
 'exif-copyrightowner'              => 'Tekijänoikeuden haltija',
@@ -3043,6 +3065,8 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-disclaimer'                  => 'Vastuuvapauslauseke',
 'exif-contentwarning'              => 'Sisältövaroitus',
 'exif-giffilecomment'              => 'GIF-tiedoston kommentti',
+'exif-organisationinimage'         => 'Kuvan organisaatio',
+'exif-personinimage'               => 'Kuvan henkilö',
 
 # EXIF attributes
 'exif-compression-1' => 'Pakkaamaton',
@@ -3192,6 +3216,11 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-gpsspeed-m' => 'mailia tunnissa',
 'exif-gpsspeed-n' => 'solmua',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometriä',
+'exif-gpsdestdistance-m' => 'Mailia',
+'exif-gpsdestdistance-n' => 'Merimailia',
+
 'exif-gpsdop-excellent' => 'Erinomainen ($1)',
 'exif-gpsdop-good'      => 'Hyvä ($1)',
 'exif-gpsdop-moderate'  => 'Tyydyttävä ($1)',
@@ -3199,10 +3228,14 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-gpsdop-poor'      => 'Huono ($1)',
 
 'exif-objectcycle-a' => 'vain aamulla',
+'exif-objectcycle-p' => 'Vain illalla',
+'exif-objectcycle-b' => 'Sekä aamulla että illalla',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Todellinen suunta',
 'exif-gpsdirection-m' => 'Magneettinen suunta',
+
+'exif-dc-date' => 'Päivämäärä(t)',
 
 'exif-rating-rejected' => 'Hylätty',
 
@@ -3320,6 +3353,12 @@ Varmista, että haluat luoda sivun uudelleen.",
 'confirm_purge_button' => 'Poista',
 'confirm-purge-top'    => 'Poistetaanko tämän sivun välimuistikopiot?',
 'confirm-purge-bottom' => 'Välimuistikopioiden poistaminen tyhjentää välimuistin ja pakottaa sivun uusimman version näkyviin.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Lisätäänkö tämä sivu tarkkailulistallesi?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Poistetaanko tämä sivu tarkkailulistaltasi?',
 
 # Separators for various lists, etc.
 'percent' => '$1&nbsp;%',
@@ -3444,7 +3483,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'specialpages-note'              => '----
 * Normaalit toimintosivut.
 * <span class="mw-specialpagerestricted">Rajoitetut toimintosivut.</span>
-* <span class="mw-specialpagecached">Välimuistia käyttävät toimintosivut.</span>',
+* <span class="mw-specialpagecached">Välimuistia käyttävät toimintosivut (saattavat olla vanhentuneita).</span>',
 'specialpages-group-maintenance' => 'Ylläpito',
 'specialpages-group-other'       => 'Muut',
 'specialpages-group-login'       => 'Kirjautuminen ja tunnusten luonti',
@@ -3494,6 +3533,9 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'compare-rev2'     => 'Versio 2',
 'compare-submit'   => 'Vertaile',
 
+# Special:GlobalFileUsage
+'globalfileusage-ok' => 'Etsi',
+
 # Database error messages
 'dberr-header'      => 'Wikissä on tietokantaongelma',
 'dberr-problems'    => 'Tällä sivustolla on teknisiä ongelmia.',
@@ -3531,7 +3573,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'ajax-add-category-summary'    => 'Lisää luokka ”$1”',
 'ajax-remove-category-summary' => 'Luokan ”$1” poisto',
 'ajax-error-title'             => 'Virhe',
-'ajax-remove-category-error'   => 'Luokan poistaminen ei onnistunut.
-Yleensä näin käy, kun luokka on lisätty sivulle mallineessa.',
+'ajax-remove-category-error'   => 'Luokan "$1" poistaminen ei onnistunut.
+Yleensä näin käy, kun luokka on lisätty sivulle mallineen avulla.',
 
 );

@@ -35,6 +35,7 @@
  * @author Melos
  * @author Nemo bis
  * @author Nick1915
+ * @author Ninniuz
  * @author Od1n
  * @author Oile11
  * @author Omnipaedista
@@ -1249,7 +1250,7 @@ $1",
 'qbsettings-fixedright'     => 'Fisso a destra',
 'qbsettings-floatingleft'   => 'Fluttuante a sinistra',
 'qbsettings-floatingright'  => 'Fluttuante a destra',
-'qbsettings-directionality' => 'Fisso, a seconda della direzionalità dello script e della tua lingua',
+'qbsettings-directionality' => 'Fisso, a seconda della direzione del testo nella tua lingua',
 
 # Preferences page
 'preferences'                   => 'Preferenze',
@@ -1755,8 +1756,7 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 
 # Special:ListFiles
 'listfiles-summary'     => "Questa pagina speciale mostra tutti i file caricati.
-I file caricati più di recente vengono mostrati all'inizio della lista.
-Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelta.",
+Se vengono filtrati per utente, saranno mostrati solamente quei file per i quali l'utente ha caricato la versione più recente.",
 'listfiles_search_for'  => 'Ricerca immagini per nome:',
 'imgfile'               => 'file',
 'listfiles'             => 'Elenco dei file',
@@ -2078,7 +2078,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 'emailpage'            => "Invia un messaggio e-mail all'utente",
 'emailpagetext'        => 'Usare il modulo sottostante per inviare un messaggio e-mail all\'utente indicato. L\'indirizzo specificato nelle [[Special:Preferences|preferenze]] del mittente apparirà nel campo "Da:" del messaggio per consentire al destinatario di rispondere direttamente.',
 'usermailererror'      => "L'oggetto mail ha restituito l'errore:",
-'defemailsubject'      => 'Messaggio da {{SITENAME}}',
+'defemailsubject'      => 'Messaggio da {{SITENAME}} dall\'utente "$1"',
 'usermaildisabled'     => 'e-mail utente disabilitata',
 'usermaildisabledtext' => 'Non è possibile inviare e-mail ad altri utenti su questo wiki',
 'noemailtitle'         => 'Nessun indirizzo e-mail',
@@ -3116,6 +3116,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 
 # EXIF attributes
 'exif-compression-1' => 'Nessuno',
+'exif-compression-2' => 'CCITT gruppo 3 monodimensionale - codifica run length di Huffman modificata',
 'exif-compression-3' => 'Codifica fax CCITT Group 3',
 'exif-compression-4' => 'Codifica fax CCITT gruppo 4',
 

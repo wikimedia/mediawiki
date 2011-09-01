@@ -1115,6 +1115,7 @@ Deze lijkt verwijderd te zijn.',
 'edit-no-change'                   => 'Uw bewerking is genegeerd, omdat er geen wijziging aan de tekst is gemaakt.',
 'edit-already-exists'              => 'De pagina is niet aangemaakt.
 Deze bestaat al.',
+'editinguserpage'                  => "'''Let op:'''' U bewerkt een [[Help:User page|gebruikerspagina]]. U kunt een bericht achterlaten op de [$1 overlegpagina van de gebruiker].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Waarschuwing: deze pagina gebruikt te veel kostbare parserfuncties.

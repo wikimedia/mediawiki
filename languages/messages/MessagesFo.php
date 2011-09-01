@@ -377,7 +377,8 @@ Legg til merkis at summar síður kunnu framhaldandi síggja út
 sum tú hevur ritað inn til goymslan í sneytara tínum er ruddað.",
 'welcomecreation'            => '== Vælkomin, $1! ==
 
-Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstillingar.',
+Tín konta er nú stovnað.
+Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}} innstillingar]].',
 'yourname'                   => 'Títt brúkaranavn:',
 'yourpassword'               => 'Títt loyniorð:',
 'yourpasswordagain'          => 'Skriva loyniorð umaftur:',
@@ -613,7 +614,7 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'rclinks'           => 'Sýn seinastu $1 broytingarnar seinastu $2 dagarnar<br />$3',
 'diff'              => 'munur',
 'hist'              => 'søga',
-'hide'              => 'fjal',
+'hide'              => 'Fjal',
 'show'              => 'Skoða',
 'minoreditletter'   => 's',
 'newpageletter'     => 'N',
@@ -693,7 +694,15 @@ fyri at leggja fílur upp.',
 
 # Statistics
 'statistics'              => 'Hagtøl',
+'statistics-header-edits' => 'Rætti hagtøl',
+'statistics-header-views' => 'Vís hagtøl',
 'statistics-header-users' => 'Brúkarahagtøl',
+'statistics-header-hooks' => 'Onnur hagtøl',
+'statistics-pages'        => 'Síður',
+'statistics-pages-desc'   => 'Allar síður í wiki, kjaksíður, ávísingar og so framvegis rokna uppí',
+'statistics-files'        => 'Fílur lagdar upp',
+'statistics-users'        => 'Skrásettir [[Special:ListUsers|brúkarir]]',
+'statistics-users-active' => 'Virknir brúkarir',
 
 'disambiguations'     => 'Síður við fleirfaldum týdningi',
 'disambiguationspage' => 'Template:fleiri týdningar',
@@ -984,6 +993,7 @@ Grein við navninum "[[:$1]]" finst longu. Ynskir tú at strika hana til tess at
 'allmessagestext'           => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' er ikki stuðlað orsakað av at '''\$wgUseDatabaseMessages''' er sløkt.",
+'allmessages-language'      => 'Mál:',
 
 # Thumbnails
 'thumbnail-more' => 'Víðka',

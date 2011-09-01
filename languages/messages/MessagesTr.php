@@ -2160,6 +2160,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'watchlistanontext'    => 'Lütfen izleme listenizdeki maddeleri görmek ya da değiştirmek için $1.',
 'watchnologin'         => 'Oturum açık değil.',
 'watchnologintext'     => 'İzleme listenizi değiştirebilmek için [[Special:UserLogin|oturum açmalısınız]].',
+'addwatch'             => 'İzleme listesine ekle',
 'addedwatchtext'       => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|izleme listenize]] kaydedildi.
 
 Gelecekte, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler burada listelenecektir.
@@ -3118,8 +3119,10 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-gpsdifferential'             => 'GPS differential correction',
 'exif-keywords'                    => 'Anahtar kelimeler',
 'exif-objectname'                  => 'Kısa başlık',
+'exif-headline'                    => 'Başlık',
 'exif-source'                      => 'Kaynak',
 'exif-urgency'                     => 'Aciliyet',
+'exif-fixtureidentifier'           => 'Fikstür adı',
 'exif-writer'                      => 'Yazar',
 'exif-languagecode'                => 'Dil',
 'exif-iimversion'                  => 'IIM sürümü',
