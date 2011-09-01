@@ -119,7 +119,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 	 * @return Message
 	 */
 	function Message( map, key, parameters ) {
-		this.format = 'parse';
+		this.format = 'plain';
 		this.map = map;
 		this.key = key;
 		this.parameters = parameters === undefined ? [] : $.makeArray( parameters );
