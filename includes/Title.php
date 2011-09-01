@@ -3860,6 +3860,18 @@ class Title {
 	}
 
 	/**
+	 * Check if this title is a subpage of another title
+	 *
+	 * @param $title Title
+	 * @return Bool
+	 */
+	public function isSubpageOf( Title $title ) {
+		return $this->getInterwiki() === $title->getInterwiki()
+			&& $this->getNamespace() == $title->getNamespace()
+			&& strpos( $this->getDBkey(), $title->getDBkey() . '/' ) === 0;
+	}
+
+	/**
 	 * Callback for usort() to do title sorts by (namespace, title)
 	 *
 	 * @param $a Title
