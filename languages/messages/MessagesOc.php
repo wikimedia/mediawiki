@@ -692,6 +692,7 @@ Doblidetz pas de personalizar vòstras [[Special:Preferences|{{SITENAME}} prefer
 'createaccount'              => 'Crear un compte novèl',
 'gotaccount'                 => "Ja avètz un compte ? '''$1'''.",
 'gotaccountlink'             => 'Identificatz-vos',
+'userlogin-resetlink'        => 'Vos doblidèretz las informacions de conneccion?',
 'createaccountmail'          => 'per corrièr electronic',
 'createaccountreason'        => 'Motiu :',
 'badretype'                  => "Los senhals qu'avètz picats son pas identics.",
@@ -773,8 +774,10 @@ Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl
 'resetpass-temp-password'   => 'Senhal temporari :',
 
 # Special:PasswordReset
-'passwordreset'          => 'Remesa a zèro del senhal',
-'passwordreset-username' => "Nom d'utilizaire :",
+'passwordreset'              => 'Remesa a zèro del senhal',
+'passwordreset-username'     => "Nom d'utilizaire :",
+'passwordreset-emailelement' => 'Utilizaire: $1
+Senhal temporari: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'Tèxte en gras',
@@ -1182,6 +1185,7 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'searchmenu-legend'                => 'Opcions de recèrca',
 'searchmenu-exists'                => "* Pagina '''[[$1]]'''",
 'searchmenu-new'                   => "'''Crear la pagina ''[[:$1|$1]]'' sus aqueste wiki !'''",
+'searchmenu-new-nocreate'          => '"$1" es un nom de pagina incorrècte o lo podètz pas crear',
 'searchhelp-url'                   => 'Help:Acuèlh',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Recercar las paginas amb aqueste prefix]]',
 'searchprofile-articles'           => 'Paginas de contengut',
@@ -1330,8 +1334,8 @@ Deu aver, al maximum $1 caractèr{{PLURAL:$1||s}}.',
 'prefs-help-gender'             => "Opcional : utilizat pels acòrdis dins l'interfàcia del logicial. Aquesta informacion serà publica.",
 'email'                         => 'Corrièr electronic',
 'prefs-help-realname'           => "(facultatiu) : se l'especificatz, serà utilizat per vos atribuir vòstras contribucions.",
-'prefs-help-email'              => "L’adreça de corrièr electronic es facultativa mas permet de vos far adreçar vòstre senhal s'o doblidatz.
-Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de vòstra pagina d’utilizaire principala o la de discussion sens aver besonh de revelar vòstra idenditat.",
+'prefs-help-email'              => 'L’adreça de corrièr electronic es facultativa mas vos permet de reçaupre lo senhal se lo doblidatz.
+Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagina d’utilizaire o la de discussion sens sofracha de desvelar vòstra idenditat.',
 'prefs-help-email-required'     => 'Una adreça de corrièr electronic es requesa.',
 'prefs-info'                    => 'Informacion de basa',
 'prefs-i18n'                    => 'Internationalizacion',
@@ -2063,6 +2067,7 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 # Watchlist
 'watchlist'            => 'Ma lista de seguiment',
 'mywatchlist'          => 'Lista de seguiment',
+'watchlistfor2'        => 'Per $1 ($2)',
 'nowatchlist'          => "Vòstra lista de seguiment conten pas cap d'article.",
 'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguiment, vos cal vos $1.',
 'watchnologin'         => 'Vos sètz pas identificat(ada)',
@@ -2182,7 +2187,8 @@ La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3
 'rollback-success'  => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
 
 # Edit tokens
-'sessionfailure' => 'Vòstra sesilha de connexion sembla aver de problèmas ;
+'sessionfailure-title' => 'La session capitèt mal',
+'sessionfailure'       => 'Vòstra sesilha de connexion sembla aver de problèmas ;
 aquesta accion es estada anullada en prevencion d’un piratatge de sesilha.
 Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi ensajatz tornarmai.',
 
@@ -2295,9 +2301,10 @@ $1",
 'undelete-show-file-submit'    => 'Òc',
 
 # Namespace form on various pages
-'namespace'      => 'Espaci de noms :',
-'invert'         => 'Inversar la seleccion',
-'blanknamespace' => '(Principal)',
+'namespace'             => 'Espaci de noms :',
+'invert'                => 'Inversar la seleccion',
+'namespace_association' => 'Espaci de nom associat',
+'blanknamespace'        => '(Principal)',
 
 # Contributions
 'contributions'       => "Contribucions d'aqueste contributor",
@@ -2314,6 +2321,7 @@ $1",
 'sp-contributions-newbies-title'       => 'Las contribucions de l’utilizaire pels comptes novèls',
 'sp-contributions-blocklog'            => 'Istoric dels blocatges',
 'sp-contributions-deleted'             => 'contribucions suprimidas',
+'sp-contributions-uploads'             => 'importat',
 'sp-contributions-logs'                => 'jornals',
 'sp-contributions-talk'                => 'Discutir',
 'sp-contributions-userrights'          => 'gerir los dreches',
@@ -2322,6 +2330,7 @@ $1",
 La darrièra intrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
 'sp-contributions-search'              => 'Cercar las contribucions',
 'sp-contributions-username'            => 'Adreça IP o nom d’utilizaire :',
+'sp-contributions-toponly'             => 'Mostrar sonque las contribucions que son lo darrièr cambiament',
 'sp-contributions-submit'              => 'Cercar',
 
 # What links here
@@ -2333,7 +2342,7 @@ La darrièra intrada del jornal dels blocatges es indicada çaijós a títol d�
 'nolinkshere-ns'           => "Cap de pagina conten pas de ligam cap a '''[[:$1]]''' dins l’espaci de nom causit.",
 'isredirect'               => 'pagina de redireccion',
 'istemplate'               => 'inclusion',
-'isimage'                  => 'ligam del fichièr',
+'isimage'                  => 'Paginas ligadas al fichièr',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedent|$1 precedents}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|seguent|$1 seguents}}',
 'whatlinkshere-links'      => '← ligams',
@@ -2344,6 +2353,8 @@ La darrièra intrada del jornal dels blocatges es indicada çaijós a títol d�
 'whatlinkshere-filters'    => 'Filtres',
 
 # Block/unblock
+'block'                           => 'Blocar un utilizaire',
+'unblock'                         => 'Desblocar un utilizaire',
 'blockip'                         => 'Blocar en escritura',
 'blockip-title'                   => 'Blocar l’utilizaire',
 'blockip-legend'                  => 'Blocar en escritura',
@@ -2374,6 +2385,7 @@ Donatz çaijós un motiu precís (per exemple en citant las paginas que son esta
 'ipbhidename'                     => 'Amagar lo nom d’utilizaire de las modificacions e de las listas',
 'ipbwatchuser'                    => "Seguir las paginas d'utilizaire e de discussion d'aqueste utilizaire",
 'ipb-change-block'                => 'Tornar blocar aqueste utilizaire amb aquestes paramètres',
+'ipb-confirm'                     => 'Confirmar lo blocatge',
 'badipaddress'                    => "L'adreça IP es incorrècta",
 'blockipsuccesssub'               => 'Blocatge capitat',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] es estat blocat.<br />
@@ -2389,7 +2401,7 @@ a partir d'una adreça IP precedentament blocada.",
 'ipusubmit'                       => 'Suprimir aqueste blocatge',
 'unblocked'                       => '[[User:$1|$1]] es estat desblocat',
 'unblocked-id'                    => 'Lo blocatge $1 es estat levat',
-'ipblocklist'                     => 'Adreças IP e dels utilizaires blocats',
+'ipblocklist'                     => 'Utilizaires o adreças IP blocats',
 'ipblocklist-legend'              => 'Cercar un utilizaire blocat',
 'ipblocklist-submit'              => 'Recercar',
 'ipblocklist-localblock'          => 'Blocatge local',
@@ -2844,7 +2856,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'metadata-help'     => "Aqueste fichièr conten d'entresenhas suplementàrias probablament apondudas per l’aparelh de fòto numeric o l'escanèr que las a aquesas. Se lo fichièr es estat modificat dempuèi son estat original, d'unes detalhs pòdon reflectir pas entièrament l’imatge modificat.",
 'metadata-expand'   => 'Far veire las entresenhas detalhadas',
 'metadata-collapse' => 'Amagar las entresenhas detalhadas',
-'metadata-fields'   => 'Los camps de metadonadas d’EXIF listats dins aqueste message seràn encluses dins la pagina de descripcion de l’imatge quand la taula de metadonadas serà reduccha. Los autres camps seràn amagats per defaut.
+'metadata-fields'   => 'Los camps de metadonadas d’EXIF listats dins aqueste message seràn incluses dins la pagina de descripcion de l’imatge quand la taula de metadonadas serà reducha. Los autres camps seràn amagats per manca.
 * make
 * model
 * datetimeoriginal

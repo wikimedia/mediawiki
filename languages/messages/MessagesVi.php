@@ -1029,6 +1029,7 @@ Dường như trang này đã bị xóa.',
 'edit-no-change'                   => 'Sửa đổi của bạn không được tính đến, vì nó không làm thay đổi nội dung.',
 'edit-already-exists'              => 'Không thể tạo trang mới.
 Nó đã tồn tại.',
+'editinguserpage'                  => "'''Lưu ý:''' Bạn đang sửa đổi [[Help:User page|trang cá nhân]] của một người dùng. Hãy để lại một tin nhắn tại [$1 trang thảo luận của họ].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.

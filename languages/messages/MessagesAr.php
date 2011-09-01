@@ -48,6 +48,7 @@
  * @author Zack wadghiri
  * @author Zanatos
  * @author ترجمان05
+ * @author زكريا
  * @author عصام بايزيدي
  * @author عمرو
  * @author نصوح
@@ -1211,6 +1212,7 @@ $2
 'edit-no-change'                   => 'تعديلك تم تجاهله، لأنه لم يحدث أي تعديل للنص.',
 'edit-already-exists'              => 'لم يمكن إنشاء صفحة جديدة.
 هي موجودة بالفعل.',
+'editinguserpage'                  => "'''ملاحظة:''' أنت تعدل [[Help:User page|صفحة مستخدم]]. لترك رسالة لهذا المستخدم، [$1 عدل صفحة نقاشه].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''تحذير:''' هذه الصفحة تحتوي على استدعاءات دالة محلل كثيرة مكلفة.
@@ -2363,7 +2365,7 @@ $1',
 'emailpagetext'        => 'يمكنك استخدام الاستمارة بالأسفل لإرسال رسالة بريد إلكتروني إلى هذا المستخدم.
 عنوان البريد الإلكتروني الذي قمت أنت بإدخاله في [[Special:Preferences|تفضيلاتك]]، سيظهر كعنوان المرسل في البريد الإلكتروني، حتى يصبح المتلقي قادرا على الرد عليك مباشرة.',
 'usermailererror'      => 'جسم البريد أرجع خطأ:',
-'defemailsubject'      => 'رسالة من {{SITENAME}}',
+'defemailsubject'      => 'رسالة {{SITENAME}} من المستخدم "$1"',
 'usermaildisabled'     => 'بريد المستخدم الإلكتروني معطل',
 'usermaildisabledtext' => 'لا يمكنك إرسال بريد إلكتروني إلى مستخدمين آخرين على هذه الويكي',
 'noemailtitle'         => 'لا يوجد عنوان بريد إلكتروني',
@@ -2553,6 +2555,7 @@ $ أونواتشورل
 'protect-level-sysop'         => 'الإداريون فقط',
 'protect-summary-cascade'     => 'مضمنة',
 'protect-expiring'            => 'تنتهي في $1 (UTC)',
+'protect-expiring-local'      => 'ينتهي $1',
 'protect-expiry-indefinite'   => 'غير محدد',
 'protect-cascade'             => 'احم الصفحات المضمنة في هذه الصفحة (حماية مضمنة)',
 'protect-cantedit'            => 'لا يمكنك تغيير مستويات الحماية لهذه الصفحة، لأنك لا تمتلك الصلاحية لتعديلها.',
@@ -2616,7 +2619,7 @@ $ أونواتشورل
 'undeletedarticle'             => 'استرجع "[[$1]]"',
 'undeletedrevisions'           => 'تم استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
 'undeletedrevisions-files'     => 'أسترجعت {{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}  و{{PLURAL:$2||ملف واحد|ملفان|$2 ملفات|$2 ملفًا|$2 ملف}}',
-'undeletedfiles'               => 'أسترجع {{PLURAL:$2||ملف واحد|ملفان|$2 ملفات|$2 ملفًا|$2 ملف}}',
+'undeletedfiles'               => 'أسترجع {{PLURAL:$1||ملف واحد|ملفان|$1 ملفات|$1 ملفًا|$1 ملف}}',
 'cannotundelete'               => 'فشل الاسترجاع؛
 ربما قام شخص آخر باسترجاع الصفحة بالفعل.',
 'undeletedpage'                => "'''تم استرجاع $1'''
@@ -2754,6 +2757,7 @@ $1',
 'blocklist-userblocks'            => 'أخفِ منع الحسابات',
 'blocklist-tempblocks'            => 'أخفِ المنع المؤقت',
 'blocklist-addressblocks'         => 'أخفِ منع عنوان آيبي واحد',
+'blocklist-rangeblocks'           => 'إخفاء منع النطاقات',
 'blocklist-timestamp'             => 'الزمن',
 'blocklist-target'                => 'الهدف',
 'blocklist-expiry'                => 'ينتهي في',
@@ -4141,5 +4145,8 @@ $1',
 'ajax-edit-category-error'      => 'تعذر تعديل تصنيف "$1".
 يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
 'ajax-category-already-present' => 'هذه الصفحة بالفعل تنتمي إلى تصنيف "$1"',
+'ajax-category-hook-error'      => 'دالة محلية منعت التغييرات من أن يتم حفظها.',
+'ajax-api-error'                => 'API أرجعت خطأ: $1: $2.',
+'ajax-api-unknown-error'        => 'API أرجعت خطأ غير معروف.',
 
 );

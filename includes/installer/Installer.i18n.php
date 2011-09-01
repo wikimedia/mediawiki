@@ -557,6 +557,7 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
 );
 
 /** Message documentation (Message documentation)
+ * @author Amire80
  * @author Dani
  * @author EugeneZelenko
  * @author Kghbln
@@ -619,6 +620,9 @@ Parameters:
 * $1 - a link to the SQLite home page having the anchor text "SQLite".',
 	'config-support-oracle' => 'Parameters:
 * $1 - a link to the Oracle home page, the anchor text of which is "Oracle".',
+	'config-connection-error' => '$1 is the external error from the database, such as "DB connection error: Access denied for user \'dba\'@\'localhost\' (using password: YES) (localhost)."
+
+If you\'re translating this message to a right-to-left language, consider writing <nowiki><div dir="ltr">$1.</div></nowiki>. (When the bidi features for HTML5 will be implemented in the browsers, it will probably be a good idea to write it as <nowiki><div dir="auto">$1.</div></nowiki>.)',
 	'config-sqlite-dir-unwritable' => 'webserver refers to a software like Apache or Lighttpd.',
 	'config-can-upgrade' => 'Should we no use an {{int:xxx}} construct for "continue" ?
 
@@ -4073,9 +4077,40 @@ $messages['ext'] = array(
  * @author Mjbmr
  */
 $messages['fa'] = array(
+	'config-desc' => 'نصب کنندهٔ ویکی‌مدیا',
+	'config-title' => 'نصب ویکی‌مدیا $1',
+	'config-information' => 'اطلاعات',
 	'config-your-language' => 'زبان شما:',
 	'config-wiki-language' => 'زبان ویکی:',
+	'config-back' => '← بازگشت',
+	'config-continue' => 'ادامه →',
 	'config-page-language' => 'زبان',
+	'config-page-welcome' => 'به مدیاویکی خوش آمدید!',
+	'config-page-name' => 'نام',
+	'config-page-options' => 'گزینه‌ها',
+	'config-page-install' => 'نصب',
+	'config-page-complete' => 'کامل!',
+	'config-page-readme' => 'مرا بخوان',
+	'config-page-releasenotes' => 'یادداشت‌های انتشار',
+	'config-page-existingwiki' => 'ویکی موجود',
+	'config-db-type' => 'نوع پایگاه اطلاعات:',
+	'config-db-host' => 'میزبان پایگاه اطلاعات:',
+	'config-db-username' => 'نام کاربری پایگاه اطلاعات:',
+	'config-db-password' => 'کلمه عبور پایگاه اطلاعات:',
+	'config-site-name' => 'نام ویکی:',
+	'config-site-name-blank' => 'نام وب‌گاه را وارد کنید.',
+	'config-project-namespace' => 'فضای نام پروژه:',
+	'config-admin-name' => 'نام شما:',
+	'config-admin-password' => 'کلمه عبور:',
+	'config-admin-password-confirm' => 'دوباره کلمه عبور:',
+	'config-admin-email' => 'پست الکترونیکی شما:',
+	'config-profile-private' => 'ویکی خصوصی',
+	'config-license' => 'حق تکثیر و مجوز:',
+	'config-email-settings' => 'تنظیمات پست الکترونیکی',
+	'config-upload-enable' => 'فعال سازی بارگذاری پرونده',
+	'config-install-step-done' => 'انجام شد',
+	'config-install-step-failed' => 'ناموفق بود',
+	'config-help' => 'راهنما',
 	'mainpagetext' => "'''نرم‌افزار ویکی با موفقیت نصب شد.'''",
 	'mainpagedocfooter' => 'از [http://meta.wikimedia.org/wiki/Help:Contents راهنمای کاربران]
 برای استفاده از نرم‌افزار ویکی کمک بگیرید.
@@ -5964,7 +5999,7 @@ $1
 	'config-support-postgres' => '$1 הוא מסד נתונים נפוץ בקוד פתוח והוא נפוץ בתור חלופה ל־MySQL (ר׳ [http://www.php.net/manual/en/pgsql.installation.php how to compile PHP with PostgreSQL support]). ייתכן שיש בתצורה הזאת באגים מסוימים והיא לא מומלצת לסביבות מבצעיות.',
 	'config-support-sqlite' => '* $1 הוא מסד נתונים קליל עם תמיכה טובה מאוד. (ר׳ [http://www.php.net/manual/en/pdo.installation.php How to compile PHP with SQLite support], משתמש ב־PDO)',
 	'config-support-oracle' => '* $1 הוא מסד נתונים עסקי מסחרי. (ר׳ [http://www.php.net/manual/en/oci8.installation.php How to compile PHP with OCI8 support])',
-	'config-support-ibm_db2' => '* $1 הוא מסד נתונים מסחרי ארגוני',
+	'config-support-ibm_db2' => '* $1 הוא מסד נתונים מסחרי ארגוני.',
 	'config-header-mysql' => 'הגדרות MySQL',
 	'config-header-postgres' => 'הגדרות PostgreSQL',
 	'config-header-sqlite' => 'הגדרות SQLite',
@@ -5980,9 +6015,9 @@ $1
 יש להשתמש רק באותיות ASCII&rlm; (a עד z&rlm;, A עד Z), סְפָרוֹת (0 עד 9), קווים תחתיים (_) ומינוסים (-).',
 	'config-invalid-db-prefix' => '"$1" היא תחילית מסד נתונים בלתי תקינה.
 יש להשתמש רק באותיות ASCII&rlm; (a עד z&rlm;, A עד Z), סְפָרוֹת (0 עד 9), קווים תחתיים (_) ומינוסים (-).',
-	'config-connection-error' => '$1.
+	'config-connection-error' => '<div dir="ltr">$1.</div>
 
-בדקו את שם השרת, את שם המשתמש ואת הססמה ונסו שוב.',
+בדקו את שם השרת, את שם המשתמש ואת הססמה בטופס להלן ונסו שוב.',
 	'config-invalid-schema' => '"$1" היא סכמה לא תקינה עבור מדיה־ויקי.
 יש להשתמש רק באותיות ASCII&rlm; (a עד z&rlm;, A עד Z), סְפָרוֹת (0 עד 9) וקווים תחתיים (_).',
 	'config-db-sys-create-oracle' => 'תוכנית ההתקנה תומכת רק בשימוש בחשבון SYSDBA ליצירת חשבון חדש.',

@@ -580,7 +580,8 @@ $2',
 # Special:PasswordReset
 'passwordreset'          => 'कूटशब्द रिसैट',
 'passwordreset-legend'   => 'कूटशब्द रीसेट करें',
-'passwordreset-username' => 'सदस्यनाम',
+'passwordreset-username' => 'सदस्यनाम:',
+'passwordreset-email'    => 'ई-मेल पता:',
 
 # Edit page toolbar
 'bold_sample'     => 'मोटा पाठ',

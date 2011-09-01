@@ -883,6 +883,9 @@ Moned ziwezhañ ar marilh a vez diskouezet amañ a-is evel dave :",
 'templatesused'                    => '{{PLURAL:$1|Patrom|Patromoù}} implijet war ar bajenn-mañ :',
 'templatesusedpreview'             => '{{PLURAL:$1|Patrom|Patromoù}} implijet er rakweladenn-mañ :',
 'templatesusedsection'             => '{{PLURAL:$1|Patrom|Patromoù}} implijet er rann-mañ :',
+'distanttemplatesused'             => '{{PLURAL:$1|Patrom|Patromoù}} a-bell implijet war ar bajenn-mañ :',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Patrom|Patromoù}} a-bell implijet er rakweled-mañ :',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Patrom|Patromoù}} a-bell implijet er rann-mañ :',
 'template-protected'               => '(gwarezet)',
 'template-semiprotected'           => '(damwarezet)',
 'hiddencategories'                 => "{{PLURAL:$1|1 rummad kuzhet|$1 rummad kuzhet}} m'emañ rollet ar bajenn-mañ :",
@@ -911,6 +914,7 @@ Diverket eo bet evit doare.',
 'edit-no-change'                   => "N'eo ket bet kemeret ho tegasadenn e kont rak ne oa ket bet kemmet netra en destenn.",
 'edit-already-exists'              => "N'eus ket bet gallet krouiñ ur bajenn nevez.
 Krouet e oa bet c'hoazh.",
+'editinguserpage'                  => "'''Notenn :''' O tegas kemmoù war ur [[Help:User page|bajenn implijer]] emaoc'h. Evit lakaat ur gemennadenn d'an implijer-mañ, [$1 grit kentoc'h gant e bajenn gaozeal].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Diwallit : Re a c'halvoù koustus e-keñver an arc'hwelioù parser zo gant ar bajenn-mañ.
@@ -1193,7 +1197,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'qbsettings-fixedright'     => 'Dehou',
 'qbsettings-floatingleft'   => 'War-neuñv a-gleiz',
 'qbsettings-floatingright'  => 'War-neuñv a-zehou',
-'qbsettings-directionality' => 'Merket, hervez an tu ma vez skrivet ho yezh',
+'qbsettings-directionality' => 'Difiñv, hervez an tu ma vez skrivet ho yezh',
 
 # Preferences page
 'preferences'                   => 'Penndibaboù',
@@ -1714,8 +1718,7 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 
 # Special:ListFiles
 'listfiles-summary'     => 'Diskouez a ra ar bajenn dibar-mañ an holl restroù bet enporzhiet.
-Dre ziouer e teu ar restroù enporzhiet da ziwezhañ e laez ar roll.
-Klikañ e penn ar bann a cheñch an urzh kinnig.',
+Pa vez silet dre implijerien, ne vez diskouezet nemet ar restroù eo bet enporzhiet ar stumm diwezhañ anezho gant an implijerien-se.',
 'listfiles_search_for'  => 'Klask anv ar skeudenn :',
 'imgfile'               => 'restr',
 'listfiles'             => 'Roll ar skeudennoù',
@@ -2042,7 +2045,7 @@ evit gallout kas ur postel d'un implijer all.",
 'emailpagetext'        => "Gallout a rit ober gant ar furmskrid a-is a-benn kas ur postel d'an implijer-mañ.
 E maezienn \"Kaser\" ho postel e vo merket ar chomlec'h postel resisaet ganeoc'h-c'hwi en ho [[Special:Preferences|Penndibaboù]], d'ar resever da c'hallout respont deoc'h war-eeun ma kar.",
 'usermailererror'      => 'Fazi postel :',
-'defemailsubject'      => 'postel kaset eus {{SITENAME}}',
+'defemailsubject'      => 'Postel kaset eus {{SITENAME}} gant an implijer "$1"',
 'usermaildisabled'     => "Diweredekaet eo ar c'has posteloù etre an implijerien.",
 'usermaildisabledtext' => "Ne c'helloc'h ket kas posteloù da implijerien all er wiki-mañ",
 'noemailtitle'         => "Chomlec'h postel ebet",
@@ -3622,6 +3625,30 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'compare-title-not-exists'    => "N'eus ket eus an titl spisaet ganeoc'h.",
 'compare-revision-not-exists' => "N'eus ket eus an adweladenn spisaet ganeoc'h.",
 
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Implij hollek ar restr',
+'globalfileusage-for'         => 'Implij hollek ar restr evit "$1"',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Pajenn dibar]] da welet implij hollek ar restroù',
+'globalfileusage-ok'          => 'Klask',
+'globalfileusage-text'        => 'Klask implij hollek ar restr',
+'globalfileusage-no-results'  => 'Ne reer ket gant [[$1]] war wikioù all.',
+'globalfileusage-on-wiki'     => 'Implij war $2',
+'globalfileusage-of-file'     => 'Ober a ra ar wikioù da-heul gant ar restr-mañ :',
+'globalfileusage-more'        => "Gwelet [[{{#Special:GlobalUsage}}/$1|muioc'h eus implij hollek]] ar restr-mañ.",
+'globalfileusage-filterlocal' => "Arabat diskouez an implij lec'hel",
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Implij hollek ar patrom',
+'globaltemplateusage-for'         => 'Implij hollek ar patrom evit "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Pajenn dibar]] da welet implij hollek ar patromoù',
+'globaltemplateusage-ok'          => 'Klask',
+'globaltemplateusage-text'        => 'Klask implij hollek ar patrom',
+'globaltemplateusage-no-results'  => 'Ne reer ket gant [[$1]] war wikioù all.',
+'globaltemplateusage-on-wiki'     => 'Implij war $2',
+'globaltemplateusage-of-file'     => 'Ober a ra ar wikioù da-heul gant ar restr-mañ :',
+'globaltemplateusage-more'        => "Gwelet [[{{#Special:GlobalUsage}}/$1|muioc'h eus implij hollek]] ar patrom-mañ.",
+'globaltemplateusage-filterlocal' => "Arabat diskouez an implij lec'hel",
+
 # Database error messages
 'dberr-header'      => 'Ur gudenn zo gant ar wiki-mañ',
 'dberr-problems'    => "Ho tigarez ! Kudennoù teknikel zo gant al lec'hienn-mañ.",
@@ -3648,22 +3675,28 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'sqlite-no-fts'  => '$1 hep enklask eus an destenn a-bezh embreget',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Ouzhpennañ ur rummad',
-'ajax-remove-category'         => 'Tennañ ar rummad kuit',
-'ajax-edit-category'           => 'Kemmañ ur rummad',
-'ajax-add-category-submit'     => 'Ouzhpennañ',
-'ajax-confirm-ok'              => 'Mat eo',
-'ajax-confirm-title'           => 'Kadarnaat an oberiadenn',
-'ajax-confirm-save'            => 'Enrollañ',
-'ajax-confirm-save-all'        => 'Enrollañ an holl gemmoù',
-'ajax-cancel'                  => "Nullañ ar c'hemmoù",
-'ajax-cancel-all'              => 'Nullañ an holl gemmoù',
-'ajax-add-category-summary'    => 'Ouzhpennañ ar rummad "$1"',
-'ajax-edit-category-summary'   => 'Cheñch ar rummad eus "$1" da "$2"',
-'ajax-remove-category-summary' => 'Diverkañ ar rummad "$1"',
-'ajax-category-question'       => "Perak e fell deoc'h ober ar c'hemmoù da-heul :",
-'ajax-error-title'             => 'Fazi',
-'ajax-remove-category-error'   => 'N\'eus ket bet gallet diverkañ ar rummad "$1". 
+'ajax-add-category'             => 'Ouzhpennañ ur rummad',
+'ajax-remove-category'          => 'Tennañ ar rummad kuit',
+'ajax-edit-category'            => 'Kemmañ ur rummad',
+'ajax-add-category-submit'      => 'Ouzhpennañ',
+'ajax-confirm-ok'               => 'Mat eo',
+'ajax-confirm-title'            => 'Kadarnaat an oberiadenn',
+'ajax-confirm-save'             => 'Enrollañ',
+'ajax-confirm-save-all'         => 'Enrollañ an holl gemmoù',
+'ajax-cancel'                   => "Nullañ ar c'hemmoù",
+'ajax-cancel-all'               => 'Nullañ an holl gemmoù',
+'ajax-add-category-summary'     => 'Ouzhpennañ ar rummad "$1"',
+'ajax-edit-category-summary'    => 'Cheñch ar rummad eus "$1" da "$2"',
+'ajax-remove-category-summary'  => 'Diverkañ ar rummad "$1"',
+'ajax-category-question'        => "Perak e fell deoc'h ober ar c'hemmoù da-heul :",
+'ajax-error-title'              => 'Fazi',
+'ajax-remove-category-error'    => 'N\'eus ket bet gallet diverkañ ar rummad "$1". 
 C\'hoarvezout a ra p\'eo bet ouzhpennet ar rummad er bajenn dre ur patrom',
+'ajax-edit-category-error'      => 'N\'eus ket bet gallet degas kemmoù er rummad "$1". 
+C\'hoarvezout a ra p\'eo bet ouzhpennet ar rummad er bajenn dre ur patrom',
+'ajax-category-already-present' => 'Er rummad "$1" emañ ar bajenn-mañ c\'hoazh.',
+'ajax-category-hook-error'      => "Un arc'hwel lec'hel a vir ouzh ar c'hemmoù da vezañ enrollet.",
+'ajax-api-error'                => 'Distroet ez eus ur fazi gant an API : $1: $2.',
+'ajax-api-unknown-error'        => 'Distroet ez eus ur fazi dianav gant an API.',
 
 );

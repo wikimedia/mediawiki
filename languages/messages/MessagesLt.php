@@ -878,6 +878,9 @@ Naujausias įrašas žurnale yra pateiktas žemiau:",
 'templatesused'                    => '{{PLURAL:$1|Šablonas|Šablonai}}, naudojami puslapyje:',
 'templatesusedpreview'             => '{{PLURAL:$1|Šablonas|Šablonai}}, naudoti šioje peržiūroje:',
 'templatesusedsection'             => 'Šiame skyriuje {{PLURAL:$1|naudojamas šablonas|naudojami šablonai}}:',
+'distanttemplatesused'             => '{{PLURAL:$1|Šablonas|Šablonai}}, naudojami puslapyje:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Šablonas|Šablonai}}, naudojami puslapyje:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Šablonas|Šablonai}}, naudojami puslapyje:',
 'template-protected'               => '(apsaugotas)',
 'template-semiprotected'           => '(pusiau apsaugotas)',
 'hiddencategories'                 => 'Šis puslapis priklauso $1 {{PLURAL:$1|paslėptai kategorijai|paslėptoms kategorijoms|paslėptų kategorijų}}:',
@@ -906,6 +909,7 @@ Greičiausiai jis yra ištrintas.',
 'edit-no-change'                   => 'Jūsų keitimas buvo ignoruotas kadangi nebuvo atlikta jokių teksto pakeitimų.',
 'edit-already-exists'              => 'Negalima sukurti naujo puslapio.
 Jis jau egzistuoja.',
+'editinguserpage'                  => "'''Pastaba:''' Jūs redaguojate [[Help: Naudotojo puslapis | naudotojo puslapį]]. Norėdami palikti šį klientą pranešimą [ $1 redaguoti savo aptarimas puslapį].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Įspėjimas: Šiame puslapyje yra per daug užtrunkančių analizatoriaus funkcijų šaukinių.
@@ -1695,9 +1699,8 @@ Dėl saugumo, img_auth.php yra išjungtas.',
 'upload_source_file' => ' (failas jūsų kompiuteryje)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Šis specialus puslapis rodo visus įkeltus failus.
-Pagal numatymą paskutiniai įkelti failai rodomi sąrašo viršuje.
-Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
+'listfiles-summary'     => 'This special page shows all uploaded files.
+When filtered by user, only files where that user uploaded the most recent version of the file are shown.',
 'listfiles_search_for'  => 'Ieškoti failo pavadinimo:',
 'imgfile'               => 'failas',
 'listfiles'             => 'Failų sąrašas',
@@ -2021,7 +2024,7 @@ Palaikomi protokolai: <tt>$1</tt>',
 'emailpagetext'        => 'Jūs gali pasinaudoti šia forma norėdami nusiųsti el. laišką šiam naudotojui.
 El. pašto adresas, kurį įvedėte [[Special:Preferences|savo naudotojo nustatymuose]], bus rodomas kaip el. pašto siuntėjo adresas, tam, kad gavėjas galėtų jums iškart atsakyti.',
 'usermailererror'      => 'Pašto objektas grąžino klaidą:',
-'defemailsubject'      => '{{SITENAME}} el. paštas',
+'defemailsubject'      => '{{SITENAME}} el. pašto iš vartotojo " $1 "',
 'usermaildisabled'     => 'Naudotojo elektroninis paštas išjungtas',
 'usermaildisabledtext' => 'Jūs negalite siūlsti el. laiško kitiems šio wiki projekto naudotojams.',
 'noemailtitle'         => 'Nėra el. pašto adreso',
@@ -2406,6 +2409,7 @@ ankščiau užblokuotam IP adresui ar naudotojui.',
 'blocklist-userblocks'            => 'Slėpti į blokus',
 'blocklist-tempblocks'            => 'Slėpti laikinus blokavimus',
 'blocklist-addressblocks'         => 'Slėpti vieną IP blokų',
+'blocklist-rangeblocks'           => 'Slėpti diapazono blokai',
 'blocklist-timestamp'             => 'Laiko žymė',
 'blocklist-target'                => 'Tikslinė',
 'blocklist-expiry'                => 'Galioja iki',
@@ -3535,9 +3539,9 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 # Special:SpecialPages
 'specialpages'                   => 'Specialieji puslapiai',
 'specialpages-note'              => '----
-* Normalūs specialieji puslapiai.
-* <span class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</span>
-* <span class="mw-specialpagecached">Tik į podėlį įrašyti specialieji puslapiai.</span>',
+ * įprastą specialius puslapius.
+ * <span class="mw-specialpagerestricted">tik specialius puslapius.</span>
+ * <span class="mw-specialpagecached">Talpyklinių specialius puslapius (gali būti pasenusius).</span>',
 'specialpages-group-maintenance' => 'Sistemos palaikymo pranešimai',
 'specialpages-group-other'       => 'Kiti specialieji puslapiai',
 'specialpages-group-login'       => 'Prisijungimas / Registracija',
@@ -3590,6 +3594,30 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'compare-title-not-exists'    => 'Pavadinimas, kurį nurodėte, neegzistuoja.',
 'compare-revision-not-exists' => 'Keitimas, kurį nurodėte, neegzistuoja.',
 
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Visuotinis failo naudojimas',
+'globalfileusage-for'         => 'Pasaulio failo naudojimo, " $1 "',
+'globalfileusage-desc'        => '[[Specialus: GlobalFileUsage|Specialus puslapis]] peržiūrėti pasaulio failo naudojimo',
+'globalfileusage-ok'          => 'Paieška',
+'globalfileusage-text'        => 'Paieškos pasaulio failo naudojimo',
+'globalfileusage-no-results'  => '[[:$1]] nenaudojama kituose Wiki projektuose.',
+'globalfileusage-on-wiki'     => 'Naudojimo$2',
+'globalfileusage-of-file'     => 'Šių kitų wiki naudoti šį failą:',
+'globalfileusage-more'        => 'Peržiūrėti [[{{# specialus: GlobalUsage}} / $1 |kiti pasaulio naudojimo]] šio failo.',
+'globalfileusage-filterlocal' => 'Nerodyti vietos naudojimo',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Bendrasis šablonas naudojimo',
+'globaltemplateusage-for'         => 'Pasaulio failo naudojimo, " $1 "',
+'globaltemplateusage-desc'        => '[[Specialus: GlobalFileUsage|Specialus puslapis]] peržiūrėti pasaulio failo naudojimo',
+'globaltemplateusage-ok'          => 'Paieška',
+'globaltemplateusage-text'        => 'Paieškos pasaulio failo naudojimo',
+'globaltemplateusage-no-results'  => '[[:$1]] nenaudojama kituose Wiki projektuose.',
+'globaltemplateusage-on-wiki'     => 'Naudojimo$2',
+'globaltemplateusage-of-file'     => 'Šių kitų wiki naudoti šį failą:',
+'globaltemplateusage-more'        => 'Peržiūrėti [[{{# specialus: GlobalUsage}} / $1 |kiti pasaulio naudojimo]] šio failo.',
+'globaltemplateusage-filterlocal' => 'Nerodyti vietos naudojimo',
+
 # Database error messages
 'dberr-header'      => 'Ši svetainė turi problemų.',
 'dberr-problems'    => 'Atsiprašome! Svetainei iškilo techninių problemų.',
@@ -3638,5 +3666,6 @@ Dažniausiai taip nutinka, kai kategorija būna pridėta į šabloną, kuris nau
 'ajax-category-already-present' => 'Šis puslapis jau priskirtas kategorijai "$1"',
 'ajax-category-hook-error'      => 'Vietinė funkcija neleido išsaugoti pakeitimų.',
 'ajax-api-error'                => 'API grąžino klaidą: $1 : $2 .',
+'ajax-api-unknown-error'        => 'API grąžino nežinomą klaidą.',
 
 );

@@ -980,6 +980,7 @@ Semella que foi borrada.',
 'edit-no-change'                   => 'A súa edición foi ignorada dado que non fixo ningún cambio no texto.',
 'edit-already-exists'              => 'Non se pode crear a nova páxina.
 Esta xa existe.',
+'editinguserpage'                  => "'''Nota:''' Está a editar unha [[Help:User page|páxina de usuario]]. Para deixar unha mensaxe ao usuario, [$1 edite a súa páxina de conversa].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Aviso:''' Esta páxina contén demasiados analizadores de funcións de chamadas.

@@ -1437,7 +1437,7 @@ It appears to have been deleted.',
 'edit-no-change'                   => 'Your edit was ignored, because no change was made to the text.',
 'edit-already-exists'              => 'Could not create a new page.
 It already exists.',
-'editinguserpage' => "'''Note:''' You are editing a [[Help:User page|user page]]. To leave this user a message, [$1 edit their talk page].",
+'editinguserpage'                  => "'''Note:''' You are editing a [[Help:User page|user page]]. To leave this user a message, [$1 edit their talk page].",
 'addsection-preload'               => '', # do not translate or duplicate this message to other languages
 'addsection-editintro'             => '', # do not translate or duplicate this message to other languages
 

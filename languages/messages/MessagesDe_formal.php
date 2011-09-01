@@ -260,6 +260,7 @@ Grund für die Sperre: $1",
 Bitte prüfen Sie sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu Ihrer Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'edit-no-change'                   => 'Ihre Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenomme wurde.',
+'editinguserpage'                  => "'''Hinweis:''' Sie bearbeiten gerade eine [[Help:User page|Benutzerseite]]. Um diesem Benutzer eine Nachricht zu hinterlassen, [$1 bearbeiten Sie bitte seine Diskussionsseite].",
 
 # "Undo" feature
 'undo-success' => 'Die Bearbeitung kann rückgängig gemacht werden.

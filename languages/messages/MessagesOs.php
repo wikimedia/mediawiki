@@ -1094,7 +1094,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'exif-gaincontrol-0' => 'Нæй',
 
 # External editor support
-'edit-externally' => 'Ивын ацы файл æддаг программæйæ',
+'edit-externally'      => 'Ивын ацы файл æддаг программæйæ',
+'edit-externally-help' => '(Кæс [http://www.mediawiki.org/wiki/Manual:External_editors сывæрыны уагæвæрдтæ] фылдæр базонынæн)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'иууылдæр',

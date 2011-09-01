@@ -1425,8 +1425,8 @@ $5
 'autosumm-new' => '"$1" ନାଆଁରେ ପୃଷ୍ଠାଟିଏ ତିଆରିକଲେ',
 
 # Live preview
-'livepreview-loading' => 'ଧାରଣ ହେଉଛି...',
-'livepreview-ready'   => 'ଧାରଣ ହେଉଛି...ଏବେ ସଜିଲ!',
+'livepreview-loading' => 'ଖୋଲୁଅଛି...',
+'livepreview-ready'   => 'ଖୋଲୁଅଛି...ଏବେ ସଜିଲ!',
 
 # Watchlist editor
 'watchlistedit-raw-titles' => 'ନାଆଁ:',
