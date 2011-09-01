@@ -319,7 +319,7 @@ class AllmessagesTablePager extends TablePager {
 	}
 
 	function getStartBody() {
-		return Xml::openElement( 'table', array( 'class' => 'TablePager', 'id' => 'mw-allmessagestable' ) ) . "\n" .
+		return Xml::openElement( 'table', array( 'class' => 'mw-datatable TablePager', 'id' => 'mw-allmessagestable' ) ) . "\n" .
 			"<thead><tr>
 				<th rowspan=\"2\">" .
 					wfMsg( 'allmessagesname' ) . "
