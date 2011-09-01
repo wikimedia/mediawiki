@@ -529,6 +529,14 @@ class LogPage {
 		if( !isset( $messages[$flag] ) ) {
 			$messages[$flag] = htmlspecialchars( $flag ); // Fallback
 
+			// For grepping. The following core messages can be used here:
+			// * block-log-flags-angry-autoblock
+			// * block-log-flags-anononly
+			// * block-log-flags-hiddenname
+			// * block-log-flags-noautoblock
+			// * block-log-flags-nocreate
+			// * block-log-flags-noemail
+			// * block-log-flags-nousertalk
 			$msg = wfMessage( 'block-log-flags-' . $flag )->inLanguage( $lang );
 			if ( $msg->exists() ) {
 				$messages[$flag] = $msg->escaped();
