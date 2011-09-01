@@ -80,7 +80,7 @@ test( 'mw.config', function() {
 });
 
 test( 'mw.message & mw.messages', function() {
-	expect(16);
+	expect(17);
 
 	ok( mw.messages, 'messages defined' );
 	ok( mw.messages instanceof mw.Map, 'mw.messages instance of mw.Map' );
@@ -113,11 +113,15 @@ test( 'mw.message & mw.messages', function() {
 	var goodbye = mw.message( 'goodbye' );
 	strictEqual( goodbye.exists(), false, 'Message.exists returns false for inexisting messages' );
 
-	equal( goodbye.toString(), '<goodbye>', 'Message.toString returns <key> if key does not exist' );
+	equal( goodbye.plain(), '<goodbye>', 'Message.toString returns plain <key> if format is "plain" and key does not exist' );
+	// bug 30684
+	equal( goodbye.escaped(), '&lt;goodbye&gt;', 'Message.toString returns properly escaped &lt;key&gt; if format is "escaped" and key does not exist' );
 });
 
 test( 'mw.msg', function() {
-	expect(2);
+	expect(3);
+
+	ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 
 	equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
 	equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (inexisting message)' );
