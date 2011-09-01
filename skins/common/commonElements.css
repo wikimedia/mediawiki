@@ -30,7 +30,7 @@ a.new:visited, #p-personal a.new:visited {
 /* Interwiki Styling */
 .mw-body a.extiw,
 .mw-body a.extiw:active {
-	color: #59e;
+	color: #36b;
 	/* Don't show icons for interwiki links */
 	background: none;
 	padding: 0;
@@ -44,7 +44,7 @@ a.new:visited, #p-personal a.new:visited {
 
 /* External links */
 .mw-body a.external {
-	color: #59e;
+	color: #36b;
 }
 .mw-body a.external:visited {
 	color: #636; /* bug 3112 */
