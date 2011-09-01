@@ -821,7 +821,7 @@ abstract class TablePager extends IndexPager {
 		$tableClass = htmlspecialchars( $this->getTableClass() );
 		$sortClass = htmlspecialchars( $this->getSortHeaderClass() );
 
-		$s = "<table style='border:1;' class=\"$tableClass\"><thead><tr>\n";
+		$s = "<table style='border:1;' class=\"mw-datatable $tableClass\"><thead><tr>\n";
 		$fields = $this->getFieldNames();
 
 		# Make table header
