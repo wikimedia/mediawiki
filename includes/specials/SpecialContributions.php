@@ -481,12 +481,6 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 		$join_cond['page'] = array( 'INNER JOIN', 'page_id=rev_page' );
 
-		$fields = array(
-			'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
-			'page_len','rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
-			'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted'
-		);
-
 		$queryInfo = array(
 			'tables' => $tables,
 			'fields' => array(
