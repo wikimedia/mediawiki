@@ -51,6 +51,7 @@ production.
 * (bug 30344) Add configuration variable for setting custom priorities when
   generating sitemaps
 * (bug 16428) Include permalink in printable version
+* (bug 5865) Warning on editing other user's userpage
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
