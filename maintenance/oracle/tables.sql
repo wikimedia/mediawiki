@@ -37,6 +37,17 @@ ALTER TABLE &mw_prefix.user_groups ADD CONSTRAINT &mw_prefix.user_groups_fk1 FOR
 CREATE UNIQUE INDEX &mw_prefix.user_groups_u01 ON &mw_prefix.user_groups (ug_user,ug_group);
 CREATE INDEX &mw_prefix.user_groups_i01 ON &mw_prefix.user_groups (ug_group);
 
+CREATE TABLE &mw_prefix.user_former_groups (
+  ufg_user   NUMBER      DEFAULT 0 NOT NULL,
+  ufg_group  VARCHAR2(16)     NOT NULL
+);
+ALTER TABLE &mw_prefix.user_former_groups ADD CONSTRAINT &mw_prefix.user_former_groups_fk1 FOREIGN KEY (ufg_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
+CREATE UNIQUE INDEX &mw_prefix.user_former_groups_u01 ON &mw_prefix.user_former_groups (ufg_user,ufg_group);
+
+
+CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg_group);
+
+
 CREATE TABLE &mw_prefix.user_newtalk (
   user_id  NUMBER DEFAULT 0 NOT NULL,
   user_ip  VARCHAR2(40)        NULL,
@@ -355,6 +366,30 @@ CREATE INDEX &mw_prefix.filearchive_i02 ON &mw_prefix.filearchive (fa_storage_gr
 CREATE INDEX &mw_prefix.filearchive_i03 ON &mw_prefix.filearchive (fa_deleted_timestamp);
 CREATE INDEX &mw_prefix.filearchive_i04 ON &mw_prefix.filearchive (fa_user_text,fa_timestamp);
 
+CREATE SEQUENCE uploadstash_us_id_seq;
+CREATE TABLE &mw_prefix.uploadstash (
+	us_id                 NUMBER       NOT NULL,
+  us_user               NUMBER          DEFAULT 0 NOT NULL,
+	us_key								VARCHAR2(255) NOT NULL,
+	us_orig_path 					VARCHAR2(255) NOT NULL,
+	us_path								VARCHAR2(255) NOT NULL,
+	us_source_type				VARCHAR2(50),
+  us_timestamp          TIMESTAMP(6) WITH TIME ZONE,
+	us_status							VARCHAR2(50) NOT NULL,
+	us_size								NUMBER NOT NULL,
+	us_sha1								VARCHAR2(32) NOT NULL,
+	us_mime								VARCHAR2(255),
+  us_media_type         VARCHAR2(32) DEFAULT NULL,
+	us_image_width				NUMBER,
+	us_image_height				NUMBER,
+	us_image_bits					NUMBER
+);
+ALTER TABLE &mw_prefix.uploadstash ADD CONSTRAINT &mw_prefix.uploadstash_pk PRIMARY KEY (us_id);
+ALTER TABLE &mw_prefix.uploadstash ADD CONSTRAINT &mw_prefix.uploadstash_fk1 FOREIGN KEY (us_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
+CREATE INDEX &mw_prefix.uploadstash_i01 ON &mw_prefix.uploadstash (us_user);
+CREATE INDEX &mw_prefix.uploadstash_i02 ON &mw_prefix.uploadstash (us_timestamp);
+CREATE UNIQUE INDEX &mw_prefix.uploadstash_u01 ON &mw_prefix.uploadstash (us_key);
+
 CREATE SEQUENCE recentchanges_rc_id_seq;
 CREATE TABLE &mw_prefix.recentchanges (
   rc_id              NUMBER      NOT NULL,
@@ -467,6 +502,7 @@ CREATE INDEX &mw_prefix.logging_i01 ON &mw_prefix.logging (log_type, log_timesta
 CREATE INDEX &mw_prefix.logging_i02 ON &mw_prefix.logging (log_user, log_timestamp);
 CREATE INDEX &mw_prefix.logging_i03 ON &mw_prefix.logging (log_namespace, log_title, log_timestamp);
 CREATE INDEX &mw_prefix.logging_i04 ON &mw_prefix.logging (log_timestamp);
+CREATE INDEX &mw_prefix.logging_i05 ON &mw_prefix.logging (log_type, log_action, log_timestamp);
 
 CREATE TABLE &mw_prefix.log_search (
   ls_field VARCHAR2(32) NOT NULL,
@@ -644,6 +680,31 @@ CREATE TABLE &mw_prefix.config (
 ALTER TABLE &mw_prefix.config ADD CONSTRAINT &mw_prefix.config_pk PRIMARY KEY (cf_name);
 -- leaving index out for now ... 
 
+CREATE TABLE &mw_prefix.globaltemplatelinks (
+	gtl_from_wiki 				VARCHAR2(64) NOT NULL,
+	gtl_from_page					NUMBER NOT NULL,
+	gtl_from_namespace		NUMBER NOT NULL,
+	gtl_from_title				VARCHAR2(255) NOT NULL,
+	gtl_to_prefix					VARCHAR2(32) NOT NULL,
+	gtl_to_namespace			NUMBER NOT NULL,
+	gtl_to_namespacetext	VARCHAR2(255) NOT NULL,
+	gtl_to_title					VARCHAR2(255) NOT NULL
+);
+CREATE UNIQUE INDEX &mw_prefix.globaltemplatelinks_u01 ON &mw_prefix.globaltemplatelinks (gtl_to_prefix, gtl_to_namespace, gtl_to_title, gtl_from_wiki, gtl_from_page);
+CREATE UNIQUE INDEX &mw_prefix.globaltemplatelinks_u02 ON &mw_prefix.globaltemplatelinks (gtl_from_wiki, gtl_from_page, gtl_to_prefix, gtl_to_namespace, gtl_to_title);
+
+CREATE TABLE &mw_prefix.globalnamespaces (
+	gn_wiki						VARCHAR2(64) NOT NULL,
+	gn_namespace			NUMBER NOT NULL,
+	gn_namespacetext	VARCHAR2(255) NOT NULL
+);
+CREATE UNIQUE INDEX &mw_prefix.globalnamespaces_u01 ON &mw_prefix.globalnamespaces (gn_wiki, gn_namespace, gn_namespacetext);
+
+CREATE TABLE &mw_prefix.globalinterwiki (
+	giw_wikiid VARCHAR2(64) NOT NULL,
+	giw_prefix VARCHAR2(32) NOT NULL
+);
+CREATE UNIQUE INDEX &mw_prefix.globalinterwiki_u01 ON &mw_prefix.globalinterwiki (giw_wikiid, giw_prefix);
 
 -- do not prefix this table as it breaks parserTests
 CREATE TABLE wiki_field_info_full (
