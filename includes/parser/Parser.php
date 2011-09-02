@@ -53,7 +53,7 @@ class Parser {
 	 * changes in an incompatible way, so the parser cache
 	 * can automatically discard old data.
 	 */
-	const VERSION = '1.6.5';
+	const VERSION = '1.6.4';
 
 	/**
 	 * Update this version number when the output of serialiseHalfParsedText()
