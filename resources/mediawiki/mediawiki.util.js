@@ -6,17 +6,11 @@
 	// Local cache and alias
 	var util = mw.util = {
 
-		/* Initialisation */
 		/**
-		 * @var boolean Wether or not already initialised
+		 * Initialisation
+		 * (don't call before document ready)
 		 */
-		'initialised' : false,
 		'init' : function() {
-			if ( this.initialised === false ) {
-				this.initialised = true;
-
-				// Following the initialisation after the DOM is ready
-				$(document).ready( function() {
 
 					/* Set up $.messageBox */
 					$.messageBoxNew( {
@@ -99,11 +93,6 @@
 							$tocToggleLink.click();
 						}
 					}
-				} );
-
-				return true;
-			}
-			return false;
 		},
 
 		/* Main body */
@@ -595,7 +584,5 @@
 		}
 
 	};
-
-	util.init();
 
 } )( jQuery );
