@@ -431,6 +431,8 @@ production.
   #REDIRECT [[Foo]] is invalid JS
 * (bug 30335) Fix for HTMLForms using GET breaking when non-friendly URLs
   are used
+* (bug 30264) Changed installer-generated LocalSettings.php to use require_once()
+ instead require() for included extensions.
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.

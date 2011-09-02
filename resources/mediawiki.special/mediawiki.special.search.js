@@ -1,7 +1,7 @@
 /*
- * JavaScript for Specical:Search
+ * JavaScript for Special:Search
  */
-( function( $ ) {
+jQuery( function( $ ) {
 
 // Emulate HTML5 autofocus behavior in non HTML5 compliant browsers
 if ( !( 'autofocus' in document.createElement( 'input' ) ) ) {
@@ -34,4 +34,4 @@ $('#searchText, #powerSearchText').change(function() {
 	});
 }).trigger('change');
 
-} )( jQuery );
+} );

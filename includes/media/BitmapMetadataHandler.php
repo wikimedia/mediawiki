@@ -40,16 +40,16 @@ class BitmapMetadataHandler {
 
 
 	/**
-	 *
-	 * get exif info using exif class.
+	 * Get exif info using exif class.
 	 * Basically what used to be in BitmapHandler::getMetadata().
 	 * Just calls stuff in the Exif class.
 	 *
 	 * @param $filename string
 	 */
-	function getExif ( $filename ) {
-		if ( file_exists( $filename ) ) {
-			$exif = new Exif( $filename );
+	function getExif ( $filename, $byteOrder ) {
+		global $wgShowEXIF;
+		if ( file_exists( $filename ) && $wgShowEXIF ) {
+			$exif = new Exif( $filename, $byteOrder );
 			$data = $exif->getFilteredData();
 			if ( $data ) {
 				$this->addMetadata( $data, 'exif' );
@@ -117,7 +117,6 @@ class BitmapMetadataHandler {
 	static function Jpeg ( $filename ) {
 		$showXMP = function_exists( 'xml_parser_create_ns' );
 		$meta = new self();
-		$meta->getExif( $filename );
 
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 		if ( isset( $seg['COM'] ) && isset( $seg['COM'][0] ) ) {
@@ -140,6 +139,9 @@ class BitmapMetadataHandler {
 			foreach ( $res as $type => $array ) {
 				$meta->addMetadata( $array, $type );
 			}
+		}
+		if ( isset( $seg['byteOrder'] ) ) {
+			$meta->getExif( $filename, $seg['byteOrder'] );
 		}
 		return $meta->getMetadataArray();
 	}
@@ -207,5 +209,61 @@ class BitmapMetadataHandler {
 		$baseArray['metadata']['_MW_GIF_VERSION'] = GIFMetadataExtractor::VERSION;
 		return $baseArray;
 	}
+
+	/**
+	 * This doesn't do much yet, but eventually I plan to add
+	 * XMP support for Tiff. (PHP's exif support already extracts
+	 * but needs some further processing because PHP's exif support
+	 * is stupid...)
+	 *
+	 * @todo Add XMP support, so this function actually makes
+	 * sense to put here.
+	 *
+	 * The various exceptions this throws are caught later.
+	 * @param $filename String
+	 * @return Array The metadata.
+	 */
+	static public function Tiff ( $filename ) {
+		if ( file_exists( $filename ) ) {
+			$byteOrder = self::getTiffByteOrder( $filename );
+			if ( !$byteOrder ) {
+				throw new MWException( "Error determining byte order of $filename" );
+			}
+			$exif = new Exif( $filename, $byteOrder );
+			$data = $exif->getFilteredData();
+			if ( $data ) {
+				$data['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
+				return $data;
+			} else {
+				throw new MWException( "Could not extract data from tiff file $filename" );
+			}
+		} else {
+			throw new MWException( "File doesn't exist - $filename" );
+		}
+	}
+	/**
+	 * Read the first 2 bytes of a tiff file to figure out
+	 * Little Endian or Big Endian. Needed for exif stuff.
+	 *
+	 * @param $filename String The filename
+	 * @return String 'BE' or 'LE' or false
+	 */
+	static function getTiffByteOrder( $filename ) {
+		$fh = fopen( $filename, 'rb' );
+		if ( !$fh ) return false;
+		$head = fread( $fh, 2 );
+		fclose( $fh );
+
+		switch( $head ) {
+			case 'II':
+				return 'LE'; // II for intel.
+			case 'MM':
+				return 'BE'; // MM for motorla.
+			default:
+				return false; // Something went wrong.
+
+		}
+	}
+
 
 }

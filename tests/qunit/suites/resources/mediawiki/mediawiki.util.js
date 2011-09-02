@@ -107,7 +107,7 @@ test( 'toggleToc', function() {
 });
 
 test( 'getParamValue', function() {
-	expect(3);
+	expect(5);
 
 	var	url1 = 'http://mediawiki.org/?foo=wrong&foo=right#&foo=bad';
 
@@ -116,6 +116,12 @@ test( 'getParamValue', function() {
 
 	var url2 = 'http://mediawiki.org/#&foo=bad';
 	strictEqual( mw.util.getParamValue( 'foo', url2 ), null, 'Ignore hash if param is not in querystring but in hash (bug 27427)' );
+
+	var url3 = 'example.com?' + $.param({ 'TEST': 'a b+c' });
+	strictEqual( mw.util.getParamValue( 'TEST', url3 ), 'a b+c', 'Bug 30441: getParamValue must understand "+" encoding of space' );
+
+	var url4 = 'example.com?' + $.param({ 'TEST': 'a b+c d' }); // check for sloppy code from r95332 :)
+	strictEqual( mw.util.getParamValue( 'TEST', url4 ), 'a b+c d', 'Bug 30441: getParamValue must understand "+" encoding of space (multiple spaces)' );
 });
 
 test( 'tooltipAccessKey', function() {

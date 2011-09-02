@@ -118,7 +118,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$this->addTables( array(
 			'recentchanges',
 			'watchlist',
-			'page',
 		) );
 
 		$userId = $user->getId();
@@ -128,7 +127,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				'wl_namespace=rc_namespace',
 				'wl_title=rc_title'
 		) ) ) );
-		$this->addJoinConds( array( 'page' => array( 'LEFT JOIN','rc_cur_id=page_id' ) ) );
 
 		$this->addWhere( array(
 			'rc_deleted' => 0,
@@ -140,7 +138,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$db->timestamp( $params['start'] ),
 			$db->timestamp( $params['end'] ) );
 		$this->addWhereFld( 'wl_namespace', $params['namespace'] );
-		$this->addWhereIf( 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG, !$params['allrev'] );
+
+		if ( !$params['allrev'] ) {
+			$this->addTables( 'page' );
+			$this->addJoinConds( array( 'page' => array( 'LEFT JOIN','rc_cur_id=page_id' ) ) );
+			$this->addWhere( 'rc_this_oldid=page_latest OR rc_type=' . RC_LOG );
+		}
 
 		if ( !is_null( $params['show'] ) ) {
 			$show = array_flip( $params['show'] );

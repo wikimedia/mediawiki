@@ -28,7 +28,10 @@ class JpegMetadataExtractor {
 
 		$segmentCount = 0;
 
-		$segments = array( 'XMP_ext' => array(), 'COM' => array() );
+		$segments = array(
+			'XMP_ext' => array(),
+			'COM' => array(),
+		);
 
 		if ( !$filename ) {
 			throw new MWException( "No filename specified for " . __METHOD__ );
@@ -82,23 +85,34 @@ class JpegMetadataExtractor {
 					wfDebug( __METHOD__ . ' Ignoring JPEG comment as is garbage.' );
 				}
 
-			} elseif ( $buffer === "\xE1" && $showXMP ) {
+			} elseif ( $buffer === "\xE1" ) {
 				// APP1 section (Exif, XMP, and XMP extended)
 				// only extract if XMP is enabled.
 				$temp = self::jpegExtractMarker( $fh );
-
 				// check what type of app segment this is.
-				if ( substr( $temp, 0, 29 ) === "http://ns.adobe.com/xap/1.0/\x00" ) {
+				if ( substr( $temp, 0, 29 ) === "http://ns.adobe.com/xap/1.0/\x00" && $showXMP ) {
 					$segments["XMP"] = substr( $temp, 29 );
-				} elseif ( substr( $temp, 0, 35 ) === "http://ns.adobe.com/xmp/extension/\x00" ) {
+				} elseif ( substr( $temp, 0, 35 ) === "http://ns.adobe.com/xmp/extension/\x00" && $showXMP ) {
 					$segments["XMP_ext"][] = substr( $temp, 35 );
-				} elseif ( substr( $temp, 0, 29 ) === "XMP\x00://ns.adobe.com/xap/1.0/\x00" ) {
+				} elseif ( substr( $temp, 0, 29 ) === "XMP\x00://ns.adobe.com/xap/1.0/\x00" && $showXMP ) {
 					// Some images (especially flickr images) seem to have this.
 					// I really have no idea what the deal is with them, but
 					// whatever...
 					$segments["XMP"] = substr( $temp, 29 );
 					wfDebug( __METHOD__ . ' Found XMP section with wrong app identifier '
 						. "Using anyways.\n" ); 
+				} elseif ( substr( $temp, 0, 6 ) === "Exif\0\0" ) {
+					// Just need to find out what the byte order is.
+					// because php's exif plugin sucks...
+					// This is a II for little Endian, MM for big. Not a unicode BOM.
+					$byteOrderMarker = substr( $temp, 6, 2 );
+					if ( $byteOrderMarker === 'MM' ) {
+						$segments['byteOrder'] = 'BE';
+					} elseif ( $byteOrderMarker === 'II' ) {
+						$segments['byteOrder'] = 'LE';
+					} else {
+						wfDebug( __METHOD__ . ' Invalid byte ordering?!' );
+					}
 				}
 			} elseif ( $buffer === "\xED" ) {
 				// APP13 - PSIR. IPTC and some photoshop stuff
