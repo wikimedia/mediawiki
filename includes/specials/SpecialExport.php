@@ -38,9 +38,8 @@ class SpecialExport extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgOut, $wgRequest, $wgSitename, $wgExportAllowListContributors;
+		global $wgSitename, $wgExportAllowListContributors, $wgExportFromNamespaces;
 		global $wgExportAllowHistory, $wgExportMaxHistory, $wgExportMaxLinkDepth;
-		global $wgExportFromNamespaces;
 
 		$this->setHeaders();
 		$this->outputHeader();
@@ -48,16 +47,17 @@ class SpecialExport extends SpecialPage {
 		// Set some variables
 		$this->curonly = true;
 		$this->doExport = false;
-		$this->templates = $wgRequest->getCheck( 'templates' );
-		$this->images = $wgRequest->getCheck( 'images' ); // Doesn't do anything yet
+		$request = $this->getRequest();
+		$this->templates = $request->getCheck( 'templates' );
+		$this->images = $request->getCheck( 'images' ); // Doesn't do anything yet
 		$this->pageLinkDepth = $this->validateLinkDepth(
-			$wgRequest->getIntOrNull( 'pagelink-depth' )
+			$request->getIntOrNull( 'pagelink-depth' )
 		);
 		$nsindex = '';
 
-		if ( $wgRequest->getCheck( 'addcat' ) ) {
-			$page = $wgRequest->getText( 'pages' );
-			$catname = $wgRequest->getText( 'catname' );
+		if ( $request->getCheck( 'addcat' ) ) {
+			$page = $request->getText( 'pages' );
+			$catname = $request->getText( 'catname' );
 
 			if ( $catname !== '' && $catname !== null && $catname !== false ) {
 				$t = Title::makeTitleSafe( NS_MAIN, $catname );
@@ -74,9 +74,9 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 		}
-		elseif( $wgRequest->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
-			$page = $wgRequest->getText( 'pages' );
-			$nsindex = $wgRequest->getText( 'nsindex', '' );
+		elseif( $request->getCheck( 'addns' ) && $wgExportFromNamespaces ) {
+			$page = $request->getText( 'pages' );
+			$nsindex = $request->getText( 'nsindex', '' );
 
 			if ( strval( $nsindex ) !== ''  ) {
 				/**
@@ -88,10 +88,10 @@ class SpecialExport extends SpecialPage {
 				}
 			}
 		}
-		elseif( $wgRequest->wasPosted() && $par == '' ) {
-			$page = $wgRequest->getText( 'pages' );
-			$this->curonly = $wgRequest->getCheck( 'curonly' );
-			$rawOffset = $wgRequest->getVal( 'offset' );
+		elseif( $request->wasPosted() && $par == '' ) {
+			$page = $request->getText( 'pages' );
+			$this->curonly = $request->getCheck( 'curonly' );
+			$rawOffset = $request->getVal( 'offset' );
 
 			if( $rawOffset ) {
 				$offset = wfTimestamp( TS_MW, $rawOffset );
@@ -99,14 +99,14 @@ class SpecialExport extends SpecialPage {
 				$offset = null;
 			}
 
-			$limit = $wgRequest->getInt( 'limit' );
-			$dir = $wgRequest->getVal( 'dir' );
+			$limit = $request->getInt( 'limit' );
+			$dir = $request->getVal( 'dir' );
 			$history = array(
 				'dir' => 'asc',
 				'offset' => false,
 				'limit' => $wgExportMaxHistory,
 			);
-			$historyCheck = $wgRequest->getCheck( 'history' );
+			$historyCheck = $request->getCheck( 'history' );
 
 			if ( $this->curonly ) {
 				$history = WikiExporter::CURRENT;
@@ -127,8 +127,8 @@ class SpecialExport extends SpecialPage {
 			}
 		} else {
 			// Default to current-only for GET requests.
-			$page = $wgRequest->getText( 'pages', $par );
-			$historyCheck = $wgRequest->getCheck( 'history' );
+			$page = $request->getText( 'pages', $par );
+			$historyCheck = $request->getCheck( 'history' );
 
 			if( $historyCheck ) {
 				$history = WikiExporter::FULL;
@@ -146,23 +146,23 @@ class SpecialExport extends SpecialPage {
 			$history = WikiExporter::CURRENT;
 		}
 
-		$list_authors = $wgRequest->getCheck( 'listauthors' );
+		$list_authors = $request->getCheck( 'listauthors' );
 		if ( !$this->curonly || !$wgExportAllowListContributors ) {
 			$list_authors = false ;
 		}
 
 		if ( $this->doExport ) {
-			$wgOut->disable();
+			$this->getOutput()->disable();
 
 			// Cancel output buffering and gzipping if set
 			// This should provide safer streaming for pages with history
 			wfResetOutputBuffers();
-			$wgRequest->response()->header( "Content-type: application/xml; charset=utf-8" );
+			$request->response()->header( "Content-type: application/xml; charset=utf-8" );
 
-			if( $wgRequest->getCheck( 'wpDownload' ) ) {
+			if( $request->getCheck( 'wpDownload' ) ) {
 				// Provide a sane filename suggestion
 				$filename = urlencode( $wgSitename . '-' . wfTimestampNow() . '.xml' );
-				$wgRequest->response()->header( "Content-disposition: attachment;filename={$filename}" );
+				$request->response()->header( "Content-disposition: attachment;filename={$filename}" );
 			}
 
 			$this->doExport( $page, $history, $list_authors );
@@ -170,7 +170,8 @@ class SpecialExport extends SpecialPage {
 			return;
 		}
 
-		$wgOut->addWikiMsg( 'exporttext' );
+		$out = $this->getOutput();
+		$out->addWikiMsg( 'exporttext' );
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalUrl( 'action=submit' ) ) );
@@ -190,17 +191,17 @@ class SpecialExport extends SpecialPage {
 				wfMsg( 'exportcuronly' ),
 				'curonly',
 				'curonly',
-				$wgRequest->wasPosted() ? $wgRequest->getCheck( 'curonly' ) : true
+				$request->wasPosted() ? $request->getCheck( 'curonly' ) : true
 			) . '<br />';
 		} else {
-			$wgOut->addHTML( wfMsgExt( 'exportnohistory', 'parse' ) );
+			$out->addHTML( wfMsgExt( 'exportnohistory', 'parse' ) );
 		}
 
 		$form .= Xml::checkLabel(
 			wfMsg( 'export-templates' ),
 			'templates',
 			'wpExportTemplates',
-			$wgRequest->wasPosted() ? $wgRequest->getCheck( 'templates' ) : false
+			$request->wasPosted() ? $request->getCheck( 'templates' ) : false
 		) . '<br />';
 
 		if( $wgExportMaxLinkDepth || $this->userCanOverrideExportDepth() ) {
@@ -212,18 +213,17 @@ class SpecialExport extends SpecialPage {
 			wfMsg( 'export-download' ),
 			'wpDownload',
 			'wpDownload',
-			$wgRequest->wasPosted() ? $wgRequest->getCheck( 'wpDownload' ) : true
+			$request->wasPosted() ? $request->getCheck( 'wpDownload' ) : true
 		) . '<br />';
 
 		$form .= Xml::submitButton( wfMsg( 'export-submit' ), Linker::tooltipAndAccesskeyAttribs( 'export' ) );
 		$form .= Xml::closeElement( 'form' );
 
-		$wgOut->addHTML( $form );
+		$out->addHTML( $form );
 	}
 
 	private function userCanOverrideExportDepth() {
-		global $wgUser;
-		return $wgUser->isAllowed( 'override-export-depth' );
+		return $this->getUser()->isAllowed( 'override-export-depth' );
 	}
 
 	/**
