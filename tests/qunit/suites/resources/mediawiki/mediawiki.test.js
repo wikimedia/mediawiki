@@ -88,7 +88,7 @@ test( 'mw.message & mw.messages', function() {
 
 	var hello = mw.message( 'hello' );
 
-	equal( hello.format, 'plain', 'Message property "format" defaults to "parse"' );
+	equal( hello.format, 'plain', 'Message property "format" defaults to "plain"' );
 	strictEqual( hello.map, mw.messages, 'Message property "map" defaults to the global instance in mw.messages' );
 	equal( hello.key, 'hello', 'Message property "key" (currect key)' );
 	deepEqual( hello.parameters, [], 'Message property "parameters" defaults to an empty array' );
