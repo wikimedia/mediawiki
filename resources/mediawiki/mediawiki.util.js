@@ -12,87 +12,87 @@
 		 */
 		'init' : function() {
 
-					/* Set up $.messageBox */
-					$.messageBoxNew( {
-						'id': 'mw-js-message',
-						'parent': '#content'
+			/* Set up $.messageBox */
+			$.messageBoxNew( {
+				'id': 'mw-js-message',
+				'parent': '#content'
+			} );
+
+			// Shortcut to client profile return
+			var profile = $.client.profile();
+
+			/* Set tooltipAccessKeyPrefix */
+
+			// Opera on any platform
+			if ( profile.name == 'opera' ) {
+				util.tooltipAccessKeyPrefix = 'shift-esc-';
+
+			// Chrome on any platform
+			} else if ( profile.name == 'chrome' ) {
+				// Chrome on Mac or Chrome on other platform ?
+				util.tooltipAccessKeyPrefix = ( profile.platform == 'mac'
+					? 'ctrl-option-' : 'alt-' );
+
+			// Non-Windows Safari with webkit_version > 526
+			} else if ( profile.platform !== 'win'
+				&& profile.name == 'safari'
+				&& profile.layoutVersion > 526 ) {
+				util.tooltipAccessKeyPrefix = 'ctrl-alt-';
+
+			// Safari/Konqueror on any platform, or any browser on Mac
+			// (but not Safari on Windows)
+			} else if ( !( profile.platform == 'win' && profile.name == 'safari' )
+							&& ( profile.name == 'safari'
+							|| profile.platform == 'mac'
+							|| profile.name == 'konqueror' ) ) {
+				util.tooltipAccessKeyPrefix = 'ctrl-';
+
+			// Firefox 2.x and later
+			} else if ( profile.name == 'firefox' && profile.versionBase > '1' ) {
+				util.tooltipAccessKeyPrefix = 'alt-shift-';
+			}
+
+			/* Fill $content var */
+			if ( $( '#bodyContent' ).length ) {
+				// Vector, Monobook, Chick etc.
+				util.$content = $( '#bodyContent' );
+
+			} else if ( $( '#mw_contentholder' ).length ) {
+				// Modern
+				util.$content = $( '#mw_contentholder' );
+
+			} else if ( $( '#article' ).length ) {
+				// Standard, CologneBlue
+				util.$content = $( '#article' );
+
+			} else {
+				// #content is present on almost all if not all skins. Most skins (the above cases)
+				// have #content too, but as an outer wrapper instead of the article text container.
+				// The skins that don't have an outer wrapper do have #content for everything
+				// so it's a good fallback
+				util.$content = $( '#content' );
+			}
+
+			/* Table of Contents toggle */
+			var	$tocContainer = $( '#toc' ),
+				$tocTitle = $( '#toctitle' ),
+				$tocToggleLink = $( '#togglelink' );
+			// Only add it if there is a TOC and there is no toggle added already
+			if ( $tocContainer.length && $tocTitle.length && !$tocToggleLink.length ) {
+				var	hideTocCookie = $.cookie( 'mw_hidetoc' );
+					$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
+						.text( mw.msg( 'hidetoc' ) )
+						.click( function(e){
+							e.preventDefault();
+							util.toggleToc( $(this) );
 					} );
+				$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle"></span>' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
 
-					// Shortcut to client profile return
-					var profile = $.client.profile();
-
-					/* Set tooltipAccessKeyPrefix */
-
-					// Opera on any platform
-					if ( profile.name == 'opera' ) {
-						util.tooltipAccessKeyPrefix = 'shift-esc-';
-
-					// Chrome on any platform
-					} else if ( profile.name == 'chrome' ) {
-						// Chrome on Mac or Chrome on other platform ?
-						util.tooltipAccessKeyPrefix = ( profile.platform == 'mac'
-							? 'ctrl-option-' : 'alt-' );
-
-					// Non-Windows Safari with webkit_version > 526
-					} else if ( profile.platform !== 'win'
-						&& profile.name == 'safari'
-						&& profile.layoutVersion > 526 ) {
-						util.tooltipAccessKeyPrefix = 'ctrl-alt-';
-
-					// Safari/Konqueror on any platform, or any browser on Mac
-					// (but not Safari on Windows)
-					} else if ( !( profile.platform == 'win' && profile.name == 'safari' )
-									&& ( profile.name == 'safari'
-									|| profile.platform == 'mac'
-									|| profile.name == 'konqueror' ) ) {
-						util.tooltipAccessKeyPrefix = 'ctrl-';
-
-					// Firefox 2.x and later
-					} else if ( profile.name == 'firefox' && profile.versionBase > '1' ) {
-						util.tooltipAccessKeyPrefix = 'alt-shift-';
-					}
-
-					/* Fill $content var */
-					if ( $( '#bodyContent' ).length ) {
-						// Vector, Monobook, Chick etc.
-						util.$content = $( '#bodyContent' );
-
-					} else if ( $( '#mw_contentholder' ).length ) {
-						// Modern
-						util.$content = $( '#mw_contentholder' );
-
-					} else if ( $( '#article' ).length ) {
-						// Standard, CologneBlue
-						util.$content = $( '#article' );
-
-					} else {
-						// #content is present on almost all if not all skins. Most skins (the above cases)
-						// have #content too, but as an outer wrapper instead of the article text container.
-						// The skins that don't have an outer wrapper do have #content for everything
-						// so it's a good fallback
-						util.$content = $( '#content' );
-					}
-
-					/* Table of Contents toggle */
-					var	$tocContainer = $( '#toc' ),
-						$tocTitle = $( '#toctitle' ),
-						$tocToggleLink = $( '#togglelink' );
-					// Only add it if there is a TOC and there is no toggle added already
-					if ( $tocContainer.length && $tocTitle.length && !$tocToggleLink.length ) {
-						var	hideTocCookie = $.cookie( 'mw_hidetoc' );
-							$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
-								.text( mw.msg( 'hidetoc' ) )
-								.click( function(e){
-									e.preventDefault();
-									util.toggleToc( $(this) );
-							} );
-						$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle"></span>' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
-
-						if ( hideTocCookie == '1' ) {
-							// Cookie says user want toc hidden
-							$tocToggleLink.click();
-						}
-					}
+				if ( hideTocCookie == '1' ) {
+					// Cookie says user want toc hidden
+					$tocToggleLink.click();
+				}
+			}
 		},
 
 		/* Main body */
