@@ -783,6 +783,7 @@ Vă rugăm să așteptați până să mai încercați.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Eroare necunoscută în funcția PHP mail()',
+'user-mail-no-addy'      => 'S-a încercat trimiterea e-mailului fără o adresă de e-mail.',
 
 # Change password dialog
 'resetpass'                 => 'Modifică parola',
@@ -811,6 +812,16 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 'passwordreset-username'       => 'Nume de utilizator:',
 'passwordreset-email'          => 'Adresă de e-mail:',
 'passwordreset-emailtitle'     => 'Detalii despre cont pe {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Cineva (probabil dumneavoastră, de la adresa IP $1) a cerut reamintirea detaliilor
+contului dumneavoastră pe {{SITENAME}} ($4). {{PLURAL:$3|Următorul cont este asociat|Următoarele conturi sunt asociate}}
+cu această adresă de e-mail:
+
+$2
+
+{{PLURAL:$3|Această parolă temporară va|Aceste parole temporare vor}} expira {{PLURAL:$5|într-o zi|în $5 zile}}.
+Ar trebui să vă autentificați și să schimbați parola acum. Dacă altcineva a făcut această cerere 
+sau dacă v-ați reamintit parola inițială și nu mai doriți să o schimbați,
+puteți ignora acest mesaj, continuând să utilizați vechea parolă.',
 'passwordreset-emailtext-user' => 'Utilizatorul $1 de pe {{SITENAME}} a solicitat o reamintire a detaliilor contului dumneavoastră pentru {{SITENAME}} ($4). Următorul utilizator are {{PLURAL:$3|contul asociat|conturile asociate}} cu această adresă de e-mail:
 
 $2
@@ -1003,6 +1014,9 @@ Ultima intrare în jurnal este afișată mai jos pentru referință:",
 'templatesused'                    => '{{PLURAL:$1|Format folosit|Formate folosite}} în această pagină:',
 'templatesusedpreview'             => '{{PLURAL:$1|Format folosit|Formate folosite}} în această previzualizare:',
 'templatesusedsection'             => '{{PLURAL:$1|Format utilizat|Formate utilizate}} în această secțiune:',
+'distanttemplatesused'             => '{{PLURAL:$1|Format îndepărtat folosit|Formate îndepărtate folosite}} în această pagină:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Format îndepărtat folosit|Formate îndepărtate folosite}} în această previzualizare:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Format îndepărtat folosit|Formate îndepărtate folosite}} în această secțiune:',
 'template-protected'               => '(protejat)',
 'template-semiprotected'           => '(semiprotejat)',
 'hiddencategories'                 => 'Această pagină este membrul {{PLURAL:$1|unei categorii ascunse|a $1 categorii ascunse}}:',
@@ -1310,12 +1324,13 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'searchdisabled'                   => '<p>Ne pare rău! Căutarea după text a fost dezactivată temporar, din motive de performanță. Între timp puteți folosi căutarea prin Google mai jos, însă aceasta poate să dea rezultate învechite.</p>',
 
 # Quickbar
-'qbsettings'               => 'Setări pentru bara rapidă',
-'qbsettings-none'          => 'Fără',
-'qbsettings-fixedleft'     => 'Fixă, în stânga',
-'qbsettings-fixedright'    => 'Fixă, în dreapta',
-'qbsettings-floatingleft'  => 'Liberă',
-'qbsettings-floatingright' => 'Plutire la dreapta',
+'qbsettings'                => 'Setări pentru bara rapidă',
+'qbsettings-none'           => 'Fără',
+'qbsettings-fixedleft'      => 'Fixă, în stânga',
+'qbsettings-fixedright'     => 'Fixă, în dreapta',
+'qbsettings-floatingleft'   => 'Liberă',
+'qbsettings-floatingright'  => 'Plutire la dreapta',
+'qbsettings-directionality' => 'Fixat, în funcție de direcția în care se face scrierea în limba dumneavoastră',
 
 # Preferences page
 'preferences'                   => 'Preferințe',
@@ -2472,6 +2487,7 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'sp-contributions-username'            => 'Adresă IP sau nume de utilizator:',
 'sp-contributions-toponly'             => 'Afișează numai versiunile recente',
 'sp-contributions-submit'              => 'Caută',
+'sp-contributions-showsizediff'        => 'Afișează diferența dintre mărimea inițială a paginii și mărimea după efectuarea modificării',
 
 # What links here
 'whatlinkshere'            => 'Ce trimite aici',
@@ -2551,6 +2567,7 @@ Vezi [[Special:IPBlockList|lista de adrese IP și conturi blocate]] pentru a rev
 'blocklist-userblocks'            => 'Ascunde conturile blocate',
 'blocklist-tempblocks'            => 'Ascunde blocările temporare',
 'blocklist-addressblocks'         => 'Ascunde adresele IP blocate',
+'blocklist-rangeblocks'           => 'Ascunde blocările de gamă',
 'blocklist-timestamp'             => 'Data și ora',
 'blocklist-target'                => 'Utilizator/adresă IP',
 'blocklist-expiry'                => 'Expiră la',
@@ -3183,11 +3200,16 @@ Altele vor fi ascunse implicit.
 'exif-keywords'                    => 'Cuvinte cheie',
 'exif-worldregioncreated'          => 'Regiunea lumii în care a fost făcută fotografia',
 'exif-countrycreated'              => 'Țara în care a fost făcută fotografia',
+'exif-countrycodecreated'          => 'Codul țării în care a fost făcută fotografia',
 'exif-provinceorstatecreated'      => 'Provincia sau statul în care a fost făcută fotografia',
 'exif-citycreated'                 => 'Orașul în care a fost făcută fotografia',
+'exif-sublocationcreated'          => 'Partea orașului în care a fost făcută fotografia',
+'exif-worldregiondest'             => 'Regiunea lumii ilustrată',
 'exif-countrydest'                 => 'Țara ilustrată',
 'exif-countrycodedest'             => 'Codul țării ilustrate',
+'exif-provinceorstatedest'         => 'Provincia sau statul ilustrat',
 'exif-citydest'                    => 'Orașul ilustrat',
+'exif-sublocationdest'             => 'Partea orașului ilustrată',
 'exif-objectname'                  => 'Titlu scurt',
 'exif-specialinstructions'         => 'Instrucțiuni speciale',
 'exif-headline'                    => 'Titlu detaliat',
@@ -3195,15 +3217,19 @@ Altele vor fi ascunse implicit.
 'exif-source'                      => 'Sursă',
 'exif-editstatus'                  => 'Statutul editorial al imaginii',
 'exif-urgency'                     => 'Urgență',
+'exif-fixtureidentifier'           => 'Articol',
 'exif-locationdest'                => 'Locația ilustrată',
 'exif-locationdestcode'            => 'Codul locației ilustrate',
+'exif-objectcycle'                 => 'Momentul zilei pentru care acest element media este destinat',
 'exif-contact'                     => 'Informații de contact',
+'exif-writer'                      => 'Autor',
 'exif-languagecode'                => 'Limbă',
 'exif-iimversion'                  => 'Versiune IIM',
 'exif-iimcategory'                 => 'Categorie',
 'exif-iimsupplementalcategory'     => 'Categorii suplimentare',
 'exif-datetimeexpires'             => 'Nu utilizați după data de',
 'exif-datetimereleased'            => 'Lansat pe',
+'exif-originaltransmissionref'     => 'Codul locului transmisiei originale',
 'exif-identifier'                  => 'Identificator',
 'exif-lens'                        => 'Obiectiv utilizat',
 'exif-serialnumber'                => 'Numărul de serie al aparatului fotografic',
@@ -3223,9 +3249,12 @@ Altele vor fi ascunse implicit.
 'exif-attributionurl'              => 'Când reutilizați această operă, vă rugăm să adăugați o legătură către',
 'exif-preferredattributionname'    => 'Când reutilizați această operă, vă rugăm ca acest nume să fie creditat',
 'exif-pngfilecomment'              => 'Comentarii la fișierul PNG',
+'exif-disclaimer'                  => 'Termeni',
 'exif-contentwarning'              => 'Avertisment asupra conținutului',
 'exif-giffilecomment'              => 'Comentarii la fișierul GIF',
 'exif-intellectualgenre'           => 'Tipul elementului',
+'exif-subjectnewscode'             => 'Codul subiectului',
+'exif-scenecode'                   => 'Codul IPTC al scenei',
 'exif-event'                       => 'Evenimentul înfățișat',
 'exif-organisationinimage'         => 'Organizația înfățișată',
 'exif-personinimage'               => 'Persoana înfățișată',
@@ -3234,6 +3263,9 @@ Altele vor fi ascunse implicit.
 
 # EXIF attributes
 'exif-compression-1' => 'Necomprimată',
+'exif-compression-2' => 'CCITT Grupa 3 Lungimea codificării Huffman modificată de dimensiune 1',
+'exif-compression-3' => 'CCITT Grupa 3 codificare fax',
+'exif-compression-4' => 'CCITT Grupa 4 codificare fax',
 
 'exif-copyrighted-true'  => 'Sub incidența drepturilor de autor',
 'exif-copyrighted-false' => 'Domeniu public',
@@ -3402,8 +3434,10 @@ Altele vor fi ascunse implicit.
 'exif-gpsdirection-m' => 'Direcție magnetică',
 
 'exif-ycbcrpositioning-1' => 'Centrat',
+'exif-ycbcrpositioning-2' => 'Co-amplasat',
 
 'exif-dc-contributor' => 'Contribuitori',
+'exif-dc-coverage'    => 'Întinderea spațială sau temporală a elementului media',
 'exif-dc-date'        => 'Data (datele)',
 'exif-dc-publisher'   => 'Editor',
 'exif-dc-relation'    => 'Conținut multimedia asociat',
@@ -3423,6 +3457,7 @@ Altele vor fi ascunse implicit.
 'exif-iimcategory-evn' => 'Mediu înconjurător',
 'exif-iimcategory-hth' => 'Sănătate',
 'exif-iimcategory-hum' => 'Interes uman',
+'exif-iimcategory-lab' => 'Muncă',
 'exif-iimcategory-lif' => 'Stil de viață și timp liber',
 'exif-iimcategory-pol' => 'Politică',
 'exif-iimcategory-rel' => 'Religie și credință',
@@ -3552,7 +3587,7 @@ Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest 
 'table_pager_limit'        => 'Arată $1 itemi pe pagină',
 'table_pager_limit_label'  => 'Elemente pe pagină:',
 'table_pager_limit_submit' => 'Du-te',
-'table_pager_empty'        => 'Nici un rezultat',
+'table_pager_empty'        => 'Niciun rezultat',
 
 # Auto-summaries
 'autosumm-blank'   => 'Ștergerea conținutului paginii',

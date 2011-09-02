@@ -227,14 +227,15 @@ $messages = array(
 'faqpage'        => 'Project:OSS',
 
 # Vector skin
-'vector-action-delete'    => 'Strika',
-'vector-action-move'      => 'Flyt',
-'vector-action-protect'   => 'Friða',
-'vector-action-unprotect' => 'Strika friðing',
-'vector-view-create'      => 'Stovna',
-'vector-view-edit'        => 'Rætta',
-'vector-view-history'     => 'Søga',
-'vector-view-viewsource'  => 'Vís keldu',
+'vector-action-addsection' => 'Nýtt evni',
+'vector-action-delete'     => 'Strika',
+'vector-action-move'       => 'Flyt',
+'vector-action-protect'    => 'Friða',
+'vector-action-unprotect'  => 'Strika friðing',
+'vector-view-create'       => 'Stovna',
+'vector-view-edit'         => 'Rætta',
+'vector-view-history'      => 'Søga',
+'vector-view-viewsource'   => 'Vís keldu',
 
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Vend aftur til $1.',
@@ -620,6 +621,7 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'newpageletter'     => 'N',
 'boteditletter'     => 'b',
 'rc_categories_any' => 'Nakar',
+'newsectionsummary' => '/* $1 */ nýtt innlegg',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Viðkomandi broytingar',

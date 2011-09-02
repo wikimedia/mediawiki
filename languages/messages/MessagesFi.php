@@ -790,17 +790,35 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'resetpass-temp-password'   => 'Väliaikainen salasana:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Salasanan alustus',
-'passwordreset-text'         => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
-'passwordreset-legend'       => 'Salasanan vaihto',
-'passwordreset-disabled'     => 'Salasanojen nollaus on poistettu tässä wikissä.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Kirjoita jokin jäljempänä pyydetty tieto}}',
-'passwordreset-username'     => 'Käyttäjätunnus:',
-'passwordreset-email'        => 'Sähköpostiosoite',
-'passwordreset-emailtitle'   => 'Tunnuksen tiedot {{GRAMMAR:inessive|{{SITENAME}}}}',
-'passwordreset-emailelement' => 'Käyttäjätunnus: $1
+'passwordreset'                => 'Salasanan alustus',
+'passwordreset-text'           => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
+'passwordreset-legend'         => 'Salasanan vaihto',
+'passwordreset-disabled'       => 'Salasanojen nollaus on poistettu tässä wikissä.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Kirjoita jokin jäljempänä pyydetty tieto}}',
+'passwordreset-username'       => 'Käyttäjätunnus:',
+'passwordreset-email'          => 'Sähköpostiosoite',
+'passwordreset-emailtitle'     => 'Tunnuksen tiedot {{GRAMMAR:inessive|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'   => 'Joku (ehkäpä sinä, IP-osoitteesta $1) pyysi salasanan muistutusta sivustolla {{SITENAME}} ($4).
+Seuraav{{PLURAL:$3|alla käyttäjätilillä|illa käyttäjätileillä}} on tämä sähköpostiosoite:
+
+$2
+
+{{PLURAL:$3|Tämä väliaikainen salasana|Nämä väliaikaiset salasanat}} vanhentuvat {{PLURAL:$5|päivän kuluttua|$5 päivän kuluttua}}.
+Sinun täytyy kirjautua sisään ja valita uusi salasana. Jos joku toinen teki tämän
+pyynnön, tai muistit sittenkin oman salasanasi, etkä halua enää muuttaa sitä,
+voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
+'passwordreset-emailtext-user' => 'Käyttäjä $1 sivustolla {{SITENAME}} pyysi muistutusta tilisi tiedoista sivustolla {{SITENAME}}
+($4). Seuraava{{PLURAL:$3| käyttäjätili|t käyttäjätilit}} on liitetty tähän sähköpostiosoitteeseen:
+
+$2
+
+{{PLURAL:$3|Tämä väliaikainen salasana|Nämä väliaikaiset salasanat}} vanhentuvat {{PLURAL:$5|yhden päivän|$5 päivän}} kuluttua.
+Sinun täytyy kirjautua sisään ja valita uusi salasana. Jos joku toinen teki tämän
+pyynnän tai muistit sittenkin vanhan salasanasi, etkä enää halua muuttaa sitä,
+voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
+'passwordreset-emailelement'   => 'Käyttäjätunnus: $1
 Väliaikainen salasana: $2',
-'passwordreset-emailsent'    => 'Sähköpostimuistutus on lähetetty.',
+'passwordreset-emailsent'      => 'Sähköpostimuistutus on lähetetty.',
 
 # Special:ChangeEmail
 'changeemail'          => 'Muuta sähköpostiosoitetta',
@@ -1264,12 +1282,13 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'searchdisabled'                   => 'Tekstihaku on poistettu toistaiseksi käytöstä suuren kuorman vuoksi. Voit käyttää alla olevaa Googlen hakukenttää sivujen etsimiseen, kunnes haku tulee taas käyttöön. <small>Huomaa, että ulkopuoliset kopiot {{GRAMMAR:genitive|{{SITENAME}}}} sisällöstä eivät välttämättä ole ajan tasalla.</small>',
 
 # Quickbar
-'qbsettings'               => 'Pikavalikko',
-'qbsettings-none'          => 'Ei mitään',
-'qbsettings-fixedleft'     => 'Tekstin mukana, vasen',
-'qbsettings-fixedright'    => 'Tekstin mukana, oikea',
-'qbsettings-floatingleft'  => 'Pysyen vasemmalla',
-'qbsettings-floatingright' => 'Pysyen oikealla',
+'qbsettings'                => 'Pikavalikko',
+'qbsettings-none'           => 'Ei mitään',
+'qbsettings-fixedleft'      => 'Tekstin mukana, vasen',
+'qbsettings-fixedright'     => 'Tekstin mukana, oikea',
+'qbsettings-floatingleft'   => 'Pysyen vasemmalla',
+'qbsettings-floatingright'  => 'Pysyen oikealla',
+'qbsettings-directionality' => 'Korjattu, riippuu skriptin suunnasta kielelläsi',
 
 # Preferences page
 'preferences'                   => 'Asetukset',
@@ -1705,29 +1724,38 @@ $1',
 # ZipDirectoryReader
 'zip-file-open-error' => 'Tiedostossa havaittiin virhe, kun se avattiin ZIP-tarkastuksia varten.',
 'zip-wrong-format'    => 'Määritetty tiedosto ei ole ZIP-tiedosto.',
+'zip-bad'             => 'Tiedosto on vahingoittunut tai muuten lukemattomissa oleva ZIP-tiedosto.
+Sitä ei voida tarkistaa tietoturvan varalta kunnolla.',
+'zip-unsupported'     => 'Tiedosto on ZIP-tiedosto, joka käyttää ZIP-ominaisuuksia, joita MediaWiki ei tue.
+Sitä ei voida tarkistaa tietoturvan varalta kunnolla.',
 
 # Special:UploadStash
+'uploadstash'          => 'Latausmuisti',
 'uploadstash-summary'  => 'Tämä sivu tarjoaa pääsyn tiedostoihin, jotka on tallennettu tai joiden tallennus on käynnissä, mutta joita ei ole vielä julkaistu tässä wikissä. Vain tiedostot tallentanut käyttäjä voi tarkastella näitä tiedostoja.',
+'uploadstash-clear'    => 'Poista muistissa olevat tiedostot',
+'uploadstash-nofiles'  => 'Sinulla ei ole muistissa olevia tiedostoja.',
 'uploadstash-badtoken' => 'Toiminnon suoritus epäonnistui. Tähän voi olla syynä muokkausvaltuuksien vanhentuminen. Yritä uudelleen.',
+'uploadstash-errclear' => 'Muistin tyhjennys epäonnistui.',
 'uploadstash-refresh'  => 'Päivitä tiedostoluettelo',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Pääsy estetty',
-'img-auth-nopathinfo'   => 'PATH_INFO puuttuu.
+'img-auth-accessdenied'     => 'Pääsy estetty',
+'img-auth-nopathinfo'       => 'PATH_INFO puuttuu.
 Palvelintasi ei ole asetettu välittämään tätä tietoa.
 Se saattaa olla CGI-pohjainen eikä voi tukea img_authia.
 Katso http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Pyydetty polku ei ole asetuksissa tiedostojen tallennushakemistona.',
-'img-auth-badtitle'     => '”$1” ei kelpaa oikean otsikon muodostamiseen.',
-'img-auth-nologinnWL'   => 'Et ole kirjautunut sisään ja tiedosto ”$1” ei ole sallittujen tiedostojen luettelossa.',
-'img-auth-nofile'       => 'Tiedostoa ”$1” ei ole.',
-'img-auth-isdir'        => 'Yrität päästä hakemistoon ”$1”.
+'img-auth-notindir'         => 'Pyydetty polku ei ole asetuksissa tiedostojen tallennushakemistona.',
+'img-auth-badtitle'         => '”$1” ei kelpaa oikean otsikon muodostamiseen.',
+'img-auth-nologinnWL'       => 'Et ole kirjautunut sisään ja tiedosto ”$1” ei ole sallittujen tiedostojen luettelossa.',
+'img-auth-nofile'           => 'Tiedostoa ”$1” ei ole.',
+'img-auth-isdir'            => 'Yrität päästä hakemistoon ”$1”.
 Vain tiedostoihin pääsy on sallittu.',
-'img-auth-streaming'    => 'Toistetaan tiedostoa ”$1”.',
-'img-auth-public'       => 'Img_auth.php:n tarkoitus on näyttää tiedostoja yksityisessä wikissä.
+'img-auth-streaming'        => 'Toistetaan tiedostoa ”$1”.',
+'img-auth-public'           => 'Img_auth.php:n tarkoitus on näyttää tiedostoja yksityisessä wikissä.
 Tämä wiki on asennettu julkiseksi wikiksi.
 Parhaan turvallisuuden vuoksi img_auth.php on poissa käytöstä.',
-'img-auth-noread'       => 'Käyttäjillä ei ole oikeutta lukea tiedostoa ”$1”.',
+'img-auth-noread'           => 'Käyttäjillä ei ole oikeutta lukea tiedostoa ”$1”.',
+'img-auth-bad-query-string' => 'Osoitteessa on epäkelpo query string -määritys.',
 
 # HTTP errors
 'http-invalid-url'      => 'Kelpaamaton URL: $1',
@@ -1790,6 +1818,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 [[Special:WhatLinksHere/$2|Koko lista]] on saatavilla.',
 'nolinkstoimage'            => 'Tähän tiedostoon ei ole linkkejä miltään sivulta.',
 'morelinkstoimage'          => 'Näytä [[Special:WhatLinksHere/$1|lisää linkkejä]] tähän tiedostoon.',
+'linkstoimage-redirect'     => '$1 (tiedoston uudelleenohjaus) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Seuraava tiedosto on tämän tiedoston kaksoiskappale|Seuraavat $1 tiedostoa ovat tämän tiedoston kaksoiskappaleita}} ([[Special:FileDuplicateSearch/$2|lisätietoja]]):',
 'sharedupload'              => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.',
 'sharedupload-desc-there'   => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.
@@ -2331,10 +2360,12 @@ $1',
 'undelete-show-file-submit'    => 'Kyllä',
 
 # Namespace form on various pages
-'namespace'             => 'Nimiavaruus',
-'invert'                => 'Käänteinen valinta',
-'namespace_association' => 'Liitetty nimiavaruus',
-'blanknamespace'        => '(sivut)',
+'namespace'                     => 'Nimiavaruus',
+'invert'                        => 'Käänteinen valinta',
+'tooltip-invert'                => 'Valitse tämä kohta, jos haluat piilottaa muutokset sivuihin valitussa nimiavaruudessa (ja liittyviin nimiavaruuksiin, jos valittu)',
+'namespace_association'         => 'Liitetty nimiavaruus',
+'tooltip-namespace_association' => 'Valitse tämä kohta, jos haluat sisällyttää myös keskustelu- tai aihe-nimiavaruudet, jotka on liitetty valittuun nimiavaruuteen',
+'blanknamespace'                => '(sivut)',
 
 # Contributions
 'contributions'       => 'Käyttäjän muokkaukset',
@@ -2362,6 +2393,7 @@ Alla on viimeisin estolokin tapahtuma:',
 'sp-contributions-username'            => 'IP-osoite tai käyttäjätunnus',
 'sp-contributions-toponly'             => 'Näytä vain muokkaukset, jotka ovat viimeisimpiä versioita',
 'sp-contributions-submit'              => 'Hae',
+'sp-contributions-showsizediff'        => 'Näytä ero sivun koossa',
 
 # What links here
 'whatlinkshere'            => 'Tänne viittaavat sivut',
@@ -2518,6 +2550,7 @@ Alla on ote häivytyslokista.',
 'unlockdbsuccesstext' => 'Tietokanta on vapautettu.',
 'lockfilenotwritable' => 'Tietokannan lukitustiedostoa ei voi kirjoittaa. Tarkista oikeudet.',
 'databasenotlocked'   => 'Tietokanta ei ole lukittu.',
+'lockedbyandtime'     => '(lukinnut {{GENDER:$1|$1}} päivänä $2 klo $3)',
 
 # Move page
 'move-page'                    => 'Sivun $1 siirto',
@@ -2808,10 +2841,14 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'pageinfo-title'            => 'Sivun "$1" tietoja',
 'pageinfo-header-edits'     => 'Muokkaukset',
 'pageinfo-header-watchlist' => 'Tarkkailulista',
+'pageinfo-header-views'     => 'Luettu',
 'pageinfo-subjectpage'      => 'Sivu',
 'pageinfo-talkpage'         => 'Keskustelusivu',
 'pageinfo-watchers'         => 'Tarkkailijoiden lukumäärä',
 'pageinfo-edits'            => 'Muokkausten lukumäärä',
+'pageinfo-authors'          => 'Erillisten tekijöiden lukumäärä',
+'pageinfo-views'            => 'Katselukertojen määrä',
+'pageinfo-viewsperedit'     => 'Katseluita per muokkaus',
 
 # Skin names
 'skinname-standard'    => 'Perus',
@@ -2870,6 +2907,7 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'svg-long-desc'          => 'SVG-tiedosto; oletustarkkuus $1×$2 kuvapistettä; tiedostokoko $3',
 'show-big-image'         => 'Korkeatarkkuuksinen versio',
 'show-big-image-preview' => '<small>Tämän esikatselun koko: $1.</small>',
+'show-big-image-other'   => '<small>Muut resoluutiot: $1.</small>',
 'show-big-image-size'    => '$1 × $2 pikseliä',
 'file-info-gif-looped'   => 'toistuva',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|kehys|kehystä}}',
@@ -3036,12 +3074,24 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-countrycodecreated'          => 'Maakoodi, jossa kuva on otettu',
 'exif-provinceorstatecreated'      => 'Maakunta tai osavaltio, jossa kuva on otettu',
 'exif-citycreated'                 => 'Kaupunki, jossa kuva on otettu',
+'exif-sublocationcreated'          => 'Sijainti kaupungissa, jossa kuva otettiin',
+'exif-worldregiondest'             => 'Maailman alue näkyvillä',
+'exif-countrydest'                 => 'Näytettävä maa',
+'exif-countrycodedest'             => 'Näytettävän maan koodi',
+'exif-provinceorstatedest'         => 'Näytettävä provinssi tai osavaltio',
+'exif-citydest'                    => 'Näytettävä kaupunki',
+'exif-sublocationdest'             => 'Näytettävän kaupungin tarkempi paikka',
 'exif-objectname'                  => 'Lyhyt otsikko',
 'exif-specialinstructions'         => 'Erityiset ohjeet',
+'exif-headline'                    => 'Otsikko',
+'exif-credit'                      => 'Tekijä/toimittaja',
 'exif-source'                      => 'Lähde',
+'exif-editstatus'                  => 'Kuvan toimituksellinen tilanne',
 'exif-urgency'                     => 'Kiireellisyys',
+'exif-fixtureidentifier'           => 'Asetelman nimi',
 'exif-locationdest'                => 'Kuvattu sijainti',
 'exif-locationdestcode'            => 'Kuvatun sijainnin sijaintikoodi',
+'exif-objectcycle'                 => 'Päivän aika, jolloin median näyttö on suositeltavaa',
 'exif-contact'                     => 'Yhteystiedot',
 'exif-writer'                      => 'Kirjoittaja',
 'exif-languagecode'                => 'Kieli',
@@ -3050,26 +3100,43 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-iimsupplementalcategory'     => 'Täydentävät luokat',
 'exif-datetimeexpires'             => 'Viimeinen käyttöpäivämäärä',
 'exif-datetimereleased'            => 'Julkaistu',
+'exif-originaltransmissionref'     => 'Alkuperäinen siirron sijainti, koodi',
 'exif-identifier'                  => 'Tunniste',
 'exif-lens'                        => 'Objektiivi',
 'exif-serialnumber'                => 'Kameran sarjanumero',
 'exif-cameraownername'             => 'Kameran omistaja',
+'exif-label'                       => 'Teksti',
 'exif-datetimemetadata'            => 'Metatitietojen viimeinen muokkauspäivämäärä',
 'exif-nickname'                    => 'Kuvan epävirallinen nimi',
+'exif-rating'                      => 'Arvostelu (enintään 5)',
+'exif-rightscertificate'           => 'Oikeuksien hallintasertifikaatti',
 'exif-copyrighted'                 => 'Tekijänoikeudellinen tila',
 'exif-copyrightowner'              => 'Tekijänoikeuden haltija',
 'exif-usageterms'                  => 'Käyttöehdot',
+'exif-webstatement'                => 'Verkossa oleva tekijänoikeustiedotus',
+'exif-originaldocumentid'          => 'Alkuperäisen asiakirjan uniikki tunnusnumero',
 'exif-licenseurl'                  => 'Tekijänoikeuslisenssin URL',
 'exif-morepermissionsurl'          => 'Vaihtoehtoiset lisenssitiedot',
+'exif-attributionurl'              => 'Kun käytät tätä uudestaan, lisää linkki osoitteeseen',
+'exif-preferredattributionname'    => 'Kun käytät tätä uudestaan, mainitse',
 'exif-pngfilecomment'              => 'PNG-tiedoston kommentti',
 'exif-disclaimer'                  => 'Vastuuvapauslauseke',
 'exif-contentwarning'              => 'Sisältövaroitus',
 'exif-giffilecomment'              => 'GIF-tiedoston kommentti',
+'exif-intellectualgenre'           => 'Kohteen tyyppi',
+'exif-subjectnewscode'             => 'Otsikon koodi',
+'exif-scenecode'                   => 'IPTC-kohtauskoodi',
+'exif-event'                       => 'Tapahtuma piirretty',
 'exif-organisationinimage'         => 'Kuvan organisaatio',
 'exif-personinimage'               => 'Kuvan henkilö',
+'exif-originalimageheight'         => 'Kuvan korkeus ennen kuin sitä leikattiin',
+'exif-originalimagewidth'          => 'Kuvan leveys ennen kuin sitä leikattiin',
 
 # EXIF attributes
 'exif-compression-1' => 'Pakkaamaton',
+'exif-compression-2' => 'CCITT-ryhmän 3 1-suuntainen muunnettu Huffman-koodaus',
+'exif-compression-3' => 'CCITT-ryhmän 3 fax-koodaus',
+'exif-compression-4' => 'CCITT-ryhmän 4 fax-koodaus',
 
 'exif-copyrighted-true'  => 'Tekijänoikeuksien alainen',
 'exif-copyrighted-false' => 'Vapaasti käytettävä',
@@ -3153,6 +3220,8 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-sensingmethod-7' => 'Trilineaarikenno',
 'exif-sensingmethod-8' => 'Sarjalineaarivärikenno',
 
+'exif-filesource-3' => 'Digitaalikamera',
+
 'exif-scenetype-1' => 'Suoraan valokuvattu kuva',
 
 'exif-customrendered-0' => 'Normaali käsittely',
@@ -3235,7 +3304,17 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-gpsdirection-t' => 'Todellinen suunta',
 'exif-gpsdirection-m' => 'Magneettinen suunta',
 
-'exif-dc-date' => 'Päivämäärä(t)',
+'exif-ycbcrpositioning-1' => 'Keskitetty',
+'exif-ycbcrpositioning-2' => 'Yhteisesti tehnyt',
+
+'exif-dc-contributor' => 'Osallistujat',
+'exif-dc-coverage'    => 'Avaruudellinen tai hetkellinen median alue',
+'exif-dc-date'        => 'Päivämäärä(t)',
+'exif-dc-publisher'   => 'Julkaisija',
+'exif-dc-relation'    => 'Katso myös',
+'exif-dc-rights'      => 'Oikeudet',
+'exif-dc-source'      => 'Lähdemedia',
+'exif-dc-type'        => 'Median tyyppi',
 
 'exif-rating-rejected' => 'Hylätty',
 
@@ -3248,6 +3327,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-iimcategory-edu' => 'Koulutus',
 'exif-iimcategory-evn' => 'Ympäristö',
 'exif-iimcategory-hth' => 'Terveys',
+'exif-iimcategory-hum' => 'Ihmisten kiinnostus',
 'exif-iimcategory-lab' => 'Työnteko',
 'exif-iimcategory-lif' => 'Elämäntapa ja vapaa-aika',
 'exif-iimcategory-pol' => 'Politiikka',

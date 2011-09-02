@@ -914,7 +914,6 @@ Diverket eo bet evit doare.',
 'edit-no-change'                   => "N'eo ket bet kemeret ho tegasadenn e kont rak ne oa ket bet kemmet netra en destenn.",
 'edit-already-exists'              => "N'eus ket bet gallet krouiñ ur bajenn nevez.
 Krouet e oa bet c'hoazh.",
-'editinguserpage'                  => "'''Notenn :''' O tegas kemmoù war ur [[Help:User page|bajenn implijer]] emaoc'h. Evit lakaat ur gemennadenn d'an implijer-mañ, [$1 grit kentoc'h gant e bajenn gaozeal].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "Diwallit : Re a c'halvoù koustus e-keñver an arc'hwelioù parser zo gant ar bajenn-mañ.
@@ -2352,6 +2351,7 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'sp-contributions-username'            => "Anv implijer pe chomlec'h IP :",
 'sp-contributions-toponly'             => 'Na ziskouez nemet an adweladennoù diwezhañ',
 'sp-contributions-submit'              => 'Klask',
+'sp-contributions-showsizediff'        => "Diskwel an diforc'h e ment ar bajenn",
 
 # What links here
 'whatlinkshere'            => 'Pajennoù liammet',

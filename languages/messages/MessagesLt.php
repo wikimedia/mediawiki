@@ -909,7 +909,6 @@ Greičiausiai jis yra ištrintas.',
 'edit-no-change'                   => 'Jūsų keitimas buvo ignoruotas kadangi nebuvo atlikta jokių teksto pakeitimų.',
 'edit-already-exists'              => 'Negalima sukurti naujo puslapio.
 Jis jau egzistuoja.',
-'editinguserpage'                  => "'''Pastaba:''' Jūs redaguojate [[Help: Naudotojo puslapis | naudotojo puslapį]]. Norėdami palikti šį klientą pranešimą [ $1 redaguoti savo aptarimas puslapį].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Įspėjimas: Šiame puslapyje yra per daug užtrunkančių analizatoriaus funkcijų šaukinių.
@@ -2330,6 +2329,7 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'sp-contributions-username'            => 'IP adresas arba naudotojo vardas:',
 'sp-contributions-toponly'             => 'Rodyti tik paskutinius keitimus',
 'sp-contributions-submit'              => 'Ieškoti',
+'sp-contributions-showsizediff'        => 'Rodyti skirtumas puslapio dydį',
 
 # What links here
 'whatlinkshere'            => 'Susiję puslapiai',

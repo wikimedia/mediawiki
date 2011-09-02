@@ -587,6 +587,8 @@ $1',
 'page-rss-feed'           => '"$1" RSS-fonto',
 'page-atom-feed'          => '"$1" Atom-fonto',
 'red-link-title'          => '$1 (paĝo ne ekzistas)',
+'sort-descending'         => 'Ordigi malkreskante',
+'sort-ascending'          => 'Ordigi kreskante',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Paĝo',
@@ -680,6 +682,8 @@ Peto: $2',
 'cascadeprotected'     => 'Ĉi tiu paĝo estas protektita kontraŭ redaktado, ĉar ĝi estas inkludita en la {{PLURAL:$1|sekvan paĝon, kiu|sekvajn paĝojn, kiuj}} estas {{PLURAL:$1|protektata|protektataj}} kun la "kaskada" opcio turnita sur:
 $2',
 'namespaceprotected'   => "Vi ne rajtas redakti paĝojn en la '''$1''' nomspaco.",
+'customcssprotected'   => 'Vi ne rajtas redakti ĉi tiun CSS-paĝon, ĉar ĝi enhavas personajn alĝustigojn de alia uzanto.',
+'customjsprotected'    => 'Vi ne rajtas redakti ĉi tiun JavaScript-paĝon, ĉar ĝi enhavas personajn alĝustigojn de alia uzanto.',
 'ns-specialprotected'  => 'Paĝoj en la {{ns:special}} nomspaco ne povas esti redaktataj.',
 'titleprotected'       => "Ĉi titolo estas protektita de kreado de [[User:$1|$1]].
 La kialo donata estis ''$2''.",
@@ -786,6 +790,7 @@ Bonvolu ĝisatendi antaŭ retrovi.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Nekonata eraro en la funkcio mail() de PHP',
+'user-mail-no-addy'      => 'Provis sendi retpoŝton sen retpoŝtadreso.',
 
 # Change password dialog
 'resetpass'                 => 'Ŝanĝi pasvorton',
@@ -841,6 +846,8 @@ Provizora pasvorto: $2',
 # Special:ChangeEmail
 'changeemail'          => 'Ŝanĝi retpoŝtadreson',
 'changeemail-header'   => 'Ŝanĝi retpoŝtadreso por konto',
+'changeemail-text'     => 'Plenumu ĉi tiu formularon por ŝanĝi vian retpoŝtadreson. Vi devas enigi vian pasvorton por konfirmi ĉi tiun ŝanĝon.',
+'changeemail-no-info'  => 'Vi devas ensaluti por atingi ĉi tiun paĝon rekte.',
 'changeemail-oldemail' => 'Aktuala retpoŝtadreso:',
 'changeemail-newemail' => 'Nova retpoŝtadreso:',
 'changeemail-none'     => '(nenio)',
@@ -1017,6 +1024,9 @@ Jen la lasta protokolero por via referenco:",
 'templatesused'                    => '{{PLURAL:$1|Ŝablono uzataj|Ŝablonoj uzataj}} en ĉi tiu paĝo:',
 'templatesusedpreview'             => '{{PLURAL:$1|Ŝablono uzata|Ŝablonoj uzataj}} en ĉi tiu antaŭrigardo:',
 'templatesusedsection'             => '{{PLURAL:$1|Ŝablono uzata|Ŝablonojuzataj}} en ĉi tiu sekcio:',
+'distanttemplatesused'             => 'Malapudaj {{PLURAL:$1|ŝablono uzata|ŝablonoj uzataj}} en ĉi tiu paĝo:',
+'distanttemplatesusedpreview'      => 'Malapudaj {{PLURAL:$1|ŝablono uzata|ŝablonoj uzataj}} en ĉi tiu antaŭvido:',
+'distanttemplatesusedsection'      => 'Malapudaj {{PLURAL:$1|ŝablono uzata|ŝablonoj uzataj}} en ĉi tiu sekcio:',
 'template-protected'               => '(protektita)',
 'template-semiprotected'           => '(duone protektita)',
 'hiddencategories'                 => 'Ĉi tiu paĝo estas membro de {{PLURAL:$1|1 kaŝita kategorio|$1 kaŝitaj kategorioj}}:',
@@ -1324,12 +1334,13 @@ Provu prefiksi vian mendon kun ''all:'' por serĉi ĉiun enhavon (inkluzivante d
 indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> aŭ per <i>jahu!</i>:</p>',
 
 # Quickbar
-'qbsettings'               => 'Preferoj pri ilaro',
-'qbsettings-none'          => 'Neniu',
-'qbsettings-fixedleft'     => 'Fiksiĝas maldekstre',
-'qbsettings-fixedright'    => 'Fiksiĝas dekstre',
-'qbsettings-floatingleft'  => 'Ŝvebas maldekstre',
-'qbsettings-floatingright' => 'Ŝvebas dekstre',
+'qbsettings'                => 'Preferoj pri ilaro',
+'qbsettings-none'           => 'Neniu',
+'qbsettings-fixedleft'      => 'Fiksiĝas maldekstre',
+'qbsettings-fixedright'     => 'Fiksiĝas dekstre',
+'qbsettings-floatingleft'   => 'Ŝvebas maldekstre',
+'qbsettings-floatingright'  => 'Ŝvebas dekstre',
+'qbsettings-directionality' => 'Fiksita, laŭ la teksto-direkteco de via lingvo',
 
 # Preferences page
 'preferences'                   => 'Preferoj',
@@ -1355,6 +1366,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-misc'                    => 'Miksitaĵoj',
 'prefs-resetpass'               => 'Ŝanĝi pasvorton',
 'prefs-changeemail'             => 'Ŝanĝi retpoŝtadreson',
+'prefs-setemail'                => 'Difini retpoŝtadreson',
 'prefs-email'                   => 'Retpoŝtaj opcioj',
 'prefs-rendering'               => 'Aspekto',
 'saveprefs'                     => 'Konservi preferojn',
@@ -1556,10 +1568,11 @@ Jen hazarde generita valoro por via uzo: $1',
 'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
 
 # User rights log
-'rightslog'      => 'Protokolo de uzanto-rajtoj',
-'rightslogtext'  => 'Ĉi tio estas protokolo pri la ŝanĝoj de uzantorajtoj.',
-'rightslogentry' => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
-'rightsnone'     => '(nenia)',
+'rightslog'                  => 'Protokolo de uzanto-rajtoj',
+'rightslogtext'              => 'Ĉi tio estas protokolo pri la ŝanĝoj de uzantorajtoj.',
+'rightslogentry'             => 'ŝanĝis grupan membrecon por $1 de $2 al $3',
+'rightslogentry-autopromote' => 'estis aŭtomate altrangigita de $2 al $3',
+'rightsnone'                 => '(nenia)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'legi ĉi tiun paĝon',
@@ -1703,6 +1716,7 @@ Por inkluzivi la dosieron en paĝon, skribu ligilon laŭ la formoj
 tiu ĉi tiu dosiero pezas $2 bitokojn.',
 'largefileserver'             => 'Ĉi tiu dosiero estas pli granda ol permesas la servilaj preferoj.',
 'emptyfile'                   => 'La dosiero kiun vi alŝutis ŝajnas malplena. Tio povas esti kaŭzita sde tajperaro en la titolo. Bonvolu kontroli ĉu vi vere volas alŝuti tiun dosieron.',
+'windows-nonascii-filename'   => 'Ĉi tiu vikio ne subtenas dosiernomoj kun specialaj signoj.',
 'fileexists'                  => "Dosiero kun tia ĉi nomo jam ekzistas.
 Bonvolu kontroli '''<tt>[[:$1]]</tt>''' krom se vi certas ke vi konscie volas ŝanĝi ĝuste tiun.
 [[$1|thumb]]",
@@ -1869,6 +1883,7 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 [[Special:WhatLinksHere/$2|Plena listo]] estas atingebla.',
 'nolinkstoimage'            => 'Neniu paĝo ligas al ĉi tiu dosiero.',
 'morelinkstoimage'          => 'Rigardi [[Special:WhatLinksHere/$1|pliajn ligilojn]] al ĉi tiu dosiero.',
+'linkstoimage-redirect'     => '$1 (alidirektilo al dosiero) $2',
 'duplicatesoffile'          => 'La {{PLURAL:$1|jena dosiero estas duplikato|jenaj dosieroj estas duplikatoj}} de ĉi tiu dosiero ([[Special:FileDuplicateSearch/$2|pluaj detaloj]]):',
 'sharedupload'              => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla de aliaj projektoj.',
 'sharedupload-desc-there'   => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla en aliaj projektoj.
@@ -1951,7 +1966,7 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'statistics-edits-average'     => 'Averaĝa kvanto de redaktoj je paĝo',
 'statistics-views-total'       => 'Vidoj entutaj',
 'statistics-views-total-desc'  => 'Ne inkluzivante vidojn al ne-ekzistantaj paĝoj kaj specialaj paĝoj',
-'statistics-views-peredit'     => 'Vidoj po redakto',
+'statistics-views-peredit'     => 'Po rigardoj por redakto',
 'statistics-users'             => 'Registritaj [[Special:ListUsers|uzantoj]]',
 'statistics-users-active'      => 'Aktivaj uzantoj',
 'statistics-users-active-desc' => 'Uzantoj kiuj faris agon en la {{PLURAL:$1|lasta tago|lastaj $1 tagoj}}',
@@ -2195,6 +2210,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'watchnologintext'     => 'Nepras [[Special:UserLogin|ensaluti]] por ŝanĝi vian atentaron.',
 'addwatch'             => 'Aldoniĝi al atentaro',
 'addedwatchtext'       => "La paĝo \"[[:\$1]]\" estis aldonita al via [[Special:Watchlist|atentaro]]. Estontaj ŝanĝoj de tiu ĉi paĝo aperos en '''grasa tiparo''' en la [[Special:RecentChanges|listo de Lastaj Ŝanĝoj]], kaj estos listigitaj en via atentaro. Se vi poste volos forigi la paĝon el via atentaro, alklaku \"Malatentu paĝon\" en la ilobreto.",
+'removewatch'          => 'Forigi el atentaro',
 'removedwatchtext'     => 'La paĝo "[[:$1]]" estas forigita el via [[Special:Watchlist|atentaro]].',
 'watch'                => 'Atenti',
 'watchthispage'        => 'Priatenti paĝon',
@@ -2215,8 +2231,9 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'watchlist-options'    => 'Opcioj por atentaro',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Aldonante al la atentaro...',
-'unwatching' => 'Malatentante...',
+'watching'       => 'Aldonante al la atentaro...',
+'unwatching'     => 'Malatentante...',
+'watcherrortext' => 'Eraro okazis ŝanĝinte vian agordojn de atentaro por "$1".',
 
 'enotif_mailer'                => 'Averta retmesaĝo de {{SITENAME}}',
 'enotif_reset'                 => 'Marki ĉiujn vizititajn paĝojn',
@@ -2424,10 +2441,12 @@ $1',
 'undelete-show-file-submit'    => 'Jes',
 
 # Namespace form on various pages
-'namespace'             => 'Nomspaco:',
-'invert'                => 'Inversigi elektaĵon',
-'namespace_association' => 'Asociita nomspaco',
-'blanknamespace'        => '(Artikoloj)',
+'namespace'                     => 'Nomspaco:',
+'invert'                        => 'Inversigi elektaĵon',
+'tooltip-invert'                => 'Marku ĉi tiu skatolon por kaŝi ŝanĝoj al paĝoj en la elektita nomspaco (kaj la asocia nomspaco, se tiel markita)',
+'namespace_association'         => 'Asociita nomspaco',
+'tooltip-namespace_association' => 'Marku ĉi tiu skatolo por inkluzivi la diskutan aŭ teman nomspacon asocie de la elekta nomspaco',
+'blanknamespace'                => '(Artikoloj)',
 
 # Contributions
 'contributions'       => 'Kontribuoj de uzanto',
@@ -2455,6 +2474,7 @@ Jen la lasta ero de la forbara protokolo:',
 'sp-contributions-username'            => 'IP-adreso aŭ salutnomo:',
 'sp-contributions-toponly'             => 'Montru nur ŝanĝojn kiuj estas la plej lastaj revizioj',
 'sp-contributions-submit'              => 'Serĉi',
+'sp-contributions-showsizediff'        => 'Montri diferencon de paĝa grandeco',
 
 # What links here
 'whatlinkshere'            => 'Ligiloj ĉi tien',
@@ -2533,6 +2553,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 'blocklist-userblocks'            => 'Kaŝi konto-forbarojn',
 'blocklist-tempblocks'            => 'Kaŝi provizorajn forbarojn',
 'blocklist-addressblocks'         => 'Kaŝi unuopajn IP-adresajn forbarojn',
+'blocklist-rangeblocks'           => 'Kaŝi blokojn de intervalo',
 'blocklist-timestamp'             => 'Tempindiko',
 'blocklist-target'                => 'Celo',
 'blocklist-expiry'                => 'Eksvalidiĝas',
@@ -2619,6 +2640,7 @@ Bonvolu certigu, ke vi efektive intencas tion fari.',
 'unlockdbsuccesstext' => 'La datumaro de {{SITENAME}} estas malŝlosita.',
 'lockfilenotwritable' => 'La datumbaza dosiero pri ŝlosado ne estas skribebla. Por ŝlosi aŭ malŝlosi la datumbazon, ĉi devas esti skribebla de la TTT-servilo.',
 'databasenotlocked'   => 'La datumbazo ne estas ŝlosita.',
+'lockedbyandtime'     => '(de {{GENDER:$1|$1}} je $2, $3)',
 
 # Move page
 'move-page'                    => 'Alinomigi $1',
@@ -2906,11 +2928,17 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'spam_blanking'       => 'Forviŝo de ĉiuj versioj entenantaj ligilojn al $1',
 
 # Info page
+'pageinfo-title'            => 'Informoj por "$1"',
 'pageinfo-header-edits'     => 'Redaktoj',
 'pageinfo-header-watchlist' => 'Atentaro',
+'pageinfo-header-views'     => 'Rigardoj',
 'pageinfo-subjectpage'      => 'Paĝo',
 'pageinfo-talkpage'         => 'Diskuto-paĝo',
+'pageinfo-watchers'         => 'Nombro de atentantoj',
 'pageinfo-edits'            => 'Nombro de redaktoj',
+'pageinfo-authors'          => 'Nombro de distingaj aŭtoroj',
+'pageinfo-views'            => 'Nombro de rigardoj',
+'pageinfo-viewsperedit'     => 'Po rigardoj por redakto',
 
 # Skin names
 'skinname-standard'    => 'Klasika',
@@ -2960,6 +2988,7 @@ $1',
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
 'file-info'              => 'pezo de dosiero: $1, MIME-tipo: $2',
 'file-info-size'         => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4',
+'file-info-size-pages'   => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4, $5 {{PLURAL:$5|paĝo|paĝoj}}',
 'file-nohires'           => '<small>Nenia pli granda distingivo havebla.</small>',
 'svg-long-desc'          => 'SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
 'show-big-image'         => 'Plena distingivo',
@@ -3192,6 +3221,9 @@ Aliaj estos kaŝitaj defaŭlte.
 
 # EXIF attributes
 'exif-compression-1' => 'Nedensigita',
+'exif-compression-2' => 'CCITT-Grupo 3 modifita ciferado laŭ Huffman Dimensio-1',
+'exif-compression-3' => 'CCITT Grupo-3 ĉifrado por faksilo',
+'exif-compression-4' => 'CCITT Grupo-4 ĉifrado por faksilo',
 
 'exif-copyrighted-true'  => 'Sub aŭtorrajto',
 'exif-copyrighted-false' => 'Sub publika domajno',
@@ -3502,6 +3534,7 @@ Bonvolu konfirmi ke vi ja volas rekrei la paĝon.',
 'confirm-watch-button'   => 'Ek!',
 'confirm-watch-top'      => 'Ĉu aldoni tiun ĉi paĝon al via atentaro?',
 'confirm-unwatch-button' => 'Ek!',
+'confirm-unwatch-top'    => 'Ĉu forigi tiun ĉi paĝon el via atentaro?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← antaŭa paĝo',
@@ -3662,13 +3695,40 @@ Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 'tags-hitcount'           => '$1 {{PLURAL:$1|ŝanĝo|ŝanĝoj}}',
 
 # Special:ComparePages
-'comparepages'     => 'Kompari paĝojn',
-'compare-selector' => 'Kompari reviziojn de paĝo',
-'compare-page1'    => 'Paĝo 1',
-'compare-page2'    => 'Paĝo 2',
-'compare-rev1'     => 'Revizio 1',
-'compare-rev2'     => 'Revizio 2',
-'compare-submit'   => 'Komparu',
+'comparepages'                => 'Kompari paĝojn',
+'compare-selector'            => 'Kompari reviziojn de paĝo',
+'compare-page1'               => 'Paĝo 1',
+'compare-page2'               => 'Paĝo 2',
+'compare-rev1'                => 'Revizio 1',
+'compare-rev2'                => 'Revizio 2',
+'compare-submit'              => 'Komparu',
+'compare-invalid-title'       => 'La titolo kiun vi enmetis estas malvalida.',
+'compare-title-not-exists'    => 'La titolo kiun vi specifis ne ekzistas.',
+'compare-revision-not-exists' => 'La revizio kiun vi specifis ne ekzistas.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Ĝenerala dosier-uzado',
+'globalfileusage-for'         => 'Ĝenerala uzado por "$1"',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Speciala paĝo]] por rigardi uzadon de ĝeneralaj dosieroj',
+'globalfileusage-ok'          => 'Serĉi',
+'globalfileusage-text'        => 'Serĉi uzadon de ĝeneralaj dosieroj',
+'globalfileusage-no-results'  => '[[$1]] ne estas uzata en aliaj vikioj.',
+'globalfileusage-on-wiki'     => 'Uzado en $2',
+'globalfileusage-of-file'     => 'La jenaj aliaj vikioj utiligas ĉi tiun dosieron:',
+'globalfileusage-more'        => 'Vidi [[{{#Special:GlobalUsage}}/$1|plian ĝeneralan uzadon]] de ĉi tiu dosiero.',
+'globalfileusage-filterlocal' => 'Ne montri lokan uzadon',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Ĝenerala uzado de ŝablono.',
+'globaltemplateusage-for'         => 'Ĝenerala ŝablona uzado por "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Speciala paĝo]] por rigardi uzadon de ĝeneralaj ŝablonoj',
+'globaltemplateusage-ok'          => 'Search',
+'globaltemplateusage-text'        => 'Serĉi uzadon de ĝeneralaj ŝablonoj.',
+'globaltemplateusage-no-results'  => '[[$1]] ne estas uzata en aliaj vikioj.',
+'globaltemplateusage-on-wiki'     => 'Uzado en $2',
+'globaltemplateusage-of-file'     => 'La jenaj aliaj vikioj utiligas ĉi tiun ŝablonon:',
+'globaltemplateusage-more'        => 'Vidi [[{{#Special:GlobalUsage}}/$1|plian ĝeneralan uzadon]] de ĉi tiu ŝablono.',
+'globaltemplateusage-filterlocal' => 'Ne montri lokan uzadon',
 
 # Database error messages
 'dberr-header'      => 'Ĉi tiu vikio havas problemon',
@@ -3696,20 +3756,28 @@ Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 'sqlite-no-fts'  => '$1 sen tut-teksta subteno',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Aldoni kategorion',
-'ajax-remove-category'         => 'Forigi kategorion',
-'ajax-edit-category'           => 'Redakti kategorion',
-'ajax-add-category-submit'     => 'Aldoni',
-'ajax-confirm-ok'              => 'Ek!',
-'ajax-confirm-title'           => 'Konfirmi agon',
-'ajax-confirm-save'            => 'Konservi',
-'ajax-confirm-save-all'        => 'Konservi ĉiujn ŝanĝojn',
-'ajax-cancel'                  => 'Nuligi redakton',
-'ajax-cancel-all'              => 'Nuligi ĉiujn ŝanĝojn',
-'ajax-add-category-summary'    => 'Aldoni kategorion "$1"',
-'ajax-remove-category-summary' => 'Forigi kategorion "$1"',
-'ajax-error-title'             => 'Eraro',
-'ajax-remove-category-error'   => 'Ne eblas forigi kategorion "$1".
+'ajax-add-category'             => 'Aldoni kategorion',
+'ajax-remove-category'          => 'Forigi kategorion',
+'ajax-edit-category'            => 'Redakti kategorion',
+'ajax-add-category-submit'      => 'Aldoni',
+'ajax-confirm-ok'               => 'Ek!',
+'ajax-confirm-title'            => 'Konfirmi agon',
+'ajax-confirm-save'             => 'Konservi',
+'ajax-confirm-save-all'         => 'Konservi ĉiujn ŝanĝojn',
+'ajax-cancel'                   => 'Nuligi redakton',
+'ajax-cancel-all'               => 'Nuligi ĉiujn ŝanĝojn',
+'ajax-add-category-summary'     => 'Aldoni kategorion "$1"',
+'ajax-edit-category-summary'    => 'Ŝanĝi kategorion "$1" al "$2"',
+'ajax-remove-category-summary'  => 'Forigi kategorion "$1"',
+'ajax-category-question'        => 'Kial vi volas fari la jenajn ŝanĝojn:',
+'ajax-error-title'              => 'Eraro',
+'ajax-remove-category-error'    => 'Ne eblas forigi kategorion "$1".
 Ĉi tiel okazas kiam la kategorio estis aldonita al la paĝo per ŝablono.',
+'ajax-edit-category-error'      => 'Ne eblas redakti kategorion "$1".
+Ĉi tiel okazas kiam la kategorio estis aldonita al la paĝo per ŝablono.',
+'ajax-category-already-present' => 'Ĉi tiu paĝo jam apartenas al la kategorio "$1"',
+'ajax-category-hook-error'      => 'Loka funkcio preventis konservadon de la ŝanĝoj.',
+'ajax-api-error'                => 'La API raportis la eraron: $1: $2.',
+'ajax-api-unknown-error'        => 'La API raportis nekonatan eraron.',
 
 );

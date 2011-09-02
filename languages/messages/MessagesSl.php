@@ -945,7 +945,6 @@ Izgleda, da je bila izbrisana.',
 'edit-conflict'                    => 'Navzkrižje urejanj.',
 'edit-no-change'                   => 'Vaše urejanje je bilo prezrto, saj ni vsebovalo sprememb.',
 'edit-already-exists'              => 'Ni bilo mogoče ustvariti nove strani, ker že obstaja.',
-'editinguserpage'                  => "'''Opomba:''' Urejate [[Help:User page|uporabniško stran]]. Če želite temu uporabniku pustiti sporočilo, [$1 uredite njegovo pogovorno stran].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Opozorilo:''' Ta stran vsebuje preveč klicev funkcije razčlenjevalnika kode.

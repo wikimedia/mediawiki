@@ -888,7 +888,7 @@ Bisa jadi geus dihapus ti wiki atawa diganti ngaranna.
 Cobaan [[Special:Search|sungsi di wiki]] pikeun kaca-kaca nu sarimbag.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(koméntar dihapus)',
+'rev-deleted-comment'         => '(rangkuman éditan dihapus)',
 'rev-deleted-user'            => '(ngaran pamaké geus dihapus)',
 'rev-deleted-event'           => '(lampah log dihapus)',
 'rev-deleted-user-contribs'   => '[Ngaran pamaké atawa alamat IP dihapus - suntingan disumputkeun tina daptar kontribusi]',

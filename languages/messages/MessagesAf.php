@@ -586,6 +586,8 @@ Probeer asseblief weer oor 'n paar minute.",
 'sqlhidden'            => '(SQL navraag versteek)',
 'cascadeprotected'     => 'Hierdie bladsy is beskerm teen redigering omdat dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat beskerm is met die "kaskade" opsie aangeskakel: $2',
 'namespaceprotected'   => "U het nie toestemming om bladsye in die '''$1'''-naamruimte te wysig nie.",
+'customcssprotected'   => "U het nie toestemming om hierdie CSS-bladsy te redigeer nie, want dit bevat 'n ander gebruiker se persoonlike verstellings.",
+'customjsprotected'    => "U het nie toestemming om hierdie JavaScript-bladsy te redigeer nie, want dit bevat 'n ander gebruiker se persoonlike verstellings.",
 'ns-specialprotected'  => 'Spesiale bladsye kan nie geredigeer word nie.',
 'titleprotected'       => "Hierdie titel is beskerm teen skepping deur [[User:$1|$1]].
 Die rede gegee is ''$2''.",
@@ -692,6 +694,7 @@ Wag asseblief alvorens u weer probeer.",
 
 # E-mail sending
 'php-mail-error-unknown' => 'Onbekende fout in PHP se mail()-funksie',
+'user-mail-no-addy'      => "Geprobeer om e-pos te stuur sonder 'n e-posadres.",
 
 # Change password dialog
 'resetpass'                 => 'Verander wagwoord',
@@ -725,6 +728,8 @@ Tydelike wagwoord: $2',
 'passwordreset-emailsent'    => "'n E-pos ter herhindering is gestuur.",
 
 # Special:ChangeEmail
+'changeemail'          => 'Wysig E-posadres',
+'changeemail-header'   => 'Wysig rekening se e-posadres',
 'changeemail-oldemail' => 'Huidige e-posadres:',
 'changeemail-newemail' => 'Nuwe e-posadres:',
 'changeemail-none'     => '(geen)',
@@ -829,7 +834,12 @@ of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'userpage-userdoesnotexist-view'   => 'Die gebruiker "$1" is nie geregistreer nie.',
 'blocked-notice-logextract'        => 'Hierdie gebruiker is tans geblokkeer.
 Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
-'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien:
+* '''Firefox / Safari:''' hou ''Shift'' en kliek ''Reload'', of druk ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op 'n Mac)
+* '''Google Chrome:''' druk ''Ctrl-Shift-R'' (''Command-Shift-R'' op 'n Mac)
+* '''Internet Explorer:''' hou ''Ctrl'' en kliek ''Refresh'', of druk ''Ctrl-F5''
+* '''Konqueror:''' kliek ''Reload'' of druk ''F5''
+* '''Opera:''' maak die kas skoon by ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe CSS te toets voor u dit stoor.",
 'userjsyoucanpreview'              => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe JS te toets voor u dit stoor.",
 'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u persoonlike CSS.'''
@@ -1202,12 +1212,13 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'searchdisabled'                   => '{{SITENAME}} se soekfunksie is tans afgeskakel ter wille van werkverrigting. Gebruik gerus intussen Google of Yahoo! Let daarop dat hulle indekse van die {{SITENAME}}-inhoud verouderd mag wees.',
 
 # Quickbar
-'qbsettings'               => 'Snelbalkvoorkeure',
-'qbsettings-none'          => 'Geen',
-'qbsettings-fixedleft'     => 'Links vas.',
-'qbsettings-fixedright'    => 'Regs vas.',
-'qbsettings-floatingleft'  => 'Dryf links.',
-'qbsettings-floatingright' => 'Dryf regs.',
+'qbsettings'                => 'Snelbalkvoorkeure',
+'qbsettings-none'           => 'Geen',
+'qbsettings-fixedleft'      => 'Links vas.',
+'qbsettings-fixedright'     => 'Regs vas.',
+'qbsettings-floatingleft'   => 'Dryf links.',
+'qbsettings-floatingright'  => 'Dryf regs.',
+'qbsettings-directionality' => 'Vas, afhanklik van die skryfrigting van u taal',
 
 # Preferences page
 'preferences'                   => 'Voorkeure',
@@ -1232,6 +1243,8 @@ U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'prefs-watchlist-token'         => 'Dophoulys-sleutel:',
 'prefs-misc'                    => 'Allerlei',
 'prefs-resetpass'               => 'Verander wagwoord',
+'prefs-changeemail'             => 'Wysig E-posadres',
+'prefs-setemail'                => "Stel 'n e-posadres",
 'prefs-email'                   => 'E-posopsies',
 'prefs-rendering'               => 'Voorkoms',
 'saveprefs'                     => 'Stoor voorkeure',
@@ -1668,7 +1681,8 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 'upload-http-error'         => "'n HTTP-fout het voorgekom: $1",
 
 # ZipDirectoryReader
-'zip-wrong-format' => "Die gespesifiseerde lêer was nie 'n zip-lêer nie.",
+'zip-file-open-error' => "'n Fout het voorgekom met die opening van die lêer vir ZIP toetsing.",
+'zip-wrong-format'    => "Die gespesifiseerde lêer was nie 'n zip-lêer nie.",
 
 # Special:UploadStash
 'uploadstash'          => 'Verborge oplaaie',
@@ -1725,9 +1739,9 @@ U kan miskien selfs tydens 'n minder besige tyd weer probeer.",
 'upload_source_file' => " ('n lêer op u rekenaar)",
 
 # Special:ListFiles
-'listfiles-summary'     => 'Die spesiale bladsy wys al die opgelaaide lêers.
-Die nuutste lêer word eerste vertoon.
-Klik op die opskrifte om die tabel anders te sorteer.',
+'listfiles-summary'     => 'Hierdie spesiale bladsy wys al die opgelaaide lêers.
+Die nuutste lêers word heel bo vertoon.
+Kliek op die opskrifte om die tabel te hersorteer.',
 'listfiles_search_for'  => 'Soek vir medianaam:',
 'imgfile'               => 'lêer',
 'listfiles'             => 'Lêerlys',
@@ -2051,7 +2065,7 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'emailpage'            => 'Stuur e-pos na gebruiker',
 'emailpagetext'        => 'As dié gebruiker \'n geldige e-posadres in sy/haar gebruikersvoorkeure het, sal hierdie vorm \'n enkele boodskap stuur. Die e-posadres in u [[Special:Preferences|gebruikersvoorkeure]] sal verkyn as die "Van"-adres van die pos. Dus sal die ontvanger kan terug antwoord.',
 'usermailererror'      => 'Fout met versending van e-pos:',
-'defemailsubject'      => '{{SITENAME}}-epos',
+'defemailsubject'      => 'E-pos van {{SITENAME}}-gebruiker "$1"',
 'usermaildisabled'     => 'E-pos deur gebruikers is gedeaktiveer.',
 'usermaildisabledtext' => 'U kan nie e-pos aan ander gebruikers op hierdie wiki stuur nie',
 'noemailtitle'         => 'Geen e-posadres',
@@ -2087,9 +2101,11 @@ Daar kan [[{{MediaWiki:Listgrouprights-helppage}}|extra inligting]] oor individu
 'watchnologin'         => 'Nie ingeteken nie',
 'watchnologintext'     => 'U moet [[Special:UserLogin|ingeteken]]
 wees om u dophoulys te verander.',
+'addwatch'             => 'Voeg by dophoulys',
 'addedwatchtext'       => "Die bladsy \"[[:\$1]]\" is by u [[Special:Watchlist|dophoulys]] bygevoeg. Toekomstige wysigings aan hierdie bladsy en sy verwante besprekingsblad sal op [[Special:Watchlist|u dophoulys]] gelys word en sal in '''vetdruk''' in die [[Special:RecentChanges|lys van onlangse wysigings]] vertoon word, sodat u dit makliker kan raaksien.
 
 As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoulys\" in die kieslys bo-aan die bladsy.",
+'removewatch'          => 'Verwyder van dophoulys',
 'removedwatchtext'     => 'Die bladsy "[[:$1]]" is van [[Special:Watchlist|u dophoulys]] afgehaal.',
 'watch'                => 'Hou dop',
 'watchthispage'        => 'Hou hierdie bladsy dop',
@@ -2110,8 +2126,9 @@ As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoul
 'watchlist-options'    => 'Opsies vir dophoulys',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Plaas op dophoulys...',
-'unwatching' => 'Verwyder van dophoulys...',
+'watching'       => 'Plaas op dophoulys...',
+'unwatching'     => 'Verwyder van dophoulys...',
+'watcherrortext' => '\'n Fout het voorgekom met die wysiging van u dophoulys-instelling vir "$1".',
 
 'enotif_mailer'                => '{{SITENAME}} E-pos kennisgewings',
 'enotif_reset'                 => 'Merk alle bladsye as besoek',
@@ -2324,10 +2341,12 @@ $1',
 'undelete-show-file-submit'    => 'Ja',
 
 # Namespace form on various pages
-'namespace'             => 'Naamruimte:',
-'invert'                => 'Omgekeerde seleksie',
-'namespace_association' => 'Gekoppelde naamruimte',
-'blanknamespace'        => '(Hoof)',
+'namespace'                     => 'Naamruimte:',
+'invert'                        => 'Omgekeerde seleksie',
+'tooltip-invert'                => 'Merk die boks om bladsye in die gekose naamruimte (en die gepaardgaande naamruimtes as gekies) te versteek',
+'namespace_association'         => 'Gekoppelde naamruimte',
+'tooltip-namespace_association' => 'Merk die boks om die besprekings- en onderwerpnaamruimte die by die geselekteerde naamruimte in te sluit',
+'blanknamespace'                => '(Hoof)',
 
 # Contributions
 'contributions'       => 'Gebruikersbydraes',
@@ -2355,6 +2374,7 @@ Die laaste inskrywing uit die blokkeerlogboek word hier ter inligting weergegee:
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
 'sp-contributions-toponly'             => 'Wys slegs die nuutste weergawes',
 'sp-contributions-submit'              => 'Vertoon',
+'sp-contributions-showsizediff'        => 'Wys verskil in bladsygrootte',
 
 # What links here
 'whatlinkshere'            => 'Skakels hierheen',
@@ -2397,6 +2417,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 ** Intimiderende gedrag (teistering)
 ** Misbruik van veelvuldige rekeninge
 ** Onaanvaarbare gebruikersnaam',
+'ipb-hardblock'                   => 'Voorkom dat aangetekende gebruikers vanaf die IP-adres kan wysig',
 'ipbcreateaccount'                => 'Blokkeer registrasie van gebruikers',
 'ipbemailban'                     => 'Verbied gebruiker om e-pos te stuur',
 'ipbenableautoblock'              => 'Outomaties die IP-adresse van die gebruiker blokkeer',
@@ -2407,6 +2428,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipbotherreason'                  => 'Ander/ekstra rede:',
 'ipbhidename'                     => 'Verberg gebruiker van wysigings en lyste',
 'ipbwatchuser'                    => 'Hou die gebruiker se bladsy en besprekingsbladsy dop.',
+'ipb-disableusertalk'             => 'Voorkom dat die gebruiker tydens die blokkade sy eie besprekingsblad kan wysig',
 'ipb-change-block'                => 'Herblokkeer die gebruiker met hierdie instellings',
 'ipb-confirm'                     => 'Bevestig blokkade',
 'badipaddress'                    => 'Die IP-adres is nie in die regte formaat nie.',
@@ -2414,6 +2436,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'blockipsuccesstext'              => "[[Special:Contributions/$1|$1]] is geblokkeer.<br />
 Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'ipb-blockingself'                => 'U is besig om uself te blokkeer! Is u seker u wil dit doen?',
+'ipb-confirmhideuser'             => 'U staan op die punt om \'n "versteekte gebruiker" te blokkeer. Dit sal die gebruiker se naam vanaf alle lyste en logboeke onderdruk. Is u seker u wil om dit te doen?',
 'ipb-edit-dropdown'               => 'Werk lys van redes by',
 'ipb-unblock-addr'                => 'Deblokkeer $1',
 'ipb-unblock'                     => "Deblokkeer 'n gebruiker of IP-adres",
@@ -2431,6 +2454,7 @@ Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'blocklist-userblocks'            => 'Versteek geblokkeerde gebruikers',
 'blocklist-tempblocks'            => 'Versteek tydelike blokkades',
 'blocklist-addressblocks'         => 'Versteek blokkades met een IP-adres',
+'blocklist-rangeblocks'           => 'Versteek blokke IP-adresse',
 'blocklist-timestamp'             => 'Tydstip',
 'blocklist-target'                => 'Doel',
 'blocklist-expiry'                => 'Verval',
@@ -3042,6 +3066,7 @@ Ander velde sal versteek wees.
 'exif-countrycodecreated'          => 'Kode van land waar die foto geneem is',
 'exif-provinceorstatecreated'      => 'Provinsie of staat waar die foto geneem is',
 'exif-citycreated'                 => 'Stad waar die foto geneem is',
+'exif-sublocationcreated'          => 'Voorstad van die stad waar die beeld geneem is',
 'exif-worldregiondest'             => 'Wêrelddeel getoon',
 'exif-countrydest'                 => 'Land getoon',
 'exif-countrycodedest'             => 'Kode vir die land getoon',
@@ -3057,6 +3082,8 @@ Ander velde sal versteek wees.
 'exif-urgency'                     => 'Dringendheid',
 'exif-fixtureidentifier'           => 'Groepsnaam',
 'exif-locationdest'                => 'Plek uitgebeeld',
+'exif-locationdestcode'            => 'Kode van die uitgebeelde ligging',
+'exif-objectcycle'                 => 'Tyd van die dag waarvoor die media bedoel is',
 'exif-contact'                     => 'Kontak inligting',
 'exif-writer'                      => 'Skrywer',
 'exif-languagecode'                => 'Taal',
@@ -3065,14 +3092,23 @@ Ander velde sal versteek wees.
 'exif-iimsupplementalcategory'     => 'Aanvullende kategorieë',
 'exif-datetimeexpires'             => 'Moenie gebruik na',
 'exif-datetimereleased'            => 'Vrygestel op',
+'exif-originaltransmissionref'     => 'Oorspronklike transmissie-liggingskode',
 'exif-identifier'                  => 'Id',
 'exif-lens'                        => 'Lens gebruik',
+'exif-serialnumber'                => 'Reeksnommer van die kamera',
 'exif-cameraownername'             => 'Eienaar van kamera',
 'exif-label'                       => 'Etiket',
+'exif-datetimemetadata'            => 'Datum waarop metadata laas verander is',
+'exif-nickname'                    => 'Informele naam van die beeld',
 'exif-rating'                      => 'Waardering (uit 5)',
+'exif-rightscertificate'           => 'Regtebeheersertifikaat',
 'exif-copyrighted'                 => 'Outeursregstus:',
 'exif-copyrightowner'              => 'Kopiereghouer',
 'exif-usageterms'                  => 'Gebruiksvoorwaardes',
+'exif-webstatement'                => 'Aanlyn outeursregteverklaring',
+'exif-originaldocumentid'          => 'Unieke ID van die oorspronklike dokument',
+'exif-licenseurl'                  => 'URL vir kopiereg-lisensie',
+'exif-morepermissionsurl'          => 'Alternatiewe lisensie-inligting',
 'exif-attributionurl'              => 'Gebruik die volgende skakel as die werk hergebruik word',
 'exif-preferredattributionname'    => 'Krediteer die volgende persone as die werk hergebruik word',
 'exif-pngfilecomment'              => 'Opmerking in PNG-lêer',
@@ -3080,12 +3116,19 @@ Ander velde sal versteek wees.
 'exif-contentwarning'              => 'Waarskuwing oor inhoud',
 'exif-giffilecomment'              => 'Opmerking in GIF-lêer',
 'exif-intellectualgenre'           => 'Tipe item',
+'exif-subjectnewscode'             => 'Onderwerpkode',
+'exif-scenecode'                   => 'IPTC toneelkode',
 'exif-event'                       => 'Gebeurtenis uitgebeeld',
 'exif-organisationinimage'         => 'Organisasie uitgebeeld',
 'exif-personinimage'               => 'Persoon uitgebeeld',
+'exif-originalimageheight'         => 'Hoogte van beeld voor dit besny is',
+'exif-originalimagewidth'          => 'Wydte van beeld voor dit besny is',
 
 # EXIF attributes
 'exif-compression-1' => 'Ongekompakteerd',
+'exif-compression-2' => 'CCITT Groep 3 1-dimensionale aangepaste "Huffman run length"-kodering',
+'exif-compression-3' => 'CCITT Groep 3 fakskodering',
+'exif-compression-4' => 'CCITT Groep 4 fakskodering',
 
 'exif-copyrighted-true'  => 'Onder kopiereg',
 'exif-copyrighted-false' => 'Publieke Domein',
@@ -3254,8 +3297,10 @@ Ander velde sal versteek wees.
 'exif-gpsdirection-m' => 'Magnetiese rigting',
 
 'exif-ycbcrpositioning-1' => 'Gesentreerd',
+'exif-ycbcrpositioning-2' => 'Val saam',
 
 'exif-dc-contributor' => 'Medewerkers',
+'exif-dc-coverage'    => 'Ruimtelike of temporale omvang van die media',
 'exif-dc-date'        => 'Datum(s)',
 'exif-dc-publisher'   => 'Uitgewer',
 'exif-dc-relation'    => 'Verwante media',
@@ -3559,13 +3604,35 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 'tags-hitcount'           => '$1 {{PLURAL:$1|wysiging|wysigings}}',
 
 # Special:ComparePages
-'comparepages'     => 'Vergelyk bladsye',
-'compare-selector' => 'Vergelyk bladsyweergawes',
-'compare-page1'    => 'Bladsy 1',
-'compare-page2'    => 'Bladsy 2',
-'compare-rev1'     => 'Weergawe 1',
-'compare-rev2'     => 'Weergawe 2',
-'compare-submit'   => 'Vergelyk',
+'comparepages'                => 'Vergelyk bladsye',
+'compare-selector'            => 'Vergelyk bladsyweergawes',
+'compare-page1'               => 'Bladsy 1',
+'compare-page2'               => 'Bladsy 2',
+'compare-rev1'                => 'Weergawe 1',
+'compare-rev2'                => 'Weergawe 2',
+'compare-submit'              => 'Vergelyk',
+'compare-invalid-title'       => 'Die titel wat u verskaf het is ongeldig.',
+'compare-title-not-exists'    => 'Die titel wat u verskaf het bestaan ​​nie.',
+'compare-revision-not-exists' => 'Die hersiening wat u verskaf het bestaan ​​nie.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Globale lêergebruik',
+'globalfileusage-for'         => 'Globale lêergebruik vir "$1"',
+'globalfileusage-ok'          => 'Soek',
+'globalfileusage-text'        => 'Soek globale lêergebruik',
+'globalfileusage-no-results'  => "[[$1]] word nie in ander wiki's gebruik nie.",
+'globalfileusage-on-wiki'     => 'Gebruik in $2',
+'globalfileusage-of-file'     => "Die volgende ander wiki's gebruik hierdie lêer:",
+'globalfileusage-filterlocal' => 'Moenie lokale gebruik wys nie',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Globale sjabloongebruik',
+'globaltemplateusage-for'         => 'Globaal sjabloongebruik vir "$1"',
+'globaltemplateusage-ok'          => 'Soek',
+'globaltemplateusage-no-results'  => "[[$1]] word nie in ander wiki's gebruik nie.",
+'globaltemplateusage-on-wiki'     => 'Gebruik in $2',
+'globaltemplateusage-of-file'     => "Die volgende ander wiki's gebruik hierdie sjabloon:",
+'globaltemplateusage-filterlocal' => 'Moenie lokale gebruik wys nie',
 
 # Database error messages
 'dberr-header'      => "Die wiki het 'n probleem",
@@ -3594,14 +3661,23 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 
 # Add categories per AJAX
 'ajax-add-category'            => 'Voeg kategorie by',
+'ajax-remove-category'         => 'Verwyder kategorie',
+'ajax-edit-category'           => 'Wysig kategorie',
 'ajax-add-category-submit'     => 'Byvoeg',
 'ajax-confirm-ok'              => 'OK',
 'ajax-confirm-title'           => 'Bevestig aksie',
 'ajax-confirm-save'            => 'Stoor',
+'ajax-confirm-save-all'        => 'Stoor alle wysigings',
+'ajax-cancel'                  => 'Kanselleer wysiging',
+'ajax-cancel-all'              => 'Kanselleer alle wysigings',
 'ajax-add-category-summary'    => 'Voeg kategorie "$1" by',
+'ajax-edit-category-summary'   => 'Verander kategorie "$1" na "$2"',
 'ajax-remove-category-summary' => 'Verwyder kategorie "$1"',
 'ajax-error-title'             => 'Fout',
 'ajax-remove-category-error'   => "Ongelukkig was nie moontlik om die kategorie te verwyder nie.
 Dit gebeur gewoonlik as die kategorie via 'n sjabloon by die bladsy bygevoeg is.",
+'ajax-category-hook-error'     => "'n Lokale funksie het verhoed dat die veranderinge gestoor word.",
+'ajax-api-error'               => 'Die API gee fout: $1: $2.',
+'ajax-api-unknown-error'       => "Die API gee 'n onbekende fout.",
 
 );

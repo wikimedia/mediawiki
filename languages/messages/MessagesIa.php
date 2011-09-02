@@ -913,7 +913,6 @@ Pare que illo ha essite delite.',
 'edit-no-change'                   => 'Tu modification ha essite ignorate, proque nulle cambio esseva facite in le texto.',
 'edit-already-exists'              => 'Non poteva crear un nove pagina.
 Illo existe ja.',
-'editinguserpage'                  => "'''Nota:''' Tu modifica un [[Help:User page|pagina de usator]]. Pro lassar un message a iste usator, [$1 modifica su pagina de discussion].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention: Iste pagina contine troppo de appellos costose al functiones del analysator syntactic.
