@@ -49,7 +49,7 @@ $wgSitename         = 'MediaWiki';
  * This is usually detected correctly by MediaWiki. If MediaWiki detects the
  * wrong server, it will redirect incorrectly after you save a page. In that
  * case, set this variable to fix it.
- * 
+ *
  * If you want to use protocol-relative URLs on your wiki, set this to a
  * protocol-relative URL like '//example.com' and set $wgCanonicalServer
  * to a fully qualified URL.
@@ -57,9 +57,9 @@ $wgSitename         = 'MediaWiki';
 $wgServer = WebRequest::detectServer();
 
 /**
- * Canonical URL of the server, to use in IRC feeds and notification e-mails. 
+ * Canonical URL of the server, to use in IRC feeds and notification e-mails.
  * Must be fully qualified, even if $wgServer is protocol-relative.
- * 
+ *
  * Defaults to $wgServer, expanded to a fully qualified http:// URL if needed.
  */
 $wgCanonicalServer = false;
@@ -2997,7 +2997,7 @@ $wgEnableInterwikiTranscluding = false;
  * enable the cache invalidation of the distant pages when the local templates
  * are edited and also to display the list of the distant templates used by
  * the local pages. Enabling this requires to set up a global shared database
- * (see next option $wgGlobalDatabase). 
+ * (see next option $wgGlobalDatabase).
  */
 $wgEnableInterwikiTemplatesTracking = false;
 
@@ -3005,7 +3005,7 @@ $wgEnableInterwikiTemplatesTracking = false;
  * If $wgEnableInterwikiTemplatesTracking is set to true, this option should
  * contain the wiki ID of the database that hosts the globaltemplatelinks table.
  */
-$wgGlobalDatabase = ''; 
+$wgGlobalDatabase = '';
 
 /**
  * If $wgEnableInterwikiTranscluding is set to true and if an interwiki
