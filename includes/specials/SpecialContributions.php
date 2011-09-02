@@ -518,11 +518,11 @@ class ContribsPager extends ReverseChronologicalPager {
 			$index = 'user_timestamp';
 			# @todo FIXME: Other groups may have 'bot' rights
 			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
-			$join_conds['recentchanges'] = array( 'INNER JOIN', "rev_id = rc_this_oldid" );
+			$join_conds['recentchanges'] = array( 'INNER JOIN', "rev_id = rc_this_oldid AND rev_timestamp = rc_timestamp" );
 		} else {
 			$tables = array( 'recentchanges', 'page', 'revision' );
 			$condition['rev_user_text'] = $this->target;
-			$join_conds['recentchanges'] = array( 'INNER JOIN', "rev_id = rc_this_oldid" );
+			$join_conds['recentchanges'] = array( 'INNER JOIN', "rev_id = rc_this_oldid AND rev_timestamp = rc_timestamp" );
 			$index = 'usertext_timestamp';
 		}
 		if( $this->deletedOnly ) {
