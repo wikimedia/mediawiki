@@ -275,6 +275,11 @@ $messages = array(
 'tog-fancysig'                => 'ଦସ୍ତଖତକୁ ଉଇକିଟେକ୍ସଟ ଭାବରେ ଗଣିବେ (ଆପେଆପେ ଥିବା ଲିଙ୍କ ବିନା)',
 'tog-externaleditor'          => 'ବାହାର ସମ୍ପାଦକଟି ଆପଣାଛାଏଁ ବ୍ୟବହାର କରିବେ (କେବଳ ପଟୁ ସଭ୍ୟଙ୍କ ପାଇଁ, ଏଥି ନିମନ୍ତେ ଆପଣଙ୍କ କମ୍ପୁଟରରେ ବିଶେଷ ସଜାଣି ଲୋଡ଼ା । [http://www.mediawiki.org/wiki/Manual:External_editors ଅଧିକ ସୂଚନା])',
 'tog-externaldiff'            => 'ବାହାର ବାଛିବା (external diff) ଆପଣାଛାଏଁ ବ୍ୟବହାର କରିବେ (କେବଳ ପଟୁ ସଭ୍ୟଙ୍କ ପାଇଁ, ଏଥି ନିମନ୍ତେ ଆପଣଙ୍କ କମ୍ପୁଟରରେ ବିଶେଷ ସଜାଣି ଲୋଡ଼ା । [http://www.mediawiki.org/wiki/Manual:External_editors ଅଧିକ ସୂଚନା])',
+'tog-showjumplinks'           => '"ଡେଇଁଯିବେ" ଲିଙ୍କସବୁକୁ ସଚଳ କରିବେ',
+'tog-uselivepreview'          => 'ସାଥେ ସାଥେ ଚାଲିଥିବା ଦେଖଣା ବ୍ୟବହାର କରିବେ (ଜାଭାସ୍କ୍ରିପ୍ଟ ଲୋଡ଼ା)',
+'tog-forceeditsummary'        => 'ଖାଲି ସମ୍ପାଦନା ସାରକଥାକୁ ଯିବା ବେଳେ ମୋତେ ଜଣାଇବେ',
+'tog-watchlisthideown'        => 'ମୋ ଦେଖଣା ତାଲିକାରେ ମୋ ନିଜର ସମ୍ପାଦନାଗୁଡ଼ିକ ଲୁଚାଇବେ',
+'tog-watchlisthidebots'       => 'ଦେଖଣା ତାଲିକାରେ ବଟ ଦେଇ ବଦଳ ଗୁଡ଼ିକ ଲୁଚାଇବେ',
 
 'underline-always' => 'ସବୁବେଳେ',
 'underline-never'  => 'କେବେନୁହେଁ',

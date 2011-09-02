@@ -1341,7 +1341,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'qbsettings-fixedright'     => 'Tetap sebelah kanan',
 'qbsettings-floatingleft'   => 'Mengambang sebelah kiri',
 'qbsettings-floatingright'  => 'Mengambang sebelah kanan',
-'qbsettings-directionality' => 'Tetap, tergantung pada bentuk skrip dan bahasa Anda',
+'qbsettings-directionality' => 'Tetap, tergantung pada bentuk skrip dari bahasa Anda',
 
 # Preferences page
 'preferences'                   => 'Preferensi',
@@ -2167,7 +2167,7 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'emailpagetext'        => 'Anda dapat menggunakan formulir di bawah ini untuk mengirimkan surel ke pengguna ini.
 Alamat surel yang Anda masukkan di [[Special:Preferences|preferensi akun Anda]] akan muncul sebagai alamat "Dari" dalam surel tersebut, sehingga penerima dapat langsung membalas kepada Anda.',
 'usermailererror'      => 'Kesalahan objek surat:',
-'defemailsubject'      => 'Surel {{SITENAME}}',
+'defemailsubject'      => 'Surel {{SITENAME}} dari pengguna "$1"',
 'usermaildisabled'     => 'Surel pengguna dinonaktifkan',
 'usermaildisabledtext' => 'Anda tidak dapat mengirim surel pada pengguna lain di wiki ini',
 'noemailtitle'         => 'Tidak ada alamat surel',
@@ -2466,6 +2466,7 @@ Catatan log pemblokiran terakhir tersedia di bawah ini sebagai rujukan:',
 'sp-contributions-username'            => 'Alamat IP atau nama pengguna:',
 'sp-contributions-toponly'             => 'Tampilkan hanya revisi teratas',
 'sp-contributions-submit'              => 'Cari',
+'sp-contributions-showsizediff'        => 'Tampilkan beda dalam ukuran halaman',
 
 # What links here
 'whatlinkshere'            => 'Pranala balik',
@@ -3753,6 +3754,30 @@ Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
 'compare-invalid-title'       => 'Judul yang Anda berikan tidak sah.',
 'compare-title-not-exists'    => 'Judul yang Anda minta tidak ada.',
 'compare-revision-not-exists' => 'Revisi yang Anda minta tidak ada.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Penggunaan berkas global',
+'globalfileusage-for'         => 'Penggunaan berkas global untuk "$1"',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Halaman istimewa]] untuk melihat penggunaan berkas secara global',
+'globalfileusage-ok'          => 'Cari',
+'globalfileusage-text'        => 'Cari penggunaan secara global berkas.',
+'globalfileusage-no-results'  => '[[$1]] tidak digunakan di wiki lain.',
+'globalfileusage-on-wiki'     => 'Penggunaan pada $2',
+'globalfileusage-of-file'     => 'Wiki lain berikut menggunakan berkas ini:',
+'globalfileusage-more'        => 'Lihat [[{{#Special:GlobalUsage}}/$1|lebih banyak penggunaan global]] dari berkas ini.',
+'globalfileusage-filterlocal' => 'Jangan tunjukkan penggunaan lokal',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Penggunaan templat global',
+'globaltemplateusage-for'         => 'Penggunaan templat global untuk "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Halaman istimewa]] untuk melihat penggunaan templat secara global',
+'globaltemplateusage-ok'          => 'Cari',
+'globaltemplateusage-text'        => 'Cari penggunaan templat secara global.',
+'globaltemplateusage-no-results'  => '[[$1]] tidak digunakan di wiki lain.',
+'globaltemplateusage-on-wiki'     => 'Penggunaan pada $2',
+'globaltemplateusage-of-file'     => 'Wiki lain berikut menggunakan templat ini:',
+'globaltemplateusage-more'        => 'Lihat [[{{#Special:GlobalUsage}}/$1|penggunaan global]] dari templat ini.',
+'globaltemplateusage-filterlocal' => 'Jangan tunjukkan penggunaan lokal',
 
 # Database error messages
 'dberr-header'      => 'Wiki ini bermasalah',

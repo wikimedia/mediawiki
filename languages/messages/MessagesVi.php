@@ -1029,7 +1029,6 @@ Dường như trang này đã bị xóa.',
 'edit-no-change'                   => 'Sửa đổi của bạn không được tính đến, vì nó không làm thay đổi nội dung.',
 'edit-already-exists'              => 'Không thể tạo trang mới.
 Nó đã tồn tại.',
-'editinguserpage'                  => "'''Lưu ý:''' Bạn đang sửa đổi [[Help:User page|trang cá nhân]] của một người dùng. Hãy để lại một tin nhắn tại [$1 trang thảo luận của họ].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Cảnh báo: Trang này có quá nhiều lần gọi hàm cú pháp cần mức độ xử lý cao.
@@ -2466,6 +2465,7 @@ $1',
 'sp-contributions-username'            => 'Địa chỉ IP hay tên thành viên:',
 'sp-contributions-toponly'             => 'Chỉ hiện các phiên bản gần đây',
 'sp-contributions-submit'              => 'Tìm kiếm',
+'sp-contributions-showsizediff'        => 'Hiện khác biệt về kích thước trang',
 
 # What links here
 'whatlinkshere'            => 'Các liên kết đến đây',

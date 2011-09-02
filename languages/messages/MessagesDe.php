@@ -1106,7 +1106,6 @@ Sie wurde anscheinend gelöscht.',
 'edit-conflict'                    => 'Bearbeitungskonflikt.',
 'edit-no-change'                   => 'Deine Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenommen wurde.',
 'edit-already-exists'              => 'Die neue Seite konnte nicht erstellt werden, da sie bereits vorhanden ist.',
-'editinguserpage'                  => "'''Hinweis:''' Du bearbeitest gerade eine [[Help:User page|Benutzerseite]]. Um diesem Benutzer eine Nachricht zu hinterlassen, [$1 bearbeite bitte seine Diskussionsseite].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Achtung: Diese Seite enthält zu viele Aufrufe aufwendiger Parserfunktionen.

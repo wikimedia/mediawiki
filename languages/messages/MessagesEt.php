@@ -2446,6 +2446,7 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'sp-contributions-username'            => 'IP-aadress või kasutajanimi:',
 'sp-contributions-toponly'             => 'Ainult uusimad redaktsioonid',
 'sp-contributions-submit'              => 'Otsi',
+'sp-contributions-showsizediff'        => 'Kuva lehekülje suuruse erinevus',
 
 # What links here
 'whatlinkshere'            => 'Lingid siia',
@@ -3319,6 +3320,11 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-gpsspeed-k' => 'Kilomeetrit tunnis',
 'exif-gpsspeed-m' => 'Miili tunnis',
 'exif-gpsspeed-n' => 'Sõlme',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilomeetrid',
+'exif-gpsdestdistance-m' => 'Miilid',
+'exif-gpsdestdistance-n' => 'Meremiilid',
 
 'exif-gpsdop-excellent' => 'Suurepärane ($1)',
 'exif-gpsdop-good'      => 'Hea ($1)',

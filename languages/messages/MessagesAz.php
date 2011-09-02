@@ -98,23 +98,23 @@ $messages = array(
 'tog-minordefault'            => 'Default olaraq bütün redaktələri kiçik redaktə kimi nişanla',
 'tog-previewontop'            => 'Sınaq göstərişi yazma sahəsindən əvvəl göstər',
 'tog-previewonfirst'          => 'İlkin redaktədə sınaq göstərişi',
-'tog-nocache'                 => 'Səhifələri yaddaşlama',
+'tog-nocache'                 => 'Səhifələri keşdə saxlama',
 'tog-enotifwatchlistpages'    => 'İzləmə siyahısında olan məqalə redaktə olunsa, mənə e-məktub göndər',
 'tog-enotifusertalkpages'     => 'Müzakirə səhifəm redaktə olunsa, mənə e-məktub göndər',
-'tog-enotifminoredits'        => 'Hətta səhifələrdə kiçik dəyişikliklər olsa belə, mənə e-məktub göndər',
-'tog-enotifrevealaddr'        => 'Elektron adresimi xəbərdarliq e-məktublarda göstər',
+'tog-enotifminoredits'        => 'Səhifələrdə kiçik dəyişikliklər olsa belə, mənə e-məktub göndər',
+'tog-enotifrevealaddr'        => 'Xəbərdarlıq e-məktublarında mənim e-poçt ünvanımı göstər',
 'tog-shownumberswatching'     => 'İzləyən istifadəçilərin sayını göstər',
 'tog-oldsig'                  => 'Hazırkı imzanın sınaq göstərişi:',
-'tog-fancysig'                => 'Xam imza (daxili bağlantı yaratmaz)',
+'tog-fancysig'                => 'Vikimətn şəklində imza (avtomatik keçid yaratmadan)',
 'tog-externaleditor'          => 'Susmaya görə xarici müqayisə proqramlarından istifadə et',
 'tog-externaldiff'            => 'Susmaya görə xarici müqayisə proqramlarından istifadə et',
-'tog-showjumplinks'           => '"Gətir" ("jump to") linklərini aktivləşdir',
-'tog-uselivepreview'          => 'Canlı sınaq xüsusiyyətini naviqasiya (JavaScript tələb edir)  (daha sınaq mərhələsində)',
+'tog-showjumplinks'           => '"Keçid et:" linklərini aktivləşdir',
+'tog-uselivepreview'          => 'Canlı sınaq baxışı xüsusiyyətini istifadə et (JavaScript, sınaq mərhələsində)',
 'tog-forceeditsummary'        => 'Qısa məzmunu boş saxladıqda mənə bildir',
 'tog-watchlisthideown'        => 'Mənim redaktələrimi izləmə siyahısında gizlət',
 'tog-watchlisthidebots'       => 'Bot redaktələrini izləmə siyahısında gizlət',
 'tog-watchlisthideminor'      => 'İzləmə səhifəmdə kiçik redaktələri gizlət',
-'tog-watchlisthideliu'        => 'Daxil olmuş istifadəçilərin redaktələrini izləmə siyahısında gizlət',
+'tog-watchlisthideliu'        => 'Qeydiyyatlı istifadəçilərin redaktələrini izləmə siyahısında gizlət',
 'tog-watchlisthideanons'      => 'Qeydiyyatdan keçməmiş istifadəçilərin redaktələrini izləmə siyahısında gizlət',
 'tog-watchlisthidepatrolled'  => 'Yoxlanılmış redaktələri izləmə siyahısında gizlət',
 'tog-ccmeonemails'            => 'Göndərdiyim e-məktubun nüsxələrini mənə göndər',
@@ -344,7 +344,7 @@ Bax: [[Special:Version|Versiyalar]].',
 'youhavenewmessages'      => 'Hal-hazırda $1 var. ($2)',
 'newmessageslink'         => 'yeni ismarıclar',
 'newmessagesdifflink'     => 'Sonuncu və əvvəlki versiya arasındakı fərq',
-'youhavenewmessagesmulti' => '$1-də yeni mesajınız var.',
+'youhavenewmessagesmulti' => '"$1"da yeni mesajınız var.',
 'editsection'             => 'redaktə',
 'editsection-brackets'    => '[$1]',
 'editold'                 => 'redaktə',
@@ -358,7 +358,7 @@ Bax: [[Special:Version|Versiyalar]].',
 'collapsible-collapse'    => 'Gizlə',
 'collapsible-expand'      => 'Göstər',
 'thisisdeleted'           => '$1 bax və ya bərpa et?',
-'viewdeleted'             => 'Göstər $1?',
+'viewdeleted'             => '$1 göstərilsin?',
 'restorelink'             => '{{PLURAL:$1|bir silinmiş redaktəyə|$1 silinmiş redaktəyə}}',
 'feedlinks'               => 'Kanal növü:',
 'feed-invalid'            => 'Yanlış qeydiyyat kanalı növü.',
@@ -370,8 +370,8 @@ Bax: [[Special:Version|Versiyalar]].',
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (səhifə mövcud deyil)',
-'sort-descending'         => 'Sort descending',
-'sort-ascending'          => 'Sort ascending',
+'sort-descending'         => 'Azalan ardıcıllıq',
+'sort-ascending'          => 'Artan ardıcıllıq',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Məqalə',
@@ -398,22 +398,21 @@ Mövcud xüsusi səhifələrin siyahısı: [[Special:SpecialPages|Xüsusi səhif
 # General errors
 'error'                => 'Xəta',
 'databaseerror'        => 'Verilənlər bazası xətası',
-'dberrortext'          => 'Məlumat bazası sorğu söz xətası yarandı.
-Bu yazılımdaki bir xətadan qaynaqlana bilər.
-"<tt>$2</tt>" funksiyasından sınanan sonuncu istintaq:
-<blockquote><tt>$1</tt></blockquote>.
-Məlumat bazasının hesabat etdiyi xəta "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Məlumat bazası sorğu söz xətası yarandı.
-Son edilən verilənlər bazası sorğusu:
+'dberrortext'          => 'Verilənlər bazası sorğusunda sintaksis xətası yarandı.
+Bu proqram təminatındakı xəta ilə əlaqədar ola bilər.
+Verilənlər bazasına sonuncu sorğu "<tt>$2</tt>" funksiyasından 
+yaranan <blockquote><tt>$1</tt></blockquote>.
+Verilənlər bazasının göstərdiyi xəta "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Verilənlər bazası sorğusunda sintaksis xətası yarandı.
+Verilənlər bazasına sonuncu sorğu:
 "$1"
-İstifadə edilən funksiya "$2".
-Məlumat bazasının verdiyi xəta mesajı "$3: $4"',
+"$2" funksiyasından yaranmışdır.
+Verilənlər bazasının göstərdiyi xəta "$3: $4"',
 'laggedslavemode'      => "'''Xəbərdarlıq:''' Səhifə son əlavələri əks etdirməyə bilər.",
-'readonly'             => 'Verilənlər bazası kilidli',
+'readonly'             => 'Verilənlər bazası bloklanıb',
 'enterlockreason'      => 'Bloklamanın səbəbini və nəzərdə tutulan müddətini qeyd edin',
-'readonlytext'         => 'Verilənlər bazası adi baxım / təmir işləri səbəbiylə, müvəqqəti olaraq daxil olmağa və dəyişiklik etməyə bağlanmışdır.Qısa müddət sonra normala dönəcək.
-
-Bazasını kilidləyən operatorun şərhi: $1',
+'readonlytext'         => 'Verilənlər bazası ehtimal ki, adi təmir işləri ilə əlaqədar müvəqqəti olaraq yeni məqalələr və dəyişikliklər üçün bağlanmışdır.
+Verilənlər bazasını bloklayan operatorun izahatı: $1',
 'missing-article'      => 'Məlumat bazası, tapılması istənən "$1" $2 adlı səhifəyə aid mətni tapa bilmədi.
 
 Bu vəziyyət səhifənin, silinmiş bir səhifənin keçmiş versiyası olmasından qaynaqlana bilər.
@@ -1931,6 +1930,7 @@ Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
 'sp-contributions-username'            => 'IP-ünvanı və ya istifadəçi adı:',
 'sp-contributions-toponly'             => 'Yalnız ən son dəyişiklikləri göstər',
 'sp-contributions-submit'              => 'Axtar',
+'sp-contributions-showsizediff'        => 'Səhifənin ölçüsünün dəyişilməsini göstər',
 
 # What links here
 'whatlinkshere'            => 'Bu səhifəyə bağlantılar',

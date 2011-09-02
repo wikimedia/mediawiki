@@ -465,7 +465,7 @@ $messages = array(
 'vector-action-move'             => 'Premjesti',
 'vector-action-protect'          => 'Zaštiti',
 'vector-action-undelete'         => 'Vrati',
-'vector-action-unprotect'        => 'Ukloni zaštitu',
+'vector-action-unprotect'        => 'Promijeni zaštitu',
 'vector-simplesearch-preference' => 'Omogući poboljšane prijedloge za pretraživanje (samo izgled Vector)',
 'vector-view-create'             => 'Započni',
 'vector-view-edit'               => 'Uredi',
@@ -502,8 +502,8 @@ $messages = array(
 'protect'           => 'Zaštiti',
 'protect_change'    => 'promijeni',
 'protectthispage'   => 'Zaštiti ovu stranicu',
-'unprotect'         => 'Ukloni zaštitu',
-'unprotectthispage' => 'Ukloni zaštitu s ove stranice',
+'unprotect'         => 'Promijeni zaštitu',
+'unprotectthispage' => 'Promijeni zaštitu ove stranice',
 'newpage'           => 'Nova stranica',
 'talkpage'          => 'Razgovor o ovoj stranici',
 'talkpagelinktext'  => 'Razgovor',
@@ -595,6 +595,8 @@ $1',
 'page-rss-feed'           => '"$1" RSS izvor',
 'page-atom-feed'          => '"$1" Atom izvor',
 'red-link-title'          => '$1 (stranica ne postoji)',
+'sort-descending'         => 'Sortiraj silazno',
+'sort-ascending'          => 'Sortiraj uzlazno',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Članak',
@@ -681,6 +683,8 @@ Upit: $2',
 'cascadeprotected'     => 'Ova je stranica zaključana za uređivanja jer je uključena u {{PLURAL:$1|slijedeću stranicu|slijedeće stranice}}, koje su zaštićene "prenosivom zaštitom":
 $2',
 'namespaceprotected'   => "Ne možete uređivati stranice u imenskom prostoru '''$1'''.",
+'customcssprotected'   => 'Ne možete uređivati ovu CSS stranicu zato što ona sadrži osobne postavke drugog suradnika.',
+'customjsprotected'    => 'Ne možete uređivati ovu JavaScript stranicu zato što ona sadrži osobne postavke drugog suradnika.',
 'ns-specialprotected'  => "Stranice u imenskom prostoru ''{{ns:special}}'' ne mogu se uređivati.",
 'titleprotected'       => "Ovaj naslov je od kreiranja zaštitio suradnik [[User:$1|$1]], uz razlog: ''$2''.",
 
@@ -787,6 +791,7 @@ Molimo Vas da pričekate prije nego što pokušate ponovo.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Nepoznata pogreška u PHP-mail() funkciji',
+'user-mail-no-addy'      => 'Pokušaj slanja e-maila bez e-mail adrese.',
 
 # Change password dialog
 'resetpass'                 => 'Promijeni lozinku',
@@ -836,6 +841,17 @@ možete zanemariti ovu poruku i nastavite koristiti staru lozinku.',
 'passwordreset-emailelement'   => 'Suradničko ime: $1
 Privremena lozinka: $2',
 'passwordreset-emailsent'      => 'E-mail podsjetnik je poslan.',
+
+# Special:ChangeEmail
+'changeemail'          => 'Promijeni e-mail adresu',
+'changeemail-header'   => 'Promijeni e-mail adresu računa',
+'changeemail-text'     => 'Za promjenu e-mail adrese popunite ovaj obrazac. Morat ćete unijeti svoju lozinku da potvrdite ovu promjenu.',
+'changeemail-no-info'  => 'Morate biti prijavljeni da biste izravno pristupili ovoj stranici.',
+'changeemail-oldemail' => 'Trenutna E-mail adresa:',
+'changeemail-newemail' => 'Nova E-mail adresa:',
+'changeemail-none'     => '(ništa)',
+'changeemail-submit'   => 'Promijeni E-mail',
+'changeemail-cancel'   => 'Odustani',
 
 # Edit page toolbar
 'bold_sample'     => 'Podebljani tekst',
@@ -933,8 +949,12 @@ ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'userpage-userdoesnotexist-view'   => 'Suradnički račun "$1" nije registriran.',
 'blocked-notice-logextract'        => 'Ovaj suradnik je trenutačno blokiran.
 Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
-'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
-'''Mozilla / Firefox / Safari:''' držite ''Shift'' i pritisnite ''Reload'', ili pritisnite ''Ctrl-F5'' ili ''Ctrl-R'' (''Cmd-R'' na Apple Macu); '''Konqueror:''' samo pritisnite dugme ''Reload'' ili pritisnite ''F5''; '''Opera:''' očistiti cache u ''Tools → Preferences;'' '''Internet Explorer:''' držite ''Ctrl'' i pritisnite ''Refresh'', ili pritisnite ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Napomena:''' Nakon snimanja možda ćete trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
+* '''Firefox / Safari:''' držite ''Shift'' i kliknite ''Reload'', ili pritisnite bilo ''Ctrl-F5'' ili ''Ctrl-R'' (''Command-R'' na Macu)
+* '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na Macu)
+* '''Internet Explorer:''' držite ''Ctrl'' i kliknite ''Refresh'', ili pritisnite ''Ctrl-F5''
+* '''Konqueror:''' kliknite ''Reload'' ili pritisnite ''F5''
+* '''Opera:''' očistite međuspremnik u ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Savjet:''' Rabite dugme \"{{int:showpreview}}\" za testiranje svog CSS prije snimanja.",
 'userjsyoucanpreview'              => "'''Savjet:''' Rabite dugme \"{{int:showpreview}}\" za testiranje svog novog JavaScripta prije snimanja.",
 'usercsspreview'                   => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS. Još nije snimljen!'''",
@@ -994,6 +1014,9 @@ Posljednja stavka u evidenciji navedena je niže kao napomena:",
 'templatesused'                    => '{{PLURAL:$1|Predložak koji se rabi|Predlošci koji se rabe}} na ovoj stranici:',
 'templatesusedpreview'             => '{{PLURAL:$1|Predložak koji se rabi|Predlošci koji se rabe}} u ovom predpregledu:',
 'templatesusedsection'             => '{{PLURAL:$1|Predložak koji se rabi|Predlošci koji se rabe}} u ovom odjeljku:',
+'distanttemplatesused'             => '{{PLURAL:$1|Udaljeni predložak koji se rabi|Udaljeni predlošci koji se rabe|Udaljeni predlošci koji se rabe}} na ovoj stranici:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Udaljeni predložak koji se rabi|Udaljeni predlošci koji se rabe|Udaljeni predlošci koji se rabe}} u ovom pretpregledu:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Udaljeni predložak koji se rabi|Udaljeni predlošci koji se rabe|Udaljeni predlošci koji se rabe}} u ovom odjeljku:',
 'template-protected'               => '(zaštićen)',
 'template-semiprotected'           => '(djelomično zaštićen)',
 'hiddencategories'                 => 'Ova stranica je član {{PLURAL:$1|1 skrivene kategorija|$1 skrivene kategorije|$1 skrivenih kategorija}}:',
@@ -1294,12 +1317,13 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'searchdisabled'                   => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onemogućena. Možete se poslužiti tražilicom Google.</p>',
 
 # Quickbar
-'qbsettings'               => 'Traka',
-'qbsettings-none'          => 'Bez',
-'qbsettings-fixedleft'     => 'Lijevo nepomično',
-'qbsettings-fixedright'    => 'Desno nepomično',
-'qbsettings-floatingleft'  => 'Lijevo leteće',
-'qbsettings-floatingright' => 'Desno leteće',
+'qbsettings'                => 'Traka',
+'qbsettings-none'           => 'Bez',
+'qbsettings-fixedleft'      => 'Lijevo nepomično',
+'qbsettings-fixedright'     => 'Desno nepomično',
+'qbsettings-floatingleft'   => 'Lijevo leteće',
+'qbsettings-floatingright'  => 'Desno leteće',
+'qbsettings-directionality' => 'Fiksno, ovisno o smjeru pisma Vašeg jezika',
 
 # Preferences page
 'preferences'                   => 'Postavke',
@@ -1324,6 +1348,8 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'prefs-watchlist-token'         => 'Token popisa praćenja:',
 'prefs-misc'                    => 'Razno',
 'prefs-resetpass'               => 'Promijeni lozinku',
+'prefs-changeemail'             => 'Promijeni E-mail',
+'prefs-setemail'                => 'Postavite E-mail adresu',
 'prefs-email'                   => 'Mogućnosti e-maila',
 'prefs-rendering'               => 'Izgled',
 'saveprefs'                     => 'Spremi',
@@ -1345,7 +1371,7 @@ Primijetite da uporaba navigacijskih poveznica resetira Vaše izbore u stupcu.',
 'savedprefs'                    => 'Vaše postavke su sačuvane.',
 'timezonelegend'                => 'Vremenska zona:',
 'localtime'                     => 'Lokalno vrijeme:',
-'timezoneuseserverdefault'      => 'Koristi vrijeme na poslužitelji ($1)',
+'timezoneuseserverdefault'      => 'Koristi postavke wikija ($1)',
 'timezoneuseoffset'             => 'Drugo (odredite razliku)',
 'timezoneoffset'                => 'Razlika¹:',
 'servertime'                    => 'Vrijeme na poslužitelju:',
@@ -1522,10 +1548,11 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 
 # User rights log
-'rightslog'      => 'Evidencija suradničkih prava',
-'rightslogtext'  => 'Ovo je evidencija promjena suradničkih prava.',
-'rightslogentry' => 'promijenjena suradnička prava za $1 iz $2 u $3',
-'rightsnone'     => '(suradnik)',
+'rightslog'                  => 'Evidencija suradničkih prava',
+'rightslogtext'              => 'Ovo je evidencija promjena suradničkih prava.',
+'rightslogentry'             => 'promijenjena suradnička prava za $1 iz $2 u $3',
+'rightslogentry-autopromote' => 'je automatski unaprijeđen s $2 na $3',
+'rightsnone'                 => '(suradnik)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'čitanje ove stranice',
@@ -1666,6 +1693,7 @@ Dopušteni {{PLURAL:$3|tip datoteke je|tipovi datoteke su}} $2.',
 'large-file'                  => 'Preporučljivo je da datoteke ne prelaze $1; Ova datoteka je $2.',
 'largefileserver'             => 'Veličina ove datoteke veća je od one dopuštene postavkama poslužitelja.',
 'emptyfile'                   => 'Datoteka koju ste postavili je prazna. Možda se radi o krivo utipkanom imenu datoteke. Provjerite želite li zaista postaviti ovu datoteku.',
+'windows-nonascii-filename'   => 'Ovaj wiki ne podržava imena datoteka s posebnim znakovima.',
 'fileexists'                  => "Datoteka s ovim imenom već postoji, pogledajte '''<tt>[[:$1]]</tt>''' ako niste sigurni želite li je uistinu promijeniti.
 [[$1|thumb]]",
 'filepageexists'              => "Opis stranice za ovu datoteku je već napravljen ovdje '''<tt>[[:$1]]</tt>''', ali datoteka sa ovim nazivom trenutno ne postoji.
@@ -1794,8 +1822,7 @@ Za optimalnu sigurnost, img_auth.php je onemogućena.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ova posebna stranica pokazuje sve postavljene datoteke.
-Na vrhu popisa se nalaze najnovije postavljene datoteke.
-Poredak datoteka mijenja se pritiskom na naslov stupca.',
+Kad je filtriran po korisniku, popis prikazuje samo one datoteke čiju posljednju inačicu je postavio taj korisnik.',
 'listfiles_search_for'  => 'Traži ime slike:',
 'imgfile'               => 'datoteka',
 'listfiles'             => 'Popis slika',
@@ -1831,6 +1858,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 [[Special:WhatLinksHere/$2|Ovdje se nalazi]] potpuni popis.',
 'nolinkstoimage'            => 'Nijedna stranica ne povezuje na ovu sliku.',
 'morelinkstoimage'          => 'Pogledaj [[Special:WhatLinksHere/$1|više poveznica]] za ovu datoteku.',
+'linkstoimage-redirect'     => '$1 (preusmjeravanje datoteke) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 sljedeće datoteke su kopije|$1 sljedećih datoteka su kopije}} ove datoteke ([[Special:FileDuplicateSearch/$2|više detalja]]):',
 'sharedupload'              => 'Ova je datoteka postavljena na $1 i mogu je koristiti ostali projekti.',
 'sharedupload-desc-there'   => 'Ova datoteka je s $1 i mogu je koristiti drugi projekti. Pogledajte [$2 stranicu s opisom datoteke] za dodatne informacije.',
@@ -2118,7 +2146,7 @@ da bi mogli slati poštu drugim suradnicima.',
 'emailpagetext'        => 'Možete koristiti ovaj obrazac za slanje elektroničke pošte ovom suradniku.
 E-mail adresa iz Vaših [[Special:Preferences|postavki]] nalazit će se u "From" polju poruke i primatelj će Vam moći izravno odgovoriti.',
 'usermailererror'      => 'Sustav pošte javio je pogrešku:',
-'defemailsubject'      => '{{SITENAME}} elektronička pošta (e-mail)',
+'defemailsubject'      => '{{SITENAME}} e-mail od suradnika "$1"',
 'usermaildisabled'     => 'Suradnička e-pošta je onemogućena',
 'usermaildisabledtext' => 'Ne možete slati e-poštu drugim suradnicima na ovom wikiju',
 'noemailtitle'         => 'Nema adrese primaoca',
@@ -2154,8 +2182,10 @@ E-mail adresa iz Vaših [[Special:Preferences|postavki]] nalazit će se u "From"
 'watchnologin'         => 'Niste prijavljeni',
 'watchnologintext'     => 'Morate biti [[Special:UserLogin|prijavljeni]]
 za promjene u popisu praćenja.',
+'addwatch'             => 'Dodaj u popis praćenja',
 'addedwatchtext'       => "Stranica \"[[:\$1]]\" je dodana na Vaš [[Special:Watchlist|popis praćenja]].
 Promjene na toj stranici i njenoj stranici za razgovor bit će prikazane na popisu praćenja, a stranica će biti ispisana '''podebljano''' u [[Special:RecentChanges|popisu nedavnih promjena]] kako biste je lakše primijetili. Ako poželite ukloniti stranicu s popisa praćenja, pritisnite \"Prekini praćenje\" u traci s naredbama.",
+'removewatch'          => 'Ukloni s popisa praćenja',
 'removedwatchtext'     => 'Stranica "[[:$1]]" je uklonjena s [[Special:Watchlist|Vašeg popisa praćenja]].',
 'watch'                => 'Prati',
 'watchthispage'        => 'Prati ovu stranicu',
@@ -2176,8 +2206,9 @@ Promjene na toj stranici i njenoj stranici za razgovor bit će prikazane na popi
 'watchlist-options'    => 'Izbornik popisa praćenja',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Pratim...',
-'unwatching' => 'Prestajem pratiti...',
+'watching'       => 'Pratim...',
+'unwatching'     => 'Prestajem pratiti...',
+'watcherrortext' => 'Došlo je do pogreške kod izmjene Vašeg popisa praćenja za "$1".',
 
 'enotif_mailer'                => '{{SITENAME}} - izvješća o promjenama',
 'enotif_reset'                 => 'Označi sve stranice kao već posjećene',
@@ -3492,7 +3523,7 @@ Potvrdite namjeru vraćanja ovog članka.",
 # Watchlist editor
 'watchlistedit-numitems'       => 'Vaš popis praćenja sadrži {{PLURAL:$1|1 stranicu|$1 stranica}}, bez stranica za razgovor.',
 'watchlistedit-noitems'        => 'Vaš popis praćenja je prazan.',
-'watchlistedit-normal-title'   => 'Uredi popis praćenih stranica',
+'watchlistedit-normal-title'   => 'Uredi popis praćenja',
 'watchlistedit-normal-legend'  => 'Ukloni stranice iz popisa praćenja',
 'watchlistedit-normal-explain' => 'Prikazane su stranice na Vašem popisu praćenja.
 Da uklonite stranicu s popisa praćenja, označite kućicu kraj nje i kliknite gumb "{{int:Watchlistedit-normal-submit}}".
@@ -3647,14 +3678,26 @@ Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:file}
 'sqlite-no-fts'  => '$1 bez podrške pretraživanja cijelog teksta',
 
 # Add categories per AJAX
-'ajax-add-category'            => 'Dodaj kategoriju',
-'ajax-add-category-submit'     => 'Dodaj',
-'ajax-confirm-title'           => 'Potvrdi radnju',
-'ajax-confirm-save'            => 'Spremi',
-'ajax-add-category-summary'    => 'Dodaj kategoriju "$1"',
-'ajax-remove-category-summary' => 'Ukloni kategoriju "$1"',
-'ajax-error-title'             => 'Greška',
-'ajax-remove-category-error'   => 'Nije bilo moguće ukloniti ovu kategoriju.
-Ovo se obično događa kada je kategorija dodana na stranicu u predlošku.',
+'ajax-add-category'             => 'Dodaj kategoriju',
+'ajax-add-category-submit'      => 'Dodaj',
+'ajax-confirm-ok'               => 'U redu',
+'ajax-confirm-title'            => 'Potvrdi radnju',
+'ajax-confirm-save'             => 'Spremi',
+'ajax-confirm-save-all'         => 'Sačuvaj sve promjene',
+'ajax-cancel'                   => 'Odustani od uređivanja',
+'ajax-cancel-all'               => 'Odustani od svih promjena',
+'ajax-add-category-summary'     => 'Dodaj kategoriju "$1"',
+'ajax-edit-category-summary'    => 'Promijeni kategoriju "$1" u "$2"',
+'ajax-remove-category-summary'  => 'Ukloni kategoriju "$1"',
+'ajax-category-question'        => 'Zašto želite sljedeće promjene:',
+'ajax-error-title'              => 'Greška',
+'ajax-remove-category-error'    => 'Nije bilo moguće ukloniti kategoriju "$1".
+Ovo se obično događa kada je kategorija na stranicu dodana u predlošku.',
+'ajax-edit-category-error'      => 'Nije bilo moguće urediti kategoriju "$1".
+Ovo se obično događa kada je kategorija na stranicu dodana u predlošku.',
+'ajax-category-already-present' => 'Ova stranica već spada u kategoriju "$1"',
+'ajax-category-hook-error'      => 'Lokalna funkcija je spriječila spremanje promjena.',
+'ajax-api-error'                => 'API je vratio pogrešku: $1: $2.',
+'ajax-api-unknown-error'        => 'API je vratio nepoznatu pogrešku.',
 
 );

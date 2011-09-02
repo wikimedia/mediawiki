@@ -1212,7 +1212,6 @@ $2
 'edit-no-change'                   => 'تعديلك تم تجاهله، لأنه لم يحدث أي تعديل للنص.',
 'edit-already-exists'              => 'لم يمكن إنشاء صفحة جديدة.
 هي موجودة بالفعل.',
-'editinguserpage'                  => "'''ملاحظة:''' أنت تعدل [[Help:User page|صفحة مستخدم]]. لترك رسالة لهذا المستخدم، [$1 عدل صفحة نقاشه].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''تحذير:''' هذه الصفحة تحتوي على استدعاءات دالة محلل كثيرة مكلفة.
@@ -2677,6 +2676,7 @@ $1',
 'sp-contributions-username'            => 'عنوان أيبي أو اسم مستخدم:',
 'sp-contributions-toponly'             => 'أظهر أعلى المراجعات فقط',
 'sp-contributions-submit'              => 'ابحث',
+'sp-contributions-showsizediff'        => 'عرض الفرق في حجم الصفحة',
 
 # What links here
 'whatlinkshere'            => 'ماذا يصل هنا',

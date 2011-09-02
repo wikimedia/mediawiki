@@ -1225,7 +1225,7 @@ $1",
 'qbsettings-fixedright'     => '右侧固定',
 'qbsettings-floatingleft'   => '左侧漂移',
 'qbsettings-floatingright'  => '右侧漂移',
-'qbsettings-directionality' => '固定的取决于您的脚本与您的语言的方向性',
+'qbsettings-directionality' => '根据您的语言文本方向固定位置',
 
 # Preferences page
 'preferences'                   => '系统设置',
@@ -1717,9 +1717,8 @@ $1',
 'upload_source_file' => '（您计算机上的一个文件）',
 
 # Special:ListFiles
-'listfiles-summary'     => '这个特殊页面显示所有已上传文件。
-默认设置中，最后上传的文件会显示在这个列表的顶端。
-点击任一列标题可修改排序方式。',
+'listfiles-summary'     => '该特殊页面显示所有上传的文件。
+当用户过滤图片时，只有当该文件的最新版本由该用户上传时才会显示。',
 'listfiles_search_for'  => '按媒体名称搜索：',
 'imgfile'               => '文件',
 'listfiles'             => '文件列表',
@@ -2041,7 +2040,7 @@ $1',
 'emailpagetext'        => '您可以用下面的表格去寄一封电邮给这位用户。
 您在[[Special:Preferences|您参数设置]]中所输入的电子邮箱地址将出现在邮件"发件人"一栏中，这样该用户就可以回复您。',
 'usermailererror'      => 'Mail 对象返回错误：',
-'defemailsubject'      => '{{SITENAME}}电子邮件',
+'defemailsubject'      => "{{SITENAME}} 来自用户''$1''的电子邮件",
 'usermaildisabled'     => '用户电邮已停用',
 'usermaildisabledtext' => '您不可以发送电邮到这个wiki上的其他用户',
 'noemailtitle'         => '无电子邮件地址',
@@ -2335,6 +2334,7 @@ $1',
 'sp-contributions-username'            => 'IP地址或用户名：',
 'sp-contributions-toponly'             => '只显示最后修订版本的编辑',
 'sp-contributions-submit'              => '搜索',
+'sp-contributions-showsizediff'        => '显示页面大小差异',
 
 # What links here
 'whatlinkshere'            => '链入页面',
@@ -2414,6 +2414,7 @@ $1',
 'blocklist-userblocks'            => '隐藏帐户块',
 'blocklist-tempblocks'            => '隐藏临时块',
 'blocklist-addressblocks'         => '隐藏单个 IP 块',
+'blocklist-rangeblocks'           => '隐藏IP段封禁',
 'blocklist-timestamp'             => '时间戳',
 'blocklist-target'                => '目标',
 'blocklist-expiry'                => '过期',
@@ -3611,6 +3612,14 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'compare-invalid-title'       => '您指定的标题无效。',
 'compare-title-not-exists'    => '您指定的标题不存在。',
 'compare-revision-not-exists' => '您指定的修订不存在。',
+
+# Special:GlobalFileUsage
+'globalfileusage'            => '全域文件使用情况',
+'globalfileusage-for'        => '$1的全域文件使用情况',
+'globalfileusage-desc'       => '查看全域文件使用情况的[[Special:GlobalFileUsage|特殊页面]]',
+'globalfileusage-ok'         => '搜索',
+'globalfileusage-text'       => '搜索全域文件使用',
+'globalfileusage-no-results' => '[[$1]]并未在其他wiki上使用',
 
 # Database error messages
 'dberr-header'      => '本wiki出现了问题',

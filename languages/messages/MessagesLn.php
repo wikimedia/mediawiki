@@ -21,6 +21,7 @@ $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
 $messages = array(
 # User preference toggles
 'tog-underline'        => 'Kotíya sulimá na bikangisi:',
+'tog-showtoolbar'      => 'Komɔ́nisa ndámbo-ndámbo (esengélí JavaScript)',
 'tog-rememberpassword' => 'Komíkundola bokitoli na molúki (ekosúkisa na {{PLURAL:$1|mokɔlɔ|mikɔlɔ}} $1)',
 
 # Dates
@@ -74,10 +75,11 @@ $messages = array(
 'dec'           => 's12',
 
 # Categories related messages
-'pagecategories'  => '{{PLURAL:$1|Katégoli|Katégoli}}',
-'category_header' => 'Nkásá o molɔngɔ́ ya bilɔkɔ ya loléngé mɔ̌kɔ́ « $1 »',
-'subcategories'   => 'Ndéngé-bǎna',
-'category-empty'  => "''Loléngé loye ezalí na ekakola tɛ̂, loléngé-mwǎna tɛ̂ tǒ nkásá mitímediá tɛ̂.''",
+'pagecategories'        => '{{PLURAL:$1|Katégoli|Katégoli}}',
+'category_header'       => 'Nkásá o molɔngɔ́ ya bilɔkɔ ya loléngé mɔ̌kɔ́ « $1 »',
+'subcategories'         => 'Ndéngé-bǎna',
+'category-media-header' => 'Media in category "$1"',
+'category-empty'        => "''Loléngé loye ezalí na ekakola tɛ̂, loléngé-mwǎna tɛ̂ tǒ nkásá mitímediá tɛ̂.''",
 
 'about'      => 'elɔ́kɔ elobámí',
 'article'    => 'ekakoli',
@@ -91,6 +93,7 @@ $messages = array(
 'qbfind'         => 'Koluka',
 'qbbrowse'       => 'Kolúka',
 'qbedit'         => 'Kobɔngisa',
+'qbpageinfo'     => 'Context',
 'qbspecialpages' => 'Nkásá gudi',
 'faq'            => 'Mitúná Mizóngelaka (MM)',
 
@@ -144,6 +147,7 @@ $messages = array(
 'views'             => 'Bomɔ́nisi',
 'toolbox'           => 'Bisáleli',
 'userpage'          => 'Komɔ́nisa lonkásá la mosáleli',
+'projectpage'       => 'Komɔ́nisa lonkásá la mwǎngo',
 'imagepage'         => 'Komɔ́nisa lonkásá la kásá',
 'viewhelppage'      => 'Komɔ́nisa lonkásá la bosálisi',
 'categorypage'      => 'Komɔ́nisa lonkásá la katégori',
@@ -320,6 +324,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'prevn'                     => '{{PLURAL:$1|$1}} ya libosó',
 'nextn'                     => 'bolɛngɛli {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Komɔ́na ($1 {{int:pipe-separator}} $2) ($3)',
+'searchprofile-articles'    => 'ekakoli',
 'search-result-size'        => '$1 ({{PLURAL:$2|lokomá 1|nkomá $2}})',
 'search-result-score'       => 'Ntína : $1%',
 'search-redirect'           => '(boyendisi útá $1)',
@@ -329,6 +334,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'search-interwiki-more'     => '(elekí)',
 'search-mwsuggest-enabled'  => 'na bokáni',
 'search-mwsuggest-disabled' => 'na bokáni tɛ́',
+'searchall'                 => 'nyɔ́nsɔ',
 'nonefound'                 => "'''Notí''' : Boluki bwa likwá bosálí na ndámbo ya ntáká ya nkómbó.
 Ómeka kobakisa ''all:'' o libóso lya esɛ́ngi mpɔ̂ na koluka maloba ma nkomá mánsɔ (ekɔ́tí ntembe, bimekisele, b.n.b.), tǒ kobakisa ntáka ya nkómbó eye olingí o libóso.",
 'powersearch'               => 'Boluki',
@@ -366,6 +372,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'recentchanges'                  => 'Mbóngwana ya nsúka',
 'recentchanges-legend'           => 'Mapɔni ma mbóngwana ya nsúka',
 'recentchanges-feed-description' => 'Kolanda mbóngwana ya nsúka ya wiki o ebale eye.',
+'recentchanges-label-minor'      => 'Ezalí mbóngwana ya mokɛ́',
 'rcnote'                         => "Áwa o nsé {{PLURAL:$1|ezalí mbóngwana '''1''' ya nsúka|izalí mbóngwana '''$1''' ya nsúka}} o {{PLURAL:$2|mokɔlɔ|mikɔlɔ '''$2'''}} ya nsúka, o ntángo $5 o mokɔlɔ $4.",
 'rcshowhideminor'                => '$1 mbóngwana ya mokɛ́',
 'rcshowhidebots'                 => '$1 barobot',
@@ -393,6 +400,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'upload'        => 'Kotíya kásá yɔ̌kɔ́',
 'uploadbtn'     => 'Kotíya nkásá mɔ̌kɔ́',
 'uploadlogpage' => 'Zuluná ya botómbisi likoló',
+'filedesc'      => 'Likwé ya mokusé:',
 'savefile'      => 'kobómbisa kásá-kásá',
 'uploadedimage' => '«[[$1]]» etómbísámí likoló',
 
@@ -527,6 +535,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 
 # Undelete
 'undeletelink'     => 'komɔnisa / kozóngisa',
+'undeleteviewlink' => 'Komɔ́nisa',
 'undeletedarticle' => 'Ezóngísí « [[$1]] »',
 
 # Namespace form on various pages

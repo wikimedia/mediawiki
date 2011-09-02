@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Cekli829
  * @author Flrn
  * @author Hanberke
  * @author Runningfridgesrule
@@ -216,6 +217,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'printableversion'  => 'Print ediş wersiýasy',
 'permalink'         => 'Hemişelik çykgyt',
 'print'             => 'Print et',
+'view'              => 'Görkez',
 'edit'              => 'Redaktirle',
 'create'            => 'Döret',
 'editthispage'      => 'Bu sahypany redaktirle',
@@ -528,6 +530,10 @@ Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol ta
 
 # Special:PasswordReset
 'passwordreset-username' => 'Ulanyjy ady:',
+
+# Special:ChangeEmail
+'changeemail-none'   => '(hiç biri)',
+'changeemail-cancel' => 'Goýbolsun et',
 
 # Edit page toolbar
 'bold_sample'     => 'Goýy tekst',
@@ -2742,6 +2748,8 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'exif-gpsareainformation'          => 'GPS sebitiniň ady',
 'exif-gpsdatestamp'                => 'GPS senesi',
 'exif-gpsdifferential'             => 'GPS differensial düzedişi',
+'exif-languagecode'                => 'Dil',
+'exif-iimcategory'                 => 'Kategoriýa',
 
 # EXIF attributes
 'exif-compression-1' => 'Gysylmadyk',
@@ -2973,6 +2981,10 @@ Sahypany gaýtadan döretmek isleýän bolsaňyz, tassyklamagyňyzy haýyş edý
 'confirm-purge-top'    => 'Bu sahypanyň keşini boşatmalymy?',
 'confirm-purge-bottom' => 'Bir sahypany arassalamaklyk keşi boşadýar we iň täze wersiýany görüner ýaly edýär.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-unwatch-button' => 'OK',
+
 # Multipage image navigation
 'imgmultipageprev' => '← öňki sahypa',
 'imgmultipagenext' => 'indiki sahypa →',
@@ -3138,6 +3150,9 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'compare-rev2'     => 'Wersiýa 2',
 'compare-submit'   => 'Deňeşdir',
 
+# Special:GlobalTemplateUsage
+'globaltemplateusage-ok' => 'Gözle',
+
 # Database error messages
 'dberr-header'      => 'Bu wikiniň bir problemasy bar',
 'dberr-problems'    => 'Bagyşlaň! Bu saýtda tehniki kynçylyklar ýüze çykdy.',
@@ -3166,6 +3181,7 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 # Add categories per AJAX
 'ajax-add-category'            => 'Kategoriýa goş',
 'ajax-add-category-submit'     => 'Goş',
+'ajax-confirm-ok'              => 'OK',
 'ajax-confirm-title'           => 'Işi tassykla',
 'ajax-confirm-save'            => 'Ýazdyr',
 'ajax-add-category-summary'    => '"$1" kategoriýasyny goş',

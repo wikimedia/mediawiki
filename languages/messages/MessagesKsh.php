@@ -1063,7 +1063,6 @@ Ene Jrond weße mer nit.',
 'edit-conflict'                    => 'Dubbelt beärbeit.',
 'edit-no-change'                   => 'Do häs ja nix aan dä Sigg jeändert, do dom_mer och nix domet.',
 'edit-already-exists'              => 'Kunnt kei neu Sigg aanlääje. Di Sigg jidd_et ald.',
-'editinguserpage'                  => "'''Opjepaß:''' Do bes enem [[Help:User page|Metmaacher sing Sigg]] aam ändere. Öm däm ene Nohreesch zohkumme ze lohße, [$1 donn op däm sing Klaafsigg schrieve].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => "'''Opjepaß:''' Die Sigg heh määt zovill Opwand met Paaser-Funkßjohne.
@@ -2577,6 +2576,7 @@ De neuste Sperr ier Enndraach em Logbooch es:',
 'sp-contributions-username'            => 'Metmaachername odder <i lang="en">IP</i>-Address:',
 'sp-contributions-toponly'             => 'Bloß neuste Versione zeije',
 'sp-contributions-submit'              => 'Söhke',
+'sp-contributions-showsizediff'        => 'Don de Veränderong vum Ömfang vun dä Sigge aanzeije',
 
 # What links here
 'whatlinkshere'            => 'Wat noh heh link',

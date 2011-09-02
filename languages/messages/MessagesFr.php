@@ -1093,7 +1093,6 @@ Il semble qu’elle ait été supprimée.',
 'edit-no-change'                   => 'Votre modification a été ignorée car aucun changement n’a été fait au texte.',
 'edit-already-exists'              => 'La nouvelle page n’a pas pu être créée.
 Elle existe déjà.',
-'editinguserpage'                  => "'''Remarque''': Vous êtes en train de modifier une [[Help:User page|page utilisateur]]. Pour laisser un message à cet utilisateur, [$1 modifiez sa page de discussion].",
 
 # Parser/template warnings
 'expensive-parserfunction-warning'        => 'Attention : cette page contient de trop nombreux appels à des fonctions coûteuses du parseur.
