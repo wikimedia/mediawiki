@@ -366,8 +366,7 @@ class ImportReporter {
 				$detail = wfMsgExt( 'import-logentry-upload-detail', array( 'content', 'parsemag' ),
 					$contentCount );
 				if ( $this->reason ) {
-					$detail .=  wfMsgForContent( 'colon-separator' ) . wfMsgForContent( 'word-separator' );
-					$detail .= $this->reason;
+					$detail .=  wfMsgForContent( 'colon-separator' ) . $this->reason;
 				}
 				$log->addEntry( 'upload', $title, $detail );
 			} else {
@@ -376,8 +375,7 @@ class ImportReporter {
 				$detail = wfMsgExt( 'import-logentry-interwiki-detail', array( 'content', 'parsemag' ),
 					$contentCount, $interwiki );
 				if ( $this->reason ) {
-					$detail .=  wfMsgForContent( 'colon-separator' ) . wfMsgForContent( 'word-separator' );
-					$detail .= $this->reason;
+					$detail .=  wfMsgForContent( 'colon-separator' ) . $this->reason;
 				}
 				$log->addEntry( 'interwiki', $title, $detail );
 			}
