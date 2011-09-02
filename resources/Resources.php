@@ -647,6 +647,7 @@ return array(
 			'jquery.checkboxShiftClick',
 			'jquery.makeCollapsible',
 			'jquery.placeholder',
+			'mediawiki.util',
 		),
 	),
 	'mediawiki.page.startup' => array(
