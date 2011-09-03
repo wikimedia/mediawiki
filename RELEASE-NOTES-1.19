@@ -51,6 +51,8 @@ production.
 * (bug 30344) Add configuration variable for setting custom priorities when
   generating sitemaps
 * (bug 16428) Include permalink in printable version
+* (bug 96170) Add array support for space-separated list attributes (like
+  'class') in the Html helper class.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
