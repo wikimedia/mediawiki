@@ -91,4 +91,56 @@ class HtmlTest extends MediaWikiTestCase {
 			'Value is a numeric zero'
 		);
 	}
+
+	/**
+	 * Html::expandAttributes has special features for HTML
+	 * attributes that use space separated lists and also
+	 * allows arrays to be used as values.
+	 */
+	public function testExpandAttributesListValueAttributes() {
+		### STRING VALUES
+		$this->AssertEquals(
+			' class="redundant spaces here"',
+			Html::expandAttributes( array( 'class' => ' redundant  spaces  here  ' ) ),
+			'Normalization should strip redundant spaces'
+		);
+		$this->AssertEquals(
+			' class="foo bar"',
+			Html::expandAttributes( array( 'class' => 'foo bar foo bar bar' ) ),
+			'Normalization should remove duplicates in string-lists'
+		);
+		### "EMPTY" ARRAY VALUES
+		$this->AssertEquals(
+			' class=""',
+			Html::expandAttributes( array( 'class' => array() ) ),
+			'Value with an empty array'
+		);
+		$this->AssertEquals(
+			' class=""',
+			Html::expandAttributes( array( 'class' => array( null, '', ' ', '  ' ) ) ),
+			'Array with null, empty string and spaces'
+		);
+		### NON-EMPTY ARRAY VALUES
+		$this->AssertEquals(
+			' class="foo bar"',
+			Html::expandAttributes( array( 'class' => array(
+				'foo',
+				'bar',
+				'foo',
+				'bar',
+				'bar',
+			) ) ),
+			'Normalization should remove duplicates in the array'
+		);
+		$this->AssertEquals(
+			' class="foo bar"',
+			Html::expandAttributes( array( 'class' => array(
+				'foo bar',
+				'bar foo',
+				'foo',
+				'bar bar',
+			) ) ),
+			'Normalization should remove duplicates in string-lists in the array'
+		);
+	}
 }

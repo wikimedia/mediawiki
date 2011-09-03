@@ -111,9 +111,7 @@ class Html {
 	 * HTML-specific logic.  For instance, there is no $allowShortTag
 	 * parameter: the closing tag is magically omitted if $element has an empty
 	 * content model.  If $wgWellFormedXml is false, then a few bytes will be
-	 * shaved off the HTML output as well.  In the future, other HTML-specific
-	 * features might be added, like allowing arrays for the values of
-	 * attributes like class= and media=.
+	 * shaved off the HTML output as well.
 	 *
 	 * @param $element string The element's name, e.g., 'a'
 	 * @param $attribs array  Associative array of attributes, e.g., array(
@@ -413,6 +411,37 @@ class Html {
 			# we have at least one good implementation.
 			if ( in_array( $key, array( 'max', 'min', 'pattern', 'required', 'step' ) ) ) {
 				continue;
+			}
+
+			// http://www.w3.org/TR/html401/index/attributes.html ("space-separated")
+			// http://www.w3.org/TR/html5/index.html#attributes-1 ("space-separated")
+			$spaceSeparatedListAttributes = array(
+				'class', // html4, html5
+				'accesskey', // as of html5, multiple space-separated values allowed
+				// html4-spec doesn't document rel= as space-separated
+				// but has been used like that and is now documented as such 
+				// in the html5-spec.
+				'rel',
+			);
+
+			# Specific features for attributes that allow a list of space-separated values
+			if ( in_array( $key, $spaceSeparatedListAttributes ) ) {
+				// Apply some normalization and remove duplicates
+
+				// Convert into correct array. Array can contain space-seperated
+				// values. Implode/explode to get those into the main array as well.
+				if ( is_array( $value ) ) {
+					// If input wasn't an array, we can skip this step
+					$value = implode( ' ', $value );
+				}
+				$value = explode( ' ', $value );
+
+				// Normalize spacing by fixing up cases where people used
+				// more than 1 space and/or a trailing/leading space
+				$value = array_diff( $value, array( '', ' ') );
+
+				// Remove duplicates and create the string
+				$value = implode( ' ', array_unique( $value ) );
 			}
 
 			# See the "Attributes" section in the HTML syntax part of HTML5,
