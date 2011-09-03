@@ -432,13 +432,31 @@ class Html {
 				// values. Implode/explode to get those into the main array as well.
 				if ( is_array( $value ) ) {
 					// If input wasn't an array, we can skip this step
-					$value = implode( ' ', $value );
+					
+					$newValue = array();
+					foreach ( $value as $k => $v ) {
+						if ( is_string( $v ) ) {
+							// String values should be normal `array( 'foo' )`
+							// Just append them
+							if ( !isset( $value[$v] ) ) {
+								// As a special case don't set 'foo' if a
+								// separate 'foo' => true/false exists in the array
+								// keys should be authoritive
+								$newValue[] = $v;
+							}
+						} elseif ( $v ) {
+							// If the value is truthy but not a string this is likely
+							// an array( 'foo' => true ), falsy values don't add strings
+							$newValue[] = $k;
+						}
+					}
+					$value = implode( ' ', $newValue );
 				}
 				$value = explode( ' ', $value );
 
 				// Normalize spacing by fixing up cases where people used
 				// more than 1 space and/or a trailing/leading space
-				$value = array_diff( $value, array( '', ' ') );
+				$value = array_diff( $value, array( '', ' ' ) );
 
 				// Remove duplicates and create the string
 				$value = implode( ' ', array_unique( $value ) );
