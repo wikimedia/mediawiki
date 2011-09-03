@@ -1045,8 +1045,8 @@ class Title {
 	 */
 	public function getCanonicalURL( $query = '', $variant = false ) {
 		global $wgCanonicalServer;
-		$url = $wgCanonicalServer . $this->getLocalURL( $query, $variant ) . $this->getFragmentForURL();
-		wfRunHooks( 'GetCanonicalURL', array( &$this, &$url, $query ) );
+		$url = wfExpandUrl( $this->getLocalURL( $query, $variant ) . $this->getFragmentForURL(), PROTO_CANONICAL );
+		wfRunHooks( '', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
