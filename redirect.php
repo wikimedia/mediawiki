@@ -18,4 +18,4 @@ $page = $wgRequest->getVal( 'wpDropdown' );
 
 $url = str_replace( "$1", urlencode( $page ), $wgArticlePath );
 
-header( "Location: {$url}" );
+header( "Location: {$url}", true, 301 );
