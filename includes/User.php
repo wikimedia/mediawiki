@@ -1160,6 +1160,7 @@ class User {
 				$log->addEntry( 'autopromote',
 					$this->getUserPage(),
 					'', // no comment
+					// These group names are "list to texted"-ed in class LogPage.
 					array( implode( ', ', $oldGroups ), implode( ', ', $newGroups ) )
 				);
 			}
