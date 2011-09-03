@@ -90,6 +90,11 @@ $messages = array(
 'qbmyoptions'    => 'Men pagines',
 'qbspecialpages' => 'Spesial pagines',
 
+# Vector skin
+'vector-action-delete' => 'Ekarta',
+'vector-view-edit'     => 'Modifika',
+'vector-view-view'     => 'Lekte',
+
 'returnto'         => 'Rivada a $1.',
 'tagline'          => 'Fro {{SITENAME}}',
 'help'             => 'Helpo',
@@ -145,6 +150,7 @@ $messages = array(
 'youhavenewmessagesmulti' => 'Vu have novi mesajes pri $1',
 'editsection'             => 'modifika',
 'editold'                 => 'modifika',
+'editlink'                => 'modifika',
 'restorelink'             => '{{PLURAL:$1|unu ekartati modifiko|$1 ekartati modifikos}}',
 'red-link-title'          => '$1 (pagine non exista)',
 

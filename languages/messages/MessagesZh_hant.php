@@ -19,6 +19,7 @@
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author KaiesTse
+ * @author Kuailong
  * @author Lauhenry
  * @author Liangent
  * @author Mark85296341
@@ -681,6 +682,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => '在 PHP 的 mail() 參數中的未知錯誤',
+'user-mail-no-addy'      => '嘗試不帶電郵地址發送電郵。',
 
 # Change password dialog
 'resetpass'                 => '更改密碼',
@@ -729,6 +731,17 @@ $2
 'passwordreset-emailelement'   => '用戶名：$1
 臨時密碼：$2',
 'passwordreset-emailsent'      => '已發送提示電郵。',
+
+# Special:ChangeEmail
+'changeemail'          => '更改電郵地址',
+'changeemail-header'   => '更改帳號電郵地址',
+'changeemail-text'     => '填寫表格以修改您的電郵地址。您需要輸入您的密碼以確認此更改。',
+'changeemail-no-info'  => '您必須登錄方可直接訪問此頁面。',
+'changeemail-oldemail' => '當前電郵地址：',
+'changeemail-newemail' => '新電郵地址：',
+'changeemail-none'     => '（無）',
+'changeemail-submit'   => '更改電郵',
+'changeemail-cancel'   => '取消',
 
 # Edit page toolbar
 'bold_sample'     => '粗體文字',
@@ -2323,6 +2336,7 @@ $1',
 'sp-contributions-username'            => 'IP位址或用戶名稱：',
 'sp-contributions-toponly'             => '只顯示最新修訂版本的編輯',
 'sp-contributions-submit'              => '搜尋',
+'sp-contributions-showsizediff'        => '顯示頁面大小差異',
 
 # What links here
 'whatlinkshere'            => '連入頁面',

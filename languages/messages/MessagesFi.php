@@ -793,7 +793,7 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'passwordreset'                => 'Salasanan alustus',
 'passwordreset-text'           => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
 'passwordreset-legend'         => 'Salasanan vaihto',
-'passwordreset-disabled'       => 'Salasanojen nollaus on poistettu tässä wikissä.',
+'passwordreset-disabled'       => 'Salasanojen alustus ei ole mahdollista tässä wikissä.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Kirjoita jokin jäljempänä pyydetty tieto}}',
 'passwordreset-username'       => 'Käyttäjätunnus:',
 'passwordreset-email'          => 'Sähköpostiosoite',
@@ -822,7 +822,7 @@ Väliaikainen salasana: $2',
 
 # Special:ChangeEmail
 'changeemail'          => 'Muuta sähköpostiosoitetta',
-'changeemail-header'   => 'Muuta tilin sähköpostiosoite',
+'changeemail-header'   => 'Muuta tunnuksen sähköpostiosoite',
 'changeemail-oldemail' => 'Nykyinen sähköpostiosoite',
 'changeemail-newemail' => 'Uusi sähköpostiosoite',
 'changeemail-submit'   => 'Muuta sähköpostiosoite',
@@ -1517,7 +1517,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'rightslog'                  => 'Käyttöoikeusloki',
 'rightslogtext'              => 'Tämä on loki käyttäjien käyttöoikeuksien muutoksista.',
 'rightslogentry'             => 'muutti käyttäjän $1 oikeudet ryhmistä $2 ryhmiin $3',
-'rightslogentry-autopromote' => 'muutettiin automaattisesti ryhmästä $2 ryhmään $3',
+'rightslogentry-autopromote' => 'muutettiin automaattisesti ryhmistä $2 ryhmiin $3',
 'rightsnone'                 => '(ei oikeuksia)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2104,7 +2104,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'emailpage'            => 'Lähetä sähköpostia käyttäjälle',
 'emailpagetext'        => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror'      => 'Postitus palautti virheen:',
-'defemailsubject'      => 'Käyttäjä "$1" lähetti sähköpostin sivustolta {{SITENAME}}',
+'defemailsubject'      => 'Käyttäjä $1 lähetti sähköpostin sivustolta {{SITENAME}}',
 'usermaildisabled'     => 'Käyttäjien sähköposti poistettu käytöstä',
 'usermaildisabledtext' => 'Et voi lähettää sähköpostia muille käyttäjille tässä wikissä',
 'noemailtitle'         => 'Ei sähköpostiosoitetta',
@@ -2164,7 +2164,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'       => 'Lisätään tarkkailulistalle...',
 'unwatching'     => 'Poistetaan tarkkailulistalta...',
-'watcherrortext' => 'Sivun "$1" tarkkailulista-asetusten muutoksissa tapahtui virhe.',
+'watcherrortext' => 'Sivun ”$1” tarkkailulista-asetusten muutoksissa tapahtui virhe.',
 
 'enotif_mailer'                => '{{GRAMMAR:genitive|{{SITENAME}}}} sivu on muuttunut -ilmoitus',
 'enotif_reset'                 => 'Merkitse kaikki sivut katsotuiksi',
@@ -2838,7 +2838,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'spam_blanking'       => 'Kaikki versiot sisälsivät linkkejä kohteeseen $1. Sivu tyhjennetty.',
 
 # Info page
-'pageinfo-title'            => 'Sivun "$1" tietoja',
+'pageinfo-title'            => 'Tietoja sivusta $1',
 'pageinfo-header-edits'     => 'Muokkaukset',
 'pageinfo-header-watchlist' => 'Tarkkailulista',
 'pageinfo-header-views'     => 'Luettu',
@@ -3106,7 +3106,7 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-serialnumber'                => 'Kameran sarjanumero',
 'exif-cameraownername'             => 'Kameran omistaja',
 'exif-label'                       => 'Teksti',
-'exif-datetimemetadata'            => 'Metatitietojen viimeinen muokkauspäivämäärä',
+'exif-datetimemetadata'            => 'Metatietojen viimeinen muokkauspäivämäärä',
 'exif-nickname'                    => 'Kuvan epävirallinen nimi',
 'exif-rating'                      => 'Arvostelu (enintään 5)',
 'exif-rightscertificate'           => 'Oikeuksien hallintasertifikaatti',
@@ -3653,7 +3653,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'ajax-add-category-summary'    => 'Lisää luokka ”$1”',
 'ajax-remove-category-summary' => 'Luokan ”$1” poisto',
 'ajax-error-title'             => 'Virhe',
-'ajax-remove-category-error'   => 'Luokan "$1" poistaminen ei onnistunut.
+'ajax-remove-category-error'   => 'Luokan $1 poistaminen ei onnistunut.
 Yleensä näin käy, kun luokka on lisätty sivulle mallineen avulla.',
 
 );

@@ -1926,8 +1926,8 @@ L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|I
 'emailccme'            => 'Mandemne na còpia ëdcò a mia adrëssa.',
 'emailccsubject'       => 'Còpia dël mëssagi mandà a $1: $2',
 'emailsent'            => 'Mëssagi eletrònich mandà',
-'emailsenttext'        => "Sò messagi eletrònich a l'é stait mandà",
-'emailuserfooter'      => 'St\'e-mail-sì a l\'é stàita mandà da $1 a $2 con la fonsion "E-mail utent" a {{SITENAME}}.',
+'emailsenttext'        => "Sò mëssagi eletrònich a l'é stàit mandà",
+'emailuserfooter'      => "Ës mëssagi eletrònich a l'é stàit mandà da $1 a $2 con la fonsion «Mandé un mëssagi eletrònich a l'utent» ëd {{SITENAME}}.",
 
 # User Messenger
 'usermessage-summary' => "A l'ha lassà un mëssagi ëd sistema.",

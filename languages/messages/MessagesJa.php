@@ -37,6 +37,7 @@
  * @author Ohgi
  * @author Penn Station
  * @author Reedy
+ * @author Schu
  * @author Suisui
  * @author VZP10224
  * @author Vigorous action
@@ -774,7 +775,7 @@ $2',
 'createaccountmail'          => 'メールで送信',
 'createaccountreason'        => '理由：',
 'badretype'                  => '入力したパスワードが一致しません。',
-'userexists'                 => '入力された利用者名はすでに使われています。
+'userexists'                 => '入力された利用者名はすでに使用されています。
 ほかの名前を選んでください。',
 'loginerror'                 => 'ログインのエラー',
 'createaccounterror'         => 'アカウントを作成できませんでした： $1',
@@ -1927,8 +1928,7 @@ URLが正しいものであるか、指定したサイトが現在使用可能�
 
 # Special:ListFiles
 'listfiles-summary'     => 'この特別ページでは、アップロードされたすべてのファイルを表示します。
-既定では一番最近にアップロードされたファイルが一覧の上部に表示されていまます。
-各列のヘッダ部分をクリックすると、並び順を変更できます。',
+利用者によりフィルタ処理された場合、その利用者がアップロードした最新バージョンのファイルのみが表示されます。',
 'listfiles_search_for'  => 'メディア名で検索：',
 'imgfile'               => 'ファイル',
 'listfiles'             => 'ファイル一覧',
@@ -2256,7 +2256,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'emailpagetext'        => '下のフォームを通じて、この利用者にメールを送ることができます。
 [[Special:Preferences|利用者の個人設定]]で登録した電子メールアドレスが「差出人」アドレスとして表示され、受信者は返事を直接出せるようになっています。',
 'usermailererror'      => 'メールが以下のエラーを返しました：',
-'defemailsubject'      => '{{SITENAME}} 電子メール',
+'defemailsubject'      => '利用者 "$1" からの {{SITENAME}} 電子メール',
 'usermaildisabled'     => '利用者メール機能は無効になっています',
 'usermaildisabledtext' => 'このウィキ上で他の利用者へメールを送ることはできません。',
 'noemailtitle'         => 'メールアドレスがありません',
@@ -2569,6 +2569,7 @@ $1',
 'sp-contributions-username'            => 'IPアドレスまたは利用者名：',
 'sp-contributions-toponly'             => '最新版の編集のみを表示',
 'sp-contributions-submit'              => '検索',
+'sp-contributions-showsizediff'        => 'ページサイズの違いを表示',
 
 # What links here
 'whatlinkshere'            => 'リンク元',
@@ -3317,14 +3318,31 @@ Variants for Chinese language
 'exif-objectname'                  => '短いタイトル',
 'exif-specialinstructions'         => '取扱いに関する特記事項',
 'exif-headline'                    => '見出し',
+'exif-fixtureidentifier'           => 'フィクスチャ名',
 'exif-objectcycle'                 => 'このメディアファイルによって意図されている時間帯',
 'exif-contact'                     => '連絡先情報',
 'exif-writer'                      => '記入者',
 'exif-languagecode'                => '言語',
+'exif-iimversion'                  => 'IIM バージョン',
+'exif-iimcategory'                 => 'カテゴリー',
+'exif-iimsupplementalcategory'     => '補足カテゴリー',
+'exif-lens'                        => '使用レンズ',
+'exif-serialnumber'                => 'カメラのシリアル番号',
+'exif-cameraownername'             => 'カメラの所有者',
+'exif-label'                       => 'ラベル',
+'exif-nickname'                    => '画像の非公式名',
+'exif-rating'                      => '評価（5点満点）',
+'exif-usageterms'                  => '使用条件',
+'exif-pngfilecomment'              => 'PNGファイルのコメント',
+'exif-disclaimer'                  => '免責事項',
+'exif-contentwarning'              => 'コンテンツに関する警告',
+'exif-giffilecomment'              => 'GIFファイルのコメント',
 
 # EXIF attributes
 'exif-compression-1' => '非圧縮',
 'exif-compression-6' => 'JPEG圧縮',
+
+'exif-copyrighted-false' => 'パブリック・ドメイン',
 
 'exif-unknowndate' => '不明な日付',
 
@@ -3478,6 +3496,31 @@ Variants for Chinese language
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真方位',
 'exif-gpsdirection-m' => '磁方位',
+
+'exif-dc-source' => 'ソースメディア',
+'exif-dc-type'   => 'メディアの種類',
+
+'exif-rating-rejected' => '却下',
+
+'exif-isospeedratings-overflow' => '65535 より大きい',
+
+'exif-iimcategory-ace' => '芸術、文化、娯楽',
+'exif-iimcategory-clj' => '犯罪と法律',
+'exif-iimcategory-dis' => '災害・事故',
+'exif-iimcategory-fin' => '経済とビジネス',
+'exif-iimcategory-edu' => '教育',
+'exif-iimcategory-evn' => '環境',
+'exif-iimcategory-hth' => '健康',
+'exif-iimcategory-hum' => '人々の興味',
+'exif-iimcategory-lab' => '労働',
+'exif-iimcategory-lif' => 'ライフスタイルとレジャー',
+'exif-iimcategory-pol' => '政治',
+'exif-iimcategory-rel' => '宗教と信仰',
+'exif-iimcategory-sci' => '科学と技術',
+'exif-iimcategory-soi' => '社会問題',
+'exif-iimcategory-spo' => 'スポーツ',
+'exif-iimcategory-war' => '戦争、紛争、動乱',
+'exif-iimcategory-wea' => '天気',
 
 # External editor support
 'edit-externally'      => '外部アプリケーションを使ってこのファイルを編集する',
@@ -3830,6 +3873,26 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'compare-invalid-title'       => '指定したページ名は使用できません。',
 'compare-title-not-exists'    => '指定されたページは存在しません。',
 'compare-revision-not-exists' => '指定された版は存在しません。',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'グローバルなファイル使用状況',
+'globalfileusage-for'         => '"$1"のグローバルなファイルの使用状況',
+'globalfileusage-ok'          => '検索',
+'globalfileusage-text'        => 'グローバルなファイル使用状況を検索',
+'globalfileusage-no-results'  => '[[$1]] は他のウィキでは使われていません。',
+'globalfileusage-on-wiki'     => '$2 での使用状況',
+'globalfileusage-of-file'     => '以下に挙げる他のウィキがこのファイルを使っています:',
+'globalfileusage-filterlocal' => 'ローカル使用状況を表示しない',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'グローバルテンプレートの使用',
+'globaltemplateusage-for'         => '"$1" のグローバルなテンプレートの使用状況',
+'globaltemplateusage-ok'          => '検索',
+'globaltemplateusage-text'        => 'グローバルなテンプレートの使用状況を検索',
+'globaltemplateusage-no-results'  => '[[$1]] は他のウィキでは使われていません。',
+'globaltemplateusage-on-wiki'     => '$2 での使用状況',
+'globaltemplateusage-of-file'     => '以下に挙げる他のウィキがこのテンプレートを使っています:',
+'globaltemplateusage-filterlocal' => 'ローカル使用状況を表示しない',
 
 # Database error messages
 'dberr-header'      => '問題発生中です',

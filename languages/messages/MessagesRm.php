@@ -65,8 +65,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Mussar il dumber d'utilisaders che obervan questa pagina",
 'tog-oldsig'                  => 'Prevista da la signatura actuala:',
 'tog-fancysig'                => "Suttascripziun senza link automatic tar la pagina da l'utilisader.",
-'tog-externaleditor'          => 'Utilisar sco standard in editur extern (be per experts, basegna ina configuraziun speziala da des computer)',
-'tog-externaldiff'            => 'Utilisar sco standard in program extern per visualisar differenzas tranter versiuns (be per experts, basegna ina configuraziun speziala da des computer)',
+'tog-externaleditor'          => 'Utilisar sco standard in editur extern (be per experts, basegna ina configuraziun speziala da des computer. [http://www.mediawiki.org/wiki/Manual:External_editors Dapli infurmaziuns.])',
+'tog-externaldiff'            => 'Utilisar sco standard in program extern per visualisar differenzas tranter versiuns (be per experts, basegna ina configuraziun speziala da des computer. [http://www.mediawiki.org/wiki/Manual:External_editors Dapli infurmaziuns.])',
 'tog-showjumplinks'           => 'Activar las colliaziuns "seglir a"',
 'tog-uselivepreview'          => 'Utilisar la prevista dinamica (basegna JavaScript) (experiment!)',
 'tog-forceeditsummary'        => 'Avertir durant memoriar sche la resumaziun manca',
@@ -161,6 +161,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cuntinuaziun',
 'index-category'                 => 'Paginas inditgadas',
 'noindex-category'               => 'Paginas betg inditgadas',
+'broken-file-category'           => 'Paginas cun colliaziuns da datoteca che na funcziunan betg',
 
 'about'         => 'Surda',
 'article'       => 'artitgel',
@@ -190,7 +191,7 @@ $messages = array(
 'vector-action-move'             => 'Spustar',
 'vector-action-protect'          => 'Bloccar',
 'vector-action-undelete'         => 'Restituir',
-'vector-action-unprotect'        => 'Debloccar',
+'vector-action-unprotect'        => 'Midar la protecziun',
 'vector-simplesearch-preference' => 'Activar las propostas per tschertgar extendidas (be per il skin Vector)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Modifitgar',
@@ -215,6 +216,7 @@ $messages = array(
 'printableversion'  => 'Versiun per stampar',
 'permalink'         => 'Colliaziun permanenta',
 'print'             => 'stampar',
+'view'              => 'Leger',
 'edit'              => 'Modifitgar',
 'create'            => 'Crear',
 'editthispage'      => 'Modifitgar questa pagina',
@@ -226,8 +228,8 @@ $messages = array(
 'protect'           => 'proteger',
 'protect_change'    => 'midar',
 'protectthispage'   => 'Proteger questa pagina',
-'unprotect'         => 'Nunprotegì',
-'unprotectthispage' => 'Annullar la protecziun da questa pagina',
+'unprotect'         => 'Midar la protecziun',
+'unprotectthispage' => 'Midar la protecziun da questa pagina',
 'newpage'           => 'Nova pagina',
 'talkpage'          => 'Discutar quest artitgel',
 'talkpagelinktext'  => 'Discussiun',
@@ -321,6 +323,8 @@ $1',
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
 'red-link-title'          => "$1 (n'exista betg)",
+'sort-descending'         => 'Zavrar descendent',
+'sort-ascending'          => 'Zavrar ascendent',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artitgel',
@@ -411,6 +415,8 @@ Emprova danovamain en in per minutas.',
 'cascadeprotected'     => "Questa pagina è protegida da modificaziuns perquai ch'ella è integrada en suandanta{{PLURAL:$1| pagina, ch'è protegida|s paginas, ch'èn protegidas}} entras l'opziun «protecziun ertada»: 
 $2",
 'namespaceprotected'   => "Ti n'has betg la lubientscha da modifitgar paginas dal tip da pagina '''$1'''.",
+'customcssprotected'   => "Ti n'has betg la permissiun da modifitgar questa pagina da CSS, perquai ch'ella cuntegna configuraziuns persunalas d'in auter utilisader.",
+'customjsprotected'    => "Ti n'has betg la permissiun da modifitgar questa pagina da JavaScript, perquai ch'ella cuntegna configuraziuns persunalas d'in auter utilisader.",
 'ns-specialprotected'  => 'Paginas spezialas no pon betg vegnir modifitgadas.',
 'titleprotected'       => 'Quest titel è vegnì protegì da la creaziun da [[User:$1|$1]].
 Il motiv inditgà è "\'\'$2\'\'".',
@@ -447,10 +453,12 @@ Betg emblida da midar tias [[Special:Preferences|preferenzas da {{SITENAME}}]].'
 'createaccount'              => "Crear in conto d'utilisader",
 'gotaccount'                 => "Gia in conto d'utilisader? '''$1'''.",
 'gotaccountlink'             => "T'annunziar",
+'userlogin-resetlink'        => "Emblidà tias datas per s'annunziar?",
 'createaccountmail'          => 'per e-mail',
 'createaccountreason'        => 'Motiv:',
 'badretype'                  => 'Ils dus pleds-clav na corrispundan betg.',
-'userexists'                 => "Quest num d'utilisader vegn gia duvrà. Tscherna per plaschair in'auter.",
+'userexists'                 => "Quest num d'utilisader vegn gia duvrà. 
+Tscherna per plaschair in'auter.",
 'loginerror'                 => "Sbagl cun t'annunziar",
 'createaccounterror'         => 'Betg pussaivel da crear in conto: $1',
 'nocookiesnew'               => "Il conto da l'utilisader è vegnì creà, ti es dentant betg t'annunzià. 
@@ -510,6 +518,7 @@ Sche ti na levas betg crear quest conto d'utilisader pos ti ignorar quest e-mail
 'usernamehasherror'          => "Il num d'utilisader na po betg cuntegnair il segn da rauta (#)",
 'login-throttled'            => "Ti has empruvà memia savens da t'annunziar.
 Spetga per plaschair avant ch'empruvar anc ina giada.",
+'login-abort-generic'        => 'Annunzia senza success - Annullà',
 'loginlanguagelabel'         => 'Lingua: $1',
 'suspicious-userlogout'      => "Tia dumonda per partir è vegnida refusada perquai ch'i para ch'ella è vegnida tramessa d'in navigatur che funcziuna betg correctamain u d'in proxy da cache.",
 
@@ -536,7 +545,31 @@ Eventualmain has ti gia midà cun success tes pled-clav u dumandà per in nov pl
 'resetpass-temp-password'   => 'Pled-clav temporar:',
 
 # Special:PasswordReset
-'passwordreset-username' => "Num d'utilisader:",
+'passwordreset'                => 'Redefinir il pled-clav',
+'passwordreset-text'           => "Emplenescha quest formular per retschaiver in e-mail che cuntegna ils detagls per acceder tes conto d'utilisader.",
+'passwordreset-legend'         => 'Redefinir il pled-clav',
+'passwordreset-disabled'       => 'La pussaivladad da redefinir il pled-clav è vegnida deactivada sin questa wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Endatescha in dals tocs da data sutvart}}',
+'passwordreset-username'       => "Num d'utilisader:",
+'passwordreset-email'          => 'Adressa dad e-mail:',
+'passwordreset-emailtitle'     => 'Detagls davart il conto sn {{SITENAME}}',
+'passwordreset-emailtext-ip'   => "Insatgi (probablamain ti da l'adressa dad IP $1) ha dumandà in nov pled-clav per la pagina {{SITENAME}} ($4). 
+{{PLURAL:$3|Il suandant conto d'utilisader è collià|Ils suandants contos d'utilisader èn colliads}} cun questa adressa dad e-mail:
+
+$2
+
+{{PLURAL:$3|Quest pled-clav temporar|Quests pleds-clav temporars}} èn valids {{PLURAL:$5|in di|$5 dis}}.
+Ti duessas t'annunziar e tscherner ussa in nov pled-clav. Sch'enzatgi auter ha empustà quests novs pleds-clav u sche ti ta regordas puspè da tes pled-clav original e na vuls betg pli midar il pled-clav pos ti ignorar quest messadi e cuntinuar dad utilisar tes pled-clav original.",
+'passwordreset-emailtext-user' => "L'utilisader $1 sin {{SITENAME}} ha dumandà in nov pled-clav per tes conto d'utilisader sin la pagina {{SITENAME}} ($4). 
+{{PLURAL:$3|Il suandant conto d'utilisader è collià|Ils suandants contos d'utilisader èn colliads}} cun questa adressa dad e-mail:
+
+$2
+
+{{PLURAL:$3|Quest pled-clav temporar|Quests pled-clav temporars}} èn valids {{PLURAL:$5|in di|$5 dis}}.
+Ti duessas t'annunziar e tscherner ussa in nov pled-clav. Sche ti na levas betg quests novs pleds-clav u sche ti ta regordas puspè da tes pled-clav original e na vuls betg pli midar il pled-clav pos ti ignorar quest messadi e cuntinuar dad utilisar tes pled-clav original.",
+'passwordreset-emailelement'   => "Num d'utilisader: $1
+Pled-clav temporar: $2",
+'passwordreset-emailsent'      => 'In e-mail cun in nov pled-clav è vegnì tramess.',
 
 # Edit page toolbar
 'bold_sample'     => 'Text grass',
@@ -639,11 +672,12 @@ Controllescha sch ti vuls propi crear/modiftgar questa pagina.',
 'userpage-userdoesnotexist-view'   => 'Il conto d\'utilisader "$1" n\'exista betg.',
 'blocked-notice-logextract'        => "Quai utilisader è bloccà actualmain. 
 L'ultima endataziun dal log da bloccar vegn mussà sutvart sco referenza:",
-'clearyourcache'                   => "'''Remartga''' Svida il chache da tes navigatur suenter avair memorisà, per vesair las midadas.
-'''Mozilla / Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Mac);
-'''Konqueror: '''clicca ''Reload'' u smatga ''F5'';
-'''Opera:''' stizzar il cache sut ''Tools → Preferences'';
-'''Internet Explorer:''' tegna ''Ctrl'' durant cliccar ''Refresh,'' u smatga ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Remartga''' Suenter memorisar las midadas stos ti eventualmain svidar il chache da tes navigatur per vesair las midadas.
+* '''Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Mac)
+* '''Google Chrome:''' smatgar ''Ctrl-Shift-R'' (''Command-Shift-R'' sin in Mac)
+* '''Internet Explorer:''' tegnair ''Ctrl'' durant cliccar ''Refresh,'' u smatgar ''Ctrl-F5''
+* '''Konqueror:''' cliccar ''Reload'' ni smatgar ''F5''
+* '''Opera:''' stizzar il cache sut ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tip:''' Utilisescha il buttun \"{{int:showpreview}}\" per testar tes nov CSS avant che memorisar.",
 'userjsyoucanpreview'              => "'''Tip:''' Utilisescha il buttun \"{{int:showpreview}}\" per testar tes nov JavaScript avant che memorisar.",
 'usercsspreview'                   => "'''Fa stim che quai è be ina prevista da tes CSS d'utilisader.'''
@@ -802,7 +836,7 @@ Eventualmain è ella vegnida stizzada u stidada da la wiki.
 Emprova da [[Special:Search|tschertgar]] novas paginas sumegliantas en la wiki.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(eliminà commentari)',
+'rev-deleted-comment'         => '(allontanà la resumaziun da las modificaziuns)',
 'rev-deleted-user'            => "(stidà num d'utilisader)",
 'rev-deleted-event'           => '(stidà acziun dal log)',
 'rev-deleted-user-contribs'   => "[Allontanà il num d'utilisader u l'adressa IP - zupentà la modificaziun da las contribuziuns]",
@@ -993,7 +1027,7 @@ Considerescha che lur index da {{SITENAME}} po cuntegnair datas ch'èn betg pli 
 'savedprefs'                  => 'Tias preferenzas èn vegnidas memorisadas.',
 'timezonelegend'              => "Zona d'urari:",
 'localtime'                   => 'Temp local:',
-'timezoneuseserverdefault'    => 'Utilisar il standard dal server',
+'timezoneuseserverdefault'    => 'Utilisar il standard dal wiki ($1)',
 'timezoneuseoffset'           => 'Auter (inditgar la differenza)',
 'timezoneoffset'              => 'Differenza¹:',
 'servertime'                  => 'Temp dal server:',
@@ -1042,7 +1076,7 @@ Ella na dastga betg esser pli lunga che $1 {{PLURAL:$1|caracter|caracters}}.',
 Questa infurmaziun è publica.',
 'email'                       => 'E-mail',
 'prefs-help-realname'         => "Opziun: Qua pos inditgar in surnum che vegn inditga empè da tes num d'utilisader en tias suttascripziuns cun '''<nowiki>--~~~~</nowiki>'''.",
-'prefs-help-email'            => "L'adressa dad e-mail è opziunala, pussibilitescha dentant da trametter in nov pled-clav en cass da sperdita. Plinavant pussibilitescha ella ad auters utilisaders da contactar tai per e-mail senza che ti stos publitgar tia identitad.",
+'prefs-help-email'            => "L'adressa dad e-mail è opziunala, pussibilitescha dentant da trametter in nov pled-clav en cass da sperdita.",
 'prefs-help-email-required'   => "Inditgar in'adressa dad e-mail è obligatoric.",
 'prefs-info'                  => 'Infurmaziuns da basa',
 'prefs-i18n'                  => 'Internaziunalisaziun',
@@ -1263,12 +1297,12 @@ Guarda era la [[Special:NewFiles|galleria da novas datotecas]] per ina survista 
 'minlength1'                  => 'Nums da datotecas ston esser almain in bustab lung.',
 'illegalfilename'             => 'Il num da datoteca "$1" cuntegna almain in segn betg lubì. Endatescha in\'auter num ed emprova danovamain da chargiar si la datoteca.',
 'badfilename'                 => 'Midà num da la datoteca a "$1".',
-'filetype-mime-mismatch'      => 'Extensiun dal num da datoteca na correspunda betg al tip MIME.',
+'filetype-mime-mismatch'      => 'L\'extensiun dal num da datoteca ".$1" na correspunda betg al tip da MIME scuvrì en la datoteca ($2).',
 'filetype-badmime'            => 'Datotecas dal tip da MIME "$1" na dastgan betg vegnir chargiads si.',
 'filetype-bad-ie-mime'        => "Betg pussaivel da chargiar si questa datoteca perquai che l'Internet Explorar la determinass sco «$1», tge ch'è in tip betg lubì e potenzialmain privlus.",
 'filetype-unwanted-type'      => "'''\".\$1\"''' è in tip da datoteca nungiavischà.
 Nus preferin datotecas {{PLURAL:\$3|dal tip|dals tips}} \$2.",
-'filetype-banned-type'        => "'''\".\$1\"''' è in tip da datoteca betg lubì.
+'filetype-banned-type'        => "'''\".\$1\"''' {{PLURAL:\$4|n'è betg in tip da datoteca lubì|n'èn betg tips da datoteca lubids}}.
 Lubidas èn datotecas {{PLURAL:\$3|dal tip|dals tips}} \$2.",
 'filetype-missing'            => 'La datoteca n\'ha nagina extensiun (p.ex. ".jpg").',
 'empty-file'                  => 'La datoteca tramessa è vida.',
@@ -1372,8 +1406,7 @@ Eventualmain stos ti empruvar danovamain d'in temp ch'i marscha pli pac.",
 
 # Special:ListFiles
 'listfiles-summary'     => "Questa pagina speziala mussa tut las datotecas ch'èn vegnidas chargiada si.
-Sco standard vegnan las ultimas datotecas ch'èn vegnidas chargiadas si mussadas sissum da la glista.
-In clic sin il titel d'ina colona mida la successiun da zavrar.",
+Sche la pagina vegn filtrada tenor utilisaders vegnan be datotecas nua che l'utilisader ha chargià si la pli nova versiun da la datotecas mussadas.",
 'listfiles_search_for'  => 'Tschtgar tenor il num da dateoca:',
 'imgfile'               => 'datoteca',
 'listfiles'             => 'Glista dals maletgs',
@@ -1644,7 +1677,7 @@ Infurmaziuns supplementaras davart ils singuls dretgs chattas [[{{MediaWiki:List
 'emailpage'        => "Trametter in e-mail a l'utilisader",
 'emailpagetext'    => "Ti pos utilisar il formular sutvart per trametter in'e-mail a quest utilisader.
 L'adressa dad e-mail che ti has endatà en [[Special:Preferences|tias preferenzas]] vegn inditgada sco speditur da l'e-mail, uschia ch'il retschavider po rispunder directamain a tai.",
-'defemailsubject'  => '{{SITENAME}} e-mail',
+'defemailsubject'  => '{{SITENAME}} e-mail da l\'utilisader "$1"',
 'noemailtitle'     => 'Nagina adressa dad e-mail',
 'noemailtext'      => "Quest utilisader n'ha betg inditgà ina adressa dad e-mail valida.",
 'nowikiemailtitle' => 'Betg lubì da termetter e-mail',
@@ -1864,7 +1897,7 @@ Sin [[Special:IPBlockList|la glista dad IPs bliccadas]] pos ti repassar tut las 
 'ipusubmit'                       => 'Allontanar questa bloccada',
 'unblocked'                       => '[[User:$1|$1]] è vegnì debloccà',
 'unblocked-id'                    => 'La bloccada $1 è vegnida allontanada',
-'ipblocklist'                     => "Adressas IP e nums d'utilisader bloccads",
+'ipblocklist'                     => 'Utilisaders bloccads',
 'ipblocklist-legend'              => 'Tschertgar in utilisader bloccà',
 'ipblocklist-submit'              => 'Tschertgar',
 'ipblocklist-localblock'          => 'Bloccadas localas',
@@ -2107,7 +2140,7 @@ Utilisescha per plaschair il buttun 'mussar prevista' avant che memorisar.",
 Ti pos vesair il code-fundamental.',
 'tooltip-ca-history'              => 'Versiuns pli veglias da questa pagina',
 'tooltip-ca-protect'              => 'Proteger questa pagina',
-'tooltip-ca-unprotect'            => 'Annullar la protecziun da questa pagina',
+'tooltip-ca-unprotect'            => 'Midar la protecziun da questa pagina',
 'tooltip-ca-delete'               => 'Stizzar quest artitgel',
 'tooltip-ca-undelete'             => "Restituir las modificaziuns ch'èn vegnidas fatgas vid questa pagina avant ch'ella è vegnida stizzada",
 'tooltip-ca-move'                 => 'Spustar questa pagina',
@@ -2261,7 +2294,7 @@ Tut las colliaziuns che suandan sin la medema lingia vegnan risguardadas sco exc
 Sche la datoteca è vegnida midada dal status original èn tscherts detagls eventualmain betg pli corrects.',
 'metadata-expand'   => 'Mussar detagls extendids',
 'metadata-collapse' => 'Zuppentar detagls extendids',
-'metadata-fields'   => 'Suandants champs da las EXIF-Metadata en quest text da sistem da MediaWiki vegnan mussads sin las paginas da descripziun dal maletg; uleriurs detagls zuppentads normalmain pon vegnir mussads.
+'metadata-fields'   => "Las datas da meta da maletgs ch'èn inditgadas sin questa pagina vegnan mussads sin las paginas da descripziun dal maletg; uleriurs detagls zuppentads pon vegnir mussads.
 * make
 * model
 * datetimeoriginal
@@ -2274,7 +2307,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 * imagedescription
 * gpslatitude
 * gpslongitude
-* gpsaltitude',
+* gpsaltitude",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ladezza',
@@ -2306,8 +2339,8 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 'exif-colorspace'                  => 'Spazi da colurs',
 'exif-componentsconfiguration'     => 'Significaziun da las singulas cumponentas',
 'exif-compressedbitsperpixel'      => 'Modus da cumprimer',
-'exif-pixelydimension'             => 'Ladezza dal maletg valida',
-'exif-pixelxdimension'             => 'Autezza dal maletg valida',
+'exif-pixelydimension'             => 'Ladezza dal maletg',
+'exif-pixelxdimension'             => 'Autezza dal maletg',
 'exif-usercomment'                 => "Commentari da l'utilisader",
 'exif-relatedsoundfile'            => "Datoteca d'audio appartegnenta",
 'exif-datetimeoriginal'            => 'Data e temp da la generaziun',
@@ -2590,7 +2623,8 @@ Ti pos era utilisar [[Special:EditWatchlist|la pagina da standard]].',
 'specialpages'                   => 'Paginas spezialas',
 'specialpages-note'              => '----
 * Paginas spezialas normalas.
-* <strong class="mw-specialpagerestricted">Paginas spezialas restrenschidas.</strong>',
+* <span class="mw-specialpagerestricted">Paginas spezialas restrenschidas.</span>
+* <span class="mw-specialpagecached">Paginas spezialas en il cache (pon esser antiquadas).</span>',
 'specialpages-group-maintenance' => 'Rapports da mantegnamant',
 'specialpages-group-other'       => 'Autras paginas spezialas',
 'specialpages-group-login'       => "T'annunziar / registrar",

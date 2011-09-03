@@ -324,6 +324,7 @@ $messages = array(
 'printableversion'  => 'Forma impressibilis',
 'permalink'         => 'Nexus perpetuus',
 'print'             => 'Imprimere',
+'view'              => 'Spectare',
 'edit'              => 'Recensere',
 'create'            => 'Creare',
 'editthispage'      => 'Recensere hanc paginam',
@@ -331,6 +332,7 @@ $messages = array(
 'delete'            => 'Delere',
 'deletethispage'    => 'Delere hanc paginam',
 'undelete_short'    => 'Restituere {{PLURAL:$1|unam emendationem|$1 emendationes}}',
+'viewdeleted_short' => 'Spectare {{PLURAL:$1|unam emendationem deletam|$1 emendationes deletas}}',
 'protect'           => 'Protegere',
 'protect_change'    => 'mutare',
 'protectthispage'   => 'Protegere hanc paginam',
@@ -407,6 +409,8 @@ Vide [[Special:Version|paginam versionis]].',
 'toc'                     => 'Index',
 'showtoc'                 => 'monstrare',
 'hidetoc'                 => 'celare',
+'collapsible-collapse'    => 'Collabi',
+'collapsible-expand'      => 'Dilatare',
 'thisisdeleted'           => 'Videre aut restituere $1?',
 'viewdeleted'             => 'Visne conspicere $1?',
 'restorelink'             => '{{PLURAL:$1|unam emendationem deletam|$1 emendationes deletas}}',
@@ -500,6 +504,7 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'nav-login-createaccount'    => 'Conventum aperire / conventum creare',
 'loginprompt'                => 'Cookies potestatem facere debes ut conventum aperire.',
 'userlogin'                  => 'Conventum aperire / conventum creare',
+'userloginnocreate'          => 'Conventum aperire',
 'logout'                     => 'Conventum concludere',
 'userlogout'                 => 'Conventum concludere',
 'notloggedin'                => 'Conventum non est apertum',
@@ -508,7 +513,9 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'createaccount'              => 'Rationem novam creare',
 'gotaccount'                 => "Habesne iam rationem? '''$1'''.",
 'gotaccountlink'             => 'Conventum aperi',
+'userlogin-resetlink'        => ' Dedicistine tu ',
 'createaccountmail'          => 'ab inscriptione electronica',
+'createaccountreason'        => 'Causa:',
 'badretype'                  => 'Tesserae quas scripsisti inter se non congruunt.',
 'userexists'                 => 'Nomen usoris quod selegisti iam est.
 Nomen usoris alium selige.',
@@ -564,7 +571,13 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 # Special:PasswordReset
 'passwordreset-username'     => 'Nomen usoris:',
 'passwordreset-email'        => 'Inscriptio electronica:',
-'passwordreset-emailelement' => ' Nomen usoris: $1',
+'passwordreset-emailelement' => 'Nomen usoris: $1
+Momentarius Tessera: $2',
+
+# Special:ChangeEmail
+'changeemail-none'   => '(nullus)',
+'changeemail-submit' => ' Mutare E-mail',
+'changeemail-cancel' => 'Abrogare',
 
 # Edit page toolbar
 'bold_sample'     => 'Litterae pingues',

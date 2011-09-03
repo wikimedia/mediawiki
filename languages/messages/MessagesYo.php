@@ -207,7 +207,7 @@ $messages = array(
 'vector-action-move'       => 'Ìyípòdà',
 'vector-action-protect'    => 'Àbò',
 'vector-action-undelete'   => 'Ìmúkúrò ìparẹ́',
-'vector-action-unprotect'  => 'Ìjáwọ́ àbò',
+'vector-action-unprotect'  => 'Ìyípadà àbò',
 'vector-view-create'       => "Ṣ'èdá",
 'vector-view-edit'         => 'Àtúnṣe',
 'vector-view-history'      => 'Wo ìtàn',
@@ -244,8 +244,8 @@ $messages = array(
 'protect'           => 'Àbò',
 'protect_change'    => 'yípadà',
 'protectthispage'   => 'Dá àbò bo ojúewé yìí',
-'unprotect'         => 'Mú àbò kúrò',
-'unprotectthispage' => 'Mú àbò kúrò lórí ojúewé yìí',
+'unprotect'         => 'Ìyípadà àbò',
+'unprotectthispage' => 'Ìyípadà àbò ojúewé yìí',
 'newpage'           => 'Ojúewé tuntun',
 'talkpage'          => 'Ìfọ̀rọ̀wérọ̀ nípa ojúewé yìí',
 'talkpagelinktext'  => 'Ọ̀rọ̀',
@@ -457,7 +457,7 @@ A ti ṣ'èdá àpamọ́ yín.
 'createaccountmail'          => 'pẹ̀lú e-mail',
 'createaccountreason'        => 'Ìdíẹ̀:',
 'badretype'                  => 'Àwọn ọ̀rọ̀ìpamọ́ tí ẹ kọ kò jọ ra wọn.',
-'userexists'                 => 'Orúkọ oníṣe tí ẹ mú jẹ́ ti ẹlòmíràn.
+'userexists'                 => 'Orúkọ oníṣe tí ẹ mú wà lọ́wọ́ ẹlòmíràn.
 Ẹjọ̀wọ́ ẹ yan orúkọ mìíràn tó yàtọ̀.',
 'loginerror'                 => 'Àsìṣe ìwọlé',
 'createaccounterror'         => 'Kò le dá àkópamọ́: $1',
@@ -656,11 +656,12 @@ T'óbá sepé àsìse ló gbé yin dé bi, ẹ kọn bọ́tìnì ìpadàsẹ́y
 'userpage-userdoesnotexist-view'   => 'Àpamọ́ oníṣe "$1" kò jẹ́ fífilórúkọsílẹ̀.',
 'blocked-notice-logextract'        => 'Lọ́wọ́lọ́wọ́ oníṣe yìí jẹ́ dídílọ́nà.
 Àkọsílẹ̀ ìdínà àìpẹ́ nìyí nísàlẹ̀ fún ìtọ́kasí:',
-'clearyourcache'                   => "'''Àkíyèsí: Lẹ́yìn ìmúpamọ́, ó ṣe é ṣe kó jẹ́ pé ẹ gbọ́dọ̀ fo cache agbétàkùn yín láti rí àwọn ìyípadà.'''
-'''Mozilla / Firefox / Safari:''' ẹ di ''Shift'' mú bí ẹ ṣe ún tẹ ''Reload'', tàbí kí ẹ tẹ ''Ctrl-F5'' tàbí ''Ctrl-R'' (''Command-R'' lórí Mac);
-'''Konqueror: '''ẹ tẹ ''Reload'' tàbí kí ẹ tẹ ''F5'';
-'''Opera:''' ẹ pa cache rẹ́ nínú ''Tools → Preferences'';
-'''Internet Explorer:''' ẹ di ''Ctrl'' mú bí ẹ ṣe ún tẹ ''Refresh,'' tàbí kí ẹ tẹ ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Àkíyèsí:''' Lẹ́yìn ìmúpamọ́, ó ṣe é ṣe kó jẹ́ pé ẹ gbọ́dọ̀ fo cache agbétàkùn yín láti rí àwọn ìyípadà.
+* '''Firefox / Safari:''' ẹ di ''Shift'' mú bí ẹ ṣe ún tẹ ''Reload'', tàbí kí ẹ tẹ ''Ctrl-F5'' tàbí ''Ctrl-R'' (''Command-R'' lórí Mac)
+* '''Google Chrome:''' ẹ tẹ ''Ctrl-Shift-R'' (''Command-Shift-R'' lórí Mac)
+* '''Internet Explorer:''' ẹ di ''Ctrl'' mú bí ẹ ṣe ún tẹ ''Refresh,'' tàbí kí ẹ tẹ ''Ctrl-F5''
+* '''Konqueror: '''ẹ tẹ ''Reload'' tàbí kí ẹ tẹ ''F5''
+* '''Opera:''' ẹ pa cache rẹ́ nínú ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Ìrànlọ́wọ́:''' Ẹ lo bọ́tìnì \"{{int:showpreview}}\" fún dídánwò CSS tuntun yín kí ẹ tó múupamọ́.",
 'userjsyoucanpreview'              => "'''Ìrànlọ́wọ́:''' Ẹ lo bọ́tìnì \"{{int:showpreview}}\" fún dídánwò JavaScript tuntun yín kí ẹ tó múupamọ́.",
 'usercsspreview'                   => "''''Ẹ mọ́ gbàgbé pé àkọ́yẹ̀wò CSS oníṣe yín nìyí.'''

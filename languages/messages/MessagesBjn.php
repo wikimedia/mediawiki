@@ -340,6 +340,8 @@ Lihati [[Special:Version|Tungkaran mudil]]',
 'page-rss-feed'           => "Kitihan RSS ''$1''",
 'page-atom-feed'          => "Kitihan Atum ''$1''",
 'red-link-title'          => '$1 (tungkaran baluman ada)',
+'sort-descending'         => 'Surtir baturun',
+'sort-ascending'          => 'Surtir banaik',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Tungkaran',
@@ -428,6 +430,7 @@ Gasan tarjamahan, muhun puruk [http://translatewiki.net/wiki/Main_Page?setlang=b
 'sqlhidden'            => '(Parmintaan SQL disungkupakan)',
 'cascadeprotected'     => 'Tungkaran ini sudah dilindungi matan pambabakan, marga nangini tamasuk dalam {{PLURAL:$1|tungkaran|tutungkaran}} dudi nang dilindungi "barénténg": $2',
 'namespaceprotected'   => "Pian kada baisi ijin hagan mambabak tutungkaran dalam ngaran kamar '''$1'''.",
+'customcssprotected'   => 'Pian kada baisi ijin mambabak tungkaran CSS ngini, karana ngini baisi setelan paribadi pamuruk lain.',
 'ns-specialprotected'  => 'Tungkaran istimiwa kada kawa dibabak',
 'titleprotected'       => "Judul ini dilindungi matan paulahan ulih [[User:$1|$1]].
 Alasan nang dibariakan adalah ''$2''.",

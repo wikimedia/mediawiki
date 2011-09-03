@@ -35,6 +35,7 @@
  * @author Malafaya
  * @author ManoDbo
  * @author McDutchie
+ * @author MetalBrasil
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
@@ -1012,6 +1013,9 @@ A última entrada no histórico é fornecida abaixo como referência:",
 'templatesused'                    => '{{PLURAL:$1|Predefinição usada|Predefinições usadas}} nesta página:',
 'templatesusedpreview'             => '{{PLURAL:$1|Predefinição usada|Predefinições usadas}} nesta previsão:',
 'templatesusedsection'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta seção:',
+'distanttemplatesused'             => '{{PLURAL:$1|Modelo distante usado|Modelos distantes usados}} nesta páxina:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Modelo distante usado|Modelos distantes usados}} nesta prévia',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Modelo distante usado|Modelos distantes usados}} nesta seção',
 'template-protected'               => '(protegida)',
 'template-semiprotected'           => '(semi-protegida)',
 'hiddencategories'                 => 'Esta página integra {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:',
@@ -1325,7 +1329,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'qbsettings-fixedright'     => 'Fixo à direita',
 'qbsettings-floatingleft'   => 'Flutuando à esquerda',
 'qbsettings-floatingright'  => 'Flutuando à direita',
-'qbsettings-directionality' => 'Fixa, dependendo da direcionalidade do seu alfabeto e da sua língua',
+'qbsettings-directionality' => 'Fixado, dependendo da direcionalidade do seu alfabeto e da sua língua',
 
 # Preferences page
 'preferences'                   => 'Preferências',
@@ -2167,7 +2171,7 @@ Pode haver [[{{MediaWiki:Listgrouprights-helppage}}|informações adicionais]] s
 'emailpagetext'        => 'Você pode usar o formulário abaixo para enviar uma mensagem por correio eletrônico para este usuário.
 O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferências de usuário]] irá aparecer como o endereço do remetente da mensagem, então o destinatário poderá responder diretamente para você.',
 'usermailererror'      => 'Erro no email:',
-'defemailsubject'      => 'E-mail: {{SITENAME}}',
+'defemailsubject'      => '{{SITENAME}} e-mail do usuário "$1"',
 'usermaildisabled'     => 'O e-mail do usuário foi desativado',
 'usermaildisabledtext' => 'Você não tem como enviar e-mails a outros usuários deste wiki.',
 'noemailtitle'         => 'Sem endereço de e-mail',
@@ -2473,6 +2477,7 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'sp-contributions-username'            => 'Endereço de IP ou usuário:',
 'sp-contributions-toponly'             => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-submit'              => 'Pesquisar',
+'sp-contributions-showsizediff'        => 'Mostrar a diferença no tamanho da página',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
@@ -2551,6 +2556,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'blocklist-userblocks'            => 'Esconder bloqueios de contas',
 'blocklist-tempblocks'            => 'Esconder bloqueios temporários',
 'blocklist-addressblocks'         => 'Esconder bloqueios de IP único',
+'blocklist-rangeblocks'           => 'Ocultar blocos gama',
 'blocklist-timestamp'             => 'Data e hora',
 'blocklist-target'                => 'Destinatário',
 'blocklist-expiry'                => 'Expira',
@@ -3718,11 +3724,28 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 'compare-revision-not-exists' => 'A revisão que você especificou não existe.',
 
 # Special:GlobalFileUsage
-'globalfileusage'      => 'Utilização global do arquivo',
-'globalfileusage-for'  => 'Utilização global de "$1"',
-'globalfileusage-desc' => ' [[Special:GlobalFileUsage|Página especial]] para consultar a utilização global de arquivos',
-'globalfileusage-ok'   => 'Pesquisar',
-'globalfileusage-text' => 'Pesquisar utilização global de arquivos',
+'globalfileusage'             => 'Utilização global do arquivo',
+'globalfileusage-for'         => 'Utilização global de "$1"',
+'globalfileusage-desc'        => ' [[Special:GlobalFileUsage|Página especial]] para consultar a utilização global de arquivos',
+'globalfileusage-ok'          => 'Pesquisar',
+'globalfileusage-text'        => 'Pesquisar utilização global de arquivos',
+'globalfileusage-no-results'  => '[[$1]] Não é utilizado em outras wikis',
+'globalfileusage-on-wiki'     => 'Uso em $2',
+'globalfileusage-of-file'     => 'As outras wikis a seguir usam este arquivo:',
+'globalfileusage-more'        => 'Ver [[{{#Special:GlobalUsage}}/$1|a utilização global]] deste arquivo.',
+'globalfileusage-filterlocal' => 'Ocultar usos locais',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Uso de modelo global',
+'globaltemplateusage-for'         => 'Utilização global de "$1"',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Página especial]] para consultar a utlização global de arquivos',
+'globaltemplateusage-ok'          => 'Pesquisar',
+'globaltemplateusage-text'        => 'Pesquisar utlização global de arquivos',
+'globaltemplateusage-no-results'  => '[[$1]] Não é utilizado em outras wikis',
+'globaltemplateusage-on-wiki'     => 'Uso em $2',
+'globaltemplateusage-of-file'     => 'As wikis a seguir utilizam este modelo:',
+'globaltemplateusage-more'        => 'Ver [[{{#Special:GlobalUsage}}/$1|a utilização global]] deste arquivo.',
+'globaltemplateusage-filterlocal' => 'Ocultar usos locais',
 
 # Database error messages
 'dberr-header'      => 'Este wiki tem um problema',
