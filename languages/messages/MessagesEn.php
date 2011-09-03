@@ -1848,7 +1848,7 @@ Check HTML tags.',
 'badsiglength'                  => 'Your signature is too long.
 It must not be more than $1 {{PLURAL:$1|character|characters}} long.',
 'yourgender'                    => 'Gender:',
-'gender-unknown'                => 'Unspecified',
+'gender-unknown'                => 'Undisclosed',
 'gender-male'                   => 'Male',
 'gender-female'                 => 'Female',
 'prefs-help-gender'             => 'Optional: used for gender-correct addressing by the software.
