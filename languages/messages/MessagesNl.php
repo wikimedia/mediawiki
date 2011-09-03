@@ -1642,7 +1642,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'rightslog'                  => 'Gebruikersrechtenlogboek',
 'rightslogtext'              => 'Hieronder staan de wijzigingen in gebruikersrechten.',
 'rightslogentry'             => 'wijzigde de gebruikersrechten voor $1 van $2 naar $3',
-'rightslogentry-autopromote' => 'werd automatisch gepromoveerd van $2 naar $3',
+'rightslogentry-autopromote' => 'is automatisch gepromoveerd van de groepen "$2" naar de groepen "$3"',
 'rightsnone'                 => '(geen)',
 
 # Associated actions - in the sentence "You do not have permission to X"

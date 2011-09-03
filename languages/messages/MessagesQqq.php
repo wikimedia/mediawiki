@@ -1648,9 +1648,9 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 'right-sendemail'             => '{{doc-right}}',
 
 # User rights log
-'rightslog'      => 'In [[Special:Log]]',
-'rightslogtext'  => 'Text in [[Special:Log/rights]].',
-'rightslogentry' => 'This message is displayed in the [[Special:Log/rights|User Rights Log]] when a bureaucrat changes the user groups for a user.
+'rightslog'                  => 'In [[Special:Log]]',
+'rightslogtext'              => 'Text in [[Special:Log/rights]].',
+'rightslogentry'             => 'This message is displayed in the [[Special:Log/rights|User Rights Log]] when a bureaucrat changes the user groups for a user.
 
 * Parameter $1 is the username
 * Parameters $2 and $3 are lists of user groups or {{msg-mw|Rightsnone}}
@@ -1658,7 +1658,10 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 The name of the bureaucrat who did this task appears before this message.
 
 Similar to {{msg-mw|Gur-rightslog-entry}}',
-'rightsnone'     => 'Default rights for registered users.
+'rightslogentry-autopromote' => 'Parameters:
+* $2 is a comma separated list of old user groups
+* $2 is a comma separated list of new user groups',
+'rightsnone'                 => 'Default rights for registered users.
 
 {{Identical|None}}',
 

@@ -1525,7 +1525,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'right-reupload-shared'       => 'Menolak berkas-berkas pada penyimpanan media lokal bersama',
 'right-upload_by_url'         => 'Memuatkan berkas dari sebuah alamat URL',
 'right-purge'                 => 'Menghapus singgahan suatu halaman tanpa halaman konfirmasi',
-'right-autoconfirmed'         => 'Menyunting halaman yang semi dilindungi',
+'right-autoconfirmed'         => 'Menyunting halaman yang semidilindungi',
 'right-bot'                   => 'Diperlakukan sebagai sebuah proses otomatis',
 'right-nominornewtalk'        => 'Ketiadaan suntingan kecil di halaman pembicaraan memicu tampilan pesan baru',
 'right-apihighlimits'         => 'Menggunakan batasan yang lebih tinggi dalam kueri API',
@@ -1842,9 +1842,8 @@ Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
 'upload_source_file' => ' (suatu berkas di komputer Anda)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Halaman istimewa ini menampilkan semua berkas yang telah dimuat.
-Secara baku, berkas yang terakhir dimuat berada pada urutan teratas.
-Klik pada kepala kolom untuk mengubah urutan.',
+'listfiles-summary'     => 'Halaman istimewa ini menampilkan semua berkas yang telah diunggah.
+Ketika disaring oleh pengguna, hanya vesi berkas terbaru dari berkas yang pengguna unggah yang ditampilkan.',
 'listfiles_search_for'  => 'Cari nama berkas:',
 'imgfile'               => 'berkas',
 'listfiles'             => 'Daftar berkas',

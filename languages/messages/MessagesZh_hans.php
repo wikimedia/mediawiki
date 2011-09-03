@@ -763,7 +763,8 @@ $2
 'changeemail'          => '更改电子邮件地址',
 'changeemail-header'   => '更改帐户的电子邮件地址',
 'changeemail-text'     => '完成此窗体可以更改您的电子邮件地址。您将需要输入您的密码以确认此更改。',
-'changeemail-no-info'  => '您必须登录直接访问此页。',
+'changeemail-no-info'  => '
+您必须登录以直接访问本页。',
 'changeemail-oldemail' => '当前的电子邮件地址：',
 'changeemail-newemail' => '新的电子邮件地址：',
 'changeemail-none'     => '（无）',
@@ -3614,12 +3615,28 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'compare-revision-not-exists' => '您指定的修订不存在。',
 
 # Special:GlobalFileUsage
-'globalfileusage'            => '全域文件使用情况',
-'globalfileusage-for'        => '$1的全域文件使用情况',
-'globalfileusage-desc'       => '查看全域文件使用情况的[[Special:GlobalFileUsage|特殊页面]]',
-'globalfileusage-ok'         => '搜索',
-'globalfileusage-text'       => '搜索全域文件使用',
-'globalfileusage-no-results' => '[[$1]]并未在其他wiki上使用',
+'globalfileusage'             => '全域文件使用情况',
+'globalfileusage-for'         => '$1的全域文件使用情况',
+'globalfileusage-desc'        => '查看全域文件使用情况的[[Special:GlobalFileUsage|特殊页面]]',
+'globalfileusage-ok'          => '搜索',
+'globalfileusage-text'        => '搜索全域文件使用',
+'globalfileusage-no-results'  => '[[$1]]并未在其他wiki上使用',
+'globalfileusage-on-wiki'     => '使用于$2',
+'globalfileusage-of-file'     => '下列的其他wiki使用了该文件：',
+'globalfileusage-more'        => '查看该文件[[{{#Special:GlobalUsage}}/$1|更多全域使用情况]]。',
+'globalfileusage-filterlocal' => '不显示本地使用',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => '全域模板使用',
+'globaltemplateusage-for'         => '$1的全域模板使用',
+'globaltemplateusage-desc'        => '查看全域模板使用情况的[[Special:GlobalTemplateUsage|特殊页面]]',
+'globaltemplateusage-ok'          => '搜索',
+'globaltemplateusage-text'        => '搜索全域模板使用',
+'globaltemplateusage-no-results'  => '[[$1]]并未在其他wiki上使用。',
+'globaltemplateusage-on-wiki'     => '使用于$2',
+'globaltemplateusage-of-file'     => '下列的其他wiki使用该模板：',
+'globaltemplateusage-more'        => '查看该模板的 [[{{#Special:GlobalUsage}}/$1|更多全域使用情况]]',
+'globaltemplateusage-filterlocal' => '不显示本地使用',
 
 # Database error messages
 'dberr-header'      => '本wiki出现了问题',
