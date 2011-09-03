@@ -136,7 +136,7 @@ class Linker {
 	 *
 	 * @param $target        Title  Can currently only be a Title, but this may
 	 *   change to support Images, literal URLs, etc.
-	 * @param $text          string The HTML contents of the <a> element, i.e.,
+	 * @param $html          string The HTML contents of the <a> element, i.e.,
 	 *   the link text.  This is raw HTML and will not be escaped.  If null,
 	 *   defaults to the prefixed text of the Title; or if the Title is just a
 	 *   fragment, the contents of the fragment.
@@ -225,10 +225,10 @@ class Linker {
 	 * Identical to link(), except $options defaults to 'known'.
 	 */
 	public static function linkKnown(
-		$target, $text = null, $customAttribs = array(),
+		$target, $html = null, $customAttribs = array(),
 		$query = array(), $options = array( 'known', 'noclasses' ) )
 	{
-		return self::link( $target, $text, $customAttribs, $query, $options );
+		return self::link( $target, $html, $customAttribs, $query, $options );
 	}
 
 	/**
@@ -375,12 +375,12 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	static function makeSelfLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		if ( $text == '' ) {
-			$text = htmlspecialchars( $nt->getPrefixedText() );
+	static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
+		if ( $html == '' ) {
+			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
 		list( $inside, $trail ) = self::splitTrail( $trail );
-		return "<strong class=\"selflink\">{$prefix}{$text}{$inside}</strong>{$trail}";
+		return "<strong class=\"selflink\">{$prefix}{$html}{$inside}</strong>{$trail}";
 	}
 
 	/**
@@ -760,31 +760,31 @@ class Linker {
 	 * Make a "broken" link to an image
 	 *
 	 * @param $title Title object
-	 * @param $text String: link label in unescaped text form
+	 * @param $html String: link label in htmlescaped text form
 	 * @param $query String: query string
 	 * @param $trail String: link trail (HTML fragment)
 	 * @param $prefix String: link prefix (HTML fragment)
 	 * @param $time Boolean: a file of a certain timestamp was requested
 	 * @return String
 	 */
-	public static function makeBrokenImageLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '', $time = false ) {
+	public static function makeBrokenImageLinkObj( $title, $html = '', $query = '', $trail = '', $prefix = '', $time = false ) {
 		global $wgEnableUploads, $wgUploadMissingFileUrl, $wgUploadNavigationUrl;
 		if ( ! $title instanceof Title ) {
-			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
+			return "<!-- ERROR -->{$prefix}{$html}{$trail}";
 		}
 		wfProfileIn( __METHOD__ );
 		$currentExists = $time ? ( wfFindFile( $title ) != false ) : false;
 
 		list( $inside, $trail ) = self::splitTrail( $trail );
-		if ( $text == '' )
-			$text = htmlspecialchars( $title->getPrefixedText() );
+		if ( $html == '' )
+			$html = htmlspecialchars( $title->getPrefixedText() );
 
 		if ( ( $wgUploadMissingFileUrl || $wgUploadNavigationUrl || $wgEnableUploads ) && !$currentExists ) {
 			$redir = RepoGroup::singleton()->getLocalRepo()->checkRedirect( $title );
 
 			if ( $redir ) {
 				wfProfileOut( __METHOD__ );
-				return self::linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
+				return self::linkKnown( $title, "$prefix$html$inside", array(), $query ) . $trail;
 			}
 
 			$href = self::getUploadUrl( $title, $query );
@@ -792,10 +792,10 @@ class Linker {
 			wfProfileOut( __METHOD__ );
 			return '<a href="' . htmlspecialchars( $href ) . '" class="new" title="' .
 				htmlspecialchars( $title->getPrefixedText(), ENT_QUOTES ) . '">' .
-				"$prefix$text$inside</a>$trail";
+				"$prefix$html$inside</a>$trail";
 		} else {
 			wfProfileOut( __METHOD__ );
-			return self::linkKnown( $title, "$prefix$text$inside", array(), $query ) . $trail;
+			return self::linkKnown( $title, "$prefix$html$inside", array(), $query ) . $trail;
 		}
 	}
 
@@ -826,13 +826,13 @@ class Linker {
 	 * Create a direct link to a given uploaded file.
 	 *
 	 * @param $title Title object.
-	 * @param $text String: pre-sanitized HTML
+	 * @param $html String: pre-sanitized HTML
 	 * @param $time string: MW timestamp of file creation time
 	 * @return String: HTML
 	 */
-	public static function makeMediaLinkObj( $title, $text = '', $time = false ) {
+	public static function makeMediaLinkObj( $title, $html = '', $time = false ) {
 		$img = wfFindFile( $title, array( 'time' => $time ) );
-		return self::makeMediaLinkFile( $title, $img, $text );
+		return self::makeMediaLinkFile( $title, $img, $html );
 	}
 
 	/**
@@ -841,12 +841,12 @@ class Linker {
 	 *
 	 * @param $title Title object.
 	 * @param $file File|false mixed File object or false
-	 * @param $text String: pre-sanitized HTML
+	 * @param $html String: pre-sanitized HTML
 	 * @return String: HTML
 	 *
 	 * @todo Handle invalid or missing images better.
 	 */
-	public static function makeMediaLinkFile( Title $title, $file, $text = '' ) {
+	public static function makeMediaLinkFile( Title $title, $file, $html = '' ) {
 		if ( $file && $file->exists() ) {
 			$url = $file->getURL();
 			$class = 'internal';
@@ -855,11 +855,11 @@ class Linker {
 			$class = 'new';
 		}
 		$alt = htmlspecialchars( $title->getText(), ENT_QUOTES );
-		if ( $text == '' ) {
-			$text = $alt;
+		if ( $html == '' ) {
+			$html = $alt;
 		}
 		$u = htmlspecialchars( $url );
-		return "<a href=\"{$u}\" class=\"$class\" title=\"{$alt}\">{$text}</a>";
+		return "<a href=\"{$u}\" class=\"$class\" title=\"{$alt}\">{$html}</a>";
 	}
 
 	/**
@@ -1498,17 +1498,17 @@ class Linker {
 	 *                 a space and ending with '>'
 	 *                 This *must* be at least '>' for no attribs
 	 * @param $anchor String: the anchor to give the headline (the bit after the #)
-	 * @param $text String: the text of the header
+	 * @param $html String: html for the text of the header
 	 * @param $link String: HTML to add for the section edit link
 	 * @param $legacyAnchor Mixed: a second, optional anchor to give for
 	 *   backward compatibility (false to omit)
 	 *
 	 * @return String: HTML headline
 	 */
-	public static function makeHeadline( $level, $attribs, $anchor, $text, $link, $legacyAnchor = false ) {
+	public static function makeHeadline( $level, $attribs, $anchor, $html, $link, $legacyAnchor = false ) {
 		$ret = "<h$level$attribs"
 			. $link
-			. " <span class=\"mw-headline\" id=\"$anchor\">$text</span>"
+			. " <span class=\"mw-headline\" id=\"$anchor\">$html</span>"
 			. "</h$level>";
 		if ( $legacyAnchor !== false ) {
 			$ret = "<div id=\"$legacyAnchor\"></div>$ret";
@@ -1860,9 +1860,9 @@ class Linker {
 	 */
 	public static function revDeleteLink( $query = array(), $restricted = false, $delete = true ) {
 		$sp = SpecialPage::getTitleFor( 'Revisiondelete' );
-		$text = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
+		$html = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
 		$tag = $restricted ? 'strong' : 'span';
-		$link = self::link( $sp, $text, array(), $query, array( 'known', 'noclasses' ) );
+		$link = self::link( $sp, $html, array(), $query, array( 'known', 'noclasses' ) );
 		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), "($link)" );
 	}
 
@@ -1875,8 +1875,8 @@ class Linker {
 	 * of appearance with CSS
 	 */
 	public static function revDeleteLinkDisabled( $delete = true ) {
-		$text = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
-		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), "($text)" );
+		$html = $delete ? wfMsgHtml( 'rev-delundel' ) : wfMsgHtml( 'rev-showdeleted' );
+		return Xml::tags( 'span', array( 'class' => 'mw-revdelundel-link' ), "($html)" );
 	}
 
 	/* Deprecated methods */
