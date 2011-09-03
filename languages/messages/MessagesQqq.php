@@ -1658,9 +1658,11 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 The name of the bureaucrat who did this task appears before this message.
 
 Similar to {{msg-mw|Gur-rightslog-entry}}',
-'rightslogentry-autopromote' => 'Parameters:
-* $2 is a comma separated list of old user groups
-* $2 is a comma separated list of new user groups',
+'rightslogentry-autopromote' => 'This message is displayed in the [[Special:Log/rights|User Rights Log]] when a user is automatically promoted to a user group.
+
+Parameters:
+* $2 is a comma separated list of old user groups or {{msg-mw|Rightsnone}}
+* $3 is a comma separated list of new user groups',
 'rightsnone'                 => 'Default rights for registered users.
 
 {{Identical|None}}',
@@ -4298,7 +4300,7 @@ The number of following wikis is unknown. For an empty result, no message is sho
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
 
 # Add categories per AJAX
-'ajax-remove-category'          => 'Tooltip for link to remove a category from the page, displayed after each category at the foot of a page. 
+'ajax-remove-category'          => 'Tooltip for link to remove a category from the page, displayed after each category at the foot of a page.
 Refers to the specific category. "Remove this category" is also correct.',
 'ajax-edit-category'            => 'Tooltip for the edit link displayed after each category at the foot of a page. Refers to the specific category. "Edit this category" is also correct.',
 'ajax-add-category-submit'      => '{{Identical|Add}}',
