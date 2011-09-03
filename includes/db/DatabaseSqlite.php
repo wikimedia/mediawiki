@@ -714,11 +714,6 @@ class DatabaseSqlite extends DatabaseBase {
 		return parent::buildLike( $params ) . "ESCAPE '\' ";
 	}
 
-	public function dropTable( $tableName, $fName = 'DatabaseSqlite::dropTable' ) {
-		$sql = 'DROP TABLE IF EXISTS ' . $this->tableName( $tableName );
-		return $this->query( $sql, $fName );
-	}
-
 	/**
 	 * @return string
 	 */
