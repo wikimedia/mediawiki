@@ -26,15 +26,15 @@ class HtmlTest extends MediaWikiTestCase {
 		
 		### EMPTY ########
 		$this->AssertEmpty(
-			Html::expandAttributes( array( 'foo'=>null) ),
+			Html::expandAttributes( array( 'foo' => null ) ),
 			'skip keys with null value'
 		);
 		$this->AssertEmpty(
-			Html::expandAttributes( array( 'foo'=>false) ),
+			Html::expandAttributes( array( 'foo' => false ) ),
 			'skip keys with false value'
 		);
 		$this->AssertNotEmpty(
-			Html::expandAttributes( array( 'foo'=>'') ),
+			Html::expandAttributes( array( 'foo' => '' ) ),
 			'keep keys with an empty string'
 		);
 	}
@@ -43,18 +43,18 @@ class HtmlTest extends MediaWikiTestCase {
 		global $wgHtml5;
 		$this->AssertEquals(
 			'',
-			Html::expandAttributes( array( 'selected'=>false) ),
+			Html::expandAttributes( array( 'selected' => false ) ),
 			'Boolean attributes do not generates output when value is false'
 		);
 		$this->AssertEquals(
 			'',
-			Html::expandAttributes( array( 'selected'=>null) ),
+			Html::expandAttributes( array( 'selected' => null ) ),
 			'Boolean attributes do not generates output when value is null'
 		);
 
 		$this->AssertEquals(
 			$wgHtml5 ? ' selected=""' : ' selected="selected"',
-			Html::expandAttributes( array( 'selected'=>true ) ),
+			Html::expandAttributes( array( 'selected' => true ) ),
 			'Boolean attributes skip value output'
 		);
 		$this->AssertEquals(
@@ -72,22 +72,22 @@ class HtmlTest extends MediaWikiTestCase {
 		### NOT EMPTY ####
 		$this->AssertEquals(
 			' empty_string=""',
-			Html::expandAttributes( array( 'empty_string'=>'') ),
+			Html::expandAttributes( array( 'empty_string' => '' ) ),
 			'Value with an empty string'
 		);
 		$this->AssertEquals(
 			' key="value"',
-			Html::expandAttributes( array( 'key'=>'value') ),
+			Html::expandAttributes( array( 'key' => 'value' ) ),
 			'Value is a string'
 		);
 		$this->AssertEquals(
 			' one="1"',
-			Html::expandAttributes( array( 'one'=>1) ),
+			Html::expandAttributes( array( 'one' => 1 ) ),
 			'Value is a numeric one'
 		);
 		$this->AssertEquals(
 			' zero="0"',
-			Html::expandAttributes( array( 'zero'=>0) ),
+			Html::expandAttributes( array( 'zero' => 0 ) ),
 			'Value is a numeric zero'
 		);
 	}
