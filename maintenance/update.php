@@ -110,7 +110,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		$shared = $this->hasOption( 'doshared' );
 
-		$updates = array('core','extensions');
+		$updates = array( 'core', 'extensions', 'stats' );
 		if( !$this->hasOption('nopurge') ) {
 			$updates[] = 'purge';
 		}
