@@ -228,11 +228,13 @@ class EditPage {
 					$undotext = $this->mArticle->getUndoText( $undorev, $oldrev );
 					if ( $undotext === false ) {
 						# Warn the user that something went wrong
-						$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-failure">' . wfMsgNoTrans( 'undo-failure' ) . '</div>' );
+						$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-failure">' .
+							wfMsgNoTrans( 'undo-failure' ) . '</div>', true, /* interface */true );
 					} else {
 						$text = $undotext;
 						# Inform the user of our success and set an automatic edit summary
-						$this->editFormPageTop .= $wgOut->parse( '<div class="mw-undo-success">' . wfMsgNoTrans( 'undo-success' ) . '</div>' );
+						$this->editFormPageTop .= $wgOut->parse( '<div class="mw-undo-success">' .
+							wfMsgNoTrans( 'undo-success' ) . '</div>', true, /* interface */true );
 						$firstrev = $oldrev->getNext();
 						# If we just undid one rev, use an autosummary
 						if ( $firstrev->mId == $undo ) {
@@ -245,7 +247,8 @@ class EditPage {
 					// Failed basic sanity checks.
 					// Older revisions may have been removed since the link
 					// was created, or we may simply have got bogus input.
-					$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-norev">' . wfMsgNoTrans( 'undo-norev' ) . '</div>' );
+					$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-norev">' .
+						wfMsgNoTrans( 'undo-norev' ) . '</div>'true, /* interface */true );
 				}
 			} elseif ( $section != '' ) {
 				if ( $section == 'new' ) {
@@ -2080,7 +2083,7 @@ HTML
 				// string, which happens when you initially edit
 				// a category page, due to automatic preview-on-open.
 				$parsedNote = $wgOut->parse( "<div class='previewnote'>" .
-					wfMsg( 'session_fail_preview_html' ) . "</div>" );
+					wfMsg( 'session_fail_preview_html' ) . "</div>", true, /* interface */true );
 			}
 			wfProfileOut( __METHOD__ );
 			return $parsedNote;
@@ -2154,7 +2157,7 @@ HTML
 
 		$previewhead = "<div class='previewnote'>\n" .
 			'<h2 id="mw-previewheader">' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>" .
-			$wgOut->parse( $note ) . $conflict . "</div>\n";
+			$wgOut->parse( $note, true, /* interface */true ) . $conflict . "</div>\n";
 
 		$pageLang = $this->mTitle->getPageLanguage();
 		$attribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),

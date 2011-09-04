@@ -1459,7 +1459,8 @@ class OutputPage extends ContextSource {
 	 * @param $linestart Boolean: is this the start of a line?
 	 * @param $interface Boolean: use interface language ($wgLang instead of
 	 *                   $wgContLang) while parsing language sensitive magic
-	 *                   words like GRAMMAR and PLURAL
+	 *                   words like GRAMMAR and PLURAL. This also disables
+	 *					 LanguageConverter.
 	 * @param $language  Language object: target language object, will override
 	 *                   $interface
 	 * @return String: HTML
