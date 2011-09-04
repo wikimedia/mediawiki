@@ -35,6 +35,23 @@
 	}
 
 	/**
+	* Generates a random id out of 62 alpha-numeric characters.
+	*
+	* @param {Number} Length of id (optional, defaults to 32)
+	* @return {String}
+	*/
+	function generateRandomId( idLength ) {
+		idLength = typeof idLength === 'number' ? idLength : 32;
+		var	seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz',
+			id = '';
+		for ( var r, i = 0; i < idLength; i++ ) {
+			r = Math.floor( Math.random() * seed.length );
+			id += seed.substring( r, r + 1 );
+		}
+		return id;
+	}
+
+	/**
 	 * Helper function for $.fn.suggestions
 	 *
 	 * @context {jQuery}
@@ -872,7 +889,7 @@ mw.ajaxCategories.prototype = {
 					var	token = data.edittoken,
 						timestamp = data.revisions[0].timestamp,
 						oldText = data.revisions[0]['*'],
-						nowikiKey = mw.user.generateId(), // Unique ID for nowiki replacement
+						nowikiKey = generateRandomId(), // Unique ID for nowiki replacement
 						nowikiFragments = []; // Nowiki fragments will be stored here during the changes
 
 					// Replace all nowiki parts with unique keys..
