@@ -100,7 +100,6 @@ MediaWiki supports over 330 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of Bugzilla reports.
 
-* Kichwa (qug) (new).
 * Uighur (Latin) (ug-latn) was incorrectly marked as right-to-left language.
 * (bug 30217) Make pt-br a fallback of pt
 
