@@ -248,7 +248,7 @@ class EditPage {
 					// Older revisions may have been removed since the link
 					// was created, or we may simply have got bogus input.
 					$this->editFormPageTop .= $wgOut->parse( '<div class="error mw-undo-norev">' .
-						wfMsgNoTrans( 'undo-norev' ) . '</div>'true, /* interface */true );
+						wfMsgNoTrans( 'undo-norev' ) . '</div>', true, /* interface */true );
 				}
 			} elseif ( $section != '' ) {
 				if ( $section == 'new' ) {
