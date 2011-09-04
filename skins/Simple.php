@@ -35,7 +35,7 @@ class SkinSimple extends SkinTemplate {
 		$underline = "";
 
 		if ( $wgUser->getOption( 'underline' ) < 2 ) {
-			$underline = "text-decoration: " . $wgUser->getOption( 'underline' ) ? 'underline' : 'none' . " !important;";
+			$underline = "text-decoration: " . $wgUser->getOption( 'underline' ) ? 'underline !important' : 'none' . ";";
 		}
 
 		/* Also inherits from resourceloader */
