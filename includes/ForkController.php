@@ -125,7 +125,7 @@ class ForkController {
 	/**
 	 * Fork a number of worker processes.
 	 *
-	 * return string
+	 * @return string
 	 */
 	protected function forkWorkers( $numProcs ) {
 		$this->prepareEnvironment();

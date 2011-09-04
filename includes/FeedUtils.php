@@ -167,7 +167,6 @@ class FeedUtils {
 	 *
 	 * @param $text String: diff's HTML output
 	 * @return String: modified HTML
-	 * @private
 	 */
 	public static function applyDiffStyle( $text ) {
 		$styles = array(

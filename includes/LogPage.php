@@ -123,6 +123,8 @@ class LogPage {
 
 	/**
 	 * Get the RC comment from the last addEntry() call
+	 *
+	 * @return string
 	 */
 	public function getRcComment() {
 		$rcComment = $this->actionText;
@@ -434,6 +436,8 @@ class LogPage {
 	 * @param $comment String: description associated
 	 * @param $params Array: parameters passed later to wfMsg.* functions
 	 * @param $doer User object: the user doing the action
+	 *
+	 * @return bool|int|null
 	 */
 	public function addEntry( $action, $target, $comment, $params = array(), $doer = null ) {
 		global $wgContLang;

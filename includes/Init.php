@@ -23,7 +23,7 @@ class MWInit {
 	}
 
 	/**
-	 * Returns true if we are running under HipHop, whether in compiled or 
+	 * Returns true if we are running under HipHop, whether in compiled or
 	 * interpreted mode.
 	 *
 	 * @return bool
@@ -47,10 +47,10 @@ class MWInit {
 	}
 
 	/**
-	 * If we are running code compiled by HipHop, this will pass through the 
-	 * input path, assumed to be relative to $IP. If the code is interpreted, 
-	 * it will converted to a fully qualified path. It is necessary to use a 
-	 * path which is relative to $IP in order to make HipHop use its compiled 
+	 * If we are running code compiled by HipHop, this will pass through the
+	 * input path, assumed to be relative to $IP. If the code is interpreted,
+	 * it will converted to a fully qualified path. It is necessary to use a
+	 * path which is relative to $IP in order to make HipHop use its compiled
 	 * code.
 	 *
 	 * @param $file string
@@ -94,7 +94,7 @@ class MWInit {
 	}
 
 	/**
-	 * Register an extension setup file and return its path for compiled 
+	 * Register an extension setup file and return its path for compiled
 	 * inclusion. Use this function in LocalSettings.php to add extensions
 	 * to the build. For example:
 	 *
@@ -130,13 +130,13 @@ class MWInit {
 	/**
 	 * Determine whether a class exists, using a method which works under HipHop.
 	 *
-	 * Note that it's not possible to implement this with any variant of 
-	 * class_exists(), because class_exists() returns false for classes which 
-	 * are compiled in. 
+	 * Note that it's not possible to implement this with any variant of
+	 * class_exists(), because class_exists() returns false for classes which
+	 * are compiled in.
 	 *
-	 * Calling class_exists() on a literal string causes the class to be made 
-	 * "volatile", which means (as of March 2011) that the class is broken and 
-	 * can't be used at all. So don't do that. See 
+	 * Calling class_exists() on a literal string causes the class to be made
+	 * "volatile", which means (as of March 2011) that the class is broken and
+	 * can't be used at all. So don't do that. See
 	 * https://github.com/facebook/hiphop-php/issues/314
 	 *
 	 * @param $class string
@@ -153,11 +153,11 @@ class MWInit {
 	}
 
 	/**
-	 * Determine whether a function exists, using a method which works under 
+	 * Determine whether a function exists, using a method which works under
 	 * HipHop.
 	 *
 	 * @param $function string
-	 * 
+	 *
 	 * @return bool
 	 */
 	static function functionExists( $function ) {
