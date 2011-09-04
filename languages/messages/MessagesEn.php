@@ -4636,29 +4636,4 @@ This site is experiencing technical difficulties.',
 'sqlite-has-fts' => '$1 with full-text search support',
 'sqlite-no-fts'  => '$1 without full-text search support',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Add category',
-'ajax-remove-category'          => 'Remove category',
-'ajax-edit-category'            => 'Edit category',
-'ajax-add-category-submit'      => 'Add',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Confirm action',
-'ajax-confirm-save'             => 'Save',
-'ajax-confirm-save-all'         => 'Save all changes',
-'ajax-cancel'                   => 'Cancel edit',
-'ajax-cancel-all'               => 'Cancel all changes',
-'ajax-add-category-summary'     => 'Add category "$1"',
-'ajax-edit-category-summary'    => 'Change category "$1" to "$2"',
-'ajax-remove-category-summary'  => 'Remove category "$1"',
-'ajax-category-question'        => 'Why do you want to make the following changes:',
-'ajax-error-title'              => 'Error',
-'ajax-remove-category-error'    => 'It was not possible to remove category "$1".
-This usually occurs when the category has been added to the page in a template.',
-'ajax-edit-category-error'      => 'It was not possible to edit category "$1".
-This usually occurs when the category has been added to the page in a template.',
-'ajax-category-already-present' => 'This page already belongs to the category "$1"',
-'ajax-category-hook-error'      => 'A local function prevented the changes from being saved.',
-'ajax-api-error'                => 'The API returned an error: $1: $2.',
-'ajax-api-unknown-error'        => 'The API returned an unknown error.',
-
 );

@@ -5620,19 +5620,6 @@ $wgDBtestuser = ''; //db user that has permission to create and drop the test da
 $wgDBtestpassword = '';
 
 /**
- * Whether or not to use the AJAX categories system.
- */
-$wgUseAJAXCategories = false;
-
-/**
- * Only enable AJAXCategories on configured namespaces. Default is all.
- *
- * Example:
- *   $wgAJAXCategoriesNamespaces = array( NS_MAIN, NS_PROJECT );
- */
-$wgAJAXCategoriesNamespaces = array();
-
-/**
  * For really cool vim folding this needs to be at the end:
  * vim: foldmarker=@{,@} foldmethod=marker
  * @}

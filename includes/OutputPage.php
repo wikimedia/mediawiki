@@ -2296,8 +2296,7 @@ $distantTemplates
 	 * Add the default ResourceLoader modules to this object
 	 */
 	private function addDefaultModules() {
-		global $wgIncludeLegacyJavaScript, $wgUseAjax,
-			$wgAjaxWatch, $wgEnableMWSuggest, $wgUseAJAXCategories;
+		global $wgIncludeLegacyJavaScript, $wgUseAjax, $wgAjaxWatch, $wgEnableMWSuggest;
 
 		// Add base resources
 		$this->addModules( array(
@@ -2332,16 +2331,6 @@ $distantTemplates
 		# Crazy edit-on-double-click stuff
 		if ( $this->isArticle() && $this->getUser()->getOption( 'editondblclick' ) ) {
 			$this->addModules( 'mediawiki.action.view.dblClickEdit' );
-		}
-
-		if ( $wgUseAJAXCategories ) {
-			global $wgAJAXCategoriesNamespaces;
-
-			$title = $this->getTitle();
-
-			if( empty( $wgAJAXCategoriesNamespaces ) || in_array( $title->getNamespace(), $wgAJAXCategoriesNamespaces ) ) {
-				$this->addModules( 'mediawiki.page.ajaxCategories.init' );
-			}
 		}
 	}
 
