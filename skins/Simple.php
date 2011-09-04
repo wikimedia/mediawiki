@@ -30,12 +30,12 @@ class SkinSimple extends SkinTemplate {
 		$out->addModuleStyles( 'skins.simple' );
 
 		/* Add some userprefs specific CSS styling */
-		global $wgUser, $wgContLang;
+		global $wgUser;
 		$rules = array();
 		$underline = "";
 
 		if ( $wgUser->getOption( 'underline' ) < 2 ) {
-			$underline = "text-decoration: " . $wgUser->getOption( 'underline' ) ? 'underline' : 'none' . ";";
+			$underline = "text-decoration: " . $wgUser->getOption( 'underline' ) ? 'underline' : 'none' . " !important;";
 		}
 
 		/* Also inherits from resourceloader */
@@ -45,10 +45,7 @@ class SkinSimple extends SkinTemplate {
 			$rules[] = "a.stub:after { $underline; }";
 		}
 		$style = implode( "\n", $rules );
-		if ( $wgContLang->getDir() === 'rtl' ) {
-			$style = CSSJanus::transform( $style, true, false );
-		}
-		$out->addInlineStyle( $style );
+		$out->addInlineStyle( $style, /* flip css if RTL */true );
 
 	}
 }
