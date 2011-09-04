@@ -230,7 +230,7 @@ class MagicWord {
 	 * Get an array of parser substitution modifier IDs
 	 */
 	static function getSubstIDs() {
-		return self::$mSubstIDs; 
+		return self::$mSubstIDs;
 	}
 
 	/**
@@ -309,8 +309,8 @@ class MagicWord {
 	}
 
 	/**
-	 * A comparison function that returns -1, 0 or 1 depending on whether the 
-	 * first string is longer, the same length or shorter than the second 
+	 * A comparison function that returns -1, 0 or 1 depending on whether the
+	 * first string is longer, the same length or shorter than the second
 	 * string.
 	 *
 	 * @param $s1 string
@@ -633,7 +633,7 @@ class MagicWordArray {
 	/**
 	 * Add a number of magic words by name
 	 *
-	 * $param $names array
+	 * @param $names array
 	 */
 	public function addArray( $names ) {
 		$this->names = array_merge( $this->names, array_values( $names ) );
@@ -721,7 +721,7 @@ class MagicWordArray {
 			$newRegex[0] = "/^(?:{$base[0]})/iuS";
 		}
 		if ( $base[1] !== '' ) {
-			$newRegex[1] = "/^(?:{$base[1]})/S"; 
+			$newRegex[1] = "/^(?:{$base[1]})/S";
 		}
 		return $newRegex;
 	}

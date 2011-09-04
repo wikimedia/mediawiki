@@ -868,7 +868,7 @@ class EditPage {
 	function internalAttemptSave( &$result, $bot = false ) {
 		global $wgFilterCallback, $wgUser, $wgRequest, $wgParser;
 		global $wgMaxArticleSize;
-		
+
 		$status = Status::newGood();
 
 		wfProfileIn( __METHOD__  );
@@ -891,7 +891,6 @@ class EditPage {
 				$status->setResult( false, $code );
 
 				wfProfileOut( __METHOD__ . '-checks' );
-				
 				wfProfileOut( __METHOD__  );
 
 				return $status;
@@ -936,6 +935,7 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return $status;
 		}
+
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
 			# Check block state against master, thus 'false'.
 			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
@@ -943,6 +943,7 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return $status;
 		}
+
 		$this->kblength = (int)( strlen( $this->textbox1 ) / 1024 );
 		if ( $this->kblength > $wgMaxArticleSize ) {
 			// Error will be displayed by showEditForm()

@@ -134,6 +134,10 @@ class Licenses extends HTMLFormField {
 		return str_repeat( "\t", $depth ) . Xml::element( 'option', $attribs, $val ) . "\n";
 	}
 
+	/**
+	 * @param $str string
+	 * @return String
+	 */
 	protected function msg( $str ) {
 		$msg = wfMessage( $str );
 		return $msg->exists() ? $msg->text() : $str;

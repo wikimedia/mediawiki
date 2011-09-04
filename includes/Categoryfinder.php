@@ -29,6 +29,10 @@ class Categoryfinder {
 	var $targets = array(); # Array of DBKEY category names
 	var $name2id = array();
 	var $mode; # "AND" or "OR"
+
+	/**
+	 * @var DatabaseBase
+	 */
 	var $dbr; # Read-DB slave
 
 	/**

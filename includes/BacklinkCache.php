@@ -75,6 +75,8 @@ class BacklinkCache {
 	 * Serialization handler, diasallows to serialize the database to prevent
 	 * failures after this class is deserialized from cache with dead DB
 	 * connection.
+	 *
+	 * @return array
 	 */
 	function __sleep() {
 		return array( 'partitionCache', 'fullResultCache', 'title' );

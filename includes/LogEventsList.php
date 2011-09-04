@@ -279,7 +279,8 @@ class LogEventsList {
 	}
 
 	/**
-	 * @return boolean Checkbox
+	 * @param $pattern
+	 * @return string Checkbox
 	 */
 	private function getTitlePattern( $pattern ) {
 		return '<span style="white-space: nowrap">' .
@@ -287,6 +288,10 @@ class LogEventsList {
 			'</span>';
 	}
 
+	/**
+	 * @param $types
+	 * @return string
+	 */
 	private function getExtraInputs( $types ) {
 		global $wgRequest;
 		$offender = $wgRequest->getVal('offender');
@@ -301,10 +306,16 @@ class LogEventsList {
 		return '';
 	}
 
+	/**
+	 * @return string
+	 */
 	public function beginLogEventsList() {
 		return "<ul>\n";
 	}
 
+	/**
+	 * @return string
+	 */
 	public function endLogEventsList() {
 		return "</ul>\n";
 	}
@@ -347,6 +358,10 @@ class LogEventsList {
 		return htmlspecialchars( $time );
 	}
 
+	/**
+	 * @param $row
+	 * @return String
+	 */
 	private function logUserLinks( $row ) {
 		if( self::isDeleted( $row, LogPage::DELETED_USER ) ) {
 			$userLinks = '<span class="history-deleted">' .
@@ -362,6 +377,12 @@ class LogEventsList {
 		return $userLinks;
 	}
 
+	/**
+	 * @param $row
+	 * @param $title
+	 * @param $paramArray
+	 * @return string
+	 */
 	private function logAction( $row, $title, $paramArray ) {
 		if( self::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
 			$action = '<span class="history-deleted">' .
@@ -373,6 +394,10 @@ class LogEventsList {
 		return $action;
 	}
 
+	/**
+	 * @param $row
+	 * @return string
+	 */
 	private function logComment( $row ) {
 		if( self::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
 			$comment = '<span class="history-deleted">' .
@@ -811,6 +836,9 @@ class LogPager extends ReverseChronologicalPager {
 		return $query;
 	}
 
+	/**
+	 * @return Title
+	 */
 	function getTitle() {
 		return $this->mLogEventsList->getDisplayTitle();
 	}
@@ -1038,10 +1066,16 @@ class LogPager extends ReverseChronologicalPager {
 		return $this->types;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getUser() {
 		return $this->user;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getPage() {
 		return $this->title;
 	}

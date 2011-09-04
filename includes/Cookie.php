@@ -139,6 +139,10 @@ class Cookie {
 		return $ret;
 	}
 
+	/**
+	 * @param $domain
+	 * @return bool
+	 */
 	protected function canServeDomain( $domain ) {
 		if ( $domain == $this->domain
 			|| ( strlen( $domain ) > strlen( $this->domain )
@@ -151,20 +155,19 @@ class Cookie {
 		return false;
 	}
 
+	/**
+	 * @param $path
+	 * @return bool
+	 */
 	protected function canServePath( $path ) {
-		if ( $this->path && substr_compare( $this->path, $path, 0, strlen( $this->path ) ) == 0 ) {
-			return true;
-		}
-
-		return false;
+		return ( $this->path && substr_compare( $this->path, $path, 0, strlen( $this->path ) ) == 0 );
 	}
 
+	/**
+	 * @return bool
+	 */
 	protected function isUnExpired() {
-		if ( $this->isSessionKey || $this->expires > time() ) {
-			return true;
-		}
-
-		return false;
+		return $this->isSessionKey || $this->expires > time();
 	}
 }
 

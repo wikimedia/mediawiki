@@ -22,7 +22,13 @@
  * Fallback functions for PHP installed without mbstring support
  */
 class Fallback {
-	
+
+	/**
+	 * @param $from
+	 * @param $to
+	 * @param $string
+	 * @return string
+	 */
 	public static function iconv( $from, $to, $string ) {
 		if ( substr( $to, -8 ) == '//IGNORE' ) {
 			$to = substr( $to, 0, strlen( $to ) - 8 );
@@ -48,7 +54,7 @@ class Fallback {
 	 * Larger offsets are still fairly efficient for Latin text, but
 	 * can be up to 100x slower than native if the text is heavily
 	 * multibyte and we have to slog through a few hundred kb.
-	 * 
+	 *
 	 * @param $str
 	 * @param $start
 	 * @param $count string
@@ -60,22 +66,27 @@ class Fallback {
 			$split = self::mb_substr_split_unicode( $str, intval( $start ) );
 			$str = substr( $str, $split );
 		}
-	
+
 		if( $count !== 'end' ) {
 			$split = self::mb_substr_split_unicode( $str, intval( $count ) );
 			$str = substr( $str, 0, $split );
 		}
-	
+
 		return $str;
 	}
-	
+
+	/**
+	 * @param $str
+	 * @param $splitPos
+	 * @return int
+	 */
 	public static function mb_substr_split_unicode( $str, $splitPos ) {
 		if( $splitPos == 0 ) {
 			return 0;
 		}
-	
+
 		$byteLen = strlen( $str );
-	
+
 		if( $splitPos > 0 ) {
 			if( $splitPos > 256 ) {
 				// Optimize large string offsets by skipping ahead N bytes.
@@ -90,7 +101,7 @@ class Fallback {
 				$charPos = 0;
 				$bytePos = 0;
 			}
-	
+
 			while( $charPos++ < $splitPos ) {
 				++$bytePos;
 				// Move past any tail bytes
@@ -110,10 +121,10 @@ class Fallback {
 				}
 			}
 		}
-	
+
 		return $bytePos;
 	}
-	
+
 	/**
 	 * Fallback implementation of mb_strlen, hardcoded to UTF-8.
 	 * @param string $str
@@ -123,20 +134,20 @@ class Fallback {
 	public static function mb_strlen( $str, $enc = '' ) {
 		$counts = count_chars( $str );
 		$total = 0;
-	
+
 		// Count ASCII bytes
 		for( $i = 0; $i < 0x80; $i++ ) {
 			$total += $counts[$i];
 		}
-	
+
 		// Count multibyte sequence heads
 		for( $i = 0xc0; $i < 0xff; $i++ ) {
 			$total += $counts[$i];
 		}
 		return $total;
 	}
-	
-	
+
+
 	/**
 	 * Fallback implementation of mb_strpos, hardcoded to UTF-8.
 	 * @param $haystack String
@@ -147,17 +158,17 @@ class Fallback {
 	 */
 	public static function mb_strpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		$needle = preg_quote( $needle, '/' );
-	
+
 		$ar = array();
 		preg_match( '/' . $needle . '/u', $haystack, $ar, PREG_OFFSET_CAPTURE, $offset );
-	
+
 		if( isset( $ar[0][1] ) ) {
 			return $ar[0][1];
 		} else {
 			return false;
 		}
-	}	
-	
+	}
+
 	/**
 	 * Fallback implementation of mb_strrpos, hardcoded to UTF-8.
 	 * @param $haystack String
@@ -168,10 +179,10 @@ class Fallback {
 	 */
 	public static function mb_strrpos( $haystack, $needle, $offset = 0, $encoding = '' ) {
 		$needle = preg_quote( $needle, '/' );
-	
+
 		$ar = array();
 		preg_match_all( '/' . $needle . '/u', $haystack, $ar, PREG_OFFSET_CAPTURE, $offset );
-	
+
 		if( isset( $ar[0] ) && count( $ar[0] ) > 0 &&
 			isset( $ar[0][count( $ar[0] ) - 1][1] ) ) {
 			return $ar[0][count( $ar[0] ) - 1][1];
@@ -196,5 +207,5 @@ class Fallback {
 		}
 		return false;
 	}
-		
+
 }
