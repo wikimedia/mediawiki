@@ -97,7 +97,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 			// Underline: 2 = browser default, 1 = always, 0 = never
 			if ( $options['underline'] < 2 ) {
 				$rules[] = "a { text-decoration: " . 
-					( $options['underline'] ? 'underline' : 'none' ) . " !important; }";
+					( $options['underline'] ? 'underline !important' : 'none' ) . "; }";
 			}
 			if ( $options['highlightbroken'] ) {
 				$rules[] = "a.new, #quickbar a.new { color: #ba0000; }\n";
