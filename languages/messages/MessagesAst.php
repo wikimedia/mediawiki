@@ -1949,7 +1949,7 @@ pa poder unviar correos a otros usuarios.',
 'emailpagetext'        => "Pues usar el formulariu d'embaxo pa unviar un corréu electrónicu a esti usuariu.
 La direición de corréu electrónicu qu'especificasti nes [[Special:Preferences|tos preferencies d'usuariu]] va apaecer como la direición \"Dende\" del corréu, pa que'l que lo recibe seya quien a respondete direutamente a ti.",
 'usermailererror'      => "L'operador de corréu devolvió un error:",
-'defemailsubject'      => 'Corréu electrónicu de {{SITENAME}}',
+'defemailsubject'      => 'Corréu electrónicu del usuariu «$1» de {{SITENAME}}',
 'usermaildisabled'     => 'Corréu del usuariu desactiváu',
 'usermaildisabledtext' => "Nun pues unviar corréu a otros usuarios d'esta wiki",
 'noemailtitle'         => 'Ensin direición de corréu',
@@ -2259,6 +2259,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'sp-contributions-username'            => "Direición IP o nome d'usuariu:",
 'sp-contributions-toponly'             => 'Amosar namái les ediciones que son les caberes revisiones',
 'sp-contributions-submit'              => 'Guetar',
+'sp-contributions-showsizediff'        => 'Amosar la diferencia de tamañu de la páxina',
 
 # What links here
 'whatlinkshere'            => "Lo qu'enllaza equí",

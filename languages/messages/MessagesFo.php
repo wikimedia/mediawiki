@@ -235,7 +235,9 @@ $messages = array(
 'vector-view-create'       => 'Stovna',
 'vector-view-edit'         => 'Rætta',
 'vector-view-history'      => 'Søga',
+'vector-view-view'         => 'Les',
 'vector-view-viewsource'   => 'Vís keldu',
+'namespaces'               => 'Navnarúm',
 
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Vend aftur til $1.',
@@ -250,6 +252,7 @@ $messages = array(
 'printableversion'  => 'Prentvinarlig útgáva',
 'permalink'         => 'Støðug slóð',
 'print'             => 'Prenta',
+'view'              => 'Les',
 'edit'              => 'Rætta',
 'create'            => 'Stovna',
 'editthispage'      => 'Rætta hesa síðuna',

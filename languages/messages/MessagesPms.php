@@ -1906,7 +1906,7 @@ e avèj registrà n'adrëssa ëd pòsta eletrònica vàlida ant ij [[Special:Pre
 'emailpagetext'        => "A peule dovré ël formolari sì-sota për mandé un mëssagi ëd pòsta eletrònica a st'utent-sì.
 L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|Ij sò gust]] a sarà butà ant l'adrëssa «Da» ëd sò mëssagi, parèj chi ch'a l'arsèiv a podrà rësponde diretament a chiel.",
 'usermailererror'      => "L'oget che a goèrna la pòsta eletrònica a l'ha dàit eror:",
-'defemailsubject'      => 'Mëssagi da {{SITENAME}}',
+'defemailsubject'      => 'Mëssagi da l\'utent "$1"',
 'usermaildisabled'     => "Pòsta eletrònica dl'utent disabilità",
 'usermaildisabledtext' => "A peul pa mandé ëd mëssagi ëd pòsta eletrònica a d'àutri utent ansima a costa wiki",
 'noemailtitle'         => 'Gnun-a adrëssa ëd pòsta eletrònica',
@@ -1934,16 +1934,18 @@ L'adrëssa ëd pòsta eletrònica ch'a l'ha butà ant ij [[Special:Preferences|I
 'usermessage-editor'  => 'Mëssagerìa ëd sistema',
 
 # Watchlist
-'watchlist'            => 'Ròba che im ten-o sot euj',
-'mywatchlist'          => 'Ròba che im ten-o sot euj',
+'watchlist'            => 'Ròba che im ten-o sot-euj',
+'mywatchlist'          => 'Ròba che im ten-o sot-euj',
 'watchlistfor2'        => 'Për $1 $2',
 'nowatchlist'          => 'A l\'ha ancó pa marcà dj\'artìcoj coma "ròba da tnì sot euj".',
 'watchlistanontext'    => "Për piasì, $1 për ës-ciairé ò pura modifiché j'element ëd soa lista dla ròba che as ten sot euj.",
 'watchnologin'         => "A l'é ancó nen rintrà ant ël sistema",
 'watchnologintext'     => "A l'ha da manca prima ëd tut dë [[Special:UserLogin|rintré ant ël sistema]]
 për podej modifiché soa lista dla ròba dë tnì sot euj.",
+'addwatch'             => "Gionta a la lista ëd òn ch'it ten-e sot euj",
 'addedwatchtext'       => 'La pàgina  "[[:$1]]" a l\'é staita giontà a soa [[Special:Watchlist|lista dla ròba da tnì sot-euj]].
 Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairërà ën <b>grassèt</b> ant la pàgina ëd j\'[[Special:RecentChanges|ùltime modìfiche]] përchè che a resta belfé a ten-la d\'euj.',
+'removewatch'          => "Gava da la lista ëd lòn ch'it ten-e sot euj",
 'removedwatchtext'     => 'La pàgina "[[:$1]]" a l\'è staita gavà via da [[Special:Watchlist|soa lista dla ròba da tnì sot euj]].',
 'watch'                => 'ten sot euj',
 'watchthispage'        => "Ten sot euj st'artìcol-sì",
@@ -1964,8 +1966,9 @@ Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discuss
 'watchlist-options'    => "Opsion lista d'osservassion",
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Sot euj...',
-'unwatching' => "Ën gavand da lòn ch'as ten sot euj...",
+'watching'       => 'Sot euj...',
+'unwatching'     => "Ën gavand da lòn ch'as ten sot euj...",
+'watcherrortext' => "A l'é capitaje n'eror an cangiand j'ampostassion ëd lòn ch'it ten-e sot euj për \"\$1\".",
 
 'enotif_mailer'                => '{{SITENAME}} - Servissi ëd Notìfica Postal',
 'enotif_reset'                 => 'March-me tute le pàgine visità',
@@ -2175,10 +2178,12 @@ $1",
 'undelete-show-file-submit'    => 'É!',
 
 # Namespace form on various pages
-'namespace'             => 'Spassi nominal:',
-'invert'                => 'Anvert la selession',
-'namespace_association' => 'Spassi nominal assossià',
-'blanknamespace'        => '(Prinsipal)',
+'namespace'                     => 'Spassi nominal:',
+'invert'                        => 'Anvert la selession',
+'tooltip-invert'                => 'Selession-a sta casela për stërmé ij cambi a pàgine an drinta a lë spassi nominal selessionà (e a lë spassi nominal associà se selessionà)',
+'namespace_association'         => 'Spassi nominal assossià',
+'tooltip-namespace_association' => 'Selession-a sta casela për anserì ëdcò la discussion o lë spassi nominal dël soget associà con lë spassi nomina selessionà',
+'blanknamespace'                => '(Prinsipal)',
 
 # Contributions
 'contributions'       => "Contribussion dë st'Utent-sì",
@@ -2206,6 +2211,7 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 'sp-contributions-username'            => 'Adrëssa IP ò nòm utent:',
 'sp-contributions-toponly'             => "Mostré mach le modìfiche ch'a son j'ùltime revision",
 'sp-contributions-submit'              => 'Arsërca',
+'sp-contributions-showsizediff'        => 'Visualisa le diferense ant la dimension ëd pagina',
 
 # What links here
 'whatlinkshere'            => "Pàgine con dj'anliure che a men-o a costa-sì",
@@ -2371,6 +2377,7 @@ Për piasì, che an conferma che sòn a l'é da bon lòn che chiel (chila) a veu
 'unlockdbsuccesstext' => " La base dat ëd {{SITENAME}} a l'è staita dësblocà.",
 'lockfilenotwritable' => "As peul nen ëscrive ant sl'archivi ëd blòch dla base dat. A fa dë manca d'avej n'acess an scritura a st'archivi për podej bloché e dësbloché la base dat.",
 'databasenotlocked'   => "La base dat a l'é nen blocà.",
+'lockedbyandtime'     => '(për {{GENDER:$1|$1}} ël $2 a $3)',
 
 # Move page
 'move-page'                    => 'Tramud ëd $1',
@@ -2667,6 +2674,19 @@ Sòn a l'é motobin belfé che a sia rivà përchè a-i era n'anliura a un sit e
 'spambot_username'    => 'MediaWiki - trigomiro che a-j dà deuit a la rumenta',
 'spam_reverting'      => "Buta andaré a l'ùltima version che a l'avèissa pa andrinta dj'anliure a $1",
 'spam_blanking'       => "Pàgina dësveujdà, che tute le version a l'avìo andrinta dj'anliure a $1",
+
+# Info page
+'pageinfo-title'            => 'Anformassion për "$1"',
+'pageinfo-header-edits'     => 'Modìfiche',
+'pageinfo-header-watchlist' => 'Ròba che as ten sot euj',
+'pageinfo-header-views'     => 'Vìsite',
+'pageinfo-subjectpage'      => 'Pàgina',
+'pageinfo-talkpage'         => 'Pagina ëd discussion',
+'pageinfo-watchers'         => 'Nùmer ëd visitador',
+'pageinfo-edits'            => 'Nùmer ëd modìfiche',
+'pageinfo-authors'          => "Nùmer d'autor diferent",
+'pageinfo-views'            => 'Nùmer ëd vìsite',
+'pageinfo-viewsperedit'     => 'Visualisassion për modìfica',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marca coma verificà',
@@ -3265,7 +3285,9 @@ Për piasì, che an conferma che da bon a veul torna creélo.",
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'Va bin',
+'confirm-watch-top'      => 'Gionté sta pàgina-sì a la lista dle ròbe che as ten-o sot euj?',
 'confirm-unwatch-button' => 'Va bin',
+'confirm-unwatch-top'    => 'Gavé sta pàgina-sì da la lista dle ròbe che as ten-o sot euj?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina andré',

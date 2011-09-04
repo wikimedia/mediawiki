@@ -246,7 +246,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'preferences'           => 'Preferos',
 'mypreferences'         => 'Men preferos',
 'prefsnologin'          => 'Non ensignatat',
-'prefsnologintext'      => 'Vu mus es [[Special:UserLogin|ensignatat]] por determina useren preferos.',
+'prefsnologintext'      => 'Vu mus es <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ensignatat] por determina useren preferos.',
 'prefs-rc'              => 'Resenti chanjos',
 'searchresultshead'     => 'Sercha',
 'timezoneregion-africa' => 'Afrika',
@@ -254,7 +254,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 # Recent changes
 'nchanges'        => '$1 {{PLURAL:$1|chanjo|chanjos}}',
 'recentchanges'   => 'Resenti chanjos',
-'rcnote'          => "Subu es {{PLURAL:$1| '''1''' chanje|li lasti '''$1''' chanjes}} in li lasti {{PLURAL:$2|die|'''$2''' dies}}, fro $3.",
+'rcnote'          => "Subu es {{PLURAL:$1| '''1''' chanje|li lasti '''$1''' chanjes}} in li lasti {{PLURAL:$2|die|'''$2''' dies}}, fro $4, $5.",
 'rcshowhideminor' => '$1 minori modifikos',
 'rcshowhideanons' => '$1 anonimi useres',
 'rcshowhidemine'  => '$1 men modifikos',
@@ -336,7 +336,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 # Special:Categories
 'categories'         => 'Kategories',
-'categoriespagetext' => 'Li sekuenti kategories exista in li wiki.
+'categoriespagetext' => 'Li sekuenti {{PLURAL:$1|kategorie|kategories}} exista in li wiki.
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
 

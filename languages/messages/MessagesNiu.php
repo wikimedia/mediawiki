@@ -95,9 +95,9 @@ $messages = array(
 'viewsource' => 'Kitekite ke mouaga',
 
 # Login and logout pages
-'welcomecreation'         => '== Fakalofa atu, kua fiafia ke hu mai ==
+'welcomecreation'         => '== Fakalofa atu, kua fiafia ke hu mai $1 ==
 Kua talaga e haau a poko.
-Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
+Ua nimo ke hiki e haau tau [[Special:Preferences|manako {{SITENAME}}]].',
 'yourname'                => 'Matahigoa he tagata:',
 'yourpassword'            => 'Kupu fufu:',
 'yourpasswordagain'       => 'Liu lolomi e kupu fufu:',
@@ -110,6 +110,9 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 'notloggedin'             => 'Ai la hu ki loto',
 'createaccount'           => 'Talaga e poko',
 'gotaccountlink'          => 'Hu ki loto',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Matahigoa he tagata',
 
 # Edit pages
 'summary'            => 'Fakakatoakatoa:',

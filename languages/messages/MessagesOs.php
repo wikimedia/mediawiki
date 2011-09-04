@@ -401,10 +401,13 @@ $messages = array(
 'extlink_sample'  => 'http://www.example.com æрвитæны текст',
 'extlink_tip'     => 'Æддаг æрвитæн (префикс http:// ма рох кæн)',
 'headline_sample' => 'Сæргонд текст',
+'headline_tip'    => 'Бæрц 2 сæргонд',
 'nowiki_sample'   => 'Батысс нæформатгонд текст ардæм',
+'nowiki_tip'      => 'Ницæмæ дарын вики формат',
 'image_tip'       => 'Æфтыд файл',
 'media_tip'       => 'Файлмæ æрвитæн',
 'sig_tip'         => 'Дæ ырфыст рæстæгимæ',
+'hr_tip'          => 'Горизонталон хахх (арæх дзы ма пайда кæн)',
 
 # Edit pages
 'summary'                          => 'Ивдтыты мидис:',
@@ -448,7 +451,10 @@ $messages = array(
 'edit-already-exists'              => 'Ног фарс скæнæн нæй. Ахæм фарс ис.',
 
 # Parser/template warnings
-'post-expand-template-argument-category' => 'Фæрстæ, кæдоны ис шаблоны уагъд аргумент',
+'post-expand-template-inclusion-warning'  => "'''Сындæг: ''' Шаблоны бавæрд бæрц æгæр стыр у.
+Кæцыдæр шаблонтæ нæ бавæд уыдзысты.",
+'post-expand-template-inclusion-category' => 'Фæрстæ, кæм шаблоны бавæрд бæрц æгæр бирæ у',
+'post-expand-template-argument-category'  => 'Фæрстæ, кæдоны ис шаблоны уагъд аргумент',
 
 # History pages
 'viewpagelogs'           => 'Ацы фарсæн йæ логтæ равдисын',
@@ -703,20 +709,22 @@ $3',
 'listfiles_thumb' => 'Къаддæргонд',
 
 # File description page
-'file-anchor-link'   => 'Ныв',
-'filehist'           => 'Файлы истори',
-'filehist-revert'    => 'раивын',
-'filehist-current'   => 'нырыккон',
-'filehist-datetime'  => 'Датæ/рæстæг',
-'filehist-thumb'     => 'Къаддæргонд',
-'filehist-thumbtext' => 'Къаддæргонд уыцы версийæн: $1',
-'filehist-nothumb'   => 'Нæй ын къаддæргонд',
-'filehist-user'      => 'Архайæг',
-'filehist-filesize'  => 'Файлы бæрцуат',
-'filehist-comment'   => 'Фиппаинаг',
-'imagelinks'         => 'Æрвитæнтæ файлмæ',
-'linkstoimage'       => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
-'nolinkstoimage'     => 'Нæй ахæм фæрстæ, кæдон æрвитынц ацы файлмæ.',
+'file-anchor-link'    => 'Ныв',
+'filehist'            => 'Файлы истори',
+'filehist-help'       => 'Ныххæц датæ/рæстæг-ыл, цæмæй фенай еуæд куыд фæзындис.',
+'filehist-revert'     => 'раивын',
+'filehist-current'    => 'нырыккон',
+'filehist-datetime'   => 'Датæ/рæстæг',
+'filehist-thumb'      => 'Къаддæргонд',
+'filehist-thumbtext'  => 'Къаддæргонд уыцы версийæн: $1',
+'filehist-nothumb'    => 'Нæй ын къаддæргонд',
+'filehist-user'       => 'Архайæг',
+'filehist-dimensions' => 'Барæнтæ',
+'filehist-filesize'   => 'Файлы бæрцуат',
+'filehist-comment'    => 'Фиппаинаг',
+'imagelinks'          => 'Æрвитæнтæ файлмæ',
+'linkstoimage'        => 'Ацы нывæй пайда {{PLURAL:$1|кæны иу фарс|кæнынц ахæм фæрстæ}}:',
+'nolinkstoimage'      => 'Нæй ахæм фæрстæ, кæдон æрвитынц ацы файлмæ.',
 
 # File deletion
 'filedelete-submit'           => 'Аппар',

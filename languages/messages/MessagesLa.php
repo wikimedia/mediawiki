@@ -324,7 +324,7 @@ $messages = array(
 'printableversion'  => 'Forma impressibilis',
 'permalink'         => 'Nexus perpetuus',
 'print'             => 'Imprimere',
-'view'              => 'Spectare',
+'view'              => 'Legere',
 'edit'              => 'Recensere',
 'create'            => 'Creare',
 'editthispage'      => 'Recensere hanc paginam',
@@ -332,7 +332,7 @@ $messages = array(
 'delete'            => 'Delere',
 'deletethispage'    => 'Delere hanc paginam',
 'undelete_short'    => 'Restituere {{PLURAL:$1|unam emendationem|$1 emendationes}}',
-'viewdeleted_short' => 'Spectare {{PLURAL:$1|unam emendationem deletam|$1 emendationes deletas}}',
+'viewdeleted_short' => 'Inspicere {{PLURAL:$1|unam emendationem deletam|$1 emendationes deletas}}',
 'protect'           => 'Protegere',
 'protect_change'    => 'mutare',
 'protectthispage'   => 'Protegere hanc paginam',
@@ -513,7 +513,7 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'createaccount'              => 'Rationem novam creare',
 'gotaccount'                 => "Habesne iam rationem? '''$1'''.",
 'gotaccountlink'             => 'Conventum aperi',
-'userlogin-resetlink'        => ' Dedicistine tu ',
+'userlogin-resetlink'        => 'Tesserae tuae oblitus esne?',
 'createaccountmail'          => 'ab inscriptione electronica',
 'createaccountreason'        => 'Causa:',
 'badretype'                  => 'Tesserae quas scripsisti inter se non congruunt.',
@@ -575,8 +575,8 @@ Hunc nuntium ignorare potes, si nolis hac ratione uti.',
 Momentarius Tessera: $2',
 
 # Special:ChangeEmail
-'changeemail-none'   => '(nullus)',
-'changeemail-submit' => ' Mutare E-mail',
+'changeemail-none'   => '(nulla)',
+'changeemail-submit' => 'Inscriptionem electronicam mutare',
 'changeemail-cancel' => 'Abrogare',
 
 # Edit page toolbar

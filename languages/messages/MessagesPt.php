@@ -27,6 +27,7 @@
  * @author Manuel Menezes de Sequeira
  * @author Masked Rogue
  * @author McDutchie
+ * @author MetalBrasil
  * @author Minh Nguyen
  * @author Nuno Tavares
  * @author Paulo Juntas
@@ -722,8 +723,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'createaccountmail'          => 'por correio electrónico',
 'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'As palavras-chave que introduziu não são iguais.',
-'userexists'                 => 'O nome de utilizador que introduziu já existe.
-Escolha um nome diferente.',
+'userexists'                 => 'O nome de utilizador introduzido já existe.
+Por favor escolha um nome diferente.',
 'loginerror'                 => 'Erro de autenticação',
 'createaccounterror'         => 'Não foi possível criar a conta: $1',
 'nocookiesnew'               => "A conta de utilizador foi criada, mas neste momento não está autenticado.
@@ -1350,7 +1351,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'qbsettings-fixedright'     => 'Fixa à direita',
 'qbsettings-floatingleft'   => 'Flutuante à esquerda',
 'qbsettings-floatingright'  => 'Flutuante à direita',
-'qbsettings-directionality' => 'Fixa, dependendo da direccionalidade do seu alfabeto e da sua língua',
+'qbsettings-directionality' => 'Fixado, a dependener da direccionalidade do script da sua língua',
 
 # Preferences page
 'preferences'                   => 'Preferências',
@@ -1882,8 +1883,7 @@ Verifique se o endereço está correcto e o site disponível, por favor.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Esta página especial mostra todos os ficheiros carregados.
-Por omissão, os últimos ficheiros carregados aparecem no topo da lista.
-Clique um cabeçalho de coluna para alterar a ordenação.',
+Quando filtrados pelo usuário, os últimos ficheiros carregados aparecem no topo da lista.',
 'listfiles_search_for'  => 'Pesquisar por nome de imagem:',
 'imgfile'               => 'ficheiro',
 'listfiles'             => 'Ficheiros',
@@ -2207,7 +2207,7 @@ Encontram-se disponíveis [[{{MediaWiki:Listgrouprights-helppage}}|informações
 'emailpagetext'        => 'Pode usar o formulário abaixo para enviar uma mensagem por correio electrónico para este utilizador.
 O endereço de correio que introduziu nas suas [[Special:Preferences|preferências]] irá aparecer no campo do remetente da mensagem "De:", para que o destinatário lhe possa responder directamente.',
 'usermailererror'      => 'O sistema de correio devolveu o erro:',
-'defemailsubject'      => 'Correio da {{SITENAME}}',
+'defemailsubject'      => '{{SITENAME}} e-mail do usuário "$1"',
 'usermaildisabled'     => 'Correio electrónico do utilizador foi desactivado',
 'usermaildisabledtext' => 'Não pode enviar correio electrónico aos outros utilizadores desta wiki',
 'noemailtitle'         => 'Sem endereço de correio electrónico',
@@ -2517,6 +2517,7 @@ Para sua referência, encontra abaixo a entrada mais recente no registo de bloqu
 'sp-contributions-username'            => 'Endereço IP ou utilizador:',
 'sp-contributions-toponly'             => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-submit'              => 'Pesquisar',
+'sp-contributions-showsizediff'        => 'Mostrar a diferença no tamanho da página',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
@@ -3737,9 +3738,9 @@ Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiais',
 'specialpages-note'              => '----
-* Páginas especiais normais.
-* <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>
-* <span class="mw-specialpagecached">Páginas especiais com cache.</span>',
+*Páginas normais especiais
+* <span class="mw-specialpagerestricted">Restricted special pages.</span>
+* <span class="mw-specialpagecached">Cached special pages (might be obsolete).</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registar-se',

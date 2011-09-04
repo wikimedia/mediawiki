@@ -375,6 +375,10 @@ $messages = array(
 'virus-unknownscanner' => 'اندیکھا اینٹیوائرس:',
 
 # Login and logout pages
+'logouttext'               => "'''تسی لاگ آؤٹ ہوگۓ او.'''
+تسی   {{SITENAME}} نوں گمنامی چ ورت سکدے او یا تسی [[Special:UserLogin|لاگ ان دوبارہ]] ہوجاؤ اوسے ناں توں یا وکھرے ورتن والے توں۔ اے گل چیتے رکھنا جے کج صفیاں تے تسی لاگ ان دسے جاؤگے جدوں تک تسی اپنے براؤزر دے کاشے نوں صاف ناں کرلو۔
+You can continue to use {{SITENAME}} anonymously, or you can [[Special:UserLogin|log in again]] as the same or as a different user.
+Note that some pages may continue to be displayed as if you were still logged in, until you clear your browser cache.",
 'welcomecreation'          => '== جی آیاں نوں, $1! ==
 تواڈا کھاتا بن گیا اے۔
 اپنیاں [[Special:Preferences|{{SITENAME}} تانگاں]] بدلنا نا پلنا۔',
@@ -382,6 +386,7 @@ $messages = array(
 'yourpassword'             => 'کنجی:',
 'yourpasswordagain'        => 'کنجی دوبارہ لکھو:',
 'remembermypassword'       => 'اس براؤزر تے میرا ورتن ناں یاد رکھو ($1 {{PLURAL:$1|دن|دناں}} واسطے)',
+'securelogin-stick-https'  => 'لاک ان ہون دے مگروں HTTPS  نال جڑے روو۔',
 'yourdomainname'           => 'تواڈا علاقہ:',
 'externaldberror'          => 'ڈیٹابیس چ توانوں پہچاننے چ کوئی مسئلہ ہویا اے یا فیر تسی اپنا بارلا کھاتا نئیں بدل سکدے۔',
 'login'                    => 'اندر آؤ جی',
@@ -428,7 +433,7 @@ $messages = array(
 فیر سہی ٹرائی مارو۔',
 'wrongpasswordempty'       => 'تواڈی کنجی کم نہیں کر رہی۔<br />
 فیر ٹرائی مارو۔',
-'passwordtooshort'         => 'کنجی کم از کم {{PLURAL:$1|1 ہندسے|$1 ہندسیاں} دی ہونی چائیدی اے۔',
+'passwordtooshort'         => 'کنجی کم از کم {{PLURAL:$1|1 ہندسے|$1 ہندسیاں}} دی ہونی چائیدی اے۔',
 'password-name-match'      => 'کنجی ورتن ناں توں مختلف ہونی چائیدی اے۔',
 'password-login-forbidden' => 'اس ورتن ناں یا کنجی دا ورتن تے پابندی اے۔',
 'mailmypassword'           => 'نئی کنجی ای میل کرو',
@@ -442,15 +447,41 @@ $messages = array(
 جدوں توانوں اے ملے تسی دوبارہ لاگن ہو۔',
 'blocked-mailpassword'     => 'تواڈے IP پتے تے تبدیلی کرن تے روک اے، تے تسی کنجی وی واپس نئیں لیا سکدے تاکے ایدا غلط ورت نا ہوۓ۔',
 'eauthentsent'             => 'اک کنفرمیشن ای میل دتے گۓ ای میل پتے تے پیج دتی گئی اے۔ اس توں پہلاں کہ کوئی دوجی ای میل کھاتے تے پیجی جاۓ، توانوں ای میل چ دتیاں ہدایات تے عمل کرنا ہوۓ گا، تا کے اے پکا ہو سکے کہ اے کھاتہ تواڈا ہی اے۔',
+'mailerror'                => 'چٹھی پیجن چ غلطی: $1',
+'emailauthenticated'       => 'تھواڈا ای-میل پتہ $2 نوں $3 تے پکا کیتا گیا۔',
+'emailnotauthenticated'    => 'تھواڈا ای-میل پتہ ہجے پکا نئیں ہویا۔
+کوئی ای-میل اینج دے فیچر والی نئیں پیجی جاۓ گی۔',
+'noemailprefs'             => 'ایناں فیچراں نوں کم کرن لئی اپنیاں تانگاں چ ای-میل پتہ دسو۔',
+'emailconfirmlink'         => 'ای میل پتہ پکا کرو',
+'invalidemailaddress'      => 'ایہ ای-میل پتہ نئیں چلے گا کیوں جے اے ناں منے جان والے فارمیٹ تے بنیا ہویا اے۔
+مہربانی کرکے منے جان والے فارمیٹ پتے نوں دسو یا فیر اے تھاں خالی چھڈ دیو۔',
 'accountcreated'           => 'کھاتہ کھل گیا',
+'accountcreatedtext'       => 'ورتن کھاتہ $1 لئی بنا دتا گیا اے۔',
+'createaccount-title'      => '{{SITENAME}} لئی کھاتے دا بننا۔',
+'createaccount-text'       => 'کسے نیں تھواڈے ای-میل پتے تے {{SITENAME}} تے  ($4)، ناں "$2"، تے کنجی "$3" نال کھاتہ کھولیا اے۔ تسی ہن ای لاگ ان ہووو تے اپنی کنجی بدلو۔
+تسی ایس سنیعے نوں رہن دیو اگر کھاتہ غلطی نال کھلیا جے۔',
+'usernamehasherror'        => 'ورتن والے ناں چ ہیش کیریکٹر نئیں ہوسکدے۔',
+'login-throttled'          => 'تسی تھوڑا چر پہلے لاگ ان ہون دی چوکھی واری کوشش کرچکے او۔
+تھوڑا صبر کرو تے فیر کوشش کرنا۔',
+'login-abort-generic'      => 'تسی لاگ ان نئیں ہوسکے۔',
 'loginlanguagelabel'       => 'بولی: $1',
+'suspicious-userlogout'    => 'تھواڈی لاگ آؤٹ ہوں دی کوشش رک گئی اینج لگدا اے  جیویں اے ٹٹے براؤزر یا کیشنگ پراکسی توں پیجیا گیا سی۔',
+
+# E-mail sending
+'php-mail-error-unknown' => 'PHP میل دے کم چ کوئی انجانی غلطی۔',
+'user-mail-no-addy'      => 'ای-میل پتے بنا ای-میل کلن دی کوشش۔',
 
 # Change password dialog
+'resetpass'                 => 'کنجی بدلو',
+'resetpass_announce'        => 'تسی اک کچے ای-میل کود تے لاگ ان ہوگۓ او۔
+لاگ ان مکان لئی تھوانوں ایتھے اک نویں کنجی بنانی پوے گی:',
 'resetpass_header'          => 'کھاتے دی کنجی بدلو',
 'oldpassword'               => 'پرانی کنجی:',
 'newpassword'               => 'نوی کنجی:',
 'retypenew'                 => 'نئی کنجی دوبارہ لکھو:',
 'resetpass_submit'          => 'کنجی رکھو تے لاگ ان ہو جاو',
+'resetpass_success'         => 'تھواڈی کنجی بدلی جاچکی اے!
+تسی لاگ ان ہورۓ او۔۔۔۔۔۔',
 'resetpass_forbidden'       => 'کنجی بدلی نئیں جاسکدی',
 'resetpass-no-info'         => 'تسی لاگ ان ہوکے ای اس صفحے نوں ویکھ سکدے او۔',
 'resetpass-submit-loggedin' => 'کنجی بدلو',
@@ -464,6 +495,7 @@ $messages = array(
 'passwordreset-text'         => 'اے فارم مکمل کرکے اپنے کھاتے دی معلومات اپنے ای-میل تے منگوالو۔',
 'passwordreset-legend'       => 'کنجی واپس لیاؤ',
 'passwordreset-disabled'     => 'اس وکی تے کنجی واپس نئیں لیائی جاسکدی۔',
+'passwordreset-pretext'      => '{{PLURAL:$1||تھلے دتے ہوۓ ڈیٹا چوں اک ایتھے دیو}}',
 'passwordreset-username'     => 'ورتن ناں:',
 'passwordreset-email'        => 'ای-میل پتہ:',
 'passwordreset-emailtitle'   => '{{SITENAME}} دے اتے کھاتے دی معلومات:',
@@ -1433,14 +1465,28 @@ $messages = array(
 'allmessagescurrent'            => 'موجودہ لکھائی',
 'allmessages-filter-legend'     => 'فلٹر',
 'allmessages-filter-unmodified' => 'ناں بدلیا گیا',
+'allmessages-filter-all'        => 'سارے',
+'allmessages-filter-modified'   => 'بدلیا',
+'allmessages-prefix'            => 'پریفکس نال نتارو:',
+'allmessages-language'          => 'بولی:',
+'allmessages-filter-submit'     => 'چلو',
 
 # Thumbnails
-'thumbnail-more'  => 'وڈا کرو',
-'filemissing'     => 'فائل گواچی ہوئی اے',
-'thumbnail_error' => '$1 دی نکی مورت بناندیاں مسئلہ',
+'thumbnail-more'           => 'وڈا کرو',
+'filemissing'              => 'فائل گواچی ہوئی اے',
+'thumbnail_error'          => '$1 دی نکی مورت بناندیاں مسئلہ',
+'djvu_page_error'          => 'DjVu  صفہ رینج توں بار',
+'djvu_no_xml'              => 'DjVu  فائل لئی XML  ناں لیایا جاسکیا',
+'thumbnail_invalid_params' => 'تھمبنیل دے پیرامیٹر ناں منن جوگے',
+'thumbnail_dest_directory' => 'ڈیسٹینیشن ڈآئریکٹری بنان چ نکامی',
+'thumbnail_image-type'     => 'مورت ٹائپ بے سہارا',
+'thumbnail_gd-library'     => 'انکمپلیٹ جیڈی لائبریری کنفگریشن: فنکشن $1 مسنگ',
+'thumbnail_image-missing'  => 'لکدا ایہ اے فائل کوئی نیں: $1',
 
 # Special:Import
 'import'                  => 'صفحے لیاؤ',
+'importinterwiki'         => 'ٹرانسوکی امپورٹ',
+'import-interwiki-source' => 'سورس وکی/صفہ:',
 'import-interwiki-submit' => 'لے آؤ',
 'importstart'             => 'صفحے لیا رۓ آں۔۔۔۔۔',
 'importnopages'           => 'لانے آسطے کوئی صفحہ نئیں۔',
@@ -1516,7 +1562,12 @@ $messages = array(
 اس نال تسی واپس کرن دی وجہ لکھ سکو گے۔',
 
 # Attribution
-'others' => 'دوجے',
+'others'      => 'دوجے',
+'creditspage' => 'صفہ کریڈٹس',
+
+# Spam protection
+'spamprotectiontitle' => 'سپام بچاؤ فلٹر',
+'spambot_username'    => 'میڈیاوکی سپام سفائی',
 
 # Info page
 'pageinfo-title'            => '"$1" لئی جانکاری',
@@ -1532,24 +1583,46 @@ $messages = array(
 'pageinfo-viewsperedit'     => 'تبدیلی سعاب نال وکھالے',
 
 # Patrolling
-'markaspatrolleddiff'   => 'ویکھے گۓ دا نشان لاؤ',
-'markaspatrolledtext'   => 'ایس صفے تے ویکھن دا نشان لاؤ',
-'markedaspatrolled'     => 'ویکھن دا نشان لاؤ',
-'markedaspatrolledtext' => '[[:$1]] دے چنے وکھالے تے ویکھن دا نشان لگاؤ۔',
-'rcpatroldisabled'      => 'نیڑے تریڑے ہون والیاں تبدیلیاں دا ویکھن ناکارہ',
+'markaspatrolleddiff'                 => 'ویکھے گۓ دا نشان لاؤ',
+'markaspatrolledtext'                 => 'ایس صفے تے ویکھن دا نشان لاؤ',
+'markedaspatrolled'                   => 'ویکھن دا نشان لاؤ',
+'markedaspatrolledtext'               => '[[:$1]] دے چنے وکھالے تے ویکھن دا نشان لگاؤ۔',
+'rcpatroldisabled'                    => 'نیڑے تریڑے ہون والیاں تبدیلیاں دا ویکھن ناکارہ',
+'markedaspatrollederror'              => 'گشت دا نشان نئیں لگ سکدا',
+'markedaspatrollederrortext'          => 'تھوانوں گشت دا نشان لان لئی ریوین دسنی پۓ گی۔',
+'markedaspatrollederror-noautopatrol' => 'تھوانوں اے اجازت نئیں جے تسی اپنی تبدیلیاں تے گشت دا نشان لاؤ۔',
+
+# Patrol log
+'patrol-log-page'      => 'گشت لاگ',
+'patrol-log-header'    => 'اے گست لائیآں ہوئیآن ریوین دی لاگ اے۔',
+'patrol-log-line'      => '$2 دی $1 تے نشان گشت ہوئی $3',
+'patrol-log-auto'      => '(اپنے آپ)',
+'patrol-log-diff'      => 'دوبارہ وکھالہ 1',
+'log-show-hide-patrol' => '$1 گشت لاگ',
 
 # Image deletion
-'filedelete-missing' => 'فائل "$1" نئیں مٹائی جاسکدی اے ہے ای ںغیں۔',
+'deletedrevision'                 => 'پرانیاں مٹائیاں ریوین $1',
+'filedeleteerror-short'           => 'فاغل مٹان چ غلطی: $1',
+'filedeleteerror-long'            => 'فائل مٹان لگیاں غلطیاں ہوئیاں:
+$1',
+'filedelete-missing'              => 'فائل "$1" نئیں مٹائی جاسکدی اے ہے ای ںغیں۔',
+'filedelete-old-unregistered'     => 'دسی گئی فائل ریوین "$1" ڈیٹابیس چ نئیں اے۔',
+'filedelete-current-unregistered' => 'دسی گئی فائل "$1" ڈیٹابیس چ نئیں۔',
 
 # Browsing diffs
 'previousdiff' => '← پرانی لکھائی',
 'nextdiff'     => 'نویں لکھائی →',
 
 # Media information
-'file-info-size' => 'پکسل:$1 × $2, فائل سائز: $3, مائم ٹائپ: $4',
-'file-nohires'   => '<small>اس توں وڈی فوٹو موجود نہیں۔</small>',
-'svg-long-desc'  => 'ایس وی جی فائل، پکسل:$1 × $2، فائل سائز: $3',
-'show-big-image' => 'وڈی مورت',
+'thumbsize'            => 'تھمبنیل ناپ',
+'file-info'            => 'فائل ناپ: $1، MIME  ٹائپ: $2',
+'file-info-size'       => 'پکسل:$1 × $2, فائل سائز: $3, مائم ٹائپ: $4',
+'file-nohires'         => '<small>اس توں وڈی فوٹو موجود نہیں۔</small>',
+'svg-long-desc'        => 'ایس وی جی فائل، پکسل:$1 × $2، فائل سائز: $3',
+'show-big-image'       => 'وڈی مورت',
+'show-big-image-size'  => '$1 × $2 پکسلز',
+'file-info-gif-looped' => 'لوپڈ',
+'file-info-png-looped' => 'لوپڈ',
 
 # Special:NewFiles
 'newimages' => 'نئی فائلاں دی نگری',
@@ -1806,20 +1879,20 @@ $messages = array(
 'limitall'      => 'سارے',
 
 # E-mail address confirmation
-'confirmemail'            => 'ای میل پتہ پکا کرو',
-'confirmemail_sendfailed' => '{{SITENAME}} توں تساں دی کنفرم ہون دی ای-میل نئیں آئی۔
+'confirmemail'             => 'ای میل پتہ پکا کرو',
+'confirmemail_sendfailed'  => '{{SITENAME}} توں تساں دی کنفرم ہون دی ای-میل نئیں آئی۔
 مہربانی کرکے اپنا ای-میل پتہ چیک کرو اکریاں دی غلطی لئی۔
 
 میلر واپس: $1',
-'confirmemail_invalid'    => 'ناں منیا جان والا کنفرمیشن کوڈ۔
+'confirmemail_invalid'     => 'ناں منیا جان والا کنفرمیشن کوڈ۔
 کوڈ لگدا اے ایکسپائر ہوچکیا اے۔',
-'confirmemail_needlogin'  => 'تھوانوں $1 دی لوڑ اے اپنا ای-میل کنفرم کرن لئی۔',
-'confirmemail_success'    => 'تھواڈا ای-میل پتہ پکا ہوچکیا اے۔
+'confirmemail_needlogin'   => 'تھوانوں $1 دی لوڑ اے اپنا ای-میل کنفرم کرن لئی۔',
+'confirmemail_success'     => 'تھواڈا ای-میل پتہ پکا ہوچکیا اے۔
 تسی ہن لاگ ان ہوسکدے اے۔',
-'confirmemail_loggedin'   => 'تھواڈا ای-میل پتہ ہن پکا ہوچکیا اے۔',
-'confirmemail_error'      => 'تھواڈی کنفرمیشن نوں بچاندیاں ہویاں کوئی چیز غلط ہوگئی اے۔',
-'confirmemail_subject'    => '{{SITENAME}} ای-میل پتہ کنفرمیشن',
-'confirmemail_body'       => 'کسے نیں خبرے تساں ای آئی پی پتے $1 توں،
+'confirmemail_loggedin'    => 'تھواڈا ای-میل پتہ ہن پکا ہوچکیا اے۔',
+'confirmemail_error'       => 'تھواڈی کنفرمیشن نوں بچاندیاں ہویاں کوئی چیز غلط ہوگئی اے۔',
+'confirmemail_subject'     => '{{SITENAME}} ای-میل پتہ کنفرمیشن',
+'confirmemail_body'        => 'کسے نیں خبرے تساں ای آئی پی پتے $1 توں،
 اک کھاتہ  "$2" ایس ای میل پتے نال  {{SITENAME}}   تے بنایا اے۔
 
 اے گل پکا کرن لئی جے ایہ اکاؤنٹ تھواڈا ای اے تے ای-میل دے فیدے {{SITENAME}} تے ٹورن لئی اپنے براؤزر چ اے لنک کھولو:
@@ -1831,9 +1904,24 @@ $3
 $5
 
 ایس کنفرمیشن کوڈ دی تریخ $4 نوں مک جائیگی۔',
+'confirmemail_invalidated' => 'ای-میل پکا کرنا واپس',
+'invalidateemail'          => 'ای-میل پکا کرنا واپس کرو',
+
+# Scary transclusion
+'scarytranscludedisabled' => 'انٹروکی رلانا روک دتا گیا۔',
+'scarytranscludefailed'   => '[ٹمپلیٹ $1 لئی لے کے آنا ناکام]',
+'scarytranscludetoolong'  => '[URL چوکھی لمبی اے]',
+
+# Trackbacks
+'trackbackbox'      => 'ایس صفے لئی پچھے:<br />
+$1',
+'trackbackremove'   => '([$1 مٹاؤ])',
+'trackbacklink'     => 'پچھلا راہ لبنا',
+'trackbackdeleteok' => 'پچھلا راہ مٹا دتا گیا',
 
 # Delete conflict
-'recreate' => 'دوبارہ بناؤ',
+'deletedwhileediting' => "'''خبردار''': تھواڈے لکھن مکرون اے صفہ مٹا دتا گیا!",
+'recreate'            => 'دوبارہ بناؤ',
 
 # action=purge
 'confirm_purge_button' => 'ٹھیکھ ہے',
@@ -1872,17 +1960,59 @@ $5
 
 # Live preview
 'livepreview-loading' => 'لوڈنگ',
+'livepreview-ready'   => 'لوڈنگ۔۔۔۔۔۔تیار!',
+'livepreview-failed'  => 'لائیو وکھالہ ناکام!
+نارمل وکھالے دی کوشش کرو۔',
+'livepreview-error'   => 'جوڑن چ ناکام: $1 "$2"
+نارمل وکھالہ کوشش کرو۔',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 توں نویاں تبدیلیاں {{PLURAL:$1|سکنٹ}}',
+
+# Watchlist editor
+'watchlistedit-numitems'      => 'تھواڈے اکھ تھلے رکھے صفیاں گل بات والے صفے کڈکے {{PLURAL:$1|1 سرخی|$1 سرخی}} نیں۔',
+'watchlistedit-noitems'       => 'تھواڈی اکھ تھلے رکھے صفیاں دی لسٹ خالی اے۔',
+'watchlistedit-normal-title'  => ' اکھ تھلے رکھی ہوئی نو تبدیل کرو',
+'watchlistedit-normal-legend' => 'اکھ تھلیوں ہٹا لو',
+'watchlistedit-normal-submit' => 'ٹائیٹلز ہٹاؤ',
+'watchlistedit-raw-title'     => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
+'watchlistedit-raw-legend'    => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
+'watchlistedit-raw-titles'    => 'ناں:',
+'watchlistedit-raw-submit'    => ' اکھ تھلے رکھی ہوئی نو تبدیل کرو',
+'watchlistedit-raw-done'      => 'تھواڈی اکھ تھلے رکھی لسٹ نویں کر دتی گئی اے۔',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ملدیاں ہوئیاں تبدیلیاں ویکھو',
 'watchlisttools-edit' => 'اکھ تھلے رکھے ہوۓ صفحیاں نوں ویکھو تے تبدیل کرو',
 'watchlisttools-raw'  => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
 
+# Core parser functions
+'unknown_extension_tag' => 'انجان ایکسٹنشن ٹیگ "$1"',
+'duplicate-defaultsort' => '\'\'\'خبردار:\'\'\' ڈیفالٹ چابی "$2" پہلی ڈیفالٹ چابی "$1" دے اتے لگ گئی اے۔',
+
 # Special:Version
-'version'                  => 'ورژن',
-'version-software'         => 'سافٹوئر چڑھ گیا۔',
-'version-software-product' => 'پراڈکٹ',
-'version-software-version' => 'ورژن',
+'version'                       => 'ورژن',
+'version-extensions'            => 'انسٹالڈ کیتیاں گیاں ایکسٹنشن',
+'version-specialpages'          => 'خاص صفحے',
+'version-parserhooks'           => 'پارسر ہکز',
+'version-variables'             => 'ویریایبلز',
+'version-antispam'              => 'سپام بچاؤ',
+'version-skins'                 => 'کھل',
+'version-other'                 => 'دوجے',
+'version-mediahandlers'         => 'میڈیا ہینڈلرز',
+'version-hooks'                 => 'ہکز',
+'version-extension-functions'   => 'ایکسٹنشن فنکشن',
+'version-parser-extensiontags'  => 'پاسر ایکسٹنشن ٹیگز',
+'version-parser-function-hooks' => 'پاسر فنکشن ہکز',
+'version-hook-name'             => 'ہک ناں',
+'version-hook-subscribedby'     => 'جینے لئی',
+'version-version'               => '(ورین $1)',
+'version-license'               => 'لائیسنس',
+'version-poweredby-credits'     => "ایس وکی نوں '''[http://www.mediawiki.org/ میڈیاوکی]''', copyright © 2001-$1 $2. چلاندا اے۔",
+'version-poweredby-others'      => 'دوجے',
+'version-software'              => 'سافٹوئر چڑھ گیا۔',
+'version-software-product'      => 'پراڈکٹ',
+'version-software-version'      => 'ورژن',
 
 # Special:FilePath
 'filepath'        => 'فائل راہ',
@@ -1891,8 +2021,11 @@ $5
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'دوہری فائلاں دی کھوج کرو',
+'fileduplicatesearch-summary'   => 'دوہریاں فائلاں دی کھوج ہیش ویلیو تے اے۔',
+'fileduplicatesearch-legend'    => 'دوہری  دی کھوج کرو۔',
 'fileduplicatesearch-filename'  => 'فائل دا ناں',
 'fileduplicatesearch-submit'    => 'کھوج',
+'fileduplicatesearch-result-1'  => '"$1" فائل ورگی رلدی فائل کوئی نیں۔',
 'fileduplicatesearch-noresults' => '"$1" ناں دی کوئی فائل نئیں لبی۔',
 
 # Special:SpecialPages
