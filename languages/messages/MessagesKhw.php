@@ -12,6 +12,8 @@
 
 $fallback = 'ur';
 
+$rtl = true;
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ربطو خط کشیدگی',
