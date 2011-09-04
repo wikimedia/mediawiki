@@ -3622,29 +3622,4 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 dengan sokongan carian teks penuh',
 'sqlite-no-fts'  => '$1 tanpa sokongan carian teks penuh',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Tambahkan kategori',
-'ajax-remove-category'          => 'Buang kategori',
-'ajax-edit-category'            => 'Sunting kategori',
-'ajax-add-category-submit'      => 'Tambahkan',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Sahkan tindakan',
-'ajax-confirm-save'             => 'Simpan',
-'ajax-confirm-save-all'         => 'Simpan semua perubahan',
-'ajax-cancel'                   => 'Batalkan suntingan',
-'ajax-cancel-all'               => 'Batalkan semua perubahan',
-'ajax-add-category-summary'     => 'Tambahkan kategori "$1"',
-'ajax-edit-category-summary'    => 'Tukar kategori "$1" ke "$2"',
-'ajax-remove-category-summary'  => 'Buang kategori "$1"',
-'ajax-category-question'        => 'Mengapakah anda ingin membuat perubahan-perubahan berikut:',
-'ajax-error-title'              => 'Ralat',
-'ajax-remove-category-error'    => 'Kategori "$1" tidak boleh dibuang.
-Ini biasanya berlaku apabila kategori ditambahkan pada laman dengan menggunakan templat.',
-'ajax-edit-category-error'      => 'Kategori "$1" tidak boleh disunting.
-Ini biasanya berlaku apabila kategori ditambahkan pada laman dengan menggunakan templat.',
-'ajax-category-already-present' => 'Laman ini sudah tergolong dalam kategori $1',
-'ajax-category-hook-error'      => 'Fungsi setempat menghalang perubahan daripada disimpan',
-'ajax-api-error'                => 'API memulangkan ralat: $1: $2',
-'ajax-api-unknown-error'        => 'API memulangkan ralat yang tidak dikenali.',
-
 );

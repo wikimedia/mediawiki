@@ -3534,15 +3534,4 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 'sqlite-has-fts' => '$1, amb suport de búsqueda de text íntegre',
 'sqlite-no-fts'  => '$1, sense supor de búsqueda de text íntegre',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Afegeix categoria',
-'ajax-add-category-submit'     => 'Afegeix',
-'ajax-confirm-title'           => "Confirma l'acció",
-'ajax-confirm-save'            => 'Desa',
-'ajax-add-category-summary'    => "Afageix la categoria ''$1''",
-'ajax-remove-category-summary' => "Elimina la categoria ''$1''",
-'ajax-error-title'             => 'Error',
-'ajax-remove-category-error'   => "No ha estat possible eliminar aquesta categoria.
-Això sol passar quan la categoria s'ha afegit a la pàgina en una plantilla.",
-
 );

@@ -3233,14 +3233,4 @@ Escriba o nombre d'o fichero sin o prefixo \"{{ns:file}}:\".",
 'sqlite-has-fts' => '$1, con soporte de busca de texto integro',
 'sqlite-no-fts'  => '$1, sin soporte de busca de texto integro',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Adhibir categoría',
-'ajax-add-category-submit'     => 'Adhibir',
-'ajax-confirm-title'           => 'Confirmar acción',
-'ajax-confirm-save'            => 'Alzar',
-'ajax-add-category-summary'    => 'Adhibir categoría "$1"',
-'ajax-remove-category-summary' => 'Sacar a categoría "$1"',
-'ajax-error-title'             => 'Error',
-'ajax-remove-category-error'   => "No s'ha puesto eliminar ista categoría. Isto gosa pasar, por un regular, quan a categoría ha estau adhibida por una plantilla.",
-
 );

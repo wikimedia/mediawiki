@@ -3755,29 +3755,4 @@ Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 'sqlite-has-fts' => '$1 kun tut-teksta subteno',
 'sqlite-no-fts'  => '$1 sen tut-teksta subteno',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Aldoni kategorion',
-'ajax-remove-category'          => 'Forigi kategorion',
-'ajax-edit-category'            => 'Redakti kategorion',
-'ajax-add-category-submit'      => 'Aldoni',
-'ajax-confirm-ok'               => 'Ek!',
-'ajax-confirm-title'            => 'Konfirmi agon',
-'ajax-confirm-save'             => 'Konservi',
-'ajax-confirm-save-all'         => 'Konservi ĉiujn ŝanĝojn',
-'ajax-cancel'                   => 'Nuligi redakton',
-'ajax-cancel-all'               => 'Nuligi ĉiujn ŝanĝojn',
-'ajax-add-category-summary'     => 'Aldoni kategorion "$1"',
-'ajax-edit-category-summary'    => 'Ŝanĝi kategorion "$1" al "$2"',
-'ajax-remove-category-summary'  => 'Forigi kategorion "$1"',
-'ajax-category-question'        => 'Kial vi volas fari la jenajn ŝanĝojn:',
-'ajax-error-title'              => 'Eraro',
-'ajax-remove-category-error'    => 'Ne eblas forigi kategorion "$1".
-Ĉi tiel okazas kiam la kategorio estis aldonita al la paĝo per ŝablono.',
-'ajax-edit-category-error'      => 'Ne eblas redakti kategorion "$1".
-Ĉi tiel okazas kiam la kategorio estis aldonita al la paĝo per ŝablono.',
-'ajax-category-already-present' => 'Ĉi tiu paĝo jam apartenas al la kategorio "$1"',
-'ajax-category-hook-error'      => 'Loka funkcio preventis konservadon de la ŝanĝoj.',
-'ajax-api-error'                => 'La API raportis la eraron: $1: $2.',
-'ajax-api-unknown-error'        => 'La API raportis nekonatan eraron.',
-
 );

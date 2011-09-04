@@ -2170,19 +2170,4 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'htmlform-reset'               => 'Саемс мекев полавтоматнень',
 'htmlform-selectorother-other' => 'Лия',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Поладомс категория',
-'ajax-remove-category'         => 'Нардамс категориянть',
-'ajax-edit-category'           => 'Витнемс-петнемс категориянть',
-'ajax-add-category-submit'     => 'Поладомс',
-'ajax-confirm-title'           => 'Кемекстамс мезе теить',
-'ajax-confirm-save'            => 'Ванстомс',
-'ajax-confirm-save-all'        => 'Ванстомс весе мезе лиякстомтыть',
-'ajax-cancel'                  => 'Саемс мекев мезе витнить-петнить',
-'ajax-cancel-all'              => 'Саемс мекев весе мезе лиякстомтыть',
-'ajax-add-category-summary'    => 'Поладомс категориянть "$1"',
-'ajax-edit-category-summary'   => 'Полавтомс "$1" категория "$2" категория лангс',
-'ajax-remove-category-summary' => 'Нардамс категориянть "$1"',
-'ajax-error-title'             => 'Ильведевкс',
-
 );

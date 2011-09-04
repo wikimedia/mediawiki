@@ -3676,29 +3676,4 @@ Unesite naziv fajla bez prefiksa &quot;{{ns:file}}:&quot;.',
 'sqlite-has-fts' => '$1 s podrškom pretrage punog teksta',
 'sqlite-no-fts'  => '$1 bez podrške pretrage punog teksta',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Dodaj kategoriju',
-'ajax-remove-category'          => 'Ukloni kategoriju',
-'ajax-edit-category'            => 'Uredi kategoriju',
-'ajax-add-category-submit'      => 'Dodaj',
-'ajax-confirm-ok'               => 'U redu',
-'ajax-confirm-title'            => 'Potvrdi akciju',
-'ajax-confirm-save'             => 'Sačuvaj',
-'ajax-confirm-save-all'         => 'Sačuvaj sve izmene',
-'ajax-cancel'                   => 'Otkaži uređivanje',
-'ajax-cancel-all'               => 'Otkaži sve izmene',
-'ajax-add-category-summary'     => 'Dodaj kategoriju "$1"',
-'ajax-edit-category-summary'    => 'Promeni kategoriju „$1“ u „$2“',
-'ajax-remove-category-summary'  => 'Ukloni kategoriju "$1"',
-'ajax-category-question'        => 'Razlog za stvaranje izmena:',
-'ajax-error-title'              => 'Greška',
-'ajax-remove-category-error'    => 'Ne mogu da uklonim kategoriju „$1“.
-Ovo se obično dešava kada je kategorija dodata na stranicu preko šablona.',
-'ajax-edit-category-error'      => 'Ne mogu da promenim kategoriju „$1“.
-Ovo se obično dešava kada je kategorija dodata na stranicu preko šablona.',
-'ajax-category-already-present' => 'Ova stranica već pripada kategoriji „$1“',
-'ajax-category-hook-error'      => 'Lokalna funkcija je sprečila da se izmene sačuvaju.',
-'ajax-api-error'                => 'API je prijavio grešku: $1: $2.',
-'ajax-api-unknown-error'        => 'API je prijavio nepoznatu grešku.',
-
 );

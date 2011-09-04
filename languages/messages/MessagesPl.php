@@ -3830,29 +3830,4 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 'sqlite-has-fts' => '$1 ze wsparciem pełnotekstowego wyszukiwania',
 'sqlite-no-fts'  => '$1 bez wsparcia pełnotekstowego wyszukiwania',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Dodaj kategorię',
-'ajax-remove-category'          => 'Usuń z kategorii',
-'ajax-edit-category'            => 'Edytuj kategorię',
-'ajax-add-category-submit'      => 'Dodaj',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Potwierdź',
-'ajax-confirm-save'             => 'Zapisz',
-'ajax-confirm-save-all'         => 'Zapisz wszystkie zmiany',
-'ajax-cancel'                   => 'Wycofaj zmiany',
-'ajax-cancel-all'               => 'Anuluj wszystkie zmiany',
-'ajax-add-category-summary'     => 'Dodaj kategorię „$1”',
-'ajax-edit-category-summary'    => 'Zmiana kategorii z „$1“ na „$2“',
-'ajax-remove-category-summary'  => 'Usuń kategorię „$1”',
-'ajax-category-question'        => 'Dlaczego chcesz wprowadzić następujące zmiany:',
-'ajax-error-title'              => 'Błąd',
-'ajax-remove-category-error'    => 'Usunięcie strony z kategorii „$1“ nie jest możliwe.
-Problem zazwyczaj występuje, jeśli kategoria została dodana do strony przez szablon.',
-'ajax-edit-category-error'      => 'Zmiana kategorii „$1“ nie jest możliwa.
-Ten problem zazwyczaj występuje, jeśli kategoria została dodana do strony przez szablon.',
-'ajax-category-already-present' => 'Strona już jest w kategorii $1',
-'ajax-category-hook-error'      => 'Lokalna funkcja uniemożliwia zapisanie zmian',
-'ajax-api-error'                => 'Interfejs API zwrócił błąd – $1: $2',
-'ajax-api-unknown-error'        => 'Interfejs API zwrócił nieznany błąd.',
-
 );

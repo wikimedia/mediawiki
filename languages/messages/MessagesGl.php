@@ -3763,29 +3763,4 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 'sqlite-has-fts' => '$1 con soporte para procuras de texto completo',
 'sqlite-no-fts'  => '$1 sen soporte para procuras de texto completo',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Engadir unha categoría',
-'ajax-remove-category'          => 'Eliminar a categoría',
-'ajax-edit-category'            => 'Editar a categoría',
-'ajax-add-category-submit'      => 'Engadir',
-'ajax-confirm-ok'               => 'Aceptar',
-'ajax-confirm-title'            => 'Confirmar a acción',
-'ajax-confirm-save'             => 'Gardar',
-'ajax-confirm-save-all'         => 'Gardar todos os cambios',
-'ajax-cancel'                   => 'Cancelar a edición',
-'ajax-cancel-all'               => 'Rexeitar todos os cambios',
-'ajax-add-category-summary'     => 'Engadir a categoría "$1"',
-'ajax-edit-category-summary'    => 'Cambiar a categoría "$1" por "$2"',
-'ajax-remove-category-summary'  => 'Eliminar a categoría "$1"',
-'ajax-category-question'        => 'Por que quere facer as seguintes modificacións?:',
-'ajax-error-title'              => 'Erro',
-'ajax-remove-category-error'    => 'Non se puido eliminar a categoría "$1".
-Isto ocorre xeralmente cando a páxina está incluída na categoría a través dun modelo.',
-'ajax-edit-category-error'      => 'Non se puido editar a categoría "$1".
-Isto ocorre xeralmente cando a páxina está incluída na categoría a través dun modelo.',
-'ajax-category-already-present' => 'Esta páxina xa pertence á categoría "$1"',
-'ajax-category-hook-error'      => 'Unha función local impediu que se gardasen os cambios.',
-'ajax-api-error'                => 'O API devolveu un erro: $1: $2.',
-'ajax-api-unknown-error'        => 'O API devolveu un erro descoñecido.',
-
 );

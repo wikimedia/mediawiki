@@ -3643,29 +3643,4 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'sqlite-has-fts' => '$1 su visatekstės paieškos palaikymu',
 'sqlite-no-fts'  => '$1 be visatekstės paieškos palaikymo',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Pridėti kategoriją',
-'ajax-remove-category'          => 'Pašalinti kategoriją',
-'ajax-edit-category'            => 'Redaguoti kategoriją',
-'ajax-add-category-submit'      => 'Pridėti',
-'ajax-confirm-ok'               => 'Gerai',
-'ajax-confirm-title'            => 'Patvirtinti veiksmą',
-'ajax-confirm-save'             => 'Išsaugoti',
-'ajax-confirm-save-all'         => 'Išsaugoti visus pakeitimus',
-'ajax-cancel'                   => 'Atšaukti redagavimą',
-'ajax-cancel-all'               => 'Atšaukti visus pakeitimus',
-'ajax-add-category-summary'     => 'Pridėti kategoriją „$1“',
-'ajax-edit-category-summary'    => 'Keisti kategoriją "$1" į "$2"',
-'ajax-remove-category-summary'  => 'Panaikinti kategoriją „$1“',
-'ajax-category-question'        => 'Kodėl jūs norite atlikti šiuos keitimus:',
-'ajax-error-title'              => 'Klaida',
-'ajax-remove-category-error'    => 'Nepavyko pašalinti kategorijos "$1".
-Dažniausiai taip nutinka, kai kategorija būna pridėta į šabloną, kuris naudojamas puslapyje.',
-'ajax-edit-category-error'      => 'Kategorijos "$1" nepavyko redaguoti.
-Dažniausiai taip nutinka, kai kategorija būna pridėta į šabloną, kuris naudojamas puslapyje.',
-'ajax-category-already-present' => 'Šis puslapis jau priskirtas kategorijai "$1"',
-'ajax-category-hook-error'      => 'Vietinė funkcija neleido išsaugoti pakeitimų.',
-'ajax-api-error'                => 'API grąžino klaidą: $1 : $2 .',
-'ajax-api-unknown-error'        => 'API grąžino nežinomą klaidą.',
-
 );

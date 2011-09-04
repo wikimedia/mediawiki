@@ -3650,21 +3650,4 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'sqlite-has-fts' => '$1 tam-metin arama desteği ile',
 'sqlite-no-fts'  => '$1 tam-metin arama desteği olmaksızın',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategori ekle',
-'ajax-remove-category'         => 'Kategoriyi kaldır',
-'ajax-edit-category'           => 'Kategori düzenle',
-'ajax-add-category-submit'     => 'Ekle',
-'ajax-confirm-ok'              => 'TAMAM',
-'ajax-confirm-title'           => 'İşlemi onayla',
-'ajax-confirm-save'            => 'Kaydet',
-'ajax-confirm-save-all'        => 'Tüm değişiklikleri kaydet',
-'ajax-cancel'                  => 'Düzenlemeyi iptal et',
-'ajax-cancel-all'              => 'Tüm değişiklikleri iptal et',
-'ajax-add-category-summary'    => '"$1" kategorisini ekle',
-'ajax-remove-category-summary' => '"$1" kategorisini kaldır',
-'ajax-error-title'             => 'Hata',
-'ajax-remove-category-error'   => 'Kategori silinemiyor. 
-Bu genelde kategori sayfaya bir şablon aracılığıyla eklendiğinde meydana gelir.',
-
 );

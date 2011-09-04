@@ -3700,24 +3700,4 @@ Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
 'sqlite-has-fts' => '$1 teljes szöveges keresés támogatással',
 'sqlite-no-fts'  => '$1 teljes szöveges keresés támogatása nélkül',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Kategória hozzáadása',
-'ajax-remove-category'          => 'Kategória eltávolítása',
-'ajax-edit-category'            => 'Kategória szerkesztése',
-'ajax-add-category-submit'      => 'Hozzáadás',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Művelet megerősítése',
-'ajax-confirm-save'             => 'Mentés',
-'ajax-confirm-save-all'         => 'Összes változtatás mentése',
-'ajax-cancel'                   => 'Szerkesztések visszavonása',
-'ajax-add-category-summary'     => '„$1” kategória hozzáadása',
-'ajax-edit-category-summary'    => '„$1” kategória cseréje a következőre: „$2”',
-'ajax-remove-category-summary'  => '„$1” kategória eltávolítása',
-'ajax-error-title'              => 'Hiba',
-'ajax-remove-category-error'    => 'Nem sikerült eltávolítani a kategóriát.
-Ez általában akkor fordul elő, ha a kategóriát egy sablon adja hozzá a laphoz.',
-'ajax-edit-category-error'      => 'Nem lehet szerkeszteni a kategóriát.
-Ez általában akkor fordul elő, ha a lapot egy sablon sorolja be az adott kategóriába.',
-'ajax-category-already-present' => 'Ez a lap már a(z) „$1” kategória tagja.',
-
 );

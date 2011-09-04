@@ -3925,29 +3925,4 @@ $1',
 'sqlite-has-fts' => '$1 עם תמיכה בחיפוש בטקסט מלא',
 'sqlite-no-fts'  => '$1 ללא תמיכה בחיפוש בטקסט מלא',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'הוספת קטגוריה',
-'ajax-remove-category'          => 'הסרת קטגוריה',
-'ajax-edit-category'            => 'עריכת קטגוריה',
-'ajax-add-category-submit'      => 'הוספה',
-'ajax-confirm-ok'               => 'אישור',
-'ajax-confirm-title'            => 'אישור הפעולה',
-'ajax-confirm-save'             => 'שמירה',
-'ajax-confirm-save-all'         => 'שמירת כל השינויים',
-'ajax-cancel'                   => 'ביטול העריכה',
-'ajax-cancel-all'               => 'ביטול כל השינויים',
-'ajax-add-category-summary'     => 'הוספת הקטגוריה "$1"',
-'ajax-edit-category-summary'    => 'שינוי הקטגוריה "$1" ל"$2"',
-'ajax-remove-category-summary'  => 'הסרת הקטגוריה "$1"',
-'ajax-category-question'        => 'הסיבה לשינויים המוצגים להלן:',
-'ajax-error-title'              => 'שגיאה',
-'ajax-remove-category-error'    => 'לא ניתן היה להסיר את הקטגוריה "$1".
-הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
-'ajax-edit-category-error'      => 'לא ניתן היה את הקטגוריה "$1".
-הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
-'ajax-category-already-present' => 'דף זה כבר שייך לקטגוריה $1',
-'ajax-category-hook-error'      => 'פונקציה מקומית מנעה את שמירת השינויים',
-'ajax-api-error'                => 'ה־API החזיר שגיאה: $1: $2',
-'ajax-api-unknown-error'        => 'ה־API החזיר שגיאה לא ידועה.',
-
 );

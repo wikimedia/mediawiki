@@ -3058,28 +3058,4 @@ Tovuti hii inapata matatatizo wakati huu.',
 'htmlform-reset'               => 'Tengua mabadiliko',
 'htmlform-selectorother-other' => 'Nyingine',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Ongeza jamii',
-'ajax-remove-category'          => 'Ondoa jamii',
-'ajax-edit-category'            => 'Hariri jamii',
-'ajax-add-category-submit'      => 'Ongeza',
-'ajax-confirm-ok'               => 'Sawa',
-'ajax-confirm-title'            => 'Uthibitishe kitendo',
-'ajax-confirm-save'             => 'Hifadhi',
-'ajax-confirm-save-all'         => 'Hifadhi mabadiliko yote',
-'ajax-cancel'                   => 'Futa maharirio',
-'ajax-cancel-all'               => 'Futa mabadiliko yote',
-'ajax-add-category-summary'     => 'Ongeza jamii ya "$1"',
-'ajax-edit-category-summary'    => 'Jamii ya "$1" imebadilishwa iwe "$2"',
-'ajax-remove-category-summary'  => 'Ondoa jamii ya "$1"',
-'ajax-category-question'        => 'Kwa nini unataka kufanya mabadiliko yafuatayo:',
-'ajax-error-title'              => 'Hitilafu',
-'ajax-remove-category-error'    => ' Jamii "$1" haikuweza kuondolewa.
-Huwa jamii haiwezi kuondolewa kwenye ukurasa wakati jamii imeingizwa ndani ya kigezo fulani.',
-'ajax-edit-category-error'      => 'Ilikuwa si ​​rahisi kuhariri jamii ya "$1". 
-Hii kwa kawaida hutokea wakati jamii imekuwa imeingizwa katika ukurasa ndani ya kigezo.',
-'ajax-category-already-present' => 'Ukarasa huu tayari uko katika jamii ya $1',
-'ajax-api-error'                => 'API iliripoti hitilafu: $1: $2.',
-'ajax-api-unknown-error'        => 'API iliripoti hitilafu isiyojulikana.',
-
 );

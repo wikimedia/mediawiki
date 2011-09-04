@@ -2120,29 +2120,4 @@ $1',
 'sqlite-has-fts' => '$1 پوری لکھت کھوج مدد نال',
 'sqlite-no-fts'  => '$1 بنا کسے لکھت مدد دے',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'گٹھ رلاؤ',
-'ajax-remove-category'          => 'گٹھ ہٹاؤ',
-'ajax-edit-category'            => 'گٹھ بدلو',
-'ajax-add-category-submit'      => 'ملاؤ',
-'ajax-confirm-ok'               => 'اوکے',
-'ajax-confirm-title'            => 'کم کنفرم کرو',
-'ajax-confirm-save'             => 'بچاؤ',
-'ajax-confirm-save-all'         => 'ساریاں تبدیلیاں بچاؤ',
-'ajax-cancel'                   => 'تبدیلیاں مکاؤ',
-'ajax-cancel-all'               => 'ساریاں تبدیلیاں مٹاؤ',
-'ajax-add-category-summary'     => 'گٹھ "$1" رلاؤ',
-'ajax-edit-category-summary'    => 'گٹھ "$1" نوں "$2" چ پرتو',
-'ajax-remove-category-summary'  => 'گٹھ "$1" ہٹاؤ',
-'ajax-category-question'        => 'تسیں تھلے دتیاں تبدیلیاں کیوں کرنا چاندے او:',
-'ajax-error-title'              => 'غلطی',
-'ajax-remove-category-error'    => 'اے نئیں ہوسکدا جے گٹھ "$1". نوں ہٹایا جاۓ۔
-اے اودوں ہوندا اے جدوں گٹھ ٹمپلیٹ والے صفے تے جوڑی جاۓ۔',
-'ajax-edit-category-error'      => 'ایہ ممکن نئیں جے گٹھ "$1". نوں بدلۓ۔
-اے اودوں ہوندا اے جدوں گٹھ جوڑی دی صفے چ ٹمپلیٹ چ۔',
-'ajax-category-already-present' => 'ایس صفے تے پہلے ای "$1" گٹھ دتی گئی اے۔',
-'ajax-category-hook-error'      => 'اک لوکل کم نے تبدیلیاں نوں بچان توں روک دتا اے۔',
-'ajax-api-error'                => 'اے پی آئی نے اک غلطی ٹوری اے:$1: $2.',
-'ajax-api-unknown-error'        => 'اے پی آئی نے اک انجان غلطی ٹوری اے۔',
-
 );

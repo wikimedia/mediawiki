@@ -3100,15 +3100,4 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 'sqlite-has-fts' => '$1 з падтрымкай поўна-тэкставага пошуку',
 'sqlite-no-fts'  => '$1 без падтрымкі поўна-тэкставага пошуку',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Дадаць катэгорыю',
-'ajax-add-category-submit'     => 'Дадаць',
-'ajax-confirm-title'           => 'Пацверджанне',
-'ajax-confirm-save'            => 'Запісаць',
-'ajax-add-category-summary'    => 'Дадаць катэгорыю "$1"',
-'ajax-remove-category-summary' => 'Сцерці катэгорыю "$1"',
-'ajax-error-title'             => 'Памылка',
-'ajax-remove-category-error'   => 'Не ўдалося сцерці катэгорыю.
-Так звычайна бывае, калі катэгорыя дададзеная ў старонку праз шаблон.',
-
 );

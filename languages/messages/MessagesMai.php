@@ -3498,29 +3498,4 @@ $1',
 'sqlite-has-fts' => '$1 पूर्ण-पाठ खोज सहायता युक्त',
 'sqlite-no-fts'  => '$1 बिन पूर्ण-पाठ खोज सहायताक',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'संवर्ग जोड़ू',
-'ajax-remove-category'          => 'संवर्ग हटाउ',
-'ajax-edit-category'            => 'संवर्ग सम्पादित करू',
-'ajax-add-category-submit'      => 'जोडू',
-'ajax-confirm-ok'               => 'ठीक अछि',
-'ajax-confirm-title'            => 'क्रिया संपुष्टि',
-'ajax-confirm-save'             => 'सुरक्षित करू',
-'ajax-confirm-save-all'         => 'अपन सभ परिवर्त्तनकेँ सुरक्षित करू',
-'ajax-cancel'                   => 'सम्पादन रद्द करू',
-'ajax-cancel-all'               => 'सभ परिवर्त्तनकेँ रद्द करू',
-'ajax-add-category-summary'     => 'जोड़ू संवर्ग "$1"',
-'ajax-edit-category-summary'    => 'संवर्ग "$1" केँ "$2" मे बदलू',
-'ajax-remove-category-summary'  => 'संवर्ग "$1" हटाउ',
-'ajax-category-question'        => 'अहाँ ई सभ परिवर्तन किए करए चाहै छी:',
-'ajax-error-title'              => 'भ्रम',
-'ajax-remove-category-error'    => 'संवर्ग "$1" केँ हटेनाइ सम्भव नै छल।
-ई तखने होइए जखन कोनो नमूनामे संवर्ग जोड़ल जाइए।',
-'ajax-edit-category-error'      => 'संवर्ग "$1" क सम्पादन सम्भव नै छल।
-ई तखने होइए जखन कोनो नमूनामे संवर्ग जोड़ल जाइए।',
-'ajax-category-already-present' => 'ई पन्ना पहिनहियेसँ संवर्ग "$1" मे अछि।',
-'ajax-category-hook-error'      => 'कोनो स्थानीय प्रकार्य ऐ परिवर्तन सभक सुरक्षामे बाधक बनल।',
-'ajax-api-error'                => 'ए.पी.आइ. सँ भ्रम आएल:: $1: $2',
-'ajax-api-unknown-error'        => 'ए.पी.आइ. एकटा अनिश्चित भ्रम देलक।',
-
 );

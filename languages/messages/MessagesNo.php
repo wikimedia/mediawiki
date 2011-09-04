@@ -3793,29 +3793,4 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',
 'sqlite-no-fts'  => '$1 uten støtte for fulltekstsøk',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Legg til kategori',
-'ajax-remove-category'          => 'Fjern kategori',
-'ajax-edit-category'            => 'Rediger kategori',
-'ajax-add-category-submit'      => 'Legg til',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Bekreft handling',
-'ajax-confirm-save'             => 'Lagre',
-'ajax-confirm-save-all'         => 'Lagre alle endringer',
-'ajax-cancel'                   => 'Avbryt redigeringer',
-'ajax-cancel-all'               => 'Avbryt alle endringer',
-'ajax-add-category-summary'     => 'Legg til kategorien «$1»',
-'ajax-edit-category-summary'    => 'Endre kategori «$1» til «$2»',
-'ajax-remove-category-summary'  => 'Fjern kategorien «$1»',
-'ajax-category-question'        => 'Hvorfor ønsker du å gjøre følgende endringer:',
-'ajax-error-title'              => 'Feil',
-'ajax-remove-category-error'    => 'Det var umulig å fjerne kategorien «$1».
-Dette skjer som regel fordi kategorien har blitt lagt til via en mal.',
-'ajax-edit-category-error'      => 'Det var ikke mulig å redigere kategorien «$1».
-Dette skjer vanligvis når kategorien har blitt lagt til siden gjennom en mal.',
-'ajax-category-already-present' => 'Denne siden tilhører allerede kategorien $1',
-'ajax-category-hook-error'      => 'En lokal funksjon hindret endringene fra å bli lagret',
-'ajax-api-error'                => 'API-en returnerte en feilmelding: $1: $2',
-'ajax-api-unknown-error'        => 'API-et returnerte en ukjent feil.',
-
 );

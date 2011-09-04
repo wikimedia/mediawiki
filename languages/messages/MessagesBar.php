@@ -1582,7 +1582,4 @@ Bittscheh d' noraale Vurschau bnutzen.",
 'htmlform-reset'               => 'Änderrungen ryckgängég mochen',
 'htmlform-selectorother-other' => 'Åndre',
 
-# Add categories per AJAX
-'ajax-error-title' => 'Feeler',
-
 );

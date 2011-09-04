@@ -3978,29 +3978,4 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'sqlite-has-fts' => 'Version $1 (un kann en janze Täxte söhke)',
 'sqlite-no-fts'  => 'Version $1 (kann ävver nit en janze Täxte söhke)',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Saachjropp dobei donn',
-'ajax-remove-category'          => 'Donn heh di Saachjrupp fottnämme',
-'ajax-edit-category'            => 'Donn heh di Saachjropp tuusche',
-'ajax-add-category-submit'      => 'Lohß jonn!',
-'ajax-confirm-ok'               => 'Lohß Jonn!',
-'ajax-confirm-title'            => 'Akßjuhn beschtähtejje',
-'ajax-confirm-save'             => 'Avshpeishere',
-'ajax-confirm-save-all'         => 'All di Änderunge faßhallde',
-'ajax-cancel'                   => 'Nix Ändere!',
-'ajax-cancel-all'               => 'Donn all di Änderunge wider verjäße',
-'ajax-add-category-summary'     => 'Donn de Saachjropp „$1“ derbei.',
-'ajax-edit-category-summary'    => 'Uß dä Saachjropp „$1“ eruß un en de Saachjropp „$2“ erin jedonn',
-'ajax-remove-category-summary'  => 'Saachjropp „$1“ eruß nämme',
-'ajax-category-question'        => 'Woröm wells De heh di Änderonge maache:',
-'ajax-error-title'              => 'Fähler',
-'ajax-remove-category-error'    => 'Et wohr nit müjjelesch, di Saachjropp „$1“ eruß ze nämme.
-Dat es fö jewöhnlej_esu, wann di Saachjropp övver en Schabloon en di Sigg enjedraare es.',
-'ajax-edit-category-error'      => 'Mer kunnte di Saachjropp „$1“ nit ußtuusche.
-Dat künnt dovun kumme, dat se övver en Schabloon enjedraare weed.',
-'ajax-category-already-present' => 'Heh di Sigg es ald en dä Saachjropp „$1“dren.',
-'ajax-category-hook-error'      => 'En lokaale Funxjuhn löht di Änderonge nit zoh.',
-'ajax-api-error'                => 'De <i lang="en"  title="Projammierschnettschtäll för Aanwendunge">API</i> hädd ene Fähler jemäldt: $1: $2.',
-'ajax-api-unknown-error'        => 'De <i lang="en"  title="Projammierschnettschtäll för Aanwendunge">API</i> hädd ene Fähler jemäldt, dä mer nit känne.',
-
 );

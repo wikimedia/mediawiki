@@ -3870,29 +3870,4 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 'sqlite-has-fts' => '$1 avec recherche en texte intégral supportée',
 'sqlite-no-fts'  => '$1 sans recherche en texte intégral supportée',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Ajouter une catégorie',
-'ajax-remove-category'          => 'Supprimer la catégorie',
-'ajax-edit-category'            => 'Modifier une catégorie',
-'ajax-add-category-submit'      => 'Ajouter',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Confirmer l’action',
-'ajax-confirm-save'             => 'Publier',
-'ajax-confirm-save-all'         => 'Enregistrer toutes les modifications',
-'ajax-cancel'                   => 'Annuler les modifications',
-'ajax-cancel-all'               => 'Annuler tous les changements',
-'ajax-add-category-summary'     => 'Ajouter la catégorie « $1 »',
-'ajax-edit-category-summary'    => 'Changer la catégorie « $1 » vers « $2 »',
-'ajax-remove-category-summary'  => 'Enlever la catégorie « $1 »',
-'ajax-category-question'        => 'Pourquoi voulez-vous faire les changements suivants :',
-'ajax-error-title'              => 'Erreur',
-'ajax-remove-category-error'    => 'Il n’a pas été possible de retirer la catégorie « $1 ».
-Cela se produit généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
-'ajax-edit-category-error'      => 'Il n’a pas été possible de modifier la catégorie « $1 ».
-Cela se produit généralement lorsque la catégorie a été ajoutée à la page via un modèle.',
-'ajax-category-already-present' => 'Cette page appartient déjà à la catégorie $1',
-'ajax-category-hook-error'      => 'Une fonction locale a empêché d’enregistrer les changements',
-'ajax-api-error'                => 'L’API a retourné une erreur : $1 : $2',
-'ajax-api-unknown-error'        => "L'API a retourné une erreur inconnue",
-
 );

@@ -2920,21 +2920,4 @@ Coba ku sawangan normal.',
 'htmlform-reset'               => 'Bolaykeun parobahan',
 'htmlform-selectorother-other' => 'Lianna',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Tambah kategori',
-'ajax-remove-category'          => 'Hapus katégori',
-'ajax-edit-category'            => 'Édit katégori',
-'ajax-add-category-submit'      => 'Tambah',
-'ajax-confirm-ok'               => 'Heug',
-'ajax-confirm-save'             => 'Simpen',
-'ajax-confirm-save-all'         => 'Simpen sakabéh parobahan',
-'ajax-cancel'                   => 'Bolaykeun éditan',
-'ajax-cancel-all'               => 'Bolaykeun sakabéh parobahan',
-'ajax-add-category-summary'     => 'Tambah kategori "$1"',
-'ajax-remove-category-summary'  => 'Hapus kategori "$1"',
-'ajax-error-title'              => 'Éror',
-'ajax-remove-category-error'    => 'Ieu kategori teu mungkin dihapus.
-Hal ieu ilaharna dilarapkeun kana kategori anu ditambahkeun kana citakan.',
-'ajax-category-already-present' => 'Ieu kaca geus diasupkeun kana katégori "$1"',
-
 );

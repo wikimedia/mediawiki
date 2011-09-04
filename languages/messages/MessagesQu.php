@@ -3568,15 +3568,4 @@ Willañiqi sutita yaykuchispaqa ama \"{{ns:file}}:\" ñawpaq k'askaqta qillqamuy
 'sqlite-has-fts' => "$1 hunt'a qillqa maskana yanapawan",
 'sqlite-no-fts'  => "$1 mana hunt'a qillqa maskana yanapawan",
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Katiguriyata yapay',
-'ajax-add-category-submit'     => 'Yapay',
-'ajax-confirm-title'           => 'Rurayta takyachiy',
-'ajax-confirm-save'            => 'Waqaychay',
-'ajax-add-category-summary'    => '"$1" sutiyuq katiguriyata yapay',
-'ajax-remove-category-summary' => '"$1" sutiyuq katiguriyata qichuy',
-'ajax-error-title'             => 'Pantasqa',
-'ajax-remove-category-error'   => "Manam atinichu kay katiguriyata qichuyta.
-Kay hina kanqaqa katiguriya plantillapi p'anqaman yapasqa kaptinchá.",
-
 );

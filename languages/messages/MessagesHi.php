@@ -3320,15 +3320,4 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 पूर्ण पाठ खोज समर्थन के साथ',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'श्रेणी जोड़ें',
-'ajax-add-category-submit'     => 'जोड़ें',
-'ajax-confirm-title'           => 'क्रिया की पुष्टि करें',
-'ajax-confirm-save'            => 'सँजोएँ',
-'ajax-add-category-summary'    => 'श्रेणी "$1" जोड़ें',
-'ajax-remove-category-summary' => 'श्रेणी "$1" हटाएँ',
-'ajax-error-title'             => 'त्रुटि',
-'ajax-remove-category-error'   => 'यह श्रेणी हटाई नहीं जा सकी।
-यह आमतौर पर तब होता है जब श्रेणी किसी साँचे के जरिए जोड़ी गई हो।',
-
 );

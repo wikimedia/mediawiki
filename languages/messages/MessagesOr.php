@@ -1497,10 +1497,4 @@ $5
 'htmlform-submit'              => 'ଦାଖଲକରିବା',
 'htmlform-selectorother-other' => 'ବାକି',
 
-# Add categories per AJAX
-'ajax-add-category-submit' => 'ଯୋଡ଼ିବେ',
-'ajax-confirm-ok'          => 'ଠିକ ଅଛି',
-'ajax-confirm-save'        => 'ସାଇତିବେ',
-'ajax-error-title'         => 'ଭୁଲ',
-
 );

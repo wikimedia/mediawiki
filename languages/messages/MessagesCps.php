@@ -921,9 +921,4 @@ Ang iban ay pagataguon sang default.
 # Special:SpecialPages
 'specialpages' => 'Espesyal nga mga panid',
 
-# Add categories per AJAX
-'ajax-confirm-save'            => 'I-save',
-'ajax-add-category-summary'    => 'Dugangan sang kategorya nga "$1"',
-'ajax-remove-category-summary' => 'Kwa-on ang kategorya nga  "$1"',
-
 );

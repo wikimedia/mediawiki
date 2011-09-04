@@ -3960,29 +3960,4 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'sqlite-has-fts' => '$1 avouéc rechèrche en tèxto complèt recognua',
 'sqlite-no-fts'  => '$1 sen rechèrche en tèxto complèt recognua',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Apondre una catègorie',
-'ajax-remove-category'          => 'Enlevar la catègorie',
-'ajax-edit-category'            => 'Changiér la catègorie',
-'ajax-add-category-submit'      => 'Apondre',
-'ajax-confirm-ok'               => 'D’acôrd',
-'ajax-confirm-title'            => 'Confirmar l’accion',
-'ajax-confirm-save'             => 'Sôvar',
-'ajax-confirm-save-all'         => 'Encartar tôs los changements',
-'ajax-cancel'                   => 'Anular des changements',
-'ajax-cancel-all'               => 'Anular tôs los changements',
-'ajax-add-category-summary'     => 'Apondre la catègorie « $1 »',
-'ajax-edit-category-summary'    => 'Changiér la catègorie « $1 » a « $2 »',
-'ajax-remove-category-summary'  => 'Enlevar la catègorie « $1 »',
-'ajax-category-question'        => 'Porquè voléd-vos fâre cetos changements :',
-'ajax-error-title'              => 'Èrror',
-'ajax-remove-category-error'    => 'O at pas étâ possiblo d’enlevar la catègorie « $1 ».
-En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge avouéc un modèlo.',
-'ajax-edit-category-error'      => 'O at pas étâ possiblo de changiér la catègorie « $1 ».
-En g·ènèral, cen arreve quand la catègorie at étâ apondua a la pâge dens un modèlo.',
-'ajax-category-already-present' => 'Ceta pâge est ja a la catègorie $1',
-'ajax-category-hook-error'      => 'Una fonccion locala at empachiê d’encartar los changements',
-'ajax-api-error'                => 'L’API at retornâ una èrror : $1 : $2',
-'ajax-api-unknown-error'        => 'L’API at retornâ una èrror encognua',
-
 );

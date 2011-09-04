@@ -3069,7 +3069,4 @@ $5
 'htmlform-reset'               => 'پووچەڵکردنەوەی دەستکارییەکان',
 'htmlform-selectorother-other' => 'دیکە',
 
-# Add categories per AJAX
-'ajax-confirm-save' => 'پاشەکەوت',
-
 );

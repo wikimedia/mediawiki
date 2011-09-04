@@ -3871,29 +3871,4 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'sqlite-has-fts' => '$1 với sự hỗ trợ tìm kiếm toàn văn',
 'sqlite-no-fts'  => '$1 không có hỗ trợ tìm kiếm toàn văn',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Thêm thể loại',
-'ajax-remove-category'          => 'Gỡ thể loại',
-'ajax-edit-category'            => 'Sửa thể loại',
-'ajax-add-category-submit'      => 'Thêm',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Xác nhận tác vụ',
-'ajax-confirm-save'             => 'Lưu',
-'ajax-confirm-save-all'         => 'Lưu tất cả thay đổi',
-'ajax-cancel'                   => 'Hủy bỏ các sửa đổi',
-'ajax-cancel-all'               => 'Hủy bỏ tất cả thay đổi',
-'ajax-add-category-summary'     => 'Thêm thể loại “$1”',
-'ajax-edit-category-summary'    => 'Thay thể loại “$1” bằng “$2”',
-'ajax-remove-category-summary'  => 'Gỡ thể loại “$1”',
-'ajax-category-question'        => 'Tại sao bạn muốn thực hiện những thay đổi sau:',
-'ajax-error-title'              => 'Lỗi',
-'ajax-remove-category-error'    => 'Không thể gỡ bỏ thể loại “$1”.
-Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
-'ajax-edit-category-error'      => 'Không thể sửa đổi thể loại “$1”.
-Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một bản mẫu.',
-'ajax-category-already-present' => 'Trang này đã nằm trong thể loại “$1”.',
-'ajax-category-hook-error'      => 'Một hàm địa phương năng đã chặn không lưu được những thay đổi',
-'ajax-api-error'                => 'API cho ra lỗi: $1: $2',
-'ajax-api-unknown-error'        => 'API cho ra một lỗi bất ngờ.',
-
 );

@@ -3600,29 +3600,4 @@ Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 'sqlite-has-fts' => '$1 med fuld-tekst søgnings support',
 'sqlite-no-fts'  => '$1 uden fuld-tekst søgnings support',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Tilføj kategori',
-'ajax-remove-category'          => 'Fjern kategori',
-'ajax-edit-category'            => 'Rediger kategori',
-'ajax-add-category-submit'      => 'Tilføj',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Bekræft handling',
-'ajax-confirm-save'             => 'Gem',
-'ajax-confirm-save-all'         => 'Gem alle ændringer',
-'ajax-cancel'                   => 'Fortryd redigeringer',
-'ajax-cancel-all'               => 'Fortryd alle ændringer',
-'ajax-add-category-summary'     => 'Tilføj kategorien "$1"',
-'ajax-edit-category-summary'    => 'Skift kategori "$1" til "$2"',
-'ajax-remove-category-summary'  => 'Fjern kategorien "$1"',
-'ajax-category-question'        => 'Hvorfor ønsker du at foretage følgende ændringer:',
-'ajax-error-title'              => 'Fejl',
-'ajax-remove-category-error'    => 'Det var ikke muligt at fjerne kategorien "$1".
-Det skyldes oftest at kategorien er blevet tilføjet til siden i en skabelon.',
-'ajax-edit-category-error'      => 'Det var ikke muligt at redigere kategorien "$1".
-Den mest almindelige grund til denne fejl er, at kategorien er blevet tilføjet til siden via en skabelon.',
-'ajax-category-already-present' => 'Denne side er allerede i kategorien $1',
-'ajax-category-hook-error'      => 'En lokal funktion forhindrede at ændringerne blev gemt',
-'ajax-api-error'                => 'API gav en fejlbesked: $1: $2',
-'ajax-api-unknown-error'        => "API'en returnerede en ukendt fejl.",
-
 );

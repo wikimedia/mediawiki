@@ -4033,29 +4033,4 @@ $1',
 'sqlite-has-fts' => '$1 со поддршка за пребарување по цели текстови',
 'sqlite-no-fts'  => '$1 без поддршка за пребарување по цели текстови',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Додај категорија',
-'ajax-remove-category'          => 'Отстрани категорија',
-'ajax-edit-category'            => 'Уреди категорија',
-'ajax-add-category-submit'      => 'Додај',
-'ajax-confirm-ok'               => 'ОК',
-'ajax-confirm-title'            => 'Потврди дејство',
-'ajax-confirm-save'             => 'Зачувај',
-'ajax-confirm-save-all'         => 'Зачувај ги сите промени',
-'ajax-cancel'                   => 'Откажи уредувања',
-'ajax-cancel-all'               => 'Откажи ги сите промени',
-'ajax-add-category-summary'     => 'Додај категорија "$1"',
-'ajax-edit-category-summary'    => 'Замена на категоријата „$1“ со „$2“',
-'ajax-remove-category-summary'  => 'Избриши категорија "$1"',
-'ajax-category-question'        => 'Зошто сакате да ги извршите следниве измени:',
-'ajax-error-title'              => 'Грешка',
-'ajax-remove-category-error'    => 'Не можев да ја отстранам категоријата „$1“.
-Ова обично се случува кога категоријата е додадена на страница преку некој шаблон.',
-'ajax-edit-category-error'      => 'Категоријата „$1“ не можеше да се уреди.
-Ова обично се случува кога категоријата е додадена на страница преку некој шаблон.',
-'ajax-category-already-present' => 'Страницава веќе ѝ припаѓа на категоријата $1',
-'ajax-category-hook-error'      => 'Локална функција го спречи зачувувањето на измените',
-'ajax-api-error'                => 'API врати грешка: $1: $2',
-'ajax-api-unknown-error'        => 'API врати непозната грешка.',
-
 );

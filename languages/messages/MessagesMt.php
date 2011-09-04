@@ -3726,29 +3726,4 @@ Daħħal l-isem tal-fajl bla l-prefiss "{{ns:file}}:".',
 'sqlite-has-fts' => "$1 bil-possibilità ta' tfittxija kompluta fit-test",
 'sqlite-no-fts'  => "$1 mingħajr il-possibilità ta' tfittxija kompluta fit-test",
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Żid kategorija',
-'ajax-remove-category'          => 'Ħassar kategorija',
-'ajax-edit-category'            => 'Immodifika kategorija',
-'ajax-add-category-submit'      => 'Żid',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Ikkonferma l-azzjoni',
-'ajax-confirm-save'             => 'Salva',
-'ajax-confirm-save-all'         => 'Salva kull tibdila',
-'ajax-cancel'                   => 'Annulla l-modifika',
-'ajax-cancel-all'               => 'Annulla kull tibdila',
-'ajax-add-category-summary'     => 'Żid il-kategorija "$1"',
-'ajax-edit-category-summary'    => 'Biddel kategorija minn "$1" għal "$2"',
-'ajax-remove-category-summary'  => 'Neħħi l-kategorija "$1"',
-'ajax-category-question'        => 'Għaliex tixtieq tagħmel dawn il-modifiki:',
-'ajax-error-title'              => 'Żball',
-'ajax-remove-category-error'    => 'Ma kienx possibbli li titneħħa l-kategorija "$1".
-Dan ġeneralment jiġri meta l-kategorija ġiet miżjuda mal-paġna permezz ta\' mudell.',
-'ajax-edit-category-error'      => 'Ma kienx possibbli li timmodifika l-kategorija "$1".
-Dan ġeneralment jiġri meta l-kategorija ġiet miżjuda mal-paġna permezz ta\' mudell.',
-'ajax-category-already-present' => 'Din il-paġna diġà tappartjeni għall-kategorija "$1"',
-'ajax-category-hook-error'      => 'Funzjoni lokali ma ħallietx li l-modifiki jiġu salvati.',
-'ajax-api-error'                => 'L-API tat lura żball: $1: $2.',
-'ajax-api-unknown-error'        => 'L-API tat lura żball mhux magħruf.',
-
 );

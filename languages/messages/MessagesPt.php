@@ -3818,28 +3818,4 @@ Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 com suporte de pesquisa de texto completo',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Adicionar categoria',
-'ajax-remove-category'          => 'Remover categoria',
-'ajax-edit-category'            => 'Editar categoria',
-'ajax-add-category-submit'      => 'Adicionar',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Confirme a operação',
-'ajax-confirm-save'             => 'Gravar',
-'ajax-confirm-save-all'         => 'Gravar todas as alterações',
-'ajax-cancel'                   => 'Cancelar as edições',
-'ajax-cancel-all'               => 'Cancelar todas as alterações',
-'ajax-add-category-summary'     => 'adicionar a categoria "$1"',
-'ajax-edit-category-summary'    => 'Alterar a categoria "$1" para "$2"',
-'ajax-remove-category-summary'  => 'remover a categoria "$1"',
-'ajax-category-question'        => 'Porque é que pretende fazer as seguintes alterações:',
-'ajax-error-title'              => 'Erro',
-'ajax-remove-category-error'    => 'Não foi possível remover a categoria "$1".
-Isto normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
-'ajax-edit-category-error'      => 'Não foi possível editar a categoria "$1".
-Isso normalmente ocorre quando a categoria foi adicionada à página através de uma predefinição.',
-'ajax-category-already-present' => 'Esta página já está na categoria $1',
-'ajax-category-hook-error'      => 'Uma função local impediu que as alterações fossem gravadas',
-'ajax-api-error'                => 'A API retornou um erro: $1: $2',
-
 );

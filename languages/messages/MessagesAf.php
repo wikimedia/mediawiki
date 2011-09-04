@@ -3667,29 +3667,4 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 'sqlite-has-fts' => 'Weergawe $1 met ondersteuning vir vol-teks soektogte ("full-text search")',
 'sqlite-no-fts'  => 'Weergawe $1 sonder ondersteuning vir vol-teks soektogte ("full-text search")',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Voeg kategorie by',
-'ajax-remove-category'          => 'Verwyder kategorie',
-'ajax-edit-category'            => 'Wysig kategorie',
-'ajax-add-category-submit'      => 'Byvoeg',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Bevestig aksie',
-'ajax-confirm-save'             => 'Stoor',
-'ajax-confirm-save-all'         => 'Stoor alle wysigings',
-'ajax-cancel'                   => 'Kanselleer wysiging',
-'ajax-cancel-all'               => 'Kanselleer alle wysigings',
-'ajax-add-category-summary'     => 'Voeg kategorie "$1" by',
-'ajax-edit-category-summary'    => 'Verander kategorie "$1" na "$2"',
-'ajax-remove-category-summary'  => 'Verwyder kategorie "$1"',
-'ajax-category-question'        => 'Hoekom wil u die volgende wysigings aanbring:',
-'ajax-error-title'              => 'Fout',
-'ajax-remove-category-error'    => 'Ongelukkig was nie moontlik om die kategorie "$1" te verwyder nie.
-Dit gebeur gewoonlik as die kategorie via \'n sjabloon by die bladsy bygevoeg is.',
-'ajax-edit-category-error'      => 'Dit was nie moontlik om kategorie "$1" te wysig nie.
-Dit gebeur gewoonlik as die kategorie deur \'n sjabloon by die bladsy gevoeg is.',
-'ajax-category-already-present' => 'Hierdie bladsy behoort reeds tot die kategorie "$1"',
-'ajax-category-hook-error'      => "'n Lokale funksie het verhoed dat die veranderinge gestoor word.",
-'ajax-api-error'                => 'Die API gee fout: $1: $2.',
-'ajax-api-unknown-error'        => "Die API gee 'n onbekende fout.",
-
 );

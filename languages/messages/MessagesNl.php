@@ -3952,29 +3952,4 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning voor "full-text" zoeken',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Categorie toevoegen',
-'ajax-remove-category'          => 'Categorie verwijderen',
-'ajax-edit-category'            => 'Categorie bewerken',
-'ajax-add-category-submit'      => 'Toevoegen',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Handeling bevestigen',
-'ajax-confirm-save'             => 'Opslaan',
-'ajax-confirm-save-all'         => 'Alle wijzigingen opslaan',
-'ajax-cancel'                   => 'Bewerkingen annuleren',
-'ajax-cancel-all'               => 'Alle wijzigingen annuleren',
-'ajax-add-category-summary'     => 'categorie "$1" toevoegen',
-'ajax-edit-category-summary'    => 'categorie "$1" naar "$2" wijzigen',
-'ajax-remove-category-summary'  => 'categorie "$1" verwijderen',
-'ajax-category-question'        => 'Waarom wilt u de volgende wijzigingen maken:',
-'ajax-error-title'              => 'Fout',
-'ajax-remove-category-error'    => 'Het was niet mogelijk categorie "$1" te verwijderen.
-Dit gebeurt meestal als de categorie via een sjabloon aan de pagina is toegevoegd.',
-'ajax-edit-category-error'      => '!Het was niet mogelijk om categorie "$1" te bewerken.
-Dit gebeurt meestal wanneer de categorie is toegevoegd aan de pagina door een sjabloon.',
-'ajax-category-already-present' => 'Deze pagina behoort al tot categorie $1',
-'ajax-category-hook-error'      => 'Een lokale functie verhinderde het opslaan van de wijzigingen',
-'ajax-api-error'                => 'De API gaf een foutmelding: $1: $2',
-'ajax-api-unknown-error'        => 'De API gaf een onbekende foutmelding.',
-
 );

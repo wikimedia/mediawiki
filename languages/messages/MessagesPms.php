@@ -3503,15 +3503,4 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 'sqlite-has-fts' => '$1 con arserca an test pien mantnùa',
 'sqlite-no-fts'  => '$1 sensa arserca an test pien mantnùa',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Gionta categorìa',
-'ajax-add-category-submit'     => 'Gionta',
-'ajax-confirm-title'           => 'Conferma assion',
-'ajax-confirm-save'            => 'Salva',
-'ajax-add-category-summary'    => 'Gionta la categorìa "$1"',
-'ajax-remove-category-summary' => 'Gava la categorìa "$1"',
-'ajax-error-title'             => 'Eror',
-'ajax-remove-category-error'   => "A l'era pa possìbil gavé sta categorìa-sì.
-Sòn-sì a càpita normalment quand la categorìa a l'é stàita giontà a la pàgina ant në stamp.",
-
 );

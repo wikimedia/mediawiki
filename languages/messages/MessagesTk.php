@@ -3178,16 +3178,4 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'sqlite-has-fts' => '$1 (doly tekstli gözleg goldawly)',
 'sqlite-no-fts'  => '$1 (doly tekstli gözleg goldawsyz)',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategoriýa goş',
-'ajax-add-category-submit'     => 'Goş',
-'ajax-confirm-ok'              => 'OK',
-'ajax-confirm-title'           => 'Işi tassykla',
-'ajax-confirm-save'            => 'Ýazdyr',
-'ajax-add-category-summary'    => '"$1" kategoriýasyny goş',
-'ajax-remove-category-summary' => '"$1" kategoriýasyny aýyr',
-'ajax-error-title'             => 'Säwlik',
-'ajax-remove-category-error'   => 'Bu kategoriýany aýyryp bolmady.
-Bu adatça kategoriýa sahypanyň içindäki bir şablona goşulgy bolsa ýüze çykýar.',
-
 );

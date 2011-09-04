@@ -3264,29 +3264,4 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'sqlite-has-fts' => '$1 সম্পূৰ্ণ-পাঠ অনুসন্ধান সমৰ্থন সহ',
 'sqlite-no-fts'  => '$1 সম্পূৰ্ণ-পাঠ অনুসন্ধান সমৰ্থন অবিহনে',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'শ্ৰেণী সংযোগ কৰক',
-'ajax-remove-category'          => 'শ্ৰেণী আঁতৰ কৰক',
-'ajax-edit-category'            => 'শ্ৰেণী সম্পাদনা কৰক',
-'ajax-add-category-submit'      => 'যোগ',
-'ajax-confirm-ok'               => "অ'কে",
-'ajax-confirm-title'            => 'কাৰ্য নিশ্চিত কৰক:',
-'ajax-confirm-save'             => 'সাঁচি থওক',
-'ajax-confirm-save-all'         => 'সকলো সালসলনি সাঁচি থওক',
-'ajax-cancel'                   => 'সম্পাদনা বাতিল কৰক',
-'ajax-cancel-all'               => 'সকলো সালসলনি বাতিল কৰক',
-'ajax-add-category-summary'     => 'শ্ৰেণী "$1" সংযোগ কৰক',
-'ajax-edit-category-summary'    => '"$1" শ্ৰেণীক "$2" লৈ সলনি কৰক',
-'ajax-remove-category-summary'  => '"$1" শ্ৰেণীক আঁতৰ কৰক',
-'ajax-category-question'        => 'আপুনি তলৰ সালসলনিসমূহ কিয় কৰিবলৈ বিচাৰিছে:',
-'ajax-error-title'              => 'ভুল',
-'ajax-remove-category-error'    => '"$1" শ্ৰেণীটো আঁতৰ কৰা সম্ভৱ নহ\'ল ।
-শ্ৰেনীটো সাঁচত ৰাখি পৃষ্ঠাত যোগ কৰিলে সাধাৰণতে এনে হয় ।',
-'ajax-edit-category-error'      => '"$1" শ্ৰেণীটো সম্পাদনা কৰা সম্ভৱ নহ\'ল ।
-শ্ৰেনীটো সাঁচত ৰাখি পৃষ্ঠাত যোগ কৰিলে সাধাৰণতে এনে হয় ।',
-'ajax-category-already-present' => 'এই পৃষ্ঠাখন ইতিমধ্যে $1 শ্ৰেণীত আছে',
-'ajax-category-hook-error'      => 'এক স্থানীয় ফাংচনে সালসলনিবোৰ সাঁচি ৰখাত বাধা দিছে ।',
-'ajax-api-error'                => 'API-এ ত্ৰুটি দেখুৱাইছে: $1: $2 ।',
-'ajax-api-unknown-error'        => 'APIয়ে অজ্ঞাত ত্ৰুটি পঠিয়াইছে ।',
-
 );

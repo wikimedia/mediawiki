@@ -3306,15 +3306,4 @@ $1',
 'sqlite-has-fts' => 'รุ่น $1 พร้อมการสนับสนุนการค้นหาข้อความแบบเต็ม',
 'sqlite-no-fts'  => 'รุ่น $1 โดยไม่มีการสนับสนุนการค้นหาข้อความแบบเต็ม',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'เพิ่มหมวดหมู่',
-'ajax-add-category-submit'     => 'เพิ่ม',
-'ajax-confirm-title'           => 'ยืนยันการกระทำ',
-'ajax-confirm-save'            => 'บันทึก',
-'ajax-add-category-summary'    => 'เพิ่มหมวดหมู่ "$1"',
-'ajax-remove-category-summary' => 'นำหมวดหมู่ "$1" ออก',
-'ajax-error-title'             => 'เกิดข้อผิดพลาด',
-'ajax-remove-category-error'   => 'ไม่สามารถลบหมวดหมู่นี้ได้
-มักจะเกิดขึ้นอันเนื่องมาจากหมวดหมู่นี้ได้ถูกเพิ่มจากการเพิ่มแม่แบบเข้าไป',
-
 );

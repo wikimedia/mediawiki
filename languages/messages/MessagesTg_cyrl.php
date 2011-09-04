@@ -2577,15 +2577,4 @@ $1',
 'htmlform-reset'               => 'Ботили тағйирот',
 'htmlform-selectorother-other' => 'Дигар',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Илова кардани гурӯҳ',
-'ajax-add-category-submit'     => 'Илова кардан',
-'ajax-confirm-title'           => 'Таъйиди амал',
-'ajax-confirm-save'            => 'Захира',
-'ajax-add-category-summary'    => 'Илова кардани гурӯҳи "$1"',
-'ajax-remove-category-summary' => 'Ҳазви гурӯҳӣ "$1"',
-'ajax-error-title'             => 'Хато',
-'ajax-remove-category-error'   => 'Имкони ҳазви ин гурӯҳ вуҷуд надошт.
-Ин иттифоқ маъмулан замоне меафтад, ки гурӯҳ аз тариқи як шаблон ба саҳифа изофа шуда бошад.',
-
 );

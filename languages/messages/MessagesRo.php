@@ -3792,29 +3792,4 @@ Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
 'sqlite-has-fts' => '$1 cu suport de căutare în tot textul',
 'sqlite-no-fts'  => '$1 fără suport de căutare în tot textul',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Adaugă categorie',
-'ajax-remove-category'          => 'Elimină categoria',
-'ajax-edit-category'            => 'Modifică categoria',
-'ajax-add-category-submit'      => 'Adaugă',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Confirmați acțiunea',
-'ajax-confirm-save'             => 'Salvare',
-'ajax-confirm-save-all'         => 'Salvează toate schimbările',
-'ajax-cancel'                   => 'Anulează modificarea',
-'ajax-cancel-all'               => 'Anulează toate modificările',
-'ajax-add-category-summary'     => 'Adăugarea categoriei „$1”',
-'ajax-edit-category-summary'    => 'Modificarea categoriei „$1” în „$2”',
-'ajax-remove-category-summary'  => 'Eliminarea categoriei „$1”',
-'ajax-category-question'        => 'De ce doriți să efectuați următoarele modificări:',
-'ajax-error-title'              => 'Eroare',
-'ajax-remove-category-error'    => 'Eliminarea categoriei „$1” nu a fost posibilă.
-Acest lucru are loc de obicei atunci când categoria a fost adăugată în pagină printr-un format.',
-'ajax-edit-category-error'      => 'Modificarea categoriei „$1” nu a fost posibilă.
-Acest lucru are loc de obicei atunci când categoria a fost adăugată în pagină printr-un format.',
-'ajax-category-already-present' => 'Această pagină aparține deja categoriei $1',
-'ajax-category-hook-error'      => 'O funcție locală a împiedicat salvarea modificărilor',
-'ajax-api-error'                => 'API a returnat o eroare: $1: $2',
-'ajax-api-unknown-error'        => 'API a returnat o eroare necunoscută.',
-
 );

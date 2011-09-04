@@ -3674,29 +3674,4 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'sqlite-has-fts' => '$1 gant enklask eus an destenn a-bezh embreget',
 'sqlite-no-fts'  => '$1 hep enklask eus an destenn a-bezh embreget',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Ouzhpennañ ur rummad',
-'ajax-remove-category'          => 'Tennañ ar rummad kuit',
-'ajax-edit-category'            => 'Kemmañ ur rummad',
-'ajax-add-category-submit'      => 'Ouzhpennañ',
-'ajax-confirm-ok'               => 'Mat eo',
-'ajax-confirm-title'            => 'Kadarnaat an oberiadenn',
-'ajax-confirm-save'             => 'Enrollañ',
-'ajax-confirm-save-all'         => 'Enrollañ an holl gemmoù',
-'ajax-cancel'                   => "Nullañ ar c'hemmoù",
-'ajax-cancel-all'               => 'Nullañ an holl gemmoù',
-'ajax-add-category-summary'     => 'Ouzhpennañ ar rummad "$1"',
-'ajax-edit-category-summary'    => 'Cheñch ar rummad eus "$1" da "$2"',
-'ajax-remove-category-summary'  => 'Diverkañ ar rummad "$1"',
-'ajax-category-question'        => "Perak e fell deoc'h ober ar c'hemmoù da-heul :",
-'ajax-error-title'              => 'Fazi',
-'ajax-remove-category-error'    => 'N\'eus ket bet gallet diverkañ ar rummad "$1". 
-C\'hoarvezout a ra p\'eo bet ouzhpennet ar rummad er bajenn dre ur patrom',
-'ajax-edit-category-error'      => 'N\'eus ket bet gallet degas kemmoù er rummad "$1". 
-C\'hoarvezout a ra p\'eo bet ouzhpennet ar rummad er bajenn dre ur patrom',
-'ajax-category-already-present' => 'Er rummad "$1" emañ ar bajenn-mañ c\'hoazh.',
-'ajax-category-hook-error'      => "Un arc'hwel lec'hel a vir ouzh ar c'hemmoù da vezañ enrollet.",
-'ajax-api-error'                => 'Distroet ez eus ur fazi gant an API : $1: $2.',
-'ajax-api-unknown-error'        => 'Distroet ez eus ur fazi dianav gant an API.',
-
 );

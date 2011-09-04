@@ -2846,13 +2846,4 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“',
 'htmlform-reset'               => 'Sädunön votükamis',
 'htmlform-selectorother-other' => 'Votik',
 
-# Add categories per AJAX
-'ajax-edit-category'           => 'Redakön kladi',
-'ajax-add-category-submit'     => 'Läükön',
-'ajax-confirm-save'            => 'Dakipön',
-'ajax-confirm-save-all'        => 'Dakipön votükamis valik',
-'ajax-add-category-summary'    => 'Läükön kladi: "$1"',
-'ajax-remove-category-summary' => 'Moükön kladi: "$1"',
-'ajax-error-title'             => 'Pöl',
-
 );

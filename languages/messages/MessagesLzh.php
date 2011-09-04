@@ -2779,15 +2779,4 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 'sqlite-has-fts' => '$1 含全文之尋',
 'sqlite-no-fts'  => '$1 不含全文之尋',
 
-# Add categories per AJAX
-'ajax-add-category'            => '加類',
-'ajax-add-category-submit'     => '加',
-'ajax-confirm-title'           => '確',
-'ajax-confirm-save'            => '存',
-'ajax-add-category-summary'    => '加類「$1」',
-'ajax-remove-category-summary' => '取類「$1」',
-'ajax-error-title'             => '錯',
-'ajax-remove-category-error'   => '無取此類也。
-常於一模入類。',
-
 );

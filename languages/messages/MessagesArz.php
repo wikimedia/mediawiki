@@ -3500,15 +3500,4 @@ $1',
 'htmlform-reset'               => 'الرجوع فى التغييرات',
 'htmlform-selectorother-other' => 'تانيين',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'ضيف تصنيف',
-'ajax-add-category-submit'     => 'ضيف',
-'ajax-confirm-title'           => 'تأكيد العمليه',
-'ajax-confirm-save'            => 'سييف',
-'ajax-add-category-summary'    => 'حط التصنيف "$1"',
-'ajax-remove-category-summary' => 'شيل التصنيف "$1"',
-'ajax-error-title'             => 'غلط',
-'ajax-remove-category-error'   => 'مانفعش نشيل التصنيف دا.
-دا بيحصل عادة لما التصنيف بيتحط فى الصفحه عن طريق القالب',
-
 );
