@@ -25,7 +25,7 @@ class DifferenceEngine {
 	var $mOldid, $mNewid;
 	var $mOldtitle, $mNewtitle, $mPagetitle;
 	var $mOldtext, $mNewtext;
-	var $mDiffLang;
+	protected $mDiffLang;
 
 	/**
 	 * @var Title
@@ -981,7 +981,7 @@ CONTROL;
 	 * (Defaults to page content language).
 	 * @since 1.19
 	 */
-	function setDiffLang( $lang ) {
+	function setTextLanguage( $lang ) {
 		$this->mDiffLang = wfGetLangObj( $lang );
 	}
 
