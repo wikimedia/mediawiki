@@ -483,6 +483,15 @@ class SkinTemplate extends Skin {
 			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!\n" );
 		}
 
+		// Set the bodytext to another key so that skins can just output it on it's own
+		// and output printfooter and debughtml separately
+		$tpl->set( 'bodycontent', $tpl->data['bodytext'] );
+
+		// Append printfooter and debughtml onto bodytext so that skins that were already
+		// using bodytext before they were split out don't suddenly start not outputting information
+		$tpl->data['bodytext'] .= Html::element( 'div', array( 'class' => 'printfooter' ), "\n{$tpl->data['printfooter']}" ) . "\n";
+		$tpl->data['bodytext'] .= $tpl->data['debughtml'];
+
 		// allow extensions adding stuff after the page content.
 		// See Skin::afterContentHook() for further documentation.
 		$tpl->set( 'dataAfterContent', $this->afterContentHook() );

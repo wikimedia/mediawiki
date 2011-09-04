@@ -91,8 +91,6 @@ class MonoBookTemplate extends BaseTemplate {
 <?php } ?>
 		<!-- start content -->
 <?php $this->html('bodytext') ?>
-		<?php if($this->data['printfooter']) { ?><div class="printfooter"><?php $this->html('printfooter'); ?></div><?php } ?>
-		<?php $this->html('debughtml'); ?>
 		<?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
 		<!-- end content -->
 		<?php if($this->data['dataAfterContent']) { $this->html ('dataAfterContent'); } ?>
