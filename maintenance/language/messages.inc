@@ -3504,30 +3504,6 @@ $wgMessageStructure = array(
 	'unwatch' => array(
 		'confirm-unwatch-button',
 	),
-	'ajax-category' => array(
-		'ajax-add-category',
-		'ajax-remove-category',
-		'ajax-edit-category',
-		'ajax-add-category-submit',
-		'ajax-confirm-ok',
-		'ajax-confirm-title',
-		'ajax-confirm-save',
-		'ajax-confirm-save-all',
-		'ajax-cancel',
-		'ajax-cancel-all',
-		'ajax-add-category-summary',
-		'ajax-edit-category-summary',
-		'ajax-remove-category-summary',
-		'ajax-category-question',
-		'ajax-error-title',
-		'ajax-remove-category-error',
-		'ajax-edit-category-error',
-		'ajax-category-already-present',
-		'ajax-category-hook-error',
-		'ajax-api-error',
-		'ajax-api-unknown-error',
-	),
-
 );
 
 /** Comments for each block */
@@ -3759,5 +3735,4 @@ Variants for Chinese language",
 	'db-error-messages'     => 'Database error messages',
 	'html-forms'            => 'HTML forms',
 	'sqlite'                => 'SQLite database support',
-	'ajax-category'         => 'Add categories per AJAX',
 );

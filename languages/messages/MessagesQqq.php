@@ -4300,23 +4300,4 @@ The number of following wikis is unknown. For an empty result, no message is sho
 'sqlite-has-fts' => 'Shown on Special:Version, $1 is version',
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
 
-# Add categories per AJAX
-'ajax-remove-category'          => 'Tooltip for link to remove a category from the page, displayed after each category at the foot of a page.
-Refers to the specific category. "Remove this category" is also correct.',
-'ajax-edit-category'            => 'Tooltip for the edit link displayed after each category at the foot of a page. Refers to the specific category. "Edit this category" is also correct.',
-'ajax-add-category-submit'      => '{{Identical|Add}}',
-'ajax-confirm-ok'               => '{{Identical|OK}}',
-'ajax-confirm-title'            => 'Title for a dialog box in which the user is asked for an edit summary',
-'ajax-confirm-save'             => 'Submit button {{Identical|Save}}',
-'ajax-confirm-save-all'         => 'Submit button to save all changes',
-'ajax-add-category-summary'     => 'See {{msg-mw|ajax-category-question}}. $1 is a category name.',
-'ajax-edit-category-summary'    => 'See {{msg-mw|ajax-category-question}}. $1 and $2 are both category names.',
-'ajax-remove-category-summary'  => 'See {{msg-mw|ajax-category-question}}. $1 is a category name.',
-'ajax-category-question'        => "Question the user is asked before submit. It's followed by a list of the changes.",
-'ajax-error-title'              => '{{Identical|Error}}',
-'ajax-category-already-present' => 'Error message. $1 is the category name',
-'ajax-api-error'                => 'API = [http://en.wikipedia.org/wiki/Application_programming_interface Application programming interface].
-
-"returned" here means "reported".',
-
 );
