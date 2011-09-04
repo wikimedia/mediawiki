@@ -105,7 +105,7 @@ class Html {
 	 * Returns an HTML element in a string.  The major advantage here over
 	 * manually typing out the HTML is that it will escape all attribute
 	 * values.  If you're hardcoding all the attributes, or there are none, you
-	 * should probably type out the string yourself.
+	 * should probably just type out the html element yourself.
 	 *
 	 * This is quite similar to Xml::tags(), but it implements some useful
 	 * HTML-specific logic.  For instance, there is no $allowShortTag
@@ -115,7 +115,7 @@ class Html {
 	 *
 	 * @param $element string The element's name, e.g., 'a'
 	 * @param $attribs array  Associative array of attributes, e.g., array(
-	 *   'href' => 'http://www.mediawiki.org/' ).  See expandAttributes() for
+	 *   'href' => 'http://www.mediawiki.org/' ). See expandAttributes() for
 	 *   further documentation.
 	 * @param $contents string The raw HTML contents of the element: *not*
 	 *   escaped!
@@ -357,6 +357,26 @@ class Html {
 	 * Xml::expandAttributes(), but it implements some HTML-specific logic.
 	 * For instance, it will omit quotation marks if $wgWellFormedXml is false,
 	 * and will treat boolean attributes specially.
+	 *
+	 * Attributes that should contain space-separated lists (such as 'class') array
+	 * values are allowed as well, which will automagically be normalized
+	 * and converted to a space-separated string. In addition to a numerical
+	 * array, the attribute value may also be an associative array. See the
+	 * example below for how that works.
+	 * @example Numerical array
+	 * <code>
+	 *     Html::element( 'em', array(
+	 *         'class' => array( 'foo', 'bar' )
+	 *     ) );
+	 *     // gives '<em class="foo bar"></em>'
+	 * </code>
+	 * @example Associative array
+	 * <code>
+	 *     Html::element( 'em', array(
+	 *         'class' => array( 'foo', 'bar', 'foo' => false, 'quux' => true )
+	 *     ) );
+	 *     // gives '<em class="bar quux"></em>'
+	 * </code>
 	 *
 	 * @param $attribs array Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  Values will be HTML-escaped.
