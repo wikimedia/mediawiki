@@ -1853,15 +1853,16 @@ $wgExtraLanguageNames = array();
 
 /**
  * List of language codes that don't correspond to an actual language.
- * These codes are leftoffs from renames, or other legacy things.
+ * These codes are mostly leftoffs from renames, or other legacy things.
  * Also, qqq is a dummy "language" for documenting messages.
+ * This array makes them not appear as a selectable language on the installer,
+ * and excludes them when running the transstat.php script.
  */
 $wgDummyLanguageCodes = array(
 	'als',
 	'bat-smg',
 	'be-x-old',
 	'fiu-vro',
-	'iu',
 	'nb',
 	'qqq',
 	'qqx',
