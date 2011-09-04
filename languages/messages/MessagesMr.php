@@ -3359,9 +3359,4 @@ $1',
 'sqlite-has-fts' => 'पूर्ण-मजकूर शोध समर्थनासहित $1',
 'sqlite-no-fts'  => 'पूर्ण-मजकूर शोध समर्थनाविरहित $1',
 
-# Add categories per AJAX
-'ajax-confirm-ok'       => 'ठीक',
-'ajax-confirm-save'     => 'जतन करा',
-'ajax-confirm-save-all' => 'सर्व बदल जतन करा',
-
 );

@@ -3589,15 +3589,4 @@ $1',
 'sqlite-has-fts' => '$1 (본문 전체 검색)',
 'sqlite-no-fts'  => '$1 (본문은 검색에서 제외)',
 
-# Add categories per AJAX
-'ajax-add-category'            => '분류 추가',
-'ajax-add-category-submit'     => '추가',
-'ajax-confirm-title'           => '편집 확인',
-'ajax-confirm-save'            => '저장',
-'ajax-add-category-summary'    => '"$1" 분류 더하기',
-'ajax-remove-category-summary' => '"$1" 분류 지우기',
-'ajax-error-title'             => '오류',
-'ajax-remove-category-error'   => '이 분류를 지울 수 없습니다.
-분류가 틀로 추가되었을 수 있습니다.',
-
 );

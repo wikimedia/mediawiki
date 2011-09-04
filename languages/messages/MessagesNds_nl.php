@@ -3737,29 +3737,4 @@ Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
 'sqlite-has-fts' => 'Versie $1 mit ondersteuning veur "full-text" zeuken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning veur "full-text" zeuken',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Kategorie derbie zetten',
-'ajax-remove-category'          => 'Kategorie vortdoon',
-'ajax-edit-category'            => 'Bewark kategorie',
-'ajax-add-category-submit'      => 'Derbie zetten',
-'ajax-confirm-ok'               => 'Oké',
-'ajax-confirm-title'            => 'Haandeling bevestigen',
-'ajax-confirm-save'             => 'Opslaon',
-'ajax-confirm-save-all'         => 'Alle wiezigingen opslaon',
-'ajax-cancel'                   => 'Bewarkingen ofbreken',
-'ajax-cancel-all'               => 'Alle wiezigingen aofbreken',
-'ajax-add-category-summary'     => 'Kategorie "$1" derbie doon',
-'ajax-edit-category-summary'    => 'Wiezig kategorie "$1" naor "$2"',
-'ajax-remove-category-summary'  => 'Kategorie "$1" vortdoon',
-'ajax-category-question'        => "Waorumme wi'j de volgende wiezigingen anbrengen:",
-'ajax-error-title'              => 'Fout',
-'ajax-remove-category-error'    => 'Kon de kategorie "$1" niet vortdoon.
-Dit gebeurt meestentieds as de kategorie via n mal op de pagina ezet is.',
-'ajax-edit-category-error'      => 't Was niet meugelik um de kategorie "$1" te wiezigen.
-Dit gebeurt meestentieds as de kategorie via n mal op de pagina ezet is.',
-'ajax-category-already-present' => 'Disse pagina steet al in de kategorie $1',
-'ajax-category-hook-error'      => 'n Lokale funksie verhinderden t opslaon van de wiezigingen',
-'ajax-api-error'                => 'De API gaf n foutmelding: $1: $2',
-'ajax-api-unknown-error'        => 'De API gaf n onbekende foutmelding.',
-
 );

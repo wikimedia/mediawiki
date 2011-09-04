@@ -2096,13 +2096,4 @@ Xêra xwe zanibe ku tu bi rastî dixwazê vê rûpelê dîsa çêkê",
 'htmlform-reset'               => 'Guherandinan vegerîne',
 'htmlform-selectorother-other' => 'Yên din',
 
-# Add categories per AJAX
-'ajax-remove-category'  => 'Kategoriyê jê bibe',
-'ajax-edit-category'    => 'Kategoriyê biguherîne',
-'ajax-confirm-save'     => 'Tomar bike',
-'ajax-confirm-save-all' => 'Hemû guhertinan tomar bike',
-'ajax-cancel'           => 'Guhertinê betal bike',
-'ajax-cancel-all'       => 'Hemû guhertinan betal bike',
-'ajax-error-title'      => 'Çewtî',
-
 );

@@ -3821,29 +3821,4 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',
 'sqlite-no-fts'  => '$1 bez podpory plnotextového vyhledávání',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Přidat kategorii',
-'ajax-remove-category'          => 'Odebrat kategorii',
-'ajax-edit-category'            => 'Upravit kategorii',
-'ajax-add-category-submit'      => 'Přidat',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Potvrdit změnu',
-'ajax-confirm-save'             => 'Uložit',
-'ajax-confirm-save-all'         => 'Uložit všechny změny',
-'ajax-cancel'                   => 'Stornovat změny',
-'ajax-cancel-all'               => 'Stornovat všechny změny',
-'ajax-add-category-summary'     => 'Přidání kategorie „$1“',
-'ajax-edit-category-summary'    => 'Změnit kategorii „$1“ na „$2“',
-'ajax-remove-category-summary'  => 'Odebrání kategorie „$1“',
-'ajax-category-question'        => 'Proč chcete provést následující změny:',
-'ajax-error-title'              => 'Chyba',
-'ajax-remove-category-error'    => 'Nepodařilo se odstranit kategorii „$1“.
-To se obvykle stává v případě, že byla stránka do kategorie přidána prostřednictvím šablony.',
-'ajax-edit-category-error'      => 'Nepodařilo se upravit kategorii „$1“.
-To se obvykle stává v případě, že byla stránka do kategorie přidána prostřednictvím šablony.',
-'ajax-category-already-present' => 'Tato stránka již do kategorie $1 patří',
-'ajax-category-hook-error'      => 'Místní funkce zabránila uložení změn',
-'ajax-api-error'                => 'API vrátilo chybu: $1: $2',
-'ajax-api-unknown-error'        => 'API vrátilo neznámou chybu.',
-
 );

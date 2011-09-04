@@ -3314,15 +3314,4 @@ Zapódaj datajowe mě bźez dodanka "{{ns:file}}:".',
 'sqlite-has-fts' => 'Wersija $1 z pódpěru za połnotekstowe pytanje',
 'sqlite-no-fts'  => 'Wersija $1 bźez pódpěry za połnotekstowe pytanje',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Kategoriju pśidaś',
-'ajax-add-category-submit'     => 'Pśidaś',
-'ajax-confirm-title'           => 'Akciju wobkšuśiś',
-'ajax-confirm-save'            => 'Składowaś',
-'ajax-add-category-summary'    => 'Kategoriju "$1" pśidaś',
-'ajax-remove-category-summary' => 'Kategoriju "$1" wótpóraś',
-'ajax-error-title'             => 'Zmólka',
-'ajax-remove-category-error'   => 'Njejo móžno było toś tu kategoriju wótpóraś.
-To se zwětšego stawa, gaž kategorija jo se pśidała bokoju w pśedłoze.',
-
 );

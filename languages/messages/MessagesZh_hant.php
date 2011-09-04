@@ -3618,15 +3618,4 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'sqlite-has-fts' => '帶全文搜尋的版本$1',
 'sqlite-no-fts'  => '不帶全文搜尋的版本$1',
 
-# Add categories per AJAX
-'ajax-add-category'            => '加入分類',
-'ajax-add-category-submit'     => '加入',
-'ajax-confirm-title'           => '確認動作',
-'ajax-confirm-save'            => '儲存',
-'ajax-add-category-summary'    => '加入分類「$1」',
-'ajax-remove-category-summary' => '移除分類「$1」',
-'ajax-error-title'             => '錯誤',
-'ajax-remove-category-error'   => '不能移除這個分類。
-通常是發生在一個模板中加入該分類。',
-
 );

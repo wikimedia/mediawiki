@@ -3831,15 +3831,4 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'sqlite-has-fts' => '$1 sa podrškom pretrage cijelog teksta',
 'sqlite-no-fts'  => '$1 bez podrške pretrage cijelog teksta',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Dodaj kategoriju',
-'ajax-add-category-submit'     => 'Dodaj',
-'ajax-confirm-title'           => 'Potvrdi akciju',
-'ajax-confirm-save'            => 'Spremi',
-'ajax-add-category-summary'    => 'Dodaj kategoriju "$1"',
-'ajax-remove-category-summary' => 'Ukloni kategoriju "$1"',
-'ajax-error-title'             => 'Greška',
-'ajax-remove-category-error'   => 'Nije bilo moguće ukloniti ovu kategoriju.
-Ovo se obično dešava kada je kategorija dodana na stranicu preko šablona.',
-
 );

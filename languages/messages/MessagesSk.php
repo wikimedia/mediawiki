@@ -3723,15 +3723,4 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'sqlite-has-fts' => '$1 s podporou vyhľadávania v plnom texte',
 'sqlite-no-fts'  => '$1 bez podpory vyhľadávania v plnom texte',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Pridať kategóriu',
-'ajax-add-category-submit'     => 'Pridať',
-'ajax-confirm-title'           => 'Potvrdiť operáciu',
-'ajax-confirm-save'            => 'Uložiť',
-'ajax-add-category-summary'    => 'Pridať kategóriu „$1“',
-'ajax-remove-category-summary' => 'Odstrániť kategóriu „$1“',
-'ajax-error-title'             => 'Chyba',
-'ajax-remove-category-error'   => 'Nebolo možné odstrániť túto kategóriu.
-To sa zvyčajne stane, keď bola kategória pridaná na stránku v pomocou šablóny.',
-
 );

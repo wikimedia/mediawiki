@@ -1305,12 +1305,4 @@ $5
 'htmlform-reset'               => 'Hƿearfas undōn',
 'htmlform-selectorother-other' => 'Ōðer',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Flocc ēacian',
-'ajax-add-category-submit'     => 'Ēacian',
-'ajax-confirm-save'            => 'Sparian',
-'ajax-add-category-summary'    => 'Flocc "$1" ēacian',
-'ajax-remove-category-summary' => 'Flocc "$1" forniman',
-'ajax-error-title'             => 'Ƿōh',
-
 );

@@ -3218,15 +3218,4 @@ Inserissi el nome del file senza el prefisso "{{ns:file}}:"',
 'sqlite-has-fts' => '$1 con la possibilità de riserca completa nel testo',
 'sqlite-no-fts'  => '$1 sensa la possibilità de riserca completa nel testo',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Zonta categoria',
-'ajax-add-category-submit'     => 'Zonta',
-'ajax-confirm-title'           => "Conferma l'azion",
-'ajax-confirm-save'            => 'Salva',
-'ajax-add-category-summary'    => 'Zonta categoria "$1"',
-'ajax-remove-category-summary' => 'Cava categoria "$1"',
-'ajax-error-title'             => 'Eròr',
-'ajax-remove-category-error'   => 'No se gà podesto cavar sta categoria.
-De solito questo el càpita co che la categoria la xe stà zontà a la pagina par via de un modèl.',
-
 );

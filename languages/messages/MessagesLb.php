@@ -3583,29 +3583,4 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 'sqlite-has-fts' => "$1 ënnerstëtzt d'Volltextsich",
 'sqlite-no-fts'  => "$1 ënnerstëtzt d'Volltextsich net",
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Kategorie derbäisetzen',
-'ajax-remove-category'          => 'Kategorie ewechhuelen',
-'ajax-edit-category'            => 'Kategorie änneren',
-'ajax-add-category-submit'      => 'Derbäisetzen',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Aktioun confirméieren',
-'ajax-confirm-save'             => 'Späicheren',
-'ajax-confirm-save-all'         => 'All Ännerunge späicheren',
-'ajax-cancel'                   => 'Ännerungen annuléieren',
-'ajax-cancel-all'               => 'All Ännerungen annulléieren',
-'ajax-add-category-summary'     => 'Kategorie "$1" derbäisetzen',
-'ajax-edit-category-summary'    => 'Kategorie "$1" op "$2" änneren',
-'ajax-remove-category-summary'  => 'Kategorie "$1" ewechhuelen',
-'ajax-category-question'        => 'Firwat wëllt Dir dës Ännerunge maachen:',
-'ajax-error-title'              => 'Feeler',
-'ajax-remove-category-error'    => "Et war net méiglech d'Kategorie $1 ewechzehuelen.
-Dëst geschitt gewéinlech da wann eng Kategorie duerch eng Schabloun op d'Säit derbäi gesat gouf.",
-'ajax-edit-category-error'      => "Et war net méiglech d'Kategorie $1 z'änneren.
-Dat geschitt gewéinlech wann d'Kategorie duerch eng Schabloun op d'Säit derbäigesat gouf.",
-'ajax-category-already-present' => 'Dës Säit ass schonn an der Kategorie $1',
-'ajax-category-hook-error'      => "Eng lokal Fonctioun huet verhënnert datt d'Ännerunge gespäichert goufen",
-'ajax-api-error'                => 'Den API huet e Feeler signaliséiert: $1: $2',
-'ajax-api-unknown-error'        => "D'API huet een onbekannte Feeler zréckgeschéckt.",
-
 );

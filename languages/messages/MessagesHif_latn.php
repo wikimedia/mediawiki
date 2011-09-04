@@ -2882,12 +2882,4 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 'htmlform-reset'               => 'Badlao ke pahile jaise karo',
 'htmlform-selectorother-other' => 'Duusra',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Vibhag jorro',
-'ajax-add-category-submit'     => 'Jorro',
-'ajax-confirm-save'            => 'Bachao',
-'ajax-add-category-summary'    => 'Vibhag "$1" ke jorro',
-'ajax-remove-category-summary' => 'Vibhag "$1" ke hatao',
-'ajax-error-title'             => 'Galti',
-
 );

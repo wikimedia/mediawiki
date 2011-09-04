@@ -3805,29 +3805,4 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 med stöd för fulltextsökning',
 'sqlite-no-fts'  => '$1 utan stöd för fulltextsökning',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Lägg till kategori',
-'ajax-remove-category'          => 'Ta bort kategori',
-'ajax-edit-category'            => 'Redigera kategori',
-'ajax-add-category-submit'      => 'Lägg till',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Bekräfta handling',
-'ajax-confirm-save'             => 'Spara',
-'ajax-confirm-save-all'         => 'Spara alla ändringar',
-'ajax-cancel'                   => 'Avbryt redigering',
-'ajax-cancel-all'               => 'Avbryt alla ändringar',
-'ajax-add-category-summary'     => 'Lägg till kategorin "$1"',
-'ajax-edit-category-summary'    => 'Ändra kategori "$1" till "$2"',
-'ajax-remove-category-summary'  => 'Tag bort kategorin "$1"',
-'ajax-category-question'        => 'Varför vill du göra följande ändringar:',
-'ajax-error-title'              => 'Fel',
-'ajax-remove-category-error'    => 'Det var inte möjligt att ta bort kategorin "$1".
-Oftast beror det på att kategorin har lagts till genom användande av en mall.',
-'ajax-edit-category-error'      => 'Det gick inte att redigera kategorin "$1".
-Detta inträffar vanligen när kategorin har lagts till sidan i en mall.',
-'ajax-category-already-present' => 'Denna sida tillhör redan kategorin $1',
-'ajax-category-hook-error'      => 'En lokal funktion förhindrade ändringarna från att sparas.',
-'ajax-api-error'                => 'API rapporterade ett fel: $1: $2.',
-'ajax-api-unknown-error'        => 'API returnerade ett okänt fel.',
-
 );

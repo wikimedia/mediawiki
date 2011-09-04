@@ -4124,29 +4124,4 @@ $1',
 'sqlite-has-fts' => '$1 بدعم البحث في كامل النص',
 'sqlite-no-fts'  => '$1 بدون دعم البحث في كامل النص',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'أضف تصنيفا',
-'ajax-remove-category'          => 'أزل التصنيف',
-'ajax-edit-category'            => 'عدل التصنيف',
-'ajax-add-category-submit'      => 'أضف',
-'ajax-confirm-ok'               => 'موافق',
-'ajax-confirm-title'            => 'أكد الإجراء',
-'ajax-confirm-save'             => 'احفظ',
-'ajax-confirm-save-all'         => 'حفظ كافة التغييرات',
-'ajax-cancel'                   => 'إلغاء عمليات التحرير',
-'ajax-cancel-all'               => 'إلغاء جميع التغييرات',
-'ajax-add-category-summary'     => 'إضافة التصنيف "$1"',
-'ajax-edit-category-summary'    => 'تغيير التصنيف "$1" إلى "$2"',
-'ajax-remove-category-summary'  => 'إزالة التصنيف "$1"',
-'ajax-category-question'        => 'لماذا تريد القيام بالتغييرات التالية:',
-'ajax-error-title'              => 'خطأ',
-'ajax-remove-category-error'    => 'تعذرت إزالة تصنيف "$1".
-يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
-'ajax-edit-category-error'      => 'تعذر تعديل تصنيف "$1".
-يحدث هذا عادة عندما يضاف التصنيف إلى الصفحة عبر قالب.',
-'ajax-category-already-present' => 'هذه الصفحة بالفعل تنتمي إلى تصنيف "$1"',
-'ajax-category-hook-error'      => 'دالة محلية منعت التغييرات من أن يتم حفظها.',
-'ajax-api-error'                => 'API أرجعت خطأ: $1: $2.',
-'ajax-api-unknown-error'        => 'API أرجعت خطأ غير معروف.',
-
 );

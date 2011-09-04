@@ -3673,29 +3673,4 @@ Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 'sqlite-has-fts' => '$1 con la possibilità di ricerca completa nel testo',
 'sqlite-no-fts'  => '$1 senza la possibilità di ricerca completa nel testo',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Aggiungi categoria',
-'ajax-remove-category'          => 'Elimina categoria',
-'ajax-edit-category'            => 'Modifica categoria',
-'ajax-add-category-submit'      => 'Aggiungi',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => "Conferma l'azione",
-'ajax-confirm-save'             => 'Salva',
-'ajax-confirm-save-all'         => 'Salva tutte le modifiche',
-'ajax-cancel'                   => 'Annulla le modifiche',
-'ajax-cancel-all'               => 'Annulla tutte le modifiche',
-'ajax-add-category-summary'     => 'aggiungere la categoria "$1"',
-'ajax-edit-category-summary'    => 'modificare la categoria "$1" in "$2"',
-'ajax-remove-category-summary'  => 'rimuovere la categoria "$1"',
-'ajax-category-question'        => 'Perché vuoi apportare le seguenti modifiche:',
-'ajax-error-title'              => 'Errore',
-'ajax-remove-category-error'    => 'Non è stato possibile rimuovere la categoria "$1".
-Ciò si verifica in genere quando la categoria è stata aggiunta alla pagina in un template.',
-'ajax-edit-category-error'      => 'Non è stato possibile modificare la categoria "$1".
-Di solito avviene quando la categoria è stata aggiunta alla pagina da un template.',
-'ajax-category-already-present' => 'Questa pagina appartiene già alla categoria $1',
-'ajax-category-hook-error'      => 'Una funzione locale ha impedito che le modifiche vengano salvate',
-'ajax-api-error'                => "L'API ha restituito un errore: $1: $2",
-'ajax-api-unknown-error'        => "L'API ha restituito un errore sconosciuto.",
-
 );

@@ -3803,29 +3803,4 @@ Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
 'sqlite-has-fts' => '$1 dengan dukungan pencarian teks lengkap',
 'sqlite-no-fts'  => '$1 tanpa dukungan pencarian teks lengkap',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Tambah kategori',
-'ajax-remove-category'          => 'Hapus kategori',
-'ajax-edit-category'            => 'Sunting kategori',
-'ajax-add-category-submit'      => 'Tambah',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Konfirmasi aksi',
-'ajax-confirm-save'             => 'Simpan',
-'ajax-confirm-save-all'         => 'Simpan semua perubahan',
-'ajax-cancel'                   => 'Batalkan suntingan',
-'ajax-cancel-all'               => 'Batalkan semua perubahan',
-'ajax-add-category-summary'     => 'Tambah kategori "$1"',
-'ajax-edit-category-summary'    => 'Ubah kategori "$1" menjadi "$2"',
-'ajax-remove-category-summary'  => 'Hapus kategori "$1"',
-'ajax-category-question'        => 'Sebab Anda melakukan perubahan berikut:',
-'ajax-error-title'              => 'Kesalahan',
-'ajax-remove-category-error'    => 'Tidak mungkin menghapus kategori "$1".
-Ini biasanya terjadi ketika kategori ditambahkan ke halaman melalui templat.',
-'ajax-edit-category-error'      => 'Tidak mungkin menyunting kategori "$1".
-Ini biasanya terjadi ketika kategori ditambahkan ke halaman melalui templat.',
-'ajax-category-already-present' => 'Halaman ini sudah masuk dalam kategori "$1"',
-'ajax-category-hook-error'      => 'Fungsi setempat mencegah perubahan disimpan.',
-'ajax-api-error'                => 'API mengembalikan kesalahan : $1: $2.',
-'ajax-api-unknown-error'        => 'API mengembalikan kesalahan tak dikenal.',
-
 );

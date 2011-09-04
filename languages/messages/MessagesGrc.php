@@ -2752,14 +2752,4 @@ $1',
 'htmlform-reset'               => 'Ἀναστρέφειν μεταβολάς',
 'htmlform-selectorother-other' => 'Ἄλλον',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Προστιθέναι κατηγορίαν',
-'ajax-add-category-submit'     => 'Προστιθέναι',
-'ajax-confirm-ok'              => 'εἶεν',
-'ajax-confirm-title'           => 'Καταβεβαιοῦν δρᾶσιν',
-'ajax-confirm-save'            => 'Γράφειν',
-'ajax-add-category-summary'    => 'Προστιθέναι κατηγορίαν "$1"',
-'ajax-remove-category-summary' => 'Ἀφαιρεῖν κατηγορίαν "$1"',
-'ajax-error-title'             => 'Σφάλμα',
-
 );

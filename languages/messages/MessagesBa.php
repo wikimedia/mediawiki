@@ -3251,11 +3251,4 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 'sqlite-has-fts' => '$1, тулы текст буйынса эҙләү мөмкинлеге менән',
 'sqlite-no-fts'  => '$1, тулы текст буйынса эҙләү мөмкинлекһеҙ',
 
-# Add categories per AJAX
-'ajax-add-category-submit'     => 'Өҫтәргә',
-'ajax-confirm-save'            => 'Һаҡларға',
-'ajax-add-category-summary'    => 'Өҫтәлгән категориялар "$1"',
-'ajax-remove-category-summary' => 'Категория «$1» юйылған',
-'ajax-error-title'             => 'Хата',
-
 );

@@ -3413,22 +3413,4 @@ Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 połnotekstowe pytanje podpěruje.',
 'sqlite-no-fts'  => '$1 połnotekstowe pytanje njepodpěruje',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Kategoriju přidać',
-'ajax-remove-category'          => 'Kategoriju wotstronić',
-'ajax-edit-category'            => 'Kategoriju wobdźěłać',
-'ajax-add-category-submit'      => 'Přidać',
-'ajax-confirm-ok'               => 'W porjadku',
-'ajax-confirm-title'            => 'Akciju wobkrućić',
-'ajax-confirm-save'             => 'Składować',
-'ajax-confirm-save-all'         => 'Wšě změny składować',
-'ajax-cancel'                   => 'Změny anulować',
-'ajax-add-category-summary'     => 'Kategoriju "$1" přidać',
-'ajax-edit-category-summary'    => 'Kategoriju "$1" do "$2" změnić',
-'ajax-remove-category-summary'  => 'Kategoriju "$1" wotstronić',
-'ajax-error-title'              => 'Zmylk',
-'ajax-remove-category-error'    => 'Njebě móžno tutu kategoriju wotstronić.
-To so zwjetša stawa, hdyž kategorija je so stronje w předłoze přidała.',
-'ajax-category-already-present' => 'Tuta strona hižo ke kategoriji $1 słuša',
-
 );

@@ -4018,29 +4018,4 @@ $1',
 'sqlite-has-fts' => '$1 با پشتیبانی از جستجو در متن کامل',
 'sqlite-no-fts'  => '$1 بدون پشتیبانی از جستجو در متن کامل',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'افزودن رده',
-'ajax-remove-category'          => 'حذف رده',
-'ajax-edit-category'            => 'ویرایش رده',
-'ajax-add-category-submit'      => 'افزودن',
-'ajax-confirm-ok'               => 'تأیید',
-'ajax-confirm-title'            => 'تأیید عمل',
-'ajax-confirm-save'             => 'ذخیره',
-'ajax-confirm-save-all'         => 'ذخیره کردن تمام تغییرات',
-'ajax-cancel'                   => 'لغو ویرایش‌ها',
-'ajax-cancel-all'               => 'لغو همه تغییرات',
-'ajax-add-category-summary'     => 'افزودن رده «$1»',
-'ajax-edit-category-summary'    => 'تغییر رده «$1» به «$2»',
-'ajax-remove-category-summary'  => 'حذف رده «$1»',
-'ajax-category-question'        => 'چرا می خواهید تغییرات زیر را ایجاد کنید:',
-'ajax-error-title'              => 'خطا',
-'ajax-remove-category-error'    => 'امکان حذف رده «$1» وجود نداشت.
-این اتفاق معمولاً زمانی می‌افتد که رده از طریق یک الگو به صفحه اضافه شده باشد.',
-'ajax-edit-category-error'      => 'امکان ویرایش رده «$1» وجود نداشت.
-این اتفاق معمولاً زمانی می‌افتد که رده از طریق یک الگو به صفحه اضافه شده باشد.',
-'ajax-category-already-present' => 'این صحفه از قبل در رده $1 قرار دارد',
-'ajax-category-hook-error'      => 'یک تابع محلی از ذخیره تغییرات جلوگیری کرد.',
-'ajax-api-error'                => 'API خطایی بازگرداند: $1: $2.',
-'ajax-api-unknown-error'        => 'API یک خطای ناشناخته بازگرداند.',
-
 );

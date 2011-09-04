@@ -3715,29 +3715,4 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'sqlite-has-fts' => '$1 з падтрымкай поўнатэкстнага пошуку',
 'sqlite-no-fts'  => '$1 без падтрымкі поўнатэкстнага пошуку',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Дадаць катэгорыю',
-'ajax-remove-category'          => 'Выдаліць катэгорыю',
-'ajax-edit-category'            => 'Рэдагаваць катэгорыю',
-'ajax-add-category-submit'      => 'Дадаць',
-'ajax-confirm-ok'               => 'Добра',
-'ajax-confirm-title'            => 'Пацьвердзіць дзеяньне',
-'ajax-confirm-save'             => 'Захаваць',
-'ajax-confirm-save-all'         => 'Захаваць усе зьмены',
-'ajax-cancel'                   => 'Скасаваць зьмены',
-'ajax-cancel-all'               => 'Скасаваць усе зьмены',
-'ajax-add-category-summary'     => 'Дададзеная катэгорыя «$1»',
-'ajax-edit-category-summary'    => 'Зьмененая катэгорыя «$1» на «$2»',
-'ajax-remove-category-summary'  => 'Выдаленая катэгорыя «$1»',
-'ajax-category-question'        => 'Чаму Вы жадаеце зрабіць наступныя зьмены:',
-'ajax-error-title'              => 'Памылка',
-'ajax-remove-category-error'    => 'Немагчыма выдаліць катэгорыю «$1».
-Звычайна гэта здараецца, калі катэгорыя была дададзеная на старонку праз шаблён.',
-'ajax-edit-category-error'      => 'Немагчыма рэдагаваць катэгорыю «$1».
-Звычайна падобная праблема ўзьнікае, калі катэгорыя была дададзеная на старонку праз шаблён.',
-'ajax-category-already-present' => 'Гэтая старонка ўжо належыць катэгорыі $1',
-'ajax-category-hook-error'      => 'Лякальная функцыя перадухіліла захаваньне зьменаў',
-'ajax-api-error'                => 'API вярнуў памылку: $1: $2',
-'ajax-api-unknown-error'        => 'API вярнуў невядомую памылку.',
-
 );

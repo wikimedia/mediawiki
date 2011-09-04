@@ -3664,27 +3664,4 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'sqlite-has-fts' => '带全文搜索的版本$1',
 'sqlite-no-fts'  => '不带全文搜索的版本$1',
 
-# Add categories per AJAX
-'ajax-add-category'             => '加入分类',
-'ajax-remove-category'          => '删除类别',
-'ajax-edit-category'            => '编辑类别',
-'ajax-add-category-submit'      => '添加',
-'ajax-confirm-ok'               => '确定',
-'ajax-confirm-title'            => '确认动作',
-'ajax-confirm-save'             => '保存',
-'ajax-confirm-save-all'         => '保存所有更改',
-'ajax-cancel'                   => '取消编辑',
-'ajax-cancel-all'               => '取消所有更改',
-'ajax-add-category-summary'     => '加入分类“$1”',
-'ajax-edit-category-summary'    => '更改类别 "$1" 至 "$2"',
-'ajax-remove-category-summary'  => '移除分类“$1”',
-'ajax-category-question'        => '您为什么要进行以下修改：',
-'ajax-error-title'              => '错误',
-'ajax-remove-category-error'    => '不能移除分类“$1”。这通常是由于该分类是随模板加入页面的。',
-'ajax-edit-category-error'      => '不能编辑分类“$1”。这通常是由于该分类是随模板加入页面的。',
-'ajax-category-already-present' => '分类“$1”下已有该页面',
-'ajax-category-hook-error'      => '本地的一则函数阻止了保存更改的操作。',
-'ajax-api-error'                => 'API返回了错误：$1：$2。',
-'ajax-api-unknown-error'        => 'API返回了未知错误。',
-
 );

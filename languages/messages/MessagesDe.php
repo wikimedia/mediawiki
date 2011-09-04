@@ -3865,29 +3865,4 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'sqlite-has-fts' => 'Version $1 mit Unterstützung für die Volltextsuche',
 'sqlite-no-fts'  => 'Version $1 ohne Unterstützung für die Volltextsuche',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Kategorie hinzufügen',
-'ajax-remove-category'          => 'Kategorie entfernen',
-'ajax-edit-category'            => 'Kategorie bearbeiten',
-'ajax-add-category-submit'      => 'Hinzufügen',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Aktion bestätigen',
-'ajax-confirm-save'             => 'Speichern',
-'ajax-confirm-save-all'         => 'Alle Änderungen speichern',
-'ajax-cancel'                   => 'Bearbeitung abbrechen',
-'ajax-cancel-all'               => 'Alle Änderungen zurücknehmen',
-'ajax-add-category-summary'     => 'Kategorie „$1“ hinzufügen',
-'ajax-edit-category-summary'    => 'Kategorie „$1“ zu „$2“ ändern.',
-'ajax-remove-category-summary'  => 'Kategorie „$1“ entfernen',
-'ajax-category-question'        => 'Warum möchtest du die folgenden Änderungen durchführen:',
-'ajax-error-title'              => 'Fehler',
-'ajax-remove-category-error'    => 'Es war nicht möglich, die Kategorie „$1“ zu entfernen.
-Dies passiert normalerweise, wenn die Kategorie über eine Vorlage eingebunden ist.',
-'ajax-edit-category-error'      => 'Es war nicht möglich, die Kategorie „$1“ zu bearbeiten.
-Dies passiert normalerweise, wenn die Kategorie zur Seite in einer Vorlage hinzugefügt wurde.',
-'ajax-category-already-present' => 'Diese Seite gehört bereits zur Kategorie $1',
-'ajax-category-hook-error'      => 'Eine lokale Funktion verhindert, dass die Änderungen gespeichert werden',
-'ajax-api-error'                => 'Die API hat einen Fehler zurückgegeben: $1: $2',
-'ajax-api-unknown-error'        => 'Die API hat einen unbekannten Fehler ausgegeben.',
-
 );

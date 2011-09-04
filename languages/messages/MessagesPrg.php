@@ -2753,13 +2753,4 @@ Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 'htmlform-int-toohigh'         => 'Enwesta wērtibi ast aūktaisin nikāi maksimum per $1',
 'htmlform-selectorother-other' => 'Kitā',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Preidāis kategōrijan',
-'ajax-add-category-submit'     => 'Preidāis',
-'ajax-confirm-title'           => 'Padruktinais dīlasenin',
-'ajax-confirm-save'            => 'Enpeisāis',
-'ajax-add-category-summary'    => 'Preidāis kategōrijan "$1"',
-'ajax-remove-category-summary' => 'Āupausinais kategōrijan "$1"',
-'ajax-error-title'             => 'Blānda',
-
 );

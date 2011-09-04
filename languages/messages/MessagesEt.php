@@ -3674,28 +3674,4 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 koos täistekstiotsingu toega',
 'sqlite-no-fts'  => '$1 ilma täistekstiotsingu toeta',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Lisa kategooria',
-'ajax-remove-category'          => 'Eemalda kategooria',
-'ajax-edit-category'            => 'Muuda kategooriat',
-'ajax-add-category-submit'      => 'Lisa',
-'ajax-confirm-ok'               => 'Sobib',
-'ajax-confirm-title'            => 'Toimingu kinnitamine',
-'ajax-confirm-save'             => 'Salvesta',
-'ajax-confirm-save-all'         => 'Salvesta kõik muudatused',
-'ajax-cancel'                   => 'Loobu muudatusest',
-'ajax-cancel-all'               => 'Loobu kõigist muudatustest',
-'ajax-add-category-summary'     => 'Kategooria "$1" lisamine',
-'ajax-edit-category-summary'    => 'Kategooria "$1" asendamine kategooriaga "$2"',
-'ajax-remove-category-summary'  => 'Kategooria "$1" eemaldamine',
-'ajax-category-question'        => 'Miks tahad teha järgmisi muudatusi:',
-'ajax-error-title'              => 'Tõrge',
-'ajax-remove-category-error'    => 'Kategooriat "$1" pole võimalik eemaldada.
-Tõrge ilmneb harilikult siis, kui kategooria on lisatud malliga.',
-'ajax-edit-category-error'      => 'Kategooriat "$1" pole võimalik muuta.
-Harilikult juhtub nii, kui kategooria on lisatud malliga.',
-'ajax-category-already-present' => 'See lehekülg on juba kategoorias $1.',
-'ajax-api-error'                => 'Rakendus andis veateate: $1: $2.',
-'ajax-api-unknown-error'        => 'Rakendus andis tundmatu veateate.',
-
 );

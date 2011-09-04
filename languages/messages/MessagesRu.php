@@ -3848,29 +3848,4 @@ MediaWiki распространяется в надежде, что она бу
 'sqlite-has-fts' => '$1 с поддержкой полнотекстового поиска',
 'sqlite-no-fts'  => '$1 без поддержки полнотекстового поиска',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Добавить категорию',
-'ajax-remove-category'          => 'Удалить категорию',
-'ajax-edit-category'            => 'Изменить категорию',
-'ajax-add-category-submit'      => 'Добавить',
-'ajax-confirm-ok'               => 'ОК',
-'ajax-confirm-title'            => 'Подтвердить действие',
-'ajax-confirm-save'             => 'Сохранить',
-'ajax-confirm-save-all'         => 'Сохранить все изменения',
-'ajax-cancel'                   => 'Отменить изменения',
-'ajax-cancel-all'               => 'Отменить все изменения',
-'ajax-add-category-summary'     => 'добавить категорию «$1»',
-'ajax-edit-category-summary'    => 'изменить категорию «$1» на «$2»',
-'ajax-remove-category-summary'  => 'удалить категорию «$1»',
-'ajax-category-question'        => 'Почему вы хотите сделать следующие изменения:',
-'ajax-error-title'              => 'Ошибка',
-'ajax-remove-category-error'    => 'Не удалось убрать категорию «$1».
-Обычно это происходит в случае, когда категория была добавлена через шаблон.',
-'ajax-edit-category-error'      => 'Не удалось изменить категорию «$1».
-Это обычно происходит, когда категория была добавлена на страницу с помощью шаблона.',
-'ajax-category-already-present' => 'Эта страница уже относится к данной категории $1',
-'ajax-category-hook-error'      => 'Локальная функция помешала сохранению изменений',
-'ajax-api-error'                => 'API возвратил ошибку: $1: $2',
-'ajax-api-unknown-error'        => 'API возвратил неизвестную ошибку.',
-
 );

@@ -3712,29 +3712,4 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 con supporto de recerca de texto integre',
 'sqlite-no-fts'  => '$1 sin supporto de recerca de texto integre',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Adder categoria',
-'ajax-remove-category'          => 'Remover categoria',
-'ajax-edit-category'            => 'Modificar categoria',
-'ajax-add-category-submit'      => 'Adder',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Confirmar action',
-'ajax-confirm-save'             => 'Publicar',
-'ajax-confirm-save-all'         => 'Salveguardar tote le modificationes',
-'ajax-cancel'                   => 'Cancellar modificationes',
-'ajax-cancel-all'               => 'Cancellar tote le modificationes',
-'ajax-add-category-summary'     => 'Adder categoria "$1"',
-'ajax-edit-category-summary'    => 'Cambiar le categoria "$1" a "$2"',
-'ajax-remove-category-summary'  => 'Remover categoria "$1"',
-'ajax-category-question'        => 'Proque vole tu facer le sequente modificationes:',
-'ajax-error-title'              => 'Error',
-'ajax-remove-category-error'    => 'Il non esseva possibile remover le categoria "$1".
-Isto occurre generalmente si le categoria ha essite addite al pagina per medio de un patrono.',
-'ajax-edit-category-error'      => 'Non esseva possibile modificar le categoria "$1".
-sto occurre generalmente si le categoria ha essite addite al pagina per medio de un patrono.',
-'ajax-category-already-present' => 'Iste pagina pertine jam al categoria $1',
-'ajax-category-hook-error'      => 'Un function local ha impedite le salveguarda del modificationes',
-'ajax-api-error'                => 'Le API retornava un error: $1: $2',
-'ajax-api-unknown-error'        => 'Le API retornava un error incognite.',
-
 );

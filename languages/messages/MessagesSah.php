@@ -3521,29 +3521,4 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'sqlite-has-fts' => '$1 толору тиэкистээх көрдөөһүнү өйүүр',
 'sqlite-no-fts'  => '$1 толору тиэкистээх көрдөөһүнү өйөөбөт',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Категория эбии',
-'ajax-remove-category'          => 'Категорияны сот',
-'ajax-edit-category'            => 'Категорияны уларыт',
-'ajax-add-category-submit'      => 'Эп',
-'ajax-confirm-ok'               => 'Сөп',
-'ajax-confirm-title'            => 'Дьайыыны бигэргэт',
-'ajax-confirm-save'             => 'Бигэргэт',
-'ajax-confirm-save-all'         => 'Уларытыылары барыларын бигэргэт',
-'ajax-cancel'                   => 'Уларытыылары суох гын',
-'ajax-cancel-all'               => 'Уларытыылары барыларын суох гын',
-'ajax-add-category-summary'     => '«$1» категория эбилиннэ',
-'ajax-edit-category-summary'    => '"$1" категорияны "$2" категорияҕа уларыт',
-'ajax-remove-category-summary'  => '«$1» категория сотулунна',
-'ajax-category-question'        => 'Бу уларытыылары тоҕо оҥороору гынаҕыный:',
-'ajax-error-title'              => 'Алҕас',
-'ajax-remove-category-error'    => 'Бу "$1" категорияны сотор табыллыбата.
-Үксүгэр категория халыып нөҥүө эбиллибит түгэнигэр итинник буолар.',
-'ajax-edit-category-error'      => '«$1» категория сатаан уларыйбата.
-Үксүгэр категория халыып көмөтүнэн эбиллибит буоллаҕына маннык буолар.',
-'ajax-category-already-present' => 'Бу сирэй уруккуттан "$1" категорияҕа киирэр эбит',
-'ajax-category-hook-error'      => 'Уларытыы оҥоһулларыгар олохтоох (локал) функция мэһэй буолла.',
-'ajax-api-error'                => 'API алҕаһы төннөрдө (көрдөрдө): $1: $2',
-'ajax-api-unknown-error'        => 'API биллибэт алҕаһы булла..',
-
 );

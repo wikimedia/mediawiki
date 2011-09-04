@@ -3677,27 +3677,4 @@ Unesite ime datoteke bez predmetka (''prefiksa'') imenskog prostora \"{{ns:file}
 'sqlite-has-fts' => '$1 s podrškom pretraživanja cijelog teksta',
 'sqlite-no-fts'  => '$1 bez podrške pretraživanja cijelog teksta',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Dodaj kategoriju',
-'ajax-add-category-submit'      => 'Dodaj',
-'ajax-confirm-ok'               => 'U redu',
-'ajax-confirm-title'            => 'Potvrdi radnju',
-'ajax-confirm-save'             => 'Spremi',
-'ajax-confirm-save-all'         => 'Sačuvaj sve promjene',
-'ajax-cancel'                   => 'Odustani od uređivanja',
-'ajax-cancel-all'               => 'Odustani od svih promjena',
-'ajax-add-category-summary'     => 'Dodaj kategoriju "$1"',
-'ajax-edit-category-summary'    => 'Promijeni kategoriju "$1" u "$2"',
-'ajax-remove-category-summary'  => 'Ukloni kategoriju "$1"',
-'ajax-category-question'        => 'Zašto želite sljedeće promjene:',
-'ajax-error-title'              => 'Greška',
-'ajax-remove-category-error'    => 'Nije bilo moguće ukloniti kategoriju "$1".
-Ovo se obično događa kada je kategorija na stranicu dodana u predlošku.',
-'ajax-edit-category-error'      => 'Nije bilo moguće urediti kategoriju "$1".
-Ovo se obično događa kada je kategorija na stranicu dodana u predlošku.',
-'ajax-category-already-present' => 'Ova stranica već spada u kategoriju "$1"',
-'ajax-category-hook-error'      => 'Lokalna funkcija je spriječila spremanje promjena.',
-'ajax-api-error'                => 'API je vratio pogrešku: $1: $2.',
-'ajax-api-unknown-error'        => 'API je vratio nepoznatu pogrešku.',
-
 );

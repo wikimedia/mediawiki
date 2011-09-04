@@ -3911,29 +3911,4 @@ $1',
 'sqlite-has-fts' => '$1 с подршком претраге пуног текста',
 'sqlite-no-fts'  => '$1 без подршке претраге пуног текста',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Додај категорију',
-'ajax-remove-category'          => 'Уклони категорију',
-'ajax-edit-category'            => 'Уреди категорију',
-'ajax-add-category-submit'      => 'Додај',
-'ajax-confirm-ok'               => 'У реду',
-'ajax-confirm-title'            => 'Потврди акцију',
-'ajax-confirm-save'             => 'Сачувај',
-'ajax-confirm-save-all'         => 'Сачувај све измене',
-'ajax-cancel'                   => 'Откажи уређивање',
-'ajax-cancel-all'               => 'Откажи све измене',
-'ajax-add-category-summary'     => 'Додај категорију "$1"',
-'ajax-edit-category-summary'    => 'Промени категорију „$1“ у „$2“',
-'ajax-remove-category-summary'  => 'Уклони категорију "$1"',
-'ajax-category-question'        => 'Разлог за стварање измена:',
-'ajax-error-title'              => 'Грешка',
-'ajax-remove-category-error'    => 'Не могу да уклоним категорију „$1“.
-Ово се обично дешава када је категорија додата на страницу преко шаблона.',
-'ajax-edit-category-error'      => 'Не могу да променим категорију „$1“.
-Ово се обично дешава када је категорија додата на страницу преко шаблона.',
-'ajax-category-already-present' => 'Ова страница већ припада категорији „$1“',
-'ajax-category-hook-error'      => 'Локална функција је спречила да се измене сачувају.',
-'ajax-api-error'                => 'АПИ је пријавио грешку: $1: $2.',
-'ajax-api-unknown-error'        => 'АПИ је пријавио непознату грешку.',
-
 );

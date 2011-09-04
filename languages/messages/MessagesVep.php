@@ -2876,15 +2876,4 @@ Kävutagat normaline ezikacund.',
 # SQLite database support
 'sqlite-no-fts' => " $1 täuz'tekstaižen ecindan tügedamižeta",
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Ližata kategorii',
-'ajax-add-category-submit'     => 'Ližata',
-'ajax-confirm-title'           => 'Vahvištoitta tegend',
-'ajax-confirm-save'            => 'Panda muštho',
-'ajax-add-category-summary'    => 'Ližata "$1"-kategorii',
-'ajax-remove-category-summary' => 'Čuta poiš "$1"-kategorii',
-'ajax-error-title'             => 'Petuz',
-'ajax-remove-category-error'   => 'Ei voi čuta kategorijad poiš.
-Nece voib olda, ku kategorii om ližatud šablonan turbiš.',
-
 );

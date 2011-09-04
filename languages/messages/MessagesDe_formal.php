@@ -687,7 +687,4 @@ Sie können auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benu
 'dberr-usegoogle' => 'Sie könnten in der Zwischenzeit mit Google suchen.',
 'dberr-outofdate' => 'Beachten Sie, dass der Suchindex unserer Inhalte bei Google veraltet sein kann.',
 
-# Add categories per AJAX
-'ajax-category-question' => 'Warum möchten Sie die folgenden Änderungen durchführen:',
-
 );

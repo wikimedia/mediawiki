@@ -3430,13 +3430,4 @@ $1',
 'htmlform-reset'               => 'ធ្វើដូចដើមវិញ',
 'htmlform-selectorother-other' => 'ផ្សេងទៀត',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'បន្ថែម​ចំណាត់ថ្នាក់​ក្រុម​',
-'ajax-add-category-submit'     => 'បន្ថែម​',
-'ajax-confirm-title'           => 'បញ្ជាក់​សកម្មភាព​',
-'ajax-confirm-save'            => 'រក្សាទុក',
-'ajax-add-category-summary'    => 'បន្ថែម​ចំណាត់ថ្នាក់​ក្រុម​ "$1"',
-'ajax-remove-category-summary' => 'ដកចេញ​​ចំណាត់ថ្នាក់​ក្រុម​ "$1"',
-'ajax-error-title'             => 'កំហុស​',
-
 );

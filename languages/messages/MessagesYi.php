@@ -3133,12 +3133,4 @@ $5
 'sqlite-has-fts' => '$1 מיט פולן-טעקסט זוכן שטיץ',
 'sqlite-no-fts'  => '$1 אָן פֿולן-טעקסט זוכן שטיץ',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'צולייגן קאַטעגאריע',
-'ajax-add-category-submit'     => 'צולייגן',
-'ajax-confirm-save'            => 'אויפֿהיטן',
-'ajax-add-category-summary'    => 'צולייגן קאַטעגאריע "$1"',
-'ajax-remove-category-summary' => 'אַוועקנעמען קאַטעגאריע "$1"',
-'ajax-error-title'             => 'גרײַז',
-
 );

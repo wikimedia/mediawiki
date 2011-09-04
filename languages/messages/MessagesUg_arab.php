@@ -3211,15 +3211,4 @@ $1',
 'sqlite-has-fts' => '$1 پۈتۈن تېكست ئىزدەشنى قوللايدۇ',
 'sqlite-no-fts'  => '$1 پۈتۈن تېكست ئىزدەشنى قوللىمايدۇ',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'تۈر قوش',
-'ajax-add-category-submit'     => 'قوش',
-'ajax-confirm-title'           => 'ھەرىكەت جەزملە',
-'ajax-confirm-save'            => 'ساقلا',
-'ajax-add-category-summary'    => '"$1" تۈرنى قوش',
-'ajax-remove-category-summary' => '"$1" تۈرنى چىقىرىۋەت',
-'ajax-error-title'             => 'خاتالىق',
-'ajax-remove-category-error'   => 'بۇ تۈرنى چىقىرىۋەتكىلى بولمايدۇ.
-مەلۇم بىر قېلىپقا بۇ تۈر قوشۇلغان بولسا مۇشۇ خىل ئەھۋال يۈز بېرىدۇ.',
-
 );

@@ -3518,29 +3518,4 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 'sqlite-has-fts' => "$1 cu 'u supporte d'a ricerche full-text",
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
 
-# Add categories per AJAX
-'ajax-add-category'             => "Aggiunge 'a categorije",
-'ajax-remove-category'          => "Live 'a categorije",
-'ajax-edit-category'            => "Cange 'a categorije",
-'ajax-add-category-submit'      => 'Aggiunge',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => "Conferme l'azione",
-'ajax-confirm-save'             => 'Reggistre',
-'ajax-confirm-save-all'         => 'Reggistre tutte le cangiaminde',
-'ajax-cancel'                   => "Annulle 'u cangiamende",
-'ajax-cancel-all'               => 'Annulle tutte le cangiaminde',
-'ajax-add-category-summary'     => 'Aggiunge \'a categorije "$1"',
-'ajax-edit-category-summary'    => 'Cange \'a categorije "$1" jndr\'à "$2"',
-'ajax-remove-category-summary'  => 'Live \'a categorije "$1"',
-'ajax-category-question'        => 'Purcè tu vuè ccu face ste cangiaminde:',
-'ajax-error-title'              => 'Errore',
-'ajax-remove-category-error'    => "Non g'è possibbele luà 'a categorije \"\$1\".
-Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgene jndr'à 'nu template.",
-'ajax-edit-category-error'      => "Non g'è possibbele cangià 'a categorije \"\$1\".
-Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgene jndr'à 'nu template.",
-'ajax-category-already-present' => 'Sta pàgene già stè jndr\'à categorije "$1"',
-'ajax-category-hook-error'      => "'Na funziona locale non ge face fà le cangiaminde apprime de reggistrarle",
-'ajax-api-error'                => "L'API ha turnate 'n'errore: $1: $2",
-'ajax-api-unknown-error'        => "L'API ha turnate 'n'errore scanusciute",
-
 );

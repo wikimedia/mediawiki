@@ -2934,18 +2934,4 @@ $1',
 'sqlite-has-fts' => '$1 tam mətn axtarma ilə',
 'sqlite-no-fts'  => '$1 tam mətn axtarma olmadan',
 
-# Add categories per AJAX
-'ajax-add-category'         => 'Kateqoriya əlavə et',
-'ajax-remove-category'      => 'Kateqoriyanı sil',
-'ajax-edit-category'        => 'Kateqoriyanı redaktə et',
-'ajax-add-category-submit'  => 'Əlavə et',
-'ajax-confirm-ok'           => 'OK',
-'ajax-confirm-title'        => 'Əməliyyatı təsdiq et',
-'ajax-confirm-save'         => 'Qeyd et',
-'ajax-confirm-save-all'     => 'Bütün dəyişiklikləri yadda saxla',
-'ajax-cancel'               => 'Redaktəni ləğv et',
-'ajax-cancel-all'           => 'Bütün dəyişiklikləri ləğv et',
-'ajax-add-category-summary' => '"$1" kateqoriyasını əlavə et',
-'ajax-error-title'          => 'Xəta',
-
 );

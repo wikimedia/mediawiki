@@ -3673,29 +3673,4 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'sqlite-has-fts' => '$1, jossa on tuki kokotekstihaulle',
 'sqlite-no-fts'  => '$1, jossa ei ole tukea kokotekstihaulle',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Lisää luokka',
-'ajax-remove-category'          => 'Poista luokka',
-'ajax-edit-category'            => 'Muokkaa luokkaa',
-'ajax-add-category-submit'      => 'Lisää',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => 'Vahvista toiminto',
-'ajax-confirm-save'             => 'Tallenna',
-'ajax-confirm-save-all'         => 'Tallenna kaikki muutokset',
-'ajax-cancel'                   => 'Peruuta muutokset',
-'ajax-cancel-all'               => 'Peruuta kaikki muutokset',
-'ajax-add-category-summary'     => 'Lisää luokka ”$1”',
-'ajax-edit-category-summary'    => 'Luokka $1 muutetaan luokaksi $2',
-'ajax-remove-category-summary'  => 'Luokan ”$1” poisto',
-'ajax-category-question'        => 'Miksi haluat tehdä seuraavat muutokset:',
-'ajax-error-title'              => 'Virhe',
-'ajax-remove-category-error'    => 'Luokan $1 poistaminen ei onnistunut.
-Yleensä näin käy, kun luokka on lisätty sivulle mallineen avulla.',
-'ajax-edit-category-error'      => 'Luokan $1 muokkaaminen ei onnistunut.
-Yleensä näin käy, kun luokka on lisätty sivulle mallineen avulla.',
-'ajax-category-already-present' => 'Tämä sivu kuuluu jo ennestään luokkaan $1',
-'ajax-category-hook-error'      => 'Paikallinen toiminto esti muutosten tallentamisen.',
-'ajax-api-error'                => 'API palautti virheen: $1: $2.',
-'ajax-api-unknown-error'        => 'API palautti tuntemattoman virheen.',
-
 );

@@ -3920,27 +3920,4 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'sqlite-has-fts' => '$1（全文検索あり）',
 'sqlite-no-fts'  => '$1（全文検索なし）',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'カテゴリー追加',
-'ajax-remove-category'          => 'カテゴリを除去',
-'ajax-edit-category'            => 'カテゴリを編集',
-'ajax-add-category-submit'      => '追加',
-'ajax-confirm-ok'               => 'OK',
-'ajax-confirm-title'            => '操作確認',
-'ajax-confirm-save'             => '保存',
-'ajax-confirm-save-all'         => 'すべての変更を保存',
-'ajax-cancel'                   => '編集をキャンセル',
-'ajax-cancel-all'               => 'すべての変更を保存',
-'ajax-add-category-summary'     => 'カテゴリー「$1」を追加',
-'ajax-edit-category-summary'    => 'カテゴリを「$1」から「$2」に変更',
-'ajax-remove-category-summary'  => 'カテゴリー「$1」を除去',
-'ajax-error-title'              => 'エラー',
-'ajax-remove-category-error'    => 'カテゴリー「$1」を除去することができませんでした。
-このエラーは、主にカテゴリーがテンプレートによってページにつけられている場合に発生します。',
-'ajax-edit-category-error'      => 'カテゴリー「$1」を編集することができませんでした。
-このエラーは、主にカテゴリーがテンプレートによってページにつけられている場合に発生します。',
-'ajax-category-already-present' => 'このページにはすでにカテゴリ「$1」がついています',
-'ajax-api-error'                => 'APIがエラーを返しました: $1: $2',
-'ajax-api-unknown-error'        => 'APIが不明なエラーを返しました。',
-
 );

@@ -2347,15 +2347,4 @@ Nişonai pajvandro biduni peşvand "{{ns:file}}:" vorid kuned.',
 'htmlform-reset'               => 'Botili taƣjirot',
 'htmlform-selectorother-other' => 'Digar',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Ilova kardani gurūh',
-'ajax-add-category-submit'     => 'Ilova kardan',
-'ajax-confirm-title'           => "Ta'jidi amal",
-'ajax-confirm-save'            => 'Zaxira',
-'ajax-add-category-summary'    => 'Ilova kardani gurūhi "$1"',
-'ajax-remove-category-summary' => 'Hazvi gurūhī "$1"',
-'ajax-error-title'             => 'Xato',
-'ajax-remove-category-error'   => "Imkoni hazvi in gurūh vuçud nadoşt.
-In ittifoq ma'mulan zamone meaftad, ki gurūh az tariqi jak şablon ba sahifa izofa şuda boşad.",
-
 );

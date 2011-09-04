@@ -1983,11 +1983,4 @@ Pwede mo man [[Special:EditWatchlist|gamiton an standard editor]].',
 # Special:Tags
 'tags-edit' => 'liwatón',
 
-# Add categories per AJAX
-'ajax-add-category-submit'   => 'idúgang',
-'ajax-confirm-save'          => 'Itagáma',
-'ajax-error-title'           => 'Raót',
-'ajax-remove-category-error' => 'Daí mahahálì iníng kategorya.
-Nangyayári iní pag an kategorya ipigdúgang sa pahina sa saróng templato.',
-
 );

@@ -3578,29 +3578,4 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 'sqlite-has-fts' => '$1 con sofitu pa gueta en testu completu',
 'sqlite-no-fts'  => '$1 ensin sofitu pa gueta en testu completu',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Amestar categoría',
-'ajax-remove-category'          => 'Desaniciar categoría',
-'ajax-edit-category'            => 'Editar categoría',
-'ajax-add-category-submit'      => 'Amestar',
-'ajax-confirm-ok'               => 'Aceutar',
-'ajax-confirm-title'            => "Confirmar l'aición",
-'ajax-confirm-save'             => 'Guardar',
-'ajax-confirm-save-all'         => 'Guardar tolos cambeos',
-'ajax-cancel'                   => 'Encaboxar la edición',
-'ajax-cancel-all'               => 'Encaboxar tolos cambeos',
-'ajax-add-category-summary'     => 'Amestar la categoría "$1"',
-'ajax-edit-category-summary'    => 'Camudar la categoría "$1" a "$2"',
-'ajax-remove-category-summary'  => 'Desaniciar la categoría "$1"',
-'ajax-category-question'        => 'Por qué quies facer los cambeos darréu:',
-'ajax-error-title'              => 'Error',
-'ajax-remove-category-error'    => 'Nun se pudo desaniciar la categoría "$1".
-Esto ocurre de vezu cuando la categoría s\'amestó a la páxina nuna plantía.',
-'ajax-edit-category-error'      => 'Nun se pudo editar la categoría "$1".
-Esto ocurre de vezu cuando la categoría s\'amestó a la páxina nuna plantía.',
-'ajax-category-already-present' => 'Esta páxina yá pertenez a la categoría "$1"',
-'ajax-category-hook-error'      => 'Una función llocal torgó que se guardaren los cambios',
-'ajax-api-error'                => 'La API devolvió un fallu: $1: $2.',
-'ajax-api-unknown-error'        => 'La API devolvió un fallu desconocíu.',
-
 );

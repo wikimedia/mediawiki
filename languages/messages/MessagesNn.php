@@ -3426,15 +3426,4 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',
 'sqlite-no-fts'  => '$1 utan støtte for fulltekstsøk',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Legg til kategori',
-'ajax-add-category-submit'     => 'Legg til',
-'ajax-confirm-title'           => 'Stadfest handling',
-'ajax-confirm-save'            => 'Lagre',
-'ajax-add-category-summary'    => 'Legg til kategorien "$1"',
-'ajax-remove-category-summary' => 'Fjern kategorien "$1"',
-'ajax-error-title'             => 'Feil',
-'ajax-remove-category-error'   => 'Det var ikkje mogleg å fjerna kategorien.
-Det skuldast som oftast at kategorien er vorte lagd til i sida inni ein mal.',
-
 );

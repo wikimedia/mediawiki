@@ -3149,13 +3149,4 @@ Ampidiro ny anaran-drakitra tsy misy ny tovona « {{ns:file}}: »",
 'htmlform-reset'               => 'Hanala ny fanovana',
 'htmlform-selectorother-other' => 'Hafa',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Hanampy sokajy',
-'ajax-add-category-submit'     => 'Hanampy',
-'ajax-confirm-title'           => 'Hanohy ilay tao',
-'ajax-confirm-save'            => 'Tehirizo',
-'ajax-add-category-summary'    => 'Hanampy ny sokajy « $1 »',
-'ajax-remove-category-summary' => 'Hanala ilay sokajy « $1 »',
-'ajax-error-title'             => 'Tsy fetezana',
-
 );

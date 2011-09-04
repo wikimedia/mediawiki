@@ -3791,29 +3791,4 @@ Este sitio está experimentando dificultades técnicas.',
 'sqlite-has-fts' => '$1 con soporte para búsqueda de texto completo',
 'sqlite-no-fts'  => '$1 sin soporte para búsqueda de texto completo',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Agregar categoría',
-'ajax-remove-category'          => 'Quitar categoría',
-'ajax-edit-category'            => 'Editar categoría',
-'ajax-add-category-submit'      => 'Agregar',
-'ajax-confirm-ok'               => 'Aceptar',
-'ajax-confirm-title'            => 'Confirmar acción',
-'ajax-confirm-save'             => 'Guardar',
-'ajax-confirm-save-all'         => 'Guardar todos los cambios',
-'ajax-cancel'                   => 'Cancelar edición',
-'ajax-cancel-all'               => 'Cancelar todos los cambios',
-'ajax-add-category-summary'     => 'Añadir categoría «$1»',
-'ajax-edit-category-summary'    => 'Cambiar la categoría «$1» a «$2»',
-'ajax-remove-category-summary'  => 'Quitar categoría «$1»',
-'ajax-category-question'        => 'Por qué deseas realizar los siguientes cambios:',
-'ajax-error-title'              => 'Error',
-'ajax-remove-category-error'    => 'No fue posible quitar la categoría «$1».
-Esto suele ocurrir cuando la categoría se añadió a la página por una plantilla.',
-'ajax-edit-category-error'      => 'No fue posible editar la categoría «$1».
-Esto suele ocurrir cuando la categoría se añadió a la página por una plantilla.',
-'ajax-category-already-present' => 'Esta página ya pertenece a la categoría «$1»',
-'ajax-category-hook-error'      => 'Una función local impide que se guarden los cambios',
-'ajax-api-error'                => 'La API ha devuelto un error:  $1 :  $2 .',
-'ajax-api-unknown-error'        => 'La API ha devuelto un error desconocido.',
-
 );

@@ -1532,13 +1532,4 @@ PICT # тайп тайпан
 'dberr-usegoogle' => 'Цlачун хьо хьажа лаха гlонца Google.',
 'dberr-outofdate' => 'Хьуна хаалахь, цуьна йолу меттиг хила мега тишйелла черахь.',
 
-# Add categories per AJAX
-'ajax-add-category'            => 'Тlетоха кадегар',
-'ajax-add-category-submit'     => 'Тlетоха',
-'ajax-confirm-title'           => 'Тlечlагlде дийриг',
-'ajax-confirm-save'            => 'lалашдан',
-'ajax-add-category-summary'    => 'Тlетоьхна кадегар «$1»',
-'ajax-remove-category-summary' => 'ДIайакхина кадегар «$1»',
-'ajax-error-title'             => 'Гlалат',
-
 );

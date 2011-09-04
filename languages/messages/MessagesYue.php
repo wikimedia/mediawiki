@@ -3412,15 +3412,4 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 'sqlite-has-fts' => '$1 有全文搜尋支援',
 'sqlite-no-fts'  => '$1 冇全文搜尋支援',
 
-# Add categories per AJAX
-'ajax-add-category'            => '加分類',
-'ajax-add-category-submit'     => '加',
-'ajax-confirm-title'           => '確認動作',
-'ajax-confirm-save'            => '儲存',
-'ajax-add-category-summary'    => '加入分類「$1」',
-'ajax-remove-category-summary' => '拎走分類「$1」',
-'ajax-error-title'             => '錯誤',
-'ajax-remove-category-error'   => '唔能夠拎走呢個分類。
-通常係發生響一個模度加入咗嗰個分類。',
-
 );

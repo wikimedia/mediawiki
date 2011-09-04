@@ -3551,29 +3551,4 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'sqlite-has-fts' => '$1 gyda chymorth chwilio yr holl destun',
 'sqlite-no-fts'  => '$1 heb gymorth chwiliad yr holl destun',
 
-# Add categories per AJAX
-'ajax-add-category'             => 'Ychwanegu categori',
-'ajax-remove-category'          => "Tynnu'r categori",
-'ajax-edit-category'            => "Golygu'r categori",
-'ajax-add-category-submit'      => 'Ychwanegu',
-'ajax-confirm-ok'               => 'Iawn',
-'ajax-confirm-title'            => "Cadarnhau'r weithred",
-'ajax-confirm-save'             => 'Cadwer',
-'ajax-confirm-save-all'         => 'Cadwer yr holl newidiadau',
-'ajax-cancel'                   => "Diddymu'r golygiadau",
-'ajax-cancel-all'               => 'Rhodder yr holl newidiadau heibio',
-'ajax-add-category-summary'     => 'Ychwanegu\'r categori "$1"',
-'ajax-edit-category-summary'    => 'Newid y categori "$1" i "$2"',
-'ajax-remove-category-summary'  => 'Tynnu\'r categori "$1"',
-'ajax-category-question'        => "Pam ydych chi am wneud y newidiadau sy'n dilyn:",
-'ajax-error-title'              => 'Gwall',
-'ajax-remove-category-error'    => 'Nid oedd yn bosibl tynnu\'r categori "$1" i ffwrdd.
-Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mewn i nodyn.',
-'ajax-edit-category-error'      => 'Nid oedd modd golygu\'r categori "$1".
-Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mewn i nodyn.',
-'ajax-category-already-present' => "Mae'r dudalen hon yn perthyn i'r categori $1 yn barod",
-'ajax-category-hook-error'      => 'Rhwystrodd ffwythiant lleol y newidiadau rhag cael eu rhoi ar gadw.',
-'ajax-api-error'                => 'Dychwelodd yr API wall: $1: $2.',
-'ajax-api-unknown-error'        => 'Dychwelodd yr API wall anhysbys.',
-
 );
