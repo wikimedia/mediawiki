@@ -772,7 +772,7 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'passwordreset-text'           => 'Donn dat Fommulaa heh ußfölle, öm en <i lang="en">e-mail</i> ze krijje, woh jät övver der Zohjang heh obb et Wiki för Desch dren shteiht.',
 'passwordreset-legend'         => 'Et Paßwoot zeröck säze',
 'passwordreset-disabled'       => 'Et Paßwoot zeröck ze säze es heh em Wiki afjeschalldt.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Jiff ein vun dä Saache heh dronger enn}}',
+'passwordreset-pretext'        => '{{PLURAL:$1||Jiff ein vun dä Saache heh dronger enn|}}',
 'passwordreset-username'       => 'Metmaacher Name:',
 'passwordreset-email'          => 'De Adräß för de <i lang="en">e-mail</i>:',
 'passwordreset-emailtitle'     => 'Einzelheite för der Zohjang op {{GRAMMAR:Akkusativ|{{SITENAME}}}}',
@@ -1589,7 +1589,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'rightslog'                  => 'Logboch för Änderunge aan Metmaacher-Räächde',
 'rightslogtext'              => 'Hee sin de Änderunge an Metmaacher ehre Räächde opjeliss. Op de Sigge üvver Metmaacher, Wiki-Köbesse, Bürrokrade, Stewards, un esu, kanns De nohlese, wat domet es.',
 'rightslogentry'             => 'hät däm Metmaacher „$1“ sing Räächde vun „$2“ op „$3“ ömjestallt.',
-'rightslogentry-autopromote' => 'wood automattesch vum $2 zom $3 jemaat.',
+'rightslogentry-autopromote' => 'wood automattesch vun $2 zoh $3 jemaat.',
 'rightsnone'                 => '(nix)',
 
 # Associated actions - in the sentence "You do not have permission to X"

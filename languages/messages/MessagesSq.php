@@ -13,6 +13,7 @@
  * @author Dori
  * @author Eagleal
  * @author Ergon
+ * @author Marinari
  * @author Mdupont
  * @author MicroBoy
  * @author Mikullovci11
@@ -666,6 +667,7 @@ Duhet të hyni brenda dhe të ndërroni fjalëkalimin tani nëse ky person jeni 
 
 # E-mail sending
 'php-mail-error-unknown' => 'Gabim i panjohur në funksionin e postës PHP ()',
+'user-mail-no-addy'      => 'Provuat të dërgoni një korrespondencë pa adresë elektronike',
 
 # Change password dialog
 'resetpass'                 => 'Ndrysho fjalëkalimin',
@@ -685,9 +687,27 @@ Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 'resetpass-temp-password'   => 'Fjalëkalimi i përkohshëm:',
 
 # Special:PasswordReset
-'passwordreset'        => 'Ndrysho fjalkalimin',
-'passwordreset-text'   => 'Plotësoni këtë formular për të marrë një këshillë e-mail të dhënat e llogarisë suaj.',
-'passwordreset-legend' => 'Ndrysho fjalkalimin',
+'passwordreset'              => 'Ndrysho fjalkalimin',
+'passwordreset-text'         => 'Plotësoni këtë formular për të marrë një këshillë e-mail të dhënat e llogarisë suaj.',
+'passwordreset-legend'       => 'Ndrysho fjalkalimin',
+'passwordreset-disabled'     => 'Rivendosja e fjalëkalimit është deaktivizuar në këtë wiki.',
+'passwordreset-pretext'      => '{{PLURAL:$1| | Shkruani një nga pjesët e të dhënave më poshtë}}',
+'passwordreset-username'     => 'Nofka:',
+'passwordreset-email'        => 'Posta elektronike',
+'passwordreset-emailtitle'   => 'Detajet e llogarisë në {{SITENAME}}',
+'passwordreset-emailelement' => 'Nofka: $1
+Fjalëkalimi i përkohshëm: $2',
+'passwordreset-emailsent'    => 'Një korrespondencë kujtese është dërguar',
+
+# Special:ChangeEmail
+'changeemail'          => 'Ndrysho postën elektronike',
+'changeemail-header'   => 'Ndrysho llogarinë e adresës së postës elektronike',
+'changeemail-text'     => 'Plotësoni këtë formular për të ndryshuar adresën tuaj të postës elektronike. Ju duhet të shkruani fjalëkalimin tuaj për të konfirmuar këtë ndryshim.',
+'changeemail-no-info'  => 'Ju duhet të jeni i kyçur që të keni qasje direkte në këtë faqe.',
+'changeemail-oldemail' => 'Posta elektronike aktuale:',
+'changeemail-newemail' => 'Posta elektronike e re:',
+'changeemail-submit'   => 'Ndrysho postën elektronike',
+'changeemail-cancel'   => 'Anulo',
 
 # Edit page toolbar
 'bold_sample'     => 'Tekst i trashë',
@@ -1179,6 +1199,8 @@ Kini kujdes se përdorimi i lidhjeve të shfletimit do të ndryshojë përzgjedh
 'prefs-watchlist-token'         => 'Lista mbikqyrëse shenjë:',
 'prefs-misc'                    => 'Të ndryshme',
 'prefs-resetpass'               => 'Ndrysho fjalëkalimin',
+'prefs-changeemail'             => 'Ndrysho postën elektronike',
+'prefs-setemail'                => 'Vendos adresën e postës elektronike',
 'prefs-email'                   => 'Opsionet E-mail',
 'prefs-rendering'               => 'Dukja',
 'saveprefs'                     => 'Ruaj parapëlqimet',
@@ -2952,6 +2974,37 @@ Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mu
 'exif-gpsdatestamp'                => 'E dhënë GPS',
 'exif-gpsdifferential'             => 'Korrigjim diferencial i GPS',
 'exif-objectname'                  => 'Titull i shkurtër',
+'exif-languagecode'                => 'Gjuha',
+'exif-iimversion'                  => 'IIM versioni',
+'exif-iimcategory'                 => 'Kategoria',
+'exif-iimsupplementalcategory'     => 'Kategoritë plotësuese',
+'exif-datetimeexpires'             => 'Mos përdorni më pas',
+'exif-datetimereleased'            => 'Lëshuar më',
+'exif-originaltransmissionref'     => 'Kodi origjinal i vendit të transmetimit',
+'exif-identifier'                  => 'Identifikuesi',
+'exif-lens'                        => 'Lentja e përdorur',
+'exif-serialnumber'                => 'Numri serik i kamerës',
+'exif-cameraownername'             => 'Pronari i kamerës',
+'exif-label'                       => 'Etiketa',
+'exif-datetimemetadata'            => 'Data e ndryshimit të fundit të të dhënave',
+'exif-nickname'                    => 'Emri joformal i fotografisë',
+'exif-rating'                      => 'Vlerësimi (nga 5)',
+'exif-rightscertificate'           => 'Certifikatë e të drejtave të menaxhmentit',
+'exif-copyrighted'                 => 'Statusi i të drejtës së autorit',
+'exif-copyrightowner'              => 'Pronari i të drejtës së autorit',
+'exif-usageterms'                  => 'Mënyra e përdorimit',
+'exif-webstatement'                => 'Deklarata e të drejtës së autorit në-linjë',
+'exif-originaldocumentid'          => 'ID-ja unike e dokumentit origjinal',
+'exif-licenseurl'                  => 'URL-ja për licencën e të drejtës së autorit',
+'exif-morepermissionsurl'          => 'Informacion alternativ i licencimit',
+'exif-attributionurl'              => 'Kur ri-shfrytëzoni këtë punë, ju lutem lidheni tek',
+'exif-preferredattributionname'    => 'Kur ri-shfrytëzoni këtë punë, ju lutem atribuoni',
+'exif-pngfilecomment'              => 'Komenti i PGN dokumentit',
+'exif-disclaimer'                  => 'Shfajësimet',
+'exif-contentwarning'              => 'Paralajmërim i përmbajtjes',
+'exif-giffilecomment'              => 'Komenti i GIF dokumentit',
+'exif-intellectualgenre'           => 'Lloji i artikullit',
+'exif-subjectnewscode'             => 'Kodi i subjektit',
 
 # EXIF attributes
 'exif-compression-1' => 'E pangjeshur',

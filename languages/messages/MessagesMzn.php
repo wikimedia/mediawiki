@@ -10,6 +10,7 @@
  * @author Ali1986
  * @author Ebraminio
  * @author Firuz
+ * @author Mjbmr
  * @author Spacebirdy
  * @author محک
  */
@@ -226,8 +227,8 @@ $messages = array(
 'vector-view-create'             => 'بساتن',
 'vector-view-edit'               => 'دچی‌ین',
 'vector-view-history'            => 'تاریخچه ره بَدی‌ین',
-'vector-view-view'               => 'بأخـونـه‌سـه‌ن',
-'vector-view-viewsource'         => 'چـه‌شــمـه ئـه‌شـه‌نـه‌ن',
+'vector-view-view'               => 'بخوندستن',
+'vector-view-viewsource'         => 'ونه منبع ره هارشائن',
 'actions'                        => 'عملکاردون',
 'namespaces'                     => 'ایسم فضائون',
 'variants'                       => 'گویش‌ئون',
@@ -237,7 +238,7 @@ $messages = array(
 'tagline'           => '{{SITENAME}} جه',
 'help'              => 'کمک و راهنمایی',
 'search'            => 'بگردستن',
-'searchbutton'      => 'چـأرخـه‌تـو',
+'searchbutton'      => 'چرخ‌هایی',
 'go'                => 'بـور',
 'searcharticle'     => 'بور',
 'history'           => 'صفحه‌ی تاریخچه',
@@ -256,7 +257,7 @@ $messages = array(
 'undelete_short'    => 'احیای {{PLURAL:$1|ات دچی‌یه|$1 دچی‌یه}}',
 'viewdeleted_short' => 'نمایش {{PLURAL:$1|اتا دچی‌یه حذف بَیی|$1 دچی‌یه حذف بَیی}}',
 'protect'           => 'زلفن بزوئن',
-'protect_change'    => 'ده‌گـه‌ره‌سـه‌ن',
+'protect_change'    => 'دگاردنی‌ین',
 'protectthispage'   => 'این صفحه ره زلفن بزن',
 'unprotect'         => 'دیگه محافظت نکان',
 'unprotectthispage' => 'این زلفن ره عوض بدل هاکن',
@@ -292,7 +293,7 @@ $2، $1',
 'pool-errorunknown' => 'خطای ناشناخته',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => 'دربارهٔ {{SITENAME}}',
+'aboutsite'            => '{{SITENAME}} درباره',
 'aboutpage'            => 'Project:درباره',
 'copyright'            => 'این صفحه ره بَنوشته‌ئون  $1  زیر شِمه دسـت دَرنه.',
 'copyrightpage'        => '{{ns:project}}:کـوپـی‌راسـت‌ئون',
@@ -300,7 +301,7 @@ $2، $1',
 'currentevents-url'    => 'Project:اسایی دکته‌ئون',
 'disclaimers'          => 'تکذیب‌نومه‌ئون',
 'disclaimerpage'       => 'Project:تکذیب‌نومه',
-'edithelp'             => 'دأچـیه‌ن ره رانـه‌ما',
+'edithelp'             => 'دچی‌ین رانما',
 'edithelppage'         => 'Help:دَچی‌ین',
 'helppage'             => 'Help:رونما',
 'mainpage'             => 'گت ولگ',
@@ -434,7 +435,7 @@ $2، $1',
 'login'                   => 'دله بوردن',
 'nav-login-createaccount' => 'دله بوردن / عضو بیّن',
 'loginprompt'             => '{{SITENAME}} ره ده‌لـه بیـه‌موئـه‌ن وه‌سه، وه‌نـه cookieئون  کـارسأر بـوئـه‌ن.',
-'userlogin'               => 'ده‌لـه‌بـوری / اکـانـت بـأئـیـتـه‌ن',
+'userlogin'               => 'دله بموئن / عضو بیّن',
 'userloginnocreate'       => 'دله بموئن',
 'logout'                  => 'دربوردن',
 'userlogout'              => 'دربوردن',
@@ -447,8 +448,8 @@ $2، $1',
 'createaccountmail'       => 'ایمیل ِهمراه',
 'createaccountreason'     => 'دلیل:',
 'badretype'               => 'دِتا پسوردی که بنویشتی اتجور نینه',
-'userexists'              => 'این کاروری نوم وجود داشته.
-لطفأ ات نوم دیگه انتخاب هاکنین.',
+'userexists'              => 'کاروری نومی که بخاستنی وجود داشته.
+خواهشأ ات نوم دیگه انتخاب هاکنین.',
 'loginerror'              => 'دله نشی‌یه',
 'nocookiesnew'            => 'حساب کاروری بساته بیّه، اما شِما دله نشینی.
 {{SITENAME}} ورود کارورون به سامانه از کوکی استفاده کانده.
@@ -467,16 +468,16 @@ $2، $1',
 # Edit page toolbar
 'bold_sample'     => 'ضخیم',
 'bold_tip'        => 'ضخیم',
-'italic_sample'   => 'کج',
-'italic_tip'      => 'کج',
+'italic_sample'   => 'کژ',
+'italic_tip'      => 'کژ',
 'link_sample'     => 'لینک ِسرنوم',
 'link_tip'        => 'درونی لینک',
-'extlink_sample'  => 'http://www.example.com لینک ره نوم',
+'extlink_sample'  => 'http://www.example.com مثال',
 'extlink_tip'     => 'بیرون بگردستن (پیشوند http://‎ ره یادنکانین)',
 'headline_sample' => 'متن عنوان',
 'headline_tip'    => 'عنوان بند ۲',
-'nowiki_sample'   => 'شـه فـورمـأت‌نـه‌دار تـه‌کـسـت ره ایـجـه دأکـه‌نـیـن',
-'nowiki_tip'      => 'ویـکـی فـورمـأت ره نـأدیهـه‌ن',
+'nowiki_sample'   => 'شه بی فورمت بنویشته ره اینجه دکانین',
+'nowiki_tip'      => 'فورمت سر چش ره کوریک بَیره',
 'media_tip'       => 'فایل لینک',
 
 # Edit pages
@@ -503,7 +504,7 @@ $2، $1',
  شمه یاد دواشه که اگه شه ایمیل ره ننوشت بائین نتونی مدیرا وسه ایمیل بزنین اگه ایمیل ره ننوشنی ترجیحات دله بنویسین[[Special:Preferences|اینجه ایمیل ره بنویس]]
 نشونی آی‌پی شما $3 و شماره قطع دسترسی شما $5 هسته. حتما این دِتا شوماره ره گپ بزوئن دله به کار بورین.",
 'blockednoreason'                  => 'معلوم نی‌یه چچی وسه اینتی بیّه!',
-'whitelistedittitle'               => 'جور هکاردن ره وسه ونه سیستم ره دله ئه نین',
+'whitelistedittitle'               => 'جورهاکردن وسه ونه سیستم ره دله بیی',
 'newarticle'                       => '(ترنه)',
 'blocked-notice-logextract'        => 'دسترسی اینتا کارور الآن دوستوئه.
 آخرین مورد سیاهه قطع دسترسی زیر بموئه:',
@@ -512,10 +513,10 @@ $2، $1',
 'editing'                          => 'دچی‌ین => $1',
 'editingsection'                   => 'دچی‌ین $1 (تیکه)',
 'yourtext'                         => 'شمه بنویشته',
-'copyrightwarning'                 => 'خـاهـه‌ش بـونـه شـه یـاد ده‌لـه دأکـه‌نـیـن کـه هـأمـه کـایـه‌رئونی کـه {{SITENAME}} ده‌لـه بـونـه، $2 جـیـر ره‌هـا بـونـه. (ویـشـتـه‌ر وه‌سـه $1 ره بـأویـنـیـن)<br />
-أگـه نـه‌خـانـه‌نـی شـه‌مـه بـأنـویـشـتـه‌ئون ایـجـه دسـت بـأخـوره ئو أتـا جـا دیـگـه پـخـش بـأوه، بـه‌تـه‌ر هـأسـه کـه وه‌شـون ره ایـجـه نـیـه‌لـیـن.',
+'copyrightwarning'                 => 'خـاهش بونه شمه یاد دواشه که همه چیزایی که {{SITENAME}} دله وانه، تحت $2 حیساب وونه. (ویشتر بخوندستن وسه $1 ره هارشین)<br />
+اگه نخانّی شمه بنویشته‌ئون اینجه دس بزه یا ات نفر دیگه شمه بنویشته ره کوپی نکانه، اصلأ شه بنویشته ره اینجه نی‌یلین.',
 'templatesused'                    => '{{PLURAL:$1|شابلون|شابلونای}} استفاده بَیی این صفحه دله:',
-'templatesusedpreview'             => 'شـابـلـون‌ئونی کی ای پـیـش‌نـه‌مـایـه‌ش ده‌لـه کـار بـورده‌نـه:',
+'templatesusedpreview'             => '{{PLURAL:$1|شابلون|شابلونای}} استفاده بَیی این پیش‌نمایش دله:',
 'permissionserrorstext-withaction' => 'ته اجازهٔ $2 ره به {{PLURAL:$1|دلیل|دلایل}} رو به رو ندانی:',
 'recreate-moveddeleted-warn'       => "'''هشدار: ته دری اتا صفحه ره نویسنی که قبلا پاک بیّه.'''
 
@@ -531,8 +532,8 @@ $2، $1',
 
 # History pages
 'revisionasof'     => 'دچی‌یه‌ئونی که $1 جا دکتنه',
-'previousrevision' => '→ پـیـشـیـن ده‌گه‌ره‌سه‌ن',
-'cur'              => 'ئه‌سا',
+'previousrevision' => '→ پیشی دگاردسته‌ئون',
+'cur'              => 'إسا',
 'last'             => 'تاریخچه',
 'histfirst'        => 'کـوهـنـه تـریـن',
 'histlast'         => 'نـو تـریـن',
@@ -544,43 +545,43 @@ $2، $1',
 'revdel-restore' => 'دیاری تغییر هدائن',
 
 # Merge log
-'revertmerge' => 'سـه‌وا  هـه‌کارده‌ن',
+'revertmerge' => 'سِوا هاکردن',
 
 # Diffs
 'lineno'   => 'بند  $1:',
-'editundo' => 'واچیه‌ن',
+'editundo' => 'واچی‌ین',
 
 # Search results
-'searchresults'             => 'چرخه‌توی هه‌دایی‌ئون',
+'searchresults'             => 'بچرخستن ِجوابون',
 'searchsubtitle'            => "شما '''[[:$1]]''' دمبال بگردستنی ([[Special:Prefixindex/$1|صفحه‌ئونی که با «$1» شروع وانّه]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|صفحه‌ئونی که به «$1» لینک هدانه]])",
-'notitlematches'            => 'هـیـچ ولـگـی شه‌مه گـب ره نـه‌مـاسـتـه',
+'notitlematches'            => 'هیچ صفحه‌یی شمه گپ واری نیّه',
 'prevn'                     => 'پـیـشـیـن {{PLURAL:$1|$1}}',
 'nextn'                     => 'تا پَس‌تر {{PLURAL:$1|$1}}',
-'viewprevnext'              => 'بـأویـنـه‌ن ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-new'            => "'''«[[:$1]]» ِصفحه ره این ویکی دله بساجین!'''",
+'viewprevnext'              => 'هارشائن ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-new'            => "'''«[[:$1]]» ِ صفحه ره این ویکی دله بساجین!'''",
 'search-result-size'        => '$1 ({{PLURAL:$2|1 واجه|$2 واجه}})',
-'search-redirect'           => '(بـأره‌سـیـه $1 جـه)',
+'search-redirect'           => '(بَرسی‌یه $1 جه)',
 'search-section'            => '(تیکه $1)',
-'search-suggest'            => 'شه‌مـا ایـنـتـا ره نـه‌خـاسـه‌نی؟ $1',
-'search-interwiki-caption'  => 'خاخه‌ر په‌روجه‌ئون',
-'search-interwiki-more'     => '(ویشته‌ر)',
-'search-mwsuggest-enabled'  => 'پیشنهاد هه‌مرا',
+'search-suggest'            => 'شما اینتا ره نخاسنی: $1',
+'search-interwiki-caption'  => 'خاخر پروژه‌ئون',
+'search-interwiki-more'     => '(ویشتر)',
+'search-mwsuggest-enabled'  => 'پیشنهاد همرا',
 'search-mwsuggest-disabled' => 'هیچ پیشنهادی دنیه',
 'powersearch'               => 'ململ بَیی دور هایتن',
 'powersearch-legend'        => 'ململ بَیی دور هایتن',
-'powersearch-ns'            => 'سه‌ره‌ک به‌نه‌ک، نوم‌جائون ده‌له:',
+'powersearch-ns'            => 'بچرخستن اینان دله:',
 'powersearch-redir'         => '',
 'powersearch-field'         => 'دور هایتن اینتا وسه:',
 
 # Preferences page
 'mypreferences'             => 'مـه خـاسـته‌نی‌ئون',
-'prefs-edits'               => 'نومـه‌ره دأچیه‌ن‌ئون:',
-'prefsnologin'              => 'سیـستـه‌م ره ده‌لـه نـی‌یـه‌نـی',
+'prefs-edits'               => 'تعداد دچی‌یه‌ئون:',
+'prefsnologin'              => 'سیستم دله نمویی',
 'youremail'                 => 'شه مه Email:',
 'username'                  => 'کاروری نوم:',
 'uid'                       => 'کاروری إشماره:',
 'yourrealname'              => 'شیمه راستین ره نوم :',
-'yourlanguage'              => 'زیوون:',
+'yourlanguage'              => 'زوون:',
 'badsig'                    => 'ایمضا بی اعتبار هسه. html کودون ره أی هارشین.',
 'email'                     => 'رایانومه',
 'prefs-help-realname'       => 'اصلی نوم اختیاری هسه. اگه شه‌ما بنویسین شمه کارون ونه جا ثبت بونه.',
@@ -591,10 +592,10 @@ $2، $1',
 'userrights-user-editname' => 'کارور نوم ره بنویش هاکنین',
 
 # Groups
-'group-sysop' => 'کـاره‌ئون',
-'group-all'   => '(هـأمـه)',
+'group-sysop' => 'مدیرون',
+'group-all'   => '(همه)',
 
-'grouppage-sysop' => '{{ns:project}}:کـاره‌ئون',
+'grouppage-sysop' => '{{ns:project}}:مدیرون',
 
 # User rights log
 'rightslog'     => 'سیاهه اختیارای کاروری',
@@ -612,7 +613,7 @@ $2، $1',
 
 # Recent changes
 'recentchanges'   => 'تازه دگاردسته‌ئون',
-'rcnote'          => "ایجه هأمه {{PLURAL:$1| '''اتا''' ده‌گـه‌ره‌سـه‌نـی|هأمه '''$1''' ده‌گـه‌ره‌سـه‌ئـونـی}} ده‌گه‌ره‌سونی کـه $4، $5 جـه، '''$2''' روز پـیـش‌تـه‌ر دأکـه‌تـه‌نـه ره ویـنـده‌نـی",
+'rcnote'          => "اینجه {{PLURAL:$1|دگاردسته‌یی|'''$1''' دگاردسته‌ئونی}} که $4، $5 جه، '''$2''' روز پیش‌تر دچی‎یه بینه ره اشنّی",
 'rclistfrom'      => 'نِمایش تازه‌دگاردسته‌ئون با شروع از $1',
 'rcshowhideminor' => 'پچیک دچی‌یه‌ئون $1',
 'rcshowhidebots'  => 'ربوت‌ئون $1',
@@ -647,19 +648,19 @@ $2، $1',
 *'''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' استفاده از اتا نسخه ۲۰۰ پیکسلی از پرونده که اتا جعبه سمت چپ متن دله دره و عبارت alt text ونه دله به عنوان توضیح استفاده بیّه وسّه
 *'''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' بساتن اتا پیوند مستقیم به پرونده بدون نمایش پرونده",
 'uploadlogpage' => 'باربی‌یشتن گزارش',
-'uploadedimage' => 'بـاربـیـه‌شـتـه بـأیـه "[[$1]]"',
+'uploadedimage' => '"[[$1]]" ره باربی‌یشته',
 
 # Special:ListFiles
 'imgfile'        => 'فایل',
 'listfiles'      => 'هارشی ئون ره لیست',
 'listfiles_name' => 'نـوم',
 'listfiles_user' => 'کارور',
-'listfiles_size' => 'اندازه',
+'listfiles_size' => 'قایده',
 
 # File description page
 'file-anchor-link'  => 'فایل',
 'filehist'          => 'فایل تاریخچه',
-'filehist-current'  => 'ئـه‌سـا',
+'filehist-current'  => 'إسا',
 'filehist-datetime' => 'تاریخ/زمون',
 'filehist-thumb'    => 'انگوس گتی',
 'filehist-user'     => 'کارور',
@@ -929,6 +930,9 @@ $5
 # Auto-summaries
 'autosumm-blank'   => 'صفحه ره اسپه هاکرده',
 'autosumm-replace' => "صفحه ره اینتا جه عوض هاکرد: '$1'",
+
+# Special:Version
+'version-specialpages' => 'شا صفحه‌ئون',
 
 # Special:SpecialPages
 'specialpages' => 'شا صفحه‌ئون',

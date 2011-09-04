@@ -525,8 +525,8 @@ $1',
 'copyrightpage'        => '{{ns:project}}:Opphavsrett',
 'currentevents'        => 'Aktuelt',
 'currentevents-url'    => 'Project:Aktuelt',
-'disclaimers'          => 'Vilkår',
-'disclaimerpage'       => 'Project:Vilkår',
+'disclaimers'          => 'Atterhald',
+'disclaimerpage'       => 'Project:Atterhald',
 'edithelp'             => 'Hjelp til endring',
 'edithelppage'         => 'Help:Endring',
 'helppage'             => 'Help:Innhald',
@@ -3435,6 +3435,6 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'ajax-remove-category-summary' => 'Fjern kategorien "$1"',
 'ajax-error-title'             => 'Feil',
 'ajax-remove-category-error'   => 'Det var ikkje mogleg å fjerna kategorien.
-Det skuldast som oftast at kategorien er vorte lagd til i sida innan ein mal.',
+Det skuldast som oftast at kategorien er vorte lagd til i sida inni ein mal.',
 
 );

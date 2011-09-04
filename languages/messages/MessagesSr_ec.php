@@ -1,5 +1,5 @@
 <?php
-/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (‪Српски (ћирилица)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -891,7 +891,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Непозната грешка у функцији PHP mail()',
-'user-mail-no-addy'      => 'Покушали сте да пошаљете поруку без е-адресе',
+'user-mail-no-addy'      => 'Покушали сте да пошаљете поруку без е-адресе.',
 
 # Change password dialog
 'resetpass'                 => 'Промена лозинке',
@@ -1128,6 +1128,9 @@ $2
 'templatesused'                    => '{{PLURAL:$1|Шаблон|Шаблони}} на овој страници:',
 'templatesusedpreview'             => '{{PLURAL:$1|Шаблон|Шаблони}} у овом прегледу:',
 'templatesusedsection'             => '{{PLURAL:$1|Шаблон|Шаблони}} у овом одељку:',
+'distanttemplatesused'             => '{{PLURAL:$1|Удаљени шаблон који се користи|Удаљени шаблони који се користе}} на овој страници:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Удаљени шаблон који се користи|Удаљени шаблони који се користе}} у овом прегледу:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Удаљени шаблон који се користи|Удаљени шаблони који се користе}} у овом одељку:',
 'template-protected'               => '(заштићено)',
 'template-semiprotected'           => '(полузаштићено)',
 'hiddencategories'                 => 'Ова страница је члан {{PLURAL:$1|једне скривене категорије|$1 скривене категорије|$1 скривених категорија}}:',
@@ -1446,7 +1449,7 @@ $1",
 'qbsettings-fixedright'     => 'Причвршћена десно',
 'qbsettings-floatingleft'   => 'Плутајућа лево',
 'qbsettings-floatingright'  => 'Плутајућа десно',
-'qbsettings-directionality' => 'Померено, у зависности од смера писања вашег језика',
+'qbsettings-directionality' => 'Фиксно, у зависности од смера писања вашег језика',
 
 # Preferences page
 'preferences'                   => 'Подешавања',
@@ -1460,7 +1463,7 @@ $1",
 'datedefault'                   => 'Свеједно',
 'prefs-beta'                    => 'Бета функције',
 'prefs-datetime'                => 'Датум и време',
-'prefs-labs'                    => 'Лабораторијске функције',
+'prefs-labs'                    => 'Пробне могућности',
 'prefs-personal'                => 'Профил',
 'prefs-rc'                      => 'Скорашње измене',
 'prefs-watchlist'               => 'Списак надгледања',
@@ -1970,8 +1973,7 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ова посебна страница приказује све послате датотеке.
-Према подразумеваним поставкама, најновије датотеке су приказане на врху списка.
-Кликом на заглавље колоне мења се начин сврставања.',
+Кад је поређано по кориснику, попис приказује само оне датотеке чије је последње издање поставио тај корисник.',
 'listfiles_search_for'  => 'Назив датотеке:',
 'imgfile'               => 'датотека',
 'listfiles'             => 'Списак датотека',
@@ -2298,7 +2300,7 @@ $1',
 'emailpagetext'        => 'Користите овај образац да пошаљете е-поруку овом кориснику.
 Е-адреса коју сте унели у [[Special:Preferences|подешавањима]] ће бити приказана као адреса пошиљаоца, тако да ће прималац поруке моћи да вам одговори.',
 'usermailererror'      => 'Објекат поште је вратио грешку:',
-'defemailsubject'      => '{{SITENAME}} е-пошта',
+'defemailsubject'      => '{{SITENAME}} е-адреса {{GENDER:$1|корисника|кориснице|корисника}} $1',
 'usermaildisabled'     => 'Корисничка е-пошта је онемогућена',
 'usermaildisabledtext' => 'Не можете да шаљете е-поруке другим корисницима овог викија',
 'noemailtitle'         => 'Нема е-адресе',
@@ -2613,6 +2615,7 @@ $1',
 'sp-contributions-username'            => 'IP адреса или корисничко име:',
 'sp-contributions-toponly'             => 'Прикажи само најновије измене',
 'sp-contributions-submit'              => 'Претражи',
+'sp-contributions-showsizediff'        => 'Прикажи разлике у величини странице',
 
 # What links here
 'whatlinkshere'            => 'Шта је повезано овде',
@@ -2695,6 +2698,7 @@ $1',
 'blocklist-userblocks'            => 'Сакриј блокирања налога',
 'blocklist-tempblocks'            => 'Сакриј привремена блокирања',
 'blocklist-addressblocks'         => 'Сакриј појединачна блокирања ИП адресе',
+'blocklist-rangeblocks'           => 'Сакриј блокирања опсега',
 'blocklist-timestamp'             => 'Време',
 'blocklist-target'                => 'Корисник',
 'blocklist-expiry'                => 'Истиче',
@@ -3081,9 +3085,9 @@ $1',
 
 # Info page
 'pageinfo-title'            => 'Подаци о „$1“',
-'pageinfo-header-edits'     => 'Измене',
+'pageinfo-header-edits'     => 'Измена',
 'pageinfo-header-watchlist' => 'Списак надгледања',
-'pageinfo-header-views'     => 'Прегледи',
+'pageinfo-header-views'     => 'Прегледа',
 'pageinfo-subjectpage'      => 'Страница',
 'pageinfo-talkpage'         => 'Страница за разговор',
 'pageinfo-watchers'         => 'Број прегледача',
@@ -3680,7 +3684,7 @@ $1',
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'У реду',
-'confirm-watch-top'      => 'Додати ову страницу на списак надгледања?',
+'confirm-watch-top'      => 'Додати ову страницу у списак надгледања?',
 'confirm-unwatch-button' => 'У реду',
 'confirm-unwatch-top'    => 'Уклонити ову страницу са списка надгледања?',
 
@@ -3855,8 +3859,32 @@ $1',
 'compare-rev2'                => 'Измена 2',
 'compare-submit'              => 'Упореди',
 'compare-invalid-title'       => 'Наведени наслов је неисправан.',
-'compare-title-not-exists'    => 'Тражени наслов не постоји.',
-'compare-revision-not-exists' => 'Тражена измена не постоји.',
+'compare-title-not-exists'    => 'Наведени наслов не постоји.',
+'compare-revision-not-exists' => 'Наведена измена не постоји.',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Глобална употреба датотеке',
+'globalfileusage-for'         => 'Глобална употреба датотеке „$1“',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Посебна страница]] за преглед глобалне употребе датотека',
+'globalfileusage-ok'          => 'Претражи',
+'globalfileusage-text'        => 'Претрага глобалне употребе датотеке',
+'globalfileusage-no-results'  => '[[$1]] се не користи на другим викијима.',
+'globalfileusage-on-wiki'     => 'Употреба на викију $2',
+'globalfileusage-of-file'     => 'Следећи викији користе ову датотеку:',
+'globalfileusage-more'        => 'Погледај [[{{#Special:GlobalUsage}}/$1|још глобалне употребе]] ове датотеке.',
+'globalfileusage-filterlocal' => 'Не приказуј локалну употребу',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Глобална употреба шаблона',
+'globaltemplateusage-for'         => 'Глобална употреба шаблона „$1“',
+'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Посебна страница]] за преглед глобалне употребе шаблона',
+'globaltemplateusage-ok'          => 'Претражи',
+'globaltemplateusage-text'        => 'Претрага глобалне употребе шаблона',
+'globaltemplateusage-no-results'  => '[[$1]] се не користи на другим викијима.',
+'globaltemplateusage-on-wiki'     => 'Употреба на викију $2',
+'globaltemplateusage-of-file'     => 'Следећи викији користе овај шаблон:',
+'globaltemplateusage-more'        => 'Погледај [[{{#Special:GlobalUsage}}/$1|још глобалне употребе]] овог шаблона.',
+'globaltemplateusage-filterlocal' => 'Не приказуј локалну употребу',
 
 # Database error messages
 'dberr-header'      => 'Овај вики има проблем',
@@ -3892,7 +3920,7 @@ $1',
 'ajax-confirm-title'            => 'Потврди акцију',
 'ajax-confirm-save'             => 'Сачувај',
 'ajax-confirm-save-all'         => 'Сачувај све измене',
-'ajax-cancel'                   => 'Откажи измене',
+'ajax-cancel'                   => 'Откажи уређивање',
 'ajax-cancel-all'               => 'Откажи све измене',
 'ajax-add-category-summary'     => 'Додај категорију "$1"',
 'ajax-edit-category-summary'    => 'Промени категорију „$1“ у „$2“',
@@ -3903,7 +3931,7 @@ $1',
 Ово се обично дешава када је категорија додата на страницу преко шаблона.',
 'ajax-edit-category-error'      => 'Не могу да променим категорију „$1“.
 Ово се обично дешава када је категорија додата на страницу преко шаблона.',
-'ajax-category-already-present' => 'Ова страница већ припада категорији $1',
+'ajax-category-already-present' => 'Ова страница већ припада категорији „$1“',
 'ajax-category-hook-error'      => 'Локална функција је спречила да се измене сачувају.',
 'ajax-api-error'                => 'АПИ је пријавио грешку: $1: $2.',
 'ajax-api-unknown-error'        => 'АПИ је пријавио непознату грешку.',

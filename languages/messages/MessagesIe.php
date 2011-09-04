@@ -434,6 +434,7 @@ Ne oblivia de mutar tui [[Special:Preferences|preferenties de {{SITENAME}}]].',
 'nav-login-createaccount'    => 'Crear un conto o intrar',
 'loginprompt'                => 'Cookies deve esser permisset por intrar in {{SITENAME}}.',
 'userlogin'                  => 'Crear un conto o intrar',
+'userloginnocreate'          => 'Intrar',
 'logout'                     => 'Surtida',
 'userlogout'                 => 'Surtida',
 'notloggedin'                => 'Vu ne ha intrat',
@@ -444,6 +445,8 @@ Ne oblivia de mutar tui [[Special:Preferences|preferenties de {{SITENAME}}]].',
 'gotaccountlink'             => 'Intrar',
 'userlogin-resetlink'        => 'Obliviat tui detallies de registre?',
 'badretype'                  => 'Li passa-paroles queles vu tippat ne es identic.',
+'userexists'                 => 'Nómine de usator ja in usu.
+Pleser opta por un nómine diferent.',
 'loginerror'                 => 'Erra in initiation del session',
 'nocookieslogin'             => '{{SITENAME}} utilisa cookies por far intrar usatores. Vu nu ne permisse cookies. Ples permisser les e provar denov.',
 'loginsuccesstitle'          => 'Apertion de session successosi',
@@ -508,6 +511,14 @@ Vu posse [[Special:Search/{{PAGENAME}}|serchar por ti titul de págine]] in altr
 'noarticletext-nopermission'       => 'Vi currentmen ne textu in ti págine.
 Vu posse [[Special:Search/{{PAGENAME}}|serchar por titul de ti págine]] in altri págines,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchar li diariumes relatet]</span>.',
+'usercssyoucanpreview'             => "'''Punta:''' Usa li buton \"{{int:showpreview}}\" por provar tui nov CSS ante de conservar.",
+'userjsyoucanpreview'              => "'''Punta:''' Usa li buton \"{{int:showpreview}}\" por provar tui nov JavaScript ante de conservar.",
+'usercsspreview'                   => "'''Memora que vu es solmen vident un prevision de tui CSS de usator.'''
+'''It ne have esset conservat ancor!'''",
+'userjspreview'                    => "'''Memora que vu es solmen provant/monstrant tui JavaScript de usator.'''
+'''It ne ha esset conservat ancor!'''",
+'userinvalidcssjstitle'            => "'''Advertiment:''' Ne vi pelle \"\$1\".
+Memora que hábitu .css e págines .js usa un titul plu bass, e.g. {{ns:user}}:Foo/vector.css quam oposit por {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Modernisat)',
 'previewnote'                      => "'''Memora se que ti es solmen un prevision.'''
 Tui changes ancor ne ha esset conservat!",
@@ -850,6 +861,7 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'longpages'               => 'Págines long',
 'deadendpages'            => 'Págines sin exeada',
 'listusers'               => 'Liste de usatores',
+'usereditcount'           => '$1 {{PLURAL:$1|redaction|redactiones}}',
 'usercreated'             => 'Creat in $1 in $2',
 'newpages'                => 'Nov págines',
 'ancientpages'            => 'Li max old págines',
@@ -895,7 +907,10 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'listgrouprights-members' => '(liste de membres)',
 
 # E-mail user
-'emailuser' => 'Parlar che ti usator',
+'emailuser'            => 'Parlar che ti usator',
+'usermailererror'      => 'Objecte de postage retornat errore:',
+'usermaildisabled'     => 'E-mail de usator desvalidat',
+'usermaildisabledtext' => 'Vu ne posse inviar e-mail por altri usatores in ti wiki',
 
 # Watchlist
 'watchlist'            => 'Liste de págines vigilat',

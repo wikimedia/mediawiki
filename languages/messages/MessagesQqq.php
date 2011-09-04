@@ -787,6 +787,7 @@ Used on [[Special:ResetPass]]',
 {{Identical|Reset password}}',
 'passwordreset-text'           => 'Text on [[Special:PasswordReset]]',
 'passwordreset-legend'         => '{{Identical|Reset password}}',
+'passwordreset-pretext'        => '$1 is the number of password reset routes. Apparently, this is never 1, but always two or more. Thus, the first plural option is empty in English.',
 'passwordreset-username'       => '{{Identical|Username}}',
 'passwordreset-email'          => '{{Identical|E-mail address}}',
 'passwordreset-emailtext-ip'   => 'Parameters:
