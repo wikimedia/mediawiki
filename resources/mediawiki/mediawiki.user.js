@@ -29,7 +29,7 @@
 		 *
 		 * @return String: Random set of 32 alpha-numeric characters
 		 */
-		this.generateId = function() {
+		function generateId() {
 			var id = '';
 			var seed = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 			for ( var i = 0, r; i < 32; i++ ) {
@@ -37,7 +37,7 @@
 				id += seed.substring( r, r + 1 );
 			}
 			return id;
-		};
+		}
 
 		/**
 		 * Gets the current user's name.
@@ -68,7 +68,7 @@
 		this.sessionId = function () {
 			var sessionId = $.cookie( 'mediaWiki.user.sessionId' );
 			if ( typeof sessionId == 'undefined' || sessionId === null ) {
-				sessionId = that.generateId();
+				sessionId = generateId();
 				$.cookie( 'mediaWiki.user.sessionId', sessionId, { 'expires': null, 'path': '/' } );
 			}
 			return sessionId;
@@ -90,7 +90,7 @@
 			}
 			var id = $.cookie( 'mediaWiki.user.id' );
 			if ( typeof id == 'undefined' || id === null ) {
-				id = that.generateId();
+				id = generateId();
 			}
 			// Set cookie if not set, or renew it if already set
 			$.cookie( 'mediaWiki.user.id', id, { 'expires': 365, 'path': '/' } );
