@@ -200,11 +200,10 @@ test( 'mw.html', function() {
 	equal(
 		mw.html.element(
 			'option', {
-				value: 'foo',
 				selected: true
 			}, 'Foo'
 		),
-		'<option value="foo" selected="selected">Foo</option>',
+		'<option selected="selected">Foo</option>',
 		'Attributes may have boolean values. True copies the attribute name to the value.'
 	);
 
