@@ -21,6 +21,6 @@ abstract class PageQueryPage extends QueryPage {
 		if ( $title instanceof Title ) {
 			$text = $wgContLang->convert( $title->getPrefixedText() );
 		}
-		return $skin->link( $title, htmlspecialchars( $text ), array(), array(), array('known', 'noclasses') );
+		return Linker::linkKnown( $title, htmlspecialchars( $text ) );
 	}
 }
