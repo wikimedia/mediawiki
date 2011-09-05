@@ -156,7 +156,7 @@ abstract class Skin extends ContextSource {
 				}
 			}
 		}
-		$skin = new $className;
+		$skin = new $className( $key );
 		return $skin;
 	}
 
