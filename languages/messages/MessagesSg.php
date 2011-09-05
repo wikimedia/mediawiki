@@ -81,6 +81,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-logout' => 'woza',
 
+# Attribution
 'others' => 'mbênî',
 
 );

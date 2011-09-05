@@ -730,6 +730,7 @@ Tydelike wagwoord: $2',
 # Special:ChangeEmail
 'changeemail'          => 'Wysig E-posadres',
 'changeemail-header'   => 'Wysig rekening se e-posadres',
+'changeemail-text'     => 'Voltooi die vorm om u e-posadres te verander. U sal u wagwoord moet insleutel om die verandering te bevestig.',
 'changeemail-no-info'  => 'U moet aangemeld wees om regstreeks toegang tot die bladsy te kry.',
 'changeemail-oldemail' => 'Huidige e-posadres:',
 'changeemail-newemail' => 'Nuwe e-posadres:',
@@ -1649,6 +1650,8 @@ Dit word aanbeveel dat u die lêer se skrapgeskiedenis besigtig voor u poog om d
 Kyk na die "file_uploads"-instelling.',
 'uploadscripted'              => "Hierdie lêer bevat HTML- en scriptkode wat verkeerdelik deur 'n webblaaier geïnterpreteer kan word.",
 'uploadvirus'                 => "Hierdie lêer bevat 'n virus! Inligting: $1",
+'uploadjava'                  => "Die lêer is 'n ZIP wat 'n Java .class-lêer bevat.
+Die oplaai van Java-lêers word nie toegelaat nie, omdat dit sekuriteit kan omseil.",
 'upload-source'               => 'Bronlêer',
 'sourcefilename'              => 'Bronlêernaam:',
 'sourceurl'                   => 'Bron-URL:',
@@ -1687,6 +1690,10 @@ As daar steeds probleme is, kontak 'n [[Special:ListUsers/sysop|administrateur]]
 # ZipDirectoryReader
 'zip-file-open-error' => "'n Fout het voorgekom met die opening van die lêer vir ZIP toetsing.",
 'zip-wrong-format'    => "Die gespesifiseerde lêer was nie 'n zip-lêer nie.",
+'zip-bad'             => 'Die ZIP-lêer is korrup of andersins onleesbaar.
+Dit kan nie behoorlik vir sekuriteit nagegaan word nie.',
+'zip-unsupported'     => "Die is 'n ZIP-lêer wat funksies gebruik wat nie deur MediaWiki ondersteun word nie.
+Dit kan nie behoorlik vir sekuriteit nagegaan word nie.",
 
 # Special:UploadStash
 'uploadstash'          => 'Verborge oplaaie',

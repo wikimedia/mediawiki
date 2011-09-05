@@ -3017,6 +3017,7 @@ Dei andre felta er gøymde som standard.
 'exif-credit'                      => 'Opphavrettseigar/filgjevar',
 'exif-source'                      => 'Kjelde',
 'exif-languagecode'                => 'Språk',
+'exif-iimcategory'                 => 'Kategori',
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',

@@ -2914,6 +2914,9 @@ $1',
 'compare-rev2'     => 'Dəyişiklik 2',
 'compare-submit'   => 'Qarşılaşdır',
 
+# Special:GlobalFileUsage
+'globalfileusage-ok' => 'Axtar',
+
 # Database error messages
 'dberr-header' => 'Bu vikidə problem var',
 'dberr-info'   => '($1: Məlumat bazası ilə əlaqə yoxdur)',
