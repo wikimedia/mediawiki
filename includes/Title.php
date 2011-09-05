@@ -860,7 +860,7 @@ class Title {
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
 
-		wfRunHooks( 'GetFullURL', array( &$this, &$url, $query ) );
+		wfRunHooks( 'GetFullURL', array( &$this, &$url, $query, $variant ) );
 		return $url;
 	}
 
@@ -1028,7 +1028,7 @@ class Title {
 			$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
 		}
 		$url = wfExpandUrl( $server . $this->getLocalURL( $query, $variant ), PROTO_HTTP );
-		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query ) );
+		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query, $variant ) );
 		return $url;
 	}
 
@@ -1046,7 +1046,7 @@ class Title {
 	public function getCanonicalURL( $query = '', $variant = false ) {
 		global $wgCanonicalServer;
 		$url = wfExpandUrl( $this->getLocalURL( $query, $variant ) . $this->getFragmentForURL(), PROTO_CANONICAL );
-		wfRunHooks( '', array( &$this, &$url, $query ) );
+		wfRunHooks( 'GetCanonicalURL', array( &$this, &$url, $query, $variant ) );
 		return $url;
 	}
 

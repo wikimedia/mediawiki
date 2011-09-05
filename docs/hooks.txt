@@ -898,6 +898,7 @@ $out: OutputPage object
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getCanonicalURL()
+$variant: variant passed to Title::getCanonicalURL()
 
 'GetDefaultSortkey': Override the default sortkey for a page.
 $title: Title object that we need to get a sortkey for
@@ -907,11 +908,13 @@ $title: Title object that we need to get a sortkey for
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getFullURL()
+$variant: variant passed to Title::getFullURL()
 
 'GetInternalURL': modify fully-qualified URLs used for squid cache purging
 $title: Title object of page
 $url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getInternalURL()
+$variant: variant passed to Title::getFullURL()
 
 'GetIP': modify the ip of the current user (called only once)
 &$ip: string holding the ip as determined so far
@@ -930,13 +933,13 @@ $linkcolour_ids: array of prefixed DB keys of the pages linked to,
 $title: Title object of page
 &$url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getLocalURL()
-$variant: variant options passed to Title::getLocalURL()
+$variant: variant passed to Title::getLocalURL()
 
 'GetLocalURL::Internal': modify local URLs to internal pages.
 $title: Title object of page
 &$url: string value as output (out parameter, can modify)
 $query: query options passed to Title::getLocalURL()
-$variant: variant options passed to Title::getLocalURL()
+$variant: variant passed to Title::getLocalURL()
 
 'GetLocalURL::Article': modify local URLs specifically pointing to article paths
 	without any fancy queries or variants.
