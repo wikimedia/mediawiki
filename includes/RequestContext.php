@@ -192,12 +192,39 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
+	 * Accepts a language code and ensures it's sane. Outputs a cleaned up language
+	 * code and replaces with $wgLanguageCode if not sane.
+	 */
+	private static function sanitizeLangCode( $code ) {
+		global $wgLanguageCode;
+
+		// BCP 47 - letter case MUST NOT carry meaning
+		$code = strtolower( $code );
+
+		# Validate $code
+		if( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
+			wfDebug( "Invalid user language code\n" );
+			$code = $wgLanguageCode;
+		}
+
+		return $code;
+	}
+
+	/**
 	 * Set the Language object
 	 *
-	 * @param $l Language
+	 * @param $l Mixed Language instance or language code
 	 */
-	public function setLang( Language $l ) {
-		$this->lang = $l;
+	public function setLang( $l ) {
+		if ( $l instanceof Language ) {
+			$this->lang = $l;
+		} elseif ( is_string( $l ) ) {
+			$l = self::sanitizeLangCode( $l );
+			$obj = Language::factory( $l );
+			$this->lang = $obj;
+		} else {
+			throw new MWException( __METHOD__ . " was passed an invalid type of data." );
+		}
 	}
 
 	/**
@@ -212,14 +239,7 @@ class RequestContext implements IContextSource {
 				'uselang',
 				$this->getUser()->getOption( 'language' )
 			);
-			// BCP 47 - letter case MUST NOT carry meaning
-			$code = strtolower( $code );
-
-			# Validate $code
-			if( empty( $code ) || !Language::isValidCode( $code ) || ( $code === 'qqq' ) ) {
-				wfDebug( "Invalid user language code\n" );
-				$code = $wgLanguageCode;
-			}
+			$code = self::sanitizeLangCode( $code );
 
 			wfRunHooks( 'UserGetLanguageObject', array( $this->getUser(), &$code ) );
 
@@ -297,6 +317,33 @@ class RequestContext implements IContextSource {
 		}
 		return $instance;
 	}
+
+	/**
+	 * Create a new extraneous context. The context is filled with information
+	 * external to the current session.
+	 * - Title is specified by argument
+	 * - Request is a FauxRequest, or a FauxRequest can be specified by argument
+	 * - User is an anonymous user, for separation IPv4 localhost is used
+	 * - Language will be based on the anonymous user and request, may be content
+	 *   language or a uselang param in the fauxrequest data may change the lang
+	 * - Skin will be based on the anonymous user, should be the wiki's default skin
+	 *
+	 * @param $title Title Title to use for the extraneous request
+	 * @param $request Mixed A WebRequest or data to use for a FauxRequest
+	 * @return RequestContext
+	 */
+	public static function newExtraneousContext( Title $title, $request=array() ) {
+		$context = new self;
+		$context->setTitle( $title );
+		if ( $request instanceof WebRequest ) {
+			$context->setRequest( $request );
+		} else {
+			$context->setRequest( new FauxRequest( $request ) );
+		}
+		$context->user = User::newFromName( '127.0.0.1', false );
+		return $context;
+	}
+
 }
 
 /**
