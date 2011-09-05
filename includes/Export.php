@@ -630,7 +630,7 @@ class XmlDumpWriter {
 	 */
 	function writeUpload( $file, $dumpContents = false ) {
 		if ( $file->isOld() ) {
-			$archiveName = "      " . 
+			$archiveName = "      " .
 				Xml::element( 'archivename', null, $file->getArchiveName() ) . "\n";
 		} else {
 			$archiveName = '';
@@ -638,7 +638,7 @@ class XmlDumpWriter {
 		if ( $dumpContents ) {
 			# Dump file as base64
 			# Uses only XML-safe characters, so does not need escaping
-			$contents = '      <contents encoding="base64">' . 
+			$contents = '      <contents encoding="base64">' .
 				chunk_split( base64_encode( file_get_contents( $file->getPath() ) ) ) .
 				"      </contents>\n";
 		} else {
@@ -649,7 +649,7 @@ class XmlDumpWriter {
 			$this->writeContributor( $file->getUser( 'id' ), $file->getUser( 'text' ) ) .
 			"      " . Xml::elementClean( 'comment', null, $file->getDescription() ) . "\n" .
 			"      " . Xml::element( 'filename', null, $file->getName() ) . "\n" .
-			$archiveName . 
+			$archiveName .
 			"      " . Xml::element( 'src', null, $file->getCanonicalUrl() ) . "\n" .
 			"      " . Xml::element( 'size', null, $file->getSize() ) . "\n" .
 			"      " . Xml::element( 'sha1base36', null, $file->getSha1() ) . "\n" .
@@ -699,7 +699,7 @@ class DumpOutput {
 	}
 
 	/**
-	 * Close the old file, move it to a specified name, 
+	 * Close the old file, move it to a specified name,
 	 * and reopen new file with the old name. Use this
 	 * for writing out a file in multiple pieces
 	 * at specified checkpoints (e.g. every n hours).
@@ -772,7 +772,7 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	function rename( $newname ) {
-		if ( is_array($newname) ) {
+		if ( is_array( $newname ) ) {
 			if ( count( $newname ) > 1 ) {
 				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
 			} else {
@@ -802,13 +802,13 @@ class DumpPipeOutput extends DumpFileOutput {
 		if ( !is_null( $file ) ) {
 			$command .=  " > " . wfEscapeShellArg( $file );
 		}
-		
+
 		$this->startCommand( $command );
 		$this->command = $command;
 		$this->filename = $file;
 	}
 
-	function startCommand($command) {
+	function startCommand( $command ) {
 		$spec = array(
 			0 => array( "pipe", "r" ),
 		);
@@ -818,12 +818,12 @@ class DumpPipeOutput extends DumpFileOutput {
 	}
 
 	/**
-	 * Close the old file, move it to a specified name, 
-	 * and reopen new file with the old name. 
+	 * Close the old file, move it to a specified name,
+	 * and reopen new file with the old name.
 	 */
 	function closeRenameAndReopen( $newname ) {
 		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1) {
+			if ( count( $newname ) > 1 ) {
 				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
 			} else {
 				$newname = $newname[0];
@@ -831,11 +831,11 @@ class DumpPipeOutput extends DumpFileOutput {
 		}
 		if ( $newname ) {
 			fclose( $this->handle );
-			proc_close($this->procOpenResource);
+			proc_close( $this->procOpenResource );
 			rename( $this->filename, $newname );
 			$command = $this->command;
 			$command .=  " > " . wfEscapeShellArg( $this->filename );
-			$this->startCommand($command);
+			$this->startCommand( $command );
 		}
 	}
 
@@ -850,14 +850,14 @@ class DumpPipeOutput extends DumpFileOutput {
 		if ( $newname ) {
 #			pclose( $this->handle );
 			fclose( $this->handle );
-			proc_close($this->procOpenResource);
+			proc_close( $this->procOpenResource );
 			rename( $this->filename, $newname );
 		}
 	}
 
 	function rename( $newname ) {
 		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1) {
+			if ( count( $newname ) > 1 ) {
 				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
 			} else {
 				$newname = $newname[0];
@@ -906,9 +906,9 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	}
 
 	function closeRenameAndReopen( $newname ) {
-		if ( is_array($newname) ) {
-			if (count($newname) > 1) {
-				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
+		if ( is_array( $newname ) ) {
+			if ( count( $newname ) > 1 ) {
+				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
 			}
 			else {
 				$newname = $newname[0];
@@ -940,9 +940,9 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	}
 
 	function rename( $newname ) {
-		if ( is_array($newname) ) {
-			if (count($newname) > 1) {
-				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
+		if ( is_array( $newname ) ) {
+			if ( count( $newname ) > 1 ) {
+				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
 			}
 			else {
 				$newname = $newname[0];
@@ -1164,25 +1164,25 @@ class DumpMultiWriter {
 	}
 
 	function closeRenameAndReopen( $newnames ) {
-		for( $i = 0; $i < $this->count; $i++ ) {
+		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->closeRenameAndReopen( $newnames[$i] );
 		}
 	}
 
 	function closeAndRename( $newname ) {
-		for( $i = 0; $i < $this->count; $i++ ) {
+		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->closeAndRename( $newnames[$i] );
 		}
 	}
 	function rename( $newnames ) {
-		for( $i = 0; $i < $this->count; $i++ ) {
+		for ( $i = 0; $i < $this->count; $i++ ) {
 			$this->sinks[$i]->rename( $newnames[$i] );
 		}
 	}
 
 	function getFilename() {
 		$filenames = array();
-		for( $i = 0; $i < $this->count; $i++ ) {
+		for ( $i = 0; $i < $this->count; $i++ ) {
 			$filenames[] =  $this->sinks[$i]->getFilename();
 		}
 		return $filenames;
