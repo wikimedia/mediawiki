@@ -113,7 +113,9 @@
 	'gl' => 'Galego',		# Galician
 	'glk' => 'گیلکی',	# Gilaki
 	'gn' => 'Avañe\'ẽ',	# Guaraní, Paraguayan
-	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic
+	'got' => '𐌲𐌿𐍄𐌹𐍃𐌺/Gutisk',	# Gothic (multiple scrits - defaults to Gothic)
+	'got-goth' => '𐌲𐌿𐍄𐌹𐍃𐌺',	# Gothic (Gothic script)
+	'got-latn' => 'Gutisk',	# Gothic (Latin script)
 	'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 	'gsw' => 'Alemannisch',	# Alemannic
 	'gu' => 'ગુજરાતી',	# Gujarati

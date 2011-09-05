@@ -43,6 +43,9 @@ $messages = array(
 
 'help'           => 'Dɛmɛ',
 'search'         => 'Nyini',
+'searchbutton'   => 'Nyini',
+'go'             => 'Taa',
+'searcharticle'  => 'Taa',
 'history'        => 'Nyɛka tariku',
 'history_short'  => 'Tariku',
 'edit'           => 'yɛlɛma',
@@ -54,6 +57,7 @@ $messages = array(
 'userpage'       => 'Utilisateur ka nyɛ',
 'imagepage'      => 'Janin ka nyɛ',
 'otherlanguages' => 'Kanw wɛrɛ',
+'jumptosearch'   => 'Nyini',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'        => 'Kunnafoni',
@@ -110,6 +114,9 @@ $messages = array(
 # Special:Categories
 'categories' => 'Nyɛ ka cogoyaw',
 
+# Special:LinkSearch
+'linksearch-ok' => 'Nyini',
+
 # Watchlist
 'watch'         => 'Tulomajɔ',
 'watchthispage' => 'Nyɛ tulomajɔ',
@@ -134,6 +141,4 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
 
-'searcharticle' => 'Taa',
-'searchbutton' => 'Nyini',
 );
