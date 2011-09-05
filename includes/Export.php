@@ -743,11 +743,10 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	function closeRenameAndReopen( $newname ) {
-		if ( is_array($newname) ) {
-			if (count($newname) > 1) {
-				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
-			}
-			else {
+		if ( is_array( $newname ) ) {
+			if ( count( $newname ) > 1 ) {
+				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
+			} else {
 				$newname = $newname[0];
 			}
 		}
@@ -759,11 +758,10 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	function closeAndRename( $newname ) {
-		if ( is_array($newname) ) {
-			if (count($newname) > 1) {
-				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
-			}
-			else {
+		if ( is_array( $newname ) ) {
+			if ( count( $newname ) > 1 ) {
+				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
+			} else {
 				$newname = $newname[0];
 			}
 		}
@@ -775,10 +773,9 @@ class DumpFileOutput extends DumpOutput {
 
 	function rename( $newname ) {
 		if ( is_array($newname) ) {
-			if (count($newname) > 1) {
-				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
-			}
-			else {
+			if ( count( $newname ) > 1 ) {
+				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
+			} else {
 				$newname = $newname[0];
 			}
 		}
@@ -806,7 +803,7 @@ class DumpPipeOutput extends DumpFileOutput {
 			$command .=  " > " . wfEscapeShellArg( $file );
 		}
 		
-		$this->startCommand($command);
+		$this->startCommand( $command );
 		$this->command = $command;
 		$this->filename = $file;
 	}
@@ -825,11 +822,10 @@ class DumpPipeOutput extends DumpFileOutput {
 	 * and reopen new file with the old name. 
 	 */
 	function closeRenameAndReopen( $newname ) {
-		if ( is_array($newname) ) {
-			if (count($newname) > 1) {
-				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
-			}
-			else {
+		if ( is_array( $newname ) ) {
+			if ( count( $newname ) > 1) {
+				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
+			} else {
 				$newname = $newname[0];
 			}
 		}
@@ -844,11 +840,10 @@ class DumpPipeOutput extends DumpFileOutput {
 	}
 
 	function closeAndRename( $newname ) {
-		if ( is_array($newname) ) {
-			if (count($newname) > 1) {
-				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
-			}
-			else {
+		if ( is_array( $newname ) ) {
+			if ( count( $newname ) > 1 ) {
+				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
+			} else {
 				$newname = $newname[0];
 			}
 		}
@@ -861,11 +856,10 @@ class DumpPipeOutput extends DumpFileOutput {
 	}
 
 	function rename( $newname ) {
-		if ( is_array($newname) ) {
-			if (count($newname) > 1) {
-				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
-			}
-			else {
+		if ( is_array( $newname ) ) {
+			if ( count( $newname ) > 1) {
+				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
+			} else {
 				$newname = $newname[0];
 			}
 		}
@@ -922,26 +916,25 @@ class Dump7ZipOutput extends DumpPipeOutput {
 		}
 		if ( $newname ) {
 			fclose( $this->handle );
-			proc_close($this->procOpenResource);
+			proc_close( $this->procOpenResource );
 			rename( $this->filename, $newname );
 			$command = "7za a -bd -si " . wfEscapeShellArg( $file );
 			$command .= ' >' . wfGetNull() . ' 2>&1';
-			$this->startCommand($command);
+			$this->startCommand( $command );
 		}
 	}
 
 	function closeAndRename( $newname ) {
-		if ( is_array($newname) ) {
-			if (count($newname) > 1) {
-				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
-			}
-			else {
+		if ( is_array( $newname ) ) {
+			if ( count( $newname ) > 1 ) {
+				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
+			} else {
 				$newname = $newname[0];
 			}
 		}
 		if ( $newname ) {
 			fclose( $this->handle );
-			proc_close($this->procOpenResource);
+			proc_close( $this->procOpenResource );
 			rename( $this->filename, $newname );
 		}
 	}
