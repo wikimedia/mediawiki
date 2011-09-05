@@ -180,20 +180,20 @@ class AddWiki extends Maintenance {
 		return <<<EOT
 ==This subdomain is reserved for the creation of a [[wikimedia:Our projects|$ucsite]] in '''[[w:en:{$name}|{$name}]]''' language==
 
-* Please '''do not start editing''' this new site. This site has a test project on the [[incubator:|Wikimedia Incubator]] (or on the [[betawikiversity:|BetaWikiversity]] or on the [[oldwikisource:|Old Wikisource]]) and it will be imported to here.
+* Please '''do not start editing''' this new site. This site has a test project on the [[incubator:|Wikimedia Incubator]] (or on the [[betawikiversity:|Beta Wikiversity]] or on the [[oldwikisource:|Old Wikisource]]) and it will be imported to here.
 
-* If you would like to help translating the interface to this language, please do not translate here, but go to [[translatewiki:|translatewiki]], a special wiki for translating the interface. That way everyone can use it on every wiki using the [[mw:|same software]].
+* If you would like to help translating the interface to this language, please do not translate here, but go to [[translatewiki:|translatewiki.net]], a special wiki for translating the interface. That way everyone can use it on every wiki using the [[mw:|same software]].
 
 * For information about how to edit and for other general help, see [[m:Help:Contents|Help on Wikimedia's Meta-Wiki]] or [[mw:Help:Contents|Help on MediaWiki.org]].
 
 == Sister projects ==
 <span class="plainlinks">
 [http://www.wikipedia.org Wikipedia] |
-[http://www.wiktionary.org Wiktonary] |
+[http://www.wiktionary.org Wiktionary] |
 [http://www.wikibooks.org Wikibooks] |
 [http://www.wikinews.org Wikinews] |
 [http://www.wikiquote.org Wikiquote] |
-[http://www.wikisource.org Wikisource]
+[http://www.wikisource.org Wikisource] |
 [http://www.wikiversity.org Wikiversity]
 </span>
 
