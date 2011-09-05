@@ -894,12 +894,14 @@ class WebInstaller_Options extends WebInstallerPage {
 			$this->parent->getTextBox( array(
 				'var' => 'wgDeletedDirectory',
 				'label' => 'config-upload-deleted',
+				'attribs' => array( 'dir' => 'ltr' ),
 				'help' => $this->parent->getHelpBox( 'config-upload-deleted-help' )
 			) ) .
 			'</div>' .
 			$this->parent->getTextBox( array(
 				'var' => 'wgLogo',
 				'label' => 'config-logo',
+				'attribs' => array( 'dir' => 'ltr' ),
 				'help' => $this->parent->getHelpBox( 'config-logo-help' )
 			) )
 		);
