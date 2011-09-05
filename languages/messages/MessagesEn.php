@@ -3006,7 +3006,6 @@ The latest block log entry is provided below for reference:',
 'sp-contributions-explain'             => '', # only translate this message to other languages if you have to change it
 'sp-contributions-footer'              => '-', # do not translate or duplicate this message to other languages
 'sp-contributions-footer-anon'         => '-', # do not translate or duplicate this message to other languages
-'sp-contributions-showsizediff'        => 'Display difference in page size',
 
 # What links here
 'whatlinkshere'            => 'What links here',

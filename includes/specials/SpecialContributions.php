@@ -69,7 +69,6 @@ class SpecialContributions extends SpecialPage {
 		$this->opts['limit'] = $wgRequest->getInt( 'limit', $wgUser->getOption('rclimit') );
 		$this->opts['target'] = $target;
 		$this->opts['topOnly'] = $wgRequest->getBool( 'topOnly' );
-		$this->opts['showSizeDiff'] = $wgRequest->getBool( 'showSizeDiff' );
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );
 		if( !$nt ) {
@@ -166,7 +165,6 @@ class SpecialContributions extends SpecialPage {
 				'month' => $this->opts['month'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
-				'showSizeDiff' => $this->opts['showSizeDiff'],
 			) );
 			if( !$pager->getNumRows() ) {
 				$wgOut->addWikiMsg( 'nocontribs', $target );
@@ -380,14 +378,10 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['topOnly'] = false;
 		}
 
-		if( !isset( $this->opts['showSizeDiff'] ) ) {
-			$this->opts['showSizeDiff'] = !$wgMiserMode;
-		}
-
 		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'class' => 'mw-contributions-form' ) );
 
 		# Add hidden params for tracking except for parameters in $skipParameters
-		$skipParameters = array( 'namespace', 'deletedOnly', 'target', 'contribs', 'year', 'month', 'topOnly', 'showSizeDiff' );
+		$skipParameters = array( 'namespace', 'deletedOnly', 'target', 'contribs', 'year', 'month', 'topOnly' );
 		foreach ( $this->opts as $name => $value ) {
 			if( in_array( $name, $skipParameters ) ) {
 				continue;
@@ -397,15 +391,11 @@ class SpecialContributions extends SpecialPage {
 
 		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagFilter'] );
 
-		$fNS = '';
-		$fShowDiff = '';
-		if ( !$wgMiserMode ) {
-			$fNS = Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
-					Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
-					Xml::namespaceSelector( $this->opts['namespace'], '' )
-				);
-			$fShowDiff = Xml::checkLabel( wfMsg( 'sp-contributions-showsizediff' ), 'showSizeDiff', 'mw-show-size-diff', $this->opts['showSizeDiff'] );
-		}
+		$fNS = ( $wgMiserMode ) ? '' :
+			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+				Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
+				Xml::namespaceSelector( $this->opts['namespace'], '' )
+			);
 
 		$f .= 	Xml::fieldset( wfMsg( 'sp-contributions-search' ) ) .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parsemag' ) ),
@@ -421,7 +411,6 @@ class SpecialContributions extends SpecialPage {
 				'deletedOnly', 'mw-show-deleted-only', $this->opts['deletedOnly'] ) . '<br />' .
 			Xml::tags( 'p', null, Xml::checkLabel( wfMsg( 'sp-contributions-toponly' ),
 				'topOnly', 'mw-show-top-only', $this->opts['topOnly'] ) ) .
-			$fShowDiff.
 			( $tagFilter ? Xml::tags( 'p', null, implode( '&#160;', $tagFilter ) ) : '' ) .
 			Html::rawElement( 'p', array( 'style' => 'white-space: nowrap' ),
 				Xml::dateMenu( $this->opts['year'], $this->opts['month'] ) . ' ' .
@@ -462,7 +451,6 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$this->deletedOnly = !empty( $options['deletedOnly'] );
 		$this->topOnly = !empty( $options['topOnly'] );
-		$this->showSizeDiff = !empty( $options['showSizeDiff'] );
 
 		$year = isset( $options['year'] ) ? $options['year'] : false;
 		$month = isset( $options['month'] ) ? $options['month'] : false;
@@ -482,7 +470,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function getQueryInfo() {
-		global $wgUser, $wgMiserMode;
+		global $wgUser;
 		list( $tables, $index, $userCond, $join_cond ) = $this->getUserCond();
 
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
@@ -495,25 +483,18 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 		$join_cond['page'] = array( 'INNER JOIN', 'page_id=rev_page' );
 
-		$fields = array(
-			'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
-			'page_len','rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
-			'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted',
-			'rev_len'
-		);
-		if ( $this->showSizeDiff && !$wgMiserMode ) {
-			$fields = array_merge( $fields,  array( 'rc_old_len', 'rc_new_len' ) );
-			array_unshift( $tables, 'recentchanges' );
-			$join_cond['recentchanges'] = array( 'INNER JOIN', "rev_id = rc_this_oldid" );
-		}
-
 		$queryInfo = array(
 			'tables' => $tables,
-			'fields' => $fields,
+			'fields' => array(
+				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
+				'page_len','rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
+				'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted'
+			),
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => array('revision' => $index) ),
 			'join_conds' => $join_cond
 		);
+
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
@@ -527,10 +508,9 @@ class ContribsPager extends ReverseChronologicalPager {
 		return $queryInfo;
 	}
 
- 	function getUserCond() {
+	function getUserCond() {
 		$condition = array();
 		$join_conds = array();
-
 		if( $this->target == 'newbies' ) {
 			$tables = array( 'user_groups', 'page', 'revision' );
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
@@ -539,11 +519,9 @@ class ContribsPager extends ReverseChronologicalPager {
 			$index = 'user_timestamp';
 			# @todo FIXME: Other groups may have 'bot' rights
 			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
-			$join_conds['recentchanges'] = array( 'INNER JOIN', "rev_id = rc_this_oldid AND rev_timestamp = rc_timestamp" );
 		} else {
 			$tables = array( 'page', 'revision' );
 			$condition['rev_user_text'] = $this->target;
-			$join_conds['recentchanges'] = array( 'INNER JOIN', "rev_id = rc_this_oldid AND rev_timestamp = rc_timestamp" );
 			$index = 'usertext_timestamp';
 		}
 		if( $this->deletedOnly ) {
@@ -689,12 +667,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
-
-
-		$diffOut = ' . . ' . $wgLang->getDirMark() . ( $this->showSizeDiff ?
-			ChangesList::showCharacterDifference( $row->rc_old_len, $row->rc_new_len ) : Linker::formatRevisionSize( $row->rev_len ) );
-
-		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$diffOut}{$userlink} {$comment} {$topmarktext}";
+		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
