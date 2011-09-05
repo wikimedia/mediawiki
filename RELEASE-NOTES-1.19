@@ -53,6 +53,7 @@ production.
 * (bug 16428) Include permalink in printable version
 * (bug 96170) Add array support for space-separated list attributes (like
   'class') in the Html helper class.
+* (bug 26470) Add checkered background image on hover on files pages.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
