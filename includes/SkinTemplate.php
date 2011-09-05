@@ -136,7 +136,7 @@ class SkinTemplate extends Skin {
 		global $wgScript, $wgStylePath;
 		global $wgMimeType, $wgJsMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces, $wgHtml5Version;
-		global $wgDisableCounters, $wgLogo, $wgHideInterlanguageLinks;
+		global $wgDisableCounters, $wgSitename, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
 		global $wgUseTrackbacks, $wgUseSiteJs, $wgDebugComments;
@@ -291,6 +291,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'scriptpath', $wgScriptPath );
 		$tpl->setRef( 'serverurl', $wgServer );
 		$tpl->setRef( 'logopath', $wgLogo );
+		$tpl->setRef( 'sitename', $wgSitename );
 
 		$contentlang = $wgContLang->getCode();
 		$contentdir  = $wgContLang->getDir();
