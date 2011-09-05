@@ -1247,7 +1247,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 				} else if ( v === false ) {
 					continue;
 				}
-				s += ' ' + attrName + '="' + this.escape( v ) + '"';
+				s += ' ' + attrName + '="' + this.escape( '' + v ) + '"';
 			}
 			if ( contents === undefined || contents === null ) {
 				// Self close tag
