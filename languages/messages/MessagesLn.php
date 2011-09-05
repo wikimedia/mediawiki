@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bombo (on ln.wikipedia.org)
  * @author Eruedin
  * @author Moyogo
  */

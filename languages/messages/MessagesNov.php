@@ -7,11 +7,12 @@
  * @ingroup Language
  * @file
  *
+ * @author BRG (on nov.wikipedia.org)
  * @author Chrisportelli
  * @author MF-Warburg
  * @author Malafaya
  * @author Nov ialiste
- * @author nov.wikipedia.org sysops
+ * @author Wayne (on nov.wikipedia.org)
  */
 
 $messages = array(

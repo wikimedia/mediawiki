@@ -7,7 +7,7 @@
  * @ingroup Language
  * @file
  *
- * @author לערי ריינהארט
+ * @author Slamet Serayu (on map-bms.wikipedia.org)
  */
 
 $fallback = 'jv, id';

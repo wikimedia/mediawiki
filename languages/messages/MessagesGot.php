@@ -9,6 +9,7 @@
  *
  * @author Jocke Pirat
  * @author Node ue
+ * @author Sajasazi (on got.wikipedia.org)
  */
 
 $messages = array(

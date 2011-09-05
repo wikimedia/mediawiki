@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Lycaon (on ny.wikipedia.org)
  */
 
 $messages = array(

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Deviathan (on dv.wikipedia.org)
  * @author Glacious
  * @author MF-Warburg
  * @author לערי ריינהארט

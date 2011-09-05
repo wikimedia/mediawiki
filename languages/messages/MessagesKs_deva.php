@@ -7,6 +7,8 @@
  * @ingroup Language
  * @file
  *
+ * @author Rk_kaul (on ks.wikipedia.org)
+ *
  */
 
 $digitTransformTable = array(
@@ -23,6 +25,8 @@ $digitTransformTable = array(
 );
 
 $messages = array(
+'help' => 'मदद',
+
 # Recent changes
 'recentchanges' => 'नवि तबदीली',
 

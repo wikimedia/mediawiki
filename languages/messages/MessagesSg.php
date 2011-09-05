@@ -8,7 +8,7 @@
  * @file
  *
  * @author Mdkidiri
- * @author sg.wikipedia.org sysops
+ * @author Ice201 (on sg.wikipedia.org)
  */
 
 $fallback = 'fr';
@@ -80,5 +80,7 @@ $messages = array(
 
 # Tooltip help for the actions
 'tooltip-pt-logout' => 'woza',
+
+'others' => 'mbênî',
 
 );

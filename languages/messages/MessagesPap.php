@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Delaraha (on pap.wikipedia.org)
  * @author Kamizu
  * @author Sdm1985
  * @author לערי ריינהארט

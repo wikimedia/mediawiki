@@ -8,6 +8,7 @@
  * @file
  *
  * @author Hercule
+ * @author Zanimum (on ik.wikipedia.org)
  */
 
 $messages = array(

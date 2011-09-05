@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Caffelice (on tpi.wikipedia.org)
  * @author Iketsi
  * @author Wantok
  * @author Wytukaze

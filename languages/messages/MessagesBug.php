@@ -9,6 +9,7 @@
  *
  * @author Ezagren
  * @author Kurniasan
+ * @author Zaidpjd (on bug.wikipedia.org)
  */
 
 $fallback = "id";
