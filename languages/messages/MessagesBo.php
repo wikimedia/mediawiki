@@ -8,6 +8,7 @@
  * @file
  *
  * @author Freeyak
+ * @author Jason (on bo.wikipedia.org)
  */
 
 $digitTransformTable = array(

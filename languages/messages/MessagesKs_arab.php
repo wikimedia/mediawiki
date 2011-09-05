@@ -7,6 +7,8 @@
  * @ingroup Language
  * @file
  *
+ * @author Rk_kaul (on ks.wikipedia.org)
+ *
  */
 $rtl = true;
 
@@ -29,6 +31,8 @@ $separatorTransformTable = array(
 );
 
 $messages = array(
+'help' => 'مدد',
+
 # Recent changes
 'recentchanges' => 'نَوِ تبدیلی',
 

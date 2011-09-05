@@ -9,6 +9,7 @@
  *
  * @author (vinny)
  * @author Homo logos
+ * @author Inego (on jbo.wikipedia.org)
  * @author Malafaya
  * @author OldakQuill
  * @author PierreAbbat

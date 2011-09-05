@@ -134,4 +134,6 @@ $messages = array(
 # Special:SpecialPages
 'specialpages' => 'Nyɛw kɛrɛnkɛrɛnnen',
 
+'searcharticle' => 'Taa',
+'searchbutton' => 'Nyini',
 );

@@ -9,6 +9,7 @@
  *
  * @author Aputtu
  * @author Kaare
+ * @author Kaniina (on kl.wikipedia.org)
  * @author Qaqqalik
  * @author לערי ריינהארט
  */

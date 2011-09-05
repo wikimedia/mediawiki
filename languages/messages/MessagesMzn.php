@@ -11,6 +11,7 @@
  * @author Ebraminio
  * @author Firuz
  * @author Mjbmr
+ * @author Parthava (on mzn.wikipedia.org)
  * @author Spacebirdy
  * @author محک
  */
