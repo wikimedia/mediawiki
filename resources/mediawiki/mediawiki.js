@@ -1237,9 +1237,17 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 		 * Returns <div><img src="&lt;"/></div>
 		 */
 		this.element = function( name, attrs, contents ) {
-			var s = '<' + name;
+			var v, s = '<' + name;
 			for ( var attrName in attrs ) {
-				s += ' ' + attrName + '="' + this.escape( attrs[attrName] ) + '"';
+				v = attrs[attrName];
+				// Convert name=true, to name=name
+				if ( v === true ) {
+					v = attrName;
+				// Skip name=false
+				} else if ( v === false ) {
+					continue;
+				}
+				s += ' ' + attrName + '="' + this.escape( v ) + '"';
 			}
 			if ( contents === undefined || contents === null ) {
 				// Self close tag
@@ -1248,20 +1256,29 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 			}
 			// Regular open tag
 			s += '>';
-			if ( typeof contents === 'string' ) {
-				// Escaped
-				s += this.escape( contents );
-			} else if ( contents instanceof this.Raw ) {
-				// Raw HTML inclusion
-				s += contents.value;
-			} else if ( contents instanceof this.Cdata ) {
-				// CDATA
-				if ( /<\/[a-zA-z]/.test( contents.value ) ) {
-					throw new Error( 'mw.html.element: Illegal end tag found in CDATA' );
-				}
-				s += contents.value;
-			} else {
-				throw new Error( 'mw.html.element: Invalid type of contents' );
+			switch ( typeof contents ) {
+				case 'string':
+					// Escaped
+					s += this.escape( contents );
+					break;
+				case 'number':
+				case 'boolean':
+					// Convert to string
+					s += '' + contents;
+					break;
+				default:
+					if ( contents instanceof this.Raw ) {
+						// Raw HTML inclusion
+						s += contents.value;
+					} else if ( contents instanceof this.Cdata ) {
+						// CDATA
+						if ( /<\/[a-zA-z]/.test( contents.value ) ) {
+							throw new Error( 'mw.html.element: Illegal end tag found in CDATA' );
+						}
+						s += contents.value;
+					} else {
+						throw new Error( 'mw.html.element: Invalid type of contents' );
+					}
 			}
 			s += '</' + name + '>';
 			return s;
