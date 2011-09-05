@@ -354,9 +354,7 @@ class WikiExporter {
  * @ingroup Dump
  */
 class XmlDumpWriter {
-	var $firstPageWritten = 0;
-	var $lastPageWritten = 0;
-	var $pageInProgress = 0;
+	protected $firstPageWritten = 0, $lastPageWritten = 0, $pageInProgress = 0;
 
 	/**
 	 * Returns the export schema version.
@@ -482,7 +480,7 @@ class XmlDumpWriter {
 	 */
 	function closePage() {
 		return "  </page>\n";
-		if (! $this->firstPageWritten) {
+		if ( !$this->firstPageWritten ) {
 			$this->firstPageWritten = $this->pageInProgress;
 		}
 		$this->lastPageWritten = $this->pageInProgress;
@@ -700,18 +698,28 @@ class DumpOutput {
 		print $string;
 	}
 
+	/**
+	 * Close the old file, move it to a specified name, 
+	 * and reopen new file with the old name. Use this
+	 * for writing out a file in multiple pieces
+	 * at specified checkpoints (e.g. every n hours).
+	 * @param $newname mixed File name. May be a string or an array with one element
+	 */
 	function closeRenameAndReopen( $newname ) {
 		return;
 	}
 
+	// TODO: document
 	function closeAndRename( $newname ) {
 		return;
 	}
 
+	// TODO: document
 	function rename( $newname ) {
 		return;
 	}
 
+	// TODO: document
 	function getFilename() {
 		return NULL;
 	}
@@ -734,16 +742,10 @@ class DumpFileOutput extends DumpOutput {
 		fputs( $this->handle, $string );
 	}
 
-	/**
-	 * Close the old file, move it to a specified name, 
-	 * and reopen new file with the old name. Use this
-	 * for writing out a file in multiple pieces
-	 * at specified checkpoints (e.g. every n hours).
-	 */
 	function closeRenameAndReopen( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -759,7 +761,7 @@ class DumpFileOutput extends DumpOutput {
 	function closeAndRename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -774,7 +776,7 @@ class DumpFileOutput extends DumpOutput {
 	function rename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -797,7 +799,7 @@ class DumpFileOutput extends DumpOutput {
  * @ingroup Dump
  */
 class DumpPipeOutput extends DumpFileOutput {
-	var $command;
+	protected $command, $filename;
 
 	function __construct( $command, $file = null ) {
 		if ( !is_null( $file ) ) {
@@ -825,7 +827,7 @@ class DumpPipeOutput extends DumpFileOutput {
 	function closeRenameAndReopen( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -844,7 +846,7 @@ class DumpPipeOutput extends DumpFileOutput {
 	function closeAndRename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -861,7 +863,7 @@ class DumpPipeOutput extends DumpFileOutput {
 	function rename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -898,7 +900,7 @@ class DumpBZip2Output extends DumpPipeOutput {
  * @ingroup Dump
  */
 class Dump7ZipOutput extends DumpPipeOutput {
-	var $filename;
+	protected $filename;
 
 	function __construct( $file ) {
 		$command = "7za a -bd -si " . wfEscapeShellArg( $file );
@@ -912,7 +914,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	function closeRenameAndReopen( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -931,7 +933,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	function closeAndRename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
@@ -947,7 +949,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	function rename( $newname ) {
 		if ( is_array($newname) ) {
 			if (count($newname) > 1) {
-				throw new MWException("Export closeRenameAndReopen: passed multiple argumnts for rename of single file\n");
+				throw new MWException(__METHOD__ . ": passed multiple arguments for rename of single file\n");
 			}
 			else {
 				$newname = $newname[0];
