@@ -152,7 +152,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			}
 		}
 
-		global $wgServer, $wgScript, $wgNewPasswordExpiry;
+		global $wgNewPasswordExpiry;
 
 		// All the users will have the same email address
 		if ( $firstUser->getEmail() == '' ) {
@@ -190,7 +190,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$username,
 			$passwordBlock,
 			count( $passwords ),
-			$wgServer . $wgScript,
+			Title::newMainPage()->getCanonicalUrl(),
 			round( $wgNewPasswordExpiry / 86400 )
 		);
 
