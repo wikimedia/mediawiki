@@ -170,7 +170,7 @@ test( 'mw.loader.bug29107' , function() {
 });
 
 test( 'mw.html', function() {
-	expect(7);
+	expect(11);
 
 	raises( function(){
 		mw.html.escape();
@@ -184,10 +184,40 @@ test( 'mw.html', function() {
 
 	equal( mw.html.element( 'div' ), '<div/>', 'html.element DIV (simple)' );
 
-	equal( mw.html.element( 'div',
-			{ id: 'foobar' } ),
+	equal(
+		mw.html.element(
+			'div', {
+				id: 'foobar'
+			}
+		),
 		'<div id="foobar"/>',
 		'html.element DIV (attribs)' );
+
+	equal( mw.html.element( 'p', null, 12 ), '<p>12</p>', 'Numbers are valid content and should be casted to a string' );
+
+	equal( mw.html.element( 'p', { title: 12 }, '' ), '<p title="12"></p>', 'Numbers are valid attribute values' );
+
+	equal(
+		mw.html.element(
+			'option', {
+				value: 'foo',
+				selected: true
+			}, 'Foo'
+		),
+		'<option value="foo" selected="selected">Foo</option>',
+		'Attributes may have boolean values. True copies the attribute name to the value.'
+	);
+
+	equal(
+		mw.html.element(
+			'option', {
+				value: 'foo',
+				selected: false
+			}, 'Foo'
+		),
+		'<option value="foo">Foo</option>',
+		'Attributes may have boolean values. False keeps the attribute from output.'
+	);
 
 	equal( mw.html.element( 'div',
 			null, 'a' ),
