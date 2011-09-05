@@ -184,6 +184,16 @@ table.filehistory td.filehistory-selected {
 }
 
 /**
+ * Add a checkered background image on hover for file
+ * description pages. (bug 26470)
+ */
+.filehistory a img,
+#file img:hover {
+	/* @embed */
+	background: white url(images/Checker-16x16.png) repeat;
+}
+
+/**
  * rev_deleted stuff
  */
 li span.deleted,
