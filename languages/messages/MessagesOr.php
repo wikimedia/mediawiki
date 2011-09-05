@@ -280,11 +280,22 @@ $messages = array(
 'tog-forceeditsummary'        => 'ଖାଲି ସମ୍ପାଦନା ସାରକଥାକୁ ଯିବା ବେଳେ ମୋତେ ଜଣାଇବେ',
 'tog-watchlisthideown'        => 'ମୋ ଦେଖଣା ତାଲିକାରେ ମୋ ନିଜର ସମ୍ପାଦନାଗୁଡ଼ିକ ଲୁଚାଇବେ',
 'tog-watchlisthidebots'       => 'ଦେଖଣା ତାଲିକାରେ ବଟ ଦେଇ ବଦଳ ଗୁଡ଼ିକ ଲୁଚାଇବେ',
+'tog-watchlisthideminor'      => 'ଦେଖଣା ତାଲିକାରେ ଛୋଟ ଛୋଟ ବଦଳ ଗୁଡ଼ିକ ଲୁଚାଇବେ',
+'tog-watchlisthideliu'        => 'ଲଗ ଇନ କରିଥିବା ସଭ୍ୟମାନଙ୍କ ଦେଇ କରାହୋଇଥିବା ବଦଳଗୁଡ଼ିକ ଲୁଚାଇବେ',
+'tog-watchlisthideanons'      => 'ଅଜଣା ସଭ୍ୟମାନଙ୍କ ଦେଇ କରାହୋଇଥିବା ବଦଳଗୁଡ଼ିକ ଲୁଚାଇବେ',
+'tog-watchlisthidepatrolled'  => 'ମୋ ଦେଖଣା ତାଲିକାରୁ ଜଗାଯାଇଥିବା ସମ୍ପାଦନାଗୁଡ଼ିକ ଲୁଚାଇବେ',
+'tog-ccmeonemails'            => 'ମୁଁ ଯେଉଁ ଇ-ମେଲ ସବୁ ଅନ୍ୟମାନଙ୍କୁ ପଠାଉଛି ସେସବୁର ନକଲ ମୋତେ ପଠାଇବେ ।',
+'tog-diffonly'                => 'ତୁଳନା ତଳେ ପୃଷ୍ଠାର ଭିତର ଭାଗ ଦେଖାନ୍ତୁ ନାହିଁ',
+'tog-showhiddencats'          => 'ଲୁଚାଯାଇଥିବା ଶ୍ରେଣୀଗୁଡ଼ିକ ଦେଖାଇବେ',
+'tog-norollbackdiff'          => 'ରୋଲବ୍ୟାକ କଲାପରେ ତୁଳନା ଦେଖାନ୍ତୁ ନାହିଁ',
 
-'underline-always' => 'ସବୁବେଳେ',
-'underline-never'  => 'କେବେନୁହେଁ',
+'underline-always'  => 'ସବୁବେଳେ',
+'underline-never'   => 'କେବେନୁହେଁ',
+'underline-default' => 'ବ୍ରାଉଜରରେ ଅଗରୁ ଥିବା ସୁବିଧା',
 
 # Font style option in Special:Preferences
+'editfont-style'     => 'ଫଣ୍ଟ ଶୈଳୀକୁ ବଦଳାଇବେ:',
+'editfont-default'   => 'ବ୍ରାଉଜରରେ ଅଗରୁ ଥିବା ସୁବିଧା',
 'editfont-sansserif' => 'ସାନସ-ସେରିଫ ଫଣ୍ଟ',
 'editfont-serif'     => 'ସେରିଫ ଫଣ୍ଟ',
 
@@ -544,6 +555,8 @@ $messages = array(
 'loginerror'              => 'ଲଗ‌‌ଇନ ଭୁଲ',
 'loginsuccesstitle'       => 'ଠିକଭାବେ ଲଗଇନ ହେଲା',
 'loginsuccess'            => "'''ଆପଣ {{SITENAME}}ରେ \"\$1\" ଭାବରେ ଲଗଇନ କରିଛନ୍ତି ।'''",
+'wrongpassword'           => 'ଦିଆଯାଇଥିବା ପାସବାର୍ଡ଼ଟି ଭୁଲ ଅଟେ  ।
+ଦୟାକରି ଆଉଥରେ ଚେଷ୍ଟା କରନ୍ତୁ ।',
 'wrongpasswordempty'      => 'ଦିଆଯାଇଥିବା ପାସବାର୍ଡ଼ଟି ଖାଲି ଛଡ଼ାଯାଇଛି ।</br>
 ଦୟାକରି ଆଉଥରେ ଚେଷ୍ଟା କରନ୍ତୁ ।',
 'mailmypassword'          => 'ପାସବାର୍ଡ଼ଟିକୁ ଇମେଲ କରି ପଠାଇବେ',

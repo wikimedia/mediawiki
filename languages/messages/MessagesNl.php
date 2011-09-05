@@ -2828,7 +2828,7 @@ Combineer de overlegpagina's handmatig.'''",
 'movepage-page-unmoved'        => 'De pagina $1 kon niet hernoemd worden naar $2.',
 'movepage-max-pages'           => "Het maximale aantal automatisch te hernoemen pagina's is bereikt ({{PLURAL:$1|$1|$1}}).
 De overige pagina's worden niet automatisch hernoemd.",
-'1movedto2'                    => '[[$1]] hernoemd naar [[$2]]',
+'1movedto2'                    => 'hernoemde [[$1]] naar [[$2]]',
 '1movedto2_redir'              => '[[$1]] hernoemd over de doorverwijzing [[$2]]',
 'move-redirect-suppressed'     => 'doorverwijzing onderdrukt',
 'movelogpage'                  => 'Hernoemingslogboek',

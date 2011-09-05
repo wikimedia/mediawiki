@@ -448,7 +448,7 @@ matnsach tbddl[[Special:Preferences|{{SITENAME}} tfdilat dyal]].',
 'gotaccountlink'             => 'Ṫkonékta',
 'userlogin-resetlink'        => 'yak-ma nsiṫi ṫ-ṫafaṣil dial d-doĥol taĝk?',
 'createaccountmail'          => "b l'email",
-'createaccountreason'        => 'S-Sbab:',
+'createaccountreason'        => 'sabab:',
 'badretype'                  => 'klmaṫ ṣ-ṣeṛṛ lli dĥĥalṫi maċi b-ḫal b-ḫal.',
 'userexists'                 => 'smiṫ l-mosṫĥdim lli ḍĥĥolṫi ĥddam bih ċi waḫd.
 ċof lik ċi ṣmiya aĥra.',
@@ -827,6 +827,7 @@ raha kayna bĝda.',
 'revdelete-nologid-title'    => 'modkhala sijjil ghayr sahiha',
 'revdelete-no-file'          => 'dak l-milef ma kayn-ċ.',
 'revdelete-show-file-submit' => 'iyih',
+'revdelete-legend'           => 'dir ḍ-ḍawaḅit dl-vizibiliṫi',
 'revdelete-hide-text'        => 'khbbi nass lmorajaa',
 'revdelete-hide-image'       => 'khbi lmohtawa dyal lfichier',
 'revdelete-hide-name'        => 'khbi lfiil olhadaf',
@@ -837,8 +838,16 @@ raha kayna bĝda.',
 'revdelete-radio-set'        => 'iyih',
 'revdelete-radio-unset'      => 'la',
 'revdelete-suppress'         => 'ĥḅḅeĝ l-bayanaṫ mn l-idariyyin o-laĥrin',
-'revdelete-log'              => 'S-Sbab:',
+'revdelete-log'              => 'sabab:',
+'revdelete-submit'           => 'tḅḅeq ĝla {{PLURAL:$1|l-ṃoṛajaĝa|l-ṃoṛajaĝaṫ}} l-mĥṫaṛa',
+'revdelete-logentry'         => 'bddl l-vizibiliṫi dl-ṃoṛajaĝa l-"[[$1]]"',
+'logdelete-logentry'         => 'bddl l-vizibiliṫi dl-ḫadaṫ l-"[[$1]]"',
+'revdelete-success'          => "'''ṫ-ṫḫdiṫ d-vizibiliṫi dl-morajaĝaṫ njḫ.'''",
+'revdelete-failure'          => "'''ṫ-ṫḫdiṫ d-vizibiliṫi dl-morajaĝaṫ ma njḫ-ċ:'''
+$1",
 'logdelete-success'          => "'''njḫ ḍbt l-visibilité taĝ sijillaṫ.'''",
+'logdelete-failure'          => "'''ḍ-ḍḅt dl-vizibiliṫi d-ssijill ma njḫ-ċ:'''
+$1",
 'revdel-restore'             => 'Beddel ċ-ċofa',
 'revdel-restore-deleted'     => 'morajaaa mahdoufa',
 'revdel-restore-visible'     => "morajaat mar'iya",
@@ -877,7 +886,7 @@ raha kayna bĝda.',
 'mergehistory-autocomment'         => '[[:$1]] ṫdmjaṫ f-[[:$2]]',
 'mergehistory-comment'             => '[[:$1]] ṫdmjaṫ f-[[:$2]]: $3',
 'mergehistory-same-destination'    => 'ma ymkn-ċ tkon ṣ-ṣfḫa l-mosṫhdafa hia l-mṣḍṛ braso',
-'mergehistory-reason'              => 'S-Sbab:',
+'mergehistory-reason'              => 'sabab:',
 
 # Merge log
 'mergelog'           => 'sjl damj',
@@ -1061,7 +1070,7 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'email-address-validity-valid' => 'tayban billa l-email rah ṣalḫ',
 
 # User rights
-'userrights'                     => 'idarat salahiyat lmostakhdim',
+'userrights'                     => 'ṫdbir ṣalaḫiyyaṫ l-mosṫĥdim',
 'userrights-lookup-user'         => 'idarat mjmoat lmostkhdim',
 'userrights-user-editname'       => 'dkhl ism mostakhdim :',
 'editusergroup'                  => 'addl mjmoat lmostakhdim',
@@ -1307,17 +1316,27 @@ PICT # misc.
 'upload-failure-subj'       => 'mochila f sift dyal lfichier',
 'upload-warning-subj'       => 'tahdir rafaa',
 
-'upload-proto-error'  => 'protocol machi hwa hadak',
-'upload-file-error'   => 'khataaa dakhili',
-'upload-unknown-size' => 'hakm mamaarofch',
-'upload-http-error'   => "lgina wahd khata' HTTP : $1",
+'upload-proto-error'        => 'protocol machi hwa hadak',
+'upload-file-error'         => 'khataaa dakhili',
+'upload-too-many-redirects' => 'l-URL fih bẓẓaf d-ṫḫwilaṫ',
+'upload-unknown-size'       => 'hakm mamaarofch',
+'upload-http-error'         => "lgina wahd khata' HTTP : $1",
+
+# Special:UploadStash
+'uploadstash'          => 'l-kaċ d-ṫṫḫmil',
+'uploadstash-errclear' => 'l-msiḫ dl-milffaṫ ma njḫ-ċ.',
+'uploadstash-refresh'  => "aktwalizi qa'imaṫ l-milffaṫ",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'lwosol trfd',
+'img-auth-badtitle'     => 'ma ymkn-ċ ṫsayb ċi ĝonwan ṣḫiḫ mn "$1".',
+'img-auth-nologinnWL'   => 'ma rak-ċ daĥol o-"$1" maċi fl-qa\'ima l-ḅiḍa.',
 'img-auth-streaming'    => 'ard "$1".',
+'img-auth-noread'       => 'l-mosṫĥdim ma ĝndo-ċ ṣ-ṣalaḫiyya baċ yqṛa "$1".',
 
 # HTTP errors
 'http-invalid-url'      => 'URL makhdamch : $1',
+'http-request-error'    => "talab HTTP ma njḫ-ĥ b-sbab ċi ĥata' mjhol.",
 'http-read-error'       => "khata' qira'at HTTP.",
 'http-timed-out'        => 'salat moddat mohlat talab dyal HTTp.',
 'http-curl-error'       => "khata' f jalb lmassar: $1",
@@ -1425,7 +1444,10 @@ PICT # misc.
 'disambiguations'     => 'sfahi dyal tawdih',
 'disambiguationspage' => 'Template:tawdih',
 
-'double-redirect-fixer' => 'mosslih tahwil',
+'doubleredirects'            => 'ṫḫwila mḍoḅla',
+'double-redirect-fixed-move' => '[[$1]] ṫnqlaṫ.
+daba ka ṫḫwwal l-[[$2]].',
+'double-redirect-fixer'      => 'mosslih tahwil',
 
 'brokenredirects'        => 'tahwilat makhddamach',
 'brokenredirects-edit'   => 'Ĝedel',
@@ -1491,6 +1513,7 @@ PICT # misc.
 'speciallogtitlelabel' => "l'adresse:",
 'log'                  => 'sijillaṫ',
 'all-logs-page'        => 'kol sijillat laama',
+'logempty'             => 'ḫṫṫa ċi madda ma mtabqa f-ssijill.',
 
 # Special:AllPages
 'allpages'          => 'Ṣ-Ṣefḫaṫ kamlin',
@@ -1509,7 +1532,7 @@ PICT # misc.
 
 # Special:Categories
 'categories'                    => 'tsnifat',
-'categoriesfrom'                => 'Werri ṫ-ṫṣnifaṫ li badyin men:',
+'categoriesfrom'                => 'wrri ṫ-ṫṣnifaṫ li badyin mn:',
 'special-categories-sort-count' => 'rttb bladad',
 'special-categories-sort-abc'   => 'rttb blhorof',
 
@@ -1526,12 +1549,14 @@ PICT # misc.
 'linksearch-line' => '$1 moṣola mn $2',
 
 # Special:ListUsers
+'listusersfrom'      => 'wrri l-mosṫĥdimin lli badyin mn:',
 'listusers-submit'   => 'Werri',
 'listusers-noresult' => 'ta mostakhdim matlgach.',
 'listusers-blocked'  => '(mbloki)',
 
 # Special:ActiveUsers
 'activeusers'            => 'lista dyal lmostkhdimin nachtin',
+'activeusers-from'       => 'wrri l-mosṫĥdimin lli badyin mn:',
 'activeusers-hidebots'   => 'khbbi lbotat',
 'activeusers-hidesysops' => 'Khbbi lidariyin',
 'activeusers-noresult'   => 'ta mostakhdim matlgach.',
@@ -1563,6 +1588,8 @@ PICT # misc.
 'noemailtext'          => 'Had l-mosṫeĥdim ma ĝendoċ imayl mqadd.',
 'nowikiemailtitle'     => 'makaynch email msmoh bih',
 'nowikiemailtext'      => 'Had l-mosṫeĥdim ma bġa iṫweṣṣel be ḫṫa ċi imayl men ay mosṫeḫdim.',
+'emailusername'        => 'smiṫ l-mosṫĥdim:',
+'emailusernamesubmit'  => 'ṣift',
 'email-legend'         => 'Sifet ċi imayl le ċi mosṫeĥdim aĥor dyal {{SITENAME}}',
 'emailfrom'            => 'mn:',
 'emailto'              => 'l:',
@@ -1587,9 +1614,11 @@ PICT # misc.
 'watchlistanontext' => 'Ĝafak $1 baċ ṫċof ola baċ ṫṣayeb ṣ-ṣefḫaṫ li fe l-lista dyal s-suivi.',
 'watchnologin'      => 'nta mamkoniktich',
 'watchnologintext'  => 'Ĥaṣṣek ṫkon [[Special:UserLogin|dĥelṫi le ḫsabek]] baċ ṫṣayeb l-lista dyal s-suivi.',
+'addwatch'          => "zid l-qa'imaṫ l-moṛaqaḅa",
 'addedwatchtext'    => "Ṣ-Ṣefḫa \"[[:\$1]]\" ṫzadeṫ le [[Special:Watchlist|l-lista dyal s-suivi dyalṫek]].
 Ṫ-Ṫeġyiraṫ j-jayyin dyal had ṣ-ṣefḫa o dyal ṣ-ṣefḫa de n-niqaċ l-mnasba ġayṫċejjlo fiha.
 L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentChanges|l-lista dyal ṫ-ṫeĝdilaṫ l-leĥĥrin]] baċ ṫeshal ĝlik l-qadiya.",
+'removewatch'       => "hyyed mn qa'imaṫ l-moṛaqaḅa",
 'removedwatchtext'  => 'Ṫemḫaṫ ṣ-ṣefḫa "[[:$1]]" men  [[Special:Watchlist|ṣ-ṣefḫa de s-suivi dyalṫek]].',
 'watch'             => 'Ḫḍi',
 'watchthispage'     => 'Ṫebbeĝ had ṣ-ṣefḫa',
@@ -1606,6 +1635,7 @@ L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentCha
 
 'enotif_mailer'                => '{{SITENAME}} nidam lbaridi',
 'enotif_reset'                 => 'Qiyyed ṣ-ṣefḫaṫ bḫal la zerṫihom kamlin',
+'enotif_newpagetext'           => 'ṣfḫa jdida di.',
 'enotif_impersonal_salutation' => 'Mosṫeḫdim {{SITENAME}}',
 'changed'                      => 'Beddel',
 'created'                      => "tnch'at",
@@ -1644,15 +1674,18 @@ L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentCha
 'rollback_short' => 'Rjeĝ l-lor',
 'rollbacklink'   => 'Rjeĝ l-lor',
 'rollbackfailed' => 'rjoaa mankhch',
+'editcomment'    => "molĥĥaṣ ṫ-ṫĝdil kan: \"''\$1''\".",
 
 # Protect
 'protectlogpage'              => 'Ṫariĥ l-ḫimaya',
 'protectedarticle'            => 'ḫma "[[$1]]"',
 'modifiedarticleprotection'   => 'beddel l-mosṫawa de l-ḫimaya dyal « [[$1]] »',
 'unprotectedarticle'          => 'ḫma "[[$1]]"',
+'prot_1movedto2'              => '[[$1]] ṫnqlaṫ l-[[$2]]',
 'protect-backlink'            => '← $1',
+'protect-legend'              => "'kked l-ḫimaya",
 'protectcomment'              => 'S-Sbab:',
-'protectexpiry'               => 'Ġayṫqada fe:',
+'protectexpiry'               => 'ytsala:',
 'protect_expiry_invalid'      => 'Daz ĝlih l-oqeṫ.',
 'protect_expiry_old'          => 'L-oqeṫ dyal n-nihaya fe l-maḍi.',
 'protect-text'                => "Hnaya ṫeqḍer tċof o ṫbeddel l-mostawa de l-ḫimaya dyal ṣ-ṣefḫa '''$1'''.",
@@ -1673,6 +1706,7 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'protect-othertime-op'        => 'waqt akhr',
 'protect-otherreason'         => 'Sabab weḫdaĥor/zayed:',
 'protect-otherreason-op'      => 'Sabab weḫdaĥor',
+'protect-edit-reasonlist'     => "ĝddel 'asbab l-ḫimaya",
 'restriction-type'            => "L-'idn:",
 'restriction-level'           => 'Mosṫawa ḍ-ḍwabet',
 'minimum-size'                => 'L-Qyas ṣ-ṣġir gaĝ',
@@ -1700,7 +1734,7 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'undeleteviewlink'          => 'ċof',
 'undeletereset'             => 'aawd regli',
 'undeleteinvert'            => 'Qleb dakċi li ĝzelṫi',
-'undeletecomment'           => 'S-Sabab',
+'undeletecomment'           => 'sabab:',
 'undeletedarticle'          => 'sṫerjeĝ "[[$1]]"',
 'undeletedrevisions'        => '{{PLURAL:$1|vérsyon weḫda rejĝaṫ ki kaneṫ|$1 de lé-vérsyon rejĝo ki kano}}',
 'undelete-search-box'       => 'qlleb ĝla ċi ṣ-ṣfaḫi mḫdofa',
@@ -1709,9 +1743,10 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'undelete-show-file-submit' => 'iyih',
 
 # Namespace form on various pages
-'namespace'      => 'Maḫel s-smiyyaṫ :',
-'invert'         => "Qleb 's-séléksyon",
-'blanknamespace' => "(Re'si)",
+'namespace'             => 'Maḫel s-smiyyaṫ :',
+'invert'                => "Qleb 's-séléksyon",
+'namespace_association' => 'nitaq mqṫarn',
+'blanknamespace'        => "(Re'si)",
 
 # Contributions
 'contributions'       => 'L-mosahamaṫ dyal l-mosṫeĥdim',
@@ -1730,6 +1765,7 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'sp-contributions-uploads'       => 'ṫḫmilaṫ',
 'sp-contributions-logs'          => 'sijillaṫ',
 'sp-contributions-talk'          => 'ṫnaqeċ',
+'sp-contributions-userrights'    => 'ṫdbir ṣalaḫiyyaṫ l-mosṫĥdim',
 'sp-contributions-search'        => 'Qelleb ĝla ċi mosahamaṫ',
 'sp-contributions-username'      => 'Ĝonwan IP ola smiyṫ l-mosṫeĥdim',
 'sp-contributions-submit'        => 'Qelleb',
@@ -1760,7 +1796,7 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'blockip-legend'                  => 'Bloki l-mosṫeḫdim',
 'ipadressorusername'              => 'Ĝonwan IP ola smiyṫ l-mosṫeĥdim',
 'ipbexpiry'                       => 'Ġayṫqada fe :',
-'ipbreason'                       => 'S-Sabab',
+'ipbreason'                       => 'sabab:',
 'ipbreasonotherlist'              => 'Sabab weḫdaĥor',
 'ipbcreateaccount'                => 'Mneĝ ĥṫiraĝ ċi ḫsab',
 'ipbemailban'                     => 'ma ṫĥelli-ċ l-mosṫĥdim yṣifet ċi imayl',
@@ -1786,6 +1822,10 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'unblocked-id'                    => 'L-Blokaj $1 ṫṫemḫa',
 'ipblocklist'                     => 'Ĝanawin IP o smiyyaṫ l-mosṫeĥdim meḫbosin',
 'ipblocklist-legend'              => 'Qelleb ĝla ċi mosṫeĥdim memḫi',
+'blocklist-timestamp'             => 'tabĝ zamani',
+'blocklist-target'                => 'hadaf',
+'blocklist-expiry'                => 'ytsala',
+'blocklist-reason'                => 'sabab',
 'ipblocklist-submit'              => 'Qelleb',
 'ipblocklist-localblock'          => 'Blokaj maḫalli',
 'ipblocklist-otherblocks'         => 'Blokaj {{PLURAL:$1|weḫdaĥor|weḫdaĥrin}}',
@@ -1836,9 +1876,9 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'databasenotlocked'   => 'L-Bazdødoné raha ma meġloqaċ.',
 
 # Move page
-'move-page'                => 'Neqqel $1',
-'move-page-legend'         => 'Neqqel ṣ-ṣefḫa',
-'movepagetext'             => "Ila sṫeĝmelṫi l-formulér li l-ṫeḫṫ, ċi ṣefḫa ġadi ṫĝawed ṫṫsemma o ġadi ṫneqqel ṫ-ṫariĥ kollo le s-smiya j-jdida.
+'move-page'                   => 'Neqqel $1',
+'move-page-legend'            => 'Neqqel ṣ-ṣefḫa',
+'movepagetext'                => "Ila sṫeĝmelṫi l-formulér li l-ṫeḫṫ, ċi ṣefḫa ġadi ṫĝawed ṫṫsemma o ġadi ṫneqqel ṫ-ṫariĥ kollo le s-smiya j-jdida.
 L-Ĝonwan l-qdim ġadi iwelli ṣefḫa jdida li ġadi ṫḫowwlek le l-ĝonwan j-jdid.
 Imken lek ṫjedded otomaṫikiyan ṫ-ṫeḫwilaṫ li kayddiw le l-ĝonwan l-'aṣli.
 Ila ma bġiṫiċ, ṫ'ekked ma ṫeḫḍi kolla [[Special:DoubleRedirects|dobl-ṫeḫwila]] ola koll [[Special:BrokenRedirects|ṫ-ṫeḫwilaṫ l-mherrsin]].
@@ -1850,46 +1890,52 @@ Meĝniyṫha imken lek ṫĝawed ṫrejjeĝ l-ĝonwan l-'aṣli ila konṫi ġle
 '''Ĝendak!'''
 Imken hadċi y'eddi ṫeġyiraṫ hammin ila kaneṫ ċi ṣefḫa kayqrawha n-nas bezzaf;
 Ĝafak kon mṫ'ekked belli nṫa ĝaref ċno kaṫdir qbel ma ṫebda ay ḫaja.",
-'movepagetalktext'         => "Ila kaneṫ ċi ṣefḫa dyal n-niqaċ mĝaha, ġadi ṫĝawed ṫṫsemma otomaṫikiyan '''illa ila:'''
+'movepagetalktext'            => "Ila kaneṫ ċi ṣefḫa dyal n-niqaċ mĝaha, ġadi ṫĝawed ṫṫsemma otomaṫikiyan '''illa ila:'''
 * neqqelṫi ṣ-ṣefḫa le maḫel de s-smiyaṫ weḫdaĥor, ola
 * ṣefḫa dyal n-niqaċ ma ĥawyaċ msemmya bḫal bḫal, ola
 * brekṫi ĝla l-ĝalama li men l-ṫeḫṫ.",
-'movearticle'              => 'Neqqel ṣ-ṣefḫa',
-'movenologin'              => 'Mdékonnékti',
-'movenotallowed'           => 'ma ĝndek-ċ l-heqq ṫneqqel ṣ-ṣfaḫi.',
-'movenotallowedfile'       => 'ma ĝndekċ l-heqq ṫnqqel l-milffaṫ.',
-'cant-move-user-page'      => "Ma ĝendekċ l-ḫeqq ṫneqqel ṣ-ṣefḫaṫ r-ra'isiyya.",
-'newtitle'                 => 'Le ċi ĝonwan jdid',
-'move-watch'               => 'Ṫebbeĝ had ṣ-ṣefḫa',
-'movepagebtn'              => 'Neqqel ṣ-ṣefḫa',
-'pagemovedsub'             => 'Neqqelna ṣfeḫṫek be najaḫ',
-'movepage-moved'           => '\'\'\'Neqqelna "$1" fe "$2"\'\'\'',
-'movepage-moved-redirect'  => 'Ṫeḫwil men s-smiya l-qidima ṫeĥṫarĝaṫ.',
-'articleexists'            => 'Fayeṫ kayna ṣefḫa be had s-smiyya, ola s-smiyya li ĥṫariṫi ma ṣalḫaċ.
+'movearticle'                 => 'Neqqel ṣ-ṣefḫa',
+'movenologin'                 => 'Mdékonnékti',
+'movenotallowed'              => 'ma ĝndek-ċ l-heqq ṫneqqel ṣ-ṣfaḫi.',
+'movenotallowedfile'          => 'ma ĝndekċ l-heqq ṫnqqel l-milffaṫ.',
+'cant-move-user-page'         => "Ma ĝendekċ l-ḫeqq ṫneqqel ṣ-ṣefḫaṫ r-ra'isiyya.",
+'newtitle'                    => 'Le ċi ĝonwan jdid',
+'move-watch'                  => 'Ṫebbeĝ had ṣ-ṣefḫa',
+'movepagebtn'                 => 'Neqqel ṣ-ṣefḫa',
+'pagemovedsub'                => 'Neqqelna ṣfeḫṫek be najaḫ',
+'movepage-moved'              => '\'\'\'Neqqelna "$1" fe "$2"\'\'\'',
+'movepage-moved-redirect'     => 'Ṫeḫwil men s-smiya l-qidima ṫeĥṫarĝaṫ.',
+'articleexists'               => 'Fayeṫ kayna ṣefḫa be had s-smiyya, ola s-smiyya li ĥṫariṫi ma ṣalḫaċ.
 Ĝafak ĥṫar smiyya weḫdaḫra.',
-'talkexists'               => "'''Ṣ-Ṣefḫa ṫṫneqqlaṫ be najaḫ, walayenni ṣ-ṣefḫa de l-modakara ma ṫṫneqqlaṫċ ḫiṫ fayeṫ kayna ċi weḫda be had l-ĝonwan.
+'talkexists'                  => "'''Ṣ-Ṣefḫa ṫṫneqqlaṫ be najaḫ, walayenni ṣ-ṣefḫa de l-modakara ma ṫṫneqqlaṫċ ḫiṫ fayeṫ kayna ċi weḫda be had l-ĝonwan.
 Ĝafak fuzyonéhom be yiddek.'''",
-'movedto'                  => 'ṫsemmaṫ',
-'movetalk'                 => 'Neqqel ṣ-ṣefḫa dyal n-niqaċ li mlaqya mĝah',
-'move-subpages'            => 'Neqqel ṣ-ṣefḫaṫ l-ferĝiyya (ḫṫal $1)',
-'move-talk-subpages'       => 'Neqqel ṣ-ṣefḫaṫ l-ferĝiya dyal ṣ-ṣefḫa de n-niqaċ (ḫṫal $1)',
-'movepage-page-exists'     => 'Ṣ-Ṣefḫa $1 fayeṫ kayna o ma ymken lhaċ ṫṫemḫa otomaṫikiyan.',
-'movepage-page-moved'      => 'Ṣ-Ṣefḫa $1 wellaṫ smiyyṫha $2',
-'movepage-page-unmoved'    => 'Ṣ-Ṣefḫa $1 ma qeḍraṫċ ṫwelli $2.',
-'1movedto2'                => 'neqqel [[$1]] ḫṫal [[$2]]',
-'1movedto2_redir'          => 'neqqel [[$1]] le [[$2]] foq ṫ-ṫeḫwila dyalṫha',
-'move-redirect-suppressed' => 'Ṫ-Ṫeḫwil ṫṫemḫa',
-'movelogpage'              => 'Ṫariĥ n-naql',
-'movelogpagetext'          => 'Ha hiya l-lista dyal ṣ-ṣefḫaṫ kamlin li ṫneqqlo.',
-'movesubpage'              => '{{PLURAL:$1|Ṣefḫa ferĝiyya|Ṣefḫaṫ ferĝiyya}}',
-'movenosubpage'            => 'Had ṣ-ṣefḫa ma fiha ḫṫa ċi ṣefḫa ferĝiyya.',
-'movereason'               => 'S-Sbab:',
-'revertmove'               => 'Rejjeĝ',
-'delete_and_move'          => 'Mḫi o neqqel',
-'delete_and_move_confirm'  => 'Ah, mḫi ṣ-ṣefḫa',
-'immobile-source-page'     => 'had ṣ-ṣfḫa maċi d-nnaql.',
-'imageinvalidfilename'     => 'smiṫ l-milef l-hadaf ma ṣḫiḫ-ċ',
-'move-leave-redirect'      => 'ĥlli ṫḫwila morak',
+'movedto'                     => 'ṫsemmaṫ',
+'movetalk'                    => 'Neqqel ṣ-ṣefḫa dyal n-niqaċ li mlaqya mĝah',
+'move-subpages'               => 'Neqqel ṣ-ṣefḫaṫ l-ferĝiyya (ḫṫal $1)',
+'move-talk-subpages'          => 'Neqqel ṣ-ṣefḫaṫ l-ferĝiya dyal ṣ-ṣefḫa de n-niqaċ (ḫṫal $1)',
+'movepage-page-exists'        => 'Ṣ-Ṣefḫa $1 fayeṫ kayna o ma ymken lhaċ ṫṫemḫa otomaṫikiyan.',
+'movepage-page-moved'         => 'Ṣ-Ṣefḫa $1 wellaṫ smiyyṫha $2',
+'movepage-page-unmoved'       => 'Ṣ-Ṣefḫa $1 ma qeḍraṫċ ṫwelli $2.',
+'1movedto2'                   => 'neqqel [[$1]] ḫṫal [[$2]]',
+'1movedto2_redir'             => 'neqqel [[$1]] le [[$2]] foq ṫ-ṫeḫwila dyalṫha',
+'move-redirect-suppressed'    => 'Ṫ-Ṫeḫwil ṫṫemḫa',
+'movelogpage'                 => 'Ṫariĥ n-naql',
+'movelogpagetext'             => 'Ha hiya l-lista dyal ṣ-ṣefḫaṫ kamlin li ṫneqqlo.',
+'movesubpage'                 => '{{PLURAL:$1|Ṣefḫa ferĝiyya|Ṣefḫaṫ ferĝiyya}}',
+'movenosubpage'               => 'Had ṣ-ṣefḫa ma fiha ḫṫa ċi ṣefḫa ferĝiyya.',
+'movereason'                  => 'S-Sbab:',
+'revertmove'                  => 'Rejjeĝ',
+'delete_and_move'             => 'Mḫi o neqqel',
+'delete_and_move_confirm'     => 'Ah, mḫi ṣ-ṣefḫa',
+'immobile-source-namespace'   => 'ma ymkn-ċ ṫnql ṣ-ṣfḫi l-nitaq "$1"',
+'immobile-source-page'        => 'had ṣ-ṣfḫa maċi d-nnaql.',
+'immobile-target-page'        => 'ma ymkn-ċ ṫnql l-had l-ĝonwan dl-wijha.',
+'imagenocrossnamespace'       => 'ma ymkn-ċ ṫnql nitaq dl-milffaṫ l-nitaq maċi dl-milffaṫ',
+'nonfile-cannot-move-to-file' => 'ma ymkn-ċ ṫnql nitaq maċi dl-milffaṫ l-nitaq dl-milffaṫ',
+'imagetypemismatch'           => 'l-ekstonsion j-jdida dl-milfe ma mtabqa-ċ n-noĝ ṫaĝo',
+'imageinvalidfilename'        => 'smiṫ l-milef l-hadaf ma ṣḫiḫ-ċ',
+'fix-double-redirects'        => "ḫddeṫ ayy ṫḫwil ka yċir ll-ĝonwan l-'ṣli",
+'move-leave-redirect'         => 'ĥlli ṫḫwila morak',
 
 # Export
 'export'            => 'Éxporté ċi ṣefḫaṫ',
@@ -1920,6 +1966,7 @@ Imken hadċi y'eddi ṫeġyiraṫ hammin ila kaneṫ ċi ṣefḫa kayqrawha n-n
 'thumbnail-more'  => 'Kebber',
 'filemissing'     => 'fichier makaynch',
 'thumbnail_error' => 'ĥalat fl-mṣayḅa dl-miniatur: $1',
+'djvu_no_xml'     => 'ma ymkn-ċ ṫafḫḫoṣ XML l-milffaṫ DjVu',
 
 # Special:Import
 'import'                  => 'Éxporté ċi ṣefḫaṫ',
@@ -1928,6 +1975,8 @@ Imken hadċi y'eddi ṫeġyiraṫ hammin ila kaneṫ ċi ṣefḫa kayqrawha n-n
 'import-upload-filename'  => 'smiyt lfichier:',
 'import-comment'          => 'taĜelleq:',
 'importnopages'           => 'ḫṫṫa ṣfḫa baċ djab.',
+'importbadinterwiki'      => 'wṣla dl-interwiki ĥayba',
+'importnotext'            => 'ĥawi wlla ma fih naṣṣ',
 
 # Import log
 'importlogpage'             => "sijjil dyal l'import",
@@ -2032,11 +2081,14 @@ Imken lek ṫċof l-ĝin dyalha.',
 'nextdiff'     => 'Ṫ-Ṫeĝdila li mbeĝd',
 
 # Media information
+'thumbsize'            => 'ḫajm l-miniatur:',
 'widthheight'          => '$1×$2',
+'file-info'            => 'ḫajm l-milef: $1, n-noĝ dl-MIME: $2',
 'file-info-size'       => '$1 × $2 piksel, ṫqel l-fiċyé: $3, ċkel MIME : $4',
 'file-nohires'         => '<small>Ma kayenċ ċi rézolusyon kber men hadi.</small>',
 'svg-long-desc'        => 'Fiċyé SVG, rézolusyon $1 × $2 pikselaṫ, ḫajm : $3',
 'show-big-image'       => 'Rézolusyon kamla',
+'show-big-image-size'  => '$1 × $2 dl-ppiksilaṫ',
 'file-info-gif-looped' => 'mlfoof',
 'file-info-png-looped' => 'mlfof',
 
@@ -2171,6 +2223,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-lightsource'                 => 'mṣḍr ḍ-ḍo',
 'exif-flash'                       => 'flaċ',
 'exif-flashenergy'                 => 't-taqa dl-flaċ',
+'exif-filesource'                  => 'ṃṣḍṛ l-milef',
 'exif-whitebalance'                => 'brillance dl-byid',
 'exif-gpslongitude'                => 'ĥatt t-tol',
 'exif-gpsaltitude'                 => 'rtifaĝ',
@@ -2210,17 +2263,24 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-serialnumber'                => 'r-raqm ṫ-ṫaslsoli dial l-camera',
 'exif-cameraownername'             => 'mol(at) l-camera',
 
+'exif-orientation-4' => 'mḍwwer ofoqiyyen',
+'exif-orientation-8' => 'mḍwwer 90° <abbr title="Ĝks (ṫ-ṫijah) Ĝaqarib s-Saĝa">ĜĜS</abbr>',
+
 'exif-componentsconfiguration-0' => 'ma kayn-ċ',
 
+'exif-exposureprogram-0' => 'ma mḫdded-ċ',
+'exif-exposureprogram-1' => 'yadawi',
 'exif-exposureprogram-2' => 'brnamaj ĝadi',
 
 'exif-subjectdistance-value' => '$1 mitro',
 
 'exif-meteringmode-0'   => 'mjhol',
 'exif-meteringmode-1'   => 'mṫwṣṣat',
+'exif-meteringmode-6'   => "joz'i",
 'exif-meteringmode-255' => 'ḫwayej ĥrin',
 
 'exif-lightsource-0' => 'mjhol',
+'exif-lightsource-4' => 'flaċ',
 
 # Flash modes
 'exif-flash-fired-1'    => 'lflach bda',
@@ -2431,7 +2491,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 # Watchlist editor
 'watchlistedit-numitems'      => 'lista d  s-suivi dyalk fiha  {{PLURAL:$1|1 onwan|$1 anawin}}, bla sfahi dniqach.',
 'watchlistedit-noitems'       => 'lista dyal ladressat dyalk mafihach ta onwan.',
-'watchlistedit-normal-title'  => 'Ṣayeb l-lista dyal s-suivi',
+'watchlistedit-normal-title'  => "ĝddel qa'imaṫ l-moṛaqaḅa",
 'watchlistedit-normal-legend' => 'Mmḫiya men l-lista dyal s-suivi',
 'watchlistedit-normal-submit' => 'hiyd ladressat',
 'watchlistedit-raw-title'     => 'Ṣayeb l-lista dyal lkham',
@@ -2533,7 +2593,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'htmlform-int-toolow'          => 'lwima li drtiha sghr mn lminimmun li hwa $1',
 'htmlform-int-toohigh'         => 'lqima li drtima lfog kbr mn lmaximmum li hwa $1',
 'htmlform-required'            => 'had lqima mtloba',
-'htmlform-submit'              => 'sift',
+'htmlform-submit'              => 'ṣift',
 'htmlform-reset'               => 'rojoa an taadilat',
 'htmlform-selectorother-other' => 'okhra',
 

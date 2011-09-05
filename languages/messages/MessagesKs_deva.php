@@ -8,7 +8,6 @@
  * @file
  *
  * @author Rk_kaul (on ks.wikipedia.org)
- *
  */
 
 $digitTransformTable = array(

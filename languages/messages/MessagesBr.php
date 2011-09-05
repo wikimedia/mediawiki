@@ -1958,7 +1958,7 @@ Gallout a rit strishaat ar mod diskwel en ur zibab ar marilh, an anv implijer (d
 'prevpage'          => 'Pajenn gent ($1)',
 'allpagesfrom'      => 'Diskouez ar pajennoù adal :',
 'allpagesto'        => 'Diskouez ar pajennoù betek :',
-'allarticles'       => 'An holl bennadoù',
+'allarticles'       => 'An holl bajennoù',
 'allinnamespace'    => 'An holl bajennoù (esaouenn $1)',
 'allnotinnamespace' => "An holl bajennoù (ar re n'emaint ket en esaouenn anv $1)",
 'allpagesprev'      => 'Kent',

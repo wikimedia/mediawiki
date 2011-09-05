@@ -1107,11 +1107,20 @@ $messages['avk'] = array(
 
 /** Azerbaijani (Azərbaycanca)
  * @author Cekli829
+ * @author Vago
  * @author Wertuose
  */
 $messages['az'] = array(
+	'config-back' => '← Geri',
+	'config-continue' => 'Davam et →',
 	'config-page-language' => 'Dil',
+	'config-page-welcome' => 'MediaWiki-yə xoş gəlmişsiniz!',
+	'config-page-dbconnect' => 'Verilənlər bazasına birləşdir',
+	'config-page-dbsettings' => 'Verilənlər bazasının nizamlanması',
 	'config-page-name' => 'Ad',
+	'config-page-options' => 'Nizamlamalar:',
+	'config-page-install' => 'Nizamlama',
+	'config-page-complete' => 'Komplektləşdir!',
 	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
 	'config-type-ibm_db2' => 'IBM DB2',
 	'config-mysql-myisam' => 'MyISAM',
@@ -4082,8 +4091,8 @@ $messages['fa'] = array(
 	'config-information' => 'اطلاعات',
 	'config-your-language' => 'زبان شما:',
 	'config-wiki-language' => 'زبان ویکی:',
-	'config-back' => '← بازگشت',
-	'config-continue' => 'ادامه →',
+	'config-back' => '→ بازگشت',
+	'config-continue' => 'ادامه ←',
 	'config-page-language' => 'زبان',
 	'config-page-welcome' => 'به مدیاویکی خوش آمدید!',
 	'config-page-name' => 'نام',
@@ -12505,10 +12514,10 @@ A dovrìa avèj arseivù <doclink href=Copying>na còpia ëd la licensa pùblica
 * [http://www.mediawiki.org/wiki/Manual:Contents Guida dl'Aministrator]
 * [http://www.mediawiki.org/wiki/Manual:FAQ Soens an ciamo]
 ----
-* <doclink href=Readme>Les-me</doclink>
-* <doclink href=ReleaseNotes>Nòte ëd Release</doclink>
-* <doclink href=Copying>Copié</doclink>
-* <doclink href=UpgradeDoc>Agiorné</doclink>",
+* <doclink href=Readme>Ch'am lesa</doclink>
+* <doclink href=ReleaseNotes>Nòte ëd publicassion</doclink>
+* <doclink href=Copying>Còpia</doclink>
+* <doclink href=UpgradeDoc>Agiornament</doclink>",
 	'config-env-good' => "L'ambient a l'é stàit controlà.
 It peule instalé MediaWiki.",
 	'config-env-bad' => "L'ambient a l'é stàit controlà.

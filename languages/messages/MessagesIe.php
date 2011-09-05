@@ -457,6 +457,7 @@ Pleser prova denov.',
 Pleser prova denov.',
 'mailmypassword'             => 'Nov parol-clave per e-mail',
 'acct_creation_throttle_hit' => 'Vu ja ha creat $1 contos. Vu ne posse crear pli mult quam to.',
+'usernamehasherror'          => 'Nómine de usator ne posse contene mixtura de carácteres',
 'loginlanguagelabel'         => 'Lingue: $1',
 
 # Change password dialog
@@ -511,6 +512,9 @@ Vu posse [[Special:Search/{{PAGENAME}}|serchar por ti titul de págine]] in altr
 'noarticletext-nopermission'       => 'Vi currentmen ne textu in ti págine.
 Vu posse [[Special:Search/{{PAGENAME}}|serchar por titul de ti págine]] in altri págines,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchar li diariumes relatet]</span>.',
+'userpage-userdoesnotexist'        => 'Conto de usator "$1" ne es registrat.
+Pleser controla si vu cari crear/redacter ti págine.',
+'userpage-userdoesnotexist-view'   => 'Conto de usator "$1" ne es registrat.',
 'usercssyoucanpreview'             => "'''Punta:''' Usa li buton \"{{int:showpreview}}\" por provar tui nov CSS ante de conservar.",
 'userjsyoucanpreview'              => "'''Punta:''' Usa li buton \"{{int:showpreview}}\" por provar tui nov JavaScript ante de conservar.",
 'usercsspreview'                   => "'''Memora que vu es solmen vident un prevision de tui CSS de usator.'''
@@ -649,6 +653,7 @@ Legende: '''({{int:cur}})''' = diferenties che ultim revision, '''({{int:last}})
 'saveprefs'               => 'Conservar',
 'searchresultshead'       => 'Serchar',
 'youremail'               => 'E-mail:',
+'username'                => 'Nómine de usator:',
 'uid'                     => 'Identification de usator:',
 'yourrealname'            => 'Nómine real:',
 'yourlanguage'            => 'Lingue:',
@@ -658,6 +663,25 @@ Legende: '''({{int:cur}})''' = diferenties che ultim revision, '''({{int:last}})
 'prefs-help-email'        => 'Adresse de e-mail es optional, ma es necessitá por recomensar parol-clave, deve vu obliviar tui parol-clave.',
 'prefs-help-email-others' => 'Vu posse anc optar por permisser altri contacter vu per e-mail complet che un catenun in tui págine de usator o págine de discussion.
 Tui adresse de e-mail ne es revelat quande altri usatores contacter vu.',
+
+# User rights
+'userrights'                   => 'Gerement de jures de usator',
+'userrights-lookup-user'       => 'Gerer gruppes de usator',
+'userrights-user-editname'     => 'Intrar un nómine de usator:',
+'userrights-editusergroup'     => 'Redacter gruppes de usator',
+'userrights-groupsmember'      => 'Membre de:',
+'userrights-groupsmember-auto' => 'Membre implicit de:',
+'userrights-groups-help'       => 'Vu posse alterar li gruppes de ti usator in:
+* Un buxe controlat significa que li usator es in ti gruppe.
+* Un buxe descontrolat significa que li usator ne es in ti gruppe.
+* Un * indica que vu ne posse remover li gruppe un vez que vu have adjuntet it, o inversi.',
+'userrights-reason'            => 'Motive:',
+'userrights-no-interwiki'      => 'Vu ne have permission por redacter jures de usator in altri wikis.',
+'userrights-nodatabase'        => 'Funde de data $1 ne existe o ne es local.',
+'userrights-nologin'           => 'Vu deve [[Special:UserLogin|registrar]] che un conto de administrator por atribuer jures de usator.',
+'userrights-notallowed'        => 'Tui conto ne have permission por atribuer jures de usator.',
+'userrights-changeable-col'    => 'Gruppes que vu posse changear',
+'userrights-unchangeable-col'  => 'Gruppes que vu ne posse changear',
 
 # Groups
 'group-user'  => 'Usatores',
@@ -912,6 +936,11 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'usermaildisabled'     => 'E-mail de usator desvalidat',
 'usermaildisabledtext' => 'Vu ne posse inviar e-mail por altri usatores in ti wiki',
 
+# User Messenger
+'usermessage-summary'  => 'Abandonant missage del sistema',
+'usermessage-editor'   => 'Missagero del sistema',
+'usermessage-template' => 'MediaWiki:UserMessage',
+
 # Watchlist
 'watchlist'            => 'Liste de págines vigilat',
 'mywatchlist'          => 'Mi liste de págines vigilat',
@@ -968,11 +997,55 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'restriction-move' => 'Mover',
 
 # Undelete
-'viewdeletedpage'        => 'Vider págines deletet',
-'undeletebtn'            => 'Restaurar',
-'undeletelink'           => 'vider/restaurar',
-'undeleteviewlink'       => 'vider',
-'undelete-search-submit' => 'Serchar',
+'undelete'                     => 'Vider págines deletet',
+'undeletepage'                 => 'Vider e restaurar págines deletet',
+'undeletepagetitle'            => "'''Li proxim consiste de revisiones deletet de [[:$1|$1]]'''.",
+'viewdeletedpage'              => 'Vider págines deletet',
+'undeletepagetext'             => 'Li proxim {{PLURAL:$1|págine ha esset deletet ma es|$1 págines have esset esset deletet ma es}} ínmobil in li archive e posse esser restaurat. Li archive posse esser periodicomen demuddat.',
+'undelete-fieldset-title'      => 'Restaurar revisiones',
+'undeleteextrahelp'            => "Por restaurar li historie complet de págine, abandona omni li buxes de controle deselectet e clacca '''''{{int:undeletebtn}}'''''.
+Por efectuar un restauration selectiv, controla li buxes secun por li revisiones por esser restaurat, e clacca '''''{{int:undeletebtn}}'''''.",
+'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisiones}} conservat',
+'undeletehistory'              => 'Si vu restaurar li págine, omni li revisiones va esser restaurat por li historie.
+Si un nov págine che nómine identic ha esset creat desde li deletion, li revisiones restaurat va aparir in li historie precedent.',
+'undeleterevdel'               => 'Restauration ne va esser efectuat si it va resultar in li págine superiori o revision de file essent partialmen deletet.
+In tal casus, vu deve descontrolar o desocultar li ultim revision deletet.',
+'undeletehistorynoadmin'       => 'Ti págine ha esset deletet.
+Li motive por deletion es monstrat in li summarium infra, junt che detallies del usatores que hat redactet ti págine ante de deletion.
+Li textu efectiv de tis revisiones deletet es solmen disponibil por administratores.',
+'undelete-revision'            => 'Revision deletet de $1 (quam de $4, in $5) per $3:',
+'undeleterevision-missing'     => 'Revision ínvalid o mancant.
+Vu posse have un catenun mal, o li revision posse have esset restaurat o removet del archive.',
+'undelete-nodiff'              => 'Ne esset instituet revision anteriori.',
+'undeletebtn'                  => 'Restaurar',
+'undeletelink'                 => 'vider/restaurar',
+'undeleteviewlink'             => 'vider',
+'undeletereset'                => 'Recomensar',
+'undeleteinvert'               => 'Inverter selection',
+'undeletecomment'              => 'Motive:',
+'undeletedarticle'             => 'restaurat "[[$1]]"',
+'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisiones}} restaurat',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisiones}} e {{PLURAL:$2|1 file|$2 files}} restaurat',
+'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} restaurat',
+'undeletedpage'                => "'''$1 ha esset restaurat'''
+
+Consulta li [[Special:Log/delete|diarium de deletion]] por un registre de deletiones nov e restaurationes.",
+'undelete-header'              => 'Vider [[Special:Log/delete|li diarium de deletion]] por págines deletet currentmen.',
+'undelete-search-box'          => 'Serchar págines deletet',
+'undelete-search-prefix'       => 'Monstrar págines comensant che:',
+'undelete-search-submit'       => 'Serchar',
+'undelete-no-results'          => 'Ne esset instituet págines egale in li archive de deletion.',
+'undelete-filename-mismatch'   => 'Ne posse restaurar version de file $1 che hor e date: nómine de file misegala',
+'undelete-bad-store-key'       => 'Ne posse restaurar version che hor e date de file $1: file esset existet ante de deletion.',
+'undelete-cleanup-error'       => 'Error deletent archive sin usu de file "$1".',
+'undelete-missing-filearchive' => 'Ne posse restaurar archive de file ID $1 pro que it ne es in li funde de data.
+It posse have ja esset restaurat.',
+'undelete-error-short'         => 'Errore in li restauration de file: $1',
+'undelete-error-long'          => 'Errores esset incontrat durante li restauration de file:
+
+$1',
+'undelete-show-file-confirm'   => 'Vu comprende se que vu cari vider li revision deletet del file "<nowiki>$1</nowiki>" de $2 in $3?',
+'undelete-show-file-submit'    => 'Yes',
 
 # Namespace form on various pages
 'namespace'      => 'Spacie de nómine:',

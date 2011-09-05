@@ -675,9 +675,11 @@ $2
 
 # Special:ChangeEmail
 'changeemail'          => 'ఈ-మెయిలు చిరునామా మార్పు',
+'changeemail-header'   => 'ఖాతా ఈ-మెయిల్ చిరునామాని మార్చండి',
 'changeemail-oldemail' => 'ప్రస్తుత ఈ-మెయిలు చిరునామా:',
 'changeemail-newemail' => 'కొత్త ఈ-మెయిలు చిరునామా:',
 'changeemail-none'     => '(ఏమీలేదు)',
+'changeemail-submit'   => 'ఈ-మెయిల్ మార్చు',
 'changeemail-cancel'   => 'రద్దుచేయి',
 
 # Edit page toolbar
@@ -1173,6 +1175,7 @@ $1",
 'prefs-watchlist-token'         => 'వీక్షణాజాబితా టోకెను:',
 'prefs-misc'                    => 'ఇతరాలు',
 'prefs-resetpass'               => 'సంకేతపదాన్ని మార్చుకోండి',
+'prefs-setemail'                => 'ఒక ఈ-మెయిల్ చిరునామాని అమర్చండి',
 'prefs-email'                   => 'ఈ-మెయిల్ ఎంపికలు',
 'prefs-rendering'               => 'రూపురేఖలు',
 'saveprefs'                     => 'భద్రపరచు',
@@ -2949,11 +2952,18 @@ $1',
 'exif-locationdest'                => 'చూపించిన ప్రాంతం',
 'exif-objectcycle'                 => 'ఈ మాధ్యమం ఉద్దేశించిన సమయం',
 'exif-contact'                     => 'సంప్రదింపు సమాచారం',
+'exif-writer'                      => '',
 'exif-languagecode'                => 'భాష',
+'exif-iimversion'                  => 'IIM రూపాంతరం',
 'exif-iimcategory'                 => 'వర్గం',
 'exif-iimsupplementalcategory'     => 'అనుషంగిక వర్గాలు',
 'exif-datetimeexpires'             => 'దీని తరువాత వాడవద్దు',
+'exif-identifier'                  => 'గుర్తింపకం',
+'exif-lens'                        => 'వాడిన కటకం',
+'exif-serialnumber'                => 'కెమేరా యొక్క సీరియల్ నంబర్',
 'exif-cameraownername'             => 'కేమెరా యజమాని',
+'exif-rating'                      => 'రేటింగు (5 కి గాను)',
+'exif-rightscertificate'           => 'హక్కుల నిర్వాహణ ధృవీకరణ పత్రం',
 'exif-copyrighted'                 => 'కాపీహక్కుల స్థితి',
 'exif-copyrightowner'              => 'కాపీ హక్కుదారు',
 'exif-usageterms'                  => 'వాడుక నియమాలు',
@@ -2963,12 +2973,15 @@ $1',
 'exif-contentwarning'              => 'విషయపు హెచ్చరిక',
 'exif-giffilecomment'              => 'GIF ఫైలు వ్యాఖ్య',
 'exif-intellectualgenre'           => 'అంశము యొక్క రకము',
+'exif-subjectnewscode'             => 'సబ్జెక్టు కోడ్',
 'exif-event'                       => 'చూపించిన ఘటన',
 'exif-organisationinimage'         => 'చూపించిన సంస్థ',
 'exif-personinimage'               => 'చిత్రంలో ఉన్న వ్యక్తి',
 
 # EXIF attributes
 'exif-compression-1' => 'కుదించని',
+
+'exif-copyrighted-true' => 'నకలుహక్కులుకలది',
 
 'exif-unknowndate' => 'అజ్ఞాత తేదీ',
 
@@ -3414,13 +3427,20 @@ $1',
 'compare-title-not-exists' => 'మీరు పేర్కొన్న శీర్షిక లేనే లేదు.',
 
 # Special:GlobalFileUsage
-'globalfileusage-ok'         => 'వెతుకు',
-'globalfileusage-no-results' => '[[:$1]]ను ఇతర వికీలలో ఉపయోగించట్లేదు.',
-'globalfileusage-on-wiki'    => '$2 లో వాడుక',
-'globalfileusage-of-file'    => 'ఈ దస్త్రాన్ని ఈ క్రింది ఇతర వికీలు ఉపయోగిస్తున్నాయి:',
+'globalfileusage'             => 'సార్వత్రిక ఫైలు వాడుక',
+'globalfileusage-for'         => '"$1" కొరకు సార్వత్రిక వాడుక',
+'globalfileusage-ok'          => 'వెతుకు',
+'globalfileusage-no-results'  => '[[:$1]]ను ఇతర వికీలలో ఉపయోగించట్లేదు.',
+'globalfileusage-on-wiki'     => '$2 లో వాడుక',
+'globalfileusage-of-file'     => 'ఈ దస్త్రాన్ని ఈ క్రింది ఇతర వికీలు ఉపయోగిస్తున్నాయి:',
+'globalfileusage-filterlocal' => 'స్థానిక వాడుకని చూపించవద్దు',
 
 # Special:GlobalTemplateUsage
-'globaltemplateusage-of-file' => 'ఈ మూసను ఈ క్రింది ఇతర వికీలు ఉపయోగిస్తున్నాయి:',
+'globaltemplateusage'             => 'సార్వత్రిక మూస వాడుక',
+'globaltemplateusage-ok'          => 'శోధించు',
+'globaltemplateusage-text'        => 'సార్వత్రిక మూస వాడుకలో శోధించు',
+'globaltemplateusage-of-file'     => 'ఈ మూసను ఈ క్రింది ఇతర వికీలు ఉపయోగిస్తున్నాయి:',
+'globaltemplateusage-filterlocal' => 'స్థానిక వాడుకని చూపించవద్దు',
 
 # Database error messages
 'dberr-header'      => 'ఈ వికీ సమస్యాత్మకంగా ఉంది',
