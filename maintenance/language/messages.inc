@@ -2032,7 +2032,6 @@ $wgMessageStructure = array(
 		'sp-contributions-explain',
 		'sp-contributions-footer',
 		'sp-contributions-footer-anon',
-		'sp-contributions-showsizediff',
 	),
 	'whatlinkshere' => array(
 		'whatlinkshere',
