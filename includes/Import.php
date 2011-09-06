@@ -712,7 +712,12 @@ class WikiImporter {
 		return $info;
 	}
 
+	/**
+	 * @return Array or false
+	 */
 	private function processTitle( $text ) {
+		global $wgCommandLineMode;
+
 		$workTitle = $text;
 		$origTitle = Title::newFromText( $workTitle );
 
@@ -724,11 +729,19 @@ class WikiImporter {
 		}
 
 		if( is_null( $title ) ) {
-			// Invalid page title? Ignore the page
+			# Invalid page title? Ignore the page
 			$this->notice( "Skipping invalid page title '$workTitle'" );
 			return false;
 		} elseif( $title->getInterwiki() != '' ) {
 			$this->notice( "Skipping interwiki page title '$workTitle'" );
+			return false;
+		} elseif( !$title->userCan( 'edit' ) && !$wgCommandLineMode ) {
+			# Do not import if the importing wiki user cannot edit this page
+			$this->notice( wfMessage( 'import-error-edit', $title->getText() )->text() );
+			return false;
+		} elseif( !$title->exists() && !$title->userCan( 'create' ) && !$wgCommandLineMode ) {
+			# Do not import if the importing wiki user cannot create this page
+			$this->notice( wfMessage( 'import-error-create', $title->getText() )->text() );
 			return false;
 		}
 
