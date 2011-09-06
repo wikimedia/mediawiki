@@ -761,6 +761,12 @@ class LocalFile extends File {
 				wfRestoreWarnings();
 			}
 		}
+		if ( is_dir( $dir ) ) {
+			wfSuppressWarnings();
+			rmdir( $dir ); // Might have already gone away, spews errors if we don't.
+			wfRestoreWarnings();
+		}
+
 	}
 
 	/** purgeDescription inherited */
