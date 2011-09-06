@@ -24,7 +24,7 @@ class SpecialGlobalFileUsage extends SpecialPage {
 
 		$this->showForm();
 
-		if ( is_null( $this->target ) )	{
+		if ( is_null( $this->target ) ) {
 			$wgOut->setPageTitle( wfMsg( 'globalfileusage' ) );
 			return;
 		}
@@ -129,6 +129,7 @@ class SpecialGlobalFileUsage extends SpecialPage {
 		// Bottom navbar
 		$wgOut->addHtml( $navbar );
 	}
+
 	/**
 	 * Helper to format a specific item
 	 */
