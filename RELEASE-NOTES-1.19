@@ -82,6 +82,8 @@ production.
 * (bug 4381) Magic quotes cleaning is not comprehensive, key strings not
   unescaped
 * (bug 30684) Fix bad escaping in mw.message for inexistent messages (i.e. <key>)
+* (bug 23057) Importers can 'edit' or 'create' a fully-protected page by
+  importing a new revision into it
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
