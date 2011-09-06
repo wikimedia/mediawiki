@@ -2256,7 +2256,6 @@ $UNWATCHURL కి వెళ్ళండి.
 'sp-contributions-username'            => 'ఐపీ చిరునామా లేదా వాడుకరిపేరు:',
 'sp-contributions-toponly'             => 'చిట్టచివరి కూర్పులను మాత్రమే చూపించు',
 'sp-contributions-submit'              => 'వెతుకు',
-'sp-contributions-showsizediff'        => 'పుట పరిమాణంలో భేదాన్ని చూపించు',
 
 # What links here
 'whatlinkshere'            => 'ఇక్కడికి లంకెలున్న పుటలు',

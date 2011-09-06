@@ -715,17 +715,31 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'resetpass-temp-password'   => 'Tydelike wagwoord:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Wagwoord herstel',
-'passwordreset-text'         => "Voltooi hierdie vorm om 'n e-pos herinnering van jou rekening besonderhede te ontvang.",
-'passwordreset-legend'       => 'Kry nuwe wagwoord',
-'passwordreset-disabled'     => 'Die herskik van U wagwoord is gedeaktiveer op hierdie wiki.',
-'passwordreset-pretext'      => '{{PLURAL:$1| | Voer een van die onderstaande velde in}}',
-'passwordreset-username'     => 'Gebruiker:',
-'passwordreset-email'        => 'E-posadres:',
-'passwordreset-emailtitle'   => 'Gebruiker se details op {{site name}}',
-'passwordreset-emailelement' => 'Gebruikersnaam: $1
+'passwordreset'                => 'Wagwoord herstel',
+'passwordreset-text'           => "Voltooi hierdie vorm om 'n e-pos herinnering van jou rekening besonderhede te ontvang.",
+'passwordreset-legend'         => 'Kry nuwe wagwoord',
+'passwordreset-disabled'       => 'Die herskik van U wagwoord is gedeaktiveer op hierdie wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1| | Voer een van die onderstaande velde in}}',
+'passwordreset-username'       => 'Gebruiker:',
+'passwordreset-email'          => 'E-posadres:',
+'passwordreset-emailtitle'     => 'Gebruiker se details op {{site name}}',
+'passwordreset-emailtext-ip'   => 'Iemand, waarskynlik u vanaf die IP-adres $1, het u gebruikersgegewens vir {{SITENAME}} ($4) opgevra.
+Die volgende {{PLURAL:$3|gebruiker is|gebruikers is}} aan die e-posadres gekoppel:
+
+$2
+
+{{PLURAL:$3|Die tydelike wagwoord verval|Hierdie tydelike wagwoorde verval}} oor {{PLURAL:$5|een dag|$5 dae}}.
+Meld asseblief nou aan en wysig u wagwoord. As u dit nie versoek het nie, of as u die oorspronklike wagwoord nog ken en dit nie wil verander nie, ignoreer die berig en hou aan om u ou wagwoord te gebruik.',
+'passwordreset-emailtext-user' => 'Gebruiker $1 op die webtuiste {{SITENAME}} het u gebruikersgegewens vir {{SITENAME}} ($4) opgevra.
+Die volgende {{PLURAL:$3|gebruiker is|gebruikers is}} aan die e-posadres gekoppel:
+
+$2
+
+{{PLURAL:$3|Die tydelike wagwoord verval|Hierdie tydelike wagwoorde verval}} oor {{PLURAL:$5|een dag|$5 dae}}.
+Meld asseblief aan en verander u wagwoord nou. As u dit nie versoek het nie, of as u die oorspronklike wagwoord nog ken en dit nie wil verander nie, ignoreer die berig en hou aan om u ou wagwoord te gebruik.',
+'passwordreset-emailelement'   => 'Gebruikersnaam: $1
 Tydelike wagwoord: $2',
-'passwordreset-emailsent'    => "'n E-pos ter herhindering is gestuur.",
+'passwordreset-emailsent'      => "'n E-pos ter herhindering is gestuur.",
 
 # Special:ChangeEmail
 'changeemail'          => 'Wysig E-posadres',
@@ -2166,9 +2180,12 @@ Wiki: $PAGEEDITOR_WIKI
 Tensy u hierdie bladsy besoek, sal u geen verdere kennisgewings ontvang nie.
 U kan ook die waarskuwingsvlag op u dophoulys verstel.
 
-             Groete van {{SITENAME}} se waarskuwingssisteem.
+Groete van {{SITENAME}} se waarskuwingssisteem.
 
 --
+U kan u e-posvoorkeure stel by:
+{{canonicalurl:{{#special:Preferences}}}}
+
 U kan u dophoulys wysig by:
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
@@ -2384,7 +2401,6 @@ Die laaste inskrywing uit die blokkeerlogboek word hier ter inligting weergegee:
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
 'sp-contributions-toponly'             => 'Wys slegs die nuutste weergawes',
 'sp-contributions-submit'              => 'Vertoon',
-'sp-contributions-showsizediff'        => 'Wys verskil in bladsygrootte',
 
 # What links here
 'whatlinkshere'            => 'Skakels hierheen',

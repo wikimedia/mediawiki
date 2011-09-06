@@ -2362,7 +2362,6 @@ Bllokimi i funditë është më poshtë për referencë:',
 'sp-contributions-username'            => 'IP Addresa ose Përdoruesi:',
 'sp-contributions-toponly'             => 'Trego vetëm redaktimet që janë versionet më të fundit',
 'sp-contributions-submit'              => 'Kërko',
-'sp-contributions-showsizediff'        => 'Paraqit ndryshimin në madhësi të faqes',
 
 # What links here
 'whatlinkshere'            => 'Lidhjet këtu',

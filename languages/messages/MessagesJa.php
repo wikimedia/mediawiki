@@ -842,7 +842,7 @@ $2',
 'usernamehasherror'          => '利用者名には番号記号を含むことができません',
 'login-throttled'            => 'ログインの失敗が制限回数を超えました。
 しばらく時間をおいてから再度お試しください。',
-'login-abort-generic'        => 'ログインに失敗しました。　‐ 中止',
+'login-abort-generic'        => 'ログインに失敗しました。− 中止',
 'loginlanguagelabel'         => '言語: $1',
 'suspicious-userlogout'      => '壊れたブラウザもしくはキャッシュ・プロキシによって送信された可能性があるため、ログアウト要求は拒否されました。',
 
@@ -907,8 +907,9 @@ $2',
 'headline_tip'    => '2段目の見出し',
 'nowiki_sample'   => 'ここにマークアップを無効にするテキストを入力します',
 'nowiki_tip'      => 'ウィキ書式を無視',
+'image_sample'    => 'サンプル.jpg',
 'image_tip'       => 'ファイルの埋め込み',
-'media_sample'    => '例.ogg',
+'media_sample'    => 'サンプル.ogg',
 'media_tip'       => 'ファイルへのリンク',
 'sig_tip'         => '時刻印つきの署名',
 'hr_tip'          => '水平線を挿入（利用は控えめに）',
@@ -2569,7 +2570,6 @@ $1',
 'sp-contributions-username'            => 'IPアドレスまたは利用者名：',
 'sp-contributions-toponly'             => '最新版の編集のみを表示',
 'sp-contributions-submit'              => '検索',
-'sp-contributions-showsizediff'        => 'ページサイズの違いを表示',
 
 # What links here
 'whatlinkshere'            => 'リンク元',
@@ -2649,6 +2649,7 @@ $1',
 'blocklist-userblocks'            => 'アカウントのブロックを非表示',
 'blocklist-tempblocks'            => '有期ブロックを非表示',
 'blocklist-addressblocks'         => '単一IPのブロックを非表示',
+'blocklist-rangeblocks'           => 'レンジブロックを非表示',
 'blocklist-timestamp'             => 'タイムスタンプ',
 'blocklist-target'                => '対象',
 'blocklist-expiry'                => '期限',
@@ -3006,30 +3007,39 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'tooltip-summary'                 => '短い要約を入力してください',
 
 # Stylesheets
-'common.css'      => '/* ここに書いたCSSはすべての外装に反映されます */',
-'standard.css'    => '/* ここに記述したCSSはスタンダード外装の利用者に影響します */',
-'nostalgia.css'   => '/* ここに記述したCSSはノスタルジア外装の利用者に影響します */',
-'cologneblue.css' => '/* ここに記述したCSSはケルンブルー外装の利用者に影響します */',
-'monobook.css'    => '/* ここに記述したCSSはモノブック外装の利用者に影響します */',
-'myskin.css'      => '/* ここに記述したCSSはマイスキン外装の利用者に影響します */',
-'chick.css'       => '/* ここに記述したCSSはチック外装の利用者に影響します */',
-'simple.css'      => '/* ここに記述したCSSはシンプル外装の利用者に影響します */',
-'modern.css'      => '/* ここに記述したCSSはモダン外装の利用者に影響します */',
-'vector.css'      => '/* ここに記述したCSSはベクター外装の利用者に影響します */',
-'print.css'       => '/* ここに記述したCSSは印刷出力に影響します */',
-'handheld.css'    => '/* ここに記述したCSSは$wgHandheldStyleで設定された外装に基づく携帯機器に影響します */',
+'common.css'              => '/* ここに書いたCSSはすべての外装に反映されます */',
+'standard.css'            => '/* ここに記述したCSSはスタンダード外装の利用者に影響します */',
+'nostalgia.css'           => '/* ここに記述したCSSはノスタルジア外装の利用者に影響します */',
+'cologneblue.css'         => '/* ここに記述したCSSはケルンブルー外装の利用者に影響します */',
+'monobook.css'            => '/* ここに記述したCSSはモノブック外装の利用者に影響します */',
+'myskin.css'              => '/* ここに記述したCSSはマイスキン外装の利用者に影響します */',
+'chick.css'               => '/* ここに記述したCSSはチック外装の利用者に影響します */',
+'simple.css'              => '/* ここに記述したCSSはシンプル外装の利用者に影響します */',
+'modern.css'              => '/* ここに記述したCSSはモダン外装の利用者に影響します */',
+'vector.css'              => '/* ここに記述したCSSはベクター外装の利用者に影響します */',
+'print.css'               => '/* ここに記述したCSSは印刷出力に影響します */',
+'handheld.css'            => '/* ここに記述したCSSは$wgHandheldStyleで設定された外装に基づく携帯機器に影響します */',
+'noscript.css'            => '/* ここに記述したCSSはJavaScriptを無効にしている利用者に影響します */',
+'group-autoconfirmed.css' => '/* ここに記述したCSSは自動承認された利用者のみに影響します */',
+'group-bot.css'           => '/* ここに記述したCSSはボットのみに影響します */',
+'group-sysop.css'         => '/* ここに記述したCSSは管理者のみに影響します */',
+'group-bureaucrat.css'    => '/* ここに記述したCSSはビューロクラットのみに影響します */',
 
 # Scripts
-'common.js'      => '/* ここにあるすべてのJavaScriptは、すべてのページ読み込みですべての利用者に対して読み込まれます */',
-'standard.js'    => '/* ここにあるすべてのJavaScriptは、スタンダード外装を使用している利用者に対して読み込まれます */',
-'nostalgia.js'   => '/* ここにあるすべてのJavaScriptは、ノスタルジア外装を使用している利用者に対して読み込まれます */',
-'cologneblue.js' => '/* ここにあるすべてのJavaScriptは、ケルンブルー外装を使用している利用者に対して読み込まれます */',
-'monobook.js'    => '/* ここにあるすべてのJavaScriptは、モノブック外装を使用している利用者に対して読み込まれます */',
-'myskin.js'      => '/* ここにあるすべてのJavaScriptは、マイスキン外装を使用している利用者に対して読み込まれます */',
-'chick.js'       => '/* ここにあるすべてのJavaScriptは、チック外装を使用している利用者に対して読み込まれます */',
-'simple.js'      => '/* ここにあるすべてのJavaScriptは、シンプル外装を使用している利用者に対して読み込まれます */',
-'modern.js'      => '/* ここにあるすべてのJavaScriptは、モダン外装を使用している利用者に対して読み込まれます */',
-'vector.js'      => '/* ここにあるすべてのJavaScriptは、ベクター外装を使用している利用者に対して読み込まれます */',
+'common.js'              => '/* ここにあるすべてのJavaScriptは、すべてのページ読み込みですべての利用者に対して読み込まれます */',
+'standard.js'            => '/* ここにあるすべてのJavaScriptは、スタンダード外装を使用している利用者に対して読み込まれます */',
+'nostalgia.js'           => '/* ここにあるすべてのJavaScriptは、ノスタルジア外装を使用している利用者に対して読み込まれます */',
+'cologneblue.js'         => '/* ここにあるすべてのJavaScriptは、ケルンブルー外装を使用している利用者に対して読み込まれます */',
+'monobook.js'            => '/* ここにあるすべてのJavaScriptは、モノブック外装を使用している利用者に対して読み込まれます */',
+'myskin.js'              => '/* ここにあるすべてのJavaScriptは、マイスキン外装を使用している利用者に対して読み込まれます */',
+'chick.js'               => '/* ここにあるすべてのJavaScriptは、チック外装を使用している利用者に対して読み込まれます */',
+'simple.js'              => '/* ここにあるすべてのJavaScriptは、シンプル外装を使用している利用者に対して読み込まれます */',
+'modern.js'              => '/* ここにあるすべてのJavaScriptは、モダン外装を使用している利用者に対して読み込まれます */',
+'vector.js'              => '/* ここにあるすべてのJavaScriptは、ベクター外装を使用している利用者に対して読み込まれます */',
+'group-autoconfirmed.js' => '/* ここにあるすべてのJavaScriptは、自動承認された利用者に対して読み込まれます */',
+'group-bot.js'           => '/* ここにあるすべてのJavaScriptは、ボットのみに対して読み込まれます */',
+'group-sysop.js'         => '/* ここにあるすべてのJavaScriptは、管理者のみに対して読み込まれます */',
+'group-bureaucrat.js'    => '/* ここにあるすべてのJavaScriptは、ビューロクラットのみに対して読み込まれます */',
 
 # Metadata
 'notacceptable' => 'ウィキサーバーは、使用中のクライアントが読める形式での情報を、提供できません。',
@@ -3059,6 +3069,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'pageinfo-title'            => '「$1」の情報',
 'pageinfo-header-edits'     => '編集',
 'pageinfo-header-watchlist' => 'ウォッチリスト',
+'pageinfo-header-views'     => '表示',
 'pageinfo-subjectpage'      => 'ページ',
 'pageinfo-talkpage'         => 'トークページ',
 'pageinfo-watchers'         => 'ウォッチリストに入れている利用者数',
@@ -3114,9 +3125,10 @@ $1',
 
 # Media information
 'mediawarning'           => "'''警告：'''このファイルは悪意のあるコードを含んでいる可能性があります。
-実行するとシステムが棄権にさらされる可能性があります。",
+実行するとシステムが危険にさらされる可能性があります。",
 'imagemaxsize'           => "画像のサイズ制限：<br />''（ファイルページに対する）''",
 'thumbsize'              => 'サムネイルの大きさ：',
+'widthheight'            => '$1 × $2',
 'widthheightpage'        => '$1×$2、$3ページ',
 'file-info'              => 'ファイルサイズ：$1、MIMEタイプ：$2',
 'file-info-size'         => '$1×$2ピクセル、ファイルサイズ：$3、MIMEタイプ：$4',
@@ -3145,6 +3157,9 @@ $1',
 'bydate'                => '日付順',
 'sp-newimages-showfrom' => '$1の$2以降の新しいファイルを表示',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims' => '$1、 $2 × $3',
+
 # Bad image list
 'bad_image_list' => '書式は以下の通りです：
 
@@ -3163,8 +3178,44 @@ Variants for Chinese language
 'variantname-zh-cn'   => '中国簡体',
 'variantname-zh-tw'   => '台湾正体',
 'variantname-zh-hk'   => '香港正体',
+'variantname-zh-mo'   => '中国(マカオ)',
 'variantname-zh-sg'   => 'シンガポール簡体',
-'variantname-zh'      => '無変換',
+'variantname-zh-my'   => '中国(マレーシア)',
+'variantname-zh'      => '中文',
+
+# Variants for Gan language
+'variantname-gan-hans' => 'ガガウズ(hans)',
+'variantname-gan-hant' => 'ガガウズ(hant)',
+'variantname-gan'      => 'ガガウズ',
+
+# Variants for Serbian language
+'variantname-sr-ec' => 'セルビア(キリル)',
+'variantname-sr-el' => 'セルビア(ラテン)',
+'variantname-sr'    => 'セルビア',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => 'カザフ(カザフスタン)',
+'variantname-kk-tr'   => 'カザフ(トルコ)',
+'variantname-kk-cn'   => 'カザフ(中国)',
+'variantname-kk-cyrl' => 'カザフ(キリル)',
+'variantname-kk-latn' => 'カザフ(ラテン)',
+'variantname-kk-arab' => 'カザフ(アラブ)',
+'variantname-kk'      => 'カザフ',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'クルド(アラブ)',
+'variantname-ku-latn' => 'クルド(ラテン)',
+'variantname-ku'      => 'クルド',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => 'タジク(キリル)',
+'variantname-tg-latn' => 'タジク(ラテン)',
+'variantname-tg'      => 'タジク',
+
+# Variants for Inuktitut language
+'variantname-ike-cans' => 'イヌイット(カナダ先住民文字)',
+'variantname-ike-latn' => 'イヌイット(ラテン)',
+'variantname-iu'       => 'イヌクティトゥト',
 
 # Metadata
 'metadata'          => 'メタデータ',
@@ -3332,15 +3383,19 @@ Variants for Chinese language
 'exif-label'                       => 'ラベル',
 'exif-nickname'                    => '画像の非公式名',
 'exif-rating'                      => '評価（5点満点）',
+'exif-copyrighted'                 => '著作権情報',
+'exif-copyrightowner'              => '著作権者',
 'exif-usageterms'                  => '使用条件',
 'exif-pngfilecomment'              => 'PNGファイルのコメント',
 'exif-disclaimer'                  => '免責事項',
 'exif-contentwarning'              => 'コンテンツに関する警告',
 'exif-giffilecomment'              => 'GIFファイルのコメント',
+'exif-originalimageheight'         => 'トリミングされる前の画像の高さ',
+'exif-originalimagewidth'          => 'トリミングされる前の画像の幅',
 
 # EXIF attributes
 'exif-compression-1' => '非圧縮',
-'exif-compression-6' => 'JPEG圧縮',
+'exif-compression-6' => 'JPEG圧縮(旧式)',
 
 'exif-copyrighted-false' => 'パブリック・ドメイン',
 
@@ -3818,10 +3873,9 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # Special:SpecialPages
 'specialpages'                   => '特別ページ',
-'specialpages-note'              => '----
-* 通常の特別ページ。
+'specialpages-note'              => '* 通常の特別ページ。
 * <span class="mw-specialpagerestricted">制限されている特別ページ。</span>
-* <span class="mw-specialpagecached">キャッシュのみの特別ページ。</span>',
+* <span class="mw-specialpagecached">(廃止されたかもしれない)キャッシュされた特別ページ。</span>',
 'specialpages-group-maintenance' => 'メンテナンス報告',
 'specialpages-group-other'       => 'その他の特別ページ',
 'specialpages-group-login'       => 'ログイン/利用者登録',

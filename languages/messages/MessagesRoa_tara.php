@@ -766,6 +766,9 @@ L'urteme archivije de le trasute jè provviste sotte pe referimende:",
 'templatesused'                    => "{{PLURAL:$1|Template|Template}} ausate sus 'a sta pàgene:",
 'templatesusedpreview'             => "{{PLURAL:$1|Template|Template}} ausate jndr'à sta andeprime:",
 'templatesusedsection'             => "{{PLURAL:$1|Template|Template}} ausate jndr'à sta sezione:",
+'distanttemplatesused'             => "{{PLURAL:$1|Template|Template}} lundane ausate sus 'a sta pàgene:",
+'distanttemplatesusedpreview'      => "{{PLURAL:$1|Template|Template}} lundane ausate jndr'à sta andeprime:",
+'distanttemplatesusedsection'      => "{{PLURAL:$1|Template|Template}} lundane ausate jndr'à sta sezione:",
 'template-protected'               => '(prutette)',
 'template-semiprotected'           => '(mmienze protette)',
 'hiddencategories'                 => 'Sta pàgene jè membre de {{PLURAL:$1|1 categorja|$1 categorije}} scunnute:',
@@ -1602,9 +1605,8 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'upload_source_file' => " ('nu fail sus a 'u combiuter tue)",
 
 # Special:ListFiles
-'listfiles-summary'     => "Sta pàgena speciale face vedè tutte le fiel carecate.<br />
-Pe default l'urteme file carecate stè sus a sus a liste.<br />
-Ce cazze sus a 'a testate d'a colonne cange l'arrengamende.",
+'listfiles-summary'     => "Sta pàgena speciale face vedè tutte le file carecate.<br />
+Quanne jè filtrate da l'utende, sulamende le file ca quidde utende ave carecate le versiune cchiù recende d'u file avènene fatte vedè.",
 'listfiles_search_for'  => 'Cirche pe nome de le media:',
 'imgfile'               => 'file',
 'listfiles'             => 'Liste de le fail',
@@ -1934,7 +1936,7 @@ Ponne stà [[{{MediaWiki:Listgrouprights-helppage}}|'mbormaziune de cchiù]] sus
 'emailpagetext'        => "Tu puè ausà 'a schermate aqquà sotte pe mannà 'n'email a stu utende.
 L'indirizze e-mail ca tu è 'nzerite jndr'à le [[Special:Preferences|preferenze tue]] iesse jndr'à 'u cambe \"Da\" de l'e-mail, accussìa ce riceve 'a mail sape a ce addà responnere.",
 'usermailererror'      => "L'oggette ''Mail'' ha returnete 'n'errore:",
-'defemailsubject'      => 'e-mail de {{SITENAME}}',
+'defemailsubject'      => 'e-mail de {{SITENAME}} da l\'utende "$1"',
 'usermaildisabled'     => "L'e-mail de l'utende è disabbilitate",
 'usermaildisabledtext' => 'Tu non ge puè mannà e-mail a otre utinde sus a sta uicchi',
 'noemailtitle'         => 'Nisciune indirizze e-mail',
@@ -2614,6 +2616,8 @@ Reggistrele sus a 'u combiuter tune e carechele aqquà.",
 'import-upload'              => 'Careche le date in XML',
 'import-token-mismatch'      => "S'à perse 'a sessione de le date. Pruève 'n'otra vote.",
 'import-invalid-interwiki'   => "Non ge pozze 'mbortà da 'a Uicchi specificate.",
+'import-error-edit'          => 'Pàgene "$1" non g\' \'mbortate purcé tu non ge tìne le permesse pe cangiarle.',
+'import-error-create'        => 'Pàgene "$1" non g\' \'mbortate purcé tu non ge tìne le permesse pe ccrejarle.',
 
 # Import log
 'importlogpage'                    => "Archivie de le 'mbortaziune",
@@ -3492,6 +3496,30 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 'compare-invalid-title'       => "'U titele ca è specificate jè invalide.",
 'compare-title-not-exists'    => "'U titele ca è specificate non g'esiste.",
 'compare-revision-not-exists' => "'A revisione ca è specificate non g'esiste.",
+
+# Special:GlobalFileUsage
+'globalfileusage'             => "Ause d'u file globale",
+'globalfileusage-for'         => 'Ause globale pe "$1"',
+'globalfileusage-desc'        => "[[Special:GlobalFileUsage|Pàgena speciale]] pe vedè l'ause de le file globale",
+'globalfileusage-ok'          => 'Cirche',
+'globalfileusage-text'        => 'Cirche le file de ause globale',
+'globalfileusage-no-results'  => "[[$1]] non g'è ausate jndr'à otre Uicchi.",
+'globalfileusage-on-wiki'     => 'Ause sus a $2',
+'globalfileusage-of-file'     => 'Le seguende Uicchi ausane stu file:',
+'globalfileusage-more'        => 'Vide [[{{#Special:GlobalUsage}}/$1|ause globale]] de stu file.',
+'globalfileusage-filterlocal' => "No fà vedè l'ause locale",
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'Template de ause globale',
+'globaltemplateusage-for'         => 'Template de ause globale pe "$1"',
+'globaltemplateusage-desc'        => "[[Special:GlobalTemplateUsage|Pàgena speciale]] pe vedè l'ause de le template globale",
+'globaltemplateusage-ok'          => 'Cirche',
+'globaltemplateusage-text'        => 'Cirche le template de ause globale',
+'globaltemplateusage-no-results'  => "[[$1]] non g'è ausate jndr'à otre Uicchi.",
+'globaltemplateusage-on-wiki'     => 'Ause sus a $2',
+'globaltemplateusage-of-file'     => 'Le seguende Uicchi ausane stu file:',
+'globaltemplateusage-more'        => 'Vide [[{{#Special:GlobalUsage}}/$1|ause globale]] de stu template.',
+'globaltemplateusage-filterlocal' => "No fà vedè l'ause locale",
 
 # Database error messages
 'dberr-header'      => "Sta Uicchi tène 'nu probbleme",

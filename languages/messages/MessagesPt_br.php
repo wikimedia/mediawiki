@@ -2477,7 +2477,6 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'sp-contributions-username'            => 'Endereço de IP ou usuário:',
 'sp-contributions-toponly'             => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-submit'              => 'Pesquisar',
-'sp-contributions-showsizediff'        => 'Mostrar a diferença no tamanho da página',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',

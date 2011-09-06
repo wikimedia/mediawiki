@@ -2465,7 +2465,6 @@ $1',
 'sp-contributions-username'            => 'Địa chỉ IP hay tên thành viên:',
 'sp-contributions-toponly'             => 'Chỉ hiện các phiên bản gần đây',
 'sp-contributions-submit'              => 'Tìm kiếm',
-'sp-contributions-showsizediff'        => 'Hiện khác biệt về kích thước trang',
 
 # What links here
 'whatlinkshere'            => 'Các liên kết đến đây',
@@ -2815,6 +2814,8 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'import-upload'              => 'Tải lên dữ liệu XML',
 'import-token-mismatch'      => 'Mất dữ liệu phiên làm việc. Xin hãy thử lại lần nữa.',
 'import-invalid-interwiki'   => 'Không thể nhập trang từ wiki được chỉ định.',
+'import-error-edit'          => 'Trang “$1” không được nhập tại vì bạn không được phép sửa đổi nó.',
+'import-error-create'        => 'Trang “$1” không được nhập tại vì bạn không được phép tạo ra nó.',
 
 # Import log
 'importlogpage'                    => 'Nhật trình nhập trang',

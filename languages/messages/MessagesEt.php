@@ -2173,6 +2173,7 @@ Toetatud protokollid: <tt>$1</tt>',
 'watchlistanontext'    => 'Oma jälgimisloendi nägemiseks ja muutmiseks pead $1.',
 'watchnologin'         => 'Ei ole sisse logitud',
 'watchnologintext'     => 'Jälgimisloendi muutmiseks pead [[Special:UserLogin|sisse logima]].',
+'addwatch'             => 'Lisa jälgimisloendisse',
 'addedwatchtext'       => "Lehekülg \"[[:\$1]]\" on sinu [[Special:Watchlist|jälgimisloendisse]] lisatud.
 
 Edasised muudatused käesoleval lehel ja sellega seotud aruteluleheküljel ilmuvad jälgimisloendisse ning [[Special:RecentChanges|viimaste muudatuste lehel]] tuuakse jälgitava lehe pealkiri esile '''rasvase''' kirja abil.
@@ -2446,7 +2447,6 @@ Allpool on toodud viimane blokeerimislogi sissekanne:',
 'sp-contributions-username'            => 'IP-aadress või kasutajanimi:',
 'sp-contributions-toponly'             => 'Ainult uusimad redaktsioonid',
 'sp-contributions-submit'              => 'Otsi',
-'sp-contributions-showsizediff'        => 'Kuva lehekülje suuruse erinevus',
 
 # What links here
 'whatlinkshere'            => 'Lingid siia',
@@ -3142,6 +3142,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-sublocationdest'             => 'Kujutatud linnaosa',
 'exif-objectname'                  => 'Lühipealkiri',
 'exif-specialinstructions'         => 'Erijuhised',
+'exif-headline'                    => 'Pealkiri',
 'exif-source'                      => 'Allikas',
 'exif-urgency'                     => 'Pakilisus',
 'exif-locationdest'                => 'Kujutatud asukoht',

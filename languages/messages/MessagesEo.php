@@ -1039,9 +1039,9 @@ Jen la lasta protokolero por via referenco:",
 'permissionserrors'                => 'Eraroj pri rajtoj',
 'permissionserrorstext'            => 'Vi ne rajtas fari tion pro la {{PLURAL:$1|sekva kialo|sekvaj kialoj}}:',
 'permissionserrorstext-withaction' => 'Vi ne rajtas $2, pro la {{PLURAL:$1|jena kialo|jenaj kialoj}}:',
-'recreate-moveddeleted-warn'       => "'''Averto: Vi rekreas paĝon tiu estis antaŭe forigita.'''
+'recreate-moveddeleted-warn'       => "'''Averto: Vi rekreas paĝon, kiu estis antaŭe forigita.'''
 
-Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
+Vi konsideru, ĉu konvenas daŭre redakti ĉi tiun paĝon.
 Jen la protokolo de forigoj kaj alinomigado por via oportuno:",
 'moveddeleted-notice'              => 'Ĉi tiu paĝo estis forigita.
 Jen la protokolo pri forigado kaj alinomigado por via referenco.',
@@ -2474,7 +2474,6 @@ Jen la lasta ero de la forbara protokolo:',
 'sp-contributions-username'            => 'IP-adreso aŭ salutnomo:',
 'sp-contributions-toponly'             => 'Montru nur ŝanĝojn kiuj estas la plej lastaj revizioj',
 'sp-contributions-submit'              => 'Serĉi',
-'sp-contributions-showsizediff'        => 'Montri diferencon de paĝa grandeco',
 
 # What links here
 'whatlinkshere'            => 'Ligiloj ĉi tien',

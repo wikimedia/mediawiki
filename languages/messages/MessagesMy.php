@@ -18,6 +18,7 @@
  * @author Myolay
  * @author Parabaik
  * @author Purodha
+ * @author Saiddzone
  * @author Thanlwin
  * @author Thitaung
  * @author Umherirrender
@@ -346,6 +347,7 @@ $1',
 # General errors
 'error'                => 'အမှား',
 'databaseerror'        => 'ဒေတာဘေ့စ် အမှား',
+'readonly'             => 'ဒေတာဘေ့စ် ပိတ်ထားသည်။',
 'missing-article'      => 'စာမျက်နှာ "$1" မှ $2 ကို ရှာတွေ့သင့်သည်ဖြစ်သော်လည်း ဒေတာဘေ့(စ်) သည် ရှာမတွေ့ပါ။
 
 ယင်းသည် ဖျက်ထားပြီးသား diff သို့မဟုတ် မှတ်တမ်းလင့် တစ်ခုကြောင့် ဖြစ်လေ့ရှိသည်။

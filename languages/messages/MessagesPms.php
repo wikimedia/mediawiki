@@ -1959,9 +1959,9 @@ për podèj modifiché soa lista dla ròba dë tnì sot-euj.",
 Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discussion a saran listà ambelessì, e la pàgina a së s-ciairërà ën <b>grassèt</b> ant la pàgina ëd j\'[[Special:RecentChanges|ùltime modìfiche]] përchè che a resta belfé a ten-la d\'euj.',
 'removewatch'          => "Gavé da la lista ëd lòn ch'as ten sot-euj",
 'removedwatchtext'     => "La pàgina «[[:$1]]» a l'è staita gavà via da [[Special:Watchlist|soa lista dla ròba da tnì sot-euj]].",
-'watch'                => 'ten sot euj',
-'watchthispage'        => "Ten sot euj st'artìcol-sì",
-'unwatch'              => 'Chita-lì da ten-e sossì sot euj',
+'watch'                => 'ten-e sot-euj',
+'watchthispage'        => 'Ten-e sot-euj cost artìcol-sì',
+'unwatch'              => 'Chité-lì ëd ten-e sossì sot-euj',
 'unwatchthispage'      => 'Chita-lì da ten-e sossì sot euj',
 'notanarticle'         => "Sòn a l'é pa n'artìcol",
 'notvisiblerev'        => "La revision a l'é stàita scancelà",
@@ -2224,7 +2224,6 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 'sp-contributions-username'            => 'Adrëssa IP ò nòm utent:',
 'sp-contributions-toponly'             => "Mostré mach le modìfiche ch'a son j'ùltime revision",
 'sp-contributions-submit'              => 'Arsërca',
-'sp-contributions-showsizediff'        => 'Visualisa la diferensa ant la dimension ëd la pàgina',
 
 # What links here
 'whatlinkshere'            => "Pàgine con dj'anliure che a men-o a costa-sì",
@@ -2580,6 +2579,8 @@ Che as lo salva ansima a sò ordinator e peui che a lo caria ambelessì.",
 'import-token-mismatch'      => 'Perdù ij dat ëd session.
 Për piasì preuva torna.',
 'import-invalid-interwiki'   => 'As peul pa amportesse da la wiki spessificà.',
+'import-error-edit'          => 'La pagina "$1" a l\'é pa amportà përchè it peus pa modifichela.',
+'import-error-create'        => 'La pagina "$1" a l\'é pa amportà përchè it peus pa creela.',
 
 # Import log
 'importlogpage'                    => "Registr dj'amportassion",

@@ -2329,7 +2329,6 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'sp-contributions-username'            => 'IP adresas arba naudotojo vardas:',
 'sp-contributions-toponly'             => 'Rodyti tik paskutinius keitimus',
 'sp-contributions-submit'              => 'Ieškoti',
-'sp-contributions-showsizediff'        => 'Rodyti skirtumas puslapio dydį',
 
 # What links here
 'whatlinkshere'            => 'Susiję puslapiai',

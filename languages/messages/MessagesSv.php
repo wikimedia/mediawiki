@@ -2486,7 +2486,6 @@ Den senaste posten i blockeringsloggen visas nedan som referens:',
 'sp-contributions-username'            => 'IP-adress eller användarnamn:',
 'sp-contributions-toponly'             => 'Visa endast aktuella sidversioner',
 'sp-contributions-submit'              => 'Sök',
-'sp-contributions-showsizediff'        => 'Visa skillnad i sidstorlek',
 
 # What links here
 'whatlinkshere'            => 'Vad som länkar hit',

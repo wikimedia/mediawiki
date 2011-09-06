@@ -2615,7 +2615,6 @@ $1',
 'sp-contributions-username'            => 'IP адреса или корисничко име:',
 'sp-contributions-toponly'             => 'Прикажи само најновије измене',
 'sp-contributions-submit'              => 'Претражи',
-'sp-contributions-showsizediff'        => 'Прикажи разлике у величини странице',
 
 # What links here
 'whatlinkshere'            => 'Шта је повезано овде',
@@ -2979,6 +2978,8 @@ $1',
 'import-token-mismatch'      => 'Губитак података о сесији.
 Покушајте поново.',
 'import-invalid-interwiki'   => 'Увоз са назначене енциклопедије није могућ.',
+'import-error-edit'          => 'Страница „$1“ није увезена јер вам није дозвољено да је уређујете.',
+'import-error-create'        => 'Страница „$1“ није увезена јер вам није дозвољено да је направите.',
 
 # Import log
 'importlogpage'                    => 'Историја увоза',

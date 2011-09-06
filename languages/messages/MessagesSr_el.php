@@ -2387,7 +2387,6 @@ Izveštaj o blokiranim korisnicima se nalazi ispod:',
 'sp-contributions-username'            => 'IP adresa ili korisničko ime:',
 'sp-contributions-toponly'             => 'Prikaži samo najnovije izmene',
 'sp-contributions-submit'              => 'Pretraga',
-'sp-contributions-showsizediff'        => 'Prikaži razlike u veličini stranice',
 
 # What links here
 'whatlinkshere'            => 'Šta je povezano ovde',
@@ -2750,6 +2749,8 @@ Sačuvajte je na računar i pošaljite ovde.',
 'import-token-mismatch'      => 'Gubitak podataka o sesiji.
 Molimo Vas da opet pokušate.',
 'import-invalid-interwiki'   => 'Uvoz sa naznačenog Vikija ne može biti obavljen.',
+'import-error-edit'          => 'Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je uređujete.',
+'import-error-create'        => 'Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je napravite.',
 
 # Import log
 'importlogpage'                    => 'Istorija uvoza',

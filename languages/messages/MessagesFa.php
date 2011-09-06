@@ -2654,7 +2654,6 @@ $1',
 'sp-contributions-username'            => 'نشانی آی‌پی یا نام کاربری:',
 'sp-contributions-toponly'             => 'تنها ویرایش‌هایی که آخرین نسخه هستند نمایش داده شود',
 'sp-contributions-submit'              => 'جستجو',
-'sp-contributions-showsizediff'        => 'تغییرات اندازهٔ صفحه نمایش داده شود',
 
 # What links here
 'whatlinkshere'            => 'پیوندها به این صفحه',

@@ -1930,7 +1930,6 @@ Bloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:',
 'sp-contributions-username'            => 'IP-ünvanı və ya istifadəçi adı:',
 'sp-contributions-toponly'             => 'Yalnız ən son dəyişiklikləri göstər',
 'sp-contributions-submit'              => 'Axtar',
-'sp-contributions-showsizediff'        => 'Səhifənin ölçüsünün dəyişilməsini göstər',
 
 # What links here
 'whatlinkshere'            => 'Bu səhifəyə bağlantılar',
