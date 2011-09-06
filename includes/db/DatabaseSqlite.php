@@ -319,15 +319,15 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Use MySQL's naming (accounts for prefix etc) but remove surrounding backticks
 	 *
 	 * @param $name
-	 * @param bool $quoted
+	 * @param $format String
 	 * @return string
 	 */
-	function tableName( $name, $quoted = true ) {
+	function tableName( $name, $format = 'quoted' ) {
 		// table names starting with sqlite_ are reserved
 		if ( strpos( $name, 'sqlite_' ) === 0 ) {
 			return $name;
 		}
-		return str_replace( '"', '', parent::tableName( $name, $quoted ) );
+		return str_replace( '"', '', parent::tableName( $name, $format ) );
 	}
 
 	/**

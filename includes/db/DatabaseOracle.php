@@ -654,7 +654,7 @@ class DatabaseOracle extends DatabaseBase {
 		return $retval;
 	}
 
-	function tableName( $name, $quoted = true ) {
+	function tableName( $name, $format = 'quoted' ) {
 		/*
 		Replace reserved words with better ones
 		Using uppercase because that's the only way Oracle can handle
@@ -669,7 +669,7 @@ class DatabaseOracle extends DatabaseBase {
 				break;
 		}
 
-		return parent::tableName( strtoupper( $name ), $quoted );
+		return parent::tableName( strtoupper( $name ), $format );
 	}
 
 	function tableNameInternal( $name ) {

@@ -748,7 +748,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * @param $name Boolean
 	 * @return String
 	 */
-	public function tableName( $name, $quoted = true ) {
+	public function tableName( $name, $format = 'quoted' ) {
 		// we want maximum compatibility with MySQL schema
 		return $name;
 	}
