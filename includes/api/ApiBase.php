@@ -1282,7 +1282,7 @@ abstract class ApiBase {
 
 	/**
 	 * Returns the token salt if there is one, '' if the module doesn't require a salt, else false if the module doesn't need a token
-	 * @return bool
+	 * @return bool|string
 	 */
 	public function getTokenSalt() {
 		return false;

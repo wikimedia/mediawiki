@@ -259,6 +259,7 @@ class ApiResult extends ApiBase {
 	 */
 	public function addValue( $path, $name, $value, $overwrite = false ) {
 		global $wgAPIMaxResultSize;
+
 		$data = &$this->mData;
 		if ( $this->mCheckingSize ) {
 			$newsize = $this->mSize + self::size( $value );
