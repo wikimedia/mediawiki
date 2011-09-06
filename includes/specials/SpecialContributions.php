@@ -126,9 +126,6 @@ class SpecialContributions extends SpecialPage {
 			if ( $this->opts['topOnly'] ) {
 				$apiParams['toponly'] = true;
 			}
-			if ( $this->opts['showSizeDiff'] ) {
-				$apiParams['showsizediff'] = true;
-			}
 			if ( $this->opts['deletedOnly'] ) {
 				$apiParams['deletedonly'] = true;
 			}
