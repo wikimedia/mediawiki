@@ -710,8 +710,8 @@ class RecentChange {
 			$url .= $query;
 		}
 
-		if( isset( $this->mExtra['oldSize'] ) && isset( $this->mExtra['newSize'] ) ) {
-			$szdiff = $this->mExtra['newSize'] - $this->mExtra['oldSize'];
+		if( $this->mAttribs['rc_old_len'] !== null && $this->mAttribs['rc_new_len'] !== null ) {
+			$szdiff = $this->mAttribs['rc_new_len'] - $this->mAttribs['rc_old_len'];
 			if($szdiff < -500) {
 				$szdiff = "\002$szdiff\002";
 			} elseif($szdiff >= 0) {
