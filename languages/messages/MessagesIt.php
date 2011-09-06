@@ -2380,7 +2380,6 @@ $1',
 'sp-contributions-username'            => 'Indirizzo IP o nome utente:',
 'sp-contributions-toponly'             => 'Mostra solo i contributi che sono le ultime revisioni per la pagina',
 'sp-contributions-submit'              => 'Ricerca',
-'sp-contributions-showsizediff'        => 'Mostra la differenza di dimensione della pagina',
 
 # What links here
 'whatlinkshere'            => 'Puntano qui',

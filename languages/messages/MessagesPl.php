@@ -2449,7 +2449,6 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'sp-contributions-username'            => 'Adres IP lub nazwa użytkownika',
 'sp-contributions-toponly'             => 'Pokaż wyłącznie ostatnie wersje',
 'sp-contributions-submit'              => 'Szukaj',
-'sp-contributions-showsizediff'        => 'Wyświetl różnice w wielkości strony',
 
 # What links here
 'whatlinkshere'            => 'Linkujące',

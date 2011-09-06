@@ -182,6 +182,8 @@ $messages = array(
 'noindex-category'               => 'क्रमांकन नगरिएका पृष्ठहरु',
 'broken-file-category'           => 'टुटेको फाइल लिंकसितको पृष्ठ',
 
+'linkprefix' => '/^(.*?)([a-zA-Z\\x80-\\xff]+)$/sD',
+
 'about'         => 'बारेमा',
 'article'       => 'सामाग्री पृष्ठ',
 'newwindow'     => '(नयाँ विन्डोमा खुल्छ)',
@@ -210,7 +212,7 @@ $messages = array(
 'vector-action-move'             => 'सार्ने',
 'vector-action-protect'          => 'सुरक्षित गर्ने',
 'vector-action-undelete'         => 'हटाएको रद्द गर्ने',
-'vector-action-unprotect'        => 'सुरक्षा रद्द गर्ने',
+'vector-action-unprotect'        => 'सुरक्षा परिवर्तन गर्ने',
 'vector-simplesearch-preference' => 'विशिष्ठ खोज सुझावहरु सक्रिय पार्ने (भेक्टर त्वचाको लागि मात्र)',
 'vector-view-create'             => 'सृजना गर्ने',
 'vector-view-edit'               => 'सम्पादन',
@@ -247,8 +249,8 @@ $messages = array(
 'protect'           => 'सुरक्षित राख्नुहोस्',
 'protect_change'    => 'परिवर्तन',
 'protectthispage'   => 'यो पृष्ठ सुरक्षित गर्नुहोस्',
-'unprotect'         => 'सुरक्षण खारेज गर्ने',
-'unprotectthispage' => 'यो पृष्ठको सुरक्षण खारेज गर्ने',
+'unprotect'         => 'सुरक्षा परिवर्तन गर्ने',
+'unprotectthispage' => 'यो पृष्ठको सुरक्षा परिवर्तन  गर्ने',
 'newpage'           => 'नयाँ पृष्ठ',
 'talkpage'          => 'यो पृष्ठको बारेमा छलफल गर्नुहोस्',
 'talkpagelinktext'  => 'वार्तालाप',
@@ -478,7 +480,7 @@ $2',
 'createaccountreason'        => 'कारण :',
 'badretype'                  => 'तपाईंले दिनुभएको पासवर्ड मिल्दैन।',
 'userexists'                 => 'तपाईले प्रविष्ट गर्नुभएको प्रयोगकर्ताको नाम पहिले देखिनै प्रयोगमा छ ।
-कृपया फरक नाम छान्नुहोला ।',
+कृपया फरक नाम छान्नुहोस् ।',
 'loginerror'                 => 'प्रवेश त्रुटि',
 'createaccounterror'         => 'खाता बनाउन सकिएन: $1',
 'nocookiesnew'               => 'तपाईँको खाता बनाइयो, तर तपाईँ प्रवेश गर्नुभएको छैन ।
@@ -704,11 +706,11 @@ $2
 'userpage-userdoesnotexist-view'   => 'प्रयोगकर्ता खाता "$1" दर्ता गरिएको छैन।',
 'blocked-notice-logextract'        => 'यो प्रयोगकर्ता हाल प्रतिबन्धित छ।
 भर्खरैको प्रतिबन्ध लग प्रविष्टि सन्दर्भको निम्ति तल दिइन्छ:',
-'clearyourcache'                   => "'''सूचना: सेभ गरेपछि, परिवर्तन हेर्न लाइ तपाइले आफ्नो ब्राउजर मा क्याश बाईपास गर्न पर्ने हुन सक्छ।'''
-'''मोजिला / फायरफक्स / सफारी:''' ''Shift'' लाइ चाँपिराखेर ''Reload'' क्लिक गर्नु पर्छ, वा ''Ctrl-F5'' वा ''Ctrl-R'' दबाउनुहोस(Mac मा ''Command-R'');
-'''कन्करर:''' मा ''Reload'' क्लिक गर्नुहोस या ''F5'' दबाउनुहोस;
-'''ओपेरा:''' ''Tools → Preferences'' मा गएर क्याश हटाउनुहोस;
-''''इंटरनेट एक्सप्लोरर'''': ''Ctrl'' लाइ चाँपिराखेर ''Refresh'' क्लिक गर्नुहोस वा ''Ctrl-F5'' चाँप्नुहोस",
+'clearyourcache'                   => "'''पुन:श्च:''' संग्रह गरेपछि, परिवर्तन हेर्नको लागितपाइले आफ्नो ब्राउजर मा क्याश बाईपास गर्न पर्ने हुन सक्छ।
+*'''मोजिला / फायरफक्स / सफारी:''' ''Shift''मा थिची राखेर ''Reload'' क्लिक गर्नु पर्छ, वा ''Ctrl-F5'' वा ''Ctrl-R'' दबाउनुहोस(Mac मा ''Command-R'');
+*'''कन्क्वेरर:''' मा ''Reload'' क्लिक गर्नुहोस या ''F5'' दबाउनुहोस;
+*'''ओपेरा:''' ''Tools → Preferences'' मा गएर क्याश हटाउनुहोस;
+*''''इन्टरनेट एक्सप्लोरर'''': ''Ctrl'' लाई थिची राखेर ''Refresh'' क्लिक गर्नुहोस वा ''Ctrl-F5'' थिच्नुहोस",
 'usercssyoucanpreview'             => "'''सुझाव:''' तपाईंको नयाँ CSS संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिचेर जाँच्नुहोस् ।",
 'userjsyoucanpreview'              => "'''सुझाव:''' तपाईंको नयाँ जाभा स्क्रिप्ट (JavaScript)  संग्रह गर्न अघि  \"{{int:showpreview}}\" बटन थिचेर जाँच्नुहोस् ।",
 'usercsspreview'                   => "'''याद राख्नुहोस तपाईँले आफ्नो प्रयोगकर्ता CSSको पूर्वावलोकन मात्र हेरिरहनु भएको छ। '''
@@ -770,10 +772,14 @@ $2
 'templatesused'                    => 'यस पृष्ठमा प्रयोग भएका {{PLURAL:$1|Template|टेम्प्लेट(नमूना)हरु}} :',
 'templatesusedpreview'             => 'यस पृष्ठमा प्रयोग भएका {{PLURAL:$1|Template|टेम्प्लेट(नमूना)हरु}} :',
 'templatesusedsection'             => '{{PLURAL:$1|ढाँचा प्रयोग गरिएकोछ|ढाँचाहरु प्रयोग गरिएकाछन्}} यस खण्डमा:',
+'distanttemplatesused'             => 'यस पृष्ठमा दूर{{PLURAL:$1|टेम्प्लेट|टेम्प्लेटहरु}} प्रयोग गरिएका छन्:',
+'distanttemplatesusedpreview'      => 'यस पूर्वावलोकनमा दूर{{PLURAL:$1|टेम्प्लेट|टेम्प्लेटहरु}} प्रयोग गरिएका छन्:',
+'distanttemplatesusedsection'      => 'यस खण्डमा दूर{{PLURAL:$1|टेम्प्लेट|टेम्प्लेटहरु}} प्रयोग गरिएका छन्:',
 'template-protected'               => '(सुरक्षित)',
 'template-semiprotected'           => '(अर्ध-सुरक्षित)',
-'hiddencategories'                 => 'यो पृष्ठ निम्न {{PLURAL:$1|1 लुकाइएको श्रेणी|$1 लुकाइएका श्रेणीहरु}}को सदस्य हो :',
+'hiddencategories'                 => 'यो पृष्ठ निम्न {{PLURAL:$1|१ लुकाइएको श्रेणी|$1 लुकाइएका श्रेणीहरु}}को सदस्य हो :',
 'edittools'                        => '<!-- Text here will be shown below edit and upload forms. -->',
+'edittools-upload'                 => '-',
 'nocreatetitle'                    => 'पृष्ठ सृजना सीमित गरिएको',
 'nocreatetext'                     => '{{SITENAME}} ले नयाँ पृष्ठ सृजना गर्न सक्ने क्षमतामा रोक लगाएको छ।
 तपाईँ पछाडि जानु भइ रहिआएको पृष्ठ सम्पादन गर्नसक्नुहुन्छ , अथवा [[Special:UserLogin|प्रवेश गर्नुहोस या नयाँ खाता सृजना गर्नुहोस् ]]।',
@@ -806,9 +812,12 @@ $2
 'post-expand-template-inclusion-warning'  => "'''चेतावनी:''' समेट्नुपर्ने टेम्प्लेट(नमुना) आकार अति ठूलो छ।
 केही टेम्प्लेटहरु(नमुनाहरु) समेटिने छैनन् ।",
 'post-expand-template-inclusion-category' => 'पृष्ठहरु जहाँ  समेटिएको टेम्पलेट आकार हुनुपर्ने भन्दा बढि छ ।',
+'post-expand-template-argument-warning'   => "'''चेतावनी:''' यो पृष्ठकमा कम्तिमा एक टेम्प्लेट मान रहेको छ जसको धेरै ठूलो बढोत्तरी आकार रहेको छ।
+यस्ता मानहरु हटाइएका छन् ।",
 'post-expand-template-argument-category'  => 'मेटिएका ढाँचाहरुसँग सम्बन्ध रहेका पृष्ठहरु',
 'parser-template-loop-warning'            => 'ढाँचागत ग़ाँठो पर्‍यो : [[$1]]',
 'parser-template-recursion-depth-warning' => 'ढाँचा पुन:चक्र गहिराई सिमा ($1) भन्दा बढि भयो',
+'language-converter-depth-warning'        => 'भाषा परिवर्तनकर्ता गहिराई  ($1) नाघेको छ \\',
 
 # "Undo" feature
 'undo-success' => 'सम्पादन उल्टाउन सकिन्छ।
@@ -936,6 +945,15 @@ $1",
 'logdelete-log-message'       => '$1 $2को लागि {{PLURAL:$2|घटना|घटनाहरु}}',
 'revdelete-hide-current'      => '$2, $1: मिति गरिएका वस्तुहरु लुकाउन मिलेन यो नै सबैभन्दा नयाँ संस्करण हो ।
 यसलाई लुकाउन मिल्दैन ।',
+'revdelete-show-no-access'    => '  $2समय र $1 मिति भएको वस्तु देखाउन सकिएन: यसलाई "निषेधित"भनि चिनो लगाइएको छ।
+यसलाई हेर्न तपाईसँग अनुमती छैन ।',
+'revdelete-modify-no-access'  => '  $2समय र $1 मिति भएको वस्तु परिवर्तन गर्न सकिएन यसलाई "निषेधित"भनि चिनो लगाइएको छ।
+यसलाई परिवर्तन गर्न तपाईसँग अनुमती छैन ।',
+'revdelete-modify-missing'    => 'आइडी  $1 रहेको वस्तु परिवर्तन गर्दा त्रुटी भएको छ: यस वस्तु डेटावेसबाट हराइरहेको छ !',
+'revdelete-no-change'         => "'''चेतावनी:''' $2, $1मिति भइको वस्तुको पहिले नै अनुरोध गरे अनुसारको दृश्य सेटिङ्गहरु छन् ।",
+'revdelete-concurrent-change' => ' $2, $1 मिति गरिएको वस्तु परिवर्तन गर्न सकिएन: यसको स्थितीले तपाईले परिवर्तन गर्नलाग्नुहुँदा कोहीअरुले न परिवर्तन गरेजस्तो देखाउँछ
+कृपया लगहरु हेर्नुहोला ।',
+'revdelete-only-restricted'   => '$2, $1 मिति भएको वस्तु लुकाउदा त्रुटी भएको छ:तपाईले वस्तुहरुलाई प्रवन्धकहरुको दृष्टीबाट दमन गर्न सक्नुहुन्न अझ कुनै पनि अरु दृष्टी विकल्पहरु नछानीकन।',
 'revdelete-reason-dropdown'   => '*मेटाउनुका सामान्य कारणहरु
 ** कपीराइट उल्लंघन
 ** अनुचित व्यक्तिगत जानकारी
@@ -946,7 +964,9 @@ $1",
 'revdelete-offender'          => 'संशोधन कर्ता:',
 
 # Suppression log
-'suppressionlog' => 'कमगरेको लग',
+'suppressionlog'     => 'कमगरेको लग',
+'suppressionlogtext' => 'मेट्नको र रोककको निम्ती निम्न सुची रहेको छ जसमा प्रवन्धकबाट लुकाइएका सामग्री समेत रहेका छन।
+कृपया हाल प्रयोगमा रहेका रोक र रोकावटको सुचीका लागि[[Special:BlockList|IP रोक सुची]] हेर्नुहोला ।',
 
 # History merging
 'mergehistory'                     => 'पृष्ठ इतिहासहरु मिसाउने',
@@ -957,6 +977,8 @@ $1",
 'mergehistory-go'                  => 'जोड्न मिल्ने सम्पादनहरु',
 'mergehistory-submit'              => 'पुनरावलोकहरु जोड्नुहोस्',
 'mergehistory-empty'               => 'कुनै पनि पुनरावलोकनहरु जोड्न मिल्दैन ।',
+'mergehistory-success'             => '$3 {{PLURAL:$3|संस्करण|संस्करणहरु}}  [[:$1]]बाट सफलतापूर्वक [[:$2]]मा थपियो ।',
+'mergehistory-fail'                => 'इतिहास जोड् सकिएन कृपया पृष्टको नाम र समयमान जाँच गर्नुहोस् ।',
 'mergehistory-no-source'           => 'स्रोत पृष्ठ $1 अस्तित्वमा छैन ।',
 'mergehistory-no-destination'      => 'गन्तव्य पृष्ठ $1 अस्तित्वमा छैन ।',
 'mergehistory-invalid-source'      => 'स्रोत पृष्ठ मान्य शीर्षकको हुनुपर्छ ।',
@@ -1052,12 +1074,13 @@ $1",
 याद गर्नुहोस् उनीहरुको {{SITENAME}}को सूची सामग्री पुरानो भएको हुनसक्छ ।',
 
 # Quickbar
-'qbsettings'               => 'क्विकबार',
-'qbsettings-none'          => 'कुनैपनि होइन',
-'qbsettings-fixedleft'     => 'देब्रे निश्चित गरिएको',
-'qbsettings-fixedright'    => 'दाहिने निश्चित गरिएको',
-'qbsettings-floatingleft'  => 'देब्रे तैरने',
-'qbsettings-floatingright' => 'दाहिने तैरने',
+'qbsettings'                => 'क्विकबार',
+'qbsettings-none'           => 'कुनैपनि होइन',
+'qbsettings-fixedleft'      => 'देब्रे निश्चित गरिएको',
+'qbsettings-fixedright'     => 'दाहिने निश्चित गरिएको',
+'qbsettings-floatingleft'   => 'देब्रे तैरने',
+'qbsettings-floatingright'  => 'दाहिने तैरने',
+'qbsettings-directionality' => 'तपाईको भाषाको लेखाइ दिशाको आधारमा मिलान गरिएको छ',
 
 # Preferences page
 'preferences'                   => 'रोजाईहरू',
@@ -1069,7 +1092,9 @@ $1",
 'prefs-skin'                    => 'काँचुली',
 'skin-preview'                  => 'पूर्वालोकन',
 'datedefault'                   => 'कुनै अभिरुचि छैन',
+'prefs-beta'                    => 'बिटा गुणहरु',
 'prefs-datetime'                => 'मिति र समय',
+'prefs-labs'                    => 'प्रयोगशाला गुणहरु',
 'prefs-personal'                => 'प्रयोगकर्ताको विवरण',
 'prefs-rc'                      => 'नयाँ परिवर्तनहरु',
 'prefs-watchlist'               => 'अवलोकन पृष्ठ',
@@ -1080,6 +1105,8 @@ $1",
 'prefs-watchlist-token'         => 'अवलोकन सूची टोकन:',
 'prefs-misc'                    => 'साधारण',
 'prefs-resetpass'               => 'प्रवेशशव्द परिवर्रतन',
+'prefs-changeemail'             => 'इमेल परिवर्तन गर्ने',
+'prefs-setemail'                => 'इमेल ठेगाना प्रविष्ट गर्ने',
 'prefs-email'                   => 'इमेल  विकल्पहरु',
 'prefs-rendering'               => 'स्वरुप',
 'saveprefs'                     => 'संग्रह',
@@ -1194,6 +1221,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 *  *ले संकेत दिन्छ तपाईं त्यस समूहलाई हटाउन सक्नुहुन्न जब तपाईंले यसलाई जोड़िसक्नु भएकोछ अथवा अदला बदलि गर्नुभएकोछ।',
 'userrights-reason'              => 'कारण :',
 'userrights-no-interwiki'        => 'तपाईंलाई अन्य विकिमा प्रयोगकर्ता अधिकार सम्पादन गर्ने अनुमति छैन।',
+'userrights-nodatabase'          => 'डेटाबेस $1 उपलब्ध छैन या स्थानीय हैन।',
 'userrights-nologin'             => 'प्रयोगकर्ता अधिकार प्रदान गर्न तपाईंले प्रबन्धक खाताबाट [[Special:UserLogin|प्रवेश]] गर्नुपर्छ।',
 'userrights-notallowed'          => 'प्रयोगकर्तालाई अधिकार प्रदान गर्ने तपाईंलाई अनुमति छैन।',
 'userrights-changeable-col'      => 'परिवर्तन गर्न सकिने समूहहरु',
@@ -1285,10 +1313,11 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'right-sendemail'             => 'अन्य प्रयोगकर्ताहरुलाई इमेल गर्ने',
 
 # User rights log
-'rightslog'      => 'प्रयोगकर्ता अधिकार लग',
-'rightslogtext'  => 'यो प्रयोगकर्ता अधिकारहरुको परिवर्तन लग हो ।',
-'rightslogentry' => '$1 समूह सदस्याता $2 बाट $3 मा परिवर्तन गरिएको छ',
-'rightsnone'     => '(कुनैपनि होइन)',
+'rightslog'                  => 'प्रयोगकर्ता अधिकार लग',
+'rightslogtext'              => 'यो प्रयोगकर्ता अधिकारहरुको परिवर्तन लग हो ।',
+'rightslogentry'             => '$1 समूह सदस्याता $2 बाट $3 मा परिवर्तन गरिएको छ',
+'rightslogentry-autopromote' => ' $2 बाट $3 मा स्वत: बढुवा गरिएको छ',
+'rightsnone'                 => '(कुनैपनि होइन)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'यो पृष्ठ पढ्ने',
@@ -1369,101 +1398,137 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'recentchangeslinked-toolbox'  => 'संबन्धित परिवर्तनहरु',
 'recentchangeslinked-title'    => '"$1"सम्वन्धित परिवर्तनसँग',
 'recentchangeslinked-backlink' => '← $1',
+'recentchangeslinked-noresult' => 'जोडिएका पृष्ठहरुमा दिइएको समयावधीमा कुनै पनि परिवर्तन भएको छैन ।',
 'recentchangeslinked-summary'  => "यो सूची निर्दिष्ट पृष्ठ (वा निर्दिष्ट श्रेणी)सित जोड़िएका  भर्खरै परिवर्तन भएका पृष्ठको  हो। [[Special:Watchlist|तपाईँको निगरानी सूची]]का पृष्ठहरु '''गाढा अक्षरमा''' छन्।",
 'recentchangeslinked-page'     => 'पृष्ठ नाम:',
 'recentchangeslinked-to'       => 'यसको सट्टा यो पृष्ठसँग जोडिएका पृष्ठहरुको परिवर्तन देखाउने',
 
 # Upload
-'upload'                 => 'फाइल उर्ध्वभरण',
-'uploadbtn'              => 'फाइलहरु उर्ध्वभरण गर्ने',
-'reuploaddesc'           => 'उर्ध्वभरण रद्द गर्ने र उर्ध्वभरण फारमतिर जाने',
-'upload-tryagain'        => 'संशोधित फाइल विवरण बुझाउने',
-'uploadnologin'          => 'प्रवेश (लग ईन) नगरिएको',
-'uploadnologintext'      => 'फाइल उर्ध्वभरण गर्न तपाईंले [[Special:UserLogin|प्रवेश]] गर्नुपर्छ।',
-'uploaderror'            => 'उर्ध्वभरण त्रुटि',
-'uploadtext'             => "फाइल उर्ध्वभरण गर्न निम्न फारम प्रयोग गर्नुहोस्।
+'upload'                     => 'फाइल उर्ध्वभरण',
+'uploadbtn'                  => 'फाइलहरु उर्ध्वभरण गर्ने',
+'reuploaddesc'               => 'उर्ध्वभरण रद्द गर्ने र उर्ध्वभरण फारमतिर जाने',
+'upload-tryagain'            => 'संशोधित फाइल विवरण बुझाउने',
+'uploadnologin'              => 'प्रवेश (लग ईन) नगरिएको',
+'uploadnologintext'          => 'फाइल उर्ध्वभरण गर्न तपाईंले [[Special:UserLogin|प्रवेश]] गर्नुपर्छ।',
+'upload_directory_missing'   => 'उर्ध्वभरण डाइरेक्टरी ($1) हराइरहेको छ र वेवसर्भरले नयाँ डाइरेक्टरी निर्माणगर्न असमर्थ भयो ।',
+'upload_directory_read_only' => 'उर्ध्व भरण डाइरेक्टरी ($1) वेवसर्भर द्वारा लेख्य छैन ।',
+'uploaderror'                => 'उर्ध्वभरण त्रुटि',
+'upload-recreate-warning'    => "'''चेतावनी: त्यस नाममा रहेका फाइलहरु सारिएको या हटाइएको छ।'''
+
+यस पृष्ठको सारिएको र हटाइएको लग तपाईको सहजताको लागि दिइएको छ।",
+'uploadtext'                 => "फाइल उर्ध्वभरण गर्न निम्न फारम प्रयोग गर्नुहोस्।
 हेर्नुहोस्- पहिला उर्ध्वभरण गरिएका [[Special:FileList|फाइलहरुको सूची]] , पुनः उर्ध्वभरण गरिएका [[Special:Log/upload|उर्ध्वभरण लग]]मा , मेटिएका फाइलहरु [[Special:Log/delete|मेटिएको लग]]मा।
 
 पृष्ठमा फाइल संलग्न गर्न तल दिएका फारमहरुमध्ये एउटामा लिङ्क गराउनुहोस्:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''पूर्ण आकारको फाइल प्रयोग गर्न
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|alt text]]</nowiki></tt>''' 200 पिक्सलको देब्रेपटि मार्जिन गरेर फाइलको बर्णनसहित प्रयोग गर्न
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' फाइल नदेखाई सिधै फाइलसित लिङ्क गरि प्रयोग गर्न",
-'upload-permitted'       => 'अनुमति पाएका फ़ाइल प्रकार:$1.',
-'upload-preferred'       => 'चाहिएका फ़ाइल प्रकार:$1.',
-'upload-prohibited'      => 'निषिद्ध फ़ाइल प्रकार:$1.',
-'uploadlog'              => 'उर्ध्वभरण लग',
-'uploadlogpage'          => 'उर्ध्वभरण लग',
-'uploadlogpagetext'      => 'भर्खरै उर्ध्वभरण गरिएका फ़ाइलहरुको सूची तल दिइएकोछ ।
+'upload-permitted'           => 'अनुमति पाएका फ़ाइल प्रकार:$1.',
+'upload-preferred'           => 'चाहिएका फ़ाइल प्रकार:$1.',
+'upload-prohibited'          => 'निषिद्ध फ़ाइल प्रकार:$1.',
+'uploadlog'                  => 'उर्ध्वभरण लग',
+'uploadlogpage'              => 'उर्ध्वभरण लग',
+'uploadlogpagetext'          => 'भर्खरै उर्ध्वभरण गरिएका फ़ाइलहरुको सूची तल दिइएकोछ ।
 विस्तृत अवलोकनको लागि [[Special:NewFiles|नयाँ फ़ाइलको ग्यालरी]]मा हेर्नुहोस्।',
-'filename'               => 'फाइलनाम',
-'filedesc'               => 'सारांश',
-'fileuploadsummary'      => 'सारांश:',
-'filereuploadsummary'    => 'फ़ाइल परिवर्तनहरू:',
-'filestatus'             => 'लेखाधिकार स्थिति:',
-'filesource'             => 'स्रोत:',
-'uploadedfiles'          => 'उर्ध्वभरण गरिएका फाइलहरू',
-'ignorewarning'          => 'चेतावनीलाई अनदेखा गर्दै जसरि भएपनि फाइल संग्रह गर्ने',
-'ignorewarnings'         => 'कुनै चेतावनीप्रति ध्यान नदिने',
-'minlength1'             => 'फाइलको नाम कम्तिमा एक अक्षरको हुनैपर्छ।',
-'illegalfilename'        => 'फाइल नाम "$1"मा त्यस्ता बर्णहरु छन् जसलाई पृष्ठको शीर्षकको रुपमा प्रयोग गर्ने अनुमति छैन।
+'filename'                   => 'फाइलनाम',
+'filedesc'                   => 'सारांश',
+'fileuploadsummary'          => 'सारांश:',
+'filereuploadsummary'        => 'फ़ाइल परिवर्तनहरू:',
+'filestatus'                 => 'लेखाधिकार स्थिति:',
+'filesource'                 => 'स्रोत:',
+'uploadedfiles'              => 'उर्ध्वभरण गरिएका फाइलहरू',
+'ignorewarning'              => 'चेतावनीलाई अनदेखा गर्दै जसरि भएपनि फाइल संग्रह गर्ने',
+'ignorewarnings'             => 'कुनै चेतावनीप्रति ध्यान नदिने',
+'minlength1'                 => 'फाइलको नाम कम्तिमा एक अक्षरको हुनैपर्छ।',
+'illegalfilename'            => 'फाइल नाम "$1"मा त्यस्ता बर्णहरु छन् जसलाई पृष्ठको शीर्षकको रुपमा प्रयोग गर्ने अनुमति छैन।
 कृपया फाइललाई नयाँ नाम दिएर पुनः उर्ध्वभरणकोलागि प्रयास गर्नुहोस्।',
-'badfilename'            => 'फाइलको नाम "$1"मा सारियो।',
-'filetype-mime-mismatch' => '".$1" फाइल विस्तार  पाइएको फाइल ($2)को MIME प्रकारसित मेल खाँदैन।',
-'filetype-badmime'       => 'MIME "$1" प्रकारको फाइल उर्ध्वभरण गर्ने अनुमति छैन।',
-'filetype-bad-ie-mime'   => "यो फाइल उर्ध्वभरण गर्न सकिएन किनभनें '''इण्टरनेट एक्स्प्लोरर'''ले यस फाइललाई \"\$1\" बतायो जसलाई संभावित खतरनाक प्रकारको फाइल मानियो।",
-'filetype-unwanted-type' => "'''\".\$1\"''' फाइल नचाहिने प्रकारको फाइल हो।
+'badfilename'                => 'फाइलको नाम "$1"मा सारियो।',
+'filetype-mime-mismatch'     => '".$1" फाइल विस्तार  पाइएको फाइल ($2)को MIME प्रकारसित मेल खाँदैन।',
+'filetype-badmime'           => 'MIME "$1" प्रकारको फाइल उर्ध्वभरण गर्ने अनुमति छैन।',
+'filetype-bad-ie-mime'       => "यो फाइल उर्ध्वभरण गर्न सकिएन किनभनें '''इण्टरनेट एक्स्प्लोरर'''ले यस फाइललाई \"\$1\" बतायो जसलाई संभावित खतरनाक प्रकारको फाइल मानियो।",
+'filetype-unwanted-type'     => "'''\".\$1\"''' फाइल नचाहिने प्रकारको फाइल हो।
 मुख्यतया {{PLURAL:\$3|फाइलको प्रकार हो|फाइलका प्रकार हुन्}} \$2.",
-'filetype-missing'       => 'फाइलको एक्स्टेन्शन छैन (उदा- ".jpg")।',
-'empty-file'             => 'तपाईंले बुझाएको फाइल खालि छ।',
-'file-too-large'         => 'तपाईंले बुझाएको फाइल अति ठूलो छ।',
-'filename-tooshort'      => 'फाइलको नाम अति छोटो भयो।',
-'filetype-banned'        => 'यस प्रकारको फाइलमाथि प्रतिबन्ध छ।',
-'verification-error'     => 'यो फाइलले प्रामाणिकता पार गरेन।',
-'hookaborted'            => 'एक्सटेन्शन हुकले गर्दा यस फाइललाई नयाँ रुप दिने क्रिया रद्द भयो।',
-'illegal-filename'       => 'यस्तो फाइल नामको अनुमति छैन।',
-'overwrite'              => 'भइरहेको फाइलमाथि अधिलेखन(Overwriting)को अनुमति छैन।',
-'unknown-error'          => 'एउटा अज्ञात त्रुटि भयो।',
-'tmp-create-error'       => 'अस्थायी फाइल सृजना गर्न सकिएन।',
-'tmp-write-error'        => 'अस्थायी फाइल लेख्दै गर्दा त्रुटि।',
-'large-file'             => 'यो सिफारिस गरिन्छ कि फाइलहरु  $1 भन्दा ठूला हुनु हुँदैन;
+'filetype-missing'           => 'फाइलको एक्स्टेन्शन छैन (उदा- ".jpg")।',
+'empty-file'                 => 'तपाईंले बुझाएको फाइल खालि छ।',
+'file-too-large'             => 'तपाईंले बुझाएको फाइल अति ठूलो छ।',
+'filename-tooshort'          => 'फाइलको नाम अति छोटो भयो।',
+'filetype-banned'            => 'यस प्रकारको फाइलमाथि प्रतिबन्ध छ।',
+'verification-error'         => 'यो फाइलले प्रामाणिकता पार गरेन।',
+'hookaborted'                => 'एक्सटेन्शन हुकले गर्दा यस फाइललाई नयाँ रुप दिने क्रिया रद्द भयो।',
+'illegal-filename'           => 'यस्तो फाइल नामको अनुमति छैन।',
+'overwrite'                  => 'भइरहेको फाइलमाथि अधिलेखन(Overwriting)को अनुमति छैन।',
+'unknown-error'              => 'एउटा अज्ञात त्रुटि भयो।',
+'tmp-create-error'           => 'अस्थायी फाइल सृजना गर्न सकिएन।',
+'tmp-write-error'            => 'अस्थायी फाइल लेख्दै गर्दा त्रुटि।',
+'large-file'                 => 'यो सिफारिस गरिन्छ कि फाइलहरु  $1 भन्दा ठूला हुनु हुँदैन;
 यो फाइल $2 छ।',
-'fileexists-extension'   => "यहि नामको एउटा फाइल पहिलेदेखि नैं छ: [[$2|thumb]]
+'largefileserver'            => 'उर्ध्वभरण गरिएको फाइल सर्भरमा निर्धारित सीमा भन्दा ठूलो छ।',
+'emptyfile'                  => 'तपाईले उर्ध्वभरण गर्नुभएको फाइल रित्तो छ।
+यो फाइलनाम गलत राखिएको कारणले भएको हुनसक्छ
+यो फाइल साच्चै उर्ध्वभरण गर्नेकुरामा निश्चित हुनुहोस् ।',
+'windows-nonascii-filename'  => 'विशेष वर्ण सहितका फाइलनामहरु यस विकिद्वारा समर्थित छैनन् ।',
+'fileexists-extension'       => "यहि नामको एउटा फाइल पहिलेदेखि नैं छ: [[$2|thumb]]
 * उर्ध्वभरण हुँदै गरेको पाइलको नाम: '''<tt>[[:$1]]</tt>'''
 * पहिलेदेखि नैं भएको पाइअलको नाम: '''<tt>[[:$2]]</tt>'''
 कृपया अर्कै नाम रोज्नुहोस्।",
-'uploadwarning'          => 'उर्ध्वभरण चेतावनी',
-'savefile'               => 'फाइल बचत गर्नुहोस्',
-'uploadedimage'          => 'उर्ध्वभरण(upload) गरियो  "[[$1]]"',
-'overwroteimage'         => ' "[[$1]]"को एउटा नयाँ संस्करण उर्ध्वभरण गरियो',
-'uploaddisabled'         => 'उर्ध्वभरण अक्षम पारिएकोछ',
-'uploaddisabledtext'     => 'फाइल उर्ध्वभरण अक्षम पारिएकोछ',
-'php-uploaddisabledtext' => 'PHP मा फाइल उर्ध्वभरण अक्षम गरिएकोछ।
+'file-exists-duplicate'      => 'यस फाइल निम्न{{PLURAL:$1|फाइल|फाइलहरुको}}दुरुस्त नक्कल हो:',
+'uploadwarning'              => 'उर्ध्वभरण चेतावनी',
+'uploadwarning-text'         => 'कृपया तल फाइलको वर्णन परिवर्तन गर्नुहोस र पुन: प्रयास गर्नुहोस् ।',
+'savefile'                   => 'फाइल बचत गर्नुहोस्',
+'uploadedimage'              => 'उर्ध्वभरण(upload) गरियो  "[[$1]]"',
+'overwroteimage'             => ' "[[$1]]"को एउटा नयाँ संस्करण उर्ध्वभरण गरियो',
+'uploaddisabled'             => 'उर्ध्वभरण अक्षम पारिएकोछ',
+'copyuploaddisabled'         => ' URL प्रयोग गरी उर्ध्वभरण निश्कृय पारिएको छ।',
+'uploadfromurl-queued'       => 'तपाईको उर्ध्वभरणलाई प्रतिक्षा सुचिमा राखिएको छ।',
+'uploaddisabledtext'         => 'फाइल उर्ध्वभरण अक्षम पारिएकोछ',
+'php-uploaddisabledtext'     => 'PHP मा फाइल उर्ध्वभरण अक्षम गरिएकोछ।
 कृपया फाइल उर्ध्वभरण व्यवस्था(setting) जाँच्नुहोस्।',
-'uploadvirus'            => 'फाइलमा भाइरस छ!
+'uploadvirus'                => 'फाइलमा भाइरस छ!
 विवरण:$1',
-'upload-source'          => 'स्रोत फाइल',
-'sourcefilename'         => 'स्रोत फाइलनाम :',
-'sourceurl'              => 'स्रोत URL:',
-'destfilename'           => 'गन्तव्य फाइलनाम :',
-'upload-maxfilesize'     => 'अधिकतम फाइल आकार : $1',
-'upload-options'         => 'उर्ध्वभरण विकल्पहरु',
-'watchthisupload'        => 'यो पृष्ठ निगरानी गर्नुहोस्',
-'upload-success-subj'    => 'उर्ध्वभरण सफल',
-'upload-success-msg'     => '[$2]बाट त्पाईंको उर्ध्वभरण सफल भयो। त्यो यहाँ पाउन सकिनेछ: [[:{{ns:file}}:$1]]',
-'upload-failure-subj'    => 'उर्ध्वभरण समस्या',
-'upload-failure-msg'     => 'तपाईंको उर्ध्वभरण [$2]बाट समस्या आएकोछ:
+'upload-source'              => 'स्रोत फाइल',
+'sourcefilename'             => 'स्रोत फाइलनाम :',
+'sourceurl'                  => 'स्रोत URL:',
+'destfilename'               => 'गन्तव्य फाइलनाम :',
+'upload-maxfilesize'         => 'अधिकतम फाइल आकार : $1',
+'upload-description'         => 'फाइल वर्णन',
+'upload-options'             => 'उर्ध्वभरण विकल्पहरु',
+'watchthisupload'            => 'यो पृष्ठ निगरानी गर्नुहोस्',
+'upload-success-subj'        => 'उर्ध्वभरण सफल',
+'upload-success-msg'         => '[$2]बाट त्पाईंको उर्ध्वभरण सफल भयो। त्यो यहाँ पाउन सकिनेछ: [[:{{ns:file}}:$1]]',
+'upload-failure-subj'        => 'उर्ध्वभरण समस्या',
+'upload-failure-msg'         => 'तपाईंको उर्ध्वभरण [$2]बाट समस्या आएकोछ:
 
 $1',
-'upload-warning-subj'    => 'उर्ध्वभरण चेतावनी',
+'upload-warning-subj'        => 'उर्ध्वभरण चेतावनी',
 
-'upload-proto-error'  => 'दूषित प्रोटोकल',
-'upload-file-error'   => 'आन्तरिक त्रुटि',
-'upload-misc-error'   => 'अज्ञात अपलोड त्रुटि',
-'upload-unknown-size' => 'अज्ञात  आकार',
-'upload-http-error'   => 'HTTP त्रुटि भयो: $1',
+'upload-proto-error'        => 'दूषित प्रोटोकल',
+'upload-proto-error-text'   => 'दुर उर्ध्वभरण ठेगाना URLs  <code>http://</code> or <code>ftp://</code> बाट सुरु भएको हुनु पर्छ ।',
+'upload-file-error'         => 'आन्तरिक त्रुटि',
+'upload-misc-error'         => 'अज्ञात अपलोड त्रुटि',
+'upload-too-many-redirects' => 'यस URL मा धेरै पुननिर्देशनहरु छन् ।',
+'upload-unknown-size'       => 'अज्ञात  आकार',
+'upload-http-error'         => 'HTTP त्रुटि भयो: $1',
+
+# ZipDirectoryReader
+'zip-file-open-error' => 'ZIP परीक्षणको लागि फाइल खोल्दा एक त्रुटी भेटीयो ।',
+'zip-wrong-format'    => 'खुलाइएको फाइल ZIP फाइल हैन ।',
+'zip-bad'             => 'यो फाइल बिग्रीएको अवस्थामा छ या खोल्न नसकिने ZIP फाइल हो
+सुरक्षाको कारणले गर्दा राम्ररी जाँच गर्न सकिएन ।',
+'zip-unsupported'     => 'यो फाइल एक ZIP फाइल हो र यसले प्रयोग गर्ने गुणहरु ,मेडियाविकिद्वारा समर्थित छैन ।
+सुरक्षाको कारणले राम्ररी जाँच गर्न सकिएन ।',
+
+# Special:UploadStash
+'uploadstash'          => 'उर्ध्वभरण स्टाश',
+'uploadstash-clear'    => 'स्टाश गरिएका फाइल हटाउने',
+'uploadstash-nofiles'  => 'तपाईका कुनै पनि स्टाश गरिएका फाइलहरु छैनन् ।',
+'uploadstash-badtoken' => 'दिइएको कार्य असफलभयो , तपाईको सम्पादन अधिकार समाप्त भयो । पुन: प्रयास गर्नुहोस् ।',
+'uploadstash-errclear' => 'फाइल हटाउने कार्य असफल भयो ।',
+'uploadstash-refresh'  => 'फाइलहरुको सुची ताजा पर्ने',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'पहुँच अस्वीकार',
+'img-auth-notindir'     => 'अनुरोध गरिएको बाटो(पाथ) उर्ध्वभरण भनि तोकिएको बाटोमा पर्दैन ।',
+'img-auth-badtitle'     => '"$1" बाट मान्य शीर्षक निर्माण गर्न सकिएन ।',
 'img-auth-nofile'       => '"$1" फाइल छैन।',
 'img-auth-streaming'    => '"$1" बग्दै',
 
@@ -1769,7 +1834,7 @@ $1',
 'emailuser'            => 'यो प्रयोगकर्तालाई ई-मेल पठाउनुहोस्',
 'emailpage'            => 'प्रयोगकर्तालाई इमेल गर्नुहोस्',
 'usermailererror'      => 'मेल अब्जेक्टले देखाएको त्रुटि:',
-'defemailsubject'      => '{{SITENAME}} ई-मेल $1',
+'defemailsubject'      => '{{SITENAME}} प्रयपोगकर्ता "$1" बाट इमेल',
 'usermaildisabled'     => 'प्रयोगकर्ता ई-मेल निरस्त गरिएको',
 'usermaildisabledtext' => 'यस विकिमा तपाईं अरु प्रयोगकर्तालाई ई-मेल पठाउन सक्नुहुन्न',
 'noemailtitle'         => 'ईमेल ठेगाना नभएको',
@@ -1793,17 +1858,22 @@ $1',
 'emailuserfooter'      => 'यो ई-मेल $1 ले $2 लाई "ई-मेल प्रयोगकर्ता" कार्यानुरुप {{SITENAME}}मा पठाएको थियो।',
 
 # User Messenger
-'usermessage-summary' => 'प्रणाली सन्देश छोड़दै ।',
+'usermessage-summary'  => 'प्रणाली सन्देश छोड़दै ।',
+'usermessage-editor'   => 'प्रणाली सन्देशवाहक',
+'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
 'watchlist'            => 'मेरो अवलोकन',
 'mywatchlist'          => 'मेरो अवलोकनसूची',
 'watchlistfor2'        => '$1को $2',
 'nowatchlist'          => 'तपाईको अवलोकन सूचीमा कुनै पनि सामाग्री छैन।',
+'watchlistanontext'    => 'कृपया तपाईको निगरानी सुची हेर्न या सम्पादनगर्न $1 गर्नुहोस् ।',
 'watchnologin'         => 'प्रवेश (लग ईन) नगरिएको',
 'watchnologintext'     => 'आफ्नो अवलोकनलाइ परिवर्तन गर्नको लागि त तपाइ यसमा [[Special:UserLogin|प्रवेश(लगइन)]] गर्नुपर्छ।',
+'addwatch'             => 'निगरानी सुचीमा थप्ने',
 'addedwatchtext'       => '"[[:$1]]" पृष्ठ [[Special:Watchlist|अवलोकनसूची]]मा थपियो
 यो पृष्ठ र यससित सम्बद्ध वार्तालाप पृष्ठमा भविष्यमा हुने परिवर्तन  सूचिबद्ध गरिनेछ र यो पृष्ठ [[Special:RecentChanges|नयाँ परिवर्तनहरु]]मा छान्न सजिलोकोलागि गाढा अक्षरमा देखा पर्नेछ।',
+'removewatch'          => 'निगरानी सुचीबाट हटाउने',
 'removedwatchtext'     => 'पृष्ठ "[[:$1]]" [[Special:Watchlist|तपाईको निगरानी सूची]]बाट हटाइएको छ।',
 'watch'                => 'अवलोकन',
 'watchthispage'        => 'यो पृष्ठ अवलोकन गर्नुहोस्',
@@ -1811,16 +1881,22 @@ $1',
 'unwatchthispage'      => 'निगरानीबाट हटाउने',
 'notanarticle'         => 'सामाग्री सहितको पेज हैन',
 'notvisiblerev'        => 'पूर्वावलोकन हटाइयो',
+'watchnochange'        => 'दिइएको समयावधीमा निगरानी सुचीमा रहेका कुनै पनि सामग्रीहरु सम्पदन गरिएका छैनन् । \\',
 'watchlist-details'    => 'तपाईको निगरानी सूचीमा रहेका{{PLURAL:$1|$1 पृष्ठ|$1 पृष्ठहरु}}वार्तालापमा पृष्ठमा गनिएका छैनन् ।',
 'wlheader-enotif'      => '* ईमेलद्वारा जानकारी गराउने तरिका सक्रिय गरियो ।',
 'wlheader-showupdated' => "* तपाइले पछिल्लो पल्ट भ्रमण गरेपछि परिवर्तन भएका पृष्ठहरूलाई '''गाढा''' गरेर देखाइएको छ ।",
+'watchmethod-recent'   => 'निगरानी सुचीमा रहेका पृष्ठमा गरिएका सम्पादनहरु जाँच्दै \\',
+'watchmethod-list'     => 'सम्पदान गरिएका निगरानी सुचीमा रहेका पृष्ठहरुको सम्पादन जाँच्दै \\',
+'watchlistcontains'    => 'तपाईको निगरानी सुचीमा $1 {{PLURAL:$1|पृष्ठ|पृष्ठहरु}}रहेका छन् ।',
+'iteminvalidname'      => "वस्तु '$1'मा समस्या , अमान्य नाम...",
 'wlnote'               => "विगत {{PLURAL:$2|घण्टामा|'''$2''' घण्टाहरुमा}} {{PLURAL:$1|गरिएको अन्तिम परिवर्तन तल दिइएकोछ|गरिएका अन्तिम  '''$1''' परिवर्तनहरु तल दिइएकाछन्}}।",
 'wlshowlast'           => 'पछिल्ला $2 दिनहरूका $3 $1 घण्टाहरूका देखाउनुहोस्',
 'watchlist-options'    => 'निगरानि सूची विकल्प',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'निगरानी गर्दै...',
-'unwatching' => 'निगरानीबाट हटाउँदै...',
+'watching'       => 'निगरानी गर्दै...',
+'unwatching'     => 'निगरानीबाट हटाउँदै...',
+'watcherrortext' => ' "$1"को लागि निगरानी सुची परिवर्तन गर्ने क्रममा एक त्रुटी आइपरेको छ। \\',
 
 'enotif_mailer'                => '{{SITENAME}} जानकारी प्रेषक',
 'enotif_reset'                 => 'सबै पृष्ठहरु भनी दाग दिने',
@@ -1871,6 +1947,7 @@ $UNWATCHURL
 'exbeforeblank'          => 'खालि गर्नु भन्दा अघिको सामग्री थियो: "$1"',
 'exblank'                => 'पृष्ठ खाली छ',
 'delete-confirm'         => 'मेट्नुहोस् "$1"',
+'delete-backlink'        => '← $1 \\',
 'delete-legend'          => 'मेट्नुहोस्',
 'historywarning'         => ' चेतावनी: तपाईंले मेटाउन लाग्नुभएको पृष्ठको इतिहासको लगभग $1 {{PLURAL:$1|पुनरावृत्ति छ|पुनरावृत्तिहरु छन्}}:',
 'confirmdeletetext'      => 'तपाई यो पृष्ठ र यसको इतिहास मेट्न गइरहनु भएकोछ। कृपया पुष्टि गर्नुहोस् कि [[{{MediaWiki:Policy-url}}|नियम]] मुताबिक तपाईं मेट्न गइरहनु भएकोछ।',
@@ -1879,7 +1956,9 @@ $UNWATCHURL
 'deletedtext'            => '"$1" मेटिएको छ।
 हालै हटाइएको सूची $2 मा हेर्नुहोस् ।',
 'deletedarticle'         => '"[[$1]]" मेटियो',
+'suppressedarticle'      => '"[[$1]]"लाई दमन गरियो \\',
 'dellogpage'             => 'मेटाएको लग',
+'dellogpagetext'         => 'हालका सबैभन्दा नयाँ मेटाहरु निम्न सुचीमा रहेका छन्।',
 'deletionlog'            => 'मेटाइएको लग',
 'reverted'               => 'अघिल्लो संशोधनको स्थितिमा फर्काइयो',
 'deletecomment'          => 'कारण :',
@@ -1890,6 +1969,11 @@ $UNWATCHURL
 ** कपीराइट उल्लंघन
 ** बर्बरता (Vandalism)',
 'delete-edit-reasonlist' => 'मेट्नुको कारण सम्पादन गर्नुहोस्',
+'delete-toobig'          => 'यो पृष्ठको सम्पादन इतिहास धेरै र  $1 {{PLURAL:$1|पुनरावलोक|पुनरावलोकहरु}}भन्दा बढी रहेको छ।
+ {{SITENAME}}मा दुर्घटनाको कारणले गडबडी आउनसक्ने कुरालाई रोक्न यस्ता पृष्ठहरुलाई मेट्नबाट निषेध गरिएको छ ।',
+'delete-warning-toobig'  => 'This page has a large edit history, over $1 {{PLURAL:$1|revision|revisions}}.
+Deleting it may disrupt database operations of {{SITENAME}};
+proceed with caution.',
 
 # Rollback
 'rollback'         => 'सम्पादनहरु  पछाडि लाने',
@@ -1907,7 +1991,7 @@ $UNWATCHURL
 'protectlogpage'              => 'सुरक्षण लग',
 'protectedarticle'            => '"[[$1]]" लाई सुरक्षित गरियो',
 'modifiedarticleprotection'   => ' "[[$1]]"को सुरक्षा स्तर परिवर्तन गरियो',
-'unprotectedarticle'          => '"[[$1]]" को सुरक्षा रद्द',
+'unprotectedarticle'          => '"[[$1]]" बाट सुरक्षा हटाइएको छ',
 'movedarticleprotection'      => '"[[$2]]" बाट "[[$1]]"मा सुरक्षा व्यवस्था सारियो',
 'protect-title'               => ' "$1" सुरक्षा स्तर परिवर्तन गर्नुहोस',
 'prot_1movedto2'              => '[[$1]] लाई [[$2]]मा सारियो',
@@ -2059,7 +2143,7 @@ $3द्वारा $1को ($4को  समय $5 मा) मेटाइए
 'nolinkshere-ns'           => "चुनिएको नामस्थानमा '''[[:$1]]''' सित जोड़िने पृष्ठहरु छैनन्।",
 'isredirect'               => 'अनुप्रेषित पृष्ठ',
 'istemplate'               => 'पारदर्शिता',
-'isimage'                  => 'तस्विर लिंक',
+'isimage'                  => 'फाइल लिंक',
 'whatlinkshere-prev'       => '{{PLURAL:$1|पहिलो|पहिलो $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|अर्को|अर्को $1}}',
 'whatlinkshere-links'      => '← लिंकहरु',
@@ -2383,7 +2467,7 @@ $1को बन्देजको कारण : "$2" हो',
 'tooltip-ca-viewsource'           => 'यो पृष्ठ सुरक्षित गरिएको छ। यसको श्रोत हेर्न सक्नुहुन्छ।',
 'tooltip-ca-history'              => 'यस पृष्ठको पहिलेका पुनरावलोकनहरु',
 'tooltip-ca-protect'              => 'यो पृष्ठलाई संरक्षित गर्नुहोस्',
-'tooltip-ca-unprotect'            => 'यस पृष्ठको सुरक्षा रद्द गर्ने',
+'tooltip-ca-unprotect'            => 'यस पृष्ठको सुरक्षा परिवर्तन गर्ने',
 'tooltip-ca-delete'               => 'यो पृष्ठ मेटाउनुहोस्',
 'tooltip-ca-undelete'             => 'मेटिपको भए पनि यो पृष्ठको सम्पादनहरु पुन:प्राप्त गर्नुहोस्',
 'tooltip-ca-move'                 => 'यो पृष्ठलाई सार्नुहोस्',
@@ -2665,6 +2749,12 @@ Others will be hidden by default.
 'exif-gpsdifferential'             => 'जीपीएस अंतर सुधार',
 'exif-objectname'                  => 'छोटो शीर्षक',
 
+# EXIF attributes
+'exif-compression-34712' => 'जेपेग२०००',
+
+'exif-copyrighted-true'  => 'प्रकाश अधिकार सिमित गरिएको \\',
+'exif-copyrighted-false' => 'पब्लिक डोमेन',
+
 'exif-unknowndate' => 'अज्ञात मिति',
 
 'exif-orientation-1' => 'सामान्य',
@@ -2799,9 +2889,54 @@ Others will be hidden by default.
 'exif-gpsdop-fair'      => 'ठिकै ($1)',
 'exif-gpsdop-poor'      => 'खराब ($1)',
 
+'exif-objectcycle-a' => 'बिहान मात्र',
+'exif-objectcycle-p' => 'बेलुकी मात्र',
+'exif-objectcycle-b' => 'बिहान र बेलुकी दुबै',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'वास्तविक दिशा:',
 'exif-gpsdirection-m' => 'चुम्बकिय दिशा:',
+
+'exif-ycbcrpositioning-1' => 'केन्द्रीकृत',
+'exif-ycbcrpositioning-2' => 'सह-कुर्सीरहेको',
+
+'exif-dc-contributor' => 'योगदानकर्ताहरु',
+'exif-dc-coverage'    => 'मेडियाको स्पाटिएल(आयाम) वा टेम्पोरल(काल) सान्दर्भिकता',
+'exif-dc-date'        => 'मिति(हरु)',
+'exif-dc-publisher'   => 'प्रकाशक',
+'exif-dc-relation'    => 'सम्वन्धित मेडिया',
+'exif-dc-rights'      => 'अधिकारहरु',
+'exif-dc-source'      => 'स्रोत मेडिया',
+'exif-dc-type'        => 'मेडियाको प्रकार',
+
+'exif-rating-rejected' => 'अस्विकृत',
+
+'exif-isospeedratings-overflow' => '६५५३५ भन्दा ठूलो',
+
+'exif-maxaperturevalue-value' => '$1 एपेक्स (f/$2)',
+
+'exif-iimcategory-ace' => 'कला, संस्कृती र मनोरञ्न',
+'exif-iimcategory-clj' => 'अपराध र कानुन',
+'exif-iimcategory-dis' => 'प्रकोप तथा दुर्घटना',
+'exif-iimcategory-fin' => 'अर्थ र व्यवसाय',
+'exif-iimcategory-edu' => 'शिक्षा',
+'exif-iimcategory-evn' => 'वातावरण',
+'exif-iimcategory-hth' => 'स्वास्थ्य',
+'exif-iimcategory-hum' => 'मानवीय चासो',
+'exif-iimcategory-lab' => 'श्रम',
+'exif-iimcategory-lif' => 'जीवनशैली र फूर्सद',
+'exif-iimcategory-pol' => 'राजनीति',
+'exif-iimcategory-rel' => 'धर्म तथा विश्वास',
+'exif-iimcategory-sci' => 'विज्ञान तथा प्रविधी',
+'exif-iimcategory-soi' => 'सामाजिक समस्याहरु',
+'exif-iimcategory-spo' => 'खेलकुद',
+'exif-iimcategory-war' => 'लडाई, द्वन्द र अशान्ति',
+'exif-iimcategory-wea' => 'मौसम',
+
+'exif-urgency-normal' => 'सामान्य ($1)',
+'exif-urgency-low'    => 'न्युन ($1)',
+'exif-urgency-high'   => 'उच्च ($1)',
+'exif-urgency-other'  => 'प्रयोगकर्ताले निर्धारण गरेको प्राथमिकता ($1)',
 
 # External editor support
 'edit-externally'      => 'यो फाइललाई बाह्य अनुप्रयोग प्रयोग गरेर सम्पादन गर्ने',
@@ -2815,8 +2950,23 @@ Others will be hidden by default.
 
 # E-mail address confirmation
 'confirmemail'              => 'इमेल ठेगाना पक्का गर्नुहोस्',
+'confirmemail_noemail'      => 'तपाईको प्रयोगकर्ता [[Special:Preferences|अभिरुचीमा]] मान्य इमेल ठेगाना राखीएको छैन ।',
+'confirmemail_pending'      => 'तपाईको इमेलमा प्रपाणिकरण कोड पहिले नै पठाइ सकिएको छ;
+यदि तपाईले अहिले नै खाता खोल्नु भएको हो कोडको निम्ती पुन: अनुरोध गर्नु अगि कोड नआइपुगुन्जेल कृपया केही समय प्रतिक्षा गर्नुहोस ।',
 'confirmemail_send'         => 'यकिन कोड मेल गर्नुहोस',
 'confirmemail_sent'         => 'यकिन इमेल पठाइयो ।',
+'confirmemail_oncreate'     => 'प्रमाणिकरण तपाईको कोड इमेल ठेगानामा पठाइएको छ ।
+यस कोड प्रवेश गर्नको लागि अत्यवश्यक छैन, तर यस विकिमा इमेल ठेगानामा आधारित सेवाहरु उपभोग गर्न कोड उपलब्ध गराउनु पर्ने हुन्छ ।',
+'confirmemail_sendfailed'   => '{{SITENAME}} प्रमाणिकरण इमेल पठाउन सकिएन।
+तपाईको इमेलमा अमान्य वर्णहरु छन् कि जाँच गर्नुहोस् ।
+
+हुलाकीले दिएको त्रुटी सन्देश: $1',
+'confirmemail_invalid'      => 'अमान्य प्रमाणिकरण कोड ।
+कोडको मान्य अवधी समाप्त भएको हुनसक्छ ।',
+'confirmemail_needlogin'    => 'तपाईले आफ्नो इमेल प्रमाणिकरण गराउन $1 गर्नु पर्छ ।',
+'confirmemail_success'      => 'तपाईको इमेल ठेगाना प्रमाणिकरण गरिएको छ।
+तपाई [[Special:UserLogin|प्रवेश गरी]] विकिको मजा लिन सक्नुहुन्छ ।',
+'confirmemail_loggedin'     => 'तपाईको इमेल ठेगाना प्रमाणिकरण गरिएको छ। \\',
 'confirmemail_error'        => 'तपाईंको निश्चयलाई संग्रह गर्दा केहि त्रुटि भएकोछ।',
 'confirmemail_subject'      => '{{SITENAME}} ई मेलl ठेगानाको पुष्टि',
 'confirmemail_body'         => 'कसैले, सायद तपाईंले, आई पी ठेगाना $1बाट,
@@ -2864,20 +3014,45 @@ $5
 'scarytranscludetoolong'  => '[URL अति लामो छ ]',
 
 # Trackbacks
-'trackbackbox'    => 'यस पृष्ठको लागि ट्र्याकब्याक:<br />
+'trackbackbox'      => 'यस पृष्ठको लागि ट्र्याकब्याक:<br />
 $1',
-'trackbackremove' => '([$1 मेट्नुहोस्])',
-'trackbacklink'   => 'ट्र्याक ब्याक',
+'trackback'         => '; $4 $5: [$2 $1]',
+'trackbackexcerpt'  => '; $4 $5: [$2 $1]: <nowiki>$3</nowiki>',
+'trackbackremove'   => '([$1 मेट्नुहोस्])',
+'trackbacklink'     => 'ट्र्याक ब्याक',
+'trackbackdeleteok' => 'ट्राकब्याक सफलतापूर्वक हटाइयो।',
 
 # Delete conflict
-'deletedwhileediting' => "'''चेतावनी''': तपाईंले सम्पादन सुरु गरेपछि यो पृष्ठ मेटिएकोछ!",
-'confirmrecreate'     => "प्रयोगकर्ता [[User:$1|$1]] ([[User talk:$1|वार्तालाप]])ले  तपाईंले  सम्पादन सुरु गरेपछि यो पृष्ठ मेटेकाछन् । कारण थियो:
+'deletedwhileediting'      => "'''चेतावनी''': तपाईंले सम्पादन सुरु गरेपछि यो पृष्ठ मेटिएकोछ!",
+'confirmrecreate'          => "प्रयोगकर्ता [[User:$1|$1]] ([[User talk:$1|वार्तालाप]])ले  तपाईंले  सम्पादन सुरु गरेपछि यो पृष्ठ मेटेकाछन् । कारण थियो:
 : ''$2''
 कृपया सुनिश्चित गर्नुहोस् कि तपाईं यो पृष्ठ साँच्चै निर्माण गर्न चाहनुहुन्छ।",
-'recreate'            => 'पुनर्निर्माण',
+'confirmrecreate-noreason' => 'प्रयोगकर्ता [[User:$1|$1]] ले ([[User talk:$1|वार्तालाप ]])पृष्ठ तपाईले सम्पादन थाल्नु भए पछि हटाइदिएका छन्  के यो पृष्ठलाई पुन: शिर्जना गर्ने हो ?',
+'recreate'                 => 'पुनर्निर्माण',
+
+'unit-pixel' => 'पिक्सेल',
 
 # action=purge
 'confirm_purge_button' => 'हुन्छ',
+'confirm-purge-top'    => 'के यस पृष्ठको क्याश सफा गर्ने हो ?',
+'confirm-purge-bottom' => 'पृष्ठ पर्ज(सफाई)ले  क्याश सफा गर्दछ र सबै भन्दा अद्यावधिक संस्करण प्रदर्शित हुन जोड दिन्छ ।',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'ठीक',
+'confirm-watch-top'      => 'के यस पृष्ठलाई निगरानी सुचीमा थप्ने हो ?',
+'confirm-unwatch-button' => 'ठीक',
+'confirm-unwatch-top'    => 'के यो पृष्ठलाई निगरानी सुचीबाट हटाउने हो ?',
+
+# Separators for various lists, etc.
+'semicolon-separator' => ';&#32;',
+'comma-separator'     => ',&#32;',
+'colon-separator'     => ':&#32;',
+'autocomment-prefix'  => '-&#32;',
+'pipe-separator'      => '&#32;•&#32;',
+'word-separator'      => '&#32;',
+'ellipsis'            => '...',
+'percent'             => '$1%',
+'parentheses'         => '($1)',
 
 # Multipage image navigation
 'imgmultipageprev' => '← अघिल्लो पृष्ठ',
@@ -2887,6 +3062,7 @@ $1',
 
 # Table pager
 'ascending_abbrev'         => 'वर्णानुक्रम',
+'descending_abbrev'        => 'धट्दोक्रम',
 'table_pager_next'         => 'पछिको पृष्ठ',
 'table_pager_prev'         => 'अगाडिको पृष्ठ',
 'table_pager_first'        => 'प्रथम पृष्ठ',
@@ -2902,11 +3078,27 @@ $1',
 'autoredircomment' => 'पृष्ठ[[$1]]मा पठाइएको',
 'autosumm-new'     => ' $1 को साथमा पृष्ठ शृजना भयो',
 
+# Size units
+'size-bytes'     => '$1 बाइटहरु',
+'size-kilobytes' => '$1 किलोबाइटहरु',
+'size-megabytes' => '$1 मेगाबाइटहरु',
+'size-gigabytes' => '$1 गिगाबाइटहरु',
+
 # Live preview
 'livepreview-loading' => 'लोड गरिंदै छ…',
 'livepreview-ready'   => 'लोड हुँदैछ ...तयार !',
+'livepreview-failed'  => 'प्रत्यक्ष पूर्वरुप असफल भयो !
+साधारण पूर्वरुप हेर्न प्रयास गर्नुहोस् ।',
+'livepreview-error'   => 'निम्न जडान गर्न सकिएन: $1 "$2".
+साधारण पूर्वरुप हेर्न प्रयास गर्नुहोस् ।',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => ' $1 {{PLURAL:$1|सेकेन्ड |सेकेन्डहरु}} भन्दा नयाँ परिवर्तनहरु यस सुचीमा नदेखाइन सक्छ ।',
+'lag-warn-high'   => 'उच्च डेटावेस सर्भरको डिलाइको कारणले  $1 {{PLURAL:$1|सेकेन्ड|सेकेन्डहरु}} पछिका परिवर्तनहरु नदेखिन सक्छ ।',
 
 # Watchlist editor
+'watchlistedit-numitems'      => 'तपाईको निगरानी सुचीमा वार्तालाप पृष्ठहरु बाहेकका {{PLURAL:$1|१ शिर्षक|$1 शिर्षकरु}}, रहेका छन् ।',
+'watchlistedit-noitems'       => 'तपाईको निगरानी सुचीमा शिर्षकहरु छैनन् ।',
 'watchlistedit-normal-title'  => ' निगरानी सूची सम्पादन गर्ने',
 'watchlistedit-normal-legend' => 'शीर्षकहरु निगरानी सूचीबाट हटाउने',
 'watchlistedit-normal-submit' => 'शीर्षकहरू हटाउने:',
@@ -2915,14 +3107,79 @@ $1',
 'watchlistedit-raw-legend'    => 'कच्चा निगरानी सूची सम्पादन गर्ने',
 'watchlistedit-raw-titles'    => 'शीर्षकहरू :',
 'watchlistedit-raw-submit'    => 'निगरानी सूची अध्यावधि गर्ने',
+'watchlistedit-raw-done'      => 'तपाईको निगरानी सुची अद्यावधिक गरिएको छ।',
+'watchlistedit-raw-added'     => '{{PLURAL:$1|१ शिर्षक|$1 शिर्षकरु}} थपियो:',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|१ शिर्षक|$1 शिर्षकरु}} हटाइयो:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'मिल्दो परिवर्तनहरु हेर्ने',
 'watchlisttools-edit' => 'निगरानी सूची हेर्नुहोस् र सम्पादन गर्नुहोस्',
 'watchlisttools-raw'  => 'कच्चा निगरानी सूची सम्पादन गर्नुहोस् ।',
 
+# Iranian month names
+'iranian-calendar-m1'  => 'फार्भारदिन',
+'iranian-calendar-m2'  => 'ओर्दिवेहेश्त',
+'iranian-calendar-m3'  => 'खोर्दाद',
+'iranian-calendar-m4'  => 'तिर',
+'iranian-calendar-m5'  => 'मोर्दाद',
+'iranian-calendar-m6'  => 'शाहरीभर',
+'iranian-calendar-m7'  => 'मेहर',
+'iranian-calendar-m8'  => 'अबन',
+'iranian-calendar-m9'  => 'अजर',
+'iranian-calendar-m10' => 'देय',
+'iranian-calendar-m11' => 'बहमान',
+'iranian-calendar-m12' => 'एस्फाद',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'मुहार्रम',
+'hijri-calendar-m2'  => 'साफार',
+'hijri-calendar-m3'  => "रबी' अल-अव्वाल",
+'hijri-calendar-m4'  => "रबी' अल-थानी",
+'hijri-calendar-m5'  => 'जुमादा अल-अव्वाल',
+'hijri-calendar-m6'  => 'जुमादा अल-थानी',
+'hijri-calendar-m7'  => 'रजब',
+'hijri-calendar-m8'  => "शा'अवान",
+'hijri-calendar-m9'  => 'रामादान',
+'hijri-calendar-m10' => 'शाव्वाल',
+'hijri-calendar-m11' => "धु अल-की'दाह",
+'hijri-calendar-m12' => 'धु अल हिज्जाह',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'तिश्रेइ',
+'hebrew-calendar-m2'      => 'चेश्भान',
+'hebrew-calendar-m3'      => 'किस्लेभ',
+'hebrew-calendar-m4'      => 'तेभेत',
+'hebrew-calendar-m5'      => 'शेवात',
+'hebrew-calendar-m6'      => 'अदार',
+'hebrew-calendar-m6a'     => 'अदार I',
+'hebrew-calendar-m6b'     => 'अदार II',
+'hebrew-calendar-m7'      => 'निसान',
+'hebrew-calendar-m8'      => 'इयार',
+'hebrew-calendar-m9'      => 'सिभान',
+'hebrew-calendar-m10'     => 'तामुज',
+'hebrew-calendar-m11'     => 'अभ्',
+'hebrew-calendar-m12'     => 'एलल्',
+'hebrew-calendar-m1-gen'  => 'तिश्रेइ',
+'hebrew-calendar-m2-gen'  => 'चेश्भान',
+'hebrew-calendar-m3-gen'  => 'किस्लेभ',
+'hebrew-calendar-m4-gen'  => 'तेभेत',
+'hebrew-calendar-m5-gen'  => 'शेवात',
+'hebrew-calendar-m6-gen'  => 'अदार',
+'hebrew-calendar-m6a-gen' => 'अदार I',
+'hebrew-calendar-m6b-gen' => 'अदार II',
+'hebrew-calendar-m7-gen'  => 'निसान',
+'hebrew-calendar-m8-gen'  => 'इयार',
+'hebrew-calendar-m9-gen'  => 'सिभान',
+'hebrew-calendar-m10-gen' => 'तामुज',
+'hebrew-calendar-m11-gen' => 'अभ्',
+'hebrew-calendar-m12-gen' => 'एलल्',
+
+# Signatures
+'timezone-utc' => 'युटिसी(UTC)',
+
 # Core parser functions
 'unknown_extension_tag' => 'अज्ञात  एक्सटेन्सन ट्याग "$1"',
+'duplicate-defaultsort' => '\'\'\'चेतावनी:\'\'\' पूर्व निर्धारित छोटकरी "$2" ले पुरानो पूर्वनिर्धारित छोटकरी"$1"लाई विस्थापन गरेको छ ।',
 
 # Special:Version
 'version'                       => 'संस्करण',
@@ -2930,44 +3187,68 @@ $1',
 'version-specialpages'          => 'विशेष पृष्ठहरू',
 'version-parserhooks'           => 'पार्सर हुकहरु',
 'version-variables'             => 'चल राशी(variables)',
+'version-antispam'              => 'स्प्याम रोकथाम',
+'version-skins'                 => 'खोलहरु',
+'version-api'                   => 'एपिआइ(API)',
 'version-other'                 => 'अन्य',
 'version-mediahandlers'         => 'मिडिया  ह्यान्डलरहरू',
+'version-hooks'                 => 'अंकुशहरु',
 'version-extension-functions'   => 'अतिरिक्त प्रकार्य',
 'version-parser-extensiontags'  => 'पार्सर विस्तार ट्यागहरु',
 'version-parser-function-hooks' => 'पार्सर फङ्सन हुक',
 'version-hook-name'             => 'हुक नाम',
 'version-hook-subscribedby'     => 'ग्राह्यता गर्ने',
 'version-version'               => '(संस्करण $1)',
+'version-svn-revision'          => '(r$2)',
 'version-license'               => 'इजाजतपत्र',
+'version-poweredby-credits'     => "यो विकी '''[http://www.mediawiki.org/ मिडियाविकि]''' द्वारा सशक्तिकरण गरिएको छ, copyright © सन् २००१-$1 $2.",
+'version-poweredby-others'      => 'अन्य',
 'version-software'              => 'स्थापना गरिएको सफ्टवेयर',
+'version-software-product'      => 'उत्पादन',
 'version-software-version'      => 'संस्करण',
 
 # Special:FilePath
-'filepath'        => 'फाइल मार्ग:',
-'filepath-page'   => 'फाइल',
-'filepath-submit' => 'जाने',
+'filepath'         => 'फाइल मार्ग:',
+'filepath-page'    => 'फाइल',
+'filepath-submit'  => 'जाने',
+'filepath-summary' => 'यस पृष्ठले फाइको पूरा बाटो(पाथ) दिन्छ ।
+तस्विरहु पूरा रिजोल्युशनमा देखाइन्छ अरु फाइहरु निका सम्बन्धित अनुप्रयोगहरुसँग खोलिन्छन ।
+
+ "{{ns:file}}:" प्रिफिक्स(पूर्वसर्ग) बिना फाइल नाम प्रविष्ट गर्नुहोस् । .',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'नक्कल फाइल खोज्ने',
+'fileduplicatesearch-summary'   => 'ह्यास मानको आधारमा दुरुस्त नक्कल फाइहरु खोज्ने ।',
 'fileduplicatesearch-legend'    => ' नक्कल खोज्नुहोस्',
 'fileduplicatesearch-filename'  => 'फाइलनाम:',
 'fileduplicatesearch-submit'    => 'खोजी गर्नुहोस्',
+'fileduplicatesearch-info'      => '$1 × $2 पिक्सेल<br />फाइल आकार: $3<br />MIME प्रकार: $4',
+'fileduplicatesearch-result-1'  => 'फाइल"$1" को दुरुस्त नक्कलहरु छैनन् ।',
+'fileduplicatesearch-result-n'  => 'फाइल"$1" को {{PLURAL:$2|1 दुरुस्त नक्कल|$2 दुरुस्त नक्कलहरु}} छन् ।',
 'fileduplicatesearch-noresults' => '"$1" नामको फाइल पाइएन।',
 
 # Special:SpecialPages
-'specialpages'                 => 'विशेष पृष्ठ',
-'specialpages-group-other'     => 'अरु विशेष पृष्ठहरु',
-'specialpages-group-login'     => 'प्रवेशगर्नुहोस/खाता शृजना गर्नुहोस',
-'specialpages-group-changes'   => 'भर्खरैका परिवर्तन र लगहरु',
-'specialpages-group-users'     => 'प्रयोगकर्ता र अधिकारहरु',
-'specialpages-group-highuse'   => 'उच्च प्रयोग भएका पृष्ठहरु',
-'specialpages-group-pages'     => 'पृष्ठहरूको सूची:',
-'specialpages-group-pagetools' => 'पृष्ठ उपकरणहरू',
-'specialpages-group-redirects' => 'विशेष पृष्ठमा पठाउने',
-'specialpages-group-spam'      => 'स्पाम उपकरणहरु',
+'specialpages'                   => 'विशेष पृष्ठ',
+'specialpages-note'              => '----
+* साधारण विशेष पृष्ठहरु।
+* <span class="mw-specialpagerestricted">निषेधित विशेष पृष्ठहरु।</span>
+* <span class="mw-specialpagecached">क्याश गरिएका विशेष पृष्ठहरु (अध्यावधिक नहुन सक्छ)।</span>',
+'specialpages-group-maintenance' => 'मर्मत प्रतिवेदनहरु \\',
+'specialpages-group-other'       => 'अरु विशेष पृष्ठहरु',
+'specialpages-group-login'       => 'प्रवेशगर्नुहोस/खाता शृजना गर्नुहोस',
+'specialpages-group-changes'     => 'भर्खरैका परिवर्तन र लगहरु',
+'specialpages-group-media'       => 'मेडिया प्रतिवेदन र उर्ध्वभरणहरु',
+'specialpages-group-users'       => 'प्रयोगकर्ता र अधिकारहरु',
+'specialpages-group-highuse'     => 'उच्च प्रयोग भएका पृष्ठहरु',
+'specialpages-group-pages'       => 'पृष्ठहरूको सूची:',
+'specialpages-group-pagetools'   => 'पृष्ठ उपकरणहरू',
+'specialpages-group-wiki'        => 'विकि डाटा र औजारहरु',
+'specialpages-group-redirects'   => 'विशेष पृष्ठमा पठाउने',
+'specialpages-group-spam'        => 'स्पाम उपकरणहरु',
 
 # Special:BlankPage
-'blankpage' => 'खाली पृष्ठहरु',
+'blankpage'              => 'खाली पृष्ठहरु',
+'intentionallyblankpage' => 'यो पृष्ठ जानी जानी खाली राखिएको हो ।',
 
 # External image whitelist
 'external_image_whitelist' => ' #यस पंक्तिलाई जस्ताको तस्तै छोड़नुहोस्<pre>
@@ -2981,8 +3262,10 @@ $1',
 
 # Special:Tags
 'tags'                    => 'मान्य ट्याग परिवर्तनहरु',
+'tag-filter'              => '[[Special:Tags|पुच्छर]] फिल्टर:',
 'tag-filter-submit'       => 'फिल्टर',
 'tags-title'              => 'ट्यागहरु',
+'tags-intro'              => 'यो पृष्ठले पुच्छरहरु सुचीकृत गर्छ जससँग यो सफ्टवेयरले चिनो लगाउन र सम्पादन गर्न सक्छ र तिनका अर्थहरु ।',
 'tags-tag'                => 'आन्तरिक ट्याग नाम',
 'tags-display-header'     => 'परिवर्तन सूचीहरुमाथि झलक',
 'tags-description-header' => 'पूर्ण अर्थको वर्णन',
@@ -2991,22 +3274,65 @@ $1',
 'tags-hitcount'           => '$1 {{PLURAL:$1|परिवर्तन|परिवर्तनहरु}}',
 
 # Special:ComparePages
-'compare-page1'  => 'पृष्ठ 1',
-'compare-page2'  => 'पृष्ठ 2',
-'compare-rev1'   => 'संशोधन 1',
-'compare-rev2'   => 'संशोधन 2',
-'compare-submit' => 'दँजाउनुहोस्',
+'comparepages'                => 'पृष्ठहरु दाज्ने \\',
+'compare-selector'            => 'पृष्ठ संस्करणहरु दाज्ने \\',
+'compare-page1'               => 'पृष्ठ 1',
+'compare-page2'               => 'पृष्ठ 2',
+'compare-rev1'                => 'संशोधन 1',
+'compare-rev2'                => 'संशोधन 2',
+'compare-submit'              => 'दँजाउनुहोस्',
+'compare-invalid-title'       => 'तपाईले खुलाउनु भएको शिर्षक अमान्य छ।',
+'compare-title-not-exists'    => 'तपाईले खुलाउनु भएको शिर्षक उपलब्ध छैन ।',
+'compare-revision-not-exists' => 'तपाईले खुलाउनु भएको संस्करण उपलब्ध छैन ।',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => ' विश्वव्यापी फाइल उपयोग \\',
+'globalfileusage-for'         => ' "$1"को विश्व व्यापी फाइल उपयोग \\',
+'globalfileusage-desc'        => 'विश्वव्यापी फाइल उपयोग हेर्न [[Special:GlobalTemplateUsage|विशेष पृष्ठ]]',
+'globalfileusage-ok'          => 'खोज्ने',
+'globalfileusage-text'        => 'विश्वव्यापी फाइल उपयोग खोज्नुहोस् \\',
+'globalfileusage-no-results'  => '[[$1]] अरु विकिमा रहेको छैन ।',
+'globalfileusage-on-wiki'     => ' $2मा प्रयोग',
+'globalfileusage-of-file'     => 'निम्न अरु विकिहरुले यस फाइल प्रयोग गर्दछन् :',
+'globalfileusage-more'        => 'यस फाइलको [[{{#Special:GlobalUsage}}/$1|थप विश्वव्यापी]] उपयोग हेर्नुहोस् ।',
+'globalfileusage-filterlocal' => 'स्थानीय उपयोग नदेखाउने',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage'             => 'विश्वव्यापी टेम्प्लेट उपयोग \\',
+'globaltemplateusage-for'         => ' "$1"को विश्व व्यापी टेम्प्लेट उपयोग \\',
+'globaltemplateusage-desc'        => 'विश्वव्यापी टेम्लेट उपयोग हेर्न [[Special:GlobalTemplateUsage|विशेष पृष्ठ]]',
+'globaltemplateusage-ok'          => 'खोज',
+'globaltemplateusage-text'        => 'विश्वव्यापी नमुना उपयोग खोज्नुहोस् \\',
+'globaltemplateusage-no-results'  => '[[$1]] अरु विकिमा रहेको छैन ।',
+'globaltemplateusage-on-wiki'     => ' $2मा प्रयोग',
+'globaltemplateusage-of-file'     => 'निम्न अरु विकिहरुले यस नमुना प्रयोग गर्दछन् :',
+'globaltemplateusage-more'        => 'यस नमुनाको[[{{#Special:GlobalUsage}}/$1|थप विश्वव्यापी प्रयोग]] हेर्नुहोस् ।',
+'globaltemplateusage-filterlocal' => 'स्थानीय प्रयोग नदेखाउने \\',
 
 # Database error messages
-'dberr-header'   => 'यो विकिमा समस्या छ',
-'dberr-problems' => 'क्षमा पाउँ!
+'dberr-header'      => 'यो विकिमा समस्या छ',
+'dberr-problems'    => 'क्षमा पाउँ!
 यो साइटमा तकनीकी गड़बड़ी आइपरेकोछ।',
-'dberr-info'     => '(डेटाबेस सर्वर $1सित सम्पर्क साध्न सकिंदैन)',
+'dberr-again'       => 'केही समय पर्खिएर पुन: लोड हुन दिनुहोस् ।',
+'dberr-info'        => '(डेटाबेस सर्वर $1सित सम्पर्क साध्न सकिंदैन)',
+'dberr-usegoogle'   => 'तपाईले अहिले गुगलबाट खोज गर्न प्रयास गर्न सक्नुहुन्छ।',
+'dberr-outofdate'   => 'कृपय स्मरणमा राख्नुहोस हाम्रा लेखहरुको सुची जुन उनीहरुले राखेका छन् त्यो अद्यावधिक नहुन सक्छ ।',
+'dberr-cachederror' => 'यो अनुरोध गरिएको पृष्ठको क्याशमा रहेका प्रतिलिपी हो , र अद्यावधिक नहुन सक्छ ।',
 
 # HTML forms
+'htmlform-invalid-input'       => 'तपाईको कुनै प्रविष्ठिमा सही छैनन्',
+'htmlform-select-badoption'    => 'तपाईले खुलाउनु भएको मान मान्य विकल्प हैन ।',
+'htmlform-int-invalid'         => 'तपाईले खुलाउनु भएको मान कुनै इन्टिजर हैन ।',
+'htmlform-float-invalid'       => 'तपाईले जनाउनु भएको मान कुनै संख्या हैन ।',
+'htmlform-int-toolow'          => 'तपाईले जनाउनु भएको मान न्युनतम $1 भन्दा कम भयो ।',
+'htmlform-int-toohigh'         => 'तपाईले जनाउनु भएको मान अधिकतम $1 भन्दा बढी भयो ।',
 'htmlform-required'            => 'यसको मूल्य(value) चाहिन्छ',
 'htmlform-submit'              => 'बुझाउने',
 'htmlform-reset'               => 'परिवर्तनहरू परित्याग गर्नुहोस्',
 'htmlform-selectorother-other' => 'अन्य',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 पूरा पाठ खोज समर्थन सहित',
+'sqlite-no-fts'  => '$1 पूरा पाठ खोज समर्थन बिना',
 
 );

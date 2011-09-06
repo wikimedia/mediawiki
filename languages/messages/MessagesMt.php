@@ -2421,7 +2421,6 @@ L-aħħar daħla fir-reġistru tal-imblokki tinsab hawn taħt bħala referenza:'
 'sp-contributions-username'            => 'Indirizz IP jew isem tal-utent:',
 'sp-contributions-toponly'             => 'Uri biss modifiki li huma l-aħħar reviżjonijiet għall-paġna',
 'sp-contributions-submit'              => 'Fittex',
-'sp-contributions-showsizediff'        => 'Uri d-differenza fid-dimensjoni tal-paġna',
 
 # What links here
 'whatlinkshere'            => "Li jwasslu 'l hawn",

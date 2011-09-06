@@ -2555,7 +2555,6 @@ $1',
 'sp-contributions-username'            => 'IP-адреса или корисничко име:',
 'sp-contributions-toponly'             => 'Прикажувај само последни ревизии',
 'sp-contributions-submit'              => 'Пребарај',
-'sp-contributions-showsizediff'        => 'Прикажи разлика во големина на страницата',
 
 # What links here
 'whatlinkshere'            => 'Што води овде',

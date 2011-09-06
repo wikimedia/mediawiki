@@ -527,14 +527,16 @@ Oyinz'okuba nga wamaze okutegeka ekya ddala ekipya oba nga wakasabayo eky'ekisee
 'resetpass-temp-password'   => "Ekyama kyo eky'ekiseerabuseera:",
 
 # Special:PasswordReset
-'passwordreset'            => 'Damu okutegeka ekyama',
-'passwordreset-text'       => "Oba oyagala okufuna 'email' ekujjukiza ebikwata ku akawunti yo, jjuza foomu eno.",
-'passwordreset-legend'     => 'Damu okutegeka ekyama',
-'passwordreset-disabled'   => "Eby'okuddamu okutegeka ebyama biymirizidwa ku wiki eno.",
-'passwordreset-pretext'    => '{{PLURAL:$1||Wandika wo kimu ku ebiri mu lukalala}}',
-'passwordreset-username'   => "Ery'obwa memba:",
-'passwordreset-email'      => "Endagiriro eya 'email':",
-'passwordreset-emailtitle' => "Ebya akawunti ey'oku {{SITENAME}}",
+'passwordreset'              => 'Damu okutegeka ekyama',
+'passwordreset-text'         => "Oba oyagala okufuna 'email' ekujjukiza ebikwata ku akawunti yo, jjuza foomu eno.",
+'passwordreset-legend'       => 'Damu okutegeka ekyama',
+'passwordreset-disabled'     => "Eby'okuddamu okutegeka ebyama biymirizidwa ku wiki eno.",
+'passwordreset-pretext'      => '{{PLURAL:$1||Wandika wo kimu ku ebiri mu lukalala}}',
+'passwordreset-username'     => "Ery'obwa memba:",
+'passwordreset-email'        => "Endagiriro eya 'email':",
+'passwordreset-emailtitle'   => "Ebya akawunti ey'oku {{SITENAME}}",
+'passwordreset-emailelement' => "Ery'obwa memba: $1 <br />
+Ekyama kyo eky'ekiseerabuseera: $2",
 
 # Edit page toolbar
 'bold_sample'     => "Ennukuta z'owandika wano zonna ziba nziggumivu",
@@ -642,14 +644,15 @@ Bino ebiddako bye ebikwata ku nsonga eyo mu lukalala lw'ebifuddeyo mu by'okugaan
 'clearyourcache'                   => "'''Genderera:''' Bw'omala okubaako by'okaza, kiyinza okukwetaagisa okumala<br />
 okukunkumula eggwanika ezzibizi erya kalambulanetti yo olyoke osobole okulaba enkyukakyuka z'okoze.<br />
 <br />
-'''Okukola kino mu ez'ekika kya Mozilla, Firefox ne Safari:''' Nyweza eppeesa erya ''Shift'' onyige ne ku kabonero<br />
-aka ''Reload'', oba nyigira okumu amapeesa aga ''Ctrl'' ne ''F5'' oba aga ''Ctrl'' ne ''R'' (''Command'' ne ''R'' ku kompyuta eya Mac/Apple);<br />
+*Okukola kino mu ez'ekika kya '''Mozilla, Firefox''' ne '''Safari:''' Nyweza eppeesa erya ''Shift'' onyige ne ku kabonero aka ''Reload'', oba nyigira okumu amapeesa aga ''Ctrl'' ne ''F5'' oba aga ''Ctrl'' ne ''R'' (''Command'' ne ''R'' ku kompyuta ey'ekika kya Mac/Apple);<br />
 <br />
-'''Okukikolera mu ey'ekika kya Konqueror:''' Nyiga ku kabonero aka ''Reload'' oba nyiga eppeesa erya ''F5'';<br />
+*Okukikolera mu ey'ekika kya '''Google Chrome:''' Nyigira okumu amapeesa aga ''Ctrl, Shift'' ne ''R'' (''Command, Shift'' ne ''R'' ku kompyuta ey'ekika kya Mac/Apple);<br />
 <br />
-'''Mu ey'ekika kya Opera:''' Genda mu ''Tools → Preferences'' gy'onosangira ebikola omulimu ogwo;<br />
+*Okukikolera mu ey'ekika kya '''Konqueror:''' Nyiga ku kabonero aka ''Reload'' oba nyiga eppeesa erya ''F5'';<br />
 <br />
-'''Ate mu Internet Explorer:''' Nyewza erya ''Ctrl'' nga bw'onyiga akabonero aka ''Refresh'', oba nyigira okumu aga ''Ctrl'' ne ''F5''.",
+*Mu ey'ekika kya '''Opera:''' Genda mu ''Tools → Preferences'' gy'onosangira ebikola omulimu ogwo;<br />
+<br />
+*Ate mu '''Internet Explorer:''' Nyewza erya ''Ctrl'' nga bw'onyiga akabonero aka ''Refresh'', oba nyigira okumu aga ''Ctrl'' ne ''F5''.",
 'usercssyoucanpreview'             => "'''Amagezi:''' Bw'onyiga akabonero aka \"{{int:showpreview}}\" osobola okulozako enfaanana ya CSS gw'otegese nga tosoose okugikaza.",
 'userjsyoucanpreview'              => "'''Amagezi:''' Nyiga ku kabonero aka \"{{int:showpreview}}\" osobole okulozako enkola ya JavaScript gw'otegese nga tosoose okumukaza.",
 'usercsspreview'                   => "'''Jukira nti CSS gw'otegese omulozakobulozi.'''<br />
@@ -813,48 +816,55 @@ oba ku gano agali ku lupapula luno.<br />
 'editundo'                => 'julula enkyukakyuka',
 
 # Search results
-'searchresults'             => 'Noonyeza mu bizuulidwa',
-'searchresults-title'       => 'Ebizuulidwa ku "$1"',
-'searchresulttext'          => "Okumanya ebisingawo ku konoonya bintu ku {{SITENAME}}, kebera ku '[[{{MediaWiki:Helppage}}|{{int:help}}]]'.",
-'searchsubtitle'            => 'Onoonyezza \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|empapula zonna ezitandika ne "$1"]]{{int:pipe-separator}}
+'searchresults'                  => 'Noonyeza mu bizuulidwa',
+'searchresults-title'            => 'Ebizuulidwa ku "$1"',
+'searchresulttext'               => "Okumanya ebisingawo ku konoonya bintu ku {{SITENAME}}, kebera ku '[[{{MediaWiki:Helppage}}|{{int:help}}]]'.",
+'searchsubtitle'                 => 'Onoonyezza \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|empapula zonna ezitandika ne "$1"]]{{int:pipe-separator}}
 [[Special:WhatLinksHere/$1|empapula zonna ezikuggusa ku "$1"]])',
-'searchsubtitleinvalid'     => "Onoonyezza '''$1'''",
-'toomanymatches'            => "Ebikwataganya by'onoonyezesazza biyitiridde obungi. Ky'onoonyezesa kikyusemu",
-'titlematches'              => 'Empapula ezirina emitwe egyefaananyiriza guno',
-'notitlematches'            => 'Tewali mpapula zirina mutwe guno',
-'textmatches'               => "Empapula eziriko ebigambo by'onoonyezesezza",
-'notextmatches'             => 'Tewali mpapula ziriko bigambo bino',
-'prevn'                     => '{{PLURAL:$1|$1}} ezikulembedde zino',
-'nextn'                     => '{{PLURAL:$1|$1}} eziddako',
-'prevn-title'               => '{{PLURAL:$1|Ekizuulidwa $1 ekikulembera|Ebizuulidwa $1 ebikulembera}}',
-'nextn-title'               => '{{PLURAL:$1|Ekizuulidwa $1 ekiddako|Ebizuulidwa $1 ebiddako}}',
-'shown-title'               => 'Ndaga {{PLURAL:$1|ekizuulidwa|ebizuulidwa}} $1 ku buli lupapula',
-'viewprevnext'              => 'Laga ($1 {{int:pipe-separator}} $2) ($3).',
-'searchmenu-legend'         => 'Kyusamu ennoonya',
-'searchmenu-exists'         => "'''Olupapula \"[[:\$1]]\" gyeruli ku wiki eno.'''",
-'searchmenu-new'            => "'''Oba oyagala, olupapula \"[[:\$1]]\" gwe osobola okulukolawo ku wiki eno.'''",
-'searchmenu-new-nocreate'   => '"$1" tekikkirizibwa okuba linnya lya lupapula, oba gwe tolina buyinza bwa kulukolawo.',
-'searchhelp-url'            => 'Help:Endagiriro',
-'searchmenu-prefix'         => '[[Special:PrefixIndex/$1|Kebera mu mpapula eziriko akatandikwa kano]]',
-'searchprofile-articles'    => "Empapula ez'ensonga",
-'searchprofile-project'     => "Empapula eziriko obuyambi n'eza Kawefube",
-'searchprofile-images'      => "Mediya ey'ekintabuli - Bifaananyi, Vidiyo n'ebiWulirizibwa",
-'search-result-size'        => '$1 ({{PLURAL:$2|kigambo 1 | bigambo $2}})',
-'search-redirect'           => "(olupapula '$1' lukuggusiza wano)",
-'search-section'            => '(ekitundu ekya $1)',
-'search-suggest'            => 'Obadde onoonya $1 ?',
-'search-interwiki-caption'  => "Pulojekiti ezikolagana n'eno",
-'search-interwiki-default'  => 'ebizuulidwa ku $1:',
-'search-interwiki-more'     => '(ebikyaliyo)',
-'search-mwsuggest-enabled'  => 'mpeeraako amagezi',
-'search-mwsuggest-disabled' => "sisitemu ereme okuteebereza ky'onoonya",
-'nonefound'                 => "'''Wekkaanye''': Okunoonya kuno kukoma mu makuŋaanyizo amalondemu okugyako nga okulagidde okweyonera awalala.
+'searchsubtitleinvalid'          => "Onoonyezza '''$1'''",
+'toomanymatches'                 => "Ebikwataganya by'onoonyezesazza biyitiridde obungi. Ky'onoonyezesa kikyusemu",
+'titlematches'                   => 'Empapula ezirina emitwe egyefaananyiriza guno',
+'notitlematches'                 => 'Tewali mpapula zirina mutwe guno',
+'textmatches'                    => "Empapula eziriko ebigambo by'onoonyezesezza",
+'notextmatches'                  => 'Tewali mpapula ziriko bigambo bino',
+'prevn'                          => '{{PLURAL:$1|$1}} ezikulembedde zino',
+'nextn'                          => '{{PLURAL:$1|$1}} eziddako',
+'prevn-title'                    => '{{PLURAL:$1|Ekizuulidwa $1 ekikulembera|Ebizuulidwa $1 ebikulembera}}',
+'nextn-title'                    => '{{PLURAL:$1|Ekizuulidwa $1 ekiddako|Ebizuulidwa $1 ebiddako}}',
+'shown-title'                    => 'Ndaga {{PLURAL:$1|ekizuulidwa|ebizuulidwa}} $1 ku buli lupapula',
+'viewprevnext'                   => 'Laga ($1 {{int:pipe-separator}} $2) ($3).',
+'searchmenu-legend'              => 'Kyusamu ennoonya',
+'searchmenu-exists'              => "'''Olupapula \"[[:\$1]]\" gyeruli ku wiki eno.'''",
+'searchmenu-new'                 => "'''Oba oyagala, olupapula \"[[:\$1]]\" gwe osobola okulukolawo ku wiki eno.'''",
+'searchmenu-new-nocreate'        => '"$1" tekikkirizibwa okuba linnya lya lupapula, oba gwe tolina buyinza bwa kulukolawo.',
+'searchhelp-url'                 => 'Help:Endagiriro',
+'searchmenu-prefix'              => '[[Special:PrefixIndex/$1|Kebera mu mpapula eziriko akatandikwa kano]]',
+'searchprofile-articles'         => "Empapula ez'ensonga",
+'searchprofile-project'          => "Empapula eziriko obuyambi n'eza Kawefube",
+'searchprofile-images'           => "Mediya ey'ekintabuli - Bifaananyi, Vidiyo n'ebiWulirizibwa",
+'searchprofile-everything'       => 'Wonna',
+'searchprofile-articles-tooltip' => 'Noonyeza mu $1',
+'searchprofile-project-tooltip'  => 'Noonyeza mu $1',
+'searchprofile-images-tooltip'   => 'Noonya fayiro',
+'search-result-size'             => '$1 ({{PLURAL:$2|kigambo 1 | bigambo $2}})',
+'search-redirect'                => "(olupapula '$1' lukuggusiza wano)",
+'search-section'                 => '(ekitundu ekya $1)',
+'search-suggest'                 => 'Obadde onoonya $1 ?',
+'search-interwiki-caption'       => "Pulojekiti ezikolagana n'eno",
+'search-interwiki-default'       => 'ebizuulidwa ku $1:',
+'search-interwiki-more'          => '(ebikyaliyo)',
+'search-mwsuggest-enabled'       => 'mpeeraako amagezi',
+'search-mwsuggest-disabled'      => "sisitemu ereme okuteebereza ky'onoonya",
+'searchall'                      => '',
+'nonefound'                      => "'''Wekkaanye''': Okunoonya kuno kukoma mu makuŋaanyizo amalondemu okugyako nga okulagidde okweyonera awalala.
 W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipediya yonna. Bw'obanga olina ekkuŋaanyizo limu lyokka lyoyagala okunoonyezamu, soosawo erinnya lyalyo w'owandikira by'onoonya.",
-'powersearch'               => 'Noonya mu ngeri esunsula',
-'powersearch-legend'        => 'Noonya mu ngeri esunsula',
-'powersearch-ns'            => 'Noonyeza mu makuŋaaniro gano:',
-'powersearch-redir'         => "Laga n'empapula ezikutwalabutwazi ku zinnaazo",
-'powersearch-field'         => 'Nnoonyeza',
+'powersearch'                    => 'Noonya mu ngeri esunsula',
+'powersearch-legend'             => 'Noonya mu ngeri esunsula',
+'powersearch-ns'                 => 'Noonyeza mu makuŋaaniro gano:',
+'powersearch-redir'              => "Laga n'empapula ezikutwalabutwazi ku zinnaazo",
+'powersearch-field'              => 'Nnoonyeza',
+'powersearch-togglelabel'        => 'Londa:',
+'powersearch-toggleall'          => 'Gonna',
 
 # Preferences page
 'preferences'               => 'Enteekateeka yange',
@@ -872,7 +882,7 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 'savedprefs'                => 'Enteekateeka yo ekazidwa.',
 'timezonelegend'            => 'Ssaawa za mu:',
 'localtime'                 => "Ssaawa za w'oli:",
-'timezoneuseserverdefault'  => 'Kozesa ssaawa sistemu ze yerondera',
+'timezoneuseserverdefault'  => "Kozesa ssaawa wiki eno z'ekozesa ($1)",
 'timezoneuseoffset'         => 'Ndala (tegeka enjawulo mu budde)',
 'timezoneoffset'            => 'Njawulo mu budde¹:',
 'servertime'                => 'Ssaawa ya sisitemu:',

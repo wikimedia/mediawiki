@@ -2674,7 +2674,6 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 {{Identical/IP address or username}}',
 'sp-contributions-toponly'             => '"top revision" means the "latest revision"',
 'sp-contributions-submit'              => '{{Identical|Search}}',
-'sp-contributions-showsizediff'        => 'In [[Special:Contributions/McDutchie|Special:Contributions]], this is a label for a checkbox that toggles the display of how much the size has changed in each of the listed page edits.',
 
 # What links here
 'whatlinkshere'            => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].',
@@ -2970,6 +2969,10 @@ Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki 
 'import-upload'            => 'Used on [[Special:Import]].
 
 Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
+'import-error-edit'        => 'Import error message displayed when importing user has no edit rights for a page. Parameters:
+* $1 is a page name.',
+'import-error-create'      => 'Import error message displayed when importing user has no create rights for a page. Parameters:
+* $1 is a page name.',
 
 # Import log
 'importlogpage'          => '',

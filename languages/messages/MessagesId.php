@@ -16,6 +16,7 @@
  * @author Irwangatot
  * @author IvanLanin
  * @author Iwan Novirion
+ * @author J Subhi
  * @author Kenrick95
  * @author McDutchie
  * @author Meursault2004
@@ -2465,7 +2466,6 @@ Catatan log pemblokiran terakhir tersedia di bawah ini sebagai rujukan:',
 'sp-contributions-username'            => 'Alamat IP atau nama pengguna:',
 'sp-contributions-toponly'             => 'Tampilkan hanya revisi teratas',
 'sp-contributions-submit'              => 'Cari',
-'sp-contributions-showsizediff'        => 'Tampilkan beda dalam ukuran halaman',
 
 # What links here
 'whatlinkshere'            => 'Pranala balik',
@@ -3120,7 +3120,7 @@ Data lain akan disembunyikan secara bawaan.
 'exif-exposuremode'                => 'Mode pajanan',
 'exif-whitebalance'                => 'Keseimbangan putih',
 'exif-digitalzoomratio'            => 'Rasio pembesaran digital',
-'exif-focallengthin35mmfilm'       => 'Panjang fokus pada fil 35 mm',
+'exif-focallengthin35mmfilm'       => 'Panjang fokus pada film 35 mm',
 'exif-scenecapturetype'            => 'Tipe penangkapan',
 'exif-gaincontrol'                 => 'Kontrol pemandangan',
 'exif-contrast'                    => 'Kontras',

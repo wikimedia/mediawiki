@@ -2465,7 +2465,6 @@ Den siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:',
 'sp-contributions-username'            => 'IP-adresse eller brukernavn:',
 'sp-contributions-toponly'             => 'Vis kun endringer som er gjeldende revisjoner',
 'sp-contributions-submit'              => 'Søk',
-'sp-contributions-showsizediff'        => 'Vis forskjellen i sidestørrelse',
 
 # What links here
 'whatlinkshere'            => 'Lenker hit',

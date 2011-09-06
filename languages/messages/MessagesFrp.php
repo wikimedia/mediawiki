@@ -1450,7 +1450,7 @@ Cen pôt pas étre dèfêt.',
 'prefs-registration'            => 'Dâta d’enregistrament :',
 'yourrealname'                  => 'Veré nom :',
 'yourlanguage'                  => 'Lengoua de l’entèrface :',
-'yourvariant'                   => 'Varianta de lengoua :',
+'yourvariant'                   => 'Varianta :',
 'yournick'                      => 'Signatura por les discussions :',
 'prefs-help-signature'          => 'Los comentèros sur les pâges de discussion dêvont étre signês avouéc « <nowiki>~~~~</nowiki> », que serat convèrti per voutra signatura avouéc la dâta.',
 'badsig'                        => 'Signatura bruta fôssa.
@@ -1803,9 +1803,9 @@ Lo tèlèchargement de fichiérs Java est pas ôtorisâ, perce que pôvont entr�
 Vos devriâd controlar lo $1 devant que lo tornar tèlèchargiér.',
 'filename-bad-prefix'         => "Lo nom du fichiér que vos tèlèchargiéd comence per '''« $1 »''' qu’est tipicament un nom balyê ôtomaticament per los aparèlys-fotô numericos.
 Volyéd chouèsir un nom de fichiér dèscriptif.",
-'filename-prefix-blacklist'   => '  #<!-- lèssiéd ceta legne justo d’ense --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- lèssiéd ceta legne justo d’ense --> <pre>
 # La sintaxa est ceta :
-#  * Tot tèxto que siut un « # » est considèrâ coment un comentèro.
+#  * Tot tèxto que siut un « # » tant qu’a la fin de la legne est un comentèro.
 #  * Tota legne pas voueda est un prèfixo tipico de nom de fichiér balyê ôtomaticament per los aparèlys-fotô numericos :
 CIMG # Casio
 DSC_ # Nikon
@@ -1816,7 +1816,7 @@ IMG # g·ènèrico
 JD # Jenoptik
 MGP # Pentax
 PICT # de totes sôrtes
-  #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
+ #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
 'upload-success-subj'         => 'Tèlèchargement fêt avouéc reusséta',
 'upload-success-msg'          => 'Voutron tèlèchargement dês [$2] at reussi. Il est disponiblo ique : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problèmo de tèlèchargement',
@@ -2549,7 +2549,6 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'sp-contributions-username'            => 'Adrèce IP ou ben nom d’utilisator :',
 'sp-contributions-toponly'             => 'Montrar ren que les novèles vèrsions',
 'sp-contributions-submit'              => 'Rechèrchiér',
-'sp-contributions-showsizediff'        => 'Fâre vêre la difèrence dens la talye de la pâge',
 
 # What links here
 'whatlinkshere'            => 'Pâges liyês',
@@ -2991,30 +2990,39 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 'tooltip-summary'                 => 'Buchiéd un côrt rèsumâ',
 
 # Stylesheets
-'common.css'      => '/* Lo code CSS betâ ique serat aplicâ a tôs los habelyâjos. */',
-'standard.css'    => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Estandârd ». */',
-'nostalgia.css'   => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Cafârd ». */',
-'cologneblue.css' => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Blu de Cologne ». */',
-'monobook.css'    => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonoBook ». */',
-'myskin.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonHabelyâjo ». */',
-'chick.css'       => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Pugin ». */',
-'simple.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Simplo ». */',
-'modern.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Modèrno ». */',
-'vector.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Vèctor ». */',
-'print.css'       => '/* Lo code CSS betâ ique afècterat les emprèssions. */',
-'handheld.css'    => '/* Lo code CSS betâ ique afècterat los aparèlys mobilos d’aprés l’habelyâjo configurâ dedens « $wgHandheldStyle ». */',
+'common.css'              => '/* Lo code CSS betâ ique serat aplicâ a tôs los habelyâjos. */',
+'standard.css'            => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Estandârd ». */',
+'nostalgia.css'           => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Cafârd ». */',
+'cologneblue.css'         => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Blu de Cologne ». */',
+'monobook.css'            => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonoBook ». */',
+'myskin.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonHabelyâjo ». */',
+'chick.css'               => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Pugin ». */',
+'simple.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Simplo ». */',
+'modern.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Modèrno ». */',
+'vector.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Vèctor ». */',
+'print.css'               => '/* Lo code CSS betâ ique afècterat les emprèssions. */',
+'handheld.css'            => '/* Lo code CSS betâ ique afècterat los aparèlys mobilos d’aprés l’habelyâjo configurâ dedens « $wgHandheldStyle ». */',
+'noscript.css'            => '/* Lo code CSS betâ ique afècterat los utilisators qu’ont dèsactivâ lo code JavaScript. */',
+'group-autoconfirmed.css' => '/* Lo code CSS betâ ique afècterat ren que los utilisators encartâs. */',
+'group-bot.css'           => '/* Lo code CSS betâ ique afècterat ren que los bots. */',
+'group-sysop.css'         => '/* Lo code CSS betâ ique afècterat ren que los administrators. */',
+'group-bureaucrat.css'    => '/* Lo code CSS betâ ique afècterat ren que los grata-papiérs. */',
 
 # Scripts
-'common.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc châque pâge accèdâ per un utilisator quint que seye. */',
-'standard.js'    => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Estandârd ». */',
-'nostalgia.js'   => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Cafârd ». */',
-'cologneblue.js' => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Blu de Cologne ». */',
-'monobook.js'    => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « MonoBook ». */',
-'myskin.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « MonHabelyâjo ». */',
-'chick.js'       => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Pugin ». */',
-'simple.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Simplo ». */',
-'modern.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Modèrno ». */',
-'vector.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Vèctor ». */',
+'common.js'              => '/* Tot code JavaScript betâ ique serat chargiê per tôs los utilisators avouéc châque chargement de pâge. */',
+'standard.js'            => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Estandârd ». */',
+'nostalgia.js'           => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Cafârd ». */',
+'cologneblue.js'         => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Blu de Cologne ». */',
+'monobook.js'            => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « MonoBook ». */',
+'myskin.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « MonHabelyâjo ». */',
+'chick.js'               => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Pugin ». */',
+'simple.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Simplo ». */',
+'modern.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Modèrno ». */',
+'vector.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Vèctor ». */',
+'group-autoconfirmed.js' => '/* Tot code JavaScript betâ ique serat chargiê per ren que los utilisators encartâs. */',
+'group-bot.js'           => '/* Tot code JavaScript betâ ique serat chargiê per ren que los bots. */',
+'group-sysop.js'         => '/* Tot code JavaScript betâ ique serat chargiê per ren que los administrators. */',
+'group-bureaucrat.js'    => '/* Tot code JavaScript betâ ique serat chargiê per ren que los grata-papiérs. */',
 
 # Metadata
 'notacceptable' => 'Lo sèrvor vouiqui pôt pas balyér les balyês dens un format que voutron cliant est capâblo de liére.',
@@ -3131,6 +3139,9 @@ Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.",
 'bydate'                => 'per dâta',
 'sp-newimages-showfrom' => 'Fâre vêre los novéls fichiérs dês lo $1 a $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'days-abbrev' => 'j',
+
 # Bad image list
 'bad_image_list' => 'Lo format est ceti :
 
@@ -3159,6 +3170,7 @@ Los ôtros champs seront cachiês per dèfôt.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
+'metadata-langitem' => "'''$2 :''' $1",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largior',
@@ -3343,6 +3355,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-compression-2' => 'CCITT tropa 3 longior du codâjo Huffman changiê de dimension 1',
 'exif-compression-3' => 'CCITT tropa 3 codâjo du faxe',
 'exif-compression-4' => 'CCITT tropa 4 codâjo du faxe',
+'exif-compression-6' => 'JPEG (viely)',
 
 'exif-copyrighted-true'  => 'Somês a drêt d’ôtor',
 'exif-copyrighted-false' => 'Domêno publico',
@@ -3824,11 +3837,11 @@ Vos pouede asse-ben utilisar l’[[Special:EditWatchlist|èditor normal]].',
 'version-license'               => 'Licence',
 'version-poweredby-credits'     => "Ceti vouiqui fonccione grâce a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'ôtros',
-'version-license-info'          => 'MediaWiki est una programeria abada ; cen vôt dére que vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence Publica G·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
+'version-license-info'          => 'MediaWiki est una programeria abada ; vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence publica g·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
 
-MediaWiki est distribuâ dens l’èsperance que serat utila, mas SEN GINS DE GARANTIA ; sen mémo la garantia emplicita de COMÈRCIALISACION ou ben d’ADAPTACION A UN USÂJO PARTICULIÉR. Vêde la Licence Publica G·ènèrala GNU por més de dètalys.
+MediaWiki est distribuâ dens l’èsperance que serat utila, mas SEN GINS DE GARANTIA ; sen mémo la garantia emplicita de COMÈRCIALISACION ou ben d’ADAPTACION A UN USÂJO PARTICULIÉR. Vêde la Licence publica g·ènèrala GNU por més de dètalys.
 
-Vos devriâd avêr reçu una [{{SERVER}}{{SCRIPTPATH}}/COPYING copia de la Licence Publica G·ènèrala GNU] avouéc cél programo, ôtrament, ècrîde a la « Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA » ou ben [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liéséd-la en legne].',
+Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la Licence publica g·ènèrala GNU] avouéc ceti programo ; ôtrament, ècrîde a la « Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA » ou ben [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liéséd-la en legne].',
 'version-software'              => 'Programeries enstalâs',
 'version-software-product'      => 'Marchandie',
 'version-software-version'      => 'Vèrsion',

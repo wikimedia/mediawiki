@@ -515,7 +515,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Қателік',
 'returnto'          => '$1 дегенге қайта келу.',
-'tagline'           => '{{GRAMMAR:ablative|{{SITENAME}}}}',
+'tagline'           => '{{SITENAME}} жобасынан',
 'help'              => 'Анықтама',
 'search'            => 'Іздеу',
 'searchbutton'      => 'Ізде',

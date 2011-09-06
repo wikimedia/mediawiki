@@ -2400,7 +2400,6 @@ Alla on viimeisin estolokin tapahtuma:',
 'sp-contributions-username'            => 'IP-osoite tai käyttäjätunnus',
 'sp-contributions-toponly'             => 'Näytä vain muokkaukset, jotka ovat viimeisimpiä versioita',
 'sp-contributions-submit'              => 'Hae',
-'sp-contributions-showsizediff'        => 'Näytä ero sivun koossa',
 
 # What links here
 'whatlinkshere'            => 'Tänne viittaavat sivut',

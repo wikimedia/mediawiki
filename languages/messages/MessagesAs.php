@@ -2315,7 +2315,6 @@ $1',
 'sp-contributions-username'            => 'আই.পি. ঠিকনা অথবা ব্যৱহাৰকৰ্তাৰ নাম:',
 'sp-contributions-toponly'             => 'কেৱল সাম্প্ৰতিক সংস্কৰণৰ অন্তৰ্গত সম্পাদনাসমূহ দেখুৱাওক',
 'sp-contributions-submit'              => 'সন্ধান কৰক',
-'sp-contributions-showsizediff'        => 'পৃষ্ঠাৰ আকাৰৰ ভিন্নতা দেখুৱাওক',
 
 # What links here
 'whatlinkshere'            => 'এই পৃষ্ঠা ব্যৱহাৰ কৰিছে...',

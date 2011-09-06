@@ -1769,7 +1769,6 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'sp-contributions-search'        => 'Qelleb ĝla ċi mosahamaṫ',
 'sp-contributions-username'      => 'Ĝonwan IP ola smiyṫ l-mosṫeĥdim',
 'sp-contributions-submit'        => 'Qelleb',
-'sp-contributions-showsizediff'  => 'wrri l-fṛq f-ḫajm d-ṣṣfḫa',
 
 # What links here
 'whatlinkshere'            => 'Ṣefḫaṫ mlaqyin',

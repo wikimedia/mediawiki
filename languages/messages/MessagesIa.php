@@ -2744,6 +2744,8 @@ Salveguarda lo in tu computator e incarga lo hic.',
 'import-upload'              => 'Incargar datos XML',
 'import-token-mismatch'      => 'Perdita del datos del session. Per favor reprova.',
 'import-invalid-interwiki'   => 'Non pote importar ab le wiki specificate.',
+'import-error-edit'          => 'Le pagina "$1" non es importate proque tu non ha le permission de modificar lo.',
+'import-error-create'        => 'Le pagina "$1" non es importate proque tu non ha le permission de crear lo.',
 
 # Import log
 'importlogpage'                    => 'Registro de importationes',

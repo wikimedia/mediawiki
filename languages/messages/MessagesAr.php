@@ -2676,7 +2676,6 @@ $1',
 'sp-contributions-username'            => 'عنوان أيبي أو اسم مستخدم:',
 'sp-contributions-toponly'             => 'أظهر أعلى المراجعات فقط',
 'sp-contributions-submit'              => 'ابحث',
-'sp-contributions-showsizediff'        => 'عرض الفرق في حجم الصفحة',
 
 # What links here
 'whatlinkshere'            => 'ماذا يصل هنا',

@@ -2477,7 +2477,6 @@ $1',
 'sp-contributions-username'            => 'IP-адрес или имя участника:',
 'sp-contributions-toponly'             => 'Показывать только правки, являющиеся последними версиями',
 'sp-contributions-submit'              => 'Найти',
-'sp-contributions-showsizediff'        => 'Показывать изменение размера страницы',
 
 # What links here
 'whatlinkshere'            => 'Ссылки сюда',

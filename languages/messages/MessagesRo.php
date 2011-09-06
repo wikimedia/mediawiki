@@ -2487,7 +2487,6 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'sp-contributions-username'            => 'Adresă IP sau nume de utilizator:',
 'sp-contributions-toponly'             => 'Afișează numai versiunile recente',
 'sp-contributions-submit'              => 'Caută',
-'sp-contributions-showsizediff'        => 'Afișează diferența dintre mărimea inițială a paginii și mărimea după efectuarea modificării',
 
 # What links here
 'whatlinkshere'            => 'Ce trimite aici',

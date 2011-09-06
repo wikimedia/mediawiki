@@ -2594,7 +2594,6 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
 'sp-contributions-toponly'             => 'Alleen nieuwste versies weergeven',
 'sp-contributions-submit'              => 'Bekijken',
-'sp-contributions-showsizediff'        => 'Verschil in paginagrootte weergeven',
 
 # What links here
 'whatlinkshere'            => 'Verwijzingen naar deze pagina',
@@ -2956,6 +2955,8 @@ De tijdelijke map is niet aanwezig.',
 'import-upload'              => 'XML-gegevens uploaden',
 'import-token-mismatch'      => 'De sessiegegevens zijn verloren gegaan. Probeer het opnieuw.',
 'import-invalid-interwiki'   => 'Het is niet mogelijk van de aangegeven wiki te importeren.',
+'import-error-edit'          => 'De pagina "$1" is niet geïmporteerd omdat u niet de rechten hebt om die te bewerken.',
+'import-error-create'        => 'De pagina "$1" is niet geïmporteerd omdat u niet de rechten hebt om die aan te maken.',
 
 # Import log
 'importlogpage'                    => 'Importlogboek',

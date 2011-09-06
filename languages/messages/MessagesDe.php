@@ -2876,6 +2876,8 @@ Diese auf dem lokalen Rechner speichern und danach hier hochladen.',
 'import-upload'              => 'XML-Daten importieren',
 'import-token-mismatch'      => 'Verlust der Sessiondaten. Bitte versuche es erneut.',
 'import-invalid-interwiki'   => 'Aus dem angegebenen Wiki ist kein Import möglich.',
+'import-error-edit'          => 'Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu bearbeiten.',
+'import-error-create'        => 'Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu erstellen.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbuch',

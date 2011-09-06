@@ -296,6 +296,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'ଫଣ୍ଟ ଶୈଳୀକୁ ବଦଳାଇବେ:',
 'editfont-default'   => 'ବ୍ରାଉଜରରେ ଅଗରୁ ଥିବା ସୁବିଧା',
+'editfont-monospace' => 'ମନୋସ୍ପେସ ଥିବା ଫଣ୍ଟ',
 'editfont-sansserif' => 'ସାନସ-ସେରିଫ ଫଣ୍ଟ',
 'editfont-serif'     => 'ସେରିଫ ଫଣ୍ଟ',
 
@@ -352,18 +353,23 @@ $messages = array(
 'dec'           => 'ଡିସେଁବର',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Category|ଶ୍ରେଣୀସବୁ}}',
-'category_header'          => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
-'subcategories'            => 'ସାନ ଶ୍ରେଣୀସବୁ',
-'category-media-header'    => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
-'category-empty'           => "''ଏହି ଶ୍ରେଣୀ ଭିତରେ କିଛି ପୃଷ୍ଠା ବା ମାଧ୍ୟମ ନାହିଁ ।''",
-'hidden-categories'        => '{{PLURAL:$1|Hidden category|ଲୁଚିଥିବା ଶ୍ରେଣୀ}}',
-'hidden-category-category' => 'ଲୁଚିରହିଥିବା ଶ୍ରେଣୀ',
-'category-subcat-count'    => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀଟିରେ କେବଳ ତଳେଥିବା ସାନ ଶ୍ରେଣୀଗୁଡିକ ଅଛନ୍ତି । |ଏହି ଶ୍ରେଣୀଟିରେ ସର୍ବମୋଟ $2 ରୁ ତଳେଥିବା ଏହି {{PLURAL:$1|subcategory|$1 ଶ୍ରେଣୀଗୁଡିକ}} ଅଛନ୍ତି  । }}',
-'category-article-count'   => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀରେ ତଳେଥିବା ପୃଷ୍ଠାସବୁ ଅଛି ।|ମୋଟ $2 ରୁ ଏହି ଶ୍ରେଣୀ ଭିତରେ {{PLURAL:$1|ଟି ପୃଷ୍ଠା|$1ଟି ପୃଷ୍ଠା}} ଅଛି ।}}',
-'category-file-count'      => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀରେ କେବଳ ତଳେଥିବା ଫାଇଲ ଗୋଟି ଅଛି । | ମୋଟ $2 ରୁ ଏହି ଶ୍ରେଣୀ ଭିତରେ {{PLURAL:$1|ଟି ପୃଷ୍ଠା|$1ଟି ଫାଇଲ}} ଅଛି ।}}',
-'listingcontinuesabbrev'   => 'ଆହୁରି ଅଛି..',
-'noindex-category'         => 'ସୂଚୀହୀନ ପୃଷ୍ଠାସବୁ',
+'pagecategories'                 => '{{PLURAL:$1|Category|ଶ୍ରେଣୀସବୁ}}',
+'category_header'                => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
+'subcategories'                  => 'ସାନ ଶ୍ରେଣୀସବୁ',
+'category-media-header'          => '"$1" ବିଭାଗରେ ଥିବା ଫରଦଗୁଡ଼ିକ',
+'category-empty'                 => "''ଏହି ଶ୍ରେଣୀ ଭିତରେ କିଛି ପୃଷ୍ଠା ବା ମାଧ୍ୟମ ନାହିଁ ।''",
+'hidden-categories'              => '{{PLURAL:$1|Hidden category|ଲୁଚିଥିବା ଶ୍ରେଣୀ}}',
+'hidden-category-category'       => 'ଲୁଚିରହିଥିବା ଶ୍ରେଣୀ',
+'category-subcat-count'          => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀଟିରେ କେବଳ ତଳେଥିବା ସାନ ଶ୍ରେଣୀଗୁଡିକ ଅଛନ୍ତି । |ଏହି ଶ୍ରେଣୀଟିରେ ସର୍ବମୋଟ $2 ରୁ ତଳେଥିବା ଏହି {{PLURAL:$1|subcategory|$1 ଶ୍ରେଣୀଗୁଡିକ}} ଅଛନ୍ତି  । }}',
+'category-subcat-count-limited'  => 'ଏହି ଶ୍ରେଣୀ ଅଧୀନରେ ତଳଲିଖିତ {{PLURAL:$1|ସାନ ଶ୍ରେଣୀ|$1 ସାନ ଶ୍ରେଣୀସମୂହ}} ରହିଅଛନ୍ତି ।',
+'category-article-count'         => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀରେ ତଳେଥିବା ପୃଷ୍ଠାସବୁ ଅଛି ।|ମୋଟ $2 ରୁ ଏହି ଶ୍ରେଣୀ ଭିତରେ {{PLURAL:$1|ଟି ପୃଷ୍ଠା|$1ଟି ପୃଷ୍ଠା}} ଅଛି ।}}',
+'category-article-count-limited' => 'ତଲଲିଖିତ {{PLURAL:$1|ପୃଷ୍ଠାଟି|$1ଟି ପୃଷ୍ଠା}} ଏହି ଶ୍ରେଣୀରେ ରହିଅଛି ।',
+'category-file-count'            => '{{PLURAL:$2|ଏହି ଶ୍ରେଣୀରେ କେବଳ ତଳେଥିବା ଫାଇଲ ଗୋଟି ଅଛି । | ମୋଟ $2 ରୁ ଏହି ଶ୍ରେଣୀ ଭିତରେ {{PLURAL:$1|ଟି ପୃଷ୍ଠା|$1ଟି ଫାଇଲ}} ଅଛି ।}}',
+'category-file-count-limited'    => 'ତଲଲିଖିତ {{PLURAL:$1|ଫାଇଲଟି|$1ଟି ଫାଇଲ}} ଏହି ଶ୍ରେଣୀରେ ରହିଅଛି ।',
+'listingcontinuesabbrev'         => 'ଆହୁରି ଅଛି..',
+'index-category'                 => 'ସୂଚୀଥିବା ପୃଷ୍ଠାସବୁ',
+'noindex-category'               => 'ସୂଚୀହୀନ ପୃଷ୍ଠାସବୁ',
+'broken-file-category'           => 'ଭଙ୍ଗା ଫାଇଲ ଲିଙ୍କ ଥିବା ପୃଷ୍ଠାସମୂହ',
 
 'about'         => 'ବାବଦରେ',
 'article'       => 'ସୂଚୀପତ୍ର',
@@ -385,6 +391,7 @@ $messages = array(
 'qbmyoptions'    => 'ମୋର ଫର୍ଦ',
 'qbspecialpages' => 'ନିଆରା ପୃଷ୍ଠା',
 'faq'            => 'ବାରମ୍ବାର ପଚରାଯାଉଥିବା ପ୍ରଶ୍ନ',
+'faqpage'        => 'Project:ବାରମ୍ବାର ପଚାରାଯାଉଥିବା ପ୍ରଶ୍ନ',
 
 # Vector skin
 'vector-action-addsection'       => 'ଲେଖା ମିଶାଇବା',
@@ -413,6 +420,7 @@ $messages = array(
 'searcharticle'     => 'ଯିବା',
 'history'           => 'ଫାଇଲ ଇତିହାସ',
 'history_short'     => 'ଇତିହାସ',
+'updatedmarker'     => 'ମୋ ଶେଷ ଆସିବା ପରେ ଅପଡେଟ କରାଯାଇଅଛି',
 'printableversion'  => 'ଛପାହୋଇପାରିବା ପୃଷ୍ଠା',
 'permalink'         => 'ସବୁଦିନିଆ ଲିଙ୍କ',
 'print'             => 'ପ୍ରିଣ୍ଟ କରିବା',
@@ -423,19 +431,27 @@ $messages = array(
 'create-this-page'  => 'ଏହି ପୃଷ୍ଠାଟି ତିଆରିବେ',
 'delete'            => 'ଲିଭେଇବେ',
 'deletethispage'    => 'ଏହି ପୃଷ୍ଠାଟି ଲିଭାଇବେ',
+'undelete_short'    => '{{PLURAL:$1|ଗୋଟିଏ ବଦଳ|$1ଟି ବଦଳ}} ଯାହା ଲିଭାସରିଛି ତାହାକୁ ପଛକୁ ଫେରାଇଦେବା',
+'viewdeleted_short' => '{{PLURAL:$1|ଗୋଟିଏ ଲିଭାଯାଇଥିବା ବଦଳ|$1ଟି ଲିଭାଯାଇଥିବା ବଦଳ}} ଦେଖାଇବେ',
 'protect'           => 'କିଳିବେ',
 'protect_change'    => 'ବଦଳାଇବା',
 'protectthispage'   => 'ଏହି ପୃଷ୍ଠାଟିକୁ କିଳିବେ',
+'unprotect'         => 'ସୁରକ୍ଷା ସ୍ତରକୁ ବଦଳାଇବେ',
+'unprotectthispage' => 'ଏହି ପୃଷ୍ଠା ପାଇଁ ସୁରକ୍ଷାର ପ୍ରକାର ବଦଲାଇବେ',
 'newpage'           => 'ନୂଆ ପୃଷ୍ଠା',
 'talkpage'          => 'ପୃଷ୍ଠାକୁ ଆଲୋଚନା କରନ୍ତୁ',
 'talkpagelinktext'  => 'କଥାଭାଷା',
 'specialpage'       => 'ନିଆରା ପୃଷ୍ଠା',
 'personaltools'     => 'ନିଜର ଟୁଲ',
+'postcomment'       => 'ନୂଆ ଭାଗ',
+'articlepage'       => 'ସୂଚୀ ପୃଷ୍ଠାଟି ଦେଖାଇବେ',
 'talk'              => 'ଆଲୋଚନା',
 'views'             => 'ଦେଖା',
-'toolbox'           => 'ଜନ୍ତ୍ର ପେଡ଼ି',
+'toolbox'           => 'ଉପକରଣ',
 'userpage'          => 'ବ୍ୟବହାରକାରୀଙ୍କ ପୃଷ୍ଠା ଦେଖନ୍ତୁ',
+'projectpage'       => 'ପ୍ରକଳ୍ପ ପୃଷ୍ଠାଟି ଦେଖାଇବା',
 'imagepage'         => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
+'mediawikipage'     => 'ମେସେଜ ପୃଷ୍ଠାଟି ଦେଖାଇବେ',
 'templatepage'      => 'ଟେଁପଲେଟ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
 'viewhelppage'      => 'ସହାୟ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
 'categorypage'      => 'ବିଭାଗ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
@@ -444,10 +460,17 @@ $messages = array(
 'redirectedfrom'    => '($1 ରୁ ଲେଉଟି ଆସିଛି)',
 'redirectpagesub'   => 'ଆଉଥରେ ଫେରିବା ପୃଷ୍ଠା',
 'lastmodifiedat'    => 'ଏହି ପୃଷ୍ଠାଟି $1 ତାରିଖ $2 ବେଳେ ବଦଳାଯାଇଥିଲା ।',
+'viewcount'         => 'ଏହି ପୃଷ୍ଠାଟି {{PLURAL:$1|ଥରେ|$1 ଥର}} ଖୋଲାଯାଇଛି ।',
 'protectedpage'     => 'କିଳାଯାଇଥିବା ପୃଷ୍ଠା',
 'jumpto'            => 'ଡେଇଁଯିବେ',
 'jumptonavigation'  => 'ଦିଗବାରେଣିକୁ',
 'jumptosearch'      => 'ଖୋଜିବେ',
+'view-pool-error'   => 'କ୍ଷମା କରିବେ, ସର୍ଭରସବୁ ଏବେ ମନ୍ଦ ହୋଇଯାଇଅଛନ୍ତି ।
+ଅନେକ ସଭ୍ୟ ଏହି ଏକା ପୃଷ୍ଠାଟି ଦେଖିବାକୁ ଚେଷ୍ଟାକରୁଅଛନ୍ତି ।
+ଏହି ପୃଷ୍ଠାକୁ ଆଉଥରେ ଖୋଲିବା ଆଗରୁ ଦୟାକରି କିଛି କ୍ଷଣ ଅପେକ୍ଷା କରନ୍ତୁ ।
+$1',
+'pool-timeout'      => 'କଞ୍ଚି ଖୋଲାଯିବା ପାଇଁ ଅପେକ୍ଷା କରୁକରୁ ସମୟ ସରିଗଲା',
+'pool-queuefull'    => 'ପୁଲ ଧାଡ଼ିଟି ଭରିଯାଇଅଛି',
 'pool-errorunknown' => 'ଅଜଣା ଅସୁବିଧା',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -470,7 +493,13 @@ $messages = array(
 'privacy'              => 'ଗୁମର ନୀତି',
 'privacypage'          => 'Project:ଗୁମର ନୀତି',
 
-'badaccess' => 'ଅନୁମତି ମିଳିବାରେ ଅସୁବିଧା',
+'badaccess'        => 'ଅନୁମତି ମିଳିବାରେ ଅସୁବିଧା',
+'badaccess-group0' => 'ଆପଣ ଅନୁରୋଷ କରିଥିବା ପୃଷ୍ଠାଟିରେ କିଛି କାମ କରିବା ନିମନ୍ତେ ଆପଣଙ୍କୁ ଅନୁମତି ମିଳିନାହିଁ',
+'badaccess-groups' => 'ଆପଣ ଅନୁରୋଧ କରିଥିବା କାମଟି କେବଳ {{PLURAL:$2|ଗୋଠ|ଗୋଠମାନଙ୍କ ଭିତରୁ ଗୋଟିଏ ଗୋଠ}}: $1 ର ସଭ୍ୟମାନଙ୍କ ଭିତରେ ସୀମିତ ।',
+
+'versionrequired'     => 'ମିଡ଼ିଆଉଇକି ର $1 ତମ ସଙ୍କଳନଟି ଲୋଡ଼ା',
+'versionrequiredtext' => 'ଏହି ପୃଷ୍ଠାଟି ବ୍ୟବହାର କରିବା ନିମନ୍ତେ ମିଡ଼ିଆଉଇକିର $1 ତମ ସଙ୍କଳନ ଲୋଡ଼ା ।
+[[Special:Version|ସଙ୍କଳନ ପୃଷ୍ଠାଟି]] ଦେଖନ୍ତୁ ।',
 
 'ok'                      => 'ଠିକ ଅଛି',
 'retrievedfrom'           => '"$1" ରୁ ଅଣାଯାଇଅଛି',
@@ -487,8 +516,14 @@ $messages = array(
 'toc'                     => 'ଭିତର ଚିଜ',
 'showtoc'                 => 'ଦେଖାଇବେ',
 'hidetoc'                 => 'ଲୁଚାଇବେ',
+'collapsible-collapse'    => 'ଚାପିଦେବେ',
 'collapsible-expand'      => 'ବଢ଼ାଇବେ',
+'thisisdeleted'           => '$1 କୁ ଦେଖିବେ ଅବା ପୁନସ୍ଥାପନ କରିବେ?',
 'viewdeleted'             => 'ଦେଖିବା $1?',
+'restorelink'             => '{{PLURAL:$1|ଗୋଟିଏ ଲିଭାଯାଇଥିବା ବଦଳ|$1ଟି ଲିଭାଯାଇଥିବା ବଦଳ}}',
+'feedlinks'               => 'ଫିଡ଼:',
+'feed-invalid'            => 'ଅଚଳ ସବସ୍କ୍ରିପସନ ଫିଡ଼ ପ୍ରକାର ।',
+'feed-unavailable'        => 'ସିଣ୍ଡିକେସନ ଫିଡ଼ସବୁ ମିଳୁନାହିଁ',
 'site-rss-feed'           => '$1 ଆରେସେସ ଫିଡ଼',
 'site-atom-feed'          => '$1 ଆଟମ ଫିଡ଼',
 'page-rss-feed'           => '$1 ଟି ଆରେସେସ ଫିଡ଼',
@@ -509,8 +544,31 @@ $messages = array(
 'nstab-help'      => 'ସାହାଯ୍ୟ ପୃଷ୍ଠା',
 'nstab-category'  => 'ବିଭାଗ',
 
+# Main script and global functions
+'nosuchaction'      => 'ସେହିଭଳି କିଛି କାମ ନାହିଁ',
+'nosuchactiontext'  => 'URL ଟିରେ ଦିଆଯାଇଥିବା କାମଟି ଅଚଳ ଅଟେ ।
+ଆପଣ ବୋଧ ହୁଏ URL ଟି ଭୁଲ ତାଇପ କରିଥିବେ, ଅଥବା ଲିଙ୍କଟି ଭୁଲ ଥିବ ।
+ଏହା ମଧ୍ୟ {{SITENAME}}ରେ ବ୍ୟବହାର କରାଯାଇଥିବା ସଫ୍ଟବେରରେ ଥିବା କିଛି ଭୁଲକୁ ସୂଚାଇପାରେ ।',
+'nosuchspecialpage' => 'ସେହି ଭଳି କିଛି ବି ବିଶେଷ ପୃଷ୍ଠା ନାହିଁ',
+'nospecialpagetext' => '<strong>ଆପଣ ଅଚଳ ବିଶେଷ ପୃଷ୍ଠାଟିଏ ପାଇଁ ଆବେଦନ କରିଅଛନ୍ତି ।</strong>
+
+[[Special:SpecialPages|{{int:specialpages}}]]ରେ ଅନେକ ଗୁଡ଼ିଏ ସଚଳ ସଚଳ ବିଶେଷ ପୃଷ୍ଠା ମିଳିପାରିବ ।',
+
 # General errors
 'error'               => 'ଭୁଲ',
+'databaseerror'       => 'ଡାଟାବେସରେ ଭୁଲ',
+'dberrortext'         => 'ଡାଟାବେସ ପ୍ରଶ୍ନ ଖୋଜା ଭୁଲ ଟିଏ ହୋଇଅଛି ।
+ଏହା ଏହି ସଫ୍ଟବେରରେ ଭୁଲଟିଏକୁ ମଧ୍ୟ ସୂଚାଇପାରେ ।
+ଶେଷ ଥର ଖୋଜାଯାଇଥିବା ଡାଟାବେସ ପ୍ରଶ୍ନ ଖୋଜାଟି ଥିଲା:
+"<tt>$2</tt>" କାମ ଭିତରୁ
+<blockquote><tt>$1</tt></blockquote> ।
+ଡାଟାବେସ ଫେରନ୍ତା ଭୁଲ "<tt>$3: $4</tt>".',
+'dberrortextcl'       => 'ଡାଟାବେସ ପ୍ରଶ୍ନ ଖୋଜା ଭୁଲଟିଏ ହୋଇଅଛି ।
+ଶେଷ ଖୋଜା ଡାଟାବେସ ପ୍ରଶ୍ନଟି ଥିଲା:
+"$1"
+ଯାହା "$2" ଭିତରୁ ନିଆଯାଇଥିଲା ।
+ଡାଟାବେସ ଫେରନ୍ତା ଭୁଲ "$3: $4"',
+'laggedslavemode'     => "'''ଜାଣିରଖନ୍ତୁ:''' ପୃଷ୍ଠାଟିରେ ବୋଧ ହୁଏ ନଗଦ ବଦଳ ନ ଥାଇପାରେ ।",
 'missing-article'     => 'ଡାଟାବେସଟି ଆପଣ ଖୋଜିଥିବା "$1" $2 ଶବ୍ଦଟି ପାଇଲା ନାହିଁ । .
 
 ଯଦି ଆପଣ ଖୋଜିଥିବା ପୃଷ୍ଠାଟି କେହି ଉଡ଼ାଇ ଦେଇଥାଏ ତେବେ ଏମିତି ହୋଇପାରେ ।
@@ -1261,10 +1319,10 @@ $messages = array(
 'tooltip-t-specialpages'          => 'ନିଆରା ପୃଷ୍ଠା ତାଲିକା',
 'tooltip-t-print'                 => 'ଏହି ପୃଷ୍ଠାର ଛପାହୋଇପାରିବା ସଙ୍କଳନ',
 'tooltip-t-permalink'             => 'ବଦଳାଯାଇଥିବା ଏହି ଫରଦଟିର ସ୍ଥାୟୀ ଲିଙ୍କ',
-'tooltip-ca-nstab-main'           => 'ସୂଚୀ ପୃଷ୍ଠାଟି ଦେଖିବା',
+'tooltip-ca-nstab-main'           => 'ସୂଚୀ ପୃଷ୍ଠାଟି ଦେଖାଇବେ',
 'tooltip-ca-nstab-user'           => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
 'tooltip-ca-nstab-special'        => 'ଏଇଟି ଗୋଟିଏ ନିଆରା ପୃଷ୍ଠା, ଆପଣ ଏହାକୁ ବଦଳାଇପାରିବେ ନାହିଁ',
-'tooltip-ca-nstab-project'        => 'ପ୍ରକଳ୍ପ ଫରଦଟି ଦେଖିବା',
+'tooltip-ca-nstab-project'        => 'ପ୍ରକଳ୍ପ ପୃଷ୍ଠାଟି ଦେଖାଇବେ',
 'tooltip-ca-nstab-image'          => 'ଫାଇଲ ପୃଷ୍ଠାଗୁଡ଼ିକ ଦେଖନ୍ତୁ',
 'tooltip-ca-nstab-template'       => 'ଟେମ୍ପଲେଟଟି ଦେଖିବା',
 'tooltip-ca-nstab-category'       => 'ଶ୍ରେଣୀ ପୃଷ୍ଠାଟିକୁ ଦେଖାଇବେ',

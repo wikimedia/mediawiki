@@ -2289,7 +2289,6 @@ Per més detalls, la última entrada del registre es mostra a continuació:',
 'sp-contributions-username'            => "Adreça IP o nom d'usuari:",
 'sp-contributions-toponly'             => 'Mostra només revisions superiors',
 'sp-contributions-submit'              => 'Cerca',
-'sp-contributions-showsizediff'        => 'Mostra la diferència en mida de pàgina',
 
 # What links here
 'whatlinkshere'            => 'Què hi enllaça',

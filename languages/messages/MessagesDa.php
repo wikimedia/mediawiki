@@ -2661,6 +2661,8 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'import-upload'              => 'Upload XML-data',
 'import-token-mismatch'      => 'Sessionsdata er mistet. Prøv venligst igen.',
 'import-invalid-interwiki'   => 'Kan ikke importere fra den angivne wiki.',
+'import-error-edit'          => 'Siden "$1" importeres ikke, da du ikke har rettigheden til at redigere den.',
+'import-error-create'        => 'Siden "$1" importeres ikke, da du ikke har rettigheden til at oprette den.',
 
 # Import log
 'importlogpage'                    => 'Importlog',

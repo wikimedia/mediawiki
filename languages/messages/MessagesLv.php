@@ -205,7 +205,7 @@ $messages = array(
 'vector-action-move'             => 'Pārvietot',
 'vector-action-protect'          => 'Aizsargāt',
 'vector-action-undelete'         => 'Atjaunot',
-'vector-action-unprotect'        => 'Neaizsargāt',
+'vector-action-unprotect'        => 'Mainīt aizsardzību',
 'vector-simplesearch-preference' => 'Ieslēgt uzlabotās meklēšanas piedāvājumus (tikai Vector apdarē)',
 'vector-view-create'             => 'Izveidot',
 'vector-view-edit'               => 'Rediģēt',
@@ -332,6 +332,8 @@ $1',
 'page-rss-feed'           => '"$1" RSS barotne',
 'page-atom-feed'          => '"$1" Atom barotne',
 'red-link-title'          => '$1 (lapa neeksistē)',
+'sort-descending'         => 'Kārtot dilstošā secībā',
+'sort-ascending'          => 'Kārtot augošā secībā',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Raksts',
@@ -525,6 +527,7 @@ Tu jau esi veiksmīgi nomainījis savu galveno paroli, vai arī esi pieprasījis
 # Special:PasswordReset
 'passwordreset'              => 'Paroles atiestatīšana',
 'passwordreset-legend'       => 'Atiestatīt paroli',
+'passwordreset-disabled'     => 'Paroles atiestates šajā viki ir atspējotas.',
 'passwordreset-username'     => 'Lietotājvārds:',
 'passwordreset-email'        => 'E-pasta adrese:',
 'passwordreset-emailtitle'   => 'Konta informācija {{SITENAME}}',
@@ -983,7 +986,7 @@ Ja vēlies, tu vari izmantot šo nejauši uzģenerēto kodu: $1',
 'savedprefs'                    => 'Tavas izvēles ir saglabātas.',
 'timezonelegend'                => 'Laika josla:',
 'localtime'                     => 'Vietējais laiks:',
-'timezoneuseserverdefault'      => 'Lietot servera noklusēto',
+'timezoneuseserverdefault'      => 'Lietot viki noklusēto ($1)',
 'timezoneuseoffset'             => 'Cita (norādi starpību)',
 'timezoneoffset'                => 'Starpība¹:',
 'servertime'                    => 'Servera laiks šobrīd:',
@@ -1311,6 +1314,7 @@ Pārskatāmāka versija ir pieejama [[Special:NewFiles|jauno attēlu galerijā]]
 šī faila izmērs ir $2.',
 'largefileserver'            => 'Šis fails ir lielāks nekā serveris ņem pretī.',
 'emptyfile'                  => 'Šķiet, ka tu esi augšuplādējis tukšu failu. Iespējams, faila nosaukumā esi pieļāvis kļūdu. Lūdzu, pārbaudi, vai tiešām tu vēlies augšuplādēt tieši šo failu.',
+'windows-nonascii-filename'  => 'Šī viki neatbalsta failu nosaukumus ar īpašām rakstzīmēm.',
 'fileexists'                 => "Fails ar šādu nosaukumu jau pastāv, lūdzu, pārbaudi '''<tt>[[:$1]]</tt>''', ja neesi drošs, ka vēlies to mainīt.
 [[$1|thumb]]",
 'file-thumbnail-no'          => "Faila vārds sākas ar '''<tt>$1</tt>'''.

@@ -2336,7 +2336,6 @@ $1',
 'sp-contributions-username'            => 'IP位址或用戶名稱：',
 'sp-contributions-toponly'             => '只顯示最新修訂版本的編輯',
 'sp-contributions-submit'              => '搜尋',
-'sp-contributions-showsizediff'        => '顯示頁面大小差異',
 
 # What links here
 'whatlinkshere'            => '連入頁面',
