@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper class to query the globalimagelinks table
- * 
+ *
  */
 class GlobalUsageQuery {
 	private $limit = 50;
@@ -12,7 +12,7 @@ class GlobalUsageQuery {
 	private $continue;
 	private $reversed = false;
 	private $target = null;
-	
+
 	/**
 	 * @param $target mixed Title or db key, or array of db keys of target(s)
 	 */
@@ -25,7 +25,6 @@ class GlobalUsageQuery {
 			$this->target = $target;
 		}
 		$this->offset = array();
-
 	}
 
 	/**
@@ -38,7 +37,7 @@ class GlobalUsageQuery {
 		if ( !is_null( $reversed ) ) {
 			$this->reversed = $reversed;
 		}
-		
+
 		if ( !is_array( $offset ) ) {
 			$offset = explode( '|', $offset );
 		}
@@ -60,18 +59,18 @@ class GlobalUsageQuery {
 	}
 	/**
 	 * Is the result reversed
-	 * 
+	 *
 	 * @return bool
 	 */
 	public function isReversed() {
 		return $this->reversed;
 	}
-	
+
 	/**
 	 * Returns the string used for continuation in a file search
-	 * 
+	 *
 	 * @return string
-	 * 
+	 *
 	 */
 	public function getContinueFileString() {
 		if ( $this->hasMore() ) {
@@ -80,7 +79,7 @@ class GlobalUsageQuery {
 			return '';
 		}
 	}
-	
+
 	/**
 	 * Returns the string used for continuation in a template search
 	 *
@@ -94,7 +93,7 @@ class GlobalUsageQuery {
 			return '';
 		}
 	}
-	
+
 	/**
 	 * Set the maximum amount of items to return. Capped at 500.
 	 *
@@ -228,7 +227,7 @@ class GlobalUsageQuery {
 		/* Construct a where clause */
 		// Add target image(s)
 		$where = array( 'gil_to' => $this->target );
-		
+
 		if ( $this->filterLocal ) {
 			// Don't show local file usage
 			$where[] = 'gil_wiki != ' . $this->db->addQuotes( wfWikiId() );
@@ -240,7 +239,7 @@ class GlobalUsageQuery {
 			$qTo = $this->db->addQuotes( $this->offset[0] );
 			$qWiki = $this->db->addQuotes( $this->offset[1] );
 			$qPage = intval( $this->offset[2] );
-			
+
 			// Check which limit we got in order to determine which way to traverse rows
 			if ( $this->reversed ) {
 				// Reversed traversal; do not include offset row
@@ -253,7 +252,7 @@ class GlobalUsageQuery {
 				$op2 = '>=';
 				$order = 'ASC';
 			}
-			
+
 			$where[] = "(gil_to $op1 $qTo) OR " .
 				"(gil_to = $qTo AND gil_wiki $op1 $qWiki) OR " .
 				"(gil_to = $qTo AND gil_wiki = $qWiki AND gil_page $op2 $qPage)";
@@ -287,7 +286,7 @@ class GlobalUsageQuery {
 		if ( $this->reversed ) {
 			$rows = array_reverse( $rows );
 		}
-		
+
 		// Build the result array
 		$count = 0;
 		$this->hasMore = false;
@@ -321,12 +320,12 @@ class GlobalUsageQuery {
 	/**
 	 * Returns the result set. The result is a 4 dimensional array
 	 * (file, wiki, page), whose items are arrays with keys:
-	 *   - image or template: File name or template name 
+	 *   - image or template: File name or template name
 	 *   - id: Page id
 	 *   - namespace: Page namespace text
 	 *   - title: Unprefixed page title
 	 *   - wiki: Wiki id
-	 * 
+	 *
 	 * @return array Result set
 	 */
 	public function getResult() {
@@ -335,9 +334,9 @@ class GlobalUsageQuery {
 	/**
 	 * Returns a 3 dimensional array with the result of the first file. Useful
 	 * if only one resource was queried.
-	 * 
+	 *
 	 * For further information see documentation of getResult()
-	 * 
+	 *
 	 * @return array Result set
 	 */
 	public function getSingleResult() {
@@ -359,7 +358,7 @@ class GlobalUsageQuery {
 
 	/**
 	 * Returns the result length
-	 * 
+	 *
 	 * @return int
 	 */
 	public function count() {
