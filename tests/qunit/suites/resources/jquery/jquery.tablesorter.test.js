@@ -381,4 +381,87 @@ tableTest(
 	}
 );
 
+test( 'data-sort-value attribute, when available, should override sorting position', function() {
+	var $table, data;
+
+	// Simple example, one without data-sort-value which should be sorted at it's text.
+	$table = $(
+		'<table class="sortable"><thead><tr><th>Data</th></tr></thead>' +
+			'<tbody>' +
+			'<tr><td>Cheetah</td></tr>' +
+			'<tr><td data-sort-value="Apple">Bird</td></tr>' +
+			'<tr><td data-sort-value="Bananna">Ferret</td></tr>' +
+			'<tr><td data-sort-value="Drupe">Elephant</td></tr>' +
+			'<tr><td data-sort-value="Cherry">Dolphin</td></tr>' +
+		'</tbody></table>'
+	);
+	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+
+	data = [];
+	$table.find( 'tbody > tr' ).each( function( i, tr ) {
+		$( tr ).find( 'td' ).each( function( i, td ) {
+			data.push( { data: $( td ).data( 'sort-value' ), text: $( td ).text() } );
+		});
+	});
+
+	deepEqual( data, [
+		{
+			"data": "Apple",
+			"text": "Bird"
+		}, {
+			"data": "Bananna",
+			"text": "Ferret"
+		}, {
+			"data": undefined,
+			"text": "Cheetah"
+		}, {
+			"data": "Cherry",
+			"text": "Dolphin"
+		}, {
+			"data": "Drupe",
+			"text": "Elephant"
+		}
+	] );
+
+	// Another example
+	$table = $(
+		'<table class="sortable"><thead><tr><th>Data</th></tr></thead>' +
+			'<tbody>' +
+			'<tr><td>D</td></tr>' +
+			'<tr><td data-sort-value="E">A</td></tr>' +
+			'<tr><td>B</td></tr>' +
+			'<tr><td>G</td></tr>' +
+			'<tr><td data-sort-value="F">C</td></tr>' +
+		'</tbody></table>'
+	);
+	$table.tablesorter().find( '.headerSort:eq(0)' ).click();
+
+	data = [];
+	$table.find( 'tbody > tr' ).each( function( i, tr ) {
+		$( tr ).find( 'td' ).each( function( i, td ) {
+			data.push( { data: $( td ).data( 'sort-value' ), text: $( td ).text() } );
+		});
+	});
+
+	deepEqual( data, [
+		{
+			"data": undefined,
+			"text": "B"
+		}, {
+			"data": undefined,
+			"text": "D"
+		}, {
+			"data": "E",
+			"text": "A"
+		}, {
+			"data": "F",
+			"text": "C"
+		}, {
+			"data": undefined,
+			"text": "G"
+		}
+	] );
+
+});
+
 })();
