@@ -315,7 +315,6 @@ class NewParserTest extends MediaWikiTestCase {
 		global $wgHooks;
 
 		$wgHooks['ParserTestParser'][] = 'ParserTestParserHook::setup';
-		$wgHooks['ParserTestParser'][] = 'ParserTestStaticParserHook::setup';
 		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
 
 		MagicWord::clearCache();
