@@ -613,12 +613,19 @@ class LocalFile extends File {
 
 	/**
 	 * Get all thumbnail names previously generated for this file
+	 * @param $archiveName string|false Name of an archive file
+	 * @return array first element is the base dir, then files in that base dir.
 	 */
-	function getThumbnails() {
+	function getThumbnails( $archiveName = false ) {
 		$this->load();
 
+		if ( $archiveName ) {
+			$dir = $this->getArchiveThumbPath( $archiveName );
+		} else {
+			$dir = $this->getThumbPath();
+		}
 		$files = array();
-		$dir = $this->getThumbPath();
+		$files[] = $dir;
 
 		if ( is_dir( $dir ) ) {
 			$handle = opendir( $dir );
@@ -680,16 +687,65 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Delete cached transformed files
+	 * Delete cached transformed files for archived files
+	 * @param $archiveName string name of the archived file
+	 */
+	function purgeOldThumbnails( $archiveName ) {
+		global $wgUseSquid;
+		// get a list of old thumbnails and URLs
+		$files = $this->getThumbnails( $archiveName );
+		$dir = array_shift( $files );
+		$this->purgeThumbList( $dir, $files );
+
+		// Directory should be empty, delete it too. This will probably suck on
+		// something like NFS or if the directory isn't actually empty, so hide
+		// the warnings :D
+		wfSuppressWarnings();
+		if( !rmdir( $dir ) ) {
+			wfDebug( __METHOD__ . ": unable to remove archive directory: $dir\n" );
+		}
+		wfRestoreWarnings();
+
+		// Purge the squid
+		if ( $wgUseSquid ) {
+			$urls = array();
+			foreach( $files as $file ) {
+				$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
+			}
+			SquidUpdate::purge( $urls );
+		}
+	}
+
+
+	/**
+	 * Delete cached transformed files for the current version only.
 	 */
 	function purgeThumbnails() {
-		global $wgUseSquid, $wgExcludeFromThumbnailPurge;
-
-		// Delete thumbnails
+		global $wgUseSquid;
+		// get a list of thumbnails and URLs
 		$files = $this->getThumbnails();
-		$dir = $this->getThumbPath();
-		$urls = array();
+		$dir = array_shift( $files );
+		$this->purgeThumbList( $dir, $files );
 
+		// Purge the squid
+		if ( $wgUseSquid ) {
+			$urls = array();
+			foreach( $files as $file ) {
+				$urls[] = $this->getThumbUrl( $file );
+			}
+			SquidUpdate::purge( $urls );
+		}
+	}
+
+	/**
+	 * Delete a list of thumbnails visible at urls
+	 * @param $dir string base dir of the files.
+	 * @param $files array of strings: relative filenames (to $dir)
+	 */
+	function purgeThumbList($dir, $files) {
+		global $wgExcludeFromThumbnailPurge;
+
+		wfDebug( __METHOD__ . ": " . var_export( $files, true ) . "\n" );
 		foreach ( $files as $file ) {
 			// Only remove files not in the $wgExcludeFromThumbnailPurge configuration variable
 			$ext = pathinfo( "$dir/$file", PATHINFO_EXTENSION );
@@ -700,17 +756,10 @@ class LocalFile extends File {
 			# Check that the base file name is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
 			if ( strpos( $file, $this->getName() ) !== false ) {
-				$url = $this->getThumbUrl( $file );
-				$urls[] = $url;
 				wfSuppressWarnings();
 				unlink( "$dir/$file" );
 				wfRestoreWarnings();
 			}
-		}
-
-		// Purge the squid
-		if ( $wgUseSquid ) {
-			SquidUpdate::purge( $urls );
 		}
 	}
 
@@ -1185,6 +1234,7 @@ class LocalFile extends File {
 			array( 'oi_name' => $this->getName() ) );
 		foreach ( $result as $row ) {
 			$batch->addOld( $row->oi_archive_name );
+			$this->purgeOldThumbnails( $row->oi_archive_name );
 		}
 		$status = $batch->execute();
 
@@ -1219,6 +1269,7 @@ class LocalFile extends File {
 
 		$batch = new LocalFileDeleteBatch( $this, $reason, $suppress );
 		$batch->addOld( $archiveName );
+		$this->purgeOldThumbnails( $archiveName );
 		$status = $batch->execute();
 
 		$this->unlock();
