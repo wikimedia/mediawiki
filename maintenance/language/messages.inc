@@ -2327,6 +2327,8 @@ $wgMessageStructure = array(
 		'import-upload',
 		'import-token-mismatch',
 		'import-invalid-interwiki',
+		'import-error-edit',
+		'import-error-create',
 	),
 	'importlog' => array(
 		'importlogpage',
