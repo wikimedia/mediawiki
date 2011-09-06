@@ -54,11 +54,6 @@ class SkinMonoBook extends SkinTemplate {
 class MonoBookTemplate extends BaseTemplate {
 
 	/**
-	 * @var Skin
-	 */
-	var $skin;
-
-	/**
 	 * Template filter callback for MonoBook skin.
 	 * Takes an associative array of data set from a SkinTemplate-based
 	 * class, and a wrapper for MediaWiki's localization database, and
@@ -67,8 +62,6 @@ class MonoBookTemplate extends BaseTemplate {
 	 * @access private
 	 */
 	function execute() {
-		$this->skin = $this->data['skin'];
-
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
 
@@ -111,12 +104,11 @@ class MonoBookTemplate extends BaseTemplate {
 		</div>
 	</div>
 	<div class="portlet" id="p-logo">
-		<?php
-			$logoAttribs = array() + Linker::tooltipAndAccesskeyAttribs('p-logo');
-			$logoAttribs['style'] = "background-image: url({$this->data['logopath']});";
-			$logoAttribs['href'] = $this->data['nav_urls']['mainpage']['href'];
-			echo Html::element( 'a', $logoAttribs );
-		?>
+<?php
+			echo Html::element( 'a', array(
+				'href' => $this->data['nav_urls']['mainpage']['href'],
+				'style' => "background-image: url({$this->data['logopath']});" )
+				+ Linker::tooltipAndAccesskeyAttribs('p-logo') ); ?>
 
 	</div>
 	<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
@@ -139,7 +131,7 @@ class MonoBookTemplate extends BaseTemplate {
 	foreach ( $validFooterIcons as $blockName => $footerIcons ) { ?>
 	<div id="f-<?php echo htmlspecialchars($blockName); ?>ico">
 <?php foreach ( $footerIcons as $icon ) { ?>
-		<?php echo $this->skin->makeFooterIcon( $icon ); ?>
+		<?php echo $this->getSkin()->makeFooterIcon( $icon ); ?>
 
 <?php }
 ?>
@@ -227,25 +219,8 @@ echo $footerEnd;
 		<div class="pBody">
 			<ul><?php
 				foreach($this->data['content_actions'] as $key => $tab) {
-					$linkAttribs = array( 'href' => $tab['href'] );
-
-				 	if( isset( $tab["tooltiponly"] ) && $tab["tooltiponly"] ) {
-						$title = Linker::titleAttrib( "ca-$key" );
-						if ( $title !== false ) {
-							$linkAttribs['title'] = $title;
-						}
-				 	} else {
-						$linkAttribs += Linker::tooltipAndAccesskeyAttribs( "ca-$key" );
-				 	}
-				 	$linkHtml = Html::element( 'a', $linkAttribs, $tab['text'] );
-
-				 	/* Surround with a <li> */
-				 	$liAttribs = array( 'id' => Sanitizer::escapeId( "ca-$key" ) );
-					if( $tab['class'] ) {
-						$liAttribs['class'] = $tab['class'];
-					}
-				 	echo '
-				' . Html::rawElement( 'li', $liAttribs, $linkHtml );
+					echo '
+				' . $this->makeListItem( $key, $tab );
 				} ?>
 
 			</ul>
