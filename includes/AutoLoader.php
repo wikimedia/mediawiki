@@ -866,7 +866,6 @@ $wgAutoloadLocalClasses = array(
 	# tests/parser
 	'ParserTest' => 'tests/parser/parserTest.inc',
 	'ParserTestParserHook' => 'tests/parser/parserTestsParserHook.php',
-	'ParserTestStaticParserHook' => 'tests/parser/parserTestsStaticParserHook.php',
 
 	# tests/selenium
 	'Selenium' => 'tests/selenium/Selenium.php',
