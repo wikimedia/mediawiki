@@ -29,7 +29,7 @@ class mcTest extends Maintenance {
 		$this->mDescription = "Makes several 'set', 'incr' and 'get' requests on every"
 							  . " memcached server and shows a report";
 		$this->addOption( 'i', 'Number of iterations', false, true );
-		$this->addArg( 'server', 'Memcached server to test', false );
+		$this->addArg( 'server[:port]', 'Memcached server to test, with optional port', false );
 	}
 
 	public function execute() {
