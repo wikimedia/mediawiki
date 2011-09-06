@@ -1068,7 +1068,9 @@ class ParserTest {
 		$shellInfile = wfEscapeShellArg($infile);
 		$shellOutfile = wfEscapeShellArg($outfile);
 
-		$diff = wfIsWindows()
+		global $wgDiff3;
+		// we assume that people with diff3 also have usual diff
+		$diff = ( wfIsWindows() && !$wgDiff3 )
 			? `fc $shellInfile $shellOutfile`
 			: `diff -au $shellInfile $shellOutfile`;
 		unlink( $infile );
