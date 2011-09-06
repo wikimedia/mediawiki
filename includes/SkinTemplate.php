@@ -549,7 +549,7 @@ class SkinTemplate extends Skin {
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = array();
-		
+
 		$page = $request->getVal( 'returnto', $this->thispage );
 		$query = $request->getVal( 'returntoquery', $this->thisquery );
 		$a = array( 'returnto' => $page );
@@ -1535,7 +1535,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 		if ( isset( $item['single-id'] ) ) {
 			if ( isset( $item['tooltiponly'] ) && $item['tooltiponly'] ) {
-				$attrs['title'] = $this->skin->titleAttrib( $item['single-id'] );
+				$attrs['title'] = $this->getSkin()->titleAttrib( $item['single-id'] );
 				if ( $attrs['title'] === false ) {
 					unset( $attrs['title'] );
 				}
