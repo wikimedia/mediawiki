@@ -231,6 +231,7 @@ class NewParserTest extends MediaWikiTestCase {
 			'wgScript' => '/index.php',
 			'wgScriptPath' => '/',
 			'wgArticlePath' => '/wiki/$1',
+			'wgExtensionAssetsPath' => '/extensions',
 			'wgActionPaths' => array(),
 			'wgLocalFileRepo' => array(
 				'class' => 'LocalRepo',
