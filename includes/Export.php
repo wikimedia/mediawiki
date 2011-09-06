@@ -730,8 +730,7 @@ class DumpOutput {
  * @ingroup Dump
  */
 class DumpFileOutput extends DumpOutput {
-	var $handle;
-	var $filename;
+	protected $handle, $filename;
 
 	function __construct( $file ) {
 		$this->handle = fopen( $file, "wt" );
