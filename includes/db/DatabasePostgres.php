@@ -39,7 +39,7 @@ AND relname=%s
 AND attname=%s;
 SQL;
 
-		$table = $db->tableName( $table, false );
+		$table = $db->tableName( $table, 'raw' );
 		$res = $db->query(
 			sprintf( $q,
 				$db->addQuotes( $wgDBmwschema ),
@@ -622,7 +622,7 @@ class DatabasePostgres extends DatabaseBase {
 		return $res;
 	}
 
-	function tableName( $name, $quoted = true ) {
+	function tableName( $name, $format = 'quoted' ) {
 		# Replace reserved words with better ones
 		switch( $name ) {
 			case 'user':
@@ -630,7 +630,7 @@ class DatabasePostgres extends DatabaseBase {
 			case 'text':
 				return 'pagecontent';
 			default:
-				return parent::tableName( $name, $quoted );
+				return parent::tableName( $name, $format );
 		}
 	}
 
@@ -737,7 +737,7 @@ class DatabasePostgres extends DatabaseBase {
 		if ( !$schema ) {
 			$schema = $wgDBmwschema;
 		}
-		$table = $this->tableName( $table, false );
+		$table = $this->tableName( $table, 'raw' );
 		$etable = $this->addQuotes( $table );
 		$eschema = $this->addQuotes( $schema );
 		$SQL = "SELECT 1 FROM pg_catalog.pg_class c, pg_catalog.pg_namespace n "
