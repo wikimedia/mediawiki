@@ -74,6 +74,10 @@ TEXT;
 		}
 
 		$this->reportingInterval = intval( $this->getOption( 'report', 100 ) );
+		if ( !$this->reportingInterval ) {
+			$this->reportingInterval = 100; // avoid division by zero
+		}
+
 		$this->dryRun = $this->hasOption( 'dry-run' );
 		$this->uploads = $this->hasOption( 'uploads' ); // experimental!
 		if ( $this->hasOption( 'image-base-path' ) ) {
