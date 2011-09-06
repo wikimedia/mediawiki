@@ -1925,11 +1925,13 @@ abstract class DatabaseBase implements DatabaseType {
 	 * when calling query() directly.
 	 *
 	 * @param $name String: database table name
-	 * @param $quoted Boolean: Automatically pass the table name through
-	 *          addIdentifierQuotes() so that it can be used in a query.
+	 * @param $format String One of:
+	 *   quoted - Automatically pass the table name through addIdentifierQuotes()
+	 *            so that it can be used in a query.
+	 *   raw - Do not add identifier quotes to the table name
 	 * @return String: full database name
 	 */
-	function tableName( $name, $quoted = true ) {
+	function tableName( $name, $format = 'quoted' ) {
 		global $wgSharedDB, $wgSharedPrefix, $wgSharedTables;
 		# Skip the entire process when we have a string quoted on both ends.
 		# Note that we check the end so that we will still quote any use of
@@ -1981,11 +1983,11 @@ abstract class DatabaseBase implements DatabaseType {
 
 		# Quote the $database and $table and apply the prefix if not quoted.
 		if ( isset( $database ) ) {
-			$database = ( !$quoted || $this->isQuotedIdentifier( $database ) ? $database : $this->addIdentifierQuotes( $database ) );
+			$database = ( $format == 'quoted' || $this->isQuotedIdentifier( $database ) ? $database : $this->addIdentifierQuotes( $database ) );
 		}
 
 		$table = "{$prefix}{$table}";
-		if ( $quoted && !$this->isQuotedIdentifier( $table ) ) {
+		if ( $format == 'quoted' && !$this->isQuotedIdentifier( $table ) ) {
 			$table = $this->addIdentifierQuotes( "{$table}" );
 		}
 
