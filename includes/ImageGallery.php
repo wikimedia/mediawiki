@@ -249,11 +249,11 @@ class ImageGallery {
 				# Get the file...
 				if ( $this->mParser instanceof Parser ) {
 					# Give extensions a chance to select the file revision for us
-					$time = $sha1 = false;
+					$options = array();
 					wfRunHooks( 'BeforeParserFetchFileAndTitle',
-						array( $this->mParser, $nt, &$time, &$sha1, &$descQuery ) );
+						array( $this->mParser, $nt, &$options, &$descQuery ) );
 					# Fetch and register the file (file title may be different via hooks)
-					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $time, $sha1 );
+					list( $img, $nt ) = $this->mParser->fetchFileAndTitle( $nt, $options );
 				} else {
 					$img = wfFindFile( $nt );
 				}

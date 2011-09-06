@@ -596,9 +596,10 @@ $mediaWiki: Mediawiki object
 'BeforeParserFetchFileAndTitle': before an image is rendered by Parser
 $parser: Parser object
 $nt: the image title
-&$time: the image timestamp (use '0' to force a broken thumbnail)
-&$sha1: image base 36 sha1 (used to specify the file, $nt will be ignored if this is set)
+&$options: array of options to RepoGroup::findFile
 &$descQuery: query string to add to thumbnail URL
+
+If 'broken' is a key in $options then the file will appear as a broken thumbnail.
 
 'BeforeParserFetchTemplateAndtitle': before a template is fetched by Parser
 $parser: Parser object

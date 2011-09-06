@@ -2067,11 +2067,12 @@ class Parser {
 			if ( $ns == NS_MEDIA ) {
 				wfProfileIn( __METHOD__."-media" );
 				# Give extensions a chance to select the file revision for us
-				$time = $sha1 = $descQuery = false;
+				$options = array();
+				$descQuery = false;
 				wfRunHooks( 'BeforeParserFetchFileAndTitle',
-					array( $this, $nt, &$time, &$sha1, &$descQuery ) );
+					array( $this, $nt, &$options, &$descQuery ) );
 				# Fetch and register the file (file title may be different via hooks)
-				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $time, $sha1 );
+				list( $file, $nt ) = $this->fetchFileAndTitle( $nt, $options );
 				# Cloak with NOPARSE to avoid replacement in replaceExternalLinks
 				$s .= $prefix . $this->armorLinks(
 					Linker::makeMediaLinkFile( $nt, $file, $text ) ) . $trail;
@@ -3641,30 +3642,30 @@ class Parser {
 
 	/**
 	 * Fetch a file and its title and register a reference to it.
+	 * If 'broken' is a key in $options then the file will appear as a broken thumbnail.
 	 * @param Title $title
-	 * @param string $time MW timestamp
-	 * @param string $sha1 base 36 SHA-1
+	 * @param Array $options Array of options to RepoGroup::findFile
 	 * @return File|false
 	 */
-	function fetchFile( $title, $time = false, $sha1 = false ) {
-		$res = $this->fetchFileAndTitle( $title, $time, $sha1 );
+	function fetchFile( $title, $options = array() ) {
+		$res = $this->fetchFileAndTitle( $title, $options );
 		return $res[0];
 	}
 
 	/**
 	 * Fetch a file and its title and register a reference to it.
+	 * If 'broken' is a key in $options then the file will appear as a broken thumbnail.
 	 * @param Title $title
-	 * @param string $time MW timestamp
-	 * @param string $sha1 base 36 SHA-1
+	 * @param Array $options Array of options to RepoGroup::findFile
 	 * @return Array ( File or false, Title of file )
 	 */
-	function fetchFileAndTitle( $title, $time = false, $sha1 = false ) {
-		if ( $time === '0' ) {
+	function fetchFileAndTitle( $title, $options = array() ) {
+		if ( isset( $options['broken'] ) ) {
 			$file = false; // broken thumbnail forced by hook
-		} elseif ( $sha1 ) { // get by (sha1,timestamp)
-			$file = RepoGroup::singleton()->findFileFromKey( $sha1, array( 'time' => $time ) );
+		} elseif ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
+			$file = RepoGroup::singleton()->findFileFromKey( $options['sha1'], $options );
 		} else { // get by (name,timestamp)
-			$file = wfFindFile( $title, array( 'time' => $time ) );
+			$file = wfFindFile( $title, $options );
 		}
 		$time = $file ? $file->getTimestamp() : false;
 		$sha1 = $file ? $file->getSha1() : false;
@@ -5010,11 +5011,12 @@ class Parser {
 		$parts = StringUtils::explode( "|", $options );
 
 		# Give extensions a chance to select the file revision for us
-		$time = $sha1 = $descQuery = false;
+		$options = array();
+		$descQuery = false;
 		wfRunHooks( 'BeforeParserFetchFileAndTitle',
-			array( $this, $title, &$time, &$sha1, &$descQuery ) );
+			array( $this, $title, &$options, &$descQuery ) );
 		# Fetch and register the file (file title may be different via hooks)
-		list( $file, $title ) = $this->fetchFileAndTitle( $title, $time, $sha1 );
+		list( $file, $title ) = $this->fetchFileAndTitle( $title, $options );
 
 		# Get parameter map
 		$handler = $file ? $file->getHandler() : false;
@@ -5174,6 +5176,7 @@ class Parser {
 		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
 
 		# Linker does the rest
+		$time = isset( $options['time'] ) ? $options['time'] : false;
 		$ret = Linker::makeImageLink2( $title, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );
 
