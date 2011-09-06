@@ -11,7 +11,7 @@
 
 class SpecialGlobalTemplateUsage extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 'Globaltemplateusage' );
+		parent::__construct( 'GlobalTemplateUsage' );
 	}
 
 	/**
