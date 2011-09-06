@@ -378,7 +378,7 @@ class IP {
 		static $privateRanges = false;
 		if ( !$privateRanges ) {
 			$privateRanges = array(
-				array( 'fc::', 'fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff' ), # RFC 4193 (local)
+				array( 'fc00::', 'fdff:ffff:ffff:ffff:ffff:ffff:ffff:ffff' ), # RFC 4193 (local)
 				array( '0:0:0:0:0:0:0:1', '0:0:0:0:0:0:0:1' ), # loopback
 			);
 		}

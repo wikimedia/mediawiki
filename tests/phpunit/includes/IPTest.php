@@ -272,9 +272,13 @@ class IPTest extends MediaWikiTestCase {
 	 * @covers IP::isPublic
 	 */
 	public function testPrivateIPs() {
-		$private = array( 'fc::3', 'fc::ff', '::1', '10.0.0.1', '172.16.0.1', '192.168.0.1' );
+		$private = array( 'fc00::3', 'fc00::ff', '::1', '10.0.0.1', '172.16.0.1', '192.168.0.1' );
 		foreach ( $private as $p ) {
 			$this->assertFalse( IP::isPublic( $p ), "$p is not a public IP address" );
+		}
+		$public = array( '2001:5c0:1000:a::133', 'fc::3' );
+		foreach ( $public as $p ) {
+			$this->assertTrue( IP::isPublic( $p ), "$p is a public IP address" );
 		}
 	}
 
