@@ -1528,6 +1528,7 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * @todo document
 	 * mysql_field_type() wrapper
 	 */
 	function fieldType( $res, $index ) {
