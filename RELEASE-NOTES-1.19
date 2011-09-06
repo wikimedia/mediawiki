@@ -70,7 +70,7 @@ production.
 * (bug 30264) Changed installer-generated LocalSettings.php to use
   require_once() instead require() for included extensions.
 * Do not convert text in the user interface language to another script.
-* (bug 26283) Previewing user JS/CSS pages doesn't load other user JS/CSS pages
+* (bug 26283) Previewing user JS/CSS pages didn't load other user JS/CSS pages
 * (bug 11374) Improved diff readability for colorblind people.
 * (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
   warnings/notices to be thrown.
@@ -79,10 +79,10 @@ production.
 * (bug 28649) Avoiding half truncated multi-byte unicode characters when 
   truncating log comments.
 * Show --batch-size option in help of maintenance scripts that support it
-* (bug 4381) Magic quotes cleaning is not comprehensive, key strings not
+* (bug 4381) Magic quotes cleaning was not comprehensive, key strings were not
   unescaped
 * (bug 30684) Fix bad escaping in mw.message for inexistent messages (i.e. <key>)
-* (bug 23057) Importers can 'edit' or 'create' a fully-protected page by
+* (bug 23057) Importers no longer can 'edit' or 'create' a fully-protected page by
   importing a new revision into it
 
 === API changes in 1.19 ===
