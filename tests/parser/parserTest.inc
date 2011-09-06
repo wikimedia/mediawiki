@@ -136,13 +136,14 @@ class ParserTest {
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
 			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
 			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
-			$wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath;
+			$wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath, $wgExtensionAssetsPath;
 
 		$wgScript = '/index.php';
 		$wgScriptPath = '/';
 		$wgArticlePath = '/wiki/$1';
 		$wgStyleSheetPath = '/skins';
 		$wgStylePath = '/skins';
+		$wgExtensionAssetsPath = '/extensions';
 		$wgThumbnailScriptPath = false;
 		$wgLocalFileRepo = array(
 			'class' => 'LocalRepo',
