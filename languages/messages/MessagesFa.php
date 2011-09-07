@@ -21,6 +21,7 @@
  * @author Mjbmr
  * @author Mormegil
  * @author Omnia
+ * @author Pouyana
  * @author Reza1615
  * @author Roozbeh Pournader <roozbeh at gmail.com>
  * @author Sahim
@@ -1613,7 +1614,7 @@ $1",
 'userrights-lookup-user'       => 'مدیریت گروه‌های کاربری',
 'userrights-user-editname'     => 'یک نام کاربری وارد کنید:',
 'editusergroup'                => 'ویرایش گروه‌های کاربری',
-'editinguser'                  => "تغییر اختیارات کاربری برای '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "تغییر اختیارات کاربری کاربر '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'ویرایش گروه‌های کاربری',
 'saveusergroups'               => 'ثبت گروه‌های کاربری',
 'userrights-groupsmember'      => 'عضو:',
@@ -3012,6 +3013,8 @@ $1',
 'import-upload'              => 'بارگذاری داده اکس‌ام‌ال',
 'import-token-mismatch'      => 'از دست رفتن اطلاعات نشست کاربری. لطفاً دوباره امتحان کنید.',
 'import-invalid-interwiki'   => 'از ویکی مشخص شده نمی‌توان درون‌ریزی انجام داد.',
+'import-error-edit'          => 'صفحه « $1 "وارد نمی‌شود، چون شما مجاز به ویرایش آن نیستید.',
+'import-error-create'        => 'صفحه « $1 "وارد نمی‌شود، چون شما مجاز به ایجاد آن نیستید.',
 
 # Import log
 'importlogpage'                    => 'سیاههٔ درون‌ریزی‌ها',

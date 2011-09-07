@@ -2493,6 +2493,7 @@ ranije blokiranoj IP adresi ili korisničkom imenu.',
 'unblocklink'                     => 'deblokiraj',
 'change-blocklink'                => 'promeni blok',
 'contribslink'                    => 'prilozi',
+'emaillink'                       => 'Pošalji e-poruku',
 'autoblocker'                     => 'Automatski ste blokirani jer je vašu IP adresu skoro koristio "[[User:$1|$1]]". Razlog za blokiranje korisnika $1 je: "\'\'\'$2\'\'\'".',
 'blocklogpage'                    => 'Istorija blokiranja',
 'blocklog-showlog'                => 'Ovaj korisnik je već bio blokiran.

@@ -1785,6 +1785,7 @@ Følgjande liste viser {{PLURAL:$1|den første sida|dei $1 første sidene}}.
 Ei [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengeleg.',
 'nolinkstoimage'            => 'Det finst ikkje noka side med lenkje til denne fila.',
 'morelinkstoimage'          => 'Vis [[Special:WhatLinksHere/$1|fleire lenkjer]] til denne fila.',
+'linkstoimage-redirect'     => '$1 (filomdirigering) $2',
 'duplicatesoffile'          => 'Følgjande {{PLURAL:$1|fil er ein dublett|filer er dublettar}} av denne fila ([[Special:FileDuplicateSearch/$2|fleire detaljar]]):',
 'sharedupload'              => 'Denne fila er frå $1 og kan verta brukt av andre prosjekt.',
 'sharedupload-desc-there'   => 'Denne fila er frå $1 og kan verta nytta av andre prosjekt.
@@ -2097,6 +2098,7 @@ E-postadressa du har sett i [[Special:Preferences|innstillingane dine]] vil dukk
 'addedwatchtext'       => "Sida «[[:$1]]» er lagt til [[Special:Watchlist|overvakingslista]] di. Framtidige endringar av denne sida og den tilhøyrande diskusjonssida vil bli oppførde her, og sida vil vera '''utheva''' på «[[Special:RecentChanges|siste endringar]]» for å gjera deg merksam på henne.
 
 Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvaking» på den aktuelle sida.",
+'removewatch'          => 'Fjerna frå overvakingslista',
 'removedwatchtext'     => 'Sida «[[:$1]]» er fjerna frå [[Special:Watchlist|overvakingslista di]].',
 'watch'                => 'Overvak',
 'watchthispage'        => 'Overvak denne sida',
@@ -2782,6 +2784,19 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'spam_reverting'      => 'Attenderullar til siste versjon utan lenkje til $1',
 'spam_blanking'       => 'Alle versjonar inneheldt lenkje til $1, tømmer sida',
 
+# Info page
+'pageinfo-title'            => 'Informasjon om «$1»',
+'pageinfo-header-edits'     => 'Endringar',
+'pageinfo-header-watchlist' => 'Overvakingsliste',
+'pageinfo-header-views'     => 'Visningar',
+'pageinfo-subjectpage'      => 'Side',
+'pageinfo-talkpage'         => 'Diskusjonsside',
+'pageinfo-watchers'         => 'Antal overvakarar',
+'pageinfo-edits'            => 'Tal på endringar',
+'pageinfo-authors'          => 'Tal på forskjellege forfattarar',
+'pageinfo-views'            => 'Tal på visningar',
+'pageinfo-viewsperedit'     => 'Visningar per endring',
+
 # Skin names
 'skinname-standard'    => 'Klassisk',
 'skinname-nostalgia'   => 'Nostalgi',
@@ -3017,10 +3032,27 @@ Dei andre felta er gøymde som standard.
 'exif-credit'                      => 'Opphavrettseigar/filgjevar',
 'exif-source'                      => 'Kjelde',
 'exif-languagecode'                => 'Språk',
+'exif-iimversion'                  => 'IIM-versjon',
 'exif-iimcategory'                 => 'Kategori',
+'exif-lens'                        => 'Objektiv',
+'exif-pngfilecomment'              => 'PNG-filkommentar',
+'exif-disclaimer'                  => 'Atterhald',
+'exif-contentwarning'              => 'Innholdsåtvaring',
+'exif-giffilecomment'              => 'GIF-filkommentar',
+'exif-intellectualgenre'           => 'Elementtype',
+'exif-subjectnewscode'             => 'Emnekode',
+'exif-scenecode'                   => 'IPTC-scenekode',
+'exif-event'                       => 'Avbilda hending',
+'exif-organisationinimage'         => 'Avbilda organisasjon',
+'exif-personinimage'               => 'Avbilda person',
+'exif-originalimageheight'         => 'Høgda på biletet før det vart beskåren',
+'exif-originalimagewidth'          => 'Bredda på biletet før det vart beskåren',
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',
+'exif-compression-2' => 'CCITT Gruppe 3 1-dimensjonal modifisert Huffman-kjøyrelengdekoding',
+'exif-compression-3' => 'CCITT Gruppe 3 faks-koding',
+'exif-compression-4' => 'CCITT Gruppe 4 faks-koding',
 
 'exif-copyrighted-true'  => 'Verna av opphavsrett',
 'exif-copyrighted-false' => 'Ikkje verna av opphavsrett',
@@ -3038,6 +3070,8 @@ Dei andre felta er gøymde som standard.
 
 'exif-planarconfiguration-1' => 'grovformat',
 'exif-planarconfiguration-2' => 'planærformat',
+
+'exif-colorspace-65535' => 'Ukalibrert',
 
 'exif-componentsconfiguration-0' => 'finst ikkje',
 
@@ -3170,6 +3204,37 @@ Dei andre felta er gøymde som standard.
 'exif-gpsdirection-t' => 'Verkeleg retning',
 'exif-gpsdirection-m' => 'Magnetisk retning',
 
+'exif-dc-date'      => 'Dato(ar)',
+'exif-dc-publisher' => 'Utgjevar',
+'exif-dc-rights'    => 'Rettar',
+'exif-dc-source'    => 'Mediakilde',
+'exif-dc-type'      => 'Mediatype',
+
+'exif-isospeedratings-overflow' => 'Større enn 65535',
+
+'exif-iimcategory-ace' => 'Kunst, kultur og underhaldning',
+'exif-iimcategory-clj' => 'Kriminalitet og jura',
+'exif-iimcategory-dis' => 'Katastrofar og ulukker',
+'exif-iimcategory-fin' => 'Økonomi og næringsliv',
+'exif-iimcategory-edu' => 'Utdanning',
+'exif-iimcategory-evn' => 'Miljø',
+'exif-iimcategory-hth' => 'Helse',
+'exif-iimcategory-hum' => 'Menneskeleg interesse',
+'exif-iimcategory-lab' => 'Arbeidskraft',
+'exif-iimcategory-lif' => 'Livsstil og fritid',
+'exif-iimcategory-pol' => 'Politikk',
+'exif-iimcategory-rel' => 'Religion og livssyn',
+'exif-iimcategory-sci' => 'Vitskap og teknologi',
+'exif-iimcategory-soi' => 'Sosiale problem',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Krig, konflikt og uro',
+'exif-iimcategory-wea' => 'Vær',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Låg ($1)',
+'exif-urgency-high'   => 'Høg ($1)',
+'exif-urgency-other'  => 'Brukardefinert prioritet ($1)',
+
 # External editor support
 'edit-externally'      => 'Endre denne fila med eit eksternt program',
 'edit-externally-help' => '(Sjå [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonane] for meir informasjon)',
@@ -3238,9 +3303,15 @@ Du må stadfeste at du verkeleg vil nyopprette denne sida.",
 'recreate'            => 'Attopprett',
 
 # action=purge
-'confirm_purge_button' => 'Ja',
+'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => 'Vil du slette tenarane sin mellomlagra versjon av denne sida?',
 'confirm-purge-bottom' => 'Reinsing av ei side slettar mellomlageret og tvinger fram den nyaste versjonen.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-watch-top'      => 'Legg denne sida til i overvakingslista di?',
+'confirm-unwatch-button' => 'OK',
+'confirm-unwatch-top'    => 'Fjern denne sida frå overvakingslista di?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← førre side',
@@ -3313,6 +3384,7 @@ Du kan òg [[Special:EditWatchlist|nytte standardverktøyet]].',
 'version-specialpages'          => 'Spesialsider',
 'version-parserhooks'           => 'Parsertillegg',
 'version-variables'             => 'Variablar',
+'version-skins'                 => 'Draktar',
 'version-other'                 => 'Anna',
 'version-mediahandlers'         => 'Mediahandsamarar',
 'version-hooks'                 => 'Tilleggsuttrykk',

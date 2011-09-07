@@ -108,6 +108,7 @@
  * @author Vinhtantran
  * @author Waldir
  * @author Whym
+ * @author Yekrats
  * @author Yuriy Apostol
  * @author Yyy
  * @author Žekřil71pl
@@ -261,7 +262,7 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'jun'           => 'Abbreviation of June, the sixth month of the Gregorian calendar',
 'jul'           => 'Abbreviation of July, the seventh month of the Gregorian calendar',
 'aug'           => 'Abbreviation of August, the eighth month of the Gregorian calendar',
-'sep'           => 'Abbreviation of September, the nineth month of the Gregorian calendar',
+'sep'           => 'Abbreviation of September, the ninth month of the Gregorian calendar',
 'oct'           => 'Abbreviation of October, the tenth month of the Gregorian calendar',
 'nov'           => 'Abbreviation of November, the eleventh month of the Gregorian calendar',
 'dec'           => 'Abbreviation of December, the twelfth month of the Gregorian calendar',
@@ -800,6 +801,9 @@ Used on [[Special:ResetPass]]',
 * $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
 * $3 - the number of repetitions in $2
 * $4 - base URL of the wiki',
+'passwordreset-emailelement'   => "This is a body of a reminder email to allow them into the system with a new password.
+$1 will be the user's login name.
+$2 will be the temporary password given by the system.",
 
 # Special:ChangeEmail
 'changeemail'          => 'Title of [[Special:ChangeEmail|special page]].',
@@ -1475,9 +1479,9 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 'editusergroup'                  => 'Button name, in page [[Special:Userrights]] (only available to administrators), in the section named {{MediaWiki:userrights-lookup-user}}.
 
 {{Identical|Edit user groups}}',
-'editinguser'                    => "Appears on [[Special:UserRights]]. Parameters:
+'editinguser'                    => 'Appears on [[Special:UserRights]]. Parameters:
 * $1 is a username
-* $2 are user tool links. Example: \"(Talk | contribs | block | send e-mail)\".",
+* $2 are user tool links. Example: "(Talk | contribs | block | send e-mail)".',
 'userrights-editusergroup'       => '{{Identical|Edit user groups}}',
 'saveusergroups'                 => 'Button text when editing user groups',
 'userrights-groupsmember'        => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.

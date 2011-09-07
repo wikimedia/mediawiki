@@ -2941,6 +2941,8 @@ Dat ahle Versione Huhlade es avjeschalt, un es nit müjjelich.',
 'import-token-mismatch'      => 'Schadt. Et senn nit alle Date heh aanjekumme.
 Bes esu joot, un versök et noch ens.',
 'import-invalid-interwiki'   => 'Us dämm jenannte Wiki künne mer nix Importeere.',
+'import-error-edit'          => 'Di Sigg „$1“ es nit impoteet woode. Do häs nit et Rääsch, se ze ändre.',
+'import-error-create'        => 'Di Sigg „$1“ es nit impoteet woode. Do häs nit et Rääsch, se aanzlääje.',
 
 # Import log
 'importlogpage'                    => 'Logboch met emporteerte Sigge',

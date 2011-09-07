@@ -1450,7 +1450,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'userrights-lookup-user'         => 'Ordne brukergrupper',
 'userrights-user-editname'       => 'Skriv inn et brukernavn:',
 'editusergroup'                  => 'Endre brukergrupper',
-'editinguser'                    => "Endrer brukerrettighetene til '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                    => "Endrer brukerrettighetene til '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'       => 'Rediger brukergrupper',
 'saveusergroups'                 => 'Lagre brukergrupper',
 'userrights-groupsmember'        => 'Medlem av:',
@@ -2565,6 +2565,7 @@ Se [[Special:IPBlockList|blokkeringslisten]] for alle blokkeringer.',
 'unblocklink'                     => 'opphev blokkering',
 'change-blocklink'                => 'endre blokkering',
 'contribslink'                    => 'bidrag',
+'emaillink'                       => 'send e-post',
 'autoblocker'                     => 'Du ble automatisk blokkert fordi du deler IP-adresse med «[[User:$1|$1]]». Grunnen som ble gitt til at «$1» ble blokkert var: «$2».',
 'blocklogpage'                    => 'Blokkeringslogg',
 'blocklog-showlog'                => 'Denne brukeren har blitt blokkert før.
@@ -2811,6 +2812,8 @@ Lagre den på din egen datamaskin og last den opp her.',
 'import-upload'              => 'Last opp XML-data',
 'import-token-mismatch'      => 'Sesjonsdata mistet. Venligst prøv igjen.',
 'import-invalid-interwiki'   => 'Kan ikke importere fra angitt wiki.',
+'import-error-edit'          => 'Siden «$1» ble ikke importert siden du ikke har tillatelse til å redigere den.',
+'import-error-create'        => 'Siden «$1» ble ikke importert siden du ikke har tillatelse til å opprette den.',
 
 # Import log
 'importlogpage'                    => 'Importlogg',
@@ -3235,7 +3238,7 @@ Andre vil skjules som standard.
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',
-'exif-compression-2' => 'CCITT Gruppe 3 1-dimensjonal modifisert Huffman-kjøring lengdekoding',
+'exif-compression-2' => 'CCITT Gruppe 3 1-dimensjonal modifisert Huffman-kjørelengdekoding',
 'exif-compression-3' => 'CCITT Gruppe 3 faks-koding',
 'exif-compression-4' => 'CCITT Gruppe 4 faks-koding',
 

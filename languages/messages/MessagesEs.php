@@ -748,7 +748,7 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'gotaccountlink'             => 'Entrar',
 'userlogin-resetlink'        => '¿Olvidaste tus datos de acceso?',
 'createaccountmail'          => 'por correo electrónico',
-'createaccountreason'        => 'Razón:',
+'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Las contraseñas no coinciden.',
 'userexists'                 => 'El nombre de usuario indicado ya está en uso.
 Por favor escoge un nombre diferente.',
@@ -2186,7 +2186,7 @@ Puede haber información adicional sobre privilegios individuales en [[{{MediaWi
 'emailpagetext'        => 'Puedes usar el formulario de abajo para enviar un correo electrónico a este usuario.
 La dirección electrónica que indicaste en [[Special:Preferences|tus preferencias de usuario]] aparecerá en el remitente para que el destinatario pueda responderte.',
 'usermailererror'      => 'El sistema de correo devolvió un error:',
-'defemailsubject'      => 'Correo de {{SITENAME}}',
+'defemailsubject'      => 'Correo de {{SITENAME}} para el usuario $1',
 'usermaildisabled'     => 'Correo electrónico del usuario deshabilitado',
 'usermaildisabledtext' => 'No puedes enviar correos electrónicos a otros usuarios en esta wiki',
 'noemailtitle'         => 'No hay dirección de correo electrónico',
@@ -2371,6 +2371,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-level-sysop'         => 'Solo administradores',
 'protect-summary-cascade'     => 'en cascada',
 'protect-expiring'            => 'caduca el $1 (UTC)',
+'protect-expiring-local'      => 'caduca el $1',
 'protect-expiry-indefinite'   => 'indefinido',
 'protect-cascade'             => 'Protección en cascada - proteger todas las páginas incluidas en ésta.',
 'protect-cantedit'            => 'No puedes cambiar el nivel de protección porque no tienes permiso para hacer ediciones.',
@@ -2646,6 +2647,7 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'unlockdbsuccesstext' => 'La base de datos de {{SITENAME}} ha sido desbloqueada.',
 'lockfilenotwritable' => 'El archivo-cerrojo de la base de datos no tiene permiso de escritura. Para bloquear o desbloquear la base de datos, este archivo tiene que ser escribible por el servidor web.',
 'databasenotlocked'   => 'La base de datos no está bloqueada.',
+'lockedbyandtime'     => '(por {{GENDER:$1|$1}} el $2 a las $3)',
 
 # Move page
 'move-page'                    => 'Trasladar $1',
@@ -2831,6 +2833,8 @@ No hay un directorio temporal.',
 'import-upload'              => 'Subir datos XML',
 'import-token-mismatch'      => 'Pérdida de datos de sesión. Por favor, inténtalo de nuevo.',
 'import-invalid-interwiki'   => 'No se puede importar de la wiki especificada.',
+'import-error-edit'          => 'La página $1 no se importó porque no tienes permisos para editarla.',
+'import-error-create'        => 'La página «$1» no se importó porque no tienes permisos para crearla.',
 
 # Import log
 'importlogpage'                    => 'Registro de importaciones',

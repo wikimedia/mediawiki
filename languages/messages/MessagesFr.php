@@ -2636,6 +2636,7 @@ Consultez la [[Special:IPBlockList|liste des adresses IP et comptes bloqués]] p
 'unblocklink'                     => 'débloquer',
 'change-blocklink'                => 'modifier le blocage',
 'contribslink'                    => 'contributions',
+'emaillink'                       => 'Envoyer un courriel',
 'autoblocker'                     => 'Vous avez été bloqué automatiquement parce que votre adresse IP a été récemment utilisée par « [[User:$1|$1]] ».
 Le motif fourni pour le blocage de $1 est : « $2 ».',
 'blocklogpage'                    => 'Journal des blocages',
@@ -2881,6 +2882,8 @@ Un dossier temporaire est manquant.",
 'import-upload'              => 'Import de données XML',
 'import-token-mismatch'      => 'Perte des données de session. Veuillez réessayez.',
 'import-invalid-interwiki'   => 'Impossible d’importer depuis le wiki spécifié.',
+'import-error-edit'          => 'La page "$1" n\'a pas été importée parce que vous n\'êtes pas autorisés à la modifier.',
+'import-error-create'        => 'La page "$1" n\'a pas été importée parce que vous n\'êtes pas autorisés à la créer.',
 
 # Import log
 'importlogpage'                    => 'Journal des importations',
