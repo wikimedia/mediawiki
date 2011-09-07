@@ -2128,6 +2128,7 @@ $wgMessageStructure = array(
 		'unblocklink',
 		'change-blocklink',
 		'contribslink',
+		'emaillink',
 		'autoblocker',
 		'blocklogpage',
 		'blocklog-showlog',
