@@ -280,7 +280,7 @@ input#wpSummary {
 /**
  * Categories
  */
-#catlinks ul {
+.catlinks ul {
 	display: inline;
 	margin: 0px;
 	list-style: none;
@@ -289,7 +289,7 @@ input#wpSummary {
 	vertical-align: middle !ie;
 }
 
-#catlinks li {
+.catlinks li {
 	display: inline-block;
 	line-height: 1.35em;
 	padding: 0 .7em;
@@ -299,7 +299,7 @@ input#wpSummary {
 	display: inline !ie;
 }
 
-#catlinks li:first-child {
+.catlinks li:first-child {
 	padding-left: .4em;
 	border-left: none;
 }
