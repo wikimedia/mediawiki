@@ -164,11 +164,11 @@ class WikiPage extends Page {
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace( 'redirect', array( 'rd_from' ),
 			array(
-				'rd_from' 		=> $this->getId(),
-				'rd_namespace' 	=> $rt->getNamespace(),
-				'rd_title' 		=> $rt->getDBkey(),
-				'rd_fragment' 	=> $rt->getFragment(),
-				'rd_interwiki' 	=> $rt->getInterwiki(),
+				'rd_from'      => $this->getId(),
+				'rd_namespace' => $rt->getNamespace(),
+				'rd_title'     => $rt->getDBkey(),
+				'rd_fragment'  => $rt->getFragment(),
+				'rd_interwiki' => $rt->getInterwiki(),
 			),
 			__METHOD__
 		);
@@ -799,7 +799,7 @@ class WikiPage extends Page {
 	 *
 	 * @param $dbw DatabaseBase: object
 	 * @param $revision Revision: For ID number, and text used to set
-						length and redirect status fields
+	 *                  length and redirect status fields
 	 * @param $lastRevision Integer: if given, will not overwrite the page field
 	 *                      when different from the currently set value.
 	 *                      Giving 0 indicates the new page flag should be set
@@ -1030,7 +1030,7 @@ class WikiPage extends Page {
 	 *          Fill in blank summaries with generated text where possible
 	 *
 	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the article will be detected.
-	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will an
+	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will return an
 	 * edit-gone-missing error. If EDIT_NEW is specified and the article does exist, an
 	 * edit-already-exists error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
@@ -1806,7 +1806,7 @@ class WikiPage extends Page {
 	 * and return value documentation
 	 *
 	 * NOTE: This function does NOT check ANY permissions, it just commits the
-	 * rollback to the DB Therefore, you should only call this function direct-
+	 * rollback to the DB. Therefore, you should only call this function direct-
 	 * ly if you want to use custom permissions checks. If you don't, use
 	 * doRollback() instead.
 	 * @param $fromP String: Name of the user whose edits to rollback.

@@ -1993,7 +1993,6 @@ class Article extends Page {
 	 *
 	 * @param $fname String Field name
 	 * @param $fvalue mixed New value
-	 * @param $args Array Arguments to the method
 	 */
 	public function __set( $fname, $fvalue ) {
 		if ( property_exists( $this->mPage, $fname ) ) {
@@ -2003,7 +2002,7 @@ class Article extends Page {
 		} elseif ( !in_array( $fname, array( 'mContext', 'mPage' ) ) ) {
 			$this->mPage->$fname = $fvalue;
 		} else {
-			trigger_error( 'Inaccessible property via __get(): ' . $fname, E_USER_NOTICE );
+			trigger_error( 'Inaccessible property via __set(): ' . $fname, E_USER_NOTICE );
 		}
 	}
 
