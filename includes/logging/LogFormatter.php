@@ -56,7 +56,9 @@ class LogFormatter {
 
 	// Nonstatic->
 
-	/// @var LogEntry
+	/**
+	 * @var LogEntry
+	 */
 	protected $entry;
 
 	/// Whether to output user tool links

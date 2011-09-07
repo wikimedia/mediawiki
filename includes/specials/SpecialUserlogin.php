@@ -377,7 +377,7 @@ class LoginForm extends SpecialPage {
 			return false;
 		}
 
-		// Hook point to check for exempt from account creation throttle	
+		// Hook point to check for exempt from account creation throttle
 		if ( !wfRunHooks( 'exemptFromAccountCreationThrottle', array( $ip ) ) ) {
 			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook allowed account creation w/o throttle\n" );
 		} else {
@@ -780,7 +780,6 @@ class LoginForm extends SpecialPage {
 	 * @param $emailTitle String: message name of email title
 	 * @param $emailText String: message name of email text
 	 * @return Status object
-	 * @private
 	 */
 	function mailPasswordInternal( $u, $throttle = true, $emailTitle = 'passwordremindertitle', $emailText = 'passwordremindertext' ) {
 		global $wgServer, $wgScript, $wgUser, $wgNewPasswordExpiry, $wgRequest;

@@ -76,7 +76,7 @@ production.
   warnings/notices to be thrown.
 * (bug 30335) Fix for HTMLForms using GET breaking when non-friendly URLs are
   used
-* (bug 28649) Avoiding half truncated multi-byte unicode characters when 
+* (bug 28649) Avoiding half truncated multi-byte unicode characters when
   truncating log comments.
 * Show --batch-size option in help of maintenance scripts that support it
 * (bug 4381) Magic quotes cleaning was not comprehensive, key strings were not
