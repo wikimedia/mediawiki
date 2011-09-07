@@ -1019,7 +1019,7 @@ class Linker {
 	 * @private
 	 */
 	static function emailLink( $userId, $userText ) {
-		$emailPage = SpecialPage::getTitleFor( 'EmailUser', $userText );
+		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
 		$emailLink = self::link( $emailPage, wfMsgHtml( 'emaillink' ) );
 		return $emailLink;
 	}
