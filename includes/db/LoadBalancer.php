@@ -241,7 +241,8 @@ class LoadBalancer {
 					$i = $this->getRandomNonLagged( $currentLoads, $wiki );
 					if ( $i === false && count( $currentLoads ) != 0 )  {
 						# All slaves lagged. Switch to read-only mode
-						$wgReadOnly = wfMessage( 'readonly_lag' )->useDatabase( false )->plain();
+						$wgReadOnly = 'The database has been automatically locked ' .
+							'while the slave database servers catch up to the master';
 						$i = $this->pickRandom( $currentLoads );
 						$laggedSlaveMode = true;
 					}
@@ -678,7 +679,14 @@ class LoadBalancer {
 
 		# Create object
 		wfDebug( "Connecting to $host $dbname...\n" );
-		$db = DatabaseBase::factory( $server['type'], $server );
+		try {
+			$db = DatabaseBase::factory( $server['type'], $server );
+		} catch ( DBConnectionError $e ) {
+			// FIXME: This is probably the ugliest thing I have ever done to
+			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
+			$db = $e->db;
+		}
+
 		if ( $db->isOpen() ) {
 			wfDebug( "Connected to $host $dbname.\n" );
 		} else {
