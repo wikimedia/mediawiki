@@ -433,13 +433,21 @@ class UserrightsPage extends SpecialPage {
 			$autogrouplistintro = wfMessage( 'userrights-groupsmember-auto', $count)->parse();
 			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $this->getLang()->listToText( $autolist ) . "</p>\n";
 		}
+
+		$userToolLinks = Linker::userToolLinks(
+				$user->getId(),
+				$user->getName(),
+				false, /* default for redContribsWhenNoEdits */
+				Linker::TOOL_LINKS_EMAIL /* Add "send e-mail" link */
+		);
+
 		$this->getOutput()->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $this->getTitle()->getLocalURL(), 'name' => 'editGroup', 'id' => 'mw-userrights-form2' ) ) .
 			Html::hidden( 'user', $this->mTarget ) .
 			Html::hidden( 'wpEditToken', $this->getUser()->editToken( $this->mTarget ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', array(), wfMsg( 'userrights-editusergroup' ) ) .
-			wfMsgExt( 'editinguser', array( 'parse' ), wfEscapeWikiText( $user->getName() ) ) .
+			wfMsgExt( 'editinguser', array( 'parse' ), wfEscapeWikiText( $user->getName() ), $userToolLinks ) .
 			wfMsgExt( 'userrights-groups-help', array( 'parse' ) ) .
 			$grouplist .
 			Xml::tags( 'p', null, $this->groupCheckboxes( $groups ) ) .
