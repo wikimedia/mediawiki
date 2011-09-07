@@ -7,7 +7,7 @@ class ArticleTest extends MediaWikiTestCase {
 
 	/** creates a title object and its article object */
 	function setUp() {
-		$this->title   = Title::makeTitle( NS_MAIN, 'somePage' );
+		$this->title   = Title::makeTitle( NS_MAIN, 'SomePage' );
 		$this->article = new Article( $this->title );
 
 	}

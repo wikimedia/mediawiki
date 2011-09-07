@@ -574,7 +574,7 @@ class WikiPage extends Page {
 	 * @return string MW timestamp of last article revision
 	 */
 	public function getTimestamp() {
-		// Check if the field has been filled by ParserCache::get()
+		// Check if the field has been filled by WikiPage::setTimestamp()
 		if ( !$this->mTimestamp ) {
 			$this->loadLastEdit();
 		}
@@ -1094,7 +1094,7 @@ class WikiPage extends Page {
 
 		# Provide autosummaries if one is not provided and autosummaries are enabled.
 		if ( $wgUseAutomaticEditSummaries && $flags & EDIT_AUTOSUMMARY && $summary == '' ) {
-			$summary = $this->getAutosummary( $oldtext, $text, $flags );
+			$summary = self::getAutosummary( $oldtext, $text, $flags );
 		}
 
 		$editInfo = $this->prepareTextForEdit( $text, null, $user );
@@ -2462,6 +2462,100 @@ class WikiPage extends Page {
 		# If we reach this point, there's no applicable autosummary for our case, so our
 		# autosummary is empty.
 		return '';
+	}
+
+	/**
+	 * Auto-generates a deletion reason
+	 *
+	 * @param &$hasHistory Boolean: whether the page has a history
+	 * @return mixed String containing deletion reason or empty string, or boolean false
+	 *    if no revision occurred
+	 */
+	public function getAutoDeleteReason( &$hasHistory ) {
+		global $wgContLang;
+
+		$dbw = wfGetDB( DB_MASTER );
+		// Get the last revision
+		$rev = Revision::newFromTitle( $this->getTitle() );
+
+		if ( is_null( $rev ) ) {
+			return false;
+		}
+
+		// Get the article's contents
+		$contents = $rev->getText();
+		$blank = false;
+
+		// If the page is blank, use the text from the previous revision,
+		// which can only be blank if there's a move/import/protect dummy revision involved
+		if ( $contents == '' ) {
+			$prev = $rev->getPrevious();
+
+			if ( $prev )	{
+				$contents = $prev->getText();
+				$blank = true;
+			}
+		}
+
+		// Find out if there was only one contributor
+		// Only scan the last 20 revisions
+		$res = $dbw->select( 'revision', 'rev_user_text',
+			array( 'rev_page' => $this->getID(), $dbw->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' ),
+			__METHOD__,
+			array( 'LIMIT' => 20 )
+		);
+
+		if ( $res === false ) {
+			// This page has no revisions, which is very weird
+			return false;
+		}
+
+		$hasHistory = ( $res->numRows() > 1 );
+		$row = $dbw->fetchObject( $res );
+
+		if ( $row ) { // $row is false if the only contributor is hidden
+			$onlyAuthor = $row->rev_user_text;
+			// Try to find a second contributor
+			foreach ( $res as $row ) {
+				if ( $row->rev_user_text != $onlyAuthor ) { // Bug 22999
+					$onlyAuthor = false;
+					break;
+				}
+			}
+		} else {
+			$onlyAuthor = false;
+		}
+
+		// Generate the summary with a '$1' placeholder
+		if ( $blank ) {
+			// The current revision is blank and the one before is also
+			// blank. It's just not our lucky day
+			$reason = wfMsgForContent( 'exbeforeblank', '$1' );
+		} else {
+			if ( $onlyAuthor ) {
+				$reason = wfMsgForContent( 'excontentauthor', '$1', $onlyAuthor );
+			} else {
+				$reason = wfMsgForContent( 'excontent', '$1' );
+			}
+		}
+
+		if ( $reason == '-' ) {
+			// Allow these UI messages to be blanked out cleanly
+			return '';
+		}
+
+		// Replace newlines with spaces to prevent uglyness
+		$contents = preg_replace( "/[\n\r]/", ' ', $contents );
+		// Calculate the maximum amount of chars to get
+		// Max content length = max comment length - length of the comment (excl. $1)
+		$maxLength = 255 - ( strlen( $reason ) - 2 );
+		$contents = $wgContLang->truncate( $contents, $maxLength );
+		// Remove possible unfinished links
+		$contents = preg_replace( '/\[\[([^\]]*)\]?$/', '$1', $contents );
+		// Now replace the '$1' placeholder
+		$reason = str_replace( '$1', $contents, $reason );
+
+		return $reason;
 	}
 
 	/**
