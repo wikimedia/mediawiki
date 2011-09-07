@@ -298,7 +298,7 @@ class GenerateSitemap extends Maintenance {
 				}
 				$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 				$date = wfTimestamp( TS_ISO_8601, $row->page_touched );
-				$entry = $this->fileEntry( $title->getFullURL(), $date, $this->priority( $namespace ) );
+				$entry = $this->fileEntry( $title->getCanonicalURL(), $date, $this->priority( $namespace ) );
 				$length += strlen( $entry );
 				$this->write( $this->file, $entry );
 				// generate pages for language variants
@@ -306,7 +306,7 @@ class GenerateSitemap extends Maintenance {
 					$variants = $wgContLang->getVariants();
 					foreach ( $variants as $vCode ) {
 						if ( $vCode == $wgContLang->getCode() ) continue; // we don't want default variant
-						$entry = $this->fileEntry( $title->getFullURL( '', $vCode ), $date, $this->priority( $namespace ) );
+						$entry = $this->fileEntry( $title->getCanonicalURL( '', $vCode ), $date, $this->priority( $namespace ) );
 						$length += strlen( $entry );
 						$this->write( $this->file, $entry );
 					}
@@ -456,7 +456,7 @@ class GenerateSitemap extends Maintenance {
 
 		$this->limit = array(
 			strlen( $this->openFile() ),
-			strlen( $this->fileEntry( $title->getFullUrl(), wfTimestamp( TS_ISO_8601, wfTimestamp() ), $this->priority( $namespace ) ) ),
+			strlen( $this->fileEntry( $title->getCanonicalURL(), wfTimestamp( TS_ISO_8601, wfTimestamp() ), $this->priority( $namespace ) ) ),
 			strlen( $this->closeFile() )
 		);
 	}
