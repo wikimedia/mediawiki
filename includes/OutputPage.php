@@ -1847,7 +1847,7 @@ class OutputPage {
 
 		if ( $this->mRedirect != '' ) {
 			# Standards require redirect URLs to be absolute
-			$this->mRedirect = wfExpandUrl( $this->mRedirect );
+			$this->mRedirect = wfExpandUrl( $this->mRedirect, PROTO_CURRENT );
 			if( $this->mRedirectCode == '301' || $this->mRedirectCode == '303' ) {
 				if( !$wgDebugRedirects ) {
 					$message = HttpStatus::getMessage( $this->mRedirectCode );
@@ -2829,8 +2829,8 @@ $templates
 			} else {
 				$tags[] = Html::element( 'link', array(
 					'rel' => 'canonical',
-					'href' => wfExpandUrl( $this->getTitle()->getFullURL(), PROTO_HTTP ) )
-				);
+					'href' => $this->getTitle()->getCanonicalUrl()
+				) );
 			}
 		}
 

@@ -472,7 +472,7 @@ class SearchEngine {
 	 * @return String
 	 */
 	public static function getOpenSearchTemplate() {
-		global $wgOpenSearchTemplate, $wgServer;
+		global $wgOpenSearchTemplate, $wgCanonicalServer;
 		if ( $wgOpenSearchTemplate ) {
 			return $wgOpenSearchTemplate;
 		} else {
@@ -480,7 +480,7 @@ class SearchEngine {
 			if ( !$ns ) {
 				$ns = "0";
 			}
-			return $wgServer . wfScript( 'api' ) . '?action=opensearch&search={searchTerms}&namespace=' . $ns;
+			return $wgCanonicalServer . wfScript( 'api' ) . '?action=opensearch&search={searchTerms}&namespace=' . $ns;
 		}
 	}
 

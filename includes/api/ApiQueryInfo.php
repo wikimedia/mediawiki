@@ -380,8 +380,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		}
 
 		if ( $this->fld_url ) {
-			$pageInfo['fullurl'] = wfExpandUrl( $title->getFullURL() );
-			$pageInfo['editurl'] = wfExpandUrl( $title->getFullURL( 'action=edit' ) );
+			$pageInfo['fullurl'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
+			$pageInfo['editurl'] = wfExpandUrl( $title->getFullURL( 'action=edit' ), PROTO_CURRENT );
 		}
 		if ( $this->fld_readable && $title->userCanRead() ) {
 			$pageInfo['readable'] = '';

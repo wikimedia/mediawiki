@@ -28,7 +28,14 @@
  * @ingroup SpecialPage
  */
 class SpecialSearch extends SpecialPage {
-	/// Current search profile
+	/**
+	 * Current search profile. Search profile is just a name that identifies
+	 * the active search tab on the search page (content, help, discussions...)
+	 * For users tt replaces the set of enabled namespaces from the query
+	 * string when applicable. Extensions can add new profiles with hooks
+	 * with custom search options just for that profile.
+	 * null|string
+	 */ 
 	protected $profile;
 
 	/// Search engine
@@ -743,13 +750,13 @@ class SpecialSearch extends SpecialPage {
 		$out = "";
 		// display project name
 		if(is_null($lastInterwiki) || $lastInterwiki != $t->getInterwiki()) {
-			if( key_exists($t->getInterwiki(),$customCaptions) )
+			if( array_key_exists($t->getInterwiki(),$customCaptions) ) {
 				// captions from 'search-interwiki-custom'
 				$caption = $customCaptions[$t->getInterwiki()];
 			else{
 				// default is to show the hostname of the other wiki which might suck
 				// if there are many wikis on one hostname
-				$parsed = parse_url($t->getFullURL());
+				$parsed = wfParseUrl( $t->getFullURL() );
 				$caption = wfMsg('search-interwiki-default', $parsed['host']);
 			}
 			// "more results" link (special page stuff could be localized, but we might not know target lang)

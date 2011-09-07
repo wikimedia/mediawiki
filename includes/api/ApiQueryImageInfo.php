@@ -348,7 +348,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			if ( !is_null( $thumbParams ) ) {
 				$mto = $file->transform( $thumbParams );
 				if ( $mto && !$mto->isError() ) {
-					$vals['thumburl'] = wfExpandUrl( $mto->getUrl() );
+					$vals['thumburl'] = wfExpandUrl( $mto->getUrl(), PROTO_CURRENT );
 
 					// bug 23834 - If the URL's are the same, we haven't resized it, so shouldn't give the wanted
 					// thumbnail sizes for the thumbnail actual size
@@ -370,8 +370,8 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$vals['thumberror'] = $mto->toText();
 				}
 			}
-			$vals['url'] = wfExpandUrl( $file->getFullURL() );
-			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl() );
+			$vals['url'] = wfExpandUrl( $file->getFullURL(), PROTO_CURRENT );
+			$vals['descriptionurl'] = wfExpandUrl( $file->getDescriptionUrl(), PROTO_CURRENT );
 		}
 
 		if ( $sha1 ) {
