@@ -249,3 +249,4 @@ define( 'PROTO_HTTPS', 'https://' );
 define( 'PROTO_RELATIVE', '//' );
 define( 'PROTO_CURRENT', null );
 define( 'PROTO_CANONICAL', 1 );
+define( 'PROTO_INTERNAL', 2 );
