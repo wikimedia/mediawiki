@@ -438,6 +438,7 @@ function wfAppendQuery( $url, $query ) {
  * PROTO_RELATIVE: Output a URL starting with // (protocol-relative URL)
  * PROTO_CURRENT: Output a URL starting with either http:// or https:// , depending on which protocol was used for the current incoming request
  * PROTO_CANONICAL: For URLs without a domain, like /w/index.php , use $wgCanonicalServer. For protocol-relative URLs, use the protocol of $wgCanonicalServer
+ * PROTO_INTERNAL: Like PROTO_CANONICAL, but uses $wgInternalServer instead of $wgCanonicalServer
  *
  * @todo this won't work with current-path-relative URLs
  * like "subdir/foo.html", etc.
@@ -447,9 +448,15 @@ function wfAppendQuery( $url, $query ) {
  * @return string Fully-qualified URL
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
-	global $wgServer, $wgCanonicalServer;
-	$serverUrl = $defaultProto === PROTO_CANONICAL ? $wgCanonicalServer : $wgServer;
-
+	global $wgServer, $wgCanonicalServer, $wgInternalServer;
+	$serverUrl = $wgServer;
+	if ( $defaultProto === PROTO_CANONICAL ) {
+		$serverUrl = $wgCanonicalServer;
+	}
+	// Make $wgInternalServer fall back to $wgServer if not set
+	if ( $defaultProto === PROTO_INTERNAL && $wgInternalServer !== false ) {
+		$serverUrl = $wgInternalServer;
+	}
 	if ( $defaultProto === PROTO_CURRENT ) {
 		$defaultProto = WebRequest::detectProtocol() . '://';
 	}
@@ -458,11 +465,11 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	$bits = wfParseUrl( $serverUrl );
 	$serverHasProto = $bits && $bits['scheme'] != '';
 
-	if ( $defaultProto === PROTO_CANONICAL ) {
+	if ( $defaultProto === PROTO_CANONICAL || $defaultProto === PROTO_INTERNAL ) {
 		if ( $serverHasProto ) {
 			$defaultProto = $bits['scheme'] . '://';
 		} else {
-			// $wgCanonicalServer doesn't have a protocol. This really isn't supposed to happen
+			// $wgCanonicalServer or $wgInternalServer doesn't have a protocol. This really isn't supposed to happen
 			// Fall back to HTTP in this ridiculous case
 			$defaultProto = PROTO_HTTP;
 		}
