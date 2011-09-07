@@ -1524,6 +1524,6 @@ class PreferencesForm extends HTMLForm {
 	 * Get the whole body of the form.
 	 */
 	function getBody() {
-		return $this->displaySection( $this->mFieldTree, '', true );
+		return $this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' );
 	}
 }

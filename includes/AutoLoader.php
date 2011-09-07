@@ -24,7 +24,6 @@ $wgAutoloadLocalClasses = array(
 	'AuthPluginUser' => 'includes/AuthPlugin.php',
 	'Autopromote' => 'includes/Autopromote.php',
 	'BacklinkCache' => 'includes/BacklinkCache.php',
-	'BadTitle' => 'includes/Title.php',
 	'BaseTemplate' => 'includes/SkinTemplate.php',
 	'Block' => 'includes/Block.php',
 	'Category' => 'includes/Category.php',
