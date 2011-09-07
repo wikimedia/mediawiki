@@ -915,9 +915,8 @@ class Linker {
 	 * @param $userId   Integer: user id in database.
 	 * @param $userText String: user name in database
 	 * @return String: HTML fragment
-	 * @private
 	 */
-	static function userLink( $userId, $userText ) {
+	public static function userLink( $userId, $userText ) {
 		if ( $userId == 0 ) {
 			$page = SpecialPage::getTitleFor( 'Contributions', $userText );
 		} else {
@@ -992,9 +991,8 @@ class Linker {
 	 * @param $userId Integer: user id in database.
 	 * @param $userText String: user name in database.
 	 * @return String: HTML fragment with user talk link
-	 * @private
 	 */
-	static function userTalkLink( $userId, $userText ) {
+	public static function userTalkLink( $userId, $userText ) {
 		$userTalkPage = Title::makeTitle( NS_USER_TALK, $userText );
 		$userTalkLink = self::link( $userTalkPage, wfMsgHtml( 'talkpagelinktext' ) );
 		return $userTalkLink;
@@ -1004,9 +1002,8 @@ class Linker {
 	 * @param $userId Integer: userid
 	 * @param $userText String: user name in database.
 	 * @return String: HTML fragment with block link
-	 * @private
 	 */
-	static function blockLink( $userId, $userText ) {
+	public static function blockLink( $userId, $userText ) {
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
 		$blockLink = self::link( $blockPage, wfMsgHtml( 'blocklink' ) );
 		return $blockLink;
@@ -1016,9 +1013,8 @@ class Linker {
 	 * @param $userId Integer: userid
 	 * @param $userText String: user name in database.
 	 * @return String: HTML fragment with e-mail user link
-	 * @private
 	 */
-	static function emailLink( $userId, $userText ) {
+	public static function emailLink( $userId, $userText ) {
 		$emailPage = SpecialPage::getTitleFor( 'Emailuser', $userText );
 		$emailLink = self::link( $emailPage, wfMsgHtml( 'emaillink' ) );
 		return $emailLink;
