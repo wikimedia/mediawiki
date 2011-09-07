@@ -428,7 +428,7 @@ class ApiMain extends ApiBase {
 				return;
 			} // else no XVO and anonymous, send public headers below
 		}
-		
+
 		// Send public headers
 		if ( $wgVaryOnXFPForAPI ) {
 			$response->header( 'Vary: Accept-Encoding, X-Forwarded-Proto' );

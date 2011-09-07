@@ -26,6 +26,12 @@
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class NamespaceConflictChecker extends Maintenance {
+
+	/**
+	 * @var DatabaseBase
+	 */
+	protected $db;
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "";
@@ -183,6 +189,8 @@ class NamespaceConflictChecker extends Maintenance {
 	 *
 	 * @param $ns Integer: namespace id (id for new namespace?)
 	 * @param $name String: prefix that is being made a namespace
+	 *
+	 * @return array
 	 */
 	private function getConflicts( $ns, $name ) {
 		$page  = 'page';
@@ -217,6 +225,8 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * Report any conflicts we find
+	 *
+	 * @return bool
 	 */
 	private function reportConflict( $row, $suffix ) {
 		$newTitle = Title::makeTitleSafe( $row->namespace, $row->title );
