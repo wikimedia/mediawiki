@@ -577,11 +577,3 @@ class LogPage {
 		return $messages[$flag];
 	}
 }
-
-/**
- * Aliases for backwards compatibility with 1.6
- */
-define( 'MW_LOG_DELETED_ACTION', LogPage::DELETED_ACTION );
-define( 'MW_LOG_DELETED_USER', LogPage::DELETED_USER );
-define( 'MW_LOG_DELETED_COMMENT', LogPage::DELETED_COMMENT );
-define( 'MW_LOG_DELETED_RESTRICTED', LogPage::DELETED_RESTRICTED );
