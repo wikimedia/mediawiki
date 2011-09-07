@@ -892,13 +892,18 @@ abstract class File {
 	/**
 	 * Get the relative path for an archived file
 	 * 
-	 * @param $archiveName string the timestamped name of an archived image
-	 * @param $suffix bool|string if not false, the name of a thumbnail file
+	 * @param $suffix bool|string if not false, the name of an archived thumbnail file
 	 *
 	 * @return string 
 	 */
-	function getArchiveRel( $archiveName ) {
-		return 'archive/' . $this->getHashPath() . $archiveName;
+	function getArchiveRel( $suffix = false ) {
+		$path = 'archive/' . $this->getHashPath();
+		if ( $suffix === false ) {
+			$path = substr( $path, 0, -1 );
+		} else {
+			$path .= $suffix;
+		}
+		return $path;
 	}
 
 	/**
@@ -921,12 +926,12 @@ abstract class File {
 	/**
 	 * Get the path of the archived file.
 	 *
-	 * @param $archiveName the timestamped name of an archived image
+	 * @param $suffix bool|string if not false, the name of an archived file.
 	 *
 	 * @return string
 	 */
-	function getArchivePath( $archiveName ) {
-		return $this->repo->getZonePath( 'public' ) . '/' . $this->getArchiveRel( $archiveName );
+	function getArchivePath( $suffix = false ) {
+		return $this->repo->getZonePath( 'public' ) . '/' . $this->getArchiveRel( $suffix );
 	}
 
 	/**
@@ -957,14 +962,20 @@ abstract class File {
 	}
 
 	/**
-	 * Get the URL of the archived file
+	 * Get the URL of the archive directory, or a particular file if $suffix is specified
 	 *
-	 * @param $archiveName string
+	 * @param $suffix bool|string if not false, the name of an archived file
 	 *
 	 * @return string
 	 */
-	function getArchiveUrl( $archiveName ) {
-		return $this->repo->getZoneUrl('public') . '/archive/' . $this->getHashPath() . rawurlencode( $archiveName );
+	function getArchiveUrl( $suffix = false ) {
+		$path = $this->repo->getZoneUrl('public') . '/archive/' . $this->getHashPath();
+		if ( $suffix === false ) {
+			$path = substr( $path, 0, -1 );
+		} else {
+			$path .= rawurlencode( $suffix );
+		}
+		return $path;
 	}
 
 	/**
