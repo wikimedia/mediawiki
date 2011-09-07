@@ -310,7 +310,7 @@ $messages = array(
 'vector-action-move'       => 'لېږدول',
 'vector-action-protect'    => 'پروژه',
 'vector-action-undelete'   => 'ناړنګول',
-'vector-action-unprotect'  => 'ناژغورل',
+'vector-action-unprotect'  => 'ژغورنه بدلول',
 'vector-view-create'       => 'جوړول',
 'vector-view-edit'         => 'سمول',
 'vector-view-history'      => 'پېښليک کتل',
@@ -345,8 +345,8 @@ $messages = array(
 'protect'           => 'ژغورل',
 'protect_change'    => 'بدلون',
 'protectthispage'   => 'همدا مخ ژغورل',
-'unprotect'         => 'نه ژغورل',
-'unprotectthispage' => 'همدا مخ نه ژغورل',
+'unprotect'         => 'ژغورنه بدلول',
+'unprotectthispage' => 'د دې مخ ژغورنه بدلول',
 'newpage'           => 'نوی مخ',
 'talkpage'          => 'د دې مخ په اړه خبرې اترې کول',
 'talkpagelinktext'  => 'خبرې اترې',
@@ -541,7 +541,7 @@ $1',
 'createaccountmail'          => 'د برېښليک له مخې',
 'createaccountreason'        => 'سبب:',
 'badretype'                  => 'دا پټنوم چې تاسې ليکلی د مخکني پټنوم سره ورته نه دی.',
-'userexists'                 => 'کوم کارن نوم چې تاسې ورکړ هغه بل چا کارولی.
+'userexists'                 => 'کوم کارن نوم چې تاسې ورکړی هغه بل چا کارولی.
 لطفاً يو بل نوم وټاکۍ.',
 'loginerror'                 => 'د ننوتنې ستونزه',
 'createaccounterror'         => 'ګڼون مو جوړ نه شو: $1',
@@ -711,7 +711,12 @@ $1',
 'userpage-userdoesnotexist-view'   => 'د "$1" ګڼون نه دی ثبت شوی.',
 'blocked-notice-logextract'        => 'دم مهال په دې کارن بنديز لګېدلی.
 دلته لاندې د بنديز تازه يادښت د سرچينې په توګه ورکړ شوی:',
-'clearyourcache'                   => "'''يادونه:''' د غوره توبونو د خوندي کولو وروسته، ددې لپاره چې تاسو خپل سر ته رسولي ونجونه وګورۍ نو پکار ده چې د خپل بروزر ساتل شوې حافظه تازه کړی. د '''Mozilla / Firefox / Safari:''' لپاره د ''Shift'' تڼۍ نيولې وساتی کله مو چې په ''Reload''، ټک واهه، او يا هم ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''Cmd-Shift-R'' کېښکاږۍ); '''IE:''' د ''Ctrl'' تڼۍ کېښکاږۍ کله مو چې په ''Refresh'' ټک واهه، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ; '''Konqueror:''' بروزر کې يواځې ''Reload'' ته ټک ورکړۍ، او يا په ''F5''; د '''Opera''' کارنانو ته پکار ده چې په بشپړه توګه د خپل کمپيوټر ساتل شوې حافظه تازه کړي چې پدې توګه کېږي ''Tools→Preferences''.",
+'clearyourcache'                   => "'''يادونه:''' د غوره توبونو د خوندي کولو وروسته، ددې لپاره چې تاسو خپل سر ته رسولي ونجونه وګورۍ نو پکار ده چې د خپل بروزر ساتل شوې حافظه تازه کړی. 
+* د '''Mozilla / Firefox / Safari:''' لپاره د ''Shift'' تڼۍ نيولې وساتی کله مو چې په ''Reload''، ټک واهه، او يا هم ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''Cmd-Shift-R'' کېښکاږۍ)
+* '''د ګووګل کروم:''' لپاره د ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (د مک لپاره ''Command-Shift-R'')
+* د '''IE:''' د ''Ctrl'' تڼۍ کېښکاږۍ کله مو چې په ''Refresh'' ټک واهه، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ
+* د '''Konqueror:''' بروزر کې يواځې ''Reload'' ته ټک ورکړۍ، او يا په ''F5''
+* د '''Opera''' کارنانو ته پکار ده چې په بشپړه توګه د خپل کمپيوټر ساتل شوې حافظه تازه کړي چې پدې توګه کېږي ''Tools→Preferences''.",
 'usercsspreview'                   => "'''هېر مو نشي چې دا يوازې ستاسې د کارن CSS مخليدنه ده.'''
 '''تر اوسه پورې لا ستاسې بدلونونه نه دي خوندي شوي!'''",
 'userjspreview'                    => "'''هېر مو نشي چې دا يوازې ستاسې د کارن د جاوا سکرېپټ آزمېيل/مخليدنه ده.'''
@@ -974,7 +979,7 @@ $1',
 'savedprefs'                    => 'ستاسو غوره توبونه خوندي شوه.',
 'timezonelegend'                => 'د وخت سيمه:',
 'localtime'                     => 'سيمه ايز وخت:',
-'timezoneuseserverdefault'      => 'د پالنګر تلواليزه بڼه کارول',
+'timezoneuseserverdefault'      => 'د ويکي تلواليزه بڼه کارول ($1)',
 'timezoneuseoffset'             => 'بل (توپير ځانګړی کړی)',
 'timezoneoffset'                => 'توپير¹:',
 'servertime'                    => 'د پالنګر وخت:',
@@ -1493,7 +1498,7 @@ $1',
 'mailnologin'          => 'هېڅ کومه لېږل شوې پته نشته',
 'emailuser'            => 'کارن ته برېښليک لېږل',
 'emailpage'            => 'کارن ته برېښليک لېږل',
-'defemailsubject'      => 'د {{SITENAME}} برېښليک',
+'defemailsubject'      => 'د "$1" کارن لخوا د {{SITENAME}} برېښليک',
 'usermaildisabled'     => 'د کارن برېښليک ناچارند دی',
 'usermaildisabledtext' => 'په دې ويکي تاسې نورو کارنانو ته برېښليک نه شی ورلېږلی',
 'noemailtitle'         => 'هېڅ کومه برېښليک پته نشته.',
@@ -1526,6 +1531,7 @@ $1',
 'watchlistanontext'    => 'د خپل کتنلړ د توکو د سمولو او کتلو لپاره $1 ترسره کړۍ.',
 'watchnologin'         => 'غونډال کې نه ياست ننوتي.',
 'watchnologintext'     => 'ددې لپاره چې خپل کتل شوي لړليک کې بدلون راولی نو تاسو ته پکار ده چې لومړی غونډال کې [[Special:UserLogin|ننوتنه]] ترسره کړی.',
+'addwatch'             => 'کتنلړ کې ورګډول',
 'addedwatchtext'       => "د \"[[:\$1]]\" په نوم يو مخ ستاسې [[Special:Watchlist|کتنلړ]] کې ورګډ شو.
 په راتلونکې کې چې په دغه مخ او د ده د خبرواترو مخ کې کوم بدلونونه راځي نو هغه به ستاسې کتنلړ کې ښکاره شي،
 او په همدې توګه هغه مخونه به د [[Special:RecentChanges|وروستي بدلونونو]] په لړليک کې په '''روڼ''' ليک ښکاري ترڅو په اسانۍ سره څوک وپوهېږي چې په کوم کوم مخونو کې بدلونونه ترسره شوي.
@@ -1720,7 +1726,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'nolinkshere'              => "د '''[[:$1]]''' سره هېڅ يو مخ هم تړنې نه لري .",
 'isredirect'               => 'د مخ ګرځونې مخ',
 'istemplate'               => 'ورګډېدنه',
-'isimage'                  => 'د انځور تړنه',
+'isimage'                  => 'د دوتنې تړنه',
 'whatlinkshere-prev'       => '{{PLURAL:$1|پخوانی|پخواني $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|راتلونکی|راتلونکي $1}}',
 'whatlinkshere-links'      => '← تړنې',
@@ -1785,6 +1791,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'unblocklink'                => 'بنديز لرې کول',
 'change-blocklink'           => 'د بنديز بدلون',
 'contribslink'               => 'ونډې',
+'emaillink'                  => 'برېښليک لېږل',
 'autoblocker'                => 'په اتوماتيک ډول ستاسو مخنيوی شوی دا ځکه چې ستاسو IP پته وروستی ځل د "[[User:$1|$1]]" له خوا کارېدلې. او د $1 د مخنيوي سبب دا دی: "$2"',
 'blocklogpage'               => 'د مخنيوي يادښت',
 'blocklogentry'              => 'په [[$1]] بنديز لګېدلی چې د بنديز د پای وخت يې $2 $3 دی',
@@ -1914,7 +1921,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'tooltip-ca-viewsource'           => 'دا مخ ژغورل شوی. تاسې کولای شی چې د دې مخ سرجينه وګورۍ.',
 'tooltip-ca-history'              => 'د دې مخ پخوانۍ بڼې',
 'tooltip-ca-protect'              => 'دا مخ ژغورل',
-'tooltip-ca-unprotect'            => 'همدا مخ ناژغورل',
+'tooltip-ca-unprotect'            => 'د دې مخ ژغورنه بدلول',
 'tooltip-ca-delete'               => 'دا مخ ړنګول',
 'tooltip-ca-move'                 => 'همدا مخ لېږدول',
 'tooltip-ca-watch'                => 'دا مخ په خپل کتنلړکې ګډول',
@@ -1970,6 +1977,17 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'others'           => 'نور',
 'siteusers'        => 'د {{SITENAME}} {{PLURAL:$2|کارن|کارنان}} $1',
 'anonusers'        => 'د {{SITENAME}} {{PLURAL:$2|ورکنومی کارن|ورکنومي کارنان}} $1',
+
+# Info page
+'pageinfo-title'            => 'د "$1" مالومات',
+'pageinfo-header-edits'     => 'سمونونه',
+'pageinfo-header-watchlist' => 'کتنلړ',
+'pageinfo-header-views'     => 'کتنې',
+'pageinfo-subjectpage'      => 'مخ',
+'pageinfo-talkpage'         => 'د خبرواترو مخ',
+'pageinfo-watchers'         => 'د کتونکو شمېر',
+'pageinfo-edits'            => 'د سمونونو شمېر',
+'pageinfo-views'            => 'د کتنو شمېر',
 
 # Skin names
 'skinname-standard'    => 'کلاسيک',
@@ -2160,10 +2178,12 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-iimcategory-edu' => 'زده کړې',
 'exif-iimcategory-evn' => 'چاپېريال',
 'exif-iimcategory-hth' => 'روغتيا',
+'exif-iimcategory-lif' => 'ژوندتوګه او فارغ وختونه',
 'exif-iimcategory-pol' => 'سياست',
 'exif-iimcategory-rel' => 'دين او ګروهه',
 'exif-iimcategory-sci' => 'ساينس او تخنيک',
 'exif-iimcategory-soi' => 'ټولنيزې چارې',
+'exif-iimcategory-spo' => 'سپورت',
 'exif-iimcategory-war' => 'جګړه، تاوتريخوالی، او نارامي',
 'exif-iimcategory-wea' => 'هوا',
 
@@ -2215,6 +2235,10 @@ $5
 # action=purge
 'confirm_purge_button' => 'ښه',
 'confirm-purge-top'    => 'په رښتيا د همدې مخ حافظه سپينول غواړۍ؟',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'ښه',
+'confirm-unwatch-button' => 'ښه',
 
 # Multipage image navigation
 'imgmultipageprev' => '← پخوانی مخ',
@@ -2312,7 +2336,7 @@ $5
 'specialpages-note'            => '----
 * نورماله ځانګړي مخونه.
 * <strong class="mw-specialpagerestricted">محدوده ځانګړي مخونه.</strong>
-* <span class="mw-specialpagecached">يوازې رانيولي ځانګړي مخونه special pages.</span>',
+* <span class="mw-specialpagecached">رانيولي ځانګړي مخونه (کېدای شي منسوخ شوی وي).</span>',
 'specialpages-group-other'     => 'نور ځانګړي مخونه',
 'specialpages-group-login'     => 'ننوتل / ګڼون جوړول',
 'specialpages-group-changes'   => 'وروستي بدلونونه او يادښتونه',

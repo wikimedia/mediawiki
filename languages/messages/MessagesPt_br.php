@@ -2818,6 +2818,8 @@ Salve o arquivo no seu computador e importe-o aqui.',
 'import-upload'              => 'Enviar dados em XML',
 'import-token-mismatch'      => 'Perda dos dados da sessão. Por favor tente novamente.',
 'import-invalid-interwiki'   => 'Não é possível importar da wiki especificada.',
+'import-error-edit'          => 'A página "$1" não foi importada porque você não tem permissão para editá-la.',
+'import-error-create'        => 'A página "$1" não foi importada porque você não tem permissão para criá-la.',
 
 # Import log
 'importlogpage'                    => 'Registro de importações',

@@ -2484,6 +2484,7 @@ Sei sicuro di voler continuare?',
 'unblocklink'                     => 'sblocca',
 'change-blocklink'                => 'cambia blocco',
 'contribslink'                    => 'contributi',
+'emaillink'                       => 'invia e-mail',
 'autoblocker'                     => 'Bloccato automaticamente perché l\'indirizzo IP è condiviso con l\'utente "[[User:$1|$1]]".
 Il blocco dell\'utente $1 è stato imposto per il seguente motivo: "$2".',
 'blocklogpage'                    => 'Blocchi',
@@ -2713,6 +2714,8 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'import-upload'              => 'Carica dati XML',
 'import-token-mismatch'      => 'I dati relativi alla sessione sono andati persi. Riprovare.',
 'import-invalid-interwiki'   => 'Impossibile importare dal progetto wiki indicato.',
+'import-error-edit'          => 'La pagina "$1" non è stata importata poiché non sei autorizzato a modificarla.',
+'import-error-create'        => 'La pagina "$1" non è stata importata poiché non sei autorizzato a crearla.',
 
 # Import log
 'importlogpage'                    => 'Importazioni',

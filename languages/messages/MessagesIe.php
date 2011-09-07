@@ -1344,6 +1344,16 @@ Vu posse anc [[Special:EditWatchlist|usar li redactor uniform]].',
 #Colocar omni fragmentes regulari súper ti linea. Abandonar ti linea exactmen quam it es</pre>',
 
 # Special:Tags
-'tag-filter' => 'Filtre de [[Special:Tags|puntale]]:',
+'tags'                    => 'Puntales de change valid',
+'tag-filter'              => 'Filtre de [[Special:Tags|puntale]]:',
+'tag-filter-submit'       => 'Filtre',
+'tags-title'              => 'Puntales',
+'tags-intro'              => 'Ti págine lista li puntales que li software posse marcar un redaction che, e lor signification.',
+'tags-tag'                => 'Nómine de puntale',
+'tags-display-header'     => 'Aspecte in listes de change',
+'tags-description-header' => 'Descrition complet de signification',
+'tags-hitcount-header'    => 'Changes nómiat',
+'tags-edit'               => 'redacter',
+'tags-hitcount'           => '$1 {{PLURAL:$1|change|changes}}',
 
 );

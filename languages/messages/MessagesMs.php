@@ -2684,6 +2684,8 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 'import-upload'              => 'Muat naik data XML',
 'import-token-mismatch'      => 'Data sesi telah hilang. Sila cuba lagi.',
 'import-invalid-interwiki'   => 'Wiki yang dinyatakan tidak boleh diimport.',
+'import-error-edit'          => 'Laman "$1" tidak diimport kerana anda tidak dibenarkan untuk menyuntingnya.',
+'import-error-create'        => 'Laman "$1" tidak diimport kerana anda tidak dibenarkan untuk menciptanya.',
 
 # Import log
 'importlogpage'                    => 'Log import',

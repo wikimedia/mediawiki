@@ -1360,7 +1360,7 @@ Podatek bo javno prikazan.',
 'userrights-lookup-user'       => 'Upravljanje z uporabniškimi skupinami',
 'userrights-user-editname'     => 'Vpišite uporabniško ime:',
 'editusergroup'                => 'Uredi uporabniške skupine',
-'editinguser'                  => "Urejanje pravic uporabnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Urejanje pravic uporabnika '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Urejanje uporabniških skupin',
 'saveusergroups'               => 'Shrani spremembe',
 'userrights-groupsmember'      => 'Član skupine:',
@@ -2508,6 +2508,7 @@ Oglejte si [[Special:IPBlockList|seznam blokiranih IP-naslovov]] za pregled blok
 'unblocklink'                     => 'deblokiraj',
 'change-blocklink'                => 'spremeni blokado',
 'contribslink'                    => 'prispevki',
+'emaillink'                       => 'pošljite e-pošto',
 'autoblocker'                     => 'Urejanje vam je bilo samodejno onemogočeno, saj je vaš IP-naslov pred kratkim uporabljal »[[User:$1|$1]]«.
 Razlog za blokado uporabnika $1 je: »$2«',
 'blocklogpage'                    => 'Dnevnik blokiranja',
@@ -2765,6 +2766,8 @@ Manjka začasna mapa.',
 'import-token-mismatch'      => 'Izguba podatkov o seji.
 Prosimo, poskusite znova.',
 'import-invalid-interwiki'   => 'Uvoz iz navedenega wikija ni možen.',
+'import-error-edit'          => 'Stran »$1« ni uvožena, ker vam ni dovoljeno, da jo urejate.',
+'import-error-create'        => 'Stran »$1« ni uvožena, ker vam ni dovoljeno, da jo ustvarite.',
 
 # Import log
 'importlogpage'                    => 'Dnevnik uvozov',

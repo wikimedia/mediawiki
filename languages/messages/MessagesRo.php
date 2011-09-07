@@ -2846,6 +2846,8 @@ Un dosar temporar lipsește.',
 'import-upload'              => 'Încărcare date XML',
 'import-token-mismatch'      => 'S-au pierdut datele sesiunii. Vă rugăm să încercați din nou.',
 'import-invalid-interwiki'   => 'Nu se poate importa din wiki-ul specificat.',
+'import-error-edit'          => 'Pagina „$1” nu este importată deoarece nu vă este permis s-o modificați.',
+'import-error-create'        => 'Pagina „$1” nu este importată deoarece nu vă este permis s-o creați.',
 
 # Import log
 'importlogpage'                    => 'Log import',

@@ -2319,7 +2319,7 @@ Para comentários e pedidos de ajuda:
 'deletepage'             => 'Eliminar página',
 'confirm'                => 'Confirmar',
 'excontent'              => 'o conteúdo era: "$1"',
-'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era "[[{{#Special:Contributions}}/$2|$2]]")',
+'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era [[Special:Contributions/$2|$2]]")',
 'exbeforeblank'          => 'o conteúdo antes de esvaziar era: "$1"',
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',
@@ -2872,6 +2872,8 @@ Não há um directório temporário.',
 'import-upload'              => 'Enviar dados em XML',
 'import-token-mismatch'      => 'Perda dos dados da sessão. Tente novamente, por favor.',
 'import-invalid-interwiki'   => 'Não é possível importar da wiki especificada.',
+'import-error-edit'          => 'A página "$1" não foi importada porque você não tem permissão para editá-la.',
+'import-error-create'        => 'A página "$1" não foi importada porque você não tem permissão para criá-la.',
 
 # Import log
 'importlogpage'                    => 'Registo de importações',

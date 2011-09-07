@@ -405,6 +405,8 @@ Na dìochuimhnich na [[Special:Preferences|roghainnean agad air {{SITENAME}}]] a
 'nologin'                    => 'Nach eil cunntas agad fhathast? $1.',
 'nologinlink'                => 'Cruthaich cunntas',
 'createaccount'              => 'Cruthaich cunntas ùr',
+'gotaccount'                 => 'A bheil cunntas agad mu thràth? $1.',
+'userlogin-resetlink'        => "Na dhìochuimhnich thu d' ainm is facal-faire?",
 'loginerror'                 => 'Mearachd log a-steach',
 'noname'                     => 'Cha do thagh thu ainm-cleachdaiche dligheach.',
 'nosuchusershort'            => 'Chan eil cleachdaiche ann leis an ainm "$1".
@@ -502,6 +504,12 @@ Chì thu an clàr mu dheireadh san loga mar fhiosrachadh dhut gu h-ìosal:",
 'template-semiprotected'           => '(air a leth-dhìon)',
 'hiddencategories'                 => "Tha an duilleag seo 'na ball de {{PLURAL:$1|1 roinn-seòrsa fhalaichte|$1 roinn-seòrsa fhalaichte|1 roinn-seòrsa fhalaichte|$1 roinn-seòrsa fhalaichte|$1 roinnean-seòrsa falaichte|$1 roinn-seòrsa fhalaichte}}:",
 'permissionserrorstext-withaction' => 'Chan eil cead agad airson "$2" air sgàth {{PLURAL:$1|an adhbhair|nan adhbharan|an adhbhair|nan adhbharan|nan adhbharan}} a leanas:',
+'recreate-moveddeleted-warn'       => "'''Rabhadh: Tha thu gu bhith ath-chruthachadh duilleag a chaidh a sguabadh às roimhe.'''
+
+Saoil am bu chòir dhut leantainn air adhart le deasachadh na duilleige?.
+Seo dhut loga an sguabaidh às agus a' ghluasaid mar fhiosrachadh dhut:",
+'moveddeleted-notice'              => "Chaidh an duilleag seo a sguabadh às.
+Chì thu loga an sguabaidh às agus a' ghluasaid gu h-ìosal mar fhiosrachadh dhut.",
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning'  => "'''Rabhadh:''' Tha meud na teamplaide ro mhòr.
@@ -517,6 +525,7 @@ Chaidh na h-argamaidean sinn a leigeil seachad.",
 'currentrev'             => 'Lethbhreac làithreach',
 'currentrev-asof'        => 'Am mùthadh mu dheireadh on $1',
 'revisionasof'           => 'Mùthadh on $1',
+'revision-info'          => 'Lèirmheas mar a bha e $1 le $2',
 'previousrevision'       => '← Mùthadh nas sine',
 'nextrevision'           => 'Mùthadh nas ùire →',
 'currentrevisionlink'    => 'Am mùthadh mu dheireadh',
@@ -549,6 +558,7 @@ Mìneachadh: '''({{int:cur}})''' = an diofar eadar e 's am mùthadh as ùire, ''
 'lineno'                  => 'Loidhne $1:',
 'compareselectedversions' => 'Dèan coimeas eadar na mùthaidhean a thagh thu',
 'editundo'                => 'neo-dhèan',
+'diff-multi'              => '({{PLURAL:$1|Aon lèirmheas eadar-mheadhanach|$1 lèirmheas eadar-mheadhanach|$1 lèirmheas eadar-mheadhanach|$1 lèirmheas eadar-mheadhanach$1 lèirmheasan eadar-mheadhanach|$1 lèirmheas eadar-mheadhanach}} le {{PLURAL:$2|aon chleachdaiche|$2 chleachdaiche|$2 chleachdaiche|$2 chleachdaiche|$2 cleachdaichean|$2 cleachdaiche}} gun sealltainn)',
 
 # Search results
 'searchresults'                    => 'Toraidhean rannsachaidh',
@@ -579,6 +589,7 @@ Mìneachadh: '''({{int:cur}})''' = an diofar eadar e 's am mùthadh as ùire, ''
 'searchprofile-everything-tooltip' => "Lorg am broinn susbaint sam bith (a' gabhail a-steach nan duilleagan deasbaireachd)",
 'searchprofile-advanced-tooltip'   => 'Lorg am broinn ainm-spàsan gnàthaichte',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 fhacal|$2 fhacal|1 fhacal|$2 fhacal|$2 faclan|$2 facal}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 bhall|$1 bhall|$1 bhall|$1 bhall|$1 bhuill|$1 ball}} ({{PLURAL:$2|1 fho-roinn|$2 fho-roinn|$2 fho-roinn|$2 fho-roinn|$2 fo-roinnean|$2 fo-roinn}}, {{PLURAL:$3|1 fhaidhle|$3 fhaidhle|$3 fhaidhle|$3 fhaidhle|$3 faidhlichean|$3 faidhle}})',
 'search-redirect'                  => '(ag ath-sheòladh $1)',
 'search-section'                   => '(earrann $1)',
 'search-suggest'                   => 'An e na leanas a bha fa-near dhut: $1',
@@ -587,6 +598,7 @@ Mìneachadh: '''({{int:cur}})''' = an diofar eadar e 's am mùthadh as ùire, ''
 'search-interwiki-more'            => '(barrachd)',
 'search-mwsuggest-enabled'         => 'le molaidhean',
 'search-mwsuggest-disabled'        => 'gun mholaidhean',
+'searchrelated'                    => 'co-cheangailte',
 'searchall'                        => 'a h-uile',
 'showingresults'                   => "A' nochdadh suas gu $1 {{PLURAL:$1|toradh|thoradh|toradh|thoradh|toraidhean|toradh}} gu h-ìosal a' tòiseachadh le #'''$2'''.",
 'showingresultsnum'                => "A' nochdadh '''$3''' {{PLURAL:$3|toradh|thoradh|toradh|thoradh|toraidhean|toradh}} gu h-ìosal a' tòiseachadh le #'''$2'''.",
@@ -653,6 +665,7 @@ Feuch ri ''all:'' a chuir air beulaibh an iarrtais agad gus rannsachadh a dhèan
 'rcshowhidebots'                  => '$1 botaichean',
 'rcshowhideliu'                   => '$1 neach-cleachdaidh air logadh a-steach',
 'rcshowhideanons'                 => '$1 luchd-cleachdaidh gun ainm',
+'rcshowhidepatr'                  => '$1 na deasachaidhean fo aire freiceadain',
 'rcshowhidemine'                  => '$1 na mùthaidhean agam',
 'rclinks'                         => 'Seall na $1 mùthaidhean mu dheireadh thairis air na $2 làithean mu dheireadh<br />$3',
 'diff'                            => 'diof',
@@ -698,6 +711,7 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 'file-anchor-link'          => 'Ìomhaigh',
 'filehist'                  => 'Eachdraidh an fhaidhle',
 'filehist-help'             => 'Briog air ceann-là/àm gus am faidhle fhaicinn mar a nochd e aig an àm sin.',
+'filehist-revert'           => 'till',
 'filehist-current'          => 'làithreach',
 'filehist-datetime'         => 'Ceann-là/Àm',
 'filehist-thumb'            => 'Meabh-dhealbh',
@@ -724,6 +738,8 @@ Chithear an tuairisgeul a tha aice air [duilleag tuairisgeul an fhaidhle $2] gu 
 # Statistics
 'statistics' => 'Staitistearachd',
 
+'disambiguationspage' => 'Template:ciallan',
+
 'doubleredirects' => 'Ath-seòlaidhean dùbailte',
 
 'brokenredirects' => 'Ath-stiùireidhean briste',
@@ -739,6 +755,7 @@ Chithear an tuairisgeul a tha aice air [duilleag tuairisgeul an fhaidhle $2] gu 
 'shortpages'              => 'Duilleagan goirid',
 'longpages'               => 'Duilleagan fada',
 'listusers'               => 'Liosta nan cleachdaichean',
+'usercreated'             => 'a chruthaich $1 aig $2',
 'newpages'                => 'Duilleagan ùra',
 'ancientpages'            => 'Duilleagan as sìne',
 'move'                    => 'Gluais',
@@ -793,6 +810,7 @@ Thoir sùil air na [[Special:WantedCategories|roinntean-seòrsa a thathar 'gan i
 # Watchlist
 'watchlist'          => 'Mo chlàr-faire',
 'mywatchlist'        => 'Mo chlàr-faire',
+'watchlistfor2'      => 'Do $1 $2',
 'nowatchlist'        => "Chan eil rud sam bith air a' chlàr-fhaire agad.",
 'addedwatchtext'     => "Chaidh an duilleag \"[[:\$1]]\" a chur ri [[Special:Watchlist|do chlàr-faire]].
 Nochdaidh mùthaidhean a nithear air an duilleag seo 's air an duilleag deasbaireachd a tha co-cheangailte ris an-seo san àm ri teachd agus nochdaidh an duilleag ann an litrichean '''troma''' ann an [[Special:RecentChanges|liosta nam mùthaidhean ùra]] gum bi e furasta ri fhaicinn.",
@@ -895,9 +913,12 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 
 'sp-contributions-newbies'  => 'Seall mùthaidhean le cunntasan ùra a-mhàin',
 'sp-contributions-blocklog' => 'an loga bacaidh',
+'sp-contributions-uploads'  => "a' luchdadh suas",
+'sp-contributions-logs'     => 'logaichean',
 'sp-contributions-talk'     => 'deasbaireachd',
 'sp-contributions-search'   => 'Lorg mùthaidhean leis',
 'sp-contributions-username' => 'Seòladh IP no ainm-cleachdaiche:',
+'sp-contributions-toponly'  => 'Na seall deasachaidhean ach na lèirmheasan as ùire',
 'sp-contributions-submit'   => 'Lorg',
 
 # What links here
@@ -905,6 +926,7 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 'whatlinkshere-title'      => 'Duilleagan a tha a\' ceangal ri "$1"',
 'whatlinkshere-page'       => 'Duilleag:',
 'linkshere'                => "Tha na duilleagan a leanas a' ceangal ri '''[[:$1]]''':",
+'nolinkshere'              => "Chan eil ceangal air duilleag sam bith a tha a' dol gu '''[[:$1]]'''.",
 'isredirect'               => 'duilleag ath-sheòlaidh',
 'istemplate'               => 'transclusion',
 'isimage'                  => 'ceangal faidhle',
@@ -914,6 +936,7 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 'whatlinkshere-hideredirs' => '$1 ath-sheòlaidhean',
 'whatlinkshere-hidetrans'  => '$1 transclusions',
 'whatlinkshere-hidelinks'  => '$1 ceanglaichean',
+'whatlinkshere-hideimages' => '$1 ceanglaichean nan dealbhan',
 'whatlinkshere-filters'    => 'Criathairean',
 
 # Block/unblock
@@ -1067,6 +1090,10 @@ Tadhail air [http://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] 
 'others'        => 'eile',
 'siteusers'     => '{{PLURAL:$2|chleachdaiche|chleachdaiche|chleachdaiche|chleachdaiche|cleachdaichean|cleachdaiche}} {{SITENAME}} $1',
 
+# Patrol log
+'patrol-log-line' => 'a chomharraich $1 dhen duilleag $2 freiceadan $3',
+'patrol-log-diff' => 'lèirmheas $1',
+
 # Browsing diffs
 'previousdiff' => '← Mùthadh nas sine',
 'nextdiff'     => 'Deasachadh nas ùire →',
@@ -1133,6 +1160,16 @@ Bidh an fheadhainn eile falaichte a ghnàth.
 
 # Special:SpecialPages
 'specialpages' => 'Duilleagan sònraichte',
+
+# External image whitelist
+'external_image_whitelist' => " #Fàg an loidhne seo dìreach mar a tha e<pre>
+#Cuir mìrean nan regular expressions (dìreach a' phàirt eadar //) gu hìosal
+#Thèid seisean URL a lorg dhaibh am measg nan dealbhan air an taobh a-muigh (hotlinks)
+#Chithear an fheadhainn a tha a' freagairt ri seise a shealltainn air neo chithear ceangal dhan dealbh a-mhàin
+#Chan eil ann an loidhnichean a tha a' tòiseachadh le # ach beachdan
+#Chan eil aire do litrichean mòra no beaga
+
+#Cuir gach mì regex os cionn na loidhne seo. Fàg an loidhne seo dìreach mar a tha e</pre>",
 
 # Special:Tags
 'tag-filter' => 'Criathrag [[Special:Tags|Tag]]:',

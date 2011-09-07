@@ -2781,6 +2781,8 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'import-upload'              => 'Cargar datos XML',
 'import-token-mismatch'      => 'Perdéronse os datos da sesión. Por favor, inténteo de novo.',
 'import-invalid-interwiki'   => 'Non se pode importar desde o wiki escificado.',
+'import-error-edit'          => 'Non se pode importar a páxina "$1" porque non ten os permisos necesarios para editala.',
+'import-error-create'        => 'Non se pode importar a páxina "$1" porque non ten os permisos necesarios para creala.',
 
 # Import log
 'importlogpage'                    => 'Rexistro de importacións',

@@ -1962,10 +1962,10 @@ Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discuss
 'watch'                => 'ten-e sot-euj',
 'watchthispage'        => 'Ten-e sot-euj cost artìcol-sì',
 'unwatch'              => 'Chité-lì ëd ten-e sossì sot-euj',
-'unwatchthispage'      => 'Chita-lì da ten-e sossì sot euj',
+'unwatchthispage'      => 'Chité-lì ëd ten-e sossì sot-euj',
 'notanarticle'         => "Sòn a l'é pa n'artìcol",
 'notvisiblerev'        => "La revision a l'é stàita scancelà",
-'watchnochange'        => 'Pa gnun-a dle ròbe che as ten sot euj che a sia staita modificà ant ël temp indicà.',
+'watchnochange'        => "Gnun-a dle ròbe che as ten sot-euj a l'é staita modificà ant ël periòd ësmonù.",
 'watchlist-details'    => "A l'é dëmentrè ch'as ten sot euj {{PLURAL:$1|$1 pàgina|$1 pàgine}}, nen contand cole ëd discussion.",
 'wlheader-enotif'      => '* Le notìfiche për pòsta eletrònica a son abilità.',
 'wlheader-showupdated' => "* Cole pàgine che a son staite modificà da quand che a l'é passa l'ùltima vira a resto marcà an '''grassèt'''",
@@ -2579,8 +2579,8 @@ Che as lo salva ansima a sò ordinator e peui che a lo caria ambelessì.",
 'import-token-mismatch'      => 'Perdù ij dat ëd session.
 Për piasì preuva torna.',
 'import-invalid-interwiki'   => 'As peul pa amportesse da la wiki spessificà.',
-'import-error-edit'          => 'La pagina "$1" a l\'é pa amportà përchè it peus pa modifichela.',
-'import-error-create'        => 'La pagina "$1" a l\'é pa amportà përchè it peus pa creela.',
+'import-error-edit'          => "La pàgina «$1» a l'é pa amportà përchè a peul pa modifichela.",
+'import-error-create'        => "La pàgina «$1» a l'é pa amportà përchè a peul pa creela.",
 
 # Import log
 'importlogpage'                    => "Registr dj'amportassion",
