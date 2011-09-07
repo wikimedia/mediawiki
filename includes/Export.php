@@ -709,17 +709,21 @@ class DumpOutput {
 		return;
 	}
 
-	// TODO: document
-	function closeAndRename( $newname ) {
+	/**
+	 * Close the old file, and move it to a specified name.
+	 * Use this for the last piece of a file written out 
+	 * at specified checkpoints (e.g. every n hours).
+	 * @param $newname mixed File name. May be a string or an array with one element
+	 * @param $open bool If true, a new file with the old filename will be opened again for writing (default: false)
+	 */
+	function closeAndRename( $newname, $open = false ) {
 		return;
 	}
 
-	// TODO: document
-	function rename( $newname ) {
-		return;
-	}
-
-	// TODO: document
+	/**
+	 * Returns the name of the file or files which are
+	 * being written to, if there are any.
+	 */
 	function getFilename() {
 		return NULL;
 	}
@@ -742,6 +746,10 @@ class DumpFileOutput extends DumpOutput {
 	}
 
 	function closeRenameAndReopen( $newname ) {
+		$this->closeAndRename( $newname, true );
+	}
+
+	function closeAndRename( $newname, $open = false ) {
 		if ( is_array( $newname ) ) {
 			if ( count( $newname ) > 1 ) {
 				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
@@ -752,34 +760,9 @@ class DumpFileOutput extends DumpOutput {
 		if ( $newname ) {
 			fclose( $this->handle );
 			rename( $this->filename, $newname );
-			$this->handle = fopen( $this->filename, "wt" );
-		}
-	}
-
-	function closeAndRename( $newname ) {
-		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1 ) {
-				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
-			} else {
-				$newname = $newname[0];
+			if ( $open ) {
+				$this->handle = fopen( $this->filename, "wt" );
 			}
-		}
-		if ( $newname ) {
-			fclose( $this->handle );
-			rename( $this->filename, $newname );
-		}
-	}
-
-	function rename( $newname ) {
-		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1 ) {
-				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
-			} else {
-				$newname = $newname[0];
-			}
-		}
-		if ( $newname ) {
-			rename( $this->filename, $newname );
 		}
 	}
 
@@ -816,11 +799,11 @@ class DumpPipeOutput extends DumpFileOutput {
 		$this->handle = $pipes[0];
 	}
 
-	/**
-	 * Close the old file, move it to a specified name,
-	 * and reopen new file with the old name.
-	 */
 	function closeRenameAndReopen( $newname ) {
+		$this->closeAndRename( $newname, true );
+	}
+
+	function closeAndRename( $newname, $open = false ) {
 		if ( is_array( $newname ) ) {
 			if ( count( $newname ) > 1 ) {
 				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
@@ -832,40 +815,14 @@ class DumpPipeOutput extends DumpFileOutput {
 			fclose( $this->handle );
 			proc_close( $this->procOpenResource );
 			rename( $this->filename, $newname );
-			$command = $this->command;
-			$command .=  " > " . wfEscapeShellArg( $this->filename );
-			$this->startCommand( $command );
+			if ( $open ) {
+				$command = $this->command;
+				$command .=  " > " . wfEscapeShellArg( $this->filename );
+				$this->startCommand( $command );
+			}
 		}
 	}
 
-	function closeAndRename( $newname ) {
-		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1 ) {
-				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
-			} else {
-				$newname = $newname[0];
-			}
-		}
-		if ( $newname ) {
-#			pclose( $this->handle );
-			fclose( $this->handle );
-			proc_close( $this->procOpenResource );
-			rename( $this->filename, $newname );
-		}
-	}
-
-	function rename( $newname ) {
-		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1 ) {
-				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
-			} else {
-				$newname = $newname[0];
-			}
-		}
-		if ( $newname ) {
-			rename( $this->filename, $newname );
-		}
-	}
 }
 
 /**
@@ -896,34 +853,16 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	protected $filename;
 
 	function __construct( $file ) {
-		$command = "7za a -bd -si " . wfEscapeShellArg( $file );
-		// Suppress annoying useless crap from p7zip
-		// Unfortunately this could suppress real error messages too
-		$command .= ' >' . wfGetNull() . ' 2>&1';
+		$command = setup7zCommand( $file );
 		parent::__construct( $command );
 		$this->filename = $file;
 	}
 
 	function closeRenameAndReopen( $newname ) {
-		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1 ) {
-				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
-			}
-			else {
-				$newname = $newname[0];
-			}
-		}
-		if ( $newname ) {
-			fclose( $this->handle );
-			proc_close( $this->procOpenResource );
-			rename( $this->filename, $newname );
-			$command = "7za a -bd -si " . wfEscapeShellArg( $file );
-			$command .= ' >' . wfGetNull() . ' 2>&1';
-			$this->startCommand( $command );
-		}
+		$this->closeAndRename( $newname, true );
 	}
 
-	function closeAndRename( $newname ) {
+	function closeAndRename( $newname, $open = false ) {
 		if ( is_array( $newname ) ) {
 			if ( count( $newname ) > 1 ) {
 				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
@@ -935,20 +874,13 @@ class Dump7ZipOutput extends DumpPipeOutput {
 			fclose( $this->handle );
 			proc_close( $this->procOpenResource );
 			rename( $this->filename, $newname );
-		}
-	}
-
-	function rename( $newname ) {
-		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1 ) {
-				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
+			if ( $open ) {
+				$command = "7za a -bd -si " . wfEscapeShellArg( $file );
+				// Suppress annoying useless crap from p7zip
+				// Unfortunately this could suppress real error messages too
+				$command .= ' >' . wfGetNull() . ' 2>&1';
+				$this->startCommand( $command );
 			}
-			else {
-				$newname = $newname[0];
-			}
-		}
-		if ( $newname ) {
-			rename( $this->filename, $newname );
 		}
 	}
 }
@@ -1002,12 +934,8 @@ class DumpFilter {
 		$this->sink->closeRenameAndReopen( $newname );
 	}
 
-	function closeAndRename( $newname ) {
-		$this->sink->closeAndRename( $newname );
-	}
-
-	function rename( $newname ) {
-		$this->sink->rename( $newname );
+	function closeAndRename( $newname, $open = false ) {
+		$this->sink->closeAndRename( $newname, $open );
 	}
 
 	function getFilename() {
@@ -1163,19 +1091,12 @@ class DumpMultiWriter {
 	}
 
 	function closeRenameAndReopen( $newnames ) {
-		for ( $i = 0; $i < $this->count; $i++ ) {
-			$this->sinks[$i]->closeRenameAndReopen( $newnames[$i] );
-		}
+		$this->closeAndRename( $newnames, true );
 	}
 
-	function closeAndRename( $newname ) {
+	function closeAndRename( $newnames, $open = false ) {
 		for ( $i = 0; $i < $this->count; $i++ ) {
-			$this->sinks[$i]->closeAndRename( $newnames[$i] );
-		}
-	}
-	function rename( $newnames ) {
-		for ( $i = 0; $i < $this->count; $i++ ) {
-			$this->sinks[$i]->rename( $newnames[$i] );
+			$this->sinks[$i]->closeAndRename( $newnames[$i], $open );
 		}
 	}
 
