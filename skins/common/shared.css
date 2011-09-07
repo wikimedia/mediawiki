@@ -52,11 +52,6 @@ input[dir="rtl"] {
 	direction: rtl;
 }
 
-.mw-float-start { float: left; }
-.mw-float-end { float: right; }
-.mw-align-start { text-align: left; }
-.mw-align-end { text-align: right; }
-
 /* The scripts of these languages are very hard to read with underlines */
 [lang="ar"] a,
 [lang="ckb"] a,
@@ -404,6 +399,10 @@ table.os-suggest-results {
 #pagehistory li.selected {
 	background-color: #f9f9f9;
 	border: 1px dashed #aaa;
+}
+
+.mw-history-revisiondelete-button, #mw-fileduplicatesearch-icon {
+	float: right;
 }
 
 /** Generic minor/bot/newpage styling (recent changes) */
