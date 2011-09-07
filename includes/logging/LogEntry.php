@@ -122,7 +122,7 @@ class DatabaseLogEntry extends LogEntryBase {
 		$fields = array(
 			'log_id', 'log_type', 'log_action', 'log_timestamp',
 			'log_user', 'log_user_text',
-			'log_namespace', 'log_title', //unused log_page
+			'log_namespace', 'log_title', // unused log_page
 			'log_comment', 'log_params', 'log_deleted',
 			'user_id', 'user_name', 'user_editcount',
 		);
@@ -319,7 +319,7 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * Set extra log parameters. 
+	 * Set extra log parameters.
 	 * You can pass params to the log action message
 	 * by prefixing the keys with a number and colon.
 	 * The numbering should start with number 4, the

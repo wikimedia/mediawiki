@@ -171,7 +171,7 @@ class LogFormatter {
 
 		if ( $entry->isLegacy() ) {
 			foreach ( $entry->getParameters() as $index => $value ) {
-				$params[$index+3] = $value;
+				$params[$index + 3] = $value;
 			}
 		}
 
@@ -179,7 +179,7 @@ class LogFormatter {
 		foreach ( $entry->getParameters() as $key => $value ) {
 			if ( strpos( $key, ':' ) === false ) continue;
 			list( $index, $type, $name ) = explode( ':', $key, 3 );
-			$params[$index-1] = $value;
+			$params[$index - 1] = $value;
 		}
 
 		/* Message class doesn't like non consecutive numbering.
