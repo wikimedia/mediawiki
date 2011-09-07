@@ -411,7 +411,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 		}
 
-		$form = new EditWatchlistNormalHTMLForm( $fields );
+		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
 		$form->setTitle( $this->getTitle() );
 		$form->setSubmitText( wfMessage( 'watchlistedit-normal-submit' )->text() );
 		$form->setWrapperLegend( wfMessage( 'watchlistedit-normal-legend' )->text() );
@@ -467,7 +467,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'default' => $titles,
 			),
 		);
-		$form = new HTMLForm( $fields );
+		$form = new HTMLForm( $fields, $this->getContext() );
 		$form->setTitle( $this->getTitle( 'raw' ) );
 		$form->setSubmitText( wfMessage( 'watchlistedit-raw-submit' )->text() );
 		$form->setWrapperLegend( wfMessage( 'watchlistedit-raw-legend' )->text() );
