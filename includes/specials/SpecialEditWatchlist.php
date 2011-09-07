@@ -43,7 +43,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				array(),
 				array( 'returnto' => $this->getTitle()->getPrefixedText() )
 			);
-			$out->addHTML( wfMessage( 'watchlistanontext' )->rawParam( $llink )->parse() );
+			$out->addHTML( wfMessage( 'watchlistanontext' )->rawParams( $llink )->parse() );
 			return;
 		}
 

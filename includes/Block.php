@@ -1057,6 +1057,19 @@ class Block {
 			return array( null, null );
 		}
 
+		if ( IP::isValid( $target ) ) {
+			# We can still create a User if it's an IP address, but we need to turn
+			# off validation checking (which would exclude IP addresses)
+			return array(
+				User::newFromName( IP::sanitizeIP( $target ), false ),
+				Block::TYPE_IP
+			);
+
+		} elseif ( IP::isValidBlock( $target ) ) {
+			# Can't create a User from an IP range
+			return array( IP::sanitizeRange( $target ), Block::TYPE_RANGE );
+		}
+
 		# Consider the possibility that this is not a username at all
 		# but actually an old subpage (bug #29797)
 		if( strpos( $target, '/' ) !== false ){
@@ -1071,18 +1084,6 @@ class Block {
 			# considered a User.  If you want to pass a block ID, prepend a hash "#12345",
 			# since hash characters are not valid in usernames or titles generally.
 			return array( $userObj, Block::TYPE_USER );
-
-		} elseif ( IP::isValid( $target ) ) {
-			# We can still create a User if it's an IP address, but we need to turn
-			# off validation checking (which would exclude IP addresses)
-			return array(
-				User::newFromName( IP::sanitizeIP( $target ), false ),
-				Block::TYPE_IP
-			);
-
-		} elseif ( IP::isValidBlock( $target ) ) {
-			# Can't create a User from an IP range
-			return array( IP::sanitizeRange( $target ), Block::TYPE_RANGE );
 
 		} elseif ( preg_match( '/^#\d+$/', $target ) ) {
 			# Autoblock reference in the form "#12345"
