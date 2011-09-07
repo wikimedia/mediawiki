@@ -11,7 +11,7 @@
  * @author FRANELYA
  */
 
-$fallback = 'ml';
+$fallback = 'ms';
 
 $messages = array(
 # User preference toggles
