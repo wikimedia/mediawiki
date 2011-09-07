@@ -12,6 +12,7 @@ class Linker {
 	 * Flags for userToolLinks()
 	 */
 	const TOOL_LINKS_NOBLOCK = 1;
+	const TOOL_LINKS_EMAIL   = 2;
 
 	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an ex-
@@ -932,7 +933,7 @@ class Linker {
 	 * @param $userText String: user name or IP address
 	 * @param $redContribsWhenNoEdits Boolean: should the contributions link be
 	 *        red if the user has no edits?
-	 * @param $flags Integer: customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK)
+	 * @param $flags Integer: customisation flags (e.g. Linker::TOOL_LINKS_NOBLOCK and Linker::TOOL_LINKS_EMAIL)
 	 * @param $edits Integer: user edit count (optional, for performance)
 	 * @return String: HTML fragment
 	 */
@@ -942,6 +943,7 @@ class Linker {
 		global $wgUser, $wgDisableAnonTalk, $wgLang;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
 		$blockable = !$flags & self::TOOL_LINKS_NOBLOCK;
+		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL;
 
 		$items = array();
 		if ( $talkable ) {
@@ -962,6 +964,10 @@ class Linker {
 		}
 		if ( $blockable && $wgUser->isAllowed( 'block' ) ) {
 			$items[] = self::blockLink( $userId, $userText );
+		}
+
+		if ( $addEmailLink && $wgUser->canSendEmail() ) {
+			$items[] = self::emailLink( $userId, $userText );
 		}
 
 		if ( $items ) {
@@ -1004,6 +1010,18 @@ class Linker {
 		$blockPage = SpecialPage::getTitleFor( 'Block', $userText );
 		$blockLink = self::link( $blockPage, wfMsgHtml( 'blocklink' ) );
 		return $blockLink;
+	}
+
+	/**
+	 * @param $userId Integer: userid
+	 * @param $userText String: user name in database.
+	 * @return String: HTML fragment with e-mail user link
+	 * @private
+	 */
+	static function emailLink( $userId, $userText ) {
+		$emailPage = SpecialPage::getTitleFor( 'EmailUser', $userText );
+		$emailLink = self::link( $emailPage, wfMsgHtml( 'emaillink' ) );
+		return $emailLink;
 	}
 
 	/**

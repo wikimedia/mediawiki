@@ -3111,6 +3111,7 @@ See [[Special:BlockList|IP block list]] to review blocks.',
 'unblocklink'                     => 'unblock',
 'change-blocklink'                => 'change block',
 'contribslink'                    => 'contribs',
+'emaillink'                       => 'send e-mail',
 'autoblocker'                     => 'Autoblocked because your IP address has been recently used by "[[User:$1|$1]]".
 The reason given for $1\'s block is: "$2"',
 'blocklogpage'                    => 'Block log',
