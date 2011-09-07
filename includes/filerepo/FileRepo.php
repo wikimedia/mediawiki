@@ -164,6 +164,8 @@ abstract class FileRepo {
 	 *     $findItem = array( 'title' => $title, 'private' => true );
 	 *     $findBatch = array( $findItem );
 	 *     $repo->findFiles( $findBatch );
+	 *
+	 * @return array
 	 */
 	function findFiles( $items ) {
 		$result = array();
@@ -259,6 +261,8 @@ abstract class FileRepo {
 
 	/**
 	 * Returns true if the repository can transform files via a 404 handler
+	 *
+	 * @return bool
 	 */
 	function canTransformVia404() {
 		return $this->transformVia404;
@@ -281,6 +285,11 @@ abstract class FileRepo {
 		return $name;
 	}
 
+	/**
+	 * @param $name
+	 * @param $levels
+	 * @return string
+	 */
 	static function getHashPathForLevel( $name, $levels ) {
 		if ( $levels == 0 ) {
 			return '';
@@ -297,6 +306,10 @@ abstract class FileRepo {
 	/**
 	 * Get a relative path including trailing slash, e.g. f/fa/
 	 * If the repo is not hashed, returns an empty string
+	 *
+	 * @param $name string
+	 *
+	 * @return string
 	 */
 	function getHashPath( $name ) {
 		return self::getHashPathForLevel( $name, $this->hashLevels );
@@ -497,6 +510,11 @@ abstract class FileRepo {
 	 */
 	abstract function publishBatch( $triplets, $flags = 0 );
 
+	/**
+	 * @param $file
+	 * @param int $flags
+	 * @return bool
+	 */
 	function fileExists( $file, $flags = 0 ) {
 		$result = $this->fileExistsBatch( array( $file ), $flags );
 		return $result[0];
@@ -547,6 +565,8 @@ abstract class FileRepo {
 	 * Get properties of a file with a given virtual URL
 	 * The virtual URL must refer to this repo
 	 * Properties should ultimately be obtained via File::getPropsFromPath()
+	 *
+	 * @param $virtualUrl string
 	 */
 	abstract function getFileProps( $virtualUrl );
 
@@ -561,6 +581,10 @@ abstract class FileRepo {
 
 	/**
 	 * Determine if a relative path is valid, i.e. not blank or involving directory traveral
+	 *
+	 * @param $filename string
+	 *
+	 * @return bool
 	 */
 	function validateFilename( $filename ) {
 		if ( strval( $filename ) == '' ) {
@@ -573,11 +597,11 @@ abstract class FileRepo {
 		 * Use the same traversal protection as Title::secureAndSplit()
 		 */
 		if ( strpos( $filename, '.' ) !== false &&
-		     ( $filename === '.' || $filename === '..' ||
-		       strpos( $filename, './' ) === 0  ||
-		       strpos( $filename, '../' ) === 0 ||
-		       strpos( $filename, '/./' ) !== false ||
-		       strpos( $filename, '/../' ) !== false ) )
+			( $filename === '.' || $filename === '..' ||
+				strpos( $filename, './' ) === 0  ||
+				strpos( $filename, '../' ) === 0 ||
+				strpos( $filename, '/./' ) !== false ||
+				strpos( $filename, '/../' ) !== false ) )
 		{
 			return false;
 		} else {
@@ -589,6 +613,11 @@ abstract class FileRepo {
 	 * Path disclosure protection functions
 	 */
 	function paranoidClean( $param ) { return '[hidden]'; }
+
+	/**
+	 * @param $param
+	 * @return
+	 */
 	function passThrough( $param ) { return $param; }
 
 	/**
@@ -617,6 +646,8 @@ abstract class FileRepo {
 
 	/**
 	 * Create a new good result
+	 *
+	 * @return FileRepoStatus
 	 */
 	function newGood( $value = null ) {
 		return FileRepoStatus::newGood( $this, $value );
@@ -680,7 +711,6 @@ abstract class FileRepo {
 	function isLocal() {
 		return $this->getName() == 'local';
 	}
-
 
 	/**
 	 * Get a key on the primary cache for this repository.

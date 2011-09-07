@@ -177,6 +177,9 @@ class ArchivedFile {
 
 	/**
 	 * Loads a file object from the filearchive table
+	 *
+	 * @param $row
+	 *
 	 * @return ArchivedFile
 	 */
 	public static function newFromRow( $row ) {
@@ -205,6 +208,8 @@ class ArchivedFile {
 
 	/**
 	 * Return the associated title object
+	 *
+	 * @return Title
 	 */
 	public function getTitle() {
 		return $this->title;
@@ -212,16 +217,24 @@ class ArchivedFile {
 
 	/**
 	 * Return the file name
+	 *
+	 * @return string
 	 */
 	public function getName() {
 		return $this->name;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getID() {
 		$this->load();
 		return $this->id;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function exists() {
 		$this->load();
 		return $this->exists;
@@ -229,6 +242,7 @@ class ArchivedFile {
 
 	/**
 	 * Return the FileStore key
+	 * @return string
 	 */
 	public function getKey() {
 		$this->load();
@@ -237,6 +251,7 @@ class ArchivedFile {
 
 	/**
 	 * Return the FileStore key (overriding base File class)
+	 * @return string
 	 */
 	public function getStorageKey() {
 		return $this->getKey();
@@ -244,6 +259,7 @@ class ArchivedFile {
 
 	/**
 	 * Return the FileStore storage group
+	 * @return string
 	 */
 	public function getGroup() {
 		return $this->group;
@@ -251,6 +267,7 @@ class ArchivedFile {
 
 	/**
 	 * Return the width of the image
+	 * @return int
 	 */
 	public function getWidth() {
 		$this->load();
@@ -259,6 +276,7 @@ class ArchivedFile {
 
 	/**
 	 * Return the height of the image
+	 * @return int
 	 */
 	public function getHeight() {
 		$this->load();
@@ -267,6 +285,7 @@ class ArchivedFile {
 
 	/**
 	 * Get handler-specific metadata
+	 * @return string
 	 */
 	public function getMetadata() {
 		$this->load();
@@ -275,6 +294,7 @@ class ArchivedFile {
 
 	/**
 	 * Return the size of the image file, in bytes
+	 * @return int
 	 */
 	public function getSize() {
 		$this->load();
@@ -283,6 +303,7 @@ class ArchivedFile {
 
 	/**
 	 * Return the bits of the image file, in bytes
+	 * @return int
 	 */
 	public function getBits() {
 		$this->load();
@@ -291,6 +312,7 @@ class ArchivedFile {
 
 	/**
 	 * Returns the mime type of the file.
+	 * @return string
 	 */
 	public function getMimeType() {
 		$this->load();
@@ -326,6 +348,7 @@ class ArchivedFile {
 	/**
 	 * Return the type of the media in the file.
 	 * Use the value returned by this function with the MEDIATYPE_xxx constants.
+	 * @return string
 	 */
 	public function getMediaType() {
 		$this->load();
@@ -334,6 +357,8 @@ class ArchivedFile {
 
 	/**
 	 * Return upload timestamp.
+	 *
+	 * @return string
 	 */
 	public function getTimestamp() {
 		$this->load();
@@ -342,6 +367,8 @@ class ArchivedFile {
 
 	/**
 	 * Return the user ID of the uploader.
+	 *
+	 * @return int
 	 */
 	public function getUser() {
 		$this->load();
@@ -354,6 +381,8 @@ class ArchivedFile {
 
 	/**
 	 * Return the user name of the uploader.
+	 *
+	 * @return string
 	 */
 	public function getUserText() {
 		$this->load();
@@ -366,6 +395,8 @@ class ArchivedFile {
 
 	/**
 	 * Return upload description.
+	 *
+	 * @return string
 	 */
 	public function getDescription() {
 		$this->load();
@@ -378,6 +409,8 @@ class ArchivedFile {
 
 	/**
 	 * Return the user ID of the uploader.
+	 *
+	 * @return int
 	 */
 	public function getRawUser() {
 		$this->load();
@@ -386,6 +419,8 @@ class ArchivedFile {
 
 	/**
 	 * Return the user name of the uploader.
+	 *
+	 * @return string
 	 */
 	public function getRawUserText() {
 		$this->load();
@@ -394,6 +429,8 @@ class ArchivedFile {
 
 	/**
 	 * Return upload description.
+	 *
+	 * @return string
 	 */
 	public function getRawDescription() {
 		$this->load();
