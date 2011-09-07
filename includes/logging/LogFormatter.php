@@ -306,7 +306,7 @@ class LegacyLogFormatter extends LogFormatter {
 			$entry->getType(),
 			$entry->getSubtype(),
 			$entry->getTarget(),
-			$this->context->getUser()->getSkin(),
+			$this->context->getSkin(),
 			(array)$entry->getParameters(),
 			true
 		);
