@@ -64,7 +64,7 @@ class SpecialLog extends SpecialPage {
 			$opts->setValue( 'month', '' );
 		}
 
-		if ( LogPage::isLogType( $opts->getValue( 'type' ) ) ) {
+		if ( !LogPage::isLogType( $opts->getValue( 'type' ) ) ) {
 			$opts->setValue( 'type', '' );
 		}
 
