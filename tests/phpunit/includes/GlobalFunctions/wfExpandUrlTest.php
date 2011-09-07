@@ -47,7 +47,7 @@ class wfExpandUrl extends MediaWikiTestCase {
 						$retval[] = array( 'http://example.com', 'http://example.com', $defaultProto, $server, $canServer, $httpsMode, "Testing fully qualified http URLs (no need to expand) (defaultProto: $protoDesc , wgServer: $server, wgCanonicalServer: $canServer, current request protocol: $mode )" );
 						$retval[] = array( 'https://example.com', 'https://example.com', $defaultProto, $server, $canServer, $httpsMode, "Testing fully qualified https URLs (no need to expand) (defaultProto: $protoDesc , wgServer: $server, wgCanonicalServer: $canServer, current request protocol: $mode )" );
 						# Would be nice to support this, see fixme on wfExpandUrl()
-						$retval[] = array( "wiki/FooBar", 'wiki/FooBar', $defaultProto, $server, $canServer, $httpsMode, "Test non-expandable relative URLs (defaultProto: $protoDesc , wgServer: $server, wgCanonicalServer: $canServer, current request protocol: $mode )" );
+						$retval[] = array( "wiki/FooBar/TestingJenkins", 'wiki/FooBar', $defaultProto, $server, $canServer, $httpsMode, "Test non-expandable relative URLs (defaultProto: $protoDesc , wgServer: $server, wgCanonicalServer: $canServer, current request protocol: $mode )" );
 						
 						// Determine expected protocol
 						$p = $protoDesc . ':'; // default case
