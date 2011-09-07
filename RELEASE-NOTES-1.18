@@ -202,6 +202,7 @@ production.
 * Introduced $wgVaryOnXFPForAPI which will cause the API to send
   Vary: X-Forwarded-Proto headers.
 * New maintenance script to refresh image metadata (maintenance/refreshImageMetadata.php)
+* (bug 16428) Include permalink in printable version
 
 === Bug fixes in 1.18 ===
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
@@ -439,6 +440,7 @@ production.
  instead require() for included extensions.
 * Tracking categories are no longer shown in footer for special pages
 * (bug 30684) Fix bad escaping in mw.message for inexistent messages (i.e. <key>)
+* $wgOverrideSiteFeed no longer double escapes urls.
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
