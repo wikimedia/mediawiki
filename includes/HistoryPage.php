@@ -420,7 +420,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				'type' => 'submit',
 				'name' => $name,
 				'value' => '1',
-				'class' => "mw-history-$name-button mw-float-end",
+				'class' => "mw-history-$name-button",
 			),
 			wfMsg( $msg )
 		) . "\n";

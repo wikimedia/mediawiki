@@ -130,7 +130,7 @@ class FileDuplicateSearchPage extends QueryPage {
 			if ( $img ) {
 				$thumb = $img->transform( array( 'width' => 120, 'height' => 120 ) );
 				if( $thumb ) {
-					$out->addHTML( '<div class="mw-float-end" id="mw-fileduplicatesearch-icon">' .
+					$out->addHTML( '<div id="mw-fileduplicatesearch-icon">' .
 						$thumb->toHtml( array( 'desc-link' => false ) ) . '<br />' .
 						wfMsgExt( 'fileduplicatesearch-info', array( 'parse' ),
 							$this->getLang()->formatNum( $img->getWidth() ),
