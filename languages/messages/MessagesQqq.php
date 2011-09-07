@@ -1475,7 +1475,9 @@ Used in [[Special:Preferences]], tab "Watchlist". The display options refer to:
 'editusergroup'                  => 'Button name, in page [[Special:Userrights]] (only available to administrators), in the section named {{MediaWiki:userrights-lookup-user}}.
 
 {{Identical|Edit user groups}}',
-'editinguser'                    => "Appears on [[Special:UserRights]]. The '''last part''' of the message '''should remain completely untranslated''', but if your language has S-O-V word order, the verb can follow it.",
+'editinguser'                    => "Appears on [[Special:UserRights]]. Parameters:
+* $1 is a username
+* $2 are user tool links. Example: \"(Talk | contribs | block | send e-mail)\".",
 'userrights-editusergroup'       => '{{Identical|Edit user groups}}',
 'saveusergroups'                 => 'Button text when editing user groups',
 'userrights-groupsmember'        => 'Used when editing user groups in [[Special:Userrights]]. The messsage is followed by a list of group names.
