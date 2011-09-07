@@ -240,7 +240,7 @@ class SpecialWatchlist extends SpecialPage {
 		}
 
 		# Show a message about slave lag, if applicable
-		$lag = $dbr->getLag();
+		$lag = wfGetLB()->safeGetLag( $dbr );
 		if( $lag > 0 ) {
 			$output->showLagWarning( $lag );
 		}

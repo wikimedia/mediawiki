@@ -144,7 +144,11 @@ window.mediaWiki = new ( function( $ ) {
 	 */
 	Message.prototype.toString = function() {
 		if ( !this.map.exists( this.key ) ) {
-			// Return <key> if key does not exist
+			// Use <key> as text if key does not exist
+			if ( this.format !== 'plain' ) {
+				// format 'escape' and 'parse' need to have the brackets and key html escaped
+				return mw.html.escape( '<' + this.key + '>' );
+			}
 			return '<' + this.key + '>';
 		}
 		var text = this.map.get( this.key );

@@ -376,9 +376,9 @@ class DatabaseMysql extends DatabaseBase {
 			return $this->mFakeSlaveLag;
 		}
 
-		/*if ( version_compare( $this->getServerVersion(), '4.1.9', '>=' ) ) {
+		if ( version_compare( $this->getServerVersion(), '4.1.9', '>=' ) ) {
 			return $this->getLagFromSlaveStatus();
-		} else */{
+		} else {
 			return $this->getLagFromProcesslist();
 		}
 	}

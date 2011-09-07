@@ -697,11 +697,11 @@ class DatabaseOracle extends DatabaseBase {
 			  FROM all_sequences asq, all_tab_columns atc
 			 WHERE decode(atc.table_name, '{$this->mTablePrefix}MWUSER', '{$this->mTablePrefix}USER', atc.table_name) || '_' ||
 				   atc.column_name || '_SEQ' = '{$this->mTablePrefix}' || asq.sequence_name
-			   AND asq.sequence_owner = '{$this->mDBname}'
-			   AND atc.owner = '{$this->mDBname}'" );
+			   AND asq.sequence_owner = upper('{$this->mDBname}')
+			   AND atc.owner = upper('{$this->mDBname}')" );
 
 			while ( ( $row = $result->fetchRow() ) !== false ) {
-				$this->sequenceData[$this->tableName( $row[1] )] = array(
+				$this->sequenceData[$row[1]] = array(
 					'sequence' => $row[0],
 					'column' => $row[2]
 				);
@@ -1171,6 +1171,24 @@ class DatabaseOracle extends DatabaseBase {
 	public function delete( $table, $conds, $fname = 'DatabaseOracle::delete' ) {
 		if ( is_array($conds) ) {
 			$conds = $this->wrapConditionsForWhere( $table, $conds );
+		}
+		// a hack for deleting pages, users and images (which have non-nullable FKs)
+		// all deletions on these tables have transactions so final failure rollbacks these updates
+		$table = $this->tableName( $table );
+		if ( $table == $this->tableName( 'page' ) ) {
+				$this->update( 'recentchanges', array( 'rc_cur_id' => 0 ), array( 'rc_cur_id' => $conds['page_id'] ), $fname );
+		} elseif ( $table == $this->tableName( 'user' )  ) {
+				$this->update( 'archive', array( 'ar_user' => 0 ), array( 'ar_user' => $conds['user_id'] ), $fname );
+				$this->update( 'ipblocks', array( 'ipb_user' => 0 ), array( 'ipb_user' => $conds['user_id'] ), $fname );
+				$this->update( 'image', array( 'img_user' => 0 ), array( 'img_user' => $conds['user_id'] ), $fname );
+				$this->update( 'oldimage', array( 'oi_user' => 0 ), array( 'oi_user' => $conds['user_id'] ), $fname );
+				$this->update( 'filearchive', array( 'fa_deleted_user' => 0 ), array( 'fa_deleted_user' => $conds['user_id'] ), $fname );
+				$this->update( 'filearchive', array( 'fa_user' => 0 ), array( 'fa_user' => $conds['user_id'] ), $fname );
+				$this->update( 'uploadstash', array( 'us_user' => 0 ), array( 'us_user' => $conds['user_id'] ), $fname );
+				$this->update( 'recentchanges', array( 'rc_user' => 0 ), array( 'rc_user' => $conds['user_id'] ), $fname );
+				$this->update( 'logging', array( 'log_user' => 0 ), array( 'log_user' => $conds['user_id'] ), $fname );
+		} elseif ( $table == $this->tableName( 'image' )  ) {
+				$this->update( 'oldimage', array( 'oi_name' => 0 ), array( 'oi_name' => $conds['img_name'] ), $fname );
 		}
 		return parent::delete( $table, $conds, $fname );
 	}

@@ -270,11 +270,11 @@ class ApiEditPage extends ApiBase {
 		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 
-		$retval = $ep->internalAttemptSave( $result, $wgUser->isAllowed( 'bot' ) && $params['bot'] );
+		$status = $ep->internalAttemptSave( $result, $wgUser->isAllowed( 'bot' ) && $params['bot'] );
 		$wgRequest = $oldRequest;
 		global $wgMaxArticleSize;
 
-		switch( $retval ) {
+		switch( $status->value ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
 				$this->dieUsageMsg( 'hookaborted' );
@@ -353,15 +353,12 @@ class ApiEditPage extends ApiBase {
 				$this->dieUsageMsg( 'summaryrequired' );
 
 			case EditPage::AS_END:
-				// This usually means some kind of race condition
-				// or DB weirdness occurred. Fall through to throw an unknown
-				// error.
-
-				// This needs fixing higher up, as EditPage::internalAttemptSave
-				// should return the Status object, so that specific error
-				// conditions can be returned
+				// $status came from WikiPage::doEdit()
+				$errors = $status->getErrorsArray();
+				$this->dieUsageMsg( $errors[0] ); // TODO: Add new errors to message map
+				break;
 			default:
-				$this->dieUsageMsg( array( 'unknownerror', $retval ) );
+				$this->dieUsageMsg( array( 'unknownerror', $status->value ) );
 		}
 		$apiResult->addValue( null, $this->getModuleName(), $r );
 	}

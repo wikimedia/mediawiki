@@ -928,7 +928,9 @@ class LoadBalancer {
 	/**
 	 * Get the hostname and lag time of the most-lagged slave.
 	 * This is useful for maintenance scripts that need to throttle their updates.
-	 * May attempt to open connections to slaves on the default DB.
+	 * May attempt to open connections to slaves on the default DB. If there is 
+	 * no lag, the maximum lag will be reported as -1.
+	 *
 	 * @param $wiki string Wiki ID, or false for the default database
 	 *
 	 * @return array ( host, max lag, index of max lagged host )
@@ -937,22 +939,24 @@ class LoadBalancer {
 		$maxLag = -1;
 		$host = '';
 		$maxIndex = 0;
-		foreach ( $this->mServers as $i => $conn ) {
-			$conn = false;
-			if ( $wiki === false ) {
-				$conn = $this->getAnyOpenConnection( $i );
-			}
-			if ( !$conn ) {
-				$conn = $this->openConnection( $i, $wiki );
-			}
-			if ( !$conn ) {
-				continue;
-			}
-			$lag = $conn->getLag();
-			if ( $lag > $maxLag ) {
-				$maxLag = $lag;
-				$host = $this->mServers[$i]['host'];
-				$maxIndex = $i;
+		if ( $this->getServerCount() > 1 ) { // no replication = no lag
+			foreach ( $this->mServers as $i => $conn ) {
+				$conn = false;
+				if ( $wiki === false ) {
+					$conn = $this->getAnyOpenConnection( $i );
+				}
+				if ( !$conn ) {
+					$conn = $this->openConnection( $i, $wiki );
+				}
+				if ( !$conn ) {
+					continue;
+				}
+				$lag = $conn->getLag();
+				if ( $lag > $maxLag ) {
+					$maxLag = $lag;
+					$host = $this->mServers[$i]['host'];
+					$maxIndex = $i;
+				}
 			}
 		}
 		return array( $host, $maxLag, $maxIndex );
@@ -971,9 +975,34 @@ class LoadBalancer {
 		if ( isset( $this->mLagTimes ) ) {
 			return $this->mLagTimes;
 		}
-		# No, send the request to the load monitor
-		$this->mLagTimes = $this->getLoadMonitor()->getLagTimes( array_keys( $this->mServers ), $wiki );
+		if ( $this->getServerCount() == 1 ) {
+			# No replication
+			$this->mLagTimes = array( 0 => 0 );
+		} else {
+			# Send the request to the load monitor
+			$this->mLagTimes = $this->getLoadMonitor()->getLagTimes( 
+				array_keys( $this->mServers ), $wiki );
+		}
 		return $this->mLagTimes;
+	}
+
+	/**
+	 * Get the lag in seconds for a given connection, or zero if this load 
+	 * balancer does not have replication enabled. 
+	 *
+	 * This should be used in preference to Database::getLag() in cases where 
+	 * replication may not be in use, since there is no way to determine if 
+	 * replication is in use at the connection level without running 
+	 * potentially restricted queries such as SHOW SLAVE STATUS. Using this
+	 * function instead of Database::getLag() avoids a fatal error in this
+	 * case on many installations.
+	 */
+	function safeGetLag( $conn ) {
+		if ( $this->getServerCount() == 1 ) {
+			return 0;
+		} else {
+			return $conn->getLag();
+		}
 	}
 
 	/**
