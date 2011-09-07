@@ -200,6 +200,8 @@ abstract class MediaHandler {
 	 * @param $dstUrl String: destination URL to use in output HTML
 	 * @param $params Array: arbitrary set of parameters validated by $this->validateParam()
 	 * @param $flags Integer: a bitfield, may contain self::TRANSFORM_LATER
+	 *
+	 * @return MediaTransformOutput
 	 */
 	abstract function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 );
 
