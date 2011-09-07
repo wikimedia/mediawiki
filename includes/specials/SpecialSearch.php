@@ -753,7 +753,7 @@ class SpecialSearch extends SpecialPage {
 			if( array_key_exists($t->getInterwiki(),$customCaptions) ) {
 				// captions from 'search-interwiki-custom'
 				$caption = $customCaptions[$t->getInterwiki()];
-			else{
+			} else {
 				// default is to show the hostname of the other wiki which might suck
 				// if there are many wikis on one hostname
 				$parsed = wfParseUrl( $t->getFullURL() );
