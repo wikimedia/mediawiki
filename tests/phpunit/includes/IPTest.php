@@ -276,7 +276,7 @@ class IPTest extends MediaWikiTestCase {
 		foreach ( $private as $p ) {
 			$this->assertFalse( IP::isPublic( $p ), "$p is not a public IP address" );
 		}
-		$public = array( '2001:5c0:1000:a::133', 'fc::3' );
+		$public = array( '2001:5c0:1000:a::133', 'fc::3', '00FC::' );
 		foreach ( $public as $p ) {
 			$this->assertTrue( IP::isPublic( $p ), "$p is a public IP address" );
 		}
