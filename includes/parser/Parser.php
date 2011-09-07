@@ -690,14 +690,16 @@ class Parser {
 	 * @return Language
 	 */
 	function getFunctionLang() {
-		global $wgLang;
-
 		$target = $this->mOptions->getTargetLanguage();
 		if ( $target !== null ) {
 			return $target;
-		} else {
-			return $this->mOptions->getInterfaceMessage() ? $wgLang : $this->mTitle->getPageLanguage();
+		} elseif( $this->mOptions->getInterfaceMessage() ) {
+			global $wgLang;
+			return $wgLang;
+		} elseif( is_null( $this->mTitle ) ) {
+			throw new MWException( __METHOD__.': $this->mTitle is null' );
 		}
+		return $this->mTitle->getPageLanguage();
 	}
 
 	/**
