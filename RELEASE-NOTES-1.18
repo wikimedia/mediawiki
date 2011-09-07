@@ -443,6 +443,7 @@ production.
 * (bug 30074) Moving user JS subpages resulted in JS errors because
   #REDIRECT [[Foo]] is invalid JS
 * Tracking categories are no longer shown in footer for special pages
+* $wgOverrideSiteFeed no longer double escapes urls.
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
