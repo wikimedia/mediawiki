@@ -111,3 +111,19 @@ img.thumbborder {
 	border: 1px solid #dddddd;
 }
 
+/**
+ * Basic styles for the user login and create account forms
+ */
+#userlogin, #userloginForm {
+	border: solid 1px #cccccc;
+	padding: 1.2em;
+	margin: .5em;
+	float: left;
+}
+
+#userlogin {
+	min-width: 20em;
+	max-width: 90%;
+	width: 40em;
+}
+

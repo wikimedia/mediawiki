@@ -688,8 +688,8 @@ td.htmlform-tip {
 	margin-top: 2em;
 }
 
-div#userloginForm form,
-div#userlogin form#userlogin2 {
+div#userloginForm,
+div#userlogin {
 	margin: 0 3em 1em 0;
 	border: 1px solid #aaa;
 	clear: both;
@@ -699,12 +699,12 @@ div#userlogin form#userlogin2 {
 }
 
 div#userloginForm table,
-div#userlogin form#userlogin2 table {
+div#userlogin table {
 	background-color: #f9f9f9;
 }
 
 div#userloginForm h2,
-div#userlogin form#userlogin2 h2 {
+div#userlogin h2 {
 	padding-top: 0;
 }
 
