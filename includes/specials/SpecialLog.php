@@ -64,6 +64,10 @@ class SpecialLog extends SpecialPage {
 			$opts->setValue( 'month', '' );
 		}
 
+		if ( LogPage::isLogType( $opts->getValue( 'type' ) ) ) {
+			$opts->setValue( 'type', '' );
+		}
+
 		# Handle type-specific inputs
 		$qc = array();
 		if ( $opts->getValue( 'type' ) == 'suppress' ) {
@@ -103,8 +107,7 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'page' ), $opts->getValue( 'pattern' ), $extraConds, $opts->getValue( 'year' ),
 			$opts->getValue( 'month' ), $opts->getValue( 'tagfilter' ) );
 
-		# Set title and add header
-		$loglist->showHeader( $pager->getType() );
+		$this->addHeader( $opts->getValue( 'type' ) );
 
 		# Set relevant user
 		if ( $pager->getUser() ) {
@@ -129,4 +132,16 @@ class SpecialLog extends SpecialPage {
 			$wgOut->addWikiMsg( 'logempty' );
 		}
 	}
+
+	/**
+	 * Set page title and show header for this log type
+	 * @param $type string
+	 * @since 1.19
+	 */
+	protected function addHeader( $type ) {
+		$page = new LogPage( $type );
+		$this->getOutput()->setPageTitle( $page->getName()->text() );
+		$this->getOutput()->addHTML( $page->getDescription()->parseAsBlock() );
+	}
+
 }
