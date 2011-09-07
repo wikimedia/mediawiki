@@ -490,7 +490,7 @@ class SkinTemplate extends Skin {
 
 		// Append printfooter and debughtml onto bodytext so that skins that were already
 		// using bodytext before they were split out don't suddenly start not outputting information
-		$tpl->data['bodytext'] .= Html::element( 'div', array( 'class' => 'printfooter' ), "\n{$tpl->data['printfooter']}" ) . "\n";
+		$tpl->data['bodytext'] .= Html::rawElement( 'div', array( 'class' => 'printfooter' ), "\n{$tpl->data['printfooter']}" ) . "\n";
 		$tpl->data['bodytext'] .= $tpl->data['debughtml'];
 
 		// allow extensions adding stuff after the page content.
