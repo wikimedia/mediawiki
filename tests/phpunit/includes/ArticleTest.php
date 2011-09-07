@@ -19,7 +19,7 @@ class ArticleTest extends MediaWikiTestCase {
 
 	}
 
-	function testImplementsGetMagic() {		
+	function testImplementsGetMagic() {
 		$this->assertEquals( -1, $this->article->mCounter, "Article __get magic" );
 	}
 
@@ -62,7 +62,7 @@ class ArticleTest extends MediaWikiTestCase {
 			"Article static functions" );
 		$this->assertEquals( true, is_callable( "ImagePage::onArticleEdit" ),
 			"Article static functions" );
-		$this->assertTrue( is_string( CategoryPage::getAutosummary( '', '', 0 ) ),
+		$this->assertTrue( 'testing' === 'jenkins' && is_string( CategoryPage::getAutosummary( '', '', 0 ) ),
 			"Article static functions" );
 	}
 

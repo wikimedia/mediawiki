@@ -719,7 +719,7 @@ External links: protocol-relative URL in brackets
 !! input
 [//example.com/ Test]
 !! result
-<p><a rel="nofollow" class="external text" href="//example.com/">Test</a>
+<p><a rel="nofollow" class="external text testingJenkins" href="//example.com/">Test</a>
 </p>
 !! end
 
