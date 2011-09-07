@@ -624,7 +624,12 @@ abstract class Skin extends ContextSource {
 	 */
 	function printSource() {
 		$oldid = $this->getRevisionId();
-		$url = htmlspecialchars( $this->getTitle()->getFullURL( 'oldid=' . $oldid ) );
+		if ( $oldid ) {
+			$url = htmlspecialchars( $this->getTitle()->getCanonicalURL( 'oldid=' . $oldid ) );
+		} else {
+			// oldid not available for non existing pages
+			$url = htmlspecialchars( $this->getTitle()->getCanonicalURL() );
+		}
 		return wfMsg( 'retrievedfrom', '<a href="' . $url . '">' . $url . '</a>' );
 	}
 
