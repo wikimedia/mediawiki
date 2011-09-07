@@ -172,6 +172,7 @@ class LogPage {
 	 *
 	 * @param $type String: logtype
 	 * @return String: log name
+	 * @deprecated in 1.19, warnings in 1.21. Use getName()
 	 */
 	public static function logName( $type ) {
 		global $wgLogNames;
@@ -190,6 +191,7 @@ class LogPage {
 	 * @todo handle missing log types
 	 * @param $type String: logtype
 	 * @return String: headertext of this logtype
+	 * @deprecated in 1.19, warnings in 1.21. Use getDescription()
 	 */
 	public static function logHeader( $type ) {
 		global $wgLogHeaders;
@@ -576,4 +578,66 @@ class LogPage {
 
 		return $messages[$flag];
 	}
+
+
+	/**
+	 * Name of the log.
+	 * @return Message
+	 * @since 1.19
+	 */
+	public function getName() {
+		global $wgLogNames;
+
+		// BC
+		if ( isset( $wgLogNames[$this->type] ) ) {
+			$key = $wgLogNames[$this->type];
+		} else {
+			$key = 'log-name-' . $this->type;
+		}
+
+		return wfMessage( $key );
+	}
+
+	/**
+	 * Description of this log type.
+	 * @return Message
+	 * @since 1.19
+	 */
+	public function getDescription() {
+		global $wgLogHeaders;
+		// BC
+		if ( isset( $wgLogHeaders[$this->type] ) ) {
+			$key = $wgLogHeaders[$this->type];
+		} else {
+			$key = 'log-description-' . $this->type;
+		}
+		return wfMessage( $key );
+	}
+
+	/**
+	 * Returns the right needed to read this log type.
+	 * @return string
+	 * @since 1.19
+	 */
+	public function getRestriction() {
+		global $wgLogRestrictions;
+		if ( isset( $wgLogRestrictions[$this->type] ) ) {
+			$restriction = $wgLogRestrictions[$this->type];
+		} else {
+			// '' always returns true with $user->isAllowed()
+			$restriction = '';
+		}
+		return $restriction;
+	}
+
+	/**
+	 * Tells if this log is not viewable by all.
+	 * @return bool
+	 * @since 1.19
+	 */
+	public function isRestricted() {
+		$restriction = $this->getRestriction();
+		return $restriction !== '' && $restriction !== '*';
+	}
+
 }
