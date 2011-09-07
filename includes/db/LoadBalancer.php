@@ -242,7 +242,8 @@ class LoadBalancer {
 					if ( $i === false && count( $currentLoads ) != 0 )  {
 						# All slaves lagged. Switch to read-only mode
 						wfDebugLog( 'replication', "All slaves lagged. Switch to read-only mode\n" );
-						$wgReadOnly = wfMessage( 'readonly_lag' )->useDatabase( false )->plain();
+						$wgReadOnly = 'The database has been automatically locked ' .
+							'while the slave database servers catch up to the master';
 						$i = $this->pickRandom( $currentLoads );
 						$laggedSlaveMode = true;
 					}
@@ -679,7 +680,14 @@ class LoadBalancer {
 
 		# Create object
 		wfDebug( "Connecting to $host $dbname...\n" );
-		$db = DatabaseBase::factory( $server['type'], $server );
+		try {
+			$db = DatabaseBase::factory( $server['type'], $server );
+		} catch ( DBConnectionError $e ) {
+			// FIXME: This is probably the ugliest thing I have ever done to
+			// PHP. I'm half-expecting it to segfault, just out of disgust. -- TS
+			$db = $e->db;
+		}
+
 		if ( $db->isOpen() ) {
 			wfDebug( "Connected to $host $dbname.\n" );
 		} else {
@@ -929,7 +937,7 @@ class LoadBalancer {
 	/**
 	 * Get the hostname and lag time of the most-lagged slave.
 	 * This is useful for maintenance scripts that need to throttle their updates.
-	 * May attempt to open connections to slaves on the default DB. If there is 
+	 * May attempt to open connections to slaves on the default DB. If there is
 	 * no lag, the maximum lag will be reported as -1.
 	 *
 	 * @param $wiki string Wiki ID, or false for the default database
@@ -981,19 +989,19 @@ class LoadBalancer {
 			$this->mLagTimes = array( 0 => 0 );
 		} else {
 			# Send the request to the load monitor
-			$this->mLagTimes = $this->getLoadMonitor()->getLagTimes( 
+			$this->mLagTimes = $this->getLoadMonitor()->getLagTimes(
 				array_keys( $this->mServers ), $wiki );
 		}
 		return $this->mLagTimes;
 	}
 
 	/**
-	 * Get the lag in seconds for a given connection, or zero if this load 
-	 * balancer does not have replication enabled. 
+	 * Get the lag in seconds for a given connection, or zero if this load
+	 * balancer does not have replication enabled.
 	 *
-	 * This should be used in preference to Database::getLag() in cases where 
-	 * replication may not be in use, since there is no way to determine if 
-	 * replication is in use at the connection level without running 
+	 * This should be used in preference to Database::getLag() in cases where
+	 * replication may not be in use, since there is no way to determine if
+	 * replication is in use at the connection level without running
 	 * potentially restricted queries such as SHOW SLAVE STATUS. Using this
 	 * function instead of Database::getLag() avoids a fatal error in this
 	 * case on many installations.
