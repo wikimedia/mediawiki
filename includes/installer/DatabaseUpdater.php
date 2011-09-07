@@ -188,7 +188,7 @@ abstract class DatabaseUpdater {
 	 *
 	 * @param $what Array: what updates to perform
 	 */
-	public function doUpdates( $what = array( 'core', 'extensions', 'purge' ) ) {
+	public function doUpdates( $what = array( 'core', 'extensions', 'purge', 'stats' ) ) {
 		global $wgVersion;
 
 		$what = array_flip( $what );
@@ -205,7 +205,7 @@ abstract class DatabaseUpdater {
 		if( isset( $what['purge'] ) ) {
 			$this->purgeCache();
 		}
-		if ( isset( $what['core'] ) ) {
+		if ( isset( $what['stats'] ) ) {
 			$this->checkStats();
 		}
 	}

@@ -53,7 +53,7 @@ class Parser {
 	 * changes in an incompatible way, so the parser cache
 	 * can automatically discard old data.
 	 */
-	const VERSION = '1.6.5';
+	const VERSION = '1.6.4';
 
 	/**
 	 * Update this version number when the output of serialiseHalfParsedText()
@@ -5149,12 +5149,14 @@ class Parser {
 	 * pull the given section along with its lower-level subsections. If the section is
 	 * not found, $mode=get will return $newtext, and $mode=replace will return $text.
 	 *
+	 * Section 0 is always considered to exist, even if it only contains the empty
+	 * string. If $text is the empty string and section 0 is replaced, $newText is 
+	 * returned.
+	 *
 	 * @param $mode String: one of "get" or "replace"
 	 * @param $newText String: replacement text for section data.
 	 * @return String: for "get", the extracted section text.
 	 *                 for "replace", the whole page with the section replaced.
-	 *                 If the page is empty and section 0 is requested, $text (as '')
-	 *                  is returned
 	 */
 	private function extractSections( $text, $section, $mode, $newText='' ) {
 		global $wgTitle; # not generally used but removes an ugly failure mode
@@ -5171,6 +5173,25 @@ class Parser {
 				$flags |= self::PTD_FOR_INCLUSION;
 			}
 		}
+
+		# Check for empty input
+		if ( strval( $text ) === '' ) {
+			# Only sections 0 and T-0 exist in an empty document
+			if ( $sectionIndex == 0 ) {
+				if ( $mode === 'get' ) {
+					return '';
+				} else {
+					return $newText;
+				}
+			} else {
+				if ( $mode === 'get' ) {
+					return $newText;
+				} else {
+					return $text;
+				}
+			}
+		}
+
 		# Preprocess the text
 		$root = $this->preprocessToDom( $text, $flags );
 
@@ -5182,10 +5203,6 @@ class Parser {
 		if ( $sectionIndex == 0 ) {
 			# Section zero doesn't nest, level=big
 			$targetLevel = 1000;
-			if ( !$node ) {
-				# The page definitely exists - we checked that earlier - so it must be blank: see bug #14005
-				return $text;
-			}
 		} else {
 			while ( $node ) {
 				if ( $node->getName() === 'h' ) {
@@ -5268,7 +5285,8 @@ class Parser {
 
 	/**
 	 * This function returns $oldtext after the content of the section
-	 * specified by $section has been replaced with $text.
+	 * specified by $section has been replaced with $text. If the target 
+	 * section does not exist, $oldtext is returned unchanged.
 	 *
 	 * @param $oldtext String: former text of the article
 	 * @param $section Numeric: section identifier

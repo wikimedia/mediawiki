@@ -174,9 +174,9 @@ class VectorTemplate extends BaseTemplate {
 				</div>
 				<!-- /jumpto -->
 				<?php endif; ?>
-				<!-- bodytext -->
-				<?php $this->html( 'bodytext' ) ?>
-				<!-- /bodytext -->
+				<!-- bodycontent -->
+				<?php $this->html( 'bodycontent' ) ?>
+				<!-- /bodycontent -->
 				<?php if ( $this->data['printfooter'] ): ?>
 				<!-- printfooter -->
 				<div class="printfooter">

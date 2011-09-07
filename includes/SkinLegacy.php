@@ -74,10 +74,6 @@ class LegacyTemplate extends BaseTemplate {
 		$this->html( 'headelement' );
 		echo $this->beforeContent();
 		$this->html( 'bodytext' );
-		echo '<div class="printfooter">';
-		$this->html( 'printfooter' );
-		echo '</div>';
-		$this->html( 'debughtml' );
 		echo "\n";
 		echo $this->afterContent();
 		$this->html( 'dataAfterContent' );
