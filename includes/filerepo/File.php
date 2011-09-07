@@ -668,6 +668,51 @@ abstract class File {
 	}
 
 	/**
+	 * Do the work of a transform (from an original into a thumb).
+	 * Contains filesystem-specific functions.
+	 *
+	 * @param $thumbName string: the name of the thumbnail file.
+	 * @param $thumbUrl string: the URL of the thumbnail file.
+	 * @param $params Array: an associative array of handler-specific parameters.
+	 *                Typical keys are width, height and page.
+	 *
+	 * @return MediaTransformOutput | false
+	 */
+	protected function maybeDoTransform( $thumbName, $thumbUrl, $params ) {
+		global $wgIgnoreImageErrors, $wgThumbnailEpoch;
+
+		$thumbPath = $this->getThumbPath( $thumbName );
+		if ( $this->repo && $this->repo->canTransformVia404() && !($flags & self::RENDER_NOW ) ) {
+			return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+		}
+
+		wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
+		$this->migrateThumbFile( $thumbName );
+		if ( file_exists( $thumbPath )) {
+			$thumbTime = filemtime( $thumbPath );
+			if ( $thumbTime !== FALSE &&
+			     gmdate( 'YmdHis', $thumbTime ) >= $wgThumbnailEpoch ) { 
+
+				return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+			}
+		}
+		$thumb = $this->handler->doTransform( $this, $thumbPath, $thumbUrl, $params );
+
+		// Ignore errors if requested
+		if ( !$thumb ) {
+			$thumb = null;
+		} elseif ( $thumb->isError() ) {
+			$this->lastError = $thumb->toText();
+			if ( $wgIgnoreImageErrors && !($flags & self::RENDER_NOW) ) {
+				$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
+			}
+		}
+
+		return $thumb;
+	}
+
+
+	/**
 	 * Transform a media file
 	 *
 	 * @param $params Array: an associative array of handler-specific parameters.
@@ -676,7 +721,7 @@ abstract class File {
 	 * @return MediaTransformOutput | false
 	 */
 	function transform( $params, $flags = 0 ) {
-		global $wgUseSquid, $wgIgnoreImageErrors, $wgThumbnailEpoch, $wgServer;
+		global $wgUseSquid, $wgServer;
 
 		wfProfileIn( __METHOD__ );
 		do {
@@ -704,36 +749,9 @@ abstract class File {
 			$normalisedParams = $params;
 			$this->handler->normaliseParams( $this, $normalisedParams );
 			$thumbName = $this->thumbName( $normalisedParams );
-			$thumbPath = $this->getThumbPath( $thumbName );
 			$thumbUrl = $this->getThumbUrl( $thumbName );
 
-			if ( $this->repo && $this->repo->canTransformVia404() && !($flags & self::RENDER_NOW ) ) {
-				$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
-				break;
-			}
-
-			wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
-			$this->migrateThumbFile( $thumbName );
-			if ( file_exists( $thumbPath )) {
-				$thumbTime = filemtime( $thumbPath );
-				if ( $thumbTime !== FALSE &&
-					gmdate( 'YmdHis', $thumbTime ) >= $wgThumbnailEpoch ) {
-
-					$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
-					break;
-				}
-			}
-			$thumb = $this->handler->doTransform( $this, $thumbPath, $thumbUrl, $params );
-
-			// Ignore errors if requested
-			if ( !$thumb ) {
-				$thumb = null;
-			} elseif ( $thumb->isError() ) {
-				$this->lastError = $thumb->toText();
-				if ( $wgIgnoreImageErrors && !($flags & self::RENDER_NOW) ) {
-					$thumb = $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
-				}
-			}
+			$thumb = $this->maybeDoTransform( $thumbName, $thumbUrl, $params );
 
 			// Purge. Useful in the event of Core -> Squid connection failure or squid
 			// purge collisions from elsewhere during failure. Don't keep triggering for
