@@ -467,72 +467,7 @@ class RecentChange {
 			'newSize' => $size
 		);
 		$rc->save();
-		return $rc;	
-	}
-
-	# Makes an entry in the database corresponding to a rename
-
-	/**
-	 * @param $timestamp
-	 * @param $oldTitle Title
-	 * @param $newTitle Title
-	 * @param $user User
-	 * @param $comment
-	 * @param $ip string
-	 * @param $overRedir bool
-	 * @return void
-	 */
-	public static function notifyMove( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='',
-		$overRedir = false ) {
-		global $wgRequest;
-		if( !$ip ) {
-			$ip = $wgRequest->getIP();
-			if( !$ip ) $ip = '';
-		}
-
-		$rc = new RecentChange;
-		$rc->mAttribs = array(
-			'rc_timestamp'  => $timestamp,
-			'rc_cur_time'   => $timestamp,
-			'rc_namespace'  => $oldTitle->getNamespace(),
-			'rc_title'      => $oldTitle->getDBkey(),
-			'rc_type'       => $overRedir ? RC_MOVE_OVER_REDIRECT : RC_MOVE,
-			'rc_minor'      => 0,
-			'rc_cur_id'     => $oldTitle->getArticleID(),
-			'rc_user'       => $user->getId(),
-			'rc_user_text'  => $user->getName(),
-			'rc_comment'    => $comment,
-			'rc_this_oldid' => 0,
-			'rc_last_oldid' => 0,
-			'rc_bot'        => $user->isAllowed( 'bot' ) ? $wgRequest->getBool( 'bot' , true ) : 0,
-			'rc_moved_to_ns' => $newTitle->getNamespace(),
-			'rc_moved_to_title' => $newTitle->getDBkey(),
-			'rc_ip'         => $ip,
-			'rc_new'        => 0, # obsolete
-			'rc_patrolled'  => 1,
-			'rc_old_len'    => null,
-			'rc_new_len'    => null,
-			'rc_deleted'    => 0,
-			'rc_logid'      => 0, # notifyMove not used anymore
-			'rc_log_type'   => null,
-			'rc_log_action' => '',
-			'rc_params'     => ''
-		);
-
-		$rc->mExtra = array(
-			'prefixedDBkey' => $oldTitle->getPrefixedDBkey(),
-			'lastTimestamp' => 0,
-			'prefixedMoveTo' => $newTitle->getPrefixedDBkey()
-		);
-		$rc->save();
-	}
-
-	public static function notifyMoveToNew( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
-		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, false );
-	}
-
-	public static function notifyMoveOverRedirect( $timestamp, &$oldTitle, &$newTitle, &$user, $comment, $ip='' ) {
-		RecentChange::notifyMove( $timestamp, $oldTitle, $newTitle, $user, $comment, $ip, true );
+		return $rc;
 	}
 
 	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip='', $type, 
