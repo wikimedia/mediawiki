@@ -686,29 +686,13 @@ pre {
 
 /* Site Notice (includes notices from CentralNotice extension) */
 #siteNotice {
-	position: relative;
-	text-align: center;
 	font-size: 0.8em;
-	margin: 0;
-}
-#localNotice {
-	margin-bottom: 0.9em;
-}
-/* Edge Cases for Content */
-h1, h2 {
-	margin-bottom: .6em;
-}
-h3, h4, h5 {
-	margin-bottom: .3em;
 }
 #firstHeading {
 	padding-top: 0;
 	margin-top: 0;
 	padding-top: 0;
-	margin-bottom: 0.1em;
-	line-height: 1.2em;
 	font-size: 1.6em;
-	padding-bottom: 0;
 }
 div#content a.external,
 div#content a[href ^="gopher://"] {

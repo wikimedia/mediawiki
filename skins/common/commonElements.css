@@ -103,6 +103,17 @@ h5 .editsection { font-weight: normal; }
 h6 { font-size: 80%;  }
 h6 .editsection { font-size: 125%; font-weight: normal; }
 
+/* Some space under the headers in the content area */
+h1,
+h2 {
+	margin-bottom: .6em;
+}
+h3,
+h4,
+h5 {
+	margin-bottom: .3em;
+}
+
 p {
 	margin: .4em 0 .5em 0;
 	line-height: 1.5em;

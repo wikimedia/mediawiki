@@ -22,6 +22,26 @@
 	vertical-align: middle;
 }
 
+/* Site Notice (includes notices from CentralNotice extension) */
+#siteNotice {
+	position: relative;
+	text-align: center;
+	margin: 0;
+}
+#localNotice {
+	margin-bottom: 0.9em;
+}
+
+/* First h1 */
+.firstHeading,
+#firstHeading {
+	margin-bottom: .1em;
+	/* These two rules hack around bug 2013 (fix for more limited bug 11325).
+	   When bug 2013 is fixed properly, they should be removed. */
+	line-height: 1.2em;
+	padding-bottom: 0;
+}
+
 /* Sub-navigation */
 #siteSub {
 	display: none;

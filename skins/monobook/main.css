@@ -90,26 +90,12 @@ pre {
 ** the main content area
 */
 
-/* Some space under the headers in the content area */
-#bodyContent h1, #bodyContent h2 {
-	margin-bottom: .6em;
-}
-#bodyContent h3, #bodyContent h4, #bodyContent h5 {
-	margin-bottom: .3em;
-}
-#firstHeading {
-	margin-bottom: .1em;
-	/* These two rules hack around bug 2013 (fix for more limited bug 11325).
-	   When bug 2013 is fixed properly, they should be removed. */
-	line-height: 1.2em;
-	padding-bottom: 0;
-}
-
 #siteNotice {
-	position: relative;
-	text-align: center;
 	font-size: 95%;
 	padding: 0 0.9em;
+}
+#localNotice {
+	margin: 0;
 }
 #siteNotice p {
 	margin: 0;
