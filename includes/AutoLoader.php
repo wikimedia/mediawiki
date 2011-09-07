@@ -531,6 +531,16 @@ $wgAutoloadLocalClasses = array(
 	'JSMinPlus' => 'includes/libs/jsminplus.php',
 	'JSParser' => 'includes/libs/jsminplus.php',
 
+	# includes/logging
+	'LogEntry' => 'includes/logging/LogEntry.php',
+	'LogEntryBase' => 'includes/logging/LogEntry.php',
+	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
+	'RCDatabaseLogEntry' => 'includes/logging/LogEntry.php',
+	'ManualLogEntry' => 'includes/logging/LogEntry.php',
+	'LogFormatter' => 'includes/logging/LogFormatter.php',
+	'LegacyLogFormatter' => 'includes/logging/LogFormatter.php',
+	'BlockLogFormatter' => 'includes/logging/LogFormatter.php',
+
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
 	'BitmapHandler_ClientOnly' => 'includes/media/Bitmap_ClientOnly.php',
@@ -866,6 +876,7 @@ $wgAutoloadLocalClasses = array(
 	# tests/parser
 	'ParserTest' => 'tests/parser/parserTest.inc',
 	'ParserTestParserHook' => 'tests/parser/parserTestsParserHook.php',
+	'ParserTestStaticParserHook' => 'tests/parser/parserTestsStaticParserHook.php',
 
 	# tests/selenium
 	'Selenium' => 'tests/selenium/Selenium.php',
