@@ -1076,6 +1076,12 @@ class User {
 			$all = false;
 		}
 
+		if ( isset( $row->user_editcount ) ) {
+			$this->mEditCount = $row->user_editcount;
+		} else {
+			$all = false;
+		}
+
 		if ( isset( $row->user_password ) ) {
 			$this->mPassword = $row->user_password;
 			$this->mNewpassword = $row->user_newpassword;
@@ -1088,7 +1094,6 @@ class User {
 			$this->mEmailToken = $row->user_email_token;
 			$this->mEmailTokenExpires = wfTimestampOrNull( TS_MW, $row->user_email_token_expires );
 			$this->mRegistration = wfTimestampOrNull( TS_MW, $row->user_registration );
-			$this->mEditCount = $row->user_editcount;
 		} else {
 			$all = false;
 		}
