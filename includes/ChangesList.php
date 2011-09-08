@@ -225,35 +225,6 @@ class ChangesList extends ContextSource {
 		}
 	}
 
-	/**
-	 * @param $s
-	 * @param $rc RecentChange
-	 * @return void
-	 */
-	public function insertMove( &$s, $rc ) {
-		# Diff
-		$s .= '(' . $this->message['diff'] . ') (';
-		# Hist
-		$s .= Linker::linkKnown(
-			$rc->getMovedToTitle(),
-			$this->message['hist'],
-			array(),
-			array( 'action' => 'history' )
-		) . ') . . ';
-		# "[[x]] moved to [[y]]"
-		$msg = ( $rc->mAttribs['rc_type'] == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
-		$s .= wfMsgHtml(
-			$msg,
-			Linker::linkKnown(
-				$rc->getTitle(),
-				null,
-				array(),
-				array( 'redirect' => 'no' )
-			),
-			Linker::linkKnown( $rc->getMovedToTitle() )
-		);
-	}
-
 	public function insertDateHeader( &$s, $rc_timestamp ) {
 		# Make date header if necessary
 		$date = $this->getLang()->date( $rc_timestamp, true, true );
@@ -268,8 +239,8 @@ class ChangesList extends ContextSource {
 	}
 
 	public function insertLog( &$s, $title, $logtype ) {
-		$logname = LogPage::logName( $logtype );
-		$s .= '(' . Linker::linkKnown( $title, htmlspecialchars( $logname ) ) . ')';
+		$logname = LogType::factory( $logtype )->getName()->escaped();
+		$s .= '(' . Linker::linkKnown( $title, $logname ) . ')';
 	}
 
 	/**
@@ -388,29 +359,10 @@ class ChangesList extends ContextSource {
 	 *
 	 * @param $rc RecentChange
 	 */
-	public function insertAction( &$s, &$rc ) {
-		if( $rc->mAttribs['rc_type'] == RC_LOG ) {
-			if( $this->isDeleted( $rc, LogPage::DELETED_ACTION ) ) {
-				$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-event' ) . '</span>';
-			} else {
-				$s .= ' '.LogPage::actionText( $rc->mAttribs['rc_log_type'], $rc->mAttribs['rc_log_action'],
-					$rc->getTitle(), $this->getSkin(), LogPage::extractParams( $rc->mAttribs['rc_params'] ), true, true );
-			}
-		}
-	}
-
-	/** insert a formatted comment
-	 *
-	 * @param $rc RecentChange
-	 */
-	public function insertComment( &$s, &$rc ) {
-		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
-			if( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
-				$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
-			} else {
-				$s .= Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
-			}
-		}
+	public function insertLogEntry( $rc ) {
+		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
+		$mark = $this->getLang()->getDirMark();
+		return $formatter->getActionText() . " $mark" . $formatter->getComment();
 	}
 
 	/**
@@ -546,9 +498,8 @@ class OldChangesList extends ChangesList {
 			}
 		}
 
-		// Moved pages
+		// Moved pages (very very old, not supported anymore)
 		if( $rc->mAttribs['rc_type'] == RC_MOVE || $rc->mAttribs['rc_type'] == RC_MOVE_OVER_REDIRECT ) {
-			$this->insertMove( $s, $rc );
 		// Log entries
 		} elseif( $rc->mAttribs['rc_log_type'] ) {
 			$logtitle = Title::newFromText( 'Log/'.$rc->mAttribs['rc_log_type'], NS_SPECIAL );
@@ -583,16 +534,16 @@ class OldChangesList extends ChangesList {
 				$s .= "$cd  . . ";
 			}
 		}
-		# User tool links
-		$this->insertUserRelatedLinks( $s, $rc );
-		# LTR/RTL direction mark
-		$s .= $this->getLang()->getDirMark();
-		# Log action text (if any)
-		$this->insertAction( $s, $rc );
-		# LTR/RTL direction mark
-		$s .= $this->getLang()->getDirMark();
-		# Edit or log comment
-		$this->insertComment( $s, $rc );
+
+		if ( $rc->mAttribs['rc_type'] == RC_LOG ) {
+			$s .= $this->insertLogEntry( $rc );
+		} else {
+			# User tool links
+			$this->insertUserRelatedLinks( $s, $rc );
+			# LTR/RTL direction mark
+			$s .= $this->getLang()->getDirMark();
+		}
+
 		# Tags
 		$this->insertTags( $s, $rc, $classes );
 		# Rollback
@@ -1039,13 +990,14 @@ class EnhancedChangesList extends ChangesList {
 				$r .= $rcObj->getCharacterDifference() . ' . . ' ;
 			}
 
-			# User links
-			$r .= $rcObj->userlink;
-			$r .= $rcObj->usertalklink;
-			// log action
-			$this->insertAction( $r, $rcObj );
-			// log comment
-			$this->insertComment( $r, $rcObj );
+			if ( $rcObj->mAttribs['rc_type'] == RC_LOG ) {
+				$r .= $this->insertLogEntry( $rcObj );
+			} else {
+				# User links
+				$r .= $rcObj->userlink;
+				$r .= $rcObj->usertalklink;
+			}
+
 			# Rollback
 			$this->insertRollback( $r, $rcObj );
 			# Tags
@@ -1165,19 +1117,13 @@ class EnhancedChangesList extends ChangesList {
 		if( $wgRCShowChangedSize && ($cd = $rcObj->getCharacterDifference()) ) {
 			$r .= "$cd . . ";
 		}
-		# User/talk
-		$r .= ' '.$rcObj->userlink . $rcObj->usertalklink;
-		# Log action (if any)
-		if( $logType ) {
-			if( $this->isDeleted($rcObj,LogPage::DELETED_ACTION) ) {
-				$r .= ' <span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';
-			} else {
-				$r .= ' ' . LogPage::actionText( $logType, $rcObj->mAttribs['rc_log_action'], $rcObj->getTitle(),
-					$this->getSkin(), LogPage::extractParams( $rcObj->mAttribs['rc_params'] ), true, true );
-			}
+
+		if ( $type == RC_LOG ) {
+			$r .= $this->insertLogEntry( $rcObj );
+		} else { 
+			$r .= ' '.$rcObj->userlink . $rcObj->usertalklink;
 		}
-		$this->insertComment( $r, $rcObj );
-		$this->insertRollback( $r, $rcObj );
+
 		# Tags
 		$classes = explode( ' ', $classes );
 		$this->insertTags( $r, $rcObj, $classes );
