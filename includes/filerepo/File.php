@@ -675,10 +675,11 @@ abstract class File {
 	 * @param $thumbUrl string: the URL of the thumbnail file.
 	 * @param $params Array: an associative array of handler-specific parameters.
 	 *                Typical keys are width, height and page.
+	 * @param $flags Integer: a bitfield, may contain self::RENDER_NOW to force rendering
 	 *
 	 * @return MediaTransformOutput | false
 	 */
-	protected function maybeDoTransform( $thumbName, $thumbUrl, $params ) {
+	protected function maybeDoTransform( $thumbName, $thumbUrl, $params, $flags = 0 ) {
 		global $wgIgnoreImageErrors, $wgThumbnailEpoch;
 
 		$thumbPath = $this->getThumbPath( $thumbName );
@@ -751,7 +752,7 @@ abstract class File {
 			$thumbName = $this->thumbName( $normalisedParams );
 			$thumbUrl = $this->getThumbUrl( $thumbName );
 
-			$thumb = $this->maybeDoTransform( $thumbName, $thumbUrl, $params );
+			$thumb = $this->maybeDoTransform( $thumbName, $thumbUrl, $params, $flags );
 
 			// Purge. Useful in the event of Core -> Squid connection failure or squid
 			// purge collisions from elsewhere during failure. Don't keep triggering for
