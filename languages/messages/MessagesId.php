@@ -8,6 +8,7 @@
  * @file
  *
  * @author -iNu-
+ * @author Anakmalaysia
  * @author ArdWar
  * @author Bennylin
  * @author Borgx
@@ -1467,7 +1468,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'userrights-lookup-user'       => 'Mengatur kelompok pengguna',
 'userrights-user-editname'     => 'Masukkan nama pengguna:',
 'editusergroup'                => 'Sunting kelompok pengguna',
-'editinguser'                  => "Mengganti hak akses pengguna '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Mengganti hak akses pengguna '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Sunting kelompok pengguna',
 'saveusergroups'               => 'Simpan kelompok pengguna',
 'userrights-groupsmember'      => 'Anggota dari:',
@@ -3769,7 +3770,6 @@ Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Penggunaan templat global',
 'globaltemplateusage-for'         => 'Penggunaan templat global untuk "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Halaman istimewa]] untuk melihat penggunaan templat secara global',
 'globaltemplateusage-ok'          => 'Cari',
 'globaltemplateusage-text'        => 'Cari penggunaan templat secara global.',
 'globaltemplateusage-no-results'  => '[[$1]] tidak digunakan di wiki lain.',

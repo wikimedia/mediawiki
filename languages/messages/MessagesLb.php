@@ -3549,7 +3549,6 @@ D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Global Benotzung vun der Schabloun',
 'globaltemplateusage-for'         => 'Globale Gebrauch vun der Schabloun "$1"',
-'globaltemplateusage-desc'        => "[[Special:GlobalTemplateUsage|Spezialsäit]] fir d'globaalt Benotze vun enger Schabloun ze gesinn",
 'globaltemplateusage-ok'          => 'Sichen',
 'globaltemplateusage-text'        => 'Nom globale Benotze vun der Schabloun sichen.',
 'globaltemplateusage-no-results'  => '[[$1]] gëtt net op anere Wikie benotzt.',

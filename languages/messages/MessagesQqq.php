@@ -4310,4 +4310,14 @@ The number of following wikis is unknown. For an empty result, no message is sho
 'sqlite-has-fts' => 'Shown on Special:Version, $1 is version',
 'sqlite-no-fts'  => 'Shown on Special:Version, $1 is version',
 
+# New logging system
+'logentry-move-move'                  => '{{Logentry}}
+Parameter $4, the target page, is also not visible to parser functions.',
+'logentry-move-move-noredirect'       => '{{Logentry}}
+Parameter $4, the target page, is also not visible to parser functions.',
+'logentry-move-move_redir'            => '{{Logentry}}
+Parameter $4, the target page, is also not visible to parser functions.',
+'logentry-move-move_redir-noredirect' => '{{Logentry}}
+Parameter $4, the target page, is also not visible to parser functions.',
+
 );

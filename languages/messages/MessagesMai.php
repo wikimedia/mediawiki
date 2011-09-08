@@ -3465,7 +3465,6 @@ $1',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'सार्वत्रिक नमूना प्रयोग',
 'globaltemplateusage-for'         => '"$1" लेल सार्वत्रिक नमूना प्रयोग',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|विशिष्ट पन्ना]] सार्वत्रिक नमूना देखबा लेल',
 'globaltemplateusage-ok'          => 'ताकू',
 'globaltemplateusage-text'        => 'सार्वत्रिक नमूना प्रयोग ताकू',
 'globaltemplateusage-no-results'  => '[[$1]] दोसर विकी सभ पर प्रयोग नै होइए।',

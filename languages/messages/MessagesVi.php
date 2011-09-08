@@ -3839,7 +3839,6 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Trang sử dụng bản mẫu toàn cục',
 'globaltemplateusage-for'         => 'Tìm trang dùng bản mẫu “$1” toàn cục',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Trang đặc biệt]] để xem bản mẫu này đang dùng ở đâu trên toàn hệ thống',
 'globaltemplateusage-ok'          => 'Tìm kiếm',
 'globaltemplateusage-text'        => 'Tìm trang dùng bản mẫu toàn cục',
 'globaltemplateusage-no-results'  => '[[$1]] không được sử dụng tại các wiki khác.',

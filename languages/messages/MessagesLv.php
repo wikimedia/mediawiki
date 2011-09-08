@@ -238,6 +238,7 @@ $messages = array(
 'delete'            => 'Dzēst',
 'deletethispage'    => 'Dzēst šo lapu',
 'undelete_short'    => 'Atjaunot $1 {{PLURAL:$1|versiju|versijas}}',
+'viewdeleted_short' => 'Apskatīt {{PLURAL:$1|vienu dzēstu labojumu|$1 dzēstus labojumus}}',
 'protect'           => 'Aizsargāt',
 'protect_change'    => 'izmainīt',
 'protectthispage'   => 'Aizsargāt šo lapu',
@@ -828,6 +829,7 @@ $1",
 'revdelete-unrestricted'      => 'noņemt administratoriem ierobežojumus',
 'revdelete-hid'               => 'paslēpa $1',
 'revdelete-unhid'             => 'atjaunoja $1',
+'revdelete-modify-missing'    => 'Kļūda, mainot vienumu ar ID $1: tas ir pazudis no datubāzes!',
 'revdelete-reason-dropdown'   => '*Biežākie dzēšanas iemesli
 ** autortiesību pārkāpums
 ** nepiemērota personīgā informācija
@@ -964,6 +966,8 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'prefs-watchlist-token'         => 'Uzraugāmo lapu saraksta marķieris:',
 'prefs-misc'                    => 'Dažādi',
 'prefs-resetpass'               => 'Mainīt paroli',
+'prefs-changeemail'             => 'Mainīt e-pastu',
+'prefs-setemail'                => 'Uzstādīt e-pasta adresi',
 'prefs-email'                   => 'E-pasta uzstādījumi',
 'prefs-rendering'               => 'Izskats',
 'saveprefs'                     => 'Saglabāt',
@@ -1108,6 +1112,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'right-minoredit'            => 'Atzīmēt izmaiņas kā maznozīmīgas',
 'right-move'                 => 'Pārvietot lapas',
 'right-move-subpages'        => 'Pārvietot lapas kopā ar to apakšlapām',
+'right-move-rootuserpages'   => 'Pārvietot saknes lietotāju lapas',
 'right-movefile'             => 'Pārvietot failus',
 'right-suppressredirect'     => 'Neveidot pāradresāciju no vecā nosaukuma, pārvietojot lapu',
 'right-upload'               => 'Augšuplādēt failus',
@@ -1317,6 +1322,10 @@ Pārskatāmāka versija ir pieejama [[Special:NewFiles|jauno attēlu galerijā]]
 'windows-nonascii-filename'  => 'Šī viki neatbalsta failu nosaukumus ar īpašām rakstzīmēm.',
 'fileexists'                 => "Fails ar šādu nosaukumu jau pastāv, lūdzu, pārbaudi '''<tt>[[:$1]]</tt>''', ja neesi drošs, ka vēlies to mainīt.
 [[$1|thumb]]",
+'fileexists-extension'       => "Pastāv fails ar līdzīgu nosaukumu: [[$2|thumb]]
+* Augšupielādējamā faila nosaukums: '''<tt>[[:$1]]</tt>'''
+* Esošā faila nosaukums: '''<tt>[[:$2]]</tt>'''
+Lūdzu, izvēlieties citu nosaukumu.",
 'file-thumbnail-no'          => "Faila vārds sākas ar '''<tt>$1</tt>'''.
 Izskatās, ka šis ir samazināts attēls ''(thumbnail)''.
 Ja tev ir šis pats attēls pilnā izmērā, augšuplādē to, ja nav, tad nomaini faila vārdu.",
@@ -1718,7 +1727,8 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 'emailuserfooter'      => 'Šis e-pasts ir lietotāja $1 sūtīts lietotājam $2, izmantojot "Sūtīt e-pastu šim lietotājam" funkciju {{SITENAME}}.',
 
 # User Messenger
-'usermessage-editor' => 'Sistēmas ziņotājs',
+'usermessage-summary' => 'Atstāt sistēmas ziņojumu.',
+'usermessage-editor'  => 'Sistēmas ziņotājs',
 
 # Watchlist
 'watchlist'            => 'Mani uzraugāmie raksti',
@@ -1727,9 +1737,11 @@ Tā e-pasta adrese, kuru tu esi norādījis [[Special:Preferences|savā izvēļu
 'watchlistanontext'    => 'Lūdzu $1, lai apskatītu vai labotu savu uzraugāmo rakstu saraksta saturu.',
 'watchnologin'         => 'Neesi iegājis',
 'watchnologintext'     => 'Tev ir [[Special:UserLogin|jāieiet]], lai mainītu uzraugāmo lapu sarakstu.',
+'addwatch'             => 'Pievienot uzraugāmo lapu sarakstam',
 'addedwatchtext'       => "Lapa \"[[:\$1]]\" ir pievienota [[Special:Watchlist|tevis uzraudzītajām lapām]], kur tiks parādītas izmaiņas, kas izdarītas šajā lapā vai šīs lapas diskusiju lapā, kā arī šī lapa tiks iezīmēta '''pustrekna''' [[Special:RecentChanges|pēdējo izmaiņu lapā]], lai to būtu vieglāk pamanīt.
 
 Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz saites '''neuzraudzīt''' rīku joslā.",
+'removewatch'          => 'Izņemt no uzraugāmo lapu saraksta',
 'removedwatchtext'     => 'Lapa "[[:$1]]" ir izņemta no tava [[Special:Watchlist|uzraugāmo lapu saraksta]].',
 'watch'                => 'Uzraudzīt',
 'watchthispage'        => 'Uzraudzīt šo lapu',
@@ -2043,6 +2055,9 @@ Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
 'blocklist'                   => 'Bloķētie lietotāji',
 'ipblocklist'                 => 'Bloķētie lietotāji',
 'ipblocklist-legend'          => 'Meklēt bloķētu lietotāju',
+'blocklist-userblocks'        => 'Paslēpt kontu bloķējumus',
+'blocklist-tempblocks'        => 'Paslēpt pagaidu bloķējumus',
+'blocklist-addressblocks'     => 'Paslēpt vienas IP adreses bloķējumus',
 'blocklist-params'            => 'Bloķēšanas parametri',
 'blocklist-reason'            => 'Iemesls',
 'ipblocklist-submit'          => 'Meklēt',
@@ -2851,6 +2866,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'version-specialpages'      => 'Īpašās lapas',
 'version-variables'         => 'Mainīgie',
 'version-antispam'          => 'Spama aizsardzība',
+'version-skins'             => 'Apdares',
 'version-hooks'             => 'Aizķeres',
 'version-hook-name'         => 'Aizķeres nosaukums',
 'version-version'           => '(Versija $1)',
@@ -2919,6 +2935,15 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'compare-rev1'     => '1. versija',
 'compare-rev2'     => '2. versija',
 'compare-submit'   => 'Salīdzināt',
+
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Globālais faila lietojums',
+'globalfileusage-no-results'  => '[[$1]] nav lietots citās viki.',
+'globalfileusage-filterlocal' => 'Nerādīt lokālo lietojumu',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage-of-file'     => 'Šo veidni izmanto vēl šādas viki:',
+'globaltemplateusage-filterlocal' => 'Nerādīt lokālo lietojumu',
 
 # Database error messages
 'dberr-header'      => 'Šim viki ir problēma',

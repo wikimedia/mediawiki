@@ -3638,7 +3638,6 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Mallineen globaali käyttö',
 'globaltemplateusage-for'         => 'Mallineen $1 globaali käyttö',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Toimintosivu]] globaalin mallinekäytön näyttämiseen',
 'globaltemplateusage-ok'          => 'Etsi',
 'globaltemplateusage-text'        => 'Etsi mallineen globaalia käyttöä',
 'globaltemplateusage-no-results'  => '[[$1]] ei ole käytössä muissa wikeissä.',

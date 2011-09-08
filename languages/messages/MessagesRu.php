@@ -1451,7 +1451,7 @@ $1",
 'userrights-lookup-user'       => 'Управление группами участников',
 'userrights-user-editname'     => 'Введите имя участника:',
 'editusergroup'                => 'Изменить группы участника',
-'editinguser'                  => "Изменение прав участника '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Изменение прав участника '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Изменить группы участника',
 'saveusergroups'               => 'Сохранить группы участника',
 'userrights-groupsmember'      => 'Член групп:',
@@ -1464,7 +1464,7 @@ $1",
 'userrights-no-interwiki'      => 'У вас нет разрешения изменять права участников на других вики.',
 'userrights-nodatabase'        => 'База данных $1 не существует или не является локальной.',
 'userrights-nologin'           => 'Вы должны [[Special:UserLogin|представиться системе]] с учётной записи администратора, чтобы присваивать права участникам.',
-'userrights-notallowed'        => 'С вашей учётной записи не разрешено присваивать права участникам.',
+'userrights-notallowed'        => 'С вашей учётной записи не разрешено добавлять и удалять права участников.',
 'userrights-changeable-col'    => 'Группы, которые вы можете изменять',
 'userrights-unchangeable-col'  => 'Группы, которые вы не можете изменять',
 
@@ -3816,7 +3816,6 @@ MediaWiki распространяется в надежде, что она бу
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Глобальное использование шаблонов',
 'globaltemplateusage-for'         => 'Глобальное использование шаблона «$1»',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Служебная страница]] для просмотра общего использования шаблона',
 'globaltemplateusage-ok'          => 'Найти',
 'globaltemplateusage-text'        => 'Поиск глобального использования шаблона',
 'globaltemplateusage-no-results'  => '[[$1]] не используется в других вики.',
@@ -3849,5 +3848,11 @@ MediaWiki распространяется в надежде, что она бу
 # SQLite database support
 'sqlite-has-fts' => '$1 с поддержкой полнотекстового поиска',
 'sqlite-no-fts'  => '$1 без поддержки полнотекстового поиска',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|переименовал|переименовала}} страницу $3 в $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|переименовал|переименовала}} страницу $3 в $4 без оставления перенаправления',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|переименовал|переименовала}} страницу $3 в $4 поверх перенаправления',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|переименовал|переименовала}} страницу $3 в $4 поверх перенаправления и без оставления перенаправления',
 
 );

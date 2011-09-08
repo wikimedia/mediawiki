@@ -3639,7 +3639,6 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Implij hollek ar patrom',
 'globaltemplateusage-for'         => 'Implij hollek ar patrom evit "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Pajenn dibar]] da welet implij hollek ar patromoù',
 'globaltemplateusage-ok'          => 'Klask',
 'globaltemplateusage-text'        => 'Klask implij hollek ar patrom',
 'globaltemplateusage-no-results'  => 'Ne reer ket gant [[$1]] war wikioù all.',

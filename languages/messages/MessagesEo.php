@@ -1478,7 +1478,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'userrights-no-interwiki'      => 'Vi ne rajtas redakti uzanto-rajtojn en aliaj vikioj.',
 'userrights-nodatabase'        => 'Datumbazo $1 ne ekzistas aŭ ne estas loka.',
 'userrights-nologin'           => 'Vi nepre [[Special:UserLogin|ensalutu]] kun administranto-konto doni uzanto-rajtojn.',
-'userrights-notallowed'        => 'Via konto ne rajtas doni uzanto-rajtojn.',
+'userrights-notallowed'        => 'Via konto ne rajtas doni aŭ forigi uzanto-rajtojn.',
 'userrights-changeable-col'    => 'Grupoj kiujn vi povas ŝanĝi',
 'userrights-unchangeable-col'  => 'Grupoj kiujn vi ne povas ŝanĝi',
 
@@ -3723,7 +3723,6 @@ Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Ĝenerala uzado de ŝablono.',
 'globaltemplateusage-for'         => 'Ĝenerala ŝablona uzado por "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Speciala paĝo]] por rigardi uzadon de ĝeneralaj ŝablonoj',
 'globaltemplateusage-ok'          => 'Search',
 'globaltemplateusage-text'        => 'Serĉi uzadon de ĝeneralaj ŝablonoj.',
 'globaltemplateusage-no-results'  => '[[$1]] ne estas uzata en aliaj vikioj.',
@@ -3756,5 +3755,11 @@ Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
 # SQLite database support
 'sqlite-has-fts' => '$1 kun tut-teksta subteno',
 'sqlite-no-fts'  => '$1 sen tut-teksta subteno',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|movis|movis}} paĝon $3 al $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|movis|movis}} paĝon $3 al $4 sen lasante alidirektilon',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|movis|movis}} paĝon $3 al $4 anstataŭigante alidirektilon',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|movis|movis}} paĝon $3 al $4 anstataŭigante alidirektilon sen lasante alidirektilon',
 
 );

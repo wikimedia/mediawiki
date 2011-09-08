@@ -3487,7 +3487,6 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Халыыптары киэҥник туттуу',
 'globaltemplateusage-for'         => '"$1" халыыбы киэҥник туттуу',
-'globaltemplateusage-desc'        => 'Халыыбы киэҥник туттууну көрдөрөр [[Special:GlobalTemplateUsage|аналлаах сирэй]]',
 'globaltemplateusage-ok'          => 'Бул',
 'globaltemplateusage-text'        => 'Халыыбы киэҥник туттууну көрдөөһүн',
 'globaltemplateusage-no-results'  => '[[$1]] атын биикигэ туттуллубат эбит.',

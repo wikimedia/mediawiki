@@ -1392,7 +1392,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'userrights-lookup-user'       => 'Administrar os grupos do usuario',
 'userrights-user-editname'     => 'Escriba un nome de usuario:',
 'editusergroup'                => 'Editar os grupos do usuario',
-'editinguser'                  => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Mudando os dereitos do usuario '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Editar os grupos do usuario',
 'saveusergroups'               => 'Gardar os grupos do usuario',
 'userrights-groupsmember'      => 'Membro de:',
@@ -1405,7 +1405,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'userrights-no-interwiki'      => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
 'userrights-nodatabase'        => 'A base de datos $1 non existe ou non é local.',
 'userrights-nologin'           => 'Debe [[Special:UserLogin|acceder ao sistema]] cunta conta de administrador para asignar dereitos de usuario.',
-'userrights-notallowed'        => 'A súa conta non dispón dos permisos necesarios para asignar dereitos de usuario.',
+'userrights-notallowed'        => 'A súa conta non dispón dos permisos necesarios para asignar ou retirar dereitos de usuario.',
 'userrights-changeable-col'    => 'Os grupos que pode cambiar',
 'userrights-unchangeable-col'  => 'Os grupos que non pode cambiar',
 
@@ -2534,6 +2534,7 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'unblocklink'                     => 'desbloquear',
 'change-blocklink'                => 'cambiar o bloqueo',
 'contribslink'                    => 'contribucións',
+'emaillink'                       => 'enviar un correo',
 'autoblocker'                     => 'Foi autobloqueado porque "[[User:$1|$1]]" usou recentemente o seu  mesmo enderezo IP.
 O motivo do bloqueo de $1 é: "$2"',
 'blocklogpage'                    => 'Rexistro de bloqueos',
@@ -3731,7 +3732,6 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Uso global do modelo',
 'globaltemplateusage-for'         => 'Uso do modelo global "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Páxina especial]] para ver o uso global dun modelo',
 'globaltemplateusage-ok'          => 'Procurar',
 'globaltemplateusage-text'        => 'Procurar o uso global do modelo',
 'globaltemplateusage-no-results'  => '"[[$1]]" non se emprega noutros wikis.',
@@ -3764,5 +3764,11 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 # SQLite database support
 'sqlite-has-fts' => '$1 con soporte para procuras de texto completo',
 'sqlite-no-fts'  => '$1 sen soporte para procuras de texto completo',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4"',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sen deixar unha redirección',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sobre unha redirección',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sobre unha redirección sen deixar unha redirección',
 
 );

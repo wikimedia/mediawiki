@@ -3678,7 +3678,6 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'            => 'Globalna upotreba šablona',
 'globaltemplateusage-for'        => 'Globalna upotreba šablona za "$1"',
-'globaltemplateusage-desc'       => '[[Special:GlobalTemplateUsage|Posebna stranica]] za pregled globalne upotrebe šablona',
 'globaltemplateusage-ok'         => 'Traži',
 'globaltemplateusage-text'       => 'Pretraži globalnu upotrebu šablona',
 'globaltemplateusage-no-results' => '[[$1]] se ne koristi na drugim wikijima.',

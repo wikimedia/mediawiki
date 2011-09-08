@@ -3656,7 +3656,6 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Globale sjabloongebruik',
 'globaltemplateusage-for'         => 'Globaal sjabloongebruik vir "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Spesiale bladsy]] om globale sjabloongebruik te wys',
 'globaltemplateusage-ok'          => 'Soek',
 'globaltemplateusage-text'        => 'Soek globale sjabloongebruik',
 'globaltemplateusage-no-results'  => "[[$1]] word nie in ander wiki's gebruik nie.",

@@ -3619,7 +3619,6 @@ Shtypni emrin e skedës pa parashtesën "Figura:".',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Shabllon global i përdorimit',
 'globaltemplateusage-for'         => 'Përdorimi global për "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Faqe speciale]] për të parë përdorimin global të dokumentit',
 'globaltemplateusage-ok'          => 'Kërko',
 'globaltemplateusage-text'        => 'Kërko përdorim global të dokumentit',
 'globaltemplateusage-no-results'  => '[[$1]] nuk është përdorur në wiki-t e tjerë.',

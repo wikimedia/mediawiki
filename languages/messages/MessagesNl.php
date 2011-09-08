@@ -361,7 +361,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
 'tog-enotifrevealaddr'        => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
-'tog-oldsig'                  => 'Voorvertoning van de bestaande ondertekening:',
+'tog-oldsig'                  => 'Bestaande ondertekening:',
 'tog-fancysig'                => 'Als wikitekst behandelen (zonder automatische verwijzing)',
 'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
 'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
@@ -1549,7 +1549,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'userrights-no-interwiki'      => "U hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 'userrights-nodatabase'        => 'Database $1 bestaat niet of is geen plaatselijke database.',
 'userrights-nologin'           => 'U moet zich [[Special:UserLogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
-'userrights-notallowed'        => 'U hebt geen rechten om gebruikersrechten toe te wijzen.',
+'userrights-notallowed'        => 'U hebt geen rechten om gebruikersrechten toe te voegen of te verwijderen.',
 'userrights-changeable-col'    => 'Groepen die u kunt beheren',
 'userrights-unchangeable-col'  => 'Groepen die u niet kunt beheren',
 
@@ -3920,7 +3920,6 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Globaal sjabloongebruik',
 'globaltemplateusage-for'         => 'Globaal sjabloongebruik voor "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Speciale pagina]] voor het bekijken van globaal sjabloongebruik',
 'globaltemplateusage-ok'          => 'Zoeken',
 'globaltemplateusage-text'        => 'Globaal sjabloongebruik bekijken',
 'globaltemplateusage-no-results'  => "[[$1]] wordt niet gebruikt in andere wiki's.",
@@ -3953,5 +3952,11 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 met ondersteuning voor "full-text" zoeken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning voor "full-text" zoeken',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|hernoemde}} pagina $3 naar $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|hernoemde}} pagina $3 naar $4 zonder een doorverwijzing achter te laten',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|hernoemde}} pagina $3 naar $4 over een doorverwijzing',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|hernoemde}} pagina $3 naar $4 over een doorverwijzing zonder een doorverwijzing achter te laten',
 
 );

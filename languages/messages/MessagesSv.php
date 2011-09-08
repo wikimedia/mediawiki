@@ -3770,7 +3770,6 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Global mallanvändning',
 'globaltemplateusage-for'         => 'Global mallanvändning för "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Specialsida]] för att visa global mallanvändning',
 'globaltemplateusage-ok'          => 'Sök',
 'globaltemplateusage-text'        => 'Sök global mallanvändning',
 'globaltemplateusage-no-results'  => '[[$1]] används inte på andra wikis.',

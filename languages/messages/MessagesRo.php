@@ -3759,7 +3759,6 @@ Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Utilizarea globală a formatului',
 'globaltemplateusage-for'         => 'Utilizarea globală a formatului „$1”',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Pagină specială]] pentru vizualizarea utilizării globale a formatului',
 'globaltemplateusage-ok'          => 'Căutare',
 'globaltemplateusage-text'        => 'Căutarea utilizărilor globale ale formatului',
 'globaltemplateusage-no-results'  => '[[$1]] nu este folosit la alte proiecte de tip wiki.',
