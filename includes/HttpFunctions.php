@@ -32,7 +32,6 @@ class Http {
 	 * @return Mixed: (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, $options = array() ) {
-		$url = wfExpandUrl( $url, PROTO_HTTP );
 		wfDebug( "HTTP: $method: $url\n" );
 		$options['method'] = strtoupper( $method );
 
@@ -178,14 +177,14 @@ class MWHttpRequest {
 	public $status;
 
 	/**
-	 * @param $url String: url to use
+	 * @param $url String: url to use. If protocol-relative, will be expanded to an http:// URL
 	 * @param $options Array: (optional) extra params to pass (see Http::request())
 	 */
 	function __construct( $url, $options = array() ) {
 		global $wgHTTPTimeout;
 
-		$this->url = $url;
-		$this->parsedUrl = parse_url( $url );
+		$this->url = wfExpandUrl( $url, PROTO_HTTP );
+		$this->parsedUrl = parse_url( $this->url );
 
 		if ( !Http::isValidURI( $this->url ) ) {
 			$this->status = Status::newFatal( 'http-invalid-url' );
