@@ -1180,6 +1180,7 @@ You may have already successfully changed your password or requested a new tempo
 'passwordreset-disabled'       => 'Password resets have been disabled on this wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Enter one of the pieces of data below}}',
 'passwordreset-username'       => 'Username:',
+'passwordreset-domain'         => 'Domain:',
 'passwordreset-email'          => 'E-mail address:',
 'passwordreset-emailtitle'     => 'Account details on {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Someone (probably you, from IP address $1) requested a reminder of your
