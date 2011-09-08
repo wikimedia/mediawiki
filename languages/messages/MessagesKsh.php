@@ -3944,7 +3944,6 @@ Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Jemeinsam jebruchte Schabloone',
 'globaltemplateusage-for'         => 'Di Schabloon „$1“ weed jemeinsam jebruch',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|{{int:nstab-special}}]] för jemeinsam jebruchte Schabloone ze zeije.',
 'globaltemplateusage-ok'          => 'Söhke',
 'globaltemplateusage-text'        => 'Söhk noh jemeinsam jebruchte Schabloone.',
 'globaltemplateusage-no-results'  => '[[$1]] weed en ander Wikis nit jebruch.',

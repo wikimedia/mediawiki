@@ -1486,7 +1486,7 @@ Tuto operaci nelze vrátit zpět.',
 'userrights-lookup-user'       => 'Spravovat uživatelské skupiny',
 'userrights-user-editname'     => 'Zadejte uživatelské jméno:',
 'editusergroup'                => 'Upravit uživatelské skupiny',
-'editinguser'                  => "Úprava práv uživatele '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Úprava práv uživatele '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Upravit uživatelské skupiny',
 'saveusergroups'               => 'Uložit uživatelské skupiny',
 'userrights-groupsmember'      => 'Člen skupin:',
@@ -1499,7 +1499,7 @@ Tuto operaci nelze vrátit zpět.',
 'userrights-no-interwiki'      => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase'        => 'Databáze $1 neexistuje nebo není místní.',
 'userrights-nologin'           => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
-'userrights-notallowed'        => 'Tento účet nemá povoleno měnit uživatelská práva.',
+'userrights-notallowed'        => 'Váš účet nemá oprávnění měnit uživatelská práva.',
 'userrights-changeable-col'    => 'Skupiny, které můžete měnit',
 'userrights-unchangeable-col'  => 'Skupiny, které nemůžete měnit',
 
@@ -2596,6 +2596,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'unblocklink'                     => 'uvolnit',
 'change-blocklink'                => 'změnit blok',
 'contribslink'                    => 'příspěvky',
+'emaillink'                       => 'poslat e-mail',
 'autoblocker'                     => 'Byli jste automaticky zablokováni, protože sdílíte IP adresu s uživatelem „[[User:$1|$1]]“. Důvod zablokování tohoto uživatele: „$2“',
 'blocklogpage'                    => 'Kniha zablokování',
 'blocklog-showlog'                => '{{GENDER:$1|Tento uživatel byl dříve blokován.|Tato uživatelka byla dříve blokována.|Tento uživatel byl dříve blokován.}}
@@ -2831,6 +2832,8 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 'import-upload'              => 'Importovat XML data',
 'import-token-mismatch'      => 'Ztratila se data relace. Zkuste to znovu.',
 'import-invalid-interwiki'   => 'Ze zadané wiki nelze importovat.',
+'import-error-edit'          => 'Stránka „$1“ se nenaimportovala, protože nemáte oprávnění ji editovat.',
+'import-error-create'        => 'Stránka „$1“ se nenaimportovala, protože nemáte oprávnění ji založit.',
 
 # Import log
 'importlogpage'                    => 'Kniha importů',
@@ -3820,5 +3823,11 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporou plnotextového vyhledávání',
 'sqlite-no-fts'  => '$1 bez podpory plnotextového vyhledávání',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 bez založení přesměrování',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 s výměnou přesměrování',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 místo přesměrování bez založení přesměrování',
 
 );

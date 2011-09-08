@@ -3761,7 +3761,6 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Global malbruk',
 'globaltemplateusage-for'         => 'Global malbruk for «$1»',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Spesialside]] for å se global malbruk',
 'globaltemplateusage-ok'          => 'Søk',
 'globaltemplateusage-text'        => 'Søk global malbruk',
 'globaltemplateusage-no-results'  => '[[$1]] brukes ikke på andre wikier.',

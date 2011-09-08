@@ -1341,7 +1341,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'userrights-no-interwiki'      => 'Du kan ikke ændre brugerrettigheder på andre wikier.',
 'userrights-nodatabase'        => 'Databasen $1 eksisterer ikke lokalt.',
 'userrights-nologin'           => 'Du skal [[Special:UserLogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
-'userrights-notallowed'        => 'Din konto har ikke adgang til at ændre brugerrettigheder.',
+'userrights-notallowed'        => 'Din konto har ikke adgang til at tilføje eller fjerne brugerrettigheder.',
 'userrights-changeable-col'    => 'Redigerbare grupper',
 'userrights-unchangeable-col'  => 'Uredigerbare grupper',
 
@@ -2419,7 +2419,7 @@ Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
 'ipblocklist-submit'              => 'Søg',
 'ipblocklist-localblock'          => 'Lokal blokering',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Øvrig blokering|Øvrige blokeringer}}',
-'infiniteblock'                   => 'udløber infinite',
+'infiniteblock'                   => 'udløber ikke',
 'expiringblock'                   => 'udløber $1 $2',
 'anononlyblock'                   => 'kun anonyme',
 'noautoblockblock'                => 'Autoblok deaktiveret',
@@ -3569,7 +3569,6 @@ Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Global skabelonanvendelse',
 'globaltemplateusage-for'         => 'Global skabelonanvendelse af "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Specialside]], der viser global skabelonanvendelse',
 'globaltemplateusage-ok'          => 'Søg',
 'globaltemplateusage-text'        => 'Søg i global skabelonanvendelse',
 'globaltemplateusage-no-results'  => '[[$1]] er ikke i brug på andre wikier.',
@@ -3602,5 +3601,11 @@ Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 # SQLite database support
 'sqlite-has-fts' => '$1 med fuld-tekst søgnings support',
 'sqlite-no-fts'  => '$1 uden fuld-tekst søgnings support',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|flyttede}} siden $3 til $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 uden at efterlade en omdirigering',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 hen over en omdirigering',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 hen over en omdirigering og uden at efterlade en omdirigering',
 
 );

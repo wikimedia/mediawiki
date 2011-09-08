@@ -3702,7 +3702,6 @@ Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Globaal malgebruuk',
 'globaltemplateusage-for'         => 'Globaal malgebruuk veur "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Spesiale pagina]] veur t bekieken van globaal malgebruuk',
 'globaltemplateusage-ok'          => 'Zeuken',
 'globaltemplateusage-text'        => 'Globaal malgebruuk bekieken',
 'globaltemplateusage-no-results'  => "[[$1]] wörden niet gebruukt in aandere wiki's.",

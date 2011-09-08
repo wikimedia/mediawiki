@@ -22,6 +22,7 @@
  * @author Enzoreg
  * @author Esbardu
  * @author Fryed-peach
+ * @author Giro720
  * @author Gomoko
  * @author Grondin
  * @author Guillom
@@ -1499,7 +1500,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'userrights-lookup-user'       => 'Gestion des groupes d’utilisateurs',
 'userrights-user-editname'     => 'Entrez un nom d’utilisateur :',
 'editusergroup'                => 'Modification des groupes d’utilisateurs',
-'editinguser'                  => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Modifier les groupes de l’utilisateur',
 'saveusergroups'               => 'Enregistrer les groupes de l’utilisateur',
 'userrights-groupsmember'      => 'Membre de :',
@@ -3839,7 +3840,6 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Utilisation globale du modèle',
 'globaltemplateusage-for'         => 'Utilisation globale du modèle pour "$1"',
-'globaltemplateusage-desc'        => "[[Special:GlobalTemplateUsage|Page spéciale]] pour afficher l'utilisation globale des modèles",
 'globaltemplateusage-ok'          => 'Rechercher',
 'globaltemplateusage-text'        => "Rechercher l'utilisation globale du modèle",
 'globaltemplateusage-no-results'  => "[[$1]] n'est pas utilisé sur d'autres wikis.",

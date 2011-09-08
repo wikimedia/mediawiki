@@ -579,6 +579,8 @@ URL  සඳහන් කරමින්, මෙම කරුණ [[Special:ListUs
 'cascadeprotected'     => '"තීරු දර්ශන" විකල්පය සක්‍රීයනය කොට එමගින් ආරක්‍ෂණය කල පහත දැක්වෙන {{PLURAL:$1|පිටුව|පිටු}} අඩංගු කර ඇති බැවින්, මෙම පිටුව සංස්කරණය කිරීමෙන් වලකා ඇත:
 $2',
 'namespaceprotected'   => "'''$1''' නාමඅවකාශයෙහි පිටු සංස්කරණය කිරීමට ඔබහට අවසර නොමැත.",
+'customcssprotected'   => 'මෙම CSS පිටුව සංස්කරණය කිරීමට ඔබට අවසර නොමැත්තේ එහි අනෙකුත් පරිශීලකයෙකුගේ පුද්ගලික පරිස්ථිතීන් අඩංගු බැවිනි.',
+'customjsprotected'    => 'මෙම ජාවාස්ක්‍රිට් පිටුව සංස්කරණය කිරීමට ඔබට අවසර නොමැත්තේ එහි අනෙකුත් පරිශීලකයෙකුගේ පුද්ගලික පරිස්ථිතීන් අඩංගු බැවිනි.',
 'ns-specialprotected'  => 'විශේෂ පිටු සංස්කරණය කිරීම සිදු කල නොහැක.',
 'titleprotected'       => "මෙම ශීර්ෂ-නාමය තැනීම  [[User:$1|$1]] විසින් වාරණය කොට ඇත.
 මේ සඳහා  ''$2''  හේතුව දක්වා ඇත.",
@@ -720,6 +722,13 @@ $2',
 'passwordreset-username'     => 'පරිශීලක නාමය:',
 'passwordreset-email'        => 'විද්‍යුත්-තැපැල් ලිපිනය:',
 'passwordreset-emailtitle'   => '{{SITENAME}}යෙහි ගිණුම් තොරතුරු',
+'passwordreset-emailtext-ip' => 'කවුරුන්හෝ (බොහෝවිට ඔබ, $1 අන්තර්ජාල ලිපිනය භාවිතයෙන්) {{SITENAME}} ($4) සඳහා ඔබගේ ගිණුම් විස්තර සිහිකැඳවීමක් ඉල්ලා ඇත.  පහත පරිශීලක {{PLURAL:$3|ගිණුම|ගිණුම්}}
+මෙම විද්‍යුත් තැපැල් ලිපිනය හා සමගින් ආශ්‍රය වෙයි.
+
+$2
+
+{{PLURAL:$3|මෙම තාවකාලික මුරපදය|මෙම තාවකාලික මුරපද}} {{PLURAL:$5|එක් දිනයක්|දින $5 ක්}} ගෙවුනු විට ඉකුත් වනු ඇත.
+ඔබ දැන් ප්‍රවිෂ්ට වී නව මුරපදයක් තෝරාගත යුතුයි. වෙන යම් අයෙක් මෙම ඉල්ලීම කර ඇත්නම් හෝ, ඔබගේ මුල් මුරපදය ඔබගේ මතකයට පැමිණ ඇති නම් හා, එය වෙනස් කිරීමට ඔබ හට තවදුරටත් අවශ්‍ය නොවේ නම්, ඔබ විසින් මෙම පණිවුඩය නොසලකා හැර පැරණි මුරපදය තවදුරටත් පාවිච්චි කළ හැක.',
 'passwordreset-emailelement' => 'පරිශීලක නාමය: $1
 තාවකාලික මුරපදය: $2',
 'passwordreset-emailsent'    => 'විද්‍යුත් තැපැල් මතක්කිරීමක් යවන ලදී.',
@@ -1456,10 +1465,11 @@ HTML ටැගයන් පිරික්සන්න.',
 'right-sendemail'             => 'අනෙක් පරිශීලකයන්ට ඊ-ලිපි යවන්න',
 
 # User rights log
-'rightslog'      => 'පරිශීලක හිමිකම් සටහන',
-'rightslogtext'  => 'මෙය පරිශීලකයන්ගේ හිමිකම් වෙනස්වීම් පිළිබඳ ලඝු-සටහනකි.',
-'rightslogentry' => '$1 සඳහා කණ්ඩායම් සාමාජිකත්වය $2 සිට $3 දක්වා වෙනස්කෙරිණි',
-'rightsnone'     => '(කිසිවක් නොමැත)',
+'rightslog'                  => 'පරිශීලක හිමිකම් සටහන',
+'rightslogtext'              => 'මෙය පරිශීලකයන්ගේ හිමිකම් වෙනස්වීම් පිළිබඳ ලඝු-සටහනකි.',
+'rightslogentry'             => '$1 සඳහා කණ්ඩායම් සාමාජිකත්වය $2 සිට $3 දක්වා වෙනස්කෙරිණි',
+'rightslogentry-autopromote' => 'ස්වයංක්‍රීය ලෙසින් $2 සිට $3 දක්වා උසස් කරන ලදි',
+'rightsnone'                 => '(කිසිවක් නොමැත)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'මෙම පිටුව කියවන්න',
@@ -1696,6 +1706,14 @@ $1',
 'upload-unknown-size'       => 'ප්‍රමාණය නොදනී',
 'upload-http-error'         => 'HTTP දෝෂයක් හට ගැනිණි: $1',
 
+# ZipDirectoryReader
+'zip-file-open-error' => 'ZIP පිරික්සුම් සඳහා ගොනුව විවෘත කරද්දී දෝෂයක් ඇති විය.',
+'zip-wrong-format'    => 'සඳහන් ගොනුව ZIP ගොනුවෙහි නොතිබිණි.',
+'zip-bad'             => 'ගොනුව එක්කෝ දූෂිත හෝ නැත්නම් කියවිය-නොහැකි ZIP ගොනුවකි.
+එය නියමාකාරයෙන් ආරක්ෂණය සඳහා පරික්ෂා කල නොහැකි විය.',
+'zip-unsupported'     => 'මෙම ගොනුව, මාධ්‍ය විතී විසින් උද්වහනය නොකෙරෙන ZIP ගුණාංග භාවිතා කරන ZIP ගොනුවකි.
+එය නියමාකාරයෙන් ආරක්ෂණය සඳහා පරික්ෂා කල නොහැකි විය.',
+
 # Special:UploadStash
 'uploadstash'          => 'පැටවුම් සැඟවුම',
 'uploadstash-summary'  => 'මෙම පිටුව දැනට විකියේ ප්‍රකාශනයට පත් කර නැති මුත් පටවනු ලැබූ (හෝ පැටවෙමින් පවතින) ගොනු වලට ප්‍රවේශය ලබා දෙයි. මෙම ගොනු ඒවා පැටවූ පරිශීලකයාට හැර අනෙකුත් අයට දැකගත නොහැක.',
@@ -1886,11 +1904,12 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 ඒවා ඒ වෙනුවට අනුරූප මාතෘකාවට සබැඳිය යුතුය.<br />
 යම් පිටුවක් වක්‍රෝත්තිහරණ පිටුවක් ලෙස සලකනුයේ එය [[MediaWiki:Disambiguationspage]] වෙතින් සබැඳුනු සැකිල්ලක් භාවිතා කරන්නේ නම්ය",
 
-'doubleredirects'            => 'ද්විත්ව යළි-යොමුකිරීම්',
-'doubleredirectstext'        => 'අනෙකුත් යළි-යොමුවීම් පිටුවලට යළි-යොමුවන පිටුවල ලැයිස්තුවක් මෙම පිටුවේ දැක්වේ.
+'doubleredirects'                   => 'ද්විත්ව යළි-යොමුකිරීම්',
+'doubleredirectstext'               => 'අනෙකුත් යළි-යොමුවීම් පිටුවලට යළි-යොමුවන පිටුවල ලැයිස්තුවක් මෙම පිටුවේ දැක්වේ.
 එක් එක් පේළියක අඩංගු වන්නේ පළමු හා දෙවන යළි-යොමුවීම් වලට සබැඳි හා ඒ සමග පළමු යළි-යොමුව එල්ල වන්නාවූ, සාමාන්‍යයෙන් "සත්‍ය" ඉලක්ක පිටුව වන, දෙවන යළි-යොමුවේ ඉලක්කයයි.<del>කපා හැරි</del> නිවේශිතයන් පිලිබඳ ගැටළු විසඳා ඇත.',
-'double-redirect-fixed-move' => '[[$1]] ගෙන ගොස් ඇත, එය දැන් [[$2]] වෙතට යළි-යොමුවකි',
-'double-redirect-fixer'      => 'යළි-යොමුවීම් උපස්ථායක',
+'double-redirect-fixed-move'        => '[[$1]] ගෙන ගොස් ඇත, එය දැන් [[$2]] වෙතට යළි-යොමුවකි',
+'double-redirect-fixed-maintenance' => '[[$1]] සිට [[$2]] දක්වා ද්විත්ව යළි-යොමුකිරීමක් පිළිසකර කරමිනි.',
+'double-redirect-fixer'             => 'යළි-යොමුවීම් උපස්ථායක',
 
 'brokenredirects'        => 'භින්න වූ ආපසු හැරවුම්',
 'brokenredirectstext'    => 'මෙහි පහත දැක්වෙන යළි-යොමුවීම් නොපවතින පිටු වලට සබැඳේ:',
@@ -2086,6 +2105,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'noemailtext'          => 'මෙම පරිශීලකයා නීතික විද්‍යුත්-තැපැල් ලිපිනයක් සඳහන් කර නැත.',
 'nowikiemailtitle'     => 'විද්‍යුත්-තැපෑලයන් කිසිවක් සඳහා අවසර නොමැත',
 'nowikiemailtext'      => 'අනෙකුත් පරිශීලකයන්ගෙන් විද්‍යුත්-තැපැල් ලැබ නොගැනුම මෙම පරිශිලකයා විසින් තෝරාගෙන ඇත.',
+'emailnotarget'        => 'ලාභියා සඳහා නොපවතින හෝ අනීතික පරිශීලක නාමයකි.',
 'emailtarget'          => 'ලබන්නාගේ පරිශීලක නාමය ඇතුල් කරන්න',
 'emailusername'        => 'පරිශීලක නාමය:',
 'emailusernamesubmit'  => 'යොමුකරන්න',
@@ -2116,6 +2136,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'addwatch'             => 'මුර ලැයිස්තුවට එක් කරන්න',
 'addedwatchtext'       => "\"[[:\$1]]\" පිටුව ඔබගේ [[Special:Watchlist|මුර-ලැයිස්තුවට]] එක් කොට ඇත.
 මෙම පිටුවට සහ එයට අදාළ සාකච්ඡා පිටුවට ඉදිරියෙහිදී සිදු කෙරෙන වෙනස්කිරීම් ලයිස්තුගත වන අතර, ‍තෝරාගැනීමේගැනීමෙහි පහසුව තකා,  [[Special:RecentChanges|මෑත වෙනස්වීම් ලැයිස්තුව]]  තුල මෙම පිටුව  '''තදකුරු''' වලින් දක්වනු ඇත.",
+'removewatch'          => 'මුරලැයිස්තුවෙන් ඉවත් කරන්න',
 'removedwatchtext'     => 'මෙම "[[:$1]]"  පිටුව  [[Special:Watchlist|ඔබගේ  මුර-ලැයිස්තුවෙන්]] ඉවත් කරන ලදි.',
 'watch'                => 'මුර කරන්න',
 'watchthispage'        => 'මෙම පිටුව මුර කරන්න',
@@ -2435,6 +2456,7 @@ $1',
 ** තැතිගන්වනසුළු  හැසිරීම/හිරිහැරකිරීම
 ** බහුගණ ගිනුම් අපයෙදුම
 ** නොපිළිගතහැකි පරිශීලකනාමය',
+'ipb-hardblock'                   => 'ප්‍රවිෂ්ට වූ පරිශීලකයන්ට  මෙම අන්තර්ජාල ලිපිනයෙන් සංස්කරණය කිරීම වලන්වන්න',
 'ipbcreateaccount'                => 'ගිණුම් තැනීම වලක්වන්න',
 'ipbemailban'                     => 'පරිශීලක විසින් විද්‍යුත්-තැපැල් යැවීම වලක්වන්න',
 'ipbenableautoblock'              => 'මෙම පරිශීලකයා විසින් භාවිතා කරන අන්තර්ජාල ලිපිනයද, මෙයින් පසුව සංස්කරණය සඳහා ඔවුන් භාවිතා කිරීමට ඉඩ ඇති අන්තර්ජාල ලිපිනයන්ද ස්වයංක්‍රීය ලෙස වාරණය කරන්න',
@@ -2445,6 +2467,7 @@ $1',
 'ipbotherreason'                  => 'අනෙකුත්/අමතර හේතුව:',
 'ipbhidename'                     => 'පරිශීලක-නාමය සංස්තරණයන් ගෙන් හා ලැයිස්තු වලින් සඟවන්න',
 'ipbwatchuser'                    => 'මෙම පරිශීලකයාගේ පරිශීලක හා සාකච්ඡා පිටු මුර-කරන්න',
+'ipb-disableusertalk'             => 'මෙම පරිශීලකයා වාරණය කර තැබෙන විට ඔවුන්ගේම සාකච්ඡා පිටුව සංස්කරණය කිරීම වලක්වන්න',
 'ipb-change-block'                => 'මෙම පරිස්ථිතීන් සහිතව පරිශීලකයා යළි-වාරණය කරන්න',
 'ipb-confirm'                     => 'වාරණය සනාථ කරන්න',
 'badipaddress'                    => 'අනීතික අන්තර්ජාල ලිපිනයකි',
@@ -2465,6 +2488,9 @@ $1',
 'blocklist'                       => 'වාරණය කල පරිශීලකයන්',
 'ipblocklist'                     => 'වාරණය කල පරිශීලකයන්',
 'ipblocklist-legend'              => 'වාරණය කෙරුනු පරිශීලකයා සොයන්න',
+'blocklist-userblocks'            => 'ගිණුම් වාරණ සඟවන්න',
+'blocklist-tempblocks'            => 'තාවකාලික වාරණ සඟවන්න',
+'blocklist-addressblocks'         => 'ඒක IP ලිපින වාරණ සඟවන්න',
 'blocklist-timestamp'             => 'කාලමුද්‍රාව',
 'blocklist-target'                => 'ඉලක්කය',
 'blocklist-expiry'                => 'ඉකුත් වන්නේ',
@@ -2515,6 +2541,7 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'ipb-needreblock'                 => '$1 දැනටමත් වාරණය කොට ඇත.
 ඔබට සැකසුම් වෙනස්කිරීම  අවශ්‍යද?',
 'ipb-otherblocks-header'          => 'අනෙකුත් {{PLURAL:$1|වාරණය|වාරණයන්}}',
+'unblock-hideuser'                => 'මෙම පරිශීලකයාගේ වාරණය අවලංගු කිරීමට ඔබට නොහැකි වන්නේ ඔවුන්ගේ පරිශීලක නාමය සඟවා ඇති බැවිණි',
 'ipb_cant_unblock'                => 'දෝෂය: වාරණ අනන්‍යනාංකය $1 සොයා ගත නොහැකි විය.
 මෙය දැනටමත් වාරණ අත්හිටුවීමකට භාජනය වී ඇතිවා විය හැක.',
 'ipb_blocked_as_range'            => 'දෝෂය: $1 අන්තර්ජාල ලිපිනය සෘජුව වාරණය කොට නොමැති අතර එහි වාරණ‍ය අත්හිටුවිය නොහැක.
@@ -2921,22 +2948,25 @@ $1',
 'nextdiff'     => 'නවීන සංස්කරණය →',
 
 # Media information
-'mediawarning'         => "'''අවවාදයයි''': අනිෂ්ට කේතයන් මෙම ගොනුවෙහි අඩංගු විය හැක.
+'mediawarning'           => "'''අවවාදයයි''': අනිෂ්ට කේතයන් මෙම ගොනුවෙහි අඩංගු විය හැක.
 එය ක්‍රියාත්මක කිරීමෙන්, ඔබගේ පද්ධතියට හානිවිය හැක.",
-'imagemaxsize'         => "රූප ප්‍රමාණ සීමාව:<br />''(ගොනු විස්තර පිටු සඳහා)''",
-'thumbsize'            => 'සිඟිති-රූපයේ විශාලත්වය:',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|පිටුව|පිටු}}',
-'file-info'            => 'ගොනු විශාලත්වය: $1, MIME වර්ගය: $2',
-'file-info-size'       => '$1 × $2 පික්සල, ගොනු විශාලත්වය: $3, MIME ශෛලිය: $4',
-'file-nohires'         => '<small>මෙයට ඉහල විසර්ජනයක්(resolution) දක්වා එළඹිය නොහැක.</small>',
-'svg-long-desc'        => 'SVG ගොනුව, නාමමාත්‍රිකව $1 × $2 පික්සල්, ගොනු විශාලත්වය: $3',
-'show-big-image'       => 'පූර්ණ විභේදනය (Full resolution)',
-'show-big-image-size'  => '$1 × $2  පික්සල',
-'file-info-gif-looped' => 'වලිත',
-'file-info-gif-frames' => '$1 {{PLURAL:$1රාමුව|රාමු}}',
-'file-info-png-looped' => 'ලුපගත වී ඇත',
-'file-info-png-repeat' => '$1 {{PLURAL:$1|එක් වරක්| $1 වරක්}} ප්‍රතිවාදනය කෙරිණි',
-'file-info-png-frames' => '$1 {{PLURAL:$1|රාමුව|රාමු}}',
+'imagemaxsize'           => "රූප ප්‍රමාණ සීමාව:<br />''(ගොනු විස්තර පිටු සඳහා)''",
+'thumbsize'              => 'සිඟිති-රූපයේ විශාලත්වය:',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|පිටුව|පිටු}}',
+'file-info'              => 'ගොනු විශාලත්වය: $1, MIME වර්ගය: $2',
+'file-info-size'         => '$1 × $2 පික්සල, ගොනු විශාලත්වය: $3, MIME ශෛලිය: $4',
+'file-info-size-pages'   => '$1 × $2 පික්සල, ගොනු තරම: $3, MIME වර්ගය: $4, $5 {{PLURAL:$5|පිටුව|පිටු}}',
+'file-nohires'           => '<small>මෙයට ඉහල විසර්ජනයක්(resolution) දක්වා එළඹිය නොහැක.</small>',
+'svg-long-desc'          => 'SVG ගොනුව, නාමමාත්‍රිකව $1 × $2 පික්සල්, ගොනු විශාලත්වය: $3',
+'show-big-image'         => 'පූර්ණ විභේදනය (Full resolution)',
+'show-big-image-preview' => '<small>මෙම පෙරදසුනෙහි තරම: $1.</small>',
+'show-big-image-other'   => '<small>අනෙකුත් විසර්ජන: $1.</small>',
+'show-big-image-size'    => '$1 × $2  පික්සල',
+'file-info-gif-looped'   => 'වලිත',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1රාමුව|රාමු}}',
+'file-info-png-looped'   => 'ලුපගත වී ඇත',
+'file-info-png-repeat'   => '$1 {{PLURAL:$1|එක් වරක්| $1 වරක්}} ප්‍රතිවාදනය කෙරිණි',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|රාමුව|රාමු}}',
 
 # Special:NewFiles
 'newimages'             => 'නව ගොනු ගැලරිය',
@@ -3140,8 +3170,11 @@ Others will be hidden by default.
 'exif-gpsareainformation'          => 'GPS සරියෙහි නම',
 'exif-gpsdatestamp'                => 'GPS දිනය',
 'exif-gpsdifferential'             => 'GPS ආන්තරීක ශෝධනය',
+'exif-jpegfilecomment'             => 'JPEG ගොනු පරිකථනය',
 'exif-keywords'                    => 'මූලපද',
 'exif-worldregioncreated'          => 'රූපය ගන්නා ලද ලෝක ප්‍රදේශය',
+'exif-countrycreated'              => 'රූපය ගන්නා ලද රට',
+'exif-countrycodecreated'          => 'රූපය ගන්නා ලද රටෙහි කේතය',
 'exif-provinceorstatecreated'      => 'රූපය ගන්නා ලද පළාත හෝ ප්‍රාන්තය',
 'exif-citycreated'                 => 'රූපය ගන්නා ලද නගරය',
 'exif-sublocationcreated'          => 'රූපය ගන්නා ලද නගර උප-ස්ථානය',
@@ -3156,9 +3189,11 @@ Others will be hidden by default.
 'exif-headline'                    => 'ශිරස්තලය',
 'exif-credit'                      => 'විශ්වාසය/ප්‍රතිපාදකයා',
 'exif-source'                      => ' මූලාශ්‍රය',
+'exif-editstatus'                  => 'රූපයේ සංස්කරණ තත්ත්වය',
 'exif-urgency'                     => 'අවශ්‍යතාව',
 'exif-fixtureidentifier'           => 'සවිකුරු නාමය',
 'exif-locationdest'                => 'විස්තර දක්වන ලද පිහිටීම',
+'exif-locationdestcode'            => 'ස්ථානයෙහි කේතය විස්තර කර දක්වා ඇත',
 'exif-contact'                     => 'සම්බන්ධ කර ගැනීම් තොරතුරු',
 'exif-writer'                      => 'රචකයා',
 'exif-languagecode'                => 'භාෂාව',
@@ -3167,16 +3202,23 @@ Others will be hidden by default.
 'exif-iimsupplementalcategory'     => 'අතිරේක ප්‍රවර්ගයන්',
 'exif-datetimeexpires'             => 'මෙයින් පසු භාවිත නොකරන්න',
 'exif-datetimereleased'            => 'වුහුටු වූයේ',
+'exif-originaltransmissionref'     => 'මුල් සම්ප්‍රේෂණ ස්ථාන කේතය',
 'exif-identifier'                  => 'හඳුන්වනය',
 'exif-lens'                        => 'භාවිත කරන ලද කාචය',
 'exif-serialnumber'                => 'කැමරාවේ 	අනුක්‍රමික අංකය',
 'exif-cameraownername'             => 'කැමරාවේ අයිතිකරු',
 'exif-label'                       => 'ලේබලය',
+'exif-datetimemetadata'            => 'පාරදත්ත අවසන් වරට වෙනස්කල දිනය',
+'exif-nickname'                    => 'රූපයේ අවිධිමත් නම',
 'exif-rating'                      => 'ඇගැයුම (5 න් උපන්)',
+'exif-rightscertificate'           => 'හිමිකම් කළමනාකරණ සහතිකය',
 'exif-copyrighted'                 => 'හිමිකම් තත්ත්වය',
 'exif-copyrightowner'              => 'හිමිකම් දරන්නා',
 'exif-usageterms'                  => 'භාවිතයේ කොන්දේසි',
 'exif-webstatement'                => 'මාර්ගගත ප්‍රකාශන හිමිකම් ප්‍රකාශය',
+'exif-originaldocumentid'          => 'මුල් ලියවිල්ලේ අතුල්‍ය අනන්‍ය',
+'exif-licenseurl'                  => 'හිමිකම් වරපතේහි URL',
+'exif-morepermissionsurl'          => 'විකල්ප බලපත් තොරතුරු',
 'exif-pngfilecomment'              => 'PNG ගොනු නිදර්ශනය',
 'exif-disclaimer'                  => 'වියාචනය',
 'exif-contentwarning'              => 'තෘප්ති අවවාදය',
@@ -3187,6 +3229,7 @@ Others will be hidden by default.
 'exif-event'                       => 'විස්තර දක්වන ලද සිද්ධිය',
 'exif-organisationinimage'         => 'විස්තර දක්වන ලද සංවිධානය',
 'exif-personinimage'               => 'පුද්ගලික වචනයෙන් විස්තර කරන ලද',
+'exif-originalimageheight'         => 'කැපුමට පෙර රූපයෙහි උස',
 
 # EXIF attributes
 'exif-compression-1' => 'අසංක්ෂිප්ත',
@@ -3340,6 +3383,10 @@ Others will be hidden by default.
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'නැගෙනහිර දේශාංශය',
 'exif-gpslongitude-w' => 'බටහිර දේශාංශය',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => 'මුහුදු මට්ටමට ඉහළ $1 {{PLURAL:$1|මීටරය|මීටර}}',
+'exif-gpsaltitude-below-sealevel' => 'මුහුදු මට්ටමට පහළ $1 {{PLURAL:$1|මීටරය|මීටර}}',
 
 'exif-gpsstatus-a' => 'මිනුම සිදුවෙමින් පවතියි',
 'exif-gpsstatus-v' => 'මිනුම් අන්කර්ක්‍රියාත්මකභාවය',

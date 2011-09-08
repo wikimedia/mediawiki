@@ -1373,7 +1373,7 @@ Podatek bo javno prikazan.',
 'userrights-no-interwiki'      => 'Nimate dovoljenja za urejanje pravic uporabnikov na drugih wikijih.',
 'userrights-nodatabase'        => 'Podatkovna baza $1 ne obstaja ali ni lokalna.',
 'userrights-nologin'           => 'Za dodeljevanje uporabniških pravic se morate [[Special:UserLogin|prijaviti]] s skrbniškim računom.',
-'userrights-notallowed'        => 'Vaš račun nima dovoljenja za dodeljevanje pravic uporabnikom.',
+'userrights-notallowed'        => 'Vaš račun nima dovoljenja za dodajanje ali odstranjevanje uporabniških pravic.',
 'userrights-changeable-col'    => 'Skupine, ki jih lahko spremenite',
 'userrights-unchangeable-col'  => 'Skupine, ki jih ne morete spremeniti',
 
@@ -3669,7 +3669,6 @@ Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Globalna uporaba predloge',
 'globaltemplateusage-for'         => 'Globalna uporaba predloge za »$1«',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Posebna stran]] za ogled globalne uporabe predloge',
 'globaltemplateusage-ok'          => 'Išči',
 'globaltemplateusage-text'        => 'Iskanje globalne uporabe predloge',
 'globaltemplateusage-no-results'  => '[[$1]] se ne uporablja na drugih wikijih.',
@@ -3703,5 +3702,11 @@ Ta stran se sooča s tehničnimi težavami.',
 # SQLite database support
 'sqlite-has-fts' => '$1 s podporo iskanju polnih besedil',
 'sqlite-no-fts'  => '$1 brez podpore iskanju polnih besedil',
+
+# New logging system
+'logentry-move-move'                  => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4',
+'logentry-move-move-noredirect'       => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4 brez preusmeritve',
+'logentry-move-move_redir'            => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4 prek preusmeritve',
+'logentry-move-move_redir-noredirect' => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4 prek preusmeritve in brez preusmeritve',
 
 );

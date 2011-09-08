@@ -3641,7 +3641,6 @@ Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Utilizzo del template globale',
 'globaltemplateusage-for'         => 'Utilizzo del template globale "$1"',
-'globaltemplateusage-desc'        => "[[Special:GlobalTemplateUsage|Pagina speciale]] per visualizzare l'utilizzo del template globale",
 'globaltemplateusage-ok'          => 'Cerca',
 'globaltemplateusage-text'        => 'Ricerca utilizzo globale file',
 'globaltemplateusage-no-results'  => '[[$1]] non è usato in altri wiki.',

@@ -3760,7 +3760,6 @@ $1',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Καθολική χρήση προτύπου',
 'globaltemplateusage-for'         => 'Καθολική χρήση πρότυπου για "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Ειδική σελίδα]] για να δείτε την καθολική χρήση προτύπου',
 'globaltemplateusage-ok'          => 'Αναζήτηση',
 'globaltemplateusage-text'        => 'Αναζήτηση καθολικής χρήσης προτύπου',
 'globaltemplateusage-no-results'  => 'Το αρχείο [[$1]] δεν χρησιμοποιείται σε άλλα βίκι.',

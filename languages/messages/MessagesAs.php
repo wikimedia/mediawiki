@@ -3228,7 +3228,6 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'গোলকীয় সাঁচ ব্যৱহাৰ',
 'globaltemplateusage-for'         => '"$1"ৰ বাবে গোলকীয় সাঁচ ব্যৱহাৰ',
-'globaltemplateusage-desc'        => 'গোলকীয় সাঁচ ব্যৱহাৰ চাবলৈ [[Special:GlobalTemplateUsage|বিশেষ পৃষ্ঠা]] পৰিদৰ্শন কৰক',
 'globaltemplateusage-ok'          => 'অনুসন্ধান',
 'globaltemplateusage-text'        => 'গোলকীয় সাঁচ ব্যৱহাৰ অনুসন্ধান কৰক',
 'globaltemplateusage-no-results'  => 'আন ৱিকিত [[$1]] ব্যৱহাৰ নহয় ।',

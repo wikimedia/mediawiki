@@ -3608,7 +3608,6 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Bendrasis šablonas naudojimo',
 'globaltemplateusage-for'         => 'Pasaulio failo naudojimo, " $1 "',
-'globaltemplateusage-desc'        => '[[Specialus: GlobalFileUsage|Specialus puslapis]] peržiūrėti pasaulio failo naudojimo',
 'globaltemplateusage-ok'          => 'Paieška',
 'globaltemplateusage-text'        => 'Paieškos pasaulio failo naudojimo',
 'globaltemplateusage-no-results'  => '[[:$1]] nenaudojama kituose Wiki projektuose.',

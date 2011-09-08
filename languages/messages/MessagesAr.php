@@ -4089,7 +4089,6 @@ $1',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'الاستخدام العام للقالب',
 'globaltemplateusage-for'         => 'الاستخدام العام للقالب "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|صفحة خاصة]] لرؤية الاستخدام العام للقالب',
 'globaltemplateusage-ok'          => 'ابحث',
 'globaltemplateusage-text'        => 'ابحث عن الاستخدام العام لقالب',
 'globaltemplateusage-no-results'  => '[[$1]] غير مستخدم في ويكيات أخرى.',

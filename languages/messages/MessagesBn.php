@@ -541,6 +541,7 @@ $2',
 
 # E-mail sending
 'php-mail-error-unknown' => 'পিএইচপি এর মেইল () কার্যে অজ্ঞাত ভুল',
+'user-mail-no-addy'      => 'কোনো ইমেইল ঠিকানা ছাড়াই ইমেইল করার চেষ্টা করা হয়েছে।',
 
 # Change password dialog
 'resetpass'                 => 'শব্দচাবি পরিবর্তন',
@@ -594,7 +595,15 @@ $2
 'passwordreset-emailsent'      => 'একটি রিমাইন্ডার ই-মেইল পাঠানো হয়েছে।',
 
 # Special:ChangeEmail
-'changeemail-cancel' => 'বাতিল',
+'changeemail'          => 'ই-মেইল ঠিকানা পরিবর্তন',
+'changeemail-header'   => 'অ্যাকাউন্ট ই-মেইল ঠিকানা পরিবর্তন',
+'changeemail-text'     => 'ই-মেইল ঠিকানা পরিবর্তন করতে আপনাকে এই ফরমটি পূরণ করতে হবে। এই পরিবর্তনটি নিশ্চিত করতে আপনার শব্দচাবি (পাসওয়ার্ড) প্রদানের প্রয়োজন হবে।',
+'changeemail-no-info'  => 'এই পাতাটিতে সরাসরি প্রবেশাধিকার পেতে আপনাকে অবশ্যই লগইন করতে হবে।',
+'changeemail-oldemail' => 'বর্তমান ই-মেইল ঠিকানা:',
+'changeemail-newemail' => 'নতুন ই-মেইল ঠিকানা:',
+'changeemail-none'     => '(কিছু নাই)',
+'changeemail-submit'   => 'ই-মেইল পরিবর্তন',
+'changeemail-cancel'   => 'বাতিল',
 
 # Edit page toolbar
 'bold_sample'     => 'গাঢ় লেখা',
@@ -1040,6 +1049,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 'prefs-watchlist-token'         => 'নজরতালিকা টোকেন:',
 'prefs-misc'                    => 'বিবিধ',
 'prefs-resetpass'               => 'শব্দচাবি পরিবর্তন',
+'prefs-changeemail'             => 'ই-মেইল পরিবর্তন',
+'prefs-setemail'                => 'একটি ই-মেইল ঠিকানা নির্ধারণ করুন',
 'prefs-email'                   => 'ই-মেইল অপশন',
 'prefs-rendering'               => 'অবয়ব',
 'saveprefs'                     => 'সংরক্ষণ',
@@ -1228,7 +1239,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'rightslog'      => 'ব্যবহারকারীর অধিকার লগ',
 'rightslogtext'  => 'এটি ব্যবহারকারী অধিকারে আনা পরিবর্তনগুলির একটি লগ।',
 'rightslogentry' => '$1-কে $2 দল থেকে পরিবর্তন করে $3 দলের সদস্য করা হয়েছে',
-'rightsnone'     => '(নেই)',
+'rightsnone'     => '(কিছু নাই)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'এই পাতাটি পড়ুন',
@@ -2220,6 +2231,8 @@ $1',
 'movenologin'              => 'অ্যাকাউন্টে প্রবেশ করা হয়নি',
 'movenologintext'          => 'কোন পাতা সরিয়ে ফেলতে চাইলে আপনাকে অবশ্যই একজন নিবন্ধিত ব্যবহারকারী হতে হবে ও অ্যাকাউন্টে [[Special:UserLogin|প্রবেশ]] করতে হবে।',
 'movenotallowed'           => 'আপনার {{SITENAME}}-তে পাতা স্থানান্তরের অনুমতি নেই।',
+'movenotallowedfile'       => 'আপনার এই ফাইলটি স্থানান্তরের অনুমতি নেই।',
+'cant-move-user-page'      => 'ব্যবহারকারী পাতা (উপপাতা থেকে পৃথক) স্থানান্তরের আপনার অনুমতি নেই।',
 'newtitle'                 => 'এই নতুন শিরোনামে',
 'move-watch'               => 'এই পাতাটি নজরে রাখুন',
 'movepagebtn'              => 'পাতা সরান',
@@ -2358,7 +2371,7 @@ $1',
 'tooltip-ca-delete'               => 'পাতাটি মুছে ফেলো',
 'tooltip-ca-undelete'             => 'পাতাটি মুছে ফেলার আগে যে সম্পাদনাগুলি করা হয়েছিল, সেগুলি উদ্ধার করা হোক।',
 'tooltip-ca-move'                 => 'পাতাটি সরিয়ে ফেলুন',
-'tooltip-ca-watch'                => 'এই পাতাটিকে আপনার নজর তালিকায় যোগ করুন',
+'tooltip-ca-watch'                => 'এই পাতাটি আপনার নজরতালিকায় যোগ করো',
 'tooltip-ca-unwatch'              => 'এই পাতাটি আপনার নজরতালিকা থেকে সরিয়ে ফেলুন',
 'tooltip-search'                  => 'অনুসন্ধান {{SITENAME}}',
 'tooltip-search-go'               => 'যদি থাকে, তবে ঠিক এই নামের পাতায় চলো',
@@ -2778,6 +2791,8 @@ $1',
 'exif-sensingmethod-7' => 'ত্রিরৈখিক সংবেদক',
 'exif-sensingmethod-8' => 'রঙ ক্রমায়িত রৈখিক সংবেদক',
 
+'exif-filesource-3' => 'ডিজিটাল স্টিল ক্যামেরা',
+
 'exif-scenetype-1' => 'সরাসরি ফটো তোলা ছবি',
 
 'exif-customrendered-0' => 'স্বাভাবিক প্রক্রিয়া',
@@ -2826,6 +2841,10 @@ $1',
 'exif-gpslongitude-e' => 'পূর্ব দ্রাঘিমাংশ',
 'exif-gpslongitude-w' => 'পশ্চিম দ্রাঘিমাংশ',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => 'সমুদ্রপৃষ্ঠের $1 {{PLURAL:$1|মিটার|মিটার}} উপরে',
+'exif-gpsaltitude-below-sealevel' => 'সমুদ্রপৃষ্ঠের $1 {{PLURAL:$1|মিটার|মিটার}} উপরে',
+
 'exif-gpsstatus-a' => 'পরিমাপ চলছে',
 'exif-gpsstatus-v' => 'পরিমাপ একত্রীকরণ-ক্ষমতা',
 
@@ -2841,22 +2860,49 @@ $1',
 'exif-gpsdestdistance-k' => 'কিলোমিটার',
 'exif-gpsdestdistance-m' => 'ফাইল',
 
+'exif-gpsdop-excellent' => 'খুব ভাল ($1)',
+'exif-gpsdop-good'      => 'ভাল ($1)',
+'exif-gpsdop-moderate'  => 'মোটামুটি ($1)',
+'exif-gpsdop-fair'      => 'ভাল ($1)',
+'exif-gpsdop-poor'      => 'খারাপ ($1)',
+
+'exif-objectcycle-a' => 'শুধু সকালে',
+'exif-objectcycle-p' => 'শুধু সন্ধ্যায়',
+'exif-objectcycle-b' => 'উভয় সকাল এবং সন্ধ্যায়',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'প্রকৃত দিক',
 'exif-gpsdirection-m' => 'চৌম্বক দিক',
 
 'exif-dc-contributor' => 'অবদানকারী',
+'exif-dc-date'        => 'তারিখ',
 'exif-dc-publisher'   => 'প্রকাশক',
+'exif-dc-relation'    => 'সম্পর্কিত মিডিয়া',
 'exif-dc-rights'      => 'অধিকার',
+'exif-dc-source'      => 'উৎস মিডিয়া',
+'exif-dc-type'        => 'মিডিয়ার ধরণ',
 
 'exif-rating-rejected' => 'প্রত্যাখাত',
 
+'exif-iimcategory-clj' => 'অপরাধ ও আইন',
+'exif-iimcategory-dis' => 'দুর্যোগ ও দুর্ঘটনা',
+'exif-iimcategory-fin' => 'অর্থনীতি এবং বাণিজ্য',
 'exif-iimcategory-edu' => 'শিক্ষা',
 'exif-iimcategory-evn' => 'পরিবেশ',
 'exif-iimcategory-hth' => 'স্বাস্থ্য',
+'exif-iimcategory-hum' => 'মানব আগ্রহ',
+'exif-iimcategory-lab' => 'শ্রম',
 'exif-iimcategory-pol' => 'রাজনীতি',
 'exif-iimcategory-rel' => 'ধর্ম এবং বিশ্বাস',
 'exif-iimcategory-sci' => 'বিজ্ঞান ও প্রযুক্তি',
+'exif-iimcategory-soi' => 'সামাজিক বিষয়',
+'exif-iimcategory-spo' => 'ক্রীড়া',
+'exif-iimcategory-war' => 'যুদ্ধ, সংঘাত ও উত্তেজনা',
+'exif-iimcategory-wea' => 'আবহাওয়া',
+
+'exif-urgency-normal' => 'সাধারণ ($1)',
+'exif-urgency-low'    => 'নিম্ন ($1)',
+'exif-urgency-high'   => 'উচ্চ ($1)',
 
 # External editor support
 'edit-externally'      => 'ফাইলটি অন্য কোন সফটওয়্যার দিয়ে সম্পাদনা করুন',
@@ -2923,6 +2969,11 @@ $1',
 # action=purge
 'confirm_purge_button' => 'ঠিক আছে',
 'confirm-purge-top'    => 'এই পাতার ক্যাশে পরিষ্কার করতে চান?',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'ঠিক আছে',
+'confirm-watch-top'      => 'এই পাতাটি আপনার নজরতালিকায় যুক্ত করা হবে?',
+'confirm-unwatch-button' => 'ঠিক আছে',
 
 # Multipage image navigation
 'imgmultipageprev' => '← পূর্ববর্তী পাতা',
@@ -3066,6 +3117,9 @@ $1',
 'compare-rev1'     => 'সংশোধন ১',
 'compare-rev2'     => 'সংশোধন ২',
 'compare-submit'   => 'তুলনা',
+
+# Special:GlobalFileUsage
+'globalfileusage-ok' => 'অনুসন্ধান',
 
 # Special:GlobalTemplateUsage
 'globaltemplateusage-ok' => 'অনুসন্ধান',

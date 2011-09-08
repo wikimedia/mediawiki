@@ -3760,7 +3760,6 @@ Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Uso global de la plantilla',
 'globaltemplateusage-for'         => 'Uso global de la plantilla «$1»',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Página especial]] para ver el uso global de una plantilla',
 'globaltemplateusage-ok'          => 'Buscar',
 'globaltemplateusage-text'        => 'Buscar uso de plantilla global',
 'globaltemplateusage-no-results'  => '[[$1]] no se utiliza en otros wikis.',

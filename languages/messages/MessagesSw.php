@@ -3027,7 +3027,6 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Matumizi ya kigezo katika wiki zote',
 'globaltemplateusage-for'         => 'Matumizi ya kigezo "$1" katika wiki zote',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Ukurasa maalum]] unayoonyesha matumizi ya kigezo katika wiki zote',
 'globaltemplateusage-ok'          => 'Tafuta',
 'globaltemplateusage-text'        => 'Tafuta matumizi ya kigezo katika wiki zote',
 'globaltemplateusage-no-results'  => '[[$1]] haitumiki katika wiki zingine.',

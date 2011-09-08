@@ -1525,7 +1525,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'userrights-no-interwiki'      => 'Du hast keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
 'userrights-nodatabase'        => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
 'userrights-nologin'           => 'Du musst dich mit einem Administrator-Benutzerkonto [[Special:UserLogin|anmelden]], um Benutzerrechte zu ändern.',
-'userrights-notallowed'        => 'Du besitzt nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
+'userrights-notallowed'        => 'Du verfügst nicht über die erforderlichen Berechtigungen, um Benutzerrechte vergeben oder entziehen zu können.',
 'userrights-changeable-col'    => 'Gruppenzugehörigkeit, die du ändern kannst',
 'userrights-unchangeable-col'  => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
 
@@ -3834,7 +3834,6 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Globale Vorlagenverwendung',
 'globaltemplateusage-for'         => 'Globale Vorlagenverwendung für „$1“',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Spezialseite]] zur Anzeige, in welchen Projekten die Vorlagen des gemeinsam genutzten Repositoriums verwendet werden',
 'globaltemplateusage-ok'          => 'Suchen',
 'globaltemplateusage-text'        => 'Globale Suche nach der Vorlagenverwendung',
 'globaltemplateusage-no-results'  => '[[$1]] wird nicht auf anderen Wikis verwendet.',
@@ -3867,5 +3866,11 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mit Unterstützung für die Volltextsuche',
 'sqlite-no-fts'  => 'Version $1 ohne Unterstützung für die Volltextsuche',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 ohne dabei eine Weiterleitung anzulegen',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
 
 );

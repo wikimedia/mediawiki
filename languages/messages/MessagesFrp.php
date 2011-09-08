@@ -3942,7 +3942,6 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Usâjo globâl du modèlo',
 'globaltemplateusage-for'         => 'Usâjo globâl du modèlo por « $1 »',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Pâge spèciâla]] por vêre l’usâjo globâl d’un modèlo.',
 'globaltemplateusage-ok'          => 'Rechèrchiér',
 'globaltemplateusage-text'        => 'Rechèrchiér l’usâjo globâl du modèlo',
 'globaltemplateusage-no-results'  => '[[$1]] est pas utilisâ sur d’ôtros vouiquis.',
@@ -3975,5 +3974,11 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 # SQLite database support
 'sqlite-has-fts' => '$1 avouéc rechèrche en tèxto complèt recognua',
 'sqlite-no-fts'  => '$1 sen rechèrche en tèxto complèt recognua',
+
+# New logging system
+'logentry-move-move'                  => '$1 at {{GENDER:$2|dèplaciê}} la pâge $3 vers $4',
+'logentry-move-move-noredirect'       => '$1 at {{GENDER:$2|dèplaciê}} la pâge $3 vers $4 sen lèssiér una redirèccion',
+'logentry-move-move_redir'            => '$1 at {{GENDER:$2|dèplaciê}} la pâge $3 vers $4 en ècrasent sa redirèccion',
+'logentry-move-move_redir-noredirect' => '$1 at {{GENDER:$2|dèplaciê}} la pâge $3 vers $4 en ècrasent sa redirèccion sen lèssiér una redirèccion',
 
 );

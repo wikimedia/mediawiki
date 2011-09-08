@@ -102,6 +102,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Mandame copies de los correos que mando a otros usuarios',
 'tog-diffonly'                => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
 'tog-showhiddencats'          => 'Amosar categoríes anubríes',
+'tog-noconvertlink'           => 'Desactivar la conversión del títulu del enllaz',
 'tog-norollbackdiff'          => 'Desanicier les diferencies depués de restaurar',
 
 'underline-always'  => 'Siempre',
@@ -1220,7 +1221,7 @@ Esta información sedrá pública.",
 'userrights-lookup-user'       => 'Xestión de grupos del usuariu',
 'userrights-user-editname'     => "Escribi un nome d'usuariu:",
 'editusergroup'                => "Modificar grupos d'usuariu",
-'editinguser'                  => "Camudando los drechos del usuariu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Camudando los permisos del usuariu '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => "Editar los grupos d'usuariu",
 'saveusergroups'               => "Guardar los grupos d'usuariu",
 'userrights-groupsmember'      => 'Miembru de:',
@@ -2360,6 +2361,7 @@ Esto debería facese sólo pa prevenir vandalismu como indiquen les [[{{MediaWik
 'unblocklink'                     => 'desbloquiar',
 'change-blocklink'                => 'camudar el bloquéu',
 'contribslink'                    => 'contribuciones',
+'emaillink'                       => 'unviar corréu',
 'autoblocker'                     => 'Bloquiáu automáticamente porque la to direición IP foi usada recién por "[[User:$1|$1]]". El motivu del bloquéu de $1 ye: "$2"',
 'blocklogpage'                    => 'Rexistru de bloqueos',
 'blocklog-showlog'                => "Esti usuariu recibió un bloquéu previamente.
@@ -2614,6 +2616,8 @@ Guárdalu nel ordenador y xúbilu equí.",
 'import-upload'              => 'Xubir datos XML',
 'import-token-mismatch'      => 'Perdiéronse los datos de la sesión. Intentalo otra vuelta.',
 'import-invalid-interwiki'   => "Nun se puede importar d'esi wiki.",
+'import-error-edit'          => "La páxina $1 nun s'importó porque nun tienes permisu pa editala.",
+'import-error-create'        => "La páxina $1 nun s'importó porque nun tienes permisu pa creala.",
 
 # Import log
 'importlogpage'                    => "Rexistru d'importaciones",
@@ -2761,6 +2765,13 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-authors'          => "Númberu d'autores distintos",
 'pageinfo-views'            => 'Númberu de visites',
 'pageinfo-viewsperedit'     => 'Visites por edición',
+
+# Skin names
+'skinname-standard'    => 'Clásicu',
+'skinname-nostalgia'   => 'Señardá',
+'skinname-cologneblue' => 'Azul Colonia',
+'skinname-myskin'      => 'MySkin',
+'skinname-modern'      => 'Modernu',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como supervisada',
@@ -3056,6 +3067,9 @@ Los demás tarán anubríos de mou predetermináu.
 
 'exif-planarconfiguration-1' => 'formatu irregular',
 'exif-planarconfiguration-2' => 'formatu planu',
+
+'exif-xyresolution-i' => '$1 ppp',
+'exif-xyresolution-c' => '$1 ppc',
 
 'exif-colorspace-65535' => 'Ensin calibrar',
 
@@ -3543,7 +3557,6 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Usu global de la plantía',
 'globaltemplateusage-for'         => 'Usu global de la plantía pa "$1"',
-'globaltemplateusage-desc'        => "[[Special:GlobalTemplateUsage|Páxina especial]] pa ver l'usu global d'una plantía",
 'globaltemplateusage-ok'          => 'Guetar',
 'globaltemplateusage-text'        => "Guetar l'usu global de la plantía",
 'globaltemplateusage-no-results'  => "[[$1]] nun s'usa n'otres wikis.",

@@ -1620,10 +1620,11 @@ Həmçinin, [[Special:WantedCategories|tələb olunan kateqoriyalara]] baxın.',
 'sp-deletedcontributions-contribs' => 'fəaliyyət',
 
 # Special:LinkSearch
-'linksearch'     => 'Xarici keçidlər',
-'linksearch-pat' => 'Axtarış sxemi:',
-'linksearch-ns'  => 'Adlar fəzası:',
-'linksearch-ok'  => 'Axtar',
+'linksearch'      => 'Xarici keçidlər',
+'linksearch-pat'  => 'Axtarış sxemi:',
+'linksearch-ns'   => 'Adlar fəzası:',
+'linksearch-ok'   => 'Axtar',
+'linksearch-line' => '$2-dən $1 keçid verilib',
 
 # Special:ListUsers
 'listusers-submit'   => 'Göstər',
@@ -2027,6 +2028,7 @@ Bax [[Special:IPBlockList|IP blok siyahısı]] bloklanmış IP-lər.',
 'unblocklink'                     => 'bloklamanı kənarlaşdır',
 'change-blocklink'                => 'bloklamanı dəyişdir',
 'contribslink'                    => 'Köməklər',
+'emaillink'                       => 'e-məktub göndər',
 'autoblocker'                     => 'Avtomatik olaraq bloklanmısınız. Çünki, qısa müddət əvvəl sizin IP-ünvanınız "[[User:$1|$1]]" tərəfindən istifadə edilmişdir.
 $1 adlı istifadəçinin bloklanma səbəbi: "$2"',
 'blocklogpage'                    => 'Bloklama qeydləri',
@@ -2063,15 +2065,16 @@ Bloklama şərtlərini dəyişmək istəyirsiniz?',
 'sorbs'                           => 'DNSBL',
 
 # Developer tools
-'lockdb'             => 'Verilənlər bazasını blokla',
-'unlockdb'           => 'Verilənlər bazasından bloku götür',
-'lockconfirm'        => 'Bəli, mən həqiqətən verilənlər bazasının bağlamaq istəyirəm.',
-'unlockconfirm'      => 'Bəli, mən həqiqətən verilənlər bazasının blokunu açmaq istəyirəm.',
-'lockbtn'            => 'Verilənlər bazasını blokla',
-'unlockbtn'          => 'Verilənlər bazasından bloku götür',
-'lockdbsuccesssub'   => 'Verilənlər bazası bloklanıb',
-'unlockdbsuccesssub' => 'Bloklanma verilənlər bazası silinib',
-'databasenotlocked'  => 'Verilənlər bazası bloklanmayıb.',
+'lockdb'              => 'Verilənlər bazasını blokla',
+'unlockdb'            => 'Verilənlər bazasından bloku götür',
+'lockconfirm'         => 'Bəli, mən həqiqətən verilənlər bazasının bağlamaq istəyirəm.',
+'unlockconfirm'       => 'Bəli, mən həqiqətən verilənlər bazasının blokunu açmaq istəyirəm.',
+'lockbtn'             => 'Verilənlər bazasını blokla',
+'unlockbtn'           => 'Verilənlər bazasından bloku götür',
+'lockdbsuccesssub'    => 'Verilənlər bazası bloklanıb',
+'unlockdbsuccesssub'  => 'Bloklanma verilənlər bazası silinib',
+'unlockdbsuccesstext' => 'Verilənlər bazası bağlanmış aola bilər.',
+'databasenotlocked'   => 'Verilənlər bazası bloklanmayıb.',
 
 # Move page
 'move-page'                    => 'Dəyişdir $1',
@@ -2187,6 +2190,8 @@ Zəhmət olmasa başqa ad seçin.',
 'import-upload'              => 'XML-veriləni yüklə',
 'import-token-mismatch'      => 'Seans məlumatlarının itirilməsi. Lütfən, yenidən cəhd edin.',
 'import-invalid-interwiki'   => 'Göstərilən vikidən köçürmək mümkün deyil',
+'import-error-edit'          => '"$1" səhifəsi idxal edilə bilinmir, çünki onu dəyişmək səlahiyyətiniz yoxdur.',
+'import-error-create'        => '"$1" səhifəsi açılmır, çünki onu yaratmaq səlahiyyətiniz yoxdur.',
 
 # Import log
 'importlogpage'                    => 'Çıxarılma gündəliyi',
@@ -2311,12 +2316,16 @@ Zəhmət olmasa başqa ad seçin.',
 'spambot_username'    => 'MediaViki spam təmizləməsi',
 
 # Info page
-'pageinfo-header-edits' => 'Redaktələr',
-'pageinfo-subjectpage'  => 'Səhifə',
-'pageinfo-talkpage'     => 'Müzakirə səhifəsi',
-'pageinfo-edits'        => 'Redaktələrin sayı',
-'pageinfo-views'        => 'Göstərmə səhifəsi',
-'pageinfo-viewsperedit' => 'Redaktə başına göstərmə',
+'pageinfo-title'            => '"$1" üçün məlumat',
+'pageinfo-header-edits'     => 'Redaktələr',
+'pageinfo-header-watchlist' => 'İzləmə siyahısı',
+'pageinfo-header-views'     => 'Görünüş',
+'pageinfo-subjectpage'      => 'Səhifə',
+'pageinfo-talkpage'         => 'Müzakirə səhifəsi',
+'pageinfo-watchers'         => 'Baxış sayı',
+'pageinfo-edits'            => 'Redaktələrin sayı',
+'pageinfo-views'            => 'Göstərmə səhifəsi',
+'pageinfo-viewsperedit'     => 'Redaktə başına göstərmə',
 
 # Skin names
 'skinname-standard'    => 'Classic',
@@ -2362,20 +2371,22 @@ $1',
 'nextdiff'     => 'Sonrakı redaktə →',
 
 # Media information
-'imagemaxsize'         => "Şəkilin maksimal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
-'thumbsize'            => 'Kiçik ölçü:',
-'widthheight'          => '$1×$2',
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|səhifə|səhifələr}}',
-'file-info'            => 'faylın ölçüsü: $1, MIME tipi: $2',
-'file-info-size'       => '$1 × $2 piksel, fayl həcmi: $3, MIME növü: $4',
-'file-nohires'         => '<small>Daha dəqiq versiyası yoxdur.</small>',
-'svg-long-desc'        => 'SVG fayl, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3',
-'show-big-image'       => 'Daha yüksək keyfiyyətli şəkil',
-'show-big-image-size'  => '$1 × $2 piksel',
-'file-info-gif-looped' => 'ilmələnib',
-'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|çərçivə}}',
-'file-info-png-looped' => 'ilmələnib',
-'file-info-png-frames' => '$1 {{PLURAL:$1|frame|çərçivə}}',
+'imagemaxsize'           => "Şəkilin maksimal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
+'thumbsize'              => 'Kiçik ölçü:',
+'widthheight'            => '$1×$2',
+'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|səhifə|səhifələr}}',
+'file-info'              => 'faylın ölçüsü: $1, MIME tipi: $2',
+'file-info-size'         => '$1 × $2 piksel, fayl həcmi: $3, MIME növü: $4',
+'file-nohires'           => '<small>Daha dəqiq versiyası yoxdur.</small>',
+'svg-long-desc'          => 'SVG fayl, nominal olaraq $1 × $2 piksel, faylın ölçüsü: $3',
+'show-big-image'         => 'Daha yüksək keyfiyyətli şəkil',
+'show-big-image-preview' => '<small>Sınaq göstərişi ölçüsü: $1.</small>',
+'show-big-image-other'   => '<small>Digər nəticələr: $1.</small>',
+'show-big-image-size'    => '$1 × $2 piksel',
+'file-info-gif-looped'   => 'ilmələnib',
+'file-info-gif-frames'   => '$1 {{PLURAL:$1|frame|çərçivə}}',
+'file-info-png-looped'   => 'ilmələnib',
+'file-info-png-frames'   => '$1 {{PLURAL:$1|frame|çərçivə}}',
 
 # Special:NewFiles
 'newimages'        => 'Yeni faylların siyahısı',
@@ -2914,11 +2925,18 @@ $1',
 'compare-submit'   => 'Qarşılaşdır',
 
 # Special:GlobalFileUsage
-'globalfileusage-ok' => 'Axtar',
+'globalfileusage'     => 'Faylın qlobal istifadə olunması',
+'globalfileusage-for' => 'Faylın "$1" üçün qlobal istifadə olunması',
+'globalfileusage-ok'  => 'Axtar',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage-ok' => 'Axtar',
 
 # Database error messages
-'dberr-header' => 'Bu vikidə problem var',
-'dberr-info'   => '($1: Məlumat bazası ilə əlaqə yoxdur)',
+'dberr-header'   => 'Bu vikidə problem var',
+'dberr-problems' => 'Üzr istəyirik!
+Bu saytda texniki problemlər var.',
+'dberr-info'     => '($1: Məlumat bazası ilə əlaqə yoxdur)',
 
 # HTML forms
 'htmlform-invalid-input'       => 'Girişinizin bir qismilə əlaqədəar problemlər var',

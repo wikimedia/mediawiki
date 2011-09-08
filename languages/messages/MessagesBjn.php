@@ -1196,7 +1196,7 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'userrights-lookup-user'       => 'Mangalula gagalambang pamuruk',
 'userrights-user-editname'     => 'Buati sabuah ngaran pamuruk:',
 'editusergroup'                => 'Babak galambang pamuruk',
-'editinguser'                  => "Mangganti hak akses pamuruk '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Ma-ubah hak ungkai pamuruk '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Babak galambang pamuruk',
 'saveusergroups'               => 'Simpan galambang pamuruk',
 'userrights-groupsmember'      => 'Angguta matan:',
@@ -2539,6 +2539,9 @@ Muhun ilangi [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 # Special:Import
 'import'                     => 'Pamasuk tungkaran',
 'importinterwiki'            => 'Impur transwiki',
+'import-interwiki-text'      => 'Pilihi sabuah wiki wan judul tungkaran hagan di-impur.
+Tanggal raralatan wan ngaran pambabak akan di partahanakan.
+Samunyaan gawi impur transwiki akan dicatat pada [[Special:Log/import|log impur]].',
 'import-interwiki-source'    => 'Wiki/tungkaran asal mula:',
 'import-interwiki-history'   => 'Salin sabarataan halam raralatan gasan tungkaran ngini',
 'import-interwiki-templates' => 'Tamasuk samunyaan cicitakan',
@@ -2990,6 +2993,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-exposureprogram-0' => 'Kada tadapinisi',
 'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Nurmal parugram',
+'exif-exposureprogram-3' => 'Priuritas singkaian',
 
 'exif-lightsource-4'  => 'Kilat',
 'exif-lightsource-9'  => 'Cuaca baik',
@@ -3003,6 +3007,30 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-lightsource-18' => 'Sinar standar B',
 'exif-lightsource-19' => 'Sinar standar C',
 'exif-lightsource-24' => 'studiu ISO tungsten',
+
+'exif-filesource-3' => 'Kudakan hinip digital',
+
+'exif-scenetype-1' => 'Sabuah gambar poto langsung',
+
+'exif-customrendered-0' => 'Parusis nurmal',
+'exif-customrendered-1' => 'Parusis kustum',
+
+'exif-exposuremode-0' => 'Paparan utumatis',
+'exif-exposuremode-1' => 'Paparan manual',
+'exif-exposuremode-2' => 'Kurungan utumatis',
+
+'exif-whitebalance-0' => 'Kasaimbangan putih utumatis',
+'exif-whitebalance-1' => 'Kasaimbangan putih manual',
+
+'exif-scenecapturetype-0' => 'Standar',
+'exif-scenecapturetype-1' => 'Balingai',
+'exif-scenecapturetype-2' => 'Putrait',
+'exif-scenecapturetype-3' => 'Pamandangan malam',
+
+'exif-gaincontrol-0' => 'Kadada',
+'exif-gaincontrol-1' => 'Naikakan sahikit',
+'exif-gaincontrol-2' => 'Naikakan tabanyak',
+'exif-gaincontrol-3' => 'Turunakan sahikit',
 
 'exif-dc-rights' => 'Hak',
 

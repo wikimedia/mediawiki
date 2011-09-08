@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alebcay
+ * @author Anakmalaysia
  * @author Bencmq
  * @author Biŋhai
  * @author Chenxiaoqino
@@ -1349,7 +1350,7 @@ $1",
 'userrights-lookup-user'       => '管理用户组',
 'userrights-user-editname'     => '输入用户名：',
 'editusergroup'                => '编辑用户组',
-'editinguser'                  => "正在更改用户'''[[User:$1|$1]]''' （[[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]） 的用户权限",
+'editinguser'                  => "更改用户 '''[[User:$1|$1]]''' 的用户权限 $2",
 'userrights-editusergroup'     => '编辑用户组',
 'saveusergroups'               => '保存用户组',
 'userrights-groupsmember'      => '隶属于：',
@@ -1362,7 +1363,7 @@ $1",
 'userrights-no-interwiki'      => '您并没有权限去编辑在其它wiki上的用户权限。',
 'userrights-nodatabase'        => '数据库$1不存在或并非为本地的。',
 'userrights-nologin'           => '您必须要以管理员帐户[[Special:UserLogin|登录]]之后才可以指定用户权限。',
-'userrights-notallowed'        => '您的帐户无权限去指定用户权限。',
+'userrights-notallowed'        => '您的帐户无权限添加或删除用户权限。',
 'userrights-changeable-col'    => '你可以更改的用户组',
 'userrights-unchangeable-col'  => '你不能更改的用户组',
 
@@ -1669,7 +1670,7 @@ $1',
 'zip-wrong-format'    => '指定的文件不是一个 ZIP 文件。',
 'zip-bad'             => '该文件是已损坏或以其它方式无法读取的 ZIP 文件。
 不能正确检查安全。',
-'zip-unsupported'     => '该文件是 ZIP 文件，其中使用不支持的 MediaWiki 的压缩功能。
+'zip-unsupported'     => '该文件是 ZIP 文件，其中使用 MediaWiki 不支持的ZIP功能。
 不能正确检查安全。',
 
 # Special:UploadStash
@@ -2437,6 +2438,7 @@ $1',
 'unblocklink'                     => '解除封禁',
 'change-blocklink'                => '更改封禁',
 'contribslink'                    => '贡献',
+'emaillink'                       => '发送电邮',
 'autoblocker'                     => '由于您与“[[User:$1|$1]]”共享一个IP地址而被自动封禁。
 $1被封禁的理由是：“$2”',
 'blocklogpage'                    => '封禁记录',
@@ -2681,6 +2683,8 @@ $1被封禁的理由是：“$2”',
 'import-upload'              => '上传XML数据',
 'import-token-mismatch'      => '会话数据遗失。请重试。',
 'import-invalid-interwiki'   => '不能从指定的wiki导入。',
+'import-error-edit'          => '"$1"页面不导入，因为您不准对其进行编辑。',
+'import-error-create'        => '"$1"页面不导入，因为您不准创建它。',
 
 # Import log
 'importlogpage'                    => '导入日志',
@@ -3628,7 +3632,6 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => '全域模板使用',
 'globaltemplateusage-for'         => '$1的全域模板使用',
-'globaltemplateusage-desc'        => '查看全域模板使用情况的[[Special:GlobalTemplateUsage|特殊页面]]',
 'globaltemplateusage-ok'          => '搜索',
 'globaltemplateusage-text'        => '搜索全域模板使用',
 'globaltemplateusage-no-results'  => '[[$1]]并未在其他wiki上使用。',
@@ -3662,5 +3665,11 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 # SQLite database support
 'sqlite-has-fts' => '带全文搜索的版本$1',
 'sqlite-no-fts'  => '不带全文搜索的版本$1',
+
+# New logging system
+'logentry-move-move'                  => '$1{{GENDER:$2|移动}}$3页面至$4',
+'logentry-move-move-noredirect'       => '$1{{GENDER:$2|移动}}$3页面至$4，不留重定向',
+'logentry-move-move_redir'            => '$1通过重定向{{GENDER:$2|移动}}$3页面至$4',
+'logentry-move-move_redir-noredirect' => '$1通过重定向{{GENDER:$2|移动}}$3页面至$4，不留重定向',
 
 );

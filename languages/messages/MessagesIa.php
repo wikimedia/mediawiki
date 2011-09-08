@@ -1343,7 +1343,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'userrights-no-interwiki'      => 'Tu non ha le permission de modificar le derectos de usatores in altere wikis.',
 'userrights-nodatabase'        => 'Le base de datos $1 non existe o non es local.',
 'userrights-nologin'           => 'Tu debe [[Special:UserLogin|aperir un session]] con un conto de administrator pro poter assignar derectos de usator.',
-'userrights-notallowed'        => 'Tu conto non ha le permission de assignar derectos de usator.',
+'userrights-notallowed'        => 'Tu conto non ha le permission de adder o remover derectos de usator.',
 'userrights-changeable-col'    => 'Gruppos que tu pote modificar',
 'userrights-unchangeable-col'  => 'Gruppos que tu non pote modificar',
 
@@ -3681,7 +3681,6 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Uso global del patrono',
 'globaltemplateusage-for'         => 'Uso global del patrono "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Pagina special]] pro vider le uso global de patronos',
 'globaltemplateusage-ok'          => 'Cercar',
 'globaltemplateusage-text'        => 'Cercar uso global de patronos.',
 'globaltemplateusage-no-results'  => '[[$1]] non es usate in altere wikis.',
@@ -3714,5 +3713,11 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 con supporto de recerca de texto integre',
 'sqlite-no-fts'  => '$1 sin supporto de recerca de texto integre',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4 sin lassar un redirection',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4, superscribente un redirection',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4, superscribente un redirection sin lassar un nove redirection',
 
 );

@@ -3701,7 +3701,6 @@ $1',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'ആഗോള ഫലക ഉപയോഗം',
 'globaltemplateusage-for'         => '"$1" എന്ന ഫലകത്തിന്റെ ആഗോള ഉപയോഗം',
-'globaltemplateusage-desc'        => 'ഫലകത്തിന്റെ ആഗോള ഉപയോഗം കാണിക്കുവാനുള്ള [[Special:GlobalTemplateUsage|പ്രത്യേക താൾ]]',
 'globaltemplateusage-ok'          => 'തിരയുക',
 'globaltemplateusage-text'        => 'ഫലകത്തിന്റെ ആഗോള ഉപയോഗം തിരയുക',
 'globaltemplateusage-no-results'  => '[[$1]] മറ്റു വിക്കികളിൽ ഉപയോഗിക്കുന്നില്ല.',

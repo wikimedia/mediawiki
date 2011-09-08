@@ -3795,7 +3795,6 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Globalne wykorzystanie szablonu',
 'globaltemplateusage-for'         => 'Globalne wykorzystanie szablonu „$1“',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Strona specjalna]] wyświetlająca globalne wykorzystanie szablonu',
 'globaltemplateusage-ok'          => 'Szukaj',
 'globaltemplateusage-text'        => 'Globalne wyszukiwanie wykorzystania szablonu',
 'globaltemplateusage-no-results'  => '[[$1]] nie jest używany w innych wiki.',

@@ -3985,7 +3985,6 @@ $1',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'استفاده سراسری الگو',
 'globaltemplateusage-for'         => 'کاربرد سراسری الگو برای "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|صفحهٔ ویژه]] برای نمایش استفاده سراسری الگو',
 'globaltemplateusage-ok'          => 'جستجو',
 'globaltemplateusage-text'        => 'جستجوی استفاده‌های سراسری الگو',
 'globaltemplateusage-no-results'  => '[[$1]] در ویکی‌های دیگر استفاده نشده‌است.',

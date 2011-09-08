@@ -406,6 +406,7 @@ Na dìochuimhnich na [[Special:Preferences|roghainnean agad air {{SITENAME}}]] a
 'nologinlink'                => 'Cruthaich cunntas',
 'createaccount'              => 'Cruthaich cunntas ùr',
 'gotaccount'                 => 'A bheil cunntas agad mu thràth? $1.',
+'gotaccountlink'             => 'Log a-steach',
 'userlogin-resetlink'        => "Na dhìochuimhnich thu d' ainm is facal-faire?",
 'loginerror'                 => 'Mearachd log a-steach',
 'noname'                     => 'Cha do thagh thu ainm-cleachdaiche dligheach.',
@@ -539,6 +540,9 @@ Mìneachadh: '''({{int:cur}})''' = an diofar eadar e 's am mùthadh as ùire, ''
 'histfirst'              => 'As sine',
 'histlast'               => 'As ùire',
 
+# Revision feed
+'history-feed-item-nocomment' => '$1 $2',
+
 # Revision deletion
 'rev-delundel'           => 'seall/falaich',
 'revdelete-logentry'     => 'a dh\'atharraich faicsinneachd mùthaidhean "[[$1]]"',
@@ -613,25 +617,28 @@ Feuch ri ''all:'' a chuir air beulaibh an iarrtais agad gus rannsachadh a dhèan
 'powersearch-field'                => 'Lorg',
 
 # Preferences page
-'preferences'    => 'Roghainnean',
-'mypreferences'  => 'Mo roghainnean',
-'changepassword' => 'Atharraich facal-faire',
-'prefs-skin'     => 'Bian',
-'skin-preview'   => 'Ro-shealladh',
-'prefs-beta'     => 'Feartan Beta',
-'prefs-labs'     => 'Feartan nan deuchainn-lannan',
-'prefs-personal' => "Pròifil a' chleachdaiche",
-'saveprefs'      => 'Sàbhail',
-'resetprefs'     => 'Falamhaich atharrachaidhean nach deach a shàbhaladh fhathast',
-'rows'           => 'Sreathan',
-'columns'        => 'Colbhan',
-'savedprefs'     => 'Tha na roghainnean agad air an sàbhaladh.',
-'default'        => 'an roghainn bhunaiteach',
-'youremail'      => 'Post-dealain:',
-'username'       => 'Ainm-cleachdaiche:',
-'yourrealname'   => "An dearbh ainm a th' ort:",
-'yourlanguage'   => 'Cànan:',
-'yournick'       => 'Earr-sgrìobhadh ùr:',
+'preferences'             => 'Roghainnean',
+'mypreferences'           => 'Mo roghainnean',
+'changepassword'          => 'Atharraich facal-faire',
+'prefs-skin'              => 'Bian',
+'skin-preview'            => 'Ro-shealladh',
+'prefs-beta'              => 'Feartan Beta',
+'prefs-labs'              => 'Feartan nan deuchainn-lannan',
+'prefs-personal'          => "Pròifil a' chleachdaiche",
+'saveprefs'               => 'Sàbhail',
+'resetprefs'              => 'Falamhaich atharrachaidhean nach deach a shàbhaladh fhathast',
+'rows'                    => 'Sreathan',
+'columns'                 => 'Colbhan',
+'savedprefs'              => 'Tha na roghainnean agad air an sàbhaladh.',
+'default'                 => 'an roghainn bhunaiteach',
+'youremail'               => 'Post-dealain:',
+'username'                => 'Ainm-cleachdaiche:',
+'yourrealname'            => "An dearbh ainm a th' ort:",
+'yourlanguage'            => 'Cànan:',
+'yournick'                => 'Earr-sgrìobhadh ùr:',
+'prefs-help-email'        => "Chan leig thu leas post-dealain a chur ann ach bidh feum air ma dhìochuimhnicheas tu am facal-faire agad 's ma dh'iarras tu fear ùr.",
+'prefs-help-email-others' => "'S urrainn dhut leigeil le daoine eile post-dealain a chur thugad tro cheangal air an duilleag agad.
+Chan fhaicear an seòladh fhèin nuair a chuireas cuideigin post-dealain thugad.",
 
 # User rights
 'userrights-changeable-col' => 'Buidhnean as urrainn dhut atharrachadh',
@@ -702,7 +709,8 @@ Tha duilleagan air [[Special:Watchlist|do chlàr-faire]] ann an litrichean '''tr
 'savefile'      => 'Sàbhail faidhle',
 'uploadedimage' => 'a luchdaich suas "[[$1]]"',
 
-'license' => 'Ceadachadh:',
+'license'        => 'Ceadachadh:',
+'license-header' => 'Ceadachadh',
 
 # Special:ListFiles
 'listfiles' => 'Liosta nan ìomhaigh',
@@ -1154,6 +1162,9 @@ Bidh an fheadhainn eile falaichte a ghnàth.
 'watchlisttools-view' => 'Seall na mùthaidhean iomchaidh',
 'watchlisttools-edit' => 'Seall is deasaich mo chlàr-faire',
 'watchlisttools-raw'  => "Deasaich còd a' chlàir-fhaire",
+
+# Core parser functions
+'duplicate-defaultsort' => "'''Rabhadh:''' Tha an iuchair seòrsachaidh bhunaiteach \"\$2\" a' dol thairis air seann iuchair eile, \"\$1\".",
 
 # Special:Version
 'version' => 'Tionndadh',

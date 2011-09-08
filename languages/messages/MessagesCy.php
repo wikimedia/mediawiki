@@ -3517,7 +3517,6 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Defnydd cydwici o nodyn',
 'globaltemplateusage-for'         => 'Defnydd y nodyn "$1" yn y wicïau oll',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Tudalen arbennig]] yn dangos defnydd nodyn yn yr holl wicïau',
 'globaltemplateusage-ok'          => 'Chwilier',
 'globaltemplateusage-text'        => 'Chwilio am ddefnydd ffeil yn y wicïau oll',
 'globaltemplateusage-no-results'  => 'Ni ddefnyddir [[$1]] ar wicïau eraill.',
