@@ -891,57 +891,6 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Do setup specific to WMF
-	 */
-	public function loadWikimediaSettings() {
-		global $IP, $wgNoDBParam, $wgUseNormalUser, $wgConf, $site, $lang;
-
-		if ( empty( $wgNoDBParam ) ) {
-			# Check if we were passed a db name
-			if ( isset( $this->mOptions['wiki'] ) ) {
-				$db = $this->mOptions['wiki'];
-			} else {
-				$db = array_shift( $this->mArgs );
-			}
-			list( $site, $lang ) = $wgConf->siteFromDB( $db );
-
-			# If not, work out the language and site the old way
-			if ( is_null( $site ) || is_null( $lang ) ) {
-				if ( !$db ) {
-					$lang = 'aa';
-				} else {
-					$lang = $db;
-				}
-				if ( isset( $this->mArgs[0] ) ) {
-					$site = array_shift( $this->mArgs );
-				} else {
-					$site = 'wikipedia';
-				}
-			}
-		} else {
-			$lang = 'aa';
-			$site = 'wikipedia';
-		}
-
-		# This is for the IRC scripts, which now run as the apache user
-		# The apache user doesn't have access to the wikiadmin_pass command
-		if ( $_ENV['USER'] == 'apache' ) {
-		# if ( posix_geteuid() == 48 ) {
-			$wgUseNormalUser = true;
-		}
-
-		putenv( 'wikilang=' . $lang );
-
-		ini_set( 'include_path', ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
-
-		if ( $lang == 'test' && $site == 'wikipedia' ) {
-			if ( !defined( 'TESTWIKI' ) ) {
-				define( 'TESTWIKI', 1 );
-			}
-		}
-	}
-
-	/**
 	 * Generic setup for most installs. Returns the location of LocalSettings
 	 * @return String
 	 */
