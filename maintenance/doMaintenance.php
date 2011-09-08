@@ -74,17 +74,19 @@ require_once( MWInit::compiledPath( 'includes/DefaultSettings.php' ) );
 if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	# Use a callback function to configure MediaWiki
 	MWFunction::call( MW_CONFIG_CALLBACK );
-} elseif ( file_exists( "$IP/../wmf-config/wikimedia-mode" ) ) {
-	// Load settings, using wikimedia-mode if needed
-	// @todo FIXME: Replace this hack with general farm-friendly code
-	# @todo FIXME: Wikimedia-specific stuff needs to go away to an ext
-	# Maybe a hook?
-	global $cluster;
-	$cluster = 'pmtpa';
-	require( MWInit::interpretedPath( '../wmf-config/wgConf.php' ) );
+} else {
+	if ( file_exists( "$IP/../wmf-config/wikimedia-mode" ) ) {
+		// Load settings, using wikimedia-mode if needed
+		// @todo FIXME: Replace this hack with general farm-friendly code
+		# @todo FIXME: Wikimedia-specific stuff needs to go away to an ext
+		# Maybe a hook?
+		global $cluster;
+		$cluster = 'pmtpa';
+		require( MWInit::interpretedPath( '../wmf-config/wgConf.php' ) );
+	}
+	// Require the configuration (probably LocalSettings.php)
+	require( MWInit::interpretedPath( $maintenance->loadSettings() ) );
 }
-// Require the configuration (probably LocalSettings.php)
-require( MWInit::interpretedPath( $maintenance->loadSettings() ) );
 
 if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
 	is_readable( "$IP/AdminSettings.php" ) )
