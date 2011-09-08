@@ -326,18 +326,19 @@ class LogEventsList {
 	 * @return String: Formatted HTML list item
 	 */
 	public function logLine( $row ) {
-		$classes = array( 'mw-logline-' . $row->log_type );
-		$title = Title::makeTitle( $row->log_namespace, $row->log_title );
-		// Log time
-		$time = $this->logTimestamp( $row );
-		// User links
-		$userLink = $this->logUserLinks( $row );
+		$entry = DatabaseLogEntry::newFromRow( $row );
+		$formatter = LogFormatter::newFromEntry( $entry );
+		$formatter->setShowUserToolLinks( !( $this->flags & self::NO_EXTRA_USER_LINKS ) );
+
+		$action = $formatter->getActionText();
+		$comment = $formatter->getComment();
+
+		$classes = array( 'mw-logline-' . $entry->getType() );
+		$title = $entry->getTarget();
+		$time = $this->logTimestamp( $entry );
+
 		// Extract extra parameters
 		$paramArray = LogPage::extractParams( $row->log_params );
-		// Event description
-		$action = $this->logAction( $row, $title, $paramArray );
-		// Log comment
-		$comment = $this->logComment( $row );
 		// Add review/revert links and such...
 		$revert = $this->logActionLinks( $row, $title, $paramArray, $comment );
 
@@ -350,65 +351,13 @@ class LogEventsList {
 		$classes = array_merge( $classes, $newClasses );
 
 		return Xml::tags( 'li', array( "class" => implode( ' ', $classes ) ),
-			$del . "$time $userLink $action $comment $revert $tagDisplay" ) . "\n";
+			$del . "$time $action $comment $revert $tagDisplay" ) . "\n";
 	}
 
-	private function logTimestamp( $row ) {
+	private function logTimestamp( LogEntry $entry ) {
 		global $wgLang;
-		$time = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->log_timestamp ), true );
+		$time = $wgLang->timeanddate( wfTimestamp( TS_MW, $entry->getTimestamp() ), true );
 		return htmlspecialchars( $time );
-	}
-
-	/**
-	 * @param $row
-	 * @return String
-	 */
-	private function logUserLinks( $row ) {
-		if( self::isDeleted( $row, LogPage::DELETED_USER ) ) {
-			$userLinks = '<span class="history-deleted">' .
-				wfMsgHtml( 'rev-deleted-user' ) . '</span>';
-		} else {
-			$userLinks = Linker::userLink( $row->log_user, $row->user_name );
-			// Talk|Contribs links...
-			if( !( $this->flags & self::NO_EXTRA_USER_LINKS ) ) {
-				$userLinks .= Linker::userToolLinks(
-					$row->log_user, $row->user_name, true, 0, $row->user_editcount );
-			}
-		}
-		return $userLinks;
-	}
-
-	/**
-	 * @param $row
-	 * @param $title
-	 * @param $paramArray
-	 * @return string
-	 */
-	private function logAction( $row, $title, $paramArray ) {
-		if( self::isDeleted( $row, LogPage::DELETED_ACTION ) ) {
-			$action = '<span class="history-deleted">' .
-				wfMsgHtml( 'rev-deleted-event' ) . '</span>';
-		} else {
-			$action = LogPage::actionText(
-				$row->log_type, $row->log_action, $title, $this->skin, $paramArray, true );
-		}
-		return $action;
-	}
-
-	/**
-	 * @param $row
-	 * @return string
-	 */
-	private function logComment( $row ) {
-		if( self::isDeleted( $row, LogPage::DELETED_COMMENT ) ) {
-			$comment = '<span class="history-deleted">' .
-				wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
-		} else {
-			global $wgLang;
-			$comment = $wgLang->getDirMark() .
-				Linker::commentBlock( $row->log_comment );
-		}
-		return $comment;
 	}
 
 	/**
