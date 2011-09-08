@@ -2,7 +2,7 @@
 /**
  * Script that postprocesses XML dumps from dumpBackup.php to add page text
  *
- * Copyright Â© 2005 Brion Vibber <brion@pobox.com>, 2010 Alexandre Emsenhuber
+ * Copyright © 2005 Brion Vibber <brion@pobox.com>, 2010 Alexandre Emsenhuber
  * http://www.mediawiki.org/
  *
  * This program is free software; you can redistribute it and/or modify
@@ -35,11 +35,9 @@ require_once( 'backup.inc' );
 class TextPassDumper extends BackupDumper {
 	var $prefetch = null;
 	var $input = "php://stdin";
+	var $history = WikiExporter::FULL;
 	var $fetchCount = 0;
 	var $prefetchCount = 0;
-	var $lastTime = 0;
-	var $pageCountLast = 0;
-	var $revCountLast = 0;
 	var $prefetchCountLast = 0;
 	var $fetchCountLast = 0;
 
@@ -56,12 +54,21 @@ class TextPassDumper extends BackupDumper {
 	var $spawnRead = false;
 	var $spawnErr = false;
 
-	var $ID = 0;
+	var $xmlwriterobj = false;
+
+	# when we spend more than maxTimeAllowed seconds on this run, we continue
+	# processing until we write out the next complete page, then save output file(s),
+	# rename it/them and open new one(s)
+	var $maxTimeAllowed = 0;  // 0 = no limit
+	var $timeExceeded = false;
+	var $firstPageWritten = false;
+	var $lastPageWritten = false;
+	var $checkpointJustWritten = false;
+	var $checkpointFiles = array();
 
 	function initProgress( $history ) {
 		parent::initProgress();
-		$this->ID = getmypid();
-		$this->lastTime = $this->startTime;
+		$this->timeOfCheckpoint = $this->startTime;
 	}
 
 	function dump( $history, $text = WikiExporter::TEXT ) {
@@ -73,11 +80,24 @@ class TextPassDumper extends BackupDumper {
 		if ( ini_get( 'display_errors' ) )
 			ini_set( 'display_errors', 'stderr' );
 
-		$this->initProgress( $history );
+		$this->initProgress( $this->history );
 
 		$this->db = $this->backupDb();
 
-		$this->readDump();
+		$this->egress = new ExportProgressFilter( $this->sink, $this );
+
+		# it would be nice to do it in the constructor, oh well. need egress set
+		$this->finalOptionCheck();
+
+		# we only want this so we know how to close a stream :-P
+		$this->xmlwriterobj = new XmlDumpWriter();
+
+		$input = fopen( $this->input, "rt" );
+		$result = $this->readDump( $input );
+
+		if ( WikiError::isError( $result ) ) {
+			throw new MWException( $result->getMessage() );
+		}
 
 		if ( $this->spawnProc ) {
 			$this->closeSpawn();
@@ -97,6 +117,18 @@ class TextPassDumper extends BackupDumper {
 			break;
 		case 'stub':
 			$this->input = $url;
+			break;
+		case 'maxtime':
+			$this->maxTimeAllowed = intval($val)*60;
+			break;
+		case 'checkpointfile':
+			$this->checkpointFiles[] = $val;
+			break;
+		case 'current':
+			$this->history = WikiExporter::CURRENT;
+			break;
+		case 'full':
+			$this->history = WikiExporter::FULL;
 			break;
 		case 'spawn':
 			$this->spawn = true;
@@ -142,6 +174,7 @@ class TextPassDumper extends BackupDumper {
 
 		if ( $this->reporting ) {
 			$now = wfTimestamp( TS_DB );
+			$nowts = wfTime();
 			$deltaAll = wfTime() - $this->startTime;
 			$deltaPart = wfTime() - $this->lastTime;
 			$this->pageCountPart = $this->pageCount - $this->pageCountLast;
@@ -180,86 +213,98 @@ class TextPassDumper extends BackupDumper {
 				$pageRatePart = '-';
 				$revRatePart = '-';
 			}
-			$this->progress( sprintf( "%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), %d revs (%0.1f|%0.1f/sec all|curr), %0.1f%%|%0.1f%% prefetched (all|curr), ETA %s [max %d]",-
+			$this->progress( sprintf( "%s: %s (ID %d) %d pages (%0.1f|%0.1f/sec all|curr), %d revs (%0.1f|%0.1f/sec all|curr), %0.1f%%|%0.1f%% prefetched (all|curr), ETA %s [max %d]",
 					$now, wfWikiID(), $this->ID, $this->pageCount, $pageRate, $pageRatePart, $this->revCount, $revRate, $revRatePart, $fetchRate, $fetchRatePart, $etats, $this->maxCount ) );
-			$this->lastTime = $now;
-			$this->partCountLast = $this->partCount;
+			$this->lastTime = $nowts;
 			$this->revCountLast = $this->revCount;
 			$this->prefetchCountLast = $this->prefetchCount;
 			$this->fetchCountLast = $this->fetchCount;
 		}
 	}
 
-	function readDump() {
-		$state = '';
-		$lastName = '';
+	function setTimeExceeded() {
+		$this->timeExceeded = True;
+	}
+
+	function checkIfTimeExceeded() {
+		if ( $this->maxTimeAllowed &&  ( $this->lastTime - $this->timeOfCheckpoint  > $this->maxTimeAllowed ) ) {
+			return True;
+		}
+		return False;
+	}
+
+	function finalOptionCheck() {
+		if (($this->checkpointFiles && ! $this->maxTimeAllowed) ||
+			($this->maxTimeAllowed && !$this->checkpointFiles)) {
+			throw new MWException("Options checkpointfile and maxtime must be specified together.\n");
+		}
+		foreach ($this->checkpointFiles as $checkpointFile) {
+			$count = substr_count ($checkpointFile,"%s");
+			if (substr_count ($checkpointFile,"%s") != 2) {
+				throw new MWException("Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n");
+			}
+		}
+
+		if ($this->checkpointFiles) {
+			$filenameList = $this->egress->getFilename();
+			if (! is_array($filenameList)) {
+				$filenameList = array( $filenameList );
+			}
+			if (count($filenameList) != count($this->checkpointFiles)) {
+				throw new MWException("One checkpointfile must be specified for each output option, if maxtime is used.\n");
+			}
+		}
+	}
+
+	function readDump( $input ) {
+		$this->buffer = "";
+		$this->openElement = false;
+		$this->atStart = true;
+		$this->state = "";
+		$this->lastName = "";
 		$this->thisPage = 0;
 		$this->thisRev = 0;
 
-		$reader = new XMLReader();
-		$reader->open( $this->input );
-		$writer = new XMLWriter();
-		$writer->openMemory();
+		$parser = xml_parser_create( "UTF-8" );
+		xml_parser_set_option( $parser, XML_OPTION_CASE_FOLDING, false );
 
+		xml_set_element_handler( $parser, array( &$this, 'startElement' ), array( &$this, 'endElement' ) );
+		xml_set_character_data_handler( $parser, array( &$this, 'characterData' ) );
 
-		while ( $reader->read() ) {
-			$tag = $reader->name;
-			$type = $reader->nodeType;
-
-			if ( $type == XmlReader::END_ELEMENT ) {
-				$writer->endElement();
-
-				if ( $tag == 'revision' ) {
-					$this->revCount();
-					$this->thisRev = '';
-				} elseif ( $tag == 'page' ) {
-					$this->reportPage();
-					$this->thisPage = '';
-				}
-			} elseif ( $type == XmlReader::ELEMENT ) {
-				$attribs = array();
-				if ( $reader->hasAttributes ) {
-					for ( $i = 0; $reader->moveToAttributeNo( $i ); $i++ ) {
-						$attribs[$reader->name] = $reader->value;
-					}
-				}
-
-				if ( $reader->isEmptyElement && $tag == 'text' && isset( $attribs['id'] ) ) {
-					$writer->startElement( 'text' );
-					$writer->writeAttribute( 'xml:space', 'preserve' );
-					$text = $this->getText( $attribs['id'] );
-					if ( strlen( $text ) ) {
-						$writer->text( $text );
-					}
-					$writer->endElement();
-				} else {
-					$writer->startElement( $tag );
-					foreach( $attribs as $name => $val ) {
-						$writer->writeAttribute( $name, $val );
-					}
-					if ( $reader->isEmptyElement ) {
-						$writer->endElement();
-					}
-				}
-
-				$lastName = $tag;
-				if ( $tag == 'revision' ) {
-					$state = 'revision';
-				} elseif ( $tag == 'page' ) {
-					$state = 'page';
-				}
-			} elseif ( $type == XMLReader::SIGNIFICANT_WHITESPACE || $type == XMLReader::TEXT ) {
-				if ( $lastName == 'id' ) {
-					if ( $state == 'revision' ) {
-						$this->thisRev .= $reader->value;
-					} elseif ( $state == 'page' ) {
-						$this->thisPage .= $reader->value;
-					}
-				}
-				$writer->text( $reader->value );
+		$offset = 0; // for context extraction on error reporting
+		$bufferSize = 512 * 1024;
+		do {
+			if ($this->checkIfTimeExceeded()) {
+				$this->setTimeExceeded();
 			}
-			$this->sink->write( $writer->outputMemory() );
+			$chunk = fread( $input, $bufferSize );
+			if ( !xml_parse( $parser, $chunk, feof( $input ) ) ) {
+				wfDebug( "TextDumpPass::readDump encountered XML parsing error\n" );
+				return new WikiXmlError( $parser, 'XML import parse failure', $chunk, $offset );
+			}
+			$offset += strlen( $chunk );
+		} while ( $chunk !== false && !feof( $input ) );
+		if ($this->maxTimeAllowed) {
+			$filenameList = $this->egress->getFilename();
+			# we wrote some stuff after last checkpoint that needs renamed */
+			if (! is_array($filenameList)) {
+				$filenameList = array( $filenameList );
+			}
+			if (file_exists($filenameList[0])) {
+				$newFilenames = array();
+				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
+				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+				for ($i =0; $i < count($filenameList); $i++) {
+					$checkpointNameFilledIn = sprintf($this->checkpointFiles[$i], $firstPageID, $lastPageID);
+					$fileinfo = pathinfo($filenameList[$i]);
+					$newFilenames[] = $fileinfo{'dirname'} . '/' . $checkpointNameFilledIn;
+				}
+				$this->egress->closeAndRename( $newFilenames );
+			}
 		}
+		xml_parser_free( $parser );
+
+		return true;
 	}
 
 	function getText( $id ) {
@@ -282,6 +327,7 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	private function doGetText( $id ) {
+
 		$id = intval( $id );
 		$this->failures = 0;
 		$ex = new MWException( "Graceful storage failure" );
@@ -469,13 +515,133 @@ class TextPassDumper extends BackupDumper {
 		$normalized = $wgContLang->normalize( $stripped );
 		return $normalized;
 	}
+
+	function startElement( $parser, $name, $attribs ) {
+		$this->checkpointJustWritten = false;
+
+		$this->clearOpenElement( null );
+		$this->lastName = $name;
+
+		if ( $name == 'revision' ) {
+			$this->state = $name;
+			$this->egress->writeOpenPage( null, $this->buffer );
+			$this->buffer = "";
+		} elseif ( $name == 'page' ) {
+			$this->state = $name;
+			if ( $this->atStart ) {
+				$this->egress->writeOpenStream( $this->buffer );
+				$this->buffer = "";
+				$this->atStart = false;
+			}
+		}
+
+		if ( $name == "text" && isset( $attribs['id'] ) ) {
+			$text = $this->getText( $attribs['id'] );
+			$this->openElement = array( $name, array( 'xml:space' => 'preserve' ) );
+			if ( strlen( $text ) > 0 ) {
+				$this->characterData( $parser, $text );
+			}
+		} else {
+			$this->openElement = array( $name, $attribs );
+		}
+	}
+
+	function endElement( $parser, $name ) {
+		$this->checkpointJustWritten = false;
+
+		if ( $this->openElement ) {
+			$this->clearOpenElement( "" );
+		} else {
+			$this->buffer .= "</$name>";
+		}
+
+		if ( $name == 'revision' ) {
+			$this->egress->writeRevision( null, $this->buffer );
+			$this->buffer = "";
+			$this->thisRev = "";
+		} elseif ( $name == 'page' ) {
+			if (! $this->firstPageWritten) {
+				$this->firstPageWritten = trim($this->thisPage);
+			}
+			$this->lastPageWritten = trim($this->thisPage);
+			if ($this->timeExceeded) {
+				$this->egress->writeClosePage( $this->buffer );
+				# nasty hack, we can't just write the chardata after the
+				# page tag, it will include leading blanks from the next line
+				$this->egress->sink->write("\n"); 
+				
+				$this->buffer = $this->xmlwriterobj->closeStream();
+				$this->egress->writeCloseStream( $this->buffer );
+
+				$this->buffer = "";
+				$this->thisPage = "";
+				/* this could be more than one file if we had more than one output arg */
+				$checkpointFilenames = array();
+				$filenameList = $this->egress->getFilename();
+
+				if (! is_array($filenameList)) {
+					$filenameList = array( $filenameList );
+				}
+				$newFilenames = array();
+				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
+				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+				for ($i =0; $i < count($filenameList); $i++) {
+					$checkpointNameFilledIn = sprintf($this->checkpointFiles[$i], $firstPageID, $lastPageID);
+					$fileinfo = pathinfo($filenameList[$i]);
+					$newFilenames[] = $fileinfo{'dirname'} . '/' . $checkpointNameFilledIn;
+				}
+				$this->egress->closeRenameAndReopen( $newFilenames );
+				$this->buffer = $this->xmlwriterobj->openStream();
+				$this->timeExceeded = false;
+				$this->timeOfCheckpoint = $this->lastTime;
+				$this->firstPageWritten = false;
+				$this->checkpointJustWritten = true;
+			}
+			else {
+				$this->egress->writeClosePage( $this->buffer );
+				$this->buffer = "";
+				$this->thisPage = "";
+			}
+
+		} elseif ( $name == 'mediawiki' ) {
+			$this->egress->writeCloseStream( $this->buffer );
+			$this->buffer = "";
+		}
+	}
+
+	function characterData( $parser, $data ) {
+		$this->clearOpenElement( null );
+		if ( $this->lastName == "id" ) {
+			if ( $this->state == "revision" ) {
+				$this->thisRev .= $data;
+			} elseif ( $this->state == "page" ) {
+				$this->thisPage .= $data;
+			}
+		}
+		# have to skip the newline left over from closepagetag line of
+		# end of checkpoint files. nasty hack!!
+		if ($this->checkpointJustWritten) {
+			if ($data[0] == "\n") {
+				$data = substr($data,1);
+			}
+			$this->checkpointJustWritten = false;
+		}
+		$this->buffer .= htmlspecialchars( $data );
+	}
+
+	function clearOpenElement( $style ) {
+		if ( $this->openElement ) {
+			$this->buffer .= Xml::element( $this->openElement[0], $this->openElement[1], $style );
+			$this->openElement = false;
+		}
+	}
 }
 
 
 $dumper = new TextPassDumper( $argv );
 
 if ( !isset( $options['help'] ) ) {
-	$dumper->dump( WikiExporter::FULL );
+	$dumper->dump( true );
 } else {
 	$dumper->progress( <<<ENDS
 This script postprocesses XML dumps from dumpBackup.php to add
@@ -489,17 +655,20 @@ Options:
   --stub=<type>:<file> To load a compressed stub dump instead of stdin
   --prefetch=<type>:<file> Use a prior dump file as a text source, to save
 			  pressure on the database.
+			  (Requires the XMLReader extension)
+  --maxtime=<minutes> Write out checkpoint file after this many minutes (writing
+	          out complete page, closing xml file properly, and opening new one 
+	          with header).  This option requires the checkpointfile option.
+  --checkpointfile=<filenamepattern> Use this string for checkpoint filenames,
+		      substituting first pageid written for the first %s (required) and the 
+              last pageid written for the second %s if it exists.
   --quiet	  Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
 			  (Default: 100)
   --server=h  Force reading from MySQL server h
-  --output=<type>:<file> Write to a file instead of stdout
-  			   <type>s: file, gzip, bzip2, 7zip
   --current	  Base ETA on number of pages in database instead of all revisions
   --spawn	  Spawn a subprocess for loading text records
   --help      Display this help message
 ENDS
 );
 }
-
-
