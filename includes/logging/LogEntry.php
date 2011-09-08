@@ -203,13 +203,21 @@ class DatabaseLogEntry extends LogEntryBase {
 	public function getParameters() {
 		if ( !isset( $this->params ) ) {
 			$blob = $this->getRawParameters();
-			$params = FormatJson::decode( $blob, true /* array */ );
-			if ( $params !== null ) {
+			wfSuppressWarnings();
+			$params = unserialize( $blob );
+			wfRestoreWarnings();
+			if ( $params !== false ) {
 				$this->params = $params;
 				$this->legacy = false;
 			} else {
-				$this->params = explode( "\n", $blob );
-				$this->legacy = true;
+				$params = FormatJson::decode( $blob, true /* array */ );
+				if ( $params !== null ) {
+					$this->params = $params;
+					$this->legacy = false;
+				} else {
+					$this->params = explode( "\n", $blob );
+					$this->legacy = true;
+				}
 			}
 		}
 		return $this->params;
@@ -319,7 +327,7 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * Set extra log parameters.
+	 * Set extra log parameters. 
 	 * You can pass params to the log action message
 	 * by prefixing the keys with a number and colon.
 	 * The numbering should start with number 4, the
@@ -380,7 +388,7 @@ class ManualLogEntry extends LogEntryBase {
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleId(),
 			'log_comment' => $this->getComment(),
-			'log_params' => FormatJson::encode( (array) $this->getParameters() ),
+			'log_params' => serialize( (array) $this->getParameters() ),
 		);
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = !is_null( $id ) ? $id : $dbw->insertId();
@@ -414,7 +422,7 @@ class ManualLogEntry extends LogEntryBase {
 			$this->getSubtype(),
 			$this->getTarget(),
 			$this->getComment(),
-			FormatJson::encode( (array) $this->getParameters() ),
+			serialize( (array) $this->getParameters() ),
 			$newId
 		);
 
