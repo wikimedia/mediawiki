@@ -302,7 +302,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MijnOverleg' ),
 	'Mycontributions'           => array( 'MijnBijdragen' ),
 	'Myuploads'                 => array( 'MijnUploads' ),
-	'PermanentLink'             => array( 'PermanenteVerwijzing' ),
 	'Listadmins'                => array( 'Beheerderlijst', 'Administratorlijst', 'Adminlijst', 'Beheerderslijst' ),
 	'Listbots'                  => array( 'Botlijst', 'Lijstbots' ),
 	'Popularpages'              => array( 'PopulairePaginas', 'PopulairePagina’s', 'PopulairePagina\'s' ),

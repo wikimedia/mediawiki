@@ -118,7 +118,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'DiskisyonM' ),
 	'Mycontributions'           => array( 'KontribisyonM' ),
 	'Myuploads'                 => array( 'ChajmanM' ),
-	'PermanentLink'             => array( 'LyenPouToutTan' ),
 	'Listadmins'                => array( 'LisAdmin' ),
 	'Listbots'                  => array( 'LisWobo' ),
 	'Popularpages'              => array( 'PajPopilè' ),

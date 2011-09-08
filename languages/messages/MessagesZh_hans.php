@@ -172,7 +172,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( '我的讨论页' ),
 	'Mycontributions'           => array( '我的贡献' ),
 	'Myuploads'                 => array( '我的上传' ),
-	'PermanentLink'             => array( '永久链接' ),
 	'Listadmins'                => array( '管理员列表' ),
 	'Listbots'                  => array( '机器人列表' ),
 	'Popularpages'              => array( '热点页面' ),

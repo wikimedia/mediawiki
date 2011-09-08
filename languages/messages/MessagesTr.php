@@ -139,7 +139,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'MesajSayfam' ),
 	'Mycontributions'           => array( 'Katkılarım' ),
 	'Myuploads'                 => array( 'Yüklemelerim' ),
-	'PermanentLink'             => array( 'KalıcıBağ' ),
 	'Listadmins'                => array( 'HizmetliListesi' ),
 	'Listbots'                  => array( 'BotListesi' ),
 	'Popularpages'              => array( 'PopülerSayfalar' ),

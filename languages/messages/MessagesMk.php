@@ -167,7 +167,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'МојРазговор', 'МоиРазговори' ),
 	'Mycontributions'           => array( 'МоиПридонеси' ),
 	'Myuploads'                 => array( 'МоиПодигања' ),
-	'PermanentLink'             => array( 'ПостојанаВрска' ),
 	'Listadmins'                => array( 'СписокНаАдминистратори' ),
 	'Listbots'                  => array( 'СписокНаБотови' ),
 	'Popularpages'              => array( 'ПопуларниСтраници' ),

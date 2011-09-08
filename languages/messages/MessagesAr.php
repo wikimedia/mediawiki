@@ -398,7 +398,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'نقاشي' ),
 	'Mycontributions'           => array( 'مساهماتي' ),
 	'Myuploads'                 => array( 'رفوعاتي' ),
-	'PermanentLink'             => array( 'وصلة_دائمة', 'رابط_دائم' ),
 	'Listadmins'                => array( 'عرض_الإداريين' ),
 	'Listbots'                  => array( 'عرض_البوتات' ),
 	'Popularpages'              => array( 'صفحات_مشهورة' ),

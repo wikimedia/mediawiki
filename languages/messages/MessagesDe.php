@@ -169,7 +169,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'Meine_Diskussionsseite' ),
 	'Mycontributions'           => array( 'Meine_Beiträge' ),
 	'Myuploads'                 => array( 'Meine_hochgeladenen_Dateien' ),
-	'PermanentLink'             => array( 'Permanenter_Link' ),
 	'Listadmins'                => array( 'Administratoren' ),
 	'Listbots'                  => array( 'Bots' ),
 	'Popularpages'              => array( 'Beliebteste_Seiten' ),

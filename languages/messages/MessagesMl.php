@@ -155,7 +155,6 @@ $specialPageAliases = array(
 	'Mytalk'                    => array( 'എന്റെസംവാദം' ),
 	'Mycontributions'           => array( 'എന്റെസംഭാവനകൾ' ),
 	'Myuploads'                 => array( 'ഞാൻഅപ്‌ലോഡ്‌ചെയ്തവ' ),
-	'PermanentLink'             => array( 'സ്ഥിരംകണ്ണി' ),
 	'Listadmins'                => array( 'കാര്യനിർവാഹകപട്ടിക' ),
 	'Listbots'                  => array( 'യന്ത്രങ്ങളുടെ_പട്ടിക' ),
 	'Popularpages'              => array( 'ജനപ്രിയതാളുകൾ' ),
