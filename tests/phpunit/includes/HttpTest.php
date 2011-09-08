@@ -82,7 +82,16 @@ class HttpTest extends MediaWikiTestCase {
 		} else {
 			$this->assertThat( $r, $this->isInstanceOf( 'PhpHttpRequest' ) );
 		}
+		$this->assertTrue( $r->status->isGood(), '$r->status is good' );
 		unset( $r );
+		
+		$r = MWHttpRequest::factory( "//www.example.com/" );
+		if ( self::$has_curl ) {
+			$this->assertThat( $r, $this->isInstanceOf( 'CurlHttpRequest' ) );
+		} else {
+			$this->assertThat( $r, $this->isInstanceOf( 'PhpHttpRequest' ) );
+		}
+		$this->assertTrue( $r->status->isGood(), '$r->status is good' );
 
 		if ( !self::$has_fopen ) {
 			$this->setExpectedException( 'MWException' );
@@ -90,6 +99,7 @@ class HttpTest extends MediaWikiTestCase {
 		Http::$httpEngine = 'php';
 		$r = MWHttpRequest::factory( "http://www.example.com/" );
 		$this->assertThat( $r, $this->isInstanceOf( 'PhpHttpRequest' ) );
+		$this->assertTrue( $r->status->isGood(), '$r->status is good' );
 		unset( $r );
 
 		if ( !self::$has_curl ) {
@@ -99,6 +109,7 @@ class HttpTest extends MediaWikiTestCase {
 		$r = MWHttpRequest::factory( "http://www.example.com/" );
 		if ( self::$has_curl ) {
 			$this->assertThat( $r, $this->isInstanceOf( 'CurlHttpRequest' ) );
+			$this->assertTrue( $r->status->isGood(), '$r->status is good' );
 		}
 	}
 
@@ -165,6 +176,15 @@ class HttpTest extends MediaWikiTestCase {
 		foreach ( $this->test_requesturl as $u ) {
 			$r = Http::request( "POST", $u, $opt );
 			$this->assertEquals( self::$content["POST $u"], "$r", "POST $u with " . Http::$httpEngine );
+			
+			// If this was an HTTP URL, repeat the same test with a protocol-relative URL
+			// We can't do this with HTTPS URLs because MWHttpRequest expands protocol-relative
+			// URLs to HTTP.
+			list( $prot, $url ) = explode( ':', $u, 2 );
+			if ( $prot === 'http' ) {
+				$r = Http::request( "POST", $url, $opt );
+				$this->assertEquals( self::$content["POST $u"], "$r", "POST $url with " . Http::$httpEngine );
+			}
 		}
 	}
 
@@ -203,6 +223,15 @@ class HttpTest extends MediaWikiTestCase {
 		foreach ( $this->test_geturl as $u ) {
 			$r = Http::get( $u, 30, $opt ); /* timeout of 30s */
 			$this->assertEquals( self::$content["GET $u"], "$r", "Get $u with " . Http::$httpEngine );
+			
+			// If this was an HTTP URL, repeat the same test with a protocol-relative URL
+			// We can't do this with HTTPS URLs because MWHttpRequest expands protocol-relative
+			// URLs to HTTP.
+			list( $prot, $url ) = explode( ':', $u, 2 );
+			if ( $prot === 'http' ) {
+				$r = Http::get( $url, 30, $opt );
+				$this->assertEquals( self::$content["GET $u"], "$r", "Get $url with " . Http::$httpEngine );
+			}
 		}
 	}
 
@@ -243,6 +272,16 @@ class HttpTest extends MediaWikiTestCase {
 			$r = Http::post( $u, $opt );
 			$this->assertEquals( self::$content["POST $u => $postData"], "$r",
 								 "POST $u (postData=$postData) with " . Http::$httpEngine );
+			
+			// If this was an HTTP URL, repeat the same test with a protocol-relative URL
+			// We can't do this with HTTPS URLs because MWHttpRequest expands protocol-relative
+			// URLs to HTTP.
+			list( $prot, $url ) = explode( ':', $u, 2 );
+			if ( $prot === 'http' ) {
+				$r = Http::post( $url, $opt );
+				$this->assertEquals( self::$content["POST $u => $postData"], "$r",
+					"POST $u (postData=$postData) with " . Http::$httpEngine );
+			}
 		}
 	}
 
