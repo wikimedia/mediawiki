@@ -3469,7 +3469,6 @@ $wgMessageStructure = array(
 	'globaltemplateusage' => array(
 		'globaltemplateusage',
 		'globaltemplateusage-for',
-		'globaltemplateusage-desc',
 		'globaltemplateusage-ok',
 		'globaltemplateusage-text',
 		'globaltemplateusage-no-results',
