@@ -1765,6 +1765,7 @@ class Article extends Page {
 		global $wgEnableParserCache, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 
+		wfProfileIn( __METHOD__ );
 		// Should the parser cache be used?
 		$useParserCache = $wgEnableParserCache &&
 			$user->getStubThreshold() == 0 &&
@@ -1780,6 +1781,7 @@ class Article extends Page {
 		if ( $useParserCache ) {
 			$parserOutput = ParserCache::singleton()->get( $this, $this->mPage->getParserOptions() );
 			if ( $parserOutput !== false ) {
+				wfProfileOut( __METHOD__ );
 				return $parserOutput;
 			}
 		}
@@ -1790,11 +1792,13 @@ class Article extends Page {
 		} else {
 			$rev = Revision::newFromTitle( $this->getTitle(), $oldid );
 			if ( $rev === null ) {
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 			$text = $rev->getText();
 		}
 
+		wfProfileOut( __METHOD__ );
 		return $this->getOutputFromWikitext( $text, $useParserCache );
 	}
 
