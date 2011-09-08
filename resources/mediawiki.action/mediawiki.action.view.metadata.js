@@ -14,7 +14,7 @@ jQuery( document ).ready( function( $ ) {
 		return;
 	}
 
-	var $row = $( '<tr></tr>' );
+	var $row = $( '<tr class="mw-metadata-show-hide-extended"></tr>' );
 	var $col = $( '<td colspan="2"></td>' );
 
 	var $link = $( '<a></a>', {

@@ -345,3 +345,8 @@ p {
 	widows: 3;
 	orphans: 3;
 }
+
+/* Metadata/EXIF rendering */ 
+tr.mw-metadata-show-hide-extended {
+	display: none;
+}
