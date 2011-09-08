@@ -4603,7 +4603,6 @@ Enter the file name without the "{{ns:file}}:" prefix.',
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'Global template usage',
 'globaltemplateusage-for'         => 'Global template usage for "$1"',
-'globaltemplateusage-desc'        => '[[Special:GlobalTemplateUsage|Special page]] to view global template usage',
 'globaltemplateusage-ok'          => 'Search',
 'globaltemplateusage-text'        => 'Search global template usage',
 'globaltemplateusage-no-results'  => '[[$1]] is not used on other wikis.',
