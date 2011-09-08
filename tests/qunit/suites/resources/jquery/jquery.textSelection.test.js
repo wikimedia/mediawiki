@@ -59,12 +59,11 @@ var encapsulateTest = function( options ) {
 			start += newLinesBefore;
 			end += newLinesBefore + newLinesInside;
 		}
-		$textarea.textSelection( 'setSelection', {
-			start: start,
-			end: end
-		});
 
-		$textarea.textSelection( 'encapsulateSelection', opt.replace );
+		var options = $.extend( {}, opt.replace ); // Clone opt.replace
+		options.selectionStart = start;
+		options.selectionEnd = end;
+		$textarea.textSelection( 'encapsulateSelection', options );
 
 		var text = $textarea.textSelection( 'getContents' ).replace( /\r\n/g, "\n" );
 
