@@ -218,47 +218,45 @@ class LogEventsList {
 	 * @return String: Formatted HTML
 	 */
 	private function getTypeMenu( $queryTypes ) {
-		global $wgLogRestrictions, $wgUser;
+		$queryType = count($queryTypes) == 1 ? $queryTypes[0] : '';
+		$selector = $this->getTypeSelector();
+		$selector->setDefault( $queryType );
+		return $selector->getHtml();
+	}
 
-		$html = "<select name='type'>\n";
+	/**
+	 * Returns log page selector.
+	 * @param $default string The default selection
+	 * @return XmlSelect
+	 * @since 1.19
+	 */
+	public function getTypeSelector() {
+		global $wgUser;
 
-		$validTypes = LogPage::validTypes();
 		$typesByName = array(); // Temporary array
-
 		// First pass to load the log names
-		foreach( $validTypes as $type ) {
-			$text = LogPage::logName( $type );
-			$typesByName[$type] = $text;
+		foreach(  LogPage::validTypes() as $type ) {
+			$page = new LogPage( $type );
+			$restriction = $page->getRestriction();
+			if ( $wgUser->isAllowed( $restriction ) ) {
+				$typesByName[$type] = $page->getName()->text();
+			}
 		}
 
 		// Second pass to sort by name
 		asort($typesByName);
 
-		// Note the query type
-		$queryType = count($queryTypes) == 1 ? $queryTypes[0] : '';
-
 		// Always put "All public logs" on top
-		if ( isset( $typesByName[''] ) ) {
-			$all = $typesByName[''];
-			unset( $typesByName[''] );
-			$typesByName = array( '' => $all ) + $typesByName;
+		$public = $typesByName[''];
+		unset( $typesByName[''] );
+		$typesByName = array( '' => $public ) + $typesByName;
+
+		$select = new XmlSelect( 'type' );
+		foreach( $typesByName as $type => $name ) {
+			$select->addOption( $name, $type );
 		}
 
-		// Third pass generates sorted XHTML content
-		foreach( $typesByName as $type => $text ) {
-			$selected = ($type == $queryType);
-			// Restricted types
-			if ( isset($wgLogRestrictions[$type]) ) {
-				if ( $wgUser->isAllowed( $wgLogRestrictions[$type] ) ) {
-					$html .= Xml::option( $text, $type, $selected ) . "\n";
-				}
-			} else {
-				$html .= Xml::option( $text, $type, $selected ) . "\n";
-			}
-		}
-
-		$html .= '</select>';
-		return $html;
+		return $select;
 	}
 
 	/**
