@@ -239,7 +239,8 @@ class ChangesList extends ContextSource {
 	}
 
 	public function insertLog( &$s, $title, $logtype ) {
-		$logname = LogType::factory( $logtype )->getName()->escaped();
+		$page = new LogPage( $logtype );
+		$logname = $page->getName()->escaped();
 		$s .= '(' . Linker::linkKnown( $title, $logname ) . ')';
 	}
 
@@ -361,6 +362,7 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertLogEntry( $rc ) {
 		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
+		$formatter->setShowUserToolLinks( true );
 		$mark = $this->getLang()->getDirMark();
 		return $formatter->getActionText() . " $mark" . $formatter->getComment();
 	}
