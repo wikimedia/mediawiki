@@ -22,8 +22,6 @@
  * @author Simetrical
  */
 
-$optionsWithArgs = array( 'begin', 'max-slave-lag', 'throttle' );
-
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 
