@@ -1224,6 +1224,9 @@ abstract class Maintenance {
 	}
 }
 
+/**
+ * Fake maintenance wrapper, mostly used for the web installer/updater
+ */
 class FakeMaintenance extends Maintenance {
 	protected $mSelf = "FakeMaintenanceScript";
 	public function execute() {
@@ -1231,10 +1234,15 @@ class FakeMaintenance extends Maintenance {
 	}
 }
 
+/**
+ * Class for scripts that perform database maintenance and want to log the
+ * update in `updatelog` so we can later skip it
+ */
 abstract class LoggedUpdateMaintenance extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'force', 'Run the update even if it was completed already' );
+		$this->setBatchSize( 200 );
 	}
 
 	public function execute() {
@@ -1244,7 +1252,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 		if ( !$this->hasOption( 'force' ) &&
 			$db->selectRow( 'updatelog', '1', array( 'ul_key' => $key ), __METHOD__ ) )
 		{
-			$this->output( $this->updateSkippedMessage() . "\n" );
+			$this->output( "..." . $this->updateSkippedMessage() . "\n" );
 			return true;
 		}
 
@@ -1260,6 +1268,15 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 			$this->output( $this->updatelogFailedMessage() . "\n" );
 			return false;
 		}
+	}
+
+	/**
+	 * Message to show the the update log was unable to log the completion of this update
+	 * @return String
+	 */
+	protected function updatelogFailedMessage() {
+		$key = $this->getUpdateKey();
+		return "Unable to log update '{$key}' as completed.";
 	}
 
 	/**
@@ -1280,10 +1297,4 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	 * @return String
 	 */
 	abstract protected function updateSkippedMessage();
-
-	/**
-	 * Message to show the the update log was unable to log the completion of this update
-	 * @return String
-	 */
-	abstract protected function updatelogFailedMessage();
 }

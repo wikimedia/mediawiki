@@ -519,33 +519,25 @@ abstract class DatabaseUpdater {
 	}
 
 	protected function doLogUsertextPopulation() {
-		if ( $this->updateRowExists( 'populate log_usertext' ) ) {
-			$this->output( "...log_user_text field already populated.\n" );
-			return;
-		}
-
-		$this->output(
+		if ( !$this->updateRowExists( 'populate log_usertext' ) ) {
+			$this->output(
 			"Populating log_user_text field, printing progress markers. For large\n" .
 			"databases, you may want to hit Ctrl-C and do this manually with\n" .
 			"maintenance/populateLogUsertext.php.\n" );
+		}
 		$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
 		$task->execute();
-		$this->output( "Done populating log_user_text field.\n" );
 	}
 
 	protected function doLogSearchPopulation() {
-		if ( $this->updateRowExists( 'populate log_search' ) ) {
-			$this->output( "...log_search table already populated.\n" );
-			return;
+		if ( !$this->updateRowExists( 'populate log_search' ) ) {
+			$this->output(
+				"Populating log_search table, printing progress markers. For large\n" .
+				"databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/populateLogSearch.php.\n" );
 		}
-
-		$this->output(
-			"Populating log_search table, printing progress markers. For large\n" .
-			"databases, you may want to hit Ctrl-C and do this manually with\n" .
-			"maintenance/populateLogSearch.php.\n" );
 		$task = $this->maintenance->runChild( 'PopulateLogSearch' );
 		$task->execute();
-		$this->output( "Done populating log_search table.\n" );
 	}
 
 	protected function doUpdateTranscacheField() {

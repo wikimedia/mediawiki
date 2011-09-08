@@ -24,28 +24,32 @@
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
-class PopulateParentId extends Maintenance {
+class PopulateParentId extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populates rev_parent_id";
-		$this->setBatchSize( 200 );
 	}
 
-	public function execute() {
+	protected function getUpdateKey() {
+		return 'populate rev_parent_id';
+	}
+
+	protected function updateSkippedMessage() {
+		return 'rev_parent_id column of revision table already populated.';
+	}
+
+	protected function doDBUpdates() {
 		$db = wfGetDB( DB_MASTER );
 		if ( !$db->tableExists( 'revision' ) ) {
-			$this->error( "revision table does not exist", true );
+			$this->error( "revision table does not exist" );
+			return false;
 		}
 		$this->output( "Populating rev_parent_id column\n" );
 		$start = $db->selectField( 'revision', 'MIN(rev_id)', false, __FUNCTION__ );
 		$end = $db->selectField( 'revision', 'MAX(rev_id)', false, __FUNCTION__ );
 		if ( is_null( $start ) || is_null( $end ) ) {
-			$this->output( "...revision table seems to be empty.\n" );
-			$db->insert( 'updatelog',
-				array( 'ul_key' => 'populate rev_parent_id' ),
-				__METHOD__,
-				'IGNORE' );
-			return;
+			$this->output( "...revision table seems to be empty, nothing to do.\n" );
+			return true;
 		}
 		# Do remaining chunk
 		$blockStart = intval( $start );
@@ -100,17 +104,8 @@ class PopulateParentId extends Maintenance {
 			$blockEnd += $this->mBatchSize;
 			wfWaitForSlaves();
 		}
-		$logged = $db->insert( 'updatelog',
-			array( 'ul_key' => 'populate rev_parent_id' ),
-			__METHOD__,
-			'IGNORE' );
-		if ( $logged ) {
-			$this->output( "rev_parent_id population complete ... {$count} rows [{$changed} changed]\n" );
-			return true;
-		} else {
-			$this->output( "Could not insert rev_parent_id population row.\n" );
-			return false;
-		}
+		$this->output( "rev_parent_id population complete ... {$count} rows [{$changed} changed]\n" );
+		return true;
 	}
 }
 
