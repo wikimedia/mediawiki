@@ -26,7 +26,6 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populates the rev_len field";
-		$this->setBatchSize( 200 );
 	}
 
 	protected function getUpdateKey() {
@@ -35,10 +34,6 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 
 	protected function updateSkippedMessage() {
 		return 'rev_len column of revision table already populated.';
-	}
-
-	protected function updatelogFailedMessage() {
-		return 'Could not insert rev_len population row.';
 	}
 
 	public function doDBUpdates() {

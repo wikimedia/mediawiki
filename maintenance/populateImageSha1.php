@@ -29,7 +29,6 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$this->addOption( 'method', "Use 'pipe' to pipe to mysql command line,\n" .
 			"\t\tdefault uses Database class", false, true );
 		$this->addOption( 'file', 'Fix for a specific file, without File: namespace prefixed', false, true );
-		$this->setBatchSize( 200 );
 	}
 
 	protected function getUpdateKey() {
@@ -38,10 +37,6 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 
 	protected function updateSkippedMessage() {
 		return 'img_sha1 column of image table already populated.';
-	}
-
-	protected function updatelogFailedMessage() {
-		return 'Could not insert img_sha1 population row.';
 	}
 
 	public function doDBUpdates() {

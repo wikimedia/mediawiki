@@ -747,11 +747,12 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doPopulateParentId() {
-		if ( $this->updateRowExists( 'populate rev_parent_id' ) ) {
-			$this->output( "...rev_parent_id column already populated.\n" );
-			return;
+		if ( !$this->updateRowExists( 'populate rev_parent_id' ) ) {
+			$this->output(
+				"Populating rev_parent_id fields, printing progress markers. For large\n" .
+				"databases, you may want to hit Ctrl-C and do this manually with\n" .
+				"maintenance/populateParentId.php.\n" );
 		}
-
 		$task = $this->maintenance->runChild( 'PopulateParentId' );
 		$task->execute();
 	}
