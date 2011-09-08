@@ -56,9 +56,7 @@ class LogFormatter {
 
 	// Nonstatic->
 
-	/**
-	 * @var LogEntry
-	 */
+	/// @var LogEntry
 	protected $entry;
 
 	/// Whether to output user tool links
@@ -323,7 +321,7 @@ class LegacyLogFormatter extends LogFormatter {
  * This class formats Block log entries.
  * @since 1.19
  */
-class BlockLogFormatter extends LogFormatter {
+class MoveLogFormatter extends LogFormatter {
 	protected function getMessageKey() {
 		$key = parent::getMessageKey();
 		$params = $this->getMessageParameters();
