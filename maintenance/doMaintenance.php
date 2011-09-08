@@ -87,6 +87,8 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 	// Require the configuration (probably LocalSettings.php)
 	require( MWInit::interpretedPath( $maintenance->loadSettings() ) );
 }
+// Require the configuration (probably LocalSettings.php)
+require( $maintenance->loadSettings() );
 
 if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
 	is_readable( "$IP/AdminSettings.php" ) )
