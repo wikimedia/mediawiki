@@ -74,13 +74,16 @@ class LogEventsList {
 	/**
 	 * Set page title and show header for this log type
 	 * @param $type Array
+	 * @deprecated in 1.19
 	 */
 	public function showHeader( $type ) {
+		wfDeprecated( __METHOD__ );
 		// If only one log type is used, then show a special message...
 		$headerType = (count($type) == 1) ? $type[0] : '';
 		if( LogPage::isLogType( $headerType ) ) {
-			$this->out->setPageTitle( LogPage::logName( $headerType ) );
-			$this->out->addHTML( LogPage::logHeader( $headerType ) );
+			$page = new LogPage( $headerType );
+			$this->out->setPageTitle( $page->getName()->text() );
+			$this->out->addHTML( $page->getDescription()->parseAsBlock() );
 		} else {
 			$this->out->addHTML( wfMsgExt('alllogstext',array('parseinline')) );
 		}
