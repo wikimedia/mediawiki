@@ -3506,6 +3506,12 @@ $wgMessageStructure = array(
 	'unwatch' => array(
 		'confirm-unwatch-button',
 	),
+	'logging' => array(
+		'logentry-move-move',
+		'logentry-move-move-noredirect',
+		'logentry-move-move_redir',
+		'logentry-move-move_redir-noredirect',
+	),
 );
 
 /** Comments for each block */
@@ -3737,4 +3743,5 @@ Variants for Chinese language",
 	'db-error-messages'     => 'Database error messages',
 	'html-forms'            => 'HTML forms',
 	'sqlite'                => 'SQLite database support',
+	'logging'               => 'New logging system',
 );

@@ -4638,4 +4638,10 @@ This site is experiencing technical difficulties.',
 'sqlite-has-fts' => '$1 with full-text search support',
 'sqlite-no-fts'  => '$1 without full-text search support',
 
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|moved}} page $3 to $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moved}} page $3 to $4 without leaving a redirect',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|moved}} page $3 to $4 over redirect',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moved}} page $3 to $4 over a redirect without leaving a redirect',
+
 );

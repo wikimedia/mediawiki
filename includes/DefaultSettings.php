@@ -4909,7 +4909,8 @@ $wgCategoryCollation = 'uppercase';
  * an action, which is a specific kind of event that can exist in that
  * log type.
  */
-$wgLogTypes = array( '',
+$wgLogTypes = array(
+	'',
 	'block',
 	'protect',
 	'rights',
@@ -4962,6 +4963,9 @@ $wgFilterLogTypes = array(
  * will be listed in the user interface.
  *
  * Extensions with custom log types may add to this array.
+ *
+ * Since 1.19, if you follow the naming convention log-name-TYPE,
+ * where TYPE is your log type, yoy don't need to use this array.
  */
 $wgLogNames = array(
 	''        => 'all-logs-page',
@@ -4982,6 +4986,9 @@ $wgLogNames = array(
  * top of each log type.
  *
  * Extensions with custom log types may add to this array.
+ *
+ * Since 1.19, if you follow the naming convention log-description-TYPE,
+ * where TYPE is your log type, yoy don't need to use this array.
  */
 $wgLogHeaders = array(
 	''        => 'alllogstext',
@@ -5020,8 +5027,6 @@ $wgLogActions = array(
 	'upload/upload'      => 'uploadedimage',
 	'upload/overwrite'   => 'overwroteimage',
 	'upload/revert'      => 'uploadedimage',
-	'move/move'          => '1movedto2',
-	'move/move_redir'    => '1movedto2_redir',
 	'import/upload'      => 'import-logentry-upload',
 	'import/interwiki'   => 'import-logentry-interwiki',
 	'merge/merge'        => 'pagemerge-logentry',
@@ -5038,8 +5043,12 @@ $wgLogActions = array(
  * The same as above, but here values are names of functions,
  * not messages.
  * @see LogPage::actionText
+ * @see LogFormatter
  */
-$wgLogActionsHandlers = array();
+$wgLogActionsHandlers = array(
+	// move, move_redir
+	'move/*' => 'MoveLogFormatter',
+);
 
 /**
  * Maintain a log of newusers at Log/newusers?
