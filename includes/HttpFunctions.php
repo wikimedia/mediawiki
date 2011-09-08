@@ -184,9 +184,9 @@ class MWHttpRequest {
 		global $wgHTTPTimeout;
 
 		$this->url = wfExpandUrl( $url, PROTO_HTTP );
-		$this->parsedUrl = parse_url( $this->url );
+		$this->parsedUrl = wfParseUrl( $this->url );
 
-		if ( !Http::isValidURI( $this->url ) ) {
+		if ( !$this->parsedUrl || !Http::isValidURI( $this->url ) ) {
 			$this->status = Status::newFatal( 'http-invalid-url' );
 		} else {
 			$this->status = Status::newGood( 100 ); // continue
