@@ -478,7 +478,7 @@ abstract class UploadBase {
 		$permErrors = $nt->getUserPermissionsErrors( 'edit', $user );
 		$permErrorsUpload = $nt->getUserPermissionsErrors( 'upload', $user );
 		if ( !$nt->exists() ) {
-			$permErrorsCreate = $nt->getUserPermissionsErrors( 'createpage', $user );
+			$permErrorsCreate = $nt->getUserPermissionsErrors( 'create', $user );
 		} else {
 			$permErrorsCreate = array();
 		}
