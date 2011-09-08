@@ -37,7 +37,7 @@ class ForeignDBRepo extends LocalRepo {
 		if ( !isset( $this->dbConn ) ) {
 			$this->dbConn = DatabaseBase::newFromType( $this->dbType,
 				array(
-					'server' => $this->dbServer,
+					'host' => $this->dbServer,
 					'user'   => $this->dbUser,
 					'password' => $this->dbPassword,
 					'dbname' => $this->dbName,
