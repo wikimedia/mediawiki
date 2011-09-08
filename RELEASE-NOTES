@@ -54,6 +54,13 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   wide pano/timeline/diagram SVGs renderable at saner sizes.
 * (bug 29959) Installer fatal when cURL and allow_url_fopen is disabled and user
   tries to subsribe to mediawiki-announce.
+* Installer checked for magic_quotes_runtime instead of register_globals
+* (bug 30131) XCache with variable caching disabled no longer used for variable
+  caching (CACHE_ACCEL)
+* (bug 30264) Changed installer-generated LocalSettings.php to use require_once()
+  instead require() for included extensions.
+* (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
+  warnings/notices to be thrown
 
 === Changes since 1.17.0rc1 ===
 

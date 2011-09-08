@@ -360,7 +360,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		}
 		
 		wfProfileIn( __METHOD__.'-filemtime' );
-		$filesMtime = max( array_map( 'filemtime', $files ) );
+		$filesMtime = max( array_map( array( __CLASS__, 'safeFilemtime' ), $files ) );
 		wfProfileOut( __METHOD__.'-filemtime' );
 		$this->modifiedTime[$context->getHash()] = max( 
 			$filesMtime, 
@@ -444,9 +444,15 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$js = '';
 		foreach ( array_unique( $scripts ) as $fileName ) {
 			$localPath = $this->getLocalPath( $fileName );
-			$contents = file_get_contents( $localPath );
-			if ( $contents === false ) {
+			if ( !file_exists( $localPath ) ) {
 				throw new MWException( __METHOD__.": script file not found: \"$localPath\"" );
+			}
+			$contents = file_get_contents( $localPath );
+			if ( $wgResourceLoaderValidateStaticJS ) {
+				// Static files don't really need to be checked as often; unlike
+				// on-wiki module they shouldn't change unexpectedly without
+				// admin interference.
+				$contents = $this->validateScriptFile( $fileName, $contents );
 			}
 			$js .= $contents . "\n";
 		}
@@ -484,15 +490,16 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * 
 	 * This method can be used as a callback for array_map()
 	 * 
-	 * @param $path String: File path of script file to read
+	 * @param $path String: File path of style file to read
 	 * @return String: CSS data in script file
+	 * @throws MWException if the file doesn't exist
 	 */
 	protected function readStyleFile( $path, $flip ) {	
 		$localPath = $this->getLocalPath( $path );
-		$style = file_get_contents( $localPath );
-		if ( $style === false ) {
+		if ( !file_exists( $localPath ) ) {
 			throw new MWException( __METHOD__.": style file not found: \"$localPath\"" );
 		}
+		$style = file_get_contents( $localPath );
 		if ( $flip ) {
 			$style = CSSJanus::transform( $style, true, false );
 		}
@@ -505,5 +512,31 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return CSSMin::remap(
 			$style, $dir, $remoteDir, true
 		);
+	}
+	
+	/**
+	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist
+	 * but returns 1 instead.
+	 * @param $filename string File name
+	 * @return int UNIX timestamp, or 1 if the file doesn't exist
+	 */
+	protected static function safeFilemtime( $filename ) {
+		if ( file_exists( $filename ) ) {
+			return filemtime( $filename );
+		} else {
+			// We only ever map this function on an array if we're gonna call max() after,
+			// so return our standard minimum timestamps here. This is 1, not 0, because
+			// wfTimestamp(0) == NOW
+			return 1;
+		}
+	}
+
+	/**
+	 * Get whether CSS for this module should be flipped
+	 * @param $context ResourceLoaderContext
+	 * @return bool
+	 */
+	public function getFlip( $context ) {
+		return $context->getDirection() === 'rtl';
 	}
 }
