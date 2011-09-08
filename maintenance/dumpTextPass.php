@@ -56,9 +56,9 @@ class TextPassDumper extends BackupDumper {
 
 	var $xmlwriterobj = false;
 
-	# when we spend more than maxTimeAllowed seconds on this run, we continue
-	# processing until we write out the next complete page, then save output file(s),
-	# rename it/them and open new one(s)
+	// when we spend more than maxTimeAllowed seconds on this run, we continue
+	// processing until we write out the next complete page, then save output file(s),
+	// rename it/them and open new one(s)
 	var $maxTimeAllowed = 0;  // 0 = no limit
 	var $timeExceeded = false;
 	var $firstPageWritten = false;
@@ -72,11 +72,11 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function dump( $history, $text = WikiExporter::TEXT ) {
-		# This shouldn't happen if on console... ;)
+		// This shouldn't happen if on console... ;)
 		header( 'Content-type: text/html; charset=UTF-8' );
 
-		# Notice messages will foul up your XML output even if they're
-		# relatively harmless.
+		// Notice messages will foul up your XML output even if they're
+		// relatively harmless.
 		if ( ini_get( 'display_errors' ) )
 			ini_set( 'display_errors', 'stderr' );
 
@@ -86,10 +86,10 @@ class TextPassDumper extends BackupDumper {
 
 		$this->egress = new ExportProgressFilter( $this->sink, $this );
 
-		# it would be nice to do it in the constructor, oh well. need egress set
+		// it would be nice to do it in the constructor, oh well. need egress set
 		$this->finalOptionCheck();
 
-		# we only want this so we know how to close a stream :-P
+		// we only want this so we know how to close a stream :-P
 		$this->xmlwriterobj = new XmlDumpWriter();
 
 		$input = fopen( $this->input, "rt" );
@@ -234,23 +234,20 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	function finalOptionCheck() {
-		if (($this->checkpointFiles && ! $this->maxTimeAllowed) ||
-			($this->maxTimeAllowed && !$this->checkpointFiles)) {
+		if ( ( $this->checkpointFiles && ! $this->maxTimeAllowed ) ||
+			( $this->maxTimeAllowed && !$this->checkpointFiles ) ) {
 			throw new MWException("Options checkpointfile and maxtime must be specified together.\n");
 		}
 		foreach ($this->checkpointFiles as $checkpointFile) {
-			$count = substr_count ($checkpointFile,"%s");
-			if (substr_count ($checkpointFile,"%s") != 2) {
+			$count = substr_count ( $checkpointFile,"%s" );
+			if ( $count != 2 ) {
 				throw new MWException("Option checkpointfile must contain two '%s' for substitution of first and last pageids, count is $count instead, file is $checkpointFile.\n");
 			}
 		}
 
-		if ($this->checkpointFiles) {
-			$filenameList = $this->egress->getFilename();
-			if (! is_array($filenameList)) {
-				$filenameList = array( $filenameList );
-			}
-			if (count($filenameList) != count($this->checkpointFiles)) {
+		if ( $this->checkpointFiles ) {
+			$filenameList = (array)$this->egress->getFilename();
+			if ( count( $filenameList ) != count( $this->checkpointFiles ) ) {
 				throw new MWException("One checkpointfile must be specified for each output option, if maxtime is used.\n");
 			}
 		}
@@ -285,19 +282,16 @@ class TextPassDumper extends BackupDumper {
 			$offset += strlen( $chunk );
 		} while ( $chunk !== false && !feof( $input ) );
 		if ($this->maxTimeAllowed) {
-			$filenameList = $this->egress->getFilename();
-			# we wrote some stuff after last checkpoint that needs renamed */
-			if (! is_array($filenameList)) {
-				$filenameList = array( $filenameList );
-			}
+			$filenameList = (array)$this->egress->getFilename();
+			// we wrote some stuff after last checkpoint that needs renamed
 			if (file_exists($filenameList[0])) {
 				$newFilenames = array();
 				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
 				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
-				for ($i =0; $i < count($filenameList); $i++) {
-					$checkpointNameFilledIn = sprintf($this->checkpointFiles[$i], $firstPageID, $lastPageID);
+				for ( $i = 0; $i < count( $filenameList ); $i++ ) {
+					$checkpointNameFilledIn = sprintf( $this->checkpointFiles[$i], $firstPageID, $lastPageID );
 					$fileinfo = pathinfo($filenameList[$i]);
-					$newFilenames[] = $fileinfo{'dirname'} . '/' . $checkpointNameFilledIn;
+					$newFilenames[] = $fileinfo['dirname'] . '/' . $checkpointNameFilledIn;
 				}
 				$this->egress->closeAndRename( $newFilenames );
 			}
@@ -566,8 +560,8 @@ class TextPassDumper extends BackupDumper {
 			$this->lastPageWritten = trim($this->thisPage);
 			if ($this->timeExceeded) {
 				$this->egress->writeClosePage( $this->buffer );
-				# nasty hack, we can't just write the chardata after the
-				# page tag, it will include leading blanks from the next line
+				// nasty hack, we can't just write the chardata after the
+				// page tag, it will include leading blanks from the next line
 				$this->egress->sink->write("\n"); 
 				
 				$this->buffer = $this->xmlwriterobj->closeStream();
@@ -575,20 +569,16 @@ class TextPassDumper extends BackupDumper {
 
 				$this->buffer = "";
 				$this->thisPage = "";
-				/* this could be more than one file if we had more than one output arg */
+				// this could be more than one file if we had more than one output arg
 				$checkpointFilenames = array();
-				$filenameList = $this->egress->getFilename();
-
-				if (! is_array($filenameList)) {
-					$filenameList = array( $filenameList );
-				}
+				$filenameList = (array)$this->egress->getFilename();
 				$newFilenames = array();
 				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
 				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
-				for ($i =0; $i < count($filenameList); $i++) {
-					$checkpointNameFilledIn = sprintf($this->checkpointFiles[$i], $firstPageID, $lastPageID);
+				for ( $i = 0; $i < count( $filenameList ); $i++ ) {
+					$checkpointNameFilledIn = sprintf( $this->checkpointFiles[$i], $firstPageID, $lastPageID );
 					$fileinfo = pathinfo($filenameList[$i]);
-					$newFilenames[] = $fileinfo{'dirname'} . '/' . $checkpointNameFilledIn;
+					$newFilenames[] = $fileinfo['dirname'] . '/' . $checkpointNameFilledIn;
 				}
 				$this->egress->closeRenameAndReopen( $newFilenames );
 				$this->buffer = $this->xmlwriterobj->openStream();
@@ -618,8 +608,8 @@ class TextPassDumper extends BackupDumper {
 				$this->thisPage .= $data;
 			}
 		}
-		# have to skip the newline left over from closepagetag line of
-		# end of checkpoint files. nasty hack!!
+		// have to skip the newline left over from closepagetag line of
+		// end of checkpoint files. nasty hack!!
 		if ($this->checkpointJustWritten) {
 			if ($data[0] == "\n") {
 				$data = substr($data,1);
