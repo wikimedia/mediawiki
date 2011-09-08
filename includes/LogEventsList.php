@@ -979,11 +979,21 @@ class LogPager extends ReverseChronologicalPager {
 		}
 	}
 
+	/**
+	 * Constructs the most part of the query. Extra conditions are sprinkled in
+	 * all over this class.
+	 * @return array
+	 */
 	public function getQueryInfo() {
-		$tables = array( 'logging', 'user' );
-		$this->mConds[] = 'user_id = log_user';
+		$basic = DatabaseLogEntry::getSelectQueryData();
+
+		$tables = $basic['tables'];
+		$fields = $basic['fields'];
+		$conds = $basic['conds'];
+		$options = $basic['options'];
+		$joins = $basic['join_conds'];
+
 		$index = array();
-		$options = array();
 		# Add log_search table if there are conditions on it.
 		# This filters the results to only include log rows that have
 		# log_search records with the specified ls_field and ls_value values.
@@ -1014,17 +1024,14 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		$options['USE INDEX'] = $index;
 		# Don't show duplicate rows when using log_search
+		$joins['log_search'] = array( 'INNER JOIN', 'ls_log_id=log_id' );
+
 		$info = array(
 			'tables'     => $tables,
-			'fields'     => array( 'log_type', 'log_action', 'log_user', 'log_namespace',
-				'log_title', 'log_params', 'log_comment', 'log_id', 'log_deleted',
-				'log_timestamp', 'user_name', 'user_editcount' ),
-			'conds'      => $this->mConds,
+			'fields'     => $fields,
+			'conds'      => $conds + $this->mConds,
 			'options'    => $options,
-			'join_conds' => array(
-				'user' 		 => array( 'INNER JOIN', 'user_id=log_user' ),
-				'log_search' => array( 'INNER JOIN', 'ls_log_id=log_id' )
-			)
+			'join_conds' => $joins,
 		);
 		# Add ChangeTags filter query
 		ChangeTags::modifyDisplayQuery( $info['tables'], $info['fields'], $info['conds'],
