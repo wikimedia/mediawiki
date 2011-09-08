@@ -312,22 +312,26 @@ td.diff-context {
 ** Table rendering
 ** As on shared.css but with white background.
 */
-table.wikitable {
+table.wikitable,
+table.mw_metadata {
 	margin: 1em 1em 1em 0;
 	border: 1px #aaa solid;
 	background: white;
 	border-collapse: collapse;
 }
-.wikitable th, .wikitable td {
+.wikitable th, .wikitable td,
+.mw_metadata th, .mw_metadata td {
 	border: 1px #aaa solid;
 	padding: 0.2em;
 }
-.wikitable th {
+.wikitable th,
+.mw_metadata th {
 	text-align: center;
 	background: white;
 	font-weight: bold;
 }
-.wikitable caption {
+.wikitable caption,
+.mw_metadata caption {
 	font-weight: bold;
 }
 
