@@ -169,6 +169,23 @@ test( 'mw.loader.bug29107' , function() {
 	});
 });
 
+test( 'mw.loader.bug30825', function() {
+	// This bug was actually already fixed in 1.18 and later when discovered in 1.17.
+	// Test is for regressions!
+
+	expect(1);
+
+	// Confirm that mw.loader.load() works with protocol-relative URLs
+	var loc = window.location,
+		base = ('//' + loc.hostname + loc.pathname).replace(/\/[^\/]*$/, ''),
+		target = base + '/suites/resources/mediawiki/mediawiki.test.bug30825.js';
+
+	// Async! Include a timeout, as failure in this test leads to neither the
+	// success nor failure callbacks getting called.
+	stop(5000);
+	mw.loader.load( target );
+});
+
 test( 'mw.html', function() {
 	expect(11);
 
