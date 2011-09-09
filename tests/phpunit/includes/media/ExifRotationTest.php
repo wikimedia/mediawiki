@@ -8,6 +8,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 	function setUp() {
 		parent::setUp();
 		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';
+		$this->handler = new BitmapHandler();
 	}
 
 	/**
@@ -15,17 +16,16 @@ class ExifRotationTest extends MediaWikiTestCase {
 	 * @dataProvider providerFiles
 	 */
 	function testMetadata( $name, $type, $info ) {
-		$handler = new BitmapHandler();
 		# Force client side resizing
 		$params = array( 'width' => 10000, 'height' => 10000 );
 		$file = UnregisteredLocalFile::newFromPath( $this->filePath . $name, $type );
 		
 		# Normalize parameters
-		$this->assertTrue( $handler->normaliseParams( $file, $params ) );
-		$rotation = $handler->getRotation( $file );
+		$this->assertTrue( $this->handler->normaliseParams( $file, $params ) );
+		$rotation = $this->handler->getRotation( $file );
 		
 		# Check if pre-rotation dimensions are still good
-		list( $width, $height ) = $handler->extractPreRotationDimensions( $params, $rotation );
+		list( $width, $height ) = $this->handler->extractPreRotationDimensions( $params, $rotation );
 		$this->assertEquals( $file->getWidth(), $width, 
 			"$name: pre-rotation width check, $rotation:$width" );
 		$this->assertEquals( $file->getHeight(), $height, 
@@ -73,8 +73,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 	 * @dataProvider provideBitmapExtractPreRotationDimensions
 	 */
 	function testBitmapExtractPreRotationDimensions( $rotation, $expected ) {
-		$handler = new BitmapHandler;
-		$result = $handler->extractPreRotationDimensions( array(
+		$result = $this->handler->extractPreRotationDimensions( array(
 				'physicalWidth' => self::TEST_WIDTH, 
 				'physicalHeight' => self::TEST_HEIGHT,
 			), $rotation );
@@ -100,6 +99,23 @@ class ExifRotationTest extends MediaWikiTestCase {
 				array( self::TEST_HEIGHT, self::TEST_WIDTH ) 
 			),			
 		);
+	}
+
+	function testWidthFlipping() {
+		$file = UnregisteredLocalFile::newFromPath( $this->filePath . 'portrait-rotated.jpg', 'image/jpeg' );
+		$params = array( 'width' => '50' );
+		$this->assertTrue( $this->handler->normaliseParams( $file, $params ) );
+
+		$this->assertEquals( 50, $params['height'] );
+		$this->assertEquals( round( (768/1024)*50 ), $params['width'], '', 0.1 );
+	}
+	function testWidthNotFlipping() {
+		$file = UnregisteredLocalFile::newFromPath( $this->filePath . 'landscape-plain.jpg', 'image/jpeg' );
+		$params = array( 'width' => '50' );
+		$this->assertTrue( $this->handler->normaliseParams( $file, $params ) );
+
+		$this->assertEquals( 50, $params['width'] );
+		$this->assertEquals( round( (768/1024)*50 ), $params['height'], '', 0.1 );
 	}
 }
 
