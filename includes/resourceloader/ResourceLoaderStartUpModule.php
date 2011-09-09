@@ -69,10 +69,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			}
 		}
 
-
-		$serverBits = wfParseUrl( $wgServer );
-		$protocol = $serverBits ? $serverBits['scheme'] : 'http';
-
 		// Build list of variables
 		$vars = array(
 			'wgLoadScript' => $wgLoadScript,
@@ -108,7 +104,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgFileCanRotate' => BitmapHandler::canRotate(),
 			'wgAvailableSkins' => Skin::getSkinNames(),
 			'wgExtensionAssetsPath' => $wgExtensionAssetsPath,
-			'wgProto' => $protocol,
 			// MediaWiki sets cookies to have this prefix by default
 			'wgCookiePrefix' => $wgCookiePrefix,
 			'wgResourceLoaderMaxQueryLength' => $wgResourceLoaderMaxQueryLength,
