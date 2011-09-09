@@ -645,6 +645,11 @@ class LocalisationCache {
 		# Run hooks
 		wfRunHooks( 'LocalisationCacheRecache', array( $this, $code, &$allData ) );
 
+		if ( is_null( $allData['namespaceNames'] ) ) {
+			throw new MWException( __METHOD__.': Localisation data failed sanity check! ' .
+				'Check that your languages/messages/MessagesEn.php file is intact.' );
+		}
+
 		# Set the preload key
 		$allData['preload'] = $this->buildPreload( $allData );
 
