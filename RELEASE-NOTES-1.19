@@ -85,6 +85,8 @@ production.
 * (bug 23057) Importers no longer can 'edit' or 'create' a fully-protected page by
   importing a new revision into it
 * (bug 30192) Thumbnails of archived files are now deleted
+* Allowing moving the associated talk pages of subpages even if the base page
+  has no subpage.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.

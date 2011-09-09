@@ -164,7 +164,17 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		$oldTalk = $this->oldTitle->getTalkPage();
-		$considerTalk = ( !$this->oldTitle->isTalkPage() && $oldTalk->exists() );
+		$oldTitleSubpages = $this->oldTitle->hasSubpages();
+		$oldTitleTalkSubpages = $this->oldTitle->getTalkPage()->hasSubpages();
+
+		$canMoveSubpage = ( $oldTitleSubpages || $oldTitleTalkSubpages ) &&
+			!count( $this->oldTitle->getUserPermissionsErrors( 'move-subpages', $user ) );
+
+		# We also want to be able to move assoc. subpage talk-pages even if base page
+		# has no associated talk page, so || with $oldTitleTalkSubpages.
+		$considerTalk = !$this->oldTitle->isTalkPage() && 
+			( $oldTalk->exists()
+				|| ( $oldTitleTalkSubpages && $canMoveSubpage ) );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		if ( $wgFixDoubleRedirects ) {
@@ -278,9 +288,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			);
 		}
 
-		if( ($this->oldTitle->hasSubpages() || $this->oldTitle->getTalkPage()->hasSubpages())
-			&& !count( $this->oldTitle->getUserPermissionsErrors( 'move-subpages', $user ) ) )
-		{
+		if( $canMoveSubpage ) {
 			$out->addHTML( "
 				<tr>
 					<td></td>
