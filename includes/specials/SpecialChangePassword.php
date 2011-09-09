@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialChangePassword extends SpecialPage {
+class SpecialChangePassword extends UnlistedSpecialPage {
 	public function __construct() {
 		parent::__construct( 'ChangePassword' );
 	}

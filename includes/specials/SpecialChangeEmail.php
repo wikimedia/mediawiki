@@ -26,7 +26,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialChangeEmail extends SpecialPage {
+class SpecialChangeEmail extends UnlistedSpecialPage {
 	public function __construct() {
 		parent::__construct( 'ChangeEmail' );
 	}
@@ -180,7 +180,7 @@ class SpecialChangeEmail extends SpecialPage {
 			return false;
 		}
 
-		if ( !$user->checkPassword( $pass ) ) {
+		if ( !$user->checkTemporaryPassword( $pass ) && !$user->checkPassword( $pass ) ) {
 			$this->error( wfMsgHtml( 'wrongpassword' ) );
 			return false;
 		}
