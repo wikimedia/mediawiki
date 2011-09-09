@@ -91,6 +91,16 @@ abstract class BagOStuff {
 		return array();
 	}
 
+	/**
+	 * Delete all objects expiring before a certain date. 
+	 *
+	 * @return true on success, false if unimplemented
+	 */
+	public function deleteObjectsExpiringBefore( $date ) {
+		// stub
+		return false;
+	}
+
 	/* *** Emulated functions *** */
 
 	public function add( $key, $value, $exptime = 0 ) {
