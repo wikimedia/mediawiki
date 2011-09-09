@@ -2,7 +2,7 @@
 /**
  * List for revision table items for a single page
  */
-abstract class Rev_List {
+abstract class RevisionListBase {
 	/**
 	 * @var Title
 	 */
@@ -127,15 +127,15 @@ abstract class Rev_List {
 /**
  * Abstract base class for revision items
  */
-abstract class Rev_Item {
-	/** The parent Rev_List */
+abstract class RevisionItemBase {
+	/** The parent RevisionListBase */
 	var $list;
 
 	/** The DB result row */
 	var $row;
 
 	/**
-	 * @param $list Rev_List
+	 * @param $list RevisionListBase
 	 * @param $row DB result row
 	 */
 	public function __construct( $list, $row ) {
@@ -240,7 +240,7 @@ abstract class Rev_Item {
 	abstract public function getHTML();
 }
 
-class RevisionList extends Rev_List {
+class RevisionList extends RevisionListBase {
 	public function getType() {
 		return 'revision';
 	}
@@ -274,7 +274,7 @@ class RevisionList extends Rev_List {
 /**
  * Item class for a live revision table row
  */
-class RevisionItem extends Rev_Item {
+class RevisionItem extends RevisionItemBase {
 	var $revision, $context;
 
 	public function __construct( $list, $row ) {

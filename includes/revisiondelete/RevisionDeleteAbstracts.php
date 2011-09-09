@@ -6,7 +6,7 @@
  * relevant rows, to return RevDel_Item subclasses wrapping them, and
  * to wrap bulk update operations.
  */
-abstract class RevDel_List extends Rev_List {
+abstract class RevDel_List extends RevisionListBase {
 	function __construct( RequestContext $context, Title $title, array $ids ) {
 		parent::__construct( $context, $title );
 		$this->ids = $ids;
@@ -242,7 +242,7 @@ abstract class RevDel_List extends Rev_List {
 /**
  * Abstract base class for deletable items
  */
-abstract class RevDel_Item extends Rev_Item {
+abstract class RevDel_Item extends RevisionItemBase {
 	/**
 	 * Returns true if the item is "current", and the operation to set the given
 	 * bits can't be executed for that reason
