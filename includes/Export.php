@@ -724,7 +724,7 @@ class DumpOutput {
 	 * Returns the name of the file or files which are
 	 * being written to, if there are any.
 	 */
-	function getFilename() {
+	function getFilenames() {
 		return NULL;
 	}
 }
@@ -766,7 +766,7 @@ class DumpFileOutput extends DumpOutput {
 		}
 	}
 
-	function getFilename() {
+	function getFilenames() {
 		return $this->filename;
 	}
 }
@@ -938,8 +938,8 @@ class DumpFilter {
 		$this->sink->closeAndRename( $newname, $open );
 	}
 
-	function getFilename() {
-		return $this->sink->getFilename();
+	function getFilenames() {
+		return $this->sink->getFilenames();
 	}
 
 	/**
@@ -1100,10 +1100,10 @@ class DumpMultiWriter {
 		}
 	}
 
-	function getFilename() {
+	function getFilenames() {
 		$filenames = array();
 		for ( $i = 0; $i < $this->count; $i++ ) {
-			$filenames[] =  $this->sinks[$i]->getFilename();
+			$filenames[] =  $this->sinks[$i]->getFilenames();
 		}
 		return $filenames;
 	}

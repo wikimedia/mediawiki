@@ -246,7 +246,7 @@ class TextPassDumper extends BackupDumper {
 		}
 
 		if ( $this->checkpointFiles ) {
-			$filenameList = (array)$this->egress->getFilename();
+			$filenameList = (array)$this->egress->getFilenames();
 			if ( count( $filenameList ) != count( $this->checkpointFiles ) ) {
 				throw new MWException("One checkpointfile must be specified for each output option, if maxtime is used.\n");
 			}
@@ -282,7 +282,7 @@ class TextPassDumper extends BackupDumper {
 			$offset += strlen( $chunk );
 		} while ( $chunk !== false && !feof( $input ) );
 		if ($this->maxTimeAllowed) {
-			$filenameList = (array)$this->egress->getFilename();
+			$filenameList = (array)$this->egress->getFilenames();
 			// we wrote some stuff after last checkpoint that needs renamed
 			if (file_exists($filenameList[0])) {
 				$newFilenames = array();
@@ -571,7 +571,7 @@ class TextPassDumper extends BackupDumper {
 				$this->thisPage = "";
 				// this could be more than one file if we had more than one output arg
 				$checkpointFilenames = array();
-				$filenameList = (array)$this->egress->getFilename();
+				$filenameList = (array)$this->egress->getFilenames();
 				$newFilenames = array();
 				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
 				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
