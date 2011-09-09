@@ -215,7 +215,7 @@ class DatabaseLogEntry extends LogEntryBase {
 					$this->params = $params;
 					$this->legacy = false;
 				} else {
-					$this->params = explode( "\n", $blob );
+					$this->params = $blob === '' ? array() : explode( "\n", $blob );
 					$this->legacy = true;
 				}
 			}
