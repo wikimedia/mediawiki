@@ -732,6 +732,7 @@ Možda ste već uspešno promenili lozinku ili zatražili novu privremenu.',
 'passwordreset-disabled'       => 'Poništavanje lozinke je onemogućeno na ovom vikiju.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Unesite jedan od delova podataka ispod}}',
 'passwordreset-username'       => 'Korisničko ime:',
+'passwordreset-domain'         => 'Domen:',
 'passwordreset-email'          => 'E-adresa:',
 'passwordreset-emailtitle'     => 'Detalji naloga na vikiju {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Neko, verovatno vi, sa IP adrese $1 je zatražio novu lozinku na vikiju {{SITENAME}} ($4).

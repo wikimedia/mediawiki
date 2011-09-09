@@ -395,7 +395,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an Seiten E-Mails senden',
 'tog-enotifrevealaddr'        => 'Meine E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen',
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
-'tog-oldsig'                  => 'Vorschau der aktuellen Signatur:',
+'tog-oldsig'                  => 'Existierende Signatur:',
 'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
 'tog-externaleditor'          => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
@@ -881,6 +881,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'passwordreset-disabled'       => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Gib eines der folgenden Daten ein}}',
 'passwordreset-username'       => 'Benutzername:',
+'passwordreset-domain'         => 'Domain:',
 'passwordreset-email'          => 'E-Mail-Adresse:',
 'passwordreset-emailtitle'     => 'Benutzerkontoinformationen auf {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
@@ -3326,9 +3327,9 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-orientation-3' => 'Um 180° gedreht',
 'exif-orientation-4' => 'Vertikal gespiegelt',
 'exif-orientation-5' => 'Entgegen dem Uhrzeigersinn um 90° gedreht und vertikal gespiegelt',
-'exif-orientation-6' => 'Um 90° im Uhrzeigersinn gedreht',
+'exif-orientation-6' => 'Um 90° entgegen dem Uhrzeigersinn gedreht',
 'exif-orientation-7' => 'Um 90° im Uhrzeigersinn gedreht und vertikal gespiegelt',
-'exif-orientation-8' => 'Um 90° entgegen dem Uhrzeigersinn gedreht',
+'exif-orientation-8' => 'Um 90° im Uhrzeigersinn gedreht',
 
 'exif-planarconfiguration-1' => 'Grobformat',
 'exif-planarconfiguration-2' => 'Planarformat',

@@ -847,6 +847,7 @@ $2',
 'passwordreset-disabled'       => 'На ова вики е оневозможено задавање на нова лозинка.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Подолу внесете еден податок}}',
 'passwordreset-username'       => 'Корисничко име:',
+'passwordreset-domain'         => 'Домен:',
 'passwordreset-email'          => 'Е-пошта:',
 'passwordreset-emailtitle'     => 'Најавни податоци за {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Некој (веројатно вие, од IP-адресата $1) побара потсетник на вашите
@@ -4033,5 +4034,11 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 со поддршка за пребарување по цели текстови',
 'sqlite-no-fts'  => '$1 без поддршка за пребарување по цели текстови',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|ја премести}} страницата $3 на $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|ја премести}} страницата $3 на $4 без да остави пренасочување',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|ја премести}} страницата $3 на $4 презапишувајќи врз пренасочување',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|ја премести}} страницата $3 на $4 презапишувајќи врз пренасочување без да остави пренасочување',
 
 );

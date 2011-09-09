@@ -871,6 +871,7 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 'passwordreset-disabled'       => 'La réinitialisation des mots de passe a été désactivée sur ce wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Entrez un élément de données ci-dessous}}',
 'passwordreset-username'       => 'Nom d’utilisateur :',
+'passwordreset-domain'         => 'Domaine:',
 'passwordreset-email'          => 'Adresse de courriel :',
 'passwordreset-emailtitle'     => 'Détails du compte sur {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Quelqu’un (probablement vous, depuis l’adresse IP $1) a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :

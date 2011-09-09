@@ -1481,7 +1481,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'userrights-no-interwiki'      => 'Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.',
 'userrights-nodatabase'        => 'Basis data $1 tidak ada atau bukan lokal.',
 'userrights-nologin'           => 'Anda harus [[Special:UserLogin|masuk log]] dengan menggunakan akun pengurus untuk dapat mengubah hak pengguna.',
-'userrights-notallowed'        => 'Anda tidak berhak untuk mengubah hak pengguna',
+'userrights-notallowed'        => 'Akun Anda tidak berhak untuk menambahkan atau membuang hak pengguna.',
 'userrights-changeable-col'    => 'Kelompok yang dapat Anda ubah',
 'userrights-unchangeable-col'  => 'Kelompok yang tidak dapat Anda ubah',
 

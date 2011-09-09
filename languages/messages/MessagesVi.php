@@ -792,6 +792,7 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'passwordreset-disabled'       => 'Chức năng tái tạo mật khẩu đã bị tắt trên wiki này.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Nhập một trong những thông tin được yêu cầu ở dưới}}',
 'passwordreset-username'       => 'Tên người dùng:',
+'passwordreset-domain'         => 'Tên miền:',
 'passwordreset-email'          => 'Địa chỉ thư điện tử:',
 'passwordreset-emailtitle'     => 'Thông tin tài khoản tại {{SITENAM}}',
 'passwordreset-emailtext-ip'   => 'Ai đó (có thể là bạn, từ địa chỉ IP $1) đã yêu cầu một lời
@@ -1452,7 +1453,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'userrights-no-interwiki'      => 'Bạn không có quyền thay đổi quyền hạn của thành viên tại các wiki khác.',
 'userrights-nodatabase'        => 'Cơ sở dữ liệu $1 không tồn tại hoặc nằm ở bên ngoài.',
 'userrights-nologin'           => 'Bạn phải [[Special:UserLogin|đăng nhập]] vào một tài khoản có quyền quản lý để gán quyền cho thành viên.',
-'userrights-notallowed'        => 'Tài khoản của bạn không có quyền gán quyền cho thành viên.',
+'userrights-notallowed'        => 'Tài khoản của bạn không có quyền gán hoặc bãi miễn quyền cho thành viên.',
 'userrights-changeable-col'    => 'Những nhóm bạn có thể thay đổi',
 'userrights-unchangeable-col'  => 'Những nhóm bạn không thể thay đổi',
 
@@ -3871,5 +3872,11 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 với sự hỗ trợ tìm kiếm toàn văn',
 'sqlite-no-fts'  => '$1 không có hỗ trợ tìm kiếm toàn văn',
+
+# New logging system
+'logentry-move-move'                  => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4',
+'logentry-move-move-noredirect'       => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 mà không để lại một trang đổi hướng',
+'logentry-move-move_redir'            => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 qua trang đổi hướng',
+'logentry-move-move_redir-noredirect' => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 qua trang đổi hướng mà không để lại một trang đổi hướng',
 
 );

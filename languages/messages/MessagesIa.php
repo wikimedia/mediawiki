@@ -163,7 +163,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notificar me etiam de modificationes minor de paginas',
 'tog-enotifrevealaddr'        => 'Revelar mi adresse de e-mail in messages de notification',
 'tog-shownumberswatching'     => 'Monstrar le numero de usatores que observa le pagina',
-'tog-oldsig'                  => 'Previsualisation del signatura existente:',
+'tog-oldsig'                  => 'Signatura existente:',
 'tog-fancysig'                => 'Tractar signatura como wikitexto (sin ligamine automatic)',
 'tog-externaleditor'          => 'Usar un editor externe qua standard (pro expertos solmente, necessita configuration special in tu computator. [http://www.mediawiki.org/wiki/Manual:External_editors Plus informationes.])',
 'tog-externaldiff'            => "Usar un programma ''diff'' externe qua standard (pro expertos solmente, necessita configuration special in tu computator. [http://www.mediawiki.org/wiki/Manual:External_editors Plus informationes.])",
@@ -664,6 +664,7 @@ Es possibile que tu ha ja cambiate tu contrasigno o requestate un nove contrasig
 'passwordreset-disabled'       => 'Le reinitialisation de contrasignos ha essite disactivate in iste wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Entra un del elementos de datos hic infra}}',
 'passwordreset-username'       => 'Nomine de usator:',
+'passwordreset-domain'         => 'Dominio:',
 'passwordreset-email'          => 'Adresse de e-mail:',
 'passwordreset-emailtitle'     => 'Detalios del conto in {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Un persona (probabilemente tu, ab le adresse IP $1) requestava un rememoration del

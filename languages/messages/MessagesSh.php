@@ -728,6 +728,7 @@ Možda ste već uspješno promijenili Vašu lozinku ili ste tražili novu privre
 'passwordreset-disabled'       => 'Ponovno postavljanje lozinke je onemogućeno na ovom wikiju.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Unesite jedan dio podataka ispod}}',
 'passwordreset-username'       => 'Korisničko ime:',
+'passwordreset-domain'         => 'Domena:',
 'passwordreset-email'          => 'E-mail adresa:',
 'passwordreset-emailtitle'     => 'Detalji računa na {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Netko (vjerovatno Vi, s IP adrese $1) je zatražio podsjetnik Vaših detalja računa
@@ -1387,7 +1388,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'userrights-lookup-user'       => 'Menadžment korisničkih prava',
 'userrights-user-editname'     => 'Unesi korisničko ime:',
 'editusergroup'                => 'Uredi korisničke grupe',
-'editinguser'                  => "Mijenjate korisnička prava korisnika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Mijenjate korisnička prava {{GENDER:$1|korisnika|korisnice|korisnika}} '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Uredi korisničke grupe',
 'saveusergroups'               => 'Snimi korisničke grupe',
 'userrights-groupsmember'      => 'Član:',
@@ -1400,7 +1401,7 @@ Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
 'userrights-no-interwiki'      => 'Nemate dopuštenja da uređujete korisnička prava na drugim wikijima.',
 'userrights-nodatabase'        => 'Baza podataka $1 ne postoji ili nije lokalna baza.',
 'userrights-nologin'           => 'Morate se [[Special:UserLogin|prijaviti]] sa administratorskim računom da bi ste mogli postavljati korisnička prava.',
-'userrights-notallowed'        => 'Vaš korisnički račun nema privilegije da dodaje prava korisnika.',
+'userrights-notallowed'        => 'Vaš račun Vam ne daje dozvolu da postavljate i uklanjate korisnička prava.',
 'userrights-changeable-col'    => 'Grupe koje možete mijenjati',
 'userrights-unchangeable-col'  => 'Grupe koje ne možete mijenjati',
 
@@ -2520,6 +2521,7 @@ Unesite konkretan razlog ispod (na primjer, navodeći koje konkretne stranice su
 'unblocklink'                     => 'deblokiraj',
 'change-blocklink'                => 'promijeni blokadu',
 'contribslink'                    => 'doprinosi',
+'emaillink'                       => 'pošalji e-mail',
 'autoblocker'                     => 'Automatski ste blokirani jer dijelite IP adresu sa "[[User:$1|$1]]".
 Razlog za blokiranje je korisnika $1 je: \'\'$2\'\'',
 'blocklogpage'                    => 'Registar blokiranja',
@@ -2778,6 +2780,8 @@ Nedostaje privremeni folder.',
 'import-token-mismatch'      => 'Izgubljeni podaci sesije.
 Molimo pokušajte ponovno.',
 'import-invalid-interwiki'   => 'Ne može se uvesti iz navedenog wikija.',
+'import-error-edit'          => 'Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je uređujete.',
+'import-error-create'        => 'Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je napravite.',
 
 # Import log
 'importlogpage'                    => 'Registar uvoza',
@@ -3676,11 +3680,15 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'globalfileusage-filterlocal' => 'Ne prikaži lokalnu upotrebu',
 
 # Special:GlobalTemplateUsage
-'globaltemplateusage'            => 'Globalna upotreba šablona',
-'globaltemplateusage-for'        => 'Globalna upotreba šablona za "$1"',
-'globaltemplateusage-ok'         => 'Traži',
-'globaltemplateusage-text'       => 'Pretraži globalnu upotrebu šablona',
-'globaltemplateusage-no-results' => '[[$1]] se ne koristi na drugim wikijima.',
+'globaltemplateusage'             => 'Globalna upotreba šablona',
+'globaltemplateusage-for'         => 'Globalna upotreba šablona za "$1"',
+'globaltemplateusage-ok'          => 'Traži',
+'globaltemplateusage-text'        => 'Pretraži globalnu upotrebu šablona',
+'globaltemplateusage-no-results'  => '[[$1]] se ne koristi na drugim wikijima.',
+'globaltemplateusage-on-wiki'     => 'Korištenje na $2',
+'globaltemplateusage-of-file'     => 'Sljedeći ostali wikiji koriste ovaj šablon:',
+'globaltemplateusage-more'        => 'Pogledaj [[{{#Special:GlobalUsage}}/$1|još globalne upotrebe]] ovog šablona.',
+'globaltemplateusage-filterlocal' => 'Ne prikazuj lokalnu upotrebu',
 
 # Database error messages
 'dberr-header'      => 'Ovaj wiki ima problem',
@@ -3706,5 +3714,11 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 # SQLite database support
 'sqlite-has-fts' => '$1 sa podrškom pretrage cijelog teksta',
 'sqlite-no-fts'  => '$1 bez podrške pretrage cijelog teksta',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4 bez ostavljanja preusmjerenja',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|je premjestio|je premjestila|je premjestio}} stranicu $3 na $4 preko preusmjerenja',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4 preko preusmjerenja bez ostavljanja preusmjerenja',
 
 );

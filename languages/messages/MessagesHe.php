@@ -11,6 +11,7 @@
  * @author Amire80
  * @author Drorsnir
  * @author Ijon
+ * @author Ofrahod
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
  * @author Rotemliss
@@ -865,6 +866,7 @@ $2',
 'passwordreset-disabled'       => 'איפוסי סיסמה בוטלו באתר ויקי זה.',
 'passwordreset-pretext'        => '{{PLURAL:$1||הקלידו אחד מפריטי המידע למטה}}',
 'passwordreset-username'       => 'שם משתמש:',
+'passwordreset-domain'         => 'תחום:',
 'passwordreset-email'          => 'כתובת דוא"ל:',
 'passwordreset-emailtitle'     => 'פרטי חשבון ב{{grammar:תחילית|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'   => 'מישהו (ככל הנראה אתם, מכתובת ה־IP מספר $1) ביקש תזכורת של פרטי
@@ -1006,13 +1008,13 @@ $2
 * '''אינטרנט אקספלורר:''' לחצו על Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על ''Ctrl+F5''
 * '''Konqueror:''' לחצו על '''העלה מחדש''' (Reload) או הקישו על ''F5''
 * '''אופרה''': נקו את המטמון ב'''כלים''' (Tools) > '''העדפות''' (Preferences)",
-'usercssyoucanpreview'             => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את גליון ה־CSS החדש שלכם לפני השמירה.",
+'usercssyoucanpreview'             => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את גיליון ה־CSS החדש שלכם לפני השמירה.",
 'userjsyoucanpreview'              => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את סקריפט ה־JavaScript החדש שלכם לפני השמירה.",
-'usercsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גליון ה־CSS שלכם.'''
+'usercsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גיליון ה־CSS שלכם.'''
 '''הוא טרם נשמר!'''",
 'userjspreview'                    => "'''זכרו שזו רק בדיקה/תצוגה מקדימה של סקריפט ה־JavaScript שלכם.'''
 '''הוא טרם נשמר!'''",
-'sitecsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גליון ה־CSS הזה.'''
+'sitecsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גיליון ה־CSS הזה.'''
 '''הוא טרם נשמר!'''",
 'sitejspreview'                    => "'''זכרו שזו רק תצוגה מקדימה של קוד ה־JavaScript הזה.'''
 '''הוא טרם נשמר!'''",
@@ -2649,6 +2651,7 @@ $1',
 'unblocklink'                     => 'שחרור חסימה',
 'change-blocklink'                => 'שינוי חסימה',
 'contribslink'                    => 'תרומות',
+'emaillink'                       => 'שלח דואר אלקטרוני',
 'autoblocker'                     => 'נחסמתם באופן אוטומטי משום שאתם חולקים את כתובת ה־IP שלכם עם [[User:$1|$1]]. הנימוק לחסימה: "$2".',
 'blocklogpage'                    => 'יומן חסימות',
 'blocklog-showlog'                => 'משתמש זה נחסם בעבר. יומן החסימות מוצג למטה:',
@@ -2895,6 +2898,8 @@ $1',
 'import-upload'              => 'העלאת קובץ XML',
 'import-token-mismatch'      => 'מידע הכניסה אבד. אנא נסו שוב.',
 'import-invalid-interwiki'   => 'לא ניתן לייבא מאתר הוויקי שציינתם.',
+'import-error-edit'          => 'הדף "$1" אינו מיובא כי אתה אינך רשאי לערוך אותו.',
+'import-error-create'        => 'הדף "$1" אינו מיובא כי אתה אינך רשאי ליצור אותו.',
 
 # Import log
 'importlogpage'                    => 'יומן ייבוא',

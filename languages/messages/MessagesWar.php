@@ -170,7 +170,7 @@ $messages = array(
 'qbpageoptions'  => 'Ini nga pakli',
 'qbpageinfo'     => 'Kontexto',
 'qbmyoptions'    => 'Akon mga pakli',
-'qbspecialpages' => 'Mga ispisyal nga pakli',
+'qbspecialpages' => 'Mga nahiurog nga pakli',
 'faq'            => 'AGG',
 'faqpage'        => 'Project:AGG',
 
@@ -204,6 +204,7 @@ $messages = array(
 'printableversion'  => 'Maipapatik nga bersyon',
 'permalink'         => 'Sumpay nga unob',
 'print'             => 'Igpatik',
+'view'              => 'Kitaa',
 'edit'              => 'Igliwat',
 'create'            => 'Himo-a',
 'editthispage'      => 'Igliwat ini nga pakli',
@@ -211,6 +212,7 @@ $messages = array(
 'delete'            => 'Para-a',
 'deletethispage'    => 'Para-a ini nga pakli',
 'undelete_short'    => 'Igkansela an pagpara {{PLURAL:$1|usa nga pagliwat|$1 nga mga pagliwat}}',
+'viewdeleted_short' => '{{PLURAL:$1|usa nga ginpara nga pagliwat|$1 ka ginpara nga mga pagliwat}}',
 'protect'           => 'Panalipdi',
 'protect_change'    => 'balyo-a',
 'protectthispage'   => 'Panalipdi ini nga pakli',
@@ -226,13 +228,13 @@ $messages = array(
 'talk'              => 'Hiruhimangraw',
 'views'             => 'Mga paglantaw',
 'toolbox'           => 'Garamiton',
-'userpage'          => 'Kitaa in pakli hin nágámit',
+'userpage'          => 'Kitaa in pakli hin gumaramit',
 'projectpage'       => 'Kitaa in pakli hin proyekto',
 'imagepage'         => 'Kitaa in pakli hin fayl',
 'mediawikipage'     => 'Kitaa in pakli hin mensahe',
 'templatepage'      => 'Kitaa in pakli hin plantilya',
 'viewhelppage'      => 'Kitaa in pakli hin bulig',
-'categorypage'      => 'Kitaa in pakli hin kategorya',
+'categorypage'      => 'Kitaa in pakli hin kaarangay',
 'viewtalkpage'      => 'Kitaa in hiruhimangraw',
 'otherlanguages'    => 'Ha iba nga mga yinaknan',
 'redirectedfrom'    => '(Ginredirekta tikang ha $1)',
@@ -310,7 +312,7 @@ $1',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Pakli',
-'nstab-user'      => 'Pakli hin nágámit',
+'nstab-user'      => 'Pakli hin gumaramit',
 'nstab-media'     => 'Pakli hin medya',
 'nstab-special'   => 'Nahiurog nga pakli',
 'nstab-project'   => 'Pakli han proyekto',
@@ -461,7 +463,7 @@ Aada na ito.',
 
 # History pages
 'viewpagelogs'         => 'Kitaa an mga log para hini nga pakli',
-'currentrev'           => 'Giuurhii nga pagliwat',
+'currentrev'           => 'Giurhii nga pagliwat',
 'previousrevision'     => '← Durudaan nga pagliwat',
 'nextrevision'         => 'Burubag-o nga pagliwat →',
 'currentrevisionlink'  => 'Giurhii nga pagliwat',
@@ -475,7 +477,7 @@ Aada na ito.',
 'histlast'             => 'Giurhii',
 
 # Revision deletion
-'rev-deleted-user'            => '(gintanggal an agnay-hit-nagamit)',
+'rev-deleted-user'            => '(gintanggal an agnay-hit-gumaramit)',
 'rev-delundel'                => 'igpakita/igtago',
 'revdelete-show-file-confirm' => 'Sigurado ka nga gusto mo makita an ginpara nga pagliwat han file "<nowiki>$1</nowiki>" tikang $2 ha $3?',
 'revdelete-show-file-submit'  => 'Oo',
@@ -554,6 +556,7 @@ Aada na ito.',
 'localtime'                 => 'Oras nga lokal',
 'timezoneregion-africa'     => 'Aprika',
 'timezoneregion-america'    => 'Amerika',
+'timezoneregion-antarctica' => 'Antarctica',
 'timezoneregion-arctic'     => 'Artika',
 'timezoneregion-asia'       => 'Asya',
 'timezoneregion-atlantic'   => 'Kalawdan Atlantika',
@@ -580,7 +583,7 @@ Dapat diri malabaw ha $1 {{PLURAL:$1|agi|mga agi}} nga kahilaba.',
 
 # Groups
 'group'       => 'Hugpo:',
-'group-user'  => 'Mga nagamit',
+'group-user'  => 'Mga gumaramit',
 'group-bot'   => 'Mga bot',
 'group-sysop' => 'Mga nagdudumara',
 'group-all'   => '(ngatanan)',
@@ -632,6 +635,11 @@ Dapat diri malabaw ha $1 {{PLURAL:$1|agi|mga agi}} nga kahilaba.',
 'fileuploadsummary' => 'Dalikyat nga pulong:',
 'filesource'        => 'Tinikangan:',
 
+'upload-unknown-size' => 'Waray kasabti an kadako',
+
+# HTTP errors
+'http-host-unreachable' => 'Diri nakakaabot ha URL.',
+
 # Special:ListFiles
 'listfiles_date' => 'Pitsa',
 'listfiles_name' => 'Ngaran',
@@ -651,10 +659,17 @@ Dapat diri malabaw ha $1 {{PLURAL:$1|agi|mga agi}} nga kahilaba.',
 'sharedupload'            => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.',
 'sharedupload-desc-there' => 'Ini nga fayl tikang han $1 ngan puyde magamit ha iba nga mga proyekto.
 Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para hin dugang nga kasayuran.',
+'shared-repo-from'        => 'tikang $1',
+
+# File reversion
+'filerevert-comment' => 'Rason:',
 
 # File deletion
+'filedelete'         => 'Igpara $1',
+'filedelete-legend'  => 'Igpara an file',
 'filedelete-comment' => 'Katadungan:',
 'filedelete-submit'  => 'Paraa',
+'filedelete-success' => "Napara an '''$1'''",
 
 # Unused templates
 'unusedtemplateswlh' => 'iba nga mga sumpay',
@@ -678,8 +693,8 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'statistics-views-total'       => 'Ngatanan nga mga panginano',
 'statistics-views-peredit'     => 'Mga panginano kada pagliwat',
 'statistics-users-active'      => 'Nagios nga mga nagamit',
-'statistics-users-active-desc' => 'Mga nagamit nga may-ada iginbuhat ha urhi nga {{PLURAL:$1|ka adlaw|$1 ka mga adlaw}}',
-'statistics-mostpopular'       => 'Gidadamoi nga ginpanginanohan nga mga pakli',
+'statistics-users-active-desc' => 'Mga gumaramit nga may-ada iginbuhat ha urhi nga {{PLURAL:$1|ka adlaw|$1 ka mga adlaw}}',
+'statistics-mostpopular'       => 'Gidamoi nga ginpanginanohan nga mga pakli',
 
 'disambiguations'     => 'Mga pansayod nga mga pakli',
 'disambiguationspage' => 'Template:pansayod',
@@ -697,12 +712,14 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'unusedcategories'   => 'Waray kagamit nga mga kaarangay',
 'unusedimages'       => 'Waray kagamit nga mga fayl',
 'wantedcategories'   => 'Mga nagkikinahanglan hin kaarangay',
+'wantedfiles'        => 'Mga nagkikinahanglan hin file',
 'shortpages'         => 'Haglipot nga mga pakli',
 'longpages'          => 'Haglaba nga mga pakli',
 'listusers'          => 'Lista han mga nagamit',
 'usercreated'        => 'Ginhimo han $1 ha $2',
 'newpages'           => 'Bag-o nga mga pakli',
 'newpages-username'  => 'Agnay-hit-nagamit:',
+'ancientpages'       => 'Mga gidaani nga pakli',
 'move'               => 'Balhina',
 'movethispage'       => 'Balhina ini nga pakli',
 
@@ -735,11 +752,13 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'deletedcontributions-title' => 'Ginpara nga mga amot han nagamit',
 
 # Special:LinkSearch
+'linksearch'      => 'Mga sumpay ha gawas',
 'linksearch-ok'   => 'Pamilnga',
 'linksearch-line' => 'An $1 in nahasumpay tikang ha $2',
 
 # Special:ListUsers
-'listusersfrom' => 'Igpakita an mga nagamit nga nagtitikang ha:',
+'listusersfrom'    => 'Igpakita an mga nagamit nga nagtitikang ha:',
+'listusers-submit' => 'Pakit-a',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista han nagios nga mga nagamit',
@@ -750,11 +769,22 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'newuserlog-create-entry' => 'Akawant han bag-o nga gumaramit',
 
 # Special:ListGroupRights
-'listgrouprights-group'       => 'Hugpo',
-'listgrouprights-rights'      => 'Mga katungod',
-'listgrouprights-helppage'    => 'Help:Mga katungod han hugpo',
-'listgrouprights-addgroup'    => 'Dugnga {{PLURAL:$2|hugpo|mga hugpo}}: $1',
-'listgrouprights-removegroup' => 'Tanggala {{PLURAL:$2|hugpo|mga hugpo}}: $1',
+'listgrouprights-group'           => 'Hugpo',
+'listgrouprights-rights'          => 'Mga katungod',
+'listgrouprights-helppage'        => 'Help:Mga katungod han hugpo',
+'listgrouprights-addgroup'        => 'Dugnga {{PLURAL:$2|hugpo|mga hugpo}}: $1',
+'listgrouprights-removegroup'     => 'Tanggala {{PLURAL:$2|hugpo|mga hugpo}}: $1',
+'listgrouprights-addgroup-all'    => 'Igdugang ngatanan nga mga hugpo',
+'listgrouprights-removegroup-all' => 'Igtanggal ngatanan nga mga hugpo',
+
+# E-mail user
+'emailfrom'    => 'Tikang kan:',
+'emailto'      => 'Para kan:',
+'emailsubject' => 'Himangrawon:',
+'emailmessage' => 'Buot igpasabot:',
+'emailsend'    => 'Igpadara',
+'emailccme'    => 'Igemail ako hini nga kopya hit ak buot igpasabot.',
+'emailsent'    => 'Napadara an e-mail',
 
 # Watchlist
 'watchlist'     => 'Akon barantayan',
@@ -762,6 +792,9 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'watch'         => 'Bantayi',
 'watchthispage' => 'Bantayi ini nga pakli',
 'unwatch'       => 'Pabay-i an pagbantay',
+
+'enotif_newpagetext' => 'Ini in bag-o nga pakli.',
+'enotif_anon_editor' => 'waray magpakilala nga gumaramit $1',
 
 # Delete
 'deletepage'     => 'Igpara an pakli',
@@ -771,13 +804,26 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'deletedtext'    => 'Ginpara an "$1".
 Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'deletedarticle' => 'napara "[[$1]]"',
+'deletecomment'  => 'Katadungan:',
+
+# Rollback
+'rollback'       => 'Mga libot-pabalik nga pagliwat',
+'rollback_short' => 'Libot-pabalik',
+'rollbacklink'   => 'libot-pabalik',
 
 # Protect
+'prot_1movedto2'         => '[[$1]] in ginbalhin ngadto ha [[$2]]',
 'protectcomment'         => 'Katadongan:',
 'protect-default'        => 'Togota an ngatanan nga mga nagamit',
+'protect-level-sysop'    => 'Mga magdudumara la',
+'protect-othertime'      => 'Lain nga oras:',
+'protect-othertime-op'   => 'lain nga oras',
 'protect-otherreason'    => 'Lain/dugang nga katadongan:',
 'protect-otherreason-op' => 'Lain nga katadongan',
 'restriction-type'       => 'Pagtugot:',
+
+# Undelete
+'undelete-show-file-submit' => 'Oo',
 
 # Namespace form on various pages
 'blanknamespace' => '(Panguna)',
@@ -797,13 +843,20 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 # What links here
 'whatlinkshere'           => 'Mga nasumpay dinhi',
 'whatlinkshere-title'     => 'Mga pakli nga nasumpay ngadto ha "$1"',
+'whatlinkshere-page'      => 'Pakli:',
 'nolinkshere'             => "Waray mga pakli nga nasumpay ha '''[[:$1]]'''",
 'whatlinkshere-links'     => '← mga sumpay',
 'whatlinkshere-hidelinks' => '$1 an mga sumpay',
 
 # Block/unblock
+'block'              => 'Pugngi an gumaramit',
+'blockip'            => 'Pugngi an gumaramit',
+'blockip-title'      => 'Pugngi an gumaramit',
+'blockip-legend'     => 'Pugngi an gumaramit',
+'ipbsubmit'          => 'Pugngi ini nga gumaramit',
+'blockipsuccesssub'  => 'Malinamposon an pagpugong',
 'ipblocklist-submit' => 'Bilnga',
-'blocklink'          => 'pugnga',
+'blocklink'          => 'igpugong',
 'contribslink'       => 'mga ámot',
 'blocklogentry'      => 'ginpugngan hi [[$1]] nga natatapos ha takna hin $2 $3',
 'proxyblocksuccess'  => 'Human na.',
@@ -854,7 +907,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'tooltip-t-print'                => 'Maipapatik nga bersyon hini nga pakli',
 'tooltip-t-permalink'            => 'Sumpay nga unob ha hini nga pagliwat han pakli',
 'tooltip-ca-nstab-main'          => 'Kitaa an sulod nga pakli',
-'tooltip-ca-nstab-user'          => 'Kitaa an pakli han nágámit',
+'tooltip-ca-nstab-user'          => 'Kitaa an pakli han gumaramit',
 'tooltip-ca-nstab-media'         => 'Kitaa an pakli hin media',
 'tooltip-ca-nstab-special'       => 'Nahiurog nga pakli ini, diri ka makaliwat han pakli ngahaw',
 'tooltip-ca-nstab-project'       => 'Kitaa an pakli han proyekto',
@@ -874,16 +927,22 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'nextdiff' => 'Barubag-o nga pagliwat',
 
 # Media information
-'file-info-size' => '$1 × $2 nga pixel, kadako han fayl: $3, MIME nga tipo: $4',
-'show-big-image' => 'Bug-os nga resolusyon',
+'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pakli|mga pakli}}',
+'file-info-size'  => '$1 × $2 nga pixel, kadako han fayl: $3, MIME nga tipo: $4',
+'show-big-image'  => 'Bug-os nga resolusyon',
 
 # Special:NewFiles
+'noimages' => 'Waray makikit-an.',
 'ilsubmit' => 'Bilnga',
 
 # Metadata
 'metadata' => 'Metadata',
 
-'exif-dc-date' => '(Mga) petsa',
+'exif-objectcycle-a' => 'Aga la',
+'exif-objectcycle-p' => 'Gab-i la',
+
+'exif-dc-date'   => '(Mga) petsa',
+'exif-dc-rights' => 'Mga katungod',
 
 'exif-rating-rejected' => 'Waray karawta',
 
@@ -895,6 +954,13 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 
 # Delete conflict
 'recreate' => 'Himo-a utro',
+
+# action=purge
+'confirm_purge_button' => 'OK',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-unwatch-button' => 'OK',
 
 # Multipage image navigation
 'imgmultipageprev' => '← naha-una nga pakli',

@@ -711,6 +711,7 @@ $2',
 'passwordreset-disabled'       => '此維基上已禁止了重設密碼。',
 'passwordreset-pretext'        => '{{PLURAL:$1||輸入下列其中一個}}',
 'passwordreset-username'       => '使用者名稱：',
+'passwordreset-domain'         => '域名：',
 'passwordreset-email'          => '電郵地址：',
 'passwordreset-emailtitle'     => '在{{SITENAME}}上的詳細信息',
 'passwordreset-emailtext-ip'   => '有人（可能是你，來自$1這個IP）要求發出一個在{{SITENAME}}（$4）的帳戶信
@@ -3599,8 +3600,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 #在這行上面輸入所有的regex。留下這行一樣的文字</pre>',
 
 # Special:Tags
-'tags'                    => "有效標籤
-<!-- It appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'Change tags in use'. -->",
+'tags'                    => '有效標籤',
 'tag-filter'              => '[[Special:Tags|標籤]]過濾器:',
 'tag-filter-submit'       => '過濾器',
 'tags-title'              => '標籤',
