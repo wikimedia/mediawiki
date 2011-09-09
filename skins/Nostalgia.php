@@ -69,13 +69,12 @@ class NostalgiaTemplate extends LegacyTemplate {
 	 * @return string
 	 */
 	function topLinks() {
-		global $wgOut, $wgUser;
 		$sep = " |\n";
 
 		$s = $this->getSkin()->mainPageLink() . $sep
 		  . Linker::specialLink( 'Recentchanges' );
 
-		if ( $wgOut->isArticle() ) {
+		if ( $this->data['isarticle'] ) {
 			$s .= $sep . '<strong>' . $this->editThisPage() . '</strong>' . $sep . $this->talkLink() .
 					$sep . $this->historyLink();
 		}
@@ -83,25 +82,25 @@ class NostalgiaTemplate extends LegacyTemplate {
 		/* show links to different language variants */
 		$s .= $this->variantLinks();
 		$s .= $this->extensionTabLinks();
-		if ( $wgUser->isAnon() ) {
+		if ( !$this->data['loggedin'] ) {
 			$s .= $sep . Linker::specialLink( 'Userlogin' );
 		} else {
 			/* show user page and user talk links */
-			$s .= $sep . Linker::link( $wgUser->getUserPage(), wfMsgHtml( 'mypage' ) );
-			$s .= $sep . Linker::link( $wgUser->getTalkPage(), wfMsgHtml( 'mytalk' ) );
-			if ( $wgUser->getNewtalk() ) {
+			$s .= $sep . Linker::link( $this->getSkin()->getUser()->getUserPage(), wfMsgHtml( 'mypage' ) );
+			$s .= $sep . Linker::link( $this->getSkin()->getUser()->getTalkPage(), wfMsgHtml( 'mytalk' ) );
+			if ( $this->getSkin()->getUser()->getNewtalk() ) {
 				$s .= ' *';
 			}
 			/* show watchlist link */
 			$s .= $sep . Linker::specialLink( 'Watchlist' );
 			/* show my contributions link */
 			$s .= $sep . Linker::link(
-				SpecialPage::getSafeTitleFor( 'Contributions', $wgUser->getName() ),
+				SpecialPage::getSafeTitleFor( 'Contributions', $this->data['username'] ),
 				wfMsgHtml( 'mycontris' ) );
 			/* show my preferences link */
 			$s .= $sep . Linker::specialLink( 'Preferences' );
 			/* show upload file link */
-			if( UploadBase::isEnabled() && UploadBase::isAllowed( $wgUser ) === true ) {
+			if( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getSkin()->getUser() ) === true ) {
 				$s .= $sep . $this->getUploadLink();
 			}
 

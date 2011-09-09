@@ -26,14 +26,14 @@ class SkinVector extends SkinTemplate {
 	 * @param $out OutputPage object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
-		global $wgLocalStylePath, $wgRequest;
+		global $wgLocalStylePath;
 
 		parent::initPage( $out );
 
 		// Append CSS which includes IE only behavior fixes for hover support -
 		// this is better than including this in a CSS fille since it doesn't
 		// wait for the CSS file to load before fetching the HTC file.
-		$min = $wgRequest->getFuzzyBool( 'debug' ) ? '' : '.min';
+		$min = $this->getRequest()->getFuzzyBool( 'debug' ) ? '' : '.min';
 		$out->addHeadItem( 'csshover',
 			'<!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
 				htmlspecialchars( $wgLocalStylePath ) .
@@ -60,29 +60,19 @@ class SkinVector extends SkinTemplate {
  */
 class VectorTemplate extends BaseTemplate {
 
-	/* Members */
-
-	/**
-	 * @var Skin Cached skin object
-	 */
-	var $skin;
-
 	/* Functions */
 
 	/**
 	 * Outputs the entire contents of the (X)HTML page
 	 */
 	public function execute() {
-		global $wgLang, $wgVectorUseIconWatch;
-
-		$this->skin = $this->data['skin'];
+		global $wgVectorUseIconWatch;
 
 		// Build additional attributes for navigation urls
-		//$nav = $this->skin->buildNavigationUrls();
 		$nav = $this->data['content_navigation'];
 
 		if ( $wgVectorUseIconWatch ) {
-			$mode = $this->skin->getTitle()->userIsWatching() ? 'unwatch' : 'watch';
+			$mode = $this->getSkin()->getTitle()->userIsWatching() ? 'unwatch' : 'watch';
 			if ( isset( $nav['actions'][$mode] ) ) {
 				$nav['views'][$mode] = $nav['actions'][$mode];
 				$nav['views'][$mode]['class'] = rtrim( 'icon ' . $nav['views'][$mode]['class'], ' ' );
@@ -121,7 +111,7 @@ class VectorTemplate extends BaseTemplate {
 		$this->data['variant_urls'] = $nav['variants'];
 
 		// Reverse horizontally rendered navigation elements
-		if ( $wgLang->isRTL() ) {
+		if ( $this->data['rtl'] ) {
 			$this->data['view_urls'] =
 				array_reverse( $this->data['view_urls'] );
 			$this->data['namespace_urls'] =
@@ -236,7 +226,7 @@ class VectorTemplate extends BaseTemplate {
 <?php			foreach ( $footericons as $blockName => $footerIcons ): ?>
 					<li id="footer-<?php echo htmlspecialchars( $blockName ); ?>ico">
 <?php				foreach ( $footerIcons as $icon ): ?>
-						<?php echo $this->skin->makeFooterIcon( $icon ); ?>
+						<?php echo $this->getSkin()->makeFooterIcon( $icon ); ?>
 
 <?php				endforeach; ?>
 					</li>
@@ -336,14 +326,14 @@ class VectorTemplate extends BaseTemplate {
 	 * @param $elements array
 	 */
 	private function renderNavigation( $elements ) {
-		global $wgVectorUseSimpleSearch, $wgVectorShowVariantName, $wgUser, $wgLang;
+		global $wgVectorUseSimpleSearch, $wgVectorShowVariantName;
 
 		// If only one element was given, wrap it in an array, allowing more
 		// flexible arguments
 		if ( !is_array( $elements ) ) {
 			$elements = array( $elements );
 		// If there's a series of elements, reverse them when in RTL mode
-		} elseif ( $wgLang->isRTL() ) {
+		} elseif ( $this->data['rtl'] ) {
 			$elements = array_reverse( $elements );
 		}
 		// Render elements
@@ -435,14 +425,14 @@ class VectorTemplate extends BaseTemplate {
 	<h5<?php $this->html( 'userlangattributes' ) ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
 	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 		<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
-		<?php if ( $wgVectorUseSimpleSearch && $wgUser->getOption( 'vector-simplesearch' ) ): ?>
+		<?php if ( $wgVectorUseSimpleSearch && $this->getSkin()->getUser()->getOption( 'vector-simplesearch' ) ): ?>
 		<div id="simpleSearch">
 			<?php if ( $this->data['rtl'] ): ?>
-			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->skin->getSkinStylePath( 'images/search-rtl.png' ) ) ); ?>
+			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-rtl.png' ) ) ); ?>
 			<?php endif; ?>
 			<?php echo $this->makeSearchInput( array( 'id' => 'searchInput', 'type' => 'text' ) ); ?>
 			<?php if ( !$this->data['rtl'] ): ?>
-			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->skin->getSkinStylePath( 'images/search-ltr.png' ) ) ); ?>
+			<?php echo $this->makeSearchButton( 'image', array( 'id' => 'searchButton', 'src' => $this->getSkin()->getSkinStylePath( 'images/search-ltr.png' ) ) ); ?>
 			<?php endif; ?>
 		</div>
 		<?php else: ?>

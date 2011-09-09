@@ -30,16 +30,15 @@ class SkinSimple extends SkinTemplate {
 		$out->addModuleStyles( 'skins.simple' );
 
 		/* Add some userprefs specific CSS styling */
-		global $wgUser;
 		$rules = array();
 		$underline = "";
 
-		if ( $wgUser->getOption( 'underline' ) < 2 ) {
-			$underline = "text-decoration: " . $wgUser->getOption( 'underline' ) ? 'underline !important' : 'none' . ";";
+		if ( $this->getSkin()->getUser()->getOption( 'underline' ) < 2 ) {
+			$underline = "text-decoration: " . $this->getSkin()->getUser()->getOption( 'underline' ) ? 'underline !important' : 'none' . ";";
 		}
 
 		/* Also inherits from resourceloader */
-		if( !$wgUser->getOption( 'highlightbroken' ) ) {
+		if( !$this->getSkin()->getUser()->getOption( 'highlightbroken' ) ) {
 			$rules[] = "a.new, a.stub { color: inherit; text-decoration: inherit;}";
 			$rules[] = "a.new:after { color: #CC2200; $underline;}";
 			$rules[] = "a.stub:after { $underline; }";
