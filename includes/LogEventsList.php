@@ -976,7 +976,7 @@ class LogPager extends ReverseChronologicalPager {
 		$info = array(
 			'tables'     => $tables,
 			'fields'     => $fields,
-			'conds'      => $conds + $this->mConds,
+			'conds'      => array_merge( $conds, $this->mConds ),
 			'options'    => $options,
 			'join_conds' => $joins,
 		);
