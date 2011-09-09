@@ -155,7 +155,8 @@ class Preprocessor_DOM implements Preprocessor {
 		if ( !$result ) {
 			// Try running the XML through UtfNormal to get rid of invalid characters
 			$xml = UtfNormal::cleanUp( $xml );
-			$result = $dom->loadXML( $xml );
+			// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
+			$result = $dom->loadXML( $xml, 1 << 19 );
 			if ( !$result ) {
 				throw new MWException( __METHOD__.' generated invalid XML' );
 			}
