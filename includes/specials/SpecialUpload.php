@@ -719,6 +719,7 @@ class SpecialUpload extends SpecialPage {
 	 * Construct a warning and a gallery from an array of duplicate files.
 	 */
 	public static function getDupeWarning( $dupes ) {
+		global $wgOut;
 		if( $dupes ) {
 			$msg = '<gallery>';
 			foreach( $dupes as $file ) {
@@ -729,7 +730,7 @@ class SpecialUpload extends SpecialPage {
 			$msg .= '</gallery>';
 			return '<li>' .
 				wfMsgExt( 'file-exists-duplicate', array( 'parse' ), count( $dupes ) ) .
-				$this->getOutput()->parse( $msg ) .
+				$wgOut->parse( $msg ) .
 				"</li>\n";
 		} else {
 			return '';
