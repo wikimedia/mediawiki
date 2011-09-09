@@ -646,7 +646,7 @@ XHTML id names.
 'tog-enotifminoredits'        => 'E-mail me also for minor edits of pages',
 'tog-enotifrevealaddr'        => 'Reveal my e-mail address in notification e-mails',
 'tog-shownumberswatching'     => 'Show the number of watching users',
-'tog-oldsig'                  => 'Preview of existing signature:',
+'tog-oldsig'                  => 'Existing signature:',
 'tog-fancysig'                => 'Treat signature as wikitext (without an automatic link)',
 'tog-externaleditor'          => 'Use external editor by default (for experts only, needs special settings on your computer. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'Use external diff by default (for experts only, needs special settings on your computer. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
