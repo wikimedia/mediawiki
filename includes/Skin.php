@@ -414,7 +414,7 @@ abstract class Skin extends ContextSource {
 			$t = $embed . implode( "{$pop}{$embed}" , $allCats['normal'] ) . $pop;
 
 			$msg = wfMsgExt( 'pagecategories', array( 'parsemag', 'escapenoentities' ), count( $allCats['normal'] ) );
-			$s .= '<div id="mw-normal-catlinks">' .
+			$s .= '<div id="mw-normal-catlinks" class="mw-normal-catlinks">' .
 				Linker::link( Title::newFromText( wfMsgForContent( 'pagecategorieslink' ) ), $msg )
 				. $colon . '<ul>' . $t . '</ul>' . '</div>';
 		}
@@ -422,14 +422,14 @@ abstract class Skin extends ContextSource {
 		# Hidden categories
 		if ( isset( $allCats['hidden'] ) ) {
 			if ( $this->getUser()->getBoolOption( 'showhiddencats' ) ) {
-				$class = 'mw-hidden-cats-user-shown';
+				$class = ' mw-hidden-cats-user-shown';
 			} elseif ( $this->getTitle()->getNamespace() == NS_CATEGORY ) {
-				$class = 'mw-hidden-cats-ns-shown';
+				$class = ' mw-hidden-cats-ns-shown';
 			} else {
-				$class = 'mw-hidden-cats-hidden';
+				$class = ' mw-hidden-cats-hidden';
 			}
 
-			$s .= "<div id=\"mw-hidden-catlinks\" class=\"$class\">" .
+			$s .= "<div id=\"mw-hidden-catlinks\" class=\"mw-hidden-catlinks$class\">" .
 				wfMsgExt( 'hidden-categories', array( 'parsemag', 'escapenoentities' ), count( $allCats['hidden'] ) ) .
 				$colon . '<ul>' . $embed . implode( "{$pop}{$embed}" , $allCats['hidden'] ) . $pop . '</ul>' .
 				'</div>';
