@@ -54,7 +54,7 @@ class StandardTemplate extends LegacyTemplate {
 	 * @return string
 	 */
 	function doAfterContent() {
-		global $wgContLang, $wgLang;
+		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-1' );
 
@@ -78,7 +78,7 @@ class StandardTemplate extends LegacyTemplate {
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
 		$s .= $this->bottomLinks();
-		$s .= "\n<br />" . $wgLang->pipeList( array(
+		$s .= "\n<br />" . $this->getSkin()->getLang()->pipeList( array(
 			$this->getSkin()->mainPageLink(),
 			$this->getSkin()->aboutLink(),
 			Linker::specialLink( 'Recentchanges' ),
@@ -105,12 +105,12 @@ class StandardTemplate extends LegacyTemplate {
 	 * @return string
 	 */
 	function quickBar() {
-		global $wgOut, $wgUser, $wgRequest, $wgContLang;
+		global $wgContLang;
 
 		wfProfileIn( __METHOD__ );
 
-		$action = $wgRequest->getText( 'action' );
-		$wpPreview = $wgRequest->getBool( 'wpPreview' );
+		$action = $this->getSkin()->getRequest()->getText( 'action' );
+		$wpPreview = $this->getSkin()->getRequest()->getBool( 'wpPreview' );
 		$title = $this->getSkin()->getTitle();
 		$tns = $title->getNamespace();
 
@@ -138,13 +138,13 @@ class StandardTemplate extends LegacyTemplate {
 			}
 			if ( $barnumber == 1 ) {
 				// only show watchlist link if logged in
-				if( $wgUser->isLoggedIn() ) {
+				if( $this->data['loggedin'] ) {
 					$s.= Linker::specialLink( 'Watchlist' ) ;
 					$s .= $sep . Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Contributions' ),
 						wfMsg( 'mycontris' ),
 						array(),
-						array( 'target' => $wgUser->getName() )
+						array( 'target' => $this->data['username'] )
 					);
 				}
 			}
@@ -153,8 +153,8 @@ class StandardTemplate extends LegacyTemplate {
 
 		$s .= "\n<hr class='sep' />";
 		$articleExists = $title->getArticleId();
-		if ( $wgOut->isArticle() || $action == 'edit' || $action == 'history' || $wpPreview ) {
-			if( $wgOut->isArticle() ) {
+		if ( $this->data['isarticle'] || $action == 'edit' || $action == 'history' || $wpPreview ) {
+			if( $this->data['isarticle'] ) {
 				$s .= '<strong>' . $this->editThisPage() . '</strong>';
 			} else { # backlink to the article in edit or history mode
 				if( $articleExists ){ # no backlink if no article
@@ -212,7 +212,7 @@ class StandardTemplate extends LegacyTemplate {
 			}
 
 			# "Post a comment" link
-			if( ( $title->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
+			if( ( $title->isTalkPage() || $this->getSkin()->getOutput()->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
 				$s .= '<br />' . Linker::link(
 					$title,
 					wfMsg( 'postcomment' ),
@@ -229,14 +229,14 @@ class StandardTemplate extends LegacyTemplate {
 			article with "Watch this article" checkbox disabled, the article is transparently
 			unwatched. Therefore we do not show the "Watch this page" link in edit mode
 			*/
-			if ( $wgUser->isLoggedIn() && $articleExists ) {
+			if ( $this->data['loggedin'] && $articleExists ) {
 				if( $action != 'edit' && $action != 'submit' ) {
 					$s .= $sep . $this->watchThisPage();
 				}
 				if ( $title->userCan( 'edit' ) )
 					$s .= $sep . $this->moveThisPage();
 			}
-			if ( $wgUser->isAllowed( 'delete' ) && $articleExists ) {
+			if ( $this->getSkin()->getUser()->isAllowed( 'delete' ) && $articleExists ) {
 				$s .= $sep . $this->deleteThisPage() .
 				$sep . $this->protectThisPage();
 			}
@@ -246,7 +246,7 @@ class StandardTemplate extends LegacyTemplate {
 			}
 			$s .= $sep . $this->whatLinksHere();
 
-			if( $wgOut->isArticleRelated() ) {
+			if( $this->getSkin()->getOutput()->isArticleRelated() ) {
 				$s .= $sep . $this->watchPageLinksLink();
 			}
 
@@ -268,7 +268,7 @@ class StandardTemplate extends LegacyTemplate {
 			$s .= "\n<br /><hr class='sep' />";
 		}
 
-		if( UploadBase::isEnabled() && UploadBase::isAllowed( $wgUser ) === true ) {
+		if( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getSkin()->getUser() ) === true ) {
 			$s .= $this->getUploadLink() . $sep;
 		}
 
