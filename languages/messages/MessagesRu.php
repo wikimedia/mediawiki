@@ -800,6 +800,7 @@ $2',
 'passwordreset-disabled'       => 'Функция переустановки пароля отключены на этой вики.',
 'passwordreset-pretext'        => '{{PLURAL:$1||введите один одну из частей данных, показанных ниже.}}',
 'passwordreset-username'       => 'Имя участника:',
+'passwordreset-domain'         => 'Домен:',
 'passwordreset-email'          => 'Адрес электронной почты:',
 'passwordreset-emailtitle'     => 'Сведения об учётной записи {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Кто-то (возможно вы, с IP-адреса $1) запросил напоминание о вашей

@@ -871,6 +871,7 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 'passwordreset-disabled'       => 'Het is in deze wiki niet mogelijk uw wachtwoord opnieuw in te stellen.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Voer één van de onderstaande velden in}}',
 'passwordreset-username'       => 'Gebruiker:',
+'passwordreset-domain'         => 'Domein:',
 'passwordreset-email'          => 'E-mailadres:',
 'passwordreset-emailtitle'     => 'Gebruikersgegevens op {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Iemand, waarschijnlijk u, vanaf het IP-adres $1, heeft uw gebruikersgegevens voor {{SITENAME}} ($4) opgevraagd.

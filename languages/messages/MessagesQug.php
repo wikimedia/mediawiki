@@ -8,10 +8,9 @@
  * @file
  *
  * @author AlimanRuna
+ * @author Ebe123
  * @author Sylvain2803
  */
-
-$fallback = 'qu, es';
 
 $messages = array(
 # Dates

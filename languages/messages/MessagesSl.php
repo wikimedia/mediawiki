@@ -212,7 +212,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pošlji e-pošto tudi za manjše spremembe strani',
 'tog-enotifrevealaddr'        => 'V sporočilih z obvestili o spremembah razkrij moj e-poštni naslov',
 'tog-shownumberswatching'     => 'Prikaži število uporabnikov, ki spremljajo temo',
-'tog-oldsig'                  => 'Predogled obstoječega podpisa:',
+'tog-oldsig'                  => 'Obstoječi podpis:',
 'tog-fancysig'                => 'Obravnavaj podpis kot wikibesedilo (brez samodejne povezave)',
 'tog-externaleditor'          => 'Po privzetem uporabljaj zunanji urejevalnik (samo za strokovnjake; potrebuje posebne nastavitve na vašem računalniku; [http://www.mediawiki.org/wiki/Manual:External_editors več informacij])',
 'tog-externaldiff'            => 'Po privzetem uporabljaj zunanje primerjanje (samo za strokovnjake; potrebuje posebne nastavitve na vašem računalniku; [http://www.mediawiki.org/wiki/Manual:External_editors več informacij])',
@@ -709,6 +709,7 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'passwordreset-disabled'       => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Vnesite enega od dela podatkov spodaj}}',
 'passwordreset-username'       => 'Uporabniško ime:',
+'passwordreset-domain'         => 'Domena:',
 'passwordreset-email'          => 'E-poštni naslov:',
 'passwordreset-emailtitle'     => 'Podrobnosti računa na {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval opomnik vaših
@@ -3174,9 +3175,9 @@ Druga bodo po privzetem skrita.
 'exif-orientation-3' => 'Zasukano za 180°',
 'exif-orientation-4' => 'Navpično zrcaljeno',
 'exif-orientation-5' => 'Zasukano za 90° v levo in navpično zrcaljeno',
-'exif-orientation-6' => 'Zasukano za 90° v desno',
+'exif-orientation-6' => 'Zasukano za 90° v levo',
 'exif-orientation-7' => 'Zasukano za 90° v desno in navpično zrcaljeno',
-'exif-orientation-8' => 'Zasukano za 90° v levo',
+'exif-orientation-8' => 'Zasukano za 90° v desno',
 
 'exif-planarconfiguration-1' => 'grudast format',
 'exif-planarconfiguration-2' => 'ravninski format',

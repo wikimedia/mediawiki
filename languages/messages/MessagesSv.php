@@ -10,6 +10,7 @@
  * @author Ainali
  * @author Boivie
  * @author Dafer45
+ * @author Diupwijk
  * @author EPO
  * @author Fluff
  * @author GameOn
@@ -337,7 +338,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Skicka mig e-post även för mindre ändringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-postmeddelanden om ändringar som skickas till andra',
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
-'tog-oldsig'                  => 'Förhandsvisning av nuvarande signatur:',
+'tog-oldsig'                  => 'Nuvarande signatur:',
 'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
 'tog-externaleditor'          => 'Använd extern editor som standard (endast för avancerade användare, speciella inställningar på din dator krävs. [http://www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
 'tog-externaldiff'            => 'Använd externt diff-verktyg som förval (endast för avancerade användare, kräver speciella inställningar i din dator.
@@ -1464,7 +1465,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'userrights-lookup-user'       => 'Hantera användargrupper',
 'userrights-user-editname'     => 'Skriv in ett användarnamn:',
 'editusergroup'                => 'Ändra användargrupper',
-'editinguser'                  => "Ändrar rättigheter för användaren '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Ändrar rättigheter för användaren '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Ändra användargrupper',
 'saveusergroups'               => 'Spara användargrupper',
 'userrights-groupsmember'      => 'Medlem i:',
@@ -1477,7 +1478,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'userrights-no-interwiki'      => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
 'userrights-nodatabase'        => 'Databasen $1 finns inte eller så är den inte lokal.',
 'userrights-nologin'           => 'Du måste [[Special:UserLogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
-'userrights-notallowed'        => 'Ditt konto har inte behörighet till att ändra användarrättigheter.',
+'userrights-notallowed'        => 'Ditt konto har inte behörighet till att lägga till eller ta bort användarrättigheter.',
 'userrights-changeable-col'    => 'Grupper du kan ändra',
 'userrights-unchangeable-col'  => 'Grupper du inte kan ändra',
 
@@ -2588,6 +2589,7 @@ Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
 'unblocklink'                     => 'ta bort blockering',
 'change-blocklink'                => 'ändra blockering',
 'contribslink'                    => 'bidrag',
+'emaillink'                       => 'skicka e-post',
 'autoblocker'                     => 'Automatisk blockerad eftersom din IP-adress nyligen använts av "[[User:$1|$1]]".
 Motiveringen som angavs för blockeringen av $1 var: "$2".',
 'blocklogpage'                    => 'Blockeringslogg',
@@ -2836,6 +2838,8 @@ Spara den på din dator och ladda upp den här.',
 'import-upload'              => 'Ladda upp XML-data',
 'import-token-mismatch'      => 'Sessionsdata har förlorats. Var god pröva igen.',
 'import-invalid-interwiki'   => 'Kan inte importera från den angivna wikin.',
+'import-error-edit'          => 'Sidan "$1" importeras inte eftersom du inte har tillåtelse att redigera den.',
+'import-error-create'        => 'Sidan "$1" importerades inte eftersom du inte har tillåtelse att skapa den.',
 
 # Import log
 'importlogpage'                    => 'Importlogg',
@@ -3279,9 +3283,9 @@ Andra kommer att gömmas som standard
 'exif-orientation-3' => 'Roterad 180°',
 'exif-orientation-4' => 'Spegelvänd vertikalt',
 'exif-orientation-5' => 'Roterad 90° moturs och spegelvänd vertikalt',
-'exif-orientation-6' => 'Roterad 90° medurs',
+'exif-orientation-6' => 'Roterad 90° moturs',
 'exif-orientation-7' => 'Roterad 90° medurs och spegelvänd vertikalt',
-'exif-orientation-8' => 'Roterad 90° moturs',
+'exif-orientation-8' => 'Roterad 90° medurs',
 
 'exif-planarconfiguration-1' => 'chunkformat',
 'exif-planarconfiguration-2' => 'planärformat',

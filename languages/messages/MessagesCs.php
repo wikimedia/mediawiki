@@ -857,6 +857,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'passwordreset-disabled'       => 'Znovunastavení hesla je na této wiki zakázáno.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',
 'passwordreset-username'       => 'Uživatelské jméno:',
+'passwordreset-domain'         => 'Doména:',
 'passwordreset-email'          => 'E-mailová adresa:',
 'passwordreset-emailtitle'     => 'Informace k účtu na {{grammar:6sg|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'   => 'Někdo (patrně vy, z IP adresy $1) zažádal o připomenutí informací k vašemu

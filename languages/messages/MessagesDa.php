@@ -212,7 +212,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Send mig også en e-mail ved mindre ændringer af overvågede sider',
 'tog-enotifrevealaddr'        => 'Vis min e-mail-adresse i mails med besked om ændringer',
 'tog-shownumberswatching'     => 'Vis antal brugere, der overvåger',
-'tog-oldsig'                  => 'Forhåndsvisning af nuværende signatur',
+'tog-oldsig'                  => 'Nuværende signatur:',
 'tog-fancysig'                => 'Behandl signatur som wikitekst uden automatisk henvisning',
 'tog-externaleditor'          => 'Brug ekstern editor automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [http://www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
 'tog-externaldiff'            => 'Brug ekstern forskelsvisning automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [http://www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
@@ -695,6 +695,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'passwordreset-disabled'       => 'Nulstilling af kodeord er slået fra på denne wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Indtast en af de nedenstående oplysninger}}',
 'passwordreset-username'       => 'Brugernavn:',
+'passwordreset-domain'         => 'Domæne:',
 'passwordreset-email'          => 'E-mail adresse:',
 'passwordreset-emailtitle'     => 'Kontooplysninger på {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
@@ -3087,9 +3088,9 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-orientation-3' => 'Drejet 180°',
 'exif-orientation-4' => 'Vertikalt spejlet',
 'exif-orientation-5' => 'Drejet 90° mod uret og spejlet vertikalt',
-'exif-orientation-6' => 'Drejet 90° med uret',
+'exif-orientation-6' => 'Drejet 90° mod uret',
 'exif-orientation-7' => 'Drejet 90° med uret og spejlet vertikalt',
-'exif-orientation-8' => 'Drejet 90° mod uret',
+'exif-orientation-8' => 'Drejet 90° med uret',
 
 'exif-planarconfiguration-1' => 'Grovformat',
 'exif-planarconfiguration-2' => 'Planformat',

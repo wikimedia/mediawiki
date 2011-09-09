@@ -637,7 +637,7 @@ $2',
 'nocookiesfornew'            => 'මූලාශ්‍රය තහවුරු කරගත නොහැකි වුනු බැවින් පරිශීලක ගිණුම නොතැනිනි.
 කුකීස් සක්‍රීය බව තහවුරු කරගෙන, මෙම පිටුව ප්‍රතිපූරණය කර නැවත උත්සාහ කරන්න.',
 'noname'                     => 'වලංගු පරිශීලක-නාමයක් සඳහන් කිරීමට ඔබ අසමත් වී ඇත.',
-'loginsuccesstitle'          => 'ප්‍රවිසීම සාර්ථකයි',
+'loginsuccesstitle'          => 'පිවිසුම සාර්ථකයි!',
 'loginsuccess'               => "'''ඔබ දැන්, \"\$1\" ලෙස, {{SITENAME}} වෙත ප්‍රවිෂ්ට විමට සමත් වී ඇත.'''",
 'nosuchuser'                 => '"$1" යන නමැති පරිශීලකයෙකු නොමැත.
 පරිශීලක නාමයන්හි මහාප්‍රාණ ආදිය සැලකේ (case sensitive).
@@ -2157,8 +2157,9 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'watchlist-options'    => 'මුර-ලැයිස්තු විකල්ප',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'මුර කරමින්...',
-'unwatching' => 'මුර නොකරමින්...',
+'watching'       => 'මුර කරමින්...',
+'unwatching'     => 'මුර නොකරමින්...',
+'watcherrortext' => 'මුර-ලැයිස්තු සැකසුම් වෙනස් කිරීමේදී "$1"හට අපහසුතාවක් හට ගැණිනි.',
 
 'enotif_mailer'                => '{{SITENAME}}හි නිවේදන යවන්නා',
 'enotif_reset'                 => 'පිවිසුනු සියළු පිටු සලකුණු කරන්න',
@@ -2220,7 +2221,7 @@ Feedback and further assistance:
 මෑත මකාදැමීම් පිළිබඳ වාර්තාවක් සඳහා $2 බලන්න.',
 'deletedarticle'         => '"[[$1]]" මකා දමන ලදි',
 'suppressedarticle'      => '"[[$1]]" යටපත් කෙරිණි',
-'dellogpage'             => 'මකා-දැමීම පිලිබඳ සටහන',
+'dellogpage'             => 'මකාදැමුම් ලඝු සටහන',
 'dellogpagetext'         => 'පහත දැක්වෙන්නේ ඉතා මෑතදී සිදු කර ඇති මකාදැමීම් ලැයිස්තුවකි.',
 'deletionlog'            => 'මකා-දැමුම් ලඝු-සටහන',
 'reverted'               => 'පෙර සංශෝධනය වෙත ප්‍රතිවර්තනය කෙරිණි',
@@ -2293,6 +2294,7 @@ $2 ගේ අවසන් අනුවාදය වෙතට යළි වෙන
 'protect-level-sysop'         => 'පරිපාලකවරුන්ට පමණයි',
 'protect-summary-cascade'     => 'තීරු දර්ශනය (cascading)',
 'protect-expiring'            => 'ඉකුත් වේ  $1 (යූටීසි)',
+'protect-expiring-local'      => 'කල් ඉකුත්වීම $1',
 'protect-expiry-indefinite'   => 'අනිශ්චිත',
 'protect-cascade'             => 'මෙම පිටුවෙහි ඇතුළත් කර ඇති පිටු ආරක්ෂණය කරන්න (තීරු දර්ශන ආරක්ෂණය)',
 'protect-cantedit'            => 'ඔබ හට එය සංස්කරණය කිරීමට අවසර නොමැති බැවින්, ඔබ හට මෙම පිටුවෙහි ආරක්ෂණ මට්ටම වෙනස් කල නොහැක.',
@@ -2412,7 +2414,7 @@ $1',
 'sp-contributions-search'              => 'දායකත්ව පිළිබඳ ගවේෂණය කරන්න',
 'sp-contributions-username'            => 'පරිශීලක නාමය හෝ IP ලිපිනය:',
 'sp-contributions-toponly'             => 'නවතම අනුවාදයන් වන සංස්කරණයන් පමණක් පෙන්වයි',
-'sp-contributions-submit'              => 'ගවේෂණය කරන්න',
+'sp-contributions-submit'              => 'සොයන්න',
 
 # What links here
 'whatlinkshere'            => 'සබැඳි පිටු',
@@ -2513,6 +2515,7 @@ $1',
 'unblocklink'                     => 'වාරණයෙන් ඉවත්වන්න',
 'change-blocklink'                => 'වාරකය වෙනස් කරන්න',
 'contribslink'                    => 'දායකත්ව',
+'emaillink'                       => 'ඊ-තැපෑලක් යවන්න',
 'autoblocker'                     => 'ඔබගේ අන්තර්ජාල ලිපිනය "[[User:$1|$1]]" විසින් මෑතකදී භාවිතා කර ඇති බැවින් ඔබ ස්වයංක්‍රීය-වාරණයකට ලක් කර ඇත.
 $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 'blocklogpage'                    => 'වාරණ සටහන',

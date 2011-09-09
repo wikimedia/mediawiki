@@ -1209,7 +1209,7 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'userrights-no-interwiki'      => 'Pian kada baisi ijin hagan mambabak hak pamuruk di wiki lain.',
 'userrights-nodatabase'        => 'Basis data $1 kadada atawa lainan lukal.',
 'userrights-nologin'           => 'Pian musti [[Special:UserLogin|lbabuat log]] awan sabuah akun pambakal hagan mambari hak pamuruk.',
-'userrights-notallowed'        => 'Akun Pian kada baisi ijin hagan mambari hak pamuruk.',
+'userrights-notallowed'        => 'Akun Pian kada baisi ijin hagan manambahi atawa malapas hak pamuruk.',
 'userrights-changeable-col'    => 'Gagalambang nang Pian kawa ubah',
 'userrights-unchangeable-col'  => 'Gagalambang nang Pian kada kawa ubah',
 
@@ -2994,6 +2994,10 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-exposureprogram-1' => 'Manual',
 'exif-exposureprogram-2' => 'Nurmal parugram',
 'exif-exposureprogram-3' => 'Priuritas singkaian',
+'exif-exposureprogram-4' => 'Priuritas panungkup',
+'exif-exposureprogram-5' => 'Parugram kariatip (hiring ka kadalaman lapangan)',
+'exif-exposureprogram-6' => 'Parugram lakuan (hiring ka kahancapan singkaian)',
+'exif-exposureprogram-7' => 'Muda putrait (gasan putu parak awan latar-balakang kaluar matan pukus)',
 
 'exif-lightsource-4'  => 'Kilat',
 'exif-lightsource-9'  => 'Cuaca baik',
@@ -3033,6 +3037,10 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-gaincontrol-3' => 'Turunakan sahikit',
 
 'exif-dc-rights' => 'Hak',
+
+'exif-iimcategory-wea' => 'Cuaca',
+
+'exif-urgency-normal' => 'Nurmal ($1)',
 
 # External editor support
 'edit-externally'      => 'Babak barakas ini puruk sabuah aplikasi luar',

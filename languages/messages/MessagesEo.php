@@ -817,6 +817,7 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'passwordreset-disabled'       => 'Pasvortaj restarigoj estis malŝaltitaj en ĉi tiu vikio.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Enigi unu el la jenaj datenoj}}',
 'passwordreset-username'       => 'Salutnomo:',
+'passwordreset-domain'         => 'Domajno:',
 'passwordreset-email'          => 'Retpoŝtadreso:',
 'passwordreset-emailtitle'     => 'Kontaj detaloj en {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Iu (verŝajne vi, de IP-adreso $1) petis rememoraĵo de viaj

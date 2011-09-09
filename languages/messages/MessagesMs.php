@@ -699,6 +699,7 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'passwordreset-disabled'       => 'Ciri set semula kata laluan telah dimatikan di wiki ini.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Isikan data di bawah}}',
 'passwordreset-username'       => 'Nama pengguna:',
+'passwordreset-domain'         => 'Domain:',
 'passwordreset-email'          => 'Alamat e-mel:',
 'passwordreset-emailtitle'     => 'Butiran akaun di {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Ada orang (mungkin anda, dari alamat IP $1) yang memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4).  {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:

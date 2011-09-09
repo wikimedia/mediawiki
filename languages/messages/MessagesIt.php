@@ -21,6 +21,7 @@
  * @author Cruccone
  * @author Cryptex
  * @author Dakrismeno
+ * @author Danmaz74
  * @author Darth Kule
  * @author F. Cosoleto
  * @author Felis
@@ -759,6 +760,7 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'passwordreset-disabled'       => 'La reimpostazione delle password è stata disabilitata su questa wiki',
 'passwordreset-pretext'        => '{{PLURAL:$1||Immetti una delle porzioni di dati qui sotto}}',
 'passwordreset-username'       => 'Nome utente:',
+'passwordreset-domain'         => 'Dominio:',
 'passwordreset-email'          => 'Indirizzo e-mail:',
 'passwordreset-emailtitle'     => 'Dettagli account su {{SITENAME}}',
 'passwordreset-emailtext-ip'   => "Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo e-mail sono:
@@ -1377,7 +1379,7 @@ L'operazione non può essere annullata.",
 'userrights-lookup-user'       => 'Gestione dei gruppi utente',
 'userrights-user-editname'     => 'Inserire il nome utente:',
 'editusergroup'                => 'Modifica gruppi utente',
-'editinguser'                  => "Modifica dei diritti assegnati all'utente '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Modifica diritti utente dell'utente '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Modifica gruppi utente',
 'saveusergroups'               => 'Salva gruppi utente',
 'userrights-groupsmember'      => 'Appartiene ai gruppi:',
@@ -1390,7 +1392,7 @@ L'operazione non può essere annullata.",
 'userrights-no-interwiki'      => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase'        => 'Il database $1 non esiste o non è un database locale.',
 'userrights-nologin'           => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
-'userrights-notallowed'        => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
+'userrights-notallowed'        => "Il tuo account non dispone dell'autorizzazione per aggiungere o rimuovere i permessi utente.",
 'userrights-changeable-col'    => 'Gruppi modificabili',
 'userrights-unchangeable-col'  => 'Gruppi non modificabili',
 

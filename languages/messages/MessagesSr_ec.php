@@ -919,6 +919,7 @@ $2',
 'passwordreset-disabled'       => 'Поништавање лозинке је онемогућено на овом викију.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Унесите један од делова података испод}}',
 'passwordreset-username'       => 'Корисничко име:',
+'passwordreset-domain'         => 'Домен:',
 'passwordreset-email'          => 'Е-адреса:',
 'passwordreset-emailtitle'     => 'Детаљи налога на викију {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Неко, вероватно ви, са ИП адресе $1 је затражио нову лозинку на викију {{SITENAME}} ($4).

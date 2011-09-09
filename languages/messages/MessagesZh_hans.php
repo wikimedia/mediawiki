@@ -744,6 +744,7 @@ $2',
 'passwordreset-disabled'       => '此wiki已经禁用密码重置。',
 'passwordreset-pretext'        => '{{PLURAL:$1||输入下面的数据块之一}}',
 'passwordreset-username'       => '用户名：',
+'passwordreset-domain'         => '域：',
 'passwordreset-email'          => '电子邮件地址：',
 'passwordreset-emailtitle'     => '在 {{SITENAME}} 的帐户详细信息',
 'passwordreset-emailtext-ip'   => '有人通过IP地址 $1 （也许是你）要求获取 {{SITENAME}} ($4)上相关账户的密码提示。{{PLURAL:$3|以下账户|此账户}}与该email地址关联：
@@ -3592,8 +3593,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 #在此行上方输入所有的正则表达式。请保留此行文本</pre>',
 
 # Special:Tags
-'tags'                    => "有效标签
-<!-- It appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'Change tags in use'. -->",
+'tags'                    => '有效标签',
 'tag-filter'              => '[[Special:Tags|标签]]过滤器：',
 'tag-filter-submit'       => '过滤器',
 'tags-title'              => '标签',

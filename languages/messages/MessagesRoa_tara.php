@@ -555,6 +555,7 @@ Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea 
 'passwordreset-disabled'       => "'U reset de le passuord ha state desabbilitate sus a sta uicchi.",
 'passwordreset-pretext'        => '{{PLURAL:$1||Mitte une de le stuèzze de le date aqquà sotte}}',
 'passwordreset-username'       => 'Nome utende:',
+'passwordreset-domain'         => 'Dominie:',
 'passwordreset-email'          => 'Indirizze e-mail:',
 'passwordreset-emailtitle'     => "Dettaglie d'u cunde utende sus a {{SITENAME}}",
 'passwordreset-emailtext-ip'   => "Quacchedune (pò essere tu, da 'u 'ndirizze IP $1) ha richieste 'na mail pe arrecurdarse de le dettaglie d'u cunde sue pe {{SITENAME}} ($4). {{PLURAL:$3|'U cunde utende seguende jè|le cunde utinde seguende sonde}} associate cu st'indirizze e-mail:
