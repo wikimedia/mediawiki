@@ -15,7 +15,9 @@ class BitmapHandler extends ImageHandler {
 
 	/**
 	 * @param $image File
-	 * @param  $params
+	 * @param $params array Transform parameters. Entries with the keys 'width'
+	 * and 'height' are the respective screen width and height, while the keys
+	 * 'physicalWidth' and 'physicalHeight' indicate the thumbnail dimensions.
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {
@@ -25,37 +27,35 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		$mimeType = $image->getMimeType();
+		# Obtain the source, pre-rotation dimensions
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
 
-		$swapDimensions = false;
+		# Don't make an image bigger than the source
+		if ( $params['physicalWidth'] >= $srcWidth ) {
+			$params['physicalWidth'] = $srcWidth;
+			$params['physicalHeight'] = $srcHeight;
+
+			# Skip scaling limit checks if no scaling is required
+			# due to requested size being bigger than source.
+			if ( !$image->mustRender() ) {
+				return true;
+			}
+		}
+
+
 		if ( self::canRotate() ) {
 			$rotation = $this->getRotation( $image );
 			if ( $rotation == 90 || $rotation == 270 ) {
 				wfDebug( __METHOD__ . ": Swapping width and height because the file will be rotated $rotation degrees\n" );
 
-				$swapDimensions = true;
 				list( $params['width'], $params['height'] ) =
-					array(  $params['width'], $params['height'] );
+					array(  $params['height'], $params['width'] );
 				list( $params['physicalWidth'], $params['physicalHeight'] ) =
-					array( $params['physicalWidth'], $params['physicalHeight'] );
+					array( $params['physicalHeight'], $params['physicalWidth'] );
 			}
 		}
 
-		# Don't make an image bigger than the source
-		if ( $params['physicalWidth'] >= $srcWidth ) {
-			if ( $swapDimensions ) {
-				$params['physicalWidth'] = $srcHeight;
-				$params['physicalHeight'] = $srcWidth;
-			} else {
-				$params['physicalWidth'] = $srcWidth;
-				$params['physicalHeight'] = $srcHeight;
-			}
-		}
-
-		# Skip scaling limit checks if no scaling is required
-		if ( !$image->mustRender() )
-			return true;
 
 		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
