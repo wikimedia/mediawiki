@@ -18,37 +18,32 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 	 * Entry point
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgRequest;
-
-		$target = $par ? $par : $wgRequest->getVal( 'target' );
+		$target = $par ? $par : $this->getRequest()->getVal( 'target' );
 		$this->target = Title::newFromText( $target );
 
 		$this->setHeaders();
 
 		$this->showForm();
 
-		if ( is_null( $this->target ) )	{
-			$wgOut->setPageTitle( wfMsg( 'globaltemplateusage' ) );
-			return;
+		if ( $this->target !== null ) {
+			$this->getOutput()->setPageTitle( wfMsg( 'globaltemplateusage-for', $this->target->getPrefixedText() ) );
+
+			$this->showResult();
 		}
-
-		$wgOut->setPageTitle( wfMsg( 'globaltemplateusage-for', $this->target->getPrefixedText() ) );
-
-		$this->showResult();
 	}
 
 	/**
 	 * Shows the search form
 	 */
 	private function showForm() {
-		global $wgScript, $wgOut, $wgRequest;
+		global $wgScript;
 
 		/* Build form */
 		$html = Xml::openElement( 'form', array( 'action' => $wgScript ) ) . "\n";
 		// Name of SpecialPage
-		$html .= Html::hidden( 'title', $this->getTitle( )->getPrefixedText( ) ) . "\n";
+		$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		// Limit
-		$html .= Html::hidden( 'limit', $wgRequest->getInt( 'limit', 50 ) );
+		$html .= Html::hidden( 'limit', $this->getRequest()->getInt( 'limit', 50 ) );
 		// Input box with target prefilled if available
 		$formContent = "\t" . Xml::input( 'target', 40, is_null( $this->target ) ? ''
 					: $this->target->getPrefixedText( ) )
@@ -61,34 +56,32 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 		// Wrap the entire form in a nice fieldset
 		$html .= Xml::fieldSet( wfMsg( 'globaltemplateusage-text' ), $formContent ) . "\n</form>";
 
-		$wgOut->addHtml( $html );
+		$this->getOutput()->addHtml( $html );
 	}
 
 	/**
-	 * Creates as queryer and executes it based on $wgRequest
+	 * Creates as queryer and executes it based on the WebRequest object
 	 */
 	private function showResult() {
-		global $wgRequest;
-
+		$request = $this->getRequest();
 		$query = new GlobalUsageQuery( $this->target );
 
-		// Extract params from $wgRequest
-		if ( $wgRequest->getText( 'from' ) ) {
-			$query->setOffset( $wgRequest->getText( 'from' ) );
-		} elseif ( $wgRequest->getText( 'to' ) ) {
-			$query->setOffset( $wgRequest->getText( 'to' ), true );
+		// Extract params from the WebRequest object
+		if ( $request->getText( 'from' ) ) {
+			$query->setOffset( $request->getText( 'from' ) );
+		} elseif ( $request->getText( 'to' ) ) {
+			$query->setOffset( $request->getText( 'to' ), true );
 		}
-		$query->setLimit( $wgRequest->getInt( 'limit', 50 ) );
+		$query->setLimit( $request->getInt( 'limit', 50 ) );
 
 		// Perform query
 		$query->searchTemplate();
 
-		// Show result
-		global $wgOut;
+		$out = $this->getOutput();
 
 		// Don't show form element if there is no data
 		if ( $query->count() == 0 ) {
-			$wgOut->addWikiMsg( 'globaltemplateusage-no-results', $this->target->getPrefixedText( ) );
+			$out->addWikiMsg( 'globaltemplateusage-no-results', $this->target->getPrefixedText( ) );
 			return;
 		}
 
@@ -96,24 +89,24 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 		$targetName = $this->target->getPrefixedText( );
 
 		// Top navbar
-		$wgOut->addHtml( $navbar );
+		$out->addHtml( $navbar );
 
-		$wgOut->addHtml( '<div id="mw-globaltemplateusage-result">' );
+		$out->addHtml( '<div id="mw-globaltemplateusage-result">' );
 		foreach ( $query->getSingleResult() as $wiki => $result ) {
-			$wgOut->addHtml(
+			$out->addHtml(
 					'<h2>' . wfMsgExt(
 						'globaltemplateusage-on-wiki', 'parseinline',
 						$targetName, WikiMap::getWikiName( $wiki ) )
 					. "</h2><ul>\n" );
 			foreach ( $result as $item ) {
-				$wgOut->addHtml( "\t<li>" . self::formatItem( $item ) . "</li>\n" );
+				$out->addHtml( "\t<li>" . self::formatItem( $item ) . "</li>\n" );
 			}
-			$wgOut->addHtml( "</ul>\n" );
+			$out->addHtml( "</ul>\n" );
 		}
-		$wgOut->addHtml( '</div>' );
+		$out->addHtml( '</div>' );
 
 		// Bottom navbar
-		$wgOut->addHtml( $navbar );
+		$out->addHtml( $navbar );
 	}
 
 	/**
@@ -139,13 +132,10 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 	 * @return string Navbar HTML
 	 */
 	protected function getNavBar( $query ) {
-		global $wgLang, $wgUser;
-
-		$skin = $wgUser->getSkin();
-
+		$lang = $this->getLang();
 		$target = $this->target->getPrefixedText();
 		$limit = $query->getLimit();
-		$fmtLimit = $wgLang->formatNum( $limit );
+		$fmtLimit = $lang->formatNum( $limit );
 
 		# Find out which strings are for the prev and which for the next links
 		$offset = $query->getOffsetString();
@@ -172,7 +162,7 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 		if ( $to ) {
 			$attr = array( 'title' => $pTitle, 'class' => 'mw-prevlink' );
 			$q = array( 'limit' => $limit, 'to' => $to, 'target' => $target );
-			$plink = $skin->link( $title, $prev, $attr, $q );
+			$plink = Linker::link( $title, $prev, $attr, $q );
 		} else {
 			$plink = $prev;
 		}
@@ -181,7 +171,7 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 		if ( $from ) {
 			$attr = array( 'title' => $nTitle, 'class' => 'mw-nextlink' );
 			$q = array( 'limit' => $limit, 'from' => $from, 'target' => $target );
-			$nlink = $skin->link( $title, $next, $attr, $q );
+			$nlink = Linker::link( $title, $next, $attr, $q );
 		} else {
 			$nlink = $next;
 		}
@@ -189,15 +179,15 @@ class SpecialGlobalTemplateUsage extends SpecialPage {
 		# Make links to set number of items per page
 		$numLinks = array();
 		foreach ( array( 20, 50, 100, 250, 500 ) as $num ) {
-			$fmtLimit = $wgLang->formatNum( $num );
+			$fmtLimit = $lang->formatNum( $num );
 
 			$q = array( 'offset' => $offset, 'limit' => $num, 'target' => $target );
 			$lTitle = wfMsgExt( 'shown-title', array( 'parsemag', 'escape' ), $num );
 			$attr = array( 'title' => $lTitle, 'class' => 'mw-numlink' );
 
-			$numLinks[] = $skin->link( $title, $fmtLimit, $attr, $q );
+			$numLinks[] = Linker::link( $title, $fmtLimit, $attr, $q );
 		}
-		$nums = $wgLang->pipeList( $numLinks );
+		$nums = $lang->pipeList( $numLinks );
 
 		return wfMsgHtml( 'viewprevnext', $plink, $nlink, $nums );
 	}
