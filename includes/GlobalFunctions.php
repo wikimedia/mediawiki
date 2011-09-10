@@ -2918,35 +2918,11 @@ function wfRelativePath( $path, $from ) {
 /**
  * Do any deferred updates and clear the list
  *
- * @param $commit String: set to 'commit' to commit after every update to
- *                prevent lock contention
+ * @deprecated since 1.19
+ * @see DeferredUpdates::doUpdate()
  */
 function wfDoUpdates( $commit = '' ) {
-	global $wgDeferredUpdateList;
-
-	wfProfileIn( __METHOD__ );
-
-	// No need to get master connections in case of empty updates array
-	if ( !count( $wgDeferredUpdateList ) ) {
-		wfProfileOut( __METHOD__ );
-		return;
-	}
-
-	$doCommit = $commit == 'commit';
-	if ( $doCommit ) {
-		$dbw = wfGetDB( DB_MASTER );
-	}
-
-	foreach ( $wgDeferredUpdateList as $update ) {
-		$update->doUpdate();
-
-		if ( $doCommit && $dbw->trxLevel() ) {
-			$dbw->commit();
-		}
-	}
-
-	$wgDeferredUpdateList = array();
-	wfProfileOut( __METHOD__ );
+	DeferredUpdates::doUpdates( $commit );
 }
 
 /**

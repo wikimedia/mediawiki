@@ -23,8 +23,7 @@
  *
  * @ingroup Cache
  */
-class HTMLCacheUpdate
-{
+class HTMLCacheUpdate implements DeferrableUpdate {
 	/**
 	 * @var Title
 	 */

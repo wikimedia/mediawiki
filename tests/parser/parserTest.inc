@@ -132,7 +132,7 @@ class ParserTest {
 	}
 
 	static function setUp() {
-		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc, $wgDeferredUpdateList,
+		global $wgParser, $wgParserConf, $IP, $messageMemc, $wgMemc,
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
 			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
 			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
@@ -160,7 +160,7 @@ class ParserTest {
 
 
 		$wgEnableParserCache = false;
-		$wgDeferredUpdateList = array();
+		DeferredUpdates::clearPendingUpdates();
 		$wgMemc = wfGetMainCache();
 		$messageMemc = wfGetMessageCacheStorage();
 		$parserMemc = wfGetParserCacheStorage();
