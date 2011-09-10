@@ -63,8 +63,8 @@ test( '-- Initial check', function() {
 	ok( mw.Title, 'mw.Title defined' );
 });
 
-test( 'Transform between Text and Db', function() {
-	expect(2);
+test( 'Transformation', function() {
+	expect(3);
 	_titleConfig();
 
 	var title;
@@ -74,6 +74,10 @@ test( 'Transform between Text and Db', function() {
 
 	title = new mw.Title( 'File:Glarg_foo_glang.jpg' );
 	equal( title.getNameText(), 'Glarg foo glang' );
+
+	title = new mw.Title( '   MediaWiki:  Foo   bar   .js   ' );
+	// Don't ask why, it's the way the backend works. One space is kept of each set
+	equal( title.getName(), 'Foo_bar_.js', "Merge multiple spaces to a single space." );
 });
 
 test( 'Main text for filename', function() {
