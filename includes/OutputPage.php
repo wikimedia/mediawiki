@@ -1312,9 +1312,9 @@ class OutputPage extends ContextSource {
 	 * @param $text String
 	 * @param $linestart Boolean: is this the start of a line?
 	 */
-	public function addWikiText( $text, $linestart = true ) {
+	public function addWikiText( $text, $linestart = true, $interface = false ) {
 		$title = $this->getTitle(); // Work arround E_STRICT
-		$this->addWikiTextTitle( $text, $title, $linestart );
+		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/false, $interface );
 	}
 
 	/**
@@ -1357,8 +1357,10 @@ class OutputPage extends ContextSource {
 	 * @param $title Title object
 	 * @param $linestart Boolean: is this the start of a line?
 	 * @param $tidy Boolean: whether to use tidy
+	 * @param $interface Boolean: whether it is an interface message
+	 *								(for example disables conversion)
 	 */
-	public function addWikiTextTitle( $text, &$title, $linestart, $tidy = false ) {
+	public function addWikiTextTitle( $text, &$title, $linestart, $tidy = false, $interface = false ) {
 		global $wgParser;
 
 		wfProfileIn( __METHOD__ );
@@ -1367,6 +1369,7 @@ class OutputPage extends ContextSource {
 
 		$popts = $this->parserOptions();
 		$oldTidy = $popts->setTidy( $tidy );
+		$popts->setInterfaceMessage( (bool) $interface );
 
 		$parserOutput = $wgParser->parse(
 			$text, $title, $popts,
@@ -1938,7 +1941,8 @@ class OutputPage extends ContextSource {
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 		$this->mBodytext = '';
-		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
+		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ),
+			/*linestart*/true, /*interface*/true );
 	}
 
 	/**
@@ -2077,7 +2081,8 @@ class OutputPage extends ContextSource {
 			} else {
 				$this->setPageTitle( wfMsg( 'badaccess' ) );
 			}
-			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ) );
+			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ),
+				/*linestart*/true, /*interface*/true );
 		} else {
 			// Wiki is read only
 			throw new ReadOnlyError;
@@ -3215,7 +3220,7 @@ $distantTemplates
 			}
 			$s = str_replace( '$' . ( $n + 1 ), wfMsgExt( $name, $options, $args ), $s );
 		}
-		$this->addWikiText( $s );
+		$this->addWikiText( $s, /*linestart*/true, /*interface*/true );
 	}
 
 	/**
