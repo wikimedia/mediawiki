@@ -64,7 +64,7 @@ class SpecialVersion extends SpecialPage {
 			$text .= $this->getWgHooks();
 		}
 
-		$out->addWikiText( $text );
+		$out->addWikiText( $text, /*linestart*/true, /*interface*/true );
 		$out->addHTML( $this->IPInfo() );
 
 		if ( $this->getRequest()->getVal( 'easteregg' ) ) {
