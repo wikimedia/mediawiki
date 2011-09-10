@@ -276,7 +276,7 @@ class Preferences {
 		if ( !$wgDisableLangConversion ) {
 			$variants = $wgContLang->getVariants();
 
-			$languages = Language::getLanguageNames( true );
+			$languages = Language::getLanguageNames();
 			foreach ( $variants as $v ) {
 				$v = str_replace( '_', '-', strtolower( $v ) );
 				if ( array_key_exists( $v, $languages ) ) {

@@ -3735,6 +3735,12 @@ Variants for Chinese language
 'variantname-ike-latn' => 'ike-Latn', # only translate this message to other languages if you have to change it
 'variantname-iu'       => 'iu', # only translate this message to other languages if you have to change it
 
+# Variants for Tachelhit language
+'variantname-shi-tfng' => 'shi-Tfng', # only translate this message to other languages if you have to change it
+'variantname-shi-latn' => 'shi-Latn', # only translate this message to other languages if you have to change it
+'variantname-shi'      => 'shi', # only translate this message to other languages if you have to change it
+
+
 # Metadata
 'metadata'                  => 'Metadata',
 'metadata-help'             => 'This file contains additional information, probably added from the digital camera or scanner used to create or digitize it.
