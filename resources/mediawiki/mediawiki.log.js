@@ -15,17 +15,18 @@
 	 * a <div id="mw-log-console"> element to the bottom of the body and then appending this and future
 	 * messages to that, instead of the console.
 	 *
-	 * @param logmsg {String} Messages to output to the console.
+	 * @param {String} First in list of variadic messages to output to console.
 	 */
-	mw.log = function( logmsg ) {
-		// Allow log messages to use a configured prefix to identify the source window (ie. frame)
-		if ( mw.config.exists( 'mw.log.prefix' ) ) {
-			logmsg = mw.config.get( 'mw.log.prefix' ) + '> ' + logmsg;
-		}
+	mw.log = function( /* logmsg, logmsg, */ ) {
+		// Turn arguments into an array
+		var	args = Array.prototype.slice.call( arguments ),
+			// Allow log messages to use a configured prefix to identify the source window (ie. frame)
+			prefix = mw.config.exists( 'mw.log.prefix' ) ? mw.config.get( 'mw.log.prefix' ) + '> ' : '';
 
 		// Try to use an existing console
 		if ( window.console !== undefined && $.isFunction( window.console.log ) ) {
-			window.console.log( logmsg );
+			args.unshift( prefix );
+			window.console.log.apply( window.console, args );
 			return;
 		}
 
@@ -66,7 +67,7 @@
 						whiteSpace: 'pre-wrap',
 						padding: '0.125em 0.25em'
 					} )
-					.text( logmsg )
+					.text( prefix + args.join( ', ' ) )
 					.prepend( '<span style="float: right;">[' + time + ']</span>' )
 		);
 	};
