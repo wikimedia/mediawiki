@@ -1275,7 +1275,7 @@ class WikiPage extends Page {
 
 		# Do updates right now unless deferral was requested
 		if ( !( $flags & EDIT_DEFER_UPDATES ) ) {
-			wfDoUpdates();
+			DeferredUpdates::doUpdates();
 		}
 
 		// Return the new revision (or null) to the caller
@@ -1604,7 +1604,7 @@ class WikiPage extends Page {
 	public function doDeleteArticle(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
-		global $wgDeferredUpdateList, $wgUseTrackbacks, $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase, $wgUser;
+		global $wgUseTrackbacks, $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 
 		wfDebug( __METHOD__ . "\n" );
@@ -1620,8 +1620,9 @@ class WikiPage extends Page {
 			return false;
 		}
 
-		$u = new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 );
-		array_push( $wgDeferredUpdateList, $u );
+		DeferredUpdates::addUpdate(
+			new SiteStatsUpdate( 0, 1, - (int)$this->isCountable(), -1 )
+		);
 
 		// Bitfields to further suppress the content
 		if ( $suppress ) {
@@ -1939,15 +1940,15 @@ class WikiPage extends Page {
 	 * @param $user User The relevant user
 	 */
 	public function doViewUpdates( User $user ) {
-		global $wgDeferredUpdateList, $wgDisableCounters;
+		global $wgDisableCounters;
 		if ( wfReadOnly() ) {
 			return;
 		}
 
 		# Don't update page view counters on views from bot users (bug 14044)
 		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->getId() ) {
-			$wgDeferredUpdateList[] = new ViewCountUpdate( $this->getId() );
-			$wgDeferredUpdateList[] = new SiteStatsUpdate( 1, 0, 0 );
+			DeferredUpdates::addUpdate( new ViewCountUpdate( $this->getId() ) );
+			DeferredUpdates::addUpdate( new SiteStatsUpdate( 1, 0, 0 ) );
 		}
 
 		# Update newtalk / watchlist notification status
@@ -2004,7 +2005,7 @@ class WikiPage extends Page {
 	 *   - null: don't change the article count
 	 */
 	public function doEditUpdates( Revision $revision, User $user, array $options = array() ) {
-		global $wgDeferredUpdateList, $wgEnableParserCache;
+		global $wgEnableParserCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -2072,8 +2073,8 @@ class WikiPage extends Page {
 			$total = 0;
 		}
 
-		$wgDeferredUpdateList[] = new SiteStatsUpdate( 0, 1, $good, $total );
-		$wgDeferredUpdateList[] = new SearchUpdate( $id, $title, $text );
+		DeferredUpdates::addUpdate( new SiteStatsUpdate( 0, 1, $good, $total ) );
+		DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $text ) );
 
 		# If this is another user's talk page, update newtalk.
 		# Don't do this if $options['changed'] = false (null-edits) nor if
@@ -2221,8 +2222,6 @@ class WikiPage extends Page {
 	 * @param $title Title object
 	 */
 	public static function onArticleCreate( $title ) {
-		global $wgDeferredUpdateList;
-
 		# Update existence markers on article/talk tabs...
 		if ( $title->isTalkPage() ) {
 			$other = $title->getSubjectPage();
@@ -2238,7 +2237,7 @@ class WikiPage extends Page {
 		$title->deleteTitleProtection();
 
 		# Invalidate caches of distant articles which transclude this page
-		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'globaltemplatelinks' );
+		DeferredUpdates::addHTMLCacheUpdate( $title, 'globaltemplatelinks' );
 	}
 
 	/**
@@ -2247,8 +2246,6 @@ class WikiPage extends Page {
 	 * @param $title Title
 	 */
 	public static function onArticleDelete( $title ) {
-		global $wgDeferredUpdateList;
-
 		# Update existence markers on article/talk tabs...
 		if ( $title->isTalkPage() ) {
 			$other = $title->getSubjectPage();
@@ -2286,7 +2283,7 @@ class WikiPage extends Page {
 		RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $title );
 
 		# Invalidate caches of distant articles which transclude this page
-		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'globaltemplatelinks' );
+		DeferredUpdates::addHTMLCacheUpdate( $title, 'globaltemplatelinks' );
 	}
 
 	/**
@@ -2296,16 +2293,14 @@ class WikiPage extends Page {
 	 * @todo:  verify that $title is always a Title object (and never false or null), add Title hint to parameter $title
 	 */
 	public static function onArticleEdit( $title ) {
-		global $wgDeferredUpdateList;
-
 		// Invalidate caches of articles which include this page
-		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'templatelinks' );
+		DeferredUpdates::addHTMLCacheUpdate( $title, 'templatelinks' );
 
 		// Invalidate caches of distant articles which transclude this page
-		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'globaltemplatelinks' );
+		DeferredUpdates::addHTMLCacheUpdate( $title, 'globaltemplatelinks' );
 
 		// Invalidate the caches of all pages which redirect here
-		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'redirect' );
+		DeferredUpdates::addHTMLCacheUpdate( $title, 'redirect' );
 
 		# Purge squid for this page only
 		$title->purgeSquid();

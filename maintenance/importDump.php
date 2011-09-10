@@ -209,7 +209,7 @@ TEXT;
 		}
 		wfWaitForSlaves();
 		// XXX: Don't let deferred jobs array get absurdly large (bug 24375)
-		wfDoUpdates( 'commit' );
+		DeferredUpdates::doUpdates( 'commit' );
 	}
 
 	function progress( $string ) {

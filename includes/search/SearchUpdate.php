@@ -13,7 +13,7 @@
  *
  * @ingroup Search
  */
-class SearchUpdate {
+class SearchUpdate implements DeferrableUpdate {
 
 	private $mId = 0, $mNamespace, $mTitle, $mText;
 	private $mTitleWords;

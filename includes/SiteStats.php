@@ -220,9 +220,9 @@ class SiteStats {
 }
 
 /**
- *
+ * Class for handling updates to the site_stats table
  */
-class SiteStatsUpdate {
+class SiteStatsUpdate implements DeferrableUpdate {
 
 	var $mViews, $mEdits, $mGood, $mPages, $mUsers;
 

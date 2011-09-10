@@ -377,7 +377,7 @@ class MediaWiki {
 		// Output everything!
 		$this->context->getOutput()->output();
 		// Do any deferred jobs
-		wfDoUpdates( 'commit' );
+		DeferredUpdates::doUpdates( 'commit' );
 		$this->doJobs();
 		wfProfileOut( __METHOD__ );
 	}

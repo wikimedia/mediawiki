@@ -27,7 +27,7 @@
  * 'page_counter' field or use the 'hitcounter' table and then collect the data
  * from that table to update the 'page_counter' field in a batch operation.
  */
-class ViewCountUpdate {
+class ViewCountUpdate implements DeferrableUpdate {
 	protected $id;
 
 	/**
