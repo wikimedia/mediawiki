@@ -1535,7 +1535,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		}
 		if ( isset( $item['single-id'] ) ) {
 			if ( isset( $item['tooltiponly'] ) && $item['tooltiponly'] ) {
-				$attrs['title'] = $this->getSkin()->titleAttrib( $item['single-id'] );
+				$attrs['title'] = Linker::titleAttrib( $item['single-id'] );
 				if ( $attrs['title'] === false ) {
 					unset( $attrs['title'] );
 				}
