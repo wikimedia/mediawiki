@@ -56,6 +56,7 @@ production.
 * (bug 26470) Add checkered background image on hover on files pages.
 * (bug 30774) mediawiki.html: Add support for numbers and booleans in the
   attribute values and element contents.
+* Conversion script between Tifinagh and Latin for the Tachelhit language
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if

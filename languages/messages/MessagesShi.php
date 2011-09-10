@@ -1173,6 +1173,11 @@ Maya Iẓḍar ad iglb zzu uzddar ar aflla tasna yad lli bdda n nttagga. Illa fl
 
 ghir lhwayj n lista (stour libdounin s *) karaytyo7asab',
 
+# Variants for Tachelhit language
+'variantname-shi-tfng' => 'ᑎᑎᕋᐅᓯᖅ ᓄᑖᖅ',
+'variantname-shi-latn' => 'Tašlḥiyt',
+'variantname-shi'      => 'disable',
+
 # Metadata
 'metadata'          => 'isfka n mita',
 'metadata-help'     => 'Asdaw ad llan gis inɣmisn yaḍnin lli tfl lkamira tuṭunit niɣd aṣfḍ n uxddam lliɣ ay sgadda asdaw ad',

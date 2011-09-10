@@ -301,7 +301,9 @@
 	'sg' => 'Sängö',		# Sango/Sangho
 	'sgs' => 'Žemaitėška', # Samogitian
 	'sh' => 'Srpskohrvatski / Српскохрватски', # Serbocroatian
-	'shi' => 'Tašlḥiyt',    # Tachelhit
+	'shi' => 'Tašlḥiyt/ⵜⴰⵛⵍⵃⵉⵜ',    # Tachelhit (multiple scripts - defaults to Latin)
+	'shi-tfng' => 'ⵜⴰⵛⵍⵃⵉⵜ',    # Tachelhit (Tifinagh script)
+	'shi-latn' => 'Tašlḥiyt',    # Tachelhit (Latin script)
 	'si' => 'සිංහල',	# Sinhalese
 	'simple' => 'Simple English',	# Simple English
 	'sk' => 'Slovenčina',	# Slovak
