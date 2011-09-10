@@ -2955,10 +2955,10 @@ $distantTemplates
 	/**
 	 * Adds inline CSS styles
 	 * @param $style_css Mixed: inline CSS
-	 * @param $flip Boolean: Whether to flip the CSS if needed
+	 * @param $flip False or String: Set to 'flip' to flip the CSS if needed
 	 */
 	public function addInlineStyle( $style_css, $flip = false ) {
-		if( $flip && $this->getLang()->isRTL() ) {
+		if( $flip === 'flip' && $this->getLang()->isRTL() ) {
 			# If wanted, and the interface is right-to-left, flip the CSS
 			$style_css = CSSJanus::transform( $style_css, true, false );
 		}
