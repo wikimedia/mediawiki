@@ -318,7 +318,7 @@ class LegacyLogFormatter extends LogFormatter {
 }
 
 /**
- * This class formats Block log entries.
+ * This class formats move log entries.
  * @since 1.19
  */
 class MoveLogFormatter extends LogFormatter {
