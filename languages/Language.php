@@ -506,10 +506,20 @@ class Language {
 	 * short names for language variants used for language conversion links.
 	 *
 	 * @param $code String
+	 * @param $usemsg Use the "variantname-xyz" message if it exists
 	 * @return string
 	 */
-	function getVariantname( $code ) {
-		return $this->getMessageFromDB( "variantname-$code" );
+	function getVariantname( $code, $usemsg = true ) {
+		$msg = "variantname-$code";
+		$codeArray = list( $rootCode ) = explode( '-', $code );
+		if( $usemsg && wfMessage( $msg )->exists() ) {
+			return $this->getMessageFromDB( $msg );
+		} elseif( $name = self::getLanguageName( $code ) ) {
+			return $name; # if it's defined as a language name, show that
+		} else {
+			# otherwise, output the language code
+			return $code;
+		}
 	}
 
 	/**
@@ -2504,7 +2514,7 @@ class Language {
 	 /**
 	  * Normally we output all numbers in plain en_US style, that is
 	  * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
-	  * point twohundredthirtyfive. However this is not sutable for all
+	  * point twohundredthirtyfive. However this is not suitable for all
 	  * languages, some such as Pakaran want ੨੯੩,੨੯੫.੨੩੫ and others such as
 	  * Icelandic just want to use commas instead of dots, and dots instead
 	  * of commas like "293.291,235".

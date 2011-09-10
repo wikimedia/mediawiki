@@ -276,13 +276,9 @@ class Preferences {
 		if ( !$wgDisableLangConversion ) {
 			$variants = $wgContLang->getVariants();
 
-			$languages = Language::getLanguageNames();
 			foreach ( $variants as $v ) {
 				$v = str_replace( '_', '-', strtolower( $v ) );
-				if ( array_key_exists( $v, $languages ) ) {
-					// If it doesn't have a name, we'll pretend it doesn't exist
-					$variantArray[$v] = $languages[$v];
-				}
+				$variantArray[$v] = $wgContLang->getVariantname( $v, false );
 			}
 
 			$options = array();
@@ -297,6 +293,7 @@ class Preferences {
 					'type' => 'select',
 					'options' => $options,
 					'section' => 'personal/i18n',
+					'help-message' => 'prefs-help-variant',
 				);
 			}
 		}
