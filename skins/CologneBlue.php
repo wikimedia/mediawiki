@@ -47,7 +47,7 @@ class SkinCologneBlue extends SkinLegacy {
 			$rules[] = "/* @noflip */body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto; bottom:4px;}"; # Hides from IE
 		}
 		$style = implode( "\n", $rules );
-		$out->addInlineStyle( $style, /* flip css if RTL */true );
+		$out->addInlineStyle( $style, 'flip' );
 	}
 
 }

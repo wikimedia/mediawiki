@@ -30,20 +30,20 @@ class SkinStandard extends SkinLegacy {
 
 		if ( 2 == $qb ) { # Right
 			$rules[] = "/* @noflip */#quickbar { position: absolute; top: 4px; right: 4px; border-left: 2px solid #000000; }";
-			$rules[] = "/* @noflip */#article, /* @noflip */#mw-data-after-content { margin-left: 4px; margin-right: 152px; }";
+			$rules[] = "/* @noflip */#article, #mw-data-after-content { margin-left: 4px; margin-right: 152px; }";
 		} elseif ( 1 == $qb || 3 == $qb ) {
 			$rules[] = "/* @noflip */#quickbar { position: absolute; top: 4px; left: 4px; border-right: 1px solid gray; }";
-			$rules[] = "/* @noflip */#article, /* @noflip */#mw-data-after-content { margin-left: 152px; margin-right: 4px; }";
+			$rules[] = "/* @noflip */#article, #mw-data-after-content { margin-left: 152px; margin-right: 4px; }";
 			if( 3 == $qb ) {
 				$rules[] = "/* @noflip */#quickbar { position: fixed; padding: 4px; }";
 			}
 		} elseif ( 4 == $qb ) {
 			$rules[] = "/* @noflip */#quickbar { position: fixed; right: 0px; top: 0px; padding: 4px;}";
 			$rules[] = "/* @noflip */#quickbar { border-right: 1px solid gray; }";
-			$rules[] = "/* @noflip */#article, /* @noflip */#mw-data-after-content { margin-right: 152px; margin-left: 4px; }";
+			$rules[] = "/* @noflip */#article, #mw-data-after-content { margin-right: 152px; margin-left: 4px; }";
 		}
  		$style = implode( "\n", $rules );
-		$out->addInlineStyle( $style, /* flip css if RTL */true );
+		$out->addInlineStyle( $style, 'flip' );
 	}
 
 }
