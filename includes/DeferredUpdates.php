@@ -2,6 +2,8 @@
 /**
  * Interface that deferrable updates should implement. Basically required so we
  * can validate input on DeferredUpdates::addUpdate()
+ *
+ * @since 1.19
  */
 interface DeferrableUpdate {
 	/**
@@ -12,6 +14,8 @@ interface DeferrableUpdate {
 
 /**
  * Class for mananging the deferred updates.
+ *
+ * @since 1.19
  */
 class DeferredUpdates {
 	/**
