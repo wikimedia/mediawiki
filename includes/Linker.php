@@ -941,8 +941,8 @@ class Linker {
 	) {
 		global $wgUser, $wgDisableAnonTalk, $wgLang;
 		$talkable = !( $wgDisableAnonTalk && 0 == $userId );
-		$blockable = !$flags & self::TOOL_LINKS_NOBLOCK;
-		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL;
+		$blockable = !( $flags & self::TOOL_LINKS_NOBLOCK );
+		$addEmailLink = $flags & self::TOOL_LINKS_EMAIL && $userId;
 
 		$items = array();
 		if ( $talkable ) {
