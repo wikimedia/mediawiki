@@ -23,6 +23,8 @@ abstract class Collation {
 		switch( $collationName ) {
 			case 'uppercase':
 				return new UppercaseCollation;
+			case 'identity':
+				return new IdentityCollation;
 			case 'uca-default':
 				return new IcuCollation( 'root' );
 			default:
@@ -98,6 +100,30 @@ class UppercaseCollation extends Collation {
 		return $this->lang->ucfirst( $this->lang->firstChar( $string ) );
 	}
 }
+
+/**
+ * Collation class that's essentially a no-op.
+ *
+ * Does sorting based on binary value of the string.
+ * Like how things were pre 1.17.
+ */
+class IdentityCollation extends Collation {
+
+	function getSortKey( $string ) {
+		return $string;
+	}
+
+	function getFirstLetter( $string ) {
+		global $wgContLang;
+		// Copied from UppercaseCollation.
+		// I'm kind of unclear on when this could happen...
+		if ( $string[0] == "\0" ) {
+			$string = substr( $string, 1 );
+		}
+		return $wgContLang->firstChar( $string );
+	}
+}
+
 
 class IcuCollation extends Collation {
 	var $primaryCollator, $mainCollator, $locale;

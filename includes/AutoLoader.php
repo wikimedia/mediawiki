@@ -118,6 +118,7 @@ $wgAutoloadLocalClasses = array(
 	'HttpRequest' => 'includes/HttpFunctions.old.php',
 	'IContextSource' => 'includes/RequestContext.php',
 	'IcuCollation' => 'includes/Collation.php',
+	'IdentityCollation' => 'includes/Collation.php',
 	'ImageGallery' => 'includes/ImageGallery.php',
 	'ImageHistoryList' => 'includes/ImagePage.php',
 	'ImageHistoryPseudoPager' => 'includes/ImagePage.php',
