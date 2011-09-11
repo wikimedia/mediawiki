@@ -401,8 +401,8 @@ Ye tihuelīti titēchihtoa [[Special:Preferences|motlaēlēhuiliz]].',
 'createaccountmail'       => 'e-mailcopa',
 'createaccountreason'     => 'Tlèka:',
 'badretype'               => 'Ahneneuhqui motlahtōlichtacāyo.',
-'userexists'              => 'Ye ia in tōcāitl ōquihcuilo.
-Timitztlātlauhtiah xitlahcuiloa occē.',
+'userexists'              => 'In tlatequitiltilīltōcāitl in ōquipehpen ye ia.
+Timitztlātlauhtiah xicpehpena occē.',
 'loginerror'              => 'Ahcuallōtl tlacalaquiliztechcopa',
 'noname'                  => 'Ahmo ōtiquihto cualli tlatequitiltilīlli tōcāitl.',
 'loginsuccesstitle'       => 'Cualli calaquiliztli',

@@ -11,6 +11,7 @@
  * @author Ashok modhvadia
  * @author Dineshjk
  * @author Dsvyas
+ * @author Haritosh
  * @author RaviC
  * @author Sushant savla
  * @author לערי ריינהארט
@@ -430,6 +431,8 @@ $1',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => '"$1" એટોમ ફીડ',
 'red-link-title'          => '$1 (પાનું અસ્તિત્વમાં નથી)',
+'sort-descending'         => 'ઉતરતા ક્રમમાં ગોઠવો',
+'sort-ascending'          => 'ચડતા ક્રમમાં ગોઠવો',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'લેખ',
@@ -2004,6 +2007,7 @@ $1',
 'noemailtext'          => 'આ સભ્યએ  વૈધ ઇ-મેલ સરનામું નથી આપ્યું.',
 'nowikiemailtitle'     => 'કોઇ પણ ઇ મેલની રજા નથી',
 'nowikiemailtext'      => 'અન્ય સભ્યો ઇ-મેલ ન મોકલે તેવી આ સભ્યની પસંદગી છે.',
+'emailusername'        => 'સભ્યનું નામ',
 'email-legend'         => 'અન્ય {{SITENAME}} સભ્ય નેઈ-મેલ મોકલો',
 'emailfrom'            => 'પ્રેષક:',
 'emailto'              => 'પ્રતિ:',
@@ -2322,6 +2326,8 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'whatlinkshere-filters'    => 'ચાળણી',
 
 # Block/unblock
+'block'                           => 'સભ્ય પર પ્રતિબંધ મુકો',
+'unblock'                         => 'સભ્ય પરનો પ્રતિબંધ હટાવો',
 'blockip'                         => 'સભ્ય પર પ્રતિબંધ મુકો',
 'blockip-title'                   => 'સભ્ય પર પ્રતિબંધ મુકો',
 'blockip-legend'                  => 'સભ્ય પર પ્રતિબંધ મુકો',
@@ -2355,6 +2361,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'blockipsuccesssub'               => 'સફળ પ્રતિબંધ મુકાયો',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] પરા રોક લગાવાઈ છે<br />
 રોક લગાવેલ સભ્યોની યાદિ [[Special:IPBlockList|IP block list]].',
+'ipb-blockingself'                => 'તમે પોતાના પર પ્રતિબંધ મુકવા જાઓ છો! શું તમે સાચેજમાં આ કરવા માગો છો?',
 'ipb-edit-dropdown'               => 'પ્રતિબંધ કારણોમાં ફેરફાર કરો',
 'ipb-unblock-addr'                => '$1 પરનો પ્રતિબંધ ઉઠાવો',
 'ipb-unblock'                     => 'સભ્યનામ કે  IP સરનામું અપ્રતિબંધિત કરો.',
@@ -2365,8 +2372,11 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'ipusubmit'                       => 'આપ્રતિબંધન હટાવો',
 'unblocked'                       => '[[User:$1|$1]] પ્રતિબંધિત કરાયા',
 'unblocked-id'                    => ' $1 નો પ્રતિબંધ હટાવાયો',
+'blocklist'                       => 'પ્રતિબંધિત સભ્યો ના નામ',
 'ipblocklist'                     => 'પ્રતિબંધિત IP સરનામા અને સભ્યોની યાદી',
 'ipblocklist-legend'              => 'પ્રતિબંધિત સભ્ય શોધો',
+'blocklist-target'                => 'લક્ષ્ય',
+'blocklist-reason'                => 'કારણ',
 'ipblocklist-submit'              => 'શોધો',
 'ipblocklist-localblock'          => 'સ્થાનીય પ્રતિબંધ',
 'ipblocklist-otherblocks'         => 'અન્ય {{PLURAL:$1|પ્રતિબંધન|પ્રતિબંધનો}}',
@@ -2383,6 +2393,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'unblocklink'                     => 'પ્રતિબંધ હટાવો',
 'change-blocklink'                => 'પ્રતિબંધમાં ફેરફાર કરો',
 'contribslink'                    => 'યોગદાન',
+'emaillink'                       => 'ઈ-મેલ મોકલો',
 'autoblocker'                     => 'તમારા પર સ્વયંચાલિત રીતે રોક લગાવાઇ છે કેમકે તમારો IP હાલમાં "[[User:$1|$1]]" સભ્ય દ્વારા વપરાયો છે.
 તેનું કારણ આ છે : "$2"',
 'blocklogpage'                    => 'પ્રતિબંધ સૂચિ',
@@ -2411,6 +2422,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'ipb-needreblock'                 => '$1 પહેલેથી પ્રતિબંધિત છે.
 તમારે આ સેટીંગ બદલવી છે?',
 'ipb-otherblocks-header'          => 'અન્ય {{PLURAL:$1|પ્રતિબંધન|પ્રતિબંધનો}}',
+'unblock-hideuser'                => 'તમે આ સભ્ય પરનો પ્રતિબંધ નહીં હટાવી શકો, કેમ કે આ સભ્ય નું નામ છુપાયેલું છે.',
 'ipb_cant_unblock'                => 'તૃટિ પ્રતિબંધિત ID $1 ન મળ્યો.
 તેપહેલેથી અપ્રતિબંધિત કરાયું હોઇ શકે',
 'ipb_blocked_as_range'            => 'ત્રુટિ: IP સરનામું $1 પર  સીધી રોક નથી લગાવાઇ આથી તેના પર રોક ન હટાવી શકાય.
@@ -2742,6 +2754,10 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'spam_reverting'      => ' $1 પર કડી ન ધરાવતા છેલ્લા ફેરેફાર પર પુનઃ સ્થાપન કરાય છે',
 'spam_blanking'       => 'બધા ફેરફારોમાં  $1 પર કડી હતી, આને હટાવી દેવામાં આવે છે',
 
+# Info page
+'pageinfo-header-edits' => 'કરેલા ફેરફાર',
+'pageinfo-subjectpage'  => 'પૃષ્ઠ',
+
 # Patrolling
 'markaspatrolleddiff'                 => 'નિરીક્ષીત અંકિત કરો',
 'markaspatrolledtext'                 => 'આ પાનાને નીરીક્ષિત અંકિત કરો',
@@ -2945,7 +2961,9 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'exif-gpsareainformation'          => 'GPS ક્ષેત્રનું નામ',
 'exif-gpsdatestamp'                => 'GPS તારીખ',
 'exif-gpsdifferential'             => 'GPS ફેરફારનો સુધારો',
+'exif-jpegfilecomment'             => 'JPEG ફાઈલ પરની ટીપ્પણી',
 'exif-objectname'                  => 'લઘુ શીર્ષક',
+'exif-writer'                      => 'લેખક',
 
 # EXIF attributes
 'exif-compression-1' => 'અસંકોચિત',

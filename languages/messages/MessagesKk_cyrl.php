@@ -623,7 +623,7 @@ $messages = array(
 'red-link-title'          => '$1 (әлі жазылмаған)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Бет',
+'nstab-main'      => 'Мақала',
 'nstab-user'      => 'Жеке бет',
 'nstab-media'     => 'Таспа беті',
 'nstab-special'   => 'Арнайы бет',

@@ -276,7 +276,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach',
 'tog-enotifrevealaddr'        => 'Nie ukrywaj mojego adresu e‐mail w powiadomieniach',
 'tog-shownumberswatching'     => 'Pokaż liczbę użytkowników obserwujących stronę',
-'tog-oldsig'                  => 'Obecny wygląd Twojego podpisu',
+'tog-oldsig'                  => 'Twój obecny podpis',
 'tog-fancysig'                => 'Traktuj podpis jako wikikod (nie linkuj automatycznie całości)',
 'tog-externaleditor'          => 'Domyślnie używaj zewnętrznego edytora (tylko dla zaawansowanych użytkowników; wymaga odpowiedniego skonfigurowania komputera)',
 'tog-externaldiff'            => 'Domyślnie używaj zewnętrznego programu pokazującego zmiany (tylko dla zaawansowanych użytkowników; wymaga odpowiedniego skonfigurowania komputera)',
@@ -770,6 +770,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 'passwordreset-disabled'       => 'Na tej wiki wyłączono możliwość resetowania haseł.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Wprowadź jedną z danych poniżej}}',
 'passwordreset-username'       => 'Nazwa użytkownika:',
+'passwordreset-domain'         => 'Domena',
 'passwordreset-email'          => 'Adres e‐mail',
 'passwordreset-emailtitle'     => 'Dane konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'   => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1) poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
@@ -1218,7 +1219,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 
 # Search results
 'searchresults'                    => 'Wyniki wyszukiwania',
-'searchresults-title'              => 'Wyniki wyszukiwania dla „$1”',
+'searchresults-title'              => 'Wyniki wyszukiwania „$1”',
 'searchresulttext'                 => 'Więcej informacji o przeszukiwaniu {{GRAMMAR:D.lp|{{SITENAME}}}} odnajdziesz na [[{{MediaWiki:Helppage}}|stronach pomocy]].',
 'searchsubtitle'                   => "Wyniki dla zapytania '''[[:$1]]''' ([[Special:Prefixindex/$1|strony zaczynające się od „$1”]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|strony, które linkują do „$1”]])",
 'searchsubtitleinvalid'            => "Dla zapytania '''$1'''",
@@ -1376,6 +1377,7 @@ Tej operacji nie można później cofnąć.',
 'yourrealname'                  => 'Imię i nazwisko',
 'yourlanguage'                  => 'Język interfejsu',
 'yourvariant'                   => 'Wariant',
+'prefs-help-variant'            => 'Preferowany wariant ortografii, który ma zostać użyty przy wyświetlaniu treści tej wiki.',
 'yournick'                      => 'Twój podpis',
 'prefs-help-signature'          => 'Wypowiedzi na stronach dyskusji powinny być podpisywane za pomocą „<nowiki>~~~~</nowiki>”, dzięki temu automatycznie wstawiany jest Twój podpis wraz z bieżącą datą.',
 'badsig'                        => 'Nieprawidłowy podpis, sprawdź znaczniki HTML.',
@@ -1416,7 +1418,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'userrights-lookup-user'       => 'Zarządzaj grupami użytkownika',
 'userrights-user-editname'     => 'Wprowadź nazwę użytkownika',
 'editusergroup'                => 'Edytuj grupy użytkownika',
-'editinguser'                  => "Zmiana uprawnień użytkownika '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Zmiana uprawnień użytkownika '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Edytuj grupy użytkownika',
 'saveusergroups'               => 'Zapisz',
 'userrights-groupsmember'      => 'Należy do:',
@@ -1429,7 +1431,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'userrights-no-interwiki'      => 'Nie masz dostępu do edycji uprawnień na innych wiki.',
 'userrights-nodatabase'        => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
 'userrights-nologin'           => 'Musisz [[Special:UserLogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
-'userrights-notallowed'        => 'Nie masz dostępu do nadawania uprawnień użytkownikom.',
+'userrights-notallowed'        => 'Nie jesteś upoważniony do nadawania i odbierania uprawnień użytkownikom.',
 'userrights-changeable-col'    => 'Grupy, które możesz wybrać',
 'userrights-unchangeable-col'  => 'Grupy, których nie możesz wybrać',
 
@@ -2553,6 +2555,7 @@ Przejdź do [[Special:IPBlockList|listy zablokowanych adresów IP]], by przejrze
 'unblocklink'                     => 'odblokuj',
 'change-blocklink'                => 'zmień blokadę',
 'contribslink'                    => 'edycje',
+'emaillink'                       => 'wyślij e‐mail',
 'autoblocker'                     => 'Zablokowano Cię automatycznie, ponieważ używasz tego samego adresu IP, co użytkownik „[[User:$1|$1]]”.
 Przyczyna blokady $1 to: „$2”',
 'blocklogpage'                    => 'Historia blokad',
@@ -2803,6 +2806,8 @@ Brak katalogu dla plików tymczasowych.',
 'import-upload'              => 'Prześlij dane w formacie XML',
 'import-token-mismatch'      => 'Utracono dane sesji. Proszę spróbować ponownie.',
 'import-invalid-interwiki'   => 'Nie można importować z podanej wiki.',
+'import-error-edit'          => 'Strona „$1“ nie została zaimportowana ponieważ nie jesteś uprawniony do jej edytowania.',
+'import-error-create'        => 'Strona „$1“ nie została zaimportowana ponieważ nie jesteś uprawniony do jej utworzenia.',
 
 # Import log
 'importlogpage'                    => 'Rejestr importu',
@@ -3252,9 +3257,9 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-orientation-3' => 'obraz obrócony o 180°',
 'exif-orientation-4' => 'odbicie lustrzane w pionie',
 'exif-orientation-5' => 'obraz obrócony o 90° przeciwnie do ruchu wskazówek zegara i odbicie lustrzane w pionie',
-'exif-orientation-6' => 'obraz obrócony o 90° zgodnie z ruchem wskazówek zegara',
+'exif-orientation-6' => 'Obrócony o 90° przeciwnie do wskazówek zegara',
 'exif-orientation-7' => 'obrót o 90° zgodnie ze wskazówkami zegara i odbicie lustrzane w pionie',
-'exif-orientation-8' => 'obrót o 90° przeciwnie do wskazówek zegara',
+'exif-orientation-8' => 'Obrócony o 90° zgodnie z ruchem wskazówek zegara',
 
 'exif-planarconfiguration-1' => 'format masywny',
 'exif-planarconfiguration-2' => 'format powierzchniowy',
@@ -3827,5 +3832,11 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 ze wsparciem pełnotekstowego wyszukiwania',
 'sqlite-no-fts'  => '$1 bez wsparcia pełnotekstowego wyszukiwania',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 bez pozostawienia przekierowania na starej stronie',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 ponad przekierowaniem',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 ponad przekierowaniem bez pozostawienia przekierowania na starej stronie',
 
 );

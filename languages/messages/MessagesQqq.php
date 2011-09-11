@@ -1341,7 +1341,8 @@ This is a search result (and I guess search engine) dependent messages. I do not
 'prefsnologin'                  => '{{Identical|Not logged in}}',
 'changepassword'                => "Section heading on [[Special:Preferences]], tab 'User profile'.
 {{Identical|Change password}}",
-'prefs-skin'                    => 'Used in user preferences.',
+'prefs-skin'                    => 'Used in user preferences.
+{{Identical|Skin}}',
 'skin-preview'                  => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 
 {{Identical|Preview}}',
@@ -1422,8 +1423,8 @@ Used in [[Special:Preferences]]. Parameters are:
 {{Identical|Real name}}',
 'yourlanguage'                  => 'Used in [[Special:Preferences]], first tab.
 {{Identical|Language}}',
-'yourvariant'                   => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.
-{{optional}}',
+'yourvariant'                   => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.',
+'prefs-help-variant'            => 'Explanation of the LanguageConverter feature. It is shown next to a dropdown box where you can choose a variant to convert content to (e.g. Serbian Latin vs. Serbian Cyrillic, or Chinese Traditional vs. Chinese Simplified).',
 'yournick'                      => 'Used in [[Special:Preferences]], first tab.
 
 {{Identical|Signature}}',
@@ -4149,6 +4150,7 @@ Name of month in Hebrew calender.',
 {{Identical|Special pages}}',
 'version-parserhooks'           => 'This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.',
 'version-variables'             => '{{Identical|Variable}}',
+'version-skins'                 => '{{Identical|Skin}}',
 'version-api'                   => '{{optional}}',
 'version-other'                 => '{{Identical|Other}}',
 'version-mediahandlers'         => 'Used in [[Special:Version]]. It is the title of a section for media handler extensions (e.g. [[mw:Extension:OggHandler]]).

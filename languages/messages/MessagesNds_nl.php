@@ -329,7 +329,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Stuur mien oek n berichjen bie kleine bewarkingen',
 'tog-enotifrevealaddr'        => 'Mien netpostadres laoten zien in netposttiejigen',
 'tog-shownumberswatching'     => 't Antal gebrukers bekieken die disse pagina volgt',
-'tog-oldsig'                  => 'Bestaonde haandtekening naokieken:',
+'tog-oldsig'                  => 'Bestaonde haandtekening:',
 'tog-fancysig'                => 'Ondertekening zien as wikitekste (zonder automatiese verwiezing)',
 'tog-externaleditor'          => 'Standard n externe tekstbewarker gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
 'tog-externaldiff'            => 'Standard n extern vergeliekingsprogramma gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
@@ -816,6 +816,7 @@ Misschien he'j t wachtwoord al ewiezigd of n niej veurlopig wachtwoord an-evreug
 'passwordreset-disabled'       => 'Je kunnen op disse wiki joew wachtwoord niet opniej instellen.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Voer één van de onderstaonde velden in}}',
 'passwordreset-username'       => 'Gebruker:',
+'passwordreset-domain'         => 'Domein:',
 'passwordreset-email'          => 'Netpostadres:',
 'passwordreset-emailtitle'     => 'Gebrukersgegevens op {{SITENAME}}',
 'passwordreset-emailtext-ip'   => "Der hef der ene, warschienlik jie zelf, gebrukersgegevens veur {{SITENAME}} ($4) op-evreugen vanaof t IP-adres $1.
@@ -1249,7 +1250,7 @@ Kiek de logboeken nao.',
 'showhideselectedversions' => 'Ekeuzen versies bekieken/verbargen',
 'editundo'                 => 'weerummedreien',
 'diff-multi'               => '(Hier {{PLURAL:$1|zit nog 1 versie|zitten nog $1 versies}} van {{PLURAL:$2|1 gebruker|$2 gebrukers}} tussen die der niet bie staon.)',
-'diff-multi-manyusers'     => '($1 tussenliggende versies deur meer as $2 gebrukers staon der niet bie)',
+'diff-multi-manyusers'     => '($1 tussenliggende {{PLURAL:$1|versie|versies}} deur meer as $2 {{PLURAL:$2|gebruker|gebrukers}} niet weeregeven)',
 
 # Search results
 'searchresults'                    => 'Zeukresultaoten',
@@ -1449,7 +1450,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'userrights-lookup-user'       => 'Beheer gebrukersgroepen',
 'userrights-user-editname'     => 'Vul n gebrukersnaam in:',
 'editusergroup'                => 'Bewark gebrukersgroepen',
-'editinguser'                  => "Doonde mit t wiezigen van de gebrukersrechten van '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Doonde mit t wiezigen van de gebrukersrechten van '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Bewark gebrukersgroep',
 'saveusergroups'               => 'Gebrukergroepen opslaon',
 'userrights-groupsmember'      => 'Lid van:',
@@ -1462,7 +1463,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'userrights-no-interwiki'      => "Je hebben gien rechten um gebrukersrechten op aandere wiki's te wiezigen.",
 'userrights-nodatabase'        => 'Databanke $1 besteet niet of is gien plaotselike databanke.',
 'userrights-nologin'           => 'Je mutten [[Special:UserLogin|an-emeld]] ween en as gebruker de juuste rechten hebben um gebrukersrechten toe te kunnen wiezen.',
-'userrights-notallowed'        => 'Je hebben gien rechten um gebrukersrechten toe te kunnen wiezen.',
+'userrights-notallowed'        => 'Je hebben gien rechten um gebrukersrechten toe te kunnen wiezen of in te trekken.',
 'userrights-changeable-col'    => "Groepen die'j beheren kunnen",
 'userrights-unchangeable-col'  => "Groepen die'j niet beheren kunnen",
 
@@ -2562,6 +2563,7 @@ Op de [[Special:BlockList|IP-blokkeerlieste]] steet n lieste mit alle blokkering
 'unblocklink'                     => 'deblokkeer',
 'change-blocklink'                => 'blokkering wiezigen',
 'contribslink'                    => 'biedragen',
+'emaillink'                       => 'netpostbericht sturen',
 'autoblocker'                     => 'Vanzelf eblokkeerd umdat t IP-adres overenekump mit t IP-adres van [[User:$1|$1]], die eblokkeerd is mit as reden: "$2"',
 'blocklogpage'                    => 'Blokkeerlogboek',
 'blocklog-showlog'                => 'Disse gebruker is al eerder eblokkeerd.
@@ -2808,6 +2810,8 @@ De tiedelike map is niet anwezig.',
 'import-upload'              => 'XML-gegevens derbie doon',
 'import-token-mismatch'      => 'De sessiegegevens bin verleuren egaon. Probeer t opniej.',
 'import-invalid-interwiki'   => 't Is niet meugelik um van de an-egeven wiki in te voeren.',
+'import-error-edit'          => 'De pagina "$1" is niet in-evoerd umda\'j de rechten niet hebben um t te bewarken.',
+'import-error-create'        => 'De pagina "$1" is niet in-evoerd umda\'j de rechten niet hebben um t an te maken.',
 
 # Import log
 'importlogpage'                    => 'Invoerlogboek',
@@ -3221,9 +3225,9 @@ Aandere velden wörden verbörgen.
 'exif-orientation-3' => '180° edreid',
 'exif-orientation-4' => 'verticaal edreid',
 'exif-orientation-5' => 'espegeld um as linksboven-rechtsonder',
-'exif-orientation-6' => '90° rechtsummedreid',
+'exif-orientation-6' => '90° linksummedreid',
 'exif-orientation-7' => '90° linksummedreid',
-'exif-orientation-8' => '90° linksummedreid',
+'exif-orientation-8' => '90° rechtsummedreid',
 
 'exif-planarconfiguration-1' => 'Grof gegevensformaot',
 'exif-planarconfiguration-2' => 'planar gegevensformaot',
@@ -3734,5 +3738,11 @@ Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => 'Versie $1 mit ondersteuning veur "full-text" zeuken',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning veur "full-text" zeuken',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 zonder n deurverwiezing achter te laoten',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 over n deurverwiezing heer',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 over n deurverwiezing heer zonder n deurverwiezing achter te laoten',
 
 );

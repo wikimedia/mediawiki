@@ -1822,7 +1822,7 @@ Bitte gib Acht, ass anderi Netzsyte die Datei mit ere diräkte URL chenne vergle
 # Special:Log
 'specialloguserlabel'  => 'Benutzer:',
 'speciallogtitlelabel' => 'Titel:',
-'log'                  => 'Logbüecher',
+'log'                  => 'Logbiecher',
 'all-logs-page'        => 'Alli effetligi Logbüecher',
 'alllogstext'          => 'Kombinierti Aasicht vu alle in {{SITENAME}} gfierte Protokoll.
 D Aazeig cha dur d Uuswahl vun eme Protokoll, eme Benutzername oder eme Sytename yygschränkt wäre (Acht gee uf d Gross- un Chleischrybig).',

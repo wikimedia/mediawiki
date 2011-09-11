@@ -378,7 +378,7 @@ $messages = array(
 'tog-enotifminoredits'        => '細部の編集でもメールを受け取る',
 'tog-enotifrevealaddr'        => '通知メールで自分のメールアドレスを明示する',
 'tog-shownumberswatching'     => 'ページをウォッチしている利用者数を表示する',
-'tog-oldsig'                  => '現在の署名のプレビュー：',
+'tog-oldsig'                  => '既存の署名：',
 'tog-fancysig'                => '署名をウィキ文として扱う（自動でリンクしない）',
 'tog-externaleditor'          => '既定で編集に外部アプリケーションを使う（上級者向け、コンピューターに特殊な設定が必要。[http://www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
 'tog-externaldiff'            => '差分表示に外部アプリケーションを使う（上級者向け、コンピューターに特殊な設定が必要。[http://www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
@@ -1386,12 +1386,13 @@ $1",
 ただし外部の検索エンジンに蓄積されている{{SITENAME}}の情報は古い場合があります。',
 
 # Quickbar
-'qbsettings'               => 'クイックバー',
-'qbsettings-none'          => 'なし',
-'qbsettings-fixedleft'     => '左端',
-'qbsettings-fixedright'    => '右端',
-'qbsettings-floatingleft'  => 'ウィンドウの左上に固定',
-'qbsettings-floatingright' => 'ウィンドウの右上に固定',
+'qbsettings'                => 'クイックバー',
+'qbsettings-none'           => 'なし',
+'qbsettings-fixedleft'      => '左端',
+'qbsettings-fixedright'     => '右端',
+'qbsettings-floatingleft'   => 'ウィンドウの左上に固定',
+'qbsettings-floatingright'  => 'ウィンドウの右上に固定',
+'qbsettings-directionality' => 'あなたの言語のスクリプトの方向に応じて固定',
 
 # Preferences page
 'preferences'                   => '個人設定',
@@ -2537,11 +2538,12 @@ $1',
 'undelete-show-file-submit'    => 'はい',
 
 # Namespace form on various pages
-'namespace'             => '名前空間：',
-'invert'                => '選択したものを除く',
-'tooltip-invert'        => '選択した名前空間（および、チェックされている場合、関連づけられた名前空間）のページの変更を非表示にするには、このチェックボックスをオンにします。',
-'namespace_association' => '関連する名前空間',
-'blanknamespace'        => '（標準）',
+'namespace'                     => '名前空間：',
+'invert'                        => '選択したものを除く',
+'tooltip-invert'                => '選択した名前空間（および、チェックされている場合、関連づけられた名前空間）のページの変更を非表示にするには、このチェックボックスをオンにします。',
+'namespace_association'         => '関連する名前空間',
+'tooltip-namespace_association' => '選択した名前空間に関連付けられている、議論ページまたは対象の名前空間も含めるには、このボックスをチェック',
+'blanknamespace'                => '（標準）',
 
 # Contributions
 'contributions'       => '利用者の投稿記録',
@@ -3369,6 +3371,8 @@ Variants for Chinese language
 'exif-objectname'                  => '短いタイトル',
 'exif-specialinstructions'         => '取扱いに関する特記事項',
 'exif-headline'                    => '見出し',
+'exif-source'                      => 'ソース',
+'exif-urgency'                     => '緊急',
 'exif-fixtureidentifier'           => 'フィクスチャ名',
 'exif-objectcycle'                 => 'このメディアファイルによって意図されている時間帯',
 'exif-contact'                     => '連絡先情報',
@@ -3390,6 +3394,7 @@ Variants for Chinese language
 'exif-disclaimer'                  => '免責事項',
 'exif-contentwarning'              => 'コンテンツに関する警告',
 'exif-giffilecomment'              => 'GIFファイルのコメント',
+'exif-scenecode'                   => 'IPTC シーンコード',
 'exif-originalimageheight'         => 'トリミングされる前の画像の高さ',
 'exif-originalimagewidth'          => 'トリミングされる前の画像の幅',
 
@@ -3406,9 +3411,9 @@ Variants for Chinese language
 'exif-orientation-3' => '180°回転',
 'exif-orientation-4' => '上下反転',
 'exif-orientation-5' => '反時計回りに90°回転 上下反転',
-'exif-orientation-6' => '時計回りに90°回転',
+'exif-orientation-6' => '90° 回転 CCW',
 'exif-orientation-7' => '時計回りに90°回転 上下反転',
-'exif-orientation-8' => '反時計回りに90°回転',
+'exif-orientation-8' => '90° 回転 CW',
 
 'exif-planarconfiguration-1' => '点順次フォーマット',
 'exif-planarconfiguration-2' => '面順次フォーマット',
@@ -3552,6 +3557,7 @@ Variants for Chinese language
 'exif-gpsdirection-t' => '真方位',
 'exif-gpsdirection-m' => '磁方位',
 
+'exif-dc-date'   => '日付',
 'exif-dc-source' => 'ソースメディア',
 'exif-dc-type'   => 'メディアの種類',
 

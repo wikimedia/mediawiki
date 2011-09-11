@@ -810,6 +810,7 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 'passwordreset-disabled'       => 'Resetarea parolei a fost dezactivată pe acest wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1| | Introduceți mai jos o parte din informații}}',
 'passwordreset-username'       => 'Nume de utilizator:',
+'passwordreset-domain'         => 'Domeniu:',
 'passwordreset-email'          => 'Adresă de e-mail:',
 'passwordreset-emailtitle'     => 'Detalii despre cont pe {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Cineva (probabil dumneavoastră, de la adresa IP $1) a cerut reamintirea detaliilor
@@ -1416,6 +1417,7 @@ Acțiunea nu este reversibilă.',
 'yourrealname'                  => 'Nume real:',
 'yourlanguage'                  => 'Interfață în limba:',
 'yourvariant'                   => 'Varianta:',
+'prefs-help-variant'            => 'Varianta dumneavoastră preferată sau ortografia de afișare a conținutului paginilor pe acest wiki.',
 'yournick'                      => 'Semnătură:',
 'prefs-help-signature'          => 'Comentariile de pe paginile de discuții vor trebuie semnate cu „<nowiki>~~~~</nowiki>”, tildele transformându-se în semnătura dumneavoastră urmată de ora la care ați introdus comentariul.',
 'badsig'                        => 'Semnătură brută incorectă; verificați tagurile HTML.',
@@ -2589,6 +2591,7 @@ Vezi [[Special:IPBlockList|lista de adrese IP și conturi blocate]] pentru a rev
 'unblocklink'                     => 'deblochează',
 'change-blocklink'                => 'modifică blocarea',
 'contribslink'                    => 'contribuții',
+'emaillink'                       => 'trimite e-mail',
 'autoblocker'                     => 'Autoblocat fiindcă folosiți aceeași adresă IP ca și „[[User:$1|$1]]”.
 Motivul blocării utilizatorului $1 este: „$2”',
 'blocklogpage'                    => 'Jurnal blocări',
@@ -3791,5 +3794,11 @@ Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
 # SQLite database support
 'sqlite-has-fts' => '$1 cu suport de căutare în tot textul',
 'sqlite-no-fts'  => '$1 fără suport de căutare în tot textul',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4 fără a lăsa o redirecționare în loc',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4 înlocuind redirecționarea',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4 înlocuind redirecționarea fără a lăsa o redirecționare în loc',
 
 );

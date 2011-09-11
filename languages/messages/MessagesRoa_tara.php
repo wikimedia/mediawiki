@@ -51,7 +51,7 @@ $messages = array(
 'tog-enotifminoredits'        => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus 'a pàgene",
 'tog-enotifrevealaddr'        => "Fa vedè l'indirizze e-mail jndr'à le e-mail de notifiche",
 'tog-shownumberswatching'     => "Fa vedè 'u numere de le utinde ca uardene",
-'tog-oldsig'                  => "Andeprime d'a firme esistende:",
+'tog-oldsig'                  => 'Firme esistende:',
 'tog-fancysig'                => "Firma grezze cumme a 'nu teste de Uicchi (senza collegamende automatiche)",
 'tog-externaleditor'          => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tune. <br />
 [http://www.mediawiki.org/wiki/Manual:External_editors Pe cchiù 'mbormaziune.])",
@@ -3026,9 +3026,9 @@ Otre avènene scunnute pe defolt.
 'exif-orientation-3' => 'Ruete de 180°',
 'exif-orientation-4' => 'Revultate verticalmende',
 'exif-orientation-5' => 'Ruotate de 90° in senze andiorarie e revultate verticalmende',
-'exif-orientation-6' => 'Ruotate de 90° in senze orarie',
+'exif-orientation-6' => 'Rotate de 90° in sienze andiorarie',
 'exif-orientation-7' => 'Ruotate de 90° in senze orarie e revultate verticalmende',
-'exif-orientation-8' => 'Ruotate de 90° in senze andiorarie',
+'exif-orientation-8' => 'Rotate de 90° in sienze orarie',
 
 'exif-planarconfiguration-1' => 'formate a blocche',
 'exif-planarconfiguration-2' => 'formate lineare',

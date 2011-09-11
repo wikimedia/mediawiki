@@ -3061,6 +3061,11 @@ $1',
 'exif-usageterms'                  => 'Условия за използване',
 'exif-originaldocumentid'          => 'Уникален номер на оригиналния документ',
 'exif-morepermissionsurl'          => 'Алтернативна информация за лиценза',
+'exif-event'                       => 'Изобразено събитие',
+'exif-organisationinimage'         => 'Изобразена организация',
+'exif-personinimage'               => 'Изобразена личност',
+'exif-originalimageheight'         => 'Височина на изображението преди намаляването',
+'exif-originalimagewidth'          => 'Ширина на изображението преди намаляването',
 
 # EXIF attributes
 'exif-compression-1' => 'Некомпресиран',

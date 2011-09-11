@@ -1207,7 +1207,7 @@ Costa anformassion a sarà pùblica.",
 'userrights-no-interwiki'        => "A l'ha pa ij përmess dont a fa da manca për podèj cambieje ij drit a dj'utent ansima a dj'àutre wiki.",
 'userrights-nodatabase'          => "La base ëd dat $1 a-i é pa, ò pura a l'é nen local.",
 'userrights-nologin'             => "A l'ha da [[Special:UserLogin|rintré ant ël sistema]] con un cont da aministrator për podej-je dé dij drit a j'utent.",
-'userrights-notallowed'          => "Ël tò cont a l'ha pa ij përmess për dé o gavé dij drit a j'utent.",
+'userrights-notallowed'          => "Sòò cont a l'ha pa ij përmess për dé o gavé dij drit a j'utent.",
 'userrights-changeable-col'      => "Partìe ch'a peul cambié",
 'userrights-unchangeable-col'    => "Partìe ch'a peul pa cambié",
 'userrights-irreversible-marker' => '$1*',
@@ -1972,14 +1972,14 @@ Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discuss
 'wlheader-showupdated' => "* Cole pàgine che a son ëstàite modificà da quand che a l'é passaje ansima l'ùltima vira a resto marcà an '''grassèt'''",
 'watchmethod-recent'   => "contròl a j'ùltime modìfiche fàite a le pàgine che as ten sot-euj",
 'watchmethod-list'     => 'contròl ëd le pàgine che as ten sot-euj për vëdde se a-i sio staje dle modìfiche recente',
-'watchlistcontains'    => "Soa lista dla ròba ch'as ten sot euj a l'ha andrinta {{PLURAL:$1|na pàgina|$1 pàgine}}.",
+'watchlistcontains'    => "Soa lista dla ròba ch'as ten sot-euj a l'ha andrinta {{PLURAL:$1|na pàgina|$1 pàgine}}.",
 'iteminvalidname'      => "Problema con l'element '$1', nòm nen vàlid...",
 'wlnote'               => "Ambelessì sota a-i {{PLURAL:$1|é l'ùltima modìfica|son j'ùltime '''$1''' modìfiche}} ant {{PLURAL:$2|l'ùltima ora|j'ùltime '''$2''' ore}}.",
-'wlshowlast'           => "Most-me j'ùltime $1 ore $2 dì $3",
-'watchlist-options'    => "Opsion lista d'osservassion",
+'wlshowlast'           => "Smon-e j'ùltime $1 ore $2 dì $3",
+'watchlist-options'    => "Opsion ëd la lista dla ròba ch'as ten sot-euj",
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'       => 'Sot euj...',
+'watching'       => 'Sot-euj...',
 'unwatching'     => "Ën gavand da lòn ch'as ten sot euj...",
 'watcherrortext' => "A l'é capitaje n'eror an cangiand j'ampostassion ëd lòn ch'it ten-e sot euj për \"\$1\".",
 
@@ -3547,9 +3547,9 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 'sqlite-no-fts'  => '$1 sensa arserca an test pien mantnùa',
 
 # New logging system
-'logentry-move-move'                  => '$1 {{GENDER:$2|tramudà}} pagina $3 a $4',
-'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|tramudà}} pagina $3 a $4 sensa lassé na rediression',
-'logentry-move-move_redir'            => '$1 {{GENDER:$2|tramudà}} pagina $3 a $4 su rediression',
-'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|tramudà}} pagina $3 a $4 su rediression sensa lassé na rediression',
+'logentry-move-move'                  => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4",
+'logentry-move-move-noredirect'       => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 sensa lassé na ridiression",
+'logentry-move-move_redir'            => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression",
+'logentry-move-move_redir-noredirect' => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression sensa lassé na ridiression",
 
 );

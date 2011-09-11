@@ -3741,7 +3741,6 @@ Variants for Chinese language
 'variantname-shi-latn' => 'shi-Latn', # only translate this message to other languages if you have to change it
 'variantname-shi'      => 'shi', # only translate this message to other languages if you have to change it
 
-
 # Metadata
 'metadata'                  => 'Metadata',
 'metadata-help'             => 'This file contains additional information, probably added from the digital camera or scanner used to create or digitize it.
