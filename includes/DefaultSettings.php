@@ -4879,6 +4879,8 @@ $wgCategoryPagingLimit = 200;
  *
  *   - uppercase: Converts the category name to upper case, and sorts by that.
  *
+ *   - identity: Does no conversion. Sorts by binary value of the string.
+ *
  *   - uca-default: Provides access to the Unicode Collation Algorithm with
  *     the default element table. This is a compromise collation which sorts
  *     all languages in a mediocre way. However, it is better than "uppercase".
@@ -4892,7 +4894,7 @@ $wgCategoryPagingLimit = 200;
  * the sort keys in the database.
  *
  * Extensions can define there own collations by subclassing Collation
- * and using the class name as the value of this variable.
+ * and using the Collation::factory hook.
  */
 $wgCategoryCollation = 'uppercase';
 
