@@ -350,6 +350,8 @@ $magicWords = array(
 	'url_path'               => array( 0,    'PATH' ),
 	'url_wiki'               => array( 0,    'WIKI' ),
 	'url_query'              => array( 0,    'QUERY' ),
+	'defaultsort_noerror'    => array( 0,    'noerror' ),
+	'defaultsort_noreplace'  => array( 0,    'noreplace' ),
 );
 
 /**

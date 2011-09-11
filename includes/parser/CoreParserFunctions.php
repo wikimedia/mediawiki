@@ -678,24 +678,27 @@ class CoreParserFunctions {
 	/**
 	 * @param $parser Parser
 	 * @param $text String The sortkey to use
-	 * @param $arg String Either "noreplace" or "noerror"
+	 * @param $uarg String Either "noreplace" or "noerror" (in en)
 	 *   both suppress errors, and noreplace does nothing if
 	 *   a default sortkey already exists.
 	 * @return string
 	 */
-	public static function defaultsort( $parser, $text, $arg = '' ) {
+	public static function defaultsort( $parser, $text, $uarg = '' ) {
+		static $magicWords = null;
+		if ( is_null( $magicWords ) ) {
+			$magicWords = new MagicWordArray( array( 'defaultsort_noerror', 'defaultsort_noreplace' ) );
+		}
+		$arg = $magicWords->matchStartToEnd( $uarg );
+
 		$text = trim( $text );
-		$arg = trim( strtolower( $arg ) );
 		if( strlen( $text ) == 0 )
 			return '';
 		$old = $parser->getCustomDefaultSort();
-		if ( $old === false || $arg !== 'noreplace' ) {
+		if ( $old === false || $arg !== 'defaultsort_noreplace' ) {
 			$parser->setDefaultSort( $text );
 		}
 
-		if( $old === false || $old == $text || $arg === 'noreplace'
-			|| $arg === 'noerror' )
-		{
+		if( $old === false || $old == $text || $arg ) {
 			return '';
 		} else {
 			return( '<span class="error">' .
