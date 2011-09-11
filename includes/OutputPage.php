@@ -1311,8 +1311,9 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param $text String
 	 * @param $linestart Boolean: is this the start of a line?
+	 * @param $interface Boolean: is this text in the user interface language?
 	 */
-	public function addWikiText( $text, $linestart = true, $interface = false ) {
+	public function addWikiText( $text, $linestart = true, $interface = true ) {
 		$title = $this->getTitle(); // Work arround E_STRICT
 		$this->addWikiTextTitle( $text, $title, $linestart, /*tidy*/false, $interface );
 	}
@@ -1941,8 +1942,7 @@ class OutputPage extends ContextSource {
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
 		$this->mBodytext = '';
-		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ),
-			/*linestart*/true, /*interface*/true );
+		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
 	}
 
 	/**
@@ -2081,8 +2081,7 @@ class OutputPage extends ContextSource {
 			} else {
 				$this->setPageTitle( wfMsg( 'badaccess' ) );
 			}
-			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ),
-				/*linestart*/true, /*interface*/true );
+			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ) );
 		} else {
 			// Wiki is read only
 			throw new ReadOnlyError;
@@ -2958,9 +2957,9 @@ $distantTemplates
 	/**
 	 * Adds inline CSS styles
 	 * @param $style_css Mixed: inline CSS
-	 * @param $flip False or String: Set to 'flip' to flip the CSS if needed
+	 * @param $flip String: Set to 'flip' to flip the CSS if needed
 	 */
-	public function addInlineStyle( $style_css, $flip = false ) {
+	public function addInlineStyle( $style_css, $flip = 'noflip' ) {
 		if( $flip === 'flip' && $this->getLang()->isRTL() ) {
 			# If wanted, and the interface is right-to-left, flip the CSS
 			$style_css = CSSJanus::transform( $style_css, true, false );
@@ -3049,6 +3048,9 @@ $distantTemplates
 		return $ret;
 	}
 
+	/**
+	 * @return Array
+	 */
 	public function buildCssLinksArray() {
 		$links = array();
 
@@ -3223,7 +3225,7 @@ $distantTemplates
 			}
 			$s = str_replace( '$' . ( $n + 1 ), wfMsgExt( $name, $options, $args ), $s );
 		}
-		$this->addWikiText( $s, /*linestart*/true, /*interface*/true );
+		$this->addWikiText( $s );
 	}
 
 	/**

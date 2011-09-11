@@ -64,7 +64,7 @@ class SpecialVersion extends SpecialPage {
 			$text .= $this->getWgHooks();
 		}
 
-		$out->addWikiText( $text, /*linestart*/true, /*interface*/true );
+		$out->addWikiText( $text );
 		$out->addHTML( $this->IPInfo() );
 
 		if ( $this->getRequest()->getVal( 'easteregg' ) ) {
@@ -154,6 +154,7 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Return a string of the MediaWiki version with SVN revision if available.
 	 *
+	 * @param $flags String
 	 * @return mixed
 	 */
 	public static function getVersion( $flags = '' ) {
