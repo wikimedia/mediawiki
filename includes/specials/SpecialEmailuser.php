@@ -123,7 +123,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 		$this->mTargetObj = $ret;
 
-		$form = new HTMLForm( $this->getFormFields() );
+		$form = new HTMLForm( $this->getFormFields(), $this->getContext() );
 		$form->addPreText( wfMsgExt( 'emailpagetext', 'parseinline' ) );
 		$form->setSubmitText( wfMsg( 'emailsend' ) );
 		$form->setTitle( $this->getTitle() );
