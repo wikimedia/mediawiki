@@ -822,6 +822,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'passwordreset-disabled'       => 'Lösenordsåterställning har inaktiverats på denna wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Ange en av datadelarna nedan}}',
 'passwordreset-username'       => 'Användarnamn:',
+'passwordreset-domain'         => 'Domän:',
 'passwordreset-email'          => 'E-postadress:',
 'passwordreset-emailtitle'     => 'Kontouppgifter på {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Någon (förmodligen du, från IP-adressen $1) begärde en påminnelse av dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
@@ -3806,5 +3807,11 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 med stöd för fulltextsökning',
 'sqlite-no-fts'  => '$1 utan stöd för fulltextsökning',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 utan att lämna en omdirigering',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 över en omdirigering',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
 
 );

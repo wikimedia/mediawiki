@@ -2406,10 +2406,16 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-meteringmode-6'   => "joz'i",
 'exif-meteringmode-255' => 'ḫwayej ĥrin',
 
-'exif-lightsource-0' => 'mjhol',
-'exif-lightsource-4' => 'flaċ',
+'exif-lightsource-0'   => 'mjhol',
+'exif-lightsource-4'   => 'flaċ',
+'exif-lightsource-17'  => 'ḍo qyasi A',
+'exif-lightsource-18'  => 'ḍo qyasi B',
+'exif-lightsource-19'  => 'ḍo qyasi C',
+'exif-lightsource-24'  => 'tungsten studio ISO',
+'exif-lightsource-255' => 'ṃṣḍr ḍo aĥoṛ',
 
 # Flash modes
+'exif-flash-fired-0'    => 'l-flaċ ma ṫtlaq-ċ',
 'exif-flash-fired-1'    => 'lflach bda',
 'exif-flash-return-0'   => 'makaynach dalat rojoa lwamid',
 'exif-flash-return-2'   => 'dow rojoa lwamid makchfch',
@@ -2429,6 +2435,8 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-sensingmethod-5' => 'motchair lon missaha motatabiaa',
 'exif-sensingmethod-7' => 'mostachair khatti tolati',
 'exif-sensingmethod-8' => 'mostchair lon khatti motatabi3',
+
+'exif-filesource-3' => 'caméra rqmiyya waqfa',
 
 'exif-scenetype-1' => 'sora moltaqata bchkl mobachir',
 
@@ -2478,6 +2486,10 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'exif-gpslongitude-e' => 'khatt tol charqi',
 'exif-gpslongitude-w' => 'khatt toll lgharbi',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|mitro|mitroaṫ}} foq ṣtḫ l-ḅḫṛ',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|mitro|mitroaṫ}} ṫḫṫ ṣtḫ l-ḅḫṛ',
+
 'exif-gpsstatus-a' => 'amaliyat lqiyas lhaliya',
 'exif-gpsstatus-v' => 'chomol lqiyass',
 
@@ -2492,6 +2504,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 # Pseudotags used for GPSDestDistanceRef
 'exif-gpsdestdistance-k' => 'kilometrat',
 'exif-gpsdestdistance-m' => 'mial',
+'exif-gpsdestdistance-n' => 'mial ḅḫriyya',
 
 'exif-gpsdop-excellent' => 'naḍi ($1)',
 'exif-gpsdop-good'      => 'mzyan ($1)',
@@ -2506,6 +2519,9 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'litijah lhaqiqi',
 'exif-gpsdirection-m' => 'littijah lmighnatissi',
+
+'exif-ycbcrpositioning-1' => 'centré',
+'exif-ycbcrpositioning-2' => 'co-sité',
 
 'exif-dc-contributor' => 'l-mosahimin',
 'exif-dc-date'        => 't(aw)ariĥ',
@@ -2556,6 +2572,11 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'confirmemail'             => "konfirmasyon dyal l'email",
 'confirmemail_send'        => 'sift code lkonfirmation',
 'confirmemail_sent'        => 'tam irssal rissala dyal lkonfirmation.',
+'confirmemail_invalid'     => "cod ṫ'kid ġalt.
+l-cod ṫqdar ṫkon ṫqaḍaṫ ṣalaḫyṫo.",
+'confirmemail_needlogin'   => "ĥaṣṣ $1 baċ ṫ'kked l-email ṫaĝk.",
+'confirmemail_success'     => "ṫ'kked ĝonwan l-email ṫaĝk.
+daba ymkn lik [[Special:UserLogin|ṫdĥol]] o-ṫsṫmṫĝ bl-wiki.",
 'confirmemail_loggedin'    => "l'email dyalk tkonfirma daba",
 'confirmemail_error'       => "khayn chi khata' mlli bghiti tsjl lkonfirmation dyalk",
 'confirmemail_subject'     => "rissala ta'kid mn  {{SITENAME}}",
@@ -2568,6 +2589,8 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'scarytranscludetoolong'  => '[URL twil bzzaf]',
 
 # Trackbacks
+'trackbackbox'      => 'ṃoṫaḅaĝaṫ dial had ṣfḫa:<br />
+$1',
 'trackbackremove'   => '([$1 Suprimi])',
 'trackbacklink'     => 'lmotabaaa',
 'trackbackdeleteok' => 'lmotabaa tmshat',
@@ -2582,7 +2605,9 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'waĥĥa',
+'confirm-watch-top'      => "zid had ṣ-ṣfḫa l-qa'imaṫ l-ṃoṛaqaba?",
 'confirm-unwatch-button' => 'waĥĥa',
+'confirm-unwatch-top'    => "hyyed had ṣ-ṣfḫa mn qa'imaṫ l-ṃoṛaqaba?",
 
 # Multipage image navigation
 'imgmultipageprev' => 'sfha li sbqat',
@@ -2611,6 +2636,10 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 # Live preview
 'livepreview-loading' => 'tssna wa7d chwiya kaytcharja ....',
 'livepreview-ready'   => 'tssna wahd chwiya rah kaytcharja. ....  safi ha hwa wajd',
+'livepreview-failed'  => 'ĝṛḍ mobaċir ma njḫ-ċ!
+jrreb l-ĝṛḍ l-ĝadi.',
+'livepreview-error'   => 'ma njḫ-ċ ṫ-ṫiṣal: $1 "$2".
+jrreb l-ĝṛḍ l-ĝadi.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'tghiyrat jdad y3ni aqal mn  $1 {{PLURAL:$1|taniya|tawani}} iqdr matbanch lik flista',
@@ -2621,6 +2650,7 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'watchlistedit-normal-title'  => "ĝddel qa'imaṫ l-moṛaqaḅa",
 'watchlistedit-normal-legend' => 'Mmḫiya men l-lista dyal s-suivi',
 'watchlistedit-normal-submit' => 'hiyd ladressat',
+'watchlistedit-normal-done'   => "{{PLURAL:$1|1 l-ĝonwan ṫḫyyed|$1 dl-ĝanawin ṫḫyyedaṫ}} mn qa'imaṫ l-ṃoṛaqaba:",
 'watchlistedit-raw-title'     => 'Ṣayeb l-lista dyal lkham',
 'watchlistedit-raw-legend'    => 'Ṣayeb l-lista dyal lkham',
 'watchlistedit-raw-titles'    => 'ladressat:',
@@ -2630,6 +2660,10 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'watchlisttools-view' => 'Lista dyal s-suivi',
 'watchlisttools-edit' => 'Ċof o ĝeddel l-lista dyal s-suivi',
 'watchlisttools-raw'  => 'Ṣayeb l-lista dyal s-suivi',
+
+# Core parser functions
+'unknown_extension_tag' => 'tag mṫidad ma mĝrof-ċ "$1"',
+'duplicate-defaultsort' => '\'\'\'ṫḫdir:\'\'\' saroṫ ṫrṫib fṫiṛaḍi "$2" faṫ saroṫ ṫrṫib fṫiṛaḍi "$1".',
 
 # Special:Version
 'version'                       => 'Noskha',
@@ -2665,6 +2699,9 @@ Ila ṫbeddel l-fiċyé men ḫalṫo l-'aṣliya, kaynin ċi ṫafaṣil ma mna
 'fileduplicatesearch-legend'    => 'qllb ala lmdoublin',
 'fileduplicatesearch-filename'  => 'smiyt lfichier',
 'fileduplicatesearch-submit'    => 'Qelleb',
+'fileduplicatesearch-info'      => '$1 × $2 piksel<br />ṫqel l-fiċyé: $3<br />noĝ MIME : $4',
+'fileduplicatesearch-result-1'  => 'ḫṫṫa ċi ṫakṛaṛ ma mtabq ll-milef "$1".',
+'fileduplicatesearch-result-n'  => 'l-milef "$1" fih {{PLURAL:$2|1 ṫ-ṫakṛaṛ lli mtabq|$2 d-ṫakṛaṛaṫ lli mtabqa}}.',
 'fileduplicatesearch-noresults' => 'ma lqina ḫṫṫa ċi milef ṣmito "$1".',
 
 # Special:SpecialPages

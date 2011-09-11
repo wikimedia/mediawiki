@@ -361,7 +361,7 @@ $messages = array(
 'qbpageinfo'     => 'Contexto',
 'qbmyoptions'    => 'As miñas páxinas',
 'qbspecialpages' => 'Páxinas especiais',
-'faq'            => 'PMF',
+'faq'            => 'Preguntas máis frecuentes',
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin

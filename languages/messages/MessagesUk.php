@@ -1880,9 +1880,11 @@ $1',
 'shared-repo-from'                  => 'з $1',
 'shared-repo'                       => 'спільного сховища',
 'shared-repo-name-wikimediacommons' => 'Вікісховища',
+'filepage.css'                      => '/* Розміщений тут CSS-код розміщений на сторінці опису файла, також і для іноземних користувачів вікі */',
 
 # File reversion
 'filerevert'                => 'Повернення до старої версії $1',
+'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => 'Повернути версію файлу',
 'filerevert-intro'          => "Ви повертаєте '''[[Media:$1|$1]]''' до [$4 версії від $3, $2].",
 'filerevert-comment'        => 'Причина:',
@@ -1893,6 +1895,7 @@ $1',
 
 # File deletion
 'filedelete'                  => 'Вилучення $1',
+'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'Вилучити файл',
 'filedelete-intro'            => "Ви збираєтесь вилучити '''[[Media:$1|$1]]''' і всю його історію.",
 'filedelete-intro-old'        => "Ви вилучаєте версію '''[[Media:$1|$1]]''' від [$4 $3, $2].",
@@ -2889,8 +2892,11 @@ IP-адреси, що блокуються автоматично тут не в
 'tooltip-summary'                 => 'Введіть короткий опис',
 
 # Stylesheets
-'common.css'   => '/** Розміщений тут CSS буде застосовуватися до всіх тем оформлення */',
-'monobook.css' => '/* Розміщений тут CSS буде застосовуватися до всіх тем оформлення Monobook */
+'common.css'              => '/** Розміщений тут CSS буде застосовуватися до всіх тем оформлення */',
+'standard.css'            => '/* Розміщений тут CSS-код буде використаний для користувачів з налаштованою темою оформлення Стандартне */',
+'nostalgia.css'           => '/* Розміщений тут CSS-код буде використаний для користувачів з налаштованою темою оформлення Ностальгія */',
+'cologneblue.css'         => '/* Розміщений тут CSS-код буде використаний для користувачів з налаштованою темою оформлення Кельнське блакитне */',
+'monobook.css'            => '/* Розміщений тут CSS буде застосовуватися до всіх тем оформлення Monobook */
 
 /*
 Це необхідно щоб в вікні пошуку кнопки не розбивались на два рядки
@@ -2903,9 +2909,34 @@ IP-адреси, що блокуються автоматично тут не в
     padding-right: 0em;
     font-weight: bold;
 }',
+'myskin.css'              => '/* Розміщений тут CSS-код буде використаний в темі оформлення Власне */',
+'chick.css'               => '/* Розміщений тут CSS-код буде використаний в темі оформлення Курча */',
+'simple.css'              => '/* Розміщений тут CSS-код буде використаний в темі оформлення Просте */',
+'modern.css'              => '/* Розміщений тут CSS-код буде використаний в темі оформлення Сучасне */',
+'vector.css'              => '/* Розміщений тут CSS-код буде використаний в темі оформлення Векторне */',
+'print.css'               => '/* Розміщений тут CSS-код буде використаний для друкованої версії */',
+'handheld.css'            => '/* Розміщений тут CSS-код буде використаний для мобільних пристроїв, що використовують тему оформлення налаштовану в $wgHandheldStyle */',
+'noscript.css'            => '/* Розміщений тут CSS-код буде використаний для користувачів у яких вимкнено JavaScript */',
+'group-autoconfirmed.css' => '/* Розміщений тут CSS-код буде використаний для автопідтверджених користувачів */',
+'group-bot.css'           => '/* Розміщений тут CSS-код буде використаний тільки для ботів */',
+'group-sysop.css'         => '/* Розміщений тут CSS-код буде використаний тільки для адміністраторів */',
+'group-bureaucrat.css'    => '/* Розміщений тут CSS-код буде використаний тільки для бюрократів */',
 
 # Scripts
-'common.js' => '/* Розміщений тут код JavaScript буде завантажений всім користувачам при зверненні до будь-якої сторінки */',
+'common.js'              => '/* Розміщений тут код JavaScript буде завантажений всім користувачам при зверненні до будь-якої сторінки */',
+'standard.js'            => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують стандартну тему оформлення */',
+'nostalgia.js'           => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Ностальгія */',
+'cologneblue.js'         => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Кельнське синє */',
+'monobook.js'            => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Моно-книга */',
+'myskin.js'              => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують власну тему оформлення */',
+'chick.js'               => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Курча */',
+'simple.js'              => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують просту тему оформлення */',
+'modern.js'              => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Сучасне */',
+'vector.js'              => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують векторну тему оформлення */',
+'group-autoconfirmed.js' => '/* Розміщений тут код JavaScript буде завантажений тільки для автопідтверджених користувачів */',
+'group-bot.js'           => '/* Розміщений тут код JavaScript буде завантажений тільки для ботів */',
+'group-sysop.js'         => '/* Розміщений тут код JavaScript буде завантажений тільки для адміністраторів */',
+'group-bureaucrat.js'    => '/* Розміщений тут код JavaScript буде завантажений тільки для бюрократів */',
 
 # Metadata
 'notacceptable' => "Вікі-сервер не може подати дані в форматі, який міг би прочитати ваш браузер.<br />
@@ -3028,6 +3059,7 @@ $1',
 'seconds-abbrev' => 'с',
 'minutes-abbrev' => 'хв',
 'hours-abbrev'   => 'г',
+'days-abbrev'    => 'д',
 
 # Bad image list
 'bad_image_list' => 'Формат має бути наступним:
@@ -3046,16 +3078,52 @@ Variants for Chinese language
 'variantname-zh-hant' => 'hant',
 'variantname-zh-cn'   => 'cn',
 'variantname-zh-tw'   => 'tw',
+'variantname-zh-hk'   => 'hk',
+'variantname-zh-mo'   => 'mo',
+'variantname-zh-sg'   => 'sg',
+'variantname-zh-my'   => 'my',
+'variantname-zh'      => 'zh',
+
+# Variants for Gan language
+'variantname-gan-hans' => 'hans',
+'variantname-gan-hant' => 'hant',
+'variantname-gan'      => 'gan',
+
+# Variants for Serbian language
+'variantname-sr-ec' => 'sr-ec',
+'variantname-sr-el' => 'sr-el',
+'variantname-sr'    => 'sr',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => 'kk-kz',
+'variantname-kk-tr'   => 'kk-tr',
+'variantname-kk-cn'   => 'kk-cn',
+'variantname-kk-cyrl' => 'kk-cyrl',
+'variantname-kk-latn' => 'kk-latn',
+'variantname-kk-arab' => 'kk-arab',
+'variantname-kk'      => 'kk',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'ku-Arab',
+'variantname-ku-latn' => 'ku-Latn',
+'variantname-ku'      => 'ku',
 
 # Variants for Tajiki language
 'variantname-tg-cyrl' => 'tg-Cyrl',
+'variantname-tg-latn' => 'tg-Latn',
+'variantname-tg'      => 'tg',
+
+# Variants for Inuktitut language
+'variantname-ike-cans' => 'ike-Cans',
+'variantname-ike-latn' => 'ike-Latn',
+'variantname-iu'       => 'iu',
 
 # Metadata
-'metadata'          => 'Метадані',
-'metadata-help'     => 'Файл містить додаткові дані, які зазвичай додаються цифровими камерами чи сканерами. Якщо файл редагувався після створення, то деякі параметри можуть не відповідати цьому зображенню.',
-'metadata-expand'   => 'Показати додаткові дані',
-'metadata-collapse' => 'Приховати додаткові дані',
-'metadata-fields'   => 'Поля метаданих зображення, перелічені в наступному списку, будуть відображатись на сторінці опису зображення при згорнутій таблиці метаданих. Решта полів будуть приховані за замовчуванням.
+'metadata'                  => 'Метадані',
+'metadata-help'             => 'Файл містить додаткові дані, які зазвичай додаються цифровими камерами чи сканерами. Якщо файл редагувався після створення, то деякі параметри можуть не відповідати цьому зображенню.',
+'metadata-expand'           => 'Показати додаткові дані',
+'metadata-collapse'         => 'Приховати додаткові дані',
+'metadata-fields'           => 'Поля метаданих зображення, перелічені в наступному списку, будуть відображатись на сторінці опису зображення при згорнутій таблиці метаданих. Решта полів будуть приховані за замовчуванням.
 * make
 * model
 * datetimeoriginal
@@ -3069,6 +3137,8 @@ Variants for Chinese language
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
+'metadata-langitem'         => "'''$2:''' $1",
+'metadata-langitem-default' => '$1',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Ширина',
@@ -3116,6 +3186,7 @@ Variants for Chinese language
 'exif-exposuretime'                => 'Час експозиції',
 'exif-exposuretime-format'         => '$1 з ($2)',
 'exif-fnumber'                     => 'Число діафрагми',
+'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Програма експозиції',
 'exif-spectralsensitivity'         => 'Спектральна чутливість',
 'exif-isospeedratings'             => 'Світлочутливість ISO',
@@ -3250,14 +3321,36 @@ Variants for Chinese language
 'exif-originalimageheight'         => 'Висота зображення, до того як воно було обітнуто',
 'exif-originalimagewidth'          => 'Ширина зображення, до того як воно було обітнуто',
 
+# Make & model, can be wikified in order to link to the camera and model name
+'exif-contact-value'         => '$1
+
+$2
+<div class="adr">
+$3
+
+$4, $5, $6 $7
+</div>
+$8',
+'exif-subjectnewscode-value' => '$2 ($1)',
+
 # EXIF attributes
-'exif-compression-1' => 'Нестиснутий',
-'exif-compression-2' => 'CCITT Group 3, 1-мірна модифікація кодування довжин серій Хаффмана',
-'exif-compression-3' => 'CCITT Group 3, факсове кодування',
-'exif-compression-4' => 'CCITT Group 4, факсове кодування',
+'exif-compression-1'     => 'Нестиснутий',
+'exif-compression-2'     => 'CCITT Group 3, 1-мірна модифікація кодування довжин серій Хаффмана',
+'exif-compression-3'     => 'CCITT Group 3, факсове кодування',
+'exif-compression-4'     => 'CCITT Group 4, факсове кодування',
+'exif-compression-5'     => 'LZW',
+'exif-compression-6'     => 'JPEG (старий)',
+'exif-compression-7'     => 'JPEG',
+'exif-compression-8'     => 'Deflate (Adobe)',
+'exif-compression-32773' => 'PackBits (Macintosh RLE)',
+'exif-compression-32946' => 'Deflate (PKZIP)',
+'exif-compression-34712' => 'JPEG2000',
 
 'exif-copyrighted-true'  => 'Охороняється законом про авторське право',
 'exif-copyrighted-false' => 'Суспільне надбання',
+
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Невідома дата',
 
@@ -3276,9 +3369,16 @@ Variants for Chinese language
 'exif-xyresolution-i' => '$1 точок на дюйм',
 'exif-xyresolution-c' => '$1 точок на сантиметр',
 
+'exif-colorspace-1'     => 'sRGB',
 'exif-colorspace-65535' => 'Некаліброване',
 
 'exif-componentsconfiguration-0' => 'не існує',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Невідомо',
 'exif-exposureprogram-1' => 'Ручний режим',
@@ -3316,6 +3416,10 @@ Variants for Chinese language
 'exif-lightsource-17'  => 'Стандартне джерело світла типу A',
 'exif-lightsource-18'  => 'Стандартне джерело світла типу B',
 'exif-lightsource-19'  => 'Стандартне джерело світла типу C',
+'exif-lightsource-20'  => 'D55',
+'exif-lightsource-21'  => 'D65',
+'exif-lightsource-22'  => 'D75',
+'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'Студійна лампа стандарту ISO',
 'exif-lightsource-255' => 'Інше джерело світла',
 
@@ -3441,6 +3545,8 @@ Variants for Chinese language
 
 'exif-isospeedratings-overflow' => 'Понад 65535',
 
+'exif-maxaperturevalue-value' => '$1 APEX (f/$2)',
+
 'exif-iimcategory-ace' => 'Мистецтво, культура та розваги',
 'exif-iimcategory-clj' => 'Злочинність і право',
 'exif-iimcategory-dis' => 'Стихійні лиха та катастрофи',
@@ -3545,6 +3651,8 @@ $5
 # Trackbacks
 'trackbackbox'      => 'Trackback для цієї статті:<br />
 $1',
+'trackback'         => '; $4 $5: [$2 $1]',
+'trackbackexcerpt'  => '; $4 $5: [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove'   => '([$1 вилучити])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback вилучено.',
@@ -3569,6 +3677,17 @@ $1',
 'confirm-watch-top'      => 'Додати цю сторінку до списку спостереження?',
 'confirm-unwatch-button' => 'Гаразд',
 'confirm-unwatch-top'    => 'Вилучити цю сторінку з вашого списку спостереження?',
+
+# Separators for various lists, etc.
+'semicolon-separator' => ';&#32;',
+'comma-separator'     => ',&#32;',
+'colon-separator'     => ':&#32;',
+'autocomment-prefix'  => '-&#32;',
+'pipe-separator'      => '&#32;•&#32;',
+'word-separator'      => '&#32;',
+'ellipsis'            => '...',
+'percent'             => '$1%',
+'parentheses'         => '($1)',
 
 # Multipage image navigation
 'imgmultipageprev' => '← попередня сторінка',
@@ -3634,6 +3753,67 @@ $1',
 'watchlisttools-view' => 'Зміни на сторінках зі списку',
 'watchlisttools-edit' => 'Переглянути/редагувати список',
 'watchlisttools-raw'  => 'Редагувати як текст',
+
+# Iranian month names
+'iranian-calendar-m1'  => 'фарвардіна',
+'iranian-calendar-m2'  => 'ордібехешта',
+'iranian-calendar-m3'  => 'хордада',
+'iranian-calendar-m4'  => 'тіра',
+'iranian-calendar-m5'  => 'мордада',
+'iranian-calendar-m6'  => 'шахривара',
+'iranian-calendar-m7'  => 'мехра',
+'iranian-calendar-m8'  => 'абана',
+'iranian-calendar-m9'  => 'азара',
+'iranian-calendar-m10' => 'дея',
+'iranian-calendar-m11' => 'бахмана',
+'iranian-calendar-m12' => 'есфанда',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'мухаррама',
+'hijri-calendar-m2'  => 'сафара',
+'hijri-calendar-m3'  => 'рабі аль-авваля',
+'hijri-calendar-m4'  => 'рабі аль-тані',
+'hijri-calendar-m5'  => 'джумада аль-авваля',
+'hijri-calendar-m6'  => 'джумада аль-тані',
+'hijri-calendar-m7'  => 'раджаба',
+'hijri-calendar-m8'  => 'шаабана',
+'hijri-calendar-m9'  => 'рамадану',
+'hijri-calendar-m10' => 'шавалю',
+'hijri-calendar-m11' => 'ду аль-кідаху',
+'hijri-calendar-m12' => 'ду аль-хіджи',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'Тішрей',
+'hebrew-calendar-m2'      => 'Хешван',
+'hebrew-calendar-m3'      => 'Кіслев',
+'hebrew-calendar-m4'      => 'Тевет',
+'hebrew-calendar-m5'      => 'Шват',
+'hebrew-calendar-m6'      => 'Адар',
+'hebrew-calendar-m6a'     => 'Адар I',
+'hebrew-calendar-m6b'     => 'Адар II',
+'hebrew-calendar-m7'      => 'Нісан',
+'hebrew-calendar-m8'      => 'Іяр',
+'hebrew-calendar-m9'      => 'Сиван',
+'hebrew-calendar-m10'     => 'Тамуз',
+'hebrew-calendar-m11'     => 'Ав',
+'hebrew-calendar-m12'     => 'Елул',
+'hebrew-calendar-m1-gen'  => 'Тішрею',
+'hebrew-calendar-m2-gen'  => 'Хешвану',
+'hebrew-calendar-m3-gen'  => 'Кіслеву',
+'hebrew-calendar-m4-gen'  => 'Тевета',
+'hebrew-calendar-m5-gen'  => 'Швата',
+'hebrew-calendar-m6-gen'  => 'Адара',
+'hebrew-calendar-m6a-gen' => 'Адара I',
+'hebrew-calendar-m6b-gen' => 'Адара II',
+'hebrew-calendar-m7-gen'  => 'Нісану',
+'hebrew-calendar-m8-gen'  => 'Іяра',
+'hebrew-calendar-m9-gen'  => 'Сивана',
+'hebrew-calendar-m10-gen' => 'Тамуза',
+'hebrew-calendar-m11-gen' => 'Ава',
+'hebrew-calendar-m12-gen' => 'Елула',
+
+# Signatures
+'timezone-utc' => 'UTC',
 
 # Core parser functions
 'unknown_extension_tag' => 'Невідомий тег доповнення «$1»',

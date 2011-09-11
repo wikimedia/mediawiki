@@ -3290,7 +3290,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-gpsdatestamp'                => 'Dâta GPS',
 'exif-gpsdifferential'             => 'Corrèccion difèrencièla GPS',
 'exif-jpegfilecomment'             => 'Comentèro de fichiér JPEG',
-'exif-keywords'                    => 'Mots cllâfs',
+'exif-keywords'                    => 'Mots-cllâfs',
 'exif-worldregioncreated'          => 'Règ·ion du mondo que la fotô at étâ prêsa',
 'exif-countrycreated'              => 'Payis que la fotô at étâ prêsa',
 'exif-countrycodecreated'          => 'Code du payis que la fotô at étâ prêsa',

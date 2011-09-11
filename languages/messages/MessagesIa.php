@@ -3189,9 +3189,9 @@ Le alteres essera initialmente celate.
 'exif-orientation-3' => 'Rotate 180°',
 'exif-orientation-4' => 'Invertite verticalmente',
 'exif-orientation-5' => 'Rotate 90° in senso antihorologic e invertite verticalmente',
-'exif-orientation-6' => 'Rotate 90° in senso horologic',
+'exif-orientation-6' => 'Rotate 90° in senso antihorologic',
 'exif-orientation-7' => 'Rotate 90° in senso horologic e invertite verticalmente',
-'exif-orientation-8' => 'Rotate 90° in senso antihorologic',
+'exif-orientation-8' => 'Rotate 90° in senso horologic',
 
 'exif-planarconfiguration-1' => 'formato a blocos (chunky)',
 'exif-planarconfiguration-2' => 'formato planar',

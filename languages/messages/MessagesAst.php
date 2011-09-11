@@ -85,7 +85,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mandame tamién un corréu pa les ediciones menores',
 'tog-enotifrevealaddr'        => 'Amosar el mio corréu electrónicu nos correos de notificación',
 'tog-shownumberswatching'     => "Amosar el númberu d'usuarios que la tán vixilando",
-'tog-oldsig'                  => 'Adicar la firma esistente:',
+'tog-oldsig'                  => 'Firma esistente:',
 'tog-fancysig'                => 'Usar la firma como "testu wiki" (ensin enllaz automáticu)',
 'tog-externaleditor'          => 'Usar un editor esternu de mou predeterminao (namái pa espertos, necesita configuraciones especiales nel to ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-externaldiff'            => 'Usar un diff esternu de mou predetermináu (namái pa espertos, necesita configuraciones especiales nel to ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
@@ -577,6 +577,7 @@ Seique yá camudasti la clave temporal o que solicitasti otra nueva.",
 'passwordreset-disabled'       => 'Los reanicios de contraseña tan desactivaos nesta wiki.',
 'passwordreset-pretext'        => "{{PLURAL:$1||Escribi una de les partes de los datos d'abaxo}}",
 'passwordreset-username'       => "Nome d'usuariu:",
+'passwordreset-domain'         => 'Dominiu:',
 'passwordreset-email'          => 'Direición de corréu:',
 'passwordreset-emailtitle'     => 'Detalles de la cuenta en {{SITENAME}}',
 'passwordreset-emailtext-ip'   => "Dalguién (seique tu, dende la direición IP $1) pidió un recordatoriu cola
@@ -1234,7 +1235,7 @@ Esta información sedrá pública.",
 'userrights-no-interwiki'      => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
 'userrights-nodatabase'        => 'La base de datos $1 nun esiste o nun ye llocal.',
 'userrights-nologin'           => "Has tar [[Special:UserLogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
-'userrights-notallowed'        => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
+'userrights-notallowed'        => "La to cuenta nun tien permisu p'amestar o desaniciar permisos d'usuariu.",
 'userrights-changeable-col'    => 'Grupos que pues camudar',
 'userrights-unchangeable-col'  => 'Grupos que nun pues camudar',
 
@@ -3061,9 +3062,9 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-orientation-3' => 'Rotada 180°',
 'exif-orientation-4' => 'Voltiada verticalmente',
 'exif-orientation-5' => 'Rotada 90° a manzorga y voltiada verticalmente',
-'exif-orientation-6' => 'Rotada 90° a mandrecha',
+'exif-orientation-6' => 'Xirada 90° en sentíu antihorariu',
 'exif-orientation-7' => 'Rotada 90° a mandrecha y voltiada verticalmente',
-'exif-orientation-8' => 'Rotada 90° a manzorga',
+'exif-orientation-8' => 'Xirada 90° en sentíu horariu',
 
 'exif-planarconfiguration-1' => 'formatu irregular',
 'exif-planarconfiguration-2' => 'formatu planu',
@@ -3589,5 +3590,11 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1 con sofitu pa gueta en testu completu',
 'sqlite-no-fts'  => '$1 ensin sofitu pa gueta en testu completu',
+
+# New logging system
+'logentry-move-move'                  => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4"',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" ensin dexar una redireición',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" sobre una redireición',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" sobre una redireición ensin dexar una redireición',
 
 );

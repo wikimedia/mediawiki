@@ -1,5 +1,5 @@
 <?php
-/** Bahasa Banjar (Bahasa Banjar)
+/** Banjar (Bahasa Banjar)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -81,7 +81,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Kirimi ulun sur-él jua amun ada babakan sapalih matan tungkaran-tungkaran',
 'tog-enotifrevealaddr'        => 'Tampaiakan alamat sur-él ulun pada sur-él pamadahan',
 'tog-shownumberswatching'     => 'Tampaiakan barapa papamuruk nang maitihi',
-'tog-oldsig'                  => 'Titilikan tandatangan:',
+'tog-oldsig'                  => 'Tandateken nang sudah ada:',
 'tog-fancysig'                => 'Tapsirakan tandatangan sawagai naskah wiki (kada batautan utumatis)',
 'tog-externaleditor'          => 'Puruk pambabak luar sawagai default (hagan nang harat haja, musti ada setélan istimiwa pada komputer Pian.[http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'Puruk palainan luar sawagai default (hagan nang harat haja, musti ada setélan istimiwa pada komputer Pian. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
@@ -2979,9 +2979,9 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-orientation-3' => 'Diputarakan 180°',
 'exif-orientation-4' => 'Dibalik partikal',
 'exif-orientation-5' => 'Diputarakan 90° CCW wan dibalik partikal',
-'exif-orientation-6' => 'Diputarakan 90° CW',
+'exif-orientation-6' => 'Diputarakan 90° CCW',
 'exif-orientation-7' => 'Diputarakan 90° CW wan dibalik partikal',
-'exif-orientation-8' => 'Diputarakan 90° CCW',
+'exif-orientation-8' => 'Diputarakan 90° CW',
 
 'exif-planarconfiguration-1' => 'purmat chunky',
 'exif-planarconfiguration-2' => 'purmat planar',
@@ -2999,18 +2999,32 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-exposureprogram-6' => 'Parugram lakuan (hiring ka kahancapan singkaian)',
 'exif-exposureprogram-7' => 'Muda putrait (gasan putu parak awan latar-balakang kaluar matan pukus)',
 
-'exif-lightsource-4'  => 'Kilat',
-'exif-lightsource-9'  => 'Cuaca baik',
-'exif-lightsource-10' => 'Cuaca ba-awan',
-'exif-lightsource-11' => 'Bayangan',
-'exif-lightsource-12' => 'Sinar siang fluorescent (D 5700 – 7100K)',
-'exif-lightsource-13' => 'Putih siang fluorescent (N 4600 – 5400K)',
-'exif-lightsource-14' => 'Putih taduh fluorescent (W 3900 – 4500K)',
-'exif-lightsource-15' => 'Putih fluorescent (WW 3200 – 3700K)',
-'exif-lightsource-17' => 'Sinar standar A',
-'exif-lightsource-18' => 'Sinar standar B',
-'exif-lightsource-19' => 'Sinar standar C',
-'exif-lightsource-24' => 'studiu ISO tungsten',
+'exif-meteringmode-0'   => 'Kada dikatahui',
+'exif-meteringmode-1'   => 'Rarata',
+'exif-meteringmode-2'   => 'Rarata pusat barat',
+'exif-meteringmode-3'   => 'Titik',
+'exif-meteringmode-4'   => 'Banyak-Titik',
+'exif-meteringmode-5'   => 'Pula',
+'exif-meteringmode-6'   => 'Sahagian',
+'exif-meteringmode-255' => 'Lain',
+
+'exif-lightsource-0'   => 'Kada dikatahui',
+'exif-lightsource-1'   => 'Sinar-siang',
+'exif-lightsource-2'   => 'Fluorescent',
+'exif-lightsource-3'   => 'Tungsten (sinar incandescent)',
+'exif-lightsource-4'   => 'Kilat',
+'exif-lightsource-9'   => 'Cuaca baik',
+'exif-lightsource-10'  => 'Cuaca ba-awan',
+'exif-lightsource-11'  => 'Bayangan',
+'exif-lightsource-12'  => 'Sinar siang fluorescent (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Putih siang fluorescent (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Putih taduh fluorescent (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Putih fluorescent (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Sinar standar A',
+'exif-lightsource-18'  => 'Sinar standar B',
+'exif-lightsource-19'  => 'Sinar standar C',
+'exif-lightsource-24'  => 'studiu ISO tungsten',
+'exif-lightsource-255' => 'Asal-mula sinar lain',
 
 'exif-filesource-3' => 'Kudakan hinip digital',
 
@@ -3036,6 +3050,8 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-gaincontrol-2' => 'Naikakan tabanyak',
 'exif-gaincontrol-3' => 'Turunakan sahikit',
 
+'exif-contrast-0' => 'Nurmal',
+
 'exif-dc-rights' => 'Hak',
 
 'exif-iimcategory-wea' => 'Cuaca',
@@ -3050,6 +3066,11 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'watchlistall2' => 'samunyaan',
 'namespacesall' => 'samunyaan',
 'monthsall'     => 'samunyaan',
+'limitall'      => 'samunyaan',
+
+# E-mail address confirmation
+'confirmemail'         => 'Yakinakan alamat suril',
+'confirmemail_noemail' => 'Pian kada baisi sabuah alamat suril nang sah dalam [[Special:Preferences|kakatujuan pamuruk]] Pian.',
 
 # Trackbacks
 'trackbackremove' => '([$1 Hapus])',

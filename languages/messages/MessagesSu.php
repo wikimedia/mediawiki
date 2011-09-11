@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Aditia.Gunawan
  * @author Irwangatot
  * @author Kandar
  * @author Meursault2004
@@ -127,7 +128,7 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Garis-handapan tumbu',
+'tog-underline'               => 'Gurat-handapan tutumbu',
 'tog-highlightbroken'         => 'Format tumbu pegat <a href="" class="new">kawas kieu</a> (atawa: kawas kieu<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Lempengkeun alinéa',
 'tog-hideminor'               => 'Sumputkeun éditan minor dina nu anyar robah',
@@ -155,7 +156,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Béjaan ogé (ngaliwatan surélék) mun aya parobahan leutik dina kacana',
 'tog-enotifrevealaddr'        => 'Témbongkeun alamat surélék kuring dina surat émbaran',
 'tog-shownumberswatching'     => 'Témbongkeun jumlah nu ngawaskeun',
-'tog-oldsig'                  => 'Tandatangan nu geus aya:',
+'tog-oldsig'                  => 'Paraf nu geus aya:',
 'tog-fancysig'                => 'Témbongkeun paraf salaku wikitext (tanpa tumbu otomatis)',
 'tog-externaleditor'          => 'Paké éditor éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'Paké diff éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [http://www.mediawiki.org/wiki/Manual:External_editors Émbaran lengkep.])',
@@ -624,17 +625,27 @@ Bisa jadi anjeun geus ngaganti sandina atawa ménta sandi saheulaanan anu anyar.
 'resetpass-temp-password'   => 'Sandi samentara:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Setél ulang sandi',
-'passwordreset-text'         => 'Lengkepan ieu formulir pikeun nampa surélék pangéling ngeunaan wincikan akun anjeun.',
-'passwordreset-legend'       => 'Setél ulang sandi',
-'passwordreset-disabled'     => 'Dina ieu wiki, sandi teu bisa disetél ulang.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Asupkeun salah sahiji data di handap ieu}}',
-'passwordreset-username'     => 'Sandiasma:',
-'passwordreset-email'        => 'Alamat surélék:',
-'passwordreset-emailtitle'   => 'Wincikan akun di {{SITENAME}}',
-'passwordreset-emailelement' => 'Sandiasma: $1
+'passwordreset'                => 'Setél ulang sandi',
+'passwordreset-text'           => 'Lengkepan ieu formulir pikeun nampa surélék pangéling ngeunaan wincikan akun anjeun.',
+'passwordreset-legend'         => 'Setél ulang sandi',
+'passwordreset-disabled'       => 'Dina ieu wiki, sandi teu bisa disetél ulang.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Asupkeun salah sahiji data di handap ieu}}',
+'passwordreset-username'       => 'Sandiasma:',
+'passwordreset-domain'         => 'Domain:',
+'passwordreset-email'          => 'Alamat surélék:',
+'passwordreset-emailtitle'     => 'Wincikan akun di {{SITENAME}}',
+'passwordreset-emailtext-user' => 'Hiji jalma (bisa jadi Anjeun, ti alamat IP $1) ménta pangéling-ngéling nu wincik tina akun pikeun {{SITENAME}} ($4).
+{{PLURAL:$3|Akun|Akun-akun}} di handap patali jeung alamat surélék ieu:
+
+$2
+
+{{PLURAL:$3|Sandi saheulaanan|Sandi saheulaanan}} ieu bakal kadaluwarsa dina témpo {{PLURAL:$5|sapoé|$5 poé}}.
+Anjeun kudu asup sarta milih sandi anyar ayeuna. Lamun jalma séjén nyieun
+ieu pamundut atawa lamun Anjeun inget sandi asli sarta moal 
+ngarobah deui, Anjeun bisa teu maliré ieu talatah sarta terus ngagunakeun sandi heubeul.',
+'passwordreset-emailelement'   => 'Sandiasma: $1
 Sandi saheulaanan: $2',
-'passwordreset-emailsent'    => 'Surélék pangéling geus dikirim.',
+'passwordreset-emailsent'      => 'Surélék pangéling geus dikirim.',
 
 # Special:ChangeEmail
 'changeemail'          => 'Ganti alamat surélék',
@@ -771,6 +782,7 @@ Pikeun rujukan, éntri log panungtung dipidangkeun di handap:',
 
 '''Mun ieu éditan bener, mangga cobian deui. Mun tetep teu metu, cobi [[Special:UserLogout|kaluar log]] heula, lajeng lebet deui.'''",
 'token_suffix_mismatch'            => "'''Éditan anjeun ditolak sabab aplikasi klien Anjeun ngarobah karakter tanda baca dina éditan. Éditan kasebut ditolak keur nyegah kasalahan dina artikel téks. Hal ieu kadang-kadang kajadian lamun Anjeun maké proksi anonim basis web nu masalah.'''",
+'edit_form_incomplete'             => "'''Sawatara bagian tina wangun éditan teu nepi ka sérver; pariksa deui naha éditan Anjeun tetep gembleng sarta cobaan deui.'''",
 'editing'                          => 'Ngédit $1',
 'editingsection'                   => 'Ngédit $1 (bagian)',
 'editingcomment'                   => 'Ngédit $1 (bagian anyar)',
@@ -803,6 +815,9 @@ kuncén nu ngonci pangkalan data mikeun kajelasan : $1",
 'templatesused'                    => '{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu kaca:',
 'templatesusedpreview'             => '{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu pramidang:',
 'templatesusedsection'             => '{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu bab:',
+'distanttemplatesused'             => '{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu kaca:',
+'distanttemplatesusedpreview'      => '{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu pramidang:',
+'distanttemplatesusedsection'      => '{{PLURAL:$1|Citakan|Citakan}} nu dipaké dina ieu bab:',
 'template-protected'               => '(dikunci)',
 'template-semiprotected'           => '(semi-dikonci)',
 'hiddencategories'                 => 'Ieu kaca kaasup {{PLURAL:$1|1 kategori nyumput|$1 kategori nyumput}}:',
@@ -841,6 +856,8 @@ Sawatara citakan baris teu diasupkeun.',
 'post-expand-template-inclusion-category' => 'Eusi kaca citakan anu ukuranna ngaleuwihan wates',
 'post-expand-template-argument-warning'   => "'''Awas''': Ieu kaca sahenteuna ngandung hiji argumén citakan anu ukuran ékspansina badag teuing. Éta argumén geus teu dipaliré.",
 'post-expand-template-argument-category'  => 'Kaca kalawan argumén citakan anu teu dipaliré',
+'parser-template-loop-warning'            => 'Katangén ayana citakan anu patumpang tindih: [[$1]]',
+'parser-template-recursion-depth-warning' => 'Citakan patumpang tindih ngaleuwihan wates($1)',
 
 # "Undo" feature
 'undo-success' => 'Éditan ieu bisa dibolaykeun. Mangga pariksa babandingan di handap pikeun mastikeun mémang anjeun miharep éta parobahan. Mun geus yakin, mangga simpen parobahanana pikeun ngabolaykeun éditan.',
@@ -897,10 +914,14 @@ Pedaran lengkepna bisa dipilari di [{{fullurl:{{#Special:Log}}/delete|page={{FUL
 'rev-deleted-text-unhide'     => "Révisi ieu kaca geus '''dihapus'''.
 Lengkepna bisa ditéang dina [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log hapusan].
 Salaku kuncén, mun perlu, anjeun bisa kénéh [$1 nempo ieu révisi].",
+'rev-suppressed-text-unhide'  => "Révisi ieu kaca geus '''dihapus'''.
+Lengkepna bisa dipaluruh dina [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log hapusan].
+Salaku kuncén, mun perlu, anjeun bisa kénéh [$1 nempo ieu révisi].",
 'rev-deleted-text-view'       => "Révisi ieu kaca geus '''dihapus'''.
 Salaku administrator, anjeun angger bisa nempo; pedaran lengkepna bisa dipilari di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log hapusan].",
 'rev-deleted-no-diff'         => "Anjeun teu bisa némbongkeun bédana kusabab révisina geus '''dihapus'''.
 Leuwih lengkepna bisa ditéang di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log hapusan].",
+'rev-suppressed-no-diff'      => "Anjeun teu bisa ningali ieu parobahan ku sabab salah sahiji tina éditan geus ''dihapus'''.",
 'rev-deleted-unhide-diff'     => "Salahsahiji révisi dina ieu béda geus '''dihapus'''.
 Lengkepna bisa dipilari di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log hapusan].
 Salaku kuncen, mun perlu, anjeun bisa kénéh [$1 nempo bédana].",
@@ -1207,7 +1228,7 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'userrights-lookup-user'       => 'Atur gorombolan pamaké',
 'userrights-user-editname'     => 'Asupkeun landihan:',
 'editusergroup'                => 'Édit Golongan Pamaké',
-'editinguser'                  => "Ngarobah hak pamaké '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Ngarobah hak kontributor '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Édit gorombolan pamaké',
 'saveusergroups'               => 'Simpen Grup Pamaké',
 'userrights-groupsmember'      => 'Anggota ti:',
@@ -1220,7 +1241,7 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'userrights-no-interwiki'      => 'Anjeung teu diwenangkeun ngarobah hak pamaké dina wiki séjén.',
 'userrights-nodatabase'        => 'Pangkalan data $1 euweuh atawa henteu lokal.',
 'userrights-nologin'           => 'Pikeun ngatur hak pamaké, anjeun kudu [[Special:UserLogin|asup log]] migunakeun rekening kuncén.',
-'userrights-notallowed'        => 'Rekening anjeun teu diwenangkeun ngatur hak pamaké.',
+'userrights-notallowed'        => 'Akun anjeun teu boga kawenangan pikeun ngatur hak pamaké.',
 'userrights-changeable-col'    => 'Jumplukan anu bisa Anjeun robah',
 'userrights-unchangeable-col'  => 'Jumplukan anu teu bisa Anjeun robah',
 
@@ -1310,6 +1331,7 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'action-minoredit'            => 'nandaan ieu éditan salaku minor',
 'action-move'                 => 'mindahkeun ieu kaca',
 'action-move-subpages'        => 'mindahkeun ieu kaca katut bagian-bagianana',
+'action-move-rootuserpages'   => 'mindahkeun kaca utama kontributor',
 'action-movefile'             => 'mindahkeun ieu berkas',
 'action-upload'               => 'ngamuat ieu berkas',
 'action-reupload'             => 'nimpah berkas nu geus aya ieu',
@@ -1326,6 +1348,8 @@ Mun geus anggeus teu bisa dibolaykeun.',
 'action-block'                => 'meungpeuk ieu pamaké tina ngédit',
 'action-protect'              => 'ngarobah hambalan konci ieu kaca',
 'action-import'               => 'impor ieu kaca ti séjén wiki',
+'action-patrol'               => 'Nandaan éditan séjén minangka geus diroris',
+'action-autopatrol'           => 'tandaan éditan anjeun salaku geus diroris',
 'action-unwatchedpages'       => 'témbongkeun béréndélan kaca nu teu diawaskeun',
 'action-mergehistory'         => 'ngagabungkeun jujutan ieu kaca',
 'action-userrights'           => 'Édit hak sakabéh pamaké',
