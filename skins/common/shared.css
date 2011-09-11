@@ -821,20 +821,22 @@ ol:lang(or) li {
 	list-style-type: oriya;
 }
 
+#toc ul, .toc ul {
+	margin: .3em 0;
+}
+
 /* Correct directionality when page dir is different from site/user dir */
 /* @noflip */ .mw-content-ltr .toc ul,
 .mw-content-ltr #toc ul,
 .mw-content-rtl .mw-content-ltr .toc ul,
 .mw-content-rtl .mw-content-ltr #toc ul {
 	text-align: left;
-	margin-left: 0;
 }
 /* @noflip */ .mw-content-rtl .toc ul,
 .mw-content-rtl #toc ul,
 .mw-content-ltr .mw-content-rtl .toc ul,
 .mw-content-ltr .mw-content-rtl #toc ul {
 	text-align: right;
-	margin-right: 0;
 }
 /* @noflip */ .mw-content-ltr .toc ul ul,
 .mw-content-ltr #toc ul ul,

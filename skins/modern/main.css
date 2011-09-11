@@ -587,15 +587,8 @@ img.thumbborder {
 	list-style-type: none;
 	list-style-image: none;
 	margin: 0 1em 0 1em;
-	padding-left: 0;
+	padding: 0;
 	text-align: left;
-}
-
-.mw-content-ltr .toc ul,
-.mw-content-rtl .toc ul,
-.mw-content-ltr #toc ul,
-.mw-content-rtl #toc ul {
-	margin: 0 1em;
 }
 
 #toc ul ul,

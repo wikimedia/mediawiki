@@ -245,7 +245,7 @@ table.small { font-size: 100% }
 	padding:5px;
 	font-size: 95%;
 }
-#toc ul { margin-left: 2em; }
+#toc ul { margin: 0 2em; }
 #toc .toctoggle { font-size: 94%; }
 #toc .editsection {
 	margin-top: 0.7em;
