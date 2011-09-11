@@ -677,23 +677,33 @@ class CoreParserFunctions {
 
 	/**
 	 * @param $parser Parser
-	 * @param  $text
+	 * @param $text String The sortkey to use
+	 * @param $arg String Either "noreplace" or "noerror"
+	 *   both suppress errors, and noreplace does nothing if
+	 *   a default sortkey already exists.
 	 * @return string
 	 */
-	public static function defaultsort( $parser, $text ) {
+	public static function defaultsort( $parser, $text, $arg = '' ) {
 		$text = trim( $text );
+		$arg = trim( strtolower( $arg ) );
 		if( strlen( $text ) == 0 )
 			return '';
 		$old = $parser->getCustomDefaultSort();
-		$parser->setDefaultSort( $text );
-		if( $old === false || $old == $text )
+		if ( $old === false || $arg !== 'noreplace' ) {
+			$parser->setDefaultSort( $text );
+		}
+
+		if( $old === false || $old == $text || $arg === 'noreplace'
+			|| $arg === 'noerror' )
+		{
 			return '';
-		else
+		} else {
 			return( '<span class="error">' .
 				wfMsgForContent( 'duplicate-defaultsort',
 						 htmlspecialchars( $old ),
 						 htmlspecialchars( $text ) ) .
 				'</span>' );
+		}
 	}
 
 	// Usage {{filepath|300}}, {{filepath|nowiki}}, {{filepath|nowiki|300}} or {{filepath|300|nowiki}}
