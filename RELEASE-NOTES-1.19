@@ -57,6 +57,8 @@ production.
 * (bug 30774) mediawiki.html: Add support for numbers and booleans in the
   attribute values and element contents.
 * Conversion script between Tifinagh and Latin for the Tachelhit language
+* (bug 16755) Add options 'noreplace' and 'noerror' to {{DEFAULTSORT:...}}
+  to stop it from replace an already existing default sort, and suppress error.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
