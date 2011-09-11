@@ -80,7 +80,7 @@ class ParserCache {
 	 */
 	function getETag( $article, $popts ) {
 		return 'W/"' . $this->getParserOutputKey( $article,
-			$popts->optionsHash( ParserOptions::legacyOptions() ) ) .
+			$popts->optionsHash( ParserOptions::legacyOptions(), $article->getTitle() ) ) .
 				"--" . $article->getTouched() . '"';
 	}
 
@@ -130,7 +130,7 @@ class ParserCache {
 			$usedOptions = ParserOptions::legacyOptions();
 		}
 
-		return $this->getParserOutputKey( $article, $popts->optionsHash( $usedOptions ) );
+		return $this->getParserOutputKey( $article, $popts->optionsHash( $usedOptions, $article->getTitle() ) );
 	}
 
 	/**
@@ -165,7 +165,8 @@ class ParserCache {
 		$value = $this->mMemc->get( $parserOutputKey );
 		if ( self::try116cache && !$value && strpos( $value, '*' ) !== -1 ) {
 			wfDebug( "New format parser cache miss.\n" );
-			$parserOutputKey = $this->getParserOutputKey( $article, $popts->optionsHash( ParserOptions::legacyOptions() ) );
+			$parserOutputKey = $this->getParserOutputKey( $article,
+				$popts->optionsHash( ParserOptions::legacyOptions(), $article->getTitle() ) );
 			$value = $this->mMemc->get( $parserOutputKey );
 		}
 		if ( !$value ) {
@@ -211,7 +212,7 @@ class ParserCache {
 			$optionsKey->setContainsOldMagic( $parserOutput->containsOldMagic() );
 
 			$parserOutputKey = $this->getParserOutputKey( $article,
-				$popts->optionsHash( $optionsKey->mUsedOptions ) );
+				$popts->optionsHash( $optionsKey->mUsedOptions, $article->getTitle() ) );
 
 			// Save the timestamp so that we don't have to load the revision row on view
 			$parserOutput->mTimestamp = $article->getTimestamp();
