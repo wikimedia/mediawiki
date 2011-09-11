@@ -784,6 +784,8 @@ EOT
 
 	/**
 	 * Display an error with a wikitext description
+	 *
+	 * @param $description String
 	 */
 	function showError( $description ) {
 		global $wgOut;

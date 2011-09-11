@@ -530,6 +530,11 @@ class Parser {
 	 *
 	 * <noinclude>, <includeonly> etc. are parsed as for template transclusion,
 	 * comments, templates, arguments, tags hooks and parser functions are untouched.
+	 *
+	 * @param $text String
+	 * @param $title Title
+	 * @param $options ParserOptions
+	 * @return String
 	 */
 	public function getPreloadText( $text, Title $title, ParserOptions $options ) {
 		# Parser (re)initialisation
