@@ -1898,6 +1898,7 @@ class Title {
 	 * acidentally creating new bugs where $title->equals( Title::newFromText() )
 	 * ends up reporting something differently than $title->isMainPage();
 	 *
+	 * @since 1.18
 	 * @return Bool
 	 */
 	public function isMainPage() {
