@@ -448,6 +448,8 @@ production.
 * $wgOverrideSiteFeed no longer double escapes urls.
 * The preprocessor no longer fails with a PHP warning about XML_PARSE_HUGE when
   processing complex pages using newer versions of libxml2.
+* (bug 28545) When using the uca-default collation, sortkey's starting with a
+  space (U+20) will sort under an invisible header like in 1.16 rather than a U+6DE
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
