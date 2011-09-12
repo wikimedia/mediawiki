@@ -1233,7 +1233,7 @@ Pleser fuse les manualmen.'''",
 'thumbsize'       => 'Mesura de miniatura:',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|págine|págines}}',
 'file-info-size'  => '$1 × $2 pixeles, dimension de file: $3, tip MIME: $4',
-'file-nohires'    => '<small>Nequant resolution max alt disponibil.</small>',
+'file-nohires'    => 'Nequant resolution max alt disponibil.',
 'svg-long-desc'   => 'file SVG, nominalmen $1 × $2 pixeles, mensura de file: $3',
 'show-big-image'  => 'Resolution complet',
 

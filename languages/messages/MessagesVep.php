@@ -2320,7 +2320,7 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|lehtpol'|lehtpol't}}",
 'file-info'            => 'failan suruz: $1, MIME-tip: $2',
 'file-info-size'       => '$1 × $2 pikselad, failan suruz: $3, MIME-tip: $4',
-'file-nohires'         => '<small>Ei ole versijad paremban tarkoiktusenke.</small>',
+'file-nohires'         => 'Ei ole versijad paremban tarkoiktusenke.',
 'svg-long-desc'        => 'SVG-fail, nominaližikš $1 × $2 pikselid, failan suruz: $3',
 'show-big-image'       => 'Korgedtarkoiktuseline kuvan versii',
 'file-info-gif-looped' => 'toštase',

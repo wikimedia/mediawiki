@@ -1388,7 +1388,7 @@ Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki
 
 # Media information
 'file-info-size' => '$1 × $2 Pixel, Daateigreess: $3, MIME-Typ: $4',
-'file-nohires'   => '<small>Es gibt koah heecherne Auflésung.</small>',
+'file-nohires'   => 'Es gibt koah heecherne Auflésung.',
 'svg-long-desc'  => 'SVG-Datei, Basisgreß: $1 × $2 Pixl, Dateigreß: $3',
 'show-big-image' => 'Versión in heecherner Auflésung',
 

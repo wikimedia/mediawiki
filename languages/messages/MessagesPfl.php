@@ -690,7 +690,7 @@ Du kannscht e Grund in dr Zammfassung aagewwe',
 
 # Media information
 'file-info-size' => '$1 × $2 Pixels, Dateigreß: $3, MIME-Type: $4',
-'file-nohires'   => '<small>Ke hechere Ufflesung verfiechbar.</small>',
+'file-nohires'   => 'Ke hechere Ufflesung verfiechbar.',
 'svg-long-desc'  => 'SVG-Datei, Basisgreß $1 × $2 Pixels, Dateigreß: $3',
 'show-big-image' => 'Gsamte Ergebnis',
 

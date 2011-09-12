@@ -1309,7 +1309,7 @@ Che 'l scerna, per piasè, un nom diferent per quel articul chì.",
 'imagemaxsize'   => 'Limitá i imagin süi pagin da descrizziún dii imagin a:',
 'thumbsize'      => 'Dimensiún diapusitiif:',
 'file-info-size' => '$1 × $2 pixel, dimensión : $3, sort MIME: $4',
-'file-nohires'   => '<small>Nissüna resulüzión püssee granda dispunibila.</small>',
+'file-nohires'   => 'Nissüna resulüzión püssee granda dispunibila.',
 'svg-long-desc'  => "archivi in furmaa SVG, dimensión nominaj  $1 × $2 pixel, dimensión de l'archivi: $3",
 'show-big-image' => 'Versión a resolüzión volta',
 

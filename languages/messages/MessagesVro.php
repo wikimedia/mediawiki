@@ -1867,7 +1867,7 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 'thumbsize'      => 'Väikupildi suurus:',
 'file-info'      => '$1, MIME-tüüp: $2',
 'file-info-size' => '$1×$2 pikslit, $3, MIME-tüüp: $4',
-'file-nohires'   => '<small>Taast terävämpä pilti olõ-i saiaq.</small>',
+'file-nohires'   => 'Taast terävämpä pilti olõ-i saiaq.',
 'svg-long-desc'  => 'SVG-teedüstü, põhisuurus $1 × $2 pikslit, teedüstü suurus $3',
 'show-big-image' => 'Täüsterräv kujo',
 

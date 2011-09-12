@@ -810,7 +810,7 @@ navn du harst valgt er ekke gyldegt. Vælg et andet navn.',
 
 # Media information
 'file-info-size' => '$1 × $2 pixel, gøretstørrelse: $3, MIME-senenge: $4',
-'file-nohires'   => '<small>Engen højere åpløsnenge fundet.</small>',
+'file-nohires'   => 'Engen højere åpløsnenge fundet.',
 'svg-long-desc'  => 'SVG gøret, wønetstørrelse $1 × $2 pixel, gøretstørrelse: $3',
 'show-big-image' => 'Hersenenge i større åpløsnenge',
 

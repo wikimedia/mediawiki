@@ -697,7 +697,7 @@ Par piasé, met insem al du pàgin te, fasend copia e incola.",
 
 # Media information
 'file-info-size' => "$1 × $2 pixel, amsùra d'e' file: $3, tipo MIME: $4",
-'file-nohires'   => "<small>U n' è pusèbil d'avdé cun òna risoluziòn piò élta. </small>",
+'file-nohires'   => "U n' è pusèbil d'avdé cun òna risoluziòn piò élta.",
 'svg-long-desc'  => "file d'taja SVG, dimensiòn numinèli $1 × $2 pixel, dimensiòn d'e' file: $3",
 'show-big-image' => 'Versiòn ad amsura pina',
 

@@ -2176,7 +2176,7 @@ Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [htt
 'thumbsize'      => 'Mjitte fan miniatueren:',
 'file-info'      => 'triemgrutte: $1, MIME-type: $2',
 'file-info-size' => '$1 × $2 pixel, triemgrutte: $3, MIME type: $4',
-'file-nohires'   => '<small>Gjin hegere resolúsje beskikber.</small>',
+'file-nohires'   => 'Gjin hegere resolúsje beskikber.',
 'svg-long-desc'  => 'SVG-triem, nominaal $1 × $2 pixels, triemgrutte: $3',
 'show-big-image' => 'Hegere resolúsje',
 

@@ -1136,7 +1136,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 # Media information
 'file-info'            => 'боомгин кемҗә: $1, MIME төрл: $2',
 'file-info-size'       => '$1 × $2 цегтә, боомгин кемҗән: $3, MIME янз: $4',
-'file-nohires'         => '<small>Икәр чинртә янз уга.</small>',
+'file-nohires'         => 'Икәр чинртә янз уга.',
 'svg-long-desc'        => 'SVG боомг, $1 × $2 мет цегтә, боомгин кемҗән: $3',
 'show-big-image'       => 'Күцц чинр',
 'file-info-gif-looped' => 'билцгсн',

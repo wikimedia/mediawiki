@@ -1443,7 +1443,7 @@ You ken view its source',
 'mediawarning'   => "'''Warnin''': This file micht haud mislushious code; bi executin it yer seestem micht be compromised.",
 'imagemaxsize'   => 'Limit eimages on eimage description pages tae:',
 'file-info-size' => '$1 × $2 pixels, file size: $3, MIME type: $4',
-'file-nohires'   => '<small>Na higher resolution available.</small>',
+'file-nohires'   => 'Na higher resolution available.',
 'svg-long-desc'  => 'SVG file, nominally $1 × $2 pixels, file size: $3',
 'show-big-image' => 'Full resolution',
 

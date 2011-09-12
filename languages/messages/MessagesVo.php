@@ -2366,7 +2366,7 @@ If ojäfidükol oni, nünömasit olik ba podämükon.",
 'widthheightpage' => '$1×$2, {{PLURAL:$3|pad|pads}} $3',
 'file-info'       => 'ragivagretot: $1, MIME-pated: $2',
 'file-info-size'  => '$1 × $2 pixel, ragivagret: $3, pated MIME: $4',
-'file-nohires'    => '<small>Gretot gudikum no pagebidon.</small>',
+'file-nohires'    => 'Gretot gudikum no pagebidon.',
 'svg-long-desc'   => 'ragiv in fomät: SVG, magodaziöbs $1 × $2, gretot: $3',
 'show-big-image'  => 'Gretot gudikün',
 

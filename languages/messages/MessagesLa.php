@@ -950,7 +950,7 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'prefs-registration'        => 'Dies creationis rationis:',
 'yourrealname'              => 'Nomen verum:',
 'yourlanguage'              => 'Lingua:',
-'yourvariant'               => 'Differentia:',
+'yourvariant'               => 'Differentia linguae contentorum:',
 'yournick'                  => 'Subscriptio nova:',
 'badsig'                    => 'Subscriptio cruda non est valida; scrutina affixa HTML.',
 'badsiglength'              => 'Subscriptio tua nimis longa est.
@@ -2014,7 +2014,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
 'file-info'            => 'magnitudo fasciculi: $1, typus MIME: $2',
 'file-info-size'       => '$1 × $2 elementa imaginalia, magnitudo fasciculi: $3, typus MIME: $4',
-'file-nohires'         => '<small>Nulla maior resolutio exstat.</small>',
+'file-nohires'         => 'Nulla maior resolutio exstat.',
 'svg-long-desc'        => 'fasciculus SVG, nominale $1 × $2 elementa imaginalia, magnitudo fasciculi: $3',
 'show-big-image'       => 'Resolutio completa',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|replum|repla}}',

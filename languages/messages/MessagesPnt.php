@@ -1288,7 +1288,7 @@ $messages = array(
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|σελίδα|σελίδας}}',
 'file-info-size'  => '$1 × $2 εικονοστοιχεία, μέγεθος αρχείου: $3, MIME τύπον: $4',
-'file-nohires'    => "<small>'Κ εχ κι άλλο ψηλόν ανάλυσην.</small>",
+'file-nohires'    => "'Κ εχ κι άλλο ψηλόν ανάλυσην.",
 'svg-long-desc'   => "Αρχείον SVG, κατ' όνομα $1 × $2 εικονοστοιχεία, μέγεθος αρχεί: $3",
 'show-big-image'  => 'Τζιπ τρανόν ανάλυση',
 

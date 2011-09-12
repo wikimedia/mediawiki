@@ -1431,7 +1431,7 @@ Vu darfos adjuntar kauso en la rezumo.',
 
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pagino|pagini}}',
-'file-nohires'    => '<small>Ne existas grandeso plu granda.</small>',
+'file-nohires'    => 'Ne existas grandeso plu granda.',
 'show-big-image'  => 'Grandeso kompleta',
 
 # Special:NewFiles

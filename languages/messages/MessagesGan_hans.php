@@ -1782,7 +1782,7 @@ $1',
 'widthheightpage' => '$1×$2,$3页',
 'file-info'       => '档案大细: $1, MIME 类型: $2',
 'file-info-size'  => '$1 × $2 像素，档案大细：$3 ，MIME类型：$4',
-'file-nohires'    => '<small>冇更高分辨率𠮶图像。</small>',
+'file-nohires'    => '冇更高分辨率𠮶图像。',
 'svg-long-desc'   => 'SVG档案，表面大细： $1 × $2 像素，档案大细：$3',
 'show-big-image'  => '完整分辨率',
 

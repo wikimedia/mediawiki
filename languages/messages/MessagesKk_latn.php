@@ -2373,7 +2373,7 @@ $1',
 'widthheightpage' => '$1 × $2, $3 bet',
 'file-info'       => 'Faýl mölşeri: $1, MIME türi: $2',
 'file-info-size'  => '$1 × $2 nükte, faýl mölşeri: $3, MIME türi: $4',
-'file-nohires'    => '<small>Joğarı ajıratılımdığı jetimsiz.</small>',
+'file-nohires'    => 'Joğarı ajıratılımdığı jetimsiz.',
 'svg-long-desc'   => 'SVG faýlı, kesimdi $1 × $2 nükte, faýl mölşeri: $3',
 'show-big-image'  => 'Joğarı ajıratılımdı',
 

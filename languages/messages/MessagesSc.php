@@ -1418,7 +1418,7 @@ Podes agiùnger unu motivu in s\'ogetu de s\'acontzu.',
 
 # Media information
 'file-info-size' => '$1 × $2 pixels, mannesa de su file: $3, tipu de MIME: $4',
-'file-nohires'   => '<small>Non si tenent risolutziones prus artas.</small>',
+'file-nohires'   => 'Non si tenent risolutziones prus artas.',
 'svg-long-desc'  => 'file in formadu SVG, mannesa nominale $1 × $2 pixel, mannesa de su file: $3',
 'show-big-image' => 'Versione a risolutzione arta',
 

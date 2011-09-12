@@ -1913,7 +1913,7 @@ $1',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|bu|bu}}',
 'file-info'       => 'iyeltakaldo : $1, MIME ord : $2',
 'file-info-size'  => '$1 × $2 pixel, iyeltakaldo : $3, MIME ord : $4',
-'file-nohires'    => '<small>Me roderaykan logijaf lum.</small>',
+'file-nohires'    => 'Me roderaykan logijaf lum.',
 'svg-long-desc'   => 'SVG iyeltak, prekson $1 × $2 pixels, iyeltakaldo : $3',
 'show-big-image'  => 'Geltraf lum',
 

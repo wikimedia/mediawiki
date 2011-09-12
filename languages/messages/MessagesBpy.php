@@ -1530,7 +1530,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Media information
 'file-info-size' => '$1 × $2 পিক্সেল, ফাইলর সাইজহান: $3, এমআইএমই-র অংতা: $4',
-'file-nohires'   => '<small>এহাত্ত গজর রিজরিউশন নেই।</small>',
+'file-nohires'   => 'এহাত্ত গজর রিজরিউশন নেই।',
 'svg-long-desc'  => 'SVG ফাইল, সাধারনত $1 × $2 পিক্সেল, ফাইলর সাইজহান: $3',
 'show-big-image' => 'পুল্লাপ রিজলিউশন',
 

@@ -1835,7 +1835,7 @@ $1",
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|pàgina|pàgini}}',
 'file-info'       => 'Misuri: $1, tipu MIME: $2',
 'file-info-size'  => '$1 × $2 punti, misuri: $3, tipu MIME: $4',
-'file-nohires'    => '<small>Nò so dipunìbiri versioni a risoruzioni maggiori.</small>',
+'file-nohires'    => 'Nò so dipunìbiri versioni a risoruzioni maggiori.',
 'svg-long-desc'   => 'file in fuimmaddu SVG, misuri nominari $1 × $2 punti, misuri di lu file: $3',
 'show-big-image'  => 'Versioni a altha risoruzioni',
 

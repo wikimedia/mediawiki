@@ -1306,7 +1306,7 @@ Têser-kerdena jü sebebi rê xulasa de imkan dano cı.',
 
 # Media information
 'file-info-size' => '$1 × $2 piksel, gırsênia dosya: $3, MIME tipê cı: $4',
-'file-nohires'   => '<small>Tewrêna berz rovıleşiyaene nêbena.</small>',
+'file-nohires'   => 'Tewrêna berz rovıleşiyaene nêbena.',
 'svg-long-desc'  => 'Dosya SVGy, seha ke $1 × $2 pixels, gırşênia dosya: $3',
 'show-big-image' => 'Rovıleşiyaena tame',
 

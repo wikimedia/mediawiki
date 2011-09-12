@@ -1335,7 +1335,7 @@ $1',
 # Media information
 'thumbsize'      => 'ܥܓܪܐ ܕܨܘܪܬܐ ܙܥܘܪܬܐ:',
 'file-info'      => 'ܥܓܪܐ ܕܠܦܦܐ: $1, MIME ܐܕܫܐ: $2',
-'file-nohires'   => '<small>ܠܝܬ ܢܩܕܘܬܐ ܝܬܝܪ ܡܢ ܗܢܐ.</small>',
+'file-nohires'   => 'ܠܝܬ ܢܩܕܘܬܐ ܝܬܝܪ ܡܢ ܗܢܐ.',
 'show-big-image' => 'ܢܩܕܘܬܐ ܓܡܝܪܬܐ',
 
 # Special:NewFiles

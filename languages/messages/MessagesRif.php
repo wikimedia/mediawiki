@@ -715,7 +715,7 @@ Bbeẓ x ufeskar n uzar-timeẓṛi zzat i gha txemmled min turid',
 
 # Media information
 'file-info-size' => '$1 × $2 pixel, tiddisize n ufaylu: $3, anawtype n MIME: $4',
-'file-nohires'   => '<small>walu ca n resolution yemɣa x wa.</small>',
+'file-nohires'   => 'walu ca n resolution yemɣa x wa.',
 'svg-long-desc'  => 'Afaylu n SVG, dis $1 × $2 pixel, Tiddi n ufaylu: $3',
 'show-big-image' => 'Resolution ameqran',
 

@@ -1359,7 +1359,7 @@ Milo ko mongintong do wowonod',
 
 # Media information
 'file-info-size' => '$1 × $2 pipisil, sais pail: $3, nuludan MIME: $4',
-'file-nohires'   => '<small>Ingaa pinosodia risoluson takawas.</small>',
+'file-nohires'   => 'Ingaa pinosodia risoluson takawas.',
 'svg-long-desc'  => 'Pail SVG,  tipong tuou $1 × $2 piksol, ginayo pail: $3',
 'show-big-image' => 'Sinaisan poimponu',
 

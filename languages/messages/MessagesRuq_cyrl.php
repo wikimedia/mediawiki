@@ -1,5 +1,5 @@
 <?php
-/** Megleno-Romanian (Cyrillic) (Vlăheşte (Cyrillic))
+/** Megleno-Romanian (Cyrillic script) (Влахесте)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -333,7 +333,7 @@ $3',
 'tooltip-diff'              => 'Ратај це модификајри аи фајцут текстулуи.',
 
 # Media information
-'file-nohires'   => '<small>Це-н-ест нресолуцион маи мари.</small>',
+'file-nohires'   => 'Це-н-ест нресолуцион маи мари.',
 'show-big-image' => 'Мареште ресолуцион',
 
 # Bad image list

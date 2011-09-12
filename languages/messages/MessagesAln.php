@@ -1572,7 +1572,7 @@ Lejon dhânien e arsyes në përmbledhje.',
 
 # Media information
 'file-info-size' => '$1 × $2 pixela, madhësia e skedës: $3, tipi MIME: $4',
-'file-nohires'   => '<small>Rezolucioni i plotë.</small>',
+'file-nohires'   => 'Rezolucioni i plotë.',
 'svg-long-desc'  => 'skeda SVG, $1 × $2 pixela, madhësia: $3',
 'show-big-image' => 'Rezolucion i plotë',
 

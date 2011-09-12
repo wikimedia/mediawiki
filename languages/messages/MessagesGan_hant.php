@@ -1812,7 +1812,7 @@ $1',
 'widthheightpage' => '$1×$2,$3頁',
 'file-info'       => '檔案大細: $1, MIME 類型: $2',
 'file-info-size'  => '$1 × $2 像素，檔案大細：$3 ，MIME類型：$4',
-'file-nohires'    => '<small>冇更高解像度嗰圖像。</small>',
+'file-nohires'    => '冇更高解像度嗰圖像。',
 'svg-long-desc'   => 'SVG檔案，表面大細： $1 × $2 像素，檔案大細：$3',
 'show-big-image'  => '完整解析度',
 

@@ -1045,7 +1045,7 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 # Media information
 'imagemaxsize'   => 'Fakangatangata ngaahi faitā ʻi he ʻū peesi fakamahino ki he:',
 'file-info'      => 'Ko e faile hono lahi: $1, faʻahinga MIME: $2',
-'file-nohires'   => '<small>ʻOku ʻikai ʻi ai ha faitā auiiki.</small>',
+'file-nohires'   => 'ʻOku ʻikai ʻi ai ha faitā auiiki.',
 'show-big-image' => 'ʻAsi ʻa e faitā auiiki',
 
 # Special:NewFiles

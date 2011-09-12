@@ -2798,7 +2798,7 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|પાનું|પાના}}',
 'file-info'            => 'ફાઇલ કદ : $1, MIME પ્રકાર: $2',
 'file-info-size'       => '$1 × $2 પીક્સલ, ફાઇલનું કદ: $3, MIME પ્રકાર: $4',
-'file-nohires'         => '<small>આથી વધુ આવર્તન ઉપલબ્ધ નથી.</small>',
+'file-nohires'         => 'આથી વધુ આવર્તન ઉપલબ્ધ નથી.',
 'svg-long-desc'        => 'SVG ફાઇલ, માત્ર $1 × $2 પીક્સલ, ફાઇલનું કદ: $3',
 'show-big-image'       => 'મહત્તમ આવર્તન',
 'file-info-gif-looped' => 'આવર્તન  (લુપ)',

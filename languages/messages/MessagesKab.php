@@ -1345,7 +1345,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'thumbsize'      => 'Tiddi n tugna tamecṭuḥt:',
 'file-info'      => 'tiddi n ufaylu: $1, anaw n MIME: $2',
 'file-info-size' => '$1 × $2 pixel, tiddi n ufaylu: $3, anaw n MIME: $4',
-'file-nohires'   => '<small>Ulac resolution i tameqqrant fell-as.</small>',
+'file-nohires'   => 'Ulac resolution i tameqqrant fell-as.',
 'show-big-image' => 'Resolution tameqqrant',
 
 # Special:NewFiles

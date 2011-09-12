@@ -2003,7 +2003,7 @@ $1',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'       => 'grandol el archivu: $1, MIME type: $2',
 'file-info-size'  => '$1 × $2 pixel, grandol el archivu: $3, MIME type: $4',
-'file-nohires'    => '<small>Nu disponibri a mayol resolución.</small>',
+'file-nohires'    => 'Nu disponibri a mayol resolución.',
 'svg-long-desc'   => 'archivu SVG, $1 × $2 pixelis, grandol: $3',
 'show-big-image'  => 'Resolución máisima',
 

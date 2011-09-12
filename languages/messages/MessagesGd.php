@@ -1108,7 +1108,7 @@ Tadhail air [http://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] 
 
 # Media information
 'file-info-size' => '$1 × $2 pixel, meud an fhaidhle: $3, seòrsa MIME: $4',
-'file-nohires'   => '<small>Chan eil dùmhlachd-bhreacaidh nas fhearr ri fhaighinn.</small>',
+'file-nohires'   => 'Chan eil dùmhlachd-bhreacaidh nas fhearr ri fhaighinn.',
 'svg-long-desc'  => 'Faidhle SVG, a-rèir ainm $1 × $2 pixel, meud faidhle: $3',
 'show-big-image' => 'Dùmhlachd-bhreacaidh shlàn',
 

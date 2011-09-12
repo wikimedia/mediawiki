@@ -1048,7 +1048,7 @@ Dönün baş yapraa',
 
 # Media information
 'file-info-size' => '$1 × $2 piksel, fayl ölçüsü: $3, MIME tipi: $4',
-'file-nohires'   => '<small>Taa üüksek aydınnıklı versiya bulunmêêr.</small>',
+'file-nohires'   => 'Taa üüksek aydınnıklı versiya bulunmêêr.',
 'svg-long-desc'  => 'SVG faylı, nominal $1 × $2 piksel, fayl ölçüsü: $3',
 'show-big-image' => 'Taman aydınnık',
 

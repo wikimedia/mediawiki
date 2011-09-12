@@ -1853,7 +1853,7 @@ Bo içroi on, sistemai şumo şojad oseb bubinad.",
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|sahifa|sahifaho}}',
 'file-info'       => "andozai parvanda: $1, nav'i MIME: $2",
 'file-info-size'  => "$1 × $2 piksel, haçmi parvanda: $3, nav'i MIME: $4",
-'file-nohires'    => '<small>Nusxai haçman va sifatan balandtar dastras nest.</small>',
+'file-nohires'    => 'Nusxai haçman va sifatan balandtar dastras nest.',
 'svg-long-desc'   => 'SVG parvanda, ismī $1 × $2 piksel, andozai parvanda: $3',
 'show-big-image'  => 'Aksi purra',
 

@@ -839,7 +839,7 @@ $messages = array(
 
 # Media information
 'file-info-size' => '$1 × $2 пикселар, шикилдин кьадар: $3, MIME жуьре: $4',
-'file-nohires'   => '<small>Чlехи ахъаюн авай жуьре авач.</small>',
+'file-nohires'   => 'Чlехи ахъаюн авай жуьре авач.',
 'svg-long-desc'  => 'SVG файл, тlарцlиэвез $1 $2 × пикселяр, файлдин яргъивал:файлдин яргъивал: $3',
 'show-big-image' => 'Михьиз чlехи хьун',
 

@@ -2017,7 +2017,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'thumbsize'       => 'د بټنوک کچه:',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|مخ|مخونه}}',
 'file-info-size'  => '$1 × $2 پېکسل, د دوتنې کچه: $3, MIME بڼه: $4',
-'file-nohires'    => '<small>تر دې کچې لوړې بېلن نښې نشته.</small>',
+'file-nohires'    => 'تر دې کچې لوړې بېلن نښې نشته.',
 'svg-long-desc'   => 'SVG دوتنه، نومېنلي $1 × $2 پېکسل، د دوتنې کچه: $3',
 'show-big-image'  => 'بشپړ بېلن نښې',
 

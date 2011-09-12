@@ -1046,7 +1046,7 @@ Yu kiahn vyuu isuos.',
 
 # Media information
 'file-info-size' => '$1 × $2 pixl, fail saiz: $3, MIME taip: $4',
-'file-nohires'   => '<small>No aya rezaluushan no avielobl.</small>',
+'file-nohires'   => 'No aya rezaluushan no avielobl.',
 'svg-long-desc'  => 'SVG fail, naminali $1 × $2 pixl, fail saiz: $3',
 'show-big-image' => 'Ful rezaluushan',
 

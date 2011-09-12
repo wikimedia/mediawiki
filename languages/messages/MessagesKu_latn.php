@@ -1899,7 +1899,7 @@ if (wgUserLanguage == "ku-arab")
 'widthheightpage' => '$1×$2, $3 rûpel',
 'file-info'       => 'mezinbûnê data: $1, MIME-typ: $2',
 'file-info-size'  => '$1 × $2 pixel, mezinbûnê data: $3, MIME-typ: $4',
-'file-nohires'    => '<small>Versyonekî jê mezintir tune.</small>',
+'file-nohires'    => 'Versyonekî jê mezintir tune.',
 'svg-long-desc'   => "Data'ya SVG, mezinbûna rast: $1 × $2 pixel; mezinbûna data'yê: $3",
 'show-big-image'  => 'Mezînbûn',
 

@@ -1011,7 +1011,7 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 # Media information
 'imagemaxsize' => 'Iáⁿ-siōng biô-su̍t-ia̍h ê tô· ke̍k-ke hián-sī jōa tōa tiuⁿ:',
 'thumbsize'    => 'Sok-tô· (thumbnail) jōa tōa tiuⁿ:',
-'file-nohires' => '<small>Bô khah koân ê kái-sek-tō͘.</small>',
+'file-nohires' => 'Bô khah koân ê kái-sek-tō͘.',
 
 # Special:NewFiles
 'newimages'     => 'Sin iáⁿ-siōng oē-lóng',

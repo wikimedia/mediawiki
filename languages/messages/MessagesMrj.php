@@ -689,7 +689,7 @@ $messages = array(
 
 # Media information
 'file-info-size' => '$1 × $2 пиксел,  файлын размержӹ: $3, MIME-тип: $4',
-'file-nohires'   => '<small>Кого разрешени доно верси уке.</small>',
+'file-nohires'   => 'Кого разрешени доно верси уке.',
 'svg-long-desc'  => 'SVG-файл, номинально $1 × $2 пиксель,  файлын размержӹ: $3',
 'show-big-image' => 'Кӱкшӹрӓк разрешениӓн изображени',
 

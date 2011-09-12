@@ -768,7 +768,7 @@ Gïemhpes veeljeme jeatjebh nomme.',
 # Media information
 'file-info'      => 'baalka stoerre: $1, MIME-vuekie: $2',
 'file-info-size' => '$1 × $2 pixel, baalka stoerre: $3, MIME-vuekie: $4',
-'file-nohires'   => '<small>Ijje jïlle bäjjeselöösninge jaksoes.</small>',
+'file-nohires'   => 'Ijje jïlle bäjjeselöösninge jaksoes.',
 'svg-long-desc'  => 'SVG baalka, maadth-stoerre $1 × $2 pixel, baalka stoerre: $3',
 'show-big-image' => 'Dïeves stoerre',
 
