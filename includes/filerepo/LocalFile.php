@@ -2083,7 +2083,18 @@ class LocalFileRestoreBatch {
  * @ingroup FileRepo
  */
 class LocalFileMoveBatch {
-	var $file, $cur, $olds, $oldCount, $archive, $target, $db;
+
+	/**
+	 * @var File
+	 */
+	var $file;
+
+	/**
+	 * @var Title
+	 */
+	var $target;
+
+	var $cur, $olds, $oldCount, $archive, $db;
 
 	function __construct( File $file, Title $target ) {
 		$this->file = $file;
@@ -2160,7 +2171,7 @@ class LocalFileMoveBatch {
 
 		// Copy the files into their new location
 		$statusMove = $repo->storeBatch( $triplets );
-		wfDebugLog( 'imagemove', "Moved files for {$this->file->name}: {$statusMove->successCount} successes, {$statusMove->failCount} failures" );
+		wfDebugLog( 'imagemove', "Moved files for {$this->file->getName()}: {$statusMove->successCount} successes, {$statusMove->failCount} failures" );
 		if ( !$statusMove->isGood() ) {
 			wfDebugLog( 'imagemove', "Error in moving files: " . $statusMove->getWikiText() );
 			$this->cleanupTarget( $triplets );
@@ -2170,7 +2181,7 @@ class LocalFileMoveBatch {
 
 		$this->db->begin();
 		$statusDb = $this->doDBUpdates();
-		wfDebugLog( 'imagemove', "Renamed {$this->file->name} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
+		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: {$statusDb->successCount} successes, {$statusDb->failCount} failures" );
 		if ( !$statusDb->isGood() ) {
 			$this->db->rollback();
 			// Something went wrong with the DB updates, so remove the target files
@@ -2249,7 +2260,7 @@ class LocalFileMoveBatch {
 			// $move: (oldRelativePath, newRelativePath)
 			$srcUrl = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $move[0] );
 			$triplets[] = array( $srcUrl, 'public', $move[1] );
-			wfDebugLog( 'imagemove', "Generated move triplet for {$this->file->name}: {$srcUrl} :: public :: {$move[1]}" );
+			wfDebugLog( 'imagemove', "Generated move triplet for {$this->file->getName()}: {$srcUrl} :: public :: {$move[1]}" );
 		}
 
 		return $triplets;
