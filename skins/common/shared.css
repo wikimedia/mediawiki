@@ -156,6 +156,14 @@ div#mw-js-message {
 }
 
 /**
+ * File description page
+ */
+
+div.mw-filepage-resolutioninfo {
+ 	font-size: smaller;
+}
+ 
+/**
  * File histories
  */
 h2#filehistory {

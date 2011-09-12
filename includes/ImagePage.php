@@ -323,11 +323,13 @@ class ImagePage extends Article {
 					$msgsmall = wfMessage( 'show-big-image-preview' )->
 						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
 						parse() . ' ' .
-						wfMessage( 'show-big-image-other' )->
-						rawParams( $wgLang->pipeList( $otherSizes ) )->parse();
+						Html::rawElement( 'span', array( 'class' => 'mw-filepage-other-resolutions' ),
+							wfMessage( 'show-big-image-other' )->
+							rawParams( $wgLang->pipeList( $otherSizes ), count( $otherSizes ) )->parse()
+						);
 				} else {
 					# Image is small enough to show full size on image page
-					$msgsmall = wfMsgExt( 'file-nohires', array( 'parseinline' ) );
+					$msgsmall = wfMessage( 'file-nohires' )->parse();
 				}
 
 				$params['width'] = $width;
@@ -335,7 +337,7 @@ class ImagePage extends Article {
 				$thumbnail = $this->displayImg->transform( $params );
 
 				$showLink = true;
-				$anchorclose = '<br />' . $msgsmall;
+				$anchorclose = Html::rawElement( 'div', array( 'class' => 'mw-filepage-resolutioninfo' ), $msgsmall );
 
 				$isMulti = $this->displayImg->isMultipage() && $this->displayImg->pageCount() > 1;
 				if ( $isMulti ) {

@@ -128,7 +128,8 @@ li#disclaimer,
 li#privacy,
 #footer-places,
 .mw-hidden-catlinks,
-tr.mw-metadata-show-hide-extended {
+tr.mw-metadata-show-hide-extended,
+span.mw-filepage-other-resolutions {
 	/* Hides all the elements irrelevant for printing */
 	display: none;
 }
