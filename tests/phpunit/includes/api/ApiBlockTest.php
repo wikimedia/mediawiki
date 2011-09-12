@@ -15,11 +15,11 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	function addDBData() {
-		$user = User::newFromName( 'UTBlockee' );
+		$user = User::newFromName( 'UTApiBlockee' );
 
 		if ( $user->getId() == 0 ) {
 			$user->addToDatabase();
-			$user->setPassword( 'UTBlockeePassword' );
+			$user->setPassword( 'UTApiBlockeePassword' );
 
 			$user->saveSettings();
 		}
@@ -29,10 +29,10 @@ class ApiBlockTest extends ApiTestCase {
 
 		$data = $this->getTokens();
 
-		$user = User::newFromName( 'UTBlockee' );
+		$user = User::newFromName( 'UTApiBlockee' );
 
 		if ( !$user->getId() ) {
-			$this->markTestIncomplete( "The user UTBlockee does not exist" );
+			$this->markTestIncomplete( "The user UTApiBlockee does not exist" );
 		}
 
 		if( !isset( $data[0]['query']['pages'] ) ) {
@@ -45,15 +45,15 @@ class ApiBlockTest extends ApiTestCase {
 
 		$data = $this->doApiRequest( array(
 			'action' => 'block',
-			'user' => 'UTBlockee',
+			'user' => 'UTApiBlockee',
 			'reason' => 'Some reason',
 			'token' => $pageinfo['blocktoken'] ), $data );
 
-		$block = Block::newFromTarget('UTBlockee');
+		$block = Block::newFromTarget('UTApiBlockee');
 
 		$this->assertTrue( !is_null( $block ), 'Block is valid' );
 
-		$this->assertEquals( 'UTBlockee', (string)$block->getTarget() );
+		$this->assertEquals( 'UTApiBlockee', (string)$block->getTarget() );
 		$this->assertEquals( 'Some reason', $block->mReason );
 		$this->assertEquals( 'infinity', $block->mExpiry );
 
