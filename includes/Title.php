@@ -3331,11 +3331,28 @@ class Title {
 	private function moveOverExistingRedirect( &$nt, $reason = '', $createRedirect = true ) {
 		global $wgUser, $wgContLang, $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase;
 
-		$moveOverRedirect = $nt->exists();
+		if ( $nt->exists() ) {
+			$moveOverRedirect = true;
+			$logtype = 'move_redir';
+		} else {
+			$moveOverRedirect = false;
+			$logType = 'move';
+		}
 
-		$commentMsg = ( $moveOverRedirect ? '1movedto2_redir' : '1movedto2' );
-		$comment = wfMsgForContent( $commentMsg, $this->getPrefixedText(), $nt->getPrefixedText() );
+		$redirectSuppressed = !$createRedirect && $wgUser->isAllowed( 'suppressredirect' );
 
+		$logEntry = new ManualLogEntry( 'move', $logType );
+		$logEntry->setPerformer( $wgUser );
+		$logEntry->setTarget( $this );
+		$logEntry->setComment( $reason );
+		$logEntry->setParameters( array(
+			'4::target' => $nt->getPrefixedText(),
+			'5::noredir' => $redirectSuppressed ? '1': '0',
+		) );
+
+		$formatter = LogFormatter::newFromEntry( $logEntry );
+		$formatter->setContext( RequestContext::newExtraneousContext( $this ) );
+		$comment = $formatter->getPlainActionText();
 		if ( $reason ) {
 			$comment .= wfMsgForContent( 'colon-separator' ) . $reason;
 		}
@@ -3442,16 +3459,13 @@ class Title {
 						'pl_title'     => $nt->getDBkey() ),
 					__METHOD__ );
 			}
-			$redirectSuppressed = false;
 		} else {
 			$this->resetArticleID( 0 );
-			$redirectSuppressed = true;
 		}
 
 		# Log the move
-		$log = new LogPage( 'move' );
-		$logType = ( $moveOverRedirect ? 'move_redir' : 'move' );
-		$log->addEntry( $logType, $this, $reason, array( 1 => $nt->getPrefixedText(), 2 => $redirectSuppressed ) );
+		$logid = $logEntry->insert();
+		$logEntry->publish( $logid );
 
 		# Purge caches for old and new titles
 		if ( $moveOverRedirect ) {
