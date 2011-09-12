@@ -1,11 +1,15 @@
 <?php
 class PNGMetadataExtractorTest extends MediaWikiTestCase {
+
+	function setUp() {
+		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';	
+	}
 	/**
 	 * Tests zTXt tag (compressed textual metadata) 
 	 */
 	function testPngNativetZtxt() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/Png-native-test.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'Png-native-test.png' );
 		$expected = "foo bar baz foo foo foo foof foo foo foo foo";
 		$this->assertArrayHasKey( 'text', $meta );
 		$meta = $meta['text'];
@@ -19,8 +23,8 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	 * Test tEXt tag (Uncompressed textual metadata)
 	 */
 	function testPngNativeText() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/Png-native-test.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'Png-native-test.png' );
 		$expected = "Some long image desc";
 		$this->assertArrayHasKey( 'text', $meta );
 		$meta = $meta['text'];
@@ -36,8 +40,8 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	 * Make sure non-ascii characters get converted properly
 	 */
 	function testPngNativeTextNonAscii() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/Png-native-test.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'Png-native-test.png' );
 
 		// Note the Copyright symbol here is a utf-8 one
 		// (aka \xC2\xA9) where in the file its iso-8859-1
@@ -57,8 +61,8 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	 * Test extraction of pHYs tags, which can tell what the
 	 * actual resolution of the image is (aka in dots per meter).
 	function testPngPhysTag () {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/Png-native-test.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'Png-native-test.png' );
 
 		$this->assertArrayHasKey( 'text', $meta );
 		$meta = $meta['text'];
@@ -72,8 +76,8 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	 * Given a normal static PNG, check the animation metadata returned.
 	 */
 	function testStaticPngAnimationMetadata() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/Png-native-test.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'Png-native-test.png' );
 
 		$this->assertEquals( 0, $meta['frameCount'] );
 		$this->assertEquals( 1, $meta['loopCount'] );
@@ -85,8 +89,8 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	 * check it gets animated metadata right.
 	 */
 	function testApngAnimationMetadata() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/Animated_PNG_example_bouncing_beach_ball.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'Animated_PNG_example_bouncing_beach_ball.png' );
 
 		$this->assertEquals( 20, $meta['frameCount'] );
 		// Note loop count of 0 = infinity
@@ -95,42 +99,42 @@ class PNGMetadataExtractorTest extends MediaWikiTestCase {
 	}
 
 	function testPngBitDepth8() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/Png-native-test.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'Png-native-test.png' );
 
 		$this->assertEquals( 8, $meta['bitDepth'] );
 	}
 	function testPngBitDepth1() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/1bit-png.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'1bit-png.png' );
 		$this->assertEquals( 1, $meta['bitDepth'] );
 	}
 
 
 	function testPngIndexColour() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/Png-native-test.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'Png-native-test.png' );
 
 		$this->assertEquals( 'index-coloured', $meta['colorType'] );
 	}
 	function testPngRgbColour() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/rgb-png.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'rgb-png.png' );
 		$this->assertEquals( 'truecolour-alpha', $meta['colorType'] );
 	}
 	function testPngRgbNoAlphaColour() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/rgb-na-png.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'rgb-na-png.png' );
 		$this->assertEquals( 'truecolour', $meta['colorType'] );
 	}
 	function testPngGreyscaleColour() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/greyscale-png.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'greyscale-png.png' );
 		$this->assertEquals( 'greyscale-alpha', $meta['colorType'] );
 	}
 	function testPngGreyscaleNoAlphaColour() {
-		$meta = PNGMetadataExtractor::getMetadata( dirname( __FILE__ ) .
-			'/greyscale-na-png.png' );
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'greyscale-na-png.png' );
 		$this->assertEquals( 'greyscale', $meta['colorType'] );
 	}
 

@@ -7,6 +7,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 
 	function setUp() {
 		parent::setUp();
+		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';
 		$this->handler = new BitmapHandler();
 	}
 
@@ -17,7 +18,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 	function testMetadata( $name, $type, $info ) {
 		# Force client side resizing
 		$params = array( 'width' => 10000, 'height' => 10000 );
-		$file = UnregisteredLocalFile::newFromPath( dirname( __FILE__ ) . '/' . $name, $type );
+		$file = UnregisteredLocalFile::newFromPath( $this->filePath . $name, $type );
 		
 		# Normalize parameters
 		$this->assertTrue( $this->handler->normaliseParams( $file, $params ) );
