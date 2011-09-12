@@ -109,7 +109,7 @@ class Linker {
 	 * @param $threshold Integer: user defined threshold
 	 * @return String: CSS class
 	 */
-	static function getLinkColour( $t, $threshold ) {
+	public static function getLinkColour( $t, $threshold ) {
 		$colour = '';
 		if ( $t->isRedirect() ) {
 			# Page is a redirect
@@ -376,7 +376,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
+	public static function makeSelfLinkObj( $nt, $html = '', $query = '', $trail = '', $prefix = '' ) {
 		if ( $html == '' ) {
 			$html = htmlspecialchars( $nt->getPrefixedText() );
 		}
@@ -410,7 +410,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	static function fnamePart( $url ) {
+	private static function fnamePart( $url ) {
 		$basename = strrchr( $url, '/' );
 		if ( false === $basename ) {
 			$basename = $url;
@@ -429,7 +429,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	static function makeExternalImage( $url, $alt = '' ) {
+	public static function makeExternalImage( $url, $alt = '' ) {
 		if ( $alt == '' ) {
 			$alt = self::fnamePart( $url );
 		}
@@ -478,7 +478,7 @@ class Linker {
 	 * @param $widthOption: Used by the parser to remember the user preference thumbnailsize
 	 * @return String: HTML for an image, with links, wrappers, etc.
 	 */
-	static function makeImageLink2( Title $title, $file, $frameParams = array(),
+	public static function makeImageLink2( Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "", $widthOption = null )
 	{
 		$res = null;
@@ -605,7 +605,7 @@ class Linker {
 	 * @param $frameParams The frame parameters
 	 * @param $query An optional query string to add to description page links
 	 */
-	static function getImageLinkMTOParams( $frameParams, $query = '' ) {
+	private static function getImageLinkMTOParams( $frameParams, $query = '' ) {
 		$mtoParams = array();
 		if ( isset( $frameParams['link-url'] ) && $frameParams['link-url'] !== '' ) {
 			$mtoParams['custom-url-link'] = $frameParams['link-url'];
@@ -634,7 +634,7 @@ class Linker {
 	 * @param $framed Boolean
 	 * @param $manualthumb String
 	 */
-	static function makeThumbLinkObj( Title $title, $file, $label = '', $alt,
+	public static function makeThumbLinkObj( Title $title, $file, $label = '', $alt,
 		$align = 'right', $params = array(), $framed = false , $manualthumb = "" )
 	{
 		$frameParams = array(
@@ -660,7 +660,7 @@ class Linker {
 	 * @param string $query
 	 * @return mixed
 	 */
-	static function makeThumbLink2( Title $title, $file, $frameParams = array(),
+	public static function makeThumbLink2( Title $title, $file, $frameParams = array(),
 		$handlerParams = array(), $time = false, $query = "" )
 	{
 		global $wgStylePath, $wgContLang;
@@ -870,7 +870,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	static function specialLink( $name, $key = '' ) {
+	public static function specialLink( $name, $key = '' ) {
 		if ( $key == '' ) {
 			$key = strtolower( $name );
 		}
@@ -886,7 +886,7 @@ class Linker {
 	 * @param $linktype String: type of external link. Gets added to the classes
 	 * @param $attribs Array of extra attributes to <a>
 	 */
-	static function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
+	public static function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
 		$class = "external";
 		if ( isset($linktype) && $linktype ) {
 			$class .= " $linktype";
@@ -1026,7 +1026,7 @@ class Linker {
 	 * @param $isPublic Boolean: show only if all users can see it
 	 * @return String: HTML fragment
 	 */
-	static function revUserLink( $rev, $isPublic = false ) {
+	public static function revUserLink( $rev, $isPublic = false ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
@@ -1047,7 +1047,7 @@ class Linker {
 	 * @param $isPublic Boolean: show only if all users can see it
 	 * @return string HTML
 	 */
-	static function revUserTools( $rev, $isPublic = false ) {
+	public static function revUserTools( $rev, $isPublic = false ) {
 		if ( $rev->isDeleted( Revision::DELETED_USER ) && $isPublic ) {
 			$link = wfMsgHtml( 'rev-deleted-user' );
 		} elseif ( $rev->userCan( Revision::DELETED_USER ) ) {
@@ -1080,7 +1080,7 @@ class Linker {
 	 * @param $title Mixed: Title object (to generate link to the section in autocomment) or null
 	 * @param $local Boolean: whether section links should refer to local page
 	 */
-	static function formatComment( $comment, $title = null, $local = false ) {
+	public static function formatComment( $comment, $title = null, $local = false ) {
 		wfProfileIn( __METHOD__ );
 
 		# Sanitize text a bit:
@@ -1280,7 +1280,7 @@ class Linker {
 	 * @param  $text
 	 * @return string
 	 */
-	static function normalizeSubpageLink( $contextTitle, $target, &$text ) {
+	public static function normalizeSubpageLink( $contextTitle, $target, &$text ) {
 		# Valid link forms:
 		# Foobar -- normal
 		# :Foobar -- override special treatment of prefix (images, language links)
@@ -1362,7 +1362,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	static function commentBlock( $comment, $title = null, $local = false ) {
+	public static function commentBlock( $comment, $title = null, $local = false ) {
 		// '*' used to be the comment inserted by the software way back
 		// in antiquity in case none was provided, here for backwards
 		// compatability, acc. to brion -ævar
@@ -1383,7 +1383,7 @@ class Linker {
 	 * @param $isPublic Boolean: show only if all users can see it
 	 * @return String: HTML fragment
 	 */
-	static function revComment( Revision $rev, $local = false, $isPublic = false ) {
+	public static function revComment( Revision $rev, $local = false, $isPublic = false ) {
 		if ( $rev->getRawComment() == "" ) {
 			return "";
 		}
@@ -1422,7 +1422,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	static function tocIndent() {
+	public static function tocIndent() {
 		return "\n<ul>";
 	}
 
@@ -1431,7 +1431,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	static function tocUnindent( $level ) {
+	public static function tocUnindent( $level ) {
 		return "</li>\n" . str_repeat( "</ul>\n</li>\n", $level > 0 ? $level : 0 );
 	}
 
@@ -1440,7 +1440,7 @@ class Linker {
 	 *
 	 * @return string
 	 */
-	static function tocLine( $anchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
+	public static function tocLine( $anchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
 		$classes = "toclevel-$level";
 		if ( $sectionIndex !== false ) {
 			$classes .= " tocsection-$sectionIndex";
@@ -1456,7 +1456,7 @@ class Linker {
 	 * tocUnindent() will be used instead if we're ending a line below
 	 * the new level.
 	 */
-	static function tocLineEnd() {
+	public static function tocLineEnd() {
 		return "</li>\n";
 	}
 
@@ -1467,7 +1467,7 @@ class Linker {
 	 * @param $lang mixed: Language code for the toc title
 	 * @return String: full html of the TOC
 	 */
-	static function tocList( $toc, $lang = false ) {
+	public static function tocList( $toc, $lang = false ) {
 		$title = wfMsgExt( 'toc', array( 'language' => $lang, 'escape' ) );
 		return
 		   '<table id="toc" class="toc"><tr><td>'
@@ -1561,7 +1561,7 @@ class Linker {
 	 *
 	 * @param $rev Revision object
 	 */
-	static function generateRollback( $rev ) {
+	public static function generateRollback( $rev ) {
 		return '<span class="mw-rollback-link">['
 			. self::buildRollbackLink( $rev )
 			. ']</span>';
