@@ -174,10 +174,8 @@ class CategoryViewer {
 			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
 		}
 
-		$pageLang = $this->title->getPageLanguage();
 		$langAttribs = array( 'lang' => $wgLang->getCode(), 'dir' => $wgLang->getDir() );
-		# close the previous div, show the headings in user language,
-		# then open a new div with the page content language again
+		# put a div around the headings which are in the user language
 		$r = Html::openElement( 'div', $langAttribs ) . $r . '</div>';
 
 		wfProfileOut( __METHOD__ );
