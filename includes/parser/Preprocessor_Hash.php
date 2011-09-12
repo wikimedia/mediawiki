@@ -498,7 +498,7 @@ class Preprocessor_Hash implements Preprocessor {
 						'open' => $curChar,
 						'close' => $rule['end'],
 						'count' => $count,
-						'lineStart' => ($i == 0 || $text[$i-1] == "\n"),
+						'lineStart' => ($i > 0 && $text[$i-1] == "\n"),
 					);
 
 					$stack->push( $piece );
