@@ -890,11 +890,11 @@ abstract class File {
 	}
 
 	/**
-	 * Get the relative path for an archive file
+	 * Get the relative path for an archived file
+	 * 
+	 * @param $suffix bool|string if not false, the name of an archived thumbnail file
 	 *
-	 * @param $suffix bool
-	 *
-	 * @return string
+	 * @return string 
 	 */
 	function getArchiveRel( $suffix = false ) {
 		$path = 'archive/' . $this->getHashPath();
@@ -907,9 +907,26 @@ abstract class File {
 	}
 
 	/**
-	 * Get the path of the archive directory, or a particular file if $suffix is specified
+	 * Get the relative path for an archived file's thumbs directory
+	 * or a specific thumb if the $suffix is given.
+	 * 
+	 * @param $archiveName string the timestamped name of an archived image
+	 * @param $suffix bool|string if not false, the name of a thumbnail file
+	 */
+	function getArchiveThumbRel( $archiveName, $suffix = false ) {
+		$path = 'archive/' . $this->getHashPath() . $archiveName . "/";
+		if ( $suffix === false ) {
+			$path = substr( $path, 0, -1 );
+		} else {
+			$path .= $suffix;
+		}
+		return $path;
+	}
+
+	/**
+	 * Get the path of the archived file.
 	 *
-	 * @param $suffix bool
+	 * @param $suffix bool|string if not false, the name of an archived file.
 	 *
 	 * @return string
 	 */
@@ -918,9 +935,21 @@ abstract class File {
 	}
 
 	/**
+	 * Get the path of the archived file's thumbs, or a particular thumb if $suffix is specified
+	 *
+	 * @param $archiveName string the timestamped name of an archived image
+	 * @param $suffix bool|string if not false, the name of a thumbnail file
+	 *
+	 * @return string
+	 */
+	function getArchiveThumbPath( $archiveName, $suffix = false ) {
+		return $this->repo->getZonePath( 'thumb' ) . '/' . $this->getArchiveThumbRel( $archiveName, $suffix );
+	}
+
+	/**
 	 * Get the path of the thumbnail directory, or a particular file if $suffix is specified
 	 *
-	 * @param $suffix bool
+	 * @param $suffix bool|string if not false, the name of a thumbnail file
 	 *
 	 * @return string
 	 */
@@ -935,7 +964,7 @@ abstract class File {
 	/**
 	 * Get the URL of the archive directory, or a particular file if $suffix is specified
 	 *
-	 * @param $suffix bool
+	 * @param $suffix bool|string if not false, the name of an archived file
 	 *
 	 * @return string
 	 */
@@ -950,9 +979,27 @@ abstract class File {
 	}
 
 	/**
+	 * Get the URL of the archived file's thumbs, or a particular thumb if $suffix is specified
+	 *
+	 * @param $archiveName string the timestamped name of an archived image
+	 * @param $suffix bool|string if not false, the name of a thumbnail file
+	 *
+	 * @return string
+	 */
+	function getArchiveThumbUrl( $archiveName, $suffix = false ) {
+		$path = $this->repo->getZoneUrl('thumb') . '/archive/' . $this->getHashPath() . rawurlencode( $archiveName ) . "/";
+		if ( $suffix === false ) {
+			$path = substr( $path, 0, -1 );
+		} else {
+			$path .= rawurlencode( $suffix );
+		}
+		return $path;
+	}
+
+	/**
 	 * Get the URL of the thumbnail directory, or a particular file if $suffix is specified
 	 *
-	 * @param $suffix bool
+	 * @param $suffix bool|string if not false, the name of a thumbnail file
 	 *
 	 * @return path
 	 */
@@ -965,9 +1012,9 @@ abstract class File {
 	}
 
 	/**
-	 * Get the virtual URL for an archive file or directory
+	 * Get the virtual URL for an archived file's thumbs, or a specific thumb.
 	 *
-	 * @param bool|string $suffix
+	 * @param $suffix bool|string if not false, the name of a thumbnail file
 	 *
 	 * @return string
 	 */
@@ -984,7 +1031,7 @@ abstract class File {
 	/**
 	 * Get the virtual URL for a thumbnail file or directory
 	 *
-	 * @param $suffix bool
+	 * @param $suffix bool|string if not false, the name of a thumbnail file
 	 *
 	 * @return string
 	 */
@@ -999,7 +1046,7 @@ abstract class File {
 	/**
 	 * Get the virtual URL for the file itself
 	 *
-	 * @param $suffix bool
+	 * @param $suffix bool|string if not false, the name of a thumbnail file
 	 *
 	 * @return string
 	 */
