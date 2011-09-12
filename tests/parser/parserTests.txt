@@ -1559,38 +1559,6 @@ Table with list inside
 
 !! end
 !! test
-Table with broken up list inside
-!! input
-{|
-|style="width: 5em; text-align: center"| gives
-|style="border: 1px dashed #2F6FAB; padding: 0.5em; margin: 0.5em"|
-# Some
-# list
-# Lorem
-
-# ipsum
-# dolor
-|}
-!! result
-<table>
-<tr>
-<td style="width: 5em; text-align: center">gives
-</td>
-<td style="border: 1px dashed #2F6FAB; padding: 0.5em; margin: 0.5em">
-<ol><li> Some
-</li><li> list
-</li><li> Lorem
-</li></ol>
-<ol><li> ipsum
-</li><li> dolor
-</li></ol>
-</td>
-</tr>
-</table>
-
-!! end
-
-!! test
 Indented table wrapped in html tags (Related to Bug 26362)
 !! input
 <div>
@@ -1947,8 +1915,6 @@ Arbitrary whitespace should not be prepended
 <td>1
 </td>
 <td>2
-<p><br />
-</p>
 </td>
 </tr>
 <tr>
@@ -3570,35 +3536,6 @@ section=1
 ==Section 1==
 !! result
 ==Section 1==
-!! end
-!! article
-Template:Top-level template
-!! text
-{{Nested template}}
-!! endarticle
-
-!! article
-Template:Nested template
-!! text
-*Item 1
-*Item 2
-!! endarticle
-
-!! test
-Line-start flag in a nested template call
-!! input
-*Item A
-*Item B
-
-{{Top-level template}}
-!! result
-<ul><li>Item A
-</li><li>Item B
-</li></ul>
-<ul><li>Item 1
-</li><li>Item 2
-</li></ul>
-
 !! end
 
 ###
@@ -6288,7 +6225,6 @@ http://===r:::https://b
 
 !!result
 <p><a rel="nofollow" class="external free" href="http://===r:::https://b">http://===r:::https://b</a>
-</p><p><br />
 </p>
 !! end
 
@@ -6327,7 +6263,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 <p>{{{|
 <u class="&#124;">}}}} &gt;
 <br style="onmouseover=&#39;alert(document.cookie);&#39;" />
-</p><p>MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 </p>
 <table>
 <tr>

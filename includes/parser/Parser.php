@@ -857,8 +857,11 @@ class Parser {
 
 			# empty line, go to next line,
 			# but only append \n if outside of table
-			if ( $line === '') {
-				$output .= $outLine . "\n";
+			if ( $line === '' ) {
+				$output .= $outLine;
+				if ( !isset( $tables[0] ) ) {
+					$output .= "\n";
+				}
 				continue;
 			}
 			$firstChars = $line[0];
