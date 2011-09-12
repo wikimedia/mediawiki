@@ -177,10 +177,10 @@ production.
 * (bug 29441) Expose CapitalLinks config in JS to allow modules to properly
   handle titles on case-sensitive wikis.
 * (bug 29397) Implement mw.Title module in core.
-* In MySQL 4.1.9+ with replication enabled, fetch the slave lag from SHOW SLAVE 
-  STATUS instead of SHOW PROCESSLIST. This ensures that lag is reported 
-  correctly in the case where there are no write events occurring. Note that 
-  the DB user now needs to have the REPLICATION CLIENT privilege if you are 
+* In MySQL 4.1.9+ with replication enabled, fetch the slave lag from SHOW SLAVE
+  STATUS instead of SHOW PROCESSLIST. This ensures that lag is reported
+  correctly in the case where there are no write events occurring. Note that
+  the DB user now needs to have the REPLICATION CLIENT privilege if you are
   using replication.
 * Language codes in $wgDummyLanguageCodes are now excluded on localization
   statistics (maintenance/language/transstat.php)
@@ -202,8 +202,8 @@ production.
 * $wgAutopromoteOnce was added, allowing for users to be automatically promoted to explicit usergroups.
   If a group is removed from a user via Special:UserRights, it will not automatically be re-added.
   Configuration is similar to $wgAutopromote (see DefaultSettings.php)
-* The PerformRetroactiveAutoblock hook was added to allow overriding or complementing 
-  retroactive autoblock handling. This runs when blocking a user with the 'autoblock' option. 
+* The PerformRetroactiveAutoblock hook was added to allow overriding or complementing
+  retroactive autoblock handling. This runs when blocking a user with the 'autoblock' option.
 * MediaWiki now supports using protocol-relative URLs in links, interwiki
   targets and $wgServer.
 * Introduced $wgVaryOnXFPForAPI which will cause the API to send
@@ -450,6 +450,7 @@ production.
   processing complex pages using newer versions of libxml2.
 * (bug 28545) When using the uca-default collation, sortkey's starting with a
   space (U+20) will sort under an invisible header like in 1.16 rather than a U+6DE
+* (bug 30192) Thumbnails of archived files are now deleted
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
