@@ -626,12 +626,8 @@ class EnhancedChangesList extends ChangesList {
 		# Make article link
 		$type = $rc->mAttribs['rc_type'];
 		$logType = $rc->mAttribs['rc_log_type'];
-		// Page moves
+		// Page moves, very old style, not supported anymore
 		if( $type == RC_MOVE || $type == RC_MOVE_OVER_REDIRECT ) {
-			$msg = ( $type == RC_MOVE ) ? "1movedto2" : "1movedto2_redir";
-			$clink = wfMsg( $msg, Linker::linkKnown( $rc->getTitle(), null,
-				array(), array( 'redirect' => 'no' ) ),
-				Linker::linkKnown( $rc->getMovedToTitle() ) );
 		// New unpatrolled pages
 		} elseif( $rc->unpatrolled && $type == RC_NEW ) {
 			$clink = Linker::linkKnown( $rc->getTitle(), null, array(),
