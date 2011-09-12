@@ -68,9 +68,12 @@ class GenerateCollationData extends Maintenance {
 	}
 
 	function charCallback( $data ) {
-		// Skip non-printable characters
+		// Skip non-printable characters,
+		// but do not skip a normal space (U+0020) since
+		// people like to use that as a fake no header symbol.
 		$category = substr( $data['gc'], 0, 1 );
-		if ( strpos( 'LNPS', $category ) === false ) {
+		if ( strpos( 'LNPS', $category ) === false 
+			&& $data['cp'] !== '0020' ) {
 			return;
 		}
 		$cp = hexdec( $data['cp'] );
