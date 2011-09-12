@@ -607,7 +607,7 @@ changes to languages because of Bugzilla reports.
 * Tokipona (tp) (removed) 'tokipona' is still  valid.
 * (bug 17160) Gender specific display text for User namespace.
 * Link trail added for sl and sh.
-* (bug 27633) Add characters to linkTrail for Potuguese (pt and pt-br).
+* (bug 27633) Add characters to linkTrail for Portuguese (pt and pt-br).
 * (bug 27426) Set $namespaceGenderAliases for Arabic (ar).
 * (bug 27385) Set Polish $namespaceGenderAliases.
 * (bug 27681) Set $namespaceGenderAliases for Portuguese (pt and pt-br).
@@ -623,6 +623,7 @@ changes to languages because of Bugzilla reports.
 * Aromanian (rup) (renamed from "rua-rup").
 * Kashmiri (ks) split into Kashmiri (Perso-Arabic) (ks-arab) and Kashmiri
   (Devanagari) (ks-deva). Defaults to ks-arab.
+* (bug 30864) Use bengali numerals for <ol> for Assamese
 
 === Other changes in 1.18 ===
 * Removed legacy wgAjaxWatch javascript global object, no longer in use.
