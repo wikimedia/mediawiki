@@ -1741,6 +1741,11 @@ $opts: FormOptions for this request
 &$query_options: array of options for the database request
 &$select: Array of columns to select
 
+'SpecialSearchCreateLink': called when making the message to create a page or
+go to the existing page
+$t: title object searched for
+&$params: an array of the default message name and page title (as parameter)
+
 'SpecialSearchGo': called when user clicked the "Go"
 &$title: title object generated from the text entered by the user
 &$term: the search term entered by the user
@@ -1748,6 +1753,12 @@ $opts: FormOptions for this request
 'SpecialSearchNogomatch': called when user clicked the "Go" button but the
 target doesn't exist
 &$title: title object generated from the text entered by the user
+
+'SpecialSearchPowerBox': the equivalent of SpecialSearchProfileForm for
+the advanced form, a.k.a. power search box
+&$showSections: an array to add values with more options to
+$term: the search term (not a title object)
+$opts: an array of hidden options (containing 'redirs' and 'profile')
 
 'SpecialSearchProfiles': allows modification of search profiles
 &$profiles: profiles, which can be modified.
