@@ -218,6 +218,10 @@ class Language {
 		return preg_match( '/^[a-z0-9-]+$/i', $code );
 	}
 
+	/**
+	 * @param $code
+	 * @return String Name of the language class
+	 */
 	public static function classFromCode( $code ) {
 		if ( $code == 'en' ) {
 			return 'Language';
@@ -226,6 +230,11 @@ class Language {
 		}
 	}
 
+	/**
+	 * Includes language class files
+	 * 
+	 * @param $class Name of the language class
+	 */
 	public static function preloadLanguageClass( $class ) {
 		global $IP;
 
