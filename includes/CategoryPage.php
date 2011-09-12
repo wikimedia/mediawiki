@@ -143,7 +143,7 @@ class CategoryViewer {
 	 * @return string HTML output
 	 */
 	public function getHTML() {
-		global $wgOut, $wgCategoryMagicGallery;
+		global $wgOut, $wgCategoryMagicGallery, $wgLang;
 		wfProfileIn( __METHOD__ );
 
 		$this->showGallery = $wgCategoryMagicGallery && !$wgOut->mNoGallery;
@@ -172,13 +172,13 @@ class CategoryViewer {
 		// Give a proper message if category is empty
 		if ( $r == '' ) {
 			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
-		} else {
-			$pageLang = $this->title->getPageLanguage();
-			$langAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir() );
-			# close the previous div, show the headings in user language,
-			# then open a new div with the page content language again
-			$r = '</div>' . $r . Html::openElement( 'div', $langAttribs );
 		}
+
+		$pageLang = $this->title->getPageLanguage();
+		$langAttribs = array( 'lang' => $wgLang->getCode(), 'dir' => $wgLang->getDir() );
+		# close the previous div, show the headings in user language,
+		# then open a new div with the page content language again
+		$r = Html::openElement( 'div', $langAttribs ) . $r . '</div>';
 
 		wfProfileOut( __METHOD__ );
 		return $r;
