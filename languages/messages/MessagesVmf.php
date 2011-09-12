@@ -915,7 +915,7 @@ Bidde gug's mi´m foorschau-gnobf ôô fôrm schbajchan",
 
 # Media information
 'file-info-size' => '$1 × $2 pigsl, dadajgrääsn: $3, MIME-tib: $4',
-'file-nohires'   => "<small>A he´äre aafleesung gibd's ghaane.</small>",
+'file-nohires'   => "A he´äre aafleesung gibd's ghaane.",
 'svg-long-desc'  => 'SVG-dadaj, ufleesung: $1 × $2 pigsl, dadajgreesn: $3',
 'show-big-image' => 'Bild in hegsdâr aufleesung',
 

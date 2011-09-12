@@ -2734,11 +2734,11 @@ Manarusakan ngini, kawa manyarang sistem Pian.",
 'file-info'              => 'takaran barakas: $1, macam MIME: $2',
 'file-info-size'         => '$1 × $2 piksel, ukuran barakas: $3, tipe MIME: $4',
 'file-info-size-pages'   => '$1 × $2 piksal, takaran barakas: $3, macam MIME: $4, $5 {{PLURAL:$5|tungkaran|tutungkaran}}',
-'file-nohires'           => '<small> kadada tasadia resolusi tapancau.</small>',
+'file-nohires'           => ' kadada tasadia resolusi tapancau.',
 'svg-long-desc'          => 'Barakas SVG, nominal $1 × $2 piksel, basar barakas: $3',
 'show-big-image'         => 'Ukuran hibak',
-'show-big-image-preview' => '<small>Takaran tilikan ngini: $1.</small>',
-'show-big-image-other'   => '<small>Risulusi lain: $1.</small>',
+'show-big-image-preview' => 'Takaran tilikan ngini: $1.',
+'show-big-image-other'   => 'Risulusi lain: $1.',
 'show-big-image-size'    => '$1 × $2 piksal',
 'file-info-gif-looped'   => 'mambulat',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|pigura|pipigura}}',
@@ -2999,6 +2999,8 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-exposureprogram-6' => 'Parugram lakuan (hiring ka kahancapan singkaian)',
 'exif-exposureprogram-7' => 'Muda putrait (gasan putu parak awan latar-balakang kaluar matan pukus)',
 
+'exif-subjectdistance-value' => '$1 mitir',
+
 'exif-meteringmode-0'   => 'Kada dikatahui',
 'exif-meteringmode-1'   => 'Rarata',
 'exif-meteringmode-2'   => 'Rarata pusat barat',
@@ -3025,6 +3027,14 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'exif-lightsource-19'  => 'Sinar standar C',
 'exif-lightsource-24'  => 'studiu ISO tungsten',
 'exif-lightsource-255' => 'Asal-mula sinar lain',
+
+# Flash modes
+'exif-flash-fired-0'  => 'Kilat kada banyala',
+'exif-flash-fired-1'  => 'Kilat banyala',
+'exif-flash-return-0' => 'Kadada strobo/kilat tabulik bapungsi',
+'exif-flash-return-2' => 'sinar stobo tabulik/kilat kada tadeteksi',
+'exif-flash-return-3' => 'sinar stobo tabulik/kilat tadeteksi',
+'exif-flash-mode-1'   => 'wajib banyala kilat',
 
 'exif-filesource-3' => 'Kudakan hinip digital',
 

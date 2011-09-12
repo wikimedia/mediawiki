@@ -846,7 +846,7 @@ Tys ļaun davīnuot pamatuojumu kūpsavylkumā.',
 
 # Media information
 'file-info-size' => '$1 × $2 pikseli, faila izmārs: $3, MIME tips: $4',
-'file-nohires'   => '<small>Augstuoka izškirtspieja nav pīejama.</small>',
+'file-nohires'   => 'Augstuoka izškirtspieja nav pīejama.',
 'svg-long-desc'  => 'SVG fails, definātais lelums $1 × $2 pikseli, faila lelums: $3',
 'show-big-image' => 'Pylnā lelumā',
 

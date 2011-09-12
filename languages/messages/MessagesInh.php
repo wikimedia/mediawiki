@@ -1033,7 +1033,7 @@ $messages = array(
 
 # Media information
 'file-info-size' => '$1 × $2 фихсам, паьла дустам: $3, MIME-тайп: $4',
-'file-nohires'   => '<small>Укхал доккхагIа доржам дац</small>',
+'file-nohires'   => 'Укхал доккхагIа доржам дац',
 'svg-long-desc'  => 'SVG-паьл, $1 × $2 фихелашца, паьла дустам: $3',
 'show-big-image' => 'Хьадоккхадаь сурт',
 

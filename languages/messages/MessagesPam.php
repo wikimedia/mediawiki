@@ -1976,7 +1976,7 @@ $1',
 'widthheightpage' => '$1×$2, $3 bulung',
 'file-info'       => 'dagul ning simpan [file]: $1, MIME type: $2',
 'file-info-size'  => '$1 × $2 pixel, sukad ning simpan: $3, MIME type: $4',
-'file-nohires'    => '<small>Ala nang mas malino pa.</small>',
+'file-nohires'    => 'Ala nang mas malino pa.',
 'svg-long-desc'   => 'SVG file, masasabing $1 × $2 pixels, dagul ning simpan: $3',
 'show-big-image'  => 'Pekamalino',
 

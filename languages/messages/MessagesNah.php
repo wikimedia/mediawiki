@@ -1016,7 +1016,7 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 
 # E-mail user
 'emailuser'       => 'Tique-mailīz inīn tlatequitiltilīlli',
-'defemailsubject' => '{{SITENAME}} e-mail',
+'defemailsubject' => '{{SITENAME}} correo tlatequitiltilīlhuīc $1',
 'emailfrom'       => 'Īhuīcpa:',
 'emailto'         => 'Īhuīc:',
 'emailmessage'    => 'Tlahcuilōltzintli:',
@@ -1339,7 +1339,7 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:|zāzanilli|zāzanilli}}',
 'file-info-size'  => '$1 × $2 pixel; zāzanilli octacayōtl: $3; machiyōtl MIME: $4',
-'file-nohires'    => '<small>Ahmo ia achi cualli ahmo occē īxiptli.</small>',
+'file-nohires'    => 'Ahmo ia achi cualli ahmo occē īxiptli.',
 'show-big-image'  => 'Mochi cuallōtl',
 
 # Special:NewFiles

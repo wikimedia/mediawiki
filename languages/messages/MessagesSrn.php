@@ -1173,7 +1173,7 @@ Yu ka luku a source.',
 # Media information
 'widthheightpage' => '$1×$2, $3 peprewoysi',
 'file-info-size'  => '$1 × $2 pixel, file marki: $3, MIME-type: $4',
-'file-nohires'    => '<small>Moro srapu no de.</small>',
+'file-nohires'    => 'Moro srapu no de.',
 'svg-long-desc'   => 'SVG file, marki $1 × $2 pixel, bigi: $3',
 'show-big-image'  => 'Moro srapu',
 

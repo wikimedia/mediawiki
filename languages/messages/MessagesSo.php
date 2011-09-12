@@ -1275,7 +1275,7 @@ Waxaa fiiri kartaa cadaadkiisa',
 
 # Media information
 'file-info-size' => '$1 × $2 pixels, weyninka faylka : $3, nuuca MIME: $4',
-'file-nohires'   => '<small>Malahan wax kale oo tafaasiil ah</small>',
+'file-nohires'   => 'Malahan wax kale oo tafaasiil ah',
 
 # Special:NewFiles
 'imagelisttext' => "Hoos waxaa yaala liiska '''$1''' {{PLURAL:$1|file|faylalka}} oo u kala soocan $2.",

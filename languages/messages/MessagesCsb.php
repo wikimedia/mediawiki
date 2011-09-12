@@ -1217,7 +1217,7 @@ Zezwôlô na dodanié przëczënë zjinaczi w òpisënkù.',
 'imagemaxsize'   => 'Ògrańczë na starnie òpisënkù òbrôzków jich miarã do:',
 'thumbsize'      => 'Miara miniaturków:',
 'file-info-size' => '$1 × $2 pikslów, miara lopka: $3, ôrt MIME: $4',
-'file-nohires'   => '<small>Felëje wikszô miara.</small>',
+'file-nohires'   => 'Felëje wikszô miara.',
 'svg-long-desc'  => 'Lopk SVG, nominalno $1 × $2 pikslów, miara lopka: $3',
 'show-big-image' => 'Fùl miara',
 

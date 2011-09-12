@@ -1456,7 +1456,7 @@ Pangngaasim ta i-manualmo lattan a pagtiponem ida.'''",
 'widthheightpage' => '$1×$2, $3 a {{PLURAL:$3|panid|pampanid}}',
 'file-info'       => 'kadakkel ti file: $1, MIME type: $2',
 'file-info-size'  => '$1 × $2 a pixel, kadakkel ti file: $3, MIME type: $4',
-'file-nohires'    => '<small>Awan mabalin a nangatngato a resolusion.</small>',
+'file-nohires'    => 'Awan mabalin a nangatngato a resolusion.',
 'svg-long-desc'   => 'SVG a file, babassit ngem $1 × $2 pixels, kadakkel ti file: $3',
 'show-big-image'  => 'Sibubukel a resolusion',
 

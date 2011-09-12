@@ -594,7 +594,7 @@ Toož, võittõ tširjutta väänteüssee süü.',
 
 # Media information
 'file-info-size' => '$1 × $2 px, $3, MIME-sortta: $4',
-'file-nohires'   => '<small>Suurõpaa kuva ebõõ.</small>',
+'file-nohires'   => 'Suurõpaa kuva ebõõ.',
 'svg-long-desc'  => 'SVG-faili $1 × $2 px, failii suuruz: $3',
 'show-big-image' => 'Kõrka-rezoľuuttsiin verzija',
 

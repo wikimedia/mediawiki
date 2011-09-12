@@ -2074,7 +2074,7 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|ojúewé|àwọn ojúewé}}',
 'file-info'            => 'ìtóbi faili: $1, irú MIME: $2',
 'file-info-size'       => '$1 × $2 pixel, ìtóbi faili: $3, irú MIME: $4',
-'file-nohires'         => '<small>Kò sí ìgbéhàn gíga jù báun lọ.</small>',
+'file-nohires'         => 'Kò sí ìgbéhàn gíga jù báun lọ.',
 'svg-long-desc'        => 'faili SVG, pẹ̀lú $1 × $2 pixels, ìtòbi faili: $3',
 'show-big-image'       => 'Pẹ̀lú ìgbéhàn gíga',
 'show-big-image-size'  => '$1 × $2 pixels',

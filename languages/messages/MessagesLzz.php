@@ -686,7 +686,7 @@ Mu iqʼven başka coxo doçʼari.',
 
 # Media information
 'file-info-size' => '$1 × $2 pikseli, dosyaşi didinoba: $3, MIME type: $4',
-'file-nohires'   => '<small>Çkva kʼai ozʼiramuşis na uğun versiyoni va ren.</small>',
+'file-nohires'   => 'Çkva kʼai ozʼiramuşis na uğun versiyoni va ren.',
 'svg-long-desc'  => 'SVG dosya, coxoten $1 × $2 pʼikʼseli, dosyaşi didinoba: $3',
 'show-big-image' => 'Tam ozʼiramuşi',
 

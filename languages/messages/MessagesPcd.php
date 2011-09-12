@@ -819,7 +819,7 @@ Os pouvez vir l'source",
 
 # Media information
 'file-info-size' => '$1 × $2 picséls, diminchon dech fichié: $3, MIME tipe: $4',
-'file-nohires'   => '<small>Poin éd pu grande résoluchon possibe.</small>',
+'file-nohires'   => 'Poin éd pu grande résoluchon possibe.',
 'svg-long-desc'  => 'Fichié SVG, résoluchon éd $1 × $2 picsels, diminchon: $3',
 'show-big-image' => 'Plinne résoluchon',
 

@@ -1008,7 +1008,7 @@ Whi a ell gweles hy fednfenten.',
 
 # Media information
 'file-info-size' => '$1 × $2 pixel, mens an restren: $3, sort MIME : $4',
-'file-nohires'   => '<small>Nag eus clerder uhella cavadow.</small>',
+'file-nohires'   => 'Nag eus clerder uhella cavadow.',
 'svg-long-desc'  => 'Restren SVG, $1 × $2 pixel en hanow, mens an restren: $3',
 'show-big-image' => 'Clerder leun',
 

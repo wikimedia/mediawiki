@@ -1700,7 +1700,7 @@ Your e-mail address is not revealed when other users contact you.
 
 # Media information
 'file-info-size' => '$1 × $2 pixels, ဖိုင်အရွယ်အစား - $3, MIME အမျိုးအစား $4',
-'file-nohires'   => '<small>သည်ထက်ကြီးသော resolution မရှိပါ.</small>',
+'file-nohires'   => 'သည်ထက်ကြီးသော resolution မရှိပါ.',
 'svg-long-desc'  => 'SVG ဖိုင်, $1 × $2 pixels ကို အကြံပြုသည်, ဖိုင်အရွယ်အစား - $3',
 'show-big-image' => 'resolution အပြည့်',
 

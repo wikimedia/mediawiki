@@ -1559,7 +1559,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'thumbsize'      => 'Lio̍k-thù thai-séu:',
 'file-info'      => 'tóng-on thai-séu: $1, MIME lui-hìn: $2',
 'file-info-size' => '$1 × $2 chhiong-su, tóng-on thai-séu:$3 ，MIME lui-hìn:$4',
-'file-nohires'   => '<small>Mò kien-kô kié-chhiong-thu khó-yî thì-kiûng.</small>',
+'file-nohires'   => 'Mò kien-kô kié-chhiong-thu khó-yî thì-kiûng.',
 'svg-long-desc'  => 'SVG tóng-on, péu-mien thai-séu: $1 × $2 siong-su, tóng-on thai-séu: $3',
 'show-big-image' => 'Vàn-cháng ke kié-chhiong-thu',
 

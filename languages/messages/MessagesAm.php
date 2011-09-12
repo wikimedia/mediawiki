@@ -1895,7 +1895,7 @@ $1',
 'widthheightpage' => '$1 በ$2፣ $3 ገጾች',
 'file-info'       => 'የፋይል መጠን፦ $1፣ የMIME አይነት፦ $2',
 'file-info-size'  => '$1 × $2 ፒክስል፤ መጠን፦ $3፤ የMIME ዓይነት፦ $4',
-'file-nohires'    => '<small>ከዚህ በላይ ማጉላት አይቻልም።</small>',
+'file-nohires'    => 'ከዚህ በላይ ማጉላት አይቻልም።',
 'svg-long-desc'   => 'የSVG ፋይል፡ በተግባር $1 × $2 ፒክስል፤ መጠን፦ $3',
 'show-big-image'  => 'በሙሉ ጒልህነት ለመመልከት',
 

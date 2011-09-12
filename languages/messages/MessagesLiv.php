@@ -721,7 +721,7 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 
 # Media information
 'file-info-size' => ' $1 × $2 piksõlt, bildā sūrit: $3, MIME tīp: $4',
-'file-nohires'   => '<small>Sīestõ sūrimmõ bildõ äb ūo.</small>',
+'file-nohires'   => 'Sīestõ sūrimmõ bildõ äb ūo.',
 'svg-long-desc'  => 'SVG fail, origināli sūrit  $1 × $2 piksõlt, fail sūrit: $3',
 'show-big-image' => 'täuž rezolūtsij',
 

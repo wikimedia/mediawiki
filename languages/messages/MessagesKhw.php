@@ -1025,7 +1025,7 @@ HTML tags لوڑے.',",
 
 # Media information
 'file-info-size' => '$1 × $2 پکسلز, فل سایز: $3, MIME ٹایپ: $4',
-'file-nohires'   => '<small>ھموغاری لوٹ ریزولیوشن دستیاب نیکی.</small>',
+'file-nohires'   => 'ھموغاری لوٹ ریزولیوشن دستیاب نیکی.',
 'svg-long-desc'  => 'SVG فایل, nominally $1 × $2 پکسلز, فایل سایز: $3',
 'show-big-image' => 'لوٹ کوری پشاوے',
 

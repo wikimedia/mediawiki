@@ -1529,7 +1529,7 @@ Gapasugot sa pagdugang sang rason sa kabilugan.',
 
 # Media information
 'file-info-size' => '$1 × $2 piksel, kadakuon sang file: $3, MIME type: $4',
-'file-nohires'   => '<small>Wala sang yara na taas nga resolusyon.</small>',
+'file-nohires'   => 'Wala sang yara na taas nga resolusyon.',
 'svg-long-desc'  => 'SVG file, nominalya $1 × $2 piksels, kadakuon sang file: $3',
 'show-big-image' => 'Kabilogan nga resolusyon',
 

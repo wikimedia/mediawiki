@@ -1101,7 +1101,7 @@ Ayek fan otru nå'an-ña.",
 
 # Media information
 'file-info-size' => '$1 × $2 na pixel, mineddong atkibu: $3, MIME klåsi: $4',
-'file-nohires'   => "<small>Tåya' mas takhilo' na risolusion.</small>",
+'file-nohires'   => "Tåya' mas takhilo' na risolusion.",
 'svg-long-desc'  => 'Atkibu SVG, $1 × $2 na pixels, mineddong atkibu: $3',
 'show-big-image' => 'Magåhet mineddong-ña',
 

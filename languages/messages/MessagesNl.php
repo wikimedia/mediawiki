@@ -2371,7 +2371,7 @@ Wiki: $PAGEEDITOR_WIKI
 
 Tenzij u deze pagina bezoekt, komen er geen verdere berichten. Op uw volglijst kunt u voor alle gevolgde pagina\'s de waarschuwingsinstellingen opschonen.
 
-             Groet van uw {{SITENAME}} waarschuwingssysteem.
+             Groet van uw {{SITENAME}}-waarschuwingssysteem.
 
 --
 U kunt uw e-mailinstellingen wijzigen op:
@@ -3163,11 +3163,11 @@ $1',
 'file-info'              => 'bestandsgrootte: $1, MIME-type: $2',
 'file-info-size'         => '$1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4',
 'file-info-size-pages'   => "$1 × $2 pixels, bestandsgrootte: $3, MIME-type: $4, $5 {{PLURAL:$5|pagina|pagina's}}",
-'file-nohires'           => '<small>Geen hogere resolutie beschikbaar.</small>',
+'file-nohires'           => 'Geen hogere resolutie beschikbaar.',
 'svg-long-desc'          => 'SVG-bestand, nominaal $1 × $2 pixels, bestandsgrootte: $3',
 'show-big-image'         => 'Volledige resolutie',
-'show-big-image-preview' => '<small>Grootte van deze voorvertoning: $1.</small>',
-'show-big-image-other'   => '<small>Andere resoluties: $1.</small>',
+'show-big-image-preview' => 'Grootte van deze voorvertoning: $1.',
+'show-big-image-other'   => 'Andere {{PLURAL:$2|resolutie|resoluties}}: $1.',
 'show-big-image-size'    => '$1 × $2 pixels',
 'file-info-gif-looped'   => 'herhalend',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|frame|frames}}',

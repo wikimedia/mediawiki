@@ -1057,7 +1057,7 @@ Permite ajustar una razón al resumen de edición.',
 
 # Media information
 'file-info-size' => '$1 × $2 píkseles; boy del arxivo: $3; tipo MIME: $4',
-'file-nohires'   => '<small>No disponible a mayor resolución.</small>',
+'file-nohires'   => 'No disponible a mayor resolución.',
 'svg-long-desc'  => 'arxivo SVG, nominalmente $1 × $2 píkseles, boy del arxivo: $3',
 'show-big-image' => 'Resolución original',
 

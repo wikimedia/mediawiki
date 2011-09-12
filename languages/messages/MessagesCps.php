@@ -871,7 +871,7 @@ Ginapasugtan sa pagdugang sang rason sa kabilugan.',
 
 # Media information
 'file-info-size' => '$1 × $2 piksel, kadakuon sang file: $3, klase sang MIME: $4',
-'file-nohires'   => '<small>Wala na sang mas mataas pa nga resolusyon (katin-aw).</small>',
+'file-nohires'   => 'Wala na sang mas mataas pa nga resolusyon (katin-aw).',
 'svg-long-desc'  => 'SVG file, nga ara sa $1 × $2 ka piksels, kadakuon sang file: $3',
 'show-big-image' => 'Bilog nga resolusyon (katin-aw)',
 

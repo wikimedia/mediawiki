@@ -1775,7 +1775,7 @@ $1",
 'widthheightpage' => '$1×$2, $3 mga pahina',
 'file-info'       => "sokol kan ''file'': $1, tipo nin MIME: $2",
 'file-info-size'  => "$1 × $2 na pixel, sokol kan ''file'': $3, tipo nin MIME: $4",
-'file-nohires'    => '<small>Mayong mas halangkaw na resolusyón.</small>',
+'file-nohires'    => 'Mayong mas halangkaw na resolusyón.',
 'svg-long-desc'   => 'file na SVG, haros $1 × $2 pixels, sokol kan file: $3',
 'show-big-image'  => 'Todong resolusyon',
 

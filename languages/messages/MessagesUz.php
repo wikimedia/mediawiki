@@ -642,7 +642,7 @@ Yaqinda sodir etilgan yoʻqotishlar uchun $2ni koʻring.',
 'imagemaxsize'   => "Tasvir ta'rifi sahifasidagi tasvirning kattaligi:",
 'thumbsize'      => 'Tasvirning kichiklashtirilgan versiyasining kattaligi:',
 'file-info-size' => '$1 × $2 piksel, fayl hajmi: $3, MIME tipi: $4',
-'file-nohires'   => '<small>Bundan kattaroq tasvir yoʻq.</small>',
+'file-nohires'   => 'Bundan kattaroq tasvir yoʻq.',
 'svg-long-desc'  => 'SVG fayl, asl oʻlchamlari $1 × $2 piksel, fayl hajmi: $3',
 'show-big-image' => 'Asl hajmdagi tasvir',
 

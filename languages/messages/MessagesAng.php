@@ -1139,7 +1139,7 @@ Bidde cēos ōðerne naman.',
 'imagemaxsize'   => 'Settan biliðu on biliþgemearcungtrametum tō:',
 'thumbsize'      => 'Þumannæglmicelnes:',
 'file-info-size' => '$1 × $2 pixels, fīlmiċelu: $3, MIMEcynn: $4',
-'file-nohires'   => '<small>Þǣr nis nǣniȝ mā miċelu.</small>',
+'file-nohires'   => 'Þǣr nis nǣniȝ mā miċelu.',
 'svg-long-desc'  => 'SVG fīl, rihte $1 × $2 pixels, fīlmiċelu: $3',
 'show-big-image' => 'Fulmiċelu',
 

@@ -1073,7 +1073,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'thumbsize'       => 'Къаддæргонды бæрц:',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|фарс|фарсы}}',
 'file-info-size'  => '$1 × $2 пикселы, файлы уæз: $3, MIME тип: $4',
-'file-nohires'    => '<small>Нæй ын стырдæр фæлтæр .</small>',
+'file-nohires'    => 'Нæй ын стырдæр фæлтæр .',
 'show-big-image'  => 'Æнæхъæнæй',
 
 # Special:NewFiles

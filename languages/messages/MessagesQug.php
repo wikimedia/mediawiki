@@ -695,7 +695,7 @@ Shuk shutita akllapay.',
 
 # Media information
 'file-info-size' => '$1 × $2 tawakukuna (pixelkuna); $3 llashakmi kan; MIME sami: $4',
-'file-nohires'   => '<small>Kay rikchapa shuk yallik hatun rikuchiyka mana tiyanchu.</small>',
+'file-nohires'   => 'Kay rikchapa shuk yallik hatun rikuchiyka mana tiyanchu.',
 'svg-long-desc'  => 'SVG archiwuka, $1 × $2 tawakukunayuk rimashka, $3 llashakmi.',
 'show-big-image' => 'Yallik hatun rikuchipay',
 

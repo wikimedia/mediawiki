@@ -1115,7 +1115,7 @@ Premite ajuntar la rezon de la eidiçon ne l sumário.',
 
 # Media information
 'file-info-size' => '$1 × $2 pixel, tamanho: $3, tipo MIME: $4',
-'file-nohires'   => '<small>Sin resoluçon maior çponible.</small>',
+'file-nohires'   => 'Sin resoluçon maior çponible.',
 'svg-long-desc'  => 'fexeiro SVG, de $1 × $2 pixeles, tamanho: $3',
 'show-big-image' => 'Resoluçon cumpleta',
 

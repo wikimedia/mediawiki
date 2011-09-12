@@ -1009,7 +1009,7 @@ $messages = array(
 # Media information
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|лаштык|лаштык}}',
 'file-info-size'  => '$1 × $2 пиксел, файлын кугытшо: $3, MIME-тип: $4',
-'file-nohires'    => '<small>Кугурак чаплык уке.</small>',
+'file-nohires'    => 'Кугурак чаплык уке.',
 'svg-long-desc'   => 'SVG файл, шкенжын кугытшо: $1 × $2 пиксел, файлын кугытшо: $3',
 'show-big-image'  => 'Шкенжын чаплыкше',
 

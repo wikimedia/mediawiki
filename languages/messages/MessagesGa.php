@@ -1808,7 +1808,7 @@ B'fheidir go gcuirfear do chóras i gcontúirt dá rithfeá é.",
 'thumbsize'      => 'Méid mionsamhlacha:',
 'file-info'      => 'méid comhad : $1, saghas MIME: $2',
 'file-info-size' => '$1 × $2 picteilín, méid comhaid: $3, cineál MIME: $4',
-'file-nohires'   => '<small>Níl aon taifeach is mó ar fáil.</small>',
+'file-nohires'   => 'Níl aon taifeach is mó ar fáil.',
 'svg-long-desc'  => 'Comhad SVG, ainmniúil $1 × $2 picteilíni, méid comhaid: $3',
 'show-big-image' => 'Taispeáin leagan ardtaifigh den íomhá',
 

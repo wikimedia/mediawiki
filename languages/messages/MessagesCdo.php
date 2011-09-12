@@ -810,7 +810,7 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 'nextdiff'     => 'Â 1 hâung chă-biék →',
 
 # Media information
-'file-nohires' => '<small>Cuòi sê có̤i duâi chióh-cháung.</small>',
+'file-nohires' => 'Cuòi sê có̤i duâi chióh-cháung.',
 
 # Special:NewFiles
 'showhidebots' => '($1 gĭ-ké-nè̤ng)',

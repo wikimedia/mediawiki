@@ -1968,7 +1968,7 @@ $1',
 'widthheightpage' => '$1 × $2, $3{{PLURAL:$1|bit|bitlär}}',
 'file-info'       => 'fayl zurlığı: $1, MIME-tip: $2',
 'file-info-size'  => '$1 × $2 noqta, faylnıñ zurlığı: $3, MIME tibı: $4',
-'file-nohires'    => '<small>Yuğarı açıqlıq belän yurama yuq.</small>',
+'file-nohires'    => 'Yuğarı açıqlıq belän yurama yuq.',
 'svg-long-desc'   => 'SVG faylı, şartlı $1 × $2 noqta, faylnıñ zurlığı: $3',
 'show-big-image'  => 'Tulı açıqlıq',
 

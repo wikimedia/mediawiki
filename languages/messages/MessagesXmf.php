@@ -867,7 +867,7 @@ $messages = array(
 
 # Media information
 'file-info-size' => '$1 × $2 პიქსელ, ფაილიშ ზომა: $3, MIME ტიპ: $4',
-'file-nohires'   => '<small> უმოს მაღალ გიშაგორანჯალა ვა რე შელებუან.</small>',
+'file-nohires'   => ' უმოს მაღალ გიშაგორანჯალა ვა რე შელებუან.',
 'svg-long-desc'  => 'SVG ფაილ, ნომინალურო $1×$2 პიქსელ, ფაილიშ ზიმა: $3',
 'show-big-image' => 'რსული გიშაგორანჯალა',
 

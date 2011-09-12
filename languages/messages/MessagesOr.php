@@ -1798,7 +1798,7 @@ HTML ଟାଗ ପରଖିନିଅନ୍ତୁ ।',
 
 # Media information
 'file-info-size'       => '$1 × $2 ପିକସେଲ, ଫାଇଲ ଆକାର: $3, ଏମ.ଆଇ.ଏମ.ଇର ପ୍ରକାର: $4',
-'file-nohires'         => '<small>ବଡ଼ ରେଜୋଲୁସନ ନାହିଁ ।</small>',
+'file-nohires'         => 'ବଡ଼ ରେଜୋଲୁସନ ନାହିଁ ।',
 'svg-long-desc'        => 'SVG ଫାଇଲ, ସାଧାରଣ ମାପ $1 × $2 ପିକ୍ସେଲ, ଫାଇଲ ଆକାର: $3',
 'show-big-image'       => 'ପୁରା ବଡ଼ ଆକାରରେ',
 'show-big-image-size'  => '$1 × $2 ପିକ୍ସେଲ',

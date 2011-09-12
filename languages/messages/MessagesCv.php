@@ -1119,7 +1119,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Media information
 'file-info'      => 'файл пысăкăшĕ: $1, MIME-тĕсĕ: $2',
 'file-info-size' => '$1 × $2 пиксел, файл пысăкăше: $3, MIME-тĕсĕ: $4',
-'file-nohires'   => '<small>Пысăкрах калăпăшли çук.</small>',
+'file-nohires'   => 'Пысăкрах калăпăшли çук.',
 
 # Special:NewFiles
 'newimages'         => 'Çĕнĕ файлсен галерейи',
