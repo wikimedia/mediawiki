@@ -56,10 +56,8 @@ class SpecialBlock extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgUser, $wgOut, $wgRequest;
-
 		# Permission check
-		if( !$this->userCanExecute( $wgUser ) ) {
+		if( !$this->userCanExecute( $this->getUser() ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
@@ -72,15 +70,16 @@ class SpecialBlock extends SpecialPage {
 		# Extract variables from the request.  Try not to get into a situation where we
 		# need to extract *every* variable from the form just for processing here, but
 		# there are legitimate uses for some variables
-		list( $this->target, $this->type ) = self::getTargetAndType( $par, $wgRequest );
+		$request = $this->getRequest();
+		list( $this->target, $this->type ) = self::getTargetAndType( $par, $request );
 		if ( $this->target instanceof User ) {
 			# Set the 'relevant user' in the skin, so it displays links like Contributions,
 			# User logs, UserRights, etc.
 			$this->getSkin()->setRelevantUser( $this->target );
 		}
 
-		list( $this->previousTarget, /*...*/ ) = Block::parseTarget( $wgRequest->getVal( 'wpPreviousTarget' ) );
-		$this->requestedHideUser = $wgRequest->getBool( 'wpHideUser' );
+		list( $this->previousTarget, /*...*/ ) = Block::parseTarget( $request->getVal( 'wpPreviousTarget' ) );
+		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
 
 		# bug 15810: blocked admins should have limited access here
 		$status = self::checkUnblockSelf( $this->target );
@@ -88,10 +87,11 @@ class SpecialBlock extends SpecialPage {
 			throw new ErrorPageError( 'badaccess', $status );
 		}
 
-		$wgOut->setPageTitle( wfMsg( 'blockip-title' ) );
-		$wgOut->addModules( 'mediawiki.special', 'mediawiki.special.block' );
+		$out = $this->getOutput();
+		$out->setPageTitle( wfMsg( 'blockip-title' ) );
+		$out->addModules( 'mediawiki.special', 'mediawiki.special.block' );
 
-		$fields = self::getFormFields();
+		$fields = $this->getFormFields();
 		$this->maybeAlterFormDefaults( $fields );
 
 		$form = new HTMLForm( $fields, $this->getContext() );
@@ -108,8 +108,8 @@ class SpecialBlock extends SpecialPage {
 		$this->doPostText( $form );
 
 		if( $form->show() ){
-			$wgOut->setPageTitle( wfMsg( 'blockipsuccesssub' ) );
-			$wgOut->addWikiMsg( 'blockipsuccesstext',  $this->target );
+			$out->setPageTitle( wfMsg( 'blockipsuccesssub' ) );
+			$out->addWikiMsg( 'blockipsuccesstext',  $this->target );
 		}
 	}
 
@@ -117,8 +117,10 @@ class SpecialBlock extends SpecialPage {
 	 * Get the HTMLForm descriptor array for the block form
 	 * @return Array
 	 */
-	protected static function getFormFields(){
-		global $wgUser, $wgBlockAllowsUTEdit;
+	protected function getFormFields(){
+		global $wgBlockAllowsUTEdit;
+
+		$user = $this->getUser();
 
 		$a = array(
 			'Target' => array(
@@ -150,7 +152,7 @@ class SpecialBlock extends SpecialPage {
 			),
 		);
 
-		if( self::canBlockEmail( $wgUser ) ) {
+		if( self::canBlockEmail( $user ) ) {
 			$a['DisableEmail'] = array(
 				'type' => 'check',
 				'label-message' => 'ipbemailban',
@@ -172,7 +174,7 @@ class SpecialBlock extends SpecialPage {
 		);
 
 		# Allow some users to hide name from block log, blocklist and listusers
-		if( $wgUser->isAllowed( 'hideuser' ) ) {
+		if( $user->isAllowed( 'hideuser' ) ) {
 			$a['HideUser'] = array(
 				'type' => 'check',
 				'label-message' => 'ipbhidename',
@@ -181,7 +183,7 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		# Watchlist their user page? (Only if user is logged in)
-		if( $wgUser->isLoggedIn() ) {
+		if( $user->isLoggedIn() ) {
 			$a['Watch'] = array(
 				'type' => 'check',
 				'label-message' => 'ipbwatchuser',
@@ -219,8 +221,6 @@ class SpecialBlock extends SpecialPage {
 	 *     already blocked)
 	 */
 	protected function maybeAlterFormDefaults( &$fields ){
-		global $wgRequest, $wgUser;
-
 		# This will be overwritten by request data
 		$fields['Target']['default'] = (string)$this->target;
 
@@ -252,7 +252,7 @@ class SpecialBlock extends SpecialPage {
 
 			$fields['Reason']['default'] = $block->mReason;
 
-			if( $wgRequest->wasPosted() ){
+			if( $this->getRequest()->wasPosted() ){
 				# Ok, so we got a POST submission asking us to reblock a user.  So show the
 				# confirm checkbox; the user will only see it if they haven't previously
 				$fields['Confirm']['type'] = 'check';
@@ -281,7 +281,7 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		# Or if the user is trying to block themselves
-		if( (string)$this->target === $wgUser->getName() ){
+		if( (string)$this->target === $this->getUser()->getName() ){
 			$fields['Confirm']['type'] = 'check';
 			unset( $fields['Confirm']['default'] );
 			$this->preErrors[] = 'ipb-blockingself';
@@ -331,10 +331,8 @@ class SpecialBlock extends SpecialPage {
 	 * @return void
 	 */
 	protected function doHeaderText( HTMLForm &$form ){
-		global $wgRequest;
-
 		# Don't need to do anything if the form has been posted
-		if( !$wgRequest->wasPosted() && $this->preErrors ){
+		if( !$this->getRequest()->wasPosted() && $this->preErrors ){
 			$s = HTMLForm::formatErrors( $this->preErrors );
 			if( $s ){
 				$form->addHeaderText( Html::rawElement(
@@ -352,8 +350,6 @@ class SpecialBlock extends SpecialPage {
 	 * @return void
 	 */
 	protected function doPostText( HTMLForm &$form ){
-		global $wgUser, $wgLang;
-
 		# Link to the user's contributions, if applicable
 		if( $this->target instanceof User ){
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );
@@ -379,8 +375,10 @@ class SpecialBlock extends SpecialPage {
 			wfMsg( 'ipb-blocklist' )
 		);
 
+		$user = $this->getUser();
+
 		# Link to edit the block dropdown reasons, if applicable
-		if ( $wgUser->isAllowed( 'editinterface' ) ) {
+		if ( $user->isAllowed( 'editinterface' ) ) {
 			$links[] = Linker::link(
 				Title::makeTitle( NS_MEDIAWIKI, 'Ipbreason-dropdown' ),
 				wfMsgHtml( 'ipb-edit-dropdown' ),
@@ -392,7 +390,7 @@ class SpecialBlock extends SpecialPage {
 		$form->addPostText( Html::rawElement(
 			'p',
 			array( 'class' => 'mw-ipb-conveniencelinks' ),
-			$wgLang->pipeList( $links )
+			$this->getLang()->pipeList( $links )
 		) );
 
 		if( $this->target instanceof User ){
@@ -414,7 +412,7 @@ class SpecialBlock extends SpecialPage {
 			$form->addPostText( $out );
 
 			# Add suppression block entries if allowed
-			if( $wgUser->isAllowed( 'suppressionlog' ) ) {
+			if( $user->isAllowed( 'suppressionlog' ) ) {
 				LogEventsList::showLogExtract(
 					$out,
 					'suppress',
