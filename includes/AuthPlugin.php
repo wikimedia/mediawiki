@@ -262,6 +262,15 @@ class AuthPlugin {
 	public function getUserInstance( User &$user ) {
 		return new AuthPluginUser( $user );
 	}
+
+	/**
+	 * Get a list of domains (in HTMLForm options format) used.
+	 *
+	 * @return array
+	 */
+	public function domainList() {
+		return array();
+	}
 }
 
 class AuthPluginUser {

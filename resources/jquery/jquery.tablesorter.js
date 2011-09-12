@@ -75,10 +75,12 @@
 	}
 
 	function getElementText( node ) {
-		if ( node.hasAttribute && node.hasAttribute( 'data-sort-value' ) ) {
-			return node.getAttribute( 'data-sort-value' );
+		var $node = $( node ),
+			data = $node.attr( 'data-sort-value' );
+		if ( data !== undefined ) {
+			return data;
 		} else {
-			return $( node ).text();
+			return $node.text();
 		}
 	}
 

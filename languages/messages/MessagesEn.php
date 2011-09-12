@@ -1176,6 +1176,7 @@ You may have already successfully changed your password or requested a new tempo
 'passwordreset-disabled'       => 'Password resets have been disabled on this wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Enter one of the pieces of data below}}',
 'passwordreset-username'       => 'Username:',
+'passwordreset-domain'         => 'Domain:',
 'passwordreset-email'          => 'E-mail address:',
 'passwordreset-emailtitle'     => 'Account details on {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Someone (probably you, from IP address $1) requested a reminder of your
@@ -3957,9 +3958,9 @@ $8', # only translate this message to other languages if you have to change it
 'exif-orientation-3' => 'Rotated 180°',
 'exif-orientation-4' => 'Flipped vertically',
 'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically',
-'exif-orientation-6' => 'Rotated 90° CW',
+'exif-orientation-6' => 'Rotated 90° CCW',
 'exif-orientation-7' => 'Rotated 90° CW and flipped vertically',
-'exif-orientation-8' => 'Rotated 90° CCW',
+'exif-orientation-8' => 'Rotated 90° CW',
 
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'planar format',

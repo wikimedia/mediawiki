@@ -577,6 +577,32 @@ table.mw_metadata ul.metadata-langlist {
 	margin: 0;
 }
 
+/* Correct directionality when page dir is different from site/user dir */
+.mw-content-ltr ul,
+.mw-content-rtl .mw-content-ltr ul {
+	/* @noflip */
+	margin: 0.3em 0 0 1.5em;
+	padding: 0;
+}
+.mw-content-rtl ul,
+.mw-content-ltr .mw-content-rtl ul {
+	/* @noflip */
+	margin: 0.3em 1.5em 0 0;
+	padding: 0;
+}
+.mw-content-ltr ol,
+.mw-content-rtl .mw-content-ltr ol {
+	/* @noflip */
+	margin: 0.3em 0 0 3.2em;
+	padding: 0;
+}
+.mw-content-rtl ol,
+.mw-content-ltr .mw-content-rtl ol {
+	/* @noflip */
+	margin: 0.3em 3.2em 0 0;
+	padding: 0;
+}
+
 /* Galleries */
 /* These display attributes look nonsensical, but are needed to support IE and FF2 */
 /* Don't forget to update commonPrint.css */
@@ -673,6 +699,7 @@ ol:lang(ckb) li {
 	list-style-type: arabic-indic;
 }
 
+ol:lang(as) li,
 ol:lang(bn) li {
 	list-style-type: -moz-bengali;
 	list-style-type: bengali;
@@ -683,16 +710,18 @@ ol:lang(or) li {
 	list-style-type: oriya;
 }
 
+#toc ul, .toc ul {
+	margin: .3em 0;
+}
+
 /* Correct directionality when page dir is different from site/user dir */
 /* @noflip */.mw-content-ltr .toc ul, .mw-content-ltr #toc ul,
 .mw-content-rtl .mw-content-ltr .toc ul, .mw-content-rtl .mw-content-ltr #toc ul {
 	text-align: left;
-	margin-left: 0;
 }
 /* @noflip */.mw-content-rtl .toc ul, .mw-content-rtl #toc ul,
 .mw-content-ltr .mw-content-rtl .toc ul, .mw-content-ltr .mw-content-rtl #toc ul {
 	text-align: right;
-	margin-right: 0;
 }
 /* @noflip */.mw-content-ltr .toc ul ul, .mw-content-ltr #toc ul ul,
 .mw-content-rtl .mw-content-ltr .toc ul ul, .mw-content-rtl .mw-content-ltr #toc ul ul {

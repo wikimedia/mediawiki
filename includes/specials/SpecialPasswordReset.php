@@ -44,7 +44,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	protected function getFormFields() {
-		global $wgPasswordResetRoutes;
+		global $wgPasswordResetRoutes, $wgAuth;
 		$a = array();
 		if ( isset( $wgPasswordResetRoutes['username'] ) && $wgPasswordResetRoutes['username'] ) {
 			$a['Username'] = array(
@@ -57,6 +57,15 @@ class SpecialPasswordReset extends FormSpecialPage {
 			$a['Email'] = array(
 				'type' => 'email',
 				'label-message' => 'passwordreset-email',
+			);
+		}
+
+		if ( isset( $wgPasswordResetRoutes['domain'] ) && $wgPasswordResetRoutes['domain'] ) {
+			$domains = $wgAuth->domainList();
+			$a['Domain'] = array(
+				'type' => 'select',
+				'options' => $domains,
+				'label-message' => 'passwordreset-domain',
 			);
 		}
 
@@ -76,6 +85,9 @@ class SpecialPasswordReset extends FormSpecialPage {
 		if ( isset( $wgPasswordResetRoutes['email'] ) && $wgPasswordResetRoutes['email'] ) {
 			$i++;
 		}
+		if ( isset( $wgPasswordResetRoutes['domain'] ) && $wgPasswordResetRoutes['domain'] ) {
+			$i++;
+		}
 		return wfMessage( 'passwordreset-pretext', $i )->parseAsBlock();
 	}
 
@@ -87,6 +99,15 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return Bool|Array
 	 */
 	public function onSubmit( array $data ) {
+		global $wgAuth;
+
+		if ( isset( $data['Domain'] ) ) {
+			if ( $wgAuth->validDomain( $data['Domain'] ) ) {
+				$wgAuth->setDomain( $data['Domain'] );
+			} else {
+				$wgAuth->setDomain( 'invaliddomain' );
+			}
+		}
 
 		if ( isset( $data['Username'] ) && $data['Username'] !== '' ) {
 			$method = 'username';

@@ -1,13 +1,24 @@
 <?php
 
 class BitmapScalingTest extends MediaWikiTestCase {
+
+	function setUp() {
+		global $wgMaxImageArea;
+		$this->oldMaxImageArea = $wgMaxImageArea;
+		$wgMaxImageArea = 1.25e7; // 3500x3500 
+	}
+	function tearDown() {
+		global $wgMaxImageArea;
+		$wgMaxImageArea = $this->oldMaxImageArea;
+	}
 	/**
 	 * @dataProvider provideNormaliseParams
 	 */
 	function testNormaliseParams( $fileDimensions, $expectedParams, $params, $msg ) {
 		$file = new FakeDimensionFile( $fileDimensions );
 		$handler = new BitmapHandler;
-		$handler->normaliseParams( $file, $params );
+		$valid = $handler->normaliseParams( $file, $params );
+		$this->assertTrue( $valid );
 		$this->assertEquals( $expectedParams, $params, $msg );
 	}
 	
@@ -77,11 +88,37 @@ class BitmapScalingTest extends MediaWikiTestCase {
 				array( 'width' => 10, 'height' => 5 ),
 				'Very high image with height set',
 			),
+			/* Max image area */
+			array(
+				array( 4000, 4000 ),
+				array( 
+					'width' => 5000, 'height' => 5000,
+					'physicalWidth' => 4000, 'physicalHeight' => 4000,
+					'page' => 1, 
+				),
+				array( 'width' => 5000 ),
+				'Bigger than max image size but doesn\'t need scaling',
+			),
 		);
 	} 
+	function testTooBigImage() {
+		$file = new FakeDimensionFile( array( 4000, 4000 ) );
+		$handler = new BitmapHandler;
+		$params = array( 'width' => '3700' ); // Still bigger than max size.
+		$this->assertFalse( $handler->normaliseParams( $file, $params ) );
+	}
+	function testTooBigMustRenderImage() {
+		$file = new FakeDimensionFile( array( 4000, 4000 ) );
+		$file->mustRender = true;
+		$handler = new BitmapHandler;
+		$params = array( 'width' => '5000' ); // Still bigger than max size.
+		$this->assertFalse( $handler->normaliseParams( $file, $params ) );
+	}
 }
 
 class FakeDimensionFile extends File {
+	public $mustRender = false;
+
 	public function __construct( $dimensions ) {
 		parent::__construct( Title::makeTitle( NS_FILE, 'Test' ), null );
 		
@@ -92,5 +129,8 @@ class FakeDimensionFile extends File {
 	}
 	public function getHeight( $page = 1 ) {
 		return $this->dimensions[1];
+	}
+	public function mustRender() {
+		return $this->mustRender;
 	}
 }

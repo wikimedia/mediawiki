@@ -349,7 +349,7 @@ table.small {
 	list-style-type: none;
 	list-style-image: none;
 	margin-left: 0;
-	padding-left: 0;
+	padding: 0;
 	text-align: left;
 }
 #toc ul ul,

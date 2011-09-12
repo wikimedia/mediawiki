@@ -305,21 +305,29 @@ class SqlBagOStuff extends BagOStuff {
 	}
 
 	public function expireAll() {
+		$this->deleteObjectsExpiringBefore( wfTimestampNow() );
+	}
+
+	/**
+	 * Delete objects from the database which expire before a certain date.
+	 */
+	public function deleteObjectsExpiringBefore( $timestamp ) {
 		$db = $this->getDB();
-		$now = $db->timestamp();
+		$dbTimestamp = $db->timestamp( $timestamp );
 
 		try {
 			for ( $i = 0; $i < $this->shards; $i++ ) {
 				$db->begin();
 				$db->delete(
 					$this->getTableByShard( $i ), 
-					array( 'exptime < ' . $db->addQuotes( $now ) ), 
+					array( 'exptime < ' . $db->addQuotes( $dbTimestamp ) ), 
 					__METHOD__ );
 				$db->commit();
 			}
 		} catch ( DBQueryError $e ) {
 			$this->handleWriteError( $e );
 		}
+		return true;
 	}
 
 	public function deleteAll() {
