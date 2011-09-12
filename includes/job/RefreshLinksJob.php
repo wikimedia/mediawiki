@@ -88,8 +88,10 @@ class RefreshLinksJob2 extends Job {
 			wfProfileOut( __METHOD__ );
 			return false;
 		}
+		// Back compat for pre-r94435 jobs
+		$table = isset( $this->params['table'] ) ? $this->params['table'] : 'templatelinks';
 		$titles = $this->title->getBacklinkCache()->getLinks( 
-			$this->params['table'], $this->params['start'], $this->params['end']);
+			$table, $this->params['start'], $this->params['end']);
 		
 		# Not suitable for page load triggered job running!
 		# Gracefully switch to refreshLinks jobs if this happens.
