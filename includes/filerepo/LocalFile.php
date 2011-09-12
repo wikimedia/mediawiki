@@ -655,6 +655,11 @@ class LocalFile extends File {
 		$hashedName = md5( $this->getName() );
 		$oldKey = $this->repo->getSharedCacheKey( 'oldfile', $hashedName );
 
+		// Must purge thumbnails for old versions too! bug 30192
+		foreach( $this->getHistory() as $oldFile ) {
+			$oldFile->purgeThumbnails();
+		}
+
 		if ( $oldKey ) {
 			$wgMemc->delete( $oldKey );
 		}

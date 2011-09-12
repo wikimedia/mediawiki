@@ -27,24 +27,24 @@ class SkinCologneBlue extends SkinLegacy {
 		$rules = array();
 
 		if ( 2 == $qb ) { # Right
-			$rules[] = "#quickbar { position: absolute; right: 4px; }";
-			$rules[] = "#article { margin-left: 4px; margin-right: 148px; }";
+			$rules[] = "/* @noflip */#quickbar { position: absolute; right: 4px; }";
+			$rules[] = "/* @noflip */#article { margin-left: 4px; margin-right: 148px; }";
 		} elseif ( 1 == $qb ) {
-			$rules[] = "#quickbar { position: absolute; left: 4px; }";
-			$rules[] = "#article { margin-left: 148px; margin-right: 4px; }";
+			$rules[] = "/* @noflip */#quickbar { position: absolute; left: 4px; }";
+			$rules[] = "/* @noflip */#article { margin-left: 148px; margin-right: 4px; }";
 		} elseif ( 3 == $qb ) { # Floating left
-			$rules[] = "#quickbar { position:absolute; left:4px }";
-			$rules[] = "#topbar { margin-left: 148px }";
-			$rules[] = "#article { margin-left:148px; margin-right: 4px; }";
-			$rules[] = "body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto ;bottom:4px;}"; # Hides from IE
+			$rules[] = "/* @noflip */#quickbar { position:absolute; left:4px }";
+			$rules[] = "/* @noflip */#topbar { margin-left: 148px }";
+			$rules[] = "/* @noflip */#article { margin-left:148px; margin-right: 4px; }";
+			$rules[] = "/* @noflip */body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto; bottom:4px;}"; # Hides from IE
 		} elseif ( 4 == $qb ) { # Floating right
-			$rules[] = "#quickbar { position: fixed; right: 4px; }";
-			$rules[] = "#topbar { margin-right: 148px }";
-			$rules[] = "#article { margin-right: 148px; margin-left: 4px; }";
-			$rules[] = "body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto ;bottom:4px;}"; # Hides from IE
+			$rules[] = "/* @noflip */#quickbar { position: fixed; right: 4px; }";
+			$rules[] = "/* @noflip */#topbar { margin-right: 148px }";
+			$rules[] = "/* @noflip */#article { margin-right: 148px; margin-left: 4px; }";
+			$rules[] = "/* @noflip */body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto; bottom:4px;}"; # Hides from IE
 		}
 		$style = implode( "\n", $rules );
-		$out->addInlineStyle( $style );
+		$out->addInlineStyle( $style, /* flip css if RTL */true );
 	}
 
 }
@@ -221,10 +221,12 @@ class CologneBlueTemplate extends LegacyTemplate {
 				}
 				$s .= "\n<h6>" . htmlspecialchars( $h ) . "</h6>";
 			}
-			foreach ( $browseLinks as $link ) {
-				if ( $link['text'] != '-' ) {
-					$s .= "<a href=\"{$link['href']}\">" .
-						htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+			if( is_array( $browseLinks ) ) {
+				foreach ( $browseLinks as $link ) {
+					if ( $link['text'] != '-' ) {
+						$s .= "<a href=\"{$link['href']}\">" .
+							htmlspecialchars( $link['text'] ) . '</a>' . $sep;
+					}
 				}
 			}
 			$barnumber++;
