@@ -142,17 +142,18 @@ abstract class ResourceLoaderModule {
 	 * @return Array of URLs
 	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
-		global $wgLoadScript; // TODO factor out to ResourceLoader static method and deduplicate from makeResourceLoaderLink()
-		$query = array(
-			'modules' => $this->getName(),
-			'only' => 'scripts',
-			'skin' => $context->getSkin(),
-			'user' => $context->getUser(),
-			'debug' => 'true',
-			'version' => $context->getVersion()
+		$url = ResourceLoader::makeLoaderURL(
+			array( $this->getName() ),
+			$context->getLanguage(),
+			$context->getSkin(),
+			$context->getUser(),
+			$context->getVersion(),
+			true, // debug
+			'scripts', // only
+			$context->getRequest()->getBool( 'printable' ),
+			$context->getRequest()->getBool( 'handheld' )
 		);
-		ksort( $query );
-		return array( wfAppendQuery( $wgLoadScript, $query ) . '&*' );
+		return array( $url );
 	}
 	
 	/**
@@ -186,17 +187,18 @@ abstract class ResourceLoaderModule {
 	 * @return Array: array( mediaType => array( URL1, URL2, ... ), ... )
 	 */
 	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
-		global $wgLoadScript; // TODO factor out to ResourceLoader static method and deduplicate from makeResourceLoaderLink()
-		$query = array(
-			'modules' => $this->getName(),
-			'only' => 'styles',
-			'skin' => $context->getSkin(),
-			'user' => $context->getUser(),
-			'debug' => 'true',
-			'version' => $context->getVersion()
+		$url = ResourceLoader::makeLoaderURL(
+			array( $this->getName() ),
+			$context->getLanguage(),
+			$context->getSkin(),
+			$context->getUser(),
+			$context->getVersion(),
+			true, // debug
+			'styles', // only
+			$context->getRequest()->getBool( 'printable' ),
+			$context->getRequest()->getBool( 'handheld' )
 		);
-		ksort( $query );
-		return array( 'all' => array( wfAppendQuery( $wgLoadScript, $query ) . '&*' ) );
+		return array( 'all' => array( $url ) );
 	}
 
 	/**

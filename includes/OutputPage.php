@@ -2362,21 +2362,6 @@ $distantTemplates
 	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array() ) {
 		global $wgLoadScript, $wgResourceLoaderUseESI,
 			$wgResourceLoaderInlinePrivateModules;
-		$baseQuery = array(
-			'lang' => $this->getContext()->getLang()->getCode(),
-			'debug' => ResourceLoader::inDebugMode() ? 'true' : 'false',
-			'skin' => $this->getSkin()->getSkinName(),
-		) + $extraQuery;
-		if ( $only !== ResourceLoaderModule::TYPE_COMBINED ) {
-			$baseQuery['only'] = $only;
-		}
-		// Propagate printable and handheld parameters if present
-		if ( $this->isPrintable() ) {
-			$baseQuery['printable'] = 1;
-		}
-		if ( $this->getRequest()->getBool( 'handheld' ) ) {
-			$baseQuery['handheld'] = 1;
-		}
 
 		if ( !count( $modules ) ) {
 			return '';
@@ -2422,14 +2407,26 @@ $distantTemplates
 
 		$links = '';
 		foreach ( $groups as $group => $modules ) {
-			$query = $baseQuery;
 			// Special handling for user-specific groups
+			$user = null;
 			if ( ( $group === 'user' || $group === 'private' ) && $this->getUser()->isLoggedIn() ) {
-				$query['user'] = $this->getUser()->getName();
+				$user = $this->getUser()->getName();
 			}
 
 			// Create a fake request based on the one we are about to make so modules return
 			// correct timestamp and emptiness data
+			$query = ResourceLoader::makeLoaderQuery(
+				array(), // modules; not determined yet
+				$this->getContext()->getLang()->getCode(),
+				$this->getSkin()->getSkinName(),
+				$user,
+				null, // version; not determined yet
+				ResourceLoader::inDebugMode(),
+				$only === ResourceLoaderModule::TYPE_COMBINED ? null : $only,
+				$this->isPrintable(),
+				$this->getRequest()->getBool( 'handheld' ),
+				$extraQuery
+			);
 			$context = new ResourceLoaderContext( $resourceLoader, new FauxRequest( $query ) );
 			// Drop modules that know they're empty
 			foreach ( $modules as $key => $module ) {
@@ -2441,8 +2438,6 @@ $distantTemplates
 			if ( $modules === array() ) {
 				continue;
 			}
-
-			$query['modules'] = ResourceLoader::makePackedModulesString( array_keys( $modules ) );
 
 			// Support inlining of private modules if configured as such
 			if ( $group === 'private' && $wgResourceLoaderInlinePrivateModules ) {
@@ -2465,6 +2460,7 @@ $distantTemplates
 			// timestamp of these user-changable modules so we can ensure cache misses on change
 			// This should NOT be done for the site group (bug 27564) because anons get that too
 			// and we shouldn't be putting timestamps in Squid-cached HTML
+			$version = null;
 			if ( $group === 'user' ) {
 				// Get the maximum timestamp
 				$timestamp = 1;
@@ -2472,15 +2468,21 @@ $distantTemplates
 					$timestamp = max( $timestamp, $module->getModifiedTime( $context ) );
 				}
 				// Add a version parameter so cache will break when things change
-				$query['version'] = wfTimestamp( TS_ISO_8601_BASIC, $timestamp );
+				$version = wfTimestamp( TS_ISO_8601_BASIC, $timestamp );
 			}
-			// Make queries uniform in order
-			ksort( $query );
-
-			$url = wfAppendQuery( $wgLoadScript, $query );
-			// Prevent the IE6 extension check from being triggered (bug 28840)
-			// by appending a character that's invalid in Windows extensions ('*')
-			$url .= '&*';
+			
+			$url = ResourceLoader::makeLoaderURL(
+				array_keys( $modules ),
+				$this->getContext()->getLang()->getCode(),
+				$this->getSkin()->getSkinName(),
+				$user,
+				$version,
+				ResourceLoader::inDebugMode(),
+				$only === ResourceLoaderModule::TYPE_COMBINED ? null : $only,
+				$this->isPrintable(),
+				$this->getRequest()->getBool( 'handheld' ),
+				$extraQuery
+			);
 			if ( $useESI && $wgResourceLoaderUseESI ) {
 				$esi = Xml::element( 'esi:include', array( 'src' => $url ) );
 				if ( $only == ResourceLoaderModule::TYPE_STYLES ) {
