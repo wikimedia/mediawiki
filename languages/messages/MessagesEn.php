@@ -643,7 +643,7 @@ XHTML id names.
 'tog-enotifminoredits'        => 'E-mail me also for minor edits of pages',
 'tog-enotifrevealaddr'        => 'Reveal my e-mail address in notification e-mails',
 'tog-shownumberswatching'     => 'Show the number of watching users',
-'tog-oldsig'                  => 'Preview of existing signature:',
+'tog-oldsig'                  => 'Existing signature:',
 'tog-fancysig'                => 'Treat signature as wikitext (without an automatic link)',
 'tog-externaleditor'          => 'Use external editor by default (for experts only, needs special settings on your computer. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'Use external diff by default (for experts only, needs special settings on your computer. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
@@ -1735,7 +1735,7 @@ Note that their indexes of {{SITENAME}} content may be out of date.',
 'qbsettings-fixedright'     => 'Fixed right',
 'qbsettings-floatingleft'   => 'Floating left',
 'qbsettings-floatingright'  => 'Floating right',
-'qbsettings-directionality' => 'Fixed, depending on the directionality of your script and your language',
+'qbsettings-directionality' => 'Fixed, depending on the script directionality of your language',
 
 # Preferences page
 'preferences'                   => 'Preferences',
@@ -1821,7 +1821,7 @@ This cannot be undone.',
 'prefs-registration-date-time'  => '$1', # only translate this message to other languages if you have to change it
 'yourrealname'                  => 'Real name:',
 'yourlanguage'                  => 'Language:',
-'yourvariant'                   => 'Variant:', # only translate this message to other languages if you have to change it
+'yourvariant'                   => 'Content language variant:',
 'yournick'                      => 'New signature:',
 'prefs-help-signature'          => 'Comments on talk pages should be signed with "<nowiki>~~~~</nowiki>" which will be converted into your signature and a timestamp.',
 'badsig'                        => 'Invalid raw signature.
@@ -1879,7 +1879,7 @@ Your e-mail address is not revealed when other users contact you.',
 'userrights-no-interwiki'        => 'You do not have permission to edit user rights on other wikis.',
 'userrights-nodatabase'          => 'Database $1 does not exist or is not local.',
 'userrights-nologin'             => 'You must [[Special:UserLogin|log in]] with an administrator account to assign user rights.',
-'userrights-notallowed'          => 'Your account does not have permission to assign user rights.',
+'userrights-notallowed'          => 'Your account does not have permission to add or remove user rights.',
 'userrights-changeable-col'      => 'Groups you can change',
 'userrights-unchangeable-col'    => 'Groups you cannot change',
 'userrights-irreversible-marker' => '$1*', # only translate this message to other languages if you have to change it
@@ -2286,8 +2286,7 @@ You may want to try at a less busy time.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'This special page shows all uploaded files.
-By default the last uploaded files are shown at top of the list.
-A click on a column header changes the sorting.',
+When filtered by user, only files where that user uploaded the most recent version of the file are shown.',
 'listfiles_search_for'  => 'Search for media name:',
 'imgfile'               => 'file',
 'listfiles'             => 'File list',
