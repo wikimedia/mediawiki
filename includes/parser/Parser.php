@@ -4702,19 +4702,6 @@ class Parser {
 	}
 
 	/**
-	 * Remove a specific tag hook. Should not be called on $wgParser.
-	 * Does not change the strip list.
-	 *
-	 * @param string $tag
-	 * @return void
-	 */
-	function clearTagHook( $tag ) {
-		if ( isset( $this->mTagHooks[$tag] ) ) {
-			unset( $this->mTagHooks[$tag] );
-		}
-	}
-
-	/**
 	 * Create a function, e.g. {{sum:1|2|3}}
 	 * The callback function should have the form:
 	 *    function myParserFunction( &$parser, $arg1, $arg2, $arg3 ) { ... }
