@@ -199,7 +199,6 @@ $wgOptionalMessages = array(
 	'userrights-irreversible-marker',
 	'tog-nolangconversion',
 	'tog-noconvertlink',
-	'yourvariant',
 	'variantname-zh-hans',
 	'variantname-zh-hant',
 	'variantname-zh-cn',
