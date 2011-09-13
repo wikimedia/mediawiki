@@ -392,7 +392,7 @@ Ayaw paghingalimot hin pagbalyo han imo [[Special:Preferences|{{SITENAME}} mga g
 'createaccountmail'       => 'Ha e-mail',
 'createaccountreason'     => 'Rason:',
 'badretype'               => 'Diri naangay an mga tigaman-pagsulod nga im ginbutang',
-'userexists'              => 'An agnay-hit-gumaramit nga im ginbutang in gingamit na.
+'userexists'              => 'An agnay hiton gumaramit nga im ginbutang in gingamit na.
 Alayon pagpili hin lain nga ngaran.',
 'loginerror'              => 'Sayop hin pagsakob',
 'loginsuccesstitle'       => 'An pagsulod malinamposon',
@@ -442,9 +442,11 @@ Alayon pagutro pagbutang.',
 'blockedoriginalsource'      => "An tinikangan han '''$1''' amo in ginpapakita ha ubos:",
 'accmailtitle'               => 'Ginpadara na an tigaman-pagsulod.',
 'newarticle'                 => '(Bag-o)',
+'note'                       => "'''Pahibaro:'''",
 'editing'                    => 'Ginliliwat an $1',
 'editingsection'             => 'Ginliliwat an $1 (bahin)',
 'editingcomment'             => 'Ginliliwat an $1 (bag-o nga bahin)',
+'yourtext'                   => 'Imo sinurat',
 'storedversion'              => 'Nakahipos nga pagbag-o',
 'yourdiff'                   => 'Mga kaibhan',
 'copyrightwarning'           => "Iginpapasabot nga an ngatanan nga imo gin-amot ha {{SITENAME}} iginhatag mo ha ilarom han $2 (kitaa an $1 para han mga detalye).  Kun diri mo igkakalipay nga an imo ginsurat waray kalooy nga liliwaton ngan igpapakalat hit bisan hin-o nga it may gusto, alayon ayaw hiton igsumitir dinhi. <br />
@@ -565,6 +567,7 @@ Aada na ito.',
 'timezoneregion-indian'     => 'Kalawdan Indyana',
 'timezoneregion-pacific'    => 'Kalawdan Pasipiko',
 'prefs-searchoptions'       => 'Mga pagpipilian han pamiling',
+'prefs-namespaces'          => "Ngaran-lat'ang",
 'youremail'                 => 'E-mail:',
 'username'                  => 'Agnay-hit-nagamit:',
 'yourrealname'              => 'Tinuod nga ngaran:',
@@ -574,12 +577,14 @@ Aada na ito.',
 Dapat diri malabaw ha $1 {{PLURAL:$1|agi|mga agi}} nga kahilaba.',
 'gender-male'               => 'Lalaki',
 'gender-female'             => 'Babaye',
+'email'                     => 'E-mail',
 'prefs-help-email-required' => 'Kinahanglanon it e-mail address.',
 'prefs-info'                => 'Panguna nga pananabotan',
 'prefs-signature'           => 'Pirma',
 
 # User rights
-'userrights-reason' => 'Katadungan:',
+'userrights-groupsmember' => 'Api han:',
+'userrights-reason'       => 'Katadungan:',
 
 # Groups
 'group'       => 'Hugpo:',
@@ -634,11 +639,14 @@ Dapat diri malabaw ha $1 {{PLURAL:$1|agi|mga agi}} nga kahilaba.',
 'filedesc'          => 'Dalikyat nga pulong',
 'fileuploadsummary' => 'Dalikyat nga pulong:',
 'filesource'        => 'Tinikangan:',
+'ignorewarning'     => 'Pabay-i an pahimatngon ngan igtipig la ngahaw',
 
 'upload-unknown-size' => 'Waray kasabti an kadako',
 
 # HTTP errors
 'http-host-unreachable' => 'Diri nakakaabot ha URL.',
+
+'nolicense' => 'Waray napili',
 
 # Special:ListFiles
 'listfiles_date' => 'Pitsa',
@@ -772,6 +780,7 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'listgrouprights-group'           => 'Hugpo',
 'listgrouprights-rights'          => 'Mga katungod',
 'listgrouprights-helppage'        => 'Help:Mga katungod han hugpo',
+'listgrouprights-members'         => '(talaan hiton mga api)',
 'listgrouprights-addgroup'        => 'Dugnga {{PLURAL:$2|hugpo|mga hugpo}}: $1',
 'listgrouprights-removegroup'     => 'Tanggala {{PLURAL:$2|hugpo|mga hugpo}}: $1',
 'listgrouprights-addgroup-all'    => 'Igdugang ngatanan nga mga hugpo',
@@ -810,6 +819,7 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'rollback'       => 'Mga libot-pabalik nga pagliwat',
 'rollback_short' => 'Libot-pabalik',
 'rollbacklink'   => 'libot-pabalik',
+'rollbackfailed' => 'Diri malinamposon an paglibot-pabalik',
 
 # Protect
 'prot_1movedto2'         => '[[$1]] in ginbalhin ngadto ha [[$2]]',

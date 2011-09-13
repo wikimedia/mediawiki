@@ -1183,7 +1183,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'grouppage-user'          => '{{ns:project}}:ব্যবহারকারী',
 'grouppage-autoconfirmed' => '{{ns:project}}:স্বয়ংক্রিয়ভাবে নিশ্চিতকৃত ব্যবহারকারী',
 'grouppage-bot'           => '{{ns:project}}:বট',
-'grouppage-sysop'         => '{{ns:project}}:প্রশাসকবৃন্দ',
+'grouppage-sysop'         => '{{ns:project}}:প্রশাসক',
 'grouppage-bureaucrat'    => '{{ns:project}}:ব্যুরোক্র্যাট',
 'grouppage-suppress'      => '{{ns:project}}:ওভারসাইট',
 

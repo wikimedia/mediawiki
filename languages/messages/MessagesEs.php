@@ -33,6 +33,7 @@
  * @author Fibonacci
  * @author Fitoschido
  * @author Fluence
+ * @author Gustronico
  * @author Hercule
  * @author Icvav
  * @author Imre
@@ -356,7 +357,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notificarme también los cambios menores de páginas',
 'tog-enotifrevealaddr'        => 'Revelar mi dirección de correo electrónico en los correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar el número de usuarios que la vigilan',
-'tog-oldsig'                  => 'Vista previa de firma existente:',
+'tog-oldsig'                  => 'Firma actual:',
 'tog-fancysig'                => 'Tratar firma como wikitexto (sin un enlace automático)',
 'tog-externaleditor'          => 'Utilizar editor externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-externaldiff'            => 'Utilizar diff externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
@@ -2876,7 +2877,7 @@ Puedes ver su código fuente',
 'tooltip-n-mainpage-description'  => 'Visitar la página principal',
 'tooltip-n-portal'                => 'Acerca del proyecto, lo que puedes hacer, dónde encontrar información',
 'tooltip-n-currentevents'         => 'Información de contexto sobre acontecimientos actuales',
-'tooltip-n-recentchanges'         => 'La lista de cambios recientes en el wiki',
+'tooltip-n-recentchanges'         => 'Lista de cambios recientes en el wiki',
 'tooltip-n-randompage'            => 'Cargar una página al azar',
 'tooltip-n-help'                  => 'El lugar para aprender',
 'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas del wiki que enlazan aquí',

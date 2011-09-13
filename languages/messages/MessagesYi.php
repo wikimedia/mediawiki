@@ -200,7 +200,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'שיקט מיר ע-פאסט אויך פֿאַר מינערדיקע רעדאַקטירונגען פֿון בלעטער',
 'tog-enotifrevealaddr'        => 'דעק אויף מיין בליצפאסט אדרעס אין פאסט מודעות',
 'tog-shownumberswatching'     => 'ווייזן דעם נומער פון בלאט אויפֿפאסערס',
-'tog-oldsig'                  => 'פאראויסדיגער ווייזונג פונעם איצטיגער אונטערשריפט:',
+'tog-oldsig'                  => 'איצטיגער אונטערשריפֿט:',
 'tog-fancysig'                => 'באַהאַנדלן  אונטערשריפט אַלס וויקיטעקסט (אָן אויטאמאטישן לינק)',
 'tog-externaleditor'          => 'ניצן א דרויסנדיגן רעדאקטירער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען).
 [http://www.mediawiki.org/wiki/Manual:External_editors ווײַטערע אינפֿארמאַציע.]',
@@ -689,6 +689,7 @@ $2',
 'passwordreset-disabled'       => 'מען האט אומאַקטיוויטר צוריקשטעלן פאַסווערטער אויף דער וויקי.',
 'passwordreset-pretext'        => '{{PLURAL:$1| | קלאַפט אַרײַן איינע פֿון די דאַטן אונטן}}',
 'passwordreset-username'       => 'באַניצער נאָמען:',
+'passwordreset-domain'         => 'דאמען:',
 'passwordreset-email'          => 'בליצפּאָסט אַדרעס:',
 'passwordreset-emailtitle'     => 'קאנטע פרטים אין {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'עמעצער (מסתמא איר, פון IP אדרעס $1) האט געבעטן א דערמאנונג פון אייערע
@@ -1328,7 +1329,7 @@ $1",
 'userrights-no-interwiki'      => 'איר האט נישט קיין ערלויבניש צו רעדאַקטירן באַניצער רעכטן אויף אַנדערע וויקיס.',
 'userrights-nodatabase'        => 'דאַטנבאַזע $1 אדער עקזיסטירט נישט אדער איז נישט ארטיק.',
 'userrights-nologin'           => 'איר דאַרפֿט [[Special:UserLogin| אַרײַנלאגירן]] מיט א סיסאפ קאנטע צו באַשטימען באַניצער רעכטן.',
-'userrights-notallowed'        => 'אייער קאנטע האט נישט קיין ערלויבניש צו באשטימען באניצער רעכטן.',
+'userrights-notallowed'        => 'אײַער קאנטע האט נישט קיין ערלויבניש צוצולייגן אדער אוועקנעמען באַניצער רעכטן.',
 'userrights-changeable-col'    => 'גרופעס איר קענט ענדערן',
 'userrights-unchangeable-col'  => 'גרופעס איר קענט נישט ענדערן',
 
@@ -2071,7 +2072,7 @@ $UNWATCHURL
 'protectlogpage'              => 'באשיצונג לאָג-בוך',
 'protectedarticle'            => 'געשיצט [[$1]]',
 'modifiedarticleprotection'   => 'געענדערט באשיצונג שטאפל פון [[$1]]',
-'unprotectedarticle'          => 'אראפגענומען שוץ פון "[[ $1 ]] "',
+'unprotectedarticle'          => 'אראפגענומען שוץ פון "[[$1]] "',
 'movedarticleprotection'      => 'באוועגט די שיץ באשטימונגען פֿון "[[$2]]" אויף "[[$1]]"',
 'protect-title'               => 'ענדערן שיץ ניווא פֿאַר "$1"',
 'prot_1movedto2'              => '[[$1]] אריבערגעפירט צו [[$2]]',
@@ -2622,6 +2623,9 @@ $UNWATCHURL
 'spambot_username'    => 'מעדיעוויקי ספאם פוצן',
 'spam_reverting'      => 'צוריקגעשטעלט צו דער לעצטער ווערסיע אן לינקען צו $1',
 
+# Info page
+'pageinfo-talkpage' => 'רעדן בלאַט',
+
 # Patrolling
 'markaspatrolleddiff'                 => 'באצייכנען אלס פאטראלירט',
 'markaspatrolledtext'                 => 'באצייכנען בלאט אלס פאטראלירט',
@@ -2790,6 +2794,12 @@ $1',
 'exif-gpsdatestamp'             => 'דאטום GPS',
 'exif-gpsdifferential'          => 'דיפראנציאלע קאקרעקציע GPS',
 'exif-objectname'               => 'קורצער טיטל',
+'exif-source'                   => 'מקור',
+'exif-editstatus'               => 'רעדאקציאנעלער סטאטוס פון בילד',
+'exif-urgency'                  => 'דרינגלעכקייט',
+'exif-locationdest'             => 'געוויזענע לאקאציע',
+'exif-locationdestcode'         => 'קאד פֿון געוויזענער לאקאציע',
+'exif-languagecode'             => 'שפראַך',
 
 # EXIF attributes
 'exif-compression-1' => 'אומ-צאמגעקוועטשט',
@@ -2798,8 +2808,14 @@ $1',
 
 'exif-orientation-1' => 'נארמאַל',
 'exif-orientation-3' => 'ראטירט 180°',
-'exif-orientation-6' => 'ראטירט 90° מיטן זייגער',
-'exif-orientation-8' => 'ראטירט 90° קעגן זייגער',
+'exif-orientation-6' => 'ראטירט 90° קעגן זייגער',
+'exif-orientation-7' => 'ראטירט  90° מיטן זייגער און איבערגעדרייט ווערטיקאל',
+'exif-orientation-8' => 'ראטירט 90° מיטן זייגער',
+
+'exif-planarconfiguration-1' => 'גראבער פֿארמאט',
+'exif-planarconfiguration-2' => 'פֿלאכער פֿארמאט',
+
+'exif-colorspace-65535' => 'נישט קאליברירט',
 
 'exif-componentsconfiguration-0' => "ס'עקזיסטירט נישט.",
 
@@ -2817,12 +2833,18 @@ $1',
 
 'exif-meteringmode-0'   => 'אומבאוויסט',
 'exif-meteringmode-1'   => 'דורכשניט',
+'exif-meteringmode-5'   => 'מוסטער',
 'exif-meteringmode-6'   => 'טיילווײַז',
 'exif-meteringmode-255' => 'אנדער',
 
-'exif-lightsource-0' => 'אומבאַוויסט',
-'exif-lightsource-1' => 'טאָגליכט',
-'exif-lightsource-2' => 'פֿלוארעסצירנד',
+'exif-lightsource-0'  => 'אומבאַוויסט',
+'exif-lightsource-1'  => 'טאָגליכט',
+'exif-lightsource-2'  => 'פֿלוארעסצירנד',
+'exif-lightsource-3'  => 'טונגסטן (צעהיצעדיק ליכט)',
+'exif-lightsource-4'  => 'בליץ',
+'exif-lightsource-9'  => 'פֿייַן וועטער',
+'exif-lightsource-10' => 'פאַרוואָלקנטער וועטער',
+'exif-lightsource-11' => 'שאָטן',
 
 'exif-focalplaneresolutionunit-2' => 'אינטשעס',
 
