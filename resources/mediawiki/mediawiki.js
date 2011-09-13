@@ -1004,7 +1004,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 			}
 			// Check for duplicate implementation
 			if ( registry[module] !== undefined && registry[module].script !== undefined ) {
-				throw new Error( 'module already implemeneted: ' + module );
+				throw new Error( 'module already implemented: ' + module );
 			}
 			// Mark module as loaded
 			registry[module].state = 'loaded';
