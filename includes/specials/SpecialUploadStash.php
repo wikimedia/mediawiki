@@ -210,12 +210,20 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// this global probably looks something like 'http://upload.wikimedia.org/wikipedia/test/thumb/temp'
 		// do not use trailing slash
 		global $wgUploadStashScalerBaseUrl;
+		$scalerBaseUrl = $wgUploadStashScalerBaseUrl;
+		
+		if( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
+			// this is apparently a protocol-relative URL, which makes no sense in this context,
+			// since this is used for communication that's internal to the application.
+			// default to http.
+			$scalerBaseUrl = 'http:' . $scalerBaseUrl;
+		}
 
 		// We need to use generateThumbName() instead of thumbName(), because
 		// the suffix needs to match the file name for the remote thumbnailer
 		// to work
 		$scalerThumbName = $file->generateThumbName( $file->getName(), $params );
-		$scalerThumbUrl = $wgUploadStashScalerBaseUrl . '/' . $file->getUrlRel() .
+		$scalerThumbUrl = $scalerBaseUrl . '/' . $file->getUrlRel() .
 			'/' . rawurlencode( $scalerThumbName );
 
 		// make a curl call to the scaler to create a thumbnail
