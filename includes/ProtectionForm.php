@@ -196,7 +196,7 @@ class ProtectionForm {
 	 * @param $err String: error message or null if there's no error
 	 */
 	function show( $err = null ) {
-		global $wgOut, $wgUser;
+		global $wgOut;
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
@@ -223,8 +223,7 @@ class ProtectionForm {
 			$wgOut->wrapWikiMsg( "<div id=\"mw-protect-cascadeon\">\n$1\n" . $titles . "</div>", array( 'protect-cascadeon', count($cascadeSources) ) );
 		}
 
-		$sk = $wgUser->getSkin();
-		$titleLink = $sk->link( $this->mTitle );
+		$titleLink = Linker::link( $this->mTitle );
 		$wgOut->setPageTitle( wfMsg( 'protect-title', $this->mTitle->getPrefixedText() ) );
 		$wgOut->setSubtitle( wfMsg( 'protect-backlink', $titleLink ) );
 
@@ -501,7 +500,7 @@ class ProtectionForm {
 
 		if ( $wgUser->isAllowed( 'editinterface' ) ) {
 			$title = Title::makeTitle( NS_MEDIAWIKI, 'Protect-dropdown' );
-			$link = $wgUser->getSkin()->link(
+			$link = Linker::link(
 				$title,
 				wfMsgHtml( 'protect-edit-reasonlist' ),
 				array(),
