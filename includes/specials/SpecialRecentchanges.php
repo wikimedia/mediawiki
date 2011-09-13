@@ -325,24 +325,25 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 
 		# Namespace filtering
 		if( $opts['namespace'] !== '' ) {
-			$namespaces[] = $opts['namespace'];
+			$selectedNS = $dbr->addQuotes( $opts['namespace'] );
+			$operator = $opts['invert'] ? '!='  : '=';
+			$boolean  = $opts['invert'] ? 'AND' : 'OR';
 
-			$inversionSuffix = $opts['invert'] ? '!' : '';
-
-			if( $opts['associated'] ) {
-				# namespace association (bug 2429)
-				$namespaces[] = MWNamespace::getAssociated( $opts['namespace'] );
+			# namespace association (bug 2429)
+			if( !$opts['associated'] ) {
+				$condition = "rc_namespace $operator $selectedNS";
+			} else {
+				# Also add the associated namespace
+				$associatedNS = $dbr->addQuotes(
+					MWNamespace::getAssociated( $opts['namespace'] )
+				);
+				$condition = "(rc_namespace $operator $selectedNS "
+						   . $boolean
+						   . " rc_namespace $operator $associatedNS)";
 			}
-
-			$condition = $dbr->makeList(
-				array( 'rc_namespace' . $inversionSuffix
-					=> $namespaces ),
-				LIST_AND
-			);
 
 			$conds[] = $condition;
 		}
-
 		return $conds;
 	}
 
