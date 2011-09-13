@@ -324,7 +324,7 @@ $messages = array(
 'vector-action-move'       => 'لېږدول',
 'vector-action-protect'    => 'پروژه',
 'vector-action-undelete'   => 'ناړنګول',
-'vector-action-unprotect'  => 'ناژغورل',
+'vector-action-unprotect'  => 'ژغورنه بدلول',
 'vector-view-create'       => 'جوړول',
 'vector-view-edit'         => 'سمول',
 'vector-view-history'      => 'پېښليک کتل',
@@ -358,8 +358,8 @@ $messages = array(
 'protect'           => 'ژغورل',
 'protect_change'    => 'بدلون',
 'protectthispage'   => 'همدا مخ ژغورل',
-'unprotect'         => 'نه ژغورل',
-'unprotectthispage' => 'همدا مخ نه ژغورل',
+'unprotect'         => 'ژغورنه بدلول',
+'unprotectthispage' => 'د دې مخ ژغورنه بدلول',
 'newpage'           => 'نوی مخ',
 'talkpage'          => 'د دې مخ په اړه خبرې اترې کول',
 'talkpagelinktext'  => 'خبرې اترې',
@@ -552,7 +552,7 @@ $1',
 'createaccountmail'          => 'د برېښليک له مخې',
 'createaccountreason'        => 'سبب:',
 'badretype'                  => 'دا پټنوم چې تاسې ليکلی د مخکني پټنوم سره ورته نه دی.',
-'userexists'                 => 'کوم کارن نوم چې تاسې ورکړ هغه بل چا کارولی.
+'userexists'                 => 'کوم کارن نوم چې تاسې ورکړی هغه بل چا کارولی.
 لطفاً يو بل نوم وټاکۍ.',
 'loginerror'                 => 'د ننوتنې ستونزه',
 'createaccounterror'         => 'ګڼون مو جوړ نه شو: $1',
@@ -714,7 +714,12 @@ $1',
 'userpage-userdoesnotexist-view'   => 'د "$1" ګڼون نه دی ثبت شوی.',
 'blocked-notice-logextract'        => 'دم مهال په دې کارن بنديز لګېدلی.
 دلته لاندې د بنديز تازه يادښت د سرچينې په توګه ورکړ شوی:',
-'clearyourcache'                   => "'''يادونه:''' د غوره توبونو د خوندي کولو وروسته، ددې لپاره چې تاسو خپل سر ته رسولي ونجونه وګورۍ نو پکار ده چې د خپل بروزر ساتل شوې حافظه تازه کړی. د '''Mozilla / Firefox / Safari:''' لپاره د ''Shift'' تڼۍ نيولې وساتی کله مو چې په ''Reload''، ټک واهه، او يا هم ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''Cmd-Shift-R'' کېښکاږۍ); '''IE:''' د ''Ctrl'' تڼۍ کېښکاږۍ کله مو چې په ''Refresh'' ټک واهه، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ; '''Konqueror:''' بروزر کې يواځې ''Reload'' ته ټک ورکړۍ، او يا په ''F5''; د '''Opera''' کارنانو ته پکار ده چې په بشپړه توګه د خپل کمپيوټر ساتل شوې حافظه تازه کړي چې پدې توګه کېږي ''Tools→Preferences''.",
+'clearyourcache'                   => "'''يادونه:''' د غوره توبونو د خوندي کولو وروسته، ددې لپاره چې تاسو خپل سر ته رسولي ونجونه وګورۍ نو پکار ده چې د خپل بروزر ساتل شوې حافظه تازه کړی. 
+* د '''Mozilla / Firefox / Safari:''' لپاره د ''Shift'' تڼۍ نيولې وساتی کله مو چې په ''Reload''، ټک واهه، او يا هم ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (په Apple Mac کمپيوټر باندې ''Cmd-Shift-R'' کېښکاږۍ)
+* '''د ګووګل کروم:''' لپاره د ''Ctrl-Shift-R'' تڼۍ کېښکاږۍ (د مک لپاره ''Command-Shift-R'')
+* د '''IE:''' د ''Ctrl'' تڼۍ کېښکاږۍ کله مو چې په ''Refresh'' ټک واهه، او يا هم د ''Ctrl-F5'' تڼۍ کېښکاږۍ
+* د '''Konqueror:''' بروزر کې يواځې ''Reload'' ته ټک ورکړۍ، او يا په ''F5''
+* د '''Opera''' کارنانو ته پکار ده چې په بشپړه توګه د خپل کمپيوټر ساتل شوې حافظه تازه کړي چې پدې توګه کېږي ''Tools→Preferences''.",
 'usercsspreview'                   => "'''هېر مو نشي چې دا يوازې ستاسې د کارن CSS مخليدنه ده.'''
 '''تر اوسه پورې لا ستاسې بدلونونه نه دي خوندي شوي!'''",
 'userjspreview'                    => "'''هېر مو نشي چې دا يوازې ستاسې د کارن د جاوا سکرېپټ آزمېيل/مخليدنه ده.'''
@@ -1724,7 +1729,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'nolinkshere'              => "د '''[[:$1]]''' سره هېڅ يو مخ هم تړنې نه لري .",
 'isredirect'               => 'د مخ ګرځونې مخ',
 'istemplate'               => 'ورګډېدنه',
-'isimage'                  => 'د انځور تړنه',
+'isimage'                  => 'د دوتنې تړنه',
 'whatlinkshere-prev'       => '{{PLURAL:$1|پخوانی|پخواني $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|راتلونکی|راتلونکي $1}}',
 'whatlinkshere-links'      => '← تړنې',
@@ -1920,7 +1925,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'tooltip-ca-viewsource'           => 'دا مخ ژغورل شوی. تاسې کولای شی چې د دې مخ سرجينه وګورۍ.',
 'tooltip-ca-history'              => 'د دې مخ پخوانۍ بڼې',
 'tooltip-ca-protect'              => 'دا مخ ژغورل',
-'tooltip-ca-unprotect'            => 'همدا مخ ناژغورل',
+'tooltip-ca-unprotect'            => 'د دې مخ ژغورنه بدلول',
 'tooltip-ca-delete'               => 'دا مخ ړنګول',
 'tooltip-ca-move'                 => 'همدا مخ لېږدول',
 'tooltip-ca-watch'                => 'دا مخ په خپل کتنلړکې ګډول',

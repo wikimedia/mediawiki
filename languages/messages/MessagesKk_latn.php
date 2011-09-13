@@ -1,5 +1,5 @@
 <?php
-/** Kazakh (Latin) (Қазақша (Latin))
+/** Kazakh (Latin script) (‪Qazaqşa (latın)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net

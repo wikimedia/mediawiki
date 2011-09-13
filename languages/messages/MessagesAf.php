@@ -809,7 +809,12 @@ of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'userpage-userdoesnotexist-view'   => 'Die gebruiker "$1" is nie geregistreer nie.',
 'blocked-notice-logextract'        => 'Hierdie gebruiker is tans geblokkeer.
 Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
-'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien:
+* '''Firefox / Safari:''' hou ''Shift'' en kliek ''Reload'', of druk ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op 'n Mac)
+* '''Google Chrome:''' druk ''Ctrl-Shift-R'' (''Command-Shift-R'' op 'n Mac)
+* '''Internet Explorer:''' hou ''Ctrl'' en kliek ''Refresh'', of druk ''Ctrl-F5''
+* '''Konqueror:''' kliek ''Reload'' of druk ''F5''
+* '''Opera:''' maak die kas skoon by ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe CSS te toets voor u dit stoor.",
 'userjsyoucanpreview'              => "'''Wenk:''' Gebruik die \"{{int:showpreview}}\"-knoppie om u nuwe JS te toets voor u dit stoor.",
 'usercsspreview'                   => "'''Onthou hierdie is slegs 'n voorskou van u persoonlike CSS.'''
@@ -1695,9 +1700,9 @@ U kan miskien selfs tydens 'n minder besige tyd weer probeer.",
 'upload_source_file' => " ('n lêer op u rekenaar)",
 
 # Special:ListFiles
-'listfiles-summary'     => 'Die spesiale bladsy wys al die opgelaaide lêers.
-Die nuutste lêer word eerste vertoon.
-Klik op die opskrifte om die tabel anders te sorteer.',
+'listfiles-summary'     => 'Hierdie spesiale bladsy wys al die opgelaaide lêers.
+Die nuutste lêers word heel bo vertoon.
+Kliek op die opskrifte om die tabel te hersorteer.',
 'listfiles_search_for'  => 'Soek vir medianaam:',
 'imgfile'               => 'lêer',
 'listfiles'             => 'Lêerlys',

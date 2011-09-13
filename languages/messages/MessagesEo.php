@@ -323,7 +323,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Sendi al mi ankaŭ retmesaĝojn por malgrandaj redaktoj de paĝoj',
 'tog-enotifrevealaddr'        => 'Malkaŝi mian retadreson en informaj retpoŝtaĵoj',
 'tog-shownumberswatching'     => 'Montri la nombron da priatentaj uzantoj',
-'tog-oldsig'                  => 'Antaŭvido de nuna subskribo:',
+'tog-oldsig'                  => 'Ekzistanta subskribo:',
 'tog-fancysig'                => 'Trakti subskribon kiel vikitekston (sen aŭtomata ligo)',
 'tog-externaleditor'          => 'Defaŭlte uzi eksteran tekstprilaborilon (nur por ekspertoj, ĉar tio necesigas specialajn agordojn en via komputilo. [http://www.mediawiki.org/wiki/Manual:External_editors Pliaj informoj.])',
 'tog-externaldiff'            => 'Defaŭlte uzi eksteran ŝanĝmontrilon (nur por ekspertoj, ĉar tio necesigas specialajn agordojn en via komputilo. [http://www.mediawiki.org/wiki/Manual:External_editors Pliaj informoj.])',
@@ -461,7 +461,7 @@ $messages = array(
 'vector-action-move'             => 'Alinomigi',
 'vector-action-protect'          => 'Protekti',
 'vector-action-undelete'         => 'Malforigi',
-'vector-action-unprotect'        => 'Malprotekti',
+'vector-action-unprotect'        => 'Ŝanĝi protekadon',
 'vector-simplesearch-preference' => 'Ebligi plibonigitajn serĉajn sugestojn (nur Vektora etoso)',
 'vector-view-create'             => 'Krei',
 'vector-view-edit'               => 'Redakti',
@@ -497,8 +497,8 @@ $messages = array(
 'protect'           => 'Protekti',
 'protect_change'    => 'ŝanĝi',
 'protectthispage'   => 'Protekti la paĝon',
-'unprotect'         => 'Malprotekti',
-'unprotectthispage' => 'Malprotekti la paĝon',
+'unprotect'         => 'Ŝanĝi protekadon',
+'unprotectthispage' => 'Ŝanĝi protektadon de ĉi tiu paĝo',
 'newpage'           => 'Nova paĝo',
 'talkpage'          => 'Diskuti la paĝon',
 'talkpagelinktext'  => 'Diskuto',
@@ -906,7 +906,13 @@ aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist-view'   => 'Uzanto-konto "$1" ne estas registrita.',
 'blocked-notice-logextract'        => 'Ĉi tiu uzanto estas ĉi-momente forbarita.
 La lasta protokolero estas jene montrata por via referenco:',
-'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
+'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn. 
+* '''Firefox / Safari:''' premu majuskligan klavon klakante ''Reŝarĝi'', aŭ premu ''Stir-F5'', aŭ premu ''Stir-R'' aŭ ''Kommandklavo-R'' kun Makintoŝo
+* '''Google Chrome:''' premu ''Stir-majuskligklavon'' aŭ Komandklavo-Majuskligklavo-R'' kun Makintoŝo
+* '''Interreta Esplorilo''': Premu ''Stir'' klakante ''Refreŝu'', aŭ premu ''Stir-F5'' 
+* '''Safari:''' ''Cmd-R''
+* '''Konqueror:''' klaku ''Reŝarĝu'' aŭ premu ''F5''
+* '''Opera:''' nuligi la kaŝmemoro en ''Iloj → Preferoj''",
 'usercssyoucanpreview'             => "'''Konsileto:''' Uzu la butonon \"Antaŭrigardi\" por provi vian novan CSS-kodon antaŭ konservado.",
 'userjsyoucanpreview'              => "'''Konsileto:''' Uzu la butonon \"Antaŭrigard\" por provi vian novan JS-kodon antaŭ konservado.",
 'usercsspreview'                   => "'''Notu ke vi nur antaŭvidas vian uzanto-CSS.
@@ -981,9 +987,9 @@ Jen la lasta protokolero por via referenco:",
 'permissionserrors'                => 'Eraroj pri rajtoj',
 'permissionserrorstext'            => 'Vi ne rajtas fari tion pro la {{PLURAL:$1|sekva kialo|sekvaj kialoj}}:',
 'permissionserrorstext-withaction' => 'Vi ne rajtas $2, pro la {{PLURAL:$1|jena kialo|jenaj kialoj}}:',
-'recreate-moveddeleted-warn'       => "'''Averto: Vi rekreas paĝon tiu estis antaŭe forigita.'''
+'recreate-moveddeleted-warn'       => "'''Averto: Vi rekreas paĝon, kiu estis antaŭe forigita.'''
 
-Vi konsideru ĉu konvenas daŭre redakti ĉi paĝon.
+Vi konsideru, ĉu konvenas daŭre redakti ĉi tiun paĝon.
 Jen la protokolo de forigoj kaj alinomigado por via oportuno:",
 'moveddeleted-notice'              => 'Ĉi tiu paĝo estis forigita.
 Jen la protokolo pri forigado kaj alinomigado por via referenco.',
@@ -1417,7 +1423,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'userrights-no-interwiki'      => 'Vi ne rajtas redakti uzanto-rajtojn en aliaj vikioj.',
 'userrights-nodatabase'        => 'Datumbazo $1 ne ekzistas aŭ ne estas loka.',
 'userrights-nologin'           => 'Vi nepre [[Special:UserLogin|ensalutu]] kun administranto-konto doni uzanto-rajtojn.',
-'userrights-notallowed'        => 'Via konto ne rajtas doni uzanto-rajtojn.',
+'userrights-notallowed'        => 'Via konto ne rajtas doni aŭ forigi uzanto-rajtojn.',
 'userrights-changeable-col'    => 'Grupoj kiujn vi povas ŝanĝi',
 'userrights-unchangeable-col'  => 'Grupoj kiujn vi ne povas ŝanĝi',
 
@@ -1770,8 +1776,7 @@ Por optimuma sekureco, img_auth.php estas malŝalta.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ĉi tiu speciala paĝo montras ĉiujn alŝutitajn dosierojn.
-Defaŭlte, la lasta alŝutitaj dosieroj estas montrataj supren.
-Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
+Kiam oni filtras ĝin laŭ uzanto, nur la lasta versio de la dosiero estos montrita.',
 'listfiles_search_for'  => 'Serĉi dosieran nomon:',
 'imgfile'               => 'dosiero',
 'listfiles'             => 'Listo de alŝutitaj dosieroj',
@@ -1890,7 +1895,7 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'statistics-edits-average'     => 'Averaĝa kvanto de redaktoj je paĝo',
 'statistics-views-total'       => 'Vidoj entutaj',
 'statistics-views-total-desc'  => 'Ne inkluzivante vidojn al ne-ekzistantaj paĝoj kaj specialaj paĝoj',
-'statistics-views-peredit'     => 'Vidoj po redakto',
+'statistics-views-peredit'     => 'Po rigardoj por redakto',
 'statistics-users'             => 'Registritaj [[Special:ListUsers|uzantoj]]',
 'statistics-users-active'      => 'Aktivaj uzantoj',
 'statistics-users-active-desc' => 'Uzantoj kiuj faris agon en la {{PLURAL:$1|lasta tago|lastaj $1 tagoj}}',
@@ -2243,11 +2248,11 @@ Bonvolu alklaki la reirbutonon kaj reŝargi la paĝon el kiu vi venas, kaj provu
 
 # Protect
 'protectlogpage'              => 'Protokolo pri protektoj',
-'protectlogtext'              => 'Sube estas listo de paĝ-ŝlosoj kaj malŝlosoj.
-Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por pli da informoj.',
+'protectlogtext'              => 'Sube estas listo de ŝanĝoj al paĝ-protektado.
+Vidu [[Special:ProtectedPages|liston de protektitaj paĝoj]] por listo de aktuale aktivaj paĝo-protektadoj.',
 'protectedarticle'            => 'protektis "[[$1]]"',
 'modifiedarticleprotection'   => 'ŝanĝis nivelon de protekto por "[[$1]]"',
-'unprotectedarticle'          => 'malprotektis "[[$1]]"',
+'unprotectedarticle'          => 'forigis protektadon de "[[$1]]"',
 'movedarticleprotection'      => 'movis protektadajn preferojn de "[[$2]]" al "[[$1]]"',
 'protect-title'               => 'Protektante "$1"',
 'prot_1movedto2'              => '[[$1]] movita al [[$2]]',
@@ -2395,7 +2400,7 @@ Jen la lasta ero de la forbara protokolo:',
 'nolinkshere-ns'           => "Neniuj paĝoj ligas al '''[[:$1]]''' en la elektita nomspaco.",
 'isredirect'               => 'alidirektilo',
 'istemplate'               => 'inkludo',
-'isimage'                  => 'ligilo al bildo',
+'isimage'                  => 'ligilo al dosiero',
 'whatlinkshere-prev'       => '{{PLURAL:$1|antaŭa|antaŭaj $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|posta|postaj $1}}',
 'whatlinkshere-links'      => '← ligiloj',
@@ -2750,7 +2755,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-ca-viewsource'           => 'Tiu paĝo estas protektita. Vi povas nur rigardi ties fonton.',
 'tooltip-ca-history'              => 'Antaŭaj versioj de tiu ĉi paĝo.',
 'tooltip-ca-protect'              => 'Protekti tiun ĉi paĝon',
-'tooltip-ca-unprotect'            => 'Malprotekti ĉi tiun paĝon',
+'tooltip-ca-unprotect'            => 'Ŝanĝi protektadon de ĉi tiu paĝo',
 'tooltip-ca-delete'               => 'Forigi tiun ĉi paĝon',
 'tooltip-ca-undelete'             => 'Restarigu la redaktojn faritajn al tiu ĉi paĝo antaŭ ties forigo',
 'tooltip-ca-move'                 => 'Alinomigi tiun ĉi paĝon',
@@ -3076,9 +3081,9 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-orientation-3' => 'Rotaciigita 180°',
 'exif-orientation-4' => 'Spegulumita vertikale',
 'exif-orientation-5' => 'Turnita 90° maldekstre kaj spegulita vertikale',
-'exif-orientation-6' => 'Turnita 90° dekstre',
+'exif-orientation-6' => 'Turnita 90° maldekstre',
 'exif-orientation-7' => 'Turnita 90° dekstre kaj spegulita vertikale',
-'exif-orientation-8' => 'Turnita 90° maldekstre',
+'exif-orientation-8' => 'Turnita 90° dekstre',
 
 'exif-planarconfiguration-1' => 'bloka formato',
 'exif-planarconfiguration-2' => 'ebena formato',

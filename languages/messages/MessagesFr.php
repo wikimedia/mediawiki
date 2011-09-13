@@ -21,8 +21,10 @@
  * @author Enzoreg
  * @author Esbardu
  * @author Fryed-peach
+ * @author Gomoko
  * @author Grondin
  * @author Guillom
+ * @author Hashar
  * @author Hercule
  * @author Hégésippe Cormier
  * @author IAlex
@@ -373,7 +375,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modifications mineures des pages',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse de courriel dans les courriels de notification',
 'tog-shownumberswatching'     => 'Afficher le nombre d’utilisateurs qui suivent cette page',
-'tog-oldsig'                  => 'Aperçu de la signature existante :',
+'tog-oldsig'                  => 'Signature existante :',
 'tog-fancysig'                => 'Traiter la signature comme du wikitexte (sans lien automatique)',
 'tog-externaleditor'          => 'Utiliser par défaut un éditeur de texte externe (pour les utilisateurs avancés, nécessite des réglages spécifiques sur votre ordinateur. [http://www.mediawiki.org/wiki/Manual:External_editors/fr Plus d’informations].)',
 'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur. [http://www.mediawiki.org/wiki/Manual:External_editors/fr Plus d’informations].)',
@@ -1447,7 +1449,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'editusergroup'                => 'Modification des groupes d’utilisateurs',
 'editinguser'                  => "Modification des droits de l’utilisateur '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'     => 'Modifier les groupes de l’utilisateur',
-'saveusergroups'               => 'Sauvegarder les groupes d’utilisateurs',
+'saveusergroups'               => 'Enregistrer les groupes de l’utilisateur',
 'userrights-groupsmember'      => 'Membre de :',
 'userrights-groupsmember-auto' => 'Membre implicite de :',
 'userrights-groups-help'       => 'Vous pouvez modifier les groupes auxquels appartient cet utilisateur.
@@ -1825,8 +1827,7 @@ Pour une sécurité optimale, img_auth.php est désactivé.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Cette page spéciale permet de lister tous les fichiers importés.
-Par défaut, les derniers fichiers importés sont affichés en tête de liste.
-Cliquer sur un en-tête de colonne permet de changer l’ordre d’affichage.',
+Quand elle est filtrée par utilisateur, seuls les fichiers dont la version la plus récente a été importée par cet utilisateur sont affichés.',
 'listfiles_search_for'  => 'Rechercher un nom de média :',
 'imgfile'               => 'fichier',
 'listfiles'             => 'Liste de fichiers',
@@ -2337,7 +2338,7 @@ Voici les réglages actuels de la page '''$1''' :",
 'protect-summary-cascade'     => 'protection en cascade',
 'protect-expiring'            => 'expire le $1 (UTC)',
 'protect-expiry-indefinite'   => 'infini',
-'protect-cascade'             => 'Protège aussi les pages incluses dans celle-ci (protection en cascade)',
+'protect-cascade'             => 'Protéger les pages incluses dans celle-ci (protection en cascade)',
 'protect-cantedit'            => 'Vous ne pouvez pas changer les niveaux de protection de cette page car vous n’avez pas la permission de la modifier.',
 'protect-othertime'           => 'Autre date d’expiration :',
 'protect-othertime-op'        => 'autre date d’expiration',
@@ -3169,9 +3170,9 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-orientation-3' => 'Tournée de 180°',
 'exif-orientation-4' => 'Inversée verticalement',
 'exif-orientation-5' => 'Tournée de 90° dans le sens antihoraire et inversée verticalement',
-'exif-orientation-6' => 'Tournée de 90° dans le sens horaire',
+'exif-orientation-6' => 'Tournée de 90° dans le sens antihoraire',
 'exif-orientation-7' => 'Tournée de 90° dans le sens horaire et inversée verticalement',
-'exif-orientation-8' => 'Tournée de 90° dans le sens antihoraire',
+'exif-orientation-8' => 'Tournée de 90° dans le sens horaire',
 
 'exif-planarconfiguration-1' => 'Données contiguës',
 'exif-planarconfiguration-2' => 'Données séparées',

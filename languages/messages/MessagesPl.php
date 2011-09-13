@@ -22,6 +22,7 @@
  * @author Masti
  * @author Matma Rex
  * @author McMonster
+ * @author Mikołka
  * @author Nux
  * @author Remember the dot
  * @author Saper
@@ -270,7 +271,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach',
 'tog-enotifrevealaddr'        => 'Nie ukrywaj mojego adresu e‐mail w powiadomieniach',
 'tog-shownumberswatching'     => 'Pokaż liczbę użytkowników obserwujących stronę',
-'tog-oldsig'                  => 'Obecny wygląd Twojego podpisu',
+'tog-oldsig'                  => 'Twój obecny podpis',
 'tog-fancysig'                => 'Traktuj podpis jako wikikod (nie linkuj automatycznie całości)',
 'tog-externaleditor'          => 'Domyślnie używaj zewnętrznego edytora (tylko dla zaawansowanych użytkowników; wymaga odpowiedniego skonfigurowania komputera)',
 'tog-externaldiff'            => 'Domyślnie używaj zewnętrznego programu pokazującego zmiany (tylko dla zaawansowanych użytkowników; wymaga odpowiedniego skonfigurowania komputera)',
@@ -1170,7 +1171,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 
 # Search results
 'searchresults'                    => 'Wyniki wyszukiwania',
-'searchresults-title'              => 'Wyniki wyszukiwania dla „$1”',
+'searchresults-title'              => 'Wyniki wyszukiwania „$1”',
 'searchresulttext'                 => 'Więcej informacji o przeszukiwaniu {{GRAMMAR:D.lp|{{SITENAME}}}} odnajdziesz na [[{{MediaWiki:Helppage}}|stronach pomocy]].',
 'searchsubtitle'                   => "Wyniki dla zapytania '''[[:$1]]''' ([[Special:Prefixindex/$1|strony zaczynające się od „$1”]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|strony, które linkują do „$1”]])",
 'searchsubtitleinvalid'            => "Dla zapytania '''$1'''",
@@ -1342,7 +1343,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 Umożliwi również innym użytkownikom skontaktowanie się z Tobą poprzez odpowiedni formularz (bez ujawniania Twojego adresu).',
 'prefs-help-email-required'     => 'Wymagany jest adres e‐mail.',
 'prefs-info'                    => 'Podstawowe informacje',
-'prefs-i18n'                    => 'Międzynarodowość',
+'prefs-i18n'                    => 'Ustawienia międzynarodowe',
 'prefs-signature'               => 'Podpis',
 'prefs-dateformat'              => 'Format daty',
 'prefs-timeoffset'              => 'Różnica czasu',
@@ -1378,7 +1379,7 @@ Umożliwi również innym użytkownikom skontaktowanie się z Tobą poprzez odpo
 'userrights-no-interwiki'      => 'Nie masz dostępu do edycji uprawnień na innych wiki.',
 'userrights-nodatabase'        => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
 'userrights-nologin'           => 'Musisz [[Special:UserLogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
-'userrights-notallowed'        => 'Nie masz dostępu do nadawania uprawnień użytkownikom.',
+'userrights-notallowed'        => 'Nie jesteś upoważniony do nadawania i odbierania uprawnień użytkownikom.',
 'userrights-changeable-col'    => 'Grupy, które możesz wybrać',
 'userrights-unchangeable-col'  => 'Grupy, których nie możesz wybrać',
 
@@ -1749,9 +1750,8 @@ Możesz także spróbować w czasie mniejszego obciążenia serwera.',
 'upload_source_file' => ' (plik na twoim komputerze)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Na tej stronie specjalnej prezentowane są wszystkie pliki przesłane na serwer.
-Domyślnie na górze listy umieszczane są ostatnio przesłane pliki.
-Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
+'listfiles-summary'     => 'Na tej stronie specjalnej prezentowane są wszystkie przesłane pliki.
+Jeśli włączono filtrowanie dla konkretnego użytkownika, prezentowane są wyłącznie przesłana przez niego najnowsze wersje plików.',
 'listfiles_search_for'  => 'Szukaj pliku o nazwie',
 'imgfile'               => 'plik',
 'listfiles'             => 'Lista plików',
@@ -3106,9 +3106,9 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-orientation-3' => 'obraz obrócony o 180°',
 'exif-orientation-4' => 'odbicie lustrzane w pionie',
 'exif-orientation-5' => 'obraz obrócony o 90° przeciwnie do ruchu wskazówek zegara i odbicie lustrzane w pionie',
-'exif-orientation-6' => 'obraz obrócony o 90° zgodnie z ruchem wskazówek zegara',
+'exif-orientation-6' => 'Obrócony o 90° przeciwnie do wskazówek zegara',
 'exif-orientation-7' => 'obrót o 90° zgodnie ze wskazówkami zegara i odbicie lustrzane w pionie',
-'exif-orientation-8' => 'obrót o 90° przeciwnie do wskazówek zegara',
+'exif-orientation-8' => 'Obrócony o 90° zgodnie z ruchem wskazówek zegara',
 
 'exif-planarconfiguration-1' => 'format masywny',
 'exif-planarconfiguration-2' => 'format powierzchniowy',

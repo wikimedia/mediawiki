@@ -184,7 +184,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mittere mihi litteras electronicas etiam pro recensionibus minoribus',
 'tog-enotifrevealaddr'        => 'Monstrare inscriptio mea electronica in nuntiis notificantibus',
 'tog-shownumberswatching'     => 'Numerum usorum custodientium monstrare',
-'tog-oldsig'                  => 'Praevisum subscriptionis ad tempus adhibitae:',
+'tog-oldsig'                  => 'Subscriptio ad tempus adhibita:',
 'tog-fancysig'                => 'Subscriptio vicitext (sine nexu automatico)',
 'tog-externaleditor'          => 'Utere editore externo semper (pro peritus solo, requirat speciales optiones in calculone. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'Utere editore dissimilitudine externa semper (pro peritus solo, requirat speciales optiones in calculone. [http://www.mediawiki.org/wiki/Manial:External_editors More information.])',
@@ -501,6 +501,7 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'nav-login-createaccount'    => 'Conventum aperire / conventum creare',
 'loginprompt'                => 'Cookies potestatem facere debes ut conventum aperire.',
 'userlogin'                  => 'Conventum aperire / conventum creare',
+'userloginnocreate'          => 'Conventum aperire',
 'logout'                     => 'Conventum concludere',
 'userlogout'                 => 'Conventum concludere',
 'notloggedin'                => 'Conventum non est apertum',
@@ -510,6 +511,7 @@ Noli oblivisci [[Special:Preferences|praeferentias tuas]] apud {{grammar:accusat
 'gotaccount'                 => "Habesne iam rationem? '''$1'''.",
 'gotaccountlink'             => 'Conventum aperi',
 'createaccountmail'          => 'ab inscriptione electronica',
+'createaccountreason'        => 'Causa:',
 'badretype'                  => 'Tesserae quas scripsisti inter se non congruunt.',
 'userexists'                 => 'Nomen usoris quod selegisti iam est.
 Nomen usoris alium selige.',
@@ -938,7 +940,7 @@ Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (pagi
 'prefs-registration'        => 'Dies creationis rationis:',
 'yourrealname'              => 'Nomen verum:',
 'yourlanguage'              => 'Lingua:',
-'yourvariant'               => 'Differentia:',
+'yourvariant'               => 'Differentia linguae contentorum:',
 'yournick'                  => 'Subscriptio nova:',
 'badsig'                    => 'Subscriptio cruda non est valida; scrutina affixa HTML.',
 'badsiglength'              => 'Subscriptio tua nimis longa est.

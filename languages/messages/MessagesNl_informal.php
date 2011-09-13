@@ -180,12 +180,12 @@ Je kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
 'userpage-userdoesnotexist'        => 'Je bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1").
 Controleer of je deze pagina wel wilt aanmaken/bewerken.',
-'clearyourcache'                   => "'''Let op!''' Nadat je de wijzigingen hebt opgeslagen is het wellicht nodig je browsercache te legen.
-* '''Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl je op ''Vernieuwen'' klikt of druk op ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op een Mac)
-* '''Google Chrome:''' druk op ''Ctrl-Shift-R'' (''Command-Shift-R'' op een Mac)
-* '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl je op ''Vernieuwen'' klikt of druk op ''Ctrl-F5''
-* '''Konqueror: '''klik op ''Reload'' of druk op ''F5''
-* '''Opera:''' leeg je cache in ''Extra → Voorkeuren''",
+'clearyourcache'                   => "'''Let op! Nadat je de wijzigingen hebt opgeslagen is het wellicht nodig je browsercache te legen.'''
+
+'''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl je op ''Huidige pagina vernieuwen'' klikt of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMac);
+'''Konqueror: '''klik ''Reload'' of typ ''F5;''
+'''Opera:''' leeg je cache in ''Extra → Voorkeuren;''
+'''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl je op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om je nieuwe CSS te testen alvorens op te slaan.",
 'userjsyoucanpreview'              => "'''Tip:''' Gebruik de knop \"{{int:showpreview}}\" om je nieuwe JavaScript te testen alvorens op te slaan.",
 'usercsspreview'                   => "'''Dit is alleen een voorvertoning van je persoonlijke CSS.

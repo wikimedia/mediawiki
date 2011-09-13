@@ -162,7 +162,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notificar me etiam de modificationes minor de paginas',
 'tog-enotifrevealaddr'        => 'Revelar mi adresse de e-mail in messages de notification',
 'tog-shownumberswatching'     => 'Monstrar le numero de usatores que observa le pagina',
-'tog-oldsig'                  => 'Previsualisation del signatura existente:',
+'tog-oldsig'                  => 'Signatura existente:',
 'tog-fancysig'                => 'Tractar signatura como wikitexto (sin ligamine automatic)',
 'tog-externaleditor'          => 'Usar un editor externe qua standard (pro expertos solmente, necessita configuration special in tu computator. [http://www.mediawiki.org/wiki/Manual:External_editors Plus informationes.])',
 'tog-externaldiff'            => "Usar un programma ''diff'' externe qua standard (pro expertos solmente, necessita configuration special in tu computator. [http://www.mediawiki.org/wiki/Manual:External_editors Plus informationes.])",
@@ -588,14 +588,15 @@ Verifica le orthographia.',
 'mailmypassword'             => 'Inviar un nove contrasigno in e-mail',
 'passwordremindertitle'      => 'Nove contrasigno temporari pro {{SITENAME}}',
 'passwordremindertext'       => 'Alcuno (probabilemente tu, ab le adresse IP $1) requestava un nove
-contrasigno pro {{SITENAME}} ($4). Un contrasigno temporari pro le usator
-"$2" ha essite create, le qual es "$3". Si isto esseva tu
-intention, tu debe ora aperir un session e seliger un nove contrasigno.
-Tu contrasigno temporari expirara in {{PLURAL:$5|un die|$5 dies}}.
+contrasigno pro {{SITENAME}} ($4).
+Un contrasigno temporari pro le usator "$2" ha essite create; iste
+contrasigno es "$3". Si isto esseva le intention, tu debe ora
+aperir un session e eliger un nove contrasigno. Le contrasigno temporari
+expirara post {{PLURAL:$5|un die|$5 dies}}.
 
-Si un altere persona ha facite iste requesta, o si tu te ha rememorate tu contrasigno,
-e tu non vole plus cambiar lo, tu pote ignorar iste message e
-continuar a usar tu contrasigno original.',
+Si un altere persona ha facite iste requesta, o si tu te ha rememorate
+le contrasigno e non plus vole cambiar lo, tu pote ignorar iste message
+e continuar a usar le contrasigno original.',
 'noemail'                    => 'Il non ha un adresse de e-mail registrate pro le usator "$1".',
 'noemailcreate'              => 'Es necessari fornir un adresse de e-mail valide',
 'passwordsent'               => 'Un nove contrasigno esseva inviate al adresse de e-mail
@@ -1233,7 +1234,7 @@ Le operation non pote esser disfacite.',
 'prefs-registration'            => 'Data de registration:',
 'yourrealname'                  => 'Nomine real:',
 'yourlanguage'                  => 'Lingua:',
-'yourvariant'                   => 'Variante:',
+'yourvariant'                   => 'Variante de lingua de contento:',
 'yournick'                      => 'Signatura:',
 'prefs-help-signature'          => 'Commentos in paginas de discussion debe esser signate con "<nowiki>~~~~</nowiki>" que essera convertite in tu signatura e un indication del data e hora.',
 'badsig'                        => 'Signatura crude invalide; verificar le etiquettas HTML.',
@@ -1286,7 +1287,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'userrights-no-interwiki'      => 'Tu non ha le permission de modificar le derectos de usatores in altere wikis.',
 'userrights-nodatabase'        => 'Le base de datos $1 non existe o non es local.',
 'userrights-nologin'           => 'Tu debe [[Special:UserLogin|aperir un session]] con un conto de administrator pro poter assignar derectos de usator.',
-'userrights-notallowed'        => 'Tu conto non ha le permission de assignar derectos de usator.',
+'userrights-notallowed'        => 'Tu conto non ha le permission de adder o remover derectos de usator.',
 'userrights-changeable-col'    => 'Gruppos que tu pote modificar',
 'userrights-unchangeable-col'  => 'Gruppos que tu non pote modificar',
 
@@ -1662,8 +1663,7 @@ Pote esser preferite reprovar quando le sito es minus occupate.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Iste pagina special monstra tote le files incargate.
-Per predefinition le ultime files incargate se monstra al initio del lista.
-Tu pote reordinar le lista con un clic super le titulo de un columna.',
+Si un filtro per usator es active, es monstrate solmente le files del quales le usator in question ha incargate le version le plus recente.',
 'listfiles_search_for'  => 'Cercar un nomine de media:',
 'imgfile'               => 'file',
 'listfiles'             => 'Lista de files',
@@ -3036,9 +3036,9 @@ Le alteres essera initialmente celate.
 'exif-orientation-3' => 'Rotate 180°',
 'exif-orientation-4' => 'Invertite verticalmente',
 'exif-orientation-5' => 'Rotate 90° in senso antihorologic e invertite verticalmente',
-'exif-orientation-6' => 'Rotate 90° in senso horologic',
+'exif-orientation-6' => 'Rotate 90° in senso antihorologic',
 'exif-orientation-7' => 'Rotate 90° in senso horologic e invertite verticalmente',
-'exif-orientation-8' => 'Rotate 90° in senso antihorologic',
+'exif-orientation-8' => 'Rotate 90° in senso horologic',
 
 'exif-planarconfiguration-1' => 'formato a blocos (chunky)',
 'exif-planarconfiguration-2' => 'formato planar',

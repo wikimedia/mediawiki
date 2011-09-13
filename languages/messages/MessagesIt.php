@@ -20,6 +20,7 @@
  * @author Cruccone
  * @author Cryptex
  * @author Dakrismeno
+ * @author Danmaz74
  * @author Darth Kule
  * @author F. Cosoleto
  * @author Felis
@@ -34,6 +35,7 @@
  * @author Melos
  * @author Nemo bis
  * @author Nick1915
+ * @author Ninniuz
  * @author Od1n
  * @author Oile11
  * @author Omnipaedista
@@ -884,12 +886,14 @@ Premendo il pulsante '{{int:savearticle}}', verrà salvato '''solo''' il testo c
 'editingold'                       => "'''Attenzione: si sta modificando una versione non aggiornata della pagina.<br />
 Se si sceglie di salvarla, tutti i cambiamenti apportati dopo questa revisione andranno perduti.'''",
 'yourdiff'                         => 'Differenze',
-'copyrightwarning'                 => "Nota: tutti i contributi a {{SITENAME}} si considerano rilasciati nei termini della licenza d'uso $2 (vedi $1 per maggiori dettagli). Se non desideri che i tuoi testi possano essere modificati e ridistribuiti da chiunque senza alcuna limitazione, non inviarli a {{SITENAME}}.<br />
-Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il testo è stato scritto da te personalmente oppure che è stato copiato da una fonte di pubblico dominio o analogamente libera.
-'''NON INVIARE MATERIALE COPERTO DA DIRITTO DI AUTORE SENZA AUTORIZZAZIONE!'''",
-'copyrightwarning2'                => "Nota: tutti i contributi inviati a {{SITENAME}} possono essere modificati, stravolti o cancellati da parte degli altri partecipanti. Se non desideri che i tuoi testi possano essere modificati senza alcun riguardo, non inviarli a questo sito.<br />
-Con l'invio del testo dichiari inoltre, sotto la tua responsabilità, che il testo è stato scritto da te personalmente oppure che è stato copiato da una fonte di pubblico dominio o analogamente libera (vedi $1 per maggiori dettagli).
-'''NON INVIARE MATERIALE COPERTO DA DIRITTO DI AUTORE SENZA AUTORIZZAZIONE!'''",
+'copyrightwarning'                 => "Per favore tieni presente che tutti i contributi a {{SITENAME}} si considerano pubblicati nei termini d'uso della licenza $2 (vedi $1 per maggiori dettagli).
+Se non desideri che i tuoi testi possano essere modificati e ridistribuiti da chiunque senza alcuna limitazione, non inviarli qui.<br />
+Inviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scritto da te personalmente oppure è stato copiato da una fonte di pubblico dominio o similarmente libera.
+'''Non inviare materiale protetto da copyright senza autorizzazione!'''",
+'copyrightwarning2'                => "Per favore tieni presente che tutti i contributi a {{SITENAME}} possono essere modificati, stravolti o cancellati da altri contributori.
+Se non desideri che i tuoi testi possano essere alterati, non inviarli qui.<br />
+Inviando il testo dichiari inoltre, sotto tua responsabilità, che è stato scritto da te personalmente oppure è stato copiato da una fonte di pubblico dominio o similarmente libera (vedi $1 per maggiori dettagli).
+'''Non inviare materiale protetto da copyright senza autorizzazione!'''",
 'longpageerror'                    => "'''ERRORE: Il testo inviato è lungo $1 kilobyte, più della dimensione massima consentita ($2 kilobyte). Il testo non può essere salvato.'''",
 'readonlywarning'                  => "'''ATTENZIONE: Il database è stato bloccato per manutenzione, è quindi impossibile salvare le modifiche in questo momento. Per non perderle, è possibile copiare quanto inserito finora nella casella di modifica, incollarlo in un programma di elaborazione testi e salvarlo in attesa dello sblocco del database.'''
 
@@ -1336,7 +1340,7 @@ L'operazione non può essere annullata.",
 'userrights-no-interwiki'      => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
 'userrights-nodatabase'        => 'Il database $1 non esiste o non è un database locale.',
 'userrights-nologin'           => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
-'userrights-notallowed'        => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
+'userrights-notallowed'        => "Il tuo account non dispone dell'autorizzazione per aggiungere o rimuovere i permessi utente.",
 'userrights-changeable-col'    => 'Gruppi modificabili',
 'userrights-unchangeable-col'  => 'Gruppi non modificabili',
 
@@ -1691,8 +1695,7 @@ Per una sicurezza ottimale, img_auth.php è disattivato.',
 
 # Special:ListFiles
 'listfiles-summary'     => "Questa pagina speciale mostra tutti i file caricati.
-I file caricati più di recente vengono mostrati all'inizio della lista.
-Per modificare l'ordinamento, fare clic sull'intestazione della colonna prescelta.",
+Se vengono filtrati per utente, saranno mostrati solamente quei file per i quali l'utente ha caricato la versione più recente.",
 'listfiles_search_for'  => 'Ricerca immagini per nome:',
 'imgfile'               => 'file',
 'listfiles'             => 'Elenco dei file',

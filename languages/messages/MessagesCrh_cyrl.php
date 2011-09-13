@@ -1,5 +1,5 @@
 <?php
-/** Crimean Turkish (Cyrillic) (Qırımtatarca (Cyrillic))
+/** Crimean Turkish (Cyrillic script) (‪Къырымтатарджа (Кирилл)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net

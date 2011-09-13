@@ -85,7 +85,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mandame tamién un corréu pa les ediciones menores',
 'tog-enotifrevealaddr'        => 'Amosar el mio corréu electrónicu nos correos de notificación',
 'tog-shownumberswatching'     => "Amosar el númberu d'usuarios que la tán vixilando",
-'tog-oldsig'                  => 'Adicar la firma esistente:',
+'tog-oldsig'                  => 'Firma esistente:',
 'tog-fancysig'                => 'Usar la firma como "testu wiki" (ensin enllaz automáticu)',
 'tog-externaleditor'          => 'Usar un editor esternu de mou predeterminao (namái pa espertos, necesita configuraciones especiales nel to ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-externaldiff'            => 'Usar un diff esternu de mou predetermináu (namái pa espertos, necesita configuraciones especiales nel to ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
@@ -102,6 +102,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Mandame copies de los correos que mando a otros usuarios',
 'tog-diffonly'                => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
 'tog-showhiddencats'          => 'Amosar categoríes anubríes',
+'tog-noconvertlink'           => 'Desactivar la conversión del títulu del enllaz',
 'tog-norollbackdiff'          => 'Desanicier les diferencies depués de restaurar',
 
 'underline-always'  => 'Siempre',
@@ -481,7 +482,8 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'createaccountmail'          => 'per e-mail',
 'createaccountreason'        => 'Motivu:',
 'badretype'                  => "Les claves qu'escribisti nun concuayen.",
-'userexists'                 => "El nome d'usuariu conseñáu yá esiste. Por favor escueyi un nome diferente.",
+'userexists'                 => "El nome d'usuariu conseñáu yá ta usándose.
+Por favor escueyi un nome diferente.",
 'loginerror'                 => "Error d'identificación",
 'createaccounterror'         => 'Nun se pudo crear la cuenta: $1',
 'nocookiesnew'               => "La cuenta d'usuariu ta creada, pero nun tas identificáu. {{SITENAME}} usa cookies pa identificar a los usuarios. Tienes les cookies deshabilitaes. Por favor actívales y depués identifícate col to nuevu nome d'usuariu y la clave.",
@@ -729,8 +731,8 @@ La cabera entrada del rexistru s'ufre darréu pa referencia:",
 'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta candada pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
 'titleprotectedwarning'            => "'''Avisu: Esta páxina ta candada pa que necesite [[Special:ListGroupRights|permisos especiales]] pa creala.'''
 La cabera entrada del rexistru s'ufre darréu pa referencia:",
-'templatesused'                    => '{{PLURAL:$1|plantía usada|plantíes usaes}} nesta páxina:',
-'templatesusedpreview'             => '{{PLURAL:$1|plantía usada|plantíes usaes}} nesta previsualización:',
+'templatesused'                    => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta páxina:',
+'templatesusedpreview'             => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta vista previa:',
 'templatesusedsection'             => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta seición:',
 'template-protected'               => '(protexida)',
 'template-semiprotected'           => '(semi-protexida)',
@@ -974,7 +976,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'diff-multi-manyusers'     => "({{PLURAL:$1|Nun s'amuesa una revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} de más de $2 {{PLURAL:$2|usuariu|usuarios}})",
 
 # Search results
-'searchresults'                    => 'Resultaos de la busca',
+'searchresults'                    => 'Resultaos de la gueta',
 'searchresults-title'              => 'Resultaos de la busca pa "$1"',
 'searchresulttext'                 => 'Pa más información tocante a busques en {{SITENAME}}, vete a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Buscasti \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toles páxines qu\'emprimen con "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toles páxines qu\'enllacien a "$1"]])',
@@ -1069,14 +1071,14 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-resetpass'               => 'Camudar clave',
 'prefs-email'                   => 'Opciones de corréu',
 'prefs-rendering'               => 'Aspeutu',
-'saveprefs'                     => 'Guardar preferencies',
+'saveprefs'                     => 'Guardar',
 'resetprefs'                    => 'Volver a les preferencies por defeutu',
 'restoreprefs'                  => 'Restaurar tolos axustes predeterminaos',
 'prefs-editing'                 => 'Edición',
 'prefs-edit-boxsize'            => "Tamañu de la ventana d'edición.",
 'rows'                          => 'Files:',
 'columns'                       => 'Columnes:',
-'searchresultshead'             => 'Guetes',
+'searchresultshead'             => 'Guetar',
 'resultsperpage'                => "Resultaos p'amosar per páxina:",
 'contextlines'                  => "Llinies p'amosar per resultáu:",
 'contextchars'                  => 'Carauteres de testu per llinia:',
@@ -1112,7 +1114,7 @@ Equí tienes un valor al debalu que pues usar: $1",
 'prefs-namespaces'              => 'Espacios de nome',
 'defaultns'                     => "D'otra miente, guetar nestos espacios de nome:",
 'default'                       => 'por defeutu',
-'prefs-files'                   => 'Archivos',
+'prefs-files'                   => 'Ficheros',
 'prefs-custom-css'              => 'CSS personalizada',
 'prefs-custom-js'               => 'JS personalizada',
 'prefs-common-css-js'           => 'CSS/JavaScript compartíu pa toles pieles:',
@@ -1127,7 +1129,7 @@ Esto nun se pue desfacer.',
 'prefs-registration'            => 'Hora del rexistru:',
 'yourrealname'                  => 'Nome real:',
 'yourlanguage'                  => 'Idioma de los menús:',
-'yourvariant'                   => 'Variante llingüística:',
+'yourvariant'                   => 'Variante llingüística del conteníu:',
 'yournick'                      => 'Firma:',
 'prefs-help-signature'          => 'Los comentarios nes páxines d\'alderique habría que roblales con "<nowiki>~~~~</nowiki>" que se convertirán na to robla y una marca de tiempu.',
 'badsig'                        => 'Firma cruda non válida; comprueba les etiquetes HTML.',
@@ -1181,7 +1183,7 @@ Tamién pues escoyer permitir a los demás contautar contigo al traviés de la t
 'userrights-no-interwiki'      => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
 'userrights-nodatabase'        => 'La base de datos $1 nun esiste o nun ye llocal.',
 'userrights-nologin'           => "Has tar [[Special:UserLogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
-'userrights-notallowed'        => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
+'userrights-notallowed'        => "La to cuenta nun tien permisu p'amestar o desaniciar permisos d'usuariu.",
 'userrights-changeable-col'    => 'Grupos que pues camudar',
 'userrights-unchangeable-col'  => 'Grupos que nun pues camudar',
 
@@ -1556,9 +1558,8 @@ Pa una meyor seguridá, img_auth.php ta desactiváu.",
 'upload_source_file' => ' (un archivu del to ordenador)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Esta páxina especial amuesa tolos archivos xubíos.
-Por defeutu los caberos archivos xubíos amuésense a lo cimero de la llista.
-Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
+'listfiles-summary'     => "Esta páxina especial amuesa tolos ficheros xubíos.
+Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que xubió esi usuariu.",
 'listfiles_search_for'  => "Buscar por nome d'archivu multimedia:",
 'imgfile'               => 'archivu',
 'listfiles'             => "Llista d'imáxenes",
@@ -1625,7 +1626,7 @@ La descripción de la [páxina de descripción del ficheru $2] s'amuesa darréu.
 'filedelete-intro-old'        => "Tas esborrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
 'filedelete-comment'          => 'Motivu:',
 'filedelete-submit'           => 'Desaniciar',
-'filedelete-success'          => "'''$1''' foi esborráu.",
+'filedelete-success'          => "'''$1''' se desanició.",
 'filedelete-success-old'      => "Eliminóse la versión de '''[[Media:$1|$1]]''' del $2 a les $3.",
 'filedelete-nofile'           => "'''$1''' nun esiste.",
 'filedelete-nofile-old'       => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
@@ -2657,6 +2658,13 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'numauthors'     => "Númberu d'autores distintos (páxina): $1",
 'numtalkauthors' => "Númberu d'autores distintos (páxina d'alderique): $1",
 
+# Skin names
+'skinname-standard'    => 'Clásicu',
+'skinname-nostalgia'   => 'Señardá',
+'skinname-cologneblue' => 'Azul Colonia',
+'skinname-myskin'      => 'MySkin',
+'skinname-modern'      => 'Modernu',
+
 # Math options
 'mw_math_png'    => 'Renderizar siempre PNG',
 'mw_math_simple' => 'HTML si ye mui simple, o si non PNG',
@@ -2892,12 +2900,15 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 'exif-orientation-3' => 'Rotada 180°',
 'exif-orientation-4' => 'Voltiada verticalmente',
 'exif-orientation-5' => 'Rotada 90° a manzorga y voltiada verticalmente',
-'exif-orientation-6' => 'Rotada 90° a mandrecha',
+'exif-orientation-6' => 'Xirada 90° en sentíu antihorariu',
 'exif-orientation-7' => 'Rotada 90° a mandrecha y voltiada verticalmente',
-'exif-orientation-8' => 'Rotada 90° a manzorga',
+'exif-orientation-8' => 'Xirada 90° en sentíu horariu',
 
 'exif-planarconfiguration-1' => 'formatu irregular',
 'exif-planarconfiguration-2' => 'formatu planu',
+
+'exif-xyresolution-i' => '$1 ppp',
+'exif-xyresolution-c' => '$1 ppc',
 
 'exif-componentsconfiguration-0' => 'nun esiste',
 
@@ -3020,7 +3031,7 @@ tabla de metadatos tea recoyida. Los demás tarán escondíos por defeutu.
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Quilómetros per hora',
-'exif-gpsspeed-m' => 'Milles per hora',
+'exif-gpsspeed-m' => 'Milles por hora',
 'exif-gpsspeed-n' => 'Nueyos',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
@@ -3160,7 +3171,7 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'size-gigabytes' => '$1 XB',
 
 # Live preview
-'livepreview-loading' => 'Cargando…',
+'livepreview-loading' => 'Cargando...',
 'livepreview-ready'   => 'Cargando… ¡Llisto!',
 'livepreview-failed'  => '¡La previsualización rápida falló! Intenta la previsualización normal.',
 'livepreview-error'   => 'Nun se pudo coneutar: $1 "$2". Intenta la previsualización normal.',

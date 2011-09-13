@@ -433,7 +433,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'Tìm kiếm',
-'qbbrowse'       => 'Xem qua',
+'qbbrowse'       => 'Duyệt',
 'qbedit'         => 'Sửa đổi',
 'qbpageoptions'  => 'Trang này',
 'qbpageinfo'     => 'Ngữ cảnh',
@@ -702,7 +702,7 @@ Tài khoản của bạn đã mở.
 'createaccountmail'          => 'qua thư điện tử',
 'createaccountreason'        => 'Lý do:',
 'badretype'                  => 'Hai mật khẩu không khớp.',
-'userexists'                 => 'Tên người dùng này đã có người lấy.
+'userexists'                 => 'Tên người dùng được nhập đã có người lấy.
 Hãy chọn một tên khác.',
 'loginerror'                 => 'Lỗi đăng nhập',
 'createaccounterror'         => 'Không thể mở tài khoản: $1',
@@ -1334,7 +1334,7 @@ Không có thể lùi lại tác động này.',
 'prefs-registration'            => 'Thời điểm đăng ký:',
 'yourrealname'                  => 'Tên thật:',
 'yourlanguage'                  => 'Ngôn ngữ:',
-'yourvariant'                   => 'Ngôn ngữ địa phương:',
+'yourvariant'                   => 'Dạng chữ của nội dung:',
 'yournick'                      => 'Chữ ký:',
 'prefs-help-signature'          => 'Các ý kiến tại trang thảo luận nên được ký tên bằng cách gõ "<nowiki>~~~~</nowiki>", nó sẽ được đổi thành chữ ký của bạn cùng với thời điểm thảo luận.',
 'badsig'                        => 'Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.',
@@ -1389,7 +1389,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'userrights-no-interwiki'      => 'Bạn không có quyền thay đổi quyền hạn của thành viên tại các wiki khác.',
 'userrights-nodatabase'        => 'Cơ sở dữ liệu $1 không tồn tại hoặc nằm ở bên ngoài.',
 'userrights-nologin'           => 'Bạn phải [[Special:UserLogin|đăng nhập]] vào một tài khoản có quyền quản lý để gán quyền cho thành viên.',
-'userrights-notallowed'        => 'Tài khoản của bạn không có quyền gán quyền cho thành viên.',
+'userrights-notallowed'        => 'Tài khoản của bạn không có quyền gán hoặc bãi miễn quyền cho thành viên.',
 'userrights-changeable-col'    => 'Những nhóm bạn có thể thay đổi',
 'userrights-unchangeable-col'  => 'Những nhóm bạn không thể thay đổi',
 
@@ -1755,8 +1755,7 @@ Vì lý do bảo mật, img_auth.php đã bị tắt.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên.
-Theo mặc định, các tập tin mới nhất được xếp vào đầu danh sách.
-Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp xếp.',
+Lọc theo người dùng để chỉ hiện các tập tin mà người đó đã tải lên phiên bản gần đây nhất.',
 'listfiles_search_for'  => 'Tìm kiếm theo tên tập tin:',
 'imgfile'               => 'tập tin',
 'listfiles'             => 'Danh sách tập tin',
@@ -3135,9 +3134,9 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-orientation-3' => 'Quay 180°',
 'exif-orientation-4' => 'Lộn ngược theo phương dọc',
 'exif-orientation-5' => 'Quay 90° bên trái và lộn thẳng đứng',
-'exif-orientation-6' => 'Quay 90° bên phải',
+'exif-orientation-6' => 'Quay 90° bên trái',
 'exif-orientation-7' => 'Quay 90° bên phải và lộn thẳng đứng',
-'exif-orientation-8' => 'Quay 90° bên trái',
+'exif-orientation-8' => 'Quay 90° bên phải',
 
 'exif-planarconfiguration-1' => 'định dạng thấp',
 'exif-planarconfiguration-2' => 'định dạng phẳng',
@@ -3303,7 +3302,7 @@ Chương trình thư báo rằng: $1',
 'confirmemail_invalid'      => 'Mã xác nhận sai. Mã này có thể đã hết hạn',
 'confirmemail_needlogin'    => 'Bạn cần phải $1 để xác nhận địa chỉ thư điện tử.',
 'confirmemail_success'      => 'Thư điện tử của bạn đã được xác nhận. Bạn đã có thể đăng nhập và bắt đầu sử dụng wiki.',
-'confirmemail_loggedin'     => 'Địa chỉ thư điện tử của bạn đã được xác nhận',
+'confirmemail_loggedin'     => 'Địa chỉ thư điện tử của bạn đã được xác nhận.',
 'confirmemail_error'        => 'Có trục trặc khi lưu xác nhận của bạn.',
 'confirmemail_subject'      => 'Xác nhận thư điện tử tại {{SITENAME}}',
 'confirmemail_body'         => 'Ai đó, có thể là bạn, từ địa chỉ IP $1,

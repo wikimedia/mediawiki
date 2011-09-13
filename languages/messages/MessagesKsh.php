@@ -10,6 +10,7 @@
  * @author Caesius noh en Idee vum Manes
  * @author Purodha
  * @author Reedy
+ * @author Rentenirer
  */
 
 /**
@@ -350,7 +351,7 @@ Dat es och all op Änglesch:
 'mypage'        => 'ming Metmaacher-Sigg',
 'mytalk'        => 'ming Klaafsigg',
 'anontalk'      => 'Klaaf för de IP-Adress',
-'navigation'    => 'Jangk noh',
+'navigation'    => 'Jangk noh de',
 'and'           => ', un',
 
 # Cologne Blue skin
@@ -643,7 +644,8 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh för {{GRAM
 'createaccountmail'          => 'Scheck mer en E-Mail met Passwood',
 'createaccountreason'        => 'Jrond:',
 'badretype'                  => 'Ding zwëij ennjejovve Paßßwööter sinn nit ejaal. Do muss De Dich för ein entscheide.',
-'userexists'                 => 'Ene Metmaacher met däm Name jitt et ald. Schad. Do muss De Der ene andere Name usdenke.',
+'userexists'                 => 'Ene Metmaacher met däm Name jidd et ald.
+Do muss Der ene andere Name usdenke.',
 'loginerror'                 => 'Fähler beim Enlogge',
 'createaccounterror'         => 'Kunnt keine Zohjang för der Metmaacher-Name „$1“ aanlääje.',
 'nocookiesnew'               => 'Dinge neue Metmaacher Name es enjerich, ävver dat automatisch Enlogge wor dann nix.
@@ -1825,7 +1827,9 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'upload_source_file' => ' (en Datei op Dingem Kompjuter)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Hee sin de huhjeladene Dateie opjelis. Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wa'mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wa'mer norrens klick, weed de Reiejfolg ömjedrieht.",
+'listfiles-summary'     => 'Hee sin de huhjeladene Dateie opjelis.
+Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wam_mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wam_mer norrens klick, weed de Reiejfolsch ömjedrieht.
+Wann ene Metmaacher ußjesöhk es, kritt mer bloß die Dateie, di dä Metmaacher huhjelaade hät.',
 'listfiles_search_for'  => 'Sök noh däm Name vun dä Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Dateie opleste',

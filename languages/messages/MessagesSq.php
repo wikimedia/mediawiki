@@ -12,6 +12,7 @@
  * @author Dori
  * @author Eagleal
  * @author Ergon
+ * @author Marinari
  * @author Mdupont
  * @author MicroBoy
  * @author Mikullovci11
@@ -355,7 +356,7 @@ $messages = array(
 'vector-action-move'             => 'Zhvendose',
 'vector-action-protect'          => 'Mbroje',
 'vector-action-undelete'         => 'Jo e grisur',
-'vector-action-unprotect'        => 'Liroje',
+'vector-action-unprotect'        => 'Ndrysho lejekalimin',
 'vector-simplesearch-preference' => 'Aktivizoni kërkim të avancuar (vetëm për Vektor)',
 'vector-view-create'             => 'Krijo',
 'vector-view-edit'               => 'Redakto',
@@ -391,8 +392,8 @@ $messages = array(
 'protect'           => 'Mbroje',
 'protect_change'    => 'ndrysho',
 'protectthispage'   => 'Mbroje faqen',
-'unprotect'         => 'Liroje',
-'unprotectthispage' => 'Liroje faqen',
+'unprotect'         => 'Ndrysho lejekalimin',
+'unprotectthispage' => 'Ndryshimo mbrojtjen e kësaj faqeje',
 'newpage'           => 'Faqe e re',
 'talkpage'          => 'Diskutoni faqen',
 'talkpagelinktext'  => 'Diskuto',
@@ -785,7 +786,7 @@ apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktu këtë faqe]</span>.',
 'userpage-userdoesnotexist-view'   => 'Profili i përdoruesit "$1" nuk është i regjistruar.',
 'blocked-notice-logextract'        => 'Ky përdorues është bllokuar aktualisht.
 Regjistri i bllokuar hyrjen e fundit është më poshtë, për referencë:',
-'clearyourcache'                   => "'''Shënim:''' Pasi të ruani parapëlqimet ose pasi të kryeni ndryshimet, duhet të pastroni ''cache''-në e shfletuesit tuaj për të parë ndryshimet: për '''Mozilla/Safari/Konqueror''' shtypni ''Ctrl+Shift+Reload'' (ose ''ctrl+shift+r''), për '''IE''' ''Ctrl+f5'', '''Opera''': ''F5''.",
+'clearyourcache'                   => "''Shënim:''' Pasi të ruani parapëlqimet ose pasi të kryeni ndryshimet, duhet të pastroni ''cache''-në e shfletuesit tuaj për të parë ndryshimet: për '''Mozilla/Safari/Konqueror''' shtypni ''Ctrl+Shift+Reload'' (ose ''ctrl+shift+r''), për '''IE''' ''Ctrl+f5'', '''Opera''': ''F5''.",
 'usercssyoucanpreview'             => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
 'userjsyoucanpreview'              => "'''Këshillë:''' Përdorni butonin 'Trego parapamjen' për të provuar ndryshimet tuaja të faqeve css/js përpara se të kryeni ndryshimet.",
 'usercsspreview'                   => "'''Vini re! Kjo është vetëm një parapamje e faqes suaj CSS. Akoma nuk është ruajtur!'''",
@@ -2120,7 +2121,7 @@ Redaktimi i fundit është bërë nga [[User:$3|$3]] ([[User talk:$3|diskuto]]{{
 Shih listën e [[Special:ProtectedPages|faqeve të mbrojtura]] nga lista e mbrojtjeve të faqeve tani në veprim.',
 'protectedarticle'            => 'mbrojti [[$1]]',
 'modifiedarticleprotection'   => 'u ndryshua mbrojtja e faqes "[[$1]]"',
-'unprotectedarticle'          => 'liroi [[$1]]',
+'unprotectedarticle'          => 'Largo mbrojtjen nga " [[$1]] "',
 'movedarticleprotection'      => 'u bartën të dhënat e mbrojtjes nga "[[$2]]" në "[[$1]]"',
 'protect-title'               => 'Ndryshoni nivelin e mbrojtjes së "$1"',
 'prot_1movedto2'              => '[[$1]] u zhvendos tek [[$2]]',
@@ -2269,7 +2270,7 @@ Bllokimi i funditë është më poshtë për referencë:',
 'nolinkshere-ns'           => "Nuk ka faqe në hapësirën e zgjedhur që lidhen tek '''[[:$1]]'''.",
 'isredirect'               => 'faqe përcjellëse',
 'istemplate'               => 'përfshirë',
-'isimage'                  => 'lidhje figure',
+'isimage'                  => 'Lidhja e dokumentit',
 'whatlinkshere-prev'       => '{{PLURAL:$1|e kaluara|të kaluarat $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|tjetra|tjerat $1}}',
 'whatlinkshere-links'      => '← lidhje',
@@ -2623,7 +2624,7 @@ Ju lutemi provoni përsëri.',
 'tooltip-ca-viewsource'           => 'Kjo faqe është e mbrojtur. Ju mundeni vetëm ta shikoni burimin e tekstit.',
 'tooltip-ca-history'              => 'Versione të mëparshme të artikullit.',
 'tooltip-ca-protect'              => 'Mbroje këtë faqe',
-'tooltip-ca-unprotect'            => 'Liroje faqen',
+'tooltip-ca-unprotect'            => 'Liroje mbrojtjen e kësaj faqeje',
 'tooltip-ca-delete'               => 'Grise këtë faqe',
 'tooltip-ca-undelete'             => 'Faqja u restaurua',
 'tooltip-ca-move'                 => 'Me anë të zhvendosjes mund ta ndryshoni titullin e artikullit',

@@ -458,7 +458,7 @@ $messages = array(
 'protect_change'    => 'ផ្លាស់ប្តូរការការពារ',
 'protectthispage'   => 'ការពារទំព័រនេះ',
 'unprotect'         => 'ប្ដូរការការពារ',
-'unprotectthispage' => 'ឈប់ការពារទំព័រនេះ',
+'unprotectthispage' => 'ផ្លាស់ប្ដូរការការពារទំព័រនេះ',
 'newpage'           => 'ទំព័រថ្មី',
 'talkpage'          => 'ពិភាក្សាទំព័រនេះ',
 'talkpagelinktext'  => 'ការពិភាក្សា',
@@ -897,8 +897,9 @@ $2',
 'userpage-userdoesnotexist-view'   => 'គណនីអ្នកប្រើប្រាស់ដែលមានឈ្មោះ "$1"មិនទាន់បានចុះឈ្មោះទេ។',
 'blocked-notice-logextract'        => 'អ្នកប្រើប្រាស់នេះត្រូវបានហាមឃាត់ហើយនាពេលនេះ។
 កំណត់ត្រាស្ដីពីការហាមឃាត់ចុងក្រោយមានបង្ហាញដូចខាងក្រោមនេះ៖',
-'clearyourcache'                   => "'''សម្គាល់:''' បន្ទាប់ពីបានរក្សាទុករួចហើយ លោកអ្នកគួរតែសំអាត browser's cache របស់លោកអ្នកដើម្បីមើលការផ្លាស់ប្តូរ។ ខាងក្រោមនេះជាវិធីសំអាត browser's cache ចំពោះកម្មវិធីរុករក(Browser)មួយចំនួន។
-* '''Mozilla / Firefox / Safari:''' សង្កត់ [Shift] ឱ្យជាប់រួចចុចប៊ូតុង ''Reload'' ឬក៏ចុច  ''Ctrl-F5'' ឬ ''Ctrl-R'' (ចំពោះApple Mac វិញ​ចុច ''Command-R'')។
+'clearyourcache'                   => "!'''សម្គាល់:''' បន្ទាប់ពីបានរក្សាទុករួចហើយ លោកអ្នកគួរតែសំអាត browser's cache របស់លោកអ្នកដើម្បីមើលការផ្លាស់ប្តូរ។ ខាងក្រោមនេះជាវិធីសំអាត browser's cache ចំពោះកម្មវិធីរុករក(Browser)មួយចំនួន។
+* ''' Firefox / Safari:''' សង្កត់ [Shift] ឱ្យជាប់រួចចុចប៊ូតុង ''Reload'' ឬក៏ចុច  ''Ctrl-F5'' ឬ ''Ctrl-R'' (ចំពោះApple Mac វិញ​ចុច ''Command-R'')
+* '''Google Chrome:''' ចុច ''Ctrl-Shift-R'' (''Command-Shift-R'' សំរាប់ Mac)
 * '''IE(Internet Explorer):''' សង្កត់ [Ctrl] ឱ្យជាប់ រួចចុច ''Refresh''ប៊ូតុង ឬក៏ចុច ''Ctrl-F5''​។
 * '''Konqueror:''' ចុចប៊ូតុង  ''Reload'' ឬក៏ចុច ''F5''
 * '''Opera:''' សូមចុច  ''[Tools]→[Preferences]''​។",
@@ -2259,10 +2260,10 @@ $UNWATCHURL
 'protectlogpage'              => 'កំណត់ហេតុនៃការការពារ',
 'protectlogtext'              => 'ខាងក្រោមនេះជាបញ្ជីនៃទំព័រដែលត្រូវបានចាក់សោនិងដោះសោ។
 
-សូមមើល [[Special:ProtectedPages|បញ្ជីទំព័រត្រូវបានការពារ]]។',
+សូមមើល [[Special:ProtectedPages|បញ្ជីទំព័រត្រូវបានការពារ]] សំរាប់បញ្ជីការការពារទំព័រដែលកំពុងនៅមានសុពលភាពនៅពេលនេះ។',
 'protectedarticle'            => 'បានការពារ"[[$1]]"',
 'modifiedarticleprotection'   => 'បានផ្លាស់ប្តូរកម្រិតការពារនៃ"[[$1]]"',
-'unprotectedarticle'          => 'បានឈប់ការពារ៖ "[[$1]]"',
+'unprotectedarticle'          => 'ដកការការពារពី "[[$1]]"',
 'movedarticleprotection'      => 'បាន​ផ្លាស់​ប្ដូរ​ទី​តាំង​ការ​កំណត់​ការ​ការពារ​ពី"[[$2]]" ទៅ​ "[[$1]]"',
 'protect-title'               => 'ការពារ "$1"',
 'prot_1movedto2'              => 'បានប្តូរទីតាំង [[$1]] ទៅ [[$2]]',
@@ -2728,7 +2729,7 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 'tooltip-ca-viewsource'           => 'ទំព័រ​នេះ​បានត្រូវការពារ ។ អ្នកអាច​មើល​អក្សរកូដ​របស់វា ។',
 'tooltip-ca-history'              => 'កំណែកន្លងមករបស់ទំព័រនេះ ។',
 'tooltip-ca-protect'              => 'ការពារ​ទំព័រនេះ',
-'tooltip-ca-unprotect'            => 'លែង​ការ​ពារ​ទំព័រ​នេះ​',
+'tooltip-ca-unprotect'            => 'ផ្លាស់ប្ដូរការការពារទំព័រនេះ',
 'tooltip-ca-delete'               => 'លុបទំព័រនេះចេញ',
 'tooltip-ca-undelete'             => 'ស្ដារការកែប្រែនានាដែលត្រូវបានធ្វើចំពោះទំព័រនេះ មុនពេលដែលវាត្រូវបានគេលុបចោល',
 'tooltip-ca-move'                 => 'ប្ដូរទីតាំង​ទំព័រនេះ',

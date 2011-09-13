@@ -26,6 +26,7 @@
  * @author Manuel Menezes de Sequeira
  * @author Masked Rogue
  * @author McDutchie
+ * @author MetalBrasil
  * @author Minh Nguyen
  * @author Nuno Tavares
  * @author Paulo Juntas
@@ -319,7 +320,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notificar-me por correio electrónico também quando as edições forem menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de correio electrónico nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de utilizadores a vigiar',
-'tog-oldsig'                  => 'Antevisão da assinatura:',
+'tog-oldsig'                  => 'Assinatura existente:',
 'tog-fancysig'                => 'Tratar assinatura como texto wiki (sem link automático)',
 'tog-externaleditor'          => 'Por omissão, utilizar um editor externo (só para utilizadores avançados, exige configurações adicionais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-externaldiff'            => 'Por omissão, utilizar diferenças externas (só para utilizadores avançados, exige configurações adicionais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
@@ -715,8 +716,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'createaccountmail'          => 'por correio electrónico',
 'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'As palavras-chave que introduziu não são iguais.',
-'userexists'                 => 'O nome de utilizador que introduziu já existe.
-Escolha um nome diferente.',
+'userexists'                 => 'O nome de utilizador introduzido já existe.
+Por favor escolha um nome diferente.',
 'loginerror'                 => 'Erro de autenticação',
 'createaccounterror'         => 'Não foi possível criar a conta: $1',
 'nocookiesnew'               => "A conta de utilizador foi criada, mas neste momento não está autenticado.
@@ -1389,7 +1390,7 @@ Esta operação não pode ser desfeita.',
 'prefs-registration'            => 'Hora de registo:',
 'yourrealname'                  => 'Nome verdadeiro:',
 'yourlanguage'                  => 'Língua:',
-'yourvariant'                   => 'Variante',
+'yourvariant'                   => 'Variante da língua de conteúdo:',
 'yournick'                      => 'Assinatura:',
 'prefs-help-signature'          => 'Ao inserir comentários em páginas de discussão, assine-os colocando quatro tiles "<nowiki>~~~~</nowiki>" no fim dos comentários. Ao gravar, estes serão convertidos na sua assinatura mais a data e a hora da edição.',
 'badsig'                        => 'Assinatura inválida; verifique o código HTML utilizado.',
@@ -1443,7 +1444,7 @@ Também permite que outros entrem em contacto consigo através da sua página de
 'userrights-no-interwiki'      => 'Não tem permissões para alterar os privilégios de utilizadores noutras wikis.',
 'userrights-nodatabase'        => 'A base de dados $1 não existe ou não é uma base de dados local.',
 'userrights-nologin'           => 'Precisa [[Special:UserLogin|autenticar-se]] com uma conta de administrador para atribuir privilégios aos utilizadores.',
-'userrights-notallowed'        => 'A sua conta não tem permissões para conceder privilégios a utilizadores.',
+'userrights-notallowed'        => 'A sua conta não tem permissão para adicionar ou remover privilégios a utilizadores.',
 'userrights-changeable-col'    => 'Grupos que pode alterar',
 'userrights-unchangeable-col'  => 'Grupos que não pode alterar',
 
@@ -1819,8 +1820,7 @@ Verifique se o endereço está correcto e o site disponível, por favor.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Esta página especial mostra todos os ficheiros carregados.
-Por omissão, os últimos ficheiros carregados aparecem no topo da lista.
-Clique um cabeçalho de coluna para alterar a ordenação.',
+Quando filtrados pelo usuário, os últimos ficheiros carregados aparecem no topo da lista.',
 'listfiles_search_for'  => 'Pesquisar por nome de imagem:',
 'imgfile'               => 'ficheiro',
 'listfiles'             => 'Ficheiros',
@@ -2246,7 +2246,7 @@ Para comentários e pedidos de ajuda:
 'deletepage'             => 'Eliminar página',
 'confirm'                => 'Confirmar',
 'excontent'              => 'o conteúdo era: "$1"',
-'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era "[[Special:Contributions/$2|$2]]")',
+'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era [[Special:Contributions/$2|$2]]")',
 'exbeforeblank'          => 'o conteúdo antes de esvaziar era: "$1"',
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',
@@ -3169,9 +3169,9 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-orientation-3' => 'Rodado 180°',
 'exif-orientation-4' => 'Invertido na vertical',
 'exif-orientation-5' => 'Rodado 90º no sentido anti-horário e invertido na vertical',
-'exif-orientation-6' => 'Rodado 90° no sentido horário',
+'exif-orientation-6' => 'Rodado 90° no sentido anti-horário',
 'exif-orientation-7' => 'Rodado 90° no sentido horário e invertido na vertical',
-'exif-orientation-8' => 'Rodado 90° no sentido anti-horário',
+'exif-orientation-8' => 'Rodado 90° no sentido horário',
 
 'exif-planarconfiguration-1' => 'formato irregular',
 'exif-planarconfiguration-2' => 'formato plano',

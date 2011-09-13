@@ -33,6 +33,7 @@
  * @author Fibonacci
  * @author Fitoschido
  * @author Fluence
+ * @author Gustronico
  * @author Icvav
  * @author Imre
  * @author Jatrobat
@@ -347,7 +348,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notificarme también los cambios menores de páginas',
 'tog-enotifrevealaddr'        => 'Revelar mi dirección de correo electrónico en los correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar el número de usuarios que la vigilan',
-'tog-oldsig'                  => 'Vista previa de firma existente:',
+'tog-oldsig'                  => 'Firma actual:',
 'tog-fancysig'                => 'Tratar firma como wikitexto (sin un enlace automático)',
 'tog-externaleditor'          => 'Utilizar editor externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-externaldiff'            => 'Utilizar diff externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
@@ -739,10 +740,10 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'gotaccount'                 => '¿Ya tienes una cuenta? $1.',
 'gotaccountlink'             => 'Entrar',
 'createaccountmail'          => 'por correo electrónico',
-'createaccountreason'        => 'Razón:',
+'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Las contraseñas no coinciden.',
-'userexists'                 => 'El nombre indicado ya está en uso.
-Por favor, indica un nombre diferente.',
+'userexists'                 => 'El nombre de usuario indicado ya está en uso.
+Por favor escoge un nombre diferente.',
 'loginerror'                 => 'Error de inicio de sesión',
 'createaccounterror'         => 'No se pudo crear la cuenta: $1',
 'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero no has iniciado sesión.
@@ -1794,9 +1795,8 @@ Para óptima seguridad, img_auth.php está desactivado.',
 'upload_source_file' => ' (un archivo en tu disco)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Esta página muestra todos los archivos subidos.
-El último subido se muestra al principio de la lista de manera predeterminada.
-Al hacer clic en el encabezado de una columna se cambia el orden.',
+'listfiles-summary'     => 'Esta página especial muestra todos los archivos subidos.
+Cuando es filytrado por el usuario, sólo los archivos cargados por el usuario se muestran en su versión más reciente.',
 'listfiles_search_for'  => 'Buscar por nombre de imagen:',
 'imgfile'               => 'archivo',
 'listfiles'             => 'Lista de archivos',
@@ -2777,7 +2777,7 @@ Puedes ver su código fuente',
 'tooltip-ca-unprotect'            => 'Cambiar protección de esta página',
 'tooltip-ca-delete'               => 'Borrar esta página',
 'tooltip-ca-undelete'             => 'Restaurar las ediciones hechas a esta página antes de que fuese borrada',
-'tooltip-ca-move'                 => 'Trasladar (renombrar) esta página',
+'tooltip-ca-move'                 => 'Mover esta página',
 'tooltip-ca-watch'                => 'Añadir esta página a su lista de seguimiento',
 'tooltip-ca-unwatch'              => 'Borrar esta página de su lista de seguimiento',
 'tooltip-search'                  => 'Buscar en {{SITENAME}}',
@@ -3386,21 +3386,21 @@ $1",
 
 # Auto-summaries
 'autosumm-blank'   => 'Página blanqueada',
-'autosumm-replace' => "Página reemplazada por '$1'",
-'autoredircomment' => 'Redirigiendo a [[$1]]',
-'autosumm-new'     => "Página creada con '$1'",
+'autosumm-replace' => 'Página reemplazada por «$1»',
+'autoredircomment' => 'Página redirigida a [[$1]]',
+'autosumm-new'     => 'Página creada con «$1»',
 
 # Live preview
 'livepreview-loading' => 'Cargando…',
 'livepreview-ready'   => 'Cargando… ¡Listo!',
 'livepreview-failed'  => '¡La previsualización al vuelo falló!
 Prueba la previsualización normal.',
-'livepreview-error'   => 'La conexión no ha sido posible: $1 "$2"
-Intenta la previsualización normal.',
+'livepreview-error'   => 'No se pudo conectar:  $1  «$2».
+Intenta usar la previsualización normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} pueden no ser mostrados en esta lista.',
-'lag-warn-high'   => 'Debido a una alta latencia el servidor de base de datos, los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} pueden no ser mostrados en esta lista.',
+'lag-warn-normal' => 'Los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} podrían no mostrarse en esta lista.',
+'lag-warn-high'   => 'Debido a una alta latencia el servidor de base de datos, los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} podrían no mostrarse en esta lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tu lista de seguimiento tiene {{PLURAL:$1|una página |$1 páginas}}, excluyendo las páginas de discusión.',
@@ -3539,7 +3539,8 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 
 # Database error messages
 'dberr-header'      => 'Este wiki tiene un problema',
-'dberr-problems'    => 'Lo sentimos. Este sitio está experimentando dificultades técnicas.',
+'dberr-problems'    => 'Lo sentimos.
+Este sitio está experimentando dificultades técnicas.',
 'dberr-again'       => 'Prueba a recargar dentro de unos minutos.',
 'dberr-info'        => '(No se puede contactar con la base de datos del servidor: $1)',
 'dberr-usegoogle'   => 'Mientras tanto puedes probar buscando a través de Google.',

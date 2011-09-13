@@ -15,6 +15,7 @@
  * @author Michawiki
  * @author Mormegil
  * @author Palica
+ * @author Pitr2311
  * @author Ragimiri
  * @author Reedy
  * @author Rudko
@@ -305,7 +306,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Upozorniť ma emailom aj na drobné úpravy stránok',
 'tog-enotifrevealaddr'        => 'Zobraziť moju emailovú adresu v emailoch s upozorneniami',
 'tog-shownumberswatching'     => 'Zobraziť počet používateľov sledujúcich stránku',
-'tog-oldsig'                  => 'Náhľad súčasného podpisu:',
+'tog-oldsig'                  => 'Súčasný podpis:',
 'tog-fancysig'                => 'Považovať podpisy za wikitext (bez automatických odkazov)',
 'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [http://www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
 'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [http://www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
@@ -443,7 +444,7 @@ $messages = array(
 'vector-action-move'             => 'Presunúť',
 'vector-action-protect'          => 'Zamknúť',
 'vector-action-undelete'         => 'Obnoviť',
-'vector-action-unprotect'        => 'Odomknúť',
+'vector-action-unprotect'        => 'Zmeniť stav ochrany',
 'vector-simplesearch-preference' => 'Povoliť rozšírené návrhy hľadania (iba pre tému Vector)',
 'vector-view-create'             => 'Vytvoriť',
 'vector-view-edit'               => 'Upraviť',
@@ -479,8 +480,8 @@ $messages = array(
 'protect'           => 'Zamknúť',
 'protect_change'    => 'Zmeniť',
 'protectthispage'   => 'Zamknúť túto stránku',
-'unprotect'         => 'Odomknúť',
-'unprotectthispage' => 'Odomknúť túto stránku',
+'unprotect'         => 'Zmeniť stav ochrany',
+'unprotectthispage' => 'Zmeniť stav ochrany tejto stránky',
 'newpage'           => 'Nová stránka',
 'talkpage'          => 'Diskusia k stránke',
 'talkpagelinktext'  => 'Diskusia',
@@ -699,8 +700,8 @@ Nezabudnite si nastaviť svoje [[Special:Preferences|používateľské nastaveni
 'createaccountmail'          => 'e-mailom',
 'createaccountreason'        => 'Dôvod:',
 'badretype'                  => 'Zadané heslá nie sú rovnaké.',
-'userexists'                 => 'Zadané používateľské meno už používa niekto iný.
-Zadajte iné meno.',
+'userexists'                 => 'Zadané používateľské meno sa už používa.
+Zvoľte si prosím iné meno.',
 'loginerror'                 => 'Chyba pri prihlasovaní',
 'createaccounterror'         => 'Nepodarilo sa vytvoriť účet: $1',
 'nocookiesnew'               => 'Používateľské konto bolo vytvorené, ale nie ste prihlásený. {{SITENAME}} používa cookies na prihlásenie. Máte cookies vypnuté. Zapnite ich a potom sa prihláste pomocou vášho nového používateľského mena a hesla.',
@@ -887,8 +888,12 @@ alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'userpage-userdoesnotexist-view'   => 'Používateľský účet „$1“ nie je registrovaný.',
 'blocked-notice-logextract'        => 'Tento používateľ je momentálne zablokovaný.
 Dolu je pre informáciu posledná položka zo záznamu blokovaní:',
-'clearyourcache'                   => "'''Poznámka: Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.'''
-'''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''Comand-R'' na Mac); '''Konqueror:''': kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; '''Opera''' vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''; '''Internet Explorer:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5'';",
+'clearyourcache'                   => "'''Poznámka:''' Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.
+* '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''Comand-R'' na Mac)
+* '''Google Chrome:''' stlačte ''Ctrl-Shift-R'' (''Command-Shift-R'' na Mac)
+* '''Internet Explorer:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5''
+* '''Konqueror:''' kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''
+* '''Opera:''' vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''",
 'usercssyoucanpreview'             => "'''Tip:''' Váš nový CSS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'userjsyoucanpreview'              => "'''Tip:''' Váš nový JS pred uložením otestujete stlačením tlačidla „{{int:showpreview}}“.",
 'usercsspreview'                   => "'''Nezabudnite, že toto je iba náhľad vášho používateľského CSS, ešte nebolo uložené!'''",
@@ -1396,7 +1401,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'userrights-no-interwiki'      => 'Nemáte oprávnenie upravovať práva používateľov na iných wiki.',
 'userrights-nodatabase'        => 'Databáza $1 neexistuje alebo nie je lokálna.',
 'userrights-nologin'           => 'Aby ste mohli prideľovať používateľom oprávnenia, musíte sa [[Special:UserLogin|prihlásiť]] s účtom správcu.',
-'userrights-notallowed'        => 'Váš účet nemá oprávnenia prideľovať používateľom oprávnenia.',
+'userrights-notallowed'        => 'Váš účet nemá oprávnenie prideľovať alebo odoberať používateľom oprávnenia.',
 'userrights-changeable-col'    => 'Skupiny, ktoré môžete zmeniť',
 'userrights-unchangeable-col'  => 'Skupiny, ktoré nemôžete zmeniť',
 
@@ -1763,8 +1768,7 @@ Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Táto špeciálna stránka zobrazuje všetky nahrané súbory.
-Posledné nahrané súbory sa štandardne zobrazujú na vrchu.
-Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
+Pri filtrovaní podľa používateľa sa zobrazia iba súbory, ktorých najnovšiu verziu nahral dotyčný používateľ.',
 'listfiles_search_for'  => 'Hľadať názov súboru:',
 'imgfile'               => 'súbor',
 'listfiles'             => 'Zoznam obrázkov',
@@ -2233,11 +2237,11 @@ Prosím, stlačte "naspäť", obnovte stránku, z ktorej ste sa sem dostali, a s
 
 # Protect
 'protectlogpage'              => 'Záznam zamknutí',
-'protectlogtext'              => 'Nižšie je zoznam zamknutí/odomknutí stránok.
-Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných zamknutí]].',
+'protectlogtext'              => 'Nižšie je zoznam zmien stavu ochrany stránok.
+Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných ochrán stránok]].',
 'protectedarticle'            => 'zamyká „[[$1]]“',
 'modifiedarticleprotection'   => 'zmenená úroveň ochrany „[[$1]]“',
-'unprotectedarticle'          => 'odomyká „[[$1]]“',
+'unprotectedarticle'          => 'odstránil ochranu stránky „[[$1]]“',
 'movedarticleprotection'      => 'nastavenia zamknutia stránky presunuté z „[[$2]]” na „[[$1]]”',
 'protect-title'               => 'Zamykám „$1“',
 'prot_1movedto2'              => '[[$1]] premiestnená na [[$2]]',
@@ -2384,7 +2388,7 @@ Nižšie si môžete pozrieť najnovšiu položku záznamu blokovaní:',
 'nolinkshere-ns'           => "Žiadne stránky neodkazujú na '''[[:$1]]''' vo zvolenom mennom priestore.",
 'isredirect'               => 'presmerovacia stránka',
 'istemplate'               => 'použitá',
-'isimage'                  => 'odkaz na obrázok',
+'isimage'                  => 'odkaz na súbor',
 'whatlinkshere-prev'       => '{{PLURAL:$1|predchádzajúca|predchádzajúce $1|predchádzajúcich $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|nasledujúca|nasledujúce $1|nasledujúcich $1}}',
 'whatlinkshere-links'      => '← odkazy',
@@ -2748,7 +2752,7 @@ Uložte ho na svoj disk a nahrajte sem.',
 'tooltip-ca-viewsource'           => 'Táto stránka je zamknutá. Môžete však vidieť jej zdrojový text.',
 'tooltip-ca-history'              => 'Minulé verzie tejto stránky.',
 'tooltip-ca-protect'              => 'Zamknúť túto stránku',
-'tooltip-ca-unprotect'            => 'Odomknúť túto stránku',
+'tooltip-ca-unprotect'            => 'Zmeniť stav ochrany tejto stránky',
 'tooltip-ca-delete'               => 'Vymazať túto stránku',
 'tooltip-ca-undelete'             => 'Obnoviť úpravy tejto stránky až po dobu, kedy bola vymazaná',
 'tooltip-ca-move'                 => 'Presunúť túto stránku',
@@ -3103,9 +3107,9 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-orientation-3' => 'Otočená o 180°',
 'exif-orientation-4' => 'Vertikálne prevrátená',
 'exif-orientation-5' => 'Otočená o 90° proti smeru hodinových ručičiek a vertikálne prevrátená',
-'exif-orientation-6' => 'Otočená o 90° v smere hodinových ručičiek',
+'exif-orientation-6' => 'Otočená o 90° proti smeru hodinových ručičiek',
 'exif-orientation-7' => 'Otočená o 90° v smere hodinových ručičiek a vertikálne prevrátená',
-'exif-orientation-8' => 'Otočená o 90° proti smeru hodinových ručičiek',
+'exif-orientation-8' => 'Otočená o 90° v smere hodinových ručičiek',
 
 'exif-planarconfiguration-1' => 'masívny formát',
 'exif-planarconfiguration-2' => 'rovinný formát',

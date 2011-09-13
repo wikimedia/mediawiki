@@ -1,5 +1,5 @@
 <?php
-/** Megleno-Romanian (Cyrillic) (Vlăheşte (Cyrillic))
+/** Megleno-Romanian (Cyrillic script) (Влахесте)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net

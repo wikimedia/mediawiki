@@ -2078,6 +2078,7 @@ L'adreça electronica qu'avètz indicada dins [[Special:Preferences|vòstras pre
 # Watchlist
 'watchlist'            => 'Ma lista de seguiment',
 'mywatchlist'          => 'Lista de seguiment',
+'watchlistfor2'        => 'Per $1 ($2)',
 'nowatchlist'          => "Vòstra lista de seguiment conten pas cap d'article.",
 'watchlistanontext'    => 'Per poder afichar o editar los elements de vòstra lista de seguiment, vos cal vos $1.',
 'watchnologin'         => 'Vos sètz pas identificat(ada)',
@@ -2199,7 +2200,8 @@ La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3
 'rollback-success'  => 'Anullacion de las modificacions de $1 ; retorn a la version de $2.',
 
 # Edit tokens
-'sessionfailure' => 'Vòstra sesilha de connexion sembla aver de problèmas ;
+'sessionfailure-title' => 'La session capitèt mal',
+'sessionfailure'       => 'Vòstra sesilha de connexion sembla aver de problèmas ;
 aquesta accion es estada anullada en prevencion d’un piratatge de sesilha.
 Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi ensajatz tornarmai.',
 
@@ -2331,6 +2333,7 @@ $1",
 'sp-contributions-newbies-title'       => 'Las contribucions de l’utilizaire pels comptes novèls',
 'sp-contributions-blocklog'            => 'Istoric dels blocatges',
 'sp-contributions-deleted'             => 'contribucions suprimidas',
+'sp-contributions-uploads'             => 'importat',
 'sp-contributions-logs'                => 'jornals',
 'sp-contributions-talk'                => 'Discutir',
 'sp-contributions-userrights'          => 'gerir los dreches',
@@ -2339,6 +2342,7 @@ $1",
 La darrièra intrada del jornal dels blocatges es indicada çaijós a títol d’informacion :',
 'sp-contributions-search'              => 'Cercar las contribucions',
 'sp-contributions-username'            => 'Adreça IP o nom d’utilizaire :',
+'sp-contributions-toponly'             => 'Mostrar sonque las contribucions que son lo darrièr cambiament',
 'sp-contributions-submit'              => 'Cercar',
 
 # What links here
@@ -2350,7 +2354,7 @@ La darrièra intrada del jornal dels blocatges es indicada çaijós a títol d�
 'nolinkshere-ns'           => "Cap de pagina conten pas de ligam cap a '''[[:$1]]''' dins l’espaci de nom causit.",
 'isredirect'               => 'pagina de redireccion',
 'istemplate'               => 'inclusion',
-'isimage'                  => 'ligam del fichièr',
+'isimage'                  => 'Paginas ligadas al fichièr',
 'whatlinkshere-prev'       => '{{PLURAL:$1|precedent|$1 precedents}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|seguent|$1 seguents}}',
 'whatlinkshere-links'      => '← ligams',
@@ -2409,7 +2413,7 @@ a partir d'una adreça IP precedentament blocada.",
 'ipusubmit'                       => 'Suprimir aqueste blocatge',
 'unblocked'                       => '[[User:$1|$1]] es estat desblocat',
 'unblocked-id'                    => 'Lo blocatge $1 es estat levat',
-'ipblocklist'                     => 'Adreças IP e dels utilizaires blocats',
+'ipblocklist'                     => 'Utilizaires o adreças IP blocats',
 'ipblocklist-legend'              => 'Cercar un utilizaire blocat',
 'ipblocklist-username'            => 'Nom de l’utilizaire o adreça IP :',
 'ipblocklist-sh-userblocks'       => '$1 los comptes blocats',

@@ -1785,7 +1785,7 @@ This cannot be undone.',
 'prefs-registration-date-time'  => '$1', # only translate this message to other languages if you have to change it
 'yourrealname'                  => 'Real name:',
 'yourlanguage'                  => 'Language:',
-'yourvariant'                   => 'Content language variant:',
+'yourvariant'                   => 'Content language variant:', # only translate this message to other languages if you have to change it
 'yournick'                      => 'New signature:',
 'prefs-help-signature'          => 'Comments on talk pages should be signed with "<nowiki>~~~~</nowiki>" which will be converted into your signature and a timestamp.',
 'badsig'                        => 'Invalid raw signature.

@@ -145,7 +145,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Gyrru e-bost ataf hefyd ar gyfer golygiadau bychain i dudalennau',
 'tog-enotifrevealaddr'        => 'Datguddio fy nghyfeiriad e-bost mewn e-byst hysbysu',
 'tog-shownumberswatching'     => "Dangos y nifer o ddefnyddwyr sy'n gwylio",
-'tog-oldsig'                  => "Rhagolwg o'r llofnod presennol:",
+'tog-oldsig'                  => 'Llofnod cyfredol:',
 'tog-fancysig'                => 'Trin y llofnod fel testun wici (heb gyswllt wici awtomatig)',
 'tog-externaleditor'          => 'Defnyddio golygydd allanol trwy ragosodiad (ar gyfer arbenigwyr yn unig; mae arno angen gosodiadau arbennig ar eich cyfrifiadur. [http://www.mediawiki.org/wiki/Manual:External_editors Rhagor o wybodaeth.])',
 'tog-externaldiff'            => 'Defnyddio "external diff" trwy ragosodiad (ar gyfer arbenigwyr yn unig; mae arno angen gosodiadau arbennig ar eich cyfrifiadur. [http://www.mediawiki.org/wiki/Manual:External_editors Rhagor o wybodaeth.])',
@@ -537,7 +537,8 @@ Cofiwch osod y [[Special:Preferences|dewisiadau]] sydd fwyaf hwylus i chi ar {{S
 'createaccountmail'          => 'trwy e-bost',
 'createaccountreason'        => 'Rheswm:',
 'badretype'                  => "Nid yw'r cyfrineiriau'n union yr un fath.",
-'userexists'                 => 'Mae rhywun arall wedi dewis yr enw defnyddiwr hwn. Dewiswch un arall os gwelwch yn dda.',
+'userexists'                 => 'Mae rhywun arall wedi dewis yr enw defnyddiwr hwn. 
+Dewiswch un arall os gwelwch yn dda.',
 'loginerror'                 => 'Problem mewngofnodi',
 'createaccounterror'         => "Ni lwyddwyd i greu'r cyfrif: $1",
 'nocookiesnew'               => "Mae'r cyfrif defnyddiwr wedi cael ei greu, ond nid ydych wedi mewngofnodi. Mae {{SITENAME}} yn defnyddio cwcis wrth i ddefnyddwyr fewngofnodi. Rydych chi wedi analluogi cwcis. Mewngofnodwch eto gyda'ch enw defnyddiwr a'ch cyfrinair newydd os gwelwch yn dda, ar ôl galluogi cwcis.",
@@ -866,20 +867,20 @@ Gall fod iddi gael ei dileu neu ei hailenwi.
 Gallwch [[Special:Search|chwilio'r]] wici am dudalennau eraill perthnasol.",
 
 # Revision deletion
-'rev-deleted-comment'         => '(dilewyd crynodeb y golygiad)',
+'rev-deleted-comment'         => '(dilëwyd crynodeb y golygiad)',
 'rev-deleted-user'            => '(enw defnyddiwr wedi ei ddiddymu)',
 'rev-deleted-event'           => '(tynnwyd gweithred y lòg)',
 'rev-deleted-user-contribs'   => '[tynnwyd enw defnyddiwr neu gyfeiriad IP i ffwrdd - ni ddangosir y golygiad ar y rhestr cyfraniadau]',
-'rev-deleted-text-permission' => "'''Dilewyd''' y diwygiad hwn o'r dudalen.
-Hwyrach bod manylion pellach ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileu].",
+'rev-deleted-text-permission' => "'''Dilëwyd''' y diwygiad hwn o'r dudalen.
+Mae manylion ar gael yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileuon].",
 'rev-deleted-text-unhide'     => "Cafodd y diwygiad hwn o'r dudalen ei '''ddileu'''.
 Gweler cofnod y dileu ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].
 Gan eich bod yn weinyddwr gallwch [$1 weld y diwygiad] os y mynnwch.",
 'rev-suppressed-text-unhide'  => "Mae’r diwygiad hwn o’r dudalen wedi cael ei '''guddio'''.
 Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].
 Gan eich bod yn weinyddwr cewch [$1 weld y golygiad] o hyd os y dymunwch.",
-'rev-deleted-text-view'       => "'''Dilewyd''' y diwygiad hwn o'r dudalen.
-Gan eich bod yn weinyddwr gallwch ei weld; gall fod manylion yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileu].",
+'rev-deleted-text-view'       => "'''Dilëwyd''' y diwygiad hwn o'r dudalen.
+Gan mai gweinyddwr rydych chi, gallwch ei weld; mae manylion ar gael yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileuon].",
 'rev-suppressed-text-view'    => "Mae’r diwygiad hwn o’r dudalen wedi cael ei '''guddio'''.
 Gan eich bod yn weinyddwr cewch weld y golygiad;  mae'r manylion ar gael ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].",
 'rev-deleted-no-diff'         => "Ni allwch gymharu'r diwygiadau oherwydd bod un ohonynt wedi cael ei '''ddileu'''.
@@ -1171,7 +1172,7 @@ Ni allwch ddadwneud y weithred hon.",
 'prefs-registration'            => "Amser dechrau'r cyfrif:",
 'yourrealname'                  => 'Eich enw cywir*',
 'yourlanguage'                  => 'Iaith y rhyngwyneb',
-'yourvariant'                   => 'Amrywiad',
+'yourvariant'                   => 'Amrywiolyn iaith cynnwys:',
 'yournick'                      => 'Eich llysenw (fel llofnod):',
 'prefs-help-signature'          => 'Dylid arwyddo sylwadau ar dudalennau sgwrs gyda "<nowiki>~~~~</nowiki>". Fe ymddengys hwn fel eich enw ac amser y sylw.',
 'badsig'                        => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
@@ -1225,7 +1226,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'userrights-no-interwiki'      => "Nid yw'r gallu ganddoch i newid galluoedd defnyddwyr ar wicïau eraill.",
 'userrights-nodatabase'        => "Nid yw'r bas data $1 yn bod neu nid yw'n un lleol.",
 'userrights-nologin'           => 'Rhaid i chi [[Special:UserLogin|fewngofnodi]] ar gyfrif gweinyddwr er mwyn pennu galluoedd defnyddwyr.',
-'userrights-notallowed'        => "Nid yw'r gallu i bennu galluoedd defnyddwyr ynghlwm wrth eich cyfrif defnyddiwr.",
+'userrights-notallowed'        => 'Nid oes gan eich cyfrif y caniatâd priodol i ychwanegu neu dynnu hawliau defnyddwyr.',
 'userrights-changeable-col'    => 'Grwpiau y gallwch eu newid',
 'userrights-unchangeable-col'  => 'Grwpiau na allwch eu newid',
 
@@ -1582,8 +1583,7 @@ Efallai yr hoffech rhoi cynnig arni ar adeg llai prysur.',
 
 # Special:ListFiles
 'listfiles-summary'     => "Rhestr yr holl ffeiliau sydd wedi eu huwchlwytho sydd ar y dudalen hon.
-Trefnir y rhestr yn ôl amser uwchlwytho, gyda'r diweddaraf ar flaen y rhestr.
-Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
+Pan hidlir y rhestr yn ôl defnyddiwr, yr unig rhai a ddangosir o blith y ffeiliau a uwchlwythwyd gan y defnyddiwr, yw'r rhai sydd yn parhau i fod yn ddiwygiad diweddaraf o'r ffeil i gael ei huwchlwytho.",
 'listfiles_search_for'  => "Chwilio am enw'r ddelwedd:",
 'imgfile'               => 'ffeil',
 'listfiles'             => "Rhestr o'r holl ffeiliau",
@@ -2251,7 +2251,7 @@ Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a
 'ipbenableautoblock'              => "Rhwystro'n awtomatig y cyfeiriad IP diwethaf a ddefnyddiodd y defnyddiwr hwn, ac unrhyw gyfeiriad IP arall y bydd yn ceisio'i ddefnyddio i olygu ohono.",
 'ipbsubmit'                       => "Rhwystro'r defnyddiwr hwn",
 'ipbother'                        => 'Cyfnod arall:',
-'ipboptions'                      => 'o 2 awr:2 hours,o ddiwrnod:1 day,o 3 niwrnod:3 days,o wythnos:1 week,o bythefnos:2 weeks,o fis:1 month,o 3 mis:3 months,o 6 mis:6 months,o flwyddyn:1 year,amhenodol:infinite',
+'ipboptions'                      => '2 awr:2 hours,ddiwrnod:1 day,3 diwrnod:3 days,wythnos:1 week,bythefnos:2 weeks,fis:1 month,3 mis:3 months,6 mis:6 months,flwyddyn:1 year,amhenodol:infinite',
 'ipbotheroption'                  => 'arall',
 'ipbotherreason'                  => 'Rheswm arall/ychwanegol:',
 'ipbhidename'                     => "Cuddio'r enw defnyddiwr rhag ymddangos ar restri a golygiadau",
@@ -2901,9 +2901,9 @@ Ymateb yr amledd gofodol',
 'exif-orientation-3' => 'Wedi ei droi 180°',
 'exif-orientation-4' => 'Wedi troi wyneb i waered',
 'exif-orientation-5' => 'Wedi troi 90° yn erbyn y cloc a thu chwith yn fertigol',
-'exif-orientation-6' => "Wedi troi 90° gyda'r cloc",
+'exif-orientation-6' => 'Cylchdrowyd yn 90° gwrthglocwedd',
 'exif-orientation-7' => "Wedi troi 90° gyda'r cloc a thu chwith yn fertigol",
-'exif-orientation-8' => "Wedi troi 90° yn groes i'r cloc",
+'exif-orientation-8' => 'Cylchdrowyd yn 90° clocwedd',
 
 'exif-planarconfiguration-1' => 'fformat talpiog',
 'exif-planarconfiguration-2' => 'fformat planar',
@@ -3113,7 +3113,7 @@ Bydd y côd cadarnhau yn dod i ben am $4.',
 $1",
 'trackbackremove'   => '([$1 Dileu])',
 'trackbacklink'     => "Cyswllt 'trackback'",
-'trackbackdeleteok' => "Dilewyd y cyswllt 'trackback' yn llwyddiannus.",
+'trackbackdeleteok' => 'Dilëwyd y cyswllt ôlrhain yn llwyddiannus.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Rhybudd''': Dilëwyd y dudalen wedi i chi ddechrau ei golygu!",

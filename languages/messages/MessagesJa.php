@@ -35,6 +35,7 @@
  * @author Mzm5zbC3
  * @author Ohgi
  * @author Penn Station
+ * @author Schu
  * @author Suisui
  * @author VZP10224
  * @author Vigorous action
@@ -372,7 +373,7 @@ $messages = array(
 'tog-enotifminoredits'        => '細部の編集でもメールを受け取る',
 'tog-enotifrevealaddr'        => '通知メールで自分のメールアドレスを明示する',
 'tog-shownumberswatching'     => 'ページをウォッチしている利用者数を表示する',
-'tog-oldsig'                  => '現在の署名のプレビュー：',
+'tog-oldsig'                  => '既存の署名：',
 'tog-fancysig'                => '署名をウィキ文として扱う（自動でリンクしない）',
 'tog-externaleditor'          => '既定で編集に外部アプリケーションを使う（上級者向け、コンピューターに特殊な設定が必要。[http://www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
 'tog-externaldiff'            => '差分表示に外部アプリケーションを使う（上級者向け、コンピューターに特殊な設定が必要。[http://www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
@@ -545,7 +546,7 @@ $messages = array(
 'protect'           => '保護',
 'protect_change'    => '設定変更',
 'protectthispage'   => 'このページを保護',
-'unprotect'         => '保護の変更',
+'unprotect'         => '保護の設定変更',
 'unprotectthispage' => 'このページの保護を変更',
 'newpage'           => '新規ページ',
 'talkpage'          => 'このページについて話し合う',
@@ -769,7 +770,7 @@ $2',
 'createaccountmail'          => 'メールで送信',
 'createaccountreason'        => '理由：',
 'badretype'                  => '入力したパスワードが一致しません。',
-'userexists'                 => '入力された利用者名はすでに使われています。
+'userexists'                 => '入力された利用者名はすでに使用されています。
 ほかの名前を選んでください。',
 'loginerror'                 => 'ログインのエラー',
 'createaccounterror'         => 'アカウントを作成できませんでした： $1',
@@ -875,8 +876,9 @@ $2',
 'math_tip'        => '数式 (LaTeX)',
 'nowiki_sample'   => 'ここにマークアップを無効にするテキストを入力します',
 'nowiki_tip'      => 'ウィキ書式を無視',
+'image_sample'    => 'サンプル.jpg',
 'image_tip'       => 'ファイルの埋め込み',
-'media_sample'    => '例.ogg',
+'media_sample'    => 'サンプル.ogg',
 'media_tip'       => 'ファイルへのリンク',
 'sig_tip'         => '時刻印つきの署名',
 'hr_tip'          => '水平線を挿入（利用は控えめに）',
@@ -1495,7 +1497,7 @@ HTMLタグを見直してください。',
 'userrights-no-interwiki'      => '他ウィキ上における利用者権限の編集権限はありません。',
 'userrights-nodatabase'        => 'データベース$1は存在しないか、ローカル上にありません。',
 'userrights-nologin'           => '利用者権限が割り当てられている管理者権限アカウントで[[Special:UserLogin|ログイン]]する必要があります。',
-'userrights-notallowed'        => '利用者権限を変更する権限がありません。',
+'userrights-notallowed'        => 'あなたのアカウントには利用者権限を追加又は削除する権限はありません。',
 'userrights-changeable-col'    => '変更可能なグループ',
 'userrights-unchangeable-col'  => '変更できないグループ',
 
@@ -1877,8 +1879,7 @@ URLが正しいものであるか、指定したサイトが現在使用可能�
 
 # Special:ListFiles
 'listfiles-summary'     => 'この特別ページでは、アップロードされたすべてのファイルを表示します。
-既定では一番最近にアップロードされたファイルが一覧の上部に表示されていまます。
-各列のヘッダ部分をクリックすると、並び順を変更できます。',
+利用者によりフィルタ処理された場合、その利用者がアップロードした最新バージョンのファイルのみが表示されます。',
 'listfiles_search_for'  => 'メディア名で検索：',
 'imgfile'               => 'ファイル',
 'listfiles'             => 'ファイル一覧',
@@ -3059,9 +3060,10 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告：'''このファイルは悪意のあるコードを含んでいる可能性があります。
-実行するとシステムが棄権にさらされる可能性があります。",
+実行するとシステムが危険にさらされる可能性があります。",
 'imagemaxsize'         => "画像のサイズ制限：<br />''（ファイルページに対する）''",
 'thumbsize'            => 'サムネイルの大きさ：',
+'widthheight'          => '$1 × $2',
 'widthheightpage'      => '$1×$2、$3ページ',
 'file-info'            => 'ファイルサイズ：$1、MIMEタイプ：$2',
 'file-info-size'       => '$1×$2ピクセル、ファイルサイズ：$3、MIMEタイプ：$4',
@@ -3087,6 +3089,9 @@ $1',
 'bydate'                => '日付順',
 'sp-newimages-showfrom' => '$1の$2以降の新しいファイルを表示',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims' => '$1、 $2 × $3',
+
 # Bad image list
 'bad_image_list' => '書式は以下の通りです：
 
@@ -3105,8 +3110,39 @@ Variants for Chinese language
 'variantname-zh-cn'   => '中国簡体',
 'variantname-zh-tw'   => '台湾正体',
 'variantname-zh-hk'   => '香港正体',
+'variantname-zh-mo'   => '中国(マカオ)',
 'variantname-zh-sg'   => 'シンガポール簡体',
-'variantname-zh'      => '無変換',
+'variantname-zh-my'   => '中国(マレーシア)',
+'variantname-zh'      => '中文',
+
+# Variants for Gan language
+'variantname-gan-hans' => 'ガガウズ(hans)',
+'variantname-gan-hant' => 'ガガウズ(hant)',
+'variantname-gan'      => 'ガガウズ',
+
+# Variants for Serbian language
+'variantname-sr-ec' => 'セルビア(キリル)',
+'variantname-sr-el' => 'セルビア(ラテン)',
+'variantname-sr'    => 'セルビア',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => 'カザフ(カザフスタン)',
+'variantname-kk-tr'   => 'カザフ(トルコ)',
+'variantname-kk-cn'   => 'カザフ(中国)',
+'variantname-kk-cyrl' => 'カザフ(キリル)',
+'variantname-kk-latn' => 'カザフ(ラテン)',
+'variantname-kk-arab' => 'カザフ(アラブ)',
+'variantname-kk'      => 'カザフ',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'クルド(アラブ)',
+'variantname-ku-latn' => 'クルド(ラテン)',
+'variantname-ku'      => 'クルド',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => 'タジク(キリル)',
+'variantname-tg-latn' => 'タジク(ラテン)',
+'variantname-tg'      => 'タジク',
 
 # Metadata
 'metadata'          => 'メタデータ',
@@ -3256,9 +3292,9 @@ Variants for Chinese language
 'exif-orientation-3' => '180°回転',
 'exif-orientation-4' => '上下反転',
 'exif-orientation-5' => '反時計回りに90°回転 上下反転',
-'exif-orientation-6' => '時計回りに90°回転',
+'exif-orientation-6' => '90° 回転 CCW',
 'exif-orientation-7' => '時計回りに90°回転 上下反転',
-'exif-orientation-8' => '反時計回りに90°回転',
+'exif-orientation-8' => '90° 回転 CW',
 
 'exif-planarconfiguration-1' => '点順次フォーマット',
 'exif-planarconfiguration-2' => '面順次フォーマット',

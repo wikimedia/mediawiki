@@ -1684,22 +1684,23 @@ $1',
 'upload-http-error'         => 'HTTP-virhe: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Pääsy estetty',
-'img-auth-nopathinfo'   => 'PATH_INFO puuttuu.
+'img-auth-accessdenied'     => 'Pääsy estetty',
+'img-auth-nopathinfo'       => 'PATH_INFO puuttuu.
 Palvelintasi ei ole asetettu välittämään tätä tietoa.
 Se saattaa olla CGI-pohjainen eikä voi tukea img_authia.
 Katso http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Pyydetty polku ei ole asetuksissa tiedostojen tallennushakemistona.',
-'img-auth-badtitle'     => '”$1” ei kelpaa oikean otsikon muodostamiseen.',
-'img-auth-nologinnWL'   => 'Et ole kirjautunut sisään ja tiedosto ”$1” ei ole sallittujen tiedostojen luettelossa.',
-'img-auth-nofile'       => 'Tiedostoa ”$1” ei ole.',
-'img-auth-isdir'        => 'Yrität päästä hakemistoon ”$1”.
+'img-auth-notindir'         => 'Pyydetty polku ei ole asetuksissa tiedostojen tallennushakemistona.',
+'img-auth-badtitle'         => '”$1” ei kelpaa oikean otsikon muodostamiseen.',
+'img-auth-nologinnWL'       => 'Et ole kirjautunut sisään ja tiedosto ”$1” ei ole sallittujen tiedostojen luettelossa.',
+'img-auth-nofile'           => 'Tiedostoa ”$1” ei ole.',
+'img-auth-isdir'            => 'Yrität päästä hakemistoon ”$1”.
 Vain tiedostoihin pääsy on sallittu.',
-'img-auth-streaming'    => 'Toistetaan tiedostoa ”$1”.',
-'img-auth-public'       => 'Img_auth.php:n tarkoitus on näyttää tiedostoja yksityisessä wikissä.
+'img-auth-streaming'        => 'Toistetaan tiedostoa ”$1”.',
+'img-auth-public'           => 'Img_auth.php:n tarkoitus on näyttää tiedostoja yksityisessä wikissä.
 Tämä wiki on asennettu julkiseksi wikiksi.
 Parhaan turvallisuuden vuoksi img_auth.php on poissa käytöstä.',
-'img-auth-noread'       => 'Käyttäjillä ei ole oikeutta lukea tiedostoa ”$1”.',
+'img-auth-noread'           => 'Käyttäjillä ei ole oikeutta lukea tiedostoa ”$1”.',
+'img-auth-bad-query-string' => 'Osoitteessa on epäkelpo query string -määritys.',
 
 # HTTP errors
 'http-invalid-url'      => 'Kelpaamaton URL: $1',
@@ -1725,7 +1726,8 @@ Parhaan turvallisuuden vuoksi img_auth.php on poissa käytöstä.',
 'upload_source_file' => ' (tiedosto tietokoneella)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Tämä toimintosivu näyttää kaikki tallennetut tiedostot. Viimeisin tallennettu tiedosto on listalla ensimmäisenä. Ryhmittelyperustetta voi vaihtaa napsauttamalla sarakenimeä.',
+'listfiles-summary'     => 'Tämä toimintosivu näyttää kaikki tallennetut tiedostot.
+Jos suodatusperusteena käytetään käyttäjää, tuloksissa näytetään vain tiedostot, joiden viimeisimmän version tallentajana oli valittu käyttäjä.',
 'listfiles_search_for'  => 'Nimihaku',
 'imgfile'               => 'tiedosto',
 'listfiles'             => 'Tiedostoluettelo',
@@ -2664,7 +2666,7 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'tooltip-pt-logout'               => 'Kirjaudu ulos',
 'tooltip-ca-talk'                 => 'Keskustele sisällöstä',
 'tooltip-ca-edit'                 => 'Muokkaa tätä sivua',
-'tooltip-ca-addsection'           => 'Lisää uusi osio',
+'tooltip-ca-addsection'           => 'Aloita keskustelu uudesta aiheesta',
 'tooltip-ca-viewsource'           => 'Näytä sivun lähdekoodi',
 'tooltip-ca-history'              => 'Sivun aikaisemmat versiot',
 'tooltip-ca-protect'              => 'Suojaa tämä sivu',
@@ -3077,6 +3079,8 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-sensingmethod-5' => 'Sarjavärikenno',
 'exif-sensingmethod-7' => 'Trilineaarikenno',
 'exif-sensingmethod-8' => 'Sarjalineaarivärikenno',
+
+'exif-filesource-3' => 'Digitaalikamera',
 
 'exif-scenetype-1' => 'Suoraan valokuvattu kuva',
 

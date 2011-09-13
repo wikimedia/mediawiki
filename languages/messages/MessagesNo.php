@@ -649,7 +649,8 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'createaccountmail'          => 'per e-post',
 'createaccountreason'        => 'Årsak:',
 'badretype'                  => 'Passordene samsvarte ikke.',
-'userexists'                 => 'Brukernavnet er allerede i bruk. Velg et nytt.',
+'userexists'                 => 'Brukernavnet er allerede i bruk.
+Velg et annet brukernavn.',
 'loginerror'                 => 'Innloggingsfeil',
 'createaccounterror'         => 'Kunne ikke opprette konto: $1',
 'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem p åfor å kunne logge på med ditt nye brukernavn og passord.',
@@ -908,9 +909,9 @@ Det siste loggelementet er oppgitt under som referanse:",
 'permissionserrors'                => 'Tilgangsfeil',
 'permissionserrorstext'            => 'Du har ikke tillatelse til å utføre dette, av følgende {{PLURAL:$1|grunn|grunner}}:',
 'permissionserrorstext-withaction' => 'Du har ikke tillatelse til å $2 {{PLURAL:$1|på grunn av|av følgende grunner}}:',
-'recreate-moveddeleted-warn'       => "Advarsel: Du gjenskaper en side som tidligere har blitt slettet.'''
+'recreate-moveddeleted-warn'       => "Advarsel: Du er i ferd med å opprette en side som tidligere har blitt slettet.'''
 
-Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden.
+Du bør vurdere om det er passende å fortsette å redigere denne siden.
 Slette- og flytteloggen for denne siden gjengis her:",
 'moveddeleted-notice'              => 'Denne siden har blitt slettet.
 Slette- og flytteloggen vises nedenfor.',
@@ -1071,7 +1072,7 @@ Du har ikke tilgang til det.',
 'revdelete-modify-no-access'  => 'Feil under endring av objekt datert $2, $1: dette objektet har blitt markert "begrenset".
 Du har ikke tilgang til det.',
 'revdelete-modify-missing'    => 'Feil under endring av objekt ID $1: det mangler i databasen!',
-'revdelete-no-change'         => "'''Advarsel:''' objektet datert $2, $1 hadde allerede etterspurt synlighetsinnstillinger.",
+'revdelete-no-change'         => "'''Advarsel:''' objektet datert $2 $1 hadde allerede synlighetsinnstillingene du forespurte.",
 'revdelete-concurrent-change' => 'Feil under endring av objektet datert $2, $1: dets status ser ut til å ha blitt endret av noen andre mens du prøvde å endre det.
 Vennligst sjekk loggen.',
 'revdelete-only-restricted'   => 'Feil ved gjemming av objekt datert $2, $1: du kan ikke skjule objekt fra å vises for administratorer uten også å velge en av de andre visningsalternativene.',
@@ -1699,7 +1700,8 @@ For best mulig sikkerhet er img_auth.php slått av.',
 'upload_source_file' => ' (en fil på din datamaskin)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Denne spesialsiden viser alle opplastede filer. De sist opplastede filene vises på toppen som standard. Klikk på en kolonneoverskrift for å endre sorteringsmetode.',
+'listfiles-summary'     => 'Denne spesialsiden viser alle opplastede filer.
+Når den filtreres av en bruker, vises bare de sist opplastede versjonene av filen.',
 'listfiles_search_for'  => 'Søk etter filnavn:',
 'imgfile'               => 'fil',
 'listfiles'             => 'Filliste',

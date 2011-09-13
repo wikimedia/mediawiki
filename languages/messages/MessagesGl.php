@@ -236,7 +236,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Enviádeme tamén unha mensaxe de correo electrónico cando se produzan edicións pequenas nas páxinas',
 'tog-enotifrevealaddr'        => 'Revelar o meu enderezo de correo electrónico nos correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar o número de usuarios que están a vixiar',
-'tog-oldsig'                  => 'Vista previa da sinatura actual:',
+'tog-oldsig'                  => 'Sinatura actual:',
 'tog-fancysig'                => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
 'tog-externaleditor'          => 'Usar un editor externo por omisión (só para expertos, precisa duns parámetros especiais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
 'tog-externaldiff'            => 'Usar as diferenzas externas por omisión (só para expertos, precisa duns parámetros especiais no seu computador [http://www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
@@ -364,7 +364,7 @@ $messages = array(
 'qbpageinfo'     => 'Contexto',
 'qbmyoptions'    => 'As miñas páxinas',
 'qbspecialpages' => 'Páxinas especiais',
-'faq'            => 'PMF',
+'faq'            => 'Preguntas máis frecuentes',
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
@@ -374,7 +374,7 @@ $messages = array(
 'vector-action-protect'          => 'Protexer',
 'vector-action-undelete'         => 'Restaurar',
 'vector-action-unprotect'        => 'Cambiar a protección',
-'vector-simplesearch-preference' => 'Activar as suxestións de procura melloradas (soamente na aparencia vector)',
+'vector-simplesearch-preference' => 'Activar as suxestións de procura melloradas (soamente na aparencia Vector)',
 'vector-view-create'             => 'Crear',
 'vector-view-edit'               => 'Editar',
 'vector-view-history'            => 'Ver o historial',
@@ -631,8 +631,8 @@ Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENA
 'gotaccountlink'             => 'Acceda ao sistema',
 'createaccountmail'          => 'Por correo electrónico',
 'createaccountreason'        => 'Motivo:',
-'badretype'                  => 'Os contrasinais que inseriu non coinciden entre si.',
-'userexists'                 => 'O nome de usuario que pretende usar xa está en uso.
+'badretype'                  => 'Os contrasinais que inseriu non coinciden.',
+'userexists'                 => 'O nome de usuario que inseriu xa está en uso.
 Escolla un nome diferente.',
 'loginerror'                 => 'Erro ao acceder ao sistema',
 'createaccounterror'         => 'Non se puido crear a conta: $1',
@@ -871,7 +871,7 @@ Pode mesturar os seus cambios co texto existente.
 '''Só''' se gardará o texto na área superior cando prema \"{{int:savearticle}}\".",
 'yourtext'                         => 'O seu texto',
 'storedversion'                    => 'Versión gardada',
-'nonunicodebrowser'                => "'''ATENCIÓN: o seu navegador non soporta Unicode.'''
+'nonunicodebrowser'                => "'''Atención: O seu navegador non soporta o Unicode.'''
 Existe unha solución que lle permite editar páxinas con seguridade: os caracteres non incluídos no ASCII aparecerán na caixa de edición como códigos hexadecimais.",
 'editingold'                       => "'''Atención: Está editando unha revisión vella desta páxina.'''
 Se a garda, perderanse os cambios realizados tras esta revisión.",
@@ -884,16 +884,16 @@ Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría 
 '''NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!'''",
 'longpageerror'                    => "'''Erro: o texto que pretende gardar ocupa $1 kilobytes, e existe un límite dun máximo de $2 kilobytes.'''
 Polo tanto, non se pode gardar.",
-'readonlywarning'                  => "'''ATENCIÓN: a base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.
-Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.'''
+'readonlywarning'                  => "'''Atención: A base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.'''
+Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.
 
 O administrador que a fechou deu esta explicación: $1",
-'protectedpagewarning'             => "'''Aviso: esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan editar.'''
+'protectedpagewarning'             => "'''Aviso: Esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan editar.'''
 Velaquí está a última entrada no rexistro, por se quere consultala:",
-'semiprotectedpagewarning'         => "'''Nota:''' esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan editar.
+'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan editar.
 Velaquí está a última entrada no rexistro, por se quere consultala:",
-'cascadeprotectedwarning'          => "'''Aviso:''' esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina protexida|nas seguintes páxinas protexidas}} coa opción \"protección en serie\" activada:",
-'titleprotectedwarning'            => "'''Aviso: esta páxina foi protexida de xeito que [[Special:ListGroupRights|só algúns usuarios]] a poidan crear.'''
+'cascadeprotectedwarning'          => "'''Aviso:''' Esta páxina foi protexida de xeito que só a poden editar os usuarios con privilexios de administrador debido a que está incluída {{PLURAL:\$1|na seguinte páxina protexida|nas seguintes páxinas protexidas}} coa opción \"protección en serie\" activada:",
+'titleprotectedwarning'            => "'''Aviso: Esta páxina foi protexida de xeito que [[Special:ListGroupRights|só algúns usuarios]] a poidan crear.'''
 Velaquí está a última entrada no rexistro, por se quere consultala:",
 'templatesused'                    => '{{PLURAL:$1|Modelo usado|Modelos usados}} nesta páxina:',
 'templatesusedpreview'             => '{{PLURAL:$1|Modelo usado|Modelos usados}} nesta vista previa:',
@@ -928,15 +928,15 @@ Semella que foi borrada.',
 Esta xa existe.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Aviso: esta páxina contén moitos analizadores de funcións de chamadas moi caros.
+'expensive-parserfunction-warning'        => "'''Aviso:''' Esta páxina contén demasiados analizadores de funcións de chamadas.
 
-Debe ter menos {{PLURAL:$2|dunha chamada|de $2 chamadas}}, e agora hai $1.',
+Debe ter menos {{PLURAL:$2|dunha chamada|de $2 chamadas}}, e agora hai $1.",
 'expensive-parserfunction-category'       => 'Páxinas con moitos analizadores de funcións de chamadas moi caros',
 'post-expand-template-inclusion-warning'  => 'Aviso: o tamaño do modelo incluído é moi grande.
 Algúns modelos non serán incluídos.',
 'post-expand-template-inclusion-category' => 'Páxinas onde o tamaño dos modelos incluídos é excedido',
-'post-expand-template-argument-warning'   => 'Aviso: esta páxina contén, polo menos, un argumento dun modelo que ten un tamaño e expansión moi grande.
-Estes argumentos serán omitidos.',
+'post-expand-template-argument-warning'   => "'''Aviso:''' Esta páxina contén, polo menos, un argumento de modelo que ten un tamaño e expansión moi grande.
+Estes argumentos foron omitidos.",
 'post-expand-template-argument-category'  => 'Páxinas que conteñen argumentos de modelo omitidos',
 'parser-template-loop-warning'            => 'Detectouse un modelo en bucle: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Excedeuse o límite da profundidade do recurso do modelo ($1)',
@@ -1295,7 +1295,7 @@ Este cambio non se poderá desfacer.',
 'prefs-registration'            => 'Data e hora de rexistro:',
 'yourrealname'                  => 'Nome real:',
 'yourlanguage'                  => 'Lingua da interface:',
-'yourvariant'                   => 'Variante de lingua:',
+'yourvariant'                   => 'Variante de lingua para os contidos:',
 'yournick'                      => 'Sinatura:',
 'prefs-help-signature'          => 'Os comentarios feitos nas páxinas de conversa deben asinarse con catro tiles ("<nowiki>~~~~</nowiki>"), que se converterán na súa sinatura con data e hora.',
 'badsig'                        => 'Sinatura non válida; comprobe o código HTML utilizado.',
@@ -1305,7 +1305,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'gender-unknown'                => 'Non especificado',
 'gender-male'                   => 'Masculino',
 'gender-female'                 => 'Feminino',
-'prefs-help-gender'             => 'Opcional: usado para xerar correctamente o sexo por parte do software. Esta información será pública.',
+'prefs-help-gender'             => 'Opcional: Usado para xerar correctamente o sexo por parte do software. Esta información será pública.',
 'email'                         => 'Correo electrónico',
 'prefs-help-realname'           => 'O seu nome real é opcional, pero se escolle dalo utilizarase para atribuírlle o seu traballo.',
 'prefs-help-email'              => 'O enderezo de correo electrónico é opcional, pero permite que se lle envíe un contrasinal novo se se esquece del.
@@ -1348,7 +1348,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'userrights-no-interwiki'      => 'Non dispón de permiso para editar dereitos de usuarios noutros wikis.',
 'userrights-nodatabase'        => 'A base de datos $1 non existe ou non é local.',
 'userrights-nologin'           => 'Debe [[Special:UserLogin|acceder ao sistema]] cunta conta de administrador para asignar dereitos de usuario.',
-'userrights-notallowed'        => 'A súa conta non dispón dos permisos necesarios para asignar dereitos de usuario.',
+'userrights-notallowed'        => 'A súa conta non dispón dos permisos necesarios para asignar ou retirar dereitos de usuario.',
 'userrights-changeable-col'    => 'Os grupos que pode cambiar',
 'userrights-unchangeable-col'  => 'Os grupos que non pode cambiar',
 
@@ -1722,9 +1722,8 @@ Tamén pode reintentalo cando haxa menos actividade.',
 'upload_source_file' => '  (un ficheiro no seu ordenador)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Esta páxina especial amosa todos os ficheiros cargados.
-Por omisión, os ficheiros enviados máis recentemente aparecen no alto da lista.
-Premendo nunha cabeceira da columna cambia a ordenación.',
+'listfiles-summary'     => 'Esta páxina especial mostra todos os ficheiros cargados.
+Ao filtrar a lista por usuario, soamente se mostran as últimas versións dos ficheiros cargados polo usuario.',
 'listfiles_search_for'  => 'Buscar polo nome do ficheiro multimedia:',
 'imgfile'               => 'ficheiro',
 'listfiles'             => 'Lista de imaxes',
@@ -2076,7 +2075,7 @@ O correo electrónico que inseriu [[Special:Preferences|nas súas preferencias]]
 'mywatchlist'          => 'A miña lista de vixilancia',
 'watchlistfor2'        => 'De $1 $2',
 'nowatchlist'          => 'Non ten elementos na súa lista de vixilancia.',
-'watchlistanontext'    => 'Faga o favor de $1 no sistema para ver ou editar os elementos da súa lista de vixilancia.',
+'watchlistanontext'    => 'Faga o favor de $1 ao sistema para ver ou editar os elementos da súa lista de vixilancia.',
 'watchnologin'         => 'Non accedeu ao sistema',
 'watchnologintext'     => 'Debe [[Special:UserLogin|acceder ao sistema]] para modificar a súa lista de vixilancia.',
 'addedwatch'           => 'Engadido á lista de vixilancia',
@@ -2591,9 +2590,9 @@ Quérea eliminar para facer sitio para mover?',
 'imageinvalidfilename'         => 'O nome da imaxe é inválido',
 'fix-double-redirects'         => 'Actualizar calquera redirección que apunte cara ao título orixinal',
 'move-leave-redirect'          => 'Deixar unha redirección detrás',
-'protectedpagemovewarning'     => "'''Aviso:''' esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan mover.
+'protectedpagemovewarning'     => "'''Aviso:''' Esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan mover.
 Velaquí está a última entrada no rexistro, por se quere consultala:",
-'semiprotectedpagemovewarning' => "'''Nota:''' esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan mover.
+'semiprotectedpagemovewarning' => "'''Nota:''' Esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan mover.
 Velaquí está a última entrada no rexistro, por se quere consultala:",
 'move-over-sharedrepo'         => '== O ficheiro xa existe ==
 "[[:$1]]" xa existe nun repositorio compartido. Ao mover un ficheiro a este título sobrescribirase o ficheiro compartido.',
@@ -3070,10 +3069,10 @@ Os demais agocharanse por omisión.
 'exif-orientation-2' => 'Volteada horizontalmente',
 'exif-orientation-3' => 'Rotada 180°',
 'exif-orientation-4' => 'Volteada verticalmente',
-'exif-orientation-5' => 'Rotada 90° CCW e volteada verticalmente',
-'exif-orientation-6' => 'Rotada 90° CW',
-'exif-orientation-7' => 'Rotada 90° CW e volteada verticalmente',
-'exif-orientation-8' => 'Rotada 90° CCW',
+'exif-orientation-5' => 'Rotada 90° en sentido antihorario e volteada verticalmente',
+'exif-orientation-6' => 'Rotada 90° en sentido antihorario',
+'exif-orientation-7' => 'Rotada 90° en sentido horario e volteada verticalmente',
+'exif-orientation-8' => 'Rotada 90° en sentido horario',
 
 'exif-planarconfiguration-1' => 'Formato de paquete de píxeles',
 'exif-planarconfiguration-2' => 'Formato de planos',
@@ -3299,14 +3298,14 @@ $1',
 'trackbackdeleteok' => 'O trackback foi eliminado sen problemas.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Aviso:''' esta páxina foi borrada despois de que comezase a editala!",
+'deletedwhileediting' => "'''Aviso:''' Esta páxina foi borrada despois de que comezase a editala!",
 'confirmrecreate'     => "O usuario [[User:$1|$1]] ([[User talk:$1|conversa]]) borrou este artigo despois de que vostede comezara a editalo, dando o seguinte motivo:
 : ''$2''
 Por favor, confirme que realmente quere recrear esta páxina.",
 'recreate'            => 'Recrear',
 
 # action=purge
-'confirm_purge_button' => 'Si',
+'confirm_purge_button' => 'Aceptar',
 'confirm-purge-top'    => 'Quere limpar a memoria caché desta páxina?',
 'confirm-purge-bottom' => 'Ao purgar unha páxina, límpase a memoria caché e isto obriga tamén a que apareza a versión máis recente da páxina.',
 

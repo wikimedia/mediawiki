@@ -15,6 +15,7 @@
  * @author Irwangatot
  * @author IvanLanin
  * @author Iwan Novirion
+ * @author J Subhi
  * @author Kenrick95
  * @author McDutchie
  * @author Meursault2004
@@ -469,7 +470,7 @@ $messages = array(
 'vector-action-move'             => 'Pindahkan',
 'vector-action-protect'          => 'Lindungi',
 'vector-action-undelete'         => 'Pembatalan penghapusan',
-'vector-action-unprotect'        => 'Pelindungan',
+'vector-action-unprotect'        => 'Ubah perlindungan',
 'vector-simplesearch-preference' => 'Aktifkan pencarian saran yang disempurnakan (hanya kulit Vector)',
 'vector-view-create'             => 'Buat',
 'vector-view-edit'               => 'Sunting',
@@ -505,8 +506,8 @@ $messages = array(
 'protect'           => 'Lindungi',
 'protect_change'    => 'ubah',
 'protectthispage'   => 'Lindungi halaman ini',
-'unprotect'         => 'Pelindungan',
-'unprotectthispage' => 'Buka perlindungan halaman ini',
+'unprotect'         => 'Ubah perlindungan',
+'unprotectthispage' => 'Ubah perlindungan halaman ini',
 'newpage'           => 'Halaman baru',
 'talkpage'          => 'Bicarakan halaman ini',
 'talkpagelinktext'  => 'Bicara',
@@ -720,8 +721,8 @@ Akun Anda telah dibuat. Jangan lupa mengatur konfigurasi [[Special:Preferences|p
 'createaccountmail'          => 'melalui surel',
 'createaccountreason'        => 'Alasan:',
 'badretype'                  => 'Kata sandi yang Anda masukkan salah.',
-'userexists'                 => 'Nama pengguna yang Anda pilih sudah dipakai oleh orang lain.
-Silakan pilih nama yang lain.',
+'userexists'                 => 'Nama pengguna yang dimasukkan telah digunakan.
+Silakan tentukan nama yang lain.',
 'loginerror'                 => 'Kesalahan masuk log',
 'createaccounterror'         => 'Tidak dapat membuat akun: $1',
 'nocookiesnew'               => "Akun pengguna telah dibuat, tetapi Anda belum masuk log. {{SITENAME}} menggunakan ''cookies'' untuk log pengguna. ''Cookies'' pada penjelajah web Anda dimatikan. Silakan aktifkan dan masuk log kembali dengan nama pengguna dan kata sandi Anda.",
@@ -897,10 +898,12 @@ Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman
 'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
 'blocked-notice-logextract'        => 'Pengguna ini sedang diblokir.
 Entri log pemblokiran terakhir tersedia di bawah ini sebagai rujukan.',
-'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda mungkin perlu membersihkan singgahan penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-R'' (''Cmd-R'' pada Mac);
-'''Konqueror:''': tekan ''F5'';
-'''Opera''' bersihkan singgahan melalui menu ''Tools → Preferences'';
-'''Internet Explorer:''' tekan ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan, Anda mungkin harus memotong singgahan peramban Anda untuk melihat perubahan.
+* '''Firefox / Safari:''' tahan ''Shift'' sambil mengklik ''Reload'', atau tekan ''Ctrl-F5'' atau ''Ctrl-R'' (''Command-R'' di Mac)
+* '''Google Chrome:''' tekan ''Ctrl-Shift-R'' (''Command-Shift-R'' di Mac)
+* '''Internet Explorer:''' tahan ''Ctrl'' sambl mengklik ''Refresh'', atau tekan ''Ctrl-F5''
+* '''Konqueror:''' klik ''Reload'' atau tekan ''F5''
+* '''Opera:''' bersihkan singgahan di ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji CSS baru Anda sebelum menyimpannya.",
 'userjsyoucanpreview'              => "'''Tips:''' Gunakan tombol \"{{int:showpreview}}\" untuk menguji JS baru Anda sebelum menyimpannya.",
 'usercsspreview'                   => "'''Ingatlah bahwa Anda sedang menampilkan pratayang dari CSS Anda.
@@ -1407,7 +1410,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'userrights-no-interwiki'      => 'Anda tidak memiliki hak untuk mengubah hak pengguna di wiki yang lain.',
 'userrights-nodatabase'        => 'Basis data $1 tidak ada atau bukan lokal.',
 'userrights-nologin'           => 'Anda harus [[Special:UserLogin|masuk log]] dengan menggunakan akun pengurus untuk dapat mengubah hak pengguna.',
-'userrights-notallowed'        => 'Anda tidak berhak untuk mengubah hak pengguna',
+'userrights-notallowed'        => 'Akun Anda tidak berhak untuk menambahkan atau membuang hak pengguna.',
 'userrights-changeable-col'    => 'Kelompok yang dapat Anda ubah',
 'userrights-unchangeable-col'  => 'Kelompok yang tidak dapat Anda ubah',
 
@@ -1453,7 +1456,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-reupload-shared'       => 'Menolak berkas-berkas pada penyimpanan media lokal bersama',
 'right-upload_by_url'         => 'Memuatkan berkas dari sebuah alamat URL',
 'right-purge'                 => 'Menghapus singgahan suatu halaman tanpa halaman konfirmasi',
-'right-autoconfirmed'         => 'Menyunting halaman yang semi dilindungi',
+'right-autoconfirmed'         => 'Menyunting halaman yang semidilindungi',
 'right-bot'                   => 'Diperlakukan sebagai sebuah proses otomatis',
 'right-nominornewtalk'        => 'Ketiadaan suntingan kecil di halaman pembicaraan memicu tampilan pesan baru',
 'right-apihighlimits'         => 'Menggunakan batasan yang lebih tinggi dalam kueri API',
@@ -1754,9 +1757,8 @@ Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
 'upload_source_file' => ' (suatu berkas di komputer Anda)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Halaman istimewa ini menampilkan semua berkas yang telah dimuat.
-Secara baku, berkas yang terakhir dimuat berada pada urutan teratas.
-Klik pada kepala kolom untuk mengubah urutan.',
+'listfiles-summary'     => 'Halaman istimewa ini menampilkan semua berkas yang telah diunggah.
+Ketika disaring oleh pengguna, hanya vesi berkas terbaru dari berkas yang pengguna unggah yang ditampilkan.',
 'listfiles_search_for'  => 'Cari nama berkas:',
 'imgfile'               => 'berkas',
 'listfiles'             => 'Daftar berkas',
@@ -2231,11 +2233,11 @@ Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:p
 
 # Protect
 'protectlogpage'              => 'Log pelindungan',
-'protectlogtext'              => 'Di bawah ini adalah log pelindungan halaman dan pembatalannya.
-Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar terkini.',
+'protectlogtext'              => 'Di bawah ini adalah daftar perubahan terhadap perlindungan halaman.
+Lihat [[Special:ProtectedPages|daftar halaman terlindungi]] untuk daftar perlindungan halaman terkini.',
 'protectedarticle'            => 'melindungi "[[$1]]"',
 'modifiedarticleprotection'   => 'mengubah tingkat pelindungan "[[$1]]"',
-'unprotectedarticle'          => 'menghilangkan pelindungan "[[$1]]"',
+'unprotectedarticle'          => 'menghilangkan perlindungan dari "[[$1]]"',
 'movedarticleprotection'      => 'memindahkan pengaturan proteksi dari "[[$2]]" ke "[[$1]]"',
 'protect-title'               => 'Melindungi "$1"',
 'prot_1movedto2'              => '[[$1]] dipindahkan ke [[$2]]',
@@ -2720,7 +2722,7 @@ Simpan ke komputer Anda dan unggah ke sini.',
 'tooltip-ca-viewsource'           => 'Halaman ini dilindungi. Anda hanya dapat melihat sumbernya.',
 'tooltip-ca-history'              => 'Versi-versi sebelumnya dari halaman ini.',
 'tooltip-ca-protect'              => 'Lindungi halaman ini',
-'tooltip-ca-unprotect'            => 'Buka pelindungan halaman ini',
+'tooltip-ca-unprotect'            => 'Ubah perlindungan halaman ini',
 'tooltip-ca-delete'               => 'Hapus halaman ini',
 'tooltip-ca-undelete'             => 'Kembalikan suntingan ke halaman ini sebelum halaman ini dihapus',
 'tooltip-ca-move'                 => 'Pindahkan halaman ini',
@@ -3022,7 +3024,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-exposuremode'                => 'Mode pajanan',
 'exif-whitebalance'                => 'Keseimbangan putih',
 'exif-digitalzoomratio'            => 'Rasio pembesaran digital',
-'exif-focallengthin35mmfilm'       => 'Panjang fokus pada fil 35 mm',
+'exif-focallengthin35mmfilm'       => 'Panjang fokus pada film 35 mm',
 'exif-scenecapturetype'            => 'Tipe penangkapan',
 'exif-gaincontrol'                 => 'Kontrol pemandangan',
 'exif-contrast'                    => 'Kontras',

@@ -1,5 +1,5 @@
 <?php
-/** Serbo-Croatian (Srpskohrvatski / Српскохрватски)
+/** Serbo-Croatian (Srpskohrvatski)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -193,7 +193,7 @@ $messages = array(
 'vector-action-move'             => 'Preusmjeri',
 'vector-action-protect'          => 'Zaštiti',
 'vector-action-undelete'         => 'Vrati obrisano',
-'vector-action-unprotect'        => 'Oslobodi od zaštite',
+'vector-action-unprotect'        => 'Promijeni zaštitu',
 'vector-simplesearch-preference' => 'Omogući napredne sugestije pretrage (samo vector skin)',
 'vector-view-create'             => 'Napravi',
 'vector-view-edit'               => 'Uredi',
@@ -229,8 +229,8 @@ $messages = array(
 'protect'           => 'Zaštiti',
 'protect_change'    => 'promijeni',
 'protectthispage'   => 'Zaštiti ovu stranicu',
-'unprotect'         => 'Odštiti',
-'unprotectthispage' => 'Odštiti ovu stranicu',
+'unprotect'         => 'Promijeni zaštitu',
+'unprotectthispage' => 'Promijeni zaštitu za ovu stranicu',
 'newpage'           => 'Nova stranica',
 'talkpage'          => 'Razgovaraj o ovoj stranici',
 'talkpagelinktext'  => 'Razgovor',
@@ -452,8 +452,8 @@ Ne zaboravite izmijeniti vlastite [[Special:Preferences|{{SITENAME}} postavke]].
 'createaccountmail'          => 'e-mailom',
 'createaccountreason'        => 'Razlog:',
 'badretype'                  => 'Lozinke koje ste unijeli se ne poklapaju.',
-'userexists'                 => 'Korisničko ime koje ste unijeli je već u upotrebi.
-Molimo Vas da izaberete drugo ime.',
+'userexists'                 => 'Uneseno korisničko ime već je u upotrebi.
+Unesite neko drugo ime.',
 'loginerror'                 => 'Greška pri prijavljivanju',
 'createaccounterror'         => 'Ne može se napraviti račun: $1',
 'nocookiesnew'               => "Korisnički nalog je napravljen, ali niste prijavljeni.
@@ -645,11 +645,12 @@ Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'userpage-userdoesnotexist-view'   => 'Korisnički račun "$1" nije registrovan.',
 'blocked-notice-logextract'        => 'Ovaj korisnik je trenutno blokiran.
 Posljednje stavke evidencije blokiranja možete pogledati ispod:',
-'clearyourcache'                   => "'''Pažnja: Nakon što snimite izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
-'''Mozilla / Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili ''Ctrl-R'' ili ''Ctrl-F5'' (''Command-R'' na Macu);
-'''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5'';
-'''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences'';
-'''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Napomena:''' Nakon snimanja možda ćete trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
+* '''Firefox / Safari:''' držite ''Shift'' i kliknite ''Reload'', ili pritisnite bilo ''Ctrl-F5'' ili ''Ctrl-R'' (''Command-R'' na Macu)
+* '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na Macu)
+* '''Internet Explorer:''' držite ''Ctrl'' i kliknite ''Refresh'', ili pritisnite ''Ctrl-F5''
+* '''Konqueror:''' kliknite ''Reload'' ili pritisnite ''F5''
+* '''Opera:''' očistite međuspremnik u ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Sugestija:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi CSS prije nego što ga snimite.",
 'userjsyoucanpreview'              => "'''Sugestija:''' Koristite 'Prikaži izgled' dugme da testirate svoj novi JS prije nego što ga snimite.",
 'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
@@ -1169,7 +1170,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'userrights-no-interwiki'      => 'Nemate dopuštenja da uređujete korisnička prava na drugim wikijima.',
 'userrights-nodatabase'        => 'Baza podataka $1 ne postoji ili nije lokalna baza.',
 'userrights-nologin'           => 'Morate se [[Special:UserLogin|prijaviti]] sa administratorskim računom da bi ste mogli postavljati korisnička prava.',
-'userrights-notallowed'        => 'Vaš korisnički račun nema privilegije da dodaje prava korisnika.',
+'userrights-notallowed'        => 'Vaš račun Vam ne daje dozvolu da postavljate i uklanjate korisnička prava.',
 'userrights-changeable-col'    => 'Grupe koje možete mijenjati',
 'userrights-unchangeable-col'  => 'Grupe koje ne možete mijenjati',
 
@@ -1530,9 +1531,8 @@ Možda možete pokušati kada bude manje opterećenje.',
 'upload_source_file' => '(datoteka na Vašem kompjuteru)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Ova specijalna stranica prikazuje sve postavljene datoteke.
-Uobičajeno je da posljednja postavljena datoteka bude prikazana na vrhu spiska.
-Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
+'listfiles-summary'     => 'Ova posebna stranica pokazuje sve postavljene datoteke.
+Kad je filtriran po korisniku, popis prikazuje samo one datoteke čiju je posljednju verziju postavio taj korisnik.',
 'listfiles_search_for'  => 'Traži ime medija:',
 'imgfile'               => 'datoteka',
 'listfiles'             => 'Spisak slika',
@@ -2011,11 +2011,11 @@ vraćeno na posljednju verziju koju je snimio $2.',
 
 # Protect
 'protectlogpage'              => 'Registar zaštite',
-'protectlogtext'              => 'Ispod je spisak zaštićenja i od-zaštićenja stranica.
-Vidi [[Special:ProtectedPages|spisak zaštićenih stranica]] za spisak trenutno operativnih zaštita stranica.',
+'protectlogtext'              => 'Ispod je spisak promjena zaštićenja stranice.
+Pogledajte [[Special:ProtectedPages|spisak zaštićenih stranica]] za pregled trenutno operativnih zaštita stranica.',
 'protectedarticle'            => '"[[$1]]" zaštićeno',
 'modifiedarticleprotection'   => 'promijenjen nivo zaštite za "[[$1]]"',
-'unprotectedarticle'          => 'odštićena "[[$1]]"',
+'unprotectedarticle'          => 'uklonjena zaštita za "[[$1]]"',
 'movedarticleprotection'      => 'podešavanja zaštite premještena sa "[[$2]]" na "[[$1]]"',
 'protect-title'               => 'Promjena nivoa zaštite za "$1"',
 'prot_1movedto2'              => '[[$1]] premješten na [[$2]]',
@@ -2534,7 +2534,7 @@ Molimo da prije snimanja koristite dugme za pretpregled',
 Možete vidjeti njen izvor',
 'tooltip-ca-history'              => 'Prethodne verzije ove stranice',
 'tooltip-ca-protect'              => 'Zaštiti ovu stranicu',
-'tooltip-ca-unprotect'            => 'Odštiti ovu stranicu',
+'tooltip-ca-unprotect'            => 'Promijeni zaštitu za ovu stranicu',
 'tooltip-ca-delete'               => 'Izbriši ovu stranicu',
 'tooltip-ca-undelete'             => 'Vratite izmjene koje su načinjene prije brisanja stranice',
 'tooltip-ca-move'                 => 'Premjesti ovu stranicu',

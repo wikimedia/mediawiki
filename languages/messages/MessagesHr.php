@@ -468,7 +468,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'vector-action-move'             => 'Premjesti',
 'vector-action-protect'          => 'Zaštiti',
 'vector-action-undelete'         => 'Vrati',
-'vector-action-unprotect'        => 'Ukloni zaštitu',
+'vector-action-unprotect'        => 'Promijeni zaštitu',
 'vector-simplesearch-preference' => 'Omogući poboljšane prijedloge za pretraživanje (samo izgled Vector)',
 'vector-view-create'             => 'Započni',
 'vector-view-edit'               => 'Uredi',
@@ -504,8 +504,8 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'protect'           => 'Zaštiti',
 'protect_change'    => 'promijeni',
 'protectthispage'   => 'Zaštiti ovu stranicu',
-'unprotect'         => 'Ukloni zaštitu',
-'unprotectthispage' => 'Ukloni zaštitu s ove stranice',
+'unprotect'         => 'Promijeni zaštitu',
+'unprotectthispage' => 'Promijeni zaštitu ove stranice',
 'newpage'           => 'Nova stranica',
 'talkpage'          => 'Razgovor o ovoj stranici',
 'talkpagelinktext'  => 'Razgovor',
@@ -900,8 +900,12 @@ ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'userpage-userdoesnotexist-view'   => 'Suradnički račun "$1" nije registriran.',
 'blocked-notice-logextract'        => 'Ovaj suradnik je trenutačno blokiran.
 Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
-'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
-'''Mozilla / Firefox / Safari:''' držite ''Shift'' i pritisnite ''Reload'', ili pritisnite ''Ctrl-F5'' ili ''Ctrl-R'' (''Cmd-R'' na Apple Macu); '''Konqueror:''' samo pritisnite dugme ''Reload'' ili pritisnite ''F5''; '''Opera:''' očistiti cache u ''Tools → Preferences;'' '''Internet Explorer:''' držite ''Ctrl'' i pritisnite ''Refresh'', ili pritisnite ''Ctrl-F5.''",
+'clearyourcache'                   => "'''Napomena:''' Nakon snimanja možda ćete trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
+* '''Firefox / Safari:''' držite ''Shift'' i kliknite ''Reload'', ili pritisnite bilo ''Ctrl-F5'' ili ''Ctrl-R'' (''Command-R'' na Macu)
+* '''Google Chrome:''' pritisnite ''Ctrl-Shift-R'' (''Command-Shift-R'' na Macu)
+* '''Internet Explorer:''' držite ''Ctrl'' i kliknite ''Refresh'', ili pritisnite ''Ctrl-F5''
+* '''Konqueror:''' kliknite ''Reload'' ili pritisnite ''F5''
+* '''Opera:''' očistite međuspremnik u ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Savjet:''' Rabite dugme \"{{int:showpreview}}\" za testiranje svog CSS prije snimanja.",
 'userjsyoucanpreview'              => "'''Savjet:''' Rabite dugme \"{{int:showpreview}}\" za testiranje svog novog JavaScripta prije snimanja.",
 'usercsspreview'                   => "'''Ne zaboravite: samo isprobavate/pregledavate svoj suradnički CSS. Još nije snimljen!'''",
@@ -1745,8 +1749,7 @@ Za optimalnu sigurnost, img_auth.php je onemogućena.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ova posebna stranica pokazuje sve postavljene datoteke.
-Na vrhu popisa se nalaze najnovije postavljene datoteke.
-Poredak datoteka mijenja se pritiskom na naslov stupca.',
+Kad je filtriran po korisniku, popis prikazuje samo one datoteke čiju posljednju inačicu je postavio taj korisnik.',
 'listfiles_search_for'  => 'Traži ime slike:',
 'imgfile'               => 'datoteka',
 'listfiles'             => 'Popis slika',
@@ -3330,7 +3333,7 @@ Potvrdite namjeru vraćanja ovog članka.",
 # Watchlist editor
 'watchlistedit-numitems'       => 'Vaš popis praćenja sadrži {{PLURAL:$1|1 stranicu|$1 stranica}}, bez stranica za razgovor.',
 'watchlistedit-noitems'        => 'Vaš popis praćenja je prazan.',
-'watchlistedit-normal-title'   => 'Uredi popis praćenih stranica',
+'watchlistedit-normal-title'   => 'Uredi popis praćenja',
 'watchlistedit-normal-legend'  => 'Ukloni stranice iz popisa praćenja',
 'watchlistedit-normal-explain' => 'Prikazane su stranice na Vašem popisu praćenja.
 Da uklonite stranicu s popisa praćenja, označite kućicu kraj nje i kliknite gumb "{{int:Watchlistedit-normal-submit}}".

@@ -15,6 +15,7 @@
  * @author KalmerE.
  * @author Ker
  * @author Kyng
+ * @author Oop
  * @author Pikne
  * @author Silvar
  * @author Võrok
@@ -306,7 +307,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Teata e-posti teel ka pisiparandustest',
 'tog-enotifrevealaddr'        => 'Näita minu e-posti aadressi teavitus-e-kirjades',
 'tog-shownumberswatching'     => 'Näita jälgivate kasutajate hulka',
-'tog-oldsig'                  => 'Praeguse allkirja eelvaade:',
+'tog-oldsig'                  => 'Praegune allkiri:',
 'tog-fancysig'                => 'Kasuta vikiteksti vormingus allkirja (ilma automaatse lingita kasutajalehele)',
 'tog-externaleditor'          => 'Kasuta vaikimisi välist redaktorit (ainult asjatundjatele, tarvis arvuti eriseadistust – [http://www.mediawiki.org/wiki/Manual:External_editors lisateave])',
 'tog-externaldiff'            => 'Kasuta vaikimisi välist võrdlusvahendit (ainult asjatundjatele, tarvis arvuti eriseadistust – [http://www.mediawiki.org/wiki/Manual:External_editors lisateave])',
@@ -749,6 +750,9 @@ Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt eirata
 Palun pea nüüd pisut vahet.',
 'loginlanguagelabel'         => 'Keel: $1',
 'suspicious-userlogout'      => 'Sinu väljalogimiskatse nurjus, sest see näis olevat katkise veebilehitseja või puhverserveri saadetud.',
+
+# E-mail sending
+'php-mail-error-unknown' => 'Tundmatu tõrge PHP funktsioonis mail().',
 
 # Password reset dialog
 'resetpass'                 => 'Parooli muutmine',
@@ -1388,7 +1392,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'userrights-no-interwiki'      => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
 'userrights-nodatabase'        => 'Andmebaasi $1 ei ole olemas või pole see kohalik.',
 'userrights-nologin'           => 'Kasutaja õiguste muutmiseks, pead sa administraatori õigustega kontoga [[Special:UserLogin|sisse logima]].',
-'userrights-notallowed'        => 'Sulle pole antud luba jagada kasutajatele õigusi.',
+'userrights-notallowed'        => 'Sinu kontole pole antud luba lisada või eemaldada kasutajaõigusi.',
 'userrights-changeable-col'    => 'Rühmad, mida sa saad muuta',
 'userrights-unchangeable-col'  => 'Rühmad, mida sa ei saa muuta',
 
@@ -1705,22 +1709,23 @@ Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|administraatoriga
 'upload-http-error'         => 'HTTP-viga: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Juurdepääs keelatud',
-'img-auth-nopathinfo'   => "PATH_INFO puudub.
+'img-auth-accessdenied'     => 'Juurdepääs keelatud',
+'img-auth-nopathinfo'       => "PATH_INFO puudub.
 Sinu veebiserver ei ole seadistatud seda teavet edastama.
 See võib olla CGI-põhine ning ei toeta img_auth'i.
 Vaata http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
-'img-auth-badtitle'     => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
-'img-auth-nologinnWL'   => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',
-'img-auth-nofile'       => 'Faili "$1" pole.',
-'img-auth-isdir'        => 'Sa üritad kausta "$1" juurde pääseda.
+'img-auth-notindir'         => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
+'img-auth-badtitle'         => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
+'img-auth-nologinnWL'       => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',
+'img-auth-nofile'           => 'Faili "$1" pole.',
+'img-auth-isdir'            => 'Sa üritad kausta "$1" juurde pääseda.
 Lubatud on ainult juurdepääs failidele.',
-'img-auth-streaming'    => 'Faili "$1" voogedastus.',
-'img-auth-public'       => 'img_auth.php on ette nähtud failide väljastamiseks privaatses vikis.
+'img-auth-streaming'        => 'Faili "$1" voogedastus.',
+'img-auth-public'           => 'img_auth.php on ette nähtud failide väljastamiseks privaatses vikis.
 See viki on seadistatud kui avalik viki.
 Turvakaalutlustel on img_auth.php kasutus keelatud.',
-'img-auth-noread'       => 'Faili "$1" lugemiseks vajalik juurdepääs puudub.',
+'img-auth-noread'           => 'Faili "$1" lugemiseks vajalik juurdepääs puudub.',
+'img-auth-bad-query-string' => 'URL-is on vigane päringusõne.',
 
 # HTTP errors
 'http-invalid-url'      => 'Vigane internetiaadress: $1',
@@ -1750,8 +1755,7 @@ Samuti võid proovida siis, kui võrgukoht on vähem hõivatud.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'See erileht kuvab kõik üleslaaditud failid.
-Vaikimisi on kõige ees viimati üleslaaditud failid.
-Tulba päisel klõpsamine muudab sortimist.',
+Kui kasutaja järgi filtrida, kuvatakse ainult need failid, mille viimase versiooni antud kasutaja on üles laadinud.',
 'listfiles_search_for'  => 'Nimeotsing:',
 'imgfile'               => 'fail',
 'listfiles'             => 'Piltide loend',
@@ -2955,6 +2959,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-orientation'                 => 'Orientatsioon',
 'exif-samplesperpixel'             => 'Komponentide arv',
 'exif-planarconfiguration'         => 'Andmejärjestus',
+'exif-ycbcrpositioning'            => 'Y- ja C-positsioonimine',
 'exif-xresolution'                 => 'Horisontaalne eraldus',
 'exif-yresolution'                 => 'Vertikaalne eraldus',
 'exif-resolutionunit'              => 'X ja Y resolutsiooni ühik',
@@ -2966,6 +2971,8 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-transferfunction'            => 'Siirdefunktsioon',
 'exif-whitepoint'                  => 'Valge punkti heledus',
 'exif-primarychromaticities'       => 'Põhivärvide värvsus',
+'exif-ycbcrcoefficients'           => 'Värviruumi ümberkujundamise maatriksi koefitsiendid',
+'exif-referenceblackwhite'         => 'Musta ja valge kontrollväärtused',
 'exif-datetime'                    => 'Faili muutmise kuupäev ja kellaaeg',
 'exif-imagedescription'            => 'Pildi pealkiri',
 'exif-make'                        => 'Kaamera tootja',
@@ -3020,10 +3027,10 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-devicesettingdescription'    => 'Seadme seadistuste kirjeldus',
 'exif-imageuniqueid'               => 'Üksiku pildi ID',
 'exif-gpsversionid'                => 'GPS tähise versioon',
-'exif-gpslatituderef'              => 'Põhja- või lõunapikkus',
+'exif-gpslatituderef'              => 'Põhja- või lõunalaius',
 'exif-gpslatitude'                 => 'Laius',
 'exif-gpslongituderef'             => 'Ida- või läänepikkus',
-'exif-gpslongitude'                => 'Laiuskraad',
+'exif-gpslongitude'                => 'Pikkus',
 'exif-gpsaltituderef'              => 'Viide kõrgusele merepinnast',
 'exif-gpsaltitude'                 => 'Kõrgus merepinnast',
 'exif-gpstimestamp'                => 'GPS aeg (aatomikell)',
@@ -3036,9 +3043,13 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-gpstrack'                    => 'Liikumise suund',
 'exif-gpsimgdirection'             => 'Pildi suund',
 'exif-gpsmapdatum'                 => 'Geodeetiline alus',
+'exif-gpsdestlatitude'             => 'Kujutatud koha laius',
+'exif-gpsdestlongitude'            => 'Kujutatud koha pikkus',
 'exif-gpsdestdistance'             => 'Sihtmärgi kaugus',
+'exif-gpsprocessingmethod'         => 'GPS-töötlusmeetodi nimi',
 'exif-gpsareainformation'          => 'GPS-ala nimi',
 'exif-gpsdatestamp'                => 'GPS kuupäev',
+'exif-gpsdifferential'             => 'GPS-i diferentsiaalparand',
 'exif-objectname'                  => 'Lühipealkiri',
 
 # EXIF attributes
@@ -3051,9 +3062,9 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-orientation-3' => 'Pööratud 180°',
 'exif-orientation-4' => 'Pööratud püsti',
 'exif-orientation-5' => 'Pööratud 90° vastupäeva ja püstselt ümberpööratud',
-'exif-orientation-6' => 'Pööratud 90° päripäeva',
+'exif-orientation-6' => 'Pööratud 90° vastupäeva',
 'exif-orientation-7' => 'Pööratud 90° päripäeva ja püstselt ümberpööratud',
-'exif-orientation-8' => 'Pööratud 90° vastupäeva',
+'exif-orientation-8' => 'Pööratud 90° päripäeva',
 
 'exif-planarconfiguration-2' => 'tasapinnaline vorm',
 
@@ -3108,7 +3119,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-flash-function-1' => 'Välgu funktsiooni ei ole',
 'exif-flash-redeye-1'   => 'Punasilmsust vähendav reziim',
 
-'exif-focalplaneresolutionunit-2' => 'tolli',
+'exif-focalplaneresolutionunit-2' => 'toll',
 
 'exif-sensingmethod-1' => 'Määramata',
 'exif-sensingmethod-2' => 'Ühe-kiibiga värvisensor',
@@ -3449,5 +3460,9 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'htmlform-submit'              => 'Saada',
 'htmlform-reset'               => 'Tühista muudatused',
 'htmlform-selectorother-other' => 'Muu',
+
+# SQLite database support
+'sqlite-has-fts' => '$1 koos täistekstiotsingu toega',
+'sqlite-no-fts'  => '$1 ilma täistekstiotsingu toeta',
 
 );

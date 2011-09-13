@@ -353,7 +353,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
 'tog-enotifrevealaddr'        => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
-'tog-oldsig'                  => 'Voorvertoning van de bestaande ondertekening:',
+'tog-oldsig'                  => 'Bestaande ondertekening:',
 'tog-fancysig'                => 'Als wikitekst behandelen (zonder automatische verwijzing)',
 'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
 'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
@@ -606,7 +606,7 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'viewsourcelink'          => 'brontekst bekijken',
 'editsectionhint'         => 'Deelpagina bewerken: $1',
 'toc'                     => 'Inhoud',
-'showtoc'                 => 'bekijken',
+'showtoc'                 => 'weergeven',
 'hidetoc'                 => 'verbergen',
 'thisisdeleted'           => '$1 bekijken of terugplaatsen?',
 'viewdeleted'             => '$1 bekijken?',
@@ -1279,7 +1279,7 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'showhideselectedversions' => 'Geselecteerde versies weergeven/verbergen',
 'editundo'                 => 'ongedaan maken',
 'diff-multi'               => '({{PLURAL:$1|Eén tussenliggende versie|$1 tussenliggende versies}} door {{PLURAL:$2|één gebruiker|$2 gebruikers}} {{PLURAL:$1|wordt|worden}} niet weergegeven)',
-'diff-multi-manyusers'     => '($1 tussenliggende versies door meer dan $2 gebruikers worden niet weergegeven)',
+'diff-multi-manyusers'     => '($1 tussenliggende {{PLURAL:$1|versie|versies}} door meer dan $2 {{PLURAL:$2|gebruiker|gebruikers}}  worden niet weergegeven)',
 
 # Search results
 'searchresults'                    => 'Zoekresultaten',
@@ -1440,7 +1440,7 @@ Deze handeling kan niet ongedaan gemaakt worden.',
 'prefs-registration'            => 'Registratiedatum:',
 'yourrealname'                  => 'Uw echte naam:',
 'yourlanguage'                  => 'Taal:',
-'yourvariant'                   => 'Taalvariant:',
+'yourvariant'                   => 'Taalvariant voor inhoud:',
 'yournick'                      => 'Tekst voor ondertekening:',
 'prefs-help-signature'          => 'Reacties op de overlegpagina\'s worden meestal ondertekend met "<nowiki>~~~~</nowiki>".
 De tildes worden omgezet in uw ondertekening en een datum en tijd van de bewerking.',
@@ -1495,7 +1495,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'userrights-no-interwiki'      => "U hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 'userrights-nodatabase'        => 'Database $1 bestaat niet of is geen plaatselijke database.',
 'userrights-nologin'           => 'U moet zich [[Special:UserLogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
-'userrights-notallowed'        => 'U hebt geen rechten om gebruikersrechten toe te wijzen.',
+'userrights-notallowed'        => 'U hebt geen rechten om gebruikersrechten toe te voegen of te verwijderen.',
 'userrights-changeable-col'    => 'Groepen die u kunt beheren',
 'userrights-unchangeable-col'  => 'Groepen die u niet kunt beheren',
 
@@ -1879,8 +1879,7 @@ U kunt het misschien proberen als het minder druk is.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.
-Standaard worden de laatst toegevoegde bestanden bovenaan de lijst weergegeven.
-Klikken op een kolomkop verandert de sortering.',
+Als deze pagina wordt gefilterd op gebruiker, worden alleen bestanden waar de gebruiker de laatste versie van heeft geüpload weergegeven.',
 'listfiles_search_for'  => 'Zoeken naar bestand:',
 'imgfile'               => 'bestand',
 'listfiles'             => 'Bestandslijst',
@@ -2735,7 +2734,7 @@ Combineer de overlegpagina's handmatig.'''",
 'movepage-page-unmoved'        => 'De pagina $1 kon niet hernoemd worden naar $2.',
 'movepage-max-pages'           => "Het maximale aantal automatisch te hernoemen pagina's is bereikt ({{PLURAL:$1|$1|$1}}).
 De overige pagina's worden niet automatisch hernoemd.",
-'1movedto2'                    => '[[$1]] hernoemd naar [[$2]]',
+'1movedto2'                    => 'hernoemde [[$1]] naar [[$2]]',
 '1movedto2_redir'              => '[[$1]] hernoemd over de doorverwijzing [[$2]]',
 'move-redirect-suppressed'     => 'doorverwijzing onderdrukt',
 'movelogpage'                  => 'Hernoemingslogboek',
@@ -3251,9 +3250,9 @@ Andere velden worden verborgen.
 'exif-orientation-3' => '180° gedraaid',
 'exif-orientation-4' => 'Verticaal gespiegeld',
 'exif-orientation-5' => 'Gespiegeld om as linksboven-rechtsonder',
-'exif-orientation-6' => '90° rechtsom gedraaid',
+'exif-orientation-6' => '90° linksom gedraaid',
 'exif-orientation-7' => 'Gespiegeld om as linksonder-rechtsboven',
-'exif-orientation-8' => '90° linksom gedraaid',
+'exif-orientation-8' => '90° rechtsom gedraaid',
 
 'exif-planarconfiguration-1' => 'chunky gegevensformaat',
 'exif-planarconfiguration-2' => 'planar gegevensformaat',

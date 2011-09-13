@@ -229,14 +229,17 @@ $messages = array(
 'faqpage'        => 'Project:OSS',
 
 # Vector skin
-'vector-action-delete'    => 'Strika',
-'vector-action-move'      => 'Flyt',
-'vector-action-protect'   => 'Friða',
-'vector-action-unprotect' => 'Strika friðing',
-'vector-view-create'      => 'Stovna',
-'vector-view-edit'        => 'Rætta',
-'vector-view-history'     => 'Søga',
-'vector-view-viewsource'  => 'Vís keldu',
+'vector-action-addsection' => 'Nýtt evni',
+'vector-action-delete'     => 'Strika',
+'vector-action-move'       => 'Flyt',
+'vector-action-protect'    => 'Friða',
+'vector-action-unprotect'  => 'Strika friðing',
+'vector-view-create'       => 'Stovna',
+'vector-view-edit'         => 'Rætta',
+'vector-view-history'      => 'Søga',
+'vector-view-view'         => 'Les',
+'vector-view-viewsource'   => 'Vís keldu',
+'namespaces'               => 'Navnarúm',
 
 'errorpagetitle'    => 'Villa',
 'returnto'          => 'Vend aftur til $1.',
@@ -380,7 +383,8 @@ Legg til merkis at summar síður kunnu framhaldandi síggja út
 sum tú hevur ritað inn til goymslan í sneytara tínum er ruddað.",
 'welcomecreation'            => '== Vælkomin, $1! ==
 
-Tín konto er nú stovnað. Gloym ikki at broyta tínar {{SITENAME}} innstillingar.',
+Tín konta er nú stovnað.
+Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}} innstillingar]].',
 'yourname'                   => 'Títt brúkaranavn:',
 'yourpassword'               => 'Títt loyniorð:',
 'yourpasswordagain'          => 'Skriva loyniorð umaftur:',
@@ -621,12 +625,13 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'rclinks'           => 'Sýn seinastu $1 broytingarnar seinastu $2 dagarnar<br />$3',
 'diff'              => 'munur',
 'hist'              => 'søga',
-'hide'              => 'fjal',
+'hide'              => 'Fjal',
 'show'              => 'Skoða',
 'minoreditletter'   => 's',
 'newpageletter'     => 'N',
 'boteditletter'     => 'b',
 'rc_categories_any' => 'Nakar',
+'newsectionsummary' => '/* $1 */ nýtt innlegg',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Viðkomandi broytingar',
@@ -700,8 +705,17 @@ fyri at leggja fílur upp.',
 'randomredirect' => 'Tilvildarlig ávísingarsíða',
 
 # Statistics
-'statistics'              => 'Hagtøl',
-'statistics-header-users' => 'Brúkarahagtøl',
+'statistics'               => 'Hagtøl',
+'statistics-header-edits'  => 'Rætti hagtøl',
+'statistics-header-views'  => 'Vís hagtøl',
+'statistics-header-users'  => 'Brúkarahagtøl',
+'statistics-header-hooks'  => 'Onnur hagtøl',
+'statistics-pages'         => 'Síður',
+'statistics-pages-desc'    => 'Allar síður í wiki, kjaksíður, ávísingar og so framvegis rokna uppí',
+'statistics-files'         => 'Fílur lagdar upp',
+'statistics-edits-average' => 'Miðal rættingar pr. síðu',
+'statistics-users'         => 'Skrásettir [[Special:ListUsers|brúkarir]]',
+'statistics-users-active'  => 'Virknir brúkarir',
 
 'disambiguations'     => 'Síður við fleirfaldum týdningi',
 'disambiguationspage' => 'Template:fleiri týdningar',
@@ -730,10 +744,12 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 'lonelypages'             => 'Foreldraleysar síður',
 'uncategorizedpages'      => 'Óbólkaðar síður',
 'uncategorizedcategories' => 'Óbólkaðir bólkar',
+'uncategorizedtemplates'  => 'Óbólkaðar fyrimyndir',
 'unusedimages'            => 'Óbrúktar fílur',
 'popularpages'            => 'Umtóktar síður',
 'wantedcategories'        => 'Ynsktir bólkar',
 'wantedpages'             => 'Ynsktar síður',
+'wantedtemplates'         => 'Ynsktar fyrimyndir',
 'mostcategories'          => 'Greinir við flest bólkum',
 'mostrevisions'           => 'Greinir við flestum útgávum',
 'shortpages'              => 'Stuttar síður',
@@ -903,7 +919,7 @@ Sí $2 fyri fulla skráseting av strikingum.',
 
 'sp-contributions-newbies'  => 'Vís bert íkast frá nýggjum kontoum',
 'sp-contributions-blocklog' => 'Bannagerðabók',
-'sp-contributions-talk'     => 'Kjak',
+'sp-contributions-talk'     => 'kjak',
 'sp-contributions-search'   => 'Leita eftir íkøstum',
 'sp-contributions-username' => 'IP adressa ella brúkaranavn:',
 'sp-contributions-submit'   => 'Leita',
@@ -996,6 +1012,7 @@ Grein við navninum "[[:$1]]" finst longu. Ynskir tú at strika hana til tess at
 'allmessagestext'           => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' er ikki stuðlað orsakað av at '''\$wgUseDatabaseMessages''' er sløkt.",
+'allmessages-language'      => 'Mál:',
 
 # Thumbnails
 'thumbnail-more' => 'Víðka',

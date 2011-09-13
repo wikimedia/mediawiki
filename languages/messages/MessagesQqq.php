@@ -101,85 +101,87 @@
  * @author Vinhtantran
  * @author Waldir
  * @author Whym
+ * @author Yekrats
  * @author Yyy
+ * @author Žekřil71pl
  * @author פוילישער
  */
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => "[[Special:Preferences]], tab 'Misc'. Offers user a choice how to underline links.",
-'tog-highlightbroken'         => "[[Special:Preferences]], tab 'Appearance'. Offers user a choice how format internal links to non-existing pages. As red links or with a trailing question mark.",
-'tog-justify'                 => "[[Special:Preferences]], tab 'Appearance'. Offers user a choice to justify paragraphs or not.",
-'tog-hideminor'               => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide minor edits in recent changes or not.",
-'tog-hidepatrolled'           => 'Option in Recent changes tab of [[Special:Preferences]] (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled)',
-'tog-newpageshidepatrolled'   => 'Toggle in [[Special:Preferences]], section "Recent changes" (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled)',
-'tog-extendwatchlist'         => "[[Special:Preferences]], tab 'Watchlist'. Offers user to show all applicable changes in watchlist (by default only the last change to a page on the watchlist is shown).",
-'tog-usenewrc'                => "[[Special:Preferences]], tab 'Recent changes'. Offers user to use alternative reprsentation of [[Special:RecentChanges]].",
-'tog-numberheadings'          => "[[Special:Preferences]], tab 'Misc'. Offers numbered headings on content pages to user.",
-'tog-showtoolbar'             => "[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen.
+'tog-underline'               => "[[Special:Preferences]], tab 'Misc'. Offers user a choice how to underline links. {{Gender}}",
+'tog-highlightbroken'         => "[[Special:Preferences]], tab 'Appearance'. Offers user a choice how format internal links to non-existing pages. As red links or with a trailing question mark. {{Gender}}",
+'tog-justify'                 => "[[Special:Preferences]], tab 'Appearance'. Offers user a choice to justify paragraphs or not. {{Gender}}",
+'tog-hideminor'               => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide minor edits in recent changes or not. {{Gender}}",
+'tog-hidepatrolled'           => 'Option in Recent changes tab of [[Special:Preferences]] (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
+'tog-newpageshidepatrolled'   => 'Toggle in [[Special:Preferences]], section "Recent changes" (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled). {{Gender}}',
+'tog-extendwatchlist'         => "[[Special:Preferences]], tab 'Watchlist'. Offers user to show all applicable changes in watchlist (by default only the last change to a page on the watchlist is shown). {{Gender}}",
+'tog-usenewrc'                => "[[Special:Preferences]], tab 'Recent changes'. Offers user to use alternative reprsentation of [[Special:RecentChanges]]. {{Gender}}",
+'tog-numberheadings'          => "[[Special:Preferences]], tab 'Misc'. Offers numbered headings on content pages to user. {{Gender}}",
+'tog-showtoolbar'             => "[[Special:Preferences]], tab 'Edit'. Offers user to show edit toolbar in page edit screen. {{Gender}}
 
 This is the toolbar: [[Image:Toolbar.png]]",
-'tog-editondblclick'          => "[[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click.",
-'tog-editsection'             => "[[Special:Preferences]], tab 'Edit'. Offers user to add links in sub headings for editing sections.",
-'tog-editsectiononrightclick' => "[[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title.",
-'tog-showtoc'                 => "[[Special:Preferences]], tab 'Misc'. Offers user to show a table of contents automatically if a page has more than three headings.",
-'tog-rememberpassword'        => "{{Identical|Remember my login on this computer}}[[Special:Preferences]], tab 'User profile', section 'Change password'. Offers user remember login details. Parameters:
+'tog-editondblclick'          => "[[Special:Preferences]], tab 'Edit'. Offers user to open edit page on double click. {{Gender}}",
+'tog-editsection'             => "[[Special:Preferences]], tab 'Edit'. Offers user to add links in sub headings for editing sections. {{Gender}}",
+'tog-editsectiononrightclick' => "[[Special:Preferences]], tab 'Edit'. Offers user to edit a section by clicking on a section title. {{Gender}}",
+'tog-showtoc'                 => "[[Special:Preferences]], tab 'Misc'. Offers user to show a table of contents automatically if a page has more than three headings. {{Gender}}",
+'tog-rememberpassword'        => "{{Identical|Remember my login on this computer}}[[Special:Preferences]], tab 'User profile', section 'Change password'. Offers user remember login details.  {{Gender}} Parameters:
 * $1 is the number of days the login details are remembered.",
-'tog-watchcreations'          => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add created pages to watchlist.",
-'tog-watchdefault'            => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add edited pages to watchlist.",
-'tog-watchmoves'              => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add moved pages to watchlist.",
-'tog-watchdeletion'           => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add deleted pages to watchlist.",
-'tog-minordefault'            => "[[Special:Preferences]], tab 'Edit'. Offers user to mark all edits minor by default.",
-'tog-previewontop'            => 'Toggle option used in [[Special:Preferences]].',
-'tog-previewonfirst'          => 'Toggle option used in [[Special:Preferences]].',
-'tog-nocache'                 => "[[Special:Preferences]], tab 'Misc.'. Offers the user the option of disabling caching of pages in the browser",
-'tog-enotifwatchlistpages'    => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'tog-enotifusertalkpages'     => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'tog-enotifminoredits'        => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.
+'tog-watchcreations'          => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add created pages to watchlist. {{Gender}}",
+'tog-watchdefault'            => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add edited pages to watchlist. {{Gender}}",
+'tog-watchmoves'              => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add moved pages to watchlist. {{Gender}}",
+'tog-watchdeletion'           => "[[Special:Preferences]], tab 'Watchlist'. Offers user to add deleted pages to watchlist. {{Gender}}",
+'tog-minordefault'            => "[[Special:Preferences]], tab 'Edit'. Offers user to mark all edits minor by default.  {{Gender}}",
+'tog-previewontop'            => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
+'tog-previewonfirst'          => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
+'tog-nocache'                 => "[[Special:Preferences]], tab 'Misc.'. Offers the user the option of disabling caching of pages in the browser. {{Gender}}",
+'tog-enotifwatchlistpages'    => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
+'tog-enotifusertalkpages'     => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
+'tog-enotifminoredits'        => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}
 
 Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwatchlistpages}} are shown.',
-'tog-enotifrevealaddr'        => 'Toggle option used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'tog-shownumberswatching'     => 'Toggle option used in [[Special:Preferences]], in the section for recent changes. When this option is activated, the entries in recent changes includes the number of users who watch pages.',
-'tog-oldsig'                  => 'Used in [[Special:Preferences]], tab User profile.',
-'tog-fancysig'                => 'In user preferences under the signature box',
-'tog-externaleditor'          => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external editor by default.",
-'tog-externaldiff'            => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external diff program by default.",
-'tog-showjumplinks'           => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). Thess links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option).',
-'tog-uselivepreview'          => 'Toggle option used in [[Special:Preferences]]. Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again.',
-'tog-forceeditsummary'        => "Toggle option used in [[Special:Preferences]] to force an edit ''{{msg-mw|summary}}''.",
-'tog-watchlisthideown'        => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist.",
-'tog-watchlisthidebots'       => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide bot edits from watchlist.",
-'tog-watchlisthideminor'      => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide minor edits from watchlist.",
-'tog-watchlisthideliu'        => "Option in tab 'Watchlist' of [[Special:Preferences]]",
-'tog-watchlisthideanons'      => "Option in tab 'Watchlist' of [[Special:Preferences]]",
-'tog-watchlisthidepatrolled'  => 'Option in Watchlist tab of [[Special:Preferences]]',
+'tog-enotifrevealaddr'        => 'Toggle option used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
+'tog-shownumberswatching'     => 'Toggle option used in [[Special:Preferences]], in the section for recent changes. When this option is activated, the entries in recent changes includes the number of users who watch pages. {{Gender}}',
+'tog-oldsig'                  => 'Used in [[Special:Preferences]], tab User profile. {{Gender}}',
+'tog-fancysig'                => 'In user preferences under the signature box.  {{Gender}}',
+'tog-externaleditor'          => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external editor by default. {{Gender}}",
+'tog-externaldiff'            => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external diff program by default. {{Gender}}",
+'tog-showjumplinks'           => 'Toggle option used in [[Special:Preferences]]. The "jump to" part should be the same with {{msg-mw|jumpto}} (or you can use <nowiki>{{int:jumpto}}</nowiki>). Thess links are shown in some of the older skins as "jump to: navigation, search" but they are hidden by default (you can enable them with this option). {{Gender}}',
+'tog-uselivepreview'          => 'Toggle option used in [[Special:Preferences]]. Live preview is an experimental feature (unavailable by default) to use edit preview without loading the page again. {{Gender}}',
+'tog-forceeditsummary'        => "Toggle option used in [[Special:Preferences]] to force an edit ''{{msg-mw|summary}}''. {{Gender}}",
+'tog-watchlisthideown'        => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide own edits from watchlist. {{Gender}}",
+'tog-watchlisthidebots'       => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide bot edits from watchlist. {{Gender}}",
+'tog-watchlisthideminor'      => "[[Special:Preferences]], tab 'Watchlist'. Offers user to hide minor edits from watchlist. {{Gender}}",
+'tog-watchlisthideliu'        => "Option in tab 'Watchlist' of [[Special:Preferences]]. {{Gender}}",
+'tog-watchlisthideanons'      => "Option in tab 'Watchlist' of [[Special:Preferences]]. {{Gender}}",
+'tog-watchlisthidepatrolled'  => 'Option in Watchlist tab of [[Special:Preferences]]. {{Gender}}',
 'tog-nolangconversion'        => 'In user preferences.',
-'tog-ccmeonemails'            => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'tog-diffonly'                => 'Toggle option used in [[Special:Preferences]].',
-'tog-showhiddencats'          => 'Toggle option used in [[Special:Preferences]].',
+'tog-ccmeonemails'            => 'Option in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}. {{Gender}}',
+'tog-diffonly'                => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
+'tog-showhiddencats'          => 'Toggle option used in [[Special:Preferences]]. {{Gender}}',
 'tog-noconvertlink'           => "{{optional}}
 
 ''(the message is considered optional because it is only used in wikis with language variants)''",
-'tog-norollbackdiff'          => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that.
+'tog-norollbackdiff'          => "Option in [[Special:Preferences]], 'Misc' tab. Only shown for users with the rollback right. By default a diff is shown below the return screen of a rollback. Checking this preference toggle will suppress that. {{Gender}}
 {{Identical|Rollback}}",
 
-'underline-always'  => 'Used in [[Special:Preferences]] (under "Misc"). This option means "always underline links", there are also options "never" and "browser default".
+'underline-always'  => 'Used in [[Special:Preferences]] (under "Misc"). This option means "always underline links", there are also options "never" and "browser default". {{Gender}}
 {{Identical|Always}}',
-'underline-never'   => 'Used in [[Special:Preferences]] (under "Misc"). This option means "never underline links", there are also options "always" and "browser default".
+'underline-never'   => 'Used in [[Special:Preferences]] (under "Misc"). This option means "never underline links", there are also options "always" and "browser default". {{Gender}}
 
 {{Identical|Never}}',
-'underline-default' => 'Used in [[Special:Preferences]] (under "Misc"). This option means "underline links as in your browser", there are also options "never" and "always".
+'underline-default' => 'Used in [[Special:Preferences]] (under "Misc"). This option means "underline links as in your browser", there are also options "never" and "always". {{Gender}}
 
 {{Identical|Browser default}}',
 
 # Font style option in Special:Preferences
-'editfont-style'     => 'Used in [[Special:Preferences]], tab Editing.',
-'editfont-default'   => 'Option used in [[Special:Preferences]], tab Editing.
+'editfont-style'     => 'Used in [[Special:Preferences]], tab Editing. {{Gender}}',
+'editfont-default'   => 'Option used in [[Special:Preferences]], tab Editing. {{Gender}}
 
 {{identical|Browser default}}',
-'editfont-monospace' => 'Option used in [[Special:Preferences]], tab Editing.',
-'editfont-sansserif' => 'Option used in [[Special:Preferences]], tab Editing.',
-'editfont-serif'     => 'Option used in [[Special:Preferences]], tab Editing.',
+'editfont-monospace' => 'Option used in [[Special:Preferences]], tab Editing. {{Gender}}',
+'editfont-sansserif' => 'Option used in [[Special:Preferences]], tab Editing. {{Gender}}',
+'editfont-serif'     => 'Option used in [[Special:Preferences]], tab Editing. {{Gender}}',
 
 # Dates
 'sunday'        => 'Name of the day of the week.',
@@ -252,36 +254,33 @@ Is only shown if {{msg-mw|tog-enotifusertalkpages}} or/and {{msg-mw|tog-enotifwa
 'jun'           => 'Abbreviation of June, the sixth month of the Gregorian calendar',
 'jul'           => 'Abbreviation of July, the seventh month of the Gregorian calendar',
 'aug'           => 'Abbreviation of August, the eighth month of the Gregorian calendar',
-'sep'           => 'Abbreviation of September, the nineth month of the Gregorian calendar',
+'sep'           => 'Abbreviation of September, the ninth month of the Gregorian calendar',
 'oct'           => 'Abbreviation of October, the tenth month of the Gregorian calendar',
 'nov'           => 'Abbreviation of November, the eleventh month of the Gregorian calendar',
 'dec'           => 'Abbreviation of December, the twelfth month of the Gregorian calendar',
 
 # Categories related messages
+'pagecategories'                 => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
 'category_header'                => 'In category description page',
+'subcategories'                  => 'Used as a header on category pages that have subcategories.',
 'category-media-header'          => 'In category description page',
 'category-empty'                 => 'The text displayed in category page when that category is empty',
+'hidden-categories'              => 'Used in the categories section of pages. Is followed by a colon and a list of categories.',
 'hidden-category-category'       => 'Name of the category where hidden categories will be listed.',
-'category-subcat-count'          => 'This message is displayed at the top of a category page showing the number of pages in the category.
-
+'category-subcat-count'          => 'This message is displayed at the top of a category page showing the number of pages in the category. Parameters:
 * $1: number of subcategories shown
 * $2: total number of subcategories in category',
-'category-subcat-count-limited'  => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
-
+'category-subcat-count-limited'  => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted. Parameters:
 * $1: number of subcategories shown',
-'category-article-count'         => 'This message is used on category pages.
-
+'category-article-count'         => 'This message is used on category pages. Parameters:
 * $1: number of pages shown
 * $2: total number of pages in category',
-'category-article-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
-
+'category-article-count-limited' => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted. Parameters:
 * $1: number of pages shown',
-'category-file-count'            => 'This message is displayed at the top of a category page showing the number of pages in the category.
-
+'category-file-count'            => 'This message is displayed at the top of a category page showing the number of pages in the category. Parameters:
 * $1: number of files shown
 * $2: total number of files in category',
-'category-file-count-limited'    => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted.
-
+'category-file-count-limited'    => 'This message is displayed at the top of a category page showing the number of pages in the category when not all pages in a category are counted. Parameters:
 * $1: number of files shown',
 'listingcontinuesabbrev'         => 'Shown in contiuation of each first letter group.
 See http://test.wikipedia.org/wiki/Category:Test_ko?uselang={{SUBPAGENAME}}, for example.',
@@ -306,7 +305,9 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'moredotdotdot' => '{{Identical|More...}}',
 'mytalk'        => 'In the personal urls page section - right upper corner.',
 'anontalk'      => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
-'navigation'    => '{{Identical|Navigation}}',
+'navigation'    => 'This is shown as a section header in the sidebar of most skins.
+
+{{Identical|Navigation}}',
 'and'           => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the "&". <nowiki>&#32;</nowiki> is a blank space, one character long. Please leave it as it is.
 
 This can also appear in the credits page if the credits feature is enabled,for example [http://translatewiki.net/wiki/Support&action=credits the credits of the support page]. (To view any credits page type <nowiki>&action=credits</nowiki> at the end of any URL in the address bar.)
@@ -1281,7 +1282,8 @@ This is a search result (and I guess search engine) dependent messages. I do not
 'prefsnologin'                  => '{{Identical|Not logged in}}',
 'changepassword'                => "Section heading on [[Special:Preferences]], tab 'User profile'.
 {{Identical|Change password}}",
-'prefs-skin'                    => 'Used in user preferences.',
+'prefs-skin'                    => 'Used in user preferences.
+{{Identical|Skin}}',
 'skin-preview'                  => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 
 {{Identical|Preview}}',
@@ -1359,8 +1361,7 @@ Used in [[Special:Preferences]]. Parameters are:
 {{Identical|Real name}}',
 'yourlanguage'                  => 'Used in [[Special:Preferences]], first tab.
 {{Identical|Language}}',
-'yourvariant'                   => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.
-{{optional}}',
+'yourvariant'                   => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.',
 'yournick'                      => 'Used in [[Special:Preferences]], first tab.
 
 {{Identical|Signature}}',
@@ -1369,7 +1370,7 @@ Used in [[Special:Preferences]]. Parameters are:
 'badsiglength'                  => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
 'yourgender'                    => 'Used in [[Special:Preferences]], first tab.
 {{Identical|Gender}}',
-'gender-unknown'                => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, or cannot be determined, or matches none of the other choices preset in the select.',
+'gender-unknown'                => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, cannot be determined, or matches none of the other choices preset in the select.',
 'gender-male'                   => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.
 {{Identical|Male}}',
 'gender-female'                 => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.
@@ -1379,6 +1380,7 @@ Used in [[Special:Preferences]]. Parameters are:
 {{Identical|Real name attribution}}',
 'prefs-help-email'              => 'Shown as explanation text on [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-info'                    => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.",
+'prefs-i18n'                    => 'Field set legend for user preferences regarding the interface language',
 'prefs-signature'               => '{{Identical|Signature}}',
 'prefs-dateformat'              => 'Used in [[Special:Preferences]], tab "Date and time".',
 'prefs-timeoffset'              => 'Used in [[Special:Preferences]], tab "Date and time".',
@@ -2021,7 +2023,7 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 'statistics-edits-average'     => 'Used in [[Special:Statistics]]',
 'statistics-views-total'       => 'Used in [[Special:Statistics]]',
 'statistics-views-peredit'     => 'Used in [[Special:Statistics]]',
-'statistics-users'             => 'Used in [[Special:Statistics]]',
+'statistics-users'             => 'Used in [[Special:Statistics]]. Do not change "Special:ListUsers"!',
 'statistics-users-active'      => 'Used in [[Special:Statistics]]',
 'statistics-users-active-desc' => "Description shown beneath ''Active users'' in [[Special:Statistics]]
 
@@ -3229,7 +3231,9 @@ The sentences are for explanation only and are not shown to the user.",
 
 This field labels what the compression of the image is. It is commonly seen in Tiff images. It uses messages like {{msg-mw|exif-compression-1}} for the value. http://en.wikipedia.org/wiki/TIFF#TIFF_Compression_Tag has information about this field.',
 'exif-photometricinterpretation'   => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
-'exif-orientation'                 => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
+'exif-orientation'                 => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
+
+For specific information on the orientation tag, see http://sylvana.net/jpegcrop/exif_orientation.html',
 'exif-samplesperpixel'             => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-planarconfiguration'         => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
 'exif-ycbcrsubsampling'            => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].',
@@ -3882,6 +3886,7 @@ Name of month in Hebrew calender.',
 {{Identical|Special pages}}',
 'version-parserhooks'              => 'This message is a heading at [[Special:Version]] for extensions that modifies the parser of wikitext.',
 'version-variables'                => '{{Identical|Variable}}',
+'version-skins'                    => '{{Identical|Skin}}',
 'version-other'                    => '{{Identical|Other}}',
 'version-mediahandlers'            => 'Used in [[Special:Version]]. It is the title of a section for media handler extensions (e.g. [[mw:Extension:OggHandler]]).
 There are no such extensions here, so look at [[wikipedia:Special:Version]] for an example.',

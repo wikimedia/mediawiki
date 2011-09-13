@@ -9,6 +9,7 @@
  *
  * @author 2Q
  * @author Andrijko Z.
+ * @author Comp1089
  * @author Trần Nguyễn Minh Huy
  */
 
@@ -106,18 +107,19 @@ $messages = array(
 'jumptosearch'     => 'ettsüse',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'      => 'Tääteja {{GRAMMAR:elative|{{SITENAME}}}}',
-'aboutpage'      => 'Project:Täätühsed',
-'copyright'      => 'Sisälto on $1 litsentsii mukka svobodnoi.',
-'copyrightpage'  => '{{ns:project}}:Kopiraitti',
-'disclaimers'    => 'Tšeeltümin vassamizõõ',
-'disclaimerpage' => 'Project:Tšeeltümin vassamizõõ',
-'edithelp'       => 'Muutuzavid',
-'edithelppage'   => 'Help:Kui muuttaa tšültšiä',
-'helppage'       => 'Help:Sisälto',
-'mainpage'       => 'Esitšültši',
-'privacy'        => 'Salaštrahuituz',
-'privacypage'    => 'Project:Salaštrahuituz',
+'aboutsite'            => 'Tääteja {{GRAMMAR:elative|{{SITENAME}}}}',
+'aboutpage'            => 'Project:Täätühsed',
+'copyright'            => 'Sisälto on $1 litsentsii mukka svobodnoi.',
+'copyrightpage'        => '{{ns:project}}:Kopiraitti',
+'disclaimers'          => 'Tšeeltümin vassamizõõ',
+'disclaimerpage'       => 'Project:Tšeeltümin vassamizõõ',
+'edithelp'             => 'Muutuzavid',
+'edithelppage'         => 'Help:Kui muuttaa tšültšiä',
+'helppage'             => 'Help:Sisälto',
+'mainpage'             => 'Esitšültši',
+'mainpage-description' => 'Esicülci',
+'privacy'              => 'Salaštrahuituz',
+'privacypage'          => 'Project:Salaštrahuituz',
 
 'badaccess' => 'Lupa tšeeltistü',
 

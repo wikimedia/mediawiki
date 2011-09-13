@@ -25,6 +25,7 @@
  * @author Innv
  * @author KEL
  * @author Kalan
+ * @author Microcell
  * @author NickK
  * @author Prima klasy4na
  * @author Riwnodennyk
@@ -276,7 +277,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Надсилати мені електронного листа навіть при незначних редагуваннях',
 'tog-enotifrevealaddr'        => 'Показувати мою поштову адресу в повідомленнях',
 'tog-shownumberswatching'     => 'Показувати кількість користувачів, які додали сторінку до свого списку спостереження',
-'tog-oldsig'                  => 'Попередній перегляд вашого підпису:',
+'tog-oldsig'                  => 'Існуючий підпис:',
 'tog-fancysig'                => 'Власна вікі-розмітка підпису (без автоматичного посилання)',
 'tog-externaleditor'          => "Використовувати зовнішній редактор за умовчанням (тільки для досвідчених користувачів, вимагає спеціальних налаштувань вашого комп'ютера [http://www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
 'tog-externaldiff'            => "Використовувати зовнішню програму порівняння версій за умовчанням (тільки для експертів, вимагає спеціальних налаштувань вашого комп'ютера. [http://www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
@@ -293,6 +294,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Відправляти мені копії листів, які я надсилаю іншим користувачам',
 'tog-diffonly'                => 'Не показувати вміст сторінки під різницею версій',
 'tog-showhiddencats'          => 'Показувати приховані категорії',
+'tog-noconvertlink'           => 'Вимкнути конвертацію назви посилання',
 'tog-norollbackdiff'          => 'Не показувати різницю версій після виконання відкоту',
 
 'underline-always'  => 'Завжди',
@@ -516,12 +518,14 @@ $1',
 
 'ok'                      => 'Гаразд',
 'pagetitle'               => '$1 — {{SITENAME}}',
+'pagetitle-view-mainpage' => '{{SITENAME}}',
 'retrievedfrom'           => 'Отримано з $1',
 'youhavenewmessages'      => 'Ви отримали $1 ($2).',
 'newmessageslink'         => 'нові повідомлення',
 'newmessagesdifflink'     => 'остання зміна',
 'youhavenewmessagesmulti' => 'Ви отримали нові повідомлення на $1',
 'editsection'             => 'ред.',
+'editsection-brackets'    => '[$1]',
 'editold'                 => 'ред.',
 'viewsourceold'           => 'переглянути вихідний код',
 'editlink'                => 'редагувати',
@@ -671,7 +675,7 @@ $1',
 'createaccountreason'        => 'Причина:',
 'badretype'                  => 'Уведені вами паролі не збігаються.',
 'userexists'                 => "Уведене ім'я користувача вже існує.
-Оберіть інше ім'я.",
+Будь ласка оберіть інше ім'я.",
 'loginerror'                 => 'Помилка при вході до системи',
 'createaccounterror'         => 'Не в змозі створити обліковий запис: $1',
 'nocookiesnew'               => 'Користувач зареєструвався, але не ввійшов до системи.
@@ -743,6 +747,7 @@ $1',
 # Password reset dialog
 'resetpass'                 => 'Змінити пароль',
 'resetpass_announce'        => 'Ви ввійшли, використовуючи тимчасовий пароль, який отримали електронною поштою. Для завершення входу до системи, ви повинні вказати новий пароль тут:',
+'resetpass_text'            => '<!-- Додавайте текст сюди -->',
 'resetpass_header'          => 'Змінити пароль облікового запису',
 'oldpassword'               => 'Старий пароль:',
 'newpassword'               => 'Новий пароль:',
@@ -772,7 +777,9 @@ $1',
 'math_tip'        => 'Математична формула (LaTeX)',
 'nowiki_sample'   => 'Вставляйте сюди невідформатований текст.',
 'nowiki_tip'      => 'Ігнорувати вікі-форматування',
+'image_sample'    => 'Example.jpg',
 'image_tip'       => 'Файл',
+'media_sample'    => 'Example.ogg',
 'media_tip'       => 'Посилання на медіа-файл',
 'sig_tip'         => 'Ваш підпис з часовою міткою',
 'hr_tip'          => 'Горизонтальна лінія (використовуйте скупо)',
@@ -1319,7 +1326,9 @@ $1",
 'username'                      => "Ім'я користувача:",
 'uid'                           => 'Ідентифікатор користувача:',
 'prefs-memberingroups'          => 'Член {{PLURAL:$1|групи|груп}}:',
+'prefs-memberingroups-type'     => '$1',
 'prefs-registration'            => 'Час реєстрації:',
+'prefs-registration-date-time'  => '$1',
 'yourrealname'                  => "Справжнє ім'я:",
 'yourlanguage'                  => 'Мова інтерфейсу:',
 'yourvariant'                   => 'Варіант мови:',
@@ -1360,26 +1369,27 @@ $1",
 'email-address-validity-invalid' => 'Введіть чинну адресу електронної пошти',
 
 # User rights
-'userrights'                   => 'Управління правами користувачів',
-'userrights-lookup-user'       => 'Управління групами користувача',
-'userrights-user-editname'     => "Введіть ім'я користувача:",
-'editusergroup'                => 'Редагувати групи користувача',
-'editinguser'                  => "Зміна прав користувача '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'     => 'Змінити групи користувача',
-'saveusergroups'               => 'Зберегти групи користувача',
-'userrights-groupsmember'      => 'Член груп:',
-'userrights-groupsmember-auto' => 'Неявний член:',
-'userrights-groups-help'       => 'Ви можете змінити групи, до яких належить цей користувач:
+'userrights'                     => 'Управління правами користувачів',
+'userrights-lookup-user'         => 'Управління групами користувача',
+'userrights-user-editname'       => "Введіть ім'я користувача:",
+'editusergroup'                  => 'Редагувати групи користувача',
+'editinguser'                    => "Зміна прав користувача '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'       => 'Змінити групи користувача',
+'saveusergroups'                 => 'Зберегти групи користувача',
+'userrights-groupsmember'        => 'Член груп:',
+'userrights-groupsmember-auto'   => 'Неявний член:',
+'userrights-groups-help'         => 'Ви можете змінити групи, до яких належить цей користувач:
 * Якщо біля назви групи стоїть позначка, то користувач належить до цієї групи.
 * Якщо позначка не стоїть — користувач не належить до відповідної групи.
 * Зірочка означає, що ви не можете вилучити користувача з групи, якщо додасте його до неї, і навпаки.',
-'userrights-reason'            => 'Причина:',
-'userrights-no-interwiki'      => 'У вас нема дозволу змінювати права користувачів на інших вікі.',
-'userrights-nodatabase'        => 'База даних $1 не існує або не є локальною.',
-'userrights-nologin'           => 'Ви повинні [[Special:UserLogin|ввійти до системи]] з обліковим записом адміністратора, щоб призначати права користувачам.',
-'userrights-notallowed'        => 'Із вашого облікового запису не дозволено призначати права користувачам.',
-'userrights-changeable-col'    => 'Групи, які ви можете змінити',
-'userrights-unchangeable-col'  => 'Групи, які ви не можете змінити',
+'userrights-reason'              => 'Причина:',
+'userrights-no-interwiki'        => 'У вас нема дозволу змінювати права користувачів на інших вікі.',
+'userrights-nodatabase'          => 'База даних $1 не існує або не є локальною.',
+'userrights-nologin'             => 'Ви повинні [[Special:UserLogin|ввійти до системи]] з обліковим записом адміністратора, щоб призначати права користувачам.',
+'userrights-notallowed'          => 'Ваш обліковий запис не дозволяє призначати або змінювати права користувачів.',
+'userrights-changeable-col'      => 'Групи, які ви можете змінити',
+'userrights-unchangeable-col'    => 'Групи, які ви не можете змінити',
+'userrights-irreversible-marker' => '$1*',
 
 # Groups
 'group'               => 'Група:',
@@ -1536,9 +1546,12 @@ $1",
 'minoreditletter'                   => 'м',
 'newpageletter'                     => 'Н',
 'boteditletter'                     => 'б',
+'unpatrolledletter'                 => '!',
+'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|користувач спостерігає|користувачі спостерігають|користувачів спостерігають}}]',
 'rc_categories'                     => 'Тільки з категорій (разділювач «|»)',
 'rc_categories_any'                 => 'Будь-який',
+'rc-change-size'                    => '$1',
 'newsectionsummary'                 => '/* $1 */ нова тема',
 'rc-enhanced-expand'                => 'Показати деталі (потрібен JavaScript)',
 'rc-enhanced-hide'                  => 'Сховати деталі',
@@ -1548,6 +1561,7 @@ $1",
 'recentchangeslinked-feed'     => "Пов'язані редгування",
 'recentchangeslinked-toolbox'  => "Пов'язані редагування",
 'recentchangeslinked-title'    => "Пов'язані редагування для «$1»",
+'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => "На пов'язаних сторінках не було змін протягом зазначеного періоду.",
 'recentchangeslinked-summary'  => "Це список нещодавніх змін на сторінках, на які посилається зазначена сторінка (або на сторінках, що містяться в цій категорії).
 Сторінки з [[Special:Watchlist|вашого списку спостереження]] виділені '''жирним шрифтом'''.",
@@ -1625,7 +1639,7 @@ $1",
 'largefileserver'             => 'Розмір файлу більший за максимальнодозволений.',
 'emptyfile'                   => 'Завантажений вами файл ймовірно порожній. Можливо, це сталося через помилку при введенні імені файлу. Будь-ласка, перевірте, чи справді ви бажаєте звантажити цей файл.',
 'fileexists'                  => "Файл з такою назвою вже існує.
-Будь ласка, перевірте '''<tt>[[:$1]]</tt>''', якщо ви не впевнені, чи хочете замінти його.
+Будь ласка, перевірте '''<tt>[[:$1]]</tt>''', якщо ви не впевнені, чи хочете замінити його.
 [[$1|thumb]]",
 'filepageexists'              => "Сторінка опису цього файлу вже створена як '''<tt>[[:$1]]</tt>''', але файлу з такою назвою немає. Уведений опис не з'явиться на сторінці опису зображення. Щоб додати новий опис, вам доведеться змінити його вручну. [[$1|thumb]]",
 'fileexists-extension'        => "Існує файл зі схожою назвою: [[$2|thumb]]
@@ -1751,8 +1765,7 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ця спеціальна сторінка показує всі завантажені файли.
-За умовчанням останні завантажені файли показані зверху.
-Натисніть на заголовок стовпчика, щоб відсортувати.',
+При фільтруванні за користувачем, відображаються лише останні завантаження користувача.',
 'listfiles_search_for'  => 'Пошук по назві зображення:',
 'imgfile'               => 'файл',
 'listfiles'             => 'Список файлів',
@@ -1802,9 +1815,11 @@ $1',
 'shared-repo-from'                  => 'з $1',
 'shared-repo'                       => 'спільного сховища',
 'shared-repo-name-wikimediacommons' => 'Вікісховища',
+'filepage.css'                      => '/* Розміщений тут CSS-код розміщений на сторінці опису файла, також і для іноземних користувачів вікі */',
 
 # File reversion
 'filerevert'                => 'Повернення до старої версії $1',
+'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => 'Повернути версію файлу',
 'filerevert-intro'          => "Ви повертаєте '''[[Media:$1|$1]]''' до [$4 версії від $3, $2].",
 'filerevert-comment'        => 'Причина:',
@@ -1815,6 +1830,7 @@ $1',
 
 # File deletion
 'filedelete'                  => 'Вилучення $1',
+'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'Вилучити файл',
 'filedelete-intro'            => "Ви збираєтесь вилучити '''[[Media:$1|$1]]''' і всю його історію.",
 'filedelete-intro-old'        => "Ви вилучаєте версію '''[[Media:$1|$1]]''' від [$4 $3, $2].",
@@ -1968,6 +1984,7 @@ $1',
 # Book sources
 'booksources'               => 'Джерела книг',
 'booksources-search-legend' => 'Пошук інформації про книгу',
+'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Знайти',
 'booksources-text'          => 'На цій сторінці наведено список посилань на сайти, де ви, можливо, знайдете додаткову інформацію про книгу. Це інтернет-магазини й системи пошуку в бібліотечних каталогах.',
 'booksources-invalid-isbn'  => 'Вказаний номер ISBN, судячи з усього, містить помилку. Будь ласка, перевірте, що при перенесенні номера з першоджерела не виникло спотворень.',
@@ -2055,6 +2072,8 @@ $1',
 'listgrouprights-rights'               => 'Права',
 'listgrouprights-helppage'             => 'Help:Права користувачів',
 'listgrouprights-members'              => '(список членів)',
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 <tt>($2)</tt></span>',
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 <tt>($2)</tt></span>',
 'listgrouprights-addgroup'             => 'може додавати в {{PLURAL:$2|групу|групи}}: $1',
 'listgrouprights-removegroup'          => 'може виключати з {{PLURAL:$2|групи|груп}}: $1',
 'listgrouprights-addgroup-all'         => 'може додавати до всіх груп',
@@ -2092,8 +2111,9 @@ $1',
 'emailuserfooter'      => 'Цей лист був надісланий користувачеві $2 від користувача $1 за допомогою функції «Надіслати листа» проекту {{SITENAME}}.',
 
 # User Messenger
-'usermessage-summary' => 'Залишити системне повідомлення.',
-'usermessage-editor'  => 'Системний вісник',
+'usermessage-summary'  => 'Залишити системне повідомлення.',
+'usermessage-editor'   => 'Системний вісник',
+'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
 'watchlist'            => 'Список спостереження',
@@ -2175,6 +2195,7 @@ $UNWATCHURL
 'exbeforeblank'          => 'зміст до очистки: «$1»',
 'exblank'                => 'стаття була порожньою',
 'delete-confirm'         => 'Вилучення «$1»',
+'delete-backlink'        => '← $1',
 'delete-legend'          => 'Вилучення',
 'historywarning'         => "'''Попередження:''' Сторінка, яку ви збираєтеся вилучити, має історію редагувань з приблизно $1 {{PLURAL:$1|версії|версій}}:",
 'confirmdeletetext'      => 'Ви збираєтесь вилучити сторінку і всі її журнали редагувань з бази даних.
@@ -2233,6 +2254,7 @@ $UNWATCHURL
 'movedarticleprotection'      => 'переніс налаштування захисту з «[[$2]]» на «[[$1]]»',
 'protect-title'               => 'Встановлення захисту для «$1»',
 'prot_1movedto2'              => '«[[$1]]» перейменована на «[[$2]]»',
+'protect-backlink'            => '← $1',
 'protect-legend'              => 'Підтвердження встановлення захисту',
 'protectcomment'              => 'Причина:',
 'protectexpiry'               => 'Закінчується:',
@@ -2369,6 +2391,7 @@ $1',
 'whatlinkshere'            => 'Посилання сюди',
 'whatlinkshere-title'      => 'Сторінки, що посилаються на «$1»',
 'whatlinkshere-page'       => 'Сторінка:',
+'whatlinkshere-backlink'   => '← $1',
 'linkshere'                => "Наступні сторінки посилаються на '''[[:$1]]''':",
 'nolinkshere'              => "На статтю '''[[:$1]]''' не вказує жодна стаття.",
 'nolinkshere-ns'           => "У вибраному просторі назв нема сторінок, що посилаються на '''[[:$1]]'''.",
@@ -2490,6 +2513,7 @@ IP-адреси, що блокуються автоматично тут не в
 'proxyblockreason'                => "Ваша IP-адреса заблокована, тому що це — відкритий проксі.
 Будь ласка, зв'яжіться з вашим Інтернет-провайдером чи службою підтримки й повідомте їм про цю серйозну проблему безпеки.",
 'proxyblocksuccess'               => 'Виконано.',
+'sorbs'                           => 'DNSBL',
 'sorbsreason'                     => 'Ваша IP-адреса числиться як відкритий проксі в DNSBL.',
 'sorbs_create_account_reason'     => 'Ваша IP-адреса числиться як відкритий проксі в DNSBL. Ви не можете створити обліковий запис.',
 'cant-block-while-blocked'        => 'Ви не можете блокувати інших користувачів, поки ви самі заблоковані.',
@@ -2519,6 +2543,7 @@ IP-адреси, що блокуються автоматично тут не в
 
 # Move page
 'move-page'                    => 'Перейменування сторінки «$1»',
+'move-page-backlink'           => '← $1',
 'move-page-legend'             => 'Перейменування сторінки',
 'movepagetext'                 => "Скориставшись формою нижче, ви можете перейменувати сторінку, одночасно перемістивши на нове місце і журнал її редагувань.
 Стара назва стане перенаправленням на нову назву.
@@ -2774,8 +2799,11 @@ IP-адреси, що блокуються автоматично тут не в
 'tooltip-summary'                 => 'Введіть короткий опис',
 
 # Stylesheets
-'common.css'   => '/** Розміщений тут CSS буде застосовуватися до всіх тем оформлення */',
-'monobook.css' => '/* Розміщений тут CSS буде застосовуватися до всіх тем оформлення Monobook */
+'common.css'      => '/** Розміщений тут CSS буде застосовуватися до всіх тем оформлення */',
+'standard.css'    => '/* Розміщений тут CSS-код буде використаний для користувачів з налаштованою темою оформлення Стандартне */',
+'nostalgia.css'   => '/* Розміщений тут CSS-код буде використаний для користувачів з налаштованою темою оформлення Ностальгія */',
+'cologneblue.css' => '/* Розміщений тут CSS-код буде використаний для користувачів з налаштованою темою оформлення Кельнське блакитне */',
+'monobook.css'    => '/* Розміщений тут CSS буде застосовуватися до всіх тем оформлення Monobook */
 
 /*
 Це необхідно щоб в вікні пошуку кнопки не розбивались на два рядки
@@ -2788,9 +2816,25 @@ IP-адреси, що блокуються автоматично тут не в
     padding-right: 0em;
     font-weight: bold;
 }',
+'myskin.css'      => '/* Розміщений тут CSS-код буде використаний в темі оформлення Власне */',
+'chick.css'       => '/* Розміщений тут CSS-код буде використаний в темі оформлення Курча */',
+'simple.css'      => '/* Розміщений тут CSS-код буде використаний в темі оформлення Просте */',
+'modern.css'      => '/* Розміщений тут CSS-код буде використаний в темі оформлення Сучасне */',
+'vector.css'      => '/* Розміщений тут CSS-код буде використаний в темі оформлення Векторне */',
+'print.css'       => '/* Розміщений тут CSS-код буде використаний для друкованої версії */',
+'handheld.css'    => '/* Розміщений тут CSS-код буде використаний для мобільних пристроїв, що використовують тему оформлення налаштовану в $wgHandheldStyle */',
 
 # Scripts
-'common.js' => '/* Розміщений тут код JavaScript буде завантажений всім користувачам при зверненні до будь-якої сторінки */',
+'common.js'      => '/* Розміщений тут код JavaScript буде завантажений всім користувачам при зверненні до будь-якої сторінки */',
+'standard.js'    => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують стандартну тему оформлення */',
+'nostalgia.js'   => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Ностальгія */',
+'cologneblue.js' => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Кельнське синє */',
+'monobook.js'    => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Моно-книга */',
+'myskin.js'      => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують власну тему оформлення */',
+'chick.js'       => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Курча */',
+'simple.js'      => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують просту тему оформлення */',
+'modern.js'      => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують тему оформлення Сучасне */',
+'vector.js'      => '/* Розміщений тут код JavaScript буде завантажений для всіх користувачів, що використовують векторну тему оформлення */',
 
 # Metadata
 'nodublincore'      => 'Метадані Dublin Core RDF заборонені для цього сервера.',
@@ -2922,7 +2966,10 @@ $1',
 'sp-newimages-showfrom' => 'Показати нові зображення, починаючи з $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'video-dims'     => '$1, $2×$3',
+'seconds-abbrev' => 'с',
 'minutes-abbrev' => 'хв',
+'hours-abbrev'   => 'г',
 
 # Bad image list
 'bad_image_list' => 'Формат має бути наступним:
@@ -2930,6 +2977,51 @@ $1',
 Будуть враховуватися лише елементи списку (рядки, що починаються з *).
 Перше посилання рядка має бути посиланням на заборонений для вставлення файл.
 Наступні посилання у тому самому рядку будуть розглядатися як винятки, тобто статті, куди зображення може бути включене.',
+
+/*
+Short names for language variants used for language conversion links.
+To disable showing a particular link, set it to 'disable', e.g.
+'variantname-zh-sg' => 'disable',
+Variants for Chinese language
+*/
+'variantname-zh-hans' => 'hans',
+'variantname-zh-hant' => 'hant',
+'variantname-zh-cn'   => 'cn',
+'variantname-zh-tw'   => 'tw',
+'variantname-zh-hk'   => 'hk',
+'variantname-zh-mo'   => 'mo',
+'variantname-zh-sg'   => 'sg',
+'variantname-zh-my'   => 'my',
+'variantname-zh'      => 'zh',
+
+# Variants for Gan language
+'variantname-gan-hans' => 'hans',
+'variantname-gan-hant' => 'hant',
+'variantname-gan'      => 'gan',
+
+# Variants for Serbian language
+'variantname-sr-ec' => 'sr-ec',
+'variantname-sr-el' => 'sr-el',
+'variantname-sr'    => 'sr',
+
+# Variants for Kazakh language
+'variantname-kk-kz'   => 'kk-kz',
+'variantname-kk-tr'   => 'kk-tr',
+'variantname-kk-cn'   => 'kk-cn',
+'variantname-kk-cyrl' => 'kk-cyrl',
+'variantname-kk-latn' => 'kk-latn',
+'variantname-kk-arab' => 'kk-arab',
+'variantname-kk'      => 'kk',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'ku-Arab',
+'variantname-ku-latn' => 'ku-Latn',
+'variantname-ku'      => 'ku',
+
+# Variants for Tajiki language
+'variantname-tg-cyrl' => 'tg-Cyrl',
+'variantname-tg-latn' => 'tg-Latn',
+'variantname-tg'      => 'tg',
 
 # Metadata
 'metadata'          => 'Метадані',
@@ -2994,6 +3086,7 @@ $1',
 'exif-exposuretime'                => 'Час експозиції',
 'exif-exposuretime-format'         => '$1 з ($2)',
 'exif-fnumber'                     => 'Число діафрагми',
+'exif-fnumber-format'              => 'f/$1',
 'exif-exposureprogram'             => 'Програма експозиції',
 'exif-spectralsensitivity'         => 'Спектральна чутливість',
 'exif-isospeedratings'             => 'Світлочутливість ISO',
@@ -3070,6 +3163,9 @@ $1',
 # EXIF attributes
 'exif-compression-1' => 'Нестиснутий',
 
+'exif-photometricinterpretation-2' => 'RGB',
+'exif-photometricinterpretation-6' => 'YCbCr',
+
 'exif-unknowndate' => 'Невідома дата',
 
 'exif-orientation-1' => 'Нормальна',
@@ -3077,9 +3173,9 @@ $1',
 'exif-orientation-3' => 'Повернуто на 180°',
 'exif-orientation-4' => 'Відображено по вертикалі',
 'exif-orientation-5' => 'Повернуто на 90° проти годинникової стрілки й відображено по вертикалі',
-'exif-orientation-6' => 'Повернуто на 90° за годинниковою стрілкою',
+'exif-orientation-6' => 'Повернуто на 90° проти годинникової стрілки',
 'exif-orientation-7' => 'Повернуто на 90° за годинниковою стрілкою й відображено по вертикалі',
-'exif-orientation-8' => 'Повернуто на 90° проти годинникової стрілки',
+'exif-orientation-8' => 'Повернуто на 90° за годинниковою стрілкою',
 
 'exif-planarconfiguration-1' => 'формат «chunky»',
 'exif-planarconfiguration-2' => 'формат «planar»',
@@ -3087,7 +3183,15 @@ $1',
 'exif-xyresolution-i' => '$1 точок на дюйм',
 'exif-xyresolution-c' => '$1 точок на сантиметр',
 
+'exif-colorspace-1' => 'sRGB',
+
 'exif-componentsconfiguration-0' => 'не існує',
+'exif-componentsconfiguration-1' => 'Y',
+'exif-componentsconfiguration-2' => 'Cb',
+'exif-componentsconfiguration-3' => 'Cr',
+'exif-componentsconfiguration-4' => 'R',
+'exif-componentsconfiguration-5' => 'G',
+'exif-componentsconfiguration-6' => 'B',
 
 'exif-exposureprogram-0' => 'Невідомо',
 'exif-exposureprogram-1' => 'Ручний режим',
@@ -3125,6 +3229,10 @@ $1',
 'exif-lightsource-17'  => 'Стандартне джерело світла типу A',
 'exif-lightsource-18'  => 'Стандартне джерело світла типу B',
 'exif-lightsource-19'  => 'Стандартне джерело світла типу C',
+'exif-lightsource-20'  => 'D55',
+'exif-lightsource-21'  => 'D65',
+'exif-lightsource-22'  => 'D75',
+'exif-lightsource-23'  => 'D50',
 'exif-lightsource-24'  => 'Студійна лампа стандарту ISO',
 'exif-lightsource-255' => 'Інше джерело світла',
 
@@ -3298,6 +3406,8 @@ $5
 # Trackbacks
 'trackbackbox'      => 'Trackback для цієї статті:<br />
 $1',
+'trackback'         => '; $4 $5: [$2 $1]',
+'trackbackexcerpt'  => '; $4 $5: [$2 $1]: <nowiki>$3</nowiki>',
 'trackbackremove'   => '([$1 вилучити])',
 'trackbacklink'     => 'Trackback',
 'trackbackdeleteok' => 'Trackback вилучено.',
@@ -3315,6 +3425,17 @@ $1',
 'confirm_purge_button' => 'Гаразд',
 'confirm-purge-top'    => 'Очистити кеш цієї сторінки?',
 'confirm-purge-bottom' => 'Після очищення кешу сторінки буде показана її остання версія.',
+
+# Separators for various lists, etc.
+'semicolon-separator' => ';&#32;',
+'comma-separator'     => ',&#32;',
+'colon-separator'     => ':&#32;',
+'autocomment-prefix'  => '-&#32;',
+'pipe-separator'      => '&#32;•&#32;',
+'word-separator'      => '&#32;',
+'ellipsis'            => '...',
+'percent'             => '$1%',
+'parentheses'         => '($1)',
 
 # Multipage image navigation
 'imgmultipageprev' => '← попередня сторінка',
@@ -3381,6 +3502,67 @@ $1',
 'watchlisttools-edit' => 'Переглянути/редагувати список',
 'watchlisttools-raw'  => 'Редагувати як текст',
 
+# Iranian month names
+'iranian-calendar-m1'  => 'фарвардіна',
+'iranian-calendar-m2'  => 'ордібехешта',
+'iranian-calendar-m3'  => 'хордада',
+'iranian-calendar-m4'  => 'тіра',
+'iranian-calendar-m5'  => 'мордада',
+'iranian-calendar-m6'  => 'шахривара',
+'iranian-calendar-m7'  => 'мехра',
+'iranian-calendar-m8'  => 'абана',
+'iranian-calendar-m9'  => 'азара',
+'iranian-calendar-m10' => 'дея',
+'iranian-calendar-m11' => 'бахмана',
+'iranian-calendar-m12' => 'есфанда',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'мухаррама',
+'hijri-calendar-m2'  => 'сафара',
+'hijri-calendar-m3'  => 'рабі аль-авваля',
+'hijri-calendar-m4'  => 'рабі аль-тані',
+'hijri-calendar-m5'  => 'джумада аль-авваля',
+'hijri-calendar-m6'  => 'джумада аль-тані',
+'hijri-calendar-m7'  => 'раджаба',
+'hijri-calendar-m8'  => 'шаабана',
+'hijri-calendar-m9'  => 'рамадану',
+'hijri-calendar-m10' => 'шавалю',
+'hijri-calendar-m11' => 'ду аль-кідаху',
+'hijri-calendar-m12' => 'ду аль-хіджи',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'Тішрей',
+'hebrew-calendar-m2'      => 'Хешван',
+'hebrew-calendar-m3'      => 'Кіслев',
+'hebrew-calendar-m4'      => 'Тевет',
+'hebrew-calendar-m5'      => 'Шват',
+'hebrew-calendar-m6'      => 'Адар',
+'hebrew-calendar-m6a'     => 'Адар I',
+'hebrew-calendar-m6b'     => 'Адар II',
+'hebrew-calendar-m7'      => 'Нісан',
+'hebrew-calendar-m8'      => 'Іяр',
+'hebrew-calendar-m9'      => 'Сиван',
+'hebrew-calendar-m10'     => 'Тамуз',
+'hebrew-calendar-m11'     => 'Ав',
+'hebrew-calendar-m12'     => 'Елул',
+'hebrew-calendar-m1-gen'  => 'Тішрею',
+'hebrew-calendar-m2-gen'  => 'Хешвану',
+'hebrew-calendar-m3-gen'  => 'Кіслеву',
+'hebrew-calendar-m4-gen'  => 'Тевета',
+'hebrew-calendar-m5-gen'  => 'Швата',
+'hebrew-calendar-m6-gen'  => 'Адара',
+'hebrew-calendar-m6a-gen' => 'Адара I',
+'hebrew-calendar-m6b-gen' => 'Адара II',
+'hebrew-calendar-m7-gen'  => 'Нісану',
+'hebrew-calendar-m8-gen'  => 'Іяра',
+'hebrew-calendar-m9-gen'  => 'Сивана',
+'hebrew-calendar-m10-gen' => 'Тамуза',
+'hebrew-calendar-m11-gen' => 'Ава',
+'hebrew-calendar-m12-gen' => 'Елула',
+
+# Signatures
+'timezone-utc' => 'UTC',
+
 # Core parser functions
 'unknown_extension_tag' => 'Невідомий тег доповнення «$1»',
 'duplicate-defaultsort' => 'Увага. Ключ сортування «$2» перекриває попередній ключ сортування «$1».',
@@ -3402,6 +3584,7 @@ $1',
 'version-hook-name'                => "Ім'я перехоплювача",
 'version-hook-subscribedby'        => 'Підписаний на',
 'version-version'                  => '(Версія $1)',
+'version-svn-revision'             => '(r$2)',
 'version-license'                  => 'Ліцензія',
 'version-poweredby-credits'        => "Ця Вікі працює на системі управління вмістом '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'         => 'інші',

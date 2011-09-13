@@ -212,7 +212,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pošlji e-pošto tudi za manjše spremembe strani',
 'tog-enotifrevealaddr'        => 'V sporočilih z obvestili o spremembah razkrij moj e-poštni naslov',
 'tog-shownumberswatching'     => 'Prikaži število uporabnikov, ki spremljajo temo',
-'tog-oldsig'                  => 'Predogled obstoječega podpisa:',
+'tog-oldsig'                  => 'Obstoječi podpis:',
 'tog-fancysig'                => 'Obravnavaj podpis kot wikibesedilo (brez samodejne povezave)',
 'tog-externaleditor'          => 'Po privzetem uporabljaj zunanji urejevalnik (samo za strokovnjake; potrebuje posebne nastavitve na vašem računalniku; [http://www.mediawiki.org/wiki/Manual:External_editors več informacij])',
 'tog-externaldiff'            => 'Po privzetem uporabljaj zunanje primerjanje (samo za strokovnjake; potrebuje posebne nastavitve na vašem računalniku; [http://www.mediawiki.org/wiki/Manual:External_editors več informacij])',
@@ -604,7 +604,7 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'createaccountreason'        => 'Razlog:',
 'badretype'                  => 'Gesli, ki ste ju vnesli, se ne ujemata.',
 'userexists'                 => 'Uporabniško ime, ki ste ga vnesli, je že zasedeno.
-Prosimo, izberite si drugo.',
+Prosimo, izberite drugo.',
 'loginerror'                 => 'Napaka ob prijavi',
 'createaccounterror'         => 'Ne morem ustvariti računa: $1',
 'nocookiesnew'               => 'Uporabniški račun je ustvarjen, vendar niste prijavljeni.
@@ -1260,7 +1260,7 @@ Tega ni mogoče razveljaviti.',
 'prefs-registration'            => 'Registriran od:',
 'yourrealname'                  => 'Pravo ime:',
 'yourlanguage'                  => 'Jezik:',
-'yourvariant'                   => 'Različica:',
+'yourvariant'                   => 'Jezikovna različica vsebine:',
 'yournick'                      => 'Nov podpis:',
 'prefs-help-signature'          => 'Komentarje na pogovornih straneh, je treba podpisati s »<nowiki>~~~~</nowiki>«, kar bo pretvorjeno v vaš podpis s časom.',
 'badsig'                        => 'Neveljaven surovi podpis; preverite oznake HTML.',
@@ -1315,7 +1315,7 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'userrights-no-interwiki'      => 'Nimate dovoljenja za urejanje pravic uporabnikov na drugih wikijih.',
 'userrights-nodatabase'        => 'Podatkovna baza $1 ne obstaja ali ni lokalna.',
 'userrights-nologin'           => 'Za dodeljevanje uporabniških pravic se morate [[Special:UserLogin|prijaviti]] s skrbniškim računom.',
-'userrights-notallowed'        => 'Vaš račun nima dovoljenja za dodeljevanje pravic uporabnikom.',
+'userrights-notallowed'        => 'Vaš račun nima dovoljenja za dodajanje ali odstranjevanje uporabniških pravic.',
 'userrights-changeable-col'    => 'Skupine, ki jih lahko spremenite',
 'userrights-unchangeable-col'  => 'Skupine, ki jih ne morete spremeniti',
 
@@ -1361,8 +1361,8 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'right-reupload-shared'       => 'Nalaganje lokalnih zamenjav za datoteke iz skupnih večpredstavnostnih skladišč',
 'right-upload_by_url'         => 'Nalaganje datotek iz naslova URL',
 'right-purge'                 => 'Osvežitev predpomnilnika strani, brez potrditve',
-'right-autoconfirmed'         => 'Urejanje delno-zaščitenih strani',
-'right-bot'                   => 'Naj bo obravnavan kot samodejni proces',
+'right-autoconfirmed'         => 'Urejanje delno zaščitenih strani',
+'right-bot'                   => 'Naj bo obravnavan kot avtomatiziran postopek',
 'right-nominornewtalk'        => 'Urejanja pogovornih strani, ki niso označena kot manjša, sprožijo obvestilo o novem sporočilu',
 'right-apihighlimits'         => 'Uporaba višje omejitve poizvedb API',
 'right-writeapi'              => 'Uporaba napisanega API-ja',
@@ -1692,8 +1692,7 @@ Morda želite poskusiti ob času manjše zasedenosti.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ta posebna stran prikazuje vse naložene datoteke.
-Po privzetem so na vrhu seznama najnovejše datoteke.
-Za spremembo razvrščanja kliknete na glavo stolpca.',
+Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri katerih je izbrani uporabnik naložil najnovejšo različico datoteke.',
 'listfiles_search_for'  => 'Išči po imenu datoteke:',
 'imgfile'               => 'dat.',
 'listfiles'             => 'Seznam datotek',
@@ -3020,9 +3019,9 @@ Druga bodo po privzetem skrita.
 'exif-orientation-3' => 'Zasukano za 180°',
 'exif-orientation-4' => 'Navpično zrcaljeno',
 'exif-orientation-5' => 'Zasukano za 90° v levo in navpično zrcaljeno',
-'exif-orientation-6' => 'Zasukano za 90° v desno',
+'exif-orientation-6' => 'Zasukano za 90° v levo',
 'exif-orientation-7' => 'Zasukano za 90° v desno in navpično zrcaljeno',
-'exif-orientation-8' => 'Zasukano za 90° v levo',
+'exif-orientation-8' => 'Zasukano za 90° v desno',
 
 'exif-planarconfiguration-1' => 'grudast format',
 'exif-planarconfiguration-2' => 'ravninski format',

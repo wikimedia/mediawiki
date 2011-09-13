@@ -33,6 +33,7 @@
  * @author Luckas Blade
  * @author Malafaya
  * @author McDutchie
+ * @author MetalBrasil
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
@@ -717,8 +718,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'createaccountmail'          => 'por e-mail',
 'createaccountreason'        => 'Razão:',
 'badretype'                  => 'As senhas que você digitou não são iguais.',
-'userexists'                 => 'O nome de usuário que você digitou já existe.
-Escolha um nome diferente.',
+'userexists'                 => 'O nome de usuário fornecido já está em uso.
+Escolha um nome diferente, por favor.',
 'loginerror'                 => 'Erro de autenticação',
 'createaccounterror'         => 'Não foi possível criar a conta: $1',
 'nocookiesnew'               => "A conta do usuário foi criada, mas você não foi autenticado.
@@ -1078,7 +1079,7 @@ Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullu
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-suppressed-no-diff'      => "Você não pode ver esta comparação porque uma das revisões foi '''eliminada'''.",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de supressão].
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de supressão].
 Por ser um administrador, você ainda pode [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-suppressed-unhide-diff'  => "Uma das revisões deste diferencial foi '''suprimido'''.
 Podem haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
@@ -1978,7 +1979,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'listusers-creationsort'  => 'Ordenar por data de criação',
 'usereditcount'           => '$1 {{PLURAL:$1|edição|edições}}',
 'usercreated'             => 'Registrado em $1 às $2',
-'newpages'                => 'Páginas recentes',
+'newpages'                => 'Páginas novas',
 'newpages-username'       => 'Nome de usuário:',
 'ancientpages'            => 'Páginas mais antigas',
 'move'                    => 'Mover',
@@ -2202,7 +2203,7 @@ Comentários e assistência:
 'deletepage'             => 'Eliminar página',
 'confirm'                => 'Confirmar',
 'excontent'              => "o conteúdo era: '$1'",
-'excontentauthor'        => "o conteúdo era: '$1' (e o único editor era '[[Special:Contributions/$2|$2]]')",
+'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era "[[Special:Contributions/$2|$2]]")',
 'exbeforeblank'          => "o conteúdo antes de esvaziar era: '$1'",
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',
@@ -2941,7 +2942,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'newimages-label'       => 'Nome de arquivo (ou parte dele):',
 'showhidebots'          => '($1 robôs)',
 'noimages'              => 'Nada para ver.',
-'ilsubmit'              => 'Procurar',
+'ilsubmit'              => 'Pesquisar',
 'bydate'                => 'por data',
 'sp-newimages-showfrom' => 'Mostrar novos arquivos a partir das $2 de $1',
 
@@ -3518,7 +3519,7 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 # HTML forms
 'htmlform-invalid-input'       => 'Existem problemas com alguns dos dados introduzidos',
 'htmlform-select-badoption'    => 'O valor que você especificou não é uma opção válida.',
-'htmlform-int-invalid'         => 'O valor que você especificou não é um inteiro.',
+'htmlform-int-invalid'         => 'O valor que você especificou não é um número inteiro.',
 'htmlform-float-invalid'       => 'O valor que você especificou não é um número.',
 'htmlform-int-toolow'          => 'O valor que você especificou está abaixo do mínimo de $1',
 'htmlform-int-toohigh'         => 'O valor que você especificou está acima do máximo de $1',

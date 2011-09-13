@@ -1,5 +1,5 @@
 <?php
-/** Tatar (Cyrillic) (Татарча/Tatarça (Cyrillic))
+/** Tatar (Cyrillic script) (Татарча)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1004,6 +1004,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdelete-legend'            => 'Чикләүләр урнаштыр:',
 'revdelete-hide-text'         => 'Битнең бу юрамасы текстын яшер',
 'revdelete-hide-image'        => 'Файл эчендәгеләрне качыр',
+'revdelete-hide-name'         => 'Гамәлне һәм объектны яшерү',
 'revdelete-hide-user'         => 'Үзгәртүченең исемен/IP адресын яшер',
 'revdelete-radio-same'        => '(үзгәртмәү)',
 'revdelete-radio-set'         => 'Әйе',
