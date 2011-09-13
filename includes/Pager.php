@@ -67,10 +67,15 @@ abstract class IndexPager implements Pager {
 	public $mPastTheEndRow;
 
 	/**
-	 * The index to actually be used for ordering.  This is a single string
-	 * even if multiple orderings are supported.
+	 * The index to actually be used for ordering. This is a single column,
+	 * for one ordering, even if multiple orderings are supported.
 	 */
 	protected $mIndexField;
+	/**
+	 * An array of secondary columns to order by. These fields are not part of the offset.
+	 * This is a column list for one ordering, even if multiple orderings are supported.
+	 */
+	protected $mExtraSortFields;
 	/** For pages that support multiple types of ordering, which one to use.
 	 */
 	protected $mOrderType;
@@ -115,18 +120,22 @@ abstract class IndexPager implements Pager {
 		$this->mDb = wfGetDB( DB_SLAVE );
 
 		$index = $this->getIndexField();
+		$extraSort = $this->getExtraSortFields();
 		$order = $this->mRequest->getVal( 'order' );
 		if( is_array( $index ) && isset( $index[$order] ) ) {
 			$this->mOrderType = $order;
 			$this->mIndexField = $index[$order];
+			$this->mExtraSortFields = (array)$extraSort[$order];
 		} elseif( is_array( $index ) ) {
 			# First element is the default
 			reset( $index );
 			list( $this->mOrderType, $this->mIndexField ) = each( $index );
+			$this->mExtraSortFields = (array)$extraSort[$this->mOrderType];
 		} else {
 			# $index is not an array
 			$this->mOrderType = null;
 			$this->mIndexField = $index;
+			$this->mExtraSortFields = (array)$extraSort;
 		}
 
 		if( !isset( $this->mDefaultDirection ) ) {
@@ -269,11 +278,16 @@ abstract class IndexPager implements Pager {
 		$conds = isset( $info['conds'] ) ? $info['conds'] : array();
 		$options = isset( $info['options'] ) ? $info['options'] : array();
 		$join_conds = isset( $info['join_conds'] ) ? $info['join_conds'] : array();
+		$sortColumns = array_merge( array( $this->mIndexField ), $this->mExtraSortFields );
 		if ( $descending ) {
-			$options['ORDER BY'] = $this->mIndexField;
+			$options['ORDER BY'] = implode( ',', $sortColumns );
 			$operator = '>';
 		} else {
-			$options['ORDER BY'] = $this->mIndexField . ' DESC';
+			$orderBy = array();
+			foreach ( $sortColumns as $col ) {
+				$orderBy[] = $col . ' DESC';
+			}
+			$options['ORDER BY'] = implode( ',', $orderBy );
 			$operator = '<';
 		}
 		if ( $offset != '' ) {
@@ -574,8 +588,28 @@ abstract class IndexPager implements Pager {
 	 *
 	 * Needless to say, it's really not a good idea to use a non-unique index
 	 * for this!  That won't page right.
+	 *
+	 * @return string|Array
 	 */
 	abstract function getIndexField();
+
+	/**
+	 * This function should be overridden to return the names of secondary columns
+	 * to order by in addition to the column in getIndexField(). These fields will
+	 * not be used in the pager offset or in any links for users.
+	 *
+	 * If getIndexField() returns an array of 'querykey' => 'indexfield' pairs then
+	 * this must return a corresponding array of 'querykey' => array( fields...) pairs,
+	 * so that a request with &count=querykey will use array( fields...) to sort.
+	 *
+	 * This is useful for pagers that GROUP BY a unique column (say page_id)
+	 * and ORDER BY another (say page_len). Using GROUP BY and ORDER BY both on
+	 * page_len,page_id avoids temp tables (given a page_len index). This would
+	 * also work if page_id was non-unique but we had a page_len,page_id index.
+	 *
+	 * @return Array
+	 */
+	protected function getExtraSortFields() { return array(); }
 
 	/**
 	 * Return the default sorting direction: false for ascending, true for de-
