@@ -867,4 +867,65 @@ class ResourceLoader {
 		return $retval = $wgRequest->getFuzzyBool( 'debug',
 			$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug ) );
 	}
+
+	/**
+	 * Build a load.php URL
+	 * @param $modules array of module names (strings)
+	 * @param $lang string Language code
+	 * @param $skin string Skin name
+	 * @param $user string|null User name. If null, the &user= parameter is omitted
+	 * @param $version string|null Versioning timestamp
+	 * @param $debug bool Whether the request should be in debug mode
+	 * @param $only string|null &only= parameter
+	 * @param $printable bool Printable mode
+	 * @param $handheld bool Handheld mode
+	 * @param $extraQuery array Extra query parameters to add
+	 * @return string URL to load.php. May be protocol-relative (if $wgLoadScript is procol-relative)
+	 */
+	public static function makeLoaderURL( $modules, $lang, $skin, $user = null, $version = null, $debug = false, $only = null,
+			$printable = false, $handheld = false, $extraQuery = array() ) {
+		global $wgLoadScript;
+		$query = self::makeLoaderQuery( $modules, $lang, $skin, $user, $version, $debug,
+			$only, $printable, $handheld, $extraQuery
+		);
+		
+		// Prevent the IE6 extension check from being triggered (bug 28840)
+		// by appending a character that's invalid in Windows extensions ('*')
+		return wfAppendQuery( $wgLoadScript, $query ) . '&*';
+	}
+
+	/**
+	 * Build a query array (array representation of query string) for load.php. Helper
+	 * function for makeLoaderURL().
+	 * @return array
+	 */
+	public static function makeLoaderQuery( $modules, $lang, $skin, $user = null, $version = null, $debug = false, $only = null,
+			$printable = false, $handheld = false, $extraQuery = array() ) {
+		$query = array(
+			'modules' => self::makePackedModulesString( $modules ),
+			'lang' => $lang,
+			'skin' => $skin,
+			'debug' => $debug ? 'true' : 'false',
+		);
+		if ( $user !== null ) {
+			$query['user'] = $user;
+		}
+		if ( $version !== null ) {
+			$query['version'] = $version;
+		}
+		if ( $only !== null ) {
+			$query['only'] = $only;
+		}
+		if ( $printable ) {
+			$query['printable'] = 1;
+		}
+		if ( $handheld ) {
+			$query['handheld'] = 1;
+		}
+		$query += $extraQuery;
+		
+		// Make queries uniform in order
+		ksort( $query );
+		return $query;
+	}
 }
