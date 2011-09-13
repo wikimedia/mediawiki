@@ -1754,9 +1754,6 @@ abstract class DatabaseBase implements DatabaseType {
 			} elseif ( $value === null ) {
 				if ( $mode == LIST_AND || $mode == LIST_OR ) {
 					$list .= "$field IS ";
-					if ( $not ) {
-						$list .= "NOT ";
-					}
 				} elseif ( $mode == LIST_SET ) {
 					$list .= "$field = ";
 				}
@@ -2966,8 +2963,8 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Get slave lag. Currently supported only by MySQL.
 	 *
-	 * Note that this function will generate a fatal error on many 
-	 * installations. Most callers should use LoadBalancer::safeGetLag() 
+	 * Note that this function will generate a fatal error on many
+	 * installations. Most callers should use LoadBalancer::safeGetLag()
 	 * instead.
 	 *
 	 * @return Database replication lag in seconds
