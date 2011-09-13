@@ -68,11 +68,13 @@ if ( !$wgEnableAPI ) {
 
 // Selectively allow cross-site AJAX
 
-/*
+/**
  * Helper function to convert wildcard string into a regex
  * '*' => '.*?'
  * '?' => '.'
- * @ return string
+ *
+ * @param $search string
+ * @return string
  */
 function convertWildcard( $search ) {
 	$search = preg_quote( $search, '/' );
