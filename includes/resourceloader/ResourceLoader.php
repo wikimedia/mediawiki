@@ -529,17 +529,31 @@ class ResourceLoader {
 			try {
 				$scripts = '';
 				if ( $context->shouldIncludeScripts() ) {
-					$scripts = $module->getScript( $context );
-					if ( is_string( $scripts ) ) {
-						// bug 27054: Append semicolon to prevent weird bugs
-						// caused by files not terminating their statements right
-						$scripts .= ";\n";
+					// If we are in debug mode, we'll want to return an array of URLs if possible
+					// However, we can't do this if the module doesn't support it
+					// We also can't do this if there is an only= parameter, because we have to give
+					// the module a way to return a load.php URL without causing an infinite loop
+					if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
+						$scripts = $module->getScriptURLsForDebug( $context );
+					} else {
+						$scripts = $module->getScript( $context );
+						if ( is_string( $scripts ) ) {
+							// bug 27054: Append semicolon to prevent weird bugs
+							// caused by files not terminating their statements right
+							$scripts .= ";\n";
+						}
 					}
 				}
 				// Styles
 				$styles = array();
 				if ( $context->shouldIncludeStyles() ) {
-					$styles = $module->getStyles( $context );
+					// If we are in debug mode, we'll want to return an array of URLs
+					// See comment near shouldIncludeScripts() for more details
+					if ( $context->getDebug() && !$context->getOnly() && $module->supportsURLLoading() ) {
+						$styles = $module->getStyleURLsForDebug( $context );
+					} else {
+						$styles = $module->getStyles( $context );
+					}
 				}
 
 				// Messages
