@@ -546,22 +546,24 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 						if ( $.isFunction( callback ) ) {
 							callback();
 						}
+					},
+					nestedAddScript = function( arr, callback, i ) {
+						// Recursively call addScript() in its own callback
+						// for each element of arr.
+						if ( i >= arr.length ) {
+							// We're at the end of the array
+							callback();
+							return;
+						}
+						
+						addScript( arr[i], function() {
+							nestedAddScript( arr, callback, i + 1 );
+						} );
 					};
 
 				if ( $.isArray( script ) ) {
-					var done = 0;
-					if ( script.length === 0 ) {
-						// No scripts in this module? Let's dive out early.
-						markModuleReady();
-					}
-					for ( var i = 0; i < script.length; i++ ) {
-						registry[module].state = 'loading';
-						addScript( script[i], function() {
-							if ( ++done === script.length ) {
-								markModuleReady();
-							}
-						} );
-					}
+					registry[module].state = 'loading';
+					nestedAddScript( script, markModuleReady, 0 );
 				} else if ( $.isFunction( script ) ) {
 					script( $ );
 					markModuleReady();
@@ -703,7 +705,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 		function addScript( src, callback ) {
 			var done = false, script;
 			if ( ready ) {
-				// jQuery's getScript method is NOT better than doing this the old-fassioned way
+				// jQuery's getScript method is NOT better than doing this the old-fashioned way
 				// because jQuery will eval the script's code, and errors will not have sane
 				// line numbers.
 				script = document.createElement( 'script' );
