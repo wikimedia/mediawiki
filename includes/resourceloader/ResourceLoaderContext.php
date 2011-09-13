@@ -155,14 +155,14 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
 	public function getSkin() {
 		return $this->skin;
 	}
 
 	/**
-	 * @return string
+	 * @return string|null
 	 */
 	public function getUser() {
 		return $this->user;
@@ -176,14 +176,14 @@ class ResourceLoaderContext {
 	}
 
 	/**
-	 * @return String
+	 * @return String|null
 	 */
 	public function getOnly() {
 		return $this->only;
 	}
 
 	/**
-	 * @return String
+	 * @return String|null
 	 */
 	public function getVersion() {
 		return $this->version;
