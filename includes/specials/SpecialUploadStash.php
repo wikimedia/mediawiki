@@ -53,11 +53,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			return;
 		}
 
-		if ( !isset( $subPage ) || $subPage === '' ) {
+		if ( $subPage === null || $subPage === '' ) {
 			return $this->showUploads();
+		} else {
+			return $this->showUpload( $subPage );
 		}
-
-		return $this->showUpload( $subPage );
 	}
 
 
@@ -68,10 +68,8 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @param $key String: the key of a particular requested file
 	 */
 	public function showUpload( $key ) {
-		global $wgOut;
-
 		// prevent callers from doing standard HTML output -- we'll take it from here
-		$wgOut->disable();
+		$this->getOutput()->disable();
 
 		try {
 			$params = $this->parseKey( $key );
@@ -317,7 +315,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @param Status : $status - the result of processRequest
 	 */
 	private function showUploads( $status = null ) {
-		global $wgOut;
 		if ( $status === null ) {
 			$status = Status::newGood();
 		}
@@ -335,7 +332,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 				'default' => true,
 				'name' => 'clear',
 			)
-		), 'clearStashedUploads' );
+		), $this->getContext(), 'clearStashedUploads' );
 		$form->setSubmitCallback( array( __CLASS__ , 'tryClearStashedUploads' ) );
 		$form->setTitle( $this->getTitle() );
 		$form->setSubmitText( wfMsg( 'uploadstash-clear' ) );
@@ -358,11 +355,11 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 						$this->getTitle( "file/$file" )->getLocalURL() ), $file )
 				);
 			}
-			$wgOut->addHtml( Html::rawElement( 'ul', array(), $fileListItemsHtml ) );
+			$this->getOutput()->addHtml( Html::rawElement( 'ul', array(), $fileListItemsHtml ) );
 			$form->displayForm( $formResult );
-			$wgOut->addHtml( Html::rawElement( 'p', array(), $refreshHtml ) );
+			$this->getOutput()->addHtml( Html::rawElement( 'p', array(), $refreshHtml ) );
 		} else {
-			$wgOut->addHtml( Html::rawElement( 'p', array(),
+			$this->getOutput()->addHtml( Html::rawElement( 'p', array(),
 				Html::element( 'span', array(), wfMsg( 'uploadstash-nofiles' ) )
 				. ' '
 				. $refreshHtml
