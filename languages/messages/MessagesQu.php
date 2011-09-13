@@ -1465,7 +1465,6 @@ $1 {{PLURAL:$1|sanampamanta|sanampakunamanta}} aswan pisi kananmi.',
 'right-userrights'            => "Tukuy ruraqkunap hayñinkunata llamk'apuy",
 'right-userrights-interwiki'  => "Wakin wiki tiyaykunapi ruraqkunap hayñinkunata llamk'apuy",
 'right-siteadmin'             => "Willañiqintinta hark'ay, paskaypas",
-'right-reset-passwords'       => 'Huk ruraqkunap yaykuna rimanta kutichiy',
 'right-override-export-depth' => "P'anqakunata hawaman quy, t'inkisqa p'anqakunatapas pichqa ñiqin t'inkipayasqakama",
 'right-sendemail'             => 'Huk ruraqkunaman e-chaskita kachay',
 
@@ -2143,16 +2142,16 @@ Kay p\'anqata mana musuqmanta watukamuptiykiqa, manam huk hukchasqakunamanta wil
 
 --
 E-chaski willaykuy allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
-{{fullurl:{{#special:Preferences}}}} 
+{{canonicalurl:{{#special:Preferences}}}} 
 
 Watiqana sutisuyuykipaq allinkachinakunata hukchanaykipaqqa kay p\'anqatam qhaway:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 P\'anqata watiqana sutisuyuykimanta qichunaykipaqqa kay p\'anqatam qhaway:
 $UNWATCHURL
 
 Yanapasunaykipaq:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => "Kay p'anqata qulluy",
@@ -2346,7 +2345,6 @@ Qhipaq hark'ay hallch'a yaykuchisqatam kay qatiqpi rikunki:",
 'sp-contributions-username'            => 'IP huchha icha ruraqpa sutin:',
 'sp-contributions-toponly'             => 'Pata musuqchasqakunallata rikuchiy',
 'sp-contributions-submit'              => 'Maskay',
-'sp-contributions-showsizediff'        => "P'anqakunap hatun kayninpi wakin kayta rikuchiy",
 
 # What links here
 'whatlinkshere'            => "Kayman t'inkimuq",

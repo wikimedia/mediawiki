@@ -1042,10 +1042,10 @@ Ur yelli ara email n talɣut asmi llan ibeddlen deg usebter ala lukan teẓreḍ
 
 --
 Akken ad tbeddleḍ n wumuɣ n uɛessi inek settings, ruḥ ɣer
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Tadhelt:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'      => 'Mḥu asebter',

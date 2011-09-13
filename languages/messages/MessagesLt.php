@@ -1196,7 +1196,7 @@ Prašome patikrinti sąrašus.',
 'prefs-datetime'                => 'Data ir laikas',
 'prefs-labs'                    => 'Bandomosios funkcijos',
 'prefs-personal'                => 'Naudotojo profilis',
-'prefs-rc'                      => 'Paskutiniai keitimai',
+'prefs-rc'                      => 'Naujausi keitimai',
 'prefs-watchlist'               => 'Stebimų sąrašas',
 'prefs-watchlist-days'          => 'Dienos rodomos stebimųjų sąraše:',
 'prefs-watchlist-days-max'      => 'Daugiausiai 7 dienos',
@@ -1221,7 +1221,7 @@ Prašome patikrinti sąrašus.',
 'recentchangesdays'             => 'Rodomos dienos paskutinių keitimų sąraše:',
 'recentchangesdays-max'         => '(daugiausiai $1 {{PLURAL:$1|diena|dienos|dienų}})',
 'recentchangescount'            => 'Numatytasis rodomas keitimų skaičius:',
-'prefs-help-recentchangescount' => 'Į tai įeina paskutiniai keitimai, puslapių istorijos ir specialiųjų veiksmų istorijos.',
+'prefs-help-recentchangescount' => 'Į tai įeina naujausi keitimai, puslapių istorijos ir specialiųjų veiksmų istorijos.',
 'prefs-help-watchlist-token'    => 'Įrašius slaptą raktą į šį laukelį, bus sugeneruotas RSS srautas su jūsų stebimųjų sąrašu.
 Bet kas, žinantis šio lauko raktą, galės matyti jūsų stebimų sąrašą, todėl pasirinkite saugią reikšmę.
 Galite panaudoti šią atsitiktinai sugeneruotą reikšmę: $1',
@@ -1405,7 +1405,6 @@ teisės",
 'right-userrights'            => 'Redaguoti visų naudotojų teises',
 'right-userrights-interwiki'  => 'Keisti naudotojų teises kitose wiki svetainėse',
 'right-siteadmin'             => 'Atrakinti ir užrakinti duomenų bazę',
-'right-reset-passwords'       => 'Atstatyti kitų naudotojų slaptažodžius',
 'right-override-export-depth' => 'Eksportuoti puslapius įtraukiant susietus puslapius iki 5 lygio gylio',
 'right-sendemail'             => 'Siųsti el. laišką kitiems naudotojams',
 
@@ -1454,7 +1453,7 @@ teisės",
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',
-'recentchanges'                     => 'Paskutiniai keitimai',
+'recentchanges'                     => 'Naujausi keitimai',
 'recentchanges-legend'              => 'Naujausių keitimų parinktys',
 'recentchangestext'                 => 'Šiame puslapyje yra patys naujausi pakeitimai šiame projekte.',
 'recentchanges-feed-description'    => 'Sekite pačius naujausius projekto keitimus šiame šaltinyje.',
@@ -1682,9 +1681,8 @@ Dėl saugumo, img_auth.php yra išjungtas.',
 'upload_source_file' => ' (failas jūsų kompiuteryje)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Šis specialus puslapis rodo visus įkeltus failus.
-Pagal numatymą paskutiniai įkelti failai rodomi sąrašo viršuje.
-Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
+'listfiles-summary'     => 'This special page shows all uploaded files.
+When filtered by user, only files where that user uploaded the most recent version of the file are shown.',
 'listfiles_search_for'  => 'Ieškoti failo pavadinimo:',
 'imgfile'               => 'failas',
 'listfiles'             => 'Failų sąrašas',
@@ -2102,16 +2100,16 @@ Jūs taip pat galite išjungti pranešimo žymę visiems jūsų stebimiems pusla
 
 --
 Norėdami pakeisti e-paštu siunčiamų pranešimų nustatymus, užeikite į
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Norėdami pakeisti stebimų puslapių nustatymus, užeikite į
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Norėdami puslapį iš stebimų puslapių sąrašo, užeikite į
 $UNWATCHURL
 
 Atsiliepimai ir pagalba:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Trinti puslapį',
@@ -2313,7 +2311,6 @@ Paskutinis blokavimo įrašas pateikiamas žemiau:',
 'sp-contributions-username'            => 'IP adresas arba naudotojo vardas:',
 'sp-contributions-toponly'             => 'Rodyti tik paskutinius keitimus',
 'sp-contributions-submit'              => 'Ieškoti',
-'sp-contributions-showsizediff'        => 'Rodyti skirtumas puslapio dydį',
 
 # What links here
 'whatlinkshere'            => 'Susiję puslapiai',
@@ -3522,9 +3519,9 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 # Special:SpecialPages
 'specialpages'                   => 'Specialieji puslapiai',
 'specialpages-note'              => '----
-* Normalūs specialieji puslapiai.
-* <span class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</span>
-* <span class="mw-specialpagecached">Tik į podėlį įrašyti specialieji puslapiai.</span>',
+ * įprastą specialius puslapius.
+ * <span class="mw-specialpagerestricted">tik specialius puslapius.</span>
+ * <span class="mw-specialpagecached">Talpyklinių specialius puslapius (gali būti pasenusius).</span>',
 'specialpages-group-maintenance' => 'Sistemos palaikymo pranešimai',
 'specialpages-group-other'       => 'Kiti specialieji puslapiai',
 'specialpages-group-login'       => 'Prisijungimas / Registracija',

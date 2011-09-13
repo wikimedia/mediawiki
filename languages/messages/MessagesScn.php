@@ -1228,7 +1228,6 @@ L'operazioni nun pò èssiri annullata.",
 'right-userrights'            => "Cancia tutti li diritta di l'utilizzaturi",
 'right-userrights-interwiki'  => "Cancia li diritti di l'utilizzatura di àutri wiki",
 'right-siteadmin'             => 'Blocca a sblocca lu databasi',
-'right-reset-passwords'       => 'Reimposta la password di autri utenti',
 'right-override-export-depth' => 'Esporta pàggini cumpresi li pàggini culligati finu ô quintu liveddu',
 
 # User rights log
@@ -1824,10 +1823,10 @@ Nun vèninu mannati àutri canciamenti \'n caso di ultiriuri canciamenti, a menu
 
 --
 Pi mudificari li mpustazzioni dâ lista di l\'ussirvati spiciali, vìsita
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pi dari lu tò feedback e arricèviri ultiriuri assistenza:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Elìmina la pàggina',

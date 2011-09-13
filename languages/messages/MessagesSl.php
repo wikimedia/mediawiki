@@ -212,7 +212,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pošlji e-pošto tudi za manjše spremembe strani',
 'tog-enotifrevealaddr'        => 'V sporočilih z obvestili o spremembah razkrij moj e-poštni naslov',
 'tog-shownumberswatching'     => 'Prikaži število uporabnikov, ki spremljajo temo',
-'tog-oldsig'                  => 'Predogled obstoječega podpisa:',
+'tog-oldsig'                  => 'Obstoječi podpis:',
 'tog-fancysig'                => 'Obravnavaj podpis kot wikibesedilo (brez samodejne povezave)',
 'tog-externaleditor'          => 'Po privzetem uporabljaj zunanji urejevalnik (samo za strokovnjake; potrebuje posebne nastavitve na vašem računalniku; [http://www.mediawiki.org/wiki/Manual:External_editors več informacij])',
 'tog-externaldiff'            => 'Po privzetem uporabljaj zunanje primerjanje (samo za strokovnjake; potrebuje posebne nastavitve na vašem računalniku; [http://www.mediawiki.org/wiki/Manual:External_editors več informacij])',
@@ -608,7 +608,7 @@ Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rod
 'createaccountreason'        => 'Razlog:',
 'badretype'                  => 'Gesli, ki ste ju vnesli, se ne ujemata.',
 'userexists'                 => 'Uporabniško ime, ki ste ga vnesli, je že zasedeno.
-Prosimo, izberite si drugo.',
+Prosimo, izberite drugo.',
 'loginerror'                 => 'Napaka ob prijavi',
 'createaccounterror'         => 'Ne morem ustvariti računa: $1',
 'nocookiesnew'               => 'Uporabniški račun je ustvarjen, vendar niste prijavljeni.
@@ -708,6 +708,7 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'passwordreset-disabled'       => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Vnesite enega od dela podatkov spodaj}}',
 'passwordreset-username'       => 'Uporabniško ime:',
+'passwordreset-domain'         => 'Domena:',
 'passwordreset-email'          => 'E-poštni naslov:',
 'passwordreset-emailtitle'     => 'Podrobnosti računa na {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval opomnik vaših
@@ -1217,7 +1218,7 @@ Upoštevajte, da so njihovi podatki vsebine {{GRAMMAR:rodilnik|{{SITENAME}}}} mo
 'qbsettings-fixedright'     => 'Desno nepomično',
 'qbsettings-floatingleft'   => 'Levo leteče',
 'qbsettings-floatingright'  => 'Desno leteče',
-'qbsettings-directionality' => 'Stalno, odvisno od usmerjenosti vašega skripta in vašega jezika',
+'qbsettings-directionality' => 'Stalno, odvisno od usmerjenosti pisave vašega jezika',
 
 # Preferences page
 'preferences'                   => 'Nastavitve',
@@ -1301,7 +1302,7 @@ Tega ni mogoče razveljaviti.',
 'prefs-registration'            => 'Registriran od:',
 'yourrealname'                  => 'Pravo ime:',
 'yourlanguage'                  => 'Jezik:',
-'yourvariant'                   => 'Različica:',
+'yourvariant'                   => 'Jezikovna različica vsebine:',
 'yournick'                      => 'Nov podpis:',
 'prefs-help-signature'          => 'Komentarje na pogovornih straneh, je treba podpisati s »<nowiki>~~~~</nowiki>«, kar bo pretvorjeno v vaš podpis s časom.',
 'badsig'                        => 'Neveljaven surovi podpis; preverite oznake HTML.',
@@ -1356,7 +1357,7 @@ Podatek bo javno prikazan.',
 'userrights-no-interwiki'      => 'Nimate dovoljenja za urejanje pravic uporabnikov na drugih wikijih.',
 'userrights-nodatabase'        => 'Podatkovna baza $1 ne obstaja ali ni lokalna.',
 'userrights-nologin'           => 'Za dodeljevanje uporabniških pravic se morate [[Special:UserLogin|prijaviti]] s skrbniškim računom.',
-'userrights-notallowed'        => 'Vaš račun nima dovoljenja za dodeljevanje pravic uporabnikom.',
+'userrights-notallowed'        => 'Vaš račun nima dovoljenja za dodajanje ali odstranjevanje uporabniških pravic.',
 'userrights-changeable-col'    => 'Skupine, ki jih lahko spremenite',
 'userrights-unchangeable-col'  => 'Skupine, ki jih ne morete spremeniti',
 
@@ -1402,8 +1403,8 @@ Podatek bo javno prikazan.',
 'right-reupload-shared'       => 'Nalaganje lokalnih zamenjav za datoteke iz skupnih večpredstavnostnih skladišč',
 'right-upload_by_url'         => 'Nalaganje datotek iz naslova URL',
 'right-purge'                 => 'Osvežitev predpomnilnika strani, brez potrditve',
-'right-autoconfirmed'         => 'Urejanje delno-zaščitenih strani',
-'right-bot'                   => 'Naj bo obravnavan kot samodejni proces',
+'right-autoconfirmed'         => 'Urejanje delno zaščitenih strani',
+'right-bot'                   => 'Naj bo obravnavan kot avtomatiziran postopek',
 'right-nominornewtalk'        => 'Urejanja pogovornih strani, ki niso označena kot manjša, sprožijo obvestilo o novem sporočilu',
 'right-apihighlimits'         => 'Uporaba višje omejitve poizvedb API',
 'right-writeapi'              => 'Uporaba napisanega API-ja',
@@ -1442,7 +1443,6 @@ Podatek bo javno prikazan.',
 'right-userrights'            => 'Urejanje vseh uporabniških pravic',
 'right-userrights-interwiki'  => 'Urejanje uporabniških pravic uporabnikov na drugih wikijih',
 'right-siteadmin'             => 'Zaklepanje in odklepanje baze podatkov',
-'right-reset-passwords'       => 'Ponastavljanje gesla drugih uporabnikov',
 'right-override-export-depth' => 'Izvoz strani, vključno s povezaimi straneh do globine 5',
 'right-sendemail'             => 'Pošiljanje e-pošte drugim uporabnikom',
 
@@ -1750,8 +1750,7 @@ Morda želite poskusiti ob času manjše zasedenosti.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ta posebna stran prikazuje vse naložene datoteke.
-Po privzetem so na vrhu seznama najnovejše datoteke.
-Za spremembo razvrščanja kliknete na glavo stolpca.',
+Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri katerih je izbrani uporabnik naložil najnovejšo različico datoteke.',
 'listfiles_search_for'  => 'Išči po imenu datoteke:',
 'imgfile'               => 'dat.',
 'listfiles'             => 'Seznam datotek',
@@ -2171,16 +2170,16 @@ Na spisku nadzorov lahko tudi ponastavite zastavice obveščanj za vse spremljan
 
 --
 Za spremembo nastavitev e-poštnih obvestil obiščite
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Za spremembo nastavitev spiska nadzorov obiščite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Za odstranitev strani z vašega spiska nadzorov obiščite
 $UNWATCHURL
 
 Povratna sporočila in pomoč:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Briši stran',
@@ -2390,7 +2389,6 @@ Najnovejši vnos v dnevniku blokad je naveden spodaj:',
 'sp-contributions-username'            => 'IP-naslov ali uporabniško ime:',
 'sp-contributions-toponly'             => 'Prikaži samo vrhnje redakcije',
 'sp-contributions-submit'              => 'Išči',
-'sp-contributions-showsizediff'        => 'Prikaži razliko v velikosti strani',
 
 # What links here
 'whatlinkshere'            => 'Kaj se povezuje sem',
@@ -3155,9 +3153,9 @@ Druga bodo po privzetem skrita.
 'exif-orientation-3' => 'Zasukano za 180°',
 'exif-orientation-4' => 'Navpično zrcaljeno',
 'exif-orientation-5' => 'Zasukano za 90° v levo in navpično zrcaljeno',
-'exif-orientation-6' => 'Zasukano za 90° v desno',
+'exif-orientation-6' => 'Zasukano za 90° v levo',
 'exif-orientation-7' => 'Zasukano za 90° v desno in navpično zrcaljeno',
-'exif-orientation-8' => 'Zasukano za 90° v levo',
+'exif-orientation-8' => 'Zasukano za 90° v desno',
 
 'exif-planarconfiguration-1' => 'grudast format',
 'exif-planarconfiguration-2' => 'ravninski format',
@@ -3582,7 +3580,7 @@ Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
 'specialpages-note'              => '----
 * Navadne posebne strani.
 * <span class="mw-specialpagerestricted">Omejene posebne strani.</span>
-* <span class="mw-specialpagecached">Samo predpomnjene posebne strani.</span>',
+* <span class="mw-specialpagecached">Predpomnjene posebne strani (morda so zastarele).</span>',
 'specialpages-group-maintenance' => 'Vzdrževalna poročila',
 'specialpages-group-other'       => 'Ostale posebne strani',
 'specialpages-group-login'       => 'Prijavite se / registrirajte se',

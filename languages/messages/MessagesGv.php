@@ -961,16 +961,16 @@ Foddee shiu aajeshaghey bratteeyn ny fograghyn ry hoi dagh duillag er dty rolley
 --
 
 Dys toshiaghtyn fys post-y y chaghlaa, cur keayrt er
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Dys toshiaghtyn dty rolley arrey y chaghlaa, cur keayrt er
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Dys scryssey duillag ass dty rolley arrey, cur keayrt er
 $UNWATCHURL
 
 Aaveaghey as cooney s\'odjey:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Scryss y duillag',

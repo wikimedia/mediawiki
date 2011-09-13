@@ -1232,7 +1232,6 @@ $1",
 'right-userrights'            => 'اصلاح کل حقوق کاربری',
 'right-userrights-interwiki'  => 'اصلاح حقوق کابرانی کابران دگه ویکی انء',
 'right-siteadmin'             => 'کبل و پچ دیتابیس',
-'right-reset-passwords'       => 'کلمه رمز چه دگه کاربران ءَ عوض کن',
 'right-override-export-depth' => 'درگیزگ صفحات گون صفحاتی لینک بوتگین ته سطح ۵',
 
 # User rights log
@@ -1841,10 +1840,10 @@ $NEWPAGE
 
 --
 په عوض کتن تنظیمات وتی لیست چارگ،به چار
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 نظرات و گیشترین کمک:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'حذف صفحه',

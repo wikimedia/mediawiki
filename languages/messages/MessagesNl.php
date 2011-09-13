@@ -361,7 +361,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
 'tog-enotifrevealaddr'        => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
-'tog-oldsig'                  => 'Voorvertoning van de bestaande ondertekening:',
+'tog-oldsig'                  => 'Bestaande ondertekening:',
 'tog-fancysig'                => 'Als wikitekst behandelen (zonder automatische verwijzing)',
 'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
 'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
@@ -607,7 +607,7 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'viewsourcelink'          => 'brontekst bekijken',
 'editsectionhint'         => 'Deelpagina bewerken: $1',
 'toc'                     => 'Inhoud',
-'showtoc'                 => 'bekijken',
+'showtoc'                 => 'weergeven',
 'hidetoc'                 => 'verbergen',
 'collapsible-collapse'    => 'Inklappen',
 'collapsible-expand'      => 'Uitklappen',
@@ -870,6 +870,7 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 'passwordreset-disabled'       => 'Het is in deze wiki niet mogelijk uw wachtwoord opnieuw in te stellen.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Voer één van de onderstaande velden in}}',
 'passwordreset-username'       => 'Gebruiker:',
+'passwordreset-domain'         => 'Domein:',
 'passwordreset-email'          => 'E-mailadres:',
 'passwordreset-emailtitle'     => 'Gebruikersgegevens op {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Iemand, waarschijnlijk u, vanaf het IP-adres $1, heeft uw gebruikersgegevens voor {{SITENAME}} ($4) opgevraagd.
@@ -1315,7 +1316,7 @@ Let op dat het gebruiken van de navigatieverwijzingen deze kolom opnieuw instelt
 'showhideselectedversions' => 'Geselecteerde versies weergeven/verbergen',
 'editundo'                 => 'ongedaan maken',
 'diff-multi'               => '({{PLURAL:$1|Eén tussenliggende versie|$1 tussenliggende versies}} door {{PLURAL:$2|één gebruiker|$2 gebruikers}} {{PLURAL:$1|wordt|worden}} niet weergegeven)',
-'diff-multi-manyusers'     => '($1 tussenliggende versies door meer dan $2 gebruikers worden niet weergegeven)',
+'diff-multi-manyusers'     => '($1 tussenliggende {{PLURAL:$1|versie|versies}} door meer dan $2 {{PLURAL:$2|gebruiker|gebruikers}}  worden niet weergegeven)',
 
 # Search results
 'searchresults'                    => 'Zoekresultaten',
@@ -1477,7 +1478,7 @@ Deze handeling kan niet ongedaan gemaakt worden.',
 'prefs-registration'            => 'Registratiedatum:',
 'yourrealname'                  => 'Uw echte naam:',
 'yourlanguage'                  => 'Taal:',
-'yourvariant'                   => 'Taalvariant:',
+'yourvariant'                   => 'Taalvariant voor inhoud:',
 'yournick'                      => 'Tekst voor ondertekening:',
 'prefs-help-signature'          => 'Reacties op de overlegpagina\'s worden meestal ondertekend met "<nowiki>~~~~</nowiki>".
 De tildes worden omgezet in uw ondertekening en een datum en tijd van de bewerking.',
@@ -1532,7 +1533,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'userrights-no-interwiki'      => "U hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 'userrights-nodatabase'        => 'Database $1 bestaat niet of is geen plaatselijke database.',
 'userrights-nologin'           => 'U moet zich [[Special:UserLogin|aanmelden]] met een gebruiker met de juiste rechten om gebruikersrechten toe te wijzen.',
-'userrights-notallowed'        => 'U hebt geen rechten om gebruikersrechten toe te wijzen.',
+'userrights-notallowed'        => 'U hebt geen rechten om gebruikersrechten toe te voegen of te verwijderen.',
 'userrights-changeable-col'    => 'Groepen die u kunt beheren',
 'userrights-unchangeable-col'  => 'Groepen die u niet kunt beheren',
 
@@ -1618,7 +1619,6 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'right-userrights'            => 'Alle gebruikersrechten bewerken',
 'right-userrights-interwiki'  => "Gebruikersrechten van gebruikers in andere wiki's wijzigen",
 'right-siteadmin'             => 'De database blokkeren en weer vrijgeven',
-'right-reset-passwords'       => 'Wachtwoorden van andere gebruikers opnieuw instellen',
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
 
@@ -1626,7 +1626,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'rightslog'                  => 'Gebruikersrechtenlogboek',
 'rightslogtext'              => 'Hieronder staan de wijzigingen in gebruikersrechten.',
 'rightslogentry'             => 'wijzigde de gebruikersrechten voor $1 van $2 naar $3',
-'rightslogentry-autopromote' => 'werd automatisch gepromoveerd van $2 naar $3',
+'rightslogentry-autopromote' => 'is automatisch gepromoveerd van de groepen "$2" naar de groepen "$3"',
 'rightsnone'                 => '(geen)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1933,8 +1933,7 @@ U kunt het misschien proberen als het minder druk is.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Op deze speciale pagina zijn alle toegevoegde bestanden te bekijken.
-Standaard worden de laatst toegevoegde bestanden bovenaan de lijst weergegeven.
-Klikken op een kolomkop verandert de sortering.',
+Als deze pagina wordt gefilterd op gebruiker, worden alleen bestanden waar de gebruiker de laatste versie van heeft geüpload weergegeven.',
 'listfiles_search_for'  => 'Zoeken naar bestand:',
 'imgfile'               => 'bestand',
 'listfiles'             => 'Bestandslijst',
@@ -2354,20 +2353,20 @@ Wiki: $PAGEEDITOR_WIKI
 
 Tenzij u deze pagina bezoekt, komen er geen verdere berichten. Op uw volglijst kunt u voor alle gevolgde pagina\'s de waarschuwingsinstellingen opschonen.
 
-             Groet van uw {{SITENAME}} waarschuwingssysteem.
+             Groet van uw {{SITENAME}}-waarschuwingssysteem.
 
 --
 U kunt uw e-mailinstellingen wijzigen op:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 U kunt uw volglijstinstellingen wijzigen op:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 U kunt de pagina van uw volglijst verwijderen via de volgende verwijzing:
 $UNWATCHURL
 
 Feedback en andere assistentie:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Deze pagina verwijderen',
@@ -2578,7 +2577,6 @@ De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergege
 'sp-contributions-username'            => 'IP-adres of gebruikersnaam:',
 'sp-contributions-toponly'             => 'Alleen nieuwste versies weergeven',
 'sp-contributions-submit'              => 'Bekijken',
-'sp-contributions-showsizediff'        => 'Verschil in paginagrootte weergeven',
 
 # What links here
 'whatlinkshere'            => 'Verwijzingen naar deze pagina',
@@ -2811,7 +2809,7 @@ Combineer de overlegpagina's handmatig.'''",
 'movepage-page-unmoved'        => 'De pagina $1 kon niet hernoemd worden naar $2.',
 'movepage-max-pages'           => "Het maximale aantal automatisch te hernoemen pagina's is bereikt ({{PLURAL:$1|$1|$1}}).
 De overige pagina's worden niet automatisch hernoemd.",
-'1movedto2'                    => '[[$1]] hernoemd naar [[$2]]',
+'1movedto2'                    => 'hernoemde [[$1]] naar [[$2]]',
 '1movedto2_redir'              => '[[$1]] hernoemd over de doorverwijzing [[$2]]',
 'move-redirect-suppressed'     => 'doorverwijzing onderdrukt',
 'movelogpage'                  => 'Hernoemingslogboek',
@@ -3392,9 +3390,9 @@ Andere velden worden verborgen.
 'exif-orientation-3' => '180° gedraaid',
 'exif-orientation-4' => 'Verticaal gespiegeld',
 'exif-orientation-5' => 'Gespiegeld om as linksboven-rechtsonder',
-'exif-orientation-6' => '90° rechtsom gedraaid',
+'exif-orientation-6' => '90° linksom gedraaid',
 'exif-orientation-7' => 'Gespiegeld om as linksonder-rechtsboven',
-'exif-orientation-8' => '90° linksom gedraaid',
+'exif-orientation-8' => '90° rechtsom gedraaid',
 
 'exif-planarconfiguration-1' => 'chunky gegevensformaat',
 'exif-planarconfiguration-2' => 'planar gegevensformaat',

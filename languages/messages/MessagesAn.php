@@ -1327,7 +1327,6 @@ Habría de tener menos de $1 {{PLURAL:$1|carácter|carácters}}.',
 'right-userrights'            => "Editar totz os dreitos d'usuario",
 'right-userrights-interwiki'  => "Editar os dreitos d'usuario d'os usuarios d'atros wikis",
 'right-siteadmin'             => 'Trancar y destrancar a base de datos',
-'right-reset-passwords'       => "Reiniciar a contrasenya d'atros usuarios",
 'right-override-export-depth' => 'Exporta pachinas que incluigan as enlazadas dica un fundaria de 5',
 'right-sendemail'             => 'Ninviar un correu electronico a atros usuarios',
 
@@ -2003,13 +2002,13 @@ O sistema de notificación de {{SITENAME}}.
 
 --
 Ta cambiar as opcions d\'a suya lista de seguimiento, punche:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Ta borrar ista pachina d\'a suya lista de seguimiento, punche:
 $UNWATCHURL
 
 Ta obtenir más información y aduya:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Borrar ista pachina',

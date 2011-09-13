@@ -194,7 +194,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Schéckt mir och bei klengen Ännerungen op vu mir iwwerwaachte Säiten eng E-Mail.',
 'tog-enotifrevealaddr'        => 'Meng E-Mailadress an de Benoriichtigungsmaile weisen.',
 'tog-shownumberswatching'     => "D'Zuel vun de Benotzer déi dës Säit iwwerwaache weisen",
-'tog-oldsig'                  => 'Ausgesi vun der aktueller Ënnerschrëft:',
+'tog-oldsig'                  => 'Aktuell Ënnerschrëft:',
 'tog-fancysig'                => 'Ënnerschrëft als Wiki-Text behandelen (Ouni automatesche Link)',
 'tog-externaleditor'          => 'Externen Editeur als Standard benotzen (Nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn. [http://www.mediawiki.org/wiki/Manual:External_editors Méi Informatiounen.])',
 'tog-externaldiff'            => 'En Externen Diff-Programm als Standard benotzen (nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn. [http://www.mediawiki.org/wiki/Manual:External_editors Méi Informatiounen])',
@@ -678,6 +678,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'passwordreset-disabled'     => "D'Zerécksetze vum Passwuert ass op dëser Wiki ausgeschalt.",
 'passwordreset-pretext'      => '{{PLURAL:$1||Gitt eng vun dësen Donnéeën an}}',
 'passwordreset-username'     => 'Benotzernumm:',
+'passwordreset-domain'       => 'Domaine:',
 'passwordreset-email'        => 'E-Mailadress:',
 'passwordreset-emailtitle'   => 'Detailer vum Benotzerkont op{{SITENAME}}',
 'passwordreset-emailelement' => 'Benotzernumm: $1
@@ -766,7 +767,7 @@ Gitt w.e.g. eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benot
 'nosuchsectiontext'                => "Dir hutt versicht een Abschnitt z'änneren den et net gëtt.
 Et ka sinn datt e geännert oder geläscht gouf iwwerdm wou Dir d'Säit gekuckt hutt.",
 'loginreqtitle'                    => 'Umeldung néideg',
-'loginreqlink'                     => 'umellen',
+'loginreqlink'                     => 'aloggen',
 'loginreqpagetext'                 => 'Dir musst Iech $1, fir aner Säite liesen zu kënnen.',
 'accmailtitle'                     => 'Passwuert gouf geschéckt.',
 'accmailtext'                      => "En zoufällegt Passwuert fir [[User talk:$1|$1]] gouf op $2 geschéckt.
@@ -847,8 +848,8 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'cascadeprotectedwarning'          => "'''Passt op:''' Dës Säit gouf gespaart a kann nëmme vu Benotzer mat Administreursrechter geännert ginn. Si ass an dës {{PLURAL:$1|Säit|Säiten}} agebonnen, déi duerch Cascadespäroptioun gespaart {{PLURAL:$1|ass|sinn}}:'''",
 'titleprotectedwarning'            => "'''OPGEPASST: Dës Säit gouf gespaart sou datt [[Special:ListGroupRights|spezifesch Rechter]] gebraucht gi fir se uleeën ze kënnen.''' Déi lescht Zeil aus de Logbicher fannt Dir zu Ärer Informatioun hei ënnendrënner.",
 'templatesused'                    => '{{PLURAL:$1|Schabloun|Schablounen}} déi op dëser Säit am Gebrauch sinn:',
-'templatesusedpreview'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dëser nach net gespäicherter Versioun benotzt ginn:',
-'templatesusedsection'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dësem Abschnitt am Gebrauch {{PLURAL:$1|ass|sinn}}:',
+'templatesusedpreview'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dëser nach net gespäicherter Versioun benotzt {{PLURAL:$1|gëtt|ginn}}:',
+'templatesusedsection'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dësem Abschnitt benotzt {{PLURAL:$1|gëtt|ginn}}:',
 'template-protected'               => '(gespaart)',
 'template-semiprotected'           => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories'                 => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
@@ -1154,12 +1155,13 @@ Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zréck
 'searchdisabled'                   => "D'Sichfunktioun op {{SITENAME}} ass ausgeschalt. Dir kënnt iwwerdeems mat Hëllef vu Google sichen. Bedenkt awer, datt deenen hire  Sichindex fir {{SITENAME}} eventuell net dem aktuellste Stand entsprecht.",
 
 # Quickbar
-'qbsettings'               => 'Geschirläischt',
-'qbsettings-none'          => 'Keen',
-'qbsettings-fixedleft'     => 'Lénks, fest',
-'qbsettings-fixedright'    => 'Riets, fest',
-'qbsettings-floatingleft'  => 'schwiewt lenks',
-'qbsettings-floatingright' => 'Schwiewt riets',
+'qbsettings'                => 'Geschirläischt',
+'qbsettings-none'           => 'Keen',
+'qbsettings-fixedleft'      => 'Lénks, fest',
+'qbsettings-fixedright'     => 'Riets, fest',
+'qbsettings-floatingleft'   => 'schwiewt lenks',
+'qbsettings-floatingright'  => 'Schwiewt riets',
+'qbsettings-directionality' => 'Fix, ofhängeg vun der Schreiwrichtung vun Ärer Sprooch',
 
 # Preferences page
 'preferences'                   => 'Astellungen',
@@ -1242,7 +1244,7 @@ Dëst kann net réckgängeg gemaach ginn.",
 'prefs-registration'            => 'Zäitpunkt vum Opmaache vum Benotzerkont:',
 'yourrealname'                  => 'Richtegen Numm:',
 'yourlanguage'                  => 'Sprooch vun der Benotzeruewerfläch:',
-'yourvariant'                   => 'Sproochvariant:',
+'yourvariant'                   => 'Sproochvariant fir den Inhalt:',
 'yournick'                      => 'Ënnerschrëft:',
 'prefs-help-signature'          => 'Bemierkungen op Diskussiounssäite solle mat "<nowiki>~~~~</nowiki>" ënnerschriwwe ginn. Dëst gëtt dann an Är Ënnerschrëft an en Zäitstempel ëmgewandelt.',
 'badsig'                        => "D'Syntax vun ärer Ënnerschëft ass net korrekt; iwwerpréift w.e.g. ären HTML Code.",
@@ -1295,7 +1297,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'userrights-no-interwiki'      => "Dir hutt net déi néideg Rechter, fir d'Rechter vu Benoutzer op anere Wikien z'änneren.",
 'userrights-nodatabase'        => "D'Datebank $1 gëtt et net oder se ass net lokal.",
 'userrights-nologin'           => 'Dir musst mat engem Administrateurs-Benotzerkont [[Special:UserLogin|ageloggt sinn]], fir Benotzerrechter änneren ze kënnen.',
-'userrights-notallowed'        => "Dir hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
+'userrights-notallowed'        => "Äre Benotzerkont hutt net déi néideg Rechter fir d'Rechter vun anere Benotzer z'änneren.",
 'userrights-changeable-col'    => 'Gruppen déi Dir ännere kënnt',
 'userrights-unchangeable-col'  => 'Gruppen déi Dir net ännere kënnt',
 
@@ -1381,7 +1383,6 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-userrights'            => 'All Benotzerrechter änneren',
 'right-userrights-interwiki'  => 'Benotzerrechter vu Benotzer op anere Wiki-Siten änneren',
 'right-siteadmin'             => "Datebank spären an d'Spär ophiewen",
-'right-reset-passwords'       => 'Anere Benotzer hir Passwierder zrécksetzen',
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
 'right-sendemail'             => 'Anere Benotzer E-Maile schécken',
 
@@ -1667,7 +1668,9 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'upload_source_file' => ' (e Fichier op Ärem Computer)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Op dëser Spezialsäit stinn all déi eropgeluede Fichieren. Déi als läscht eropgeluede Fichieren ginn als éischt ugewisen. Duerch e Klick op d'Iwwerschrëfte vun de Kolonnen kënnt Dir d'Sortéierung ëmdréinen an Dir kënnt esou och no enger anerer Kolonn sortéieren.",
+'listfiles-summary'     => 'Op dëser Spezialsäit stinn all déi eropgeluede Fichieren.
+
+Wann se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee Benotzer déi lescht Versioun vum Fichier eropgelueden huet.',
 'listfiles_search_for'  => 'Sicht nom Fichier:',
 'imgfile'               => 'Fichier',
 'listfiles'             => 'Lëscht vun de Fichieren',
@@ -1908,7 +1911,7 @@ Dir kënnt d'Siche limitéieren wann Dir e Log-Typ, e Benotzernumm (case-senisit
 'prevpage'          => 'Säit viru(n) ($1)',
 'allpagesfrom'      => 'Säite weisen, ugefaange mat:',
 'allpagesto'        => 'Weis Säite bis:',
-'allarticles'       => "All d'Säiten",
+'allarticles'       => 'All Säiten',
 'allinnamespace'    => "All d'Säiten ($1 Nummraum)",
 'allnotinnamespace' => "All d'Säiten (net am $1 Nummraum)",
 'allpagesprev'      => 'Vireg',
@@ -2087,18 +2090,18 @@ Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen 
 --
 
 Fir d\'Astellungen op ären E-Mailbenoriichtigungen z\'änneren, besicht w.e.g.
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 
 Fir d\'Astellungen vun ärer Iwwerwaachungslëscht z\'änneren, besicht w.e.g.
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 
 Fir d\'Säit vun Ärer Iwwerwaachungslëscht erofzehuelen, gitt w.e.g. op
 $UNWATCHURL
 
 Reaktiounen a méi Hëllef:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Säit läschen',
@@ -2298,7 +2301,6 @@ $1',
 'sp-contributions-username'            => 'IP-Adress oder Benotzernumm:',
 'sp-contributions-toponly'             => 'Nëmmen Ännerunge weisen déi déi lescht Versioun sinn',
 'sp-contributions-submit'              => 'Sichen',
-'sp-contributions-showsizediff'        => 'Ënnerscheed vun der Gréisst vun der Säit weisen',
 
 # What links here
 'whatlinkshere'            => 'Linken op dës Säit',
@@ -3219,6 +3221,7 @@ Déi aner sinn am Standard verstoppt.
 'exif-dc-date'        => 'Datum(en)',
 'exif-dc-publisher'   => 'Editeur',
 'exif-dc-rights'      => 'Rechter',
+'exif-dc-source'      => 'Ursprong vum Fichier',
 'exif-dc-type'        => 'Medientyp',
 
 'exif-rating-rejected' => 'Refuséiert',
@@ -3390,7 +3393,7 @@ Dir kënnt och [[Special:EditWatchlist/raw|déi net formatéiert Iwwerwaachungsl
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 Säit gouf|$1 Säite goufe}} vun ärer Iwwerwaachungslëscht erofgeholl:',
 'watchlistedit-raw-title'      => 'Iwwerwaachungslëscht onformatéiert änneren',
 'watchlistedit-raw-legend'     => 'Iwwerwaachungslëscht onformatéiert änneren',
-'watchlistedit-raw-explain'    => "D'Säite vun ärer Iwwerwaachungslëscht ginn hei drënner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetze oder erofhuelt; eng Säit pro Linn.
+'watchlistedit-raw-explain'    => "D'Säite vun Ärer Iwwerwaachungslëscht ginn hei drënner gewisen a kënne geännert ginn andeems der d'Säiten op d'Lëscht derbäisetze oder erofhuelt; eng Säit pro Linn.
 Wann Dir fäerdeg sidd, klickt \"{{int:Watchlistedit-raw-submit}}\".
 Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'watchlistedit-raw-titles'     => 'Säiten:',

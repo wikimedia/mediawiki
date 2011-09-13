@@ -1310,7 +1310,6 @@ $1",
 'right-userrights'            => 'دەستکاری مافەکانی هەموو بەکارهێنەران',
 'right-userrights-interwiki'  => 'دەستکاری مافەکانی بەکارهێنەریی بەکارهێنەران لە ویکی‌یەکانی دیکە‌دا',
 'right-siteadmin'             => 'داخستن و کردنەوەی بنکەدراو',
-'right-reset-passwords'       => 'ڕیکخستنەوەی تێپەڕوشەی بەکارهێنەرانی دیکە',
 'right-override-export-depth' => 'هەناردنی لاپەڕەکان کە لاپەڕەکانی بەستەر پێ‌دراو تا قووڵایی 5 لەخۆ بگرێت',
 
 # User rights log
@@ -1943,13 +1942,13 @@ $NEWPAGE
              بە سوپاسەوە، سیستەمی ڕاگەیاندنی {{SITENAME}}
 --
 بۆ گۆڕینی ڕێکخستنەکانی لیستی چاودێرییەکەت، سەربدە لە
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 بۆ سڕینەوەی پەڕەکە لە لیستی چاودێرییەکەت، سەربدە لە
 $UNWATCHURL
 
 رێنوێنیی زۆرتر و دەربڕینی بیروڕا:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'پەڕە بسڕەوە',

@@ -1415,7 +1415,6 @@ $1",
 'right-userrights'            => '編輯全部用戶嘅權限',
 'right-userrights-interwiki'  => '編輯響其它wiki嘅用戶權限',
 'right-siteadmin'             => '鎖同解鎖資料庫',
-'right-reset-passwords'       => '重設其他用戶嘅密碼',
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
 'right-sendemail'             => '寄電郵畀其他用戶',
 
@@ -2092,12 +2091,12 @@ wiki: $PAGEEDITOR_WIKI
             {{SITENAME}}通知系統
 
 --
-要修改你嘅監視清單設定，請睇{{fullurl:{{#special:EditWatchlist}}}}
+要修改你嘅監視清單設定，請睇{{canonicalurl:{{#special:EditWatchlist}}}}
 
 要刪除你嘅監視清單度嘅呢一版，請睇$UNWATCHURL
 
 回饋及更多幫助：
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => '刪除頁面',

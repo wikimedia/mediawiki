@@ -1405,10 +1405,10 @@ $NEWPAGE
              ከክብር ጋር፣ የ{{SITENAME}} ኢሜል-ማስታወቂያ መርሃግብር።
 
 --
-የሚከታተሉት ገጾች ዝርዝር ለመቀየር፣ {{fullurl:{{#special:EditWatchlist}}}} ይጎበኙ።
+የሚከታተሉት ገጾች ዝርዝር ለመቀየር፣ {{canonicalurl:{{#special:EditWatchlist}}}} ይጎበኙ።
 
 በተጨማሪ ለመረዳት፦
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'ገጹ ይጥፋ',

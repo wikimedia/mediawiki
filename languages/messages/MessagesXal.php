@@ -906,10 +906,10 @@ e-mail\'ар $PAGEEDITOR_EMAIL
 
 --
 Тана шинҗллһнә сеткүлин көгүдиг сольҗ седхлә, эниг дахтн:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Хәрү холва болн тус:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Эн халхиг һарһҗ',

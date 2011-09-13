@@ -326,7 +326,7 @@ pe titlul secțiunii (JavaScript)',
 'tog-enotifminoredits'        => 'Trimite-mi un email de asemenea pentru modificările minore ale paginilor',
 'tog-enotifrevealaddr'        => 'Descoperă-mi adresa email în mesajele de notificare',
 'tog-shownumberswatching'     => 'Arată numărul utilizatorilor care urmăresc',
-'tog-oldsig'                  => 'Previzualizarea semnăturii actuale:',
+'tog-oldsig'                  => 'Semnătură actuală:',
 'tog-fancysig'                => 'Tratează semnătura ca wikitext (fără o legătură automată)',
 'tog-externaleditor'          => 'Utilizează, în mod implicit, un editor extern (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [http://www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
 'tog-externaldiff'            => 'Utilizează, în mod implicit, un program extern pentru diferențele între versiuni (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [http://www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
@@ -720,7 +720,8 @@ Contul dumneavoatră a fost creat. Nu uitați să vă personalizați [[Special:P
 'createaccountmail'          => 'după e-mail',
 'createaccountreason'        => 'Motiv:',
 'badretype'                  => 'Parolele pe care le-ați introdus diferă.',
-'userexists'                 => 'Numele de utilizator pe care l-ați introdus există deja. Încercați cu un alt nume.',
+'userexists'                 => 'Numele de utilizator pe care l-ați introdus este deja folosit.
+Vă rugăm să alegeți un alt nume.',
 'loginerror'                 => 'Eroare de autentificare',
 'createaccounterror'         => 'Nu pot crea contul: $1',
 'nocookiesnew'               => 'Contul a fost creat, dar dvs. nu sunteți autentificat(ă). {{SITENAME}} folosește cookie-uri pentru a reține utilizatorii autentificați. Browser-ul dvs. are modulele cookie dezactivate (disabled). Vă rugăm să le activați și să vă reautentificați folosind noul nume de utilizator și noua parolă.',
@@ -808,8 +809,19 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 'passwordreset-disabled'       => 'Resetarea parolei a fost dezactivată pe acest wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1| | Introduceți mai jos o parte din informații}}',
 'passwordreset-username'       => 'Nume de utilizator:',
+'passwordreset-domain'         => 'Domeniu:',
 'passwordreset-email'          => 'Adresă de e-mail:',
 'passwordreset-emailtitle'     => 'Detalii despre cont pe {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Cineva (probabil dumneavoastră, de la adresa IP $1) a cerut reamintirea detaliilor
+contului dumneavoastră pe {{SITENAME}} ($4). {{PLURAL:$3|Următorul cont este asociat|Următoarele conturi sunt asociate}}
+cu această adresă de e-mail:
+
+$2
+
+{{PLURAL:$3|Această parolă temporară va|Aceste parole temporare vor}} expira {{PLURAL:$5|într-o zi|în $5 zile}}.
+Ar trebui să vă autentificați și să schimbați parola acum. Dacă altcineva a făcut această cerere 
+sau dacă v-ați reamintit parola inițială și nu mai doriți să o schimbați,
+puteți ignora acest mesaj, continuând să utilizați vechea parolă.',
 'passwordreset-emailtext-user' => 'Utilizatorul $1 de pe {{SITENAME}} a solicitat o reamintire a detaliilor contului dumneavoastră pentru {{SITENAME}} ($4). Următorul utilizator are {{PLURAL:$3|contul asociat|conturile asociate}} cu această adresă de e-mail:
 
 $2
@@ -1298,12 +1310,13 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'searchdisabled'                   => '<p>Ne pare rău! Căutarea după text a fost dezactivată temporar, din motive de performanță. Între timp puteți folosi căutarea prin Google mai jos, însă aceasta poate să dea rezultate învechite.</p>',
 
 # Quickbar
-'qbsettings'               => 'Setări pentru bara rapidă',
-'qbsettings-none'          => 'Fără',
-'qbsettings-fixedleft'     => 'Fixă, în stânga',
-'qbsettings-fixedright'    => 'Fixă, în dreapta',
-'qbsettings-floatingleft'  => 'Liberă',
-'qbsettings-floatingright' => 'Plutire la dreapta',
+'qbsettings'                => 'Setări pentru bara rapidă',
+'qbsettings-none'           => 'Fără',
+'qbsettings-fixedleft'      => 'Fixă, în stânga',
+'qbsettings-fixedright'     => 'Fixă, în dreapta',
+'qbsettings-floatingleft'   => 'Liberă',
+'qbsettings-floatingright'  => 'Plutire la dreapta',
+'qbsettings-directionality' => 'Fixat, în funcție de direcția în care se face scrierea în limba dumneavoastră',
 
 # Preferences page
 'preferences'                   => 'Preferințe',
@@ -1386,7 +1399,7 @@ Acțiunea nu este reversibilă.',
 'prefs-registration'            => 'Data înregistrării:',
 'yourrealname'                  => 'Nume real:',
 'yourlanguage'                  => 'Interfață în limba:',
-'yourvariant'                   => 'Varianta:',
+'yourvariant'                   => 'Varianta limbii conţinutului:',
 'yournick'                      => 'Semnătură:',
 'prefs-help-signature'          => 'Comentariile de pe paginile de discuții vor trebuie semnate cu „<nowiki>~~~~</nowiki>”, tildele transformându-se în semnătura dumneavoastră urmată de ora la care ați introdus comentariul.',
 'badsig'                        => 'Semnătură brută incorectă; verificați tagurile HTML.',
@@ -1424,12 +1437,12 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'email-address-validity-invalid' => 'Introduceți o adresă de e-mail validă',
 
 # User rights
-'userrights'                   => 'Administrarea permisiunilor de utilizator',
+'userrights'                   => 'Administrare permisiuni de utilizator',
 'userrights-lookup-user'       => 'Administrare grupuri de utilizatori',
 'userrights-user-editname'     => 'Introdu un nume de utilizator:',
 'editusergroup'                => 'Modificare grup de utilizatori',
 'editinguser'                  => "modificare permisiuni de utilizator ale utilizatorului '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'     => 'Modifică grupul de utilizatori',
+'userrights-editusergroup'     => 'Modificare grup de utilizatori',
 'saveusergroups'               => 'Salvează grupul de utilizatori',
 'userrights-groupsmember'      => 'Membru al:',
 'userrights-groupsmember-auto' => 'Membru, implicit, al:',
@@ -1441,7 +1454,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'userrights-no-interwiki'      => 'Nu aveți permisiunea de a modifica permisiunile utilizatorilor pe alte wiki.',
 'userrights-nodatabase'        => 'Baza de date $1 nu există sau nu este locală.',
 'userrights-nologin'           => 'Trebuie să te [[Special:UserLogin|autentifici]] cu un cont de administrator pentru a atribui permisiuni utilizatorilor.',
-'userrights-notallowed'        => 'Contul dumneavoastră nu are permisiunea de a acorda permisiuni utilizatorilor.',
+'userrights-notallowed'        => 'Contul dumneavoastră nu are permisiunea de a acorda sau elimina drepturi utilizatorilor.',
 'userrights-changeable-col'    => 'Grupuri pe care le puteți schimba',
 'userrights-unchangeable-col'  => 'Grupuri pe care nu le puteți schimba',
 
@@ -1527,7 +1540,6 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-userrights'            => 'Modifică toate permisiunile de utilizator',
 'right-userrights-interwiki'  => 'Modifică permisiunile de utilizator pentru utilizatorii de pe alte wiki',
 'right-siteadmin'             => 'Blochează și deblochează baza de date',
-'right-reset-passwords'       => 'Resetarea parolelor altor utilizatori',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-sendemail'             => 'Trimite e-mail altor utilizatori',
 
@@ -1818,13 +1830,12 @@ Poate doriți să încercați la o oră mai puțin ocupată.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Această pagină specială arată toate fișierele încărcate.
-În mod normal ultimul fișier încărcat este așezat în capul listei.
-O apăsare pe antetul coloanei schimbă sortarea.',
-'listfiles_search_for'  => 'Caută imagine după nume:',
+Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar fișierele ale căror versiune cea mai recentă a fost încărcată de către acel utilizator.',
+'listfiles_search_for'  => 'Căutare fișiere după nume:',
 'imgfile'               => 'fișier',
-'listfiles'             => 'Lista imaginilor',
+'listfiles'             => 'Listă fișiere',
 'listfiles_thumb'       => 'Miniatură',
-'listfiles_date'        => 'Data',
+'listfiles_date'        => 'Dată',
 'listfiles_name'        => 'Nume',
 'listfiles_user'        => 'Utilizator',
 'listfiles_size'        => 'Mărime (octeți)',
@@ -2247,16 +2258,16 @@ Puteți de asemenea reseta notificările pentru toate pagini pe care le urmări�
 
 --
 Pentru a modifica setările notificării prin e-mail, vizitați
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Pentru a modifica setările listei de pagini urmărite, vizitați
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pentru a nu mai urmări pagina, vizitați
 $UNWATCHURL
 
 Asistență și suport:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Șterge pagina',
@@ -2459,7 +2470,6 @@ Iată aici ultima înregistrare relevantă din jurnalul blocărilor:',
 'sp-contributions-username'            => 'Adresă IP sau nume de utilizator:',
 'sp-contributions-toponly'             => 'Afișează numai versiunile recente',
 'sp-contributions-submit'              => 'Caută',
-'sp-contributions-showsizediff'        => 'Afișează diferența dintre mărimea inițială a paginii și mărimea după efectuarea modificării',
 
 # What links here
 'whatlinkshere'            => 'Ce trimite aici',
@@ -3171,11 +3181,16 @@ Altele vor fi ascunse implicit.
 'exif-keywords'                    => 'Cuvinte cheie',
 'exif-worldregioncreated'          => 'Regiunea lumii în care a fost făcută fotografia',
 'exif-countrycreated'              => 'Țara în care a fost făcută fotografia',
+'exif-countrycodecreated'          => 'Codul țării în care a fost făcută fotografia',
 'exif-provinceorstatecreated'      => 'Provincia sau statul în care a fost făcută fotografia',
 'exif-citycreated'                 => 'Orașul în care a fost făcută fotografia',
+'exif-sublocationcreated'          => 'Partea orașului în care a fost făcută fotografia',
+'exif-worldregiondest'             => 'Regiunea lumii ilustrată',
 'exif-countrydest'                 => 'Țara ilustrată',
 'exif-countrycodedest'             => 'Codul țării ilustrate',
+'exif-provinceorstatedest'         => 'Provincia sau statul ilustrat',
 'exif-citydest'                    => 'Orașul ilustrat',
+'exif-sublocationdest'             => 'Partea orașului ilustrată',
 'exif-objectname'                  => 'Titlu scurt',
 'exif-specialinstructions'         => 'Instrucțiuni speciale',
 'exif-headline'                    => 'Titlu detaliat',
@@ -3183,15 +3198,19 @@ Altele vor fi ascunse implicit.
 'exif-source'                      => 'Sursă',
 'exif-editstatus'                  => 'Statutul editorial al imaginii',
 'exif-urgency'                     => 'Urgență',
+'exif-fixtureidentifier'           => 'Articol',
 'exif-locationdest'                => 'Locația ilustrată',
 'exif-locationdestcode'            => 'Codul locației ilustrate',
+'exif-objectcycle'                 => 'Momentul zilei pentru care acest element media este destinat',
 'exif-contact'                     => 'Informații de contact',
+'exif-writer'                      => 'Autor',
 'exif-languagecode'                => 'Limbă',
 'exif-iimversion'                  => 'Versiune IIM',
 'exif-iimcategory'                 => 'Categorie',
 'exif-iimsupplementalcategory'     => 'Categorii suplimentare',
 'exif-datetimeexpires'             => 'Nu utilizați după data de',
 'exif-datetimereleased'            => 'Lansat pe',
+'exif-originaltransmissionref'     => 'Codul locului transmisiei originale',
 'exif-identifier'                  => 'Identificator',
 'exif-lens'                        => 'Obiectiv utilizat',
 'exif-serialnumber'                => 'Numărul de serie al aparatului fotografic',
@@ -3211,9 +3230,12 @@ Altele vor fi ascunse implicit.
 'exif-attributionurl'              => 'Când reutilizați această operă, vă rugăm să adăugați o legătură către',
 'exif-preferredattributionname'    => 'Când reutilizați această operă, vă rugăm ca acest nume să fie creditat',
 'exif-pngfilecomment'              => 'Comentarii la fișierul PNG',
+'exif-disclaimer'                  => 'Termeni',
 'exif-contentwarning'              => 'Avertisment asupra conținutului',
 'exif-giffilecomment'              => 'Comentarii la fișierul GIF',
 'exif-intellectualgenre'           => 'Tipul elementului',
+'exif-subjectnewscode'             => 'Codul subiectului',
+'exif-scenecode'                   => 'Codul IPTC al scenei',
 'exif-event'                       => 'Evenimentul înfățișat',
 'exif-organisationinimage'         => 'Organizația înfățișată',
 'exif-personinimage'               => 'Persoana înfățișată',
@@ -3222,6 +3244,9 @@ Altele vor fi ascunse implicit.
 
 # EXIF attributes
 'exif-compression-1' => 'Necomprimată',
+'exif-compression-2' => 'CCITT Grupa 3 Lungimea codificării Huffman modificată de dimensiune 1',
+'exif-compression-3' => 'CCITT Grupa 3 codificare fax',
+'exif-compression-4' => 'CCITT Grupa 4 codificare fax',
 
 'exif-copyrighted-true'  => 'Sub incidența drepturilor de autor',
 'exif-copyrighted-false' => 'Domeniu public',
@@ -3233,9 +3258,9 @@ Altele vor fi ascunse implicit.
 'exif-orientation-3' => 'Rotită cu 180°',
 'exif-orientation-4' => 'Oglindită vertical',
 'exif-orientation-5' => 'Rotită 90° în sens opus acelor de ceasornic și oglindită vertical',
-'exif-orientation-6' => 'Rotită 90° în sensul acelor de ceasornic',
+'exif-orientation-6' => 'Rotită 90° în sens opus acelor de ceasornic',
 'exif-orientation-7' => 'Rotită 90° în sensul acelor de ceasornic și oglindită vertical',
-'exif-orientation-8' => 'Rotită 90° în sens opus acelor de ceasornic',
+'exif-orientation-8' => 'Rotită 90° în sensul acelor de ceasornic',
 
 'exif-planarconfiguration-1' => 'format compact',
 'exif-planarconfiguration-2' => 'format plat',
@@ -3390,8 +3415,10 @@ Altele vor fi ascunse implicit.
 'exif-gpsdirection-m' => 'Direcție magnetică',
 
 'exif-ycbcrpositioning-1' => 'Centrat',
+'exif-ycbcrpositioning-2' => 'Co-amplasat',
 
 'exif-dc-contributor' => 'Contribuitori',
+'exif-dc-coverage'    => 'Întinderea spațială sau temporală a elementului media',
 'exif-dc-date'        => 'Data (datele)',
 'exif-dc-publisher'   => 'Editor',
 'exif-dc-relation'    => 'Conținut multimedia asociat',
@@ -3411,6 +3438,7 @@ Altele vor fi ascunse implicit.
 'exif-iimcategory-evn' => 'Mediu înconjurător',
 'exif-iimcategory-hth' => 'Sănătate',
 'exif-iimcategory-hum' => 'Interes uman',
+'exif-iimcategory-lab' => 'Muncă',
 'exif-iimcategory-lif' => 'Stil de viață și timp liber',
 'exif-iimcategory-pol' => 'Politică',
 'exif-iimcategory-rel' => 'Religie și credință',
@@ -3540,7 +3568,7 @@ Vă rugăm să confirmați faptul că într-adevăr doriți să recreați acest 
 'table_pager_limit'        => 'Arată $1 itemi pe pagină',
 'table_pager_limit_label'  => 'Elemente pe pagină:',
 'table_pager_limit_submit' => 'Du-te',
-'table_pager_empty'        => 'Nici un rezultat',
+'table_pager_empty'        => 'Niciun rezultat',
 
 # Auto-summaries
 'autosumm-blank'   => 'Ștergerea conținutului paginii',
@@ -3643,7 +3671,7 @@ Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
 'specialpages-note'              => '----
 * Pagini speciale normale.
 * <span class="mw-specialpagerestricted">Pagini speciale restricționate.</span>
-* <span class="mw-specialpagecached">Pagini speciale aflate doar în memoria cache.</span>',
+* <span class="mw-specialpagecached">Pagini speciale aflate doar în memoria cache (pot fi neactualizate).</span>',
 'specialpages-group-maintenance' => 'Întreținere',
 'specialpages-group-other'       => 'Alte pagini speciale',
 'specialpages-group-login'       => 'Autentificare / Înregistrare',

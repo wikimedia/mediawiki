@@ -1321,7 +1321,6 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-userrights'            => 'Wšykne wužywarske pšawa wobźěłaś',
 'right-userrights-interwiki'  => 'Wužywarske pšawa w drugich wikijach wobźěłaś',
 'right-siteadmin'             => 'Datowu banku zastajiś a zastajenje wótpóraś',
-'right-reset-passwords'       => 'Gronidła drugich wužywarjow slědk stajiś',
 'right-override-export-depth' => 'Boki inkluziwnje wótkazanych bokow až do dłyma 5 eksportěrowaś',
 'right-sendemail'             => 'Drugim wužywarjam e-mail pósłaś',
 
@@ -2015,13 +2014,13 @@ Móźoś teke chórgojcki powěźeńkow za wšykne twóje wobglědowane boki.
              Twój pśijaśelny powěsćowy system {{SITENAME}}
 --
 Aby nastajenja twójeje wobglědowańki změnił, woglědaj:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Aby se bok z twójeje wobglědowańki wulašował, woglědaj se
 $UNWATCHURL
 
 Pšašanja a dalšna pomoc:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Bok wulašowaś',

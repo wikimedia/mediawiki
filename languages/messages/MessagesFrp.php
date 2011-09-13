@@ -332,7 +332,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'M’avèrtir per mèssageria èlèctronica mémo en câs de petiôts changements',
 'tog-enotifrevealaddr'        => 'Fâre vêre mon adrèce èlèctronica dens los mèssâjos d’avèrtissement',
 'tog-shownumberswatching'     => 'Fâre vêre lo nombro d’utilisators que siuvont les pâges',
-'tog-oldsig'                  => 'Prèvisualisacion de la signatura ègzistenta :',
+'tog-oldsig'                  => 'Signatura ègzistenta :',
 'tog-fancysig'                => 'Trètar la signatura coment de vouiquitèxto (sen lim ôtomatico)',
 'tog-externaleditor'          => 'Utilisar per dèfôt un èditor de tèxto de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [http://www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
 'tog-externaldiff'            => 'Utilisar per dèfôt un comparator de defôr (solament por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator. [http://www.mediawiki.org/wiki/Manual:External_editors Més d’enformacions.])',
@@ -730,7 +730,7 @@ Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus 
 'createaccountmail'          => 'per mèssageria èlèctronica',
 'createaccountreason'        => 'Rêson :',
 'badretype'                  => 'Los mots de pâssa que vos éd buchiês sont pas pariérs.',
-'userexists'                 => 'Lo nom d’utilisator que vos éd buchiê est ja utilisâ.
+'userexists'                 => 'Lo nom d’utilisator buchiê est ja utilisâ.
 Nen volyéd chouèsir un ôtro.',
 'loginerror'                 => 'Èrror de branchement',
 'createaccounterror'         => 'Empossiblo de fâre lo compto : $1',
@@ -831,6 +831,7 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 'passwordreset-disabled'       => 'La remisa a zérô des mots de pâssa at étâ dèsactivâ sur ceti vouiqui.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Buchiéd yon des bocons de balyês ce-desot}}',
 'passwordreset-username'       => 'Nom d’utilisator :',
+'passwordreset-domain'         => 'Domêno :',
 'passwordreset-email'          => 'Adrèce èlèctronica :',
 'passwordreset-emailtitle'     => 'Dètalys du compto dessus {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un rapèl des dètalys
@@ -936,8 +937,8 @@ El at pôt-étre étâ dèplaciê ou ben suprimâ dês que vos éd liesu cela p�
 
 Lo mot de pâssa por cél compto novél pôt étre changiê sur la pâge de ''[[Special:ChangePassword|changement de mot de pâssa]]'' aprés s’étre branchiê.",
 'newarticle'                       => '(Novél)',
-'newarticletext'                   => "Vos éd siuvu un lim de vers una pâge qu’ègziste p’oncor ou ben qu’at étâ [{{fullurl:Special:Log|type=delete&page={{FULLPAGENAMEE}}}} suprimâ].
-Por fâre cela pâge, buchiéd voutron tèxto dens la bouèta ce-desot (vos pouede vêre la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacions).
+'newarticletext'                   => "Vos éd siuvu un lim de vers una pâge qu’ègziste p’oncor.
+Por fâre cela pâge, buchiéd voutron tèxto dens la bouèta ce-desot (vêde la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacions).
 Se vos éte arrevâ ice per èrror, clicâd sur lo boton '''Devant''' de voutron navigator.",
 'anontalkpagetext'                 => "---- ''O est la pâge de discussion a un utilisator pas encartâ qu’at p’oncor fêt un compto ou ben que nen utilise pas.
 Por celes rêsons, nos devens utilisar son adrèce IP numerica por l’identifiar.
@@ -956,10 +957,10 @@ Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
 'blocked-notice-logextract'        => 'Ceti utilisator est ora blocâ.
 La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'clearyourcache'                   => "'''Nota :''' aprés avêr encartâ, vos devréd forciér lo rechargement complèt du cache de voutron navigator por vêre los changements.
-* '''Firefox / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Actualisar'' (''Reload'') ou ben prèssâd ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' dessus Mac)
+* '''Firefox / Safari :''' mantegnéd la toche ''Granta Lètra'' (''Shift'') en cliquent sur lo boton ''Rechargiér'' (''Reload'') ou ben prèssâd ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' dessus Mac)
 * '''Google Chrome :''' prèssâd ''Ctrl-Shift-R'' (''Command-Shift-R'' dessus Mac)
 * '''Internet Explorer :''' mantegnéd la toche ''Ctrl'' en cliquent sur lo boton ''Rafrèchir'' (''Refresh'') ou ben prèssâd ''Ctrl-F5''
-* '''Konqueror :''' clicâd sur lo boton ''Actualisar'' ou ben prèssâd ''F5''
+* '''Konqueror :''' clicâd sur lo boton ''Rechargiér'' ou ben prèssâd ''F5''
 * '''Opera :''' èfaciéd lo cache dens ''Outils → Prèferences''",
 'usercssyoucanpreview'             => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye CSS novèla devant que la sôvar.",
 'userjsyoucanpreview'              => "'''Combina :''' utilisâd lo boton « {{int:showpreview}} » por èprovar voutra fôlye JS novèla devant que la sôvar.",
@@ -1323,7 +1324,7 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'mwsuggest-disable'                => 'Dèsactivar los consèlys AJAX',
 'searcheverything-enable'          => 'Rechèrchiér dens tôs los èspâços de noms',
 'searchrelated'                    => 'raportâ',
-'searchall'                        => 'Tôs',
+'searchall'                        => 'tot',
 'showingresults'                   => "Visualisacion de '''$1''' rèsultat{{PLURAL:$1||s}} dês lo numerô '''$2'''.",
 'showingresultsnum'                => "Visualisacion de '''$3''' rèsultat{{PLURAL:$3||s}} dês lo numerô '''$2'''.",
 'showingresultsheader'             => "{{PLURAL:$5|Rèsultat '''$1'''|Rèsultats '''$1 - $2'''}} de '''$3''' por '''$4'''",
@@ -1350,7 +1351,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'qbsettings-fixedright'     => 'Drêta',
 'qbsettings-floatingleft'   => 'Fllotenta a gôche',
 'qbsettings-floatingright'  => 'Fllotenta a drêta',
-'qbsettings-directionality' => 'Fixa, d’aprés la dirèccionalitât de voutron alfabèt et de voutra lengoua',
+'qbsettings-directionality' => 'Fixa, d’aprés la dirèccionalitât d’ècritura de voutra lengoua',
 
 # Preferences page
 'preferences'                   => 'Prèferences',
@@ -1433,7 +1434,7 @@ Cen pôt pas étre dèfêt.',
 'prefs-registration'            => 'Dâta d’enregistrament :',
 'yourrealname'                  => 'Veré nom :',
 'yourlanguage'                  => 'Lengoua de l’entèrface :',
-'yourvariant'                   => 'Varianta de lengoua :',
+'yourvariant'                   => 'Varianta de la lengoua du contegnu :',
 'yournick'                      => 'Signatura por les discussions :',
 'prefs-help-signature'          => 'Los comentèros sur les pâges de discussion dêvont étre signês avouéc « <nowiki>~~~~</nowiki> », que serat convèrti per voutra signatura avouéc la dâta.',
 'badsig'                        => 'Signatura bruta fôssa.
@@ -1488,7 +1489,7 @@ Ceta enformacion serat publica.',
 'userrights-no-interwiki'      => 'Vos avéd pas la pèrmission de changiér des drêts d’utilisator dessus d’ôtros vouiquis.',
 'userrights-nodatabase'        => 'La bâsa de balyês « $1 » ègziste pas ou ben el est pas locala.',
 'userrights-nologin'           => 'Vos vos dête [[Special:UserLogin|branchiér]] avouéc un compto d’administrator por balyér des drêts d’utilisator.',
-'userrights-notallowed'        => 'Voutron compto at pas la pèrmission de balyér des drêts d’utilisator.',
+'userrights-notallowed'        => 'Voutron compto at pas la pèrmission de balyér ou enlevar des drêts d’utilisator.',
 'userrights-changeable-col'    => 'Les tropes que vos pouede changiér',
 'userrights-unchangeable-col'  => 'Les tropes que vos pouede pas changiér',
 
@@ -1500,7 +1501,7 @@ Ceta enformacion serat publica.',
 'group-sysop'         => 'Administrators',
 'group-bureaucrat'    => 'Grata-papiérs',
 'group-suppress'      => 'Supèrvisors',
-'group-all'           => 'Tôs',
+'group-all'           => '(tôs)',
 
 'group-user-member'          => 'Utilisator',
 'group-autoconfirmed-member' => 'Utilisator encartâ',
@@ -1574,7 +1575,6 @@ Ceta enformacion serat publica.',
 'right-userrights'            => 'Changiér tôs los drêts a un utilisator',
 'right-userrights-interwiki'  => 'Changiér los drêts ux utilisators sur d’ôtros vouiquis',
 'right-siteadmin'             => 'Vèrrolyér ou dèvèrrolyér la bâsa de balyês',
-'right-reset-passwords'       => 'Changiér lo mot de pâssa d’ôtros utilisators',
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
 
@@ -1598,7 +1598,7 @@ Ceta enformacion serat publica.',
 'action-movefile'             => 'renomar cél fichiér',
 'action-upload'               => 'tèlèchargiér cél fichiér',
 'action-reupload'             => 'ècllafar cél fichiér ègzistent',
-'action-reupload-shared'      => 'ècllafar localament cél fichiér present sur un dèpôt de fichiérs partagiê',
+'action-reupload-shared'      => 'ècllafar localament cél fichiér present sur un dèpôt partagiê',
 'action-upload_by_url'        => 'tèlèchargiér cél fichiér dês una URL',
 'action-writeapi'             => 'utilisar l’API d’ècritura',
 'action-delete'               => 'suprimar cela pâge',
@@ -1787,9 +1787,9 @@ Lo tèlèchargement de fichiérs Java est pas ôtorisâ, perce que pôvont entr�
 Vos devriâd controlar lo $1 devant que lo tornar tèlèchargiér.',
 'filename-bad-prefix'         => "Lo nom du fichiér que vos tèlèchargiéd comence per '''« $1 »''' qu’est tipicament un nom balyê ôtomaticament per los aparèlys-fotô numericos.
 Volyéd chouèsir un nom de fichiér dèscriptif.",
-'filename-prefix-blacklist'   => '  #<!-- lèssiéd ceta legne justo d’ense --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- lèssiéd ceta legne justo d’ense --> <pre>
 # La sintaxa est ceta :
-#  * Tot tèxto que siut un « # » est considèrâ coment un comentèro.
+#  * Tot tèxto que siut un « # » tant qu’a la fin de la legne est un comentèro.
 #  * Tota legne pas voueda est un prèfixo tipico de nom de fichiér balyê ôtomaticament per los aparèlys-fotô numericos :
 CIMG # Casio
 DSC_ # Nikon
@@ -1800,7 +1800,7 @@ IMG # g·ènèrico
 JD # Jenoptik
 MGP # Pentax
 PICT # de totes sôrtes
-  #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
+ #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
 'upload-success-subj'         => 'Tèlèchargement fêt avouéc reusséta',
 'upload-success-msg'          => 'Voutron tèlèchargement dês [$2] at reussi. Il est disponiblo ique : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problèmo de tèlèchargement',
@@ -1887,8 +1887,7 @@ Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ceta pâge spèciâla montre tôs los fichiérs tèlèchargiês.
-Per dèfôt, los dèrriérs fichiérs tèlèchargiês sont montrâs d’amont la lista.
-Clicar sur un en-téta de colona pèrmèt de changiér l’ôrdre de visualisacion.',
+Quand el est filtrâ per utilisator, solament los fichiérs que la vèrsion la ples novèla at étâ importâ per cél utilisator sont montrâs.',
 'listfiles_search_for'  => 'Rechèrchiér un nom de mèdia :',
 'imgfile'               => 'fichiér',
 'listfiles'             => 'Lista des fichiérs',
@@ -1935,7 +1934,7 @@ La dèscripcion de sa [$2 pâge de dèscripcion] est montrâ ce-desot.',
 'filepage-nofile-link'      => 'Nion fichiér de cél nom ègziste, mas vos en pouede [$1 tèlèchargiér yon].',
 'uploadnewversion-linktext' => 'Tèlèchargiér una novèla vèrsion de ceti fichiér',
 'shared-repo-from'          => 'de $1',
-'shared-repo'               => 'un dèpôt de fichiérs partagiê',
+'shared-repo'               => 'un dèpôt partagiê',
 'filepage.css'              => '/* Lo code CSS betâ ique est encllu dens la pâge de dèscripcion du fichiér, et pués dens los vouiquis cliants ètrangiérs. */',
 
 # File reversion
@@ -2311,16 +2310,16 @@ Vos pouede asse-ben tornar inicialisar los drapéls de notificacion por totes le
 
 --
 Por changiér los paramètres de notificacion per mèssageria èlèctronica, visitâd
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Por changiér los paramètres de voutra lista de survelyence, visitâd
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Por suprimar la pâge de voutra lista de survelyence, visitâd
 $UNWATCHURL
 
 Retôrn et assistance :
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Suprimar la pâge',
@@ -2533,7 +2532,6 @@ La dèrriére entrâ du jornal des blocâjos est disponibla ce-desot :',
 'sp-contributions-username'            => 'Adrèce IP ou ben nom d’utilisator :',
 'sp-contributions-toponly'             => 'Montrar ren que les novèles vèrsions',
 'sp-contributions-submit'              => 'Rechèrchiér',
-'sp-contributions-showsizediff'        => 'Fâre vêre la difèrence dens la talye de la pâge',
 
 # What links here
 'whatlinkshere'            => 'Pâges liyês',
@@ -2799,8 +2797,8 @@ La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
 'semiprotectedpagemovewarning' => "'''Nota :''' ceta pâge at étâ protègiê de façon que solament los utilisators encartâs la pouessont renomar.
 La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
 'move-over-sharedrepo'         => '== Lo fichiér ègziste ==
-[[:$1]] ègziste ja sur un dèpôt de fichiérs partagiê. Renomar cél fichiér rendrat lo fichiér sur lo dèpôt de fichiérs partagiê pas accèssiblo.',
-'file-exists-sharedrepo'       => 'Lo nom chouèsi est ja utilisâ per un fichiér sur un dèpôt de fichiérs partagiê.
+[[:$1]] ègziste ja sur un dèpôt partagiê. Renomar cél fichiér rendrat lo fichiér sur lo dèpôt partagiê pas accèssiblo.',
+'file-exists-sharedrepo'       => 'Lo nom chouèsi est ja utilisâ per un fichiér sur un dèpôt partagiê.
 Nen volyéd chouèsir un ôtro.',
 
 # Export
@@ -2974,30 +2972,39 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 'tooltip-summary'                 => 'Buchiéd un côrt rèsumâ',
 
 # Stylesheets
-'common.css'      => '/* Lo code CSS betâ ique serat aplicâ a tôs los habelyâjos. */',
-'standard.css'    => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Estandârd ». */',
-'nostalgia.css'   => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Cafârd ». */',
-'cologneblue.css' => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Blu de Cologne ». */',
-'monobook.css'    => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonoBook ». */',
-'myskin.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonHabelyâjo ». */',
-'chick.css'       => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Pugin ». */',
-'simple.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Simplo ». */',
-'modern.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Modèrno ». */',
-'vector.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Vèctor ». */',
-'print.css'       => '/* Lo code CSS betâ ique afècterat les emprèssions. */',
-'handheld.css'    => '/* Lo code CSS betâ ique afècterat los aparèlys mobilos d’aprés l’habelyâjo configurâ dedens « $wgHandheldStyle ». */',
+'common.css'              => '/* Lo code CSS betâ ique serat aplicâ a tôs los habelyâjos. */',
+'standard.css'            => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Estandârd ». */',
+'nostalgia.css'           => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Cafârd ». */',
+'cologneblue.css'         => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Blu de Cologne ». */',
+'monobook.css'            => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonoBook ». */',
+'myskin.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonHabelyâjo ». */',
+'chick.css'               => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Pugin ». */',
+'simple.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Simplo ». */',
+'modern.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Modèrno ». */',
+'vector.css'              => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Vèctor ». */',
+'print.css'               => '/* Lo code CSS betâ ique afècterat les emprèssions. */',
+'handheld.css'            => '/* Lo code CSS betâ ique afècterat los aparèlys mobilos d’aprés l’habelyâjo configurâ dedens « $wgHandheldStyle ». */',
+'noscript.css'            => '/* Lo code CSS betâ ique afècterat los utilisators qu’ont dèsactivâ lo code JavaScript. */',
+'group-autoconfirmed.css' => '/* Lo code CSS betâ ique afècterat ren que los utilisators encartâs. */',
+'group-bot.css'           => '/* Lo code CSS betâ ique afècterat ren que los bots. */',
+'group-sysop.css'         => '/* Lo code CSS betâ ique afècterat ren que los administrators. */',
+'group-bureaucrat.css'    => '/* Lo code CSS betâ ique afècterat ren que los grata-papiérs. */',
 
 # Scripts
-'common.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc châque pâge accèdâ per un utilisator quint que seye. */',
-'standard.js'    => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Estandârd ». */',
-'nostalgia.js'   => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Cafârd ». */',
-'cologneblue.js' => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Blu de Cologne ». */',
-'monobook.js'    => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « MonoBook ». */',
-'myskin.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « MonHabelyâjo ». */',
-'chick.js'       => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Pugin ». */',
-'simple.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Simplo ». */',
-'modern.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Modèrno ». */',
-'vector.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Vèctor ». */',
+'common.js'              => '/* Tot code JavaScript betâ ique serat chargiê per tôs los utilisators avouéc châque chargement de pâge. */',
+'standard.js'            => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Estandârd ». */',
+'nostalgia.js'           => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Cafârd ». */',
+'cologneblue.js'         => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Blu de Cologne ». */',
+'monobook.js'            => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « MonoBook ». */',
+'myskin.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « MonHabelyâjo ». */',
+'chick.js'               => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Pugin ». */',
+'simple.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Simplo ». */',
+'modern.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Modèrno ». */',
+'vector.js'              => '/* Tot code JavaScript betâ ique serat chargiê per los utilisators de l’habelyâjo « Vèctor ». */',
+'group-autoconfirmed.js' => '/* Tot code JavaScript betâ ique serat chargiê per ren que los utilisators encartâs. */',
+'group-bot.js'           => '/* Tot code JavaScript betâ ique serat chargiê per ren que los bots. */',
+'group-sysop.js'         => '/* Tot code JavaScript betâ ique serat chargiê per ren que los administrators. */',
+'group-bureaucrat.js'    => '/* Tot code JavaScript betâ ique serat chargiê per ren que los grata-papiérs. */',
 
 # Metadata
 'notacceptable' => 'Lo sèrvor vouiqui pôt pas balyér les balyês dens un format que voutron cliant est capâblo de liére.',
@@ -3114,6 +3121,9 @@ Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.",
 'bydate'                => 'per dâta',
 'sp-newimages-showfrom' => 'Fâre vêre los novéls fichiérs dês lo $1 a $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'days-abbrev' => 'j',
+
 # Bad image list
 'bad_image_list' => 'Lo format est ceti :
 
@@ -3142,6 +3152,7 @@ Los ôtros champs seront cachiês per dèfôt.
 * gpslatitude
 * gpslongitude
 * gpsaltitude',
+'metadata-langitem' => "'''$2 :''' $1",
 
 # EXIF tags
 'exif-imagewidth'                  => 'Largior',
@@ -3257,7 +3268,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-gpsdatestamp'                => 'Dâta GPS',
 'exif-gpsdifferential'             => 'Corrèccion difèrencièla GPS',
 'exif-jpegfilecomment'             => 'Comentèro de fichiér JPEG',
-'exif-keywords'                    => 'Mots cllâfs',
+'exif-keywords'                    => 'Mots-cllâfs',
 'exif-worldregioncreated'          => 'Règ·ion du mondo que la fotô at étâ prêsa',
 'exif-countrycreated'              => 'Payis que la fotô at étâ prêsa',
 'exif-countrycodecreated'          => 'Code du payis que la fotô at étâ prêsa',
@@ -3326,6 +3337,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-compression-2' => 'CCITT tropa 3 longior du codâjo Huffman changiê de dimension 1',
 'exif-compression-3' => 'CCITT tropa 3 codâjo du faxe',
 'exif-compression-4' => 'CCITT tropa 4 codâjo du faxe',
+'exif-compression-6' => 'JPEG (viely)',
 
 'exif-copyrighted-true'  => 'Somês a drêt d’ôtor',
 'exif-copyrighted-false' => 'Domêno publico',
@@ -3337,9 +3349,9 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-orientation-3' => 'Veriê de 180°',
 'exif-orientation-4' => 'Envèrsâ d’aplomb',
 'exif-orientation-5' => 'Veriê de 90° dens la dirèccion antihorèra et envèrsâ d’aplomb',
-'exif-orientation-6' => 'Veriê de 90° dens la dirèccion horèra',
+'exif-orientation-6' => 'Veriê de 90° dens la dirèccion antihorèra',
 'exif-orientation-7' => 'Veriê de 90° dens la dirèccion horèra et envèrsâ d’aplomb',
-'exif-orientation-8' => 'Veriê de 90° dens la dirèccion antihorèra',
+'exif-orientation-8' => 'Veriê de 90° dens la dirèccion horèra',
 
 'exif-planarconfiguration-1' => 'Balyês ategnentes',
 'exif-planarconfiguration-2' => 'Balyês sèparâs',
@@ -3539,7 +3551,7 @@ Los ôtros champs seront cachiês per dèfôt.
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tot',
-'namespacesall' => 'Tôs',
+'namespacesall' => 'tôs',
 'monthsall'     => 'tôs',
 'limitall'      => 'tôs',
 
@@ -3807,11 +3819,11 @@ Vos pouede asse-ben utilisar l’[[Special:EditWatchlist|èditor normal]].',
 'version-license'               => 'Licence',
 'version-poweredby-credits'     => "Ceti vouiqui fonccione grâce a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'ôtros',
-'version-license-info'          => 'MediaWiki est una programeria abada ; cen vôt dére que vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence Publica G·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
+'version-license-info'          => 'MediaWiki est una programeria abada ; vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence publica g·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
 
-MediaWiki est distribuâ dens l’èsperance que serat utila, mas SEN GINS DE GARANTIA ; sen mémo la garantia emplicita de COMÈRCIALISACION ou ben d’ADAPTACION A UN USÂJO PARTICULIÉR. Vêde la Licence Publica G·ènèrala GNU por més de dètalys.
+MediaWiki est distribuâ dens l’èsperance que serat utila, mas SEN GINS DE GARANTIA ; sen mémo la garantia emplicita de COMÈRCIALISACION ou ben d’ADAPTACION A UN USÂJO PARTICULIÉR. Vêde la Licence publica g·ènèrala GNU por més de dètalys.
 
-Vos devriâd avêr reçu una [{{SERVER}}{{SCRIPTPATH}}/COPYING copia de la Licence Publica G·ènèrala GNU] avouéc cél programo, ôtrament, ècrîde a la « Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA » ou ben [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liéséd-la en legne].',
+Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la Licence publica g·ènèrala GNU] avouéc ceti programo ; ôtrament, ècrîde a la « Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA » ou ben [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liéséd-la en legne].',
 'version-software'              => 'Programeries enstalâs',
 'version-software-product'      => 'Marchandie',
 'version-software-version'      => 'Vèrsion',
@@ -3841,7 +3853,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'specialpages-note'              => '----
 * Pâges spèciâles normales.
 * <span class="mw-specialpagerestricted">Pâges spèciâles rètrentes.</span>
-* <span class="mw-specialpagecached">Pâges spèciâles solament en cache.</span>',
+* <span class="mw-specialpagecached">Pâges spèciâles solament en cache (porriant étre dèpassâs).</span>',
 'specialpages-group-maintenance' => 'Rapôrts de mantegnence',
 'specialpages-group-other'       => 'Ôtres pâges spèciâles',
 'specialpages-group-login'       => 'Branchement / encartâjo',

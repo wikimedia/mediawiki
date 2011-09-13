@@ -1221,7 +1221,6 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'right-userrights'            => 'Benutsergjuchte beoarbaidje',
 'right-userrights-interwiki'  => 'Benutsergjuchte in uur Wikis beoarbaidje',
 'right-siteadmin'             => 'Doatenboank speere un äntspeere',
-'right-reset-passwords'       => 'Dät Paaswoud fon n uur Benutser touräächsätte',
 'right-override-export-depth' => 'Exportier Sieden touhoope mäd ferlinkede Sieden bit tou ne Djüpte fon 5',
 'right-sendemail'             => 'E-Mails an uur Benutsere seende',
 
@@ -1918,12 +1917,12 @@ Dien früntelk {{SITENAME}} Becheedtälsystem
 --
 
 Uum do Ienstaalengen fon dien Beooboachtengslieste antoupaasjen, besäik
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Uum ju Siede fon dien Kontrollieste tou läskjen, besäik
 $UNWATCHURL
 
-Touräächmäldengen un wiedere Hälpe: {{fullurl:{{MediaWiki:Helppage}}}}',
+Touräächmäldengen un wiedere Hälpe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Siede läskje',

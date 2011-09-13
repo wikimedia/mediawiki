@@ -1,5 +1,5 @@
 <?php
-/** Tatar (Cyrillic) (Татарча/Tatarça (Cyrillic))
+/** Tatar (Cyrillic script) (Татарча)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -706,6 +706,9 @@ $2',
 'resetpass-temp-password'   => 'Вакытлы серсүз:',
 
 # Special:PasswordReset
+'passwordreset'              => 'Серсүзне бетерү',
+'passwordreset-text'         => 'Сезнең хисап язмасының параметрлары турында хат алыр өчен, түбәндәгеләрне тутырыгыз',
+'passwordreset-legend'       => 'Серсүзне яңадан кую',
 'passwordreset-username'     => 'Кулланучы исеме:',
 'passwordreset-email'        => 'E-mail адресы',
 'passwordreset-emailelement' => 'Кулланучы исеме: $1
@@ -1011,6 +1014,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'revdelete-legend'            => 'Чикләүләр урнаштыр:',
 'revdelete-hide-text'         => 'Битнең бу юрамасы текстын яшер',
 'revdelete-hide-image'        => 'Файл эчендәгеләрне качыр',
+'revdelete-hide-name'         => 'Гамәлне һәм объектны яшерү',
 'revdelete-hide-user'         => 'Үзгәртүченең исемен/IP адресын яшер',
 'revdelete-radio-same'        => '(үзгәртмәү)',
 'revdelete-radio-set'         => 'Әйе',
@@ -1715,16 +1719,16 @@ $NEWPAGE
 
 --
 Хәбәр итүләр көйләүләрен үзгәртү:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Күзәтү исемлеге көйләүләрен үзгәртү:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Битне сезнең күзәтү исемлегездән бетерү:
 $UNWATCHURL
 
 Элемтә һәм ярдәм:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Битне бетерү',

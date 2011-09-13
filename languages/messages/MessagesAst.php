@@ -85,7 +85,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mandame tamién un corréu pa les ediciones menores',
 'tog-enotifrevealaddr'        => 'Amosar el mio corréu electrónicu nos correos de notificación',
 'tog-shownumberswatching'     => "Amosar el númberu d'usuarios que la tán vixilando",
-'tog-oldsig'                  => 'Adicar la firma esistente:',
+'tog-oldsig'                  => 'Firma esistente:',
 'tog-fancysig'                => 'Usar la firma como "testu wiki" (ensin enllaz automáticu)',
 'tog-externaleditor'          => 'Usar un editor esternu de mou predeterminao (namái pa espertos, necesita configuraciones especiales nel to ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-externaldiff'            => 'Usar un diff esternu de mou predetermináu (namái pa espertos, necesita configuraciones especiales nel to ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
@@ -102,6 +102,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Mandame copies de los correos que mando a otros usuarios',
 'tog-diffonly'                => 'Nun amosar el conteníu de la páxina embaxo de les diferencies',
 'tog-showhiddencats'          => 'Amosar categoríes anubríes',
+'tog-noconvertlink'           => 'Desactivar la conversión del títulu del enllaz',
 'tog-norollbackdiff'          => 'Desanicier les diferencies depués de restaurar',
 
 'underline-always'  => 'Siempre',
@@ -480,7 +481,8 @@ Nun t'escaezas d'escoyer les tos [[Special:Preferences|preferencies de {{SITENAM
 'createaccountmail'          => 'per e-mail',
 'createaccountreason'        => 'Motivu:',
 'badretype'                  => "Les claves qu'escribisti nun concuayen.",
-'userexists'                 => "El nome d'usuariu conseñáu yá esiste. Por favor escueyi un nome diferente.",
+'userexists'                 => "El nome d'usuariu conseñáu yá ta usándose.
+Por favor escueyi un nome diferente.",
 'loginerror'                 => "Error d'identificación",
 'createaccounterror'         => 'Nun se pudo crear la cuenta: $1',
 'nocookiesnew'               => "La cuenta d'usuariu ta creada, pero nun tas identificáu. {{SITENAME}} usa cookies pa identificar a los usuarios. Tienes les cookies deshabilitaes. Por favor actívales y depués identifícate col to nuevu nome d'usuariu y la clave.",
@@ -574,6 +576,7 @@ Seique yá camudasti la clave temporal o que solicitasti otra nueva.",
 'passwordreset-disabled'       => 'Los reanicios de contraseña tan desactivaos nesta wiki.',
 'passwordreset-pretext'        => "{{PLURAL:$1||Escribi una de les partes de los datos d'abaxo}}",
 'passwordreset-username'       => "Nome d'usuariu:",
+'passwordreset-domain'         => 'Dominiu:',
 'passwordreset-email'          => 'Direición de corréu:',
 'passwordreset-emailtitle'     => 'Detalles de la cuenta en {{SITENAME}}',
 'passwordreset-emailtext-ip'   => "Dalguién (seique tu, dende la direición IP $1) pidió un recordatoriu cola
@@ -762,8 +765,8 @@ La cabera entrada del rexistru s'ufre darréu pa referencia:",
 'cascadeprotectedwarning'          => "'''Avisu:''' Esta páxina ta candada pa que namái los alministradores la puean editar porque ta enxerta {{PLURAL:$1|na siguiente páxina protexida|nes siguientes páxines protexíes}} en cascada:",
 'titleprotectedwarning'            => "'''Avisu: Esta páxina ta candada pa que necesite [[Special:ListGroupRights|permisos especiales]] pa creala.'''
 La cabera entrada del rexistru s'ufre darréu pa referencia:",
-'templatesused'                    => '{{PLURAL:$1|plantía usada|plantíes usaes}} nesta páxina:',
-'templatesusedpreview'             => '{{PLURAL:$1|plantía usada|plantíes usaes}} nesta previsualización:',
+'templatesused'                    => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta páxina:',
+'templatesusedpreview'             => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta vista previa:',
 'templatesusedsection'             => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta seición:',
 'template-protected'               => '(protexida)',
 'template-semiprotected'           => '(semi-protexida)',
@@ -1007,7 +1010,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'diff-multi-manyusers'     => "({{PLURAL:$1|Nun s'amuesa una revisión intermedia|Nun s'amuesen $1 revisiones intermedies}} de más de $2 {{PLURAL:$2|usuariu|usuarios}})",
 
 # Search results
-'searchresults'                    => 'Resultaos de la busca',
+'searchresults'                    => 'Resultaos de la gueta',
 'searchresults-title'              => 'Resultaos de la busca pa "$1"',
 'searchresulttext'                 => 'Pa más información tocante a busques en {{SITENAME}}, vete a [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'Buscasti \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|toles páxines qu\'emprimen con "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toles páxines qu\'enllacien a "$1"]])',
@@ -1078,7 +1081,7 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'qbsettings-fixedright'     => 'Fixa a mandrecha',
 'qbsettings-floatingleft'   => 'Flotante a manzorga',
 'qbsettings-floatingright'  => 'Flotante a mandrecha',
-'qbsettings-directionality' => 'Fixa, según la direición de la escritura y la to llingua',
+'qbsettings-directionality' => "Fixa, según la direición d'escritura de la to llingua",
 
 # Preferences page
 'preferences'                   => 'Preferencies',
@@ -1105,14 +1108,14 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'prefs-resetpass'               => 'Camudar clave',
 'prefs-email'                   => 'Opciones de corréu',
 'prefs-rendering'               => 'Aspeutu',
-'saveprefs'                     => 'Guardar preferencies',
+'saveprefs'                     => 'Guardar',
 'resetprefs'                    => 'Volver a les preferencies por defeutu',
 'restoreprefs'                  => 'Restaurar tolos axustes predeterminaos',
 'prefs-editing'                 => 'Edición',
 'prefs-edit-boxsize'            => "Tamañu de la ventana d'edición.",
 'rows'                          => 'Files:',
 'columns'                       => 'Columnes:',
-'searchresultshead'             => 'Guetes',
+'searchresultshead'             => 'Guetar',
 'resultsperpage'                => "Resultaos p'amosar per páxina:",
 'stub-threshold'                => 'Llímite superior pa considerar como <a href="#" class="stub">enllaz a entamu</a> (bytes):',
 'stub-threshold-disabled'       => 'Desactivao',
@@ -1146,7 +1149,7 @@ Equí tienes un valor al debalu que pues usar: $1",
 'prefs-namespaces'              => 'Espacios de nome',
 'defaultns'                     => "D'otra miente, guetar nestos espacios de nome:",
 'default'                       => 'por defeutu',
-'prefs-files'                   => 'Archivos',
+'prefs-files'                   => 'Ficheros',
 'prefs-custom-css'              => 'CSS personalizada',
 'prefs-custom-js'               => 'JS personalizada',
 'prefs-common-css-js'           => 'CSS/JavaScript compartíu pa toles pieles:',
@@ -1161,7 +1164,7 @@ Esto nun se pue desfacer.',
 'prefs-registration'            => 'Hora del rexistru:',
 'yourrealname'                  => 'Nome real:',
 'yourlanguage'                  => 'Idioma de los menús:',
-'yourvariant'                   => 'Variante llingüística:',
+'yourvariant'                   => 'Variante llingüística del conteníu:',
 'yournick'                      => 'Firma:',
 'prefs-help-signature'          => 'Los comentarios nes páxines d\'alderique habría que roblales con "<nowiki>~~~~</nowiki>" que se convertirán na to robla y una marca de tiempu.',
 'badsig'                        => 'Firma cruda non válida; comprueba les etiquetes HTML.',
@@ -1215,7 +1218,7 @@ Esta información sedrá pública.",
 'userrights-no-interwiki'      => "Nun tienes permisu pa editar los derechos d'usuariu n'otres wikis.",
 'userrights-nodatabase'        => 'La base de datos $1 nun esiste o nun ye llocal.',
 'userrights-nologin'           => "Has tar [[Special:UserLogin|identificáu]] con una cuenta d'alministrador p'asignar derechos d'usuariu.",
-'userrights-notallowed'        => "La to cuenta nun tien permisos p'asignar derechos d'usuariu.",
+'userrights-notallowed'        => "La to cuenta nun tien permisu p'amestar o desaniciar permisos d'usuariu.",
 'userrights-changeable-col'    => 'Grupos que pues camudar',
 'userrights-unchangeable-col'  => 'Grupos que nun pues camudar',
 
@@ -1301,7 +1304,6 @@ Esta información sedrá pública.",
 'right-userrights'            => "Editar tolos drechos d'usuariu",
 'right-userrights-interwiki'  => "Editar los drechos d'usuariu d'usuarios d'otros sitios wiki",
 'right-siteadmin'             => 'Candar y descandar la base de datos',
-'right-reset-passwords'       => "Reaniciar contraseñes d'otros usuarios",
 'right-override-export-depth' => 'Esportar páxines, incluyendo páxines enllazaes fasta una fondura de 5',
 'right-sendemail'             => 'Unviar corréu a otros usuarios',
 
@@ -1607,9 +1609,8 @@ Pa una meyor seguridá, img_auth.php ta desactiváu.",
 'upload_source_file' => ' (un archivu del to ordenador)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Esta páxina especial amuesa tolos archivos xubíos.
-Por defeutu los caberos archivos xubíos amuésense a lo cimero de la llista.
-Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
+'listfiles-summary'     => "Esta páxina especial amuesa tolos ficheros xubíos.
+Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que xubió esi usuariu.",
 'listfiles_search_for'  => "Buscar por nome d'archivu multimedia:",
 'imgfile'               => 'archivu',
 'listfiles'             => "Llista d'imáxenes",
@@ -1676,7 +1677,7 @@ La descripción de la [páxina de descripción del ficheru $2] s'amuesa darréu.
 'filedelete-intro-old'        => "Tas esborrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
 'filedelete-comment'          => 'Motivu:',
 'filedelete-submit'           => 'Desaniciar',
-'filedelete-success'          => "'''$1''' foi esborráu.",
+'filedelete-success'          => "'''$1''' se desanició.",
 'filedelete-success-old'      => "Eliminóse la versión de '''[[Media:$1|$1]]''' del $2 a les $3.",
 'filedelete-nofile'           => "'''$1''' nun esiste.",
 'filedelete-nofile-old'       => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
@@ -2026,16 +2027,16 @@ El to abertable sistema de notificación de {{SITENAME}}
 
 --
 Pa camudar les preferencies d\'avisos per corréu, visita
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Pa camudar la configuración de la to llista de vixilancia, visita
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pa desaniciar la páxina de la to llista de vixilancia, visita
 $UNWATCHURL
 
 Más ayuda y sofitu:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Esborrar páxina',
@@ -2242,7 +2243,6 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'sp-contributions-username'            => "Direición IP o nome d'usuariu:",
 'sp-contributions-toponly'             => 'Amosar namái les ediciones que son les caberes revisiones',
 'sp-contributions-submit'              => 'Guetar',
-'sp-contributions-showsizediff'        => 'Amosar la diferencia de tamañu de la páxina',
 
 # What links here
 'whatlinkshere'            => "Lo qu'enllaza equí",
@@ -2674,30 +2674,39 @@ Guárdalu nel ordenador y xúbilu equí.",
 'tooltip-summary'                 => 'Escribi un resume curtiu',
 
 # Stylesheets
-'common.css'      => "/* Los CSS allugaos equí s'aplicarán a tolos aspeutos */",
-'standard.css'    => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Standard */',
-'nostalgia.css'   => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Nostalgia */',
-'cologneblue.css' => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Cologne Blue */',
-'monobook.css'    => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Monobook */',
-'myskin.css'      => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu MySkin */',
-'chick.css'       => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Chick */',
-'simple.css'      => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Simple */',
-'modern.css'      => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Modern */',
-'vector.css'      => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Vector */',
-'print.css'       => '/* Los CSS allugaos equí afeutarán a la salida pola imprentadora */',
-'handheld.css'    => '/* Los CSS allugaos equí afeutarán a los preseos portátiles basaos nel aspeutu configuráu en $wgHandheldStyle */',
+'common.css'              => "/* Los CSS allugaos equí s'aplicarán a tolos aspeutos */",
+'standard.css'            => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Standard */',
+'nostalgia.css'           => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Nostalgia */',
+'cologneblue.css'         => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Cologne Blue */',
+'monobook.css'            => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Monobook */',
+'myskin.css'              => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu MySkin */',
+'chick.css'               => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Chick */',
+'simple.css'              => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Simple */',
+'modern.css'              => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Modern */',
+'vector.css'              => '/* Los CSS allugaos equí afeutarán a los usuarios del aspeutu Vector */',
+'print.css'               => '/* Los CSS allugaos equí afeutarán a la salida pola imprentadora */',
+'handheld.css'            => '/* Los CSS allugaos equí afeutarán a los preseos portátiles basaos nel aspeutu configuráu en $wgHandheldStyle */',
+'noscript.css'            => '/* Los CSS allugaos equí afeutarán a los usuarios col JavaScript desactiváu */',
+'group-autoconfirmed.css' => '/* Los CSS allugaos equí afeutarán a los usuarios autoconfirmaos namái */',
+'group-bot.css'           => '/* Los CSS allugaos equí afeutarán a los bots namái */',
+'group-sysop.css'         => '/* Los CSS allugaos equí afeutarán a los sysops namái */',
+'group-bureaucrat.css'    => '/* Los CSS allugaos equí afeutarán a los burócrates namái */',
 
 # Scripts
-'common.js'      => '/* Cualesquier JavaScript que tea equí se cargará pa tolos usuarios en cada carga de páxina. */',
-'standard.js'    => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Standard */',
-'nostalgia.js'   => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Nostalgia */',
-'cologneblue.js' => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Cologne Blue */',
-'monobook.js'    => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu MonoBook */',
-'myskin.js'      => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu MySkin */',
-'chick.js'       => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Chick */',
-'simple.js'      => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Simple */',
-'modern.js'      => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Modern */',
-'vector.js'      => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Vector */',
+'common.js'              => '/* Cualesquier JavaScript que tea equí se cargará pa tolos usuarios en cada carga de páxina. */',
+'standard.js'            => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Standard */',
+'nostalgia.js'           => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Nostalgia */',
+'cologneblue.js'         => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Cologne Blue */',
+'monobook.js'            => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu MonoBook */',
+'myskin.js'              => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu MySkin */',
+'chick.js'               => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Chick */',
+'simple.js'              => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Simple */',
+'modern.js'              => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Modern */',
+'vector.js'              => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios del aspeutu Vector */',
+'group-autoconfirmed.js' => '/* Cualesquier JavaScript que tea equí se cargará pa los usuarios autoconfirmaos namái */',
+'group-bot.js'           => '/* Cualesquier JavaScript que tea equí se cargará pa los bots namái */',
+'group-sysop.js'         => '/* Cualesquier JavaScript que tea equí se cargará pa los sysops namái */',
+'group-bureaucrat.js'    => '/* Cualesquier JavaScript que tea equí se cargará pa los burócrates namái */',
 
 # Metadata
 'notacceptable' => 'El sirvidor de la wiki nun pue suplir los datos nun formatu llexible pol to navegador.',
@@ -2735,6 +2744,13 @@ Probablemente tea causao por un enllaz a un sitiu esternu de la llista prieta.',
 'pageinfo-authors'          => "Númberu d'autores distintos",
 'pageinfo-views'            => 'Númberu de visites',
 'pageinfo-viewsperedit'     => 'Visites por edición',
+
+# Skin names
+'skinname-standard'    => 'Clásicu',
+'skinname-nostalgia'   => 'Señardá',
+'skinname-cologneblue' => 'Azul Colonia',
+'skinname-myskin'      => 'MySkin',
+'skinname-modern'      => 'Modernu',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como supervisada',
@@ -3012,6 +3028,7 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-compression-2' => 'CCITT Grupu 3 codificación Huffman RLE con Modificación 1-Dimensional',
 'exif-compression-3' => 'Codificación de fax CCITT Grupu 3',
 'exif-compression-4' => 'Codificación de fax CCITT Grupu 4',
+'exif-compression-6' => 'JPEG (antiguu)',
 
 'exif-copyrighted-true'  => "Con drechos d'autor",
 'exif-copyrighted-false' => 'Dominiu públicu',
@@ -3023,12 +3040,15 @@ Los demás tarán anubríos de mou predetermináu.
 'exif-orientation-3' => 'Rotada 180°',
 'exif-orientation-4' => 'Voltiada verticalmente',
 'exif-orientation-5' => 'Rotada 90° a manzorga y voltiada verticalmente',
-'exif-orientation-6' => 'Rotada 90° a mandrecha',
+'exif-orientation-6' => 'Xirada 90° en sentíu antihorariu',
 'exif-orientation-7' => 'Rotada 90° a mandrecha y voltiada verticalmente',
-'exif-orientation-8' => 'Rotada 90° a manzorga',
+'exif-orientation-8' => 'Xirada 90° en sentíu horariu',
 
 'exif-planarconfiguration-1' => 'formatu irregular',
 'exif-planarconfiguration-2' => 'formatu planu',
+
+'exif-xyresolution-i' => '$1 ppp',
+'exif-xyresolution-c' => '$1 ppc',
 
 'exif-colorspace-65535' => 'Ensin calibrar',
 
@@ -3157,7 +3177,7 @@ Los demás tarán anubríos de mou predetermináu.
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Quilómetros per hora',
-'exif-gpsspeed-m' => 'Milles per hora',
+'exif-gpsspeed-m' => 'Milles por hora',
 'exif-gpsspeed-n' => 'Nueyos',
 
 # Pseudotags used for GPSDestDistanceRef
@@ -3356,7 +3376,7 @@ Por favor confirma que daveres quies volver a crear esta páxina.",
 'size-gigabytes' => '$1 XB',
 
 # Live preview
-'livepreview-loading' => 'Cargando…',
+'livepreview-loading' => 'Cargando...',
 'livepreview-ready'   => 'Cargando… ¡Llisto!',
 'livepreview-failed'  => '¡La previsualización rápida falló! Intenta la previsualización normal.',
 'livepreview-error'   => 'Nun se pudo coneutar: $1 "$2". Intenta la previsualización normal.',
@@ -3448,7 +3468,7 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 'specialpages-note'              => '----
 * Páxines especiales normales.
 * <span class="mw-specialpagerestricted">Páxines especiales restrinxíes.</span>
-* <span class="mw-specialpagecached">Páxines especiales en caché namái.</span>',
+* <span class="mw-specialpagecached">Páxines especiales en caché (seique nun tean actualizaes).</span>',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',
 'specialpages-group-other'       => 'Otres páxines especiales',
 'specialpages-group-login'       => 'Entrar / Crear cuenta',

@@ -150,7 +150,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Benachrichtigungsmail ou bi chlyne Sytenänderige',
 'tog-enotifrevealaddr'        => 'Dyni E-Mail-Adrässe wird i Benachrichtigungsmails zeigt',
 'tog-shownumberswatching'     => 'Aazahl Benutzer aazeige, wo ne Syten am Aaluege sy (i den Artikelsyte, i de «letschten Änderigen» und i der Beobachtigslischte)',
-'tog-oldsig'                  => 'Vorschau vu dr aktuälle Unterschrift:',
+'tog-oldsig'                  => 'Vorschau vu dr Unterschrift:',
 'tog-fancysig'                => 'Signatur as Wikitext behandle (ohni automatischi Vergleichig)',
 'tog-externaleditor'          => 'Externe Editor als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Wyteri Informatione doderzue.])',
 'tog-externaldiff'            => 'Extern Programm fir Versionsunterschid als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Wyteri Informatione doderzue.])',
@@ -279,7 +279,7 @@ $messages = array(
 'vector-action-move'             => 'Verschiebe',
 'vector-action-protect'          => 'Schitze',
 'vector-action-undelete'         => 'Widerhärstelle',
-'vector-action-unprotect'        => 'Frej gee',
+'vector-action-unprotect'        => 'Syteschutz ändere',
 'vector-simplesearch-preference' => 'Erwytereti Suechvorschleg aktiviere (nume Vector)',
 'vector-view-create'             => 'Aalege',
 'vector-view-edit'               => 'Bearbeite',
@@ -316,8 +316,8 @@ $messages = array(
 'protect'           => 'Schütze',
 'protect_change'    => 'ändere',
 'protectthispage'   => 'Artikel schütze',
-'unprotect'         => 'nümm schütze',
-'unprotectthispage' => 'Schutz ufhebe',
+'unprotect'         => 'Syteschutz ändere',
+'unprotectthispage' => 'Syteschutz ändere',
 'newpage'           => 'Nöji Syte',
 'talkpage'          => 'Iber die Syte dischputiere',
 'talkpagelinktext'  => 'Diskussion',
@@ -731,7 +731,12 @@ oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page=
 'userpage-userdoesnotexist-view'   => 'S Benutzerkonto „$1“ isch nit registriert.',
 'blocked-notice-logextract'        => 'Dää Benutzer isch zur Zyt gsperrt.
 As Information chunnt do ne aktuälle Uuszug us em Benutzersperr-Logbuech:',
-'clearyourcache'                   => "'''Hywys:''' Noch dynere Änderig muess no der Browser-Cache gläärt wäre!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaschte-R'' (oder ''Umschalttasche'' druckt halte und uf s ''Nei-Lade''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
+'clearyourcache'                   => "'''Hinweis:''' Noch em Spycheremuesch no dr Browser-Zwischespycher lääre go d Änderige sää.
+* '''Firefox/ Safari:''' ''Umschaltig'' drucken un glychzytig ''Aktualisiere'' aaklicken oder entwäder ''Strg+F5'' oder ''Strg+R'' (''Befehlstaste-R'' uf em Mac) drucke
+* '''Google Chrome:''' ''Umschaltig+Strg+R'' (''Befählstaschte-R'' uf em Mac) drucke
+* '''Internet Explorer:''' ''Strg+F5'' drucken oder ''Strg'' drucken un glychzytig ''Aktualisiere'' aaklicke
+* '''Opera:''' ''Extra → Internetspure lesche … → Individuäll Uuswahl → Dr komplett Cache lesche''
+* '''Konqueror:''' ''Aktualisiere'' aaklicken oder ''F5'' drucke",
 'usercssyoucanpreview'             => "'''Tipp:''' Nimm dr „{{int:showpreview}}”-Chnopf, zum Dyy nej CSS vor em Spichere z teschte.",
 'userjsyoucanpreview'              => "'''Tipp:''' „Nimm dr {{int:showpreview}}”-Chnopf, zum Dyy nej JS vor em Spichere z teschte.",
 'usercsspreview'                   => "== Vorschau vu Dyynem Benutzer-CSS. ==
@@ -1321,7 +1326,6 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-userrights'            => 'Benutzerrächt bearbeite',
 'right-userrights-interwiki'  => 'Benutzerrächt in andere Wiki bearbeite',
 'right-siteadmin'             => 'Datebank sperre un entsperre',
-'right-reset-passwords'       => 'S Passwort vun eme andere Benutzer zrucksetze',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
 
@@ -1561,22 +1565,23 @@ Si cha wäge däm nit richtig iberprieft wäre.',
 'uploadstash-refresh'  => 'Lischt vu dr Dateie aktualisiere',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Zuegriff verweigeret',
-'img-auth-nopathinfo'   => 'PATH_INFO fählt.
+'img-auth-accessdenied'     => 'Zuegriff verweigeret',
+'img-auth-nopathinfo'       => 'PATH_INFO fählt.
 Dyy Server isch nit derfir yygrichtet, die Information wyterzgee.
 S chennt CGI-basiert syy un unterstitzt img_auth nit.
 Lueg http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Dr gwinscht Pfad isch nit im konfigurierte Uploadverzeichnis.',
-'img-auth-badtitle'     => 'Giltige Titel vu „$1“ cha nit aagleit wäre.',
-'img-auth-nologinnWL'   => 'Du bisch nit aagmäldet un „$1“ isch nit in dr wyße Lischt.',
-'img-auth-nofile'       => 'Datei „$1“ git s nit.',
-'img-auth-isdir'        => 'Du versuechsch, uf e Verzeichnis „$1“ zuezgryfe.
+'img-auth-notindir'         => 'Dr gwinscht Pfad isch nit im konfigurierte Uploadverzeichnis.',
+'img-auth-badtitle'         => 'Giltige Titel vu „$1“ cha nit aagleit wäre.',
+'img-auth-nologinnWL'       => 'Du bisch nit aagmäldet un „$1“ isch nit in dr wyße Lischt.',
+'img-auth-nofile'           => 'Datei „$1“ git s nit.',
+'img-auth-isdir'            => 'Du versuechsch, uf e Verzeichnis „$1“ zuezgryfe.
 Nume Dateizuegriff isch erlaubt.',
-'img-auth-streaming'    => 'Am Lade vu „$1“.',
-'img-auth-public'       => 'img_auth.php git Dateie vun eme privaten Wiki uus.
+'img-auth-streaming'        => 'Am Lade vu „$1“.',
+'img-auth-public'           => 'img_auth.php git Dateie vun eme privaten Wiki uus.
 Des Wiki isch as effentlig Wiki konfiguriert.
 Us Sicherheitsgrinde isch img_auth.php deaktiviert.',
-'img-auth-noread'       => 'Benutzer derf „$1“ nit läse.',
+'img-auth-noread'           => 'Benutzer derf „$1“ nit läse.',
+'img-auth-bad-query-string' => 'D URL wyst e nit giltigi Abfrogzeichnefolg uf.',
 
 # HTTP errors
 'http-invalid-url'      => 'Nit giltigi URL: $1',
@@ -1602,7 +1607,7 @@ Us Sicherheitsgrinde isch img_auth.php deaktiviert.',
 'upload_source_file' => ' (e Datei uf Dyynem Computer)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Die Spezialsyte lischtet alli uffegladene Dateie uf. Standardmässig were di zletscht uffegladene Dateie zerscht aazeigt. Dur e Klick uf d Spalte-Iberschrifte cha d Sortierig umdrillt were oder s cha noch ere andere Spalte sortiert were.',
+'listfiles-summary'     => 'Die Spezialsyte lischtet alli uffegladene Dateie uf. Wänn noch eme bstimmte Benutzer gfilteret wird, wäre nume die Dateie zeigt, wun er di letschte Version uffeglade het.',
 'listfiles_search_for'  => 'Suech noch Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Lischte vo Bilder',
@@ -1823,7 +1828,7 @@ Bitte gib Acht, ass anderi Netzsyte die Datei mit ere diräkte URL chenne vergle
 # Special:Log
 'specialloguserlabel'  => 'Benutzer:',
 'speciallogtitlelabel' => 'Titel:',
-'log'                  => 'Logbüecher',
+'log'                  => 'Logbiecher',
 'all-logs-page'        => 'Alli effetligi Logbüecher',
 'alllogstext'          => 'Kombinierti Aasicht vu alle in {{SITENAME}} gfierte Protokoll.
 D Aazeig cha dur d Uuswahl vun eme Protokoll, eme Benutzername oder eme Sytename yygschränkt wäre (Acht gee uf d Gross- un Chleischrybig).',
@@ -2006,13 +2011,13 @@ Uf Dyyre Beobachtigssyte chasch d Beobachtigsmarker fir alli Syte zrucksetze, wu
              Dyy fryndli {{SITENAME}}-Nochrichtesyschtem
 
 ---
-Go d Yystellige vu Dyyre Beobachtigslischte ändere, gang uf {{fullurl:Special:Watchlist/edit}}
+Go d Yystellige vu Dyyre Beobachtigslischte ändere, gang uf {{canonicalurl:Special:Watchlist/edit}}
 
 Go d Syte us Dyyre Beobachtigslischte uuseneh, gang uf
 $UNWATCHURL
 
 Ruckmäldig un wyteri Hilf:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Syte lösche',
@@ -2069,7 +2074,8 @@ Bitte gang zruck, tue d Syte nej lade un versuech s nomol.',
 
 # Protect
 'protectlogpage'              => 'Syteschutz-Logbuech',
-'protectlogtext'              => 'Des isch e Lischt vu dr blockierte Syte. Lueg [[Special:ProtectedPages|Gschitzti Syte]] fir meh Informatione.',
+'protectlogtext'              => 'Des isch s Syteschutz-Logbuech.
+Lueg d [[Special:ProtectedPages|Lischt vu dr gschitzte Syte]] fir alli zurzyt gschitzte Syte.',
 'protectedarticle'            => 'het „[[$1]]“ gschitzt',
 'modifiedarticleprotection'   => 'het dr Schutz vu „[[$1]]“ gänderet',
 'unprotectedarticle'          => 'het dr Schutz vu „[[$1]]“ ufghebt',
@@ -2505,7 +2511,8 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'import-interwiki-namespace' => 'Ziilnamensruum:',
 'import-upload-filename'     => 'Dateiname:',
 'import-comment'             => 'Grund:',
-'importtext'                 => 'Bitte speicher d’Syte vum Quellwiki met em Special:Export-Wärkzüg ab, un lad denn di XML-Datei do uffe. („Bild lokal“ sot im Folgénde eigentle „XML-Datei“ hoiße ;-)',
+'importtext'                 => 'Datei iber d Spezialsyte [[Special:Export|Exportfunktion]] us em Quellwiki exportiere.
+Die uf em lokale Rächner spychere un derno do uffelade.',
 'importstart'                => 'Importiere Syte …',
 'import-revision-count'      => '– {{PLURAL:$1|1 Vérsion|$1 Vérsiona}}',
 'importnopages'              => 'Es isch kei Syte doo wo mer importiere chönnt.',
@@ -2555,7 +2562,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'tooltip-ca-viewsource'           => 'Die Syte isch geschützt. Du chasch der Quelltext aaluege.',
 'tooltip-ca-history'              => 'Früecheri Versione vo dere Syte.',
 'tooltip-ca-protect'              => 'Seite beschütze',
-'tooltip-ca-unprotect'            => 'Dr Schutz vu däre Syte ufhebe',
+'tooltip-ca-unprotect'            => 'Syteschutz ändere',
 'tooltip-ca-delete'               => 'Syten entsorge',
 'tooltip-ca-undelete'             => 'Sodeli, da isch es wider.',
 'tooltip-ca-move'                 => 'Dür ds Verschiebe gits e nöie Name.',
@@ -2757,8 +2764,8 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-colorspace'                  => 'Farbruum',
 'exif-componentsconfiguration'     => 'Bedytig vu einzelne Komponente',
 'exif-compressedbitsperpixel'      => 'Komprimierti Bit pro Pixel',
-'exif-pixelydimension'             => 'Giltigi Bildbreiti',
-'exif-pixelxdimension'             => 'Valind image height',
+'exif-pixelydimension'             => 'Bildbreiti',
+'exif-pixelxdimension'             => 'Bildhechi',
 'exif-usercomment'                 => 'Benutzerkommentar',
 'exif-relatedsoundfile'            => 'Zuegherigi Tondatei',
 'exif-datetimeoriginal'            => 'Erfassigszytpunkt',
@@ -2772,9 +2779,9 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-exposureprogram'             => 'Beliechtigsprogramm',
 'exif-spectralsensitivity'         => 'Spektrali Empfindligkeit',
 'exif-isospeedratings'             => 'Filmempfindlichkeit (ISO)',
-'exif-shutterspeedvalue'           => 'Beliechtigszytwärt',
-'exif-aperturevalue'               => 'Bländewärt',
-'exif-brightnessvalue'             => 'Hälligkeitswärt',
+'exif-shutterspeedvalue'           => 'APEX-Beliechtigszytwärt',
+'exif-aperturevalue'               => 'APEX-Bländewärt',
+'exif-brightnessvalue'             => 'APEX-Hälligkeitswärt',
 'exif-exposurebiasvalue'           => 'Beliechtigsvorgab',
 'exif-maxaperturevalue'            => 'Greschti Bländi',
 'exif-subjectdistance'             => 'Entfärnig',
@@ -2848,9 +2855,9 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-orientation-3' => 'Um 180° drillt',
 'exif-orientation-4' => 'Vertikal gspieglet',
 'exif-orientation-5' => 'Gege dr Uhrzeigersinn um 90° drillt un derno vertikal gspieglet',
-'exif-orientation-6' => 'Um 90° im Uhrzeigersinn drillt',
+'exif-orientation-6' => 'Um 90° gege dr Uhrzeigersinn drillt',
 'exif-orientation-7' => 'Um 90° im Uhrzeigersinn drillt un derno vertikal gspieglet',
-'exif-orientation-8' => 'Um 90° gege dr Uhrzeigersinn drillt',
+'exif-orientation-8' => 'Um 90° im dr Uhrzeigersinn drillt',
 
 'exif-planarconfiguration-1' => 'Grobformat',
 'exif-planarconfiguration-2' => 'Planarformat',
@@ -2917,6 +2924,8 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-sensingmethod-5' => 'Farbruum sequenziäll Sensor',
 'exif-sensingmethod-7' => 'Trilineare Sensor',
 'exif-sensingmethod-8' => 'Farbruum linear sequenziälle Sensor',
+
+'exif-filesource-3' => 'Digitali Standbildkamera',
 
 'exif-scenetype-1' => 'E diräkt fotografiert Bild',
 

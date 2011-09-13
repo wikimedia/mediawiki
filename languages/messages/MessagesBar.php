@@ -1053,13 +1053,13 @@ Es wern da sólång koane weidern Benoochrichtigungsmails gsendt, bis du dé Sei
              Deih freindlichs {{SITENAME}}-Benoochrichtigungssystém
 
 --
-Um d\' Eihstöungen voh da E-Mail-Benoochrichtigung åzpassen, bsuachst {{fullurl:{{#special:Preferences}}}}
+Um d\' Eihstöungen voh da E-Mail-Benoochrichtigung åzpassen, bsuachst {{canonicalurl:{{#special:Preferences}}}}
 
-Um d\' Eihstöungen voh deine Beówochtungslisten åzpassen, bsuachst {{fullurl:{{#special:EditWatchlist}}}}
+Um d\' Eihstöungen voh deine Beówochtungslisten åzpassen, bsuachst {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Um d\' Seiten voh deiner Beówochtungslisten ower z\' doah, bsuachst $UNWATCHURL
 
-Ryckmödungen und a weidre Hüf: {{fullurl:{{MediaWiki:Helppage}}}}',
+Ryckmödungen und a weidre Hüf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Seiten leschen',
@@ -1141,18 +1141,17 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'month'               => 'und Monad',
 'year'                => 'bis zum Jor:',
 
-'sp-contributions-newbies'      => "Netter dé Beitrég voh d' neichen Benutzer åzoang",
-'sp-contributions-newbies-sub'  => 'Fyr Neiling',
-'sp-contributions-blocklog'     => 'Sperrlogbiaché',
-'sp-contributions-deleted'      => 'Gléschde Beitrég',
-'sp-contributions-uploads'      => 'Aufféglooderne Daatein',
-'sp-contributions-logs'         => 'Logbiacher',
-'sp-contributions-talk'         => 'Diskussión',
-'sp-contributions-search'       => 'Suach noch Benutzerbeitrég',
-'sp-contributions-username'     => 'IP-Adress óder Benutzernåm:',
-'sp-contributions-toponly'      => 'Netter aktuelle Versiónen zoang',
-'sp-contributions-submit'       => 'Suachen',
-'sp-contributions-showsizediff' => 'Unterschiad vo da Seitengréss åzoang',
+'sp-contributions-newbies'     => "Netter dé Beitrég voh d' neichen Benutzer åzoang",
+'sp-contributions-newbies-sub' => 'Fyr Neiling',
+'sp-contributions-blocklog'    => 'Sperrlogbiaché',
+'sp-contributions-deleted'     => 'Gléschde Beitrég',
+'sp-contributions-uploads'     => 'Aufféglooderne Daatein',
+'sp-contributions-logs'        => 'Logbiacher',
+'sp-contributions-talk'        => 'Diskussión',
+'sp-contributions-search'      => 'Suach noch Benutzerbeitrég',
+'sp-contributions-username'    => 'IP-Adress óder Benutzernåm:',
+'sp-contributions-toponly'     => 'Netter aktuelle Versiónen zoang',
+'sp-contributions-submit'      => 'Suachen',
 
 # What links here
 'whatlinkshere'            => 'Links auf dé Seiten',

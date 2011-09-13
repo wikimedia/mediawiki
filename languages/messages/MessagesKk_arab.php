@@ -1808,10 +1808,10 @@ $NEWPAGE
 
 ----
 باقىلاۋ ٴتىزىمىڭىزدىڭ باپتاۋلىرىن وزگەرتۋ ٴۇشىن, مىندا كەلىپ-كەتىڭىز:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 سىن-پىكىر بەرۋ جانە بىلايعى جاردەم الۋ ٴۇشىن:
-{{fullurl:{{{{ns:mediawiki}}:Helppage}}}}',
+{{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'بەتتى جويۋ',

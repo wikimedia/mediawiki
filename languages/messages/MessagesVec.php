@@ -1189,8 +1189,9 @@ La gà da verghe al massimo $1 {{PLURAL:$1|caràtere|caràteri}}.',
 'prefs-help-gender'             => "Opzional: doparà par l'indicassion del gènare dal software. Sta informassion la sarà visìbile da tuti.",
 'email'                         => 'Indirizo e-mail',
 'prefs-help-realname'           => 'No te ghè par forsa da métar el to vero nome; se te voli farlo, el vegnarà doparà par atribuir la paternità dei contenuti invià.',
-'prefs-help-email'              => 'No te ghè par forsa da métar el to indirizo e-mail; parò se par caso te te desménteghi la password, in sta maniera podemo mandartene una nova.
-In più te pol anca farte scrìvar da altri tramite la to pagina personale o la pagina de discussion, sensa bisogno de dirghe chi te sì.',
+'prefs-help-email'              => 'No te ghè par forsa da métar el to indirizo e-mail; parò se par caso te te desménteghi la password, in sta maniera podemo mandartene una nova.',
+'prefs-help-email-others'       => 'In più te pol anca farte scrìvar da altri tramite la to pagina personale o la pagina de discussion.
+Co qualcheduni te scrivarà, nol vedarà mia el to indirizo.',
 'prefs-help-email-required'     => "Xe richiesto l'indirizo e-mail.",
 'prefs-info'                    => 'Informassion de base',
 'prefs-i18n'                    => 'Internassionalisassion',
@@ -1311,7 +1312,6 @@ In più te pol anca farte scrìvar da altri tramite la to pagina personale o la 
 'right-userrights'            => "Modifica tuti quanti i diriti de l'utente",
 'right-userrights-interwiki'  => 'Modifica i diriti de utenti de altri siti wiki',
 'right-siteadmin'             => 'Bloca e desbloca el database',
-'right-reset-passwords'       => 'Reinposta la password de altri utenti',
 'right-override-export-depth' => 'Esporta le pàxene, includendo le pàxene ligàe fin a na profondità de 5',
 'right-sendemail'             => 'Mandarghe e-mail a cheialtri utenti',
 
@@ -1975,13 +1975,13 @@ Te podi anca reinpostar l\'avixo de notifica par tuti i osservati speciałi de �
 
 --
 Par canbiar łe inpostassion de i to osservati speciałi, visita
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Par cavar la pagina da i to osservati speciałi, visita
 $UNWATCHURL
 
 Par riscontri e ulteriore assistensa:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Scancela pagina',
@@ -2162,6 +2162,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Contributi dei utenti novi',
 'sp-contributions-blocklog'            => 'blochi',
 'sp-contributions-deleted'             => 'contributi utente scancelà',
+'sp-contributions-uploads'             => 'caricamenti',
 'sp-contributions-logs'                => 'registri',
 'sp-contributions-talk'                => 'discussion',
 'sp-contributions-userrights'          => 'gestion dei parmessi relativi ai utenti',
@@ -2181,7 +2182,7 @@ $1',
 'nolinkshere-ns'           => "No ghe xe pagine che punta a '''[[:$1]]''' nel namespace selezionà.",
 'isredirect'               => 'Pagina de rimando',
 'istemplate'               => 'inclusion',
-'isimage'                  => 'colegamento imagine',
+'isimage'                  => 'colegamento verso file',
 'whatlinkshere-prev'       => '{{PLURAL:$1|quel prima|i $1 prima}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|quel dopo|i $1 dopo}}',
 'whatlinkshere-links'      => '← colegamenti',
@@ -2233,7 +2234,7 @@ Varda [[Special:IPBlockList|lista IP bloccati]] par védar tuti i blochi.",
 'ipusubmit'                       => 'Cava sto bloco',
 'unblocked'                       => '[[User:$1|$1]] el xe stà sblocà',
 'unblocked-id'                    => 'El bloco $1 el xe stà cavà',
-'ipblocklist'                     => 'Utenti e indirixi IP blocai',
+'ipblocklist'                     => 'Utenti blocà',
 'ipblocklist-legend'              => 'Cata fora un utente blocà',
 'ipblocklist-submit'              => 'Serca',
 'ipblocklist-localblock'          => 'Bloco local',

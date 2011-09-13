@@ -1,5 +1,5 @@
 <?php
-/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (‪Српски (ћирилица)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -425,7 +425,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Пошаљи ми е-поруку и код мањих измена',
 'tog-enotifrevealaddr'        => 'Прикажи моју е-адресу у порукама обавештења',
 'tog-shownumberswatching'     => 'Прикажи број корисника који надгледају',
-'tog-oldsig'                  => 'Преглед потписа:',
+'tog-oldsig'                  => 'Постојећи потпис:',
 'tog-fancysig'                => 'Сматрај потпис као викитекст (без самоповезивања)',
 'tog-externaleditor'          => 'Увек користи спољни уређивач (само за напредније кориснике, потребне су посебне поставке на рачунару).',
 'tog-externaldiff'            => 'Увек користи спољни програм за упоређивање (само за напредније кориснике, потребне су посебне поставке на рачунару).',
@@ -918,6 +918,7 @@ $2',
 'passwordreset-disabled'       => 'Поништавање лозинке је онемогућено на овом викију.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Унесите један од делова података испод}}',
 'passwordreset-username'       => 'Корисничко име:',
+'passwordreset-domain'         => 'Домен:',
 'passwordreset-email'          => 'Е-адреса:',
 'passwordreset-emailtitle'     => 'Детаљи налога на викију {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Неко, вероватно ви, са ИП адресе $1 је затражио нову лозинку на викију {{SITENAME}} ($4).
@@ -1434,7 +1435,7 @@ $1",
 'qbsettings-fixedright'     => 'Причвршћена десно',
 'qbsettings-floatingleft'   => 'Плутајућа лево',
 'qbsettings-floatingright'  => 'Плутајућа десно',
-'qbsettings-directionality' => 'Померено, у зависности од смера писања вашег језика',
+'qbsettings-directionality' => 'Фиксно, у зависности од смера писања вашег језика',
 
 # Preferences page
 'preferences'                   => 'Подешавања',
@@ -1448,7 +1449,7 @@ $1",
 'datedefault'                   => 'Свеједно',
 'prefs-beta'                    => 'Бета функције',
 'prefs-datetime'                => 'Датум и време',
-'prefs-labs'                    => 'Лабораторијске функције',
+'prefs-labs'                    => 'Пробне могућности',
 'prefs-personal'                => 'Профил',
 'prefs-rc'                      => 'Скорашње измене',
 'prefs-watchlist'               => 'Списак надгледања',
@@ -1518,7 +1519,7 @@ $1",
 'prefs-registration'            => 'Време уписа:',
 'yourrealname'                  => 'Право име:',
 'yourlanguage'                  => 'Језик:',
-'yourvariant'                   => 'Варијанта:',
+'yourvariant'                   => 'Варијанта језика:',
 'yournick'                      => 'Нови потпис:',
 'prefs-help-signature'          => "Коментаре на страницама за разговор потпишите са ''<nowiki>~~~~</nowiki>''. Ови знакови ће бити претворени у ваш потпис и тренутно време.",
 'badsig'                        => 'Потпис је неисправан.
@@ -1574,7 +1575,7 @@ $1",
 'userrights-no-interwiki'      => 'Немате овлашћења да мењате корисничка права на другим викијима.',
 'userrights-nodatabase'        => 'База података $1 не постоји или није локална.',
 'userrights-nologin'           => 'Морате се [[Special:UserLogin|пријавити]] с администраторским налогом да бисте додали корисничка права.',
-'userrights-notallowed'        => 'Ваш налог нема овлашћења да додаје корисника права.',
+'userrights-notallowed'        => 'Немате овлашћења да додајете или уклањате корисничка права.',
 'userrights-changeable-col'    => 'Групе које можете мењати',
 'userrights-unchangeable-col'  => 'Групе које не можете мењати',
 
@@ -1660,7 +1661,6 @@ $1",
 'right-userrights'            => 'уређивање свих корисничких права',
 'right-userrights-interwiki'  => 'уређивање корисничких права на другим викијима',
 'right-siteadmin'             => 'закључавање и откључавање базе података',
-'right-reset-passwords'       => 'поништавање туђих лозинки',
 'right-override-export-depth' => 'извоз страница укључујући и повазене странице до дубине од пет веза',
 'right-sendemail'             => 'слање е-порука другим корисницима',
 
@@ -1957,8 +1957,7 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ова посебна страница приказује све послате датотеке.
-Према подразумеваним поставкама, најновије датотеке су приказане на врху списка.
-Кликом на заглавље колоне мења се начин сврставања.',
+Кад је поређано по кориснику, попис приказује само оне датотеке чије је последње издање поставио тај корисник.',
 'listfiles_search_for'  => 'Назив датотеке:',
 'imgfile'               => 'датотека',
 'listfiles'             => 'Списак датотека',
@@ -2380,16 +2379,16 @@ $NEWPAGE
 
 --
 Да бисте променили поставке у вези с е-обавештењима, посетите
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Да бисте променили поставке у вези са списком надгледања, посетите
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Да бисте уклонили ову страницу са списка надгледања, посетите
 $UNWATCHURL
 
 Подршка и даља помоћ:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Обриши страницу',
@@ -2599,7 +2598,6 @@ $1',
 'sp-contributions-username'            => 'IP адреса или корисничко име:',
 'sp-contributions-toponly'             => 'Прикажи само најновије измене',
 'sp-contributions-submit'              => 'Претражи',
-'sp-contributions-showsizediff'        => 'Прикажи разлике у величини странице',
 
 # What links here
 'whatlinkshere'            => 'Шта је повезано овде',
@@ -3068,9 +3066,9 @@ $1',
 
 # Info page
 'pageinfo-title'            => 'Подаци о „$1“',
-'pageinfo-header-edits'     => 'Измене',
+'pageinfo-header-edits'     => 'Измена',
 'pageinfo-header-watchlist' => 'Списак надгледања',
-'pageinfo-header-views'     => 'Прегледи',
+'pageinfo-header-views'     => 'Прегледа',
 'pageinfo-subjectpage'      => 'Страница',
 'pageinfo-talkpage'         => 'Страница за разговор',
 'pageinfo-watchers'         => 'Број прегледача',
@@ -3374,9 +3372,9 @@ $1',
 'exif-orientation-3' => 'Заокренуто 180°',
 'exif-orientation-4' => 'Обрнуто по вертикали',
 'exif-orientation-5' => 'Заокренуто 90° супротно од смера казаљке на сату и обрнуто по вертикали',
-'exif-orientation-6' => 'Заокренуто 90° у смеру казаљке на сату',
+'exif-orientation-6' => 'Заокренуто 90° супротно од смера казаљке',
 'exif-orientation-7' => 'Заокренуто 90° у смеру казаљке на сату и обрнуто по вертикали',
-'exif-orientation-8' => 'Заокренуто 90° супротно од смера казаљке на сату',
+'exif-orientation-8' => 'Заокренуто 90° у смеру казаљке',
 
 'exif-planarconfiguration-1' => 'делимични формат',
 'exif-planarconfiguration-2' => 'планарни формат',
@@ -3667,7 +3665,7 @@ $1',
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'У реду',
-'confirm-watch-top'      => 'Додати ову страницу на списак надгледања?',
+'confirm-watch-top'      => 'Додати ову страницу у списак надгледања?',
 'confirm-unwatch-button' => 'У реду',
 'confirm-unwatch-top'    => 'Уклонити ову страницу са списка надгледања?',
 
@@ -3791,7 +3789,8 @@ $1',
 'specialpages'                   => 'Посебне странице',
 'specialpages-note'              => '----
 * обичне посебне странице
-* <strong class="mw-specialpagerestricted">привремено меморисане посебне странице</strong>',
+* <span class="mw-specialpagerestricted">ограничене посебне странице</span>
+* <span class="mw-specialpagecached">привремено меморисане посебне странице</span>',
 'specialpages-group-maintenance' => 'Извештаји одржавања',
 'specialpages-group-other'       => 'Остале посебне странице',
 'specialpages-group-login'       => 'Отварање налога и пријављивање',

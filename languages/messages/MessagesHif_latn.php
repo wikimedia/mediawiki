@@ -1,5 +1,5 @@
 <?php
-/** Fiji Hindi (Latin) (Fiji Hindi (Latin))
+/** Fiji Hindi (Latin script) (Fiji Hindi)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1250,7 +1250,6 @@ Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
 'right-userrights'            => 'Sadasya ke adhikar ke badlo',
 'right-userrights-interwiki'  => 'Duusra wiki me sadasya ke adhikar ke badlo',
 'right-siteadmin'             => 'Database ke band karo aur kholo',
-'right-reset-passwords'       => 'Duusra sadasya ke password ke badlo',
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
 'right-sendemail'             => 'Duusra sadasya ke lage e-mail bhejo',
 
@@ -1942,10 +1941,10 @@ Aap ke  dayalu {{SITENAME}} notification system
 
 --
 Aapan Email notofication setting ke badle ke khatir, jaao
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Aapan dhyan ke settings ke badle ke khatir, jaao
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 
 Aapan dhyan suchi se panna ke mitae ke khatir, jaao
@@ -1953,7 +1952,7 @@ $UNWATCHURL
 
 
 Aapan bichar de ke khatir aur aage ke sahaeta:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Pana ke delete karo',

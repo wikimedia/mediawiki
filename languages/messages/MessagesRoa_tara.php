@@ -51,7 +51,7 @@ $messages = array(
 'tog-enotifminoredits'        => "Manneme 'na mail quanne onne state fatte cangiaminde stuèdeche sus 'a pàgene",
 'tog-enotifrevealaddr'        => "Fa vedè l'indirizze e-mail jndr'à le e-mail de notifiche",
 'tog-shownumberswatching'     => "Fa vedè 'u numere de le utinde ca uardene",
-'tog-oldsig'                  => "Andeprime d'a firme esistende:",
+'tog-oldsig'                  => 'Firme esistende:',
 'tog-fancysig'                => "Firma grezze cumme a 'nu teste de Uicchi (senza collegamende automatiche)",
 'tog-externaleditor'          => "Ause n'editore esterne pe default (sulamende pe l'esperte, abbesogne de 'na configurazione speciele sus a 'u combiuter tune. <br />
 [http://www.mediawiki.org/wiki/Manual:External_editors Pe cchiù 'mbormaziune.])",
@@ -452,8 +452,8 @@ No te sce scurdanne de cangià le [[Special:Preferences|{{SITENAME}} preferenze 
 'createaccountmail'          => 'pe e-mail',
 'createaccountreason'        => 'Mutive:',
 'badretype'                  => 'Le passuord ca è scritte non ge sonde uguale.',
-'userexists'                 => "'U nome de l'utende ca è scritte jè già ausete.
-Mittene n'otre.",
+'userexists'                 => "'U nome de l'utende ca è scritte jè già ausate.
+Pe piacere scacchiane n'otre.",
 'loginerror'                 => 'Errore de collegamende',
 'createaccounterror'         => "Non ge puè ccrejà 'u cunde utende: $1",
 'nocookiesnew'               => "'U cunde utende ha state ccrejete ma angore non g'è trasute jndr'à {{SITENAME}}.
@@ -554,6 +554,7 @@ Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea 
 'passwordreset-disabled'       => "'U reset de le passuord ha state desabbilitate sus a sta uicchi.",
 'passwordreset-pretext'        => '{{PLURAL:$1||Mitte une de le stuèzze de le date aqquà sotte}}',
 'passwordreset-username'       => 'Nome utende:',
+'passwordreset-domain'         => 'Dominie:',
 'passwordreset-email'          => 'Indirizze e-mail:',
 'passwordreset-emailtitle'     => "Dettaglie d'u cunde utende sus a {{SITENAME}}",
 'passwordreset-emailtext-ip'   => "Quacchedune (pò essere tu, da 'u 'ndirizze IP $1) ha richieste 'na mail pe arrecurdarse de le dettaglie d'u cunde sue pe {{SITENAME}} ($4). {{PLURAL:$3|'U cunde utende seguende jè|le cunde utinde seguende sonde}} associate cu st'indirizze e-mail:
@@ -1153,6 +1154,7 @@ Quiste non ge pò essere annullate.",
 'prefs-registration'            => 'Orarie de reggistrazzione:',
 'yourrealname'                  => 'Nome vere:',
 'yourlanguage'                  => 'Lènga:',
+'yourvariant'                   => "Variande d'u condenute d'a lènghe:",
 'yournick'                      => 'Firma toje:',
 'prefs-help-signature'          => "Le commende sus a le pàggene de le 'ngazzaminde avessere a essere sgnate cu \"<nowiki>~~~~</nowiki>\" ca pò avène convertite cu 'a firma toje e l'orarie.",
 'badsig'                        => "'A firme grezze jè sbagliete.
@@ -1207,7 +1209,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'userrights-no-interwiki'        => "Tu non ge tìne le permesse pe cangià le deritte utende sus a l'otre uicchi.",
 'userrights-nodatabase'          => "'U Database $1 non g'esiste o non g'è lochele.",
 'userrights-nologin'             => "Tu à essere [[Special:UserLogin|colleghete]] cu 'nu cunde utende d'amministratore pe assignà le deritte utende.",
-'userrights-notallowed'          => "'U cunde utende tue non ge tène le permesse pe assignà de deritte a l'utinde.",
+'userrights-notallowed'          => "'U cunde utende tune non ge tène le permesse pe aggiunge o luà le deritte a l'utinde.",
 'userrights-changeable-col'      => 'Gruppe ca tu puè cangià',
 'userrights-unchangeable-col'    => 'Gruppe ca tu non ge puè cangià',
 'userrights-irreversible-marker' => '$1*',
@@ -1294,7 +1296,6 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'right-userrights'            => 'Cange tutte le deritte utende',
 'right-userrights-interwiki'  => "Cange le deritte utende de le utinde sus a l'otre Uicchi",
 'right-siteadmin'             => "Blocche e sblocche 'u database",
-'right-reset-passwords'       => "Azzere l'otre password de l'utinde",
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
 
@@ -1589,9 +1590,8 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'upload_source_file' => " ('nu fail sus a 'u combiuter tue)",
 
 # Special:ListFiles
-'listfiles-summary'     => "Sta pàgena speciale face vedè tutte le fiel carecate.<br />
-Pe default l'urteme file carecate stè sus a sus a liste.<br />
-Ce cazze sus a 'a testate d'a colonne cange l'arrengamende.",
+'listfiles-summary'     => "Sta pàgena speciale face vedè tutte le file carecate.<br />
+Quanne jè filtrate da l'utende, sulamende le file ca quidde utende ave carecate le versiune cchiù recende d'u file avènene fatte vedè.",
 'listfiles_search_for'  => 'Cirche pe nome de le media:',
 'imgfile'               => 'file',
 'listfiles'             => 'Liste de le fail',
@@ -2014,16 +2014,16 @@ Tu puè pure azzerà \'a spunde de le notifiche pe tutte le pàggene condrollate
 
 --
 Pe cangià le \'mbostaziune de notifeche de l\'email toje, vè vide
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Pe cangià le \'mbostaziune de l\'elenghe de le pàggene condrollate tune, vè vide
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Pe scangellà \'a pàgene da \'a liste de le pàggene condrollate, vè vide
 $UNWATCHURL
 
 Segnalaziune e otre assistenze:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => "Scangille 'a pàgene",
@@ -2238,7 +2238,6 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'sp-contributions-username'            => "Indirizze IP o nome de l'utende:",
 'sp-contributions-toponly'             => "Sulamende facenne vedè le cangiaminde de l'urteme revisiune",
 'sp-contributions-submit'              => 'Cirche',
-'sp-contributions-showsizediff'        => "Fa fedè le differenze sus 'a dimenzione d'a pàgene",
 
 # What links here
 'whatlinkshere'            => 'Appondene aqquà',
@@ -3006,9 +3005,9 @@ Otre avènene scunnute pe defolt.
 'exif-orientation-3' => 'Ruete de 180°',
 'exif-orientation-4' => 'Revultate verticalmende',
 'exif-orientation-5' => 'Ruotate de 90° in senze andiorarie e revultate verticalmende',
-'exif-orientation-6' => 'Ruotate de 90° in senze orarie',
+'exif-orientation-6' => 'Rotate de 90° in sienze andiorarie',
 'exif-orientation-7' => 'Ruotate de 90° in senze orarie e revultate verticalmende',
-'exif-orientation-8' => 'Ruotate de 90° in senze andiorarie',
+'exif-orientation-8' => 'Rotate de 90° in sienze orarie',
 
 'exif-planarconfiguration-1' => 'formate a blocche',
 'exif-planarconfiguration-2' => 'formate lineare',
@@ -3423,10 +3422,10 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 
 # Special:SpecialPages
 'specialpages'                   => 'Pàggene speciele',
-'specialpages-note'              => '!----
+'specialpages-note'              => '----
 * Pàggene speciale normale.
 * <span class="mw-specialpagerestricted">Pàggene speciale cu le restriziune.</span>
-* <span class="mw-specialpagecached">Pàggene speciale in memorie cache.</span>',
+* <span class="mw-specialpagecached">Pàggene speciale in memorie cache (ponne essere vecchie).</span>',
 'specialpages-group-maintenance' => "Report d'a manutenzione",
 'specialpages-group-other'       => 'Otre pàggene speciele',
 'specialpages-group-login'       => 'Tràse / Reggistrete',

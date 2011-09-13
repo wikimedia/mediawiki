@@ -1,5 +1,5 @@
 <?php
-/** Crimean Turkish (Latin) (Qırımtatarca (Latin))
+/** Crimean Turkish (Latin script) (‪Qırımtatarca (Latin)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1466,13 +1466,13 @@ Bu saifeni ziyaret etmeseñiz, birev onı bir daa deñiştirse de, iç bir tenbi
 
 --
 Közetüv cedveli sazlamalarını deñiştirmek içün:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Saifeni közetüv cedvelinden yoq etmek içün:
 $UNWATCHURL
 
 Yardım ve teklifler içün:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Saifeni yoq et',

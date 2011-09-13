@@ -1530,7 +1530,6 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'right-userrights'            => 'Uređivanje svih korisničkih prava',
 'right-userrights-interwiki'  => 'Uređivanje korisničkih prava korisnika na drugim wikijima',
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
-'right-reset-passwords'       => 'Resetuje šifre drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
 
@@ -2254,16 +2253,16 @@ Također možete poništiti oznake obavijesti za sve praćene stranice koje imat
 
 --
 Za promjenu vaših postavki e-mail obavijesti, posjetite
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Za promjenu postavki vašeg praćenja, posjetite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Da obrišete stranicu sa vašeg spiska praćenja, posjetite
 $UNWATCHURL
 
 Povratne informacije i daljnja pomoć:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Obrišite stranicu',
@@ -2469,7 +2468,6 @@ Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
 'sp-contributions-username'            => 'IP adresa ili korisničko ime:',
 'sp-contributions-toponly'             => 'Prikaži samo izmjene koje su posljednje revizije',
 'sp-contributions-submit'              => 'Traži',
-'sp-contributions-showsizediff'        => 'Pokaži razlike u veličini stranice',
 
 # What links here
 'whatlinkshere'            => 'Šta je povezano ovdje',

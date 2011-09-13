@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Kaztrans
  */
 
 # Stub message file for converter code "kk"
@@ -14,6 +15,9 @@
 $fallback = 'kk-cyrl';
 
 $messages = array(
+# Short words for each namespace, by default used in the namespace tab in monobook
+'nstab-main' => 'Мақала',
+
 # Edit pages
 'edittools' => '<!-- Мындағы мәтін өңдеу және қотару пішіндердің астында көрсетіледі. -->',
 

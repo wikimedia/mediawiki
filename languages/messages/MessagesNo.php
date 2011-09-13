@@ -721,7 +721,8 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'createaccountmail'          => 'per e-post',
 'createaccountreason'        => 'Årsak:',
 'badretype'                  => 'Passordene samsvarte ikke.',
-'userexists'                 => 'Brukernavnet er allerede i bruk. Velg et nytt.',
+'userexists'                 => 'Brukernavnet er allerede i bruk.
+Velg et annet brukernavn.',
 'loginerror'                 => 'Innloggingsfeil',
 'createaccounterror'         => 'Kunne ikke opprette konto: $1',
 'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem p åfor å kunne logge på med ditt nye brukernavn og passord.',
@@ -1016,9 +1017,9 @@ Det siste loggelementet er oppgitt under som referanse:",
 'permissionserrors'                => 'Tilgangsfeil',
 'permissionserrorstext'            => 'Du har ikke tillatelse til å utføre dette, av følgende {{PLURAL:$1|grunn|grunner}}:',
 'permissionserrorstext-withaction' => 'Du har ikke tillatelse til å $2 {{PLURAL:$1|på grunn av|av følgende grunner}}:',
-'recreate-moveddeleted-warn'       => "Advarsel: Du gjenskaper en side som tidligere har blitt slettet.'''
+'recreate-moveddeleted-warn'       => "Advarsel: Du er i ferd med å opprette en side som tidligere har blitt slettet.'''
 
-Du burde vurdere hvorvidt det er passende å fortsette å redigere denne siden.
+Du bør vurdere om det er passende å fortsette å redigere denne siden.
 Slette- og flytteloggen for denne siden gjengis her:",
 'moveddeleted-notice'              => 'Denne siden har blitt slettet.
 Slette- og flytteloggen vises nedenfor.',
@@ -1179,7 +1180,7 @@ Du har ikke tilgang til det.',
 'revdelete-modify-no-access'  => 'Feil under endring av objekt datert $2, $1: dette objektet har blitt markert "begrenset".
 Du har ikke tilgang til det.',
 'revdelete-modify-missing'    => 'Feil under endring av objekt ID $1: det mangler i databasen!',
-'revdelete-no-change'         => "'''Advarsel:''' objektet datert $2, $1 hadde allerede etterspurt synlighetsinnstillinger.",
+'revdelete-no-change'         => "'''Advarsel:''' objektet datert $2 $1 hadde allerede synlighetsinnstillingene du forespurte.",
 'revdelete-concurrent-change' => 'Feil under endring av objektet datert $2, $1: dets status ser ut til å ha blitt endret av noen andre mens du prøvde å endre det.
 Vennligst sjekk loggen.',
 'revdelete-only-restricted'   => 'Feil ved gjemming av objekt datert $2, $1: du kan ikke skjule objekt fra å vises for administratorer uten også å velge en av de andre visningsalternativene.',
@@ -1310,7 +1311,7 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'qbsettings-fixedright'     => 'Fast høyre',
 'qbsettings-floatingleft'   => 'Flytende venstre',
 'qbsettings-floatingright'  => 'Flytende til høyre',
-'qbsettings-directionality' => 'Fast, avhengig av retningen på skriptet ditt og språket ditt',
+'qbsettings-directionality' => '"Låst", f. eks. i posisjon "låst til venstre eller til høyre". For venstre-mot-høyre-språk vil hurtigvelgeren være satt til venstre, for høyre-mot-venstre-språk til høyre.',
 
 # Preferences page
 'preferences'                   => 'Innstillinger',
@@ -1532,7 +1533,6 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'right-userrights'            => 'Redigere alle brukerrettigheter',
 'right-userrights-interwiki'  => 'Redigere rettigheter for brukere på andre wikier',
 'right-siteadmin'             => 'Låse og låse opp databasen',
-'right-reset-passwords'       => 'Nullstille andre brukeres passord',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkede sider til en dypde på 5',
 'right-sendemail'             => 'Send e-post til andre brukere',
 
@@ -1826,7 +1826,8 @@ For best mulig sikkerhet er img_auth.php slått av.',
 'upload_source_file' => ' (en fil på din datamaskin)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Denne spesialsiden viser alle opplastede filer. De sist opplastede filene vises på toppen som standard. Klikk på en kolonneoverskrift for å endre sorteringsmetode.',
+'listfiles-summary'     => 'Denne spesialsiden viser alle opplastede filer.
+Når den filtreres av en bruker, vises bare de sist opplastede versjonene av filen.',
 'listfiles_search_for'  => 'Søk etter filnavn:',
 'imgfile'               => 'fil',
 'listfiles'             => 'Filliste',
@@ -2241,16 +2242,16 @@ Du kan også fjerne varslingsflagg for alle overvåkede sider i overvåkningslis
 
 --
 For å endre innstillingene for e-postvarsler, se
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 For å endre innstillingene for overvåkningslisten, se
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 For å slette en side fra overvåkningssiden, se
 $UNWATCHURL
 
 Tilbakemelding og videre assistanse:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Slett side',
@@ -2446,7 +2447,6 @@ Den siste oppføringen i blokkeringsloggen er vist nedenfor som referanse:',
 'sp-contributions-username'            => 'IP-adresse eller brukernavn:',
 'sp-contributions-toponly'             => 'Vis kun endringer som er gjeldende revisjoner',
 'sp-contributions-submit'              => 'Søk',
-'sp-contributions-showsizediff'        => 'Vis forskjellen i sidestørrelse',
 
 # What links here
 'whatlinkshere'            => 'Lenker hit',
@@ -3216,7 +3216,7 @@ Andre vil skjules som standard.
 
 # EXIF attributes
 'exif-compression-1' => 'Ukomprimert',
-'exif-compression-2' => 'CCITT Gruppe 3 1-dimensjonal modifisert Huffman-kjøring lengdekoding',
+'exif-compression-2' => 'CCITT Gruppe 3 1-dimensjonal modifisert Huffman-kjørelengdekoding',
 'exif-compression-3' => 'CCITT Gruppe 3 faks-koding',
 'exif-compression-4' => 'CCITT Gruppe 4 faks-koding',
 
@@ -3668,10 +3668,10 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 
 # Special:SpecialPages
 'specialpages'                   => 'Spesialsider',
-'specialpages-note'              => '---
-Normale spesialsider.
+'specialpages-note'              => '----
+* Normale spesialsider.
 * <span class="mw-specialpagerestricted">Spesialsider med begrenset tilgang.</span>
-* <span class="mw-specialpagecached">Spesialsider som oppdateres periodisk.</span>',
+* <span class="mw-specialpagecached">Spesialsider som oppdateres periodisk (kan være foreldede).</span>',
 'specialpages-group-maintenance' => 'Vedlikeholdsrapporter',
 'specialpages-group-other'       => 'Andre spesialsider',
 'specialpages-group-login'       => 'Innlogging / registrering',

@@ -433,7 +433,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'Tìm kiếm',
-'qbbrowse'       => 'Xem qua',
+'qbbrowse'       => 'Duyệt',
 'qbedit'         => 'Sửa đổi',
 'qbpageoptions'  => 'Trang này',
 'qbpageinfo'     => 'Ngữ cảnh',
@@ -709,7 +709,7 @@ Tài khoản của bạn đã mở.
 'createaccountmail'          => 'qua thư điện tử',
 'createaccountreason'        => 'Lý do:',
 'badretype'                  => 'Hai mật khẩu không khớp.',
-'userexists'                 => 'Tên người dùng này đã có người lấy.
+'userexists'                 => 'Tên người dùng được nhập đã có người lấy.
 Hãy chọn một tên khác.',
 'loginerror'                 => 'Lỗi đăng nhập',
 'createaccounterror'         => 'Không thể mở tài khoản: $1',
@@ -791,6 +791,7 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'passwordreset-disabled'       => 'Chức năng tái tạo mật khẩu đã bị tắt trên wiki này.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Nhập một trong những thông tin được yêu cầu ở dưới}}',
 'passwordreset-username'       => 'Tên người dùng:',
+'passwordreset-domain'         => 'Tên miền:',
 'passwordreset-email'          => 'Địa chỉ thư điện tử:',
 'passwordreset-emailtitle'     => 'Thông tin tài khoản tại {{SITENAM}}',
 'passwordreset-emailtext-ip'   => 'Ai đó (có thể là bạn, từ địa chỉ IP $1) đã yêu cầu một lời
@@ -1297,7 +1298,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'qbsettings-fixedright'     => 'Cố định phải',
 'qbsettings-floatingleft'   => 'Nổi bên trái',
 'qbsettings-floatingright'  => 'Nổi bên phải',
-'qbsettings-directionality' => 'Cố định, theo hướng viết ngôn ngữ của bạn',
+'qbsettings-directionality' => 'Cố định, tùy theo hướng viết ngôn ngữ của bạn',
 
 # Preferences page
 'preferences'                   => 'Tùy chọn',
@@ -1380,7 +1381,7 @@ Không có thể lùi lại tác động này.',
 'prefs-registration'            => 'Thời điểm đăng ký:',
 'yourrealname'                  => 'Tên thật:',
 'yourlanguage'                  => 'Ngôn ngữ:',
-'yourvariant'                   => 'Ngôn ngữ địa phương:',
+'yourvariant'                   => 'Dạng chữ của nội dung:',
 'yournick'                      => 'Chữ ký:',
 'prefs-help-signature'          => 'Các ý kiến tại trang thảo luận nên được ký tên bằng cách gõ "<nowiki>~~~~</nowiki>", nó sẽ được đổi thành chữ ký của bạn cùng với thời điểm thảo luận.',
 'badsig'                        => 'Chữ ký không hợp lệ; hãy kiểm tra thẻ HTML.',
@@ -1435,7 +1436,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'userrights-no-interwiki'      => 'Bạn không có quyền thay đổi quyền hạn của thành viên tại các wiki khác.',
 'userrights-nodatabase'        => 'Cơ sở dữ liệu $1 không tồn tại hoặc nằm ở bên ngoài.',
 'userrights-nologin'           => 'Bạn phải [[Special:UserLogin|đăng nhập]] vào một tài khoản có quyền quản lý để gán quyền cho thành viên.',
-'userrights-notallowed'        => 'Tài khoản của bạn không có quyền gán quyền cho thành viên.',
+'userrights-notallowed'        => 'Tài khoản của bạn không có quyền gán hoặc bãi miễn quyền cho thành viên.',
 'userrights-changeable-col'    => 'Những nhóm bạn có thể thay đổi',
 'userrights-unchangeable-col'  => 'Những nhóm bạn không thể thay đổi',
 
@@ -1521,7 +1522,6 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-userrights'            => 'Sửa tất cả quyền thành viên',
 'right-userrights-interwiki'  => 'Sửa quyền thành viên của các thành viên ở các wiki khác',
 'right-siteadmin'             => 'Khóa và mở khóa cơ sở dữ liệu',
-'right-reset-passwords'       => 'Tái tạo mật khẩu của thành viên khác',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
 'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
 
@@ -1819,8 +1819,7 @@ Vì lý do bảo mật, img_auth.php đã bị tắt.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Trang đặc biệt này liệt kê các tập tin được tải lên.
-Theo mặc định, các tập tin mới nhất được xếp vào đầu danh sách.
-Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp xếp.',
+Lọc theo người dùng để chỉ hiện các tập tin mà người đó đã tải lên phiên bản gần đây nhất.',
 'listfiles_search_for'  => 'Tìm kiếm theo tên tập tin:',
 'imgfile'               => 'tập tin',
 'listfiles'             => 'Danh sách tập tin',
@@ -2237,16 +2236,16 @@ Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả cá
 
 --
 Để thay đổi các thiết lập thư điện tử thông báo, mời xem:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Để thay đổi các thiết lập danh sách theo dõi, mời xem:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Để xóa trang ra khỏi danh sách theo dõi của bạn, mời xem:
 $UNWATCHURL
 
 Phản hồi và cần sự hỗ trợ:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Xóa trang',
@@ -2449,7 +2448,6 @@ $1',
 'sp-contributions-username'            => 'Địa chỉ IP hay tên thành viên:',
 'sp-contributions-toponly'             => 'Chỉ hiện các phiên bản gần đây',
 'sp-contributions-submit'              => 'Tìm kiếm',
-'sp-contributions-showsizediff'        => 'Hiện khác biệt về kích thước trang',
 
 # What links here
 'whatlinkshere'            => 'Các liên kết đến đây',
@@ -3278,9 +3276,9 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-orientation-3' => 'Quay 180°',
 'exif-orientation-4' => 'Lộn ngược theo phương dọc',
 'exif-orientation-5' => 'Quay 90° bên trái và lộn thẳng đứng',
-'exif-orientation-6' => 'Quay 90° bên phải',
+'exif-orientation-6' => 'Quay 90° bên trái',
 'exif-orientation-7' => 'Quay 90° bên phải và lộn thẳng đứng',
-'exif-orientation-8' => 'Quay 90° bên trái',
+'exif-orientation-8' => 'Quay 90° bên phải',
 
 'exif-planarconfiguration-1' => 'định dạng thấp',
 'exif-planarconfiguration-2' => 'định dạng phẳng',
@@ -3504,7 +3502,7 @@ Chương trình thư báo rằng: $1',
 'confirmemail_invalid'      => 'Mã xác nhận sai. Mã này có thể đã hết hạn',
 'confirmemail_needlogin'    => 'Bạn cần phải $1 để xác nhận địa chỉ thư điện tử.',
 'confirmemail_success'      => 'Thư điện tử của bạn đã được xác nhận. Bạn đã có thể đăng nhập và bắt đầu sử dụng wiki.',
-'confirmemail_loggedin'     => 'Địa chỉ thư điện tử của bạn đã được xác nhận',
+'confirmemail_loggedin'     => 'Địa chỉ thư điện tử của bạn đã được xác nhận.',
 'confirmemail_error'        => 'Có trục trặc khi lưu xác nhận của bạn.',
 'confirmemail_subject'      => 'Xác nhận thư điện tử tại {{SITENAME}}',
 'confirmemail_body'         => 'Ai đó, có thể là bạn, từ địa chỉ IP $1,
@@ -3751,8 +3749,8 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'specialpages'                   => 'Các trang đặc biệt',
 'specialpages-note'              => '----
 * Trang đặc biệt thông thường.
-* <strong class="mw-specialpagerestricted">Trang đặc biệt có hạn chế.</strong>
-* <span class="mw-specialpagecached">Trang đặc biệt chỉ được lấy từ vùng nhớ đệm.</span>',
+* <strong class="mw-specialpagerestricted">Trang đặc biệt được hạn chế.</strong>
+* <span class="mw-specialpagecached">Trang đặc biệt được lấy từ vùng nhớ đệm (có thể lỗi thời).</span>',
 'specialpages-group-maintenance' => 'Báo cáo bảo quản',
 'specialpages-group-other'       => 'Những trang đặc biệt khác',
 'specialpages-group-login'       => 'Đăng nhập / Mở tài khoản',

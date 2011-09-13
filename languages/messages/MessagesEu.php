@@ -1313,7 +1313,6 @@ $1 {{PLURAL:$1|karakteretik|karakteretik}} behera izan behar ditu.',
 'right-userrights'            => 'Erabiltzaile guztien eskumenak aldatu',
 'right-userrights-interwiki'  => 'Beste wiki batzuetan erabiltzaileen eskumenak aldatu',
 'right-siteadmin'             => 'Databasea blokeatu eta desblokeatu',
-'right-reset-passwords'       => 'Bese erabiltzaile batzuen pasahitzak berritu',
 'right-override-export-depth' => '5eko sakonerararteko loturiko orrialdeak barne esportatu',
 'right-sendemail'             => 'Beste erabiltzaileei e-posta bidali',
 
@@ -1958,16 +1957,16 @@ Horrez gain, orrialdeen oharpen konfigurazioa leheneratu dezakezu jarraipen zerr
 
 --
 Zure epostaren jakinarazpenen konfigurazioa aldatzeko, ikus
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Zure jarraipen zerrendako konfigurazioa aldatzeko, ikus
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Orrialdea zure jarraipen zerrendatik ezabatzeko, ikus
 $UNWATCHURL
 
 Laguntza:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Orrialdea ezabatu',

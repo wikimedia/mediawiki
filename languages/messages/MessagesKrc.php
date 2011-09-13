@@ -1216,7 +1216,6 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'right-userrights'            => 'Бютеу къошулуучуланы хакъларыны тюрлендириу',
 'right-userrights-interwiki'  => 'Башха викиледеги къошулуучуларыны хакъларын тюрлендир',
 'right-siteadmin'             => 'Билги базаны киритле эмда киритни ач',
-'right-reset-passwords'       => 'Башха къошулуучуланы паролларын кетер',
 'right-override-export-depth' => 'Бетлени, теренлиги 5-ге дери байламлы бетле бла бирге экспорт эт',
 'right-sendemail'             => 'Башха къошулуучулагъа электрон почта джиберирге',
 
@@ -1916,13 +1915,13 @@ $NEWPAGE
 --
 
 Джарашдырыуланы тюрлендирир ючюн:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Кёзде тургъан тизмеден кетерир ючюн:
 $UNWATCHURL
 
 Болушлукъ эм теджеуле ючюн:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Бетни кетер',

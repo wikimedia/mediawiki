@@ -394,7 +394,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an Seiten E-Mails senden',
 'tog-enotifrevealaddr'        => 'Meine E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen',
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
-'tog-oldsig'                  => 'Vorschau der aktuellen Signatur:',
+'tog-oldsig'                  => 'Existierende Signatur:',
 'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
 'tog-externaleditor'          => 'Externen Editor standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
 'tog-externaldiff'            => 'Externes Programm für Versionsunterschiede standardmäßig nutzen (nur für Experten, erfordert spezielle Einstellungen auf dem eigenen Computer. [http://www.mediawiki.org/wiki/Manual:External_editors Weitere Informationen hierzu.])',
@@ -879,6 +879,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'passwordreset-disabled'       => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Gib eines der folgenden Daten ein}}',
 'passwordreset-username'       => 'Benutzername:',
+'passwordreset-domain'         => 'Domain:',
 'passwordreset-email'          => 'E-Mail-Adresse:',
 'passwordreset-emailtitle'     => 'Benutzerkontoinformationen auf {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
@@ -991,7 +992,7 @@ oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page=
 Du kannst ihren Titel auf anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
 oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbücher betrachten].</span>',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „<nowiki>$1</nowiki>“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
-'userpage-userdoesnotexist-view'   => 'Das Benutzerkonto „$1“ existiert nicht.',
+'userpage-userdoesnotexist-view'   => 'Das Benutzerkonto „$1“ ist nicht vorhanden.',
 'blocked-notice-logextract'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.
 Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis:''' Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können.
@@ -1062,9 +1063,9 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 'cascadeprotectedwarning'          => "'''Achtung:''' Diese Seite wurde so geschützt, dass sie nur durch Benutzer mit Administratorrechten bearbeitet werden kann. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:",
 'titleprotectedwarning'            => "'''Achtung: Die Seitenerstellung wurde so geschützt, dass nur Benutzer mit [[Special:ListGroupRights|speziellen Rechten]] diese Seite erstellen können.'''
 Zur Information folgt der aktuelle Logbucheintrag:",
-'templatesused'                    => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seite verwendet:',
+'templatesused'                    => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} auf dieser Seite verwendet:',
 'templatesusedpreview'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von dieser Seitenvorschau verwendet:',
-'templatesusedsection'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} von diesem Abschnitt verwendet:',
+'templatesusedsection'             => '{{PLURAL:$1|Die folgende Vorlage wird|Folgende Vorlagen werden}} in diesem Abschnitt verwendet:',
 'template-protected'               => '(schreibgeschützt)',
 'template-semiprotected'           => '(schreibgeschützt für unangemeldete und neue Benutzer)',
 'hiddencategories'                 => 'Diese Seite ist Mitglied von {{PLURAL:$1|1 versteckter Kategorie|$1 versteckten Kategorien}}:',
@@ -1371,7 +1372,7 @@ Stelle sicher, dass die Versionsgeschichte einer Seite historisch korrekt ist.',
 'qbsettings-fixedright'     => 'Rechts, fest',
 'qbsettings-floatingleft'   => 'Links, schwebend',
 'qbsettings-floatingright'  => 'Rechts, schwebend',
-'qbsettings-directionality' => 'Fest, abhängig von der Schriftrichtung und der gewählten Sprache',
+'qbsettings-directionality' => 'Fest, abhängig von der Schreibrichtung der gewählten Sprache',
 
 # Preferences page
 'preferences'                   => 'Einstellungen',
@@ -1456,7 +1457,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-registration-date-time'  => '$2, $3 Uhr',
 'yourrealname'                  => 'Bürgerlicher Name:',
 'yourlanguage'                  => 'Sprache der Benutzeroberfläche:',
-'yourvariant'                   => 'Variante:',
+'yourvariant'                   => 'Sprachvariante:',
 'yournick'                      => 'Signatur:',
 'prefs-help-signature'          => 'Beiträge auf Diskussionsseiten sollten mit „<nowiki>~~~~</nowiki>“ signiert werden, was dann in die Signatur mit Zeitstempel umgewandelt wird.',
 'badsig'                        => 'Die Syntax der Signatur ist ungültig; bitte HTML überprüfen.',
@@ -1472,7 +1473,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-help-email-others'       => 'Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass du deine Identität offenlegen musst.',
 'prefs-help-email-required'     => 'Es wird eine gültige E-Mail-Adresse benötigt.',
 'prefs-info'                    => 'Basisinformationen',
-'prefs-i18n'                    => 'Internationalisierung',
+'prefs-i18n'                    => 'Sprache',
 'prefs-signature'               => 'Signatur',
 'prefs-dateformat'              => 'Datumsformat',
 'prefs-timeoffset'              => 'Zeitunterschied',
@@ -1507,7 +1508,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'userrights-no-interwiki'      => 'Du hast keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
 'userrights-nodatabase'        => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
 'userrights-nologin'           => 'Du musst dich mit einem Administrator-Benutzerkonto [[Special:UserLogin|anmelden]], um Benutzerrechte zu ändern.',
-'userrights-notallowed'        => 'Du besitzt nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
+'userrights-notallowed'        => 'Du verfügst nicht über die erforderlichen Berechtigungen, um Benutzerrechte vergeben oder entziehen zu können.',
 'userrights-changeable-col'    => 'Gruppenzugehörigkeit, die du ändern kannst',
 'userrights-unchangeable-col'  => 'Gruppenzugehörigkeit, die du nicht ändern kannst',
 
@@ -1593,7 +1594,6 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-userrights'            => 'Benutzerrechte bearbeiten',
 'right-userrights-interwiki'  => 'Benutzerrechte in anderen Wikis bearbeiten',
 'right-siteadmin'             => 'Datenbank sperren und entsperren',
-'right-reset-passwords'       => 'Passwort eines anderen Benutzers zurücksetzen',
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
 
@@ -1891,7 +1891,8 @@ Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
 'upload_source_file' => ' (eine Datei auf deinem Computer)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmäßig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
+'listfiles-summary'     => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. 
+Sofern nach einem bestimmten Benutzer gefiltert wird, werden nur die Dateien gezeigt, bei denen er die letzte Version hochgeladen hat.',
 'listfiles_search_for'  => 'Suche nach Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Dateiliste',
@@ -2310,13 +2311,13 @@ Es werden dir solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis du 
              Dein freundliches {{SITENAME}}-Benachrichtigungssystem
 
 --
-Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{fullurl:{{#special:Preferences}}}}
+Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuche {{canonicalurl:{{#special:Preferences}}}}
 
-Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{fullurl:{{#special:EditWatchlist}}}}
+Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Um die Seite von deiner Beobachtungsliste herunterzunehmen, besuche $UNWATCHURL
 
-Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
+Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Seite löschen',
@@ -2512,7 +2513,6 @@ Zur Information folgt der aktuelle Auszug aus dem Sperr-Logbuch:',
 'sp-contributions-username'            => 'IP-Adresse oder Benutzername:',
 'sp-contributions-toponly'             => 'Nur aktuelle Versionen zeigen',
 'sp-contributions-submit'              => 'Suchen',
-'sp-contributions-showsizediff'        => 'Unterschied der Seitengröße anzeigen',
 
 # What links here
 'whatlinkshere'            => 'Links auf diese Seite',
@@ -3061,7 +3061,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'file-info-size-pages'   => '$1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Seite| Seiten}}',
 'file-nohires'           => '<small>Keine höhere Auflösung vorhanden.</small>',
 'svg-long-desc'          => 'SVG-Datei, Basisgröße: $1 × $2 Pixel, Dateigröße: $3',
-'show-big-image'         => 'Version in höherer Auflösung',
+'show-big-image'         => 'Volle Auflösung',
 'show-big-image-preview' => '<small>Größe dieser Vorschau: $1.</small>',
 'show-big-image-other'   => '<small>Weitere Auflösungen: $1.</small>',
 'show-big-image-size'    => '$1 × $2 Pixel',
@@ -3304,9 +3304,9 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-orientation-3' => 'Um 180° gedreht',
 'exif-orientation-4' => 'Vertikal gespiegelt',
 'exif-orientation-5' => 'Entgegen dem Uhrzeigersinn um 90° gedreht und vertikal gespiegelt',
-'exif-orientation-6' => 'Um 90° im Uhrzeigersinn gedreht',
+'exif-orientation-6' => 'Um 90° entgegen dem Uhrzeigersinn gedreht',
 'exif-orientation-7' => 'Um 90° im Uhrzeigersinn gedreht und vertikal gespiegelt',
-'exif-orientation-8' => 'Um 90° entgegen dem Uhrzeigersinn gedreht',
+'exif-orientation-8' => 'Um 90° im Uhrzeigersinn gedreht',
 
 'exif-planarconfiguration-1' => 'Grobformat',
 'exif-planarconfiguration-2' => 'Planarformat',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alexsh
+ * @author Anakmalaysia
  * @author Andrew971218
  * @author Bencmq
  * @author FireJackey
@@ -19,6 +20,7 @@
  * @author Jidanni
  * @author Jimmy xu wrk
  * @author KaiesTse
+ * @author Lauhenry
  * @author Liangent
  * @author Mark85296341
  * @author Pbdragonwang
@@ -229,7 +231,7 @@ $messages = array(
 'tog-enotifminoredits'        => '即使是頁面的小修改也向我發電子郵件',
 'tog-enotifrevealaddr'        => '在通知電子郵件中顯示我的電子郵件位址',
 'tog-shownumberswatching'     => '顯示監視用戶的數目',
-'tog-oldsig'                  => '原有簽名的預覽：',
+'tog-oldsig'                  => '原有簽名：',
 'tog-fancysig'                => '將簽名以維基文字對待 （不產生自動連結）',
 'tog-externaleditor'          => '預設使用外部編輯器 （進階者專用，需要在您的電腦上作出一些特別設定。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-externaldiff'            => '預設使用外部差異分析 （進階者專用，需要在您的電腦上作出一些特別設定。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
@@ -329,7 +331,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '續',
 'index-category'                 => '已做索引的頁面',
 'noindex-category'               => '未做索引的頁面',
-'broken-file-category'           => '有連結至已損壞文件頁的連結之頁面',
+'broken-file-category'           => '有連結至已損壞檔案頁的連結之頁面',
 
 'about'         => '關於',
 'article'       => '內容頁面',
@@ -462,7 +464,7 @@ $1',
 'versionrequiredtext' => '需要版本$1的 MediaWiki 才能使用此頁。參見[[Special:Version|版本頁]]。',
 
 'ok'                      => '確定',
-'retrievedfrom'           => '取自"$1"',
+'retrievedfrom'           => '取自「$1」',
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新訊息',
 'newmessagesdifflink'     => '上次更改',
@@ -620,7 +622,7 @@ $2',
 'createaccountmail'          => '通過電郵',
 'createaccountreason'        => '理由：',
 'badretype'                  => '您所輸入的密碼並不相同。',
-'userexists'                 => '您所輸入的用戶名稱已經存在，請另選一個名稱。',
+'userexists'                 => '!您所輸入的用戶名稱已經存在，請另選一個名稱。',
 'loginerror'                 => '登入錯誤',
 'createaccounterror'         => '無法建立帳號：$1',
 'nocookiesnew'               => '已成功建立新帳號！偵測到您已關閉 Cookies，請開啟它並登入。',
@@ -707,6 +709,7 @@ $2',
 'passwordreset-disabled'       => '此維基上已禁止了重設密碼。',
 'passwordreset-pretext'        => '{{PLURAL:$1||輸入下列其中一個}}',
 'passwordreset-username'       => '使用者名稱：',
+'passwordreset-domain'         => '域名：',
 'passwordreset-email'          => '電郵地址：',
 'passwordreset-emailtitle'     => '在{{SITENAME}}上的詳細信息',
 'passwordreset-emailtext-ip'   => '有人（可能是你，來自$1這個IP）要求發出一個在{{SITENAME}}（$4）的帳戶信
@@ -877,7 +880,7 @@ $2
 您同時也要向我們保證您所提交的內容是您自己所作，或得自一個不受版權保護或相似自由的來源（參閱$1的細節）。
 '''不要在未獲授權的情況下發表！'''",
 'longpageerror'                    => "'''錯誤: 您所提交的文字長度有$1KB，這大於$2KB的最大值。'''該文本不能被儲存。",
-'readonlywarning'                  => "'''警告: 資料庫被鎖定以進行維護，所以您目前將無法保存您的修改。'''您或許希望先將本段文字複製並保存到文字文件，然後等一會兒再修改。
+'readonlywarning'                  => "'''警告: 資料庫被鎖定以進行維護，所以您目前將無法保存您的修改。'''您或許希望先將本段文字複製並保存到文字檔案，然後等一會兒再修改。
 
 鎖定資料庫的管理員有如下解釋：$1",
 'protectedpagewarning'             => "'''警告：本頁已經被保護，只有擁有管理員許可權的用戶才可修改。'''
@@ -1195,7 +1198,7 @@ $1",
 'qbsettings-fixedright'     => '右側固定',
 'qbsettings-floatingleft'   => '左側漂移',
 'qbsettings-floatingright'  => '右側漂移',
-'qbsettings-directionality' => '固定，取決於你的語言及腳本的方向',
+'qbsettings-directionality' => '固定，取決於你的語言腳本的方向性',
 
 # Preferences page
 'preferences'                   => '偏好設定',
@@ -1273,7 +1276,7 @@ $1",
 'youremail'                     => '電子郵件:',
 'username'                      => '用戶名:',
 'uid'                           => '用戶ID:',
-'prefs-memberingroups'          => '{{PLURAL:$1|一|多}}組的成員:',
+'prefs-memberingroups'          => '{{PLURAL:$1|群組}}:',
 'prefs-registration'            => '註冊時間:',
 'yourrealname'                  => '真實姓名：',
 'yourlanguage'                  => '介面語言：',
@@ -1331,7 +1334,7 @@ $1",
 'userrights-no-interwiki'      => '您並沒有權限去編輯在其它wiki上的用戶權限。',
 'userrights-nodatabase'        => '資料庫$1不存在或並非為本地的。',
 'userrights-nologin'           => '您必須要以操作員賬戶[[Special:UserLogin|登入]]之後才可以指定用戶權限。',
-'userrights-notallowed'        => '您的賬戶無權限去指定用戶權限。',
+'userrights-notallowed'        => '您的賬戶無權限來添加或刪除用戶權限。',
 'userrights-changeable-col'    => '您可以更改的群組',
 'userrights-unchangeable-col'  => '您不可以更改的群組',
 
@@ -1417,7 +1420,6 @@ $1",
 'right-userrights'            => '編輯所有用戶的權限',
 'right-userrights-interwiki'  => '編輯在其它wiki上的用戶權限',
 'right-siteadmin'             => '鎖定和解除鎖定資料庫',
-'right-reset-passwords'       => '重設其他用戶的密碼',
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
 
@@ -1571,7 +1573,7 @@ $1",
 'large-file'                  => '建議檔案大小不能超過 $1；本檔案大小為 $2。',
 'largefileserver'             => '這個檔案的大小比伺服器配置允許的大小還要大。',
 'emptyfile'                   => '您所上傳的檔案不存在。這可能是由於檔案名鍵入錯誤。請檢查您是否真的要上傳此檔案。',
-'windows-nonascii-filename'   => '本維基不支持帶特殊字符的文件名。',
+'windows-nonascii-filename'   => '本維基不支持帶特殊字符的檔案名。',
 'fileexists'                  => "已存在相同名稱的檔案，如果您無法確定您是否要改變它，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
 'filepageexists'              => "這個檔案的描述頁已於'''<tt>[[:$1]]</tt>'''建立，但是這個名稱的檔案尚未存在。因此您所輸入的摘要不會顯示在該描述頁中。如要摘要在該處中出現，您必需手動編輯它。
 [[$1|thumb]]",
@@ -1602,8 +1604,8 @@ $1",
 'uploadscripted'              => '該檔案包含可能被網路瀏覽器錯誤解釋的 HTML 或腳本代碼。',
 'uploadvirus'                 => '該檔案包含有病毒！
 詳情: $1',
-'uploadjava'                  => '該文件是 ZIP 文件，其中包含 Java 的.class 文件。
-不允許上傳 Java 文件，是因為他們可能會跳過安全限制。',
+'uploadjava'                  => '該檔案是 ZIP 檔案，其中包含 Java 的.class 檔案。
+不允許上傳 Java 檔案，是因為他們可能會跳過安全限制。',
 'upload-source'               => '來源檔案',
 'sourcefilename'              => '來源檔案名：',
 'sourceurl'                   => '來源網址：',
@@ -1634,11 +1636,11 @@ $1',
 'upload-http-error'         => '已發生一個HTTP錯誤：$1',
 
 # ZipDirectoryReader
-'zip-file-open-error' => '打開文件的 ZIP 檢查時遇到一個錯誤。',
-'zip-wrong-format'    => '指定的檔案不是ZIP文件。',
-'zip-bad'             => '該文件是已損壞或以其它方式無法讀取的 ZIP 文件。
+'zip-file-open-error' => '打開檔案的 ZIP 檢查時遇到一個錯誤。',
+'zip-wrong-format'    => '指定的檔案不是ZIP檔案。',
+'zip-bad'             => '該檔案是已損壞或以其它方式無法讀取的 ZIP 檔案。
 不能正確檢查安全。',
-'zip-unsupported'     => '該文件是 ZIP 文件，其中使用不支持的 MediaWiki 的壓缩功能。
+'zip-unsupported'     => '該檔案是 ZIP 檔案，其中使用 MediaWiki 不支持的ZIP功能。
 不能正確檢查安全。',
 
 # Special:UploadStash
@@ -1693,9 +1695,8 @@ $1',
 'upload_source_file' => ' （在您電腦上的一個檔案）',
 
 # Special:ListFiles
-'listfiles-summary'     => '這個特殊頁面顯示所有上傳過的檔案。
-預設中最後上傳的檔案會顯示在這個列表中的最頂處。
-點擊一欄的標題去改變這個排列。',
+'listfiles-summary'     => '此特殊頁面顯示所有上傳過的檔案。
+當用戶過濾圖片時，只有當該檔案的最新版本由該用戶上傳時才能顯示。',
 'listfiles_search_for'  => '按檔案名稱搜索:',
 'imgfile'               => '檔案',
 'listfiles'             => '檔案列表',
@@ -1731,7 +1732,7 @@ $1',
 一個[[Special:WhatLinksHere/$2|完整的清單]]可以提供。',
 'nolinkstoimage'                    => '沒有頁面連接到本檔案。',
 'morelinkstoimage'                  => '檢視連接到這個檔案的[[Special:WhatLinksHere/$1|更多連結]]。',
-'linkstoimage-redirect'             => '$1 （文件重定向） $2',
+'linkstoimage-redirect'             => '$1 （檔案重定向） $2',
 'duplicatesoffile'                  => '以下的$1個檔案跟這個檔案重覆（[[Special:FileDuplicateSearch/$2|更多細節]]）：',
 'sharedupload'                      => '該檔案來自於$1，它可能在其它計劃項目中被應用。',
 'sharedupload-desc-there'           => '該檔案來自於$1，它可能在其它計劃項目中被應用。
@@ -2062,6 +2063,7 @@ Template:消除歧義',
 才能更改您的監視列表',
 'addwatch'             => '加至監視列表',
 'addedwatchtext'       => "頁面「[[:$1]]」已經被加入到您的[[Special:Watchlist|監視清單]]中。將來有關此頁面及其討論頁的任何修改將會在那裡列出，而且還會在[[Special:RecentChanges|近期變動]]中以'''粗體'''形式列出以使起更容易識別。",
+'removewatch'          => '停止監視',
 'removedwatchtext'     => '[[:$1]]已經從[[Special:Watchlist|您的監視頁面]]中移除。',
 'watch'                => '監視',
 'watchthispage'        => '監視本頁',
@@ -2116,17 +2118,17 @@ $NEWPAGE
 
 --
 要改變您的電郵設定，請參閱
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 
 要改變您的監視列表設定，請參閱
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 要刪除您監視清單中的該頁面，請參閱
 $UNWATCHURL
 
 回饋和進一步的幫助:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => '刪除頁面',
@@ -2183,10 +2185,11 @@ $UNWATCHURL
 
 # Protect
 'protectlogpage'              => '保護日誌',
-'protectlogtext'              => '下面是頁面保護和取消保護的列表。請參考[[Special:ProtectedPages|保護頁面清單]]以檢視目前進行的頁面保護。',
+'protectlogtext'              => '下面是頁面保護修改列表。
+請參考[[Special:ProtectedPages|保護頁面清單]]以檢視目前進行的頁面保護。',
 'protectedarticle'            => '已保護"[[$1]]"',
 'modifiedarticleprotection'   => '已經更改「[[$1]]」的保護等級',
-'unprotectedarticle'          => '已解除保護"[[$1]]"',
+'unprotectedarticle'          => '已解除"[[$1]]"保護',
 'movedarticleprotection'      => '已將「[[$2]]」的保護設定移動至「[[$1]]」',
 'protect-title'               => '更改「$1」的保護等級',
 'prot_1movedto2'              => '[[$1]]移動到[[$2]]',
@@ -2290,10 +2293,12 @@ $1',
 'undelete-show-file-submit'    => '是',
 
 # Namespace form on various pages
-'namespace'             => '名字空間：',
-'invert'                => '反向選擇',
-'namespace_association' => '關聯名字空間',
-'blanknamespace'        => '（主）',
+'namespace'                     => '名字空間：',
+'invert'                        => '反向選擇',
+'tooltip-invert'                => '選中此複選框以隱藏選定命名空間內頁面更改（以及相關的命名空間，如果選中）',
+'namespace_association'         => '關聯名字空間',
+'tooltip-namespace_association' => '選中此框可包括與選定名字空間相關的討論或主題命名空間',
+'blanknamespace'                => '（主）',
 
 # Contributions
 'contributions'       => '用戶貢獻',
@@ -2322,7 +2327,6 @@ $1',
 'sp-contributions-username'            => 'IP位址或用戶名稱：',
 'sp-contributions-toponly'             => '只顯示最新修訂版本的編輯',
 'sp-contributions-submit'              => '搜尋',
-'sp-contributions-showsizediff'        => '顯示頁面大小差異',
 
 # What links here
 'whatlinkshere'            => '連入頁面',
@@ -2333,7 +2337,7 @@ $1',
 'nolinkshere-ns'           => '在所選的名字空間內沒有頁面連結到[[:$1]]。',
 'isredirect'               => '重定向頁',
 'istemplate'               => '包含',
-'isimage'                  => '文件連結',
+'isimage'                  => '檔案連結',
 'whatlinkshere-prev'       => '前$1個',
 'whatlinkshere-next'       => '後$1個',
 'whatlinkshere-links'      => '← 連入',
@@ -2701,7 +2705,7 @@ $1被封禁的理由是“$2”',
 'tooltip-ca-viewsource'           => '該頁面已被保護。{{GENDER:|你|妳|你}}可以檢視該頁原始碼。',
 'tooltip-ca-history'              => '本頁面的早前修訂版本',
 'tooltip-ca-protect'              => '保護這個頁面',
-'tooltip-ca-unprotect'            => '解除保護這個頁面',
+'tooltip-ca-unprotect'            => '更改此頁保護',
 'tooltip-ca-delete'               => '刪除本頁',
 'tooltip-ca-undelete'             => '將這個頁面恢復到被刪除以前的狀態',
 'tooltip-ca-move'                 => '移動本頁',
@@ -2801,6 +2805,19 @@ $1被封禁的理由是“$2”',
 'spam_reverting'      => '恢復到不包含連結至$1的最近修訂版本',
 'spam_blanking'       => '所有包含連結至$1的修訂，清空',
 
+# Info page
+'pageinfo-title'            => '" $1 "的信息',
+'pageinfo-header-edits'     => '編輯',
+'pageinfo-header-watchlist' => '監視列表',
+'pageinfo-header-views'     => '檢視',
+'pageinfo-subjectpage'      => '頁',
+'pageinfo-talkpage'         => '討論頁',
+'pageinfo-watchers'         => '監視者數目',
+'pageinfo-edits'            => '編輯次數',
+'pageinfo-authors'          => '作者數',
+'pageinfo-views'            => '觀看次數',
+'pageinfo-viewsperedit'     => '每次編輯檢視數',
+
 # Skin names
 'skinname-standard'    => '標準',
 'skinname-nostalgia'   => '懷舊',
@@ -2877,8 +2894,9 @@ $1',
 # Bad image list
 'bad_image_list' => '請按照下列格式編寫：
 
-只有（以 * 開頭）列出的項目會被考慮。每一行的第一個連結必須是不雅文件的連結。
-然後同一行後方的連結會被視為例外，即是該文件可以在哪些頁面內被顯示。',
+只有（以 * 開頭）列出的項目會被考慮。
+每一行的第一個連結必須是損壞檔案的連結。
+然後同一行後方的連結會被視為例外，即是該檔案可以在哪些頁面內被顯示。',
 
 /*
 Short names for language variants used for language conversion links.
@@ -3030,7 +3048,7 @@ Variants for Chinese language
 'exif-gpsareainformation'          => 'GPS 區域名稱',
 'exif-gpsdatestamp'                => 'GPS 日期',
 'exif-gpsdifferential'             => 'GPS 差動修正',
-'exif-jpegfilecomment'             => 'JPEG 文件備註',
+'exif-jpegfilecomment'             => 'JPEG 檔案備註',
 'exif-keywords'                    => '關鍵字',
 'exif-worldregioncreated'          => '圖片拍攝地',
 'exif-countrycreated'              => '圖片拍攝國家',
@@ -3088,11 +3106,21 @@ Variants for Chinese language
 'exif-giffilecomment'              => 'GIF註釋',
 'exif-intellectualgenre'           => '項目類型',
 'exif-subjectnewscode'             => '主題代碼',
+'exif-scenecode'                   => 'IPTC現場代碼',
 'exif-event'                       => '事件描述',
 'exif-organisationinimage'         => '組織描述',
+'exif-personinimage'               => '所描述的人',
+'exif-originalimageheight'         => '被裁剪前高度',
+'exif-originalimagewidth'          => '被裁剪前寬度',
 
 # EXIF attributes
 'exif-compression-1' => '未壓縮',
+'exif-compression-2' => 'CCITT第3組一維修改霍夫曼遊程編碼',
+'exif-compression-3' => 'CCITT第3組傳真編碼',
+'exif-compression-4' => 'CCITT第4組傳真編碼',
+
+'exif-copyrighted-true'  => '受版權保護',
+'exif-copyrighted-false' => '公共領域',
 
 'exif-unknowndate' => '未知的日期',
 
@@ -3101,12 +3129,14 @@ Variants for Chinese language
 'exif-orientation-3' => '旋轉180°',
 'exif-orientation-4' => '垂直翻轉',
 'exif-orientation-5' => '旋轉90° 逆時針並垂直翻轉',
-'exif-orientation-6' => '旋轉90° 順時針',
+'exif-orientation-6' => '逆時針旋轉90°',
 'exif-orientation-7' => '旋轉90° 順時針並垂直翻轉',
-'exif-orientation-8' => '旋轉90° 逆時針',
+'exif-orientation-8' => '順時針旋轉90°',
 
 'exif-planarconfiguration-1' => '矮胖格式',
 'exif-planarconfiguration-2' => '平面格式',
+
+'exif-colorspace-65535' => '顏色未校準',
 
 'exif-componentsconfiguration-0' => '不存在',
 
@@ -3221,6 +3251,10 @@ Variants for Chinese language
 'exif-gpslongitude-e' => '東經',
 'exif-gpslongitude-w' => '西經',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '海拔$1 {{PLURAL:$1|米|米}}',
+'exif-gpsaltitude-below-sealevel' => '海拔負$1{{PLURAL:$1|米|米}}',
+
 'exif-gpsstatus-a' => '測量過程',
 'exif-gpsstatus-v' => '互動測量',
 
@@ -3237,9 +3271,58 @@ Variants for Chinese language
 'exif-gpsdestdistance-m' => '英里',
 'exif-gpsdestdistance-n' => '海里',
 
+'exif-gpsdop-excellent' => '優（ $1 ）',
+'exif-gpsdop-good'      => '良（ $1 ）',
+'exif-gpsdop-moderate'  => '中度（ $1 ）',
+'exif-gpsdop-fair'      => '一般($1)',
+'exif-gpsdop-poor'      => '差（ $1 ）',
+
+'exif-objectcycle-a' => '限於上午',
+'exif-objectcycle-p' => '限於下午',
+'exif-objectcycle-b' => '上午與下午',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真方位',
 'exif-gpsdirection-m' => '地磁方位',
+
+'exif-ycbcrpositioning-1' => '置中',
+'exif-ycbcrpositioning-2' => '聯合選址',
+
+'exif-dc-contributor' => '貢獻者',
+'exif-dc-coverage'    => '時間或空間性介質範圍',
+'exif-dc-date'        => '日期',
+'exif-dc-publisher'   => '出版商',
+'exif-dc-relation'    => '相關媒體',
+'exif-dc-rights'      => '權利',
+'exif-dc-source'      => '來源媒體',
+'exif-dc-type'        => '介質類型',
+
+'exif-rating-rejected' => '拒絕',
+
+'exif-isospeedratings-overflow' => '大於 65535',
+
+'exif-iimcategory-ace' => '藝術，文化和娛樂',
+'exif-iimcategory-clj' => '犯罪與法律',
+'exif-iimcategory-dis' => '災​​害和事故',
+'exif-iimcategory-fin' => '經濟與商業',
+'exif-iimcategory-edu' => '教育',
+'exif-iimcategory-evn' => '環境',
+'exif-iimcategory-hth' => '健康',
+'exif-iimcategory-hum' => '人類利益',
+'exif-iimcategory-lab' => '勞工',
+'exif-iimcategory-lif' => '生活休閒',
+'exif-iimcategory-pol' => '政治',
+'exif-iimcategory-rel' => '宗教信仰',
+'exif-iimcategory-sci' => '科技',
+'exif-iimcategory-soi' => '社會問題',
+'exif-iimcategory-spo' => '體育',
+'exif-iimcategory-war' => '戰爭，衝突和動盪',
+'exif-iimcategory-wea' => '天氣',
+
+'exif-urgency-normal' => '正常（ $1 ）',
+'exif-urgency-low'    => '低（ $1 ）',
+'exif-urgency-high'   => '高（ $1 ）',
+'exif-urgency-other'  => '用戶定義（ $1 ）',
 
 # External editor support
 'edit-externally'      => '用外部程式編輯此檔案',
@@ -3324,16 +3407,23 @@ $1',
 'trackbackdeleteok' => 'Trackback 刪除成功。',
 
 # Delete conflict
-'deletedwhileediting' => '警告: 此頁在您開始編輯之後已經被刪除﹗',
-'confirmrecreate'     => "在您開始編輯這個頁面後，用戶[[User:$1|$1]] （[[User talk:$1|對話]]）以下列原因刪除了這個頁面：
+'deletedwhileediting'      => '警告: 此頁在您開始編輯之後已經被刪除﹗',
+'confirmrecreate'          => "在您開始編輯這個頁面後，用戶[[User:$1|$1]] （[[User talk:$1|對話]]）以下列原因刪除了這個頁面：
 : ''$2''
 請確認在您重新創建頁面前三思。",
-'recreate'            => '重建',
+'confirmrecreate-noreason' => '在您開始編輯後，用戶[[User:$1|$1]] （[[User talk:$1|對話]]）刪除了這個頁面。請在重新創建頁面前三思。',
+'recreate'                 => '重建',
 
 # action=purge
 'confirm_purge_button' => '確定',
 'confirm-purge-top'    => '要清除此頁面的快取嗎?',
 'confirm-purge-bottom' => '清理一頁將會清除快取以及強迫顯示最現時之修訂版本。',
+
+# action=watch/unwatch
+'confirm-watch-button'   => '確定',
+'confirm-watch-top'      => '監視此頁？',
+'confirm-unwatch-button' => '確定',
+'confirm-unwatch-top'    => '停止監視此頁？',
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
@@ -3455,10 +3545,10 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 
 # Special:SpecialPages
 'specialpages'                   => '特殊頁面',
-'specialpages-note'              => '---
+'specialpages-note'              => '----
 * 標準特殊頁面。
 * <strong class="mw-specialpagerestricted">有限制的特殊頁面。</strong>
-* <span class="mw-specialpagecached">僅用於重新整理的特殊頁面。</span>',
+* <span class="mw-specialpagecached">用於重新整理的特殊頁面（可能過時）。</span>',
 'specialpages-group-maintenance' => '維護報告',
 'specialpages-group-other'       => '其它特殊頁面',
 'specialpages-group-login'       => '登入／創建',
@@ -3487,7 +3577,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 #在這行上面輸入所有的regex。留下這行一樣的文字</pre>',
 
 # Special:Tags
-'tags'                    => '有效更改過的標籤',
+'tags'                    => '有效標籤',
 'tag-filter'              => '[[Special:Tags|標籤]]過濾器:',
 'tag-filter-submit'       => '過濾器',
 'tags-title'              => '標籤',

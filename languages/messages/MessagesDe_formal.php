@@ -331,7 +331,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 * Ein * bedeutet, dass Sie das Benutzerrecht nach Erteilung nicht wieder zurücknehmen können (oder umgekehrt).',
 'userrights-no-interwiki'     => 'Sie haben keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
 'userrights-nologin'          => 'Sie müssen sich mit einem Administrator-Benutzerkonto [[Special:UserLogin|anmelden]], um Benutzerrechte zu ändern.',
-'userrights-notallowed'       => 'Sie besitzen nicht die erforderlichen Berechtigungen, um Benutzerrechte zu vergeben.',
+'userrights-notallowed'       => 'Sie verfügen nicht über die erforderlichen Berechtigungen, um Benutzerrechte vergeben oder entziehen zu können.',
 'userrights-changeable-col'   => 'Gruppenzugehörigkeit, die Sie ändern dürfen',
 'userrights-unchangeable-col' => 'Gruppenzugehörigkeit, die Sie nicht ändern dürfen',
 
@@ -469,13 +469,13 @@ Es werden Ihnen solange keine weiteren Benachrichtigungs-E-Mails gesendet, bis S
              Das freundliche {{SITENAME}}-Benachrichtigungssystem
 
 --
-Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuchen Sie {{fullurl:{{#special:Preferences}}}}
+Um die Einstellungen der E-Mail-Benachrichtigung anzupassen, besuchen Sie {{canonicalurl:{{#special:Preferences}}}}
 
-Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie {{fullurl:{{#special:EditWatchlist}}}}
+Um die Einstellungen Ihrer Beobachtungsliste anzupassen, besuchen Sie {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Um diese Seite von Ihrer Beobachtungsliste zu entfernen, besuchen Sie $UNWATCHURL
 
-Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
+Rückmeldungen und weitere Hilfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'historywarning'    => "'''Achtung:''' Die Seite, die Sie löschen möchten, hat eine Versionsgeschichte mit etwa $1 {{PLURAL:$1|Version|Versionen}}:",

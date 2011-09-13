@@ -1363,7 +1363,6 @@ $1",
 'right-userrights'            => 'แก้ไขสิทธิผู้ใช้ทั้งหมด',
 'right-userrights-interwiki'  => 'แก้ไขสิทธิของผู้ใช้อื่นบนวิกิอื่น',
 'right-siteadmin'             => 'ล็อกและปลดล็อกฐานข้อมูล',
-'right-reset-passwords'       => 'ตั้งรหัสผ่านของผู้ใช้อื่นใหม่',
 'right-override-export-depth' => 'ส่งออกหน้า รวมหน้าที่เชื่อมโยงกับหน้านี้สูงสุด 5 ลำดับชั้น',
 'right-sendemail'             => 'ส่งอีเมลไปยังผู้ใช้อื่นๆ',
 
@@ -2040,13 +2039,13 @@ $NEWPAGE
 
 --
 ถ้าต้องการเปลี่ยนแปลงรายการเฝ้าดู กรุณาไปที่:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 ถ้าต้องการลบหน้านี้จากรายการเฝ้าดู กรุณาไปที่:
 $UNWATCHURL
 
 ถ้าต้องการความช่วยเหลือเพิ่มเติม กรุณาไปที่:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'ลบหน้า',

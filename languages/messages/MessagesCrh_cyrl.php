@@ -1,5 +1,5 @@
 <?php
-/** Crimean Turkish (Cyrillic) (Qırımtatarca (Cyrillic))
+/** Crimean Turkish (Cyrillic script) (‪Къырымтатарджа (Кирилл)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1470,13 +1470,13 @@ e-mail адреси: $PAGEEDITOR_EMAIL
 
 --
 Сазламаларны денъиштирмек ичюн:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Саифени козетюв джедвелинден ёкъ этмек ичюн:
 $UNWATCHURL
 
 Ярдым ве теклифлер ичюн:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Саифени ёкъ эт',

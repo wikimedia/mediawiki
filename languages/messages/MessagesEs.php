@@ -33,6 +33,7 @@
  * @author Fibonacci
  * @author Fitoschido
  * @author Fluence
+ * @author Gustronico
  * @author Hercule
  * @author Icvav
  * @author Imre
@@ -356,7 +357,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Notificarme también los cambios menores de páginas',
 'tog-enotifrevealaddr'        => 'Revelar mi dirección de correo electrónico en los correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar el número de usuarios que la vigilan',
-'tog-oldsig'                  => 'Vista previa de firma existente:',
+'tog-oldsig'                  => 'Firma actual:',
 'tog-fancysig'                => 'Tratar firma como wikitexto (sin un enlace automático)',
 'tog-externaleditor'          => 'Utilizar editor externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-externaldiff'            => 'Utilizar diff externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
@@ -748,10 +749,10 @@ No olvides personalizar [[Special:Preferences|tus preferencias]].',
 'gotaccountlink'             => 'Entrar',
 'userlogin-resetlink'        => '¿Olvidaste tus datos de acceso?',
 'createaccountmail'          => 'por correo electrónico',
-'createaccountreason'        => 'Razón:',
+'createaccountreason'        => 'Motivo:',
 'badretype'                  => 'Las contraseñas no coinciden.',
-'userexists'                 => 'El nombre indicado ya está en uso.
-Por favor, indica un nombre diferente.',
+'userexists'                 => 'El nombre de usuario indicado ya está en uso.
+Por favor escoge un nombre diferente.',
 'loginerror'                 => 'Error de inicio de sesión',
 'createaccounterror'         => 'No se pudo crear la cuenta: $1',
 'nocookiesnew'               => 'La cuenta de usuario ha sido creada, pero no has iniciado sesión.
@@ -1566,7 +1567,6 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'right-userrights'            => 'Modificar todos los derechos de usuario',
 'right-userrights-interwiki'  => 'Modificar los derechos de usuarios en otros wikis',
 'right-siteadmin'             => 'Bloquear y desbloquear la base de datos',
-'right-reset-passwords'       => 'Reajustar la contraseña de otros usuarios',
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
 
@@ -1846,9 +1846,8 @@ Para óptima seguridad, img_auth.php está desactivado.',
 'upload_source_file' => ' (un archivo en tu disco)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Esta página muestra todos los archivos subidos.
-El último subido se muestra al principio de la lista de manera predeterminada.
-Al hacer clic en el encabezado de una columna se cambia el orden.',
+'listfiles-summary'     => 'Esta página especial muestra todos los archivos subidos.
+Cuando es filytrado por el usuario, sólo los archivos cargados por el usuario se muestran en su versión más reciente.',
 'listfiles_search_for'  => 'Buscar por nombre de imagen:',
 'imgfile'               => 'archivo',
 'listfiles'             => 'Lista de archivos',
@@ -2266,13 +2265,13 @@ También puedes reestablecer las notificaciones para todas tus páginas vigilada
 
 --
 Para cambiar las opciones de tu lista de seguimiento, visita:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Para borrar la página de tu lista de seguimiento visita:
 $UNWATCHURL
 
 Retroalimentación y asistencia adicional:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Borrar esta página',
@@ -2475,7 +2474,6 @@ A continuación se muestra la última entrada del registro de bloqueos para mayo
 'sp-contributions-username'            => 'Dirección IP o nombre de usuario:',
 'sp-contributions-toponly'             => 'Mostrar solamente revisiones top',
 'sp-contributions-submit'              => 'Buscar',
-'sp-contributions-showsizediff'        => 'Mostrar la diferencia en el tamaño de página',
 
 # What links here
 'whatlinkshere'            => 'Lo que enlaza aquí',
@@ -2635,6 +2633,7 @@ Sin embargo, está bloqueada como parte del rango $2, que puede ser desbloqueado
 'unlockdbsuccesstext' => 'La base de datos de {{SITENAME}} ha sido desbloqueada.',
 'lockfilenotwritable' => 'El archivo-cerrojo de la base de datos no tiene permiso de escritura. Para bloquear o desbloquear la base de datos, este archivo tiene que ser escribible por el servidor web.',
 'databasenotlocked'   => 'La base de datos no está bloqueada.',
+'lockedbyandtime'     => '(por {{GENDER:$1|$1}} el $2 a las $3)',
 
 # Move page
 'move-page'                    => 'Trasladar $1',
@@ -2850,7 +2849,7 @@ Puedes ver su código fuente',
 'tooltip-ca-unprotect'            => 'Cambiar protección de esta página',
 'tooltip-ca-delete'               => 'Borrar esta página',
 'tooltip-ca-undelete'             => 'Restaurar las ediciones hechas a esta página antes de que fuese borrada',
-'tooltip-ca-move'                 => 'Trasladar (renombrar) esta página',
+'tooltip-ca-move'                 => 'Mover esta página',
 'tooltip-ca-watch'                => 'Añadir esta página a su lista de seguimiento',
 'tooltip-ca-unwatch'              => 'Borrar esta página de su lista de seguimiento',
 'tooltip-search'                  => 'Buscar en {{SITENAME}}',
@@ -3448,7 +3447,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-iimcategory-sci' => 'Ciencia y tecnología',
 'exif-iimcategory-soi' => 'Cuestiones sociales',
 'exif-iimcategory-spo' => 'Deportes',
-'exif-iimcategory-war' => 'Guerra, conflicto y disturbios',
+'exif-iimcategory-war' => 'Guerra, conflictos y disturbios',
 'exif-iimcategory-wea' => 'Clima',
 
 'exif-urgency-normal' => 'Normal ($1)',
@@ -3576,37 +3575,37 @@ $1",
 
 # Auto-summaries
 'autosumm-blank'   => 'Página blanqueada',
-'autosumm-replace' => "Página reemplazada por '$1'",
-'autoredircomment' => 'Redirigiendo a [[$1]]',
-'autosumm-new'     => "Página creada con '$1'",
+'autosumm-replace' => 'Página reemplazada por «$1»',
+'autoredircomment' => 'Página redirigida a [[$1]]',
+'autosumm-new'     => 'Página creada con «$1»',
 
 # Live preview
 'livepreview-loading' => 'Cargando…',
 'livepreview-ready'   => 'Cargando… ¡Listo!',
 'livepreview-failed'  => '¡La previsualización al vuelo falló!
 Prueba la previsualización normal.',
-'livepreview-error'   => 'La conexión no ha sido posible: $1 "$2"
-Intenta la previsualización normal.',
+'livepreview-error'   => 'No se pudo conectar:  $1  «$2».
+Intenta usar la previsualización normal.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} pueden no ser mostrados en esta lista.',
-'lag-warn-high'   => 'Debido a una alta latencia el servidor de base de datos, los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} pueden no ser mostrados en esta lista.',
+'lag-warn-normal' => 'Los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} podrían no mostrarse en esta lista.',
+'lag-warn-high'   => 'Debido a una alta latencia el servidor de base de datos, los cambios realizados en {{PLURAL:$1|el último segundo|los últimos $1 segundos}} podrían no mostrarse en esta lista.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Tu lista de seguimiento tiene {{PLURAL:$1|una página |$1 páginas}}, excluyendo las páginas de discusión.',
 'watchlistedit-noitems'        => 'Tu lista de seguimiento está vacía.',
 'watchlistedit-normal-title'   => 'Editar lista de seguimiento',
 'watchlistedit-normal-legend'  => 'Borrar títulos de la lista de seguimiento',
-'watchlistedit-normal-explain' => "Los títulos de tu lista de seguimiento se muestran debajo.
-Para eliminar un título, marca la casilla junto a él, y haz clic en ''{{int:Watchlistedit-normal-submit}}''.
-También puedes [[Special:EditWatchlist/raw|editar la lista en crudo]].",
+'watchlistedit-normal-explain' => 'A continuación se listan las páginas en tu lista de seguimiento.
+Para quitar un título, marca la casilla junto a él, y pulsa «{{int:Watchlistedit-normal-submit}}».
+También puedes [[Special:EditWatchlist/raw|editar la lista en crudo]].',
 'watchlistedit-normal-submit'  => 'Borrar páginas',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 página ha sido borrada|$1 páginas han sido borradas}} de tu lista de seguimiento:',
 'watchlistedit-raw-title'      => 'Editar lista de seguimiento en crudo',
 'watchlistedit-raw-legend'     => 'Editar tu lista de seguimiento en modo texto',
-'watchlistedit-raw-explain'    => 'Los títulos de tu lista de seguimiento se muestran debajo. Esta lista puede ser editada añadiendo o eliminando líneas de la lista;
+'watchlistedit-raw-explain'    => 'A continuación se listan las páginas en tu lista de seguimiento. Esta lista puede editarse añadiendo o eliminando líneas de la lista;
 un título por línea.
-Cuando acabes, haz clic en "{{int:Watchlistedit-raw-submit}}".
+Cuando acabes, pulsa «{{int:Watchlistedit-raw-submit}}».
 También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'watchlistedit-raw-titles'     => 'Páginas:',
 'watchlistedit-raw-submit'     => 'Actualizar lista de seguimiento',
@@ -3675,9 +3674,9 @@ Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiales',
 'specialpages-note'              => '----
-* Páginas especiales normales.
+* Páginas especiales normales
 * <span class="mw-specialpagerestricted">Páginas especiales restringidas.</span>
-* <span class="mw-specialpagecached">Páginas especiales cacheadas.</span>',
+* <span class="mw-specialpagecached">Páginas especiales en caché (podrían ser obsoletas).</span>',
 'specialpages-group-maintenance' => 'Reportes de mantenimiento',
 'specialpages-group-other'       => 'Otras páginas especiales',
 'specialpages-group-login'       => 'Iniciar sesión / Registrarse',
@@ -3729,7 +3728,8 @@ Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
 
 # Database error messages
 'dberr-header'      => 'Este wiki tiene un problema',
-'dberr-problems'    => 'Lo sentimos. Este sitio está experimentando dificultades técnicas.',
+'dberr-problems'    => 'Lo sentimos.
+Este sitio está experimentando dificultades técnicas.',
 'dberr-again'       => 'Prueba a recargar dentro de unos minutos.',
 'dberr-info'        => '(No se puede contactar con la base de datos del servidor: $1)',
 'dberr-usegoogle'   => 'Mientras tanto puedes probar buscando a través de Google.',

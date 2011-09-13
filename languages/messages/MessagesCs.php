@@ -375,7 +375,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Poslat e-mail i pro menší editace (které jinak nezpůsobují odeslání e-mailu)',
 'tog-enotifrevealaddr'        => 'Prozradit mou e-mailovou adresu v upozorňujících e-mailech',
 'tog-shownumberswatching'     => 'Zobrazovat počet sledujících uživatelů',
-'tog-oldsig'                  => 'Náhled stávajícího podpisu:',
+'tog-oldsig'                  => 'Stávající podpis:',
 'tog-fancysig'                => 'Používat v podpisu wikitext (bez automatického odkazu)',
 'tog-externaleditor'          => 'Implicitně používat externí editor (pouze pro pokročilé, vyžaduje speciální nastavení počítače; [http://www.mediawiki.org/wiki/Manual:External_editors další informace])',
 'tog-externaldiff'            => 'Implicitně používat externí porovnávací program (pouze pro pokročilé, vyžaduje speciální nastavení počítače; [http://www.mediawiki.org/wiki/Manual:External_editors další informace])',
@@ -766,7 +766,8 @@ Nezapomeňte si upravit své [[Special:Preferences|nastavení {{grammar:2sg|{{SI
 'createaccountmail'          => 'pomocí e-mailu',
 'createaccountreason'        => 'Důvod:',
 'badretype'                  => 'Vámi napsaná hesla nesouhlasí.',
-'userexists'                 => 'Uživatel se stejným jménem je už registrován. Zvolte jiné jméno.',
+'userexists'                 => 'Zadané uživatelské jméno se již používá.
+Zvolte si prosím jiné jméno.',
 'loginerror'                 => 'Chyba při přihlašování',
 'createaccounterror'         => 'Nepodařilo se vytvořit uživatelský účet: $1',
 'nocookiesnew'               => 'Uživatelský účet byl vytvořen, ale nejste přihlášeni. {{SITENAME}} používá cookies k přihlášení uživatelů. Vy máte cookies vypnuty. Prosím zapněte je a přihlaste se znovu s vaším novým uživatelským jménem a heslem.',
@@ -855,6 +856,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'passwordreset-disabled'       => 'Znovunastavení hesla je na této wiki zakázáno.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',
 'passwordreset-username'       => 'Uživatelské jméno:',
+'passwordreset-domain'         => 'Doména:',
 'passwordreset-email'          => 'E-mailová adresa:',
 'passwordreset-emailtitle'     => 'Informace k účtu na {{grammar:6sg|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'   => 'Někdo (patrně vy, z IP adresy $1) zažádal o připomenutí informací k vašemu
@@ -1349,7 +1351,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'qbsettings-fixedright'     => 'Leží vpravo',
 'qbsettings-floatingleft'   => 'Plovoucí vlevo',
 'qbsettings-floatingright'  => 'Plovoucí vpravo',
-'qbsettings-directionality' => 'Pevný v závislosti na směrovosti vašeho jazyka a písma',
+'qbsettings-directionality' => 'Pevný v závislosti na směrovosti vašeho písma',
 
 # Preferences page
 'preferences'                   => 'Nastavení',
@@ -1432,7 +1434,7 @@ Tuto operaci nelze vrátit zpět.',
 'prefs-registration'            => 'Čas registrace:',
 'yourrealname'                  => 'Vaše skutečné jméno:',
 'yourlanguage'                  => 'Jazyk rozhraní:',
-'yourvariant'                   => 'Jazyková varianta',
+'yourvariant'                   => 'Varianta jazyka obsahu:',
 'yournick'                      => 'Podpis:',
 'prefs-help-signature'          => 'Komentáře v diskusích by se měly podepisovat pomocí „<nowiki>~~~~</nowiki>“, což se změní na váš podpis a aktuální čas.',
 'badsig'                        => 'Chybný podpis, zkontrolujte syntaxi HTML.',
@@ -1484,7 +1486,7 @@ Tuto operaci nelze vrátit zpět.',
 'userrights-no-interwiki'      => 'Nemáte povoleno měnit uživatelská práva na jiných wiki.',
 'userrights-nodatabase'        => 'Databáze $1 neexistuje nebo není místní.',
 'userrights-nologin'           => 'Musíte se [[Special:UserLogin|přihlásit]] k účtu správce, abyste mohli měnit uživatelská práva.',
-'userrights-notallowed'        => 'Tento účet nemá povoleno měnit uživatelská práva.',
+'userrights-notallowed'        => 'Váš účet nemá oprávnění měnit uživatelská práva.',
 'userrights-changeable-col'    => 'Skupiny, které můžete měnit',
 'userrights-unchangeable-col'  => 'Skupiny, které nemůžete měnit',
 
@@ -1570,7 +1572,6 @@ Tuto operaci nelze vrátit zpět.',
 'right-userrights'            => 'Nastavování práv ostatním uživatelům',
 'right-userrights-interwiki'  => 'Nastavování práv ostatním uživatelům na jiných wiki',
 'right-siteadmin'             => 'Zamykání a odemykání databáze',
-'right-reset-passwords'       => 'Nastavování hesel jiným uživatelům',
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
 
@@ -1861,8 +1862,7 @@ Z bezpečnostních důvodů je img_auth.php vypnuto.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Tato speciální stránka zobrazuje všechny načtené soubory.
-Ve výchozím stavu je poslední načtený soubor nahoře.
-Kliknutím na hlavičku sloupce můžete změnit řazení.',
+Při filtrování podle uživatele se zobrazují jen soubory, u kterých tento uživatel načetl aktuální verzi.',
 'listfiles_search_for'  => 'Hledat soubor podle názvu:',
 'imgfile'               => 'soubor',
 'listfiles'             => 'Seznam souborů',
@@ -2276,16 +2276,16 @@ Případně si můžete vynulovat příznaky ve svém seznamu sledovaných strá
 
 --
 Změnit nastavení e-mailových oznámení můžete na
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Nastavení sledovaných stránek může změnit na
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Stránku můžete ze svých sledovaných vyřadit na
 $UNWATCHURL
 
 Rady a kontakt:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Smazat stránku',
@@ -2480,7 +2480,6 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'sp-contributions-username'            => 'IP adresa nebo uživatelské jméno:',
 'sp-contributions-toponly'             => 'Zobrazit pouze aktuální revize',
 'sp-contributions-submit'              => 'Zobrazit',
-'sp-contributions-showsizediff'        => 'Zobrazit rozdíl ve velikosti stránky',
 
 # What links here
 'whatlinkshere'            => 'Odkazuje sem',
@@ -3252,9 +3251,9 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'exif-orientation-3' => 'Otočeno o 180°',
 'exif-orientation-4' => 'Svisle převráceno',
 'exif-orientation-5' => 'Otočeno o 90° proti směru hodinových ručiček a svisle převráceno',
-'exif-orientation-6' => 'Otočeno o 90° ve směru hodinových ručiček',
+'exif-orientation-6' => 'Otočeno o 90° proti směru hodinových ručiček',
 'exif-orientation-7' => 'Otočeno o 90° ve směru hodinových ručiček a svisle převráceno',
-'exif-orientation-8' => 'Otočeno o 90° proti směru hodinových ručiček',
+'exif-orientation-8' => 'Otočeno o 90° po směru hodinových ručiček',
 
 'exif-planarconfiguration-1' => 'chunky',
 'exif-planarconfiguration-2' => 'planar',
@@ -3728,8 +3727,8 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 'specialpages'                   => 'Speciální stránky',
 'specialpages-note'              => '----
 * Normální speciální stránky
-* <strong class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</strong>
-* <strong class="mw-specialpagecached">Speciální stránky z&nbsp;cache</strong>',
+* <span class="mw-specialpagerestricted">Speciální stránky s&nbsp;vyhrazeným přístupem</span>
+* <span class="mw-specialpagecached">Speciální stránky z&nbsp;cache (mohou být zastaralé)</span>',
 'specialpages-group-maintenance' => 'Údržba',
 'specialpages-group-other'       => 'Ostatní',
 'specialpages-group-login'       => 'Přihlašování / registrace',

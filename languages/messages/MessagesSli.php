@@ -884,7 +884,6 @@ Miet andern Nutzern koast du au ieber de Nutzerdischkurseyta Kontakt uffnahma, o
 'right-userrights'           => 'Nutzerrechte beoarbeeta',
 'right-userrights-interwiki' => 'Nutzerrechte ei andern Wikis beoarbeeta',
 'right-siteadmin'            => 'Datenbank sperra und entsperra',
-'right-reset-passwords'      => 'Poaßwurt annes andern Nutzers zerrickesetza',
 'right-sendemail'            => 'E-Mails oa andere Nutzer senda',
 
 # User rights log
@@ -1372,9 +1371,9 @@ Is waan sulange kenne wettera Benachrichtigungs-E-Mails gesendet, bis du de Seyt
              Dei freindliches {{SITENAME}}-Benoachrichtigungssystem
 
 --
-Im de Einstellunga denner Beobachtungsliste oazupoaßa, besiche: {{fullurl:{{#special:EditWatchlist}}}}
+Im de Einstellunga denner Beobachtungsliste oazupoaßa, besiche: {{canonicalurl:{{#special:EditWatchlist}}}}
 
-Rickmeldungen und wettere Helfe: {{fullurl:{{MediaWiki:Helppage}}}}',
+Rickmeldungen und wettere Helfe: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Seyte läscha',

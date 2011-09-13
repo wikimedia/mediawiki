@@ -442,13 +442,13 @@ Tenzij je deze pagina bezoekt, komen er geen verdere berichten. Op je volglijst 
 
 --
 Je kunt je volglijstinstellingen wijzigen op:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Je kunt de pagina van uw volglijst verwijderen via de volgende verwijzing:
 $UNWATCHURL
 
 Feedback en andere assistentie:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'historywarning'    => "'''Waarschuwing:''' de pagina die je wilt verwijderen heeft ongeveer $1 {{PLURAL:$1|versie|versies}}:",

@@ -1518,7 +1518,6 @@ A műveletet nem lehet visszavonni.',
 'right-userrights'            => 'az összes szerkesztő jogainak módosítása',
 'right-userrights-interwiki'  => 'más wikik szerkesztői jogainak módosítása',
 'right-siteadmin'             => 'adatbázis lezárása, felnyitása',
-'right-reset-passwords'       => 'Más felhasználók jelszavának visszaállítása',
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-sendemail'             => 'e-mail küldése más felhasználóknak',
 
@@ -2230,13 +2229,13 @@ Amíg nem keresed fel az oldalt, addig nem érkeznek újabb értesítések az ol
 
 --
 A figyelőlistád módosításához keresd fel a
-{{fullurl:{{#special:EditWatchlist}}}} címet
+{{canonicalurl:{{#special:EditWatchlist}}}} címet
 
 A lap figyelőlistádról való törléséhez keresd fel a
 $UNWATCHURL címet
 
 Visszajelzés és további segítség:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Lap törlése',
@@ -2443,7 +2442,6 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'sp-contributions-username'            => 'IP-cím vagy felhasználónév:',
 'sp-contributions-toponly'             => 'Csak a jelenleg utolsónak számító változtatásokat mutassa',
 'sp-contributions-submit'              => 'Keresés',
-'sp-contributions-showsizediff'        => 'Lapméretek közötti eltérés megjelenítése',
 
 # What links here
 'whatlinkshere'            => 'Mi hivatkozik erre',

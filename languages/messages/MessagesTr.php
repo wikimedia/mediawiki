@@ -1502,7 +1502,6 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-userrights'            => 'Tüm kullanıcı haklarını değiştirmek',
 'right-userrights-interwiki'  => 'Diğer vikilerdeki kullanıcıların kullanıcı haklarını değiştir',
 'right-siteadmin'             => 'Veritabanını kilitle ve kilidi aç',
-'right-reset-passwords'       => 'Diğer kullanıcıların parolalarını sıfırla',
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
 'right-sendemail'             => 'Diğer kullanıcılara e-posta gönder',
 
@@ -2152,6 +2151,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'watchlistanontext'    => 'Lütfen izleme listenizdeki maddeleri görmek ya da değiştirmek için $1.',
 'watchnologin'         => 'Oturum açık değil.',
 'watchnologintext'     => 'İzleme listenizi değiştirebilmek için [[Special:UserLogin|oturum açmalısınız]].',
+'addwatch'             => 'İzleme listesine ekle',
 'addedwatchtext'       => '"<nowiki>$1</nowiki>" adlı sayfa [[Special:Watchlist|izleme listenize]] kaydedildi.
 
 Gelecekte, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler burada listelenecektir.
@@ -2210,13 +2210,13 @@ Bahsi geçen sayfayı ziyaret edinceye kadar sayfayla ilgili başka değişiklik
 
 --
 İzleme listesi ayarlarınızı değiştirmek için:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Sayfayı izleme listenizden silmek için:
 $UNWATCHURL
 
 Geri bildirim ve daha fazla yardım için:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Sayfayı sil',
@@ -3109,8 +3109,10 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-gpsdifferential'             => 'GPS differential correction',
 'exif-keywords'                    => 'Anahtar kelimeler',
 'exif-objectname'                  => 'Kısa başlık',
+'exif-headline'                    => 'Başlık',
 'exif-source'                      => 'Kaynak',
 'exif-urgency'                     => 'Aciliyet',
+'exif-fixtureidentifier'           => 'Fikstür adı',
 'exif-writer'                      => 'Yazar',
 'exif-languagecode'                => 'Dil',
 'exif-iimversion'                  => 'IIM sürümü',

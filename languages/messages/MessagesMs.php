@@ -219,7 +219,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Juga e-melkan saya apabila berlaku penyuntingan kecil',
 'tog-enotifrevealaddr'        => 'Serlahkan alamat e-mel saya dalam e-mel pemberitahuan',
 'tog-shownumberswatching'     => 'Tunjukkan bilangan pemantau',
-'tog-oldsig'                  => 'Pratonton bagi tanda tangan yang sedia ada:',
+'tog-oldsig'                  => 'Tanda tangan yang sedia ada:',
 'tog-fancysig'                => 'Anggap tandatangan sebagai teks wiki (tanpa pautan automatik)',
 'tog-externaleditor'          => 'Utamakan penyunting luar (hanya untuk pakar, perlu tetapan khas pada komputer anda. [http://www.mediawiki.org/wiki/Manual:External_editors Maklumat lanjut.])',
 'tog-externaldiff'            => 'Utamakan pembeza luar (hanya untuk pakar, perlu tetapan khas pada komputer anda. [http://www.mediawiki.org/wiki/Manual:External_editors Maklumat lanjut.])',
@@ -608,7 +608,8 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'createaccountmail'          => 'melalui e-mel',
 'createaccountreason'        => 'Sebab:',
 'badretype'                  => 'Sila ulangi kata laluan dengan betul.',
-'userexists'                 => 'Nama pengguna yang anda masukkan telah pun digunakan. Sila pilih nama yang lain.',
+'userexists'                 => 'Nama pengguna yang diisikan telah pun digunakan.
+Sila pilih nama yang lain.',
 'loginerror'                 => 'Ralat log masuk',
 'createaccounterror'         => 'Tidak dapat mencipta akaun: $1',
 'nocookiesnew'               => 'Akaun anda telah dibuka, tetapi anda belum log masuk. {{SITENAME}} menggunakan kuki untuk mencatat status log masuk pengguna. Sila aktifkan sokongan kuki pada pelayar anda, kemudian log masuk dengan nama pengguna dan kata laluan baru anda.',
@@ -697,6 +698,7 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'passwordreset-disabled'       => 'Ciri set semula kata laluan telah dimatikan di wiki ini.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Isikan data di bawah}}',
 'passwordreset-username'       => 'Nama pengguna:',
+'passwordreset-domain'         => 'Domain:',
 'passwordreset-email'          => 'Alamat e-mel:',
 'passwordreset-emailtitle'     => 'Butiran akaun di {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Ada orang (mungkin anda, dari alamat IP $1) yang memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4).  {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
@@ -826,7 +828,7 @@ Masukan log sekatan terakhir disediakan di bawah sebagai rujukan:',
 'sitejspreview'                    => "'''Ingat bahawa anda cuma melihat pratonton kod JavaScript ini.'''
 '''Ia belum lagi disimpan!'''",
 'userinvalidcssjstitle'            => "'''Amaran:''' Rupa \"\$1\" tidak wujud. Ingat bahawa laman tempahan .css dan .js menggunakan tajuk berhuruf kecil, contohnya {{ns:user}}:Anu/vector.css tidak sama dengan {{ns:user}}:Anu/Vector.css.",
-'updated'                          => '(Dikemaskinikan)',
+'updated'                          => '(Dikemas kini)',
 'note'                             => "'''Catatan:'''",
 'previewnote'                      => "'''Ini hanyalah pratonton. Perubahan masih belum disimpan!'''",
 'previewconflict'                  => 'Paparan ini merupakan teks di bahagian atas dalam kotak sunting teks. Teks ini akan disimpan sekiranya anda memilih berbuat demikian.',
@@ -877,7 +879,7 @@ Masukan log terakhir ditunjukkan di bawah untuk rujukan:",
 'titleprotectedwarning'            => "'''Amaran: Laman ini telah dikunci hingga [[Special:ListGroupRights|hak-hak tertentu]] diperlukan untuk menciptanya.'''
 Masukan log terakhir ditunjukkan di bawah untuk rujukan:",
 'templatesused'                    => '{{PLURAL:$1|Templat|Templat}} yang digunakan dalam laman ini:',
-'templatesusedpreview'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan dalam pratonton ini:',
+'templatesusedpreview'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan dalam pralihat ini:',
 'templatesusedsection'             => '{{PLURAL:$1|Templat|Templat}} digunakan dalam bahagian ini:',
 'template-protected'               => '(dilindungi)',
 'template-semiprotected'           => '(dilindungi separa)',
@@ -1189,7 +1191,7 @@ Cuba berikan awalan ''all:'' untuk mencari semua kandungan (termasuk laman perbi
 'qbsettings-fixedright'     => 'Tetap sebelah kanan',
 'qbsettings-floatingleft'   => 'Berubah-ubah sebelah kiri',
 'qbsettings-floatingright'  => 'Berubah-ubah sebelah kanan',
-'qbsettings-directionality' => 'Tetap, bergantung pada kearahan tulisan dan bahasa anda',
+'qbsettings-directionality' => 'Tetap, bergantung pada kearahan tulisan bahasa anda',
 
 # Preferences page
 'preferences'                   => 'Keutamaan',
@@ -1272,7 +1274,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'prefs-registration'            => 'Masa pendaftaran:',
 'yourrealname'                  => 'Nama sebenar:',
 'yourlanguage'                  => 'Bahasa:',
-'yourvariant'                   => 'Varian',
+'yourvariant'                   => 'Varian bahasa kandungan:',
 'yournick'                      => 'Nama samaran:',
 'prefs-help-signature'          => 'Komen di laman perbincangan harus ditandatangani dengan "<nowiki>~~~~</nowiki>" yang akan ditukar menjadi tandatangan anda dan cap waktu.',
 'badsig'                        => 'Tandatangan mentah tidak sah; sila semak tag HTML.',
@@ -1324,7 +1326,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'userrights-no-interwiki'      => 'Anda tidak mempunyai keizinan untuk mengubah hak-hak pengguna di wiki lain.',
 'userrights-nodatabase'        => 'Pangkalan data $1 tiada atau bukan tempatan.',
 'userrights-nologin'           => 'Anda mesti [[Special:UserLogin|log masuk]] dengan akaun pentadbir terlebih dahulu untuk memperuntukkan hak-hak pengguna.',
-'userrights-notallowed'        => 'Anda tidak mempunyai keizinan untuk memperuntukkan hak-hak pengguna.',
+'userrights-notallowed'        => 'Akuan anda tidak dibenarkan untuk menambah atau membuang hak pengguna.',
 'userrights-changeable-col'    => 'Kumpulan yang anda boleh ubah',
 'userrights-unchangeable-col'  => 'Kumpulan yang anda tak boleh ubah',
 
@@ -1410,7 +1412,6 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-userrights'            => 'Menyerahkan dan menarik balik sebarang hak pengguna',
 'right-userrights-interwiki'  => 'Menyerahkan dan menarik balik hak pengguna di wiki lain',
 'right-siteadmin'             => 'Mengunci dan membuka kunci pangkalan data',
-'right-reset-passwords'       => 'Mengeset semula kata laluan pengguna lain',
 'right-override-export-depth' => 'Mengeksport laman termasuk laman dipaut sehingga kedalaman 5',
 'right-sendemail'             => 'Mengirim e-mel kepada pengguna-pengguna lain',
 
@@ -1684,8 +1685,7 @@ Untuk keselamatan optimum, img_auth.php telah dilumpuhkan.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Laman khas ini memaparkan semua fail yang telah dimuat naik.
-Pada sediakalanya, fail-fail terkini yang dimuat naik ditunjukkan di atas sekali senarai.
-Klik di atas mana-mana lajur yang berkenaan untuk menukar tertib susunan.',
+Apabila ditapis oleh pengguna, hanya fail-fail yang dimuat naik versi terkininya oleh pengguna itu ditunjukkan.',
 'listfiles_search_for'  => 'Cari nama imej:',
 'imgfile'               => 'fail',
 'listfiles'             => 'Senarai fail',
@@ -2106,16 +2106,16 @@ Anda juga boleh menetapkan semula penanda pemberitahuan bagi semua laman dalam s
 
 --
 Untuk mengubah tetapan pemberitahuan e-mel anda, lawati
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Untuk mengubah tetapan senarai pantau anda, lawati
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Untuk menghapuskan laman ini dari senarai pantau anda, lawati
 $UNWATCHURL
 
 Maklum balas dan bantuan:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Hapus laman',
@@ -2316,7 +2316,6 @@ $1',
 'sp-contributions-username'            => 'Alamat IP atau nama pengguna:',
 'sp-contributions-toponly'             => 'Hanya paparkan suntingan yang merupakan semakan terkini',
 'sp-contributions-submit'              => 'Cari',
-'sp-contributions-showsizediff'        => 'Paparkan perbezaan saiz laman',
 
 # What links here
 'whatlinkshere'            => 'Pautan ke laman ini',
@@ -3503,7 +3502,7 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'specialpages-note'              => '----
 * Laman khas biasa.
 * <span class="mw-specialpagerestricted">Laman khas terhad.</span>
-* <span class="mw-specialpagecached">Laman khas cache-sahaja.</span>',
+* <span class="mw-specialpagecached">Laman khas tercache (mungkin lapuk).</span>',
 'specialpages-group-maintenance' => 'Laporan penyenggaraan',
 'specialpages-group-other'       => 'Laman khas lain',
 'specialpages-group-login'       => 'Log masuk / daftar',

@@ -200,7 +200,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'שיקט מיר ע-פאסט אויך פֿאַר מינערדיקע רעדאַקטירונגען פֿון בלעטער',
 'tog-enotifrevealaddr'        => 'דעק אויף מיין בליצפאסט אדרעס אין פאסט מודעות',
 'tog-shownumberswatching'     => 'ווייזן דעם נומער פון בלאט אויפֿפאסערס',
-'tog-oldsig'                  => 'פאראויסדיגער ווייזונג פונעם איצטיגער אונטערשריפט:',
+'tog-oldsig'                  => 'איצטיגער אונטערשריפֿט:',
 'tog-fancysig'                => 'באַהאַנדלן  אונטערשריפט אַלס וויקיטעקסט (אָן אויטאמאטישן לינק)',
 'tog-externaleditor'          => 'ניצן א דרויסנדיגן רעדאקטירער גרונטלעך (נאר פֿאר מומחים, דאס פֿאדערט באזונדערע קאמפיוטער שטעלונגען).
 [http://www.mediawiki.org/wiki/Manual:External_editors ווײַטערע אינפֿארמאַציע.]',
@@ -301,6 +301,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(המשך)',
 'index-category'                 => 'אינדעקסירטע בלעטער',
 'noindex-category'               => 'אומאינדעקסירטע בלעטער',
+'broken-file-category'           => 'בלעטער מיט צעבראכענע טעקע לינקען',
 
 'about'         => 'וועגן',
 'article'       => 'אינהאלט בלאט',
@@ -555,6 +556,8 @@ $1',
 
 $2',
 'namespaceprotected'   => "איר זענט נישט ערלויבט צו רעדאקטירן בלעטער אינעם '''$1''' נאמענטייל.",
+'customcssprotected'   => 'איר האט נישט רשות צו רעדאַקטירן דעם CSS בלאַט, ווײַל ער אַנטהאַלט די פערזענלעכע באַשטימונגען פון אַן אַנדער באַניצער.',
+'customjsprotected'    => 'איר האט נישט רשות צו רעדאַקטירן דעם JavaScript בלאַט, ווײַל ער אַנטהאַלט די פערזענלעכע באַשטימונגען פון אַן אַנדער באַניצער.',
 'ns-specialprotected'  => 'מען קען נישט רעדאגירן ספעציעלע בלעטער.',
 'titleprotected'       => 'דער טיטל איז געשיצט פון ווערן געשאפֿן דורך  [[User:$1|$1]].
 די אורזאך איז  \'\'$2".',
@@ -594,7 +597,8 @@ $2',
 'createaccountmail'          => 'דורך ע-פאסט',
 'createaccountreason'        => 'אורזאַך:',
 'badretype'                  => 'די פאסווערטער וואס איר האט אריינגעלייגט זענען נישט אייניג.',
-'userexists'                 => 'דער באַנוצער נאָמען איז שוין אין באַנוץ. ביטע קלײַב אױס אַן אַנדער נאָמען.',
+'userexists'                 => 'דער באַניצער נאָמען איז שוין געניצט. 
+ביטע קלײַבט אױס אַן אַנדער נאָמען.',
 'loginerror'                 => 'לאגירן פֿעלער',
 'createaccounterror'         => 'האט נישט געקענט שאַפֿן קאנטע: $1',
 'nocookiesnew'               => 'די באניצער קאנטע איז באשאפן, אבער איר זענט נישט אריינלאגירט.
@@ -656,6 +660,9 @@ $2',
 'loginlanguagelabel'         => 'שפראך: $1',
 'suspicious-userlogout'      => ' אײַער בקשה אַרויסלאָגירן זיך איז אפגעלייגט געווארן ווייַל אייגנטלעך איז זי געשיקט דורך אַ צעבראכענעם בלעטערער אָדער א פראקסי מיט א זאפאס.',
 
+# E-mail sending
+'php-mail-error-unknown' => 'אומבאַקאַנט טעות אין()mail פֿונקציע פֿון PHP.',
+
 # Change password dialog
 'resetpass'                 => 'ענדערן קאנטע פאסווארט',
 'resetpass_announce'        => 'איר האט אריינלאגירט מיט א פראוויזארישן קאד געשיקט דורכן ע-פאסט. צו פארענדיגן אריינלאגירן, ברויכט איר אנשטעלן א ניי פאסווארט דא:',
@@ -676,8 +683,12 @@ $2',
 
 # Special:PasswordReset
 'passwordreset'                => 'צוריקשטעלן פאַסווארט',
+'passwordreset-text'           => 'דערגאַנט די פאָרעם צו באַקומען אַן ע-פּאָסט דערמאָנונג פון די פרטים פֿון אײַער קאנטע.',
 'passwordreset-legend'         => 'צוריקשטעלן פאַסווארט',
+'passwordreset-disabled'       => 'מען האט אומאַקטיוויטר צוריקשטעלן פאַסווערטער אויף דער וויקי.',
+'passwordreset-pretext'        => '{{PLURAL:$1| | קלאַפט אַרײַן איינע פֿון די דאַטן אונטן}}',
 'passwordreset-username'       => 'באַניצער נאָמען:',
+'passwordreset-domain'         => 'דאמען:',
 'passwordreset-email'          => 'בליצפּאָסט אַדרעס:',
 'passwordreset-emailtitle'     => 'קאנטע פרטים אין {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'עמעצער (מסתמא איר, פון IP אדרעס $1) האט געבעטן א דערמאנונג פון אייערע
@@ -699,6 +710,9 @@ $2
 איר זאלט אריינלאגירן און קלויבן א נייע פאסווארט אצינד. טאמער א צווייטער האט געשיקט די בקשה, 
 אדער ווען איר געדענקט יא אייער פריעריקע פאסווארט, און וויל עס נישט ענדערן,
  קענט איר איגנארירן דעם אנזאג און ניצן ווייטער דאס אלטע פאסווארט.',
+'passwordreset-emailelement'   => 'באַניצער נאָמען: $1 
+פראוויזארישער פּאַראָל: $2',
+'passwordreset-emailsent'      => "מ'האט געשיקט א דערמאָנונג ע-פּאָסט.",
 
 # Edit page toolbar
 'bold_sample'     => 'דיקער טעקסט',
@@ -1168,7 +1182,7 @@ $1",
 'qbsettings-fixedright'     => 'קבוע רעכטס',
 'qbsettings-floatingleft'   => 'שווימנדיג לינקס',
 'qbsettings-floatingright'  => 'שווימנדיג רעכטס',
-'qbsettings-directionality' => 'פֿעסט, אפהענגיק אויף דער ריכטונג פֿון דער שריפֿט און דער שפראַך.',
+'qbsettings-directionality' => 'פֿעסט, אפהענגיק אויף דער שריפֿט ריכטונג פֿון אײַער שפראַך.',
 
 # Preferences page
 'preferences'                   => 'פרעפֿערענצן',
@@ -1242,7 +1256,7 @@ $1",
 'prefs-emailconfirm-label'      => 'ע-פאסט באַשטעטיקונג:',
 'prefs-textboxsize'             => 'גרייס פֿון רעדאַקטירונג פֿענסטער',
 'youremail'                     => 'ע-פאסט:',
-'username'                      => 'באַנוצער־נאָמען:',
+'username'                      => 'באַניצער־נאָמען:',
 'uid'                           => 'באַנוצער־נומער:',
 'prefs-memberingroups'          => 'מיטגליד אין {{PLURAL:$1|גרופע|גרופעס}}:',
 'prefs-registration'            => 'אײַנשרײַבן צײַט:',
@@ -1301,7 +1315,7 @@ $1",
 'userrights-no-interwiki'      => 'איר האט נישט קיין ערלויבניש צו רעדאַקטירן באַניצער רעכטן אויף אַנדערע וויקיס.',
 'userrights-nodatabase'        => 'דאַטנבאַזע $1 אדער עקזיסטירט נישט אדער איז נישט ארטיק.',
 'userrights-nologin'           => 'איר דאַרפֿט [[Special:UserLogin| אַרײַנלאגירן]] מיט א סיסאפ קאנטע צו באַשטימען באַניצער רעכטן.',
-'userrights-notallowed'        => 'אייער קאנטע האט נישט קיין ערלויבניש צו באשטימען באניצער רעכטן.',
+'userrights-notallowed'        => 'אײַער קאנטע האט נישט קיין ערלויבניש צוצולייגן אדער אוועקנעמען באַניצער רעכטן.',
 'userrights-changeable-col'    => 'גרופעס איר קענט ענדערן',
 'userrights-unchangeable-col'  => 'גרופעס איר קענט נישט ענדערן',
 
@@ -1374,7 +1388,6 @@ $1",
 'right-userrights'           => 'רעדאַקטירן אלע באַניצער רעכטן',
 'right-userrights-interwiki' => 'רעדאַקטירן באַניצער רעכטן פֿון באַניצער אויף אנדערע וויקיס',
 'right-siteadmin'            => 'פארשליס און שליס-אויף די דאטעבאזע',
-'right-reset-passwords'      => 'צוריקשטעלן אַנדערע באַניצערס פאַסווערטער',
 'right-sendemail'            => 'שיקן ע-פאסט צו אנדערע באניצער',
 
 # User rights log
@@ -1896,6 +1909,7 @@ $1",
 'noemailtext'          => 'דער באַניצער האט נישט באשטימט קיין גילטיקן ע-פאסט אדרעס.',
 'nowikiemailtitle'     => 'קיין ע-פאסט נישט דערלויבט',
 'nowikiemailtext'      => 'דער באַניצער האט געקליבן נישט באַקומען ע־פאסט פֿון אַנדערע באַניצער.',
+'emailusername'        => 'באַניצער נאָמען:',
 'email-legend'         => 'אַרויסשיקן ע-פאסט צו אַן אַנדער {{SITENAME}} באַניצער',
 'emailfrom'            => 'פון',
 'emailto'              => 'צו',
@@ -1976,13 +1990,13 @@ $NEWPAGE
 
 --
 צו ענדערן אייער אויפֿפאסונג ליסטע, באזוכט
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 כדי אויסמעקן דעם בלאט פון אײַער אויפֿפאַסונג ליסטע, באַזוכט
 $UNWATCHURL
 
 פאר מער הילף:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'מעק אויס בלאט',
@@ -2044,7 +2058,7 @@ $UNWATCHURL
 'protectlogpage'              => 'באשיצונג לאָג-בוך',
 'protectedarticle'            => 'געשיצט [[$1]]',
 'modifiedarticleprotection'   => 'געענדערט באשיצונג שטאפל פון [[$1]]',
-'unprotectedarticle'          => 'אראפגענומען שוץ פון "[[ $1 ]] "',
+'unprotectedarticle'          => 'אראפגענומען שוץ פון "[[$1]] "',
 'movedarticleprotection'      => 'באוועגט די שיץ באשטימונגען פֿון "[[$2]]" אויף "[[$1]]"',
 'protect-title'               => 'ענדערן שיץ ניווא פֿאַר "$1"',
 'prot_1movedto2'              => '[[$1]] אריבערגעפירט צו [[$2]]',
@@ -2518,7 +2532,7 @@ $UNWATCHURL
 'tooltip-ca-viewsource'           => 'דאס איז א פֿארשלאסענער בלאט, איר קענט נאר באַקוקן זיין מקור',
 'tooltip-ca-history'              => 'פריערדיגע ווערסיעס פון דעם בלאט.',
 'tooltip-ca-protect'              => 'באשיצט דעם בלאט',
-'tooltip-ca-unprotect'            => 'אומבאַשיצן דעם בלאַט',
+'tooltip-ca-unprotect'            => 'ענדערן באַשיצונג פון דעם בלאַט',
 'tooltip-ca-delete'               => 'אויסמעקן דעם בלאט',
 'tooltip-ca-undelete'             => 'צוריק דרייען די ענדערונגען פון דעם בלאט פארן מעקן',
 'tooltip-ca-move'                 => 'באַוועגן דעם בלאַט',
@@ -2576,6 +2590,9 @@ $UNWATCHURL
 # Scripts
 'common.js' => '/* אלע סקריפטן פון JavaScript דא געשריבן וועט לויפן פאר אלע באנוצער ווען זיי וועלן לאדירן דעם בלאט */',
 
+# Metadata
+'notacceptable' => 'דער וויקי סערווער קען נישט צושטעלן דאַטן אין אַ פֿאָרמאַט וואָס אײַער קליענט קען לייענען.',
+
 # Attribution
 'anonymous'        => '{{PLURAL:$1|אַנאנימער באַניצער| אַנאנימע באַניצערס}} פֿון {{SITENAME}}',
 'siteuser'         => 'באַניצער {{SITENAME}} $1',
@@ -2591,6 +2608,9 @@ $UNWATCHURL
 'spamprotectiontitle' => 'ספעם באשיצונג פילטער',
 'spambot_username'    => 'מעדיעוויקי ספאם פוצן',
 'spam_reverting'      => 'צוריקגעשטעלט צו דער לעצטער ווערסיע אן לינקען צו $1',
+
+# Info page
+'pageinfo-talkpage' => 'רעדן בלאַט',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'באצייכנען אלס פאטראלירט',
@@ -2760,6 +2780,12 @@ $1',
 'exif-gpsdatestamp'             => 'דאטום GPS',
 'exif-gpsdifferential'          => 'דיפראנציאלע קאקרעקציע GPS',
 'exif-objectname'               => 'קורצער טיטל',
+'exif-source'                   => 'מקור',
+'exif-editstatus'               => 'רעדאקציאנעלער סטאטוס פון בילד',
+'exif-urgency'                  => 'דרינגלעכקייט',
+'exif-locationdest'             => 'געוויזענע לאקאציע',
+'exif-locationdestcode'         => 'קאד פֿון געוויזענער לאקאציע',
+'exif-languagecode'             => 'שפראַך',
 
 # EXIF attributes
 'exif-compression-1' => 'אומ-צאמגעקוועטשט',
@@ -3026,7 +3052,7 @@ $5
 'specialpages-note'              => '----
 * נארמאַלע באַזונדערע בלעטער.
 * <strong class="mw-specialpagerestricted">באַגרענעצטע באַזונדערע בלעטער.</strong>
-* <span class="mw-specialpagecached">באַזונדערע בלעטער פֿון זאַפאַס.</span>',
+* <span class="mw-specialpagecached">באַזונדערע בלעטער פֿון זאַפאַס (קענען זײַן פֿאַרעלטערט).</span>',
 'specialpages-group-maintenance' => 'אויפֿהאַלטונג באַריכטן',
 'specialpages-group-other'       => 'אַנדערע ספעציעלע בלעטער',
 'specialpages-group-login'       => 'ארײַנלאגירן / אײַנשרײַבן',
@@ -3055,13 +3081,16 @@ $5
 #אלע רעגולערע אויסדרוקן זאל מען שטעלן העכער פון דער שורה. לאזט די שורה גענוי ווי זי איז</pre>',
 
 # Special:Tags
-'tags'              => 'גילטיקע ענדערונג טאַגן',
-'tag-filter'        => '[[Special:Tags|מאַרקירונג]] פֿילטער:',
-'tag-filter-submit' => 'פֿילטער',
-'tags-title'        => 'טאַגן',
-'tags-tag'          => 'טאַג נאָמען',
-'tags-edit'         => 'רעדאַקטירן',
-'tags-hitcount'     => ' {{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
+'tags'                    => 'גילטיקע ענדערונג טאַגן',
+'tag-filter'              => '[[Special:Tags|מאַרקירונג]] פֿילטער:',
+'tag-filter-submit'       => 'פֿילטער',
+'tags-title'              => 'טאַגן',
+'tags-intro'              => 'דער בלאַט ווײַזט די טאַגן מיט וואס דאס ווייכווארג קען צייכענען אַן רעדאַגירונג, און זייער באַטייַט.',
+'tags-tag'                => 'טאַג נאָמען',
+'tags-display-header'     => 'אויסזען אין ענדערונג רשימות',
+'tags-description-header' => 'פֿולי באַשרייַבונג פון באַטײַט',
+'tags-edit'               => 'רעדאַקטירן',
+'tags-hitcount'           => ' {{PLURAL:$1|ענדערונג|$1 ענדערונגען}}',
 
 # Special:ComparePages
 'comparepages'     => 'פאַרגלייַכן בלעטער',

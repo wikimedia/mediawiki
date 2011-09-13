@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Cekli829
  * @author Flrn
  * @author Hanberke
  * @author Runningfridgesrule
@@ -216,6 +217,7 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'printableversion'  => 'Print ediş wersiýasy',
 'permalink'         => 'Hemişelik çykgyt',
 'print'             => 'Print et',
+'view'              => 'Görkez',
 'edit'              => 'Redaktirle',
 'create'            => 'Döret',
 'editthispage'      => 'Bu sahypany redaktirle',
@@ -1230,7 +1232,6 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'right-userrights'            => 'Ähli ulanyjy hukuklaryny redaktirle',
 'right-userrights-interwiki'  => 'Başga wikilerdäki ulanyjylaryň ulanyjy hukuklaryny redaktirle',
 'right-siteadmin'             => 'Maglumat bazasyny gulpla we aç',
-'right-reset-passwords'       => 'Başga ulanyjylaryň parollaryny başky ýagdaýyna getir',
 'right-override-export-depth' => 'Sahypalary, şol sanda çykgytly sahypalary 5-e çenli çuňlukda eksportirle',
 'right-sendemail'             => 'Başga ulanyjylara e-poçta iber',
 
@@ -1908,13 +1909,13 @@ Bu sahypany baryp görýänçäňiz onuň bilen baglanyşykly üýtgeşmeler siz
 
 --
 Gözegçilik sanawy sazlamalaryňyzy üýtgetmek üçin:
-{{fullurl:Special:Watchlist/edit}}
+{{canonicalurl:Special:Watchlist/edit}}
 
 Sahypany gözegçilik sanawyňyzdan öçürmek üçin:
 $UNWATCHURL
 
 Seslenme we goşmaça kömek:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Sahypany öçür',
@@ -2743,6 +2744,8 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'exif-gpsareainformation'          => 'GPS sebitiniň ady',
 'exif-gpsdatestamp'                => 'GPS senesi',
 'exif-gpsdifferential'             => 'GPS differensial düzedişi',
+'exif-languagecode'                => 'Dil',
+'exif-iimcategory'                 => 'Kategoriýa',
 
 # EXIF attributes
 'exif-compression-1' => 'Gysylmadyk',
@@ -2973,6 +2976,10 @@ Sahypany gaýtadan döretmek isleýän bolsaňyz, tassyklamagyňyzy haýyş edý
 'confirm_purge_button' => 'Bolýar',
 'confirm-purge-top'    => 'Bu sahypanyň keşini boşatmalymy?',
 'confirm-purge-bottom' => 'Bir sahypany arassalamaklyk keşi boşadýar we iň täze wersiýany görüner ýaly edýär.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-unwatch-button' => 'OK',
 
 # Multipage image navigation
 'imgmultipageprev' => '← öňki sahypa',

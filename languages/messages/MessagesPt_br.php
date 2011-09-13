@@ -35,6 +35,7 @@
  * @author Malafaya
  * @author ManoDbo
  * @author McDutchie
+ * @author MetalBrasil
  * @author Raylton P. Sousa
  * @author Rodrigo Calanca Nishino
  * @author Urhixidur
@@ -722,8 +723,8 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'createaccountmail'          => 'por e-mail',
 'createaccountreason'        => 'Razão:',
 'badretype'                  => 'As senhas que você digitou não são iguais.',
-'userexists'                 => 'O nome de usuário que você digitou já existe.
-Escolha um nome diferente.',
+'userexists'                 => 'O nome de usuário fornecido já está em uso.
+Escolha um nome diferente, por favor.',
 'loginerror'                 => 'Erro de autenticação',
 'createaccounterror'         => 'Não foi possível criar a conta: $1',
 'nocookiesnew'               => "A conta do usuário foi criada, mas você não foi autenticado.
@@ -1109,7 +1110,7 @@ Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullu
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-suppressed-no-diff'      => "Você não pode ver esta comparação porque uma das revisões foi '''eliminada'''.",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de supressão].
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de supressão].
 Por ser um administrador, você ainda pode [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-suppressed-unhide-diff'  => "Uma das revisões deste diferencial foi '''suprimido'''.
 Podem haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
@@ -1313,7 +1314,7 @@ Note que os índices do sistema de busca externo poderão conter referências de
 'qbsettings-fixedright'     => 'Fixo à direita',
 'qbsettings-floatingleft'   => 'Flutuando à esquerda',
 'qbsettings-floatingright'  => 'Flutuando à direita',
-'qbsettings-directionality' => 'Fixa, dependendo da direcionalidade do seu alfabeto e da sua língua',
+'qbsettings-directionality' => 'Fixado, dependendo da direcionalidade do seu alfabeto e da sua língua',
 
 # Preferences page
 'preferences'                   => 'Preferências',
@@ -1536,7 +1537,6 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-userrights'            => 'Editar todos os direitos de usuário',
 'right-userrights-interwiki'  => 'Editar direitos de usuário de usuários outros sites wiki',
 'right-siteadmin'             => 'Bloquear e desbloquear o banco de dados',
-'right-reset-passwords'       => 'Redefinir a senha de outros usuários',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar email a outros usuários',
 
@@ -2029,7 +2029,7 @@ Entradas <del>riscadas</del> foram resolvidas.',
 'listusers-creationsort'  => 'Ordenar por data de criação',
 'usereditcount'           => '$1 {{PLURAL:$1|edição|edições}}',
 'usercreated'             => 'Registrado em $1 às $2',
-'newpages'                => 'Páginas recentes',
+'newpages'                => 'Páginas novas',
 'newpages-username'       => 'Nome de usuário:',
 'ancientpages'            => 'Páginas mais antigas',
 'move'                    => 'Mover',
@@ -2247,22 +2247,22 @@ O seu sistema de notificação amigável da {{SITENAME}}
 
 --
 Para alterar as suas preferências das notificações por correio electrónico, visite
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Para alterar as suas preferências das páginas vigiadas, visite
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Para retirar a página da lista de páginas vigiadas, visite
 $UNWATCHURL
 
 Para comentários e pedidos de ajuda:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Eliminar página',
 'confirm'                => 'Confirmar',
 'excontent'              => "o conteúdo era: '$1'",
-'excontentauthor'        => "o conteúdo era: '$1' (e o único editor era '[[Special:Contributions/$2|$2]]')",
+'excontentauthor'        => 'o conteúdo era: "$1" (e o único editor era "[[Special:Contributions/$2|$2]]")',
 'exbeforeblank'          => "o conteúdo antes de esvaziar era: '$1'",
 'exblank'                => 'página esvaziada',
 'delete-confirm'         => 'Eliminar "$1"',
@@ -2459,7 +2459,6 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'sp-contributions-username'            => 'Endereço de IP ou usuário:',
 'sp-contributions-toponly'             => 'Mostrar somente as revisões mais recentes',
 'sp-contributions-submit'              => 'Pesquisar',
-'sp-contributions-showsizediff'        => 'Mostrar a diferença no tamanho da página',
 
 # What links here
 'whatlinkshere'            => 'Páginas afluentes',
@@ -3002,7 +3001,7 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'newimages-label'       => 'Nome de arquivo (ou parte dele):',
 'showhidebots'          => '($1 robôs)',
 'noimages'              => 'Nada para ver.',
-'ilsubmit'              => 'Procurar',
+'ilsubmit'              => 'Pesquisar',
 'bydate'                => 'por data',
 'sp-newimages-showfrom' => 'Mostrar novos arquivos a partir das $2 de $1',
 
@@ -3651,7 +3650,7 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 'specialpages-note'              => '----
 * Páginas especiais normais.
 * <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>
-* <span class="mw-specialpagecached">Páginas especiais com cache.</span>',
+* <span class="mw-specialpagecached">Páginas especiais com cache (podem estar obsoletas).</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registrar-se',
@@ -3713,7 +3712,7 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 # HTML forms
 'htmlform-invalid-input'       => 'Existem problemas com alguns dos dados introduzidos',
 'htmlform-select-badoption'    => 'O valor que você especificou não é uma opção válida.',
-'htmlform-int-invalid'         => 'O valor que você especificou não é um inteiro.',
+'htmlform-int-invalid'         => 'O valor que você especificou não é um número inteiro.',
 'htmlform-float-invalid'       => 'O valor que você especificou não é um número.',
 'htmlform-int-toolow'          => 'O valor que você especificou está abaixo do mínimo de $1',
 'htmlform-int-toohigh'         => 'O valor que você especificou está acima do máximo de $1',

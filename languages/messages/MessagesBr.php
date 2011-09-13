@@ -204,7 +204,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Kas ur postel din, ha pa vije evit kemenn kemmoù dister',
 'tog-enotifrevealaddr'        => "Lakaat ma chomlec'h postel war wel er posteloù kemenn-diwall",
 'tog-shownumberswatching'     => 'Diskouez an niver a lennerien',
-'tog-oldsig'                  => 'Rakwelet ar sinadur zo evit poent :',
+'tog-oldsig'                  => 'Ar sinadur zo evit poent :',
 'tog-fancysig'                => 'Ober gant ar sinadur evel pa vefe wikitestenn (hep liamm emgefre)',
 'tog-externaleditor'          => "Ober gant ur skridaozer diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se. [http://www.mediawiki.org/wiki/Manual:External_editors Titouroù all.])",
 'tog-externaldiff'            => "Ober gant ur c'heñverier diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se. [http://www.mediawiki.org/wiki/Manual:External_editors Titouroù all.])",
@@ -685,6 +685,7 @@ Gortozit a-raok klask en-dro.",
 'passwordreset-disabled'       => 'Diweredekaet eo bet an adsevel gerioù-tremen war ar wiki-mañ.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Merkit unan eus an tammoù roadennoù dindan}}',
 'passwordreset-username'       => 'Anv implijer :',
+'passwordreset-domain'         => 'Domani :',
 'passwordreset-email'          => 'Postel :',
 'passwordreset-emailtitle'     => 'Titouroù kont war {{SITENAME}}',
 'passwordreset-emailtext-ip'   => "Unan bennak (c'hwi moarvat gant ar chomlec'h IP $1) en deus goulennet ma vefe degaset soñj dezhañ eus titouroù e gont evit {{SITENAME}} ($4). Emañ liammet {{PLURAL:$3|ar gont implijer|ar c'hontoù implijer}} da-heul gant ar chomlec'h postel-mañ :
@@ -1181,7 +1182,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'qbsettings-fixedright'     => 'Dehou',
 'qbsettings-floatingleft'   => 'War-neuñv a-gleiz',
 'qbsettings-floatingright'  => 'War-neuñv a-zehou',
-'qbsettings-directionality' => 'Merket, hervez an tu ma vez skrivet ho yezh',
+'qbsettings-directionality' => 'Difiñv, hervez an tu ma vez skrivet ho yezh',
 
 # Preferences page
 'preferences'                   => 'Penndibaboù',
@@ -1404,7 +1405,6 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-userrights'            => 'Kemmañ holl wirioù un implijer',
 'right-userrights-interwiki'  => 'Kemmañ ar gwirioù implijer zo war ur wiki all',
 'right-siteadmin'             => 'Prennañ ha dibrennañ ar bank-titouroù',
-'right-reset-passwords'       => 'Kemmañ ger-tremen implijerien all',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
 
@@ -1692,7 +1692,7 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'upload-curl-error28'      => "Aet dreist d'an termen",
 'upload-curl-error28-text' => "Re bell eo bet al lec'hienn o respont. Gwiriit mat emañ al lec'hienn enlinenn, gortozit ur pennadig ha klaskit en-dro. Mat e vo deoc'h adklask d'ur mare dibresoc'h marteze ivez.",
 
-'license'            => 'Aotre implijout :',
+'license'            => 'Aotre-implijout :',
 'license-header'     => 'Aotre implijout',
 'nolicense'          => 'Hini ebet diuzet',
 'license-nopreview'  => '(Dibosupl rakwelet)',
@@ -1701,8 +1701,7 @@ Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 
 # Special:ListFiles
 'listfiles-summary'     => 'Diskouez a ra ar bajenn dibar-mañ an holl restroù bet enporzhiet.
-Dre ziouer e teu ar restroù enporzhiet da ziwezhañ e laez ar roll.
-Klikañ e penn ar bann a cheñch an urzh kinnig.',
+Pa vez silet dre implijerien, ne vez diskouezet nemet ar restroù eo bet enporzhiet ar stumm diwezhañ anezho gant an implijerien-se.',
 'listfiles_search_for'  => 'Klask anv ar skeudenn :',
 'imgfile'               => 'restr',
 'listfiles'             => 'Roll ar skeudennoù',
@@ -1943,7 +1942,7 @@ Gallout a rit strishaat ar mod diskwel en ur zibab ar marilh, an anv implijer (d
 'prevpage'          => 'Pajenn gent ($1)',
 'allpagesfrom'      => 'Diskouez ar pajennoù adal :',
 'allpagesto'        => 'Diskouez ar pajennoù betek :',
-'allarticles'       => 'An holl bennadoù',
+'allarticles'       => 'An holl bajennoù',
 'allinnamespace'    => 'An holl bajennoù (esaouenn $1)',
 'allnotinnamespace' => "An holl bajennoù (ar re n'emaint ket en esaouenn anv $1)",
 'allpagesprev'      => 'Kent',
@@ -2124,16 +2123,16 @@ Gallout a rit nevesaat doare ar pennadoù evezhiet ganeoc\'h en ho rollad evezhi
 
 --
 A-benn kemmañ arventennoù ho kemennoù dre bostel, sellit ouzh
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 A-benn dilemel ar bajenn eus ho rollad evezhiañ, sellit ouzh
 $UNWATCHURL
 
 Evezhiadennoù ha skoazell pelloc\'h :
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Diverkañ ur bajenn',
@@ -2335,7 +2334,6 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'sp-contributions-username'            => "Anv implijer pe chomlec'h IP :",
 'sp-contributions-toponly'             => 'Na ziskouez nemet an adweladennoù diwezhañ',
 'sp-contributions-submit'              => 'Klask',
-'sp-contributions-showsizediff'        => "Diskwel an diforc'h e ment ar bajenn",
 
 # What links here
 'whatlinkshere'            => 'Pajennoù liammet',
@@ -3523,11 +3521,11 @@ Gallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].',
 'version-license'               => 'Aotre-implijout',
 'version-poweredby-credits'     => "Mont a ra ar wiki-mañ en-dro a-drugarez da '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 're all',
-'version-license-info'          => "Ur meziant frank eo MediaWiki; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre implijout, pe (evel mar karit) ne vern pe stumm nevesoc'h.
+'version-license-info'          => "Ur meziant frank eo MediaWiki; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre-implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre-implijout, pe (evel mar karit) ne vern pe stumm nevesoc'h.
 
-Ingalet eo MediaWiki gant ar spi e vo talvoudus met n'eus TAMM GWARANT EBET; hep zoken gwarant empleg ar VARC'HADUSTED pe an AZASTER OUZH UR PAL BENNAK. Gwelet ar GNU Aotre Implijout Foran Hollek evit muioc'h a ditouroù.
+Ingalet eo MediaWiki gant ar spi e vo talvoudus met n'eus TAMM GWARANT EBET; hep zoken gwarant empleg ar VARC'HADUSTED pe an AZASTER OUZH UR PAL BENNAK. Gwelet ar GNU Aotre-Implijout Foran Hollek evit muioc'h a ditouroù.
 
-Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar GNU Aotre implijout Foran Hollek] a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
+Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar GNU Aotre-implijout Foran Hollek] a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
 'version-software'              => 'Meziant staliet',
 'version-software-product'      => 'Produ',
 'version-software-version'      => 'Stumm',
@@ -3556,7 +3554,7 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 'specialpages-note'              => '----
 * Pajennoù dibar boutin.
 * <span class="mw-specialpagerestricted">Pajennoù dibar miret strizh.</span>
-* <span class="mw-specialpagecached">Pajennoù dibar krubuilhet hepken.</span>',
+* <span class="mw-specialpagecached">Pajennoù dibar krubuilhet hepken (a c\'hellfe bezañ re gozh).</span>',
 'specialpages-group-maintenance' => "Rentaoù-kont trezalc'h",
 'specialpages-group-other'       => 'Pajennoù dibar all',
 'specialpages-group-login'       => 'Kevreañ / en em enrollañ',

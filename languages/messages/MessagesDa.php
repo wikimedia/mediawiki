@@ -212,7 +212,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Send mig også en e-mail ved mindre ændringer af overvågede sider',
 'tog-enotifrevealaddr'        => 'Vis min e-mail-adresse i mails med besked om ændringer',
 'tog-shownumberswatching'     => 'Vis antal brugere, der overvåger',
-'tog-oldsig'                  => 'Forhåndsvisning af nuværende signatur',
+'tog-oldsig'                  => 'Nuværende signatur:',
 'tog-fancysig'                => 'Behandl signatur som wikitekst uden automatisk henvisning',
 'tog-externaleditor'          => 'Brug ekstern editor automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [http://www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
 'tog-externaldiff'            => 'Brug ekstern forskelsvisning automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [http://www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
@@ -602,7 +602,8 @@ Din konto er blevet oprettet. Glem ikke at personliggøre dine [[Special:Prefere
 'createaccountmail'          => 'via e-mail',
 'createaccountreason'        => 'Begrundelse:',
 'badretype'                  => 'De indtastede adgangskoder er ikke ens.',
-'userexists'                 => 'Det brugernavn du har valgt er allerede i brug. Vælg venligst et andet brugernavn.',
+'userexists'                 => 'Det brugernavn, du har valgt, er allerede i brug.
+Vælg venligst et andet brugernavn.',
 'loginerror'                 => 'Logon mislykket',
 'createaccounterror'         => 'Kunne ikke oprette konto: $1',
 'nocookiesnew'               => 'Din brugerkonto er nu oprettet, men du er ikke logget på. {{SITENAME}} bruger cookies til at logge brugere på. Du har slået cookies fra. Vær venlig at slå cookies til, og derefter kan du logge på med dit nye brugernavn og kodeord.',
@@ -693,6 +694,7 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'passwordreset-disabled'       => 'Nulstilling af kodeord er slået fra på denne wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Indtast en af de nedenstående oplysninger}}',
 'passwordreset-username'       => 'Brugernavn:',
+'passwordreset-domain'         => 'Domæne:',
 'passwordreset-email'          => 'E-mail adresse:',
 'passwordreset-emailtitle'     => 'Kontooplysninger på {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
@@ -1187,7 +1189,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'qbsettings-fixedright'     => 'Fast højre',
 'qbsettings-floatingleft'   => 'Flydende venstre',
 'qbsettings-floatingright'  => 'Flydende højre',
-'qbsettings-directionality' => 'Fast, afhængigt af dit sprog og retningen, det skrives i',
+'qbsettings-directionality' => 'Fast, afhængigt af dit sprogs skriveretning',
 
 # Preferences page
 'preferences'                   => 'Indstillinger',
@@ -1270,7 +1272,7 @@ Det kan ikke gøres om.',
 'prefs-registration'            => 'Registreringstidspunkt:',
 'yourrealname'                  => 'Dit rigtige navn:',
 'yourlanguage'                  => 'Sprog:',
-'yourvariant'                   => 'Sprogvariant:',
+'yourvariant'                   => 'Sprogvariant for indhold:',
 'yournick'                      => 'Signatur:',
 'prefs-help-signature'          => 'Kommentarer på diskussionssider bør signeres med "<nowiki>~~~~</nowiki>" som vil blive konverteret til din signatur og et tidsstempel.',
 'badsig'                        => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
@@ -1323,7 +1325,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'userrights-no-interwiki'      => 'Du kan ikke ændre brugerrettigheder på andre wikier.',
 'userrights-nodatabase'        => 'Databasen $1 eksisterer ikke lokalt.',
 'userrights-nologin'           => 'Du skal [[Special:UserLogin|logge på]] med en administrativ konto, før du kan ændre brugerettigheder.',
-'userrights-notallowed'        => 'Din konto har ikke adgang til at ændre brugerrettigheder.',
+'userrights-notallowed'        => 'Din konto har ikke adgang til at tilføje eller fjerne brugerrettigheder.',
 'userrights-changeable-col'    => 'Redigerbare grupper',
 'userrights-unchangeable-col'  => 'Uredigerbare grupper',
 
@@ -1409,7 +1411,6 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-userrights'            => 'Ændre alle brugerrettigheder',
 'right-userrights-interwiki'  => 'Ændre brugerrettigheder på andre wikier',
 'right-siteadmin'             => 'Låse og frigive databasen',
-'right-reset-passwords'       => 'Ændre andre brugeres adgangskode',
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
 
@@ -1688,7 +1689,8 @@ For optimal sikkerhed er img_auth.php deaktiveret.",
 'upload_source_file' => ' (en fil på din computer)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Denne specialside viser alle oplagte filer. Standardmæssigt vises de sidst oplagte filer først. Med et klik på spalteoverskriften kan sorteringen vendes om, eller der kan sorteres efter en anden spalte.',
+'listfiles-summary'     => 'Denne specialside viser alle oplagte filer.
+Når der filtreres efter bruger, vil kun filer, hvor den pågældende bruger lagde den seneste version af filen op, blive vist.',
 'listfiles_search_for'  => 'Søge efter fil:',
 'imgfile'               => 'Fil',
 'listfiles'             => 'Filliste',
@@ -2102,16 +2104,16 @@ På din overvågningsliste kan du også nulstille alle markeringer på de sider,
 
 --
 For at ændre dine indstillinger for e-mail-notifikationer, besøg
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 For at ændre indstillingerne for din overvågningsliste, besøg
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 For at slette siden fra din overvågningsliste, besøg
 $UNWATCHURL
 
 Tilbagemelding og yderligere hjælp:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Slet side',
@@ -2311,7 +2313,6 @@ Den seneste post i blokeringsloggen vises nedenfor:',
 'sp-contributions-username'            => 'IP-adresse eller brugernavn:',
 'sp-contributions-toponly'             => 'Vis kun redigeringer, der er aktuelle versioner',
 'sp-contributions-submit'              => 'Søg',
-'sp-contributions-showsizediff'        => 'Vis forskel i sidestørrelse',
 
 # What links here
 'whatlinkshere'            => 'Hvad henviser hertil',
@@ -2400,7 +2401,7 @@ Se [[Special:IPBlockList|IP-blokeringslisten]] for alle blokeringer.',
 'ipblocklist-submit'              => 'Søg',
 'ipblocklist-localblock'          => 'Lokal blokering',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|Øvrig blokering|Øvrige blokeringer}}',
-'infiniteblock'                   => 'udløber infinite',
+'infiniteblock'                   => 'udløber ikke',
 'expiringblock'                   => 'udløber $1 $2',
 'anononlyblock'                   => 'kun anonyme',
 'noautoblockblock'                => 'Autoblok deaktiveret',
@@ -2440,7 +2441,7 @@ Skjulningsloggen vises nedenfor som reference:',
 'ipb-otherblocks-header'          => 'Yderligere {{PLURAL:$1|blokering|blokeringer}}',
 'unblock-hideuser'                => 'Du kan ikke ophæve denne brugers blokering, da brugernavnet er blevet skjult.',
 'ipb_cant_unblock'                => 'Fejl: Spærre-ID $1 ikke fundet. Spærringen er allerede ophævet.',
-'ipb_blocked_as_range'            => 'Fejl: IP-adressen $1 er ikke dirkete blokeret. Derfor kan en blokering ikke ophæves. Adressen er blokeret som en del af intervallet $2. Denne blokering kan ophæves.',
+'ipb_blocked_as_range'            => 'Fejl: IP-adressen $1 er ikke direkte blokeret. Derfor kan en blokering ikke ophæves. Adressen er blokeret som en del af intervallet $2. Denne blokering kan ophæves.',
 'ip_range_invalid'                => 'Ugyldigt IP-interval.',
 'ip_range_toolarge'               => 'Blokeringer af IP-serier større end /$1 er ikke tilladte.',
 'blockme'                         => 'Bloker mig',
@@ -3065,9 +3066,9 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-orientation-3' => 'Drejet 180°',
 'exif-orientation-4' => 'Vertikalt spejlet',
 'exif-orientation-5' => 'Drejet 90° mod uret og spejlet vertikalt',
-'exif-orientation-6' => 'Drejet 90° med uret',
+'exif-orientation-6' => 'Drejet 90° mod uret',
 'exif-orientation-7' => 'Drejet 90° med uret og spejlet vertikalt',
-'exif-orientation-8' => 'Drejet 90° mod uret',
+'exif-orientation-8' => 'Drejet 90° med uret',
 
 'exif-planarconfiguration-1' => 'Grovformat',
 'exif-planarconfiguration-2' => 'Planformat',
@@ -3479,7 +3480,7 @@ Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 'specialpages-note'              => '----
 * Normale specialsider.
 * <span class="mw-specialpagerestricted">Specialsider med begrænset adgang.</span>
-* <span class="mw-specialpagecached">Specialsider der opdateres med jævne mellemrum.</span>',
+* <span class="mw-specialpagecached">Specialsider der opdateres med jævne mellemrum (kan være forældede).</span>',
 'specialpages-group-maintenance' => 'Vedligeholdelsesside',
 'specialpages-group-other'       => 'Andre specialsider',
 'specialpages-group-login'       => 'Opret bruger / logon',
@@ -3512,8 +3513,7 @@ Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 'tag-filter'              => '[[Special:Tags|tag]]filter:',
 'tag-filter-submit'       => 'Filtrér',
 'tags-title'              => 'Tags',
-'tags-intro'              => 'This page lists the tags that the software may mark an edit with, and their meaning.
-Denne side oplister de tags som programmet kan mærke en redigering med, og deres betydning.',
+'tags-intro'              => 'Denne side oplister de tags som programmet kan mærke en redigering med, og deres betydning.',
 'tags-tag'                => 'Tagnavn',
 'tags-display-header'     => 'Udseende på ændringslister',
 'tags-description-header' => 'Beskrivelse af betydning',

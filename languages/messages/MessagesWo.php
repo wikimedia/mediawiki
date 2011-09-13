@@ -1145,7 +1145,6 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'right-userrights'            => 'Soppi bépp sañ-sañu jëfandikukat bi',
 'right-userrights-interwiki'  => 'Soppi sañ-sañi jëfandikukat yu yeneen wiki',
 'right-siteadmin'             => 'Caabi walla caabeedi dàttub njoxe bi',
-'right-reset-passwords'       => 'Soppi baatujàllub ay jëfandikukat',
 'right-override-export-depth' => 'génne ay xët yu ëmbi xët yu lëkkaloo ba-ci xóotaay bu tolluwaayam àgg 5',
 
 # User rights log

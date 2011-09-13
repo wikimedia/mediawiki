@@ -323,6 +323,7 @@ $messages = array(
 'userpage'          => 'Vider págine del usator',
 'projectpage'       => 'Vider págine de projecte',
 'imagepage'         => 'Vider li págine de figura',
+'templatepage'      => 'Vider li págine de avise',
 'viewhelppage'      => 'Vider págine de auxilie',
 'viewtalkpage'      => 'Vider discussion',
 'otherlanguages'    => 'Altri lingues',
@@ -377,6 +378,7 @@ Vider [[Special:Version|págine de version]].',
 'toc'                     => 'Contenetes',
 'showtoc'                 => 'monstrar',
 'hidetoc'                 => 'ocultar',
+'thisisdeleted'           => 'Vider o restaurar $1?',
 'viewdeleted'             => 'Vider $1?',
 'site-atom-feed'          => '$1 Atom feed',
 'page-atom-feed'          => '"$1" Atom feed',
@@ -434,6 +436,7 @@ Ne oblivia de mutar tui [[Special:Preferences|preferenties de {{SITENAME}}]].',
 'nav-login-createaccount'    => 'Crear un conto o intrar',
 'loginprompt'                => 'Cookies deve esser permisset por intrar in {{SITENAME}}.',
 'userlogin'                  => 'Crear un conto o intrar',
+'userloginnocreate'          => 'Intrar',
 'logout'                     => 'Surtida',
 'userlogout'                 => 'Surtida',
 'notloggedin'                => 'Vu ne ha intrat',
@@ -444,6 +447,8 @@ Ne oblivia de mutar tui [[Special:Preferences|preferenties de {{SITENAME}}]].',
 'gotaccountlink'             => 'Intrar',
 'userlogin-resetlink'        => 'Obliviat tui detallies de registre?',
 'badretype'                  => 'Li passa-paroles queles vu tippat ne es identic.',
+'userexists'                 => 'Nómine de usator ja in usu.
+Pleser opta por un nómine diferent.',
 'loginerror'                 => 'Erra in initiation del session',
 'nocookieslogin'             => '{{SITENAME}} utilisa cookies por far intrar usatores. Vu nu ne permisse cookies. Ples permisser les e provar denov.',
 'loginsuccesstitle'          => 'Apertion de session successosi',
@@ -453,7 +458,10 @@ Pleser prova denov.',
 'wrongpasswordempty'         => 'Parol-clave inscrit esset nud.
 Pleser prova denov.',
 'mailmypassword'             => 'Nov parol-clave per e-mail',
+'throttled-mailpassword'     => 'Un parol-clave amemora ha ja esset inviat, intra li ultim {{PLURAL:$1|hor|$1 hores}}.
+Por preventer misusa, solmen un parol-clave amemora va esser inviat per {{PLURAL:$1|hor|$1 hores}}.',
 'acct_creation_throttle_hit' => 'Vu ja ha creat $1 contos. Vu ne posse crear pli mult quam to.',
+'usernamehasherror'          => 'Nómine de usator ne posse contene mixtura de carácteres',
 'loginlanguagelabel'         => 'Lingue: $1',
 
 # Change password dialog
@@ -508,6 +516,17 @@ Vu posse [[Special:Search/{{PAGENAME}}|serchar por ti titul de págine]] in altr
 'noarticletext-nopermission'       => 'Vi currentmen ne textu in ti págine.
 Vu posse [[Special:Search/{{PAGENAME}}|serchar por titul de ti págine]] in altri págines,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} serchar li diariumes relatet]</span>.',
+'userpage-userdoesnotexist'        => 'Conto de usator "$1" ne es registrat.
+Pleser controla si vu cari crear/redacter ti págine.',
+'userpage-userdoesnotexist-view'   => 'Conto de usator "$1" ne es registrat.',
+'usercssyoucanpreview'             => "'''Punta:''' Usa li buton \"{{int:showpreview}}\" por provar tui nov CSS ante de conservar.",
+'userjsyoucanpreview'              => "'''Punta:''' Usa li buton \"{{int:showpreview}}\" por provar tui nov JavaScript ante de conservar.",
+'usercsspreview'                   => "'''Memora que vu es solmen vident un prevision de tui CSS de usator.'''
+'''It ne have esset conservat ancor!'''",
+'userjspreview'                    => "'''Memora que vu es solmen provant/monstrant tui JavaScript de usator.'''
+'''It ne ha esset conservat ancor!'''",
+'userinvalidcssjstitle'            => "'''Advertiment:''' Ne vi pelle \"\$1\".
+Memora que hábitu .css e págines .js usa un titul plu bass, e.g. {{ns:user}}:Foo/vector.css quam oposit por {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Modernisat)',
 'previewnote'                      => "'''Memora se que ti es solmen un prevision.'''
 Tui changes ancor ne ha esset conservat!",
@@ -521,6 +540,8 @@ Ti quelcvez ocurre quande vu es usant un service de autorisation anonim mal exec
 'yourdiff'                         => 'Diferenties',
 'copyrightwarning'                 => "Omni contributiones a {{SITENAME}} es considerat quam publicat sub li termines del $2 (ples vider $1 por plu mult detallies). Si vu ne vole que vor ovres mey esser modificat e distribuet secun arbitrie, ples ne inviar les. Adplu, ples contribuer solmen vor propri ovres o ovres ex un fonte quel es líber de jures. '''NE UTILISA OVRES SUB JURE EDITORIAL SIN DEFINITIV AUTORISATION!'''",
 'templatesused'                    => '{{PLURAL:$1|Avise|Avises}} usat in ti págine:',
+'templatesusedpreview'             => '{{PLURAL:$1|Avise|Avises}} usat in ti prevision:',
+'templatesusedsection'             => '{{PLURAL:$1|Avise|Avises}} usat in ti division:',
 'template-protected'               => '(gardat)',
 'template-semiprotected'           => '(medie-gardat)',
 'hiddencategories'                 => 'Ti págine es un membre de {{PLURAL:$1|1 categorie ocultat|$1 categories ocultat}}:',
@@ -595,6 +616,7 @@ Legende: '''({{int:cur}})''' = diferenties che ultim revision, '''({{int:last}})
 'searchresults'                    => 'Serchar resultates',
 'searchresults-title'              => 'Serchar resultates por "$1"',
 'toomanymatches'                   => 'Anc mult concurses esset retornat, pleser prova un question diferent',
+'textmatches'                      => 'Resultates in textu de págines',
 'prevn'                            => '{{PLURAL:$1|$1}} anteriori',
 'nextn'                            => 'proxim {{PLURAL:$1|$1}}',
 'prevn-title'                      => 'Anteriori $1 {{PLURAL:$1|resultate|resultates}}',
@@ -638,6 +660,7 @@ Legende: '''({{int:cur}})''' = diferenties che ultim revision, '''({{int:last}})
 'saveprefs'               => 'Conservar',
 'searchresultshead'       => 'Serchar',
 'youremail'               => 'E-mail:',
+'username'                => 'Nómine de usator:',
 'uid'                     => 'Identification de usator:',
 'yourrealname'            => 'Nómine real:',
 'yourlanguage'            => 'Lingue:',
@@ -647,6 +670,25 @@ Legende: '''({{int:cur}})''' = diferenties che ultim revision, '''({{int:last}})
 'prefs-help-email'        => 'Adresse de e-mail es optional, ma es necessitá por recomensar parol-clave, deve vu obliviar tui parol-clave.',
 'prefs-help-email-others' => 'Vu posse anc optar por permisser altri contacter vu per e-mail complet che un catenun in tui págine de usator o págine de discussion.
 Tui adresse de e-mail ne es revelat quande altri usatores contacter vu.',
+
+# User rights
+'userrights'                   => 'Gerement de jures de usator',
+'userrights-lookup-user'       => 'Gerer gruppes de usator',
+'userrights-user-editname'     => 'Intrar un nómine de usator:',
+'userrights-editusergroup'     => 'Redacter gruppes de usator',
+'userrights-groupsmember'      => 'Membre de:',
+'userrights-groupsmember-auto' => 'Membre implicit de:',
+'userrights-groups-help'       => 'Vu posse alterar li gruppes de ti usator in:
+* Un buxe controlat significa que li usator es in ti gruppe.
+* Un buxe descontrolat significa que li usator ne es in ti gruppe.
+* Un * indica que vu ne posse remover li gruppe un vez que vu have adjuntet it, o inversi.',
+'userrights-reason'            => 'Motive:',
+'userrights-no-interwiki'      => 'Vu ne have permission por redacter jures de usator in altri wikis.',
+'userrights-nodatabase'        => 'Funde de data $1 ne existe o ne es local.',
+'userrights-nologin'           => 'Vu deve [[Special:UserLogin|registrar]] che un conto de administrator por atribuer jures de usator.',
+'userrights-notallowed'        => 'Tui conto ne have permission por atribuer jures de usator.',
+'userrights-changeable-col'    => 'Gruppes que vu posse changear',
+'userrights-unchangeable-col'  => 'Gruppes que vu ne posse changear',
 
 # Groups
 'group-user'  => 'Usatores',
@@ -850,6 +892,7 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'longpages'               => 'Págines long',
 'deadendpages'            => 'Págines sin exeada',
 'listusers'               => 'Liste de usatores',
+'usereditcount'           => '$1 {{PLURAL:$1|redaction|redactiones}}',
 'usercreated'             => 'Creat in $1 in $2',
 'newpages'                => 'Nov págines',
 'ancientpages'            => 'Li max old págines',
@@ -895,7 +938,15 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'listgrouprights-members' => '(liste de membres)',
 
 # E-mail user
-'emailuser' => 'Parlar che ti usator',
+'emailuser'            => 'Parlar che ti usator',
+'usermailererror'      => 'Objecte de postage retornat errore:',
+'usermaildisabled'     => 'E-mail de usator desvalidat',
+'usermaildisabledtext' => 'Vu ne posse inviar e-mail por altri usatores in ti wiki',
+
+# User Messenger
+'usermessage-summary'  => 'Abandonant missage del sistema',
+'usermessage-editor'   => 'Missagero del sistema',
+'usermessage-template' => 'MediaWiki:UserMessage',
 
 # Watchlist
 'watchlist'            => 'Liste de págines vigilat',
@@ -953,11 +1004,55 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'restriction-move' => 'Mover',
 
 # Undelete
-'viewdeletedpage'        => 'Vider págines deletet',
-'undeletebtn'            => 'Restaurar',
-'undeletelink'           => 'vider/restaurar',
-'undeleteviewlink'       => 'vider',
-'undelete-search-submit' => 'Serchar',
+'undelete'                     => 'Vider págines deletet',
+'undeletepage'                 => 'Vider e restaurar págines deletet',
+'undeletepagetitle'            => "'''Li proxim consiste de revisiones deletet de [[:$1|$1]]'''.",
+'viewdeletedpage'              => 'Vider págines deletet',
+'undeletepagetext'             => 'Li proxim {{PLURAL:$1|págine ha esset deletet ma es|$1 págines have esset esset deletet ma es}} ínmobil in li archive e posse esser restaurat. Li archive posse esser periodicomen demuddat.',
+'undelete-fieldset-title'      => 'Restaurar revisiones',
+'undeleteextrahelp'            => "Por restaurar li historie complet de págine, abandona omni li buxes de controle deselectet e clacca '''''{{int:undeletebtn}}'''''.
+Por efectuar un restauration selectiv, controla li buxes secun por li revisiones por esser restaurat, e clacca '''''{{int:undeletebtn}}'''''.",
+'undeleterevisions'            => '$1 {{PLURAL:$1|revision|revisiones}} conservat',
+'undeletehistory'              => 'Si vu restaurar li págine, omni li revisiones va esser restaurat por li historie.
+Si un nov págine che nómine identic ha esset creat desde li deletion, li revisiones restaurat va aparir in li historie precedent.',
+'undeleterevdel'               => 'Restauration ne va esser efectuat si it va resultar in li págine superiori o revision de file essent partialmen deletet.
+In tal casus, vu deve descontrolar o desocultar li ultim revision deletet.',
+'undeletehistorynoadmin'       => 'Ti págine ha esset deletet.
+Li motive por deletion es monstrat in li summarium infra, junt che detallies del usatores que hat redactet ti págine ante de deletion.
+Li textu efectiv de tis revisiones deletet es solmen disponibil por administratores.',
+'undelete-revision'            => 'Revision deletet de $1 (quam de $4, in $5) per $3:',
+'undeleterevision-missing'     => 'Revision ínvalid o mancant.
+Vu posse have un catenun mal, o li revision posse have esset restaurat o removet del archive.',
+'undelete-nodiff'              => 'Ne esset instituet revision anteriori.',
+'undeletebtn'                  => 'Restaurar',
+'undeletelink'                 => 'vider/restaurar',
+'undeleteviewlink'             => 'vider',
+'undeletereset'                => 'Recomensar',
+'undeleteinvert'               => 'Inverter selection',
+'undeletecomment'              => 'Motive:',
+'undeletedarticle'             => 'restaurat "[[$1]]"',
+'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisiones}} restaurat',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisiones}} e {{PLURAL:$2|1 file|$2 files}} restaurat',
+'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} restaurat',
+'undeletedpage'                => "'''$1 ha esset restaurat'''
+
+Consulta li [[Special:Log/delete|diarium de deletion]] por un registre de deletiones nov e restaurationes.",
+'undelete-header'              => 'Vider [[Special:Log/delete|li diarium de deletion]] por págines deletet currentmen.',
+'undelete-search-box'          => 'Serchar págines deletet',
+'undelete-search-prefix'       => 'Monstrar págines comensant che:',
+'undelete-search-submit'       => 'Serchar',
+'undelete-no-results'          => 'Ne esset instituet págines egale in li archive de deletion.',
+'undelete-filename-mismatch'   => 'Ne posse restaurar version de file $1 che hor e date: nómine de file misegala',
+'undelete-bad-store-key'       => 'Ne posse restaurar version che hor e date de file $1: file esset existet ante de deletion.',
+'undelete-cleanup-error'       => 'Error deletent archive sin usu de file "$1".',
+'undelete-missing-filearchive' => 'Ne posse restaurar archive de file ID $1 pro que it ne es in li funde de data.
+It posse have ja esset restaurat.',
+'undelete-error-short'         => 'Errore in li restauration de file: $1',
+'undelete-error-long'          => 'Errores esset incontrat durante li restauration de file:
+
+$1',
+'undelete-show-file-confirm'   => 'Vu comprende se que vu cari vider li revision deletet del file "<nowiki>$1</nowiki>" de $2 in $3?',
+'undelete-show-file-submit'    => 'Yes',
 
 # Namespace form on various pages
 'namespace'      => 'Spacie de nómine:',
@@ -1024,6 +1119,8 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'newtitle'        => 'Por nov titul:',
 'move-watch'      => 'Vigilar ti págine',
 'movepagebtn'     => 'Mover págine',
+'talkexists'      => "'''Li págine itself esset movet successosimen, ma li págine de discussion ne posset esser movet pro que un ja existe in li nov titul.
+Pleser fuse les manualmen.'''",
 'movedto'         => 'movet por',
 '1movedto2'       => '[[$1]] hat movet por [[$2]]',
 '1movedto2_redir' => 'movet [[$1]] por [[$2]] redirectionment ultra',
@@ -1040,8 +1137,13 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'allmessagesdefault' => 'Textu de missage de contumacie',
 
 # Thumbnails
-'thumbnail-more'  => 'Expander',
-'thumbnail_error' => 'Errore creant miniatura: $1',
+'thumbnail-more'           => 'Expander',
+'thumbnail_error'          => 'Errore creant miniatura: $1',
+'thumbnail_invalid_params' => 'Parametres de miniatura ínvalid',
+'thumbnail_dest_directory' => 'Ne posse crear adressarium de adresse',
+'thumbnail_image-type'     => 'Tip de figura ne suportat',
+'thumbnail_gd-library'     => 'Configuration de biblioteca GD íncomplet: mancant function $1',
+'thumbnail_image-missing'  => 'File sembla por esser mancant: $1',
 
 # Special:Import
 'xml-error-string' => '$1 in linea $2, col $3 (byte $4): $5',
@@ -1128,6 +1230,7 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'nextdiff'     => 'Proxim redaction →',
 
 # Media information
+'thumbsize'       => 'Mesura de miniatura:',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|págine|págines}}',
 'file-info-size'  => '$1 × $2 pixeles, dimension de file: $3, tip MIME: $4',
 'file-nohires'    => '<small>Nequant resolution max alt disponibil.</small>',
@@ -1256,6 +1359,16 @@ Vu posse anc [[Special:EditWatchlist|usar li redactor uniform]].',
 #Colocar omni fragmentes regulari súper ti linea. Abandonar ti linea exactmen quam it es</pre>',
 
 # Special:Tags
-'tag-filter' => 'Filtre de [[Special:Tags|puntale]]:',
+'tags'                    => 'Puntales de change valid',
+'tag-filter'              => 'Filtre de [[Special:Tags|puntale]]:',
+'tag-filter-submit'       => 'Filtre',
+'tags-title'              => 'Puntales',
+'tags-intro'              => 'Ti págine lista li puntales que li software posse marcar un redaction che, e lor signification.',
+'tags-tag'                => 'Nómine de puntale',
+'tags-display-header'     => 'Aspecte in listes de change',
+'tags-description-header' => 'Descrition complet de signification',
+'tags-hitcount-header'    => 'Changes nómiat',
+'tags-edit'               => 'redacter',
+'tags-hitcount'           => '$1 {{PLURAL:$1|change|changes}}',
 
 );

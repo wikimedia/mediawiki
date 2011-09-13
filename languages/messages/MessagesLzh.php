@@ -1166,7 +1166,6 @@ $1",
 'right-userrights'            => '纂簿權',
 'right-userrights-interwiki'  => '纂另wiki他簿之權',
 'right-siteadmin'             => '鎖與解鎖資料庫',
-'right-reset-passwords'       => '設他簿之符節',
 'right-override-export-depth' => '出有五層深之頁',
 'right-sendemail'             => '擬書傳予他簿',
 
@@ -1789,11 +1788,11 @@ $NEWPAGE
 {{SITENAME}}敬上
 
 --
-欲更哨令，惠訪{{fullurl:{{#special:EditWatchlist}}}}
+欲更哨令，惠訪{{canonicalurl:{{#special:EditWatchlist}}}}
 
 欲刪之頁，惠訪$UNWATCHURL
 
-饋助之，惠訪{{fullurl:{{MediaWiki:Helppage}}}}',
+饋助之，惠訪{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => '刪頁',

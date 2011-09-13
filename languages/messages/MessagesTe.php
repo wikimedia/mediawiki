@@ -426,6 +426,8 @@ $1',
 'page-rss-feed'           => '"$1" ఆరెసెస్సు(RSS) ఫీడు',
 'page-atom-feed'          => '"$1" ఆటమ్ ఫీడు',
 'red-link-title'          => '$1 (పుట లేదు)',
+'sort-descending'         => 'అవరోహణ క్రమంలో అమర్చు',
+'sort-ascending'          => 'ఆరోహణ క్రమంలో అమర్చు',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'పేజీ',
@@ -536,7 +538,7 @@ $2',
 మీ ఖాతాని సృష్టించాం.
 మీ [[Special:Preferences|{{SITENAME}} అభిరుచులను]] మార్చుకోవడం మరువకండి.',
 'yourname'                   => 'వాడుకరిపేరు:',
-'yourpassword'               => 'మీ సంకేతపదం',
+'yourpassword'               => 'సంకేతపదం:',
 'yourpasswordagain'          => 'సంకేతపదాన్ని మళ్ళీ ఇవ్వండి:',
 'remembermypassword'         => 'ఈ కంప్యూటరులో నా ప్రవేశాన్ని గుర్తుంచుకో (గరిష్ఠంగా $1 {{PLURAL:$1|రోజు|రోజుల}}కి)',
 'securelogin-stick-https'    => 'ప్రవేశం తర్వాత కూడా HTTPSకి అనుసంధానమై ఉండు',
@@ -559,8 +561,8 @@ $2',
 'createaccountmail'          => 'ఈ-మెయిలు ద్వారా',
 'createaccountreason'        => 'కారణం:',
 'badretype'                  => 'మీరు ఇచ్చిన రెండు సంకేతపదాలు ఒకదానితో మరొకటి సరిపోలడం లేదు.',
-'userexists'                 => 'మీరిచ్చిన వాడుకరిపేరు ఇప్పటికే వాడుకలో ఉంది.
-వేరే పేరు ఎంచుకోండి.',
+'userexists'                 => 'ఇచ్చిన వాడుకరిపేరు ఇప్పటికే వాడుకలో ఉంది.
+వేరే పేరును ఎంచుకోండి.',
 'loginerror'                 => 'ప్రవేశంలో పొరపాటు',
 'createaccounterror'         => 'ఖాతాని సృష్టించలేకపోయాం: $1',
 'nocookiesnew'               => 'ఖాతాని సృష్టించాం, కానీ ఇంకా లోనికి ప్రవేశించలేదు.
@@ -1133,12 +1135,13 @@ $1",
 'searchdisabled'                   => '{{SITENAME}} అన్వేషణ తాత్కాలికంగా పని చెయ్యడం లేదు. ఈలోగా మీరు గూగుల్‌ ఉపయోగించి అన్వేషించవచ్చు. ఒక గమనిక: గూగుల్‌ ద్వారా కాలదోషం పట్టిన ఫలితాలు రావడానికి అవకాశం ఉంది.',
 
 # Quickbar
-'qbsettings'               => 'క్విక్‌బార్',
-'qbsettings-none'          => 'ఏదీకాదు',
-'qbsettings-fixedleft'     => 'స్థిర ఎడమ',
-'qbsettings-fixedright'    => 'స్థిర కుడి',
-'qbsettings-floatingleft'  => 'ఎడమకు ఒదిగి',
-'qbsettings-floatingright' => 'కుడికి ఒదిగి',
+'qbsettings'                => 'క్విక్‌బార్',
+'qbsettings-none'           => 'ఏదీకాదు',
+'qbsettings-fixedleft'      => 'స్థిర ఎడమ',
+'qbsettings-fixedright'     => 'స్థిర కుడి',
+'qbsettings-floatingleft'   => 'ఎడమకు ఒదిగి',
+'qbsettings-floatingright'  => 'కుడికి ఒదిగి',
+'qbsettings-directionality' => 'స్థిరం, మీ లిపి మరియు భాషల యొక్క దిశ ఆధారంగా',
 
 # Preferences page
 'preferences'                   => 'అభిరుచులు',
@@ -1357,7 +1360,6 @@ $1",
 'right-userrights'            => 'వాడుకరులందరి హక్కులను మార్చు',
 'right-userrights-interwiki'  => 'ఇతర వికీల్లోని వాడుకరుల హక్కులను మార్చు',
 'right-siteadmin'             => 'డేటాబేసును లాక్, అన్‌లాక్ చెయ్యి',
-'right-reset-passwords'       => 'మిగతా వాడుకరుల సందేశమును మార్చుము',
 'right-override-export-depth' => '5 లింకుల లోతు వరకు ఉన్న పేజీలతో సహా, పేజీలను ఎగుమతి చెయ్యి',
 'right-sendemail'             => 'ఇతర వాడుకరులకు ఈ-మెయిలు పంపించగలగడం',
 
@@ -1508,6 +1510,7 @@ $1",
 'large-file'                  => 'ఫైళ్ళు $1 కంటే పెద్దవిగా ఉండకుండా ఉంటే మంచిది; ఈ ఫైలు $2 ఉంది.',
 'largefileserver'             => 'ఈ ఫైలు సైజు సర్వరులో విధించిన పరిమితి కంటే ఎక్కువగా ఉంది.',
 'emptyfile'                   => 'మీరు అప్‌లోడు చేసిన ఫైలు ఖాళీగా ఉన్నట్లుంది. ఫైలు పేరును ఇవ్వడంలో స్పెల్లింగు తప్పు దొర్లి ఉండొచ్చు. మీరు అప్‌లోడు చెయ్యదలచింది ఇదో కాదో నిర్ధారించుకోండి.',
+'windows-nonascii-filename'   => 'దస్త్రాల పేర్లలో ప్రత్యేక అక్షరాలకు ఈ వికీలో తోడ్పాటు లేదు.',
 'fileexists'                  => "ఈ పేరుతో ఒక ఫైలు ఇప్పటికే ఉంది.
 దీనిని మీరు మార్చాలో లేదో తెలియకపోతె ఫైలు '''<tt>[[:$1]]</tt>'''ని చూడండి.
 [[$1|thumb]]",
@@ -1987,8 +1990,10 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'watchlistanontext'    => 'మీ వీక్షణ జాబితా లోని అంశాలను చూసేందుకు లేదా మార్చేందుకు మీరు $1 ఉండాలి.',
 'watchnologin'         => 'లాగిన్‌ అయిలేరు',
 'watchnologintext'     => 'మీ వీక్షణ జాబితాను మార్చడానికి మీరు [[Special:UserLogin|లాగిన్‌]] అయి ఉండాలి.',
+'addwatch'             => 'వీక్షణ జాబితాలో చేర్చు',
 'addedwatchtext'       => "\"[[:\$1]]\" అనే పుట మీ [[Special:Watchlist|వీక్షణ జాబితా]]లో చేరింది.
 భవిష్యత్తులో ఈ పుటకి మరియు సంబంధిత చర్చాపుటకి జరిగే మార్పులు అక్కడ కనిపిస్తాయి, మరియు  [[Special:RecentChanges|ఇటీవలి మార్పుల జాబితా]]లో సులభంగా గుర్తించడానికి ఈ పుట '''బొద్దుగా''' కనిపిస్తుంది.",
+'removewatch'          => 'వీక్షణ జాబితా నుండి తొలగించు',
 'removedwatchtext'     => '"[[:$1]]" అనే పేజీ [[Special:Watchlist|మీ వీక్షణ జాబితా]] నుండి తొలగించబడినది.',
 'watch'                => 'వీక్షించు',
 'watchthispage'        => 'ఈ పుట మీద కన్నేసి ఉంచు',
@@ -2041,13 +2046,13 @@ $NEWPAGE
 
 --
 మీ వీక్షణజాబితా అమరికలను మార్చుకునేందుకు,
-{{fullurl:{{#special:EditWatchlist}}}} ని చూడండి.
+{{canonicalurl:{{#special:EditWatchlist}}}} ని చూడండి.
 
 ఈ పేజీని మీ వీక్షణజాబితా నుండి తొలగించుకునేందుకు,
 $UNWATCHURL కి వెళ్ళండి.
 
 మీ అభిప్రాయాలు చెప్పేందుకు మరియు మరింత సహాయానికై:
-{{fullurl:{{MediaWiki:helppage}}}}',
+{{canonicalurl:{{MediaWiki:helppage}}}}',
 
 # Delete
 'deletepage'             => 'పేజీని తొలగించు',
@@ -2692,6 +2697,7 @@ $UNWATCHURL కి వెళ్ళండి.
 'pageinfo-header-views'     => 'వీక్షణలు',
 'pageinfo-subjectpage'      => 'పుట',
 'pageinfo-talkpage'         => 'చర్చా పేజీ',
+'pageinfo-watchers'         => 'వీక్షకుల సంఖ్య',
 'pageinfo-edits'            => 'మార్పుల సంఖ్య',
 'pageinfo-views'            => 'వీక్షణల సంఖ్య',
 
@@ -2932,22 +2938,39 @@ $1',
 'exif-source'                      => 'మూలం',
 'exif-editstatus'                  => 'బొమ్మ యొక్క ఎడిటోరియల్ స్థితి',
 'exif-urgency'                     => 'ఎంత త్వరగా కావాలి',
+'exif-locationdest'                => 'చూపించిన ప్రాంతం',
+'exif-objectcycle'                 => 'ఈ మాధ్యమం ఉద్దేశించిన సమయం',
 'exif-contact'                     => 'సంప్రదింపు సమాచారం',
+'exif-writer'                      => '',
 'exif-languagecode'                => 'భాష',
+'exif-iimversion'                  => 'IIM రూపాంతరం',
 'exif-iimcategory'                 => 'వర్గం',
+'exif-iimsupplementalcategory'     => 'అనుషంగిక వర్గాలు',
 'exif-datetimeexpires'             => 'దీని తరువాత వాడవద్దు',
+'exif-identifier'                  => 'గుర్తింపకం',
+'exif-lens'                        => 'వాడిన కటకం',
+'exif-serialnumber'                => 'కెమేరా యొక్క సీరియల్ నంబర్',
 'exif-cameraownername'             => 'కేమెరా యజమాని',
+'exif-rating'                      => 'రేటింగు (5 కి గాను)',
+'exif-rightscertificate'           => 'హక్కుల నిర్వాహణ ధృవీకరణ పత్రం',
 'exif-copyrighted'                 => 'కాపీహక్కుల స్థితి',
 'exif-copyrightowner'              => 'కాపీ హక్కుదారు',
 'exif-usageterms'                  => 'వాడుక నియమాలు',
+'exif-morepermissionsurl'          => 'ప్రత్యామ్నాయ లైసెన్సు సమాచారం',
 'exif-pngfilecomment'              => 'PNG ఫైలు వ్యాఖ్య',
 'exif-disclaimer'                  => 'నిష్పూచీ',
 'exif-contentwarning'              => 'విషయపు హెచ్చరిక',
 'exif-giffilecomment'              => 'GIF ఫైలు వ్యాఖ్య',
 'exif-intellectualgenre'           => 'అంశము యొక్క రకము',
+'exif-subjectnewscode'             => 'సబ్జెక్టు కోడ్',
+'exif-event'                       => 'చూపించిన ఘటన',
+'exif-organisationinimage'         => 'చూపించిన సంస్థ',
+'exif-personinimage'               => 'చిత్రంలో ఉన్న వ్యక్తి',
 
 # EXIF attributes
 'exif-compression-1' => 'కుదించని',
+
+'exif-copyrighted-true' => 'నకలుహక్కులుకలది',
 
 'exif-unknowndate' => 'అజ్ఞాత తేదీ',
 
@@ -3096,6 +3119,10 @@ $1',
 'exif-gpsdestdistance-m' => 'మైళ్ళు',
 'exif-gpsdestdistance-n' => 'నాటికల్ మైళ్ళు',
 
+'exif-objectcycle-a' => 'ఉదయం మాత్రమే',
+'exif-objectcycle-p' => 'సాయంత్రం మాత్రమే',
+'exif-objectcycle-b' => 'ఉదయమూ మరియు సాయంత్రమూ',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'వాస్తవ దిశ',
 'exif-gpsdirection-m' => 'అయస్కాంత దిశ',
@@ -3116,11 +3143,18 @@ $1',
 'exif-iimcategory-edu' => 'విద్య',
 'exif-iimcategory-evn' => 'పర్యావరణం',
 'exif-iimcategory-hth' => 'ఆరోగ్యం',
+'exif-iimcategory-lif' => 'జీవనశైలి మరియు కాలక్షేపం',
 'exif-iimcategory-pol' => 'రాజకీయాలు',
 'exif-iimcategory-rel' => 'మతం మరియు విశ్వాసం',
 'exif-iimcategory-sci' => 'వైజ్ఞానికం మరియు సాంకేతికం',
+'exif-iimcategory-soi' => 'సాంఘిక సమస్యలు',
 'exif-iimcategory-spo' => 'క్రీడలు',
+'exif-iimcategory-war' => 'యుద్ధం, సంఘర్షణలు మరియు అనిశ్చితి',
 'exif-iimcategory-wea' => 'వాతావరణం',
+
+'exif-urgency-normal' => 'సాధారణం ($1)',
+'exif-urgency-low'    => 'తక్కువ ($1)',
+'exif-urgency-high'   => 'ఎక్కువ ($1)',
 
 # External editor support
 'edit-externally'      => 'బయటి అప్లికేషను వాడి ఈ ఫైలును మార్చు',
@@ -3196,15 +3230,22 @@ $1',
 'trackbackdeleteok' => 'ట్రాక్‌బాక్&zwnj;ని విజయవంతంగా తొలగించాం.',
 
 # Delete conflict
-'deletedwhileediting' => "'''హెచ్చరిక''': మీరు మార్పులు చేయటం మొదలుపెట్టాక ఈ పేజీ తొలగించబడింది!",
-'confirmrecreate'     => "మీరు పేజీ రాయటం మొదలుపెట్టిన తరువాత [[User:$1|$1]] ([[User talk:$1|చర్చ]]) దానిని తీసివేసారు. దానికి ఈ కారణం ఇచ్చారు: ''$2''
+'deletedwhileediting'      => "'''హెచ్చరిక''': మీరు మార్పులు చేయటం మొదలుపెట్టాక ఈ పేజీ తొలగించబడింది!",
+'confirmrecreate'          => "మీరు పేజీ రాయటం మొదలుపెట్టిన తరువాత [[User:$1|$1]] ([[User talk:$1|చర్చ]]) దానిని తీసివేసారు. దానికి ఈ కారణం ఇచ్చారు: ''$2''
 మీరు ఈ పేజీని మళ్ళీ తయారు చేయాలనుకుంటున్నారని ధృవీకరించండి.",
-'recreate'            => 'మళ్లీ సృష్టించు',
+'confirmrecreate-noreason' => 'మీరు మార్చడం మొదలుపెట్టిన తర్వాత ఈ పుటను వాడుకరి [[User:$1|$1]] ([[User talk:$1|చర్చ]]) తొలగించారు. ఈ పుటను మీరు నిజంగానే పునఃసృష్టించాలనుకుంటున్నారని నిర్ధారించండి.',
+'recreate'                 => 'మళ్లీ సృష్టించు',
 
 # action=purge
 'confirm_purge_button' => 'సరే',
 'confirm-purge-top'    => 'ఈ పేజీ యొక్క పాత కాపీని తొలగించమంటారా?',
 'confirm-purge-bottom' => 'పేజీ తాడనతో కోశం ఖాళీ అయి, ఇట్టీవలి కూర్పును కనబడేలా చేస్తుంది.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'సరే',
+'confirm-watch-top'      => 'ఈ పుటను మీ వీక్షణ జాబితాలో చేర్చాలా?',
+'confirm-unwatch-button' => 'సరే',
+'confirm-unwatch-top'    => 'ఈ పుటను మీ వీక్షణ జాబితా నుండి తొలగించాలా?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← మునుపటి పేజీ',
@@ -3322,7 +3363,7 @@ $1',
 'specialpages-note'              => '----
 * మామూలు ప్రత్యేక పుటలు.
 * <strong class="mw-specialpagerestricted">నియంత్రిత ప్రత్యేక పుటలు.</strong>
-* <span class="mw-specialpagecached">Cached-only ప్రత్యేక పుటలు.</span>',
+* <span class="mw-specialpagecached">Cached ప్రత్యేక పుటలు (పాతబడి ఉండొచ్చు).</span>',
 'specialpages-group-maintenance' => 'నిర్వహణా నివేదికలు',
 'specialpages-group-other'       => 'ఇతర ప్రత్యేక పేజీలు',
 'specialpages-group-login'       => 'ప్రవేశించండి / నమోదుచేసుకోండి',

@@ -1232,7 +1232,6 @@ $1 тэмдэгтээс богино байх ёстой.',
 'right-userrights'            => 'Хэрэглэгчийн эрхүүдийг засварлах',
 'right-userrights-interwiki'  => 'Бусад вики дээрх хэрэглэгчдийн эрхүүдийг засварлах',
 'right-siteadmin'             => 'Мэдээллийн баазыг түгжих буюу нээх',
-'right-reset-passwords'       => 'Бусад хэрэглэгчдийн нууц үгсийг дахин тогтоох',
 'right-override-export-depth' => '5 хүртэлх гүний хуудсуудыг холбогдсон хуудсуудтай хамт гаргах',
 'right-sendemail'             => 'Бусад хэрэглэгчид руу и-мэйл явуулах',
 
@@ -1906,10 +1905,10 @@ $NEWPAGE
 
 --
 Хянаж буй хуудсуудынхаа тохиргоог өөрчлөхийн тулд дараах хуудаст зочилно уу:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Дэлгэрэнгүй мэдээлэл:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Хуудсыг устга',

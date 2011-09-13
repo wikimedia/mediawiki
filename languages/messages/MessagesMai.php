@@ -442,8 +442,8 @@ $2',
 'createaccountmail'          => 'ई-पत्र द्वारा',
 'createaccountreason'        => 'कारण:',
 'badretype'                  => 'कूटशब्द जे अहाँ भरलहुँ से मेल नै खाइए।',
-'userexists'                 => 'जे प्रयोक्तानाम अहाँ भरलहुँ से पहिनहियेसँ प्रयोगमे अछि।
-कृपा कऽ दोसर नामक चयन करू।',
+'userexists'                 => 'सम्प्रवेशित प्रयोक्तानाम पहिनहियेसँ प्रयोगमे अछि।
+कृपा कऽ कोनो दोसर नाम चुनू।',
 'loginerror'                 => 'सम्प्रवेश भ्रम',
 'createaccounterror'         => 'खाता नै बना सकल: $1',
 'nocookiesnew'               => 'प्रयोक्ता खाता खुजि गेल, मुदा अहाँ सम्प्रवेशित नै छी।
@@ -1036,7 +1036,7 @@ $3 द्वारा देल कारण अछि ''$2''",
 'qbsettings-fixedright'     => 'दहिन दिस सटल',
 'qbsettings-floatingleft'   => 'वाम कात घुमैत',
 'qbsettings-floatingright'  => 'दहिन कात घुमैत',
-'qbsettings-directionality' => 'कीलित, अहाँक लिपि आ भाषाक दिशा-निर्देशपर आधारित',
+'qbsettings-directionality' => 'कीलित, अहाँक भाषाक लिपि दिशा-निर्देशपर आधारित',
 
 # Preferences page
 'preferences'                   => 'विकल्प',
@@ -1261,7 +1261,6 @@ $3 द्वारा देल कारण अछि ''$2''",
 'right-userrights'            => 'सभटा प्रयोक्ता अधिकारकेँ सम्पादित करू',
 'right-userrights-interwiki'  => 'दोसर विकीपर प्रयोक्ताक प्रयोक्ता अधिकारक सम्पादन करू',
 'right-siteadmin'             => 'दत्तनिधिकेँ प्रतिबन्धित करू आ फेर प्रतिबन्ध हटाउ',
-'right-reset-passwords'       => 'दोसर प्रयोक्ताक कूटशब्द फेरसँ बनाउ',
 'right-override-export-depth' => '५ परत धरि जा  पन्ना सभ निर्यात, जइमे लागिबला पन्ना सभ शामिल अछि, करू।',
 'right-sendemail'             => 'ई-पत्र दोसर प्रयोक्ता लोकनिकेँ पठाउ',
 
@@ -1554,8 +1553,7 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'ई विशिष्ट पन्ना सभटा उपारोपित संचिका देखबैए।
-पूर्वन्यस्त रूपेँ अन्तिम उपारोपित संचिका सूचीक शीर्षपर अछि।
-स्तम्भ शीर्षपर एकटा क्लिक छटनीमे परिवर्तन करैए।',
+प्रयोक्ता द्वारा चुनलापर अन्तिम उपारोपित संचिका देखबैत अछि।',
 'listfiles_search_for'  => 'ऐ दृश्य-श्रव्य नामले ताकू:',
 'imgfile'               => 'संचिका',
 'listfiles'             => 'संचिका सूची',
@@ -1974,15 +1972,15 @@ $NEWPAGE
 
 --
 अपन ई-पत्र सूचना प्रकार बदलबाक लेल देखू
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 अपन साकांक्ष-सूची सूचना प्रकार बदलबाक लेल देखू
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 अपन साकांक्ष-सूचीसँ कोनो पन्ना मेटेबाक लेल देखू
 $UNWATCHURL
 
 अपन अनुभव बतेबा वा कोनो सहायता लेल:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'पन्ना मेटाउ',
@@ -2190,7 +2188,6 @@ $1',
 'sp-contributions-username'            => 'अनिकेत संकेत वा प्रयोक्तानाम:',
 'sp-contributions-toponly'             => 'मात्र ओइ सम्पादनकेँ देखाउ जे अद्यतन संशोधन छी।',
 'sp-contributions-submit'              => 'ताकू',
-'sp-contributions-showsizediff'        => 'पन्ना आकारमे अन्तर देखाउ',
 
 # What links here
 'whatlinkshere'            => 'एतय कोन लिंक अछि',
@@ -3377,9 +3374,9 @@ $1',
 # Special:SpecialPages
 'specialpages'                   => 'विशेष पन्ना',
 'specialpages-note'              => '----
-*सामान्य विशेष पन्ना सभ।
-* <span class="mw-specialpagerestricted">प्रतिबन्धित विशेष पन्ना सभ।</span>
-* <span class="mw-specialpagecached">खाली उपस्मृतिबला पन्ना सभ।</span>',
+* सामान्य विशिष्ट पन्ना।
+* <span class="mw-specialpagerestricted">प्रतिबंधित विशिष्ट पन्ना।</span>
+* <span class="mw-specialpagecached">उपस्मृतिक विशिष्ट पन्ना (पुरान भऽ सकैए)।</span>',
 'specialpages-group-maintenance' => 'सुस्थापन प्रतिवेदन',
 'specialpages-group-other'       => 'दोसर विशेष पन्ना',
 'specialpages-group-login'       => 'सम्प्रवेश/ सम्प्रवेश आवेदन',

@@ -326,7 +326,7 @@ $messages = array(
 'tog-enotifminoredits'        => '사소한 편집도 이메일로 알림',
 'tog-enotifrevealaddr'        => '알림 메일에 내 이메일 주소를 밝히기',
 'tog-shownumberswatching'     => '주시 사용자 수 보기',
-'tog-oldsig'                  => '지금 서명 미리보기:',
+'tog-oldsig'                  => '사용 중인 서명:',
 'tog-fancysig'                => '서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)',
 'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 정보 보기])',
 'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 설명 보기])',
@@ -714,7 +714,7 @@ $2',
 'createaccountreason'        => '이유:',
 'badretype'                  => '암호가 서로 다릅니다.',
 'userexists'                 => '입력하신 사용자 이름이 이미 등록되어 있습니다.
-다른 이름으로 만들어주십시오.',
+다른 이름을 선택해주십시오.',
 'loginerror'                 => '로그인 오류',
 'createaccounterror'         => '계정을 생성하지 못했습니다: $1',
 'nocookiesnew'               => '사용자 계정을 만들었지만, 아직 로그인하지 않았습니다. {{SITENAME}}에서는 로그인 정보를 저장하기 위해 쿠키를 사용합니다. 지금 사용하는 웹 브라우저는 쿠키를 사용하지 않도록 설정되어 있습니다. 로그인하기 전에 웹 브라우저에서 쿠키를 사용하도록 설정해주세요.',
@@ -798,6 +798,7 @@ $2',
 'passwordreset-disabled'       => '위키 암호 초기화가 중단 되었습니다.',
 'passwordreset-pretext'        => '{{PLURAL:$1||아래에 한 가지 정보를 입력해주십시오}}',
 'passwordreset-username'       => '계정 이름:',
+'passwordreset-domain'         => '도메인:',
 'passwordreset-email'          => '이메일 주소:',
 'passwordreset-emailtitle'     => '{{SITENAME}} 계정 상세 정보',
 'passwordreset-emailtext-ip'   => 'IP 주소 $1을 사용하는 누군가(아마도 당신이), {{SITENAME}} ($4)의 비밀번호 찾기를 요청하였습니다. 이 이메일 주소와 연관된 계정의 목록입니다:
@@ -1420,7 +1421,7 @@ $1",
 'userrights-no-interwiki'      => '다른 위키의 사용자 권한을 바꿀 권한이 없습니다.',
 'userrights-nodatabase'        => '데이터베이스 $1이 존재하지 않거나 로컬에 있지 않습니다.',
 'userrights-nologin'           => '사용자의 권한을 바꾸기 위해서는 반드시 관리자 계정으로 [[Special:UserLogin|로그인]]해야 합니다.',
-'userrights-notallowed'        => '다른 사용자의 권한을 조정할 권한이 없습니다.',
+'userrights-notallowed'        => '당신은 다른 사용자의 권한을 조정할 권한이 없습니다.',
 'userrights-changeable-col'    => '바꿀 수 있는 권한',
 'userrights-unchangeable-col'  => '바꿀 수 없는 권한',
 
@@ -1506,7 +1507,6 @@ $1",
 'right-userrights'            => '모든 사용자의 권한 조정',
 'right-userrights-interwiki'  => '다른 위키의 사용자 권한을 조정',
 'right-siteadmin'             => '데이터베이스를 잠그거나 잠금 해제',
-'right-reset-passwords'       => '다른 사용자의 비밀번호를 변경',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail'             => '다른 사용자에게 이메일 보내기',
 
@@ -1802,8 +1802,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Special:ListFiles
 'listfiles-summary'     => '이 위키에 올라와 있는 모든 파일이 나열되어 있습니다.
-기본적으로 가장 최근에 올라온 파일이 가장 위에 올라와 있습니다.
-다른 방식으로 정렬하려면 기준 열의 머리칸을 눌러주세요.',
+사용자별로 필터링했을 경우에는 사용자가 올린 가장 최신 버전만이 표시됩니다.',
 'listfiles_search_for'  => '다음 이름을 가진 미디어 찾기:',
 'imgfile'               => '파일',
 'listfiles'             => '파일 목록',
@@ -2221,16 +2220,16 @@ $NEWPAGE
 
 --
 이메일 알림 설정을 바꾸시려면 이곳을 방문해주세요:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 주시문서 설정을 바꾸려면 다음을 사용하세요:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 주시문서에서 이 문서를 지우려면 이곳을 방문해주세요:
 $UNWATCHURL
 
 도움을 얻거나 피드백 하기:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => '문서 삭제하기',
@@ -2428,7 +2427,6 @@ $1',
 'sp-contributions-username'            => 'IP 주소 혹은 계정 이름:',
 'sp-contributions-toponly'             => '최신판만 보기',
 'sp-contributions-submit'              => '찾기',
-'sp-contributions-showsizediff'        => '문서 크기 비교 표시하기',
 
 # What links here
 'whatlinkshere'            => '여기를 가리키는 문서',

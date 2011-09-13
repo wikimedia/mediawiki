@@ -47,6 +47,8 @@
  * @author Uwe a
  * @author Zanatos
  * @author ترجمان05
+ * @author خالد حسني
+ * @author زكريا
  * @author عصام بايزيدي
  * @author عمرو
  * @author نصوح
@@ -600,7 +602,7 @@ $messages = array(
 'vector-action-move'             => 'انقل',
 'vector-action-protect'          => 'احم',
 'vector-action-undelete'         => 'استرجع الحذف',
-'vector-action-unprotect'        => 'تغيير الحماية',
+'vector-action-unprotect'        => 'غير الحماية',
 'vector-simplesearch-preference' => 'مكّن مقترحات البحث المُحسّنة (لواجهة فكتور فقط)',
 'vector-view-create'             => 'أنشئ',
 'vector-view-edit'               => 'عدل',
@@ -637,7 +639,7 @@ $messages = array(
 'protect'           => 'احم',
 'protect_change'    => 'غير',
 'protectthispage'   => 'احم هذه الصفحة',
-'unprotect'         => 'تغيير الحماية',
+'unprotect'         => 'غير الحماية',
 'unprotectthispage' => 'غير حماية هذه الصفحة',
 'newpage'           => 'صفحة جديدة',
 'talkpage'          => 'ناقش هذه الصفحة',
@@ -870,7 +872,7 @@ $2',
 'createaccountreason'        => 'السبب:',
 'badretype'                  => 'كلمات السر التي أدخلتها لا تتطابق.',
 'userexists'                 => 'اسم المستخدم الذي تم إدخاله مستعمل بالفعل.
-اختر اسما مختلفا.',
+الرجاء اختيار اسم مختلف.',
 'loginerror'                 => 'خطأ في الدخول',
 'createaccounterror'         => 'تعذر إنشاء حساب المستخدم: $1',
 'nocookiesnew'               => 'تم إنشاء حساب المستخدم، ولكنك لست مسجل الدخول بعد.
@@ -990,8 +992,8 @@ $2
 'passwordreset-emailsent'      => 'أرسل بريد إلكتروني تذكيري',
 
 # Edit page toolbar
-'bold_sample'     => 'نص عريض',
-'bold_tip'        => 'نص عريض',
+'bold_sample'     => 'نص غليظ',
+'bold_tip'        => 'نص غليظ',
 'italic_sample'   => 'نص مائل',
 'italic_tip'      => 'نص مائل',
 'link_sample'     => 'عنوان وصلة',
@@ -1366,8 +1368,8 @@ $1",
 
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',
-'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفيا من الإداريين.
-انظر [[Special:IPBlockList|لقائمة المنع]] لترى عمليات المنع القائمة الآن.',
+'suppressionlogtext' => 'بالأسفل قائمة بعمليات الحذف والمنع التي تتضمن محتوى مخفيا عن الإداريين.
+انظر [[Special:BlockList|قائمة منع الآيبي]] لترى عمليات المنع القائمة الآن.',
 
 # History merging
 'mergehistory'                     => 'دمج تواريخ الصفحة',
@@ -1486,7 +1488,7 @@ $1",
 'qbsettings-fixedright'     => 'مثبت لليمين',
 'qbsettings-floatingleft'   => 'حر لليسار',
 'qbsettings-floatingright'  => 'حر لليمين',
-'qbsettings-directionality' => 'ثابت ، اعتمادا على اتجاهها من السيناريو الخاص ولغتك',
+'qbsettings-directionality' => 'ثابت، بناءً على اتجاه كتابة لغتك',
 
 # Preferences page
 'preferences'                   => 'تفضيلات',
@@ -1709,7 +1711,6 @@ $1",
 'right-userrights'            => 'تعديل كل صلاحيات المستخدمين',
 'right-userrights-interwiki'  => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
 'right-siteadmin'             => 'غلق ورفع غلق قاعدة البيانات',
-'right-reset-passwords'       => 'إعادة ضبط كلمة السر للمستخدمين الآخرين',
 'right-override-export-depth' => 'تصدير الصفحات متضمنة الصفحات الموصولة حتى عمق 5',
 'right-sendemail'             => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
 
@@ -2016,17 +2017,16 @@ $1',
 
 # Special:ListFiles
 'listfiles-summary'     => 'هذه الصفحة الخاصة تعرض كل الملفات المرفوعة.
-افتراضيا آخر الملفات المرفوعة تعرض أعلى القائمة.
-الضغط على رأس العامود يغير الترتيب.',
+عندما ترشحها حسب المستخدم ستعرض فقط الملفات التي رفع آخر نسخة منها ذلك المستخدم.',
 'listfiles_search_for'  => 'ابحث عن اسم الميديا:',
 'imgfile'               => 'ملف',
 'listfiles'             => 'قائمة الملفات',
 'listfiles_thumb'       => 'تصغير',
 'listfiles_date'        => 'تاريخ',
-'listfiles_name'        => 'اسم',
-'listfiles_user'        => 'مستخدم',
-'listfiles_size'        => 'حجم',
-'listfiles_description' => 'وصف',
+'listfiles_name'        => 'الاسم',
+'listfiles_user'        => 'المستخدم',
+'listfiles_size'        => 'الحجم',
+'listfiles_description' => 'الوصف',
 'listfiles_count'       => 'نسخ',
 
 # File description page
@@ -2168,7 +2168,7 @@ $1',
 'withoutinterwiki'         => 'صفحات بدون وصلات لغات أخرى',
 'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى.',
 'withoutinterwiki-legend'  => 'بادئة',
-'withoutinterwiki-submit'  => 'عرض',
+'withoutinterwiki-submit'  => 'اعرض',
 
 'fewestrevisions' => 'الصفحات ذات أقل تعديل',
 
@@ -2384,7 +2384,7 @@ $1',
 'watchnologintext'     => 'يجب أن تكون [[Special:UserLogin|مسجلا الدخول]] لتعدل قائمة مراقبتك.',
 'addwatch'             => 'إضافة إلى قائمة الرغبات',
 'addedwatchtext'       => "أضيفت الصفحة  \"[[:\$1]]\" إلى [[Special:Watchlist|قائمة مراقبتك]].
-التغييرات القادمة على هذه الصفحة وصفحة نقاشها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''عريض''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
+التغييرات القادمة على هذه الصفحة وصفحة نقاشها سيتم وضعها هناك، وسيتم إظهار اسم الصفحة بخط '''غليظ''' في صفحة [[Special:RecentChanges|أحدث التغييرات]] لتسهيل تحديدها واكتشافها.",
 'removewatch'          => 'إزالة من قائمة المراقبة',
 'removedwatchtext'     => 'الصفحة "[[:$1]]" تمت إزالتها من [[Special:Watchlist|قائمة مراقبتك]].',
 'watch'                => 'راقب',
@@ -2396,7 +2396,7 @@ $1',
 'watchnochange'        => 'لم يتم تعديل أي صفحة في قائمة مراقبتك خلال الفترة الزمنية المحددة.',
 'watchlist-details'    => '{{PLURAL:$1||صفحة واحدة|صفحتان|$1 صفحات|$1 صفحة}} في قائمة مراقبتك، بدون عد صفحات النقاش.',
 'wlheader-enotif'      => '* الإخطار بالبريد الإلكتروني مفعل.',
-'wlheader-showupdated' => "* الصفحات التي تم تحريرها بعد زيارتك لها لآخر مرة معروضة بالخط '''العريض'''",
+'wlheader-showupdated' => "* الصفحات التي تم تحريرها بعد زيارتك لها لآخر مرة معروضة بالخط '''الغليظ'''",
 'watchmethod-recent'   => 'فحص التعديلات الأخيرة للصفحات المراقبة',
 'watchmethod-list'     => 'فحص الصفحات المراقبة للتعديلات الحديثة',
 'watchlistcontains'    => 'تحتوي قائمة مراقبتك على $1 {{PLURAL:$1|صفحة|صفحة}}.',
@@ -2436,16 +2436,16 @@ $1',
 
 --
 لتغيير إعدادات إعلام البريد الإلكتروني الخاص بك، قم بزيارة
-{{fullurl: {{# الخاص: تفضيلات}}}}
+{{canonicalurl: {{# الخاص: تفضيلات}}}}
 
 لتغيير إعدادات الرصد الخاصة بك، قم بزيارة
-{{fullurl: {{# الخاص: الرصد}}/تحرير}}
+{{canonicalurl: {{# الخاص: الرصد}}/تحرير}}
 
 لحذف الصفحة من هيئة الرصد الخاصة بك، قم بزيارة
 $ أونواتشورل
 
 التغذية المرتدة، والحصول على مساعدة إضافية:
-{{fullurl: {{MediaWiki:Helppage}}}}',
+{{canonicalurl: {{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'حذف الصفحة',
@@ -2531,10 +2531,10 @@ $ أونواتشورل
 الإعدادات الحالية للصفحة '''$1''' هي:",
 'protect-cascadeon'           => 'هذه الصفحة محمية لكونها مضمنة في {{PLURAL:$1|الصفحة|الصفحات}} التالية، والتي بها خيار حماية الصفحات المدمجة فعال.
 يمكنك تغيير مستوى حماية هذه الصفحة بدون التأثير على حماية الصفحات المدمجة الأخرى.',
-'protect-default'             => 'السماح لكل المستخدمين',
+'protect-default'             => 'اسمح لكل المستخدمين',
 'protect-fallback'            => 'يتطلب السماح "$1"',
-'protect-level-autoconfirmed' => 'منع المستخدمين الجدد وغير المسجلين',
-'protect-level-sysop'         => 'مدراء النظام فقط',
+'protect-level-autoconfirmed' => 'امنع المستخدمين الجدد وغير المسجلين',
+'protect-level-sysop'         => 'الإداريون فقط',
 'protect-summary-cascade'     => 'مضمنة',
 'protect-expiring'            => 'تنتهي في $1 (UTC)',
 'protect-expiry-indefinite'   => 'غير محدد',
@@ -2561,8 +2561,8 @@ $ أونواتشورل
 # Restrictions (nouns)
 'restriction-edit'   => 'التعديل',
 'restriction-move'   => 'النقل',
-'restriction-create' => 'أنشئ',
-'restriction-upload' => 'ارفع',
+'restriction-create' => 'الإنشاء',
+'restriction-upload' => 'الرفع',
 
 # Restriction levels
 'restriction-level-sysop'         => 'حماية كاملة',
@@ -2574,12 +2574,12 @@ $ أونواتشورل
 'undeletepage'                 => 'عرض واسترجاع الصفحات المحذوفة',
 'undeletepagetitle'            => "'''التالي يتكون من المراجعات المحذوفة من [[:$1]]'''.",
 'viewdeletedpage'              => 'عرض الصفحات المحذوفة',
-'undeletepagetext'             => 'تم حذف {{PLURAL:$1|الصفحة|الصفحات $1}}  التالية ولكنها مازالت في الأرشيف ويمكن استرجاعها.
-قد ينظف الأرشيف دوريا.',
+'undeletepagetext'             => 'حُذفت {{PLURAL:$1||الصفحة التالية|الصفحتان التاليتان|$1 الصفحات التالية|ال$1 صفحة التالية}} ولكنها مازالت في الأرشيف ويمكن استرجاعها.
+قد يمسح الأرشيف دوريا.',
 'undelete-fieldset-title'      => 'استرجاع المراجعات',
 'undeleteextrahelp'            => "لاسترجاع تاريخ الصفحة كاملا، اترك جميع الصناديق فارغة واضغط '''''{{int:undeletebtn}}'''''..
 للاسترجاع بشكل انتقائي، ضع علامة في الصناديق أمام المراجعات التي تريد استرجاعها، واضغط '''''{{int:undeletebtn}}'''''.",
-'undeleterevisions'            => '$1 {{PLURAL:$1|مراجعة|مراجعة}} تمت أرشفتها',
+'undeleterevisions'            => '{{PLURAL:$1|لم تؤرشف أي مراجعة|أرشفت مراجعة واحدة|أرشفت مراجعتان|أرشفت $1 مراجعات|أرشفت $1 مراجعة}}',
 'undeletehistory'              => 'لو استرجعت الصفحة، كل المراجعات سيتم استرجاعها إلى التاريخ.
 لو كان قد تم إنشاء صفحة جديدة بالاسم نفسه بعد الحذف، المراجعات المسترجعة ستظهر في التاريخ السابق.',
 'undeleterevdel'               => 'الاسترجاع لن يتم إذا كان سينتج عنه أن تكون المراجعة أعلى الصفحة أو الملف محذوفة جزئيا.
@@ -2599,8 +2599,8 @@ $ أونواتشورل
 'undeletecomment'              => 'السبب:',
 'undeletedarticle'             => 'استرجع "[[$1]]"',
 'undeletedrevisions'           => 'تم استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
-'undeletedrevisions-files'     => '{{PLURAL:$1|1 مراجعة|$1 مراجعة}} و {{PLURAL:$2|1 ملف|$2 ملف}} تم استرجاعها',
-'undeletedfiles'               => '{{PLURAL:$1|ملف|ملفات}} $1 تم استرجاع',
+'undeletedrevisions-files'     => 'أسترجعت {{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}  و{{PLURAL:$2||ملف واحد|ملفان|$2 ملفات|$2 ملفًا|$2 ملف}}',
+'undeletedfiles'               => 'أسترجع {{PLURAL:$1||ملف واحد|ملفان|$1 ملفات|$1 ملفًا|$1 ملف}}',
 'cannotundelete'               => 'فشل الاسترجاع؛
 ربما قام شخص آخر باسترجاع الصفحة بالفعل.',
 'undeletedpage'                => "'''تم استرجاع $1'''
@@ -2658,7 +2658,6 @@ $1',
 'sp-contributions-username'            => 'عنوان أيبي أو اسم مستخدم:',
 'sp-contributions-toponly'             => 'أظهر أعلى المراجعات فقط',
 'sp-contributions-submit'              => 'ابحث',
-'sp-contributions-showsizediff'        => 'عرض الفرق في حجم الصفحة',
 
 # What links here
 'whatlinkshere'            => 'ماذا يصل هنا',
@@ -4001,9 +4000,9 @@ $1',
 # Special:SpecialPages
 'specialpages'                   => 'الصفحات الخاصة',
 'specialpages-note'              => '----
-* Normal special pages.
+* صفحات خاصة عادية.
 * <span class="mw-specialpagerestricted">صفحات خاصة للمخولين.</span>
-* <span class="mw-specialpagecached">صفحات خاصة لبيانات مخزنة فقط.</span>',
+* <span class="mw-specialpagecached">صفحات خاصة لبيانات مخزنة فقط (قد تكون مهجورة).</span>',
 'specialpages-group-maintenance' => 'تقارير الصيانة',
 'specialpages-group-other'       => 'صفحات خاصة أخرى',
 'specialpages-group-login'       => 'دخول / تسجيل',
@@ -4042,7 +4041,7 @@ $1',
 'tags-description-header' => 'وصف كامل للمعنى',
 'tags-hitcount-header'    => 'تغييرات موسومة',
 'tags-edit'               => 'عدل',
-'tags-hitcount'           => '$1 {{PLURAL:$1|تغيير|تغيير}}',
+'tags-hitcount'           => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرا|$1 تغيير}}',
 
 # Special:ComparePages
 'comparepages'     => 'قارن صفحات',

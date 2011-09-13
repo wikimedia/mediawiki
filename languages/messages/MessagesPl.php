@@ -22,6 +22,7 @@
  * @author Masti
  * @author Matma Rex
  * @author McMonster
+ * @author Mikołka
  * @author Nux
  * @author Odder
  * @author Remember the dot
@@ -274,7 +275,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Wyślij e‐mail także w przypadku drobnych zmian na stronach',
 'tog-enotifrevealaddr'        => 'Nie ukrywaj mojego adresu e‐mail w powiadomieniach',
 'tog-shownumberswatching'     => 'Pokaż liczbę użytkowników obserwujących stronę',
-'tog-oldsig'                  => 'Obecny wygląd Twojego podpisu',
+'tog-oldsig'                  => 'Twój obecny podpis',
 'tog-fancysig'                => 'Traktuj podpis jako wikikod (nie linkuj automatycznie całości)',
 'tog-externaleditor'          => 'Domyślnie używaj zewnętrznego edytora (tylko dla zaawansowanych użytkowników; wymaga odpowiedniego skonfigurowania komputera)',
 'tog-externaldiff'            => 'Domyślnie używaj zewnętrznego programu pokazującego zmiany (tylko dla zaawansowanych użytkowników; wymaga odpowiedniego skonfigurowania komputera)',
@@ -767,6 +768,7 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 'passwordreset-disabled'       => 'Na tej wiki wyłączono możliwość resetowania haseł.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Wprowadź jedną z danych poniżej}}',
 'passwordreset-username'       => 'Nazwa użytkownika:',
+'passwordreset-domain'         => 'Domena',
 'passwordreset-email'          => 'Adres e‐mail',
 'passwordreset-emailtitle'     => 'Dane konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'   => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1) poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
@@ -1201,7 +1203,7 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 
 # Search results
 'searchresults'                    => 'Wyniki wyszukiwania',
-'searchresults-title'              => 'Wyniki wyszukiwania dla „$1”',
+'searchresults-title'              => 'Wyniki wyszukiwania „$1”',
 'searchresulttext'                 => 'Więcej informacji o przeszukiwaniu {{GRAMMAR:D.lp|{{SITENAME}}}} odnajdziesz na [[{{MediaWiki:Helppage}}|stronach pomocy]].',
 'searchsubtitle'                   => "Wyniki dla zapytania '''[[:$1]]''' ([[Special:Prefixindex/$1|strony zaczynające się od „$1”]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|strony, które linkują do „$1”]])",
 'searchsubtitleinvalid'            => "Dla zapytania '''$1'''",
@@ -1374,7 +1376,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'prefs-help-email-others'       => 'Możesz również umożliwić innym użytkownikom wysłanie do Ciebie e‐maila poprzez Twoją stronę użytkownika lub stronę dyskusji (bez ujawniania Twojego adresu).',
 'prefs-help-email-required'     => 'Wymagany jest adres e‐mail.',
 'prefs-info'                    => 'Podstawowe informacje',
-'prefs-i18n'                    => 'Międzynarodowość',
+'prefs-i18n'                    => 'Ustawienia międzynarodowe',
 'prefs-signature'               => 'Podpis',
 'prefs-dateformat'              => 'Format daty',
 'prefs-timeoffset'              => 'Różnica czasu',
@@ -1410,7 +1412,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'userrights-no-interwiki'      => 'Nie masz dostępu do edycji uprawnień na innych wiki.',
 'userrights-nodatabase'        => 'Baza danych $1 nie istnieje lub nie jest lokalna.',
 'userrights-nologin'           => 'Musisz [[Special:UserLogin|zalogować się]] na konto administratora, by nadawać uprawnienia użytkownikom.',
-'userrights-notallowed'        => 'Nie masz dostępu do nadawania uprawnień użytkownikom.',
+'userrights-notallowed'        => 'Nie jesteś upoważniony do nadawania i odbierania uprawnień użytkownikom.',
 'userrights-changeable-col'    => 'Grupy, które możesz wybrać',
 'userrights-unchangeable-col'  => 'Grupy, których nie możesz wybrać',
 
@@ -1496,7 +1498,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-userrights'            => 'Edycja uprawnień wszystkich użytkowników',
 'right-userrights-interwiki'  => 'Edycja uprawnień użytkowników innych witryn wiki',
 'right-siteadmin'             => 'Blokowanie i odblokowywanie bazy danych',
-'right-reset-passwords'       => 'Zerowanie haseł innych użytkowników',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
 
@@ -1628,11 +1629,11 @@ Przejdź na stronę [[Special:NewFiles|galerii nowych plików]], by zobaczyć pl
 'illegalfilename'             => 'Nazwa pliku „$1” zawiera znaki niedozwolone w tytułach stron.
 Zmień nazwę pliku i prześlij go ponownie.',
 'badfilename'                 => 'Nazwa pliku została zmieniona na „$1”.',
-'filetype-mime-mismatch'      => 'Rozszerzenie pliku jest inne niż typ MIME.',
+'filetype-mime-mismatch'      => 'Rozszerzenie pliku „.$1“ nie pasuje do wykrytego typu MIME $2.',
 'filetype-badmime'            => 'Przesyłanie plików z typem MIME „$1” jest niedozwolone.',
 'filetype-bad-ie-mime'        => 'Nie można załadować tego pliku, ponieważ Internet Explorer wykryje go jako „$1”, a taki typ pliku jest zabronioniony jako potencjalnie niebezpieczny.',
 'filetype-unwanted-type'      => "'''„.$1”''' nie jest zalecanym typem pliku. Pożądane są pliki w {{PLURAL:$3|formacie|formatach}} $2.",
-'filetype-banned-type'        => "'''„.$1”''' nie jest dozwolonym typem pliku.
+'filetype-banned-type'        => "'''„.$1”''' nie {{PLURAL:$4|jest dozwolonym typem pliku|są dozwolonymi typami plików}}.
 Dopuszczalne są pliki w {{PLURAL:$3|formacie|formatach}} $2.",
 'filetype-missing'            => 'Plik nie ma rozszerzenia (np. „.jpg”).',
 'empty-file'                  => 'Przesłany przez Ciebie plik jest pusty.',
@@ -1799,9 +1800,8 @@ Możesz także spróbować w czasie mniejszego obciążenia serwera.',
 'upload_source_file' => ' (plik na twoim komputerze)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Na tej stronie specjalnej prezentowane są wszystkie pliki przesłane na serwer.
-Domyślnie na górze listy umieszczane są ostatnio przesłane pliki.
-Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
+'listfiles-summary'     => 'Na tej stronie specjalnej prezentowane są wszystkie przesłane pliki.
+Jeśli włączono filtrowanie dla konkretnego użytkownika, prezentowane są wyłącznie przesłana przez niego najnowsze wersje plików.',
 'listfiles_search_for'  => 'Szukaj pliku o nazwie',
 'imgfile'               => 'plik',
 'listfiles'             => 'Lista plików',
@@ -2218,13 +2218,13 @@ Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron 
 
 --
 W celu zmiany ustawień swojej listy obserwowanych odwiedź
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Usunięcie strony z listy obserwowanych możliwe jest na stronie
 $UNWATCHURL
 
 Pomoc
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Usuń stronę',
@@ -2431,7 +2431,6 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'sp-contributions-username'            => 'Adres IP lub nazwa użytkownika',
 'sp-contributions-toponly'             => 'Pokaż wyłącznie ostatnie wersje',
 'sp-contributions-submit'              => 'Szukaj',
-'sp-contributions-showsizediff'        => 'Wyświetl różnice w wielkości strony',
 
 # What links here
 'whatlinkshere'            => 'Linkujące',
@@ -3234,9 +3233,9 @@ Pozostałe pola zostaną domyślnie ukryte.
 'exif-orientation-3' => 'obraz obrócony o 180°',
 'exif-orientation-4' => 'odbicie lustrzane w pionie',
 'exif-orientation-5' => 'obraz obrócony o 90° przeciwnie do ruchu wskazówek zegara i odbicie lustrzane w pionie',
-'exif-orientation-6' => 'obraz obrócony o 90° zgodnie z ruchem wskazówek zegara',
+'exif-orientation-6' => 'Obrócony o 90° przeciwnie do wskazówek zegara',
 'exif-orientation-7' => 'obrót o 90° zgodnie ze wskazówkami zegara i odbicie lustrzane w pionie',
-'exif-orientation-8' => 'obrót o 90° przeciwnie do wskazówek zegara',
+'exif-orientation-8' => 'Obrócony o 90° zgodnie z ruchem wskazówek zegara',
 
 'exif-planarconfiguration-1' => 'format masywny',
 'exif-planarconfiguration-2' => 'format powierzchniowy',
@@ -3707,10 +3706,9 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Strony specjalne',
-'specialpages-note'              => '----
-* Typowe strony specjalne.
+'specialpages-note'              => '* Typowe strony specjalne.
 * <span class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</span>
-* <span class="mw-specialpagecached">Buforowane strony specjalne.</span>',
+* <span class="mw-specialpagecached">Buforowane strony specjalne (mogą być nieaktualne).</span>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other'       => 'Inne strony specjalne',
 'specialpages-group-login'       => 'Logowanie i rejestracja',

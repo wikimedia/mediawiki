@@ -10,6 +10,7 @@
  * @author Ainali
  * @author Boivie
  * @author Dafer45
+ * @author Diupwijk
  * @author EPO
  * @author Fluff
  * @author GameOn
@@ -323,7 +324,7 @@ $messages = array(
 'tog-editsection'             => 'Aktivera redigering av avsnitt genom [redigera]-länkar',
 'tog-editsectiononrightclick' => 'Aktivera redigering av avsnitt genom högerklick på underrubriker (Javascript)',
 'tog-showtoc'                 => 'Visa innehållsförteckning (för sidor som har minst fyra rubriker)',
-'tog-rememberpassword'        => 'Kom ihåg min inloggning på den här webbläsaren (i maximalt $1 {{PLURAL:$1|dag|dagar}})',
+'tog-rememberpassword'        => 'Kom ihåg min inloggning på den här webbläsaren (i maximalt $1 {{PLURAL:$1|dygn|dygn}})',
 'tog-watchcreations'          => 'Lägg till sidor jag skapar i min bevakningslista',
 'tog-watchdefault'            => 'Lägg till sidor jag redigerar i min bevakningslista',
 'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min bevakningslista',
@@ -337,7 +338,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Skicka mig e-post även för mindre ändringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-postmeddelanden om ändringar som skickas till andra',
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
-'tog-oldsig'                  => 'Förhandsvisning av nuvarande signatur:',
+'tog-oldsig'                  => 'Nuvarande signatur:',
 'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
 'tog-externaleditor'          => 'Använd extern editor som standard (endast för avancerade användare, speciella inställningar på din dator krävs. [http://www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
 'tog-externaldiff'            => 'Använd externt diff-verktyg som förval (endast för avancerade användare, kräver speciella inställningar i din dator.
@@ -709,7 +710,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'yourname'                   => 'Användarnamn:',
 'yourpassword'               => 'Lösenord:',
 'yourpasswordagain'          => 'Upprepa lösenord',
-'remembermypassword'         => 'Spara min inloggning på den här datorn (i max $1 {{PLURAL:$1|dag|dagar}})',
+'remembermypassword'         => 'Spara min inloggning på den här datorn (i max $1 {{PLURAL:$1|dygn|dygn}})',
 'securelogin-stick-https'    => 'Fortsätt vara ansluten till HTTPS efter inloggning',
 'yourdomainname'             => 'Din domän',
 'externaldberror'            => 'Antingen inträffade autentiseringsproblem med en extern databas, eller så får du inte uppdatera ditt externa konto.',
@@ -731,7 +732,7 @@ Glöm inte att justera dina [[Special:Preferences|{{SITENAME}}-inställningar]].
 'createaccountreason'        => 'Orsak:',
 'badretype'                  => 'De lösenord du uppgett överenstämmer inte med varandra.',
 'userexists'                 => 'Det valda användarnamnet används redan.
-Välj ett annat namn.',
+Var god välj ett annat namn.',
 'loginerror'                 => 'Inloggningsproblem',
 'createaccounterror'         => 'Kunde inte skapa konto: $1',
 'nocookiesnew'               => 'Användarkontot skapades, men du är inte inloggad.
@@ -757,7 +758,7 @@ Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]
 'password-login-forbidden'   => 'Användningen av dessa användarnamn och lösenord har förbjudits.',
 'mailmypassword'             => 'Skicka nytt lösenord',
 'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
-'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1) har begärt ett nytt lösenord till {{SITENAME}} ($4). Ett tillfälligt lösenordet för användaren "$2" har skapats och det blev "$3". Om detta var vad du önskade, så behöver du nu logga in och välja ett nytt lösenord. Ditt tillfälliga lösenord går ut om {{PLURAL:$5|en dag|$5 dagar}}.
+'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1) har begärt ett nytt lösenord till {{SITENAME}} ($4). Ett tillfälligt lösenordet för användaren "$2" har skapats och det blev "$3". Om detta var vad du önskade, så behöver du nu logga in och välja ett nytt lösenord. Ditt tillfälliga lösenord går ut om {{PLURAL:$5|ett dygn|$5 dygn}}.
 
 Om denna begäran gjordes av någon annan, eller om du har kommit på ditt lösenord,
 och inte längre önskar ändra det, så kan du ignorera detta meddelande och
@@ -771,8 +772,8 @@ Innan någon annan e-post kan skickas härifrån till kontot, måste du följa i
 'throttled-mailpassword'     => 'Ett nytt lösenord har redan skickats för mindre än {{PLURAL:$1|en timme|$1 timmar}} sedan.
 För att förhindra missbruk skickas bara ett nytt lösenord per {{PLURAL:$1|timme|$1-timmarsperiod}}.',
 'mailerror'                  => 'Fel vid skickande av e-post: $1',
-'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under den senaste dagen, vilket är det maximalt tillåtna inom denna tidsperioden.
-Som ett resultat kan inte besökare som använder den här IP-adressen skapa några fler användarkonton just nu.',
+'acct_creation_throttle_hit' => 'Besökare till den här wikin som har använt din IP-adress har skapat {{PLURAL:$1|1 användarkonto|$1 användarkonton}} under det senaste dygnet, vilket är det maximalt tillåtna inom den tidsperioden.
+Som ett resultat kan besökare som använder den här IP-adressen inte skapa några fler användarkonton just nu.',
 'emailauthenticated'         => 'Din e-postadress bekräftades den $2 kl. $3.',
 'emailnotauthenticated'      => 'Din e-postadress är ännu inte bekräftad. Ingen e-post kommer att skickas vad gäller det följande:',
 'noemailprefs'               => 'Uppge en e-postadress i dina inställningar för att få dessa funktioner att fungera.',
@@ -820,6 +821,7 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'passwordreset-disabled'       => 'Lösenordsåterställning har inaktiverats på denna wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Ange en av datadelarna nedan}}',
 'passwordreset-username'       => 'Användarnamn:',
+'passwordreset-domain'         => 'Domän:',
 'passwordreset-email'          => 'E-postadress:',
 'passwordreset-emailtitle'     => 'Kontouppgifter på {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Någon (förmodligen du, från IP-adressen $1) begärde en påminnelse av dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
@@ -939,11 +941,11 @@ eller <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'blocked-notice-logextract'        => 'Användaren är blockerad.
 Orsaken till senaste blockeringen kan ses nedan:',
 'clearyourcache'                   => "'''OBS:''' Sedan du sparat sidan kan du behöva tömma din webbläsares cache för att se ändringarna.
-*'''Firefox / Safari:''' håll ner ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
-*'''Google Chrome:''' tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
-*'''Internet Explorer:'''  håll ner ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
-*'''Konqueror:''': klicka ''Reload'' eller tryck ''F5''
-*'''Opera:''' rensa cachen i ''Verktyg → Inställningar''",
+*'''Firefox / Safari:''' Håll ner ''Skift'' och klicka på ''Uppdatera sidan'' eller tryck antingen ''Ctrl-F5'' eller ''Ctrl-R'' (''Command-R'' på Mac)
+*'''Google Chrome:''' Tryck ''Ctrl-Skift-R''  (''Command-R'' på Mac)
+*'''Internet Explorer:'''  Håll ner ''Ctrl'' och klicka på ''Uppdatera'' eller tryck ''Ctrl-F5''
+*'''Konqueror:''' Klicka på ''Reload'' eller tryck på ''F5''
+*'''Opera:''' Rensa cachen i ''Verktyg → Inställningar''",
 'usercssyoucanpreview'             => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya css innan du sparar.",
 'userjsyoucanpreview'              => "'''Tips:''' Använd \"{{int:showpreview}}\"-knappen för att testa din nya JavaScript innan du sparar.",
 'usercsspreview'                   => "'''Kom ihåg att du bara förhandsgranskar din användar-CSS.
@@ -1407,6 +1409,7 @@ Detta kan inte återställas.',
 'prefs-registration'            => 'Registreringstid:',
 'yourrealname'                  => 'Riktigt namn:',
 'yourlanguage'                  => 'Språk:',
+'yourvariant'                   => 'Språkval för innehåll:',
 'yournick'                      => 'Signatur:',
 'prefs-help-signature'          => 'Kommentarer på diskussionssidor ska signeras med "<nowiki>~~~~</nowiki>", vilket konverteras till din signatur och tidpunkt.',
 'badsig'                        => 'Det är något fel med råsignaturen, kontrollera HTML-koden.',
@@ -1460,7 +1463,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'userrights-no-interwiki'      => 'Du har inte behörighet att ändra användarrättigheter på andra wikis.',
 'userrights-nodatabase'        => 'Databasen $1 finns inte eller så är den inte lokal.',
 'userrights-nologin'           => 'Du måste [[Special:UserLogin|logga in]] med ett administratörskonto för att ändra användarrättigheter.',
-'userrights-notallowed'        => 'Ditt konto har inte behörighet till att ändra användarrättigheter.',
+'userrights-notallowed'        => 'Ditt konto har inte behörighet till att lägga till eller ta bort användarrättigheter.',
 'userrights-changeable-col'    => 'Grupper du kan ändra',
 'userrights-unchangeable-col'  => 'Grupper du inte kan ändra',
 
@@ -1546,7 +1549,6 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-userrights'            => 'Ändra alla användarrättigheter',
 'right-userrights-interwiki'  => 'Ändra rättigheter för användare på andra wikier',
 'right-siteadmin'             => 'Låsa och låsa upp databasen',
-'right-reset-passwords'       => 'Återställa andra användares lösenord',
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
 'right-sendemail'             => 'Skicka e-post till andra användare',
 
@@ -1844,8 +1846,7 @@ För optimal säkerhet, har img_auth.php blivit avaktiverad.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Den här specialsidan visar alla filer som har laddats upp.
-Som standard visas de senast upladdade filerna högst upp i listan.
-Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordningen.',
+När den filtreras av en användare visas endast den senast uppladdade versionen av filen.',
 'listfiles_search_for'  => 'Sök efter filnamn:',
 'imgfile'               => 'fil',
 'listfiles'             => 'Fillista',
@@ -1967,7 +1968,7 @@ Innan mallarna raderas, kontrollera att det inte finns andra länkar till dem.',
 'statistics-views-peredit'     => 'Antal sidvisningar per redigering',
 'statistics-users'             => 'Registrerade [[Special:ListUsers|användare]]',
 'statistics-users-active'      => 'Aktiva användare',
-'statistics-users-active-desc' => 'Användare som utfört någon åtgärd under {{PLURAL:$1|det senaste dygnet|de senaste $1 dagarna}}',
+'statistics-users-active-desc' => 'Användare som utfört någon åtgärd under {{PLURAL:$1|det senaste dygnet|de senaste $1 dygnen}}',
 'statistics-mostpopular'       => 'Mest besökta sidor',
 
 'disambiguations'      => 'Sidor som länkar till förgreningssidor',
@@ -2126,7 +2127,7 @@ Stödda protokoll: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'            => 'Lista över aktiva användare',
-'activeusers-intro'      => 'Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dagen|dagarna}}.',
+'activeusers-intro'      => 'Detta är en lista på användare som har haft någon form av aktivitet inom de senaste $1 {{PLURAL:$1|dygnet|dygnen}}.',
 'activeusers-count'      => '$1 {{PLURAL:$1|redigering|redigeringar}} {{PLURAL:$3|det senaste dygnet|de senaste $3 dygnen}}',
 'activeusers-from'       => 'Visa användare från och med:',
 'activeusers-hidebots'   => 'Göm botar',
@@ -2260,16 +2261,16 @@ Du kan också ta bort flaggan för meddelanden om ändringar på alla sidor i di
 
 --
 För att ändra inställningarna för dina uppdateringar via e-post, besök
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 För att ändra inställningarna i din bevakningslista, besök
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 För att radera sidan från din bevakningslista, besök
 $UNWATCHURL
 
 Feedback och ytterligare hjälp:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Ta bort sida',
@@ -2470,7 +2471,6 @@ Den senaste posten i blockeringsloggen visas nedan som referens:',
 'sp-contributions-username'            => 'IP-adress eller användarnamn:',
 'sp-contributions-toponly'             => 'Visa endast aktuella sidversioner',
 'sp-contributions-submit'              => 'Sök',
-'sp-contributions-showsizediff'        => 'Visa skillnad i sidstorlek',
 
 # What links here
 'whatlinkshere'            => 'Vad som länkar hit',
@@ -3263,9 +3263,9 @@ Andra kommer att gömmas som standard
 'exif-orientation-3' => 'Roterad 180°',
 'exif-orientation-4' => 'Spegelvänd vertikalt',
 'exif-orientation-5' => 'Roterad 90° moturs och spegelvänd vertikalt',
-'exif-orientation-6' => 'Roterad 90° medurs',
+'exif-orientation-6' => 'Roterad 90° moturs',
 'exif-orientation-7' => 'Roterad 90° medurs och spegelvänd vertikalt',
-'exif-orientation-8' => 'Roterad 90° moturs',
+'exif-orientation-8' => 'Roterad 90° medurs',
 
 'exif-planarconfiguration-1' => 'chunkformat',
 'exif-planarconfiguration-2' => 'planärformat',
@@ -3685,8 +3685,8 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'specialpages'                   => 'Specialsidor',
 'specialpages-note'              => '----
 * Normala specialsidor.
-* <strong class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</strong>
-* <span class="mw-specialpagecached">Endast cachade specialsidor.</span>',
+* <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>
+* <span class="mw-specialpagecached">Cachade specialsidor (kan vara föråldrade).</span>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other'       => 'Övriga specialsidor',
 'specialpages-group-login'       => 'Inloggning/registrering',

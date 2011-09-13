@@ -1154,7 +1154,6 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'right-userrights'           => 'எல்லாப் பயனர் உரிமைகளையும் தொகுக்கவும்',
 'right-userrights-interwiki' => 'ஏனைய விக்கி தளங்களின் பயனர் உரிமைகளை தொகுத்தல்',
 'right-siteadmin'            => 'தரவுத்தளத்தை பூட்டல் திறத்தல்',
-'right-reset-passwords'      => 'பிற பயனர்களின் கடவுச் சொற்களை மீட்டமைக்கவும்',
 'right-sendemail'            => 'மற்ற பயனர்களுக்கு மின்னஞ்சல் அனுப்பு',
 
 # User rights log
@@ -1710,10 +1709,10 @@ $NEWPAGE
 
 --
 உங்கள் கவனிப்புப் பட்டியல் அமைவுகளை மாற்ற
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 பின்னூட்டம், மேலதிக உதவிகளுக்கு:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'பக்கத்தை நீக்கு',

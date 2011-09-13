@@ -1317,7 +1317,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-userrights'            => 'Wužiwarske prawa wobdźěłać',
 'right-userrights-interwiki'  => 'Wužiwarske prawa wužiwarjow druhich wikijow wobdźěłać',
 'right-siteadmin'             => 'Datowu banku zawrěć a wotewrěć',
-'right-reset-passwords'       => 'Hesła druhich wužiwarjow wróćo stajić',
 'right-override-export-depth' => 'Strony inkluziwnje wotkazanych stronow hač do hłubokosće 5 eksportować',
 'right-sendemail'             => 'Druhim wužiwarjam e-mejl pósłać',
 
@@ -2020,14 +2019,14 @@ Móžeš tež zdźělenske marki za wšě swoje wobkedźbowane strony we swojich
 
 --
 Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Zo by stronu ze swojich wobkedźbowankow zhašał, wopytaj
 $UNWATCHURL
 
 
 Wotmołwy a dalša pomoc:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Stronu zhašeć',

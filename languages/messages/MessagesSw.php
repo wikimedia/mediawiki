@@ -1144,7 +1144,7 @@ Hapo kuna ufunguo uliotolewa na programu kwa kubahatisha, ambao unaweza kuutumia
 'savedprefs'                    => 'Mapendekezo yako yamehifadhiwa.',
 'timezonelegend'                => 'Ukanda saa:',
 'localtime'                     => 'Saa ya kwetu:',
-'timezoneuseserverdefault'      => 'Tumia saa linalokubali na wiki yenyewe ($1)',
+'timezoneuseserverdefault'      => 'Tumia saa inayokubali na wiki yenyewe ($1)',
 'timezoneuseoffset'             => 'Nyingine (weka tofauti ya saa)',
 'timezoneoffset'                => 'Tofauti ya saa¹:',
 'servertime'                    => 'Saa ya seva:',
@@ -1213,8 +1213,8 @@ Taarifa hii itakuwa wazi.',
 'prefs-diffs'                   => 'Tofauti',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => 'Inaonekana kwamba anwani wa barua pepe iko halisi',
-'email-address-validity-invalid' => 'Andika anwani halisi ya barua pepe',
+'email-address-validity-valid'   => 'Anwani ya barua pepe inaonekana kuwa sawa',
+'email-address-validity-invalid' => 'Ingiza anwani halisi ya barua pepe',
 
 # User rights
 'userrights'                   => 'Usimamizi wa wezo za mtumiaji',
@@ -1282,7 +1282,7 @@ Taarifa hii itakuwa wazi.',
 'right-purge'                => 'Safisha kache za wavuti kwa ajili ya ukurasa usio na uthibitisho',
 'right-autoconfirmed'        => 'Hariri kurasa zilizokingwa-kiasi',
 'right-nominornewtalk'       => 'Isiwe kwamba maharirio madogo kwenye kurasa za majadiliano fyatua kunijulisha kuhusu jumbe mpya',
-'right-writeapi'             => 'Kutumia API ya kuandika',
+'right-writeapi'             => 'Tumia API ya kuandika',
 'right-delete'               => 'Kufuta kurasa',
 'right-bigdelete'            => 'Kufuta kurasa zenye mabadiliko mengi',
 'right-deleterevision'       => 'Kufuta na kurudisha mapitio fulani ya kurasa',
@@ -1295,19 +1295,18 @@ Taarifa hii itakuwa wazi.',
 'right-block'                => 'Kuwazuia watumiaji wengine wasihariri',
 'right-blockemail'           => 'Kumzuia mtumiaji asitume barua-pepe',
 'right-hideuser'             => 'Kuzuia jina la mtumiaji, lisionekane mbele ya kadamnasi',
-'right-protect'              => 'Kubadilisha viwango vya ulinzi na kuhariri kurasa zilizolindwa',
+'right-protect'              => 'Badilisha viwango vya ulinzi na hariri kurasa zilizolindwa',
 'right-editinterface'        => 'Kuhariri kusano ya mtumiaji',
 'right-editusercssjs'        => 'Kuhariri mafaili ya CSS na JavaScript ya watumiaji wengine',
-'right-editusercss'          => 'Kuhariri mafaili ya CSS ya watumiaji wengine',
-'right-edituserjs'           => 'Kuhariri mafaili ya JavaScript ya watumiaji wengine',
+'right-editusercss'          => 'Hariri mafaili ya CSS ya watumiaji wengine',
+'right-edituserjs'           => 'Hariri mafaili ya JavaScript ya watumiaji wengine',
 'right-import'               => 'Kuleta kurasa kutoka kwa wiki zingine',
-'right-importupload'         => 'Leta kurasa kutoka kwa faili lililopakiwa',
+'right-importupload'         => 'Ingiza kurasa kutoka kwa faili lililopakiwa',
 'right-unwatchedpages'       => 'Kutazama orodha ya kurasa zisizofuatiliwa',
 'right-mergehistory'         => 'Kuunganisha historia ya kurasa zingine',
 'right-userrights'           => 'Kubadilisha wezo zote za watumiaji',
 'right-userrights-interwiki' => 'Kuhariri wezo za watumiaji kwenye wiki zingine',
 'right-siteadmin'            => 'Kufunga na kufungua hifadhidata',
-'right-reset-passwords'      => 'Kuseti maneno ya siri ya watumiaji wengine',
 'right-sendemail'            => 'Kutuma barua-pepe kwa watumiaji wengine',
 
 # User rights log
@@ -1331,7 +1330,7 @@ Taarifa hii itakuwa wazi.',
 'action-reupload'             => 'kuandikiza faili lililopo tayari',
 'action-reupload-shared'      => 'kupuuza faili lililopo hifadhi ya pamoja ya faili',
 'action-upload_by_url'        => 'kupakia faili hili kutoka kwa gombo wavu',
-'action-writeapi'             => 'kutumia API ya kuandika',
+'action-writeapi'             => 'tumia API ya kuandika',
 'action-delete'               => 'kufuta ukurasa huu',
 'action-deleterevision'       => 'kufuta pitio hili',
 'action-deletedhistory'       => 'kutazama historia iliyofutwa ya ukurasa huu',
@@ -1340,9 +1339,9 @@ Taarifa hii itakuwa wazi.',
 'action-suppressrevision'     => 'kuangalia na kurudisha pitio hilo lililofichwa kwa wakabidhi',
 'action-suppressionlog'       => 'kutazama kumbukumbu za faragha',
 'action-block'                => 'kumzuia mtumiaji huyu asihariri',
-'action-protect'              => 'kubadilisha viwango vya ulinzi vya ukurasa huu',
+'action-protect'              => 'badilisha viwango vya ulinzi vya ukurasa huu',
 'action-import'               => 'kuleta ukurasa huu kutoka kwa wiki nyingine',
-'action-importupload'         => 'leta ukurasa huu kutoka kwa faili lilopakiwa',
+'action-importupload'         => 'Ingiza ukurasa huu kutoka kwa faili lilopakiwa',
 'action-unwatchedpages'       => 'kutazama orodha ya kurasa zisizofuatiliwa',
 'action-mergehistory'         => 'kuunganisha historia ya ukurasa huu',
 'action-userrights'           => 'kubadilisha wezo zote za watumiaji',
@@ -1982,13 +1981,13 @@ Au unaweza kuweka upya maombi ya kupewa taarifa kwa ajili ya kurasa zote zilizop
 
 --
 Ukitaka kubadilisha mapendekezo yako yanayohusika orodha ya maangalizi yako, nenda
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Ukitaka kutoa ukurasa huu kwenye orodha ya maangalizi yako, nenda
 $UNWATCHURL
 
 Kutoa maoni yako au kupata msaada mwingine:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Futa ukurasa',
@@ -2158,7 +2157,6 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'sp-contributions-username'            => 'Anwani ya IP au jina la mtumiaji:',
 'sp-contributions-toponly'             => 'Onesha maharirio ambayo ni mapitio mapya tu',
 'sp-contributions-submit'              => 'Tafuta',
-'sp-contributions-showsizediff'        => 'Onyesha tofauti ya ukubwa wa ukurasa',
 
 # What links here
 'whatlinkshere'            => 'Viungo viungavyo ukurasa huu',
@@ -2949,7 +2947,8 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'specialpages'                   => 'Kurasa maalum',
 'specialpages-note'              => '----
 * Kurasa maalum ya kawaida.
-* <strong class="mw-specialpagerestricted">Kurasa maalum zisizoonekana na wote.</strong>',
+* <span class="mw-specialpagerestricted">Kurasa maalum zisizoonekana na wote.</span>
+* <span class="mw-specialpagecached">Kurasa maalum zinazotoka "cache" (might be obsolete).</span>',
 'specialpages-group-maintenance' => 'Ripoti za kurekebisha na kutunza kurasa',
 'specialpages-group-other'       => 'Kurasa maalum zingine',
 'specialpages-group-login'       => 'Ingia / sajili akaunti',

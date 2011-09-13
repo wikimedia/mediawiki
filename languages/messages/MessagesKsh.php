@@ -10,6 +10,7 @@
  * @author Caesius noh en Idee vum Manes
  * @author Purodha
  * @author Reedy
+ * @author Rentenirer
  */
 
 /**
@@ -343,7 +344,7 @@ $messages = array(
 'mypage'        => 'ming Metmaacher-Sigg',
 'mytalk'        => 'ming Klaafsigg',
 'anontalk'      => 'Klaaf för de IP-Adress',
-'navigation'    => 'Jangk noh',
+'navigation'    => 'Jangk noh de',
 'and'           => ', un',
 
 # Cologne Blue skin
@@ -643,7 +644,8 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge heh för {{GRAM
 'createaccountmail'          => 'Scheck mer en E-Mail met Passwood',
 'createaccountreason'        => 'Jrond:',
 'badretype'                  => 'Ding zwëij ennjejovve Paßßwööter sinn nit ejaal. Do muss De Dich för ein entscheide.',
-'userexists'                 => 'Ene Metmaacher met däm Name jitt et ald. Schad. Do muss De Der ene andere Name usdenke.',
+'userexists'                 => 'Ene Metmaacher met däm Name jidd et ald.
+Do muss Der ene andere Name usdenke.',
 'loginerror'                 => 'Fähler beim Enlogge',
 'createaccounterror'         => 'Kunnt keine Zohjang för der Metmaacher-Name „$1“ aanlääje.',
 'nocookiesnew'               => 'Dinge neue Metmaacher Name es enjerich, ävver dat automatisch Enlogge wor dann nix.
@@ -769,7 +771,7 @@ Do häs Der enzwesche e neuZweschepasswood jehollt.',
 'passwordreset-text'           => 'Donn dat Fommulaa heh ußfölle, öm en <i lang="en">e-mail</i> ze krijje, woh jät övver der Zohjang heh obb et Wiki för Desch dren shteiht.',
 'passwordreset-legend'         => 'Et Paßwoot zeröck säze',
 'passwordreset-disabled'       => 'Et Paßwoot zeröck ze säze es heh em Wiki afjeschalldt.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Jiff ein vun dä Saache heh dronger enn}}',
+'passwordreset-pretext'        => '{{PLURAL:$1||Jiff ein vun dä Saache heh dronger enn|}}',
 'passwordreset-username'       => 'Metmaacher Name:',
 'passwordreset-email'          => 'De Adräß för de <i lang="en">e-mail</i>:',
 'passwordreset-emailtitle'     => 'Einzelheite för der Zohjang op {{GRAMMAR:Akkusativ|{{SITENAME}}}}',
@@ -1562,7 +1564,6 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-userrights'            => 'Metmaacher ier Rääschte ändere',
 'right-userrights-interwiki'  => 'Metmaacher ier Rääschte in ander Wikis ändere',
 'right-siteadmin'             => 'De Datebank deeschmaache un opmaache för Änderunge',
-'right-reset-passwords'       => 'Enem andere Metmaacher et Paßwoot zeröck setze',
 'right-override-export-depth' => 'Beim Sigge Expoteere de Sigge metnämme, woh Lingks drop jon — beß fönef Schredde wigk',
 'right-sendemail'             => '<i lang="en">e-mail</i> aan ander Metmaacher schecke',
 
@@ -1570,7 +1571,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'rightslog'                  => 'Logboch för Änderunge aan Metmaacher-Räächde',
 'rightslogtext'              => 'Hee sin de Änderunge an Metmaacher ehre Räächde opjeliss. Op de Sigge üvver Metmaacher, Wiki-Köbesse, Bürrokrade, Stewards, un esu, kanns De nohlese, wat domet es.',
 'rightslogentry'             => 'hät däm Metmaacher „$1“ sing Räächde vun „$2“ op „$3“ ömjestallt.',
-'rightslogentry-autopromote' => 'wood automattesch vum $2 zom $3 jemaat.',
+'rightslogentry-autopromote' => 'wood automattesch vun $2 zoh $3 jemaat.',
 'rightsnone'                 => '(nix)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1884,7 +1885,9 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'upload_source_file' => ' (en Datei op Dingem Kompjuter)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Hee sin de huhjeladene Dateie opjelis. Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wa'mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wa'mer norrens klick, weed de Reiejfolg ömjedrieht.",
+'listfiles-summary'     => 'Hee sin de huhjeladene Dateie opjelis.
+Et eetz wäde de zoletz huhjeladene Dateie aanjezeich. Wam_mer op de Övverschreff von ene Spalt klick, weed die Spalt sotteet, wam_mer norrens klick, weed de Reiejfolsch ömjedrieht.
+Wann ene Metmaacher ußjesöhk es, kritt mer bloß die Dateie, di dä Metmaacher huhjelaade hät.',
 'listfiles_search_for'  => 'Sök noh däm Name vun dä Datei:',
 'imgfile'               => 'Datei',
 'listfiles'             => 'Dateie opleste',
@@ -2344,16 +2347,16 @@ Ene schöne Jroß {{GRAMMAR:vun|{{SITENAME}}}}.
 
 -- 
 Öm de Enshtällonge för Nohreeschet aan Desch ze ändere, jangk op:
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 Do kanns hee Ding Oppassliss ändere:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Öm di Sigg vun Dinger Oppassliss ze schmieße:
 $UNWATCHURL
 
 Do kanns hee noh Hölp luure:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Schmieß die Sigg jetz fott',
@@ -2554,7 +2557,6 @@ De neuste Sperr ier Enndraach em Logbooch es:',
 'sp-contributions-username'            => 'Metmaachername odder <i lang="en">IP</i>-Address:',
 'sp-contributions-toponly'             => 'Bloß neuste Versione zeije',
 'sp-contributions-submit'              => 'Söhke',
-'sp-contributions-showsizediff'        => 'Don de Veränderong vum Ömfang vun dä Sigge aanzeije',
 
 # What links here
 'whatlinkshere'            => 'Wat noh heh link',
@@ -3851,7 +3853,7 @@ Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
 'specialpages-note'              => '----
 * {{int:nstab-special}}e för jede Metmaacher.
 * <span class="mw-specialpagerestricted">{{int:nstab-special}}e för Metmaacher met besönder Räächde.</span>
-* <span class="mw-specialpagecached">Em Zwescheshpeisher jehallde {{int:nstab-special}}e.</span>',
+* <span class="mw-specialpagecached">Em Zwescheshpeisher jehallde {{int:nstab-special}}e. Di künnte ovverhollt sind.</span>',
 'specialpages-group-maintenance' => 'Waadungsleste',
 'specialpages-group-other'       => 'Ander {{int:nstab-special}}e',
 'specialpages-group-login'       => 'Aamelde',

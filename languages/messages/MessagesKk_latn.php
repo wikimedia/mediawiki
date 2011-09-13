@@ -1,5 +1,5 @@
 <?php
-/** Kazakh (Latin) (Қазақша (Latin))
+/** Kazakh (Latin script) (‪Qazaqşa (latın)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1776,10 +1776,10 @@ Sonımen qatar baqılaw tizimiñizdegi bet eskertpelik belgisin qaýta qoýıñ�
 
 ----
 Baqılaw tizimiñizdiñ baptawlırın özgertw üşin, mında kelip-ketiñiz:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Sın-pikir berw jäne bılaýğı järdem alw üşin:
-{{fullurl:{{{{ns:mediawiki}}:Helppage}}}}',
+{{canonicalurl:{{{{ns:mediawiki}}:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Betti joyw',

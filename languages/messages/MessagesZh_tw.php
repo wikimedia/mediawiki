@@ -634,10 +634,10 @@ $NEWPAGE
 
 --
 要改變您的監視列表設定，請參閱
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 回饋和進一步的說明:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'confirmdeletetext' => '您即將從資料庫中永遠刪除一個頁面或圖片以及其歷史。

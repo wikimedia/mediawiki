@@ -1475,7 +1475,6 @@ $1",
 'right-userrights'           => 'सर्व सदस्यांचे अधिकार संपादा',
 'right-userrights-interwiki' => 'इतर विकिंवर सदस्य अधिकार बदला',
 'right-siteadmin'            => 'माहितीसाठ्याला कुलुप लावा अथवा काढा',
-'right-reset-passwords'      => 'इतर सदस्यांचा परवलीचा शब्द पुनर्स्थापित करा',
 'right-sendemail'            => 'इतर सदस्यांना विपत्रे पाठवा',
 
 # User rights log
@@ -2059,9 +2058,11 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'watchlistanontext'    => 'तुमच्या पहार्‍याच्या सूचीतील बाबी पाहण्याकरता किंवा संपादित करण्याकरता, कृपया $1.',
 'watchnologin'         => 'प्रवेश केलेला नाही',
 'watchnologintext'     => 'तुमची पहार्‍याची सूची बदलावयाची असेल तर तुम्ही [[Special:UserLogin|प्रवेश केलेला]] असलाच पाहीजे.',
+'addwatch'             => 'पहार्‍याच्या सूचीत टाका',
 'addedwatchtext'       => '"[[:$1]]"  हे पान तुमच्या  [[Special:Watchlist|पहार्‍याच्या सूचीत]] टाकले आहे. या पानावरील तसेच त्याच्या चर्चा पानावरील पुढील बदल येथे दाखवले जातील, आणि   [[Special:RecentChanges|अलीकडील बदलांमध्ये]] पान ठळक दिसेल.
 
 पहार्‍याच्या सूचीतून पान काढायचे असेल तर "पहारा काढा" वर टिचकी द्या.',
+'removewatch'          => 'पहार्‍याच्या सूचीतून वगळा',
 'removedwatchtext'     => '"[[:$1]]" पान तुमच्या [[Special:Watchlist|पहार्‍याच्या सूची]]तून वगळण्यात आले आहे.',
 'watch'                => 'पहारा',
 'watchthispage'        => 'या पानावर बदलांसाठी लक्ष ठेवा.',
@@ -2114,10 +2115,10 @@ $NEWPAGE
 
 --
 
-तुमचे पहार्‍यातील पानांची मांडणावळ (कोंदण) बदलू शकता,{{fullurl:{{#special:EditWatchlist}}}}ला भेट द्या
+तुमचे पहार्‍यातील पानांची मांडणावळ (कोंदण) बदलू शकता,{{canonicalurl:{{#special:EditWatchlist}}}}ला भेट द्या
 
 पुढील सहाय्य आणि प्रतिक्रीया:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'पान वगळा',
@@ -2705,6 +2706,12 @@ $1',
 'spam_reverting'      => '$1शी दुवे नसलेल्या गेल्या आवर्तनाकडे परत उलटवत आहे',
 'spam_blanking'       => '$1शी दुवे असलेली सर्व आवर्तने,रिक्त केली जात आहेत',
 
+# Info page
+'pageinfo-header-edits'     => 'संपादने',
+'pageinfo-header-watchlist' => 'पहार्‍याची सूची',
+'pageinfo-subjectpage'      => 'पान',
+'pageinfo-talkpage'         => 'चर्चा पान',
+
 # Skin names
 'skinname-standard'    => 'अभिजात',
 'skinname-nostalgia'   => 'रम्य',
@@ -3290,8 +3297,7 @@ $1',
 
 # Special:SpecialPages
 'specialpages'                   => 'विशेष पृष्ठे',
-'specialpages-note'              => '----
-* सर्वसाधारण विशेष पृष्ठे.
+'specialpages-note'              => '* सर्वसाधारण विशेष पृष्ठे.
 * <strong class="mw-specialpagerestricted">प्रतिबंधित विशेष पृष्ठे.</strong>',
 'specialpages-group-maintenance' => 'व्यवस्थापन अहवाल',
 'specialpages-group-other'       => 'इतर विशेष पृष्ठे',

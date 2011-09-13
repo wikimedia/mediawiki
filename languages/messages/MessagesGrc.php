@@ -1062,7 +1062,6 @@ $1",
 'right-userrights'            => 'Μεταγράφειν ἅπαντα τοῦ χρωμένου δικαιώματα',
 'right-userrights-interwiki'  => 'Μεταγράφειν τὰ δικαιώματα χρωμένων ἐν ἄλλοις βίκι',
 'right-siteadmin'             => 'Φράττειν καὶ ἀποφράττειν τὴν βάσιν δεδομένων',
-'right-reset-passwords'       => 'Ἀναρρυθμίζειν συνθήματα ἄλλων χρωμένων',
 'right-override-export-depth' => 'Ἐξάγειν δέλτους περιλαμβανομένων συνδεδεμένων δέλτων ἕως βάθος τι 5 ἐπιπέδων',
 
 # User rights log
@@ -1449,8 +1448,8 @@ $1",
 # Special:Log
 'specialloguserlabel'  => 'Χρώμενος:',
 'speciallogtitlelabel' => 'Ἐπιγραφή:',
-'log'                  => 'Κατάλογοι',
-'all-logs-page'        => 'Κατάλογοι δημόσιοι ἅπαντες',
+'log'                  => 'Καταγραφαί',
+'all-logs-page'        => 'Καταγραφαί δημόσιοι ἅπαντες',
 'logempty'             => 'Μὴ ἀντιστοιχοῦντα τὰ τεμάχια ἐν τῷδε τῷ καταλόγῳ.',
 'log-title-wildcard'   => 'Ζητεῖν ἐπιγραφὰς ἐκκινουμένας ἐκ τοῦδε τοῦ κειμένου',
 
@@ -1613,10 +1612,10 @@ $NEWPAGE
 
 --
 Διὰ τὸ ἀλλάξειν τὰς ῥυθμίσεις τὴς ἐφοροδιαλογῆς σου, ἐπίσκεψαι τὸ
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Ἀνάδρασις καὶ περαιτέρω βοήθεια:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Διαγράφειν τὴν δέλτον',
@@ -1769,8 +1768,9 @@ $1',
 'sp-contributions-newbies'       => 'Δεικνύναι ἐράνους νέων λογισμῶν μόνον',
 'sp-contributions-newbies-sub'   => 'Ἔρανοι νέων χρωμένων',
 'sp-contributions-newbies-title' => 'Ἔρανοι χρωμένου διὰ νέους λογισμούς',
-'sp-contributions-blocklog'      => 'Τὰ ἀποκλῄειν',
-'sp-contributions-deleted'       => 'Διαγράψαι τοὺς ἐράνους τοῦ χρωμένου',
+'sp-contributions-blocklog'      => 'αἱ ἀποκλῄσεις',
+'sp-contributions-deleted'       => 'διεγραμμένοι ἔρανοι χρωμένου',
+'sp-contributions-uploads'       => 'ἐπιφορτώσεις',
 'sp-contributions-logs'          => 'ἱστορικά',
 'sp-contributions-talk'          => 'Διαλέγεσθαι',
 'sp-contributions-userrights'    => 'Διαχείρισις δικαιωμάτων χρωμένου',

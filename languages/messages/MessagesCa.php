@@ -212,7 +212,7 @@ $messages = array(
 'tog-enotifminoredits'        => "Notifica'm per correu també en casos d'edicions menors",
 'tog-enotifrevealaddr'        => "Mostra la meua adreça electrònica en els missatges d'avís per correu",
 'tog-shownumberswatching'     => "Mostra el nombre d'usuaris que hi vigilen",
-'tog-oldsig'                  => 'Previsualització de la signatura:',
+'tog-oldsig'                  => 'Signatura actual:',
 'tog-fancysig'                => 'Tractar la signatura com a text wiki (sense enllaç automàtic)',
 'tog-externaleditor'          => "Utilitza per defecte un editor extern (opció per a experts, requereix la configuració adient de l'ordinador, [http://www.mediawiki.org/wiki/Manual:External_editors consulteu-ho al manual])",
 'tog-externaldiff'            => "Utilitza per defecte un altre visualitzador de diferències (opció per a experts, requereix la configuració adient de l'ordinador, [http://www.mediawiki.org/wiki/Manual:External_editors consulteu-ho al manual])",
@@ -445,7 +445,7 @@ $1",
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Obtingut de «$1»',
-'youhavenewmessages'      => 'Teniu $1 ($2).',
+'youhavenewmessages'      => 'Tens $1 ($2).',
 'newmessageslink'         => 'nous missatges',
 'newmessagesdifflink'     => 'últims canvis',
 'youhavenewmessagesmulti' => 'Teniu nous missatges a $1',
@@ -604,7 +604,8 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'createaccountmail'          => 'per correu electrònic',
 'createaccountreason'        => 'Motiu:',
 'badretype'                  => 'Les contrasenyes que heu introduït no coincideixen.',
-'userexists'                 => 'El nom que heu entrat ja és en ús. Escolliu-ne un de diferent.',
+'userexists'                 => 'El nom que heu entrat ja és en ús.
+Escolliu-ne un de diferent.',
 'loginerror'                 => "Error d'inici de sessió",
 'createaccounterror'         => "No s'ha pogut crear el compte: $1",
 'nocookiesnew'               => "S'ha creat el compte d'usuari, però no esteu enregistrat. El projecte {{SITENAME}} usa galetes per enregistrar els usuaris. Si us plau activeu-les, per a poder enregistrar-vos amb el vostre nom d'usuari i la clau.",
@@ -1388,7 +1389,6 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-userrights'            => 'Editar els drets dels usuaris',
 'right-userrights-interwiki'  => "Editar els drets dels usuaris d'altres wikis",
 'right-siteadmin'             => 'Blocar i desblocar la base de dades',
-'right-reset-passwords'       => "Reiniciar la contrasenya d'altres usuaris",
 'right-override-export-depth' => 'Exportar pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-sendemail'             => 'Enviar missatges de correu electrònic a altres usuaris',
 
@@ -2025,8 +2025,10 @@ L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres prefe
 'watchnologin'         => 'No heu iniciat la sessió',
 'watchnologintext'     => "Heu d'[[Special:UserLogin|entrar]]
 per modificar el vostre llistat de seguiment.",
+'addwatch'             => 'Afegeix a llista de seguiment',
 'addedwatchtext'       => "S'ha afegit la pàgina «[[:$1]]» a la vostra [[Special:Watchlist|llista de seguiment]].
 S'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corresponent discussió. A més la pàgina estarà ressaltada '''en negreta''' a la [[Special:RecentChanges|llista de canvis recents]] perquè pugueu adonar-vos dels canvis amb més facilitat.",
+'removewatch'          => 'Treu de la llista de seguiment',
 'removedwatchtext'     => "S'ha tret la pàgina «[[:$1]]» de la vostra [[Special:Watchlist|llista de seguiment]].",
 'watch'                => 'Vigila',
 'watchthispage'        => 'Vigila aquesta pàgina',
@@ -2079,13 +2081,13 @@ No rebreu més notificacions de futurs canvis si no visiteu la pàgina. També p
 
 --
 Per a canviar les opcions de la vostra llista de seguiment aneu a
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Per eliminar la pàgina de la vostra llista de seguiment aneu a
 $UNWATCHURL
 
 Suggeriments i ajuda:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Elimina la pàgina',
@@ -2142,7 +2144,8 @@ La darrera modificació ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$
 
 # Protect
 'protectlogpage'              => 'Registre de protecció',
-'protectlogtext'              => 'Aquest és el registre de proteccions i desproteccions. Vegeu la [[Special:ProtectedPages|llista de pàgines protegides]] per a la llista de les pàgines que actualment tenen alguna protecció.',
+'protectlogtext'              => 'A continuació es mostra un registre amb els canvis de protecció de pàgines.
+Vegeu la [[Special:ProtectedPages|llista de pàgines protegides]] per a la llista de les pàgines que actualment tenen alguna protecció.',
 'protectedarticle'            => 'ha protegit «[[$1]]»',
 'modifiedarticleprotection'   => 'ha canviat el nivell de protecció de «[[$1]]»',
 'unprotectedarticle'          => 'ha desprotegit "[[$1]]"',
@@ -2285,7 +2288,6 @@ Per més detalls, la última entrada del registre es mostra a continuació:',
 'sp-contributions-username'            => "Adreça IP o nom d'usuari:",
 'sp-contributions-toponly'             => 'Mostra només revisions superiors',
 'sp-contributions-submit'              => 'Cerca',
-'sp-contributions-showsizediff'        => 'Mostra la diferència en mida de pàgina',
 
 # What links here
 'whatlinkshere'            => 'Què hi enllaça',
@@ -2745,6 +2747,9 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'spam_reverting'      => 'Es reverteix a la darrera versió que no conté enllaços a $1',
 'spam_blanking'       => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
 
+# Info page
+'pageinfo-header-edits' => 'Modificacions',
+
 # Skin names
 'skinname-standard'    => 'Clàssic',
 'skinname-nostalgia'   => 'Nostàlgia',
@@ -3037,9 +3042,9 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-orientation-3' => 'Girat 180°',
 'exif-orientation-4' => 'Invertit verticalment',
 'exif-orientation-5' => 'Rotat 90° en sentit antihorari i invertit verticalment',
-'exif-orientation-6' => 'Rotat 90° en sentit horari',
+'exif-orientation-6' => 'Rotat 90° en sentit antihorari',
 'exif-orientation-7' => 'Rotat 90° en sentit horari i invertit verticalment',
-'exif-orientation-8' => 'Rotat 90° en sentit antihorari',
+'exif-orientation-8' => 'Rotat 90° en sentit horari',
 
 'exif-planarconfiguration-1' => 'a blocs densos (chunky)',
 'exif-planarconfiguration-2' => 'format pla',

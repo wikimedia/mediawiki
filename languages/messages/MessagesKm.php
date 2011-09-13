@@ -456,7 +456,7 @@ $messages = array(
 'protect_change'    => 'ផ្លាស់ប្តូរការការពារ',
 'protectthispage'   => 'ការពារទំព័រនេះ',
 'unprotect'         => 'ប្ដូរការការពារ',
-'unprotectthispage' => 'ឈប់ការពារទំព័រនេះ',
+'unprotectthispage' => 'ផ្លាស់ប្ដូរការការពារទំព័រនេះ',
 'newpage'           => 'ទំព័រថ្មី',
 'talkpage'          => 'ពិភាក្សាទំព័រនេះ',
 'talkpagelinktext'  => 'ការពិភាក្សា',
@@ -910,8 +910,9 @@ $2',
 'userpage-userdoesnotexist-view'   => 'គណនីអ្នកប្រើប្រាស់ដែលមានឈ្មោះ "$1"មិនទាន់បានចុះឈ្មោះទេ។',
 'blocked-notice-logextract'        => 'អ្នកប្រើប្រាស់នេះត្រូវបានហាមឃាត់ហើយនាពេលនេះ។
 កំណត់ត្រាស្ដីពីការហាមឃាត់ចុងក្រោយមានបង្ហាញដូចខាងក្រោមនេះ៖',
-'clearyourcache'                   => "'''សម្គាល់:''' បន្ទាប់ពីបានរក្សាទុករួចហើយ លោកអ្នកគួរតែសំអាត browser's cache របស់លោកអ្នកដើម្បីមើលការផ្លាស់ប្តូរ។ ខាងក្រោមនេះជាវិធីសំអាត browser's cache ចំពោះកម្មវិធីរុករក(Browser)មួយចំនួន។
-* '''Mozilla / Firefox / Safari:''' សង្កត់ [Shift] ឱ្យជាប់រួចចុចប៊ូតុង ''Reload'' ឬក៏ចុច  ''Ctrl-F5'' ឬ ''Ctrl-R'' (ចំពោះApple Mac វិញ​ចុច ''Command-R'')។
+'clearyourcache'                   => "!'''សម្គាល់:''' បន្ទាប់ពីបានរក្សាទុករួចហើយ លោកអ្នកគួរតែសំអាត browser's cache របស់លោកអ្នកដើម្បីមើលការផ្លាស់ប្តូរ។ ខាងក្រោមនេះជាវិធីសំអាត browser's cache ចំពោះកម្មវិធីរុករក(Browser)មួយចំនួន។
+* ''' Firefox / Safari:''' សង្កត់ [Shift] ឱ្យជាប់រួចចុចប៊ូតុង ''Reload'' ឬក៏ចុច  ''Ctrl-F5'' ឬ ''Ctrl-R'' (ចំពោះApple Mac វិញ​ចុច ''Command-R'')
+* '''Google Chrome:''' ចុច ''Ctrl-Shift-R'' (''Command-Shift-R'' សំរាប់ Mac)
 * '''IE(Internet Explorer):''' សង្កត់ [Ctrl] ឱ្យជាប់ រួចចុច ''Refresh''ប៊ូតុង ឬក៏ចុច ''Ctrl-F5''​។
 * '''Konqueror:''' ចុចប៊ូតុង  ''Reload'' ឬក៏ចុច ''F5''
 * '''Opera:''' សូមចុច  ''[Tools]→[Preferences]''​។",
@@ -1323,7 +1324,7 @@ $1",
 'savedprefs'                    => 'ចំណង់ចំណូលចិត្តនានារបស់អ្នកត្រូវបានរក្សាទុកហើយ។',
 'timezonelegend'                => 'ល្វែង​ម៉ោង:',
 'localtime'                     => 'ម៉ោងក្នុងស្រុក​៖',
-'timezoneuseserverdefault'      => 'តាមការកំនត់របស់ម៉ាស៊ីនបំរើការ',
+'timezoneuseserverdefault'      => 'តាមការកំនត់ដើមរបស់វិគី ($1)',
 'timezoneuseoffset'             => 'ផ្សេងទៀត (បញ្ចូលម៉ោងដោយខ្លួនឯង)',
 'timezoneoffset'                => 'ទូទាត់¹​៖',
 'servertime'                    => 'ម៉ោងម៉ាស៊ីនបម្រើ​៖',
@@ -1495,7 +1496,6 @@ $1",
 'right-userrights'           => 'កែប្រែរាល់សិទ្ធិនៃអ្នកប្រើប្រាស់',
 'right-userrights-interwiki' => 'កែប្រែសិទ្ធិអ្នកប្រើប្រាស់នៅលើវិគីផ្សេងៗទៀត',
 'right-siteadmin'            => 'ចាក់សោនិងបើកសោមូលដ្ឋានទិន្នន័យ',
-'right-reset-passwords'      => 'កំណត់​ឡើង​វិញ​នូវ​លេខ​សម្ងាត់​អ្នក​ប្រើប្រាស់​ដទៃ​ទៀត​',
 'right-sendemail'            => 'ផ្ញើអ៊ីមែលទៅកាន់អ្នកប្រើដទៃ',
 
 # User rights log
@@ -2207,18 +2207,18 @@ $NEWPAGE
 
 --
 ដើម្បីផ្លាស់ប្តូរការកំណត់ការផ្ដល់ដំណឹងតាមអ៊ីមែលរបស់អ្នក, សូមទៅកាន់
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 
 ដើម្បីផ្លាស់ប្តូរការកំណត់បញ្ជីតាមដានរបស់អ្នក, សូមទៅកាន់
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 
 ដើម្បីដកទំព័រចេញពីបញ្ជីតាមដានរបស់អ្នក, សូមទៅកាន់
 $UNWATCHURL
 
 មតិ​យោបល់​និងជំនួយបន្ថែម ៖
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'លុបទំព័រចោល',
@@ -2280,10 +2280,10 @@ $UNWATCHURL
 'protectlogpage'              => 'កំណត់ហេតុនៃការការពារ',
 'protectlogtext'              => 'ខាងក្រោមនេះជាបញ្ជីនៃទំព័រដែលត្រូវបានចាក់សោនិងដោះសោ។
 
-សូមមើល [[Special:ProtectedPages|បញ្ជីទំព័រត្រូវបានការពារ]]។',
+សូមមើល [[Special:ProtectedPages|បញ្ជីទំព័រត្រូវបានការពារ]] សំរាប់បញ្ជីការការពារទំព័រដែលកំពុងនៅមានសុពលភាពនៅពេលនេះ។',
 'protectedarticle'            => 'បានការពារ"[[$1]]"',
 'modifiedarticleprotection'   => 'បានផ្លាស់ប្តូរកម្រិតការពារនៃ"[[$1]]"',
-'unprotectedarticle'          => 'បានឈប់ការពារ៖ "[[$1]]"',
+'unprotectedarticle'          => 'ដកការការពារពី "[[$1]]"',
 'movedarticleprotection'      => 'បាន​ផ្លាស់​ប្ដូរ​ទី​តាំង​ការ​កំណត់​ការ​ការពារ​ពី"[[$2]]" ទៅ​ "[[$1]]"',
 'protect-title'               => 'ការពារ "$1"',
 'prot_1movedto2'              => 'បានប្តូរទីតាំង [[$1]] ទៅ [[$2]]',
@@ -2349,11 +2349,9 @@ $UNWATCHURL
 
 ឃ្លាំងសំងាត់អាចនឹងត្រូវបានបោសសម្អាតជាប្រចាំ។',
 'undelete-fieldset-title'      => 'ស្តារកំណែឡើងវិញ',
-'undeleteextrahelp'            => "ដើម្បីស្ដារប្រវត្តិទាំងមូលរបស់ទំព័រនេះឡើងវិញ សូមទុកប្រអប់គូសទាំងអោយនៅទំនេររួចចុចលើប៊ូតុង
+'undeleteextrahelp'            => "ដើម្បីស្ដារប្រវត្តិទាំងមូលរបស់ទំព័រនេះឡើងវិញ សូមទុកប្រអប់គូសទាំងអោយនៅទំនេររួចចុចលើប៊ូតុង '''''{{int:undeletebtn}}'''''។
 
-ដើម្បីស្ដារទៅកំណែដែលអ្នកចង់ សូមគូសពីមុខកំណែនោះរួចចុចលើប៊ូតុង '''''ស្ដារឡើងវិញ''''។
-
-ចុចលើប៊ូតុង '''''ធ្វើឱ្យដូចដើមវិញ''''' ដើម្បីលុបយោបល់និងប្រអប់គូសយក។",
+ដើម្បីស្ដារប្រវត្តិដោយផ្នែក សូមគូសក្នុងប្រអប់ខាងមុខកំណែដែលចង់ស្ដារ រួចចុចលើប៊ូតុង '''''{{int:undeletebtn}}'''''។",
 'undeleterevisions'            => '$1 {{PLURAL:$1|កំណែ​​}} បាន​ដាក់​ចូលក្នុងឃ្លាំងសំងាត់',
 'undeletehistory'              => 'ប្រសិនបើអ្នកស្ដារទំព័រនេះឡើងវិញ រាល់កំណែទាំងអស់នឹងត្រូវបានស្ដារឡើងវិញក្នុងប្រវត្តិ។
 
@@ -2430,7 +2428,6 @@ $1',
 'sp-contributions-username'            => 'អាសយដ្ឋានIP ឬអត្តនាម៖',
 'sp-contributions-toponly'             => 'បង្ហាញតែការកែប្រែណាដែលជាកំណែថ្មីៗជាងគេប៉ុណ្ណោះ',
 'sp-contributions-submit'              => 'ស្វែងរក',
-'sp-contributions-showsizediff'        => 'បង្ហាញភាពខុសគ្នាជាទំហំទំព័រ',
 
 # What links here
 'whatlinkshere'            => 'អ្វី​ដែលភ្ជាប់មកទីនេះ',
@@ -2759,7 +2756,7 @@ $1',
 'tooltip-ca-viewsource'           => 'ទំព័រ​នេះ​បានត្រូវការពារ ។ អ្នកអាច​មើល​អក្សរកូដ​របស់វា ។',
 'tooltip-ca-history'              => 'កំណែកន្លងមករបស់ទំព័រនេះ ។',
 'tooltip-ca-protect'              => 'ការពារ​ទំព័រនេះ',
-'tooltip-ca-unprotect'            => 'លែង​ការ​ពារ​ទំព័រ​នេះ​',
+'tooltip-ca-unprotect'            => 'ផ្លាស់ប្ដូរការការពារទំព័រនេះ',
 'tooltip-ca-delete'               => 'លុបទំព័រនេះចេញ',
 'tooltip-ca-undelete'             => 'ស្ដារការកែប្រែនានាដែលត្រូវបានធ្វើចំពោះទំព័រនេះ មុនពេលដែលវាត្រូវបានគេលុបចោល',
 'tooltip-ca-move'                 => 'ប្ដូរទីតាំង​ទំព័រនេះ',
@@ -3117,7 +3114,7 @@ $1',
 'exif-gpsdestdistance-k' => 'គីឡូម៉ែត្រ',
 'exif-gpsdestdistance-m' => 'ម៉ាយល៍',
 
-'exif-gpsdop-excellent' => 'ល្អណាស់',
+'exif-gpsdop-excellent' => 'ល្អណាស់ ($1)',
 'exif-gpsdop-good'      => 'ល្អ ($1)',
 'exif-gpsdop-moderate'  => 'ល្អបង្គួរ ($1)',
 'exif-gpsdop-fair'      => 'មធ្យម ($1)',
@@ -3236,6 +3233,9 @@ $1',
 # action=purge
 'confirm_purge_button' => 'យល់ព្រម',
 'confirm-purge-top'    => 'សំអាតឃ្លាំងសំងាត់(cache)នៃទំព័រនេះ?',
+
+# action=watch/unwatch
+'confirm-watch-button' => 'យល់ព្រម',
 
 # Multipage image navigation
 'imgmultipageprev' => '← ទំព័រមុន',

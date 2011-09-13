@@ -1249,7 +1249,6 @@ $1",
 'right-userrights'            => 'Барлыҡ ҡатнашыусыларҙың хоҡуҡтарын үҙгәртеү',
 'right-userrights-interwiki'  => 'Ҡатнашыусыларҙың башҡа Вики-сайттарҙағы хоҡуҡтарын үҙгәртеү',
 'right-siteadmin'             => 'Мәғлүмәттәр базаһын асыу һәм ябыу',
-'right-reset-passwords'       => 'Башҡа ҡатнашыусыларҙың паролен яңыртыу',
 'right-override-export-depth' => '5-се тәрәнлеккә тиклем бәйле биттәре менән бергә биттәрҙе сығарыу',
 'right-sendemail'             => 'Башҡа ҡатнашыусыларға электрон почта аша хат ебәреү',
 
@@ -1942,13 +1941,13 @@ $NEWPAGE
 --
 
 Күҙәтеү исемлеге көйләүҙәрен үҙгәртергә:
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Битте һеҙҙең күҙәтеү исемлегенән юйырға
 $UNWATCHURL
 
 Кире бәйләнеш һәм ярҙам:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Битте юйырға',

@@ -11,6 +11,7 @@
  * @author Amire80
  * @author Drorsnir
  * @author Ijon
+ * @author Ofrahod
  * @author Rotem Dan (July 2003)
  * @author Rotem Liss (March 2006 on)
  * @author Rotemliss
@@ -369,9 +370,9 @@ $messages = array(
 'tog-enotifwatchlistpages'    => 'שליחת דוא"ל אליך כאשר נעשה שינוי בדפים ברשימת המעקב שלך',
 'tog-enotifusertalkpages'     => 'שליחת דוא"ל אליך כאשר נעשה שינוי בדף שיחת המשתמש שלך',
 'tog-enotifminoredits'        => 'שליחת דוא"ל אליך גם על עריכות משניות של דפים',
-'tog-enotifrevealaddr'        => 'חשיפת כתובת הדוא"ל שלך בהודעות דואר',
+'tog-enotifrevealaddr'        => 'חשיפת כתובת הדוא"ל שלך בהודעות דוא"ל',
 'tog-shownumberswatching'     => 'הצגת מספר המשתמשים העוקבים אחרי הדף',
-'tog-oldsig'                  => 'תצוגה מקדימה של החתימה הקיימת:',
+'tog-oldsig'                  => 'החתימה הקיימת:',
 'tog-fancysig'                => 'פירוש החתימה כקוד ויקי (ללא קישור אוטומטי)',
 'tog-externaleditor'          => 'שימוש בעורך חיצוני כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [http://www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
 'tog-externaldiff'            => 'שימוש בתוכנת השוואת הגרסאות החיצונית כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [http://www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
@@ -761,7 +762,7 @@ $2',
 'createaccountmail'          => 'באמצעות דוא"ל',
 'createaccountreason'        => 'סיבה:',
 'badretype'                  => 'הסיסמאות שהזנתם אינן מתאימות.',
-'userexists'                 => 'שם המשתמש שבחרתם נמצא בשימוש.
+'userexists'                 => 'שם המשתמש שבחרתם כבר נמצא בשימוש.
 אנא בחרו שם אחר.',
 'loginerror'                 => 'שגיאה בכניסה לאתר',
 'createaccounterror'         => 'לא ניתן היה ליצור את החשבון: $1',
@@ -858,6 +859,7 @@ $2',
 'passwordreset-disabled'       => 'איפוסי סיסמה בוטלו באתר ויקי זה.',
 'passwordreset-pretext'        => '{{PLURAL:$1||הקלידו אחד מפריטי המידע למטה}}',
 'passwordreset-username'       => 'שם משתמש:',
+'passwordreset-domain'         => 'תחום:',
 'passwordreset-email'          => 'כתובת דוא"ל:',
 'passwordreset-emailtitle'     => 'פרטי חשבון ב{{grammar:תחילית|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'   => 'מישהו (ככל הנראה אתם, מכתובת ה־IP מספר $1) ביקש תזכורת של פרטי
@@ -988,13 +990,13 @@ $2
 * '''אינטרנט אקספלורר:''' לחצו על Ctrl בעת לחיצתכם על '''רענן''' (Refresh), או הקישו על ''Ctrl+F5''
 * '''Konqueror:''' לחצו על '''העלה מחדש''' (Reload) או הקישו על ''F5''
 * '''אופרה''': נקו את המטמון ב'''כלים''' (Tools) > '''העדפות''' (Preferences)",
-'usercssyoucanpreview'             => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את גליון ה־CSS החדש שלכם לפני השמירה.",
+'usercssyoucanpreview'             => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את גיליון ה־CSS החדש שלכם לפני השמירה.",
 'userjsyoucanpreview'              => "'''עצה:''' השתמשו בלחצן \"{{int:showpreview}}\" כדי לבחון את סקריפט ה־JavaScript החדש שלכם לפני השמירה.",
-'usercsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גליון ה־CSS שלכם.'''
+'usercsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גיליון ה־CSS שלכם.'''
 '''הוא טרם נשמר!'''",
 'userjspreview'                    => "'''זכרו שזו רק בדיקה/תצוגה מקדימה של סקריפט ה־JavaScript שלכם.'''
 '''הוא טרם נשמר!'''",
-'sitecsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גליון ה־CSS הזה.'''
+'sitecsspreview'                   => "'''זכרו שזו רק תצוגה מקדימה של גיליון ה־CSS הזה.'''
 '''הוא טרם נשמר!'''",
 'sitejspreview'                    => "'''זכרו שזו רק תצוגה מקדימה של קוד ה־JavaScript הזה.'''
 '''הוא טרם נשמר!'''",
@@ -1179,7 +1181,7 @@ $2
 'revdelete-no-file'           => 'הקובץ שציינתם אינו קיים.',
 'revdelete-show-file-confirm' => 'האם אתם בטוחים שברצונכם לצפות בגרסה המחוקה של הקובץ "<nowiki>$1</nowiki>" מתאריך $3, $2?',
 'revdelete-show-file-submit'  => 'כן',
-'revdelete-selected'          => "'''{{PLURAL:$2|הגרסה הנבחרת|הגרסאות הנבחרות}} של הדף [[:$1]]:'''",
+'revdelete-selected'          => "'''{{PLURAL:$2|הגרסה שנבחרה|הגרסאות שנבחרו}} של הדף [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|פעולת היומנים שנבחרה|פעולות היומנים שנבחרו}}:'''",
 'revdelete-text'              => "'''גרסאות ופעולות יומנים שנמחקו עדיין תופענה בהיסטוריית הדף ובדפי היומנים, אך חלקים מהתוכן שלהן לא יהיה זמין לציבור.'''
 מפעילי מערכת אחרים באתר עדיין יוכלו לגשת לתוכן הנסתר ויוכלו לשחזר אותו שוב דרך הממשק הזה, אלא אם כן תוגדרנה הגבלות נוספות.",
@@ -1363,7 +1365,7 @@ $1",
 'qbsettings-fixedright'     => 'קבוע מימין',
 'qbsettings-floatingleft'   => 'צף משמאל',
 'qbsettings-floatingright'  => 'צף מימין',
-'qbsettings-directionality' => 'קבוע, תלוי בכיווניות של הכתב ושל השפה',
+'qbsettings-directionality' => 'קבוע, תלוי בכיוון הכתב של השפה שלך',
 
 # Preferences page
 'preferences'                   => 'העדפות',
@@ -1454,10 +1456,10 @@ $1",
 'badsiglength'                  => 'חתימתכם ארוכה מדי.
 היא חייבת לא להיות ארוכה מ{{PLURAL:$1|תו אחד|־$1 תווים}}.',
 'yourgender'                    => 'מגדר:',
-'gender-unknown'                => 'לא צוין',
+'gender-unknown'                => 'לא גלוי',
 'gender-male'                   => 'זכר',
 'gender-female'                 => 'נקבה',
-'prefs-help-gender'             => 'אופציונאלי: ניתן לכתוב מידע זה כדי שהתוכנה תתייחס אליכם באופן נכון מבחינה מגדרית. מידע זה יהיה ציבורי.',
+'prefs-help-gender'             => 'אופציונאלי: מידע זה יאפשר לתוכנה להתייחס אליכם באופן נכון מבחינה מגדרית. מידע זה יהיה ציבורי.',
 'email'                         => 'דוא"ל',
 'prefs-help-realname'           => 'השם האמיתי הוא אופציונאלי.
 אם תבחרו לספקו, הוא ישמש לייחוס עבודתכם אליכם.',
@@ -1502,7 +1504,7 @@ $1",
 'userrights-no-interwiki'      => 'אין לכם הרשאה לערוך הרשאות משתמש באתרים אחרים.',
 'userrights-nodatabase'        => 'בסיס הנתונים $1 אינו קיים או אינו מקומי.',
 'userrights-nologin'           => 'עליכם [[Special:UserLogin|להיכנס לחשבון]] עם הרשאות מתאימות כדי לשנות הרשאות של משתמשים.',
-'userrights-notallowed'        => 'לחשבון המשתמש שלכם אין הרשאה לשנות הרשאות של משתמשים.',
+'userrights-notallowed'        => 'לחשבון המשתמש שלכם אין הרשאה להוסיף או להסיר הרשאות של משתמשים.',
 'userrights-changeable-col'    => 'קבוצות שבאפשרותכם לשנות',
 'userrights-unchangeable-col'  => 'קבוצות שאין באפשרותכם לשנות',
 
@@ -1588,7 +1590,6 @@ $1",
 'right-userrights'            => 'עריכת כל הרשאות המשתמש',
 'right-userrights-interwiki'  => 'עריכת הרשאות המשתמש של משתמשים באתרי ויקי אחרים',
 'right-siteadmin'             => 'נעילת וביטול נעילת בסיס הנתונים',
-'right-reset-passwords'       => 'איפוס סיסמאות של משתמשים אחרים',
 'right-override-export-depth' => 'ייצוא דפים כולל דפים מקושרים עד עומק של חמישה',
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
 
@@ -1888,7 +1889,8 @@ $1',
 'upload_source_file' => ' (קובץ במחשב שלך)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'דף זה מציג את כל הקבצים שהועלו. כברירת מחדל מוצגים הקבצים האחרונים שהועלו בראש הרשימה. לחיצה על כותרת של עמודה משנה את המיון.',
+'listfiles-summary'     => 'דף מיוחד זה מציג את כל הקבצים שהועלו.
+כאשר משתמשים בסינון לפי משתמש, רק קבצים שהמשתמש העלה את הגרסה האחרונה שלהם מוצגים.',
 'listfiles_search_for'  => 'חיפוש קובץ מדיה בשם:',
 'imgfile'               => 'קובץ',
 'listfiles'             => 'רשימת קבצים',
@@ -2309,16 +2311,16 @@ $NEWPAGE
 
 --
 כדי לשנות את ההגדרות של הודעות הדוא"ל הנשלחות אליכם, בקרו בדף
-{{fullurl:{{#special:Preferences}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
 כדי לשנות את הגדרות רשימת המעקב, בקרו בדף
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 כדי למחוק את הדף מרשימת המעקב שלכם, בקרו בדף
 $UNWATCHURL
 
 למשוב ולעזרה נוספת:
-{{fullurl::{{MediaWiki:Helppage}}}}',
+{{canonicalurl::{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'מחיקה',
@@ -2521,7 +2523,6 @@ $1',
 'sp-contributions-username'            => 'שם משתמש או כתובת IP:',
 'sp-contributions-toponly'             => 'הצגת עריכות שהן הגרסאות האחרונות בלבד',
 'sp-contributions-submit'              => 'חיפוש',
-'sp-contributions-showsizediff'        => 'הצגת הבדל בגודל הדף',
 
 # What links here
 'whatlinkshere'            => 'דפים המקושרים לכאן',
@@ -3320,9 +3321,9 @@ $1',
 'exif-orientation-3' => 'מסובב 180°',
 'exif-orientation-4' => 'הפוך אנכית',
 'exif-orientation-5' => 'מסובב 90° נגד כיוון השעון והפוך אנכית',
-'exif-orientation-6' => 'מסובב 90° עם כיוון השעון',
+'exif-orientation-6' => 'מסובב 90° נגד כיוון השעון',
 'exif-orientation-7' => 'מסובב 90° עם כיוון השעון והפוך אנכית',
-'exif-orientation-8' => 'מסובב 90° נגד כיוון השעון',
+'exif-orientation-8' => 'מסובב 90° עם כיוון השעון',
 
 'exif-planarconfiguration-1' => 'פורמט חסון',
 'exif-planarconfiguration-2' => 'פורמט שטוח',
@@ -3798,7 +3799,7 @@ $1',
 'specialpages-note'              => '----
 * דפים מיוחדים רגילים.
 * <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>
-* <span class="mw-specialpagecached">דפים מיוחדים המתקבלים מזיכרון המטמון.</span>',
+* <span class="mw-specialpagecached">דפים מיוחדים המתקבלים מזיכרון המטמון (שעלולים להיות לא מעודכנים).</span>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other'       => 'דפים מיוחדים אחרים',
 'specialpages-group-login'       => 'כניסה / הרשמה לחשבון',

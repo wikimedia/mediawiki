@@ -1274,10 +1274,10 @@ Mayô nang iba pang paisi na ipapadara dapit sa iba pang mga pagbabâgo kun dai 
 
 --
 Para bâgohon an pagpwesto kan saimong mga pigbabantayan, bisitahon an
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Komentaryo asin iba pang tabang:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'            => 'Paraon an pahina',

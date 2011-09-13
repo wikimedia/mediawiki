@@ -1168,7 +1168,6 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 'right-userrights'            => 'Sunting kabèh hak-hak panganggo',
 'right-userrights-interwiki'  => 'Sunting hak-hak para panganggo ing situs-situs wiki liya',
 'right-siteadmin'             => 'Kunci lan buka kunci basis data',
-'right-reset-passwords'       => 'Setèl ulang tembung sandi panganggo liya',
 'right-override-export-depth' => "Èkspor kaca klebu kaca kagandhèng nganti tataran/''depth'' 5",
 'right-sendemail'             => 'Ngirim layang listrik (e-mail) menyang panganggo liya',
 
@@ -1779,10 +1778,10 @@ Kita ora bakal ngandhani manèh yèn diowahi manèh, kejaba panjenengan wis mirs
 
 --
 Kanggo ngowahi préferènsi ing daftar pangawasan panjenengan, mangga mirsani
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 Umpan balik lan pitulung sabanjuré:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Busak kaca',
