@@ -3085,7 +3085,7 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'file-info-size-pages'   => '$1 × $2 Pixel, Dateigröße: $3, MIME-Typ: $4, $5 {{PLURAL:$5|Seite| Seiten}}',
 'file-nohires'           => 'Keine höhere Auflösung vorhanden.',
 'svg-long-desc'          => 'SVG-Datei, Basisgröße: $1 × $2 Pixel, Dateigröße: $3',
-'show-big-image'         => 'Version in höherer Auflösung',
+'show-big-image'         => 'Volle Auflösung',
 'show-big-image-preview' => 'Größe dieser Vorschau: $1.',
 'show-big-image-other'   => 'Weitere {{PLURAL:$2|Auflösung|Auflösungen}}: $1.',
 'show-big-image-size'    => '$1 × $2 Pixel',

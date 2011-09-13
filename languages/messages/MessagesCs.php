@@ -3804,9 +3804,28 @@ Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
 'compare-title-not-exists'    => 'Zadaný název neexistuje.',
 'compare-revision-not-exists' => 'Zadaná revize neexistuje.',
 
+# Special:GlobalFileUsage
+'globalfileusage'             => 'Globální využití souboru',
+'globalfileusage-for'         => 'Globální využití souboru „$1“',
+'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Speciální stránka]] zobrazující globální využití souboru',
+'globalfileusage-ok'          => 'Hledat',
+'globalfileusage-text'        => 'Hledání globálního využití souboru',
+'globalfileusage-no-results'  => '[[$1]] se na ostatních wiki nepoužívá.',
+'globalfileusage-on-wiki'     => 'Využití na $2',
+'globalfileusage-of-file'     => 'Tento soubor využívají následující wiki:',
+'globalfileusage-more'        => 'Zobrazit [[{{#Special:GlobalUsage}}/$1|další globální využití]] tohoto souboru.',
+'globalfileusage-filterlocal' => 'Nezobrazovat místní využití',
+
 # Special:GlobalTemplateUsage
-'globaltemplateusage'     => 'Globální využití šablony',
-'globaltemplateusage-for' => 'Globální využití šablony „$1“',
+'globaltemplateusage'             => 'Globální využití šablony',
+'globaltemplateusage-for'         => 'Globální využití šablony „$1“',
+'globaltemplateusage-ok'          => 'Hledat',
+'globaltemplateusage-text'        => 'Hledání globálního využití šablony',
+'globaltemplateusage-no-results'  => '[[$1]] se na ostatních wiki nepoužívá.',
+'globaltemplateusage-on-wiki'     => 'Využití na $2',
+'globaltemplateusage-of-file'     => 'Tuto šablonu využívají následující wiki:',
+'globaltemplateusage-more'        => 'Zobrazit [[{{#Special:GlobalUsage}}/$1|další globální využití]] této šablony.',
+'globaltemplateusage-filterlocal' => 'Nezobrazovat místní využití',
 
 # Database error messages
 'dberr-header'      => 'Tato wiki má nějaké potíže',

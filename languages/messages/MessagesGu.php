@@ -661,7 +661,16 @@ Please log in again after you receive it.
 'resetpass-temp-password'   => 'કામચલાવ ગુપ્તસંજ્ઞા:',
 
 # Special:PasswordReset
+'passwordreset-legend'   => 'પાસવર્ડ રીસેટ કરો',
+'passwordreset-disabled' => 'આ વિકી પર પાસવર્ડ રીસેટ કરવા પર પ્રતિબંધ છે.',
 'passwordreset-username' => 'સભ્ય નામ:',
+'passwordreset-email'    => 'ઇ મેલ સરનામું:',
+
+# Special:ChangeEmail
+'changeemail-header'   => 'તમારા ખાતાનું ઈ-મેઈલ સરનામું બદલો',
+'changeemail-text'     => 'તમારું ઈ-મેઈલ સરનામું બદલવા માટે આ ફોર્મ ભરો. આ ફેરફાર કાયમ કરવા માટે તમારે પાસવર્ડ ભરવાની જરૂર પડશે.',
+'changeemail-newemail' => 'નવું ઈ-મેલ સરનામું',
+'changeemail-none'     => 'કંઈ નથી',
 
 # Edit page toolbar
 'bold_sample'     => 'ઘાટા અક્ષર',

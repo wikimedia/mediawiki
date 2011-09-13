@@ -1980,8 +1980,8 @@ Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discuss
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'       => 'Sot-euj...',
-'unwatching'     => "Ën gavand da lòn ch'as ten sot euj...",
-'watcherrortext' => "A l'é capitaje n'eror an cangiand j'ampostassion ëd lòn ch'it ten-e sot euj për \"\$1\".",
+'unwatching'     => "Ën gavand da lòn ch'as ten sot-euj...",
+'watcherrortext' => "A l'é capitaje n'eror durant la modìfica ëd j'ampostassion ëd lòn ch'as ten sot-euj për «$1».",
 
 'enotif_mailer'                => '{{SITENAME}} - Servissi ëd Notìfica Postal',
 'enotif_reset'                 => 'March-me tute le pàgine visità',
@@ -2748,11 +2748,11 @@ An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a 
 'file-info'              => "amzura dl'archivi: $1, sòrt MIME: $2",
 'file-info-size'         => '$1 × $2 pixel, amzure: $3, sòrt MIME: $4',
 'file-info-size-pages'   => "$1 × $2 pontin, dimension ëd l'archivi: $3, sòrt MIME: $4, $5 {{PLURAL:$5|pàgina|pàgine}}",
-'file-nohires'           => 'Gnun-a risolussion pì bela disponibila.',
+'file-nohires'           => 'Gnun-a risolussion pì bela disponìbil.',
 'svg-long-desc'          => "archivi an forma SVG, amzure nominaj $1 × $2 pixel, amzura dl'archivi: $3",
 'show-big-image'         => 'Version a amzura pijn-a',
 'show-big-image-preview' => 'Amzure dë sta preuva: $1.',
-'show-big-image-other'   => 'Àutre arzolussion: $1.',
+'show-big-image-other'   => '{{PLURAL:2|Àutra arzolussion|Àutre arzolussion}}: $1.',
 'show-big-image-size'    => '$1 × $2 pontin',
 'file-info-gif-looped'   => 'ciclà',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|fnesta|fneste}}',
