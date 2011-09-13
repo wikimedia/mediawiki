@@ -241,6 +241,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return $out;
 	}
 
+	public function supportsURLLoading() {
+		return false;
+	}
+
 	/**
 	 * @param $context ResourceLoaderContext
 	 * @return array|mixed
