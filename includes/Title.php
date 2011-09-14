@@ -3334,7 +3334,7 @@ class Title {
 
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;
-			$logtype = 'move_redir';
+			$logType = 'move_redir';
 		} else {
 			$moveOverRedirect = false;
 			$logType = 'move';
