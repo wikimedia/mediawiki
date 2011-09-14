@@ -654,7 +654,6 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'viewprevnext'                     => 'Zoag ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'                => "'''Es gibt a Seiten, dé'n Nåmen „[[:$1]]“ hod.'''",
 'searchmenu-new'                   => "'''Erstö d' Seiten „[[:$1]]“ in dém Wiki.'''",
-'searchmenu-new-nocreate'          => '„$1“ is a ungütiger Seitennåm óder kå voh dir néd erstöd wern.',
 'searchprofile-articles'           => 'Inhoidsseiten',
 'searchprofile-project'            => 'Hüfe und Prójektseiten',
 'searchprofile-images'             => 'Muitimeedia',

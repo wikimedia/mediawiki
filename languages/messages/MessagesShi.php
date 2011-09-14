@@ -624,7 +624,6 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'viewprevnext'                     => 'Mel ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Istayn ucnubc',
 'searchmenu-new'                   => "'''Skr Tasna « [[:$1|$1]] » ɣ wiki !'''",
-'searchmenu-new-nocreate'          => '« $1 » tla yan w-assaɣ ur ifulkin ɣan afrad ur ttuyskar',
 'searchhelp-url'                   => 'Help:Mayllan',
 'searchprofile-articles'           => 'Mayllan ɣ tasna',
 'searchprofile-project'            => 'Tisniwin n w-aws n usnfar',

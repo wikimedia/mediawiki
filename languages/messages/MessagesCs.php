@@ -1313,7 +1313,6 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'searchmenu-legend'                => 'Možnosti hledání',
 'searchmenu-exists'                => "*Stránka '''[[$1]]'''",
 'searchmenu-new'                   => "'''Vytvořte na této wiki stránku „[[:$1]]“!'''",
-'searchmenu-new-nocreate'          => '„$1“ je neplatný název stránky nebo takovou stránku nemůžete založit.',
 'searchhelp-url'                   => 'Help:Obsah',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zobrazit stránky, jejichž název začíná „$1“]]',
 'searchprofile-articles'           => 'Články',

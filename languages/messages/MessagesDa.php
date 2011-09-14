@@ -1151,7 +1151,6 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'searchmenu-legend'                => 'Søgemuligheder',
 'searchmenu-exists'                => "'''Der er en side med navnet \"[[:\$1]]\" på denne wiki'''",
 'searchmenu-new'                   => "'''Opret siden \"[[:\$1]]\" i denne wiki'''",
-'searchmenu-new-nocreate'          => '" $1 "er et ugyldigt sidenavn eller kan ikke oprettes af dig.',
 'searchhelp-url'                   => 'Help:Hjælp',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Vis alle sider som begynder med dette præfiks]]',
 'searchprofile-articles'           => 'Indholdssider',

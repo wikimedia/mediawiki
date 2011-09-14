@@ -1300,7 +1300,6 @@ Donn de Version makeere bes wohen (inklusive) dat övverdraare wäde sull. Donn 
 'searchmenu-legend'                => 'Enstellunge för et Söhke',
 'searchmenu-exists'                => "*Sigg '''[[$1]]'''",
 'searchmenu-new'                   => "'''Donn de Sigg „[[:$1|$1]]“ hee em Wiki aanlääje'''",
-'searchmenu-new-nocreate'          => '„$1“ es keine jöltije Tittel för en Sigg, udder Do kanns di Sigg nit aanlääje.',
 'searchhelp-url'                   => 'Help:Hölp',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Zeich all Sigge, di met däm Tex aanfange]]',
 'searchprofile-articles'           => 'Sigge vum Enhalt',

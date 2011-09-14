@@ -1119,7 +1119,6 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'searchmenu-legend'                => 'Opcions de cerca',
 'searchmenu-exists'                => "'''Hi ha una pàgina anomenada «[[:$1]]» en aquest wiki'''",
 'searchmenu-new'                   => "'''Creeu la pàgina «[[:$1]]» en aquest wiki!'''",
-'searchmenu-new-nocreate'          => '«$1» és un nom de pàgina no vàlid o que no podeu crear.',
 'searchhelp-url'                   => 'Help:Ajuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Mostra pàgines amb aquest prefix]]',
 'searchprofile-articles'           => 'Pàgines de contingut',

@@ -951,7 +951,6 @@ Staal deertruch sicher, dät ju Versionsgeskichte fon n Artikkel historisk akroa
 'searchmenu-legend'                => 'Säikoptione',
 'searchmenu-exists'                => "'''Dät rakt n Siede mäd Noome \"[[:\$1]]\" ap dissen Wiki'''",
 'searchmenu-new'                   => "'''Moak ju Siede „[[:$1]]“ in dissen Wiki.'''",
-'searchmenu-new-nocreate'          => '"$1" is n uungultigen Siedenoome of kon nit fon die moaked wäide.',
 'searchhelp-url'                   => 'Help:Hälpe',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Wies aal Sieden, do mäd dän Säikbegriep ounfange]]',
 'searchprofile-articles'           => 'Inhooldssieden',
