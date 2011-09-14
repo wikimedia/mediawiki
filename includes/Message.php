@@ -11,7 +11,7 @@
  *    $button = Xml::button( wfMessage( 'submit' )->text() );
  * </pre>
  * Messages can have parameters:
- *    wfMessage( 'welcome-to' )->params( $wgSitename )->text(); 
+ *    wfMessage( 'welcome-to' )->params( $wgSitename )->text();
  *        {{GRAMMAR}} and friends work correctly
  *    wfMessage( 'are-friends', $user, $friend );
  *    wfMessage( 'bad-message' )->rawParams( '<script>...</script>' )->escaped();
@@ -60,7 +60,7 @@ class Message {
 	 * means the current interface language, false content language.
 	 */
 	protected $interface = true;
-	
+
 	/**
 	 * In which language to get this message. Overrides the $interface
 	 * variable.
@@ -68,7 +68,7 @@ class Message {
 	 * @var Language
 	 */
 	protected $language = null;
-	
+
 	/**
 	 * The message key.
 	 */
@@ -99,6 +99,11 @@ class Message {
 	 * Title object to use as context
 	 */
 	protected $title = null;
+
+	/**
+	 * @var string
+	 */
+	protected $message;
 
 	/**
 	 * Constructor.
@@ -181,7 +186,7 @@ class Message {
 		}
 		return $this;
 	}
-	
+
 	/**
 	 * Add parameters that are numeric and will be passed through
 	 * Language::formatNum before substitution
@@ -198,7 +203,7 @@ class Message {
 		}
 		return $this;
 	}
-	
+
 	/**
 	 * Request the message in any language that is supported.
 	 * As a side effect interface message status is unconditionally
@@ -216,7 +221,7 @@ class Message {
 		} else {
 			$type = gettype( $lang );
 			throw new MWException( __METHOD__ . " must be "
-				. "passed a String or Language object; $type given" 
+				. "passed a String or Language object; $type given"
 			);
 		}
 		$this->interface = false;
@@ -268,10 +273,10 @@ class Message {
 	 */
 	public function toString() {
 		$string = $this->getMessageText();
-		
+
 		# Replace parameters before text parsing
 		$string = $this->replaceParameters( $string, 'before' );
-		
+
 		# Maybe transform using the full parser
 		if( $this->format === 'parse' ) {
 			$string = $this->parseText( $string );
@@ -287,10 +292,10 @@ class Message {
 			$string = $this->transformText( $string );
 			$string = htmlspecialchars( $string, ENT_QUOTES, 'UTF-8', false );
 		}
-		
+
 		# Raw parameter replacement
 		$string = $this->replaceParameters( $string, 'after' );
-		
+
 		return $string;
 	}
 
@@ -303,7 +308,7 @@ class Message {
 	public function __toString() {
 		return $this->toString();
 	}
-	
+
 	/**
 	 * Fully parse the text from wikitext to HTML
 	 * @return String parsed HTML

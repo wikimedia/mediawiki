@@ -5292,7 +5292,7 @@ class Parser {
 	 * not found, $mode=get will return $newtext, and $mode=replace will return $text.
 	 *
 	 * Section 0 is always considered to exist, even if it only contains the empty
-	 * string. If $text is the empty string and section 0 is replaced, $newText is 
+	 * string. If $text is the empty string and section 0 is replaced, $newText is
 	 * returned.
 	 *
 	 * @param $mode String: one of "get" or "replace"
@@ -5427,7 +5427,7 @@ class Parser {
 
 	/**
 	 * This function returns $oldtext after the content of the section
-	 * specified by $section has been replaced with $text. If the target 
+	 * specified by $section has been replaced with $text. If the target
 	 * section does not exist, $oldtext is returned unchanged.
 	 *
 	 * @param $oldtext String: former text of the article
