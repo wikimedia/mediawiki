@@ -411,11 +411,8 @@ class SpecialSearch extends SpecialPage {
 				$messageName = 'searchmenu-new-nocreate';
 			}
 		}
-		$params = array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) );
-		wfRunHooks( 'SpecialSearchCreateLink', array( $t, &$params ) );
-
 		if( $messageName ) {
-			$this->getOutput()->wrapWikiMsg( "<p class=\"mw-search-createlink\">\n$1</p>", $params );
+			$this->getOutput()->wrapWikiMsg( "<p class=\"mw-search-createlink\">\n$1</p>", array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) ) );
 		} else {
 			// preserve the paragraph for margins etc...
 			$this->getOutput()->addHtml( '<p></p>' );
@@ -874,16 +871,12 @@ class SpecialSearch extends SpecialPage {
 			}
 			$namespaceTables .= Xml::closeElement( 'table' );
 		}
-
-		$showSections = array( 'namespaceTables' => $namespaceTables );
-
 		// Show redirects check only if backend supports it
+		$redirects = '';
 		if( $this->getSearchEngine()->supports( 'list-redirects' ) ) {
-			$showSections['redirects'] =
+			$redirects =
 				Xml::checkLabel( wfMsg( 'powersearch-redir' ), 'redirs', 'redirs', $this->searchRedirects );
 		}
-
-		wfRunHooks( 'SpecialSearchPowerBox', array( &$showSections, $term, $opts ) );
 
 		$hidden = '';
 		unset( $opts['redirs'] );
@@ -920,8 +913,9 @@ class SpecialSearch extends SpecialPage {
 					)
 			) .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
-			implode( Xml::element( 'div', array( 'class' => 'divider' ), '', false ), $showSections ) .
-			$hidden .
+			$namespaceTables .
+			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
+			$redirects . $hidden .
 			Xml::closeElement( 'fieldset' );
 	}
 
