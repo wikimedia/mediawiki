@@ -3799,6 +3799,12 @@ $wgRateLimitsExcludedIPs = array();
 $wgPutIPinRC = true;
 
 /**
+ * Integer defining default number of entries to show on
+ * Special:Whatlinkshere
+ */
+$wgWhatlinkshereLimit = 50;
+
+/**
  * Limit password attempts to X attempts per Y seconds per IP per account.
  * Requires memcached.
  */
