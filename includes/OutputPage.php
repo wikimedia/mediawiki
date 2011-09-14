@@ -1301,7 +1301,7 @@ class OutputPage extends ContextSource {
 	 * @return Array (dbKey => array('time' => MW timestamp or null, 'sha1' => sha1 or ''))
 	 * @since 1.18
 	 */
-	public function getImageTimeKeys() {
+	public function getFileSearchOptions() {
 		return $this->mImageTimeKeys;
 	}
 
@@ -1415,7 +1415,7 @@ class OutputPage extends ContextSource {
 			}
 		}
 		// File versioning...
-		foreach ( (array)$parserOutput->getImageTimeKeys() as $dbk => $data ) {
+		foreach ( (array)$parserOutput->getFileSearchOptions() as $dbk => $data ) {
 			$this->mImageTimeKeys[$dbk] = $data;
 		}
 
