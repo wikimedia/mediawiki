@@ -115,6 +115,7 @@ text/vnd.wap.wml wml
 text/vnd.wap.wmlscript wmls
 text/xml xml xsl xslt rss rdf
 text/x-setext etx
+text/x-sawfish jl
 video/mpeg mpeg mpg mpe
 video/ogg ogv ogm ogg
 video/quicktime qt mov
