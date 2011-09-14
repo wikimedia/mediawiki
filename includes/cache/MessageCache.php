@@ -817,15 +817,23 @@ class MessageCache {
 			$popts->setTargetLanguage( $language );
 		}
 
+		wfProfileIn( __METHOD__ );
 		if ( !$title || !$title instanceof Title ) {
 			global $wgTitle;
 			$title = $wgTitle;
+		}
+		// Sometimes $wgTitle isn't set either...
+		if ( !$title ) {
+			# It's not uncommon having a null $wgTitle in scripts. See r80898
+			# Create a ghost title in such case
+			$title = Title::newFromText( 'Dwimmerlaik' );
 		}
 
 		$this->mInParser = true;
 		$res = $parser->parse( $text, $title, $popts, $linestart );
 		$this->mInParser = false;
 
+		wfProfileOut( __METHOD__ );
 		return $res;
 	}
 
