@@ -10,7 +10,7 @@ class WikiFilePage extends WikiPage {
 	protected $mFileLoaded = false;		    // !<
 	protected $mDupes = null;				// !<
 
-	function __construct( $title ) {
+	public function __construct( $title ) {
 		parent::__construct( $title );
 		$this->mDupes = null;
 		$this->mRepo = null;

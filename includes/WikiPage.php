@@ -79,17 +79,16 @@ class WikiPage extends Page {
 	/**
 	 * Constructor from a page id
 	 *
-	 * Always override this for all subclasses (until we use PHP with LSB)
-	 *
 	 * @param $id Int article ID to load
 	 *
 	 * @return WikiPage
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
-		# @todo FIXME: Doesn't inherit right
-		return $t == null ? null : new self( $t );
-		# return $t == null ? null : new static( $t ); // PHP 5.3
+		if ( $t ) {
+			return self::factory( $t );
+		}
+		return null;
 	}
 
 	/**
