@@ -1305,7 +1305,6 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchmenu-legend'                => 'Opciones de búsqueda',
 'searchmenu-exists'                => "'''Hay una página llamada \"[[:\$1]]\" en esta wiki.'''",
 'searchmenu-new'                   => "'''¡Crea la página «[[:$1]]» en este wiki!'''",
-'searchmenu-new-nocreate'          => '«$1» es un nombre de página inválido o no que no puedes crear.',
 'searchhelp-url'                   => 'Help:Ayuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Otras páginas con este prefijo]]',
 'searchprofile-articles'           => 'Páginas de contenido',

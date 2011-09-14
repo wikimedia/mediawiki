@@ -882,7 +882,6 @@ Intaai [[Special:BlockList|lis IP nantaban]] montok lis kawawagu karaja mogoduh 
 'viewprevnext'                     => 'Intaai ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'                => "'''Haro no bolikon pinungaranan do \"[[:\$1]]\" hiti id wiki.'''",
 'searchmenu-new'                   => "'''Pomonsoi do bolikon \"[[:\$1]]\"hiti id wiki!'''",
-'searchmenu-new-nocreate'          => '"$1" nopo nga ngaran bolikon di pogoduhan toi pogoduhan ko do momonsoi dilo.',
 'searchhelp-url'                   => 'Help:Susuang',
 'searchprofile-articles'           => 'Suang bobolikon',
 'searchprofile-project'            => 'Tatabang om Tongobolikon purujik',

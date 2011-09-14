@@ -1323,7 +1323,6 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'searchmenu-legend'                => 'Options de recherche',
 'searchmenu-exists'                => "'''Il existe une page nommée « [[:$1]] » sur ce wiki'''",
 'searchmenu-new'                   => "'''Créer la page « [[:$1|$1]] » sur ce wiki !'''",
-'searchmenu-new-nocreate'          => '« $1 » est un nom de page invalide et ne peut donc pas être créé.',
 'searchhelp-url'                   => 'Help:Accueil',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Rechercher les pages commençant par ce préfixe]]',
 'searchprofile-articles'           => 'Pages de contenu',

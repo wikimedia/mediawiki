@@ -529,7 +529,6 @@ $messages = array(
 'viewprevnext'                     => 'Кæсын ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'                => "'''Ацы викийы ис фарс \"[[:\$1]]\" номимæ.'''",
 'searchmenu-new'                   => "'''Сараз фарс \"[[:\$1]]\" ацы викийы!'''",
-'searchmenu-new-nocreate'          => '"$1" раст ном нæу кæнæ дæуæн уый саразыны бар нæй.',
 'searchprofile-articles'           => 'Сæргæндты фæрстæ',
 'searchprofile-project'            => 'Æххуыс æмæ Проекты фæрстæ',
 'searchprofile-images'             => 'Мультимеди',

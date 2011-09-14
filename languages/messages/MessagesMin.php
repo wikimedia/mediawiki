@@ -802,7 +802,6 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 'viewprevnext'                     => 'Tampilkan ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'                => "'''Ado laman nan banamo \"[[:\$1]]\" pado wiki ko.'''",
 'searchmenu-new'                   => "'''Buek laman \"[[:\$1]]\" di wiki ko!'''",
-'searchmenu-new-nocreate'          => '"$1" bukan namo laman yang sah atau indak buliah dibuek dek awak ang.',
 'searchprofile-articles'           => 'Artikel',
 'searchprofile-project'            => '↓ Laman Bantuan dan Proyek',
 'searchprofile-images'             => '↓ Multimedia',

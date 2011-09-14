@@ -1213,7 +1213,6 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'searchmenu-legend'                => 'Opcións de busca',
 'searchmenu-exists'                => "* Páxina \"'''[[\$1]]'''\"",
 'searchmenu-new'                   => "'''Crear a páxina \"[[:\$1]]\" neste wiki!'''",
-'searchmenu-new-nocreate'          => '"$1" ou ben é un nome de páxina inválido ou ben é unha páxina que non pode crear.',
 'searchhelp-url'                   => 'Help:Contidos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue polas páxinas que comezan coas mesmas iniciais]]',
 'searchprofile-articles'           => 'Páxinas de contido',

@@ -580,7 +580,6 @@ Mìneachadh: '''({{int:cur}})''' = an diofar eadar e 's am mùthadh as ùire, ''
 'viewprevnext'                     => 'Seall ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-exists'                => "'''Tha duilleag air a bheil \"[[:\$1]]\" air an uicipeid seo.'''",
 'searchmenu-new'                   => "'''Cruthaich an duilleag \"[[:\$1]]\" air an uicipeid seo!'''",
-'searchmenu-new-nocreate'          => 'Chan eil ainm dligheach airson duilleag a tha ann an "$1" air neo chan urrainn dhut-sa a chruthachadh.',
 'searchhelp-url'                   => 'Help:Cuideachadh',
 'searchprofile-articles'           => 'Duilleagan susbainte',
 'searchprofile-project'            => "Duilleagan nan cobharach 's nam pròiseactan",
