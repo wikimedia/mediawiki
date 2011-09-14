@@ -65,7 +65,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 
 		// Determine which messages should we print
 		if ( in_array( '*', $params['messages'] ) ) {
-			$message_names = array_keys( Language::getMessagesFor( 'en' ) );
+			$message_names = Language::getMessageKeysFor( $langObj->getCode() );
 			sort( $message_names );
 			$messages_target = $message_names;
 		} else {

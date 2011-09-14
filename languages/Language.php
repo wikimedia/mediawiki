@@ -3371,7 +3371,8 @@ class Language {
 
 	/**
 	 * Get all messages for a given language
-	 * WARNING: this may take a long time
+	 * WARNING: this may take a long time. If you just need all message *keys*
+	 * but need the *contents* of only a few messages, consider using getMessageKeysFor().
 	 *
 	 * @param $code string
 	 *
@@ -3391,6 +3392,16 @@ class Language {
 	 */
 	static function getMessageFor( $key, $code ) {
 		return self::getLocalisationCache()->getSubitem( $code, 'messages', $key );
+	}
+	
+	/**
+	 * Get all message keys for a given language. This is a faster alternative to
+	 * array_keys( Language::getMessagesFor( $code ) )
+	 * @param $code string Language code
+	 * @return array of message keys (strings)
+	 */
+	static function getMessageKeysFor( $code ) {
+		return self::getLocalisationCache()->getSubItemList( $code, 'messages' );
 	}
 
 	/**
