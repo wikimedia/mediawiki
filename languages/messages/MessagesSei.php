@@ -571,8 +571,6 @@ Informacion: (curt) = quiíxde vercion currentua,
 'revdelete-hide-comment'  => 'Camaát commentuade ticpatlöx',
 'revdelete-hide-user'     => 'Camaát IDde caitom/IDde IP',
 'revdelete-log'           => 'Ra:',
-'revdelete-logentry'      => 'quiixöx revicion visibilitiitde [[$1]]',
-'logdelete-logentry'      => 'quiixöx eventua visibilitiitde [[$1]]',
 
 # Diffs
 'history-title'           => 'Históriade revicionde "$1"',
@@ -977,7 +975,6 @@ iitom e-iitomde diijömde caitóm.',
 'movepagebtn'      => 'Yacom páhina',
 'movedto'          => 'yacomöxde',
 'movetalk'         => 'Yacom czaxö páhina yodina ipríi',
-'1movedto2'        => '[[$1]] yacomöxde [[$2]]',
 'movereason'       => 'Ra:',
 'delete_and_move'  => 'Delatom ö yacom',
 

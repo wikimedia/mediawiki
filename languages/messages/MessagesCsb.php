@@ -553,15 +553,6 @@ Administrator, chtëren jã zablokòwôł, pòdôł przëczënã: $1",
 'revdel-restore-visible'     => 'widzawné wersëje',
 'pagehist'                   => 'Historëjô starnë',
 'deletedhist'                => 'Rëmniãtô historëjô edicëji',
-'revdelete-content'          => 'zamkłosc',
-'revdelete-summary'          => 'òpisënk zjinaczi',
-'revdelete-uname'            => 'miono brëkòwnika',
-'revdelete-restricted'       => 'nastôwi ògrańczenia dlô sprôwników',
-'revdelete-unrestricted'     => 'rëmôj ògrańczenia dlô sprôwników',
-'revdelete-hid'              => 'zatacë $1',
-'revdelete-unhid'            => 'nie tacë $1',
-'revdelete-log-message'      => '$1 - $2 {{PLURAL:$2|wersëjô|wersëji}}',
-'logdelete-log-message'      => '$1 – $2 {{PLURAL:$2|zdarzenié|zdarzenia|zdarzeniów}}',
 'revdelete-hide-current'     => 'Pòkôza sã fela przë taceniu wersëji datowóny na $2, $1. To je nônowszô wersëjô starnë, chtërnô ni mòże bëc zataconô.',
 'revdelete-show-no-access'   => 'Pòkôza sã fela przë próbie wëskrzënieniô elementu datowónegò na $2, $1. Widzawnota negò elementu òsta ògrańczonô - ni môsz przëstãpù.',
 
@@ -966,7 +957,6 @@ Czej chcesz remôc starnã z lëste ùzéronëch artiklów, klikni ''Òprzestôj
 'actioncomplete'        => 'Òperacëjô wëkònónô',
 'deletedtext'           => '^$1" òstôł rëmniãti.
 Òbôczë na starnie $2 register slédnych rëmniãców.',
-'deletedarticle'        => 'rëmniãté przez "[[$1]]"',
 'dellogpage'            => 'Rëmóné',
 'deletionlog'           => 'register rëmaniów',
 'deletecomment'         => 'Przëczëna:',
@@ -1012,7 +1002,6 @@ Mòżesz zmienic légã zazychrowaniô, nie bãdze to równak miało cëskù na 
 'viewdeletedpage'           => 'Òbaczë rëmóne starnë',
 'undeletebtn'               => 'Doprowôdzë nazôd',
 'undeletelink'              => 'wëskrzëni abò doprowôdzë nazôd',
-'undeletedarticle'          => 'dobëté nazôd "[[$1]]"',
 'undelete-show-file-submit' => 'Jo',
 
 # Namespace form on various pages
@@ -1112,8 +1101,6 @@ W taczich przëtrôfkach zamkłosc diskùsëji mòże przeniesc blós rãczno.',
 'talkexists'              => "'''Starna zamkłoscë òsta ùdało przeniosłô, równak starna diskùsëji ni, ga starna diskùsëji na nowim pacu ju je. Sparłãczë ne dwa tekstë rãczno'''",
 'movedto'                 => 'przeniesłô do',
 'movetalk'                => 'Przeniesë téż starnã <i>Diskùsëje</i>, jeżle je to mòżlëwé.',
-'1movedto2'               => '[[$1]] przeniesłé do [[$2]]',
-'1movedto2_redir'         => '[[$1]] przeniesłé do [[$2]] nad przeczérowanim',
 'movelogpage'             => 'Przeniosłé',
 'movereason'              => 'Przëczëna:',
 'revertmove'              => 'copnij',
@@ -1293,5 +1280,9 @@ Jinszé pòla bãdą domëslno zataconé.
 
 # Special:SpecialPages
 'specialpages' => 'Specjalné starnë',
+
+# New logging system
+'revdelete-restricted'   => 'nastôwi ògrańczenia dlô sprôwników',
+'revdelete-unrestricted' => 'rëmôj ògrańczenia dlô sprôwników',
 
 );

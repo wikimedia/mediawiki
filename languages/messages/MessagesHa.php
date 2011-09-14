@@ -521,7 +521,6 @@ A nan ne kuma za a yi rajistan dukkan sauye-sauye ga shafin ko shafinsa na muhaw
 'actioncomplete'        => 'Aiki cikakke',
 'deletedtext'           => 'An soke "$1".
 Ku duba $2 ku ga rajistan soke-soke na baya-bayan nan.',
-'deletedarticle'        => 'an soke "[[$1]]"',
 'dellogpage'            => 'Rajistan sauye-sauye',
 'deletecomment'         => 'Dalili:',
 'deleteotherreason'     => 'Wani dalilin:',
@@ -562,7 +561,6 @@ Kuna iya sake wa wannan shafi matakin kariya, amma hakan ba zai yi tasiri ga kar
 # Undelete
 'undeletelink'           => 'duba/maido da',
 'undeletecomment'        => 'Dalili:',
-'undeletedarticle'       => 'an mayar da "[[$1]]"',
 'undelete-search-submit' => 'Nema',
 
 # Namespace form on various pages
@@ -647,8 +645,6 @@ Don Allah ku zaɓi wani suna.',
 Don Allah ku game su da hannu.'''",
 'movedto'          => 'an gusar zuwa',
 'movetalk'         => 'Gusar da shafin mahawara mai alaƙa',
-'1movedto2'        => 'an gusar da [[$1]] zuwa [[$2]]',
-'1movedto2_redir'  => 'an gusar da [[$1]] zuwa [[$2]] ta hanyar soke turawa',
 'movelogpage'      => 'Rajistan gushe-gushe',
 'movereason'       => 'Dalili:',
 'revertmove'       => 'koma',

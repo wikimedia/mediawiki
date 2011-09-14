@@ -1081,8 +1081,6 @@ Afaka mijery ny lahatsoratra nasitrika sy mamerina azy ny mpandrindra hafa ny {{
 'revdelete-unsuppress'        => "Hanala ny fepetra eo amin'ny santiôna naverina",
 'revdelete-log'               => 'Antony :',
 'revdelete-submit'            => "Ahàtra amin'ny santiôna nofidiana {{PLURAL:$1}}",
-'revdelete-logentry'          => "nanova ny fahitan'ny/i [[$1]]",
-'logdelete-logentry'          => "nanova ny fahitan'ny zava-mitranga ny/n'i [[$1]]",
 'revdelete-success'           => "'''Voaova soa aman-tsara ny fahitana ny santiôna.'''",
 'revdelete-failure'           => "'''Ny fisehon'ity santiôna ity dia tsy afaka natao update'''
 $1",
@@ -1094,15 +1092,6 @@ $1",
 'revdel-restore-visible'      => 'santiôna hita',
 'pagehist'                    => "Tantaran'ilay pejy",
 'deletedhist'                 => 'Tantara voafafa',
-'revdelete-content'           => 'votoatiny',
-'revdelete-summary'           => "ambangovangon'ny fanovàna",
-'revdelete-uname'             => 'anarana mpikambana',
-'revdelete-restricted'        => "nametraka fanerena ho an'ny mpandrindra",
-'revdelete-unrestricted'      => "fanerena nesorina tamin'ny mpandrindra",
-'revdelete-hid'               => 'nanitrika ny $1',
-'revdelete-unhid'             => "nanala fanitriana (hoan'(ny)) $1",
-'revdelete-log-message'       => "$1 ho an'ny{{PLURAL:$2||}} $2",
-'logdelete-log-message'       => "zava-miseho $1 amin'ny $2{{PLURAL:}}",
 'revdelete-hide-current'      => "Tsi-fetezana tamin'ny zavatra voadaty tamin'ny $1 tamin'ny $2 : io ny reviziôna ankehitriny.
 Tsy azo fafana izy.",
 'revdelete-show-no-access'    => "Tsi-fetazana teo am-panehoana ny zavatra voadaty tamin'ny $1 tamin'ny $2 : izy io dia mitondra ny marika « voafetra ».
@@ -2147,8 +2136,6 @@ fantatrao ny vokany ary mahalala ianao fa tsy mifanipaka amin'ny
 'actionfailed'           => 'Tsy nandeha ny tao',
 'deletedtext'            => 'Voafafa i "$1".
 Jereo amin\'ny $2 ny lisitry ny famafana pejy faramparany.',
-'deletedarticle'         => 'namafa « [[$1]] »',
-'suppressedarticle'      => 'namafa « [[$1]] »',
 'dellogpage'             => 'Laogim-pamafana pejy',
 'dellogpagetext'         => 'Eto ambany eto ny lisitry ny famafana pejy/sary faramparany.',
 'deletionlog'            => 'laogim-pamafàna',
@@ -2270,7 +2257,6 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 'undeletereset'              => 'Hamerina',
 'undeleteinvert'             => 'Hampifamaidika ny safidy',
 'undeletecomment'            => 'Antony :',
-'undeletedarticle'           => 'namerina ny « [[$1]] »',
 'undeletedrevisions'         => 'voaverina ny {{PLURAL:$1|fanovana|fanovana}} $1',
 'undeletedfiles'             => 'rakitra voaverina $1 {{PLURAL:$1}}',
 'cannotundelete'             => 'Tsy nandeha soa aman-tsara ilay famerenana ;
@@ -2528,9 +2514,6 @@ mifanaraka amin'ilay anarana vaovao. Azafady mba atambaro izay pejin-dresaka iza
 'movepage-page-exists'         => 'Efa misy ny pejy $1 ary tsy afaka soloina ho azy.',
 'movepage-page-moved'          => 'Voaova anarana lasa $2 ilay pejy $1.',
 'movepage-page-unmoved'        => 'Tsy afaka novaina anarana $2 ilay pejy $1.',
-'1movedto2'                    => 'Novana ho [[$2]] ilay takelaka [[$1]]',
-'1movedto2_redir'              => 'Redirection: Novaina ho [[$2]] i [[$1]]',
-'move-redirect-suppressed'     => 'fihodinana voafafa',
 'movelogpage'                  => 'Ny laogim-panisahana',
 'movelogpagetext'              => 'Lisitry ny pejy nafindra toerana.',
 'movesubpage'                  => 'Zana-pejy{{PLURAL:$1||}} $1',
@@ -3147,5 +3130,9 @@ Ampidiro ny anaran-drakitra tsy misy ny tovona « {{ns:file}}: »",
 'htmlform-submit'              => 'Alefa',
 'htmlform-reset'               => 'Hanala ny fanovana',
 'htmlform-selectorother-other' => 'Hafa',
+
+# New logging system
+'revdelete-restricted'   => "nametraka fanerena ho an'ny mpandrindra",
+'revdelete-unrestricted' => "fanerena nesorina tamin'ny mpandrindra",
 
 );

@@ -393,7 +393,6 @@ $messages = array(
 'revdelete-hide-restricted'   => '將此限制同樣應用於管理員',
 'revdelete-suppress'          => '同時壓制由操作員以及其他使用者的資料',
 'revdelete-unsuppress'        => '在已復原的修訂中移除限制',
-'revdelete-logentry'          => '已更改「[[$1]]」之修訂可見度',
 'revdelete-success'           => '修訂的可見性已經成功設定。',
 'logdelete-success'           => '事件的可見性已經成功設定。',
 
@@ -644,7 +643,6 @@ $NEWPAGE
 請確定您要進行此項操作，並且了解其後果，同時您的行為符合[[{{MediaWiki:Policy-url}}]]。',
 'deletedtext'       => '「$1」已經被刪除。
 最近刪除的紀錄請參見$2。',
-'deletedarticle'    => '已刪除「[[$1]]」',
 'dellogpagetext'    => '以下是最近刪除的紀錄列表。
 所有的時間都是使用伺服器時間。',
 'reverted'          => '復原到早期版本',
@@ -689,7 +687,6 @@ $NEWPAGE
 'undelete-revision'            => '刪除$1時由$3（在$2）所編寫的修訂版本:',
 'undeleterevision-missing'     => '此版本的內容不正確或已經遺失。可能連結錯誤、被移除或已經被復原。',
 'undeletebtn'                  => '復原',
-'undeletedarticle'             => '已經復原「$1」',
 'undeletedrevisions'           => '$1個修訂版本已經復原',
 'undeletedrevisions-files'     => '$1 個版本和 $2 個檔案被復原',
 'undeletedfiles'               => '$1 個檔案被復原',

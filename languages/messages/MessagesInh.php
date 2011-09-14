@@ -463,17 +463,11 @@ $messages = array(
 'revdelete-radio-set'        => 'XӀаа',
 'revdelete-radio-unset'      => 'A',
 'revdelete-log'              => 'Бахьан',
-'revdelete-logentry'         => '[[$1]] доржама оагӀувни бӀасанче хийцай',
 'revdel-restore'             => 'БӀасанче хувца',
 'revdel-restore-deleted'     => 'дӀадаьккха доржамаш',
 'revdel-restore-visible'     => 'бӀаргагушдола доржамаш',
 'pagehist'                   => 'ОагӀува искар',
 'deletedhist'                => 'ДӀадакхамий искар',
-'revdelete-content'          => 'чулоацаро',
-'revdelete-summary'          => 'хувцамий лоацам',
-'revdelete-uname'            => 'дакъалаьцархочунна цIи',
-'revdelete-hid'              => 'къайла я $1',
-'revdelete-log-message'      => '$1ара $2чунна  {{PLURAL:$2|доржама|доржамий}}',
 
 # History merging
 'mergehistory-list'   => 'ВIашагIатоха хувцамий искар',
@@ -812,7 +806,6 @@ $messages = array(
 'actionfailed'          => 'Оттам даьдац',
 'deletedtext'           => '"$1" дIаяккха хиннай.
 ТIехьара дIадаьккха дагарчена хьожаргволаш/хьожаргьйолаш, $2 хьажа.',
-'deletedarticle'        => ' "[[$1]]" дIадаьккхад',
 'dellogpage'            => 'ДIадаккхара тептар',
 'deletecomment'         => 'Бахьан:',
 'deleteotherreason'     => 'Кхыдола бахьан/тIатохар:',
@@ -852,7 +845,6 @@ $messages = array(
 # Undelete
 'undeletelink'     => 'БIаргтасса/юхаметтаоттаде',
 'undeleteviewlink' => 'бIаргтасса',
-'undeletedarticle' => '"[[$1]]" юха оттая я',
 
 # Namespace form on various pages
 'namespace'      => 'ЦIерий аренаш',
@@ -943,8 +935,6 @@ $messages = array(
 'talkexists'       => "'''ОагIувни цIи хьийца хиннай, амма дувцама оагIувни цIи хувца мегаш яц, изза мо цIи йолаш оагIув йоландаь. Дехар да, кулга новкъосталца цхьанна вIашагIатоха уш.'''",
 'movedto'          => 'керда цIи тилла я',
 'movetalk'         => 'МаIан чулоаца дувцама оагIувни цIи хувца',
-'1movedto2'        => '[[$1]] цIи цу тIа [[$2]] хийцай',
-'1movedto2_redir'  => '[[$1]] цIи хийцай [[$2]] дIа-хьа оагIува тIа гIолла',
 'movelogpage'      => 'Хувцама тептар',
 'movereason'       => 'Бахьан',
 'revertmove'       => 'юхаяккха',

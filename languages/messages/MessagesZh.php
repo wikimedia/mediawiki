@@ -174,9 +174,6 @@ $messages = array(
 # User preference toggles
 'tog-norollbackdiff' => '進行回退後略過差異比較',
 
-# Move page
-'move-redirect-suppressed' => '已禁止重新定向',
-
 /*
 Short names for language variants used for language conversion links.
 To disable showing a particular link, set it to 'disable', e.g.

@@ -857,7 +857,6 @@ Begyu kanfoerm se yu inten fi du dis, se yu andastan di kansikwens, ahn se yu a 
 'actioncomplete'        => 'Akshan kompliit',
 'deletedtext'           => '"$1" don diliit.
 Si $2 fi a rekaad a riisant diliishan.',
-'deletedarticle'        => 'diliitid "[[$1]]"',
 'dellogpage'            => 'Diliishan lag',
 'deletecomment'         => 'Riizn:',
 'deleteotherreason'     => 'Ada/adishanal riizn:',
@@ -891,8 +890,7 @@ Yu kiahn chienj dis piej protekshan lebl, bot inaa go afek di kiaskiedn proteksh
 'restriction-level'           => 'Rischrikshan lebl:',
 
 # Undelete
-'undeletelink'     => 'vyuu/ristuor',
-'undeletedarticle' => 'don ristuor "[[$1]]"',
+'undeletelink' => 'vyuu/ristuor',
 
 # Namespace form on various pages
 'namespace'      => 'Niemspies',
@@ -973,8 +971,6 @@ Begyu chuuz aneda niem.',
 Begyu moerj dem manyuali.'''",
 'movedto'          => 'muuv gaan a',
 'movetalk'         => 'Muuv asuosietid taak piej',
-'1movedto2'        => '[[$1]] muuv gaan a [[$2]]',
-'1movedto2_redir'  => 'muuv [[$1]] tu [[$2]] uoba ridirek',
 'movelogpage'      => 'Muuv lag',
 'movereason'       => 'Riizn:',
 'revertmove'       => 'rivoert',

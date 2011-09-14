@@ -805,8 +805,6 @@ Yeneen yorkat yu {{SITENAME}} di nañ man a gis ëmbit yu laqu yi te loppanti le
 'revdelete-unsuppress'        => 'Far digal yi ci sumb yees delloowaat',
 'revdelete-log'               => 'Ngirte :',
 'revdelete-submit'            => 'Def ko ci sumb bi falu',
-'revdelete-logentry'          => 'Gisub sumb bi soppiku na ngir [[$1]]',
-'logdelete-logentry'          => 'Gisub xew-xew bii [[$1]] dañ kaa soppi',
 'revdelete-success'           => "'''Coppiteg gisub sumb bi, baax na.'''",
 'revdelete-failure'           => "'''Gisub sumb bi manoo koo soppi'''
 $1",
@@ -816,15 +814,6 @@ $1",
 'revdel-restore'              => 'Soppi gis bi',
 'pagehist'                    => 'Jaar-jaaru xët wi',
 'deletedhist'                 => 'Jaar-jaaru far gi',
-'revdelete-content'           => 'ëmbiit',
-'revdelete-summary'           => 'soppi tënk gi',
-'revdelete-uname'             => 'turu jëfandikukat',
-'revdelete-restricted'        => 'doxalub digal ngir yorkat yi',
-'revdelete-unrestricted'      => 'digal ngir yorkat yi deñ na',
-'revdelete-hid'               => 'nëbb $1',
-'revdelete-unhid'             => 'wone $1',
-'revdelete-log-message'       => '$1 ngir $2 {{PLURAL:$2|sumb|sumb}}',
-'logdelete-log-message'       => '$1 ngir $2 {{PLURAL:$2|xew-xew|xew-xew}}',
 'revdelete-hide-current'      => 'Njuumte ci nëbbug cër bi taarixam doon $2, $1: mooy sumb bi teew.
 Maneesu koo nëbb.',
 'revdelete-show-no-access'    => "Njuumte ci woneg cër bi taarixam doon $2, $1: dees koo jàppe niki lees ''digal''.
@@ -1674,8 +1663,6 @@ Coppite yiy ñëw yu xët wi ak xëtu waxtaanuwaay wi mu àndal di nañu leen fa
 'actioncomplete'         => 'Jëf jees def',
 'deletedtext'            => '« $1 » far nañu ko.
 Xolal $2 ngir gis limu farte bi mujj.',
-'deletedarticle'         => 'moo far « [[$1]] »',
-'suppressedarticle'      => 'moo far « [[$1]] »',
 'dellogpage'             => 'Jaar-jaaru farte bi',
 'dellogpagetext'         => 'Li toftal ab limu farte yi mujj la.',
 'deletionlog'            => 'jaar-jaaru  farte bi',
@@ -1774,7 +1761,6 @@ Nii-nii kocc-koccalu xët wii ñooy '''$1''':",
 'undeletereset'                => 'Neenal',
 'undeleteinvert'               => 'Jallarbi fal gi',
 'undeletecomment'              => 'Tënk :',
-'undeletedarticle'             => 'moo delloowaat « [[$1]] »',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|delloowaat nañ ab sumb|delloowaat nañ $1 sumb}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|sumb|sumb}} ak $2 {{PLURAL:$2|ŋara|ŋara}} loppanti nañu leen',
 'undeletedfiles'               => '{{PLURAL:$1|1 dencukaay|$1 dencukaay}} lañu delloowaat',
@@ -1996,9 +1982,6 @@ Ci yii anam, faww nga tuddewaat walla yokk wii xëtu waxtaanuwaay ak sa loxo, su
 'movepage-page-moved'          => 'Xët wii di $1 lees tuddewaat $2',
 'movepage-page-unmoved'        => 'Xët wii di $1 maneesu koo tuddewaat $2',
 'movepage-max-pages'           => 'Lim bi gën-a-bari bu $1 {{PLURAL:$1|xët|xët}} lees tuddewaat te maneesul a tuddewaat yeneen cig boppu.',
-'1movedto2'                    => '[[$1]] la tuddewaat [[$2]]',
-'1movedto2_redir'              => 'moo jubluwaatal  [[$1]] mu jëm [[$2]]',
-'move-redirect-suppressed'     => 'Jubluwaat gees far',
 'movelogpage'                  => 'Jaar-jaaru tuddewaat yi',
 'movelogpagetext'              => 'Lii mooy limu xët yees mujje tuddewaat.',
 'movesubpage'                  => '{{PLURAL:$1|ron-xët|ron-xët}}',
@@ -2239,5 +2222,9 @@ Man nga tamit  [[Special:EditWatchlist/raw|soppi ko]].',
 
 # Special:SpecialPages
 'specialpages' => 'Xëti jagleel',
+
+# New logging system
+'revdelete-restricted'   => 'doxalub digal ngir yorkat yi',
+'revdelete-unrestricted' => 'digal ngir yorkat yi deñ na',
 
 );

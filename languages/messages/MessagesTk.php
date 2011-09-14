@@ -859,8 +859,6 @@ Administrator hökmünde bu aratapawudy görüp bilersiňiz; [{{fullurl:{{#Speci
 'revdelete-unsuppress'        => 'Dikeldilen wersiýalardaky çäklendirmeleri aýyr',
 'revdelete-log'               => 'Sebäp:',
 'revdelete-submit'            => 'Saýlanylan {{PLURAL:$1|wersiýada|wersiýalarda}}  peýdalan',
-'revdelete-logentry'          => '[[$1]] üçin wersiýa görünme derejesini üýtgetdi',
-'logdelete-logentry'          => '[[$1]] üçin waka görünme derejesini üýtgetdi',
 'revdelete-success'           => "'''Wersiýa görünme derejesi şowly täzelendi.'''",
 'revdelete-failure'           => "'''Wersiýa görünme derejesini täzeläp bolmaýar:'''
 $1",
@@ -872,15 +870,6 @@ $1",
 'revdel-restore-visible'      => 'görünýän wersiýalar',
 'pagehist'                    => 'Sahypanyň geçmişi',
 'deletedhist'                 => 'Öçürilen geçmiş',
-'revdelete-content'           => 'mazmun',
-'revdelete-summary'           => 'özgerdiş mazmuny',
-'revdelete-uname'             => 'ulanyjy ady',
-'revdelete-restricted'        => 'administratorlara goýlan çäklendirmeler',
-'revdelete-unrestricted'      => 'administratorlardan aýyrylan çäklendirmeler',
-'revdelete-hid'               => 'gizle $1',
-'revdelete-unhid'             => 'görkez $1',
-'revdelete-log-message'       => '$2 {{PLURAL:$2|wersiýa|wersiýa}} üçin $1',
-'logdelete-log-message'       => '$2 {{PLURAL:$2|waka|waka}} üçin $1',
 'revdelete-hide-current'      => '$2, $1 seneli ýazgyda gizleme säwligi: bu häzirki wersiýa.
 Ony gizläp bolmaýar.',
 'revdelete-show-no-access'    => '$2, $1 seneli ýazgyda görkezme säwligi: bu ýazgy "çäklendirilen" diýlip bellenipdir.
@@ -1937,8 +1926,6 @@ Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{
 'actionfailed'           => 'Iş başa barmady',
 'deletedtext'            => '"$1" öçürildi.
 Ýaňy-ýakynda öçürilenleri görmek üçin: $2.',
-'deletedarticle'         => 'öçürdi: "[[$1]]"',
-'suppressedarticle'      => '"[[$1]]" bökdeldi',
 'dellogpage'             => 'Öçürme gündeligi',
 'dellogpagetext'         => 'Aşakdaky sanaw iň soňky öçürmeleriň sanawydyr.',
 'deletionlog'            => 'öçürme gündeligi',
@@ -2072,7 +2059,6 @@ Ulanan çykgydyňyz nädogry bolmagy ýa-da onuň arhiwden dikeldilen ýa-da aý
 'undeletereset'                => 'Başky ýagdaýa getir',
 'undeleteinvert'               => 'Saýlanmadyklar',
 'undeletecomment'              => 'Sebäp:',
-'undeletedarticle'             => 'dikeltdi: "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 wersiýa|$1 wersiýa}} dikeldildi',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 wersiýa|$1 wersiýa}} we {{PLURAL:$2|1 faýl|$2 faýl}} dikeldildi',
 'undeletedfiles'               => '{{PLURAL:$1|1 faýl|$1 faýl}} dikeldildi',
@@ -2321,9 +2307,6 @@ Başga bir ady synap görmegiňizi haýyş edýäris.',
 'movepage-page-moved'          => '$1 sahypasynyň ady $2 adyna üýtgedildi.',
 'movepage-page-unmoved'        => '$1 sahypasynyň adyny $2 adyna üýtgedip bolmaýar.',
 'movepage-max-pages'           => 'Maksimum $1 sany {{PLURAL:$1|sahypanyň|sahypanyň}} ady üýtgedildi, mundan artygynyň adyny awtomatik usulda üýtgedip bolmaýar.',
-'1movedto2'                    => '[[$1]] sahypasynyň täze ady: [[$2]]',
-'1movedto2_redir'              => '[[$1]] ady [[$2]] sahypasyna gönükdirildi',
-'move-redirect-suppressed'     => 'gönükdirme bökdeldi',
 'movelogpage'                  => 'At üýtgetme gündeligi',
 'movelogpagetext'              => 'Aşakdaky sanaw ady üýtgedilen sahypalary görkezýär.',
 'movesubpage'                  => '{{PLURAL:$1|Kiçi sahypa|Kiçi sahypa}}',
@@ -3177,5 +3160,9 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 # SQLite database support
 'sqlite-has-fts' => '$1 (doly tekstli gözleg goldawly)',
 'sqlite-no-fts'  => '$1 (doly tekstli gözleg goldawsyz)',
+
+# New logging system
+'revdelete-restricted'   => 'administratorlara goýlan çäklendirmeler',
+'revdelete-unrestricted' => 'administratorlardan aýyrylan çäklendirmeler',
 
 );

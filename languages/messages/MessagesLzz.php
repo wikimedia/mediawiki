@@ -498,7 +498,6 @@ Am dulyaşen na yeçkindasen zararepe giçkinna do am dulya [[{{MediaWiki:Policy
 'actioncomplete'        => 'Aksiyoni içodinu.',
 'deletedtext'           => '"$1" nijilu.
 Xolosi oras jileri na renanpe oz*iru şeni: $2.',
-'deletedarticle'        => '"[[$1]]" aya nijilu',
 'dellogpage'            => 'Ojiluşi kʼayitʼepe',
 'deletecomment'         => 'Muşen:',
 'deleteotherreason'     => 'Majurani/ilave sebebi:',
@@ -533,7 +532,6 @@ Am butʼkʼaşi oçvuşi sinori gaktirinen; ama am oktiroba, kʼademoni oçvalu�
 
 # Undelete
 'undeletelink'              => 'i3ʼkʼedi/komoiği',
-'undeletedarticle'          => '[[$1]] goiktu.',
 'undelete-search-submit'    => 'Mgori',
 'undelete-show-file-submit' => 'Ho',
 
@@ -613,8 +611,6 @@ Mu iqʼven başka coxo doçʼari.',
 'talkexists'       => "'''Butʼkʼa dido kʼai itirinu, mara oğarğaluşi butʼkʼa var itirinu çunki na itirinasen coxos zate ar butʼkʼa rtʼu. Mu iqʼven butʼkʼaşi doloçʼareli nç'arape majurani butʼkʼaşa ti-skani kʼala itirini.'''",
 'movedto'          => 'itirinu:',
 'movetalk'         => 'Korenna, "oğarğaluşi" butʼkʼa muşiti mendiği.',
-'1movedto2'        => '[[$1]] butʼkʼa muşişi ağani coxo: [[$2]]',
-'1movedto2_redir'  => '[[$1]] stʼatʼiaşi adresi iktirinu do ağani adresi [[$2]] butʼkʼaşa niçinu',
 'movelogpage'      => 'Coxo oktirobaşi kʼayitʼepe',
 'movereason'       => 'Muşen:',
 'revertmove'       => 'komoiği',

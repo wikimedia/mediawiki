@@ -808,8 +808,6 @@ Pangurus {{SITENAME}} liyané bakal tetep bisa ngaksès isi sing kadhelikaké ik
 'revdelete-unsuppress'        => 'Busak watesan ing revisi sing dibalèkaké',
 'revdelete-log'               => 'Alesan:',
 'revdelete-submit'            => 'Trapna ing {{PLURAL:$1|révisi|révisi}} kapilih',
-'revdelete-logentry'          => 'owahna tampilan revisi kanggo [[$1]]',
-'logdelete-logentry'          => 'owahna aturan pandhelikan saka [[$1]]',
 'revdelete-success'           => 'Aturan pandhelikan revisi bisa kasil ditrapaké.',
 'revdelete-failure'           => "'''Mode tampilan révisi ora bisa disèt:'''
 $1",
@@ -819,15 +817,6 @@ $1",
 'revdel-restore'              => 'Ngowahi visiblitas (pangatonan)',
 'pagehist'                    => 'Sajarah kaca',
 'deletedhist'                 => 'Sajarah sing dibusak',
-'revdelete-content'           => 'isi',
-'revdelete-summary'           => 'ringkesan suntingan',
-'revdelete-uname'             => 'jeneng panganggo',
-'revdelete-restricted'        => 'rèstriksi ditrapaké marang para opsis',
-'revdelete-unrestricted'      => 'rèstriksi marang para opsis dijabel',
-'revdelete-hid'               => 'delikna $1',
-'revdelete-unhid'             => 'buka pandelikan $1',
-'revdelete-log-message'       => '$1 kanggo $2 {{PLURAL:$2|révisi|révisi}}',
-'logdelete-log-message'       => '$1 kanggo $2 {{PLURAL:$2|prastawa|prastawa}}',
 'revdelete-hide-current'      => 'Gagal ndhelikaké révisi tanggal $2, $1: iki arupa révisi paling anyar.
 Révisi iki ora bisa didhelikaké.',
 'revdelete-show-no-access'    => 'Gagal nampilaké révisi tanggal $1, jam $2: révisi iki wis ditandhani "kawates".
@@ -1797,8 +1786,6 @@ Umpan balik lan pitulung sabanjuré:
 'actioncomplete'         => 'Proses tuntas',
 'actionfailed'           => 'Tindakan gagal',
 'deletedtext'            => '"$1" sampun kabusak. Coba pirsani $2 kanggé log paling énggal kaca ingkang kabusak.',
-'deletedarticle'         => 'mbusak "[[$1]]"',
-'suppressedarticle'      => 'ndelikaké "[[$1]]"',
 'dellogpage'             => 'Cathetan pambusakan',
 'dellogpagetext'         => 'Ing ngisor iki kapacak log pambusakan kaca sing anyar dhéwé.',
 'deletionlog'            => 'Cathetan sing dibusak',
@@ -1924,7 +1911,6 @@ Panjenengan mbokmenawa ngetutaké pranala sing salah, utawa revisi iku wis dipul
 'undeletereset'                => "''Reset''",
 'undeleteinvert'               => 'Walik pilihan',
 'undeletecomment'              => 'Alesan:',
-'undeletedarticle'             => '"$1" wis dibalèkaké',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|révisi|révisi}} wis dibalèkaké',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|révisi|révisi}} lan $2 berkas dibalèkaké',
 'undeletedfiles'               => '$1 {{PLURAL:$1|berkas|berkas}} dibalèkaké',
@@ -2151,9 +2137,6 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 'movepage-page-moved'          => 'Kaca $1 wis dipindhah menyang $2.',
 'movepage-page-unmoved'        => 'Kaca $1 ora bisa dialihaké menyang $2.',
 'movepage-max-pages'           => 'Paling akèh $1 {{PLURAL:$1|kaca|kaca}} wis dialihaké lan ora ana manèh sing bakal dialihaké sacara otomatis.',
-'1movedto2'                    => 'Ngalihaké [[$1]] menyang [[$2]]',
-'1movedto2_redir'              => '[[$1]] dipunalihaken menyang [[$2]] via pangalihan',
-'move-redirect-suppressed'     => 'pengalihan ditahan',
 'movelogpage'                  => 'Log pamindhahan',
 'movelogpagetext'              => 'Ing ngisor iki kapacak log pangalihan kaca.',
 'movesubpage'                  => '{{PLURAL:$1|Anak-kaca|Anak-kaca}}',
@@ -2950,5 +2933,9 @@ Katrangan tampilan:
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Batalna pangowahan',
 'htmlform-selectorother-other' => 'Liya',
+
+# New logging system
+'revdelete-restricted'   => 'rèstriksi ditrapaké marang para opsis',
+'revdelete-unrestricted' => 'rèstriksi marang para opsis dijabel',
 
 );

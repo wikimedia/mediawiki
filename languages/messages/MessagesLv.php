@@ -809,8 +809,6 @@ Sīkāku informāciju var atrast [{{fullurl:{{#Special:Log}}/delete|page={{FULLP
 'revdelete-unsuppress'        => 'Atcelt ierobežojumus atjaunotajām versijām',
 'revdelete-log'               => 'Iemesls:',
 'revdelete-submit'            => 'Piemērot {{PLURAL:$1|izvēlētajai versijai|izvēlētajām versijām}}',
-'revdelete-logentry'          => 'izmainīja lapas "[[$1]]" versiju redzamību',
-'logdelete-logentry'          => 'izmainīja ar lapu "[[$1]]" saistīto darbību redzamību',
 'revdelete-success'           => "'''Versiju redzamība veiksmīgi atjaunināta.'''",
 'revdelete-failure'           => "'''Versiju redzamību nav iespējams atjaunināt:'''
 $1",
@@ -822,13 +820,6 @@ $1",
 'revdel-restore-visible'      => 'redzamās versijas',
 'pagehist'                    => 'Lapas vēsture',
 'deletedhist'                 => 'Vēsture dzēsta',
-'revdelete-content'           => 'saturs',
-'revdelete-summary'           => 'izmaiņu kopsavilkums',
-'revdelete-uname'             => 'lietotāja vārds',
-'revdelete-restricted'        => 'piemērot administratoriem ierobežojumus',
-'revdelete-unrestricted'      => 'noņemt administratoriem ierobežojumus',
-'revdelete-hid'               => 'paslēpa $1',
-'revdelete-unhid'             => 'atjaunoja $1',
 'revdelete-modify-missing'    => 'Kļūda, mainot vienumu ar ID $1: tas ir pazudis no datubāzes!',
 'revdelete-reason-dropdown'   => '*Biežākie dzēšanas iemesli
 ** autortiesību pārkāpums
@@ -1814,7 +1805,6 @@ Papildinformācija:
 'actionfailed'           => 'Darbība neizdevās',
 'deletedtext'            => 'Lapa "$1" ir izdzēsta.
 Šeit var apskatīties pēdējos izdzēstos: "$2".',
-'deletedarticle'         => 'izdzēsa "[[$1]]"',
 'dellogpage'             => 'Dzēšanas reģistrs',
 'dellogpagetext'         => 'Šajā lapā ir pēdējo dzēsto lapu saraksts.',
 'deletionlog'            => 'dzēšanas reģistrs',
@@ -1933,7 +1923,6 @@ Vai nu tu šeit esi nonācis lietojot kļūdainu saiti, vai arī šī versija ja
 'undeletereset'             => 'Notīrīt',
 'undeleteinvert'            => 'Izvēlēties pretēji',
 'undeletecomment'           => 'Iemesls:',
-'undeletedarticle'          => 'atjaunoja "[[$1]]"',
 'undeletedrevisions'        => '$1 {{PLURAL:$1|versija|versijas}} {{PLURAL:$1|atjaunota|atjaunotas}}',
 'undeletedrevisions-files'  => '{{PLURAL:$1|1 versija|$1 versijas}} un {{PLURAL:$2|1 fails|$2 faili}} atjaunoti',
 'undeletedfiles'            => '{{PLURAL:$1|1 fails atjaunots|$1 faili atjaunoti}}',
@@ -2165,9 +2154,6 @@ Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvie
 'movepage-page-exists'         => 'Lapa $1 jau eksistē un to nevar pārrakstīt automātiski.',
 'movepage-page-moved'          => 'Lapa $1 tika pārvietota uz $2.',
 'movepage-page-unmoved'        => 'Lapu $1 nevarēja pārvietot uz $2.',
-'1movedto2'                    => '"[[$1]]" pārdēvēju par "[[$2]]"',
-'1movedto2_redir'              => '[[$1]] tika pārdēvēts par [[$2]], izmantojot pāradresāciju',
-'move-redirect-suppressed'     => 'pāradresācija netika izveidota',
 'movelogpage'                  => 'Pārvietošanas reģistrs',
 'movelogpagetext'              => 'Lapu pārvietošanas (pārdēvēšanas) reģistrs.',
 'movesubpage'                  => '{{PLURAL:$1|Apakšlapa|Apakšlapas}}',
@@ -2970,5 +2956,9 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 # SQLite database support
 'sqlite-has-fts' => '$1 ar pilnteksta meklēšanas atbalstu',
 'sqlite-no-fts'  => '$1 bez pilnteksta meklēšanas atbalsta',
+
+# New logging system
+'revdelete-restricted'   => 'piemērot administratoriem ierobežojumus',
+'revdelete-unrestricted' => 'noņemt administratoriem ierobežojumus',
 
 );

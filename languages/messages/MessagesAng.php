@@ -528,9 +528,6 @@ folcliċum āgnunge oþþe ȝelīċum frēom horde (sēo $1 for āscungum).
 'revdelete-radio-unset'      => 'Nā',
 'revdel-restore'             => 'scēaƿnesse hƿeorfan',
 'pagehist'                   => 'Sīdan stǣr',
-'revdelete-content'          => 'innoþ',
-'revdelete-summary'          => 'ādihtscortnes',
-'revdelete-uname'            => 'brūcendnama',
 'revdelete-reasonotherlist'  => 'Ōðru racu',
 
 # History merging
@@ -903,7 +900,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'exblank'               => 'tramet wæs ǣmtig',
 'historywarning'        => 'Warnung: Se tramet, þone þu āfeorsian teohhast, hæfþ stǣre:',
 'actioncomplete'        => 'Ƿeorcdǣd fuldōn',
-'deletedarticle'        => 'āfeorsode "[[$1]]"',
 'dellogpage'            => 'Āfeorsunge ƿīsbōc',
 'deletionlog'           => 'āfeorsunge wisbōc',
 'deletecomment'         => 'Racu:',
@@ -955,7 +951,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'undeletebtn'            => 'Edstaðola!',
 'undeletelink'           => 'sēon/nīƿian',
 'undeleteviewlink'       => 'sēon',
-'undeletedarticle'       => 'edstaðolod "[[$1]]"',
 'undelete-search-submit' => 'Sēċan',
 
 # Namespace form on various pages
@@ -1021,22 +1016,20 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'proxyblocksuccess'        => 'Ȝedōn.',
 
 # Move page
-'movearticle'     => 'Sīdan ȝeferan:',
-'newtitle'        => 'To nīƿum name:',
-'move-watch'      => 'Frumasīdan and endesīdan ƿæccan',
-'movepagebtn'     => 'Sīdan ȝeferan',
-'pagemovedsub'    => 'Ȝefōr spēdde',
-'movepage-moved'  => '\'\'\'"$1" ƿæs to "$2"\'\'\' ȝefered',
-'articleexists'   => 'Tramet on þǣm naman ǣr stendeþ, oþþe þone
+'movearticle'    => 'Sīdan ȝeferan:',
+'newtitle'       => 'To nīƿum name:',
+'move-watch'     => 'Frumasīdan and endesīdan ƿæccan',
+'movepagebtn'    => 'Sīdan ȝeferan',
+'pagemovedsub'   => 'Ȝefōr spēdde',
+'movepage-moved' => '\'\'\'"$1" ƿæs to "$2"\'\'\' ȝefered',
+'articleexists'  => 'Tramet on þǣm naman ǣr stendeþ, oþþe þone
 naman þu cēas nis andfenge.
 Bidde cēos ōðerne naman.',
-'movedto'         => 'ȝefered to',
-'movetalk'        => 'Ȝesibbed ȝespreċsīdan ȝeferan',
-'1movedto2'       => '[[$1]] ȝefered to [[$2]]',
-'1movedto2_redir' => '[[$1]] ȝefered to [[$2]] ofer edlǣdunge',
-'movelogpage'     => 'Ȝeferan ealdhord',
-'movereason'      => 'Racu:',
-'revertmove'      => 'Undōn',
+'movedto'        => 'ȝefered to',
+'movetalk'       => 'Ȝesibbed ȝespreċsīdan ȝeferan',
+'movelogpage'    => 'Ȝeferan ealdhord',
+'movereason'     => 'Racu:',
+'revertmove'     => 'Undōn',
 
 # Export
 'export' => 'Sīdan ūtsendan',

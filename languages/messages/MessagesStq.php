@@ -845,8 +845,6 @@ Uur Administratore ap {{SITENAME}} hääbe Tougriep ap dän ferstatte Inhoold un
 'revdelete-unsuppress'        => 'Ienschränkengen foar wier häärstoalde Versione aphieuwje',
 'revdelete-log'               => 'Gruund:',
 'revdelete-submit'            => 'Ap uutwäälde  {{PLURAL:$1|Version|Versione}} anweende',
-'revdelete-logentry'          => 'Versionsansicht annerd foar [[$1]]',
-'logdelete-logentry'          => 'annerde ju Sichtboarkaid foar [[$1]]',
 'revdelete-success'           => "'''Ju Versionsansicht wuud aktualisierd.'''",
 'revdelete-failure'           => "Ju Versionssichtboarkaid kon nit aktualisierd wäide:'''
 $1",
@@ -858,15 +856,6 @@ $1",
 'revdel-restore-visible'      => 'sichtboare Revisione',
 'pagehist'                    => 'Siedegeskichte',
 'deletedhist'                 => 'Läskede Versione',
-'revdelete-content'           => 'Siedeninhoold',
-'revdelete-summary'           => 'Touhoopefoatengskommentoar',
-'revdelete-uname'             => 'Benutsernoome',
-'revdelete-restricted'        => 'Einskränkengen jäilde uk foar Administratore',
-'revdelete-unrestricted'      => 'Ienskränkengen foar Administratore wächhoald',
-'revdelete-hid'               => 'ferstatte $1',
-'revdelete-unhid'             => 'moakede $1 wier eepentelk',
-'revdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|Version|Versione}}',
-'logdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|Logboukiendraach|Logboukiendraage}}',
 'revdelete-hide-current'      => 'Failer bie dät Fersteeten fon dän Iendraach fon $1, $2 Uure: Dit is ju aktuelle Version.
 Ju kon nit ferstat wäide.',
 'revdelete-show-no-access'    => 'Failer bie dät Anwiesen fon dän Iendraach fon $1, $2 Uure: Dissen Iendraach wuud as "betüümt" markierd.
@@ -1938,8 +1927,6 @@ Touräächmäldengen un wiedere Hälpe: {{canonicalurl:{{MediaWiki:Helppage}}}}'
 'actionfailed'           => 'Aktion misglukked',
 'deletedtext'            => '"$1" wuude läsked.
 In $2 fiende Jie ne Lieste fon do lääste Läskengen.',
-'deletedarticle'         => '"[[$1]]" wuude läsked',
-'suppressedarticle'      => 'feranderde ju Sichtboarhaid fon „[[$1]]“',
 'dellogpage'             => 'Läsk-Logbouk',
 'dellogpagetext'         => 'Hier is ne Lieste fon do lääste Läskengen.',
 'deletionlog'            => 'Läsk-Logbouk',
@@ -2058,7 +2045,6 @@ Die aktuelle Text fon ju läskede Siede is bloot Administratore tougongelk.',
 'undeletereset'                => 'Oubreeke',
 'undeleteinvert'               => 'Uutwoal uumekiere',
 'undeletecomment'              => 'Gruund:',
-'undeletedarticle'             => 'häd "[[$1]]" wier häärstoald',
 'undeletedrevisions'           => '{{PLURAL:$1|1 Version wuude|$1 Versione wuuden}} wier häärstoald',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 Version|$1 Versione}} un {{PLURAL:$2|1 Doatäi|$2 Doatäie}} wuuden wier häärstoald',
 'undeletedfiles'               => '{{PLURAL:$1|1 Doatäie wuude|$1 Doatäie wuuden}} wier häärstoald',
@@ -2332,9 +2318,6 @@ Fersäik jädden n uur Noome.',
 'movepage-page-moved'          => 'Ju Siede „$1“ wuude ätter „$2“ ferskäuwen.',
 'movepage-page-unmoved'        => 'Ju Siede „$1“ kuude nit ätter „$2“ ferskäuwen wäide.',
 'movepage-max-pages'           => 'Ju Maximoalantaal fon $1 {{PLURAL:$1|Siede|Sieden}} wuude ferskäuwen. Aal wiedere Sieden konnen nit automatisk ferskäuwen wäide.',
-'1movedto2'                    => 'häd "[[$1]]" ätter "[[$2]]" ferskäuwen',
-'1movedto2_redir'              => 'häd „[[$1]]“ ätter „[[$2]]“ ferskäuwen un deerbie ne Fääreleedenge uurskrieuwen',
-'move-redirect-suppressed'     => 'Fäärelaitenge unnerdrukt',
 'movelogpage'                  => 'Ferskuuwengs-Logbouk',
 'movelogpagetext'              => 'Dit is ne Lieste fon aal ferskäuwene Sieden.',
 'movesubpage'                  => '{{PLURAL:$1|Unnersiede|Unnersieden}}',
@@ -3206,5 +3189,9 @@ Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''
 # SQLite database support
 'sqlite-has-fts' => 'Version $1 mäd Unnerstutsenge foar ju Fultäkstsäike',
 'sqlite-no-fts'  => 'Version $1 sunner Unnerstutsenge foaar ju Fultäkstsäike',
+
+# New logging system
+'revdelete-restricted'   => 'Einskränkengen jäilde uk foar Administratore',
+'revdelete-unrestricted' => 'Ienskränkengen foar Administratore wächhoald',
 
 );

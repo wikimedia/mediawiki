@@ -794,7 +794,6 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'confirmdeletetext'     => 'Droëneuh neuk neusampôh ôn atawa beureukah nyoë keu sabé. Meunan cit ban mandum riwayatjih nibak basis data. Neupeupaseuti meunyo Droëneuh cit keubiët meung neusampôh, neutupeuë ban mandum akébatjih, ngön peuë nyang neupeulaku nyoë nakeuh meunurôt [[{{MediaWiki:Policy-url}}|kebijakan{{SITENAME}}]].',
 'actioncomplete'        => 'Seuleusoë',
 'deletedtext'           => '"$1" ka geusampôh. Eu $2 keu log paléng barô bak ôn nyang ka geusampôh.',
-'deletedarticle'        => 'sampôh "[[$1]]"',
 'dellogpage'            => 'Log seunampoh',
 'deletecomment'         => 'Choë:',
 'deleteotherreason'     => 'Nyang la’én/choë la’én:',
@@ -831,7 +830,6 @@ Droëneuh jeuët neugantoë tingkat lindông keu ôn nyoë, tapi nyan hana peung
 # Undelete
 'undeletebtn'            => 'Peuriwang!',
 'undeletelink'           => 'eu/peuriwang',
-'undeletedarticle'       => '"$1" ka geupeuriwang',
 'undelete-search-submit' => 'Mita',
 
 # Namespace form on various pages
@@ -909,8 +907,6 @@ Lam masalah nyoë, meunyo neuhawa, Droëneuh jeuët neupeupinah atawa neupeugab�
 'talkexists'       => 'Ôn nyan ka geupeupinah, tapi ôn peugah haba bak ôn nyan h‘an jeuët geupeupinah kareuna ka na ôn peugah haba bak nan barô. Neupeusapat mantöng ôn ôn peugah haba nyan keudroë.',
 'movedto'          => 'geupeupinah u',
 'movetalk'         => 'Peupinah ôn peugah haba nyang na hubôngan.',
-'1movedto2'        => 'peupinah [[$1]] u [[$2]]',
-'1movedto2_redir'  => 'pupinah [[$1]] u [[$2]] röt peuninah',
 'movelogpage'      => 'Log pinah',
 'movereason'       => 'Choë:',
 'revertmove'       => 'peuriwang',

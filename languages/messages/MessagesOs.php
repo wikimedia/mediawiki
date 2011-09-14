@@ -436,6 +436,8 @@ $messages = array(
 Дæ бон у [[Special:Search/{{PAGENAME}}|бацагурын ацы фарсы ном]] æндæр фæрсты
 кæнæ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} агурын хæстæг логты]</span>.',
 'note'                             => "'''Бафиппай:'''",
+'previewnote'                      => "'''Зон æй, æмæ ай у æрмæстдæр разбакаст.'''
+Дæ ивдтытæ нырмæ æвæрд не рцыдысты!",
 'editing'                          => 'Ивыс: $1',
 'editingsection'                   => 'Ивыс $1 (фарсы хай)',
 'editconflict'                     => 'Ивыны конфликт: $1',
@@ -494,10 +496,6 @@ $messages = array(
 'revdel-restore-deleted'    => 'хафт ивдтытæ',
 'revdel-restore-visible'    => 'зынгæ ивдтытæ',
 'pagehist'                  => 'Фарсы истори',
-'revdelete-content'         => 'мидис',
-'revdelete-summary'         => 'ивддзинады мидис',
-'revdelete-uname'           => 'архайæджы ном',
-'revdelete-hid'             => 'Ист $1',
 'revdelete-reasonotherlist' => 'Æндæр аххос',
 'revdelete-offender'        => 'Фарсы фæлтæры автор:',
 
@@ -781,8 +779,9 @@ $3',
 'pager-older-n'          => '{{PLURAL:$1|раздæр иу|раздæр $1}}',
 
 # Book sources
-'booksources'    => 'Чиныгисæнтæ',
-'booksources-go' => 'Агурын',
+'booksources'               => 'Чиныгисæнтæ',
+'booksources-search-legend' => 'Агурын чингуыты равзæрæнтæ',
+'booksources-go'            => 'Агурын',
 
 # Special:Log
 'specialloguserlabel'  => 'Архайæг:',
@@ -861,7 +860,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'delete-confirm'        => 'Схаф "$1"',
 'actioncomplete'        => 'Æххæст',
 'actionfailed'          => 'Нæ рауадис',
-'deletedarticle'        => 'схафта "[[$1]]"',
 'dellogpage'            => 'Аппарыны лог',
 'deletionlog'           => 'аппарыны лог',
 'deletecomment'         => 'Аххос:',
@@ -872,6 +870,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'rollbacklink' => 'раздæхын',
 
 # Protect
+'protectlogpage'         => 'Хъахъхъæндты лог',
 'protectedarticle'       => '«[[$1]]» — фарс æхгæд æрцыд',
 'prot_1movedto2'         => '[[$1]] хаст æрцыд [[$2]], зæгъгæ, ахæм фарсмæ',
 'protectcomment'         => 'Аххос:',
@@ -961,16 +960,14 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'databasenotlocked'   => 'Бæрæггæнæнты базæ æхгæд не ’рцыд.',
 
 # Move page
-'movearticle'              => 'Статьяйы ном баив',
-'movenologin'              => 'Системæйæн дæхи нæ бацамыдтай',
-'newtitle'                 => 'Ног ном',
-'move-watch'               => 'Ацы фарсмæ дæ цæст æрдар',
-'movepagebtn'              => 'Фарсы ном ивын',
-'1movedto2_redir'          => "[[$1]] æрвыстимæ хаст æрцыд [[$2]]'мæ",
-'move-redirect-suppressed' => 'рарвысты фарс нæ бахъуыд',
-'movelogpage'              => 'Номивдтыты лог',
-'movereason'               => 'Аххос:',
-'revertmove'               => 'раивын',
+'movearticle' => 'Статьяйы ном баив',
+'movenologin' => 'Системæйæн дæхи нæ бацамыдтай',
+'newtitle'    => 'Ног ном',
+'move-watch'  => 'Ацы фарсмæ дæ цæст æрдар',
+'movepagebtn' => 'Фарсы ном ивын',
+'movelogpage' => 'Номивдтыты лог',
+'movereason'  => 'Аххос:',
+'revertmove'  => 'раивын',
 
 # Export
 'export' => 'Фæрсты экспорт',
@@ -1061,6 +1058,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'skinname-chick'       => 'Карк',
 
 # Patrol log
+'patrol-log-line' => 'банысан кодта $1 $2 фарсæй патрулгондæй $3',
 'patrol-log-auto' => '(автоматон)',
 'patrol-log-diff' => 'ивд $1',
 
@@ -1073,6 +1071,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'widthheightpage' => '$1 × $2, $3 {{PLURAL:$3|фарс|фарсы}}',
 'file-info-size'  => '$1 × $2 пикселы, файлы уæз: $3, MIME тип: $4',
 'file-nohires'    => 'Нæй ын стырдæр фæлтæр .',
+'svg-long-desc'   => 'SVG файл, номиналон $1 × $2 пикселы, файлы бæрц: $3',
 'show-big-image'  => 'Æнæхъæнæй',
 
 # Special:NewFiles

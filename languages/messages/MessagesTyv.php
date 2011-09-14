@@ -679,7 +679,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'delete-confirm'        => '"$1" деп арынны ырадыры',
 'delete-legend'         => 'Ырадыры',
 'actioncomplete'        => 'Ажыл доосту',
-'deletedarticle'        => '"[[$1]]" деп арынны ап каан',
 'deletecomment'         => 'Чылдагаан:',
 'deleteotherreason'     => 'Өске/немелде чылдагаан:',
 'deletereasonotherlist' => 'Өске чылдагаан',
@@ -703,7 +702,6 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'undeletebtn'            => 'Диргисир',
 'undeletelink'           => 'көөрү/диргисири',
 'undeletecomment'        => 'Чылдагаан:',
-'undeletedarticle'       => '"[[$1]]" диргискен',
 'undelete-search-submit' => 'Дилээр',
 
 # Namespace form on various pages

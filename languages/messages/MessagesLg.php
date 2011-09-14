@@ -797,13 +797,11 @@ oba ku gano agali ku lupapula luno.<br />
 'history-feed-item-nocomment' => 'Bya $1, nga $2',
 
 # Revision deletion
-'rev-delundel'      => 'laga/kisa',
-'rev-showdeleted'   => 'laga',
-'revdelete-log'     => 'Nsonga:',
-'revdel-restore'    => "tegeka ebiba biragibwa n'ebikisibwa",
-'pagehist'          => "Ennanda y'olupapula luno",
-'revdelete-content' => 'ebirimu',
-'revdelete-uname'   => "ery'obwa memba",
+'rev-delundel'    => 'laga/kisa',
+'rev-showdeleted' => 'laga',
+'revdelete-log'   => 'Nsonga:',
+'revdel-restore'  => "tegeka ebiba biragibwa n'ebikisibwa",
+'pagehist'        => "Ennanda y'olupapula luno",
 
 # Merge log
 'revertmerge' => 'Yawula ebigattidwa',
@@ -1071,7 +1069,6 @@ Kakasa nti kino ky'oyagala, era nti otegeera bye kinaaleetawo, era nti kikkirizi
 'deletedtext'           => 'Olupapula "$1" lugyidwawo.
 
 Kebera olukalala $2 okumanya ebifa ku byakagyibwawo.',
-'deletedarticle'        => 'olupapula olwa "[[$1]]" lugyidwawo',
 'dellogpage'            => 'Ebigyidwawo',
 'deletecomment'         => 'Nsonga:',
 'deleteotherreason'     => 'Nsonga ndala:',
@@ -1118,7 +1115,6 @@ Oyinz'okukyusa okusibibwa kw'olupapula luno, naye tekijjakukyusa ebikugizo ebivu
 'undeletebtn'            => 'Luzzewo',
 'undeletelink'           => 'lukebere/luzzewo',
 'undeletecomment'        => 'Nsonga:',
-'undeletedarticle'       => '"[[$1]]" luzzidwawo',
 'undelete-search-submit' => 'Noonya',
 
 # Namespace form on various pages
@@ -1211,8 +1207,6 @@ Londayo eddala.',
 Yogera nange gwe olina okugyegattira ku eyo esangidwawo.'''",
 'movedto'          => 'kati lutumidwa',
 'movetalk'         => "N'olupapula olwa yogera nange lwakwo lusimbulize",
-'1movedto2'        => 'olupapula [[$1]] lukyusidwa luyitibwe [[$2]]',
-'1movedto2_redir'  => 'olupapula [[$1]] kati lukutwalabutwazi ku [[$2]], ebyalulingako kaakano gye bisangibwa',
 'movelogpage'      => 'Ebikyusidwa manya',
 'movereason'       => 'Nsonga:',
 'revertmove'       => 'zaawo erinya ekkadde',

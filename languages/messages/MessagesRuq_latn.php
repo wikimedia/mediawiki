@@ -262,9 +262,6 @@ $3',
 'watching'   => 'O klăaere...',
 'unwatching' => 'O deklăaere...',
 
-# Delete
-'deletedarticle' => 'delǎraj "[[$1]]"',
-
 # Rollback
 'rollbacklink' => 'revenire',
 

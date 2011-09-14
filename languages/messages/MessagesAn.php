@@ -948,8 +948,6 @@ Atros admenistradors de {{SITENAME}} encara podrán acceder t'o conteniu amagato
 'revdelete-unsuppress'        => "Sacar restriccions d'as versions restauradas",
 'revdelete-log'               => 'Razón:',
 'revdelete-submit'            => 'Aplicar a {{PLURAL:$1|la versión trigata|las versions trigatas}}',
-'revdelete-logentry'          => "S'ha cambiato a visibilidat d'a versión de [[$1]]",
-'logdelete-logentry'          => "S'ha cambiato a visibilidat d'escaicimientos de [[$1]]",
 'revdelete-success'           => "'''S'ha cambiato correctament a visibilidat d'as versions.'''",
 'revdelete-failure'           => "'''La visibilidat d'a versión no s'ha puesto esviellar:'''
 $1",
@@ -961,15 +959,6 @@ $1",
 'revdel-restore-visible'      => 'versions visibles',
 'pagehist'                    => 'Historial',
 'deletedhist'                 => 'Historial de borrau',
-'revdelete-content'           => 'conteniu',
-'revdelete-summary'           => 'editar resumen',
-'revdelete-uname'             => "nombre d'usuario",
-'revdelete-restricted'        => "S'han aplicato as restriccions ta almenistradors",
-'revdelete-unrestricted'      => "S'han borrato as restriccions ta almenistradors",
-'revdelete-hid'               => 'amagar $1',
-'revdelete-unhid'             => 'amostrar $1',
-'revdelete-log-message'       => '$1 ta $2 {{PLURAL:$2|versión|versions}}',
-'logdelete-log-message'       => '$1 ta $2 {{PLURAL:$2|esdevenimiento|esdevenimientos}}',
 'revdelete-hide-current'      => "Error en amagar l'obchecto de calendata $2 y $1: ista ye a versión actual.
 No se puet amagar.",
 'revdelete-show-no-access'    => 'Error amostrando l\'obchecto de calendata $2, $1: iste obchecto s\'ha marcau como "restrinchiu".
@@ -2025,8 +2014,6 @@ Por favor, confirme que reyalment ye mirando de fer ixo, que entiende as conseq�
 'actionfailed'           => "L'acción ha feito fallita",
 'deletedtext'            => 'S\'ha borrau "$1".
 Se veiga en $2 un rechistro d\'os borraus recients.',
-'deletedarticle'         => 'ha borrato "[[$1]]"',
-'suppressedarticle'      => 's\'ha supreso "[[$1]]"',
 'dellogpage'             => 'Rechistro de borraus',
 'dellogpagetext'         => "Contino se i amuestra una lista d'os borraus más recients.",
 'deletionlog'            => 'rechistro de borraus',
@@ -2143,7 +2130,6 @@ Si s'ha creyato una nueva pachina con o mesmo nombre dende que se borró a orich
 'undeletereset'                => 'Prencipiar',
 'undeleteinvert'               => 'Contornar selección',
 'undeletecomment'              => 'Razón:',
-'undeletedarticle'             => 'ha restaurato "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|Una edición restaurata|$1 edicions restauratas}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revisón|revisions}} y $2 {{PLURAL:$2|fichero|fichers}} restauratos',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichero restaurato|fichers restauratos}}',
@@ -2388,9 +2374,6 @@ En ixos casos, si lo deseya, habrá de tresladar u combinar manualment o conteni
 'movepage-page-moved'          => "S'ha tresladato a pachina $1 ta $2.",
 'movepage-page-unmoved'        => "No s'ha puesto tresladar a pachina $1 ta $2.",
 'movepage-max-pages'           => "S'han tresladato o masimo posible de $1 {{PLURAL:$1|pachina|pachinas}} y no se tresladarán más automaticament.",
-'1movedto2'                    => '[[$1]] tresladada a [[$2]]',
-'1movedto2_redir'              => '[[$1]] tresladada a [[$2]] sobre una reendrecera',
-'move-redirect-suppressed'     => 'reendrecera eliminata',
 'movelogpage'                  => 'Rechistro de treslatos',
 'movelogpagetext'              => 'Contino se i amuestra una lista de pachinas tresladatas.',
 'movesubpage'                  => '{{PLURAL:$1|Subpachina|Subpachinas}}',
@@ -3231,5 +3214,9 @@ Escriba o nombre d'o fichero sin o prefixo \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => '$1, con soporte de busca de texto integro',
 'sqlite-no-fts'  => '$1, sin soporte de busca de texto integro',
+
+# New logging system
+'revdelete-restricted'   => "S'han aplicato as restriccions ta almenistradors",
+'revdelete-unrestricted' => "S'han borrato as restriccions ta almenistradors",
 
 );

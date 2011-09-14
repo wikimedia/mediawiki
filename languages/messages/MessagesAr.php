@@ -1340,8 +1340,6 @@ $2
 'revdelete-unsuppress'        => 'إزالة الضوابط من المراجعات المسترجعة',
 'revdelete-log'               => 'السبب:',
 'revdelete-submit'            => 'طبق على {{PLURAL:$1||المراجعة المختارة|المراجعتين المختارتين|المراجعات المختارة}}',
-'revdelete-logentry'          => 'غير رؤية المراجعة ل[[$1]]',
-'logdelete-logentry'          => 'غير رؤية الحدث ل[[$1]]',
 'revdelete-success'           => "'''تم تحديث رؤية المراجعات بنجاح.'''",
 'revdelete-failure'           => "'''تعذر تحديث رؤية المراجعة:'''
 $1",
@@ -1353,15 +1351,6 @@ $1",
 'revdel-restore-visible'      => 'مراجعات مرئية',
 'pagehist'                    => 'تاريخ الصفحة',
 'deletedhist'                 => 'التاريخ المحذوف',
-'revdelete-content'           => 'محتوى',
-'revdelete-summary'           => 'ملخص التعديل',
-'revdelete-uname'             => 'اسم المستخدم',
-'revdelete-restricted'        => 'طبق الضوابط لمديري النظام',
-'revdelete-unrestricted'      => 'أزال الضوابط لمديري النظام',
-'revdelete-hid'               => 'أخفى $1',
-'revdelete-unhid'             => 'أظهر $1',
-'revdelete-log-message'       => '$1 ل$2 {{PLURAL:$2|مراجعة|مراجعة}}',
-'logdelete-log-message'       => '$1 ل$2 {{PLURAL:$2|حدث|حدث}}',
 'revdelete-hide-current'      => 'خطأ عند إحفاء العنصر المؤرخ في $2 $1: هذه هي المراجعة الحالية.
 لا يمكن إخفاؤها.',
 'revdelete-show-no-access'    => 'خطأ في إظهار العنصر ذا التاريخ $2 $1: هذا العنصر معلم ك"مقيد".
@@ -2480,8 +2469,6 @@ $ أونواتشورل
 'actionfailed'           => 'الفعل فشل',
 'deletedtext'            => '"$1" تم حذفها.
 انظر في $2 لسجل آخر عمليات الحذف.',
-'deletedarticle'         => 'حذف "[[$1]]"',
-'suppressedarticle'      => 'أخفى "[[$1]]"',
 'dellogpage'             => 'سجل الحذف',
 'dellogpagetext'         => 'بالأسفل قائمة بأحدث عمليات الحذف.',
 'deletionlog'            => 'سجل الحذف',
@@ -2615,7 +2602,6 @@ $ أونواتشورل
 'undeletereset'                => 'أعد الضبط',
 'undeleteinvert'               => 'اعكس الاختيار',
 'undeletecomment'              => 'السبب:',
-'undeletedarticle'             => 'استرجع "[[$1]]"',
 'undeletedrevisions'           => 'تم استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
 'undeletedrevisions-files'     => 'أسترجعت {{PLURAL:$1||مراجعة واحدة|مراجعتان|$1 مراجعات|$1 مراجعة}}  و{{PLURAL:$2||ملف واحد|ملفان|$2 ملفات|$2 ملفًا|$2 ملف}}',
 'undeletedfiles'               => 'أسترجع {{PLURAL:$1||ملف واحد|ملفان|$1 ملفات|$1 ملفًا|$1 ملف}}',
@@ -2910,9 +2896,6 @@ $1',
 'movepage-page-moved'          => 'تم نقل الصفحة $1 إلى $2.',
 'movepage-page-unmoved'        => 'لم يمكن نقل الصفحة $1 إلى $2.',
 'movepage-max-pages'           => 'الحد الأقصى $1 {{PLURAL:$1|صفحة|صفحة}} تم نقله ولن يتم نقل المزيد تلقائيا.',
-'1movedto2'                    => '[[$1]] تم نقلها إلى [[$2]]',
-'1movedto2_redir'              => '[[$1]] تم نقلها إلى [[$2]] فوق التحويلة',
-'move-redirect-suppressed'     => 'تم التغاضي عن التحويلة',
 'movelogpage'                  => 'سجل النقل',
 'movelogpagetext'              => 'بالأسفل قائمة بالصفحات التي تم نقلها.',
 'movesubpage'                  => '{{PLURAL:$1|صفحة فرعية|صفحات فرعية}}',
@@ -4121,5 +4104,9 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 بدعم البحث في كامل النص',
 'sqlite-no-fts'  => '$1 بدون دعم البحث في كامل النص',
+
+# New logging system
+'revdelete-restricted'   => 'طبق الضوابط لمديري النظام',
+'revdelete-unrestricted' => 'أزال الضوابط لمديري النظام',
 
 );

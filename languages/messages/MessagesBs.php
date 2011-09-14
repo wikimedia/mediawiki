@@ -1157,8 +1157,6 @@ Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakriven
 'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim revizijama',
 'revdelete-log'               => 'Razlog:',
 'revdelete-submit'            => 'Primijeni na odabrane {{PLURAL:$1|reviziju|revizije}}',
-'revdelete-logentry'          => 'promijenjena vidljivost revizije [[$1]]',
-'logdelete-logentry'          => 'promijenjena vidljivost događaja [[$1]]',
 'revdelete-success'           => "'''Vidljivost revizije uspješno ažurirana.'''",
 'revdelete-failure'           => "'''Vidljivost revizije nije mogla biti ažurirana:'''
 $1",
@@ -1170,15 +1168,6 @@ $1",
 'revdel-restore-visible'      => 'vidljive revizije',
 'pagehist'                    => 'Historija stranice',
 'deletedhist'                 => 'Izbrisana historija',
-'revdelete-content'           => 'sadržaj',
-'revdelete-summary'           => 'sažetak',
-'revdelete-uname'             => 'korisničko ime',
-'revdelete-restricted'        => 'primijenjena ograničenja za administratore',
-'revdelete-unrestricted'      => 'uklonjena ograničenja za administratore',
-'revdelete-hid'               => 'sakrij $1',
-'revdelete-unhid'             => 'otkrij $1',
-'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|izmjenu|izmjene|izmjena}}',
-'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|događaj|događaja}}',
 'revdelete-hide-current'      => 'Greška pri sakrivanju stavke od $2, $1: ovo je trenutna revizija.
 Ne može biti sakrivena.',
 'revdelete-show-no-access'    => 'Greška pri prikazivanju stavke od $2, $1: ova stavka je označena kao "zaštićena".
@@ -2289,8 +2278,6 @@ Molim potvrdite svoju namjeru, da razumijete posljedice i da ovo radite u skladu
 'actionfailed'           => 'Akcija nije uspjela',
 'deletedtext'            => 'Članak "$1" je obrisan.
 Pogledajte $2 za zapis o skorašnjim brisanjima.',
-'deletedarticle'         => 'obrisan "[[$1]]"',
-'suppressedarticle'      => 'promijeni vidljivost od "[[$1]]"',
 'dellogpage'             => 'Protokol brisanja',
 'dellogpagetext'         => 'Ispod je spisak najskorijih brisanja.',
 'deletionlog'            => 'zapis brisanja',
@@ -2417,7 +2404,6 @@ Možda ste unijeli pogrešan link, ili je revizija vraćena ili uklonjena iz arh
 'undeletereset'                => 'Očisti',
 'undeleteinvert'               => 'Izmijeni odabir',
 'undeletecomment'              => 'Razlog:',
-'undeletedarticle'             => 'vraćeno "$1"',
 'undeletedrevisions'           => '{{PLURAL:$1|$1 revizija vraćena|$1 revizije vraćene|$1 revizija vraćeno}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revizija|$1 revizije|$1 revizija}} i {{PLURAL:$2|1 datoteka|$2 datoteke|$2 datoteka}} vraćeno',
 'undeletedfiles'               => '{{PLURAL:$1|1 datoteka vraćena|$1 datoteke vraćene|$1 datoteka vraćeno}}',
@@ -2713,9 +2699,6 @@ stranica za razgovor nije mogla biti premještena jer takva već postoji na novo
 'movepage-page-moved'          => 'Stranica $1 je premještena na $2.',
 'movepage-page-unmoved'        => 'Stranica $1 ne može biti premještena na $2.',
 'movepage-max-pages'           => 'Maksimum od $1 {{PLURAL:$1|stranice|stranice|stranica}} je premješteno i više nije moguće premjestiti automatski.',
-'1movedto2'                    => 'članak [[$1]] premješten na [[$2]]',
-'1movedto2_redir'              => 'stranica [[$1]] premještena u stranicu [[$2]] putem preusmjerenja',
-'move-redirect-suppressed'     => 'preusmjeravanje onemogućeno',
 'movelogpage'                  => 'Protokol premještanja',
 'movelogpagetext'              => 'Ispod je spisak stranica koje su premještene.',
 'movesubpage'                  => '{{PLURAL:$1|Podstranica|Podstranice}}',
@@ -3829,5 +3812,9 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 # SQLite database support
 'sqlite-has-fts' => '$1 sa podrškom pretrage cijelog teksta',
 'sqlite-no-fts'  => '$1 bez podrške pretrage cijelog teksta',
+
+# New logging system
+'revdelete-restricted'   => 'primijenjena ograničenja za administratore',
+'revdelete-unrestricted' => 'uklonjena ograničenja za administratore',
 
 );

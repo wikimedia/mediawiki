@@ -767,13 +767,9 @@ Legend: '''({{int:kini}})''' = perbedaan jo revisi terakhir, '''({{int:dulu}})''
 
 # Revision deletion
 'rev-delundel'           => 'tampilkan/suruakkan',
-'revdelete-logentry'     => 'Maubah tampilan revisi untuak "[[$1]]"',
 'revdel-restore'         => 'Ganti tampilan',
 'revdel-restore-deleted' => 'revisi nan lah tahapuih',
 'revdel-restore-visible' => 'tampilan revisi',
-'revdelete-content'      => 'kandungan',
-'revdelete-hid'          => 'suruakan $1',
-'revdelete-log-message'  => '$1 untuak $2 {{PLURAL:$2|revisi|revisi}}',
 
 # Merge log
 'revertmerge' => 'Batal bergabung',
@@ -1004,7 +1000,6 @@ Pastikan awak mainginkannyo, dan awak lah tahu sagalo akibatnyo dan sasuai jo [[
 'actionfailed'          => 'Aksi gagal',
 'deletedtext'           => '"$1" lah dihapuih.
 Lihek $2 untuak rekam jejak laman yang lah dihapuih.',
-'deletedarticle'        => 'dihapuih "[[$1]]"',
 'dellogpage'            => 'Log penghapusan',
 'deletecomment'         => 'Alasan:',
 'deleteotherreason'     => 'Alasan lain/tambahan:',
@@ -1040,7 +1035,6 @@ Awak dapek maubah tingkek perlindungannyo, walaupun indak pangaruah pado perlind
 # Undelete
 'undeletelink'     => 'tampilkan/pulihkan',
 'undeleteviewlink' => 'liek',
-'undeletedarticle' => 'dipulihkan "[[$1]]"',
 
 # Namespace form on various pages
 'namespace'      => 'Ruangnamo:',
@@ -1119,8 +1113,6 @@ Dalam kasus tu, apobilo diinginkan, awak dapek mamindahkan atau manggabuangkan l
 'talkexists'       => "'''Laman tersebut berhasil dipindahkan, tapi laman otanyo indak dapek dipindahkan karano lah ado laman ota pado judul yang baru. Silakan digabuang laman ota tu sacaro manual.'''",
 'movedto'          => 'dipindahkan ka',
 'movetalk'         => 'Pindahkan laman ota yang takaik',
-'1movedto2'        => 'mamindahkan [[$1]] ka [[$2]]',
-'1movedto2_redir'  => 'mamindahkan [[$1]] ka [[$2]] malalui peralihan',
 'movelogpage'      => 'Log pemindahan',
 'movereason'       => 'Alasan:',
 'revertmove'       => 'kembalikan',

@@ -926,12 +926,6 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdel-restore'             => 'Breyta sýn',
 'pagehist'                   => 'Breytingaskrá',
 'deletedhist'                => 'Eyðingaskrá',
-'revdelete-content'          => 'efni',
-'revdelete-summary'          => 'breytingarágrip',
-'revdelete-uname'            => 'notandanafn',
-'revdelete-restricted'       => 'hömlur settar á stjórnendur',
-'revdelete-unrestricted'     => 'fjarlægja hömlur á stjórnendur',
-'revdelete-log-message'      => '$1 fyrir $2 {{PLURAL:$2|breytingu|breytingar}}',
 'revdelete-edit-reasonlist'  => 'Eyðingarástæður',
 
 # History merging
@@ -1650,7 +1644,6 @@ Vinsamlegast staðfestu það að þú ætlir að gera svo, það að þú skilj
 'actionfailed'           => 'Aðgerð mistókst',
 'deletedtext'            => '„$1“ hefur verið eytt.
 Sjá lista yfir nýlegar eyðingar í $2.',
-'deletedarticle'         => 'eyddi „[[$1]]“',
 'dellogpage'             => 'Eyðingaskrá',
 'dellogpagetext'         => 'Að neðan gefur að líta lista yfir síður sem nýlega hefur verið eytt.',
 'deletionlog'            => 'eyðingaskrá',
@@ -1743,7 +1736,6 @@ Innihald greinarinnar er einungis aðgengilegt möppudýrum.',
 'undeletereset'             => 'Endurstilla',
 'undeleteinvert'            => 'Snúa vali við',
 'undeletecomment'           => 'Athugasemd:',
-'undeletedarticle'          => 'endurvakti „[[$1]]“',
 'undeletedrevisions'        => '$1 {{PLURAL:$1|breyting endurvakin|breytingar endurvaktar}}',
 'undeletedrevisions-files'  => '$1 {{PLURAL:$1|breyting|breytingar}} og $2 {{PLURAL:$2|skrá|skrár}} endurvaktar',
 'undeletedfiles'            => '{{PLURAL:$1|Ein skrá endurvakin|$1 skrár endurvaktar}}',
@@ -1941,9 +1933,6 @@ Gjörðu svo vel og færðu hana handvirkt.'''",
 'movepage-page-moved'       => 'Síðan $1 hefur verið færð á $2.',
 'movepage-page-unmoved'     => 'Ekki var hægt að færa síðuna $1 á $2.',
 'movepage-max-pages'        => 'Hámarkinu, $1 {{PLURAL:$1|síða|síður}}, hefur verið náð og verða engar fleiri færðar sjálfvirkt.',
-'1movedto2'                 => '[[$1]] færð á [[$2]]',
-'1movedto2_redir'           => '[[$1]] færð á [[$2]] yfir tilvísun',
-'move-redirect-suppressed'  => 'tilvísun leynd',
 'movelogpage'               => 'Flutningaskrá',
 'movelogpagetext'           => 'Þetta er listi yfir síður sem nýlega hafa verið færðar.',
 'movesubpage'               => '{{Plural:$1|Undirsíða|Undirsíður}}',
@@ -2400,5 +2389,9 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 
 # Database error messages
 'dberr-usegoogle' => 'Þú getur notað Google til að leita á meðan.',
+
+# New logging system
+'revdelete-restricted'   => 'hömlur settar á stjórnendur',
+'revdelete-unrestricted' => 'fjarlægja hömlur á stjórnendur',
 
 );

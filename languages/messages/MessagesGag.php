@@ -842,7 +842,6 @@ Lütfen doorulayın ani siz neetlenersiniz bunu yapmaa, annêêrsiniz onun rezul
 'actioncomplete'        => 'İşlik tamannandı.',
 'deletedtext'           => '"$1" silindi.
 Yakın zamanda silinenleri görmää deyni: $2.',
-'deletedarticle'        => '"[[$1]]" silindi',
 'dellogpage'            => 'Silmää jurnalı',
 'deletecomment'         => 'Sebep',
 'deleteotherreason'     => 'Başka/ek sebep:',
@@ -878,9 +877,8 @@ Burada bitki seçimner '''$1''' yazı diiştirmää deyni:",
 'restriction-level'           => 'Yasaklama düzeyi:',
 
 # Undelete
-'undeletebtn'      => 'Geeri getir!',
-'undeletelink'     => 'Göster/geeri getir',
-'undeletedarticle' => '[[$1]] geeri getirildi.',
+'undeletebtn'  => 'Geeri getir!',
+'undeletelink' => 'Göster/geeri getir',
 
 # Namespace form on various pages
 'namespace'      => 'Er adı:',
@@ -965,8 +963,6 @@ Yalvarêrêz başka bir ad seçmää.',
 'talkexists'       => "'''Bu sayfa kendisi başarılan aktarıldı, ama konuşmaa sayfası aktarılamadı neçin ki eni ad altında bulunêr taa birisi. Yalvarêrêz onnarı ellän birleştirmää.'''",
 'movedto'          => 'taşındı:',
 'movetalk'         => 'Varsa hem aktar "konuşmaa" sayfasını.',
-'1movedto2'        => '[[$1]] sayfasın eni adı: [[$2]]',
-'1movedto2_redir'  => '[[$1]] başlaa [[$2]] sayfasına gönderildi',
 'movelogpage'      => 'Ad diişmäk jurnalı',
 'movereason'       => 'Sebep',
 'revertmove'       => 'geeri al',

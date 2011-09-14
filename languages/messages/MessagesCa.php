@@ -697,7 +697,14 @@ Contrasenya temporal: $2",
 'passwordreset-emailsent'    => "S'ha enviat un correu de recordatori.",
 
 # Special:ChangeEmail
-'changeemail-cancel' => 'Cancel·la',
+'changeemail'          => 'Canvi de correu electrònic',
+'changeemail-header'   => "Canvi de l'adreça de correu electrònic del compte",
+'changeemail-text'     => "Completeu el següent formulari per canviar la vostra adreça de correu electrònic. Haureu d'introduir la contrasenya per confirmar el canvi.",
+'changeemail-oldemail' => 'Adreça de correu electrònic actual:',
+'changeemail-newemail' => 'Nova adreça de correu electrònic:',
+'changeemail-none'     => '(cap)',
+'changeemail-submit'   => 'Canvia de correu electrònic',
+'changeemail-cancel'   => 'Cancel·la',
 
 # Edit page toolbar
 'bold_sample'     => 'Text en negreta',
@@ -797,7 +804,12 @@ Podeu [[Special:Search/{{PAGENAME}}|cercar aquest títol]] en altres pàgines o 
 'userpage-userdoesnotexist-view'   => 'El compte d\'usuari "$1" no està registrat.',
 'blocked-notice-logextract'        => "En aquests moments aquest compte d'usuari es troba blocat.
 Per més detalls, la darrera entrada del registre es mostra a continuació:",
-'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis. '''Mozilla / Firefox / Safari:''' Premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac Apple); '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''; '''Konqueror:''': simplement cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''; '''Opera''' haureu d'esborrar completament la vostra memòria cau (caché) a ''Tools→Preferences''.",
+'clearyourcache'                   => "'''Nota:''' Després de desar, heu de posar al dia la memòria cau del vostre navegador per veure els canvis.
+* '''Firefox / Safari:''' premeu ''Shift'' mentre cliqueu ''Actualitza'' (Reload), o premeu ''Ctrl+F5'' o ''Ctrl+R'' (''Cmd+R'' en un Mac)
+* '''Google Chrome:''' premeu ''Ctrl+Shift+R'' (''Cmd+Shift+R'' en un Mac)
+* '''Internet Explorer:''' premeu ''Ctrl'' mentre cliqueu ''Actualitza'' (Refresh), o premeu ''Ctrl+F5''
+* '''Konqueror:''' cliqueu el botó ''Recarregar'' (Reload), o premeu ''F5''
+* '''Opera:''' esborreu la vostra memòria cau a ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou CSS abans de desar-lo.",
 'userjsyoucanpreview'              => "'''Consell:''' Utilitzeu el botó \"{{int:showpreview}}\" per provar el vostre nou JavaScript abans de desar-lo.",
 'usercsspreview'                   => "'''Recordeu que esteu previsualitzant el vostre CSS d'usuari.'''
@@ -1012,8 +1024,6 @@ Els altres administradors de {{SITENAME}} encara podran accedir al contingut ama
 'revdelete-unsuppress'        => 'Suprimir les restriccions de les revisions restaurades',
 'revdelete-log'               => 'Motiu:',
 'revdelete-submit'            => 'Aplica a {{PLURAL:$1|la revisió seleccionada|les revisions seleccionades}}',
-'revdelete-logentry'          => "s'ha canviat la visibilitat de la revisió de [[$1]]",
-'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
 'revdelete-success'           => "'''La visibilitat d'aquesta revisió s'ha actualitzat correctament.'''",
 'revdelete-failure'           => "'''La visibilitat de la revisió no ha pogut actualitzar-se:'''
 $1",
@@ -1025,16 +1035,6 @@ $1",
 'revdel-restore-visible'      => 'revisions visibles',
 'pagehist'                    => 'Historial',
 'deletedhist'                 => "Historial d'esborrat",
-'revdelete-content'           => 'el contingut',
-'revdelete-summary'           => "el resum d'edició",
-'revdelete-uname'             => "el nom d'usuari",
-'revdelete-restricted'        => 'ha aplicat restriccions al administradors',
-'revdelete-unrestricted'      => 'ha esborrat les restriccions per a administradors',
-'revdelete-hid'               => 'ha amagat $1',
-'revdelete-unhid'             => 'ha tornat a mostrar $1',
-'revdelete-log-message'       => '$1 de {{PLURAL:$2|la revisió|les revisions}}
-$2',
-'logdelete-log-message'       => "$1 per {{PLURAL:$2|l'esdeveniment|els esdeveniments}} $2",
 'revdelete-hide-current'      => "Error en amagar l'edició del $1 a les $2: és la revisió actual.
 No es pot amagar.",
 'revdelete-show-no-access'    => "Error en mostrar l'element del $1 a les $2: està marcat com a ''restringit''.
@@ -1194,6 +1194,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-watchlist-token'         => 'Fitxa de llista de seguiment:',
 'prefs-misc'                    => 'Altres preferències',
 'prefs-resetpass'               => 'Canvia la contrasenya',
+'prefs-changeemail'             => 'Canvia de correu electrònic',
 'prefs-email'                   => 'Opcions de correu electrònic',
 'prefs-rendering'               => 'Aparença',
 'saveprefs'                     => 'Desa les preferències',
@@ -1292,7 +1293,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'userrights-lookup-user'       => "Gestiona els grups d'usuari",
 'userrights-user-editname'     => "Introduïu un nom d'usuari:",
 'editusergroup'                => "Edita els grups d'usuaris",
-'editinguser'                  => "S'està canviant els permisos de l'usuari '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "S'està canviant els permisos de l'usuari '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => "Edita els grups d'usuaris",
 'saveusergroups'               => "Desa els grups d'usuari",
 'userrights-groupsmember'      => 'Membre de:',
@@ -1305,7 +1306,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'userrights-no-interwiki'      => "No teniu permisos per a editar els permisos d'usuari d'altres wikis.",
 'userrights-nodatabase'        => 'La base de dades $1 no existeix o no és local.',
 'userrights-nologin'           => "Heu [[Special:UserLogin|d'iniciar una sessió]] amb un compte d'administrador per a poder assignar permisos d'usuari.",
-'userrights-notallowed'        => "El vostre compte no té permisos per a assignar permisos d'usuari.",
+'userrights-notallowed'        => "El vostre compte no té permisos per a assignar o desassignar permisos d'usuari.",
 'userrights-changeable-col'    => 'Grups que podeu canviar',
 'userrights-unchangeable-col'  => 'Grups que no podeu canviar',
 
@@ -1665,9 +1666,8 @@ Per seguretat, img_auth.php està desactivat.",
 'upload_source_file' => ' (un fitxer en el vostre ordinador)',
 
 # Special:ListFiles
-'listfiles-summary'     => "Aquesta pàgina especial mostra tots els fitxers carregats.
-Per defecte, els darrers en ser carregats apareixen al principi de la llista.
-Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
+'listfiles-summary'     => 'Aquesta pàgina especial mostra tots els fitxers carregats.
+Si filtreu per usuari només es mostraran els fitxers la versió més recent dels quals hagi estat carregada per aquell.',
 'listfiles_search_for'  => "Cerca el nom d'un fitxer de medis:",
 'imgfile'               => 'fitxer',
 'listfiles'             => 'Llista de fitxers',
@@ -1991,7 +1991,7 @@ per enviar un correu electrònic a altres usuaris.",
 'emailpagetext'        => "Podeu usar el següent formulari per a enviar un missatge de correu electrònic a aquest usuari.
 L'adreça electrònica que heu entrat en [[Special:Preferences|les vostres preferències d'usuari]] apareixerà com a remitent del correu electrònic, de manera que el destinatari us podrà respondre directament.",
 'usermailererror'      => "L'objecte de correu ha retornat un error:",
-'defemailsubject'      => 'Adreça correl de {{SITENAME}}',
+'defemailsubject'      => 'Correu electrònic de l\'usuari "$1" de {{SITENAME}}',
 'usermaildisabled'     => "Correu electrònic d'usuaris deshabilitat",
 'usermaildisabledtext' => 'No podeu enviar correus electrònics a altres usuaris en aquest wiki',
 'noemailtitle'         => 'No hi ha cap adreça electrònica',
@@ -2077,11 +2077,15 @@ Contacteu amb l\'editor:
 correu: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-No rebreu més notificacions de futurs canvis si no visiteu la pàgina. També podeu canviar el mode de notificació de les pàgines que vigileu en la vostra llista de seguiment.
+No rebreu més notificacions de futurs canvis si no visiteu la pàgina.
+També podeu canviar el mode de notificació de les pàgines que vigileu en la vostra llista de seguiment.
 
-             El servei de notificacions del projecte {{SITENAME}}
+			 El servei de notificacions del projecte {{SITENAME}}
 
 --
+Per a canviar les opcions de notificació per correu electrònic aneu a
+{{canonicalurl:{{#special:Preferences}}}}
+
 Per a canviar les opcions de la vostra llista de seguiment aneu a
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
@@ -2108,8 +2112,6 @@ conseqüències, i que el que esteu fent està d'acord amb la [[{{MediaWiki:Poli
 'actionfailed'           => "L'acció ha fallat",
 'deletedtext'            => '«$1» ha estat esborrat.
 Vegeu $2 per a un registre dels esborrats més recents.',
-'deletedarticle'         => 'ha esborrat «[[$1]]»',
-'suppressedarticle'      => "s'ha suprimit «[[$1]]»",
 'dellogpage'             => "Registre d'eliminació",
 'dellogpagetext'         => 'Davall hi ha una llista dels esborraments més recents.',
 'deletionlog'            => "Registre d'esborrats",
@@ -2233,7 +2235,6 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 'undeletereset'                => 'Reinicia',
 'undeleteinvert'               => 'Invertir selecció',
 'undeletecomment'              => 'Motiu:',
-'undeletedarticle'             => 'ha restaurat «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|Una revisió restaurada|$1 revisions restaurades}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Una revisió|$1 revisions}} i {{PLURAL:$2|un fitxer|$2 fitxers}} restaurats',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fitxer restaurat|fitxers restaurats}}',
@@ -2520,9 +2521,6 @@ Incorporeu-les manualment, si us plau.",
 'movepage-page-moved'          => 'La pàgina $1 ha estat traslladada a $2.',
 'movepage-page-unmoved'        => "La pàgina $1 no s'ha pogut moure a $2.",
 'movepage-max-pages'           => "{{PLURAL:$1|S'ha mogut una pàgina|S'han mogut $1 pàgines}} que és el nombre màxim, i per tant no se'n mourà automàticament cap més.",
-'1movedto2'                    => 'ha reanomenat [[$1]] com a [[$2]]',
-'1movedto2_redir'              => 'ha reanomenat [[$1]] com a [[$2]] sobre una redirecció',
-'move-redirect-suppressed'     => 'redirecció suprimida',
 'movelogpage'                  => 'Registre de reanomenaments',
 'movelogpagetext'              => 'Vegeu la llista de les darreres pàgines reanomenades.',
 'movesubpage'                  => '{{PLURAL:$1|Subpàgina|Subpàgines}}',
@@ -2750,7 +2748,8 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'spam_blanking'       => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
 
 # Info page
-'pageinfo-header-edits' => 'Modificacions',
+'pageinfo-header-edits'     => 'Modificacions',
+'pageinfo-header-watchlist' => 'Llista de seguiment',
 
 # Skin names
 'skinname-standard'    => 'Clàssic',
@@ -2804,7 +2803,7 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'svg-long-desc'          => 'fitxer SVG, nominalment $1 × $2 píxels, mida del fitxer: $3',
 'show-big-image'         => 'Imatge en màxima resolució',
 'show-big-image-preview' => "Mida d'aquesta previsualització: $1.",
-'show-big-image-other'   => 'Altres resolucions: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Altra resolució|Altres resolucions}}: $1.',
 'show-big-image-size'    => '$1 × $2 píxels',
 'file-info-gif-looped'   => 'embuclat',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|fotograma|fotogrames}}',
@@ -3342,6 +3341,10 @@ Confirmeu que realment voleu tornar-la a crear.",
 'confirm-purge-top'    => "Voleu buidar la memòria cau d'aquesta pàgina?",
 'confirm-purge-bottom' => "Purgar una pàgina força que hi aparegui la versió més actual i n'esborra la memòria cau.",
 
+# action=watch/unwatch
+'confirm-watch-button'   => "D'acord",
+'confirm-unwatch-button' => "D'acord",
+
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina anterior',
 'imgmultipagenext' => 'pàgina següent →',
@@ -3462,7 +3465,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 'specialpages-note'              => '----
 * Pàgines especials normals.
 * <span class="mw-specialpagerestricted">Pàgines especials restringides.</span>
-* <span class="mw-specialpagecached">Pàgines especials amb memòria cau.</span>',
+* <span class="mw-specialpagecached">Pàgines especials en memòria cau (poden ser obsoletes).</span>',
 'specialpages-group-maintenance' => 'Informes de manteniment',
 'specialpages-group-other'       => 'Altres pàgines especials',
 'specialpages-group-login'       => 'Inici de sessió / Registre',
@@ -3542,5 +3545,9 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
 # SQLite database support
 'sqlite-has-fts' => '$1, amb suport de búsqueda de text íntegre',
 'sqlite-no-fts'  => '$1, sense supor de búsqueda de text íntegre',
+
+# New logging system
+'revdelete-restricted'   => 'ha aplicat restriccions al administradors',
+'revdelete-unrestricted' => 'ha esborrat les restriccions per a administradors',
 
 );

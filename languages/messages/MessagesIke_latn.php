@@ -306,8 +306,6 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'move-page-legend' => 'uajuq mappitaq',
 'movearticle'      => 'uajuq mappitaq',
 'movedto'          => 'uajuq',
-'1movedto2'        => '[[$1]] surramajuq [[$2]]',
-'1movedto2_redir'  => '[[$1]] surramajuq [[$2]] misippaa qaningani kamagijaq aasit nakit',
 'movelogpage'      => 'uajuq nipi',
 'delete_and_move'  => 'nipaqtipaa amma uajuq',
 

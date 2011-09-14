@@ -307,7 +307,6 @@ $messages = array(
 'move-watch'       => 'Demq mae-nej',
 'movepagebtn'      => 'Caen doengh mae',
 'movedto'          => 'Caen bei',
-'1movedto2'        => '[[$1]] caen bei [[$2]]',
 'movereason'       => 'Haujgaemj',
 'revertmove'       => 'siu',
 

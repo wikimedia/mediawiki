@@ -897,8 +897,6 @@ $2
 'revdelete-unsuppress'        => 'Зняць абмежаванні на адноўленыя версіі',
 'revdelete-log'               => 'Прычына:',
 'revdelete-submit'            => 'Прымяніць да азначан{{PLURAL:$1|ай ерсіі|ых версій}}',
-'revdelete-logentry'          => 'зменена бачнасць версіі [[$1]]',
-'logdelete-logentry'          => 'зменена бачнасць падзеі* [[$1]]',
 'revdelete-success'           => "'''Паспяхова абноўлена бачнасць версіі.'''",
 'revdelete-failure'           => "'''Не ўдалося абнавіць бачнасць версіі:'''
 $1",
@@ -908,15 +906,6 @@ $1",
 'revdel-restore-visible'      => 'Бачныя змены',
 'pagehist'                    => 'Гісторыя старонкі',
 'deletedhist'                 => 'Сцёртая гісторыя',
-'revdelete-content'           => 'змест',
-'revdelete-summary'           => 'тлумачэнне праўкі',
-'revdelete-uname'             => 'удзельнік',
-'revdelete-restricted'        => 'пастаўленыя абмежаванні на адміністратараў',
-'revdelete-unrestricted'      => 'знятыя абмежаванні з адміністратараў',
-'revdelete-hid'               => 'не паказваць $1',
-'revdelete-unhid'             => 'паказваць $1',
-'revdelete-log-message'       => '$1 для $2 {{PLURAL:$2|версіі|версій}}',
-'logdelete-log-message'       => '$1 для $2 {{PLURAL:$2|падзеі|падзей}}',
 'revdelete-hide-current'      => 'Памылка пры скрыванні складніка з датай $2, $1: таму што гэта актуальная версія, 
 а яе немагчыма скрываць.',
 'revdelete-show-no-access'    => 'Памылка пры паказе складніка з датай $2, $1: складнік пазначаны як "абмежаваны".
@@ -1919,8 +1908,6 @@ $NEWPAGE
 'actionfailed'           => 'Памылка дзеяння',
 'deletedtext'            => '"$1" было выдалена.
 Бач $2 па журнал нядаўніх выдаленняў.',
-'deletedarticle'         => 'сцёрты "[[$1]]"',
-'suppressedarticle'      => 'падаўлены "[[$1]]"',
 'dellogpage'             => 'Журнал сціранняў',
 'dellogpagetext'         => 'Ніжэй паказаны спіс самых нядаўніх сціранняў.',
 'deletionlog'            => 'журнал сціранняў',
@@ -2035,7 +2022,6 @@ $NEWPAGE
 'undeletereset'                => 'Да пачатковага',
 'undeleteinvert'               => 'Перавярнуць выбранае',
 'undeletecomment'              => 'Прычына:',
-'undeletedarticle'             => 'адноўлены "[[$1]]"',
 'undeletedrevisions'           => 'Адноўлен{{PLURAL:$1|а 1 версія|ыя $1 версій}}',
 'undeletedrevisions-files'     => 'Адноўлен{{PLURAL:$1|а 1 версія|ыя $1 версій}} і {{PLURAL:$2|1 файл|$2 файлаў}}',
 'undeletedfiles'               => 'Адноўлен{{PLURAL:$1|ы 1 файл|ыя $1 файлаў}}',
@@ -2269,9 +2255,6 @@ $1',
 'movepage-page-moved'          => 'Старонка $1 была перанесеная ў $2.',
 'movepage-page-unmoved'        => 'Не ўдалося перанесці старонку $1 у $2.',
 'movepage-max-pages'           => 'Быў перанесены дазволены максімум $1 {{PLURAL:$1|старонкі|старонак}} і больш аўтаматычных пераносаў не будзе.',
-'1movedto2'                    => '[[$1]] перанесена ў [[$2]]',
-'1movedto2_redir'              => '[[$1]] перанесена ў [[$2]] з выдаленнем перасылкі',
-'move-redirect-suppressed'     => 'перасылка не створаная',
 'movelogpage'                  => 'Журнал пераносаў',
 'movelogpagetext'              => 'Ніжэй падаецца спіс пераносаў старонак.',
 'movesubpage'                  => '{{PLURAL:$1|Пад-старонка|Пад-старонкі}}',
@@ -3098,5 +3081,9 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 # SQLite database support
 'sqlite-has-fts' => '$1 з падтрымкай поўна-тэкставага пошуку',
 'sqlite-no-fts'  => '$1 без падтрымкі поўна-тэкставага пошуку',
+
+# New logging system
+'revdelete-restricted'   => 'пастаўленыя абмежаванні на адміністратараў',
+'revdelete-unrestricted' => 'знятыя абмежаванні з адміністратараў',
 
 );

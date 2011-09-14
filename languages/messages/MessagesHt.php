@@ -875,16 +875,9 @@ Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}
 'revdelete-unsuppress'       => 'Anlve restriksyon yo sou vèsyon yo ki restore',
 'revdelete-log'              => 'Poukisa:',
 'revdelete-submit'           => 'Aplike sou vèsyon ki seleksyone {{PLURAL:$1|a|yo}}',
-'revdelete-logentry'         => 'Vizibilite pou vèsyon sa modifye pou [[$1]]',
 'revdel-restore'             => 'Modifye, chanje vizibilite a',
 'pagehist'                   => 'Istorik paj sa',
 'deletedhist'                => 'Istorik efase',
-'revdelete-content'          => 'kontni',
-'revdelete-summary'          => 'somè pou modifikasyon',
-'revdelete-uname'            => 'non itilizatè',
-'revdelete-restricted'       => 'aplike restriksyon sa yo pou administratè yo',
-'revdelete-hid'              => 'kache $1',
-'revdelete-unhid'            => 'montre $1',
 
 # Merge log
 'revertmerge' => 'Separe',
@@ -1151,7 +1144,6 @@ Depi kounye a, tout modifikasyon nan paj sa a ak nan paj diskisyon li pral parè
 'actioncomplete'        => 'Aksyon an fèt',
 'deletedtext'           => '« $1 » efase.
 Gade $2 pou wè yon lis efasman resan.',
-'deletedarticle'        => 'efase « [[$1]] »',
 'dellogpage'            => 'Jounal efasman yo',
 'deletecomment'         => 'Rezon:',
 'deleteotherreason'     => 'Rezon an plis :',
@@ -1187,9 +1179,8 @@ Men reglaj pou paj '''$1''' an kounye a:",
 'restriction-level'           => 'Nivo kontrent, restriksyon:',
 
 # Undelete
-'undeletebtn'      => 'Retabli',
-'undeletelink'     => 'gade/retabli',
-'undeletedarticle' => 'retabli « [[$1]] »',
+'undeletebtn'  => 'Retabli',
+'undeletelink' => 'gade/retabli',
 
 # Namespace form on various pages
 'namespace'      => 'Espas non :',
@@ -1272,8 +1263,6 @@ Nan ka sa yo, ou dwe renonmen oubyen fizyone paj la ou menm si ou vle.',
 'talkexists'       => 'Paj nan te byen deplase, men paj diskisyon an pa t deplase paske te deja ekziste youn anlè nouvo paj la. Tanpri, fizyone de paj diskisyon sa yo ou menm.',
 'movedto'          => 'deplase nan',
 'movetalk'         => 'Renonmen ak deplase paj diskisyon an tou',
-'1movedto2'        => 'te deplase [[$1]] vè [[$2]]',
-'1movedto2_redir'  => 'te deplase [[$1]] vè [[$2]], nan menm moman, li ekraze redireksyon li',
 'movelogpage'      => 'Jounal deplasman yo',
 'movereason'       => 'Rezon:',
 'revertmove'       => 'revoke',
@@ -1409,5 +1398,8 @@ Nenpòt lòt lyen nan menm liy nan konsidere kòm yon eksèpsyon, i.e. paj kote 
 
 # HTML forms
 'htmlform-reset' => 'Revoke chanjman yo',
+
+# New logging system
+'revdelete-restricted' => 'aplike restriksyon sa yo pou administratè yo',
 
 );

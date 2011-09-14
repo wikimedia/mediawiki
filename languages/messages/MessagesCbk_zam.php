@@ -131,10 +131,6 @@ Por favor mira tambien el maga [[Special:WantedCategories|categoria requeridas]]
 'blockipsuccesssub' => 'El prohibicion es confirmado con exito',
 'contribslink'      => 'Maga contribuciones',
 
-# Move page
-'1movedto2'       => 'Ya move con el articulo de nombre [[$1]] y ahora cambiado ya na nombre [[$2]]',
-'1movedto2_redir' => 'Ya move con el articulo de nombre [[$1]] sobre un redireccion y ahora cambiado ya na nombre [[$2]]',
-
 # Tooltip help for the actions
 'tooltip-search'     => 'Busca na {{SITENAME}}',
 'tooltip-n-mainpage' => 'Visita na Primero Pagina',

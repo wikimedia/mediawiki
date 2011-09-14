@@ -691,22 +691,11 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'revdelete-unsuppress'      => 'Dimirutara va dimplekun betaks yo',
 'revdelete-log'             => 'Lazava :',
 'revdelete-submit'          => 'Ko reban siatos rewar',
-'revdelete-logentry'        => 'Betayana betarafa rowinuca ke [[$1]]',
-'logdelete-logentry'        => 'Betayana bifafa rowinuca ke [[$1]]',
 'revdelete-success'         => "'''Kiewaskinon plekuyuna betarafa rowinuca.'''",
 'logdelete-success'         => "'''Kiewaskinon plekuyuna bifafa rowinuca.'''",
 'revdel-restore'            => 'Betara va rowinuca',
 'pagehist'                  => 'Buizvot',
 'deletedhist'               => 'Sularizvot',
-'revdelete-content'         => 'cek',
-'revdelete-summary'         => 'betara va vildeks',
-'revdelete-uname'           => 'favesikyolt',
-'revdelete-restricted'      => 'irutara rewana pu ristusik',
-'revdelete-unrestricted'    => 'irutara tiolteyena pu ristusik',
-'revdelete-hid'             => '$1 pals-',
-'revdelete-unhid'           => '$1 volpals-',
-'revdelete-log-message'     => '$1 tori $2 {{PLURAL:$2|betara|betara}}',
-'logdelete-log-message'     => '$1 tori $2 {{PLURAL:$2|bif|bif}}',
 'revdelete-edit-reasonlist' => 'Betara va sularalazava',
 
 # Suppression log
@@ -1444,8 +1433,6 @@ Vay gruyel da djuskul ise va maletireem vangrupel ise tarkason va [[{{MediaWiki:
 'actioncomplete'         => 'Skuyuna sulara',
 'deletedtext'            => '« $1 » tir sulayan.
 Ta vexala dem noeltaf sulareem va $2 disukel.',
-'deletedarticle'         => 'al sular va « [[$1]] »',
-'suppressedarticle'      => '"[[$1]]" sulayan',
 'dellogpage'             => 'Izvot va sulareem',
 'dellogpagetext'         => 'Tir tela vexala dem noeltaf sulareem.
 Bazen bartiv tir tel ke zanisiko.',
@@ -1534,7 +1521,6 @@ Si une nouvelle page avec le même nom a été créée depuis la suppression, le
 'undeletelink'              => 'wira ik dimplekura',
 'undeletereset'             => 'Tolplekura',
 'undeletecomment'           => 'Sebuks :',
-'undeletedarticle'          => 'va « [[$1]] » al dimplekur',
 'undeletedrevisions'        => '$1 siatos dimplekuyun',
 'undeletedrevisions-files'  => '$1 betaks isu $2 iyeltak zo dimplekuyud',
 'undeletedfiles'            => '{{PLURAL:$1|1|$1}} dimplekuyun iyeltak',
@@ -1716,8 +1702,6 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'movepage-page-exists'    => '$1 bu ixam tir nume me balkon zo rotolsuter.',
 'movepage-page-moved'     => '$1 bu ko $2 su zo arrundar.',
 'movepage-page-unmoved'   => '$1 bu ko $2 me al zo rotarrundar.',
-'1movedto2'               => '[[$1]] arbureyen kal [[$2]]',
-'1movedto2_redir'         => '[[$1]] arbureyen kal [[$2]] (graskara)',
 'movelogpage'             => 'Arrundara va "log" bu',
 'movelogpagetext'         => 'Vleveon vexala dem arrundayanu bu se.',
 'movereason'              => 'Lazava :',
@@ -2291,5 +2275,9 @@ This confirmation code will expire at $4.',
 
 # Special:BlankPage
 'blankpage' => 'Butuvlardara',
+
+# New logging system
+'revdelete-restricted'   => 'irutara rewana pu ristusik',
+'revdelete-unrestricted' => 'irutara tiolteyena pu ristusik',
 
 );

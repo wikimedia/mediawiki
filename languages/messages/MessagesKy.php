@@ -318,7 +318,6 @@ $messages = array(
 'deletepage'     => 'Баракты өчүрүп кой',
 'confirm'        => 'Ырастоо',
 'actioncomplete' => 'Иш-аракет жыйынтыкталды',
-'deletedarticle' => 'өчүрүлдү "[[$1]]"',
 'deletecomment'  => 'Себеп',
 
 # Restrictions (nouns)

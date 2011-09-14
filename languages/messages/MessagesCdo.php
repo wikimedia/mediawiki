@@ -615,7 +615,6 @@ Iŏk-sṳ̄ nṳ̄ buóh-siōng téng nṳ̄ gáng-sê-dăng gà̤-dēng dṳ̀ 
 'confirmdeletetext' => 'Nṳ̄ cūng-bê ciŏng ciā hiĕk-miêng hĕ̤k ùng-giông lièng ĭ găk só-gé̤ṳ-kó gì lĭk-sṳ̄ ciòng-buô chēng lâi. Chiāng nṳ̄ káuk-nêng: nṳ̄ dŏng-cĭng buóh siōng cūng-kuāng có̤, nṳ̄ liēu-gāi cūng-kuāng có̤ gì hâiu-guō, bêng-chiā nṳ̄ cūng-kuāng có̤ sê hù-hăk [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'    => 'Cék-hèng sìng-gŭng',
 'deletedtext'       => '"$1" ī-gĭng ké̤ṳk chēng lâi go̤ lāu. Cī-bŏng chēng hiĕk gì gé-liŏh dŭ gé diŏh $2.',
-'deletedarticle'    => 'chēng lâi "[[$1]]"',
 'dellogpage'        => 'Chēng hiĕk nĭk-cé',
 'dellogpagetext'    => 'Â-dā̤ sê gé-liŏh cī-bŏng chēng hiĕk gì dăng-dăng.',
 'deletionlog'       => 'chēng hiĕk nĭk-cé',
@@ -665,7 +664,6 @@ Có̤i âu gì siŭ-gāi sê [[User:$3|$3]] ([[User talk:$3|Tō̤-lâung]]) sū 
 'undeletebtn'            => 'Hŭi-hók',
 'undeletereset'          => 'Dṳ̀ng-sĭng siā',
 'undeletecomment'        => 'Pàng-lâung:',
-'undeletedarticle'       => 'hŭi-hók "[[$1]]"',
 'undelete-search-submit' => 'Sìng-tō̤',
 
 # Namespace form on various pages
@@ -777,8 +775,6 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 'talkexists'              => "'''Hiĕk-miêng buōng-sĭng ī-gĭng ké̤ṳk iè-dông go̤ lāu, dáng-sê tō̤-lâung-hiĕk mò̤ nièng-ngài iè-dông ĭng-ôi sĭng biĕu-dà̤ â-dā̤ ī-gĭng ô siŏh tiŏng tō̤-lâung-hiĕk lāu. Chiāng nṳ̄ cê-gă gâe̤ng cī lâng hiĕk biáng lâ.'''",
 'movedto'                 => 'iè gáu',
 'movetalk'                => 'Iè-dông siŏng-guăng tō̤-lâung hiĕk',
-'1movedto2'               => '[[$1]] iè gáu [[$2]]',
-'1movedto2_redir'         => '[[$1]] dṳ̀ng-sĭng dêng-hióng gáu [[$2]]',
 'movelogpage'             => 'Iè-dông nĭk-cé',
 'movelogpagetext'         => 'Â-dā̤ sê ké̤ṳk iè-dông guó gì hiĕk-miêng gì dăng-dăng.',
 'movereason'              => 'Nguòng-ĭng',

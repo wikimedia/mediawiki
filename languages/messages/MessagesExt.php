@@ -715,22 +715,11 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 'revdelete-unsuppress'        => 'Esborral restricionis enas revisionis arrecuperás',
 'revdelete-log'               => 'Razón:',
 'revdelete-submit'            => 'Aprical a {{PLURAL:$1|la revisión aseñalá|las revisionis aseñalás}}',
-'revdelete-logentry'          => 'chambá la visibiliá la revisión pa [[$1]]',
-'logdelete-logentry'          => "chambá la visibiliá d'eventus de [[$1]]",
 'revdelete-success'           => "'''Visibiliá revisionis chambá.'''",
 'logdelete-success'           => "'''Visibiliá d'eventus chambá.'''",
 'revdel-restore'              => 'Chambal visibiliá',
 'pagehist'                    => 'Estorial la páhina',
 'deletedhist'                 => 'Estorial esborrau',
-'revdelete-content'           => 'conteniu',
-'revdelete-summary'           => 'eital sumáriu',
-'revdelete-uname'             => "nombri d'usuáriu",
-'revdelete-restricted'        => 'las restricionis a los çahorilis án siu apricás',
-'revdelete-unrestricted'      => 'las restricionis a los çahorilis án siu esborrás',
-'revdelete-hid'               => 'açonchal $1',
-'revdelete-unhid'             => 'esaçonchal $1',
-'revdelete-log-message'       => '$1 de $2 {{PLURAL:$2|revisión|revisionis}}',
-'logdelete-log-message'       => '$1 de $2 {{PLURAL:$2|eventu|eventus}}',
 'revdelete-edit-reasonlist'   => 'Eital razonis del esborrau',
 
 # Suppression log
@@ -1491,7 +1480,6 @@ Pol favol, confirma que realmenti quieis hazel esu, qu'entiendis las consecuenci
 'actioncomplete'         => 'Ación acabihá',
 'deletedtext'            => 'S\'á esborrau "$1" corretamenti.
 Consurta $2 pa vel los úrtimus esborraus.',
-'deletedarticle'         => 'esborrau "[[$1]]"',
 'dellogpage'             => 'Rustrihu d´esborrau',
 'dellogpagetext'         => 'Embahu se muestra una lista colos úrtimus esborraus.',
 'deletionlog'            => 'rustrihu d´esborrau',
@@ -1589,7 +1577,6 @@ arrecuperás apaicerán nel estorial anteriol.",
 'undeletelink'                 => 'Guipal/arrecuperal',
 'undeletereset'                => 'Reahustal',
 'undeletecomment'              => 'Comentáriu:',
-'undeletedarticle'             => '"[[$1]]" restaurau',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revisión|$1 revisionis}} restaurás',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revisión|$1 revisionis}} i {{PLURAL:$2|1 archivu|$2 archivus}} restauraus',
 'undeletedfiles'               => '{{PLURAL:$1|1 archivu|$1 archivus}} restauraus',
@@ -1795,8 +1782,6 @@ Pol favol, escrebi otru entítulu.',
 'talkexists'              => "'''S'á moviu la páhina, peru la su caraba nu puei sel movia polque ya desisti otra caraba con el nuevu entítulu. Pol favol, mesturalas manualmenti.'''",
 'movedto'                 => 's´á moviu a',
 'movetalk'                => 'Tamién movel la su caraba',
-'1movedto2'               => '[[$1]] s´á moviu a [[$2]]',
-'1movedto2_redir'         => "S'á moviu [[$1]] a [[$2]] criandu una redireción",
 'movelogpage'             => 'Rustrihu e movimientus',
 'movelogpagetext'         => 'Embahu ai una lista colas páhinas movias.',
 'movereason'              => 'Razón:',
@@ -2445,5 +2430,9 @@ Escribi el nombri d'archivu sin el prefihu \"{{ns:file}}:\".",
 
 # Database error messages
 'dberr-header' => 'Marru ena wiki',
+
+# New logging system
+'revdelete-restricted'   => 'las restricionis a los çahorilis án siu apricás',
+'revdelete-unrestricted' => 'las restricionis a los çahorilis án siu esborrás',
 
 );

@@ -801,8 +801,6 @@ Sobaagi do mongungulud milo ko do montong diti; kointalangan oihum id [{{fullurl
 'revdelete-unsuppress'        => 'Iduon pangantaban om pogogompi sinimakan',
 'revdelete-log'               => 'Sabab:',
 'revdelete-submit'            => 'Pokionuo pinili {{PLURAL:$1|sinimakan|tongosinimakan}}',
-'revdelete-logentry'          => 'mongolon sinimakan kokitanan do "[[$1]]"',
-'logdelete-logentry'          => 'mongolon tangamaan kokitanan do "[[$1]]"',
 'revdelete-success'           => "'''Kokitanan sinimakan nopinwoguan.'''",
 'revdelete-failure'           => "'''Kokitanan sinimakan awu milo inwoguan:'''
 $1",
@@ -814,15 +812,6 @@ $1",
 'revdel-restore-visible'      => 'sinimakan tokito',
 'pagehist'                    => 'Susuyan bolikon',
 'deletedhist'                 => 'Susuyan nopugas',
-'revdelete-content'           => 'suang',
-'revdelete-summary'           => 'idito koinibaan',
-'revdelete-uname'             => 'ngarandait',
-'revdelete-restricted'        => 'pinokogos pogoduhan montok momuruan',
-'revdelete-unrestricted'      => 'pinoidu pogoduhan montok momuruan',
-'revdelete-hid'               => 'lisoko $1',
-'revdelete-unhid'             => 'pokitono $1',
-'revdelete-log-message'       => '$1 montok $2 {{PLURAL:$2|sinimakan|sinimakan}}',
-'logdelete-log-message'       => '$1 montok $2 {{PLURAL:$2|maan|tangamaan}}',
 'revdelete-hide-current'      => 'Nokosilap popolisok kakamot ditadau $2, $1: iti no sinimakan wagu.
 Awu milo polisokon.',
 'revdelete-show-no-access'    => 'Nokosilap popokito kakamot ditadau $2, $1: natandaan iti do "pogoduhan".
@@ -1142,7 +1131,6 @@ Mangai potontuo do mimang iti no komoyonnu om karati ko do kotutukon, om winonso
 'actionfailed'          => 'Nantaban karaja',
 'deletedtext'           => '"$1" nopugas nodi.
 Intaai $2 montok ruputan di wagu pinugas.',
-'deletedarticle'        => '"[[$1]]" it nopugas',
 'dellogpage'            => 'Log pinimpugasan',
 'deletecomment'         => 'Sabab:',
 'deleteotherreason'     => 'Sabab suai/poinsungku:',
@@ -1177,7 +1165,6 @@ Milo ko nogi do mongolon tingkat tingolig diti, nga ingaa it kosimbanon montok t
 # Undelete
 'undeletelink'     => 'intangai/pogompio',
 'undeleteviewlink' => 'intaai',
-'undeletedarticle' => 'potonduliono "[[$1]]"',
 
 # Namespace form on various pages
 'namespace'      => 'Ponuratan ngaran',
@@ -1270,8 +1257,6 @@ Pilio ngaran suai.',
 Maai no longono do posungku.'''",
 'movedto'          => 'powolihon hilo',
 'movetalk'         => 'Pooliho bolikon bolotok di poingompinai',
-'1movedto2'        => 'pinoundalih [[$1]] kumaa [[$2]]',
-'1movedto2_redir'  => 'popoundalih [[$1]] mongoi [[$2]] do montilombus',
 'movelogpage'      => 'Poundoliho log',
 'movereason'       => 'Sabab:',
 'revertmove'       => 'gulio',
@@ -1413,5 +1398,9 @@ Iri suai sinandad do poinlisok.
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Pananda]] gagan:',
+
+# New logging system
+'revdelete-restricted'   => 'pinokogos pogoduhan montok momuruan',
+'revdelete-unrestricted' => 'pinoidu pogoduhan montok momuruan',
 
 );

@@ -702,22 +702,11 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'revdelete-unsuppress'        => 'Usůń uograńičyńo lo wćepanej nazod historyje pomjyńań',
 'revdelete-log'               => 'Čymu:',
 'revdelete-submit'            => 'Zaakceptuj do wybranych wersyji',
-'revdelete-logentry'          => 'půmjyńůno widočność wersyji w [[$1]]',
-'logdelete-logentry'          => 'půmjyńůno widočność zdořyńůw w [[$1]]',
 'revdelete-success'           => 'Půmyślńy zmjyńůno widočność wersyji.',
 'logdelete-success'           => 'Půmyślńy půmjyńůno widočność zdařyń',
 'revdel-restore'              => 'Půmjyń widočność',
 'pagehist'                    => 'Historyjo sprowjyń zajty',
 'deletedhist'                 => 'Wyćepano historyjo sprowjyń',
-'revdelete-content'           => 'zawartość',
-'revdelete-summary'           => 'uopis pomjyńań',
-'revdelete-uname'             => 'mjano užytkowńika',
-'revdelete-restricted'        => 'naštaluj uograničyńo do administratorůw',
-'revdelete-unrestricted'      => 'wycofej uograničyńo do administratorůw',
-'revdelete-hid'               => 'schrůń $1',
-'revdelete-unhid'             => 'ńy schrůńaj $1',
-'revdelete-log-message'       => '$1 - $2 {{PLURAL:$2|wersyjo|wersyji|wersjůw}}',
-'logdelete-log-message'       => '$1 - $2 {{PLURAL:$2|zdařyńe|zdařyńa|zdařyń}}',
 'revdelete-edit-reasonlist'   => 'Sprowjańe powodůw wyćepańo zajty',
 
 # Suppression log
@@ -1543,8 +1532,6 @@ Pomoc:
 'confirmdeletetext'      => 'Chceš wyćepnůńć trwale artikel abo plik s bazy danych s historią. Pokož, aže wjyš co robdza, i to aže to je tak jak godojům [[{{MediaWiki:Policy-url}}|zasady]].',
 'actioncomplete'         => 'Fertig',
 'deletedtext'            => 'Wyćepano "$1". Rejer uostatnio zrobiůnych wyćepań možeš uobejžyć tukej: $2.',
-'deletedarticle'         => 'wyciepnjynto "[[$1]]"',
-'suppressedarticle'      => 'utajńjyu [[$1]]',
 'dellogpage'             => 'Wyćepane',
 'dellogpagetext'         => 'To je lista uostatńo wykůnanych wyćepań.',
 'deletionlog'            => 'rejer wyćepań',
@@ -1668,7 +1655,6 @@ Možeš mjeć felerny link abo wersyjo můgua zostać wćepano nazod, abo wyćep
 'undeletereset'                => 'Wyčyść',
 'undeleteinvert'               => 'Zaznocz na uopy',
 'undeletecomment'              => 'Powůd wćepańo nazod:',
-'undeletedarticle'             => 'wćepou nazod [[$1]]',
 'undeletedrevisions'           => 'Wćepano nazod {{PLURAL:$1|1 wersyja|$1 wersyje|$1 wersyji}}',
 'undeletedrevisions-files'     => 'Wćepano nazod $1 {{PLURAL:$1|wersyja|wersyje|wersyji}} i $2 {{PLURAL:$2|plik|pliki|plikůw}}',
 'undeletedfiles'               => 'wćepou nazod $1 {{PLURAL:$1|plik|pliki|plikůw}}',
@@ -1897,8 +1883,6 @@ Wybjer inkše mjano.',
 'movepage-page-moved'          => 'Zajta $1 uostoła przekludzůno ku $2.',
 'movepage-page-unmoved'        => 'Mjana zajty $1 ńy idźe půmjyńić na $2.',
 'movepage-max-pages'           => 'Przekludzůnych uostało $1 {{PLURAL:$1|zajta|zajty|zajtůw}}. Wjynkszyj liczby ńy idźe przekludźić automatyczńy.',
-'1movedto2'                    => '[[$1]] přećepano do [[$2]]',
-'1movedto2_redir'              => 'zajta [[$1]] přećepnůu do [[$2]] nad překerowańem',
 'movelogpage'                  => 'Přećepńynte',
 'movelogpagetext'              => 'Uoto lista zajtůw, kere uostatńo zostouy přećepane.',
 'movereason'                   => 'Čymu:',
@@ -2633,5 +2617,9 @@ Naškryflej sam mjano plika bez prefiksu „{{ns:file}}:”.',
 #Lińje kere s anfanga majům # sům traktowane kej kůmyntorze
 
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>',
+
+# New logging system
+'revdelete-restricted'   => 'naštaluj uograničyńo do administratorůw',
+'revdelete-unrestricted' => 'wycofej uograničyńo do administratorůw',
 
 );

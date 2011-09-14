@@ -256,9 +256,8 @@ $messages = array(
 'unwatching' => "co'u jundi",
 
 # Delete
-'deletedarticle' => "pu daspo la'e lu [[$1]] li'u",
-'dellogpage'     => 'plivei fi loi nu daspo',
-'deletionlog'    => 'plivei fi loi nu daspo',
+'dellogpage'  => 'plivei fi loi nu daspo',
+'deletionlog' => 'plivei fi loi nu daspo',
 
 # Rollback
 'rollbacklink' => 'lamxru',
@@ -286,7 +285,6 @@ $messages = array(
 
 # Move page
 'movedto'    => 'te muvdu',
-'1movedto2'  => "le pu se cmene lu [[$1]] li'u cu ca se cmene lu [[$2]] li'u",
 'revertmove' => 'xruti',
 
 # Tooltip help for the actions

@@ -646,7 +646,6 @@ Pamiegīkėt [[Special:Search|ėiškoutė pruojektė]] sosėjosiu naujū poslapi
 'revdelete-text'            => "'''Ėštrintuos versėjės ėr ivīkē vistėik da bus ruodomė poslapė istuorėjuo ėr specēliūju veiksmū istuorėjuo, no anū torėnė dalīs nabus vėišā pasėikiamos.'''
 Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta torėni ėr galės ana atkortė viel par šėta pate sasaja, nabent īr nostatītė papėlduomė aprėbuojėmā.",
 'revdelete-unsuppress'      => 'Šalėntė apribuojėmos atkortuos versėjės',
-'logdelete-logentry'        => 'pakeists [[$1]] atsėtėkima veiziemoms',
 'revdel-restore'            => 'Keistė veizėmuma',
 'revdelete-edit-reasonlist' => 'Keistė trīnėma prīžastis',
 
@@ -1255,8 +1254,6 @@ Prašuom patvėrtėntė, kū Tamsta tėkrā nuorėt šėtu padarītė, žėnuot 
 'actioncomplete'         => 'Vēksmos atlėkts īr',
 'deletedtext'            => '„$1“ ėštrints.
 Paskotiniu pašalinėmu istuorėjė - $2.',
-'deletedarticle'         => 'ėštrīnė „[[$1]]“',
-'suppressedarticle'      => 'apžabuots „[[$1]]“',
 'dellogpage'             => 'Pašalinėmu istuorėjė',
 'dellogpagetext'         => 'Žemiau īr pateikiams paskotiniu ėštrīnimu sārašos.',
 'deletionlog'            => 'pašalinėmu istuorėjė',
@@ -1370,7 +1367,6 @@ lėgė trīnima. Ėštrintū poslapiu tekstos īr galėmas tėk admėnėstratuor
 'undeletereset'              => 'Ėš naujė',
 'undeleteinvert'             => 'Žīmietė prīšėngā',
 'undeletecomment'            => 'Kuomentars:',
-'undeletedarticle'           => 'atkorta „[[$1]]“',
 'undeletedrevisions'         => 'atkorta $1 {{PLURAL:$1|versėjė|versėjės|versėju}}',
 'undeletedrevisions-files'   => 'atkorta $1 {{PLURAL:$1|versėjė|versėjės|versėju}} ėr $2 {{PLURAL:$2|fails|failā|failu}}',
 'undeletedfiles'             => 'atkorta $1 {{PLURAL:$1|fails|failā|failu}}',
@@ -1542,8 +1538,6 @@ pavadėnėma straipsnis jau tor aptarėmu poslapi.
 Prašuom sojongtė šėtuos poslapios.'''",
 'movedto'                 => 'parvadints i',
 'movetalk'                => 'Parkeltė sosėta aptarėma poslapi.',
-'1movedto2'               => 'Straipsnis [[$1]] parvadints i [[$2]]',
-'1movedto2_redir'         => '[[$1]] parvadints i [[$2]] (onkstiau bova nukrēpamāsis)',
 'movelogpage'             => 'Parvardinėmu istuorėjė',
 'movelogpagetext'         => 'Sārašos parvadintu poslapiu.',
 'movereason'              => 'Prīžastis:',

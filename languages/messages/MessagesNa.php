@@ -108,8 +108,7 @@ $messages = array(
 'unwatch' => 'Eab krak',
 
 # Delete
-'confirm'        => 'Oebwigaga',
-'deletedarticle' => 'iyababa "[[$1]]"',
+'confirm' => 'Oebwigaga',
 
 # Contributions
 'contributions' => 'Mana engame totow inne',

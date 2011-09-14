@@ -334,15 +334,10 @@ $messages = array(
 'rev-delundel'               => 'къалур/кIевун',
 'revdelete-show-file-submit' => 'Э',
 'revdelete-log'              => 'Кар',
-'revdelete-logentry'         => 'Дегишарна акунвал "[[$1]]"',
 'revdel-restore'             => 'къакъудун',
 'revdel-restore-deleted'     => 'Чlурна дегишунар',
 'revdel-restore-visible'     => 'Аквазай дегишунар',
 'pagehist'                   => 'Хъувун тарих',
-'revdelete-content'          => 'Къйеда',
-'revdelete-uname'            => 'ишлемишчидин тIар',
-'revdelete-hid'              => 'чуьнуьх авунай $1',
-'revdelete-log-message'      => '$1 идай $2 {{PLURAL:$2|Жуьре|Жуьреяр}}',
 'revdelete-offender'         => 'Автордин жуьре:',
 
 # History merging
@@ -631,7 +626,6 @@ $messages = array(
 'actioncomplete'        => 'Юзунар авуна',
 'actionfailed'          => 'Юзунар ийиз хьанач',
 'deletedtext'           => '"$1" чlурнайтир.                                                                                                                                                       Килиг $2 эхиримжи  чlурунар ахтармишун.',
-'deletedarticle'        => 'къакъудун "[[$1]]"',
 'dellogpage'            => 'Чар къакъудун',
 'deletecomment'         => 'Кар',
 'deleteotherreason'     => 'Масса/ ва мад кар',
@@ -669,7 +663,6 @@ $messages = array(
 'undeletelink'              => 'ахъаюн/авайдаказ хъувун',
 'undeleteviewlink'          => 'Ачухун',
 'undeletecomment'           => 'Кар',
-'undeletedarticle'          => 'Туькlуьр хъувуна "[[$1]]"',
 'undelete-show-file-submit' => 'Э',
 
 # Namespace form on various pages
@@ -751,8 +744,6 @@ $messages = array(
 'talkexists'       => "'''Чарчин тlар дегишарна, чарчин ихтилатар дегишар жезатуш, вучиз лагьайтlа ихтилатар цlийи чарчел фена.Галкlура гълелди.'''",
 'movedto'          => 'хтана иниз',
 'movetalk'         => 'Югъун,галкlана рахун',
-'1movedto2'        => 'хъфена [[$1]] идал [[$2]]',
-'1movedto2_redir'  => 'къфена [[$1]] идаз [[$2]] ракъурунар',
 'movelogpage'      => 'Дафтlардин чка дегишарун',
 'movereason'       => 'Фагьум:',
 'revertmove'       => 'хтун хъувун',

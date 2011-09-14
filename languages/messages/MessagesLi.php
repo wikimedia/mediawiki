@@ -956,8 +956,6 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 'revdelete-unsuppress'        => 'Verwijder beperkinge op truuk gezatte wieziginge',
 'revdelete-log'               => 'Reeje:',
 'revdelete-submit'            => 'Pas toe op de geselecteerde {{PLURAL:$1|bewèrking|bewèrkinger}}',
-'revdelete-logentry'          => 'zichbaarheid van bewerkinge is gewiezig veur [[$1]]',
-'logdelete-logentry'          => 'gewiezigde zichbaarheid van gebeurtenis [[$1]]',
 'revdelete-success'           => "'''Wieziging zichbaarheid succesvol ingesteld.'''",
 'revdelete-failure'           => "'''De zichbaarheid veur de versie kos neet ingesteld waere.'''
 $1",
@@ -969,15 +967,6 @@ $1",
 'revdel-restore-visible'      => 'zichber versies',
 'pagehist'                    => 'Paginagesjiedenis',
 'deletedhist'                 => 'Verwiederde gesjiedenis',
-'revdelete-content'           => 'inhoud',
-'revdelete-summary'           => 'samevatting bewerke',
-'revdelete-uname'             => 'gebroekersnaam',
-'revdelete-restricted'        => 'haet beperkinge aan beheerders opgelag',
-'revdelete-unrestricted'      => 'haet beperkinge veur beheerders opgehaeve',
-'revdelete-hid'               => 'haet $1 verborge',
-'revdelete-unhid'             => 'haet $1 zichbaar gemaak',
-'revdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|versie|versies}}',
-'logdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|logbookregel|logbookregels}}',
 'revdelete-hide-current'      => "dr Is 'n fout opgetraoje bie 't verberge van 't objek van $1 óm $2 oer: dit is de hudige versie.
 Dees versie kan neet verbórge waere.",
 'revdelete-show-no-access'    => 'dr Is \'n fout opgetraoje bie \'t weergaeve van \'t objek van $1 óm $2 oer: dit objek is gemarkeerdj es "besjermp".
@@ -2026,8 +2015,6 @@ Kónfermeer hiejónger dat dit inderdaod dien bedoeling is, dats doe de gevolge 
 'actioncomplete'         => 'Actie voltoeid',
 'actionfailed'           => 'Hanjeling mislök',
 'deletedtext'            => '"$1" is eweggesjaf. Bekiek $2 veur \'n euverzich van recènt eweggesjafde pagina\'s.',
-'deletedarticle'         => '"[[$1]]" is eweggesjaf',
-'suppressedarticle'      => 'haet "[[$1]]" verborge',
 'dellogpage'             => 'Wislogbook',
 'dellogpagetext'         => "Hie volg 'n lies van de meis recènt eweggesjafde pagina's en besjtandje.",
 'deletionlog'            => 'Wislogbook',
@@ -2149,7 +2136,6 @@ Es d'r 'ne nuuj pagina mit dezelfde naam is aangemaak sins de pagina is eweggesj
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Ómgedriejde selectie',
 'undeletecomment'              => 'Reeje:',
-'undeletedarticle'             => '"$1" is truukgeplaatsj.',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|versie|versies}} truukgeplaatsj',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|versie|versies}} en $2 {{PLURAL:$2|bestandj|bestenj}} trökgeplaats',
 'undeletedfiles'               => '$1 {{PLURAL:$1|bestandj|bestenj}} trökgeplaats',
@@ -2390,9 +2376,6 @@ Haaj d'r raekening mit det allein de pagina wuuertj hernömp, ''neet'' de gebroe
 'movepage-page-moved'          => 'De pazjena $1 is hernömp nao $2.',
 'movepage-page-unmoved'        => 'De pazjena $1 kós neet hernömp waere nao $2.',
 'movepage-max-pages'           => "'t Maximaal aantal automatisch te hernömme pazjena's is bereik ({{PLURAL:$1|$1|$1}}). De euverige pazjena's waere neet automatisch hernömp.",
-'1movedto2'                    => '[[$1]] verplaats nao [[$2]]',
-'1movedto2_redir'              => '[[$1]] euver redirect verplaats nao [[$2]]',
-'move-redirect-suppressed'     => 'redirek óngerdrök',
 'movelogpage'                  => "Logbook verplaatsde pagina's",
 'movelogpagetext'              => "Dit is de lies van verplaatsde pazjena's.",
 'movesubpage'                  => "{{PLURAL:$1|Subpaasj|Subpazjena's}}",
@@ -3237,5 +3220,9 @@ Veur de bestandjsnaam in zónger 't veurvoegsel \"{{ns:file}}:\".",
 # SQLite database support
 'sqlite-has-fts' => 'Zeuk versie $1 mit óngersteuning veur "full-text"',
 'sqlite-no-fts'  => 'Zeuk versie $1 zónger óngersteuning veur "fulltext"',
+
+# New logging system
+'revdelete-restricted'   => 'haet beperkinge aan beheerders opgelag',
+'revdelete-unrestricted' => 'haet beperkinge veur beheerders opgehaeve',
 
 );

@@ -1228,8 +1228,6 @@ $3による理由は以下の通りです：''$2''",
 'revdelete-unsuppress'        => '復元版に対する制限を除去',
 'revdelete-log'               => '理由：',
 'revdelete-submit'            => '選択した{{PLURAL:$1|版}}に適用',
-'revdelete-logentry'          => '「[[$1]]」の版の閲覧レベルを変更しました',
-'logdelete-logentry'          => '「[[$1]]」の操作の閲覧レベルを変更しました',
 'revdelete-success'           => "'''版の閲覧レベルを更新しました。'''",
 'revdelete-failure'           => "'''版の閲覧レベルを更新できませんでした：'''
 $1",
@@ -1241,15 +1239,6 @@ $1",
 'revdel-restore-visible'      => '閲覧可能な版',
 'pagehist'                    => 'ページの履歴',
 'deletedhist'                 => '削除された履歴',
-'revdelete-content'           => '本文',
-'revdelete-summary'           => '編集内容の要約',
-'revdelete-uname'             => '利用者名',
-'revdelete-restricted'        => '管理者に対する制限を適用',
-'revdelete-unrestricted'      => '管理者に対する制限を除去しました',
-'revdelete-hid'               => '$1を隠しました',
-'revdelete-unhid'             => '$1の版指定削除を解除しました',
-'revdelete-log-message'       => '$2版に対して$1',
-'logdelete-log-message'       => '$2の{{PLURAL:$2|操作}}に対して$1',
 'revdelete-hide-current'      => '$1$2の項目の非表示に失敗しました：これは最新版であるため。
 隠すことはできません。',
 'revdelete-show-no-access'    => '$1$2の項目の表示に失敗しました：この項目は「制限付き」に設定されています。
@@ -2377,8 +2366,6 @@ $UNWATCHURL
 'actionfailed'           => '操作失敗',
 'deletedtext'            => '「$1」は削除されました。
 最近の削除に関しては、$2を参照してください。',
-'deletedarticle'         => '「[[$1]]」を削除しました',
-'suppressedarticle'      => '「[[$1]]」を隠蔽しました',
 'dellogpage'             => '削除記録',
 'dellogpagetext'         => '以下は、最近の削除と復帰の一覧です。',
 'deletionlog'            => '削除記録',
@@ -2511,7 +2498,6 @@ $2による最後の版へ変更されました。',
 'undeletereset'                => 'リセット',
 'undeleteinvert'               => '選択を反転',
 'undeletecomment'              => '理由：',
-'undeletedarticle'             => '「[[$1]]」を復元しました',
 'undeletedrevisions'           => '$1版を復元しました',
 'undeletedrevisions-files'     => '$1版と$2ファイルを復元しました',
 'undeletedfiles'               => '$1ファイルを復帰しました',
@@ -2802,9 +2788,6 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'movepage-page-moved'          => 'ページ$1は$2へ移動されました。',
 'movepage-page-unmoved'        => 'ページ$1は$2へ移動できませんでした。',
 'movepage-max-pages'           => '自動的に移動できる{{PLURAL:$1|ページ}}は $1件までで、それ以上は移動されません。',
-'1movedto2'                    => '[[$1]]を[[$2]]へ移動',
-'1movedto2_redir'              => '「[[$1]]」をこのページあてのリダイレクト「[[$2]]」へ移動',
-'move-redirect-suppressed'     => 'リダイレクト非作成',
 'movelogpage'                  => '移動記録',
 'movelogpagetext'              => '以下は全てのページの移動一覧です。',
 'movesubpage'                  => '{{PLURAL:$1|下位ページ}}',
@@ -3979,5 +3962,9 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # SQLite database support
 'sqlite-has-fts' => '$1（全文検索あり）',
 'sqlite-no-fts'  => '$1（全文検索なし）',
+
+# New logging system
+'revdelete-restricted'   => '管理者に対する制限を適用',
+'revdelete-unrestricted' => '管理者に対する制限を除去しました',
 
 );

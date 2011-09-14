@@ -556,15 +556,6 @@ ikhssak ola kiyi ador tnqilt ɣtamani yadni.
 'revdel-restore-visible'     => 'Imsurritn lli baynnin',
 'pagehist'                   => 'Amzruy n tasna',
 'deletedhist'                => 'Amzruy lli ittuykkasn',
-'revdelete-content'          => 'Mayllan',
-'revdelete-summary'          => 'Awal uflla n imbddln',
-'revdelete-uname'            => 'Assaɣ nu-msxdan',
-'revdelete-restricted'       => 'iskr aqn i indbaln',
-'revdelete-unrestricted'     => 'Aqn iḥiyd i indbaln',
-'revdelete-hid'              => 'ador tsbaynt $1',
-'revdelete-unhid'            => 'sbaynd $1',
-'revdelete-log-message'      => '$1 i $2 lqm{{PLURAL:$2||s}}',
-'logdelete-log-message'      => '$1 f $2 amussu{{PLURAL:$2||s}}',
 
 # History merging
 'mergehistory'                     => 'Smun imzruyn n tisniwin.',
@@ -939,7 +930,6 @@ illa fllak ad ni tẓrt is trit ast tkkist d is tssnt marad igguṛu iɣt tkkist
 'actionfailed'          => 'Tawwuri i xsrn',
 'deletedtext'           => '"$1"  ttuykkas.
 Ẓṛ $2 inɣmas imggura n ma ittuykkasn',
-'deletedarticle'        => 'Kkiss "[[$1]]"',
 'dellogpage'            => 'Qqiyd akkas ad',
 'deletecomment'         => '! Maɣ:',
 'deleteotherreason'     => 'Wayyaḍ/ maf ittuykkas yaḍn',
@@ -974,7 +964,6 @@ Ha riglaj n ɣila lli f tlla tasna '''$1''' :",
 # Undelete
 'undeletelink'     => 'mel/rard',
 'undeleteviewlink' => 'Ẓṛ',
-'undeletedarticle' => 'Isurrid  "[[$1]]"',
 
 # Namespace form on various pages
 'namespace'      => 'Taɣult',
@@ -1046,36 +1035,33 @@ Ha riglaj n ɣila lli f tlla tasna '''$1''' :",
 'block-log-flags-nocreate' => 'Ammurzm n umiḍan urak ittuyskar',
 
 # Move page
-'movepagetext'             => "Swwur s tifrkkitad bac ad sbadlt uzwl tasna yad , s usmmattay n umzru ns s uzwl amaynu . Assaɣ Aqbur rad ig ɣil yan usmmattay n tasna s uzwl (titre) amynu . Tâḍart ad s tgt immattayn n ɣil f was fwas utumatik s dar uswl amaynu.  Iɣ tstit bac ad tskrt . han ad ur ttut ad tẓrt kullu  [[Special:DoubleRedirects|double redirection]] ou [[Special:BrokenRedirects|redirection cassée]]. Illa fllak ad ur ttut masd izdayn rad tmattayn s sin igmmaḍn ur igan yan.
+'movepagetext'     => "Swwur s tifrkkitad bac ad sbadlt uzwl tasna yad , s usmmattay n umzru ns s uzwl amaynu . Assaɣ Aqbur rad ig ɣil yan usmmattay n tasna s uzwl (titre) amynu . Tâḍart ad s tgt immattayn n ɣil f was fwas utumatik s dar uswl amaynu.  Iɣ tstit bac ad tskrt . han ad ur ttut ad tẓrt kullu  [[Special:DoubleRedirects|double redirection]] ou [[Special:BrokenRedirects|redirection cassée]]. Illa fllak ad ur ttut masd izdayn rad tmattayn s sin igmmaḍn ur igan yan.
 
 Smmem masd tasna ur rad tmmatti iɣ tlla kra n yat yaḍn lli ilan asw zund nttat . Abla ɣ dars amzruy ɣ ur illa umay,  nɣd yan usmmattay ifssusn. 
 
 ''' Han !'''
 Maya Iẓḍar ad iglb zzu uzddar ar aflla tasna yad lli bdda n nttagga. Illa fllak ad urtskr mara yigriẓ midn d kiyyin lli iswurn ɣ tasna yad. issin mara tskr urta titskrt..",
-'movepagetalktext'         => "Tasna n umsgdal (imdiwiln) lli izdin d ɣta iɣ tlla, rad as ibadl w-assaɣ utumatik  '''abla iɣ :'''
+'movepagetalktext' => "Tasna n umsgdal (imdiwiln) lli izdin d ɣta iɣ tlla, rad as ibadl w-assaɣ utumatik  '''abla iɣ :'''
 * tsmmuttim tasna s yan ugmmaḍ wassaɣ, niɣd
 * tasna n umsgdal( imdiwiln) tlla s wassaɣ ad amaynu, niɣd
 * iɣ tkrjm tasatmt ad n uzddar
 
 Γ Tiklayad illa flla tun ad tsbadlm assaɣ niɣt tsmun mayad s ufus ɣ yat, iɣ tram",
-'movearticle'              => 'Smmatti tasna niɣ as tsbudlt assaɣ',
-'newtitle'                 => 'dar w-assaɣ amaynu:',
-'move-watch'               => 'Tfr tisniwin timaynutin d timẓlay',
-'movepagebtn'              => 'Smmatti tasna niɣ as tsbudlt assaɣ',
-'pagemovedsub'             => 'tmmutti bla tamukrist',
-'movepage-moved'           => '\'\'\'"$1" tmmutti s "$2"\'\'\'',
-'articleexists'            => 'Tlla yad tasna illan assaɣ zund ɣwa niɣd assaɣ llid tiwid urt iga. Sti assaɣ yaḍn tarmt.',
-'talkexists'               => 'Tasna tmmutti mzyan, mac tasna n umsgdal (imdiwiln) ur tmmutti acku tlla f wassaɣ ad amaynu.Illa fllak aggisnt tskrt yat s ufus nk.',
-'movedto'                  => 'Tmmuti s',
-'movetalk'                 => 'Sbadl assaɣ tasna n imdiwiln lli izdin d ɣi.',
-'1movedto2'                => 'Ad tmmatti z [[$1]] s [[$2]]',
-'1movedto2_redir'          => 'ad tmmatti [[$1]] s [[$2]] trẓ asurriti ns',
-'move-redirect-suppressed' => 'asuritti n ittuykkasn',
-'movelogpage'              => 'Iɣmisn n ismmattrayn',
-'movelogpagetext'          => 'Γid umuɣ n tisniwin lli sbadlnin assaɣ d tilli mmuttini.',
-'movesubpage'              => 'Ddu-tasna {{PLURAL:$1||s}}',
-'movereason'               => 'Maɣ:',
-'revertmove'               => 'Rard',
+'movearticle'      => 'Smmatti tasna niɣ as tsbudlt assaɣ',
+'newtitle'         => 'dar w-assaɣ amaynu:',
+'move-watch'       => 'Tfr tisniwin timaynutin d timẓlay',
+'movepagebtn'      => 'Smmatti tasna niɣ as tsbudlt assaɣ',
+'pagemovedsub'     => 'tmmutti bla tamukrist',
+'movepage-moved'   => '\'\'\'"$1" tmmutti s "$2"\'\'\'',
+'articleexists'    => 'Tlla yad tasna illan assaɣ zund ɣwa niɣd assaɣ llid tiwid urt iga. Sti assaɣ yaḍn tarmt.',
+'talkexists'       => 'Tasna tmmutti mzyan, mac tasna n umsgdal (imdiwiln) ur tmmutti acku tlla f wassaɣ ad amaynu.Illa fllak aggisnt tskrt yat s ufus nk.',
+'movedto'          => 'Tmmuti s',
+'movetalk'         => 'Sbadl assaɣ tasna n imdiwiln lli izdin d ɣi.',
+'movelogpage'      => 'Iɣmisn n ismmattrayn',
+'movelogpagetext'  => 'Γid umuɣ n tisniwin lli sbadlnin assaɣ d tilli mmuttini.',
+'movesubpage'      => 'Ddu-tasna {{PLURAL:$1||s}}',
+'movereason'       => 'Maɣ:',
+'revertmove'       => 'Rard',
 
 # Export
 'export' => 'assufɣ n tasniwin',
@@ -1349,5 +1335,9 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 'htmlform-submit'              => 'sifd',
 'htmlform-reset'               => 'sglbd tghyirat',
 'htmlform-selectorother-other' => 'wayya',
+
+# New logging system
+'revdelete-restricted'   => 'iskr aqn i indbaln',
+'revdelete-unrestricted' => 'Aqn iḥiyd i indbaln',
 
 );

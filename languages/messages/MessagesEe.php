@@ -259,8 +259,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'revdelete-radio-same'  => '(megatrɔe o)',
 'revdelete-radio-set'   => 'Yo',
 'revdelete-radio-unset' => 'Kpao',
-'revdelete-hid'         => 'ɣla $1',
-'revdelete-unhid'       => 'megaɣla $1 o',
 
 # Diffs
 'history-title'           => '"$1" ƒe tata xoxoawo',
@@ -430,7 +428,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'delete-confirm' => 'Tutu "$1"',
 'delete-legend'  => 'Tutui',
 'actioncomplete' => 'Wowɔe vɔ',
-'deletedarticle' => 'wotutu "[[$1]]"',
 'dellogpagetext' => 'Afisia wofia axa mamleawo siwo wotutu la',
 
 # Protect
@@ -513,7 +510,6 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 Tia ŋkɔ alo tanya bubu.',
 'cantmove-titleprotected' => 'Wòmateŋu ahe axa aɖeke va afii o, elabena wo xemɔ na tanya sia ƒe ŋɔŋlɔ',
 'movedto'                 => 'wohee yi',
-'1movedto2'               => '[[$1]] wohee yi [[$2]]',
 
 # Export
 'export' => 'Ɖo axa siawo ɖa',

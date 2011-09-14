@@ -837,11 +837,6 @@ $1',
 'revdel-restore-visible'     => 'ښکاره بڼې',
 'pagehist'                   => 'د مخ پېښليک',
 'deletedhist'                => 'د ړنګولو پېښليک',
-'revdelete-content'          => 'مېنځپانګه',
-'revdelete-summary'          => 'لنډيز سمول',
-'revdelete-uname'            => 'کارن-نوم',
-'revdelete-hid'              => '$1 پټول',
-'revdelete-unhid'            => '$1 ښکاره کول',
 'revdelete-reason-dropdown'  => '*د ړنګولو ټولګړي سببونه
 ** د خپرېدو د رښتو سرغړونه
 ** ناسم شخصي مالومات
@@ -1608,7 +1603,6 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'actionfailed'           => 'کړنه نابريالۍ شوه',
 'deletedtext'            => '"$1" ړنګ شوی.
 د نوو ړنګ شوو سوانحو لپاره $2 وګورۍ.',
-'deletedarticle'         => '"[[$1]]" ړنګ شو',
 'dellogpage'             => 'د ړنګولو يادښت',
 'dellogpagetext'         => 'دا لاندې د نوو ړنګ شوو کړنو لړليک دی.',
 'deletionlog'            => 'د ړنګولو يادښت',
@@ -1685,7 +1679,6 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'undeleteviewlink'          => 'کتل',
 'undeletereset'             => 'بياايښودل',
 'undeletecomment'           => 'سبب:',
-'undeletedarticle'          => '"[[$1]]" بېرته پرځای شو',
 'undeletedfiles'            => '{{PLURAL:$1|1 دوتنه بيازېرمه شوه|$1 دوتنې بيازېرمه شوې}}',
 'undelete-search-box'       => 'ړنګ شوي مخونه لټول',
 'undelete-search-prefix'    => 'هغه مخونه ښکاره کړه چې پېلېږي په:',
@@ -1850,8 +1843,6 @@ $UNWATCHURL  نه ليدنه وکړۍ
 لطفاُ د خبرواترو دا دواړه مخونه په لاسي توګه سره يو ځای کړی.'''",
 'movedto'                 => 'ته ولېږدول شو',
 'movetalk'                => 'د خبرو اترو اړونده مخ ورسره لېږدول',
-'1movedto2'               => '[[$1]]، [[$2]] ته ولېږدېده',
-'1movedto2_redir'         => '[[$1]] د [[$2]] مخ ته د مخ ګرځونې په توګه ولېږدېده',
 'movelogpage'             => 'د لېږدولو يادښت',
 'movelogpagetext'         => 'دا لاندې د لېږدول شوو مخونو لړليک دی.',
 'movesubpage'             => '{{PLURAL:$1|څېرمه مخ|څېرمه مخونه}}',

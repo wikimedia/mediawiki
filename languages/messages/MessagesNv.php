@@ -304,9 +304,6 @@ $3',
 'watching'   => '(...)',
 'unwatching' => '(...)',
 
-# Delete
-'deletedarticle' => '"[[$1]]" yiyiisxį́',
-
 # Protect
 'protectedarticle'          => '"[[$1]]" bichʼą́ą́h ííyá.',
 'modifiedarticleprotection' => '"[[$1]]" biprotection level łahgo ályaa',
@@ -351,14 +348,12 @@ $3',
 'blocklogentry' => '[[$1]] bichʼą́ą́h niiníyá ($2 $3)',
 
 # Move page
-'movearticle'     => 'naaltsoos:',
-'newtitle'        => 'naaltsoos bizhiʼ ániidí:',
-'move-watch'      => 'shinááł',
-'movepagebtn'     => '✔ bee lą́ ashłeeh',
-'movepage-moved'  => '\'\'\'"$1" kʼad "$2" wolyé\'\'\'',
-'1movedto2'       => 'naaltsoos "[[$1]]" → "[[$2]]"-góó yidiyiznááʼ',
-'1movedto2_redir' => 'naaltsoos "[[$1]]" → "[[$2]]"-góó yidiyiznááʼ (dah astsihí ńtʼę́ę́ʼ)',
-'revertmove'      => 'ńdíídleeł!',
+'movearticle'    => 'naaltsoos:',
+'newtitle'       => 'naaltsoos bizhiʼ ániidí:',
+'move-watch'     => 'shinááł',
+'movepagebtn'    => '✔ bee lą́ ashłeeh',
+'movepage-moved' => '\'\'\'"$1" kʼad "$2" wolyé\'\'\'',
+'revertmove'     => 'ńdíídleeł!',
 
 # Skin names
 'skinname-monobook' => "NaaltsoosŁáa'ígíí",

@@ -545,13 +545,9 @@ Mìneachadh: '''({{int:cur}})''' = an diofar eadar e 's am mùthadh as ùire, ''
 
 # Revision deletion
 'rev-delundel'           => 'seall/falaich',
-'revdelete-logentry'     => 'a dh\'atharraich faicsinneachd mùthaidhean "[[$1]]"',
 'revdel-restore'         => 'mùth follaiseachd',
 'revdel-restore-deleted' => 'mùthaidhean a chaidh a sguabadh às',
 'revdel-restore-visible' => 'mùthaidhean faicsinneach',
-'revdelete-content'      => 'susbaint',
-'revdelete-hid'          => "a dh'fhalaich $1",
-'revdelete-log-message'  => '$1 airson $2 {{PLURAL:$2|mhùthadh|mhùthadh|mhùthadh|mhùthadh|mùthaidhean|mùthadh}}',
 
 # Merge log
 'revertmerge' => 'Dì-aontaich',
@@ -851,7 +847,6 @@ Dearbhaich gu bheil thu airson seo a dhèanamh 's gun tuig thu a' bhuaidh a bhio
 'actionfailed'           => "Dh'fhàillig ort",
 'deletedtext'            => 'Chaidh "$1" a sguabadh às.
 Seall air $2 airson clàr de dhuilleagan a chaidh a sguabadh às o chionn ghoirid.',
-'deletedarticle'         => '"[[$1]]" air a sguabadh às',
 'dellogpage'             => 'Loga an sguabaidh às',
 'reverted'               => 'Air aiseag gu tionndadh nas sine',
 'deletecomment'          => 'Adhbhar:',
@@ -902,7 +897,6 @@ Seo roghainnean làithreach na duilleige '''$1''':",
 'undeleterevisions' => 'Chaidh $1 {{PLURAL:$1|leth-bhreac|leth-bhreac|leth-bhreac|leth-bhreac|leth-bhreacan|leth-bhreac}} a chur san tasg-lann',
 'undeletelink'      => 'seall/aisig',
 'undeleteviewlink'  => 'seall',
-'undeletedarticle'  => 'a dh\'aisig "[[$1]]"',
 
 # Namespace form on various pages
 'namespace'      => 'Namespace:',
@@ -1007,8 +1001,6 @@ Nach tagh thu ainm eile?',
 Bidh agad ris an co-aontachadh a làimh.'''",
 'movedto'                 => 'air a ghluasad a',
 'movetalk'                => 'Gluais an duilleag deasbaireachd a tha co-cheangailte ris',
-'1movedto2'               => '[[$1]] air a ghluasad a [[$2]]',
-'1movedto2_redir'         => 'a ghluais [[$1]] a [[$2]] thairis air ath-sheòladh',
 'movelogpage'             => 'Loga nan gluasadan',
 'movereason'              => 'Adhbhar:',
 'revertmove'              => 'till',

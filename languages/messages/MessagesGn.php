@@ -429,9 +429,8 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'watch'       => 'Ñangareko',
 
 # Delete
-'deletedarticle' => 'oñembogue "[[$1]]"',
-'dellogpage'     => 'Ñemboguepyre ñonagatupy',
-'deletionlog'    => 'ñemboguepyre ñonagatupy',
+'dellogpage'  => 'Ñemboguepyre ñonagatupy',
+'deletionlog' => 'ñemboguepyre ñonagatupy',
 
 # Rollback
 'rollback_short' => 'Embojevy',
@@ -480,7 +479,6 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'movearticle'     => 'Guerova kuatiarogue',
 'move-watch'      => 'Toñeñangareko ko tembiapóre',
 'movepagebtn'     => 'Guerova kuatiarogue',
-'1movedto2'       => '[[$1]] oñembohasa [[$2]]-pe',
 'revertmove'      => 'embojevy',
 'delete_and_move' => "Mboje'o ha guerova",
 

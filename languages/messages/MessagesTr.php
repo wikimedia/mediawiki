@@ -1128,8 +1128,6 @@ Bir hizmetli olarak bu değişikliği görebilirsiniz; [{{fullurl:{{#Special:Log
 'revdelete-unsuppress'        => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
 'revdelete-log'               => 'Neden:',
 'revdelete-submit'            => 'Seçilen {{PLURAL:$1|sürüme|sürümlere}} uygula',
-'revdelete-logentry'          => '[[$1]] için revizyon görünürlüğü değişti',
-'logdelete-logentry'          => '[[$1]] için olay görünürlüğü değişti',
 'revdelete-success'           => "'''Revizyon görünürlüğü başarıyla güncellendi.'''",
 'revdelete-failure'           => "'''Revizyon görünürlüğü güncellenemiyor:'''
 $1",
@@ -1141,15 +1139,6 @@ $1",
 'revdel-restore-visible'      => 'görünür revizyonlar',
 'pagehist'                    => 'Sayfa geçmişi',
 'deletedhist'                 => 'Silinmiş geçmiş',
-'revdelete-content'           => 'içerik',
-'revdelete-summary'           => 'değişiklik özeti',
-'revdelete-uname'             => 'kullanıcı adı',
-'revdelete-restricted'        => 'hizmetliler için uygulanmış kısıtlamalar',
-'revdelete-unrestricted'      => 'hizmetliler için kaldırılmış kısıtlamalar',
-'revdelete-hid'               => 'gizle $1',
-'revdelete-unhid'             => 'göster $1',
-'revdelete-log-message'       => '$2 {{PLURAL:$2|revizyon|revizyon}} için $1',
-'logdelete-log-message'       => '$2 {{PLURAL:$2|olay|olay}} için $1',
 'revdelete-hide-current'      => '$2 $1 tarihli öğe gizlenirken hata: bu güncel revizyon.
 Gizlenemez.',
 'revdelete-show-no-access'    => '$2 $1 tarihli öğe gösterilirken hata: bu öğe "kısıtlı" olarak işaretlenmiş.
@@ -2242,8 +2231,6 @@ Bu işlemden kaynaklı doğabilecek sonuçların farkında iseniz ve işlemin [[
 'actionfailed'           => 'İşlem başarısız oldu',
 'deletedtext'            => '"$1" silindi.
 Yakın zamanda silinenleri görmek için: $2.',
-'deletedarticle'         => '"[[$1]]" silindi',
-'suppressedarticle'      => '"[[$1]]" bastırıldı',
 'dellogpage'             => 'Silme kayıtları',
 'dellogpagetext'         => 'Aşağıdaki liste son silme kayıtlarıdır.',
 'deletionlog'            => 'silme kayıtları',
@@ -2373,7 +2360,6 @@ Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz b
 'undeletereset'                => 'Vazgeç',
 'undeleteinvert'               => 'Seçimi ters çevir',
 'undeletecomment'              => 'Neden:',
-'undeletedarticle'             => '"$1" geri getirildi.',
 'undeletedrevisions'           => 'Toplam {{PLURAL:$1|1 kayıt|$1 kayıt}} geri getirildi.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revizyon|$1 revizyon}} ve {{PLURAL:$2|1 dosya|$2 dosya}} eski konumuna getirildi',
 'undeletedfiles'               => '{{PLURAL:$1|1 dosya|$1 dosya}} geri getirildi.',
@@ -2648,9 +2634,6 @@ Lütfen başka bir isim deneyiniz.',
 'movepage-page-moved'          => '$1 sayfası $2 sayfasına taşındı.',
 'movepage-page-unmoved'        => '$1 sayfası $2 başlığına taşınamıyor.',
 'movepage-max-pages'           => 'En fazla $1 {{PLURAL:$1|sayfa|sayfa}} taşındı ve daha fazlası otomatik olarak taşınamaz.',
-'1movedto2'                    => '[[$1]] sayfasının yeni adı: [[$2]]',
-'1movedto2_redir'              => '[[$1]] başlığı [[$2]] sayfasına yönlendirildi',
-'move-redirect-suppressed'     => 'yönlendirme bastırılmış',
 'movelogpage'                  => 'Taşıma kaydı',
 'movelogpagetext'              => 'Aşağıda bulunan liste adı değiştirilmiş sayfaları gösterir.',
 'movesubpage'                  => '{{PLURAL:$1|Subpage|Alt sayfalar}}',
@@ -3648,5 +3631,9 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 # SQLite database support
 'sqlite-has-fts' => '$1 tam-metin arama desteği ile',
 'sqlite-no-fts'  => '$1 tam-metin arama desteği olmaksızın',
+
+# New logging system
+'revdelete-restricted'   => 'hizmetliler için uygulanmış kısıtlamalar',
+'revdelete-unrestricted' => 'hizmetliler için kaldırılmış kısıtlamalar',
 
 );

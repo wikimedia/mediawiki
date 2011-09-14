@@ -593,13 +593,9 @@ Legende: '''({{int:cur}})''' = diferenties che ultim revision, '''({{int:last}})
 
 # Revision deletion
 'rev-delundel'           => 'monstrar/ocultar',
-'revdelete-logentry'     => 'alterat visibilitá de revision de "[[$1]]"',
 'revdel-restore'         => 'change visibilitá',
 'revdel-restore-deleted' => 'revisiones deletet',
 'revdel-restore-visible' => 'revisiones visibil',
-'revdelete-content'      => 'contenete',
-'revdelete-hid'          => 'ocu $1',
-'revdelete-log-message'  => '$1 por $2 {{PLURAL:$2|revision|revisiones}}',
 
 # Merge log
 'revertmerge' => 'Desfar fusion',
@@ -980,7 +976,6 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'delete-legend'         => 'Deleter',
 'actioncomplete'        => 'Processu complet',
 'actionfailed'          => 'Processu fallit',
-'deletedarticle'        => 'deletet "[[$1]]"',
 'dellogpage'            => 'Diarium de deletion',
 'deletecomment'         => 'Motive:',
 'deleteotherreason'     => 'Altri motive:',
@@ -1029,7 +1024,6 @@ Vu posse have un catenun mal, o li revision posse have esset restaurat o removet
 'undeletereset'                => 'Recomensar',
 'undeleteinvert'               => 'Inverter selection',
 'undeletecomment'              => 'Motive:',
-'undeletedarticle'             => 'restaurat "[[$1]]"',
 'undeletedrevisions'           => '{{PLURAL:$1|1 revision|$1 revisiones}} restaurat',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 revision|$1 revisiones}} e {{PLURAL:$2|1 file|$2 files}} restaurat',
 'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} restaurat',
@@ -1113,19 +1107,17 @@ $1',
 'block-log-flags-nocreate' => 'creation de conto debilisat',
 
 # Move page
-'movearticle'     => 'Mover págine:',
-'movenologin'     => 'Vu ne ha intrat',
-'newtitle'        => 'Por nov titul:',
-'move-watch'      => 'Vigilar ti págine',
-'movepagebtn'     => 'Mover págine',
-'talkexists'      => "'''Li págine itself esset movet successosimen, ma li págine de discussion ne posset esser movet pro que un ja existe in li nov titul.
+'movearticle' => 'Mover págine:',
+'movenologin' => 'Vu ne ha intrat',
+'newtitle'    => 'Por nov titul:',
+'move-watch'  => 'Vigilar ti págine',
+'movepagebtn' => 'Mover págine',
+'talkexists'  => "'''Li págine itself esset movet successosimen, ma li págine de discussion ne posset esser movet pro que un ja existe in li nov titul.
 Pleser fuse les manualmen.'''",
-'movedto'         => 'movet por',
-'1movedto2'       => '[[$1]] hat movet por [[$2]]',
-'1movedto2_redir' => 'movet [[$1]] por [[$2]] redirectionment ultra',
-'movelogpage'     => 'Diarium de movementiones',
-'movereason'      => 'Motive:',
-'revertmove'      => 'reverter',
+'movedto'     => 'movet por',
+'movelogpage' => 'Diarium de movementiones',
+'movereason'  => 'Motive:',
+'revertmove'  => 'reverter',
 
 # Export
 'export' => 'Exportar págines',

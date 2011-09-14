@@ -680,7 +680,6 @@ Palihog kumpirmahon nga intensyon mo nga himu-on mini, nga na-intindihan mo ang 
 'actioncomplete'        => 'Tapos na ang aksyon',
 'deletedtext'           => 'Napanas na ang "$1".
 Tan-awon ang $2 para sa nalista sang mga bag-o lang napanas.',
-'deletedarticle'        => 'ginpanas ang "[[$1]]"',
 'dellogpage'            => 'Lista sang pagpanas',
 'deletecomment'         => 'Rason:',
 'deleteotherreason'     => 'Iban pa/dugang nga rason:',
@@ -714,8 +713,7 @@ Pwede mo mabag-o ang lebel sang proteksiyon sang mini nga pahina, pero indi ma-a
 'restriction-level'           => 'Lebel sang pagbawal:',
 
 # Undelete
-'undeletelink'     => 'tan-awon/ibalik',
-'undeletedarticle' => 'ginbalik ang "[[$1]]"',
+'undeletelink' => 'tan-awon/ibalik',
 
 # Namespace form on various pages
 'namespace'      => 'Espasyo sang pangalan:',
@@ -796,8 +794,6 @@ Palihog pili liwat sang bag-o nga ngalan.',
 Palihog pakikombinar sa ila sang manomano.'''",
 'movedto'          => 'ginsaylo sa',
 'movetalk'         => 'Isaylo ang kaangot nga pahina sang istoryahanay',
-'1movedto2'        => 'Ang [[$1]] gin-saylo na sa [[$2]]',
-'1movedto2_redir'  => 'Ang [[$1]] ginsaylo sa [[$2]] sa ibabaw sang pagdirekta',
 'movelogpage'      => 'Lista sang pagsaylo',
 'movereason'       => 'Rason:',
 'revertmove'       => 'ibalik',

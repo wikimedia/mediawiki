@@ -1166,8 +1166,6 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'revdelete-unsuppress'        => 'Fjern betingelser på gjenopprettede revisjoner',
 'revdelete-log'               => 'Årsak:',
 'revdelete-submit'            => 'Utfør på {{PLURAL:$1|valgt revisjon|valgte revisjoner}}',
-'revdelete-logentry'          => 'endre revisjonssynlighet for [[$1]]',
-'logdelete-logentry'          => 'endre hendelsessynlighet for [[$1]]',
 'revdelete-success'           => "'''Versjonssynlighet vellykket oppdatert.'''",
 'revdelete-failure'           => "'''Kunne ikke endre versjonssynligheten:'''
 $1",
@@ -1179,15 +1177,6 @@ $1",
 'revdel-restore-visible'      => 'synlige revisjoner',
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Slettet historikk',
-'revdelete-content'           => 'innhold',
-'revdelete-summary'           => 'redigeringssammendrag',
-'revdelete-uname'             => 'brukernavn',
-'revdelete-restricted'        => 'begrensninger gjelder også administratorer',
-'revdelete-unrestricted'      => 'fjernet begrensninger for administratorer',
-'revdelete-hid'               => 'skjulte $1',
-'revdelete-unhid'             => 'synliggjorde $1',
-'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisjon|revisjoner}}',
-'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|element|elementer}}',
 'revdelete-hide-current'      => 'Feil under skjuling av objektet datert $2, $1: dette er den gjeldende revisjonen.
 Den kan ikke skjules.',
 'revdelete-show-no-access'    => 'Feil under visning av objekt datert $2, $1: dette objektet har blitt markert "begrenset".
@@ -2285,8 +2274,6 @@ Bekreft at du virkelig vil slette denne siden, at du forstår konsekvensene og a
 'actionfailed'           => 'Handling mislyktes',
 'deletedtext'            => '«$1» er slettet.
 Se $2 for en oversikt over de siste slettingene.',
-'deletedarticle'         => 'slettet «[[$1]]»',
-'suppressedarticle'      => 'fjernet «[[$1]]»',
 'dellogpage'             => 'Slettingslogg',
 'dellogpagetext'         => 'Under er ei liste over nylige slettinger.',
 'deletionlog'            => 'slettingslogg',
@@ -2405,7 +2392,6 @@ Dersom en ny side ved samme navn har blitt oprettet etter slettingen, vil de gje
 'undeletereset'                => 'Nullstill',
 'undeleteinvert'               => 'Inverter valg',
 'undeletecomment'              => 'Årsak:',
-'undeletedarticle'             => 'gjenopprettet «[[$1]]»',
 'undeletedrevisions'           => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} gjenopprettet',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Én revisjon|$1 revisjoner}} og {{PLURAL:$2|én fil|$2 filer}} gjenopprettet',
 'undeletedfiles'               => '{{PLURAL:$1|Én fil|$1 filer}} gjenopprettet',
@@ -2690,9 +2676,6 @@ Du er nødt til å flette dem manuelt.'''",
 'movepage-page-moved'          => 'Siden $1 har blitt flyttet til $2.',
 'movepage-page-unmoved'        => 'Siden $1 kunne ikke flyttes til $2.',
 'movepage-max-pages'           => 'Grensen på {{PLURAL:$1|én side|$1 sider}} er nådd; ingen flere sider vil bli flyttet automatisk.',
-'1movedto2'                    => 'flyttet [[$1]] til [[$2]]',
-'1movedto2_redir'              => 'flyttet [[$1]] til [[$2]] over omdirigeringsside',
-'move-redirect-suppressed'     => 'ingen omdirigering',
 'movelogpage'                  => 'Flyttelogg',
 'movelogpagetext'              => 'Her er ei liste over sider som har blitt flyttet.',
 'movesubpage'                  => '{{PLURAL:$1|Underside|Undersider}}',
@@ -3792,5 +3775,9 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 # SQLite database support
 'sqlite-has-fts' => '$1 med støtte for fulltekstsøk',
 'sqlite-no-fts'  => '$1 uten støtte for fulltekstsøk',
+
+# New logging system
+'revdelete-restricted'   => 'begrensninger gjelder også administratorer',
+'revdelete-unrestricted' => 'fjernet begrensninger for administratorer',
 
 );

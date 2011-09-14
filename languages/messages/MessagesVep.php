@@ -812,8 +812,6 @@ Administratorad voiškatas lugeda peittud südäimištod da endištada sidä nec
 'revdelete-unsuppress'        => 'Heitta kaidendused endištadud versijoilpäi',
 'revdelete-log'               => 'Sü:',
 'revdelete-submit'            => 'Lattä valitud {{PLURAL:$1|versijaha|versioihe}}',
-'revdelete-logentry'          => "Om vajehtanu sen, kut nägub lehtpol' [[$1]]",
-'logdelete-logentry'          => 'Om toižetanu sen, kut nägub tego [[$1]]',
 'revdelete-success'           => "'''Versijan nägulad om toižetadud tugedusita.'''",
 'revdelete-failure'           => "'''Ei voi toižetada versijan läguladud:'''
 $1",
@@ -825,15 +823,6 @@ $1",
 'revdel-restore-visible'      => 'versijad, kudambad voib nähta',
 'pagehist'                    => 'Lehtpolen istorii',
 'deletedhist'                 => 'Čudandoiden istorii',
-'revdelete-content'           => 'südäimišt',
-'revdelete-summary'           => 'kaik toižetused',
-'revdelete-uname'             => 'kävutajan nimi',
-'revdelete-restricted'        => 'kaidendused administratoriden täht',
-'revdelete-unrestricted'      => 'kaidendused heittud administratoriden täht',
-'revdelete-hid'               => 'peittud $1',
-'revdelete-unhid'             => 'avaitud $1',
-'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|versijan|versijoiden}} täht',
-'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|tegendan|tegendoiden}} täht',
 'revdelete-hide-current'      => '$2, $1-kirjutesen peitmižen petuz: nece versii om nügüdläine.
 Sidä ei sa peitta.',
 'revdelete-show-no-access'    => '$2, $1-kirjutesen ozutamižen petuz: nece kirjutez om znamoitud "kaidetud".
@@ -1751,8 +1740,6 @@ Olgat hüväd, vahvištoitkat, miše tö todeks himoičet čuta se, el'gendat i�
 'actionfailed'           => 'Tegend lopihe onetomašti',
 'deletedtext'            => '"$1" om čutud poiš.
 Kc. $2, miše lugeda tantoižiden čudandoiden nimikirjutez.',
-'deletedarticle'         => '"[[$1]]"-lehtpol\' om čutud poiš',
-'suppressedarticle'      => '"[[$1]]"-lehtpol\' om peittud',
 'dellogpage'             => 'Čudandoiden aigkirj',
 'dellogpagetext'         => 'Naku om tantoižiden čudandoiden nimikirjutez.',
 'deletionlog'            => 'čudandoiden aigkirj',
@@ -1865,7 +1852,6 @@ Sab toižetada necen lehtpolen kaičendpind, no se ei voi toižetada kaskadkaič
 'undeleteviewlink'           => 'nähta',
 'undeletereset'              => 'Puhtastada',
 'undeletecomment'            => 'Kommentarii:',
-'undeletedarticle'           => 'om endištanu "[[$1]]"',
 'undeletedrevisions'         => '{{PLURAL:$1|1 toižetuz|$1 toižetust}} om endištadud',
 'undeletedrevisions-files'   => '{{PLURAL:$1|1 toižetuz|$1 toižetust}} da {{PLURAL:$2|1 fail|$2 failad}} oma endištadud',
 'undeletedfiles'             => '{{PLURAL:$1|1 fail om|$1 failad oma}} endištadud',
@@ -2094,9 +2080,6 @@ Nenil statjoil tegese sirta vai ühtenzoitta lehtpoled ičeksaz.",
 'movepage-page-moved'       => "Lehtpol' $1 udesnimetadud, uz' nimi om $2.",
 'movepage-page-unmoved'     => "Ei sa udesnimitada $1-lehtpol't i antta sile $2-nimed.",
 'movepage-max-pages'        => "$1 {{PLURAL:$1|lehtpol'|lehtpol't}} om udesnimetadud, enamb-žo avtomatižikš udesnimitada ei sa.",
-'1movedto2'                 => "om nimitanu udes [[$1]]; uz' nimi om [[$2]]",
-'1movedto2_redir'           => '[[$1]] om nimitadud udel nimel "[[$2]]" udesoigendamižen päle.',
-'move-redirect-suppressed'  => 'läbikosketuz om azotadud',
 'movelogpage'               => 'Udesnimitandoiden aigkirj',
 'movelogpagetext'           => 'Naku om kaikiden lehtesiden udesnimitandoiden nimikirjutez.',
 'movesubpage'               => "{{PLURAL:$1|Alalehtpol'|Alalehtpol't}}",
@@ -2874,5 +2857,9 @@ Kävutagat normaline ezikacund.',
 
 # SQLite database support
 'sqlite-no-fts' => " $1 täuz'tekstaižen ecindan tügedamižeta",
+
+# New logging system
+'revdelete-restricted'   => 'kaidendused administratoriden täht',
+'revdelete-unrestricted' => 'kaidendused heittud administratoriden täht',
 
 );

@@ -600,7 +600,6 @@ Leyenda: (act) = diferencias con la versión actual,
 'revdel-restore'             => 'Troca la viźibbilidad',
 'revdel-restore-deleted'     => 'revisiones efassadas',
 'revdel-restore-visible'     => 'revisiones visibles',
-'revdelete-content'          => 'contenido',
 'revdelete-reasonotherlist'  => 'Otra razón',
 
 # History merging
@@ -849,7 +848,6 @@ resultados, i que lo estás haziendo de acorddo con las [[{{MediaWiki:Policy-url
 'actioncomplete'        => 'Aksion kompleta',
 'deletedtext'           => '"$1" fue efassado.
 Mira $2 para un registro de los efassados nuevos.',
-'deletedarticle'        => 'efassó «[[$1]]»',
 'dellogpage'            => 'Registro de efassados',
 'deletecomment'         => 'Razón:',
 'deleteotherreason'     => 'Otra razón:',
@@ -889,7 +887,6 @@ A continuación se mostran las opciones actuales de la hoja '''$1''':",
 # Undelete
 'undeletelink'     => 've/restora',
 'undeleteviewlink' => 'Ver',
-'undeletedarticle' => 'restoró «[[$1]]»',
 
 # Namespace form on various pages
 'namespace'      => 'Espacio de nombres:',
@@ -971,8 +968,6 @@ Si puede ser, escoge otro nombre.',
 'talkexists'       => 'La hoja fue renombrada con reuxito, ma la diskussión no se pudo renombrar porque ya egziste una en el título nuevo. Si puede ser, házelo manualmente.',
 'movedto'          => 'renombrado a',
 'movetalk'         => 'Renombrar la hoja de diskussión también, si es possible.',
-'1movedto2'        => 'El muevo nombre de la hoja [[$1]]; ya es [[$2]]',
-'1movedto2_redir'  => '[[$1]] fue taxireado a [[$2]] sovre una direksión',
 'movelogpage'      => 'Registro de traslados',
 'movereason'       => 'Razón:',
 'revertmove'       => 'abolta',

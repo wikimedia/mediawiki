@@ -221,8 +221,6 @@ $messages = array(
 'revdelete-show-file-submit' => 'May',
 'pagehist'                   => 'pünon pakina',
 'deletedhist'                => 'Ñamümüngelu pünon',
-'revdelete-uname'            => 'Üy kellufe',
-'revdelete-hid'              => 'Ellkan $1',
 'revdelete-edit-reasonlist'  => 'Wirin dungu ñamümgün mew',
 
 # History merging
@@ -402,7 +400,6 @@ $messages = array(
 'exblank'               => 'pakina wellingey',
 'delete-confirm'        => 'Ñamümüngelu "$1"',
 'delete-legend'         => 'Ñamümün',
-'deletedarticle'        => '«[[$1]]» Ñamümün',
 'deletereasonotherlist' => 'Kake dungu',
 
 # Protect
@@ -460,7 +457,6 @@ $messages = array(
 'move-watch'              => 'Llaytun tüfachi pakina',
 'movepagebtn'             => 'Nengümün pakina',
 'movedto'                 => 'Nengümün',
-'1movedto2'               => '[[$1]] wiñamngey [[$2]] püle',
 'delete_and_move'         => 'Ñamümün ka nengümün',
 'delete_and_move_confirm' => 'May, ñamümün pakina',
 

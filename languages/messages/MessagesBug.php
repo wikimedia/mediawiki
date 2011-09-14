@@ -238,9 +238,6 @@ $messages = array(
 'revdelete-hide-comment' => 'Tapo komentar mapadecéŋ',
 'revdelete-hide-user'    => 'Tapo aseŋ papakéna/IPna papadéceŋë',
 'revdelete-log'          => 'Saba:',
-'revdelete-content'      => 'lise',
-'revdelete-uname'        => 'aseŋ papaké',
-'revdelete-hid'          => 'tapo $1',
 
 # Diffs
 'editundo' => 'undo',
@@ -398,8 +395,6 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 # Move page
 'articleexists'             => 'Leppa béla ida pile ni ujuk, a dek essa.
 Silakan pile aseng laing.',
-'1movedto2'                 => '[[$1]] léccé lao [[$2]]',
-'1movedto2_redir'           => '[[$1]] rileccé lao ri[[$2]] paké redirect',
 'movelogpage'               => 'Log leccé',
 'movereason'                => 'Saba:',
 'delete_and_move'           => 'Peddé nappa paleccé',

@@ -1087,8 +1087,6 @@ Kamachiq kaspayki kay wakin kayta qhawayta atinkim; astawanchá rikunkiman [{{fu
 'revdelete-unsuppress'        => "Qullusqamanta paqarisqa llamk'apusqakunapaq saywachanakunata raqpay",
 'revdelete-log'               => 'Kayrayku:',
 'revdelete-submit'            => "Akllasqa {{PLURAL:$1|llamk'apusqapaq|llamk'apusqakunapaq}} llamk'achiy",
-'revdelete-logentry'          => "hukchasqa [[$1]]-paq llamk'apusqap rikunalla kaynin",
-'logdelete-logentry'          => 'hukchasqa [[$1]]-paq tukusqap rikunalla kaynin',
 'revdelete-success'           => "'''Llamk'apusqap rikunalla kayninqa aypalla musuqchasqañam.'''",
 'revdelete-failure'           => "'''Manam atinichu musuqchasqakunap rikunalla kayninta musuqchayta:'''
 $1",
@@ -1100,15 +1098,6 @@ $1",
 'revdel-restore-visible'      => 'rikuna musuqchasqakuna',
 'pagehist'                    => "P'anqap wiñay kawsaynin",
 'deletedhist'                 => 'Qullusqa wiñay kawsay',
-'revdelete-content'           => 'samiq',
-'revdelete-summary'           => "yuyarinata llamk'apuy",
-'revdelete-uname'             => 'ruraqpa sutin',
-'revdelete-restricted'        => "kamachiqkunaman llamk'achisqa saywachanakuna",
-'revdelete-unrestricted'      => 'kamachiqkunamanta qichusqa saywachanakuna',
-'revdelete-hid'               => 'pakasqa $1',
-'revdelete-unhid'             => 'rikuchisqa $1',
-'revdelete-log-message'       => '$1, $2 {{PLURAL:$2|musuqchasqa|musuqchasqakuna}}paq',
-'logdelete-log-message'       => '$1, $2 {{PLURAL:$2|tukusqa|tukusqakuna}}paq',
 'revdelete-hide-current'      => "Pantasqa, imatapas pakaspa $2 pacha, $1 p'unchawmanta: kayqa kunan kachkaq musuqchasqam.
 Manam pakanallachu.",
 'revdelete-show-no-access'    => 'Pantasqa, imatapas rikuchispa $2 pacha, $1 p\'unchawmanta: kayqa "manam tukuykunapaqchu" nispa sananchasqam.
@@ -2168,8 +2157,6 @@ Ama hina kaspa, takyachiy munayniykita, qatiqninkunata riqsiyniykita, [[{{MediaW
 'actionfailed'           => 'Manam atinchu',
 'deletedtext'            => '"$1" qullusqañam.
 $2 nisqa p\'anqata qhaway ñaqha qullusqakunata rikunaykipaq.',
-'deletedarticle'         => 'qullusqa "[[$1]]"',
-'suppressedarticle'      => 'ñit\'ipasqa "[[$1]]"',
 'dellogpage'             => 'Qullusqakuna',
 'dellogpagetext'         => 'Kay qatiqpiqa lliwmanta aswan ñaqha qullusqakunatam rikunki. Rikuchisqa pachankunaqa sirwiqpa pachanpim.',
 'deletionlog'            => 'qullusqakuna',
@@ -2288,7 +2275,6 @@ Huklla llamk'apusqakunata paqarichinaykipaqqa, munasqayki llamk'apusqakunata akl
 'undeletereset'                => 'Mana imapas',
 'undeleteinvert'               => "Akllasqata t'ikray",
 'undeletecomment'              => 'Kayrayku:',
-'undeletedarticle'             => 'qullurqasqa "$1" paqarisqa',
 'undeletedrevisions'           => "{{PLURAL:$1|Huk paqarichisqa llamk'apusqa|$1 paqarichisqa llamk'apusqakuna}}",
 'undeletedrevisions-files'     => "{{PLURAL:$1|1 llamk'apusqaqa|$1 llamk'apusqakunaqa}} {{PLURAL:$2|1 willañiqipas|$2 willañiqikunapas}} paqarichisqam",
 'undeletedfiles'               => '{{PLURAL:$1|1 willañiqiqa|$1 willañiqikunaqa}} paqarichisqam',
@@ -2558,9 +2544,6 @@ Hinaptinqa, kay rimachina p'anqap samiqninta makiykiwan astanaykim tiyanqa.",
 'movepage-page-moved'          => "$1 sutiyuq p'anqaqa $2 sutiman astasqañam.",
 'movepage-page-unmoved'        => "Manam atinichu $1 sutiyuq p'anqata $2 sutiman astayta.",
 'movepage-max-pages'           => "$1 {{PLURAL:$1|p'anqa|p'anqakuna}} astasqañam, kikinmanta manam aswan astasqa kanqachu.",
-'1movedto2'                    => '«[[$1]]» «[[$2]]»-man astasqa',
-'1movedto2_redir'              => '[[$1]] [[$2]]-man astasqa pusana qillqata huknachaspa',
-'move-redirect-suppressed'     => "pusapunaqa hark'asqam",
 'movelogpage'                  => "Astay hallch'asqa",
 'movelogpagetext'              => "Kay qatiqpiqa astasqa p'anqakunam.",
 'movesubpage'                  => "{{PLURAL:$1|Urin p'anqa|Urin p'anqakuna}}",
@@ -3566,5 +3549,9 @@ Willañiqi sutita yaykuchispaqa ama \"{{ns:file}}:\" ñawpaq k'askaqta qillqamuy
 # SQLite database support
 'sqlite-has-fts' => "$1 hunt'a qillqa maskana yanapawan",
 'sqlite-no-fts'  => "$1 mana hunt'a qillqa maskana yanapawan",
+
+# New logging system
+'revdelete-restricted'   => "kamachiqkunaman llamk'achisqa saywachanakuna",
+'revdelete-unrestricted' => 'kamachiqkunamanta qichusqa saywachanakuna',
 
 );

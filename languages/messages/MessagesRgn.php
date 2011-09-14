@@ -509,7 +509,6 @@ Par piasé, cunferma ch't'ê propri l'intenziòn d'fël, ch'at capèss al su con
 'actioncomplete'        => 'Lavor fät e finì',
 'deletedtext'           => 'La pàgina "$1" l\'è stëda scanzlèda.
 Guèrda $2 par avdé la lèsta daglj ultum scanzeladür.',
-'deletedarticle'        => 'l\'à scanzlé "[[$1]]"',
 'dellogpage'            => 'Regèstar dal scanzladùr',
 'deletecomment'         => 'Rasòn:',
 'deleteotherreason'     => 'Ètar mutiv:',
@@ -543,8 +542,7 @@ T'pù cambié ê livel d'pruteziòn d'sta pàgina, mo la pruteziòn ricursiva la
 'restriction-level'           => "Livel d'restriziòn:",
 
 # Undelete
-'undeletelink'     => 'Guèrda/Torna indrì',
-'undeletedarticle' => 'l\'à artruvè "[[$1]]"',
+'undeletelink' => 'Guèrda/Torna indrì',
 
 # Namespace form on various pages
 'namespace'      => "Spàzi d'é nom:",
@@ -625,8 +623,6 @@ Par piaser, daij un ètar nom.",
 Par piasé, met insem al du pàgin te, fasend copia e incola.",
 'movedto'          => 'Spusté vers:',
 'movetalk'         => "Sposta ènca la pàgina d'cunversaziòn",
-'1movedto2'        => "[[$1]] l'è stê mòs a [[$2]]",
-'1movedto2_redir'  => "[[$1]] l'è stè moss in [[$2]] par redireziòn",
 'movelogpage'      => "Regéstar d'j muvimént",
 'movereason'       => 'Rasòn:',
 'revertmove'       => 'Métla cum era prèma',

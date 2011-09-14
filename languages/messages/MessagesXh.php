@@ -153,7 +153,6 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'move-page-legend' => 'Dlulisa eliphepha',
 'movepagebtn'      => 'DLulisa eliphepha',
 'movedto'          => 'Lidluliselwe',
-'1movedto2'        => '[[$1]] lidluliselwe [[$2]]',
 'movereason'       => 'Isizathu',
 
 # Special:NewFiles

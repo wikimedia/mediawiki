@@ -645,9 +645,6 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'revdel-restore-deleted'      => 'kuwii la tirtiray badalyadooda',
 'revdel-restore-visible'      => 'bedelaadka la arki karo',
 'pagehist'                    => 'Taariikhda bogga',
-'revdelete-content'           => 'oo kooban',
-'revdelete-uname'             => 'Magaca isticmaalaha',
-'revdelete-hid'               => 'qari $1',
 'revdelete-reasonotherlist'   => 'sabababaha kale',
 
 # History merging
@@ -1055,7 +1052,6 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'historywarning' => '<strong>Digniin:</strong> Bogga aad tirtirirabtid wuxuu leeyahay taariikkh hore:',
 'actioncomplete' => "Amarka waa la'dhamaystiray",
 'actionfailed'   => 'Shaqada waad ku guul dareesatay',
-'deletedarticle' => 'waxoo tirtiray "[[$1]]"',
 'dellogpage'     => 'Tirtiraha guda galaheeda',
 
 # Rollback
@@ -1101,7 +1097,6 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'undeletelink'             => 'fiiri/mar kale sameey',
 'undeleteviewlink'         => 'itusi',
 'undeletereset'            => 'Dib u habeey',
-'undeletedarticle'         => 'La\' sooceliyey "[[$1]]"',
 'undeletedrevisions'       => '$1 {{PLURAL:$1|revision|revisions}} restored',
 'undeletedrevisions-files' => '$1 {{PLURAL:$1|revision|revisions}} and $2 {{PLURAL:$2|file|files}} restored',
 'undeletedfiles'           => '$1 {{PLURAL:$1|file|files}} restored',
@@ -1170,13 +1165,11 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'proxyblocksuccess'        => 'waa la sameeyay.',
 
 # Move page
-'movenologin'     => 'Gudaha kuma jirtid',
-'movedto'         => 'loo wareejiyey',
-'movetalk'        => "Wareejiyey bogga wadahadalka la'xiriira",
-'1movedto2'       => '[[$1]] waxaa loo wareejiyey [[$2]]',
-'1movedto2_redir' => '[[$1]] waxaa loo wareejiyey [[$2]] si loo sii toosiyo',
-'movelogpage'     => 'Wareejinta guda galaheeda',
-'revertmove'      => 'soo celin',
+'movenologin' => 'Gudaha kuma jirtid',
+'movedto'     => 'loo wareejiyey',
+'movetalk'    => "Wareejiyey bogga wadahadalka la'xiriira",
+'movelogpage' => 'Wareejinta guda galaheeda',
+'revertmove'  => 'soo celin',
 
 # Export
 'export'            => 'Dhoofi boggag',

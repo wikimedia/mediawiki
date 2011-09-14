@@ -900,8 +900,6 @@ Ang iban nga administrador sa {{SITENAME}} mahimo sa gihapon nga makasulod sa na
 'revdelete-unsuppress'        => 'Kuhaon ang mga pagbawal sa mga ginliwat nga mga pagbag-o',
 'revdelete-log'               => 'Rason:',
 'revdelete-submit'            => 'Ipatuman sa ginpili nga {{PLURAL:$1|pagbag-o|mga pagbag-o}}',
-'revdelete-logentry'          => 'gin-ilisan nga pagbag-o sa pagkakitaon sang "[[$1]]"',
-'logdelete-logentry'          => 'gin-ilisan nga hinatabo sa pagkakitaon sang "[[$1]]"',
 'revdelete-success'           => "'''Ang pagkakitaon sang pagbag-o madinalag-on nga ginbag-o.'''",
 'revdelete-failure'           => "'''Ang pagkakitaon sang pagbag-o indi mabag-o:'''
 $1",
@@ -913,15 +911,6 @@ $1",
 'revdel-restore-visible'      => 'mga makita nga pagbag-o',
 'pagehist'                    => 'Kasaysayan sang panid',
 'deletedhist'                 => 'Ginpanas nga kasaysayan',
-'revdelete-content'           => 'kaundan',
-'revdelete-summary'           => 'liwaton ang kabilogan',
-'revdelete-uname'             => 'gamit-pangalan',
-'revdelete-restricted'        => 'ginapatuman nga pagbawal sa mga administrador',
-'revdelete-unrestricted'      => 'ginkakas nga pagbawal sa mga administrador',
-'revdelete-hid'               => 'tagu $1',
-'revdelete-unhid'             => 'ditagu $1',
-'revdelete-log-message'       => '$1 para sa $2 {{PLURAL:$2|pagbag-o|mga pagbag-o}}',
-'logdelete-log-message'       => '$1 para sa $2 {{PLURAL:$2|hinatabo|mga hinatabo}}',
 'revdelete-hide-current'      => 'May sala sa pagtago sang bagay nga may petsa nga $2, $1: amo ini ang pagbag-o karon.
 Indi ini mahimo nga taguon.',
 'revdelete-show-no-access'    => 'May sala sa pagpakita sang bagay nga may petsa nga $2, $1: ang ini nga bagay ginmarkahan nga "ginabawalan".
@@ -1322,7 +1311,6 @@ Palihog lang nga sigurado nga kinagusto mo ini nga himuon, nga na-intindihan mo 
 'actioncomplete'        => 'Kompleto nga aksiyon',
 'deletedtext'           => '"$1" ay nakakas na.
 Lantawa $2 para sa mga lista sang mga bag-o lang ginkakas.',
-'deletedarticle'        => 'ginkakas "[[$1]]"',
 'dellogpage'            => 'Ginkakas na log',
 'deletecomment'         => 'Rason:',
 'deleteotherreason'     => 'Iban/dugang nga rason:',
@@ -1362,7 +1350,6 @@ Pwede mo mabag-o ang lebel sang proteksiyon sang pahina, pero indi ini ma apektu
 
 # Undelete
 'undeletelink'           => 'tan-aw/ginbalik',
-'undeletedarticle'       => 'nanumbalik "[[$1]]"',
 'undelete-search-submit' => 'Pangita-a',
 
 # Namespace form on various pages
@@ -1450,8 +1437,6 @@ Palihog lang pili sang lain nga ngalan. Salamat.',
 Palihog lang sang pagkombinar sa ila sang ensakto.'''",
 'movedto'          => 'gin saylo sa',
 'movetalk'         => 'Isaylo ang upod mga nga pahina hambal',
-'1movedto2'        => '[[$1]] gin saylo na sa [[$2]]',
-'1movedto2_redir'  => 'isaylo [[$1]] sa [[$2]] labaw sa gin direkta liwat',
 'movelogpage'      => 'Giho log',
 'movereason'       => 'Rason:',
 'revertmove'       => 'nagbalik',
@@ -1592,5 +1577,9 @@ Ang iban ay pagataguon sang default.
 
 # Special:SpecialPages
 'specialpages' => 'Espesyal nga mga panid',
+
+# New logging system
+'revdelete-restricted'   => 'ginapatuman nga pagbawal sa mga administrador',
+'revdelete-unrestricted' => 'ginkakas nga pagbawal sa mga administrador',
 
 );

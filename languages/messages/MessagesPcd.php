@@ -618,7 +618,6 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'actioncomplete'        => 'Plònne acchon',
 'deletedtext'           => "« $1 » o té défacé.
 Vir $2 pou eune lisse d'chés darinnes défachons.",
-'deletedarticle'        => 'défacé "[[$1]]"',
 'dellogpage'            => 'jornal éd chés défacions',
 'deletecomment'         => 'Motif:',
 'deleteotherreason'     => 'Motif eute/suplémintère :',
@@ -658,8 +657,7 @@ Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'restriction-level'           => 'Nivieu éd réstricchon:',
 
 # Undelete
-'undeletelink'     => 'vir/érfoaire',
-'undeletedarticle' => 'érfoaire "[[$1]]"',
+'undeletelink' => 'vir/érfoaire',
 
 # Namespace form on various pages
 'namespace'      => 'Éspace du nom:',
@@ -742,8 +740,6 @@ Din chés cas-lo, I feut érlonmer ou ratatouiller l'pache aveuc l'main.",
 'talkexists'       => "'''L'pache ale o té déplachée   mais l'pache d'pérlache n'put poin éte déplachée ker il y o pécho eune pache d'pérlache aveuc ch'nouvieu nom. <br /> I feut foaire un touillache al main.'''",
 'movedto'          => 'Déplaché dsus',
 'movetalk'         => "Canjer ch'nom del pache d'pérlache apparièe",
-'1movedto2'        => 'déplacher [[$1]] dsus [[$2]]',
-'1movedto2_redir'  => "il o déplaché [[$1]] su [[$2]] in écatant l'érsin",
 'movelogpage'      => 'Jornal éd chés déplachemints',
 'movereason'       => 'Motif:',
 'revertmove'       => 'invérser',

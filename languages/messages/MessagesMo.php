@@ -394,7 +394,6 @@ $messages = array(
 'actioncomplete'        => 'Акциуне комплетэ',
 'deletedtext'           => 'Паӂина «$1» а фост штярсэ.
 Везь $2 пентру о листэ а елементелор штерсе речент.',
-'deletedarticle'        => 'а штерс «[[$1]]»',
 'dellogpage'            => 'Журнал штерӂерь',
 'deletecomment'         => 'Мотив:',
 'deleteotherreason'     => 'Мотив диферит/суплиментар:',
@@ -426,8 +425,7 @@ $messages = array(
 'restriction-level'           => 'Нивел де рестрикцие:',
 
 # Undelete
-'undeletelink'     => 'визуализязэ/рестаурязэ',
-'undeletedarticle' => 'а рекуперат «[[$1]]»',
+'undeletelink' => 'визуализязэ/рестаурязэ',
 
 # Namespace form on various pages
 'namespace'      => 'Спациу де нуме:',
@@ -480,7 +478,6 @@ $messages = array(
 'movearticle' => 'Депласязэ паӂина:',
 'newtitle'    => 'Титлул ноу:',
 'movepagebtn' => 'Депласязэ паӂина',
-'1movedto2'   => 'а депласат [[$1]] ын [[$2]]',
 'movelogpage' => 'Журнал депласэрь',
 'movereason'  => 'Мотив:',
 'revertmove'  => 'ревино',

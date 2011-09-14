@@ -402,7 +402,6 @@ $messages = array(
 'revdelete-radio-set'        => 'ཡིན།',
 'revdel-restore'             => 'བཅོས་སུ་རུང་བ།',
 'pagehist'                   => 'ཤོག་ངོས་ལོ་རྒྱུས།',
-'revdelete-summary'          => 'བསྡུས་དོན་བཟོ་བཅོས།',
 
 # Merge log
 'revertmerge' => 'སོ་སོར་ཕྱེ་བ།',
@@ -674,7 +673,6 @@ $messages = array(
 'delete-legend'         => 'སུབས་ཤིག',
 'actioncomplete'        => 'བྱ་འགུལ་ལེགས་གྲུབ།',
 'actionfailed'          => 'བྱ་འགུལ་ཕམ་ཉེས་བྱུང་བ།',
-'deletedarticle'        => '"[[$1]]"བསུབས་ཟིན།',
 'dellogpage'            => 'རྩོམ་ཡིག་སུབ་དོར།',
 'deletecomment'         => 'རྒྱུ་མཚན།',
 'deleteotherreason'     => 'རྒྱུ་མཚན་གཞན་པའམ་འཕར་མ།',
@@ -747,7 +745,6 @@ $messages = array(
 'movepagebtn'  => 'ཤོག་ངོས་སྤོ་བ།',
 'pagemovedsub' => 'སྤོར་བ་ལེགས་གྲུབ།',
 'movedto'      => 'སྤོར་ཟིན་ཡུལ།',
-'1movedto2'    => '[[$1]][[$2]]ལ་སྤོར་ཟིན།',
 'movelogpage'  => 'རྩོམ་ཡིག་སྤོ་བ།',
 'movereason'   => 'རྒྱུ་མཚན།',
 'revertmove'   => 'ཕྱིར་ལོག',
