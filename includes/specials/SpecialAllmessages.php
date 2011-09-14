@@ -249,6 +249,7 @@ class AllmessagesTablePager extends TablePager {
 	 * @param bool $foreign Whether the $langcode is not the content language
 	 */
 	public static function getCustomisedStatuses( $messageNames, $langcode = 'en', $foreign = false ) {
+		// FIXME: This function should be moved to Language:: or something.
 		wfProfileIn( __METHOD__ . '-db' );
 
 		$dbr = wfGetDB( DB_SLAVE );
