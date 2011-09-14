@@ -1370,7 +1370,7 @@ class Linker {
 			return '';
 		} else {
 			$formatted = self::formatComment( $comment, $title, $local );
-			return " <span class=\"comment\">($formatted)</span>";
+			return " <span class=\"comment\" dir=\"auto\">($formatted)</span>";
 		}
 	}
 
