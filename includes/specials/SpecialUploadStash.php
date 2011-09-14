@@ -214,7 +214,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			// this is apparently a protocol-relative URL, which makes no sense in this context,
 			// since this is used for communication that's internal to the application.
 			// default to http.
-			$scalerBaseUrl = 'http:' . $scalerBaseUrl;
+			$scalerBaseUrl = wfExpandUrl( $scalerBaseUrl, PROTO_CANONICAL );
 		}
 
 		// We need to use generateThumbName() instead of thumbName(), because
