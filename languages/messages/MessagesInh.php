@@ -509,7 +509,6 @@ $messages = array(
 'viewprevnext'                     => '($1 {{int:pipe-separator}} $2) ($3) хьажа',
 'searchmenu-exists'                => "'''Укх вики-хьахьоадайтама чу ер оагув \"[[:\$1]]\" я'''",
 'searchmenu-new'                   => "'''Укх \"[[:\$1]]\" вики-хьахьоадайтамчоахь оагIув де!'''",
-'searchmenu-new-nocreate'          => '"$1" оагIуви мегаш доаца ци е шун из оагIув де мегаш дац',
 'searchhelp-url'                   => 'Help:Чулоацам',
 'searchprofile-articles'           => 'ЛардоагIувнаш',
 'searchprofile-project'            => 'Дагарчеи хьахьоадайтамеи оагIувнаш',

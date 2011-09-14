@@ -625,7 +625,6 @@ Legende: '''({{int:cur}})''' = diferenties che ultim revision, '''({{int:last}})
 'viewprevnext'                     => 'Vider ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'                => "'''Vi un págine nominat \"[[:\$1]]\" in ti wiki.'''",
 'searchmenu-new'                   => "'''Crear li págine \"[[:\$1]]\" in ti wiki!'''",
-'searchmenu-new-nocreate'          => '"$1" es un nómine de págine ínvalid o ne posse esser creat per vu.',
 'searchhelp-url'                   => 'Help:Contenete',
 'searchprofile-articles'           => 'Págines de contenete',
 'searchprofile-project'            => 'Auxilie e Págines de projecte',

@@ -375,7 +375,6 @@ $messages = array(
 'viewprevnext'                     => 'Къаларун ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-exists'                => "'''Ава чар тlар алай \"[[:\$1]]\" гьа и викида.'''",
 'searchmenu-new'                   => "'''Туькlуьрун чар \"[[:\$1]]\" и викида!'''",
-'searchmenu-new-nocreate'          => '"$1" дуьз тlар туш, амма квегай тlукlуьриз жедач.',
 'searchprofile-articles'           => 'Чарчин идаратар',
 'searchprofile-project'            => 'Чар кхьинрин ва хакъидайрин',
 'searchprofile-images'             => 'Шикилдин мавзу',
