@@ -5028,20 +5028,12 @@ $wgLogActions = array(
 	'protect/move_prot'  => 'movedarticleprotection',
 	'rights/rights'      => 'rightslogentry',
 	'rights/autopromote' => 'rightslogentry-autopromote',
-	'delete/delete'      => 'deletedarticle',
-	'delete/restore'     => 'undeletedarticle',
-	'delete/revision'    => 'revdelete-logentry',
-	'delete/event'       => 'logdelete-logentry',
 	'upload/upload'      => 'uploadedimage',
 	'upload/overwrite'   => 'overwroteimage',
 	'upload/revert'      => 'uploadedimage',
 	'import/upload'      => 'import-logentry-upload',
 	'import/interwiki'   => 'import-logentry-interwiki',
 	'merge/merge'        => 'pagemerge-logentry',
-	'suppress/revision'  => 'revdelete-logentry',
-	'suppress/file'      => 'revdelete-logentry',
-	'suppress/event'     => 'logdelete-logentry',
-	'suppress/delete'    => 'suppressedarticle',
 	'suppress/block'     => 'blocklogentry',
 	'suppress/reblock'   => 'reblock-logentry',
 	'patrol/patrol'      => 'patrol-log-line',
@@ -5055,7 +5047,12 @@ $wgLogActions = array(
  */
 $wgLogActionsHandlers = array(
 	// move, move_redir
-	'move/*' => 'MoveLogFormatter',
+	'move/*'            => 'MoveLogFormatter',
+	// delete, restore, revision, event
+	'delete/*'          => 'DeleteLogFormatter',
+	'suppress/revision' => 'DeleteLogFormatter',
+	'suppress/event'    => 'DeleteLogFormatter',
+	'suppress/delete'   => 'DeleteLogFormatter',
 );
 
 /**

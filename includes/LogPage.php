@@ -286,23 +286,6 @@ class LogPage {
 						if( $params[2] ) {
 							$details .= ' [' . wfMsgExt( 'protect-summary-cascade', array( 'parsemag', 'language' => $langObj ) ) . ']';
 						}
-					// Page moves
-					} elseif ( $type == 'move' && count( $params ) == 3 ) {
-						if( $params[2] ) {
-							$details .= ' [' . wfMsgExt( 'move-redirect-suppressed', array( 'parsemag', 'language' => $langObj ) ) . ']';
-						}
-					// Revision deletion
-					} elseif ( preg_match( '/^(delete|suppress)\/revision$/', $key ) && count( $params ) == 5 ) {
-						$count = substr_count( $params[2], ',' ) + 1; // revisions
-						$ofield = intval( substr( $params[3], 7 ) ); // <ofield=x>
-						$nfield = intval( substr( $params[4], 7 ) ); // <nfield=x>
-						$details .= ': ' . RevisionDeleter::getLogMessage( $count, $nfield, $ofield, $langObj, false );
-					// Log deletion
-					} elseif ( preg_match( '/^(delete|suppress)\/event$/', $key ) && count( $params ) == 4 ) {
-						$count = substr_count( $params[1], ',' ) + 1; // log items
-						$ofield = intval( substr( $params[2], 7 ) ); // <ofield=x>
-						$nfield = intval( substr( $params[3], 7 ) ); // <nfield=x>
-						$details .= ': ' . RevisionDeleter::getLogMessage( $count, $nfield, $ofield, $langObj, true );
 					}
 
 					$rv = wfMsgExt( $wgLogActions[$key], array( 'parsemag', 'escape', 'replaceafter', 'language' => $langObj ), $params ) . $details;

@@ -1741,10 +1741,13 @@ class WikiPage extends Page {
 
 		# Log the deletion, if the page was suppressed, log it at Oversight instead
 		$logtype = $suppress ? 'suppress' : 'delete';
-		$log = new LogPage( $logtype );
 
-		# Make sure logging got through
-		$log->addEntry( 'delete', $this->mTitle, $reason, array() );
+		$logEntry = new ManualLogEntry( $logtype, 'delete' );
+		$logEntry->setPerformer( $user );
+		$logEntry->setTarget( $this->mTitle );
+		$logEntry->setComment( $reason );
+		$logid = $logEntry->insert();
+		$logEntry->publish( $logid );
 
 		if ( $commit ) {
 			$dbw->commit();
