@@ -203,7 +203,7 @@ class LogFormatter {
 	 * @param $parameters array query parameters
 	 * @return String
 	 */
-	protected function makePageLink( Title $title, $parameters = array() ) {
+	protected function makePageLink( Title $title = null, $parameters = array() ) {
 		if ( !$this->plaintext ) {
 			$link = Linker::link( $title, null, array(), $parameters );
 		} else {
