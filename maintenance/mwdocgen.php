@@ -61,7 +61,7 @@ $doxygenTemplate = $mwPath . 'maintenance/Doxyfile';
 $svnstat = $mwPath . 'bin/svnstat';
 
 /** where Phpdoc should output documentation */
-$doxyOutput = '/resources/docs' . DIRECTORY_SEPARATOR ;
+$doxyOutput = $mwPath . 'docs' . DIRECTORY_SEPARATOR ;
 
 /** MediaWiki subpaths */
 $mwPathI = $mwPath . 'includes/';
