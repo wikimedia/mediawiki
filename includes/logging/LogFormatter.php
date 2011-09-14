@@ -251,8 +251,9 @@ class LogFormatter {
 	 * @return string HTML
 	 */
 	public function getComment() {
-		$lang = $this->context->getLang();
-		$element = $lang->getDirMark() . Linker::commentBlock( $this->entry->getComment() );
+		$comment = Linker::commentBlock( $this->entry->getComment() );
+		// No hard coded spaces thanx
+		$element = ltrim( $comment );
 
 		if ( $this->entry->isDeleted( LogPage::DELETED_COMMENT ) ) {
 			$element = self::getRestrictedElement( 'rev-deleted-comment' );
