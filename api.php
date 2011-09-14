@@ -105,9 +105,6 @@ if ( $wgCrossSiteAJAXdomains && isset( $_SERVER['HTTP_ORIGIN'] ) ) {
 
 // Set a dummy $wgTitle, because $wgTitle == null breaks various things
 // In a perfect world this wouldn't be necessary
-//
-// @todo @fixme Ummmm, doesn't this line make the PHP4 check at the top completely
-// useless? Suggest moving more stuff out of api.php like we did with index.php
 $wgTitle = Title::makeTitle( NS_MAIN, 'API' );
 
 /* Construct an ApiMain with the arguments passed via the URL. What we get back
