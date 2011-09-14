@@ -210,14 +210,8 @@ class DatabaseLogEntry extends LogEntryBase {
 				$this->params = $params;
 				$this->legacy = false;
 			} else {
-				$params = FormatJson::decode( $blob, true /* array */ );
-				if ( $params !== null ) {
-					$this->params = $params;
-					$this->legacy = false;
-				} else {
-					$this->params = $blob === '' ? array() : explode( "\n", $blob );
-					$this->legacy = true;
-				}
+				$this->params = $blob === '' ? array() : explode( "\n", $blob );
+				$this->legacy = true;
 			}
 		}
 		return $this->params;
