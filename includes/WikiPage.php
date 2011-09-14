@@ -98,6 +98,8 @@ class WikiPage extends Page {
 	 * (and only when) $wgActions[$action] === true. This allows subclasses
 	 * to override the default behavior.
 	 *
+	 * @todo: move this UI stuff somewhere else
+	 *
 	 * @return Array
 	 */
 	public function getActionOverrides() {
@@ -1293,6 +1295,8 @@ class WikiPage extends Page {
 
 	/**
 	 * Update the article's restriction field, and leave a log entry.
+	 *
+	 * @todo: seperate the business/permission stuff out from backend code
 	 *
 	 * @param $limit Array: set of restriction keys
 	 * @param $reason String
