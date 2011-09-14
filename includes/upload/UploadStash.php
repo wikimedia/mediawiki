@@ -274,7 +274,7 @@ class UploadStash {
 			throw new UploadStashNotLoggedInException( __METHOD__ . ' No user is logged in, files must belong to users' );
 		}
 
-		wfDebug( __METHOD__ . " clearing all rows for user $userId\n" );
+		wfDebug( __METHOD__ . ' clearing all rows for user ' . $this->userId . "\n" );
 		$dbw = $this->repo->getMasterDb();
 		$dbw->delete(
 			'uploadstash',
