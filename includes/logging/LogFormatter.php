@@ -211,6 +211,9 @@ class LogFormatter {
 		if ( !$this->plaintext ) {
 			$link = Linker::link( $title, null, array(), $parameters );
 		} else {
+			if ( !$title instanceof Title ) {
+				throw new MWException( "Expected title, got null" );
+			}
 			$link = '[[' . $title->getPrefixedText() . ']]';
 		}
 		return $link;
