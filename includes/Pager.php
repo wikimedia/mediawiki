@@ -119,18 +119,22 @@ abstract class IndexPager implements Pager {
 		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
 		$this->mDb = wfGetDB( DB_SLAVE );
 
-		$index = $this->getIndexField();
-		$extraSort = $this->getExtraSortFields();
+		$index = $this->getIndexField(); // column to sort on
+		$extraSort = $this->getExtraSortFields(); // extra columns to sort on for query planning
 		$order = $this->mRequest->getVal( 'order' );
 		if( is_array( $index ) && isset( $index[$order] ) ) {
 			$this->mOrderType = $order;
 			$this->mIndexField = $index[$order];
-			$this->mExtraSortFields = (array)$extraSort[$order];
+			$this->mExtraSortFields = isset( $extraSort[$order] )
+				? (array)$extraSort[$order]
+				: array();
 		} elseif( is_array( $index ) ) {
 			# First element is the default
 			reset( $index );
 			list( $this->mOrderType, $this->mIndexField ) = each( $index );
-			$this->mExtraSortFields = (array)$extraSort[$this->mOrderType];
+			$this->mExtraSortFields = isset( $extraSort[$this->mOrderType] )
+				? (array)$extraSort[$this->mOrderType]
+				: array();
 		} else {
 			# $index is not an array
 			$this->mOrderType = null;
@@ -599,8 +603,8 @@ abstract class IndexPager implements Pager {
 	 * not be used in the pager offset or in any links for users.
 	 *
 	 * If getIndexField() returns an array of 'querykey' => 'indexfield' pairs then
-	 * this must return a corresponding array of 'querykey' => array( fields...) pairs,
-	 * so that a request with &count=querykey will use array( fields...) to sort.
+	 * this must return a corresponding array of 'querykey' => array( fields...) pairs
+	 * in order for a request with &count=querykey to use array( fields...) to sort.
 	 *
 	 * This is useful for pagers that GROUP BY a unique column (say page_id)
 	 * and ORDER BY another (say page_len). Using GROUP BY and ORDER BY both on
