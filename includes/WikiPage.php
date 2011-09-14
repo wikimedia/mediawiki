@@ -2563,21 +2563,13 @@ class WikiPage extends Page {
 	 * Get parser options suitable for rendering the primary article wikitext
 	 * @param $canonical boolean Determines that the generated options must not depend on user preferences (see bug 14404)
 	 * @return mixed ParserOptions object or boolean false
+	 * @deprecated since 1.19
 	 */
 	public function getParserOptions( $canonical = false ) {
 		global $wgUser, $wgLanguageCode;
-
 		if ( !$this->mParserOptions || $canonical ) {
 			$user = !$canonical ? $wgUser : new User;
-			$parserOptions = new ParserOptions( $user );
-			$parserOptions->setTidy( true );
-			$parserOptions->enableLimitReport();
-
-			if ( $canonical ) {
-				$parserOptions->setUserLang( $wgLanguageCode ); # Must be set explicitely
-				return $parserOptions;
-			}
-			$this->mParserOptions = $parserOptions;
+			$this->mParserOptions = $this->makeParserOptions( $user );
 		}
 		// Clone to allow modifications of the return value without affecting cache
 		return clone $this->mParserOptions;
@@ -2589,9 +2581,13 @@ class WikiPage extends Page {
 	* @return ParserOptions
 	*/
 	public function makeParserOptions( User $user ) {
+		global $wgLanguageCode;
 		$options = ParserOptions::newFromUser( $user );
 		$options->enableLimitReport(); // show inclusion/loop reports
 		$options->setTidy( true ); // fix bad HTML
+		if ( $user->isAnon() ) {
+			$options->setUserLang( $wgLanguageCode ); # Must be set explicitily
+		}
 		return $options;
 	}
 
