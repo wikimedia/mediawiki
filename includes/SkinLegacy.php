@@ -279,14 +279,13 @@ class LegacyTemplate extends BaseTemplate {
 		$s = '';
 
 		/* show links to different language variants */
-		global $wgDisableLangConversion, $wgLang;
+		global $wgDisableLangConversion, $wgLang, $wgContLang;
 
-		$lang = $this->getSkin()->getTitle()->getPageLanguage();
-		$variants = $lang->getVariants();
+		$variants = $wgContLang->getVariants();
 
 		if ( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
 			foreach ( $variants as $code ) {
-				$varname = $lang->getVariantname( $code );
+				$varname = $wgContLang->getVariantname( $code );
 
 				if ( $varname == 'disable' ) {
 					continue;

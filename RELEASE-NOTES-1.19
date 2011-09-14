@@ -59,8 +59,6 @@ production.
 * Conversion script between Tifinagh and Latin for the Tachelhit language
 * (bug 16755) Add options 'noreplace' and 'noerror' to {{DEFAULTSORT:...}}
   to stop it from replace an already existing default sort, and suppress error.
-* (bug 30364) LanguageConverter now depends on the page content language
-  instead of the wiki content language
 * (bug 18578) Rewrote revision delete related messages to allow better
   localisation
 

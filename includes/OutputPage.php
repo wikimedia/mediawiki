@@ -1654,12 +1654,12 @@ class OutputPage extends ContextSource {
 	 *   /w/index.php?title=Main_page&variant=zh-cn should never be served.
 	 */
 	function addAcceptLanguage() {
-		$lang = $this->getTitle()->getPageLanguage();
-		if( !$this->getRequest()->getCheck( 'variant' ) && $lang->hasVariants() ) {
-			$variants = $lang->getVariants();
+		global $wgContLang;
+		if( !$this->getRequest()->getCheck( 'variant' ) && $wgContLang->hasVariants() ) {
+			$variants = $wgContLang->getVariants();
 			$aloption = array();
 			foreach ( $variants as $variant ) {
-				if( $variant === $lang->getCode() ) {
+				if( $variant === $wgContLang->getCode() ) {
 					continue;
 				} else {
 					$aloption[] = 'string-contains=' . $variant;
@@ -2614,7 +2614,7 @@ $distantTemplates
 	 * have to be purged on configuration changes.
 	 */
 	protected function getJSVars() {
-		global $wgUseAjax, $wgEnableMWSuggest;
+		global $wgUseAjax, $wgEnableMWSuggest, $wgContLang;
 
 		$title = $this->getTitle();
 		$ns = $title->getNamespace();
@@ -2640,9 +2640,8 @@ $distantTemplates
 			'wgCategories' => $this->getCategories(),
 			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
 		);
-		$lang = $this->getTitle()->getPageLanguage();
-		if ( $lang->hasVariants() ) {
-			$vars['wgUserVariant'] = $lang->getPreferredVariant();
+		if ( $wgContLang->hasVariants() ) {
+			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
 		}
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			$vars['wgRestriction' . ucfirst( $type )] = $title->getRestrictions( $type );
@@ -2694,7 +2693,7 @@ $distantTemplates
 		global $wgUniversalEditButton, $wgFavicon, $wgAppleTouchIcon, $wgEnableAPI,
 			$wgSitename, $wgVersion, $wgHtml5, $wgMimeType,
 			$wgFeed, $wgOverrideSiteFeed, $wgAdvertisedFeedTypes,
-			$wgDisableLangConversion, $wgCanonicalLanguageLinks,
+			$wgDisableLangConversion, $wgCanonicalLanguageLinks, $wgContLang,
 			$wgRightsPage, $wgRightsUrl;
 
 		$tags = array();
@@ -2820,16 +2819,14 @@ $distantTemplates
 			) );
 		}
 
-		$lang = $this->getTitle()->getPageLanguage();
-
 		# Language variants
 		if ( !$wgDisableLangConversion && $wgCanonicalLanguageLinks
-			&& $lang->hasVariants() ) {
+			&& $wgContLang->hasVariants() ) {
 
-			$urlvar = $lang->getURLVariant();
+			$urlvar = $wgContLang->getURLVariant();
 
 			if ( !$urlvar ) {
-				$variants = $lang->getVariants();
+				$variants = $wgContLang->getVariants();
 				foreach ( $variants as $_v ) {
 					$tags[] = Html::element( 'link', array(
 						'rel' => 'alternate',

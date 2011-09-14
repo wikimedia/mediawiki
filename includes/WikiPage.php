@@ -2562,7 +2562,7 @@ class WikiPage extends Page {
 	 * @return mixed ParserOptions object or boolean false
 	 */
 	public function getParserOptions( $canonical = false ) {
-		global $wgUser;
+		global $wgUser, $wgLanguageCode;
 
 		if ( !$this->mParserOptions || $canonical ) {
 			$user = !$canonical ? $wgUser : new User;
@@ -2571,7 +2571,7 @@ class WikiPage extends Page {
 			$parserOptions->enableLimitReport();
 
 			if ( $canonical ) {
-				$parserOptions->setUserLang( $this->mTitle->getPageLanguage() ); # Must be set explicitely
+				$parserOptions->setUserLang( $wgLanguageCode ); # Must be set explicitely
 				return $parserOptions;
 			}
 			$this->mParserOptions = $parserOptions;

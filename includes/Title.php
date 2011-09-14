@@ -877,7 +877,7 @@ class Title {
 	 */
 	public function getLocalURL( $query = '', $variant = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
-		global $wgVariantArticlePath;
+		global $wgVariantArticlePath, $wgContLang;
 
 		if ( is_array( $query ) ) {
 			$query = wfArrayToCGI( $query );
@@ -896,7 +896,7 @@ class Title {
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
-				if ( $variant != false && $this->getPageLanguage()->hasVariants() ) {
+				if ( $variant != false && $wgContLang->hasVariants() ) {
 					if ( !$wgVariantArticlePath ) {
 						$variantArticlePath =  "$wgScript?title=$1&variant=$2"; // default
 					} else {
@@ -4383,6 +4383,9 @@ class Title {
 		global $wgLang;
 		if ( $this->getNamespace() == NS_SPECIAL ) {
 			// special pages are in the user language
+			return $wgLang;
+		} elseif ( $this->isRedirect() ) {
+			// the arrow on a redirect page is aligned according to the user language
 			return $wgLang;
 		} elseif ( $this->isCssOrJsPage() ) {
 			// css/js should always be LTR and is, in fact, English
