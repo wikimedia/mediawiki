@@ -180,20 +180,51 @@ function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath,
 
 unset( $file );
 
-if ( is_array( $argv ) && isset( $argv[1] ) ) {
-	switch( $argv[1] ) {
-	case '--all':         $input = 0; break;
-	case '--includes':    $input = 1; break;
-	case '--languages':   $input = 2; break;
-	case '--maintenance': $input = 3; break;
-	case '--skins':       $input = 4; break;
-	case '--file':
-		$input = 5;
-		if ( isset( $argv[2] ) ) {
-			$file = $argv[2];
+if ( is_array( $argv ) ) {
+	for ($i = 0; $i < count($argv); $i++ ) {
+		switch( $argv[$i] ) {
+		case '--all':         $input = 0; break;
+		case '--includes':    $input = 1; break;
+		case '--languages':   $input = 2; break;
+		case '--maintenance': $input = 3; break;
+		case '--skins':       $input = 4; break;
+		case '--file':
+			$input = 5;
+			$i++;
+			if ( isset( $argv[$i] ) ) {
+				$file = $argv[$i];
+			}
+			break;
+		case '--no-extensions': $input = 6; break;
+		case '--output':
+			$i++;
+			if ( isset( $argv[$i] ) ) {
+				$doxyOutput = realpath( $argv[$i] );
+			}
+			break;
+		case '--help':
+			print <<<END
+Usage: php mwdocgen.php [<command>] [<options>]
+
+Commands:
+    --all           Process entire codebase
+    --includes      Process only files in includes/ dir
+    --languages     Process only files in languages/ dir
+    --maintenance   Process only files in maintenance/ dir
+    --skins         Process only files in skins/ dir
+    --file <file>   Process only the given file
+
+If no command is given, you will be prompted.
+
+Other options:
+    --output <dir>  Set output directory (default $doxyOutput)
+    --help          Show this help and exit.
+
+
+END;
+			exit(0);
+			break;
 		}
-		break;
-	case '--no-extensions': $input = 6; break;
 	}
 }
 
