@@ -572,11 +572,6 @@ $messages = array(
 'revdel-restore'             => 'Ἀλλαγμαν ορατότητας',
 'pagehist'                   => 'Ιστορίαν σελίδας',
 'deletedhist'                => 'Σβηγμένον ιστορίαν',
-'revdelete-content'          => 'περιεχόμενον',
-'revdelete-summary'          => 'σύνοψην',
-'revdelete-uname'            => "όνεμαν χρήστ'",
-'revdelete-hid'              => 'κρυφόν $1',
-'revdelete-unhid'            => 'όχι κρυφόν $1',
 
 # History merging
 'mergehistory-from' => 'Σελίδα πηγή:',
@@ -1006,7 +1001,6 @@ $messages = array(
 'actioncomplete'        => 'Η ενέργειαν ετελέθεν',
 'deletedtext'           => 'Το "$1" εσβήγανατο.
 Τερέστεν το $2 και δεαβάστεν για τα υστερνά τα σβησίματα.',
-'deletedarticle'        => 'ενεσβύεν η "[[$1]]"',
 'dellogpage'            => "Κατάλογον με τ' ατά ντ' ενεσβύγαν",
 'deletionlog'           => 'αρχείον ασπαλιγματίων',
 'deletecomment'         => 'Αιτία:',
@@ -1056,7 +1050,6 @@ $messages = array(
 'undeletelink'              => 'τέρεμαν/επαναφορά',
 'undeleteviewlink'          => 'τέρεμα',
 'undeletecomment'           => 'Σχόλιον:',
-'undeletedarticle'          => 'επαναφορά τη "[[$1]]"',
 'undelete-search-box'       => "Αράεμαν σελιδίων ντ'ενεσβύαν",
 'undelete-search-submit'    => 'Εύρον',
 'undelete-show-file-submit' => 'Ναι',
@@ -1177,8 +1170,6 @@ $messages = array(
 Ποισέστεν τα έναν.'''",
 'movedto'                 => 'ετεροχλαεύτεν σο',
 'movetalk'                => 'Ετεροχλάεμαν τη σελίδας καλατσεματί',
-'1movedto2'               => '[[$1]] ετερχλαεύτεν σο [[$2]]',
-'1movedto2_redir'         => '[[$1]] ετερχλαεύτεν σο [[$2]] σε σύνδεσμον απάν',
 'movelogpage'             => 'Αρχείον ετεροχλαεματί',
 'movereason'              => 'Λόγον:',
 'revertmove'              => 'κλώσιμον',

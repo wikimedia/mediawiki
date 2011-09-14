@@ -505,7 +505,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 
 # Delete
 'deletepage'            => 'Kolímwisa lonkásá loye',
-'deletedarticle'        => 'elímwísí "[[$1]]"',
 'dellogpage'            => 'zuluná ya bolímwisi',
 'deletionlog'           => 'zuluná ya bolímwisi',
 'deletecomment'         => 'Ntína :',
@@ -537,7 +536,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 # Undelete
 'undeletelink'     => 'komɔnisa / kozóngisa',
 'undeleteviewlink' => 'Komɔ́nisa',
-'undeletedarticle' => 'Ezóngísí « [[$1]] »',
 
 # Namespace form on various pages
 'namespace'      => 'Ntáká ya nkómbó :',

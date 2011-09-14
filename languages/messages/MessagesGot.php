@@ -257,7 +257,6 @@ $messages = array(
 'deletepage'            => '𐍄𐌰𐌹𐍂𐌰 𐍃𐌴𐌹𐌳𐍉',
 'delete-legend'         => '𐍄𐌰𐌹𐍂𐌰𐌽',
 'actioncomplete'        => '𐍅𐌰𐍃𐌿𐌷 𐌹𐍄𐌰 𐌲𐌰𐌿𐍃𐍄𐌹𐌿𐌷𐌰𐌽',
-'deletedarticle'        => '𐍄𐌰𐌹𐍂𐌹𐌸 "[[$1]]"',
 'dellogpage'            => '𐍄𐌰𐌹𐍂𐌰 𐌰𐌹𐍂𐍅𐌱𐍉𐌺𐌰',
 'deleteotherreason'     => '𐌰𐌽𐌸𐌰𐍂/𐌼𐌰𐌹𐍃 𐌼𐌹𐍄𐍉𐌽𐍃:',
 'deletereasonotherlist' => '𐌰𐌽𐌸𐌰𐍂 𐌼𐌹𐍄𐍉𐌽𐍃',
@@ -299,12 +298,10 @@ $messages = array(
 'blocklogentry' => '𐌰𐍆𐌳𐍂𐌰𐌿𐍃𐌹𐌸 [[$1]] 𐍆𐌰𐌿𐍂 $2 $3',
 
 # Move page
-'movearticle'     => '𐍃𐌺𐌹𐌿𐌱𐌰 𐍃𐌴𐌹𐌳𐍉:',
-'newtitle'        => '𐌳𐌿 𐌽𐌹𐌿𐌾𐌹𐍃 𐌽𐌰𐌼𐍉𐍃:',
-'move-watch'      => '𐍅𐌹𐍄𐌰𐌽 𐍃𐍉 𐍃𐌴𐌹𐌳𐍉',
-'movepagebtn'     => '𐍃𐌺𐌹𐌿𐌱𐌰 𐍃𐌴𐌹𐌳𐍉',
-'1movedto2'       => '[[$1]] 𐍃𐌺𐌹𐌿𐌱𐌹𐌸 𐌳𐌿 [[$2]]',
-'1movedto2_redir' => '[[$1]] 𐍃𐌺𐌹𐌿𐌱𐌹𐌸 𐌳𐌿 [[$2]] 𐌿𐍆𐌰𐍂 𐍄𐌰𐌹𐌺𐌾𐌰𐌽𐌱𐌰𐌽𐌳𐌹',
+'movearticle' => '𐍃𐌺𐌹𐌿𐌱𐌰 𐍃𐌴𐌹𐌳𐍉:',
+'newtitle'    => '𐌳𐌿 𐌽𐌹𐌿𐌾𐌹𐍃 𐌽𐌰𐌼𐍉𐍃:',
+'move-watch'  => '𐍅𐌹𐍄𐌰𐌽 𐍃𐍉 𐍃𐌴𐌹𐌳𐍉',
+'movepagebtn' => '𐍃𐌺𐌹𐌿𐌱𐌰 𐍃𐌴𐌹𐌳𐍉',
 
 # Tooltip help for the actions
 'tooltip-ca-protect'             => '𐌱𐌰𐌹𐍂𐌲𐌰 𐌸𐍉 𐍃𐌴𐌹𐌳𐍉',

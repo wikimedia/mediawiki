@@ -921,8 +921,6 @@ $2
 'revdelete-unsuppress'        => 'पुनर्स्थापित पुनरावृत्तिबाट बन्देज हटाउने',
 'revdelete-log'               => 'कारण :',
 'revdelete-submit'            => '{{PLURAL:$1|छानिएको संशोधन|छानिएका संशोधनहरु}}मा प्रयोग गर्ने',
-'revdelete-logentry'          => '[[$1]] को पुनरावलोकन दृष्टि परिवर्तन गरियो',
-'logdelete-logentry'          => '[[$1]] को पुनरावलोकन घटना दृष्टि परिवर्तन गरियो',
 'revdelete-success'           => "'''संशोधन दृश्यता सफलतापूर्वक अद्यतन भयो।'''",
 'revdelete-failure'           => "'''संशोधन दृश्यता अद्यतन गर्न सकिएन:'''
 $1",
@@ -934,15 +932,6 @@ $1",
 'revdel-restore-visible'      => 'प्रकट संशोधन',
 'pagehist'                    => 'पृष्ठको इतिहास',
 'deletedhist'                 => 'मेटाएका इतिहास',
-'revdelete-content'           => 'सामग्री',
-'revdelete-summary'           => 'सम्पादन सारांश',
-'revdelete-uname'             => 'प्रयोगकर्ताको नाम',
-'revdelete-restricted'        => 'प्रबन्धकहरुमाथि सीमितता लागू गरियो',
-'revdelete-unrestricted'      => 'प्रवन्धककोलागि निषेधहरु हटाइयो ।',
-'revdelete-hid'               => ' $1 लुकाउने',
-'revdelete-unhid'             => ' $1 नलुकाउने',
-'revdelete-log-message'       => '$1  $2 को लागि{{PLURAL:$2|पुनरावलोकन|पुनरावलोकनहरु}}',
-'logdelete-log-message'       => '$1 $2को लागि {{PLURAL:$2|घटना|घटनाहरु}}',
 'revdelete-hide-current'      => '$2, $1: मिति गरिएका वस्तुहरु लुकाउन मिलेन यो नै सबैभन्दा नयाँ संस्करण हो ।
 यसलाई लुकाउन मिल्दैन ।',
 'revdelete-show-no-access'    => '  $2समय र $1 मिति भएको वस्तु देखाउन सकिएन: यसलाई "निषेधित"भनि चिनो लगाइएको छ।
@@ -1955,8 +1944,6 @@ $UNWATCHURL
 'actionfailed'           => 'कार्य असफल',
 'deletedtext'            => '"$1" मेटिएको छ।
 हालै हटाइएको सूची $2 मा हेर्नुहोस् ।',
-'deletedarticle'         => '"[[$1]]" मेटियो',
-'suppressedarticle'      => '"[[$1]]"लाई दमन गरियो \\',
 'dellogpage'             => 'मेटाएको लग',
 'dellogpagetext'         => 'हालका सबैभन्दा नयाँ मेटाहरु निम्न सुचीमा रहेका छन्।',
 'deletionlog'            => 'मेटाइएको लग',
@@ -2074,7 +2061,6 @@ $3द्वारा $1को ($4को  समय $5 मा) मेटाइए
 'undeletereset'                => 'रिसेट गर्नुहोस्',
 'undeleteinvert'               => ' चयन उल्ट्याउने',
 'undeletecomment'              => 'कारण :',
-'undeletedarticle'             => '"[[$1]]" मा फर्काइयो',
 'undeletedrevisions'           => '{{PLURAL:$1|एउटा संशोधन|$1 संशोधनहरु}} पुनर्स्थापित गरियो',
 'undeletedrevisions-files'     => '{{PLURAL:$1|एउटा संशोधन|$1 संशोधनहरु}} र {{PLURAL:$2|एउटा फाइल|$2 फाइलहरु}} पुनर्स्थापित गरियो',
 'undeletedfiles'               => '{{PLURAL:$1|१ फाइल|$1 फाइलहरु }} पूर्वस्थितिमा ल्याइयो',
@@ -2346,9 +2332,6 @@ $1को बन्देजको कारण : "$2" हो',
 'movepage-page-moved'          => ' $1 पृष्ठलाई $2 मा सारियो ।',
 'movepage-page-unmoved'        => '$1 पृष्ठलाई $2 मा सार्न सकिएन ।',
 'movepage-max-pages'           => 'अधिकतम $1 {{PLURAL:$1|पृष्ठ|पृष्ठहरु}} सारिसकिएको छ र अरु स्वत: सारिने छैन ।',
-'1movedto2'                    => '[[$1]] लाई [[$2]]मा सारियो',
-'1movedto2_redir'              => 'पुनर्निर्देशितमा [[$1]]लाई [[$2]]मा सारियो',
-'move-redirect-suppressed'     => 'अनुप्रेषण अवरोध भयो',
 'movelogpage'                  => 'लग सार्ने',
 'movelogpagetext'              => 'सबै सारिएका पृष्ठहरुको सूची तल दिइएकोछ।',
 'movesubpage'                  => '{{PLURAL:$1|उपपृष्ठ|उपपृष्ठहरु}}',
@@ -3427,5 +3410,9 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 पूरा पाठ खोज समर्थन सहित',
 'sqlite-no-fts'  => '$1 पूरा पाठ खोज समर्थन बिना',
+
+# New logging system
+'revdelete-restricted'   => 'प्रबन्धकहरुमाथि सीमितता लागू गरियो',
+'revdelete-unrestricted' => 'प्रवन्धककोलागि निषेधहरु हटाइयो ।',
 
 );

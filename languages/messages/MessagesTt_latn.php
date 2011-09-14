@@ -871,12 +871,6 @@ Sez idaräçe bulu säbäple, [$1 yäşerelgän yuramanı qarıy alasız]",
 'revdel-restore-visible'      => 'kürsätelgän yuramalar',
 'pagehist'                    => 'bitneñ tarixı',
 'deletedhist'                 => 'Beterülär tarixı',
-'revdelete-content'           => 'eçtälek',
-'revdelete-summary'           => 'üzgärtülär taswirlaması',
-'revdelete-uname'             => 'qullanuçı iseme',
-'revdelete-restricted'        => 'çikläwlär idaräçelärgä dä qullanıla',
-'revdelete-hid'               => ' $1 yäşerelgän',
-'revdelete-unhid'             => '$1 açılğan',
 'revdelete-reasonotherlist'   => 'Başqa säbäp',
 'revdelete-edit-reasonlist'   => 'Säbäplär isemlegen üzgärtü',
 'revdelete-offender'          => 'Älege yuramalı bitneñ avtorı:',
@@ -1579,7 +1573,6 @@ Zinhar, monı çınnan da eşlärgä telägänegezne, monıñ näticälären añ
 'actioncomplete'         => 'Ğämäl başqarğan',
 'deletedtext'            => '«$1» beterelgän inde.<br />
 Soñğı beterelgän bitlärne kürer öçen, $2 qarağız.',
-'deletedarticle'         => '«[[$1]]» beterelde',
 'dellogpage'             => 'Beterü köndälege',
 'deletionlog'            => 'beterü köndälege',
 'reverted'               => 'Aldağı yuramanı qaytart',
@@ -1659,7 +1652,6 @@ Beterelüdän soñ şundıy uq isemle bit tözelgän bulsa, torğızılğan üzg
 'undeletereset'             => 'Taşlatu',
 'undeleteinvert'            => 'Kiresen saylaw',
 'undeletecomment'           => 'Säbäp:',
-'undeletedarticle'          => '«[[$1]]» torğızıldı',
 'undelete-search-submit'    => 'Ezläw',
 'undelete-error-long'       => 'Faylnı torğızu waqıtında xatalar çıqtı:
 
@@ -1798,9 +1790,6 @@ Zinhar başqa isem saylağız.',
 'talkexists'                => "'''Bitneñ üze küçerelde, ämma bäxäs bite küçerelmi qaldı, çönki şundıy isemle bit bar inde. Zinhar, alarnı üzegez quşığız.'''",
 'movedto'                   => 'küçerelgän:',
 'movetalk'                  => 'Bäyläneşle bäxäs biten küçerü',
-'1movedto2'                 => '«[[$1]]» bite «[[$2]]» bitenä küçerelde',
-'1movedto2_redir'           => '[[$1]] bite [[$2]] bitenä yünältü östennän küçte',
-'move-redirect-suppressed'  => 'yünältü tıyıldı',
 'movelogpage'               => 'Küçerü köndälege',
 'movereason'                => 'Säbäp:',
 'revertmove'                => 'kire qaytu',
@@ -2219,5 +2208,8 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 'htmlform-submit'              => 'Cibärü',
 'htmlform-reset'               => 'Üzgärtülärne kire qaytaru',
 'htmlform-selectorother-other' => 'Başqa',
+
+# New logging system
+'revdelete-restricted' => 'çikläwlär idaräçelärgä dä qullanıla',
 
 );

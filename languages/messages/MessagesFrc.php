@@ -592,8 +592,6 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'revdelete-unsuppress'        => 'Enlever les restrictions des versions rétablies',
 'revdelete-log'               => 'Raison:',
 'revdelete-submit'            => 'Appliquer à la version choisie',
-'revdelete-logentry'          => 'La visibilité pour la version a été changée pour [[$1]]',
-'logdelete-logentry'          => "La visibilité de l'événement a été changée pour [[$1]]",
 'revdelete-success'           => "'''Vous avez bien changé la visibilité des versions.'''",
 'logdelete-success'           => "'''Vous avez bien changé la visibilité des événements.'''",
 
@@ -679,9 +677,6 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 'blocklink'                => 'bloquer',
 'contribslink'             => 'changes',
 'block-log-flags-nocreate' => 'création de compte interdite',
-
-# Move page
-'1movedto2_redir' => 'déplacé [[$1]] vers [[$2]] en écrasant sa redirection',
 
 # Tooltip help for the actions
 'tooltip-pt-login'        => 'Vous êtes encouragé{{GENDER:||e|(e)}} à vous identifier mais ce n’est pas obligatoire.',

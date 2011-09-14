@@ -1216,8 +1216,6 @@ Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-unsuppress'        => 'Enlever les restrictions sur les versions restaurées',
 'revdelete-log'               => 'Motif :',
 'revdelete-submit'            => 'Appliquer {{PLURAL:$1|à la révision sélectionnée|aux révisions sélectionnées}}',
-'revdelete-logentry'          => 'a modifié la visibilité de la version de [[$1]]',
-'logdelete-logentry'          => 'a modifié la visibilité de l’événement de [[$1]]',
 'revdelete-success'           => "'''Visibilité des versions mise à jour avec succès.'''",
 'revdelete-failure'           => "'''La visibilité de la version n’a pas pu être mise à jour :'''
 $1",
@@ -1229,15 +1227,6 @@ $1",
 'revdel-restore-visible'      => 'révisions visibles',
 'pagehist'                    => 'Historique de la page',
 'deletedhist'                 => 'Historique supprimé',
-'revdelete-content'           => 'contenu',
-'revdelete-summary'           => 'résumé de modification',
-'revdelete-uname'             => 'nom d’utilisateur',
-'revdelete-restricted'        => 'a appliqué les restrictions aux administrateurs',
-'revdelete-unrestricted'      => 'restrictions retirées pour les administrateurs',
-'revdelete-hid'               => 'a masqué $1',
-'revdelete-unhid'             => 'a démasqué $1',
-'revdelete-log-message'       => '$1 pour $2 version{{PLURAL:$2||s}}',
-'logdelete-log-message'       => '$1 sur $2 évènement{{PLURAL:$2||s}}',
 'revdelete-hide-current'      => 'Erreur lors de la suppression de l’élément daté du $1 à $2 : il est la révision courante.
 Il ne peut pas être supprimé.',
 'revdelete-show-no-access'    => 'Erreur lors de l’affichage de l’élément daté du $1 à $2 : il est marqué comme « restreint ».
@@ -2341,8 +2330,6 @@ Retour et assistance :
 'actionfailed'           => 'L’action a échoué',
 'deletedtext'            => '« $1 » a été supprimée.
 Voir $2 pour une liste des suppressions récentes.',
-'deletedarticle'         => 'a supprimé « [[$1]] »',
-'suppressedarticle'      => 'a supprimé « [[$1]] »',
 'dellogpage'             => 'Journal des suppressions de page',
 'dellogpagetext'         => 'Voici la liste des suppressions les plus récentes.',
 'deletionlog'            => 'journal des suppressions',
@@ -2475,7 +2462,6 @@ Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou sup
 'undeletereset'                => 'Réinitialiser',
 'undeleteinvert'               => 'Inverser la sélection',
 'undeletecomment'              => 'Motif :',
-'undeletedarticle'             => 'a restauré « [[$1]] »',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|version restaurée|versions restaurées}}',
 'undeletedrevisions-files'     => '$1 version{{PLURAL:$1||s}} et $2 fichier{{PLURAL:$2||s}} restauré{{PLURAL:$2||s}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|fichier restauré|fichiers restaurés}}',
@@ -2757,9 +2743,6 @@ Veuillez en choisir un autre.',
 'movepage-page-moved'          => 'La page $1 a été renommée en $2.',
 'movepage-page-unmoved'        => 'La page $1 n’a pas pu être renommée en $2.',
 'movepage-max-pages'           => 'Le maximum de $1 {{PLURAL:$1|page renommée|pages renommées}} a été atteint et aucune autre page ne sera renommée automatiquement.',
-'1movedto2'                    => 'a déplacé [[$1]] vers [[$2]]',
-'1movedto2_redir'              => 'a déplacé [[$1]] vers [[$2]] en écrasant sa redirection',
-'move-redirect-suppressed'     => 'redirection supprimée',
 'movelogpage'                  => 'Journal des renommages',
 'movelogpagetext'              => 'Voici la liste de toutes les pages renommées ou déplacées.',
 'movesubpage'                  => 'Sous-page{{PLURAL:$1||s}}',
@@ -3872,5 +3855,9 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
 # SQLite database support
 'sqlite-has-fts' => '$1 avec recherche en texte intégral supportée',
 'sqlite-no-fts'  => '$1 sans recherche en texte intégral supportée',
+
+# New logging system
+'revdelete-restricted'   => 'a appliqué les restrictions aux administrateurs',
+'revdelete-unrestricted' => 'restrictions retirées pour les administrateurs',
 
 );

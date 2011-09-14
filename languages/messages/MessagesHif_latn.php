@@ -868,8 +868,6 @@ Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae 
 'revdelete-unsuppress'        => 'Pahile jaise karaa gais badlao me se rukawat hatao',
 'revdelete-log'               => 'Kaaran:',
 'revdelete-submit'            => 'Chuna gae badlao ke apply karo {{PLURAL:$1|revision|revisions}}',
-'revdelete-logentry'          => '[[$1]] ke badlao ke visibility ke badal dewa gais hai',
-'logdelete-logentry'          => '[[$1]] keevent visibility ke badal dewa gais hae',
 'revdelete-success'           => "'''Badlao dekhe khatir taiyaar hai.'''",
 'revdelete-failure'           => "'''Badlao ke nai dekhawa jaae sake hae:'''
 $1",
@@ -881,15 +879,6 @@ $1",
 'revdel-restore-visible'      => 'badlao, jiske aap dekhe saktaa hae',
 'pagehist'                    => 'Panna ke itihaas',
 'deletedhist'                 => 'Mitawa gae itihass',
-'revdelete-content'           => 'suchi',
-'revdelete-summary'           => 'summary ke badlo',
-'revdelete-uname'             => 'Sadasya ke naam',
-'revdelete-restricted'        => 'sysops pe llabu restrictions',
-'revdelete-unrestricted'      => 'sysops se hatawa gae rukawat',
-'revdelete-hid'               => '$1 lukaya',
-'revdelete-unhid'             => '$1 ke fir se dekhaya',
-'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|badlao|badlao}}',
-'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|ghatna|ghatna}}',
 'revdelete-hide-current'      => 'Item dated $2, $1 ke lukae me garrbarr hoe gais hai: ii abhi ke version hai.
 Iske lukawa nai jaawe sake hai.',
 'revdelete-show-no-access'    => '$2, $1 ke tarik ke item me error hai: ii item ke "restricted" mark karaa gais hai.
@@ -1968,8 +1957,6 @@ Meharbani kar ke iske confirm karo, ki aap iske consequences ke samajhta hai, au
 'actioncomplete'         => 'Action puura hoe gais hai',
 'actionfailed'           => 'Action fail hoe gais',
 'deletedtext'            => '"$1" ke delete kar dewa gais hai. Abhi jaldi ke deletions ke record dekhe khatir $2 ke dekho.',
-'deletedarticle'         => '"[[$1]]" ke mitae dewa gais hae',
-'suppressedarticle'      => 'suppressed "[[$1]]"',
 'dellogpage'             => 'Mitae ke suchi',
 'dellogpagetext'         => 'Niche nawaa mitawa gais panna ke suchi hai.',
 'deletionlog'            => 'Mitae waala suchi',
@@ -2105,7 +2092,6 @@ Sait aap ke kharaab link hoi, nai to badlao ke sait pahile jaise kar dewa gais h
 'undeletereset'                => 'Pahile jaise karo',
 'undeleteinvert'               => 'Selection ke ulta karo',
 'undeletecomment'              => 'Kaaran::',
-'undeletedarticle'             => '"[[$1]]" ke pahile jaise kar dewa gais hai',
 'undeletedrevisions'           => '{{PLURAL:$1|1 badlao|$1 badlao}} ke pahile jaise kar dewa gais hai',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 badlao|$1 badlao}} aur {{PLURAL:$2|1 file|$2 files}} ke pahile jaise kar dewa gais hai',
 'undeletedfiles'               => '{{PLURAL:$1|1 file|$1 files}} ke pahile jaise kar dewa gais hai',
@@ -2366,9 +2352,6 @@ Meharbani kar ke duusra naam choose karo.',
 'movepage-page-moved'          => 'Panna $1 ke naam badal ke $2 kar dewa gais hai.',
 'movepage-page-unmoved'        => 'Panna $1 ke naam badal ke $2 nai kare sakaa hai.',
 'movepage-max-pages'           => 'Jaada se jaada $1 {{PLURAL:$1|panna|panna}} ke hatae dewa gais hai, aur jaada ke ab nai hatawa jaai.',
-'1movedto2'                    => '[[$1]] ke naam badal ke [[$2]] kar dewa gae hai',
-'1movedto2_redir'              => 'Redirect ke uppar se [[$1]] ke badal ke  [[$2]] kar dewa gais hai',
-'move-redirect-suppressed'     => 'redirect ke rok dewa gais hai',
 'movelogpage'                  => 'Suchi ke jagah badlo',
 'movelogpagetext'              => 'Niche sab panna, jiske naam badla gais hai, ke suchi hai.',
 'movesubpage'                  => '{{PLURAL:$1|Subpage|Subpages}}',
@@ -2880,5 +2863,9 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # HTML forms
 'htmlform-reset'               => 'Badlao ke pahile jaise karo',
 'htmlform-selectorother-other' => 'Duusra',
+
+# New logging system
+'revdelete-restricted'   => 'sysops pe llabu restrictions',
+'revdelete-unrestricted' => 'sysops se hatawa gae rukawat',
 
 );

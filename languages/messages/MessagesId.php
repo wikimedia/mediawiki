@@ -1182,8 +1182,6 @@ Pengurus {{SITENAME}} lain akan tetap dapat mengakses isi yang tersembunyi ini d
 'revdelete-unsuppress'        => 'Hapus batasan pada revisi yang dikembalikan',
 'revdelete-log'               => 'Alasan:',
 'revdelete-submit'            => 'Terapkan pada {{PLURAL:$1|revisi|revisi}} terpilih',
-'revdelete-logentry'          => 'mengubah tampilan revisi untuk [[$1]]',
-'logdelete-logentry'          => 'mengubah aturan penyembunyian dari [[$1]]',
 'revdelete-success'           => "'''Keterlihatan revisi berhasil diperbarui.'''",
 'revdelete-failure'           => "'''Keterlihatan revisi tak dapat diperbarui:'''
 $1",
@@ -1195,15 +1193,6 @@ $1",
 'revdel-restore-visible'      => 'tampilan revisi',
 'pagehist'                    => 'Versi terdahulu halaman',
 'deletedhist'                 => 'Sejarah yang dihapus',
-'revdelete-content'           => 'konten',
-'revdelete-summary'           => 'ringkasan',
-'revdelete-uname'             => 'nama pengguna',
-'revdelete-restricted'        => 'akses telah dibatasi untuk opsis',
-'revdelete-unrestricted'      => 'pembatasan akses opsis dihapuskan',
-'revdelete-hid'               => 'sembunyikan $1',
-'revdelete-unhid'             => 'tampilkan $1',
-'revdelete-log-message'       => '$1 untuk $2 {{PLURAL:$2|revisi|revisi}}',
-'logdelete-log-message'       => '$1 untuk $2 {{PLURAL:$2|peristiwa|peristiwa}}',
 'revdelete-hide-current'      => 'Gagal menyembunyikan revisi tertanggal $2, $1: ini adalah revisi terkini.
 Revisi ini tidak dapat disembunyikan.',
 'revdelete-show-no-access'    => 'Gagal menampilkan revisi tertanggal $2, $1: revisi ini telah ditandai "terbatas".
@@ -2285,8 +2274,6 @@ Umpan balik dan bantuan lebih lanjut:
 'actioncomplete'         => 'Proses selesai',
 'actionfailed'           => 'Eksekusi gagal',
 'deletedtext'            => '"$1" telah dihapus. Lihat $2 untuk log terkini halaman yang telah dihapus.',
-'deletedarticle'         => 'menghapus "[[$1]]"',
-'suppressedarticle'      => '"[[$1]]" disembunyikan',
 'dellogpage'             => 'Log penghapusan',
 'dellogpagetext'         => 'Di bawah ini adalah log penghapusan halaman. Semua waktu yang ditunjukkan adalah waktu server.',
 'deletionlog'            => 'log penghapusan',
@@ -2408,7 +2395,6 @@ Alasan penghapusan diberikan pada ringkasan di bawah ini, berikut rincian penggu
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Balikkan pilihan',
 'undeletecomment'              => 'Alasan:',
-'undeletedarticle'             => '"$1" telah dikembalikan',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|revisi|revisi}} telah dikembalikan',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|revisi|revisi}} and $2 berkas dikembalikan',
 'undeletedfiles'               => '$1 {{PLURAL:$1|berkas|berkas}} dikembalikan',
@@ -2680,9 +2666,6 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'movepage-page-moved'          => 'Halaman $1 telah dipindahkan ke $2.',
 'movepage-page-unmoved'        => 'Halaman $1 tidak dapat dipindahkan ke $2.',
 'movepage-max-pages'           => 'Sejumlah maksimum $1 {{PLURAL:$1|halaman|halaman}} telah dipindahkan dan tidak ada lagi yang akan dipindahkan secara otomatis.',
-'1movedto2'                    => 'memindahkan [[$1]] ke [[$2]]',
-'1movedto2_redir'              => 'memindahkan [[$1]] ke [[$2]] melalui peralihan',
-'move-redirect-suppressed'     => 'pengalihan tidak dibuat',
 'movelogpage'                  => 'Log pemindahan',
 'movelogpagetext'              => 'Di bawah ini adalah log pemindahan halaman.',
 'movesubpage'                  => '{{PLURAL:$1|Subhalaman|Subhalaman}}',
@@ -3801,5 +3784,9 @@ Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
 # SQLite database support
 'sqlite-has-fts' => '$1 dengan dukungan pencarian teks lengkap',
 'sqlite-no-fts'  => '$1 tanpa dukungan pencarian teks lengkap',
+
+# New logging system
+'revdelete-restricted'   => 'akses telah dibatasi untuk opsis',
+'revdelete-unrestricted' => 'pembatasan akses opsis dihapuskan',
 
 );

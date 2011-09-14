@@ -1033,8 +1033,6 @@ Si një administrator ju mund ta shikoni këtë ndryshim; detajet mund të gjend
 'revdelete-unsuppress'        => 'Hiq kufizimet nga versionet e restauruara',
 'revdelete-log'               => 'Arsyeja:',
 'revdelete-submit'            => 'Aplikoni tek {{PLURAL:$1|revision|versionet}} e zgjedhura',
-'revdelete-logentry'          => 'Pamja e versionit u ndryshua për [[$1]]',
-'logdelete-logentry'          => 'u ndryshua dukshmëria e ngjarjes së [[$1]]',
 'revdelete-success'           => "'''Dukshmëria e versioneve u vendos me sukses.'''",
 'revdelete-failure'           => "' ' 'Dukshmëria e rivizionit nuk mund të përditëohet\"
 \$1",
@@ -1046,15 +1044,6 @@ $1",
 'revdel-restore-visible'      => 'rivizionet e dukshme',
 'pagehist'                    => 'Historiku i faqes',
 'deletedhist'                 => 'Historiku i grisjeve',
-'revdelete-content'           => 'përmbajtja',
-'revdelete-summary'           => 'përmbledhja redaktimit',
-'revdelete-uname'             => 'përdoruesi',
-'revdelete-restricted'        => 'u vendosën kufizime për administruesit',
-'revdelete-unrestricted'      => 'u hoqën kufizimet për administruesit',
-'revdelete-hid'               => 'u fsheh $1',
-'revdelete-unhid'             => 'u tregua $1',
-'revdelete-log-message'       => '$1 për $2 {{PLURAL:$2|version|versione}}',
-'logdelete-log-message'       => '$1 për $2 {{PLURAL:$2|ngjarje|ngjarje}}',
 'revdelete-hide-current'      => 'Gabim në fshehje të pikës me datë $2, $1: ky është rivizioni i tanishëm. 
 Nuk mund të fshihet',
 'revdelete-show-no-access'    => 'Gabim gjatë shfaqjes së artikullit të datës $2, $1: ky artikull ka qenë i shënuar si "i kufizuar".
@@ -2175,8 +2164,6 @@ Për të na dhënë përshtypjet tuaja ose për ndihmë të mëtejshme:
 'actioncomplete'         => 'Veprimi u krye',
 'actionfailed'           => 'Veprimi dështoi',
 'deletedtext'            => '"$1" është grisur nga regjistri. Shikoni $2 për një pasqyrë të grisjeve së fundmi.',
-'deletedarticle'         => 'grisi "[[$1]]"',
-'suppressedarticle'      => '"[[$1]]" i shtypur',
 'dellogpage'             => 'Regjistri i grisjeve',
 'dellogpagetext'         => 'Më poshtë është një listë e grisjeve më të fundit.',
 'deletionlog'            => 'regjistrin e grisjeve',
@@ -2301,7 +2288,6 @@ Ju mund të keni një lidhje të keqe, ose versioni mund të jetë restauruar os
 'undeletereset'                => 'Boshatis',
 'undeleteinvert'               => 'Selektim anasjelltas',
 'undeletecomment'              => 'Arsyeja:',
-'undeletedarticle'             => 'u restaurua "$1"',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|version u restaurua|versione u restauruan}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|version|versione}} dhe $2 {{PLURAL:$2|skedë|skeda}} janë restauruar',
 'undeletedfiles'               => '$1 {{PLURAL:$1|skedë u restaurua|skeda u restauruan}}',
@@ -2589,9 +2575,6 @@ Në ato raste, duhet ta zhvendosni ose përpuqni faqen vetë n.q.s. dëshironi."
 'movepage-page-moved'          => 'Faqja $1 është zhvendosur tek $2.',
 'movepage-page-unmoved'        => "Faqja $1 s'mund të zhvendosej tek $2.",
 'movepage-max-pages'           => 'Maksimumi prej $1 {{PLURAL:$1|faqeje|faqesh}} është zhvendosur dhe nuk do të zhvendoset më automatikisht.',
-'1movedto2'                    => '[[$1]] u zhvendos tek [[$2]]',
-'1movedto2_redir'              => '[[$1]] u zhvendos tek [[$2]] dhe u krijua një faqe përcjellimi',
-'move-redirect-suppressed'     => 'përcjellimi i prishur',
 'movelogpage'                  => 'Regjistri i zhvendosjeve',
 'movelogpagetext'              => 'Më poshtë është një listë e faqeve të zhvendosura',
 'movesubpage'                  => '$1 nën-faqe',
@@ -3651,5 +3634,9 @@ Kjo faqe është duke përjetuar vështirësi teknike.',
 # SQLite database support
 'sqlite-has-fts' => '$1 me mbështetje të kërkimit me teskt të plotë',
 'sqlite-no-fts'  => '$1 pa mbështetje të kërkimit me teskt të plotë',
+
+# New logging system
+'revdelete-restricted'   => 'u vendosën kufizime për administruesit',
+'revdelete-unrestricted' => 'u hoqën kufizimet për administruesit',
 
 );

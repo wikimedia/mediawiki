@@ -2485,6 +2485,7 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'unblocklink'                     => 'poista esto',
 'change-blocklink'                => 'muuta estoa',
 'contribslink'                    => 'muokkaukset',
+'emaillink'                       => 'lähetä sähköpostia',
 'autoblocker'                     => 'Olet automaattisesti estetty, koska jaat IP-osoitteen käyttäjän [[User:$1|$1]] kanssa. Eston syy: $2.',
 'blocklogpage'                    => 'Estoloki',
 'blocklog-showlog'                => 'Tämä käyttäjä on ollut estettynä.
@@ -2597,9 +2598,6 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'movepage-page-unmoved'        => 'Sivua $1 ei voitu siirtää nimelle $2.',
 'movepage-max-pages'           => 'Enimmäismäärä sivuja on siirretty, eikä enempää siirretä enää automaattisesti.
 $1 {{PLURAL:$1|sivu|sivua}} siirrettiin.',
-'1movedto2'                    => 'siirsi sivun [[$1]] uudelle nimelle [[$2]]',
-'1movedto2_redir'              => 'siirsi sivun [[$1]] ohjauksen [[$2]] päälle',
-'move-redirect-suppressed'     => 'ei ohjausta',
 'movelogpage'                  => 'Siirtoloki',
 'movelogpagetext'              => 'Tämä on loki siirretyistä sivuista.',
 'movesubpage'                  => '{{PLURAL:$1|Alasivu|Alasivut}}',
@@ -3663,6 +3661,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'logentry-delete-revision'        => '$1 muutti {{PLURAL:$5||$5}} muutoksen näkyvyyttä sivulla $3: $4',
 'logentry-delete-event-legacy'    => '$1 muutti lokitapahtumien näkyvyyttä $3',
 'logentry-delete-revision-legacy' => '$1 muutti sivun $3 muutosten näkyvyyttä',
+'logentry-suppress-delete'        => '$1 {{GENDER:$2|häivytti}} sivun $3',
 'revdelete-content-hid'           => 'sisältö piilotettu',
 'revdelete-summary-hid'           => 'muokkausyhteenveto piilotettu',
 'revdelete-uname-hid'             => 'käyttäjätunnus piilotettu',
@@ -3671,5 +3670,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'revdelete-uname-unhid'           => 'käyttäjätunnus palautettu näkyviin',
 'revdelete-restricted'            => 'asetti rajoitukset ylläpitäjille',
 'revdelete-unrestricted'          => 'poisti rajoitukset ylläpitäjiltä',
+'logentry-move-move'              => '$1 {{GENDER:$2|siirsi}} sivun $3 uudelle nimelle $4',
+'logentry-move-move_redir'        => '$1 {{GENDER:$2|siirsi}} sivun $3 ohjauksen $4 päälle',
 
 );

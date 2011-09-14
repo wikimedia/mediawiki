@@ -748,9 +748,8 @@ $2، $1',
 'enotif_anon_editor' => 'نشناسی‌یه کارور $1',
 
 # Delete
-'deletepage'     => 'صفحه پاک هاکردن',
-'deletedarticle' => 'وربـأئـیـتـه بأیه "[[$1]]"',
-'dellogpage'     => 'وربأئیته‌نه‌ئون گوزارش',
+'deletepage' => 'صفحه پاک هاکردن',
+'dellogpage' => 'وربأئیته‌نه‌ئون گوزارش',
 
 # Rollback
 'rollback'          => 'دچی‌یه‌ئون ره واچی‌ین',
@@ -765,8 +764,7 @@ $2، $1',
 'restriction-upload' => 'باربی‌یشتن',
 
 # Undelete
-'undeletelink'     => 'بـأویـنـه‌ن / ده‌واره جـا بـیـه‌شـتـه‌ن',
-'undeletedarticle' => 'جـا دأکـه‌فـتـه "[[$1]]"',
+'undeletelink' => 'بـأویـنـه‌ن / ده‌واره جـا بـیـه‌شـتـه‌ن',
 
 # Namespace form on various pages
 'namespace'      => 'نوم‌جا:',
@@ -809,7 +807,6 @@ $2، $1',
 'newtitle'                => 'ترنه نوم:',
 'movepage-moved'          => "'''ای «$1» ولـگ،  بورده «$2» ره.'''",
 'movetalk'                => '«گپ» صفحه هم، اگه وانه، بوره.',
-'1movedto2'               => '[[$1]] بـورده [[$2]] ره',
 'revertmove'              => 'واچـیـه‌ن',
 'delete_and_move_confirm' => 'أره، پاک هاکه‌ن وه ره',
 

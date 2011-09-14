@@ -553,7 +553,6 @@ $messages = array(
 
 # Delete
 'actioncomplete' => 'ಕಾರ್ಯ ಸಂಪೂರ್ಣ',
-'deletedarticle' => '"[[$1]]" ನೆನ್ನ್ ದೆತ್ತ್ ದಾ೦ಡ್',
 'dellogpage'     => 'ಡಿಲೀಟ್ ಮಲ್ತಿನ ಫೈಲ್’ಲೆದ ದಾಖಲೆ',
 
 # Rollback
@@ -565,8 +564,7 @@ $messages = array(
 'modifiedarticleprotection' => '"[[$1]]" ಪುಟೊತ ಸಂರಕ್ಷಣೆ ಮಟ್ಟ ಬದಲಾಂಡ್',
 
 # Undelete
-'undeletelink'     => 'ದುಂಬುದ ಆವೃತ್ತಿಗ್ ಪೋಲೆ',
-'undeletedarticle' => '"[[$1]]" ನ್ ಪಿರಕನತ್’ನ್ಡ್',
+'undeletelink' => 'ದುಂಬುದ ಆವೃತ್ತಿಗ್ ಪೋಲೆ',
 
 # Namespace form on various pages
 'namespace'      => 'ನೇಮ್-ಸ್ಪೇಸ್:',

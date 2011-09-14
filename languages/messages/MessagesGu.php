@@ -1003,8 +1003,6 @@ $3 દ્વારા અપાયેલ કારણ છે ''$2''",
 'revdelete-unsuppress'        => 'સમા કરાયેલા પુનરાવર્તન પરનાપ્રતિબંધ હટાવો',
 'revdelete-log'               => 'કારણ:',
 'revdelete-submit'            => 'પસંદ કરેલા {{PLURAL:$1|ફેરફાર|ફેરફારો}} પર લગાડો',
-'revdelete-logentry'          => '"[[$1]]" ના પુનરાવર્તનની બદયેલી દ્રશ્યતા',
-'logdelete-logentry'          => '"[[$1]]"ની બદલાયેલી ઘટના દ્રશ્યતા',
 'revdelete-success'           => 'પુનરવર્તન દ્રશ્યતાસફળતા પૂર્વક અદ્યતન બનાવાઈ',
 'revdelete-failure'           => "'''પુનરાવર્તનની દ્રશ્યતા બદલીન શકાઈ:'''
 $1",
@@ -1016,15 +1014,6 @@ $1",
 'revdel-restore-visible'      => 'દ્રશ્ય પુનરાવર્તનો',
 'pagehist'                    => 'પાનાનો ઇતિહાસ',
 'deletedhist'                 => 'રદ કરેલનો ઇતિહાસ',
-'revdelete-content'           => 'સામગ્રી',
-'revdelete-summary'           => 'સંપાદનનો સંક્ષિપ્ત અહેવાલ',
-'revdelete-uname'             => 'સભ્યનામ',
-'revdelete-restricted'        => 'પ્રબઁધકોના ફેરફાર કરવા પર પ્રતિબંધ મુકાયો',
-'revdelete-unrestricted'      => 'પ્રબંધકોના ફેરફાર કરવા પર પ્રતિબંધ હટાવાયો.',
-'revdelete-hid'               => '$1 છુપાવો',
-'revdelete-unhid'             => '$1 દર્શાવો',
-'revdelete-log-message'       => '$1 માટે $2 {{PLURAL:$2|ફેરફાર|ફેરફારો }} દર્શાવો',
-'logdelete-log-message'       => '$1 માટે $2 {{PLURAL:$2|ઘટના|ઘટનાઓ}}',
 'revdelete-hide-current'      => '$2, $1 તરીખ ધરાવતી વસ્તુ સંતાડવામાં ત્રુટિ : આ હાલનો ફેરફાર છે.
 આને છુપાવી નહીં શકાય.',
 'revdelete-show-no-access'    => '$2, $1 તિથીની વસ્તુ બતાવવામાં ત્રુટિ : આને "પ્રતિબંધિત" અંકિત કરાઇ છે.
@@ -2119,8 +2108,6 @@ $UNWATCHURL
 'actionfailed'           => 'કાર્ય અસફળ',
 'deletedtext'            => '"$1" દૂર કરવામાં આવ્યું છે.
 તાજેતરમાં દૂર કરેલા લેખોની વિગત માટે $2 જુઓ.',
-'deletedarticle'         => 'હટાવવામાં આવેલા "[[$1]]"',
-'suppressedarticle'      => 'છુપાવેલા "[[$1]]"',
 'dellogpage'             => 'હટાવેલાઓનું માહિતિ પત્રક (ડિલિશન લૉગ)',
 'dellogpagetext'         => 'હાલમાં હટાવેલ પાનાની યાદિ',
 'deletionlog'            => 'હટાવેલાઓનું માહિતિ પત્રક (ડિલિશન લૉગ)',
@@ -2258,7 +2245,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'undeletereset'                => 'ફરી ગોઠવો',
 'undeleteinvert'               => 'પસંદગી ઉલટાવો',
 'undeletecomment'              => 'કારણ:',
-'undeletedarticle'             => '"[[$1]]" પુનઃસ્થાપિત કર્યું',
 'undeletedrevisions'           => '{{PLURAL:$1|૧ સંપાદન|$1 સંપાદનો}} પુન સ્થાપિત કરાયા',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 ફેરફાર|$1 ફેરફારો}} અને {{PLURAL:$2|1 ફાઈલા|$2 ફાઈલો}} પુનઃસ્થાપિત',
 'undeletedfiles'               => '{{PLURAL:$1|1 ફાઇલ|$1 ફાઇલો}} પુનઃસ્થાપિત',
@@ -2533,9 +2519,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 'movepage-page-moved'          => 'પાના $1 ને $2 પર ખસેડાયું',
 'movepage-page-unmoved'        => 'પાના $1ને $2 પર ન લઈ જઈ શકાયું',
 'movepage-max-pages'           => 'મહત્તમ એવા $1 {{PLURAL:$1|પાનું|પાનાઓ}} કાઢી નખાયા છે. સ્વયંચાલિત રીત આનાથી વધુ પાના કાઢી શકાશે નહીં.',
-'1movedto2'                    => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
-'1movedto2_redir'              => 'નામ બદલતા [[$1]] ને [[$2]] બનાવ્યું',
-'move-redirect-suppressed'     => 'દિશા નિર્દેશનો છુપાડાયા',
 'movelogpage'                  => 'નામ ફેર માહિતિ પત્રક',
 'movelogpagetext'              => 'બધા હટાવેલ પાનાની માહિતી',
 'movesubpage'                  => '{{PLURAL:$1|ઉપપાનું|ઉપપાના}}',
@@ -3409,5 +3392,9 @@ $1',
 # SQLite database support
 'sqlite-has-fts' => '$1 પૂર્ણ શબ્દ શોધ સહીત',
 'sqlite-no-fts'  => '$1 પૂર્ણ શબ્દ  શોધ વિકલ્પ વગર',
+
+# New logging system
+'revdelete-restricted'   => 'પ્રબઁધકોના ફેરફાર કરવા પર પ્રતિબંધ મુકાયો',
+'revdelete-unrestricted' => 'પ્રબંધકોના ફેરફાર કરવા પર પ્રતિબંધ હટાવાયો.',
 
 );

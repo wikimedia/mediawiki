@@ -863,8 +863,6 @@ raha kayna bĝda.',
 'revdelete-unsuppress'        => 'ḫyyed ḍ-ḍawabit mn l-moṛajaĝaṫ l-mosṫrjaĝa',
 'revdelete-log'               => 'sabab:',
 'revdelete-submit'            => 'tḅḅeq ĝla {{PLURAL:$1|l-ṃoṛajaĝa|l-ṃoṛajaĝaṫ}} l-mĥṫaṛa',
-'revdelete-logentry'          => 'bddl l-vizibiliṫi dl-ṃoṛajaĝa l-"[[$1]]"',
-'logdelete-logentry'          => 'bddl l-vizibiliṫi dl-ḫadaṫ l-"[[$1]]"',
 'revdelete-success'           => "'''ṫ-ṫḫdiṫ d-vizibiliṫi dl-morajaĝaṫ njḫ.'''",
 'revdelete-failure'           => "'''ṫ-ṫḫdiṫ d-vizibiliṫi dl-morajaĝaṫ ma njḫ-ċ:'''
 $1",
@@ -876,15 +874,6 @@ $1",
 'revdel-restore-visible'      => "morajaat mar'iya",
 'pagehist'                    => 'Ṫariĥ ṣ-ṣefḫa',
 'deletedhist'                 => 'tarikh lmhdof',
-'revdelete-content'           => 'L-Meḍmon',
-'revdelete-summary'           => 'molkhass taadil',
-'revdelete-uname'             => 'smiṫ l-mosṫĥdim',
-'revdelete-restricted'        => 'tḅḅq ḍ-ḍawaḅit ll-idariyyin',
-'revdelete-unrestricted'      => 'ḫyyd ḍ-ḍawaḅit ll-idariyyin',
-'revdelete-hid'               => 'ĥḅḅa $1',
-'revdelete-unhid'             => 'byyn $1',
-'revdelete-log-message'       => '$1 l-$2 {{PLURAL:$2|l-morajaĝa|dl-morajaĝaṫ}}',
-'logdelete-log-message'       => '$1 l-$2 {{PLURAL:$2|l-ḫadaṫ|dl-ḫdaṫ}}',
 'revdelete-no-change'         => "'''ṫḫdir:''' l-ĝonṣor l-m'rreĥ $2, $1 fih bĝda l-parametraṫ dl-vizibiliti lli mtloba.",
 'revdelete-reason-dropdown'   => '*asbab l-ḫdf l-ĝamma
 ** ĥrq ḫoqoq n-nacṛ
@@ -1747,8 +1736,6 @@ L-Kṫaba dyal had ṣ-ṣefḫa ġaṫban '''ġliḍa''' fe [[Special:RecentCha
 'actionfailed'           => 'Ma ṣeḍqaṫċ',
 'deletedtext'            => '« $1 » ṫemḫa.
 Ċof $2 ila bġiṫi ċi lista dyal kolċi li ṫemḫa aĥiran.',
-'deletedarticle'         => 'memḫi "[[$1]]"',
-'suppressedarticle'      => 'mḫa "[[$1]]"',
 'dellogpage'             => 'Ṫ-Ṫariĥ dyal ṣ-ṣefḫaṫ li ṫṫemḫaw',
 'dellogpagetext'         => 'Ha hiya l-lista dyal dakċi li ĝad ṫṫemḫa.',
 'deletionlog'            => 'Ṫ-Ṫariĥ dyal ṣ-ṣefḫaṫ li ṫṫemḫaw',
@@ -1828,7 +1815,6 @@ Imken lek ṫbeddel l-mosṫawa de l-ḫimaya dyal had ṣ-ṣefḫa bla ma i\'e
 'undeletereset'             => 'aawd regli',
 'undeleteinvert'            => 'Qleb dakċi li ĝzelṫi',
 'undeletecomment'           => 'sabab:',
-'undeletedarticle'          => 'sṫerjeĝ "[[$1]]"',
 'undeletedrevisions'        => '{{PLURAL:$1|vérsyon weḫda rejĝaṫ ki kaneṫ|$1 de lé-vérsyon rejĝo ki kano}}',
 'undeletedrevisions-files'  => 'ṫreddaṫ {{PLURAL:$1|1 l-ṃoṛajaĝa|$1 dl-ṃoṛajaĝaṫ}} o-{{PLURAL:$2|1 l-milef|$2 dl-milffaṫ}}',
 'undeletedfiles'            => 'ṫredd {{PLURAL:$1|1 l-milef|$1 dl-melffaṫ}}',
@@ -2019,9 +2005,6 @@ Imken hadċi y'eddi ṫeġyiraṫ hammin ila kaneṫ ċi ṣefḫa kayqrawha n-n
 'movepage-page-exists'        => 'Ṣ-Ṣefḫa $1 fayeṫ kayna o ma ymken lhaċ ṫṫemḫa otomaṫikiyan.',
 'movepage-page-moved'         => 'Ṣ-Ṣefḫa $1 wellaṫ smiyyṫha $2',
 'movepage-page-unmoved'       => 'Ṣ-Ṣefḫa $1 ma qeḍraṫċ ṫwelli $2.',
-'1movedto2'                   => 'neqqel [[$1]] ḫṫal [[$2]]',
-'1movedto2_redir'             => 'neqqel [[$1]] le [[$2]] foq ṫ-ṫeḫwila dyalṫha',
-'move-redirect-suppressed'    => 'Ṫ-Ṫeḫwil ṫṫemḫa',
 'movelogpage'                 => 'Ṫariĥ n-naql',
 'movelogpagetext'             => 'Ha hiya l-lista dyal ṣ-ṣefḫaṫ kamlin li ṫneqqlo.',
 'movesubpage'                 => '{{PLURAL:$1|Ṣefḫa ferĝiyya|Ṣefḫaṫ ferĝiyya}}',
@@ -2768,5 +2751,9 @@ jrreb l-ĝṛḍ l-ĝadi.',
 # SQLite database support
 'sqlite-has-fts' => '$1 maa imkaniyat lbaht f nass kaml',
 'sqlite-no-fts'  => '$1 imkaniyat lbaht f nass kaml',
+
+# New logging system
+'revdelete-restricted'   => 'tḅḅq ḍ-ḍawaḅit ll-idariyyin',
+'revdelete-unrestricted' => 'ḫyyd ḍ-ḍawaḅit ll-idariyyin',
 
 );

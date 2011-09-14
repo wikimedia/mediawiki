@@ -404,7 +404,6 @@ Kana kamesa te khoses kadaya patrin andar tiri lista le patryange so arakhes len
 'actioncomplete'  => 'Agorisardi buti',
 'deletedtext'     => '"$1" sas khosli.
 Dikh ando $2 ek patrinipen le palutne butyange khosle.',
-'deletedarticle'  => '"[[$1]]" sas khosli.',
 
 # Rollback
 'rollback_short' => 'Palemavilipen',
@@ -448,7 +447,6 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'movepagebtn'     => 'Inger i patrin',
 'pagemovedsub'    => 'I patrin sas bićhaldi.',
 'movedto'         => 'ingerdi kai',
-'1movedto2'       => '[[$1]] bichhaldo kai [[$2]]',
 'delete_and_move' => 'Khos thai inger',
 
 # Export

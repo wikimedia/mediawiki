@@ -948,8 +948,6 @@ Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na sch
 'revdelete-unsuppress'        => 'Wobmjezowanja za wobnowjene wersije zběhnyć',
 'revdelete-log'               => 'Přičina:',
 'revdelete-submit'            => 'Na {{PLURAL:$1|wubranu wersiju|wubranej wersiji|wubrane wersije|wubrane wersije}} nałožować',
-'revdelete-logentry'          => 'Widźomnosć wersije změnjena za [[$1]]',
-'logdelete-logentry'          => 'je widźomnosć za [[$1]] změnił',
 'revdelete-success'           => "'''Widźomnosć wersije bu wuspěšnje zaktualizowana.'''",
 'revdelete-failure'           => "'''Wersijowa widźomnosć njeda so aktualizować:'''
 $1",
@@ -961,15 +959,6 @@ $1",
 'revdel-restore-visible'      => 'widźomne wersije',
 'pagehist'                    => 'Stawizny strony',
 'deletedhist'                 => 'Wušmórnjene stawizny',
-'revdelete-content'           => 'wobsah',
-'revdelete-summary'           => 'zjeće wobdźěłać',
-'revdelete-uname'             => 'wužiwarske mjeno',
-'revdelete-restricted'        => 'na administratorow nałožene wobmjezowanja',
-'revdelete-unrestricted'      => 'Wobmjezowanja za administratorow wotstronjene',
-'revdelete-hid'               => '$1 schowany',
-'revdelete-unhid'             => '$1 pokazany',
-'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|wersija|wersiji|wersije|wersijow}}',
-'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|podawk|podawkaj|podawki|podawkow}}',
 'revdelete-hide-current'      => 'Zmylk při chowanju zapiska wot $2, $1: to je aktualna wersija.
 Njeda so schować.',
 'revdelete-show-no-access'    => 'Zmylk při pokazowanju zapiska wot $2, $1: tutón zapisk bu jako "wobmjezowany" markěrowany.
@@ -2054,8 +2043,6 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'actioncomplete'         => 'Dokónčene',
 'actionfailed'           => 'Akcija je so njeporadźiła',
 'deletedtext'            => 'Strona „$1” bu wušmórnjena. Hlej $2 za lisćinu aktualnych wušmórnjenjow.',
-'deletedarticle'         => 'je stronu [[$1]] wušmórnył.',
-'suppressedarticle'      => '"[[$1]]" potłóčeny',
 'dellogpage'             => 'Protokol wušmórnjenjow',
 'dellogpagetext'         => 'Deleka je lisćina najaktualnišich wušmórnjenjow.',
 'deletionlog'            => 'Protokol wušmórnjenjow',
@@ -2172,7 +2159,6 @@ W tutym padźe dyrbiš najnowšu wušmórnjenu wersiju znjemóžnić abo pokaza�
 'undeletereset'                => 'Cofnyć',
 'undeleteinvert'               => 'Wuběr wobroćić',
 'undeletecomment'              => 'Přičina:',
-'undeletedarticle'             => 'je „[[$1]]” wobnowił.',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} {{PLURAL:$1|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}',
 'undeletedrevisions-files'     => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} a $2 {{PLURAL:$2|dataja|dataji|dataje|datajow}} {{PLURAL:$2|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}',
 'undeletedfiles'               => '$1 {{PLURAL:$1|dataja|dataji|dataje|datajow}} {{PLURAL:$1|wobnowjena|wobnowjenej|wobnowjene|wobnowjene}}.',
@@ -2435,9 +2421,6 @@ W tutych padach dyrbiš stronu manuelnje přesunyć abo zaměšeć, jeli sej to 
 'movepage-page-moved'          => 'Strona $1 bu do $2 přesunjena.',
 'movepage-page-unmoved'        => 'Strona $1 njeda so do $2 přesunyć.',
 'movepage-max-pages'           => 'Maksimalna ličba $1 {{PLURAL:$1|strony|stronow|stronow|stronow}} bu přesunjena, dalše strony so awtomatisce njepřesunu.',
-'1movedto2'                    => 'je [[$1]] pod hesło [[$2]] přesunył',
-'1movedto2_redir'              => 'je [[$1]] pod hesło [[$2]] přesunył a při tym daleposrědkowanje přepisał.',
-'move-redirect-suppressed'     => 'daleposrědkowanje podtłóčene',
 'movelogpage'                  => 'Protokol přesunjenjow',
 'movelogpagetext'              => 'Deleka je lisćina wšěch přesunjenych stronow.',
 'movesubpage'                  => '{{PLURAL:$1|Podstrona|Podstronje|Podstrony|Podstronow}}',
@@ -3411,5 +3394,9 @@ Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => '$1 połnotekstowe pytanje podpěruje.',
 'sqlite-no-fts'  => '$1 połnotekstowe pytanje njepodpěruje',
+
+# New logging system
+'revdelete-restricted'   => 'na administratorow nałožene wobmjezowanja',
+'revdelete-unrestricted' => 'Wobmjezowanja za administratorow wotstronjene',
 
 );

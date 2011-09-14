@@ -466,10 +466,6 @@ $messages = array(
 'revdel-restore'            => 'Койымашым вашталташ',
 'pagehist'                  => 'Лаштыкын эртымгорно',
 'deletedhist'               => 'Шӧрымо эртымгорно',
-'revdelete-content'         => 'кӧргӧ',
-'revdelete-summary'         => 'тӧрлатымаш-влакым возен ончыктымаш',
-'revdelete-uname'           => 'Пайдаланышын лӱмжӧ',
-'revdelete-hid'             => '$1 шылтыме',
 'revdelete-otherreason'     => 'Вес/ешартыш амал:',
 'revdelete-reasonotherlist' => 'Вес амал',
 
@@ -802,7 +798,6 @@ $messages = array(
 'actioncomplete'        => 'Ыштыме',
 'deletedtext'           => '«$1» шӧрымӧ.
 Ончо $2 пытартыш шӧрымӧ-влак лӱмер гыч.',
-'deletedarticle'        => '«[[$1]]» шӧрымӧ',
 'dellogpage'            => 'Шӧрымӧ нерген журнал',
 'deletionlog'           => 'шӧрымӧ нерген журнал',
 'deletecomment'         => 'Амал:',
@@ -839,7 +834,6 @@ $messages = array(
 
 # Undelete
 'undeletelink'           => 'ончалаш/тӧрлатен шындаш',
-'undeletedarticle'       => '«[[$1]]» тӧрлатен шынден',
 'undelete-search-submit' => 'Кычал',
 
 # Namespace form on various pages
@@ -929,9 +923,6 @@ $messages = array(
 'talkexists'                => "'''Лаштыкым кусарыме гынат, тудын каҥашымаш лаштыкшым тыгай лӱман лаштык улмылан кӧра кусараш огеш лий. Нуным шке кидет дене иктыш ушно.'''",
 'movedto'                   => 'лаштыкыш кусарыме',
 'movetalk'                  => 'Каҥашымаш лаштыкым кусараш',
-'1movedto2'                 => '[[$1]] лаштыкым [[$2]] лаштыкыш кусарыме',
-'1movedto2_redir'           => '[[$1]] лаштыкым [[$2]] лаштыкыш кусарыме ӱмбал вес вереш колтымаш',
-'move-redirect-suppressed'  => 'вес верек колтымаш ыштыме огыл',
 'movelogpage'               => 'Кусарыме нерген журнал',
 'movereason'                => 'Амал:',
 'revertmove'                => 'мӧҥгешла пӧртылаш',

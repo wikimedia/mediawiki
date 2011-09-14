@@ -944,8 +944,6 @@ Dalšne administratory na {{GRAMMAR:lokatiw|{{SITENAME}}}} mógu ale pśecej hy�
 'revdelete-unsuppress'        => 'Wobgranicowanja za wótnowjone wersije zasej zwignuś.',
 'revdelete-log'               => 'Pśicyna:',
 'revdelete-submit'            => 'Na {{PLURAL:$1|wubranu wersiju|wubranej wersiji|wubrane wersije|wubrane wersije}} nałožyś',
-'revdelete-logentry'          => 'Woglědanje wersije změnjone za [[$1]]',
-'logdelete-logentry'          => 'wiźobnosć za [[$1]] změnjona.',
 'revdelete-success'           => "'''Widobnosć wersije jo se z wuspěchom zaktualizěrowała.'''",
 'revdelete-failure'           => "'''Wersijowa widobnosć njedajo se aktualizěrowaś:'''
 $1",
@@ -957,15 +955,6 @@ $1",
 'revdel-restore-visible'      => 'widobne wersije',
 'pagehist'                    => 'stawizny boka',
 'deletedhist'                 => 'wulašowane stawizny',
-'revdelete-content'           => 'wopśimjeśe',
-'revdelete-summary'           => 'Zespominanje wobźěłanja',
-'revdelete-uname'             => 'wužywarske mě',
-'revdelete-restricted'        => 'Wobgranicowanja se teke na administratorow nałožuju',
-'revdelete-unrestricted'      => 'Wobgranicowanja za administratorow wótpórane',
-'revdelete-hid'               => 'schowa $1',
-'revdelete-unhid'             => 'zasej wótkšy $1',
-'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|wersiju|wersiji|wersije|wersijow}}',
-'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|tšojenje|tšojeni|tšojenja|tšojenjow}}',
 'revdelete-hide-current'      => 'Zmólka pśi chowanju zapiska wót $2, $1: to jo aktualna wersija.
 Njedajo se schowaś.',
 'revdelete-show-no-access'    => 'Zmólka pśi pokazowanju zapiska wót $2, $1: toś ten zapisk jo se ako "wobgranicowany" markěrował.
@@ -2035,8 +2024,6 @@ Pšašanja a dalšna pomoc:
 'actioncomplete'         => 'Akcija jo se wugbała.',
 'actionfailed'           => 'Akcija jo se njeraźiła',
 'deletedtext'            => '„$1“ jo se wulašował(a/o). W $2 namakajoš lisćinu slědnych wulašowanjow.',
-'deletedarticle'         => 'jo "[[$1]]" wulašował',
-'suppressedarticle'      => '"[[$1]]" pódtłocony',
 'dellogpage'             => 'Protokol wulašowanjow',
 'dellogpagetext'         => 'How jo protokol wulašowanych bokow a datajow.',
 'deletionlog'            => 'protokol wulašowanjow',
@@ -2157,7 +2144,6 @@ W takich padach dejš nejnowše wulašowane wersije markěroanje abo schowanje w
 'undeletereset'                => 'Slědk wześ',
 'undeleteinvert'               => 'Wuběrk pśewobrośiś',
 'undeletecomment'              => 'Pśicyna:',
-'undeletedarticle'             => 'bok „[[$1]]“ nawrośony',
 'undeletedrevisions'           => '{{PLURAL:$1|1 wersija jo se nawrośiła|$1 wersiji stej se nawrośiłej|$1 wersije su se nawrośili}}.',
 'undeletedrevisions-files'     => '{{PLURAL:$1|1 wersija|$1 wersiji|$1 wersije}} a {{PLURAL:$2|1 dataja|$2 dataji|$2 dataje}} {{PLURAL:$2|jo se nawrośiła|stej se nawrośiłej|su se nawrośili}}.',
 'undeletedfiles'               => '{{PLURAL:$1|1 dataja jo se nawrośiła|$1 dataji stej se nawrośiłej|$1 dataje su se nawrośili}}.',
@@ -2424,9 +2410,6 @@ W toś tyma padoma dej wopśimjeśe boka manualnje se pśesunuś resp. gromadu w
 'movepage-page-moved'          => 'Bok $1 jo se do $2 pśesunuł.',
 'movepage-page-unmoved'        => 'Bok $1 njejo se do $2 pśesunuś dał.',
 'movepage-max-pages'           => 'Maksimalna licba $1 {{PLURAL:$1|boka|bokowu|bokow|bokow}} jo se pśesunuła a žedne dalšne wěcej njedaje se awtomatiski pśesunuś.',
-'1movedto2'                    => '„[[$1]]“ pśesunjone na „[[$2]]“',
-'1movedto2_redir'              => 'Nastawk „[[$1]]“ jo se pśesunuł na „[[$2]]“. Pśi tom jo jadno dalejpósrědnjenje se pśepisało.',
-'move-redirect-suppressed'     => 'dalejpósrědnjenje pódtłocone',
 'movelogpage'                  => 'Protokol pśesunjenjow',
 'movelogpagetext'              => 'How jo lisćina wšyknych pśesunjonych bokow.',
 'movesubpage'                  => '{{PLURAL:$1|Pódbok|Pódboka|Pódboki|Pódbokow}}',
@@ -3312,5 +3295,9 @@ Zapódaj datajowe mě bźez dodanka "{{ns:file}}:".',
 # SQLite database support
 'sqlite-has-fts' => 'Wersija $1 z pódpěru za połnotekstowe pytanje',
 'sqlite-no-fts'  => 'Wersija $1 bźez pódpěry za połnotekstowe pytanje',
+
+# New logging system
+'revdelete-restricted'   => 'Wobgranicowanja se teke na administratorow nałožuju',
+'revdelete-unrestricted' => 'Wobgranicowanja za administratorow wótpórane',
 
 );

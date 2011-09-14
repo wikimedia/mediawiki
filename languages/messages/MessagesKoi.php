@@ -529,7 +529,6 @@ $messages = array(
 'confirmdeletetext'     => 'Тэ мöдан быдсöн чышкыны листбок (нето серпас) да  сылiсь история. Былись я тэ мöдан сiйö керны,  вежöртан я бура, мыйö этö вермас вайöтны,  и керан я этiйö [[{{MediaWiki:Policy-url}}]] туйдöттэз сьöртi',
 'actioncomplete'        => 'Керсьöм',
 'deletedtext'           => '«$1» чышкöм. Видзöт $2-ись медбöрья чышкöммесö.',
-'deletedarticle'        => 'чышкис "[[$1]]"',
 'dellogpage'            => 'Шупкан чукöр',
 'deletecomment'         => 'Мыля:',
 'deleteotherreason'     => 'Эшö мыля чышкöм:',
@@ -567,9 +566,8 @@ $messages = array(
 'maximum-size'                => 'Медгырись ыжда:',
 
 # Undelete
-'undeletelink'     => 'видзöтны/керны важмоз',
-'undeletecomment'  => 'Мыля:',
-'undeletedarticle' => "бöр керис ''[[$1]]''",
+'undeletelink'    => 'видзöтны/керны важмоз',
+'undeletecomment' => 'Мыля:',
 
 # Namespace form on various pages
 'namespace'      => 'Ниммез чукöр:',
@@ -639,8 +637,6 @@ $messages = array(
 'talkexists'       => "'''Листбоклiсь ним вежöм ни, а сы йылiсь сёрнитанлiсь абу, мыля сэтшöм жö нима листбок эм ни. Öтлаöт жö нiйö кипонiсь.'''",
 'movedto'          => 'нымыс вежöм … вылö',
 'movetalk'         => 'Вежны ним и сёрнитан листбокыслiсь',
-'1movedto2'        => 'вежис  «[[$1]]»-лiсь нимсö «[[$2]]» вылö',
-'1movedto2_redir'  => '«[[$1]]»-лö сетiсö виль ним «[[$2]]» мöдлаö иньдöтöм весьтын',
 'movelogpage'      => 'Юрниммез вежöм йылiсь',
 'movereason'       => 'Мыля:',
 'revertmove'       => 'керны важмоз',

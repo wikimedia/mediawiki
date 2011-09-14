@@ -476,8 +476,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'revdel-restore'          => 'ਦਿੱਖ ਬਦਲੋ',
 'pagehist'                => 'ਪੇਜ ਦਾ ਅਤੀਤ',
 'deletedhist'             => 'ਹਟਾਇਆ ਗਿਆ ਅਤੀਤ',
-'revdelete-content'       => 'ਸਮਗੱਰੀ',
-'revdelete-summary'       => 'ਸੰਖੇਪ ਸੋਧ',
 
 # Merge log
 'revertmerge' => 'ਬਿਨ-ਮਿਲਾਨ',
@@ -819,7 +817,6 @@ to upload files.',
 'delete-confirm'        => '"$1" ਹਟਾਓ',
 'delete-legend'         => 'ਹਟਾਓ',
 'actioncomplete'        => 'ਐਕਸ਼ਨ ਪੂਰਾ ਹੋਇਆ',
-'deletedarticle'        => '"[[$1]]" ਹਟਾਇਆ',
 'dellogpage'            => 'ਹਟਾਉਣ ਲਾਗ',
 'deletecomment'         => 'ਕਾਰਨ:',
 'deleteotherreason'     => 'ਹੋਰ/ਵਾਧੂ ਕਾਰਨ:',

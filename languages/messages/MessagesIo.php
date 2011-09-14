@@ -630,12 +630,6 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'revdel-restore-visible'     => 'videbla revizadi',
 'pagehist'                   => 'Pagino-versionaro',
 'deletedhist'                => 'Efacita versionaro',
-'revdelete-content'          => 'kontenajo',
-'revdelete-summary'          => 'redakto-rezumo',
-'revdelete-uname'            => 'uzantonomo',
-'revdelete-hid'              => 'celis $1',
-'revdelete-unhid'            => 'revelis $1',
-'logdelete-log-message'      => '$1 por $2 {{PLURAL:$2|evento|eventi}}',
 'revdelete-otherreason'      => 'Altra/suplementala motivo:',
 'revdelete-reasonotherlist'  => 'Altra motivo',
 
@@ -1113,7 +1107,6 @@ Volutez kontrolar '''<tt>[[:$1]]</tt>''' se vu ne esas certa pri chanjar olu.
 'actioncomplete'        => 'Ago kompletigita',
 'deletedtext'           => '"$1" efacesis.
 Videz $2 por obtenar registro di recenta efaci.',
-'deletedarticle'        => 'efacis "[[$1]]"',
 'dellogpage'            => 'Efaco-registraro',
 'dellogpagetext'        => 'Infre esas listo di la plu recenta efaci.',
 'deletionlog'           => 'registro di efaciti',
@@ -1181,7 +1174,6 @@ restauris ad lasta versiono da $2.',
 'undeletelink'              => 'vidar/restaurar',
 'undeleteviewlink'          => 'videz',
 'undeletecomment'           => 'Komento:',
-'undeletedarticle'          => 'restaurita "[[$1]]"',
 'undelete-search-box'       => 'Serchez efacita pagini',
 'undelete-search-submit'    => 'Serchar',
 'undelete-show-file-submit' => 'Yes',
@@ -1285,9 +1277,9 @@ Memorez [[Special:UnlockDB|efacar la blokuso]] kande vua mantenado finos.',
 'unlockdbsuccesstext' => 'La datumaro desblokusesis.',
 
 # Move page
-'move-page'                => 'Movar $1',
-'move-page-legend'         => 'Rinomizar pagino',
-'movepagetext'             => "Uzante ica formularo onu povas rinomizar pagino, movante olua omna versionaro ad la nova titulo.
+'move-page'               => 'Movar $1',
+'move-page-legend'        => 'Rinomizar pagino',
+'movepagetext'            => "Uzante ica formularo onu povas rinomizar pagino, movante olua omna versionaro ad la nova titulo.
 La antea titulo konvertesos a ridirektilo a la nova titulo.
 La ligili a la antea titulo dil pagino ne chanjesos.
 Voluntez certigar ke ne esas [[Special:DoubleRedirects|duopla]] o [[Special:BrokenRedirects|ruptota ridirektili]].
@@ -1299,26 +1291,23 @@ Ico signifikas ke vu povos rinomizar pagino a olua originala titulo se eroras sk
 '''EGARDEZ!'''
 Ica povas esar drastika chanjo e ne-esperinda por populara pagino;
 voluntez certigar ke vu komprenas la konsequi qui eventos ante durar adavane.",
-'movearticle'              => 'Movez pagino:',
-'movenologin'              => 'Sesiono ne iniciata',
-'movenologintext'          => 'Vu mustas esar registragita uzanto ed [[Special:UserLogin|enirir]] por rinomizar pagino.',
-'newtitle'                 => 'A nova titulo:',
-'move-watch'               => 'Surveyar ca pagino',
-'movepagebtn'              => 'Movar pagino',
-'pagemovedsub'             => 'Rinomizita sucese',
-'movepage-moved'           => '\'\'\'"$1" esas movata ad "$2"\'\'\'',
-'articleexists'            => 'Pagino kun sama nomo ja existas od la nomo
+'movearticle'             => 'Movez pagino:',
+'movenologin'             => 'Sesiono ne iniciata',
+'movenologintext'         => 'Vu mustas esar registragita uzanto ed [[Special:UserLogin|enirir]] por rinomizar pagino.',
+'newtitle'                => 'A nova titulo:',
+'move-watch'              => 'Surveyar ca pagino',
+'movepagebtn'             => 'Movar pagino',
+'pagemovedsub'            => 'Rinomizita sucese',
+'movepage-moved'          => '\'\'\'"$1" esas movata ad "$2"\'\'\'',
+'articleexists'           => 'Pagino kun sama nomo ja existas od la nomo
 qua vu selektis ne esas valida.
 Voluntez selektar altra nomo.',
-'movedto'                  => 'rinomizita ad',
-'movetalk'                 => 'Rinomizar la debato-pagino se to esas aplikebla.',
-'1movedto2'                => '[[$1]] movita a [[$2]]',
-'1movedto2_redir'          => '[[$1]] movita a [[$2]] tra ridirektilo',
-'move-redirect-suppressed' => 'ridirektilo supresita',
-'movelogpage'              => 'Movo-registraro',
-'movereason'               => 'Motivo:',
-'revertmove'               => 'rekuperar',
-'delete_and_move_confirm'  => 'Yes, efacez la pagino',
+'movedto'                 => 'rinomizita ad',
+'movetalk'                => 'Rinomizar la debato-pagino se to esas aplikebla.',
+'movelogpage'             => 'Movo-registraro',
+'movereason'              => 'Motivo:',
+'revertmove'              => 'rekuperar',
+'delete_and_move_confirm' => 'Yes, efacez la pagino',
 
 # Export
 'export'            => 'Exportacar pagini',

@@ -1035,8 +1035,6 @@ Kiti administratoriai iš {{SITENAME}} vistiek galės pasiekti paslėptą turin�
 'revdelete-unsuppress'        => 'Šalinti apribojimus atkurtose versijose',
 'revdelete-log'               => 'Priežastis:',
 'revdelete-submit'            => 'Taikyti {{PLURAL:$1|pasirinktai versijai|pasirinktoms versijoms}}',
-'revdelete-logentry'          => 'pakeistas [[$1]] versijos matomumas',
-'logdelete-logentry'          => 'pakeistas [[$1]] įvykio matomumas',
 'revdelete-success'           => "'''Versijos matomumas sėkmingai pakeistas.'''",
 'revdelete-failure'           => "'''Versijos rodomumas negali būti nustatytas:'''
 $1",
@@ -1048,15 +1046,6 @@ $1",
 'revdel-restore-visible'      => 'Matomos versijos',
 'pagehist'                    => 'Puslapio istorija',
 'deletedhist'                 => 'Ištrinta istorija',
-'revdelete-content'           => 'turinys',
-'revdelete-summary'           => 'keitimo komentaras',
-'revdelete-uname'             => 'naudotojo vardas',
-'revdelete-restricted'        => 'uždėti apribojimai administratoriams',
-'revdelete-unrestricted'      => 'pašalinti apribojimai administratoriams',
-'revdelete-hid'               => 'slėpti $1',
-'revdelete-unhid'             => 'atslėpti $1',
-'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|versijai|versijoms|versijų}}',
-'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|įvykiui|įvykiams|įvykių}}',
 'revdelete-hide-current'      => 'Klaida slepiant $1, $2 keitimą: tai yra dabartinė versija.
 Ji negali būti paslėpta.',
 'revdelete-show-no-access'    => 'Klaida rodant $1, $2 keitimą: jis pažymėtas ženklu „apribotas“.
@@ -2143,8 +2132,6 @@ Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus 
 'actionfailed'           => 'Veiksmas atšauktas',
 'deletedtext'            => '„$1“ ištrintas.
 Paskutinių šalinimų istorija - $2.',
-'deletedarticle'         => 'ištrynė „[[$1]]“',
-'suppressedarticle'      => 'apribotas „[[$1]]“',
 'dellogpage'             => 'Šalinimų istorija',
 'dellogpagetext'         => 'Žemiau pateikiamas paskutinių trynimų sąrašas.',
 'deletionlog'            => 'šalinimų istorija',
@@ -2269,7 +2256,6 @@ Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausią ištrintą ve
 'undeletereset'                => 'Iš naujo',
 'undeleteinvert'               => 'Žymėti priešingai',
 'undeletecomment'              => 'Priežastis:',
-'undeletedarticle'             => 'atkurta „[[$1]]“',
 'undeletedrevisions'           => '{{PLURAL:$1|atkurta $1 versija|atkurtos $1 versijos|atkurta $1 versijų}}',
 'undeletedrevisions-files'     => '{{PLURAL:$1|atkurta $1 versija|atkurtos $1 versijos|atkurta $1 versijų}} ir $2 {{PLURAL:$2|failas|failai|failų}}',
 'undeletedfiles'               => '{{PLURAL:$1|atkurtas $1 failas|atkurti $1 failai|atkurta $1 failų}}',
@@ -2568,9 +2554,6 @@ Prašome sujungti šiuos puslapius.'''",
 'movepage-page-moved'          => 'Puslapis $1 perkeltas į $2.',
 'movepage-page-unmoved'        => 'Puslapio $1 negalima perkelti į $2.',
 'movepage-max-pages'           => 'Daugiausiai $1 {{PLURAL:$1|puslapis buvo perkeltas|puslapiai buvo perkelti|puslapių buvo perkelta}} ir daugiau nebus perkelta automatiškai.',
-'1movedto2'                    => '[[$1]] pervadintas į [[$2]]',
-'1movedto2_redir'              => '[[$1]] pervadintas į [[$2]] (anksčiau buvo nukreipiamasis)',
-'move-redirect-suppressed'     => 'nukreipimas nesukurtas',
 'movelogpage'                  => 'Pervardinimų istorija',
 'movelogpagetext'              => 'Pervardintų puslapių sąrašas.',
 'movesubpage'                  => '{{PLURAL:$1|Subpuslapis|Subpuslapiai}}',
@@ -3639,5 +3622,9 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 # SQLite database support
 'sqlite-has-fts' => '$1 su visatekstės paieškos palaikymu',
 'sqlite-no-fts'  => '$1 be visatekstės paieškos palaikymo',
+
+# New logging system
+'revdelete-restricted'   => 'uždėti apribojimai administratoriams',
+'revdelete-unrestricted' => 'pašalinti apribojimai administratoriams',
 
 );

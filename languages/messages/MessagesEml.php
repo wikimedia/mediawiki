@@ -145,7 +145,6 @@ Nutêv ca alcuni pàgini i putrèbber cuntinuèr a cràdder ca vueter a-sîv dis
 Cunfermèr per piasèr ca saîv quàl che stèv par fêr, ca capîv al pussìbil counseguèinzi e ca stèv facènd quàst in confurmitê cun [[{{MediaWiki:Policy-url}}]].",
 'deletedtext'       => '"$1" l\'è stê scanzlê.
 Guèrda $2 par vèdder la lésta d\'al pàgin ch\'i sun stèdi scanzlèdi di recèint.',
-'deletedarticle'    => 'scanzlê "[[$1]]"',
 'dellogpage'        => 'Regestér dal scanzladûri',
 'deletionlog'       => 'regéster dal scanzladûri',
 
@@ -160,7 +159,6 @@ Guèrda $2 par vèdder la lésta d\'al pàgin ch\'i sun stèdi scanzlèdi di rec
 'contribslink' => "còl ch'l'à scrét",
 
 # Move page
-'1movedto2'   => "[[$1]] l'è stê mòs a [[$2]]",
 'movelogpage' => 'Regestér di muvimèint',
 
 # Special:NewFiles

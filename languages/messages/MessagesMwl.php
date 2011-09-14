@@ -529,10 +529,8 @@ Legenda: (atu) = defrénças de la berson atual,
 'history-feed-item-nocomment' => '$1 a $2',
 
 # Revision deletion
-'rev-delundel'      => 'amostrar/scunder',
-'revdel-restore'    => 'Demudar besiblidade',
-'revdelete-content' => 'cuntenido',
-'revdelete-uname'   => 'nome de outelizador',
+'rev-delundel'   => 'amostrar/scunder',
+'revdel-restore' => 'Demudar besiblidade',
 
 # History merging
 'mergehistory-submit' => 'Misturar eidiçones',
@@ -896,7 +894,6 @@ Por fabor, bei se ye esso que quieres fazer, que antendes las cunsequéncias i s
 'actioncomplete'        => 'Acion acabada',
 'deletedtext'           => '"$1" fue elhiminada.
 Consulte $2 para um registo de eliminações recentes.',
-'deletedarticle'        => 'botado pa la rue "[[$1]]"',
 'dellogpage'            => 'Registro de botado fuora',
 'deletecomment'         => 'Rezon:',
 'deleteotherreason'     => 'Rezon adicional:',
@@ -936,9 +933,8 @@ Esta ye la cunfiguraçon atual pa la páigina '''$1''':",
 'restriction-move' => 'Arrastrar',
 
 # Undelete
-'undeletebtn'      => 'Recuperar',
-'undeletelink'     => 'ber/restourar',
-'undeletedarticle' => 'restourado "[[$1]]"',
+'undeletebtn'  => 'Recuperar',
+'undeletelink' => 'ber/restourar',
 
 # Namespace form on various pages
 'namespace'      => 'Spácio de nomes:',
@@ -1020,8 +1016,6 @@ Por fabor, scuolhe outro nome.',
 'talkexists'       => "'''La páigina an si fui arrastrada cun éisito. Inda assi, la páigina de çcusson nun fui arrastrada, ua beç que yá eisistie ua cun este títalo. Por fabor, ajunta-las a la mano.'''",
 'movedto'          => 'arrastrado pa',
 'movetalk'         => 'Arrastrar tamien la páigina de çcusson associada.',
-'1movedto2'        => '[[$1]] fui arrastrado pa [[$2]]',
-'1movedto2_redir'  => 'arrastreste [[$1]] pa [[$2]] nun ancaminamiento',
 'movelogpage'      => "Registro d'arrastros",
 'movereason'       => 'Rezon:',
 'revertmove'       => 'poner al robés',

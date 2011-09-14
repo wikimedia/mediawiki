@@ -1041,8 +1041,6 @@ Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da
 'revdelete-unsuppress'        => 'Lemel ar strishadurioù war ar stummoù assavet',
 'revdelete-log'               => 'Abeg :',
 'revdelete-submit'            => 'Lakaat da dalvezout evit an {{PLURAL:$1|adweladenn|adweladennoù}} diuzet',
-'revdelete-logentry'          => 'Cheñchet eo bet gweluster ar stumm evit [[$1]]',
-'logdelete-logentry'          => 'kemmet eo bet gweluster an darvoud evit [[$1]]',
 'revdelete-success'           => "''Gweluster ar stummoù hizivaet mat.'''",
 'revdelete-failure'           => "''Dibosupl hizivaat gweluster ar stumm :'''
 $1",
@@ -1054,15 +1052,6 @@ $1",
 'revdel-restore-visible'      => "adweladennoù a c'heller gwelet",
 'pagehist'                    => 'Istor ar bajenn',
 'deletedhist'                 => 'Diverkañ an istor',
-'revdelete-content'           => 'danvez',
-'revdelete-summary'           => "diverradenn eus ar c'hemmoù",
-'revdelete-uname'             => 'anv implijer',
-'revdelete-restricted'        => 'Lakaat ar strishadurioù da dalvezout evit ar verourien',
-'revdelete-unrestricted'      => 'dilemel ar strishadurioù evit ar verourien',
-'revdelete-hid'               => 'kuzhat $1',
-'revdelete-unhid'             => 'diguzhat $1',
-'revdelete-log-message'       => '$1 evit $2 {{PLURAL:$2|adweladenn|adweladenn}}',
-'logdelete-log-message'       => '$1 evit $2 {{PLURAL:$2|darvoud|darvoud}}',
 'revdelete-hide-current'      => "Fazi en ur ziverkañ an elfenn deiziataet eus an $1 da $2 : ar stumm red eo.
 N'hall ket bezañ diverket.",
 'revdelete-show-no-access'    => 'Fazi en ur ziskwel an elfenn deiziataet eus an $1 da $2 : merket eo evel "miret".
@@ -2166,8 +2155,6 @@ Kadarnait, mar plij, eo mat an dra-se hoc'h eus c'hoant da ober, e komprenit mat
 'actionfailed'           => "Ober c'hwitet",
 'deletedtext'            => '"Diverket eo bet $1".
 Sellet ouzh $2 evit roll an diverkadennoù diwezhañ.',
-'deletedarticle'         => 'en deus dilamet "[[$1]]"',
-'suppressedarticle'      => 'diverket "[[$1]]"',
 'dellogpage'             => 'Roll ar pajennoù diverket',
 'dellogpagetext'         => 'Setu roll ar pajennnoù diwezhañ bet diverket.',
 'deletionlog'            => 'roll an diverkadennoù',
@@ -2293,7 +2280,6 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undeletereset'                => 'Adderaouekaat',
 'undeleteinvert'               => 'Eilpennañ diuzadenn',
 'undeletecomment'              => 'Abeg :',
-'undeletedarticle'             => 'Diziverket"$1"',
 'undeletedrevisions'           => 'Adsavet {{PLURAL:$1|1 stumm|$1 stumm}}',
 'undeletedrevisions-files'     => 'Adsavet ez ez eus bet {{PLURAL:$1|1 stumm|$1 stumm}} ha {{PLURAL:$2|1 restr|$2 restr}}',
 'undeletedfiles'               => '{{PLURAL:$1|1 restr|$1 restr}} adsavet',
@@ -2570,9 +2556,6 @@ Dibabit unan all mar plij.",
 'movepage-page-moved'          => 'Anv nevez ar bajenn $1 zo $2.',
 'movepage-page-unmoved'        => "N'eus ket bet gallet adenvel ar bajenn $1 e $2.",
 'movepage-max-pages'           => 'Tizhet eo bet ar vevenn uhelañ a $1 {{PLURAL:$1|bajenn|pajenn}} da adenvel ha ne vo ket adanvet hini all ebet ken ent emgefre.',
-'1movedto2'                    => '[[$1]] adkaset war-du [[$2]]',
-'1movedto2_redir'              => '[[$1]] adkaset war-du [[$2]] (adkas)',
-'move-redirect-suppressed'     => 'adkas nullet',
 'movelogpage'                  => 'Roll an adkasoù',
 'movelogpagetext'              => 'Setu roll ar pajennoù bet savet un adkas evito.',
 'movesubpage'                  => '{{PLURAL:$1|Ispajenn|Ispajenn}}',
@@ -3672,5 +3655,9 @@ Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
 # SQLite database support
 'sqlite-has-fts' => '$1 gant enklask eus an destenn a-bezh embreget',
 'sqlite-no-fts'  => '$1 hep enklask eus an destenn a-bezh embreget',
+
+# New logging system
+'revdelete-restricted'   => 'Lakaat ar strishadurioù da dalvezout evit ar verourien',
+'revdelete-unrestricted' => 'dilemel ar strishadurioù evit ar verourien',
 
 );

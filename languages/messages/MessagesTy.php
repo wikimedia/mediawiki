@@ -163,9 +163,6 @@ $messages = array(
 # What links here
 'whatlinkshere' => 'Te mau ’api i tū’atihia mai',
 
-# Move page
-'1movedto2' => '’Ua tāhitihia te ’api [[$1]] e ana i te ’api ’āpī [[$2]]',
-
 # Tooltip help for the actions
 'tooltip-search' => 'Roromā’imi {{SITENAME}}',
 

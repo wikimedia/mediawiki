@@ -570,7 +570,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'actioncomplete'        => 'Deahpadimmie voerkes',
 'deletedtext'           => '"$1" lea sihkojuvvon.
 Vuajna $2 ihke galtege bïjre männgan sihkojuvvonh.',
-'deletedarticle'        => 'sihkoj "[[$1]]"',
 'dellogpage'            => 'Sihkkun logge',
 'deletecomment'         => 'Gaavhtan ihke sihkkuma',
 'deleteotherreason'     => 'Jeatjebh/ehkstre gaavhtan:',
@@ -677,7 +676,6 @@ nome dov åtna veeljeme lea ijje jiiltige.
 Gïemhpes veeljeme jeatjebh nomme.',
 'movedto'          => 'jåhta gåajkoe',
 'movetalk'         => 'Jåhta aaj dïerkestidhbielie, bïjre dïhte gååvnese.',
-'1movedto2'        => '[[$1]] jåhta gåajkoe [[$2]]',
 'movelogpage'      => 'Jåhta logge',
 'movereason'       => 'Gaavhtan:',
 'revertmove'       => 'jåhta bååstede',

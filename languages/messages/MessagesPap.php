@@ -350,11 +350,9 @@ Wak e [[Special:IPBlockList|lista di blokeonan]] pa wak tur blokeo aktivo.',
 'unblocklogentry'    => 'a desblokia $1',
 
 # Move page
-'articleexists'   => 'Tin un página ku e título ei kaba, òf e
+'articleexists' => 'Tin un página ku e título ei kaba, òf e
 título ku bo a skohe no ta válido.
 Por fabor skohe un otro título.',
-'1movedto2'       => '[[$1]] mové pa [[$2]]',
-'1movedto2_redir' => '[[$1]] mové pa [[$2]] riba redirect',
 
 # Namespace 8 related
 'allmessages'        => 'Mensahenan di sistema',

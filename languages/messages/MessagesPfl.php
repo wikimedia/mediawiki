@@ -477,7 +477,6 @@ Bitte du bstätiche, dass Du des wllscht du, dass Du verstehsch, was des hääß
 'actioncomplete'        => 'Aktion fertich',
 'deletedtext'           => '"$1" isch gelescht worre.
 Guck $2 fer e Lischt vun de letschte Leschunge.',
-'deletedarticle'        => 'hot "[[$1]]" glescht',
 'dellogpage'            => 'Leschlogbuch',
 'deletecomment'         => 'Grund:',
 'deleteotherreason'     => 'Annere/zusätzliche Grund:',
@@ -515,11 +514,10 @@ Der Schutzstatus vun derre Said kannscht ännere, awwer des hot kää Aifluss uf
 'restriction-move' => 'Verschiewe',
 
 # Undelete
-'undelete'         => 'Widderherschdelle',
-'undeletebtn'      => 'Widderherschdelle',
-'undeletelink'     => 'aagucke/wirrer herstelle',
-'undeletereset'    => 'Zuricksetze',
-'undeletedarticle' => 'hot "[[$1]]" wirrer hergstellt',
+'undelete'      => 'Widderherschdelle',
+'undeletebtn'   => 'Widderherschdelle',
+'undeletelink'  => 'aagucke/wirrer herstelle',
+'undeletereset' => 'Zuricksetze',
 
 # Namespace form on various pages
 'namespace'      => 'Nomensraum',
@@ -609,8 +607,6 @@ Bitte nemm e annere Name.',
 Bitte duu se vun Hand zammefiehre.'''",
 'movedto'          => 'verschowe uff',
 'movetalk'         => 'Dischbediersaid, wu dezu ghert, verschiewe',
-'1movedto2'        => 'hot [[$1]] uff [[$2]] verschowwe',
-'1movedto2_redir'  => 'hot [[$1]] uff [[$2]] verschowe un debai e Wairerlaidung iwwerschriwwe',
 'movelogpage'      => 'Verschiewungs-Logbuch',
 'movereason'       => 'Grund:',
 'revertmove'       => 'Zerick verschiewe',

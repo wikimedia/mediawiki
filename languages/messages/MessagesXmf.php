@@ -383,13 +383,9 @@ $messages = array(
 
 # Revision deletion
 'rev-delundel'           => 'ძირაფა/ტყობინაფა',
-'revdelete-logentry'     => '"[[$1]]"-შ რედაქტირაფეფიშ ძირაფობაქ დითირჷ',
 'revdel-restore'         => 'ორწყენჯობაშ თირუა',
 'revdel-restore-deleted' => 'ლასირი რევიზიეფი',
 'revdel-restore-visible' => 'ძირაფადი რევიზიეფი',
-'revdelete-content'      => 'დინორე',
-'revdelete-hid'          => 'დიფულუ $1',
-'revdelete-log-message'  => '$1 $2- შო {{PLURAL:$2|რევიზია|რევიზიეფი}}',
 
 # Merge log
 'revertmerge' => 'ეკორტყუალაშ მოლასუა',
@@ -646,7 +642,6 @@ $messages = array(
 'actionfailed'          => 'მოქმედალაქ დემარცხჷ',
 'deletedtext'           => '"$1\\" ლასირქ იყ’უ.
 ასერდე ლასირ ხასილეფიშ ერკებულ ქოძირით $2–ს.',
-'deletedarticle'        => '"[[$1]]" ლასირ რე',
 'dellogpage'            => 'ლასირეფიშ ერკებულ',
 'deletecomment'         => 'სამანჯელ:',
 'deleteotherreason'     => 'შხვა/გეძინელ სამანჯელ:',
@@ -685,7 +680,6 @@ $messages = array(
 'undeletebtn'            => 'ახალშო ეკონწყუალა',
 'undeletelink'           => 'ძირაფა/ეკონწყუალა',
 'undeleteviewlink'       => 'ძირაფა',
-'undeletedarticle'       => 'ეკონწყილქ იყ’უ "[[$1]]"',
 'undelete-search-submit' => 'გორუა',
 
 # Namespace form on various pages
@@ -778,8 +772,6 @@ $messages = array(
 ქორთხინთ, აკორტყუათ თინეფ მანუალურო.'''",
 'movedto'          => 'გინაღალულ რე',
 'movetalk'         => 'ასოცირებულ სხუნუაშ ხასილაშ გინოღალა',
-'1movedto2'        => '[[$1]] გინოღალირ რე [[$2]]–შა',
-'1movedto2_redir'  => '[[$1]] გინოღალირ რე [[$2]]-შა გინოწურაფათ',
 'movelogpage'      => 'ორეგისტრაციე ჟურნალიშ გინოღალა',
 'movereason'       => 'სამანჯელი:',
 'revertmove'       => 'გოუქვაფა',

@@ -695,22 +695,11 @@ Aore opzichters van {{SITENAME}} kunn'n de verborhen inoud benadern en de verwie
 'revdelete-unsuppress'        => 'Beperkiengen op terugezette wiezigiengen verwiederen',
 'revdelete-log'               => 'Opmerkieng in logboek:',
 'revdelete-submit'            => 'Toepassen op de hesillecteerde bewerkieng',
-'revdelete-logentry'          => 'zichbaereid van bewerkiengen is ewiezigd voe [[$1]]',
-'logdelete-logentry'          => 'wiezigen zichbaereid van hebeurtenis [[$1]]',
 'revdelete-success'           => "'''Zichbaereid van de wiezigieng succesvol inesteld.'''",
 'logdelete-success'           => "'''Zichbaereid van de hebeurtenisse succesvol inesteld.'''",
 'revdel-restore'              => 'Zichbaereid wiezigen',
 'pagehist'                    => 'Paginaheschiedenisse',
 'deletedhist'                 => 'Verwiederde heschiedenisse',
-'revdelete-content'           => 'inoud',
-'revdelete-summary'           => 'saemenvattieng bewerken',
-'revdelete-uname'             => 'gebrukersnaem',
-'revdelete-restricted'        => 'ei beperkiengen an beheêrders opeleid',
-'revdelete-unrestricted'      => 'ei beperkiengen voe beheêrders opeheven',
-'revdelete-hid'               => 'ei $1 verborhen',
-'revdelete-unhid'             => 'ei $1 zichbaer emikt',
-'revdelete-log-message'       => '$1 voe $2 {{PLURAL:$2|versie|versies}}',
-'logdelete-log-message'       => '$1 voe $2 {{PLURAL:$2|logboekrehel|logboekrehels}}',
 
 # Suppression log
 'suppressionlog'     => 'Verberhiengslogboek',
@@ -1029,7 +1018,6 @@ A je de bladzie laeter weêr van je volglieste afaele wil, klik dan op \"nie me�
 
 # Delete
 'actioncomplete' => 'Actie uutgevoerd',
-'deletedarticle' => 'wiste "[[$1]]"',
 'dellogpage'     => 'Wislogboek',
 
 # Rollback
@@ -1085,8 +1073,6 @@ Ziet de [[Special:BlockList|Lieste van ip-blokkeriengen]] vò blokkaodes die op 
 'articleexists'    => "D'r bestaet al 'n bladzie mee dieën naem, of de naem
 die-a je gekozen is is ongeldeg.
 Kiest 'n aore naem.",
-'1movedto2'        => '[[$1]] is verschove nae [[$2]]',
-'1movedto2_redir'  => '[[$1]] is verschove nae [[$2]] over de deurverwiezienge',
 
 # Namespace 8 related
 'allmessagesname'           => 'Naem',
@@ -1131,5 +1117,9 @@ Kiest 'n aore naem.",
 
 # Special:SpecialPages
 'specialpages' => 'Speciaole bladzies',
+
+# New logging system
+'revdelete-restricted'   => 'ei beperkiengen an beheêrders opeleid',
+'revdelete-unrestricted' => 'ei beperkiengen voe beheêrders opeheven',
 
 );

@@ -842,22 +842,11 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 'revdelete-unsuppress'        => 'Hiq kufizimet nga versionet e restauruara',
 'revdelete-log'               => 'Arsyeja:',
 'revdelete-submit'            => 'Apliko te versionet e zgjedhura',
-'revdelete-logentry'          => 'Pamja e versionit u ndryshua për [[$1]]',
-'logdelete-logentry'          => 'u ndryshua dukshmëria e ngjarjes së [[$1]]',
 'revdelete-success'           => "'''Dukshmëria e versioneve u vendos me sukses.'''",
 'logdelete-success'           => "'''Dukshmëria e regjistrave u vendos me sukses.'''",
 'revdel-restore'              => 'ndrro dukshmëninë',
 'pagehist'                    => 'Historiku i faqes',
 'deletedhist'                 => 'Historiku i grisjeve',
-'revdelete-content'           => 'përmbajtja',
-'revdelete-summary'           => 'përmbledhja redaktimit',
-'revdelete-uname'             => 'përdoruesi',
-'revdelete-restricted'        => 'u vendosën kufizime për administruesit',
-'revdelete-unrestricted'      => 'u hoqën kufizimet për administruesit',
-'revdelete-hid'               => 'u fsheh $1',
-'revdelete-unhid'             => 'u tregua $1',
-'revdelete-log-message'       => '$1 për $2 {{PLURAL:$2|version|versione}}',
-'logdelete-log-message'       => '$1 për $2 {{PLURAL:$2|ngjarje|ngjarje}}',
 'revdelete-edit-reasonlist'   => 'Arsye grisjeje për redaktimet',
 
 # Suppression log
@@ -1326,7 +1315,6 @@ Ju lutemi konfirmoni që kjo âsht ajo që deshtët me bâ, që i keni të njoft
 'actioncomplete'        => 'Veprimi u kry',
 'deletedtext'           => '"$1" âsht fshi.
 Shih $2 për regjistrin e fshimjeve të fundit.',
-'deletedarticle'        => 'grisi "[[$1]]"',
 'dellogpage'            => 'Regjistri i fshimjeve',
 'deletecomment'         => 'Arsyeja:',
 'deleteotherreason'     => 'Arsyet tjera/shtesë:',
@@ -1362,7 +1350,6 @@ Mundeni me ndryshue nivelin e mbrojtjes për këtë faqe, por kjo nuk ka me prek
 # Undelete
 'undeletelink'     => 'shih/kthe',
 'undeleteviewlink' => 'shih',
-'undeletedarticle' => 'u rikthye "[[$1]]"',
 
 # Namespace form on various pages
 'namespace'      => 'Hapësira:',
@@ -1453,8 +1440,6 @@ Ju lutemi zgjedhni nji titull tjetër.',
 Ju lutemi bashkoni manualisht.'''",
 'movedto'          => 'zhvendosur te',
 'movetalk'         => 'Zhvendos faqen gjegjëse të diskutimeve',
-'1movedto2'        => '[[$1]] u zhvendos në [[$2]]',
-'1movedto2_redir'  => '[[$1]] u zhvendos te [[$2]] përmjet përcjelljes',
 'movelogpage'      => 'Regjistri i zhvendosjeve',
 'movereason'       => 'Arsyeja:',
 'revertmove'       => 'kthe mbrapsht',
@@ -1633,5 +1618,9 @@ Tjerat kanë me mbetë të mshefuna.
 
 # Special:SpecialPages
 'specialpages' => 'Faqet e posaçme',
+
+# New logging system
+'revdelete-restricted'   => 'u vendosën kufizime për administruesit',
+'revdelete-unrestricted' => 'u hoqën kufizimet për administruesit',
 
 );

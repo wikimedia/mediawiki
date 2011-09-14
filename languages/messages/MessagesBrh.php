@@ -271,7 +271,6 @@ Ná radbadal ák deskáne atíko matano.",
 'revdel-restore'         => 'páşí e badal kar',
 'revdel-restore-deleted' => 'mesok badaldroşumk',
 'revdel-restore-visible' => 'páş badaldroşumk',
-'revdelete-content'      => 'nivişt',
 
 # Merge log
 'revertmerge' => 'Jitá',
@@ -471,7 +470,6 @@ Dá pakk kar ki ní dun kanning xuáisa, dáná pad án poh us, o ní dád [[{{M
 'actionfailed'          => 'Amal besob mass',
 'deletedtext'           => '"$1" mesingáne.
 Zút áteaŧ mesing átá lekav kin $2 e ur.',
-'deletedarticle'        => '"[[$1]]" mesingá',
 'dellogpage'            => 'Mesing ná hisáb',
 'deletecomment'         => 'Dalíl:',
 'deleteotherreason'     => 'Elo/pen dalíl:',
@@ -493,7 +491,6 @@ Zút áteaŧ mesing átá lekav kin $2 e ur.',
 # Undelete
 'undeletelink'     => 'ur/aŕsa',
 'undeleteviewlink' => 'ur',
-'undeletedarticle' => '"[[$1]]" ságí kanningá',
 
 # Namespace form on various pages
 'namespace'      => 'Pin-jága:',
@@ -545,20 +542,18 @@ Zút áteaŧ mesing átá lekav kin $2 e ur.',
 'block-log-flags-nocreate' => 'pinváxubí á rok xallingá',
 
 # Move page
-'movearticle'     => 'Panna e surif:',
-'newtitle'        => 'Púskuná sarhál á:',
-'movepagebtn'     => 'Panna e surif',
-'pagemovedsub'    => 'Surifing sarsob mass',
-'movepage-moved'  => '\'\'\'"$1" e "$2"\'\'\' á surifingáne',
-'articleexists'   => 'Anná pin aná panna málav án sáŕí e, yá ná tiroká pin ravá aff.
+'movearticle'    => 'Panna e surif:',
+'newtitle'       => 'Púskuná sarhál á:',
+'movepagebtn'    => 'Panna e surif',
+'pagemovedsub'   => 'Surifing sarsob mass',
+'movepage-moved' => '\'\'\'"$1" e "$2"\'\'\' á surifingáne',
+'articleexists'  => 'Anná pin aná panna málav án sáŕí e, yá ná tiroká pin ravá aff.
 Pen pin as gicen kar.',
-'movedto'         => 'dáng surifingá',
-'movetalk'        => 'Aviŕda ģá ítgap panna e surif',
-'1movedto2'       => '[[$1]] e [[$2]] á surifingá',
-'1movedto2_redir' => 'aŕseng aŧ [[$1]] e [[$2]] á danningá',
-'movelogpage'     => 'Surifing ná hisáb',
-'movereason'      => 'Dalíl:',
-'revertmove'      => 'málav ná',
+'movedto'        => 'dáng surifingá',
+'movetalk'       => 'Aviŕda ģá ítgap panna e surif',
+'movelogpage'    => 'Surifing ná hisáb',
+'movereason'     => 'Dalíl:',
+'revertmove'     => 'málav ná',
 
 # Namespace 8 related
 'allmessagesname' => 'Pin',

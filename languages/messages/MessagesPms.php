@@ -70,7 +70,7 @@ dj'artìcoj ancó pa scrit",
 'tog-enotifminoredits'        => 'Mand-me un messagi an pòsta eletrònica bele che për le modìfiche cite',
 'tog-enotifrevealaddr'        => 'Lassa che a së s-ciàira mia adrëssa ëd pòsta eletrònica ant ij messagi ëd notìfica',
 'tog-shownumberswatching'     => "Smon ël nùmer d'utent che as ten-o la pàgina sot euj",
-'tog-oldsig'                  => 'Anteprima dla firma esistenta:',
+'tog-oldsig'                  => 'Firma esistenta:',
 'tog-fancysig'                => "Trata la firma com test wiki (sensa n'anliura automàtica)",
 'tog-externaleditor'          => "Dovré coma stàndard n'editor estern (mach për espert, a-i é dabzògn d'ampostassion speciaj dzora a sò ordinator. [http://www.mediawiki.org/wiki/Manual:External_editors Për savèjne ëd pi.])",
 'tog-externaldiff'            => "Dovré për stàndard un programa comparator estern (mach për espert, a-i é dabzògn d'ampostassion speciaj ansima a sò ordinator [http://www.mediawiki.org/wiki/Manual:External_editors Për savèjne ëd pi.])",
@@ -908,8 +908,6 @@ J'àutri aministrator dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé �
 'revdelete-unsuppress'        => "Gava le limitassion da 'nt le version ciapà andaré",
 'revdelete-log'               => 'Rason:',
 'revdelete-submit'            => 'Bùtejlo a {{PLURAL:$1|la version|le version}} selessionà',
-'revdelete-logentry'          => 'visibilità dla revision cangià për [[$1]]',
-'logdelete-logentry'          => "a l'ha cangiaje visibilità a l'event [[$1]]",
 'revdelete-success'           => "'''Visibilità dla revision modificà com ch'as dev.'''",
 'revdelete-failure'           => "'''La visibilità dla version a peul pa esse modificà:'''
 $1",
@@ -921,15 +919,6 @@ $1",
 'revdel-restore-visible'      => 'revision visìbij',
 'pagehist'                    => 'Stòria dla pàgina',
 'deletedhist'                 => 'Stòria scancelà',
-'revdelete-content'           => 'contnù',
-'revdelete-summary'           => 'resumé dla modìfica',
-'revdelete-uname'             => 'stranòm',
-'revdelete-restricted'        => "a l'ha aplicà le restrission a j'aministrator",
-'revdelete-unrestricted'      => "restrission për j'aministrator gavà",
-'revdelete-hid'               => 'stërma $1',
-'revdelete-unhid'             => 'dëscoata $1',
-'revdelete-log-message'       => '$1 për $2 {{PLURAL:$2|revision|revision}}',
-'logdelete-log-message'       => '$1 për $2 {{PLURAL:$2|event|event}}',
 'revdelete-hide-current'      => "Eror an stërmand l'element datà $2, $1: costa-sì a l'é la version corenta.
 A peul pa esse stërmà.",
 'revdelete-show-no-access'    => 'Eror an mostrand l\'element datà $2, $1: st\'element-sì a l\'é stàit marcà "riservà".
@@ -1152,7 +1141,8 @@ Sòn a peul pa esse anulà.',
 'prefs-registration-date-time'  => '$1',
 'yourrealname'                  => 'Nòm vèir:',
 'yourlanguage'                  => 'Lenga:',
-'yourvariant'                   => 'Variant:',
+'yourvariant'                   => 'Variant ëd la lenga dël contnù:',
+'prefs-help-variant'            => 'Varianta o ortografìa ëd sò gust për smon-e le pàgine ëd contnù ansima a sta wiki-sì.',
 'yournick'                      => 'Sò stranòm (për firmé):',
 'prefs-help-signature'          => 'Ij coment an sle pàgine ëd discussion a dovrìo esse firmà con "<nowiki>~~~~</nowiki>" che a sarà convertì ant soa firma e orari.',
 'badsig'                        => "Soa firma a l'é nen giusta, che a controla j'istrussion HTML.",
@@ -1983,10 +1973,10 @@ Le modìfiche che a-i vniran ant costa pàgina-sì e ant soa pàgina ëd discuss
 'watcherrortext' => "A l'é capitaje n'eror durant la modìfica ëd j'ampostassion ëd lòn ch'as ten sot-euj për «$1».",
 
 'enotif_mailer'                => '{{SITENAME}} - Servissi ëd Notìfica Postal',
-'enotif_reset'                 => 'March-me tute le pàgine visità',
+'enotif_reset'                 => 'Marché tute le pàgine tanme visità',
 'enotif_newpagetext'           => "Costa-sì a l'é na pàgina neuva",
 'enotif_impersonal_salutation' => 'utent ëd {{SITENAME}}',
-'changed'                      => 'cangià',
+'changed'                      => 'modificà',
 'created'                      => 'creà',
 'enotif_subject'               => 'La pàgina $PAGETITLE ëd {{SITENAME}} a l\'é staita $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited'           => "Che as varda $1 për ës-ciaré tute le modìfiche da 'nt l'ùltima vira che a l'é passà.",
@@ -2004,7 +1994,7 @@ Për contaté l\'editor:
 pòsta eletrònica: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-A-i sarà pì gnun-a notìfica ëd modìfiche se chiel a vìsita nen costa pàgina. Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba da ten-e sot euj.
+A-i sarà pì gnun-a notìfica ëd modìfiche se chiel a vìsita nen costa pàgina. Che as visa che a peul cangeje la configurassion dle notìfiche a le pàgine che as ten sot-euj ansima a soa lista dla ròba ch\'as ten sot-euj.
 
 Comunicassion dël sistema ëd notìfica da {{SITENAME}}
 
@@ -2022,7 +2012,7 @@ Comunicassion ëd servissi e pì d\'agiut:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'             => 'Scancela pàgina',
+'deletepage'             => 'Scancelé la pàgina',
 'confirm'                => 'Conferma',
 'excontent'              => "Ël contnù a l'era: '$1'",
 'excontentauthor'        => "ël contnù a l'era: '$1' (e l'ùnich contributor a l'era stait '$2')",
@@ -2037,8 +2027,6 @@ Për piasì, che an conferma che sòn a l'é da bon sò but, che a as rend cont 
 'actionfailed'           => 'Assion falìa',
 'deletedtext'            => 'La pàgina "$1" a l\'é staita scancelà.
 Che a varda $2 për na lista dle pàgine scancelà ant j\'ùltim temp.',
-'deletedarticle'         => 'Scancelà "$1"',
-'suppressedarticle'      => 'a l\'ha scancelà "[[$1]]"',
 'dellogpage'             => 'Registr djë scancelament',
 'dellogpagetext'         => "Ambelessì sota na lista dle pàgine scancelà ant j'ùltim temp.
 Ij temp a son conforma a l'ora dël server.",
@@ -2166,7 +2154,6 @@ l'avìa travaje ansima anans che a la scancelèisso.
 'undeletereset'                => 'Gava tute le selession',
 'undeleteinvert'               => 'Anvert la selession',
 'undeletecomment'              => 'Rason:',
-'undeletedarticle'             => 'Pijaita andré "$1"',
 'undeletedrevisions'           => '{{PLURAL:$1|Na revision pijaita|$1 revision pijaite}} andré',
 'undeletedrevisions-files'     => "{{PLURAL:$1|Na|$1}} revision e {{PLURAL:$2|n'|$2&nbsp;}}archivi pijait andré",
 'undeletedfiles'               => "{{PLURAL:$1|N'|$1&nbsp;}}archivi pijait andaré",
@@ -2452,9 +2439,6 @@ Che as sërna, për piasì, un nòm diferent për st'articol.",
 'movepage-page-moved'          => "La pàgina $1 a l'é stàita tramudà a $2.",
 'movepage-page-unmoved'        => 'La pàgina $1 a peul pa esse tramudà a $2.',
 'movepage-max-pages'           => "Ël massim ëd {{PLURAL:$1|na pàgina a l'é stàita |$1 pàgine a son stàite}} tramudà e a na saran pa pì tramudà automaticament.",
-'1movedto2'                    => '[[$1]] Tramudà a [[$2]]',
-'1movedto2_redir'              => '[[$1]] tramudà a [[$2]] ën passand për na ridiression',
-'move-redirect-suppressed'     => 'ridiression ëscancelà',
 'movelogpage'                  => 'Registr dij San Martin',
 'movelogpagetext'              => 'Ambelessì sota a-i é na lista ëd pàgine che a son staite tramudà.',
 'movesubpage'                  => '{{PLURAL:$1|Sotpàgina|Sotpàgine}}',
@@ -2751,7 +2735,7 @@ An fasend-lo travajé ansima a sò ordinator chiel a podrìa porteje ëd dann a 
 'svg-long-desc'          => "archivi an forma SVG, amzure nominaj $1 × $2 pixel, amzura dl'archivi: $3",
 'show-big-image'         => 'Version a amzura pijn-a',
 'show-big-image-preview' => 'Amzure dë sta preuva: $1.',
-'show-big-image-other'   => '{{PLURAL:2|Àutra arzolussion|Àutre arzolussion}}: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Àutra arzolussion|Àutre arzolussion}}: $1.',
 'show-big-image-size'    => '$1 × $2 pontin',
 'file-info-gif-looped'   => 'ciclà',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|fnesta|fneste}}',
@@ -2992,9 +2976,9 @@ J'àutri a saran stërmà coma stàndard.
 'exif-orientation-3' => 'Arvirà ëd 180°',
 'exif-orientation-4' => 'Arvirà dzorsuta',
 'exif-orientation-5' => 'Arvirà dzorsota e ëd 90° contramostra',
-'exif-orientation-6' => 'Arvirà ëd 90° ant ël sens dla mostra',
+'exif-orientation-6' => 'Arvirà ëd 90° contramostra',
 'exif-orientation-7' => 'Arvirà dzorsota e ëd 90° ant ël sens dla mostra',
-'exif-orientation-8' => 'Arvirà ëd 90° contramostra',
+'exif-orientation-8' => 'Arvirà ëd 90° ant ël sens dla mostra',
 
 'exif-planarconfiguration-1' => 'për blòch (chunky)',
 'exif-planarconfiguration-2' => 'an planar',
@@ -3546,6 +3530,8 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 'sqlite-no-fts'  => '$1 sensa arserca an test pien mantnùa',
 
 # New logging system
+'revdelete-restricted'                => "a l'ha aplicà le restrission a j'aministrator",
+'revdelete-unrestricted'              => "restrission për j'aministrator gavà",
 'logentry-move-move'                  => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4",
 'logentry-move-move-noredirect'       => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 sensa lassé na ridiression",
 'logentry-move-move_redir'            => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression",

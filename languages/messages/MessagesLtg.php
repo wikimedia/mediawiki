@@ -360,7 +360,6 @@ n = nasvareigs lobuojums.',
 'revdelete-log'              => 'Īmesle:',
 'revdel-restore'             => 'maineit radzameibu',
 'pagehist'                   => 'Puslopys viesture',
-'revdelete-uname'            => 'slāgvuords',
 'revdelete-otherreason'      => 'Cyta/papyldoma īmesle:',
 'revdelete-reasonotherlist'  => 'Cyta īmesle',
 
@@ -631,7 +630,6 @@ Ka vāluok puordūmuosi i nagribiesi vairs puorraudzeit itū lopu, spīd iz sait
 'actioncomplete'        => 'Darbeiba pabeigta',
 'deletedtext'           => '"$1" beja iztreits.
 Kab apsavērtu pādejuo iztreitū sarokstu, verīs $2.',
-'deletedarticle'        => 'dzāsts "[[$1]]"',
 'dellogpage'            => 'Iztreišonys registris',
 'deletionlog'           => 'iztreišonys registru',
 'deletecomment'         => 'Īmesle:',
@@ -668,8 +666,7 @@ Pašreizejī lopys '''$1''' īstatejumi ir:",
 'restriction-move' => 'Puorceļt',
 
 # Undelete
-'undeletelink'     => 'apsavērt/atjaunynuot',
-'undeletedarticle' => 'atjaunynoju "[[$1]]"',
+'undeletelink' => 'apsavērt/atjaunynuot',
 
 # Namespace form on various pages
 'namespace'      => 'Vuordu pluots:',
@@ -753,8 +750,6 @@ Ka gribiesi, tod tev itei sarunu lopa byus juopuolīk voi juoapvīnoj pošam.",
 'talkexists'              => "'''Itei lopa tyka puorvītuota veiksmeigai, bet tuos sarunu lopu navarieja puorvītuot, deļ tuo ka jaunuo nūsaukuma lopai jau ir diskuseju lopa. Lyudzu apvīnoj ituos sarunu lopys pats.'''",
 'movedto'                 => 'puorvītuota iz',
 'movetalk'                => 'Puorceļt sasītū sprīžu.',
-'1movedto2'               => '"[[$1]]" puorsauču par "[[$2]]"',
-'1movedto2_redir'         => '[[$1]] tyka puorsauktys par [[$2]], lītojūt puoradresaceju',
 'movelogpage'             => 'Puorvītuošonys registrs',
 'movesubpage'             => '{{PLURAL:$1|Zampuslopa|Zampuslopys}}',
 'movereason'              => 'Īmesle:',

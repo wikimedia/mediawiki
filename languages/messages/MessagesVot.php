@@ -409,7 +409,6 @@ Tšültši leeb tširjutõttu '''pimmiässi''' [[Special:RecentChanges|spiizgall
 'actioncomplete'        => 'Töö tehtü lõppuu',
 'deletedtext'           => '"$1" on pühittü.
 Tšüľľellä $2 on spiiska viimeiziss pühtšimühsiiss.',
-'deletedarticle'        => 'roottšiz tšüľľee [[$1]]',
 'dellogpage'            => 'Pühitüd tšüľľed',
 'deletecomment'         => 'Süü',
 'deleteotherreason'     => 'Muu vai lisä süü',
@@ -441,8 +440,7 @@ Tšüľľellä $2 on spiiska viimeiziss pühtšimühsiiss.',
 'restriction-level'           => 'Varjauz',
 
 # Undelete
-'undeletelink'     => 'näüt/vääntee',
-'undeletedarticle' => '"[[$1]]" vääneltü',
+'undeletelink' => 'näüt/vääntee',
 
 # Namespace form on various pages
 'namespace'      => 'Nimiruumi:',
@@ -519,8 +517,6 @@ Neill kõhtoill piättä liikuttaa vai ühissää tšüľľee tšäzi.",
 'talkexists'       => "'''Tšüľľee liikka tuli valmessi, a juttitšültšiä eb õli liikutõttu, ku uuvvõ zagolofkaa all on jo juttutšültši. Juttutšültšije sisälto piättä ühinessä tšäzi.'''",
 'movedto'          => 'liikutõttu',
 'movetalk'         => 'Liikut toož juttutšültši',
-'1movedto2'        => 'Tšültši [[$1]] on liikutõttu uuvvõllõ nimõllõ [[$2]]',
-'1movedto2_redir'  => 'liikuti tšüľľee [[$1]] mešaituhsõõ [[$2]] päälle',
 'movelogpage'      => 'Liikkalogi',
 'movereason'       => 'Süü',
 'revertmove'       => 'kummut',

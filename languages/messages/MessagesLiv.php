@@ -297,13 +297,9 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 
 # Revision deletion
 'rev-delundel'           => 'nägţ/vaŗ jarā',
-'revdelete-logentry'     => 'mõitiņtīz līed [[$1]] redaktsij nǟdõbõzt',
 'revdel-restore'         => 'Mõitiņt nǟdõbõzt',
 'revdel-restore-deleted' => 'jarā kištāntõd redaktsijõd',
 'revdel-restore-visible' => 'nǟdõbõd redaktsijõd',
-'revdelete-content'      => 'sižāli',
-'revdelete-hid'          => '$1 jarā vaŗtõd',
-'revdelete-log-message'  => '{{PLURAL:$2| Īd|$2}} redaktsijõ $1',
 
 # Merge log
 'revertmerge' => 'Kīeld jarā kubbõ vieddimi',
@@ -526,7 +522,6 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 'actioncomplete'        => 'Ažā tīedõd',
 'actionfailed'          => 'Tīemi äb-vȯņštīz',
 'deletedtext'           => ' "$1" um jarā kištāntõd. Jarā kištāntõd lēḑõd āt tūodõd nimkēras $2.',
-'deletedarticle'        => 'jarā kištāntõd "[[$1]]"',
 'dellogpage'            => 'Jarā kištāntimiz log',
 'deletecomment'         => 'Sī:',
 'deleteotherreason'     => 'Mū agā jūrõ pandõb sī:',
@@ -560,7 +555,6 @@ Legend: '''({{int:cur}})''' = vaiţīd līdzinţõmizõks lǟndz redaktsijõks,,
 # Undelete
 'undeletelink'     => 'vaņ/lūo ūtstõ',
 'undeleteviewlink' => 'vaņ',
-'undeletedarticle' => 'tūoi tāgiž līed "[[$1]]"',
 
 # Namespace form on various pages
 'namespace'      => 'Nim-rūim:',
@@ -637,8 +631,6 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 'talkexists'       => "'''Lēḑ um jeddõpēḑõn sōtõd, bet nõvpidāmiz-līedtõ äb sōnd jeddõpēḑõn sōtõ, sīestõ ku ūd nim allõ um nõvpidāmiz-lēḑ jubā vȯlmizõs. Pōlaks viedāgid nõvpidāmiz-lēḑõd īž kubbõ.'''",
 'movedto'          => 'Jeddõpēḑõn sōtõd pēļizkēra alā:',
 'movetalk'         => 'Sōtõgid jeddõpēḑõn ka nõvpidāmiz lēḑ',
-'1movedto2'        => 'vīž jarā līed [[$1]] nim [[$2]] jūrõ',
-'1movedto2_redir'  => ' vīž jarā līed [[$1]]  ja sōtiz sīe pēļizkēra [[$2]] alā',
 'movelogpage'      => 'Jarā vīmiz log',
 'movereason'       => 'Sī:',
 'revertmove'       => 'kīerõgid tāgiž',

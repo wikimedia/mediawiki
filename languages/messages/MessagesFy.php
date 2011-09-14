@@ -858,22 +858,11 @@ Oare behearders fan {{SITENAME}} kinne de ferburgen ynhâld benaderje en it fuor
 'revdelete-unsuppress'        => 'Beheinings op tebeksette feroarings fuorthelje',
 'revdelete-log'               => 'Reden:',
 'revdelete-submit'            => 'Tapasse op selektearre bewurking',
-'revdelete-logentry'          => 'sichtberens fan bewurkings is feroare foar [[$1]]',
-'logdelete-logentry'          => 'feroare sichtberens fan barren [[$1]]',
 'revdelete-success'           => "'''Sichtberens fan'e feroaring mei sukses ynsteld.'''",
 'logdelete-success'           => "'''Sichtberens fan it barren mei sukses ynsteld.'''",
 'revdel-restore'              => 'Sichtberens feroarje',
 'pagehist'                    => 'Sideskiednis',
 'deletedhist'                 => 'Wiske skiednis',
-'revdelete-content'           => 'ynhâld',
-'revdelete-summary'           => 'gearfetting bewurkje',
-'revdelete-uname'             => 'meidoggernamme',
-'revdelete-restricted'        => 'hat beheinings oplein oan behearders',
-'revdelete-unrestricted'      => 'hat beheinings foar behearders goedmakke',
-'revdelete-hid'               => 'hat $1 ferburgen',
-'revdelete-unhid'             => '$1 net mear ferburgen',
-'revdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|ferzje|ferzjes}}',
-'logdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|lochboekregel|lochboekregels}}',
 'revdelete-edit-reasonlist'   => 'Redenen foar fuortheljen bewurkje',
 
 # Suppression log
@@ -1786,7 +1775,6 @@ is en dat jo dit dogge neffens de [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'        => 'Dien',
 'deletedtext'           => '"$1" is wiske.
 Sjoch "$2" foar in list fan wat resint wiske is.',
-'deletedarticle'        => '"[[$1]]" is wiske',
 'dellogpage'            => 'Wiskloch',
 'dellogpagetext'        => 'Dit is wat der resint wiske is.
 (Tiden oanjûn as UTC).',
@@ -1879,7 +1867,6 @@ Dit binne de rinnende ynstellings foar de side '''$1''':",
 'undeletereset'           => 'Leechmeitsje',
 'undeleteinvert'          => 'Omkearde seleksje',
 'undeletecomment'         => 'Utlis foar weromsetten:',
-'undeletedarticle'        => '"$1" weromset',
 'undelete-header'         => 'Sjoch [[Special:Log/delete|de wiskloch]] foar resint wiske siden.',
 'undelete-search-box'     => 'Sykje wiske siden',
 'undelete-search-prefix'  => "Lit siden sjen dy't begjinne mei:",
@@ -2031,8 +2018,6 @@ In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle
 'movedto'                 => 'werneamd as',
 'movetalk'                => 'Titel fan oerlisside ek feroarje, as dy der is.',
 'movepage-page-moved'     => 'De side $1 is werneamd nei $2.',
-'1movedto2'               => '[[$1]] feroare ta [[$2]]',
-'1movedto2_redir'         => '[[$1]] feroare ta [[$2]], wat in synonym wie',
 'movelogpage'             => 'Werneam-loch',
 'movelogpagetext'         => 'Dit is in list fan feroare titels.',
 'movereason'              => 'Reden:',
@@ -2391,5 +2376,9 @@ Wolle jo de side wier op 'e nij skriuwe?",
 # Special:BlankPage
 'blankpage'              => 'Side is leech',
 'intentionallyblankpage' => 'Dizze side is bewust leech lizzen en wurdt brûkt foar benchmarks, ensfh.',
+
+# New logging system
+'revdelete-restricted'   => 'hat beheinings oplein oan behearders',
+'revdelete-unrestricted' => 'hat beheinings foar behearders goedmakke',
 
 );

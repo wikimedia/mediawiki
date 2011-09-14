@@ -688,7 +688,6 @@ Wenns'd dii sajdn irchendwan amôl nimä fârfolchn wilsd, musd bloos af „{{in
 'confirmdeletetext'      => "Duu bisd grôd dâbaj, â sajdn midsamd alle dsugheeriche alde wärsjoona ds'leschn. Bide beschdäädich, das De wasd, was des als bewirgd, un das De Dich dâbaj aa an d'[[{{MediaWiki:Policy-url}}|richliinjen]] fo dem wighi hiir häldsd.",
 'actioncomplete'         => 'Erleedichd',
 'deletedtext'            => '„$1“ is gleschd wôrn. Im $2 findsd â lisdn mid dâ ledsdn leschunga.',
-'deletedarticle'         => 'had „[[$1]]“ gleschd',
 'dellogpage'             => 'Logbuch fo di leschunga',
 'deletecomment'          => 'Grund:',
 'deleteotherreason'      => 'Noch a Grund dâfiir:',
@@ -730,8 +729,7 @@ Wenns'd dii sajdn irchendwan amôl nimä fârfolchn wilsd, musd bloos af „{{in
 'restriction-level'           => 'Ausmôôs fom schbärn:',
 
 # Undelete
-'undeletelink'     => 'ôôgugn/dsrighooln',
-'undeletedarticle' => 'had „[[$1]]“ widârhäärgschdeld',
+'undeletelink' => 'ôôgugn/dsrighooln',
 
 # Namespace form on various pages
 'namespace'      => 'Nôômâraum:',
@@ -810,8 +808,6 @@ Schrajb bide den '''naja'' nôômâ fo dâr sajdn undârals '''Dsiil'' nâj un '
 'talkexists'       => 'Dii sajdn is fârschoom wôrn, awa baj iira disghusjoonssajdn is ned gangâ, wals dii scho mim naja nôôma gibd. Jeds musd des fo hand dsamwôrschdln.',
 'movedto'          => 'fârschoom nach',
 'movetalk'         => "Dii disghusjoons-sajdn aa mid fârschiim, wen's gäd",
-'1movedto2'        => 'had „[[$1]]“ nach „[[$2]]“ umdaafd',
-'1movedto2_redir'  => 'had „[[$1]]“ nach „[[$2]]“ fârschoom un dâbaj â wajdârlajdung ibârschriim',
 'movelogpage'      => 'Umdaaf-Logbuch',
 'movereason'       => 'Grund:',
 'revertmove'       => 'dsrigdaafn af an aldn nôômâ',
