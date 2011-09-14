@@ -124,7 +124,7 @@ class ParserOutput extends CacheTime {
 		$mDistantTemplates = array(),   # 3-D map of WIKIID/NS/DBK to ID for the template references. ID=zero for broken.
 		$mDistantTemplateIds = array(), # 3-D map of WIKIID/NS/DBK to rev ID for the template references. ID=zero for broken.
 		$mImages = array(),           # DB keys of the images used, in the array key only
-		$mImageTimeKeys = array(),	  # DB keys of the images used mapped to sha1 and MW timestamp
+		$mFileSearchOptions = array(), # DB keys of the images used mapped to sha1 and MW timestamp
 		$mExternalLinks = array(),    # External link URLs, in the key only
 		$mInterwikiLinks = array(),   # 2-D map of prefix/DBK (in keys only) for the inline interwiki links in the document.
 		$mNewSection = false,         # Show a new section link?
@@ -197,7 +197,7 @@ class ParserOutput extends CacheTime {
 	function &getDistantTemplateIds()    { return $this->mDistantTemplateIds; }
 	function &getTemplateIds()           { return $this->mTemplateIds; }
 	function &getImages()                { return $this->mImages; }
-	function &getImageTimeKeys()         { return $this->mImageTimeKeys; }
+	function &getFileSearchOptions()     { return $this->mFileSearchOptions; }
 	function &getExternalLinks()         { return $this->mExternalLinks; }
 	function getNoGallery()              { return $this->mNoGallery; }
 	function getHeadItems()              { return $this->mHeadItems; }
@@ -292,7 +292,7 @@ class ParserOutput extends CacheTime {
 	function addImage( $name, $timestamp = null, $sha1 = null ) {
 		$this->mImages[$name] = 1;
 		if ( $timestamp !== null && $sha1 !== null ) {
-			$this->mImageTimeKeys[$name] = array( 'time' => $timestamp, 'sha1' => $sha1 );
+			$this->mFileSearchOptions[$name] = array( 'time' => $timestamp, 'sha1' => $sha1 );
 		}
 	}
 
