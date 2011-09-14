@@ -35,35 +35,34 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 * Main execution point
 	 */
 	function execute( $par ) {
-		global $wgRequest;
-
-		$out = $this->getOutput();
 		if ( wfReadOnly() ) {
-			$out->readOnlyPage();
-			return;
+			throw new ReadOnlyError;
 		}
 
-		$user = $this->getUser();
-
-		$this->mPassword = $wgRequest->getVal( 'wpPassword' );
-		$this->mNewEmail = $wgRequest->getVal( 'wpNewEmail' );
+		$request = $this->getRequest();
+		$this->mPassword = $request->getVal( 'wpPassword' );
+		$this->mNewEmail = $request->getVal( 'wpNewEmail' );
 
 		$this->setHeaders();
 		$this->outputHeader();
+
+		$out = $this->getOutput();
 		$out->disallowUserJs();
 
-		if ( !$wgRequest->wasPosted() && !$user->isLoggedIn() ) {
+		$user = $this->getUser();
+
+		if ( !$request->wasPosted() && !$user->isLoggedIn() ) {
 			$this->error( wfMsg( 'changeemail-no-info' ) );
 			return;
 		}
 
-		if ( $wgRequest->wasPosted() && $wgRequest->getBool( 'wpCancel' ) ) {
+		if ( $request->wasPosted() && $request->getBool( 'wpCancel' ) ) {
 			$this->doReturnTo();
 			return;
 		}
 
-		if ( $wgRequest->wasPosted()
-			&& $user->matchEditToken( $wgRequest->getVal( 'token' ) ) )
+		if ( $request->wasPosted()
+			&& $user->matchEditToken( $request->getVal( 'token' ) ) )
 		{
 			$info = $this->attemptChange( $user, $this->mPassword, $this->mNewEmail );
 			if ( $info === true ) {
@@ -81,8 +80,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	protected function doReturnTo( $type = 'hard' ) {
-		global $wgRequest;
-		$titleObj = Title::newFromText( $wgRequest->getVal( 'returnto' ) );
+		$titleObj = Title::newFromText( $this->getRequest()->getVal( 'returnto' ) );
 		if ( !$titleObj instanceof Title ) {
 			$titleObj = Title::newMainPage();
 		}
@@ -98,8 +96,6 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	protected function showForm() {
-		global $wgRequest;
-
 		$user = $this->getUser();
 
 		$oldEmailText = $user->getEmail()
@@ -114,7 +110,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 					'action' => $this->getTitle()->getLocalUrl(),
 					'id' => 'mw-changeemail-form' ) ) . "\n" .
 			Html::hidden( 'token', $user->editToken() ) . "\n" .
-			Html::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) . "\n" .
+			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
 			wfMsgExt( 'changeemail-text', array( 'parse' ) ) . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-changeemail-table' ) ) . "\n" .
 			$this->pretty( array(
