@@ -1136,8 +1136,6 @@ Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti lukea piilote
 'revdelete-unsuppress'        => 'Poista rajoitukset palautetuilta versiolta',
 'revdelete-log'               => 'Syy',
 'revdelete-submit'            => 'Toteuta {{PLURAL:$1|valittuun versioon|valittuihin versioihin}}',
-'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
-'logdelete-logentry'          => 'muutti sivun [[$1]] näkyvyyttä',
 'revdelete-success'           => "'''Version näkyvyys päivitetty.'''",
 'revdelete-failure'           => "'''Version näkyvyyttä ei voitu päivittää:'''
 $1",
@@ -1149,15 +1147,6 @@ $1",
 'revdel-restore-visible'      => 'näkyvät muutokset',
 'pagehist'                    => 'Sivun muutoshistoria',
 'deletedhist'                 => 'Poistettujen versioiden historia',
-'revdelete-content'           => 'sisällön',
-'revdelete-summary'           => 'yhteenvedon',
-'revdelete-uname'             => 'käyttäjänimen',
-'revdelete-restricted'        => 'asetti rajoitukset ylläpitäjille',
-'revdelete-unrestricted'      => 'poisti rajoitukset ylläpitäjiltä',
-'revdelete-hid'               => 'piilotti $1',
-'revdelete-unhid'             => 'palautti näkyviin $1',
-'revdelete-log-message'       => '$1 koskien $2 {{PLURAL:$2|versiota}}',
-'logdelete-log-message'       => '$1 koskien $2 {{PLURAL:$2|tapahtumaa}}',
 'revdelete-hide-current'      => 'Virhe tapahtui $2, $1 päivätyn kohteen piilottamisessa: tämä on nykyinen versio. Sitä ei voi piilottaa.',
 'revdelete-show-no-access'    => 'Virhe näyttäessä kohtaa $2 kello $1: kohta on merkitty ”rajoitetuksi”.
 Sinulla ei ole oikeutta siihen.',
@@ -2226,8 +2215,6 @@ Palaute ja lisäapu osoitteessa:
 'actionfailed'           => 'Toiminto epäonnistui',
 'deletedtext'            => '”$1” on poistettu.
 Sivulla $2 on lista viimeaikaisista poistoista.',
-'deletedarticle'         => 'poisti sivun [[$1]]',
-'suppressedarticle'      => 'häivytti sivun [[$1]]',
 'dellogpage'             => 'Poistoloki',
 'dellogpagetext'         => 'Alla on loki viimeisimmistä poistoista.',
 'deletionlog'            => 'poistoloki',
@@ -2342,7 +2329,6 @@ Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valinta
 'undeletereset'                => 'Tyhjennä',
 'undeleteinvert'               => 'Käänteinen valinta',
 'undeletecomment'              => 'Syy',
-'undeletedarticle'             => 'palautti sivun [[$1]]',
 'undeletedrevisions'           => '{{PLURAL:$1|Yksi versio|$1 versiota}} palautettiin',
 'undeletedrevisions-files'     => '{{PLURAL:$1|Yksi versio|$1 versiota}} ja {{PLURAL:$2|yksi tiedosto|$2 tiedostoa}} palautettiin',
 'undeletedfiles'               => '{{PLURAL:$1|1 tiedosto|$1 tiedostoa}} palautettiin',
@@ -3670,5 +3656,21 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 # SQLite database support
 'sqlite-has-fts' => '$1, jossa on tuki kokotekstihaulle',
 'sqlite-no-fts'  => '$1, jossa ei ole tukea kokotekstihaulle',
+
+# New logging system
+'logentry-delete-delete'          => '$1 poisti sivun $3',
+'logentry-delete-restore'         => '$1 palautti sivun $3',
+'logentry-delete-event'           => '$1 muutti {{PLURAL:$5||$5}} lokitapahtuman näkyvyyttä $3: $4',
+'logentry-delete-revision'        => '$1 muutti {{PLURAL:$5||$5}} muutoksen näkyvyyttä sivulla $3: $4',
+'logentry-delete-event-legacy'    => '$1 muutti lokitapahtumien näkyvyyttä $3',
+'logentry-delete-revision-legacy' => '$1 muutti sivun $3 muutosten näkyvyyttä',
+'revdelete-content-hid'           => 'sisältö piilotettu',
+'revdelete-summary-hid'           => 'muokkausyhteenveto piilotettu',
+'revdelete-uname-hid'             => 'käyttäjätunnus piilotettu',
+'revdelete-content-unhid'         => 'sisältö palautettu näkyviin',
+'revdelete-summary-unhid'         => 'muokkausyhteenveto palautettu näkyviin',
+'revdelete-uname-unhid'           => 'käyttäjätunnus palautettu näkyviin',
+'revdelete-restricted'            => 'asetti rajoitukset ylläpitäjille',
+'revdelete-unrestricted'          => 'poisti rajoitukset ylläpitäjiltä',
 
 );

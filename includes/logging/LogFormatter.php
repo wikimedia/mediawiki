@@ -133,7 +133,7 @@ class LogFormatter {
 	 * @return Message|pre-escaped html
 	 */
 	protected function getActionMessage() {
-		$message =  $this->msg( $this->getMessageKey() );
+		$message = $this->msg( $this->getMessageKey() );
 		$message->params( $this->getMessageParameters() );
 		return $message;
 	}
@@ -162,6 +162,10 @@ class LogFormatter {
 	 * @return array
 	 */
 	protected function getMessageParameters() {
+		if ( isset( $this->parsedParameters ) ) {
+			return $this->parsedParameters;
+		}
+
 		$entry = $this->entry;
 
 		$params = array();
@@ -193,7 +197,7 @@ class LogFormatter {
 			}
 		}
 
-		return $params;
+		return $this->parsedParameters = $params;
 	}
 
 	/**
@@ -339,5 +343,71 @@ class MoveLogFormatter extends LogFormatter {
 		$params[2] = Message::rawParam( $oldname );
 		$params[3] = Message::rawParam( $newname );
 		return $params;
+	}
+}
+
+/**
+ * This class formats delete log entries.
+ * @since 1.19
+ */
+class DeleteLogFormatter extends LogFormatter {
+	protected function getMessageKey() {
+		$key = parent::getMessageKey();
+		if ( in_array( $this->entry->getSubtype(), array( 'event', 'revision' ) ) ) {
+			if ( count( $this->getMessageParameters() ) < 5 ) {
+				return "$key-legacy";
+			}
+		}
+		return $key;
+	}
+
+	protected function getMessageParameters() {
+		if ( isset( $this->parsedParametersDeleteLog ) ) {
+			return $this->parsedParametersDeleteLog;
+		}
+
+		$params = parent::getMessageParameters();
+		$subtype = $this->entry->getSubtype();
+		if ( in_array( $subtype, array( 'event', 'revision' ) ) ) {
+			if ( count( $params ) > 5 ) {
+				$paramStart = $subtype === 'revision' ? 4 : 3;
+
+				$old = $this->parseBitField( $params[$paramStart+1] );
+				$new = $this->parseBitField( $params[$paramStart+2] );
+				list( $hid, $unhid, $extra ) = RevisionDeleter::getChanges( $new, $old );
+				$changes = array();
+				foreach ( $hid as $v ) {
+					$changes[] = $this->msg( "$v-hid" )->plain();
+				}
+				foreach ( $unhid as $v ) {
+					$changes[] = $this->msg( "$v-unhid" )->plain();
+				}
+				foreach ( $extra as $v ) {
+					$changes[] = $this->msg( $v )->plain();
+				}
+				$changeText =  $this->context->getLang()->listToText( $changes );
+
+
+				$newParams = array_slice( $params, 0, 3 );
+				$newParams[3] = $changeText;
+				$count = count( explode( ',', $params[$paramStart] ) );
+				$newParams[4] = $this->context->getLang()->formatNum( $count );
+				return $this->parsedParametersDeleteLog = $newParams;
+			} else {
+				return $this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
+			}
+		}
+
+		return $this->parsedParametersDeleteLog = $params;
+	}
+
+	protected function parseBitField( $string ) {
+		// Input is like ofield=2134 or just the number
+		if ( strpos( $string, 'field=' ) === 1 ) {
+			list( , $field ) = explode( '=', $string );
+			return (int) $field;
+		} else {
+			return (int) $string;
+		}
 	}
 }
