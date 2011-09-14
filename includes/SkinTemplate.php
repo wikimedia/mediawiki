@@ -1012,21 +1012,16 @@ class SkinTemplate extends Skin {
 				array( &$this, &$content_navigation ) );
 		}
 
-		$pageLang = $title->getPageLanguage();
-
 		// Gets list of language variants
-		$variants = $pageLang->getVariants();
+		$variants = $wgContLang->getVariants();
 		// Checks that language conversion is enabled and variants exist
-		// And if it is not in the special namespace
-		if( !$wgDisableLangConversion && count( $variants ) > 1
-			&& $title->getNamespace() != NS_SPECIAL ) {
-			// Gets preferred variant (note that user preference is 
-			// only possible for wiki content language variant)
-			$preferred = $pageLang->getPreferredVariant();
+		if( !$wgDisableLangConversion && count( $variants ) > 1 ) {
+			// Gets preferred variant
+			$preferred = $wgContLang->getPreferredVariant();
 			// Loops over each variant
 			foreach( $variants as $code ) {
 				// Gets variant name from language code
-				$varname = $pageLang->getVariantname( $code );
+				$varname = $wgContLang->getVariantname( $code );
 				// Checks if the variant is marked as disabled
 				if( $varname == 'disable' ) {
 					// Skips this variant
