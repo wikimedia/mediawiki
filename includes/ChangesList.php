@@ -741,6 +741,8 @@ class EnhancedChangesList extends ChangesList {
 			array_push( $this->rc_cache[$secureName], $rc );
 		}
 
+		wfRunHooks( 'EnhancedChangesListRecentChangesLine', array(&$this, &$s, $rc) );
+
 		wfProfileOut( __METHOD__ );
 
 		return $ret;
