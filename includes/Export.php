@@ -759,8 +759,10 @@ class DumpFileOutput extends DumpOutput {
 		}
 		if ( $newname ) {
 			fclose( $this->handle );
-			rename( $this->filename, $newname );
-			if ( $open ) {
+			if (! rename( $this->filename, $newname ) ) {
+				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
+			}
+			elseif ( $open ) {
 				$this->handle = fopen( $this->filename, "wt" );
 			}
 		}
@@ -814,8 +816,10 @@ class DumpPipeOutput extends DumpFileOutput {
 		if ( $newname ) {
 			fclose( $this->handle );
 			proc_close( $this->procOpenResource );
-			rename( $this->filename, $newname );
-			if ( $open ) {
+			if (! rename( $this->filename, $newname ) ) {
+				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
+			}
+			elseif ( $open ) {
 				$command = $this->command;
 				$command .=  " > " . wfEscapeShellArg( $this->filename );
 				$this->startCommand( $command );
@@ -873,8 +877,10 @@ class Dump7ZipOutput extends DumpPipeOutput {
 		if ( $newname ) {
 			fclose( $this->handle );
 			proc_close( $this->procOpenResource );
-			rename( $this->filename, $newname );
-			if ( $open ) {
+			if (! rename( $this->filename, $newname ) ) {
+				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
+			}
+			elseif ( $open ) {
 				$command = "7za a -bd -si " . wfEscapeShellArg( $file );
 				// Suppress annoying useless crap from p7zip
 				// Unfortunately this could suppress real error messages too
