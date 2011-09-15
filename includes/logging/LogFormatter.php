@@ -372,7 +372,10 @@ class DeleteLogFormatter extends LogFormatter {
 		$params = parent::getMessageParameters();
 		$subtype = $this->entry->getSubtype();
 		if ( in_array( $subtype, array( 'event', 'revision' ) ) ) {
-			if ( count( $params ) > 5 ) {
+			if (
+				($subtype === 'event' && count( $params ) === 6 ) ||
+				($subtype === 'revision' && $params[3] === 'revision' )
+			) {
 				$paramStart = $subtype === 'revision' ? 4 : 3;
 
 				$old = $this->parseBitField( $params[$paramStart+1] );
