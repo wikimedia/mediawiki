@@ -46,7 +46,6 @@ $wgAutoloadLocalClasses = array(
 	'ConfEditor' => 'includes/ConfEditor.php',
 	'ConfEditorParseError' => 'includes/ConfEditor.php',
 	'ConfEditorToken' => 'includes/ConfEditor.php',
-	'ContextSource' => 'includes/RequestContext.php',
 	'Cookie' => 'includes/Cookie.php',
 	'CookieJar' => 'includes/Cookie.php',
 	'DeferrableUpdate' => 'includes/DeferredUpdates.php',
@@ -116,7 +115,6 @@ $wgAutoloadLocalClasses = array(
 	'HTMLTextField' => 'includes/HTMLForm.php',
 	'Http' => 'includes/HttpFunctions.php',
 	'HttpRequest' => 'includes/HttpFunctions.old.php',
-	'IContextSource' => 'includes/RequestContext.php',
 	'IcuCollation' => 'includes/Collation.php',
 	'IdentityCollation' => 'includes/Collation.php',
 	'ImageGallery' => 'includes/ImageGallery.php',
@@ -139,6 +137,7 @@ $wgAutoloadLocalClasses = array(
 	'Linker' => 'includes/Linker.php',
 	'LinkFilter' => 'includes/LinkFilter.php',
 	'LinksUpdate' => 'includes/LinksUpdate.php',
+	'ListMessageParser' => 'includes/ListMessageParser.php',
 	'LocalisationCache' => 'includes/LocalisationCache.php',
 	'LocalisationCache_BulkLoad' => 'includes/LocalisationCache.php',
 	'LogEventsList' => 'includes/LogEventsList.php',
@@ -187,7 +186,6 @@ $wgAutoloadLocalClasses = array(
 	'RegexlikeReplacer' => 'includes/StringUtils.php',
 	'ReplacementArray' => 'includes/StringUtils.php',
 	'Replacer' => 'includes/StringUtils.php',
-	'RequestContext' => 'includes/RequestContext.php',
 	'ReverseChronologicalPager' => 'includes/Pager.php',
 	'RevisionItemBase' => 'includes/RevisionList.php',
 	'RevisionListBase' => 'includes/RevisionList.php',
@@ -200,6 +198,7 @@ $wgAutoloadLocalClasses = array(
 	'SiteStatsInit' => 'includes/SiteStats.php',
 	'SiteStatsUpdate' => 'includes/SiteStats.php',
 	'Skin' => 'includes/Skin.php',
+	'Skin2' => 'includes/Skin2.php',
 	'SkinLegacy' => 'includes/SkinLegacy.php',
 	'SkinTemplate' => 'includes/SkinTemplate.php',
 	'SpecialCreateAccount' => 'includes/SpecialPage.php',
@@ -384,6 +383,12 @@ $wgAutoloadLocalClasses = array(
 	'DatabaseConf' => 'includes/conf/DatabaseConf.php',
 	'DefaultSettings' => 'includes/conf/DefaultSettings.php',
 
+	# includes/context
+	'ContextSource' => 'includes/context/ContextSource.php',
+	'DerivativeContext' => 'includes/context/DerivativeContext.php',
+	'IContextSource' => 'includes/context/IContextSource.php',
+	'RequestContext' => 'includes/context/RequestContext.php',
+
 	# includes/db
 	'Blob' => 'includes/db/DatabaseUtility.php',
 	'ChronologyProtector' => 'includes/db/LBFactory.php',
@@ -533,6 +538,7 @@ $wgAutoloadLocalClasses = array(
 	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
 	'JSMinPlus' => 'includes/libs/jsminplus.php',
 	'JSParser' => 'includes/libs/jsminplus.php',
+	'simple_html_dom' => 'includes/libs/simple_html_dom.php',
 
 	# includes/logging
 	'LogEntry' => 'includes/logging/LogEntry.php',
