@@ -34,6 +34,8 @@ $extraUserToggles = array(
 
 $fallback8bitEncoding = 'windows-1251';
 
+$linkTrail = '/^([a-zäçéğıïñöşüýʺʹа-яёәғіқңөұүһٴابپتجحدرزسشعفقكلمنڭەوۇۋۆىيچھ“»]+)(.*)$/sDu';
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Таспа',
 	NS_SPECIAL          => 'Арнайы',
