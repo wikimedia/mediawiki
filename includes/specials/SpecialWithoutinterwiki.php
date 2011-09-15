@@ -35,8 +35,8 @@ class WithoutInterwikiPage extends PageQueryPage {
 	}
 
 	function execute( $par ) {
-		global $wgRequest;
-		$this->prefix = Title::capitalize( $wgRequest->getVal( 'prefix', $par ), NS_MAIN );
+		$this->prefix = Title::capitalize(
+			$this->getRequest()->getVal( 'prefix', $par ), NS_MAIN );
 		parent::execute( $par );
 	}
 
