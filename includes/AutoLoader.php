@@ -137,7 +137,6 @@ $wgAutoloadLocalClasses = array(
 	'Linker' => 'includes/Linker.php',
 	'LinkFilter' => 'includes/LinkFilter.php',
 	'LinksUpdate' => 'includes/LinksUpdate.php',
-	'ListMessageParser' => 'includes/ListMessageParser.php',
 	'LocalisationCache' => 'includes/LocalisationCache.php',
 	'LocalisationCache_BulkLoad' => 'includes/LocalisationCache.php',
 	'LogEventsList' => 'includes/LogEventsList.php',
@@ -198,7 +197,6 @@ $wgAutoloadLocalClasses = array(
 	'SiteStatsInit' => 'includes/SiteStats.php',
 	'SiteStatsUpdate' => 'includes/SiteStats.php',
 	'Skin' => 'includes/Skin.php',
-	'Skin2' => 'includes/Skin2.php',
 	'SkinLegacy' => 'includes/SkinLegacy.php',
 	'SkinTemplate' => 'includes/SkinTemplate.php',
 	'SpecialCreateAccount' => 'includes/SpecialPage.php',
@@ -538,7 +536,6 @@ $wgAutoloadLocalClasses = array(
 	'JavaScriptMinifier' => 'includes/libs/JavaScriptMinifier.php',
 	'JSMinPlus' => 'includes/libs/jsminplus.php',
 	'JSParser' => 'includes/libs/jsminplus.php',
-	'simple_html_dom' => 'includes/libs/simple_html_dom.php',
 
 	# includes/logging
 	'LogEntry' => 'includes/logging/LogEntry.php',
