@@ -49,6 +49,13 @@ class UnusedCategoriesPage extends QueryPage {
 				AND page_is_redirect = 0";
 	}
 
+	/**
+	 * A should come before Z (bug 30907)
+	 */
+	function sortDescending() {
+		return false;
+	}
+
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
 		return $skin->link( $title, $title->getText() );

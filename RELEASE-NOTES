@@ -61,6 +61,7 @@ Selected changes since MediaWiki 1.16 that may be of interest:
   instead require() for included extensions.
 * (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
   warnings/notices to be thrown
+* (bug 30907) Special:Unusedcategories should sort ascendingly.
 
 === Changes since 1.17.0rc1 ===
 
