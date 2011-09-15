@@ -1984,7 +1984,7 @@ class WikiPage extends Page {
 		$edit->revid = $revid;
 		$edit->newText = $text;
 		$edit->pst = $this->preSaveTransform( $text, $user, $popts );
-		$edit->popts = $this->getParserOptions( true );
+		$edit->popts = $this->makeParserOptions( new User );
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
 		$edit->oldText = $this->getRawText();
 
@@ -2563,13 +2563,11 @@ class WikiPage extends Page {
 	 * Get parser options suitable for rendering the primary article wikitext
 	 * @param $canonical boolean Determines that the generated options must not depend on user preferences (see bug 14404)
 	 * @return mixed ParserOptions object or boolean false
-	 * @deprecated since 1.19
 	 */
-	public function getParserOptions( $canonical = false ) {
-		global $wgUser, $wgLanguageCode;
-		if ( !$this->mParserOptions || $canonical ) {
-			$user = !$canonical ? $wgUser : new User;
-			$this->mParserOptions = $this->makeParserOptions( $user );
+	public function getParserOptions() {
+		global $wgUser;
+		if ( !$this->mParserOptions ) {
+			$this->mParserOptions = $this->makeParserOptions( $wgUser );
 		}
 		// Clone to allow modifications of the return value without affecting cache
 		return clone $this->mParserOptions;
