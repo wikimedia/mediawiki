@@ -45,10 +45,10 @@ class ChangesList extends ContextSource {
 	/**
 	 * Changeslist contructor
 	 *
-	 * @param $obj Skin or RequestContext
+	 * @param $obj Skin or IContextSource
 	 */
 	public function __construct( $obj ) {
-		if ( $obj instanceof RequestContext ) {
+		if ( $obj instanceof IContextSource ) {
 			$this->setContext( $obj );
 			$this->skin = $obj->getSkin();
 		} else {
@@ -74,10 +74,10 @@ class ChangesList extends ContextSource {
 	 * Fetch an appropriate changes list class for the specified context
 	 * Some users might want to use an enhanced list format, for instance
 	 *
-	 * @param $context RequestContext to use
+	 * @param $context IContextSource to use
 	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
 	 */
-	public static function newFromContext( RequestContext $context ) {
+	public static function newFromContext( IContextSource $context ) {
 		$user = $context->getUser();
 		$sk = $context->getSkin();
 		$list = null;

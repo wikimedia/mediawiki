@@ -7,7 +7,7 @@
  * to wrap bulk update operations.
  */
 abstract class RevDel_List extends RevisionListBase {
-	function __construct( RequestContext $context, Title $title, array $ids ) {
+	function __construct( IContextSource $context, Title $title, array $ids ) {
 		parent::__construct( $context, $title );
 		$this->ids = $ids;
 	}

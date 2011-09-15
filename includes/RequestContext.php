@@ -353,14 +353,14 @@ class RequestContext implements IContextSource {
 abstract class ContextSource implements IContextSource {
 
 	/**
-	 * @var RequestContext
+	 * @var IContextSource
 	 */
 	private $context;
 
 	/**
-	 * Get the RequestContext object
+	 * Get the IContextSource object
 	 *
-	 * @return RequestContext
+	 * @return IContextSource
 	 */
 	public function getContext() {
 		if ( $this->context === null ) {
@@ -372,11 +372,11 @@ abstract class ContextSource implements IContextSource {
 	}
 
 	/**
-	 * Set the RequestContext object
+	 * Set the IContextSource object
 	 *
-	 * @param $context RequestContext
+	 * @param $context IContextSource
 	 */
-	public function setContext( RequestContext $context ) {
+	public function setContext( IContextSource $context ) {
 		$this->context = $context;
 	}
 

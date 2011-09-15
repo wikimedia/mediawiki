@@ -78,9 +78,9 @@ class LogFormatter {
 
 	/**
 	 * Replace the default context
-	 * @param $context RequestContext
+	 * @param $context IContextSource
 	 */
-	public function setContext( RequestContext $context ) {
+	public function setContext( IContextSource $context ) {
 		$this->context = $context;
 	}
 

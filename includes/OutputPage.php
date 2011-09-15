@@ -223,7 +223,7 @@ class OutputPage extends ContextSource {
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
 	 */
-	function __construct( RequestContext $context = null ) {
+	function __construct( IContextSource $context = null ) {
 		if ( $context === null ) {
 			# Extensions should use `new RequestContext` instead of `new OutputPage` now.
 			wfDeprecated( __METHOD__ );

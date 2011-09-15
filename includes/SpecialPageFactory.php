@@ -409,12 +409,12 @@ class SpecialPageFactory {
 	 * page, and true if it was successful.
 	 *
 	 * @param $title          Title object
-	 * @param $context        RequestContext
+	 * @param $context        IContextSource
 	 * @param $including      Bool output is being captured for use in {{special:whatever}}
 	 *
 	 * @return bool
 	 */
-	public static function executePath( Title &$title, RequestContext &$context, $including = false ) {
+	public static function executePath( Title &$title, IContextSource &$context, $including = false ) {
 		wfProfileIn( __METHOD__ );
 
 		// @todo FIXME: Redirects broken due to this call
@@ -485,11 +485,11 @@ class SpecialPageFactory {
 	 * normal request, and then restores them to their previous values after.
 	 *
 	 * @param $title Title
-	 * @param $context RequestContext
+	 * @param $context IContextSource
 	 *
 	 * @return String: HTML fragment
 	 */
-	static function capturePath( Title $title, RequestContext $context ) {
+	static function capturePath( Title $title, IContextSource $context ) {
 		global $wgOut, $wgTitle, $wgRequest, $wgUser, $wgLang;
 
 		// Save current globals

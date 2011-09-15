@@ -29,7 +29,7 @@ class MediaWiki {
 
 	/**
 	 * TODO: fold $output, etc, into this
-	 * @var RequestContext
+	 * @var IContextSource
 	 */
 	private $context;
 
@@ -45,7 +45,7 @@ class MediaWiki {
 		return $old;
 	}
 
-	public function __construct( RequestContext $context = null ) {
+	public function __construct( IContextSource $context = null ) {
 		if ( !$context ) {
 			$context = RequestContext::getMain();
 		}
@@ -256,10 +256,10 @@ class MediaWiki {
 	 *
 	 * @deprecated in 1.18; use Article::newFromTitle() instead
 	 * @param $title Title
-	 * @param $context RequestContext
+	 * @param $context IContextSource
 	 * @return Article object
 	 */
-	public static function articleFromTitle( $title, RequestContext $context ) {
+	public static function articleFromTitle( $title, IContextSource $context ) {
 		return Article::newFromTitle( $title, $context );
 	}
 
