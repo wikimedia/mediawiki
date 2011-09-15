@@ -5,6 +5,7 @@
  * Copyright © 2011, Ashar Voultoiz
  *
  * @author Ashar Voultoiz
+ * @group Database
  */
 class SpecialRecentchangesTest extends MediaWikiTestCase {
 
