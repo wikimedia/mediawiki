@@ -485,7 +485,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			'fields' => array(
 				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
 				'page_len','rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
-				'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted'
+				'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted',
+				'rev_len', 'rev_parent_id'
 			),
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => array('revision' => $index) ),
@@ -551,6 +552,44 @@ class ContribsPager extends ReverseChronologicalPager {
 		return "</ul>\n";
 	}
 
+	function getBody() {
+		global $wgRCShowChangedSize;
+		if( !$this->mQueryDone ) {
+			$this->doQuery();
+		}
+		$this->mParentLens = array();
+		if( $wgRCShowChangedSize ) {
+			$this->mResult->rewind();
+			$revIds = array();
+			foreach( $this->mResult as $row ) {
+				$revIds[] = $row->rev_parent_id;
+			}
+			$this->mParentLens = $this->getParentLengths( $revIds );
+			$this->mResult->rewind();
+		}
+		return parent::getBody();
+	}
+
+	/*
+	 * Do a batched query to get the parent revision lengths
+	 */
+	private function getParentLengths( array $revIds ) {
+		$revLens = array();
+		if ( !$revIds ) {
+			return $revLens; // empty
+		}
+		wfProfileIn( __METHOD__ );
+		$res = $this->getDatabase()->select( 'revision',
+			array( 'rev_id', 'rev_len' ),
+			array( 'rev_id' => $revIds ),
+			__METHOD__ );
+		foreach( $res as $row ) {
+			$revLens[$row->rev_id] = $row->rev_len;
+		}
+		wfProfileOut( __METHOD__ );
+		return $revLens;
+	}
+
 	/**
 	 * Generates each row in the contributions list.
 	 *
@@ -609,6 +648,13 @@ class ContribsPager extends ReverseChronologicalPager {
 			array( 'action' => 'history' )
 		);
 
+		if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
+			$chardiff = ' . . ' . ChangesList::showCharacterDifference(
+				$this->mParentLens[$row->rev_parent_id], $row->rev_len ) . ' . . ';
+		} else {
+			$chardiff = '';
+		}
+
 		$comment = $wgLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
 		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
@@ -664,7 +710,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
-		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
+		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag}{$chardiff} {$link}{$userlink} {$comment} {$topmarktext}";
 
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
