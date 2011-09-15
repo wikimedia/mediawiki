@@ -188,7 +188,7 @@ class ResourceLoader {
 		wfProfileIn( __METHOD__ );
 
 		// Add 'local' source first
-		$this->addSource( 'local', array( 'loadScript' => $wgLoadScript ) );
+		$this->addSource( 'local', array( 'loadScript' => $wgLoadScript, 'apiScript' => wfScript( 'api' ) ) );
 
 		// Add other sources
 		$this->addSource( $wgResourceLoaderSources );
