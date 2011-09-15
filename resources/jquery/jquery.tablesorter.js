@@ -218,6 +218,26 @@
 		}
 		table.tBodies[0].appendChild( fragment );
 	}
+	
+	/**
+	 * Find all header rows in a thead-less table and put them in a <thead> tag.
+	 * This only treats a row as a header row if it contains only <th>s (no <td>s)
+	 * and if it is preceded entirely by header rows. The algorithm stops when
+	 * it encounters the first non-header row.
+	 * @param $table jQuery object for a <table>
+	 */ 
+	function emulateTHead( $table ) {
+		var $thead = $( '<thead>' );
+		$table.find( 'tr' ).each( function() {
+			if ( $(this).find( 'td' ).length > 0 ) {
+				// This row contains a <td>, so it's not a header row
+				// Stop here
+				return false;
+			}
+			$thead.append( this );
+		} );
+		$table.prepend( $thead );
+	}
 
 	function buildHeaders( table, msg ) {
 		var	maxSeen = 0,
@@ -500,16 +520,26 @@
 			 */
 			construct: function( $tables, settings ) {
 				return $tables.each( function( i, table ) {
-
-					// Quit if no thead or tbody.
-					if ( !table.tHead || !table.tBodies ) {
-						return;
-					}
 					// Declare and cache.
 					var	$document, $headers, cache, config, sortOrder,
 						$table = $( table ),
 						shiftDown = 0,
 						firstTime = true;
+
+					// Quit if no tbody
+					if ( !table.tBodies ) {
+						return;
+					}
+					if ( !table.tHead ) {
+						// No thead found. Look for rows with <th>s and
+						// move them into a <thead> tag
+						emulateTHead( $table );
+						
+						// Still no thead? Then quit
+						if ( !table.tHead ) {
+							return;
+						}
+					}
 
 					// New config object.
 					table.config = {};
@@ -545,9 +575,11 @@
 
 							// Legacy fix of .sortbottoms
 							// Wrap them inside inside a tfoot (because that's what they actually want to be) &
-							// Move them up one level in the DOM
-							var sortbottoms = $table.find('tr.sortbottom').wrap('<tfoot>');
-							sortbottoms.parents('table').append(sortbottoms.parent());
+							// and put the <tfoot> at the end of the <table>
+							var $sortbottoms = $table.find( 'tr.sortbottom' );
+							if ( $sortbottoms.length ) {
+								$table.append( $( '<tfoot>' ).append( $sortbottoms ) )
+							}
 
 							explodeRowspans( $table );
 							// try to auto detect column type, and store in tables config
