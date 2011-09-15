@@ -400,19 +400,28 @@ class SpecialSearch extends SpecialPage {
 	 */
 	protected function showCreateLink( $t ) {
 		// show direct page/create link if applicable
+
 		// Check DBkey !== '' in case of fragment link only.
-		$messageName = null;
-		if( !is_null($t) && $t->getDBkey() !== '' ) {
-			if( $t->isKnown() ) {
-				$messageName = 'searchmenu-exists';
-			} elseif( $t->userCan( 'create' ) ) {
-				$messageName = 'searchmenu-new';
-			} else {
-				$messageName = 'searchmenu-new-nocreate';
-			}
+		if( is_null( $t ) || $t->getDBkey() === '' ) {
+			// invalid title
+			// preserve the paragraph for margins etc...
+			$this->getOutput()->addHtml( '<p></p>' );
+			return;
 		}
+		$messageName = '';
+		if( $t->isKnown() ) {
+			$messageName = 'searchmenu-exists';
+		} elseif( $t->userCan( 'create' ) ) {
+			$messageName = 'searchmenu-new';
+		} else {
+			$messageName = 'searchmenu-new-nocreate';
+		}
+		$params = array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) );
+		wfRunHooks( 'SpecialSearchCreateLink', array( $t, &$params ) );
+
+		// Extensions using the hook might still return an empty $messageName
 		if( $messageName ) {
-			$this->getOutput()->wrapWikiMsg( "<p class=\"mw-search-createlink\">\n$1</p>", array( $messageName, wfEscapeWikiText( $t->getPrefixedText() ) ) );
+			$this->getOutput()->wrapWikiMsg( "<p class=\"mw-search-createlink\">\n$1</p>", $params );
 		} else {
 			// preserve the paragraph for margins etc...
 			$this->getOutput()->addHtml( '<p></p>' );
@@ -871,12 +880,16 @@ class SpecialSearch extends SpecialPage {
 			}
 			$namespaceTables .= Xml::closeElement( 'table' );
 		}
+
+		$showSections = array( 'namespaceTables' => $namespaceTables );
+
 		// Show redirects check only if backend supports it
-		$redirects = '';
 		if( $this->getSearchEngine()->supports( 'list-redirects' ) ) {
-			$redirects =
+			$showSections['redirects'] =
 				Xml::checkLabel( wfMsg( 'powersearch-redir' ), 'redirs', 'redirs', $this->searchRedirects );
 		}
+
+		wfRunHooks( 'SpecialSearchPowerBox', array( &$showSections, $term, $opts ) );
 
 		$hidden = '';
 		unset( $opts['redirs'] );
@@ -913,9 +926,8 @@ class SpecialSearch extends SpecialPage {
 					)
 			) .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
-			$namespaceTables .
-			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
-			$redirects . $hidden .
+			implode( Xml::element( 'div', array( 'class' => 'divider' ), '', false ), $showSections ) .
+			$hidden .
 			Xml::closeElement( 'fieldset' );
 	}
 
