@@ -45,7 +45,7 @@ $namespaceNames = array(
 	NS_HELP             => 'സഹായം',
 	NS_HELP_TALK        => 'സഹായത്തിന്റെ_സംവാദം',
 	NS_CATEGORY         => 'വർഗ്ഗം',
-	NS_CATEGORY_TALK    => 'വര്ർഗ്ഗത്തിന്റെ_സംവാദം',
+	NS_CATEGORY_TALK    => 'വർഗ്ഗത്തിന്റെ_സംവാദം',
 );
 
 $namespaceAliases = array(
