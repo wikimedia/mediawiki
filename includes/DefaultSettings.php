@@ -2478,7 +2478,10 @@ $wgResourceModules = array();
  * ResourceLoader::__construct() so that it cannot be unset.
  *
  * Example:
- *   $wgResourceLoaderSources['foo'] = array( 'loadScript' => 'http://example.org/w/load.php' );
+ *   $wgResourceLoaderSources['foo'] = array(
+ *       'loadScript' => 'http://example.org/w/load.php',
+ *       'apiScript' => 'http://example.org/w/api.php'
+ *   );
  */
 $wgResourceLoaderSources = array();
 
