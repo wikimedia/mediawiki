@@ -86,9 +86,10 @@ class NostalgiaTemplate extends LegacyTemplate {
 			$s .= $sep . Linker::specialLink( 'Userlogin' );
 		} else {
 			/* show user page and user talk links */
-			$s .= $sep . Linker::link( $this->getSkin()->getUser()->getUserPage(), wfMsgHtml( 'mypage' ) );
-			$s .= $sep . Linker::link( $this->getSkin()->getUser()->getTalkPage(), wfMsgHtml( 'mytalk' ) );
-			if ( $this->getSkin()->getUser()->getNewtalk() ) {
+			$user = $this->getSkin()->getUser();
+			$s .= $sep . Linker::link( $user->getUserPage(), wfMsgHtml( 'mypage' ) );
+			$s .= $sep . Linker::link( $user->getTalkPage(), wfMsgHtml( 'mytalk' ) );
+			if ( $user->getNewtalk() ) {
 				$s .= ' *';
 			}
 			/* show watchlist link */
@@ -100,12 +101,12 @@ class NostalgiaTemplate extends LegacyTemplate {
 			/* show my preferences link */
 			$s .= $sep . Linker::specialLink( 'Preferences' );
 			/* show upload file link */
-			if( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getSkin()->getUser() ) === true ) {
+			if( UploadBase::isEnabled() && UploadBase::isAllowed( $user ) === true ) {
 				$s .= $sep . $this->getUploadLink();
 			}
 
 			/* show log out link */
-			$s .= $sep . $this->getSkin()->specialLink( 'Userlogout' );
+			$s .= $sep . Linker::specialLink( 'Userlogout' );
 		}
 
 		$s .= $sep . $this->specialPagesList();
