@@ -584,6 +584,11 @@ class MessageCache {
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgLanguageCode, $wgContLang;
 
+		if ( is_int( $key ) ) {
+			// "Non-string key given" exception sometimes happens for numerical strings that become ints somewhere on their way here
+			$key = strval( $key );
+		}
+
 		if ( !is_string( $key ) ) {
 			throw new MWException( 'Non-string key given' );
 		}
