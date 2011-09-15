@@ -91,6 +91,7 @@ production.
   importing a new revision into it
 * Allowing moving the associated talk pages of subpages even if the base page
   has no subpage.
+* (bug 30907) Special:Unusedcategories should sort ascendingly.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
