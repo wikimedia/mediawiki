@@ -2561,7 +2561,6 @@ class WikiPage extends Page {
 
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
-	 * @param $canonical boolean Determines that the generated options must not depend on user preferences (see bug 14404)
 	 * @return mixed ParserOptions object or boolean false
 	 */
 	public function getParserOptions() {
