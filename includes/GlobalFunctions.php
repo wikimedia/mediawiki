@@ -3335,13 +3335,30 @@ function wfGetNull() {
  * Throws a warning that $function is deprecated
  *
  * @param $function String
+ * @param $version String
  * @return null
  */
-function wfDeprecated( $function ) {
+function wfDeprecated( $function, $version=false ) {
 	static $functionsWarned = array();
 	if ( !isset( $functionsWarned[$function] ) ) {
 		$functionsWarned[$function] = true;
-		wfWarn( "Use of $function is deprecated.", 2 );
+		if ( $version ) {
+			global $wgDeprecationReleaseLimit;
+			if ( $wgDeprecationReleaseLimit ) {
+				# Strip -* off the end of $version so that branches can use the
+				# format #.##-branchname to avoid issues if the branch is merged into
+				# a version of MediaWiki later than what it was branched from
+				$comparableVersion = preg_replace( '/-.*$/', '', $version );
+				# If the comparableVersion is larger than our release limit then
+				# skip the warning message for the deprecation
+				if ( version_compare( $wgDeprecationReleaseLimit, $comparableVersion, '<' ) ) {
+					return;
+				}
+			}
+			wfWarn( "Use of $function was deprecated in $version.", 2 );
+		} else {
+			wfWarn( "Use of $function is deprecated.", 2 );
+		}
 	}
 }
 

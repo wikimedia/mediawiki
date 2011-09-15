@@ -4039,6 +4039,13 @@ $wgShowHostnames = false;
  */
 $wgDevelopmentWarnings = false;
 
+/**
+ * Release limitation to wfDeprecated warnings, if set to a release number
+ * development warnings will not be generated for deprecations added in releases
+ * after the limit.
+ */
+$wgDeprecationReleaseLimit = false;
+
 /** Only record profiling info for pages that took longer than this */
 $wgProfileLimit = 0.0;
 
