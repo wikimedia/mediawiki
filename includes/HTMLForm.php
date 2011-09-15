@@ -102,7 +102,7 @@ class HTMLForm {
 	protected $mSubmitText;
 	protected $mSubmitTooltip;
 
-	protected $mContext; // <! RequestContext
+	protected $mContext; // <! IContextSource
 	protected $mTitle;
 	protected $mMethod = 'post';
 
@@ -115,12 +115,12 @@ class HTMLForm {
 	/**
 	 * Build a new HTMLForm from an array of field attributes
 	 * @param $descriptor Array of Field constructs, as described above
-	 * @param $context RequestContext available since 1.18, will become compulsory in 1.18.
+	 * @param $context IContextSource available since 1.18, will become compulsory in 1.18.
 	 *     Obviates the need to call $form->setTitle()
 	 * @param $messagePrefix String a prefix to go in front of default messages
 	 */
-	public function __construct( $descriptor, /*RequestContext*/ $context = null, $messagePrefix = '' ) {
-		if( $context instanceof RequestContext ){
+	public function __construct( $descriptor, /*IContextSource*/ $context = null, $messagePrefix = '' ) {
+		if( $context instanceof IContextSource ){
 			$this->mContext = $context;
 			$this->mTitle = false; // We don't need them to set a title
 			$this->mMessagePrefix = $messagePrefix;
@@ -638,10 +638,10 @@ class HTMLForm {
 	}
 
 	/**
-	 * @return RequestContext
+	 * @return IContextSource
 	 */
 	public function getContext(){
-		return $this->mContext instanceof RequestContext
+		return $this->mContext instanceof IContextSource
 			? $this->mContext
 			: RequestContext::getMain();
 	}

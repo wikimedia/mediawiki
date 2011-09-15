@@ -8,7 +8,7 @@ abstract class RevisionListBase {
 	 */
 	var $title;
 	/**
-	 * @var RequestContext
+	 * @var IContextSource
 	 */
 	var $context;
 
@@ -16,10 +16,10 @@ abstract class RevisionListBase {
 
 	/**
 	 * Construct a revision list for a given title
-	 * @param $context RequestContext
+	 * @param $context IContextSource
 	 * @param $title Title
 	 */
-	function __construct( RequestContext $context, Title $title ) {
+	function __construct( IContextSource $context, Title $title ) {
 		$this->context = $context;
 		$this->title = $title;
 	}

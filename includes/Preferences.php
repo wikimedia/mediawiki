@@ -1212,11 +1212,11 @@ class Preferences {
 
 	/**
 	 * @param $user User
-	 * @param $context RequestContext
+	 * @param $context IContextSource
 	 * @param $formClass string
 	 * @return HtmlForm
 	 */
-	static function getFormObject( $user, RequestContext $context, $formClass = 'PreferencesForm' ) {
+	static function getFormObject( $user, IContextSource $context, $formClass = 'PreferencesForm' ) {
 		$formDescriptor = Preferences::getPreferences( $user );
 		$htmlForm = new $formClass( $formDescriptor, $context, 'prefs' );
 

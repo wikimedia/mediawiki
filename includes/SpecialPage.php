@@ -57,7 +57,7 @@ class SpecialPage {
 
 	/**
 	 * Current request context
-	 * @var RequestContext
+	 * @var IContextSource
 	 */
 	protected $mContext;
 
@@ -226,12 +226,12 @@ class SpecialPage {
 	 * page, and true if it was successful.
 	 *
 	 * @param $title          Title object
-	 * @param $context        RequestContext
+	 * @param $context        IContextSource
 	 * @param $including      Bool output is being captured for use in {{special:whatever}}
 	 * @return Bool
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
-	public static function executePath( &$title, RequestContext &$context, $including = false ) {
+	public static function executePath( &$title, IContextSource &$context, $including = false ) {
 		return SpecialPageFactory::executePath( $title, $context, $including );
 	}
 
@@ -592,7 +592,7 @@ class SpecialPage {
 	/**
 	 * Sets the context this SpecialPage is executed in
 	 *
-	 * @param $context RequestContext
+	 * @param $context IContextSource
 	 * @since 1.18
 	 */
 	public function setContext( $context ) {
@@ -602,11 +602,11 @@ class SpecialPage {
 	/**
 	 * Gets the context this SpecialPage is executed in
 	 *
-	 * @return RequestContext
+	 * @return IContextSource
 	 * @since 1.18
 	 */
 	public function getContext() {
-		if ( $this->mContext instanceof RequestContext ) {
+		if ( $this->mContext instanceof IContextSource ) {
 			return $this->mContext;
 		} else {
 			wfDebug( __METHOD__ . " called and \$mContext is null. Return RequestContext::getMain(); for sanity\n" );
