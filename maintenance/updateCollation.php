@@ -51,19 +51,6 @@ TEXT;
 			'collation, though, so it may miss out-of-date rows with a different, ' .
 			'even older collation.', false, true );
 	}
-	
-	public function syncDBs() {
-		// TODO: Most of this is duplicated from wfWaitForSlaves(), except for the waitTimeout() call
-		$lb = wfGetLB();
-		$lb->waitTimeout(100000);
-		// bug 27975 - Don't try to wait for slaves if there are none
-		// Prevents permission error when getting master position
-		if ( $lb->getServerCount() > 1 ) {
-			$dbw = $lb->getConnection( DB_MASTER );
-			$pos = $dbw->getMasterPos();
-			$lb->waitForAll( $pos );
-		}
-	}
 
 	public function execute() {
 		global $wgCategoryCollation, $wgMiserMode;
@@ -171,7 +158,7 @@ TEXT;
 			
 			if ( ++$batchCount % self::SYNC_INTERVAL == 0 ) {
 				$this->output( "Waiting for slaves ... " );
-				$this->syncDBs();
+				wfWaitForSlaves();
 				$this->output( "done\n" );
 			}
 		} while ( $res->numRows() == self::BATCH_SIZE );
