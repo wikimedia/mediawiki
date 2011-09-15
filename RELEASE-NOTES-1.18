@@ -444,6 +444,7 @@ production.
 * The preprocessor no longer fails with a PHP warning about XML_PARSE_HUGE when
   processing complex pages using newer versions of libxml2.
 * (bug 30192) Thumbnails of archived files are now deleted
+* (bug 30907) Special:Unusedcategories should sort ascendingly.
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
