@@ -2928,7 +2928,6 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'globalfileusage-filterlocal' => 'Nerādīt lokālo lietojumu',
 
 # Special:GlobalTemplateUsage
-'globaltemplateusage-of-file'     => 'Šo veidni izmanto vēl šādas viki:',
 'globaltemplateusage-filterlocal' => 'Nerādīt lokālo lietojumu',
 
 # Database error messages

@@ -3924,7 +3924,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'globalfileusage-text'        => 'グローバルなファイル使用状況を検索',
 'globalfileusage-no-results'  => '[[$1]] は他のウィキでは使われていません。',
 'globalfileusage-on-wiki'     => '$2 での使用状況',
-'globalfileusage-of-file'     => '以下に挙げる他のウィキがこのファイルを使っています:',
 'globalfileusage-filterlocal' => 'ローカル使用状況を表示しない',
 
 # Special:GlobalTemplateUsage
@@ -3934,7 +3933,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'globaltemplateusage-text'        => 'グローバルなテンプレートの使用状況を検索',
 'globaltemplateusage-no-results'  => '[[$1]] は他のウィキでは使われていません。',
 'globaltemplateusage-on-wiki'     => '$2 での使用状況',
-'globaltemplateusage-of-file'     => '以下に挙げる他のウィキがこのテンプレートを使っています:',
 'globaltemplateusage-filterlocal' => 'ローカル使用状況を表示しない',
 
 # Database error messages

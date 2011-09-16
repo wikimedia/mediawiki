@@ -2536,24 +2536,24 @@ $1',
 'limitall'      => 'سارے',
 
 # E-mail address confirmation
-'confirmemail'             => 'ای میل پتہ پکا کرو',
-'confirmemail_send'        => 'کنفرمیشن کوڈ پیجو',
-'confirmemail_sent'        => 'کنفرمیشن ای-میل پیج دتی گئی۔',
-'confirmemail_oncreate'    => 'اک کنفرمیشن کوڈ تواڈے ای-میل پتے تے پیج دتی گئی اے۔
+'confirmemail'              => 'ای میل پتہ پکا کرو',
+'confirmemail_send'         => 'کنفرمیشن کوڈ پیجو',
+'confirmemail_sent'         => 'کنفرمیشن ای-میل پیج دتی گئی۔',
+'confirmemail_oncreate'     => 'اک کنفرمیشن کوڈ تواڈے ای-میل پتے تے پیج دتی گئی اے۔
 ایس کوڈ دی لاگ ان ہون لی  لوڑ نئیں، پر تھوانوں ایدی لوڑ اے دین دی وکی چ کسے وی ای-میل فیچر نوں قابل کرن لئی۔',
-'confirmemail_sendfailed'  => '{{SITENAME}} توں تساں دی کنفرم ہون دی ای-میل نئیں آئی۔
+'confirmemail_sendfailed'   => '{{SITENAME}} توں تساں دی کنفرم ہون دی ای-میل نئیں آئی۔
 مہربانی کرکے اپنا ای-میل پتہ چیک کرو اکریاں دی غلطی لئی۔
 
 میلر واپس: $1',
-'confirmemail_invalid'     => 'ناں منیا جان والا کنفرمیشن کوڈ۔
+'confirmemail_invalid'      => 'ناں منیا جان والا کنفرمیشن کوڈ۔
 کوڈ لگدا اے ایکسپائر ہوچکیا اے۔',
-'confirmemail_needlogin'   => 'تھوانوں $1 دی لوڑ اے اپنا ای-میل کنفرم کرن لئی۔',
-'confirmemail_success'     => 'تھواڈا ای-میل پتہ پکا ہوچکیا اے۔
+'confirmemail_needlogin'    => 'تھوانوں $1 دی لوڑ اے اپنا ای-میل کنفرم کرن لئی۔',
+'confirmemail_success'      => 'تھواڈا ای-میل پتہ پکا ہوچکیا اے۔
 تسی ہن لاگ ان ہوسکدے اے۔',
-'confirmemail_loggedin'    => 'تھواڈا ای-میل پتہ ہن پکا ہوچکیا اے۔',
-'confirmemail_error'       => 'تھواڈی کنفرمیشن نوں بچاندیاں ہویاں کوئی چیز غلط ہوگئی اے۔',
-'confirmemail_subject'     => '{{SITENAME}} ای-میل پتہ کنفرمیشن',
-'confirmemail_body'        => 'کسے نیں خبرے تساں ای آئی پی پتے $1 توں،
+'confirmemail_loggedin'     => 'تھواڈا ای-میل پتہ ہن پکا ہوچکیا اے۔',
+'confirmemail_error'        => 'تھواڈی کنفرمیشن نوں بچاندیاں ہویاں کوئی چیز غلط ہوگئی اے۔',
+'confirmemail_subject'      => '{{SITENAME}} ای-میل پتہ کنفرمیشن',
+'confirmemail_body'         => 'کسے نیں خبرے تساں ای آئی پی پتے $1 توں،
 اک کھاتہ  "$2" ایس ای میل پتے نال  {{SITENAME}}   تے بنایا اے۔
 
 اے گل پکا کرن لئی جے ایہ اکاؤنٹ تھواڈا ای اے تے ای-میل دے فیدے {{SITENAME}} تے ٹورن لئی اپنے براؤزر چ اے لنک کھولو:
@@ -2565,8 +2565,32 @@ $3
 $5
 
 ایس کنفرمیشن کوڈ دی تریخ $4 نوں مک جائیگی۔',
-'confirmemail_invalidated' => 'ای-میل پکا کرنا واپس',
-'invalidateemail'          => 'ای-میل پکا کرنا واپس کرو',
+'confirmemail_body_changed' => 'کسے نیں، خورے تساں، آئی پی پتے $1 توں 
+کھاتہ \'$" دا ای-میل پتہ بدل دتا اے {{سائٹ تھاں }} تے۔
+
+اے گل پکی کرن لی جے ایہ کھاتہ تواڈا اے تے اینوں {{سائٹ تھاں }} تے ای-میل فیچرز دوبارہ چلان لئی، اپنے برآؤزر چ  اے جوڑ کھولو:
+
+$3
+
+اگر کھاتہ تواڈا نئیں، ایس جوڑ تے اپڑو ای-میل پتہ دی کنفرمیشن نوں مکان لئی
+
+$5
+
+ایہ کنفرمیشن کوڈ $4 نوں مک جاؤگا۔',
+'confirmemail_body_set'     => 'کسے نیں، خورے تساں، آئی پی پتے $1 توں 
+کھاتہ \'$" دا ای-میل پتہ بدل دتا اے {{سائٹ تھاں }} تے۔
+
+اے گل پکی کرن لی جے ایہ کھاتہ تواڈا اے تے اینوں {{سائٹ تھاں }} تے ای-میل فیچرز دوبارہ چلان لئی، اپنے برآؤزر چ  اے جوڑ کھولو:
+
+$3
+
+اگر کھاتہ تواڈا نئیں، ایس جوڑ تے اپڑو ای-میل پتہ دی کنفرمیشن نوں مکان لئی
+
+$5
+
+ایہ کنفرمیشن کوڈ $4 نوں مک جاؤگا۔',
+'confirmemail_invalidated'  => 'ای-میل پکا کرنا واپس',
+'invalidateemail'           => 'ای-میل پکا کرنا واپس کرو',
 
 # Scary transclusion
 'scarytranscludedisabled' => 'انٹروکی رلانا روک دتا گیا۔',
@@ -2581,8 +2605,13 @@ $1',
 'trackbackdeleteok' => 'پچھلا راہ مٹا دتا گیا',
 
 # Delete conflict
-'deletedwhileediting' => "'''خبردار''': تھواڈے لکھن مکرون اے صفہ مٹا دتا گیا!",
-'recreate'            => 'دوبارہ بناؤ',
+'deletedwhileediting'      => "'''خبردار''': تھواڈے لکھن مکرون اے صفہ مٹا دتا گیا!",
+'confirmrecreate'          => "ورتن والا [[ورتن والا:$1|$1]]([[ورتن گل بات:$1|گل بات]]) ایہ صفہ مٹادتا اے جدوں تساں وجہ دس کے تبدیل کرن شروع کیتا:
+: ''$2''
+مہربانی کرکے کنفرم کرو جے تسی اے صفہ واقعی بنانا چاندے او۔",
+'confirmrecreate-noreason' => 'ورتن والا [[ورتن والا:$1|$1]] ([[ورتن گل بات:$1|گل بات]]) نے تواڈے تبدیلی کرن مگروں اے صفہ مٹا دتا اے۔
+مہربانی کرکے اے گل پکی کرو جے تسی واقعی اے صفہ بنانا چاندے او۔',
+'recreate'                 => 'دوبارہ بناؤ',
 
 # action=purge
 'confirm_purge_button' => 'ٹھیکھ ہے',
@@ -2629,18 +2658,30 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '$1 توں نویاں تبدیلیاں {{PLURAL:$1|سکنٹ}}',
+'lag-warn-high'   => 'تیز ڈیٹاسرور لاگ ، $1 توں نویاں تبدیلیاں {{انیک:$1|سکنٹ|سکنٹ}} ہوسکدا اے ایس لسٹ ناں دسے جان۔',
 
 # Watchlist editor
-'watchlistedit-numitems'      => 'تھواڈے اکھ تھلے رکھے صفیاں گل بات والے صفے کڈکے {{PLURAL:$1|1 سرخی|$1 سرخی}} نیں۔',
-'watchlistedit-noitems'       => 'تھواڈی اکھ تھلے رکھے صفیاں دی لسٹ خالی اے۔',
-'watchlistedit-normal-title'  => ' اکھ تھلے رکھی ہوئی نو تبدیل کرو',
-'watchlistedit-normal-legend' => 'اکھ تھلیوں ہٹا لو',
-'watchlistedit-normal-submit' => 'ٹائیٹلز ہٹاؤ',
-'watchlistedit-raw-title'     => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
-'watchlistedit-raw-legend'    => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
-'watchlistedit-raw-titles'    => 'ناں:',
-'watchlistedit-raw-submit'    => ' اکھ تھلے رکھی ہوئی نو تبدیل کرو',
-'watchlistedit-raw-done'      => 'تھواڈی اکھ تھلے رکھی لسٹ نویں کر دتی گئی اے۔',
+'watchlistedit-numitems'       => 'تھواڈے اکھ تھلے رکھے صفیاں گل بات والے صفے کڈکے {{PLURAL:$1|1 سرخی|$1 سرخی}} نیں۔',
+'watchlistedit-noitems'        => 'تھواڈی اکھ تھلے رکھے صفیاں دی لسٹ خالی اے۔',
+'watchlistedit-normal-title'   => ' اکھ تھلے رکھی ہوئی نو تبدیل کرو',
+'watchlistedit-normal-legend'  => 'اکھ تھلیوں ہٹا لو',
+'watchlistedit-normal-explain' => 'تواڈی اکھ تھلے رکھی لسٹ دے سرناویں تھلے دتے گۓ نیں۔
+اک سرناویں نوں ہٹان لئی، اوس توں اگلے ڈبے نوں ویکھو تے 
+"{{int:Watchlistedit-normal-submit}}" تے کلک کرو۔
+تسیں [[خاص:ایڈٹواچلسٹ/کچی|کچی لسٹ تبدیل کرو]]',
+'watchlistedit-normal-submit'  => 'ٹائیٹلز ہٹاؤ',
+'watchlistedit-normal-done'    => '{انیک:$1|1 سرناواں سی|$1 سرناویں سن}}',
+'watchlistedit-raw-title'      => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
+'watchlistedit-raw-legend'     => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
+'watchlistedit-raw-explain'    => 'سرناویں تواڈی اک تھلے رکھی لسٹ دے تھلے دتے نیں، تے ایناں چ وادا کعاٹا کرکے تبدیلی کیتی جاسکدی اے؛
+اک سرناواں اک لین چوں۔
+جدوں مک جاۓ تے "{{int:Watchlistedit-raw-submit}}" تے کلک کرو۔
+تسیں [[خاص:ایڈٹواچلسٹ|سٹینڈرڈ ایڈیٹر نوں چنو]]',
+'watchlistedit-raw-titles'     => 'ناں:',
+'watchlistedit-raw-submit'     => ' اکھ تھلے رکھی ہوئی نو تبدیل کرو',
+'watchlistedit-raw-done'       => 'تھواڈی اکھ تھلے رکھی لسٹ نویں کر دتی گئی اے۔',
+'watchlistedit-raw-added'      => '{{انیک:$1|1 سرناواں|$1 سرناویں}} جوڑیا گیا:',
+'watchlistedit-raw-removed'    => '{{انیک:$1|1 سرناواں|$1 سرناویں}} سرناواں:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ملدیاں ہوئیاں تبدیلیاں ویکھو',
@@ -2741,7 +2782,6 @@ $1',
 'globalfileusage-text'        => 'گلوبل فائل ورتن کھوجو',
 'globalfileusage-no-results'  => '[[$1]] دوجے وکیاں تے نئیں ورتیا جاندا۔',
 'globalfileusage-on-wiki'     => '$2 تے ورتن',
-'globalfileusage-of-file'     => 'اے دوجے وکی ایس فائل نوں ورتدے نیں:',
 'globalfileusage-more'        => 'ایس فائل دے [[{{#Special:GlobalUsage}}/$1|more global usage]] ویکھو۔',
 'globalfileusage-filterlocal' => 'لوکل ورتن ناں دسو',
 
@@ -2752,7 +2792,6 @@ $1',
 'globaltemplateusage-text'        => 'گلوبل ٹمپلیٹ ورتن کھوجو',
 'globaltemplateusage-no-results'  => '[[$1]] دوجے وکیاں تے نئیں ورتیا جاندا۔',
 'globaltemplateusage-on-wiki'     => '$2 تے ورتن',
-'globaltemplateusage-of-file'     => 'اے دوجے وکی ایس ٹمپلیٹ نوں ورتدے نیں:',
 'globaltemplateusage-more'        => 'ایس ٹیمپلیٹ دے [[{{#Special:GlobalUsage}}/$1|more global usage]] ویکھو۔',
 'globaltemplateusage-filterlocal' => 'لوکل ورتن ناں دسو',
 

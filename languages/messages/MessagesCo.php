@@ -87,6 +87,11 @@ $messages = array(
 'qbmyoptions'    => 'E mo pagine',
 'qbspecialpages' => 'Pagine spiciale',
 
+# Vector skin
+'vector-action-delete'  => 'Supprimà',
+'vector-action-protect' => 'Pruteghje',
+'vector-view-edit'      => 'Mudificà',
+
 'errorpagetitle'   => 'Errore',
 'returnto'         => 'Vultà à $1.',
 'help'             => 'Aiutu',
@@ -135,6 +140,7 @@ $messages = array(
 'newmessagesdifflink' => 'ultima mudifica',
 'editsection'         => 'mudificà',
 'editold'             => 'mudificà',
+'editlink'            => 'mudificà',
 'toc'                 => 'Cuntenutu',
 'showtoc'             => 'mustrà',
 'hidetoc'             => 'piattà',
@@ -166,6 +172,7 @@ $messages = array(
 'nologinlink'                => 'Registramentu',
 'createaccount'              => 'Registramentu',
 'gotaccountlink'             => 'Cunnessione',
+'createaccountreason'        => 'Mutivu:',
 'loginsuccesstitle'          => 'Cunnessione fatta',
 'acct_creation_throttle_hit' => "Desulatu, ai digià fattu $1 registramenti. Ùn ne poi micca fà d'altri.",
 'accountcreated'             => 'Registramentu fattu',
@@ -211,7 +218,11 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'history-feed-title' => 'Cronolugia di e revisione',
 
 # Revision deletion
-'rev-delundel' => 'mustrà/piattà',
+'rev-delundel'  => 'mustrà/piattà',
+'revdelete-log' => 'Mutivu:',
+
+# History merging
+'mergehistory-reason' => 'Mutivu:',
 
 # Search results
 'searchresults' => 'Risultati di a ricerca',
@@ -236,6 +247,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # User rights
 'editinguser'             => "Mudifica di '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-groupsmember' => 'Membru di:',
+'userrights-reason'       => 'Mutivu:',
 
 # Groups
 'group'            => 'Gruppu:',
@@ -286,10 +298,18 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'listfiles_user' => 'Utilizatore',
 
 # File description page
-'file-anchor-link' => 'Schedariu',
-'filehist'         => "Cronolugia di l'imagine",
-'filehist-user'    => 'Utilizatore',
-'imagelinks'       => 'Ligami',
+'file-anchor-link'   => 'Schedariu',
+'filehist'           => "Cronolugia di l'imagine",
+'filehist-deleteone' => 'supprimà',
+'filehist-user'      => 'Utilizatore',
+'imagelinks'         => 'Ligami',
+
+# File reversion
+'filerevert-comment' => 'Mutivu:',
+
+# File deletion
+'filedelete-comment' => 'Mutivu:',
+'filedelete-submit'  => 'Supprimà',
 
 # Unused templates
 'unusedtemplateswlh' => 'altri ligami',
@@ -343,9 +363,9 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'listusers-submit' => 'Mustrà',
 
 # E-mail user
-'emailto'      => 'À',
-'emailsubject' => 'Sughjettu',
-'emailmessage' => 'Messaghju',
+'emailto'      => 'À:',
+'emailsubject' => 'Sughjettu:',
+'emailmessage' => 'Messaghju:',
 'emailsend'    => 'Invià',
 
 # Watchlist
@@ -363,15 +383,19 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'excontent'       => "u cuntenutu era: '$1'",
 'excontentauthor' => "u cuntenutu era: '$1' (è u solu cuntributore era '[[Special:Contributions/$2|$2]]')",
 'exblank'         => 'a pagina era biota',
+'delete-legend'   => 'Supprimà',
 'actioncomplete'  => 'Azzione compia',
+'deletecomment'   => 'Mutivu:',
 
 # Protect
 'protectedarticle'            => 'prutettu "[[$1]]"',
 'prot_1movedto2'              => 'hà mossu [[$1]] à [[$2]]',
 'protect-legend'              => 'Cunfirmà a prutezzione',
+'protectcomment'              => 'Mutivu:',
 'protect-level-autoconfirmed' => 'Bluccà i cuntributori micca arrighjistrati',
 
 # Restrictions (nouns)
+'restriction-edit'   => 'Mudificà',
 'restriction-create' => 'Creà',
 
 # Restriction levels
@@ -379,7 +403,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 # Undelete
 'viewdeletedpage'        => 'Fighjulà e p agine supprimate',
-'undeletecomment'        => 'Cummentu:',
+'undeletecomment'        => 'Mutivu:',
 'undelete-search-box'    => 'Circà e pagine supprimate',
 'undelete-search-submit' => 'Ricerca',
 
@@ -400,6 +424,8 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 # Block/unblock
 'ipadressorusername'       => 'Adrizzu IP o nome di cuntributore',
+'ipbreason'                => 'Mutivu:',
+'blocklist-reason'         => 'Mutivu',
 'ipblocklist-submit'       => 'Ricerca',
 'anononlyblock'            => 'solu i cuntributori anonimi',
 'blocklink'                => 'bluccà',
@@ -416,7 +442,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'movepagebtn'             => 'Move a pagina',
 'movedto'                 => 'mossu à',
 'movelogpagetext'         => 'Elencu di e pagine mosse.',
-'movereason'              => 'Mutivu',
+'movereason'              => 'Mutivu:',
 'delete_and_move_confirm' => 'Iè, supprimà issa pagina',
 
 # Export
@@ -515,5 +541,8 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 
 # Special:SpecialPages
 'specialpages' => 'Pagine spiciale',
+
+# Special:Tags
+'tags-edit' => 'mudificà',
 
 );

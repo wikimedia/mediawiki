@@ -419,7 +419,7 @@ Bu vəziyyət səhifənin, silinmiş bir səhifənin keçmiş versiyası olması
 
 Əgər niyə bu deyilsə, proqramda bir səhv ilə qarşılaşmış ola bilərsiniz.
 Xahiş edirik bunu bir [[Special:ListUsers/sysop|İdarəçilərə]], URL not edərək göndərin.',
-'missingarticle-rev'   => '(təftiş#: $1)',
+'missingarticle-rev'   => '(təftiş № $1)',
 'missingarticle-diff'  => '(fərq: $1, $2)',
 'readonly_lag'         => 'Məlumatlar bazasının ikinci dərəcəli serveri əsas serverlə əlaqə yaradanadək məlumatlar bazası avtomatik olaraq bloklanmışdır',
 'internalerror'        => 'Daxili xəta',

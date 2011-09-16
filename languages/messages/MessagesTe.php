@@ -3414,14 +3414,12 @@ $1',
 'globalfileusage-ok'          => 'వెతుకు',
 'globalfileusage-no-results'  => '[[:$1]]ను ఇతర వికీలలో ఉపయోగించట్లేదు.',
 'globalfileusage-on-wiki'     => '$2 లో వాడుక',
-'globalfileusage-of-file'     => 'ఈ దస్త్రాన్ని ఈ క్రింది ఇతర వికీలు ఉపయోగిస్తున్నాయి:',
 'globalfileusage-filterlocal' => 'స్థానిక వాడుకని చూపించవద్దు',
 
 # Special:GlobalTemplateUsage
 'globaltemplateusage'             => 'సార్వత్రిక మూస వాడుక',
 'globaltemplateusage-ok'          => 'శోధించు',
 'globaltemplateusage-text'        => 'సార్వత్రిక మూస వాడుకలో శోధించు',
-'globaltemplateusage-of-file'     => 'ఈ మూసను ఈ క్రింది ఇతర వికీలు ఉపయోగిస్తున్నాయి:',
 'globaltemplateusage-filterlocal' => 'స్థానిక వాడుకని చూపించవద్దు',
 
 # Database error messages

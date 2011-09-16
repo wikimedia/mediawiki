@@ -3608,7 +3608,6 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'globalfileusage-text'        => '搜索全域文件使用',
 'globalfileusage-no-results'  => '[[$1]]并未在其他wiki上使用',
 'globalfileusage-on-wiki'     => '使用于$2',
-'globalfileusage-of-file'     => '下列的其他wiki使用了该文件：',
 'globalfileusage-more'        => '查看该文件[[{{#Special:GlobalUsage}}/$1|更多全域使用情况]]。',
 'globalfileusage-filterlocal' => '不显示本地使用',
 
@@ -3619,7 +3618,6 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'globaltemplateusage-text'        => '搜索全域模板使用',
 'globaltemplateusage-no-results'  => '[[$1]]并未在其他wiki上使用。',
 'globaltemplateusage-on-wiki'     => '使用于$2',
-'globaltemplateusage-of-file'     => '下列的其他wiki使用该模板：',
 'globaltemplateusage-more'        => '查看该模板的 [[{{#Special:GlobalUsage}}/$1|更多全域使用情况]]',
 'globaltemplateusage-filterlocal' => '不显示本地使用',
 

@@ -3462,7 +3462,6 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'globalfileusage-text'        => 'Билэни киэҥник туттууну көрдөөһүн',
 'globalfileusage-no-results'  => '[[$1]] атын биикигэ туттуллубат эбит.',
 'globalfileusage-on-wiki'     => 'Манна туттуллар $2',
-'globalfileusage-of-file'     => 'Бу биикилэр бу билэни тутталлар эбит:',
 'globalfileusage-more'        => 'Билэ [[{{#Special:GlobalUsage}}/$1|атын сиргэ киэҥник туттуллуутун]] көрүү.',
 'globalfileusage-filterlocal' => 'Локаал туттууну көрдөрүмэ',
 
@@ -3473,7 +3472,6 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'globaltemplateusage-text'        => 'Халыыбы киэҥник туттууну көрдөөһүн',
 'globaltemplateusage-no-results'  => '[[$1]] атын биикигэ туттуллубат эбит.',
 'globaltemplateusage-on-wiki'     => 'Манна туттуллар $2',
-'globaltemplateusage-of-file'     => 'Бу халыып маннык биикилэргэ туттуллар:',
 'globaltemplateusage-more'        => 'Халыып [[{{#Special:GlobalUsage}}/$1|атын сиргэ киэҥник туттуллуутун]] көрүү.',
 'globaltemplateusage-filterlocal' => 'Локаал туттууну көрдөрүмэ',
 
