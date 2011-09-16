@@ -391,6 +391,9 @@ class LoadBalancer {
 
 	/**
 	 * Wait for a given slave to catch up to the master pos stored in $this
+	 * @param $index
+	 * @param $open bool
+	 * @return bool
 	 */
 	function doWait( $index, $open = false ) {
 		# Find a connection to wait on
@@ -668,7 +671,7 @@ class LoadBalancer {
 	function reallyOpenConnection( $server, $dbNameOverride = false ) {
 		if( !is_array( $server ) ) {
 			throw new MWException( 'You must update your load-balancing configuration. ' .
-			                       'See DefaultSettings.php entry for $wgDBservers.' );
+				'See DefaultSettings.php entry for $wgDBservers.' );
 		}
 
 		$host = $server['host'];
@@ -837,8 +840,7 @@ class LoadBalancer {
 	 * Close a connection
 	 * Using this function makes sure the LoadBalancer knows the connection is closed.
 	 * If you use $conn->close() directly, the load balancer won't update its state.
-	 * @param $conn
-	 * @return void
+	 * @param $conn DatabaseBase
 	 */
 	function closeConnection( $conn ) {
 		$done = false;
@@ -890,10 +892,17 @@ class LoadBalancer {
 		}
 	}
 
+	/**
+	 * @param $value null
+	 * @return Mixed
+	 */
 	function waitTimeout( $value = null ) {
 		return wfSetVar( $this->mWaitTimeout, $value );
 	}
 
+	/**
+	 * @return bool
+	 */
 	function getLaggedSlaveMode() {
 		return $this->mLaggedSlaveMode;
 	}
@@ -906,6 +915,9 @@ class LoadBalancer {
 		$this->mAllowLagged = $mode;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function pingAll() {
 		$success = true;
 		foreach ( $this->mConns as $conns2 ) {
@@ -1005,6 +1017,10 @@ class LoadBalancer {
 	 * potentially restricted queries such as SHOW SLAVE STATUS. Using this
 	 * function instead of Database::getLag() avoids a fatal error in this
 	 * case on many installations.
+	 *
+	 * @param $conn DatabaseBase
+	 *
+	 * @return int
 	 */
 	function safeGetLag( $conn ) {
 		if ( $this->getServerCount() == 1 ) {
