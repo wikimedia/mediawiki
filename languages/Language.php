@@ -409,7 +409,9 @@ class Language {
 	 * @since 1.18
 	 */
 	function getGenderNsText( $index, $gender ) {
-		$ns = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+		global $wgExtraGenderNamespaces;
+		
+		$ns = $wgExtraGenderNamespaces + self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 		return isset( $ns[$index][$gender] ) ? $ns[$index][$gender] : $this->getNsText( $index );
 	}
 
@@ -420,7 +422,8 @@ class Language {
 	 * @since 1.18
 	 */
 	function needsGenderDistinction() {
-		$aliases = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+		global $wgExtraGenderNamespaces;
+		$aliases = $wgExtraGenderNamespaces + self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 		return count( $aliases ) > 0;
 	}
 
@@ -456,7 +459,8 @@ class Language {
 				}
 			}
 
-			$genders = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			global $wgExtraGenderNamespaces;
+			$genders = $wgExtraGenderNamespaces + self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 			foreach ( $genders as $index => $forms ) {
 				foreach ( $forms as $alias ) {
 					$aliases[$alias] = $index;

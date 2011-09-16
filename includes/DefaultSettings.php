@@ -2631,6 +2631,11 @@ $wgMetaNamespaceTalk = false;
 $wgExtraNamespaces = array();
 
 /**
+ * Same as above, but for namespaces with gender distinction.
+ */
+$wgExtraGenderNamespaces = array();
+
+/**
  * Namespace aliases
  * These are alternate names for the primary localised namespace names, which
  * are defined by $wgExtraNamespaces and the language file. If a page is
