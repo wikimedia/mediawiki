@@ -976,8 +976,7 @@ class SkinTemplate extends Skin {
 			} else {
 				// article doesn't exist or is deleted
 				if ( $wgUser->isAllowed( 'deletedhistory' ) ) {
-					$includeSuppressed = $wgUser->isAllowed( 'suppressrevision' );
-					$n = $title->isDeleted( $includeSuppressed );
+					$n = $title->isDeleted();
 					if( $n ) {
 						$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
 						// If the user can't undelete but can view deleted history show them a "View .. deleted" tab instead
