@@ -323,8 +323,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					global $wgUser;
-					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->log_comment, $title );
+					$vals['parsedcomment'] = Linker::formatComment( $row->log_comment, $title );
 				}
 			}
 		}

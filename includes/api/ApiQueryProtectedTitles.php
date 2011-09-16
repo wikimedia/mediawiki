@@ -112,8 +112,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 				}
 
 				if ( isset( $prop['parsedcomment'] ) ) {
-					global $wgUser;
-					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->pt_reason, $title );
+					$vals['parsedcomment'] = Linker::formatComment( $row->pt_reason, $title );
 				}
 
 				if ( isset( $prop['expiry'] ) ) {

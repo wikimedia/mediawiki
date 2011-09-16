@@ -318,8 +318,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				$vals['commenthidden'] = '';
 			} else {
 				if ( $pcomment ) {
-					global $wgUser;
-					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment(
+					$vals['parsedcomment'] = Linker::formatComment(
 						$file->getDescription(), $file->getTitle() );
 				}
 				if ( $comment ) {
