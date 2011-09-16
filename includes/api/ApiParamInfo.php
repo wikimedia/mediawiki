@@ -88,6 +88,21 @@ class ApiParamInfo extends ApiBase {
 			$pageSet = new ApiPageSet( $this->queryObj );
 			$r['pagesetmodule'] = $this->getClassInfo( $pageSet );
 		}
+		if ( is_array( $params['formatmodules'] ) ) {
+			$formats = $this->getMain()->getFormats();
+			$r['formatmodules'] = array();
+			foreach ( $params['formatmodules'] as $f ) {
+				if ( !isset( $formats[$f] ) ) {
+					$r['formatmodules'][] = array( 'name' => $f, 'missing' => '' );
+					continue;
+				}
+				$obj = new $formats[$f]( $this, $f );
+				$a = $this->getClassInfo( $obj );
+				$a['name'] = $f;
+				$r['formatmodules'][] = $a;
+			}
+			$result->setIndexedTagName( $r['formatmodules'], 'module' );
+		}
 		$result->addValue( null, $this->getModuleName(), $r );
 	}
 
@@ -237,6 +252,10 @@ class ApiParamInfo extends ApiBase {
 			),
 			'mainmodule' => false,
 			'pagesetmodule' => false,
+			'formatmodules' => array(
+				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_TYPE => array_keys( $this->getMain()->getFormats() ),
+			)
 		);
 	}
 
@@ -246,6 +265,7 @@ class ApiParamInfo extends ApiBase {
 			'querymodules' => 'List of query module names (value of prop=, meta= or list= parameter)',
 			'mainmodule' => 'Get information about the main (top-level) module as well',
 			'pagesetmodule' => 'Get information about the pageset module (providing titles= and friends) as well',
+			'formatmodules' => 'List of format module names (value of format= parameter)',
 		);
 	}
 
