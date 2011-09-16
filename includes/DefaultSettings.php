@@ -2632,6 +2632,9 @@ $wgExtraNamespaces = array();
 
 /**
  * Same as above, but for namespaces with gender distinction.
+ * Note: the default form for the namespace should also be set
+ * using $wgExtraNamespaces for the same index.
+ * @since 1.18
  */
 $wgExtraGenderNamespaces = array();
 
