@@ -326,6 +326,7 @@ class LogEventsList {
 	 * @return String: Formatted HTML list item
 	 */
 	public function logLine( $row ) {
+		$row->user_name = $this->fixUserName($row->user_name, $row->log_user);
 		$entry = DatabaseLogEntry::newFromRow( $row );
 		$formatter = LogFormatter::newFromEntry( $entry );
 		$formatter->setShowUserToolLinks( !( $this->flags & self::NO_EXTRA_USER_LINKS ) );
@@ -706,6 +707,11 @@ class LogEventsList {
 			$s = str_replace( '$1', $s, $wrap );
 		}
 
+		/* hook can return false, if we don't want the message to be emitted (Wikia BugId:7093) */
+		if (!wfRunHooks('LogEventsListShowLogExtract', array(&$s, $types, $page, $user, $param))) {
+			return $pager->getNumRows();
+		}
+
 		// $out can be either an OutputPage object or a String-by-reference
 		if( $out instanceof OutputPage ){
 			$out->addHTML( $s );
@@ -739,6 +745,23 @@ class LogEventsList {
 			return 'log_type NOT IN (' . $db->makeList($hiddenLogs) . ')';
 		}
 		return false;
+	}
+
+	/**
+	 * if user_name is empty - use User class to get his name
+	 * @param $user_name string
+	 * @param $user_id integer
+	 * @return string
+	 */
+	public function fixUserName($user_name, $user_id) {
+		if ( empty($user_name) ) {
+			$oUser = User::newFromID($user_id);
+			if ( $oUser instanceof User ) {
+				$user_name = $oUser->getName();
+			}
+		}
+
+		return $user_name;
 	}
 }
 
@@ -1004,6 +1027,10 @@ class LogPager extends ReverseChronologicalPager {
 		if( $this->getNumRows() > 0 ) {
 			$lb = new LinkBatch;
 			foreach ( $this->mResult as $row ) {
+				$row->user_name = $this->mLogEventsList->fixUserName($row->user_name, $row->log_user);
+				if ( empty($row->user_name) ) {
+					continue;
+				}
 				$lb->add( $row->log_namespace, $row->log_title );
 				$lb->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
 				$lb->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
