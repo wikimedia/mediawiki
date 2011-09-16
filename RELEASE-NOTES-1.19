@@ -61,9 +61,6 @@ production.
   to stop it from replace an already existing default sort, and suppress error.
 * (bug 18578) Rewrote revision delete related messages to allow better
   localisation
-* New hook RecentChangesListRecentChangesLine which let you customize an
-  entire recent changes line for user with 'Enhanced recent changes' option
-  It is equivalent to the existing hook OldChangesListRecentChangesLine
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
