@@ -618,6 +618,7 @@ changes to languages because of Bugzilla reports.
 * Aromanian (rup) (renamed from "rua-rup").
 * Kashmiri (ks) split into Kashmiri (Perso-Arabic) (ks-arab) and Kashmiri
   (Devanagari) (ks-deva). Defaults to ks-arab.
+* (bug 30817) Restored linktrail for kk (Kazakh)
 
 === Other changes in 1.18 ===
 * Removed legacy wgAjaxWatch javascript global object, no longer in use.
