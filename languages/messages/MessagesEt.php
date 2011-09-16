@@ -3630,7 +3630,6 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'globalfileusage-text'        => 'Faili globaalse kasutuse otsimine',
 'globalfileusage-no-results'  => '[[$1]] pole teistes vikides kasutusel.',
 'globalfileusage-on-wiki'     => 'Kasutus vikis $2',
-'globalfileusage-of-file'     => 'Seda faili kasutatakse järgmistes teistes vikides:',
 'globalfileusage-more'        => 'Vaata selle faili [[{{#Special:GlobalUsage}}/$1|ülejäänud globaalset kasutust]].',
 'globalfileusage-filterlocal' => 'Ära näita kohalikku kasutust',
 

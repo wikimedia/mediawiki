@@ -3736,7 +3736,6 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'globalfileusage-text'        => 'Søk global filbruk',
 'globalfileusage-no-results'  => '[[$1]] brukes ikke på andre wikier.',
 'globalfileusage-on-wiki'     => 'Bruk på $2',
-'globalfileusage-of-file'     => 'Følgende andre wikier bruker denne filen:',
 'globalfileusage-more'        => 'Vis [[{{#Special:GlobalUsage}}/$1|mer global bruk]] av denne filen.',
 'globalfileusage-filterlocal' => 'Ikke vis lokal bruk',
 
@@ -3747,7 +3746,6 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'globaltemplateusage-text'        => 'Søk global malbruk',
 'globaltemplateusage-no-results'  => '[[$1]] brukes ikke på andre wikier.',
 'globaltemplateusage-on-wiki'     => 'Bruk på $2',
-'globaltemplateusage-of-file'     => 'Følgende andre wikier bruker denne malen:',
 'globaltemplateusage-more'        => 'Vis [[{{#Special:GlobalUsage}}/$1|mer global bruk]] av denne malen.',
 'globaltemplateusage-filterlocal' => 'Ikke vis lokal bruk',
 

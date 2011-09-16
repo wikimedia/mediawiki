@@ -3583,7 +3583,6 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'globalfileusage-text'        => 'Paieškos pasaulio failo naudojimo',
 'globalfileusage-no-results'  => '[[:$1]] nenaudojama kituose Wiki projektuose.',
 'globalfileusage-on-wiki'     => 'Naudojimo$2',
-'globalfileusage-of-file'     => 'Šių kitų wiki naudoti šį failą:',
 'globalfileusage-more'        => 'Peržiūrėti [[{{# specialus: GlobalUsage}} / $1 |kiti pasaulio naudojimo]] šio failo.',
 'globalfileusage-filterlocal' => 'Nerodyti vietos naudojimo',
 
@@ -3594,7 +3593,6 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'globaltemplateusage-text'        => 'Paieškos pasaulio failo naudojimo',
 'globaltemplateusage-no-results'  => '[[:$1]] nenaudojama kituose Wiki projektuose.',
 'globaltemplateusage-on-wiki'     => 'Naudojimo$2',
-'globaltemplateusage-of-file'     => 'Šių kitų wiki naudoti šį failą:',
 'globaltemplateusage-more'        => 'Peržiūrėti [[{{# specialus: GlobalUsage}} / $1 |kiti pasaulio naudojimo]] šio failo.',
 'globaltemplateusage-filterlocal' => 'Nerodyti vietos naudojimo',
 

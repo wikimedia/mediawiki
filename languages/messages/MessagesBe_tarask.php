@@ -3662,7 +3662,6 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'globalfileusage-text'        => 'Пошук глябальнага выкарыстаньня файла',
 'globalfileusage-no-results'  => '[[$1]] не выкарыстоўваецца ў іншых вікі.',
 'globalfileusage-on-wiki'     => 'Выкарыстоўваецца ў $2',
-'globalfileusage-of-file'     => 'Гэты файл выкарыстоўваецца ў наступных вікі:',
 'globalfileusage-more'        => 'Паказаць [[{{#Special:GlobalUsage}}/$1|глябальнае выкарыстаньне]] гэтага файла.',
 'globalfileusage-filterlocal' => 'Не паказваць лякальнае выкарыстаньне',
 
@@ -3673,7 +3672,6 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'globaltemplateusage-text'        => 'Пошук глябальнага выкарыстаньня шаблёну',
 'globaltemplateusage-no-results'  => '[[$1]] не выкарыстоўваецца ў іншых вікі.',
 'globaltemplateusage-on-wiki'     => 'Выкарыстоўваецца ў $2',
-'globaltemplateusage-of-file'     => 'Гэты шаблён выкарыстоўваецца ў наступных вікі:',
 'globaltemplateusage-more'        => 'Паказаць [[{{#Special:GlobalUsage}}/$1|глябальнае выкарыстаньне]] гэтага шаблёну.',
 'globaltemplateusage-filterlocal' => 'Не паказваць лякальнае выкарыстаньне',
 
@@ -3703,6 +3701,16 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'sqlite-no-fts'  => '$1 без падтрымкі поўнатэкстнага пошуку',
 
 # New logging system
+'logentry-delete-delete'              => '$1 {{GENDER:$2|выдаліў|выдаліла}} старонку $3',
+'logentry-delete-restore'             => '$1 {{GENDER:$2|аднавіў|аднавіла}} старонку $3',
+'logentry-delete-event'               => '$1 {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць $5 {{PLURAL:$5|падзеі ў журнале|падзеяў у журнале|падзеяў у журнале}} на $3: $4',
+'logentry-delete-revision'            => '$1 {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць $5 {{PLURAL:$5|вэрсіі|вэрсіяў|вэрсіяў}} старонкі $3: $4',
+'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць падзеяў у журнале на $3',
+'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць вэрсіяў старонкі $3',
+'logentry-suppress-delete'            => '$1 {{GENDER:$2|схаваў|схавала}} старонку $3',
+'logentry-suppress-event'             => '$1 прыхавана {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць $5 {{PLURAL:$5|падзеі ў журнале|падзеяў у журнале|падзеяў у журнале}} на $3: $4',
+'logentry-suppress-revision'          => '$1 прыхавана {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць $5 {{PLURAL:$5|вэрсіі|вэрсіяў|вэрсіяў}} старонкі $3: $4',
+'logentry-suppress-event-legacy'      => '$1 прыхавана {{GENDER:$2|зьмяніў|зьмяніла}} бачнасьць падзеяў у журнале на $3',
 'revdelete-restricted'                => 'ужыць абмежаваньні для адміністратараў',
 'revdelete-unrestricted'              => 'зьнятыя абмежаваньні для адміністратараў',
 'logentry-move-move'                  => '$1 {{GENDER:$2|перанёс|перанесла}} старонку $3 у $4',

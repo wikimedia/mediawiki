@@ -400,14 +400,14 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'editthispage'      => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
 'create-this-page'  => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg|editthispage}} for when the page already exists.
 {{Identical|Createpage}}',
-'delete'            => 'Name of the Delete tab shown for admins. Should be in the imperative mood.
+'delete'            => 'Name of the Delete tab shown for admins. Should be in the infinitive mood.
 
 {{Identical|Delete}}',
 'deletethispage'    => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to delete the page in admin view.
 {{Identical|Delete this page}}',
 'undelete_short'    => "It is tab label. It's really can be named ''nstab-undelete''.",
 'viewdeleted_short' => 'Tab label for the undelete button when the user has permission to view the deleted history but not undelete.',
-'protect'           => 'Name of protect tab displayed for admins
+'protect'           => 'Name of protect tab displayed for admins. Should be in the infinitive mood.
 
 {{Identical|Protect}}',
 'protect_change'    => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).
@@ -4236,9 +4236,6 @@ $1 is a file name (with namespace)',
 
 * $1 the file name, but unused in this message
 * $2 is a wiki name, given as a domain, e.g. en.wiktionary.org',
-'globalfileusage-of-file'     => 'Text introducing list of files on an image page ([http://commons.wikimedia.org/wiki/File:Example.jpg example]).
-
-The number of following wikis is unknown. For an empty result, no message is shown.',
 'globalfileusage-more'        => 'Used on an image page, when more global usage results are available. Example: [[Commons:File:Example.jpg]]
 * $1 - name of the file (without namespace)',
 'globalfileusage-filterlocal' => 'Filter option for GlobalUsage special page, ([http://commons.wikimedia.org/wiki/Special:GlobalUsage/Hacienda_jaral_de_berrios.jpg example]).

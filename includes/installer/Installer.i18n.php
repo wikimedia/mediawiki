@@ -13766,7 +13766,7 @@ MediaWiki распространяется в надежде, что она бу
 	'config-env-php-toolow' => 'Найден PHP $1, тогда как MediaWiki требуется PHP версии $2 или выше.',
 	'config-unicode-using-utf8' => 'Использовать Brion Vibber utf8_normalize.so для нормализации Юникода.',
 	'config-unicode-using-intl' => 'Будет использовано [http://pecl.php.net/intl расширение «intl» для PECL] для нормализации Юникода.',
-	'config-unicode-pure-php-warning' => "'''Внимание!''': [http://pecl.php.net/intl международное расширение PECL] недоступно для нормализации Юникода, будет использоваться медленная реализация на чистом PHP.
+	'config-unicode-pure-php-warning' => "'''Внимание!''': [http://pecl.php.net/intl расширение intl из PECL] недоступно для нормализации Юникода, будет использоваться медленная реализация на чистом PHP.
 Если ваш сайт работает под высокой нагрузкой, вам следует больше узнать о [http://www.mediawiki.org/wiki/Unicode_normalization_considerations нормализации Юникода].",
 	'config-unicode-update-warning' => "'''Предупреждение''': установленная версия обёртки нормализации Юникода использует старую версию библиотеки [http://site.icu-project.org/ проекта ICU].
 Вы должны [http://www.mediawiki.org/wiki/Unicode_normalization_considerations обновить версию], если хотите полноценно использовать Юникод.",

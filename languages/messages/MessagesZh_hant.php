@@ -3615,7 +3615,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'globalfileusage-text'        => '搜尋全域檔案使用情況',
 'globalfileusage-no-results'  => '[[$1]]未在其他維基項目中使用。',
 'globalfileusage-on-wiki'     => '$2 中的使用情況',
-'globalfileusage-of-file'     => '本檔案也在如下其他維基項目中使用：',
 'globalfileusage-more'        => '檢視本檔案的[[{{#Special:GlobalUsage}}/$1|更多全域使用情況]]。',
 'globalfileusage-filterlocal' => '勿顯示本地使用情況',
 
@@ -3626,7 +3625,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'globaltemplateusage-text'        => '搜尋全域模板使用情況',
 'globaltemplateusage-no-results'  => '[[$1]]未在其他維基項目中使用。',
 'globaltemplateusage-on-wiki'     => '$2 中的使用情況',
-'globaltemplateusage-of-file'     => '本模板也在如下其他維基項目中使用：',
 'globaltemplateusage-more'        => '檢視本模板的[[{{#Special:GlobalUsage}}/$1|更多全域使用情況]]。',
 'globaltemplateusage-filterlocal' => '勿顯示本地使用情況',
 
