@@ -786,6 +786,10 @@ class MySQLField implements Field {
 	function isMultipleKey() {
 		return $this->is_multiple;
 	}
+
+	function maxLength() {
+		return $this->max_length;
+	}
 }
 
 class MySQLMasterPos implements DBMasterPos {
