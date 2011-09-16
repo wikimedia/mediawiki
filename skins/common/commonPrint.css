@@ -129,7 +129,8 @@ li#privacy,
 #footer-places,
 .mw-hidden-catlinks,
 tr.mw-metadata-show-hide-extended,
-span.mw-filepage-other-resolutions {
+span.mw-filepage-other-resolutions,
+ul#filetoc {
 	/* Hides all the elements irrelevant for printing */
 	display: none;
 }
