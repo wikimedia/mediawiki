@@ -18,11 +18,6 @@ input[type="submit"], input[type="button"], input[type="reset"], input[type="fil
 /* @noflip */textarea[dir="ltr"], input[dir="ltr"] { direction: ltr; }
 /* @noflip */textarea[dir="rtl"], input[dir="rtl"] { direction: rtl; }
 
-.mw-float-start { float: left; }
-.mw-float-end { float: right; }
-.mw-align-start { text-align: left; }
-.mw-align-end { text-align: right; }
-
 /* The scripts of these languages are very hard to read with underlines */
 [lang="ar"] a, [lang="ckb"] a, [lang="fa"] a, [lang="kk-arab"] a,
 [lang="mzn"] a, [lang="ps"] a, [lang="ur"] a {
@@ -294,6 +289,10 @@ table.os-suggest-results {
 #pagehistory li.selected {
 	background-color: #f9f9f9;
 	border: 1px dashed #aaa;
+}
+
+.mw-history-revisiondelete-button, #mw-fileduplicatesearch-icon {
+	float: right;
 }
 
 /** Generic minor/bot/newpage styling */
