@@ -41,14 +41,13 @@ abstract class RdfMetaData {
 		$rdftype = wfNegotiateType( wfAcceptToPrefs( $httpaccept ), wfAcceptToPrefs( self::RDF_TYPE_PREFS ) );
 
 		if( !$rdftype ){
-			wfHttpError( 406, 'Not Acceptable', wfMsg( 'notacceptable' ) );
-			return false;
-		} else {
-			$wgOut->disable();
-			$wgRequest->response()->header( "Content-type: {$rdftype}; charset=utf-8" );
-			$wgOut->sendCacheControl();
-			return true;
+			throw new HttpError( 406, wfMessage( 'notacceptable' ) );
 		}
+
+		$wgOut->disable();
+		$wgRequest->response()->header( "Content-type: {$rdftype}; charset=utf-8" );
+		$wgOut->sendCacheControl();
+		return true;
 	}
 
 	protected function reallyFullUrl() {

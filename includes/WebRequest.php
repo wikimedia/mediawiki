@@ -874,7 +874,7 @@ class WebRequest {
 					return false;
 				}
 			}
-			wfHttpError( 403, 'Forbidden',
+			throw new HttpError( 403,
 				'Invalid file extension found in the path info or query string.' );
 
 			return false;

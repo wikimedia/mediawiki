@@ -33,31 +33,30 @@ class SpecialUserlogout extends UnlistedSpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgUser, $wgOut;
-
 		/**
 		 * Some satellite ISPs use broken precaching schemes that log people out straight after
 		 * they're logged in (bug 17790). Luckily, there's a way to detect such requests.
 		 */
 		if ( isset( $_SERVER['REQUEST_URI'] ) && strpos( $_SERVER['REQUEST_URI'], '&amp;' ) !== false ) {
 			wfDebug( "Special:Userlogout request {$_SERVER['REQUEST_URI']} looks suspicious, denying.\n" );
-			wfHttpError( 400, wfMsg( 'loginerror' ), wfMsg( 'suspicious-userlogout' ) );
-			return;
+			throw new HttpError( 400, wfMessage( 'suspicious-userlogout' ), wfMessage( 'loginerror' ) );
 		}
 
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$oldName = $wgUser->getName();
-		$wgUser->logout();
+		$user = $this->getUser();
+		$oldName = $user->getName();
+		$user->logout();
 
-		$wgOut->addWikiMsg( 'logouttext' );
+		$out = $this->getOutput();
+		$out->addWikiMsg( 'logouttext' );
 
 		// Hook.
 		$injected_html = '';
-		wfRunHooks( 'UserLogoutComplete', array( &$wgUser, &$injected_html, $oldName ) );
-		$wgOut->addHTML( $injected_html );
+		wfRunHooks( 'UserLogoutComplete', array( &$user, &$injected_html, $oldName ) );
+		$out->addHTML( $injected_html );
 
-		$wgOut->returnToMain();
+		$out->returnToMain();
 	}
 }

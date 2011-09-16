@@ -367,6 +367,55 @@ class UserBlockedError extends ErrorPageError {
 }
 
 /**
+ * Show an error that looks like an HTTP server error.
+ * Replacement for wfHttpError().
+ *
+ * @ingroup Exception
+ */
+class HttpError extends MWException {
+	private $httpCode, $header, $content;
+
+	/**
+	 * Constructor
+	 *
+	 * @param $httpCode Integer: HTTP status code to send to the client
+	 * @param $content String|Message: content of the message
+	 * @param $header String|Message: content of the header (\<title\> and \<h1\>)
+	 */
+	public function __construct( $httpCode, $content, $header = null ){
+		parent::__construct( $content );
+		$this->httpCode = (int)$httpCode;
+		$this->header = $header;
+		$this->content = $content;
+	}
+
+	public function reportHTML() {
+		$httpMessage = HttpStatus::getMessage( $this->httpCode );
+
+		header( "Status: {$this->httpCode} {$httpMessage}" );
+		header( 'Content-type: text/html; charset=utf-8' );
+
+		if ( $this->header === null ) {
+			$header = $httpMessage;
+		} elseif ( $this->header instanceof Message ) {
+			$header = $this->header->escaped();
+		} else {
+			$header = htmlspecialchars( $this->header );
+		}
+
+		if ( $this->content instanceof Message ) {
+			$content = $this->content->escaped();
+		} else {
+			$content = htmlspecialchars( $this->content );
+		}
+
+		print "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n".
+			"<html><head><title>$header</title></head>\n" .
+			"<body><h1>$header</h1><p>$content</p></body></html>\n";
+	}
+}
+
+/**
  * Handler class for MWExceptions
  * @ingroup Exception
  */
