@@ -126,6 +126,44 @@ abstract class ResourceLoaderModule {
 		// Stub, override expected
 		return '';
 	}
+	
+	/**
+	 * Get the URL or URLs to load for this module's JS in debug mode.
+	 * The default behavior is to return a load.php?only=scripts URL for
+	 * the module, but file-based modules will want to override this to
+	 * load the files directly.
+	 * 
+	 * This function is called only when 1) we're in debug mode, 2) there
+	 * is no only= parameter and 3) supportsURLLoading() returns true.
+	 * #2 is important to prevent an infinite loop, therefore this function
+	 * MUST return either an only= URL or a non-load.php URL.
+	 * 
+	 * @param $context ResourceLoaderContext: Context object
+	 * @return Array of URLs
+	 */
+	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
+		global $wgLoadScript; // TODO factor out to ResourceLoader static method and deduplicate from makeResourceLoaderLink()
+		$query = array(
+			'modules' => $this->getName(),
+			'only' => 'scripts',
+			'skin' => $context->getSkin(),
+			'user' => $context->getUser(),
+			'debug' => 'true',
+			'version' => $context->getVersion()
+		);
+		ksort( $query );
+		return array( wfAppendQuery( $wgLoadScript, $query ) . '&*' );
+	}
+	
+	/**
+	 * Whether this module supports URL loading. If this function returns false,
+	 * getScript() will be used even in cases (debug mode, no only param) where
+	 * getScriptURLsForDebug() would normally be used instead.
+	 * @return bool
+	 */
+	public function supportsURLLoading() {
+		return true;
+	}
 
 	/**
 	 * Get all CSS for this module for a given skin.
@@ -136,6 +174,29 @@ abstract class ResourceLoaderModule {
 	public function getStyles( ResourceLoaderContext $context ) {
 		// Stub, override expected
 		return array();
+	}
+	
+	/**
+	 * Get the URL or URLs to load for this module's CSS in debug mode.
+	 * The default behavior is to return a load.php?only=styles URL for
+	 * the module, but file-based modules will want to override this to
+	 * load the files directly. See also getScriptURLsForDebug()
+	 * 
+	 * @param $context ResourceLoaderContext: Context object
+	 * @return Array: array( mediaType => array( URL1, URL2, ... ), ... )
+	 */
+	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
+		global $wgLoadScript; // TODO factor out to ResourceLoader static method and deduplicate from makeResourceLoaderLink()
+		$query = array(
+			'modules' => $this->getName(),
+			'only' => 'styles',
+			'skin' => $context->getSkin(),
+			'user' => $context->getUser(),
+			'debug' => 'true',
+			'version' => $context->getVersion()
+		);
+		ksort( $query );
+		return array( 'all' => array( wfAppendQuery( $wgLoadScript, $query ) . '&*' ) );
 	}
 
 	/**

@@ -217,14 +217,19 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
 		$files = $this->getScriptFiles( $context );
-		if ( $context->getDebug() && $this->debugRaw ) {
-			$urls = array();
-			foreach ( $this->getScriptFiles( $context ) as $file ) {
-				$urls[] = $this->getRemotePath( $file );
-			}
-			return $urls;
-		}
 		return $this->readScriptFiles( $files );
+	}
+	
+	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
+		$urls = array();
+		foreach ( $this->getScriptFiles( $context ) as $file ) {
+			$urls[] = $this->getRemotePath( $file );
+		}
+		return $urls;
+	}
+
+	public function supportsURLLoading() {
+		return $this->debugRaw;
 	}
 
 	/**
@@ -250,16 +255,6 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$this->getStyleFiles( $context ),
 			$this->getFlip( $context )
 		);
-		if ( !$context->getOnly() && $context->getDebug() && $this->debugRaw ) {
-			$urls = array();
-			foreach ( $this->getStyleFiles( $context ) as $mediaType => $list ) {
-				$urls[$mediaType] = array();
-				foreach ( $list as $file ) {
-					$urls[$mediaType][] = $this->getRemotePath( $file );
-				}
-			}
-			return $urls;
-		}
 		// Collect referenced files
 		$this->localFileRefs = array_unique( $this->localFileRefs );
 		// If the list has been modified since last time we cached it, update the cache
@@ -274,6 +269,17 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			);
 		}
 		return $styles;
+	}
+
+	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
+		$urls = array();
+		foreach ( $this->getStyleFiles( $context ) as $mediaType => $list ) {
+			$urls[$mediaType] = array();
+			foreach ( $list as $file ) {
+				$urls[$mediaType][] = $this->getRemotePath( $file );
+			}
+		}
+		return $urls;
 	}
 
 	/**
