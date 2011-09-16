@@ -37,8 +37,8 @@ class RevisionDeleter {
 	 * will contain an array with a single message key, which can be one of
 	 * "revdelete-restricted", "revdelete-unrestricted" indicating (un)suppression
 	 * or null to indicate nothing in particular.
-	 * You can turn the keys in 0 and 1 into message keys by appendin -hid and
-	 * and -unhid to they keys respectively.
+	 * You can turn the keys in $arr[0] and $arr[1] into message keys by
+	 * appending -hid and and -unhid to the keys respectively.
 	 *
 	 * @param $n Integer: the new bitfield.
 	 * @param $o Integer: the old bitfield.
