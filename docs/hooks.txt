@@ -1188,6 +1188,20 @@ $cache: The LocalisationCache object
 $code: language code
 &$alldata: The localisation data from core and extensions
 
+'LogEventsListShowLogExtract': called before the string is added to OutputPage. Returning false will prevent the string from being added to the OutputPage
+&$s: html string to show for the log extract
+$types: String or Array (''isn't documented on showLogExtract() yet, not sure what it is'')
+$page: String The page title to show log entries for
+$user: String The user who made the log entries
+$param: Associative Array with the following additional options:
+ - lim Integer Limit of items to show, default is 50
+ - conds Array Extra conditions for the query (e.g. "log_action != 'revision'")
+ - showIfEmpty boolean Set to false if you don't want any output in case the loglist is empty if set to true (default), "No matching items in log" is displayed if loglist is empty
+ - msgKey Array If you want a nice box with a message, set this to the key of the message. First element is the message key, additional optional elements are parameters for the key that are processed with wgMsgExt and option 'parse'
+ - offset Set to overwrite offset parameter in $wgRequest set to '' to unset offset
+ - wrap String Wrap the message in html (usually something like "&lt;div ...>$1&lt;/div>").
+ - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
+
 'LoginAuthenticateAudit': a login attempt for a valid user account either
 succeeded or failed. No return data is accepted; this hook is for auditing only.
 $user: the User object being authenticated against
