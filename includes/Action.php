@@ -32,8 +32,8 @@ abstract class Action {
 	protected $page;
 
 	/**
-	 * RequestContext if specified; otherwise we'll use the Context from the Page
-	 * @var RequestContext
+	 * IContextSource if specified; otherwise we'll use the Context from the Page
+	 * @var IContextSource
 	 */
 	protected $context;
 
@@ -96,11 +96,11 @@ abstract class Action {
 	}
 
 	/**
-	 * Get the RequestContext in use here
-	 * @return RequestContext
+	 * Get the IContextSource in use here
+	 * @return IContextSource
 	 */
 	protected final function getContext() {
-		if ( $this->context instanceof RequestContext ) {
+		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
 		}
 		return $this->page->getContext();

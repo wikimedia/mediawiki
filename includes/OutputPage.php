@@ -225,7 +225,7 @@ class OutputPage {
 	 * Instead a new RequestContext should be created and it will implicitly create
 	 * a OutputPage tied to that context.
 	 */
-	function __construct( RequestContext $context = null ) {
+	function __construct( IContextSource $context = null ) {
 		$this->mContext = $context;
 	}
 

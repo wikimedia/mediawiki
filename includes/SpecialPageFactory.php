@@ -398,12 +398,12 @@ class SpecialPageFactory {
 	 * page, and true if it was successful.
 	 *
 	 * @param $title          Title object
-	 * @param $context        RequestContext
+	 * @param $context        IContextSource
 	 * @param $including      Bool output is being captured for use in {{special:whatever}}
 	 *
 	 * @return bool
 	 */
-	public static function executePath( Title &$title, RequestContext &$context, $including = false ) {
+	public static function executePath( Title &$title, IContextSource &$context, $including = false ) {
 		wfProfileIn( __METHOD__ );
 
 		// @todo FIXME: Redirects broken due to this call
