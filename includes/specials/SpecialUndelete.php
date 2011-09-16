@@ -62,7 +62,6 @@ class PageArchive {
 	 * @return ResultWrapper
 	 */
 	public static function listPagesByPrefix( $prefix ) {
-		global $wgUser;
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$title = Title::newFromText( $prefix );
@@ -78,12 +77,6 @@ class PageArchive {
 			'ar_namespace' => $ns,
 			'ar_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
 		);
-
-		// bug 19725
-		$suppressedText = Revision::DELETED_TEXT | Revision::DELETED_RESTRICTED;
-		if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
-                        $conds[] = $dbr->bitAnd('ar_deleted', $suppressedText ) .
-                                ' != ' . $suppressedText;
                 }
 		return self::listPages( $dbr, $conds );
 	}

@@ -338,8 +338,6 @@ production.
   environments
 * (bug 14977) Fixed $wgServer detection in cases where an IPv6 address is used
   as the server name.
-* (bug 19725) Do not list suppressed edits in the "View X deleted edits" link
-  if user cannot view suppressed edits.
 * The View X deleted revisions is now shown again on Special:Upload.
 * (bug 29071) mediawiki.action.watch.ajax.js should pass uselang to API.
 * (bug 28868) Show total pages in the subtitle of an image on the

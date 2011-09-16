@@ -2391,37 +2391,21 @@ class Title {
 	/**
 	 * Is there a version of this page in the deletion archive?
 	 *
-	 * @param $includeSuppressed Boolean Include suppressed revisions?
 	 * @return Int the number of archived revisions
 	 */
-	public function isDeleted( $includeSuppressed = false ) {
+	public function isDeleted() {
 		if ( $this->getNamespace() < 0 ) {
 			$n = 0;
 		} else {
 			$dbr = wfGetDB( DB_SLAVE );
-			$conditions = array( 'ar_namespace' => $this->getNamespace(), 'ar_title' => $this->getDBkey() );
-
-			if( !$includeSuppressed ) {
-				$suppressedTextBits = Revision::DELETED_TEXT | Revision::DELETED_RESTRICTED;
-				$conditions[] = $dbr->bitAnd('ar_deleted', $suppressedTextBits ) .
-				' != ' . $suppressedTextBits;
-			}
 
 			$n = $dbr->selectField( 'archive', 'COUNT(*)',
-				$conditions,
+				array( 'ar_namespace' => $this->getNamespace(), 'ar_title' => $this->getDBkey() ),
 				__METHOD__
 			);
 			if ( $this->getNamespace() == NS_FILE ) {
-				$fconditions = array( 'fa_name' => $this->getDBkey() );
-				if( !$includeSuppressed ) {
-					$suppressedTextBits = File::DELETED_FILE | File::DELETED_RESTRICTED;
-					$fconditions[] = $dbr->bitAnd('fa_deleted', $suppressedTextBits ) .
-					' != ' . $suppressedTextBits;
-				}
-
-				$n += $dbr->selectField( 'filearchive',
-					'COUNT(*)',
-					$fconditions,
+				$n += $dbr->selectField( 'filearchive', 'COUNT(*)',
+					array( 'fa_name' => $this->getDBkey() ),
 					__METHOD__
 				);
 			}
