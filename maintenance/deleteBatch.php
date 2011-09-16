@@ -104,7 +104,7 @@ class DeleteBatch extends Maintenance {
 				sleep( $interval );
 			}
 			wfWaitForSlaves();
-}
+		}
 	}
 }
 

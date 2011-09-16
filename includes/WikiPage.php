@@ -1720,7 +1720,7 @@ class WikiPage extends Page {
 							array(  'gtl_from_wiki' => wfGetID(),
 									'gtl_from_page' => $id )
 							);
-		}
+			}
 		}
 
 		# If using cleanup triggers, we can skip some manual deletes
