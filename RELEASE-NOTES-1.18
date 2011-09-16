@@ -626,6 +626,7 @@ changes to languages because of Bugzilla reports.
   (Devanagari) (ks-deva). Defaults to ks-arab.
 * (bug 30864) Use bengali numerals for <ol> for Assamese
 * (bug 30817) Restored linktrail for kk (Kazakh)
+* (bug 27398) Add $wgExtraGenderNamespaces for configured gendered namespaces
 
 === Other changes in 1.18 ===
 * Removed legacy wgAjaxWatch javascript global object, no longer in use.
