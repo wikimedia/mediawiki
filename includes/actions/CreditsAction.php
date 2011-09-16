@@ -67,7 +67,7 @@ class CreditsAction extends FormlessAction {
 		wfProfileIn( __METHOD__ );
 		$s = '';
 
-		if ( isset( $cnt ) && $cnt != 0 ) {
+		if ( $cnt != 0 ) {
 			$s = self::getAuthor( $this->page );
 			if ( $cnt > 1 || $cnt < 0 ) {
 				$s .= ' ' . $this->getContributors( $cnt - 1, $showIfMax );
