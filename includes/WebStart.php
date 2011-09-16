@@ -26,7 +26,7 @@
 # Protect against register_globals
 # This must be done before any globals are set by the code
 if ( ini_get( 'register_globals' ) ) {
-	if ( isset( $_REQUEST['GLOBALS'] ) ) {
+	if ( isset( $_REQUEST['GLOBALS'] ) || isset( $_FILES['GLOBALS'] ) ) {
 		die( '<a href="http://www.hardened-php.net/globals-problem">$GLOBALS overwrite vulnerability</a>');
 	}
 	$verboten = array(
