@@ -29,7 +29,8 @@
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class UpdateCollation extends Maintenance {
-	const BATCH_SIZE = 50;
+	const BATCH_SIZE = 50; // Number of rows to process in one batch
+	const SYNC_INTERVAL = 20; // Wait for slaves after this many batches
 
 	public function __construct() {
 		parent::__construct();
@@ -44,17 +45,11 @@ TEXT;
 
 		$this->addOption( 'force', 'Run on all rows, even if the collation is ' . 
 			'supposed to be up-to-date.' );
-	}
-	
-	public function syncDBs() {
-		$lb = wfGetLB();
-		// bug 27975 - Don't try to wait for slaves if there are none
-		// Prevents permission error when getting master position
-		if ( $lb->getServerCount() > 1 ) {
-			$dbw = $lb->getConnection( DB_MASTER );
-			$pos = $dbw->getMasterPos();
-			$lb->waitForAll( $pos );
-		}
+		$this->addOption( 'previous-collation', 'Set the previous value of ' .
+			'$wgCategoryCollation here to speed up this script, especially if your ' .
+			'categorylinks table is large. This will only update rows with that ' .
+			'collation, though, so it may miss out-of-date rows with a different, ' .
+			'even older collation.', false, true );
 	}
 
 	public function execute() {
@@ -63,14 +58,19 @@ TEXT;
 		$dbw = $this->getDB( DB_MASTER );
 		$force = $this->getOption( 'force' );
 
-		$options = array( 'LIMIT' => self::BATCH_SIZE );
+		$options = array( 'LIMIT' => self::BATCH_SIZE, 'STRAIGHT_JOIN' );
 
 		if ( $force ) {
 			$options['ORDER BY'] = 'cl_from, cl_to';
 			$collationConds = array();
 		} else {
-			$collationConds = array( 0 => 
-				'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation ) );
+			if ( $this->hasOption( 'previous-collation' ) ) {
+				$collationConds['cl_collation'] = $this->getOption( 'previous-collation' );
+			} else {
+				$collationConds = array( 0 =>
+					'cl_collation != ' . $dbw->addQuotes( $wgCategoryCollation )
+				);
+			}
 
 			if ( !$wgMiserMode ) {
 				$count = $dbw->selectField(
@@ -89,9 +89,10 @@ TEXT;
 		}
 
 		$count = 0;
+		$batchCount = 0;
 		$batchConds = array();
 		do {
-			$this->output( 'Processing next ' . self::BATCH_SIZE . ' rows... ');
+			$this->output( "Selecting next " . self::BATCH_SIZE . " rows..." );
 			$res = $dbw->select(
 				array( 'categorylinks', 'page' ),
 				array( 'cl_from', 'cl_to', 'cl_sortkey_prefix', 'cl_collation',
@@ -101,6 +102,7 @@ TEXT;
 				__METHOD__,
 				$options
 			);
+			$this->output( " processing..." );
 
 			$dbw->begin();
 			foreach ( $res as $row ) {
@@ -154,7 +156,11 @@ TEXT;
 			$count += $res->numRows();
 			$this->output( "$count done.\n" );
 			
-			$this->syncDBs();
+			if ( ++$batchCount % self::SYNC_INTERVAL == 0 ) {
+				$this->output( "Waiting for slaves ... " );
+				wfWaitForSlaves();
+				$this->output( "done\n" );
+			}
 		} while ( $res->numRows() == self::BATCH_SIZE );
 	}
 }
