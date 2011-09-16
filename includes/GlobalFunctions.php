@@ -867,7 +867,14 @@ function wfErrorLog( $text, $file ) {
 		if ( !$sock ) {
 			return;
 		}
-		socket_sendto( $sock, $text, strlen( $text ), 0, $host, $port );
+
+		$len = strlen( $text );
+		$maxLen = socket_get_option( $sock, SOL_UDP, SO_SNDBUF );
+
+		if ( $len > $maxLen ) {
+			$len = $maxLen - 1;
+		}
+		socket_sendto( $sock, $text, $len, 0, $host, $port );
 		socket_close( $sock );
 	} else {
 		wfSuppressWarnings();
