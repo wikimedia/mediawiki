@@ -1303,16 +1303,7 @@ displayed
 	in the message (bool)
 
 'OldChangesListRecentChangesLine': Customize entire Recent Changes line.
-you will also need to use the EnhancedChangesListRecentChangesLine to alter
-the output for user of enhanced recent changes.
 &$changeslist: The OldChangesList instance.
-&$s: HTML of the form "<li>...</li>" containing one RC entry.
-&$rc: The RecentChange object.
-
-'RecentChangesListRecentChangesLine': Customize entire Recent Changes line.
-you will also need to use the OldChangesListRecentChangesLine to alter
-the output for user of regular recent changes.
-&$changeslist: The EnhancedChangesList instance.
 &$s: HTML of the form "<li>...</li>" containing one RC entry.
 &$rc: The RecentChange object.
 
