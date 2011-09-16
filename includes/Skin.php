@@ -638,9 +638,8 @@ abstract class Skin extends ContextSource {
 
 		if ( $this->getUser()->isAllowed( 'deletedhistory' ) && !$this->getUser()->isBlocked() &&
 			( $this->getTitle()->getArticleId() == 0 || $action == 'history' ) ) {
+			$n = $this->getTitle()->isDeleted();
 
-			$includeSuppressed = $this->getUser()->isAllowed( 'suppressrevision' );
-			$n = $this->getTitle()->isDeleted( $includeSuppressed );
 
 			if ( $n ) {
 				if ( $this->getUser()->isAllowed( 'undelete' ) ) {

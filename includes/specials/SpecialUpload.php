@@ -300,10 +300,9 @@ class SpecialUpload extends SpecialPage {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$user = $this->getUser();
 		// Show a subtitle link to deleted revisions (to sysops et al only)
-		if( $title instanceof Title && $user->isAllowed( 'deletedhistory' ) && !$user->isBlocked() ) {
-			$canViewSuppress = $user->isAllowed( 'suppressrevision' );
-			$count = $title->isDeleted( $canViewSuppress );
-			if ( $count > 0 ) {
+		if( $title instanceof Title ) {
+			$count = $title->isDeleted();
+			if ( $count > 0 && $user->isAllowed( 'deletedhistory' ) ) {
 				$link = wfMsgExt(
 					$user->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
 					array( 'parse', 'replaceafter' ),

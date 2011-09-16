@@ -232,7 +232,7 @@ class Language {
 
 	/**
 	 * Includes language class files
-	 * 
+	 *
 	 * @param $class Name of the language class
 	 */
 	public static function preloadLanguageClass( $class ) {
@@ -1258,7 +1258,6 @@ class Language {
 			+ floor( ( $gy + 3 ) / 4 )
 			- floor( ( $gy + 99 ) / 100 )
 			+ floor( ( $gy + 399 ) / 400 );
-
 
 		// Add days of the past months of this year
 		for ( $i = 0; $i < $gm; $i++ ) {
@@ -3337,7 +3336,7 @@ class Language {
 	}
 
 	/**
-	 * Get the first fallback for a given language. 
+	 * Get the first fallback for a given language.
 	 *
 	 * @param $code string
 	 *
@@ -3397,7 +3396,7 @@ class Language {
 	static function getMessageFor( $key, $code ) {
 		return self::getLocalisationCache()->getSubitem( $code, 'messages', $key );
 	}
-	
+
 	/**
 	 * Get all message keys for a given language. This is a faster alternative to
 	 * array_keys( Language::getMessagesFor( $code ) )
