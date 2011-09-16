@@ -49,61 +49,66 @@ class ApiParamInfo extends ApiBase {
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
 
-		$r = array();
+		$res = array();
 		if ( is_array( $params['modules'] ) ) {
-			$modArr = $this->getMain()->getModules();
-			$r['modules'] = array();
-			foreach ( $params['modules'] as $m ) {
-				if ( !isset( $modArr[$m] ) ) {
-					$r['modules'][] = array( 'name' => $m, 'missing' => '' );
+			$modules = $this->getMain()->getModules();
+			$res['modules'] = array();
+			foreach ( $params['modules'] as $mod ) {
+				if ( !isset( $modules[$mod] ) ) {
+					$res['modules'][] = array( 'name' => $mod, 'missing' => '' );
 					continue;
 				}
-				$obj = new $modArr[$m]( $this->getMain(), $m );
-				$a = $this->getClassInfo( $obj );
-				$a['name'] = $m;
-				$r['modules'][] = $a;
+				$obj = new $modules[$mod]( $this->getMain(), $mod );
+
+				$item = $this->getClassInfo( $obj );
+				$item['name'] = $mod;
+				$res['modules'][] = $item;
 			}
-			$result->setIndexedTagName( $r['modules'], 'module' );
+			$result->setIndexedTagName( $res['modules'], 'module' );
 		}
+
 		if ( is_array( $params['querymodules'] ) ) {
-			$qmodArr = $this->queryObj->getModules();
-			$r['querymodules'] = array();
+			$queryModules = $this->queryObj->getModules();
+			$res['querymodules'] = array();
 			foreach ( $params['querymodules'] as $qm ) {
-				if ( !isset( $qmodArr[$qm] ) ) {
-					$r['querymodules'][] = array( 'name' => $qm, 'missing' => '' );
+				if ( !isset( $queryModules[$qm] ) ) {
+					$res['querymodules'][] = array( 'name' => $qm, 'missing' => '' );
 					continue;
 				}
-				$obj = new $qmodArr[$qm]( $this, $qm );
-				$a = $this->getClassInfo( $obj );
-				$a['name'] = $qm;
-				$a['querytype'] = $this->queryObj->getModuleType( $qm );
-				$r['querymodules'][] = $a;
+				$obj = new $queryModules[$qm]( $this, $qm );
+				$item = $this->getClassInfo( $obj );
+				$item['name'] = $qm;
+				$item['querytype'] = $this->queryObj->getModuleType( $qm );
+				$res['querymodules'][] = $item;
 			}
-			$result->setIndexedTagName( $r['querymodules'], 'module' );
+			$result->setIndexedTagName( $res['querymodules'], 'module' );
 		}
+
 		if ( $params['mainmodule'] ) {
-			$r['mainmodule'] = $this->getClassInfo( $this->getMain() );
+			$res['mainmodule'] = $this->getClassInfo( $this->getMain() );
 		}
+
 		if ( $params['pagesetmodule'] ) {
 			$pageSet = new ApiPageSet( $this->queryObj );
-			$r['pagesetmodule'] = $this->getClassInfo( $pageSet );
+			$res['pagesetmodule'] = $this->getClassInfo( $pageSet );
 		}
+
 		if ( is_array( $params['formatmodules'] ) ) {
 			$formats = $this->getMain()->getFormats();
-			$r['formatmodules'] = array();
+			$res['formatmodules'] = array();
 			foreach ( $params['formatmodules'] as $f ) {
 				if ( !isset( $formats[$f] ) ) {
-					$r['formatmodules'][] = array( 'name' => $f, 'missing' => '' );
+					$res['formatmodules'][] = array( 'name' => $f, 'missing' => '' );
 					continue;
 				}
 				$obj = new $formats[$f]( $this, $f );
-				$a = $this->getClassInfo( $obj );
-				$a['name'] = $f;
-				$r['formatmodules'][] = $a;
+				$item = $this->getClassInfo( $obj );
+				$item['name'] = $f;
+				$res['formatmodules'][] = $item;
 			}
-			$result->setIndexedTagName( $r['formatmodules'], 'module' );
+			$result->setIndexedTagName( $res['formatmodules'], 'module' );
 		}
-		$result->addValue( null, $this->getModuleName(), $r );
+		$result->addValue( null, $this->getModuleName(), $res );
 	}
 
 	/**
