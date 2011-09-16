@@ -31,16 +31,15 @@ class FeedUtils {
 	 * @return Boolean
 	 */
 	public static function checkFeedOutput( $type ) {
-		global $wgFeed, $wgFeedClasses;
+		global $wgOut, $wgFeed, $wgFeedClasses;
 
 		if ( !$wgFeed ) {
-			global $wgOut;
 			$wgOut->addWikiMsg( 'feed-unavailable' );
 			return false;
 		}
 
 		if( !isset( $wgFeedClasses[$type] ) ) {
-			wfHttpError( 500, "Internal Server Error", "Unsupported feed type." );
+			$wgOut->addWikiMsg( 'feed-invalid' );
 			return false;
 		}
 

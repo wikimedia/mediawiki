@@ -210,7 +210,7 @@ class MediaWiki {
 						"\$wgArticlePath setting and/or toggle \$wgUsePathInfo " .
 						"to true.";
 				}
-				wfHttpError( 500, "Internal error", $message );
+				throw new HttpError( 500, $message );
 			} else {
 				$output->setSquidMaxage( 1200 );
 				$output->redirect( $targetUrl, '301' );
