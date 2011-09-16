@@ -77,7 +77,6 @@ class PageArchive {
 			'ar_namespace' => $ns,
 			'ar_title' . $dbr->buildLike( $prefix, $dbr->anyString() ),
 		);
-                }
 		return self::listPages( $dbr, $conds );
 	}
 
