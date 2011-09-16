@@ -321,8 +321,7 @@ class ApiQueryContributions extends ApiQueryBase {
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					global $wgUser;
-					$vals['parsedcomment'] = $wgUser->getSkin()->formatComment( $row->rev_comment, $title );
+					$vals['parsedcomment'] = Linker::formatComment( $row->rev_comment, $title );
 				}
 			}
 		}
