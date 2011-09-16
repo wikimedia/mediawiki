@@ -87,6 +87,11 @@ class DBConnectionError extends DBError {
 		return false;
 	}
 
+	/**
+	 * @param $key
+	 * @param $fallback
+	 * @return string
+	 */
 	function msg( $key, $fallback /*[, params...] */ ) {
 		global $wgLang;
 

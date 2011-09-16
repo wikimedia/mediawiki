@@ -3153,6 +3153,8 @@ function wfWikiID() {
  *
  * @param $wiki String
  * @param $bits String
+ *
+ * @return array
  */
 function wfSplitWikiID( $wiki ) {
 	$bits = explode( '-', $wiki, 2 );

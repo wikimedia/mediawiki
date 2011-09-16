@@ -224,6 +224,8 @@ abstract class DatabaseBase implements DatabaseType {
 	protected $mDefaultBigSelects = null;
 	protected $mSchemaVars = false;
 
+	protected $preparedArgs;
+
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -290,7 +292,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * code should use lastErrno() and lastError() to handle the
 	 * situation as appropriate.
 	 *
-	 * @param $ignoreErrors
+	 * @param $ignoreErrors bool|null
 	 *
 	 * @return The previous value of the flag.
 	 */
@@ -433,6 +435,8 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Returns true if this database does an implicit order by when the column has an index
 	 * For example: SELECT page_title FROM page LIMIT 1
+	 *
+	 * @return bool
 	 */
 	function implicitOrderby() {
 		return true;
@@ -530,6 +534,10 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * General read-only accessor
+	 *
+	 * @param $name string
+	 *
+	 * @return string
 	 */
 	function getProperty( $name ) {
 		return $this->$name;
@@ -707,7 +715,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * The DBMS-dependent part of query()
 	 *
 	 * @param  $sql String: SQL query.
-	 * @return Result object to feed to fetchObject, fetchRow, ...; or false on failure
+	 * @return ResultWrapper Result object to feed to fetchObject, fetchRow, ...; or false on failure
 	 */
 	protected abstract function doQuery( $sql );
 
@@ -1182,7 +1190,6 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $options Array Query options
 	 * @param $join_conds Array Join conditions
 	 *
-	 *
 	 * @param $table string|array
 	 *
 	 * May be either an array of table names, or a single string holding a table
@@ -1429,8 +1436,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Takes the same arguments as DatabaseBase::select().
 	 *
 	 * @param $table String: table name
-	 * @param $vars Array: unused
-	 * @param $conds Array: filters on the table
+	 * @param Array|string $vars : unused
+	 * @param Array|string $conds : filters on the table
 	 * @param $fname String: function name for profiling
 	 * @param $options Array: options for select
 	 * @return Integer: row count

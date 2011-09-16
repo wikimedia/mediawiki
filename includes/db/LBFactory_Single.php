@@ -15,7 +15,7 @@ class LBFactory_Single extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki
+	 * @param $wiki bool|string
 	 *
 	 * @return LoadBalancer_Single
 	 */
@@ -24,7 +24,7 @@ class LBFactory_Single extends LBFactory {
 	}
 
 	/**
-	 * @param $wiki
+	 * @param $wiki bool|string
 	 *
 	 * @return LoadBalancer_Single
 	 */
@@ -34,7 +34,7 @@ class LBFactory_Single extends LBFactory {
 
 	/**
 	 * @param $cluster
-	 * @param $wiki
+	 * @param $wiki bool|string
 	 *
 	 * @return LoadBalancer_Single
 	 */
@@ -44,7 +44,7 @@ class LBFactory_Single extends LBFactory {
 
 	/**
 	 * @param $cluster
-	 * @param $wiki
+	 * @param $wiki bool|string
 	 *
 	 * @return LoadBalancer_Single
 	 */

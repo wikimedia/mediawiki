@@ -14,6 +14,10 @@
  * @see Database
  */
 class DatabaseMysql extends DatabaseBase {
+
+	/**
+	 * @return string
+	 */
 	function getType() {
 		return 'mysql';
 	}
@@ -138,6 +142,9 @@ class DatabaseMysql extends DatabaseBase {
 		return $success;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function close() {
 		$this->mOpened = false;
 		if ( $this->mConn ) {
@@ -188,6 +195,11 @@ class DatabaseMysql extends DatabaseBase {
 		return $row;
 	}
 
+	/**
+	 * @throws DBUnexpectedError
+	 * @param $res
+	 * @return int
+	 */
 	function numRows( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -201,6 +213,10 @@ class DatabaseMysql extends DatabaseBase {
 		return $n;
 	}
 
+	/**
+	 * @param $res
+	 * @return int
+	 */
 	function numFields( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -208,6 +224,11 @@ class DatabaseMysql extends DatabaseBase {
 		return mysql_num_fields( $res );
 	}
 
+	/**
+	 * @param $res
+	 * @param $n
+	 * @return string
+	 */
 	function fieldName( $res, $n ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -215,7 +236,12 @@ class DatabaseMysql extends DatabaseBase {
 		return mysql_field_name( $res, $n );
 	}
 
-	function insertId() { return mysql_insert_id( $this->mConn ); }
+	/**
+	 * @return int
+	 */
+	function insertId() {
+		return mysql_insert_id( $this->mConn );
+	}
 
 	function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -250,7 +276,12 @@ class DatabaseMysql extends DatabaseBase {
 		return $error;
 	}
 
-	function affectedRows() { return mysql_affected_rows( $this->mConn ); }
+	/**
+	 * @return int
+	 */
+	function affectedRows() {
+		return mysql_affected_rows( $this->mConn );
+	}
 
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseMysql::replace' ) {
 		return $this->nativeReplace( $table, $rows, $fname );
@@ -260,6 +291,8 @@ class DatabaseMysql extends DatabaseBase {
 	 * Estimate rows in dataset
 	 * Returns estimated count, based on EXPLAIN output
 	 * Takes same arguments as Database::select()
+	 *
+	 * @return int
 	 */
 	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'DatabaseMysql::estimateRowCount', $options = array() ) {
 		$options['EXPLAIN'] = true;
@@ -278,6 +311,11 @@ class DatabaseMysql extends DatabaseBase {
 		return $rows;
 	}
 
+	/**
+	 * @param $table string
+	 * @param $field string
+	 * @return bool|MySQLField
+	 */
 	function fieldInfo( $table, $field ) {
 		$table = $this->tableName( $table );
 		$res = $this->query( "SELECT * FROM $table LIMIT 1", __METHOD__, true );
@@ -297,6 +335,8 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Get information about an index into an object
 	 * Returns false if the index does not exist
+	 *
+	 * @return false|array
 	 */
 	function indexInfo( $table, $index, $fname = 'DatabaseMysql::indexInfo' ) {
 		# SHOW INDEX works in MySQL 3.23.58, but SHOW INDEXES does not.
@@ -322,11 +362,20 @@ class DatabaseMysql extends DatabaseBase {
 		return empty( $result ) ? false : $result;
 	}
 
+	/**
+	 * @param $db
+	 * @return bool
+	 */
 	function selectDB( $db ) {
 		$this->mDBname = $db;
 		return mysql_select_db( $db, $this->mConn );
 	}
 
+	/**
+	 * @param $s string
+	 *
+	 * @return string
+	 */
 	function strencode( $s ) {
 		$sQuoted = mysql_real_escape_string( $s, $this->mConn );
 
@@ -339,15 +388,26 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * MySQL uses `backticks` for identifier quoting instead of the sql standard "double quotes".
+	 *
+	 * @param $s string
+	 *
+	 * @return string
 	 */
 	public function addIdentifierQuotes( $s ) {
 		return "`" . $this->strencode( $s ) . "`";
 	}
 
+	/**
+	 * @param $name string
+	 * @return bool
+	 */
 	public function isQuotedIdentifier( $name ) {
-		return strlen($name) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
+		return strlen( $name ) && $name[0] == '`' && substr( $name, -1, 1 ) == '`';
 	}
 
+	/**
+	 * @return bool
+	 */
 	function ping() {
 		$ping = mysql_ping( $this->mConn );
 		if ( $ping ) {
@@ -516,18 +576,31 @@ class DatabaseMysql extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	function getServerVersion() {
 		return mysql_get_server_info( $this->mConn );
 	}
 
+	/**
+	 * @param $index
+	 * @return string
+	 */
 	function useIndexClause( $index ) {
 		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
 	}
 
+	/**
+	 * @return string
+	 */
 	function lowPriorityOption() {
 		return 'LOW_PRIORITY';
 	}
 
+	/**
+	 * @return string
+	 */
 	public static function getSoftwareLink() {
 		return '[http://www.mysql.com/ MySQL]';
 	}
@@ -630,6 +703,8 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * Determines if the last failure was due to a deadlock
+	 *
+	 * @return bool
 	 */
 	function wasDeadlock() {
 		return $this->lastErrno() == 1213;
@@ -638,6 +713,8 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Determines if the last query error was something that should be dealt
 	 * with by pinging the connection and reissuing the query
+	 *
+	 * @return bool
 	 */
 	function wasErrorReissuable() {
 		return $this->lastErrno() == 2013 || $this->lastErrno() == 2006;
@@ -645,6 +722,8 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * Determines if the last failure was due to the database being read-only.
+	 *
+	 * @return bool
 	 */
 	function wasReadOnlyError() {
 		return $this->lastErrno() == 1223 ||
@@ -702,6 +781,11 @@ class DatabaseMysql extends DatabaseBase {
 		return $endArray;
 	}
 
+	/**
+	 * @param $tableName
+	 * @param $fName string
+	 * @return bool|ResultWrapper
+	 */
 	public function dropTable( $tableName, $fName = 'DatabaseMysql::dropTable' ) {
 		if( !$this->tableExists( $tableName ) ) {
 			return false;
@@ -735,6 +819,8 @@ class DatabaseMysql extends DatabaseBase {
 
 /**
  * Legacy support: Database == DatabaseMysql
+ *
+ * @deprecated in 1.16
  */
 class Database extends DatabaseMysql {}
 
@@ -759,10 +845,16 @@ class MySQLField implements Field {
 		$this->type = $info->type;
 	}
 
+	/**
+	 * @return string
+	 */
 	function name() {
 		return $this->name;
 	}
 
+	/**
+	 * @return string
+	 */
 	function tableName() {
 		return $this->tableName;
 	}
@@ -771,6 +863,9 @@ class MySQLField implements Field {
 		return $this->type;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isNullable() {
 		return $this->nullable;
 	}
@@ -779,14 +874,23 @@ class MySQLField implements Field {
 		return $this->default;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isKey() {
 		return $this->is_key;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isMultipleKey() {
 		return $this->is_multiple;
 	}
 
+	/**
+	 * @return int
+	 */
 	function maxLength() {
 		return $this->max_length;
 	}
