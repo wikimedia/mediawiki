@@ -1131,8 +1131,10 @@ class EditPage {
 			{
 				if ( md5( $this->summary ) == $this->autoSumm ) {
 					$this->missingSummary = true;
+					$status->fatal( 'missingsummary' );
+					$status->value = self::AS_SUMMARY_NEEDED;
 					wfProfileOut( __METHOD__ );
-					return self::AS_SUMMARY_NEEDED;
+					return $status;
 				}
 			}
 
