@@ -2006,6 +2006,10 @@ $user: User to get groups for
 'UserGetAllRights': after calculating a list of all available rights
 &$rights: Array of rights, which may be added to.
 
+'UserGetDefaultOptions': after fetching the core default, this hook is ran
+right before returning the options to the caller.
+&$defaultOptions: Array of preference keys and their default values. 
+
 'UserGetEmail': called when getting an user email address
 $user: User object
 &$email: email, change this to override local email
