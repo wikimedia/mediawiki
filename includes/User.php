@@ -1214,6 +1214,8 @@ class User {
 		}
 		$defOpt['skin'] = $wgDefaultSkin;
 
+		wfRunHooks( 'UserGetDefaultOptions', array( &$defOpt ) );
+
 		return $defOpt;
 	}
 
