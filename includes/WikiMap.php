@@ -17,15 +17,14 @@ class WikiMap {
 		$wgConf->loadFullData();
 
 		list( $major, $minor ) = $wgConf->siteFromDB( $wikiID );
-		if( isset( $major ) ) {
-			$server = $wgConf->get( 'wgCanonicalServer', $wikiID, $major,
-				array( 'lang' => $minor, 'site' => $major ) );
-			$path = $wgConf->get( 'wgArticlePath', $wikiID, $major,
-				array( 'lang' => $minor, 'site' => $major ) );
-			return new WikiReference( $major, $minor, $server, $path );
-		} else {
+		if( $major === null ) {
 			return null;
 		}
+		$server = $wgConf->get( 'wgCanonicalServer', $wikiID, $major,
+			array( 'lang' => $minor, 'site' => $major ) );
+		$path = $wgConf->get( 'wgArticlePath', $wikiID, $major,
+			array( 'lang' => $minor, 'site' => $major ) );
+		return new WikiReference( $major, $minor, $server, $path );
 	}
 	
 	/**
