@@ -286,6 +286,7 @@ input#wpSummary {
 .catlinks ul {
 	display: inline;
 	margin: 0px;
+	padding: 0px;
 	list-style: none;
 	list-style-type: none;
 	list-style-image: none;
