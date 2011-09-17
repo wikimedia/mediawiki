@@ -47,8 +47,10 @@ return array(
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
 	'skins.modern' => array(
-		'styles' => array( 'modern/main.css' => array( 'media' => 'screen' ),
-				'modern/print.css' => array( 'media' => 'print' ) ),
+		'styles' => array(
+			'modern/main.css' => array( 'media' => 'screen' ),
+			'modern/print.css' => array( 'media' => 'print' ),
+		),
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
 	),
