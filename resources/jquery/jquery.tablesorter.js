@@ -229,7 +229,7 @@
 	function emulateTHead( $table ) {
 		var $thead = $( '<thead>' );
 		$table.find( 'tr' ).each( function() {
-			if ( $(this).find( 'td' ).length > 0 ) {
+			if ( $(this).children( 'td' ).length > 0 ) {
 				// This row contains a <td>, so it's not a header row
 				// Stop here
 				return false;
