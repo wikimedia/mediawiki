@@ -77,8 +77,6 @@ class BrokenRedirectsPage extends PageQueryPage {
 	 * @return String
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgUser, $wgLang;
-
 		$fromObj = Title::makeTitle( $result->namespace, $result->title );
 		if ( isset( $result->rd_title ) ) {
 			$toObj = Title::makeTitle( $result->rd_namespace, $result->rd_title );
@@ -93,35 +91,35 @@ class BrokenRedirectsPage extends PageQueryPage {
 
 		// $toObj may very easily be false if the $result list is cached
 		if ( !is_object( $toObj ) ) {
-			return '<del>' . $skin->link( $fromObj ) . '</del>';
+			return '<del>' . Linker::link( $fromObj ) . '</del>';
 		}
 
-		$from = $skin->linkKnown(
+		$from = Linker::linkKnown(
 			$fromObj,
 			null,
 			array(),
 			array( 'redirect' => 'no' )
 		);
 		$links = array();
-		$links[] = $skin->linkKnown(
+		$links[] = Linker::linkKnown(
 			$fromObj,
 			wfMsgHtml( 'brokenredirects-edit' ),
 			array(),
 			array( 'action' => 'edit' )
 		);
-		$to = $skin->link(
+		$to = Linker::link(
 			$toObj,
 			null,
 			array(),
 			array(),
 			array( 'broken' )
 		);
-		$arr = $wgLang->getArrow();
+		$arr = $this->getLang()->getArrow();
 
 		$out = $from . wfMsg( 'word-separator' );
 
-		if( $wgUser->isAllowed( 'delete' ) ) {
-			$links[] = $skin->linkKnown(
+		if( $this->getUser()->isAllowed( 'delete' ) ) {
+			$links[] = Linker::linkKnown(
 				$fromObj,
 				wfMsgHtml( 'brokenredirects-delete' ),
 				array(),
@@ -129,7 +127,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 			);
 		}
 
-		$out .= wfMsg( 'parentheses', $wgLang->pipeList( $links ) );
+		$out .= wfMsg( 'parentheses', $this->getLang()->pipeList( $links ) );
 		$out .= " {$arr} {$to}";
 		return $out;
 	}
