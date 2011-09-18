@@ -36,6 +36,7 @@
  * @author Remember the dot
  * @author RmSilva
  * @author Rodrigo Calanca Nishino
+ * @author SandroHc
  * @author Sir Lestaty de Lioncourt
  * @author Sérgio Ribeiro
  * @author Urhixidur
@@ -1430,6 +1431,7 @@ Esta operação não pode ser desfeita.',
 'yourrealname'                  => 'Nome verdadeiro:',
 'yourlanguage'                  => 'Língua:',
 'yourvariant'                   => 'Variante da língua de conteúdo:',
+'prefs-help-variant'            => 'A tua variante preferida ou ortografia para mostrar no conteúdo das páginas desta wiki.',
 'yournick'                      => 'Assinatura:',
 'prefs-help-signature'          => 'Ao inserir comentários em páginas de discussão, assine-os colocando quatro tiles "<nowiki>~~~~</nowiki>" no fim dos comentários. Ao gravar, estes serão convertidos na sua assinatura mais a data e a hora da edição.',
 'badsig'                        => 'Assinatura inválida; verifique o código HTML utilizado.',
@@ -3829,9 +3831,28 @@ Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
 
 # New logging system
-'revdelete-restricted'          => 'restrições a administradores aplicadas',
-'revdelete-unrestricted'        => 'restrições a administradores removidas',
-'logentry-move-move'            => '$1 {{GENDER:$2|moveu}} página $3 para $4',
-'logentry-move-move-noredirect' => '$1 {{GENDER:$2|moveu}} página $3 para $4 sem deixar um redireccionamento',
+'logentry-delete-delete'              => '$1 {{GENDER:$2|apagou}} a página $3',
+'logentry-delete-restore'             => '$1 {{GENDER:$2|restaurou}} a página $3',
+'logentry-delete-event'               => '$1 {{GENDER:$2|alterou}} a visibilidade {{PLURAL:$5|de uma entrada|$5 das entradas}} em $3: $4',
+'logentry-delete-revision'            => '$1 {{GENDER:$2|alterou}} a visibilidade {{PLURAL:$5|de uma revisão|$5 das revisões}} em $3: $4',
+'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|alterou}} a visibilidade de uma entrada em $3',
+'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|alterou}} a visibilidade de uma revisão em $3',
+'logentry-suppress-delete'            => '$1 {{GENDER:$2|suprimiu}} a página $3',
+'logentry-suppress-event'             => '$1 {{GENDER:$2|alterou}} secretamente a visibilidade {{PLURAL:$5|de uma entrada|$5 das entradas}} em $3: $4',
+'logentry-suppress-revision'          => '$1 secretamente {{GENDER:$2|alterou}} a visibilidade {{PLURAL:$5|de uma revisão|$5 das revisões}} em $3: $4',
+'logentry-suppress-event-legacy'      => '$1 secretamente {{GENDER:$2|alterou}} a visibilidade das entradas em $3',
+'logentry-suppress-revision-legacy'   => '$1 secretamente {{GENDER:$2|alterou}} a visibilidade das revisões em $3',
+'revdelete-content-hid'               => 'conteúdo oculto',
+'revdelete-summary-hid'               => 'editar sumário oculto',
+'revdelete-uname-hid'                 => 'utilizador oculto',
+'revdelete-content-unhid'             => 'conteúdo não oculto',
+'revdelete-summary-unhid'             => 'editar sumário não oculto',
+'revdelete-uname-unhid'               => 'utilizador não oculto',
+'revdelete-restricted'                => 'restrições a administradores aplicadas',
+'revdelete-unrestricted'              => 'restrições a administradores removidas',
+'logentry-move-move'                  => '$1 {{GENDER:$2|moveu}} página $3 para $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moveu}} página $3 para $4 sem deixar um redireccionamento',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|moveu}} a página $3 para $4 através de um redireccionamento',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a página $3 para $4 sem um redireccionamento',
 
 );

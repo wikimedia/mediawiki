@@ -1928,7 +1928,7 @@ Sofern nach einem bestimmten Benutzer gefiltert wird, werden nur die Dateien gez
 'filehist-filesize'         => 'Dateigröße',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Datei fehlt',
-'imagelinks'                => 'Dateiverwendungen',
+'imagelinks'                => 'Dateiverwendung',
 'linkstoimage'              => 'Die {{PLURAL:$1|folgende Seite verwendet|folgenden $1 Seiten verwenden}} diese Datei:',
 'linkstoimage-more'         => 'Mehr als {{PLURAL:$1|eine Seite verlinkt|$1 Seiten verlinken}} auf diese Datei.
 Die folgende Liste zeigt nur {{PLURAL:$1|den ersten Link|die ersten $1 Links}} auf diese Datei.

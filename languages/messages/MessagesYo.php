@@ -81,7 +81,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Fi e-mail ránṣẹ́ sími bákannà fún àtúnṣe kékékèé sí ojúewé',
 'tog-enotifrevealaddr'        => "Ṣ'àfihàn àdírẹ́ẹ̀sì e-mail mi nínú àwọn ìránṣẹ́ e-mail",
 'tog-shownumberswatching'     => "S'àfihàn iye àwọn oníṣe tí wọn tẹjú mọ́ọ",
-'tog-oldsig'                  => 'Ìgbéwò ìtọwọ́bọ̀wé tó wà:',
+'tog-oldsig'                  => 'Ìtọwọ́bọ̀wé tówà:',
 'tog-fancysig'                => 'Ṣe ìtọwọ́bọ̀wé bíi ìkọ wiki (láìní ìjápọ̀ fúnrararẹ̀)',
 'tog-externaleditor'          => 'Lo aláàtúnṣe ọ̀tọ̀ látìbẹ̀rẹ̀ (fún àwọn tó mọ̀ nìkan, ìtò ọ̀tọ̀ọ̀tọ̀ pọndandan lórí kọ̀mpútà yín. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'Lo awoìyàtò ọ̀tọ̀ látìbẹ̀rẹ̀ (fún àwọn tó mọ̀ nìkan, ìtò ọ̀tọ̀ọ̀tọ̀ pọndandan lórí kọ̀mpútà yín. [http://www.mediawiki.org/wiki/Manual:External_editors Ìfọ̀rọ̀tónilétí mìhínhìn.])',
@@ -1066,7 +1066,7 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'userrights-lookup-user'      => 'Àkóso àwọn àdìpò oníṣe',
 'userrights-user-editname'    => 'Ẹ tẹ orúkọ oníṣe kan:',
 'editusergroup'               => 'Àtúnṣe àwọn ẹgbẹ́ oníṣe',
-'editinguser'                 => "Ṣíṣàyípadà àwọn ẹ̀tọ́ oníṣe fún oníṣe '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                 => "Ṣíṣàyípadà àwọn ẹ̀tọ́ oníṣe fún oníṣe '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'    => 'Àtúnṣe àwọn ẹgbẹ́ oníṣe',
 'saveusergroups'              => 'Ìmúpamọ́ àwọn ẹgbẹ́ oníṣe',
 'userrights-groupsmember'     => 'Ọ̀kan nínú:',
@@ -1074,7 +1074,7 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'userrights-no-interwiki'     => 'Ẹ kò ní ìyọ̀nda láti ṣàtúnṣe àwọn ẹ̀tọ́ oníṣe lórí àwọn wiki míràn.',
 'userrights-nodatabase'       => 'Ibùdó dátà $1 kò sí tàbí kò sí lábẹ́lé.',
 'userrights-nologin'          => 'Ẹ gbọ́dọ̀ [[Special:UserLogin|wọlé]] pẹ̀lú àpamọ́ alámòójútó láti pín àwọn ẹ̀tọ́ oníṣe.',
-'userrights-notallowed'       => 'Àpamọ́ yín kò ní ìyọ̀nda láti pín àwọn ẹ̀tọ́ oníṣe.',
+'userrights-notallowed'       => 'Àpamọ́ yín kò ní ìyọ̀nda láti ṣàfikún tàbí ṣàyọkúrò àwọn ẹ̀tọ́ oníṣe.',
 'userrights-changeable-col'   => 'Àwọn ẹgbẹ́ tí ẹ le túnṣe',
 'userrights-unchangeable-col' => 'Àwọn ẹgbẹ́ tí ẹ kò le túnṣe',
 
@@ -1550,7 +1550,7 @@ Bákannáà ẹ wo [[Special:WantedCategories|àwọn ẹ̀ka wíwá]].',
 # E-mail user
 'emailuser'           => 'Ẹ fi e-mail ránṣẹ́ sí oníṣe yìí',
 'emailpage'           => 'E-mail sí oníṣe',
-'defemailsubject'     => 'e-mail {{SITENAME}}',
+'defemailsubject'     => 'E-mail {{SITENAME}} látọwọ́ oníṣe "$1"',
 'noemailtitle'        => 'Kò sí àdírẹ́ẹ̀sì e-mail',
 'noemailtext'         => 'Oníṣe yìí kò tìí ṣètò àdírẹ́ẹ̀sì e-mail tótọ́ kankan.',
 'nowikiemailtitle'    => 'E-mail kankan kò jẹ́ gbígbà láyè',
@@ -1639,7 +1639,7 @@ Láti ṣèyípadà ìtò ìmójútó yín, ẹ lọ sí
 Láti ṣèparẹ́ ojúewé náà kúrò nínú ìmjútó yín, ẹ lọ sí
 $UNWATCHURL
 
-Fún ìrànwọ́:
+Fún ìrànwọ́ àti ìbérè:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -1676,7 +1676,7 @@ Fún ìrànwọ́:
 'protectlogpage'              => 'Àkọsílẹ̀ àbò',
 'protectedarticle'            => 'ti dá àbò bo "[[$1]]"',
 'modifiedarticleprotection'   => 'ṣe àyípadà ipò àbò fún "[[$1]]"',
-'unprotectedarticle'          => '"[[$1]]" aláìjẹ́dídáàbòbò',
+'unprotectedarticle'          => 'yọ àbò kúrò lórí "[[$1]]"',
 'prot_1movedto2'              => '[[$1]] ti yípò sí [[$2]]',
 'protect-legend'              => 'Ìmúdájú ìdábòbò',
 'protectcomment'              => 'Ìdíẹ̀:',
@@ -1793,7 +1793,7 @@ $1',
 'nolinkshere'              => "Kò sí ojúewé tó jápọ̀ mọ́ '''[[:$1]]'''.",
 'isredirect'               => 'àtúnjúwe ojúewé',
 'istemplate'               => 'ìkómọ́ra',
-'isimage'                  => 'Ìjápọ̀ àwòrán',
+'isimage'                  => 'ìjápọ̀ fáìlì',
 'whatlinkshere-prev'       => '{{PLURAL:$1|tẹ́lẹ̀|tẹ́lẹ̀ $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|tókàn|tókàn $1}}',
 'whatlinkshere-links'      => '← àwọn ìjápọ̀',

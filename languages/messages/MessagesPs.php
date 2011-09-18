@@ -620,11 +620,20 @@ $1',
 'passwordreset'              => 'پټنوم بياپرځايول',
 'passwordreset-legend'       => 'پټنوم بياپرځايول',
 'passwordreset-username'     => 'کارن-نوم:',
+'passwordreset-domain'       => 'شپول:',
 'passwordreset-email'        => 'برېښليک پته:',
 'passwordreset-emailtitle'   => 'د {{SITENAME}} د ګڼون څرګندنې',
 'passwordreset-emailelement' => 'کارن-نوم: $1
 لنډمهاله پټنوم: $2',
 'passwordreset-emailsent'    => 'يو يادښتي برېښليک ولېږل شو.',
+
+# Special:ChangeEmail
+'changeemail'          => 'برېښليک پته بدلول',
+'changeemail-oldemail' => 'اوسنۍ برېښليک پته:',
+'changeemail-newemail' => 'نوې برېښليک پته:',
+'changeemail-none'     => '(هېڅ)',
+'changeemail-submit'   => 'برېښليک بدلول',
+'changeemail-cancel'   => 'ناګارل',
 
 # Edit page toolbar
 'bold_sample'     => 'زغرد متن',
@@ -956,6 +965,7 @@ $1',
 'prefs-watchlist-edits-max'     => 'د شمېر اکثر بريد: 1000',
 'prefs-misc'                    => 'بېلابېل',
 'prefs-resetpass'               => 'پټنوم بدلول',
+'prefs-changeemail'             => 'برېښليک بدلول',
 'prefs-email'                   => 'د برېښليک خوښنې',
 'prefs-rendering'               => 'ښکارېدنه',
 'saveprefs'                     => 'خوندي کول',
@@ -2157,6 +2167,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-dc-contributor' => 'ونډه وال',
 'exif-dc-date'        => 'نېټه (نېټې)',
 'exif-dc-publisher'   => 'خپرونکی',
+'exif-dc-relation'    => 'اړونده رسنۍ',
 'exif-dc-rights'      => 'رښتې',
 'exif-dc-source'      => 'د سرچينې رسنۍ',
 'exif-dc-type'        => 'د رسنۍ ډول',
@@ -2356,6 +2367,12 @@ $5
 'compare-rev1'     => '۱ بڼه',
 'compare-rev2'     => '۲ بڼه',
 'compare-submit'   => 'پرتلل',
+
+# Special:GlobalFileUsage
+'globalfileusage-ok' => 'پلټل',
+
+# Special:GlobalTemplateUsage
+'globaltemplateusage-ok' => 'پلټل',
 
 # Database error messages
 'dberr-header'    => 'دا ويکي يوه ستونزه لري',

@@ -1968,7 +1968,7 @@ Als deze pagina wordt gefilterd op gebruiker, worden alleen bestanden waar de ge
 'filehist-filesize'                 => 'Bestandsgrootte',
 'filehist-comment'                  => 'Opmerking',
 'filehist-missing'                  => 'Het bestand is niet aangetroffen',
-'imagelinks'                        => 'Bestandsverwijzingen',
+'imagelinks'                        => 'Gebruik van dit bestand',
 'linkstoimage'                      => "Dit bestand wordt op de volgende {{PLURAL:$1|pagina|$1 pagina's}} gebruikt:",
 'linkstoimage-more'                 => 'Er {{PLURAL:$2|is|zijn}} meer dan $1 {{PLURAL:$1|verwijzing|verwijzingen}} naar dit bestand.
 De volgende lijst geeft alleen de eerste {{PLURAL:$1|verwijzing|$1 verwijzingen}} naar dit bestand weer.
