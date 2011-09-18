@@ -92,6 +92,8 @@ production.
 * Allowing moving the associated talk pages of subpages even if the base page
   has no subpage.
 * (bug 30907) Special:Unusedcategories should sort ascendingly.
+* (bug 18424) Special:Prefixindex and Special:Allpages paging links are
+  really small, and somewhat inconsistent with each other.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
