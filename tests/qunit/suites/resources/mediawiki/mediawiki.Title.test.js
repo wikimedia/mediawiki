@@ -93,10 +93,10 @@ test( 'Main text for filename', function() {
 	equal( title.getNamespacePrefix(), 'File:' );
 	equal( title.getName(), 'Foo_bar' );
 	equal( title.getNameText(), 'Foo bar' );
-	equal( title.getMain(), 'Foo_bar.jpg' );
-	equal( title.getMainText(), 'Foo bar.jpg' );
-	equal( title.getExtension(), 'jpg' );
-	equal( title.getDotExtension(), '.jpg' );
+	equal( title.getMain(), 'Foo_bar.JPG' );
+	equal( title.getMainText(), 'Foo bar.JPG' );
+	equal( title.getExtension(), 'JPG' );
+	equal( title.getDotExtension(), '.JPG' );
 });
 
 test( 'Namespace detection and conversion', function() {
@@ -106,7 +106,7 @@ test( 'Namespace detection and conversion', function() {
 	var title;
 
 	title = new mw.Title( 'something.PDF', 6 );
-	equal( title.toString(), 'File:Something.pdf' );
+	equal( title.toString(), 'File:Something.PDF' );
 
 	title = new mw.Title( 'NeilK', 3 );
 	equal( title.toString(), 'User_talk:NeilK' );

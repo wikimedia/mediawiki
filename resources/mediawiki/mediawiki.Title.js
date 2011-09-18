@@ -71,7 +71,7 @@ var	Title = function( title, namespace ) {
 	 * Sanitize name.
 	 */
 	fixExt = function( s ) {
-		return clean( s.toLowerCase() );
+		return clean( s );
 	},
 
 	/**
