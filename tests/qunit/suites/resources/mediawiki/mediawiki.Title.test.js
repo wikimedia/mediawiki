@@ -64,7 +64,7 @@ test( '-- Initial check', function() {
 });
 
 test( 'Transformation', function() {
-	expect(3);
+	expect(4);
 	_titleConfig();
 
 	var title;
@@ -74,6 +74,9 @@ test( 'Transformation', function() {
 
 	title = new mw.Title( 'File:Glarg_foo_glang.jpg' );
 	equal( title.getNameText(), 'Glarg foo glang' );
+
+	title = new mw.Title( 'User:ABC.DEF' );
+	equal( title.toText(), 'User:ABC.DEF' );
 
 	title = new mw.Title( '   MediaWiki:  Foo   bar   .js   ' );
 	// Don't ask why, it's the way the backend works. One space is kept of each set
