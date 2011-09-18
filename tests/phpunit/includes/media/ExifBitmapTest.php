@@ -12,6 +12,11 @@ class ExifBitmapTest extends MediaWikiTestCase {
 		}
 	}
 
+	public function tearDown() {
+		global $wgShowEXIF;
+		$wgShowEXIF = $this->showExif;
+	}
+
 	public function testIsOldBroken() {
 		$res = $this->handler->isMetadataValid( null, ExifBitmapHandler::OLD_BROKEN_FILE );
 		$this->assertEquals( ExifBitmapHandler::METADATA_COMPATIBLE, $res );
