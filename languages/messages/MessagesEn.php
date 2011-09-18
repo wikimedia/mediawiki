@@ -2327,7 +2327,7 @@ When filtered by user, only files where that user uploaded the most recent versi
 'filehist-filesize'                 => 'File size',
 'filehist-comment'                  => 'Comment',
 'filehist-missing'                  => 'File missing',
-'imagelinks'                        => 'File links',
+'imagelinks'                        => 'File usage',
 'linkstoimage'                      => 'The following {{PLURAL:$1|page links|$1 pages link}} to this file:',
 'linkstoimage-more'                 => 'More than $1 {{PLURAL:$1|page links|pages link}} to this file.
 The following list shows the {{PLURAL:$1|first page link|first $1 page links}} to this file only.
