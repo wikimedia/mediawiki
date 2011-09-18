@@ -197,6 +197,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 			}
 		}
 
+		$footer = '';
 		if ( $this->including() ) {
 			$out2 = '';
 		} else {
@@ -207,7 +208,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 					<td>' .
 						$nsForm .
 					'</td>
-					<td id="mw-prefixindex-nav-form">';
+					<td id="mw-prefixindex-nav-form" class="mw-prefixindex-nav">';
 
 			if( isset( $res ) && $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 				$query = array(
@@ -219,20 +220,21 @@ class SpecialPrefixindex extends SpecialAllpages {
 					$query['namespace'] = $namespace;
 				}
 
-				$out2 = $this->getLang()->pipeList( array(
-					$out2,
-					Linker::linkKnown(
+				$nextLink = Linker::linkKnown(
 						$self,
 						wfMsgHtml( 'nextpage', str_replace( '_',' ', htmlspecialchars( $s->page_title ) ) ),
 						array(),
 						$query
-					)
-				) );
+					);
+				$out2 .= $nextLink;
+
+				$footer = "\n" . Html::element( "hr" )
+					. Html::rawElement( "div", array( "class" => "mw-prefixindex-nav" ), $nextLink );
 			}
 			$out2 .= "</td></tr>" .
 				Xml::closeElement( 'table' );
 		}
 
-		$this->getOutput()->addHTML( $out2 . $out );
+		$this->getOutput()->addHTML( $out2 . $out . $footer );
 	}
 }
