@@ -1926,7 +1926,7 @@ Example: [[:Image:Addon-icn.png]]',
 'filehist-comment'                  => 'In file description page
 
 {{Identical|Comment}}',
-'imagelinks'                        => 'In top header of the image description page, see for example [[:Image:Yes.png]].',
+'imagelinks'                        => 'In top header of the image description page, see for example [[:Image:Yes.png]]. Shows a list of pages where this file is used.',
 'linkstoimage'                      => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
 * Parameter $1 is the number of pages that link to the file/image.',
 'linkstoimage-more'                 => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
