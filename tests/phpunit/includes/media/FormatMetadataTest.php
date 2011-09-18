@@ -1,10 +1,19 @@
 <?php
 class FormatMetadataTest extends MediaWikiTestCase {
-	public function testInvalidDate() {
+	public function setUp() {
 		if ( !wfDl( 'exif' ) ) {
-			$this->markTestIncomplete( "This test needs the exif extension." );
+			$this->markTestSkipped( "This test needs the exif extension." );
 		}
-		
+		global $wgShowEXIF;
+		$this->show = $wgShowEXIF;
+		$wgShowEXIF = true;
+	}
+	public function tearDown() {
+		global $wgShowEXIF;
+		$wgShowEXIF = $this->show;
+	}
+
+	public function testInvalidDate() {
 		$file = UnregisteredLocalFile::newFromPath( dirname( __FILE__ ) . 
 			'/../../data/media/broken_exif_date.jpg', 'image/jpeg' );
 		

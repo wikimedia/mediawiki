@@ -4,6 +4,9 @@ class ExifTest extends MediaWikiTestCase {
 	public function setUp() {
 		$this->mediaPath = dirname( __FILE__ ) . '/../../data/media/';
 
+		if ( !wfDl( 'exif' ) ) {
+			$this->markTestSkipped( "This test needs the exif extension." );
+		}
                 global $wgShowEXIF;
                 $this->showExif = $wgShowEXIF;
                 $wgShowEXIF = true;
@@ -14,9 +17,6 @@ class ExifTest extends MediaWikiTestCase {
         }
 
 	public function testGPSExtraction() {
-		if ( !wfDl( 'exif' ) ) {
-			$this->markTestIncomplete( "This test needs the exif extension." );
-		}
 
 		$filename = $this->mediaPath . 'exif-gps.jpg';
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename ); 
@@ -32,9 +32,6 @@ class ExifTest extends MediaWikiTestCase {
 		$this->assertEquals( $expected, $data, '', 0.0000000001 );
 	}
 	public function testUnicodeUserComment() {
-		if ( !wfDl( 'exif' ) ) {
-			$this->markTestIncomplete( "This test needs the exif extension." );
-		}
 
 		$filename = $this->mediaPath . 'exif-user-comment.jpg';
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename ); 

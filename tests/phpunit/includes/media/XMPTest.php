@@ -1,6 +1,12 @@
 <?php
 class XMPTest extends MediaWikiTestCase {
 
+	function setUp() {
+		if ( !wfDl( 'xml' ) ) {
+			$this->markTestSkipped( 'Requires libxml to do XMP parsing' );
+		}
+	}
+
 	/**
 	 * Put XMP in, compare what comes out...
 	 *
@@ -11,9 +17,6 @@ class XMPTest extends MediaWikiTestCase {
 	 * @dataProvider dataXMPParse
 	 */
 	public function testXMPParse( $xmp, $expected, $info ) {
-		if ( !function_exists( 'xml_parser_create_ns' ) ) {
-			$this->markIncomplete( 'Requires libxml to do XMP parsing' );
-		}
 		if ( !is_string( $xmp ) || !is_array( $expected ) ) {
 			throw new Exception( "Invalid data provided to " . __METHOD__ );
 		}
