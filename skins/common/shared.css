@@ -179,9 +179,10 @@ input#wpSummary {
 #catlinks ul {
 	display:inline;
 	margin: 0px;
-	list-style:none;
-	list-style-type:none;
-	list-style-image:none;
+	padding: 0px;
+	list-style: none;
+	list-style-type: none;
+	list-style-image: none;
 	vertical-align: middle !ie;
 }
 
