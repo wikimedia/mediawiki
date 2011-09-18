@@ -53,7 +53,13 @@ class FakeConverter {
  * @ingroup Language
  */
 class Language {
-	var $mConverter, $mVariants, $mCode, $mLoaded = false;
+
+	/**
+	 * @var LanguageConverter
+	 */
+	var $mConverter;
+
+	var $mVariants, $mCode, $mLoaded = false;
 	var $mMagicExtensions = array(), $mMagicHookDone = false;
 
 	var $mNamespaceIds, $namespaceNames, $namespaceAliases;
@@ -410,7 +416,7 @@ class Language {
 	 */
 	function getGenderNsText( $index, $gender ) {
 		global $wgExtraGenderNamespaces;
-		
+
 		$ns = $wgExtraGenderNamespaces + self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 		return isset( $ns[$index][$gender] ) ? $ns[$index][$gender] : $this->getNsText( $index );
 	}
