@@ -178,7 +178,7 @@ test( 'mw.loader.bug30825', function() {
 	// Confirm that mw.loader.load() works with protocol-relative URLs
 	var loc = window.location,
 		base = ('//' + loc.hostname + loc.pathname).replace(/\/[^\/]*$/, ''),
-		target = base + '/suites/resources/mediawiki/mediawiki.test.bug30825.js';
+		target = base + '/data/qunitOkCall.js?' + (new Date()).getTime();
 
 	// Async! Include a timeout, as failure in this test leads to neither the
 	// success nor failure callbacks getting called.
