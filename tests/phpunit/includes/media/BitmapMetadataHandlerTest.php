@@ -15,8 +15,14 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	 */
 	public function testMultilingualCascade() {
 		if ( !wfDl( 'exif' ) ) {
-			$this->markTestIncomplete( "This test needs the exif extension." );
+			$this->markTestSkipped( "This test needs the exif extension." );
 		}
+		if ( !wfDl( 'xml' ) ) {
+			$this->markTestSkipped( "This test needs the xml extension." );
+		}
+		global $wgShowEXIF;
+		$oldExif = $wgShowEXIF;
+		$wgShowEXIF = true;
 
 		$meta = BitmapMetadataHandler::Jpeg( $this->filePath .
 			'/Xmp-exif-multilingual_test.jpg' );
@@ -31,6 +37,8 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 			'Did not extract any ImageDescription info?!' );
 
 		$this->assertEquals( $expected, $meta['ImageDescription'] );
+
+		$wgShowEXIF = $oldExif;
 	}
 
 	/**
@@ -94,6 +102,9 @@ class BitmapMetadataHandlerTest extends MediaWikiTestCase {
 	}
 
 	public function testPNGXMP() {
+		if ( !wfDl( 'xml' ) ) {
+			$this->markTestSkipped( "This test needs the xml extension." );
+		}
 		$handler = new BitmapMetadataHandler();
 		$result = $handler->png( $this->filePath . 'xmp.png' );
 		$expected = array (

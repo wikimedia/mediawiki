@@ -9,6 +9,16 @@ class ExifRotationTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';
 		$this->handler = new BitmapHandler();
+		if ( !wfDl( 'exif' ) ) {
+			$this->markTestSkipped( "This test needs the exif extension." );
+		}
+		global $wgShowEXIF;
+		$this->show = $wgShowEXIF;
+		$wgShowEXIF = true;
+	}
+	public function tearDown() {
+		global $wgShowEXIF;
+		$wgShowEXIF = $this->show;
 	}
 
 	/**
@@ -33,7 +43,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 		
 		# Any further test require a scaler that can rotate
 		if ( !BitmapHandler::canRotate() ) {
-			$this->markTestIncomplete( 'Scaler does not support rotation' );
+			$this->markTestSkipped( 'Scaler does not support rotation' );
 			return;
 		}
 		
@@ -102,6 +112,11 @@ class ExifRotationTest extends MediaWikiTestCase {
 	}
 
 	function testWidthFlipping() {
+		# Any further test require a scaler that can rotate
+		if ( !BitmapHandler::canRotate() ) {
+			$this->markTestSkipped( 'Scaler does not support rotation' );
+			return;
+		}
 		$file = UnregisteredLocalFile::newFromPath( $this->filePath . 'portrait-rotated.jpg', 'image/jpeg' );
 		$params = array( 'width' => '50' );
 		$this->assertTrue( $this->handler->normaliseParams( $file, $params ) );
