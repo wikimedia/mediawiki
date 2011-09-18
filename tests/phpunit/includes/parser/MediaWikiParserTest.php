@@ -18,7 +18,11 @@ class MediaWikiParserTest {
 
 		foreach ( $wgParserTestFiles as $filename ) {
 			$testsName = basename( $filename, '.txt' );
-			$className = /*ucfirst( basename( dirname( $filename ) ) ) .*/ ucfirst( basename( $filename, '.txt' ) );
+			/* This used to be ucfirst( basename( dirname( $filename ) ) )
+			 * and then was ucfirst( basename( $filename, '.txt' )
+			 * but that didn't work with names like foo.tests.txt
+			 */
+			$className = str_replace( '.', '_',  ucfirst( basename( $filename, '.txt' ) ) );
 			
 			eval( "/** @group Database\n@group Parser\n*/ class $className extends NewParserTest { protected \$file = \"" . addslashes( $filename ) . "\"; } " );
 
