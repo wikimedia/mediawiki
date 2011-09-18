@@ -71,9 +71,9 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Tago-a an ginliwat hin bot tikang han angay timan-an',
 'tog-watchlisthideminor'      => 'Tago-a an mga gagmay nga pagliwat tikang han angay timan-an',
 'tog-watchlisthideanons'      => 'Igtago an mga ginliwat han mga waray nagpakilala nga nagamit tikang ha gintitiman-an',
-'tog-ccmeonemails'            => 'Padad-i ak hin mga kopya hin mga email nga akon ginpapadara ha iba nga mga nágámit',
+'tog-ccmeonemails'            => 'Padad-i ak hin mga kopya hin mga email nga akon ginpapadara ha iba nga mga gumaramit',
 'tog-diffonly'                => 'Ayaw igpakita an sulod han pakli ha ilarom han pagkakaiba',
-'tog-showhiddencats'          => 'Igpakita an mga tinago nga mga kategorya',
+'tog-showhiddencats'          => 'Igpakita an mga tinago nga mga kaarangay',
 
 'underline-always' => 'Pirme',
 'underline-never'  => 'Diri',
@@ -327,10 +327,10 @@ $1',
 'nosuchactiontext'  => 'An buhat nga gin-ispisipikar han URL diri puyde.
 Bangin la, nagsayop ka pagmakinilya han URL, o sinmunod hin sayop nga sumpay.
 Bangin liwat ini usa nga bug dida han software nga ginagamit han {{SITENAME}}.',
-'nosuchspecialpage' => 'Waray sugad nga ispisyal nga pakli',
-'nospecialpagetext' => '<strong>Naghangyo ka hin diri-puyde nga ispisyal nga pakli.</strong>
+'nosuchspecialpage' => 'Waray sugad nga nahiurog nga pakli',
+'nospecialpagetext' => '<strong>Naghangyo ka hin diri-puyde nga nahiurog nga pakli.</strong>
 
-In lista o talaan hin puyde nga mga ispisyal nga pakli mabibilngan ha [[Special:SpecialPages|{{int:specialpages}}]].',
+In lista o talaan hin puyde nga mga nahiurog nga pakli mabibilngan ha [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Sayop',
@@ -348,7 +348,7 @@ tikang ha sakob han funsyon nga "$2".
 Nagbalik hin sayop an database nga "$3: $4"',
 'laggedslavemode'      => 'Bantay: It pakli bangin waray mga kabag-ohan nga bag-o.',
 'readonly'             => 'Gintrankahan an database',
-'enterlockreason'      => 'Pagbutang hin rason para han pagtrangka. upod hin banabana kon san-o kukuha-on an pagtrangka',
+'enterlockreason'      => 'Pagbutang hin rason para han pagtrangka, upod hin banabana kon san-o kukuha-on an pagtrangka',
 'internalerror'        => 'Sayop ha sulod',
 'internalerror_info'   => 'Sayop ha sulod: $1',
 'badarticleerror'      => 'Ini nga pagbuhat diri mahihimo dinhi nga pakli',
@@ -386,7 +386,7 @@ Ayaw paghingalimot hin pagbalyo han imo [[Special:Preferences|{{SITENAME}} mga g
 'notloggedin'             => 'Diri sakob',
 'nologin'                 => 'Waray ka akawnt? $1.',
 'nologinlink'             => 'Paghimo hin akawnt',
-'createaccount'           => 'Himo-a an akwant',
+'createaccount'           => 'Himo-a an akawnt',
 'gotaccount'              => '¿Mayda kana akawnt? $1.',
 'gotaccountlink'          => 'Sakob',
 'createaccountmail'       => 'Ha e-mail',
@@ -398,7 +398,7 @@ Alayon pagpili hin lain nga ngaran.',
 'loginsuccesstitle'       => 'Malinamposon an pagsulod',
 'nosuchusershort'         => 'Waray nagamit it may ngaran nga "$1".
 Kitaa kun amo it im pagbaybay.',
-'nouserspecified'         => 'Dapat nim magbutang hin agnay-hit-nagamit.',
+'nouserspecified'         => 'Dapat nim magbutang hin agnay hit gumaramit.',
 'wrongpassword'           => 'Sayop nga tigaman-pagsulod an nahibutang.
 Alayon pagutro pagbutang.',
 'wrongpasswordempty'      => 'An tigaman-pagsulod nga ginbutang in waray sulod.
@@ -408,7 +408,7 @@ Alayon pagutro pagbutang.',
 'passwordremindertitle'   => 'Bag-o nga diri-pirmihan nga tigaman-pagsulod para han {{SITENAME}}',
 'noemail'                 => 'Waray e-mail nga adres nga ginrekord para han nágámit "$1".',
 'noemailcreate'           => 'Kinahanglan nim maghatag hin may hinungdan nga e-mail address',
-'accountcreated'          => 'Nahimo an akawant',
+'accountcreated'          => 'Nahimo an akawnt',
 'loginlanguagelabel'      => 'Yinaknan: $1',
 
 # Change password dialog
@@ -625,7 +625,7 @@ Dapat diri malabaw ha $1 {{PLURAL:$1|agi|mga agi}} nga kahilaba.',
 'rclistfrom'                => 'Pakit-a an mga ginbag-ohan tikang han $1',
 'rcshowhideminor'           => '$1 gudti nga mga pagliwat',
 'rcshowhidebots'            => '$1 mga bot',
-'rcshowhideanons'           => '$1 waray nagpakilala nga mga nagamit',
+'rcshowhideanons'           => '$1 waray nagpakilala nga mga gumaramit',
 'rcshowhidemine'            => '$1 akon mga ginliwat',
 'hist'                      => 'kaagi',
 'hide'                      => 'Tago-a',
@@ -667,7 +667,7 @@ Dapat diri malabaw ha $1 {{PLURAL:$1|agi|mga agi}} nga kahilaba.',
 'filehist-deleteone'      => 'paraa',
 'filehist-current'        => 'yana',
 'filehist-datetime'       => 'Pitsa/Oras',
-'filehist-user'           => 'Nagamit',
+'filehist-user'           => 'Gumaramit',
 'imagelinks'              => 'Mga sumpay hin fayl',
 'linkstoimage'            => 'An nasunod nga {{PLURAL:$1|pakli nasumpay|$1 mga pakli nasumpay}} hini nga fayl:',
 'nolinkstoimage'          => 'Waray mga pakli nga nasumpay hini nga fayl.',
@@ -707,7 +707,7 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'statistics-edits-average'     => 'Average nga mga pagliwat kada pakli',
 'statistics-views-total'       => 'Ngatanan nga mga panginano',
 'statistics-views-peredit'     => 'Mga panginano kada pagliwat',
-'statistics-users-active'      => 'Nagios nga mga nagamit',
+'statistics-users-active'      => 'Mga nanggigios nga gumaramit',
 'statistics-users-active-desc' => 'Mga gumaramit nga may-ada iginbuhat ha urhi nga {{PLURAL:$1|ka adlaw|$1 ka mga adlaw}}',
 'statistics-mostpopular'       => 'Gidamoi nga ginpanginanohan nga mga pakli',
 
@@ -733,7 +733,7 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'listusers'          => 'Lista han mga nagamit',
 'usercreated'        => 'Ginhimo han $1 ha $2',
 'newpages'           => 'Bag-o nga mga pakli',
-'newpages-username'  => 'Agnay-hit-nagamit:',
+'newpages-username'  => 'Agnay hiton gumaramit:',
 'ancientpages'       => 'Mga gidaani nga pakli',
 'move'               => 'Balhina',
 'movethispage'       => 'Balhina ini nga pakli',

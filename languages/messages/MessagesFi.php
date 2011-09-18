@@ -795,26 +795,27 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'passwordreset-legend'         => 'Salasanan vaihto',
 'passwordreset-disabled'       => 'Salasanojen alustus ei ole mahdollista tässä wikissä.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Kirjoita jokin jäljempänä pyydetty tieto}}',
-'passwordreset-username'       => 'Käyttäjätunnus:',
+'passwordreset-username'       => 'Käyttäjätunnus',
+'passwordreset-domain'         => 'Verkkotunnus',
 'passwordreset-email'          => 'Sähköpostiosoite',
 'passwordreset-emailtitle'     => 'Tunnuksen tiedot {{GRAMMAR:inessive|{{SITENAME}}}}',
-'passwordreset-emailtext-ip'   => 'Joku (ehkäpä sinä, IP-osoitteesta $1) pyysi salasanan muistutusta sivustolla {{SITENAME}} ($4).
-Seuraav{{PLURAL:$3|alla käyttäjätilillä|illa käyttäjätileillä}} on tämä sähköpostiosoite:
-
-$2
-
-{{PLURAL:$3|Tämä väliaikainen salasana|Nämä väliaikaiset salasanat}} vanhentuvat {{PLURAL:$5|päivän kuluttua|$5 päivän kuluttua}}.
-Sinun täytyy kirjautua sisään ja valita uusi salasana. Jos joku toinen teki tämän
-pyynnön, tai muistit sittenkin oman salasanasi, etkä halua enää muuttaa sitä,
-voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
-'passwordreset-emailtext-user' => 'Käyttäjä $1 pyysi muistutusta tunnuksesi tiedoista sivustolla {{SITENAME}}
-($4). {{PLURAL:$3|Seuraava tunnus on|Seuraavat tunnukset ovat}} liitetty tähän sähköpostiosoitteeseen:
+'passwordreset-emailtext-ip'   => 'Joku (todennäköisesti sinä, IP-osoitteesta $1) pyysi muistutusta tunnuksesi tiedoista sivustolla {{SITENAME}} ($4).
+{{PLURAL:$3|Seuraava käyttäjätunnus on|Seuraavat käyttäjätunnukset ovat}} liitetty tähän sähköpostiosoitteeseen:
 
 $2
 
 {{PLURAL:$3|Tämä väliaikainen salasana vanhentuu|Nämä väliaikaiset salasanat vanhentuvat}} {{PLURAL:$5|yhden päivän|$5 päivän}} kuluttua.
 Sinun kannattaa kirjautua sisään ja valita uusi salasana. Jos joku toinen teki tämän
-pyynnön tai muistat sittenkin vanhan salasanasi, etkä halua muuttaa sitä,
+pyynnön, tai muistat sittenkin vanhan salasanasi, etkä halua muuttaa sitä,
+voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
+'passwordreset-emailtext-user' => 'Käyttäjä $1 pyysi muistutusta tunnuksesi tiedoista sivustolla {{SITENAME}} ($4).
+{{PLURAL:$3|Seuraava käyttäjätunnus on|Seuraavat käyttäjätunnukset ovat}} liitetty tähän sähköpostiosoitteeseen:
+
+$2
+
+{{PLURAL:$3|Tämä väliaikainen salasana vanhentuu|Nämä väliaikaiset salasanat vanhentuvat}} {{PLURAL:$5|yhden päivän|$5 päivän}} kuluttua.
+Sinun kannattaa kirjautua sisään ja valita uusi salasana. Jos joku toinen teki tämän
+pyynnön, tai muistat sittenkin vanhan salasanasi, etkä halua muuttaa sitä,
 voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
 'passwordreset-emailelement'   => 'Käyttäjätunnus: $1
 Väliaikainen salasana: $2',
@@ -2098,7 +2099,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'emailpage'            => 'Lähetä sähköpostia käyttäjälle',
 'emailpagetext'        => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror'      => 'Postitus palautti virheen:',
-'defemailsubject'      => 'Käyttäjä $1 lähetti sähköpostia sivustolta {{SITENAME}}',
+'defemailsubject'      => 'Sähköpostia käyttäjältä $1 sivustolta {{SITENAME}}',
 'usermaildisabled'     => 'Käyttäjien sähköposti poistettu käytöstä',
 'usermaildisabledtext' => 'Et voi lähettää sähköpostia muille käyttäjille tässä wikissä',
 'noemailtitle'         => 'Ei sähköpostiosoitetta',
@@ -2897,7 +2898,7 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'svg-long-desc'          => 'SVG-tiedosto; oletustarkkuus $1×$2 kuvapistettä; tiedostokoko $3',
 'show-big-image'         => 'Korkeatarkkuuksinen versio',
 'show-big-image-preview' => 'Tämän esikatselun koko: $1.',
-'show-big-image-other'   => 'Muut resoluutiot: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Muu resoluutio|Muut resoluutiot}}: $1.',
 'show-big-image-size'    => '$1 × $2 pikseliä',
 'file-info-gif-looped'   => 'toistuva',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|kehys|kehystä}}',
@@ -3138,9 +3139,9 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 'exif-orientation-3' => 'Käännetty 180°',
 'exif-orientation-4' => 'Käännetty pystysuunnassa',
 'exif-orientation-5' => 'Käännetty 90° vastapäivään ja pystysuunnassa',
-'exif-orientation-6' => 'Käännetty 90° myötäpäivään',
+'exif-orientation-6' => 'Käännetty 90° vastapäivään',
 'exif-orientation-7' => 'Käännetty 90° myötäpäivään ja pystysuunnassa',
-'exif-orientation-8' => 'Käännetty 90° vastapäivään',
+'exif-orientation-8' => 'Käännetty 90° myötäpäivään',
 
 'exif-planarconfiguration-1' => 'kokkaremuoto',
 'exif-planarconfiguration-2' => 'litteämuoto',

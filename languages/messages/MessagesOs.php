@@ -74,9 +74,10 @@ $messages = array(
 'tog-minordefault'            => 'Æппæт ивддзинæдтæ банысан кæн куыд чысылтæ',
 'tog-previewontop'            => 'Разæркасты рудзынг ивыны рудзынджы уæлдæр',
 'tog-enotifwatchlistpages'    => 'Электронон постæй мæм хъуысынгæнинаг æрвыст уа, æз цы фæрстæм мæ цæст дарын, уыдонæй иу куы ивд æрцæуа, уæд',
-'tog-enotifusertalkpages'     => 'Электронон постæй мæм хъуысынгæнинаг æрвыст уа, мæ дискусси куы ивд æрцæуа, уæд',
+'tog-enotifusertalkpages'     => 'Электронон постæй мæм хъуысынгæнинаг æрвыст уа, мæ тæрхоны фарс куы ивд æрцæуа, уæд',
 'tog-enotifminoredits'        => 'Кæд ивддзинад чысыл у, уæддæр мæм электронон фыстæг æрбацæуа',
 'tog-shownumberswatching'     => 'Цал архайæджы фарсмæ сæ цæст дарынц, уый равдис',
+'tog-oldsig'                  => 'Ныры къухæрфыст:',
 'tog-showjumplinks'           => 'Тагъд æрвитæнтæй пайда кæн',
 'tog-watchlisthideown'        => 'Мæ цæстдарды номхыгъды, мæхæдæг цы ивддзинæдтæ бахæстон, уыдон бамбæхс',
 'tog-watchlisthidebots'       => 'Мæ цæстдарды номхыгъды роботты куыст бамбæхс',
@@ -90,7 +91,8 @@ $messages = array(
 'underline-default' => 'Браузеры куыд у',
 
 # Font style option in Special:Preferences
-'editfont-default' => 'Браузеры куыд у',
+'editfont-default'   => 'Браузеры куыд у',
+'editfont-monospace' => 'Æмуæрæх шрифт',
 
 # Dates
 'sunday'        => 'хуыцаубон',
@@ -168,7 +170,7 @@ $messages = array(
 'moredotdotdot' => 'Фылдæр…',
 'mypage'        => 'Дæхи фарс',
 'mytalk'        => 'Мæ ныхас',
-'anontalk'      => 'Ацы IP-адрисы ныхас',
+'anontalk'      => 'Ацы IP-адрисы тæрхон',
 'navigation'    => 'Навигаци',
 'and'           => '&#32;æмæ',
 
@@ -190,10 +192,10 @@ $messages = array(
 'vector-view-create'       => 'Скæнын',
 'vector-view-edit'         => 'Ивын',
 'vector-view-history'      => 'Истори',
-'vector-view-view'         => 'Фæрсын',
+'vector-view-view'         => 'Кæсын',
 'vector-view-viewsource'   => 'Код кæсын',
 'actions'                  => 'Архайдтæ',
-'namespaces'               => 'Нæмтты тыгъдæдттæ',
+'namespaces'               => 'Номдæттæ',
 'variants'                 => 'Варианттæ',
 
 'errorpagetitle'    => 'Рæдыд',
@@ -209,6 +211,7 @@ $messages = array(
 'printableversion'  => 'Мыхурмæ верси',
 'permalink'         => 'Ацы версимæ æрвитæн',
 'print'             => 'Мыхуыр',
+'view'              => 'Æркæст',
 'edit'              => 'Ивын',
 'create'            => 'Скæнын',
 'editthispage'      => 'Ивын ацы фарс',
@@ -302,7 +305,7 @@ $messages = array(
 'nstab-special'   => 'Сæрмагонд фарс',
 'nstab-project'   => 'Проекты тыххæй',
 'nstab-image'     => 'Ныв',
-'nstab-mediawiki' => 'Фыстаг',
+'nstab-mediawiki' => 'Фыстæг',
 'nstab-template'  => 'Шаблон',
 'nstab-help'      => 'Æххуысы фарс',
 'nstab-category'  => 'Категори',
@@ -428,13 +431,13 @@ $messages = array(
 'loginreqtitle'                    => 'Хъуамæ дæхи бацамонай',
 'accmailtitle'                     => 'Пароль рарвыст у.',
 'newarticle'                       => '(Ног)',
-'noarticletext'                    => 'Ацы фарсы ныма текст нæй.
+'noarticletext'                    => 'Ацы фарсы нырмæ текст нæй.
 Дæ бон у [[Special:Search/{{PAGENAME}}|бацагурын ацы фарсы ном]] æндæр фæрсты,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} агурын хæстæг логты],
-кæнæ [{{fullurl:{{FULLPAGENAME}}|action=edit}} ивын ацы фарс]</span>.',
-'noarticletext-nopermission'       => 'Ацы фарсы ныма текст нæй.
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} агурын йæ кой логты],
+кæнæ [{{fullurl:{{FULLPAGENAME}}|action=edit}} скæнын ацы фарс]</span>.',
+'noarticletext-nopermission'       => 'Ацы фарсы нырмæ текст нæй.
 Дæ бон у [[Special:Search/{{PAGENAME}}|бацагурын ацы фарсы ном]] æндæр фæрсты
-кæнæ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} агурын хæстæг логты]</span>.',
+кæнæ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} агурын йæ кой логты]</span>.',
 'note'                             => "'''Бафиппай:'''",
 'previewnote'                      => "'''Зон æй, æмæ ай у æрмæстдæр разбакаст.'''
 Дæ ивдтытæ нырмæ æвæрд не рцыдысты!",
@@ -584,6 +587,7 @@ $messages = array(
 'timezoneregion-australia'  => 'Австрали',
 'timezoneregion-europe'     => 'Европæ',
 'timezoneregion-indian'     => 'Индийы фурд',
+'prefs-namespaces'          => 'Номдæттæ',
 'youremail'                 => 'E-mail:',
 'username'                  => 'Регистрацигонд ном:',
 'yourrealname'              => 'Æцæг ном:',
@@ -809,11 +813,12 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:LinkSearch
 'linksearch'      => 'Æддаг æрвитæнтæ',
+'linksearch-ns'   => 'Номдон:',
 'linksearch-ok'   => 'Агурын',
 'linksearch-line' => '$2 æрвиты $1-мæ',
 
 # Special:ListUsers
-'listusers-submit' => 'Равдис',
+'listusers-submit' => 'Равдисын',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Архайджыты фæзындты лог',
@@ -890,7 +895,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'undeleteviewlink' => 'кæсын',
 
 # Namespace form on various pages
-'namespace'      => 'Нæмтты тыгъдад:',
+'namespace'      => 'Номдон:',
 'invert'         => 'Зыгъуыммæ æвзæрст',
 'blanknamespace' => '(Сæйраг)',
 

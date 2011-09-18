@@ -3683,7 +3683,13 @@ Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
 'sqlite-no-fts'  => '$1 teljes szöveges keresés támogatása nélkül',
 
 # New logging system
-'revdelete-restricted'   => 'elrejtett az adminisztrátorok elől',
-'revdelete-unrestricted' => 'felfedett az adminisztrátoroknak',
+'logentry-delete-delete'          => '$1 {{GENDER:$2|törölte}} a következő lapot: $3',
+'logentry-delete-restore'         => '$1 {{GENDER:$2|helyreállította}} a következő lapot: $3',
+'logentry-delete-event'           => '$1 {{GENDER:$2|módosította}} {{PLURAL:$5|egy|$1}} naplóbejegyzés láthatóságát: $4',
+'logentry-delete-revision'        => '$1 {{GENDER:$2|módosította}} a(z) $3 című lap {{PLURAL:$5|egy|$1}} lapváltozatának láthatóságát: $4',
+'logentry-delete-event-legacy'    => '$1 {{GENDER:$2|módosította}} a(z) $3 című lap naplóbejegyzéseinek láthatóságát',
+'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|módosította}} a(z) $3 című lap lapváltozatainak láthatóságát',
+'revdelete-restricted'            => 'elrejtett az adminisztrátorok elől',
+'revdelete-unrestricted'          => 'felfedett az adminisztrátoroknak',
 
 );

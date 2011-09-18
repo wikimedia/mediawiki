@@ -353,7 +353,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Kirimkan saya surel juga pada perubahan kecil',
 'tog-enotifrevealaddr'        => 'Tampilkan alamat surel saya pada surel notifikasi',
 'tog-shownumberswatching'     => 'Tunjukkan jumlah pemantau',
-'tog-oldsig'                  => 'Pratayang tanda tangan:',
+'tog-oldsig'                  => 'Tanda tangan sekarang:',
 'tog-fancysig'                => 'Perlakukan tanda tangan sebagai teks wiki (tanpa suatu pranala otomatis)',
 'tog-externaleditor'          => 'Gunakan editor eksternal secara bawaan (hanya untuk ahli, perlu pengaturan khusus pada komputer Anda.
 [http://www.mediawiki.org/wiki/Manual:External_editors Informasi selengkapnya].)',
@@ -831,6 +831,7 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 'passwordreset-disabled'       => 'Penyetelan ulang sandi telah dimatikan di wiki ini.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Masukkan salah satu data di bawah ini}}',
 'passwordreset-username'       => 'Nama pengguna:',
+'passwordreset-domain'         => 'Domain:',
 'passwordreset-email'          => 'Alamat surel:',
 'passwordreset-emailtitle'     => 'Detail akun di {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta pengingat
@@ -2554,6 +2555,7 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'unblocklink'                     => 'hilangkan blokir',
 'change-blocklink'                => 'ubah blokir',
 'contribslink'                    => 'kontrib',
+'emaillink'                       => 'kirim surel',
 'autoblocker'                     => 'Diblokir secara otomatis karena alamat IP Anda digunakan oleh "[[User:$1|$1]]".
 Alasan yang diberikan untuk pemblokiran $1 adalah: "$2"',
 'blocklogpage'                    => 'Log pemblokiran',
@@ -2787,6 +2789,8 @@ Simpan ke komputer Anda dan unggah ke sini.',
 'import-upload'              => 'Memuat data XML',
 'import-token-mismatch'      => 'Kehilangan data sesi. Silakan mencoba kembali.',
 'import-invalid-interwiki'   => 'Tidak dapat mengimpor dari wiki tersebut.',
+'import-error-edit'          => 'Halaman "$1" tidak diimpor karena Anda tidak diizinkan untuk menyuntingnya.',
+'import-error-create'        => 'Halaman "$1" tidak diimpor karena Anda tidak diizinkan untuk membuatnya.',
 
 # Import log
 'importlogpage'                    => 'Log impor',
@@ -3224,9 +3228,9 @@ Data lain akan disembunyikan secara bawaan.
 'exif-orientation-3' => 'Diputar 180°',
 'exif-orientation-4' => 'Dibalik vertikal',
 'exif-orientation-5' => 'Diputar 90° CCW dan dibalik vertikal',
-'exif-orientation-6' => 'Diputar 90° CW',
+'exif-orientation-6' => 'Diputar 90° CCW',
 'exif-orientation-7' => 'Diputar 90° CW dan dibalik vertikal',
-'exif-orientation-8' => 'Diputar 90° CCW',
+'exif-orientation-8' => 'Diputar 90° CW',
 
 'exif-planarconfiguration-1' => 'format chunky',
 'exif-planarconfiguration-2' => 'format planar',
@@ -3784,7 +3788,13 @@ Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
 'sqlite-no-fts'  => '$1 tanpa dukungan pencarian teks lengkap',
 
 # New logging system
-'revdelete-restricted'   => 'akses telah dibatasi untuk opsis',
-'revdelete-unrestricted' => 'pembatasan akses opsis dihapuskan',
+'revdelete-content-hid'   => 'konten disembunyikan',
+'revdelete-summary-hid'   => 'ringkasan suntingan disembunyikan',
+'revdelete-uname-hid'     => 'nama pengguna disembunyikan',
+'revdelete-content-unhid' => 'konten tidak disembunyikan',
+'revdelete-summary-unhid' => 'ringkasan suntingan tidak disembunyikan',
+'revdelete-uname-unhid'   => 'nama pengguna tidak disembunyikan',
+'revdelete-restricted'    => 'akses telah dibatasi untuk opsis',
+'revdelete-unrestricted'  => 'pembatasan akses opsis dihapuskan',
 
 );

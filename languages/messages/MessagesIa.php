@@ -1754,7 +1754,7 @@ Si un filtro per usator es active, es monstrate solmente le files del quales le 
 'filehist-filesize'         => 'Dimension del file',
 'filehist-comment'          => 'Commento',
 'filehist-missing'          => 'File mancante',
-'imagelinks'                => 'Ligamines verso iste file',
+'imagelinks'                => 'Uso de iste file',
 'linkstoimage'              => 'Le sequente {{PLURAL:$1|pagina ha un ligamine|$1 paginas ha ligamines}} verso iste file:',
 'linkstoimage-more'         => 'Plus de $1 {{PLURAL:$1|pagina ha un ligamine|paginas ha ligamines}} verso iste file.
 Le sequente lista monstra le {{PLURAL:$1|prime pagina|prime $1 paginas}} que puncta a iste file specific.

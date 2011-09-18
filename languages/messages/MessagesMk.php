@@ -4008,7 +4008,7 @@ $1',
 'htmlform-int-toolow'          => 'Вредноста која ја наведовте е под минимумот од $1',
 'htmlform-int-toohigh'         => 'Вредноста која ја наведовте е над максимумот од $1',
 'htmlform-required'            => 'Се бара оваа вредност',
-'htmlform-submit'              => 'Зачувај',
+'htmlform-submit'              => 'Поднеси',
 'htmlform-reset'               => 'Откажи промени',
 'htmlform-selectorother-other' => 'Друго',
 
