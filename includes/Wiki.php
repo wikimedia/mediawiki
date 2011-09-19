@@ -180,7 +180,8 @@ class MediaWiki {
 		} elseif ( $request->getVal( 'action', 'view' ) == 'view' && !$request->wasPosted()
 			&& ( $request->getVal( 'title' ) === null ||
 				$title->getPrefixedDBKey() != $request->getVal( 'title' ) )
-			&& !count( $request->getValueNames( array( 'action', 'title' ) ) ) )
+			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
+			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) ) )
 		{
 			if ( $title->getNamespace() == NS_SPECIAL ) {
 				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
