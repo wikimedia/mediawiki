@@ -417,3 +417,42 @@ class DeleteLogFormatter extends LogFormatter {
 		}
 	}
 }
+
+/**
+ * This class formats patrol log entries.
+ * @since 1.19
+ */
+class PatrolLogFormatter extends LogFormatter {
+	protected function getMessageKey() {
+		$key = parent::getMessageKey();
+		$params = $this->getMessageParameters();
+		if ( isset( $params[5] ) && $params[5] ) {
+			$key .= '-auto';
+		}
+		return $key;
+	}
+
+	protected function getMessageParameters() {
+		$params = parent::getMessageParameters();
+		$newParams = array_slice( $params, 0, 3 );
+
+		$target = $this->entry->getTarget();
+		$oldid = $params[3];
+		$revision = $this->context->getLang()->formatNum( $oldid, true );
+
+		if ( $this->plaintext ) {
+			$revlink = $revision;
+		} elseif ( $target->exists() ) {
+			$query = array(
+				'oldid' => $oldid,
+				'diff' => 'prev'
+			);
+			$revlink = Linker::link( $target, htmlspecialchars( $revision ), array(), $query );
+		} else {
+			$revlink = htmlspecialchars( $revision );
+		}
+
+		$newParams[3] = Message::rawParam( $revlink );
+		return $newParams;
+	}
+}

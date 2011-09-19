@@ -5063,7 +5063,6 @@ $wgLogActions = array(
 	'merge/merge'        => 'pagemerge-logentry',
 	'suppress/block'     => 'blocklogentry',
 	'suppress/reblock'   => 'reblock-logentry',
-	'patrol/patrol'      => 'patrol-log-line',
 );
 
 /**
@@ -5080,6 +5079,7 @@ $wgLogActionsHandlers = array(
 	'suppress/revision' => 'DeleteLogFormatter',
 	'suppress/event'    => 'DeleteLogFormatter',
 	'suppress/delete'   => 'DeleteLogFormatter',
+	'patrol/patrol'     => 'PatrolLogFormatter',
 );
 
 /**
