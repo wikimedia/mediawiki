@@ -40,7 +40,7 @@ class SpecialFilepath extends SpecialPage {
 
 		$file = !is_null( $par ) ? $par : $wgRequest->getText( 'file' );
 
-		$title = Title::makeTitleSafe( NS_FILE, $file );
+		$title = Title::newFromText( $file, NS_FILE );
 
 		if ( ! $title instanceof Title || $title->getNamespace() != NS_FILE ) {
 			$this->showForm( $title );
