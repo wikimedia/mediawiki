@@ -475,7 +475,6 @@ class Language {
 				}
 			}
 
-			// <Nikerabbit> make $wgExtraNamespaces take precedence over $namespaceGenderAliases when $wgExtraGenderNamespaces are not defined
 			global $wgExtraGenderNamespaces;
 			$genders = $wgExtraGenderNamespaces + self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 			foreach ( $genders as $index => $forms ) {
