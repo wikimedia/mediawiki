@@ -367,6 +367,20 @@ class ChangesList extends ContextSource {
 		return $formatter->getActionText() . " $mark" . $formatter->getComment();
 	}
 
+	/** 
+	 * Insert a formatted comment
+	 * @param $rc RecentChange
+	 */
+	public function insertComment( $rc ) {
+		if( $rc->mAttribs['rc_type'] != RC_MOVE && $rc->mAttribs['rc_type'] != RC_MOVE_OVER_REDIRECT ) {
+			if( $this->isDeleted( $rc, Revision::DELETED_COMMENT ) ) {
+				return ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span>';
+			} else {
+				return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle() );
+			}
+		}
+	}
+
 	/**
 	 * Check whether to enable recent changes patrol features
 	 * @return Boolean
@@ -544,6 +558,7 @@ class OldChangesList extends ChangesList {
 			$this->insertUserRelatedLinks( $s, $rc );
 			# LTR/RTL direction mark
 			$s .= $this->getLang()->getDirMark();
+			$s .= $this->insertComment( $rc );
 		}
 
 		# Tags
@@ -994,6 +1009,7 @@ class EnhancedChangesList extends ChangesList {
 				# User links
 				$r .= $rcObj->userlink;
 				$r .= $rcObj->usertalklink;
+				$r .= $this->insertComment( $rcObj );
 			}
 
 			# Rollback
@@ -1120,6 +1136,8 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $this->insertLogEntry( $rcObj );
 		} else { 
 			$r .= ' '.$rcObj->userlink . $rcObj->usertalklink;
+			$r .= $this->insertComment( $rcObj );
+			$r .= $this->insertRollback( $r, $rcObj );
 		}
 
 		# Tags
