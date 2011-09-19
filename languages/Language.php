@@ -438,7 +438,7 @@ class Language {
 			return false;
 		} else {
 			// Check what is in i18n files
-			$alises = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			$aliases = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 			return count( $aliases ) > 0;
 		}
 	}
@@ -475,6 +475,7 @@ class Language {
 				}
 			}
 
+			// <Nikerabbit> make $wgExtraNamespaces take precedence over $namespaceGenderAliases when $wgExtraGenderNamespaces are not defined
 			global $wgExtraGenderNamespaces;
 			$genders = $wgExtraGenderNamespaces + self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
 			foreach ( $genders as $index => $forms ) {
@@ -535,12 +536,12 @@ class Language {
 	 * short names for language variants used for language conversion links.
 	 *
 	 * @param $code String
-	 * @param $usemsg Use the "variantname-xyz" message if it exists
+	 * @param $usemsg bool Use the "variantname-xyz" message if it exists
 	 * @return string
 	 */
 	function getVariantname( $code, $usemsg = true ) {
 		$msg = "variantname-$code";
-		$codeArray = list( $rootCode ) = explode( '-', $code );
+		list( $rootCode ) = explode( '-', $code );
 		if( $usemsg && wfMessage( $msg )->exists() ) {
 			return $this->getMessageFromDB( $msg );
 		} elseif( $name = self::getLanguageName( $code ) ) {
