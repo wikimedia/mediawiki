@@ -304,21 +304,14 @@ class ChangesList extends ContextSource {
 			$params['rcid'] = $rc->mAttribs['rc_id'];
 		}
 
+		$articlelink = Linker::linkKnown(
+			$rc->getTitle(),
+			null,
+			array(),
+			$params
+		);
 		if( $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
-			$articlelink = Linker::linkKnown(
-				$rc->getTitle(),
-				null,
-				array(),
-				$params
-			);
 			$articlelink = '<span class="history-deleted">' . $articlelink . '</span>';
-		} else {
-			$articlelink = ' '. Linker::linkKnown(
-				$rc->getTitle(),
-				null,
-				array(),
-				$params
-			);
 		}
 		# Bolden pages watched by this user
 		if( $watched ) {
