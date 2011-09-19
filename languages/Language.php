@@ -514,7 +514,6 @@ class Language {
 		return $this->mNamespaceIds;
 	}
 
-
 	/**
 	 * Get a namespace key by value, case insensitive.  Canonical namespace
 	 * names override custom ones defined for the current language.
@@ -524,7 +523,8 @@ class Language {
 	 */
 	function getNsIndex( $text ) {
 		$lctext = $this->lc( $text );
-		if ( ( $ns = MWNamespace::getCanonicalIndex( $lctext ) ) !== null ) {
+		$ns = MWNamespace::getCanonicalIndex( $lctext );
+		if ( $ns !== null ) {
 			return $ns;
 		}
 		$ids = $this->getNamespaceIds();
@@ -543,7 +543,9 @@ class Language {
 		list( $rootCode ) = explode( '-', $code );
 		if( $usemsg && wfMessage( $msg )->exists() ) {
 			return $this->getMessageFromDB( $msg );
-		} elseif( $name = self::getLanguageName( $code ) ) {
+		}
+		$name = self::getLanguageName( $code );
+		if( $name ) {
 			return $name; # if it's defined as a language name, show that
 		} else {
 			# otherwise, output the language code
