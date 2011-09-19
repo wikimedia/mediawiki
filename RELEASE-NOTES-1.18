@@ -215,7 +215,7 @@ production.
   To give extensions a better and more flexible way of providing default
   values for preferences a hook has been introdiced in User:getDefaultOptions().
   Setting preferences in $wgDefaultUserOptions still work fine, but when reading
-  them (i.e. with array_keys) to get a list of all preferences, then 
+  them (i.e. with array_keys) to get a list of all preferences, then
   $wgDefaultUserOptions should no longer be used as it will contain those set via
   User:getDefaultOptions().
 
@@ -634,6 +634,7 @@ changes to languages because of Bugzilla reports.
 * (bug 30864) Use bengali numerals for <ol> for Assamese
 * (bug 30817) Restored linktrail for kk (Kazakh)
 * (bug 27398) Add $wgExtraGenderNamespaces for configured gendered namespaces
+* (bug 30846) New LanguageOs class
 
 === Other changes in 1.18 ===
 * Removed legacy wgAjaxWatch javascript global object, no longer in use.
