@@ -87,7 +87,7 @@ class DeleteBatch extends Maintenance {
 				$art = new ImagePage( $page );
 				$img = wfFindFile( $art->mTitle );
 				if ( !$img
-					|| $img instanceof ForeignDBFile || $img instanceof ForeignAPIFile
+					|| !$img->isLocal()
 					|| !$img->delete( $reason ) ) {
 					$this->output( " FAILED to delete image file... " );
 				}
