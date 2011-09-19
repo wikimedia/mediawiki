@@ -2932,9 +2932,6 @@ Meestentieds kump dit deur n uutgaonde verwiezing die op de zwarte lieste steet.
 # Patrol log
 'patrol-log-page'      => 'Markeerlogboek',
 'patrol-log-header'    => 'In dit logboek staon de versies die emarkeerd bin as ekontroleerd.',
-'patrol-log-line'      => '$1 van $2 emarkeerd as ekontroleerd $3',
-'patrol-log-auto'      => '(automaties)',
-'patrol-log-diff'      => 'versie $1',
 'log-show-hide-patrol' => 'Markeerlogboek $1',
 
 # Image deletion

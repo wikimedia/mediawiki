@@ -2109,9 +2109,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'Тикшерү көндәлеге',
 'patrol-log-header'    => 'Бу тикшерелгән битләрнең көндәлеге.',
-'patrol-log-line'      => '$2 $3 битеннән $1ны тикшерде',
-'patrol-log-auto'      => '(автоматик рәвештә)',
-'patrol-log-diff'      => '$1 юрама',
 'log-show-hide-patrol' => '$1 тикшерү көндәлеге',
 
 # Image deletion

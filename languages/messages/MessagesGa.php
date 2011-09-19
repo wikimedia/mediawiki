@@ -1784,7 +1784,6 @@ iarradh sábháil. Is dócha gur nasc chuig suíomh seachtrach ba chúis leis.',
 
 # Patrol log
 'patrol-log-page'      => 'Log phatról',
-'patrol-log-auto'      => '(uathoibríoch)',
 'log-show-hide-patrol' => '$1 log phatról',
 
 # Image deletion

@@ -1662,7 +1662,7 @@ Pan hidlir y rhestr yn ôl defnyddiwr, yr unig rhai a ddangosir o blith y ffeili
 'filehist-filesize'                 => 'Maint y ffeil',
 'filehist-comment'                  => 'Sylw',
 'filehist-missing'                  => 'Y ffeil yn eisiau',
-'imagelinks'                        => "Cysylltiadau'r ffeil",
+'imagelinks'                        => 'Defnydd y ffeil',
 'linkstoimage'                      => "Mae'r {{PLURAL:$1|tudalen|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} isod yn cysylltu i'r ddelwedd hon:",
 'linkstoimage-more'                 => "Mae rhagor na $1 {{PLURAL:$1|tudalen yn|dudalen yn|dudalen yn|o dudalennau'n|o dudalennau'n|o dudalennau'n}} cysylltu at y ffeil hon.
 Mae'r rhestr canlynol yn dangos y {{PLURAL:$1|$1 cysylltiad cyntaf}} at y ffeil hon yn unig. Mae [[Special:WhatLinksHere/$2|rhestr lawn]] ar gael.",
@@ -2747,9 +2747,6 @@ Achos hyn yn fwy na thebyg yw presenoldeb cysylltiad i wefan ar y rhestr gwahard
 # Patrol log
 'patrol-log-page'      => 'Lòg patrolio',
 'patrol-log-header'    => "Mae'r lòg hwn yn dangos y golygiadau sydd wedi derbyn ymweliad patrôl.",
-'patrol-log-line'      => 'wedi marcio bod $1 o $2 wedi derbyn ymweliad patrôl $3',
-'patrol-log-auto'      => '(awtomatig)',
-'patrol-log-diff'      => 'golygiad $1',
 'log-show-hide-patrol' => '$1 lòg patrolio',
 
 # Image deletion
@@ -2780,7 +2777,7 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'svg-long-desc'          => 'Ffeil SVG, maint mewn enw $1 × $2 picsel, maint y ffeil: $3',
 'show-big-image'         => 'Maint llawn',
 'show-big-image-preview' => 'Maint y rhagolwg: $1.',
-'show-big-image-other'   => 'Datrysiadau eraill: $1 .',
+'show-big-image-other'   => '{{PLURAL:$2|Datrysiad arall|Datrysiad arall|Datrysiadau eraill|Datrysiadau eraill|Datrysiadau eraill|Datrysiadau eraill}}: $1.',
 'show-big-image-size'    => '$1 × $2 picsel',
 'file-info-gif-looped'   => 'dolennog',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|ffrâm}}',
@@ -3536,6 +3533,12 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'sqlite-no-fts'  => '$1 heb gymorth chwiliad yr holl destun',
 
 # New logging system
+'revdelete-content-hid'               => 'cuddiwyd y cynnwys',
+'revdelete-summary-hid'               => 'cuddiwyd y crynodeb golygu',
+'revdelete-uname-hid'                 => 'cuddiwyd yr enw defnyddiwr',
+'revdelete-content-unhid'             => 'datguddiwyd y cynnwys',
+'revdelete-summary-unhid'             => 'datguddiwyd y crynodeb golygu',
+'revdelete-uname-unhid'               => 'datguddiwyd yr enw defnyddiwr',
 'revdelete-restricted'                => 'cyfyngwyd ar allu gweinyddwyr i weld',
 'revdelete-unrestricted'              => 'tynnwyd y cyfyngiadau ar allu gweinyddwyr i weld',
 'logentry-move-move'                  => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1',

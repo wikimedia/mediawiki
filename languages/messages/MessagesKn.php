@@ -1742,9 +1742,6 @@ $2',
 'siteusers'     => '{{SITENAME}} {{PLURAL:$2|ಸದಸ್ಯ|ಸದಸ್ಯರು}} $1',
 'creditspage'   => 'ಪುಟದ ಗೌರವಗಳು',
 
-# Patrol log
-'patrol-log-diff' => 'ಆವೃತ್ತಿ $1',
-
 # Image deletion
 'deletedrevision'       => 'ಹಳೆ ಆವೃತ್ತಿ $1 ಅನ್ನು ಅಳಿಸಲಾಗಿದೆ',
 'filedeleteerror-short' => 'ಈ ಫೈಲನ್ನು ಅಳಿಸುವುದರಲ್ಲಿ ದೋಷ: $1',

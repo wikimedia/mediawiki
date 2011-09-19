@@ -1364,10 +1364,6 @@ Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki
 # Patrolling
 'markedaspatrollederrortext' => 'Du muasst a Seitenänderrung auswön',
 
-# Patrol log
-'patrol-log-line' => 'markirde $1 voh „$2“ ois kontroilird $3',
-'patrol-log-diff' => 'Versión $1',
-
 # Image deletion
 'deletedrevision'    => 'Oide Version $1 glöscht.',
 'filedelete-missing' => 'De Datei „$1“ ko net glöscht wern, weils es net gibt.',

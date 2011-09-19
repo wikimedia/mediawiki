@@ -2821,9 +2821,6 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 # Patrol log
 'patrol-log-page'      => 'Patikrinimo istorija',
 'patrol-log-header'    => 'Tai patvirtintų versijų sąrašas.',
-'patrol-log-line'      => 'Puslapio „$2“ $1 pažymėta kaip patikrinta $3',
-'patrol-log-auto'      => '(automatiškai)',
-'patrol-log-diff'      => 'versija $1',
 'log-show-hide-patrol' => '$1 patvirtinimų sąrašą',
 
 # Image deletion

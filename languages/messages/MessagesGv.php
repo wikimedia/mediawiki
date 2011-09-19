@@ -1246,10 +1246,6 @@ T'eh lhiggey da oyr y chur 'sy ghiare-choontey.",
 'others'    => 'sleih elley',
 'siteusers' => '{{PLURAL:$2|Ymmydeyr|Ymmydeyryn}} ec {{SITENAME}} $1',
 
-# Patrol log
-'patrol-log-auto' => '(seyr-obbragh)',
-'patrol-log-diff' => 'caghlaa $1',
-
 # Browsing diffs
 'previousdiff' => '← Y caghlaa ny shinney',
 'nextdiff'     => 'Y caghlaa ny snoa →',

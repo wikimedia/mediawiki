@@ -1170,10 +1170,6 @@ Ka kgopelo, kgetha leina le lengwe.',
 'others'           => 'tše dingwe',
 'siteusers'        => '{{SITENAME}} mošumiši/bašumiši $1',
 
-# Patrol log
-'patrol-log-line' => 'maraka $1 ya $2 "patrolwa" ke $3',
-'patrol-log-diff' => 'Pušeletšo $1',
-
 # Image deletion
 'filedeleteerror-short' => 'Phošo go phumuleng faele: $1',
 'filedeleteerror-long'  => 'Diphošo di hlagile ge go phumulwa faele:

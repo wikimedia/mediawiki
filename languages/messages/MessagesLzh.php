@@ -2387,8 +2387,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => '誌哨',
 'patrol-log-header'    => '此乃誌哨也。',
-'patrol-log-line'      => '令哨$2之$1$3',
-'patrol-log-auto'      => '（自行）',
 'log-show-hide-patrol' => '$1誌巡',
 
 # Image deletion

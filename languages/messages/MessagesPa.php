@@ -1022,9 +1022,6 @@ to upload files.',
 'skinname-chick'    => 'ਚੀਚਕ',
 'skinname-simple'   => 'ਸੈਂਪਲ',
 
-# Patrol log
-'patrol-log-auto' => '(ਆਟੋਮੈਟਿਕ)',
-
 # Browsing diffs
 'previousdiff' => '← ਪੁਰਾਣੀ ਸੋਧ',
 'nextdiff'     => 'ਅੰਤਰ ਅੱਗੇ →',

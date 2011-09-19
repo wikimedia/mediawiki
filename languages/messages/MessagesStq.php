@@ -2558,9 +2558,6 @@ Do ap dän lokoale Reekener spiekerje un deerätter hier hoochleede.',
 # Patrol log
 'patrol-log-page'      => 'Kontrol-Logbouk',
 'patrol-log-header'    => 'Dit is dät Kontroll-Logbouk.',
-'patrol-log-line'      => 'häd $1 fon $2 as kontrollierd markierd $3',
-'patrol-log-auto'      => '(automatisk)',
-'patrol-log-diff'      => 'Version $1',
 'log-show-hide-patrol' => 'Kontroll-Logbouk $1',
 
 # Image deletion

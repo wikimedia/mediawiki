@@ -3107,9 +3107,6 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 # Patrol log
 'patrol-log-page'      => 'Logboch vun de nohjeloorte Änderunge',
 'patrol-log-header'    => '<!-- -->',
-'patrol-log-line'      => 'hät $1 von „$2“ $3 nohjeloort.',
-'patrol-log-auto'      => '(automatisch)',
-'patrol-log-diff'      => 'de Version $1',
 'log-show-hide-patrol' => '$1 et Logbuch vum Sigge nohlooere',
 
 # Image deletion

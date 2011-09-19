@@ -2453,9 +2453,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'آمار نظارت',
 'patrol-log-header'    => 'شی آماری چه بازبینی آن گشتی انت.',
-'patrol-log-line'      => 'نشان هلگ بیتن $1 چه $2 نظارت $3',
-'patrol-log-auto'      => '(اتوماتیک)',
-'patrol-log-diff'      => 'ر$1',
 'log-show-hide-patrol' => '$1  آمار گشت',
 
 # Image deletion

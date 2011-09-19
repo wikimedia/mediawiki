@@ -2390,9 +2390,6 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 # Patrol log
 'patrol-log-page'      => 'Pārbaudes reģistrs',
 'patrol-log-header'    => 'Šis ir pārbaudīto versiju reģistrs.',
-'patrol-log-line'      => '"$2" lapas $1 atzīmēta kā pārbaudīta $3',
-'patrol-log-auto'      => '(automātiski)',
-'patrol-log-diff'      => 'versija $1',
 'log-show-hide-patrol' => '$1 pārbaudes reģistrs',
 
 # Image deletion

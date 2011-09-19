@@ -1794,9 +1794,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'siteusers'        => '{{SITENAME}} {{PLURAL:$2|paydalanıwshı|paydalanıwshıları}} $1',
 'creditspage'      => 'Bet avtorları',
 
-# Patrol log
-'patrol-log-auto' => '(avtomatlasqan)',
-
 # Image deletion
 'deletedrevision'       => "$1 eski nusqasın o'shirdi",
 'filedeleteerror-short' => "Fayl o'shiriw qateligi: $1",

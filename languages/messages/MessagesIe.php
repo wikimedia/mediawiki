@@ -1212,10 +1212,6 @@ Pleser fuse les manualmen.'''",
 # Scripts
 'vector.js' => '/* Alquel JavaScript ci va esser cargat por usatores que usa li pelle Vector */',
 
-# Patrol log
-'patrol-log-line' => 'marcat $1 de $2 protectet $3',
-'patrol-log-diff' => 'revision $1',
-
 # Browsing diffs
 'previousdiff' => '← Redaction anteriori',
 'nextdiff'     => 'Proxim redaction →',

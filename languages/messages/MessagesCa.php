@@ -2770,9 +2770,6 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 # Patrol log
 'patrol-log-page'      => 'Registre de supervisió',
 'patrol-log-header'    => 'Això és un registre de les revisions patrullades.',
-'patrol-log-line'      => 'ha marcat $3 la $1 de «$2» com a supervisada',
-'patrol-log-auto'      => '(automàticament)',
-'patrol-log-diff'      => 'revisió $1',
 'log-show-hide-patrol' => '$1 el registre de patrulla',
 
 # Image deletion

@@ -2894,9 +2894,6 @@ Ovo je vjerovatno izazvano vezom ka vanjskoj nepoželjnoj stranici.',
 # Patrol log
 'patrol-log-page'      => 'Evidencija patroliranja',
 'patrol-log-header'    => 'Ovdje se nalazi evidencija patroliranih revizija.',
-'patrol-log-line'      => 'označeno $1 od $2 patrolirano $3',
-'patrol-log-auto'      => '(automatsko)',
-'patrol-log-diff'      => 'revizija $1',
 'log-show-hide-patrol' => '$1 zapis patroliranja',
 
 # Image deletion

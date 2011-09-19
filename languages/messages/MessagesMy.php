@@ -1671,10 +1671,6 @@ Your e-mail address is not revealed when other users contact you.
 # Attribution
 'others' => 'အခြား',
 
-# Patrol log
-'patrol-log-line' => '$3 စောင့်ကြည့်နေသော $2 ၏ $1 ကို မှတ်သားလိုက်သည်',
-'patrol-log-diff' => 'မူ $1',
-
 # Image deletion
 'filedeleteerror-short' => 'ဖိုင်ဖျက်ရာတွင် အမှားအယွင်း - $1',
 

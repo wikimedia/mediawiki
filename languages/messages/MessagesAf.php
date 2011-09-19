@@ -2873,9 +2873,6 @@ Hierdie situasie was waarskynlik deur 'n skakel na 'n eksterne webtuiste op ons 
 # Patrol log
 'patrol-log-page'      => 'Kontroleringslogboek',
 'patrol-log-header'    => 'Die logboek wys weergawes wat as gekontroleer gemerk is.',
-'patrol-log-line'      => 'merk $1 van $2 as gekontroleer $3',
-'patrol-log-auto'      => '(outomaties)',
-'patrol-log-diff'      => 'weergawe $1',
 'log-show-hide-patrol' => 'Nasienlogboek $1',
 
 # Image deletion

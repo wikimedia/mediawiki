@@ -2922,9 +2922,6 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 # Patrol log
 'patrol-log-page'      => '검토 기록',
 'patrol-log-header'    => '이 기록은 검토된 문서에 대한 기록입니다.',
-'patrol-log-line'      => '$2 문서의 $1을 검토함 $3',
-'patrol-log-auto'      => '(자동)',
-'patrol-log-diff'      => '제$1번 판',
 'log-show-hide-patrol' => '검토 기록을 $1',
 
 # Image deletion

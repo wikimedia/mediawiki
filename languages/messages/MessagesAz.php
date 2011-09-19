@@ -2333,9 +2333,6 @@ Zəhmət olmasa başqa ad seçin.',
 # Patrol log
 'patrol-log-page'      => 'Patrul gündəliyi',
 'patrol-log-header'    => 'Bu yoxlanmış dəyişikliklərin gündəliyidir.',
-'patrol-log-line'      => '$3 yoxlanılaraq $2 $1 versiyası işarələndi',
-'patrol-log-auto'      => '(avtomatik)',
-'patrol-log-diff'      => 'təftiş $1',
 'log-show-hide-patrol' => '$1 patrul gündəliyi',
 
 # Image deletion

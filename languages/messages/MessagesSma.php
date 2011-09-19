@@ -756,9 +756,6 @@ Gïemhpes veeljeme jeatjebh nomme.',
 'siteuser'  => '{{SITENAME}} nuhtjien $1',
 'siteusers' => '{{SITENAME}} nuhtjien(h) $1',
 
-# Patrol log
-'patrol-log-auto' => '(jïjtsistie)',
-
 # Browsing diffs
 'previousdiff' => '← Övtebe joekehts',
 'nextdiff'     => 'Minngebe joekehts →',

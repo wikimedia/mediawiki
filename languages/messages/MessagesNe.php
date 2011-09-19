@@ -2557,9 +2557,6 @@ $1को बन्देजको कारण : "$2" हो',
 # Patrol log
 'patrol-log-page'      => 'निगरानीको लग',
 'patrol-log-header'    => 'गस्ती गरिएका संस्करणहरुको लग यस प्रकार रहेका छन् ।',
-'patrol-log-line'      => ' $2को $1 लाई गस्ती $3 भनी चिनो लगाइयो \\',
-'patrol-log-auto'      => '(स्वचालित)',
-'patrol-log-diff'      => 'पुनरावलोकन $1',
 'log-show-hide-patrol' => '$1 निगरानी लग',
 
 # Image deletion

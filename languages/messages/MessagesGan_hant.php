@@ -1779,8 +1779,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Patrol log
 'patrol-log-page' => '巡查記錄',
-'patrol-log-line' => '標正嘞$1/$2版係檢查過嗰$3',
-'patrol-log-auto' => '（自動）',
 
 # Image deletion
 'deletedrevision'                 => '刪卟嘞舊版本$1。',

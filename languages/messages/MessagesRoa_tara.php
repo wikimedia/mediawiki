@@ -2734,9 +2734,6 @@ Stu fatte ha state causate da 'nu collegamende a 'nu site esterne ca appartene a
 # Patrol log
 'patrol-log-page'      => 'Archivije de le condrolle',
 'patrol-log-header'    => "Quiste è l'archivije de le revisiune condrollate.",
-'patrol-log-line'      => 'signate $1 de $2 condrollate $3',
-'patrol-log-auto'      => '(automatiche)',
-'patrol-log-diff'      => 'revisione $1',
 'log-show-hide-patrol' => '$1 archivije de le condrolle',
 
 # Image deletion

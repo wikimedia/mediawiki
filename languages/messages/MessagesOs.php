@@ -1062,11 +1062,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'skinname-myskin'      => 'Мæхи',
 'skinname-chick'       => 'Карк',
 
-# Patrol log
-'patrol-log-line' => 'банысан кодта $1 $2 фарсæй патрулгондæй $3',
-'patrol-log-auto' => '(автоматон)',
-'patrol-log-diff' => 'ивд $1',
-
 # Browsing diffs
 'previousdiff' => '← Зæронддæр ивд',
 'nextdiff'     => 'Фæстæдæр ивд →',

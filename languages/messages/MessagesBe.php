@@ -2492,9 +2492,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'Журнал ухваленых',
 'patrol-log-header'    => 'Журнал ухваленых версій',
-'patrol-log-line'      => 'пазначаны $1 з ліку $2 ухваленых $3',
-'patrol-log-auto'      => '(аўтаматычна)',
-'patrol-log-diff'      => 'версія $1',
 'log-show-hide-patrol' => '$1 журнал ухваленняў',
 
 # Image deletion

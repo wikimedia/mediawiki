@@ -676,10 +676,6 @@ Shuk shutita akllapay.',
 'tooltip-undo'                    => '"Kutichina" nikpika, kay hapishka killkayta kutichipanki, shinalla killkana pankapa "ñawpak rikuchiy" rikupanki : chaymanta, imashpa kay killkayta kutichipankichu rimanata ushapanki',
 'tooltip-summary'                 => 'Uchilla willayta killkana',
 
-# Patrol log
-'patrol-log-line' => '$1 $2 pankamanta alli kachirka $3',
-'patrol-log-diff' => '$1 mushuk killkata',
-
 # Browsing diffs
 'previousdiff' => 'Yallik ñawpakmi killkay',
 'nextdiff'     => 'Yalli mushukmi killkay',

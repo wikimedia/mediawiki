@@ -2205,9 +2205,6 @@ Sta ast drūwiminai dīlintan pra autengīnsenin prēi izwinandan pāusan iz kī
 # Patrol log
 'patrol-log-page'      => 'Izbandāsnas registerin',
 'patrol-log-header'    => 'Sta ast izbandātan wersiōnin regīsterin.',
-'patrol-log-line'      => 'ast pazentliwuns(si) $1 wersiōnin stesse $2 pāusan kāigi "izbandātan" $3',
-'patrol-log-auto'      => '(autōmatiskai)',
-'patrol-log-diff'      => 'wersiōni $1',
 'log-show-hide-patrol' => '$1 izbandāsnas registerin',
 
 # Image deletion

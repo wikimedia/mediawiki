@@ -979,9 +979,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'siteuser'  => '{{SITENAME}} sebelu $1',
 'siteusers' => '{{SITENAME}} sebelu $1',
 
-# Patrol log
-'patrol-log-auto' => '(auto)',
-
 # Image deletion
 'filedeleteerror-short' => 'Bufosi di afi kulobala di media/imegi: $1',
 'filedeleteerror-long'  => 'Bufosi sa, abi sa afi kulobala di media/imegi:

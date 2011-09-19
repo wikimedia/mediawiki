@@ -2321,9 +2321,6 @@ Pad luveratiko ninädon yümi lü bevüresodatopäd plödik in blägalised.',
 # Patrol log
 'patrol-log-page'      => 'Jenotalised zepamas',
 'patrol-log-header'    => 'Is lisedons revids pezepöl.',
-'patrol-log-line'      => 'Fomam: $1 pada: $2 pezepon $3',
-'patrol-log-auto'      => '(itjäfidik)',
-'patrol-log-diff'      => 'fomami: $1',
 'log-show-hide-patrol' => 'Jenotalised Zepamas: $1',
 
 # Image deletion

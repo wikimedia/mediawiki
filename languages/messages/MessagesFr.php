@@ -3032,9 +3032,6 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 # Patrol log
 'patrol-log-page'      => 'Journal des relectures',
 'patrol-log-header'    => 'Voici l’historique des versions relues.',
-'patrol-log-line'      => 'a marqué la $1 de $2 comme relue $3',
-'patrol-log-auto'      => '(automatique)',
-'patrol-log-diff'      => 'version $1',
 'log-show-hide-patrol' => '$1 l’historique des relectures',
 
 # Image deletion

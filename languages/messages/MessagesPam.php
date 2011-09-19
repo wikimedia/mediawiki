@@ -1936,7 +1936,6 @@ Mapaliaring ing sangkan metung yang suglung king karinan king kilual (link to an
 
 # Patrol log
 'patrol-log-page' => 'Tala ning pamagbante (patrol long)',
-'patrol-log-line' => 'mitatakan $1 kareng $2 babanten $3',
 
 # Image deletion
 'deletedrevision'                 => 'Meburang matuang pamagbayu $1',

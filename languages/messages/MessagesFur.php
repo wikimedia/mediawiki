@@ -1498,11 +1498,6 @@ Par plasê va su [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 'skinname-nostalgia' => 'Nostalgjie',
 'skinname-modern'    => 'Moderne',
 
-# Patrol log
-'patrol-log-line' => 'al à segnât $1 di $2 come verificade $3',
-'patrol-log-auto' => '(in automatic)',
-'patrol-log-diff' => 'revision $1',
-
 # Browsing diffs
 'previousdiff' => '← Difarence precedente',
 'nextdiff'     => 'Prossime difarence →',

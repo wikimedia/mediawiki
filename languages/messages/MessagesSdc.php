@@ -1798,8 +1798,6 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 
 # Patrol log
 'patrol-log-page' => 'Mudìfigghi verifiggaddi',
-'patrol-log-line' => 'à signaraddu la $1 a la pàgina $2 cumenti verifiggadda $3',
-'patrol-log-auto' => '(verìfica automàtigga)',
 
 # Image deletion
 'deletedrevision'                 => 'Prizzidenti ribisioni canzilladda: $1',

@@ -1725,7 +1725,7 @@ Når der filtreres efter bruger, vil kun filer, hvor den pågældende bruger lag
 'filehist-filesize'         => 'Filstørrelse',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Fil mangler',
-'imagelinks'                => 'Filhenvisninger',
+'imagelinks'                => 'Filanvendelse',
 'linkstoimage'              => '{{Plural:$1|Den følgende side|De følgende $1 sider}} henviser til denne fil:',
 'linkstoimage-more'         => 'Flere end $1 {{PLURAL:$1|side|sider}} henviser til denne fil.
 Den følgende liste viser kun {{PLURAL:$1|den første henvisning|de $1 første henvisninger}}.
@@ -2795,9 +2795,6 @@ Dette skyldes sandsynligvis en henvisning til et sortlistet eksternt websted.',
 # Patrol log
 'patrol-log-page'      => 'Kontrollog',
 'patrol-log-header'    => 'Patruljerede versioner.',
-'patrol-log-line'      => 'har markeret $1 af $2 som kontrolleret $3.',
-'patrol-log-auto'      => '(automatisk)',
-'patrol-log-diff'      => 'Version $1',
 'log-show-hide-patrol' => '$1 patruljeringslog',
 
 # Image deletion
@@ -3608,5 +3605,7 @@ Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 uden at efterlade en omdirigering',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 hen over en omdirigering',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 hen over en omdirigering og uden at efterlade en omdirigering',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerede}} version $4 af siden $3 som patruljeret',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerede}} automatisk version $4 af siden $3 som patruljeret',
 
 );

@@ -2687,9 +2687,6 @@ Ngini pinanya dikaranakan ulih sabuah tautan ka sabuah situs daptar-hirang luar.
 # Patrol log
 'patrol-log-page'      => 'Log pa-awasan',
 'patrol-log-header'    => 'Ngini adalah sabuah log matan raralatan nang ta-awasi.',
-'patrol-log-line'      => 'ciri-i $1 matan $2 ta-awasi $3',
-'patrol-log-auto'      => '(utumatis)',
-'patrol-log-diff'      => 'Ralatan $1',
 'log-show-hide-patrol' => '$1 log pa-awasan',
 
 # Image deletion

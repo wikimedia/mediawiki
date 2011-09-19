@@ -2915,9 +2915,6 @@ Kull azzjonijiet ta' importazzjoni tal-transwiki jiġu reġistrati fil-[[Special
 # Patrol log
 'patrol-log-page'      => 'Modifiki verifikati',
 'patrol-log-header'    => "Dan huwa reġistru ta' reviżjonijiet verifikati.",
-'patrol-log-line'      => 'immarka r-$1 tal-paġna $2 bħala verifikata $3',
-'patrol-log-auto'      => '(verifika awtomatika)',
-'patrol-log-diff'      => 'reviżjoni $1',
 'log-show-hide-patrol' => '$1 r-reġistru tal-modifiki verifikati',
 
 # Image deletion

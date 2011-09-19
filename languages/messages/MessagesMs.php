@@ -1720,7 +1720,7 @@ Apabila ditapis oleh pengguna, hanya fail-fail yang dimuat naik versi terkininya
 'filehist-filesize'         => 'Saiz fail',
 'filehist-comment'          => 'Komen',
 'filehist-missing'          => 'Fail tidak dapat dijumpai',
-'imagelinks'                => 'Pautan fail',
+'imagelinks'                => 'Penggunaan fail',
 'linkstoimage'              => '{{PLURAL:$1|Laman|$1 buah laman}} berikut mengandungi pautan ke fail ini:',
 'linkstoimage-more'         => 'Lebih daripada $1 laman mengandungi pautan ke fail ini.
 Yang berikut ialah {{PLURAL:$1||$1}} pautan pertama ke fail ini.
@@ -2802,9 +2802,6 @@ Simpan dalam komputer anda dan muat naiknya di sini.',
 # Patrol log
 'patrol-log-page'      => 'Log pemeriksaan',
 'patrol-log-header'    => 'Yang berikut ialah log rondaan bagi semakan.',
-'patrol-log-line'      => 'menandakan $1 bagi $2 sebagai telah diperiksa $3',
-'patrol-log-auto'      => '(automatik)',
-'patrol-log-diff'      => 's$1',
 'log-show-hide-patrol' => '$1 log rondaan',
 
 # Image deletion

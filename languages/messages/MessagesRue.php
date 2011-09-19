@@ -2637,9 +2637,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'Книга перевіреных едітовань',
 'patrol-log-header'    => 'Тото є книга перевіреных верзій.',
-'patrol-log-line'      => 'перевірив $1 сторінкы $2 $3',
-'patrol-log-auto'      => '(автоматічно)',
-'patrol-log-diff'      => 'ревізію $1',
 'log-show-hide-patrol' => '$1 книгу записів патролованя',
 
 # Image deletion

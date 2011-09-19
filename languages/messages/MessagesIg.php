@@ -1446,9 +1446,6 @@ Biko meríáríá ozor.',
 # Spam protection
 'spamprotectiontitle' => 'Ihe na zata maka cẹdolu ụrú',
 
-# Patrol log
-'patrol-log-diff' => 'orübà nke $1',
-
 # Image deletion
 'filedeleteerror-short' => 'Nsògbú í kàcha usòrò: $1',
 

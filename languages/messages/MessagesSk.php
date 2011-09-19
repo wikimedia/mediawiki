@@ -2969,9 +2969,6 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 # Patrol log
 'patrol-log-page'      => 'Záznam strážení',
 'patrol-log-header'    => 'Toto je záznam strážených revízií.',
-'patrol-log-line'      => '$1 z $2 označených ako sledované $3',
-'patrol-log-auto'      => '(automaticky)',
-'patrol-log-diff'      => 'revízia $1',
 'log-show-hide-patrol' => 'záznam stráženia $1',
 
 # Image deletion

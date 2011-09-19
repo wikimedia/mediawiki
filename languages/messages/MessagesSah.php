@@ -2703,9 +2703,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'Бэрэбиэркэ сурунаала',
 'patrol-log-header'    => 'Ботуруулламмыт торумнар сурунааллара.',
-'patrol-log-line'      => '$2-тэн $1 бэлиэтэммит, патрулламмыт $3',
-'patrol-log-auto'      => '(аптамаатынан)',
-'patrol-log-diff'      => '$1 барыл',
 'log-show-hide-patrol' => '$1 ботурууллааһын сурунаала',
 
 # Image deletion

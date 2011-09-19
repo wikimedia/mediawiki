@@ -2254,8 +2254,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'Патрулень лувомась',
 'patrol-log-header'    => 'Патруль ала верзиетнень лувомась.',
-'patrol-log-line'      => 'тяштьфольхть $2-ста $1 патрулень варжафксокс $3',
-'patrol-log-auto'      => '(эсь тиеви)',
 'log-show-hide-patrol' => '$1 патрулень лувомась',
 
 # Image deletion

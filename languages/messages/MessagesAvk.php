@@ -1875,8 +1875,6 @@ MediaWiki spam cleanup',
 
 # Patrol log
 'patrol-log-page' => '"Log" triosusiki va fiereem',
-'patrol-log-line' => 'tcalara va $1 ke $2 : $3 fieyen',
-'patrol-log-auto' => '(mivaskon)',
 
 # Image deletion
 'deletedrevision'                 => '$1 sulayan guazaf betaks',

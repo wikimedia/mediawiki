@@ -1120,10 +1120,6 @@ Bidde cēos ōðerne naman.',
 'others'    => 'ōðru',
 'anonusers' => '{{SITENAME}} {{PLURAL:$2|uncūþ brūcend|uncūðe brūcendas}} $1',
 
-# Patrol log
-'patrol-log-auto' => '(selffremmende)',
-'patrol-log-diff' => 'nīƿung $1',
-
 # Browsing diffs
 'previousdiff' => '← Ieldra ādiht',
 'nextdiff'     => 'Nīƿra ādiht',

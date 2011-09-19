@@ -1964,9 +1964,6 @@ Pol favol, gasta el botón "previsoreal" enantis d\'emburacal.',
 # Patrol log
 'patrol-log-page'   => 'Rustrihu e revisionis',
 'patrol-log-header' => 'Esti es un rustriju e revissionis patrullás.',
-'patrol-log-line'   => '$1 está aseñalau $2 patrullau $3',
-'patrol-log-auto'   => '(autumáticu)',
-'patrol-log-diff'   => 'revisión $1',
 
 # Image deletion
 'deletedrevision'                 => 'Esborrá la revisión antigua $1',

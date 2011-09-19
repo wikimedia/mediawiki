@@ -1982,8 +1982,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 
 # Patrol log
 'patrol-log-page'      => 'Acta emendationum circumitarum',
-'patrol-log-auto'      => '(automatica)',
-'patrol-log-diff'      => 'emendatio $1',
 'log-show-hide-patrol' => '$1 acta emendationum circumitarum',
 
 # Image deletion

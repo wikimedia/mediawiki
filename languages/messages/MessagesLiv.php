@@ -702,10 +702,6 @@ Až sugīz nei, sōd līed tōdõs kädūdõks jeddõpēḑõn sōtõ agā jūr�
 'tooltip-undo'                    => '"Viedāgid jarā" tīeb tijāks/kīeldõbjarā sīe mõitõks ja ovātõb redigīerimiz läb tekstõ jedmõl-vaņtlimizõks. Neiīž tēg võigid sǟl kēratõ, mis vȯļ sīe jarā vīmiz sī.',
 'tooltip-summary'                 => 'Kēratigid lītõ kubbõ-võtāmi',
 
-# Patrol log
-'patrol-log-line' => 'paņ merk ku $1 līeds $2 kontroļļtõd $3',
-'patrol-log-diff' => 'versij $1',
-
 # Browsing diffs
 'previousdiff' => '← Jedmõli redaktsij',
 'nextdiff'     => 'Jo ūd redigīerimizt',

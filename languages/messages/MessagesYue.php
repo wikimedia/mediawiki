@@ -2740,9 +2740,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => '巡查日誌',
 'patrol-log-header'    => '呢個係已經巡查過嘅日誌。',
-'patrol-log-line'      => '已經標示咗$1/$2版做已經巡查嘅$3',
-'patrol-log-auto'      => '(自動)',
-'patrol-log-diff'      => '修訂 $1',
 'log-show-hide-patrol' => '$1巡查紀錄',
 
 # Image deletion

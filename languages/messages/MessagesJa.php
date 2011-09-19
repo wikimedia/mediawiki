@@ -3088,9 +3088,6 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 # Patrol log
 'patrol-log-page'      => '巡回記録',
 'patrol-log-header'    => '以下は巡回された版の記録です。',
-'patrol-log-line'      => '$2の$1を巡回$3',
-'patrol-log-auto'      => '（自動）',
-'patrol-log-diff'      => '$1版',
 'log-show-hide-patrol' => '巡回記録を$1',
 
 # Image deletion

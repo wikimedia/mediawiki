@@ -2519,9 +2519,6 @@ All Transwiki-Import-Akschonen staht later ok in dat [[Special:Log/import|Import
 # Patrol log
 'patrol-log-page'      => 'Nakiek-Logbook',
 'patrol-log-header'    => 'Dit is dat Patrolleer-Logbook.',
-'patrol-log-line'      => '$1 vun $2 as nakeken markt $3',
-'patrol-log-auto'      => '(automaatsch)',
-'patrol-log-diff'      => 'Version $1',
 'log-show-hide-patrol' => 'Nakiek-Logbook $1',
 
 # Image deletion

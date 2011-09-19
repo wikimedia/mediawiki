@@ -2154,9 +2154,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'Κατάλογος περιπόλων',
 'patrol-log-header'    => 'Ὅδε ἐστὶ κατάλογος περιπολουμένων ἀναθεωρήσεων.',
-'patrol-log-line'      => 'σήμανσις τῆς ἐκδόσεως $1 τοῦ $2 ὡς περιπολουμένη $3',
-'patrol-log-auto'      => '(αὐτόματον)',
-'patrol-log-diff'      => 'ἀναθεώρησις $1',
 'log-show-hide-patrol' => '$1 κατάλογος περιπόλου',
 
 # Image deletion

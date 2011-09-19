@@ -1429,8 +1429,6 @@ Pangngaasim ta i-manualmo lattan a pagtiponem ida.'''",
 
 # Patrol log
 'patrol-log-page' => 'Log ti patrulia',
-'patrol-log-line' => 'ti namarkaan a $1 ti $2 pinatruliaanna ti $3',
-'patrol-log-auto' => '(automatiko)',
 
 # Browsing diffs
 'previousdiff' => '← Napalabas a diff',

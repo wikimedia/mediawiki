@@ -312,7 +312,7 @@ $messages = array(
 'tog-newpageshidepatrolled'   => 'Cachiér les pâges survelyês de la lista de les pâges novèles',
 'tog-extendwatchlist'         => 'Ètendre la lista de survelyence por fâre vêre tôs los changements et pas ren que los ples novéls',
 'tog-usenewrc'                => 'Utilisar los dèrriérs changements mèlyorâs (at fôta de JavaScript)',
-'tog-numberheadings'          => 'Numerotar ôtomaticament los titros de sèccion',
+'tog-numberheadings'          => 'Numerotar ôtomaticament los titros de sèccions',
 'tog-showtoolbar'             => 'Montrar la bârra d’outils d’èdicion (at fôta de JavaScript)',
 'tog-editondblclick'          => 'Doblo-clicar pèrmèt de changiér una pâge (at fôta de JavaScript)',
 'tog-editsection'             => 'Activar los lims « [changiér] » por changiér una sèccion',
@@ -663,7 +663,7 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'cannotdelete'         => 'Empossiblo de suprimar la pâge ou ben lo fichiér « $1 ».
 La suprèssion at pôt-étre ja étâ fêta per quârqu’un d’ôtro.',
 'badtitle'             => 'Crouyo titro',
-'badtitletext'         => 'Lo titro de la pâge demandâ est fôx, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
+'badtitletext'         => 'Lo titro de pâge demandâ est fôx, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
 Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
 'perfcached'           => 'Cetes balyês sont en cache et pôvont pas étre a jorn.',
 'perfcachedts'         => 'Cetes balyês sont en cache, sont vêr pas forciêment a jorn. La dèrriére actualisacion dâte du $1.',
@@ -1287,7 +1287,7 @@ Notâd bien que l’usâjo des lims de navigacion tornerat inicialisar cela colo
 'searchsubtitle'                   => "Vos éd rechèrchiê « '''[[:$1]]''' » ([[Special:Prefixindex/$1|totes les pâges que començont per « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totes les pâges qu’ont un lim de vers « $1 »]])",
 'searchsubtitleinvalid'            => "Vos éd rechèrchiê « '''$1''' »",
 'toomanymatches'                   => 'Un trop grant nombro d’ocasions at étâ retornâ, volyéd sometre una requéta difèrenta.',
-'titlematches'                     => 'Corrèspondances dens los titros de les pâges',
+'titlematches'                     => 'Corrèspondances dens los titros de pâges',
 'notitlematches'                   => 'Nion titro de pâge corrèspond a la rechèrche.',
 'textmatches'                      => 'Corrèspondances dens lo tèxto de les pâges',
 'notextmatches'                    => 'Nion tèxto de pâge corrèspond a la rechèrche.',
@@ -1922,7 +1922,7 @@ Quand el est filtrâ per utilisator, solament los fichiérs que la vèrsion la p
 'filehist-filesize'         => 'Talye du fichiér',
 'filehist-comment'          => 'Comentèro',
 'filehist-missing'          => 'Fichiér manquent',
-'imagelinks'                => 'Lims de vers lo fichiér',
+'imagelinks'                => 'Usâjo du fichiér',
 'linkstoimage'              => '{{PLURAL:$1|Ceta pâge utilise|Cetes $1 pâges utilisont}} ceti fichiér :',
 'linkstoimage-more'         => 'Més de {{PLURAL:$1|yona pâge utilise|$1 pâges utilisont}} ceti fichiér.
 Ceta lista montre ren que {{PLURAL:$1|la premiére pâge qu’utilise|les $1 premiéres pâges qu’utilisont}} ceti fichiér.
@@ -2143,7 +2143,7 @@ Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’uti
 'allpagesnext'      => 'Aprés',
 'allpagessubmit'    => 'Listar',
 'allpagesprefix'    => 'Fâre vêre les pâges que començont per lo prèfixo :',
-'allpagesbadtitle'  => 'Lo titro de la pâge balyê est fôx ou ben il at un prèfixo entèrlengoua ou entèrvouiqui resèrvâ.
+'allpagesbadtitle'  => 'Lo titro de pâge balyê est fôx ou ben il at un prèfixo entèrlengoua ou entèrvouiqui resèrvâ.
 Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
 'allpages-bad-ns'   => '{{SITENAME}} at gins d’èspâço de noms « $1 ».',
 
@@ -3073,9 +3073,6 @@ O est probâblament diu a un lim de vers un seto de defôr qu’aparêt sur la l
 # Patrol log
 'patrol-log-page'      => 'Jornal de les vèrsions survelyês',
 'patrol-log-header'    => 'Vê-que un jornal de les vèrsions survelyês.',
-'patrol-log-line'      => 'at marcâ la vèrsion $1 de $2 coment survelyê $3',
-'patrol-log-auto'      => '(ôtomatico)',
-'patrol-log-diff'      => 'v$1',
 'log-show-hide-patrol' => '$1 lo jornal de les vèrsions survelyês',
 
 # Image deletion

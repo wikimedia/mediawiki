@@ -1866,7 +1866,6 @@ Olle Transwiki-Import-Aksjonna waan eim [[Special:Log/import|Import-Logbuch]] pr
 # Patrol log
 'patrol-log-page'      => 'Kontroll-Logbichl',
 'patrol-log-header'    => 'Dies ies doas Kontroll-Logbuch.',
-'patrol-log-line'      => 'hoot $1 vu „$2“ ols kontrolliert markiert $3',
 'log-show-hide-patrol' => 'Kontroll-Logbichl $1',
 
 # Image deletion

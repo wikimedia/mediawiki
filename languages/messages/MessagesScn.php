@@ -2395,9 +2395,6 @@ Visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [ht
 # Patrol log
 'patrol-log-page'      => 'Canciamenti virificati',
 'patrol-log-header'    => 'Ccassutta sunnu elencati li virìfichi dî canci.',
-'patrol-log-line'      => 'hà signatu la $1 di $2 comu virificata $3',
-'patrol-log-auto'      => '(virìfica automàtica)',
-'patrol-log-diff'      => 'virsioni $1',
 'log-show-hide-patrol' => '$1 log di li canciamenti virificati',
 
 # Image deletion

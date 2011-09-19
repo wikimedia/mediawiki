@@ -1815,7 +1815,7 @@ Ao filtrar a lista por usuario, soamente se mostran as últimas versións dos fi
 'filehist-filesize'         => 'Tamaño do ficheiro',
 'filehist-comment'          => 'Comentario',
 'filehist-missing'          => 'Falta o ficheiro',
-'imagelinks'                => 'Ligazóns do ficheiro',
+'imagelinks'                => 'Uso do ficheiro',
 'linkstoimage'              => '{{PLURAL:$1|A seguinte páxina liga|As seguintes $1 páxinas ligan}} con esta imaxe:',
 'linkstoimage-more'         => 'Máis {{PLURAL:$1|dunha páxina liga|de $1 páxinas ligan}} con este ficheiro.
 A seguinte lista só amosa {{PLURAL:$1|a primeira páxina que liga|as primeiras $1 páxina que ligan}} con el.
@@ -2940,9 +2940,6 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 # Patrol log
 'patrol-log-page'      => 'Rexistro de revisións',
 'patrol-log-header'    => 'Este é un rexistro das revisións patrulladas.',
-'patrol-log-line'      => 'marcou a $1 de "$2" como revisada $3',
-'patrol-log-auto'      => '(automático)',
-'patrol-log-diff'      => 'revisión $1',
 'log-show-hide-patrol' => '$1 o rexistro de patrullas',
 
 # Image deletion

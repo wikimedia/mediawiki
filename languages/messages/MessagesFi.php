@@ -2865,9 +2865,6 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 # Patrol log
 'patrol-log-page'      => 'Muutostentarkastusloki',
 'patrol-log-header'    => 'Tämä on loki tarkastetuista muutoksista.',
-'patrol-log-line'      => 'merkitsi sivun $2 muutoksen $1 tarkastetuksi $3',
-'patrol-log-auto'      => '(automaattinen)',
-'patrol-log-diff'      => 'versio $1',
 'log-show-hide-patrol' => '$1 muutostentarkastusloki',
 
 # Image deletion

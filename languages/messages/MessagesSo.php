@@ -1257,10 +1257,6 @@ Waxaa fiiri kartaa cadaadkiisa',
 'lastmodifiedatby' => 'Bogaan waxaa ugu dambeyntii wax laga bedelay $2, $1 kana bedelay $3.',
 'othercontribs'    => 'Waxay ku saleysantahay shaqada $1.',
 
-# Patrol log
-'patrol-log-line' => 'waxa la calaamadeeyay  $1 ee  $2 waxaa la waardiyeeyay $3',
-'patrol-log-diff' => 'bedelaadka $1',
-
 # Browsing diffs
 'previousdiff' => '← bedelkii ka duqsanaa',
 'nextdiff'     => 'Bedelkii ugu cusbaa →',

@@ -1589,7 +1589,7 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'filehist-filesize'         => 'Dimension del file',
 'filehist-comment'          => 'Comento',
 'filehist-missing'          => 'File mancante',
-'imagelinks'                => 'Colegamenti al file',
+'imagelinks'                => 'Uso del file',
 'linkstoimage'              => '{{PLURAL:$1|Sta pagina qua la gà|Ste $1 pagine le gà}} dei colegamenti al file:',
 'linkstoimage-more'         => 'Piassè de $1 {{PLURAL:$1|pagina la ponta|pagine le ponta}} a sto file.
 De seguito xe elencà solo {{PLURAL:$1|la prima pagina che ponta|le prime $1 pagine che ponta}} a sto file.
@@ -2587,9 +2587,6 @@ Questo xe probabilmente dovùo a la presenza de un colegamento a un sito foresto
 # Patrol log
 'patrol-log-page'      => 'Modifiche verificàe',
 'patrol-log-header'    => 'Qua de sèvito xe elencàe le verifiche de le modifiche.',
-'patrol-log-line'      => 'gà segnà la $1 a la pagina $2 come verificà $3',
-'patrol-log-auto'      => '(verifica automatica)',
-'patrol-log-diff'      => 'revision $1',
 'log-show-hide-patrol' => '$1 el registro dei canbiamenti verificài',
 
 # Image deletion

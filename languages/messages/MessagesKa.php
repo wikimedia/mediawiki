@@ -643,6 +643,13 @@ $1 საათში.',
 შესაძლოა თქვენ წარმატებით შეცვალეთ პაროლი ან მოითხოვეთ ახალი.',
 'resetpass-temp-password'   => 'დროებითი პაროლი:',
 
+# Special:PasswordReset
+'passwordreset-username'     => 'მომხმარებლის სახელი:',
+'passwordreset-domain'       => 'დომენი:',
+'passwordreset-email'        => 'ელ. ფოსტის მისამართი:',
+'passwordreset-emailelement' => 'მომხმარებლის სახელი: $1
+დროებითი პაროლი: $2',
+
 # Edit page toolbar
 'bold_sample'     => 'მუქი ტექსტი',
 'bold_tip'        => 'მუქი ტექსტი',
@@ -1941,6 +1948,7 @@ $1',
 'noemailtext'          => 'მომხმარებელმა არ მიუთითა მოქმედი ელ. ფოსტის მისამართი.',
 'nowikiemailtitle'     => 'წერილების გაგზავნის უფლება არ გაქვთ.',
 'nowikiemailtext'      => 'ამ მომხმარებელმა გამოხატა სხვა მომხმარებლებისგან წერილების არ მიღების სურვილი.',
+'emailusername'        => 'მომხმარებლის სახელი:',
 'email-legend'         => 'წერილის გაგზავნა სხვა მომხმარებლისადმი {{grammar:genitive|{{SITENAME}}}}',
 'emailfrom'            => 'გამომგზავნი:',
 'emailto'              => 'ადრესატი:',
@@ -1967,7 +1975,9 @@ $1',
 იხილეთ ან რედაქტირება გაუკეთეთ თქვენი კონტროლის სიაში შეტანილ ერთეულებს.',
 'watchnologin'         => 'რეგისტრაცია ვერ შესრულდა',
 'watchnologintext'     => 'თქვენ უნდა მოახდინოთ [[Special:UserLogin|რეგისტრაცია]] თქვენი კონტროლის სიის მოდიფიცირებისათვის.',
+'addwatch'             => 'კონტროლის სიაში დამატება',
 'addedwatchtext'       => "გვერდი \"[[:\$1]]\" დაემატა თქვენი [[Special:Watchlist|კონტროლის სიას]]. მომავალი ცვლილებები ამ გვერდსა და მის განხილვაზე მითითებული იქნება ამ სიაში, ხოლო ბმული ამ გვერდზე [[Special:RecentChanges|უკანასკნელი ცვლილებების სიაში]] გამოჩნდება '''სქლად''' თქვენთვის მათი შემჩნევის გასაადვილებლად.",
+'removewatch'          => 'კონტროლის სიიდან წაშლა',
 'removedwatchtext'     => 'გვერდი "[[:$1]]" ამოღებულია თქვენი [[Special:Watchlist|კონტროლის სიიდან.]]',
 'watch'                => 'კონტროლი',
 'watchthispage'        => 'ამ გვერდის კონტროლი',
@@ -2662,6 +2672,12 @@ $1',
 'spam_reverting'      => 'დაბრუნება ბოლო ვერსიასთან, რომელიც არ შეიცავს ბმულს $1-თან',
 'spam_blanking'       => 'ყველა გვერდი შეიცავს ბმულს $1-გვერდზე. გასუფთავება',
 
+# Info page
+'pageinfo-header-edits'     => 'რედაქტირებები',
+'pageinfo-header-watchlist' => 'კონტროლის სია',
+'pageinfo-subjectpage'      => 'გვერდი',
+'pageinfo-talkpage'         => 'განხილვის გვერდი',
+
 # Skin names
 'skinname-standard'  => 'კლასიკური',
 'skinname-nostalgia' => 'ნოსტალგია',
@@ -2682,9 +2698,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'პატრულირების ჟურნალი',
 'patrol-log-header'    => 'ეს არის პატრულირებულ ვერსიათა ჟურნალი.',
-'patrol-log-line'      => 'შემოწმდა $1  $2 $3-დან',
-'patrol-log-auto'      => '(ავტომატური)',
-'patrol-log-diff'      => 'ვერსია $1',
 'log-show-hide-patrol' => '$1 პატრულირების ჟურნალი',
 
 # Image deletion
@@ -2877,6 +2890,10 @@ $1',
 'exif-gpsdatestamp'                => 'GPS-ის მონაცემი',
 'exif-gpsdifferential'             => 'დიფერენციალური შესწორება',
 'exif-objectname'                  => 'მოკლე სათაური',
+'exif-source'                      => 'წყარო',
+'exif-contact'                     => 'საკონტაქტო ინფორმაცია',
+'exif-languagecode'                => 'ენა',
+'exif-iimcategory'                 => 'კატეგორია',
 
 # EXIF attributes
 'exif-compression-1' => 'შეუკუმშავი',

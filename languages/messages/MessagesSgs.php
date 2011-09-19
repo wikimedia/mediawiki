@@ -1662,9 +1662,6 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 
 # Patrol log
 'patrol-log-page'      => 'Patikrinėma istuorėjė',
-'patrol-log-line'      => 'Poslapė „$2“ $1 pažīmieta kāp patėkrinta $3',
-'patrol-log-auto'      => '(autuomatėškā)',
-'patrol-log-diff'      => 'versėjė $1',
 'log-show-hide-patrol' => '$1 patvirtėnėmu saraša',
 
 # Image deletion

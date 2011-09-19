@@ -2469,9 +2469,6 @@ Probablamien è quai capità pervia dad in link ad ina pagina externa ch'è sin 
 # Patrol log
 'patrol-log-page'      => 'Log da controlla',
 'patrol-log-header'    => 'Quai è il log da las versiuns controlladas.',
-'patrol-log-line'      => 'ha marcà $1 da $2 sco controllà $3',
-'patrol-log-auto'      => '(automaticamain)',
-'patrol-log-diff'      => 'versiun $1',
 'log-show-hide-patrol' => '$1 il log da controllas',
 
 # Image deletion

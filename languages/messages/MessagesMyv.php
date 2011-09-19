@@ -1796,8 +1796,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 # Patrol log
 'patrol-log-page'      => 'Ванстнемадо конёв',
-'patrol-log-auto'      => '(сонсь теи)',
-'patrol-log-diff'      => 'версия $1',
 'log-show-hide-patrol' => '$1 патрулонь журналонть',
 
 # Image deletion

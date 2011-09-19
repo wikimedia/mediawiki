@@ -2284,9 +2284,6 @@ Voib olda, necil lehtpolel om kosketuz irdsaitale, kudamb om mustas nimikirjutes
 # Patrol log
 'patrol-log-page'      => 'Patruliruindan aigkirj',
 'patrol-log-header'    => 'Nece om patruliruidud versijoiden aiglehtez.',
-'patrol-log-line'      => 'kodvi $1 $2-špäi $3',
-'patrol-log-auto'      => '(avtomatižikš)',
-'patrol-log-diff'      => 'versii $1',
 'log-show-hide-patrol' => '$1 patruliruindan aigkirj',
 
 # Image deletion

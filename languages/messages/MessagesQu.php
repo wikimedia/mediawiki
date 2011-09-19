@@ -2800,9 +2800,6 @@ Tukuy hawa wikimanta chaskisqakunaqa [[Special:Log/import|hawamanta chaskiy hall
 # Patrol log
 'patrol-log-page'      => "Qhawakipay hallch'a",
 'patrol-log-header'    => "Kayqa patrullasqa musuqchasqakunamanta hallch'asqam.",
-'patrol-log-line'      => '$1 sananchasqa $2-manta qhawakipasqa $3',
-'patrol-log-auto'      => '(kikinmanta)',
-'patrol-log-diff'      => 'musuqchasqa $1',
 'log-show-hide-patrol' => "$1 patrullay hallch'a",
 
 # Image deletion

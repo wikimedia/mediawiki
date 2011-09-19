@@ -2446,9 +2446,6 @@ $1',
 
 # Patrol log
 'patrol-log-page'      => 'পরীক্ষণ লগ',
-'patrol-log-line'      => '$2 গুলোর $1 কে পরীক্ষিত বলে চিহ্নিত করা হয়েছে $3',
-'patrol-log-auto'      => '(স্বয়ংক্রিয়)',
-'patrol-log-diff'      => 'সংশোধন $1',
 'log-show-hide-patrol' => '$1 পরীক্ষণ লগ',
 
 # Image deletion

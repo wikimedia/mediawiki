@@ -2747,9 +2747,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'چارلاش خاتىرىسى',
 'patrol-log-header'    => 'بۇ چارلانغان تۈزىتىلگەن نەشرى.',
-'patrol-log-line'      => '$2 نىڭ نەشرى $1 غا چارلاش بەلگىسى قويۇلغان $3',
-'patrol-log-auto'      => '(ئاپتوماتىك)',
-'patrol-log-diff'      => 'تۈزىتىش $1',
 'log-show-hide-patrol' => '$1 چارلاش خاتىرىسى',
 
 # Image deletion

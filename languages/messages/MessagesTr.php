@@ -2895,9 +2895,6 @@ Geçici dosya kayıp.',
 # Patrol log
 'patrol-log-page'      => 'Kontrol kaydı',
 'patrol-log-header'    => 'Bu gözlenmiş revizyonların günlüğüdür.',
-'patrol-log-line'      => '$3 kontrol edilmiş olarak $2 $1 sürümü işaretlendi',
-'patrol-log-auto'      => '(otomatik)',
-'patrol-log-diff'      => 'revizyon $1',
 'log-show-hide-patrol' => 'Gözetim günlüğünü $1',
 
 # Image deletion

@@ -2879,9 +2879,6 @@ Omogoča vnos pojasnila v povzetku urejanja.',
 # Patrol log
 'patrol-log-page'      => 'Dnevnik patrulje',
 'patrol-log-header'    => 'To je dnevnik nadzorovanih redakcij.',
-'patrol-log-line'      => 'je označil $1 strani $2 kot preverjeno urejanje $3',
-'patrol-log-auto'      => '(samodejno)',
-'patrol-log-diff'      => 'redakcija $1',
 'log-show-hide-patrol' => '$1 dnevnik nadzora',
 
 # Image deletion

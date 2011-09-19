@@ -2940,9 +2940,6 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 # Patrol log
 'patrol-log-page'      => 'Ellenőrzési napló',
 'patrol-log-header'    => 'Ez az ellenőrzött változatok naplója.',
-'patrol-log-line'      => 'ellenőrzöttnek jelölte a(z) $2 $1 $3',
-'patrol-log-auto'      => '(automatikus)',
-'patrol-log-diff'      => '$1 azonosítójú változatát',
 'log-show-hide-patrol' => 'járőrnapló $1',
 
 # Image deletion

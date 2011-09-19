@@ -2984,9 +2984,6 @@ The wiki server can't provide data in a format your client can read.",
 # Patrol log
 'patrol-log-page'      => 'Журнал патрулювання',
 'patrol-log-header'    => 'Це журнал перевірених змін.',
-'patrol-log-line'      => 'перевірив $1 сторінки $2 $3',
-'patrol-log-auto'      => '(автоматично)',
-'patrol-log-diff'      => 'версію $1',
 'log-show-hide-patrol' => '$1 журнал патрулювання',
 
 # Image deletion

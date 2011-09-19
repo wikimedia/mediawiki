@@ -1136,9 +1136,6 @@ Siiddus $2 lea listu maŋimus sihkomiin.',
 'markedaspatrolled'     => 'Dárkistuvvon',
 'markedaspatrolledtext' => 'Válljejuvvon veršuvdna lea dárkistuvvon.',
 
-# Patrol log
-'patrol-log-auto' => '(automáhtalaš)',
-
 # Browsing diffs
 'previousdiff' => '← Ovddit rievdadus',
 'nextdiff'     => 'Čuovvovaš rievdadus →',

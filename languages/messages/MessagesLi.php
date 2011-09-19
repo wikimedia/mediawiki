@@ -2616,9 +2616,6 @@ Meistal wörd dit door 'ne zwarte externe link veroorzaak.",
 # Patrol log
 'patrol-log-page'      => 'Markeerlogbook',
 'patrol-log-header'    => 'Dit logbook bevat versies die gemarkeerd zeen es gecontroleerd.',
-'patrol-log-line'      => 'markeerde versie $1 van $2 es gecontroleerd $3',
-'patrol-log-auto'      => '(automatisch)',
-'patrol-log-diff'      => 'versie $1',
 'log-show-hide-patrol' => 'Markeerlogbook $1',
 
 # Image deletion

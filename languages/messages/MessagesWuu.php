@@ -1472,9 +1472,6 @@ $1",
 # Attribution
 'anonymous' => '{{SITENAME}}浪个匿名用户',
 
-# Patrol log
-'patrol-log-auto' => '（自动）',
-
 # Image deletion
 'deletedrevision' => '拨删脱个旧修订 $1',
 

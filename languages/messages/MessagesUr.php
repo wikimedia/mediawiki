@@ -1336,9 +1336,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'anonymous' => '{{SITENAME}} گمنام صارف',
 'others'    => 'دیگر',
 
-# Patrol log
-'patrol-log-diff' => '$1 نظرثانی',
-
 # Image deletion
 'deletedrevision' => 'حذف شدہ پرانی ترمیم $1۔',
 

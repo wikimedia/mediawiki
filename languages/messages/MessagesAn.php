@@ -2615,9 +2615,6 @@ Puede veyer-ne, manimenos, o codigo fuent.',
 # Patrol log
 'patrol-log-page'      => 'Rechistro de control de revisions',
 'patrol-log-header'    => 'Iste ye un rechistro de revisions patrullatas.',
-'patrol-log-line'      => "s'ha sinyalato a versión $1 de $2 como revisata $3",
-'patrol-log-auto'      => '(automatico)',
-'patrol-log-diff'      => 'versión $1',
 'log-show-hide-patrol' => '$1 o rechistro de patrullache',
 
 # Image deletion

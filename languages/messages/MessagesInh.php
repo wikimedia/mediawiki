@@ -1012,10 +1012,6 @@ $messages = array(
 'tooltip-undo'                    => 'Я хувцам дIаяккхи, бIаргатассар хьахокха, кара дале, дIаяккха бахьан Iочуязаде моттигаца.',
 'tooltip-summary'                 => 'Лоаца чулоацам Iочуязаде',
 
-# Patrol log
-'patrol-log-line' => '$1 долачаьрахь $2 $3 хьажав/хьажай',
-'patrol-log-diff' => '$1 доржам',
-
 # Browsing diffs
 'previousdiff' => '← Хьалхара хувцам',
 'nextdiff'     => 'ТIайоагIа хувцам',
