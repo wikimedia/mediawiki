@@ -428,9 +428,19 @@ class Language {
 	 * @since 1.18
 	 */
 	function needsGenderDistinction() {
-		global $wgExtraGenderNamespaces;
-		$aliases = $wgExtraGenderNamespaces + self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
-		return count( $aliases ) > 0;
+		global $wgExtraGenderNamespaces, $wgExtraNamespaces;
+		if ( count( $wgExtraGenderNamespaces ) > 0 ) {
+			// $wgExtraGenderNamespaces overrides everything
+			return true;
+		} elseif( isset( $wgExtraNamespaces[NS_USER] ) && isset( $wgExtraNamespaces[NS_USER_TALK] ) ) {
+			/// @todo There may be other gender namespace than NS_USER & NS_USER_TALK in the future
+			// $wgExtraNamespaces overrides any gender aliases specified in i18n files
+			return false;
+		} else {
+			// Check what is in i18n files
+			$alises = self::$dataCache->getItem( $this->mCode, 'namespaceGenderAliases' );
+			return count( $aliases ) > 0;
+		}
 	}
 
 	/**
