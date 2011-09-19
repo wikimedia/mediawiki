@@ -169,7 +169,10 @@ Installation aborted.',
 
 If you are using shared web hosting, your hosting provider should give you the correct host name in their documentation.
 
-If you are installing on a Windows server and using MySQL, using "localhost" may not work for the server name. If it does not, try "127.0.0.1" for the local IP address.',
+If you are installing on a Windows server and using MySQL, using "localhost" may not work for the server name. If it does not, try "127.0.0.1" for the local IP address.
+
+If you are using PostgreSQL, leave this field blank to connect via a Unix socket.
+',
 	'config-db-host-oracle'           => 'Database TNS:',
 	'config-db-host-oracle-help'      => 'Enter a valid [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name]; a tnsnames.ora file must be visible to this installation.<br />If you are using client libraries 10g or newer you can also use the [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect] naming method.',
 	'config-db-wiki-settings'         => 'Identify this wiki',
