@@ -88,6 +88,8 @@ class DeleteBatch extends Maintenance {
 				$img = wfFindFile( $art->mTitle );
 				if ( !$img || !$img->delete( $reason ) ) {
 					$this->output( "FAILED to delete image file... " );
+				} else {
+					wfRunHooks('ArticleDeleteComplete', array(&$art, &$wgUser, $reason, $page_id));
 				}
 			} else {
 				$art = new Article( $page );
