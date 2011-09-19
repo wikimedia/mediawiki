@@ -888,10 +888,10 @@ class Linker {
 	 */
 	public static function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
 		$class = "external";
-		if ( isset($linktype) && $linktype ) {
+		if ( $linktype ) {
 			$class .= " $linktype";
 		}
-		if ( isset($attribs['class']) && $attribs['class'] ) {
+		if ( isset( $attribs['class'] ) && $attribs['class'] ) {
 			$class .= " {$attribs['class']}";
 		}
 		$attribs['class'] = $class;
