@@ -132,7 +132,6 @@ class RebuildRecentchanges extends Maintenance {
 			} else {
 				# Grab the entry's text size
 				$size = $dbw->selectField( 'revision', 'rev_len', array( 'rev_id' => $obj->rc_this_oldid ) );
-				$size = !is_null( $size ) ? intval( $size ) : 'NULL';
 
 				$dbw->update( 'recentchanges',
 					array(
