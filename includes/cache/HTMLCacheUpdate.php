@@ -52,7 +52,7 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 
 		if ( $this->mTable === 'globaltemplatelinks' ) {
 			global $wgEnableInterwikiTemplatesTracking;
-			
+
 			if ( $wgEnableInterwikiTemplatesTracking ) {
 				$distantPageArray = $this->mCache->getDistantTemplateLinks( 'globaltemplatelinks' );
 				$this->invalidateDistantTitles( $distantPageArray );
@@ -189,7 +189,7 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 		foreach ( $batches as $batch ) {
 			$dbw->update( 'page',
 				array( 'page_touched' => $timestamp ),
-				array( 'page_id IN (' . $dbw->makeList( $batch ) . ')' ),
+				array( 'page_id' => $batch ),
 				__METHOD__
 			);
 		}
@@ -213,7 +213,7 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	 */
 	protected function invalidateDistantTitles( $distantPageArray ) {
 		global $wgUseSquid;
-		
+
 		$pagesByWiki = array();
 		$titleArray = array();
 		# Sort by WikiID in $pagesByWiki
@@ -239,7 +239,7 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 				);
 			}
 		}
-		
+
 		# Update squid
 		if ( $wgUseSquid ) {
 			$u = SquidUpdate::newFromTitles( $titleArray );
