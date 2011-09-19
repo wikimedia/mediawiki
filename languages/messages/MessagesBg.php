@@ -2837,9 +2837,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'Дневник на патрула',
 'patrol-log-header'    => 'Тази страница съдържа дневник на проверените версии.',
-'patrol-log-line'      => 'отбеляза $1 от $2 като проверена $3',
-'patrol-log-auto'      => '(автоматично)',
-'patrol-log-diff'      => 'версия $1',
 'log-show-hide-patrol' => '$1 на Дневника на патрула',
 
 # Image deletion

@@ -1409,10 +1409,6 @@ Vu darfos adjuntar kauso en la rezumo.',
 # Spam protection
 'spamprotectiontitle' => 'Filtrilo kontre spamo',
 
-# Patrol log
-'patrol-log-auto' => '(automata)',
-'patrol-log-diff' => 'revizado $1',
-
 # Browsing diffs
 'previousdiff' => '← Plu anciena versiono',
 'nextdiff'     => 'Plu recenta versiono →',

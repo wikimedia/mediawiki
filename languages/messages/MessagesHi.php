@@ -2656,9 +2656,6 @@ $1 को बाध्य करने का कारण है: "$2"',
 # Patrol log
 'patrol-log-page'      => 'नजर रखनेकी सूची',
 'patrol-log-header'    => 'यह निगरानी में बने संस्करणों का चिट्ठा है।',
-'patrol-log-line'      => '$2 के $1 अवतरण पर नजर रखी $3',
-'patrol-log-auto'      => '(स्वत:)',
-'patrol-log-diff'      => 'संस्करण $1',
 'log-show-hide-patrol' => 'गश्ती अभिलेख $1',
 
 # Image deletion

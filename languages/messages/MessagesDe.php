@@ -3036,9 +3036,6 @@ Das liegt wahrscheinlich an einem Link auf eine externe Seite.',
 # Patrol log
 'patrol-log-page'      => 'Kontroll-Logbuch',
 'patrol-log-header'    => 'Dies ist das Kontroll-Logbuch.',
-'patrol-log-line'      => 'markierte $1 von „$2“ als kontrolliert $3',
-'patrol-log-auto'      => '(automatisch)',
-'patrol-log-diff'      => 'Version $1',
 'log-show-hide-patrol' => 'Kontroll-Logbuch $1',
 
 # Image deletion

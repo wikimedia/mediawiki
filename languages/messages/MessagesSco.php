@@ -1419,10 +1419,6 @@ You ken view its source',
 'markedaspatrolledtext' => 'The selectit reveision haes been merkit as patrolled.',
 'rcpatroldisabledtext'  => 'The Recent Changes Patrol feature is disabled the nou.',
 
-# Patrol log
-'patrol-log-line' => 'marked $1 of $2 patrolled $3',
-'patrol-log-diff' => 'revision $1',
-
 # Image deletion
 'deletedrevision' => 'Deletit auld revision $1.',
 

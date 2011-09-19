@@ -2677,9 +2677,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 # Patrol log
 'patrol-log-page'      => 'Protokol přepruwowanjow',
 'patrol-log-header'    => 'To je protokol dohladowanych wersijow.',
-'patrol-log-line'      => 'je $1 strony $2 jako přepruwowanu markěrował $3.',
-'patrol-log-auto'      => '(awtomatisce)',
-'patrol-log-diff'      => 'wersiju $1',
 'log-show-hide-patrol' => 'Protokol dohladowanja $1',
 
 # Image deletion

@@ -2556,9 +2556,6 @@ MediaWiki локализациясына юлюш къошаргъа излей 
 # Patrol log
 'patrol-log-page'      => 'Патруль этиуню журналы',
 'patrol-log-header'    => 'Бу осмакъланнган версияланы журналыды.',
-'patrol-log-line'      => '$3 сыналгъан кибик $2 $1 версия белгиленди',
-'patrol-log-auto'      => '(автомат халда)',
-'patrol-log-diff'      => 'версия $1',
 'log-show-hide-patrol' => 'Осмакълауну журналы $1',
 
 # Image deletion

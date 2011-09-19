@@ -14,6 +14,7 @@
  * @author Chenxiaoqino
  * @author Chenzw
  * @author Chinalace
+ * @author Dingyuang
  * @author Fantasticfears
  * @author Franklsf95
  * @author Gaoxuewei
@@ -279,7 +280,7 @@ $messages = array(
 'tog-enotifminoredits'        => '当页面有小修改时也发送电子邮件通知我',
 'tog-enotifrevealaddr'        => '在通知电子邮件中显示我的电子邮件地址',
 'tog-shownumberswatching'     => '显示监视用户数',
-'tog-oldsig'                  => '原签名预览：',
+'tog-oldsig'                  => '原有签名：',
 'tog-fancysig'                => '将签名以wiki文本对待（不产生自动链接）',
 'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
@@ -2828,9 +2829,6 @@ $1被封禁的理由是：“$2”',
 # Patrol log
 'patrol-log-page'      => '巡查日志',
 'patrol-log-header'    => '这是已巡查的修订版本的日志。',
-'patrol-log-line'      => '标记$2的$1已巡查$3',
-'patrol-log-auto'      => '（自动）',
-'patrol-log-diff'      => '修订版本$1',
 'log-show-hide-patrol' => '$1巡查纪录',
 
 # Image deletion

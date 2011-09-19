@@ -1860,8 +1860,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Patrol log
 'patrol-log-page' => 'የማሳለፊያ መዝገብ',
-'patrol-log-line' => 'እትም $1 ከ$2 የተመለከተ ሆኖ አሳለፈ $3',
-'patrol-log-auto' => '(በቀጥታ)',
 
 # Image deletion
 'deletedrevision'                 => 'የቆየው ዕትም $1 አጠፋ',

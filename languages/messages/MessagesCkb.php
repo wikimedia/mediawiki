@@ -2569,8 +2569,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'لۆگی چاودێری',
 'patrol-log-header'    => 'ئەمە لۆگێکی چاودێری پێداچوونەوەکانە.',
-'patrol-log-auto'      => '(خۆکار)',
-'patrol-log-diff'      => 'پێداچوونەوە $1',
 'log-show-hide-patrol' => 'لۆگی چاودێری $1',
 
 # Image deletion

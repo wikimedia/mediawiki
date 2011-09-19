@@ -1493,9 +1493,6 @@ You may ignore this message, if this account was created in error.',
 'skinname-myskin'      => 'मे चर्मन्',
 'skinname-chick'       => 'Chick',
 
-# Patrol log
-'patrol-log-diff' => 'संस्करण $1',
-
 # Browsing diffs
 'previousdiff' => '← पुरातनतरं सम्पादनम्',
 'nextdiff'     => 'नवतरं संपादनम् →',

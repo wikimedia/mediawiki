@@ -1139,10 +1139,6 @@ Maya Iẓḍar ad iglb zzu uzddar ar aflla tasna yad lli bdda n nttagga. Illa fl
 'tooltip-undo'                    => '"Sglb" ḥiyd ambdl ad t mmurẓmt tasatmt n umbdl ɣ umuḍ tiẓri tamzwarut.',
 'tooltip-summary'                 => 'Skcm yat tayafut imẓẓin',
 
-# Patrol log
-'patrol-log-line' => 'ircm $1 d $2 zu nɣra daɣ $3',
-'patrol-log-diff' => 'Amzṛi daɣ $1',
-
 # Browsing diffs
 'previousdiff' => 'Imbddln imzwura',
 'nextdiff'     => 'Ambdl d ittfrn  →',

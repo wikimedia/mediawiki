@@ -2330,9 +2330,6 @@ Bunıñ sebebi şettik torap siltemesinen bolwı mümkin.',
 
 # Patrol log
 'patrol-log-page' => 'Zerttew jwrnalı',
-'patrol-log-line' => '$2 degenniñ $1 tüzetwin zertteldi dep belgiledi $3',
-'patrol-log-auto' => '(özdiktik)',
-'patrol-log-diff' => 'nömir $1',
 
 # Image deletion
 'deletedrevision'                 => 'Eski tüzetwin joýdı: $1',

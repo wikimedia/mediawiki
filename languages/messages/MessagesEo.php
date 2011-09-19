@@ -2946,9 +2946,6 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 # Patrol log
 'patrol-log-page'      => 'Protokolo pri patrolado',
 'patrol-log-header'    => 'Jen protokolo de patrolitaj versioj.',
-'patrol-log-line'      => 'markis $1 de $2 patrolita $3',
-'patrol-log-auto'      => '(aŭtomata)',
-'patrol-log-diff'      => 'version $1',
 'log-show-hide-patrol' => '$1 protokolo pri patrolado',
 
 # Image deletion

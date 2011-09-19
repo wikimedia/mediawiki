@@ -2948,9 +2948,6 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 # Patrol log
 'patrol-log-page'      => 'Log patroli',
 'patrol-log-header'    => 'Ini adalah log revisi terpatroli.',
-'patrol-log-line'      => 'menandai $1 dari $2 terpatroli $3',
-'patrol-log-auto'      => '(otomatis)',
-'patrol-log-diff'      => 'revisi $1',
 'log-show-hide-patrol' => '$1 log patroli',
 
 # Image deletion

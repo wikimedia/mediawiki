@@ -1867,7 +1867,7 @@ $1',
 'filehist-filesize'                 => 'Размер файла',
 'filehist-comment'                  => 'Примечание',
 'filehist-missing'                  => 'Файл отсутствует',
-'imagelinks'                        => 'Ссылки на файл',
+'imagelinks'                        => 'Использование файла',
 'linkstoimage'                      => '{{PLURAL:$1|Следующая $1 страница ссылается|Следующие $1 страницы ссылаются|Следующие $1 страниц ссылаются}} на данный файл:',
 'linkstoimage-more'                 => 'Более $1 {{PLURAL:$1|страницы|страниц|страниц}} ссылаются на этот файл.
 В данном списке {{PLURAL:$1|представлена только $1 ссылка|представлены только $1 ссылки|представлены только $1 ссылок}} на этот файл.
@@ -2984,9 +2984,6 @@ The wiki server can't provide data in a format your client can read.",
 # Patrol log
 'patrol-log-page'      => 'Журнал патрулирования',
 'patrol-log-header'    => 'Это журнал патрулированных версий.',
-'patrol-log-line'      => 'проверил $1 из $2 $3',
-'patrol-log-auto'      => '(автоматически)',
-'patrol-log-diff'      => 'версию $1',
 'log-show-hide-patrol' => '$1 журнал патрулирования',
 
 # Image deletion

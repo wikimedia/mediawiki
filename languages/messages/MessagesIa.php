@@ -2896,9 +2896,6 @@ Le causa es probabilemente un ligamine verso un sito externe que es presente in 
 # Patrol log
 'patrol-log-page'      => 'Registro de patrulia',
 'patrol-log-header'    => 'Isto es un registro de versiones patruliate.',
-'patrol-log-line'      => 'marcava $1 de $2 como patruliate $3',
-'patrol-log-auto'      => '(automaticamente)',
-'patrol-log-diff'      => 'le version $1',
 'log-show-hide-patrol' => '$1 le registro de versiones patruliate',
 
 # Image deletion
@@ -3720,5 +3717,7 @@ Entra le nomine del file sin le prefixo "{{ns:file}}:".',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4 sin lassar un redirection',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4, superscribente un redirection',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|renominava}} le pagina $3 a $4, superscribente un redirection sin lassar un nove redirection',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcava}} le version $4 del pagina $3 como patruliate',
+'logentry-patrol-patrol-auto'         => '$1 automaticamente {{GENDER:$2|marcava}} le version $4 del pagina $3 como patruliate',
 
 );

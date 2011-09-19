@@ -2843,9 +2843,6 @@ $1被封禁的理由是“$2”',
 # Patrol log
 'patrol-log-page'      => '巡查日誌',
 'patrol-log-header'    => '這是已巡查的修訂版本的日誌。',
-'patrol-log-line'      => '$2的版本$1已被標記為已巡查$3',
-'patrol-log-auto'      => '（自動）',
-'patrol-log-diff'      => '修訂 $1',
 'log-show-hide-patrol' => '$1巡查記錄',
 
 # Image deletion

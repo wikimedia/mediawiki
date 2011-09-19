@@ -1842,8 +1842,6 @@ Kokkovõttõria pääle või kirotaq tagasivõtmisõ põhjusõ.',
 
 # Patrol log
 'patrol-log-page' => 'Muutmiisi ülekaemiisi nimekiri',
-'patrol-log-line' => 'märke lehe $2 muutmisõ $1 ülekaetus $3',
-'patrol-log-auto' => '(automaatnõ)',
 
 # Image deletion
 'deletedrevision'    => 'Kistutõdi ärq vana kujo $1.',

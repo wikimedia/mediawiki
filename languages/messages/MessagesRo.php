@@ -2984,9 +2984,6 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 # Patrol log
 'patrol-log-page'      => 'Jurnal verificări',
 'patrol-log-header'    => 'Aceasta este o listă a tuturor versiunilor marcate ca verificate.',
-'patrol-log-line'      => 'a marcat $1 a paginii $2 ca verificată $3',
-'patrol-log-auto'      => '(automat)',
-'patrol-log-diff'      => 'versiunea $1',
 'log-show-hide-patrol' => '$1 jurnalul versiunilor verificate',
 
 # Image deletion

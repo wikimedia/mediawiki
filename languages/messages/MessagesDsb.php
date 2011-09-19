@@ -2661,9 +2661,6 @@ W zespominanju dajo se pśicyna pódaś.',
 # Patrol log
 'patrol-log-page'      => 'Protokol kontrolow',
 'patrol-log-header'    => 'To jo protokol pśekontrolowanych wersijow.',
-'patrol-log-line'      => 'markěrował $1 wót $2 ako kontrolěrowane $3.',
-'patrol-log-auto'      => '(awtomatiski)',
-'patrol-log-diff'      => 'Wersija $1',
 'log-show-hide-patrol' => 'Protokol doglědowanja $1',
 
 # Image deletion

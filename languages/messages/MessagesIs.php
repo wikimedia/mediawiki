@@ -2112,9 +2112,6 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 # Patrol log
 'patrol-log-page'   => 'Yfirferðarskrá',
 'patrol-log-header' => 'Þetta er skrá yfir yfirfarna breytingar.',
-'patrol-log-line'   => 'merkti $1 eftir $2 sem yfirfarið $3',
-'patrol-log-auto'   => '(sjálfkrafa)',
-'patrol-log-diff'   => 'útgáfa $1',
 
 # Image deletion
 'deletedrevision'       => 'Eydd gömul útgáfu $1',

@@ -2422,9 +2422,6 @@ Sigana mah ieu téh alatan tumbu ka loka luar.',
 # Patrol log
 'patrol-log-page'      => 'Log patroli',
 'patrol-log-header'    => 'Ieu minangka log pikeun révisi nu geus diroris.',
-'patrol-log-line'      => 'nandaan $1 ti $2 geus karoris $3',
-'patrol-log-auto'      => '(otomatis)',
-'patrol-log-diff'      => 'révisi: $1',
 'log-show-hide-patrol' => '$1 log rorisan',
 
 # Image deletion

@@ -3109,14 +3109,6 @@ See also {{msg-mw|Anonuser}} and {{msg-mw|Siteusers}}.',
 # Patrol log
 'patrol-log-page'      => 'Name of log.',
 'patrol-log-header'    => 'Text that appears above the log entries on the [[Special:log|patrol log]].',
-'patrol-log-line'      => 'Text of notes on entries in the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=patrol&user=&page=&year=&month=-1 patrol log]. $1 is the link whose text is {{msg-mw|patrol-log-diff}}. $2 is the name of the page. $3 appears to be {{msg-mw|Patrol-log-auto}} (at least sometimes).
-
-The message appears after the name of the patroller.',
-'patrol-log-auto'      => 'Automated edit summary when patrolling.
-
-{{Identical|Automatic}}',
-'patrol-log-diff'      => 'The text of the diff link in [[MediaWiki:Patrol-log-line]] (inside $1 there)
-{{Identical|Revision}}',
 'log-show-hide-patrol' => '* $1 is one of {{msg|show}} or {{msg|hide}}',
 
 # Browsing diffs
@@ -4339,5 +4331,9 @@ Parameter $4, the target page, is also not visible to parser functions.',
 Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-move-move_redir-noredirect' => '{{Logentry}}
 Parameter $4, the target page, is also not visible to parser functions.',
+'logentry-patrol-patrol'              => '{{LogEntry}}
+$4 is formatted number, maybe linked to the diff.',
+'logentry-patrol-patrol-auto'         => '{{LogEntry}}
+$4 is formatted number, maybe linked to the diff. Automatically (I think) means that people with autopatrol right mark revisions automatically patrolled when editing.',
 
 );

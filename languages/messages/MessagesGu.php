@@ -2763,9 +2763,6 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 # Patrol log
 'patrol-log-page'      => 'ચકાસણી લોગ',
 'patrol-log-header'    => 'આ નીરીક્ષિત ફેરફાઓનો લોગ છે',
-'patrol-log-line'      => '$1 માંના $2 ને નીરીક્ષિત  અંકિત કરો  $3',
-'patrol-log-auto'      => '(સ્વયંચાલિત)',
-'patrol-log-diff'      => 'સુધારો: $1',
 'log-show-hide-patrol' => '$1 ચકાસણી લોગ',
 
 # Image deletion

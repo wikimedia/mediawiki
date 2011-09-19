@@ -1139,6 +1139,7 @@ hoặc bạn đang tìm cách ẩn phiên bản hiện tại.',
 Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.",
 'revdelete-confirm'           => 'Xin hãy xác nhận rằng bạn có ý định xóa, nhận biết tầm quan trọng của việc này, và việc xóa tuân theo [[{{MediaWiki:Policy-url}}|quy định]].',
 'revdelete-suppress-text'     => "Việc ẩn giấu '''chỉ''' nên dùng trong các trường hợp sau:
+* Thông tin có thể phỉ báng
 * Thông tin cá nhân không thích hợp
 *: ''địa chỉ nhà và số điện thoại, số an sinh xã hội, v.v.''",
 'revdelete-legend'            => 'Thiết lập hạn chế khả kiến',
@@ -1854,7 +1855,7 @@ Lọc theo người dùng để chỉ hiện các tập tin mà người đó đ
 'filehist-filesize'         => 'Kích thước tập tin',
 'filehist-comment'          => 'Miêu tả',
 'filehist-missing'          => 'Không thấy tập tin',
-'imagelinks'                => 'Liên kết đến tập tin',
+'imagelinks'                => 'Các trang sử dụng tập tin',
 'linkstoimage'              => '{{PLURAL:$1|Trang|$1 trang}} sau có liên kết đến tập tin này:',
 'linkstoimage-more'         => 'Có hơn $1 {{PLURAL:$1|trang|trang}} liên kết đến tập tin này.
 Danh sách dưới đây chỉ hiển thị {{PLURAL:$1|liên kết đầu tiên|$1 liên kết đầu tiên}} đến tập tin này.
@@ -2963,9 +2964,6 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 # Patrol log
 'patrol-log-page'      => 'Nhật ký tuần tra',
 'patrol-log-header'    => 'Đây là nhật trình tuần tra phiên bản.',
-'patrol-log-line'      => 'đánh dấu tuần tra vào $1 của $2 $3',
-'patrol-log-auto'      => '(tự động)',
-'patrol-log-diff'      => 'bản $1',
 'log-show-hide-patrol' => '$1 nhật trình tuần tra',
 
 # Image deletion
@@ -3857,14 +3855,23 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 # New logging system
 'logentry-delete-delete'              => '$1 đã {{GENDER:$2|xóa}} trang “$3”',
 'logentry-delete-restore'             => '$1 đã {{GENDER:$2|phục hồi}} trang “$3”',
+'logentry-delete-event'               => '$1 đã {{GENDER:$2|thay đổi}} mức hiển thị của {{PLURAL:$5|một mục nhật trình|$5 mục nhật trình}} về $3: $4',
+'logentry-delete-revision'            => '$1 đã {{GENDER:$2|thay đổi}} mức hiển thị của {{PLURAL:$5|một phiên bản|$5 phiên bản}} trang $3: $4',
+'logentry-delete-event-legacy'        => '$1 đã {{GENDER:$2|thay đổi}} mức hiển thị của các mục nhật trình về $3',
+'logentry-delete-revision-legacy'     => '$1 đã {{GENDER:$2|thay đổi}} mức hiển thị của các phiên bản trang $3',
+'logentry-suppress-delete'            => '$1 đã {{GENDER:$2|ẩn}} trang $3',
+'logentry-suppress-event'             => '$1 đã {{GENDER:$2|thay đổi}} mức hiển thị của {{PLURAL:$5|một mục nhật trình|$5 mục nhật trình}} về $3 một cách kín đáo: $4',
+'logentry-suppress-revision'          => '$1 đã {{GENDER:$2|thay đổi}} mức hiển thị của {{PLURAL:$5|một phiên bản|$5 phiên bản}} trang $3 một cách kín đáo: $4',
+'logentry-suppress-event-legacy'      => '$1 đã {{GENDER:$2|thay đổi}} mức hiển thị các mục nhật trình về $3 một cách kín đáo',
+'logentry-suppress-revision-legacy'   => '$1 đã {{GENDER:$2|thay đổi}} mức hiển thị của các phiên bản trang $3 một cách kín đáo',
 'revdelete-content-hid'               => 'đã ẩn nội dung',
 'revdelete-summary-hid'               => 'đã ẩn tóm lược sửa đổi',
 'revdelete-uname-hid'                 => 'đã ẩn tên người dùng',
 'revdelete-content-unhid'             => 'đã hiện nội dung',
 'revdelete-summary-unhid'             => 'đã hiện tom lược sửa đổi',
 'revdelete-uname-unhid'               => 'đã hiện tên người dùng',
-'revdelete-restricted'                => 'áp dụng hạn chế này cho sysop',
-'revdelete-unrestricted'              => 'gỡ bỏ hạn chế này cho sysop',
+'revdelete-restricted'                => 'đã áp dụng hạn chế cho bảo quản viên',
+'revdelete-unrestricted'              => 'đã gỡ bỏ hạn chế cho bảo quản viên',
 'logentry-move-move'                  => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4',
 'logentry-move-move-noredirect'       => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 mà không để lại một trang đổi hướng',
 'logentry-move-move_redir'            => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 qua trang đổi hướng',

@@ -1811,8 +1811,6 @@ Ehtimolan in az sababi dar bar giriftani pajvandi beruna ba somonai xoriçiji ba
 
 # Patrol log
 'patrol-log-page' => 'Guzorişhoi nigahbonī',
-'patrol-log-line' => '$1 az $2-ro ba surati posbonişuda alomat zad $3',
-'patrol-log-auto' => '(xudkor)',
 
 # Image deletion
 'deletedrevision'                 => 'Nusxai hazfşudai kūhnai $1',

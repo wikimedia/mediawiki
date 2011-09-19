@@ -2772,9 +2772,6 @@ Maaaring dahil ito sa isang kawing sa isang nakatalang hinarang dahil di-kinaisn
 # Patrol log
 'patrol-log-page'      => 'Tala ng Pagpapatrolya',
 'patrol-log-header'    => 'Tala ito ng mga pagbabagong napatrolya na.',
-'patrol-log-line'      => 'tinatakang $1 ng $2 napatrolya $3',
-'patrol-log-auto'      => '(awtomatiko)',
-'patrol-log-diff'      => 'rebisyong $1',
 'log-show-hide-patrol' => '$1 tala ng pagpatrolya',
 
 # Image deletion

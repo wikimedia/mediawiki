@@ -2829,9 +2829,6 @@ Ju lutemi provoni përsëri.',
 # Patrol log
 'patrol-log-page'      => 'Regjistri i patrollimeve',
 'patrol-log-header'    => 'Këto janë të dhëna të revizioneve të patrulluara.',
-'patrol-log-line'      => 'shënoi $1 të $2 të patrulluar $3',
-'patrol-log-auto'      => '(automatikisht)',
-'patrol-log-diff'      => 'versioni $1',
 'log-show-hide-patrol' => '$1 regjistri i patrollimeve',
 
 # Image deletion

@@ -2476,9 +2476,6 @@ Tı eşkeno yew sebeb bınus.',
 # Patrol log
 'patrol-log-page'      => 'Logê devriye',
 'patrol-log-header'    => 'Ena listeyê logi revizyonê devriyeyi mocneno.',
-'patrol-log-line'      => 'nişan biyo $1 ê $2 patrol biyo $3',
-'patrol-log-auto'      => '(otomatik)',
-'patrol-log-diff'      => 'revizyon $1',
 'log-show-hide-patrol' => '$1 logê devriye',
 
 # Image deletion
@@ -2504,7 +2501,7 @@ Gurênayışê nae de, beno ke sistemê şıma zerar bıvêno.",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pele|peleyi}}',
 'file-info'            => 'ebatê dosyayi: $1, MIME tip: $2',
 'file-info-size'       => '$1 × $2 pixelan, ebatê dosya: $3, MIME type: $4',
-'file-nohires'         => 'Resolosyonê detayeri çino .',
+'file-nohires'         => 'Rovıleşiyayışo berzêr çıniyo.',
 'svg-long-desc'        => 'SVG dosya, nominalin $1 × $2 piksels, ebatê dosya: $3',
 'show-big-image'       => 'Resolosyonê temami',
 'file-info-gif-looped' => 'viyariye biyo',

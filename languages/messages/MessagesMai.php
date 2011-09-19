@@ -2679,9 +2679,6 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 # Patrol log
 'patrol-log-page'      => 'संचालन वृत्तलेख',
 'patrol-log-header'    => 'ई संचालित संशोधन सभक वृत्तलेख छी।',
-'patrol-log-line'      => 'चेन्हासी देल $2 क $1 संचालित $3',
-'patrol-log-auto'      => '(स्वचालित)',
-'patrol-log-diff'      => 'संशोधन $1',
 'log-show-hide-patrol' => '$1 निरीक्षण वृत्तलेख',
 
 # Image deletion

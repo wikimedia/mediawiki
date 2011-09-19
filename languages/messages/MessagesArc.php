@@ -1310,10 +1310,6 @@ Do you want to change the settings?',
 'anonusers'   => '{{SITENAME}} {{PLURAL:$2|ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ|ܡܦܠܚܢ̈ܐ ܠܐ ܝܕ̈ܝܥܐ}} $1',
 'creditspage' => 'ܙܕ̈ܩܐ ܕܦܐܬܐ',
 
-# Patrol log
-'patrol-log-auto' => '(ܝܬܐܝܬ)',
-'patrol-log-diff' => 'ܬܢܝܬܐ $1',
-
 # Image deletion
 'filedeleteerror-short' => 'ܦܘܕܐ ܒܫܝܦܐ ܕܠܦܦܐ: $1',
 'filedeleteerror-long'  => 'ܦܘܕ̈ܐ ܐܫܟܚܬ ܟܕ ܫܝܦܐ ܠܦܦܐ:

@@ -1933,9 +1933,6 @@ Zinhar başqa isem saylağız.',
 # Patrol log
 'patrol-log-page'      => 'Tikşerü köndälege',
 'patrol-log-header'    => 'Bu tikşerelgän bitlärneñ köndälege.',
-'patrol-log-line'      => '$2 $3 bitennän $1nı tikşerde',
-'patrol-log-auto'      => '(avtomatik räweştä)',
-'patrol-log-diff'      => '$1 yurama',
 'log-show-hide-patrol' => '$1 tikşerü köndälege',
 
 # Image deletion

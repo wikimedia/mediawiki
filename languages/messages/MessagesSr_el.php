@@ -1766,7 +1766,7 @@ Kad je poređano po korisniku, popis prikazuje samo one datoteke čije je posled
 'filehist-filesize'         => 'Veličina fajla',
 'filehist-comment'          => 'Komentar',
 'filehist-missing'          => 'Nema fajla',
-'imagelinks'                => 'Veze ka fajlu',
+'imagelinks'                => 'Upotreba datoteke',
 'linkstoimage'              => '{{PLURAL:$1|Sledeća stranica koristi|$1 Sledeće stranice koriste}} ovaj fajl:',
 'linkstoimage-more'         => 'Više od $1 {{PLURAL:$1|stranice se veše|stranica se vežu}} za ovaj fajl.
 Sledeći spisak pokazuje stranice koje se vežu za ovaj fajl
@@ -2867,9 +2867,6 @@ Ovo je verovatno izazvano blokiranom vezom ka spoljašnjem sajtu.',
 # Patrol log
 'patrol-log-page'      => 'Istorija patroliranja',
 'patrol-log-header'    => 'Ovo je istorija patroliranih revizija.',
-'patrol-log-line'      => 'obeležena verzija $1 strane $2 kao patrolirana ($3)',
-'patrol-log-auto'      => '(automatski)',
-'patrol-log-diff'      => 'revizija $1',
 'log-show-hide-patrol' => '$1 istorija patroliranja',
 
 # Image deletion

@@ -1871,9 +1871,6 @@ if (wgUserLanguage == "ku-arab")
 
 # Patrol log
 'patrol-log-page' => 'Têketina kontrolkirinê',
-'patrol-log-line' => '$1 ji $2 hate kontrolkirin $3',
-'patrol-log-auto' => '(otomatîk)',
-'patrol-log-diff' => 'revîzyona $1',
 
 # Image deletion
 'deletedrevision'                 => 'Guhertoya berê $1 hate jêbirin.',

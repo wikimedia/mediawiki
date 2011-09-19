@@ -2855,9 +2855,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'កំណត់ហេតុនៃការតាមដាន',
 'patrol-log-header'    => 'នេះជាកំណត់ហេតុនៃកំណែ​ប្រែ​ដែល​បាន​តាមដាន',
-'patrol-log-line'      => 'បានចំណាំការល្បាត $1 នៃ $2 ថា បានត្រួតពិនិត្យ $3',
-'patrol-log-auto'      => '(ស្វ័យប្រវត្តិ)',
-'patrol-log-diff'      => 'កំណែប្រែ​ $1',
 'log-show-hide-patrol' => 'កំណត់ហេតុនៃការតាមដាន $1',
 
 # Image deletion

@@ -1528,8 +1528,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Patrol log
 'patrol-log-page' => 'Sùn-chhà ki-liu̍k',
-'patrol-log-line' => 'Yí-kîn phêu-sṳ $1/$2-pán cho yí-kîn sùn-chhà ke $3',
-'patrol-log-auto' => '（chhṳ-thung）',
 
 # Image deletion
 'deletedrevision' => 'Yí-kîn chhù-thet khiu-ke pán-pún $1.',

@@ -853,7 +853,6 @@ $NEWPAGE
 
 # Patrol log
 'patrol-log-page' => '巡查記錄',
-'patrol-log-line' => '已經標示$1/$2版做已巡查的$3',
 
 # Browsing diffs
 'previousdiff' => '←上一個',

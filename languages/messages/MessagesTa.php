@@ -2213,9 +2213,6 @@ $1',
 
 # Patrol log
 'patrol-log-page' => 'ரோந்துப் பதிகை',
-'patrol-log-line' => '$1 பக்கத்தின் $2 திருத்தத்தை ரோந்திடப்பட்டதாகக் குறித்தார் $3',
-'patrol-log-auto' => '(தன்னிச்சையாக)',
-'patrol-log-diff' => 'திருத்தம் $1',
 
 # Image deletion
 'deletedrevision'                 => 'பழைய திருத்தம் $1 நீக்கப்பட்டது',

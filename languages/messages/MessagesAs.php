@@ -2757,8 +2757,6 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 # Patrol log
 'patrol-log-page'      => "নিৰীক্ষণ ল'গ",
 'patrol-log-header'    => "এইখন নিৰীক্ষিত সংশোধনসমূহৰ ল'গ ।",
-'patrol-log-auto'      => '(স্বয়ংক্ৰিয়)',
-'patrol-log-diff'      => 'সংশোধন $1',
 'log-show-hide-patrol' => "নিৰীক্ষণ ল'গ $1",
 
 # Image deletion

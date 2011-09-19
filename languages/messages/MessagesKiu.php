@@ -1327,9 +1327,6 @@ Têser-kerdena jü sebebi rê xulasa de imkan dano cı.',
 # Stylesheets
 'common.css' => '/* CSSo ke itaro, serba çermu pêroine gurenino */',
 
-# Patrol log
-'patrol-log-diff' => 'revizyon $1',
-
 # Browsing diffs
 'previousdiff' => '← Vurnaiso khanêr',
 'nextdiff'     => 'Vurnaena newêre →',

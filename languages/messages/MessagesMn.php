@@ -2529,9 +2529,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'Эргүүлийн лог',
 'patrol-log-header'    => 'Энэ нь манагдсан засваруудын лог юм.',
-'patrol-log-line'      => '$2-н $1-г $3 манагдсан гэж тэмдэглэв',
-'patrol-log-auto'      => '（автомат）',
-'patrol-log-diff'      => 'засвар $1',
 'log-show-hide-patrol' => 'мануулын логийг $1',
 
 # Image deletion

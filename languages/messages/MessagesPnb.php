@@ -2089,9 +2089,6 @@ $3 نے $2 وجہ دسی اے۔',
 # Patrol log
 'patrol-log-page'      => 'گشت لاگ',
 'patrol-log-header'    => 'اے گست لائیآں ہوئیآن ریوین دی لاگ اے۔',
-'patrol-log-line'      => '$2 دی $1 تے نشان گشت ہوئی $3',
-'patrol-log-auto'      => '(اپنے آپ)',
-'patrol-log-diff'      => 'ریوین $1',
 'log-show-hide-patrol' => '$1 گشت لاگ',
 
 # Image deletion

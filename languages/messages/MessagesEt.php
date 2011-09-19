@@ -2927,9 +2927,6 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 # Patrol log
 'patrol-log-page'      => 'Kontrollimislogi',
 'patrol-log-header'    => 'See on kontrollitud redaktsioonide logi.',
-'patrol-log-line'      => 'märkis $1 leheküljel $2 kontrollituks $3',
-'patrol-log-auto'      => '(automaatne)',
-'patrol-log-diff'      => 'versiooni $1',
 'log-show-hide-patrol' => '$1 kontrollimislogi',
 
 # Image deletion

@@ -1269,9 +1269,6 @@ $messages = array(
 # Spam protection
 'spamprotectiontitle' => 'Φίλτρον προστασίας ασό σπαμ',
 
-# Patrol log
-'patrol-log-auto' => '(αυτόματον)',
-
 # Browsing diffs
 'previousdiff' => '← Προτεσνόν διαφορά',
 'nextdiff'     => 'Άλλον διαφορά →',

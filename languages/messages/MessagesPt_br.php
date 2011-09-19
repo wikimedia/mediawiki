@@ -2956,9 +2956,6 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 # Patrol log
 'patrol-log-page'      => 'Registro de edições patrulhadas',
 'patrol-log-header'    => 'Este é um registro de edições patrulhadas.',
-'patrol-log-line'      => 'marcou a $1 de $2 como uma edição patrulhada $3',
-'patrol-log-auto'      => 'automaticamente',
-'patrol-log-diff'      => 'edição $1',
 'log-show-hide-patrol' => '$1 registro de edições patrulhadas',
 
 # Image deletion

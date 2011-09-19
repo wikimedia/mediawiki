@@ -2361,9 +2361,6 @@ Mbokmanawa iki disebabaké anané pranala jaba sing klebu daftar ireng.',
 # Patrol log
 'patrol-log-page'      => 'Log patroli',
 'patrol-log-header'    => 'Iki log revisi sing wis dipatroli.',
-'patrol-log-line'      => 'nandhani $1 saka $2 sing dipatroli $3',
-'patrol-log-auto'      => '(otomatis)',
-'patrol-log-diff'      => 'révisi $1',
 'log-show-hide-patrol' => '$1 log patroli',
 
 # Image deletion

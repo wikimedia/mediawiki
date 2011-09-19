@@ -1324,8 +1324,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Patrol log
 'patrol-log-page' => 'Aɣmis n usenqad',
-'patrol-log-line' => 'Yercem tasiwelt $1 n $2 "yettwassenqden" $3',
-'patrol-log-auto' => '(otomatik)',
 
 # Image deletion
 'deletedrevision' => 'Tasiwelt taqdimt $1 tettumḥa.',

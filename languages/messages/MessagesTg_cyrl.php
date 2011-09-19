@@ -2016,8 +2016,6 @@ $1',
 
 # Patrol log
 'patrol-log-page' => 'Гузоришҳои нигаҳбонӣ',
-'patrol-log-line' => '$1 аз $2-ро ба сурати посбонишуда аломат зад $3',
-'patrol-log-auto' => '(худкор)',
 
 # Image deletion
 'deletedrevision'                 => 'Нусхаи ҳазфшудаи кӯҳнаи $1',

@@ -2045,10 +2045,6 @@ Ojúewé àdésí "[[:$1]]" wà tẹ́lẹ̀tẹ́lẹ̀.
 'siteusers'        => '{{PLURAL:$2|Oníṣe|Àwọn oníṣe}} $1  {{SITENAME}}',
 'anonusers'        => '{{PLURAL:$2|Oníṣe|Àwọn oníṣe}} aláìlórúkọ $1 {{SITENAME}}',
 
-# Patrol log
-'patrol-log-auto' => '(fúnraara)',
-'patrol-log-diff' => 'àtúnyẹ̀wò $1',
-
 # Image deletion
 'filedeleteerror-short' => 'Àsìṣe ìparẹ́ fáílì: $1',
 'filedelete-missing'    => 'Fáìlì "$1" náà kò ṣe é parẹ́ nítorípé kò sí.',

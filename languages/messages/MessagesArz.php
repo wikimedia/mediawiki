@@ -2811,9 +2811,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'سجل المراجعة',
 'patrol-log-header'    => 'دا سجل بالنسخ المتراجعة',
-'patrol-log-line'      => 'علم على $1 من $2 كأنها متراجعة $3',
-'patrol-log-auto'      => '(اوتوماتيكي)',
-'patrol-log-diff'      => 'ن$1',
 'log-show-hide-patrol' => '$1 سجل المراجعة',
 
 # Image deletion

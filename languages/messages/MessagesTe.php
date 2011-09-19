@@ -2718,9 +2718,6 @@ $UNWATCHURL కి వెళ్ళండి.
 # Patrol log
 'patrol-log-page'      => 'నిఘా చిట్టా',
 'patrol-log-header'    => 'ఇది పర్యవేక్షించిన కూర్పుల చిట్టా.',
-'patrol-log-line'      => 'మొత్తం $1లోని $2లను $3గా పెట్రోలు చేసినట్లుగా గుర్తించాము',
-'patrol-log-auto'      => '(దావంత అదే)',
-'patrol-log-diff'      => 'కూర్పు $1',
 'log-show-hide-patrol' => '$1 పర్యవేక్షణ చిట్టా',
 
 # Image deletion

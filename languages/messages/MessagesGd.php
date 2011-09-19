@@ -1089,10 +1089,6 @@ Tadhail air [http://www.mediawiki.org/wiki/Localisation Ionadaileadh MediaWiki] 
 'others'        => 'eile',
 'siteusers'     => '{{PLURAL:$2|chleachdaiche|chleachdaiche|chleachdaiche|chleachdaiche|cleachdaichean|cleachdaiche}} {{SITENAME}} $1',
 
-# Patrol log
-'patrol-log-line' => 'a chomharraich $1 dhen duilleag $2 freiceadan $3',
-'patrol-log-diff' => 'lèirmheas $1',
-
 # Browsing diffs
 'previousdiff' => '← Mùthadh nas sine',
 'nextdiff'     => 'Deasachadh nas ùire →',

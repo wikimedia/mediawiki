@@ -2593,9 +2593,6 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 # Patrol log
 'patrol-log-page'      => 'Pahraa de waala suchi',
 'patrol-log-header'    => 'Ii pahraa dewa gais badlao ke suchi hai.',
-'patrol-log-line'      => 'mark karaa gais $1 of $2 pahraa dewa gais $3',
-'patrol-log-auto'      => '(apne se)',
-'patrol-log-diff'      => 'badlao $1',
 'log-show-hide-patrol' => '$1 pahraa de waala suchi',
 
 # Image deletion

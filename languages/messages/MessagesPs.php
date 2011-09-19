@@ -2003,10 +2003,6 @@ $UNWATCHURL  نه ليدنه وکړۍ
 # Patrolling
 'markaspatrolledtext' => 'دا مخ څارل شوی په نخښه کول',
 
-# Patrol log
-'patrol-log-auto' => '(خپلسر)',
-'patrol-log-diff' => 'بڼه $1',
-
 # Image deletion
 'filedeleteerror-short' => 'د دوتنې د ړنګولو ستونزه: $1',
 

@@ -3192,9 +3192,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'سجل الخفر',
 'patrol-log-header'    => 'هذا سجل بالمراجعات المراجعة.',
-'patrol-log-line'      => 'علم على $1 من $2 كمراجعة $3',
-'patrol-log-auto'      => '(تلقائيا)',
-'patrol-log-diff'      => 'ن$1',
 'log-show-hide-patrol' => '$1 سجل الخفر',
 
 # Image deletion

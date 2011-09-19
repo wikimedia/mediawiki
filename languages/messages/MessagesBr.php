@@ -2846,9 +2846,6 @@ Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
 # Patrol log
 'patrol-log-page'      => 'Log gwiriañ',
 'patrol-log-header'    => 'Setu ur marilh eus ar stummoù patrouilhet.',
-'patrol-log-line'      => 'en/he deus merket ar stumm $1 eus $2 evel gwiriet $3',
-'patrol-log-auto'      => '(emgefre)',
-'patrol-log-diff'      => 'Adweladenn $1',
 'log-show-hide-patrol' => '$1 istor ar stummoù gwiriet',
 
 # Image deletion

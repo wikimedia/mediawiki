@@ -1009,9 +1009,6 @@ HTML tags لوڑے.',",
 'tooltip-undo'                    => '"واپس" یا لوظ آچیا کلک کوریکو سوم جستہ تہ صفحہ کچا تہ پشینو بوی ھے سوم جستہ تو واپس کوریکو وجہ نیویشیکو بوس',
 'tooltip-summary'                 => 'ای مختصار سمری ساوزاوے',
 
-# Patrol log
-'patrol-log-diff' => '$1 نظرثانی',
-
 # Browsing diffs
 'previousdiff' => ' ← پرانو تدوین',
 'nextdiff'     => 'صفحہو نم:',

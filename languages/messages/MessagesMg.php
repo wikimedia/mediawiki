@@ -2746,9 +2746,6 @@ Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny a
 # Patrol log
 'patrol-log-page'      => "Laogin'ny fanovana voamarina",
 'patrol-log-header'    => "Ity dia laogy mikasikan'ny fanovana voamarina.",
-'patrol-log-line'      => "nanamarika ny $1 an'i $2 ho voamarina $3",
-'patrol-log-auto'      => '(mandeha ho azy)',
-'patrol-log-diff'      => 'fanovana faha $1',
 'log-show-hide-patrol' => "$1 ny laogy mikasikan'ny santiôna voamarina",
 
 # Image deletion

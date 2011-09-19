@@ -1743,8 +1743,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Patrol log
 'patrol-log-page' => 'Bantayán an historial',
-'patrol-log-line' => 'minarkahan an $1 kan $2 na pigpapatrulya $3',
-'patrol-log-auto' => '(enseguida)',
 
 # Image deletion
 'deletedrevision'                 => 'Pigparâ an lumang pagribay na $1.',

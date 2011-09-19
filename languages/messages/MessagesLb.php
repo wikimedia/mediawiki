@@ -1705,7 +1705,7 @@ Wann se pro Benotzer gefiltert sinn, ginn nëmmen déi Fichiere gewise wou dee B
 'filehist-filesize'                 => 'Gréisst vum Fichier',
 'filehist-comment'                  => 'Bemierkung',
 'filehist-missing'                  => 'Fichier feelt',
-'imagelinks'                        => 'Linken op Fichieren',
+'imagelinks'                        => 'Benotze vu Fichieren',
 'linkstoimage'                      => 'Dës {{PLURAL:$1|Säit benotzt|Säite benotzen}} dëse Fichier:',
 'linkstoimage-more'                 => 'Méi wéi {{PLURAL:$1|eng Säit ass|$1 Säite si}} mat dësem Fichier verlinkt.
 Dës Lëscht weist nëmmen {{PLURAL:$1|den éischte Link|déi éischt $1 Linken}} op dëse Fichier.
@@ -2802,9 +2802,6 @@ Dëst warscheinlech duerch en externe Link den op der schwaarzer Lëscht (blackl
 # Patrol log
 'patrol-log-page'      => 'Logbuch vun den iwwerkuckte Versiounen',
 'patrol-log-header'    => "Dëst ass d'Logbuch vun den nogekuckte Versiounen.",
-'patrol-log-line'      => 'huet d\'$1 vu(n) "$2" als nogekuckt markéiert $3',
-'patrol-log-auto'      => '(automatesch)',
-'patrol-log-diff'      => 'Versioun $1',
 'log-show-hide-patrol' => 'Kontroll-Logbuch $1',
 
 # Image deletion

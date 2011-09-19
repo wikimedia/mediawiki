@@ -2599,9 +2599,6 @@ The wiki server cannot provide data in a format your client can read.',
 # Patrol log
 'patrol-log-page'      => 'Тикшереү яҙмалары журналы',
 'patrol-log-header'    => 'Был — тикшерелгән өлгөләр яҙмалары журналы.',
-'patrol-log-line'      => '$2 битенең $1 тикшерелгән тип билдәләгән $3',
-'patrol-log-auto'      => '(автоматик рәүештә)',
-'patrol-log-diff'      => '$1 өлгөһөн',
 'log-show-hide-patrol' => 'тикшереү яҙмалары журналын $1',
 
 # Image deletion

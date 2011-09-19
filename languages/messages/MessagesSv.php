@@ -2990,9 +2990,6 @@ Detta orsakades troligen av en länk till en svartlistad webbplats.',
 # Patrol log
 'patrol-log-page'      => 'Patrulleringslogg',
 'patrol-log-header'    => 'Detta är en logg över patrullerade sidversioner.',
-'patrol-log-line'      => 'markerade $1 av $2 som patrullerad $3',
-'patrol-log-auto'      => '(automatiskt)',
-'patrol-log-diff'      => 'version $1',
 'log-show-hide-patrol' => '$1 patrulleringslogg',
 
 # Image deletion

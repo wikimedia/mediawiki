@@ -2161,8 +2161,6 @@ Imken lek ṫċof l-ĝin dyalha.',
 'markaspatrolleddiff' => 'marki kamorajaaa',
 
 # Patrol log
-'patrol-log-auto'      => '(otomatik)',
-'patrol-log-diff'      => 'morajaa $1',
 'log-show-hide-patrol' => '$1 sijjil lkhafr',
 
 # Browsing diffs

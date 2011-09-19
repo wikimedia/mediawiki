@@ -2086,8 +2086,6 @@ Nojprawdopodobńij zostoło to spowodowane bez link do zewnyntrznyj zajty intern
 # Patrol log
 'patrol-log-page'      => 'Dźynńik patrolowańo',
 'patrol-log-header'    => 'Půniżej je dźeńńik patrolowańo zajtůw.',
-'patrol-log-line'      => 'označůu wersyja $1 artikla $2 kej sprawdzůno $3',
-'patrol-log-auto'      => '(autůmatyčńy)',
 'log-show-hide-patrol' => '$1 rejer sprawdzańo',
 
 # Image deletion

@@ -533,9 +533,6 @@ Aamma takuuk [[Special:WantedCategories|sunut atassusinut kissaatigineqartut]].'
 # Attribution
 'lastmodifiedatby' => 'Una qupperneq kingullermik allanngortinneqarsimavoq $2, $1 $3-mit.',
 
-# Patrol log
-'patrol-log-line' => 'nalunaaqqutserpaa $1 $2 misissorneqarsimasutut $3',
-
 # Browsing diffs
 'previousdiff' => '← Assigiinngissut siulia',
 'nextdiff'     => 'Assigiinngissut tullia →',

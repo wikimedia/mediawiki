@@ -1906,7 +1906,7 @@ Quando filtrados pelo usuário, os últimos ficheiros carregados aparecem no top
 'filehist-filesize'         => 'Tamanho do ficheiro',
 'filehist-comment'          => 'Comentário',
 'filehist-missing'          => 'Ficheiro em falta',
-'imagelinks'                => 'Links para este ficheiro',
+'imagelinks'                => 'Uso do ficheiro',
 'linkstoimage'              => '{{PLURAL:$1|A seguinte página contém|As seguintes $1 páginas contêm}} links para este ficheiro:',
 'linkstoimage-more'         => 'Mais de {{PLURAL:$1|uma página contém|$1 páginas contêm}} links para este ficheiro.
 A lista abaixo apresenta apenas {{PLURAL:$1|a primeira página|as primeiras $1 páginas}}.
@@ -3026,9 +3026,6 @@ Este bloqueio foi provavelmente causado por um link para um site externo que con
 # Patrol log
 'patrol-log-page'      => 'Registo de edições patrulhadas',
 'patrol-log-header'    => 'Este é um registo de edições patrulhadas.',
-'patrol-log-line'      => 'marcou a $1 de $2 como uma edição patrulhada $3',
-'patrol-log-auto'      => 'automaticamente',
-'patrol-log-diff'      => 'edição $1',
 'log-show-hide-patrol' => '$1 registo de edições patrulhadas',
 
 # Image deletion

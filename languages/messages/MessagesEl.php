@@ -2986,9 +2986,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'Αρχείο καταγραφής περιπολιών',
 'patrol-log-header'    => 'Αυτός είναι ένας κατάλογος περιπολούμενων αναθεωρήσεων.',
-'patrol-log-line'      => 'σημάνθηκε το $1 του $2 υπό περιπολία $3',
-'patrol-log-auto'      => '(αυτόματα)',
-'patrol-log-diff'      => 'αναθεώρηση $1',
 'log-show-hide-patrol' => '$1 καταγραφή επιτήρησης',
 
 # Image deletion

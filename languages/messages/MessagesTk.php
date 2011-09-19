@@ -2543,9 +2543,6 @@ Mazmun üçin bir sebäp goşmaga rugsat berýär',
 # Patrol log
 'patrol-log-page'      => 'Patrullyk gündeligi',
 'patrol-log-header'    => 'Bu patrullyk edilen wersiýalaryň gündeligidir.',
-'patrol-log-line'      => '$2 sahypasynyň $1 patrullyk edilen diýip belledi $3',
-'patrol-log-auto'      => '(awtomatik)',
-'patrol-log-diff'      => '$1 wersiýasyny',
 'log-show-hide-patrol' => 'Patrullyk gündeligini $1',
 
 # Image deletion

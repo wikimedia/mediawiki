@@ -1654,7 +1654,7 @@ Us Sicherheitsgrinde isch img_auth.php deaktiviert.',
 'filehist-filesize'         => 'Dateigrößi',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Datei fählt',
-'imagelinks'                => 'Dateigleicher',
+'imagelinks'                => 'Verwändig vu dr Datei',
 'linkstoimage'              => 'Di {{PLURAL:$1|Syte|$1 Sytene}} händ en Link zu dem Bild:',
 'linkstoimage-more'         => 'Meh as {{PLURAL:$1|ei Syte vergleicht|$1 Syte vergleiche}} uf die Datei.
 Die Lischt zeigt nume {{PLURAL:$1|dr erscht Gleich|di erschte $1 Gleicher}} uf die Datei.
@@ -2688,9 +2688,6 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 # Patrol log
 'patrol-log-page'      => 'Kontroll-Logbuech',
 'patrol-log-header'    => 'Des isch s Kontroll-Logbuech.',
-'patrol-log-line'      => 'het d’$1 vo $2 als patrulyrt markyrt $3',
-'patrol-log-auto'      => '(automatisch)',
-'patrol-log-diff'      => 'Version $1',
 'log-show-hide-patrol' => 'Kontroll-Logbuech $1',
 
 # Image deletion
@@ -2916,24 +2913,46 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-iimsupplementalcategory'     => 'Zuesätzligi Kategorie',
 'exif-datetimeexpires'             => 'Nit bruche no',
 'exif-datetimereleased'            => 'Vereffetligt am',
+'exif-originaltransmissionref'     => 'Code vum Standort wu s Foto uus ibermittlet woren isch',
 'exif-identifier'                  => 'Chännig',
 'exif-lens'                        => 'Brucht Objektiv',
 'exif-serialnumber'                => 'Serienummere vu dr Kamera',
 'exif-cameraownername'             => 'Kamerabsitzer',
 'exif-label'                       => 'Bezeichnig',
 'exif-datetimemetadata'            => 'Datum, wu d Metadate s letscht Mol gänderet wore sin',
+'exif-nickname'                    => 'Gängige Name vum Foto',
 'exif-rating'                      => 'Bewärting (us 5)',
 'exif-rightscertificate'           => 'Rächtverwaltigszertifikat',
 'exif-copyrighted'                 => 'Urheberrächtsstatus',
 'exif-copyrightowner'              => 'Urheberrächtsinhaber',
+'exif-usageterms'                  => 'Nutzigsbedingige',
 'exif-webstatement'                => 'Online-Urheberrächtsaagab',
 'exif-originaldocumentid'          => 'Eidytigi Chännig vum Orginaldokumänt',
 'exif-licenseurl'                  => 'URL vu dr Urheberrächtsaagab (Lizänz)',
 'exif-morepermissionsurl'          => 'Alternativi Lizänzinformatione',
 'exif-attributionurl'              => 'Bi Wyterverwändig vu däm Wärch bitte verlinke uf:',
+'exif-preferredattributionname'    => 'Bi Wyterverwändig vu däm Wärch, bitte nänne:',
+'exif-pngfilecomment'              => 'PNG-Dateikommentar',
+'exif-disclaimer'                  => 'Haftigsuusschluss',
+'exif-contentwarning'              => 'Inhaltswarnig',
+'exif-giffilecomment'              => 'GIF-Dateikommentar',
+'exif-intellectualgenre'           => 'Art vum Medium',
+'exif-subjectnewscode'             => 'Themecode',
+'exif-scenecode'                   => 'IPTC-Aasichtcode',
+'exif-event'                       => 'Dargstellt Ereignis',
+'exif-organisationinimage'         => 'Dargstellti Organisation',
+'exif-personinimage'               => 'Dargstellti Person',
+'exif-originalimageheight'         => 'Bildhechi vor em Zueschnyde',
+'exif-originalimagewidth'          => 'Bildbreiti vor em Zueschnyde',
 
 # EXIF attributes
 'exif-compression-1' => 'Uukomprimiert',
+'exif-compression-2' => 'CCITT Gruppe 3 1-dimensionali modifizierti Huffman-Lauflengekodierig',
+'exif-compression-3' => 'CCITT Gruppe 3 Faxkodierig',
+'exif-compression-4' => 'CCITT Gruppe 4 Faxkodierig',
+
+'exif-copyrighted-true'  => 'Gschitzt',
+'exif-copyrighted-false' => 'Public Domain',
 
 'exif-unknowndate' => 'Nit bekannt Datum',
 
@@ -2948,6 +2967,8 @@ Andri wäre standardmäßig nit aazeigt.
 
 'exif-planarconfiguration-1' => 'Grobformat',
 'exif-planarconfiguration-2' => 'Planarformat',
+
+'exif-colorspace-65535' => 'Nit kalibriert',
 
 'exif-componentsconfiguration-0' => 'Git s nit',
 
@@ -3062,6 +3083,10 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-gpslongitude-e' => 'eschtl. Längi',
 'exif-gpslongitude-w' => 'weschtl. Längi',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{plural:$1|Meter|Meter}} iber em Meeresspiegel',
+'exif-gpsaltitude-below-sealevel' => '$1 {{plural:$1|Meter|Meter}} unter em Meeresspiegel',
+
 'exif-gpsstatus-a' => 'Mässig lauft',
 'exif-gpsstatus-v' => 'Interoperabilität vu Mässige',
 
@@ -3078,9 +3103,58 @@ Andri wäre standardmäßig nit aazeigt.
 'exif-gpsdestdistance-m' => 'Myle',
 'exif-gpsdestdistance-n' => 'Seemyle',
 
+'exif-gpsdop-excellent' => 'Uuszeichnet ($1)',
+'exif-gpsdop-good'      => 'Guet ($1)',
+'exif-gpsdop-moderate'  => 'Mittel ($1)',
+'exif-gpsdop-fair'      => 'Akzeptabel ($1)',
+'exif-gpsdop-poor'      => 'Schwach ($1)',
+
+'exif-objectcycle-a' => 'Nume demorge',
+'exif-objectcycle-p' => 'Nume zobe',
+'exif-objectcycle-b' => 'Demorge un zobe',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächligi Richtig',
 'exif-gpsdirection-m' => 'Magnetischi Richtig',
+
+'exif-ycbcrpositioning-1' => 'Zäntriert',
+'exif-ycbcrpositioning-2' => 'Benochbert',
+
+'exif-dc-contributor' => 'Mitmacher',
+'exif-dc-coverage'    => 'Ertlige oder zytlige Ramme vum Medium',
+'exif-dc-date'        => 'Datumsaagabe',
+'exif-dc-publisher'   => 'Vereffentlige',
+'exif-dc-relation'    => 'Ähnligi Medie',
+'exif-dc-rights'      => 'Rächt',
+'exif-dc-source'      => 'Mediehärchumft',
+'exif-dc-type'        => 'Medietyp',
+
+'exif-rating-rejected' => 'Abglähnt',
+
+'exif-isospeedratings-overflow' => 'Greßer wie 65535',
+
+'exif-iimcategory-ace' => 'Chunscht, Kultur un Unterhaltig',
+'exif-iimcategory-clj' => 'Kriminalitet un Rächt',
+'exif-iimcategory-dis' => 'Katastrofen un Uafäll',
+'exif-iimcategory-fin' => 'Wirtschaft un Gschäft',
+'exif-iimcategory-edu' => 'Bildig',
+'exif-iimcategory-evn' => 'Umwält',
+'exif-iimcategory-hth' => 'Gsundheit',
+'exif-iimcategory-hum' => 'Inträssebiet',
+'exif-iimcategory-lab' => 'Arbet',
+'exif-iimcategory-lif' => 'Lifestyle un Frejzyt',
+'exif-iimcategory-pol' => 'Politik',
+'exif-iimcategory-rel' => 'Religion un Glaube',
+'exif-iimcategory-sci' => 'Wisseschaft un Tächnologi',
+'exif-iimcategory-soi' => 'Soziali Theme',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Chrieg, Konflikt un Uurueje',
+'exif-iimcategory-wea' => 'Wätter',
+
+'exif-urgency-normal' => 'Normal ($1)',
+'exif-urgency-low'    => 'Nider ($1)',
+'exif-urgency-high'   => 'Hoch ($1)',
+'exif-urgency-other'  => 'Benutzerdefinierti Prioritet ($1)',
 
 # External editor support
 'edit-externally'      => 'Die Datei mit emnen externe Programm bearbeite',
@@ -3169,17 +3243,24 @@ $1',
 'trackbackdeleteok' => 'Trackback isch mit Erfolg glescht wore.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Obacht''': Die Syte isch glescht wore, nochdäm Du aagfange hesch si z bearbeite!",
-'confirmrecreate'     => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) het die Syte glescht, nochdäm Du aagfange hesch si z bearbeite.
+'deletedwhileediting'      => "'''Obacht''': Die Syte isch glescht wore, nochdäm Du aagfange hesch si z bearbeite!",
+'confirmrecreate'          => "Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) het die Syte glescht, nochdäm Du aagfange hesch si z bearbeite.
 D Begrindig isch gsi:
 :''$2''
 Bitte bstätig, ass Du die Syte wirkli wit nej aalege.",
-'recreate'            => 'Nomol aalege',
+'confirmrecreate-noreason' => 'Benutzer [[User:$1|$1]] ([[User talk:$1|Diskussion]]) het die Syte glescht, nochdäm Du aagfange hesch si z bearbeite. Bitte bstätig, ass Du die Syte wirkli wit nej aalege.',
+'recreate'                 => 'Nomol aalege',
 
 # action=purge
 'confirm_purge_button' => 'In Ornig',
 'confirm-purge-top'    => 'D Zwischespycherig vu dr Syte lesche?',
 'confirm-purge-bottom' => 'Läärt dr Cache vun ere Syte un macht, ass di nejscht Version aazeigt wird.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'In Ornig',
+'confirm-watch-top'      => 'Tue die Syten uf dyni Beobachtigslischte.',
+'confirm-unwatch-button' => 'In Ornig',
+'confirm-unwatch-top'    => 'Nim die Syte us dyre Beobachtungslischte furt.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorderi Syte',
@@ -3293,10 +3374,9 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Spezialsytene',
-'specialpages-note'              => '----
-* Reguläri Spezialsyte
+'specialpages-note'              => '* Reguläri Spezialsyte
 * <span class="mw-specialpagerestricted">Zuegriffsbschränkti Spezialsyte</span>
-* <span class="mw-specialpagecached">Cachegenerierti Spezialsyte</span>',
+* <span class="mw-specialpagecached">Gecachti Spezialsyte (dr Inhalt ist villicht veraltet.)</span>',
 'specialpages-group-maintenance' => 'Wartigslischte',
 'specialpages-group-other'       => 'Andri Spezialsyte',
 'specialpages-group-login'       => 'Aamälde',

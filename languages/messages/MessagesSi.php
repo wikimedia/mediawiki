@@ -2913,9 +2913,6 @@ $1 ගේ වාරණයට හේතුව මෙය වේ: "$2"',
 # Patrol log
 'patrol-log-page'      => 'පරික්ෂාකිරීම් සටහන',
 'patrol-log-header'    => 'මෙය පරික්‍ෂාකර බැලූ සංශෝධනයන්ගේ ලඝු-සටහනකි.',
-'patrol-log-line'      => '$2 හි $1 පරික්ෂා කර බැලූ බව $3 හි ලකුණු කෙරිණි',
-'patrol-log-auto'      => '(ස්වයංක්‍රීය)',
-'patrol-log-diff'      => 'r$1',
 'log-show-hide-patrol' => 'පරික්‍ෂාකිරීම් ලඝු-සටහන් $1',
 
 # Image deletion

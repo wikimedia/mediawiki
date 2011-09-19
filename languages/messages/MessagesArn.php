@@ -485,9 +485,6 @@ $messages = array(
 'others'    => 'fill',
 'siteusers' => '{{PLURAL:$2|Kellufe|Kellufe}} $1 {{SITENAME}}',
 
-# Patrol log
-'patrol-log-diff' => 'ng$1',
-
 # Browsing diffs
 'previousdiff' => '← Füta wirin',
 'nextdiff'     => 'We wirin →',

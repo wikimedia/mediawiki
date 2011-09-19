@@ -332,7 +332,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Send meg en e-post også ved mindre sideendringer',
 'tog-enotifrevealaddr'        => 'Vis min e-postadresse i utgående meldinger',
 'tog-shownumberswatching'     => 'Vis antall overvåkende brukere',
-'tog-oldsig'                  => 'Forhåndsvisning av nåværende signatur:',
+'tog-oldsig'                  => 'Nåværende signatur:',
 'tog-fancysig'                => 'Signatur som wikitekst uten automatisk lenke',
 'tog-externaleditor'          => 'Bruk ekstern behandler som standard (kun for viderekomne, krever spesielle innstillinger på din datamaskin. [http://www.mediawiki.org/wiki/Manual:External_editors Mer informasjon.])',
 'tog-externaldiff'            => 'Bruk ekstern differanse som standard (kun for viderekomne, krever spesielle innstillinger på din datamaskin. [http://www.mediawiki.org/wiki/Manual:External_editors Mer informasjon.])',
@@ -810,6 +810,7 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'passwordreset-disabled'       => 'Tilbakestilling av passord har blitt deaktivert på denne wikien.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Angi en av datadelene nedenfor}}',
 'passwordreset-username'       => 'Brukernavn:',
+'passwordreset-domain'         => 'Domene:',
 'passwordreset-email'          => 'E-postadresse:',
 'passwordreset-emailtitle'     => 'Kontodetaljer på {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Noen (sannsynligvis deg fra IP-adressen $1) ba om en påminnelse om dine
@@ -1399,6 +1400,8 @@ Dette kan ikke tilbakestilles.',
 'prefs-registration'            => 'Registreringstid:',
 'yourrealname'                  => 'Virkelig navn:',
 'yourlanguage'                  => 'Språk:',
+'yourvariant'                   => 'Språkvariant for innhold:',
+'prefs-help-variant'            => 'Din foretrukne variant eller ortografi for å vise innholdssider på denne wikien i.',
 'yournick'                      => 'Signatur:',
 'prefs-help-signature'          => 'Kommentarer på diskusjonssider bør alltid signeres med «<nowiki>~~~~</nowiki>», som vil bli konvertert til din signatur med tidspunkt.',
 'badsig'                        => 'Ugyldig råsignatur; sjekk HTML-elementer.',
@@ -1451,7 +1454,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'userrights-no-interwiki'        => 'Du har ikke tillatelse til å endre brukerrettigheter på andre wikier.',
 'userrights-nodatabase'          => 'Databasen $1 finnes ikke, eller er ikke lokal.',
 'userrights-nologin'             => 'Du må [[Special:UserLogin|logge inn]] med en administratorkonto for å endre brukerrettigheter.',
-'userrights-notallowed'          => 'Kontoen din har ikke tillatelse til å endre brukerrettigheter.',
+'userrights-notallowed'          => 'Kontoen din har ikke tillatelse til å legge til eller fjerne brukerrettigheter.',
 'userrights-changeable-col'      => 'Grupper du kan endre',
 'userrights-unchangeable-col'    => 'Grupper du ikke kan endre',
 'userrights-irreversible-marker' => '$1 *',
@@ -1861,7 +1864,7 @@ Når den filtreres av en bruker, vises bare de sist opplastede versjonene av fil
 'filehist-filesize'         => 'Filstørrelse',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Fil mangler',
-'imagelinks'                => 'Fillenker',
+'imagelinks'                => 'Filbruk',
 'linkstoimage'              => 'Følgende {{PLURAL:$1|side|$1 sider}} har lenker til denne filen:',
 'linkstoimage-more'         => 'Mer enn $1 {{PLURAL:$1|side|sider}} lenker til denne fila.
 Følgende liste viser {{PLURAL:$1|den første siden|de $1 første sidene}}.
@@ -2955,9 +2958,6 @@ Dette er sannsynligvis forårsaket av en lenke til et svartelistet eksternt nett
 # Patrol log
 'patrol-log-page'      => 'Godkjenningslogg',
 'patrol-log-header'    => 'Dette er en logg over patruljerte sideversjoner.',
-'patrol-log-line'      => 'merket $1 av $2 godkjent $3',
-'patrol-log-auto'      => '(automatisk)',
-'patrol-log-diff'      => 'versjon $1',
 'log-show-hide-patrol' => '$1 patruljeringslogg',
 
 # Image deletion
@@ -2988,7 +2988,7 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 'svg-long-desc'          => 'SVG-fil, standardoppløsning $1 × $2 piksler, filstørrelse: $3',
 'show-big-image'         => 'Full oppløsning',
 'show-big-image-preview' => 'Størrelse på denne forhåndsvisningen: $1.',
-'show-big-image-other'   => 'Andre oppløsninger: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Annen oppløsning|Andre oppløsninger}}: $1.',
 'show-big-image-size'    => '$1 × $2 piksler',
 'file-info-gif-looped'   => 'gjentas',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|ramme|rammer}}',
@@ -3236,9 +3236,9 @@ Andre vil skjules som standard.
 'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically
 
 Rotert 90° mot klokka og vridd vertikalt',
-'exif-orientation-6' => 'Rotert 90° med klokka',
+'exif-orientation-6' => 'Rotert 90° mot klokka',
 'exif-orientation-7' => 'Rotert 90° med klokka og vridd vertikalt',
-'exif-orientation-8' => 'Rotert 90° mot klokka',
+'exif-orientation-8' => 'Rotert 90° med klokka',
 
 'exif-planarconfiguration-1' => 'chunkformat',
 'exif-planarconfiguration-2' => 'planærformat',
@@ -3775,7 +3775,21 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'sqlite-no-fts'  => '$1 uten støtte for fulltekstsøk',
 
 # New logging system
-'revdelete-restricted'   => 'begrensninger gjelder også administratorer',
-'revdelete-unrestricted' => 'fjernet begrensninger for administratorer',
+'logentry-delete-delete'              => '$1 {{GENDER:$2|slettet}} siden $3',
+'logentry-delete-restore'             => '$1 {{GENDER:$2|gjenopprettet}} siden $3',
+'revdelete-content-hid'               => 'innhold skjult',
+'revdelete-summary-hid'               => 'redigeringsbeskrivelse skjult',
+'revdelete-uname-hid'                 => 'brukernavn skjult',
+'revdelete-content-unhid'             => 'innhold synlig',
+'revdelete-summary-unhid'             => 'redigeringsbeskrivelse synlig',
+'revdelete-uname-unhid'               => 'brukernavn synlig',
+'revdelete-restricted'                => 'begrensninger gjelder også administratorer',
+'revdelete-unrestricted'              => 'fjernet begrensninger for administratorer',
+'logentry-move-move'                  => '$1 {{GENDER:$2|flyttet}} siden $3 til $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|flyttet}} siden $3 til $4 uten å etterlate en omdirigering',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|flyttet}} siden $3 til $4 over en omdirigering',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttet}} siden $3 til $4 over en omdirigering uten å etterlate en omdirigering',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerte}} revisjon $4 av siden $3 som patruljert',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerte}} automatisk revisjon $4 av siden $3 som patruljert',
 
 );

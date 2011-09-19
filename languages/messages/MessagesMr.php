@@ -2722,9 +2722,6 @@ $1',
 
 # Patrol log
 'patrol-log-page' => 'टेहळणीतील नोंदी',
-'patrol-log-line' => '$2चे $1 $3 गस्त घातल्याची खूण केली',
-'patrol-log-auto' => '(स्वयंचलीत)',
-'patrol-log-diff' => 'आवर्तन $1',
 
 # Image deletion
 'deletedrevision'                 => 'जुनी आवृत्ती ($1) वगळली.',

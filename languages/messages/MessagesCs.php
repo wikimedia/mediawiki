@@ -1897,7 +1897,7 @@ Při filtrování podle uživatele se zobrazují jen soubory, u kterých tento u
 'filehist-filesize'         => 'Velikost souboru',
 'filehist-comment'          => 'Komentář',
 'filehist-missing'          => 'Soubor chybí',
-'imagelinks'                => 'Odkazy na soubor',
+'imagelinks'                => 'Využití souboru',
 'linkstoimage'              => 'Na soubor {{PLURAL:$1|odkazuje tato stránka|odkazují tyto $1 stránky|odkazuje těchto $1 stránek}}:',
 'linkstoimage-more'         => 'Na tento soubor {{PLURAL:$1|odkazuje více stránek|odkazují více než $1 stránky|odkazuje více než $1 stránek}}.
 Následující seznam zobrazuje pouze {{PLURAL:$1|tu první|první $1|prvních $1}}.
@@ -2983,9 +2983,6 @@ Uložte jej na svůj disk a nahrajte ho sem.',
 # Patrol log
 'patrol-log-page'      => 'Kniha prověřených editací',
 'patrol-log-header'    => 'Toto je kniha prověřených verzí.',
-'patrol-log-line'      => 'označuje $1 stránky $2 za prověřenou $3',
-'patrol-log-auto'      => '(automaticky)',
-'patrol-log-diff'      => 'revizi $1',
 'log-show-hide-patrol' => '$1 knihu záznamů patroly',
 
 # Image deletion

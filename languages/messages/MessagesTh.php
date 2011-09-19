@@ -2665,9 +2665,6 @@ $1',
 # Patrol log
 'patrol-log-page'      => 'บันทึกการตรวจสอบ',
 'patrol-log-header'    => 'หน้านี้คือบันทึกรุ่นการแก้ไขที่กำหนดว่าตรวจสอบแล้ว',
-'patrol-log-line'      => 'ทำเครื่องหมาย $1 ของ $2 ว่าถูกตรวจสอบ $3 แล้ว',
-'patrol-log-auto'      => '(อัตโนมัติ)',
-'patrol-log-diff'      => 'รุ่น $1',
 'log-show-hide-patrol' => '$1 บันทึกการตรวจตรา',
 
 # Image deletion

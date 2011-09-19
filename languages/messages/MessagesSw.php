@@ -1607,7 +1607,7 @@ Ukibofya kichwa cha safu mtindo wa kupanga orodha utabadilika.',
 'filehist-filesize'         => 'Ukubwa wa faili',
 'filehist-comment'          => 'Maelezo',
 'filehist-missing'          => 'Faili halipo',
-'imagelinks'                => 'Viungo vya mafaili',
+'imagelinks'                => 'Matumizi ya faili',
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu umeunganishwa|Kurasa hizi $1 zimeunganishwa}} na faili hili:',
 'linkstoimage-more'         => 'Zipo {{PLURAL:$1|kurasa|kurasa}} zaidi ya $1 zinazounga na faili hili.
 Orodha inayofuata inaonyesha {{PLURAL:$1|kiungo cha kwanza|viungo $1 vya kwanza}} tu vinavyoungana na faili hili.
@@ -2500,11 +2500,6 @@ Tafadhali jaribu tena.',
 'pageinfo-watchers'         => 'Idadi ya wanaofuatilia',
 'pageinfo-edits'            => 'Idadi ya haririo',
 
-# Patrol log
-'patrol-log-line' => 'imewekewa alama $1 ya $2 kufanyiwa doria $3',
-'patrol-log-auto' => '(kwa kujiendesha)',
-'patrol-log-diff' => 'pitio la $1',
-
 # Image deletion
 'deletedrevision'                 => 'Pitio la awali lililofutwa $1',
 'filedeleteerror-short'           => 'Hitilafu wakati wa kufuta faili: $1',
@@ -2529,7 +2524,7 @@ Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'svg-long-desc'          => 'faili la SVG, husemwa kuwa piseli $1 × $2, saizi ya faili: $3',
 'show-big-image'         => 'Ukubwa wa awali',
 'show-big-image-preview' => 'Ukubwa wa hakikisho: $1.',
-'show-big-image-other'   => 'Ukubwa zingine: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Ukubwa mwingine|Ukubwa zingine}}: $1.',
 'show-big-image-size'    => 'piseli $1 × $2',
 'file-info-png-repeat'   => 'inachezwa {{PLURAL:$1|mara}} $1',
 

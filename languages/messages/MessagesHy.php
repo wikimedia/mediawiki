@@ -2185,8 +2185,6 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Patrol log
 'patrol-log-page' => 'Պարեկման տեղեկամատյան',
-'patrol-log-line' => 'նշագրված է $1՝ $2-ից, պարեկվել է $3',
-'patrol-log-auto' => '(ավտոմատ)',
 
 # Image deletion
 'deletedrevision'                 => 'Ջնջված է հին տարբերակը $1',
