@@ -13,7 +13,7 @@
  */
 function wfProfileIn( $functionname ) {
 	global $wgProfiler;
-	if ( isset( $wgProfiler['class'] ) ) {
+	if ( $wgProfiler instanceof Profiler || isset( $wgProfiler['class'] ) ) {
 		Profiler::instance()->profileIn( $functionname );
 	}
 }
@@ -24,7 +24,7 @@ function wfProfileIn( $functionname ) {
  */
 function wfProfileOut( $functionname = 'missing' ) {
 	global $wgProfiler;
-	if ( isset( $wgProfiler['class'] ) ) {
+	if ( $wgProfiler instanceof Profiler || isset( $wgProfiler['class'] ) ) {
 		Profiler::instance()->profileOut( $functionname );
 	}
 }
