@@ -547,6 +547,7 @@ $wgAutoloadLocalClasses = array(
 	'LegacyLogFormatter' => 'includes/logging/LogFormatter.php',
 	'DeleteLogFormatter' => 'includes/logging/LogFormatter.php',
 	'MoveLogFormatter' => 'includes/logging/LogFormatter.php',
+	'PatrolLogFormatter' => 'includes/logging/LogFormatter.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',

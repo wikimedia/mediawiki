@@ -312,7 +312,7 @@ class ManualLogEntry extends LogEntryBase {
 	protected $performer; ///!< @var User
 	protected $target; ///!< @var Title
 	protected $timestamp; ///!< @var string
-	protected $comment; ///!< @var string
+	protected $comment = ''; ///!< @var string
 	protected $deleted; ///!< @var int
 
 	public function __construct( $type, $subtype ) {

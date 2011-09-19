@@ -3603,9 +3603,6 @@ This is probably caused by a link to a blacklisted external site.',
 # Patrol log
 'patrol-log-page'      => 'Patrol log',
 'patrol-log-header'    => 'This is a log of patrolled revisions.',
-'patrol-log-line'      => 'marked $1 of $2 patrolled $3',
-'patrol-log-auto'      => '(automatic)',
-'patrol-log-diff'      => 'revision $1',
 'log-show-hide-patrol' => '$1 patrol log',
 
 # Image deletion
@@ -4651,5 +4648,7 @@ This site is experiencing technical difficulties.',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moved}} page $3 to $4 without leaving a redirect',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|moved}} page $3 to $4 over redirect',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moved}} page $3 to $4 over a redirect without leaving a redirect',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marked}} revision $4 of page $3 patrolled',
+'logentry-patrol-patrol-auto'         => '$1 automatically {{GENDER:$2|marked}} revision $4 of page $3 patrolled',
 
 );

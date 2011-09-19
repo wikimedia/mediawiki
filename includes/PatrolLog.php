@@ -5,6 +5,7 @@
  * logs of patrol events
  *
  * @author Rob Church <robchur@gmail.com>
+ * @author Niklas Laxström
  */
 class PatrolLog {
 
@@ -17,61 +18,26 @@ class PatrolLog {
 	 * @return bool
 	 */
 	public static function record( $rc, $auto = false ) {
-		if( !( $rc instanceof RecentChange ) ) {
+		if ( !$rc instanceof RecentChange ) {
 			$rc = RecentChange::newFromId( $rc );
-			if( !is_object( $rc ) )
+			if ( !is_object( $rc ) ) {
 				return false;
+			}
 		}
+
 		$title = Title::makeTitleSafe( $rc->getAttribute( 'rc_namespace' ), $rc->getAttribute( 'rc_title' ) );
-		if( is_object( $title ) ) {
-			$params = self::buildParams( $rc, $auto );
-			$log = new LogPage( 'patrol', false, $auto ? "skipUDP" : "UDP" ); # False suppresses RC entries
-			$log->addEntry( 'patrol', $title, '', $params );
+		if( $title ) {
+			$entry = new ManualLogEntry( 'patrol', 'patrol' );
+			$entry->setTarget( $title );
+			$entry->setParameters( self::buildParams( $rc, $auto ) );
+			$entry->setPerformer( User::newFromName( $rc->getAttribute( 'rc_user_text' ) ) );
+			$logid = $entry->insert();
+			if ( !$auto ) {
+				$entry->publish( $logid, 'udp' );
+			}
 			return true;
 		}
 		return false;
-	}
-
-	/**
-	 * Generate the log action text corresponding to a patrol log item
-	 *
-	 * @param $title Title of the page that was patrolled
-	 * @param $params Array: log parameters (from logging.log_params)
-	 * @param $lang Language object to use, or false
-	 * @return String
-	 */
-	public static function makeActionText( $title, $params, $lang ) {
-		list( $cur, /* $prev */, $auto ) = $params;
-		if( is_object( $lang ) ) {
-			# Standard link to the page in question
-			$link = Linker::link( $title );
-			if( $title->exists() ) {
-				# Generate a diff link
-				$query = array(
-					'oldid' => $cur,
-					'diff' => 'prev'
-				);
-
-				$diff = Linker::link(
-					$title,
-					htmlspecialchars( wfMsg( 'patrol-log-diff', $lang->formatNum( $cur, true ) ) ),
-					array(),
-					$query,
-					array( 'known', 'noclasses' )
-				);
-			} else {
-				# Don't bother with a diff link, it's useless
-				$diff = htmlspecialchars( wfMsg( 'patrol-log-diff', $cur ) );
-			}
-			# Indicate whether or not the patrolling was automatic
-			$auto = $auto ? wfMsgHtml( 'patrol-log-auto' ) : '';
-			# Put it all together
-			return wfMsgHtml( 'patrol-log-line', $diff, $link, $auto );
-		} else {
-			$text = $title->getPrefixedText();
-			$diff = htmlspecialchars( wfMsgForContent( 'patrol-log-diff', $cur ) );
-			return wfMsgForContent( 'patrol-log-line', $diff, "[[$text]]", '' );
-		}
 	}
 
 	/**
@@ -83,9 +49,10 @@ class PatrolLog {
 	 */
 	private static function buildParams( $change, $auto ) {
 		return array(
-			$change->getAttribute( 'rc_this_oldid' ),
-			$change->getAttribute( 'rc_last_oldid' ),
-			(int)$auto
+			'4::curid' => $change->getAttribute( 'rc_this_oldid' ),
+			'5::previd' => $change->getAttribute( 'rc_last_oldid' ),
+			'6::auto' => (int)$auto
 		);
 	}
+
 }

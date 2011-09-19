@@ -2556,9 +2556,6 @@ $wgMessageStructure = array(
 	'patrol-log' => array(
 		'patrol-log-page',
 		'patrol-log-header',
-		'patrol-log-line',
-		'patrol-log-auto',
-		'patrol-log-diff',
 		'log-show-hide-patrol',
 	),
 	'imagedeletion' => array(
@@ -3515,6 +3512,8 @@ $wgMessageStructure = array(
 		'logentry-move-move-noredirect',
 		'logentry-move-move_redir',
 		'logentry-move-move_redir-noredirect',
+		'logentry-patrol-patrol',
+		'logentry-patrol-patrol-auto',
 	),
 );
 

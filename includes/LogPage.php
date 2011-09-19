@@ -225,11 +225,6 @@ class LogPage {
 
 		$key = "$type/$action";
 
-		# Defer patrol log to PatrolLog class
-		if( $key == 'patrol/patrol' ) {
-			return PatrolLog::makeActionText( $title, $params, $langObjOrNull );
-		}
-
 		if( isset( $wgLogActions[$key] ) ) {
 			if( is_null( $title ) ) {
 				$rv = wfMsgExt( $wgLogActions[$key], array( 'parsemag', 'escape', 'language' => $langObj ) );
