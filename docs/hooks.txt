@@ -1823,6 +1823,11 @@ Each key maps to an associative array with a 'msg' (message key) and a 'default'
 &$join_conds: join conditions for the tables
 &$fields: array of query fields
 
+'TestCanonicalRedirect': called when about to force a redirect to a canonical URL for a title when we have no other parameters on the URL. Gives a chance for extensions that alter page view behavior radically to abort that redirect or handle it manually.
+$request: WebRequest
+$title: Title of the currently found title obj
+$output: OutputPage object
+
 'TitleArrayFromResult': called when creating an TitleArray object from a
 database result
 &$titleArray: set this to an object to override the default object returned
