@@ -756,8 +756,8 @@ function wfDebugTimer() {
 	} else {
 		$prefix = sprintf( "%6.4f", microtime( true ) - $start );
 	}
-
-	return $prefix . '  ';
+	$mem = sprintf( "%5.1fM", ( memory_get_usage( true ) / (1024*1024) ) );
+	return "$prefix $mem  " ;
 }
 
 /**
