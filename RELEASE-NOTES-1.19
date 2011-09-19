@@ -117,7 +117,6 @@ changes to languages because of Bugzilla reports.
 
 * Uighur (Latin) (ug-latn) was incorrectly marked as right-to-left language.
 * (bug 30217) Make pt-br a fallback of pt
-* (bug 30846) New LanguageOs class
 
 === Other changes in 1.19 ===
 * jquery.mwPrototypes module was renamed to jquery.mwExtension.
