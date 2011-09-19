@@ -3148,8 +3148,10 @@ function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
  * @return String
  */
 function wfWikiID() {
-	global $wgDBprefix, $wgDBname;
-	if ( $wgDBprefix ) {
+	global $wgDBprefix, $wgDBname, $wgWikiID;
+	if ( $wgWikiID !== false ) {
+		return $wgWikiID;
+	} elseif ( $wgDBprefix ) {
 		return "$wgDBname-$wgDBprefix";
 	} else {
 		return $wgDBname;
