@@ -8,8 +8,9 @@ div#column-content div#content {
 	margin-top: 3em;
 	height: 1%;
 }
-
-.rtl div#column-content div#content { margin-right: 12.2em; margin-left: 0; }
+.rtl div#column-content div#content {
+	margin-right: 12.2em; margin-left: 0;
+}
 
 
 .rtl div#column-one {
