@@ -213,6 +213,10 @@ class LogEventsList {
 		return $this->out->getTitle();
 	}
 
+	public function getContext() {
+		return $this->out->getContext();
+	}
+
 	/**
 	 * @param $queryTypes Array
 	 * @return String: Formatted HTML
@@ -630,7 +634,6 @@ class LogEventsList {
 	public static function showLogExtract(
 		&$out, $types=array(), $page='', $user='', $param = array()
 	) {
-		global $wgUser, $wgOut;
 		$defaultParameters = array(
 			'lim' => 25,
 			'conds' => array(),
@@ -652,8 +655,15 @@ class LogEventsList {
 		if ( !is_array( $msgKey ) ) {
 			$msgKey = array( $msgKey );
 		}
+
+		if ( $out instanceof OutputPage ) {
+			$context = $out->getContext();
+		} else {
+			$context = RequestContext::getMain();
+		}
+
 		# Insert list of top 50 (or top $lim) items
-		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, $flags );
+		$loglist = new LogEventsList( $context->getSkin(), $context->getOutput(), $flags );
 		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
 		if ( isset( $param['offset'] ) ) { # Tell pager to ignore $wgRequest offset
 			$pager->setOffset( $param['offset'] );
@@ -769,7 +779,7 @@ class LogEventsList {
  * @ingroup Pager
  */
 class LogPager extends ReverseChronologicalPager {
-	private $types = array(), $user = '', $title = '', $pattern = '';
+	private $types = array(), $author = '', $title = '', $pattern = '';
 	private $typeCGI = '';
 	public $mLogEventsList;
 
@@ -778,7 +788,7 @@ class LogPager extends ReverseChronologicalPager {
 	 *
 	 * @param $list LogEventsList
 	 * @param $types String or Array: log types to show
-	 * @param $user String: the user who made the log entries
+	 * @param $author String: the user who made the log entries
 	 * @param $title String: the page title the log entries are for
 	 * @param $pattern String: do a prefix search rather than an exact title match
 	 * @param $conds Array: extra conditions for the query
@@ -786,15 +796,15 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param $month Integer: the month to start from
 	 * @param $tagFilter String: tag
 	 */
-	public function __construct( $list, $types = array(), $user = '', $title = '', $pattern = '',
+	public function __construct( $list, $types = array(), $author = '', $title = '', $pattern = '',
 		$conds = array(), $year = false, $month = false, $tagFilter = '' ) {
-		parent::__construct();
+		parent::__construct( $list->getContext() );
 		$this->mConds = $conds;
 
 		$this->mLogEventsList = $list;
 
 		$this->limitType( $types ); // also excludes hidden types
-		$this->limitUser( $user );
+		$this->limitAuthor( $author );
 		$this->limitTitle( $title, $pattern );
 		$this->getDateCond( $year, $month );
 		$this->mTagFilter = $tagFilter;
@@ -803,17 +813,10 @@ class LogPager extends ReverseChronologicalPager {
 	public function getDefaultQuery() {
 		$query = parent::getDefaultQuery();
 		$query['type'] = $this->typeCGI; // arrays won't work here
-		$query['user'] = $this->user;
+		$query['user'] = $this->author;
 		$query['month'] = $this->mMonth;
 		$query['year'] = $this->mYear;
 		return $query;
-	}
-
-	/**
-	 * @return Title
-	 */
-	function getTitle() {
-		return $this->mLogEventsList->getDisplayTitle();
 	}
 
 	// Call ONLY after calling $this->limitType() already!
@@ -874,7 +877,7 @@ class LogPager extends ReverseChronologicalPager {
 	 *
 	 * @param $name String: (In)valid user name
 	 */
-	private function limitUser( $name ) {
+	private function limitAuthor( $name ) {
 		if( $name == '' ) {
 			return false;
 		}
@@ -898,7 +901,7 @@ class LogPager extends ReverseChronologicalPager {
 				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::SUPPRESSED_USER) .
 					' != ' . LogPage::SUPPRESSED_USER;
 			}
-			$this->user = $usertitle->getText();
+			$this->author = $usertitle->getText();
 		}
 	}
 
@@ -982,7 +985,7 @@ class LogPager extends ReverseChronologicalPager {
 		# Avoid usage of the wrong index by limiting
 		# the choices of available indexes. This mainly
 		# avoids site-breaking filesorts.
-		} elseif( $this->title || $this->pattern || $this->user ) {
+		} elseif( $this->title || $this->pattern || $this->author ) {
 			$index['logging'] = array( 'page_time', 'user_time' );
 			if( count($this->types) == 1 ) {
 				$index['logging'][] = 'log_user_type_time';
@@ -1053,8 +1056,8 @@ class LogPager extends ReverseChronologicalPager {
 	/**
 	 * @return string
 	 */
-	public function getUser() {
-		return $this->user;
+	public function getAuthor() {
+		return $this->author;
 	}
 
 	/**

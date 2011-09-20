@@ -49,13 +49,13 @@ class DeletedContribsPager extends IndexPager {
 	}
 
 	function getQueryInfo() {
-		global $wgUser;
 		list( $index, $userCond ) = $this->getUserCond();
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
+		$user = $this->getUser();
 		// Paranoia: avoid brute force searches (bug 17792)
-		if( !$wgUser->isAllowed( 'deletedhistory' ) ) {
+		if( !$user->isAllowed( 'deletedhistory' ) ) {
 			$conds[] = $this->mDb->bitAnd('ar_deleted',Revision::DELETED_USER) . ' = 0';
-		} elseif( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+		} elseif( !$user->isAllowed( 'suppressrevision' ) ) {
 			$conds[] = $this->mDb->bitAnd('ar_deleted',Revision::SUPPRESSED_USER) .
 				' != ' . Revision::SUPPRESSED_USER;
 		}
@@ -92,12 +92,11 @@ class DeletedContribsPager extends IndexPager {
 	}
 
 	function getNavigationBar() {
-		global $wgLang;
-
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
-		$fmtLimit = $wgLang->formatNum( $this->mLimit );
+		$lang = $this->getLang();
+		$fmtLimit = $lang->formatNum( $this->mLimit );
 		$linkTexts = array(
 			'prev' => wfMsgExt( 'pager-newer-n', array( 'escape', 'parsemag' ), $fmtLimit ),
 			'next' => wfMsgExt( 'pager-older-n', array( 'escape', 'parsemag' ), $fmtLimit ),
@@ -107,9 +106,9 @@ class DeletedContribsPager extends IndexPager {
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
-		$limits = $wgLang->pipeList( $limitLinks );
+		$limits = $lang->pipeList( $limitLinks );
 
-		$this->mNavigationBar = "(" . $wgLang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) ) . ") " .
+		$this->mNavigationBar = "(" . $lang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) ) . ") " .
 			wfMsgExt( 'viewprevnext', array( 'parsemag', 'escape', 'replaceafter' ), $pagingLinks['prev'], $pagingLinks['next'], $limits );
 		return $this->mNavigationBar;
 	}
@@ -133,10 +132,7 @@ class DeletedContribsPager extends IndexPager {
 	 * @todo This would probably look a lot nicer in a table.
 	 */
 	function formatRow( $row ) {
-		global $wgUser, $wgLang;
 		wfProfileIn( __METHOD__ );
-
-		$sk = $this->getSkin();
 
 		$rev = new Revision( array(
 				'id'         => $row->ar_rev_id,
@@ -153,7 +149,7 @@ class DeletedContribsPager extends IndexPager {
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
 
 		$logs = SpecialPage::getTitleFor( 'Log' );
-		$dellog = $sk->linkKnown(
+		$dellog = Linker::linkKnown(
 			$logs,
 			$this->messages['deletionlog'],
 			array(),
@@ -163,13 +159,15 @@ class DeletedContribsPager extends IndexPager {
 			)
 		);
 
-		$reviewlink = $sk->linkKnown(
+		$reviewlink = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
 			$this->messages['undeleteviewlink']
 		);
 
-		if( $wgUser->isAllowed('deletedtext') ) {
-			$last = $sk->linkKnown(
+		$user = $this->getUser();
+
+		if( $user->isAllowed('deletedtext') ) {
+			$last = Linker::linkKnown(
 				$undelete,
 				$this->messages['diff'],
 				array(),
@@ -183,13 +181,13 @@ class DeletedContribsPager extends IndexPager {
 			$last = $this->messages['diff'];
 		}
 
-		$comment = $sk->revComment( $rev );
-		$date = htmlspecialchars( $wgLang->timeanddate( $rev->getTimestamp(), true ) );
+		$comment = Linker::revComment( $rev );
+		$date = htmlspecialchars( $this->getLang()->timeanddate( $rev->getTimestamp(), true ) );
 
-		if( !$wgUser->isAllowed('undelete') || !$rev->userCan(Revision::DELETED_TEXT) ) {
+		if( !$user->isAllowed('undelete') || !$rev->userCan(Revision::DELETED_TEXT) ) {
 			$link = $date; // unusable link
 		} else {
-			$link = $sk->linkKnown(
+			$link = Linker::linkKnown(
 				$undelete,
 				$date,
 				array(),
@@ -204,7 +202,7 @@ class DeletedContribsPager extends IndexPager {
 			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 
-		$pagelink = $sk->link( $page );
+		$pagelink = Linker::link( $page );
 
 		if( $rev->isMinor() ) {
 			$mflag = ChangesList::flag( 'minor' );
@@ -213,13 +211,13 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		// Revision delete link
-		$del = Linker::getRevDeleteLink( $wgUser, $rev, $page );
+		$del = Linker::getRevDeleteLink( $user, $rev, $page );
 		if ( $del ) $del .= ' ';
 
 		$tools = Html::rawElement(
 			'span',
 			array( 'class' => 'mw-deletedcontribs-tools' ),
-			wfMsg( 'parentheses', $wgLang->pipeList( array( $last, $dellog, $reviewlink ) ) )
+			wfMsg( 'parentheses', $this->getLang()->pipeList( array( $last, $dellog, $reviewlink ) ) )
 		);
 
 		$ret = "{$del}{$link} {$tools} . . {$mflag} {$pagelink} {$comment}";
@@ -259,68 +257,69 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @param	$par	String: (optional) user name of the user for which to show the contributions
 	 */
 	function execute( $par ) {
-		global $wgUser;
 		$this->setHeaders();
 
-		if ( !$this->userCanExecute( $wgUser ) ) {
+		$user = $this->getUser();
+
+		if ( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
 
-		if( $wgUser->isBlocked() ){
-			throw new UserBlockedError( $wgUser->getBlock() );
+		if( $user->isBlocked() ){
+			throw new UserBlockedError( $user->getBlock() );
 		}
 
-		global $wgOut, $wgRequest;
-
-		$wgOut->setPageTitle( wfMsgExt( 'deletedcontributions-title', array( 'parsemag' ) ) );
+		$request = $this->getRequest();
+		$out = $this->getOutput();
+		$out->setPageTitle( wfMsgExt( 'deletedcontributions-title', array( 'parsemag' ) ) );
 
 		$options = array();
 
-		if ( isset( $par ) ) {
+		if ( $par !== null ) {
 			$target = $par;
 		} else {
-			$target = $wgRequest->getVal( 'target' );
+			$target = $request->getVal( 'target' );
 		}
 
 		if ( !strlen( $target ) ) {
-			$wgOut->addHTML( $this->getForm( '' ) );
+			$out->addHTML( $this->getForm( '' ) );
 			return;
 		}
 
-		$options['limit'] = $wgRequest->getInt( 'limit', 50 );
+		$options['limit'] = $request->getInt( 'limit', 50 );
 		$options['target'] = $target;
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );
 		if ( !$nt ) {
-			$wgOut->addHTML( $this->getForm( '' ) );
+			$out->addHTML( $this->getForm( '' ) );
 			return;
 		}
 		$id = User::idFromName( $nt->getText() );
 
 		$target = $nt->getText();
-		$wgOut->setSubtitle( $this->getSubTitle( $nt, $id ) );
+		$out->setSubtitle( $this->getSubTitle( $nt, $id ) );
 
-		if ( ( $ns = $wgRequest->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
+		if ( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
 			$options['namespace'] = intval( $ns );
 		} else {
 			$options['namespace'] = '';
 		}
 
-		$wgOut->addHTML( $this->getForm( $options ) );
+		$out->addHTML( $this->getForm( $options ) );
 
 		$pager = new DeletedContribsPager( $target, $options['namespace'] );
 		if ( !$pager->getNumRows() ) {
-			$wgOut->addWikiMsg( 'nocontribs' );
+			$out->addWikiMsg( 'nocontribs' );
 			return;
 		}
 
 		# Show a message about slave lag, if applicable
 		$lag = wfGetLB()->safeGetLag( $pager->getDatabase() );
 		if( $lag > 0 )
-			$wgOut->showLagWarning( $lag );
+			$out->showLagWarning( $lag );
 
-		$wgOut->addHTML(
+		$out->addHTML(
 			'<p>' . $pager->getNavigationBar() . '</p>' .
 			$pager->getBody() .
 			'<p>' . $pager->getNavigationBar() . '</p>' );
@@ -333,7 +332,7 @@ class DeletedContributionsPage extends SpecialPage {
 				: 'sp-contributions-footer';
 
 			if( !wfMessage( $message )->isDisabled() ) {
-				$wgOut->wrapWikiMsg( "<div class='mw-contributions-footer'>\n$1\n</div>", array( $message, $target ) );
+				$out->wrapWikiMsg( "<div class='mw-contributions-footer'>\n$1\n</div>", array( $message, $target ) );
 			}
 		}
 	}
@@ -346,28 +345,24 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @todo FIXME: Almost the same as contributionsSub in SpecialContributions.php. Could be combined.
 	 */
 	function getSubTitle( $nt, $id ) {
-		global $wgLang, $wgUser, $wgOut;
-
-		$sk = $this->getSkin();
-
 		if ( $id === null ) {
 			$user = htmlspecialchars( $nt->getText() );
 		} else {
-			$user = $sk->link( $nt, htmlspecialchars( $nt->getText() ) );
+			$user = Linker::link( $nt, htmlspecialchars( $nt->getText() ) );
 		}
 		$userObj = User::newFromName( $nt->getText(), /* check for username validity not needed */ false );
 		$talk = $nt->getTalkPage();
 		if( $talk ) {
 			# Talk page link
-			$tools[] = $sk->link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
+			$tools[] = Linker::link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
 			if( ( $id !== null ) || ( $id === null && IP::isIPAddress( $nt->getText() ) ) ) {
-				if( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
+				if( $this->getUser()->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
 					if ( $userObj->isBlocked() ) {
-						$tools[] = $sk->linkKnown( # Change block link
+						$tools[] = Linker::linkKnown( # Change block link
 							SpecialPage::getTitleFor( 'Block', $nt->getDBkey() ),
 							wfMsgHtml( 'change-blocklink' )
 						);
-						$tools[] = $sk->linkKnown( # Unblock link
+						$tools[] = Linker::linkKnown( # Unblock link
 							SpecialPage::getTitleFor( 'BlockList' ),
 							wfMsgHtml( 'unblocklink' ),
 							array(),
@@ -378,14 +373,14 @@ class DeletedContributionsPage extends SpecialPage {
 						);
 					}
 					else { # User is not blocked
-						$tools[] = $sk->linkKnown( # Block link
+						$tools[] = Linker::linkKnown( # Block link
 							SpecialPage::getTitleFor( 'Block', $nt->getDBkey() ),
 							wfMsgHtml( 'blocklink' )
 						);
 					}
 				}
 				# Block log link
-				$tools[] = $sk->linkKnown(
+				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Log' ),
 					wfMsgHtml( 'sp-contributions-blocklog' ),
 					array(),
@@ -396,14 +391,14 @@ class DeletedContributionsPage extends SpecialPage {
 				);
 			}
 			# Other logs link
-			$tools[] = $sk->linkKnown(
+			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
 				wfMsgHtml( 'sp-contributions-logs' ),
 				array(),
 				array( 'user' => $nt->getText() )
 			);
 			# Link to contributions
-			$tools[] = $sk->linkKnown(
+			$tools[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Contributions', $nt->getDBkey() ),
 				wfMsgHtml( 'sp-deletedcontributions-contribs' )
 			);
@@ -411,7 +406,7 @@ class DeletedContributionsPage extends SpecialPage {
 			# Add a link to change user rights for privileged users
 			$userrightsPage = new UserrightsPage();
 			if( $id !== null && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
-				$tools[] = $sk->linkKnown(
+				$tools[] = Linker::linkKnown(
 					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
 					wfMsgHtml( 'sp-contributions-userrights' )
 				);
@@ -419,12 +414,13 @@ class DeletedContributionsPage extends SpecialPage {
 
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 
-			$links = $wgLang->pipeList( $tools );
+			$links = $this->getLang()->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
 			if ( $userObj->isBlocked() ) {
+				$out = $this->getOutput(); // LogEventsList::showLogExtract() wants the first parameter by ref
 				LogEventsList::showLogExtract(
-					$wgOut,
+					$out,
 					'block',
 					$nt->getPrefixedText(),
 					'',
@@ -435,7 +431,7 @@ class DeletedContributionsPage extends SpecialPage {
 							'sp-contributions-blocked-notice',
 							$nt->getText() # Support GENDER in 'sp-contributions-blocked-notice'
 						),
-						'offset' => '' # don't use $wgRequest parameter offset
+						'offset' => '' # don't use $this->getRequest() parameter offset
 					)
 				);
 			}
@@ -459,7 +455,7 @@ class DeletedContributionsPage extends SpecialPage {
 	function getForm( $options ) {
 		global $wgScript;
 
-		$options['title'] = SpecialPage::getTitleFor( 'DeletedContributions' )->getPrefixedText();
+		$options['title'] = $this->getTitle()->getPrefixedText();
 		if ( !isset( $options['target'] ) ) {
 			$options['target'] = '';
 		} else {

@@ -40,24 +40,24 @@ class SpecialBlockList extends SpecialPage {
 	 * @param $par String title fragment
 	 */
 	public function execute( $par ) {
-		global $wgOut, $wgRequest;
-
 		$this->setHeaders();
 		$this->outputHeader();
-		$wgOut->setPageTitle( wfMsg( 'ipblocklist' ) );
-		$wgOut->addModuleStyles( 'mediawiki.special' );
+		$out = $this->getOutput();
+		$out->setPageTitle( wfMsg( 'ipblocklist' ) );
+		$out->addModuleStyles( 'mediawiki.special' );
 
-		$par = $wgRequest->getVal( 'ip', $par );
-		$this->target = trim( $wgRequest->getVal( 'wpTarget', $par ) );
+		$request = $this->getRequest();
+		$par = $request->getVal( 'ip', $par );
+		$this->target = trim( $request->getVal( 'wpTarget', $par ) );
 
-		$this->options = $wgRequest->getArray( 'wpOptions', array() );
+		$this->options = $request->getArray( 'wpOptions', array() );
 
-		$action = $wgRequest->getText( 'action' );
+		$action = $request->getText( 'action' );
 
-		if( $action == 'unblock' || $action == 'submit' && $wgRequest->wasPosted() ) {
+		if( $action == 'unblock' || $action == 'submit' && $request->wasPosted() ) {
 			# B/C @since 1.18: Unblock interface is now at Special:Unblock
 			$title = SpecialPage::getTitleFor( 'Unblock', $this->target );
-			$wgOut->redirect( $title->getFullUrl() );
+			$out->redirect( $title->getFullUrl() );
 			return;
 		}
 
@@ -91,8 +91,6 @@ class SpecialBlockList extends SpecialPage {
 	}
 
 	function showList() {
-		global $wgOut, $wgUser;
-
 		# Purge expired entries on one in every 10 queries
 		if ( !mt_rand( 0, 10 ) ) {
 			Block::purgeExpired();
@@ -100,7 +98,7 @@ class SpecialBlockList extends SpecialPage {
 
 		$conds = array();
 		# Is the user allowed to see hidden blocks?
-		if ( !$wgUser->isAllowed( 'hideuser' ) ){
+		if ( !$this->getUser()->isAllowed( 'hideuser' ) ){
 			$conds['ipb_deleted'] = 0;
 		}
 
@@ -151,31 +149,33 @@ class SpecialBlockList extends SpecialPage {
 		$otherBlockLink = array();
 		wfRunHooks( 'OtherBlockLogLink', array( &$otherBlockLink, $this->target ) );
 
+		$out = $this->getOutput();
+
 		# Show additional header for the local block only when other blocks exists.
 		# Not necessary in a standard installation without such extensions enabled
 		if( count( $otherBlockLink ) ) {
-			$wgOut->addHTML(
+			$out->addHTML(
 				Html::rawElement( 'h2', array(), wfMsg( 'ipblocklist-localblock' ) ) . "\n"
 			);
 		}
 
 		$pager = new BlockListPager( $this, $conds );
 		if ( $pager->getNumRows() ) {
-			$wgOut->addHTML(
+			$out->addHTML(
 				$pager->getNavigationBar() .
 				$pager->getBody().
 				$pager->getNavigationBar()
 			);
 
 		} elseif ( $this->target ) {
-			$wgOut->addWikiMsg( 'ipblocklist-no-results' );
+			$out->addWikiMsg( 'ipblocklist-no-results' );
 
 		} else {
-			$wgOut->addWikiMsg( 'ipblocklist-empty' );
+			$out->addWikiMsg( 'ipblocklist-empty' );
 		}
 
 		if( count( $otherBlockLink ) ) {
-			$wgOut->addHTML(
+			$out->addHTML(
 				Html::rawElement(
 					'h2',
 					array(),
@@ -190,7 +190,7 @@ class SpecialBlockList extends SpecialPage {
 			foreach( $otherBlockLink as $link ) {
 				$list .= Html::rawElement( 'li', array(), $link ) . "\n";
 			}
-			$wgOut->addHTML( Html::rawElement( 'ul', array( 'class' => 'mw-ipblocklist-otherblocks' ), $list ) . "\n" );
+			$out->addHTML( Html::rawElement( 'ul', array( 'class' => 'mw-ipblocklist-otherblocks' ), $list ) . "\n" );
 		}
 	}
 }
@@ -203,7 +203,7 @@ class BlockListPager extends TablePager {
 		$this->page = $page;
 		$this->conds = $conds;
 		$this->mDefaultDirection = true;
-		parent::__construct();
+		parent::__construct( $page->getContext() );
 	}
 
 	function getFieldNames() {
@@ -225,11 +225,8 @@ class BlockListPager extends TablePager {
 	}
 
 	function formatValue( $name, $value ) {
-		global $wgLang, $wgUser;
-
-		static $sk, $msg;
-		if ( empty( $sk ) ) {
-			$sk = $this->getSkin();
+		static $msg = null;
+		if ( $msg === null ) {
 			$msg = array(
 				'anononlyblock',
 				'createaccountblock',
@@ -248,7 +245,7 @@ class BlockListPager extends TablePager {
 
 		switch( $name ) {
 			case 'ipb_timestamp':
-				$formatted = $wgLang->timeanddate( $value );
+				$formatted = $this->getLang()->timeanddate( $value );
 				break;
 
 			case 'ipb_target':
@@ -259,8 +256,8 @@ class BlockListPager extends TablePager {
 					switch( $type ){
 						case Block::TYPE_USER:
 						case Block::TYPE_IP:
-							$formatted = $sk->userLink( $target->getId(), $target );
-							$formatted .= $sk->userToolLinks(
+							$formatted = Linker::userLink( $target->getId(), $target );
+							$formatted .= Linker::userToolLinks(
 								$target->getId(),
 								$target,
 								false,
@@ -274,21 +271,21 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_expiry':
-				$formatted = $wgLang->formatExpiry( $value );
-				if( $wgUser->isAllowed( 'block' ) ){
+				$formatted = $this->getLang()->formatExpiry( $value );
+				if( $this->getUser()->isAllowed( 'block' ) ){
 					if( $row->ipb_auto ){
-						$links[] = $sk->linkKnown(
+						$links[] = Linker::linkKnown(
 							SpecialPage::getTitleFor( 'Unblock' ),
 							$msg['unblocklink'],
 							array(),
 							array( 'wpTarget' => "#{$row->ipb_id}" )
 						);
 					} else {
-						$links[] = $sk->linkKnown(
+						$links[] = Linker::linkKnown(
 							SpecialPage::getTitleFor( 'Unblock', $row->ipb_address ),
 							$msg['unblocklink']
 						);
-						$links[] = $sk->linkKnown(
+						$links[] = Linker::linkKnown(
 							SpecialPage::getTitleFor( 'Block', $row->ipb_address ),
 							$msg['change-blocklink']
 						);
@@ -296,7 +293,7 @@ class BlockListPager extends TablePager {
 					$formatted .= ' ' . Html::rawElement(
 						'span',
 						array( 'class' => 'mw-blocklist-actions' ),
-						wfMsg( 'parentheses', $wgLang->pipeList( $links ) )
+						wfMsg( 'parentheses', $this->getLang()->pipeList( $links ) )
 					);
 				}
 				break;
@@ -304,13 +301,13 @@ class BlockListPager extends TablePager {
 			case 'ipb_by':
 				$user = User::newFromId( $value );
 				if( $user instanceof User ){
-					$formatted = $sk->userLink( $user->getId(), $user->getName() );
-					$formatted .= $sk->userToolLinks( $user->getId(), $user->getName() );
+					$formatted = Linker::userLink( $user->getId(), $user->getName() );
+					$formatted .= Linker::userToolLinks( $user->getId(), $user->getName() );
 				}
 				break;
 
 			case 'ipb_reason':
-				$formatted = $sk->commentBlock( $value );
+				$formatted = Linker::commentBlock( $value );
 				break;
 
 			case 'ipb_params':
@@ -333,7 +330,7 @@ class BlockListPager extends TablePager {
 					$properties[] = $msg['blocklist-nousertalk'];
 				}
 
-				$formatted = $wgLang->commaList( $properties );
+				$formatted = $this->getLang()->commaList( $properties );
 				break;
 
 			default:
@@ -367,9 +364,8 @@ class BlockListPager extends TablePager {
 			'conds' => $this->conds,
 		);
 
-		global $wgUser;
 		# Is the user allowed to see hidden blocks?
-		if ( !$wgUser->isAllowed( 'hideuser' ) ){
+		if ( !$this->getUser()->isAllowed( 'hideuser' ) ){
 			$conds['ipb_deleted'] = 0;
 		}
 
@@ -390,9 +386,5 @@ class BlockListPager extends TablePager {
 
 	function isFieldSortable( $name ) {
 		return false;
-	}
-
-	function getTitle() {
-		return $this->page->getTitle();
 	}
 }
