@@ -239,42 +239,22 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$dbr = wfGetDB( DB_MASTER );
 
 		$res = $dbr->select(
-			array( 'watchlist', 'page' ),
-			array(
-				'wl_namespace',
-				'wl_title',
-				'page_id',
-				'page_len',
-				'page_is_redirect',
-				'page_latest'
-			),
+			array( 'watchlist' ),
+			array( 'wl_namespace',  'wl_title' ),
 			array( 'wl_user' => $this->getUser()->getId() ),
 			__METHOD__,
-			array( 'ORDER BY' => 'wl_namespace, wl_title' ),
-			array( 'page' => array(
-				'LEFT JOIN',
-				'wl_namespace = page_namespace AND wl_title = page_title'
-			) )
+			array( 'ORDER BY' => 'wl_namespace, wl_title' )
 		);
 
-		if( $res && $dbr->numRows( $res ) > 0 ) {
-			$cache = LinkCache::singleton();
-			foreach ( $res as $row ) {
-				$title = Title::makeTitleSafe( $row->wl_namespace, $row->wl_title );
-				if( $title instanceof Title ) {
-					// Update the link cache while we're at it
-					if( $row->page_id ) {
-						$cache->addGoodLinkObj( $row->page_id, $title, $row->page_len, $row->page_is_redirect, $row->page_latest );
-					} else {
-						$cache->addBadLinkObj( $title );
-					}
-					// Ignore non-talk
-					if( !$title->isTalkPage() ) {
-						$titles[$row->wl_namespace][$row->wl_title] = $row->page_is_redirect;
-					}
-				}
+		$lb = new LinkBatch();
+		foreach ( $res as $row ) {
+			$lb->add( $row->wl_namespace, $row->wl_title );
+			if ( !MWNamespace::isTalk( $row->wl_namespace ) ) {
+				$titles[$row->wl_namespace][$row->wl_title] = false;
 			}
 		}
+
+		$lb->execute();
 		return $titles;
 	}
 
@@ -404,9 +384,9 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				'section' => "ns$namespace",
 			);
 
-			foreach( $pages as $dbkey => $redirect ){
+			foreach( array_keys( $pages ) as $dbkey ){
 				$title = Title::makeTitleSafe( $namespace, $dbkey );
-				$text = $this->buildRemoveLine( $title, $redirect );
+				$text = $this->buildRemoveLine( $title );
 				$fields['TitlesNs'.$namespace]['options'][$text] = $title->getEscapedText();
 			}
 		}
@@ -424,12 +404,12 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * Build the label for a checkbox, with a link to the title, and various additional bits
 	 *
 	 * @param $title Title
-	 * @param $redirect bool
 	 * @return string
 	 */
-	private function buildRemoveLine( $title, $redirect ) {
+	private function buildRemoveLine( $title ) {
 		$link = Linker::link( $title );
-		if( $redirect ) {
+		if( $title->isRedirect() ) {
+			// Linker already makes class mw-redirect, so this is redundant
 			$link = '<span class="watchlistredir">' . $link . '</span>';
 		}
 		$tools[] = Linker::link( $title->getTalkPage(), wfMsgHtml( 'talkpagelinktext' ) );
@@ -448,7 +428,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 		}
 
-		wfRunHooks( 'WatchlistEditorBuildRemoveLine', array( &$tools, $title, $redirect, $this->getSkin() ) );
+		wfRunHooks( 'WatchlistEditorBuildRemoveLine', array( &$tools, $title, $title->isRedirect(), $this->getSkin() ) );
 
 		return $link . " (" . $this->getLang()->pipeList( $tools ) . ")";
 	}
