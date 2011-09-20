@@ -90,11 +90,10 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function doBeforeContent() {
-		global $wgContLang;
+		global $wgLang;
 		wfProfileIn( __METHOD__ );
 
 		$s = '';
-		$qb = $this->getSkin()->qbSetting();
 
 		$langlinks = $this->otherLanguages();
 		if ( $langlinks ) {
@@ -107,35 +106,26 @@ class LegacyTemplate extends BaseTemplate {
 		}
 
 		$s .= "\n<div id='content'>\n<div id='topbar'>\n" .
-		  "<table border='0' cellspacing='0' width='98%'>\n<tr>\n";
+		  "<table border='0' cellspacing='0' width='100%'>\n<tr>\n";
 
-		$shove = ( $qb != 0 );
-		$left = ( $qb == 1 || $qb == 3 );
-
-		if ( !$shove ) {
+		if ( $this->getSkin()->qbSetting() == 0 ) {
 			$s .= "<td class='top' align='left' valign='top' rowspan='{$rows}'>\n" .
-				$this->getSkin()->logoText() . '</td>';
-		} elseif ( $left ) {
-			$s .= $this->getQuickbarCompensator( $rows );
+				$this->getSkin()->logoText( $wgLang->alignStart() ) . '</td>';
 		}
 
-		$l = $wgContLang->alignStart();
+		$l = $wgLang->alignStart();
 		$s .= "<td {$borderhack} align='$l' valign='top'>\n";
 
 		$s .= $this->topLinks();
 		$s .= '<p class="subtitle">' . $this->pageTitleLinks() . "</p>\n";
 
-		$r = $wgContLang->alignEnd();
+		$r = $wgLang->alignEnd();
 		$s .= "</td>\n<td {$borderhack} valign='top' align='$r' nowrap='nowrap'>";
 		$s .= $this->nameAndLogin();
 		$s .= "\n<br />" . $this->searchForm() . '</td>';
 
 		if ( $langlinks ) {
 			$s .= "</tr>\n<tr>\n<td class='top' colspan=\"2\">$langlinks</td>\n";
-		}
-
-		if ( $shove && !$left ) { # Right
-			$s .= $this->getQuickbarCompensator( $rows );
 		}
 
 		$s .= "</tr>\n</table>\n</div>\n";
@@ -593,6 +583,9 @@ class LegacyTemplate extends BaseTemplate {
 		return $wgLang->pipeList( $s );
 	}
 
+	/**
+	 * @deprecated in 1.19
+	 */
 	function getQuickbarCompensator( $rows = 1 ) {
 		return "<td width='152' rowspan='{$rows}'>&#160;</td>";
 	}
