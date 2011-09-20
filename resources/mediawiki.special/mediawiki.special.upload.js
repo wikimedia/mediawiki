@@ -83,7 +83,7 @@ jQuery( function( $ ) {
 			}
 
 			img.onload = function() {
-				var width, height, x, y, dx, dy;
+				var width, height, x, y, dx, dy, logicalWidth, logicalHeight;
 				// Fit the image within the previewSizexpreviewSize box
 				if ( img.width > img.height ) {
 					width = previewSize;
@@ -103,19 +103,27 @@ jQuery( function( $ ) {
 					case 0:
 						x = dx;
 						y = dy;
+						logicalWidth = img.width;
+						logicalHeight = img.height;
 						break;
 					case 90:
 
 						x = dx;
 						y = dy - previewSize;
+						logicalWidth = img.height;
+						logicalHeight = img.width;
 						break;
 					case 180:
 						x = dx - previewSize;
 						y = dy - previewSize;
+						logicalWidth = img.width;
+						logicalHeight = img.height;
 						break;
 					case 270:
 						x = dx - previewSize;
 						y = dy;
+						logicalWidth = img.height;
+						logicalHeight = img.width;
 						break;
 				}
 
@@ -124,7 +132,7 @@ jQuery( function( $ ) {
 				ctx.drawImage( img, x, y, width, height );
 
 				// Image size
-				var info = mw.msg( 'widthheight', img.width, img.height ) +
+				var info = mw.msg( 'widthheight', logicalWidth, logicalHeight ) +
 					', ' + prettySize( file.size );
 				$( '#mw-upload-thumbnail .fileinfo' ).text( info );
 			};
