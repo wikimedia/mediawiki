@@ -2918,7 +2918,7 @@ class Title {
 			foreach ( $res as $row ) {
 				$titleObj = Title::makeTitle( $row->page_namespace, $row->page_title );
 				if ( $titleObj ) {
-					$linkCache->addGoodLinkObj( $row->page_id, $titleObj, $row->page_len, $row->page_is_redirect, $row->page_latest );
+					$linkCache->addGoodLinkObjFromRow( $titleObj, $row );
 					$retVal[] = $titleObj;
 				}
 			}
