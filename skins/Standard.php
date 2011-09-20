@@ -31,9 +31,11 @@ class SkinStandard extends SkinLegacy {
 		if ( 2 == $qb ) { # Right
 			$rules[] = "/* @noflip */#quickbar { position: absolute; top: 4px; right: 4px; border-left: 2px solid #000000; }";
 			$rules[] = "/* @noflip */#article, #mw-data-after-content { margin-left: 4px; margin-right: 152px; }";
+			$rules[] = "/* @noflip */#topbar, #footer { margin-right: 152px; }";
 		} elseif ( 1 == $qb || 3 == $qb ) {
 			$rules[] = "/* @noflip */#quickbar { position: absolute; top: 4px; left: 4px; border-right: 1px solid gray; }";
 			$rules[] = "/* @noflip */#article, #mw-data-after-content { margin-left: 152px; margin-right: 4px; }";
+			$rules[] = "/* @noflip */#topbar, #footer { margin-left: 152px; }";
 			if( 3 == $qb ) {
 				$rules[] = "/* @noflip */#quickbar { position: fixed; padding: 4px; }";
 			}
@@ -41,6 +43,7 @@ class SkinStandard extends SkinLegacy {
 			$rules[] = "/* @noflip */#quickbar { position: fixed; right: 0px; top: 0px; padding: 4px;}";
 			$rules[] = "/* @noflip */#quickbar { border-right: 1px solid gray; }";
 			$rules[] = "/* @noflip */#article, #mw-data-after-content { margin-right: 152px; margin-left: 4px; }";
+			$rules[] = "/* @noflip */#topbar, #footer { margin-right: 152px; }";
 		}
  		$style = implode( "\n", $rules );
 		$out->addInlineStyle( $style, 'flip' );
@@ -54,7 +57,6 @@ class StandardTemplate extends LegacyTemplate {
 	 * @return string
 	 */
 	function doAfterContent() {
-		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__ . '-1' );
 
@@ -64,17 +66,7 @@ class StandardTemplate extends LegacyTemplate {
 
 		wfProfileOut( __METHOD__ . '-1' );
 		wfProfileIn( __METHOD__ . '-2' );
-
-		$qb = $this->getSkin()->qbSetting();
-		$shove = ( $qb != 0 );
-		$left = ( $qb == 1 || $qb == 3 );
-
-		if ( $shove && $left ) { # Left
-			$s .= $this->getQuickbarCompensator();
-		}
-		wfProfileOut( __METHOD__ . '-2' );
-		wfProfileIn( __METHOD__ . '-3' );
-		$l = $wgContLang->alignStart();
+		$l = $this->getSkin()->getLang()->alignStart();
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
 		$s .= $this->bottomLinks();
@@ -86,17 +78,14 @@ class StandardTemplate extends LegacyTemplate {
 			. '<br /><span id="pagestats">' . $this->pageStats() . '</span>';
 
 		$s .= '</td>';
-		if ( $shove && !$left ) { # Right
-			$s .= $this->getQuickbarCompensator();
-		}
 		$s .= "</tr></table>\n</div>\n</div>\n";
 
-		wfProfileOut( __METHOD__ . '-3' );
-		wfProfileIn( __METHOD__ . '-4' );
-		if ( 0 != $qb ) {
+		wfProfileOut( __METHOD__ . '-2' );
+		wfProfileIn( __METHOD__ . '-3' );
+		if ( $this->getSkin()->qbSetting() != 0 ) {
 			$s .= $this->quickBar();
 		}
-		wfProfileOut( __METHOD__ . '-4' );
+		wfProfileOut( __METHOD__ . '-3' );
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}

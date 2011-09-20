@@ -32,19 +32,23 @@ class SkinCologneBlue extends SkinLegacy {
 		if ( 2 == $qb ) { # Right
 			$rules[] = "/* @noflip */#quickbar { position: absolute; right: 4px; }";
 			$rules[] = "/* @noflip */#article { margin-left: 4px; margin-right: 148px; }";
+			$rules[] = "/* @noflip */#topbar, #footer { margin-right: 152px; }";
 		} elseif ( 1 == $qb ) {
 			$rules[] = "/* @noflip */#quickbar { position: absolute; left: 4px; }";
 			$rules[] = "/* @noflip */#article { margin-left: 148px; margin-right: 4px; }";
+			$rules[] = "/* @noflip */#topbar, #footer { margin-left: 152px; }";
 		} elseif ( 3 == $qb ) { # Floating left
 			$rules[] = "/* @noflip */#quickbar { position:absolute; left:4px }";
 			$rules[] = "/* @noflip */#topbar { margin-left: 148px }";
 			$rules[] = "/* @noflip */#article { margin-left:148px; margin-right: 4px; }";
 			$rules[] = "/* @noflip */body>#quickbar { position:fixed; left:4px; top:4px; overflow:auto; bottom:4px;}"; # Hides from IE
+			$rules[] = "/* @noflip */#topbar, #footer { margin-left: 152px; }";
 		} elseif ( 4 == $qb ) { # Floating right
 			$rules[] = "/* @noflip */#quickbar { position: fixed; right: 4px; }";
 			$rules[] = "/* @noflip */#topbar { margin-right: 148px }";
 			$rules[] = "/* @noflip */#article { margin-right: 148px; margin-left: 4px; }";
 			$rules[] = "/* @noflip */body>#quickbar { position: fixed; right: 4px; top: 4px; overflow: auto; bottom:4px;}"; # Hides from IE
+			$rules[] = "/* @noflip */#topbar, #footer { margin-left: 152px; }";
 		}
 		$style = implode( "\n", $rules );
 		$out->addInlineStyle( $style, 'flip' );
@@ -105,10 +109,6 @@ class CologneBlueTemplate extends LegacyTemplate {
 		$s .= "\n<div id='footer'>";
 		$s .= '<table width="98%" border="0" cellspacing="0"><tr>';
 
-		$qb = $this->getSkin()->qbSetting();
-		if ( 1 == $qb || 3 == $qb ) { # Left
-			$s .= $this->getQuickbarCompensator();
-		}
 		$s .= '<td class="bottom">';
 
 		$s .= $this->bottomLinks();
@@ -127,12 +127,9 @@ class CologneBlueTemplate extends LegacyTemplate {
 		$s .= "\n<br />" . $this->pageStats();
 
 		$s .= '</td>';
-		if ( 2 == $qb ) { # Right
-			$s .= $this->getQuickbarCompensator();
-		}
 		$s .= "</tr></table>\n</div>\n</div>\n";
 
-		if ( 0 != $qb ) {
+		if ( $this->getSkin()->qbSetting() != 0 ) {
 			$s .= $this->quickBar();
 		}
 		return $s;
