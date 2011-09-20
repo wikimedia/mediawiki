@@ -26,32 +26,9 @@ class ExifRotationTest extends MediaWikiTestCase {
 	 * @dataProvider providerFiles
 	 */
 	function testMetadata( $name, $type, $info ) {
-		# Force client side resizing
-		$params = array( 'width' => 10000, 'height' => 10000 );
 		$file = UnregisteredLocalFile::newFromPath( $this->filePath . $name, $type );
-		
-		# Normalize parameters
-		$this->assertTrue( $this->handler->normaliseParams( $file, $params ) );
-		$rotation = $this->handler->getRotation( $file );
-		
-		# Check if pre-rotation dimensions are still good
-		list( $width, $height ) = $this->handler->extractPreRotationDimensions( $params, $rotation );
-		$this->assertEquals( $file->getWidth(), $width, 
-			"$name: pre-rotation width check, $rotation:$width" );
-		$this->assertEquals( $file->getHeight(), $height, 
-			"$name: pre-rotation height check, $rotation" );
-		
-		# Any further test require a scaler that can rotate
-		if ( !BitmapHandler::canRotate() ) {
-			$this->markTestSkipped( 'Scaler does not support rotation' );
-			return;
-		}
-		
-		# Check post-rotation width
-		$this->assertEquals( $params['physicalWidth'], $info['width'], 
-			"$name: post-rotation width check" );
-		$this->assertEquals( $params['physicalHeight'], $info['height'], 
-			"$name: post-rotation height check" );
+		$this->assertEquals( $file->getWidth(), $info['width'], "$name: width check" );
+		$this->assertEquals( $file->getHeight(), $info['height'], "$name: height check" );
 	}
 
 	function providerFiles() {
