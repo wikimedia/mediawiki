@@ -114,15 +114,9 @@ class LinkCache {
 	 */
 	public function clearLink( $title ) {
 		$dbkey = $title->getPrefixedDbKey();
-		if( isset($this->mBadLinks[$dbkey]) ) {
-			unset($this->mBadLinks[$dbkey]);
-		}
-		if( isset($this->mGoodLinks[$dbkey]) ) {
-			unset($this->mGoodLinks[$dbkey]);
-		}
-		if( isset($this->mGoodLinkFields[$dbkey]) ) {
-			unset($this->mGoodLinkFields[$dbkey]);
-		}
+		unset( $this->mBadLinks[$dbkey] );
+		unset( $this->mGoodLinks[$dbkey] );
+		unset( $this->mGoodLinkFields[$dbkey] );
 	}
 
 	public function getGoodLinks() { return $this->mGoodLinks; }
