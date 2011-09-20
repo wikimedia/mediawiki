@@ -161,7 +161,6 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			// 1.17
 			array( 'addTable', 'iwlinks',                           'patch-iwlinks.sql' ),
-			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
 			array( 'addIndex', 'iwlinks', 'iwl_prefix_title_from',  'patch-rename-iwl_prefix.sql' ),
 			array( 'addField', 'updatelog',     'ul_value',         'patch-ul_value.sql' ),
 			array( 'addField', 'interwiki',     'iw_api',           'patch-iw_api_and_wikiid.sql' ),
@@ -181,6 +180,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'user',          'user_email',       'patch-user_email_index.sql' ),
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
 			array( 'addTable', 'uploadstash',                       'patch-uploadstash.sql' ),
+			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
 
 			// 1.19
 			array( 'addTable', 'config',                            'patch-config.sql' ),
