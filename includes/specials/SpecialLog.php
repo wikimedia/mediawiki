@@ -35,8 +35,6 @@ class SpecialLog extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		global $wgRequest;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -53,7 +51,7 @@ class SpecialLog extends SpecialPage {
 		$opts->add( 'offender', '' );
 
 		// Set values
-		$opts->fetchValuesFromRequest( $wgRequest );
+		$opts->fetchValuesFromRequest( $this->getRequest() );
 		if ( $par ) {
 			$this->parseParams( $opts, (string)$par );
 		}
@@ -99,10 +97,8 @@ class SpecialLog extends SpecialPage {
 	}
 
 	private function show( FormOptions $opts, array $extraConds ) {
-		global $wgOut;
-
 		# Create a LogPager item to get the results and a LogEventsList item to format them...
-		$loglist = new LogEventsList( $this->getSkin(), $wgOut, 0 );
+		$loglist = new LogEventsList( $this->getSkin(), $this->getOutput(), 0 );
 		$pager = new LogPager( $loglist, $opts->getValue( 'type' ), $opts->getValue( 'user' ),
 			$opts->getValue( 'page' ), $opts->getValue( 'pattern' ), $extraConds, $opts->getValue( 'year' ),
 			$opts->getValue( 'month' ), $opts->getValue( 'tagfilter' ) );
@@ -110,18 +106,18 @@ class SpecialLog extends SpecialPage {
 		$this->addHeader( $opts->getValue( 'type' ) );
 
 		# Set relevant user
-		if ( $pager->getUser() ) {
-			$this->getSkin()->setRelevantUser( User::newFromName( $pager->getUser() ) );
+		if ( $pager->getAuthor() ) {
+			$this->getSkin()->setRelevantUser( User::newFromName( $pager->getAuthor() ) );
 		}
 
 		# Show form options
-		$loglist->showOptions( $pager->getType(), $pager->getUser(), $pager->getPage(), $pager->getPattern(),
+		$loglist->showOptions( $pager->getType(), $pager->getAuthor(), $pager->getPage(), $pager->getPattern(),
 			$pager->getYear(), $pager->getMonth(), $pager->getFilterParams(), $opts->getValue( 'tagfilter' ) );
 
 		# Insert list
 		$logBody = $pager->getBody();
 		if ( $logBody ) {
-			$wgOut->addHTML(
+			$this->getOutput()->addHTML(
 				$pager->getNavigationBar() .
 				$loglist->beginLogEventsList() .
 				$logBody .
@@ -129,7 +125,7 @@ class SpecialLog extends SpecialPage {
 				$pager->getNavigationBar()
 			);
 		} else {
-			$wgOut->addWikiMsg( 'logempty' );
+			$this->getOutput()->addWikiMsg( 'logempty' );
 		}
 	}
 

@@ -103,14 +103,14 @@ class AllmessagesTablePager extends TablePager {
 	public $custom;
 
 	function __construct( $page, $conds, $langObj = null ) {
-		parent::__construct();
+		parent::__construct( $page->getContext() );
 		$this->mIndexField = 'am_title';
 		$this->mPage = $page;
 		$this->mConds = $conds;
 		$this->mDefaultDirection = true; // always sort ascending
 		$this->mLimitsShown = array( 20, 50, 100, 250, 500, 5000 );
 
-		global $wgLang, $wgContLang, $wgRequest;
+		global $wgContLang;
 
 		$this->talk = htmlspecialchars( wfMsg( 'talkpagelinktext' ) );
 
@@ -118,14 +118,16 @@ class AllmessagesTablePager extends TablePager {
 		$this->langcode = $this->lang->getCode();
 		$this->foreign  = $this->langcode != $wgContLang->getCode();
 
-		if( $wgRequest->getVal( 'filter', 'all' ) === 'all' ){
+		$request = $this->getRequest();
+
+		if( $request->getVal( 'filter', 'all' ) === 'all' ){
 			$this->custom = null; // So won't match in either case
 		} else {
-			$this->custom = ($wgRequest->getVal( 'filter' ) == 'unmodified');
+			$this->custom = ($request->getVal( 'filter' ) == 'unmodified');
 		}
 
-		$prefix = $wgLang->ucfirst( $wgRequest->getVal( 'prefix', '' ) );
-		$prefix = $prefix != '' ? Title::makeTitleSafe( NS_MEDIAWIKI, $wgRequest->getVal( 'prefix', null ) ) : null;
+		$prefix = $this->getLang()->ucfirst( $request->getVal( 'prefix', '' ) );
+		$prefix = $prefix != '' ? Title::makeTitleSafe( NS_MEDIAWIKI, $request->getVal( 'prefix', null ) ) : null;
 		if( $prefix !== null ){
 			$this->displayPrefix = $prefix->getDBkey();
 			$this->prefix = '/^' . preg_quote( $this->displayPrefix ) . '/i';
@@ -337,7 +339,6 @@ class AllmessagesTablePager extends TablePager {
 	}
 
 	function formatValue( $field, $value ){
-		global $wgLang;
 		switch( $field ){
 
 			case 'am_title' :
@@ -346,11 +347,11 @@ class AllmessagesTablePager extends TablePager {
 				$talk  = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
 
 				if( $this->mCurrentRow->am_customised ){
-					$title = Linker::linkKnown( $title, $wgLang->lcfirst( $value ) );
+					$title = Linker::linkKnown( $title, $this->getLang()->lcfirst( $value ) );
 				} else {
 					$title = Linker::link(
 						$title,
-						$wgLang->lcfirst( $value ),
+						$this->getLang()->lcfirst( $value ),
 						array(),
 						array(),
 						array( 'broken' )
@@ -395,12 +396,11 @@ class AllmessagesTablePager extends TablePager {
 
 	function getRowAttrs( $row, $isSecond = false ){
 		$arr = array();
-		global $wgLang;
 		if( $row->am_customised ){
 			$arr['class'] = 'allmessages-customised';
 		}
 		if( !$isSecond ){
-			$arr['id'] = Sanitizer::escapeId( 'msg_' . $wgLang->lcfirst( $row->am_title ) );
+			$arr['id'] = Sanitizer::escapeId( 'msg_' . $this->getLang()->lcfirst( $row->am_title ) );
 		}
 		return $arr;
 	}

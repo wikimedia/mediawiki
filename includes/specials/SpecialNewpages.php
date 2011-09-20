@@ -194,7 +194,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$self = $this->getTitle();
 		foreach ( $filters as $key => $msg ) {
 			$onoff = 1 - $this->opts->getValue( $key );
-			$link = $this->getSkin()->link( $self, $showhide[$onoff], array(),
+			$link = Linker::link( $self, $showhide[$onoff], array(),
 					array( $key => $onoff ) + $changed
 			);
 			$links[$key] = wfMsgHtml( $msg, $link );
@@ -315,14 +315,14 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$query['rcid'] = $result->rc_id;
 		}
 
-		$plink = $this->getSkin()->linkKnown(
+		$plink = Linker::linkKnown(
 			$title,
 			null,
 			array( 'class' => 'mw-newpages-pagename' ),
 			$query,
 			array( 'known' ) // Set explicitly to avoid the default of 'known','noclasses'. This breaks the colouration for stubs
 		);
-		$histLink = $this->getSkin()->linkKnown(
+		$histLink = Linker::linkKnown(
 			$title,
 			wfMsgHtml( 'hist' ),
 			array(),
@@ -335,8 +335,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 				']'
 		);
 
-		$ulink = $this->getSkin()->revUserTools( $rev );
-		$comment = $this->getSkin()->revComment( $rev );
+		$ulink = Linker::revUserTools( $rev );
+		$comment = Linker::revComment( $rev );
 
 		if ( $this->patrollable( $result ) ) {
 			$classes[] = 'not-patrolled';
@@ -461,31 +461,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 	protected $mForm;
 
 	function __construct( $form, FormOptions $opts ) {
-		parent::__construct();
+		parent::__construct( $form->getContext() );
 		$this->mForm = $form;
 		$this->opts = $opts;
-	}
-
-	/**
-	 * @return Title
-	 */
-	function getTitle() {
-		static $title = null;
-		if ( $title === null ) {
-			$title = $this->mForm->getTitle();
-		}
-		return $title;
-	}
-
-	/**
-	 * @return User
-	 */
-	function getUser() {
-		static $user = null;
-		if ( $user === null ) {
-			$user = $this->mForm->getUser();
-		}
-		return $user;
 	}
 
 	function getQueryInfo() {

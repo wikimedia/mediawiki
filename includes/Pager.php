@@ -57,7 +57,7 @@ interface Pager {
  *
  * @ingroup Pager
  */
-abstract class IndexPager implements Pager {
+abstract class IndexPager extends ContextSource implements Pager {
 	public $mRequest;
 	public $mLimitsShown = array( 20, 50, 100, 250, 500 );
 	public $mDefaultLimit = 50;
@@ -103,9 +103,12 @@ abstract class IndexPager implements Pager {
 	 */
 	public $mResult;
 
-	public function __construct() {
-		global $wgRequest, $wgUser;
-		$this->mRequest = $wgRequest;
+	public function __construct( RequestContext $context = null ) {
+		if ( $context ) {
+			$this->setContext( $context );
+		}
+
+		$this->mRequest = $this->getRequest();
 
 		# NB: the offset is quoted, not validated. It is treated as an
 		# arbitrary string to support the widest variety of index types. Be
@@ -113,7 +116,7 @@ abstract class IndexPager implements Pager {
 		$this->mOffset = $this->mRequest->getText( 'offset' );
 
 		# Use consistent behavior for the limit options
-		$this->mDefaultLimit = intval( $wgUser->getOption( 'rclimit' ) );
+		$this->mDefaultLimit = intval( $this->getUser()->getOption( 'rclimit' ) );
 		list( $this->mLimit, /* $offset */ ) = $this->mRequest->getLimitOffset();
 
 		$this->mIsBackwards = ( $this->mRequest->getVal( 'dir' ) == 'prev' );
@@ -186,13 +189,13 @@ abstract class IndexPager implements Pager {
 	}
 
 	/**
-	 * Set the offset from an other source than $wgRequest
+	 * Set the offset from an other source than the request
 	 */
 	function setOffset( $offset ) {
 		$this->mOffset = $offset;
 	}
 	/**
-	 * Set the limit from an other source than $wgRequest
+	 * Set the limit from an other source than the request
 	 */
 	function setLimit( $limit ) {
 		$this->mLimit = $limit;
@@ -366,12 +369,11 @@ abstract class IndexPager implements Pager {
 		if( $type ) {
 			$attrs['class'] = "mw-{$type}link";
 		}
-		return $this->getSkin()->link(
+		return Linker::linkKnown(
 			$this->getTitle(),
 			$text,
 			$attrs,
-			$query + $this->getDefaultQuery(),
-			array( 'noclasses', 'known' )
+			$query + $this->getDefaultQuery()
 		);
 	}
 
@@ -405,29 +407,6 @@ abstract class IndexPager implements Pager {
 	}
 
 	/**
-	 * Title used for self-links. Override this if you want to be able to
-	 * use a title other than $wgTitle
-	 *
-	 * @return Title object
-	 */
-	function getTitle() {
-		return $GLOBALS['wgTitle'];
-	}
-
-	/**
-	 * Get the current skin. This can be overridden if necessary.
-	 *
-	 * @return Skin object
-	 */
-	function getSkin() {
-		if ( !isset( $this->mSkin ) ) {
-			global $wgUser;
-			$this->mSkin = $wgUser->getSkin();
-		}
-		return $this->mSkin;
-	}
-
-	/**
 	 * Get an array of query parameters that should be put into self-links.
 	 * By default, all parameters passed in the URL are used, except for a
 	 * short blacklist.
@@ -435,10 +414,8 @@ abstract class IndexPager implements Pager {
 	 * @return Associative array
 	 */
 	function getDefaultQuery() {
-		global $wgRequest;
-
 		if ( !isset( $this->mDefaultQuery ) ) {
-			$this->mDefaultQuery = $wgRequest->getQueryValues();
+			$this->mDefaultQuery = $this->getRequest()->getQueryValues();
 			unset( $this->mDefaultQuery['title'] );
 			unset( $this->mDefaultQuery['dir'] );
 			unset( $this->mDefaultQuery['offset'] );
@@ -542,7 +519,6 @@ abstract class IndexPager implements Pager {
 	}
 
 	function getLimitLinks() {
-		global $wgLang;
 		$links = array();
 		if ( $this->mIsBackwards ) {
 			$offset = $this->mPastTheEndIndex;
@@ -551,7 +527,7 @@ abstract class IndexPager implements Pager {
 		}
 		foreach ( $this->mLimitsShown as $limit ) {
 			$links[] = $this->makeLink(
-				$wgLang->formatNum( $limit ),
+				$this->getLang()->formatNum( $limit ),
 				array( 'offset' => $offset, 'limit' => $limit ),
 				'num'
 			);
@@ -648,25 +624,25 @@ abstract class AlphabeticPager extends IndexPager {
 	 * didn't want to do class magic as may be still revamped
 	 */
 	function getNavigationBar() {
-		global $wgLang;
-
 		if ( !$this->isNavigationBarShown() ) return '';
 
 		if( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
 
+		$lang = $this->getLang();
+
 		$opts = array( 'parsemag', 'escapenoentities' );
 		$linkTexts = array(
 			'prev' => wfMsgExt(
 				'prevn',
 				$opts,
-				$wgLang->formatNum( $this->mLimit )
+				$lang->formatNum( $this->mLimit )
 			),
 			'next' => wfMsgExt(
 				'nextn',
 				$opts,
-				$wgLang->formatNum($this->mLimit )
+				$lang->formatNum($this->mLimit )
 			),
 			'first' => wfMsgExt( 'page_first', $opts ),
 			'last' => wfMsgExt( 'page_last', $opts )
@@ -674,10 +650,10 @@ abstract class AlphabeticPager extends IndexPager {
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
-		$limits = $wgLang->pipeList( $limitLinks );
+		$limits = $lang->pipeList( $limitLinks );
 
 		$this->mNavigationBar =
-			"(" . $wgLang->pipeList(
+			"(" . $lang->pipeList(
 				array( $pagingLinks['first'],
 				$pagingLinks['last'] )
 			) . ") " .
@@ -738,13 +714,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 	public $mYear;
 	public $mMonth;
 
-	function __construct() {
-		parent::__construct();
-	}
-
 	function getNavigationBar() {
-		global $wgLang;
-
 		if ( !$this->isNavigationBarShown() ) {
 			return '';
 		}
@@ -752,7 +722,8 @@ abstract class ReverseChronologicalPager extends IndexPager {
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
-		$nicenumber = $wgLang->formatNum( $this->mLimit );
+
+		$nicenumber = $this->getLang()->formatNum( $this->mLimit );
 		$linkTexts = array(
 			'prev' => wfMsgExt(
 				'pager-newer-n',
@@ -770,7 +741,7 @@ abstract class ReverseChronologicalPager extends IndexPager {
 
 		$pagingLinks = $this->getPagingLinks( $linkTexts );
 		$limitLinks = $this->getLimitLinks();
-		$limits = $wgLang->pipeList( $limitLinks );
+		$limits = $this->getLang()->pipeList( $limitLinks );
 
 		$this->mNavigationBar = "({$pagingLinks['first']}" .
 			wfMsgExt( 'pipe-separator' , 'escapenoentities' ) .
@@ -839,15 +810,18 @@ abstract class TablePager extends IndexPager {
 	var $mSort;
 	var $mCurrentRow;
 
-	function __construct() {
-		global $wgRequest;
-		$this->mSort = $wgRequest->getText( 'sort' );
+	function __construct( RequestContext $context = null ) {
+		if ( $context ) {
+			$this->setContext( $context );
+		}
+
+		$this->mSort = $this->getRequest()->getText( 'sort' );
 		if ( !array_key_exists( $this->mSort, $this->getFieldNames() ) ) {
 			$this->mSort = $this->getDefaultSort();
 		}
-		if ( $wgRequest->getBool( 'asc' ) ) {
+		if ( $this->getRequest()->getBool( 'asc' ) ) {
 			$this->mDefaultDirection = false;
-		} elseif ( $wgRequest->getBool( 'desc' ) ) {
+		} elseif ( $this->getRequest()->getBool( 'desc' ) ) {
 			$this->mDefaultDirection = true;
 		} /* Else leave it at whatever the class default is */
 
@@ -985,7 +959,7 @@ abstract class TablePager extends IndexPager {
 	 * A navigation bar with images
 	 */
 	function getNavigationBar() {
-		global $wgStylePath, $wgLang;
+		global $wgStylePath;
 
 		if ( !$this->isNavigationBarShown() ) {
 			return '';
@@ -1010,7 +984,7 @@ abstract class TablePager extends IndexPager {
 			'next' => 'arrow_disabled_right_25.png',
 			'last' => 'arrow_disabled_last_25.png',
 		);
-		if( $wgLang->isRTL() ) {
+		if( $this->getLang()->isRTL() ) {
 			$keys = array_keys( $labels );
 			$images = array_combine( $keys, array_reverse( $images ) );
 			$disabledImages = array_combine( $keys, array_reverse( $disabledImages ) );
@@ -1041,8 +1015,6 @@ abstract class TablePager extends IndexPager {
 	 * @return String: HTML fragment
 	 */
 	function getLimitSelect() {
-		global $wgLang;
-
 		# Add the current limit from the query string
 		# to avoid that the limit is lost after clicking Go next time
 		if ( !in_array( $this->mLimit, $this->mLimitsShown ) ) {
@@ -1056,7 +1028,7 @@ abstract class TablePager extends IndexPager {
 			# will be a string.
 			if( is_int( $value ) ){
 				$limit = $value;
-				$text = $wgLang->formatNum( $limit );
+				$text = $this->getLang()->formatNum( $limit );
 			} else {
 				$limit = $key;
 				$text = $value;
@@ -1075,10 +1047,8 @@ abstract class TablePager extends IndexPager {
 	 * @return String: HTML fragment
 	 */
 	function getHiddenFields( $blacklist = array() ) {
-		global $wgRequest;
-
 		$blacklist = (array)$blacklist;
-		$query = $wgRequest->getQueryValues();
+		$query = $this->getRequest()->getQueryValues();
 		foreach ( $blacklist as $name ) {
 			unset( $query[$name] );
 		}

@@ -34,25 +34,27 @@
  */
 class UsersPager extends AlphabeticPager {
 
-	function __construct( $par=null ) {
-		global $wgRequest;
+	function __construct( RequestContext $context = null, $par = null ) {
+		parent::__construct( $context );
+
+		$request = $this->getRequest();
 		$parms = explode( '/', ($par = ( $par !== null ) ? $par : '' ) );
 		$symsForAll = array( '*', 'user' );
 		if ( $parms[0] != '' && ( in_array( $par, User::getAllGroups() ) || in_array( $par, $symsForAll ) ) ) {
 			$this->requestedGroup = $par;
-			$un = $wgRequest->getText( 'username' );
+			$un = $request->getText( 'username' );
 		} elseif ( count( $parms ) == 2 ) {
 			$this->requestedGroup = $parms[0];
 			$un = $parms[1];
 		} else {
-			$this->requestedGroup = $wgRequest->getVal( 'group' );
-			$un = ( $par != '' ) ? $par : $wgRequest->getText( 'username' );
+			$this->requestedGroup = $request->getVal( 'group' );
+			$un = ( $par != '' ) ? $par : $request->getText( 'username' );
 		}
 		if ( in_array( $this->requestedGroup, $symsForAll ) ) {
 			$this->requestedGroup = '';
 		}
-		$this->editsOnly = $wgRequest->getBool( 'editsOnly' );
-		$this->creationSort = $wgRequest->getBool( 'creationSort' );
+		$this->editsOnly = $request->getBool( 'editsOnly' );
+		$this->creationSort = $request->getBool( 'creationSort' );
 
 		$this->requestedUser = '';
 		if ( $un != '' ) {
@@ -64,20 +66,15 @@ class UsersPager extends AlphabeticPager {
 		parent::__construct();
 	}
 
-	function getTitle() {
-		return SpecialPage::getTitleFor( 'Listusers' );
-	}
-
 	function getIndexField() {
 		return $this->creationSort ? 'user_id' : 'user_name';
 	}
 
 	function getQueryInfo() {
-		global $wgUser;
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array();
 		// Don't show hidden names
-		if( !$wgUser->isAllowed('hideuser') ) {
+		if( !$this->getUser()->isAllowed('hideuser') ) {
 			$conds[] = 'ipb_deleted IS NULL';
 		}
 
@@ -126,8 +123,6 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	function formatRow( $row ) {
-		global $wgLang;
-
 		if ($row->user_id == 0) #Bug 16487
 			return '';
 
@@ -139,7 +134,7 @@ class UsersPager extends AlphabeticPager {
 			$list = array();
 			foreach( $groups_list as $group )
 				$list[] = self::buildGroupLink( $group );
-			$groups = $wgLang->commaList( $list );
+			$groups = $this->getLang()->commaList( $list );
 		} else {
 			$groups = '';
 		}
@@ -151,7 +146,7 @@ class UsersPager extends AlphabeticPager {
 
 		global $wgEdititis;
 		if ( $wgEdititis ) {
-			$editCount = $wgLang->formatNum( $row->edits );
+			$editCount = $this->getLang()->formatNum( $row->edits );
 			$edits = ' [' . wfMsgExt( 'usereditcount', array( 'parsemag', 'escape' ), $editCount ) . ']';
 		} else {
 			$edits = '';
@@ -160,8 +155,8 @@ class UsersPager extends AlphabeticPager {
 		$created = '';
 		# Some rows may be NULL
 		if( $row->creation ) {
-			$d = $wgLang->date( wfTimestamp( TS_MW, $row->creation ), true );
-			$t = $wgLang->time( wfTimestamp( TS_MW, $row->creation ), true );
+			$d = $this->getLang()->date( wfTimestamp( TS_MW, $row->creation ), true );
+			$t = $this->getLang()->time( wfTimestamp( TS_MW, $row->creation ), true );
 			$created = ' (' . wfMsg( 'usercreated', $d, $t ) . ')';
 			$created = htmlspecialchars( $created );
 		}
@@ -292,12 +287,10 @@ class SpecialListUsers extends SpecialPage {
 	 * @param $par string (optional) A group to list users from
 	 */
 	public function execute( $par ) {
-		global $wgOut;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$up = new UsersPager( $par );
+		$up = new UsersPager( $this->getContext(), $par );
 
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
@@ -311,6 +304,6 @@ class SpecialListUsers extends SpecialPage {
 			$s .= wfMessage( 'listusers-noresult' )->parseAsBlock();
 		}
 
-		$wgOut->addHTML( $s );
+		$this->getOutput()->addHTML( $s );
 	}
 }

@@ -28,7 +28,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 	}
 
 	public function execute( $par ){
-		global $wgOut, $wgRequest;
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -36,11 +35,11 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$userName = $par;
 			$search = '';
 		} else {
-			$userName = $wgRequest->getText( 'user', $par );
-			$search = $wgRequest->getText( 'ilsearch', '' );
+			$userName = $this->getRequest()->getText( 'user', $par );
+			$search = $this->getRequest()->getText( 'ilsearch', '' );
 		}
 
-		$pager = new ImageListPager( $userName, $search, $this->including() );
+		$pager = new ImageListPager( $this->getContext(), $userName, $search, $this->including() );
 
 		if ( $this->including() ) {
 			$html = $pager->getBody();
@@ -50,7 +49,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$nav = $pager->getNavigationBar();
 			$html = "$form<br />\n$body<br />\n$nav";
 		}
-		$wgOut->addHTML( $html );
+		$this->getOutput()->addHTML( $html );
 	}
 }
 
@@ -64,8 +63,8 @@ class ImageListPager extends TablePager {
 	var $mSearch = '';
 	var $mIncluding = false;
 
-	function __construct( $userName = null, $search = '', $including = false ) {
-		global $wgRequest, $wgMiserMode;
+	function __construct( RequestContext $context, $userName = null, $search = '', $including = false ) {
+		global $wgMiserMode;
 
 		$this->mIncluding = $including;
 
@@ -89,7 +88,7 @@ class ImageListPager extends TablePager {
 		}
 
 		if ( !$including ) {
-			if ( $wgRequest->getText( 'sort', 'img_date' ) == 'img_date' ) {
+			if ( $context->getRequest()->getText( 'sort', 'img_date' ) == 'img_date' ) {
 				$this->mDefaultDirection = true;
 			} else {
 				$this->mDefaultDirection = false;
@@ -98,11 +97,7 @@ class ImageListPager extends TablePager {
 			$this->mDefaultDirection = true;
 		}
 
-		parent::__construct();
-	}
-
-	function getTitle() {
-		return SpecialPage::getTitleFor( 'Listfiles' );
+		parent::__construct( $context );
 	}
 
 	/**
@@ -197,14 +192,13 @@ class ImageListPager extends TablePager {
 	}
 
 	function formatValue( $field, $value ) {
-		global $wgLang;
 		switch ( $field ) {
 			case 'thumb':
 				$file = wfLocalFile( $value );
 				$thumb = $file->transform( array( 'width' => 180, 'height' => 360 ) );
 				return $thumb->toHtml( array( 'desc-link' => true ) );
 			case 'img_timestamp':
-				return htmlspecialchars( $wgLang->timeanddate( $value, true ) );
+				return htmlspecialchars( $this->getLang()->timeanddate( $value, true ) );
 			case 'img_name':
 				static $imgfile = null;
 				if ( $imgfile === null ) $imgfile = wfMsg( 'imgfile' );
@@ -212,7 +206,7 @@ class ImageListPager extends TablePager {
 				// Weird files can maybe exist? Bug 22227
 				$filePage = Title::makeTitleSafe( NS_FILE, $value );
 				if( $filePage ) {
-					$link = $this->getSkin()->linkKnown( $filePage, htmlspecialchars( $filePage->getText() ) );
+					$link = Linker::linkKnown( $filePage, htmlspecialchars( $filePage->getText() ) );
 					$download = Xml::element( 'a',
 						array( 'href' => wfLocalFile( $filePage )->getURL() ),
 						$imgfile
@@ -223,7 +217,7 @@ class ImageListPager extends TablePager {
 				}
 			case 'img_user_text':
 				if ( $this->mCurrentRow->img_user ) {
-					$link = $this->getSkin()->link(
+					$link = Linker::link(
 						Title::makeTitle( NS_USER, $value ),
 						htmlspecialchars( $value )
 					);
@@ -232,9 +226,9 @@ class ImageListPager extends TablePager {
 				}
 				return $link;
 			case 'img_size':
-				return $this->getSkin()->formatSize( $value );
+				return htmlspecialchars( $this->getLang()->formatSize( $value ) );
 			case 'img_description':
-				return $this->getSkin()->commentBlock( $value );
+				return Linker::commentBlock( $value );
 			case 'count':
 				return intval( $value ) + 1;
 		}

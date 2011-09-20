@@ -36,8 +36,6 @@ class SpecialProtectedtitles extends SpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgOut, $wgRequest;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -46,15 +44,16 @@ class SpecialProtectedtitles extends SpecialPage {
 			Title::purgeExpiredRestrictions();
 		}
 
-		$type = $wgRequest->getVal( $this->IdType );
-		$level = $wgRequest->getVal( $this->IdLevel );
-		$sizetype = $wgRequest->getVal( 'sizetype' );
-		$size = $wgRequest->getIntOrNull( 'size' );
-		$NS = $wgRequest->getIntOrNull( 'namespace' );
+		$request = $this->getRequest();
+		$type = $request->getVal( $this->IdType );
+		$level = $request->getVal( $this->IdLevel );
+		$sizetype = $request->getVal( 'sizetype' );
+		$size = $request->getIntOrNull( 'size' );
+		$NS = $request->getIntOrNull( 'namespace' );
 
 		$pager = new ProtectedTitlesPager( $this, array(), $type, $level, $NS, $sizetype, $size );
 
-		$wgOut->addHTML( $this->showOptions( $NS, $type, $level ) );
+		$this->getOutput()->addHTML( $this->showOptions( $NS, $type, $level ) );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
@@ -65,7 +64,7 @@ class SpecialProtectedtitles extends SpecialPage {
 		} else {
 			$s = '<p>' . wfMsgHtml( 'protectedtitlesempty' ) . '</p>';
 		}
-		$wgOut->addHTML( $s );
+		$this->getOutput()->addHTML( $s );
 	}
 
 	/**
@@ -74,19 +73,16 @@ class SpecialProtectedtitles extends SpecialPage {
 	 * @return string
 	 */
 	function formatRow( $row ) {
-		global $wgLang;
-
 		wfProfileIn( __METHOD__ );
 
-		static $skin =  null, $infinity = null;
+		static $infinity = null;
 
-		if( is_null( $skin ) ){
-			$skin = $this->getSkin();
+		if( is_null( $infinity ) ){
 			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
 
 		$title = Title::makeTitleSafe( $row->pt_namespace, $row->pt_title );
-		$link = $skin->link( $title );
+		$link = Linker::link( $title );
 
 		$description_items = array ();
 
@@ -94,14 +90,13 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$description_items[] = $protType;
 
-		$expiry = strlen( $row->pt_expiry ) ? $wgLang->formatExpiry( $row->pt_expiry, TS_MW ) : $infinity;
+		$expiry = strlen( $row->pt_expiry ) ? $lang->formatExpiry( $row->pt_expiry, TS_MW ) : $infinity;
 		if( $expiry != $infinity ) {
-
 			$expiry_description = wfMsg(
 				'protect-expiring-local',
-				$wgLang->timeanddate( $expiry, true ),
-				$wgLang->date( $expiry, true ),
-				$wgLang->time( $expiry, true )
+				$lang->timeanddate( $expiry, true ),
+				$lang->date( $expiry, true ),
+				$lang->time( $expiry, true )
 			);
 
 			$description_items[] = htmlspecialchars($expiry_description);
@@ -121,7 +116,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	function showOptions( $namespace, $type='edit', $level ) {
 		global $wgScript;
 		$action = htmlspecialchars( $wgScript );
-		$title = SpecialPage::getTitleFor( 'Protectedtitles' );
+		$title = $this->getTitle();
 		$special = htmlspecialchars( $title->getPrefixedDBkey() );
 		return "<form action=\"$action\" method=\"get\">\n" .
 			'<fieldset>' .
@@ -194,7 +189,7 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		$this->level = $level;
 		$this->namespace = $namespace;
 		$this->size = intval($size);
-		parent::__construct();
+		parent::__construct( $form->getContext() );
 	}
 
 	function getStartBody() {

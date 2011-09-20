@@ -31,18 +31,16 @@ class SpecialCategories extends SpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgOut, $wgRequest;
-
 		$this->setHeaders();
 		$this->outputHeader();
-		$wgOut->allowClickjacking();
+		$this->getOutput()->allowClickjacking();
 
-		$from = $wgRequest->getText( 'from', $par );
+		$from = $this->getRequest()->getText( 'from', $par );
 
-		$cap = new CategoryPager( $from );
+		$cap = new CategoryPager( $this->getContext(), $from );
 		$cap->doQuery();
 
-		$wgOut->addHTML(
+		$this->getOutput()->addHTML(
 			Html::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) .
 			wfMsgExt( 'categoriespagetext', array( 'parse' ), $cap->getNumRows() ) .
 			$cap->getStartForm( $from ) .
@@ -61,8 +59,8 @@ class SpecialCategories extends SpecialPage {
  * @ingroup SpecialPage Pager
  */
 class CategoryPager extends AlphabeticPager {
-	function __construct( $from ) {
-		parent::__construct();
+	function __construct( RequestContext $context, $from ) {
+		parent::__construct( $context );
 		$from = str_replace( ' ', '_', $from );
 		if( $from !== '' ) {
 			$from = Title::capitalize( $from, NS_CATEGORY );
@@ -77,10 +75,6 @@ class CategoryPager extends AlphabeticPager {
 			'conds' => array( 'cat_pages > 0' ),
 			'options' => array( 'USE INDEX' => 'cat_title' ),
 		);
-	}
-
-	function getTitle() {
-		return SpecialPage::getTitleFor( 'Categories' );
 	}
 
 	function getIndexField() {
@@ -118,11 +112,10 @@ class CategoryPager extends AlphabeticPager {
 	}
 
 	function formatRow($result) {
-		global $wgLang;
 		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
 		$titleText = Linker::link( $title, htmlspecialchars( $title->getText() ) );
 		$count = wfMsgExt( 'nmembers', array( 'parsemag', 'escape' ),
-				$wgLang->formatNum( $result->cat_pages ) );
+				$this->getLang()->formatNum( $result->cat_pages ) );
 		return Xml::tags('li', null, wfSpecialList( $titleText, $count ) ) . "\n";
 	}
 
