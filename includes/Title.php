@@ -4376,9 +4376,6 @@ class Title {
 		if ( $this->getNamespace() == NS_SPECIAL ) {
 			// special pages are in the user language
 			return $wgLang;
-		} elseif ( $this->isRedirect() ) {
-			// the arrow on a redirect page is aligned according to the user language
-			return $wgLang;
 		} elseif ( $this->isCssOrJsPage() ) {
 			// css/js should always be LTR and is, in fact, English
 			return wfGetLangObj( 'en' );

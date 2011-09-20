@@ -274,9 +274,11 @@ class ParserOptions {
 	 * settings.
 	 *
 	 * @since 1.17
+	 * @param $forOptions Array
+	 * @param $title Title: will be used to get the page content language
 	 * @return \string Page rendering hash
 	 */
-	public function optionsHash( $forOptions ) {
+	public function optionsHash( $forOptions, $title = null ) {
 		global $wgContLang, $wgRenderHashAppend;
 
 		$confstr = '';
