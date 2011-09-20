@@ -164,7 +164,6 @@ $wgAutoloadLocalClasses = array(
 	'PageQueryPage' => 'includes/PageQueryPage.php',
 	'Pager' => 'includes/Pager.php',
 	'PasswordError' => 'includes/User.php',
-	'PatrolLog' => 'includes/PatrolLog.php',
 	'PermissionsError' => 'includes/Exception.php',
 	'PhpHttpRequest' => 'includes/HttpFunctions.php',
 	'PoolCounter' => 'includes/PoolCounter.php',
@@ -538,16 +537,17 @@ $wgAutoloadLocalClasses = array(
 	'JSParser' => 'includes/libs/jsminplus.php',
 
 	# includes/logging
+	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
+	'DeleteLogFormatter' => 'includes/logging/LogFormatter.php',
+	'LegacyLogFormatter' => 'includes/logging/LogFormatter.php',
 	'LogEntry' => 'includes/logging/LogEntry.php',
 	'LogEntryBase' => 'includes/logging/LogEntry.php',
-	'DatabaseLogEntry' => 'includes/logging/LogEntry.php',
-	'RCDatabaseLogEntry' => 'includes/logging/LogEntry.php',
-	'ManualLogEntry' => 'includes/logging/LogEntry.php',
 	'LogFormatter' => 'includes/logging/LogFormatter.php',
-	'LegacyLogFormatter' => 'includes/logging/LogFormatter.php',
-	'DeleteLogFormatter' => 'includes/logging/LogFormatter.php',
+	'ManualLogEntry' => 'includes/logging/LogEntry.php',
 	'MoveLogFormatter' => 'includes/logging/LogFormatter.php',
+	'PatrolLog' => 'includes/logging/PatrolLog.php',
 	'PatrolLogFormatter' => 'includes/logging/LogFormatter.php',
+	'RCDatabaseLogEntry' => 'includes/logging/LogEntry.php',
 
 	# includes/media
 	'BitmapHandler' => 'includes/media/Bitmap.php',
