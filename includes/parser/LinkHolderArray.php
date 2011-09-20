@@ -320,7 +320,7 @@ class LinkHolderArray {
 			foreach ( $res as $s ) {
 				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 				$pdbk = $title->getPrefixedDBkey();
-				$linkCache->addGoodLinkObj( $s->page_id, $title, $s->page_len, $s->page_is_redirect, $s->page_latest );
+				$linkCache->addGoodLinkObjFromRow( $title, $s );
 				$output->addLink( $title, $s->page_id );
 				# @todo FIXME: Convoluted data flow
 				# The redirect status and length is passed to getLinkColour via the LinkCache
@@ -490,7 +490,7 @@ class LinkHolderArray {
 			// construct query
 			$dbr = wfGetDB( DB_SLAVE );
 			$varRes = $dbr->select( 'page',
-				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len' ),
+				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect', 'page_len', 'page_latest' ),
 				$linkBatch->constructSet( 'page', $dbr ),
 				__METHOD__
 			);
@@ -507,7 +507,7 @@ class LinkHolderArray {
 				$holderKeys = array();
 				if( isset( $variantMap[$varPdbk] ) ) {
 					$holderKeys = $variantMap[$varPdbk];
-					$linkCache->addGoodLinkObj( $s->page_id, $variantTitle, $s->page_len, $s->page_is_redirect );
+					$linkCache->addGoodLinkObjFromRow( $variantTitle, $s );
 					$output->addLink( $variantTitle, $s->page_id );
 				}
 

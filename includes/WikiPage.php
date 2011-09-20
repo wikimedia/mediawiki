@@ -371,8 +371,7 @@ class WikiPage extends Page {
 		$lc = LinkCache::singleton();
 
 		if ( $data ) {
-			$lc->addGoodLinkObj( $data->page_id, $this->mTitle,
-				$data->page_len, $data->page_is_redirect, $data->page_latest );
+			$lc->addGoodLinkObjFromRow( $this->mTitle, $data );
 
 			$this->mTitle->loadFromRow( $data );
 

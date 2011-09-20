@@ -96,6 +96,23 @@ class LinkCache {
 	}
 
 	/**
+	 * Same as above with better interface.
+	 * @since 1.19
+	 * @param $title Title
+	 * @param $row object which has the fields page_id, page_is_redirect,
+	 *  page_latest
+	 */
+	public function addGoodLinkObjFromRow( $title, $row ) {
+		$dbkey = $title->getPrefixedDbKey();
+		$this->mGoodLinks[$dbkey] = intval( $row->page_id );
+		$this->mGoodLinkFields[$dbkey] = array(
+			'length' => intval( $row->page_len ),
+			'redirect' => intval( $row->page_is_redirect ),
+			'revision' => intval( $row->page_latest ),
+		);
+	}
+
+	/**
 	 * @param $title Title
 	 */
 	public function addBadLinkObj( $title ) {
@@ -182,22 +199,11 @@ class LinkCache {
 			__METHOD__, $options );
 		# Set fields...
 		if ( $s !== false ) {
-			$id = intval( $s->page_id );
-			$len = intval( $s->page_len );
-			$redirect = intval( $s->page_is_redirect );
-			$revision = intval( $s->page_latest );
+			$this->addGoodLinkObjFromRow( $nt, $s );
 		} else {
-			$id = 0;
-			$len = -1;
-			$redirect = 0;
-			$revision = 0;
+			$this->addBadLinkObj( $nt );
 		}
 
-		if ( $id == 0 ) {
-			$this->addBadLinkObj( $nt );
-		} else {
-			$this->addGoodLinkObj( $id, $nt, $len, $redirect, $revision );
-		}
 		wfProfileOut( __METHOD__ );
 		return $id;
 	}
