@@ -9,6 +9,11 @@ class ExifRotationTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';
 		$this->handler = new BitmapHandler();
+		$this->repo = new FSRepo(array(
+			'name' => 'temp',
+			'directory' => wfTempDir() . '/exif-test-' . time(),
+			'url' => 'http://localhost/thumbtest'
+		));
 		if ( !wfDl( 'exif' ) ) {
 			$this->markTestSkipped( "This test needs the exif extension." );
 		}
@@ -31,6 +36,29 @@ class ExifRotationTest extends MediaWikiTestCase {
 		$this->assertEquals( $file->getHeight(), $info['height'], "$name: height check" );
 	}
 
+	/**
+	 *
+	 * @dataProvider providerFiles
+	 */
+	function testRotationRendering( $name, $type, $info ) {
+		$file = $this->localFile( $name, $type );
+		$thumb = $file->transform( array(
+			'width' => 800,
+			'height' => 600,
+		), File::RENDER_NOW );
+
+		$this->assertEquals( $thumb->getWidth(), $info['thumbWidth'], "$name: thumb reported width check" );
+		$this->assertEquals( $thumb->getHeight(), $info['thumbHeight'], "$name: thumb reported height check" );
+
+		$gis = getimagesize( $thumb->getPath() );
+		$this->assertEquals( $gis[0], $info['thumbWidth'], "$name: thumb actual width check");
+		$this->assertEquals( $gis[0], $info['thumbWidth'], "$name: thumb actual height check");
+	}
+
+	private function localFile( $name, $type ) {
+		return new UnregisteredLocalFile( false, $this->repo, $this->filePath . $name, $type );
+	}
+
 	function providerFiles() {
 		return array(
 			array(
@@ -39,6 +67,8 @@ class ExifRotationTest extends MediaWikiTestCase {
 				array(
 					'width' => 1024,
 					'height' => 768,
+					'thumbWidth' => 800,
+					'thumbHeight' => 600,
 				)
 			),
 			array(
@@ -47,6 +77,8 @@ class ExifRotationTest extends MediaWikiTestCase {
 				array(
 					'width' => 768, // as rotated
 					'height' => 1024, // as rotated
+					'thumbWidth' => 450,
+					'thumbHeight' => 600,
 				)
 			)
 		);
