@@ -9,6 +9,9 @@ div#column-content div#content {
 	height: 1%;
 }
 
+.rtl div#column-content div#content { margin-right: 12.2em; margin-left: 0; }
+
+
 .rtl div#column-one {
 	/* For some reason it tries to inherit the padding-top into every div,
 	 * and I can't figure out how to get it back off.
@@ -18,9 +21,13 @@ div#column-content div#content {
 	margin-top: 160px;
 }
 
-.rtl #bodyContent a.external {
-	background-image: url(external-rtl.png);
-	padding: 0 13px 0 0;
+/* These elements also have padding-left: 20px; in main.css, but in RTL mode this is flipped.
+ * That's good in normal browsers, but in IE7 it needs to not be flipped for some daft reason.
+ * Also clear the right margin (originally margin-left: 1em)
+ */
+li#pt-userpage, li#pt-anonuserpage, li#pt-login {
+	padding-left: 20px;
+	margin-right: 0;
 }
 
 .rtl a.feedlink {

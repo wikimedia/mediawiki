@@ -87,8 +87,10 @@ class DeleteBatch extends Maintenance {
 			if ( $page->getNamespace() == NS_FILE ) {
 				$art = new ImagePage( $page );
 				$img = wfFindFile( $art->mTitle );
-				if ( !$img || !$img->delete( $reason ) ) {
-					$this->output( "FAILED to delete image file... " );
+				if ( !$img
+					|| !$img->isLocal()
+					|| !$img->delete( $reason ) ) {
+					$this->output( " FAILED to delete image file... " );
 				}
 			} else {
 				$art = new Article( $page );
@@ -96,7 +98,7 @@ class DeleteBatch extends Maintenance {
 			$success = $art->doDeleteArticle( $reason );
 			$dbw->commit();
 			if ( $success ) {
-				$this->output( "\n" );
+				$this->output( " Deleted!\n" );
 			} else {
 				$this->output( " FAILED to delete article\n" );
 			}

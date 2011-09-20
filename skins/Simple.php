@@ -42,7 +42,7 @@ class SkinSimple extends SkinTemplate {
 			$rules[] = "a.stub:after { $underline; }";
 		}
 		$style = implode( "\n", $rules );
-		$out->addInlineStyle( $style, /* flip css if RTL */true );
+		$out->addInlineStyle( $style, 'flip' );
 
 	}
 }

@@ -73,6 +73,8 @@ class ResourceLoaderContext {
 	 */
 	public static function expandModuleNames( $modules ) {
 		$retval = array();
+		// For backwards compatibility with an earlier hack, replace ! with .
+		$modules = str_replace( '!', '.', $modules );
 		$exploded = explode( '|', $modules );
 		foreach ( $exploded as $group ) {
 			if ( strpos( $group, ',' ) === false ) {
