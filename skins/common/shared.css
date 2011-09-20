@@ -865,6 +865,13 @@ ol:lang(or) li {
 	margin: 0 2em 0 0;
 }
 
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	direction: ltr;
+}
+
 /* tooltip styles */
 .mw-help-field-hint {
 	display: none;
