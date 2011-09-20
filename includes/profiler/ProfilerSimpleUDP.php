@@ -13,7 +13,7 @@ class ProfilerSimpleUDP extends ProfilerSimple {
 	public function logData() {
 		global $wgUDPProfilerHost, $wgUDPProfilerPort;
 
-		$this->collateData();
+		$this->close();
 
 		if ( isset( $this->mCollated['-total'] ) && $this->mCollated['-total']['real'] < $this->mMinimumTime ) {
 			# Less than minimum, ignore
