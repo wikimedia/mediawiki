@@ -2958,7 +2958,8 @@ $templates
 	 * @param $flip Boolean: Whether to flip the CSS if needed
 	 */
 	public function addInlineStyle( $style_css, $flip = false ) {
-		if( $flip && $this->getLang()->isRTL() ) {
+		global $wgLang;
+		if( $flip && $wgLang->isRTL() ) {
 			# If wanted, and the interface is right-to-left, flip the CSS
 			$style_css = CSSJanus::transform( $style_css, true, false );
 		}
