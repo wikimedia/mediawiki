@@ -200,8 +200,10 @@ class LinkCache {
 		# Set fields...
 		if ( $s !== false ) {
 			$this->addGoodLinkObjFromRow( $nt, $s );
+			$id = intval( $s->page_id );
 		} else {
 			$this->addBadLinkObj( $nt );
+			$id = 0;
 		}
 
 		wfProfileOut( __METHOD__ );
