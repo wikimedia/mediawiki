@@ -12,10 +12,20 @@
 class ProfilerSimple extends Profiler {
 	var $mMinimumTime = 0;
 
+	var $zeroEntry = array('cpu'=> 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0);
+	var $errorEntry;
+
 	function __construct( $params ) {
 		global $wgRequestTime, $wgRUstart;
 		parent::__construct( $params );
+
+		$this->errorEntry = $this->zeroEntry;
+		$this->errorEntry['count'] = 1;
+
 		if (!empty($wgRequestTime) && !empty($wgRUstart)) {
+			# Remove the -total entry from parent::__construct
+			$this->mWorkStack = array();
+
 			$this->mWorkStack[] = array( '-total', 0, $wgRequestTime,$this->getCpuTime($wgRUstart));
 
 			$elapsedcpu = $this->getCpuTime() - $this->getCpuTime($wgRUstart);
@@ -23,7 +33,7 @@ class ProfilerSimple extends Profiler {
 
 			$entry =& $this->mCollated["-setup"];
 			if (!is_array($entry)) {
-				$entry = array('cpu'=> 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0);
+				$entry = $this->zeroEntry;
 				$this->mCollated["-setup"] =& $entry;
 			}
 			$entry['cpu'] += $elapsedcpu;
@@ -62,20 +72,18 @@ class ProfilerSimple extends Profiler {
 				$message = "Profile section ended by close(): {$ofname}";
 				$functionname = $ofname;
 				$this->debug( "$message\n" );
-				$this->mCollated[$message] = array(
-					'real' => 0.0, 'count' => 1);
+				$this->mCollated[$message] = $this->errorEntry;
 			}
 			elseif ($ofname != $functionname) {
 				$message = "Profiling error: in({$ofname}), out($functionname)";
 				$this->debug( "$message\n" );
-				$this->mCollated[$message] = array(
-					'real' => 0.0, 'count' => 1);
+				$this->mCollated[$message] = $this->errorEntry;
 			}
 			$entry =& $this->mCollated[$functionname];
 			$elapsedcpu = $this->getCpuTime() - $octime;
 			$elapsedreal = microtime(true) - $ortime;
 			if (!is_array($entry)) {
-				$entry = array('cpu'=> 0.0, 'cpu_sq' => 0.0, 'real' => 0.0, 'real_sq' => 0.0, 'count' => 0);
+				$entry = $this->zeroEntry;
 				$this->mCollated[$functionname] =& $entry;
 			}
 			$entry['cpu'] += $elapsedcpu;
