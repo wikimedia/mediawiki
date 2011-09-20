@@ -1342,7 +1342,11 @@ abstract class File {
 	 * @return string
 	 */
 	function getDescriptionUrl() {
-		return $this->repo->getDescriptionUrl( $this->getName() );
+		if ( $this->repo ) {
+			return $this->repo->getDescriptionUrl( $this->getName() );
+		} else {
+			return false;
+		}
 	}
 
 	/**

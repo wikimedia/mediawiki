@@ -145,27 +145,5 @@ class ExifRotationTest extends MediaWikiTestCase {
 			),			
 		);
 	}
-
-	function testWidthFlipping() {
-		# Any further test require a scaler that can rotate
-		if ( !BitmapHandler::canRotate() ) {
-			$this->markTestSkipped( 'Scaler does not support rotation' );
-			return;
-		}
-		$file = UnregisteredLocalFile::newFromPath( $this->filePath . 'portrait-rotated.jpg', 'image/jpeg' );
-		$params = array( 'width' => '50' );
-		$this->assertTrue( $this->handler->normaliseParams( $file, $params ) );
-
-		$this->assertEquals( 50, $params['height'] );
-		$this->assertEquals( round( (768/1024)*50 ), $params['width'], '', 0.1 );
-	}
-	function testWidthNotFlipping() {
-		$file = UnregisteredLocalFile::newFromPath( $this->filePath . 'landscape-plain.jpg', 'image/jpeg' );
-		$params = array( 'width' => '50' );
-		$this->assertTrue( $this->handler->normaliseParams( $file, $params ) );
-
-		$this->assertEquals( 50, $params['width'] );
-		$this->assertEquals( round( (768/1024)*50 ), $params['height'], '', 0.1 );
-	}
 }
 

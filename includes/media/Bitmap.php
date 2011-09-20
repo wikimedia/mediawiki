@@ -43,20 +43,6 @@ class BitmapHandler extends ImageHandler {
 			}
 		}
 
-
-		if ( self::canRotate() ) {
-			$rotation = $this->getRotation( $image );
-			if ( $rotation == 90 || $rotation == 270 ) {
-				wfDebug( __METHOD__ . ": Swapping width and height because the file will be rotated $rotation degrees\n" );
-
-				list( $params['width'], $params['height'] ) =
-					array(  $params['height'], $params['width'] );
-				list( $params['physicalWidth'], $params['physicalHeight'] ) =
-					array( $params['physicalHeight'], $params['physicalWidth'] );
-			}
-		}
-
-
 		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
 		# an exception for it.
@@ -72,6 +58,11 @@ class BitmapHandler extends ImageHandler {
 
 	/**
 	 * Extracts the width/height if the image will be scaled before rotating
+	 *
+	 * This will match the physical size/aspect ratio of the original image
+	 * prior to application of the rotation -- so for a portrait image that's
+	 * stored as raw landscape with 90-degress rotation, the resulting size
+	 * will be wider than it is tall.
 	 *
 	 * @param $params array Parameters as returned by normaliseParams
 	 * @param $rotation int The rotation angle that will be applied
@@ -249,6 +240,8 @@ class BitmapHandler extends ImageHandler {
 	 * @param $image File File associated with this thumbnail
 	 * @param $params array Array with scaler params
 	 * @return ThumbnailImage
+	 *
+	 * @fixme no rotation support
 	 */
 	protected function getClientScalingThumbnailImage( $image, $params ) {
 		return new ThumbnailImage( $image, $image->getURL(),
@@ -685,33 +678,21 @@ class BitmapHandler extends ImageHandler {
 	}
 
 	/**
-	 * Try to read out the orientation of the file and return the angle that
-	 * the file needs to be rotated to be viewed
+	 * On supporting image formats, try to read out the low-level orientation
+	 * of the file and return the angle that the file needs to be rotated to
+	 * be viewed.
+	 *
+	 * This information is only useful when manipulating the original file;
+	 * the width and height we normally work with is logical, and will match
+	 * any produced output views.
+	 *
+	 * The base BitmapHandler doesn't understand any metadata formats, so this
+	 * is left up to child classes to implement.
 	 *
 	 * @param $file File
 	 * @return int 0, 90, 180 or 270
 	 */
 	public function getRotation( $file ) {
-		$data = $file->getMetadata();
-		if ( !$data ) {
-			return 0;
-		}
-		wfSuppressWarnings();
-		$data = unserialize( $data );
-		wfRestoreWarnings();
-		if ( isset( $data['Orientation'] ) ) {
-			# See http://sylvana.net/jpegcrop/exif_orientation.html
-			switch ( $data['Orientation'] ) {
-				case 8:
-					return 90;
-				case 3:
-					return 180;
-				case 6:
-					return 270;
-				default:
-					return 0;
-			}
-		}
 		return 0;
 	}
 
