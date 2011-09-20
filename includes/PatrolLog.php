@@ -30,7 +30,7 @@ class PatrolLog {
 			$entry = new ManualLogEntry( 'patrol', 'patrol' );
 			$entry->setTarget( $title );
 			$entry->setParameters( self::buildParams( $rc, $auto ) );
-			$entry->setPerformer( User::newFromName( $rc->getAttribute( 'rc_user_text' ) ) );
+			$entry->setPerformer( User::newFromName( $rc->getAttribute( 'rc_user_text' ), false ) );
 			$logid = $entry->insert();
 			if ( !$auto ) {
 				$entry->publish( $logid, 'udp' );
