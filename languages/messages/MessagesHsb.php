@@ -3297,9 +3297,8 @@ Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public Lic
 'filepath'         => 'Datajowy puć',
 'filepath-page'    => 'Dataja:',
 'filepath-submit'  => 'Pytać',
-'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije. Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.
-
-Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',
+'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije.
+Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Dwójne dataje pytać',

@@ -3842,9 +3842,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'filepath'         => 'ファイルパス',
 'filepath-page'    => 'ファイル：',
 'filepath-submit'  => '取得',
-'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。
-
-ファイル名は接頭辞「{{ns:file}}:」を付けずに入力してください。',
+'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => '重複ファイルの検索',

@@ -1542,7 +1542,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'action-protect'              => 'zmiany poziomu zabezpieczenia tej strony',
 'action-import'               => 'importu tej strony z innej wiki',
 'action-importupload'         => 'importu tej strony poprzez przesłanie pliku',
-'action-patrol'               => 'oznaczenia edycji jako „sprawdzonej”',
+'action-patrol'               => 'oznaczenia cudzej edycji jako „sprawdzonej”',
 'action-autopatrol'           => 'oznaczenia własnej edycji jako „sprawdzonej”',
 'action-unwatchedpages'       => 'podglądu listy nieobserwowanych stron',
 'action-trackback'            => 'wysyłania trackbacka',
@@ -1837,7 +1837,7 @@ Jeśli włączono filtrowanie dla konkretnego użytkownika, prezentowane są wy�
 'filehist-filesize'         => 'Rozmiar pliku',
 'filehist-comment'          => 'Opis',
 'filehist-missing'          => 'Brak pliku',
-'imagelinks'                => 'Odnośniki do pliku',
+'imagelinks'                => 'Wykorzystanie pliku',
 'linkstoimage'              => '{{PLURAL:$1|Poniższa strona odwołuje|Następujące strony odwołują}} się do tego pliku:',
 'linkstoimage-more'         => 'Więcej niż $1 {{PLURAL:$1|strona linkuje|strony linkują|stron linkuje}} do tego pliku.
 Poniższa lista pokazuje jedynie {{PLURAL:$1|pierwszy link|pierwsze $1 linki|pierwszych $1 linków}} do tego pliku.
@@ -3834,5 +3834,7 @@ Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 bez pozostawienia przekierowania na starej stronie',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 ponad przekierowaniem',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 ponad przekierowaniem bez pozostawienia przekierowania na starej stronie',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
+'logentry-patrol-patrol-auto'         => '$1 automatycznie {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
 
 );

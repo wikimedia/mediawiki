@@ -3478,9 +3478,7 @@ $1',
 'filepath-page'    => '파일:',
 'filepath-submit'  => '가기',
 'filepath-summary' => '파일의 실제 URL 주소를 엽니다.
-그림 파일일 경우 원본 해상도의 파일이 열립니다. 다른 종류의 파일일 경우 그 파일의 종류에 맞는 프로그램이 실행됩니다.
-
-"{{ns:file}}:" 접두어를 뺀 파일 이름을 입력해주세요.',
+그림 파일일 경우 원본 해상도의 파일이 열립니다. 다른 종류의 파일일 경우 그 파일의 종류에 맞는 프로그램이 실행됩니다.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => '중복된 파일 찾기',

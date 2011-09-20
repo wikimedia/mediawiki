@@ -3119,9 +3119,7 @@ Con iste programa ha d'haber recibiu [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia
 'filepath-page'    => 'Fichero:',
 'filepath-submit'  => 'Ir-ie',
 'filepath-summary' => "Ista pachina especial le retorna o camín completo d'un fichero.
-As imachens s'amuestran en resolución completa, a resta de fichers fan encetar dreitament os suyos programas asociatos.
-
-Escriba o nombre d'o fichero sin o prefixo \"{{ns:file}}:\".",
+As imachens s'amuestran en resolución completa, a resta de fichers fan encetar dreitament os suyos programas asociatos.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Mirar fichers duplicatos',

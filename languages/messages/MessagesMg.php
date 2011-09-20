@@ -3053,9 +3053,7 @@ Andramo ny topi-maso tsotra',
 'filepath-page'    => 'Rakitra',
 'filepath-submit'  => 'Handeha',
 'filepath-summary' => "Mamerina ny lalam-pandehanana any amin'ilay rakitra ity pejy ity.
-Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindrankajy miaraka aminy avy hatrany.
-
-Ampidiro ny anaran-drakitra tsy misy ny tovona « {{ns:file}}: »",
+Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindrankajy miaraka aminy avy hatrany.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Hitady rakitra mitovy endrika',

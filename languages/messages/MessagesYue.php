@@ -3296,9 +3296,7 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 'filepath'         => '檔案路徑',
 'filepath-page'    => '檔名:',
 'filepath-submit'  => '去',
-'filepath-summary' => '呢個特別頁拎一個檔案嘅完整路徑。圖像會以完整嘅解像度顯示，其它嘅檔案類型會以同佢哋關聯咗嘅程式啟動。
-
-請輸入檔名，唔好連埋個"{{ns:file}}:"開頭。',
+'filepath-summary' => '呢個特別頁拎一個檔案嘅完整路徑。圖像會以完整嘅解像度顯示，其它嘅檔案類型會以同佢哋關聯咗嘅程式啟動。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => '㨂重覆檔案',

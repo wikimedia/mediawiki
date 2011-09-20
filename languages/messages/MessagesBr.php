@@ -3536,9 +3536,8 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'filepath'         => 'Hent moned ur restr',
 'filepath-page'    => 'Restr :',
 'filepath-submit'  => 'Mont',
-'filepath-summary' => 'Diskouez a ra ar bajenn-mañ hent moned klok ur restr. Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all war-eeun gant o frogramm stag.
-
-Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
+'filepath-summary' => 'Diskouez a ra ar bajenn-mañ hent moned klok ur restr.
+Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all war-eeun gant o frogramm stag.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Klask ar restroù e doubl',

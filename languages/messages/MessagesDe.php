@@ -3727,9 +3727,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'filepath'         => 'Dateipfad',
 'filepath-page'    => 'Datei:',
 'filepath-submit'  => 'Los',
-'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.
-
-Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
+'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Dateiduplikatsuche',
@@ -3870,5 +3868,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 ohne dabei eine Weiterleitung anzulegen',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markierte}} Version $4 von Seite $3 als kontrolliert',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markierte}} Version $4 von Seite $3 als kontrolliert (automatisch)',
 
 );

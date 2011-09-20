@@ -3813,9 +3813,7 @@ Samen met dit programma hoort u een [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van 
 'filepath-submit'  => 'OK',
 'filepath-summary' => 'Deze speciale pagina geeft het volledige pad voor een bestand.
 Afbeeldingen worden in hun volledige resolutie weergegeven.
-Andere bestandstypen worden direct in het met het MIME-type verbonden programma geopend.
-
-Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
+Andere bestandstypen worden direct in het met het MIME-type verbonden programma geopend.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Duplicaatbestanden zoeken',
@@ -3956,5 +3954,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|hernoemde}} pagina $3 naar $4 zonder een doorverwijzing achter te laten',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|hernoemde}} pagina $3 naar $4 over een doorverwijzing',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|hernoemde}} pagina $3 naar $4 over een doorverwijzing zonder een doorverwijzing achter te laten',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|heeft}} versie $4 van pagina $3 als gecontroleerd gemarkeerd',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|heeft}} versie $4 van pagina $3 automatisch als gecontroleerd gemarkeerd',
 
 );

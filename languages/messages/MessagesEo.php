@@ -3615,9 +3615,7 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'filepath-page'    => 'Dosiero:',
 'filepath-submit'  => 'Vojo',
 'filepath-summary' => 'Ĉi tiu speciala paĝo liveras kompletan vojon al dosiero.
-Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte per ties asociita programo.
-
-Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
+Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte per ties asociita programo.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Serĉu duplikatajn dosierojn',

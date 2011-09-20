@@ -3598,10 +3598,8 @@ Flimkien ma' dan il-programm suppost kellek tirċievi [{{SERVER}}{{SCRIPTPATH}}/
 'filepath'         => 'Post tal-fajl',
 'filepath-page'    => 'Fajl:',
 'filepath-submit'  => 'Mur',
-'filepath-summary' => 'Din il-paġna speċjali tagħti lura l-indirizz komplet tal-posta għal fajl.
-Stampi huwa mogħrija b\'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-program assoċjat magħhom direttament.
-
-Daħħal l-isem tal-fajl bla l-prefiss "{{ns:file}}:".',
+'filepath-summary' => "Din il-paġna speċjali tagħti lura l-indirizz komplet tal-posta għal fajl.
+Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-program assoċjat magħhom direttament.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Fittex fajls duplikati',

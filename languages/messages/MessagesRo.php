@@ -1865,7 +1865,7 @@ Când acestei pagini îi este aplicat filtrul de utilizator, sunt afișate doar 
 'filehist-filesize'         => 'Mărimea fișierului',
 'filehist-comment'          => 'Comentariu',
 'filehist-missing'          => 'Fișier lipsă',
-'imagelinks'                => 'Legături',
+'imagelinks'                => 'Utilizare fișier',
 'linkstoimage'              => '{{PLURAL:$1|Următoarea pagină trimite spre|Următoarele $1 pagini trimit spre}} această imagine:',
 'linkstoimage-more'         => 'Mai mult de $1 {{PLURAL:$1|pagină este legată|pagini sunt legate}} de acest fișier.
 Următoarea listă arată {{PLURAL:$1|prima legătură|primele $1 legături}} către acest fișier.

@@ -3654,9 +3654,7 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'filepath-page'    => 'Archivo:',
 'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Esta página devuelve la ruta completa de un archivo.
-Las imágenes se muestran en resolución máxima, otros tipos de archivo se inician directamente con su programa asociado.
-
-Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
+Las imágenes se muestran en resolución máxima, otros tipos de archivo se inician directamente con su programa asociado.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Búsqueda de archivos duplicados',

@@ -2394,9 +2394,8 @@ Pol favol, confirma si rialmenti quieis gorvel a crial la páhina.",
 'filepath'         => "Ruta d'archivu",
 'filepath-page'    => 'Archivu:',
 'filepath-submit'  => 'Ruta',
-'filepath-summary' => "Esta páhina especial degüervi la ruta compreta dun archivu. Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehecutan diretamenti con el su pograma asociau.
-
-Escribi el nombri d'archivu sin el prefihu \"{{ns:file}}:\".",
+'filepath-summary' => "Esta páhina especial degüervi la ruta compreta dun archivu.
+Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehecutan diretamenti con el su pograma asociau.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Landeal archivus dupricaus',

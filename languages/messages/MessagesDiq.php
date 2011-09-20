@@ -2985,9 +2985,7 @@ Ti hem zi eşkeno [[Special:EditWatchlist|use the standard editor]].',
 'filepath-page'    => 'Dosya:',
 'filepath-submit'  => 'Şo',
 'filepath-summary' => 'Ena pela xasî ser yew dosyayî patikayê temamî ano.
-Resiman ful resolasyon de mocnayiyê, tipê dosyayî binî pê direktorê programî başlî beno.
-
-Nameyê dosyayî de bike feqet prefiksê  "{{ns:file}}:"î menuse.',
+Resiman ful resolasyon de mocnayiyê, tipê dosyayî binî pê direktorê programî başlî beno.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'kopyayê dosyayi bigêre',

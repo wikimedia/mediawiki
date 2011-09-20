@@ -3462,9 +3462,7 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Vis sti',
 'filepath-summary' => 'Denne specialside giver et direkte link til en fil.
-Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med deres tilhørende program.
-
-Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
+Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med deres tilhørende program.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Find dubletfiler',

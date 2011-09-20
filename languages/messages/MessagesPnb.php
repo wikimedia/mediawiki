@@ -47,7 +47,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'صفحیاں چ چھوٹیاں موٹیاں تبدیلیاں تے وی مینوں ای میل کر دیو',
 'tog-enotifrevealaddr'        => 'میرے ای میل دے پتے نوں سندیسے آلی ای میل دے وچ وکھاؤ۔',
 'tog-shownumberswatching'     => 'ویکھن آلے لوکاں دی گنتی وکھاؤ۔',
-'tog-oldsig'                  => 'ہلے آلے دستخط وکھاؤ۔',
+'tog-oldsig'                  => 'ہن والے دسخط:',
 'tog-fancysig'                => 'دستخط نوں وکی ٹیکسڈ ونگوں؎ ورتو(without an automatic link)',
 'tog-externaleditor'          => 'ہمیشہ بارلا لکھن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [http://www.mediawiki.org/wiki/Manual:External_editors مزید معلومات.])',
 'tog-externaldiff'            => '
@@ -176,7 +176,7 @@ $messages = array(
 'vector-action-move'             => 'ٹرو',
 'vector-action-protect'          => 'بچاؤ',
 'vector-action-undelete'         => 'واپس لیاؤ',
-'vector-action-unprotect'        => 'نا بچاؤ',
+'vector-action-unprotect'        => 'تبدیلی بچاؤ',
 'vector-simplesearch-preference' => 'کھوج چ چنگے مشورے آن کرو',
 'vector-view-create'             => 'بناؤ',
 'vector-view-edit'               => 'لکھو',
@@ -208,6 +208,7 @@ $messages = array(
 'create-this-page'  => 'اے صفحہ بناؤ',
 'delete'            => 'مٹاؤ',
 'deletethispage'    => 'اے صفحہ مٹاؤ',
+'undelete_short'    => 'مٹانا واپس {{انیک:$1|اکتبدیلی|$1 تبدیلی}}',
 'viewdeleted_short' => 'ویکھو {{PLURAL:$1|اک مٹائی گئی تبدیلی|$1 مٹائیاں گئیاں تبدیلیاں}}',
 'protect'           => 'بچاؤ',
 'protect_change'    => 'تبدیل کرو',
@@ -296,6 +297,8 @@ $messages = array(
 'viewdeleted'             => 'ویکھو $1 ؟',
 'restorelink'             => '{{PLURAL:$1|اک مٹائی گئی تبدیلی|$1 مٹائیاں گئیاں تبدیلیاں}}',
 'feedlinks'               => 'دسو:',
+'feed-invalid'            => 'ناں منی جان والی سبسکرپشن فیڈ ٹائپ',
+'feed-unavailable'        => 'سنڈیکیشن فیڈز کوئی نیں۔',
 'site-rss-feed'           => '$1 RSS Feed',
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
@@ -318,11 +321,26 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'کوئی ایسا کم نئیں',
+'nosuchactiontext'  => 'یو آر ایل نال دسیا کم نئیں ہوےکدا۔
+تساں ہوسکدا اے یو ار ایل غلط ٹائپ کردتی ہووے۔
+ایہ اک بگ نوں وی دسدا اے سوفٹویر چ جینوں {{سائٹناں}} نے ورتیا',
 'nosuchspecialpage' => 'انج دا کوئی خاص صفحہ نئیں',
+'nospecialpagetext' => '<سٹرانگ>تساں اک ناں منیا جان والا خاص صفہ منگیا اے.</سٹرانگ>
+
+اکلسٹ خاص منے جان والے صفیاں تے ایتھے مل سکدی اے[[خاص:خاص صفے|{{انٹ:خاص صفے}}]].',
 
 # General errors
 'error'                => 'مسئلا',
 'databaseerror'        => 'ڈیٹابیس دی غلطی',
+'dberrortext'          => 'اک ڈیٹابیس کویری سنٹیکس غلطی ہوگئی اے۔
+اے سوفٹویر چ اک بگ وی ہوسکدا اے۔
+آخری کوشش کیتی ڈیٹابیس کھوج:
+<بلاک کوٹ><ٹیٹی>$1</ٹیٹی></بلاک کوٹ>',
+'dberrortextcl'        => 'اکڈیٹابیس کویری سنٹیکس غلطی ہوگئی اے
+آخری ڈیٹابیس کویری سی:
+"$1"
+فنکش دے اندروں "$2"
+ڈیٹابیس ریٹرنڈ غلطی "$3: $4"',
 'laggedslavemode'      => "'''خبردار:''' صفے تے نیڑےتریڈے ہون والیاں تبدیلیاں کوئی نیں۔",
 'readonly'             => 'ڈیٹابیس تے تالا',
 'enterlockreason'      => 'تالا لان دی وجہ دسو تے اہ وی دسو جے کدوں تالا کھلے گا',
@@ -344,6 +362,8 @@ $messages = array(
 'filedeleteerror'      => 'فائل "$1" نا مٹائی جاسکی۔',
 'directorycreateerror' => 'ڈائریکٹری "$1" نئیں بنا جاسکی۔',
 'filenotfound'         => 'فائل "$1" نا لبی جاسکی۔',
+'fileexistserror'      => '"$1" xjNg fNlF gkel ojvkrl: xjNg hlKl jc.',
+'unexpected'           => 'امید ناء ہون والا مل:"$1"="$2".',
 'formerror'            => 'مسئلا: فارم نا پیجیا سکیا',
 'badarticleerror'      => 'اے کم اس صفحے تے نئیں ہو سکدا۔',
 'cannotdelete'         => 'صفحہ یا فائل "$1" نوں مٹایا نا جاسکیا۔
@@ -355,6 +375,9 @@ $messages = array(
 'perfcachedts'         => 'اے ڈیپا پرانا اے تے اینوں آخری آری $1 نوں نواں کیتا گیا سی۔',
 'querypage-no-updates' => 'اس صفحے نوں اپڈیٹ فلحال نئیں کیتا جا سکدا۔
 ایدا مال ہلے نواں نئیں کیتا جاۓ گا۔',
+'wrong_wfQuery_params' => 'غلط پیرامیٹرز وفکویریدے()<br />
+فنکشن: $1<br />
+کویری: $2',
 'viewsource'           => 'ویکھو',
 'viewsourcefor'        => '$1 لئ',
 'actionthrottled'      => 'اے کم کئی واری کیتا گیا اے',
@@ -740,6 +763,7 @@ $3 نے $2 وجہ دسی اے۔',
 'revdelete-hide-user'         => 'لکھن آلے دا ناں/آئی پی پتہ لکاؤ',
 'revdelete-radio-set'         => 'ہاں',
 'revdelete-radio-unset'       => 'نئیں',
+'revdelete-log'               => 'وجہ:',
 'revdel-restore'              => 'وکھالا بدلو',
 'pagehist'                    => 'صفحے دی تاریخ',
 'deletedhist'                 => 'مٹائی گئی تاریخ',
@@ -1070,6 +1094,7 @@ $3 نے $2 وجہ دسی اے۔',
 'action-movefile'           => 'اس فائل نوں لے جاؤ',
 'action-upload'             => 'اس فائل نوں اتے چاڑو',
 'action-reupload'           => 'اس پہلاں توں موجود فائل دے اتے لکھو',
+'action-reupload-shared'    => 'سانجھی ریپوزیٹری تے ایس فائل تے ہور جڑھاؤ',
 'action-upload_by_url'      => 'کسے URL توں اے فائل چڑھاؤ',
 'action-writeapi'           => 'API دا ورتن',
 'action-delete'             => 'اس صفحے نوں مٹا دیو',
@@ -1077,8 +1102,16 @@ $3 نے $2 وجہ دسی اے۔',
 'action-deletedhistory'     => 'صفے دا مٹایا ہویا رکارڈ ویکھو',
 'action-browsearchive'      => 'مٹاۓ گۓ صفحے کھوجو',
 'action-undelete'           => 'اس صفحے نوں واپس لیاؤ',
+'action-suppressrevision'   => 'ویکھو تے لکی ریوین نوں فیر لے اؤ۔',
+'action-suppressionlog'     => 'ایس پرائیویٹ لاگ نوں ویکھو',
 'action-block'              => 'اس ورتن آلے نوں لکھن توں روکو',
 'action-protect'            => 'اس صفحے دے بچاؤ دا درجہ بدلو',
+'action-import'             => 'کسے ہور وکی توں اے صفہ لے کے آؤ',
+'action-importupload'       => 'چڑھائی ہووئی فائل توں صفے لیاؤ',
+'action-patrol'             => 'دوجے دیاں تبدیلیاں تے گشت دا نشاں لاؤ',
+'action-autopatrol'         => 'کیا تساں تبدیلی دے نشاں تے گشت دا نشان لایا',
+'action-unwatchedpages'     => 'بنا اکھ تھلے رکھیاں صفیاں دی لسٹ ویکھو',
+'action-trackback'          => 'اک ٹریکبیک دسو',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|change|تبدیلیاں}}',
@@ -1623,6 +1656,7 @@ $3 نے $2 وجہ دسی اے۔',
 'protect-otherreason'         => ':دوجی وجہ',
 'protect-otherreason-op'      => 'ہور وجہ',
 'protect-edit-reasonlist'     => 'تبدیلی دیاں وجہ لکھو',
+'protect-expiry-options'      => '1 کینٹہ:1 کینٹہ,1 دن:1 دن,1 ہفتہ:1 ہفتہ,2 ہفتہ:2 ہفتہ,1 معینہ:1 معینہ,3 معینے:3 معینے,6 معینے:6 معینے,1 ورہ:1 ورہ,انگنت:انگنت',
 'restriction-type'            => 'اجازت:',
 'restriction-level'           => 'حفاظتی درجہ:',
 'minimum-size'                => 'چھوٹا ترین ناپ',
@@ -1641,24 +1675,40 @@ $3 نے $2 وجہ دسی اے۔',
 'restriction-level-all'           => 'کسے وی درجے تے',
 
 # Undelete
-'undelete'                  => 'مٹاۓ گۓ صفحے ویکھو',
-'undeletepage'              => 'مٹاۓ گۓ صفحے ویکھو تے واپس لے آؤ',
-'undeletepagetitle'         => "'''تھلے مٹایاں ریوین [[:$1|$1]]'''",
-'viewdeletedpage'           => 'مٹاۓ گۓ صفحے ویکھو',
-'undelete-fieldset-title'   => 'ریویین واپس',
-'undelete-nodiff'           => 'کوئی پہلی ریوین ناں لبی۔',
-'undeletebtn'               => 'بحال کرو',
-'undeletelink'              => 'ویکھو/بحال کرو',
-'undeletereset'             => 'پہلی حالت تے لے آؤ',
-'undeletecomment'           => 'صلاع:',
-'undelete-search-box'       => 'مٹاۓ گۓ صفحے کھوجو',
-'undelete-search-submit'    => 'کھوجو',
-'undelete-show-file-submit' => 'ہاں جی',
+'undelete'                     => 'مٹاۓ گۓ صفحے ویکھو',
+'undeletepage'                 => 'مٹاۓ گۓ صفحے ویکھو تے واپس لے آؤ',
+'undeletepagetitle'            => "'''تھلے مٹایاں ریوین [[:$1|$1]]'''",
+'viewdeletedpage'              => 'مٹاۓ گۓ صفحے ویکھو',
+'undeletepagetext'             => 'تھلے دتے گۓ {{انیک:$1|صفہ مٹا دتا گیا اے پر|$1 صفے مٹا دتے گۓ نیں پر}} ہلے وی آرکائیو ج نیں تے والس لیاۓ جاسکدے نیں۔
+آرکئیو نوں صاف کیتا جاسکدا اے۔',
+'undelete-fieldset-title'      => 'ریویین واپس',
+'undeleteextrahelp'            => "صفے دی ساری تریخ واپس لیاں لئی سارے چیکبوکسز دے ٹھیک مٹادیو تے '''''{{int:undeletebtn}}''''' تے کلک کرو
+چونویں واپسی کرن لئی اوناں ڈبیاں نوں کلک کرو جناں نال جڑیاں ریویناں نوں واپس کرنا اے تے '''''{{int:undeletebtn}}''''' تے کلک کرو۔",
+'undeleterevisions'            => '$1 {{انیک:$1|ریوین|ریویناں}} آرکائیو چ',
+'undelete-nodiff'              => 'کوئی پہلی ریوین ناں لبی۔',
+'undeletebtn'                  => 'بحال کرو',
+'undeletelink'                 => 'ویکھو/بحال کرو',
+'undeletereset'                => 'پہلی حالت تے لے آؤ',
+'undeletecomment'              => 'صلاع:',
+'undelete-search-box'          => 'مٹاۓ گۓ صفحے کھوجو',
+'undelete-search-submit'       => 'کھوجو',
+'undelete-no-results'          => 'مٹائی آرکائیو چ کوئی رلدے صفے نئیں لبے۔',
+'undelete-filename-mismatch'   => 'فائل مٹاؤ واپسی نئیں ہوسکدی ٹائمسٹیمپ نال $1 : فائل ناں نئیں جڑدے',
+'undelete-missing-filearchive' => 'فائل آرکائیو آئی ڈی $1 نوں واپس کرن چ ناکامی کیوں جے اے ڈیٹابیس نئیں اے۔
+خورے اے پہلے ای مٹ چکی ہووے۔',
+'undelete-error-short'         => 'فاغل واپس کرن چ غلطی: $1',
+'undelete-error-long'          => 'فائل واپس کرن  لگیاں غلطیاں ہوئیاں:
+$1',
+'undelete-show-file-confirm'   => 'تساں نوں کیا پک اے جے تسیں فائل "<نوکی>$1</نوکی>" دی مٹائی ریوین  $2 توں $3 تک ویکھنا چاندے او؟',
+'undelete-show-file-submit'    => 'ہاں جی',
 
 # Namespace form on various pages
-'namespace'      => 'ناں دی جگہ:',
-'invert'         => 'وچوں چناؤ',
-'blanknamespace' => '(خاص)',
+'namespace'                     => 'ناں دی جگہ:',
+'invert'                        => 'وچوں چناؤ',
+'tooltip-invert'                => 'ایس ڈبے نوں ویکھو تبدیلیاں چھپان لئی چونویں ناںتھاں تے (تے رلدے ناںتھاں اگر چیک کیتے جان)',
+'namespace_association'         => 'رلدے ناں تھاں',
+'tooltip-namespace_association' => 'ایس ڈبے نون وی ویکھو گل بات یا ناںتھاں  چونویں ناںتھاں نال رلدا۔',
+'blanknamespace'                => '(خاص)',
 
 # Contributions
 'contributions'       => 'ورتن آلے دا حصہ',
@@ -1672,6 +1722,7 @@ $3 نے $2 وجہ دسی اے۔',
 'sp-contributions-newbies'             => 'صرف نویں ورتن والیاں دے کم وکھاؤ',
 'sp-contributions-newbies-sub'         => 'نویں کھاتیاں آستے',
 'sp-contributions-blocklog'            => 'لاگ روکو',
+'sp-contributions-deleted'             => 'ورتن والے دے کم مٹادتے گۓ۔',
 'sp-contributions-uploads'             => 'چڑھائیاں فائلاں',
 'sp-contributions-logs'                => 'لاگز',
 'sp-contributions-talk'                => 'گل بات',
@@ -1732,6 +1783,9 @@ $3 نے $2 وجہ دسی اے۔',
 'ipboptions'                      => 'دو کینٹے:2 hours,1 دن:1 day,3 دن:3 days,1 ہفتہ:1 week,2 ہفتے:2 weeks,1 مہینہ:1 month,3 مہینے:3 months,6 مہینے:6 months,1 سال:1 year,بے انت:infinite',
 'ipbotheroption'                  => 'دوجا',
 'ipbotherreason'                  => 'دوجیاں ہور وجہ:',
+'ipb-disableusertalk'             => 'ایس ورتن والے نوں جدوں تک ایدے تے روک اے اپنے گلبات صفے چ تبدیلی کرن توں روکو',
+'ipb-change-block'                => 'ایناں تبدیلیاں نال ایس ورتن والے نوں فیر روکو',
+'ipb-confirm'                     => 'روک پکی کرو',
 'badipaddress'                    => 'آئی پی پتہ ٹھیک نئیں',
 'blockipsuccesssub'               => 'روک کامیاب',
 'ipb-edit-dropdown'               => 'روک دی وجہ تبدیل کرو',

@@ -1612,7 +1612,7 @@ Quand a l'é filtrà da l'utent, a son mostrà mach j'archivi anté che l'utent 
 'filehist-filesize'                 => "Amzure dl'archivi",
 'filehist-comment'                  => 'Coment',
 'filehist-missing'                  => 'Archivi mancant',
-'imagelinks'                        => "Anliure a l'archivi",
+'imagelinks'                        => "Usagi dl'archivi",
 'linkstoimage'                      => "{{PLURAL:$1|La pàgina sì-sota a l'ha|Le $1 pàgine sì-sota a l'han}} andrinta dj'anliure a cost archivi:",
 'linkstoimage-more'                 => "Pì che $1 {{PLURAL:$1|pàgina|pàgine}} a l'han dj'anliure a cost archivi.
 La lista sì-sota a smon mach {{PLURAL:$1|la prima pàgina ch'a l'ha|le prime $1 pàgine ch'a l'han}} d'anliure a s'archivi.
@@ -3404,10 +3404,8 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 'filepath'         => "Përcors d'archivi",
 'filepath-page'    => 'Archivi:',
 'filepath-submit'  => 'Përcors',
-'filepath-summary' => "Sta pàgina special-sì a la smon ël përcors complet për rive-ie a n'archivi.
-Le figure as ësmon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o faite parte da sò programa a pòsta.
-
-Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
+'filepath-summary' => "Sta pàgina special-sì a la smon ël përcors complet për n'archivi.
+Le figure as ësmon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o faite parte diretament da sò programa a pòsta.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => "Arsërca dj'archivi dobi",
@@ -3548,5 +3546,7 @@ Ch'a buta mach ël nòm dl'archivi sensa pa ël prefiss \"{{ns:file}}:\".",
 'logentry-move-move-noredirect'       => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 sensa lassé na ridiression",
 'logentry-move-move_redir'            => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression",
 'logentry-move-move_redir-noredirect' => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression sensa lassé na ridiression",
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcà}} revision $4 dla pagina $3 controlà',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcà}} automaticament revision $4 dla pagina $3 controlà',
 
 );

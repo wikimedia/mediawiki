@@ -3625,9 +3625,7 @@ Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza públic
 'filepath-page'    => 'Ficheiro:',
 'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Esta páxina especial devolve a ruta completa dun ficheiro.
-As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.
-
-Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
+As imaxes móstranse na súa resolución completa; outros tipos de ficheiros inícianse directamente co seu programa asociado.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Procurar ficheiros duplicados',
@@ -3768,5 +3766,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:"',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sen deixar unha redirección',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sobre unha redirección',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sobre unha redirección sen deixar unha redirección',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcou}} a revisión $4 da páxina "$3" como patrullada',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcou}} automaticamente a revisión $4 da páxina "$3" como patrullada',
 
 );

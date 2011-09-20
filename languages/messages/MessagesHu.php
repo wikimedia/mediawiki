@@ -3584,9 +3584,8 @@ A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉ
 'filepath'         => 'Fájlelérés',
 'filepath-page'    => 'Fájl:',
 'filepath-submit'  => 'Elérési út',
-'filepath-summary' => 'Ezen lap segítségével lekérheted egy adott fájl pontos útvonalát. A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozzájuk rendelt programmal indulnak el.
-
-Add meg a fájlnevet a „{{ns:file}}:” prefixum nélkül.',
+'filepath-summary' => 'Ezen lap segítségével lekérheted egy adott fájl pontos útvonalát.
+A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozzájuk rendelt programmal indulnak el.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Duplikátumok keresése',

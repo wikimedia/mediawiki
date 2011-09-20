@@ -3710,9 +3710,8 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'filepath'         => 'Cesta k souboru',
 'filepath-page'    => 'Soubor:',
 'filepath-submit'  => 'Přejít',
-'filepath-summary' => 'Tato speciální stránka vrátí úplnou cestu k souboru. Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v  přiřazených programech.
-
-Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
+'filepath-summary' => 'Tato speciální stránka vrátí úplnou cestu k souboru.
+Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v  přiřazených programech.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Hledání duplicitních souborů',

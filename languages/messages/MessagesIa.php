@@ -3573,10 +3573,8 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 'filepath'         => 'Cammino del file',
 'filepath-page'    => 'File:',
 'filepath-submit'  => 'Ir',
-'filepath-summary' => 'Iste pagina special contine le cammino complete de un file.
-Le imagines se monstra in plen resolution, le altere typos de file se executa directemente con lor programmas associate.
-
-Entra le nomine del file sin le prefixo "{{ns:file}}:".',
+'filepath-summary' => 'Iste pagina special retorna le cammino complete de un file.
+Le imagines se monstra in plen resolution, le altere typos de file se executa directemente con lor programmas associate.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Cercar files duplicate',

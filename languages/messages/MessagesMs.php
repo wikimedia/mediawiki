@@ -3484,9 +3484,7 @@ Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi 
 'filepath-page'    => 'Fail:',
 'filepath-submit'  => 'Pergi',
 'filepath-summary' => 'Laman khas ini mengembalikan laluan penuh bagi sesebuah fail.
-Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara yang berkenaan secara terus.
-
-Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
+Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara yang berkenaan secara terus.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Cari fail serupa',

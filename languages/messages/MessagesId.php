@@ -3666,9 +3666,7 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'filepath-page'    => 'Berkas:',
 'filepath-submit'  => 'Cari',
 'filepath-summary' => 'Halaman istimewa ini menampilkan jalur lengkap untuk suatu berkas.
-Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsung dengan program terkaitnya.
-
-Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
+Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsung dengan program terkaitnya.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Pencarian berkas duplikat',

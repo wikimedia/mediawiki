@@ -3450,9 +3450,8 @@ Tendríes d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Lli
 'filepath'         => "Ruta d'archivu",
 'filepath-page'    => 'Ficheru:',
 'filepath-submit'  => 'Dir',
-'filepath-summary' => "Esta páxina especial devuelve la ruta completa d'un archivu. Les imáxenes amuésense a resolución completa; les demás tribes d'archivu execútense direutamente col so programa asociáu.
-
-Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
+'filepath-summary' => "Esta páxina especial devuelve la ruta completa d'un archivu.
+Les imáxenes amuésense a resolución completa; les demás tribes d'archivu execútense direutamente col so programa asociáu.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Buscar archivos duplicaos',
