@@ -2844,9 +2844,7 @@ Panjenengan uga bisa [[Special:EditWatchlist|nganggo éditor standar panjenengan
 'filepath-page'    => 'Berkas:',
 'filepath-submit'  => 'Golèk',
 'filepath-summary' => 'Kaca astaméwa utawa kusus iki nuduhaké jalur pepak sawijining berkas.
-Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka langsung mawa program kagandhèng.
-
-Lebokna jeneng berkas tanpa imbuhan awalan "{{ns:file}}:".',
+Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka langsung mawa program kagandhèng.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Golèk berkas duplikat',

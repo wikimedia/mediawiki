@@ -3546,10 +3546,8 @@ Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van 
 'filepath'         => 'Lêerpad',
 'filepath-page'    => 'Lêer:',
 'filepath-submit'  => 'OK',
-'filepath-summary' => 'Die spesiale bladsy wys die volledige pad vir \'n lêer.
-Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hulle MIME-geskakelde programme geopen.
-
-Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
+'filepath-summary' => "Die spesiale bladsy wys die volledige pad vir 'n lêer.
+Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hulle MIME-geskakelde programme geopen.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Soek duplikaat lêers',

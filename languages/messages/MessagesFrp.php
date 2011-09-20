@@ -3835,9 +3835,7 @@ Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la
 'filepath-page'    => 'Fichiér :',
 'filepath-submit'  => 'Alar trovar',
 'filepath-summary' => 'Ceta pâge spèciâla montre lo chemin d’accès complèt d’un fichiér.
-Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs sont chargiês et dèmarrâs tot drêt avouéc lor programo associyê.
-
-Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
+Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs sont chargiês et dèmarrâs tot drêt avouéc lor programo associyê.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Rechèrche des fichiérs en doblo',
@@ -3978,5 +3976,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'logentry-move-move-noredirect'       => '$1 at {{GENDER:$2|dèplaciê}} la pâge $3 vers $4 sen lèssiér una redirèccion',
 'logentry-move-move_redir'            => '$1 at {{GENDER:$2|dèplaciê}} la pâge $3 vers $4 en ècrasent sa redirèccion',
 'logentry-move-move_redir-noredirect' => '$1 at {{GENDER:$2|dèplaciê}} la pâge $3 vers $4 en ècrasent sa redirèccion sen lèssiér una redirèccion',
+'logentry-patrol-patrol'              => '$1 at {{GENDER:$2|marcâ}} la vèrsion $4 de la pâge $3 coment survelyê',
+'logentry-patrol-patrol-auto'         => '$1 at {{GENDER:$2|marcâ}} ôtomaticament la vèrsion $4 de la pâge $3 coment survelyê',
 
 );

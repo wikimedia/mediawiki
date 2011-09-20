@@ -3524,9 +3524,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'filepath'         => '文件路径',
 'filepath-page'    => '文件名：',
 'filepath-submit'  => '提交',
-'filepath-summary' => '此特殊页面返回文件的完整路径。图像会以完整的分辨率显示，其它的文件类型亦将直接通过关联的应用程序打开。
-
-请输入文件名，不要包含“{{ns:file}}:”前缀。',
+'filepath-summary' => '此特殊页面返回文件的完整路径。图像会以完整的分辨率显示，其它的文件类型亦将直接通过关联的应用程序打开。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => '搜索重复文件',

@@ -3530,9 +3530,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'filepath'         => '檔案路徑',
 'filepath-page'    => '檔案名：',
 'filepath-submit'  => '前往',
-'filepath-summary' => '這個特殊頁面擷取一個檔案的完整路徑。圖片會以完整的解像度顯示，其它的檔案類型會以同它們已關聯程式啟動。
-
-請輸入檔名，不要包含"{{ns:file}}:"開頭。',
+'filepath-summary' => '這個特殊頁面擷取一個檔案的完整路徑。圖片會以完整的解像度顯示，其它的檔案類型會以同它們已關聯程式啟動。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => '選擇重覆檔案',

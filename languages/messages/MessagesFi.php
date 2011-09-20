@@ -1806,7 +1806,7 @@ Jos suodatusperusteena käytetään käyttäjää, tuloksissa näytetään vain 
 'filehist-filesize'         => 'Tiedostokoko',
 'filehist-comment'          => 'Kommentti',
 'filehist-missing'          => 'Tiedosto puuttuu',
-'imagelinks'                => 'Tiedostolinkit',
+'imagelinks'                => 'Tiedoston käyttö',
 'linkstoimage'              => '{{PLURAL:$1|Seuraavalta sivulta|$1 sivulla}} on linkki tähän tiedostoon:',
 'linkstoimage-more'         => 'Enemmän kuin $1 {{PLURAL:$1|sivu|sivua}} linkittää tähän tiedostoon.
 Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimmäistä linkittävää sivua}} tähän tiedostoon.
@@ -3533,7 +3533,8 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'filepath'         => 'Tiedoston osoite',
 'filepath-page'    => 'Tiedosto',
 'filepath-submit'  => 'Siirry',
-'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen. Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
+'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen.
+Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Kaksoiskappaleiden haku',
@@ -3670,5 +3671,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|siirsi}} sivun $3 uudelle nimelle $4 luomatta ohjausta',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|siirsi}} sivun $3 ohjauksen $4 päälle',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|siirsi}} sivun $3 ohjauksen $4 päälle luomatta ohjausta',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|merkitsi}} sivun $3 muutoksen $4 tarkastetuksi',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|merkitsi}} automaattisesti sivun $3 muutoksen $4 tarkastetuksi',
 
 );

@@ -3499,9 +3499,8 @@ Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public Licens
 'filepath'         => 'Failo kelias',
 'filepath-page'    => 'Failas:',
 'filepath-submit'  => 'Kelias',
-'filepath-summary' => 'Šis specialusis puslapis parašo pilną kelią iki failo. Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogiai su jų susietąja programa.
-
-Įveskite failo pavadinimą be „{{ns:file}}:“ priedėlio.',
+'filepath-summary' => 'Šis specialusis puslapis parašo pilną kelią iki failo.
+Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogiai su jų susietąja programa.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Ieškoti dublikuotų failų',

@@ -3733,9 +3733,8 @@ hoặc [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực 
 'filepath'         => 'Đường dẫn tập tin',
 'filepath-page'    => 'Tập tin:',
 'filepath-submit'  => 'Hiển thị tập tin',
-'filepath-summary' => 'Trang này chuyển bạn thẳng đến địa chỉ của một tập tin. Nếu là hình, địa chỉ là của hình kích thước tối đa; các loại tập tin khác sẽ được mở lên ngay trong chương trình đúng.
-
-Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
+'filepath-summary' => 'Trang này cho ra địa chỉ đầy đủ của một tập tin.
+Các hình ảnh được hiển thị ở kích thước tối đa, còn các loại tập tin khác được mở lên ngay trong chương trình mặc định.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Tìm kiếm các tập tin trùng lắp',
@@ -3876,5 +3875,7 @@ Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
 'logentry-move-move-noredirect'       => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 mà không để lại một trang đổi hướng',
 'logentry-move-move_redir'            => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 qua trang đổi hướng',
 'logentry-move-move_redir-noredirect' => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 qua trang đổi hướng mà không để lại một trang đổi hướng',
+'logentry-patrol-patrol'              => '$1 đã {{GENDER:$2|đánh dấu}} tuần tra phiên bản $4 của trang $3',
+'logentry-patrol-patrol-auto'         => '$1 đã tự động {{GENDER:$2|đánh dấu}} tuần tra phiên bản $4 của trang $3',
 
 );

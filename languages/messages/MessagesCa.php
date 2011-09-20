@@ -3442,9 +3442,7 @@ Amb aquest programa heu d'haver rebut [{{SERVER}}{{SCRIPTPATH}}/COPYING una còp
 'filepath-page'    => 'Fitxer:',
 'filepath-submit'  => 'Vés-hi',
 'filepath-summary' => "Aquesta pàgina especial retorna un camí complet d'un fitxer.
-Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien directament amb el seu programa associat.
-
-Introduïu el nom del fitxer sense el prefix «{{ns:file}}:»",
+Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien directament amb el seu programa associat.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Cerca fitxers duplicats',

@@ -3159,9 +3159,7 @@ Halaber [[Special:EditWatchlist|aldatzaile estandarra]] erabil dezakezu.',
 'filepath-page'    => 'Fitxategia:',
 'filepath-submit'  => 'Joan',
 'filepath-summary' => 'Orri berezi honek fitxategiaren ibilbidea itzultzen du.
-Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutako programarekin hasiko dira zuzenean.
-
-Sartu fitxategiaren izena "{{ns:file}}:" aurrizkia gabe.',
+Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutako programarekin hasiko dira zuzenean.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Artxibo bikoiztuen bilaketa',

@@ -3125,9 +3125,8 @@ Same mit dit programma heurs se 'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van d
 'filepath'         => 'Bestandjspaad',
 'filepath-page'    => 'Bestandj:',
 'filepath-submit'  => 'Zeuk',
-'filepath-summary' => "Dees speciaal pazjena guf 't vollejig paad veur 'n bestandj. Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes waere drèk in 't mit 't MIME-type verbónje programma geäöpendj.
-
-Veur de bestandjsnaam in zónger 't veurvoegsel \"{{ns:file}}:\".",
+'filepath-summary' => "Dees speciaal pazjena guf 't vollejig paad veur 'n bestandj.
+Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes waere drèk in 't mit 't MIME-type verbónje programma geäöpendj.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Zeuk veur döbbelbestaondje bestenj',

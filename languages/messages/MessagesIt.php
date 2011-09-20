@@ -1780,7 +1780,7 @@ Se vengono filtrati per utente, saranno mostrati solamente quei file per i quali
 'filehist-filesize'         => 'Dimensione del file',
 'filehist-comment'          => 'Oggetto',
 'filehist-missing'          => 'File mancante',
-'imagelinks'                => 'Collegamenti al file',
+'imagelinks'                => 'Uso del file',
 'linkstoimage'              => '{{PLURAL:$1|La seguente pagina contiene|Le seguenti $1 pagine contengono}} collegamenti al file:',
 'linkstoimage-more'         => 'Più di $1 {{PLURAL:$1|pagina punta|pagine puntano}} a questo file.
 Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 pagine che puntano}} a questo file.
@@ -3534,9 +3534,8 @@ Questo programma deve essere distribuito assieme ad [{{SERVER}}{{SCRIPTPATH}}/CO
 'filepath'         => 'Percorso di un file',
 'filepath-page'    => 'Nome del file:',
 'filepath-submit'  => 'Vai',
-'filepath-summary' => 'Questa pagina speciale restituisce il percorso completo di un file. Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri tipi di file viene avviato direttamente il programma associato.
-
-Inserire il nome del file senza il prefisso "{{ns:file}}:"',
+'filepath-summary' => 'Questa pagina speciale restituisce il percorso completo di un file.
+Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri tipi di file viene avviato direttamente il programma associato.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Ricerca dei file duplicati',
@@ -3654,6 +3653,9 @@ Inserire il nome del file senza il prefisso "{{ns:file}}:"',
 'sqlite-no-fts'  => '$1 senza la possibilità di ricerca completa nel testo',
 
 # New logging system
+'revdelete-content-hid'  => 'contenuto nascosto',
+'revdelete-summary-hid'  => 'oggetto della modifica nascosto',
+'revdelete-uname-hid'    => 'nome utente nascosto',
 'revdelete-restricted'   => 'limitazioni ai soli amministratori attivate',
 'revdelete-unrestricted' => 'limitazioni ai soli amministratori rimosse',
 

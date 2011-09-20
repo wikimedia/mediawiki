@@ -3357,9 +3357,8 @@ E [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopi vu dr GNU General Public-Lizänz] sott 
 'filepath'         => 'Dateipfad',
 'filepath-page'    => 'Datei:',
 'filepath-submit'  => 'Gang',
-'filepath-summary' => 'Mit däre Spezialsyte losst sich dr komplett Pfad vu dr aktuälle Version vun ere Datei ohni Umwäg abfroge. Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gstartet.
-
-D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
+'filepath-summary' => 'Mit däre Spezialsyte losst sich dr komplett Pfad vu dr aktuälle Version vun ere Datei ohni Umwäg abfroge.
+Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gstartet.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Datei-Duplikat sueche',

@@ -3412,10 +3412,8 @@ Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Publ
 'filepath'         => 'Llwybr y ffeil',
 'filepath-page'    => 'Ffeil:',
 'filepath-submit'  => 'Eler',
-'filepath-summary' => 'Mae\'r dudalen arbennig hon yn adrodd llwybr ffeil yn gyfan.
-Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn uniongyrchol gan y rhaglen gysylltiedig.
-
-Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
+'filepath-summary' => "Mae'r dudalen arbennig hon yn adrodd llwybr ffeil yn gyfan.
+Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn uniongyrchol gan y rhaglen gysylltiedig.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Chwilio am ffeiliau dyblyg',

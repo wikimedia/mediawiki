@@ -3448,9 +3448,8 @@ Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public
 'filepath'         => 'Pad bei de Fichier',
 'filepath-page'    => 'Fichier:',
 'filepath-submit'  => 'Lass',
-'filepath-summary' => 'Op dëser Spezialsäit kënnt Dir de komplette Pad vun der aktueller Versioun vun engem Fichier direkt offroen. Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikatioun gestart.
-
-D\'Ufro muss ouni den Zousaz "{{ns:file}}": gemaach ginn.',
+'filepath-summary' => 'Op dëser Spezialsäit kënnt Dir de komplette Pad vun der aktueller Versioun vun engem Fichier direkt offroen.
+Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikatioun gestart.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'No duebele Fichiere sichen',

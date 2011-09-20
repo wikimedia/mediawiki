@@ -3198,9 +3198,8 @@ Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public
 'filepath'         => 'Datajowa droga',
 'filepath-page'    => 'Dataja:',
 'filepath-submit'  => 'Pytaś',
-'filepath-summary' => 'Toś ten specialny bok wróśa dopołnu drogu za dataju. Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwězanym programom direktnje startuju.
-
-Zapódaj datajowe mě bźez dodanka "{{ns:file}}:".',
+'filepath-summary' => 'Toś ten specialny bok wróśa dopołnu drogu za dataju.
+Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwězanym programom direktnje startuju.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Za duplikatnymi datajami pytaś',

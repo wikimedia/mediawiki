@@ -1915,7 +1915,7 @@ Quand elle est filtrée par utilisateur, seuls les fichiers dont la version la p
 'filehist-filesize'                 => 'Taille du fichier',
 'filehist-comment'                  => 'Commentaire',
 'filehist-missing'                  => 'Fichier manquant',
-'imagelinks'                        => 'Utilisations du fichier',
+'imagelinks'                        => 'Utilisation du fichier',
 'linkstoimage'                      => '{{PLURAL:$1|La page suivante utilise|Les $1 pages suivantes utilisent}} ce fichier :',
 'linkstoimage-more'                 => 'Plus {{PLURAL:$1|d’une page utilise|de $1 pages utilisent}} ce fichier.
 La liste suivante affiche seulement {{PLURAL:$1|la première page qui utilise|les $1 premières pages qui utilisent}} ce fichier.
@@ -3732,9 +3732,7 @@ Vous devriez avoir reçu [{{SERVER}}{{SCRIPTPATH}}/COPYING une copie de la Licen
 'filepath-page'    => 'Fichier :',
 'filepath-submit'  => 'Aller',
 'filepath-summary' => 'Cette page spéciale retourne le chemin d’accès complet d’un fichier.
-Les images sont montrées dans leur pleine résolution, les autres fichiers sont chargés et démarrés directement avec leur programme associé.
-
-Entrez le nom du fichier sans le préfixe « {{ns:file}}: »',
+Les images sont montrées dans leur pleine résolution, les autres fichiers sont chargés et démarrés directement avec leur programme associé.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Recherche de doublons',

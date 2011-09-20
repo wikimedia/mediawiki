@@ -3197,7 +3197,9 @@ Die Installation wurde abgebrochen.',
 
 Sofern ein gemeinschaftlich genutzter Server verwendet wird, sollte der Hoster den zutreffenden Servernamen in seiner Dokumentation angegeben haben.
 
-Sofern auf einem Windows-Server installiert und MySQL genutzt wird, funktioniert der Servername „localhost“ voraussichtlich nicht. Wenn nicht, sollte  „127.0.0.1“ oder die lokale IP-Adresse angegeben werden.',
+Sofern auf einem Windows-Server installiert und MySQL genutzt wird, funktioniert der Servername „localhost“ voraussichtlich nicht. Wenn nicht, sollte  „127.0.0.1“ oder die lokale IP-Adresse angegeben werden.
+
+Sofern PostgresQL genutzt wird, muss dieses Feld leer gelassen werden, um über ein Unix-Socket zu verwinden.',
 	'config-db-host-oracle' => 'Datenbank-TNS:',
 	'config-db-host-oracle-help' => 'Einen gültigen [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm „Local Connect“-Namen] angeben. Die „tnsnames.ora“-Datei muss von dieser Installation erkannt werden können.<br />Sofern die Client-Bibliotheken für Version 10g oder neuer verwendet werden, kann auch [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm „Easy Connect“] zur Namensgebung genutzt werden.',
 	'config-db-wiki-settings' => 'Bitte Daten zur eindeutigen Identifikation dieses Wikis angeben',
@@ -5239,7 +5241,9 @@ Instalación abortada.',
 
 Se está usando un aloxamento web compartido, o seu provedor de hospedaxe debe darlle o nome de servidor correcto na súa documentación.
 
-Se está a realizar a instalación nun servidor de Windows con MySQL, o nome "localhost" pode non valer como servidor. Se non funcionase, inténteo con "127.0.0.1" como enderezo IP local.',
+Se está a realizar a instalación nun servidor de Windows con MySQL, o nome "localhost" pode non valer como servidor. Se non funcionase, inténteo con "127.0.0.1" como enderezo IP local.
+
+Se está usando PostgreSQL, deixe este campo en branco para facer a conexión a través do conectador Unix.',
 	'config-db-host-oracle' => 'TNS da base de datos:',
 	'config-db-host-oracle-help' => 'Insira un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nome de conexión local] válido; cómpre que haxa visible un ficheiro tnsnames.ora para esta instalación.<br />Se está a empregar bibliotecas cliente versión 10g ou máis recentes, tamén pode usar o método de atribución de nomes [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identificar o wiki',
@@ -7400,7 +7404,9 @@ Installation abortate.',
 
 Si tu usa un servitor web usate in commun, tu providitor deberea dar te le correcte nomine de servitor in su documentation.
 
-Si tu face le installation in un servitor Windows e usa MySQL, le nomine "localhost" possibilemente non functiona como nomine de servitor. Si non, essaya "127.0.0.1", i.e. le adresse IP local.',
+Si tu face le installation in un servitor Windows e usa MySQL, le nomine "localhost" possibilemente non functiona como nomine de servitor. In tal caso, essaya "127.0.0.1", i.e. le adresse IP local.
+
+Si tu usa PostgreSQL, lassa iste campo vacue pro connecter via un "socket" de Unix.',
 	'config-db-host-oracle' => 'TNS del base de datos:',
 	'config-db-host-oracle-help' => 'Entra un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nomine Local Connect] valide; un file tnsnames.ora debe esser visibile a iste installation.<br />Si tu usa bibliothecas de cliente 10g o plus recente, tu pote anque usar le methodo de nomination [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identificar iste wiki',
@@ -10291,11 +10297,13 @@ $1
 	'config-suhosin-max-value-length' => 'Suhosin е инсталиран и ја ограничува должината на параметарот GET на $1 bytes. Делот ResourceLoader на МедијаВики ќе ја заобиколува ова граница, но со тоа ќе се влоши делотворноста. Ако е воопшто можно, на suhosin.get.max_value_length треба да го наместите на 1024 или поевеќе во php.ini , и да му ја зададете истата вредност на $wgResourceLoaderMaxQueryLength во LocalSettings.php .',
 	'config-db-type' => 'Тип на база:',
 	'config-db-host' => 'Домаќин на базата:',
-	'config-db-host-help' => 'Ако вашата база е на друг опслужувач, тогаш тука внесете го името на домаќинот илиу IP-адресата.
+	'config-db-host-help' => 'Ако вашата база е на друг опслужувач, тогаш тука внесете го името на домаќинот или IP-адресата.
 
-Ако користите заедничко (споделено) вдомување, тогаш вашиот вдомител треба да го доде точното име на домаќинот и неговата документација.
+Ако користите заедничко (споделено) вдомување, тогаш вашиот вдомител треба да го наведе точното име на домаќинот во неговата документација.
 
-Ако инсталирате на опслужувач на Windows и користите MySQL, можноста „localhost“ може да не функционира за опслужувачкото име. Во тој случај, обидете се со внесување на „127.0.0.1“ како локална IP-адреса',
+Ако инсталирате на опслужувач на Windows и користите MySQL, можноста „localhost“ може да не функционира за опслужувачкото име. Во тој случај, обидете се со внесување на „127.0.0.1“ како локална IP-адреса.
+
+Ако користите PostgreSQL, оставете го полево празно за да се поврзете преку Unix-приклучок.',
 	'config-db-host-oracle' => 'TNS на базата:',
 	'config-db-host-oracle-help' => 'Внесете важечко [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm локално име за поврзување]. На оваа инсталација мора да ѝ биде видлива податотеката tnsnames.ora.<br />Ако користите клиентски библиотеки 10g или понови, тогаш можете да го користите и методот на иметнување на [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Идентификувај го викиво',
@@ -11159,7 +11167,9 @@ De installatie wordt afgebroken.',
 Als u gebruik maakt van gedeelde webhosting, hoort uw provider u de juiste hostnaam te hebben verstrekt.
 
 Als u MediaWiki op een Windowsserver installeert en MySQL gebruikt, dan werkt "localhost" mogelijk niet als servernaam.
-Als het inderdaad niet werkt, probeer dan "127.0.0.1" te gebruiken als lokaal IP-adres.',
+Als het inderdaad niet werkt, probeer dan "127.0.0.1" te gebruiken als lokaal IP-adres.
+
+Als u PostgreSQL gebruikt, laat dit veld dan leeg om via een Unix-socket te verbinden.',
 	'config-db-host-oracle' => 'Database-TNS:',
 	'config-db-host-oracle-help' => 'Voer een geldige [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name] in; een tnsnames.ora-bestand moet zichtbaar zijn voor deze installatie.<br />Als u gebruik maakt van clientlibraries 10g of een latere versie, kunt u ook gebruik maken van de naamgevingsmethode [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identificeer deze wiki',

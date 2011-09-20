@@ -2858,9 +2858,7 @@ Tağı da [[Special:EditWatchlist|qalıpalğan öñdewişti paýdalana]] alasız
 'filepath-page'    => 'Faýl atı:',
 'filepath-submit'  => 'Ornalaswın tap',
 'filepath-summary' => 'Bul arnaýı bet faýl ornalaswı tolıq jolın qaýtaradı.
-Swretter tolıq ajıratılımdığımen körsetiledi, basqa faýl türlerine qatıstı bağdarlaması twra jegiledi.
-
-Faýl atawın «{{ns:file}}:» degen bastawışsız eñgiziñiz.',
+Swretter tolıq ajıratılımdığımen körsetiledi, basqa faýl türlerine qatıstı bağdarlaması twra jegiledi.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Faýl telnusqaların izdew',

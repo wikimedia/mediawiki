@@ -3546,9 +3546,7 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 'filepath-page'    => 'Fail:',
 'filepath-submit'  => 'Mine',
 'filepath-summary' => 'See erileht määrab otsitava failini viiva tee.
-Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva programmiga.
-
-Sisesta faili nimi eesliiteta "{{ns:file}}:".',
+Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva programmiga.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Faili duplikaatide otsimine',

@@ -3680,5 +3680,7 @@ Unesite naziv fajla bez prefiksa &quot;{{ns:file}}:&quot;.',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|je premestio|je premestila|premesti}} stranicu $3 na $4 bez ostavljanja preusmerenja',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|je premestio|je premestila|je premestio}} stranicu $3 na $4 preko preusmerenja',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|je premestio|je premestila|premesti}} stranicu $3 na $4 preko preusmerenja bez ostavljanja preusmerenja',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|je označio|je označila|označi}} izmenu $4 pregledane stranice $3',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|je samostalno označio|je samostalno označila|samostalno označi}} izmenu $4 pregledane stranice $3',
 
 );

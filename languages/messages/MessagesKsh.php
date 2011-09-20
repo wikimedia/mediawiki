@@ -3842,9 +3842,8 @@ Do sullts en [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun dä <i lang="en">GNU Ge
 'filepath'         => 'Medije-Dateie med ier URL zëije',
 'filepath-page'    => 'Dattëij_Name:',
 'filepath-submit'  => 'Lohß jonn!',
-'filepath-summary' => "Med dä {{int:nstab-special}} hee künnd'Er dä kompläte Paad vun de neuste Version vun ene Datei direk erusfenge. Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.
-
-Doht der Name ohne „{{ns:file}}:“ doför ennjävve.",
+'filepath-summary' => "Med dä {{int:nstab-special}} hee künnd'Er dä kompläte Paad vun de neuste Version vun ene Datei direk erusfenge.
+Die Datei weed jlich aanjezeig, odder med däm paßende Projramm op jemaat.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Sök noh dubbelte Dateie',
