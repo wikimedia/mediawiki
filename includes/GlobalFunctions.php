@@ -869,7 +869,7 @@ function wfErrorLog( $text, $file ) {
 		}
 
 		$len = strlen( $text );
-		$maxLen = socket_get_option( $sock, SOL_UDP, SO_SNDBUF );
+		$maxLen = socket_get_option( $sock, SOL_SOCKET, SO_SNDBUF );
 
 		if ( $len > $maxLen ) {
 			$len = $maxLen - 1;
