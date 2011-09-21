@@ -377,7 +377,7 @@ class RepoGroup {
 	/**
 	 * Limit cache memory
 	 */
-	function trimCache() {
+	protected function trimCache() {
 		while ( count( $this->cache ) >= self::MAX_CACHE_SIZE ) {
 			reset( $this->cache );
 			$key = key( $this->cache );
