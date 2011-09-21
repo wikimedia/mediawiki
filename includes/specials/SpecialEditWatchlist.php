@@ -32,6 +32,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			throw new ReadOnlyError;
 		}
 
+		$this->setHeaders();
+
 		$out = $this->getOutput();
 
 		# Anons don't get a watchlist
@@ -46,6 +48,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$out->addHTML( wfMessage( 'watchlistanontext' )->rawParams( $llink )->parse() );
 			return;
 		}
+
+		$this->outputHeader();
 
 		$sub  = wfMsgExt(
 			'watchlistfor2',
