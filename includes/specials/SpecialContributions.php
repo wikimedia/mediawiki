@@ -641,6 +641,13 @@ class ContribsPager extends ReverseChronologicalPager {
 			array( 'action' => 'history' )
 		);
 
+		if ( isset( $this->mParentLens[$row->rev_parent_id] ) ) {
+			$chardiff = ' . . ' . ChangesList::showCharacterDifference(
+				$this->mParentLens[$row->rev_parent_id], $row->rev_len ) . ' . . ';
+		} else {
+			$chardiff = '';
+		}
+
 		$comment = $this->getLang()->getDirMark() . Linker::revComment( $rev, false, true );
 		$date = $this->getLang()->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
 		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
