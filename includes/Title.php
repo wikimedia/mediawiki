@@ -3168,8 +3168,8 @@ class Title {
 			return $err;
 		}
 
-		// If it is a file, move it first. It is done before all other moving stuff is
-		// done because it's hard to revert
+		// If it is a file, move it first.
+		// It is done before all other moving stuff is done because it's hard to revert.
 		$dbw = wfGetDB( DB_MASTER );
 		if ( $this->getNamespace() == NS_FILE ) {
 			$file = wfLocalFile( $this );
@@ -3180,6 +3180,9 @@ class Title {
 				}
 			}
 		}
+		// Clear RepoGroup process cache
+		RepoGroup::singleton()->clearCache( $this );
+		RepoGroup::singleton()->clearCache( $nt ); # clear false negative cache
 
 		$dbw->begin(); # If $file was a LocalFile, its transaction would have closed our own.
 		$pageid = $this->getArticleID( self::GAID_FOR_UPDATE );
