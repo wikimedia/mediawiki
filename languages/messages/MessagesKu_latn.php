@@ -1767,7 +1767,7 @@ Rûpela "[[:$1]]" berê heye. Tu rast dixazê wê jêbibê ji bo navguherandinê
 'tooltip-t-recentchangeslinked'   => 'Recent changes in pages linking to this page',
 'tooltip-feed-rss'                => "RSS feed'ên ji bo rûpelê",
 'tooltip-feed-atom'               => "Atom feed'ên ji bo vê rûpelê",
-'tooltip-t-contributions'         => 'Lîsteya tevkarîyên vê bikarhênerê/î bibîne',
+'tooltip-t-contributions'         => 'Lîsteya beşdariyên bikarhêner bibîne',
 'tooltip-t-emailuser'             => 'Jê re name bişîne',
 'tooltip-t-upload'                => 'Wêneyan bar bike',
 'tooltip-t-specialpages'          => 'Lîsteya hemû rûpelên taybetî',

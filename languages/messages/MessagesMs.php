@@ -488,7 +488,7 @@ $1',
 'nstab-media'     => 'Laman media',
 'nstab-special'   => 'Laman khas',
 'nstab-project'   => 'Laman projek',
-'nstab-image'     => 'Imej',
+'nstab-image'     => 'Fail',
 'nstab-mediawiki' => 'Pesanan',
 'nstab-template'  => 'Templat',
 'nstab-help'      => 'Laman bantuan',
@@ -1704,7 +1704,7 @@ Apabila ditapis oleh pengguna, hanya fail-fail yang dimuat naik versi terkininya
 'listfiles_count'       => 'Versi',
 
 # File description page
-'file-anchor-link'          => 'Imej',
+'file-anchor-link'          => 'Fail',
 'filehist'                  => 'Sejarah fail',
 'filehist-help'             => 'Klik pada tarikh/waktu untuk melihat rupa fail tersebut pada waktu silam.',
 'filehist-deleteall'        => 'hapuskan semua',
@@ -3625,5 +3625,7 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|mengalihkan}} laman $3 ke $4 tanpa meninggalkan lencongan',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|mengalihkan}} laman $3 ke $4 pada lencongan',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|mengalihkan}} laman $3 ke $4 pada satu lencongan tanpa meninggalkan lencongan',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|menandakan}} semakan $4 daripada laman $3 sebagai dironda',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|menandakan}} semakan $4 daripada laman $3 sebagai dironda secara automatik',
 
 );

@@ -1696,7 +1696,7 @@ Si filtreu per usuari només es mostraran els fitxers la versió més recent del
 'filehist-filesize'         => 'Mida del fitxer',
 'filehist-comment'          => 'Comentari',
 'filehist-missing'          => 'Fitxer que falta',
-'imagelinks'                => 'Enllaços a la imatge',
+'imagelinks'                => 'Ús del fitxer',
 'linkstoimage'              => '{{PLURAL:$1|La següent pàgina enllaça|Les següents pàgines enllacen}} a aquesta imatge:',
 'linkstoimage-more'         => "Hi ha més de $1 {{PLURAL:$1|pàgina que enllaça|pàgines que enllaçen}} a aquest fitxer.
 La següent llista només mostra {{PLURAL:$1|la primera d'elles|les primeres $1 d'aquestes pàgines}}.
@@ -2748,8 +2748,17 @@ Això deu ser degut per un enllaç a un lloc extern inclòs a la llista negra.',
 'spam_blanking'       => "Totes les revisions contenien enllaços $1, s'està deixant en blanc",
 
 # Info page
+'pageinfo-title'            => 'Informació de «$1»',
 'pageinfo-header-edits'     => 'Modificacions',
 'pageinfo-header-watchlist' => 'Llista de seguiment',
+'pageinfo-header-views'     => 'Visites',
+'pageinfo-subjectpage'      => 'Pàgina',
+'pageinfo-talkpage'         => 'Pàgina de discussió',
+'pageinfo-watchers'         => "Número d'usuaris que l'estan vigilant",
+'pageinfo-edits'            => "Número d'edicions",
+'pageinfo-authors'          => "Número d'autors diferents",
+'pageinfo-views'            => 'Número de visites',
+'pageinfo-viewsperedit'     => 'Visites per edició',
 
 # Skin names
 'skinname-standard'    => 'Clàssic',

@@ -2057,7 +2057,8 @@ A 'content page' is a page that forms part of the purpose of the wiki. It includ
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'statistics-pages'             => 'Used in [[Special:Statistics]]',
+'statistics-pages'             => 'Used in [[Special:Statistics]]
+{{Identical|Pages}}',
 'statistics-pages-desc'        => "Tooltip shown over ''Pages'' (or as a note below it) in [[Special:Statistics]]",
 'statistics-files'             => 'Used in [[Special:Statistics]]',
 'statistics-edits'             => 'Used in [[Special:Statistics]]',
