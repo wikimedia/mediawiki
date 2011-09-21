@@ -385,4 +385,19 @@ class RepoGroup {
 			unset( $this->cache[$key] );
 		}
 	}
+
+	/**
+	 * Clear RepoGroup process cache used for finding a file
+	 * @param $title Title|null Title of the file or null to clear all files
+	 */
+	public function clearCache( Title $title = null ) {
+		if ( $title == null ) {
+			$this->cache = array();
+		} else {
+			$dbKey = $title->getDBkey();
+			if ( isset( $this->cache[$dbKey] ) ) {
+				unset( $this->cache[$dbKey] );
+			}
+		}
+	}
 }
