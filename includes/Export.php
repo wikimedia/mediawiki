@@ -480,10 +480,10 @@ class XmlDumpWriter {
 	 */
 	function closePage() {
 		return "  </page>\n";
-		if ( !$this->firstPageWritten ) {
-			$this->firstPageWritten = $this->pageInProgress;
-		}
-		$this->lastPageWritten = $this->pageInProgress;
+		//if ( !$this->firstPageWritten ) {
+		//	$this->firstPageWritten = $this->pageInProgress;
+		//}
+		//$this->lastPageWritten = $this->pageInProgress;
 	}
 
 	/**
@@ -711,7 +711,7 @@ class DumpOutput {
 
 	/**
 	 * Close the old file, and move it to a specified name.
-	 * Use this for the last piece of a file written out 
+	 * Use this for the last piece of a file written out
 	 * at specified checkpoints (e.g. every n hours).
 	 * @param $newname mixed File name. May be a string or an array with one element
 	 * @param $open bool If true, a new file with the old filename will be opened again for writing (default: false)
