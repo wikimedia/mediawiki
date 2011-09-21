@@ -428,6 +428,8 @@ class ApiUpload extends ApiBase {
 	/**
 	 * Perform the actual upload. Returns a suitable result array on success;
 	 * dies on failure.
+	 *
+	 * @return array
 	 */
 	protected function performUpload() {
 		global $wgUser;

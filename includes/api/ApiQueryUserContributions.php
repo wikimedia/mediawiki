@@ -275,6 +275,8 @@ class ApiQueryContributions extends ApiQueryBase {
 
 	/**
 	 * Extract fields from the database row and append them to a result array
+	 *
+	 * @return array
 	 */
 	private function extractRowInfo( $row ) {
 		$vals = array();
