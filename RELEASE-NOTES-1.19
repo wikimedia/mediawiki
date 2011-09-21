@@ -95,6 +95,7 @@ production.
 * (bug 18424) Special:Prefixindex and Special:Allpages paging links are
   really small, and somewhat inconsistent with each other.
 * Per page edit-notices now work in namespaces without subpages enabled.
+* (bug 30245) Use the correct way to construct a log page title
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
