@@ -621,7 +621,7 @@ class RecentChange {
 			$wgCanonicalServer, $wgScript;
 
 		if( $this->mAttribs['rc_type'] == RC_LOG ) {
-			$titleObj = Title::newFromText( 'Log/' . $this->mAttribs['rc_log_type'], NS_SPECIAL );
+			$titleObj = SpecialPage::getTitleFor( 'Log', $this->mAttribs['rc_log_type'] );
 		} else {
 			$titleObj =& $this->getTitle();
 		}

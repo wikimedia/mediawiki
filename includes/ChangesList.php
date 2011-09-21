@@ -511,7 +511,7 @@ class OldChangesList extends ChangesList {
 		if( $rc->mAttribs['rc_type'] == RC_MOVE || $rc->mAttribs['rc_type'] == RC_MOVE_OVER_REDIRECT ) {
 		// Log entries
 		} elseif( $rc->mAttribs['rc_log_type'] ) {
-			$logtitle = Title::newFromText( 'Log/'.$rc->mAttribs['rc_log_type'], NS_SPECIAL );
+			$logtitle = SpecialPage::getTitleFor( 'Log', $rc->mAttribs['rc_log_type'] );
 			$this->insertLog( $s, $logtitle, $rc->mAttribs['rc_log_type'] );
 		// Log entries (old format) or log targets, and special pages
 		} elseif( $rc->mAttribs['rc_namespace'] == NS_SPECIAL ) {
