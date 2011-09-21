@@ -467,6 +467,13 @@ class EditPage {
 					$wgOut->addWikiText( $editnotice_base_msg->plain()  );
 				}
 			}
+		} else {
+			# Even if there are no subpages in namespace, we still don't want / in MW ns.
+			$editnoticeText = $editnotice_ns . '-' . str_replace( '/', '-', $this->mTitle->getDBkey() );
+			$editnoticeMsg = wfMessage( $editnoticeText )->inContentLanguage();
+			if ( $editnoticeMsg->exists() ) {
+				$wgOut->addWikiText( $editnoticeMsg->plain() );
+			}
 		}
 
 		# Attempt submission here.  This will check for edit conflicts,
