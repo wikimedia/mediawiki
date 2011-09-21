@@ -288,7 +288,7 @@ class VectorTemplate extends BaseTemplate {
 	}
 
 	private function renderPortal( $name, $content, $msg = null, $hook = null ) {
-		if ( !isset( $msg ) ) {
+		if ( $msg === null ) {
 			$msg = $name;
 		}
 		?>
@@ -304,7 +304,7 @@ class VectorTemplate extends BaseTemplate {
 
 <?php
 			endforeach;
-			if ( isset( $hook ) ) {
+			if ( $hook !== null ) {
 				wfRunHooks( $hook, array( &$this ) );
 			}
 			?>
