@@ -3418,6 +3418,8 @@ class Language {
 	/**
 	 * Get all message keys for a given language. This is a faster alternative to
 	 * array_keys( Language::getMessagesFor( $code ) )
+	 *
+	 * @since 1.19
 	 * @param $code string Language code
 	 * @return array of message keys (strings)
 	 */
