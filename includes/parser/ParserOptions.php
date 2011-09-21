@@ -275,7 +275,7 @@ class ParserOptions {
 	 *
 	 * @since 1.17
 	 * @param $forOptions Array
-	 * @param $title Title: will be used to get the page content language
+	 * @param $title Title: will be used to get the page content language (since r97636)
 	 * @return \string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {

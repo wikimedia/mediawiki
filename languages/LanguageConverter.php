@@ -1364,7 +1364,7 @@ class ConverterRule {
 			if ( isset( $this->mVariantFlags[$variant] ) ) {
 				// then convert <text to convert> to current language
 				$this->mRules = $this->mConverter->autoConvert( $this->mRules,
-																$variant );
+					$variant );
 			} else { // if current variant no in flags,
 				   // then we check its fallback variants.
 				$variantFallbacks =
@@ -1376,7 +1376,7 @@ class ConverterRule {
 							// then convert <text to convert> to fallback language
 							$this->mRules =
 								$this->mConverter->autoConvert( $this->mRules,
-																$variantFallback );
+									$variantFallback );
 							break;
 						}
 					}
