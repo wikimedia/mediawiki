@@ -36,6 +36,8 @@ class ApiFeedContributions extends ApiBase {
 
 	/**
 	 * This module uses a custom feed wrapper printer.
+	 *
+	 * @return ApiFormatFeedWrapper
 	 */
 	public function getCustomPrinter() {
 		return new ApiFormatFeedWrapper( $this->getMain() );

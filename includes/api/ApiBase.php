@@ -655,6 +655,8 @@ abstract class ApiBase {
 
 	/**
 	 * @deprecated since 1.17 use MWNamespace::getValidNamespaces()
+	 *
+	 * @return array
 	 */
 	public static function getValidNamespaces() {
 		return MWNamespace::getValidNamespaces();
@@ -1164,7 +1166,7 @@ abstract class ApiBase {
 		'emptynewsection' => array( 'code' => 'emptynewsection', 'info' => 'Creating empty new sections is not possible.' ),
 		'revwrongpage' => array( 'code' => 'revwrongpage', 'info' => "r\$1 is not a revision of ``\$2''" ),
 		'undo-failure' => array( 'code' => 'undofailure', 'info' => 'Undo failed due to conflicting intermediate edits' ),
-		
+
 		// Messages from WikiPage::doEit()
 		'edit-hook-aborted' => array( 'code' => 'edit-hook-aborted', 'info' => "Your edit was aborted by an ArticleSave hook" ),
 		'edit-gone-missing' => array( 'code' => 'edit-gone-missing', 'info' => "The page you tried to edit doesn't seem to exist anymore" ),

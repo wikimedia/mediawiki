@@ -342,6 +342,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 
 	/**
 	 * Optimization - no need to sanitize data that will not be needed
+	 *
+	 * @return bool
 	 */
 	public function getNeedsRawData() {
 		return true;
