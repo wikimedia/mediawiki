@@ -1833,7 +1833,7 @@ Kui kasutaja järgi filtrida, kuvatakse ainult need failid, mille viimase versio
 'filehist-filesize'         => 'Faili suurus',
 'filehist-comment'          => 'Kommentaar',
 'filehist-missing'          => 'Fail puudub',
-'imagelinks'                => 'Viited failile',
+'imagelinks'                => 'Failikasutus',
 'linkstoimage'              => 'Sellele pildile {{PLURAL:$1|viitab järgmine lehekülg|viitavad järgmised leheküljed}}:',
 'linkstoimage-more'         => 'Sellele failile viitab enam kui $1 {{PLURAL:$1|lehekülg|lehekülge}}.
 Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esimesed $1 viitavat lehekülge}}.
@@ -2533,6 +2533,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'unblocklink'                     => 'lõpeta blokeerimine',
 'change-blocklink'                => 'muuda blokeeringut',
 'contribslink'                    => 'kaastöö',
+'emaillink'                       => 'saada e-kiri',
 'autoblocker'                     => 'Automaatselt blokeeritud, kuna [[User:$1|$1]] on hiljuti sinu IP-aadressi kasutanud. Põhjus: $2',
 'blocklogpage'                    => 'Blokeerimislogi',
 'blocklog-showlog'                => 'See kasutaja on varem blokeeritud. Allpool on toodud blokeerimislogi sissekanne:',

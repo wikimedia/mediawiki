@@ -1448,7 +1448,8 @@ Voici une valeur générée aléatoirement que vous pouvez utiliser : $1',
 'prefs-registration'            => 'Date d’inscription :',
 'yourrealname'                  => 'Nom réel :',
 'yourlanguage'                  => 'Langue de l’interface :',
-'yourvariant'                   => 'Variante :',
+'yourvariant'                   => 'Variante de la langue du contenu:',
+'prefs-help-variant'            => 'Votre variante ou orthographe préféré dans lequel afficher les pages de contenu de ce wiki.',
 'yournick'                      => 'Signature pour les discussions :',
 'prefs-help-signature'          => 'Les commentaires sur les pages de discussion doivent être signés avec « <nowiki>~~~~</nowiki> », qui sera converti par votre signature et un horodatage.',
 'badsig'                        => 'Signature brute incorrecte.
@@ -3062,7 +3063,7 @@ Si vous l’exécutez, votre système peut être compromis.",
 'svg-long-desc'          => 'Fichier SVG, résolution de $1 × $2 pixels, taille : $3',
 'show-big-image'         => 'Image en plus haute résolution',
 'show-big-image-preview' => 'Taille de cet aperçu : $1.',
-'show-big-image-other'   => 'Autres résolutions : $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Autre résolution|Autres résolutions}} : $1.',
 'show-big-image-size'    => '$1 × $2 pixels',
 'file-info-gif-looped'   => 'en boucle',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|image|images}}',
@@ -3850,7 +3851,10 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'sqlite-no-fts'  => '$1 sans recherche en texte intégral supportée',
 
 # New logging system
-'revdelete-restricted'   => 'a appliqué les restrictions aux administrateurs',
-'revdelete-unrestricted' => 'restrictions retirées pour les administrateurs',
+'logentry-delete-delete'  => '$1 {{GENDER:$2|a supprimé}} la page $3',
+'logentry-delete-restore' => '$1 {{GENDER:$2|a restauré}} la page $3',
+'logentry-delete-event'   => "$1 {{GENDER:$2|a modifié}} la visibilité {{PLURAL:$5|d'un événement du journal|de $5 événements du journal}} sur $3: $4",
+'revdelete-restricted'    => 'a appliqué les restrictions aux administrateurs',
+'revdelete-unrestricted'  => 'restrictions retirées pour les administrateurs',
 
 );

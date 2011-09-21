@@ -3536,10 +3536,8 @@ Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove op�
 'filepath'         => 'Putanja fajla',
 'filepath-page'    => 'Fajl:',
 'filepath-submit'  => 'Pošalji',
-'filepath-summary' => 'Ova specijalna strana vraća kompletnu putanju za fajl.
-Slike bivaju prikazane u punoj rezoluciji, drugi tipovi fajlova bivaju direktno startovani pomoću njima pridruženih progama.
-
-Unesite naziv fajla bez prefiksa &quot;{{ns:file}}:&quot;.',
+'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju datoteke.
+Slike su prikazane u punoj veličini, a druge vrste datoteka se pokreću pomoću njima pridruženim programima.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Pretražite duplikate fajlova',

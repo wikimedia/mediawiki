@@ -1404,7 +1404,7 @@ Acțiunea nu este reversibilă.',
 'prefs-registration'            => 'Data înregistrării:',
 'yourrealname'                  => 'Nume real:',
 'yourlanguage'                  => 'Interfață în limba:',
-'yourvariant'                   => 'Varianta limbii conţinutului:',
+'yourvariant'                   => 'Varianta limbii conținutului:',
 'prefs-help-variant'            => 'Varianta dumneavoastră preferată sau ortografia de afișare a conținutului paginilor pe acest wiki.',
 'yournick'                      => 'Semnătură:',
 'prefs-help-signature'          => 'Comentariile de pe paginile de discuții vor trebuie semnate cu „<nowiki>~~~~</nowiki>”, tildele transformându-se în semnătura dumneavoastră urmată de ora la care ați introdus comentariul.',
@@ -3653,9 +3653,7 @@ MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GAR
 'filepath-page'    => 'Fișier:',
 'filepath-submit'  => 'Du-te',
 'filepath-summary' => 'Această pagină specială recreează calea completă a fișierului.
-Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fișiere vor porni direct în programele asociate.
-
-Introduceți numele fișierului fără prefixul „{{ns:file}}:”.',
+Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fișiere vor porni direct în programele asociate.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Căutare fișiere duplicate',
