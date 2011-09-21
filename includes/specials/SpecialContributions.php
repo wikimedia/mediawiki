@@ -703,7 +703,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
-		$ret = "{$del}{$d} {$diffHistLinks} {$nflag}{$mflag}{$chardiff} {$link}{$userlink} {$comment} {$topmarktext}";
+		$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
