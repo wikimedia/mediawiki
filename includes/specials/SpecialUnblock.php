@@ -49,6 +49,9 @@ class SpecialUnblock extends SpecialPage {
 		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $this->getRequest() );
 		$this->block = Block::newFromTarget( $this->target );
 
+		$this->setHeaders();
+		$this->outputHeader();
+
 		$out = $this->getOutput();
 		$out->setPageTitle( wfMsg( 'unblockip' ) );
 		$out->addModules( 'mediawiki.special' );

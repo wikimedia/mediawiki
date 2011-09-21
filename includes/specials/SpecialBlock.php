@@ -87,6 +87,9 @@ class SpecialBlock extends SpecialPage {
 			throw new ErrorPageError( 'badaccess', $status );
 		}
 
+		$this->setHeaders();
+		$this->outputHeader();
+
 		$out = $this->getOutput();
 		$out->setPageTitle( wfMsg( 'blockip-title' ) );
 		$out->addModules( 'mediawiki.special', 'mediawiki.special.block' );

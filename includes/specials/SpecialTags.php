@@ -36,6 +36,9 @@ class SpecialTags extends SpecialPage {
 	}
 
 	function execute( $par ) {
+		$this->setHeaders();
+		$this->outputHeader();
+
 		$out = $this->getOutput();
 		$out->setPageTitle( wfMsg( 'tags-title' ) );
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
