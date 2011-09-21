@@ -141,7 +141,6 @@ div#mw-js-message {
 .editsection {
 	float: right;
 	margin-left: 5px;
-	unicode-bidi: embed;
 }
 /* Correct directionality when page dir is different from site/user dir */
 .mw-content-ltr .editsection,
