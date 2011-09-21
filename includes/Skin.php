@@ -729,7 +729,7 @@ abstract class Skin extends ContextSource {
 	}
 
 	function getCopyright( $type = 'detect' ) {
-		global $wgRightsPage, $wgRightsUrl, $wgRightsText;
+		global $wgRightsPage, $wgRightsUrl, $wgRightsText, $wgContLang;
 
 		if ( $type == 'detect' ) {
 			if ( !$this->isRevisionCurrent() && wfMsgForContent( 'history_copyright' ) !== '-' ) {
@@ -763,7 +763,11 @@ abstract class Skin extends ContextSource {
 		wfRunHooks( 'SkinCopyrightFooter', array( $this->getTitle(), $type, &$msg, &$link, &$forContent ) );
 
 		if ( $forContent ) {
-			return wfMsgForContent( $msg, $link );
+			$msg = wfMsgForContent( $msg, $link );
+			if ( $this->getLang()->getCode() !== $wgContLang->getCode() ) {
+				$msg = Html::rawElement( 'span', array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ), $msg );
+			}
+			return $msg;
 		} else {
 			return wfMsg( $msg, $link );
 		}
