@@ -157,6 +157,8 @@ class SkinTemplate extends Skin {
 
 		wfProfileIn( __METHOD__ . '-stuff' );
 		$this->thispage = $this->getTitle()->getPrefixedDBkey();
+		$this->userpage = $wgUser->getUserPage()->getPrefixedText();
+
 		$query = array();
 		if ( !$wgRequest->wasPosted() ) {
 			$query = $wgRequest->getValues();
@@ -171,6 +173,7 @@ class SkinTemplate extends Skin {
 		$this->username = $wgUser->getName();
 
 		if ( $wgUser->isLoggedIn() || $this->showIPinHeader() ) {
+
 			$this->userpageUrlDetails = self::makeUrlDetails( $this->userpage );
 		} else {
 			# This won't be used in the standard skins, but we define it to preserve the interface
