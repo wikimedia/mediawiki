@@ -344,6 +344,16 @@ class MWMemcached {
 		return false;
 	}
 
+	public function lock( $key, $timeout = 0 ) {
+		/* stub */
+		return true;
+	}
+
+	public function unlock( $key ) {
+		/* stub */
+		return true;
+	}
+
 	// }}}
 	// {{{ disconnect_all()
 
