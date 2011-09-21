@@ -23,8 +23,6 @@ class HistoryPage {
 	private $article;
 	/** The $article title object. Found on construction. */
 	private $title;
-	/** Shortcut to the user Skin object. */
-   	private $skin;
 
 	/**
 	 * Construct a new HistoryPage.
@@ -32,10 +30,8 @@ class HistoryPage {
 	 * @param $article Article
 	 */
 	function __construct( $article ) {
-		global $wgUser;
 		$this->article = $article;
 		$this->title = $article->getTitle();
-		$this->skin = $wgUser->getSkin();
 		$this->preCacheMessages();
 	}
 
@@ -90,12 +86,11 @@ class HistoryPage {
 
 		// Creation of a subtitle link pointing to [[Special:Log]]
 		$logPage = SpecialPage::getTitleFor( 'Log' );
-		$logLink = $this->skin->link(
+		$logLink = Linker::linkKnown(
 			$logPage,
 			wfMsgHtml( 'viewpagelogs' ),
 			array(),
-			array( 'page' => $this->title->getPrefixedText() ),
-			array( 'known', 'noclasses' )
+			array( 'page' => $this->title->getPrefixedText() )
 		);
 		$wgOut->setSubtitle( $logLink );
 
@@ -522,12 +517,12 @@ class HistoryPager extends ReverseChronologicalPager {
 		} elseif ( $rev->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) {
 			// If revision was hidden from sysops, disable the link
 			if ( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$cdel = $this->getSkin()->revDeleteLinkDisabled( false );
+				$cdel = Linker::revDeleteLinkDisabled( false );
 			// Otherwise, show the link...
 			} else {
 				$query = array( 'type' => 'revision',
 					'target' => $this->title->getPrefixedDbkey(), 'ids' => $rev->getId() );
-				$del .= $this->getSkin()->revDeleteLink( $query,
+				$del .= Linker::revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ), false );
 			}
 		}
@@ -540,7 +535,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s .= " $link";
 		$s .= $dirmark;
 		$s .= " <span class='history-user'>" .
-			$this->getSkin()->revUserTools( $rev, true ) . "</span>";
+			Linker::revUserTools( $rev, true ) . "</span>";
 		$s .= $dirmark;
 
 		if ( $rev->isMinor() ) {
@@ -548,10 +543,10 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		if ( !is_null( $size = $rev->getSize() ) && !$rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$s .= ' ' . $this->getSkin()->formatRevisionSize( $size );
+			$s .= ' ' . Linker::formatRevisionSize( $size );
 		}
 
-		$s .= $this->getSkin()->revComment( $rev, false, true );
+		$s .= Linker::revComment( $rev, false, true );
 
 		if ( $notificationtimestamp && ( $row->rev_timestamp >= $notificationtimestamp ) ) {
 			$s .= ' <span class="updatedmarker">' .  wfMsgHtml( 'updatedmarker' ) . '</span>';
@@ -564,7 +559,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			if ( $latest && $this->title->userCan( 'rollback' ) && $this->title->userCan( 'edit' ) ) {
 				$this->preventClickjacking();
 				$tools[] = '<span class="mw-rollback-link">' .
-					$this->getSkin()->buildRollbackLink( $rev ) . '</span>';
+					Linker::buildRollbackLink( $rev ) . '</span>';
 			}
 
 			if ( $this->title->quickUserCan( 'edit' )
@@ -575,7 +570,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$undoTooltip = $latest
 					? array( 'title' => wfMsg( 'tooltip-undo' ) )
 					: array();
-				$undolink = $this->getSkin()->link(
+				$undolink = Linker::linkKnown(
 					$this->title,
 					wfMsgHtml( 'editundo' ),
 					$undoTooltip,
@@ -583,8 +578,7 @@ class HistoryPager extends ReverseChronologicalPager {
 						'action' => 'edit',
 						'undoafter' => $next->rev_id,
 						'undo' => $rev->getId()
-					),
-					array( 'known', 'noclasses' )
+					)
 				);
 				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";
 			}
@@ -620,12 +614,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $rev->getTimestamp() ), true );
 		$date = htmlspecialchars( $date );
 		if ( $rev->userCan( Revision::DELETED_TEXT ) ) {
-			$link = $this->getSkin()->link(
+			$link = Linker::linkKnown(
 				$this->title,
 				$date,
 				array(),
-				array( 'oldid' => $rev->getId() ),
-				array( 'known', 'noclasses' )
+				array( 'oldid' => $rev->getId() )
 			);
 		} else {
 			$link = $date;
@@ -648,15 +641,14 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $latest || !$rev->userCan( Revision::DELETED_TEXT ) ) {
 			return $cur;
 		} else {
-			return $this->getSkin()->link(
+			return Linker::linkKnown(
 				$this->title,
 				$cur,
 				array(),
 				array(
 					'diff' => $this->title->getLatestRevID(),
 					'oldid' => $rev->getId()
-				),
-				array( 'known', 'noclasses' )
+				)
 			);
 		}
 	}
@@ -677,30 +669,28 @@ class HistoryPager extends ReverseChronologicalPager {
 			return $last;
 		} elseif ( $next === 'unknown' ) {
 			# Next row probably exists but is unknown, use an oldid=prev link
-			return $this->getSkin()->link(
+			return Linker::linkKnown(
 				$this->title,
 				$last,
 				array(),
 				array(
 					'diff' => $prevRev->getId(),
 					'oldid' => 'prev'
-				),
-				array( 'known', 'noclasses' )
+				)
 			);
 		} elseif ( !$prevRev->userCan( Revision::DELETED_TEXT )
 			|| !$nextRev->userCan( Revision::DELETED_TEXT ) )
 		{
 			return $last;
 		} else {
-			return $this->getSkin()->link(
+			return Linker::linkKnown(
 				$this->title,
 				$last,
 				array(),
 				array(
 					'diff' => $prevRev->getId(),
 					'oldid' => $next->rev_id
-				),
-				array( 'known', 'noclasses' )
+				)
 			);
 		}
 	}
