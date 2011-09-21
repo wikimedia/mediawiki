@@ -106,12 +106,12 @@ class SpecialLog extends SpecialPage {
 		$this->addHeader( $opts->getValue( 'type' ) );
 
 		# Set relevant user
-		if ( $pager->getAuthor() ) {
-			$this->getSkin()->setRelevantUser( User::newFromName( $pager->getAuthor() ) );
+		if ( $pager->getPerformer() ) {
+			$this->getSkin()->setRelevantUser( User::newFromName( $pager->getPerformer() ) );
 		}
 
 		# Show form options
-		$loglist->showOptions( $pager->getType(), $pager->getAuthor(), $pager->getPage(), $pager->getPattern(),
+		$loglist->showOptions( $pager->getType(), $pager->getPerformer(), $pager->getPage(), $pager->getPattern(),
 			$pager->getYear(), $pager->getMonth(), $pager->getFilterParams(), $opts->getValue( 'tagfilter' ) );
 
 		# Insert list
