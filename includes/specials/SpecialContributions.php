@@ -645,7 +645,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			$chardiff = ' . . ' . ChangesList::showCharacterDifference(
 				$this->mParentLens[$row->rev_parent_id], $row->rev_len ) . ' . . ';
 		} else {
-			$chardiff = '';
+			$chardiff = ' ';
 		}
 
 		$comment = $this->getLang()->getDirMark() . Linker::revComment( $rev, false, true );
