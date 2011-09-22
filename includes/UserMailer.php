@@ -364,7 +364,8 @@ class EmailNotification {
 	 * @param $oldid (default: false)
 	 */
 	public function notifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid = false ) {
-		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker;
+		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker, $wgEnotifMinorEdits,
+			$wgUsersNotifiedOnAllChanges, $wgEnotifUserTalk;
 
 		if ( $title->getNamespace() < 0 ) {
 			return;
@@ -403,6 +404,24 @@ class EmailNotification {
 			}
 		}
 
+		$sendEmail = true;
+		// If nobody is watching the page, and there are no users notified on all changes
+		// don't bother creating a job/trying to send emails
+		// $watchers deals with $wgEnotifWatchlist
+		if ( !count( $watchers ) && !count( $wgUsersNotifiedOnAllChanges ) ) {
+			$sendEmail = false;
+			// Only send notification for non minor edits, unless $wgEnotifMinorEdits
+			if ( !$minorEdit || ( $wgEnotifMinorEdits && !$editor->isAllowed( 'nominornewtalk' ) ) ) {
+				$isUserTalkPage = ( $title->getNamespace() == NS_USER_TALK );
+				if ( $wgEnotifUserTalk && $isUserTalkPage && $this->canSendUserTalkEmail( $editor, $title, $minorEdit ) ) {
+					$sendEmail = true;
+				}
+			}
+		}
+
+		if ( !$sendEmail ) {
+			return;
+		}
 		if ( $wgEnotifUseJobQ ) {
 			$params = array(
 				'editor' => $editor->getName(),
@@ -418,7 +437,6 @@ class EmailNotification {
 		} else {
 			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers );
 		}
-
 	}
 
 	/**
@@ -459,25 +477,11 @@ class EmailNotification {
 		$userTalkId = false;
 
 		if ( !$minorEdit || ( $wgEnotifMinorEdits && !$editor->isAllowed( 'nominornewtalk' ) ) ) {
-			if ( $wgEnotifUserTalk && $isUserTalkPage ) {
+
+			if ( $wgEnotifUserTalk && $isUserTalkPage && $this->canSendUserTalkEmail( $editor, $title, $minorEdit ) ) {
 				$targetUser = User::newFromName( $title->getText() );
-				if ( !$targetUser || $targetUser->isAnon() ) {
-					wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
-				} elseif ( $targetUser->getId() == $editor->getId() ) {
-					wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
-				} elseif ( $targetUser->getOption( 'enotifusertalkpages' ) &&
-					( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) ) )
-				{
-					if ( $targetUser->isEmailConfirmed() ) {
-						wfDebug( __METHOD__ . ": sending talk page update notification\n" );
-						$this->compose( $targetUser );
-						$userTalkId = $targetUser->getId();
-					} else {
-						wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
-					}
-				} else {
-					wfDebug( __METHOD__ . ": talk page owner doesn't want notifications\n" );
-				}
+				$this->compose( $targetUser );
+				$userTalkId = $targetUser->getId();
 			}
 
 			if ( $wgEnotifWatchlist ) {
@@ -503,6 +507,39 @@ class EmailNotification {
 
 		$this->sendMails();
 		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * @param $editor User
+	 * @param $title Title bool
+	 * @param $minorEdit
+	 * @return bool
+	 */
+	private function canSendUserTalkEmail( $editor, $title, $minorEdit ) {
+		global $wgEnotifUserTalk;
+		$isUserTalkPage = ( $title->getNamespace() == NS_USER_TALK );
+
+		if ( $wgEnotifUserTalk && $isUserTalkPage ) {
+			$targetUser = User::newFromName( $title->getText() );
+
+			if ( !$targetUser || $targetUser->isAnon() ) {
+				wfDebug( __METHOD__ . ": user talk page edited, but user does not exist\n" );
+			} elseif ( $targetUser->getId() == $editor->getId() ) {
+				wfDebug( __METHOD__ . ": user edited their own talk page, no notification sent\n" );
+			} elseif ( $targetUser->getOption( 'enotifusertalkpages' ) &&
+				( !$minorEdit || $targetUser->getOption( 'enotifminoredits' ) ) )
+			{
+				if ( $targetUser->isEmailConfirmed() ) {
+					wfDebug( __METHOD__ . ": sending talk page update notification\n" );
+					return true;
+				} else {
+					wfDebug( __METHOD__ . ": talk page owner doesn't have validated email\n" );
+				}
+			} else {
+				wfDebug( __METHOD__ . ": talk page owner doesn't want notifications\n" );
+			}
+		}
+	    return false;
 	}
 
 	/**
