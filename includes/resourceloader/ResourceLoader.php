@@ -462,10 +462,9 @@ class ResourceLoader {
 				// On some setups, ob_get_level() doesn't seem to go down to zero
 				// no matter how often we call ob_get_clean(), so instead of doing
 				// the more intuitive while ( ob_get_level() > 0 ) ob_get_clean();
-				// we have to be safe here and check the return value to avoid an
-				// infinite loop. (bug 26370)
-				while ( ob_get_level() > 0 && ob_end_clean() ) {
-					// repeat
+				// we have to be safe here and avoid an infinite loop.
+				for ( $i = 0; $i < ob_get_level(); $i++ ) {
+					ob_end_clean();
 				}
 
 				header( 'HTTP/1.0 304 Not Modified' );
