@@ -1305,7 +1305,7 @@ class Linker {
 			# bug 7425
 			$target = trim( $target );
 			# Look at the first character
-			if ( $target != '' && $target { 0 } === '/' ) {
+			if ( $target != '' && $target[0] === '/' ) {
 				# / at end means we don't want the slash to be shown
 				$m = array();
 				$trailingSlashes = preg_match_all( '%(/+)$%', $target, $m );
