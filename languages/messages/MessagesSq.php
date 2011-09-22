@@ -2892,21 +2892,7 @@ Lidhja e parë nërresht duhet të lidhet tek një skedë e keqe.<br />
 Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mund të mos pasqyrojnë versionin e tanishëm.',
 'metadata-expand'   => 'Trego detajet',
 'metadata-collapse' => 'Fshih detajet',
-'metadata-fields'   => 'Imetadata fusha Image të listuara në këtë mesazh do të përfshihen në faqen shfaqur imazhin kur tryezë metadata është shembur
-* make
-* model
-* datetimeoriginal
-* exposuretime
-* fnumber
-* isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
-* gpsaltitude
-* make
+'metadata-fields'   => 'Imetadata fusha Image të listuara në këtë mesazh do të përfshihen në faqen shfaqur imazhin kur tryezë metadata është shembur* make
 * model
 * datetimeoriginal
 * exposuretime

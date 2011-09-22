@@ -3564,7 +3564,8 @@ This is taken from IPTC-iim 2:135 and XMP's dc:language.
 'exif-cameraownername'             => 'Who owns the camera.',
 'exif-label'                       => 'Label given to the image for organizational purposes. This is very similar to {{msg-mw|exif-keywords}}. Label is more used by a person to organize their media, where keywords are used to describe the photo contents itself.
 
-This property can come from xmp:Label in XMP ( http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart1.pdf ) or the label textual chunk in PNG.',
+This property can come from xmp:Label in XMP ( http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart1.pdf ) or the label textual chunk in PNG.
+{{Identical|Label}}',
 'exif-datetimemetadata'            => 'Date metadata was last modified. Typically this refers to XMP metadata.',
 'exif-nickname'                    => 'Short informal name of image. See http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-rating'                      => 'This is a rating for how good the image is. The range is between 1 to 5 (5 highest), with an additional option of "reject".',

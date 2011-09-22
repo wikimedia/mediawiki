@@ -1881,7 +1881,7 @@ När den filtreras av en användare visas endast den senast uppladdade versionen
 'filehist-filesize'         => 'Filstorlek',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Fil saknas',
-'imagelinks'                => 'Fillänkar',
+'imagelinks'                => 'Filanvändning',
 'linkstoimage'              => 'Följande {{PLURAL:$1|sida|$1 sidor}} länkar till den här filen:',
 'linkstoimage-more'         => 'Mer är {{PLURAL:$1|en sida|$1 sidor}} länkar till den här filen.
 Följande lista visar bara {{PLURAL:$1|den första sidan|de $1 första sidorna}} som länkar till filen.
@@ -3668,9 +3668,8 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'filepath'         => 'Sökväg till fil',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Sökväg',
-'filepath-summary' => 'Den här sidan ger den fullständiga sökvägen till en fil. Bilder visas i full upplösning i din webbläsare, andra filtyper öppnas direkt i de program som är associerade till dem.
-
-Ange filens namn utan prefixet "{{ns:file}}:".',
+'filepath-summary' => 'Den här specialsidan ger den fullständiga sökvägen till en fil.
+Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som är associerade till dem.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Sök efter dubblettfiler',
@@ -3811,5 +3810,7 @@ Ange filens namn utan prefixet "{{ns:file}}:".',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 utan att lämna en omdirigering',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 över en omdirigering',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerade}} versionen $4 av sidan $3 som patrullerad',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerade}} automatiskt versionen $4 av sidan $3 som patrullerad',
 
 );

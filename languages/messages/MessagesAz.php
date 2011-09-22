@@ -1032,7 +1032,7 @@ Təsadüfi yolla seçilmiş bu paroldan istifadə edə bilərsiniz: $1',
 'prefs-registration-date-time'  => '$1',
 'yourrealname'                  => 'Əsl adınız:',
 'yourlanguage'                  => 'Dil:',
-'yourvariant'                   => 'Variant:',
+'yourvariant'                   => 'Dil variant;:',
 'yournick'                      => 'Ləqəb:',
 'badsig'                        => 'Səhv xam imza.
 HTML kodu yoxla.',

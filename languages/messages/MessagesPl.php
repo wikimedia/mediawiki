@@ -3692,9 +3692,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'filepath-page'    => 'Plik',
 'filepath-submit'  => 'Przejdź',
 'filepath-summary' => 'Ta strona specjalna zwraca pełną ścieżkę do pliku.
-Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwierane w skojarzonym z nimi programie.
-
-Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
+Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwierane w skojarzonym z nimi programie.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Szukaj duplikatów pliku',

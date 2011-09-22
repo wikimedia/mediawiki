@@ -2016,17 +2016,17 @@ Comunicassion ëd servissi e pì d\'agiut:
 'confirm'                => 'Confermé',
 'excontent'              => "Ël contnù a l'era: '$1'",
 'excontentauthor'        => "ël contnù a l'era: «$1» (e l'ùnich contributor a l'era stàit «[[Special:Contributions/$2|$2]]»)",
-'exbeforeblank'          => "Anans d'esse dësvojdà ël contnù a l'era: '$1'",
+'exbeforeblank'          => "anans d'esse dësvujdà ël contnù a l'era: «$1»",
 'exblank'                => "La pàgina a l'era veujda",
-'delete-confirm'         => 'Scancela "$1"',
-'delete-legend'          => 'Scancela',
+'delete-confirm'         => 'Scancelé «$1»',
+'delete-legend'          => 'Scancelé',
 'historywarning'         => "'''Avis:''' La pàgina che a l'é antramentr che a scancela a l'ha na stòria con pi o men $1 {{PLURAL:$1|revision|revision}}:",
 'confirmdeletetext'      => "A sta për scancelé d'autut da 'nt la base dat na pàgina ò pura na figura, ansema a tuta soa cronologìa.<p>
 Për piasì, che an conferma che sòn a l'é da bon sò but, che a as rend cont ëd le conseguense ëd lòn che a fa, e che sòn a resta an pien an régola con lòn che a l'é stabilì ant la [[{{MediaWiki:Policy-url}}]].",
 'actioncomplete'         => 'Travaj fait e finì',
 'actionfailed'           => 'Assion falìa',
-'deletedtext'            => 'La pàgina "$1" a l\'é staita scancelà.
-Che a varda $2 për na lista dle pàgine scancelà ant j\'ùltim temp.',
+'deletedtext'            => "La pàgina «$1» a l'é stàita scancelà.
+Che a varda $2 për na lista dle pàgine scancelà ant j'ùltim temp.",
 'dellogpage'             => 'Registr djë scancelament',
 'dellogpagetext'         => "Ambelessì sota na lista dle pàgine scancelà ant j'ùltim temp.
 Ij temp a son conforma a l'ora dël server.",
@@ -3405,7 +3405,7 @@ A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa
 'filepath-page'    => 'Archivi:',
 'filepath-submit'  => 'Përcors',
 'filepath-summary' => "Sta pàgina special-sì a la smon ël përcors complet për n'archivi.
-Le figure as ësmon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o faite parte diretament da sò programa a pòsta.",
+Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite parte diretament da sò programa a pòsta.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => "Arsërca dj'archivi dobi",
@@ -3546,7 +3546,7 @@ Le figure as ësmon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o faite pa
 'logentry-move-move-noredirect'       => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 sensa lassé na ridiression",
 'logentry-move-move_redir'            => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression",
 'logentry-move-move_redir-noredirect' => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression sensa lassé na ridiression",
-'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcà}} revision $4 dla pagina $3 controlà',
-'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcà}} automaticament revision $4 dla pagina $3 controlà',
+'logentry-patrol-patrol'              => "$1 {{GENDER:$2|a l'ha marcà}} la revision $4 dla pàgina $3 'me controlà",
+'logentry-patrol-patrol-auto'         => "$1 {{GENDER:$2|a l'ha marcà}} automaticament la revision $4 dla pàgina $3 'me controlà",
 
 );

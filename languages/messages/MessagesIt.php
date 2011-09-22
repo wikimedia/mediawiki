@@ -3653,10 +3653,19 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'sqlite-no-fts'  => '$1 senza la possibilità di ricerca completa nel testo',
 
 # New logging system
-'revdelete-content-hid'  => 'contenuto nascosto',
-'revdelete-summary-hid'  => 'oggetto della modifica nascosto',
-'revdelete-uname-hid'    => 'nome utente nascosto',
-'revdelete-restricted'   => 'limitazioni ai soli amministratori attivate',
-'revdelete-unrestricted' => 'limitazioni ai soli amministratori rimosse',
+'logentry-delete-delete'              => '$1 {{GENDER:$2|ha cancellato}} la pagina $3',
+'logentry-delete-revision'            => '$1 {{GENDER:$2|ha modificato}} la visibilità per {{PLURAL:$5|una revisione|$5 revisioni}} della pagina $3: $4',
+'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|ha modificato}} la visibilità per le revisioni della pagina $3',
+'revdelete-content-hid'               => 'contenuto nascosto',
+'revdelete-summary-hid'               => 'oggetto della modifica nascosto',
+'revdelete-uname-hid'                 => 'nome utente nascosto',
+'revdelete-restricted'                => 'limitazioni ai soli amministratori attivate',
+'revdelete-unrestricted'              => 'limitazioni ai soli amministratori rimosse',
+'logentry-move-move'                  => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4 senza lasciare redirect',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4 tramite redirect',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4 tramite redirect senza lasciare redirect',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|ha segnato}} la versione $4 della pagina $3 come verificata',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|ha segnato}} automaticamente la versione $4 della pagina $3 come verificata',
 
 );
