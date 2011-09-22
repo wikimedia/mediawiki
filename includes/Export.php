@@ -354,8 +354,6 @@ class WikiExporter {
  * @ingroup Dump
  */
 class XmlDumpWriter {
-	protected $firstPageWritten = 0, $lastPageWritten = 0, $pageInProgress = 0;
-
 	/**
 	 * Returns the export schema version.
 	 * @return string
@@ -459,7 +457,6 @@ class XmlDumpWriter {
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$out .= '    ' . Xml::elementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
 		$out .= '    ' . Xml::element( 'id', array(), strval( $row->page_id ) ) . "\n";
-		$this->pageInProgress = $row->page_id;
 		if ( $row->page_is_redirect ) {
 			$out .= '    ' . Xml::element( 'redirect', array() ) . "\n";
 		}
@@ -480,10 +477,6 @@ class XmlDumpWriter {
 	 */
 	function closePage() {
 		return "  </page>\n";
-		//if ( !$this->firstPageWritten ) {
-		//	$this->firstPageWritten = $this->pageInProgress;
-		//}
-		//$this->lastPageWritten = $this->pageInProgress;
 	}
 
 	/**
