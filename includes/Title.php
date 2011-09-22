@@ -4194,9 +4194,9 @@ class Title {
 	 */
 	public function fixSpecialName() {
 		if ( $this->getNamespace() == NS_SPECIAL ) {
-			list( $canonicalName, /*...*/ ) = SpecialPageFactory::resolveAlias( $this->mDbkeyform );
+			list( $canonicalName, $par ) = SpecialPageFactory::resolveAlias( $this->mDbkeyform );
 			if ( $canonicalName ) {
-				$localName = SpecialPageFactory::getLocalNameFor( $canonicalName );
+				$localName = SpecialPageFactory::getLocalNameFor( $canonicalName, $par );
 				if ( $localName != $this->mDbkeyform ) {
 					return Title::makeTitle( NS_SPECIAL, $localName );
 				}
