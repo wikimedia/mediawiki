@@ -321,7 +321,7 @@ class Parser {
 		 * to internalParse() which does all the real work.
 		 */
 
-		global $wgUseTidy, $wgAlwaysUseTidy, $wgContLang, $wgDisableLangConversion, $wgDisableTitleConversion;
+		global $wgUseTidy, $wgAlwaysUseTidy, $wgDisableLangConversion, $wgDisableTitleConversion;
 		$fname = __METHOD__.'-' . wfGetCaller();
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( $fname );
@@ -376,8 +376,7 @@ class Parser {
 			# The position of the convert() call should not be changed. it
 			# assumes that the links are all replaced and the only thing left
 			# is the <nowiki> mark.
-
-			$text = $wgContLang->convert( $text );
+			$text = $this->getFunctionLang()->convert( $text );
 		}
 
 		/**
@@ -393,11 +392,11 @@ class Parser {
 				|| isset( $this->mDoubleUnderscores['notitleconvert'] )
 				|| $this->mOutput->getDisplayTitle() !== false ) )
 		{
-			$convruletitle = $wgContLang->getConvRuleTitle();
+			$convruletitle = $this->getFunctionLang()->getConvRuleTitle();
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
 			} else {
-				$titleText = $wgContLang->convertTitle( $title );
+				$titleText = $this->getFunctionLang()->convertTitle( $title );
 				$this->mOutput->setTitleText( $titleText );
 			}
 		}
@@ -1194,7 +1193,6 @@ class Parser {
 	 * @private
 	 */
 	function makeFreeExternalLink( $url ) {
-		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 
 		$trail = '';
@@ -1227,7 +1225,7 @@ class Parser {
 		$text = $this->maybeMakeExternalImage( $url );
 		if ( $text === false ) {
 			# Not an image, make a link
-			$text = Linker::makeExternalLink( $url, $wgContLang->markNoConversion($url), true, 'free',
+			$text = Linker::makeExternalLink( $url, $this->getFunctionLang()->markNoConversion($url), true, 'free',
 				$this->getExternalLinkAttribs( $url ) );
 			# Register it in the output object...
 			# Replace unnecessary URL escape codes with their equivalent characters
@@ -1455,7 +1453,6 @@ class Parser {
 	 * @return string
 	 */
 	function replaceExternalLinks( $text ) {
-		global $wgContLang;
 		wfProfileIn( __METHOD__ );
 
 		$bits = preg_split( $this->mExtLinkBracketedRegex, $text, -1, PREG_SPLIT_DELIM_CAPTURE );
@@ -1501,7 +1498,7 @@ class Parser {
 				list( $dtrail, $trail ) = Linker::splitTrail( $trail );
 			}
 
-			$text = $wgContLang->markNoConversion( $text );
+			$text = $this->getFunctionLang()->markNoConversion( $text );
 
 			$url = Sanitizer::cleanUrl( $url );
 
@@ -1658,8 +1655,6 @@ class Parser {
 	 * @private
 	 */
 	function replaceInternalLinks2( &$s ) {
-		global $wgContLang;
-
 		wfProfileIn( __METHOD__ );
 
 		wfProfileIn( __METHOD__.'-setup' );
@@ -1683,7 +1678,7 @@ class Parser {
 		$line = $a->current(); # Workaround for broken ArrayIterator::next() that returns "void"
 		$s = substr( $s, 1 );
 
-		$useLinkPrefixExtension = $wgContLang->linkPrefixExtension();
+		$useLinkPrefixExtension = $this->getFunctionLang()->linkPrefixExtension();
 		$e2 = null;
 		if ( $useLinkPrefixExtension ) {
 			# Match the end of a line for a word that's not followed by whitespace,
@@ -1709,8 +1704,8 @@ class Parser {
 			$prefix = '';
 		}
 
-		if ( $wgContLang->hasVariants() ) {
-			$selflink = $wgContLang->autoConvertToAllVariants( $this->mTitle->getPrefixedText() );
+		if ( $this->getFunctionLang()->hasVariants() ) {
+			$selflink = $this->getFunctionLang()->autoConvertToAllVariants( $this->mTitle->getPrefixedText() );
 		} else {
 			$selflink = array( $this->mTitle->getPrefixedText() );
 		}
@@ -1878,6 +1873,7 @@ class Parser {
 
 			# Link not escaped by : , create the various objects
 			if ( $noforce ) {
+				global $wgContLang;
 
 				# Interwikis
 				wfProfileIn( __METHOD__."-interwiki" );
@@ -1927,7 +1923,7 @@ class Parser {
 					}
 					$sortkey = Sanitizer::decodeCharReferences( $sortkey );
 					$sortkey = str_replace( "\n", '', $sortkey );
-					$sortkey = $wgContLang->convertCategoryKey( $sortkey );
+					$sortkey = $this->getFunctionLang()->convertCategoryKey( $sortkey );
 					$this->mOutput->addCategory( $nt->getDBkey(), $sortkey );
 
 					/**
@@ -3028,7 +3024,7 @@ class Parser {
 	 * @private
 	 */
 	function braceSubstitution( $piece, $frame ) {
-		global $wgContLang, $wgNonincludableNamespaces, $wgEnableInterwikiTranscluding, $wgEnableInterwikiTemplatesTracking;
+		global $wgNonincludableNamespaces, $wgEnableInterwikiTranscluding, $wgEnableInterwikiTemplatesTracking;
 		wfProfileIn( __METHOD__ );
 		wfProfileIn( __METHOD__.'-setup' );
 
@@ -3129,7 +3125,7 @@ class Parser {
 					$function = $this->mFunctionSynonyms[1][$function];
 				} else {
 					# Case insensitive functions
-					$function = $wgContLang->lc( $function );
+					$function = $this->getFunctionLang()->lc( $function );
 					if ( isset( $this->mFunctionSynonyms[0][$function] ) ) {
 						$function = $this->mFunctionSynonyms[0][$function];
 					} else {
@@ -3205,8 +3201,8 @@ class Parser {
 				}
 				$titleText = $title->getPrefixedText();
 				# Check for language variants if the template is not found
-				if ( $wgContLang->hasVariants() && $title->getArticleID() == 0 ) {
-					$wgContLang->findVariantLink( $part1, $title, true );
+				if ( $this->getFunctionLang()->hasVariants() && $title->getArticleID() == 0 ) {
+					$this->getFunctionLang()->findVariantLink( $part1, $title, true );
 				}
 				# Do recursion depth check
 				$limit = $this->mOptions->getMaxTemplateDepth();

@@ -61,6 +61,8 @@ production.
   to stop it from replace an already existing default sort, and suppress error.
 * (bug 18578) Rewrote revision delete related messages to allow better
   localisation
+* (bug 30364) LanguageConverter now depends on the page content language
+  instead of the wiki content language
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if

@@ -885,7 +885,7 @@ class Title {
 	 */
 	public function getLocalURL( $query = '', $variant = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
-		global $wgVariantArticlePath, $wgContLang;
+		global $wgVariantArticlePath;
 
 		if ( is_array( $query ) ) {
 			$query = wfArrayToCGI( $query );
@@ -904,7 +904,7 @@ class Title {
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
-				if ( $variant != false && $wgContLang->hasVariants() ) {
+				if ( $variant != false && $this->getPageLanguage()->hasVariants() ) {
 					if ( !$wgVariantArticlePath ) {
 						$variantArticlePath =  "$wgScript?title=$1&variant=$2"; // default
 					} else {
