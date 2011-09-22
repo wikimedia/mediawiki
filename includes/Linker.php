@@ -1234,7 +1234,9 @@ class Linker {
 			# Media link; trail not supported.
 			$linkRegexp = '/\[\[(.*?)\]\]/';
 			$title = Title::makeTitleSafe( NS_FILE, $submatch[1] );
-			$thelink = self::makeMediaLinkObj( $title, $text );
+			if ( $title ) {
+				$thelink = self::makeMediaLinkObj( $title, $text );
+			}
 		} else {
 			# Other kind of link
 			if ( preg_match( $wgContLang->linkTrail(), $match[4], $submatch ) ) {
