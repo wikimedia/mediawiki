@@ -1053,6 +1053,8 @@ class User {
 	public function loadFromRow( $row ) {
 		$all = true;
 
+		$this->mGroups = null; // deferred
+
 		if ( isset( $row->user_name ) ) {
 			$this->mName = $row->user_name;
 			$this->mFrom = 'name';
@@ -2312,6 +2314,7 @@ class User {
 	 */
 	public function getGroups() {
 		$this->load();
+		$this->loadGroups();
 		return $this->mGroups;
 	}
 
