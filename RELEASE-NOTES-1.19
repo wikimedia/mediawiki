@@ -96,6 +96,7 @@ production.
   really small, and somewhat inconsistent with each other.
 * Per page edit-notices now work in namespaces without subpages enabled.
 * (bug 30245) Use the correct way to construct a log page title
+* (bug 31081) $wgEnotifUseJobQ causes many unnecessary jobs to be queued
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
