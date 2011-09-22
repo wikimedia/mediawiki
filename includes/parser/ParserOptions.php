@@ -275,11 +275,11 @@ class ParserOptions {
 	 *
 	 * @since 1.17
 	 * @param $forOptions Array
-	 * @param $title Title: will be used to get the page content language (since r97636)
+	 * @param $title Title: used to get the content language of the page (since r97636)
 	 * @return \string Page rendering hash
 	 */
 	public function optionsHash( $forOptions, $title = null ) {
-		global $wgContLang, $wgRenderHashAppend;
+		global $wgRenderHashAppend;
 
 		$confstr = '';
 
@@ -323,7 +323,12 @@ class ParserOptions {
 
 		// add in language specific options, if any
 		// @todo FIXME: This is just a way of retrieving the url/user preferred variant
-		$confstr .= $wgContLang->getExtraHashOptions();
+		if( !is_null( $title ) ) {
+			$confstr .= $title->getPageLanguage()->getExtraHashOptions();
+		} else {
+			global $wgContLang;
+			$confstr .= $wgContLang->getExtraHashOptions();
+		}
 
 		$confstr .= $wgRenderHashAppend;
 
