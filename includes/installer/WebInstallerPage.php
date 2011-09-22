@@ -920,6 +920,15 @@ class WebInstaller_Options extends WebInstallerPage {
 		}
 		$caches[] = 'memcached';
 
+		// We'll hide/show this on demand when the value changes, see config.js.
+		$cacheval = $this->getVar( 'wgMainCacheType' );
+		if (!$cacheval) {
+			// We need to set a default here; but don't hardcode it
+			// or we lose it every time we reload the page for validation
+			// or going back!
+			$cacheval = 'none';
+		}
+		$hidden = ($cacheval == 'memcached') ? '' : 'display: none';
 		$this->addHTML(
 			# Advanced settings
 			$this->getFieldSetStart( 'config-advanced-settings' ) .
@@ -929,10 +938,10 @@ class WebInstaller_Options extends WebInstallerPage {
 				'label' => 'config-cache-options',
 				'itemLabelPrefix' => 'config-cache-',
 				'values' => $caches,
-				'value' => 'none',
+				'value' => $cacheval,
 			) ) .
 			$this->parent->getHelpBox( 'config-cache-help' ) .
-			'<div id="config-memcachewrapper">' .
+			"<div id=\"config-memcachewrapper\" style=\"$hidden\">" .
 			$this->parent->getTextArea( array(
 				'var' => '_MemCachedServers',
 				'label' => 'config-memcached-servers',
