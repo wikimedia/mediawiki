@@ -1081,8 +1081,10 @@ class WebInstaller_Options extends WebInstallerPage {
 			}
 
 			foreach( $memcServers as $server ) {
-				$memcParts = explode( ":", $server );
-				if( !IP::isValid( $memcParts[0] ) ) {
+				$memcParts = explode( ":", $server, 2 );
+				if ( !isset( $memcParts[0] )
+						|| ( !IP::isValid( $memcParts[0] )
+							&& ( gethostbyname( $memcParts[0] ) == $memcParts[0] ) ) ) {
 					$this->parent->showError( 'config-memcache-badip', $memcParts[0] );
 					return false;
 				} elseif( !isset( $memcParts[1] )  ) {
