@@ -134,6 +134,8 @@ $digitTransformTable = array(
 	'9' => '૯', # &#x0aef;
 );
 
+$digitGroupingPattern = "##,##,###";
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'કડીઓની નીચે લીટી (અંડરલાઇન) ઉમેરો:',

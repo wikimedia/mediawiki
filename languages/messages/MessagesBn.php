@@ -61,6 +61,8 @@ $digitTransformTable = array(
 	'9' => '৯'
 );
 
+$digitGroupingPattern = "##,##,###";
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'সংযোগগুলির নিচে দাগ দেখানো হোক:',
