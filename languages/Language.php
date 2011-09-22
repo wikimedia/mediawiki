@@ -347,7 +347,7 @@ class Language {
 			}
 
 			# Sometimes a language will be localised but not actually exist on this wiki.
-			foreach( $this->namespaceNames as $key => $text ) {
+			foreach ( $this->namespaceNames as $key => $text ) {
 				if ( !isset( $validNamespaces[$key] ) ) {
 					unset( $this->namespaceNames[$key] );
 				}
@@ -432,7 +432,7 @@ class Language {
 		if ( count( $wgExtraGenderNamespaces ) > 0 ) {
 			// $wgExtraGenderNamespaces overrides everything
 			return true;
-		} elseif( isset( $wgExtraNamespaces[NS_USER] ) && isset( $wgExtraNamespaces[NS_USER_TALK] ) ) {
+		} elseif ( isset( $wgExtraNamespaces[NS_USER] ) && isset( $wgExtraNamespaces[NS_USER_TALK] ) ) {
 			/// @todo There may be other gender namespace than NS_USER & NS_USER_TALK in the future
 			// $wgExtraNamespaces overrides any gender aliases specified in i18n files
 			return false;
@@ -541,11 +541,11 @@ class Language {
 	function getVariantname( $code, $usemsg = true ) {
 		$msg = "variantname-$code";
 		list( $rootCode ) = explode( '-', $code );
-		if( $usemsg && wfMessage( $msg )->exists() ) {
+		if ( $usemsg && wfMessage( $msg )->exists() ) {
 			return $this->getMessageFromDB( $msg );
 		}
 		$name = self::getLanguageName( $code );
-		if( $name ) {
+		if ( $name ) {
 			return $name; # if it's defined as a language name, show that
 		} else {
 			# otherwise, output the language code
@@ -724,7 +724,7 @@ class Language {
 	 */
 	function getMonthNamesArray() {
 		$monthNames = array( '' );
-		for ( $i=1; $i < 13; $i++ ) {
+		for ( $i = 1; $i < 13; $i++ ) {
 			$monthNames[] = $this->getMonthName( $i );
 		}
 		return $monthNames;
@@ -751,7 +751,7 @@ class Language {
 	 */
 	function getMonthAbbreviationsArray() {
 		$monthNames = array( '' );
-		for ( $i=1; $i < 13; $i++ ) {
+		for ( $i = 1; $i < 13; $i++ ) {
 			$monthNames[] = $this->getMonthAbbreviation( $i );
 		}
 		return $monthNames;
@@ -2426,7 +2426,7 @@ class Language {
 	function getDirMark( $opposite = false ) {
 		$rtl = "\xE2\x80\x8F";
 		$ltr = "\xE2\x80\x8E";
-		if( $opposite ) { return $this->isRTL() ? $ltr : $rtl; }
+		if ( $opposite ) { return $this->isRTL() ? $ltr : $rtl; }
 		return $this->isRTL() ? $rtl : $ltr;
 	}
 
@@ -3061,7 +3061,7 @@ class Language {
 	 */
 	function translateBlockExpiry( $str ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
-		foreach( $duration as $show => $value ){
+		foreach ( $duration as $show => $value ) {
 			if ( strcmp( $str, $value ) == 0 ) {
 				return htmlspecialchars( trim( $show ) );
 			}
@@ -3071,7 +3071,7 @@ class Language {
 		// equivalents if still here.
 		$indefs = array( 'infinite', 'infinity', 'indefinite' );
 		if ( in_array( $str, $indefs ) ) {
-			foreach( $indefs as $val ) {
+			foreach ( $indefs as $val ) {
 				$show = array_search( $val, $duration, true );
 				if ( $show !== false ) {
 					return htmlspecialchars( trim( $show ) );
@@ -3488,7 +3488,7 @@ class Language {
 	 */
 	public function formatExpiry( $expiry, $format = true ) {
 		static $infinity, $infinityMsg;
-		if( $infinity === null ){
+		if ( $infinity === null ) {
 			$infinityMsg = wfMessage( 'infiniteblock' );
 			$infinity = wfGetDB( DB_SLAVE )->getInfinity();
 		}
@@ -3529,7 +3529,7 @@ class Language {
 			$s = $this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' );
 			$s .= ' ';
 			$s .= $this->formatNum( $secondsPart ) . $this->getMessageFromDB( 'seconds-abbrev' );
-		} elseif ( round( $seconds ) <= 2*86400 ) {
+		} elseif ( round( $seconds ) <= 2 * 86400 ) {
 			$hours = floor( $seconds / 3600 );
 			$minutes = floor( ( $seconds - $hours * 3600 ) / 60 );
 			$secondsPart = round( $seconds - $hours * 3600 - $minutes * 60 );
