@@ -3952,7 +3952,7 @@ class Title {
 				return $this->mDbkeyform == '';
 			case NS_MEDIAWIKI:
 				// known system message
-				return $this->getDefaultMessageText() !== false;
+				return $this->hasSourceText() !== false;
 			default:
 				return false;
 		}
@@ -3982,8 +3982,13 @@ class Title {
 
 		if ( $this->mNamespace == NS_MEDIAWIKI ) {
 			// If the page doesn't exist but is a known system message, default
-			// message content will be displayed, same for language subpages
-			return $this->getDefaultMessageText() !== false;
+			// message content will be displayed, same for language subpages-
+			// Use always content language to avoid loading hundreds of languages
+			// to get the link color.
+			global $wgContLang;
+			list( $name, $lang ) = MessageCache::singleton()->figureMessage( $wgContLang->lcfirst( $this->getText() ) );
+			$message = wfMessage( $name )->inLanguage( $wgContLang )->useDatabase( false );
+			return $message->exists();
 		}
 
 		return false;
