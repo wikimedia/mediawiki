@@ -762,6 +762,7 @@ Parameters:
 
 # E-mail sending
 'user-mail-no-addy' => 'This is the error message in case an e-mail could not be sent because there was no e-mail address to send it to.',
+'defemailsubject' => 'The default subject of EmailUser emails.  The first parameter is the username of the user sending the email.',
 
 # Change password dialog
 'resetpass'                 => 'The caption of [[Special:ChangePassword]]
@@ -3880,7 +3881,7 @@ Do \'\'not\'\' change the leading ;  and the first : as it is wiki markup.
 
 * $1: title of the trackback
 * $2: URL of the trackback
-* <font style="color:grey;">$3: unused in this message, see [[MediaWiki:trackbackexcerpt]] instead</font>
+* <span style="color:grey;">$3: unused in this message, see [[MediaWiki:trackbackexcerpt]] instead</span>
 * $4: name of the trackback
 * $5: a link to delete the trackback. The content of [[MediaWiki:Trackbackremove]] is injected here.',
 'trackbackexcerpt' => "{{optional}}
