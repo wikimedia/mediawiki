@@ -148,7 +148,9 @@ class UploadFromUrl extends UploadBase {
 		$this->mRemoveTempFile = true;
 		$this->mFileSize = 0;
 
-		$req = MWHttpRequest::factory( $this->mUrl );
+		$req = MWHttpRequest::factory( $this->mUrl, array(
+			'followRedirects' => true
+		) );
 		$req->setCallback( array( $this, 'saveTempFileChunk' ) );
 		$status = $req->execute();
 
