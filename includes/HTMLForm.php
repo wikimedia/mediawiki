@@ -1572,8 +1572,7 @@ class HTMLMultiSelectField extends HTMLFormField {
 /**
  * Double field with a dropdown list constructed from a system message in the format
  *     * Optgroup header
- *     ** <option value>|<option name>
- *     ** <option value == option name>
+ *     ** <option value>
  *     * New Optgroup header
  * Plus a text field underneath for an additional reason.  The 'value' of the field is
  * ""<select>: <extra reason>"", or "<extra reason>" if nothing has been selected in the
@@ -1585,7 +1584,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	function __construct( $params ) {
 		if ( array_key_exists( 'other', $params ) ) {
 		} elseif( array_key_exists( 'other-message', $params ) ){
-			$params['other'] = wfMessage( $params['other-message'] )->escaped();
+			$params['other'] = wfMessage( $params['other-message'] )->plain();
 		} else {
 			$params['other'] = null;
 		}
@@ -1595,7 +1594,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 		} elseif( array_key_exists( 'options-message', $params ) ){
 			# Generate options array from a system message
 			$params['options'] = self::parseMessage(
-				wfMessage( $params['options-message'] )->inContentLanguage()->escaped(),
+				wfMessage( $params['options-message'] )->inContentLanguage()->plain(),
 				$params['other']
 			);
 		} else {
@@ -1616,7 +1615,7 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 	 */
 	public static function parseMessage( $string, $otherName=null ) {
 		if( $otherName === null ){
-			$otherName = wfMessage( 'htmlform-selectorother-other' )->escaped();
+			$otherName = wfMessage( 'htmlform-selectorother-other' )->plain();
 		}
 
 		$optgroup = false;
@@ -1633,23 +1632,15 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 			} elseif ( substr( $value, 0, 2) == '**' ) {
 				# groupmember
 				$opt = trim( substr( $value, 2 ) );
-				$parts = array_map( 'trim', explode( '|', $opt, 2 ) );
-				if( count( $parts ) === 1 ){
-					$parts[1] = $parts[0];
-				}
 				if( $optgroup === false ){
-					$options[$parts[1]] = $parts[0];
+					$options[$opt] = $opt;
 				} else {
-					$options[$optgroup][$parts[1]] = $parts[0];
+					$options[$optgroup][$opt] = $opt;
 				}
 			} else {
 				# groupless reason list
 				$optgroup = false;
-				$parts = array_map( 'trim', explode( '|', $option, 2 ) );
-				if( count( $parts ) === 1 ){
-					$parts[1] = $parts[0];
-				}
-				$options[$parts[1]] = $parts[0];
+				$options[$option] = $option;
 			}
 		}
 
