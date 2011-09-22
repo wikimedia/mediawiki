@@ -3477,7 +3477,7 @@ class User {
 	 *
 	 * @return Array of Strings List of permission key names for given groups combined
 	 */
-	public static function getGroupPermissions( $groups, $ns = null ) {
+	public static function getGroupPermissions( array $groups, $ns = null ) {
 		global $wgGroupPermissions, $wgRevokePermissions;
 		$rights = array();
 
