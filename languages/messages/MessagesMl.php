@@ -315,6 +315,8 @@ $magicWords = array(
 	'url_query'             => array( '0', 'ക്വറി', 'QUERY' ),
 );
 
+$digitGroupingPattern = "##,##,###";
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'കണ്ണികൾക്ക് അടിവരയിടുക:',

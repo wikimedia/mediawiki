@@ -68,6 +68,8 @@ $digitTransformTable = array(
 );
 $linkTrail = "/^([a-z]+)(.*)$/sD";
 
+$digitGroupingPattern = "##,##,###";
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'कड़ियाँ अधोरेखन:',
