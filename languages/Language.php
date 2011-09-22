@@ -2606,12 +2606,56 @@ class Language {
 
 	/**
 	 * Adds commas to a given number
-	 *
+	 * @since 1.19
 	 * @param $_ mixed
 	 * @return string
 	 */
 	function commafy( $_ ) {
-		return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
+		$digitGroupingPattern = $this->digitGroupingPattern();
+		
+		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
+			//default grouping is at thousands,  use the same for ###,###,### pattern too.
+			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
+		}
+		else {
+			// Ref: http://cldr.unicode.org/translation/number-patterns
+			$numberpart = array();
+			$decimalpart = array();
+			$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
+			preg_match( "/\d+/", $_, $numberpart );
+			preg_match( "/\.\d*/", $_, $decimalpart );
+			$groupedNumber = ( count( $decimalpart ) > 0 ) ? $decimalpart[0]:"";
+			if ( $groupedNumber  === $_){
+			    //the string does not have any number part. Eg: .12345
+			    return $groupedNumber;
+			}
+			$start = $end = strlen( $numberpart[0] );
+			while ( $start > 0 )
+			{
+			    $match = $matches[0][$numMatches -1] ;
+			    $matchLen = strlen( $match );
+			    $start = $end - $matchLen;
+			    if ( $start < 0 ) {
+				$start = 0;
+			    }
+			    $groupedNumber = substr( $_ , $start, $end -$start ) . $groupedNumber ;
+			    $end = $start;
+			    if ( $numMatches > 1 ) {
+				// use the last pattern for the rest of the number
+				$numMatches--;
+			    }
+			    if ( $start > 0 ) {
+				$groupedNumber = "," . $groupedNumber;
+			    }
+			}
+			return $groupedNumber;
+		}
+	}
+	/**
+	 * @return String
+	 */
+	function digitGroupingPattern() {
+		return self::$dataCache->getItem( $this->mCode, 'digitGroupingPattern' );
 	}
 
 	/**
