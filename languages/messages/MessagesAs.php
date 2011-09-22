@@ -108,6 +108,8 @@ $digitTransformTable = array(
 	'9' => '৯', # &#x09ef;
 );
 
+$digitGroupingPattern = "##,##,###";
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'সংযোগ সমূহ অধোৰেখিত কৰক:',

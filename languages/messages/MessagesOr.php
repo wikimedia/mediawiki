@@ -241,6 +241,8 @@ $magicWords = array(
 	'url_query'             => array( '0', 'ପ୍ରଶ୍ନ', 'QUERY' ),
 );
 
+$digitGroupingPattern = "##,##,###";
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ତଳେ ଥିବା ଲିଙ୍କ:',

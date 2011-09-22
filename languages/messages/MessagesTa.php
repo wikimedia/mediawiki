@@ -68,6 +68,8 @@ $magicWords = array(
 
 $linkTrail = "/^([\xE0\xAE\x80-\xE0\xAF\xBF]+)(.*)$/sDu";
 
+$digitGroupingPattern = "##,##,###";
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'இணைப்புகளுக்கு அடிக்கோடிடு',

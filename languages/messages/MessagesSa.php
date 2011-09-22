@@ -267,6 +267,8 @@ $magicWords = array(
 	'protectionlevel'       => array( '1', 'रक्षास्तर', 'PROTECTIONLEVEL' ),
 );
 
+$digitGroupingPattern = "##,##,###";
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'संबंधनानि अधोरेखितानि करोतु',

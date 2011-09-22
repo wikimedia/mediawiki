@@ -52,6 +52,8 @@ $digitTransformTable = array(
 	'9' => '೯', # &#x0cef;
 );
 
+$digitGroupingPattern = "##,##,###";
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ಲಿಂಕುಗಳ ಕೆಳಗೆ ಗೆರೆ ತೋರಿಸಿ',
