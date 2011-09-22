@@ -2614,7 +2614,7 @@ class Language {
 		$digitGroupingPattern = $this->digitGroupingPattern();
 
 		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
-			//default grouping is at thousands,  use the same for ###,###,### pattern too.
+			// default grouping is at thousands,  use the same for ###,###,### pattern too.
 			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $_ ) ) );
 		} else {
 			// Ref: http://cldr.unicode.org/translation/number-patterns
@@ -2624,8 +2624,8 @@ class Language {
 			preg_match( "/\d+/", $_, $numberpart );
 			preg_match( "/\.\d*/", $_, $decimalpart );
 			$groupedNumber = ( count( $decimalpart ) > 0 ) ? $decimalpart[0]:"";
-			if ( $groupedNumber  === $_ ){
-				//the string does not have any number part. Eg: .12345
+			if ( $groupedNumber  === $_ ) {
+				// the string does not have any number part. Eg: .12345
 				return $groupedNumber;
 			}
 			$start = $end = strlen( $numberpart[0] );
