@@ -3771,11 +3771,18 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'sqlite-no-fts'  => '$1 fără suport de căutare în tot textul',
 
 # New logging system
+'logentry-delete-delete'              => '$1 {{GENDER:$2|a șters}} pagina $3',
+'logentry-delete-restore'             => '$1 {{GENDER:$2|a restaurat}} pagina $3',
+'revdelete-content-hid'               => 'conținut ascuns',
+'revdelete-summary-hid'               => 'descrierea modificării ascunsă',
+'revdelete-uname-hid'                 => 'nume de utilizator ascuns',
 'revdelete-restricted'                => 'restricții aplicate administratorilor',
 'revdelete-unrestricted'              => 'restricții eliminate pentru administratori',
 'logentry-move-move'                  => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4 fără a lăsa o redirecționare în loc',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4 înlocuind redirecționarea',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4 înlocuind redirecționarea și fără a lăsa o redirecționare în loc',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|a marcat}} versiunea $4 a paginii $3 ca patrulată',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|a marcat}} automat versiunea $4 a paginii $3 ca patrulată',
 
 );

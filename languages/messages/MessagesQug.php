@@ -696,7 +696,20 @@ Shuk aspipi, shukniki tinkika ima tinkita wichkashkami kanka nin, kay aspipi shu
 'metadata-help'     => 'Chay rikchaka yapa willaykunata charin, icha camara antamanta shinalla shuk suyuchik antamanta. Rikchata shukchishkami kakpika, icha kay willaykunaka mana alli kan.',
 'metadata-expand'   => 'Uchilla willaykunata rikuchiy',
 'metadata-collapse' => 'Uchilla willaykunata pakay',
-'metadata-fields'   => 'Kaypi killkashka rikchamanta willaykunaka wiñay paypa rikchawan rikuchishkami kanka. Shuk willaykunata pakashkami kanka. Shinapash shuk rurakka munakpika paykunaya rikunata ushanka.',
+'metadata-fields'   => 'Kaypi killkashka rikchamanta willaykunaka wiñay paypa rikchawan rikuchishkami kanka. Shuk willaykunata pakashkami kanka. Shinapash shuk rurakka munakpika paykunaya rikunata ushanka.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # External editor support
 'edit-externally'      => 'Kay archiwuta shuk hawa antanawan llankana',

@@ -2605,7 +2605,7 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{#Spe
 # Namespace 8 related
 'allmessages'                   => 'Pesanan sistem',
 'allmessagesname'               => 'Nama',
-'allmessagesdefault'            => 'Teks pesanan tersedia',
+'allmessagesdefault'            => 'Teks mesej asal',
 'allmessagescurrent'            => 'Teks semasa',
 'allmessagestext'               => 'Ini ialah senarai pesanan sistem yang terdapat dalam ruang nama MediaWiki.
 Sila lawat [http://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [http://translatewiki.net translatewiki.net] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.',

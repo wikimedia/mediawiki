@@ -2743,19 +2743,19 @@ $1',
 'metadata-collapse' => 'विस्तृत विवरण नुकाउ',
 'metadata-fields'   => 'चित्र प्रदत्तांश क्षेत्र सभ जे ऐ संदेशमे संकलित अछि चित्र पन्ना प्रदर्शनमे लेल जाएत जखन प्रदत्तांश सारणी क्षतिग्रस्त हएत।  
 आन सभ पूर्वनिधारित रूपेँ नुका जाएत।
-* बनाउ
-* प्रारूप
-* मूल समए काल
-* प्रायोगिक काल
-* एफ. संख्या
-* आइ.एस.ओ. गति प्रमाण
-* दृश्यपथ नाप
-* कलाकार
-* सर्वाधिकार
-* चित्र विवरण
-* जी.पी.एस. देशांतर
-* जी.पी.एस.अक्षांश
-* जी.पी.एस. लम्बाकार',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'चौड़ाई',
