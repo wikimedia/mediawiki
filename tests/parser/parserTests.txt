@@ -8770,6 +8770,35 @@ http://www.example.org/pic.png　<-- U+3000 (vim: ^Vu3000)
 </p>
 !! end
 
+!! article
+Mediawiki:loop1
+!! text
+{{Identical|A}}
+!! endarticle
+
+!! article
+Mediawiki:loop2
+!! text
+{{Identical|B}}
+!! endarticle
+
+!! article
+Template:Identical
+!! text
+{{int:loop1}}
+{{int:loop2}}
+!! endarticle
+
+!! test
+Bug 31098 Template which includes system messages which includes the template
+!! options
+disabled
+!! input
+{{Identical}}
+!! result
+...
+!! end
+
 TODO:
 more images
 more tables
