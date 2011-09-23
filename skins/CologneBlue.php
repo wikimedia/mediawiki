@@ -199,8 +199,6 @@ class CologneBlueTemplate extends LegacyTemplate {
 	 * @return string
 	 */
 	function quickBar(){
-		$tns = $this->getSkin()->getTitle()->getNamespace();
-
 		$s = "\n<div id='quickbar'>";
 
 		$sep = '<br />';
@@ -237,6 +235,8 @@ class CologneBlueTemplate extends LegacyTemplate {
 			$barnumber++;
 		}
 
+		$user = $this->getSkin()->getUser();
+
 		if ( $this->data['isarticle'] ) {
 			$s .= $this->menuHead( 'qbedit' );
 			$s .= '<strong>' . $this->editThisPage() . '</strong>';
@@ -249,13 +249,13 @@ class CologneBlueTemplate extends LegacyTemplate {
 			if( $this->data['loggedin'] ) {
 				$s .= $sep . $this->moveThisPage();
 			}
-			if ( $this->getSkin()->getUser()->isAllowed( 'delete' ) ) {
+			if ( $user->isAllowed( 'delete' ) ) {
 				$dtp = $this->deleteThisPage();
 				if ( $dtp != '' ) {
 					$s .= $sep . $dtp;
 				}
 			}
-			if ( $this->getSkin()->getUser()->isAllowed( 'protect' ) ) {
+			if ( $user->isAllowed( 'protect' ) ) {
 				$ptp = $this->protectThisPage();
 				if ( $ptp != '' ) {
 					$s .= $sep . $ptp;
@@ -278,8 +278,10 @@ class CologneBlueTemplate extends LegacyTemplate {
 					. $sep . $this->whatLinksHere()
 					. $sep . $this->watchPageLinksLink();
 
-			if( $tns == NS_USER || $tns == NS_USER_TALK ) {
-				$id = User::idFromName( $this->getSkin()->getTitle()->getText() );
+			$title = $this->getSkin()->getTitle();
+			$tns = $title->getNamespace();
+			if ( $tns == NS_USER || $tns == NS_USER_TALK ) {
+				$id = User::idFromName( $title->getText() );
 				if( $id != 0 ) {
 					$s .= $sep . $this->userContribsLink();
 					if( $this->getSkin()->showEmailUser( $id ) ) {
@@ -293,18 +295,18 @@ class CologneBlueTemplate extends LegacyTemplate {
 		$s .= $this->menuHead( 'qbmyoptions' );
 		if ( $this->data['loggedin'] ) {
 			$tl = Linker::link(
-				$this->getSkin()->getUser()->getTalkPage(),
+				$user->getTalkPage(),
 				wfMsg( 'mytalk' ),
 				array(),
 				array(),
 				array( 'known', 'noclasses' )
 			);
-			if ( $this->getSkin()->getUser()->getNewtalk() ) {
+			if ( $user->getNewtalk() ) {
 				$tl .= ' *';
 			}
 
 			$s .= Linker::link(
-					$this->getSkin()->getUser()->getUserPage(),
+					$user->getUserPage(),
 					wfMsg( 'mypage' ),
 					array(),
 					array(),
@@ -312,7 +314,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 				) . $sep . $tl . $sep . Linker::specialLink( 'Watchlist' )
 					. $sep .
 				Linker::link(
-					SpecialPage::getSafeTitleFor( 'Contributions', $this->getSkin()->getUser()->getName() ),
+					SpecialPage::getSafeTitleFor( 'Contributions', $user->getName() ),
 					wfMsg( 'mycontris' ),
 					array(),
 					array(),
@@ -327,7 +329,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 			. Linker::specialLink( 'Newpages' )
 			. $sep . Linker::specialLink( 'Listfiles' )
 			. $sep . Linker::specialLink( 'Statistics' );
-		if( UploadBase::isEnabled() && UploadBase::isAllowed( $this->getSkin()->getUser() ) === true ) {
+		if( UploadBase::isEnabled() && UploadBase::isAllowed( $user ) === true ) {
 			$s .= $sep . $this->getUploadLink();
 		}
 
