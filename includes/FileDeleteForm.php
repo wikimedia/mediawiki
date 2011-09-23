@@ -32,14 +32,14 @@ class FileDeleteForm {
 		global $wgOut, $wgRequest, $wgUser;
 		$this->setHeaders();
 
-		if( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-			return;
-		}
 		$permission_errors = $this->title->getUserPermissionsErrors('delete', $wgUser);
 		if ( count( $permission_errors ) > 0 ) {
 			$wgOut->showPermissionsErrorPage( $permission_errors );
 			return;
+		}
+
+		if ( wfReadOnly() ) {
+			throw new ReadOnlyError;
 		}
 
 		$this->oldimage = $wgRequest->getText( 'oldimage', false );
@@ -47,12 +47,9 @@ class FileDeleteForm {
 		# Flag to hide all contents of the archived revisions
 		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $wgUser->isAllowed('suppressrevision');
 
-		if( $this->oldimage && !self::isValidOldSpec($this->oldimage) ) {
-			$wgOut->showUnexpectedValueError( 'oldimage', htmlspecialchars( $this->oldimage ) );
-			return;
-		}
-		if( $this->oldimage )
+		if( $this->oldimage ) {
 			$this->oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $this->title, $this->oldimage );
+		}
 
 		if( !self::haveDeletableFile($this->file, $this->oldfile, $this->oldimage) ) {
 			$wgOut->addHTML( $this->prepareMessage( 'filedelete-nofile' ) );
@@ -220,9 +217,8 @@ class FileDeleteForm {
 			Xml::closeElement( 'form' );
 
 			if ( $wgUser->isAllowed( 'editinterface' ) ) {
-				$skin = $wgUser->getSkin();
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Filedelete-reason-dropdown' );
-				$link = $skin->link(
+				$link = Linker::link(
 					$title,
 					wfMsgHtml( 'filedelete-edit-reasonlist' ),
 					array(),
@@ -274,18 +270,12 @@ class FileDeleteForm {
 	 * Set headers, titles and other bits
 	 */
 	private function setHeaders() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 		$wgOut->setPageTitle( wfMsg( 'filedelete', $this->title->getText() ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setSubtitle( wfMsg(
 			'filedelete-backlink',
-			$wgUser->getSkin()->link(
-				$this->title,
-				null,
-				array(),
-				array(),
-				array( 'known', 'noclasses' )
-			)
+			Linker::linkKnown( $this->title )
 		) );
 	}
 
