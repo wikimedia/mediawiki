@@ -427,12 +427,23 @@ class TextPassDumper extends BackupDumper {
 	function openSpawn() {
 		global $IP;
 
-		$cmd = implode( " ",
-			array_map( 'wfEscapeShellArg',
-				array(
-					$this->php,
-					"$IP/maintenance/fetchText.php",
-					'--wiki', wfWikiID() ) ) );
+		if ( file_exists( "$IP/../multiversion/MWScript.php" ) ) {
+			$cmd = implode( " ",
+				array_map( 'wfEscapeShellArg',
+					array(
+						$this->php,
+						"$IP/../multiversion/MWScript.php",
+						"fetchText.php",
+						'--wiki', wfWikiID() ) ) );
+		}
+		else {
+			$cmd = implode( " ",
+				array_map( 'wfEscapeShellArg',
+					array(
+						$this->php,
+						"$IP/maintenance/fetchText.php",
+						'--wiki', wfWikiID() ) ) );
+		}
 		$spec = array(
 			0 => array( "pipe", "r" ),
 			1 => array( "pipe", "w" ),
