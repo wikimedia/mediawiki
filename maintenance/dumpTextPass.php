@@ -286,8 +286,19 @@ class TextPassDumper extends BackupDumper {
 			// we wrote some stuff after last checkpoint that needs renamed
 			if (file_exists($filenameList[0])) {
 				$newFilenames = array();
-				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
-				$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+				# we might have just written the header and footer and had no 
+				# pages or revisions written... perhaps they were all deleted
+				# there's no pageID 0 so we use that. the caller is responsible
+				# for deciding what to do with a file containing only the
+				# siteinfo information and the mw tags.
+				if (! $this->firstPageWritten) {
+					$firstPageID = str_pad(0,9,"0",STR_PAD_LEFT);
+					$lastPageID = str_pad(0,9,"0",STR_PAD_LEFT);
+				}
+				else {
+					$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
+					$lastPageID = str_pad($this->lastPageWritten,9,"0",STR_PAD_LEFT);
+				}
 				for ( $i = 0; $i < count( $filenameList ); $i++ ) {
 					$checkpointNameFilledIn = sprintf( $this->checkpointFiles[$i], $firstPageID, $lastPageID );
 					$fileinfo = pathinfo($filenameList[$i]);
