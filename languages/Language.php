@@ -3552,15 +3552,20 @@ class Language {
 	 * @param $format String Optional, one of ("avoidseconds","avoidminutes"):
 	 *		"avoidseconds" - don't mention seconds if $seconds >= 1 hour
 	 *		"avoidminutes" - don't mention seconds/minutes if $seconds > 48 hours
+	 * @param $noAbbrevs Bool If true (or true-ish, recommend using 'noabbrevs' for clarity), use 'seconds' and friends instead of 'seconds-abbrev' and friends
 	 * @return string
 	 */
-	function formatTimePeriod( $seconds, $format = false ) {
+	function formatTimePeriod( $seconds, $format = false, $noAbbrevs = false ) {
+		$secondsMsg = wfMessage( $noAbbrevs ? 'seconds' : 'seconds-abbrev' )->inLanguage( $this );
+		$minutesMsg = wfMessage( $noAbbrevs ? 'minutes' : 'minutes-abbrev' )->inLanguage( $this );
+		$hoursMsg = wfMessage( $noAbbrevs ? 'hours' : 'hours-abbrev' )->inLanguage( $this );
+		$daysMsg = wfMessage( $noAbbrevs ? 'days' : 'days-abbrev' )->inLanguage( $this );
 		if ( round( $seconds * 10 ) < 100 ) {
 			$s = $this->formatNum( sprintf( "%.1f", round( $seconds * 10 ) / 10 ) );
-			$s .= $this->getMessageFromDB( 'seconds-abbrev' );
+			$s = $secondsMsg->params( $s )->text();
 		} elseif ( round( $seconds ) < 60 ) {
 			$s = $this->formatNum( round( $seconds ) );
-			$s .= $this->getMessageFromDB( 'seconds-abbrev' );
+			$s = $secondsMsg->params( $s )->text();
 		} elseif ( round( $seconds ) < 3600 ) {
 			$minutes = floor( $seconds / 60 );
 			$secondsPart = round( fmod( $seconds, 60 ) );
@@ -3568,9 +3573,9 @@ class Language {
 				$secondsPart = 0;
 				$minutes++;
 			}
-			$s = $this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' );
+			$s = $minutesMsg->params( $this->formatNum( $minutes ) )->text();
 			$s .= ' ';
-			$s .= $this->formatNum( $secondsPart ) . $this->getMessageFromDB( 'seconds-abbrev' );
+			$s .= $secondsMsg->params( $this->formatNum( $secondsPart ) )->text();
 		} elseif ( round( $seconds ) <= 2 * 86400 ) {
 			$hours = floor( $seconds / 3600 );
 			$minutes = floor( ( $seconds - $hours * 3600 ) / 60 );
@@ -3583,12 +3588,11 @@ class Language {
 				$minutes = 0;
 				$hours++;
 			}
-			$s = $this->formatNum( $hours ) . $this->getMessageFromDB( 'hours-abbrev' );
+			$s = $hoursMsg->params( $this->formatNum( $hours ) )->text();
 			$s .= ' ';
-			$s .= $this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' );
+			$s .= $minutesMsg->params( $this->formatNum( $minutes ) )->text();
 			if ( !in_array( $format, array( 'avoidseconds', 'avoidminutes' ) ) ) {
-				$s .= ' ' . $this->formatNum( $secondsPart ) .
-					$this->getMessageFromDB( 'seconds-abbrev' );
+				$s .= ' ' . $secondsMsg->params( $this->formatNum( $secondsPart ) )->text();
 			}
 		} else {
 			$days = floor( $seconds / 86400 );
@@ -3598,9 +3602,9 @@ class Language {
 					$hours = 0;
 					$days++;
 				}
-				$s = $this->formatNum( $days ) . $this->getMessageFromDB( 'days-abbrev' );
+				$s = $daysMsg->params( $this->formatNum( $days ) )->text();
 				$s .= ' ';
-				$s .= $this->formatNum( $hours ) . $this->getMessageFromDB( 'hours-abbrev' );
+				$s .= $hoursMsg->params( $this->formatNum( $hours ) )->text();
 			} elseif ( $format === 'avoidseconds' ) {
 				$hours = floor( ( $seconds - $days * 86400 ) / 3600 );
 				$minutes = round( ( $seconds - $days * 86400 - $hours * 3600 ) / 60 );
@@ -3612,15 +3616,15 @@ class Language {
 					$hours = 0;
 					$days++;
 				}
-				$s = $this->formatNum( $days ) . $this->getMessageFromDB( 'days-abbrev' );
+				$s = $daysMsg->params( $this->formatNum( $days ) )->text();
 				$s .= ' ';
-				$s .= $this->formatNum( $hours ) . $this->getMessageFromDB( 'hours-abbrev' );
+				$s .= $hoursMsg->params( $this->formatNum( $hours ) )->text();
 				$s .= ' ';
-				$s .= $this->formatNum( $minutes ) . $this->getMessageFromDB( 'minutes-abbrev' );
+				$s .= $minutesMsg->params( $this->formatNum( $minutes ) )->text();
 			} else {
-				$s = $this->formatNum( $days ) . $this->getMessageFromDB( 'days-abbrev' );
+				$s = $daysMsg->params( $this->formatNum( $days ) )->text();
 				$s .= ' ';
-				$s .= $this->formatTimePeriod( $seconds - $days * 86400, $format );
+				$s .= $this->formatTimePeriod( $seconds - $days * 86400, $format, $noAbbrevs );
 			}
 		}
 		return $s;

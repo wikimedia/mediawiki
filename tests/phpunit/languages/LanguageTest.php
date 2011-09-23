@@ -21,27 +21,42 @@ class LanguageTest extends MediaWikiTestCase {
 	}
 	
 	/** @dataProvider provideFormattableTimes */
-	function testFormatTimePeriod( $seconds, $avoid, $expected, $desc ) {
-		$this->assertEquals( $expected, $this->lang->formatTimePeriod( $seconds, $avoid ), $desc );
+	function testFormatTimePeriod( $seconds, $avoid, $noAbbrevs, $expected, $desc ) {
+		$this->assertEquals( $expected, $this->lang->formatTimePeriod( $seconds, $avoid, $noAbbrevs ), $desc );
 	}
 	
 	function provideFormattableTimes() {
 		return array(
-			array( 9.45, false, '9.5s', 'formatTimePeriod() rounding (<10s)' ),
-			array( 9.95, false, '10s', 'formatTimePeriod() rounding (<10s)' ),
-			array( 59.55, false, '1m 0s', 'formatTimePeriod() rounding (<60s)' ),
-			array( 119.55, false, '2m 0s', 'formatTimePeriod() rounding (<1h)' ),
-			array( 3599.55, false, '1h 0m 0s', 'formatTimePeriod() rounding (<1h)' ),
-			array( 7199.55, false, '2h 0m 0s', 'formatTimePeriod() rounding (>=1h)' ),
-			array( 7199.55, 'avoidseconds', '2h 0m', 'formatTimePeriod() rounding (>=1h), avoidseconds' ),
-			array( 7199.55, 'avoidminutes', '2h 0m', 'formatTimePeriod() rounding (>=1h), avoidminutes' ),
-			array( 172799.55, 'avoidseconds', '48h 0m', 'formatTimePeriod() rounding (=48h), avoidseconds' ),
-			array( 259199.55, 'avoidminutes', '3d 0h', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
-			array( 176399.55, 'avoidseconds', '2d 1h 0m', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
-			array( 176399.55, 'avoidminutes', '2d 1h', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
-			array( 259199.55, 'avoidseconds', '3d 0h 0m', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
-			array( 172801.55, 'avoidseconds', '2d 0h 0m', 'formatTimePeriod() rounding, (>48h), avoidseconds' ),
-			array( 176460.55, false, '2d 1h 1m 1s', 'formatTimePeriod() rounding, recursion, (>48h)' ),
+			array( 9.45, false, false, '9.5s', 'formatTimePeriod() rounding (<10s)' ),
+			array( 9.45, false, 'noabbrevs', '9.5 seconds', 'formatTimePeriod() rounding (<10s)' ),
+			array( 9.95, false, false, '10s', 'formatTimePeriod() rounding (<10s)' ),
+			array( 9.95, false, 'noabbrevs', '10 seconds', 'formatTimePeriod() rounding (<10s)' ),
+			array( 59.55, false, false, '1m 0s', 'formatTimePeriod() rounding (<60s)' ),
+			array( 59.55, false, 'noabbrevs', '1 minute 0 seconds', 'formatTimePeriod() rounding (<60s)' ),
+			array( 119.55, false, false, '2m 0s', 'formatTimePeriod() rounding (<1h)' ),
+			array( 119.55, false, 'noabbrevs', '2 minutes 0 seconds', 'formatTimePeriod() rounding (<1h)' ),
+			array( 3599.55, false, false, '1h 0m 0s', 'formatTimePeriod() rounding (<1h)' ),
+			array( 3599.55, false, 'noabbrevs', '1 hour 0 minutes 0 seconds', 'formatTimePeriod() rounding (<1h)' ),
+			array( 7199.55, false, false, '2h 0m 0s', 'formatTimePeriod() rounding (>=1h)' ),
+			array( 7199.55, false, 'noabbrevs', '2 hours 0 minutes 0 seconds', 'formatTimePeriod() rounding (>=1h)' ),
+			array( 7199.55, 'avoidseconds', false, '2h 0m', 'formatTimePeriod() rounding (>=1h), avoidseconds' ),
+			array( 7199.55, 'avoidseconds', 'noabbrevs', '2 hours 0 minutes', 'formatTimePeriod() rounding (>=1h), avoidseconds' ),
+			array( 7199.55, 'avoidminutes', false, '2h 0m', 'formatTimePeriod() rounding (>=1h), avoidminutes' ),
+			array( 7199.55, 'avoidminutes', 'noabbrevs', '2 hours 0 minutes', 'formatTimePeriod() rounding (>=1h), avoidminutes' ),
+			array( 172799.55, 'avoidseconds', false, '48h 0m', 'formatTimePeriod() rounding (=48h), avoidseconds' ),
+			array( 172799.55, 'avoidseconds', 'noabbrevs', '48 hours 0 minutes', 'formatTimePeriod() rounding (=48h), avoidseconds' ),
+			array( 259199.55, 'avoidminutes', false, '3d 0h', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
+			array( 259199.55, 'avoidminutes', 'noabbrevs', '3 days 0 hours', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
+			array( 176399.55, 'avoidseconds', false, '2d 1h 0m', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
+			array( 176399.55, 'avoidseconds', 'noabbrevs', '2 days 1 hour 0 minutes', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
+			array( 176399.55, 'avoidminutes', false, '2d 1h', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
+			array( 176399.55, 'avoidminutes', 'noabbrevs', '2 days 1 hour', 'formatTimePeriod() rounding (>48h), avoidminutes' ),
+			array( 259199.55, 'avoidseconds', false, '3d 0h 0m', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
+			array( 259199.55, 'avoidseconds', 'noabbrevs', '3 days 0 hours 0 minutes', 'formatTimePeriod() rounding (>48h), avoidseconds' ),
+			array( 172801.55, 'avoidseconds', false, '2d 0h 0m', 'formatTimePeriod() rounding, (>48h), avoidseconds' ),
+			array( 172801.55, 'avoidseconds', 'noabbrevs', '2 days 0 hours 0 minutes', 'formatTimePeriod() rounding, (>48h), avoidseconds' ),
+			array( 176460.55, false, false, '2d 1h 1m 1s', 'formatTimePeriod() rounding, recursion, (>48h)' ),
+			array( 176460.55, false, 'noabbrevs', '2 days 1 hour 1 minute 1 second', 'formatTimePeriod() rounding, recursion, (>48h)' ),
 		);
 		
 	}
