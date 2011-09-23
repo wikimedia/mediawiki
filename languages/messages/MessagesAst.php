@@ -1645,7 +1645,7 @@ Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que 
 'filehist-filesize'         => 'Tamañu del archivu',
 'filehist-comment'          => 'Comentariu',
 'filehist-missing'          => 'Falta ficheru',
-'imagelinks'                => 'Enllaces del ficheru',
+'imagelinks'                => 'Usu del ficheru',
 'linkstoimage'              => '{{PLURAL:$1|La páxina siguiente enllacia|Les páxines siguientes enllacien}} a esti archivu:',
 'linkstoimage-more'         => "Más de $1 {{PLURAL:$1|páxina enllacia|páxines enllacien}} a esti archivu.
 La llista siguiente amuesa{{PLURAL:$1|'l primer enllaz de páxina| los primeros $1 enllaces de páxina}} a esti archivu namái.
@@ -3592,5 +3592,7 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" ensin dexar una redireición',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" sobre una redireición',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" sobre una redireición ensin dexar una redireición',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcó}} la revisión $4 de la páxina "$3" como patrullada',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcó}} automaticamente la revisión $4 de la páxina "$3" como patrullada',
 
 );
