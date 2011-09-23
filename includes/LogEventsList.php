@@ -821,15 +821,15 @@ class LogPager extends ReverseChronologicalPager {
 
 	// Call ONLY after calling $this->limitType() already!
 	public function getFilterParams() {
-		global $wgFilterLogTypes, $wgUser, $wgRequest;
+		global $wgFilterLogTypes;
 		$filters = array();
 		if( count($this->types) ) {
 			return $filters;
 		}
 		foreach( $wgFilterLogTypes as $type => $default ) {
 			// Avoid silly filtering
-			if( $type !== 'patrol' || $wgUser->useNPPatrol() ) {
-				$hide = $wgRequest->getInt( "hide_{$type}_log", $default );
+			if( $type !== 'patrol' || $this->getUser()->useNPPatrol() ) {
+				$hide = $this->getRequest()->getInt( "hide_{$type}_log", $default );
 				$filters[$type] = $hide;
 				if( $hide )
 					$this->mConds[] = 'log_type != ' . $this->mDb->addQuotes( $type );
@@ -846,13 +846,13 @@ class LogPager extends ReverseChronologicalPager {
 	 *   empty string means no restriction
 	 */
 	private function limitType( $types ) {
-		global $wgLogRestrictions, $wgUser;
+		global $wgLogRestrictions;
 		// If $types is not an array, make it an array
 		$types = ($types === '') ? array() : (array)$types;
 		// Don't even show header for private logs; don't recognize it...
 		foreach ( $types as $type ) {
 			if( isset( $wgLogRestrictions[$type] )
-				&& !$wgUser->isAllowed($wgLogRestrictions[$type])
+				&& !$this->getUser()->isAllowed($wgLogRestrictions[$type])
 			) {
 				$types = array_diff( $types, array( $type ) );
 			}
@@ -892,12 +892,12 @@ class LogPager extends ReverseChronologicalPager {
 			   but for now it won't pass anywhere behind the optimizer */
 			$this->mConds[] = "NULL";
 		} else {
-			global $wgUser;
 			$this->mConds['log_user'] = $userid;
 			// Paranoia: avoid brute force searches (bug 17342)
-			if( !$wgUser->isAllowed( 'deletedhistory' ) || $wgUser->isBlocked() ) {
+			$user = $this->getUser();
+			if( !$user->isAllowed( 'deletedhistory' ) || $user->isBlocked() ) {
 				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_USER) . ' = 0';
-			} elseif( !$wgUser->isAllowed( 'suppressrevision' ) || $wgUser->isBlocked() ) {
+			} elseif( !$user->isAllowed( 'suppressrevision' ) || $user->isBlocked() ) {
 				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::SUPPRESSED_USER) .
 					' != ' . LogPage::SUPPRESSED_USER;
 			}
@@ -913,7 +913,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param $pattern String
 	 */
 	private function limitTitle( $page, $pattern ) {
-		global $wgMiserMode, $wgUser;
+		global $wgMiserMode;
 
 		$title = Title::newFromText( $page );
 		if( strlen( $page ) == 0 || !$title instanceof Title ) {
@@ -944,9 +944,10 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
 		// Paranoia: avoid brute force searches (bug 17342)
-		if( !$wgUser->isAllowed( 'deletedhistory' ) || $wgUser->isBlocked() ) {
+		$user = $this->getUser();
+		if( !$user->isAllowed( 'deletedhistory' ) || $user->isBlocked() ) {
 			$this->mConds[] = $db->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0';
-		} elseif( !$wgUser->isAllowed( 'suppressrevision' ) || $wgUser->isBlocked() ) {
+		} elseif( !$user->isAllowed( 'suppressrevision' ) || $user->isBlocked() ) {
 			$this->mConds[] = $db->bitAnd('log_deleted', LogPage::SUPPRESSED_ACTION) .
 				' != ' . LogPage::SUPPRESSED_ACTION;
 		}
