@@ -905,6 +905,32 @@ class GlobalTest extends MediaWikiTestCase {
 		return $a;
 	}
 
+	/**
+	 * @dataProvider provideWfShellMaintenanceCmdList
+	 */
+	function testWfShellMaintenanceCmd( $script, $parameters, $options, $expected, $description ) {
+		$actual = wfShellMaintenanceCmd( $script, $parameters, $options );
+		$this->assertEquals( $expected, $actual, $description );
+	}
+
+	function provideWfShellMaintenanceCmdList() {
+		global $wgPhpCli;
+		return array(
+			array( 'eval.php', array( '--help', '--test' ), array(),
+				"\"$wgPhpCli\" \"eval.php\" \"--help\" \"--test\"",
+				"Called eval.php --help --test" ),
+			array( 'eval.php', array( '--help', '--test space' ), array('php' => 'php5'),
+				"\"php5\" \"eval.php\" \"--help\" \"--test space\"",
+				"Called eval.php --help --test with php option" ),
+			array( 'eval.php', array( '--help', '--test', 'X' ), array('wrapper' => 'MWScript.php'),
+				"\"$wgPhpCli\" \"MWScript.php\" \"eval.php\" \"--help\" \"--test\" \"X\"",
+				"Called eval.php --help --test with wrapper option" ),
+			array( 'eval.php', array( '--help', '--test', 'y' ), array('php' => 'php5', 'wrapper' => 'MWScript.php'),
+				"\"php5\" \"MWScript.php\" \"eval.php\" \"--help\" \"--test\" \"y\"",
+				"Called eval.php --help --test with wrapper and php option" ),
+		);
+	}
+
 	/* TODO: many more! */
 }
 

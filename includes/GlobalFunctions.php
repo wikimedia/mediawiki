@@ -2805,6 +2805,31 @@ function wfInitShellLocale() {
 }
 
 /**
+ * Generate a shell-escaped command line string to run a maintenance script.
+ * Note that $parameters should be a flat array and an option with an argument
+ * should consist of two consecutive items in the array (do not use "--option value").
+ * @param $script string MediaWiki maintenance script path
+ * @param $parameters Array Arguments and options to the script
+ * @param $options Array Associative array of options:
+ * 		'php': The path to the php executable
+ * 		'wrapper': Path to a PHP wrapper to handle the maintenance script
+ * @return Array
+ */
+function wfShellMaintenanceCmd( $script, array $parameters = array(), array $options = array() ) {
+	global $wgPhpCli;
+	// Give site config file a chance to run the script in a wrapper.
+	// The caller may likely want to call wfBasename() on $script.
+	wfRunHooks( 'wfShellMaintenanceCmd', array( &$script, &$parameters, &$options ) );
+	$cmd = isset( $options['php'] ) ? array( $options['php'] ) : array( $wgPhpCli );
+	if ( isset( $options['wrapper'] ) ) {
+		$cmd[] = $options['wrapper'];
+	}
+	$cmd[] = $script;
+	// Escape each parameter for shell
+	return implode( " ", array_map( 'wfEscapeShellArg', array_merge( $cmd, $parameters ) ) );
+}
+
+/**
  * This function works like "use VERSION" in Perl, the program will die with a
  * backtrace if the current version of PHP is less than the version provided
  *
