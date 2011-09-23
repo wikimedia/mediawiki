@@ -852,15 +852,15 @@ function wfErrorLog( $text, $file ) {
 			$text = preg_replace( '/^/m', $prefix . ' ', $text );
 
 			// Limit to 64KB
-			if ( strlen( $text ) > 65534 ) {
-				$text = substr( $text, 0, 65534 );
+			if ( strlen( $text ) > 65506 ) {
+				$text = substr( $text, 0, 65505 );
 			}
 
 			if ( substr( $text, -1 ) != "\n" ) {
 				$text .= "\n";
 			}
-		} elseif ( strlen( $text ) > 65535 ) {
-			$text = substr( $text, 0, 65535 );
+		} elseif ( strlen( $text ) > 65507 ) {
+			$text = substr( $text, 0, 65506 );
 		}
 
 		$sock = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
@@ -868,13 +868,7 @@ function wfErrorLog( $text, $file ) {
 			return;
 		}
 
-		$len = strlen( $text );
-		$maxLen = socket_get_option( $sock, SOL_SOCKET, SO_SNDBUF );
-
-		if ( $len > $maxLen ) {
-			$len = $maxLen - 1;
-		}
-		socket_sendto( $sock, $text, $len, 0, $host, $port );
+		socket_sendto( $sock, $text, strlen( $text ), 0, $host, $port );
 		socket_close( $sock );
 	} else {
 		wfSuppressWarnings();
