@@ -853,14 +853,14 @@ function wfErrorLog( $text, $file ) {
 
 			// Limit to 64KB
 			if ( strlen( $text ) > 65506 ) {
-				$text = substr( $text, 0, 65505 );
+				$text = substr( $text, 0, 65506 );
 			}
 
 			if ( substr( $text, -1 ) != "\n" ) {
 				$text .= "\n";
 			}
 		} elseif ( strlen( $text ) > 65507 ) {
-			$text = substr( $text, 0, 65506 );
+			$text = substr( $text, 0, 65507 );
 		}
 
 		$sock = socket_create( $domain, SOCK_DGRAM, SOL_UDP );
