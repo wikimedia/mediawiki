@@ -767,7 +767,7 @@ class Title {
 
 	/**
 	 * Return the prefixed title with spaces _without_ the interwiki prefix
-	 * 
+	 *
 	 * @return \type{\string} the title, prefixed by the namespace but not by the interwiki prefix, with spaces
 	 */
 	public function getSemiPrefixedText() {
@@ -776,7 +776,7 @@ class Title {
 			$s = str_replace( '_', ' ', $s );
 			$this->mSemiPrefixedText = $s;
 		}
-		return $this->mSemiPrefixedText; 
+		return $this->mSemiPrefixedText;
 	}
 
 	/**
@@ -1007,7 +1007,7 @@ class Title {
 	public function escapeFullURL( $query = '' ) {
 		return htmlspecialchars( $this->getFullURL( $query ) );
 	}
-	
+
 	/**
 	 * HTML-escaped version of getCanonicalURL()
 	 */
@@ -1019,7 +1019,7 @@ class Title {
 	 * Get the URL form for an internal link.
 	 * - Used in various Squid-related code, in case we have a different
 	 * internal hostname for the server from the exposed one.
-	 * 
+	 *
 	 * This uses $wgInternalServer to qualify the path, or $wgServer
 	 * if $wgInternalServer is not set. If the server variable used is
 	 * protocol-relative, the URL will be expanded to http://
@@ -1044,9 +1044,9 @@ class Title {
 	 * Get the URL for a canonical link, for use in things like IRC and
 	 * e-mail notifications. Uses $wgCanonicalServer and the
 	 * GetCanonicalURL hook.
-	 * 
+	 *
 	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
-	 * 
+	 *
 	 * @param $query string An optional query string
 	 * @param $variant string Language variant of URL (for sr, zh, ...)
 	 * @return string The URL
@@ -1797,7 +1797,7 @@ class Title {
 			// Interwiki title or immovable namespace. Hooks don't get to override here
 			return false;
 		}
-		
+
 		$result = true;
 		wfRunHooks( 'TitleIsMovable', array( $this, &$result ) );
 		return $result;
@@ -2826,7 +2826,7 @@ class Title {
 			: $dbkey;
 
 		// Any remaining initial :s are illegal.
-		if ( $dbkey !== '' && ':' == $dbkey { 0 } ) {
+		if ( $dbkey !== '' && ':' == $dbkey[0] ) {
 			return false;
 		}
 
@@ -3392,7 +3392,7 @@ class Title {
 				array( 'rc_timestamp' => $rcts, 'rc_namespace' => $newns, 'rc_title' => $newdbk, 'rc_new' => 1 ),
 				__METHOD__
 			);
-			
+
 			 if ( $wgEnableInterwikiTemplatesTracking && $wgGlobalDatabase ) {
 				$dbw2 = wfGetDB( DB_MASTER, array(), $wgGlobalDatabase );
 				$dbw2->delete( 'globaltemplatelinks',
