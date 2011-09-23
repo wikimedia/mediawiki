@@ -22,6 +22,14 @@ $specialPageAliases = array(
 );
 
 $messages = array(
+# General errors
+'missing-article' => 'The database did not find the text of a page that it should have found, named ‘$1’ $2.
+
+This is usually caused by following an outdated diff or history link to a page that has been deleted.
+
+If this is not the case, you may have found a bug in the software.
+Please report this to an [[Special:ListUsers/sysop|administrator]], making note of the URL.',
+
 # Miscellaneous special pages
 'uncategorizedpages'      => 'Uncategorised pages',
 'uncategorizedcategories' => 'Uncategorised categories',
@@ -60,6 +68,10 @@ If the file has been modified from its original state, some details may not full
 'exif-sensingmethod-4' => 'Three-chip colour area sensor',
 'exif-sensingmethod-5' => 'Colour sequential area sensor',
 'exif-sensingmethod-8' => 'Colour sequential linear sensor',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|metre|metres}} above sea level',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|metre|metres}} below sea level',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometres per hour',

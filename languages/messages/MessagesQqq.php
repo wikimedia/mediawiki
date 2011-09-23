@@ -762,7 +762,6 @@ Parameters:
 
 # E-mail sending
 'user-mail-no-addy' => 'This is the error message in case an e-mail could not be sent because there was no e-mail address to send it to.',
-'defemailsubject' => 'The default subject of EmailUser emails.  The first parameter is the username of the user sending the email.',
 
 # Change password dialog
 'resetpass'                 => 'The caption of [[Special:ChangePassword]]
@@ -2336,6 +2335,7 @@ See also {{msg|listgrouprights-addgroup}}.',
 'emailpagetext'       => 'This is the text that is displayed above the e-mail form on [[Special:EmailUser]].
 
 Special:EmailUser appears when you click on the link "E-mail this user" in the sidebar, but only if there is an e-mail address in the recipient\'s user preferences. If there isn\'t then the message [[Mediawiki:Noemailtext]] will appear instead of Special:EmailUser.',
+'defemailsubject'     => 'The default subject of EmailUser emails.  The first parameter is the username of the user sending the email.',
 'usermaildisabled'    => 'Caption for an error message ({{msg-mw|Usermaildisabledtext}}) shown when the user-to-user e-mail feature is disabled on the wiki (see [[mw:Manual:$wgEnableEmail]], [[mw:Manual:$wgEnableUserEmail]]).',
 'noemailtitle'        => 'The title of the message that appears instead of Special:EmailUser after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user.',
 'noemailtext'         => 'The text of the message that appears in [[Special:EmailUser]] after clicking the "E-mail this user" link in the sidebar, if no e-mail can be sent to the user because he has not specified or not confirmed an e-mail address.',
@@ -4334,9 +4334,9 @@ Parameter $4, the target page, is also not visible to parser functions.',
 Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-move-move_redir-noredirect' => '{{Logentry}}
 Parameter $4, the target page, is also not visible to parser functions.',
-'logentry-patrol-patrol'              => '{{LogEntry}}
+'logentry-patrol-patrol'              => '{{Logentry}}
 $4 is formatted number, maybe linked to the diff.',
-'logentry-patrol-patrol-auto'         => '{{LogEntry}}
+'logentry-patrol-patrol-auto'         => '{{Logentry}}
 $4 is formatted number, maybe linked to the diff. Automatically (I think) means that people with autopatrol right mark revisions automatically patrolled when editing.',
 
 );

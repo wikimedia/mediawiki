@@ -3657,10 +3657,14 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 # New logging system
 'logentry-delete-delete'              => '{{GENDER:$2|Diverket eo bet}} ar bajenn $3 gant $1',
 'logentry-delete-restore'             => '{{GENDER:$2|Assavet eo bet}} ar bajenn $3 gant $1',
+'logentry-delete-event'               => "{{GENDER:$2|Kemmet}} eo bet gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoud eus ar marilh}} d'an $3 gant $1 : $4",
 'logentry-delete-revision'            => '{{GENDER:$2|Kemmet}} eo bet gwelusted {{PLURAL:$5|ur reizhadenn|$5 reizhadenn}} war ar bajenn $3 gant $1 : $4',
-'logentry-delete-revision-legacy'     => '{{GENDER:$2|Kemmet}} eo bet gwelusted ar reizhadnennoù war ar bajenn $3 gant $1',
+'logentry-delete-event-legacy'        => '{{GENDER:$2|Kemmet}} eo bet gwelusted darvoudoù ar marilh $3 gant $1',
+'logentry-delete-revision-legacy'     => '{{GENDER:$2|Kemmet}} eo bet gwelusted ar reizhadennoù war ar bajenn $3 gant $1',
 'logentry-suppress-delete'            => '{{GENDER:$2|Diverket eo bet}} ar bajenn $3 gant $1',
+'logentry-suppress-event'             => "{{GENDER:$2|Kemmet}} eo bet dre guzh gwelusted {{PLURAL:$5|un darvoud eus ar marilh|$5 darvoud eus ar marilh}} d'an $3 gant $1 : $4",
 'logentry-suppress-revision'          => '{{GENDER:$2|Kemmet}} eo bet dre guzh gwelusted {{PLURAL:$5|ur reizhadenn|$5 reizhadenn}} war ar bajenn $3 gant $1 : $4',
+'logentry-suppress-event-legacy'      => '{{GENDER:$2|Kemmet}} eo bet dre guzh gwelusted darvoudoù ar marilh $3 gant $1',
 'logentry-suppress-revision-legacy'   => '{{GENDER:$2|Kemmet}} eo bet dre guzh gwelusted ar reizhadennoù war ar bajenn $3 gant $1',
 'revdelete-content-hid'               => 'danvez kuzet',
 'revdelete-summary-hid'               => 'kemmañ an diverrañ kuzhet',
@@ -3674,5 +3678,7 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-move-move-noredirect'       => '{{GENDER:$2|kaset}} ar bajenn $3 da $4 gant $1 hep adkas',
 'logentry-move-move_redir'            => '{{GENDER:$2|kaset}} ar bajenn $3 da $4 gant $1 dreist un adkas',
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|kaset}} ar bajenn $3 da $4 gant $1 dreist un adkas hep lezel un adkas',
+'logentry-patrol-patrol'              => '{{GENDER:$2|Merket eo bet}} an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
+'logentry-patrol-patrol-auto'         => '{{GENDER:$2|Merket eo bet}} ent emgefre an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
 
 );
