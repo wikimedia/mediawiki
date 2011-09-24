@@ -128,18 +128,6 @@ class RawPage {
 		$mode = $this->mPrivateCache ? 'private' : 'public';
 		header( 'Cache-Control: ' . $mode . ', s-maxage=' . $this->mSmaxage . ', max-age=' . $this->mMaxage );
 
-		global $wgUseFileCache;
-		if( $wgUseFileCache && HTMLFileCache::useFileCache() ) {
-			$cache = new HTMLFileCache( $this->mTitle, 'raw' );
-			if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
-				$cache->loadFromFileCache();
-				$wgOut->disable();
-				return;
-			} else {
-				ob_start( array( &$cache, 'saveToFileCache' ) );
-			}
-		}
-
 		$text = $this->getRawText();
 
 		if( !wfRunHooks( 'RawPageViewBeforeOutput', array( &$this, &$text ) ) ) {
