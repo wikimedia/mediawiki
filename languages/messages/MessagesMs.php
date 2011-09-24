@@ -2854,6 +2854,11 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 'j',
+'seconds'      => '$1 saat',
+'minutes'      => '$1 minit',
+'hours'        => '$1 jam',
+'days'         => '$1 hari',
+'ago'          => '$1 yang lalu',
 
 # Bad image list
 'bad_image_list' => 'Berikut adalah format yang digunakan:

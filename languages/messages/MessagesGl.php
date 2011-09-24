@@ -2991,7 +2991,12 @@ O seu sistema pode quedar comprometido se o executa.",
 'sp-newimages-showfrom' => 'Mostrar os novos ficheiros comezando polo $1 ás $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'minutes-abbrev' => 'min',
+'minutes-abbrev' => '$1min',
+'seconds'        => '{{PLURAL:$1|$1 segundo|$1 segundos}}',
+'minutes'        => '{{PLURAL:$1|$1 minuto|$1 minutos}}',
+'hours'          => '{{PLURAL:$1|$1 hora|$1 horas}}',
+'days'           => '{{PLURAL:$1|$1 día|$1 días}}',
+'ago'            => 'hai $1',
 
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:

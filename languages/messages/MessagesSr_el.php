@@ -2917,6 +2917,13 @@ Njegovim izvršavanjem biste mogli da oštetite Vaš sistem.",
 'bydate'                => 'po datumu',
 'sp-newimages-showfrom' => 'Prikaži nove fajlove počevši od $2, $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekunda|$1 sekunde|$1 sekundi}}',
+'minutes' => '{{PLURAL:$1|$1 minut|$1 minuta|$1 minuta}}',
+'hours'   => '{{PLURAL:$1|$1 sat|$1 sata|$1 sati}}',
+'days'    => '{{PLURAL:$1|$1 dan|$1 dana|$1 dana}}',
+'ago'     => 'pre $1',
+
 # Bad image list
 'bad_image_list' => 'Format je sledeći:
 

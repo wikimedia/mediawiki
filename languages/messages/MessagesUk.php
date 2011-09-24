@@ -3036,10 +3036,10 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2×$3',
-'seconds-abbrev' => 'с',
-'minutes-abbrev' => 'хв',
-'hours-abbrev'   => 'г',
-'days-abbrev'    => 'д',
+'seconds-abbrev' => '$1с',
+'minutes-abbrev' => '$1хв',
+'hours-abbrev'   => '$1г',
+'days-abbrev'    => '$1д',
 
 # Bad image list
 'bad_image_list' => 'Формат має бути наступним:

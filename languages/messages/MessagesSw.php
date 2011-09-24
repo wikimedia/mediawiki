@@ -2540,6 +2540,13 @@ Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'bydate'                => 'kwa tarehe',
 'sp-newimages-showfrom' => 'Onyesha mafaili mapya kuanzia saa $2, tarehe $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => 'sekunde $1 {{PLURAL:$1|iliyopita|zilizopita}}',
+'minutes' => 'dakika $1 {{PLURAL:$1|iliyopita|zilizopita}}',
+'hours'   => '{{PLURAL:$1|saa $1 lililopita|masaa $1 yaliyopita}}',
+'days'    => 'siku $1 {{PLURAL:$1|iliyopita|zilizopita}}',
+'ago'     => '$1',
+
 # Bad image list
 'bad_image_list' => 'Fomati ni hii:
 

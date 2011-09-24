@@ -3167,7 +3167,12 @@ $1',
 'sp-newimages-showfrom' => 'Nieuwe bestanden bekijken vanaf $1 om $2.',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 'u',
+'hours-abbrev' => '$1u',
+'seconds'      => '{{PLURAL:$1|$1 seconde|$1 seconden}}',
+'minutes'      => '{{PLURAL:$1|$1 minuut|$1 minuten}}',
+'hours'        => '{{PLURAL:$1|$1 uur|$1 uur}}',
+'days'         => '{{PLURAL:$1|$1 dag|$1 dagen}}',
+'ago'          => '$1 geleden',
 
 # Bad image list
 'bad_image_list' => "De opmaak is als volgt:

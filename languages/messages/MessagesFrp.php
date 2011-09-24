@@ -3125,6 +3125,11 @@ Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'days-abbrev' => 'j',
+'seconds'     => '$1 second{{PLURAL:$1|a|es}}',
+'minutes'     => '$1 menut{{PLURAL:$1|a|es}}',
+'hours'       => '$1 hor{{PLURAL:$1|a|es}}',
+'days'        => '$1 jorn{{PLURAL:$1||s}}',
+'ago'         => 'cen fât $1',
 
 # Bad image list
 'bad_image_list' => 'Lo format est ceti :
