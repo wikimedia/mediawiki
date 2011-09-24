@@ -789,7 +789,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param $list LogEventsList
 	 * @param $types String or Array: log types to show
 	 * @param $performer String: the user who made the log entries
-	 * @param $title String: the page title the log entries are for
+	 * @param $title String or Title: the page title the log entries are for
 	 * @param $pattern String: do a prefix search rather than an exact title match
 	 * @param $conds Array: extra conditions for the query
 	 * @param $year Integer: the year to start from
@@ -909,15 +909,19 @@ class LogPager extends ReverseChronologicalPager {
 	 * Set the log reader to return only entries affecting the given page.
 	 * (For the block and rights logs, this is a user page.)
 	 *
-	 * @param $page String: Title name as text
+	 * @param $page String or Title object: Title name
 	 * @param $pattern String
 	 */
 	private function limitTitle( $page, $pattern ) {
 		global $wgMiserMode;
 
-		$title = Title::newFromText( $page );
-		if( strlen( $page ) == 0 || !$title instanceof Title ) {
-			return false;
+		if ( $page instanceof Title ) {
+			$title = $page;
+		} else {
+			$title = Title::newFromText( $page );
+			if( strlen( $page ) == 0 || !$title instanceof Title ) {
+				return false;
+			}
 		}
 
 		$this->title = $title->getPrefixedText();

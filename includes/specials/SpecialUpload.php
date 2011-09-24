@@ -266,7 +266,7 @@ class SpecialUpload extends SpecialPage {
 		$delNotice = ''; // empty by default
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
 			LogEventsList::showLogExtract( $delNotice, array( 'delete', 'move' ),
-				$desiredTitleObj->getPrefixedText(),
+				$desiredTitleObj,
 				'', array( 'lim' => 10,
 					   'conds' => array( "log_action != 'revision'" ),
 					   'showIfEmpty' => false,

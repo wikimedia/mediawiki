@@ -117,7 +117,7 @@ class HistoryPage {
 			LogEventsList::showLogExtract(
 				$wgOut,
 				array( 'delete', 'move' ),
-				$this->title->getPrefixedText(),
+				$this->title,
 				'',
 				array(  'lim' => 10,
 					'conds' => array( "log_action != 'revision'" ),

@@ -404,7 +404,7 @@ class SpecialBlock extends SpecialPage {
 			LogEventsList::showLogExtract(
 				$out,
 				'block',
-				$userpage->getPrefixedText(),
+				$userpage,
 				'',
 				array(
 					'lim' => 10,
@@ -419,7 +419,7 @@ class SpecialBlock extends SpecialPage {
 				LogEventsList::showLogExtract(
 					$out,
 					'suppress',
-					$userpage->getPrefixedText(),
+					$userpage,
 					'',
 					array(
 						'lim' => 10,

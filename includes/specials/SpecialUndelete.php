@@ -1076,11 +1076,11 @@ class SpecialUndelete extends SpecialPage {
 
 		# Show relevant lines from the deletion log:
 		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) . "\n" );
-		LogEventsList::showLogExtract( $out, 'delete', $this->mTargetObj->getPrefixedText() );
+		LogEventsList::showLogExtract( $out, 'delete', $this->mTargetObj );
 		# Show relevant lines from the suppression log:
 		if( $this->getUser()->isAllowed( 'suppressionlog' ) ) {
 			$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'suppress' ) ) . "\n" );
-			LogEventsList::showLogExtract( $out, 'suppress', $this->mTargetObj->getPrefixedText() );
+			LogEventsList::showLogExtract( $out, 'suppress', $this->mTargetObj );
 		}
 
 		if( $this->mAllowed && ( $haveRevisions || $haveFiles ) ) {

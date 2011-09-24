@@ -216,7 +216,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			}
 			$out->addHTML( "<div class='mw-warning-with-logexcerpt'>\n" );
 			$out->addWikiMsg( $noticeMsg );
-			LogEventsList::showLogExtract( $out, 'protect', $this->oldTitle->getPrefixedText(), '', array( 'lim' => 1 ) );
+			LogEventsList::showLogExtract( $out, 'protect', $this->oldTitle, '', array( 'lim' => 1 ) );
 			$out->addHTML( "</div>\n" );
 		}
 
@@ -580,7 +580,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	function showLogFragment( $title ) {
 		$out = $this->getOutput();
 		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'move' ) ) );
-		LogEventsList::showLogExtract( $out, 'move', $title->getPrefixedText() );
+		LogEventsList::showLogExtract( $out, 'move', $title );
 	}
 
 	function showSubpages( $title ) {
