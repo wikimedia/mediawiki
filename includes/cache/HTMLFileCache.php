@@ -29,8 +29,12 @@ class HTMLFileCache {
 
 	public function __construct( $title, $type = 'view' ) {
 		$this->mTitle = $title;
-		$this->mType = ( $type == 'view' ) ? $type : false;
+		$this->mType = in_array( $type, self::cacheableActions() ) ? $type : false;
 		$this->fileCacheName(); // init name
+	}
+
+	protected static function cacheableActions() {
+		return array( 'view', 'history' );
 	}
 
 	public function fileCacheName() {
@@ -95,7 +99,7 @@ class HTMLFileCache {
 				continue; // note: curid sets title
 			// Normal page view in query form can have action=view.
 			// Raw hits for pages also stored, like .css pages for example.
-			} elseif( $query == 'action' && $val == 'view' ) {
+			} elseif( $query == 'action' && in_array( $val, self::cacheableActions() ) ) {
 				continue;
 			// Below are header setting params
 			} elseif( $query == 'maxage' || $query == 'smaxage' ) {
@@ -229,10 +233,10 @@ class HTMLFileCache {
 		}
 
 		wfSuppressWarnings();
-
-		$fc = new self( $title, 'view' );
-		unlink( $fc->fileCacheName() );
-
+		foreach( self::cacheableActions() as $type ) {
+			$fc = new self( $title, $type );
+			unlink( $fc->fileCacheName() );
+		}
 		wfRestoreWarnings();
 
 		return true;

@@ -64,15 +64,24 @@ class HistoryPage {
 	 * @return nothing
 	 */
 	function history() {
-		global $wgOut, $wgRequest, $wgScript;
+		global $wgOut, $wgRequest, $wgScript, $wgUseFileCache;
 
 		/**
 		 * Allow client caching.
 		 */
-		if ( $wgOut->checkLastModified( $this->article->getTouched() ) )
+		if ( $wgOut->checkLastModified( $this->article->getTouched() ) ) {
 			return; // Client cache fresh and headers sent, nothing more to do.
+		}
 
 		wfProfileIn( __METHOD__ );
+
+		# Fill in the file cache if not set already
+		if ( $wgUseFileCache && HTMLFileCache::useFileCache() ) {
+			$cache = new HTMLFileCache( $this->title, 'history' );
+			if ( !$cache->isFileCacheGood( /* Assume up to date */ ) ) {
+				ob_start( array( &$cache, 'saveToFileCache' ) );
+			}
+		}
 
 		// Setup page variables.
 		$wgOut->setPageTitle( wfMsg( 'history-title', $this->title->getPrefixedText() ) );
