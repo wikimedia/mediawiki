@@ -548,13 +548,15 @@ class Article extends Page {
 			}
 		}
 
-		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
-		if ( $this->mParserOutput ) {
-			$titleText = $this->mParserOutput->getTitleText();
+		# Get the ParserOutput actually *displayed* here.
+		# Note that $this->mParserOutput is the *current* version output.
+		$pOutput = ( $outputDone instanceof ParserOutput )
+			? $outputDone // object fetched by hook
+			: $this->mParserOutput;
 
-			if ( strval( $titleText ) !== '' ) {
-				$wgOut->setPageTitle( $titleText );
-			}
+		# Adjust title for main page & pages with displaytitle
+		if ( $pOutput ) {
+			$this->adjustDisplayTitle( $pOutput );
 		}
 
 		# For the main page, overwrite the <title> element with the con-
@@ -568,15 +570,28 @@ class Article extends Page {
 			}
 		}
 
-		# Now that we've filled $this->mParserOutput, we know whether
-		# there are any __NOINDEX__ tags on the page
-		$policy = $this->getRobotPolicy( 'view' );
+		# Check for any __NOINDEX__ tags on the page using $pOutput
+		$policy = $this->getRobotPolicy( 'view', $pOutput );
 		$wgOut->setIndexPolicy( $policy['index'] );
 		$wgOut->setFollowPolicy( $policy['follow'] );
 
 		$this->showViewFooter();
 		$this->mPage->viewUpdates();
+
 		wfProfileOut( __METHOD__ );
+	}
+
+	/*
+	 * Adjust title for pages with displaytitle, -{T|}- or language conversion
+	 * @param $pOutput ParserOutput
+	 */
+	public function adjustDisplayTitle( ParserOutput $pOutput ) {
+		global $wgOut;
+		# Adjust the title if it was set by displaytitle, -{T|}- or language conversion
+		$titleText = $pOutput->getTitleText();
+		if ( strval( $titleText ) !== '' ) {
+			$wgOut->setPageTitle( $titleText );
+		}
 	}
 
 	/**
@@ -634,10 +649,11 @@ class Article extends Page {
 	/**
 	 * Get the robot policy to be used for the current view
 	 * @param $action String the action= GET parameter
+	 * @param $pOutput ParserOutput
 	 * @return Array the policy that should be set
 	 * TODO: actions other than 'view'
 	 */
-	public function getRobotPolicy( $action ) {
+	public function getRobotPolicy( $action, $pOutput ) {
 		global $wgOut, $wgArticleRobotPolicies, $wgNamespaceRobotPolicies;
 		global $wgDefaultRobotPolicy, $wgRequest;
 
@@ -685,12 +701,12 @@ class Article extends Page {
 				self::formatRobotPolicy( $wgNamespaceRobotPolicies[$ns] )
 			);
 		}
-		if ( $this->getTitle()->canUseNoindex() && is_object( $this->mParserOutput ) && $this->mParserOutput->getIndexPolicy() ) {
+		if ( $this->getTitle()->canUseNoindex() && is_object( $pOutput ) && $pOutput->getIndexPolicy() ) {
 			# __INDEX__ and __NOINDEX__ magic words, if allowed. Incorporates
 			# a final sanity check that we have really got the parser output.
 			$policy = array_merge(
 				$policy,
-				array( 'index' => $this->mParserOutput->getIndexPolicy() )
+				array( 'index' => $pOutput->getIndexPolicy() )
 			);
 		}
 
