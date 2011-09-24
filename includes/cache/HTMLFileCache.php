@@ -29,7 +29,7 @@ class HTMLFileCache {
 
 	public function __construct( $title, $type = 'view' ) {
 		$this->mTitle = $title;
-		$this->mType = ($type == 'raw' || $type == 'view' ) ? $type : false;
+		$this->mType = ( $type == 'view' ) ? $type : false;
 		$this->fileCacheName(); // init name
 	}
 
@@ -45,8 +45,8 @@ class HTMLFileCache {
 				throw new MWException( 'Please set $wgCacheDirectory in LocalSettings.php if you wish to use the HTML file cache' );
 			}
 
-			# Store raw pages (like CSS hits) elsewhere
-			$subdir = ($this->mType === 'raw') ? 'raw/' : '';
+			# Store other views of aspects of pages elsewhere
+			$subdir = ($this->mType === 'view') ? '' : "{$this->mType}/";
 
 			$key = $this->mTitle->getPrefixedDbkey();
 			if ( $wgFileCacheDepth > 0 ) {
@@ -92,15 +92,13 @@ class HTMLFileCache {
 		$queryVals = $wgRequest->getValues();
 		foreach( $queryVals as $query => $val ) {
 			if( $query == 'title' || $query == 'curid' ) {
-				continue;
+				continue; // note: curid sets title
 			// Normal page view in query form can have action=view.
 			// Raw hits for pages also stored, like .css pages for example.
 			} elseif( $query == 'action' && $val == 'view' ) {
 				continue;
-			} elseif( $query == 'usemsgcache' && $val == 'yes' ) {
-				continue;
 			// Below are header setting params
-			} elseif( $query == 'maxage' || $query == 'smaxage' || $query == 'ctype' || $query == 'gen' ) {
+			} elseif( $query == 'maxage' || $query == 'smaxage' ) {
 				continue;
 			} else {
 				return false;
@@ -158,14 +156,9 @@ class HTMLFileCache {
 		global $wgOut, $wgMimeType, $wgLanguageCode;
 		wfDebug( __METHOD__ . "()\n");
 		$filename = $this->fileCacheName();
-		// Raw pages should handle cache control on their own,
-		// even when using file cache. This reduces hits from clients.
-		if( $this->mType !== 'raw' ) {
-			$wgOut->sendCacheControl();
-			header( "Content-Type: $wgMimeType; charset=UTF-8" );
-			header( "Content-Language: $wgLanguageCode" );
-		}
-
+		$wgOut->sendCacheControl();
+		header( "Content-Type: $wgMimeType; charset=UTF-8" );
+		header( "Content-Language: $wgLanguageCode" );
 		if( $this->useGzip() ) {
 			if( wfClientAcceptsGzip() ) {
 				header( 'Content-Encoding: gzip' );
@@ -238,9 +231,6 @@ class HTMLFileCache {
 		wfSuppressWarnings();
 
 		$fc = new self( $title, 'view' );
-		unlink( $fc->fileCacheName() );
-
-		$fc = new self( $title, 'raw' );
 		unlink( $fc->fileCacheName() );
 
 		wfRestoreWarnings();
