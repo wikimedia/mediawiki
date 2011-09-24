@@ -3558,7 +3558,7 @@ class Language {
 	 */
 	function formatTimePeriod( $seconds, $format = array() ) {
 		if ( !is_array( $format ) ) {
-			$format = array( 'avoid' => $format, 'noabbrevs' => false ); // For backwards compatibility
+			$format = array( 'avoid' => $format ); // For backwards compatibility
 		}
 		if ( !isset( $format['avoid'] ) ) {
 			$format['avoid'] = false;
@@ -3566,10 +3566,14 @@ class Language {
 		if ( !isset( $format['noabbrevs' ] ) ) {
 			$format['noabbrevs'] = false;
 		}
-		$secondsMsg = wfMessage( $format['noabbrevs'] ? 'seconds' : 'seconds-abbrev' )->inLanguage( $this );
-		$minutesMsg = wfMessage( $format['noabbrevs'] ? 'minutes' : 'minutes-abbrev' )->inLanguage( $this );
-		$hoursMsg = wfMessage( $format['noabbrevs'] ? 'hours' : 'hours-abbrev' )->inLanguage( $this );
-		$daysMsg = wfMessage( $format['noabbrevs'] ? 'days' : 'days-abbrev' )->inLanguage( $this );
+		$secondsMsg = wfMessage(
+			$format['noabbrevs'] ? 'seconds' : 'seconds-abbrev' )->inLanguage( $this );
+		$minutesMsg = wfMessage(
+			$format['noabbrevs'] ? 'minutes' : 'minutes-abbrev' )->inLanguage( $this );
+		$hoursMsg = wfMessage(
+			$format['noabbrevs'] ? 'hours' : 'hours-abbrev' )->inLanguage( $this );
+		$daysMsg = wfMessage(
+			$format['noabbrevs'] ? 'days' : 'days-abbrev' )->inLanguage( $this );
 		
 		if ( round( $seconds * 10 ) < 100 ) {
 			$s = $this->formatNum( sprintf( "%.1f", round( $seconds * 10 ) / 10 ) );
