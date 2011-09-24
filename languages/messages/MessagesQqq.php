@@ -791,6 +791,8 @@ Used on [[Special:ResetPass]]',
 'passwordreset-pretext'        => '$1 is the number of password reset routes. Apparently, this is never 1, but always two or more. Thus, the first plural option is empty in English.',
 'passwordreset-username'       => '{{Identical|Username}}',
 'passwordreset-domain'         => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
+'passwordreset-capture'        => 'Label for checkbox asking the user whether they want to see the contents of the password reset email (only shown if they have the <tt>passwordreset</tt> permission',
+'passwordreset-capture-help'   => 'Longer explanatory message for the capture checkbox label.',
 'passwordreset-email'          => '{{Identical|E-mail address}}',
 'passwordreset-emailtext-ip'   => 'Parameters:
 * $1 - an IP address
@@ -1617,6 +1619,7 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 'right-siteadmin'             => '{{doc-right|siteadmin}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
 'right-sendemail'             => '{{doc-right}}',
+'right-passwordreset'         => '{{doc-right}}',
 
 # User rights log
 'rightslog'                  => 'In [[Special:Log]]',
