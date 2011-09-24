@@ -228,7 +228,7 @@ class SpecialContributions extends SpecialPage {
 				LogEventsList::showLogExtract(
 					$out,
 					'block',
-					$nt->getPrefixedText(),
+					$nt,
 					'',
 					array(
 						'lim' => 1,

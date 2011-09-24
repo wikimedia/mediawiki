@@ -606,7 +606,7 @@ class ProtectionForm {
 	function showLogExtract( &$out ) {
 		# Show relevant lines from the protection log:
 		$out->addHTML( Xml::element( 'h2', null, LogPage::logName( 'protect' ) ) );
-		LogEventsList::showLogExtract( $out, 'protect', $this->mTitle->getPrefixedText() );
+		LogEventsList::showLogExtract( $out, 'protect', $this->mTitle );
 		# Let extensions add other relevant log extracts
 		wfRunHooks( 'ProtectionForm::showLogExtract', array($this->mArticle,$out) );
 	}

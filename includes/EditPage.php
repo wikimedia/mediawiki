@@ -807,7 +807,7 @@ class EditPage {
 				LogEventsList::showLogExtract(
 					$wgOut,
 					'block',
-					$user->getUserPage()->getPrefixedText(),
+					$user->getUserPage(),
 					'',
 					array(
 						'lim' => 1,
@@ -830,7 +830,7 @@ class EditPage {
 		}
 		# Give a notice if the user is editing a deleted/moved page...
 		if ( !$this->mTitle->exists() ) {
-			LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), $this->mTitle->getPrefixedText(),
+			LogEventsList::showLogExtract( $wgOut, array( 'delete', 'move' ), $this->mTitle,
 				'', array( 'lim' => 10,
 					   'conds' => array( "log_action != 'revision'" ),
 					   'showIfEmpty' => false,
@@ -1649,7 +1649,7 @@ HTML
 				# Then it must be protected based on static groups (regular)
 				$noticeMsg = 'protectedpagewarning';
 			}
-			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle->getPrefixedText(), '',
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
 				array( 'lim' => 1, 'msgKey' => array( $noticeMsg ) ) );
 		}
 		if ( $this->mTitle->isCascadeProtected() ) {
@@ -1667,7 +1667,7 @@ HTML
 			$wgOut->wrapWikiMsg( $notice, array( 'cascadeprotectedwarning', $cascadeSourcesCount ) );
 		}
 		if ( !$this->mTitle->exists() && $this->mTitle->getRestrictions( 'create' ) ) {
-			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle->getPrefixedText(), '',
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->mTitle, '',
 				array(  'lim' => 1,
 					'showIfEmpty' => false,
 					'msgKey' => array( 'titleprotectedwarning' ),

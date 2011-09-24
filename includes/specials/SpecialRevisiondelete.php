@@ -208,12 +208,12 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		# Show relevant lines from the deletion log
 		$output->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
 		LogEventsList::showLogExtract( $output, 'delete',
-			$this->targetObj->getPrefixedText(), '', array( 'lim' => 25, 'conds' => $qc ) );
+			$this->targetObj, '', array( 'lim' => 25, 'conds' => $qc ) );
 		# Show relevant lines from the suppression log
 		if( $user->isAllowed( 'suppressionlog' ) ) {
 			$output->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
 			LogEventsList::showLogExtract( $output, 'suppress',
-				$this->targetObj->getPrefixedText(), '', array( 'lim' => 25, 'conds' => $qc ) );
+				$this->targetObj, '', array( 'lim' => 25, 'conds' => $qc ) );
 		}
 	}
 
