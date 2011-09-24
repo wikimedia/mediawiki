@@ -540,7 +540,8 @@ $article: Article object
 viewing.
 &$article: the article
 &$pcache: whether to try the parser cache or not
-&$outputDone: whether the output for this page finished or not
+&$outputDone: whether the output for this page finished or not. Set to a ParserOutput
+object to both indicate that the output is done and what parser output was used.
 
 'ArticleViewRedirect': before setting "Redirected from ..." subtitle when
 follwed an redirect
