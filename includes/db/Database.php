@@ -608,6 +608,17 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 	}
 
+ 	/**
+	 * Called by unserialize. Needed to reopen DB connection, which
+	 * is not saved by serialize.
+	 */
+	public function __wakeup() {
+        if ( $this->isOpen() ) {
+			$this->open( $this->mServer, $this->mUser,
+				     $this->mPassword, $this->mDBname);
+		}
+	}
+
 	/**
 	 * Same as new DatabaseMysql( ... ), kept for backward compatibility
 	 * @deprecated since 1.17
