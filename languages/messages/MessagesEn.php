@@ -1183,6 +1183,8 @@ You may have already successfully changed your password or requested a new tempo
 'passwordreset-pretext'        => '{{PLURAL:$1||Enter one of the pieces of data below}}',
 'passwordreset-username'       => 'Username:',
 'passwordreset-domain'         => 'Domain:',
+'passwordreset-capture'        => 'View the resulting email?',
+'passwordreset-capture-help'   => 'If you check this box, the email (with the temporary password) will be shown to you as well as being sent to the user.',
 'passwordreset-email'          => 'E-mail address:',
 'passwordreset-emailtitle'     => 'Account details on {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Someone (probably you, from IP address $1) requested a reminder of your
@@ -1209,6 +1211,8 @@ password.',
 'passwordreset-emailelement'   => 'Username: $1
 Temporary password: $2',
 'passwordreset-emailsent'      => 'A reminder e-mail has been sent.',
+'passwordreset-emailsent-capture' => 'A reminder e-mail has been sent, which is shown below.',
+'passwordreset-emailerror-capture' => 'A reminder e-mail was generated, which is shown below, but sending it to the user failed: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Change E-mail address',
@@ -1980,6 +1984,7 @@ Your e-mail address is not revealed when other users contact you.',
 'right-siteadmin'             => 'Lock and unlock the database',
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-sendemail'             => 'Send e-mail to other users',
+'right-passwordreset'         => 'View password reset emails',
 
 # User rights log
 'rightslog'                  => 'User rights log',
