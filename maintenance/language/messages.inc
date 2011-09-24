@@ -2610,6 +2610,11 @@ $wgMessageStructure = array(
 		'minutes-abbrev',
 		'hours-abbrev',
 		'days-abbrev',
+		'seconds',
+		'minutes',
+		'hours',
+		'days',
+		'ago',
 	),
 	'badimagelist' => array(
 		'bad_image_list',
