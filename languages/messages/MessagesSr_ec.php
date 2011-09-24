@@ -3146,6 +3146,13 @@ $1',
 'bydate'                => 'по датуму',
 'sp-newimages-showfrom' => 'прикажи нове датотеке почевши од $1, $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 секунда|$1 секунде|$1 секунди}}',
+'minutes' => '{{PLURAL:$1|$1 минут|$1 минута|$1 минута}}',
+'hours'   => '{{PLURAL:$1|$1 сат|$1 сата|$1 сати}}',
+'days'    => '{{PLURAL:$1|$1 дан|$1 дана|$1 дана}}',
+'ago'     => 'пре $1',
+
 # Bad image list
 'bad_image_list' => 'Формат је следећи:
 

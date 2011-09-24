@@ -2801,6 +2801,11 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'seconds-abbrev' => 'e',
 'minutes-abbrev' => 'm',
 'hours-abbrev'   => 'a',
+'seconds'        => '{{PLURAL:$1|$1 eiliad}}',
+'minutes'        => '{{PLURAL:$1||$1 munud|$1 funud|munud|munud|munud}}',
+'hours'          => '{{PLURAL:$1|$1 awr}}',
+'days'           => '{{PLURAL:$1||diwrnod|deuddydd|tridiau|$1 diwrnod|$1 diwrnod}}',
+'ago'            => '$1 yn ôl',
 
 # Bad image list
 'bad_image_list' => "Dyma'r fformat:

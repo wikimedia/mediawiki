@@ -1305,7 +1305,7 @@ HTML ଟାଗ ପରଖିନିଅନ୍ତୁ ।',
 'group-bureaucrat-member'    => 'ପ୍ରଶାସକ',
 'group-suppress-member'      => 'ଅଜାଣତ ଅଣଦେଖା',
 
-'grouppage-user'          => '{{ns:project}}:ବ୍ୟବାହାରକାରୀ',
+'grouppage-user'          => '{{ns:project}}:ବ୍ୟବହାରକାରୀ',
 'grouppage-autoconfirmed' => '{{ns:project}}:ଆପେଆପେ ଥୟ କରା ସଭ୍ୟ',
 'grouppage-bot'           => '{{ns:project}}:ଆପେ ଚାଳିତ ସଭ୍ୟଗଣ',
 'grouppage-sysop'         => '{{ns:project}}:ପରିଛା (ଆଡମିନ)',

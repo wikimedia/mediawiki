@@ -2852,6 +2852,13 @@ Duerch d'Opmaache vum Fichier kann Äre System beschiedegt ginn.",
 'bydate'                => 'no Datum',
 'sp-newimages-showfrom' => 'Nei Biller weisen, ugefaang den $1 ëm $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|enger Sekonn|$1 Sekonnen}}',
+'minutes' => '{{PLURAL:$1|enger Minutt|$1 Minutten}}',
+'hours'   => '{{PLURAL:$1|enger Stonn|$1 Stonnen}}',
+'days'    => '{{PLURAL:$1|engem Dag|$1 Deeg}}',
+'ago'     => 'viru(n) $1',
+
 # Bad image list
 'bad_image_list' => 'Format:
 
@@ -3582,5 +3589,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-move-move-noredirect'       => "$1 {{GENDER:$2|huet}} d'Säit $3 op $4 geréckelt ouni eng Viruleedung unzeleeën",
 'logentry-move-move_redir'            => "$1 {{GENDER:$2|huet}} d'Säit $3 op $4 geréckelt an dobäi gouf eng Viruleedung iwwerschriwwen",
 'logentry-move-move_redir-noredirect' => "$1 {{GENDER:$2|huet}} d'Säit $3 op $4 geréckelt an dobäi gouf eng Viruleedung iwwerschriwwen an et et gouf keng nei Viruleedung ugeluecht",
+'logentry-patrol-patrol'              => "$1 {{GENDER:$2|huet}} d'Versioun $4 vun der Säit $3 als nogekuckt markéiert",
+'logentry-patrol-patrol-auto'         => "$1 {{GENDER:$2|huet}} d'Versioun $4 vun der Säit $3 automatesch als nogekuckt markéiert",
 
 );

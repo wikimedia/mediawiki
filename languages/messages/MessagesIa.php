@@ -2946,6 +2946,13 @@ Le execution de illo pote compromitter le securitate de tu systema.",
 'bydate'                => 'per data',
 'sp-newimages-showfrom' => 'Monstrar nove files a partir del $1 a $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 secunda|$1 secundas}}',
+'minutes' => '{{PLURAL:$1|$1 minuta|$1 minutas}}',
+'hours'   => '{{PLURAL:$1|$1 hora|$1 horas}}',
+'days'    => '{{PLURAL:$1|$1 die|$1 dies}}',
+'ago'     => '$1 retro',
+
 # Bad image list
 'bad_image_list' => 'Le formato es como seque:
 

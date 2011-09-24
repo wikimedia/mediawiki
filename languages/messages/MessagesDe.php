@@ -1009,7 +1009,7 @@ oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page=
 'blocked-notice-logextract'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.
 Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis:''' Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können.
-* '''Firefox/ Safari:''' ''Umschaltung'' drücken und gleichzeitig ''Aktualisieren'' anklicken oder entweder ''Strg+F5'' oder ''Strg+R'' (''Befehlstaste-R'' auf dem Mac) drücken
+* '''Firefox/Safari:''' ''Umschaltung'' drücken und gleichzeitig ''Aktualisieren'' anklicken oder entweder ''Strg+F5'' oder ''Strg+R'' (''Befehlstaste-R'' auf dem Mac) drücken
 * '''Google Chrome:''' ''Umschaltung+Strg+R'' (''Befehlstaste-R'' auf dem Mac) drücken
 * '''Internet Explorer:''' ''Strg+F5'' drücken oder ''Strg'' drücken und gleichzeitig ''Aktualisieren'' anklicken
 * '''Opera:''' ''Extras → Internetspuren löschen … → Individuelle Auswahl → Den kompletten Cache löschen''
@@ -3086,6 +3086,13 @@ Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt wer
 'bydate'                => 'nach Datum',
 'sp-newimages-showfrom' => 'Zeige neue Dateien ab $1, $2 Uhr',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 Sekunde|$1 Sekunden}}',
+'minutes' => '{{PLURAL:$1|$1 Minute|$1 Minuten}}',
+'hours'   => '{{PLURAL:$1|$1 Stunde|$1 Stunden}}',
+'days'    => '{{PLURAL:$1|$1 Tag|$1 Tage}}',
+'ago'     => 'vor $1',
+
 # Bad image list
 'bad_image_list' => 'Format:
 
@@ -3243,7 +3250,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-objectname'                  => 'Kurztitel',
 'exif-specialinstructions'         => 'Besondere Anweisungen',
 'exif-headline'                    => 'Titel',
-'exif-credit'                      => 'Namensnennung/ Veröffentlicher',
+'exif-credit'                      => 'Namensnennung/Veröffentlicher',
 'exif-source'                      => 'Quelle',
 'exif-editstatus'                  => 'Redaktioneller Status des Fotos',
 'exif-urgency'                     => 'Dringlichkeit',

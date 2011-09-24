@@ -2915,6 +2915,9 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'bydate'                => 'päiväyksen mukaan',
 'sp-newimages-showfrom' => 'Näytä uudet tiedostot alkaen $1 kello $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'ago' => '$1 sitten',
+
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:
 

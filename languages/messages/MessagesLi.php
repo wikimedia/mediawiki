@@ -327,7 +327,7 @@ $messages = array(
 'errorpagetitle'    => 'Fout',
 'returnto'          => 'Truuk nao $1.',
 'tagline'           => 'Van {{SITENAME}}',
-'help'              => 'Hulp',
+'help'              => 'Hölp',
 'search'            => 'Zeuke',
 'searchbutton'      => 'Zeuk',
 'go'                => 'OK',
@@ -2807,6 +2807,13 @@ $1",
 'ilsubmit'              => 'Zeuk',
 'bydate'                => 'op datum',
 'sp-newimages-showfrom' => 'Tuin nuuj besjtande vanaaf $2, $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekónd|$1 sekónd}}',
+'minutes' => '{{PLURAL:$1|$1 menuut|$1 menuut}}',
+'hours'   => '{{PLURAL:$1|$1 oer|$1 oer}}',
+'days'    => '{{PLURAL:$1|$1 daag|$1 daag}}',
+'ago'     => '$1 trögk',
 
 # Bad image list
 'bad_image_list' => "De opmaak is es volg:
