@@ -3549,17 +3549,28 @@ class Language {
 	/**
 	 * @todo Document
 	 * @param $seconds int|float
-	 * @param $format String Optional, one of ("avoidseconds","avoidminutes"):
-	 *		"avoidseconds" - don't mention seconds if $seconds >= 1 hour
-	 *		"avoidminutes" - don't mention seconds/minutes if $seconds > 48 hours
-	 * @param $noAbbrevs Bool If true (or true-ish, recommend using 'noabbrevs' for clarity), use 'seconds' and friends instead of 'seconds-abbrev' and friends
+	 * @param $format Array Optional
+	 *		If $format['avoid'] == 'avoidseconds' - don't mention seconds if $seconds >= 1 hour
+	 *		If $format['avoid'] == 'avoidminutes' - don't mention seconds/minutes if $seconds > 48 hours
+	 *		If $format['noabbrevs'] is true - use 'seconds' and friends instead of 'seconds-abbrev' and friends
+	 *		For backwards compatibility, $format may also be one of the strings 'avoidseconds' or 'avoidminutes'
 	 * @return string
 	 */
-	function formatTimePeriod( $seconds, $format = false, $noAbbrevs = false ) {
-		$secondsMsg = wfMessage( $noAbbrevs ? 'seconds' : 'seconds-abbrev' )->inLanguage( $this );
-		$minutesMsg = wfMessage( $noAbbrevs ? 'minutes' : 'minutes-abbrev' )->inLanguage( $this );
-		$hoursMsg = wfMessage( $noAbbrevs ? 'hours' : 'hours-abbrev' )->inLanguage( $this );
-		$daysMsg = wfMessage( $noAbbrevs ? 'days' : 'days-abbrev' )->inLanguage( $this );
+	function formatTimePeriod( $seconds, $format = array() ) {
+		if ( !is_array( $format ) ) {
+			$format = array( 'avoid' => $format, 'noabbrevs' => false ); // For backwards compatibility
+		}
+		if ( !isset( $format['avoid'] ) ) {
+			$format['avoid'] = false;
+		}
+		if ( !isset( $format['noabbrevs' ] ) ) {
+			$format['noabbrevs'] = false;
+		}
+		$secondsMsg = wfMessage( $format['noabbrevs'] ? 'seconds' : 'seconds-abbrev' )->inLanguage( $this );
+		$minutesMsg = wfMessage( $format['noabbrevs'] ? 'minutes' : 'minutes-abbrev' )->inLanguage( $this );
+		$hoursMsg = wfMessage( $format['noabbrevs'] ? 'hours' : 'hours-abbrev' )->inLanguage( $this );
+		$daysMsg = wfMessage( $format['noabbrevs'] ? 'days' : 'days-abbrev' )->inLanguage( $this );
+		
 		if ( round( $seconds * 10 ) < 100 ) {
 			$s = $this->formatNum( sprintf( "%.1f", round( $seconds * 10 ) / 10 ) );
 			$s = $secondsMsg->params( $s )->text();
@@ -3591,12 +3602,12 @@ class Language {
 			$s = $hoursMsg->params( $this->formatNum( $hours ) )->text();
 			$s .= ' ';
 			$s .= $minutesMsg->params( $this->formatNum( $minutes ) )->text();
-			if ( !in_array( $format, array( 'avoidseconds', 'avoidminutes' ) ) ) {
+			if ( !in_array( $format['avoid'], array( 'avoidseconds', 'avoidminutes' ) ) ) {
 				$s .= ' ' . $secondsMsg->params( $this->formatNum( $secondsPart ) )->text();
 			}
 		} else {
 			$days = floor( $seconds / 86400 );
-			if ( $format === 'avoidminutes' ) {
+			if ( $format['avoid'] === 'avoidminutes' ) {
 				$hours = round( ( $seconds - $days * 86400 ) / 3600 );
 				if ( $hours == 24 ) {
 					$hours = 0;
@@ -3605,7 +3616,7 @@ class Language {
 				$s = $daysMsg->params( $this->formatNum( $days ) )->text();
 				$s .= ' ';
 				$s .= $hoursMsg->params( $this->formatNum( $hours ) )->text();
-			} elseif ( $format === 'avoidseconds' ) {
+			} elseif ( $format['avoid'] === 'avoidseconds' ) {
 				$hours = floor( ( $seconds - $days * 86400 ) / 3600 );
 				$minutes = round( ( $seconds - $days * 86400 - $hours * 3600 ) / 60 );
 				if ( $minutes == 60 ) {
@@ -3624,7 +3635,7 @@ class Language {
 			} else {
 				$s = $daysMsg->params( $this->formatNum( $days ) )->text();
 				$s .= ' ';
-				$s .= $this->formatTimePeriod( $seconds - $days * 86400, $format, $noAbbrevs );
+				$s .= $this->formatTimePeriod( $seconds - $days * 86400, $format );
 			}
 		}
 		return $s;
