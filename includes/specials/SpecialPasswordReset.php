@@ -262,9 +262,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	 * @return Bool
 	 */
 	function isListed() {
-		global $wgUser;
-
-		if ( $this->canChangePassword( $wgUser ) === true ) {
+		if ( $this->canChangePassword( $this->getUser() ) === true ) {
 			return parent::isListed();
 		}
 
