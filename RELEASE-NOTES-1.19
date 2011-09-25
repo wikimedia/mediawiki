@@ -65,6 +65,8 @@ production.
   instead of the wiki content language
 * Jump links will now be usable in css-capable browsers instead of only
   in outdated text browsers.
+* New common*.css files usable by skins instead of having to copy piles
+  of generic styles from MonoBook or Vector's css.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
