@@ -63,6 +63,8 @@ production.
   localisation
 * (bug 30364) LanguageConverter now depends on the page content language
   instead of the wiki content language
+* Jump links will now be usable in css-capable browsers instead of only
+  in outdated text browsers.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
