@@ -67,6 +67,7 @@ production.
   in outdated text browsers.
 * New common*.css files usable by skins instead of having to copy piles
   of generic styles from MonoBook or Vector's css.
+* Some deprecated presentational html attributes will now be automatically converted to css.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
