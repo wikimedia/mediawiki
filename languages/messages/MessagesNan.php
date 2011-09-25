@@ -174,7 +174,7 @@ $messages = array(
 'faqpage'        => 'Project:Būn-tah',
 
 # Vector skin
-'vector-action-addsection'       => 'Ka-ji̍p sin toān-lo̍k',
+'vector-action-addsection'       => 'Ke chi̍t-ê toān-lo̍h',
 'vector-action-delete'           => 'Thâi',
 'vector-action-move'             => 'Sóa khì',
 'vector-action-protect'          => 'Pó-hō·',

@@ -1531,6 +1531,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-siteadmin'             => 'Khóa và mở khóa cơ sở dữ liệu',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
 'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
+'right-passwordreset'         => 'Tái tạo mật khẩu của người dùng ([[Special:PasswordReset|trang đặc biệt]])',
 
 # User rights log
 'rightslog'                  => 'Nhật trình cấp quyền thành viên',
@@ -3018,6 +3019,11 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'seconds-abbrev' => 's',
 'minutes-abbrev' => 'm',
 'hours-abbrev'   => 'h',
+'seconds'        => '$1 giây',
+'minutes'        => '$1 phút',
+'hours'          => '$1 giờ',
+'days'           => '$1 ngày',
+'ago'            => 'cách đây $1',
 
 # Bad image list
 'bad_image_list' => 'Định dạng như sau:

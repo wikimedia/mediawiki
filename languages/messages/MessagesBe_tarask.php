@@ -1497,6 +1497,7 @@ $1",
 'right-siteadmin'             => 'блякаваньне і разблякаваньне базы зьвестак',
 'right-override-export-depth' => 'экспартаваньне старонак, уключаючы зьвязаныя старонкі з глыбінёй да 5',
 'right-sendemail'             => 'адпраўка электронных лістоў іншым удзельнікам',
+'right-passwordreset'         => 'ачыстка пароляў удзельнікаў з дапамогай [[Special:PasswordReset|службовай старонкі]]',
 
 # User rights log
 'rightslog'                  => 'Журнал правоў удзельнікаў',
@@ -2956,6 +2957,7 @@ $1',
 'seconds-abbrev' => 'с',
 'minutes-abbrev' => 'хв',
 'hours-abbrev'   => 'г',
+'seconds'        => '$1 {{PLURAL:$1|сэкунда|сэкунды|сэкундаў}}',
 
 # Bad image list
 'bad_image_list' => 'Фармат наступны:

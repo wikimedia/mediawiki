@@ -1507,6 +1507,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-siteadmin'             => 'Blokowanie i odblokowywanie bazy danych',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
 'right-sendemail'             => 'Wysyłanie e‐maili do innych użytkowników',
+'right-passwordreset'         => 'Czyszczenie hasła użytkownika ([[Special:PasswordReset|na specjalnej stronie]])',
 
 # User rights log
 'rightslog'                  => 'Uprawnienia',
@@ -3010,6 +3011,11 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'seconds-abbrev' => '&nbsp;s',
 'minutes-abbrev' => '&nbsp;min',
 'hours-abbrev'   => '&nbsp;h',
+'seconds'        => '{{PLURAL:$1|$1 sekunda|$1 sekundy|$1 sekund}}',
+'minutes'        => '{{PLURAL:$1|jedną minutę|$1 minuty|$1 minut}}',
+'hours'          => '{{PLURAL:$1|jedną godzinę|$1 godziny|$1 godzin}}',
+'days'           => '{{PLURAL:$1|$1 dzień|$1 dni}}',
+'ago'            => '$1 temu',
 
 # Bad image list
 'bad_image_list' => 'Dane należy wprowadzić w formacie:

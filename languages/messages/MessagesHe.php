@@ -1606,6 +1606,7 @@ $1",
 'right-siteadmin'             => 'נעילת וביטול נעילת בסיס הנתונים',
 'right-override-export-depth' => 'ייצוא דפים כולל דפים מקושרים עד עומק של חמישה',
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
+'right-passwordreset'         => 'איפוס סיסמה של משתמש ([[Special:PasswordReset|דף מיוחד]])',
 
 # User rights log
 'rightslog'                  => 'יומן תפקידים',
@@ -2179,7 +2180,8 @@ $1',
 'linksearch-pat'   => 'תבנית קישור לחיפוש:',
 'linksearch-ns'    => 'מרחב שם:',
 'linksearch-ok'    => 'חיפוש',
-'linksearch-text'  => 'ניתן להשתמש בתווים כללים, לדוגמה "*.wikipedia.org".<br />פרוטוקולים נתמכים: <tt>$1</tt>',
+'linksearch-text'  => 'ניתן להשתמש בתווים כללים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.<br />
+פרוטוקולים נתמכים: <tt dir="ltr">$1</tt>',
 'linksearch-line'  => '$1 מקושר מהדף $2',
 'linksearch-error' => 'תווים כלליים יכולים להופיע רק בתחילת שם השרת.',
 

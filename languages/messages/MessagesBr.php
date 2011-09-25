@@ -1413,6 +1413,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-siteadmin'             => 'Prennañ ha dibrennañ ar bank-titouroù',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
+'right-passwordreset'         => 'Adderaouekaat ger-tremen un implijer ([[Special:PasswordReset|pajenn ispisial]])',
 
 # User rights log
 'rightslog'                  => 'Marilh statud an implijerien',
@@ -2895,6 +2896,13 @@ Ma vez erounezet ganeoc'h e c'hallje tagañ ho reizhiad.",
 'ilsubmit'              => 'Klask',
 'bydate'                => 'dre an deiziad anezho',
 'sp-newimages-showfrom' => 'Diskouez ar restroù nevez adal $1, $2',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 eilenn|$1 eilenn}}',
+'minutes' => '{{PLURAL:$1|$1 vunutenn|$1 munutenn}}',
+'hours'   => '{{PLURAL:$1|$1 eurvezh|$1 eurvezh}}',
+'days'    => '{{PLURAL:$1|$1 deiz|$1 deiz}}',
+'ago'     => '$1 zo',
 
 # Bad image list
 'bad_image_list' => "Setu doare ar furmad :

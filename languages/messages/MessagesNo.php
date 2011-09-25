@@ -431,7 +431,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'forts.',
 'index-category'                 => 'Indekserte sider',
 'noindex-category'               => 'Ikke-indekserte sider',
-'broken-file-category'           => 'SIder med brutte fillenker',
+'broken-file-category'           => 'Sider med brutte fillenker',
 
 'about'         => 'Om',
 'article'       => 'Innholdsside',
@@ -701,7 +701,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'yourpassword'               => 'Passord:',
 'yourpasswordagain'          => 'Gjenta passord',
 'remembermypassword'         => 'Husk meg på denne datamaskinen (i maks $1 {{PLURAL:$1|dag|dager}})',
-'securelogin-stick-https'    => 'Vær fortsatt tilkoblet til HTTPS etter innlogging',
+'securelogin-stick-https'    => 'Vær fortsatt koblet til HTTPS etter innlogging',
 'yourdomainname'             => 'Ditt domene',
 'externaldberror'            => 'Det var en ekstern autentifiseringsfeil, eller du kan ikke oppdatere din eksterne konto.',
 'login'                      => 'Logg inn',
@@ -725,15 +725,15 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 Velg et annet brukernavn.',
 'loginerror'                 => 'Innloggingsfeil',
 'createaccounterror'         => 'Kunne ikke opprette konto: $1',
-'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem p åfor å kunne logge på med ditt nye brukernavn og passord.',
-'nocookieslogin'             => '{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem på og prøv igjen.',
+'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på og du har slått dem av. Slå dem på for å kunne logge på med ditt nye brukernavn og passord.',
+'nocookieslogin'             => '{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på og du har slått dem av. Slå dem på og prøv igjen.',
 'nocookiesfornew'            => 'Brukerkontoen ble ikke opprettet siden vi ikke kunne bekrefte dens kilde.
 Kontroller at du har aktivert informasjonskapsler, oppdater siden og prøv igjen.',
 'noname'                     => 'Du har ikke oppgitt et gyldig brukernavn.',
 'loginsuccesstitle'          => 'Du er nå logget inn',
 'loginsuccess'               => 'Du er nå logget inn på {{SITENAME}} som «$1».',
 'nosuchuser'                 => 'Det eksisterer ingen bruker ved navn «$1».
-Husk at det er forskjell på store og små bokstaver.
+Merk at det skilles mellom store og små bokstaver.
 Sjekk stavemåten eller [[Special:UserLogin/signup|opprett en ny konto]].',
 'nosuchusershort'            => 'Det finnes ingen bruker ved navn «$1». Kontroller stavemåten.',
 'nouserspecified'            => 'Du må oppgi et brukernavn.',
@@ -1359,8 +1359,8 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'recentchangesdays-max'         => '(maksimum $1 {{PLURAL:$1|dag|dager}})',
 'recentchangescount'            => 'Antall redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Dette inkluderer nylige endringer, sidehistorikk og logger.',
-'prefs-help-watchlist-token'    => 'Om du fyller ut dette feltet med et hemmelig tall vil lage en RSS-liste for overvåkingslista di.
-Alle som vet det rette tallet vil være i stand til å lese overvåkingslista di, så velg en sikker verdi.
+'prefs-help-watchlist-token'    => 'Om du fyller ut dette feltet med et hemmelig tall, vil det lages en RSS-liste for overvåkningslisten din.
+Alle som vet det rette tallet vil være i stand til å lese overvåkningslisten din, så velg en sikker verdi.
 Her er et tilfeldig tall du kan bruke: $1',
 'savedprefs'                    => 'Innstillingene ble lagret.',
 'timezonelegend'                => 'Tidssone:',
@@ -1543,6 +1543,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'right-siteadmin'             => 'Låse og låse opp databasen',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkede sider til en dypde på 5',
 'right-sendemail'             => 'Send e-post til andre brukere',
+'right-passwordreset'         => 'Tilbakestille en brukers passord ([[Special:PasswordReset|spesialside]])',
 
 # User rights log
 'rightslog'                  => 'Brukerrettighetslogg',
@@ -1671,7 +1672,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'minlength1'                  => 'Filnavn må være på minst én bokstav.',
 'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn; gi fila et nytt navn og prøv igjen.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
-'filetype-mime-mismatch'      => 'Filendelsen «.$1» tilsvarer ikke MIME-typen som oppgis i fila ($2).',
+'filetype-mime-mismatch'      => 'Filendelsen «.$1» tilsvarer ikke MIME-typen som oppgis i filen ($2).',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
 'filetype-bad-ie-mime'        => 'Kan ikke laste opp denne filen fordi Internet Explorer ville detektert denne som «$1», noe som er ikke er tillatt, og en potensielt farlig filtype.',
 'filetype-unwanted-type'      => "'''«.$1»''' er en uønsket filtype.
@@ -1710,7 +1711,7 @@ Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ik
 Det virker som om det er et bilde av redusert størrelse ''(miniatyrbilde)''.
 Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.",
 'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før, og kan ikke erstattes.
-Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
+Om du fortsatt ønsker å laste opp filen, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret.
 Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne filen er en dublett av følgende {{PLURAL:$1|fil|filer}}:',
@@ -1738,7 +1739,7 @@ Det er ikke tillatt å laste opp Java-filer, fordi de kan omgå sikkerhetsrestri
 'upload-options'              => 'Opplastingsvalg',
 'watchthisupload'             => 'Overvåk denne filen',
 'filewasdeleted'              => 'Ei fil ved dette navnet har blitt lastet opp tidligere, og så slettet. Sjekk $1 før du forsøker å laste det opp igjen.',
-'filename-bad-prefix'         => "Navnet på filen du laster opp begynner med '''«$1»''', hvilket er et ikke-beksrivende navn som vanligvis brukes automatisk av digitalkameraer. Vennligst bruk et mer beskrivende navn på filen.",
+'filename-bad-prefix'         => "Navnet på filen du laster opp begynner med '''«$1»''', hvilket er et ikke-beskrivende navn som vanligvis brukes automatisk av digitalkameraer. Vennligst bruk et mer beskrivende navn på filen.",
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntaksen er som følger:
 #   * Alt fra tegnet «#» til slutten av linja er en kommentar
@@ -1775,11 +1776,11 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'upload-http-error'         => 'En HTTP-feil oppstod: $1',
 
 # ZipDirectoryReader
-'zip-file-open-error' => 'Det oppsto en feil under åpning av fila for ZIP-sjekking.',
+'zip-file-open-error' => 'Det oppsto en feil under åpning av filen for ZIP-sjekking.',
 'zip-wrong-format'    => 'Den angitte fila var ikke en ZIP-fil.',
 'zip-bad'             => 'Fila er en skadd eller på annen måte uleselig ZIP-fil.
 Den kan ikke sikkerhetskontrolleres.',
-'zip-unsupported'     => 'Fila er en ZIP-fil som bruker funksjoner som ikke støttes av MediaWiki.
+'zip-unsupported'     => 'Filen er en ZIP-fil som bruker funksjoner som ikke støttes av MediaWiki.
 Den kan ikke sikkerhetskontrolleres.',
 
 # Special:UploadStash
@@ -1866,10 +1867,10 @@ Når den filtreres av en bruker, vises bare de sist opplastede versjonene av fil
 'filehist-missing'          => 'Fil mangler',
 'imagelinks'                => 'Filbruk',
 'linkstoimage'              => 'Følgende {{PLURAL:$1|side|$1 sider}} har lenker til denne filen:',
-'linkstoimage-more'         => 'Mer enn $1 {{PLURAL:$1|side|sider}} lenker til denne fila.
+'linkstoimage-more'         => 'Mer enn $1 {{PLURAL:$1|side|sider}} lenker til denne filen.
 Følgende liste viser {{PLURAL:$1|den første siden|de $1 første sidene}}.
 En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
-'nolinkstoimage'            => 'Det er ingen sider som bruker denne fila.',
+'nolinkstoimage'            => 'Det er ingen sider som bruker denne filen.',
 'morelinkstoimage'          => 'Vis [[Special:WhatLinksHere/$1|flere lenker]] til denne filen.',
 'linkstoimage-redirect'     => '$1 (filomdirigering) $2',
 'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublett|filer er dubletter}} av denne filen ([[Special:FileDuplicateSearch/$2|fler detaljer]]):',
@@ -3010,6 +3011,11 @@ Ved å åpne den kan systemet ditt kompromitteres.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 't',
+'seconds'      => '{{PLURAL:$1|$1 sekund|$1 sekunder}}',
+'minutes'      => '{{PLURAL:$1|$1 minutt|$1 minutter}}',
+'hours'        => '{{PLURAL:$1|$1 time|$1 timer}}',
+'days'         => '{{PLURAL:$1|$1 dag|$1 dager}}',
+'ago'          => '$1 siden',
 
 # Bad image list
 'bad_image_list' => 'Formatet er som følger:
@@ -3655,9 +3661,8 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'filepath'         => 'Filsti',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Gå',
-'filepath-summary' => 'Denne spesialsiden gir den fullstendige stien for en fil. Bilder vises i full oppløsning; andre filtyper startes direkte i sine assosierte programmer.
-
-	Skriv inn filnavnet uten «{{ns:file}}:»-prefikset.',
+'filepath-summary' => 'Denne spesialsiden returnerer den fullstendige stien for en fil.
+Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom sine tilknyttede programmer.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Søk etter duplikatfiler',
@@ -3777,6 +3782,15 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 # New logging system
 'logentry-delete-delete'              => '$1 {{GENDER:$2|slettet}} siden $3',
 'logentry-delete-restore'             => '$1 {{GENDER:$2|gjenopprettet}} siden $3',
+'logentry-delete-event'               => '$1 {{GENDER:$2|endret}} skjult synligheten av {{PLURAL:$5|en logget hendelse|$5 loggede hendelser}} på $3: $4',
+'logentry-delete-revision'            => '$1 {{GENDER:$2|endret}} synlighet av {{PLURAL:$5|en revisjon|$5 revisjoner}} på side $3: $4',
+'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|endret}} synlighet av loggede hendelser på $3',
+'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|endret}} synlighet av revisjoner på side $3',
+'logentry-suppress-delete'            => '$1 {{GENDER:$2|skjult}} side $3',
+'logentry-suppress-event'             => '$1 {{GENDER:$2|endret}} skjult synligheten av {{PLURAL:$5|en logget hendelse|$5 loggede hendelser}} på $3: $4',
+'logentry-suppress-revision'          => '$1 {{GENDER:$2|endret}} skjult synligheten av {{PLURAL:$5|en logget hendelse|$5 loggede hendelser}} på $3: $4',
+'logentry-suppress-event-legacy'      => '$1 {{GENDER:$2|endret}} skjult synligheten av loggede hendelser på $3',
+'logentry-suppress-revision-legacy'   => '$1 {{GENDER:$2|endret}} skjult synligheten av revisjoner på side $3',
 'revdelete-content-hid'               => 'innhold skjult',
 'revdelete-summary-hid'               => 'redigeringsbeskrivelse skjult',
 'revdelete-uname-hid'                 => 'brukernavn skjult',

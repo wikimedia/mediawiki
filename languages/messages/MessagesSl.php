@@ -2931,7 +2931,16 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'sp-newimages-showfrom' => 'Prikaži datoteke, naložene od $2, $1 naprej',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'video-dims' => '$1, $2&nbsp;×&nbsp;$3',
+'video-dims'     => '$1, $2&nbsp;×&nbsp;$3',
+'seconds-abbrev' => '$1 s',
+'minutes-abbrev' => '$1 m',
+'hours-abbrev'   => '$1 h',
+'days-abbrev'    => '$1 d',
+'seconds'        => '$1 {{PLURAL:$1|sekunda|sekundi|sekunde|sekund}}',
+'minutes'        => '$1 {{PLURAL:$1|minuta|minuti|minute|minut}}',
+'hours'          => '$1 {{PLURAL:$1|ura|uri|ure|ur}}',
+'days'           => '$1 {{PLURAL:$1|dan|dneva|dnevi|dni}}',
+'ago'            => 'pred $1',
 
 # Bad image list
 'bad_image_list' => 'Oblika je naslednja:

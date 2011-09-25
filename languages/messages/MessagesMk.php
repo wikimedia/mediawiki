@@ -505,7 +505,7 @@ $messages = array(
 'view'              => 'Преглед',
 'edit'              => 'Уреди',
 'create'            => 'Создај',
-'editthispage'      => 'Уреди ја оваа страница',
+'editthispage'      => 'Уреди ја страницава',
 'create-this-page'  => 'Создај ја оваа страница',
 'delete'            => 'Избриши',
 'deletethispage'    => 'Избриши ја оваа страница',
@@ -1593,6 +1593,7 @@ $1",
 'right-siteadmin'             => 'Заклучување и отклучување на базата на податоци',
 'right-override-export-depth' => 'Извезување на страници вклучувајќи поврзани страници со длабочина до 5',
 'right-sendemail'             => 'Испраќање на е-пошта до други корисници',
+'right-passwordreset'         => 'Менување на лозинка на корисник ([[Special:PasswordReset|специјална страница]])',
 
 # User rights log
 'rightslog'                  => 'Дневник на менувања на кориснички права',
@@ -3133,6 +3134,11 @@ $1',
 'minutes-abbrev' => 'м',
 'hours-abbrev'   => 'ч',
 'days-abbrev'    => 'д',
+'seconds'        => '{{PLURAL:$1|$1 секунда|$1 секунди}}',
+'minutes'        => '{{PLURAL:$1|$1 минута|$1 минути}}',
+'hours'          => '{{PLURAL:$1|$1 час|$1 часа}}',
+'days'           => '{{PLURAL:$1|$1 ден|$1 дена}}',
+'ago'            => 'пред $1',
 
 # Bad image list
 'bad_image_list' => 'Форматот е следниот:

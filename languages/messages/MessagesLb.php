@@ -1391,6 +1391,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-siteadmin'             => "Datebank spären an d'Spär ophiewen",
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
 'right-sendemail'             => 'Anere Benotzer E-Maile schécken',
+'right-passwordreset'         => 'Passwuert vun engem Benotzer zrécksetzen ([[Special:PasswordReset|Spezialsäit]])',
 
 # User rights log
 'rightslog'                  => 'Logbuch vun de Benotzerrechter',
@@ -3576,7 +3577,11 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 # New logging system
 'logentry-delete-delete'              => "$1 {{GENDER:$2|huet}} d'Säit $3 geläscht",
 'logentry-delete-restore'             => "$1 {{GENDER:$2|huet}} d'Säit $3 restauréiert",
+'logentry-delete-event-legacy'        => "$1 {{GENDER:$2|huet}} d'Visibilitéit vun Elementer am Log op $3 geännert",
+'logentry-delete-revision-legacy'     => "$1 {{GENDER:$2|huet}} d'Visibilitéit vu Versioune vun der Säit $3 geännert",
 'logentry-suppress-delete'            => "$1 {{GENDER:$2|huet}} d'Säit $3 ewechgeholl",
+'logentry-suppress-event-legacy'      => "$1 {{GENDER:$2|huet}} diskret d'Visibilitéit vun Elementer am Log op $3 geännert",
+'logentry-suppress-revision-legacy'   => "$1 {{GENDER:$2|huet}} diskret d'Visibilitéit vu Versioune vun der Säit $3 geännert",
 'revdelete-content-hid'               => 'Inhalt verstoppt',
 'revdelete-summary-hid'               => 'Resumé vun der Ännerung verstoppt',
 'revdelete-uname-hid'                 => 'Benotzernumm verstoppt',
