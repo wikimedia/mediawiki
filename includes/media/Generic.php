@@ -380,8 +380,10 @@ abstract class MediaHandler {
 	 * Note, everything here is passed through the parser later on (!)
 	 */
 	protected static function addMeta( &$array, $visibility, $type, $id, $value, $param = false ) {
-		$msgName = "$type-$id";
-		if ( wfEmptyMsg( $msgName ) ) {
+		$msg = wfMessage( "$type-$id", $param );
+		if ( $msg->exists() ) {
+			$name = $msg->text();
+		} else {
 			// This is for future compatibility when using instant commons.
 			// So as to not display as ugly a name if a new metadata
 			// property is defined that we don't know about
@@ -389,8 +391,6 @@ abstract class MediaHandler {
 			// by default).
 			wfDebug( __METHOD__ . ' Unknown metadata name: ' . $id . "\n" );
 			$name = wfEscapeWikiText( $id );
-		} else {
-			$name = wfMsg( $msgName, $param );
 		}
 		$array[$visibility][] = array(
 			'id' => "$type-$id",
@@ -404,10 +404,7 @@ abstract class MediaHandler {
 	 * @return string
 	 */
 	function getShortDesc( $file ) {
-		global $wgLang;
-		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $file->getSize() ) );
-		return "$nbytes";
+		return wfMessage( 'nbytes' )->numParams( $file->getSize() )->escaped();
 	}
 
 	/**
@@ -416,9 +413,8 @@ abstract class MediaHandler {
 	 */
 	function getLongDesc( $file ) {
 		global $wgLang;
-		return wfMsgExt( 'file-info', 'parseinline',
-			$wgLang->formatSize( $file->getSize() ),
-			$file->getMimeType() );
+		return wfMessage( 'file-info', $wgLang->formatSize( $file->getSize() ),
+			$file->getMimeType() )->parse();
 	}
 
 	/**
@@ -426,10 +422,7 @@ abstract class MediaHandler {
 	 * @return string
 	 */
 	static function getGeneralShortDesc( $file ) {
-		global $wgLang;
-		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $file->getSize() ) );
-		return "$nbytes";
+		return wfMessage( 'nbytes' )->numParams( $file->getSize() )->escaped();
 	}
 
 	/**
@@ -438,9 +431,8 @@ abstract class MediaHandler {
 	 */
 	static function getGeneralLongDesc( $file ) {
 		global $wgLang;
-		return wfMsgExt( 'file-info', 'parseinline',
-			$wgLang->formatSize( $file->getSize() ),
-			$file->getMimeType() );
+		return wfMessage( 'file-info', $wgLang->formatSize( $file->getSize() ),
+			$file->getMimeType() )->parse();
 	}
 
 	/**
@@ -712,10 +704,8 @@ abstract class ImageHandler extends MediaHandler {
 	 * @return string
 	 */
 	function getShortDesc( $file ) {
-		global $wgLang;
-		$nbytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $file->getSize() ) );
-		$widthheight = wfMsgHtml( 'widthheight', $wgLang->formatNum( $file->getWidth() ) ,$wgLang->formatNum( $file->getHeight() ) );
+		$nbytes = wfMessage( 'nbytes' )->numParams( $file->getSize() )->escaped();
+		$widthheight = wfMessage( 'widthheight' )->numParams( $file->getWidth(), $file->getHeight() )->escaped();
 
 		return "$widthheight ($nbytes)";
 	}
@@ -728,18 +718,13 @@ abstract class ImageHandler extends MediaHandler {
 		global $wgLang;
 		$pages = $file->pageCount();
 		if ( $pages === false || $pages <= 1 ) {
-			$msg = wfMsgExt('file-info-size', 'parseinline',
-				$wgLang->formatNum( $file->getWidth() ),
-				$wgLang->formatNum( $file->getHeight() ),
-				$wgLang->formatSize( $file->getSize() ),
-				$file->getMimeType() );
+			$msg = wfMessage( 'file-info-size' )->numParams( $file->getWidth(),
+				$file->getHeight() )->params( $wgLang->formatSize( $file->getSize() ),
+				$file->getMimeType() )->parse();
 		} else {
-			$msg = wfMsgExt('file-info-size-pages', 'parseinline',
-				$wgLang->formatNum( $file->getWidth() ),
-				$wgLang->formatNum( $file->getHeight() ),
-				$wgLang->formatSize( $file->getSize() ),
-				$file->getMimeType(),
-				$wgLang->formatNum( $pages ) );
+			$msg = wfMessage( 'file-info-size-pages' )->numParams( $file->getWidth(),
+				$file->getHeight() )->params( $wgLang->formatSize( $file->getSize() ),
+				$file->getMimeType() )->numParams( $pages )->parse();
 		}
 		return $msg;
 	}
@@ -749,16 +734,11 @@ abstract class ImageHandler extends MediaHandler {
 	 * @return string
 	 */
 	function getDimensionsString( $file ) {
-		global $wgLang;
 		$pages = $file->pageCount();
-		$width = $wgLang->formatNum( $file->getWidth() );
-		$height = $wgLang->formatNum( $file->getHeight() );
-		$pagesFmt = $wgLang->formatNum( $pages );
-
 		if ( $pages > 1 ) {
-			return wfMsgExt( 'widthheightpage', 'parsemag', $width, $height, $pagesFmt );
+			return wfMessage( 'widthheightpage' )->numParams( $file->getWidth(), $file->getHeight(), $pages )->text();
 		} else {
-			return wfMsg( 'widthheight', $width, $height );
+			return wfMessage( 'widthheight' )->numParams( $file->getWidth(), $file->getHeight() )->text();
 		}
 	}
 }
