@@ -641,6 +641,14 @@ class Sanitizer {
 			'width' => array( 'width', array_merge( array( 'hr', 'pre' ), $table, $cells, $colls ) ),
 		);
 		
+		// Ensure that any upper case or mixed case attributes are converted to lowercase
+		foreach ( $attribs as $attribute => $value ) {
+			if ( $attribute !== strtolower( $attribute ) && array_key_exists( strtolower( $attribute ), $presentationalAttribs ) ) {
+				$attribs[strtolower( $attribute )] = $value;
+				unset( $attribs[$attribute] );
+			}
+		}
+		
 		$style = "";
 		foreach ( $presentationalAttribs as $attribute => $info ) {
 			list( $property, $elements ) = $info;
@@ -660,6 +668,11 @@ class Sanitizer {
 			// For nowrap the value should be nowrap instead of whatever text is in the value
 			if ( $attribute === 'nowrap' ) {
 				$value = 'nowrap';
+			}
+			
+			// clear="all" is clear: both; in css
+			if ( $attribute === 'clear' && strtolower( $value ) === 'all' ) {
+				$value = 'both';
 			}
 			
 			// Size based properties should have px applied to them if they have no unit
