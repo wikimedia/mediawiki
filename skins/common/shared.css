@@ -1006,3 +1006,11 @@ table.floatleft {
 #mw-credits a {
 	unicode-bidi: embed;
 }
+
+/* Accessibility */
+.mw-jump {
+	overflow: hidden;
+	height: 0;
+	zoom: 1; /* http://webaim.org/techniques/skipnav/#iequirk */
+}
+

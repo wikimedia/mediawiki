@@ -46,7 +46,9 @@
 	display: none;
 }
 #jump-to-nav {
-	display: none;
+	/* Negate #contentSub's margin and replicate it so that the jump to links don't affect the spacing */
+	margin-top: -1.4em;
+	margin-bottom: 1.4em
 }
 #contentSub, #contentSub2 {
 	font-size: 84%;
