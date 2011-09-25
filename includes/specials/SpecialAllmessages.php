@@ -249,6 +249,7 @@ class AllmessagesTablePager extends TablePager {
 	 * @param array $messageNames
 	 * @param string $langcode What language code
 	 * @param bool $foreign Whether the $langcode is not the content language
+	 * @return array: a 'pages' and 'talks' array with the keys of existing pages
 	 */
 	public static function getCustomisedStatuses( $messageNames, $langcode = 'en', $foreign = false ) {
 		// FIXME: This function should be moved to Language:: or something.
@@ -266,18 +267,20 @@ class AllmessagesTablePager extends TablePager {
 		$pageFlags = $talkFlags = array();
 
 		foreach ( $res as $s ) {
-			if( $s->page_namespace == NS_MEDIAWIKI ) {
-				if( $foreign ) {
-					$title = explode( '/', $s->page_title );
-					if( count( $title ) === 2 && $langcode == $title[1]
-						&& isset( $xNames[$title[0]] ) ) {
-						$pageFlags["{$title[0]}"] = true;
-					}
-				} elseif( isset( $xNames[$s->page_title] ) ) {
-					$pageFlags[$s->page_title] = true;
+			$exists = false;
+			if( $foreign ) {
+				$title = explode( '/', $s->page_title );
+				if( count( $title ) === 2 && $langcode == $title[1]
+					&& isset( $xNames[$title[0]] ) ) {
+					$exists = $title[0];
 				}
-			} elseif( $s->page_namespace == NS_MEDIAWIKI_TALK ){
-				$talkFlags[$s->page_title] = true;
+			} elseif( isset( $xNames[$s->page_title] ) ) {
+				$exists = $s->page_title;
+			}
+			if( $exists && $s->page_namespace == NS_MEDIAWIKI ) {
+				$pageFlags[$exists] = true;
+			} elseif( $exists && $s->page_namespace == NS_MEDIAWIKI_TALK ) {
+				$talkFlags[$exists] = true;
 			}
 		}
 
