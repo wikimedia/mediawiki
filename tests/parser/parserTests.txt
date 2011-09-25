@@ -1346,7 +1346,7 @@ Multiplication table
 !! test
 Table rowspan
 !! input
-{| align=right border=1
+{| border=1
 | Cell 1, row 1 
 |rowspan=2| Cell 2, row 1 (and 2) 
 | Cell 3, row 1 
@@ -1355,7 +1355,7 @@ Table rowspan
 | Cell 3, row 2 
 |}
 !! result
-<table align="right" border="1">
+<table border="1">
 <tr>
 <td> Cell 1, row 1
 </td>
@@ -1968,13 +1968,13 @@ Incorrecly removing closing slashes from correctly formed XHTML
 !! test 
 Failing to transform badly formed HTML into correct XHTML
 !! input
-<br clear=left>
-<br clear=right>
-<br clear=all>
+<br style="clear: left;">
+<br style="clear: right;">
+<br style="clear: both;">
 !! result
-<p><br clear="left" />
-<br clear="right" />
-<br clear="all" />
+<p><br style="clear: left;" />
+<br style="clear: right;" />
+<br style="clear: both;" />
 </p>
 !!end
 
@@ -4517,9 +4517,9 @@ div with unquoted attribute
 !! test
 div with illegal double attributes
 !! input
-<div align="center" align="right">HTML rocks</div>
+<div id="a" id="b">HTML rocks</div>
 !! result
-<div align="right">HTML rocks</div>
+<div id="b">HTML rocks</div>
 
 !!end
 
@@ -4549,9 +4549,9 @@ Table multiple attributes correction
 !! test
 DIV IN UPPERCASE
 !! input
-<DIV ALIGN="center">HTML ROCKS</DIV>
+<DIV ID="x">HTML ROCKS</DIV>
 !! result
-<div align="center">HTML ROCKS</div>
+<div id="x">HTML ROCKS</div>
 
 !!end
 
@@ -8797,6 +8797,22 @@ disabled
 {{Identical}}
 !! result
 ...
+!! end
+
+!! test
+Deprecated presentational attributes are converted to css
+!! input
+{|
+| valign=top align=left width=100 height=25% | Asdf
+|}
+<ul type="disc"></ul>
+!! result
+<table>
+<tr>
+<td style="text-align: left; height: 25%; vertical-align: top; width: 100px;"> Asdf
+</td></tr></table>
+<ul style="list-style-type: disc;"></ul>
+
 !! end
 
 TODO:
