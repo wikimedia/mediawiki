@@ -2186,7 +2186,7 @@ $wgAllowMicrodataAttributes = false;
 /**
  * Cleanup as much presentational html like valign -> css vertical-align as we can
  */
-$wgCleanupPresentationalAttributes = false;
+$wgCleanupPresentationalAttributes = true;
 
 /**
  * Should we try to make our HTML output well-formed XML?  If set to false,
