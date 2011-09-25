@@ -955,7 +955,8 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'template-semiprotected'           => 'Used on [[Special:ProtectedPages]]. Appears in brackets after listed page titles which are semi-protected.',
 'hiddencategories'                 => "This message is shown below the edit form, like you have a section ''\"Templates used on this page\"''.",
 'edittools'                        => 'This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a javascript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
-'edittools-upload'                 => 'This text will be shown below upload forms. It will default to the contents of edittools.',
+'edittools-upload'                 => '{{optional}}
+This text will be shown below upload forms. It will default to the contents of edittools.',
 'sectioneditnotsupported-title'    => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'sectioneditnotsupported-text'     => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'permissionserrorstext-withaction' => '* $1 is the number of reasons that were found why the action cannot be performed.
@@ -1553,7 +1554,8 @@ If someone with this right (bots by default) edits a user talk page and marks it
 'right-writeapi'              => '{{doc-right}}',
 'right-delete'                => '{{doc-right|delete}}',
 'right-bigdelete'             => '{{doc-right|bigdelete}}',
-'right-deleterevision'        => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-deleterevision'        => '{{doc-right|deleterevision}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
 
 See also
@@ -1564,14 +1566,16 @@ See also
 'right-deletedtext'           => '{{doc-right|deletedtext}}',
 'right-browsearchive'         => '{{doc-right|browsearchive}}',
 'right-undelete'              => '{{doc-right|undelete}}',
-'right-suppressrevision'      => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-suppressrevision'      => '{{doc-right|suppressrevision}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-suppressionlog'        => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-suppressionlog'        => '{{doc-right|suppressionlog}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
@@ -1580,15 +1584,16 @@ See also
 * {{msg|right-deleterevision|pl=yes}}',
 'right-block'                 => '{{doc-right|block}}',
 'right-blockemail'            => '{{doc-right|blockemail}}',
-'right-hideuser'              => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-hideuser'              => '{{doc-right|hideuser}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-ipblock-exempt'        => 'This user automatically
-bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
+'right-ipblock-exempt'        => '{{doc-right|ipblock-exempt}}
+This user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
 'right-proxyunbannable'       => '{{doc-right|proxyunbannable}}',
 'right-unblockself'           => '{{doc-right|unblockself}}',
 'right-protect'               => '{{doc-right|protect}}',
@@ -1597,7 +1602,8 @@ bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncer
 'right-editusercssjs'         => '{{doc-right|editusercssjs}}',
 'right-editusercss'           => '{{doc-right|editusercss}}',
 'right-edituserjs'            => '{{doc-right|edituserjs}}',
-'right-rollback'              => '{{Identical|Rollback}}',
+'right-rollback'              => '{{doc-right|rollback}}
+{{Identical|Rollback}}',
 'right-markbotedits'          => '{{doc-right}}
 A user with this right can mark a roll-back edit as a bot edit by adding <tt>&bot=1</tt> to the URL (not by default).',
 'right-noratelimit'           => '{{doc-right}}
@@ -2646,6 +2652,7 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 {{Identical/IP address or username}}',
 'sp-contributions-toponly'             => '"top revision" means the "latest revision"',
 'sp-contributions-submit'              => '{{Identical|Search}}',
+'sp-contributions-explain'             => '{{optional}}',
 
 # What links here
 'whatlinkshere'            => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].',
@@ -3183,14 +3190,34 @@ For example of message in use see [[:File:Mouse10.gif]].',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '{{optional}}',
-'seconds-abbrev' => '{{optional}} Abbreviation for "seconds". $1 is the number of seconds.',
-'minutes-abbrev' => '{{optional}} Abbreviation for "minutes". $1 is the number of minutes.',
-'hours-abbrev'   => 'Abbreviation for "hours". $1 is the number of hours.',
-'days-abbrev'    => 'Abbreviation for "days". $1 is the number of days.',
-'seconds'        => 'Full word for "seconds". $1 is the number of seconds.',
-'minutes'        => 'Full word for "minutes". $1 is the number of minutes.',
-'hours'          => 'Full word for "hours". $1 is the number of hours.',
-'days'           => 'Full word for "days". $1 is the number of days.',
+'seconds-abbrev' => '{{optional}}
+Abbreviation for "seconds". $1 is the number of seconds.
+
+See also {{msg-mw|seconds}}',
+'minutes-abbrev' => '{{optional}}
+Abbreviation for "minutes". $1 is the number of minutes.
+
+See also {{msg-mw|minutes}}',
+'hours-abbrev'   => '{{optional}}
+Abbreviation for "hours". $1 is the number of hours.
+
+See also {{msg-mw|hours}}',
+'days-abbrev'    => '{{optional}}
+Abbreviation for "days". $1 is the number of days.
+
+See also {{msg-mw|days}}',
+'seconds'        => 'Full word for "seconds". $1 is the number of seconds.
+
+See also {{msg-mw|Seconds-abbrev}}',
+'minutes'        => 'Full word for "minutes". $1 is the number of minutes.
+
+See also {{msg-mw|Minutes-abbrev}}',
+'hours'          => 'Full word for "hours". $1 is the number of hours.
+
+See also {{msg-mw|Hours-abbrev}}',
+'days'           => 'Full word for "days". $1 is the number of days.
+
+See also {{msg-mw|Days-abbrev}}',
 'ago'            => 'Phrase for indicating how long ago something happened. $1 is something like "3 days 10 hours".',
 
 # Bad image list
@@ -3278,6 +3305,16 @@ Varient Option for wikis with variants conversion enabled.',
 'variantname-tg-latn' => '{{optional}}',
 'variantname-tg'      => '{{optional}}',
 
+# Variants for Inuktitut language
+'variantname-ike-cans' => '{{optional}}',
+'variantname-ike-latn' => '{{optional}}',
+'variantname-iu'       => '{{optional}}',
+
+# Variants for Tachelhit language
+'variantname-shi-tfng' => '{{optional}}',
+'variantname-shi-latn' => '{{optional}}',
+'variantname-shi'      => '{{optional}}',
+
 # Metadata
 'metadata'                  => 'The title of a section on an image description page, with information and data about the image. For example of message in use see [http://commons.wikimedia.org/wiki/File:Titan-crystal_bar.JPG Commons].
 
@@ -3287,10 +3324,12 @@ Varient Option for wikis with variants conversion enabled.',
 'metadata-fields'           => "'''Warning:''' Do not translate list items, only translate the text! So leave \"<tt>* make</tt>\" and the other items exactly as they are.
 
 The sentences are for explanation only and are not shown to the user.",
-'metadata-langitem'         => 'This is used for constructing the list of translations when a metadata property is translated into multiple languages.
+'metadata-langitem'         => '{{optional}}
+This is used for constructing the list of translations when a metadata property is translated into multiple languages.
 
 $1 is the value of the property (in one language), $2 is the language name that this translation is for (or language code if language name cannot be determined), $3 is the language code.',
-'metadata-langitem-default' => 'Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
+'metadata-langitem-default' => '{{optional}}
+Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
@@ -3619,7 +3658,8 @@ Note, not all fields are guaranteed to be present, some may be empty strings.',
 *$2 is one of 17 broad categories that the code falls into. For example any code starting with 15 has the contents of {{msg-mw|exif-iimcategory-spo}} for $2.',
 
 # EXIF attributes
-'exif-compression-5'     => 'Lempel-Ziv & Welch algorithm {{optional}}',
+'exif-compression-5'     => '{{optional}}
+Lempel-Ziv & Welch algorithm',
 'exif-compression-6'     => '{{optional}}',
 'exif-compression-7'     => '{{optional}}',
 'exif-compression-8'     => '{{optional}}',
@@ -3913,16 +3953,18 @@ Do ''not'' change the leading ;  and the first : as it is wiki markup.
 'confirm-unwatch-button' => '{{Identical|OK}}',
 
 # Separators for various lists, etc.
-'comma-separator' => '{{optional}}',
-'colon-separator' => "Optional message. Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
-'pipe-separator'  => '{{optional}}',
-'word-separator'  => 'This is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.
+'semicolon-separator' => '{{optional}}',
+'comma-separator'     => '{{optional}}',
+'colon-separator'     => "{{optional}}
+Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
+'autocomment-prefix'  => '{{optional}}',
+'pipe-separator'      => '{{optional}}',
+'word-separator'      => '{{optional}}
+This is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.
 
-Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.
-
-{{optional}}',
-'percent'         => '{{optional}}',
-'parentheses'     => '{{optional}}',
+Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.',
+'percent'             => '{{optional}}',
+'parentheses'         => '{{optional}}',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',

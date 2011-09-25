@@ -1480,6 +1480,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'right-siteadmin'             => 'Varrolhar e desvarrolhar la banca de donadas',
 'right-override-export-depth' => 'Exportar las paginas en incluent las paginas ligadas fins a una prigondor de 5 nivèls',
 'right-sendemail'             => 'Mandar un corrièl als autres utilizaires',
+'right-passwordreset'         => 'Tòrna inicializar lo senhal d’un utilizaire ([[Special:PasswordReset|pagina especiala]])',
 
 # User rights log
 'rightslog'      => "Istoric de las modificacions d'estatut",

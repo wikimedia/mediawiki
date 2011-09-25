@@ -882,6 +882,7 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'passwordreset-pretext'        => '{{PLURAL:$1||Gib eines der folgenden Daten ein}}',
 'passwordreset-username'       => 'Benutzername:',
 'passwordreset-domain'         => 'Domain:',
+'passwordreset-capture'        => 'Die E-Mail-Nachricht ansehen?',
 'passwordreset-email'          => 'E-Mail-Adresse:',
 'passwordreset-emailtitle'     => 'Benutzerkontoinformationen auf {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
@@ -1603,6 +1604,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'right-siteadmin'             => 'Datenbank sperren und entsperren',
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
 'right-sendemail'             => 'E-Mails an andere Benutzer senden',
+'right-passwordreset'         => 'Passwort eines Benutzers zurücksetzen ([[Special:PasswordReset|Spezialseite]])',
 
 # User rights log
 'rightslog'                  => 'Rechte-Logbuch',
@@ -1970,8 +1972,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'filedelete-nofile-old'       => "Es gibt von '''„$1“''' keine archivierte Version mit den angegebenen Attributen.",
 'filedelete-otherreason'      => 'Anderer/ergänzender Grund:',
 'filedelete-reason-otherlist' => 'Anderer Grund',
-'filedelete-reason-dropdown'  => '
-* Allgemeine Löschgründe
+'filedelete-reason-dropdown'  => '* Allgemeine Löschgründe
 ** Urheberrechtsverletzung
 ** Duplikat',
 'filedelete-edit-reasonlist'  => 'Löschgründe bearbeiten',
@@ -2577,7 +2578,7 @@ Bitte gib den Grund für die Sperre an.',
 'badipaddress'                    => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'               => 'Sperre erfolgreich',
 'blockipsuccesstext'              => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
-Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Sperren]].',
+Zur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperren]].',
 'ipb-blockingself'                => 'Du bist gerade dabei, dich selbst zu sperren! Möchtest du das wirklich tun?',
 'ipb-confirmhideuser'             => 'Du bist gerade dabei einen Benutzer im Modus „Benutzer verstecken“ zu sperren. Dies führt dazu, dass der Benutzername in allen Listen und Logbüchern unterdrückt wird. Möchtest du das wirklich tun?',
 'ipb-edit-dropdown'               => 'Sperrgründe bearbeiten',
