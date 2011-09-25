@@ -1183,8 +1183,8 @@ You may have already successfully changed your password or requested a new tempo
 'passwordreset-pretext'        => '{{PLURAL:$1||Enter one of the pieces of data below}}',
 'passwordreset-username'       => 'Username:',
 'passwordreset-domain'         => 'Domain:',
-'passwordreset-capture'        => 'View the resulting email?',
-'passwordreset-capture-help'   => 'If you check this box, the email (with the temporary password) will be shown to you as well as being sent to the user.',
+'passwordreset-capture'        => 'View the resulting e-mail?',
+'passwordreset-capture-help'   => 'If you check this box, the e-mail (with the temporary password) will be shown to you as well as being sent to the user.',
 'passwordreset-email'          => 'E-mail address:',
 'passwordreset-emailtitle'     => 'Account details on {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Someone (probably you, from IP address $1) requested a reminder of your
@@ -1984,7 +1984,7 @@ Your e-mail address is not revealed when other users contact you.',
 'right-siteadmin'             => 'Lock and unlock the database',
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
 'right-sendemail'             => 'Send e-mail to other users',
-'right-passwordreset'         => 'View password reset emails',
+'right-passwordreset'         => 'View password reset e-mails',
 
 # User rights log
 'rightslog'                  => 'User rights log',
@@ -2775,7 +2775,7 @@ You could also reset the notification flags for all your watched pages on your w
 			 Your friendly {{SITENAME}} notification system
 
 --
-To change your email notification settings, visit
+To change your e-mail notification settings, visit
 {{canonicalurl:{{#special:Preferences}}}}
 
 To change your watchlist settings, visit
