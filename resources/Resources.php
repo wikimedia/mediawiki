@@ -158,6 +158,9 @@ return array(
 	'jquery.mwExtension' => array(
 		'scripts' => 'resources/jquery/jquery.mwExtension.js',
 	),
+	'jquery.mw-jump' => array(
+		'scripts' => 'resources/jquery/jquery.mw-jump.js',
+	),
 	'jquery.qunit' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.js',
 		'styles' => 'resources/jquery/jquery.qunit.css',
@@ -610,6 +613,7 @@ return array(
 			'jquery.checkboxShiftClick',
 			'jquery.makeCollapsible',
 			'jquery.placeholder',
+			'jquery.mw-jump',
 			'mediawiki.util',
 		),
 	),

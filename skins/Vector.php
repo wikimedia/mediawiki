@@ -158,7 +158,7 @@ class VectorTemplate extends BaseTemplate {
 				<?php endif; ?>
 				<?php if ( $this->data['showjumplinks'] ): ?>
 				<!-- jumpto -->
-				<div id="jump-to-nav">
+				<div id="jump-to-nav" class="mw-jump">
 					<?php $this->msg( 'jumpto' ) ?> <a href="#mw-head"><?php $this->msg( 'jumptonavigation' ) ?></a>,
 					<a href="#p-search"><?php $this->msg( 'jumptosearch' ) ?></a>
 				</div>
