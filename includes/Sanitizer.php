@@ -674,7 +674,7 @@ class Sanitizer {
 			unset( $attribs[$attribute] );
 		}
 		
-		if ( !empty($style) ) {
+		if ( $style ) {
 			// Prepend our style rules so that they can be overridden by user css
 			if ( isset($attribs['style']) ) {
 				$style .= " " . $attribs['style'];
