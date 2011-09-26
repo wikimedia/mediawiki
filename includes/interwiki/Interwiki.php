@@ -151,7 +151,7 @@ class Interwiki {
 		if ( !$iwData ) {
 			$key = wfMemcKey( 'interwiki', $prefix );
 			$iwData = $wgMemc->get( $key );
-			if ( $iwData === '!EMPTY' ) {
+			if ( $iwData === '!NONEXISTENT' ) {
 				return false; // negative cache hit
 			}
 		}
@@ -179,7 +179,7 @@ class Interwiki {
 			$wgMemc->add( $key, $mc, $wgInterwikiExpiry );
 			return $iw;
 		} else {
-			$wgMemc->add( $key, '!EMPTY', $wgInterwikiExpiry ); // negative cache hit
+			$wgMemc->add( $key, '!NONEXISTENT', $wgInterwikiExpiry ); // negative cache hit
 		}
 
 		return false;
