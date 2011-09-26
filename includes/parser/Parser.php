@@ -2823,7 +2823,7 @@ class Parser {
 			case 'server':
 				return $wgServer;
 			case 'servername':
-				$serverParts = wfParseUrl( $wgServer, PHP_URL_HOST );
+				$serverParts = wfParseUrl( $wgServer );
 				return $serverParts && isset( $serverParts['host'] ) ? $serverParts['host'] : $wgServer;
 			case 'scriptpath':
 				return $wgScriptPath;
