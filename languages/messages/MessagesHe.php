@@ -862,16 +862,18 @@ $2',
 'resetpass-temp-password'   => 'סיסמה זמנית:',
 
 # Special:PasswordReset
-'passwordreset'                => 'איפוס סיסמה',
-'passwordreset-text'           => 'מלאו טופס זה כדי לקבל דואר אלקטרוני ובו תזכורת של פרטי החשבון.',
-'passwordreset-legend'         => 'איפוס סיסמה',
-'passwordreset-disabled'       => 'איפוסי סיסמה בוטלו באתר ויקי זה.',
-'passwordreset-pretext'        => '{{PLURAL:$1||הקלידו אחד מפריטי המידע למטה}}',
-'passwordreset-username'       => 'שם משתמש:',
-'passwordreset-domain'         => 'תחום:',
-'passwordreset-email'          => 'כתובת דוא"ל:',
-'passwordreset-emailtitle'     => 'פרטי חשבון ב{{grammar:תחילית|{{SITENAME}}}}',
-'passwordreset-emailtext-ip'   => 'מישהו (ככל הנראה אתם, מכתובת ה־IP מספר $1) ביקש תזכורת של פרטי
+'passwordreset'                    => 'איפוס סיסמה',
+'passwordreset-text'               => 'מלאו טופס זה כדי לקבל דואר אלקטרוני ובו תזכורת של פרטי החשבון.',
+'passwordreset-legend'             => 'איפוס סיסמה',
+'passwordreset-disabled'           => 'איפוסי סיסמה בוטלו באתר ויקי זה.',
+'passwordreset-pretext'            => '{{PLURAL:$1||הקלידו אחד מפריטי המידע למטה}}',
+'passwordreset-username'           => 'שם משתמש:',
+'passwordreset-domain'             => 'תחום:',
+'passwordreset-capture'            => 'צפייה בדוא"ל הנשלח?',
+'passwordreset-capture-help'       => 'אם תסמנו תיבה זו, הדואר האלקטרוני (יחד עם הסיסמה הזמנית) יוצג לכם במקביל לשליחתו למשתמש.',
+'passwordreset-email'              => 'כתובת דוא"ל:',
+'passwordreset-emailtitle'         => 'פרטי חשבון ב{{grammar:תחילית|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'       => 'מישהו (ככל הנראה אתם, מכתובת ה־IP מספר $1) ביקש תזכורת של פרטי
 החשבון שלכם ב{{grammar:תחילית|{{SITENAME}}}} ($4). {{PLURAL:$3|חשבון המשתמש הבא|חשבונות המשתמש הבאים}}
 שייכים לכתובת הדואר האלקטרוני הזו:
 
@@ -881,7 +883,7 @@ $2
 עליכם להיכנס ולבחור סיסמה חדשה עכשיו. אם מישהו אחר ביצע בקשה זו, או שנזכרתם בסיסמתכם
 המקורית ואינכם רוצים עוד לשנות אותה, באפשרותכם להתעלם מהודעה זו ולהמשיך להשתמש בסיסמה
 הישנה.',
-'passwordreset-emailtext-user' => 'המשתמש $1 ב{{grammar:תחילית|{{SITENAME}}}} ביקש תזכורת של פרטי
+'passwordreset-emailtext-user'     => 'המשתמש $1 ב{{grammar:תחילית|{{SITENAME}}}} ביקש תזכורת של פרטי
 החשבון שלכם ב{{grammar:תחילית|{{SITENAME}}}} ($4). {{PLURAL:$3|חשבון המשתמש הבא|חשבונות המשתמש הבאים}}
 שייכים לכתובת הדואר האלקטרוני הזו:
 
@@ -891,9 +893,11 @@ $2
 עליכם להיכנס ולבחור סיסמה חדשה עכשיו. אם מישהו אחר ביצע בקשה זו, או שנזכרתם בסיסמתכם
 המקורית ואינכם רוצים עוד לשנות אותה, באפשרותכם להתעלם מהודעה זו ולהמשיך להשתמש בסיסמה
 הישנה.',
-'passwordreset-emailelement'   => 'שם משתמש: $1
+'passwordreset-emailelement'       => 'שם משתמש: $1
 סיסמה זמנית: $2',
-'passwordreset-emailsent'      => 'נשלח דואר אלקטרוני עם תזכורת.',
+'passwordreset-emailsent'          => 'נשלח דואר אלקטרוני עם תזכורת.',
+'passwordreset-emailsent-capture'  => 'נשלח דואר אלקטרוני עם תזכורת, והוא מוצג להלן.',
+'passwordreset-emailerror-capture' => 'נוצר דואר אלקטרוני עם תזכורת, והוא מוצג להלן, אך שליחתו למשתמש נכשלה: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'שינוי כתובת דוא"ל',
@@ -1606,7 +1610,7 @@ $1",
 'right-siteadmin'             => 'נעילת וביטול נעילת בסיס הנתונים',
 'right-override-export-depth' => 'ייצוא דפים כולל דפים מקושרים עד עומק של חמישה',
 'right-sendemail'             => 'שליחת דואר אלקטרוני למשתמשים אחרים',
-'right-passwordreset'         => 'איפוס סיסמה של משתמש ([[Special:PasswordReset|דף מיוחד]])',
+'right-passwordreset'         => 'צפייה בדואר אלקטרוני של איפוס סיסמה',
 
 # User rights log
 'rightslog'                  => 'יומן תפקידים',
@@ -1934,7 +1938,7 @@ $1',
 'filehist-filesize'                 => 'גודל הקובץ',
 'filehist-comment'                  => 'הערה',
 'filehist-missing'                  => 'הקובץ חסר',
-'imagelinks'                        => 'קישורים לקובץ',
+'imagelinks'                        => 'שימוש בקובץ',
 'linkstoimage'                      => '{{PLURAL:$1|הדף הבא משתמש|הדפים הבאים משתמשים}} בקובץ זה:',
 'linkstoimage-more'                 => 'יותר מ{{PLURAL:$1|דף אחד מקשר|־$1 דפים מקשרים}} לקובץ זה.
 הרשימה הבאה מראה רק את {{PLURAL:$1|הדף הראשון שמקשר|$1 הדפים הראשונים שמקשרים}} לקובץ זה.
@@ -2180,7 +2184,7 @@ $1',
 'linksearch-pat'   => 'תבנית קישור לחיפוש:',
 'linksearch-ns'    => 'מרחב שם:',
 'linksearch-ok'    => 'חיפוש',
-'linksearch-text'  => 'ניתן להשתמש בתווים כללים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.<br />
+'linksearch-text'  => 'ניתן להשתמש בתווים כלליים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.<br />
 פרוטוקולים נתמכים: <tt dir="ltr">$1</tt>',
 'linksearch-line'  => '$1 מקושר מהדף $2',
 'linksearch-error' => 'תווים כלליים יכולים להופיע רק בתחילת שם השרת.',
@@ -3110,6 +3114,13 @@ $1',
 'bydate'                => 'לפי תאריך',
 'sp-newimages-showfrom' => 'הצגת קבצים חדשים החל מ־$2, $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|שנייה|$1 שניות}}',
+'minutes' => '{{PLURAL:$1|דקה|$1 דקות}}',
+'hours'   => '{{PLURAL:$1|שעה|$1 שעות|שעתיים}}',
+'days'    => '{{PLURAL:$1|יום|$1 ימים|יומיים}}',
+'ago'     => 'לפני $1',
+
 # Bad image list
 'bad_image_list' => 'דרך הכתיבה בהודעה היא כמתואר להלן:
 
@@ -3932,5 +3943,7 @@ $1',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}} בלי להשאיר הפניה',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}} תוך דריסת הפניה',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}} תוך דריסת הפניה ובלי להשאיר הפניה',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|סימן|סימנה}} את הגרסה $4 בדף $3 כבדוקה',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|סימן|סימנה}} אוטומטית את הגרסה $4 בדף $3 כבדוקה',
 
 );
