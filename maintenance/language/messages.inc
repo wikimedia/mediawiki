@@ -1738,11 +1738,6 @@ $wgMessageStructure = array(
 	'newuserlog' => array(
 		'newuserlogpage',
 		'newuserlogpagetext',
-		'newuserlogentry',
-		'newuserlog-byemail',
-		'newuserlog-create-entry',
-		'newuserlog-create2-entry',
-		'newuserlog-autocreate-entry',
 	),
 	'listgrouprights' => array(
 		'listgrouprights',
@@ -3524,6 +3519,11 @@ $wgMessageStructure = array(
 		'logentry-move-move_redir-noredirect',
 		'logentry-patrol-patrol',
 		'logentry-patrol-patrol-auto',
+		'logentry-newusers-newusers',
+		'logentry-newusers-create',
+		'logentry-newusers-create2',
+		'logentry-newusers-autocreate',
+		'newuserlog-byemail',
 	),
 );
 
