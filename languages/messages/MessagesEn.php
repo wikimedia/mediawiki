@@ -2645,13 +2645,8 @@ Supported protocols: <tt>$1</tt>',
 'activeusers-noresult'   => 'No users found.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'User creation log',
-'newuserlogpagetext'          => 'This is a log of user creations.',
-'newuserlogentry'             => '', # do not translate or duplicate this message to other languages
-'newuserlog-byemail'          => 'password sent by e-mail',
-'newuserlog-create-entry'     => 'New user account',
-'newuserlog-create2-entry'    => 'created new account $1',
-'newuserlog-autocreate-entry' => 'Account created automatically',
+'newuserlogpage'     => 'User creation log',
+'newuserlogpagetext' => 'This is a log of user creations.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'User group rights',
@@ -4658,5 +4653,10 @@ This site is experiencing technical difficulties.',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moved}} page $3 to $4 over a redirect without leaving a redirect',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marked}} revision $4 of page $3 patrolled',
 'logentry-patrol-patrol-auto'         => '$1 automatically {{GENDER:$2|marked}} revision $4 of page $3 patrolled',
+'logentry-newusers-newusers'          => '',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|created}} a user account',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|created}} a user account $3',
+'logentry-newusers-autocreate'        => 'Account $1 was {{GENDER:$2|created}} automatically',
+'newuserlog-byemail'                  => 'password sent by e-mail',
 
 );
