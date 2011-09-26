@@ -2081,12 +2081,8 @@ Desteklenen iletişim kuralları: <tt>$1</tt>',
 'activeusers-noresult'   => 'Kullanıcı bulunamadı.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Yeni kullanıcı kayıtları',
-'newuserlogpagetext'          => 'En son kaydolan kullanıcı kayıtları.',
-'newuserlog-byemail'          => 'e-posta yoluyla şifre gönderilmiştir',
-'newuserlog-create-entry'     => 'Yeni kullanıcı',
-'newuserlog-create2-entry'    => '$1 yeni hesabını oluşturdu',
-'newuserlog-autocreate-entry' => 'Otomatik hesap oluşturuldu',
+'newuserlogpage'     => 'Yeni kullanıcı kayıtları',
+'newuserlogpagetext' => 'En son kaydolan kullanıcı kayıtları.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Kullanıcı grubu hakları',
@@ -3630,5 +3626,6 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 # New logging system
 'revdelete-restricted'   => 'hizmetliler için uygulanmış kısıtlamalar',
 'revdelete-unrestricted' => 'hizmetliler için kaldırılmış kısıtlamalar',
+'newuserlog-byemail'     => 'e-posta yoluyla şifre gönderilmiştir',
 
 );

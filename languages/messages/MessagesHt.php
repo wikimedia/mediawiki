@@ -1107,12 +1107,8 @@ Gade tou [[Special:WantedCategories|kategori moun mande]].',
 'linksearch' => 'Lyen andeyò',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Jounal pou kreyasyon kont itilizatè yo',
-'newuserlogpagetext'          => 'Men jounal, istorik kreyasyon kont itilizatè yo.',
-'newuserlog-byemail'          => 'mopas an voye pa imèl',
-'newuserlog-create-entry'     => 'Nouvo kont itilizatè',
-'newuserlog-create2-entry'    => 'te kreye kont $1',
-'newuserlog-autocreate-entry' => 'Kont sa kreye otomatikman',
+'newuserlogpage'     => 'Jounal pou kreyasyon kont itilizatè yo',
+'newuserlogpagetext' => 'Men jounal, istorik kreyasyon kont itilizatè yo.',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis manm yo)',
@@ -1401,5 +1397,6 @@ Nenpòt lòt lyen nan menm liy nan konsidere kòm yon eksèpsyon, i.e. paj kote 
 
 # New logging system
 'revdelete-restricted' => 'aplike restriksyon sa yo pou administratè yo',
+'newuserlog-byemail'   => 'mopas an voye pa imèl',
 
 );

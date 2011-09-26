@@ -1188,9 +1188,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'activeusers-noresult' => 'আতাকুরা নাপেইলাং।',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'আতাকুরা হঙসে লগহানি',
-'newuserlog-byemail'      => 'ই-মেইলর মা পেঠাদিয়াসি পাসৱার্ডগ',
-'newuserlog-create-entry' => 'নুৱা আতাকুরার একাউন্টহান',
+'newuserlogpage' => 'আতাকুরা হঙসে লগহানি',
 
 # Special:ListGroupRights
 'listgrouprights-key'     => '* <span class="listgrouprights-granted">য়্যাথাং পাসে অধিকার</span>
@@ -1672,5 +1670,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # New logging system
 'revdelete-restricted'   => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি ফলা',
 'revdelete-unrestricted' => 'ডান্ডিকরেকুরাগরাঙ সীমাবদ্ধতাহানি নেইকর',
+'newuserlog-byemail'     => 'ই-মেইলর মা পেঠাদিয়াসি পাসৱার্ডগ',
 
 );

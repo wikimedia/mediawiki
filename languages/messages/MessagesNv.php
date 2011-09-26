@@ -279,9 +279,6 @@ $3',
 # Special:LinkSearch
 'linksearch' => 'linksígíí tłʼóoʼdi siʼánígíí',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'choyoołʼįįhí ániidí',
-
 # E-mail user
 'emailuser' => 'E-mail bichʼįʼ áshłééh nisin',
 

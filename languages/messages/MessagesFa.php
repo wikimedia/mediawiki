@@ -2297,12 +2297,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'activeusers-noresult'   => 'کاربری پیدا نشد.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'سیاههٔ ایجاد کاربر',
-'newuserlogpagetext'          => 'این سیاهه‌ای از نام‌های کاربری تازه‌ساخته‌شده است.',
-'newuserlog-byemail'          => 'گذرواژه با پست الکترونیکی ارسال شد',
-'newuserlog-create-entry'     => 'کاربر جدید',
-'newuserlog-create2-entry'    => 'حساب کاربری جدید $1 را ایجاد کرد',
-'newuserlog-autocreate-entry' => 'حساب به طور خودکار ساخته شد',
+'newuserlogpage'     => 'سیاههٔ ایجاد کاربر',
+'newuserlogpagetext' => 'این سیاهه‌ای از نام‌های کاربری تازه‌ساخته‌شده است.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'اختیارات گروه‌های کاربری',
@@ -4023,5 +4019,6 @@ $1',
 'logentry-move-move_redir-noredirect' => '$1 صفحه $3 را بدون بر جا گذاشتن تغییر مسیر به $4 که تغییر مسیر بود {{GENDER:$2|منتقل کرد}}',
 'logentry-patrol-patrol'              => '$1 نسخه $4 صفحه $3 را به عنوان گشت خورده {{GENDER:$2|علامت زد}}',
 'logentry-patrol-patrol-auto'         => '$1 نسخه $4 صفحه $3 را به طور خودکار به عنوان گشت خورده {{GENDER:$2|علامت زد}}',
+'newuserlog-byemail'                  => 'گذرواژه با پست الکترونیکی ارسال شد',
 
 );

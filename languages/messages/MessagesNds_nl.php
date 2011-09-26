@@ -2113,12 +2113,8 @@ Ondersteunde protokollen: <tt>$1</tt>',
 'activeusers-noresult'   => 'Gien aktieve gebrukers evunnen.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Logboek mit anwas',
-'newuserlogpagetext'          => 'Hieronder staon de niej in-eschreven gebrukers',
-'newuserlog-byemail'          => 'wachtwoord is verstuurd via de netpost',
-'newuserlog-create-entry'     => 'Nieje gebruker',
-'newuserlog-create2-entry'    => 'hef nieje gebruker $1 eregistreerd',
-'newuserlog-autocreate-entry' => 'Gebruker automaties an-emaakt',
+'newuserlogpage'     => 'Logboek mit anwas',
+'newuserlogpagetext' => 'Hieronder staon de niej in-eschreven gebrukers',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Rechten van gebrukersgroepen',
@@ -3723,5 +3719,6 @@ Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 zonder n deurverwiezing achter te laoten',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 over n deurverwiezing heer',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 over n deurverwiezing heer zonder n deurverwiezing achter te laoten',
+'newuserlog-byemail'                  => 'wachtwoord is verstuurd via de netpost',
 
 );

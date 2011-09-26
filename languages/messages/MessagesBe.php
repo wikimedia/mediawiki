@@ -1774,12 +1774,8 @@ $1",
 'activeusers-noresult'   => 'Няма такіх удзельнікаў.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Журнал рэгістрацыі ўдзельнікаў',
-'newuserlogpagetext'          => 'Гэта журнал рэгістрацыі новых удзельнікаў.',
-'newuserlog-byemail'          => 'пароль адасланы эл.поштай',
-'newuserlog-create-entry'     => 'Новы ўдзельнік',
-'newuserlog-create2-entry'    => 'створаны новы рахунак $1',
-'newuserlog-autocreate-entry' => 'Рахунак створаны аўтаматычна',
+'newuserlogpage'     => 'Журнал рэгістрацыі ўдзельнікаў',
+'newuserlogpagetext' => 'Гэта журнал рэгістрацыі новых удзельнікаў.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Дазволы для груп удзельнікаў',
@@ -3080,5 +3076,6 @@ MediaWiki распаўсюджваецца, спадзеючыся на прыд
 # New logging system
 'revdelete-restricted'   => 'пастаўленыя абмежаванні на адміністратараў',
 'revdelete-unrestricted' => 'знятыя абмежаванні з адміністратараў',
+'newuserlog-byemail'     => 'пароль адасланы эл.поштай',
 
 );

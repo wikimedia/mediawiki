@@ -1722,12 +1722,8 @@ qaydeyê destek biyayeyi: <tt>$1</tt>',
 'activeusers-noresult'   => 'Karberî çini yo.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Cıkewtışê hesab-vıraştışi',
-'newuserlogpagetext'          => 'Ena log de viraştişê karberî esta.',
-'newuserlog-byemail'          => 'pê e-mail ra paralo şiravt',
-'newuserlog-create-entry'     => 'Hesabê karberê newey',
-'newuserlog-create2-entry'    => 'hesabê newî $1 viraşt',
-'newuserlog-autocreate-entry' => 'hesab otomatik vıraziya.',
+'newuserlogpage'     => 'Cıkewtışê hesab-vıraştışi',
+'newuserlogpagetext' => 'Ena log de viraştişê karberî esta.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'heqê grubê karberi',
@@ -3075,5 +3071,6 @@ satır ê ke pê ney # # destpêkenê zey mışore/mıjore muamele vineno.
 # New logging system
 'revdelete-restricted'   => 'verger (vergırewtış) ê ke qey xızmkaran biye',
 'revdelete-unrestricted' => 'verger (ver gırewtış) ê ke qey xızmkaran diyê wera (wedariyê)',
+'newuserlog-byemail'     => 'pê e-mail ra paralo şiravt',
 
 );

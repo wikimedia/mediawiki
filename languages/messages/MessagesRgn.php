@@ -476,8 +476,7 @@ $1 {{PLURAL:$1|elemént|elemént}}',
 'linksearch' => 'Ghènz int ê web',
 
 # Special:Log/newusers
-'newuserlogpage'          => "Regèstar d'j nov",
-'newuserlog-create-entry' => "L'è arivé un patàca nov",
+'newuserlogpage' => "Regèstar d'j nov",
 
 # Special:ListGroupRights
 'listgrouprights-members' => "(Lèsta d'j mèmbar)",

@@ -415,9 +415,6 @@ Aamma takuuk [[Special:WantedCategories|sunut atassusinut kissaatigineqartut]].'
 # Special:LinkSearch
 'linksearch-ok' => 'Ujaruk',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'Atuisoq nutaaq',
-
 # Watchlist
 'watchlist'      => 'Ersersimasut',
 'mywatchlist'    => 'Nuisatiffikka',

@@ -786,16 +786,18 @@ Có thể bạn đã thay đổi thành công mật khẩu của mình hoặc đ
 'resetpass-temp-password'   => 'Mật khẩu tạm:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Tái tạo mật khẩu',
-'passwordreset-text'           => 'Hãy điền mẫu đơn này để nhận thư điện tử nhắc nhở về thông tin tài khoản của bạn.',
-'passwordreset-legend'         => 'Tái tạo mật khẩu',
-'passwordreset-disabled'       => 'Chức năng tái tạo mật khẩu đã bị tắt trên wiki này.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Nhập một trong những thông tin được yêu cầu ở dưới}}',
-'passwordreset-username'       => 'Tên người dùng:',
-'passwordreset-domain'         => 'Tên miền:',
-'passwordreset-email'          => 'Địa chỉ thư điện tử:',
-'passwordreset-emailtitle'     => 'Thông tin tài khoản tại {{SITENAM}}',
-'passwordreset-emailtext-ip'   => 'Ai đó (có thể là bạn, từ địa chỉ IP $1) đã yêu cầu một lời
+'passwordreset'                    => 'Tái tạo mật khẩu',
+'passwordreset-text'               => 'Hãy điền mẫu đơn này để nhận thư điện tử nhắc nhở về thông tin tài khoản của bạn.',
+'passwordreset-legend'             => 'Tái tạo mật khẩu',
+'passwordreset-disabled'           => 'Chức năng tái tạo mật khẩu đã bị tắt trên wiki này.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Nhập một trong những thông tin được yêu cầu ở dưới}}',
+'passwordreset-username'           => 'Tên người dùng:',
+'passwordreset-domain'             => 'Tên miền:',
+'passwordreset-capture'            => 'Xem thư điện tử có mật khẩu tạm',
+'passwordreset-capture-help'       => 'Nếu bạn kiểm hộp này, bạn sẽ xem thư điện tử có mật khẩu tạm lúc khi nó được gửi cho người dùng.',
+'passwordreset-email'              => 'Địa chỉ thư điện tử:',
+'passwordreset-emailtitle'         => 'Thông tin tài khoản tại {{SITENAM}}',
+'passwordreset-emailtext-ip'       => 'Ai đó (có thể là bạn, từ địa chỉ IP $1) đã yêu cầu một lời
 nhắc nhở các thông tin tài khoản của bạn tại {{SITENAME}} ($4).
 {{PLURAL:$3|Tài khoản|Các tài khoản}} ở dưới có đặt địa chỉ thư điện tử này:
 
@@ -806,7 +808,7 @@ ngay bây giờ để chọn mật khẩu mới. Nếu bạn không phải là n
 đặt lại mật khẩu hoặc đã nhớ lại mật khẩu hiện hành, và bạn không còn
 muốn thay đổi nó, xin vui lòng kệ thông điệp này và tiếp tục sử dụng
 mật khẩu cũ.',
-'passwordreset-emailtext-user' => 'Thành viên $1 tại {{SITENAME}} đã yêu cầu một lời nhắc nhở
+'passwordreset-emailtext-user'     => 'Thành viên $1 tại {{SITENAME}} đã yêu cầu một lời nhắc nhở
 các thông tin tài khoản của bạn tại {{SITENAME}} ($4). {{PLURAL:$3|Tài
 khoản|Các
 tài khoản}} ở dưới có đặt địa chỉ thư điện tử này:
@@ -818,9 +820,11 @@ ngay bây giờ để chọn mật khẩu mới. Nếu bạn không phải là n
 đặt lại mật khẩu hoặc đã nhớ lại mật khẩu hiện hành, và bạn không còn
 muốn thay đổi nó, xin vui lòng kệ thông điệp này và tiếp tục sử dụng
 mật khẩu cũ.',
-'passwordreset-emailelement'   => 'Tên người dùng: $1
+'passwordreset-emailelement'       => 'Tên người dùng: $1
 Mật khẩu tạm: $2',
-'passwordreset-emailsent'      => 'Đã gửi thư điện tử nhắc nhở.',
+'passwordreset-emailsent'          => 'Đã gửi thư điện tử nhắc nhở.',
+'passwordreset-emailsent-capture'  => 'Thư điện tử nhắc nhở ở dưới đã được gửi:',
+'passwordreset-emailerror-capture' => 'Không thể gửi thư điện tử nhắc nhở ở dưới cho người dùng: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Đổi địa chỉ thư điện tử',
@@ -2102,7 +2106,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 
 # Special:ListUsers
 'listusersfrom'      => 'Hiển thị thành viên bắt đầu từ:',
-'listusers-submit'   => 'Liệt kê',
+'listusers-submit'   => 'Xem',
 'listusers-noresult' => 'Không thấy thành viên.',
 'listusers-blocked'  => '(bị cấm)',
 
@@ -2116,12 +2120,8 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'activeusers-noresult'   => 'Không thấy thành viên.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Nhật trình mở tài khoản',
-'newuserlogpagetext'          => 'Đây là danh sách những tài khoản thành viên mở lên gần đây.',
-'newuserlog-byemail'          => 'gửi mật khẩu qua thư điện tử',
-'newuserlog-create-entry'     => 'đã mở tài khoản mới',
-'newuserlog-create2-entry'    => 'đã tạo tài khoản mới với tên $1',
-'newuserlog-autocreate-entry' => 'Tài khoản được tạo tự động',
+'newuserlogpage'     => 'Nhật trình mở tài khoản',
+'newuserlogpagetext' => 'Đây là danh sách những tài khoản thành viên mở lên gần đây.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Nhóm thành viên',
@@ -3883,5 +3883,6 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'logentry-move-move_redir-noredirect' => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 qua trang đổi hướng mà không để lại một trang đổi hướng',
 'logentry-patrol-patrol'              => '$1 đã {{GENDER:$2|đánh dấu}} tuần tra phiên bản $4 của trang $3',
 'logentry-patrol-patrol-auto'         => '$1 đã tự động {{GENDER:$2|đánh dấu}} tuần tra phiên bản $4 của trang $3',
+'newuserlog-byemail'                  => 'gửi mật khẩu qua thư điện tử',
 
 );

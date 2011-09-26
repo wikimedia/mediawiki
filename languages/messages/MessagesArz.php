@@ -2021,12 +2021,8 @@ PICT # misc.
 'activeusers-noresult'   => 'مالقيناش اى يوزر',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'سجل اليوزرز الجداد',
-'newuserlogpagetext'          => 'دا سجل لليوزرز الجداد',
-'newuserlog-byemail'          => 'الباسورد اتبعتت بالايميل',
-'newuserlog-create-entry'     => 'يوزر جديد',
-'newuserlog-create2-entry'    => 'الحساب الجديد المعمول $1',
-'newuserlog-autocreate-entry' => 'الحساب اتفتح اوتوماتيكي',
+'newuserlogpage'     => 'سجل اليوزرز الجداد',
+'newuserlogpagetext' => 'دا سجل لليوزرز الجداد',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'حقوق مجموعات اليوزرز',
@@ -3482,5 +3478,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'طبق التعليمات على السيسوبات',
 'revdelete-unrestricted' => 'شيل الضوابط من على السيسوبات',
+'newuserlog-byemail'     => 'الباسورد اتبعتت بالايميل',
 
 );

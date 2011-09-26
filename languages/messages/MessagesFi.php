@@ -2066,12 +2066,8 @@ Tuetut protokollat: <tt>$1</tt>.',
 'activeusers-noresult'   => 'Käyttäjiä ei löytynyt.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Uudet käyttäjät',
-'newuserlogpagetext'          => 'Tämä on loki luoduista käyttäjätunnuksista.',
-'newuserlog-byemail'          => 'salasana lähetetty sähköpostitse',
-'newuserlog-create-entry'     => 'Uusi käyttäjä',
-'newuserlog-create2-entry'    => 'loi uuden käyttäjätunnuksen $1',
-'newuserlog-autocreate-entry' => 'Automaattisesti luotu käyttäjätunnus',
+'newuserlogpage'     => 'Uudet käyttäjät',
+'newuserlogpagetext' => 'Tämä on loki luoduista käyttäjätunnuksista.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Käyttäjäryhmien oikeudet',
@@ -3676,5 +3672,6 @@ Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|siirsi}} sivun $3 ohjauksen $4 päälle luomatta ohjausta',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|merkitsi}} sivun $3 muutoksen $4 tarkastetuksi',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|merkitsi}} automaattisesti sivun $3 muutoksen $4 tarkastetuksi',
+'newuserlog-byemail'                  => 'salasana lähetetty sähköpostitse',
 
 );

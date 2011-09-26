@@ -2034,12 +2034,8 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'activeusers-noresult'   => "Cap d'utilizaire pas trobat.",
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Istoric de las creacions de comptes',
-'newuserlogpagetext'          => "Jornal de las creacions de comptes d'utilizaires.",
-'newuserlog-byemail'          => 'senhal mandat per corrièr electronic',
-'newuserlog-create-entry'     => 'Utilizaire novèl',
-'newuserlog-create2-entry'    => 'a creat lo compte novèl $1',
-'newuserlog-autocreate-entry' => 'Compte creat automaticament',
+'newuserlogpage'     => 'Istoric de las creacions de comptes',
+'newuserlogpagetext' => "Jornal de las creacions de comptes d'utilizaires.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => "Dreches dels gropes d'utilizaires",
@@ -3447,5 +3443,6 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: »",
 # New logging system
 'revdelete-restricted'   => 'aplicar las restriccions als administrators',
 'revdelete-unrestricted' => 'restriccions levadas pels administrators',
+'newuserlog-byemail'     => 'senhal mandat per corrièr electronic',
 
 );

@@ -2045,12 +2045,8 @@ Ondersteunde protokolle: <tt>$1</tt>',
 'activeusers-noresult'   => 'Geen gebruikers gevind nie.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Logboek van nuwe gebruikers',
-'newuserlogpagetext'          => "Dit is 'n logboek van gebruikers wat onlangs ingeteken het.",
-'newuserlog-byemail'          => 'wagwoord is per e-pos versend',
-'newuserlog-create-entry'     => 'Nuwe gebruiker',
-'newuserlog-create2-entry'    => 'het gebruiker $1 geskep',
-'newuserlog-autocreate-entry' => 'Gebruiker outomaties geskep',
+'newuserlogpage'     => 'Logboek van nuwe gebruikers',
+'newuserlogpagetext' => "Dit is 'n logboek van gebruikers wat onlangs ingeteken het.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Gebruikersgroepregte',
@@ -3667,5 +3663,6 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 # New logging system
 'revdelete-restricted'   => 'beperkings is aan administrateurs opgelê',
 'revdelete-unrestricted' => 'beperkings vir administrateurs is opgehef',
+'newuserlog-byemail'     => 'wagwoord is per e-pos versend',
 
 );

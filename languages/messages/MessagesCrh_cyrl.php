@@ -1378,12 +1378,8 @@ $3 мына бу себепни бильдирди: ''$2''",
 'listusers-noresult' => 'Ич бир къулланыджы тапылмады.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Янъы къулланыджы журналы',
-'newuserlogpagetext'          => 'Энъ сонъки къайд олгъан къулланыджы журналы.',
-'newuserlog-byemail'          => 'пароль e-mail вастасынен йиберильген',
-'newuserlog-create-entry'     => 'Янъы къулланыджы',
-'newuserlog-create2-entry'    => 'янъы эсап яратты $1',
-'newuserlog-autocreate-entry' => 'Эсап автоматик оларакъ яратылды',
+'newuserlogpage'     => 'Янъы къулланыджы журналы',
+'newuserlogpagetext' => 'Энъ сонъки къайд олгъан къулланыджы журналы.',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(азалар джедвели)',
@@ -2111,5 +2107,8 @@ $1',
 
 # HTML forms
 'htmlform-reset' => 'Денъишикликлерни кери ал',
+
+# New logging system
+'newuserlog-byemail' => 'пароль e-mail вастасынен йиберильген',
 
 );

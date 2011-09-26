@@ -1667,12 +1667,8 @@ Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'activeusers-noresult'   => 'Neviens lietotājs nav atrasts.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Jauno lietotāju reģistrs',
-'newuserlogpagetext'          => 'Jauno lietotājvārdu reģistrs.',
-'newuserlog-byemail'          => 'parole nosūtīta pa e-pastu',
-'newuserlog-create-entry'     => 'Reģistrēts lietotājvārds',
-'newuserlog-create2-entry'    => 'izveidoja jaunu kontu $1',
-'newuserlog-autocreate-entry' => 'Automātiski reģistrēts lietotājvārds',
+'newuserlogpage'     => 'Jauno lietotāju reģistrs',
+'newuserlogpagetext' => 'Jauno lietotājvārdu reģistrs.',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Lietotāju grupu tiesības',
@@ -2956,5 +2952,6 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 # New logging system
 'revdelete-restricted'   => 'piemērot administratoriem ierobežojumus',
 'revdelete-unrestricted' => 'noņemt administratoriem ierobežojumus',
+'newuserlog-byemail'     => 'parole nosūtīta pa e-pastu',
 
 );

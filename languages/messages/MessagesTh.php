@@ -1907,12 +1907,8 @@ $1',
 'activeusers-noresult'   => 'ไม่พบชื่อผู้ใช้',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'ปูมการสร้างบัญชีผู้ใช้ใหม่',
-'newuserlogpagetext'          => 'นี่คือบันทึกการสร้างบัญชีผู้ใช้',
-'newuserlog-byemail'          => 'รหัสผ่านถูกส่งทางอีเมล',
-'newuserlog-create-entry'     => 'ผู้ใช้ใหม่',
-'newuserlog-create2-entry'    => 'ได้สร้างบัญชีผู้ใช้ใหม่ชื่อ $1',
-'newuserlog-autocreate-entry' => 'ชื่อบัญชีถูกสร้างอัตโนมัติ',
+'newuserlogpage'     => 'ปูมการสร้างบัญชีผู้ใช้ใหม่',
+'newuserlogpagetext' => 'นี่คือบันทึกการสร้างบัญชีผู้ใช้',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'สิทธิของกลุ่มผู้ใช้',
@@ -3288,5 +3284,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'จำกัดให้เฉพาะผู้ดูแลระบบขั้นพื้นฐาน',
 'revdelete-unrestricted' => 'ยกเลิกการจำกัดให้เฉพาะผู้ดูแลระบบขั้นพื้นฐาน',
+'newuserlog-byemail'     => 'รหัสผ่านถูกส่งทางอีเมล',
 
 );

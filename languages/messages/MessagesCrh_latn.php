@@ -1375,12 +1375,8 @@ Ayrıca [[Special:WantedCategories|talap etilgen kategoriyalarnıñ cedveline]] 
 'listusers-noresult' => 'İç bir qullanıcı tapılmadı.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Yañı qullanıcı jurnalı',
-'newuserlogpagetext'          => 'Eñ sоñki qayd оlğan qullanıcı jurnalı.',
-'newuserlog-byemail'          => 'parol e-mail vastasınen yiberilgen',
-'newuserlog-create-entry'     => 'Yañı qullanıcı',
-'newuserlog-create2-entry'    => 'yañı esap yarattı $1',
-'newuserlog-autocreate-entry' => 'Esap avtomatik olaraq yaratıldı',
+'newuserlogpage'     => 'Yañı qullanıcı jurnalı',
+'newuserlogpagetext' => 'Eñ sоñki qayd оlğan qullanıcı jurnalı.',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(azalar cedveli)',
@@ -2108,5 +2104,8 @@ Bitirgen soñ "{{int:Watchlistedit-raw-submit}}" yazısına basıñız.
 
 # HTML forms
 'htmlform-reset' => 'Deñişikliklerni keri al',
+
+# New logging system
+'newuserlog-byemail' => 'parol e-mail vastasınen yiberilgen',
 
 );

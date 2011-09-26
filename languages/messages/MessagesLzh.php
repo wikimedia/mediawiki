@@ -1664,12 +1664,8 @@ $1',
 'activeusers-noresult'   => '無簿矣。',
 
 # Special:Log/newusers
-'newuserlogpage'              => '誌簿',
-'newuserlogpagetext'          => '此為誌簿之記也',
-'newuserlog-byemail'          => '號發自電郵',
-'newuserlog-create-entry'     => '新簿',
-'newuserlog-create2-entry'    => '已註$1之簿',
-'newuserlog-autocreate-entry' => '已自註之簿',
+'newuserlogpage'     => '誌簿',
+'newuserlogpagetext' => '此為誌簿之記也',
 
 # Special:ListGroupRights
 'listgrouprights'                      => '權任一覽',
@@ -2760,5 +2756,6 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 # New logging system
 'revdelete-restricted'   => '應限至有秩',
 'revdelete-unrestricted' => '除限自有秩',
+'newuserlog-byemail'     => '號發自電郵',
 
 );

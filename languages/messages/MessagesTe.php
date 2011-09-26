@@ -1923,12 +1923,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'activeusers-noresult'   => 'వాడుకరులెవరూ లేరు.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'కొత్త వాడుకరుల చిట్టా',
-'newuserlogpagetext'          => 'ఇది వాడుకరి నమోదుల చిట్టా.',
-'newuserlog-byemail'          => 'ఈ-మెయిలులో సంకేతపదం పంపించాం',
-'newuserlog-create-entry'     => 'కొత్త వాడుకరి ఖాతా',
-'newuserlog-create2-entry'    => '$1 అనే కొత్త ఖాతాని సృష్టించారు',
-'newuserlog-autocreate-entry' => 'ఖాతాని ఆటోమెటిగ్గా సృష్టించాం',
+'newuserlogpage'     => 'కొత్త వాడుకరుల చిట్టా',
+'newuserlogpagetext' => 'ఇది వాడుకరి నమోదుల చిట్టా.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'వాడుకరి గుంపుల హక్కులు',
@@ -3448,5 +3444,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'నిర్వాహకులకు ఆంక్షలు విధించాను',
 'revdelete-unrestricted' => 'నిర్వాహకులకున్న ఆంక్షలను ఎత్తేశాను',
+'newuserlog-byemail'     => 'ఈ-మెయిలులో సంకేతపదం పంపించాం',
 
 );

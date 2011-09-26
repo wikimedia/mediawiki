@@ -1540,12 +1540,8 @@ Ebšlūzitai prōtokulai: <tt>$1</tt>',
 'activeusers-noresult'   => 'Ni aupalā di tērpautajans',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Nāunai tērpautajai',
-'newuserlogpagetext'          => 'Sta ast registerin stēisan nāunai teīkatan rekkenan stēisan tērpautajan',
-'newuserlog-byemail'          => 'kliptaswīrds tengīntan pra e-mail',
-'newuserlog-create-entry'     => 'nāunas tērpautajas rekkens',
-'newuserlog-create2-entry'    => 'ast teīkuns(si) rekkenan $1',
-'newuserlog-autocreate-entry' => 'Rekkens teīktan autōmatiskai',
+'newuserlogpage'     => 'Nāunai tērpautajai',
+'newuserlogpagetext' => 'Sta ast registerin stēisan nāunai teīkatan rekkenan stēisan tērpautajan',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Tērpautajan gruppin enwarīnsenei',
@@ -2736,5 +2732,6 @@ Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 # New logging system
 'revdelete-restricted'   => 'ensadinnais arāikinsenins per perwaldītajans',
 'revdelete-unrestricted' => 'āupausinais arāikinsenins per perwaldītajans',
+'newuserlog-byemail'     => 'kliptaswīrds tengīntan pra e-mail',
 
 );

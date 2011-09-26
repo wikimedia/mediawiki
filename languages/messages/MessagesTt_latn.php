@@ -1479,10 +1479,8 @@ Asta [[Special:UnusedCategories|qullanılmağan törkemnär]] kärsätelgän.
 'activeusers-noresult'   => 'Qullanuçılar tabılmadı.',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Qullanuçılarnı terkäw köndälege',
-'newuserlogpagetext'      => 'Yaña terkälgän qullanuçılar isemlege',
-'newuserlog-byemail'      => 'sersüz elektron poçta aşa cibärelde',
-'newuserlog-create-entry' => 'Yaña qullanuçı',
+'newuserlogpage'     => 'Qullanuçılarnı terkäw köndälege',
+'newuserlogpagetext' => 'Yaña terkälgän qullanuçılar isemlege',
 
 # Special:ListGroupRights
 'listgrouprights'          => 'Qullanuçı törkemnäreneñ xoquqları',
@@ -2208,5 +2206,6 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 
 # New logging system
 'revdelete-restricted' => 'çikläwlär idaräçelärgä dä qullanıla',
+'newuserlog-byemail'   => 'sersüz elektron poçta aşa cibärelde',
 
 );

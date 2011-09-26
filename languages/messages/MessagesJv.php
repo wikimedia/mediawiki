@@ -1654,12 +1654,8 @@ Deleng uga [[Special:WantedCategories|kategori sing diperlokaké]].',
 'activeusers-noresult'   => 'Panganggo ora ditemokaké.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Log panganggo anyar',
-'newuserlogpagetext'          => 'Ing ngisor iki kapacak log pandaftaran panganggo anyar.',
-'newuserlog-byemail'          => 'tembung sandhi wis dikirim liwat e-mail',
-'newuserlog-create-entry'     => 'Panganggo anyar',
-'newuserlog-create2-entry'    => 'gawé akun anyar $1',
-'newuserlog-autocreate-entry' => 'akun panganggo digawé otomatis',
+'newuserlogpage'     => 'Log panganggo anyar',
+'newuserlogpagetext' => 'Ing ngisor iki kapacak log pandaftaran panganggo anyar.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Hak-hak grup panganggo',
@@ -2932,5 +2928,6 @@ Katrangan tampilan:
 # New logging system
 'revdelete-restricted'   => 'rèstriksi ditrapaké marang para opsis',
 'revdelete-unrestricted' => 'rèstriksi marang para opsis dijabel',
+'newuserlog-byemail'     => 'tembung sandhi wis dikirim liwat e-mail',
 
 );

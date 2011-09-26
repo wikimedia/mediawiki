@@ -191,8 +191,7 @@ $messages = array(
 'newpages-username' => 'Gebrukersnoame:',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Logboek nieuwe gebrukers',
-'newuserlog-create-entry' => 'Nieuwe gebruker',
+'newuserlogpage' => 'Logboek nieuwe gebrukers',
 
 # Watchlist
 'mywatchlist' => 'Myn volglyste',

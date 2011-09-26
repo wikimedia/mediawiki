@@ -1083,8 +1083,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'linksearch-ok' => 'Säk',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Nai-önjmäldings-logbök',
-'newuserlog-create-entry' => 'Brüker wörd nai registriird',
+'newuserlogpage' => 'Nai-önjmäldings-logbök',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lasmoote-list)',

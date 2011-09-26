@@ -1704,12 +1704,8 @@ Protucolli suppurtati: <tt>$1</tt>',
 'activeusers-noresult'   => 'Nussun utenti truvatu.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Novi utenti',
-'newuserlogpagetext'          => 'Di sècutu vènunu elincati li criazzioni di cunti novi (account).',
-'newuserlog-byemail'          => 'password mannata via mail',
-'newuserlog-create-entry'     => "s'arriggistrau ora",
-'newuserlog-create2-entry'    => 'arriggistrau lu novu nomu utenti $1',
-'newuserlog-autocreate-entry' => 'account criatu automaticamenti',
+'newuserlogpage'     => 'Novi utenti',
+'newuserlogpagetext' => 'Di sècutu vènunu elincati li criazzioni di cunti novi (account).',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Diritti dô gruppu utenti',
@@ -2963,5 +2959,6 @@ Mèttiri lu nomu dû file senza lu prifissu "{{ns:file}}:"',
 # New logging system
 'revdelete-restricted'   => 'ristrizzioni ai suli amministratura attivate',
 'revdelete-unrestricted' => 'ristrizzioni pi suli amministraturi rimossi',
+'newuserlog-byemail'     => 'password mannata via mail',
 
 );

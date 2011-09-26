@@ -1893,12 +1893,8 @@ Protocolle supportate: <tt>$1</tt>',
 'activeusers-noresult'   => 'Nisciune utende acchiate.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Archivije de ccreazione de le utinde',
-'newuserlogpagetext'          => "Quiste ète l'archivije de le creazziune de l'utinde.",
-'newuserlog-byemail'          => 'password mannete pe e-mail',
-'newuserlog-create-entry'     => 'Utende nuève',
-'newuserlog-create2-entry'    => 'cunde utende ccrejete pe $1',
-'newuserlog-autocreate-entry' => 'Cunde utende ccrejete automaticamende',
+'newuserlogpage'     => 'Archivije de ccreazione de le utinde',
+'newuserlogpagetext' => "Quiste ète l'archivije de le creazziune de l'utinde.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Deritte de le gruppe utinde',
@@ -3533,5 +3529,6 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 'logentry-move-move-noredirect'       => "$1 pàgena {{GENDER:$2|spustate}} $3 a $4 senze lassà 'nu redirezionamende",
 'logentry-move-move_redir'            => "$1 pàgena {{GENDER:$2|spustate}} $3 a $4 cu 'u redirezionamende",
 'logentry-move-move_redir-noredirect' => "$1 pàgena {{GENDER:$2|spustate}} $3 a $4 sus a 'nu redirezionamende senze lassà 'nu redirezionamende",
+'newuserlog-byemail'                  => 'password mannete pe e-mail',
 
 );

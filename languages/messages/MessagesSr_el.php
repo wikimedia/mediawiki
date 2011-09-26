@@ -726,32 +726,36 @@ Možda ste već uspešno promenili lozinku ili zatražili novu privremenu.',
 'resetpass-temp-password'   => 'Privremena šifra:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Obnavljanje lozinke',
-'passwordreset-text'           => 'Popunite ovaj obrazac da biste primili e-poruku sa svojim podacima za prijavu.',
-'passwordreset-legend'         => 'Poništi lozinku',
-'passwordreset-disabled'       => 'Poništavanje lozinke je onemogućeno na ovom vikiju.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Unesite jedan od delova podataka ispod}}',
-'passwordreset-username'       => 'Korisničko ime:',
-'passwordreset-domain'         => 'Domen:',
-'passwordreset-email'          => 'E-adresa:',
-'passwordreset-emailtitle'     => 'Detalji naloga na vikiju {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Neko, verovatno vi, sa IP adrese $1 je zatražio novu lozinku na vikiju {{SITENAME}} ($4).
+'passwordreset'                    => 'Obnavljanje lozinke',
+'passwordreset-text'               => 'Popunite ovaj obrazac da biste primili e-poruku sa svojim podacima za prijavu.',
+'passwordreset-legend'             => 'Poništi lozinku',
+'passwordreset-disabled'           => 'Poništavanje lozinke je onemogućeno na ovom vikiju.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Unesite jedan od delova podataka ispod}}',
+'passwordreset-username'           => 'Korisničko ime:',
+'passwordreset-domain'             => 'Domen:',
+'passwordreset-capture'            => 'Pogledati krajnju poruku?',
+'passwordreset-capture-help'       => 'Ako označite ovu kućicu, e-poruka s privremenom lozinkom će biti prikazana i poslata korisniku.',
+'passwordreset-email'              => 'E-adresa:',
+'passwordreset-emailtitle'         => 'Detalji naloga na vikiju {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Neko, verovatno vi, sa IP adrese $1 je zatražio novu lozinku na vikiju {{SITENAME}} ($4).
 Sledeći {{PLURAL:$3|korisnički nalog je povezan|korisnički nalozi su povezani}} s ovom e-adresom:
 
 $2
 
 {{PLURAL:$3|Privremena lozinka ističe|Privremene lozinke ističu}} za {{PLURAL:$5|jedan dan|$5 dana|$5 dana}}.
 Prijavite se i izaberite novu lozinku. Ako je neko drugi zahtevao ovu radnju ili ste se setili lozinke i ne želite da je menjate, zanemarite ovu poruku.',
-'passwordreset-emailtext-user' => '{{GENDER:$1|Korisnik|Korisnica|Korisnik}} $1 je zatražio podsetnik o podacima za prijavu na vikiju {{SITENAME}} ($4).
+'passwordreset-emailtext-user'     => '{{GENDER:$1|Korisnik|Korisnica|Korisnik}} $1 je zatražio podsetnik o podacima za prijavu na vikiju {{SITENAME}} ($4).
 Sledeći {{PLURAL:$3|korisnički nalog je povezan|korisnički nalozi su povezani}} s ovom e-adresom:
 
 $2
 
 {{PLURAL:$3|Privremena lozinka ističe|Privremene lozinke ističu}} za {{PLURAL:$5|jedan dan|$5 dana|$5 dana}}.
 Prijavite se i izaberite novu lozinku. Ako je neko drugi zahtevao ovu radnju ili ste se setili lozinke i ne želite da je menjate, zanemarite ovu poruku.',
-'passwordreset-emailelement'   => 'Korisničko ime: $1
+'passwordreset-emailelement'       => 'Korisničko ime: $1
 Privremena lozinka: $2',
-'passwordreset-emailsent'      => 'Podsetnik o lozinci je poslat na vašu adresu.',
+'passwordreset-emailsent'          => 'Podsetnik o lozinci je poslat na vašu adresu.',
+'passwordreset-emailsent-capture'  => 'Poslat je podsetnik preko e-pošte (prikazan dole).',
+'passwordreset-emailerror-capture' => 'Napravljen je podsetnik za slanje preko e-pošte (prikazan dole), ali ga ne mogu poslati korisniku: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Promena e-adrese',
@@ -1457,6 +1461,7 @@ Ova informacija će biti javna.',
 'right-siteadmin'             => 'zaključavanje i otključavanje baze podataka',
 'right-override-export-depth' => 'Izvezi strane, uključujući povezane strane, do dubine 5',
 'right-sendemail'             => 'Pošalji e-poštu ostalim korisnicima',
+'right-passwordreset'         => 'pregledanje poruka za obnavljanje lozinke',
 
 # User rights log
 'rightslog'                  => 'Istorija korisničkih prava',
@@ -2028,12 +2033,8 @@ Podržani protokoli: <tt>$1</tt>',
 'activeusers-noresult'   => 'Korisnik nije pronađen.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Istorija otvaranja naloga',
-'newuserlogpagetext'          => 'Ovo je istorija stvaranja korisnika.',
-'newuserlog-byemail'          => 'lozinka poslata imejlom',
-'newuserlog-create-entry'     => 'Novi korisnik',
-'newuserlog-create2-entry'    => 'napravio novi nalog za $1',
-'newuserlog-autocreate-entry' => 'nalog automatski napravljen',
+'newuserlogpage'     => 'Istorija otvaranja naloga',
+'newuserlogpagetext' => 'Ovo je istorija stvaranja korisnika.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Prava korisničkih grupa',
@@ -3687,5 +3688,9 @@ Slike su prikazane u punoj veličini, a druge vrste datoteka se pokreću pomoću
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|je premestio|je premestila|premesti}} stranicu $3 na $4 preko preusmerenja bez ostavljanja preusmerenja',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|je označio|je označila|označi}} izmenu $4 pregledane stranice $3',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|je samostalno označio|je samostalno označila|samostalno označi}} izmenu $4 pregledane stranice $3',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|je otvorio|je otvorila|otvori}} korisnički nalog',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|je otvorio|je otvorila|otvori}} korisnički nalog $3',
+'logentry-newusers-autocreate'        => 'Nalog $1 je {{GENDER:$2|samostalno otvoren}}',
+'newuserlog-byemail'                  => 'lozinka poslata imejlom',
 
 );

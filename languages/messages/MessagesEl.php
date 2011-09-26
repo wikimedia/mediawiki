@@ -2143,12 +2143,8 @@ $1',
 'activeusers-noresult'   => 'Δεν βρέθηκε χρήστης.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Αρχείο δημιουργίας χρηστών',
-'newuserlogpagetext'          => 'Αυτή είναι μια καταγραφή δημιουργίας χρηστών.',
-'newuserlog-byemail'          => 'ο κωδικός έχει σταλεί μέσω ηλεκτρονικού μηνύματος',
-'newuserlog-create-entry'     => 'Νέος χρήστης',
-'newuserlog-create2-entry'    => 'δημιουργία νέου λογαριασμού: $1',
-'newuserlog-autocreate-entry' => 'Ο λογαριασμός έχει δημιουργηθεί αυτόματα',
+'newuserlogpage'     => 'Αρχείο δημιουργίας χρηστών',
+'newuserlogpagetext' => 'Αυτή είναι μια καταγραφή δημιουργίας χρηστών.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Δικαιώματα ομάδων χρηστών',
@@ -3771,5 +3767,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'εφάρμοσε περιορισμούς στους sysops',
 'revdelete-unrestricted' => 'αφαίρεσε περιορισμούς στους sysops',
+'newuserlog-byemail'     => 'ο κωδικός έχει σταλεί μέσω ηλεκτρονικού μηνύματος',
 
 );

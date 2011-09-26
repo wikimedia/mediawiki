@@ -438,8 +438,7 @@ Ná radbadal ák deskáne atíko matano.",
 'linksearch' => 'Darí gańđ',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Kárband joŕ kanning ná hisáb',
-'newuserlog-create-entry' => 'Púskun kárband pinváxubí',
+'newuserlogpage' => 'Kárband joŕ kanning ná hisáb',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(básk átá ridoband)',

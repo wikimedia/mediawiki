@@ -1029,8 +1029,7 @@ W'owandikira by'onoonya bw'osoosawo akagambo ''all:'', okunoonya kubuna Wikipedi
 'linksearch-ok' => 'Noonya',
 
 # Special:Log/newusers
-'newuserlogpage'          => "Olukalala olw'ebifudeyo mu kukolawo akawunti empya",
-'newuserlog-create-entry' => 'Akawunti empya',
+'newuserlogpage' => "Olukalala olw'ebifudeyo mu kukolawo akawunti empya",
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lukalala lwa bamemba)',

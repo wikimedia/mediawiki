@@ -248,9 +248,6 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'linksearch-pat' => 'Anapen so pattern:',
 'linksearch-ok'  => 'Anapen',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'Balon user',
-
 # E-mail user
 'emailuser'     => 'E-mail so ayan user',
 'emailfrom'     => 'Manlapud',

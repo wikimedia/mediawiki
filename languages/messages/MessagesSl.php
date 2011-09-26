@@ -703,16 +703,18 @@ Morda ste že uspešno spremenili geslo ali pa ste zahtevali novo začasno geslo
 'resetpass-temp-password'   => 'Začasno geslo:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Ponastavitev gesla',
-'passwordreset-text'           => 'Izpolnite obrazec, da prejmete e-poštni opomnik s podrobnostmi vašega računa.',
-'passwordreset-legend'         => 'Ponastavitev gesla',
-'passwordreset-disabled'       => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Vnesite enega od dela podatkov spodaj}}',
-'passwordreset-username'       => 'Uporabniško ime:',
-'passwordreset-domain'         => 'Domena:',
-'passwordreset-email'          => 'E-poštni naslov:',
-'passwordreset-emailtitle'     => 'Podrobnosti računa na {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval opomnik vaših
+'passwordreset'                    => 'Ponastavitev gesla',
+'passwordreset-text'               => 'Izpolnite obrazec, da prejmete e-poštni opomnik s podrobnostmi vašega računa.',
+'passwordreset-legend'             => 'Ponastavitev gesla',
+'passwordreset-disabled'           => 'Ponastavljanje gesla je na tem wikiju onemogočeno.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Vnesite enega od dela podatkov spodaj}}',
+'passwordreset-username'           => 'Uporabniško ime:',
+'passwordreset-domain'             => 'Domena:',
+'passwordreset-capture'            => 'Ogled nastale e-pošte?',
+'passwordreset-capture-help'       => 'Če potrdite to polje, vam bodo e-pošte (z začasnim geslom) pokazane in poslane uporabniku.',
+'passwordreset-email'              => 'E-poštni naslov:',
+'passwordreset-emailtitle'         => 'Podrobnosti računa na {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Nekdo (verjetno vi, z IP-naslova $1) je zahteval opomnik vaših
 podatkov o računu na {{SITENAME}} ($4). S tem e-poštnim naslovom
 {{PLURAL:$3|je povezan naslednji uporabniški račun|sta povezana naslednja uporabniška računa|so povezani naslednji uporabniški računi}}:
 
@@ -723,7 +725,7 @@ Prijavite se in izberite novo geslo sedaj. Če je zahtevo podal
 nekdo drug ali pa ste se spomnili svojega prvotnega gesla in ga več
 ne želite spremeniti, lahko to sporočilo prezrete in nadaljujete z uporabo
 svojega starega gesla.',
-'passwordreset-emailtext-user' => 'Uporabnik $1 na {{SITENAME}} je zahteval opomnik vaših podatkov o računu na {{SITENAME}}
+'passwordreset-emailtext-user'     => 'Uporabnik $1 na {{SITENAME}} je zahteval opomnik vaših podatkov o računu na {{SITENAME}}
 ($4). S tem e-poštnim naslovom {{PLURAL:$3|je povezan naslednji uporabniški račun|sta povezana naslednja uporabniška računa|so povezani naslednji uporabniški računi}}:
 
 $2
@@ -733,9 +735,11 @@ Prijavite se in izberite novo geslo sedaj. Če je zahtevo podal
 nekdo drug ali pa ste se spomnili svojega prvotnega gesla in ga več
 ne želite spremeniti, lahko to sporočilo prezrete in nadaljujete z uporabo
 svojega starega gesla.',
-'passwordreset-emailelement'   => 'Uporabniško ime: $1
+'passwordreset-emailelement'       => 'Uporabniško ime: $1
 Začasno geslo: $2',
-'passwordreset-emailsent'      => 'Opomnilna e-pošta je bila poslana.',
+'passwordreset-emailsent'          => 'Opomnilna e-pošta je bila poslana.',
+'passwordreset-emailsent-capture'  => 'E-poštni opomnik je bil poslan in je prikazan spodaj.',
+'passwordreset-emailerror-capture' => 'E-poštni opomnik je bil poslan in je prikazan spodaj, vendar pa pošiljanje uporabniku ni uspelo: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Sprememba e-poštnega naslova',
@@ -1451,6 +1455,7 @@ Podatek bo javno prikazan.',
 'right-siteadmin'             => 'Zaklepanje in odklepanje baze podatkov',
 'right-override-export-depth' => 'Izvoz strani, vključno s povezaimi straneh do globine 5',
 'right-sendemail'             => 'Pošiljanje e-pošte drugim uporabnikom',
+'right-passwordreset'         => 'Ogled e-pošt ponastavitve gesel',
 
 # User rights log
 'rightslog'                  => 'Dnevnik uporabniških pravic',
@@ -2049,12 +2054,8 @@ Podprti protokoli: <tt>$1</tt>',
 'activeusers-noresult'   => 'Noben uporabnik ni bil najden.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Dnevnik registracij uporabnikov',
-'newuserlogpagetext'          => 'Prikazan je dnevnik nedavnih registracij novih uporabnikov.',
-'newuserlog-byemail'          => 'geslo je bilo poslano po e-pošti',
-'newuserlog-create-entry'     => 'Nov uporabnik',
-'newuserlog-create2-entry'    => 'je ustvaril(-a) račun »$1«',
-'newuserlog-autocreate-entry' => 'Račun ustvarjen samodejno',
+'newuserlogpage'     => 'Dnevnik registracij uporabnikov',
+'newuserlogpagetext' => 'Prikazan je dnevnik nedavnih registracij novih uporabnikov.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Pravice uporabniških skupin',
@@ -3571,9 +3572,7 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'filepath-page'    => 'Datoteka:',
 'filepath-submit'  => 'Pojdi',
 'filepath-summary' => 'Ta posebna stran vrne polno pot do datoteke.
-Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v zanje določenih programih.
-
-Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
+Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v zanje določenih programih.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Iskanje podvojenih datotek',
@@ -3715,5 +3714,11 @@ Ta stran se sooča s tehničnimi težavami.',
 'logentry-move-move-noredirect'       => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4 brez preusmeritve',
 'logentry-move-move_redir'            => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4 prek preusmeritve',
 'logentry-move-move_redir-noredirect' => '$1 je {{GENDER:$2|premaknil|premaknila|premaknil(-a)}} stran $3 na $4 prek preusmeritve in brez preusmeritve',
+'logentry-patrol-patrol'              => '$1 je {{GENDER:$2|označil|označila|označil(-a)}} redakcijo $4 strani $3 kot nadzorovano',
+'logentry-patrol-patrol-auto'         => '$1 je samodejno {{GENDER:$2|označil|označila|označil(-a)}} redakcijo $4 strani $3 kot nadzorovano',
+'logentry-newusers-create'            => '$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril(-a)}} uporabniški račun',
+'logentry-newusers-create2'           => '$1 je {{GENDER:$2|ustvaril|ustvarila|ustvaril(-a)}} uporabniški račun $3',
+'logentry-newusers-autocreate'        => 'Račun $1 je bil samodejno {{GENDER:$2|ustvarjen}}',
+'newuserlog-byemail'                  => 'geslo je bilo poslano po e-pošti',
 
 );

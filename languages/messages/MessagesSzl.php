@@ -1410,12 +1410,8 @@ Uobsůgiwane protokoły: <tt>$1</tt>',
 'listusers-noresult' => 'Ńy znejdźůno žodnygo užytkowńika.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Nowe użytkowniki',
-'newuserlogpagetext'          => 'To je rejer uostatńo utworzůnych kůnt użytkowńikůw',
-'newuserlog-byemail'          => 'hasło uostało wysłane e-brifym',
-'newuserlog-create-entry'     => '– nowy użytkowńik',
-'newuserlog-create2-entry'    => '– utworzůł kůnto $1',
-'newuserlog-autocreate-entry' => '– kůnto utworzůne automatyczńy',
+'newuserlogpage'     => 'Nowe użytkowniki',
+'newuserlogpagetext' => 'To je rejer uostatńo utworzůnych kůnt użytkowńikůw',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Uprawńyńo grup užytkowńikůw',
@@ -2619,5 +2615,6 @@ Naškryflej sam mjano plika bez prefiksu „{{ns:file}}:”.',
 # New logging system
 'revdelete-restricted'   => 'naštaluj uograničyńo do administratorůw',
 'revdelete-unrestricted' => 'wycofej uograničyńo do administratorůw',
+'newuserlog-byemail'     => 'hasło uostało wysłane e-brifym',
 
 );

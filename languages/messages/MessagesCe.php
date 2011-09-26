@@ -1065,9 +1065,7 @@ PICT # тайп тайпан
 'activeusers' => 'Жигар декъашхой могlам',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Декъашхой дlабазбина тептар',
-'newuserlog-create-entry'     => 'Керла декъашхо',
-'newuserlog-autocreate-entry' => 'Дlайазвар кхоллина ша шех',
+'newuserlogpage' => 'Декъашхой дlабазбина тептар',
 
 # Special:ListGroupRights
 'listgrouprights'          => 'Декъашхойн тобанаши бакъонаш',

@@ -1780,12 +1780,8 @@ Goldanylýan protokollar: <tt>$1</tt>',
 'activeusers-noresult'   => 'Ulanyjy tapylmady.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Täze ulanyjy gündeligi',
-'newuserlogpagetext'          => 'Ulanyjy döretme gündeligi.',
-'newuserlog-byemail'          => 'parol e-poçta bilen iberildi',
-'newuserlog-create-entry'     => 'Täze ulanyjy',
-'newuserlog-create2-entry'    => 'täze $1 hasabyny döretdi',
-'newuserlog-autocreate-entry' => 'Hasap awtomatik döredildi',
+'newuserlogpage'     => 'Täze ulanyjy gündeligi',
+'newuserlogpagetext' => 'Ulanyjy döretme gündeligi.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Ulanyjy topary hukuklary',
@@ -3161,5 +3157,6 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 # New logging system
 'revdelete-restricted'   => 'administratorlara goýlan çäklendirmeler',
 'revdelete-unrestricted' => 'administratorlardan aýyrylan çäklendirmeler',
+'newuserlog-byemail'     => 'parol e-poçta bilen iberildi',
 
 );

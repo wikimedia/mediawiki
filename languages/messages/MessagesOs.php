@@ -821,8 +821,7 @@ $3',
 'listusers-submit' => 'Равдисын',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Архайджыты фæзындты лог',
-'newuserlog-create-entry' => 'Ног архайæджы аккаунт',
+'newuserlogpage' => 'Архайджыты фæзындты лог',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Къорд',

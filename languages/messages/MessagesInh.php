@@ -771,8 +771,7 @@ $messages = array(
 'linksearch-line' => '$1 тIа Iинк $2 юкъера',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Дакъалаьцархоший дIаязбeнна таптар',
-'newuserlog-create-entry' => 'Керда дакъалаьцархо',
+'newuserlogpage' => 'Дакъалаьцархоший дIаязбeнна таптар',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(тоабий дагарче)',

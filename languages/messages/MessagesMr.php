@@ -1989,12 +1989,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'activeusers-noresult'   => 'एकही सदस्य सापडला नाही.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'नवीन सदस्यांची नोंद',
-'newuserlogpagetext'          => 'ही नवीन सदस्यांची नोंद यादी आहे.',
-'newuserlog-byemail'          => 'परवलीचा शब्द इमेलमार्फत पाठविलेला आहे',
-'newuserlog-create-entry'     => 'नवीन सदस्य',
-'newuserlog-create2-entry'    => '$1 साठी सदस्यत्व घेतले.',
-'newuserlog-autocreate-entry' => 'खाते आपोआप तयार झाले',
+'newuserlogpage'     => 'नवीन सदस्यांची नोंद',
+'newuserlogpagetext' => 'ही नवीन सदस्यांची नोंद यादी आहे.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'सदस्य गट अधिकार',
@@ -3348,5 +3344,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'प्रबंधकांना बंधने दिली',
 'revdelete-unrestricted' => 'प्रबंधकांची बंधने काढली',
+'newuserlog-byemail'     => 'परवलीचा शब्द इमेलमार्फत पाठविलेला आहे',
 
 );

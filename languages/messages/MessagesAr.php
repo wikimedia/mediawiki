@@ -2322,12 +2322,8 @@ $1',
 'activeusers-noresult'   => 'لا مستخدمون تم إيجادهم.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'سجل إنشاء المستخدمين',
-'newuserlogpagetext'          => 'هذا سجل بعمليات إنشاء المستخدمين.',
-'newuserlog-byemail'          => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
-'newuserlog-create-entry'     => 'مستخدم جديد',
-'newuserlog-create2-entry'    => 'أنشأ حسابا جديدا $1',
-'newuserlog-autocreate-entry' => 'الحساب تم إنشاؤه تلقائيا',
+'newuserlogpage'     => 'سجل إنشاء المستخدمين',
+'newuserlogpagetext' => 'هذا سجل بعمليات إنشاء المستخدمين.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'صلاحيات مجموعات المستخدمين',
@@ -4113,5 +4109,6 @@ $1',
 'logentry-move-move-noredirect'       => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى $4 دون ترك تحويلة',
 'logentry-move-move_redir'            => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى التحويلة $4',
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى التحويلة $4 دون ترك تحويلة',
+'newuserlog-byemail'                  => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
 
 );

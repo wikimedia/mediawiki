@@ -958,10 +958,8 @@ Vos ploz limiter l' håynaedje tot tchoezixhant ene sôre di djournå, on no d' 
 Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Djournå des noveas uzeus',
-'newuserlogpagetext'       => "Chal pa dzo c' est ene djivêye des uzeus novelmint eredjîstrés.",
-'newuserlog-create-entry'  => 'Novea uzeu',
-'newuserlog-create2-entry' => 'conte ahivé po $1',
+'newuserlogpage'     => 'Djournå des noveas uzeus',
+'newuserlogpagetext' => "Chal pa dzo c' est ene djivêye des uzeus novelmint eredjîstrés.",
 
 # E-mail user
 'mailnologin'     => "Nole adresse d' evoyeu",

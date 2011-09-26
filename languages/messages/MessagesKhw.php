@@ -808,8 +808,7 @@ HTML tags لوڑے.',",
 'linksearch-line' => '$1 مربوط شیر $2 ری',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'نوشتۂ آمد صارف',
-'newuserlog-create-entry' => 'نوغ یوزر',
+'newuserlogpage' => 'نوشتۂ آمد صارف',
 
 # Special:ListGroupRights
 'listgrouprights-members' => 'ممبارانن فھرست',

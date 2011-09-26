@@ -1305,11 +1305,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => 'ማንም ተጠቃሚ አልተገኘም።',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'የአባልነት መዝገብ (user log)',
-'newuserlogpagetext'       => 'ይህ መዝገብ ወደ አባልነት የገቡትን ብዕር ስሞች ይዘርዝራል።',
-'newuserlog-byemail'       => 'ማለፊያ-ቃል በኤ-መልዕክት ተልኳል',
-'newuserlog-create-entry'  => 'አዲስ አባል',
-'newuserlog-create2-entry' => 'ለ$1 አባልነት ተፈጥሯል',
+'newuserlogpage'     => 'የአባልነት መዝገብ (user log)',
+'newuserlogpagetext' => 'ይህ መዝገብ ወደ አባልነት የገቡትን ብዕር ስሞች ይዘርዝራል።',
 
 # Special:ListGroupRights
 'listgrouprights'         => 'የተጠቃሚ ስብስባ መብቶች',
@@ -2276,5 +2273,8 @@ $3
 
 # Special:BlankPage
 'blankpage' => 'ባዶ ገጽ',
+
+# New logging system
+'newuserlog-byemail' => 'ማለፊያ-ቃል በኤ-መልዕክት ተልኳል',
 
 );

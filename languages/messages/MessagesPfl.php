@@ -439,8 +439,7 @@ Saide uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'linksearch' => 'Externe Links',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Naiaameldungs-Logbuch',
-'newuserlog-create-entry' => 'Nais Benutzerkonto',
+'newuserlogpage' => 'Naiaameldungs-Logbuch',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(Mitgliederlischt)',

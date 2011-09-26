@@ -1173,9 +1173,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => 'Nerast anėjuokiū nauduotuoju.',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Nauduotuojė kūrėma regėstros',
-'newuserlog-byemail'      => 'slaptažuodis ėšsiōsts par el. pašta',
-'newuserlog-create-entry' => 'Naus nauduotuos',
+'newuserlogpage' => 'Nauduotuojė kūrėma regėstros',
 
 # Special:ListGroupRights
 'listgrouprights'         => 'Nauduotuoju gropiu teisės',
@@ -1890,5 +1888,8 @@ Tamsta tēpuogi galėt [[Special:EditWatchlist/raw|redagoutė grīnaji keravuoja
 
 # Special:Tags
 'tags-edit' => 'taisītė',
+
+# New logging system
+'newuserlog-byemail' => 'slaptažuodis ėšsiōsts par el. pašta',
 
 );

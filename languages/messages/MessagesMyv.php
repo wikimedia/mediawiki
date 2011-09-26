@@ -1349,11 +1349,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'activeusers-noresult'   => 'Якинзэ-пакинзэ арасть',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Теицянь шкамодо-теемадо конёв',
-'newuserlogpagetext'       => 'Те теицянь шкавксто журнал',
-'newuserlog-byemail'       => 'салава валот кучозь е-сёрмасо',
-'newuserlog-create-entry'  => 'Од совиця',
-'newuserlog-create2-entry' => 'шкить од совамо тарка $1',
+'newuserlogpage'     => 'Теицянь шкамодо-теемадо конёв',
+'newuserlogpagetext' => 'Те теицянь шкавксто журнал',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Теиця куронть видечинзэ',
@@ -2156,5 +2153,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'htmlform-submit'              => 'Максомс',
 'htmlform-reset'               => 'Саемс мекев полавтоматнень',
 'htmlform-selectorother-other' => 'Лия',
+
+# New logging system
+'newuserlog-byemail' => 'салава валот кучозь е-сёрмасо',
 
 );

@@ -1014,10 +1014,7 @@ $1',
 'activeusers-noresult'   => 'ܠܐ ܡܦܠܚܢܐ ܐܫܬܟܚ.',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'ܣܓܠܐ ܕܒܪܝܬܐ ܕܡܦܠܚܢܐ',
-'newuserlog-byemail'       => 'ܡܠܬܐ ܕܥܠܠܐ ܐܫܬܕܪܬ ܒܝܕ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
-'newuserlog-create-entry'  => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ ܚܕܬܐ',
-'newuserlog-create2-entry' => 'ܒܪܐ ܚܘܫܒܢܐ ܚܕܬܐ $1',
+'newuserlogpage' => 'ܣܓܠܐ ܕܒܪܝܬܐ ܕܡܦܠܚܢܐ',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'ܙܕ̈ܩܐ ܕܟܢܘܫܬܐ ܕܡܦܠܚܢ̈ܐ',
@@ -1508,5 +1505,8 @@ $1',
 'htmlform-submit'              => 'ܫܕܪ',
 'htmlform-reset'               => 'ܠܐ ܬܥܒܕ ܫܘܚܠܦ̈ܐ',
 'htmlform-selectorother-other' => 'ܐܚܪܢܐ',
+
+# New logging system
+'newuserlog-byemail' => 'ܡܠܬܐ ܕܥܠܠܐ ܐܫܬܕܪܬ ܒܝܕ ܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
 
 );

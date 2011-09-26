@@ -2019,12 +2019,8 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'activeusers-noresult'   => 'Ingen brukarar funne.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Brukaropprettingslogg',
-'newuserlogpagetext'          => 'Dette er ein logg over oppretta brukarkontoar.',
-'newuserlog-byemail'          => 'passordet er sendt på e-post',
-'newuserlog-create-entry'     => 'Ny brukar',
-'newuserlog-create2-entry'    => 'oppretta kontoen $1',
-'newuserlog-autocreate-entry' => 'Konto oppretta automatisk',
+'newuserlogpage'     => 'Brukaropprettingslogg',
+'newuserlogpagetext' => 'Dette er ein logg over oppretta brukarkontoar.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Rettar for brukargrupper',
@@ -3486,5 +3482,6 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 # New logging system
 'revdelete-restricted'   => 'la til avgrensingar for administratorar',
 'revdelete-unrestricted' => 'fjerna avgrensingar for administratorar',
+'newuserlog-byemail'     => 'passordet er sendt på e-post',
 
 );

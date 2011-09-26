@@ -1968,12 +1968,8 @@ $1',
 'activeusers-noresult'   => 'કોઇ સક્રીય સભ્ય ન મળ્યો',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'નવા બનેલા સભ્યોનો લૉગ',
-'newuserlogpagetext'          => 'આ સભ્યોની રચનાનો લોગ છે.',
-'newuserlog-byemail'          => 'ગુપ્ત સંજ્ઞા ઇ-મેલ દ્વારા મોકલાઇ છે.',
-'newuserlog-create-entry'     => 'નવું ખાતું',
-'newuserlog-create2-entry'    => 'નવું ખાતું $1 ખોલાયું',
-'newuserlog-autocreate-entry' => 'સ્વયંચલિત રીતે ખુલેલા ખાતાં',
+'newuserlogpage'     => 'નવા બનેલા સભ્યોનો લૉગ',
+'newuserlogpagetext' => 'આ સભ્યોની રચનાનો લોગ છે.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'સભ્ય જૂથ ના હક્કો',
@@ -3396,5 +3392,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'પ્રબઁધકોના ફેરફાર કરવા પર પ્રતિબંધ મુકાયો',
 'revdelete-unrestricted' => 'પ્રબંધકોના ફેરફાર કરવા પર પ્રતિબંધ હટાવાયો.',
+'newuserlog-byemail'     => 'ગુપ્ત સંજ્ઞા ઇ-મેલ દ્વારા મોકલાઇ છે.',
 
 );

@@ -1958,12 +1958,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'activeusers-noresult'   => 'কোনো সদস্য পোৱা নগল ।',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'সদস্যৰ সৃষ্টি অভিলেখ',
-'newuserlogpagetext'          => 'এইখন এখন সদস্য সৃষ্টিৰ ল’গ ।',
-'newuserlog-byemail'          => 'গুপ্তশব্দ ই-মেইল কৰি পঠোৱা হৈছে',
-'newuserlog-create-entry'     => 'নতুন সদস্য',
-'newuserlog-create2-entry'    => '$1 ক নতুন সদস্যভুক্তি কৰা হল',
-'newuserlog-autocreate-entry' => "স্বয়ংক্ৰিয়ভাৱে একাউণ্ট সৃষ্টি কৰা হ'ল",
+'newuserlogpage'     => 'সদস্যৰ সৃষ্টি অভিলেখ',
+'newuserlogpagetext' => 'এইখন এখন সদস্য সৃষ্টিৰ ল’গ ।',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'ব্যৱহাৰকাৰী গোটৰ অধিকাৰ',
@@ -2858,7 +2854,12 @@ $1',
 'exif-gpslongitude'        => 'দ্রাঘিমাংশ',
 'exif-gpsaltitude'         => 'উচ্চতা',
 'exif-gpstimestamp'        => 'GPS সময় (পাৰমাণৱিক ঘড়ি)',
+'exif-gpssatellites'       => 'জোখ মাপত ব্যৱহৃত উপগ্ৰহ সমূহ',
+'exif-countrycodedest'     => 'দেশৰ ক’ড প্ৰদৰ্শিত',
+'exif-citydest'            => 'চহৰ প্ৰদৰ্শিত',
 'exif-objectname'          => 'চমু শীৰ্ষক',
+'exif-specialinstructions' => 'বিশেষ নির্দেশনাসমূহ',
+'exif-headline'            => 'শিৰোনাম',
 'exif-source'              => 'উত্‍স',
 'exif-writer'              => 'লেখক',
 'exif-languagecode'        => 'ভাষা',
@@ -3248,5 +3249,6 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 # New logging system
 'revdelete-restricted'   => 'এই সীমাবদ্ধতা প্ৰশাসকৰ ক্ষেত্ৰত প্ৰযোজ্য',
 'revdelete-unrestricted' => 'প্ৰশাসকৰ সীমাবদ্ধতা বাতিল কৰা হ’ল',
+'newuserlog-byemail'     => 'গুপ্তশব্দ ই-মেইল কৰি পঠোৱা হৈছে',
 
 );

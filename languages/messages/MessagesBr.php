@@ -1999,12 +1999,8 @@ Protokoloù skoret : <tt>$1</tt>',
 'activeusers-noresult'   => "N'eus bet kavet implijer ebet.",
 
 # Special:Log/newusers
-'newuserlogpage'              => "Marilh ar c'hontoù krouet",
-'newuserlogpagetext'          => "Marilh krouiñ ar c'hontoù implijer.",
-'newuserlog-byemail'          => 'ger-tremen kaset dre bostel',
-'newuserlog-create-entry'     => 'Implijer nevez',
-'newuserlog-create2-entry'    => 'krouet ar gont nevez $1',
-'newuserlog-autocreate-entry' => 'Kont krouet ent emgefre',
+'newuserlogpage'     => "Marilh ar c'hontoù krouet",
+'newuserlogpagetext' => "Marilh krouiñ ar c'hontoù implijer.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Gwirioù ar strolladoù implijer',
@@ -3688,5 +3684,6 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|kaset}} ar bajenn $3 da $4 gant $1 dreist un adkas hep lezel un adkas',
 'logentry-patrol-patrol'              => '{{GENDER:$2|Merket eo bet}} an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
 'logentry-patrol-patrol-auto'         => '{{GENDER:$2|Merket eo bet}} ent emgefre an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
+'newuserlog-byemail'                  => 'ger-tremen kaset dre bostel',
 
 );

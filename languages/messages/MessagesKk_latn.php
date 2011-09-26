@@ -1669,10 +1669,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => 'Qatıswşı tabılğan joq.',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Tirkelw jwrnalı',
-'newuserlogpagetext'       => 'Bul qatıswşı tirkelgi jasaw jwrnalı',
-'newuserlog-create-entry'  => 'Jaña qatıswşı',
-'newuserlog-create2-entry' => 'jaña tirkelgi jasadı — $1',
+'newuserlogpage'     => 'Tirkelw jwrnalı',
+'newuserlogpagetext' => 'Bul qatıswşı tirkelgi jasaw jwrnalı',
 
 # Special:ListGroupRights
 'listgrouprights'          => 'Qatıswşı tobı quqıqtarı',

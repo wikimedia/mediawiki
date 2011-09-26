@@ -2188,12 +2188,8 @@ Controlâd asse-ben les variantes de câssa.',
 'activeusers-noresult'   => 'Gins d’utilisator trovâ.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Jornal de les crèacions de comptos utilisator',
-'newuserlogpagetext'          => 'O est un jornal de les crèacions de comptos utilisator.',
-'newuserlog-byemail'          => 'mot de pâssa mandâ per mèssageria èlèctronica',
-'newuserlog-create-entry'     => 'Compto utilisator novél',
-'newuserlog-create2-entry'    => 'at fêt lo compto novél $1',
-'newuserlog-autocreate-entry' => 'Compto fêt ôtomaticament',
+'newuserlogpage'     => 'Jornal de les crèacions de comptos utilisator',
+'newuserlogpagetext' => 'O est un jornal de les crèacions de comptos utilisator.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Drêts a les tropes d’utilisators',
@@ -3983,5 +3979,6 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'logentry-move-move_redir-noredirect' => '$1 at {{GENDER:$2|dèplaciê}} la pâge $3 vers $4 en ècrasent sa redirèccion sen lèssiér una redirèccion',
 'logentry-patrol-patrol'              => '$1 at {{GENDER:$2|marcâ}} la vèrsion $4 de la pâge $3 coment survelyê',
 'logentry-patrol-patrol-auto'         => '$1 at {{GENDER:$2|marcâ}} ôtomaticament la vèrsion $4 de la pâge $3 coment survelyê',
+'newuserlog-byemail'                  => 'mot de pâssa mandâ per mèssageria èlèctronica',
 
 );

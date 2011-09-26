@@ -890,8 +890,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'listusers-submit' => 'Taishbyn',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Lioar chooishyn ny h-ymmydeyryn noa',
-'newuserlog-create-entry' => 'Ymmydeyr noa',
+'newuserlogpage' => 'Lioar chooishyn ny h-ymmydeyryn noa',
 
 # Special:ListGroupRights
 'listgrouprights-group'    => 'Possan',

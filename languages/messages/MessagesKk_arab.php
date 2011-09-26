@@ -1701,10 +1701,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => 'قاتىسۋشى تابىلعان جوق.',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'تىركەلۋ جۋرنالى',
-'newuserlogpagetext'       => 'بۇل قاتىسۋشى تىركەلگى جاساۋ جۋرنالى',
-'newuserlog-create-entry'  => 'جاڭا قاتىسۋشى',
-'newuserlog-create2-entry' => 'جاڭا تىركەلگى جاسادى — $1',
+'newuserlogpage'     => 'تىركەلۋ جۋرنالى',
+'newuserlogpagetext' => 'بۇل قاتىسۋشى تىركەلگى جاساۋ جۋرنالى',
 
 # Special:ListGroupRights
 'listgrouprights'          => 'قاتىسۋشى توبى قۇقىقتارى',

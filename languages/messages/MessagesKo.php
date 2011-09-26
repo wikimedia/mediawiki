@@ -2096,12 +2096,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'activeusers-noresult'   => '사용자가 없습니다.',
 
 # Special:Log/newusers
-'newuserlogpage'              => '사용자 등록 기록',
-'newuserlogpagetext'          => '사용자 등록 기록입니다.',
-'newuserlog-byemail'          => '이메일로 보낸 암호',
-'newuserlog-create-entry'     => '새 사용자',
-'newuserlog-create2-entry'    => '$1 계정을 새로 만듦',
-'newuserlog-autocreate-entry' => '계정이 자동으로 만들어졌습니다.',
+'newuserlogpage'     => '사용자 등록 기록',
+'newuserlogpagetext' => '사용자 등록 기록입니다.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => '사용자 권한 목록',
@@ -3577,5 +3573,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => '관리자에게 제한을 적용함',
 'revdelete-unrestricted' => '관리자에 대한 제한을 해제함',
+'newuserlog-byemail'     => '이메일로 보낸 암호',
 
 );

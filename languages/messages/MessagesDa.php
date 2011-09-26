@@ -1984,12 +1984,8 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'activeusers-noresult'   => 'Ingen brugere fundet.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Brugeroprettelseslog',
-'newuserlogpagetext'          => 'Dette er en log over de senest oprettede brugere.',
-'newuserlog-byemail'          => 'kodeord tilsendt pr. e-mail',
-'newuserlog-create-entry'     => 'Ny bruger',
-'newuserlog-create2-entry'    => 'oprettede ny brugerkonto $1',
-'newuserlog-autocreate-entry' => 'Automatisk oprettet konto',
+'newuserlogpage'     => 'Brugeroprettelseslog',
+'newuserlogpagetext' => 'Dette er en log over de senest oprettede brugere.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Brugergrupperettigheder',
@@ -3610,5 +3606,6 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 hen over en omdirigering og uden at efterlade en omdirigering',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerede}} version $4 af siden $3 som patruljeret',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerede}} automatisk version $4 af siden $3 som patruljeret',
+'newuserlog-byemail'                  => 'kodeord tilsendt pr. e-mail',
 
 );

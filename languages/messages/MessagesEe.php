@@ -409,9 +409,7 @@ Zã [[Special:Search|nuwo didi le wiki sia dzi]] kpɔ na axa yeyeawo.',
 'linksearch-ok' => 'Dii',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Ŋkɔŋlɔla yeyewo ƒe xexlẽme',
-'newuserlog-create-entry'  => 'Nuŋlɔla yeye',
-'newuserlog-create2-entry' => 'woŋlɔ ŋkɔ yeye na $1',
+'newuserlogpage' => 'Ŋkɔŋlɔla yeyewo ƒe xexlẽme',
 
 # Special:ListGroupRights
 'listgrouprights-group' => 'Hame',

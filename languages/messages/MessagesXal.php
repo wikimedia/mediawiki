@@ -860,8 +860,7 @@ $1',
 'linksearch' => 'Һаза заалһуд',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Бичгдлһнә сеткүл',
-'newuserlog-create-entry' => 'Шин демнч',
+'newuserlogpage' => 'Бичгдлһнә сеткүл',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(мөчүдин сеткүл)',

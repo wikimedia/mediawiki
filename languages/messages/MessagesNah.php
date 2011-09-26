@@ -999,10 +999,6 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 # Special:ListUsers
 'listusers-submit' => 'Tiquittāz',
 
-# Special:Log/newusers
-'newuserlog-create-entry'  => 'Yancuīc tlatequitiltilīlli',
-'newuserlog-create2-entry' => 'Yancuīc cuenta ōmochīuh $1',
-
 # Special:ListGroupRights
 'listgrouprights-group'  => 'Olōlli',
 'listgrouprights-rights' => 'Huelītiliztli',

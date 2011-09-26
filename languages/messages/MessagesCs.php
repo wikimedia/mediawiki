@@ -2156,12 +2156,8 @@ Podporované protokoly: <tt>$1</tt>',
 'activeusers-noresult'   => 'Nenalezen žádný uživatel.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Kniha nových uživatelů',
-'newuserlogpagetext'          => 'Toto je záznam nově zaregistrovaných uživatelů.',
-'newuserlog-byemail'          => 'heslo zasláno e-mailem',
-'newuserlog-create-entry'     => 'Nově založený uživatel',
-'newuserlog-create2-entry'    => 'založil účet $1',
-'newuserlog-autocreate-entry' => 'Účet vytvořen automaticky',
+'newuserlogpage'     => 'Kniha nových uživatelů',
+'newuserlogpagetext' => 'Toto je záznam nově zaregistrovaných uživatelů.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Práva skupin uživatelů',
@@ -3852,5 +3848,6 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 bez založení přesměrování',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 s výměnou přesměrování',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 místo přesměrování bez založení přesměrování',
+'newuserlog-byemail'                  => 'heslo zasláno e-mailem',
 
 );

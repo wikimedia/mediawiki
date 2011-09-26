@@ -1712,12 +1712,8 @@ Protocols sustegnids: <tt>$1</tt>',
 'activeusers-noresult'   => 'Chattà nagins utilisaders.',
 
 # Special:Log/newusers
-'newuserlogpage'              => "Log d'utilisaders creads",
-'newuserlogpagetext'          => "Quai è il log dals contos d'utilisader ch'èn vegnids creads.",
-'newuserlog-byemail'          => 'tramess il pled-clav per e-mail',
-'newuserlog-create-entry'     => "Nov conto d'utilisader",
-'newuserlog-create2-entry'    => 'Creà in nov conto "$1"',
-'newuserlog-autocreate-entry' => 'Quest conto è vegnì creà automaticamain',
+'newuserlogpage'     => "Log d'utilisaders creads",
+'newuserlogpagetext' => "Quai è il log dals contos d'utilisader ch'èn vegnids creads.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => "Dretgs da las gruppas d'utilisaders",
@@ -3207,5 +3203,8 @@ Questa pagina ha actualmain difficultads tecnicas.',
 # SQLite database support
 'sqlite-has-fts' => '$1 cun sustegn per la retschertga da text integrala',
 'sqlite-no-fts'  => '$1 senza sustegn per la retschertga da text integrala',
+
+# New logging system
+'newuserlog-byemail' => 'tramess il pled-clav per e-mail',
 
 );

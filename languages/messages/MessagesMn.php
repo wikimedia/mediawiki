@@ -1775,12 +1775,8 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'activeusers-noresult'   => 'Хэрэглэгч олдсонгүй.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Хэрэглэгч үүсгэлтийн лог',
-'newuserlogpagetext'          => 'Энэ нь хэрэглэгч үүсгэлтийн лог юм.',
-'newuserlog-byemail'          => 'мэйлээр явуулсан нууц үг',
-'newuserlog-create-entry'     => 'Шинэ хэрэглэгчийн бүртгэл',
-'newuserlog-create2-entry'    => '$1 гэсэн бүртгэлийг үүсгэв',
-'newuserlog-autocreate-entry' => 'Автоматаар үүсгэгдсэн бүртгэл',
+'newuserlogpage'     => 'Хэрэглэгч үүсгэлтийн лог',
+'newuserlogpagetext' => 'Энэ нь хэрэглэгч үүсгэлтийн лог юм.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Хэрэглэгчийн бүлгийн эрхүүд',
@@ -3091,5 +3087,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'системийн операторуудад тавигдсан хязгаарлалтууд',
 'revdelete-unrestricted' => 'системийн операторуудаас авч хаясан хязгаарлалтууд',
+'newuserlog-byemail'     => 'мэйлээр явуулсан нууц үг',
 
 );

@@ -2085,12 +2085,8 @@ Protokolli aċċettati: <tt>$1</tt>',
 'activeusers-noresult'   => 'L-ebda utent ma nstab.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Utenti ġodda',
-'newuserlogpagetext'          => "Dan hu reġistru tal-kreazzjoni ta' kontijiet ġodda.",
-'newuserlog-byemail'          => "il-password intbagħtet permezz ta' posta elettronika",
-'newuserlog-create-entry'     => 'Utent ġdid',
-'newuserlog-create2-entry'    => 'irreġistra l-isem tal-utent ġdid $1',
-'newuserlog-autocreate-entry' => 'Kont maħluq awtomatikament',
+'newuserlogpage'     => 'Utenti ġodda',
+'newuserlogpagetext' => "Dan hu reġistru tal-kreazzjoni ta' kontijiet ġodda.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Drittijiet tal-grupp tal-utenti',
@@ -3723,5 +3719,6 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|mexxa l-|mexxiet il-}}paġna $3 għal $4 mingħajr ma ħalla rindirizz',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|mexxa l-|mexxiet il-}}paġna $3 għal $4 fuq rindrizz',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|mexxa l-|mexxiet il-}}paġna $3 għal $4 fuq rindirizz mingħajr ma ħalla rindirizz',
+'newuserlog-byemail'                  => "il-password intbagħtet permezz ta' posta elettronika",
 
 );

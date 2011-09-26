@@ -2123,12 +2123,8 @@ Podržani protokoli: <tt>$1</tt>',
 'activeusers-noresult'   => 'Nije pronađen korisnik.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Zapis novih korisnika',
-'newuserlogpagetext'          => 'Ovo je zapis o registraciji novih korisnika.',
-'newuserlog-byemail'          => 'šifra je poslana putem e-maila',
-'newuserlog-create-entry'     => 'Novi korisnik',
-'newuserlog-create2-entry'    => 'napravljen novi račun za $1',
-'newuserlog-autocreate-entry' => 'Račun napravljen automatski',
+'newuserlogpage'     => 'Zapis novih korisnika',
+'newuserlogpagetext' => 'Ovo je zapis o registraciji novih korisnika.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Prava korisničkih grupa',
@@ -3811,5 +3807,6 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 # New logging system
 'revdelete-restricted'   => 'primijenjena ograničenja za administratore',
 'revdelete-unrestricted' => 'uklonjena ograničenja za administratore',
+'newuserlog-byemail'     => 'šifra je poslana putem e-maila',
 
 );

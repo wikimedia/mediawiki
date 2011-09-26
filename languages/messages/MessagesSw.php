@@ -1858,12 +1858,8 @@ Itifaki zinazoungwa mkono: <tt>$1</tt>',
 'activeusers-noresult'   => 'Watumiaji hawakupatikana.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Kumbukumbu za kuanzisha akaunti za watumiaji',
-'newuserlogpagetext'          => 'Hii ni kumbukumbu ya akaunti mpya zilizosajiliwa.',
-'newuserlog-byemail'          => 'neno la siri limetumwa kwa barua pepe',
-'newuserlog-create-entry'     => 'Akaunti ya mtumiaji mgeni',
-'newuserlog-create2-entry'    => 'amesajili akaunti mpya $1',
-'newuserlog-autocreate-entry' => 'Akaunti imejifungua yenyewe',
+'newuserlogpage'     => 'Kumbukumbu za kuanzisha akaunti za watumiaji',
+'newuserlogpagetext' => 'Hii ni kumbukumbu ya akaunti mpya zilizosajiliwa.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Wezo za kundi za watumiaji',
@@ -3043,5 +3039,6 @@ Tovuti hii inapata matatatizo wakati huu.',
 # New logging system
 'revdelete-restricted'   => 'aliwazuia pia wakabidhi wasiyaone maelezo',
 'revdelete-unrestricted' => 'aliwarudishia wakabidhi uwezo wa kuona maelezo',
+'newuserlog-byemail'     => 'neno la siri limetumwa kwa barua pepe',
 
 );

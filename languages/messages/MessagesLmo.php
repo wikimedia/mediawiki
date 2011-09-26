@@ -947,8 +947,7 @@ La descrizión sura la sua [$2 pagina de descrizión del file] l'è mustrada ch�
 'activeusers-from' => 'Fàm vedè i dupradur a partì da:',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Rrgister di druvat növ',
-'newuserlog-create-entry' => 'Druvadur növ',
+'newuserlogpage' => 'Rrgister di druvat növ',
 
 # Special:ListGroupRights
 'listgrouprights'         => 'Dirit del grüp di druvat',

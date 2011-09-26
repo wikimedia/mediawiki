@@ -896,8 +896,7 @@ Mel imbddeln z tisniwin li ittuyzdayni bla tasna li trit.',
 'linksearch-line' => '$1 tmmuttid z $2',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Aɣmis n willi mmurzmn imiḍan amsqdac',
-'newuserlog-create-entry' => 'Amḍan amaynu n umsqdac',
+'newuserlogpage' => 'Aɣmis n willi mmurzmn imiḍan amsqdac',
 
 # Special:ListGroupRights
 'listgrouprights-members' => 'Umuɣ n  midn',

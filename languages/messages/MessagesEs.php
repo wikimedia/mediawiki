@@ -1571,6 +1571,7 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'right-siteadmin'             => 'Bloquear y desbloquear la base de datos',
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
+'right-passwordreset'         => 'Reestablecer contraseña de un usuario ([[Special:PasswordReset|página especial]])',
 
 # User rights log
 'rightslog'                  => 'Cambios de perfil de usuario',
@@ -1916,7 +1917,7 @@ La descripción en su [$2 página de descripción del archivo] está mostrada de
 'filedelete-intro'            => "Estás borrando el archivo '''[[Media:$1|$1]]''' así como todo su historial.",
 'filedelete-intro-old'        => "Estás borrando la versión de '''[[Media:$1|$1]]''' del [$4 $2 a las $3].",
 'filedelete-comment'          => 'Motivo:',
-'filedelete-submit'           => 'Borrar',
+'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "'''$1''' ha sido borrado.",
 'filedelete-success-old'      => "La version de '''[[Media:$1|$1]]''' del $2 a las $3 ha sido borrada.",
 'filedelete-nofile'           => "'''$1''' no existe.",
@@ -2141,12 +2142,8 @@ Protocolos soportados: <tt>$1</tt>',
 'activeusers-noresult'   => 'No se encontraron usuarios.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Registro de creación de usuarios',
-'newuserlogpagetext'          => 'Este es un registro de creación de usuarios.',
-'newuserlog-byemail'          => 'contraseña enviada por correo electrónico',
-'newuserlog-create-entry'     => 'Usuario nuevo',
-'newuserlog-create2-entry'    => 'Nueva cuenta creada $1',
-'newuserlog-autocreate-entry' => 'Cuenta creada automáticamente',
+'newuserlogpage'     => 'Registro de creación de usuarios',
+'newuserlogpagetext' => 'Este es un registro de creación de usuarios.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Permisos del grupo de usuarios',
@@ -3775,5 +3772,6 @@ Este sitio está experimentando dificultades técnicas.',
 # New logging system
 'revdelete-restricted'   => 'restricciones para administradores aplicadas',
 'revdelete-unrestricted' => 'restricciones para administradores eliminadas',
+'newuserlog-byemail'     => 'contraseña enviada por correo electrónico',
 
 );

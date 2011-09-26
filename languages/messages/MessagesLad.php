@@ -812,8 +812,7 @@ La descripción en su [$2 hoja de descripción del arxivo] está amostrada debax
 'linksearch' => 'Linkes eksternos',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Registro de creación de usuarios',
-'newuserlog-create-entry' => 'Usuario nuevo',
+'newuserlogpage' => 'Registro de creación de usuarios',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(ver los miembros de este grupo)',

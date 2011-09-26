@@ -1910,12 +1910,8 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'activeusers-noresult'   => 'Kei Benutzer gfunde.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Nejaamäldigs-Logbuech',
-'newuserlogpagetext'          => 'Des isch e Logbuech fir nej aagleiti Benutzerchonte.',
-'newuserlog-byemail'          => 's Passwort isch per E-Mail gschickt wore',
-'newuserlog-create-entry'     => 'Benutzer isch nej regischtriert wore',
-'newuserlog-create2-entry'    => 'het e Benutzerkonto aagleit fir $1',
-'newuserlog-autocreate-entry' => 'Benutzerkonto isch automatisch aagleit wore',
+'newuserlogpage'     => 'Nejaamäldigs-Logbuech',
+'newuserlogpagetext' => 'Des isch e Logbuech fir nej aagleiti Benutzerchonte.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Benutzergruppe-Rächt',
@@ -3453,5 +3449,6 @@ Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gsta
 # New logging system
 'revdelete-restricted'   => 'Yyschränkige gälte au fir Ammanne',
 'revdelete-unrestricted' => 'Yyschränkige fir Ammanne ufghobe',
+'newuserlog-byemail'     => 's Passwort isch per E-Mail gschickt wore',
 
 );

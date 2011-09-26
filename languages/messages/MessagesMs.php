@@ -693,28 +693,32 @@ Anda mungkin telah pun berjaya menukar kata laluan anda atau meminta kata laluan
 'resetpass-temp-password'   => 'Kata laluan sementara:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Set semula kata laluan',
-'passwordreset-text'           => 'Isikan borang ini untuk menerima peringatan butiran akaun anda melalui e-mel.',
-'passwordreset-legend'         => 'Set semula kata laluan',
-'passwordreset-disabled'       => 'Ciri set semula kata laluan telah dimatikan di wiki ini.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Isikan data di bawah}}',
-'passwordreset-username'       => 'Nama pengguna:',
-'passwordreset-domain'         => 'Domain:',
-'passwordreset-email'          => 'Alamat e-mel:',
-'passwordreset-emailtitle'     => 'Butiran akaun di {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Ada orang (mungkin anda, dari alamat IP $1) yang memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4).  {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
+'passwordreset'                    => 'Set semula kata laluan',
+'passwordreset-text'               => 'Isikan borang ini untuk menerima peringatan butiran akaun anda melalui e-mel.',
+'passwordreset-legend'             => 'Set semula kata laluan',
+'passwordreset-disabled'           => 'Ciri set semula kata laluan telah dimatikan di wiki ini.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Isikan data di bawah}}',
+'passwordreset-username'           => 'Nama pengguna:',
+'passwordreset-domain'             => 'Domain:',
+'passwordreset-capture'            => 'Lihat e-mel yang terhasil?',
+'passwordreset-capture-help'       => 'Jika anda menandai ruang ini, e-mel (yang membawa kata laluan sementara) akan ditunjukkan kepada anda dan juga dihantar kepada pengguna itu.',
+'passwordreset-email'              => 'Alamat e-mel:',
+'passwordreset-emailtitle'         => 'Butiran akaun di {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Ada orang (mungkin anda, dari alamat IP $1) yang memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4).  {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
 
 $2
 
 {{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa {{PLURAL:$5|sehari|$5 hari}}. Anda mesti log masuk dan buat kata laluan baru sekarang juga. Jika permohonan ini dibuat oleh orang lain, ataupun jika anda teringat balik kata laluan lama anda, dan tidak ingin lagi untuk menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
-'passwordreset-emailtext-user' => 'Pengguna $1 di {{SITENAME}} memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4). {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
+'passwordreset-emailtext-user'     => 'Pengguna $1 di {{SITENAME}} memohon peringatan butiran akaun anda untuk {{SITENAME}} ($4). {{PLURAL:$3|Akaun|Akaun-akaun}} pengguna yang berikut dikaitkan dengan alamat e-mel ini:
 
 $2
 
 {{PLURAL:$3|Kata|Kata-kata}} laluan sementara ini akan luput dalam masa {{PLURAL:$5|sehari|$5 hari}}. Anda mesti log masuk dan buat kata laluan baru sekarang juga. Jika permohonan ini dibuat oleh orang lain, ataupun jika anda teringat balik kata laluan lama anda, dan tidak ingin lagi untuk menukarnya, anda boleh mengabaikan pesanan ini dan terus menggunakan kata laluan lama anda.',
-'passwordreset-emailelement'   => 'Nama pengguna: $1
+'passwordreset-emailelement'       => 'Nama pengguna: $1
 Kata laluan sementara: $2',
-'passwordreset-emailsent'      => 'E-mel peringatan telah dihantar.',
+'passwordreset-emailsent'          => 'E-mel peringatan telah dihantar.',
+'passwordreset-emailsent-capture'  => 'E-mel peringatan (seperti di bawah) telah dihantar.',
+'passwordreset-emailerror-capture' => 'E-mel peringatan (seperti di bawah) telah dihasilkan tetapi tidak dapat dihantar kepada pengguna: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Tukar alamat e-mel',
@@ -1420,6 +1424,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'right-siteadmin'             => 'Mengunci dan membuka kunci pangkalan data',
 'right-override-export-depth' => 'Mengeksport laman termasuk laman dipaut sehingga kedalaman 5',
 'right-sendemail'             => 'Mengirim e-mel kepada pengguna-pengguna lain',
+'right-passwordreset'         => 'Lihat e-mel set semula kata laluan',
 
 # User rights log
 'rightslog'                  => 'Log hak pengguna',
@@ -1978,12 +1983,8 @@ Protokol yang disokong: <tt>$1</tt>',
 'activeusers-noresult'   => 'Tiada pengguna dijumpai.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Log akaun baru',
-'newuserlogpagetext'          => 'Yang berikut ialah log penciptaan pengguna.',
-'newuserlog-byemail'          => 'kata laluan dihantar melalui e-mel',
-'newuserlog-create-entry'     => 'Pengguna baru',
-'newuserlog-create2-entry'    => 'membuka akaun $1',
-'newuserlog-autocreate-entry' => 'Akaun dibuka secara automatik',
+'newuserlogpage'     => 'Log akaun baru',
+'newuserlogpagetext' => 'Yang berikut ialah log penciptaan pengguna.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Hak kumpulan pengguna',
@@ -3632,5 +3633,9 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|mengalihkan}} laman $3 ke $4 pada satu lencongan tanpa meninggalkan lencongan',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|menandakan}} semakan $4 daripada laman $3 sebagai dironda',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|menandakan}} semakan $4 daripada laman $3 sebagai dironda secara automatik',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|membuka}} akaun pengguna',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|membuka}} akaun pengguna $3',
+'logentry-newusers-autocreate'        => 'Akaun $1 {{GENDER:$2|dibuka}} secara automatik',
+'newuserlog-byemail'                  => 'kata laluan dihantar melalui e-mel',
 
 );

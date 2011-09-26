@@ -2120,12 +2120,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization കാണുക.',
 'activeusers-noresult'   => 'ഉപയോക്താക്കളില്ല',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'ഉപയോക്തൃ സൃഷ്ടിയുടെ രേഖ',
-'newuserlogpagetext'          => 'പുതിയതായി അംഗത്വമെടുത്ത ഉപയോക്താക്കളുടെ പട്ടിക താഴെ കാണാം.',
-'newuserlog-byemail'          => 'രഹസ്യവാക്ക് ഇമെയിൽ വഴി അയച്ചിരിക്കുന്നു',
-'newuserlog-create-entry'     => 'പുതിയ ഉപയോക്താവ്',
-'newuserlog-create2-entry'    => 'പുതിയ അംഗത്വം $1 സൃഷ്ടിച്ചിരിക്കുന്നു',
-'newuserlog-autocreate-entry' => 'യാന്ത്രികമായി സൃഷ്ടിക്കപ്പെട്ട അംഗത്വം',
+'newuserlogpage'     => 'ഉപയോക്തൃ സൃഷ്ടിയുടെ രേഖ',
+'newuserlogpagetext' => 'പുതിയതായി അംഗത്വമെടുത്ത ഉപയോക്താക്കളുടെ പട്ടിക താഴെ കാണാം.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'ഉപയോക്തൃവിഭാഗത്തിന്റെ അവകാശങ്ങൾ',
@@ -3740,5 +3736,6 @@ $1',
 'revdelete-unrestricted'            => 'കാര്യനിർവാഹകർക്ക് ഏർപ്പെടുത്തിയ പ്രവർത്തന അതിരുകൾ നീക്കം ചെയ്തിരിക്കുന്നു',
 'logentry-move-move'                => '$1 എന്ന ഉപയോക്താവ് $3 എന്ന താൾ $4 ആയി {{GENDER:$2|മാറ്റിയിരിക്കുന്നു}}',
 'logentry-move-move-noredirect'     => '$3 എന്ന താൾ $4 എന്ന തലക്കെട്ടിലേയ്ക്ക് തിരിച്ചുവിടലില്ലാതെ $1 {{GENDER:$2|മാറ്റി}}',
+'newuserlog-byemail'                => 'രഹസ്യവാക്ക് ഇമെയിൽ വഴി അയച്ചിരിക്കുന്നു',
 
 );

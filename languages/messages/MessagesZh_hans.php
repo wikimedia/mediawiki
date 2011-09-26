@@ -1998,12 +1998,8 @@ $1',
 'activeusers-noresult'   => '找不到用户。',
 
 # Special:Log/newusers
-'newuserlogpage'              => '用户创建日志',
-'newuserlogpagetext'          => '本日志是显示新注册用户的日志',
-'newuserlog-byemail'          => '密码已由电子邮件发出',
-'newuserlog-create-entry'     => '新用户账户',
-'newuserlog-create2-entry'    => '已创建$1的新账户',
-'newuserlog-autocreate-entry' => '已自动创建帐户',
+'newuserlogpage'     => '用户创建日志',
+'newuserlogpagetext' => '本日志是显示新注册用户的日志',
 
 # Special:ListGroupRights
 'listgrouprights'                      => '用户组权限',
@@ -3649,5 +3645,6 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'logentry-move-move-noredirect'       => '$1{{GENDER:$2|移动}}$3页面至$4，不留重定向',
 'logentry-move-move_redir'            => '$1通过重定向{{GENDER:$2|移动}}$3页面至$4',
 'logentry-move-move_redir-noredirect' => '$1通过重定向{{GENDER:$2|移动}}$3页面至$4，不留重定向',
+'newuserlog-byemail'                  => '密码已由电子邮件发出',
 
 );

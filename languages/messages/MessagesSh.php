@@ -2060,12 +2060,8 @@ Podržani protokoli: <tt>$1</tt>',
 'activeusers-noresult'   => 'Nije pronađen korisnik.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Registar novih korisnika',
-'newuserlogpagetext'          => 'Ovo je evidencija registracije novih korisnika.',
-'newuserlog-byemail'          => 'lozinka je poslana putem e-maila',
-'newuserlog-create-entry'     => 'Novi korisnički račun',
-'newuserlog-create2-entry'    => 'napravljen novi račun za $1',
-'newuserlog-autocreate-entry' => 'Račun napravljen automatski',
+'newuserlogpage'     => 'Registar novih korisnika',
+'newuserlogpagetext' => 'Ovo je evidencija registracije novih korisnika.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Prava korisničkih grupa',
@@ -3699,5 +3695,6 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4 bez ostavljanja preusmjerenja',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|je premjestio|je premjestila|je premjestio}} stranicu $3 na $4 preko preusmjerenja',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4 preko preusmjerenja bez ostavljanja preusmjerenja',
+'newuserlog-byemail'                  => 'lozinka je poslana putem e-maila',
 
 );

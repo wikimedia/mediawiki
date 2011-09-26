@@ -841,16 +841,18 @@ $2',
 'resetpass-temp-password'   => 'Привремена лозинка:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Менување на лозинка',
-'passwordreset-text'           => 'Пополнете го образецов за да ви испратиме потсетник за вашите најавни податоци по е-пошта.',
-'passwordreset-legend'         => 'Нова лозинка',
-'passwordreset-disabled'       => 'На ова вики е оневозможено задавање на нова лозинка.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Подолу внесете еден податок}}',
-'passwordreset-username'       => 'Корисничко име:',
-'passwordreset-domain'         => 'Домен:',
-'passwordreset-email'          => 'Е-пошта:',
-'passwordreset-emailtitle'     => 'Најавни податоци за {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Некој (веројатно вие, од IP-адресата $1) побара потсетник на вашите
+'passwordreset'                    => 'Менување на лозинка',
+'passwordreset-text'               => 'Пополнете го образецов за да ви испратиме потсетник за вашите најавни податоци по е-пошта.',
+'passwordreset-legend'             => 'Нова лозинка',
+'passwordreset-disabled'           => 'На ова вики е оневозможено задавање на нова лозинка.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Подолу внесете еден податок}}',
+'passwordreset-username'           => 'Корисничко име:',
+'passwordreset-domain'             => 'Домен:',
+'passwordreset-capture'            => 'Да ја прикажам пораката?',
+'passwordreset-capture-help'       => 'Ако го штиклирате кутивчево, ќе ви се прикаже пораката (со привремената лозинка) и истата ќе му биде испратена на корисникот.',
+'passwordreset-email'              => 'Е-пошта:',
+'passwordreset-emailtitle'         => 'Најавни податоци за {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Некој (веројатно вие, од IP-адресата $1) побара потсетник на вашите
 најавни податоци за {{SITENAME}} ($4). Оваа е-поштенска адреса е наведена во
 {{PLURAL:$3|следнава корисничка сметка|следниве кориснички сметки}}:
 
@@ -860,7 +862,7 @@ $2
 Сега треба да се најавите и да внесете нова лозинка. Ако ова барање го
 поставил некој друг, или пак во меѓувреме сте се сетиле на лозинката, и не сакате
 да ја менувате, тогаш слободно занемарете ја поракава и продолжете да ја користите старата.',
-'passwordreset-emailtext-user' => 'Корисникот $1 на {{SITENAME}} побара да потсетник за вашите најавни податоци на {{SITENAME}}
+'passwordreset-emailtext-user'     => 'Корисникот $1 на {{SITENAME}} побара да потсетник за вашите најавни податоци на {{SITENAME}}
 ($4). Оваа е-поштенска адреса е наведена во {{PLURAL:$3|следнава корисничка сметка|следниве кориснички сметки}}:
 
 $2
@@ -869,9 +871,11 @@ $2
 Сега треба да се најавите и да внесете нова лозинка. Ако ова барање го
 поставил некој друг, или пак во меѓувреме сте се сетиле на лозинката, и не сакате
 да ја менувате, тогаш слободно занемарете ја поракава и продолжете да ја користите старата.',
-'passwordreset-emailelement'   => 'Корисничко име: $1
+'passwordreset-emailelement'       => 'Корисничко име: $1
 Привремена лозинка: $2',
-'passwordreset-emailsent'      => 'Испратен е потсетник по е-пошта',
+'passwordreset-emailsent'          => 'Испратен е потсетник по е-пошта',
+'passwordreset-emailsent-capture'  => 'Испратен е потсетник по е-пошта (прикажан подолу).',
+'passwordreset-emailerror-capture' => 'Создаден е потсетник за испраќање по е-пошта (прикажан подолу), но не успеав да го испратам на корисникот: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Смени е-пошта',
@@ -2197,12 +2201,8 @@ $1',
 'activeusers-noresult'   => 'Нема пронајдено корисници.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Дневник на регистрирања на корисници',
-'newuserlogpagetext'          => 'Ова е дневник на регистрирани корисници.',
-'newuserlog-byemail'          => 'испратена лозинка по е-пошта',
-'newuserlog-create-entry'     => 'Нов корисник',
-'newuserlog-create2-entry'    => 'создадено нова корисничка сметка $1',
-'newuserlog-autocreate-entry' => 'Автоматски создадена корисничка сметка',
+'newuserlogpage'     => 'Дневник на регистрирања на корисници',
+'newuserlogpagetext' => 'Ова е дневник на регистрирани корисници.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Права на кориснички групи',
@@ -3130,10 +3130,10 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
-'seconds-abbrev' => 'с',
-'minutes-abbrev' => 'м',
-'hours-abbrev'   => 'ч',
-'days-abbrev'    => 'д',
+'seconds-abbrev' => '$1 с',
+'minutes-abbrev' => '$1 м',
+'hours-abbrev'   => '$1 ч',
+'days-abbrev'    => '$1 д',
 'seconds'        => '{{PLURAL:$1|$1 секунда|$1 секунди}}',
 'minutes'        => '{{PLURAL:$1|$1 минута|$1 минути}}',
 'hours'          => '{{PLURAL:$1|$1 час|$1 часа}}',
@@ -4043,5 +4043,6 @@ $1',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|ја премести}} страницата $3 на $4 презапишувајќи врз пренасочување без да остави пренасочување',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|ја означи}} ревизијата $4 на страницата $3 како испатролирана',
 'logentry-patrol-patrol-auto'         => '$1 автоматски {{GENDER:$2|ја означи}} ревизијата $4 на страницата $3 како испатролирана',
+'newuserlog-byemail'                  => 'испратена лозинка по е-пошта',
 
 );

@@ -1995,12 +1995,8 @@ Template:消除歧義',
 'activeusers-noresult'   => '找不到用戶。',
 
 # Special:Log/newusers
-'newuserlogpage'              => '新進用戶名冊',
-'newuserlogpagetext'          => '這是一個最近被創建用戶的新日誌',
-'newuserlog-byemail'          => '密碼已由電子郵件寄出',
-'newuserlog-create-entry'     => '新進使用者帳戶',
-'newuserlog-create2-entry'    => '已創建$1的新賬戶',
-'newuserlog-autocreate-entry' => '自動建立的帳號',
+'newuserlogpage'     => '新進用戶名冊',
+'newuserlogpagetext' => '這是一個最近被創建用戶的新日誌',
 
 # Special:ListGroupRights
 'listgrouprights'                      => '用戶群組權限',
@@ -3655,5 +3651,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'logentry-move-move-noredirect'       => '$1{{GENDER:$2|移動}}$3頁面至$4，不留重定向',
 'logentry-move-move_redir'            => '$1通過重定向{{GENDER:$2|移動}}$3頁面至$4',
 'logentry-move-move_redir-noredirect' => '$1通過重定向{{GENDER:$2|移動}}$3頁面至$4，不留重定向',
+'newuserlog-byemail'                  => '密碼已由電子郵件寄出',
 
 );

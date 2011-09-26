@@ -1177,9 +1177,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit'   => 'Ipahiling',
 'listusers-noresult' => 'Mayong nakuang parágamit.',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'Bâgong parágamit',
-
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Grupo',
 'listgrouprights-rights'  => 'Derechos',

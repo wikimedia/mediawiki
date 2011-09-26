@@ -992,8 +992,7 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 'listusers-blocked'  => '(waa la mamnuucay)',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Gudagalaha Isticmaale sameeyay',
-'newuserlog-create-entry' => 'Isticmaale cusub',
+'newuserlogpage' => 'Gudagalaha Isticmaale sameeyay',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(Inta ka mid ah liiskooda)',

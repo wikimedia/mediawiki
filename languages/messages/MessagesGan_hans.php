@@ -1188,8 +1188,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => '寻伓到用户。',
 
 # Special:Log/newusers
-'newuserlogpage'          => '新开户𠮶人名单',
-'newuserlog-create-entry' => '新用户𠮶账户',
+'newuserlogpage' => '新开户𠮶人名单',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '（成员名单）',

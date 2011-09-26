@@ -1524,12 +1524,8 @@ $3 نے $2 وجہ دسی اے۔',
 'activeusers-noresult'   => 'کوئی ورتن والا نئیں لبیا۔',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'ورتاوا بنان آلی لاگ',
-'newuserlogpagetext'          => 'اے ورتن والا بنان دی لاگ اے۔',
-'newuserlog-byemail'          => 'کنجی ای-میل راہ پیج دتی گئی۔',
-'newuserlog-create-entry'     => 'نوا ورتن آلا',
-'newuserlog-create2-entry'    => '$1 نواں اکاؤنٹ بنایا گیا۔',
-'newuserlog-autocreate-entry' => 'کھاتہ اپنے آپ کھولیا گیا۔',
+'newuserlogpage'     => 'ورتاوا بنان آلی لاگ',
+'newuserlogpagetext' => 'اے ورتن والا بنان دی لاگ اے۔',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'ورتن ٹرلی حق',
@@ -2964,5 +2960,6 @@ $1',
 'logentry-move-move-noredirect'       => '$1 {{جنس:$2|پلٹی}} صفہ $3 توں $4 اک ڑیڈائرکٹ چھڈے بنا',
 'logentry-move-move_redir'            => '$1 {{جنس:$2|پلٹی}} صفہ $3 توں $4 ریڈائرکٹ',
 'logentry-move-move_redir-noredirect' => '$1 {{جنس:$2|پلٹی}} صفہ $3 توں $4 اک ریڈائرکٹ دے بنا کسے ریڈائرکٹ دتیاں',
+'newuserlog-byemail'                  => 'کنجی ای-میل راہ پیج دتی گئی۔',
 
 );

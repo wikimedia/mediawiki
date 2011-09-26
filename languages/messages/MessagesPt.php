@@ -2167,12 +2167,8 @@ Veja também as [[Special:WantedCategories|categorias desejadas]].',
 'activeusers-noresult'   => 'Nenhum utilizador encontrado.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Registo de criação de utilizadores',
-'newuserlogpagetext'          => 'Este é um registo de novas contas de utilizador',
-'newuserlog-byemail'          => 'palavra-chave enviada por correio-electrónico',
-'newuserlog-create-entry'     => 'Novo utilizador',
-'newuserlog-create2-entry'    => 'criou nova conta $1',
-'newuserlog-autocreate-entry' => 'Conta criada automaticamente',
+'newuserlogpage'     => 'Registo de criação de utilizadores',
+'newuserlogpagetext' => 'Este é um registo de novas contas de utilizador',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Privilégios dos grupos de utilizadores',
@@ -3851,5 +3847,6 @@ Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moveu}} página $3 para $4 sem deixar um redireccionamento',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|moveu}} a página $3 para $4 através de um redireccionamento',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a página $3 para $4 sem um redireccionamento',
+'newuserlog-byemail'                  => 'palavra-chave enviada por correio-electrónico',
 
 );

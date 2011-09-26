@@ -1808,12 +1808,8 @@ $1',
 'activeusers-noresult'   => 'Ҡатнашыусылар табылманы',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Яңы ҡулланыусы яҙмалары',
-'newuserlogpagetext'          => 'Яңы теркәлгән ҡатнашыусылар яҙмалары журналы.',
-'newuserlog-byemail'          => 'пароль электрон почта адресы аша ебәрелде',
-'newuserlog-create-entry'     => 'Яңы ҡулланыусы',
-'newuserlog-create2-entry'    => 'яңы $1 иҫәп яҙмаһын булдырған',
-'newuserlog-autocreate-entry' => 'Иҫәп яҙмаһы үҙенән-үҙе булдырылған',
+'newuserlogpage'     => 'Яңы ҡулланыусы яҙмалары',
+'newuserlogpagetext' => 'Яңы теркәлгән ҡатнашыусылар яҙмалары журналы.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Ҡатнашыусылар төркөмө хоҡуҡтары',
@@ -3232,5 +3228,6 @@ MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР 
 # New logging system
 'revdelete-restricted'   => 'хәкимдәргә ҡаршы ҡулланылған сикләүҙәр',
 'revdelete-unrestricted' => 'хәкимдәрҙән алынған сикләүҙәр',
+'newuserlog-byemail'     => 'пароль электрон почта адресы аша ебәрелде',
 
 );

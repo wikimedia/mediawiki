@@ -778,8 +778,7 @@ En '''tew''' ew folednow eus war agas [[Special:Watchlist|rol golyas]].",
 'listusers-submit' => 'Disqwedhes',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Covnoten gwryans devnydhyoryon',
-'newuserlog-create-entry' => 'Devnydhyer noweth',
+'newuserlogpage' => 'Covnoten gwryans devnydhyoryon',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(rol an esely)',

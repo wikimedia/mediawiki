@@ -1793,11 +1793,7 @@ $1',
 'activeusers-noresult'   => 'प्रयोगकर्ताहरु भेटिएनन्।',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'प्रयोगकर्ता श्रृजना लग',
-'newuserlog-byemail'          => 'इ मेलबाट पठाइएको प्रवेशशव्द',
-'newuserlog-create-entry'     => 'नयाँ प्रयोगकर्ता',
-'newuserlog-create2-entry'    => 'नयाँ खाता $1 खोलियो',
-'newuserlog-autocreate-entry' => 'खाता स्वतः निर्माण गरियो',
+'newuserlogpage' => 'प्रयोगकर्ता श्रृजना लग',
 
 # Special:ListGroupRights
 'listgrouprights'                   => 'प्रयोगकर्ता समूह अधिकार',
@@ -3409,5 +3405,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'प्रबन्धकहरुमाथि सीमितता लागू गरियो',
 'revdelete-unrestricted' => 'प्रवन्धककोलागि निषेधहरु हटाइयो ।',
+'newuserlog-byemail'     => 'इ मेलबाट पठाइएको प्रवेशशव्द',
 
 );

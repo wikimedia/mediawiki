@@ -973,11 +973,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch' => 'Mga sumpay sa gawas',
 
 # Special:Log/newusers
-'newuserlogpage'           => "Log sa paghimo'g gumagamit",
-'newuserlogpagetext'       => "Kini mao ang ''log'' sa bag-ong namugnang mga gumagamit.",
-'newuserlog-byemail'       => "ang pasword gipadala na pinaagi sa ''e-mail''",
-'newuserlog-create-entry'  => 'Bag-ong gumagamit',
-'newuserlog-create2-entry' => "naghimo'g akawnt alang kang $1",
+'newuserlogpage'     => "Log sa paghimo'g gumagamit",
+'newuserlogpagetext' => "Kini mao ang ''log'' sa bag-ong namugnang mga gumagamit.",
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(talaan sa mga miyembro)',
@@ -1249,5 +1246,6 @@ Ang uban default nga nakatago.
 # New logging system
 'revdelete-restricted'   => 'mga na-aplay nga restriksyon sa mga tagdumala',
 'revdelete-unrestricted' => 'gitangtang ang mga restriksyon alang sa mga tagdumala',
+'newuserlog-byemail'     => "ang pasword gipadala na pinaagi sa ''e-mail''",
 
 );

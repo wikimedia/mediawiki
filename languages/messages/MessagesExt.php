@@ -1353,10 +1353,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => 'Nu s´alcuentró dengún usuáriu.',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Rustrihu de nuevus usuárius',
-'newuserlog-byemail'       => 'consínia enviá pol e-mail',
-'newuserlog-create-entry'  => "Nueva cuenta d'usuáriu",
-'newuserlog-create2-entry' => 'nueva cuenta criá: $1',
+'newuserlogpage' => 'Rustrihu de nuevus usuárius',
 
 # Special:ListGroupRights
 'listgrouprights'                 => "Derechus del grupu d'usuárius",
@@ -2430,5 +2427,6 @@ Las imahin se muestran a resolución compreta; las demas crasis d'archivu s'ehec
 # New logging system
 'revdelete-restricted'   => 'las restricionis a los çahorilis án siu apricás',
 'revdelete-unrestricted' => 'las restricionis a los çahorilis án siu esborrás',
+'newuserlog-byemail'     => 'consínia enviá pol e-mail',
 
 );

@@ -1201,8 +1201,7 @@ $1",
 'listusers-submit' => '显示',
 
 # Special:Log/newusers
-'newuserlogpage'          => '用户创建日志',
-'newuserlog-create-entry' => '新开户',
+'newuserlogpage' => '用户创建日志',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '（成员列表）',

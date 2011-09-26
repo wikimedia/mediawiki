@@ -1627,12 +1627,8 @@ Həmçinin, [[Special:WantedCategories|tələb olunan kateqoriyalara]] baxın.',
 'activeusers-noresult'   => 'İstifadəçi tapılmadı.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Yeni istifadəçilərin qeydiyyatı',
-'newuserlogpagetext'          => 'Yeni qeydiyyatdan keçmiş istifadəçilərin siyahısı.',
-'newuserlog-byemail'          => 'parol e-maillə göndərildi',
-'newuserlog-create-entry'     => 'Yeni istifadəçi hesabı',
-'newuserlog-create2-entry'    => 'Yeri $1 hesabı açıldı',
-'newuserlog-autocreate-entry' => 'Hesab avtomatik olaraq yaradıldı',
+'newuserlogpage'     => 'Yeni istifadəçilərin qeydiyyatı',
+'newuserlogpagetext' => 'Yeni qeydiyyatdan keçmiş istifadəçilərin siyahısı.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'İstifadəçi qruplarının hüquqları',
@@ -2936,5 +2932,6 @@ Bu saytda texniki problemlər var.',
 # New logging system
 'revdelete-restricted'   => 'məhdudiyyətlər idarəçilərə tətbiq olunur',
 'revdelete-unrestricted' => 'idarəçilər üçün götürülmüş məhdudiyyətlər',
+'newuserlog-byemail'     => 'parol e-maillə göndərildi',
 
 );

@@ -965,8 +965,7 @@ Deskripsi dari [$2 laman deskripsi berkas] ditampilkan di bawah.',
 'linksearch-line' => '$1 tapauik dari $2',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Log pangguno baru',
-'newuserlog-create-entry' => 'Mendaftar sabagai pangguno',
+'newuserlogpage' => 'Log pangguno baru',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(senarai anggota)',

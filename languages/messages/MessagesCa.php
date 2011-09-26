@@ -1955,12 +1955,8 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'activeusers-noresult'   => "No s'han trobat usuaris.",
 
 # Special:Log/newusers
-'newuserlogpage'              => "Registre de creació de l'usuari",
-'newuserlogpagetext'          => 'Aquest és un registre de creació de nous usuaris.',
-'newuserlog-byemail'          => 'contrasenya enviada per correu electrònic',
-'newuserlog-create-entry'     => 'Nou usuari',
-'newuserlog-create2-entry'    => 'ha creat un compte per a $1',
-'newuserlog-autocreate-entry' => 'Compte creat automàticament',
+'newuserlogpage'     => "Registre de creació de l'usuari",
+'newuserlogpagetext' => 'Aquest és un registre de creació de nous usuaris.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => "Drets dels grups d'usuaris",
@@ -3553,5 +3549,6 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 # New logging system
 'revdelete-restricted'   => 'ha aplicat restriccions al administradors',
 'revdelete-unrestricted' => 'ha esborrat les restriccions per a administradors',
+'newuserlog-byemail'     => 'contrasenya enviada per correu electrònic',
 
 );

@@ -1529,10 +1529,7 @@ Bákannáà ẹ wo [[Special:WantedCategories|àwọn ẹ̀ka wíwá]].',
 'activeusers-noresult'   => 'Kò rí oníṣe kankan.',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Àkọsílẹ̀ ìdá oníṣe',
-'newuserlog-byemail'       => 'ọ̀rọ̀ìpamọ́ jẹ́ fífiránṣẹ́ pẹ̀lú e-mail',
-'newuserlog-create-entry'  => 'Àpamọ́ oníṣe tuntun',
-'newuserlog-create2-entry' => 'dídá àpamọ́ tuntun $1',
+'newuserlogpage' => 'Àkọsílẹ̀ ìdá oníṣe',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Àwọn ẹ̀tọ́ ẹgbẹ́ oníṣe',
@@ -2252,5 +2249,8 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'htmlform-submit'              => 'Fúnsílẹ̀',
 'htmlform-reset'               => 'Ìdápadà àwọn àtúnṣe',
 'htmlform-selectorother-other' => 'Òmíràn',
+
+# New logging system
+'newuserlog-byemail' => 'ọ̀rọ̀ìpamọ́ jẹ́ fífiránṣẹ́ pẹ̀lú e-mail',
 
 );

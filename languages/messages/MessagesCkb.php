@@ -1823,12 +1823,8 @@ $1',
 'activeusers-noresult'   => 'هیچ بەکارهێنەرێک نەدۆزرایەوە',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'لۆگی دروست کردنی بەکارھێنەر',
-'newuserlogpagetext'          => 'ئەمە لۆگێکی درووست‌کردنی بەکارهێنەرە.',
-'newuserlog-byemail'          => 'تێپەڕوشە بە ئیمەیل نێردرا.',
-'newuserlog-create-entry'     => 'بەکارھێنەری نوێ',
-'newuserlog-create2-entry'    => 'ھەژماری $1ی دروست کرد',
-'newuserlog-autocreate-entry' => 'هەژمارە بە جۆری خۆکار درووست‌کرا',
+'newuserlogpage'     => 'لۆگی دروست کردنی بەکارھێنەر',
+'newuserlogpagetext' => 'ئەمە لۆگێکی درووست‌کردنی بەکارهێنەرە.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'مافەکانی گرووپە بەکارھێنەرییەکان',
@@ -3055,5 +3051,6 @@ $5
 # New logging system
 'revdelete-restricted'   => 'ئەو سنووری بەرگریانەی خستراوەتە سەر بەڕێوبەران',
 'revdelete-unrestricted' => 'ئەو سنووری بەرگریانەی لابردراوە لە سەر بەڕێوبەران',
+'newuserlog-byemail'     => 'تێپەڕوشە بە ئیمەیل نێردرا.',
 
 );

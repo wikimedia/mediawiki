@@ -2100,12 +2100,8 @@ Obsługiwane protokoły: <tt>$1</tt>',
 'activeusers-noresult'   => 'Nie odnaleziono żadnego użytkownika.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Nowi użytkownicy',
-'newuserlogpagetext'          => 'To jest rejestr ostatnio utworzonych kont użytkowników',
-'newuserlog-byemail'          => 'hasło zostało wysłane e‐mailem',
-'newuserlog-create-entry'     => '– nowy użytkownik',
-'newuserlog-create2-entry'    => 'utworzył konto $1',
-'newuserlog-autocreate-entry' => '– konto utworzone automatycznie',
+'newuserlogpage'     => 'Nowi użytkownicy',
+'newuserlogpagetext' => 'To jest rejestr ostatnio utworzonych kont użytkowników',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Uprawnienia grup użytkowników',
@@ -3840,5 +3836,9 @@ Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwieran
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 ponad przekierowaniem bez pozostawienia przekierowania na starej stronie',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
 'logentry-patrol-patrol-auto'         => '$1 automatycznie {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|utworzył|utworzyła}} konto użytkownika',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|utworzył|utworzyła}} konto użytkownika $3',
+'logentry-newusers-autocreate'        => 'Konto $1 zostało {{GENDER:$2|utworzone}} automatycznie',
+'newuserlog-byemail'                  => 'hasło zostało wysłane e‐mailem',
 
 );

@@ -1058,8 +1058,7 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'listusers-submit' => 'Bıasne',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Qeydê karberiê newey',
-'newuserlog-create-entry' => 'Hesabê karberê newey',
+'newuserlogpage' => 'Qeydê karberiê newey',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Kome',

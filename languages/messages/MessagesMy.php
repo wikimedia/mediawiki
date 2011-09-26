@@ -1271,12 +1271,8 @@ Your e-mail address is not revealed when other users contact you.
 'activeusers-noresult'   => 'အသုံးပြုသူ မတွေ့ပါ။',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'အသုံးပြုသူအသစ်ရောက်လာခြင်း မှတ်တမ်း',
-'newuserlogpagetext'          => 'ဤသည်မှာ အသုံးပြုသူအသစ် ဖတ်တီးမှု မှတ်တမ်း ဖြစ်သည်။',
-'newuserlog-byemail'          => 'စကားဝှက်ကို အီးမေးဖြင့် ပို့လိုက်ပါပြီ။',
-'newuserlog-create-entry'     => 'အသုံးပြုသူအသစ်',
-'newuserlog-create2-entry'    => 'အကောင့်သစ် $1 ကို ဖန်တီးရန်',
-'newuserlog-autocreate-entry' => 'အကောင့်ကို အလိုအလျောက် ဖန်တီးပြီးဖြစ်သည်။',
+'newuserlogpage'     => 'အသုံးပြုသူအသစ်ရောက်လာခြင်း မှတ်တမ်း',
+'newuserlogpagetext' => 'ဤသည်မှာ အသုံးပြုသူအသစ် ဖတ်တီးမှု မှတ်တမ်း ဖြစ်သည်။',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'အသုံးပြုသူအုပ်စု အခွင့်အရေးများ',
@@ -1924,5 +1920,6 @@ Your e-mail address is not revealed when other users contact you.
 # New logging system
 'revdelete-restricted'   => 'အက်ဒမင်များသို့ ကန့်သတ်ချက်များ သက်ရောက်ရန်',
 'revdelete-unrestricted' => 'အက်ဒမင်များအတွက် ကန့်သတ်ချက်များကို ဖယ်ရှားရန်',
+'newuserlog-byemail'     => 'စကားဝှက်ကို အီးမေးဖြင့် ပို့လိုက်ပါပြီ။',
 
 );

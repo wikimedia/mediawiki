@@ -2296,13 +2296,8 @@ You can apparently use 'URL' instead of 'hostname'.",
 'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
-'newuserlogpagetext'          => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
-'newuserlog-create-entry'     => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]].',
-'newuserlog-create2-entry'    => 'Part of the "Newuserlog" extension. It is the summary in the [[Special:RecentChanges|recent changes]] and on [[Special:Log/newusers]] when creating an account for someone else ("$1" - a link). The name of the user doing this task appears before this message.
-
-* $2 - the user id of the user $1',
-'newuserlog-autocreate-entry' => 'This message is used in the [[:mw:Extension:Newuserlog|new user log]] to mark an account that was created by MediaWiki as part of a [[:mw:Extension:CentralAuth|CentralAuth]] global account.',
+'newuserlogpage'     => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',
+'newuserlogpagetext' => 'Part of the "Newuserlog" extension. It is the description you can see on [[Special:Log/newusers]].',
 
 # Special:ListGroupRights
 'listgrouprights'                  => 'The name of the special page [[Special:ListGroupRights]].',
