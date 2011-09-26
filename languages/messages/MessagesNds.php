@@ -1809,12 +1809,8 @@ Kiek ok bi de [[Special:WantedCategories|wünschten Kategorien]].',
 'activeusers-noresult'   => 'Keen Brukers funnen.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Ne’e-Bruker-Logbook',
-'newuserlogpagetext'          => 'Dit is dat Logbook för nee opstellte Brukerkonten.',
-'newuserlog-byemail'          => 'Passwoord per E-Mail toschickt',
-'newuserlog-create-entry'     => 'Nee Bruker',
-'newuserlog-create2-entry'    => 'hett nee Brukerkonto „$1“ opstellt',
-'newuserlog-autocreate-entry' => 'Brukerkonto automaatsch opstellt',
+'newuserlogpage'     => 'Ne’e-Bruker-Logbook',
+'newuserlogpagetext' => 'Dit is dat Logbook för nee opstellte Brukerkonten.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Brukergruppen-Rechten',
@@ -3105,5 +3101,6 @@ Geev den Dateinaam ahn den Tosatz „{{ns:file}}:“ an.',
 # New logging system
 'revdelete-restricted'   => 'Inschränkungen för Administraters instellt',
 'revdelete-unrestricted' => 'Inschränkungen för Administraters rutnahmen',
+'newuserlog-byemail'     => 'Passwoord per E-Mail toschickt',
 
 );

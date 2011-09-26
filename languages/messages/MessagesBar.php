@@ -980,8 +980,7 @@ Links aus Namensräume wern da net aufglistet.',
 'listusers-noresult' => 'Koane Benutzer gfunden.',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Neiåmödungs-Logbiaché',
-'newuserlog-create-entry' => 'Benutza is nei registriad',
+'newuserlogpage' => 'Neiåmödungs-Logbiaché',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(Mitgliaderlisten)',

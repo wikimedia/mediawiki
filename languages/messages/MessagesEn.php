@@ -4653,7 +4653,7 @@ This site is experiencing technical difficulties.',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moved}} page $3 to $4 over a redirect without leaving a redirect',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marked}} revision $4 of page $3 patrolled',
 'logentry-patrol-patrol-auto'         => '$1 automatically {{GENDER:$2|marked}} revision $4 of page $3 patrolled',
-'logentry-newusers-newusers'          => '',
+'logentry-newusers-newusers'          => '', # do not translate or duplicate this message to other languages
 'logentry-newusers-create'            => '$1 {{GENDER:$2|created}} a user account',
 'logentry-newusers-create2'           => '$1 {{GENDER:$2|created}} a user account $3',
 'logentry-newusers-autocreate'        => 'Account $1 was {{GENDER:$2|created}} automatically',

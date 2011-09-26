@@ -645,9 +645,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 # Special:ListUsers
 'listusers-submit' => 'Hō‘ike',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'Mea hoʻohana hou',
-
 # Special:ListGroupRights
 'listgrouprights-members' => '(papa o nā lālā)',
 

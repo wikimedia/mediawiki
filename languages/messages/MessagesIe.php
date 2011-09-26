@@ -926,8 +926,7 @@ Li descrition es in li [$2 págine de descrition del file] ta e es monstrat in i
 'linksearch-line' => '$1 es ligat de $2',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Diarium de creation de usator',
-'newuserlog-create-entry' => 'Nov conto de usator',
+'newuserlogpage' => 'Diarium de creation de usator',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(liste de membres)',

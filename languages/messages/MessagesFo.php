@@ -797,8 +797,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => 'Ongin brúkari var funnin.',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Brúkara logg',
-'newuserlog-create-entry' => 'Nýggjur brúkari',
+'newuserlogpage' => 'Brúkara logg',
 
 # E-mail user
 'mailnologintext' => 'Tú mást hava [[Special:UserLogin|ritað inn]]

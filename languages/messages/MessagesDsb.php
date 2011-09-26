@@ -1882,12 +1882,8 @@ Pódpěrane protokole: <tt>$1</tt>',
 'activeusers-noresult'   => 'Žedne wužywarje namakane.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Protokol nowych wužywarjow',
-'newuserlogpagetext'          => 'To jo protokol wó nowych wužywarskich kontow.',
-'newuserlog-byemail'          => 'Pótajne słowo bu pśez e-mail pósłane.',
-'newuserlog-create-entry'     => 'Nowy wužywaŕ',
-'newuserlog-create2-entry'    => 'Nowe konto za $1 napórane.',
-'newuserlog-autocreate-entry' => 'Wužywarske konto bu awtomatiski napórane',
+'newuserlogpage'     => 'Protokol nowych wužywarjow',
+'newuserlogpagetext' => 'To jo protokol wó nowych wužywarskich kontow.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Pšawa wužywarskeje kupki',
@@ -3295,5 +3291,6 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 # New logging system
 'revdelete-restricted'   => 'Wobgranicowanja se teke na administratorow nałožuju',
 'revdelete-unrestricted' => 'Wobgranicowanja za administratorow wótpórane',
+'newuserlog-byemail'     => 'Pótajne słowo bu pśez e-mail pósłane.',
 
 );

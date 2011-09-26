@@ -1282,8 +1282,7 @@ Faqet në [[Special:Watchlist|listën tuej të mbikëqyrjes]] janë '''të theks
 'linksearch' => 'Vegzat e jashtme',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Regjistri i krijimit të përdoruesve',
-'newuserlog-create-entry' => 'Përdorues i ri',
+'newuserlogpage' => 'Regjistri i krijimit të përdoruesve',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lista e antarëve)',

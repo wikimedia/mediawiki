@@ -363,9 +363,6 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 # Special:Categories
 'categories' => 'पुचःत',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'न्हुम्ह छ्येलेमि',
-
 # Restrictions (nouns)
 'restriction-edit' => 'सम्पादन',
 

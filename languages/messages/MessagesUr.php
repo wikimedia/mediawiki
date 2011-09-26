@@ -1105,9 +1105,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch-line' => '$1 مربوط ہے $2 سے',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'نوشتۂ آمد صارف',
-'newuserlogpagetext'      => 'یہ نۓ صارفوں کی آمد کا نوشتہ ہے',
-'newuserlog-create-entry' => 'صارف جدید',
+'newuserlogpage'     => 'نوشتۂ آمد صارف',
+'newuserlogpagetext' => 'یہ نۓ صارفوں کی آمد کا نوشتہ ہے',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(اراکین کی فہرست)',

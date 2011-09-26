@@ -530,8 +530,7 @@ $messages = array(
 'allpagessubmit' => 'ಪೋ',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'ಸದಸ್ಯ ರಚನೆ ಲಾಗ್',
-'newuserlog-create-entry' => 'ಪೊಸ ಸದಸ್ಯೆರ್ನ ಎಕೌಂಟ್',
+'newuserlogpage' => 'ಸದಸ್ಯ ರಚನೆ ಲಾಗ್',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(ಸದಸ್ಯೆರ್ನ ಪಟ್ಟಿ)',

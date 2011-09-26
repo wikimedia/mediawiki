@@ -2180,12 +2180,8 @@ Protocoles reconnus : <tt>$1</tt>.',
 'activeusers-noresult'   => 'Aucun utilisateur trouvé.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Journal des créations de comptes utilisateur',
-'newuserlogpagetext'          => 'Cette page affiche l’historique des créations de comptes utilisateur.',
-'newuserlog-byemail'          => 'mot de passe envoyé par courriel',
-'newuserlog-create-entry'     => 'Nouveau compte utilisateur',
-'newuserlog-create2-entry'    => 'a créé le nouveau compte $1',
-'newuserlog-autocreate-entry' => 'Compte créé automatiquement',
+'newuserlogpage'     => 'Journal des créations de comptes utilisateur',
+'newuserlogpagetext' => 'Cette page affiche l’historique des créations de comptes utilisateur.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Droits des groupes d’utilisateurs',
@@ -3876,5 +3872,6 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|a déplacé}} la page $3 vers $4 par-dessus une redirection sans laisser de redirection',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|a marqué}} la révision $4 de la page $3 comme contrôlée',
 'logentry-patrol-patrol-auto'         => '$1 a automatiquement {{GENDER:$2|marqué}} la révision $4 de la page $3 comme contrôlée',
+'newuserlog-byemail'                  => 'mot de passe envoyé par courriel',
 
 );

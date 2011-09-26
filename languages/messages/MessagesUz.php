@@ -483,9 +483,6 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'Yangi foydalanuvchi',
-
 # E-mail user
 'emailuser' => 'Bu foydalanuvchiga e-maktub joʻnat',
 

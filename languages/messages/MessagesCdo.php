@@ -568,8 +568,7 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'linksearch-ok' => 'Sìng-tō̤',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Kŭi dióng-hô̤ nĭk-cé',
-'newuserlog-create-entry' => 'Sĭng ê̤ṳng-hô',
+'newuserlogpage' => 'Kŭi dióng-hô̤ nĭk-cé',
 
 # E-mail user
 'emailuser'       => 'Gié diêng-piĕ ké̤ṳk ĭ',

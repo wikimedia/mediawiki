@@ -1560,12 +1560,8 @@ Xoolal itam [[Special:WantedCategories|wàll yi ñuy laaj]].',
 'activeusers-noresult' => 'Benn jëfandikukat giseesu ko',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Jëfandikukat yu yees yi',
-'newuserlogpagetext'          => 'Xët wii daf lay won limu sáq yi fi mujjee sosu.',
-'newuserlog-byemail'          => 'baatujáll bi yónne nañu ko cib bataaxal',
-'newuserlog-create-entry'     => 'Jëfandikukat bu bees',
-'newuserlog-create2-entry'    => 'moo sos mii sáq mu bees $1',
-'newuserlog-autocreate-entry' => 'Sáq mi sos na boppam',
+'newuserlogpage'     => 'Jëfandikukat yu yees yi',
+'newuserlogpagetext' => 'Xët wii daf lay won limu sáq yi fi mujjee sosu.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Sañ-sañi mbooloom jëfandikukat mi',
@@ -2226,5 +2222,6 @@ Man nga tamit  [[Special:EditWatchlist/raw|soppi ko]].',
 # New logging system
 'revdelete-restricted'   => 'doxalub digal ngir yorkat yi',
 'revdelete-unrestricted' => 'digal ngir yorkat yi deñ na',
+'newuserlog-byemail'     => 'baatujáll bi yónne nañu ko cib bataaxal',
 
 );

@@ -1989,12 +1989,8 @@ Protokolle të mbështetura: <tt>$1</tt>',
 'activeusers-noresult'   => 'Asnjë përdorues nuk u gjet.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Regjistri i llogarive',
-'newuserlogpagetext'          => 'Ky është një regjistër i llogarive të fundit që janë hapur',
-'newuserlog-byemail'          => 'fjalëkalimi u dërgua në postën elektronike',
-'newuserlog-create-entry'     => 'Përdorues i ri',
-'newuserlog-create2-entry'    => 'krijoi llofari të re $1',
-'newuserlog-autocreate-entry' => 'Llogaria u hap automatikisht',
+'newuserlogpage'     => 'Regjistri i llogarive',
+'newuserlogpagetext' => 'Ky është një regjistër i llogarive të fundit që janë hapur',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Grupime përdoruesish me privilegje',
@@ -3620,5 +3616,6 @@ Kjo faqe është duke përjetuar vështirësi teknike.',
 # New logging system
 'revdelete-restricted'   => 'u vendosën kufizime për administruesit',
 'revdelete-unrestricted' => 'u hoqën kufizimet për administruesit',
+'newuserlog-byemail'     => 'fjalëkalimi u dërgua në postën elektronike',
 
 );

@@ -770,9 +770,6 @@ to upload files.',
 'listusers-submit'   => 'ਵੇਖੋ',
 'listusers-noresult' => 'ਕੋਈ ਯੂਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ।',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'ਨਵਾਂ ਯੂਜ਼ਰ ਅਕਾਊਂਟ',
-
 # Special:ListGroupRights
 'listgrouprights-group'   => 'ਗਰੁੱਪ',
 'listgrouprights-members' => '(ਮੈਂਬਰਾਂ ਦੀ ਲਿਸਟ)',

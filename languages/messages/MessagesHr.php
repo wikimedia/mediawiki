@@ -2098,12 +2098,8 @@ Također pogledajte [[Special:WantedCategories|tražene kategorije]].',
 'activeusers-noresult'   => 'Niti jedan suradnik nije nađen.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Evidencija novih suradnika',
-'newuserlogpagetext'          => 'Ispod je popis nedavno otvorenih suradničkih imena.',
-'newuserlog-byemail'          => 'lozinka poslana e-poštom',
-'newuserlog-create-entry'     => 'Novi suradnik',
-'newuserlog-create2-entry'    => 'otvoren je novi suradnički račun $1',
-'newuserlog-autocreate-entry' => 'Automatski stvoren račun',
+'newuserlogpage'     => 'Evidencija novih suradnika',
+'newuserlogpagetext' => 'Ispod je popis nedavno otvorenih suradničkih imena.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Prava suradničkih skupina',
@@ -3658,5 +3654,6 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 # New logging system
 'revdelete-restricted'   => 'primijenjeno ograničenje za administratore',
 'revdelete-unrestricted' => 'uklonjeno ograničenje za administratore',
+'newuserlog-byemail'     => 'lozinka poslana e-poštom',
 
 );

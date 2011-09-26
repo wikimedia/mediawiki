@@ -482,8 +482,7 @@ Shuk rurakkunaka kikinpa e-chaski ''dirección''ta mana yachankachu.",
 'linksearch-line' => '$1 pankaka $2-manta tinkishkami kan',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Rurakkununata kamaykunapa kamu',
-'newuserlog-create-entry' => 'Mushuk rurak',
+'newuserlogpage' => 'Rurakkununata kamaykunapa kamu',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(Kay tantanakuypa rurakkunapa shutikuna)',

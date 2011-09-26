@@ -2205,12 +2205,8 @@ $1',
 'activeusers-noresult'   => 'לא נמצאו משתמשים.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'יומן רישום משתמשים',
-'newuserlogpagetext'          => 'זהו יומן המכיל הרשמות של משתמשים.',
-'newuserlog-byemail'          => 'הסיסמה נשלחה בדוא"ל',
-'newuserlog-create-entry'     => 'חשבון משתמש חדש',
-'newuserlog-create2-entry'    => 'יצר חשבון חדש $1',
-'newuserlog-autocreate-entry' => 'חשבון שנוצר אוטומטית',
+'newuserlogpage'     => 'יומן רישום משתמשים',
+'newuserlogpagetext' => 'זהו יומן המכיל הרשמות של משתמשים.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'רשימת הרשאות לקבוצה',
@@ -3945,5 +3941,6 @@ $1',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|העביר|העבירה}} את הדף $3 ל{{GRAMMAR:תחילית|$4}} תוך דריסת הפניה ובלי להשאיר הפניה',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|סימן|סימנה}} את הגרסה $4 בדף $3 כבדוקה',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|סימן|סימנה}} אוטומטית את הגרסה $4 בדף $3 כבדוקה',
+'newuserlog-byemail'                  => 'הסיסמה נשלחה בדוא"ל',
 
 );

@@ -1962,12 +1962,8 @@ Template:搞清楚',
 'activeusers-noresult'   => '搵唔到用戶。',
 
 # Special:Log/newusers
-'newuserlogpage'              => '使用者開戶記錄',
-'newuserlogpagetext'          => '呢個係一個使用者開戶嘅日誌',
-'newuserlog-byemail'          => '密碼已由電郵寄出',
-'newuserlog-create-entry'     => '新用戶戶口',
-'newuserlog-create2-entry'    => '已經開咗$1嘅新戶口',
-'newuserlog-autocreate-entry' => '自動建立咗戶口',
+'newuserlogpage'     => '使用者開戶記錄',
+'newuserlogpagetext' => '呢個係一個使用者開戶嘅日誌',
 
 # Special:ListGroupRights
 'listgrouprights'                      => '用戶組權限',
@@ -3392,5 +3388,6 @@ MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅�
 # New logging system
 'revdelete-restricted'   => '已經應用限制到操作員',
 'revdelete-unrestricted' => '已經拎走對於操作員嘅限制',
+'newuserlog-byemail'     => '密碼已由電郵寄出',
 
 );

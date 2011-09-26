@@ -763,8 +763,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'linksearch-ok' => 'Mita',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'ureuëng nguy barô',
-'newuserlog-create-entry' => 'dapeuta jeuët anggèëta',
+'newuserlogpage' => 'ureuëng nguy barô',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(dapeuta anggèëta)',

@@ -2083,12 +2083,8 @@ $1',
 'activeusers-noresult'   => 'អ្នកប្រើប្រាស់​រកមិនឃើញ​។​',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'កំណត់ហេតុនៃការបង្កើតគណនី',
-'newuserlogpagetext'          => 'នេះជាកំណត់ហេតុនៃការបង្កើតអ្នកប្រើប្រាស់។',
-'newuserlog-byemail'          => 'ពាក្យសំងាត់ត្រូវបានផ្ញើតាមអ៊ីមែល',
-'newuserlog-create-entry'     => 'អ្នកប្រើប្រាស់ថ្មី',
-'newuserlog-create2-entry'    => "បាន​បង្កើត​គណនី​ថ្មី​សម្រាប់ '''$1'''",
-'newuserlog-autocreate-entry' => 'គណនីត្រូវបានបង្កើតដោយស្វ័យប្រវត្តិ',
+'newuserlogpage'     => 'កំណត់ហេតុនៃការបង្កើតគណនី',
+'newuserlogpagetext' => 'នេះជាកំណត់ហេតុនៃការបង្កើតអ្នកប្រើប្រាស់។',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'សិទ្ធិនិងក្រុមអ្នកប្រើប្រាស់',
@@ -3412,5 +3408,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'បានអនុវត្តការដាក់កំហិតចំពោះអ្នកអភិបាល',
 'revdelete-unrestricted' => 'បានដកការដាក់កំហិតចេញសម្រាប់អ្នកអភិបាល',
+'newuserlog-byemail'     => 'ពាក្យសំងាត់ត្រូវបានផ្ញើតាមអ៊ីមែល',
 
 );

@@ -1717,12 +1717,8 @@ PICT # misc.
 'activeusers-noresult' => 'هچ کاربری درگیزگ نه بیت',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'ورود شرکتن کاربر',
-'newuserlogpagetext'          => '.شی یک ورودی چه شرکتن کاربر',
-'newuserlog-byemail'          => 'کلمه رمز گون ایمیل دیم دهگ بوت',
-'newuserlog-create-entry'     => 'نوکین کاربر',
-'newuserlog-create2-entry'    => 'نوکین حساب شربوت  $1',
-'newuserlog-autocreate-entry' => 'حساب اتوماتیکی شربوت',
+'newuserlogpage'     => 'ورود شرکتن کاربر',
+'newuserlogpagetext' => '.شی یک ورودی چه شرکتن کاربر',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'حقوق گروه کاربر',
@@ -3150,5 +3146,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'محدودیت آن په مدیران سیستم بوت',
 'revdelete-unrestricted' => 'به زور چه مدیران سیستم محدودیتان',
+'newuserlog-byemail'     => 'کلمه رمز گون ایمیل دیم دهگ بوت',
 
 );

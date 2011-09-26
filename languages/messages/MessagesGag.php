@@ -803,8 +803,7 @@ Sizin bakmaa [[Special:Watchlist|listasındaki]] sayfalar verildi '''kalın''' b
 'linksearch' => 'İç baalantlar',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Eni kullanıcı bennemäkleri',
-'newuserlog-create-entry' => 'Eni kullanıcı esabı',
+'newuserlogpage' => 'Eni kullanıcı bennemäkleri',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(azaların listası)',

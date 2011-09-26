@@ -574,8 +574,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-submit' => 'Soim',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Ripot long ol nupela yusa',
-'newuserlog-create-entry' => 'Lista bilong ol nupela yusa',
+'newuserlogpage' => 'Ripot long ol nupela yusa',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Grup',

@@ -482,8 +482,7 @@ $messages = array(
 'linksearch' => 'Тӱнӹш ажедмӓшвлӓ',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Сирӹшӹвлӓм регистрируйышы журнал',
-'newuserlog-create-entry' => 'У сирӹшӹ',
+'newuserlogpage' => 'Сирӹшӹвлӓм регистрируйышы журнал',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(группын списокшы)',

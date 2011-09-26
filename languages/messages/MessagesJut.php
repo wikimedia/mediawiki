@@ -610,11 +610,8 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'linksearch-error' => "Wildkårter må ken benyttes i'n stårt åf håstnavnet.",
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Brugeråprettelseslog',
-'newuserlogpagetext'       => "Dett'er en log åver de senest åprettede brugere.",
-'newuserlog-byemail'       => 'kodeort tilsend via e-mail',
-'newuserlog-create-entry'  => 'Ny bruger',
-'newuserlog-create2-entry' => 'åprettede brugerkonto før $1',
+'newuserlogpage'     => 'Brugeråprettelseslog',
+'newuserlogpagetext' => "Dett'er en log åver de senest åprettede brugere.",
 
 # E-mail user
 'emailuser' => 'E-mail til denne bruger',
@@ -859,5 +856,8 @@ Kun endholtet åf æ liste (lenjer startende ve *) bliver brugt. Den første hen
 
 # Special:SpecialPages
 'specialpages' => 'Sonst sider',
+
+# New logging system
+'newuserlog-byemail' => 'kodeort tilsend via e-mail',
 
 );

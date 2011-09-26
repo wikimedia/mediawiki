@@ -1034,8 +1034,7 @@ $1",
 'linksearch' => 'КІуэцІ техьэпІэхэр',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'ЦӀыхухэтхэм я регистрациэ тхылъ',
-'newuserlog-create-entry' => 'ЦӀыхухэтыщӀэ',
+'newuserlogpage' => 'ЦӀыхухэтхэм я регистрациэ тхылъ',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(гупым и тхылъ)',

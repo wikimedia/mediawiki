@@ -473,8 +473,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'categories' => 'Ndéngé',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Zuluná ya bokeli bwa konti ya mosáleli',
-'newuserlog-create-entry' => 'Konti ya mosáleli ya sika',
+'newuserlogpage' => 'Zuluná ya bokeli bwa konti ya mosáleli',
 
 # E-mail user
 'emailuser'       => 'Kotíndela yě mɛ́lɛ',

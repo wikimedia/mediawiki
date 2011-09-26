@@ -460,8 +460,7 @@ Ogoruşi dudis '''all:''' pʼrefiksi okʼatute doloçʼareli na ren iri şeyi (o
 'linksearch' => 'Galeni kʼontaktʼepe',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Ağani maxmareş kʼayitʼepe',
-'newuserlog-create-entry' => 'Ağani maxmare',
+'newuserlogpage' => 'Ağani maxmareş kʼayitʼepe',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(makʼaturepeşi listʼe)',

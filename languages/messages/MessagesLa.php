@@ -1418,12 +1418,8 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'activeusers-noresult'   => 'Nullus usor inventus.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Index rationum novarum creatarum',
-'newuserlogpagetext'          => 'Hic est index rationum novarum creatarum.',
-'newuserlog-byemail'          => 'tessera missa litteris electronicis',
-'newuserlog-create-entry'     => 'Usor novus',
-'newuserlog-create2-entry'    => 'creavit novam rationem $1',
-'newuserlog-autocreate-entry' => 'Ratio automatice creata',
+'newuserlogpage'     => 'Index rationum novarum creatarum',
+'newuserlogpagetext' => 'Hic est index rationum novarum creatarum.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Gregum usorum potestates',
@@ -2366,5 +2362,8 @@ Quaesumus, adfirma ut iterum hanc paginam crees.",
 'htmlform-submit'              => 'Submittere',
 'htmlform-reset'               => 'Mutationes abrogare',
 'htmlform-selectorother-other' => 'Aliud',
+
+# New logging system
+'newuserlog-byemail' => 'tessera missa litteris electronicis',
 
 );

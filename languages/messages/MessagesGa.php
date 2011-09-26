@@ -1240,9 +1240,7 @@ Féach freisin ar [[Special:WantedCategories|catagóirí faoi iarraidh]].',
 'listusers-submit' => 'Taispeáin',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Log cruthú úsáideoira',
-'newuserlog-create-entry'  => 'Úsáideoir nua',
-'newuserlog-create2-entry' => 'cuntas cruthú le $1',
+'newuserlogpage' => 'Log cruthú úsáideoira',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Ghrúpa',

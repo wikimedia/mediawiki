@@ -639,9 +639,7 @@ The password for this new account can be changed on the ''[[Special:ChangePasswo
 'activeusers-hidesysops' => 'Эргелекчыларны чажырары',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Чаа ажыглакчы кырында журнал',
-'newuserlog-create-entry'  => 'Чаа бүрүткел бижик',
-'newuserlog-create2-entry' => '$1 деп чаа бүрүткел бижикти бүдүрген',
+'newuserlogpage' => 'Чаа ажыглакчы кырында журнал',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(кежигүннүң даңзызы)',

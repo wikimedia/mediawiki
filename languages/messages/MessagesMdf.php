@@ -1580,12 +1580,8 @@ $3 макссь туфталсь - ''$2''",
 'listusers-noresult' => 'Тиихть исть мув.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Тиинь ушедоманзон лувомасна',
-'newuserlogpagetext'          => 'Тя тиинь ушедоманзон лувомасна.',
-'newuserlog-byemail'          => 'сувама валце кучф электрононь сёрмаса',
-'newuserlog-create-entry'     => 'Од тии',
-'newuserlog-create2-entry'    => 'тиф од сёрматфтомась $1',
-'newuserlog-autocreate-entry' => 'Сёрматфтомась эслек тиф',
+'newuserlogpage'     => 'Тиинь ушедоманзон лувомасна',
+'newuserlogpagetext' => 'Тя тиинь ушедоманзон лувомасна.',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Тиихнень полгаснон видексонза',
@@ -2786,5 +2782,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'нолдаф тевс кардафксне системонь вятиксненди',
 'revdelete-unrestricted' => 'системонь вятиксненди кардафксне валхтфт',
+'newuserlog-byemail'     => 'сувама валце кучф электрононь сёрмаса',
 
 );

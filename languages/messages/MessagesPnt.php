@@ -950,8 +950,7 @@ $messages = array(
 'listusers-submit' => 'Δείξον',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Αρχείον ποισιματίων λογαρίων χρήστε',
-'newuserlog-create-entry' => 'Νέον χρήστες',
+'newuserlogpage' => 'Αρχείον ποισιματίων λογαρίων χρήστε',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Ομάδαν',

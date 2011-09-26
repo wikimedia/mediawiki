@@ -1659,12 +1659,8 @@ Stipe protokollen: <tt>$1</tt>',
 'activeusers-noresult' => 'Gjin meidoggers fûn.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Ynskriuwingsloch',
-'newuserlogpagetext'          => "Dit is in loch fan meidoggers dy't de lêste tiid ynskreaun binne.",
-'newuserlog-byemail'          => 'wachtwurd is ferstjoerd oer e-mail',
-'newuserlog-create-entry'     => 'Nije meidogger',
-'newuserlog-create2-entry'    => 'hat meidogger "$1" oanmakke',
-'newuserlog-autocreate-entry' => 'Brûker automatysk oanmakke',
+'newuserlogpage'     => 'Ynskriuwingsloch',
+'newuserlogpagetext' => "Dit is in loch fan meidoggers dy't de lêste tiid ynskreaun binne.",
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Rjochten fan brûkersgroepen',
@@ -2380,5 +2376,6 @@ Wolle jo de side wier op 'e nij skriuwe?",
 # New logging system
 'revdelete-restricted'   => 'hat beheinings oplein oan behearders',
 'revdelete-unrestricted' => 'hat beheinings foar behearders goedmakke',
+'newuserlog-byemail'     => 'wachtwurd is ferstjoerd oer e-mail',
 
 );

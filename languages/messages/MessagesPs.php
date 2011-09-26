@@ -1477,12 +1477,8 @@ $1',
 'activeusers-noresult'   => 'کارن و نه موندل شو.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'د کارن-نوم د جوړېدو يادښت',
-'newuserlogpagetext'          => 'دا د کارن-نوم د جوړېدو يادښت دی',
-'newuserlog-byemail'          => 'پټنوم مو برېښليک ته درولېږه',
-'newuserlog-create-entry'     => 'نوی کارن',
-'newuserlog-create2-entry'    => 'نوی جوړ شوی ګڼون $1',
-'newuserlog-autocreate-entry' => 'ګڼون په اتوماتيک ډول جوړ شو',
+'newuserlogpage'     => 'د کارن-نوم د جوړېدو يادښت',
+'newuserlogpagetext' => 'دا د کارن-نوم د جوړېدو يادښت دی',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'د کارن ډلو رښتې',
@@ -2387,5 +2383,8 @@ $5
 'htmlform-submit'              => 'سپارل',
 'htmlform-reset'               => 'بدلونونه ناکړل',
 'htmlform-selectorother-other' => 'بل',
+
+# New logging system
+'newuserlog-byemail' => 'پټنوم مو برېښليک ته درولېږه',
 
 );

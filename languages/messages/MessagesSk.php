@@ -2114,12 +2114,8 @@ Podporované protokoly: <tt>$1</tt>',
 'activeusers-noresult'   => 'Neboli nájdení žiadni používatelia.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Záznam vytvorených používateľov',
-'newuserlogpagetext'          => 'Toto je záznam naposledy vytvorených používateľských účtov.',
-'newuserlog-byemail'          => 'heslo poslané emailom',
-'newuserlog-create-entry'     => 'Nový používateľ',
-'newuserlog-create2-entry'    => 'vytvoril nový účet $1',
-'newuserlog-autocreate-entry' => 'Účet vytvorený automaticky',
+'newuserlogpage'     => 'Záznam vytvorených používateľov',
+'newuserlogpagetext' => 'Toto je záznam naposledy vytvorených používateľských účtov.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Práva skupiny používateľov',
@@ -3776,5 +3772,6 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|premiestnil}} stránku $3 na $4, ale neponechal presmerovanie',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|premiestnil}} stránku $3 na $4 prostredníctvom presmerovania',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|premiestnil}} stránku $3 na $4 prostredníctvom  presmerovania, ale neponechal presmerovanie',
+'newuserlog-byemail'                  => 'heslo poslané emailom',
 
 );

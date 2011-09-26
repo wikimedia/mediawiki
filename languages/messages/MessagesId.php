@@ -2124,12 +2124,8 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'activeusers-noresult'   => 'Pengguna tidak ditemukan.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Log pengguna baru',
-'newuserlogpagetext'          => 'Di bawah ini adalah log pendaftaran pengguna baru',
-'newuserlog-byemail'          => 'kata sandi dikirim melalui surel',
-'newuserlog-create-entry'     => 'mendaftar sebagai pengguna',
-'newuserlog-create2-entry'    => 'membuat akun baru $1',
-'newuserlog-autocreate-entry' => 'akun pengguna dibuat secara otomatis',
+'newuserlogpage'     => 'Log pengguna baru',
+'newuserlogpagetext' => 'Di bawah ini adalah log pendaftaran pengguna baru',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Daftar kelompok pengguna',
@@ -3791,5 +3787,6 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'revdelete-uname-unhid'   => 'nama pengguna tidak disembunyikan',
 'revdelete-restricted'    => 'akses telah dibatasi untuk opsis',
 'revdelete-unrestricted'  => 'pembatasan akses opsis dihapuskan',
+'newuserlog-byemail'      => 'kata sandi dikirim melalui surel',
 
 );

@@ -1727,12 +1727,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 'activeusers-noresult'   => 'কোনো ব্যবহারকারী পাওয়া যায়নি।',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'ব্যবহারকারী সৃষ্টির লগ',
-'newuserlogpagetext'          => 'এটি নতুন ব্যবহারকারী সৃষ্টির লগ',
-'newuserlog-byemail'          => 'শব্দচাবি ইমেইলের মাধ্যমে পাঠানো হয়েছে',
-'newuserlog-create-entry'     => 'নতুন ব্যবহারকারী',
-'newuserlog-create2-entry'    => '$1 নতুন অ্যাকাউন্ট সৃষ্টি করা হয়েছে',
-'newuserlog-autocreate-entry' => 'সয়ংক্রিয় ভাবে অ্যাকাউন্ট তৈরি হয়েছে',
+'newuserlogpage'     => 'ব্যবহারকারী সৃষ্টির লগ',
+'newuserlogpagetext' => 'এটি নতুন ব্যবহারকারী সৃষ্টির লগ',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'দলগত ব্যবহারকারী অধিকার',
@@ -3126,5 +3122,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'এই সীমাবদ্ধতা প্রশাসকের ক্ষেত্রে প্রয়োগ করো',
 'revdelete-unrestricted' => 'এই সীমাবদ্ধতা প্রশাসকের ক্ষেত্রে তুলে নাও',
+'newuserlog-byemail'     => 'শব্দচাবি ইমেইলের মাধ্যমে পাঠানো হয়েছে',
 
 );

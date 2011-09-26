@@ -493,8 +493,7 @@ $messages = array(
 'linksearch' => 'Вики сайöдз ыстöттэз',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Уджкерисьö гижöтчан журнал',
-'newuserlog-create-entry' => 'Виль уджкерись',
+'newuserlogpage' => 'Уджкерисьö гижöтчан журнал',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(уджкериссезлöн нимлёдз)',

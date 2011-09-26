@@ -732,16 +732,18 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'resetpass-temp-password'   => 'Contrasinal temporal:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Restablecer o contrasinal',
-'passwordreset-text'           => 'Encha este formulario para recibir un recordatorio por correo electrónico cos detalles da súa conta.',
-'passwordreset-legend'         => 'Restablecer o contrasinal',
-'passwordreset-disabled'       => 'O restablecemento de contrasinais está desactivado neste wiki.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Introduza un dos datos a continuación}}',
-'passwordreset-username'       => 'Nome de usuario:',
-'passwordreset-domain'         => 'Dominio:',
-'passwordreset-email'          => 'Enderezo de correo electrónico:',
-'passwordreset-emailtitle'     => 'Detalles da conta de {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou un recordatorio coa
+'passwordreset'                    => 'Restablecer o contrasinal',
+'passwordreset-text'               => 'Encha este formulario para recibir un recordatorio por correo electrónico cos detalles da súa conta.',
+'passwordreset-legend'             => 'Restablecer o contrasinal',
+'passwordreset-disabled'           => 'O restablecemento de contrasinais está desactivado neste wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Introduza un dos datos a continuación}}',
+'passwordreset-username'           => 'Nome de usuario:',
+'passwordreset-domain'             => 'Dominio:',
+'passwordreset-capture'            => 'Quere ollar o correo electrónico?',
+'passwordreset-capture-help'       => 'Se marca esta caixa, poderá ver o correo electrónico (co contrasinal temporal) que se envía ao usuario.',
+'passwordreset-email'              => 'Enderezo de correo electrónico:',
+'passwordreset-emailtitle'         => 'Detalles da conta de {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou un recordatorio coa
 información da súa conta en {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
 a este enderezo de correo electrónico:
 
@@ -751,7 +753,7 @@ $2
 Debería acceder ao sistema e elixir un novo contrasinal agora. Se outro fixo esta
 solicitude ou se lembrou o seu contrasinal orixinal e xa non o quere cambiar,
 ignore esta mensaxe e continúe empregando o seu contrasinal vello.',
-'passwordreset-emailtext-user' => 'O usuario $1 solicitou un recordatorio coa información da súa conta en {{SITENAME}}
+'passwordreset-emailtext-user'     => 'O usuario $1 solicitou un recordatorio coa información da súa conta en {{SITENAME}}
 ($4). {{PLURAL:$3|A seguinte conta de usuario está asociada|As seguintes contas de usuarios están asociadas}}
 a este enderezo de correo electrónico:
 
@@ -761,9 +763,11 @@ $2
 Debería acceder ao sistema e elixir un novo contrasinal agora. Se outro fixo esta
 solicitude ou se lembrou o seu contrasinal orixinal e xa non o quere cambiar,
 ignore esta mensaxe e continúe empregando o seu contrasinal vello.',
-'passwordreset-emailelement'   => 'Nome de usuario: $1
+'passwordreset-emailelement'       => 'Nome de usuario: $1
 Contrasinal temporal: $2',
-'passwordreset-emailsent'      => 'Enviouse o correo electrónico co recordatorio.',
+'passwordreset-emailsent'          => 'Enviouse o correo electrónico co recordatorio.',
+'passwordreset-emailsent-capture'  => 'Enviouse un correo electrónico recordatorio, mostrado a continuación.',
+'passwordreset-emailerror-capture' => 'Xerouse un correo electrónico recordatorio, mostrado a continuación, pero o envío ao usuario fallou: $1.',
 
 # Special:ChangeEmail
 'changeemail'          => 'Cambiar o enderezo de correo electrónico',
@@ -1483,6 +1487,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-siteadmin'             => 'Fechar e abrir a base de datos',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
+'right-passwordreset'         => 'Restablecer o contrasinal dun usuario ([[Special:PasswordReset|páxina especial]])',
 
 # User rights log
 'rightslog'                  => 'Rexistro de dereitos de usuario',
@@ -2078,12 +2083,8 @@ Protocolos soportados: <tt>$1</tt>',
 'activeusers-noresult'   => 'Non se atopou ningún usuario.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Rexistro de creación de usuarios',
-'newuserlogpagetext'          => 'Este é un rexistro de creación de contas de usuario.',
-'newuserlog-byemail'          => 'contrasinal enviado por correo electrónico',
-'newuserlog-create-entry'     => 'Novo usuario',
-'newuserlog-create2-entry'    => 'creou unha nova conta para "$1"',
-'newuserlog-autocreate-entry' => 'Conta de usuario creada automaticamente',
+'newuserlogpage'     => 'Rexistro de creación de usuarios',
+'newuserlogpagetext' => 'Este é un rexistro de creación de contas de usuario.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Dereitos dun usuario segundo o seu grupo',
@@ -3773,5 +3774,9 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a páxina "$3" a "$4" sobre unha redirección sen deixar unha redirección',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcou}} a revisión $4 da páxina "$3" como patrullada',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcou}} automaticamente a revisión $4 da páxina "$3" como patrullada',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|creou}} unha conta de usuario',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|creou}} unha conta de usuario $3',
+'logentry-newusers-autocreate'        => 'A conta $1 {{GENDER:$2|creouse}} automaticamente',
+'newuserlog-byemail'                  => 'contrasinal enviado por correo electrónico',
 
 );

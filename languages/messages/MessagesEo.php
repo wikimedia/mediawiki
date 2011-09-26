@@ -2128,12 +2128,8 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'activeusers-noresult'   => 'Neniuj uzantoj trovitaj.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Protokolo de uzanto-kreado',
-'newuserlogpagetext'          => 'Jen protokolo de lastaj kreadoj de uzantoj.',
-'newuserlog-byemail'          => 'pasvorto sendita retpoŝte',
-'newuserlog-create-entry'     => 'Nova uzanto',
-'newuserlog-create2-entry'    => 'kreis novan konton $1',
-'newuserlog-autocreate-entry' => 'Konto kreita aŭtomate',
+'newuserlogpage'     => 'Protokolo de uzanto-kreado',
+'newuserlogpagetext' => 'Jen protokolo de lastaj kreadoj de uzantoj.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Gruprajtoj de uzantoj',
@@ -3739,5 +3735,6 @@ Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|movis|movis}} paĝon $3 al $4 sen lasante alidirektilon',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|movis|movis}} paĝon $3 al $4 anstataŭigante alidirektilon',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|movis|movis}} paĝon $3 al $4 anstataŭigante alidirektilon sen lasante alidirektilon',
+'newuserlog-byemail'                  => 'pasvorto sendita retpoŝte',
 
 );

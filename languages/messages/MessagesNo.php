@@ -608,8 +608,8 @@ $1',
 
 # Main script and global functions
 'nosuchaction'      => 'Funksjonen finnes ikke',
-'nosuchactiontext'  => 'Handlingen spesifisert i URLen er ugyldig.
-Du kan ha skrevet URLen feil, eller fulgt en link som var feil.
+'nosuchactiontext'  => 'Handlingen spesifisert i URL-en er ugyldig.
+Du kan ha skrevet URL-en feil, eller fulgt en link som var feil.
 Det kan også være en bug i {{SITENAME}}.',
 'nosuchspecialpage' => 'En slik spesialside finnes ikke',
 'nospecialpagetext' => 'Du ba om en ugyldig spesialside; en liste over gyldige spesialsider finnes på [[Special:SpecialPages|{{int:specialpages}}]].',
@@ -656,7 +656,7 @@ Vennligst rapporter dette til en [[Special:ListUsers/sysop|administrator]], oppg
 'unexpected'           => 'Uventet verdi: «$1»=«$2».',
 'formerror'            => 'Feil: klarte ikke å sende skjema',
 'badarticleerror'      => 'Handlingen kan ikke utføres på denne siden.',
-'cannotdelete'         => 'Kunne ikke slette fila «$1». Den kan ha blitt slettet av noen andre.',
+'cannotdelete'         => 'Kunne ikke slette filen «$1». Den kan ha blitt slettet av noen andre.',
 'badtitle'             => 'Ugyldig tittel',
 'badtitletext'         => 'Den ønskede tittelen var ugyldig, tom eller feilaktig lenket fra en annen wiki.
 Det kan inneholder en eller flere tegn som ikke kan brukes i titler.',
@@ -804,16 +804,18 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'resetpass-temp-password'   => 'Midlertidig passord:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Passordresetting',
-'passwordreset-text'           => 'Fyll ut dette skjemaet for å motta en påminnelse om kontoopplysningene dine i en e-post.',
-'passwordreset-legend'         => 'Tilbakestill passord',
-'passwordreset-disabled'       => 'Tilbakestilling av passord har blitt deaktivert på denne wikien.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Angi en av datadelene nedenfor}}',
-'passwordreset-username'       => 'Brukernavn:',
-'passwordreset-domain'         => 'Domene:',
-'passwordreset-email'          => 'E-postadresse:',
-'passwordreset-emailtitle'     => 'Kontodetaljer på {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Noen (sannsynligvis deg fra IP-adressen $1) ba om en påminnelse om dine
+'passwordreset'                    => 'Passordresetting',
+'passwordreset-text'               => 'Fyll ut dette skjemaet for å motta en påminnelse om kontoopplysningene dine i en e-post.',
+'passwordreset-legend'             => 'Tilbakestill passord',
+'passwordreset-disabled'           => 'Tilbakestilling av passord har blitt deaktivert på denne wikien.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Angi en av datadelene nedenfor}}',
+'passwordreset-username'           => 'Brukernavn:',
+'passwordreset-domain'             => 'Domene:',
+'passwordreset-capture'            => 'Vise resulterende e-post?',
+'passwordreset-capture-help'       => 'Hvis du krysser av her, vil du se e-posten (med foreløpig passord) i tillegg til at den blir sendt til brukeren.',
+'passwordreset-email'              => 'E-postadresse:',
+'passwordreset-emailtitle'         => 'Kontodetaljer på {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Noen (sannsynligvis deg fra IP-adressen $1) ba om en påminnelse om dine
 kontodetaljer for {{SITENAME}} ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er
 tilknyttet denne e-postadressen:
 
@@ -824,7 +826,7 @@ Du bør logge på og velge et nytt passord nå. Dersom noen andre kom med denne
 forespørselen, eller du har kommet på ditt opprinnelige passord, og ikke lenger
 ønsker å endre det, kan du ignorere denne meldingen og fortsette å bruke ditt gamle
 passord.',
-'passwordreset-emailtext-user' => 'Brukeren $1 på {{SITENAME}} ba om en påminnelse om kontodetaljene dine for {{SITENAME}}
+'passwordreset-emailtext-user'     => 'Brukeren $1 på {{SITENAME}} ba om en påminnelse om kontodetaljene dine for {{SITENAME}}
 ($4). {{PLURAL:$3|Den følgende brukerkontoen|De følgende brukerkontoene}} er tilknyttet denne e-postadressen:
 
 $2
@@ -834,9 +836,11 @@ Du bør logge på og velge et nytt passord nå. Dersom noen andre kom med denne
 forespørselen, eller du har kommet på ditt opprinnelige passord, og ikke lenger
 ønsker å endre det, kan du ignorere denne meldingen og fortsette å bruke ditt gamle
 passord.',
-'passwordreset-emailelement'   => 'Brukernavn: $1
+'passwordreset-emailelement'       => 'Brukernavn: $1
 Midlertidig passord: $2',
-'passwordreset-emailsent'      => 'En påminnelse har blitt sendt på e-post.',
+'passwordreset-emailsent'          => 'En påminnelse har blitt sendt på e-post.',
+'passwordreset-emailsent-capture'  => 'E-posten under er sendt ut som en påminnelse.',
+'passwordreset-emailerror-capture' => 'E-posten, som du ser under, ble forsøkt sendt til brukeren, men dette mislyktes: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Endre e-postadresse',
@@ -1670,7 +1674,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'ignorewarning'               => 'Ignorer advarselen og lagre filen likevel',
 'ignorewarnings'              => 'Ignorer eventuelle advarsler',
 'minlength1'                  => 'Filnavn må være på minst én bokstav.',
-'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn; gi fila et nytt navn og prøv igjen.',
+'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn. Gi filen et nytt navn og prøv igjen.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
 'filetype-mime-mismatch'      => 'Filendelsen «.$1» tilsvarer ikke MIME-typen som oppgis i filen ($2).',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
@@ -1692,8 +1696,8 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'tmp-create-error'            => 'Kunne ikke opprette midlertidig fil.',
 'tmp-write-error'             => 'Feil ved skriving av midlertidig fil.',
 'large-file'                  => 'Det er anbefalt at filen ikke er større enn $1; denne filen er $2.',
-'largefileserver'             => 'Denne fila er større enn det tjeneren er satt opp til å tillate.',
-'emptyfile'                   => 'Fila du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne fila.',
+'largefileserver'             => 'Denne filen er større enn det tjeneren er satt opp til å tillate.',
+'emptyfile'                   => 'Filen du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne filen.',
 'windows-nonascii-filename'   => 'Denne wikien støtter ikke filnavn med spesialtegn.',
 'fileexists'                  => "Ei fil med dette navnet finnes allerede.
 Sjekk '''<tt>[[:$1]]</tt>''' hvis du ikke er sikker på at du vil forandre den.
@@ -1713,7 +1717,7 @@ Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på de
 'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før, og kan ikke erstattes.
 Om du fortsatt ønsker å laste opp filen, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret.
-Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
+Om du fortsatt ønsker å laste opp filen, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne filen er en dublett av følgende {{PLURAL:$1|fil|filer}}:',
 'file-deleted-duplicate'      => 'En fil identisk med denne filen ([[:$1]]) har tidligere blitt slettet. Du bør sjekke denne filens slettehistorikk før du prøver å laste den opp på nytt.',
 'uploadwarning'               => 'Opplastingsadvarsel',
@@ -1726,9 +1730,9 @@ Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et n
 'uploadfromurl-queued'        => 'Opplastingen din har blitt satt i kø.',
 'uploaddisabledtext'          => 'Opplasting er slått av.',
 'php-uploaddisabledtext'      => 'PHP-filopplasting er deaktivert. Sjekk innstillingen for file_uploads.',
-'uploadscripted'              => 'Denne fila inneholder HTML eller skripting som kan feiltolkes av en nettleser.',
-'uploadvirus'                 => 'Denne fila inneholder virus! Detaljer: $1',
-'uploadjava'                  => 'Fila er en ZIP-fil som inneholder en Java-fil av typen .class.
+'uploadscripted'              => 'Denne filen inneholder HTML eller skripting som kan feiltolkes av en nettleser.',
+'uploadvirus'                 => 'Denne filen inneholder virus! Detaljer: $1',
+'uploadjava'                  => 'Filen er en ZIP-fil som inneholder en Java-fil av typen .class.
 Det er ikke tillatt å laste opp Java-filer, fordi de kan omgå sikkerhetsrestriksjoner.',
 'upload-source'               => 'Kildefil',
 'sourcefilename'              => 'Velg en fil:',
@@ -1771,14 +1775,14 @@ $1',
 'upload-misc-error-text'    => 'En ukjent feil forekom under opplastingen.
 Bekreft at adressen er gyldig og tilgjengelig, og prøv igjen.
 Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
-'upload-too-many-redirects' => 'URLen inneholdt for mange omdirigeringer',
+'upload-too-many-redirects' => 'URL-en inneholdt for mange omdirigeringer',
 'upload-unknown-size'       => 'Ukjent størrelse',
 'upload-http-error'         => 'En HTTP-feil oppstod: $1',
 
 # ZipDirectoryReader
 'zip-file-open-error' => 'Det oppsto en feil under åpning av filen for ZIP-sjekking.',
-'zip-wrong-format'    => 'Den angitte fila var ikke en ZIP-fil.',
-'zip-bad'             => 'Fila er en skadd eller på annen måte uleselig ZIP-fil.
+'zip-wrong-format'    => 'Den angitte filen var ikke en ZIP-fil.',
+'zip-bad'             => 'Filen er en skadd eller på annen måte uleselig ZIP-fil.
 Den kan ikke sikkerhetskontrolleres.',
 'zip-unsupported'     => 'Filen er en ZIP-fil som bruker funksjoner som ikke støttes av MediaWiki.
 Den kan ikke sikkerhetskontrolleres.',
@@ -1875,9 +1879,9 @@ En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
 'linkstoimage-redirect'     => '$1 (filomdirigering) $2',
 'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublett|filer er dubletter}} av denne filen ([[Special:FileDuplicateSearch/$2|fler detaljer]]):',
 'sharedupload'              => 'Denne filen er fra $1 og kan bli brukt av andre prosjekter.',
-'sharedupload-desc-there'   => 'Denne fila er fra $1 og kan brukes på andre prosjekter.
+'sharedupload-desc-there'   => 'Denne filen er fra $1 og kan brukes på andre prosjekter.
 Se [$2 filbeskrivelsessida] for mer informasjon.',
-'sharedupload-desc-here'    => 'Denne fila er fra $1 og kan brukes av andre prosjekter.
+'sharedupload-desc-here'    => 'Denne filen er fra $1 og kan brukes av andre prosjekter.
 Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 'filepage-nofile'           => 'Det finnes ingen fil med dette navnet.',
 'filepage-nofile-link'      => 'Ingen fil med dette navnet eksisterer, men du kan [$1 laste den opp].',
@@ -1898,7 +1902,7 @@ Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 # File deletion
 'filedelete'                  => 'Slett $1',
 'filedelete-legend'           => 'Slett fil',
-'filedelete-intro'            => "Du er i ferd med å slette fila '''[[Media:$1|$1]]''' sammen med hele dens historikk.",
+'filedelete-intro'            => "Du er i ferd med å slette filen '''[[Media:$1|$1]]''' sammen med hele dens historikk.",
 'filedelete-intro-old'        => "Du sletter versjonen av '''[[Media:$1|$1]]''' à [$4 $3, $2].",
 'filedelete-comment'          => 'Årsak:',
 'filedelete-submit'           => 'Slett',
@@ -2124,12 +2128,8 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'activeusers-noresult'   => 'Ingen brukere funnet.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Brukeropprettelseslogg',
-'newuserlogpagetext'          => 'Dette er en logg over brukeropprettelser.',
-'newuserlog-byemail'          => 'passord sendt på e-post',
-'newuserlog-create-entry'     => 'Ny brukerkonto',
-'newuserlog-create2-entry'    => 'opprettet kontoen $1',
-'newuserlog-autocreate-entry' => 'Konto opprettet automatisk',
+'newuserlogpage'     => 'Brukeropprettelseslogg',
+'newuserlogpagetext' => 'Dette er en logg over brukeropprettelser.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Rettigheter for brukergrupper',
@@ -2752,7 +2752,7 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 
 # Thumbnails
 'thumbnail-more'           => 'Forstørr',
-'filemissing'              => 'Fila mangler',
+'filemissing'              => 'Filen mangler',
 'thumbnail_error'          => 'Feil under oppretting av miniatyrbilde: $1',
 'djvu_page_error'          => 'DjVu-side ute av rekkevidde',
 'djvu_no_xml'              => 'Klarte ikke å hente XML for DjVu-fil',
@@ -2760,7 +2760,7 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 'thumbnail_dest_directory' => 'Klarte ikke å opprette målmappe',
 'thumbnail_image-type'     => 'Bildetypen støttes ikke',
 'thumbnail_gd-library'     => 'Ufullstendig konfigurering av GD library: mangler funksjonen $1',
-'thumbnail_image-missing'  => 'Fila ser ut til å mangle: $1',
+'thumbnail_image-missing'  => 'Filen ser ut til å mangle: $1',
 
 # Special:Import
 'import'                     => 'Importer sider',
@@ -2773,7 +2773,7 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 'import-interwiki-namespace' => 'Målnavnerom:',
 'import-upload-filename'     => 'Filnavn:',
 'import-comment'             => 'Kommentar:',
-'importtext'                 => 'Importer fila fra kildewikien med [[Special:Export|eksporteringsverktøyet]].
+'importtext'                 => 'Importer filen fra kildewikien med [[Special:Export|eksporteringsverktøyet]].
 Lagre den på din egen datamaskin og last den opp her.',
 'importstart'                => 'Importerer sider&nbsp;…',
 'import-revision-count'      => '({{PLURAL:$1|Én revisjon|$1 revisjoner}})',
@@ -2977,7 +2977,7 @@ $1',
 'nextdiff'     => 'Neste endring →',
 
 # Media information
-'mediawarning'           => "'''Advarsel''': Denne fila kan inneholde farlig kode.
+'mediawarning'           => "'''Advarsel''': Denne filen kan inneholde farlig kode.
 Ved å åpne den kan systemet ditt kompromitteres.",
 'imagemaxsize'           => "Bildestørrelsesgrense:<br />''(for filbeskrivelsessider)''",
 'thumbsize'              => 'Miniatyrbildestørrelse:',
@@ -3805,5 +3805,6 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttet}} siden $3 til $4 over en omdirigering uten å etterlate en omdirigering',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerte}} revisjon $4 av siden $3 som patruljert',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerte}} automatisk revisjon $4 av siden $3 som patruljert',
+'newuserlog-byemail'                  => 'passord sendt på e-post',
 
 );

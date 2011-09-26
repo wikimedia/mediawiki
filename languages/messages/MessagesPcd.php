@@ -586,8 +586,7 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'linksearch' => 'Loïens éstérieurs',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Jornal del créachon pou echl uzeu',
-'newuserlog-create-entry' => "Nouvieu conpte d'uzeu",
+'newuserlogpage' => 'Jornal del créachon pou echl uzeu',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lisse éd chés mimbes)',

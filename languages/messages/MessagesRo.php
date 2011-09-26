@@ -804,16 +804,18 @@ Este posibil să fi reușit deja schimbarea parolei sau să fi cerut o parolă t
 'resetpass-temp-password'   => 'Parolă temporară:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Resetare parolă',
-'passwordreset-text'           => 'Completați acest formular pentru a primi un e-mail cu datele contului dumneavoastră.',
-'passwordreset-legend'         => 'Resetare parolă',
-'passwordreset-disabled'       => 'Resetarea parolei a fost dezactivată pe acest wiki.',
-'passwordreset-pretext'        => '{{PLURAL:$1| | Introduceți mai jos o parte din informații}}',
-'passwordreset-username'       => 'Nume de utilizator:',
-'passwordreset-domain'         => 'Domeniu:',
-'passwordreset-email'          => 'Adresă de e-mail:',
-'passwordreset-emailtitle'     => 'Detalii despre cont pe {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Cineva (probabil dumneavoastră, de la adresa IP $1) a cerut reamintirea detaliilor
+'passwordreset'                    => 'Resetare parolă',
+'passwordreset-text'               => 'Completați acest formular pentru a primi un e-mail cu datele contului dumneavoastră.',
+'passwordreset-legend'             => 'Resetare parolă',
+'passwordreset-disabled'           => 'Resetarea parolei a fost dezactivată pe acest wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1| | Introduceți mai jos o parte din informații}}',
+'passwordreset-username'           => 'Nume de utilizator:',
+'passwordreset-domain'             => 'Domeniu:',
+'passwordreset-capture'            => 'Vizualizați e-mailul rezultat?',
+'passwordreset-capture-help'       => 'Dacă bifați această căsuță, e-mailul (conținând parola temperară) vă va fi afișat, dar va fi trimis și utilizatorului.',
+'passwordreset-email'              => 'Adresă de e-mail:',
+'passwordreset-emailtitle'         => 'Detalii despre cont pe {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Cineva (probabil dumneavoastră, de la adresa IP $1) a cerut reamintirea detaliilor
 contului dumneavoastră pe {{SITENAME}} ($4). {{PLURAL:$3|Următorul cont este asociat|Următoarele conturi sunt asociate}}
 cu această adresă de e-mail:
 
@@ -823,15 +825,17 @@ $2
 Ar trebui să vă autentificați și să schimbați parola acum. Dacă altcineva a făcut această cerere 
 sau dacă v-ați reamintit parola inițială și nu mai doriți să o schimbați,
 puteți ignora acest mesaj, continuând să utilizați vechea parolă.',
-'passwordreset-emailtext-user' => 'Utilizatorul $1 de pe {{SITENAME}} a solicitat o reamintire a detaliilor contului dumneavoastră pentru {{SITENAME}} ($4). Următorul utilizator are {{PLURAL:$3|contul asociat|conturile asociate}} cu această adresă de e-mail:
+'passwordreset-emailtext-user'     => 'Utilizatorul $1 de pe {{SITENAME}} a solicitat o reamintire a detaliilor contului dumneavoastră pentru {{SITENAME}} ($4). Următorul utilizator are {{PLURAL:$3|contul asociat|conturile asociate}} cu această adresă de e-mail:
 
 $2
 
 {{PLURAL:$3|Această parolă temporară va|Aceste parole temporare vor}} expira {{PLURAL:$5|într-o zi|în $5 zile}}.
 Ar trebui să vă autentificați și să alegeți acum o nouă parolă. Dacă altcineva a făcut această solicitare, ori dacă v-ați reamintit parola originală și nu mai doriți modificarea ei, puteți ignora acest mesaj, continuând cu vechea parolă.',
-'passwordreset-emailelement'   => 'Nume de utilizator: $1
+'passwordreset-emailelement'       => 'Nume de utilizator: $1
 Parolă temporară: $2',
-'passwordreset-emailsent'      => 'A fost trimis un e-mail de reamintire.',
+'passwordreset-emailsent'          => 'A fost trimis un e-mail de reamintire.',
+'passwordreset-emailsent-capture'  => 'Un mesaj de reamintire a fost trimis, fiind afișat mai jos.',
+'passwordreset-emailerror-capture' => 'Un mesaj de reamintire a fost generat (fiind afișat mai jos), dar trimiterea sa către utilizator a eșuat: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Modificare adresă de e-mail',
@@ -1548,6 +1552,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-siteadmin'             => 'Blochează și deblochează baza de date',
 'right-override-export-depth' => 'Exportă inclusiv paginile legate până la o adâncime de 5',
 'right-sendemail'             => 'Trimite e-mail altor utilizatori',
+'right-passwordreset'         => 'Vizualizează e-mailurile de reinițializare a parolelor',
 
 # User rights log
 'rightslog'                  => 'Jurnal permisiuni de utilizator',
@@ -2138,12 +2143,8 @@ Protocoale suportate: <tt>$1</tt>',
 'activeusers-noresult'   => 'Niciun utilizator găsit.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Jurnal utilizatori noi',
-'newuserlogpagetext'          => 'Acesta este jurnalul creărilor conturilor de utilizator.',
-'newuserlog-byemail'          => 'parola trimisă prin e-mail',
-'newuserlog-create-entry'     => 'Utilizator nou',
-'newuserlog-create2-entry'    => 'a fost creat contul nou $1',
-'newuserlog-autocreate-entry' => 'Cont creat automat',
+'newuserlogpage'     => 'Jurnal utilizatori noi',
+'newuserlogpagetext' => 'Acesta este jurnalul creărilor conturilor de utilizator.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Permisiunile grupurilor de utilizatori',
@@ -3035,6 +3036,13 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'bydate'                => 'după dată',
 'sp-newimages-showfrom' => 'Arată imaginile noi începând cu $1, ora $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|o secundă|$1 secunde}}',
+'minutes' => '{{PLURAL:$1|un minut|$1 minute}}',
+'hours'   => '{{PLURAL:$1|o oră|$1 ore}}',
+'days'    => '{{PLURAL:$1|o zi|$1 zile}}',
+'ago'     => '$1 în urmă',
+
 # Bad image list
 'bad_image_list' => 'Formatul este următorul:
 
@@ -3784,5 +3792,9 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4 înlocuind redirecționarea și fără a lăsa o redirecționare în loc',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|a marcat}} versiunea $4 a paginii $3 ca patrulată',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|a marcat}} automat versiunea $4 a paginii $3 ca patrulată',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|a creat}} un cont de utilizator',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|a creat}} un cont de utilizator $3',
+'logentry-newusers-autocreate'        => 'Contul $1 a fost {{GENDER:$2|creat}} în mod automat',
+'newuserlog-byemail'                  => 'parola trimisă prin e-mail',
 
 );

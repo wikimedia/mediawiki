@@ -367,8 +367,7 @@ $messages = array(
 'linksearch' => 'Легэтурь екстерне',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Журнал утилизаторь ной',
-'newuserlog-create-entry' => 'Конт ноу де утилизатор',
+'newuserlogpage' => 'Журнал утилизаторь ной',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(листэ де мембрь)',

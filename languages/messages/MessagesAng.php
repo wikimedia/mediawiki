@@ -845,8 +845,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'activeusers' => 'Hƿata brūcenda ȝetalu',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Brūcenda ȝesceaft ȝetalu',
-'newuserlog-create-entry' => 'Nīƿe brūcend',
+'newuserlogpage' => 'Brūcenda ȝesceaft ȝetalu',
 
 # Special:ListGroupRights
 'listgrouprights-group'           => 'Clīeƿen',

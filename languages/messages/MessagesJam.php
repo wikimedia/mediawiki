@@ -824,8 +824,7 @@ Piej pahn [[Special:Watchlist|yu wachlis]] dem '''buol'''.",
 'linksearch' => 'Extoernal lingk',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Yuuza krieshan lag',
-'newuserlog-create-entry' => 'Nyuu yuuza akount',
+'newuserlogpage' => 'Yuuza krieshan lag',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis a memba)',

@@ -1614,12 +1614,8 @@ Protoks pestütöl: <tt>$1</tt>',
 'activeusers-noresult'   => 'Geban nonik petuvon.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Lised gebanijafamas',
-'newuserlogpagetext'          => 'Is palisedons jafams gebanas nulik.',
-'newuserlog-byemail'          => 'letavöd pesedon me pot leäktronik',
-'newuserlog-create-entry'     => 'Geban nulik',
-'newuserlog-create2-entry'    => 'ejafon kali nulik: $1',
-'newuserlog-autocreate-entry' => 'Kal itjäfidiko pejaföl',
+'newuserlogpage'     => 'Lised gebanijafamas',
+'newuserlogpagetext' => 'Is palisedons jafams gebanas nulik.',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Gitäts gebanagrupa',
@@ -2828,5 +2824,6 @@ Magods pajonons ma fomät gudikün, ragivasots votik pamaifükons stedöfo kobü
 # New logging system
 'revdelete-restricted'   => 'miedükams pelonöfükons pro guvans',
 'revdelete-unrestricted' => 'miedükams pro guvans pemoükons',
+'newuserlog-byemail'     => 'letavöd pesedon me pot leäktronik',
 
 );

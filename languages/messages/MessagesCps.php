@@ -647,8 +647,7 @@ Mga Pahina sa [[Special:Watchlist|imo watchlist]]  '''madukot'''.",
 'linksearch' => 'Panggwa nga mga link',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Listahan sang pag-ubra sang manug-usar',
-'newuserlog-create-entry' => 'Bag-o nga manug-usar',
+'newuserlogpage' => 'Listahan sang pag-ubra sang manug-usar',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lista sang mga myembro)',

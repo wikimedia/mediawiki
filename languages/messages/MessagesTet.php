@@ -615,10 +615,8 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'activeusers-hidesysops' => 'Subar administradór sira',
 
 # Special:Log/newusers
-'newuserlogpage'           => "Lista kria uza-na'in",
-'newuserlogpagetext'       => "Ne'e lista kria uza-na'in.",
-'newuserlog-create-entry'  => "Uza-na'in foun",
-'newuserlog-create2-entry' => 'registrar tiha konta foun $1',
+'newuserlogpage'     => "Lista kria uza-na'in",
+'newuserlogpagetext' => "Ne'e lista kria uza-na'in.",
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Grupu',

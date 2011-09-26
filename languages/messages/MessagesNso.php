@@ -873,8 +873,7 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'listusers-submit' => 'Bontšha',
 
 # Special:Log/newusers
-'newuserlogpage'          => '"Log" yago hlola mošumiši',
-'newuserlog-create-entry' => 'Tšhupaleloko ya mošumiši ye mphsa',
+'newuserlogpage' => '"Log" yago hlola mošumiši',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(Lenano la ditho)',

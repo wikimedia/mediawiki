@@ -107,9 +107,6 @@ $messages = array(
 # Special:AllPages
 'allarticles' => 'Киналго макъалаби',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'ЦӀияв гӀахьалчи',
-
 # Watchlist
 'watchlist' => 'Дур халгьабиялъул сияхl',
 'watch'     => 'хал гьабизе',

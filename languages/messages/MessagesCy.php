@@ -1923,12 +1923,8 @@ Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
 'activeusers-noresult'   => "Dim defnyddwyr i'w cael.",
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Lòg creu cyfrifon defnyddwyr newydd',
-'newuserlogpagetext'          => "Dyma restr o'r defnyddwyr newydd sydd wedi ymuno â'r wici.",
-'newuserlog-byemail'          => 'anfonwyd y cyfrinair trwy e-bost',
-'newuserlog-create-entry'     => 'Defnyddiwr newydd',
-'newuserlog-create2-entry'    => 'wedi creu cyfrif newydd ar gyfer $1',
-'newuserlog-autocreate-entry' => "Cyfrif wedi ei greu'n awtomatig",
+'newuserlogpage'     => 'Lòg creu cyfrifon defnyddwyr newydd',
+'newuserlogpagetext' => "Dyma restr o'r defnyddwyr newydd sydd wedi ymuno â'r wici.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Galluoedd grwpiau defnyddwyr',
@@ -3548,5 +3544,6 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-move-move-noredirect'       => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1 heb adael dolen ailgyfeirio',
 'logentry-move-move_redir'            => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1 dros y ddolen ailgyfeirio',
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1 dros ddolen ailgyfeirio heb adael dolen ailgyfeirio newydd',
+'newuserlog-byemail'                  => 'anfonwyd y cyfrinair trwy e-bost',
 
 );

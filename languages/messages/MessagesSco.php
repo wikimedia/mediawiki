@@ -1066,8 +1066,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-blocked' => '(blockit)',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Uiser creation log',
-'newuserlog-create-entry' => 'New uiser accoont',
+'newuserlogpage' => 'Uiser creation log',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(leet o members)',

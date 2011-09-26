@@ -1096,8 +1096,7 @@ Kointalangan dilo [$2 kointalangan pail] okito id siriba.',
 'linksearch-line' => '$1 toput mantad $2',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Log pinamansaian momomoguno',
-'newuserlog-create-entry' => 'Akaun momomoguno kawawagu',
+'newuserlogpage' => 'Log pinamansaian momomoguno',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lis do kinoruhangan)',

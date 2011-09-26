@@ -1873,12 +1873,8 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'activeusers-noresult'   => 'Pa gnun utent trovà.',
 
 # Special:Log/newusers
-'newuserlogpage'              => "Registr dla creassion dj'utent",
-'newuserlogpagetext'          => "Sossì a l'é un registr andova ch'as marco le creassion dj'utent.",
-'newuserlog-byemail'          => 'ciav spedìa për pòsta eletrònica',
-'newuserlog-create-entry'     => 'Neuv utent',
-'newuserlog-create2-entry'    => 'Creà ël neuv cont $1',
-'newuserlog-autocreate-entry' => 'Cont creà automaticament',
+'newuserlogpage'     => "Registr dla creassion dj'utent",
+'newuserlogpagetext' => "Sossì a l'é un registr andova ch'as marco le creassion dj'utent.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => "Drit dël grup d'utent",
@@ -3548,5 +3544,6 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'logentry-move-move_redir-noredirect' => "$1 {{GENDER:$2|a l'ha tramudà}} la pàgina $3 a $4 ansima a na ridiression sensa lassé na ridiression",
 'logentry-patrol-patrol'              => "$1 {{GENDER:$2|a l'ha marcà}} la revision $4 dla pàgina $3 'me controlà",
 'logentry-patrol-patrol-auto'         => "$1 {{GENDER:$2|a l'ha marcà}} automaticament la revision $4 dla pàgina $3 'me controlà",
+'newuserlog-byemail'                  => 'ciav spedìa për pòsta eletrònica',
 
 );

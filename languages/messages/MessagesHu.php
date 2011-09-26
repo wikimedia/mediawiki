@@ -2103,12 +2103,8 @@ Támogatott protokollok: <tt>$1</tt>',
 'activeusers-noresult'   => 'Nem található ilyen szerkesztő.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Új szerkesztők naplója',
-'newuserlogpagetext'          => 'Ez a napló az újonnan regisztrált szerkesztők listáját tartalmazza.',
-'newuserlog-byemail'          => 'a jelszót kiküldtük a megadott e-mail címre',
-'newuserlog-create-entry'     => 'új szerkesztőként regisztrált',
-'newuserlog-create2-entry'    => 'új felhasználói fiókot hozott létre $1 néven',
-'newuserlog-autocreate-entry' => 'Felhasználói fiók automatikusan létrehozva',
+'newuserlogpage'     => 'Új szerkesztők naplója',
+'newuserlogpagetext' => 'Ez a napló az újonnan regisztrált szerkesztők listáját tartalmazza.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Szerkesztői csoportok jogai',
@@ -3687,5 +3683,6 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'logentry-delete-revision-legacy' => '$1 {{GENDER:$2|módosította}} a(z) $3 című lap lapváltozatainak láthatóságát',
 'revdelete-restricted'            => 'elrejtett az adminisztrátorok elől',
 'revdelete-unrestricted'          => 'felfedett az adminisztrátoroknak',
+'newuserlog-byemail'              => 'a jelszót kiküldtük a megadott e-mail címre',
 
 );

@@ -1826,12 +1826,8 @@ Baimendutako protokoloak: <tt>$1</tt>',
 'activeusers-noresult'   => 'Ez da lankiderik aurkitu.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Erabiltzaile erregistroa',
-'newuserlogpagetext'          => 'Hau azken erabiltzaileen sorreren erregistroa da.',
-'newuserlog-byemail'          => 'pasahitza e-postaz bidali da',
-'newuserlog-create-entry'     => 'Erabiltzaile berria',
-'newuserlog-create2-entry'    => '$1 kontu berria sortu da',
-'newuserlog-autocreate-entry' => 'Automatikoki sorturiko kontua',
+'newuserlogpage'     => 'Erabiltzaile erregistroa',
+'newuserlogpagetext' => 'Hau azken erabiltzaileen sorreren erregistroa da.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Erabiltzaile talde eskumenak',
@@ -3250,5 +3246,6 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 # New logging system
 'revdelete-restricted'   => 'administratzaileei ezarritako mugak',
 'revdelete-unrestricted' => 'Administratzaileentzako mugak kendu dira',
+'newuserlog-byemail'     => 'pasahitza e-postaz bidali da',
 
 );

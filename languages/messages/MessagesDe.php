@@ -875,30 +875,33 @@ Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neu
 'resetpass-temp-password'   => 'Temporäres Passwort:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Passwort zurücksetzen',
-'passwordreset-text'           => 'Bitte dieses Formular ausfüllen, um per E-Mail eine Erinnerung zu den Anmeldeinformationen deines Benutzerkontos zu erhalten.',
-'passwordreset-legend'         => 'Passwort zurücksetzen',
-'passwordreset-disabled'       => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Gib eines der folgenden Daten ein}}',
-'passwordreset-username'       => 'Benutzername:',
-'passwordreset-domain'         => 'Domain:',
-'passwordreset-capture'        => 'Die E-Mail-Nachricht ansehen?',
-'passwordreset-email'          => 'E-Mail-Adresse:',
-'passwordreset-emailtitle'     => 'Benutzerkontoinformationen auf {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
+'passwordreset'                    => 'Passwort zurücksetzen',
+'passwordreset-text'               => 'Bitte dieses Formular ausfüllen, um per E-Mail eine Erinnerung zu den Anmeldeinformationen deines Benutzerkontos zu erhalten.',
+'passwordreset-legend'             => 'Passwort zurücksetzen',
+'passwordreset-disabled'           => 'Das Zurücksetzen von Passwörtern wurde in diesem Wiki deaktiviert.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Gib eines der folgenden Daten ein}}',
+'passwordreset-username'           => 'Benutzername:',
+'passwordreset-domain'             => 'Domain:',
+'passwordreset-capture'            => 'Die E-Mail-Nachricht ansehen?',
+'passwordreset-capture-help'       => 'Sofern Du dieses Kästchen ankreuzt, wird die E-Mail-Nachricht mit dem temporären Passwort, sowohl dir angezeigt, als auch dem Benutzer zugesandt.',
+'passwordreset-email'              => 'E-Mail-Adresse:',
+'passwordreset-emailtitle'         => 'Benutzerkontoinformationen auf {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
 
 $2
 
 {{PLURAL:$3|Dieses temporäre Passwort läuft|Diese temporären Passwörter laufen}} innerhalb von {{PLURAL:$5|einem Tag|$5 Tagen}} ab.
 Du solltest dich anmelden und ein neues Passwort vergeben. Falls jemand anderes diese Anfrage getätigt hat oder du dich wieder an dein ursprüngliches Passwort erinnern kannst und es nicht länger ändern möchtest, kannst du diese Nachricht ignorieren und weiterhin dein altes Passwort benutzen.',
-'passwordreset-emailtext-user' => 'Benutzer $1 auf {{SITENAME}} hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
+'passwordreset-emailtext-user'     => 'Benutzer $1 auf {{SITENAME}} hat eine Erinnerung an deine Benutzerkonteninformationen für {{SITENAME}} angefordert ($4). {{PLURAL:$3|Das folgende Benutzerkonto ist|Die folgenden Benutzerkonten sind}} mit dieser E-Mail-Adresse verknüpft:
 
 $2
 
 {{PLURAL:$3|Dieses temporäre Passwort läuft|Diese temporären Passwörter laufen}} innerhalb von {{PLURAL:$5|einem Tag|$5 Tagen}} ab. Du solltest dich anmelden und ein neues Passwort vergeben. Falls jemand anderes diese Anfrage getätigt hat oder du dich wieder an dein ursprüngliches Passwort erinnern kannst und es nicht ändern möchtest, kannst du diese Nachricht ignorieren und weiterhin dein altes Passwort benutzen.',
-'passwordreset-emailelement'   => 'Benutzername: $1
+'passwordreset-emailelement'       => 'Benutzername: $1
 Temporäres Passwort: $2',
-'passwordreset-emailsent'      => 'Eine Erinnerung wurde per E-Mail versandt.',
+'passwordreset-emailsent'          => 'Eine Erinnerung wurde per E-Mail versandt.',
+'passwordreset-emailsent-capture'  => 'Die unten angezeigte Erinnerungs-E-Mail wurde abgeschickt.',
+'passwordreset-emailerror-capture' => 'Die unten angezeigte Erinnerungs-E-Mail wurde generiert, allerdings ist der Versand an den Benutzer gescheitert: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-Mail-Adresse ändern',
@@ -2190,12 +2193,8 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'activeusers-noresult'   => 'Keine Benutzer gefunden.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Neuanmeldungs-Logbuch',
-'newuserlogpagetext'          => 'Dies ist ein Logbuch der neu erstellten Benutzerkonten.',
-'newuserlog-byemail'          => 'das Passwort wurde per E-Mail versandt',
-'newuserlog-create-entry'     => 'Benutzer wurde neu registriert',
-'newuserlog-create2-entry'    => 'erstellte neues Benutzerkonto „$1“',
-'newuserlog-autocreate-entry' => 'Benutzerkonto wurde automatisch erstellt',
+'newuserlogpage'     => 'Neuanmeldungs-Logbuch',
+'newuserlogpagetext' => 'Dies ist ein Logbuch der neu erstellten Benutzerkonten.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Benutzergruppenrechte',
@@ -3878,5 +3877,6 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markierte}} Version $4 von Seite $3 als kontrolliert',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markierte}} Version $4 von Seite $3 als kontrolliert (automatisch)',
+'newuserlog-byemail'                  => 'das Passwort wurde per E-Mail versandt',
 
 );

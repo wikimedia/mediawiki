@@ -1311,8 +1311,7 @@ $2',
 'activeusers' => 'ಸಕ್ರಿಯ ಸದಸ್ಯರ ಪಟ್ಟಿ',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'ಸದಸ್ಯತ್ವ ಸೃಷ್ಟಿಗಳ ದಾಖಲೆ',
-'newuserlog-create-entry' => 'ಹೊಸ ಸದಸ್ಯತ್ವ ಖಾತೆ',
+'newuserlogpage' => 'ಸದಸ್ಯತ್ವ ಸೃಷ್ಟಿಗಳ ದಾಖಲೆ',
 
 # Special:ListGroupRights
 'listgrouprights'              => 'ಬಳಕೆದಾರ ಗುಂಪು ಹಕ್ಕುಗಳು',

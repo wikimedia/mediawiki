@@ -1315,8 +1315,7 @@ Li [[Special:WantedCategories|kategoriyên xwestî]] binêre.',
 'activeusers-noresult'   => 'Tu bikarhêner nehate dîtin.',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Çêkirina hesabê nû',
-'newuserlog-create-entry' => 'Bikarhênerê/a nû',
+'newuserlogpage' => 'Çêkirina hesabê nû',
 
 # Special:ListGroupRights
 'listgrouprights'                 => 'Mafên koma bikarhêner',

@@ -779,10 +779,6 @@ Alayon pagkita han [$2 nga pakli hin pagpahayag mahitungod hini nga fayl] para h
 'activeusers'          => 'Lista han nagios nga mga nagamit',
 'activeusers-hidebots' => 'Igtago an mga bot',
 
-# Special:Log/newusers
-'newuserlog-byemail'      => 'Ginpadangat an tigaman-pagsulod pinaagi han e-mail',
-'newuserlog-create-entry' => 'Akawant han bag-o nga gumaramit',
-
 # Special:ListGroupRights
 'listgrouprights-group'           => 'Hugpo',
 'listgrouprights-rights'          => 'Mga katungod',
@@ -1028,5 +1024,8 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 
 # HTML forms
 'htmlform-reset' => 'Igbalik an mga pinamalyuan',
+
+# New logging system
+'newuserlog-byemail' => 'Ginpadangat an tigaman-pagsulod pinaagi han e-mail',
 
 );

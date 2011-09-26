@@ -996,9 +996,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'special-categories-sort-count' => 'op antal sorteern',
 'special-categories-sort-abc'   => 'alfabetisch sorteern',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'Nieuwe gebruker',
-
 # E-mail user
 'emailuser' => 'E-mail deêze gebruker',
 'emailpage' => 'E-mail gebruker',

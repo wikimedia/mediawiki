@@ -1227,12 +1227,8 @@ Jak klik kardani rūi unvoni sutunho boisi taƣjiri tartibi namoişi parvandaho 
 'listusers-noresult' => 'Heç korbare joft naşud.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Guzorişi eçodi korbar',
-'newuserlogpagetext'          => 'In guzoriş az nomhoi korbariji tozasoxtaşuda ast.',
-'newuserlog-byemail'          => 'kalimai ubur ba poctai elektronī firistoda şud',
-'newuserlog-create-entry'     => 'Korbari nav',
-'newuserlog-create2-entry'    => 'hisobi çadidi $1 eçod şud',
-'newuserlog-autocreate-entry' => 'Hisob bo tavri xudkor eçod şudaast',
+'newuserlogpage'     => 'Guzorişi eçodi korbar',
+'newuserlogpagetext' => 'In guzoriş az nomhoi korbariji tozasoxtaşuda ast.',
 
 # Special:ListGroupRights
 'listgrouprights'          => 'Ixtijoroti gurūhhoi korbarī',
@@ -2331,5 +2327,6 @@ Nişonai pajvandro biduni peşvand "{{ns:file}}:" vorid kuned.',
 # New logging system
 'revdelete-restricted'   => 'mahdudijatho ba mudiron amalī şudand',
 'revdelete-unrestricted' => 'mahdudijatho az mudiron bardoşta şudand',
+'newuserlog-byemail'     => 'kalimai ubur ba poctai elektronī firistoda şud',
 
 );

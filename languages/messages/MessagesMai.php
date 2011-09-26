@@ -1850,12 +1850,8 @@ $1',
 'activeusers-noresult'   => 'कोनो प्रयोक्ता नै भेटल',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'प्रयोक्ता रचना वृत्तलेख',
-'newuserlogpagetext'          => 'ई प्रयोक्ता निर्माणक वृत्तलेख अछि।',
-'newuserlog-byemail'          => 'कूटशब्द ई-पत्र द्वारा पठाएल गेल',
-'newuserlog-create-entry'     => 'नव प्रयोक्ता खाता',
-'newuserlog-create2-entry'    => 'नव खाता $1 बनेलौं',
-'newuserlog-autocreate-entry' => 'खाता स्वचालित रूपेँ बनल',
+'newuserlogpage'     => 'प्रयोक्ता रचना वृत्तलेख',
+'newuserlogpagetext' => 'ई प्रयोक्ता निर्माणक वृत्तलेख अछि।',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'प्रयोक्ता संवर्ग अधिकार',
@@ -3477,5 +3473,6 @@ $1',
 # New logging system
 'revdelete-restricted'   => 'संचालक लेल प्रायोगिक प्रतिबन्ध',
 'revdelete-unrestricted' => 'संचालक लेल हटाओल प्रतिबन्ध',
+'newuserlog-byemail'     => 'कूटशब्द ई-पत्र द्वारा पठाएल गेल',
 
 );

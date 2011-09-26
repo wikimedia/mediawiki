@@ -376,8 +376,7 @@ Tšüľľed, kummad õmad teďďellä [[Special:Watchlist|kattsõspiizgalla]] on
 'linksearch' => 'Ulkopoolizõd linkid',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Uuvvõd tšäüttijäd',
-'newuserlog-create-entry' => 'Uusi tšäüttijä',
+'newuserlogpage' => 'Uuvvõd tšäüttijäd',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(selttsilainspiiska)',

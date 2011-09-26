@@ -1255,8 +1255,7 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'listusers-noresult' => 'Nisciun utenti curripundi a li critéri impusthaddi.',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Nobi utenti',
-'newuserlog-create-entry' => "s'è rigisthraddu/a abà",
+'newuserlogpage' => 'Nobi utenti',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(erencu di li membri)',

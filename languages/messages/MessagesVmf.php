@@ -653,8 +653,7 @@ S'gajd awâr aa â [[Special:WhatLinksHere/$2|lisdn mid alâ fârwajs]].",
 'linksearch' => 'Linggs nach ausârhalb',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Brodoghol iwâr dii naja bearbajdâr-ôômeldunga',
-'newuserlog-create-entry' => 'Eds hasd a benudsâr-ghondoo',
+'newuserlogpage' => 'Brodoghol iwâr dii naja bearbajdâr-ôômeldunga',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(Lisdn fon dâ midgliidâr)',

@@ -1872,12 +1872,8 @@ Disukung protokol: <tt>$1</tt>',
 'activeusers-noresult'   => 'Kadada papamuruk tatamu.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Log pamuruk hanyar',
-'newuserlogpagetext'          => 'Ngini adalah sabuah log paulahan pamuruk.',
-'newuserlog-byemail'          => 'Katasunduk dikirimakan lung suril.',
-'newuserlog-create-entry'     => 'mandaptar sabagai pamuruk',
-'newuserlog-create2-entry'    => 'Maulah akun hanyar $1',
-'newuserlog-autocreate-entry' => 'Akun diulah utumatis',
+'newuserlogpage'     => 'Log pamuruk hanyar',
+'newuserlogpagetext' => 'Ngini adalah sabuah log paulahan pamuruk.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Galambang hak pamuruk',
@@ -3202,5 +3198,6 @@ Situs ngini mangalami kangalihan teknik.',
 # New logging system
 'revdelete-restricted'   => 'Talamar pambatasan hagan pambakal-pambakal',
 'revdelete-unrestricted' => 'Buang pambatasan gasan pambakal-pambakal',
+'newuserlog-byemail'     => 'Katasunduk dikirimakan lung suril.',
 
 );

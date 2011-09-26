@@ -2093,12 +2093,8 @@ Toetatud protokollid: <tt>$1</tt>',
 'activeusers-noresult'   => 'Kasutajaid ei leidunud.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Kasutaja loomise logi',
-'newuserlogpagetext'          => 'See logi sisaldab infot äsja loodud uute kasutajate kohta.',
-'newuserlog-byemail'          => 'parool saadetud e-postiga',
-'newuserlog-create-entry'     => 'Uus kasutaja',
-'newuserlog-create2-entry'    => 'lõi uue konto $1',
-'newuserlog-autocreate-entry' => 'Konto loodud automaatselt',
+'newuserlogpage'     => 'Kasutaja loomise logi',
+'newuserlogpagetext' => 'See logi sisaldab infot äsja loodud uute kasutajate kohta.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Kasutajarühma õigused',
@@ -3658,5 +3654,6 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'revdelete-restricted'   => 'kohta administraatoritele piirangud kehtestatud',
 'revdelete-unrestricted' => 'kohta administraatoritelt piirangud eemaldatud',
 'logentry-move-move'     => '$1 {{GENDER:$2|teisaldas}} lehekülje $3 pealkirja $4 alla',
+'newuserlog-byemail'     => 'parool saadetud e-postiga',
 
 );

@@ -1779,12 +1779,8 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'activeusers-noresult'   => 'Teu kapendak.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Log akun anyar',
-'newuserlogpagetext'          => 'Di handap ieu béréndélan log pamaké anyar.',
-'newuserlog-byemail'          => 'Sandi geus dikirim maké surélék.',
-'newuserlog-create-entry'     => 'Akun kontributor anyar',
-'newuserlog-create2-entry'    => 'rekening anyar pikeun $1 geus dijieun',
-'newuserlog-autocreate-entry' => 'rekening pamaké dijieun sacara otomatis',
+'newuserlogpage'     => 'Log akun anyar',
+'newuserlogpagetext' => 'Di handap ieu béréndélan log pamaké anyar.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Hak-hak grup pamaké',
@@ -2973,5 +2969,6 @@ Coba ku sawangan normal.',
 # New logging system
 'revdelete-restricted'   => 'akses geus dibatesan ukur keur kuncén',
 'revdelete-unrestricted' => 'Watesan akses kuncén dihapuskeun',
+'newuserlog-byemail'     => 'Sandi geus dikirim maké surélék.',
 
 );

@@ -268,9 +268,6 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 # Special:LinkSearch
 'linksearch-ok' => 'Lava',
 
-# Special:Log/newusers
-'newuserlog-create-entry' => 'Mutirhisi muntswa',
-
 # E-mail user
 'emailuser' => 'rhumela mutirhisi loyi E-mail',
 

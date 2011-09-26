@@ -130,8 +130,7 @@ Nutêv ca alcuni pàgini i putrèbber cuntinuèr a cràdder ca vueter a-sîv dis
 'allpages' => 'Tôt al pàgin',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Regestér di nōv utèint',
-'newuserlog-create-entry' => 'Un utèint nōv',
+'newuserlogpage' => 'Regestér di nōv utèint',
 
 # Watchlist
 'watchlist'     => 'Al còsi ca guèrd',

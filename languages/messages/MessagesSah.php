@@ -1874,12 +1874,8 @@ $1',
 'activeusers-noresult'   => 'Кыттааччылар көстүбэтилэр.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Кыттааччылары бэлиэтиир сурунаал',
-'newuserlogpagetext'          => 'Соторутааҕыта бэлиэтэммит кыттааччылар.',
-'newuserlog-byemail'          => 'киирии тыл эл. почтаннан ыытылынна',
-'newuserlog-create-entry'     => 'Саҥа кыттааччы',
-'newuserlog-create2-entry'    => '$1 диэн саҥа киһи бэлиэтэннэ',
-'newuserlog-autocreate-entry' => 'Кыттааччы аата аптамаатынан оҥоһуллубут',
+'newuserlogpage'     => 'Кыттааччылары бэлиэтиир сурунаал',
+'newuserlogpagetext' => 'Соторутааҕыта бэлиэтэммит кыттааччылар.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Кыттааччылар бөлөхтөрүн бырааптара',
@@ -3500,5 +3496,6 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 # New logging system
 'revdelete-restricted'   => 'хааччахтааһын администраатардарга сыһыаннаах',
 'revdelete-unrestricted' => 'хааччахтааһын админстраатардартан уһулунна',
+'newuserlog-byemail'     => 'киирии тыл эл. почтаннан ыытылынна',
 
 );

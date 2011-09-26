@@ -1872,12 +1872,8 @@ Protocolos suportados: <tt>$1</tt>',
 'activeusers-noresult'   => "No s'han trobato usuarios.",
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Rechistro de nuevos usuarios',
-'newuserlogpagetext'          => "Isto ye un rechistro de creyación d'usuarios.",
-'newuserlog-byemail'          => 'Contrasenya ninviata por correu electronico',
-'newuserlog-create-entry'     => 'Nuevo usuario',
-'newuserlog-create2-entry'    => "s'ha creyato a nueva cuenta $1",
-'newuserlog-autocreate-entry' => 'Cuenta creyata automaticament',
+'newuserlogpage'     => 'Rechistro de nuevos usuarios',
+'newuserlogpagetext' => "Isto ye un rechistro de creyación d'usuarios.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => "Dreitos d'a colla d'usuarios",
@@ -3213,5 +3209,6 @@ As imachens s'amuestran en resolución completa, a resta de fichers fan encetar 
 # New logging system
 'revdelete-restricted'   => "S'han aplicato as restriccions ta almenistradors",
 'revdelete-unrestricted' => "S'han borrato as restriccions ta almenistradors",
+'newuserlog-byemail'     => 'Contrasenya ninviata por correu electronico',
 
 );

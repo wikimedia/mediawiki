@@ -1713,10 +1713,8 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => 'Қатысушы табылған жоқ.',
 
 # Special:Log/newusers
-'newuserlogpage'           => 'Тіркелу журналы',
-'newuserlogpagetext'       => 'Бұл қатысушы тіркелгі жасау журналы',
-'newuserlog-create-entry'  => 'Жаңа қатысушы',
-'newuserlog-create2-entry' => 'жаңа тіркелгі жасады — $1',
+'newuserlogpage'     => 'Тіркелу журналы',
+'newuserlogpagetext' => 'Бұл қатысушы тіркелгі жасау журналы',
 
 # Special:ListGroupRights
 'listgrouprights'          => 'Қатысушы тобы құқықтары',

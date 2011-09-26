@@ -899,8 +899,7 @@ Mòżesz zawãżëc wëszłosc przez wëbranié ôrtu registru, miona brëkòwni
 'linksearch' => 'Bùtnowé lënczi',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Nowi brëkòwnicë',
-'newuserlog-create-entry' => 'Nowé kònto brëkòwnika',
+'newuserlogpage' => 'Nowi brëkòwnicë',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(lësta nôlëżników karna)',

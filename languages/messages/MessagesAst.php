@@ -1904,12 +1904,8 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'activeusers-noresult'   => "Nun s'alcontraron usuarios.",
 
 # Special:Log/newusers
-'newuserlogpage'              => "Rexistru de creación d'usuarios",
-'newuserlogpagetext'          => "Esti ye un rexistru de creación d'usuarios.",
-'newuserlog-byemail'          => 'clave unviada per corréu electrónicu',
-'newuserlog-create-entry'     => 'Usuariu nuevu',
-'newuserlog-create2-entry'    => 'creó una cuenta nueva pa $1',
-'newuserlog-autocreate-entry' => 'Cuenta creada automáticamente',
+'newuserlogpage'     => "Rexistru de creación d'usuarios",
+'newuserlogpagetext' => "Esti ye un rexistru de creación d'usuarios.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => "Drechos de los grupos d'usuariu",
@@ -3594,5 +3590,6 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" sobre una redireición ensin dexar una redireición',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcó}} la revisión $4 de la páxina "$3" como patrullada',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcó}} automaticamente la revisión $4 de la páxina "$3" como patrullada',
+'newuserlog-byemail'                  => 'clave unviada per corréu electrónicu',
 
 );

@@ -353,7 +353,7 @@ $messages = array(
 'tog-watchlisthideanons'      => 'Visa inte redigeringar av anonyma användare i bevakningslistan',
 'tog-watchlisthidepatrolled'  => 'Göm patrullerade redigeringar från bevakningslistan',
 'tog-nolangconversion'        => 'Konvertera inte mellan språkvarianter',
-'tog-ccmeonemails'            => 'Skicka mig kopior av epost jag skickar till andra användare',
+'tog-ccmeonemails'            => 'Skicka kopior till mig av e-post jag skickar till andra användare',
 'tog-diffonly'                => 'Visa inte sidinnehåll under diffar',
 'tog-showhiddencats'          => 'Visa dolda kategorier',
 'tog-noconvertlink'           => 'Stäng av konvertering av sidtitlar',
@@ -1557,6 +1557,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-siteadmin'             => 'Låsa och låsa upp databasen',
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
 'right-sendemail'             => 'Skicka e-post till andra användare',
+'right-passwordreset'         => 'Återställ en användares lösenord ([[Special:PasswordReset|specialsida]])',
 
 # User rights log
 'rightslog'                  => 'Användarrättighetslogg',
@@ -2141,12 +2142,8 @@ Stödda protokoll: <tt>$1</tt>',
 'activeusers-noresult'   => 'Inga användare funna.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Logg över nya användare',
-'newuserlogpagetext'          => 'Detta är en logg över skapade användarkonton.',
-'newuserlog-byemail'          => 'lösenord skickat med e-post',
-'newuserlog-create-entry'     => 'Ny användare',
-'newuserlog-create2-entry'    => 'skapade nytt användarkonto $1',
-'newuserlog-autocreate-entry' => 'Konto skapades automatiskt',
+'newuserlogpage'     => 'Logg över nya användare',
+'newuserlogpagetext' => 'Detta är en logg över skapade användarkonton.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Behörigheter för användargrupper',
@@ -3812,5 +3809,6 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerade}} versionen $4 av sidan $3 som patrullerad',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerade}} automatiskt versionen $4 av sidan $3 som patrullerad',
+'newuserlog-byemail'                  => 'lösenord skickat med e-post',
 
 );

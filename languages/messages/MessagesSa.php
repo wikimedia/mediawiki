@@ -1266,8 +1266,7 @@ You may ignore this message, if this account was created in error.',
 'linksearch-line' => '$2 अधि $1 अन्वित अस्ति।',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'प्रयोक्तृ-सृजन-सूचिका',
-'newuserlog-create-entry' => 'नूतन-प्रयोक्तृ-लेखा',
+'newuserlogpage' => 'प्रयोक्तृ-सृजन-सूचिका',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(सदस्यानां सूचिका)',

@@ -2125,12 +2125,8 @@ Protocolos suportados: <tt>$1</tt>',
 'activeusers-noresult'   => 'Nenhum usuário encontrado.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Registro de criação de usuários',
-'newuserlogpagetext'          => 'Este é um registro de novas contas de usuário',
-'newuserlog-byemail'          => 'senha enviada por correio-eletrônico',
-'newuserlog-create-entry'     => 'Novo usuário',
-'newuserlog-create2-entry'    => 'criou nova conta para $1',
-'newuserlog-autocreate-entry' => 'Conta criada automaticamente',
+'newuserlogpage'     => 'Registro de criação de usuários',
+'newuserlogpagetext' => 'Este é um registro de novas contas de usuário',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Privilégios de grupo de usuários',
@@ -3753,5 +3749,6 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 # New logging system
 'revdelete-restricted'   => 'restrições a administradores aplicadas',
 'revdelete-unrestricted' => 'restrições a administradores removidas',
+'newuserlog-byemail'     => 'senha enviada por correio-eletrônico',
 
 );

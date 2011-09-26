@@ -1807,12 +1807,8 @@ Support karaa gais protocol: <tt>$1</tt>',
 'activeusers-noresult'   => 'koi sadasya ke pawa nai gais hai.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Sadasya ke banae waala log',
-'newuserlogpagetext'          => 'Ii sadasya ke banae waala log hai.',
-'newuserlog-byemail'          => 'password ke e-mail se bheja gais hai',
-'newuserlog-create-entry'     => 'Nawaa sadasya ke account',
-'newuserlog-create2-entry'    => 'nawaa account banaya $1',
-'newuserlog-autocreate-entry' => 'Account ke automatically banawa gais hai',
+'newuserlogpage'     => 'Sadasya ke banae waala log',
+'newuserlogpagetext' => 'Ii sadasya ke banae waala log hai.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Sadasya  ke group adhikar',
@@ -2864,5 +2860,6 @@ Wahii line pe aur koi jorr exception consider karaa jai i.e. jahaan pe panna sak
 # New logging system
 'revdelete-restricted'   => 'sysops pe llabu restrictions',
 'revdelete-unrestricted' => 'sysops se hatawa gae rukawat',
+'newuserlog-byemail'     => 'password ke e-mail se bheja gais hai',
 
 );

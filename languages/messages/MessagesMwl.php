@@ -852,8 +852,7 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 'listusers-submit' => 'Amostrar',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Registro de criaçon de outelizadores',
-'newuserlog-create-entry' => 'Nuobo outelizador',
+'newuserlogpage' => 'Registro de criaçon de outelizadores',
 
 # Special:ListGroupRights
 'listgrouprights-rights'  => 'Dreitos',

@@ -1025,9 +1025,7 @@ Dia podent essere immàgines impreadas dae àteros giassos cun unu ligàmine dir
 'activeusers-hidesysops' => 'Cua amministradores',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Usuàrios nous',
-'newuserlog-byemail'      => 'password imbiada via e-mail',
-'newuserlog-create-entry' => 'Account usuàriu nou',
+'newuserlogpage' => 'Usuàrios nous',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Grupu',
@@ -1568,5 +1566,8 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # HTML forms
 'htmlform-selectorother-other' => 'Àteru',
+
+# New logging system
+'newuserlog-byemail' => 'password imbiada via e-mail',
 
 );

@@ -606,8 +606,7 @@ $messages = array(
 'linksearch-line' => '$1 მერცხიილი რე $2-შე',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'მახვარებუშ რეგისტრაციაშ ჟურნალ',
-'newuserlog-create-entry' => 'ახალ მახვარებუ',
+'newuserlogpage' => 'მახვარებუშ რეგისტრაციაშ ჟურნალ',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(მაკათურეფიშ ერკებული)',

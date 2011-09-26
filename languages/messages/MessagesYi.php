@@ -1897,12 +1897,8 @@ $1",
 'activeusers-noresult'   => 'קיין באניצער נישט געטראפֿן.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'נייע באַניצערס לאָג-בוך',
-'newuserlogpagetext'          => 'דאס איז א לאג פון באַניצערס אײַנשרײַבונגען.',
-'newuserlog-byemail'          => 'פאַסווארט געשיקט דורך ע-פאסט',
-'newuserlog-create-entry'     => 'נײַער באניצער',
-'newuserlog-create2-entry'    => 'געשאפֿן נײַע קאנטע $1',
-'newuserlog-autocreate-entry' => 'קאנטע באַשאַפֿן אויטאמאַטיש',
+'newuserlogpage'     => 'נייע באַניצערס לאָג-בוך',
+'newuserlogpagetext' => 'דאס איז א לאג פון באַניצערס אײַנשרײַבונגען.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'באַניצער גרופע רעכטן',
@@ -3175,5 +3171,6 @@ $5
 # New logging system
 'revdelete-restricted'   => 'פארמערט באגרעניצונגען פאר סיסאפן',
 'revdelete-unrestricted' => 'אוועקגענומען באגרעניצונגען פאר סיסאפן',
+'newuserlog-byemail'     => 'פאַסווארט געשיקט דורך ע-פאסט',
 
 );

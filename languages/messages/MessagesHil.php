@@ -1275,8 +1275,7 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'linksearch-ok' => 'Pangita-a',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Naga-usar nga ginhimo log',
-'newuserlog-create-entry' => 'Bag-o na akawnt nga naga-usar',
+'newuserlogpage' => 'Naga-usar nga ginhimo log',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Grupo',

@@ -593,8 +593,7 @@ Lopys, kas ir tovā [[Special:Watchlist|puorraugamūs rokstu sarokstā]] ir '''r
 'listusers-submit' => 'Paruodeit',
 
 # Special:Log/newusers
-'newuserlogpage'          => 'Jaunūs lītuotuoju registrs',
-'newuserlog-create-entry' => 'Registrāts lītuotuojvuords',
+'newuserlogpage' => 'Jaunūs lītuotuoju registrs',
 
 # Special:ListGroupRights
 'listgrouprights-members'  => '(dalinīku saroksts)',

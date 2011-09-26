@@ -2130,12 +2130,8 @@ $1',
 'activeusers-noresult'   => 'Не найдено участников.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Журнал регистрации участников',
-'newuserlogpagetext'          => 'Список недавно зарегистрировавшихся участников',
-'newuserlog-byemail'          => 'пароль отправлен по эл. почте',
-'newuserlog-create-entry'     => 'Новый участник',
-'newuserlog-create2-entry'    => 'создал новую учётную запись $1',
-'newuserlog-autocreate-entry' => 'Учётная запись создана автоматически',
+'newuserlogpage'     => 'Журнал регистрации участников',
+'newuserlogpagetext' => 'Список недавно зарегистрировавшихся участников',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Права групп участников',
@@ -3864,5 +3860,6 @@ MediaWiki распространяется в надежде, что она бу
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|переименовал|переименовала}} страницу $3 в $4 поверх перенаправления и без оставления перенаправления',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|отпатрулировал|отпатрулировала}} версию $4 страницы $3',
 'logentry-patrol-patrol-auto'         => '$1 автоматически {{GENDER:$2|отпатрулировал|отпатрулировала}} версию $4 страницы $3',
+'newuserlog-byemail'                  => 'пароль отправлен по эл. почте',
 
 );

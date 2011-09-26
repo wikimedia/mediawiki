@@ -1217,8 +1217,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'listusers-noresult' => '尋伓到用戶。',
 
 # Special:Log/newusers
-'newuserlogpage'          => '新開戶嗰人名單',
-'newuserlog-create-entry' => '新用戶嗰賬戶',
+'newuserlogpage' => '新開戶嗰人名單',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '（成員名單）',

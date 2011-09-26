@@ -1977,12 +1977,8 @@ Palaikomi protokolai: <tt>$1</tt>',
 'activeusers-noresult'   => 'Nerasta jokių naudotojų.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Prisiregistravę naudotojai',
-'newuserlogpagetext'          => 'Tai naudotojų kūrimo sąrašas.',
-'newuserlog-byemail'          => 'slaptažodis nusiųstas elektroniniu paštu',
-'newuserlog-create-entry'     => 'Naujas naudotojas',
-'newuserlog-create2-entry'    => 'sukurta nauja paskyra $1',
-'newuserlog-autocreate-entry' => 'Paskyra sukurta automatiškai',
+'newuserlogpage'     => 'Prisiregistravę naudotojai',
+'newuserlogpagetext' => 'Tai naudotojų kūrimo sąrašas.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Naudotojų grupių teisės',
@@ -3620,5 +3616,6 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 # New logging system
 'revdelete-restricted'   => 'uždėti apribojimai administratoriams',
 'revdelete-unrestricted' => 'pašalinti apribojimai administratoriams',
+'newuserlog-byemail'     => 'slaptažodis nusiųstas elektroniniu paštu',
 
 );

@@ -1628,12 +1628,8 @@ daba ka ṫḫwwal l-[[$2]].',
 'activeusers-noresult'   => 'ta mostakhdim matlgach.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Ṫariĥ dyal l-ḫsabaṫ j-jdad',
-'newuserlogpagetext'          => "hada sijill d-inċa'aṫ l-moṣṫĥdimin.",
-'newuserlog-byemail'          => "lmot de passe raha tsiftat f l'email",
-'newuserlog-create-entry'     => 'Ḫsab jdid',
-'newuserlog-create2-entry'    => 'ĥṫareĝ ḫsab jdid $1',
-'newuserlog-autocreate-entry' => 'lcont tnchad automatikmen',
+'newuserlogpage'     => 'Ṫariĥ dyal l-ḫsabaṫ j-jdad',
+'newuserlogpagetext' => "hada sijill d-inċa'aṫ l-moṣṫĥdimin.",
 
 # Special:ListGroupRights
 'listgrouprights'                  => 'salahiyat mjmoat lmostkhdimin',
@@ -2753,5 +2749,6 @@ jrreb l-ĝṛḍ l-ĝadi.',
 # New logging system
 'revdelete-restricted'   => 'tḅḅq ḍ-ḍawaḅit ll-idariyyin',
 'revdelete-unrestricted' => 'ḫyyd ḍ-ḍawaḅit ll-idariyyin',
+'newuserlog-byemail'     => "lmot de passe raha tsiftat f l'email",
 
 );

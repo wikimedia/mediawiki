@@ -2212,12 +2212,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'activeusers-noresult'   => '利用者が見つかりませんでした。',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'アカウント作成記録',
-'newuserlogpagetext'          => '以下はアカウント作成の記録です。',
-'newuserlog-byemail'          => 'パスワードを電子メールで送信しました',
-'newuserlog-create-entry'     => '新規利用者アカウント',
-'newuserlog-create2-entry'    => 'が新規にアカウント $1 を作成しました',
-'newuserlog-autocreate-entry' => 'アカウントが自動的に作成されました',
+'newuserlogpage'     => 'アカウント作成記録',
+'newuserlogpagetext' => '以下はアカウント作成の記録です。',
 
 # Special:ListGroupRights
 'listgrouprights'                      => '利用者グループの権限',
@@ -3959,5 +3955,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 # New logging system
 'revdelete-restricted'   => '管理者に対する制限を適用',
 'revdelete-unrestricted' => '管理者に対する制限を除去しました',
+'newuserlog-byemail'     => 'パスワードを電子メールで送信しました',
 
 );

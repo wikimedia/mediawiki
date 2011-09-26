@@ -1988,12 +1988,8 @@ Prôtôkôly zaka : <tt>$1</tt>.',
 'activeusers-noresult'   => 'Tsy nahitana mpikambana.',
 
 # Special:Log/newusers
-'newuserlogpage'              => 'Tatitr’asan’ny fanokafana kaontim-pikambana',
-'newuserlogpagetext'          => "Ity pejy ity dia maneho ny tantaran'asan'ny fampidirana mpikambana vaovao.",
-'newuserlog-byemail'          => 'tenimiafina nalefa imailaka',
-'newuserlog-create-entry'     => 'Mpikambana vaovao',
-'newuserlog-create2-entry'    => 'namorona ny kaonty vaovao $1',
-'newuserlog-autocreate-entry' => 'Kaonty namboarina ho azy',
+'newuserlogpage'     => 'Tatitr’asan’ny fanokafana kaontim-pikambana',
+'newuserlogpagetext' => "Ity pejy ity dia maneho ny tantaran'asan'ny fampidirana mpikambana vaovao.",
 
 # Special:ListGroupRights
 'listgrouprights'                      => "Fahefan'ny vondrom-pikambana",
@@ -3129,5 +3125,6 @@ Aseho amin'ny tena habeny ny sary aseho, ny hafa dia alefa miaraka amin'ny rindr
 # New logging system
 'revdelete-restricted'   => "nametraka fanerena ho an'ny mpandrindra",
 'revdelete-unrestricted' => "fanerena nesorina tamin'ny mpandrindra",
+'newuserlog-byemail'     => 'tenimiafina nalefa imailaka',
 
 );
