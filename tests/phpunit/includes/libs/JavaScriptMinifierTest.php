@@ -78,6 +78,12 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			
 			// newline insertion after 1000 chars: break after the "++", not before
 			array( str_repeat( ';', 996 ) . "if(x++);", str_repeat( ';', 996 ) . "if(x++\n);" ),
+
+			// Unicode letter characters should pass through ok in identifiers (bug 31187)
+			array( "var KaŝSkatolVal = {}", 'var KaŝSkatolVal={}'),
+			// And also per spec unicode char escape values should work in identifiers,
+			// as long as it's a valid char. In future it might get normalized.
+			array( "var Ka\\u015dSkatolVal = {}", 'var Ka\\u015dSkatolVal={}'),
 		);
 	}
 
