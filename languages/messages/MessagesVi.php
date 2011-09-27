@@ -3883,6 +3883,9 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'logentry-move-move_redir-noredirect' => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 qua trang đổi hướng mà không để lại một trang đổi hướng',
 'logentry-patrol-patrol'              => '$1 đã {{GENDER:$2|đánh dấu}} tuần tra phiên bản $4 của trang $3',
 'logentry-patrol-patrol-auto'         => '$1 đã tự động {{GENDER:$2|đánh dấu}} tuần tra phiên bản $4 của trang $3',
+'logentry-newusers-create'            => '$1 đã {{GENDER:$2|mở}} một tài khoản người dùng',
+'logentry-newusers-create2'           => '$1 đã {{GENDER:$2|mở}} tài khoản người dùng $3',
+'logentry-newusers-autocreate'        => 'Tài khoản $1 đã được {{GENDER:$2|mở}} tự động',
 'newuserlog-byemail'                  => 'gửi mật khẩu qua thư điện tử',
 
 );

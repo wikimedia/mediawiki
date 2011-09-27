@@ -3203,17 +3203,30 @@ Abbreviation for "days". $1 is the number of days.
 See also {{msg-mw|days}}',
 'seconds'        => 'Full word for "seconds". $1 is the number of seconds.
 
-See also {{msg-mw|Seconds-abbrev}}',
+See also {{msg-mw|Seconds-abbrev}}
+
+Part of variable $1 in {{msg-mw|Ago}}',
 'minutes'        => 'Full word for "minutes". $1 is the number of minutes.
 
-See also {{msg-mw|Minutes-abbrev}}',
+See also {{msg-mw|Minutes-abbrev}}
+
+Part of variable $1 in {{msg-mw|Ago}}',
 'hours'          => 'Full word for "hours". $1 is the number of hours.
 
-See also {{msg-mw|Hours-abbrev}}',
+See also {{msg-mw|Hours-abbrev}}
+
+Part of variable $1 in {{msg-mw|Ago}}',
 'days'           => 'Full word for "days". $1 is the number of days.
 
-See also {{msg-mw|Days-abbrev}}',
-'ago'            => 'Phrase for indicating how long ago something happened. $1 is something like "3 days 10 hours".',
+See also {{msg-mw|Days-abbrev}}
+
+Part of variable $1 in {{msg-mw|Ago}}
+{{Identical|Day}}',
+'ago'            => 'Phrase for indicating how long ago something happened. $1 is something like "3 days 10 hours", taken from these messages:
+*{{msg-mw|Seconds}}
+*{{msg-mw|Minutes}}
+*{{msg-mw|Hours}}
+*{{msg-mw|Days}}',
 
 # Bad image list
 'bad_image_list' => 'This is only message appears to guide administrators to add links with right format. This will not appear anywhere else in Mediawiki.',
@@ -4317,9 +4330,10 @@ $1 is a file name (with namespace)',
 'logentry-delete-restore'             => '{{Logentry}}',
 'logentry-delete-event'               => '{{Logentry}}
 {{Logentryparam}}
-$3 is the name of the log page inside parenthesis',
+* $3 is the name of the log page inside parenthesis',
 'logentry-delete-revision'            => '{{Logentry}}
-{{Logentryparam}}',
+{{Logentryparam}}
+* $5 is the number of affected revisions of the page $3.',
 'logentry-delete-event-legacy'        => '{{Logentry}}
 $3 is the name of the log page inside parenthesis',
 'logentry-delete-revision-legacy'     => '{{Logentry}}',
@@ -4328,7 +4342,8 @@ $3 is the name of the log page inside parenthesis',
 {{Logentryparam}}
 $3 is the name of the log page inside parenthesis',
 'logentry-suppress-revision'          => '{{Logentry}}
-{{Logentryparam}}',
+{{Logentryparam}}
+* $5 is the number of affected revisions of the page $3.',
 'logentry-suppress-event-legacy'      => '{{Logentry}}
 $3 is the name of the log page inside parenthesis',
 'logentry-suppress-revision-legacy'   => '{{Logentry}}',
@@ -4381,8 +4396,9 @@ Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-move-move_redir-noredirect' => '{{Logentry}}
 Parameter $4, the target page, is also not visible to parser functions.',
 'logentry-patrol-patrol'              => '{{Logentry}}
-$4 is formatted number, maybe linked to the diff.',
+* $4 is a formatted revision number, maybe linked to the diff.',
 'logentry-patrol-patrol-auto'         => '{{Logentry}}
-$4 is formatted number, maybe linked to the diff. Automatically (I think) means that people with autopatrol right mark revisions automatically patrolled when editing.',
+* $4 is a formatted revision number, maybe linked to the diff.
+"Automatically" refers to users with autopatrol right who mark revisions automatically patrolled when editing.',
 
 );

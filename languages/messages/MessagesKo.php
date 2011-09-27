@@ -12,6 +12,7 @@
  * @author Cwt96
  * @author Devunt
  * @author Ficell
+ * @author Freebiekr
  * @author Gapo
  * @author Gjue
  * @author IRTC1015
@@ -2512,7 +2513,7 @@ $1',
 'ipblocklist-localblock'          => '로컬 차단',
 'ipblocklist-otherblocks'         => '다른 {{PLURAL:$1|}}차단 기록',
 'infiniteblock'                   => '무기한',
-'expiringblock'                   => '$1 $2에 해제',
+'expiringblock'                   => '$1 $2에 해제됩니다',
 'anononlyblock'                   => '익명 사용자만',
 'noautoblockblock'                => '자동 차단 비활성화됨',
 'createaccountblock'              => '계정 생성 금지됨',
@@ -3144,7 +3145,7 @@ Variants for Chinese language
 'exif-orientation-5' => '시계 반대 방향으로 90° 회전하고 수직으로 뒤집음',
 'exif-orientation-6' => '시계 방향으로 90° 회전함',
 'exif-orientation-7' => '시계 방향으로 90° 회전하고 수직으로 뒤집음',
-'exif-orientation-8' => '시계 반대 방향으로 90° 회전됨',
+'exif-orientation-8' => '시계 방향으로 90° 회전됨',
 
 'exif-planarconfiguration-1' => '덩어리 형식',
 'exif-planarconfiguration-2' => '평면형',

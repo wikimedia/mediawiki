@@ -1544,6 +1544,7 @@ $1",
 'right-siteadmin'             => 'блокировка и разблокировка базы данных',
 'right-override-export-depth' => 'экспортирование страниц, включая связанные страницы с глубиной до 5',
 'right-sendemail'             => 'отправлять электронную почту другим участникам',
+'right-passwordreset'         => 'сброс пароля участника ([[Special:PasswordReset|служебная страница]])',
 
 # User rights log
 'rightslog'                  => 'Журнал прав участника',
@@ -3033,9 +3034,14 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
-'seconds-abbrev' => 'с',
+'seconds-abbrev' => '$1 с',
 'minutes-abbrev' => 'м',
 'hours-abbrev'   => 'ч',
+'seconds'        => '{{PLURAL:$1|$1 секунда|$1 секунды|$1 секунд}}',
+'minutes'        => '{{PLURAL:$1|$1 минута|$1 минуты|$1 минут}}',
+'hours'          => '{{PLURAL:$1|$1 час|$1 часа|$1 часов}}',
+'days'           => '{{PLURAL:$1|$1 день|$1 дня|$1 дней}}',
+'ago'            => '$1 назад',
 
 # Bad image list
 'bad_image_list' => 'Формат должен быть следующим:
@@ -3860,6 +3866,9 @@ MediaWiki распространяется в надежде, что она бу
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|переименовал|переименовала}} страницу $3 в $4 поверх перенаправления и без оставления перенаправления',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|отпатрулировал|отпатрулировала}} версию $4 страницы $3',
 'logentry-patrol-patrol-auto'         => '$1 автоматически {{GENDER:$2|отпатрулировал|отпатрулировала}} версию $4 страницы $3',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|создал|создала}} учётную запись участника',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|создал|создала}} учётную запись участника $3',
+'logentry-newusers-autocreate'        => 'Автоматически создана учётная запись $1',
 'newuserlog-byemail'                  => 'пароль отправлен по эл. почте',
 
 );

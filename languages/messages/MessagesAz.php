@@ -1412,6 +1412,7 @@ $1',
 'filehist-missing'                  => 'Fayl çatışmır',
 'imagelinks'                        => 'Fayl keçidləri',
 'linkstoimage'                      => '{{PLURAL:$1|səhifə|$1 səhifə}} bu fayla istinad edir:',
+'nolinkstoimage'                    => 'Bu fayla keçid verən səhifə yoxdur.',
 'linkstoimage-redirect'             => '$1 (fayl istiqamətləndirilir) $2',
 'sharedupload'                      => 'Bu fayl $1-dandır və ola bilsin ki, başqa layihələrdə də istifadə edilir.',
 'uploadnewversion-linktext'         => 'Bu faylın yeni versiyasını yüklə',
@@ -2142,6 +2143,7 @@ Zəhmət olmasa başqa ad seçin.',
 # Thumbnails
 'thumbnail-more'          => 'Böyüt',
 'filemissing'             => 'Şəkil gözlənilir',
+'thumbnail_error'         => 'Kiçik şəkil yaratma xətası: $1',
 'djvu_page_error'         => 'DjVu səhifəsi əlçatmazdır',
 'djvu_no_xml'             => 'DjVu üçün XML faylı almaq mümkün deyil.',
 'thumbnail_image-missing' => 'Belə görünür ki, $1 faylı yoxdur',
@@ -2243,6 +2245,7 @@ Zəhmət olmasa başqa ad seçin.',
 'tooltip-rollback'                => 'Sonuncu istifadəçi tərəfindən edilmiş bütün dəyişiklikləri bir dəfəyə geri qaytar',
 'tooltip-undo'                    => 'Edilmiş dəyişikliyi geri qaytar və geri qaytarma səbəbini qeyd etmək üçün sınaq göstərişini aç',
 'tooltip-preferences-save'        => 'Nizamlamaları saxla',
+'tooltip-summary'                 => 'Qısa rezyume daxil edin',
 
 # Stylesheets
 'common.css'              => '/* Burada yerləşən CSS bütün skinlərə tətbiq olunur */',
@@ -2828,6 +2831,7 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => '"$1" Naməlum ayırma teqi',
+'duplicate-defaultsort' => '\'\'\'Diqqət:\'\'\' Ehtimal edilən "$2" klassifikasiya açarı əvvəlki "$1" klassifikasiya açarını keçərsiz edir.',
 
 # Special:Version
 'version'                     => 'Versiya',

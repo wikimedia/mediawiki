@@ -3805,6 +3805,9 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttet}} siden $3 til $4 over en omdirigering uten å etterlate en omdirigering',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerte}} revisjon $4 av siden $3 som patruljert',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerte}} automatisk revisjon $4 av siden $3 som patruljert',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|opprettet}}en brukerkonto',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|opprettet}} brukerkontoen $3',
+'logentry-newusers-autocreate'        => 'Konto $1 ble {{GENDER:$2|opprettet}} automatisk',
 'newuserlog-byemail'                  => 'passord sendt på e-post',
 
 );

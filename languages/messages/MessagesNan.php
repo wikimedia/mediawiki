@@ -408,11 +408,16 @@ Tiō-sī kóng, tī chit-má iōng chit ê IP bāng-chí ê lâng bē-sái koh k
 'noemailprefs'               => 'Tī lí ê siat-piān chí-tēng chi̍t ê tiān-chú-phoe tē-chí thang hō͘ chia ê kong-lêng ē-tàng ēng.',
 'emailconfirmlink'           => 'Chhiáⁿ khak-jīn lí ê e-mail chū-chí ū-hāu',
 
+# E-mail sending
+'user-mail-no-addy' => 'Siūⁿ beh kià tiān-chú-phoe, m̄-koh bô siá tē-chí.',
+
 # Change password dialog
 'resetpass'                 => 'Kái bi̍t-bé',
+'resetpass_header'          => 'Kái káu-chō ê bi̍t-bé.',
 'oldpassword'               => 'Kū bi̍t-bé:',
 'newpassword'               => 'Sin bi̍t-bé:',
 'retypenew'                 => 'Têng phah sin bi̍t-bé:',
+'resetpass_forbidden'       => 'Bi̍t-bé bē-sái piàn.',
 'resetpass-submit-loggedin' => 'Kái bi̍t-bé',
 'resetpass-submit-cancel'   => 'Chhú-siau',
 'resetpass-temp-password'   => 'Lîm-sî ê bi̍t-bé:',
@@ -427,8 +432,10 @@ Lîm-sî ê bi̍t-bé: $2',
 'passwordreset-emailsent'    => 'Chit hong thê-chhíⁿ ê  tiān-chú-phoe í-keng kià chhut.',
 
 # Special:ChangeEmail
-'changeemail'        => 'Kái tiān-chú-phoe ê tē-chí',
-'changeemail-cancel' => 'Chhú-siau',
+'changeemail'          => 'Kái tiān-chú-phoe ê tē-chí',
+'changeemail-oldemail' => 'Chit-má ê E-mail tē-chí:',
+'changeemail-newemail' => 'Sin E-mail ê chū-chí:',
+'changeemail-cancel'   => 'Chhú-siau',
 
 # Edit page toolbar
 'bold_sample'     => 'Chho·-thé bûn-jī',
@@ -463,6 +470,7 @@ Lîm-sî ê bi̍t-bé: $2',
 'nosuchsectiontitle'         => 'Chhoé bô toān-lo̍h',
 'loginreqtitle'              => 'Su-iàu Teng-ji̍p',
 'loginreqlink'               => 'Teng-ji̍p',
+'loginreqpagetext'           => 'Lí ài $1 chiah thang khoàⁿ pat ia̍h.',
 'accmailtitle'               => 'Bi̍t-bé kià chhut khì ah.',
 'accmailtext'                => "Hō͘ [[User talk:$1|$1]] ê chi̍t ê iōng loān-sò͘ sán-seng ê bi̍t-bé í-keng kìa khì $2.
 
