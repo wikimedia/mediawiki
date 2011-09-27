@@ -18,8 +18,6 @@
  * @author Urhixidur
  */
 
-$fallback = 'bn';
-
 $namespaceNames = array(
 	NS_MEDIA            => 'মাধ্যম',
 	NS_SPECIAL          => 'বিশেষ',
