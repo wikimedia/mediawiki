@@ -1501,6 +1501,92 @@ abstract class BaseTemplate extends QuickTemplate {
 		return $personal_tools;
 	}
 
+	function getSidebar( $options = array() ) {
+		// Force the rendering of the following portals
+		$sidebar = $this->data['sidebar'];
+		if ( !isset( $sidebar['SEARCH'] ) ) {
+			$sidebar['SEARCH'] = true;
+		}
+		if ( !isset( $sidebar['TOOLBOX'] ) ) {
+			$sidebar['TOOLBOX'] = true;
+		}
+		if ( !isset( $sidebar['LANGUAGES'] ) ) {
+			$sidebar['LANGUAGES'] = true;
+		}
+		
+		if ( !isset( $options['search'] ) || $options['search'] !== true ) {
+			unset( $sidebar['SEARCH'] );
+		}
+		if ( isset( $options['toolbox'] ) && $options['toolbox'] === false ) {
+			unset( $sidebar['TOOLBOX'] );
+		}
+		if ( isset( $options['languages'] ) && $options['languages'] === false ) {
+			unset( $sidebar['LANGUAGES'] );
+		}
+		
+		$boxes = array();
+		foreach ( $sidebar as $boxName => $content ) {
+			if ( $content === false ) {
+				continue;
+			}
+			switch ( $boxName ) {
+			case 'SEARCH':
+				// Search is a special case, skins should custom implement this
+				$boxes[$boxName] = array(
+					'id'        => "p-search",
+					'header'    => wfMessage( 'search' )->text(),
+					'generated' => false,
+					'content'   => true,
+				);
+				break;
+			case 'TOOLBOX':
+				$msgObj = wfMessage( 'toolbox' );
+				$boxes[$boxName] = array(
+					'id'        => "p-tb",
+					'header'    => $msgObj->exists() ? $msgObj->text() : 'toolbox',
+					'generated' => false,
+					'content'   => $this->getToolbox(),
+				);
+				break;
+			case 'LANGUAGES':
+				if ( $this->data['language_urls'] ) {
+					$msgObj = wfMessage( 'otherlanguages' );
+					$boxes[$boxName] = array(
+						'id'        => "p-lang",
+						'header'    => $msgObj->exists() ? $msgObj->text() : 'otherlanguages',
+						'generated' => false,
+						'content'   => $this->data['language_urls'],
+					);
+				} 
+				break;
+			default:
+				$msgObj = wfMessage( $boxName );
+				$boxes[$boxName] = array(
+					'id'        => "p-$boxName",
+					'header'    => htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $boxName ),
+					'generated' => true,
+					'content'   => $content,
+				);
+				break;
+			}
+		}
+		
+		if ( !isset($options['withLists']) || $options['withLists'] !== true ) {
+			foreach ( $boxes as $boxName => $box ) {
+				if ( is_array( $box['content'] ) ) {
+					$content = "<ul>";
+					foreach ( $box['content'] as $key => $val ) {
+						$content .= "\n	" . $this->makeListItem( $key, $val );
+					}
+					$content .= "\n</ul>\n";
+					$boxes[$boxName]['content'] = $content;
+				}
+			}
+		}
+		
+		return $boxes;
+	}
+
 	/**
 	 * Makes a link, usually used by makeListItem to generate a link for an item
 	 * in a list used in navigation lists, portlets, portals, sidebars, etc...
