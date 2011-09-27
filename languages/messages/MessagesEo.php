@@ -427,7 +427,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'daŭrigo',
 'index-category'                 => 'Indeksitaj paĝoj',
 'noindex-category'               => 'Neindeksitaj paĝoj',
-'broken-file-category'           => 'Paĝoj kun trompitaj dosierligiloj',
+'broken-file-category'           => 'Paĝoj kun eraraj dosierligiloj',
 
 'about'         => 'Enkonduko',
 'article'       => 'Artikolo',
@@ -1555,6 +1555,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'right-siteadmin'             => 'Ŝlosi kaj malŝlosi la datumbazon',
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
 'right-sendemail'             => 'Sendi retpoŝton al aliaj uzantoj',
+'right-passwordreset'         => 'Refari pasvorton de uzanto ([[Special:PasswordReset|speciala paĝo]])',
 
 # User rights log
 'rightslog'                  => 'Protokolo de uzanto-rajtoj',

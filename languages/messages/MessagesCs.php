@@ -1580,6 +1580,7 @@ Tuto operaci nelze vrátit zpět.',
 'right-siteadmin'             => 'Zamykání a odemykání databáze',
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
+'right-passwordreset'         => 'Reset hesla uživatele ([[Special:PasswordReset|speciální stránka]])',
 
 # User rights log
 'rightslog'                  => 'Kniha práv uživatelů',
@@ -3030,6 +3031,12 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'bydate'                => 'podle data',
 'sp-newimages-showfrom' => 'Zobrazit nové soubory počínaje od $2, $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekunda|$1 sekundy|$1 sekund}}',
+'minutes' => '{{PLURAL:$1|$1 minuta|$1 minuty|$1 minut}}',
+'hours'   => '{{PLURAL:$1|$1 hodina|$1 hodiny|$1 hodin}}',
+'days'    => '{{PLURAL:$1|$1 den|$1 dny|$1 dní}}',
+
 # Bad image list
 'bad_image_list' => 'Tato stránka má následující formát:
 
@@ -3848,6 +3855,9 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 bez založení přesměrování',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 s výměnou přesměrování',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 místo přesměrování bez založení přesměrování',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|založil|založila|založil}} uživatelský účet',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|založil|založila|založil}} uživatelský účet $3',
+'logentry-newusers-autocreate'        => 'Automaticky {{GENDER:$2|byl}} založen účet $1',
 'newuserlog-byemail'                  => 'heslo zasláno e-mailem',
 
 );

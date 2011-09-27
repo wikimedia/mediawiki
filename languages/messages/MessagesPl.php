@@ -764,30 +764,34 @@ Być może właśnie zmienił{{GENDER:|eś|aś|eś(‐aś)}} swoje hasło lub po
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Wyczyść hasło',
-'passwordreset-text'           => 'Wypełnij formularz, aby otrzymać e‐mail z przypomnieniem danych Twojego konta.',
-'passwordreset-legend'         => 'Zresetuj hasło',
-'passwordreset-disabled'       => 'Na tej wiki wyłączono możliwość resetowania haseł.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Wprowadź jedną z danych poniżej}}',
-'passwordreset-username'       => 'Nazwa użytkownika:',
-'passwordreset-domain'         => 'Domena',
-'passwordreset-email'          => 'Adres e‐mail',
-'passwordreset-emailtitle'     => 'Dane konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
-'passwordreset-emailtext-ip'   => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1) poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
+'passwordreset'                    => 'Wyczyść hasło',
+'passwordreset-text'               => 'Wypełnij formularz, aby otrzymać e‐mail z przypomnieniem danych Twojego konta.',
+'passwordreset-legend'             => 'Zresetuj hasło',
+'passwordreset-disabled'           => 'Na tej wiki wyłączono możliwość resetowania haseł.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Wprowadź jedną z danych poniżej}}',
+'passwordreset-username'           => 'Nazwa użytkownika:',
+'passwordreset-domain'             => 'Domena',
+'passwordreset-capture'            => 'Czy pokazywać treść wiadomości e‐mail?',
+'passwordreset-capture-help'       => 'Jeśli zaznaczysz to pole, zobaczysz treść wiadomości e‐mail z tymczasowym hasłem, w tej samej formie w jakiej jest wysyłana do użytkownika.',
+'passwordreset-email'              => 'Adres e‐mail',
+'passwordreset-emailtitle'         => 'Dane konta w {{GRAMMAR:MS.lp|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'       => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1) poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
 
 $2
 
 {{PLURAL:$3|Tymczasowego hasła|Tymczasowych haseł}} można użyć w ciągu {{PLURAL:$5|jednego dnia|$5 dni}}.
 Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inni poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chce go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystał ze swojego starego hasła.',
-'passwordreset-emailtext-user' => 'Użytkownik $1 poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
+'passwordreset-emailtext-user'     => 'Użytkownik $1 poprosił o przypomnienie szczegółów dotyczących Twojego konta w {{GRAMMAR:MS.lp{{SITENAME}}}} ($4). Z tym adresem e‐mailowym powiązane {{PLURAL:$3|jest konto użytkownika|są następujące konta użytkowników:}}
 
 $2
 
 {{PLURAL:$3|Tymczasowego hasła|Tymczasowych haseł}} można użyć w ciągu {{PLURAL:$5|jednego dnia|$5 dni}}.
 Powinieneś zalogować się i zmienić hasło na nowe. Jeśli to ktoś inni poprosił o wysłanie przypomnienia lub jeśli pamiętasz aktualne hasło i nie chce go zmieniać wystarczy, że zignorujesz tę wiadomość i będziesz nadal korzystał ze swojego starego hasła.',
-'passwordreset-emailelement'   => 'Nazwa użytkownika – $1
+'passwordreset-emailelement'       => 'Nazwa użytkownika – $1
 Tymczasowe hasło – $2',
-'passwordreset-emailsent'      => 'Przypominający e‐mail został wysłany.',
+'passwordreset-emailsent'          => 'Przypominający e‐mail został wysłany.',
+'passwordreset-emailsent-capture'  => 'Poniżej znajdujący się e‐mail z przypomnieniem został wysłany',
+'passwordreset-emailerror-capture' => 'Poniżej wyświetlony e‐mail z przypomnieniem został wygenerowany, ale nie udało się wysłać go do użytkownika: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Zmiana adresu e‐mail',
@@ -3008,8 +3012,8 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'minutes-abbrev' => '&nbsp;min',
 'hours-abbrev'   => '&nbsp;h',
 'seconds'        => '{{PLURAL:$1|$1 sekunda|$1 sekundy|$1 sekund}}',
-'minutes'        => '{{PLURAL:$1|jedną minutę|$1 minuty|$1 minut}}',
-'hours'          => '{{PLURAL:$1|jedną godzinę|$1 godziny|$1 godzin}}',
+'minutes'        => '{{PLURAL:$1|$1 minuta|$1 minuty|$1 minut}}',
+'hours'          => '{{PLURAL:$1|$1 godzina|$1 godziny|$1 godzin}}',
 'days'           => '{{PLURAL:$1|$1 dzień|$1 dni}}',
 'ago'            => '$1 temu',
 
@@ -3694,7 +3698,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'filepath-page'    => 'Plik',
 'filepath-submit'  => 'Przejdź',
 'filepath-summary' => 'Ta strona specjalna zwraca pełną ścieżkę do pliku.
-Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwierane w skojarzonym z nimi programie.',
+Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwierane w skojarzonym z nimi programie.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Szukaj duplikatów pliku',
@@ -3813,21 +3817,21 @@ Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwieran
 # New logging system
 'logentry-delete-delete'              => '$1 {{GENDER:$2|usunął|usunęła}} stronę $3',
 'logentry-delete-restore'             => '$1 {{GENDER:$2|odtworzył|odtworzyła}} stronę $3',
-'logentry-delete-event'               => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3 na $4',
-'logentry-delete-revision'            => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|jednej wersji|$5 wersji}} strony $3 na $4',
+'logentry-delete-event'               => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w rejestrze $3, wykonano następujące operacje: $4',
+'logentry-delete-revision'            => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
 'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzeń w rejestrze $3',
 'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
 'logentry-suppress-delete'            => '$1 {{GENDER:$2|ukrył|ukryła}} stronę $3',
-'logentry-suppress-event'             => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3 na $4',
-'logentry-suppress-revision'          => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|jednej wersji|$5 wersji}} strony $3 na $4',
+'logentry-suppress-event'             => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|zdarzenia|$5 zdarzeń}} w $3, wykonano następujące operacje: $4',
+'logentry-suppress-revision'          => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność {{PLURAL:$5|wersji|$5 wersji}} strony $3, wykonano następujące operacje: $4',
 'logentry-suppress-event-legacy'      => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność zdarzenia w rejestrze $3',
 'logentry-suppress-revision-legacy'   => '$1 potajemnie {{GENDER:$2|zmienił|zmieniła}} widoczność wersji strony $3',
-'revdelete-content-hid'               => 'treść ukryta',
-'revdelete-summary-hid'               => 'opis zmian ukryty',
-'revdelete-uname-hid'                 => 'nazwa użytkownika ukryta',
-'revdelete-content-unhid'             => 'treść widoczna',
-'revdelete-summary-unhid'             => 'opis zmian widoczny',
-'revdelete-uname-unhid'               => 'nazwa użytkownika widoczna',
+'revdelete-content-hid'               => 'treść została ukryta',
+'revdelete-summary-hid'               => 'opis zmian został ukryty',
+'revdelete-uname-hid'                 => 'nazwa użytkownika została ukryta',
+'revdelete-content-unhid'             => 'wycofano ukrycie treści',
+'revdelete-summary-unhid'             => 'wycofano ukrycie opisu zmian',
+'revdelete-uname-unhid'               => 'wycofano ukrycie nazwy użytkownika',
 'revdelete-restricted'                => 'również dla administratorów',
 'revdelete-unrestricted'              => 'ale nie dla administratorów',
 'logentry-move-move'                  => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4',
@@ -3836,9 +3840,9 @@ Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwieran
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4 ponad przekierowaniem bez pozostawienia przekierowania na starej stronie',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
 'logentry-patrol-patrol-auto'         => '$1 automatycznie {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',
-'logentry-newusers-create'            => '$1 {{GENDER:$2|utworzył|utworzyła}} konto użytkownika',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|utworzył|utworzyła}} konto użytkownika $3',
-'logentry-newusers-autocreate'        => 'Konto $1 zostało {{GENDER:$2|utworzone}} automatycznie',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|utworzył konto użytkownika|utworzyła konto użytkowniczki}}',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|utworzył|utworzyła}} konto {{GENDER:$3|użytkownika|użytkowniczki}} $3',
+'logentry-newusers-autocreate'        => 'Konto {{GENDER:$2|użytkownika|użytkowniczki}} $1 zostało utworzone automatycznie',
 'newuserlog-byemail'                  => 'hasło zostało wysłane e‐mailem',
 
 );

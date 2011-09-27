@@ -1499,7 +1499,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-diffs'                   => 'Versionsvergleich',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => 'E-Mail-Adresse scheint gültig zu sein',
+'email-address-validity-valid'   => 'Diese E-Mail-Adresse scheint gültig zu sein.',
 'email-address-validity-invalid' => 'Eine gültige E-Mail-Adresse ist erforderlich.',
 
 # User rights
@@ -3877,6 +3877,9 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|verschob}} Seite $3 nach $4 und überschrieb dabei eine Weiterleitung ohne selbst eine Weiterleitung anzulegen',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markierte}} Version $4 von Seite $3 als kontrolliert',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markierte}} Version $4 von Seite $3 als kontrolliert (automatisch)',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|erstellte}} ein Benutzerkonto',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|erstellte}} ein Benutzerkonto $3',
+'logentry-newusers-autocreate'        => 'Benutzerkonto $1 wurde automatisch {{GENDER:$2|erstellt}}',
 'newuserlog-byemail'                  => 'das Passwort wurde per E-Mail versandt',
 
 );

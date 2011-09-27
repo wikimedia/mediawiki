@@ -1468,6 +1468,7 @@ L'operazione non può essere annullata.",
 'right-siteadmin'             => 'Blocca e sblocca il database',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-sendemail'             => 'Invia e-mail ad altri utenti',
+'right-passwordreset'         => 'Reimposta la password di un utente ([[Special:PasswordReset|pagina speciale]])',
 
 # User rights log
 'rightslog'                  => 'Diritti degli utenti',
@@ -2896,6 +2897,13 @@ $1',
 'ilsubmit'              => 'Ricerca',
 'bydate'                => 'per data',
 'sp-newimages-showfrom' => 'Mostra i file più recenti a partire dalle ore $2 del $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|un secondo|$1 secondi}}',
+'minutes' => '{{PLURAL:$1|un minuto|$1 minuti}}',
+'hours'   => "{{PLURAL:$1|un'ora|$1 ore}}",
+'days'    => '{{PLURAL:$1|un giorno|$1 giorni}}',
+'ago'     => '$1 fa',
 
 # Bad image list
 'bad_image_list' => "Il formato è il seguente:

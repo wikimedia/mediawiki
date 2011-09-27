@@ -32,6 +32,7 @@
  * @author Suelnur
  * @author Szoszv
  * @author Tarikozket
+ * @author Tarkovsky
  * @author Urhixidur
  * @author Uğur Başak
  * @author Vito Genovese
@@ -432,6 +433,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(devam)',
 'index-category'                 => 'Dizinli sayfalar',
 'noindex-category'               => 'Dizinli olmayan sayfalar',
+'broken-file-category'           => 'Bozuk dosya bağlantıları içeren sayfalar',
 
 'about'         => 'Hakkında',
 'article'       => 'Madde',
@@ -591,6 +593,7 @@ $1',
 'page-rss-feed'           => '"$1" RSS Beslemesi',
 'page-atom-feed'          => '"$1" Atom beslemesi',
 'red-link-title'          => '$1 (sayfa mevcut değil)',
+'sort-descending'         => 'Azalan sıralama',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Madde',
@@ -676,6 +679,8 @@ Lütfen birkaç dakika sonra yeniden deneyin.',
 'cascadeprotected'     => 'Bu sayfa değişiklik yapılması engellenmiştir, çünkü  "kademeli" seçeneği aktif hale getirilerek koruma altına alınan {{PLURAL:$1|sayfada|sayfada}} kullanılmaktadır:
 $2',
 'namespaceprotected'   => "'''$1''' alandındaki sayfaları düzenlemeye izniniz bulunmamaktadır.",
+'customcssprotected'   => 'Bu sayfayı değiştirmeye yetkiniz bulunmamaktadır, çünkü bu sayfa başka bir kullanıcının kişisel ayarlarını içermektedir.',
+'customjsprotected'    => 'Bu Java Script sayfasını değiştirmeye yetkiniz bulunmamaktadır, çünkü bu sayfa başka bir kullanıcının kişisel ayarlarını içermektedir.',
 'ns-specialprotected'  => '{{ns:special}} alanadı içindeki sayfalar değiştirilemez.',
 'titleprotected'       => "[[User:$1|$1]] tarafından oluşturulması engellenmesi için bu sayfa koruma altına alınmıştır.
 Verilen sebep: ''$2''.",
@@ -776,11 +781,13 @@ Eğer kullanıcı hesabını yanlışlıkla oluşturmuş iseniz, bu mesajı yoks
 'usernamehasherror'          => 'Kullanıcı adı karma karakterler içeremez',
 'login-throttled'            => 'Yakın zamanda çok fazla oturum açma denemesinde bulundunuz.
 Lütfen tekrar denemeden önce bekleyin.',
+'login-abort-generic'        => 'Girişiniz başarısız - iptal edilmiş',
 'loginlanguagelabel'         => 'Dil: $1',
 'suspicious-userlogout'      => 'Çıkış isteğiniz reddedildi çünkü bozuk bir tarayıcı ya da önbellekli vekil tarafından gönerilmiş gibi görünüyor.',
 
 # E-mail sending
 'php-mail-error-unknown' => "PHP's mail() fonksiyonunda bilinmeyen hata",
+'user-mail-no-addy'      => 'Bir e-posta adresi olmadan e-posta göndermeye çalıştı.',
 
 # Change password dialog
 'resetpass'                 => 'Parolayı değiştir',
@@ -804,9 +811,26 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 
 # Special:PasswordReset
 'passwordreset'              => 'Parola sıfırlama',
+'passwordreset-text'         => 'Hesap bilgilerinizin e-posta ile hatırlatılması için bu formu doldurunuz.',
 'passwordreset-legend'       => 'Şifreyi sıfırla',
+'passwordreset-disabled'     => 'Parola sıfırlamaları bu wiki üzerinde devre dışı bırakıldı.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Aşağıdaki verilerden birini girin}}',
 'passwordreset-username'     => 'Kullanıcı adı:',
+'passwordreset-domain'       => 'Domain:',
+'passwordreset-capture'      => 'Sonuç e-postasını görüntüle?',
+'passwordreset-capture-help' => 'Bu kutuyu işaretlerseniz, e-posta (geçici şifre ile) size ve yanı sıra kullanıcıya gönderiliyor.',
 'passwordreset-email'        => 'E-posta adresi:',
+'passwordreset-emailtitle'   => '{{SITENAME}} hesap detayları',
+'passwordreset-emailtext-ip' => 'Birisi (muhtemelen siz, IP adresi  $1 ) {{SITENAME}} ( $4 ) için hesap bilgilerinizin 
+hatırlatılmasını istedi . Aşağıdaki kullanıcı  {{PLURAL:$3| hesabı|hesapları}}
+ bu e-posta adresiyle ilişkili:
+
+$2
+
+{{PLURAL:$3| Bu geçici parola|Bu geçici parolalar}} {{PLURAL:$5| bir gün| $5  gün}} geçerlidir.
+Bu geçici parola ile giriş yapın ve yeni bir şifre seçin. Eğer sizden başkası bu isteği yolladı ise, ve ya
+şifrenizi hatırlıyor iseniz, ve artık değiştirmek istemiyorsanız, bu mesajı dikkate almayın ve eski 
+şifrenizi kullanmaya devam edin.',
 'passwordreset-emailelement' => 'Kullanıcı adı: $1
 Geçici şifre: $2',
 
@@ -1501,6 +1525,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-siteadmin'             => 'Veritabanını kilitle ve kilidi aç',
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
 'right-sendemail'             => 'Diğer kullanıcılara e-posta gönder',
+'right-passwordreset'         => 'Bir kullanıcının parolasını sıfırlar ([[Special:PasswordReset|özel sayfa]])',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
