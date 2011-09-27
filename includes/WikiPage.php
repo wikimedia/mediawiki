@@ -665,7 +665,7 @@ class WikiPage extends Page {
 		if ( $dbr->implicitGroupby() ) {
 			$realNameField = 'user_real_name';
 		} else {
-			$realNameField = 'FIRST(user_real_name) AS user_real_name';
+			$realNameField = 'MIN(user_real_name) AS user_real_name';
 		}
 
 		$tables = array( 'revision', 'user' );
