@@ -77,12 +77,11 @@ class MostlinkedPage extends QueryPage {
 	 *
 	 * @param $title Title being queried
 	 * @param $caption String: text to display on the link
-	 * @param $skin Skin to use
 	 * @return String
 	 */
-	function makeWlhLink( &$title, $caption, &$skin ) {
+	function makeWlhLink( $title, $caption ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );
-		return $skin->linkKnown( $wlh, $caption );
+		return Linker::linkKnown( $wlh, $caption );
 	}
 
 	/**
@@ -93,15 +92,13 @@ class MostlinkedPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgLang;
 		$title = Title::makeTitleSafe( $result->namespace, $result->title );
 		if ( !$title ) {
 			return '<!-- ' . htmlspecialchars( "Invalid title: [[$title]]" ) . ' -->';
 		}
-		$link = $skin->link( $title );
+		$link = Linker::link( $title );
 		$wlh = $this->makeWlhLink( $title,
-			wfMsgExt( 'nlinks', array( 'parsemag', 'escape'),
-				$wgLang->formatNum( $result->value ) ), $skin );
+			$this->msg( 'nlinks' )->numParams( $result->value )->escaped() );
 		return wfSpecialList( $link, $wlh );
 	}
 }
