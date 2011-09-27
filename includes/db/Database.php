@@ -1367,7 +1367,7 @@ abstract class DatabaseBase implements DatabaseType {
 				$from = ' FROM ' . implode( ',', $this->tableNamesWithAlias( $table ) );
 			}
 		} elseif ( $table != '' ) {
-			if ( $table { 0 } == ' ' ) {
+			if ( $table[0] == ' ' ) {
 				$from = ' FROM ' . $table;
 			} else {
 				$from = ' FROM ' . $this->tableName( $table );
@@ -3127,7 +3127,7 @@ abstract class DatabaseBase implements DatabaseType {
 				continue;
 			}
 
-			if ( '-' == $line { 0 } && '-' == $line { 1 } ) {
+			if ( '-' == $line[0] && '-' == $line[1] ) {
 				continue;
 			}
 
@@ -3142,7 +3142,7 @@ abstract class DatabaseBase implements DatabaseType {
 				}
 			}
 			elseif ( !$dollarquote ) {
-				if ( ';' == $line { $sl } && ( $sl < 2 || ';' != $line { $sl - 1 } ) ) {
+				if ( ';' == $line[$sl] && ( $sl < 2 || ';' != $line[$sl - 1] ) ) {
 					$done = true;
 					$line = substr( $line, 0, $sl );
 				}
