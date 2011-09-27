@@ -50,9 +50,7 @@ class MostimagesPage extends ImageQueryPage {
 	}
 
 	function getCellHtml( $row ) {
-		global $wgLang;
-		return wfMsgExt( 'nimagelinks',  array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $row->value ) ) . '<br />';
+		return $this->msg( 'nimagelinks' )->numParams( $row->value )->escaped() . '<br />';
 	}
 
 }

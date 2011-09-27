@@ -99,8 +99,8 @@ class MostlinkedTemplatesPage extends QueryPage {
 		$title = Title::makeTitle( $result->namespace, $result->title );
 
 		return wfSpecialList(
-			$skin->link( $title ),
-			$this->makeWlhLink( $title, $skin, $result )
+			Linker::link( $title ),
+			$this->makeWlhLink( $title, $result )
 		);
 	}
 
@@ -108,16 +108,13 @@ class MostlinkedTemplatesPage extends QueryPage {
 	 * Make a "what links here" link for a given title
 	 *
 	 * @param $title Title to make the link for
-	 * @param $skin Skin to use
 	 * @param $result Result row
 	 * @return String
 	 */
-	private function makeWlhLink( $title, $skin, $result ) {
-		global $wgLang;
-		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere' );
-		$label = wfMsgExt( 'ntransclusions', array( 'parsemag', 'escape' ),
-			$wgLang->formatNum( $result->value ) );
-		return $skin->link( $wlh, $label, array(), array( 'target' => $title->getPrefixedText() ) );
+	private function makeWlhLink( $title, $result ) {
+		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
+		$label = $this->msg( 'ntransclusions' )->numParams( $result->value )->escaped();
+		return Linker::link( $wlh, $label );
 	}
 }
 
