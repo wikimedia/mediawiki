@@ -1563,7 +1563,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				$msgObj = wfMessage( $boxName );
 				$boxes[$boxName] = array(
 					'id'        => "p-$boxName",
-					'header'    => htmlspecialchars( $msgObj->exists() ? $msgObj->text() : $boxName ),
+					'header'    => $msgObj->exists() ? $msgObj->text() : $boxName,
 					'generated' => true,
 					'content'   => $content,
 				);
@@ -1571,16 +1571,58 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 		}
 		
-		if ( !isset($options['withLists']) || $options['withLists'] !== true ) {
+		// HACK: Compatibility with extensions still using SkinTemplateToolboxEnd
+		$hookContents = null;
+		if ( isset( $boxes['TOOLBOX'] ) ) {
+			ob_start();
+			// We pass an extra 'true' at the end so extensions using BaseTemplateToolbox
+			// can abort and avoid outputting double toolbox links
+			wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this, true ) );
+			$hookContents = ob_get_contents();
+			ob_end_clean();
+			if ( !trim( $hookContents ) ) {
+				$hookContents = null;
+			}
+		}
+		// END hack
+		
+		if ( isset( $options['htmlOnly'] ) && $options['htmlOnly'] === true ) {
 			foreach ( $boxes as $boxName => $box ) {
 				if ( is_array( $box['content'] ) ) {
 					$content = "<ul>";
 					foreach ( $box['content'] as $key => $val ) {
 						$content .= "\n	" . $this->makeListItem( $key, $val );
 					}
+					// HACK, shove the toolbox end onto the toolbox if we're rendering itself
+					if ( $hookContents ) {
+						$content .= "\n	$hookContents"; 
+					}
+					// END hack
 					$content .= "\n</ul>\n";
 					$boxes[$boxName]['content'] = $content;
 				}
+			}
+		} else {
+			if ( $hookContents ) {
+				$boxes['TOOLBOXEND'] = array(
+					'id'        => "p-toolboxend",
+					'header'    => $boxes['TOOLBOX']['header'],
+					'generated' => false,
+					'content'   => "<ul>{$hookContents}</ul>",
+				);
+				// HACK: Make sure that TOOLBOXEND is sorted next to TOOLBOX
+				$boxes2 = array();
+				foreach ( $boxes as $key => $box ) {
+					if ( $key === 'TOOLBOXEND' ) {
+						continue;
+					}
+					$boxes2[$key] = $box;
+					if ( $key === 'TOOLBOX' ) {
+						$boxes2['TOOLBOXEND'] = $boxes['TOOLBOXEND'];
+					}
+				}
+				$boxes = $boxes2;
+				// END hack
 			}
 		}
 		
