@@ -428,7 +428,16 @@ class MessageCache {
 		);
 
 		foreach ( $res as $row ) {
-			$cache[$row->page_title] = ' ' . Revision::getRevisionText( $row );
+			$text = Revision::getRevisionText( $row );
+			if( $text === false ) {
+				// Failed to fetch data; possible ES errors?
+				// Store a marker to fetch on-demand as a workaround...
+				$entry = '!TOO BIG';
+				wfDebugLog( 'MessageCache', __METHOD__ . ": failed to load message page text for {$row->page_title} ($code)" );
+			} else {
+				$entry = ' ' . $text;
+			}
+			$cache[$row->page_title] = $entry;
 		}
 
 		foreach ( $mostused as $key ) {
@@ -741,8 +750,13 @@ class MessageCache {
 		$revision = Revision::newFromTitle( Title::makeTitle( NS_MEDIAWIKI, $title ) );
 		if ( $revision ) {
 			$message = $revision->getText();
-			$this->mCache[$code][$title] = ' ' . $message;
-			$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
+			if ($message === false) {
+				// A possibly temporary loading failure.
+				wfDebugLog( 'MessageCache', __METHOD__ . ": failed to load message page text for {$title->getDbKey()} ($code)" );
+			} else {
+				$this->mCache[$code][$title] = ' ' . $message;
+				$this->mMemc->set( $titleKey, ' ' . $message, $this->mExpiry );
+			}
 		} else {
 			$message = false;
 			$this->mCache[$code][$title] = '!NONEXISTENT';
