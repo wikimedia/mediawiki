@@ -569,6 +569,10 @@ class LoginForm extends SpecialPage {
 		} else {
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
+			// This should set it for OutputPage and the Skin
+			// which is needed or the personal links will be
+			// wrong.
+			RequestContext::getMain()->setUser( $u );
 
 			// Please reset throttle for successful logins, thanks!
 			if ( $throttleCount ) {
