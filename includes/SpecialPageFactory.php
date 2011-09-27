@@ -455,7 +455,7 @@ class SpecialPageFactory {
 				wfProfileOut( __METHOD__ );
 				return $title;
 			} else {
-				$context->setTitle( $page->getTitle() );
+				$context->setTitle( $page->getTitle( $par ) );
 			}
 
 		} elseif ( !$page->isIncludable() ) {
