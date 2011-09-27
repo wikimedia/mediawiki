@@ -594,7 +594,7 @@ class MediaWiki {
 			return;
 		}
 
-		if ( $wgUseFileCache && $wgTitle->getNamespace() != NS_SPECIAL ) {
+		if ( $wgUseFileCache && $wgTitle->getNamespace() >= 0 ) {
 			wfProfileIn( 'main-try-filecache' );
 			// Raw pages should handle cache control on their own,
 			// even when using file cache. This reduces hits from clients.
