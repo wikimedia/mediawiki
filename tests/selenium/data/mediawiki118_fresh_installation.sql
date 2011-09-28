@@ -767,13 +767,13 @@ CREATE TABLE `mw_objectcache` (
 
 LOCK TABLES `mw_objectcache` WRITE;
 /*!40000 ALTER TABLE `mw_objectcache` DISABLE KEYS */;
-INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:messages:en','K´2´ª.¶2·R\ns\r\nöô÷S²Î´2´®\0','2010-12-31 13:16:31');
-INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:pcache:idhash:1-0!*!*!!en!*','¥V[oâFÞg~ÅÄ­´ØBšÁP­¢m)$TK»U…û\0£ŒÇÖÌ8$íï9ƒa\rI«l— X>×ïÜ¹ãq—Sa,˜»Ê••x÷Œ?[~Êƒ|.ZÇç$å8YŒ\'IñYÞK¶–-\04³Uš‚µËJ©\'&µuB)È:I¸·’µÊñE¡m¥sk`‰`kËQ°v®äa˜ƒ\rZÌÉt§0«ÞÂ+P%GEÚÙ€¥JX;\n-sŽP£@ËB©bŒÿÀ8~¶ì²’$¡³eaþÏ…“…fø­¬Ô+„Ü0[,ÝFèx¬­dÝ\'¶zï0“ÎBJÚÁø¯=ø°Äø¡JÁc§\\—¿:éŒ&BêùT¬à\'‘—CáõFdÃ¿×†FqÀ¶âÁGd±šÌÙ%8Gè0‡ÆAŒI“ù;		Ô˜`Ë7í5ˆLI\r“Ù(¨õç{ýc‹¬¶“„g+©Ô8Qrü¢&›Í¦ãËA)úV’‰Ð•PT”¥\\UÆ§tn·ÞZ¢e¶SfJZ(VýP¿}øý¾µ0êü—O‹N	—=jÏ\\H•íyÔ\\áU[h]T:…ï†‚À†bd›êu”+Õj%\'í6kÝÂf:E;Ç@Y×šâÓ4…ØïºÈ€¥ÃqÖãÈZÓÂº6<bñ3œˆTU(dåà,\n»ÑùY|Úe‹\'¶5ƒ¼TÂfUå8}ÿ\"÷ñ±må°Ò/¶ÄÈ}Ukç9oµÛ;äŸÄó|*R?…nÍîá	3dÝÜg1ßÌyé¹\\f8gk·£“÷øwúä=£›:/Y7Š£¸Û‹â^<èÅŒüù­ÕÇv#ôªÂi¼‘úÞCÁ#þü•6\Zò.0ÆUa$4í=\ZÍÝò;çÍ4£™¦÷Y=²æ•ê¬5éÝý:kpÎq£Å¦4áýX·ËÞCŸ–qYßµ-‡’ÇˆõôœÿÐD×fúÑÍÐÖ:ƒÿáò¦(3tŒ®14Cü×J‰#ñ©ÞÑÃ†µÎžWXT®Ûâ’Î”y: ^á6½v7ìÿ‚äI‘UêEe·óª(šp0ãùgaô6MjÂScþ,Ñ«@ëÏÞ…+R ö•ãAýŽÎxÐ¥\'6ßôutÇ·bÛ›ºÊ`jµ8ØšòGªIC<KSäþ5š|¾krJ\ry±\\b3xPƒ³­¡ÓuaŽ@ìÎðë®$SS”`ÜÁtQ.gwW³É\r@\'ôè¢ÕwÍß ï°ØxZ(™>5{ÑÁþ§dwå>·=J)\rÓ6t ·ÅXøÌ¸æM¯É­B»\n÷Å–TÃýŒõb>‘qgÐéï„7Ô›z·n7‘§vwr¸-%uÛ-QiþiX1çöNe±’éA#ÎvÛíÓ§ý3Ìó?','2010-12-31 13:16:31');
-INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:pcache:idoptions:1','EÁ‚@Dÿ¥`¶\"vÆ£á¢ÞWh°‰,†b¢!ü»»â­™7íL+Ú|}ç³t´¥I©$è®<¨ôœF\rpSlò4£‰ìïOJN`\r\Z´™Á‹Õ®¾ãû)ÃœPYäÆ$¶K¬£— Õ£9ùVjp72ëâE¹©žcÌWpž2šäcVxu7îì	­¦»˜p#£r=.µ…¬[>y)Zpóü','2010-12-31 13:16:31');
-INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:resourceloader:filter:minify-css:3832ee25d9c44988461f5f339b9b6a48','+¶26²RrÈMMÉLTHÌÉ©V\0‚Z(¿ (3¯(R«d\r\0','2038-01-19 03:14:07');
-INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:resourceloader:filter:minify-css:aa0df16258ad99a1d249e796b5067ed9','+¶2±°RrÈMMÉLTHÌÉ©NÔËK-×Q.,ÍLÎNJ,R\0ó«“ósò‹¬”“\r€ ¶VÉ\Z\0','2038-01-19 03:14:07');
-INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:resourceloader:filter:minify-js:22814eeadc9cf0a9ebcd844e14198e66','m”ÉrÛ0†ïyžÚÇrê&QÞ¡×ž!\n’qQ¹Xq;}÷‚¤$ËÃÞˆ øc!]]].o5SØ\nø)FqíÑL^íŽý—?Œs…F£!«OÆM\\¼¦•öøéù\0–ÈåN¤ÐÉµà‘Õ¬Å‚ôŒ€è:£å-…j…ƒF¦Ø{Û…¾Gç\"ižø‡ \ZÝ6’KÁÇÍÏ!ÊY]=ØF[Ñ~ç«ÚØä¶ƒ¯ÚÖî`¬Š9NÐÇ´ª•Ï@¹Káü²|zÔí¶±1«AÆÔ@J#_Ôæ7\'úlË1)JÍµê).’3zÔfÖT†A´˜²HÑšÀ[#)ðBzRA©7ÖŒ˜ë\"TÔ*~SWÎöå‘/Pà‡ä’B®ÅŽ;\Zç”ayƒ6ø€ëÚè+UŠº?.$º6ÀÇ-uTƒv@h…îsÉ&ª¹ÀÙèNØ¥bòfJ’~ê]6–·p£³/q)…>ŸE…1úÎÍ”A\neÍL®g\ZE‡`cW’ÿ™¶Ü`fJ©EÍa‚ˆ>‚šb\n¹Ó‘dÑ.u•doÜ¾[¹\nt£ b³+õ†l\Z?X* ‘Y•(äÖ…;ßL¶JqÅ¥ÉõÀòd$Ü\"¤WzGûŽ-@b~+‰#™kÇžÙŽÅÆ‚~ˆ¶âÆøÿP)B	ï£ø€ã¬ðqŒÒ–2×åÍríRlë¬€ô`z	º4«ÛúÃXímÀ;¨XÝt;r.ÈsA¾äRïy)ÈkAÞ\nRJTª®JÙU©»*…W«ò¿_ßŸžîŸ¼4@óvtžþfúà÷>•«½±x„½ÿ','2038-01-19 03:14:07');
-INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:resourceloader:filter:minify-js:dd9440c19c575629ac5ec90e489cf62e','+¶21·RâÜÔ”ÌÄðÌìL½œüÄ”Ô\"½â’Ä’Tj¥âÌ’T%+¥¢ÔÄ”J¥ZMk.%k\0','2038-01-19 03:14:07');
+INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:messages:en','Kï¿½2ï¿½ï¿½.ï¿½2ï¿½R\ns\r\nï¿½ï¿½ï¿½Sï¿½Î´2ï¿½ï¿½\0','2010-12-31 13:16:31');
+INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:pcache:idhash:1-0!*!*!!en!*','ï¿½V[oï¿½Fï¿½g~ï¿½ï¿½ï¿½ï¿½ï¿½Bï¿½ï¿½Pï¿½ï¿½m)$TKï¿½Uï¿½ï¿½\0ï¿½ï¿½ï¿½ï¿½ï¿½8$ï¿½ï¿½9ï¿½a\rIï¿½lï¿½ï¿½X>ï¿½ï¿½Ü¹ï¿½qï¿½Sa,ï¿½ï¿½Ê•ï¿½xï¿½ï¿½?[~Êƒ|ï¿½.Zï¿½ï¿½$ï¿½8Yï¿½\'ï¿½Iï¿½Yï¿½Kï¿½ï¿½-\04ï¿½Uï¿½ï¿½ï¿½ï¿½Jï¿½\'&ï¿½uB)ï¿½:Iï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Eï¿½mï¿½sk`ï¿½`kï¿½Qï¿½vï¿½ï¿½aï¿½ï¿½ï¿½\rZï¿½ï¿½tï¿½0ï¿½ï¿½ï¿½ï¿½+P%GEï¿½Ù€ï¿½JX;\n-sï¿½Pï¿½@ï¿½Bï¿½bï¿½ï¿½ï¿½8~ï¿½ì²’$ï¿½ï¿½eaï¿½Ï…ï¿½ï¿½fï¿½ï¿½+ï¿½ï¿½ï¿½0[,ï¿½Fï¿½xï¿½ï¿½dï¿½\'ï¿½zï¿½0ï¿½ï¿½BJï¿½ï¿½ï¿½=ï¿½ï¿½ï¿½Jï¿½ï¿½cï¿½\\ï¿½ï¿½:ï¿½ï¿½&Bï¿½ï¿½Tï¿½ï¿½\'ï¿½ï¿½Cï¿½ï¿½FdÃ¿×†Fqï¿½ï¿½ï¿½ï¿½Gdï¿½ï¿½ï¿½ï¿½%8Gï¿½0ï¿½ï¿½Aï¿½Iï¿½ï¿½;		Ô˜`ï¿½7ï¿½5ï¿½LI\rï¿½ï¿½(ï¿½ï¿½ï¿½{ï¿½cï¿½ï¿½ï¿½ï¿½ï¿½g+ï¿½ï¿½8Qrï¿½&ï¿½Í¦ï¿½ï¿½A)ï¿½Vï¿½ï¿½Ð•PTï¿½ï¿½\\UÆ§tnï¿½ï¿½Zï¿½eï¿½SfJZ(Vï¿½Pï¿½}ï¿½ï¿½ï¿½ï¿½0ï¿½ï¿½Oï¿½N	ï¿½=jï¿½\\Hï¿½ï¿½yï¿½\\ï¿½U[h]T:ï¿½ï†‚ï¿½ï¿½bdï¿½ï¿½uï¿½ï¿½+ï¿½j%\'ï¿½6kï¿½ï¿½f:Eï¿½;ï¿½@Y×šï¿½ï¿½4ï¿½ï¿½ï¿½È€ï¿½ï¿½qï¿½ï¿½ï¿½Zï¿½Âº6<bï¿½3ï¿½ï¿½TU(dï¿½ï¿½,\nï¿½ï¿½ï¿½Y|ï¿½eï¿½\'ï¿½5ï¿½ï¿½Tï¿½fUï¿½8}ï¿½\"ï¿½ï¿½mï¿½ï¿½ï¿½/ï¿½ï¿½ï¿½}Ukï¿½9oï¿½ï¿½;ï¿½ï¿½ï¿½ï¿½|*R?ï¿½nï¿½ï¿½ï¿½	3dï¿½ï¿½g1ï¿½ï¿½yï¿½\\f8gkï¿½ï¿½ï¿½ï¿½ï¿½wï¿½ï¿½=ï¿½ï¿½:/Y7ï¿½ï¿½ï¿½Û‹ï¿½^<ï¿½ÅŒï¿½ï¿½ï¿½ï¿½v#ï¿½ï¿½ï¿½iï¿½ï¿½ï¿½ï¿½Cï¿½#ï¿½ï¿½6\Zï¿½.0ï¿½Ua$4ï¿½=\Zï¿½ï¿½ï¿½;ï¿½ï¿½4ï¿½ï¿½ï¿½ï¿½Y=ï¿½ï¿½ï¿½5ï¿½ï¿½ï¿½:kpÎqï¿½ï¿½Å¦4ï¿½ï¿½Xï¿½ï¿½ï¿½Cï¿½ï¿½qYßµ-ï¿½ï¿½Çˆï¿½ï¿½ï¿½ï¿½ï¿½Dï¿½fï¿½ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½ï¿½ï¿½(3tï¿½ï¿½14Cï¿½ï¿½Jï¿½#ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½WXTï¿½ï¿½ï¿½Î”y:ï¿½^ï¿½6ï¿½vï¿½7ï¿½ï¿½ï¿½ï¿½Iï¿½Uï¿½Eeï¿½ï¿½(ï¿½p0ï¿½ï¿½gaï¿½6Mjï¿½ï¿½Scï¿½,Ñ«@ï¿½ï¿½Þ…+Rï¿½ï¿½ï¿½ï¿½Aï¿½ï¿½xÐ¥\'6ï¿½ï¿½ï¿½utÇ·bÛ›ï¿½ï¿½`jï¿½8Øšï¿½Gï¿½IC<KSï¿½ï¿½5ï¿½|ï¿½krJ\ryï¿½\\b3xPï¿½ï¿½ï¿½ï¿½ï¿½uaï¿½@ï¿½ï¿½ï¿½ï¿½$SSï¿½`ï¿½ï¿½tQ.gwWï¿½ï¿½\r@\'ï¿½ï¿½ï¿½wï¿½ï¿½ ï¿½ï¿½xZ(ï¿½>5{ï¿½ï¿½ï¿½ï¿½dwï¿½>ï¿½=J)\rï¿½6t ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½Mï¿½ï¿½ï¿½Bï¿½\nï¿½Å–Tï¿½ï¿½ï¿½ï¿½b>ï¿½qgï¿½ï¿½ï¿½ï¿½7ï¿½ï¿½zï¿½n7ï¿½ï¿½vwrï¿½-%uï¿½-Qiï¿½iX1ï¿½ï¿½Neï¿½ï¿½ï¿½A#ï¿½vï¿½ï¿½Ó§ï¿½3ï¿½ï¿½?','2010-12-31 13:16:31');
+INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:pcache:idoptions:1','Eï¿½ï¿½ï¿½@Dï¿½ï¿½`ï¿½\"vï¿½Æ£ï¿½ï¿½Whï¿½ï¿½,ï¿½bï¿½!ï¿½â­™7ï¿½L+ï¿½|}ï¿½tï¿½ï¿½Iï¿½$ï¿½<ï¿½ï¿½ï¿½F\rpSlï¿½4ï¿½ï¿½ï¿½ï¿½OJN`\r\Zï¿½ï¿½ï¿½ï¿½Õ®ï¿½ï¿½ï¿½)ï¿½ï¿½PYï¿½ï¿½$ï¿½Kï¿½ï¿½ï¿½ï¿½Õ£9ï¿½Vjp72ï¿½ï¿½Eï¿½ï¿½ï¿½cï¿½Wpï¿½2ï¿½ï¿½cVxu7ï¿½ï¿½	ï¿½ï¿½ï¿½ï¿½p#ï¿½r=.ï¿½ï¿½ï¿½[>y)Zpï¿½ï¿½','2010-12-31 13:16:31');
+INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:resourceloader:filter:minify-css:3832ee25d9c44988461f5f339b9b6a48','+ï¿½26ï¿½Rrï¿½MMï¿½LTHï¿½É©V\0ï¿½Z(ï¿½ï¿½(3ï¿½(Rï¿½d\r\0','2038-01-19 03:14:07');
+INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:resourceloader:filter:minify-css:aa0df16258ad99a1d249e796b5067ed9','+ï¿½2ï¿½ï¿½Rrï¿½MMï¿½LTHï¿½É©Nï¿½ï¿½K-ï¿½Q.,ï¿½Lï¿½NJ,R\0ï¿½ï¿½sò‹¬”ï¿½\rï¿½ï¿½ï¿½Vï¿½\Z\0','2038-01-19 03:14:07');
+INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:resourceloader:filter:minify-js:22814eeadc9cf0a9ebcd844e14198e66','mï¿½ï¿½rï¿½0ï¿½ï¿½yï¿½ï¿½ï¿½ï¿½rï¿½&QÞ¡×ž!\nï¿½qQï¿½Xq;}ï¿½ï¿½ï¿½$ï¿½ï¿½Þˆï¿½ ï¿½c!]]].o5Sï¿½\nï¿½)Fqï¿½ï¿½L^ï¿½ï¿½?ï¿½sï¿½Fï¿½!ï¿½Oï¿½M\\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½\0ï¿½ï¿½ï¿½Nï¿½ï¿½Éï¿½ï¿½ï¿½Õ¬ï¿½ï¿½ï¿½ï¿½:ï¿½ï¿½-ï¿½jï¿½ï¿½Fï¿½ï¿½{Û…ï¿½Gï¿½\"iï¿½ï¿½ \Zï¿½6ï¿½Kï¿½ï¿½ï¿½ï¿½!ï¿½ï¿½Y]=ï¿½F[ï¿½~ç«ï¿½ï¿½ï¿½ä¶ƒï¿½ï¿½ï¿½ï¿½`ï¿½ï¿½9Nï¿½Ç´ï¿½ï¿½ï¿½@ï¿½Kï¿½ï¿½|zï¿½?1ï¿½Aï¿½ï¿½@J#_Ôï¿½7\'ï¿½lï¿½1)Jï¿½Íµï¿½).ï¿½3zï¿½fï¿½Tï¿½Aï¿½ï¿½ï¿½HÑšï¿½[#)ï¿½BzRAï¿½7ÖŒï¿½ï¿½\"Tï¿½*~SWï¿½ï¿½ï¿½/Pï¿½ï¿½ï¿½Bï¿½ÅŽ;\Zï¿½ayï¿½6ï¿½ï¿½ï¿½ï¿½+Uï¿½ï¿½?.$ï¿½6ï¿½ï¿½-uTï¿½v@hï¿½ï¿½sï¿½&ï¿½ï¿½ï¿½ï¿½ï¿½NØ¥bï¿½fJï¿½~ï¿½]6ï¿½ï¿½pï¿½ï¿½/q)ï¿½>ï¿½Eï¿½1ï¿½ï¿½Í”A\neï¿½Lï¿½g\ZEï¿½`cWï¿½ï¿½ï¿½ï¿½ï¿½`fJï¿½Eï¿½aï¿½ï¿½>ï¿½ï¿½b\nï¿½Ó‘dï¿½.uï¿½doï¿½ï¿½[ï¿½\ntï¿½ï¿½bï¿½+ï¿½ï¿½ï¿½l\Z?X*ï¿½ï¿½Yï¿½(ï¿½Ö…;ï¿½Lï¿½JqÅ¥Éï¿½ï¿½ï¿½d$ï¿½\"ï¿½WzGï¿½-@b~+ï¿½#ï¿½kÇžÙŽï¿½Æ‚~ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½P)B	ï¿½ï¿½ï¿½ï¿½qï¿½Ò–2ï¿½ï¿½ï¿½rï¿½Rlï¿½ï¿½ï¿½ï¿½`z	ï¿½4ï¿½ï¿½ï¿½ï¿½ï¿½ÃXï¿½mï¿½;ï¿½XÝt;r.ï¿½sAï¿½ï¿½Rï¿½ï¿½y)ï¿½kAï¿½\nRï¿½JTï¿½ï¿½Jï¿½Uï¿½ï¿½*ï¿½Wï¿½ï¿½_ßŸï¿½îŸ¼4@ï¿½vtï¿½ï¿½fï¿½ï¿½ï¿½>ï¿½ï¿½ï¿½ï¿½xï¿½ï¿½ï¿½','2038-01-19 03:14:07');
+INSERT INTO `mw_objectcache` VALUES ('test_wiki-mw_:resourceloader:filter:minify-js:dd9440c19c575629ac5ec90e489cf62e','+ï¿½21ï¿½Rï¿½ï¿½ï¿½Ô”ï¿½ï¿½ï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½Ä”ï¿½\"ï¿½ï¿½Ä’Tï¿½jï¿½ï¿½Ì’T%+ï¿½ï¿½ï¿½Ä”Jï¿½ZMk.%k\0','2038-01-19 03:14:07');
 /*!40000 ALTER TABLE `mw_objectcache` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1384,7 +1384,6 @@ CREATE TABLE `mw_user` (
   `user_newpassword` tinyblob NOT NULL,
   `user_newpass_time` binary(14) DEFAULT NULL,
   `user_email` tinytext NOT NULL,
-  `user_options` blob NOT NULL,
   `user_touched` binary(14) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `user_token` binary(32) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `user_email_authenticated` binary(14) DEFAULT NULL,

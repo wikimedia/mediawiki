@@ -37,23 +37,34 @@ class ConvertUserOptions extends Maintenance {
 		$id = 0;
 		$dbw = wfGetDB( DB_MASTER );
 
+		if ( !$dbw->fieldExists( 'user', 'user_options ' ) ) {
+			$this->output( "No user_options field in the user table. Nothing to migrate" );
+			return;
+		}
 		while ( $id !== null ) {
-			$idCond = 'user_id>' . $dbw->addQuotes( $id );
-			$optCond = "user_options!=" . $dbw->addQuotes( '' ); // For compatibility
+			$idCond = 'user_id > ' . $dbw->addQuotes( $id );
+			$optCond = "user_options != " . $dbw->addQuotes( '' ); // For compatibility
 			$res = $dbw->select( 'user', '*',
-					array( $optCond, $idCond ), __METHOD__,
-					array( 'LIMIT' => 50, 'FOR UPDATE' ) );
+				array( $optCond, $idCond ), __METHOD__,
+				array( 'LIMIT' => 50, 'FOR UPDATE' )
+			);
 			$id = $this->convertOptionBatch( $res, $dbw );
 			$dbw->commit();
 
 			wfWaitForSlaves();
 
-			if ( $id )
+			if ( $id ) {
 				$this->output( "--Converted to ID $id\n" );
+			}
 		}
 		$this->output( "Conversion done. Converted " . $this->mConversionCount . " user records.\n" );
 	}
 
+	/**
+	 * @param $res
+	 * @param $dbw DatabaseBase
+	 * @return null|int
+	 */
 	function convertOptionBatch( $res, $dbw ) {
 		$id = null;
 		foreach ( $res as $row ) {
@@ -62,6 +73,14 @@ class ConvertUserOptions extends Maintenance {
 			$u = User::newFromRow( $row );
 
 			$u->saveSettings();
+
+			// Do this here as saveSettings() doesn't set user_options to '' anymore!
+			$dbw->update(
+				'user',
+				array( 'user_options' => '' ),
+				array( 'user_id' => $row->user_id ),
+				__METHOD__
+			);
 			$id = $row->user_id;
 		}
 

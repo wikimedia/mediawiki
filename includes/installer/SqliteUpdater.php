@@ -66,6 +66,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addTable', 'globaltemplatelinks', 'patch-globaltemplatelinks.sql' ),
 			array( 'addTable', 'globalnamespaces', 'patch-globalnamespaces.sql' ),
 			array( 'addTable', 'globalinterwiki', 'patch-globalinterwiki.sql' ),
+			array( 'doMigrateUserOptions' ),
+			array( 'dropField', 'user',         'user_options', 'patch-drop-user_options.sql' ),
 		);
 	}
 
