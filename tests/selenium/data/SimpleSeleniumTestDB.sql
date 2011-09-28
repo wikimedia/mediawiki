@@ -1295,7 +1295,6 @@ CREATE TABLE `mw_user` (
   `user_newpassword` tinyblob NOT NULL,
   `user_newpass_time` binary(14) DEFAULT NULL,
   `user_email` tinytext NOT NULL,
-  `user_options` blob NOT NULL,
   `user_touched` binary(14) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `user_token` binary(32) NOT NULL DEFAULT '\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0',
   `user_email_authenticated` binary(14) DEFAULT NULL,

@@ -86,12 +86,6 @@ CREATE TABLE /*_*/user (
   -- Same with passwords.
   user_email tinytext NOT NULL,
 
-  -- Newline-separated list of name=value defining the user
-  -- preferences
-  -- Now obsolete in favour of user_properties table;
-  -- old values will be migrated from here transparently.
-  user_options blob NOT NULL,
-
   -- This is a timestamp which is updated when a user
   -- logs in, logs out, changes preferences, or performs
   -- some other action requiring HTML cache invalidation
@@ -1493,7 +1487,7 @@ CREATE TABLE /*_*/globaltemplatelinks (
 
   -- The namespace of the calling page on the remote wiki
   -- Needed for display purposes, since the foreign namespace ID doesn't necessarily match a local one
-  -- The link between the namespace and the namespace name is made by the globalnamespaces table 
+  -- The link between the namespace and the namespace name is made by the globalnamespaces table
   gtl_from_namespace int NOT NULL,
 
   -- The title of the calling page on the remote wiki

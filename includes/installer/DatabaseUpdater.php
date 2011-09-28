@@ -566,4 +566,11 @@ abstract class DatabaseUpdater {
 		$task = $this->maintenance->runChild( 'UpdateCollation' );
 		$task->execute();
 	}
+
+	protected function doMigrateUserOptions() {
+		$cl = $this->maintenance->runChild( 'ConvertUserOptions' );
+		$this->output( "Migrating remaining user_options... " );
+		$cl->execute();
+		$this->output( "done.\n" );
+	}
 }
