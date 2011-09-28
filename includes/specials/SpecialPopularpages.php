@@ -36,6 +36,7 @@ class PopularPagesPage extends QueryPage {
 		# page_counter is not indexed
 		return true;
 	}
+
 	function isSyndicated() { return false; }
 
 	function getQueryInfo() {
@@ -54,17 +55,13 @@ class PopularPagesPage extends QueryPage {
 	 * @return string
 	 */
 	function formatResult( $skin, $result ) {
-		global $wgLang, $wgContLang;
+		global $wgContLang;
 		$title = Title::makeTitle( $result->namespace, $result->title );
-		$link = $skin->linkKnown(
+		$link = Linker::linkKnown(
 			$title,
 			htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) )
 		);
-		$nv = wfMsgExt(
-			'nviews',
-			array( 'parsemag', 'escape'),
-			$wgLang->formatNum( $result->value )
-		);
-		return wfSpecialList($link, $nv);
+		$nv = $this->msg( 'nviews' )->numParams( $result->value )->escaped();
+		return wfSpecialList($link, $nv );
 	}
 }
