@@ -576,25 +576,26 @@ class ProtectionForm {
 	}
 	
 	function buildCleanupScript() {
-		global $wgRestrictionLevels, $wgGroupPermissions;
-		$script = 'var wgCascadeableLevels=';
-		$CascadeableLevels = array();
+		global $wgRestrictionLevels, $wgGroupPermissions, $wgOut;
+
+		$cascadeableLevels = array();
 		foreach( $wgRestrictionLevels as $key ) {
-			if ( (isset($wgGroupPermissions[$key]['protect']) && $wgGroupPermissions[$key]['protect']) || $key == 'protect' ) {
-				$CascadeableLevels[] = "'" . Xml::escapeJsString( $key ) . "'";
+			if ( ( isset( $wgGroupPermissions[$key]['protect'] ) && $wgGroupPermissions[$key]['protect'] )
+				|| $key == 'protect' 
+			) {
+				$cascadeableLevels[] = $key;
 			}
 		}
-		$script .= "[" . implode(',',$CascadeableLevels) . "];\n";
-		$options = (object)array(
+		$options = array(
 			'tableId' => 'mwProtectSet',
-			'labelText' => wfMsg( 'protect-unchain-permissions' ),
-			'numTypes' => count($this->mApplicableTypes),
-			'existingMatch' => 1 == count( array_unique( $this->mExistingExpiry ) ),
+			'labelText' => wfMessage( 'protect-unchain-permissions' )->plain(),
+			'numTypes' => count( $this->mApplicableTypes ),
+			'existingMatch' => count( array_unique( $this->mExistingExpiry ) ) === 1,
 		);
-		$encOptions = Xml::encodeJsVar( $options );
 
-		$script .= "ProtectionForm.init($encOptions)";
-		return Html::inlineScript( "if ( window.mediaWiki ) { $script }" );
+		$wgOut->addJsConfigVars( 'wgCascadeableLevels', $cascadeableLevels );
+		$script = Xml::encodeJsCall( 'ProtectionForm.init', array( $options ) );
+		return Html::inlineScript( ResourceLoader::makeLoaderConditionalScript( $script ) );
 	}
 
 	/**

@@ -812,7 +812,7 @@ class ResourceLoader {
 	 */
 	public static function makeLoaderConditionalScript( $script ) {
 		$script = str_replace( "\n", "\n\t", trim( $script ) );
-		return "if ( window.mediaWiki ) {\n\t$script\n}\n";
+		return "if(window.mw){\n\t$script\n}\n";
 	}
 
 	/**
