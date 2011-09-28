@@ -568,7 +568,7 @@ abstract class DatabaseUpdater {
 	}
 
 	protected function doMigrateUserOptions() {
-		$cl = $this->maintenance->runChild( 'ConvertUserOptions' );
+		$cl = $this->maintenance->runChild( 'ConvertUserOptions', 'convertUserOptions.php' );
 		$this->output( "Migrating remaining user_options... " );
 		$cl->execute();
 		$this->output( "done.\n" );
