@@ -545,6 +545,7 @@ $wgAutoloadLocalClasses = array(
 	'LogFormatter' => 'includes/logging/LogFormatter.php',
 	'ManualLogEntry' => 'includes/logging/LogEntry.php',
 	'MoveLogFormatter' => 'includes/logging/LogFormatter.php',
+	'NewUsersLogFormatter' => 'includes/logging/LogFormatter.php',
 	'PatrolLog' => 'includes/logging/PatrolLog.php',
 	'PatrolLogFormatter' => 'includes/logging/LogFormatter.php',
 	'RCDatabaseLogEntry' => 'includes/logging/LogEntry.php',
