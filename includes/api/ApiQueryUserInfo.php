@@ -83,6 +83,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			$result->setIndexedTagName( $vals['groups'], 'g' );	// even if empty
 		}
 
+		if ( isset( $this->prop['implicitgroups'] ) ) {
+			$vals['implicitgroups'] = ApiQueryUsers::getAutoGroups( $wgUser );
+			$result->setIndexedTagName( $vals['implicitgroups'], 'g' );	// even if empty
+		}
+
 		if ( isset( $this->prop['rights'] ) ) {
 			// User::getRights() may return duplicate values, strip them
 			$vals['rights'] = array_values( array_unique( $wgUser->getRights() ) );
@@ -191,6 +196,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 					'blockinfo',
 					'hasmsg',
 					'groups',
+					'implicitgroups',
 					'rights',
 					'changeablegroups',
 					'options',
@@ -213,6 +219,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				'  blockinfo        - Tags if the current user is blocked, by whom, and for what reason',
 				'  hasmsg           - Adds a tag "message" if the current user has pending messages',
 				'  groups           - Lists all the groups the current user belongs to',
+				'  implicitgroups   - Lists all the groups the current user is automatically a member of',
 				'  rights           - Lists all the rights the current user has',
 				'  changeablegroups - Lists the groups the current user can add to and remove from',
 				'  options          - Lists all preferences the current user has set',
