@@ -1612,7 +1612,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 *
 	 * @param $table   String Table name. This will be passed through
 	 *                 DatabaseBase::tableName().
-	 * @param $a	   Array of rows to insert
+	 * @param $a       Array of rows to insert
 	 * @param $fname   String Calling function name (use __METHOD__) for logs/profiling
 	 * @param $options Array of options
 	 *
