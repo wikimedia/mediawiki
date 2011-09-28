@@ -486,19 +486,6 @@ class LogEventsList {
 					array( 'known', 'noclasses' )
 				) . ')';
 			}
-		// Self-created users
-		} elseif( self::typeAction( $row, 'newusers', 'create2' ) ) {
-			if( isset( $paramArray[0] ) ) {
-				$revert = Linker::userToolLinks( $paramArray[0], $title->getDBkey(), true );
-			} else {
-				# Fall back to a blue contributions link
-				$revert = Linker::userToolLinks( 1, $title->getDBkey() );
-			}
-			if( wfTimestamp( TS_MW, $row->log_timestamp ) < '20080129000000' ) {
-				# Suppress $comment from old entries (before 2008-01-29),
-				# not needed and can contain incorrect links
-				$comment = '';
-			}
 		// Do nothing. The implementation is handled by the hook modifiying the passed-by-ref parameters.
 		} else {
 			wfRunHooks( 'LogLine', array( $row->log_type, $row->log_action, $title, $paramArray,

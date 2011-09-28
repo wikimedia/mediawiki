@@ -226,25 +226,7 @@ class LogFormatter {
 	 */
 	public function getPerformerElement() {
 		$performer = $this->entry->getPerformer();
-
-		if ( $this->plaintext ) {
-			$element = $performer->getName();
-		} else {
-			$element = Linker::userLink(
-				$performer->getId(),
-				$performer->getName()
-			);
-
-			if ( $this->linkFlood ) {
-				$element .= Linker::userToolLinks(
-					$performer->getId(),
-					$performer->getName(),
-					true, // Red if no edits
-					0, // Flags
-					$performer->getEditCount()
-				);
-			}
-		}
+		$element = $this->makeUserLink( $performer );
 
 		if ( $this->entry->isDeleted( LogPage::DELETED_USER ) ) {
 			$element = self::getRestrictedElement( 'rev-deleted-user' );
@@ -294,6 +276,28 @@ class LogFormatter {
 		return wfMessage( $key )
 			->inLanguage( $this->context->getLang() )
 			->title( $this->context->getTitle() );
+	}
+
+	protected function makeUserLink( User $user ) {
+		if ( $this->plaintext ) {
+			$element = $user->getName();
+		} else {
+			$element = Linker::userLink(
+				$user->getId(),
+				$user->getName()
+			);
+
+			if ( $this->linkFlood ) {
+				$element .= Linker::userToolLinks(
+					$user->getId(),
+					$user->getName(),
+					true, // Red if no edits
+					0, // Flags
+					$user->getEditCount()
+				);
+			}
+		}
+		return $element;
 	}
 
 }
@@ -454,5 +458,36 @@ class PatrolLogFormatter extends LogFormatter {
 
 		$newParams[3] = Message::rawParam( $revlink );
 		return $newParams;
+	}
+}
+
+/**
+ * This class formats new user log entries.
+ * @since 1.19
+ */
+class NewUsersLogFormatter extends LogFormatter {
+	protected function getMessageParameters() {
+		$params = parent::getMessageParameters();
+		if ( $this->entry->getSubtype() === 'create2' ) {
+			if ( isset( $params[3] ) ) {
+				$target = User::newFromId( $params[3] );
+			} else {
+				$target = User::newFromName( $this->entry->getTarget()->getText(), false );
+			}
+			$params[2] = Message::rawParam( $this->makeUserLink( $target ) );
+			$params[3] = $target->getName();
+		}
+		return $params;
+	}
+
+	public function getComment() {
+		$subtype = $this->entry->getSubtype();
+		$timestamp = wfTimestamp( TS_MW, $this->entry->getTimestamp() );
+		if ( $timestamp < '20080129000000' ) {
+			# Suppress $comment from old entries (before 2008-01-29),
+			# not needed and can contain incorrect links
+			return '';
+		}
+		return parent::getComment();
 	}
 }
