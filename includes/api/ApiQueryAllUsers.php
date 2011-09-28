@@ -51,8 +51,9 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$fld_groups = isset( $prop['groups'] );
 			$fld_rights = isset( $prop['rights'] );
 			$fld_registration = isset( $prop['registration'] );
+		    $fld_implicitgroups = isset( $prop['implicitgroups'] );
 		} else {
-			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration = $fld_rights = false;
+			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration = $fld_rights = $fld_implicitgroups = false;
 		}
 
 		$limit = $params['limit'];
@@ -246,6 +247,10 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$result->setIndexedTagName( $lastUserData['groups'], 'g' );
 			}
 
+			if ( $fld_implicitgroups && !isset( $lastUserData['implicitgroups'] ) ) {
+				$lastUserData['implicitgroups'] = ApiQueryUsers::getAutoGroups( User::newFromName( $lastUser ) );
+				$result->setIndexedTagName( $lastUserData['implicitgroups'], 'g' );
+			}
 			if ( $fld_rights ) {
 				if ( !isset( $lastUserData['rights'] ) ) {
 					$lastUserData['rights'] =  User::getGroupPermissions( User::newFromName( $lastUser )->getAutomaticGroups() );
@@ -304,6 +309,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => array(
 					'blockinfo',
 					'groups',
+					'implicitgroups',
 					'rights',
 					'editcount',
 					'registration'
@@ -333,11 +339,12 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			'rights' => 'Limit users to given right(s)',
 			'prop' => array(
 				'What pieces of information to include.',
-				' blockinfo     - Adds the information about a current block on the user',
-				' groups        - Lists groups that the user is in. This uses more server resources and may return fewer results than the limit',
-				' rights        - Lists rights that the user has',
-				' editcount     - Adds the edit count of the user',
-				' registration  - Adds the timestamp of when the user registered if available (may be blank)',
+				' blockinfo      - Adds the information about a current block on the user',
+				' groups         - Lists groups that the user is in. This uses more server resources and may return fewer results than the limit',
+				' implicitgroups - Lists all the groups the user is automatically in',
+				' rights         - Lists rights that the user has',
+				' editcount      - Adds the edit count of the user',
+				' registration   - Adds the timestamp of when the user registered if available (may be blank)',
 				),
 			'limit' => 'How many total user names to return',
 			'witheditsonly' => 'Only list users who have made edits',
