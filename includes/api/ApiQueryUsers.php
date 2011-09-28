@@ -152,6 +152,10 @@ class ApiQueryUsers extends ApiQueryBase {
 					}
 				}
 
+				if ( isset( $this->prop['implicitgroups'] ) && !isset( $data[$name]['implicitgroups'] ) ) {
+					$data[$name]['implicitgroups'] =  self::getAutoGroups( $user );
+				}
+
 				if ( isset( $this->prop['rights'] ) ) {
 					if ( !isset( $data[$name]['rights'] ) ) {
 						$data[$name]['rights'] = User::getGroupPermissions( $user->getAutomaticGroups() );
@@ -226,6 +230,9 @@ class ApiQueryUsers extends ApiQueryBase {
 				if ( isset( $this->prop['groups'] ) && isset( $data[$u]['groups'] ) ) {
 					$result->setIndexedTagName( $data[$u]['groups'], 'g' );
 				}
+				if ( isset( $this->prop['implicitgroups'] ) && isset( $data[$u]['implicitgroups'] ) ) {
+					$result->setIndexedTagName( $data[$u]['implicitgroups'], 'g' );
+				}
 				if ( isset( $this->prop['rights'] ) && isset( $data[$u]['rights'] ) ) {
 					$result->setIndexedTagName( $data[$u]['rights'], 'r' );
 				}
@@ -256,12 +263,7 @@ class ApiQueryUsers extends ApiQueryBase {
 			$groups[] = 'user';
 		}
 
-		$builtGroups = array();
-		foreach( array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) ) as $i => $group ) {
-			$builtGroups[$i] = array( 'implicit' => '' );
-			ApiResult::setContent( $builtGroups[$i], $group );
-		}
-		return $builtGroups;
+		return array_merge( $groups, Autopromote::getAutopromoteGroups( $user ) );
 	}
 
 	public function getCacheMode( $params ) {
@@ -280,6 +282,7 @@ class ApiQueryUsers extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => array(
 					'blockinfo',
 					'groups',
+					'implicitgroups',
 					'rights',
 					'editcount',
 					'registration',
@@ -301,13 +304,14 @@ class ApiQueryUsers extends ApiQueryBase {
 		return array(
 			'prop' => array(
 				'What pieces of information to include',
-				'  blockinfo    - Tags if the user is blocked, by whom, and for what reason',
-				'  groups       - Lists all the groups the user(s) belongs to',
-				'  rights       - Lists all the rights the user(s) has',
-				'  editcount    - Adds the user\'s edit count',
-				'  registration - Adds the user\'s registration timestamp',
-				'  emailable    - Tags if the user can and wants to receive e-mail through [[Special:Emailuser]]',
-				'  gender       - Tags the gender of the user. Returns "male", "female", or "unknown"',
+				'  blockinfo      - Tags if the user is blocked, by whom, and for what reason',
+				'  groups         - Lists all the groups the user(s) belongs to',
+				'  implicitgroups - Lists all the groups a user is automatically a member of',
+				'  rights         - Lists all the rights the user(s) has',
+				'  editcount      - Adds the user\'s edit count',
+				'  registration   - Adds the user\'s registration timestamp',
+				'  emailable      - Tags if the user can and wants to receive e-mail through [[Special:Emailuser]]',
+				'  gender         - Tags the gender of the user. Returns "male", "female", or "unknown"',
 			),
 			'users' => 'A list of users to obtain the same information for',
 			'token' => 'Which tokens to obtain for each user',
