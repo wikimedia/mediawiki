@@ -51,7 +51,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			$fld_groups = isset( $prop['groups'] );
 			$fld_rights = isset( $prop['rights'] );
 			$fld_registration = isset( $prop['registration'] );
-		    $fld_implicitgroups = isset( $prop['implicitgroups'] );
+			$fld_implicitgroups = isset( $prop['implicitgroups'] );
 		} else {
 			$fld_blockinfo = $fld_editcount = $fld_groups = $fld_registration = $fld_rights = $fld_implicitgroups = false;
 		}
@@ -257,7 +257,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				}
 				if ( !is_null( $row->ug_group2 ) ) {
 					$lastUserData['rights'] = array_unique( array_merge( $lastUserData['rights'],
-					                                        User::getGroupPermissions( array( $row->ug_group2 ) ) ) );
+						User::getGroupPermissions( array( $row->ug_group2 ) ) ) );
 				}
 				$result->setIndexedTagName( $lastUserData['rights'], 'r' );
 			}
