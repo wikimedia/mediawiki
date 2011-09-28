@@ -14,6 +14,7 @@ production.
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
 * (bug 27132) movefile right granted by default to registered users.
 * Default cookie lifetime ($wgCookieExpiration) is increased to 180 days.
+* (bug 31204) Removed old user.user_options
 
 === New features in 1.19 ===
 * (bug 30497) Add client-nojs and client-js classes on document element
