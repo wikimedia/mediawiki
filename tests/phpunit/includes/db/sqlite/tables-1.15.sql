@@ -10,7 +10,6 @@ CREATE TABLE /*_*/user (
   user_newpassword tinyblob NOT NULL,
   user_newpass_time binary(14),
   user_email tinytext NOT NULL,
-  user_options blob NOT NULL,
   user_touched binary(14) NOT NULL default '',
   user_token binary(32) NOT NULL default '',
   user_email_authenticated binary(14),
@@ -141,7 +140,7 @@ CREATE INDEX /*i*/el_to ON /*_*/externallinks (el_to(60), el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index(60));
 CREATE TABLE /*_*/langlinks (
   ll_from int unsigned NOT NULL default 0,
-  
+
   ll_lang varbinary(20) NOT NULL default '',
   ll_title varchar(255) binary NOT NULL default ''
 ) /*$wgDBTableOptions*/;
@@ -181,7 +180,7 @@ CREATE TABLE /*_*/ipblocks (
   ipb_block_email bool NOT NULL default 0,
   ipb_allow_usertalk bool NOT NULL default 0
 ) /*$wgDBTableOptions*/;
-  
+
 CREATE UNIQUE INDEX /*i*/ipb_address ON /*_*/ipblocks (ipb_address(255), ipb_user, ipb_auto, ipb_anon_only);
 CREATE INDEX /*i*/ipb_user ON /*_*/ipblocks (ipb_user);
 CREATE INDEX /*i*/ipb_range ON /*_*/ipblocks (ipb_range_start(8), ipb_range_end(8));
