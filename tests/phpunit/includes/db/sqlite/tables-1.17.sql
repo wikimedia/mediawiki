@@ -10,7 +10,6 @@ CREATE TABLE /*_*/user (
   user_newpassword tinyblob NOT NULL,
   user_newpass_time binary(14),
   user_email tinytext NOT NULL,
-  user_options blob NOT NULL,
   user_touched binary(14) NOT NULL default '',
   user_token binary(32) NOT NULL default '',
   user_email_authenticated binary(14),

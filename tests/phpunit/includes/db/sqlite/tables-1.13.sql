@@ -8,7 +8,6 @@ CREATE TABLE /*$wgDBprefix*/user (
   user_newpassword tinyblob ,
   user_newpass_time BLOB,
   user_email tinytext ,
-  user_options blob ,
   user_touched BLOB  default '',
   user_token BLOB  default '',
   user_email_authenticated BLOB,
@@ -123,7 +122,7 @@ CREATE TABLE /*$wgDBprefix*/site_stats (
   ss_images INTEGER default '0') /*$wgDBTableOptions*/;
 
 CREATE TABLE /*$wgDBprefix*/hitcounter (
-  hc_id INTEGER 
+  hc_id INTEGER
 )  ;
 
 CREATE TABLE /*$wgDBprefix*/ipblocks (
