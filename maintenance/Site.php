@@ -12,8 +12,8 @@ class Site {
 		$this->url = $u;
 	}
 
-	function getURL( $lang ) {
+	function getURL( $lang, $urlprotocol ) {
 		$xlang = str_replace( '_', '-', $lang );
-		return "http://$xlang.{$this->url}/wiki/\$1";
+		return "$urlprotocol//$xlang.{$this->url}/wiki/\$1";
 	}
 }

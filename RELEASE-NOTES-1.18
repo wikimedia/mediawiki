@@ -454,6 +454,8 @@ production.
 * (bug 30907) Special:Unusedcategories should sort ascendingly.
 * (bug 28545) When using the uca-default collation, sortkey's starting with a
   space (U+20) will sort under an invisible header like in 1.16 rather than a U+6DE
+* (bug 30497) Add client-nojs and client-js classes on document element
+  to let styles easily hide or show things based on general JS availability
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
