@@ -50,15 +50,6 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 			return;
 		}
 
-		if ( $this->mTable === 'globaltemplatelinks' ) {
-			global $wgEnableInterwikiTemplatesTracking;
-
-			if ( $wgEnableInterwikiTemplatesTracking ) {
-				$distantPageArray = $this->mCache->getDistantTemplateLinks( 'globaltemplatelinks' );
-				$this->invalidateDistantTitles( $distantPageArray );
-			}
-			return;
-		}
 
 		# Get an estimate of the number of rows from the BacklinkCache
 		$numRows = $this->mCache->getNumLinks( $this->mTable );
@@ -77,7 +68,6 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 				$this->invalidateTitles( $titleArray );
 			}
 		}
-		wfRunHooks( 'HTMLCacheUpdate::doUpdate', array($this->mTitle) );
 	}
 
 	/**
@@ -208,45 +198,9 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 		}
 	}
 
-	/**
-	 * Invalidate an array of distant pages, given the wiki ID and page ID of those pages
-	 */
-	protected function invalidateDistantTitles( $distantPageArray ) {
-		global $wgUseSquid;
-
-		$pagesByWiki = array();
-		$titleArray = array();
-		# Sort by WikiID in $pagesByWiki
-	 	# Create the distant titles for Squid in $titleArray
-		foreach ( $distantPageArray as $row ) {
-			$wikiid = $row->gtl_from_wiki;
-			if( !isset( $pagesByWiki[$wikiid] ) ) {
 				$pagesByWiki[$wikiid] = array();
 }
-			$pagesByWiki[$wikiid][] = $row->gtl_from_page;
-			$titleArray[] = Title::makeTitle( $row->gtl_from_namespace, $row->gtl_from_title, '', $row->gil_interwiki );
-		}
 
-		foreach ( $pagesByWiki as $wikiid => $pages ) {
-			$dbw = wfGetDB( DB_MASTER, array( ), $wikiid );
-			$timestamp = $dbw->timestamp();
-			$batches = array_chunk( $pages, $this->mRowsPerQuery );
-			foreach ( $batches as $batch ) {
-				$dbw->update( 'page',
-					array( 'page_touched' => $timestamp ),
-					array( 'page_id IN (' . $dbw->makeList( $batch ) . ')' ),
-					__METHOD__
-				);
-			}
-		}
-
-		# Update squid
-		if ( $wgUseSquid ) {
-			$u = SquidUpdate::newFromTitles( $titleArray );
-			$u->doUpdate();
-		}
-	}
-}
 
 /**
  * Job wrapper for HTMLCacheUpdate. Gets run whenever a related

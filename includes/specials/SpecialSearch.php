@@ -34,8 +34,8 @@ class SpecialSearch extends SpecialPage {
 	 * For users tt replaces the set of enabled namespaces from the query
 	 * string when applicable. Extensions can add new profiles with hooks
 	 * with custom search options just for that profile.
-	 * @var null|string
-	 */
+	 * null|string
+	 */ 
 	protected $profile;
 
 	/// Search engine

@@ -1376,7 +1376,7 @@ class EditPage {
 	 *     during form output near the top, for captchas and the like.
 	 */
 	function showEditForm( $formCallback = null ) {
-		global $wgOut, $wgUser, $wgEnableInterwikiTranscluding, $wgEnableInterwikiTemplatesTracking;
+		global $wgOut, $wgUser;
 
 		wfProfileIn( __METHOD__ );
 
@@ -1410,6 +1410,7 @@ class EditPage {
 			$toolbar = '';
 		}
 
+
 		$wgOut->addHTML( $this->editFormPageTop );
 
 		if ( $wgUser->getOption( 'previewontop' ) ) {
@@ -1420,9 +1421,6 @@ class EditPage {
 
 		$templates = $this->getTemplates();
 		$formattedtemplates = Linker::formatTemplates( $templates, $this->preview, $this->section != '');
-
-		$distantTemplates = $this->getDistantTemplates();
-		$formattedDistantTemplates = Linker::formatDistantTemplates( $distantTemplates, $this->preview, $this->section != '' );
 
 		$hiddencats = $this->mArticle->getHiddenCategories();
 		$formattedhiddencats = Linker::formatHiddenCategories( $hiddencats );
@@ -1522,21 +1520,6 @@ HTML
 <div class='templatesUsed'>
 {$formattedtemplates}
 </div>
-HTML
-);
-
-		if ( $wgEnableInterwikiTranscluding && $wgEnableInterwikiTemplatesTracking ) {
-					$wgOut->addHTML( <<<HTML
-{$this->editFormTextAfterTools}
-<div class='distantTemplatesUsed'>
-{$formattedDistantTemplates}
-</div>
-HTML
-);
-		}
-
-		$wgOut->addHTML( <<<HTML
-{$this->editFormTextAfterTools}
 <div class='hiddencats'>
 {$formattedhiddencats}
 </div>
@@ -2195,28 +2178,6 @@ HTML
 			return $templates;
 		} else {
 			return $this->mArticle->getUsedTemplates();
-		}
-	}
-
-	function getDistantTemplates() {
-		global $wgEnableInterwikiTemplatesTracking;
-		if ( !$wgEnableInterwikiTemplatesTracking ) {
-			return array( );
-		}
-		if ( $this->preview || $this->section != '' ) {
-			$templates = array();
-			if ( !isset( $this->mParserOutput ) ) return $templates;
-			$templatesList = $this->mParserOutput->getDistantTemplates();
-			foreach( $templatesList as $prefix => $templatesbyns ) {
-				foreach( $templatesbyns as $ns => $template ) {
-					foreach( array_keys( $template ) as $dbk ) {
-						$templates[] = Title::makeTitle( $ns, $dbk, null, $prefix );
-					}
-				}
-			}
-			return $templates;
-		} else {
-			return $this->mArticle->getUsedDistantTemplates();
 		}
 	}
 

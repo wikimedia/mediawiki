@@ -9,7 +9,6 @@
  * All information is loaded on creation when called by Interwiki::fetch( $prefix ).
  * All work is done on slave, because this should *never* change (except during
  * schema updates etc, which aren't wiki-related)
- * This class also contains the functions that allow interwiki templates transclusion.
  */
 class Interwiki {
 
@@ -172,7 +171,6 @@ class Interwiki {
 			$mc = array(
 				'iw_url' => $iw->mURL,
 				'iw_api' => $iw->mAPI,
-				'iw_wikiid' => $iw->mWikiID,
 				'iw_local' => $iw->mLocal,
 				'iw_trans' => $iw->mTrans
 			);
@@ -197,7 +195,6 @@ class Interwiki {
 			$iw->mURL = $mc['iw_url'];
 			$iw->mLocal = isset( $mc['iw_local'] ) ? $mc['iw_local'] : 0;
 			$iw->mTrans = isset( $mc['iw_trans'] ) ? $mc['iw_trans'] : 0;
-			$iw->mAPI = isset( $mc['iw_api'] ) ? $mc['iw_api'] : 
 			$iw->mAPI = isset( $mc['iw_api'] ) ? $mc['iw_api'] : '';
 			$iw->mWikiID = isset( $mc['iw_wikiid'] ) ? $mc['iw_wikiid'] : '';
 
@@ -391,167 +388,5 @@ class Interwiki {
 	public function getDescription() {
 		$msg = wfMessage( 'interwiki-desc-' . $this->mPrefix )->inContentLanguage();
 		return !$msg->exists() ? '' : $msg;
-	}
-	
-
-	/**
-	 * Transclude an interwiki link.
-	 */
-	public static function interwikiTransclude( $title ) {
-			
-		// If we have a wikiID, we will use it to get an access to the remote database
-		// if not, we will use the API URL to retrieve the data through a HTTP Get
-		
-		$wikiID = $title->getTransWikiID( );
-		$transAPI = $title->getTransAPI( );
-		
-		if ( $wikiID !== '') {
-		
-			$finalText = self::fetchTemplateFromDB( $wikiID, $title );
-			return $finalText;
-
-		} else if( $transAPI !== '' ) {
-			
-			$interwiki = $title->getInterwiki( );
-			$fullTitle = $title->getSemiPrefixedText( );
-			
-			$finalText = self::fetchTemplateFromAPI( $interwiki, $transAPI, $fullTitle );
-			
-			return $finalText;
-			
-}
-		return false;
-	}
-	
-	/**
-	 * Retrieve the wikitext of a distant page accessing the foreign DB
-	 */
-	public static function fetchTemplateFromDB ( $wikiID, $title ) {
-		
-		$revision = Revision::loadFromTitleForeignWiki( $wikiID, $title );
-		
-		if ( $revision ) {
-			$text = $revision->getText();
-			return $text;
-		}
-				
-		return false;
-	}
-	
-	/**
-	 * Retrieve the wikitext of a distant page using the API of the foreign wiki
-	 */
-	public static function fetchTemplateFromAPI( $interwiki, $transAPI, $fullTitle ) {
-		global $wgMemc, $wgTranscludeCacheExpiry;
-		
-		$key = wfMemcKey( 'iwtransclustiontext', 'textid', $interwiki, $fullTitle );
-		$text = $wgMemc->get( $key );
-		if( is_array ( $text ) &&
-				isset ( $text['missing'] ) &&
-				$text['missing'] === true ) {
-			return false;
-		} else if ( $text ) {
-			return $text;
-		}
-		
-		$url = wfAppendQuery(
-			$transAPI,
-			array(	'action' => 'query',
-					'titles' => $fullTitle,
-					'prop' => 'revisions',
-					'rvprop' => 'content',
-					'format' => 'json'
-			)
-		);
-		
-		$get = Http::get( $url );
-		$content = FormatJson::decode( $get, true );
-			
-		if ( isset ( $content['query'] ) &&
-				isset ( $content['query']['pages'] ) ) {
-			$page = array_pop( $content['query']['pages'] );
-			if ( $page && isset( $page['revisions'][0]['*'] ) ) {
-				$text = $page['revisions'][0]['*'];
-				$wgMemc->set( $key, $text, $wgTranscludeCacheExpiry );
-
-				// When we cache a template, we also retrieve and cache its subtemplates
-				$subtemplates = self::getSubtemplatesListFromAPI( $interwiki, $transAPI, $fullTitle );
-				self::cacheTemplatesFromAPI( $interwiki, $transAPI, $subtemplates );
-				
-				return $text;
-			} else {
-				$wgMemc->set( $key, array ( 'missing' => true ), $wgTranscludeCacheExpiry );
-			}
-		}
-		return false;
-	}	
-
-	public static function getSubtemplatesListFromAPI ( $interwiki, $transAPI, $title ) {
-		$url = wfAppendQuery( $transAPI,
-			array( 'action' => 'query',
-			'titles' => $title,
-			'prop' => 'templates',
-			'format' => 'json'
-			)
-		);
-			
-		$get = Http::get( $url );
-		$myArray = FormatJson::decode($get, true);
-
-		$templates = array( );
-		if ( ! empty( $myArray['query'] )) {
-			if ( ! empty( $myArray['query']['pages'] )) {
-				$templates = array_pop( $myArray['query']['pages'] );
-				if ( ! empty( $templates['templates'] )) {
-					$templates = $templates['templates'];
-				}
-			}
-			return $templates;
-		}
-	}
-
-	public static function cacheTemplatesFromAPI( $interwiki, $transAPI, $titles ){
-		global $wgMemc, $wgTranscludeCacheExpiry;
-		
-		$outdatedTitles = array( );
-		
-		foreach( $titles as $title ){
-			if ( isset ( $title['title'] ) ) {
-				$key = wfMemcKey( 'iwtransclustiontext', 'textid', $interwiki, $title['title'] );
-				$text = $wgMemc->get( $key );
-				if( !$text ){
-					$outdatedTitles[] = $title['title'];
-				}
-			}			
-		}
-		
-		$batches = array_chunk( $outdatedTitles, 50 );
-		
-		foreach( $batches as $batch ){
-			$url = wfAppendQuery(
-				$transAPI,
-				array(	'action' => 'query',
-						'titles' => implode( '|', $batch ),
-						'prop' => 'revisions',
-						'rvprop' => 'content',
-						'format' => 'json'
-				)
-			);
-			$get = Http::get( $url );
-			$content = FormatJson::decode( $get, true );
-				
-			if ( isset ( $content['query'] ) &&
-					isset ( $content['query']['pages'] ) ) {
-				foreach( $content['query']['pages'] as $page ) {
-					$key = wfMemcKey( 'iwtransclustiontext', 'textid', $interwiki, $page['title'] );
-					if ( isset ( $page['revisions'][0]['*'] ) ) {
-						$text = $page['revisions'][0]['*'];
-					} else {
-						$text = array ( 'missing' => true );
-					}
-					$wgMemc->set( $key, $text, $wgTranscludeCacheExpiry );	
-				}
-			}
-		}
 	}
 }
