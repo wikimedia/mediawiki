@@ -3688,8 +3688,9 @@ Slike su prikazane u punoj veličini, a druge vrste datoteka se pokreću pomoću
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|je premestio|je premestila|premesti}} stranicu $3 na $4 preko preusmerenja bez ostavljanja preusmerenja',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|je označio|je označila|označi}} izmenu $4 pregledane stranice $3',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|je samostalno označio|je samostalno označila|samostalno označi}} izmenu $4 pregledane stranice $3',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|je otvorio|je otvorila|otvori}} korisnički nalog',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|je otvorio|je otvorila|otvori}} korisnički nalog',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|je otvorio|je otvorila|otvori}} korisnički nalog $3',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|je otvorio|je otvorila|otvori}} {{GENDER:$4|korisnički nalog}} $3',
 'logentry-newusers-autocreate'        => 'Nalog $1 je {{GENDER:$2|samostalno otvoren}}',
 'newuserlog-byemail'                  => 'lozinka poslata imejlom',
 

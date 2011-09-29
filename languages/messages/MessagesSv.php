@@ -816,30 +816,34 @@ Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfä
 'resetpass-temp-password'   => 'Tillfälligt lösenord:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Lösenordsåterställning',
-'passwordreset-text'           => 'Fyll i detta formulär för att få en påminnelse om dina kontouppgifter via e-post.',
-'passwordreset-legend'         => 'Återställ lösenord',
-'passwordreset-disabled'       => 'Lösenordsåterställning har inaktiverats på denna wiki.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Ange en av datadelarna nedan}}',
-'passwordreset-username'       => 'Användarnamn:',
-'passwordreset-domain'         => 'Domän:',
-'passwordreset-email'          => 'E-postadress:',
-'passwordreset-emailtitle'     => 'Kontouppgifter på {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Någon (förmodligen du, från IP-adressen $1) begärde en påminnelse av dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
+'passwordreset'                    => 'Lösenordsåterställning',
+'passwordreset-text'               => 'Fyll i detta formulär för att få en påminnelse om dina kontouppgifter via e-post.',
+'passwordreset-legend'             => 'Återställ lösenord',
+'passwordreset-disabled'           => 'Lösenordsåterställning har inaktiverats på denna wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Ange en av datadelarna nedan}}',
+'passwordreset-username'           => 'Användarnamn:',
+'passwordreset-domain'             => 'Domän:',
+'passwordreset-capture'            => 'Visa resulterande e-post?',
+'passwordreset-capture-help'       => 'Om du markerar den här rutan kommer e-postmeddelandet (med det tillfälliga lösenordet) visas för dig och skickas till användaren.',
+'passwordreset-email'              => 'E-postadress:',
+'passwordreset-emailtitle'         => 'Kontouppgifter på {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Någon (förmodligen du, från IP-adressen $1) begärde en påminnelse av dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
 
 $2
 
 {{PLURAL:$3|Detta|Dessa}} tillfälliga lösenord kommer att gå ut om {{PLURAL:$5|en dag|$5 dagar}}.
 Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och du önskar inte att ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
-'passwordreset-emailtext-user' => 'Användaren $1 på {{SITENAME}} begärde en påminnelse om dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
+'passwordreset-emailtext-user'     => 'Användaren $1 på {{SITENAME}} begärde en påminnelse om dina kontodetaljer för {{SITENAME}} ($4). Följande användar{{PLURAL:$3|konto är förknippad|konton är förknippade}} med denna e-postadress:
 
 $2
 
 {{PLURAL:$3|Detta|Dessa}} tillfälliga lösenord kommer att gå ut om {{PLURAL:$5|en dag|$5 dagar}}.
 Du bör logga in och välja ett nytt lösenord nu. Om någon annan gjorde denna begäran, eller om du kommer ihåg ditt ursprungliga lösenord, och du önskar inte att ändra det, kan du ignorera detta meddelande och fortsätta använda ditt gamla lösenord.',
-'passwordreset-emailelement'   => 'Användarnamn: $1
+'passwordreset-emailelement'       => 'Användarnamn: $1
 Tillfälligt lösenord: $2',
-'passwordreset-emailsent'      => 'En påminnelse via e-post har skickats.',
+'passwordreset-emailsent'          => 'En påminnelse via e-post har skickats.',
+'passwordreset-emailsent-capture'  => 'En påminnelse via e-post har skickats, som visas nedan.',
+'passwordreset-emailerror-capture' => 'En påminnelse via e-post har skapats, som visas nedan, men det gick inte att skicka den till användaren: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Ändra e-postadress',
@@ -3039,6 +3043,11 @@ Om du kör den kan din dator skadas.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'hours-abbrev' => 't',
+'seconds'      => '{{PLURAL:$1|$1 sekund|$1 sekunder}}',
+'minutes'      => '{{PLURAL:$1|$1 minut|$1 minuter}}',
+'hours'        => '{{PLURAL:$1|$1 timme|$1 timmar}}',
+'days'         => '{{PLURAL:$1|$1 dag|$1 dagar}}',
+'ago'          => '$1 sedan',
 
 # Bad image list
 'bad_image_list' => 'Listan fungerar enligt följande:
@@ -3809,6 +3818,9 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerade}} versionen $4 av sidan $3 som patrullerad',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerade}} automatiskt versionen $4 av sidan $3 som patrullerad',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|skapade}} ett användarkonto',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|skapade}} ett användarkonto $3',
+'logentry-newusers-autocreate'        => 'Kontot $1 {{GENDER:$2|skapades}} automatiskt',
 'newuserlog-byemail'                  => 'lösenord skickat med e-post',
 
 );

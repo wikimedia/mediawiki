@@ -334,7 +334,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Sayfalardaki küçük değişikliklerde de bana e-posta gönder',
 'tog-enotifrevealaddr'        => 'E-posta adresimi bildiri postalarımda göster.',
 'tog-shownumberswatching'     => 'İzleyen kullanıcı sayısını göster',
-'tog-oldsig'                  => 'Mevcut imzanın önizlemesi:',
+'tog-oldsig'                  => 'Mevcut imza:',
 'tog-fancysig'                => 'İmzaya vikimetin muamelesi yap (otomatik bir bağlantı olmadan)',
 'tog-externaleditor'          => 'Harici düzenleyici kullan (deneyimli kullanıcılar içindir; bilgisayarınızda özel ayarlar gerektirir. [detaylı bilgi için : http://www.mediawiki.org/wiki/Manual:External_editors])',
 'tog-externaldiff'            => 'Harici karşılaştırıcı kullan (deneyimli kullanıcılar içindir; bilgisayarınızda özel ayarlar gerektirir. [detaylı bilgi için : http://www.mediawiki.org/wiki/Manual:External_editors])',
@@ -723,7 +723,8 @@ Hesabınız açıldı.
 'createaccountmail'          => 'e-posta ile',
 'createaccountreason'        => 'Sebep:',
 'badretype'                  => 'Girdiğiniz şifreler birbirleriyle uyuşmuyor.',
-'userexists'                 => 'Girdiğiniz kullanıcı adı kullanımda. Lütfen farklı bir kullanıcı adı seçin.',
+'userexists'                 => 'Girdiğiniz kullanıcı adı zaten kullanımda.
+Lütfen farklı bir kullanıcı adı seçiniz.',
 'loginerror'                 => 'Oturum açma hatası.',
 'createaccounterror'         => 'Hesap oluşturulamıyor: $1',
 'nocookiesnew'               => 'Kullanıcı hesabı oluşturuldu ama oturum açamadınız.
@@ -821,16 +822,13 @@ Girişi bitirmek için, burada yeni bir parola yazın:',
 'passwordreset-capture-help' => 'Bu kutuyu işaretlerseniz, e-posta (geçici şifre ile) size ve yanı sıra kullanıcıya gönderiliyor.',
 'passwordreset-email'        => 'E-posta adresi:',
 'passwordreset-emailtitle'   => '{{SITENAME}} hesap detayları',
-'passwordreset-emailtext-ip' => 'Birisi (muhtemelen siz, IP adresi  $1 ) {{SITENAME}} ( $4 ) için hesap bilgilerinizin 
-hatırlatılmasını istedi . Aşağıdaki kullanıcı  {{PLURAL:$3| hesabı|hesapları}}
- bu e-posta adresiyle ilişkili:
+'passwordreset-emailtext-ip' => 'Birisi, (muhtemelen siz, $1 IP adresinden) {{SITENAME}} ($4) için hesap bilgilerinizin 
+hatırlatılmasını istedi. Aşağıdaki kullanıcı {{PLURAL:$3|hesabı|hesapları}} bu e-posta adresiyle ilişkili:
 
 $2
 
-{{PLURAL:$3| Bu geçici parola|Bu geçici parolalar}} {{PLURAL:$5| bir gün| $5  gün}} geçerlidir.
-Bu geçici parola ile giriş yapın ve yeni bir şifre seçin. Eğer sizden başkası bu isteği yolladı ise, ve ya
-şifrenizi hatırlıyor iseniz, ve artık değiştirmek istemiyorsanız, bu mesajı dikkate almayın ve eski 
-şifrenizi kullanmaya devam edin.',
+{{PLURAL:$3|Bu geçici şifre|Bu geçici şifreler}} {{PLURAL:$5|bir gün|$5  gün}} geçerlidir.
+Bu geçici parola ile giriş yapın ve yeni bir şifre seçin. Şifre değişimini siz istemediyseniz veya şifrenizi hatırladıysanız ve artık şifrenizi değiştirmek istemiyorsanız; bu iletiyi önemsemeyerek eski şifrenizi kullanmaya devam edebilirsiniz.',
 'passwordreset-emailelement' => 'Kullanıcı adı: $1
 Geçici şifre: $2',
 
@@ -1349,7 +1347,7 @@ Kullanabileceğiniz rastgele-üretilmiş bir değer: $1',
 'savedprefs'                    => 'Ayarlar kaydedildi.',
 'timezonelegend'                => 'Zaman dilimi:',
 'localtime'                     => 'Yerel saat:',
-'timezoneuseserverdefault'      => 'Sunucu varsayılanını kullan',
+'timezoneuseserverdefault'      => 'Viki varsayılanını kullanın ($1)',
 'timezoneuseoffset'             => 'Diğer (ofset belirtin)',
 'timezoneoffset'                => 'Ofset¹:',
 'servertime'                    => 'Sunucu saati:',
@@ -2535,6 +2533,7 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'unblocklink'                     => 'engeli kaldır',
 'change-blocklink'                => 'engeli değiştir',
 'contribslink'                    => 'katkılar',
+'emaillink'                       => 'e-posta gönder',
 'autoblocker'                     => 'Otomatik olarak engellendiniz çünkü yakın zamanda IP adresiniz "[[User:$1|$1]]" kullanıcısı tarafından  kullanılmıştır. $1 isimli kullanıcının engellenmesi için verilen sebep: "\'\'\'$2\'\'\'"',
 'blocklogpage'                    => 'Engel kaydı',
 'blocklog-showlog'                => 'Bu kullanıcı daha önceden engellenmiş.
@@ -2941,6 +2940,7 @@ Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.",
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|sayfa|sayfa}}',
 'file-info'              => 'dosya boyutu: $1, MIME tipi: $2',
 'file-info-size'         => '$1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4',
+'file-info-size-pages'   => '$1 × $2 piksel, dosya boyutu: $3, MIME tipi: $4, $5 {{PLURAL:$5|sayfa|sayfa}}',
 'file-nohires'           => 'Daha yüksek çözünürlük yok.',
 'svg-long-desc'          => 'SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3',
 'show-big-image'         => 'Tam çözünürlük',
@@ -2970,6 +2970,7 @@ Bunu çalıştırarak, sisteminiz tehlikeye atılabilir.",
 'seconds-abbrev' => 'sn',
 'minutes-abbrev' => 'dk.',
 'hours-abbrev'   => 's',
+'ago'            => '$1 önce',
 
 # Bad image list
 'bad_image_list' => 'Biçim aşağıdaki gibidir:

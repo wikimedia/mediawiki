@@ -3793,7 +3793,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|a marcat}} versiunea $4 a paginii $3 ca patrulată',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|a marcat}} automat versiunea $4 a paginii $3 ca patrulată',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|a creat}} un cont de utilizator',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|a creat}} un cont de utilizator $3',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|a creat}} {{GENDER:$4|un cont de utilizator}} $3',
 'logentry-newusers-autocreate'        => 'Contul $1 a fost {{GENDER:$2|creat}} în mod automat',
 'newuserlog-byemail'                  => 'parola trimisă prin e-mail',
 

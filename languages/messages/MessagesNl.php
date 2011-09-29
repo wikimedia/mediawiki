@@ -3962,8 +3962,9 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|hernoemde}} pagina $3 naar $4 over een doorverwijzing zonder een doorverwijzing achter te laten',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|heeft}} versie $4 van pagina $3 als gecontroleerd gemarkeerd',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|heeft}} versie $4 van pagina $3 automatisch als gecontroleerd gemarkeerd',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|heeft}} een gebruiker aangemaakt',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|heeft}} een gebruiker aangemaakt',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|heeft}} een gebruiker $3 aangemaakt',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|heeft}} een {{GENDER:$4|gebruiker}} $3 aangemaakt',
 'logentry-newusers-autocreate'        => 'De gebruiker $1 is automatisch {{GENDER:$2|aangemaakt}}',
 'newuserlog-byemail'                  => 'wachtwoord is verzonden per e-mail',
 

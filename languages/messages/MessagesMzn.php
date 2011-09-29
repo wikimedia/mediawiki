@@ -95,7 +95,7 @@ $messages = array(
 'tog-minordefault'            => 'همه صفحه‌ئون دچیه ره جزئی پیش‌گامون دار',
 'tog-previewontop'            => 'نمایش پیش‌نمایش قبل از دچی‌ین ِجعبه(نا قبل از وه).',
 'tog-previewonfirst'          => 'پیش نیمایش زمون اولین دچی‌ین',
-'tog-nocache'                 => 'حافظه نهانی صفحه ره خنثی هاکن',
+'tog-nocache'                 => 'حافظهٔ نهونی مرورگر از کار دمبداء بوو',
 'tog-enotifwatchlistpages'    => 'اگه منه پگری‌ئون ره تغییر هدانه مسّه ایمیل بزن',
 'tog-enotifusertalkpages'     => 'هر گادر منه کاروری صفخه‌ی گپ دله ات چی بنویشنه مه سّه ایمیل بزن',
 'tog-enotifminoredits'        => 'هرگادر صحه ها دله اتا خورد چی ره عوض هکردنه مه وسّه ایمیل بزن',
@@ -247,7 +247,7 @@ $messages = array(
 'updatedmarker'     => 'عوض بَیی پس از آخرین بار که بی‌یمومه',
 'printableversion'  => 'پرینت‌هاکردنی صفحه',
 'permalink'         => 'بموندستنی لینک',
-'print'             => 'په‌ریـنت',
+'print'             => 'پرینت',
 'view'              => 'نمایش',
 'edit'              => 'دچی‌ین',
 'create'            => 'بساتن',
@@ -696,7 +696,9 @@ $2، $1',
 'pager-older-n'     => '{{PLURAL:$1|أتـا کـوهـنـه‌ته‌ر|$1 تـا کوهـنـه‌ته‌ر}}',
 
 # Book sources
-'booksources-go' => 'بـور',
+'booksources-search-legend' => 'بگردستن منابع کتاب',
+'booksources-go'            => 'بـور',
+'booksources-text'          => 'زیر فهرستی از لینکا به وبگاه‌ئون دیگه دره که کتاب‌ئون نو و دست دوم روشنّه و ممکنه اطلاعات ویشتری راجع به کتاب مورد نظر دارِن:',
 
 # Special:Log
 'specialloguserlabel' => 'کارور:',

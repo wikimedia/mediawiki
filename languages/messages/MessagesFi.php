@@ -1507,6 +1507,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-siteadmin'             => 'Lukita tietokanta',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
+'right-passwordreset'         => 'Alustaa käyttäjän salasana ([[Special:PasswordReset|toimintosivu alustamiseen]])',
 
 # User rights log
 'rightslog'                  => 'Käyttöoikeusloki',
@@ -1813,7 +1814,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 [[Special:WhatLinksHere/$2|Koko lista]] on saatavilla.',
 'nolinkstoimage'            => 'Tähän tiedostoon ei ole linkkejä miltään sivulta.',
 'morelinkstoimage'          => 'Näytä [[Special:WhatLinksHere/$1|lisää linkkejä]] tähän tiedostoon.',
-'linkstoimage-redirect'     => '$1 (tiedoston uudelleenohjaus) $2',
+'linkstoimage-redirect'     => '$1 (tiedosto-ohjaus) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Seuraava tiedosto on tämän tiedoston kaksoiskappale|Seuraavat $1 tiedostoa ovat tämän tiedoston kaksoiskappaleita}} ([[Special:FileDuplicateSearch/$2|lisätietoja]]):',
 'sharedupload'              => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.',
 'sharedupload-desc-there'   => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.
@@ -3121,9 +3122,9 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 
 # EXIF attributes
 'exif-compression-1' => 'Pakkaamaton',
-'exif-compression-2' => 'CCITT-ryhmän 3 yksiulotteinen muokattu Huffman-ajopituuskoodaus',
-'exif-compression-3' => 'CCITT:n Group 3 faksipakkaus',
-'exif-compression-4' => 'CCITT:n Group 4 faksipakkaus',
+'exif-compression-2' => 'CCITT:n Group 3 -yksiulotteinen muokattu Huffman-ajopituuskoodaus',
+'exif-compression-3' => 'CCITT:n Group 3 -faksipakkaus',
+'exif-compression-4' => 'CCITT:n Group 4 -faksipakkaus',
 
 'exif-copyrighted-true'  => 'Tekijänoikeuksien alainen',
 'exif-copyrighted-false' => 'Vapaasti käytettävä',
@@ -3672,6 +3673,10 @@ Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|siirsi}} sivun $3 ohjauksen $4 päälle luomatta ohjausta',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|merkitsi}} sivun $3 muutoksen $4 tarkastetuksi',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|merkitsi}} automaattisesti sivun $3 muutoksen $4 tarkastetuksi',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|loi}} käyttäjätunnuksen',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|loi}} käyttäjätunnuksen',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|loi}} {{GENDER:$4|käyttäjätunnuksen}} $3',
+'logentry-newusers-autocreate'        => 'Käyttäjätunnus $1 {{GENDER:$2|luotiin}} automaattisesti',
 'newuserlog-byemail'                  => 'salasana lähetetty sähköpostitse',
 
 );

@@ -3855,8 +3855,9 @@ Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v p
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 bez založení přesměrování',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 s výměnou přesměrování',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|přesunul|přesunula|přesunul}} stránku $3 na $4 místo přesměrování bez založení přesměrování',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|založil|založila|založil}} uživatelský účet',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|založil|založila|založil}} uživatelský účet',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|založil|založila|založil}} uživatelský účet $3',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|založil|založila|založil}} {{GENDER:$4|uživatelský účet}} $3',
 'logentry-newusers-autocreate'        => 'Automaticky {{GENDER:$2|byl}} založen účet $1',
 'newuserlog-byemail'                  => 'heslo zasláno e-mailem',
 

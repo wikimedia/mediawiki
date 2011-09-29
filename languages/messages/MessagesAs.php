@@ -619,28 +619,32 @@ $2',
 'resetpass-temp-password'   => 'অস্থায়ী গুপ্তশব্দ:',
 
 # Special:PasswordReset
-'passwordreset'                => 'গুপ্তশব্দ ন-কৈ বহাওক',
-'passwordreset-text'           => 'আপোনাৰ একাউণ্টৰ সবিশেষ তথ্য ই-পত্ৰৰ জৰিয়তে পাবলৈ তলৰ প্ৰ-পত্ৰ পুৰাওক ।',
-'passwordreset-legend'         => 'গুপ্তশব্দ ন-কৈ বহাওক',
-'passwordreset-disabled'       => 'এই ৱিকিত গুপ্তশব্দ নবীকৰণ নিষ্ক্ৰিয় কৰা হৈছে ।',
-'passwordreset-pretext'        => '{{PLURAL:$1||তলত উল্লেখ কৰা তথ্যৰ কোনো অংশ ভৰাওক}}',
-'passwordreset-username'       => 'সদস্যনাম',
-'passwordreset-domain'         => 'ডমেইন :',
-'passwordreset-email'          => 'ই-মেইল ঠিকনা:',
-'passwordreset-emailtitle'     => '{{SITENAME}} ত একাউণ্টৰ সবিশেষ তথ্য আছে ।',
-'passwordreset-emailtext-ip'   => 'কোনোবাই (IP ঠিকনা $1 ৰ পৰা সম্ভৱত: আপুনিয়েই) {{SITENAME}} ($4) ৰ বাবে আপোনাৰ একাউণ্টৰ সবিশেষ তথ্য বিচাৰিছিল । ই-পত্ৰ ঠিকনাটোৰ লগত এই সদস্যৰ {{PLURAL:$3|একাউণ্ট|একাউণ্টবোৰ}} জড়িত হৈ আছে ।
+'passwordreset'                    => 'গুপ্তশব্দ ন-কৈ বহাওক',
+'passwordreset-text'               => 'আপোনাৰ একাউণ্টৰ সবিশেষ তথ্য ই-পত্ৰৰ জৰিয়তে পাবলৈ তলৰ প্ৰ-পত্ৰ পুৰাওক ।',
+'passwordreset-legend'             => 'গুপ্তশব্দ ন-কৈ বহাওক',
+'passwordreset-disabled'           => 'এই ৱিকিত গুপ্তশব্দ নবীকৰণ নিষ্ক্ৰিয় কৰা হৈছে ।',
+'passwordreset-pretext'            => '{{PLURAL:$1||তলত উল্লেখ কৰা তথ্যৰ কোনো অংশ ভৰাওক}}',
+'passwordreset-username'           => 'সদস্যনাম',
+'passwordreset-domain'             => 'ডমেইন :',
+'passwordreset-capture'            => 'ফলাফল ই-মেইলখন চাওক ?',
+'passwordreset-capture-help'       => "আপুনি এই ঘৰটো চিহ্নিত কৰিলে এই ই-মেইল (আৰু অস্থায়ী গুপ্তশব্দ) আপুনি দেখা পোৱাৰ লগতে সদস্যজনলৈও পঠোৱা হ'ব।",
+'passwordreset-email'              => 'ই-মেইল ঠিকনা:',
+'passwordreset-emailtitle'         => '{{SITENAME}} ত একাউণ্টৰ সবিশেষ তথ্য আছে ।',
+'passwordreset-emailtext-ip'       => 'কোনোবাই (IP ঠিকনা $1 ৰ পৰা সম্ভৱত: আপুনিয়েই) {{SITENAME}} ($4) ৰ বাবে আপোনাৰ একাউণ্টৰ সবিশেষ তথ্য বিচাৰিছিল । ই-পত্ৰ ঠিকনাটোৰ লগত এই সদস্যৰ {{PLURAL:$3|একাউণ্ট|একাউণ্টবোৰ}} জড়িত হৈ আছে ।
 
 $2
  
 {{PLURAL:$3|এই অস্থায়ী গুপ্তশব্দ|এই অস্থায়ী গুপ্তশব্দবোৰ}} {{PLURAL:$5|এদিনত|$5 দিনত }} নাইকীয়া হ’ব । আপুনি লগ-ইন কৰি এটা নতুন গুপ্তশব্দ দিয়া উচিত । যদি আন কোনোবাই এই অনুৰোধ কৰিছিল, বা আপুনি নিজৰ পূৰ্বৰ গুপ্তশব্দ মনত পেলাইছে আৰু ইয়াক সলাব খোজা নাই, তেন্তে আপুনি এই বাৰ্তাক অগ্ৰাহ্য কৰি নিজৰ পূৰ্বৰ গুপ্তশব্দ ব্যৱহাৰ কৰি থাকিব পাৰে ।',
-'passwordreset-emailtext-user' => '$1 ব্যৱহাৰকাৰীয়ে {{SITENAME}} ($4) ৰ বাবে আপোনাৰ একাউণ্টৰ সবিশেষ তথ্য বিচাৰিছিল । ই-পত্ৰ ঠিকনাটোৰ লগত এই সদস্যৰ {{PLURAL:$3|একাউণ্ট|একাউণ্টসমূহ}} জড়িত হৈ আছে ।
+'passwordreset-emailtext-user'     => '$1 ব্যৱহাৰকাৰীয়ে {{SITENAME}} ($4) ৰ বাবে আপোনাৰ একাউণ্টৰ সবিশেষ তথ্য বিচাৰিছিল । ই-পত্ৰ ঠিকনাটোৰ লগত এই সদস্যৰ {{PLURAL:$3|একাউণ্ট|একাউণ্টসমূহ}} জড়িত হৈ আছে ।
  
 $2
  
 {{PLURAL:$3|এই অস্থায়ী গুপ্তশব্দ|এই অস্থায়ী গুপ্তশব্দবোৰ}} {{PLURAL:$5|এদিনত|$5 দিনত }} নাইকীয়া হ’ব । আপুনি লগ-ইন কৰি এটা নতুন গুপ্তশব্দ দিয়া উচিত । যদি আন কোনোবাই এই অনুৰোধ কৰিছিল, বা আপুনি নিজৰ পূৰ্বৰ গুপ্তশব্দ মনত পেলাইছে আৰু ইয়াক সলাব খোজা নাই, তেন্তে আপুনি এই বাৰ্তাক অগ্ৰাহ্য কৰি নিজৰ পূৰ্বৰ গুপ্তশব্দ ব্যৱহাৰ কৰি থাকিব পাৰে ।',
-'passwordreset-emailelement'   => 'সদস্যনাম: $1
+'passwordreset-emailelement'       => 'সদস্যনাম: $1
 অস্থায়ী গুপ্তশব্দ: $2',
-'passwordreset-emailsent'      => 'এখন স্মৰণকাৰক ই-মেইল পঠোৱা হৈছে ।',
+'passwordreset-emailsent'          => 'এখন স্মৰণকাৰক ই-মেইল পঠোৱা হৈছে ।',
+'passwordreset-emailsent-capture'  => 'এখন স্মাৰক ই-মেইল পঠোৱা হৈছে, এইখন তলত দেখা পাব।',
+'passwordreset-emailerror-capture' => "এখন স্মাৰক ই-মেইল সৃষ্টি কৰা হ'ল কিন্তু সদস্যজনলৈ পঠিয়াব পৰা নগ'ল, এইখন তলত দেখুওৱা হৈছে।",
 
 # Special:ChangeEmail
 'changeemail'          => 'ই-মেইল ঠিকনা সলনি কৰক',
@@ -1692,7 +1696,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'filehist-filesize'         => 'ফাইলৰ আকাৰ (বাইট)',
 'filehist-comment'          => 'মন্তব্য',
 'filehist-missing'          => 'ফাইল সন্ধানহীন',
-'imagelinks'                => 'ফাইল সংযোগসমূহ',
+'imagelinks'                => 'ফাইল ব্যৱহাৰ',
 'linkstoimage'              => 'তলত দিয়া পৃষ্ঠাবোৰ এই চিত্ৰ খনৰ লগত জৰিত :{{PLURAL:$1|page links|$1 pages link}}',
 'linkstoimage-more'         => 'এই ফাইলৰ লগত $1ৰো বেছি {{PLURAL:$1|পৃষ্ঠা সংযোগ|পৃষ্ঠা সংযোগ}} হৈ আছে ।
 তলৰ তালিকাত {{PLURAL:$1|প্ৰথম পৃষ্ঠা সংযোগ|প্ৰথম $1 পৃষ্ঠা সংযোগ}} দেখুওৱা হৈছে ।
@@ -2777,7 +2781,7 @@ $1',
 'svg-long-desc'          => 'SVG ফাইল, সাধাৰণতঃ $1 × $2 পিক্সেল, ফাইল মাত্ৰা: $3',
 'show-big-image'         => 'সম্পূৰ্ণ দৃশ্য',
 'show-big-image-preview' => 'এই খচৰাৰ আকাৰ: $1.',
-'show-big-image-other'   => 'আন ৰিজলিউচনসমূহ: $1.',
+'show-big-image-other'   => 'আন {{PLURAL:$2|ৰিজলিউচন|ৰিজলিউচনসমূহ}}: $1।',
 'show-big-image-size'    => '$1 × $2 পিক্সেল',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|ফ্ৰেম|ফ্ৰেম}}',
 'file-info-png-repeat'   => "$1 {{PLURAL:$1|বাৰ|বাৰ}} চলোৱা হ'ল",
@@ -2792,6 +2796,9 @@ $1',
 'ilsubmit'              => 'সন্ধান কৰক',
 'bydate'                => 'তাৰিখ অনুযায়ী',
 'sp-newimages-showfrom' => '$2, $1 পৰা নতুন চিত্ৰসমূহ দেখুৱাওক',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'ago' => '$1 আগেয়ে',
 
 # Metadata
 'metadata'          => 'মেটাডাটা',

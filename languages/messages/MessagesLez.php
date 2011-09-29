@@ -75,13 +75,13 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Категория|Категории}}',
-'category_header'        => 'Чарар кlватlалда "$1"',
+'category_header'        => '"$1" категориядин ччинар',
 'subcategories'          => 'Кlватlалринпай',
 'category-media-header'  => 'Шикил кlватlалда "$1"',
 'category-empty'         => "''Кlватlалда алай вахтунда авач чарар, кхьинар ва шикилар.''",
 'hidden-categories'      => '{{PLURAL:$1|Чуьнуьхай категория |Чуьнуьхай категорияр }}',
-'category-subcat-count'  => '{{PLURAL:$2|Кlватlалда ава са чар. |И кlватlалда ава                                                                                                       {{PLURAL:$1|кlватlалдин кьатl|$1 кlватlалдин кьатlар}}, виридакай $2 .}}',
-'category-article-count' => '{{PLURAL:$2|Кlватlалда ава са чар.|Къведай {{PLURAL:$1|чар|$1 чарчин}} кlватlалда $2 виридкай.}}',
+'category-subcat-count'  => '{{PLURAL:$2|И категорияда анжах гуьгъуьна авай подкатегория ава.|$2-кай {{PLURAL:$1|подкатегория|$1 подкатегория}} къалурнава }}',
+'category-article-count' => '{{PLURAL:$2|И категорияда анжах гуьгъуьна авайди ччин ава |$2-кай къалурнавай {{PLURAL:$1|ччин|$1 ччин}} гьа а категориядин ччин я}}',
 'category-file-count'    => '{{PLURAL:$2|Кlватlалда ава са чар.|Къведай {{PLURAL:$1|файл|$1 файлди}} кlватlалда $2 виридкай.}}',
 'listingcontinuesabbrev' => 'баш.хъувун',
 'noindex-category'       => 'Noindexed чарар',
@@ -101,9 +101,9 @@ $messages = array(
 'faq'            => 'Фад-фад гузвай жузунар (ФГЖ)',
 
 # Vector skin
-'vector-action-addsection' => 'Тема ктун хъувун',
+'vector-action-addsection' => 'Тема алава авун',
 'vector-action-delete'     => 'Къакъудун',
-'vector-action-move'       => 'Юзун',
+'vector-action-move'       => 'ТIвар эхцигун',
 'vector-action-protect'    => 'Хуьн',
 'vector-action-undelete'   => 'Къакъудун',
 'vector-view-create'       => 'Туькlуьрун',
@@ -123,7 +123,7 @@ $messages = array(
 'searchbutton'     => 'Жугъурун',
 'go'               => 'Фин',
 'searcharticle'    => 'Фин',
-'history'          => 'Хъувун тарих',
+'history'          => 'Ччиндин тарих',
 'history_short'    => 'Тарих',
 'printableversion' => 'Басма авун патал жуьре',
 'permalink'        => 'ГЬамишан элячIун',
@@ -197,7 +197,7 @@ $messages = array(
 'nstab-main'      => 'Ччин',
 'nstab-user'      => 'Иштиракчидин ччин',
 'nstab-special'   => 'Куьмекчи ччин',
-'nstab-project'   => 'Порекдин чар',
+'nstab-project'   => 'Проектдин ччин',
 'nstab-image'     => 'Шикил',
 'nstab-mediawiki' => 'Меслят',
 'nstab-template'  => 'Чешне',
@@ -225,7 +225,7 @@ $messages = array(
 'login'                   => 'Гьахьун',
 'nav-login-createaccount' => 'ГЬахьун/кхьиз тун',
 'loginprompt'             => 'Куьне куькlуьрна кlанзава куки гьахьна  {{SITENAME}}.',
-'userlogin'               => 'Чарчел фин / цlийи чар туькlуьрун',
+'userlogin'               => 'ГЬахьун/аккаунт туькlуьрун',
 'userloginnocreate'       => 'Гьахьун',
 'logout'                  => 'ЭкъечIун',
 'userlogout'              => 'ЭкъечIун',
@@ -247,7 +247,7 @@ $messages = array(
 
 # Edit page toolbar
 'bold_sample'     => 'КЪалин текст',
-'bold_tip'        => 'Сакlус яцlу кхьин',
+'bold_tip'        => 'КЪалин текст',
 'italic_sample'   => 'Курсивдин текст',
 'italic_tip'      => 'Курсивдин текст',
 'link_sample'     => 'Элячlунин кьилин цlар',
@@ -255,16 +255,16 @@ $messages = array(
 'extlink_sample'  => 'http://www.example.com элячlунин кьилин цlар',
 'extlink_tip'     => 'Къецепатан элячlун ( http:// префикс рикlел хуьх)',
 'headline_sample' => 'Кьилин цlарцlин текст',
-'headline_tip'    => 'Кьадар 2 кьилин',
+'headline_tip'    => '2-й дережадин кьилин цlар',
 'nowiki_sample'   => 'Формат тавунвай текст иниз тур',
 'nowiki_tip'      => 'Викидин форматун гьисаба кьамир',
 'image_tip'       => 'Ттунвай файл',
-'media_tip'       => 'Файлдин цlар',
+'media_tip'       => 'Файлдин элячlун',
 'sig_tip'         => 'Куь къулни вахт',
 'hr_tip'          => 'КЪаткай цlар (фад-фад кардик кутумир )',
 
 # Edit pages
-'summary'                          => 'Къейда:',
+'summary'                          => 'Нетижа:',
 'subject'                          => 'Тема/кьилер',
 'minoredit'                        => 'ГЪвечIи дуьзар хъувун',
 'watchthis'                        => 'И ччин гуьзетун',
@@ -272,26 +272,28 @@ $messages = array(
 'preview'                          => 'Сифте',
 'showpreview'                      => 'Сифтедин килигун къалурун',
 'showdiff'                         => 'Дегишвилер къалурун',
-'anoneditwarning'                  => "'''Дугъридан:''' Куьн хакъидайдиз гьахьнач                                                                                                                                               Куьн IP-адрес дегишунрин кьиспесдиз кхьида и чарчин.",
+'anoneditwarning'                  => "'''Дикъет:''' Куьне системадиз жув вуж ятIа лагьанвач. Куь IP-адрес и ччинин дегишвилерин тарихдиз  кхьида.",
 'summary-preview'                  => 'Сифте килигун паталди:',
 'loginreqlink'                     => 'гьахьун',
 'newarticle'                       => '(ЦIийи)',
-'newarticletext'                   => "Куь фена макъаладал, исятда авачир. Цlийи чар авун паталди,тажумара кхьинар пенжнрда, кlене авай (кл. [[{{MediaWiki:Helppage}}|куьмекунин чар]] гзаф хабар къачун паталди).Куьне инна гъалатlа, эцига  кнопкадал 'кьулухъ''''' куьн браузерда.",
+'newarticletext'                   => 'Куьне гьеле авачир ччиниз элячlнава.  
+Ам туькlуьрун патал агъадихъ галай дакlарда текст гьадра. (гегьеншдиз [[{{MediaWiki:Helppage}}|куьмекдин ччина]] килигиз жеда).
+Куьне инал гъалатlдин гъиляй атанватlа, кьу браузердин "кьулухъ"" дуьгмедал илиса.',
 'noarticletext'                    => 'Исятда и  ччинда са текстни авач.
 Квевай [[Special:Search/{{PAGENAME}}| и тlвар алай ччин]] муькуь ччинра жугъуриз,
 <span class="plainlinks"> [{{fullurl: {{# Special:Log}} | ччин = {{FULLPAGENAMEE}}}} журналрин талукь тир кхьей затIар жугъуриз],
 ва я [{{fullurl: {{FULLPAGENAME}} | action=edit}} и тlвар алай ччин туькIуьриз жеда] </span>.',
-'noarticletext-nopermission'       => 'Ава алай вахтунда кхьин чарчел.
-Квевай жезва [[Special:Search/{{PAGENAME}}| жагъуриз гьа тlар]] масса макъалара,
-амма <span class="plainlinks">[{{fullurl:{{#Special:Рак}}|чарар={{FULLPAGENAMEE}}}} жагъуриз ухшар кхьинар дафтlара]</span>.',
+'noarticletext-nopermission'       => 'Исятда и  ччина са текстни авач.
+Квевай [[Special:Search/{{PAGENAME}}| и тlвар алай ччин]] муькуь ччинра жугъуриз ва я
+<span class="plainlinks"> [{{fullurl: {{# Special:Log}} | page = {{FULLPAGENAMEE}}}} журналрин талукь тир кхьей затIар жугъуриз] жеда.',
 'previewnote'                      => "'''Рикlел хуьх, имма сифте килигун я.'''  Дегишунар гьеле хвенач!",
-'editing'                          => 'Дегишарун $1',
+'editing'                          => '$1 Дуьзар хъувун',
 'editingsection'                   => 'Дегишарун $1 (пай)',
 'copyrightwarning'                 => "Буюр, килиг дуьздиз, вири куьн {{SITENAME}} килигз ава акъуднавади $2(кл. $1 клиг хъувун).                                                          Квез кlанзаваштlа, куьн кхьинар азадиз чкlана ва дегишариз гьар кlанзайда, тамир абур инна.<br />                                                   Куьнени шагьидзава, куьни я автор ктунай дегишунар, ва кхьин хъувунай жуьмятдин кхьинрай ва азад чкадай.                              '''Атордин этияр авачиз'''",
 'templatesused'                    => '{{PLURAL:$1|Шаблон|Шаблонар}} ишлемишзавай гьа и чарчел:',
 'templatesusedpreview'             => '{{PLURAL:$1|Шаблон|Шаблонар}},илемишзавай дуьз клигунра:',
 'template-protected'               => '(хвенвай)',
-'template-semiprotected'           => '(са кlус пад кьун)',
+'template-semiprotected'           => '(са кьадар хвенва)',
 'hiddencategories'                 => 'И чар квайди я {{PLURAL: $1 | 1 кlевнавай кlватlал | $1 кlевнавабрин кlватlалар}}:',
 'permissionserrorstext-withaction' => 'Квез авач ахтияр $2, идаз {{PLURAL:$1|багьна|багьнаяр}}:',
 'recreate-moveddeleted-warn'       => "'''Килиг: квез туькlуьриз кlанзава чар, чар сифте чlурнавай'''
@@ -332,7 +334,7 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 идай $2',
 
 # Revision deletion
-'rev-delundel'               => 'къалур/кIевун',
+'rev-delundel'               => 'къалурун/кIевирун',
 'revdelete-show-file-submit' => 'Э',
 'revdelete-log'              => 'Кар',
 'revdel-restore'             => 'Аквадайвал дегишарун',
@@ -351,7 +353,7 @@ $messages = array(
 'history-title'           => 'Кьиспес $1',
 'difference'              => '(Къакъатунар жуьрейрин арада)',
 'lineno'                  => 'ЦIар $1:',
-'compareselectedversions' => 'Гекъиг хъувун',
+'compareselectedversions' => 'Хкягъай жуьреяр гекъигун',
 'editundo'                => 'гьич авун',
 'diff-multi'              => '({{PLURAL:$1|Юкьван жуьреяр|$1 юкьван жуьрейри}} ава {{PLURAL:$2|са ишлемишчи|$2 ишлемишчийри}} къалурнач)',
 
@@ -457,49 +459,49 @@ $messages = array(
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|дегиш|дегишунар}}',
 'recentchanges'                   => 'Mукьвара хьайи дегишвилер',
-'recentchanges-legend'            => 'Туькlуьрун гилан дегишар',
+'recentchanges-legend'            => 'Цlийи дегишвилерин низамарунар',
 'recentchangestext'               => 'Сифте кьилелай гьисабнава эхиримжи дегишунар викида гьа макъалада',
 'recentchanges-feed-description'  => 'Сифте кьилелай гьисабнава эхиримжи дегишунар викида и макъалада',
-'recentchanges-label-newpage'     => 'И иштиракчиди цlийи чар туькlуьрна',
-'recentchanges-label-minor'       => 'И гъвечlи дегишарун',
-'recentchanges-label-bot'         => 'Дегишунар авуна ботди',
-'recentchanges-label-unpatrolled' => 'И иштиракчи ахтармишзач',
+'recentchanges-label-newpage'     => 'И дуьзар хъувун  цlийи ччин туькlуьрна',
+'recentchanges-label-minor'       => 'Им гъвечlи дуьзар хъувун я',
+'recentchanges-label-bot'         => 'И дуьзар хъувун ботди авунвайд я',
+'recentchanges-label-unpatrolled' => 'И дуьзар хъувундин винел патрулвал авунвач',
 'rcnote'                          => "КIеник {{PLURAL:$1|is '''1''' change|эхиримжи '''$1''' дегишунар}} заманада {{PLURAL:$2|day|'''$2''' йикъар}}, икIа $5, $4",
 'rcnotefrom'                      => "Кlеник къалурна дегишунар идлай '''$2''' (идалди '''$1''' къалурна).",
-'rclistfrom'                      => 'Къалурун дегишунар идай:  $1',
-'rcshowhideminor'                 => '$1 бицlи дегишунар',
-'rcshowhidebots'                  => '$1 бот',
-'rcshowhideliu'                   => '$1 Системадиз гьахьнай ишлемишчияр',
-'rcshowhideanons'                 => '$1 Кlевхьанай иштиракчи',
+'rclistfrom'                      => '$1-ла эгечIна цIийи дегишвилер къалура',
+'rcshowhideminor'                 => '$1 гъвечlи дуьзар хъувунар',
+'rcshowhidebots'                  => '$1 ботар',
+'rcshowhideliu'                   => '$1 чпин тlвар къалурнавай иштиракчияр',
+'rcshowhideanons'                 => '$1 чуьнуьхай иштиракчияр',
 'rcshowhidepatr'                  => '$1 шаидвал авунай дегишунар',
-'rcshowhidemine'                  => '$1 зин дигишунар',
-'rclinks'                         => 'Къалурун эхиримжи $1 са сятинлай $2 йикъал $3',
+'rcshowhidemine'                  => '$1 зи  дуьзар хъувунар',
+'rclinks'                         => 'Эхиримжи $2 йикъан къене $1 дегишвилер къалура <br />$3',
 'diff'                            => 'тафават',
 'hist'                            => 'тарих',
 'hide'                            => 'Чуьнуьхун',
 'show'                            => 'Къалурун',
-'minoreditletter'                 => 'г',
+'minoreditletter'                 => 'гъ',
 'newpageletter'                   => 'ЦI',
 'boteditletter'                   => 'б',
-'rc-enhanced-expand'              => 'Къалурун (герекзава JavaScript)',
-'rc-enhanced-hide'                => 'Кlевун метлеб',
+'rc-enhanced-expand'              => 'Куьлуь-шуьлуьяр къалурун (JavaScript герекзава)',
+'rc-enhanced-hide'                => 'Куьлуь-шуьлуьяр чуьнуьха',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Сахьтин дегишунар',
+'recentchangeslinked'          => 'Галкlанавай дегишвилер',
 'recentchangeslinked-toolbox'  => 'Галкlанвай дегишвилер',
-'recentchangeslinked-title'    => 'Дегинарун, галкlанавай "$1"',
+'recentchangeslinked-title'    => '"$1" галаз галкlанавай дегишвилер',
 'recentchangeslinked-noresult' => 'Са дегишунарни галкlанавай алукьунра кхьенай вахтунда.',
 'recentchangeslinked-summary'  => 'Им къалурай ччиниз (ва я къалурай категориядиз гьатзавай ччинриз) элячIзавай ччинра мукьвара хьайи дегишвилерин сиягь я. Куь [[Special:Watchlist| гуьзетунин сиягь  ]]диз гьатзавай  ччинар яцlу шрифтдал къалурнава.',
-'recentchangeslinked-page'     => 'Чарчин тlар:',
-'recentchangeslinked-to'       => 'Къалур дегишунар и чарарал, алукьзавай къалурнай чарчел',
+'recentchangeslinked-page'     => 'Ччинин тlвар:',
+'recentchangeslinked-to'       => 'Аксина, къалурай ччиниз элячlзавай ччинра дегишвилер къалура',
 
 # Upload
 'upload'        => 'Файл ппарун',
 'uploadlogpage' => 'Кхьин хъувун тlар',
-'filedesc'      => 'Резуьме',
+'filedesc'      => 'Нетижа',
 'uploadedimage' => 'Цун хъувун"[[$1]]"',
 
-'license'        => 'Лицинзироватун:',
+'license'        => 'Лицензияватун:',
 'license-header' => 'Лицинзираватун',
 
 # Special:ListFiles
@@ -554,14 +556,14 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|байт|байтар}}',
-'nmembers'      => '$1 {{PLURAL:$1|юлдаш|юлдашар}}',
+'nmembers'      => '$1 {{PLURAL:$1|уьзви|уьзвияр}}',
 'lonelypages'   => 'Eтим xъувун',
 'prefixindex'   => 'Вири чарар префикс авай',
 'shortpages'    => 'Куьруь хъувун',
 'longpages'     => 'Яргъи хъувун',
 'usercreated'   => 'Туькlуьрнава идай  $1 идаз $2',
 'newpages'      => 'ЦIийи ччинар',
-'move'          => 'Юзун',
+'move'          => 'ТIвар эхцигун',
 'movethispage'  => 'Юзун и хъувун',
 'pager-newer-n' => '{{PLURAL:$1|цIийи 1|цIийи $1}}',
 'pager-older-n' => '{{PLURAL:$1|иски 1|иски $1}}',
@@ -585,7 +587,7 @@ $messages = array(
 'allpagessubmit' => 'ЭлячIун',
 
 # Special:Categories
-'categories' => 'Кlватlалар',
+'categories' => 'Категорияр',
 
 # Special:LinkSearch
 'linksearch'      => 'Къецlин алукьунар',
@@ -667,11 +669,11 @@ $messages = array(
 
 # Namespace form on various pages
 'namespace'      => 'Тlварарин генгвал:',
-'invert'         => 'Элкъуьруьн хкуднай',
+'invert'         => 'Хкягънавайди элкъуьрун',
 'blanknamespace' => '(Асул)',
 
 # Contributions
-'contributions'       => 'За авунай кIвалах',
+'contributions'       => 'Иштиракчиди кутур крар',
 'contributions-title' => 'Ктунай пай икьван $1',
 'mycontris'           => 'За кутур крар',
 'contribsub2'         => 'Адаз ($1):  ($2)',
@@ -691,21 +693,21 @@ $messages = array(
 
 # What links here
 'whatlinkshere'            => 'Иниз вуч элячIзава',
-'whatlinkshere-title'      => 'Чарар, алукьунин цlар идал "$1"',
-'whatlinkshere-page'       => 'Ишлемишчи',
-'linkshere'                => "Къведай цlар алукьзава '''[[:$1]]''':",
+'whatlinkshere-title'      => '"$1" - даз элячlзавай ччинар',
+'whatlinkshere-page'       => 'Ччин:',
+'linkshere'                => "Гуьгъуьнин ччинар '''[[:$1]]''': - даз  элячlзава",
 'nolinkshere'              => "Къведай чарар алукьзава '''[[:$1]]'''.",
-'isredirect'               => 'Ракъур хъувунин чар',
+'isredirect'               => 'Рахкъурунин ччин',
 'istemplate'               => 'Трансклипция',
-'isimage'                  => 'Шикилдин цlар',
-'whatlinkshere-prev'       => '{{PLURAL:$1|алатайди|алатайди $1}}',
-'whatlinkshere-next'       => '{{PLURAL:$1|next|къведай $1}}',
+'isimage'                  => 'Файлдин элячlун',
+'whatlinkshere-prev'       => '{{PLURAL:$1|вилик фейи|вилик фейи $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|гуьгъуьнин|гуьгъуьнин $1}}',
 'whatlinkshere-links'      => '← цlарар',
-'whatlinkshere-hideredirs' => '$1 массадал ракъурун',
-'whatlinkshere-hidetrans'  => '$1 куькlуьрун',
-'whatlinkshere-hidelinks'  => '$1 алукьунин цlар',
+'whatlinkshere-hideredirs' => '$1 рахкъурунар',
+'whatlinkshere-hidetrans'  => '$1 кутунар',
+'whatlinkshere-hidelinks'  => '$1 элячlунар',
 'whatlinkshere-hideimages' => '$1 Шикилдин алукьун',
-'whatlinkshere-filters'    => 'Филтер',
+'whatlinkshere-filters'    => 'Куьзунагар',
 
 # Block/unblock
 'blockip'                  => 'Ишлемишзавайдан хара',
@@ -781,9 +783,9 @@ $messages = array(
 'tooltip-ca-delete'               => 'Къакъудун и хъувун',
 'tooltip-ca-move'                 => 'Ччиндин тIвар дегишрун',
 'tooltip-ca-watch'                => 'И ччин куь гуьзетунин сиягьдиз алава авун',
-'tooltip-ca-unwatch'              => 'Чlурун и чар куьн ахтармишзавай цlaрцlяй',
+'tooltip-ca-unwatch'              => 'И ччин куь гуьзетунин сиягьдал къахчун',
 'tooltip-search'                  => 'И гаф жугъурун{{SITENAME}}',
-'tooltip-search-go'               => 'Чарчел фин, дуьз тIар аваз хьайитIа',
+'tooltip-search-go'               => 'АватIа, гьа и тIвар авай ччиниз элячIун',
 'tooltip-search-fulltext'         => 'Къалурай текст авай ччинар жугъура',
 'tooltip-p-logo'                  => 'КЬилин ччиндин кьилив фин',
 'tooltip-n-mainpage'              => 'КЬилин ччиндиз элячIун',
@@ -797,14 +799,14 @@ $messages = array(
 'tooltip-t-recentchangeslinked'   => 'И ччиндиз элячIзавай ччинра  мукьвара хьайи дегишвилер',
 'tooltip-feed-rss'                => 'RSS  хуьрек и чарчиз',
 'tooltip-feed-atom'               => 'И ччиндин Atom -дин трансляция',
-'tooltip-t-contributions'         => 'Ачух авун идан садакьадин цlар',
+'tooltip-t-contributions'         => 'И иштиракчидин кутур крарин сиягь',
 'tooltip-t-emailuser'             => 'Электрон пучтадай и ишлемичидал ракъурун',
 'tooltip-t-upload'                => 'Шикилар ва я мультимедиядин файлар ппарун',
 'tooltip-t-specialpages'          => 'Куьмекчи ччинрин сиягь',
 'tooltip-t-print'                 => 'И ччиндин басма авун патал жьуре',
 'tooltip-t-permalink'             => 'Ччиндин и жуьредиз гьамишан элячIун',
 'tooltip-ca-nstab-main'           => 'КЪене авайбурун ччиндиз  килигун',
-'tooltip-ca-nstab-user'           => 'Ишлемишчидин чарчиз клигун',
+'tooltip-ca-nstab-user'           => 'Иштиракчидин ччиниз килигун',
 'tooltip-ca-nstab-special'        => 'Имма далу чар,квевай чар дегиш жезатуш',
 'tooltip-ca-nstab-project'        => 'Проектин чарчиз килигун',
 'tooltip-ca-nstab-image'          => 'Файлдин ччиндиз килигун',
@@ -814,7 +816,7 @@ $messages = array(
 'tooltip-save'                    => 'Куь дегишунар хуьн',
 'tooltip-preview'                 => 'Ччин хуьдалай вилик сифтедин килигундикай менфят къачуз т!алабзава',
 'tooltip-diff'                    => 'Сифте кьилин текстдиз талукь тир куьне авунвай дегишвилер къалурун',
-'tooltip-compareselectedversions' => 'Акун алатунар хкягънай кьве ревизи и чарчин',
+'tooltip-compareselectedversions' => 'И ччинин кьве хкягъай жуьрейрин арада авай тафаватдиз килигун',
 'tooltip-watch'                   => 'Чар ктун хъувун куьне ахтармишзавай цlарцlик',
 'tooltip-rollback'                => '« КЬулухъди чIугун »  и ччиндиз эхиримжи кар кутазвайди патай  авунвай дуьзар хъувунар са т!ампуналди  paxкурзава',
 'tooltip-undo'                    => '«ГЬич авун»  авунвай  дуьзар хъувун paxкурзава ва сифтедин килигунин режимда  дуьзар хъувундин форма ахъа йийзва. Им нетижадиз себеб алава йийз  мумкинвал гузва',
@@ -826,9 +828,9 @@ $messages = array(
 
 # Media information
 'file-info-size' => '$1 × $2 пикселар, файлдин кьадар: $3, MIME жуьре: $4',
-'file-nohires'   => 'Чlехи ахъаюн авай жуьре авач.',
+'file-nohires'   => 'Идалайни хъсан ери авайд туш',
 'svg-long-desc'  => 'SVG файл, тlарцlиэвез $1 $2 × пикселяр, файлдин яргъивал:файлдин яргъивал: $3',
-'show-big-image' => 'Михьиз чlехи хьун',
+'show-big-image' => 'Мадни хъсан еридин шикил',
 
 # Bad image list
 'bad_image_list' => 'Формат икl хьана кlанзава:
@@ -839,10 +841,10 @@ $messages = array(
 
 # Metadata
 'metadata'          => 'Метамалуматар',
-'metadata-help'     => 'Шикилда мадни кхьинар ава, ктун хъийизай гьарфарин камерайрал, сканерал ишлемишзайдя авун паталди, ва гьарфаралди.          Шикил туькlуьрадла кьулухъ дегишарнатlа, шикил къайдадай фин тахьун мумкин я.',
+'metadata-help'     => 'И файлдин къене гилигнавай адет яз камера ва я сканер куьмекдалди алава авунвай  малумат ава. Файл ахпа дуьзур хъувуначтlа, бязи параметрар алай суьретдив кьун тахьун мумкин я.',
 'metadata-expand'   => 'Къалурун дериндиз',
 'metadata-collapse' => 'Кlевун дерин къалурунар',
-'metadata-fields'   => 'Дугун метахуьнрин шкилрин, гьисабнавайбур и цlарцlе,къалурда шкилрин чарчел акьвалнай таблицдал метахуьнрин.Аммай дугунар ававал акьвална жеда.
+'metadata-fields'   => 'Метамалуматрин таблица чIур хьайла и сиягьда тlварар кьунвай суьретдин метамалуматрин чкаяр сутретдин ччина къалурда.  Муькуьбур авайдхьиз кьуна чуьнуьхда.
 * make
 * model
 * datetimeoriginal
@@ -865,8 +867,8 @@ $messages = array(
 'exif-sharpness-1' => 'Жими',
 
 # External editor support
-'edit-externally'      => 'Дегишарун и шкил, къецевай программа ишлемишна',
-'edit-externally-help' => '(Килиг [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] мадни чирунар килигун паталди)',
+'edit-externally'      => 'И файл патан программа куьмекдалди дуьзар хъувун',
+'edit-externally-help' => '(Алава малумат патал [http://www.mediawiki.org/wiki/Manual:External_editors эцигунин регьбервилиз] килига)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вири',
@@ -915,7 +917,7 @@ $messages = array(
 #Кхьихьа гьамишан лугьунар кьатlар цlарцlин винелай.Кхьихь гьа цlар икlа, има хьиз </ PRE>',
 
 # Special:Tags
-'tag-filter' => '[[Special:Tags|Tag]] филтар:',
+'tag-filter' => '[[Special:Tags|Tag]] куьзунаг:',
 'tags-edit'  => 'дегишарун',
 
 # Special:ComparePages
