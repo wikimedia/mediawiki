@@ -37,4 +37,43 @@ class TitleTest extends MediaWikiTestCase {
 			array( 'Special:Version/param', 'param' ),
 		);
 	}
+	
+	/**
+	 * Auth-less test of Title::isValidMoveOperation
+	 * 
+	 * @param string $source
+	 * @param string $target
+	 * @param array|string|true $requiredErrors
+	 * @dataProvider dataTestIsValidMoveOperation
+	 */
+	function testIsValidMoveOperation( $source, $target, $expected ) {
+		$title = Title::newFromText( $source );
+		$nt = Title::newFromText( $target );
+		$errors = $title->isValidMoveOperation( $nt, false );
+		if ( $expected === true ) {
+			$this->assertTrue( $errors );
+		} else {
+			$errors = $this->flattenErrorsArray( $errors );
+			foreach ( (array)$expected as $error ) {
+				$this->assertContains( $error, $errors );
+			}
+		}
+	}
+	
+	function flattenErrorsArray( $errors ) {
+		$result = array();
+		foreach ( $errors as $error ) {
+			$result[] = $error[0];
+		}
+		return $result;
+	}
+	
+	function dataTestIsValidMoveOperation() {
+		return array( 
+			array( 'Test', 'Test', 'selfmove' ),
+			array( 'File:Test.jpg', 'Page', 'imagenocrossnamespace' )
+		);
+	}
+	
+	
 }

@@ -458,6 +458,7 @@ production.
 * (bug 30192) Thumbnails of archived files are now deleted
 * (bug 30843) mediawiki.Title should not convert extensions (anything after the
   last full stop) to lower case)
+* (bug 31213) Exception thrown when trying to move file cross-namespace
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.

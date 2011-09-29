@@ -3127,10 +3127,8 @@ class Title {
 
 		$errors = array();
 
-		if ( $nt->getNamespace() != NS_FILE ) {
-			$errors[] = array( 'imagenocrossnamespace' );
-		}
-
+		// wfFindFile( $nt ) / wfLocalFile( $nt ) is not allowed until below
+		
 		$file = wfLocalFile( $this );
 		if ( $file->exists() ) {
 			if ( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
@@ -3140,6 +3138,15 @@ class Title {
 				$errors[] = array( 'imagetypemismatch' );
 			}
 		}
+		
+		if ( $nt->getNamespace() != NS_FILE ) {
+			$errors[] = array( 'imagenocrossnamespace' );
+			// From here we want to do checks on a file object, so if we can't 
+			// create one, we must return.
+			return $errors;
+		}
+		
+		// wfFindFile( $nt ) / wfLocalFile( $nt ) is allowed below here
 
 		$destFile = wfLocalFile( $nt );
 		if ( !$wgUser->isAllowed( 'reupload-shared' ) && !$destFile->exists() && wfFindFile( $nt ) ) {
