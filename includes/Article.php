@@ -1800,7 +1800,8 @@ class Article extends Page {
 		}
 
 		if ( $useParserCache ) {
-			$parserOutput = ParserCache::singleton()->get( $this, $this->mPage->getParserOptions() );
+			$options = $this->mPage->makeParserOptions( $user );
+			$parserOutput = ParserCache::singleton()->get( $this, $options );
 			if ( $parserOutput !== false ) {
 				wfProfileOut( __METHOD__ );
 				return $parserOutput;
