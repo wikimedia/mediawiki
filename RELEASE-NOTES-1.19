@@ -100,8 +100,6 @@ production.
 * Allowing moving the associated talk pages of subpages even if the base page
   has no subpage.
 * (bug 30907) Special:Unusedcategories should sort ascendingly.
-* (bug 18424) Special:Prefixindex and Special:Allpages paging links are
-  really small, and somewhat inconsistent with each other.
 * Per page edit-notices now work in namespaces without subpages enabled.
 * (bug 30245) Use the correct way to construct a log page title
 * (bug 31081) $wgEnotifUseJobQ causes many unnecessary jobs to be queued
