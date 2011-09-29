@@ -3108,7 +3108,7 @@ class Title {
 		$errors = array();
 
 		// wfFindFile( $nt ) / wfLocalFile( $nt ) is not allowed until below
-		
+
 		$file = wfLocalFile( $this );
 		if ( $file->exists() ) {
 			if ( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
@@ -3118,14 +3118,14 @@ class Title {
 				$errors[] = array( 'imagetypemismatch' );
 			}
 		}
-		
+
 		if ( $nt->getNamespace() != NS_FILE ) {
 			$errors[] = array( 'imagenocrossnamespace' );
-			// From here we want to do checks on a file object, so if we can't 
+			// From here we want to do checks on a file object, so if we can't
 			// create one, we must return.
 			return $errors;
 		}
-		
+
 		// wfFindFile( $nt ) / wfLocalFile( $nt ) is allowed below here
 
 		$destFile = wfLocalFile( $nt );
@@ -3368,7 +3368,6 @@ class Title {
 				array( 'rc_timestamp' => $rcts, 'rc_namespace' => $newns, 'rc_title' => $newdbk, 'rc_new' => 1 ),
 				__METHOD__
 			);
-							__METHOD__ );
 		}
 
 		# Save a null revision in the page's history notifying of the move
