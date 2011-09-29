@@ -631,6 +631,14 @@ abstract class UploadBase {
 		}
 		$this->mFilteredName = $nt->getDBkey();
 
+		# oi_archive_name is max 255 bytes, which include a timestamp and an
+		# exclamation mark, so restrict file name to 240 bytes. Return
+		# ILLEGAL_FILENAME, just like would have happened for >255 bytes
+		if ( strlen( $this->mFilteredName ) > 240 ) {
+			$this->mTitleError = self::ILLEGAL_FILENAME;
+			return $this->mTitle = null;			
+		}
+		
 		/**
 		 * We'll want to blacklist against *any* 'extension', and use
 		 * only the final one for the whitelist.
