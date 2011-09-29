@@ -2559,19 +2559,6 @@ class WikiPage extends Page {
 	}
 
 	/**
-	 * Get parser options suitable for rendering the primary article wikitext
-	 * @return mixed ParserOptions object or boolean false
-	 */
-	public function getParserOptions() {
-		global $wgUser;
-		if ( !$this->mParserOptions ) {
-			$this->mParserOptions = $this->makeParserOptions( $wgUser );
-		}
-		// Clone to allow modifications of the return value without affecting cache
-		return clone $this->mParserOptions;
-	}
-
-	/**
 	* Get parser options suitable for rendering the primary article wikitext
 	* @param User|string $user User object or 'canonical'
 	* @return ParserOptions
