@@ -476,9 +476,9 @@ class SpecialPageFactory {
 
 	/**
 	 * Just like executePath() but will override global variables and execute
-	 * the page in "inclusion" mode. Returns true if the excution was successful
-	 * or false if there was no such special page, or a title object if it was
-	 * a redirect.
+	 * the page in "inclusion" mode. Returns true if the execution was
+	 * successful or false if there was no such special page, or a title object
+	 * if it was a redirect.
 	 *
 	 * Also saves the current $wgTitle, $wgOut, $wgRequest, $wgUser and $wgLang
 	 * variables so that the special page will get the context it'd expect on a
@@ -509,7 +509,7 @@ class SpecialPageFactory {
 		// The useful part
 		$ret = self::executePath( $title, $context, true );
 
-		// And restore that globals
+		// And restore the old globals
 		$wgTitle = $oldTitle;
 		$wgOut = $oldOut;
 		$wgRequest = $oldRequest;
