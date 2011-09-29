@@ -456,6 +456,8 @@ production.
   space (U+20) will sort under an invisible header like in 1.16 rather than a U+6DE
 * (bug 30497) Add client-nojs and client-js classes on document element
   to let styles easily hide or show things based on general JS availability
+* (bug 18424) Special:Prefixindex and Special:Allpages paging links are
+  really small, and somewhat inconsistent with each other.
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
