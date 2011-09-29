@@ -34,12 +34,6 @@ class WikiPage extends Page {
 	/**@}}*/
 
 	/**
-	 * @protected
-	 * @var ParserOptions: ParserOptions object for $wgUser articles
-	 */
-	public $mParserOptions;
-
-	/**
 	 * Constructor and clear the article
 	 * @param $title Title Reference to a Title object.
 	 */
