@@ -60,6 +60,16 @@ class UploadTest extends MediaWikiTestCase {
 		$this->assertUploadTitleAndCode( '.jpg',
 			null, UploadBase::MIN_LENGTH_PARTNAME,
 			'upload title without basename' );
+		
+		/* A title that is longer than 255 bytes */
+		$this->assertUploadTitleAndCode( str_repeat( 'a', 255 ) . '.jpg',
+			null, UploadBase::ILLEGAL_FILENAME,
+			'upload title longer than 255 bytes' );
+			
+		/* A title that is longer than 240 bytes */
+		$this->assertUploadTitleAndCode( str_repeat( 'a', 240 ) . '.jpg',
+			null, UploadBase::ILLEGAL_FILENAME,
+			'upload title longer than 240 bytes' );
 
 	}
 	/**
@@ -134,6 +144,7 @@ class UploadTestHandler extends UploadBase {
 		public function testTitleValidation( $name ) {
 			$this->mTitle = false;
 			$this->mDesiredDestName = $name;
+			$this->mTitleError = UploadBase::OK;
 			$this->getTitle();
 			return $this->mTitleError;
 		}

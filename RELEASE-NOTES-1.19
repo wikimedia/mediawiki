@@ -107,6 +107,8 @@ production.
 * Per page edit-notices now work in namespaces without subpages enabled.
 * (bug 30245) Use the correct way to construct a log page title
 * (bug 31081) $wgEnotifUseJobQ causes many unnecessary jobs to be queued
+* (bug 30202) File names are now restricted on upload to 240 bytes, because of
+  restrictions on some of the database fields.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
