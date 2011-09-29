@@ -1,6 +1,16 @@
 <?php
+/**
+ * Contain the ObjectFileCache class
+ * @file
+ * @ingroup Cache
+ */
 class ObjectFileCache extends FileCacheBase {
-
+	/**
+	 * Construct an ObjectFileCache from a key and a type
+	 * @param $key string
+	 * @param $type string
+	 * @return ObjectFileCache
+	 */
 	public static function newFromKey( $key, $type ) {
 		$cache = new self();
 
@@ -15,7 +25,7 @@ class ObjectFileCache extends FileCacheBase {
 		return $cache;
 	}
 
-	/*
+	/**
 	 * Get the type => extension mapping
 	 * @return array
 	 */

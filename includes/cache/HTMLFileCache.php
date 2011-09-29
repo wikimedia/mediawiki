@@ -5,7 +5,12 @@
  * @ingroup Cache
  */
 class HTMLFileCache extends FileCacheBase {
-
+	/**
+	 * Construct an ObjectFileCache from a Title and an action
+	 * @param $title Title
+	 * @param $action string
+	 * @return HTMLFileCache
+	 */
 	public static function newFromTitle( Title $title, $action ) {
 		$cache = new self();
 
@@ -20,7 +25,7 @@ class HTMLFileCache extends FileCacheBase {
 		return $cache;
 	}
 
-	/*
+	/**
 	 * Cacheable actions
 	 * @return array
 	 */
