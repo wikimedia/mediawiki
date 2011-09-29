@@ -2109,7 +2109,6 @@ class OutputPage extends ContextSource {
 $templates
 </div>
 " );
-			}
 		}
 
 		# If the title doesn't exist, it's fairly pointless to print a return
@@ -2463,7 +2462,7 @@ $templates
 				// Add a version parameter so cache will break when things change
 				$version = wfTimestamp( TS_ISO_8601_BASIC, $timestamp );
 			}
-			
+
 			$url = ResourceLoader::makeLoaderURL(
 				array_keys( $modules ),
 				$this->getContext()->getLang()->getCode(),
