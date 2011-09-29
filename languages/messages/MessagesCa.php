@@ -689,7 +689,9 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'passwordreset-text'         => 'Completeu el següent formulari per rebre un recordatori per correu electrònic amb els detalls del vostre compte.',
 'passwordreset-legend'       => 'Restablir contrasenya',
 'passwordreset-disabled'     => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
+'passwordreset-pretext'      => '{{PLURAL:$1||Introduïu un dels elements de dades següents}}',
 'passwordreset-username'     => "Nom d'usuari:",
+'passwordreset-domain'       => 'Domini',
 'passwordreset-email'        => 'Adreça de correu electrònic:',
 'passwordreset-emailtitle'   => 'Detalls del compte a {{SITENAME}}',
 'passwordreset-emailelement' => "Nom d'usuari: $1
@@ -1164,12 +1166,13 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'searchdisabled'                   => 'La cerca dins el projecte {{SITENAME}} està inhabilitada. Mentrestant, podeu cercar a través de Google, però tingueu en compte que la seua base de dades no estarà actualitzada.',
 
 # Quickbar
-'qbsettings'               => 'Quickbar',
-'qbsettings-none'          => 'Cap',
-'qbsettings-fixedleft'     => "Fixa a l'esquerra",
-'qbsettings-fixedright'    => 'Fixa a la dreta',
-'qbsettings-floatingleft'  => "Surant a l'esquerra",
-'qbsettings-floatingright' => 'Surant a la dreta',
+'qbsettings'                => 'Quickbar',
+'qbsettings-none'           => 'Cap',
+'qbsettings-fixedleft'      => "Fixa a l'esquerra",
+'qbsettings-fixedright'     => 'Fixa a la dreta',
+'qbsettings-floatingleft'   => "Surant a l'esquerra",
+'qbsettings-floatingright'  => 'Surant a la dreta',
+'qbsettings-directionality' => "Fix, segons la direcció d'escriptura del vostre idioma",
 
 # Preferences page
 'preferences'                   => 'Preferències',
@@ -1396,10 +1399,11 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-sendemail'             => 'Enviar missatges de correu electrònic a altres usuaris',
 
 # User rights log
-'rightslog'      => "Registre dels permisos d'usuari",
-'rightslogtext'  => "Aquest és un registre de canvis dels permisos d'usuari.",
-'rightslogentry' => 'ha modificat els drets de $1 del grup $2 a $3',
-'rightsnone'     => '(cap)',
+'rightslog'                  => "Registre dels permisos d'usuari",
+'rightslogtext'              => "Aquest és un registre de canvis dels permisos d'usuari.",
+'rightslogentry'             => 'ha modificat els drets de $1 del grup $2 a $3',
+'rightslogentry-autopromote' => 'ha estat promogut automàticament de $2 a $3',
+'rightsnone'                 => '(cap)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'llegir aquesta pàgina',

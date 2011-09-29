@@ -2562,7 +2562,7 @@ $1',
 'blocklist-timestamp'             => 'Timestamp',
 'blocklist-target'                => 'Στόχος',
 'blocklist-expiry'                => 'Λήγει',
-'blocklist-by'                    => 'Φραγή admin',
+'blocklist-by'                    => 'Διαχειριστής που επέβαλε τη φραγή',
 'blocklist-params'                => 'Παράμετροι φραγής',
 'blocklist-reason'                => 'Αιτιολογία',
 'ipblocklist-submit'              => 'Αναζήτηση',
@@ -3663,9 +3663,9 @@ $1',
 
 # Special:SpecialPages
 'specialpages'                   => 'Σελίδες λειτουργιών',
-'specialpages-note'              => ' * Κανονικές ειδικές σελίδες.
+'specialpages-note'              => '* Κανονικές ειδικές σελίδες.
 * <span class="mw-specialpagerestricted">Ειδικές σελίδες με περιορισμούς.</span>
-* <span class="mw-specialpagecached">Ειδικές σελίδες που βρίσκονται στη μνήμη cache (μπορεί να είναι απαρχαιωμένες).</span>',
+* <span class="mw-specialpagecached">Ειδικές σελίδες αποθηκευμένες προσωρινά (μπορεί να είναι παρωχημένες).</span>',
 'specialpages-group-maintenance' => 'Αναφορές συντήρησης',
 'specialpages-group-other'       => 'Άλλες ειδικές σελίδες',
 'specialpages-group-login'       => 'Σύνδεση / δημιουργία λογαριασμού',

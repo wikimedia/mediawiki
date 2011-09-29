@@ -3577,8 +3577,9 @@ Aafbeildinge waere in häör vollejige resolutie getoeandj. Anger bestandjstypes
 'logentry-move-move_redir-noredirect' => "$1 {{GENDER:$2|verplaatsde}} pagina $3 nao $4 euver 'ne redirek zonger 'n doorverwiezing achter te laote",
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|haet}} versie $4 van pagina $3 es gecontroleerd gemarkeerd',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|haet}} versie $4 van pagina $3 autematis es gecontroleerd gemarkeerd',
+'logentry-newusers-newusers'          => "$1 {{GENDER:$2|haet}} 'ne gebroeker aangemaak",
 'logentry-newusers-create'            => "$1 {{GENDER:$2|haet}} 'ne gebroeker aangemaak",
-'logentry-newusers-create2'           => "$1 {{GENDER:$2|haet}} 'ne gebroeker $3 aangemaak",
+'logentry-newusers-create2'           => "$1 {{GENDER:$2|haet}} {{GENDER:$4|'ne gebroeker}} $3 aangemaak",
 'logentry-newusers-autocreate'        => 'De gebroeker $1 is autematis {{GENDER:$2|aangemaak}}',
 'newuserlog-byemail'                  => 'wachwaord is versjik per e-mail',
 

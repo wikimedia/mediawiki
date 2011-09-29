@@ -3988,7 +3988,7 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'logentry-patrol-patrol'              => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät di Version $4 vun dä Sigg „$3“ nohjeloort.',
 'logentry-patrol-patrol-auto'         => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät di Version $4 vun dä Sigg „$3“ automattesch nohjeloort.',
 'logentry-newusers-create'            => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät ene Metmaacher aanjelaat.',
-'logentry-newusers-create2'           => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät {{GENDER:$3|dä|dat|dä Metmaacher|de|dat}} $3 {{GENDER:$3|als ene neue Metmaacher|als neue Metmaacher|neu|als neue Metmaacheren |als neue Metmaacher}} aanjelaat.',
+'logentry-newusers-create2'           => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 hät {{GENDER:$4|dä|dat|dä Metmaacher|de|dat}} $3 {{GENDER:$3|als ene neue Metmaacher|als neue Metmaacheren|neu|als neue Metmaacheren|als neue Metmaacher}} aanjelaat.',
 'logentry-newusers-autocreate'        => '{{GENDER:$2|Dä|Dat|Dä Metmaacher|De|Dat}} $1 wood automattesch {{GENDER:$2|als Metmaacher|als Metmaacher||als Metmaacher|als Metmaacher}} aanjelaat.',
 'newuserlog-byemail'                  => 'dat Passwood wood med de e-mail loßjescheck',
 

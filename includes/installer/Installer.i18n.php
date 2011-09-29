@@ -4154,7 +4154,7 @@ Löydät sen LocalSettings.php-tiedostosta.',
 	'config-session-error' => 'Istunnon aloittaminen epäonnistui: $1',
 	'config-session-expired' => 'Istuntotietosi näyttävät olevan vanhentuneita.
 Istuntojen elinajaksi on määritelty $1.
-Voit muuttaa tätä asetusta vaihtamalla kohtaa <code>session.gc_maxlifetime</code> php.ini -tiedostossa.
+Voit muuttaa tätä asetusta vaihtamalla kohtaa <code>session.gc_maxlifetime</code> php.ini-tiedostossa.
 Käynnistä asennusprosessi uudelleen.',
 	'config-your-language' => 'Asennuksen kieli',
 	'config-your-language-help' => 'Valitse kieli, jota haluat käyttää asennuksen ajan.',
@@ -4173,7 +4173,7 @@ Käynnistä asennusprosessi uudelleen.',
 	'config-page-complete' => 'Valmis!',
 	'config-page-restart' => 'Aloita asennus alusta',
 	'config-page-readme' => 'Lue minut',
-	'config-page-releasenotes' => 'Julkaisun tiedot',
+	'config-page-releasenotes' => 'Julkaisutiedot',
 	'config-page-copying' => 'Kopiointi',
 	'config-page-upgradedoc' => 'Päivittäminen',
 	'config-page-existingwiki' => 'Aikaisempi asennus',
@@ -4185,7 +4185,12 @@ Sinun pitäisi antaa näiden tarkistusten tulokset, jos tarvitset apua asennukse
 	'config-sidebar' => '* [http://www.mediawiki.org MediaWikin kotisivu]
 * [http://www.mediawiki.org/wiki/Help:Contents Käyttöopas]
 * [http://www.mediawiki.org/wiki/Manual:Contents Hallintaopas]
-* [http://www.mediawiki.org/wiki/Manual:FAQ UKK]',
+* [http://www.mediawiki.org/wiki/Manual:FAQ UKK]
+----
+* <doclink href=Readme>Lue minut</doclink>
+* <doclink href=ReleaseNotes>Julkaisutiedot</doclink>
+* <doclink href=Copying>Kopiointi</doclink>
+* <doclink href=UpgradeDoc>Päivittäminen</doclink>',
 	'config-env-good' => 'Asennusympäristö on tarkastettu.
 Voit asentaa MediaWikin.',
 	'config-env-bad' => 'Asennusympäristö on tarkastettu.
@@ -4216,10 +4221,12 @@ MediaWiki vaatii toimiakseen Perl-yhteensopivat säännölliset lausekkeet.',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
+	'config-type-ibm_db2' => 'IBM DB2',
 	'config-header-mysql' => 'MySQL-asetukset',
 	'config-header-postgres' => 'PostgreSQL-asetukset',
 	'config-header-sqlite' => 'SQLite-asetukset',
 	'config-header-oracle' => 'Oracle-asetukset',
+	'config-header-ibm_db2' => 'IBM DB2 -asetukset',
 	'config-invalid-db-type' => 'Virheellinen tietokantatyyppi',
 	'config-missing-db-name' => 'Kenttä »Tietokannan nimi» on pakollinen',
 	'config-invalid-db-name' => '”$1” ei kelpaa tietokannan nimeksi.
@@ -4227,7 +4234,7 @@ Se voi sisältää vain kirjaimia (a-z, A-Z), numeroita (0-9) ja alaviivan (_).'
 	'config-invalid-db-prefix' => '”$1” ei kelpaa tietokannan etuliitteeksi.
 Se voi sisältää vain kirjaimia (a-z, A-Z), numeroita (0-9) ja alaviivan (_).',
 	'config-postgres-old' => 'MediaWiki tarvitsee PostgreSQL:n version $1 tai uudemman. Nykyinen versio on $2.',
-	'config-sqlite-name-help' => 'Valitse nimi joka yksilöi tämän wikin.
+	'config-sqlite-name-help' => 'Valitse nimi, joka yksilöi tämän wikin.
 Älä käytä välilyöntejä tai viivoja.
 Nimeä käytetään SQlite-tietokannan tiedostonimessä.',
 	'config-sqlite-dir-unwritable' => 'Hakemistoon ”$1” kirjoittaminen epäonnistui.
@@ -4248,9 +4255,13 @@ Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoitta
 	'config-admin-password-confirm' => 'Salasana uudelleen',
 	'config-admin-name-blank' => 'Anna ylläpitäjän käyttäjänimi.',
 	'config-admin-email' => 'Sähköpostiosoite',
+	'config-profile-wiki' => 'Perinteinen wiki',
 	'config-profile-private' => 'Yksityinen wiki',
+	'config-email-settings' => 'Sähköpostiasetukset',
+	'config-extensions' => 'Laajennukset',
 	'config-install-step-done' => 'tehty',
 	'config-install-step-failed' => 'epäonnistui',
+	'config-download-localsettings' => 'Lataa LocalSettings.php',
 	'config-help' => 'ohje',
 	'mainpagetext' => "'''MediaWiki on onnistuneesti asennettu.'''",
 	'mainpagedocfooter' => "Lisätietoja käytöstä on sivulla [http://meta.wikimedia.org/wiki/Help:Contents User's Guide].

@@ -810,32 +810,36 @@ Misschien he'j t wachtwoord al ewiezigd of n niej veurlopig wachtwoord an-evreug
 'resetpass-temp-password'   => 'Veurlopig wachtwoord:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Wachtwoord opniej instellen',
-'passwordreset-text'           => 'Vul dit formulier in zoda-w joe netpost kunnen sturen mit de gebrukersgegevens.',
-'passwordreset-legend'         => 'Wachtwoord opniej instellen',
-'passwordreset-disabled'       => 'Je kunnen op disse wiki joew wachtwoord niet opniej instellen.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Voer één van de onderstaonde velden in}}',
-'passwordreset-username'       => 'Gebruker:',
-'passwordreset-domain'         => 'Domein:',
-'passwordreset-email'          => 'Netpostadres:',
-'passwordreset-emailtitle'     => 'Gebrukersgegevens op {{SITENAME}}',
-'passwordreset-emailtext-ip'   => "Der hef der ene, warschienlik jie zelf, gebrukersgegevens veur {{SITENAME}} ($4) op-evreugen vanaof t IP-adres $1.
+'passwordreset'                    => 'Wachtwoord opniej instellen',
+'passwordreset-text'               => 'Vul dit formulier in zoda-w joe netpost kunnen sturen mit de gebrukersgegevens.',
+'passwordreset-legend'             => 'Wachtwoord opniej instellen',
+'passwordreset-disabled'           => 'Je kunnen op disse wiki joew wachtwoord niet opniej instellen.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Voer één van de onderstaonde velden in}}',
+'passwordreset-username'           => 'Gebruker:',
+'passwordreset-domain'             => 'Domein:',
+'passwordreset-capture'            => 'De resulterende netpost bekieken?',
+'passwordreset-capture-help'       => "A'j dit vakjen anvinken, dan krie'j t netpostbericht (mit t tiedelike wachtwoord) te zien en t wörden naor de gebruker estuurd.",
+'passwordreset-email'              => 'Netpostadres:',
+'passwordreset-emailtitle'         => 'Gebrukersgegevens op {{SITENAME}}',
+'passwordreset-emailtext-ip'       => "Der hef der ene, warschienlik jie zelf, gebrukersgegevens veur {{SITENAME}} ($4) op-evreugen vanaof t IP-adres $1.
 De volgende {{PLURAL:$3|gebruker is|gebrukers bin}} ekoppeld an dit netpostadres:
 
 $2
 
 {{PLURAL:$3|Dit tiedelike wachtwoord vervuilt|Disse tiedelike wachtwoorden vervallen}} over {{PLURAL:$5|één dag|$5 dagen}}.
 Meld je eigen noen an en wiezig t wachtwoord. A'j dit verzeuk niet zelf edaon hebben, of a'j t oorspronkelike wachtwoord nog kennen en t niet wiezigen willen, negeer dit bericht dan en blief joew ouwe wachtwoord gebruken.",
-'passwordreset-emailtext-user' => "De gebruker $1 van {{SITENAME}} hef joew gebrukersgegevens veur {{SITENAME}} ($4) op-evreugen vanaof t IP-adres $1.
+'passwordreset-emailtext-user'     => "De gebruker $1 van {{SITENAME}} hef joew gebrukersgegevens veur {{SITENAME}} ($4) op-evreugen vanaof t IP-adres $1.
 De volgende {{PLURAL:$3|gebruker is|gebrukers bin}} ekoppeld an dit netpostadres:
 
 $2
 
 {{PLURAL:$3|Dit tiedelike wachtwoord vervuilt|Disse tiedelike wachtwoorden vervallen}} over {{PLURAL:$5|één dag|$5 dagen}}.
 Meld je eigen noen an en wiezig t wachtwoord. A'j dit verzeuk niet zelf edaon hebben, of a'j t oorspronkelike wachtwoord nog kennen en t niet wiezigen willen, negeer dit bericht dan en blief joew ouwe wachtwoord gebruken.",
-'passwordreset-emailelement'   => 'Gebrukersnaam: $1
+'passwordreset-emailelement'       => 'Gebrukersnaam: $1
 Tiedelik wachtwoord: $2',
-'passwordreset-emailsent'      => 'Der is per netpost n herinnering verstuurd.',
+'passwordreset-emailsent'          => 'Der is per netpost n herinnering verstuurd.',
+'passwordreset-emailsent-capture'  => "Der is n herinneringsbericht verstuurd. Dit ku'j hieronder lezen.",
+'passwordreset-emailerror-capture' => "Der is n herinneringsbericht an-emaakt. Dit ku'j hieronder lezen. t Versturne naor de gebruker is mislokt um de volgende reden: $1",
 
 # Special:ChangeEmail
 'changeemail'          => 'Wiezig netpostadres',
@@ -1397,7 +1401,8 @@ Disse haandeling kan niet ongedaonemaakt wörden.',
 'prefs-registration'            => 'Registrasiedaotum:',
 'yourrealname'                  => 'Echte naam (niet verplicht)',
 'yourlanguage'                  => 'Taal veur systeemteksten',
-'yourvariant'                   => 'Gewunste taal:',
+'yourvariant'                   => 'Taalvariaant veur inhoud:',
+'prefs-help-variant'            => "Joew veurkeursvariaant of -spelling um de inhoudspagina's van disse wiki in weer te geven.",
 'yournick'                      => 'Alias veur ondertekeningen',
 'prefs-help-signature'          => 'Reaksies op de overlegpagina\'s mutten ondertekend wörden mit "<nowiki>~~~~</nowiki>", dit wörden dan ummezet in joew ondertekening mit daorbie de daotum en tied van de bewarking.',
 'badsig'                        => 'Ongeldige haandtekening; HTML naokieken.',
@@ -1539,6 +1544,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'right-siteadmin'             => 'De databanke blokkeren en weer vriegeven',
 'right-override-export-depth' => "Pagina's uutvoeren, oek de pagina's waor naor verwezen wörden, tot n diepte van 5",
 'right-sendemail'             => 'Bericht versturen naor aandere gebrukers',
+'right-passwordreset'         => 'Bekiek netpostberichten veur t opniej instellen van joew wachtwoord',
 
 # User rights log
 'rightslog'                  => 'Gebrukersrechtenlogboek',
@@ -1851,7 +1857,7 @@ As disse pagina efilterd wörden op gebruker, zie'j allinnig bestaanden waor de 
 'filehist-filesize'         => 'Bestaandsgrootte',
 'filehist-comment'          => 'Opmarkingen',
 'filehist-missing'          => 'Bestaand ontbreekt',
-'imagelinks'                => 'Verwiezingen naor dit bestaand',
+'imagelinks'                => 'Bestaandsgebruuk',
 'linkstoimage'              => "Dit bestaand wörden gebruukt op de volgende {{PLURAL:$1|pagina|$1 pagina's}}:",
 'linkstoimage-more'         => 'Der {{PLURAL:$2|is|bin}} meer as $1 {{PLURAL:$1|verwiezing|verwiezingen}} naor dit bestaand.
 De volgende lieste geef allinnig de eerste {{PLURAL:$1|verwiezing|$1 verwiezingen}} naor dit bestaand weer.
@@ -2958,7 +2964,7 @@ $1',
 'svg-long-desc'          => 'SVG-bestaand, uutgangsgrootte $1 × $2 beeldpunten, bestaandsgrootte: $3',
 'show-big-image'         => 'Volle resolusie',
 'show-big-image-preview' => 'Grootte van disse weergave: $1.',
-'show-big-image-other'   => 'Aandere resolusies: $1.',
+'show-big-image-other'   => 'Aandere {{PLURAL:$2|resolusie|resolusies}}: $1.',
 'show-big-image-size'    => '$1 × $2 beeldpunten',
 'file-info-gif-looped'   => 'herhaolend',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|beeld|beelden}}',
@@ -2977,6 +2983,13 @@ $1',
 'ilsubmit'              => 'Zeuk',
 'bydate'                => 'op daotum',
 'sp-newimages-showfrom' => 'Bekiek nieje bestaanden vanaof $1, $2',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekonde|$1 sekonden}}',
+'minutes' => '{{PLURAL:$1|$1 minuut|$1 minuten}}',
+'hours'   => '{{PLURAL:$1|$1 ure|$1 uren}}',
+'days'    => '{{PLURAL:$1|$1 dag|$1 dagen}}',
+'ago'     => '$1 eleen',
 
 # Bad image list
 'bad_image_list' => "De opmaak is as volgt:
@@ -3593,9 +3606,9 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'filepath'         => 'Bestaandslokasie',
 'filepath-page'    => 'Bestaand:',
 'filepath-submit'  => 'Zeuken',
-'filepath-summary' => 'Disse spesiale pagina geef t hele pad veur n bestaand. Aofbeeldingen wörden in resolusie helemaole weeregeven. Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma los edaon.
-
-Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
+'filepath-summary' => 'Disse spesiale pagina geef t hele pad veur n bestaand. 
+Aofbeeldingen wörden in resolusie helemaole weeregeven. 
+Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma opend.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Dubbele bestaanden zeuken',
@@ -3713,12 +3726,34 @@ Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
 'sqlite-no-fts'  => 'Versie $1 zonder ondersteuning veur "full-text" zeuken',
 
 # New logging system
+'logentry-delete-delete'              => '$1 {{GENDER:$2|hef}} de pagina $3 vortedaon',
+'logentry-delete-restore'             => '$1 {{GENDER:$2|hef}} de pagina $3 weerummezet',
+'logentry-delete-event'               => '$1 {{GENDER:$2|hef}} de zichtbaorheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 ewiezigd: $4',
+'logentry-delete-revision'            => '$1 {{GENDER:$2|hef}} de zichtbaorheid van {{PLURAL:$5|een versie|$5 versies}} van de pagina $3 ewiezigd: $4',
+'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|hef}} de zichtbaorheid van logboekregels van $3 ewiezigd',
+'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|hef}} de zichtbaorheid van versies van de pagina $3 ewiezigd.',
+'logentry-suppress-delete'            => '$1 {{GENDER:$2|hef}} de pagina $3 onderdrokt',
+'logentry-suppress-event'             => '$1 {{GENDER:$2|hef}} de zichtbaorheid van {{PLURAL:$5|een logboekregel|$5 logboekregels}} van $3 sluuksem ewiezigd: $4',
+'logentry-suppress-revision'          => '$1 {{GENDER:$2|hef}} de zichtbaorheid van {{PLURAL:$5|een versie|$5 versies}} van de pagina $3 sluuksem ewiezigd: $4',
+'logentry-suppress-event-legacy'      => '$1 {{GENDER:$2|hef}} de zichtbaorheid van logboekregels van $3 sluuksem ewiezigd',
+'logentry-suppress-revision-legacy'   => '$1 {{GENDER:$2|hef}} de zichtbaorheid van versies van de pagina $3 sluuksem ewiezigd.',
+'revdelete-content-hid'               => 'inhoud verbörgen',
+'revdelete-summary-hid'               => 'bewarkingssamenvatting verbörgen',
+'revdelete-uname-hid'                 => 'gebrukersnaam verbörgen',
+'revdelete-content-unhid'             => 'inhoud zichtbaor emaakt',
+'revdelete-summary-unhid'             => 'bewarkingssamenvatting zichtbaor emaakt',
+'revdelete-uname-unhid'               => 'gebrukersnaam zichtbaor emaakt',
 'revdelete-restricted'                => 'hef beparkingen an beheerders op-eleg',
 'revdelete-unrestricted'              => 'hef beparkingen veur beheerders deraof ehaold',
 'logentry-move-move'                  => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4',
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 zonder n deurverwiezing achter te laoten',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 over n deurverwiezing heer',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 over n deurverwiezing heer zonder n deurverwiezing achter te laoten',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|hef}} versie $4 van pagina $3 as ekontroleerd emarkeerd',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|hef}} versie $4 van pagina $3 automaties as ekontroleerd emarkeerd',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|hef}} n gebruker an-emaakt',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|hef}} n gebruker $3 an-emaakt',
+'logentry-newusers-autocreate'        => 'De gebruker $1 is automaties {{GENDER:$2|an-emaakt}}',
 'newuserlog-byemail'                  => 'wachtwoord is verstuurd via de netpost',
 
 );

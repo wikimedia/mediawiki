@@ -1573,6 +1573,7 @@ Esta informação será pública.',
 'right-siteadmin'             => 'Bloquear e desbloquear a base de dados',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar correio electrónico a outros utilizadores',
+'right-passwordreset'         => 'Repor palavra-chave de um utilizador ([[Special:PasswordReset|página especial]])',
 
 # User rights log
 'rightslog'                  => 'Registo de privilégios de utilizador',
@@ -3072,6 +3073,13 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'bydate'                => 'por data',
 'sp-newimages-showfrom' => 'Mostrar novos ficheiros a partir das $2 de $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|um segundo|$1 segundos}}',
+'minutes' => '{{PLURAL:$1|um minuto|$1 minutos}}',
+'hours'   => '{{PLURAL:$1|uma hora|$1 horas}}',
+'days'    => '{{PLURAL:$1|um dia|$1 dias}}',
+'ago'     => '$1 atrás',
+
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
 
@@ -3702,11 +3710,8 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'filepath'         => 'Endereço de ficheiro',
 'filepath-page'    => 'Ficheiro:',
 'filepath-submit'  => 'Ir',
-'filepath-summary' => 'Esta página especial retorna o endereço completo de um ficheiro ao seu browser, que irá processá-lo.
-Imagens serão apresentadas pelo browser na resolução máxima.
-Ficheiros de outro tipo serão abertos pelo browser directamente no programa que lhes está associado no seu computador.
-
-Introduza o nome do ficheiro sem o prefixo "{{ns:file}}:".',
+'filepath-summary' => 'Esta página especial retorna o endereço completo de um ficheiro.
+Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de outro tipo serão abertos pelo browser directamente no programa que lhes está associado no seu computador.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Ficheiros duplicados',
