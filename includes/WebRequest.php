@@ -239,15 +239,18 @@ class WebRequest {
 	 * used for undoing the evil that is magic_quotes_gpc.
 	 *
 	 * @param $arr array: will be modified
-	 * @param $recursion bool Used to modify behaviour based on recursion
+	 * @param $topLevel bool Specifies if the array passed is from the top
+	 * level of the source. In PHP5 magic_quotes only escapes the first level
+	 * of keys that belong to an array.
 	 * @return array the original array
+	 * @see http://www.php.net/manual/en/function.get-magic-quotes-gpc.php#49612
 	 */
-	private function &fix_magic_quotes( &$arr, $recursion = false ) {
+	private function &fix_magic_quotes( &$arr, $topLevel = true ) {
 		$clean = array();
 		foreach( $arr as $key => $val ) {
 			if( is_array( $val ) ) {
-				$cleanKey = !$recursion ? stripslashes( $key ) : $key;
-				$clean[$cleanKey] = $this->fix_magic_quotes( $arr[$key], true );
+				$cleanKey = $topLevel ? stripslashes( $key ) : $key;
+				$clean[$cleanKey] = $this->fix_magic_quotes( $arr[$key], false );
 			} else {
 				$cleanKey = stripslashes( $key );
 				$clean[$cleanKey] = stripslashes( $val );
