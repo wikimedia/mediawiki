@@ -600,8 +600,8 @@ class LogEventsList {
 	 * Show log extract. Either with text and a box (set $msgKey) or without (don't set $msgKey)
 	 *
 	 * @param $out OutputPage|String-by-reference
-	 * @param $types String or Array
-	 * @param $page String The page title to show log entries for
+	 * @param $types String|Array Log types to show
+	 * @param $page String|Title The page title to show log entries for
 	 * @param $user String The user who made the log entries
 	 * @param $param Associative Array with the following additional options:
 	 * - lim Integer Limit of items to show, default is 50
@@ -679,8 +679,11 @@ class LogEventsList {
 		}
 		if( $pager->getNumRows() > $pager->mLimit ) { # Show "Full log" link
 			$urlParam = array();
-			if ( $page != '')
+			if ( $page instanceof Title ) {
+				$urlParam['page'] = $page->getPrefixedDBkey();
+			} elseif ( $page != '' ) {
 				$urlParam['page'] = $page;
+			}
 			if ( $user != '')
 				$urlParam['user'] = $user;
 			if ( !is_array( $types ) ) # Make it an array, if it isn't
@@ -758,7 +761,7 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param $list LogEventsList
 	 * @param $types String or Array: log types to show
 	 * @param $performer String: the user who made the log entries
-	 * @param $title String or Title: the page title the log entries are for
+	 * @param $title String|Title: the page title the log entries are for
 	 * @param $pattern String: do a prefix search rather than an exact title match
 	 * @param $conds Array: extra conditions for the query
 	 * @param $year Integer: the year to start from
