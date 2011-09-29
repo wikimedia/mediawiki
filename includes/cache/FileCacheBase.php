@@ -1,6 +1,6 @@
 <?php
 /**
- * Contain the HTMLFileCache class
+ * Contain the FileCacheBase class
  * @file
  * @ingroup Cache
  */
@@ -128,7 +128,7 @@ abstract class FileCacheBase {
 		return $text;
 	}
 
-	/*
+	/**
 	 * Clear the cache for this page
 	 * @return void
 	 */
@@ -138,7 +138,7 @@ abstract class FileCacheBase {
 		wfRestoreWarnings();
 	}
 
-	/*
+	/**
 	 * Create parent directors of $this->cachePath()
 	 * @TODO: why call wfMkdirParents() twice?
 	 * @return void
@@ -152,7 +152,7 @@ abstract class FileCacheBase {
 		wfMkdirParents( $mydir2, null, __METHOD__ );
 	}
 
-	/*
+	/**
 	 * Return relative multi-level hash subdirectory with the trailing
 	 * slash or the empty string if $wgFileCacheDepth is off
 	 * @return string
