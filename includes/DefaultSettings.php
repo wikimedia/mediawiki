@@ -3003,8 +3003,7 @@ $wgPreprocessorCacheThreshold = 1000;
 $wgEnableScaryTranscluding = false;
 
 /**
- * (see next option $wgGlobalDatabase). 
- */
+ * (see next option $wgGlobalDatabase).
  */
 $wgTranscludeCacheExpiry = 3600;
 
