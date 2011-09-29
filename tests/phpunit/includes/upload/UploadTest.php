@@ -20,63 +20,14 @@ class UploadTest extends MediaWikiTestCase {
 		$wgHooks = $this->hooks;
 	}
 
+
 	/**
-	 * Test various forms of valid and invalid titles that can be supplied.
+	 * First checks the return code
+	 * of UploadBase::getTitle() and then the actual returned title
+	 * 
+	 * @dataProvider dataTestTitleValidation
 	 */
-	public function testTitleValidation() {
-
-
-		/* Test a valid title */
-		$this->assertUploadTitleAndCode( 'ValidTitle.jpg',
-			'ValidTitle.jpg', UploadBase::OK,
-			'upload valid title' );
-
-		/* A title with a slash */
-		$this->assertUploadTitleAndCode( 'A/B.jpg',
-			'B.jpg', UploadBase::OK,
-			'upload title with slash' );
-
-		/* A title with illegal char */
-		$this->assertUploadTitleAndCode( 'A:B.jpg',
-			'A-B.jpg', UploadBase::OK,
-			'upload title with colon' );
-
-		/* Stripping leading File: prefix */
-		$this->assertUploadTitleAndCode( 'File:C.jpg',
-			'C.jpg', UploadBase::OK,
-			'upload title with File prefix' );
-
-		/* Test illegal suggested title (r94601) */
-		$this->assertUploadTitleAndCode( '%281%29.JPG',
-			null, UploadBase::ILLEGAL_FILENAME,
-			'illegal title for upload' );
-
-		/* A title without extension */
-		$this->assertUploadTitleAndCode( 'A',
-			null, UploadBase::FILETYPE_MISSING,
-			'upload title without extension' );
-
-		/* A title with no basename */
-		$this->assertUploadTitleAndCode( '.jpg',
-			null, UploadBase::MIN_LENGTH_PARTNAME,
-			'upload title without basename' );
-		
-		/* A title that is longer than 255 bytes */
-		$this->assertUploadTitleAndCode( str_repeat( 'a', 255 ) . '.jpg',
-			null, UploadBase::ILLEGAL_FILENAME,
-			'upload title longer than 255 bytes' );
-			
-		/* A title that is longer than 240 bytes */
-		$this->assertUploadTitleAndCode( str_repeat( 'a', 240 ) . '.jpg',
-			null, UploadBase::ILLEGAL_FILENAME,
-			'upload title longer than 240 bytes' );
-
-	}
-	/**
-	 * Helper function for testTitleValidation. First checks the return code
-	 * of UploadBase::getTitle() and then the actual returned titl
-	 */
-	private function assertUploadTitleAndCode( $srcFilename, $dstFilename, $code, $msg ) {
+	public function testTitleValidation( $srcFilename, $dstFilename, $code, $msg ) {
 		/* Check the result code */
 		$this->assertEquals( $code,
 			$this->upload->testTitleValidation( $srcFilename ),
@@ -88,6 +39,41 @@ class UploadTest extends MediaWikiTestCase {
 				$this->upload->getTitle()->getText(),
 				"$msg text" );
 		}
+	}
+	
+	/**
+	 * Test various forms of valid and invalid titles that can be supplied.
+	 */
+	public function dataTestTitleValidation() {
+		return array(
+			/* Test a valid title */
+			array( 'ValidTitle.jpg', 'ValidTitle.jpg', UploadBase::OK, 
+				'upload valid title' ),
+			/* A title with a slash */
+			array( 'A/B.jpg', 'B.jpg', UploadBase::OK, 
+				'upload title with slash' ),
+			/* A title with illegal char */
+			array( 'A:B.jpg', 'A-B.jpg', UploadBase::OK, 
+				'upload title with colon' ),
+			/* Stripping leading File: prefix */
+			array( 'File:C.jpg', 'C.jpg', UploadBase::OK, 
+				'upload title with File prefix' ),
+			/* Test illegal suggested title (r94601) */
+			array( '%281%29.JPG', null, UploadBase::ILLEGAL_FILENAME, 
+				'illegal title for upload' ),
+			/* A title without extension */
+			array( 'A', null, UploadBase::FILETYPE_MISSING, 
+				'upload title without extension' ),
+			/* A title with no basename */
+			array( '.jpg', null, UploadBase::MIN_LENGTH_PARTNAME, 
+				'upload title without basename' ),
+			/* A title that is longer than 255 bytes */
+			array( str_repeat( 'a', 255 ) . '.jpg', null, UploadBase::ILLEGAL_FILENAME, 
+				'upload title longer than 255 bytes' ),
+			/* A title that is longer than 240 bytes */
+			array( str_repeat( 'a', 240 ) . '.jpg', null, UploadBase::ILLEGAL_FILENAME, 
+				'upload title longer than 240 bytes' ),
+		);
 	}
 
 	/**
