@@ -3221,6 +3221,9 @@ class Parser {
 					&& $this->mOptions->getAllowSpecialInclusion()
 					&& $this->ot['html'] )
 				{
+					// Pass the template arguments as URL parameters.
+					// "uselang" will have no effect since the Language object
+					// is forced to the one defined in ParserOptions.
 					$pageArgs = array();
 					for ( $i = 0; $i < $args->getLength(); $i++ ) {
 						$bits = $args->item( $i )->splitArg();
@@ -3230,6 +3233,8 @@ class Parser {
 							$pageArgs[$name] = $value;
 						}
 					}
+
+					// Create a new context to execute the special page
 					$context = new RequestContext;
 					$context->setTitle( $title );
 					$context->setRequest( new FauxRequest( $pageArgs ) );
