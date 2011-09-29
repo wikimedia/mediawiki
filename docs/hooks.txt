@@ -1191,8 +1191,8 @@ $code: language code
 
 'LogEventsListShowLogExtract': called before the string is added to OutputPage. Returning false will prevent the string from being added to the OutputPage
 &$s: html string to show for the log extract
-$types: String or Array (''isn't documented on showLogExtract() yet, not sure what it is'')
-$page: String The page title to show log entries for
+$types: String or Array Log types to show
+$page: String or Title The page title to show log entries for
 $user: String The user who made the log entries
 $param: Associative Array with the following additional options:
  - lim Integer Limit of items to show, default is 50
