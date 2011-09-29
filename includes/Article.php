@@ -32,6 +32,12 @@ class Article extends Page {
 	 */
 	protected $mPage;
 
+	/**
+	 * @protected
+	 * @var ParserOptions: ParserOptions object for $wgUser articles
+	 */
+	public $mParserOptions;
+
 	var $mContent;                    // !<
 	var $mContentLoaded = false;      // !<
 	var $mOldId;                      // !<
