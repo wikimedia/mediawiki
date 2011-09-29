@@ -15,34 +15,31 @@
  * history.
  *
  */
-class HistoryPage {
+class HistoryPage extends ContextSource {
 	const DIR_PREV = 0;
 	const DIR_NEXT = 1;
 
-	/** Contains the Article object. Passed on construction. */
-	private $article;
-	/** The $article title object. Found on construction. */
-	private $title;
+	/** Contains the Page object. Passed on construction. */
+	protected $article;
 
 	/**
 	 * Construct a new HistoryPage.
 	 *
 	 * @param $article Article
 	 */
-	function __construct( $article ) {
-		$this->article = $article;
-		$this->title = $article->getTitle();
+	function __construct( Page $page, IContextSource $context ) {
+		$this->article = $page;
+		$this->context = clone $context; // don't clobber the main context
+		$this->context->setTitle( $page->getTitle() ); // must match
 		$this->preCacheMessages();
 	}
 
-	/** Get the Article object we are working on. */
+	/**
+	 * Get the Article object we are working on.
+	 * @return Page
+	 */
 	public function getArticle() {
 		return $this->article;
-	}
-
-	/** Get the Title object. */
-	public function getTitle() {
-		return $this->title;
 	}
 
 	/**
@@ -64,35 +61,36 @@ class HistoryPage {
 	 * @return nothing
 	 */
 	function history() {
-		global $wgOut, $wgRequest, $wgScript, $wgUseFileCache;
+		global $wgScript, $wgUseFileCache;
+		$out = $this->getOutput();
+		$request = $this->getRequest();
 
 		/**
 		 * Allow client caching.
 		 */
-		if ( $wgOut->checkLastModified( $this->article->getTouched() ) ) {
+		if ( $out->checkLastModified( $this->article->getTouched() ) ) {
 			return; // Client cache fresh and headers sent, nothing more to do.
 		}
 
 		wfProfileIn( __METHOD__ );
 
-		$context = RequestContext::getMain();
 		# Fill in the file cache if not set already
-		if ( $wgUseFileCache && HTMLFileCache::useFileCache( $context ) ) {
-			$cache = HTMLFileCache::newFromTitle( $this->title, 'history' );
+		if ( $wgUseFileCache && HTMLFileCache::useFileCache( $this->getContext() ) ) {
+			$cache = HTMLFileCache::newFromTitle( $this->getTitle(), 'history' );
 			if ( !$cache->isCacheGood( /* Assume up to date */ ) ) {
 				ob_start( array( &$cache, 'saveToFileCache' ) );
 			}
 		}
 
 		// Setup page variables.
-		$wgOut->setPageTitle( wfMsg( 'history-title', $this->title->getPrefixedText() ) );
-		$wgOut->setPageTitleActionText( wfMsg( 'history_short' ) );
-		$wgOut->setArticleFlag( false );
-		$wgOut->setArticleRelated( true );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setSyndicated( true );
-		$wgOut->setFeedAppendQuery( 'action=history' );
-		$wgOut->addModules( array( 'mediawiki.legacy.history', 'mediawiki.action.history' ) );
+		$out->setPageTitle( wfMsg( 'history-title', $this->getTitle()->getPrefixedText() ) );
+		$out->setPageTitleActionText( wfMsg( 'history_short' ) );
+		$out->setArticleFlag( false );
+		$out->setArticleRelated( true );
+		$out->setRobotPolicy( 'noindex,nofollow' );
+		$out->setSyndicated( true );
+		$out->setFeedAppendQuery( 'action=history' );
+		$out->addModules( array( 'mediawiki.legacy.history', 'mediawiki.action.history' ) );
 
 		// Creation of a subtitle link pointing to [[Special:Log]]
 		$logPage = SpecialPage::getTitleFor( 'Log' );
@@ -100,25 +98,25 @@ class HistoryPage {
 			$logPage,
 			wfMsgHtml( 'viewpagelogs' ),
 			array(),
-			array( 'page' => $this->title->getPrefixedText() )
+			array( 'page' => $this->getTitle()->getPrefixedText() )
 		);
-		$wgOut->setSubtitle( $logLink );
+		$out->setSubtitle( $logLink );
 
 		// Handle atom/RSS feeds.
-		$feedType = $wgRequest->getVal( 'feed' );
+		$feedType = $request->getVal( 'feed' );
 		if ( $feedType ) {
 			wfProfileOut( __METHOD__ );
 			return $this->feed( $feedType );
 		}
 
 		// Fail nicely if article doesn't exist.
-		if ( !$this->title->exists() ) {
-			$wgOut->addWikiMsg( 'nohistory' );
+		if ( !$this->getTitle()->exists() ) {
+			$out->addWikiMsg( 'nohistory' );
 			# show deletion/move log if there is an entry
 			LogEventsList::showLogExtract(
-				$wgOut,
+				$out,
 				array( 'delete', 'move' ),
-				$this->title,
+				$this->getTitle(),
 				'',
 				array(  'lim' => 10,
 					'conds' => array( "log_action != 'revision'" ),
@@ -133,32 +131,32 @@ class HistoryPage {
 		/**
 		 * Add date selector to quickly get to a certain time
 		 */
-		$year        = $wgRequest->getInt( 'year' );
-		$month       = $wgRequest->getInt( 'month' );
-		$tagFilter   = $wgRequest->getVal( 'tagfilter' );
+		$year        = $request->getInt( 'year' );
+		$month       = $request->getInt( 'month' );
+		$tagFilter   = $request->getVal( 'tagfilter' );
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
 
 		/**
 		 * Option to show only revisions that have been (partially) hidden via RevisionDelete
 		 */
-		if ( $wgRequest->getBool( 'deleted' ) ) {
+		if ( $request->getBool( 'deleted' ) ) {
 			$conds = array( "rev_deleted != '0'" );
 		} else {
 			$conds = array();
 		}
 		$checkDeleted = Xml::checkLabel( wfMsg( 'history-show-deleted' ),
-			'deleted', 'mw-show-deleted-only', $wgRequest->getBool( 'deleted' ) ) . "\n";
+			'deleted', 'mw-show-deleted-only', $request->getBool( 'deleted' ) ) . "\n";
 
 		// Add the general form
 		$action = htmlspecialchars( $wgScript );
-		$wgOut->addHTML(
+		$out->addHTML(
 			"<form action=\"$action\" method=\"get\" id=\"mw-history-searchform\">" .
 			Xml::fieldset(
 				wfMsg( 'history-fieldset-title' ),
 				false,
 				array( 'id' => 'mw-history-search' )
 			) .
-			Html::hidden( 'title', $this->title->getPrefixedDBKey() ) . "\n" .
+			Html::hidden( 'title', $this->getTitle()->getPrefixedDBKey() ) . "\n" .
 			Html::hidden( 'action', 'history' ) . "\n" .
 			Xml::dateMenu( $year, $month ) . '&#160;' .
 			( $tagSelector ? ( implode( '&#160;', $tagSelector ) . '&#160;' ) : '' ) .
@@ -171,12 +169,12 @@ class HistoryPage {
 
 		// Create and output the list.
 		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
-		$wgOut->addHTML(
+		$out->addHTML(
 			$pager->getNavigationBar() .
 			$pager->getBody() .
 			$pager->getNavigationBar()
 		);
-		$wgOut->preventClickjacking( $pager->getPreventClickjacking() );
+		$out->preventClickjacking( $pager->getPreventClickjacking() );
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -206,7 +204,7 @@ class HistoryPage {
 			$offsets = array();
 		}
 
-		$page_id = $this->title->getArticleID();
+		$page_id = $this->getTitle()->getArticleID();
 
 		return $dbr->select( 'revision',
 			Revision::selectFields(),
@@ -223,21 +221,22 @@ class HistoryPage {
 	 * @param $type String: feed type
 	 */
 	function feed( $type ) {
-		global $wgFeedClasses, $wgRequest, $wgFeedLimit;
+		global $wgFeedClasses, $wgFeedLimit;
 		if ( !FeedUtils::checkFeedOutput( $type ) ) {
 			return;
 		}
+		$request = $this->getRequest();
 
 		$feed = new $wgFeedClasses[$type](
-			$this->title->getPrefixedText() . ' - ' .
+			$this->getTitle()->getPrefixedText() . ' - ' .
 			wfMsgForContent( 'history-feed-title' ),
 			wfMsgForContent( 'history-feed-description' ),
-			$this->title->getFullUrl( 'action=history' )
+			$this->getTitle()->getFullUrl( 'action=history' )
 		);
 
 		// Get a limit on number of feed entries. Provide a sane default
 		// of 10 if none is defined (but limit to $wgFeedLimit max)
-		$limit = $wgRequest->getInt( 'limit', 10 );
+		$limit = $request->getInt( 'limit', 10 );
 		if ( $limit > $wgFeedLimit || $limit < 1 ) {
 			$limit = 10;
 		}
@@ -256,14 +255,13 @@ class HistoryPage {
 	}
 
 	function feedEmpty() {
-		global $wgOut;
 		return new FeedItem(
 			wfMsgForContent( 'nohistory' ),
-			$wgOut->parse( wfMsgForContent( 'history-feed-empty' ) ),
-			$this->title->getFullUrl(),
+			$this->getOutput()->parse( wfMsgForContent( 'history-feed-empty' ) ),
+			$this->getTitle()->getFullUrl(),
 			wfTimestamp( TS_MW ),
 			'',
-			$this->title->getTalkPage()->getFullUrl()
+			$this->getTitle()->getTalkPage()->getFullUrl()
 		);
 	}
 
@@ -277,10 +275,10 @@ class HistoryPage {
 	 */
 	function feedItem( $row ) {
 		$rev = new Revision( $row );
-		$rev->setTitle( $this->title );
+		$rev->setTitle( $this->getTitle() );
 		$text = FeedUtils::formatDiffRow(
-			$this->title,
-			$this->title->getPreviousRevisionID( $rev->getId() ),
+			$this->getTitle(),
+			$this->getTitle()->getPreviousRevisionID( $rev->getId() ),
 			$rev->getId(),
 			$rev->getTimestamp(),
 			$rev->getComment()
@@ -301,10 +299,10 @@ class HistoryPage {
 		return new FeedItem(
 			$title,
 			$text,
-			$this->title->getFullUrl( 'diff=' . $rev->getId() . '&oldid=prev' ),
+			$this->getTitle()->getFullUrl( 'diff=' . $rev->getId() . '&oldid=prev' ),
 			$rev->getTimestamp(),
 			$rev->getUserText(),
-			$this->title->getTalkPage()->getFullUrl()
+			$this->getTitle()->getTalkPage()->getFullUrl()
 		);
 	}
 }
