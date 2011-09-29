@@ -37,7 +37,7 @@ class RebuildFileCache extends Maintenance {
 		if ( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
-		$wgDisableCounters = false;
+		$wgDisableCounters = true;
 		$start = $this->getArg( 0, "0" );
 		if ( !ctype_digit( $start ) ) {
 			$this->error( "Invalid value for start parameter.", true );
@@ -83,8 +83,8 @@ class RebuildFileCache extends Maintenance {
 				$article = new Article( $wgTitle );
 				// If the article is cacheable, then load it
 				if ( $article->isFileCacheable() ) {
-					$cache = new HTMLFileCache( $wgTitle );
-					if ( $cache->isFileCacheGood() ) {
+					$cache = HTMLFileCache::newFromTitle( $wgTitle, 'view' );
+					if ( $cache->isCacheGood() ) {
 						if ( $overwrite ) {
 							$rebuilt = true;
 						} else {

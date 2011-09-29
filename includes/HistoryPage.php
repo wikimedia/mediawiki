@@ -75,10 +75,11 @@ class HistoryPage {
 
 		wfProfileIn( __METHOD__ );
 
+		$context = RequestContext::getMain();
 		# Fill in the file cache if not set already
-		if ( $wgUseFileCache && HTMLFileCache::useFileCache() ) {
-			$cache = new HTMLFileCache( $this->title, 'history' );
-			if ( !$cache->isFileCacheGood( /* Assume up to date */ ) ) {
+		if ( $wgUseFileCache && HTMLFileCache::useFileCache( $context ) ) {
+			$cache = HTMLFileCache::newFromTitle( $this->title, 'history' );
+			if ( !$cache->isCacheGood( /* Assume up to date */ ) ) {
 				ob_start( array( &$cache, 'saveToFileCache' ) );
 			}
 		}
