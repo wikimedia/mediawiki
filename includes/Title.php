@@ -3575,6 +3575,9 @@ class Title {
 		}
 		# Get the article text
 		$rev = Revision::newFromTitle( $nt );
+		if( !is_object( $rev ) ){
+			return false;
+		}
 		$text = $rev->getText();
 		# Does the redirect point to the source?
 		# Or is it a broken self-redirect, usually caused by namespace collisions?
