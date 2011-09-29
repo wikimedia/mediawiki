@@ -217,7 +217,8 @@ production.
   Setting preferences in $wgDefaultUserOptions still work fine, but when reading
   them (i.e. with array_keys) to get a list of all preferences, then
   $wgDefaultUserOptions should no longer be used as it will contain those set via
-  User:getDefaultOptions().
+* (bug 30497) Add client-nojs and client-js classes on document element
+  to let styles easily hide or show things based on general JS availability
 
 === Bug fixes in 1.18 ===
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
