@@ -110,7 +110,8 @@ class Revision {
 			'minor_edit' => $row->ar_minor_edit,
 			'text_id'    => isset( $row->ar_text_id ) ? $row->ar_text_id : null,
 			'deleted'    => $row->ar_deleted,
-			'len'        => $row->ar_len);
+			'len'        => $row->ar_len
+		);
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
 			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
@@ -163,30 +164,6 @@ class Revision {
 			$conds[] = 'rev_id=page_latest';
 		}
 		return Revision::loadFromConds( $db, $conds );
-	}
-
-	/**
-	 * Stores the origin wiki of a revision in case it is a foreign wiki
-	 */
-	function setWikiID( $wikiID ) {
-		$this->mWikiID = $wikiID;
-	}
-
-	/**
-	 * Load the current revision of a given page of a foreign wiki.
-	 * The WikiID is stored for further use, such as loadText() and getTimestampFromId()
-	 */
-	public static function loadFromTitleForeignWiki( $wikiID, $title ) {
-		$dbr = wfGetDB( DB_SLAVE, array(), $wikiID );
-
-		$revision = self::loadFromTitle( $dbr, $title );
-
-		if( $revision ) {
-			$revision->setWikiID( $wikiID );
-		}
-
-		return $revision;
-
 	}
 
 	/**
@@ -426,7 +403,6 @@ class Revision {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
 		$this->mUnpatrolled = null;
-		$this->mWikiID = false;
 	}
 
 	/**
@@ -474,8 +450,7 @@ class Revision {
 		if( isset( $this->mTitle ) ) {
 			return $this->mTitle;
 		}
-		$dbr = wfGetDB( DB_SLAVE, array(), $this->mWikiID );
-
+		$dbr = wfGetDB( DB_SLAVE );
 		$row = $dbr->selectRow(
 			array( 'page', 'revision' ),
 			array( 'page_namespace', 'page_title' ),
@@ -614,7 +589,7 @@ class Revision {
 		if( $this->mUnpatrolled !== null ) {
 			return $this->mUnpatrolled;
 		}
-		$dbr = wfGetDB( DB_SLAVE, array(), $this->mWikiID );
+		$dbr = wfGetDB( DB_SLAVE );
 		$this->mUnpatrolled = $dbr->selectField( 'recentchanges',
 			'rc_id',
 			array( // Add redundant user,timestamp condition so we can use the existing index
@@ -950,11 +925,7 @@ class Revision {
 		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry, $wgMemc;
 		$textId = $this->getTextId();
-		if( isset( $this->mWikiID ) && $this->mWikiID !== false ) {
-			$key = wfForeignMemcKey( $this->mWikiID, null, 'revisiontext', 'textid', $textId );
-		} else {
 		$key = wfMemcKey( 'revisiontext', 'textid', $textId );
-		}
 		if( $wgRevisionCacheExpiry ) {
 			$text = $wgMemc->get( $key );
 			if( is_string( $text ) ) {
@@ -974,7 +945,7 @@ class Revision {
 
 		if( !$row ) {
 			// Text data is immutable; check slaves first.
-			$dbr = wfGetDB( DB_SLAVE, array(), $this->mWikiID );
+			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
 				array( 'old_id' => $this->getTextId() ),
@@ -983,7 +954,7 @@ class Revision {
 
 		if( !$row && wfGetLB()->getServerCount() > 1 ) {
 			// Possible slave lag!
-			$dbw = wfGetDB( DB_MASTER, array(), $this->mWikiID );
+			$dbw = wfGetDB( DB_MASTER );
 			$row = $dbw->selectRow( 'text',
 				array( 'old_text', 'old_flags' ),
 				array( 'old_id' => $this->getTextId() ),
@@ -1094,8 +1065,7 @@ class Revision {
 	 * @return String
 	 */
 	static function getTimestampFromId( $title, $id ) {
-		$wikiId = wfWikiID();
-		$dbr = wfGetDB( DB_SLAVE, array(), $wikiId );
+		$dbr = wfGetDB( DB_SLAVE );
 		// Casting fix for DB2
 		if ( $id == '' ) {
 			$id = 0;
@@ -1105,7 +1075,7 @@ class Revision {
 		$timestamp = $dbr->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
 		if ( $timestamp === false && wfGetLB()->getServerCount() > 1 ) {
 			# Not in slave, try master
-			$dbw = wfGetDB( DB_MASTER, array(), $wikiId );
+			$dbw = wfGetDB( DB_MASTER );
 			$timestamp = $dbw->selectField( 'revision', 'rev_timestamp', $conds, __METHOD__ );
 		}
 		return wfTimestamp( TS_MW, $timestamp );

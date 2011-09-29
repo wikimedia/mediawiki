@@ -47,7 +47,6 @@ class Title {
 	 */
 	const GAID_FOR_UPDATE = 1;
 
-
 	/**
 	 * @name Private member variables
 	 * Please use the accessor functions instead.
@@ -766,19 +765,6 @@ class Title {
 	}
 
 	/**
-	 * Return the prefixed title with spaces _without_ the interwiki prefix
-	 *
-	 * @return \type{\string} the title, prefixed by the namespace but not by the interwiki prefix, with spaces
-	 */
-	public function getSemiPrefixedText() {
-		if ( !isset( $this->mSemiPrefixedText ) ){
-			$s = ( $this->mNamespace === NS_MAIN ? '' : $this->getNsText() . ':' ) . $this->mTextform;
-			$s = str_replace( '_', ' ', $s );
-			$this->mSemiPrefixedText = $s;
-		}
-		return $this->mSemiPrefixedText;
-	}
-
 	/**
 	 * Get the prefixed title with spaces, plus any fragment
 	 * (part beginning with '#')
@@ -857,6 +843,8 @@ class Title {
 	 * @return String the URL
 	 */
 	public function getFullURL( $query = '', $variant = false ) {
+		global $wgServer, $wgRequest;
+
 		# Hand off all the decisions on urls to getLocalURL
 		$url = $this->getLocalURL( $query, $variant );
 
@@ -1029,12 +1017,8 @@ class Title {
 	 * @return String the URL
 	 */
 	public function getInternalURL( $query = '', $variant = false ) {
-		if ( $this->isExternal( ) ) {
-			$server = '';
-		} else {
-			global $wgInternalServer, $wgServer;
-			$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
-		}
+		global $wgInternalServer, $wgServer;
+		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
 		$url = wfExpandUrl( $server . $this->getLocalURL( $query, $variant ), PROTO_HTTP );
 		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query, $variant ) );
 		return $url;
@@ -2853,10 +2837,6 @@ class Title {
 		$this->mFragment = str_replace( '_', ' ', substr( $fragment, 1 ) );
 	}
 
-	public function setInterwiki( $interwiki ) {
-		$this->mInterwiki = $interwiki;
-	}
-
 	/**
 	 * Get a Title object associated with the talk page of this article
 	 *
@@ -3168,8 +3148,6 @@ class Title {
 	 * @return Mixed true on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
-		global $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase;
-
 		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if ( is_array( $err ) ) {
 			return $err;
@@ -3197,7 +3175,7 @@ class Title {
 		$pageCountChange = ( $createRedirect ? 1 : 0 ) - ( $nt->exists() ? 1 : 0 );
 
 		// Do the actual move
-		$err = $this->moveOverExistingRedirect( $nt, $reason, $createRedirect );
+		$err = $this->moveToInternal( $nt, $reason, $createRedirect );
 		if ( is_array( $err ) ) {
 			# @todo FIXME: What about the File we have already moved?
 			$dbw->rollback();
@@ -3227,15 +3205,6 @@ class Title {
 					'cl_to' => $catTo ),
 				__METHOD__
 			);
-		}
-
-		if ( $wgEnableInterwikiTemplatesTracking && $wgGlobalDatabase ) {
-			$dbw2 = wfGetDB( DB_MASTER, array(), $wgGlobalDatabase );
-			$dbw2->update( 'globaltemplatelinks',
-						array(  'gtl_from_namespace' => $nt->getNamespace(),
-								'gtl_from_title' => $nt->getText() ),
-						array ( 'gtl_from_page' => $pageid ),
-						__METHOD__ );
 		}
 
 		if ( $protected ) {
@@ -3331,8 +3300,8 @@ class Title {
 	 * @param $createRedirect Bool Whether to leave a redirect at the old title.  Ignored
 	 *   if the user doesn't have the suppressredirect right
 	 */
-	private function moveOverExistingRedirect( &$nt, $reason = '', $createRedirect = true ) {
-		global $wgUser, $wgContLang, $wgEnableInterwikiTemplatesTracking, $wgGlobalDatabase;
+	private function moveToInternal( &$nt, $reason = '', $createRedirect = true ) {
+		global $wgUser, $wgContLang;
 
 		if ( $nt->exists() ) {
 			$moveOverRedirect = true;
@@ -3399,14 +3368,7 @@ class Title {
 				array( 'rc_timestamp' => $rcts, 'rc_namespace' => $newns, 'rc_title' => $newdbk, 'rc_new' => 1 ),
 				__METHOD__
 			);
-
-			 if ( $wgEnableInterwikiTemplatesTracking && $wgGlobalDatabase ) {
-				$dbw2 = wfGetDB( DB_MASTER, array(), $wgGlobalDatabase );
-				$dbw2->delete( 'globaltemplatelinks',
-							array(  'gtl_from_wiki' => wfGetID(),
-									'gtl_from_page' => $newid ),
 							__METHOD__ );
-			}
 		}
 
 		# Save a null revision in the page's history notifying of the move

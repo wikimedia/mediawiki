@@ -126,8 +126,6 @@ class SpecialPageFactory {
 		// Page tools
 		'ComparePages'              => 'SpecialComparePages',
 		'Export'                    => 'SpecialExport',
-		'GlobalFileUsage'           => 'SpecialGlobalFileUsage',
-		'GlobalTemplateUsage'       => 'SpecialGlobalTemplateUsage',
 		'Import'                    => 'SpecialImport',
 		'Undelete'                  => 'SpecialUndelete',
 		'Whatlinkshere'             => 'SpecialWhatlinkshere',
@@ -264,7 +262,7 @@ class SpecialPageFactory {
 	/**
 	 * Add a page to a certain display group for Special:SpecialPages
 	 *
-	 * @param $page SpecialPage|string
+	 * @param $page Mixed: SpecialPage or string
 	 * @param $group String
 	 */
 	public static function setGroup( $page, $group ) {
@@ -277,8 +275,6 @@ class SpecialPageFactory {
 	 * Get the group that the special page belongs in on Special:SpecialPage
 	 *
 	 * @param $page SpecialPage
-	 *
-	 * @return string
 	 */
 	public static function getGroup( &$page ) {
 		$name = $page->getName();

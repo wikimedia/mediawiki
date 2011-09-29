@@ -177,25 +177,6 @@ class BacklinkCache {
 	}
 
 	/**
-	 * Get the distant backtemplatelinks for the table globaltemplatelinks. Cached in process memory only.
-	 * @return ResultWrapper list of distant pages that use the local title
-	 */
-	public function getDistantTemplateLinks( ) {
-		global $wgGlobalDatabase, $wgLocalInterwiki;
-
-		$dbr = wfGetDB( DB_SLAVE, array(), $wgGlobalDatabase );
-		$res = $dbr->select(
-			array( 'globaltemplatelinks', 'globalinterwiki' ),
-			array( 'gtl_from_wiki', 'gtl_from_page', 'gtl_from_title', 'giw_prefix' ),
-			array( 'gtl_to_prefix' => $wgLocalInterwiki, 'gtl_to_title' => $this->title->getDBkey( ) ),
-			__METHOD__,
-			null,
-			array( 'gtl_from_wiki = giw_wikiid' )
-		);
-		return $res;
-	}
-
-	/**
 	 * Get the field name prefix for a given table
 	 * @param $table String
 	 */
@@ -206,7 +187,6 @@ class BacklinkCache {
 			'categorylinks' => 'cl',
 			'templatelinks' => 'tl',
 			'redirect'      => 'rd',
-			'globaltemplatelinks' => 'gtl',
 		);
 
 		if ( isset( $prefixes[$table] ) ) {
@@ -305,7 +285,7 @@ class BacklinkCache {
 	 */
 	public function partition( $table, $batchSize ) {
 
-		// 1) try partition cache ...
+		// 1) try partition cache ... 
 
 		if ( isset( $this->partitionCache[$table][$batchSize] ) ) {
 			wfDebug( __METHOD__ . ": got from partition cache\n" );
@@ -360,7 +340,7 @@ class BacklinkCache {
 	 * Partition a DB result with backlinks in it into batches
 	 * @param $res ResultWrapper database result
 	 * @param $batchSize integer
-	 * @return array @see
+	 * @return array @see 
 	 */
 	protected function partitionResult( $res, $batchSize ) {
 		$batches = array();

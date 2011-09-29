@@ -2061,8 +2061,6 @@ class OutputPage extends ContextSource {
 	 * @param $action    String: action that was denied or null if unknown
 	 */
 	public function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
-		global $wgEnableInterwikiTranscluding, $wgEnableInterwikiTemplatesTracking;
-
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
@@ -2109,12 +2107,6 @@ class OutputPage extends ContextSource {
 			$templates = Linker::formatTemplates( $article->getUsedTemplates() );
 			$this->addHTML( "<div class='templatesUsed'>
 $templates
-</div>
-" );
-			if ( $wgEnableInterwikiTranscluding && $wgEnableInterwikiTemplatesTracking ) {
-				$distantTemplates = Linker::formatDistantTemplates( $article->getUsedDistantTemplates() );
-				$this->addHTML( "<div class='distantTemplatesUsed'>
-$distantTemplates
 </div>
 " );
 			}
