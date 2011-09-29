@@ -690,14 +690,14 @@ class SpecialPage {
 	 * @param $params array
 	 */
 	protected function addFeedLinks( $params ) {
-		global $wgFeedClasses, $wgOut;
+		global $wgFeedClasses;
 
 		$feedTemplate = wfScript( 'api' ) . '?';
 
 		foreach( $wgFeedClasses as $format => $class ) {
 			$theseParams = $params + array( 'feedformat' => $format );
 			$url = $feedTemplate . wfArrayToCGI( $theseParams );
-			$wgOut->addFeedLink( $format, $url );
+			$this->getOutput()->addFeedLink( $format, $url );
 		}
 	}
 }
