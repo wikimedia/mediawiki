@@ -103,7 +103,7 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 			return;
 		}
 
-		$res = $qp->doQuery( $params['limit'] + 1, $params['offset'] );
+		$res = $qp->doQuery( $params['offset'], $params['limit'] + 1 );
 		$count = 0;
 		$titles = array();
 		foreach ( $res as $row ) {

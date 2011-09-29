@@ -423,7 +423,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	public function getCachedTimestamp() {
-		if ( !is_null( $this->cachedTimestamp ) ) {
+		if ( is_null( $this->cachedTimestamp ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$fname = get_class( $this ) . '::getCachedTimestamp';
 			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
