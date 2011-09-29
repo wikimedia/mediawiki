@@ -596,16 +596,14 @@ class MediaWiki {
 
 		if ( $wgUseFileCache && $wgTitle->getNamespace() >= 0 ) {
 			wfProfileIn( 'main-try-filecache' );
-			// Raw pages should handle cache control on their own,
-			// even when using file cache. This reduces hits from clients.
-			if ( HTMLFileCache::useFileCache() ) {
+			if ( HTMLFileCache::useFileCache( $this->context ) ) {
 				/* Try low-level file cache hit */
-				$cache = new HTMLFileCache( $wgTitle, $action );
-				if ( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
+				$cache = HTMLFileCache::newFromTitle( $wgTitle, $action );
+				if ( $cache->isCacheGood( /* Assume up to date */ ) ) {
 					/* Check incoming headers to see if client has this cached */
-					$timestamp = $cache->fileCacheTime();
+					$timestamp = $cache->cacheTimestamp();
 					if ( !$this->context->getOutput()->checkLastModified( $timestamp ) ) {
-						$cache->loadFromFileCache();
+						$cache->loadFromFileCache( $this->context );
 					}
 					# Do any stats increment/watchlist stuff
 					$article = WikiPage::factory( $wgTitle );

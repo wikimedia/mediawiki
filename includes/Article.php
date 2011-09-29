@@ -1715,10 +1715,10 @@ class Article extends Page {
 
 		$called = true;
 		if ( $this->isFileCacheable() ) {
-			$cache = new HTMLFileCache( $this->getTitle() );
-			if ( $cache->isFileCacheGood( $this->mPage->getTouched() ) ) {
+			$cache = HTMLFileCache::newFromTitle( $this->getTitle(), 'view' );
+			if ( $cache->isCacheGood( $this->mPage->getTouched() ) ) {
 				wfDebug( "Article::tryFileCache(): about to load file\n" );
-				$cache->loadFromFileCache();
+				$cache->loadFromFileCache( $this->getContext() );
 				return true;
 			} else {
 				wfDebug( "Article::tryFileCache(): starting buffer\n" );
@@ -1738,8 +1738,9 @@ class Article extends Page {
 	public function isFileCacheable() {
 		$cacheable = false;
 
-		if ( HTMLFileCache::useFileCache() ) {
-			$cacheable = $this->mPage->getID() && !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
+		if ( HTMLFileCache::useFileCache( $this->getContext() ) ) {
+			$cacheable = $this->mPage->getID()
+				&& !$this->mRedirectedFrom && !$this->getTitle()->isRedirect();
 			// Extension may have reason to disable file caching on some pages.
 			if ( $cacheable ) {
 				$cacheable = wfRunHooks( 'IsFileCacheable', array( &$this ) );

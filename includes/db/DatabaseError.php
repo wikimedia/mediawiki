@@ -232,9 +232,9 @@ EOT;
 			$t = Title::newFromText( $this->msg( 'mainpage', 'Main Page' ) );
 		}
 
-		$cache = new HTMLFileCache( $t );
-		if ( $cache->isFileCached() ) {
-			return $cache->fetchPageText();
+		$cache = HTMLFileCache::newFromTitle( $t, 'view' );
+		if ( $cache->isCached() ) {
+			return $cache->fetchText();
 		} else {
 			return '';
 		}
