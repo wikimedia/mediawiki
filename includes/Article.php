@@ -382,7 +382,7 @@ class Article extends Page {
 
 		$parserCache = ParserCache::singleton();
 
-		$parserOptions = $this->mPage->getParserOptions();
+		$parserOptions = $this->getParserOptions();
 		# Render printable version, use printable version cache
 		if ( $wgOut->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
@@ -1004,7 +1004,7 @@ class Article extends Page {
 		global $wgOut;
 
 		$oldid = $this->getOldID();
-		$parserOptions = $this->mPage->getParserOptions();
+		$parserOptions = $this->getParserOptions();
 
 		# Render printable version, use printable version cache
 		$parserOptions->setIsPrintable( $wgOut->isPrintable() );
@@ -1031,7 +1031,7 @@ class Article extends Page {
 	public function tryDirtyCache() {
 		global $wgOut;
 		$parserCache = ParserCache::singleton();
-		$options = $this->mPage->getParserOptions();
+		$options = $this->getParserOptions();
 
 		if ( $wgOut->isPrintable() ) {
 			$options->setIsPrintable( true );
@@ -1839,7 +1839,7 @@ class Article extends Page {
 		global $wgParser, $wgEnableParserCache, $wgUseFileCache;
 
 		if ( !$parserOptions ) {
-			$parserOptions = $this->mPage->getParserOptions();
+			$parserOptions = $this->getParserOptions();
 		}
 
 		$time = - wfTime();
@@ -1870,6 +1870,19 @@ class Article extends Page {
 		}
 
 		return $this->mParserOutput;
+	}
+
+	/**
+	 * Get parser options suitable for rendering the primary article wikitext
+	 * @return mixed ParserOptions object or boolean false
+	 */
+	public function getParserOptions() {
+		global $wgUser;
+		if ( !$this->mParserOptions ) {
+			$this->mParserOptions = $this->mPage->makeParserOptions( $wgUser );
+		}
+		// Clone to allow modifications of the return value without affecting cache
+		return clone $this->mParserOptions;
 	}
 
 	/**
