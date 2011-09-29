@@ -1706,7 +1706,6 @@ class WikiPage extends Page {
 			$dbw->delete( 'iwlinks', array( 'iwl_from' => $id ), __METHOD__ );
 			$dbw->delete( 'redirect', array( 'rd_from' => $id ), __METHOD__ );
 			$dbw->delete( 'page_props', array( 'pp_page' => $id ), __METHOD__ );
-			}
 		}
 
 		# If using cleanup triggers, we can skip some manual deletes
