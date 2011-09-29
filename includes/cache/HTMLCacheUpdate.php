@@ -197,8 +197,6 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 			}
 		}
 	}
-
-				$pagesByWiki[$wikiid] = array();
 }
 
 
