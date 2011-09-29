@@ -1983,7 +1983,7 @@ class WikiPage extends Page {
 		$edit->revid = $revid;
 		$edit->newText = $text;
 		$edit->pst = $this->preSaveTransform( $text, $user, $popts );
-		$edit->popts = $this->makeParserOptions( new User );
+		$edit->popts = $this->makeParserOptions( 'canonical' );
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
 		$edit->oldText = $this->getRawText();
 
@@ -2573,17 +2573,19 @@ class WikiPage extends Page {
 
 	/**
 	* Get parser options suitable for rendering the primary article wikitext
-	* @param User $user
+	* @param User|string $user User object or 'canonical'
 	* @return ParserOptions
 	*/
-	public function makeParserOptions( User $user ) {
+	public function makeParserOptions( $user ) {
 		global $wgLanguageCode;
-		$options = ParserOptions::newFromUser( $user );
-		$options->enableLimitReport(); // show inclusion/loop reports
-		$options->setTidy( true ); // fix bad HTML
-		if ( $user->isAnon() ) {
+		if ( $user instanceof User ) { // settings per user (even anons)
+			$options = ParserOptions::newFromUser( $user );
+		} else { // canonical settings
+			$options = ParserOptions::newFromUser( new User );
 			$options->setUserLang( $wgLanguageCode ); # Must be set explicitily
 		}
+		$options->enableLimitReport(); // show inclusion/loop reports
+		$options->setTidy( true ); // fix bad HTML
 		return $options;
 	}
 
