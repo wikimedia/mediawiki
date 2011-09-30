@@ -356,12 +356,15 @@ class Preferences {
 				array(),
 				array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' ) ) );
 
+			$emailAddress = $user->getEmail() ? htmlspecialchars( $user->getEmail() ) : '';
+			if ( $wgAuth->allowPropChange( 'emailaddress' ) ) {
+				$emailAddress .= $emailAddress == '' ? $link : " ($link)";
+			}
+
 			$defaultPreferences['emailaddress'] = array(
 				'type' => 'info',
 				'raw' => true,
-				'default' => $user->getEmail()
-					? htmlspecialchars( $user->getEmail() ) . " ($link)"
-					: $link,
+				'default' => $emailAddress,
 				'label-message' => 'youremail',
 				'section' => 'personal/email',
 			);
