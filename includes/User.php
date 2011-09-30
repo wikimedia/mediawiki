@@ -3913,7 +3913,7 @@ class User {
 	 * @param $byEmail Boolean: account made by email?
 	 * @param $reason String: user supplied reason
 	 *
-	 * @return true
+	 * @return int|bool True if not $wgNewUserLog; otherwise ID of log item or 0 on failure
 	 */
 	public function addNewUserLogEntry( $byEmail = false, $reason = '' ) {
 		global $wgUser, $wgContLang, $wgNewUserLog;
@@ -3935,13 +3935,12 @@ class User {
 			}
 		}
 		$log = new LogPage( 'newusers' );
-		$log->addEntry(
+		return (int)$log->addEntry(
 			$action,
 			$this->getUserPage(),
 			$reason,
 			array( $this->getId() )
 		);
-		return true;
 	}
 
 	/**
