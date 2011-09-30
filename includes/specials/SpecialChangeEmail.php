@@ -31,10 +31,16 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		parent::__construct( 'ChangeEmail' );
 	}
 
+	function isListed() {
+		global $wgAuth;
+		return $wgAuth->allowPropChange( 'emailaddress' );
+	}
+
 	/**
 	 * Main execution point
 	 */
 	function execute( $par ) {
+		global $wgAuth;
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError;
 		}
@@ -50,6 +56,11 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 		$out->disallowUserJs();
 
 		$user = $this->getUser();
+
+		if ( !$wgAuth->allowPropChange( 'emailaddress' ) ) {
+			$this->error( wfMsgExt( 'cannotchangeemail', 'parseinline' ) );
+			return;
+		}
 
 		if ( !$request->wasPosted() && !$user->isLoggedIn() ) {
 			$this->error( wfMsg( 'changeemail-no-info' ) );
