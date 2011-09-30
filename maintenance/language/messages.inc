@@ -478,6 +478,7 @@ $wgMessageStructure = array(
 		'noemailprefs',
 		'emailconfirmlink',
 		'invalidemailaddress',
+		'cannotchangeemail',
 		'accountcreated',
 		'accountcreatedtext',
 		'createaccount-title',
