@@ -1424,6 +1424,7 @@ class Preferences {
 	/*
 	 * Try to set a user's email address.
 	 * This does *not* try to validate the address.
+	 * Caller is responsible for checking $wgAuth.
 	 * @param $user User
 	 * @param $newaddr string New email address
 	 * @return Array (true on success or Status on failure, info string)

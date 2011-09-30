@@ -1126,6 +1126,7 @@ No e-mail will be sent for any of the following features.',
 'emailconfirmlink'           => 'Confirm your e-mail address',
 'invalidemailaddress'        => 'The e-mail address cannot be accepted as it appears to have an invalid format.
 Please enter a well-formatted address or empty that field.',
+'cannotchangeemail'          => 'Account e-mail addresses cannot be changed on this wiki.',
 'accountcreated'             => 'Account created',
 'accountcreatedtext'         => 'The user account for $1 has been created.',
 'createaccount-title'        => 'Account creation for {{SITENAME}}',
