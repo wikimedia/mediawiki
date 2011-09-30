@@ -891,7 +891,7 @@ class ResourceLoader {
 		
 		// Prevent the IE6 extension check from being triggered (bug 28840)
 		// by appending a character that's invalid in Windows extensions ('*')
-		return wfAppendQuery( $wgLoadScript, $query ) . '&*';
+		return wfExpandUrl( wfAppendQuery( $wgLoadScript, $query ) . '&*', PROTO_RELATIVE );
 	}
 
 	/**
