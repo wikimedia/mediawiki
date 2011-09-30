@@ -42,7 +42,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'sqliteSetupSearchindex' ),
 
 			// 1.17
-			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
+			array( 'addTable', 'iwlinks',                            'patch-iwlinks.sql' ),
 			array( 'addIndex', 'iwlinks',   'iwl_prefix_title_from', 'patch-rename-iwl_prefix.sql' ),
 			array( 'addField', 'updatelog', 'ul_value',              'patch-ul_value.sql' ),
 			array( 'addField', 'interwiki',     'iw_api',           'patch-iw_api_and_wikiid.sql' ),
