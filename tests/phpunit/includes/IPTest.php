@@ -502,7 +502,7 @@ class IPTest extends MediaWikiTestCase {
 			array( '0:1:2:3:4:c5:f6:7/96', '0:1:2:3:4:C5:0:0/96', 'IPv6 range' ),
 			array( '0:1:2:3:4:5:6:7/120', '0:1:2:3:4:5:6:0/120', 'IPv6 range' ),
 			array( '0:e1:2:3:4:5:e6:7/128', '0:E1:2:3:4:5:E6:7/128', 'IPv6 silly range' ),
-			array( '0:1:A2:3:4:5:c6:7', '0:1:A2:3:4:5:c6:7', 'IPv6 non range' ),
+			array( '0:c1:A2:3:4:5:c6:7', '0:C1:A2:3:4:5:C6:7', 'IPv6 non range' ),
 		);
 	}
 }
