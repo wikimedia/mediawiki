@@ -353,7 +353,17 @@ class ResourceLoader {
 	 * @param $context ResourceLoaderContext: Context in which a response should be formed
 	 */
 	public function respond( ResourceLoaderContext $context ) {
-		global $wgCacheEpoch;
+		global $wgCacheEpoch, $wgUseFileCache;
+
+		// Use file cache if enabled and available...
+		if ( $wgUseFileCache ) {
+			$type = 'resources-' . ( $context->getOnly() === 'styles' ? 'css' : 'js' );
+			$hash = sha1( $context->getHash() . implode( ',', $context->getModules() ) );
+			$fileCache = ObjectFileCache::newFromKey( $hash, $type );
+			if ( $this->tryRespondFromFileCache( $fileCache, $context ) ) {
+				return; // output handled
+			}
+		}
 
 		// Buffer output to catch warnings. Normally we'd use ob_clean() on the
 		// top-level output buffer to clear warnings, but that breaks when ob_gzhandler
@@ -431,6 +441,15 @@ class ResourceLoader {
 		// Remove the output buffer and output the response
 		ob_end_clean();
 		echo $response;
+
+		// Save response to file cache if enabled
+		if ( isset( $fileCache ) && !$private && !$exceptions && !$missing ) {
+			$request = $context->getRequest();
+			// Don't cache URLs that the user was not given by site
+			if ( $request->getVal( 'fckey' ) == self::fileCacheKey( $request->getRequestURL() ) ) {
+				$fileCache->saveText( $response );
+			}
+		}
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -517,6 +536,50 @@ class ResourceLoader {
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Send out code for a response from file cache if possible
+	 *
+	 * @param $fileCache ObjectFileCache: Cache object for this request URL
+	 * @param $context ResourceLoaderContext: Context in which to generate a response
+	 * @return bool If this found a cache file and handled the response
+	 */
+	protected function tryRespondFromFileCache(
+		ObjectFileCache $fileCache, ResourceLoaderContext $context
+	) {
+		global $wgResourceLoaderMaxage;
+		// Buffer output to catch warnings.
+		ob_start();
+		// Get the maximum age the cache can be
+		$maxage = is_null( $context->getVersion() )
+			? $wgResourceLoaderMaxage['unversioned']['server']
+			: $wgResourceLoaderMaxage['versioned']['server'];
+		// Minimum timestamp the cache file must have
+		$good = $fileCache->isCacheGood( wfTimestamp( TS_MW, time() - $maxage ) );
+		if ( !$good ) {
+			try { // RL always hits the DB on file cache miss...
+				wfGetDB( DB_SLAVE );
+			} catch( DBConnectionError $e ) { // ...check if we need to fallback to cache
+				$good = $fileCache->isCacheGood(); // cache existence check
+			}
+		}
+		if ( $good ) {
+			$ts = $fileCache->cacheTimestamp();
+			// Send content type and cache headers
+			$this->sendResponseHeaders( $context, $ts, false );
+			// If there's an If-Modified-Since header, respond with a 304 appropriately
+			if ( $this->tryRespondLastModified( $context, $ts ) ) {
+				return; // output handled (buffers cleared)
+			}
+			$response = $fileCache->fetchText();
+			// Remove the output buffer and output the response
+			ob_end_clean();
+			echo $response . "\n/* Cached {$ts} */";
+			return true; // cache hit
+		}
+		ob_end_clean();
+		return false; // cache miss
 	}
 
 	/**
@@ -912,14 +975,29 @@ class ResourceLoader {
 	 */
 	public static function makeLoaderURL( $modules, $lang, $skin, $user = null, $version = null, $debug = false, $only = null,
 			$printable = false, $handheld = false, $extraQuery = array() ) {
-		global $wgLoadScript;
+		global $wgLoadScript, $wgUseFileCache;
 		$query = self::makeLoaderQuery( $modules, $lang, $skin, $user, $version, $debug,
 			$only, $printable, $handheld, $extraQuery
 		);
-		
+
+		$url = wfAppendQuery( $wgLoadScript, $query );
+		// Avoid deliberate FS pollution with hand-made URLs
+		if ( $wgUseFileCache ) {
+			$url .= '&fckey=' . self::fileCacheKey( $url . '&*' );
+		}
+
 		// Prevent the IE6 extension check from being triggered (bug 28840)
-		// by appending a character that's invalid in Windows extensions ('*')
-		return wfExpandUrl( wfAppendQuery( $wgLoadScript, $query ) . '&*', PROTO_RELATIVE );
+		// by appending a character that's invalid in Windows extensions ('*')	
+		return $url . '&*';
+	}
+
+	/**
+	 * Get a filecache key for a load.php URL
+	 * @return string
+	 */
+	protected static function fileCacheKey( $url ) {
+		global $wgSecretKey;
+		return sha1( preg_replace( '/&fckey=[^&]*/', '', $url ) . $wgSecretKey . wfWikiID() );
 	}
 
 	/**
