@@ -681,7 +681,12 @@ class SpecialPage {
 	 * @see wfMessage
 	 */
 	public function msg( /* $args */ ) {
-		return call_user_func_array( array( $this->getContext(), 'msg' ), func_get_args() );
+		// Note: can't use func_get_args() directly as second or later item in
+		// a parameter list until PHP 5.3 or you get a fatal error.
+		// Works fine as the first parameter, which appears elsewhere in the
+		// code base. Sighhhh.
+		$args = func_get_args();
+		return call_user_func_array( array( $this->getContext(), 'msg' ), $args );
 	}
 
 	/**
