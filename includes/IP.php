@@ -705,8 +705,11 @@ class IP {
 	 * @param $range String: IP address to normalize
 	 * @return string
 	 */
-	public static function sanitizeRange( $range ){
+	public static function sanitizeRange( $range ) {
 		list( /*...*/, $bits ) = self::parseCIDR( $range );
+		if ( $bits === false ) {
+			return $range; // wasn't actually a range
+		}
 		list( $start, /*...*/ ) = self::parseRange( $range );
 		$start = self::formatHex( $start );
 		return "$start/$bits";

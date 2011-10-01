@@ -482,4 +482,27 @@ class IPTest extends MediaWikiTestCase {
 		);
 	}
 
+	/**
+	 * Test for IP::sanitizeRange()
+	 * @dataProvider provideIPCIDRs
+	 */
+	function testSanitizeRange( $input, $expected, $description ) {
+		$this->assertEquals( $expected, IP::sanitizeRange( $input ), $description );
+	}
+
+	/**
+	 * Provider for IP::testSanitizeRange()
+	 */
+	function provideIPCIDRs() {
+		return array(
+			array( '35.56.31.252/16', '35.56.0.0/16', 'IPv4 range' ),
+			array( '135.16.21.252/24', '135.16.21.0/24', 'IPv4 range' ),
+			array( '5.36.71.252/32', '5.36.71.252/32', 'IPv4 silly range' ),
+			array( '5.36.71.252', '5.36.71.252', 'IPv4 non-range' ),
+			array( '0:1:2:3:4:c5:f6:7/96', '0:1:2:3:4:C5:0:0/96', 'IPv6 range' ),
+			array( '0:1:2:3:4:5:6:7/120', '0:1:2:3:4:5:6:0/120', 'IPv6 range' ),
+			array( '0:e1:2:3:4:5:e6:7/128', '0:E1:2:3:4:5:E6:7/128', 'IPv6 silly range' ),
+			array( '0:1:A2:3:4:5:c6:7', '0:1:A2:3:4:5:c6:7', 'IPv6 non range' ),
+		);
+	}
 }
