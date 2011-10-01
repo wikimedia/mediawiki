@@ -92,7 +92,7 @@ class SpecialBlock extends SpecialPage {
 
 		$out = $this->getOutput();
 		$out->setPageTitle( wfMsg( 'blockip-title' ) );
-		$out->addModules( 'mediawiki.special', 'mediawiki.special.block' );
+		$out->addModules( array( 'mediawiki.special', 'mediawiki.special.block' ) );
 
 		$fields = $this->getFormFields();
 		$this->maybeAlterFormDefaults( $fields );
