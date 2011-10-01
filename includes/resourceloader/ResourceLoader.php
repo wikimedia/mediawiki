@@ -353,7 +353,7 @@ class ResourceLoader {
 	 * @param $context ResourceLoaderContext: Context in which a response should be formed
 	 */
 	public function respond( ResourceLoaderContext $context ) {
-		global $wgResourceLoaderMaxage, $wgCacheEpoch;
+		global $wgCacheEpoch;
 
 		// Buffer output to catch warnings. Normally we'd use ob_clean() on the
 		// top-level output buffer to clear warnings, but that breaks when ob_gzhandler
@@ -376,19 +376,6 @@ class ResourceLoader {
 			} else {
 				$missing[] = $name;
 			}
-		}
-
-		// If a version wasn't specified we need a shorter expiry time for updates
-		// to propagate to clients quickly
-		if ( is_null( $context->getVersion() ) ) {
-			$maxage  = $wgResourceLoaderMaxage['unversioned']['client'];
-			$smaxage = $wgResourceLoaderMaxage['unversioned']['server'];
-		}
-		// If a version was specified we can use a longer expiry time since changing
-		// version numbers causes cache misses
-		else {
-			$maxage  = $wgResourceLoaderMaxage['versioned']['client'];
-			$smaxage = $wgResourceLoaderMaxage['versioned']['server'];
 		}
 
 		// Preload information needed to the mtime calculation below
@@ -421,6 +408,53 @@ class ResourceLoader {
 
 		wfProfileOut( __METHOD__.'-getModifiedTime' );
 
+		// Send content type and cache related headers
+		$this->sendResponseHeaders( $context, $mtime, $private );
+
+		// If there's an If-Modified-Since header, respond with a 304 appropriately
+		if ( $this->tryRespondLastModified( $context, $mtime ) ) {
+			return; // output handled (buffers cleared)
+		}
+
+		// Generate a response
+		$response = $this->makeModuleResponse( $context, $modules, $missing );
+
+		// Prepend comments indicating exceptions
+		$response = $exceptions . $response;
+
+		// Capture any PHP warnings from the output buffer and append them to the
+		// response in a comment if we're in debug mode.
+		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
+			$response = "/*\n$warnings\n*/\n" . $response;
+		}
+
+		// Remove the output buffer and output the response
+		ob_end_clean();
+		echo $response;
+
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Send content type and last modified headers to the client.
+	 * @param $context ResourceLoaderContext
+	 * @param $mtime string TS_MW timestamp to use for last-modified
+	 * @param $private bool True iff response contains any private modules
+	 * @return void
+	 */
+	protected function sendResponseHeaders( ResourceLoaderContext $context, $mtime, $private ) {
+		global $wgResourceLoaderMaxage;
+		// If a version wasn't specified we need a shorter expiry time for updates
+		// to propagate to clients quickly
+		if ( is_null( $context->getVersion() ) ) {
+			$maxage  = $wgResourceLoaderMaxage['unversioned']['client'];
+			$smaxage = $wgResourceLoaderMaxage['unversioned']['server'];
+		// If a version was specified we can use a longer expiry time since changing
+		// version numbers causes cache misses
+		} else {
+			$maxage  = $wgResourceLoaderMaxage['versioned']['client'];
+			$smaxage = $wgResourceLoaderMaxage['versioned']['server'];
+		}
 		if ( $context->getOnly() === 'styles' ) {
 			header( 'Content-Type: text/css; charset=utf-8' );
 		} else {
@@ -441,7 +475,16 @@ class ResourceLoader {
 			}
 			header( 'Expires: ' . wfTimestamp( TS_RFC2822, $exp + time() ) );
 		}
+	}
 
+	/**
+	 * If there's an If-Modified-Since header, respond with a 304 appropriately
+	 * and clear out the output buffer. If the client cache is too old then do nothing.
+	 * @param $context ResourceLoaderContext
+	 * @param $mtime string The TS_MW timestamp to check the header against
+	 * @return bool True iff 304 header sent and output handled
+	 */
+	protected function tryRespondLastModified( ResourceLoaderContext $context, $mtime ) {
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		// Some clients send "timestamp;length=123". Strip the part after the first ';'
 		// so we get a valid timestamp.
@@ -470,27 +513,10 @@ class ResourceLoader {
 				header( 'HTTP/1.0 304 Not Modified' );
 				header( 'Status: 304 Not Modified' );
 				wfProfileOut( __METHOD__ );
-				return;
+				return true;
 			}
 		}
-
-		// Generate a response
-		$response = $this->makeModuleResponse( $context, $modules, $missing );
-
-		// Prepend comments indicating exceptions
-		$response = $exceptions . $response;
-
-		// Capture any PHP warnings from the output buffer and append them to the
-		// response in a comment if we're in debug mode.
-		if ( $context->getDebug() && strlen( $warnings = ob_get_contents() ) ) {
-			$response = "/*\n$warnings\n*/\n" . $response;
-		}
-
-		// Remove the output buffer and output the response
-		ob_end_clean();
-		echo $response;
-
-		wfProfileOut( __METHOD__ );
+		return false;
 	}
 
 	/**
@@ -793,6 +819,8 @@ class ResourceLoader {
 	 * 
 	 * @param $id String: source ID
 	 * @param $properties Array: source properties (see addSource())
+	 *
+	 * @return string
 	 */
 	public static function makeLoaderSourcesScript( $id, $properties = null ) {
 		if ( is_array( $id ) ) {
