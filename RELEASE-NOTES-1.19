@@ -69,6 +69,7 @@ production.
 * Some deprecated presentational html attributes will now be automatically converted to css.
 * (bug 31233) New OutputPage::addJsConfigVars() method to make the output page specific
   mw.config map extendable.
+* (bug 31297) Add support for namespaces in Special:RecentChanges subpage filter syntax.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if

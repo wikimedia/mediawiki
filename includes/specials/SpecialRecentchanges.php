@@ -232,6 +232,9 @@ class SpecialRecentChanges extends IncludableSpecialPage {
 			if( preg_match( '/^days=(\d+)$/', $bit, $m ) ) {
 				$opts['days'] = $m[1];
 			}
+			if( preg_match( '/^namespace=(\d+)$/', $bit, $m ) ) {
+				$opts['namespace'] = $m[1];
+			}
 		}
 	}
 
