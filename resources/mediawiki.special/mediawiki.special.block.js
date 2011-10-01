@@ -4,7 +4,7 @@ jQuery( function( $ ) {
 
 	var	DO_INSTANT = true,
 		$blockTarget = $( '#mw-bi-target' ),
-		$anonOnlyRow = $( '#mw-input-wpHardblock' ).closest( 'tr' ),
+		$anonOnlyRow = $( '#mw-input-wpHardBlock' ).closest( 'tr' ),
 		$enableAutoblockRow = $( '#mw-input-wpAutoBlock' ).closest( 'tr' ),
 		$hideUser = $( '#mw-input-wpHideUser' ).closest( 'tr' ),
 		$watchUser = $( '#mw-input-wpWatch' ).closest( 'tr' );
