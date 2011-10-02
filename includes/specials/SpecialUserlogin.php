@@ -1039,6 +1039,14 @@ class LoginForm extends SpecialPage {
 			if( $this->mLanguage )
 				$template->set( 'uselang', $this->mLanguage );
 		}
+		
+		// Use loginend-https for HTTPS requests if it exists, loginend otherwise
+		$httpsMsg = wfMessage( 'loginend-https' );
+		if ( WebRequest::detectProtocol() == 'https' && $httpsMsg->exists() ) {
+			$template->set( 'loginend', $httpsMsg->parse() );
+		} else {
+			$template->set( 'loginend', wfMessage( 'loginend' )->parse() );
+		}
 
 		// Give authentication and captcha plugins a chance to modify the form
 		$wgAuth->modifyUITemplate( $template, $this->mType );
