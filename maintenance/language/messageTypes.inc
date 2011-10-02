@@ -105,6 +105,7 @@ $wgIgnoredMessages = array(
 	'history_copyright',
 	'licenses',
 	'loginstart',
+	'loginend-https',
 	'loginend',
 	'loginlanguagelinks',
 	'pear-mail-error',
