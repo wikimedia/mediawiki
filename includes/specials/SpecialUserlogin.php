@@ -1040,9 +1040,9 @@ class LoginForm extends SpecialPage {
 				$template->set( 'uselang', $this->mLanguage );
 		}
 		
-		// Use loginend-https for HTTPS requests if it exists, loginend otherwise
+		// Use loginend-https for HTTPS requests if it's not blank, loginend otherwise
 		$httpsMsg = wfMessage( 'loginend-https' );
-		if ( WebRequest::detectProtocol() == 'https' && $httpsMsg->exists() ) {
+		if ( WebRequest::detectProtocol() == 'https' && !$httpsMsg->isBlank() ) {
 			$template->set( 'loginend', $httpsMsg->parse() );
 		} else {
 			$template->set( 'loginend', wfMessage( 'loginend' )->parse() );
