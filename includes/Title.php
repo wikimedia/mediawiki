@@ -3360,6 +3360,7 @@ class Title {
 				$dbw->delete( 'templatelinks', array( 'tl_from' => $newid ), __METHOD__ );
 				$dbw->delete( 'externallinks', array( 'el_from' => $newid ), __METHOD__ );
 				$dbw->delete( 'langlinks', array( 'll_from' => $newid ), __METHOD__ );
+				$dbw->delete( 'iwlinks', array( 'iwl_from' => $newid ), __METHOD__ );
 				$dbw->delete( 'redirect', array( 'rd_from' => $newid ), __METHOD__ );
 				$dbw->delete( 'page_props', array( 'pp_page' => $newid ), __METHOD__ );
 			}
