@@ -59,6 +59,7 @@ class FindHooks extends Maintenance {
 			$IP . '/includes/actions/',
 			$IP . '/includes/api/',
 			$IP . '/includes/cache/',
+			$IP . '/includes/context/',
 			$IP . '/includes/db/',
 			$IP . '/includes/diff/',
 			$IP . '/includes/filerepo/',
