@@ -224,19 +224,36 @@
 	 * This only treats a row as a header row if it contains only <th>s (no <td>s)
 	 * and if it is preceded entirely by header rows. The algorithm stops when
 	 * it encounters the first non-header row.
+	 * 
+	 * After this, it will look at all rows at the bottom for footer rows
+	 * And place these in a tfoot using similar rules.
 	 * @param $table jQuery object for a <table>
 	 */ 
-	function emulateTHead( $table ) {
-		var $thead = $( '<thead>' );
-		$table.find( 'tr' ).each( function() {
-			if ( $(this).children( 'td' ).length > 0 ) {
-				// This row contains a <td>, so it's not a header row
-				// Stop here
-				return false;
-			}
-			$thead.append( this );
-		} );
-		$table.prepend( $thead );
+	function emulateTHeadAndFoot( $table ) {
+		var $rows = $table.find( 'tr' );
+		if( !$table.get(0).tHead ) {
+			var $thead = $( '<thead>' );
+			$rows.each( function() {
+				if ( $(this).children( 'td' ).length > 0 ) {
+					// This row contains a <td>, so it's not a header row
+					// Stop here
+					return false;
+				}
+				$thead.append( this );
+			} );
+			$table.prepend( $thead );
+		}
+		if( !$table.get(0).tFoot ) {
+			var $tfoot = $( '<tfoot>' );
+			var len = $rows.length;
+			for ( var i = len-1; i >= 0; i-- ) {
+				if( $( $rows[i] ).children( 'td' ).length > 0 ){
+					break;
+				}
+				$tfoot.prepend( $( $rows[i] ));
+			} 
+			$table.append( $tfoot );
+		}
 	}
 
 	function buildHeaders( table, msg ) {
@@ -532,8 +549,8 @@
 					}
 					if ( !table.tHead ) {
 						// No thead found. Look for rows with <th>s and
-						// move them into a <thead> tag
-						emulateTHead( $table );
+						// move them into a <thead> tag or a <tfoot> tag
+						emulateTHeadAndFoot( $table );
 						
 						// Still no thead? Then quit
 						if ( !table.tHead ) {
