@@ -198,34 +198,32 @@ pre {
 h1.firstHeading, h2 {
   border-bottom: solid 1px black;
 }
-#bodyContent a[href ^="http://"],
-#bodyContent a[href ^="gopher://"] {
+#bodyContent a.external,
+#bodyContent a.external[href ^="gopher://"] {
     background: url("external.png") center right no-repeat;
     padding-right: 13px;
 }
-#bodyContent a[href ^="https://"],
+#bodyContent a.external[href ^="https://"],
 .link-https {
     background: url("lock_icon.gif") center right no-repeat;
     padding-right: 16px;
 }
-#bodyContent a[href ^="mailto:"],
+#bodyContent a.external[href ^="mailto:"],
 .link-mailto {
     background: url("mail_icon.gif") center right no-repeat;
     padding-right: 18px;
 }
-#bodyContent a[href ^="news://"] {
+#bodyContent a.external[href ^="news://"] {
     background: url("news_icon.png") center right no-repeat;
     padding-right: 18px;
 }
-#bodyContent a[href ^="ftp://"],
+#bodyContent a.external[href ^="ftp://"],
 .link-ftp {
     background: url("file_icon.gif") center right no-repeat;
     padding-right: 18px;
 }
-#bodyContent a[href ^="irc://"],
-#bodyContent a.extiw[href ^="irc://"],
-#bodyContent a[href ^="ircs://"],
-#bodyContent a.extiw[href ^="ircs://"],
+#bodyContent a.external[href ^="irc://"],
+#bodyContent a.external[href ^="ircs://"],
 .link-irc {
     background: url("discussionitem_icon.gif")  center right no-repeat;
     padding-right: 18px;
@@ -234,8 +232,6 @@ h1.firstHeading, h2 {
 #bodyContent a.extiw,
 #bodyContent a.extiw:active {
   color: #5E7CFF;
-  background: none;
-  padding: 0;
 }
 
 td.diff-addedline {

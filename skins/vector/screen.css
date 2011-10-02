@@ -695,38 +695,36 @@ pre {
 	font-size: 1.6em;
 }
 div#content a.external,
-div#content a[href ^="gopher://"] {
+div#content a.external[href ^="gopher://"] {
 	/* @embed */
 	background: url(images/external-link-ltr-icon.png) center right no-repeat;
 	padding-right: 13px;
 }
-div#content a[href ^="https://"],
+div#content a.external[href ^="https://"],
 .link-https {
 	/* @embed */
 	background: url(images/lock-icon.png) center right no-repeat;
 	padding-right: 13px;
 }
-div#content a[href ^="mailto:"],
+div#content a.external[href ^="mailto:"],
 .link-mailto {
 	/* @embed */
 	background: url(images/mail-icon.png) center right no-repeat;
 	padding-right: 13px;
 }
-div#content a[href ^="news://"] {
+div#content a.external[href ^="news://"] {
 	/* @embed */
 	background: url(images/news-icon.png) center right no-repeat;
 	padding-right: 13px;
 }
-div#content a[href ^="ftp://"],
+div#content a.external[href ^="ftp://"],
 .link-ftp {
 	/* @embed */
 	background: url(images/file-icon.png) center right no-repeat;
 	padding-right: 13px;
 }
-div#content a[href ^="irc://"],
-div#content a.extiw[href ^="irc://"],
-div#content a[href ^="ircs://"],
-div#content a.extiw[href ^="ircs://"],
+div#content a.external[href ^="irc://"],
+div#content a.external[href ^="ircs://"],
 .link-irc {
 	/* @embed */
 	background: url(images/talk-icon.png) center right no-repeat;
