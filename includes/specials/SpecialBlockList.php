@@ -367,7 +367,7 @@ class BlockListPager extends TablePager {
 
 		# Is the user allowed to see hidden blocks?
 		if ( !$this->getUser()->isAllowed( 'hideuser' ) ){
-			$conds['ipb_deleted'] = 0;
+			$info['conds']['ipb_deleted'] = 0;
 		}
 
 		return $info;
