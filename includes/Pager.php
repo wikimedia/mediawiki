@@ -103,7 +103,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 */
 	public $mResult;
 
-	public function __construct( RequestContext $context = null ) {
+	public function __construct( IContextSource $context = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}
