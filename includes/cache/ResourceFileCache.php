@@ -72,12 +72,15 @@ class ResourceFileCache extends FileCacheBase {
 	}
 
 	/**
-	 * Recent cache misses
+	 * Item has many recent cache misses
 	 * @return bool
 	 */
 	public function isCacheWorthy() {
 		if ( $this->mCacheWorthy === null ) {
-			$this->mCacheWorthy = ( $this->getMissesRecent() >= self::MISS_THRESHOLD );
+			$this->mCacheWorthy = (
+				$this->isCached() || // even stale cache indicates it was cache worthy
+				$this->getMissesRecent() >= self::MISS_THRESHOLD // many misses
+			);
 		}
 		return $this->mCacheWorthy;
 	}
