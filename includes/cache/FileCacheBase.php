@@ -10,9 +10,12 @@ abstract class FileCacheBase {
 	protected $mExt = 'cache';
 	protected $mFilePath;
 	protected $mUseGzip;
+	/* lazy loaded */
+	protected $mCached;
 
 	/* @TODO: configurable? */
-	const MISS_FACTOR = 10; // log 1 every MISS_FACTOR cache misses
+	const MISS_FACTOR = 15; // log 1 every MISS_FACTOR cache misses
+	const MISS_TTL_SEC = 3600; // how many seconds ago is "recent"
 
 	protected function __construct() {
 		global $wgUseGzip;
@@ -70,7 +73,10 @@ abstract class FileCacheBase {
 	 * @return bool
 	 */
 	public function isCached() {
-		return file_exists( $this->cachePath() );
+		if ( $this->mCached === null ) {
+			$this->mCached = file_exists( $this->cachePath() );
+		}
+		return $this->mCached;
 	}
 
 	/**
@@ -142,9 +148,11 @@ abstract class FileCacheBase {
 
 		$this->checkCacheDirs(); // build parent dir
 		if ( !file_put_contents( $this->cachePath(), $text, LOCK_EX ) ) {
+			$this->mCached = null;
 			return false;
 		}
 
+		$this->mCached = true;
 		return $text;
 	}
 
@@ -156,6 +164,7 @@ abstract class FileCacheBase {
 		wfSuppressWarnings();
 		unlink( $this->cachePath() );
 		wfRestoreWarnings();
+		$this->mCached = false;
 	}
 
 	/**
@@ -216,12 +225,12 @@ abstract class FileCacheBase {
 			if ( $wgMemc->get( $key ) ) {
 				return; // possibly the same user
 			}
-			$wgMemc->set( $key, 1, 3600 );
+			$wgMemc->set( $key, 1, self::MISS_TTL_SEC );
 
 			# Increment the number of cache misses...
 			$key = $this->cacheMissKey();
 			if ( $wgMemc->get( $key ) === false ) {
-				$wgMemc->set( $key, 1, 3600 );
+				$wgMemc->set( $key, 1, self::MISS_TTL_SEC );
 			} else {
 				$wgMemc->incr( $key );
 			}
