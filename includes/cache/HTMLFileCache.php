@@ -42,7 +42,7 @@ class HTMLFileCache extends FileCacheBase {
 		if ( $wgFileCacheDirectory ) {
 			$dir = $wgFileCacheDirectory;
 		} elseif ( $wgCacheDirectory ) {
-			$dir = "$wgCacheDirectory/object";
+			$dir = "$wgCacheDirectory/html";
 		} else {
 			throw new MWException( 'Please set $wgCacheDirectory in LocalSettings.php if you wish to use the HTML file cache' );
 		}
