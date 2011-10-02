@@ -31,9 +31,6 @@ a.new:visited, #p-personal a.new:visited {
 .mw-body a.extiw,
 .mw-body a.extiw:active {
 	color: #36b;
-	/* Don't show icons for interwiki links */
-	background: none;
-	padding: 0;
 }
 .mw-body a.extiw:visited {
 	color: #636;

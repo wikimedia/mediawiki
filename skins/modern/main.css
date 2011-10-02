@@ -411,38 +411,36 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #mw_content a.external,
-#mw_content a[href ^="gopher://"] {
+#mw_content a.external[href ^="gopher://"] {
 	/* @embed */
 	background: url(external.png) center right no-repeat;
 	padding-right: 13px;
 }
-#mw_content a[href ^="https://"],
+#mw_content a.external[href ^="https://"],
 .link-https {
 	/* @embed */
 	background: url(lock_icon.gif) center right no-repeat;
 	padding-right: 16px;
 }
-#mw_content a[href ^="mailto:"],
+#mw_content a.external[href ^="mailto:"],
 .link-mailto {
 	/* @embed */
 	background: url(mail_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
-#mw_content a[href ^="news://"] {
+#mw_content a.external[href ^="news://"] {
 	/* @embed */
 	background: url(news_icon.png) center right no-repeat;
 	padding-right: 18px;
 }
-#mw_content a[href ^="ftp://"],
+#mw_content a.external[href ^="ftp://"],
 .link-ftp {
 	/* @embed */
 	background: url(file_icon.gif) center right no-repeat;
 	padding-right: 18px;
 }
-#mw_content a[href ^="irc://"],
-#mw_content a.extiw[href ^="irc://"],
-#mw_content a[href ^="ircs://"],
-#mw_content a.extiw[href ^="ircs://"],
+#mw_content a.external[href ^="irc://"],
+#mw_content a.external[href ^="ircs://"],
 .link-irc {
 	/* @embed */
 	background: url(discussionitem_icon.gif) center right no-repeat;
@@ -624,8 +622,6 @@ img.thumbborder {
 #mw_content a.extiw,
 #mw_content a.extiw:active {
 	color: #36b;
-	background: none;
-	padding: 0;
 }
 #mw_content a.external {
 	color: #36b;
