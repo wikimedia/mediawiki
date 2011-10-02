@@ -220,6 +220,8 @@ production.
   User:getDefaultOptions().
 * (bug 30497) Add client-nojs and client-js classes on document element
   to let styles easily hide or show things based on general JS availability
+* (bug 31293) If Special:Userlogin is loaded over HTTPS, display
+  MediaWiki:loginend-https instead of MediaWiki:loginend, if it exists
 
 === Bug fixes in 1.18 ===
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
