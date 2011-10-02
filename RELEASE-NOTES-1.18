@@ -463,6 +463,8 @@ production.
 * (bug 31213) Exception thrown when trying to move file cross-namespace
 * (bug 18424) Special:Prefixindex and Special:Allpages paging links are
   really small, and somewhat inconsistent with each other.
+* (bug 30466) Entries in iwlinks table are now cleared when moving a page over
+  redirect
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
