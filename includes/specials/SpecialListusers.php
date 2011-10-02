@@ -34,7 +34,7 @@
  */
 class UsersPager extends AlphabeticPager {
 
-	function __construct( RequestContext $context = null, $par = null ) {
+	function __construct( IContextSource $context = null, $par = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}

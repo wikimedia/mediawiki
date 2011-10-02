@@ -810,7 +810,7 @@ abstract class TablePager extends IndexPager {
 	var $mSort;
 	var $mCurrentRow;
 
-	function __construct( RequestContext $context = null ) {
+	function __construct( IContextSource $context = null ) {
 		if ( $context ) {
 			$this->setContext( $context );
 		}

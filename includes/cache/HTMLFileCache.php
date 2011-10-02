@@ -51,10 +51,10 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Check if pages can be cached for this request/user
-	 * @param $context RequestContext
+	 * @param $context IContextSource
 	 * @return bool
 	 */
-	public static function useFileCache( RequestContext $context ) {
+	public static function useFileCache( IContextSource $context ) {
 		global $wgUseFileCache, $wgShowIPinHeader, $wgContLang;
 		if ( !$wgUseFileCache ) {
 			return false;
@@ -86,10 +86,10 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Read from cache to context output
-	 * @param $context RequestContext
+	 * @param $context IContextSource
 	 * @return void
 	 */
-	public function loadFromFileCache( RequestContext $context ) {
+	public function loadFromFileCache( IContextSource $context ) {
 		global $wgMimeType, $wgLanguageCode;
 
 		wfDebug( __METHOD__ . "()\n");

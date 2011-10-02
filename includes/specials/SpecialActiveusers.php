@@ -42,7 +42,7 @@ class ActiveUsersPager extends UsersPager {
 	 */
 	protected $groups;
 
-	function __construct( RequestContext $context = null, $group = null ) {
+	function __construct( IContextSource $context = null, $group = null ) {
 		global $wgActiveUserDays;
 
 		parent::__construct( $context );

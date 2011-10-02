@@ -50,7 +50,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
  */
 class NewFilesPager extends ReverseChronologicalPager {
 
-	function __construct( RequestContext $context, $par = null ) {
+	function __construct( IContextSource $context, $par = null ) {
 		$this->like = $context->getRequest()->getText( 'like' );
 		$this->showbots = $context->getRequest()->getBool( 'showbots' , 0 );
 

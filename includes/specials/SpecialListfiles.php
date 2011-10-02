@@ -63,7 +63,7 @@ class ImageListPager extends TablePager {
 	var $mSearch = '';
 	var $mIncluding = false;
 
-	function __construct( RequestContext $context, $userName = null, $search = '', $including = false ) {
+	function __construct( IContextSource $context, $userName = null, $search = '', $including = false ) {
 		global $wgMiserMode;
 
 		$this->mIncluding = $including;
