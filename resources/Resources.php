@@ -183,6 +183,7 @@ return array(
 	),
 	'jquery.tablesorter' => array(
 		'scripts' => 'resources/jquery/jquery.tablesorter.js',
+		'styles' => 'resources/jquery/jquery.tablesorter.css',
 		'messages' => array( 'sort-descending', 'sort-ascending' ),
 	),
 	'jquery.textSelection' => array(

@@ -540,6 +540,7 @@
 							return;
 						}
 					}
+					$table.addClass( "jquery-tablesorter" );
 
 					// New config object.
 					table.config = {};
