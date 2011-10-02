@@ -59,7 +59,7 @@ class SpecialCategories extends SpecialPage {
  * @ingroup SpecialPage Pager
  */
 class CategoryPager extends AlphabeticPager {
-	function __construct( RequestContext $context, $from ) {
+	function __construct( IContextSource $context, $from ) {
 		parent::__construct( $context );
 		$from = str_replace( ' ', '_', $from );
 		if( $from !== '' ) {
