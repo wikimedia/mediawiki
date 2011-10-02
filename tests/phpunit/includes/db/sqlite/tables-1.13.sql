@@ -8,6 +8,7 @@ CREATE TABLE /*$wgDBprefix*/user (
   user_newpassword tinyblob ,
   user_newpass_time BLOB,
   user_email tinytext ,
+  user_options blob ,
   user_touched BLOB  default '',
   user_token BLOB  default '',
   user_email_authenticated BLOB,

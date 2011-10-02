@@ -196,7 +196,6 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		// Mismatches for these columns we can safely ignore
 		$ignoredColumns = array(
 			'user_newtalk.user_last_timestamp', // r84185
-			'user.user_options',
 		);
 
 		$currentDB = new DatabaseSqliteStandalone( ':memory:' );
