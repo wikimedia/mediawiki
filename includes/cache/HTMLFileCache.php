@@ -35,6 +35,7 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Get the base file cache directory
+	 * Note: avoids baseCacheDirectory() for b/c to not skip existing cache
 	 * @return string
 	 */
 	protected function cacheDirectory() {
@@ -47,6 +48,18 @@ class HTMLFileCache extends FileCacheBase {
 			throw new MWException( 'Please set $wgCacheDirectory in LocalSettings.php if you wish to use the HTML file cache' );
 		}
 		return $dir;
+	}
+
+	/**
+	 * Get the cache type subdirectory (with the trailing slash) or the empty string
+	 * @return string
+	 */
+	protected function typeSubdirectory() {
+		if ( $this->mType === 'view' ) {
+			return ''; //  b/c to not skip existing cache
+		} else {
+			return $this->mType . '/';
+		}
 	}
 
 	/**
@@ -71,9 +84,8 @@ class HTMLFileCache extends FileCacheBase {
 			// Below are header setting params
 			} elseif ( $query == 'maxage' || $query == 'smaxage' ) {
 				continue;
-			} else {
-				return false;
 			}
+			return false;
 		}
 		$user = $context->getUser();
 		// Check for non-standard user language; this covers uselang,
