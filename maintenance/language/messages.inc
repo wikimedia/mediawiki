@@ -472,6 +472,7 @@ $wgMessageStructure = array(
 		'loginend-https',
 		'signupstart',
 		'signupend',
+		'signupend-https',
 		'mailerror',
 		'acct_creation_throttle_hit',
 		'emailauthenticated',
