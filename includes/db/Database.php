@@ -1245,9 +1245,6 @@ abstract class DatabaseBase implements DatabaseType {
 	 *     - If the value is an array, an IN(...) clause will be constructed,
 	 *       such that the field name may match any of the elements in the
 	 *       array. The elements of the array will be quoted.
-	 *     - If the field name ends with "!", this is taken as a flag which
-	 *       inverts the comparison, allowing NOT IN clauses to be constructed,
-	 *       for example: array( 'user_id!' => array( 1, 2, 3 ) )
 	 *
 	 * Note that expressions are often DBMS-dependent in their syntax.
 	 * DBMS-independent wrappers are provided for constructing several types of
