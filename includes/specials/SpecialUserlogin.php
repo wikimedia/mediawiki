@@ -1041,11 +1041,19 @@ class LoginForm extends SpecialPage {
 		}
 		
 		// Use loginend-https for HTTPS requests if it's not blank, loginend otherwise
-		$httpsMsg = wfMessage( 'loginend-https' );
-		if ( WebRequest::detectProtocol() == 'https' && !$httpsMsg->isBlank() ) {
-			$template->set( 'loginend', $httpsMsg->parse() );
+		// Ditto for signupend
+		$usingHTTPS = WebRequest::detectProtocol();
+		$loginendHTTPS = wfMessage( 'loginend-https' );
+		$signupendHTTPS = wfMessage( 'signupend-https' );
+		if ( $usingHTTPS && !$loginendHTTPS->isBlank() ) {
+			$template->set( 'loginend', $loginendHTTPS->parse() );
 		} else {
 			$template->set( 'loginend', wfMessage( 'loginend' )->parse() );
+		}
+		if ( $usingHTTPS && !$signupendHTTPS->isBlank() ) {
+			$template->set( 'signupend', $signupendHTTPS->parse() );
+		} else {
+			$template->set( 'signupend', wfMessage( 'signupend' )->parse() );
 		}
 
 		// Give authentication and captcha plugins a chance to modify the form
