@@ -26,29 +26,42 @@ class RebuildFileCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Build file cache for content pages";
-		$this->addArg( 'start', 'Page_id to start from', true );
-		$this->addArg( 'overwrite', 'Refresh page cache', false );
+		$this->addOption( 'start', 'Page_id to start from', false, true );
+		$this->addOption( 'end', 'Page_id to end on', false, true );
+		$this->addOption( 'overwrite', 'Refresh page cache' );
 		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
-		global $wgUseFileCache, $wgDisableCounters, $wgContentNamespaces, $wgRequestTime;
+		global $wgUseFileCache, $wgReadOnly, $wgContentNamespaces, $wgRequestTime;
 		global $wgTitle, $wgOut;
 		if ( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
-		$wgDisableCounters = true;
-		$start = $this->getArg( 0, "0" );
+		$wgReadOnly = 'Building cache'; // avoid DB writes (like enotif/counters)
+
+		$start = $this->getOption( 'start', "0" );
 		if ( !ctype_digit( $start ) ) {
 			$this->error( "Invalid value for start parameter.", true );
 		}
 		$start = intval( $start );
-		$overwrite = $this->hasArg( 1 ) && $this->getArg( 1 ) === 'overwrite';
+
+		$end = $this->getOption( 'end', "0" );
+		if ( !ctype_digit( $end ) ) {
+			$this->error( "Invalid value for end parameter.", true );
+		}
+		$end = intval( $end );
+
 		$this->output( "Building content page file cache from page {$start}!\n" );
 
 		$dbr = wfGetDB( DB_SLAVE );
-		$start = $start > 0 ? $start : $dbr->selectField( 'page', 'MIN(page_id)', false, __FUNCTION__ );
-		$end = $dbr->selectField( 'page', 'MAX(page_id)', false, __FUNCTION__ );
+		$overwrite = $this->getOption( 'overwrite', false );
+		$start = ( $start > 0 )
+			? $start
+			: $dbr->selectField( 'page', 'MIN(page_id)', false, __FUNCTION__ );
+		$end = ( $end > 0 )
+			? $end
+			: $dbr->selectField( 'page', 'MAX(page_id)', false, __FUNCTION__ );
 		if ( !$start ) {
 			$this->error( "Nothing to do.", true );
 		}
@@ -69,6 +82,8 @@ class RebuildFileCache extends Maintenance {
 					"page_id BETWEEN $blockStart AND $blockEnd" ),
 				array( 'ORDER BY' => 'page_id ASC', 'USE INDEX' => 'PRIMARY' )
 			);
+
+			$dbw->begin(); // for any changes
 			foreach ( $res as $row ) {
 				$rebuilt = false;
 				$wgRequestTime = wfTime(); # bug 22852
@@ -100,18 +115,19 @@ class RebuildFileCache extends Maintenance {
 					wfRestoreWarnings();
 					$wgUseFileCache = true;
 					ob_end_clean(); // clear buffer
-					if ( $rebuilt )
+					if ( $rebuilt ) {
 						$this->output( "Re-cached page {$row->page_id}\n" );
-					else
+					} else {
 						$this->output( "Cached page {$row->page_id}\n" );
+					}
 				} else {
 					$this->output( "Page {$row->page_id} not cacheable\n" );
 				}
-				$dbw->commit(); // commit any changes
 			}
+			$dbw->commit(); // commit any changes (just for sanity)
+
 			$blockStart += $this->mBatchSize;
 			$blockEnd += $this->mBatchSize;
-			wfWaitForSlaves();
 		}
 		$this->output( "Done!\n" );
 
