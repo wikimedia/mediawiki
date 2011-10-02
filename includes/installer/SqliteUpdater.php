@@ -64,6 +64,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addTable', 'config',                            'patch-config.sql' ),
 			array( 'addIndex', 'logging',       'type_action',      'patch-logging-type-action-index.sql'),
 			array( 'doMigrateUserOptions' ),
+			array( 'dropField', 'user',         'user_options', 'patch-drop-user_options.sql' ),
 		);
 	}
 
