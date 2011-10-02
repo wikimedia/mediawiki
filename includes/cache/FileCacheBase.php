@@ -6,16 +6,34 @@
  */
 abstract class FileCacheBase {
 	protected $mKey;
-	protected $mType;
-	protected $mExt;
+	protected $mType = 'object';
+	protected $mExt = 'cache';
 	protected $mFilePath;
 	protected $mUseGzip;
+
+	/* @TODO: configurable? */
+	const MISS_FACTOR = 10; // log 1 every MISS_FACTOR cache misses
 
 	protected function __construct() {
 		global $wgUseGzip;
 
 		$this->mUseGzip = (bool)$wgUseGzip;
-		$this->mExt = 'cache';
+	}
+
+	/**
+	 * Get the base file cache directory
+	 * @return string
+	 */
+	final protected function baseCacheDirectory() {
+		global $wgCacheDirectory, $wgFileCacheDirectory, $wgFileCacheDepth;
+		if ( $wgFileCacheDirectory ) {
+			$dir = $wgFileCacheDirectory;
+		} elseif ( $wgCacheDirectory ) {
+			$dir = $wgCacheDirectory;
+		} else {
+			throw new MWException( 'Please set $wgCacheDirectory in LocalSettings.php if you wish to use the HTML file cache' );
+		}
+		return $dir;
 	}
 
 	/**
@@ -34,7 +52,8 @@ abstract class FileCacheBase {
 		}
 
 		$dir = $this->cacheDirectory();
-		$subDirs = $this->mType . '/' . $this->hashSubdirectory(); // includes '/'
+		# Build directories (methods include the trailing "/")
+		$subDirs = $this->typeSubdirectory() . $this->hashSubdirectory();
 		# Avoid extension confusion
 		$key = str_replace( '.', '%2E', urlencode( $this->mKey ) );
 		# Build the full file path
@@ -112,6 +131,7 @@ abstract class FileCacheBase {
 	 */
 	public function saveText( $text ) {
 		global $wgUseFileCache;
+
 		if ( !$wgUseFileCache ) {
 			return false;
 		}
@@ -121,7 +141,7 @@ abstract class FileCacheBase {
 		}
 
 		$this->checkCacheDirs(); // build parent dir
-		if ( !file_put_contents( $this->cachePath(), $text ) ) {
+		if ( !file_put_contents( $this->cachePath(), $text, LOCK_EX ) ) {
 			return false;
 		}
 
@@ -140,21 +160,23 @@ abstract class FileCacheBase {
 
 	/**
 	 * Create parent directors of $this->cachePath()
-	 * @TODO: why call wfMkdirParents() twice?
 	 * @return void
 	 */
 	protected function checkCacheDirs() {
-		$filename = $this->cachePath();
-		$mydir2 = substr( $filename, 0, strrpos( $filename, '/') ); # subdirectory level 2
-		$mydir1 = substr( $mydir2, 0, strrpos( $mydir2, '/') ); # subdirectory level 1
-
-		wfMkdirParents( $mydir1, null, __METHOD__ );
-		wfMkdirParents( $mydir2, null, __METHOD__ );
+		wfMkdirParents( dirname( $this->cachePath() ), null, __METHOD__ );
 	}
 
 	/**
-	 * Return relative multi-level hash subdirectory with the trailing
-	 * slash or the empty string if $wgFileCacheDepth is off
+	 * Get the cache type subdirectory (with trailing slash) or the empty string
+	 * @return string
+	 */
+	protected function typeSubdirectory() {
+		return $this->mType . '/';
+	}
+
+	/**
+	 * Return relative multi-level hash subdirectory (with trailing slash)
+	 * or the empty string if not $wgFileCacheDepth
 	 * @return string
 	 */
 	protected function hashSubdirectory() {
@@ -169,5 +191,56 @@ abstract class FileCacheBase {
 		}
 
 		return $subdir;
+	}
+
+	/**
+	 * Roughly increments the cache misses in the last hour by unique visitors
+	 * @param $request WebRequest
+	 * @return void
+	 */
+	public function incrMissesRecent( WebRequest $request ) {
+		global $wgMemc;
+		if ( mt_rand( 0, self::MISS_FACTOR - 1 ) == 0 ) {
+			# Get an large IP range that should include the user
+			# even if that person's IP address changes...
+			$ip = $request->getIP();
+			if ( !IP::isValid( $ip ) ) {
+				return;
+			}
+			$ip = IP::isIPv6( $ip )
+				? IP::sanitizeRange( "$ip/64" )
+				: IP::sanitizeRange( "$ip/16" );
+
+			# Bail out if a request already came from this range...
+			$key = wfMemcKey( get_class( $this ), 'attempt', $this->mType, $this->mKey, $ip );
+			if ( $wgMemc->get( $key ) ) {
+				return; // possibly the same user
+			}
+			$wgMemc->set( $key, 1, 3600 );
+
+			# Increment the number of cache misses...
+			$key = $this->cacheMissKey();
+			if ( $wgMemc->get( $key ) === false ) {
+				$wgMemc->set( $key, 1, 3600 );
+			} else {
+				$wgMemc->incr( $key );
+			}
+		}
+	}
+
+	/**
+	 * Roughly gets the cache misses in the last hour by unique visitors
+	 * @return int
+	 */
+	public function getMissesRecent() {
+		global $wgMemc;
+		return self::MISS_FACTOR * $wgMemc->get( $this->cacheMissKey() );
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function cacheMissKey() {
+		return wfMemcKey( get_class( $this ), 'misses', $this->mType, $this->mKey );
 	}
 }
