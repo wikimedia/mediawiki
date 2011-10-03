@@ -35,19 +35,10 @@ class HTMLFileCache extends FileCacheBase {
 
 	/**
 	 * Get the base file cache directory
-	 * Note: avoids baseCacheDirectory() for b/c to not skip existing cache
 	 * @return string
 	 */
 	protected function cacheDirectory() {
-		global $wgCacheDirectory, $wgFileCacheDirectory, $wgFileCacheDepth;
-		if ( $wgFileCacheDirectory ) {
-			$dir = $wgFileCacheDirectory;
-		} elseif ( $wgCacheDirectory ) {
-			$dir = "$wgCacheDirectory/html";
-		} else {
-			throw new MWException( 'Please set $wgCacheDirectory in LocalSettings.php if you wish to use the HTML file cache' );
-		}
-		return $dir;
+		return $this->baseCacheDirectory(); // no subdir for b/c with old cache files
 	}
 
 	/**
