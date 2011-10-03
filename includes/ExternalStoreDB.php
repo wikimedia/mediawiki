@@ -18,7 +18,7 @@ class ExternalStoreDB {
 	 */
 	function &getLoadBalancer( $cluster ) {
 		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
-		
+
 		return wfGetLBFactory()->getExternalLB( $cluster, $wiki );
 	}
 
@@ -29,8 +29,18 @@ class ExternalStoreDB {
 	 * @return DatabaseBase object
 	 */
 	function &getSlave( $cluster ) {
+		global $wgDefaultExternalStore;
+
 		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
+
+		if ( !in_array( "DB://" . $cluster, $wgDefaultExternalStore ) ) {
+			wfDebug( "read only external store" );
+			$lb->allowLagged(true);
+		} else {
+			wfDebug( "writable external store" );
+		}
+
 		return $lb->getConnection( DB_SLAVE, array(), $wiki );
 	}
 
@@ -139,8 +149,8 @@ class ExternalStoreDB {
 	function store( $cluster, $data ) {
 		$dbw = $this->getMaster( $cluster );
 		$id = $dbw->nextSequenceValue( 'blob_blob_id_seq' );
-		$dbw->insert( $this->getTable( $dbw ), 
-			array( 'blob_id' => $id, 'blob_text' => $data ), 
+		$dbw->insert( $this->getTable( $dbw ),
+			array( 'blob_id' => $id, 'blob_text' => $data ),
 			__METHOD__ );
 		$id = $dbw->insertId();
 		if ( !$id ) {
