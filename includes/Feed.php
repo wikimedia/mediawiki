@@ -239,13 +239,13 @@ class ChannelFeed extends FeedItem {
 	 * but can also be called separately.
 	 */
 	public function httpHeaders() {
-		global $wgOut, $wgVaryOnXFPForAPI;
+		global $wgOut, $wgVaryOnXFP;
 
 		# We take over from $wgOut, excepting its cache header info
 		$wgOut->disable();
 		$mimetype = $this->contentType();
 		header( "Content-type: $mimetype; charset=UTF-8" );
-		if ( $wgVaryOnXFPForAPI ) {
+		if ( $wgVaryOnXFP ) {
 			$wgOut->addVaryHeader( 'X-Forwarded-Proto' );
 		}
 		$wgOut->sendCacheControl();

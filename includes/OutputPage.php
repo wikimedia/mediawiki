@@ -1806,7 +1806,7 @@ class OutputPage extends ContextSource {
 	 * the object, let's actually output it:
 	 */
 	public function output() {
-		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType;
+		global $wgLanguageCode, $wgDebugRedirects, $wgMimeType, $wgVaryOnXFP;
 
 		if( $this->mDoNothing ) {
 			return;
@@ -1825,6 +1825,9 @@ class OutputPage extends ContextSource {
 					$response->header( "HTTP/1.1 {$this->mRedirectCode} $message" );
 				}
 				$this->mLastModified = wfTimestamp( TS_RFC2822 );
+			}
+			if ( $wgVaryOnXFP ) {
+				$this->addVaryHeader( 'X-Forwarded-Proto' );
 			}
 			$this->sendCacheControl();
 

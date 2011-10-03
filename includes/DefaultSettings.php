@@ -1754,10 +1754,12 @@ $wgUseXVO = false;
 
 /** Add X-Forwarded-Proto to the Vary and X-Vary-Options headers for API
  * requests and RSS/Atom feeds. Use this if you have an SSL termination setup
- * and need to split the cache between HTTP and HTTPS for API and feed requests
- * in order to prevent cache pollution. This does not affect 'normal' requests.
+ * and need to split the cache between HTTP and HTTPS for API requests,
+ * feed requests and HTTP redirect responses in order to prevent cache
+ * pollution. This does not affect 'normal' requests to index.php other than
+ * HTTP redirects.
  */
-$wgVaryOnXFPForAPI = false;
+$wgVaryOnXFP = false;
 
 /**
  * Internal server name as known to Squid, if different. Example:
