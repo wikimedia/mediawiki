@@ -1646,7 +1646,7 @@ $wgUseFileCache = false;
 
 /**
  * Directory where the cached page will be saved.
- * Defaults to "$wgCacheDirectory/html".
+ * Defaults to "{$wgUploadDirectory}/cache".
  */
 $wgFileCacheDirectory = false;
 
