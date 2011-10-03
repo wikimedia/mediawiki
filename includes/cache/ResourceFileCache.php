@@ -47,8 +47,8 @@ class ResourceFileCache extends FileCacheBase {
 		// Get all query values
 		$queryVals = $context->getRequest()->getValues();
 		foreach ( $queryVals as $query => $val ) {
-			if ( $query === 'modules' || $query === '*' ) { // &* added as IE fix
-				continue;
+			if ( $query === 'modules' || $query === 'version' || $query === '*' ) {
+				continue; // note: &* added as IE fix
 			} elseif ( $query === 'skin' && $val === $wgDefaultSkin ) {
 				continue;
 			} elseif ( $query === 'lang' && $val === $wgLanguageCode ) {
