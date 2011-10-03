@@ -284,12 +284,12 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			if ( isset( $langNames[$row->iw_prefix] ) ) {
 				$val['language'] = $langNames[$row->iw_prefix];
 			}
-			$val['url'] = wfExpandUrl( $row['iw_url'], PROTO_CURRENT );
-			if( isset( $row['iw_wikiid'] ) ) {
-				$val['wikiid'] = $row['iw_wikiid'];
+			$val['url'] = wfExpandUrl( $row->iw_url, PROTO_CURRENT );
+			if( isset( $row->iw_wikiid ) ) {
+				$val['wikiid'] = $row->iw_wikiid;
 			}
-			if( isset( $row['iw_api'] ) ) {
-				$val['api'] = $row['iw_api'];
+			if( isset( $row->iw_api ) ) {
+				$val['api'] = $row->iw_api;
 			}
 
 			$data[] = $val;

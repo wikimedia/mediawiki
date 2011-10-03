@@ -2735,10 +2735,8 @@ class Parser {
 			case 'server':
 				return $wgServer;
 			case 'servername':
-				wfSuppressWarnings(); # May give an E_WARNING in PHP < 5.3.3
-				$serverName = parse_url( $wgServer, PHP_URL_HOST );
-				wfRestoreWarnings();
-				return $serverName ? $serverName : $wgServer;
+				$serverParts = wfParseUrl( $wgServer );
+				return $serverParts && isset( $serverParts['host'] ) ? $serverParts['host'] : $wgServer;
 			case 'scriptpath':
 				return $wgScriptPath;
 			case 'stylepath':

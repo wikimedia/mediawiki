@@ -152,7 +152,7 @@ class UserloginTemplate extends QuickTemplate {
 <?php if( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpLoginToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
 </form>
 </div>
-<div id="loginend"><?php $this->msgWiki( 'loginend' ); ?></div>
+<div id="loginend"><?php $this->html( 'loginend' ); ?></div>
 <?php
 
 	}
@@ -377,7 +377,7 @@ class UsercreateTemplate extends QuickTemplate {
 <?php if( $this->haveData( 'token' ) ) { ?><input type="hidden" name="wpCreateaccountToken" value="<?php $this->text( 'token' ); ?>" /><?php } ?>
 </form>
 </div>
-<div id="signupend"><?php $this->msgWiki( 'signupend' ); ?></div>
+<div id="signupend"><?php $this->html( 'signupend' ); ?></div>
 <?php
 
 	}

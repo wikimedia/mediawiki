@@ -564,6 +564,10 @@ class LoginForm extends SpecialPage {
 		} else {
 			$wgAuth->updateUser( $u );
 			$wgUser = $u;
+			// This should set it for OutputPage and the Skin
+			// which is needed or the personal links will be
+			// wrong.
+			RequestContext::getMain()->setUser( $u );
 
 			// Please reset throttle for successful logins, thanks!
 			if ( $throttleCount ) {
@@ -1029,6 +1033,22 @@ class LoginForm extends SpecialPage {
 			$template->set( 'languages', $this->makeLanguageSelector() );
 			if( $this->mLanguage )
 				$template->set( 'uselang', $this->mLanguage );
+		}
+		
+		// Use loginend-https for HTTPS requests if it's not blank, loginend otherwise
+		// Ditto for signupend
+		$usingHTTPS = WebRequest::detectProtocol();
+		$loginendHTTPS = wfMessage( 'loginend-https' );
+		$signupendHTTPS = wfMessage( 'signupend-https' );
+		if ( $usingHTTPS && !$loginendHTTPS->isBlank() ) {
+			$template->set( 'loginend', $loginendHTTPS->parse() );
+		} else {
+			$template->set( 'loginend', wfMessage( 'loginend' )->parse() );
+		}
+		if ( $usingHTTPS && !$signupendHTTPS->isBlank() ) {
+			$template->set( 'signupend', $signupendHTTPS->parse() );
+		} else {
+			$template->set( 'signupend', wfMessage( 'signupend' )->parse() );
 		}
 
 		// Give authentication and captcha plugins a chance to modify the form

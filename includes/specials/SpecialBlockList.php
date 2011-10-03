@@ -317,7 +317,7 @@ class BlockListPager extends TablePager {
 				if ( $row->ipb_create_account ) {
 					$properties[] = $msg['createaccountblock'];
 				}
-				if ( !$row->ipb_enable_autoblock ) {
+				if ( $row->ipb_user && !$row->ipb_enable_autoblock ) {
 					$properties[] = $msg['noautoblockblock'];
 				}
 
@@ -346,6 +346,7 @@ class BlockListPager extends TablePager {
 			'fields' => array(
 				'ipb_id',
 				'ipb_address',
+				'ipb_user',
 				'ipb_by',
 				'ipb_reason',
 				'ipb_timestamp',
