@@ -14,6 +14,8 @@
  * @author לערי ריינהארט
  */
 
+$linkTrail = '/^(:?[a-zàáâçčʒǯđðéèêëǧǥȟíìîïıǩŋñóòôõßšŧúùûýÿüžþæøåäö]+)(.*)$/sDu';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Liŋkkaid vuolláisárgun',

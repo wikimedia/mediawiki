@@ -1,5 +1,5 @@
 /**
- * Brazilian Portugese (Portuguêsi do Brasil) language functions
+ * Portugese language functions
  */
 
 mediaWiki.language.digitTransformTable = {
