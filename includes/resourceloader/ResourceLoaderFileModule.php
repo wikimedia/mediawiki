@@ -262,7 +262,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		// Collect referenced files
 		$this->localFileRefs = array_unique( $this->localFileRefs );
 		// If the list has been modified since last time we cached it, update the cache
-		if ( $this->localFileRefs !== $this->getFileDependencies( $context->getSkin() ) ) {
+		if ( $this->localFileRefs !== $this->getFileDependencies( $context->getSkin() ) && !wfReadOnly() ) {
 			$dbw = wfGetDB( DB_MASTER );
 			$dbw->replace( 'module_deps',
 				array( array( 'md_module', 'md_skin' ) ), array(
