@@ -139,11 +139,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 			// Settings
 			$this->form();
 
-			$this->setSyndicated();
 			$feedType = $this->opts->getValue( 'feed' );
 			if( $feedType ) {
 				return $this->feed( $feedType );
 			}
+
+			$out->setFeedAppendQuery( wfArrayToCGI( $this->opts->getAllValues() ) );
 		}
 
 		$pager = new NewPagesPager( $this, $this->opts );
@@ -274,12 +275,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 			Xml::closeElement( 'form' );
 
 		$this->getOutput()->addHTML( $form );
-	}
-
-	protected function setSyndicated() {
-		$out = $this->getOutput();
-		$out->setSyndicated( true );
-		$out->setFeedAppendQuery( wfArrayToCGI( $this->opts->getAllValues() ) );
 	}
 
 	/**
