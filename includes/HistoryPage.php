@@ -88,7 +88,6 @@ class HistoryPage extends ContextSource {
 		$out->setArticleFlag( false );
 		$out->setArticleRelated( true );
 		$out->setRobotPolicy( 'noindex,nofollow' );
-		$out->setSyndicated( true );
 		$out->setFeedAppendQuery( 'action=history' );
 		$out->addModules( array( 'mediawiki.legacy.history', 'mediawiki.action.history' ) );
 
