@@ -1026,9 +1026,6 @@ Den senaste loggposten tillhandahålls nedan som referens:",
 'templatesused'                    => '{{PLURAL:$1|Mall|Mallar}} som används på den här sidan:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mall|Mallar}} som används i denna förhandsgranskning:',
 'templatesusedsection'             => '{{PLURAL:$1|Mall|Mallar}} som används i det här avsnittet:',
-'distanttemplatesused'             => '{{PLURAL:$1|Fjärrmall|Fjärrmallar}} som används på den här sidan:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Fjärrmall|Fjärrmallar}} som används i denna förhandsgranskning:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Fjärrmall|Fjärrmallar}} som används i det här avsnittet:',
 'template-protected'               => '(skyddad)',
 'template-semiprotected'           => '(delvis skyddad)',
 'hiddencategories'                 => 'Denna sida är medlem i följande dolda {{PLURAL:$1|kategori|kategorier}}:',
@@ -3745,27 +3742,6 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'compare-invalid-title'       => 'Titeln du angav är ogiltig.',
 'compare-title-not-exists'    => 'Titeln du angav finns inte.',
 'compare-revision-not-exists' => 'Versionen du angav finns inte.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Global filanvändning',
-'globalfileusage-for'         => 'Global filanvändning för "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Specialsida]] för att visa global filanvändning',
-'globalfileusage-ok'          => 'Sök',
-'globalfileusage-text'        => 'Sök global filanvändning',
-'globalfileusage-no-results'  => '[[$1]] används inte på andra wikis.',
-'globalfileusage-on-wiki'     => 'Användande av $2',
-'globalfileusage-more'        => 'Visa [[{{#Special:GlobalUsage}}/$1|mer globalt användande]] av denna fil.',
-'globalfileusage-filterlocal' => 'Visa inte lokalt användande',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Global mallanvändning',
-'globaltemplateusage-for'         => 'Global mallanvändning för "$1"',
-'globaltemplateusage-ok'          => 'Sök',
-'globaltemplateusage-text'        => 'Sök global mallanvändning',
-'globaltemplateusage-no-results'  => '[[$1]] används inte på andra wikis.',
-'globaltemplateusage-on-wiki'     => 'Användande av $2',
-'globaltemplateusage-more'        => 'Visa [[{{#Special:GlobalUsage}}/$1|mer globalt användande]] av denna mall.',
-'globaltemplateusage-filterlocal' => 'Visa inte lokalt användande',
 
 # Database error messages
 'dberr-header'      => 'Den här wikin har ett problem',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Hazard-SJ
  * @author Ukabia
  * @author Yocahuna
  */
@@ -146,7 +147,7 @@ Lef aaf dif afta pofaamin ruolbak',
 'cancel'        => 'Kiansl',
 'moredotdotdot' => 'Muo...',
 'mypage'        => 'Fimi Piej',
-'mytalk'        => 'Fimi Chat',
+'mytalk'        => 'Mi chat',
 'anontalk'      => 'Taak fi dis IP ajres',
 'navigation'    => 'Navigieshan',
 'and'           => '&#32;ahn',
@@ -168,10 +169,10 @@ Lef aaf dif afta pofaamin ruolbak',
 'vector-action-move'             => 'Muuv',
 'vector-action-protect'          => 'Protek',
 'vector-action-undelete'         => 'Andiliit',
-'vector-action-unprotect'        => 'Anprotek',
+'vector-action-unprotect'        => 'Neu protektian',
 'vector-simplesearch-preference' => 'Eniebl enans saach sojeshan (Vekta skin onli)',
 'vector-view-create'             => 'Kriet',
-'vector-view-edit'               => 'Edit',
+'vector-view-edit'               => 'Hedit',
 'vector-view-history'            => 'Vyuu ischri',
 'vector-view-view'               => 'Riid',
 'vector-view-viewsource'         => 'Vyuu Suos',
@@ -193,6 +194,7 @@ Lef aaf dif afta pofaamin ruolbak',
 'printableversion'  => 'Printobl voerjan',
 'permalink'         => 'Poermanint lingk',
 'print'             => 'Print',
+'view'              => 'Riid',
 'edit'              => 'Edit',
 'create'            => 'Kriet',
 'editthispage'      => 'Edit dis piej',
@@ -200,11 +202,12 @@ Lef aaf dif afta pofaamin ruolbak',
 'delete'            => 'Diliit',
 'deletethispage'    => 'Diliit dis piej',
 'undelete_short'    => 'Andiliit {{PLURAL:$1|wan edit|$1 edit}}',
+'viewdeleted_short' => 'Riid {{PLURAL:$1|wan diliitid hedit|$1 diliitid hedit dem}}',
 'protect'           => 'Protek',
 'protect_change'    => 'chienj',
 'protectthispage'   => 'Protek dis piej',
-'unprotect'         => 'Anprotek',
-'unprotectthispage' => 'Anprotek dis piej',
+'unprotect'         => 'Neu protektian',
+'unprotectthispage' => 'Neu protektian fi dis piej',
 'newpage'           => 'Nyuu piej',
 'talkpage'          => 'Diskos dis piej',
 'talkpagelinktext'  => 'Chat',
@@ -284,6 +287,7 @@ Si [[Special:Version|voerjan piej]].',
 'toc'                     => 'Kantent',
 'showtoc'                 => 'shuo',
 'hidetoc'                 => 'aid',
+'collapsible-expand'      => 'Hexpand',
 'thisisdeleted'           => 'Vyuu ar ristuor $1?',
 'viewdeleted'             => 'Vyuu $1?',
 'restorelink'             => '{{PLURAL:$1|wan diliitid edit|$1 diliitid edit}}',
@@ -425,6 +429,7 @@ No figat fi chienj yu [[Special:Preferences|{{SITENAME}} prefransdem]].',
 'createaccount'              => 'Kriet akount',
 'gotaccount'                 => 'Aredi gat akount? $1.',
 'gotaccountlink'             => 'Lag iin',
+'userlogin-resetlink'        => 'Figet yu lagin detail dem?',
 'createaccountmail'          => 'Bai e-miel',
 'createaccountreason'        => 'Riizn:',
 'badretype'                  => 'Di paaswod yu enta no mach.',
@@ -516,6 +521,10 @@ A lag yu iin nou ...',
 'resetpass-wrong-oldpass'   => 'Invalid ar tempareri paaswod.
 Yu maita chienj yu paaswod soksesfuli aredi ar rikwes wahn nyuu tempareri paaswod.',
 'resetpass-temp-password'   => 'Tempareri paaswod',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Yuuzaniem:',
+'passwordreset-domain'   => 'Domien:',
 
 # Edit page toolbar
 'bold_sample'     => 'Buol tex',
@@ -665,7 +674,12 @@ Yu de pramis wi alzwel se a yu rait dis yuself, ar kapi'i frahn a poblik domien 
 'template-semiprotected'           => '(semi-protek)',
 'hiddencategories'                 => 'Dis piej a memb a {{PLURAL:$1|1 idn kiatigari|$1 idn kiatigari}}:',
 'nocreatetitle'                    => 'Piej krieshan limit',
+'permissionserrors'                => 'Permishan herro',
 'permissionserrorstext-withaction' => 'Yu no ab no poermishan fi $2, fi di falarin {{PLURAL:$1|riizn|riizndem}}:',
+'edit-conflict'                    => 'Hedit kanflik: $1',
+
+# Account creation failure
+'cantcreateaccounttitle' => 'Cyannat mek di hakkount',
 
 # History pages
 'viewpagelogs'           => 'Vyuu lagdem fi dis piej',
@@ -675,6 +689,7 @@ Yu de pramis wi alzwel se a yu rait dis yuself, ar kapi'i frahn a poblik domien 
 'nextrevision'           => 'Nyuwa rivijan',
 'currentrevisionlink'    => 'Lietis rivijan',
 'cur'                    => 'kor',
+'next'                   => 'nexx',
 'last'                   => 'priiv',
 'histlegend'             => "Dif silekshan: maak di riedio bax fi di rivijandem fi kompier ahn lik enta ar di botn a di batom.<br />
 Lejen: '''({{int:cur}})''' = difrans wid lietis rivijan, '''({{int:last}})''' = difrans wid prisiidn rivijan, '''{{int:minoreditletter}}''' = maina edit.",

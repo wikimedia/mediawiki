@@ -665,6 +665,7 @@ Si us plau, esperi abans de tornar-ho a intentar.",
 
 # E-mail sending
 'php-mail-error-unknown' => 'Error desconegut en la funció mail() de PHP',
+'user-mail-no-addy'      => "S'ha intentat enviar un missatge de correu electrònic sense adreça.",
 
 # Change password dialog
 'resetpass'                 => 'Canvia la contrasenya',
@@ -685,23 +686,40 @@ Deveu haver canviat la vostra contrasenya o demanat una nova contrasenya tempora
 'resetpass-temp-password'   => 'Contrasenya temporal:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Restablir contrasenya',
-'passwordreset-text'         => 'Completeu el següent formulari per rebre un recordatori per correu electrònic amb els detalls del vostre compte.',
-'passwordreset-legend'       => 'Restablir contrasenya',
-'passwordreset-disabled'     => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
-'passwordreset-pretext'      => '{{PLURAL:$1||Introduïu un dels elements de dades següents}}',
-'passwordreset-username'     => "Nom d'usuari:",
-'passwordreset-domain'       => 'Domini',
-'passwordreset-email'        => 'Adreça de correu electrònic:',
-'passwordreset-emailtitle'   => 'Detalls del compte a {{SITENAME}}',
-'passwordreset-emailelement' => "Nom d'usuari: $1
+'passwordreset'                    => 'Restablir contrasenya',
+'passwordreset-text'               => 'Completeu el següent formulari per rebre un recordatori per correu electrònic amb els detalls del vostre compte.',
+'passwordreset-legend'             => 'Restablir contrasenya',
+'passwordreset-disabled'           => "S'ha desactivat el restabliment de contranyes en aquest wiki.",
+'passwordreset-pretext'            => '{{PLURAL:$1||Introduïu un dels elements de dades següents}}',
+'passwordreset-username'           => "Nom d'usuari:",
+'passwordreset-domain'             => 'Domini',
+'passwordreset-capture'            => 'Veure el missatge de correu electrònic?',
+'passwordreset-capture-help'       => "Si marqueu aquesta casella, el missatge de correu electrònic (amb la contrasenya temporal) es mostrarà al mateix moment que sigui enviat a l'usuari.",
+'passwordreset-email'              => 'Adreça de correu electrònic:',
+'passwordreset-emailtitle'         => 'Detalls del compte a {{SITENAME}}',
+'passwordreset-emailtext-ip'       => "Algú (vós mateix segurament, des de l'adreça IP $1) ha demanat un recordatori dels detalls dels vostres comptes al projecte {{SITENAME}} <$4>. {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
+
+$2
+
+{{PLURAL:$3|Aquesta contrasenya temporal caducarà|Aquestes contrasenyes temporals caducaran}} en {{PLURAL:$5|un dia|$5 dies}}.
+Hauríeu d'entrar {{PLURAL:$3|al compte per a fixar-hi una nova contrasenya|als comptes per a fixar-hi noves contrasenyes}} al més aviat possible. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
+'passwordreset-emailtext-user'     => "L'usuari $1 de {{SITENAME}} ha demanat un recordatori dels detalls dels vostres comptes al projecte {{SITENAME}} <$4>. {{PLURAL:$3|El següent compte d'usuari està associat|Els següents comptes d'usuari estan associats}} amb aquesta adreça de correu electrònic:
+
+$2
+
+{{PLURAL:$3|Aquesta contrasenya temporal caducarà|Aquestes contrasenyes temporals caducaran}} en {{PLURAL:$5|un dia|$5 dies}}.
+Hauríeu d'entrar {{PLURAL:$3|al compte per a fixar-hi una nova contrasenya|als comptes per a fixar-hi noves contrasenyes}} al més aviat possible. Si algú que no sou vós és qui ha fet aquesta petició o si heu recordat la contrasenya original i ja no la voleu canviar, podeu ignorar aquest missatge i seguir utilitzant la vostra antiga contrasenya.",
+'passwordreset-emailelement'       => "Nom d'usuari: $1
 Contrasenya temporal: $2",
-'passwordreset-emailsent'    => "S'ha enviat un correu de recordatori.",
+'passwordreset-emailsent'          => "S'ha enviat un correu de recordatori.",
+'passwordreset-emailsent-capture'  => "S'ha enviat un recordatori per correu electrònic, tal com es mostra a continuació.",
+'passwordreset-emailerror-capture' => "S'ha generat un missatge recordatori de correu electrònic, que es mostra a continuació, però ha fallat l'enviament a l'usuari: $1",
 
 # Special:ChangeEmail
 'changeemail'          => 'Canvi de correu electrònic',
 'changeemail-header'   => "Canvi de l'adreça de correu electrònic del compte",
 'changeemail-text'     => "Completeu el següent formulari per canviar la vostra adreça de correu electrònic. Haureu d'introduir la contrasenya per confirmar el canvi.",
+'changeemail-no-info'  => "Heu d'entrar en un compte d'usuari per accedir directament a aquesta pàgina.",
 'changeemail-oldemail' => 'Adreça de correu electrònic actual:',
 'changeemail-newemail' => 'Nova adreça de correu electrònic:',
 'changeemail-none'     => '(cap)',
@@ -1198,6 +1216,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'prefs-misc'                    => 'Altres preferències',
 'prefs-resetpass'               => 'Canvia la contrasenya',
 'prefs-changeemail'             => 'Canvia de correu electrònic',
+'prefs-setemail'                => 'Indiqueu una adreça de correu electrònic',
 'prefs-email'                   => 'Opcions de correu electrònic',
 'prefs-rendering'               => 'Aparença',
 'saveprefs'                     => 'Desa les preferències',
@@ -1257,6 +1276,7 @@ No es podrà desfer el canvi.',
 'yourrealname'                  => 'Nom real *',
 'yourlanguage'                  => 'Idioma:',
 'yourvariant'                   => 'Variant lingüística:',
+'prefs-help-variant'            => "La variant lingüística o ortogràfica que preferiu a l'hora de mostrar el contingut d'aquest wiki.",
 'yournick'                      => 'Signatura:',
 'prefs-help-signature'          => "Els comentaris a les pàgines d'usuari s'han de signar amb \"<nowiki>~~~~</nowiki>\", que serà convertit en la vostra signatura i la data i l'hora.",
 'badsig'                        => 'La signatura que heu inserit no és vàlida; verifiqueu les etiquetes HTML que heu emprat.',
@@ -1397,6 +1417,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'right-siteadmin'             => 'Blocar i desblocar la base de dades',
 'right-override-export-depth' => 'Exportar pàgines incloent aquelles enllaçades fins a una fondària de 5',
 'right-sendemail'             => 'Enviar missatges de correu electrònic a altres usuaris',
+'right-passwordreset'         => 'Veure les soŀlicituds de restabliment de contrasenya per correu electrònic',
 
 # User rights log
 'rightslog'                  => "Registre dels permisos d'usuari",
@@ -2176,6 +2197,7 @@ Ací es troben els paràmetres actuals de la pàgina '''$1''':",
 'protect-level-sysop'         => 'Bloqueja tots els usuaris excepte administradors',
 'protect-summary-cascade'     => 'en cascada',
 'protect-expiring'            => 'expira el dia $1 (UTC)',
+'protect-expiring-local'      => 'caduca el $1',
 'protect-expiry-indefinite'   => 'indefinit',
 'protect-cascade'             => 'Protecció en cascada: protegeix totes les pàgines i plantilles incloses en aquesta.',
 'protect-cantedit'            => "No podeu canviar els nivells de protecció d'aquesta pàgina, perquè no teniu permisos per a editar-la.",
@@ -2259,10 +2281,12 @@ $1",
 'undelete-show-file-submit'    => 'Sí',
 
 # Namespace form on various pages
-'namespace'             => 'Espai de noms:',
-'invert'                => 'Inverteix la selecció',
-'namespace_association' => 'Espai de noms associat',
-'blanknamespace'        => '(Principal)',
+'namespace'                     => 'Espai de noms:',
+'invert'                        => 'Inverteix la selecció',
+'tooltip-invert'                => "Marqueu aquesta casella per ocultar els canvis a les pàgines de l'espai de noms seleccionat (i l'espai de noms associat si està activat)",
+'namespace_association'         => 'Espai de noms associat',
+'tooltip-namespace_association' => "Marqueu aquesta casella per incloure l'espai de noms de discussió o de no discussió associat a l'espai de noms seleccionat",
+'blanknamespace'                => '(Principal)',
 
 # Contributions
 'contributions'       => "Contribucions de l'usuari",
@@ -2374,6 +2398,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'blocklist-userblocks'            => 'Amaga bloquejos de compte',
 'blocklist-tempblocks'            => 'Amaga bloquejos temporals',
 'blocklist-addressblocks'         => "Amaga bloquejos d'una sola IP",
+'blocklist-rangeblocks'           => 'Amaga els blocatges de rang',
 'blocklist-timestamp'             => 'Marca horària',
 'blocklist-target'                => 'Usuari blocat',
 'blocklist-expiry'                => 'Caduca',
@@ -2396,6 +2421,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'unblocklink'                     => 'desbloca',
 'change-blocklink'                => 'canvia el blocatge',
 'contribslink'                    => 'contribucions',
+'emaillink'                       => 'correu electrònic',
 'autoblocker'                     => "Heu estat blocat automàticament perquè la vostra adreça IP ha estat recentment utilitzada per l'usuari ''[[User:$1|$1]]''.
 El motiu del bloqueig de $1 és: ''$2''.",
 'blocklogpage'                    => 'Registre de bloquejos',
@@ -2639,6 +2665,8 @@ Deseu-lo al vostre ordinador i carregueu-ne una còpia ací.",
 'import-upload'              => 'Carrega dades XML',
 'import-token-mismatch'      => 'Pèrdua de dades de sessió. Torneu-ho a intentar.',
 'import-invalid-interwiki'   => 'No es pot importar des del wiki especificat.',
+'import-error-edit'          => "La pàgina «$1» no s'ha importat perquè no teniu permís per modificar-la.",
+'import-error-create'        => "La pàgina «$1» no s'ha importat perquè no teniu permís per crear-la.",
 
 # Import log
 'importlogpage'                    => "Registre d'importació",
@@ -2830,7 +2858,12 @@ Si l'executeu, podeu comprometre la seguretat del vostre sistema.",
 'sp-newimages-showfrom' => 'Mostra fitxers nous des del $1 a les $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'minutes-abbrev' => 'min',
+'minutes-abbrev' => '$1 min',
+'seconds'        => '{{PLURAL:$1|$1 segon|$1 segons}}',
+'minutes'        => '{{PLURAL:$1|$1 minut|$1 minuts}}',
+'hours'          => '{{PLURAL:$1|$1 hora|$1 hores}}',
+'days'           => '{{PLURAL:$1|$1 dia|$1 dies}}',
+'ago'            => 'fa $1',
 
 # Bad image list
 'bad_image_list' => "El format ha de ser el següent:
@@ -3038,6 +3071,9 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 
 # EXIF attributes
 'exif-compression-1' => 'Sense compressió',
+'exif-compression-2' => 'Codificació CCITT Grup 3 longitud monodimensional de Huffman modificat',
+'exif-compression-3' => 'Codificació de fax CCITT grup 3',
+'exif-compression-4' => 'Codificació de fax CCITT grup 4',
 
 'exif-copyrighted-true'  => "Sotmesa a drets d'autor",
 'exif-copyrighted-false' => 'de domini públic',
@@ -3212,8 +3248,12 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-ycbcrpositioning-2' => 'co-localitzats',
 
 'exif-dc-contributor' => 'Coŀlaboradors',
+'exif-dc-coverage'    => 'Abast espacial o temporal del contingut',
 'exif-dc-date'        => 'Data(es)',
+'exif-dc-publisher'   => 'Editorial',
+'exif-dc-relation'    => 'Fitxers multimèdia relacionats',
 'exif-dc-rights'      => 'Drets',
+'exif-dc-source'      => "Fitxer d'origen",
 'exif-dc-type'        => 'Tipus de contingut',
 
 'exif-rating-rejected' => 'Rebutjat',
@@ -3349,7 +3389,9 @@ Confirmeu que realment voleu tornar-la a crear.",
 
 # action=watch/unwatch
 'confirm-watch-button'   => "D'acord",
+'confirm-watch-top'      => 'Voleu afegir aquesta pàgina a la llista de seguiment?',
 'confirm-unwatch-button' => "D'acord",
+'confirm-unwatch-top'    => 'Voleu treure aquesta pàgina de la llista de seguiment?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← pàgina anterior',
@@ -3511,19 +3553,16 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'tags-hitcount'           => '$1 {{PLURAL:$1|canvi|canvis}}',
 
 # Special:ComparePages
-'comparepages'     => 'Comparar pàgines',
-'compare-selector' => 'Comparar revisions de pàgines',
-'compare-page1'    => 'Pàgina 1',
-'compare-page2'    => 'Pàgina 2',
-'compare-rev1'     => 'Revisió 1',
-'compare-rev2'     => 'Revisió 2',
-'compare-submit'   => 'Compara',
-
-# Special:GlobalFileUsage
-'globalfileusage-on-wiki' => 'Utilització a $2',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage-on-wiki' => 'Utilització a $2',
+'comparepages'                => 'Comparar pàgines',
+'compare-selector'            => 'Comparar revisions de pàgines',
+'compare-page1'               => 'Pàgina 1',
+'compare-page2'               => 'Pàgina 2',
+'compare-rev1'                => 'Revisió 1',
+'compare-rev2'                => 'Revisió 2',
+'compare-submit'              => 'Compara',
+'compare-invalid-title'       => 'El títol que heu especificat no és vàlid.',
+'compare-title-not-exists'    => 'El títol que heu especificat no existeix.',
+'compare-revision-not-exists' => 'La revisió que heu especificat no existeix.',
 
 # Database error messages
 'dberr-header'      => 'Aquest wiki té un problema',
@@ -3551,8 +3590,35 @@ Les imatges es mostren en plena resolució; altres tipus de fitxer s'inicien dir
 'sqlite-no-fts'  => '$1, sense supor de búsqueda de text íntegre',
 
 # New logging system
-'revdelete-restricted'   => 'ha aplicat restriccions al administradors',
-'revdelete-unrestricted' => 'ha esborrat les restriccions per a administradors',
-'newuserlog-byemail'     => 'contrasenya enviada per correu electrònic',
+'logentry-delete-delete'              => '$1 {{GENDER:$2|ha esborrat}} la pàgina $3',
+'logentry-delete-restore'             => '$1 {{GENDER:$2|ha restaurat}} la pàgina $3',
+'logentry-delete-event'               => "$1 {{GENDER:$2|ha canviat}} la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
+'logentry-delete-revision'            => "$1 {{GENDER:$2|ha canviat}} la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
+'logentry-delete-event-legacy'        => "$1 {{GENDER:$2|ha canviat}} la visibilitat d'esdeveniments al registre de $3",
+'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|ha canviat}} la visibilitat de revisions a la pàgina $3',
+'logentry-suppress-delete'            => '$1 {{GENDER:$2|ha suprimit}} la pàgina $3',
+'logentry-suppress-event'             => "$1 secretament {{GENDER:$2|ha canviat}} la visibilitat {{PLURAL:$5|d'un esdeveniment al registre|de $5 esdeveniments al registre}} de $3: $4",
+'logentry-suppress-revision'          => "$1 secretament {{GENDER:$2|ha canviat}} la visibilitat {{PLURAL:$5|d'una revisió|de $5 revisions}} a la pàgina $3: $4",
+'logentry-suppress-event-legacy'      => "$1 secretament {{GENDER:$2|ha canviat}} la visibilitat d'esdeveniments al registre de $3",
+'logentry-suppress-revision-legacy'   => '$1 secretament {{GENDER:$2|ha canviat}} la visibilitat de revisions a la pàgina $3',
+'revdelete-content-hid'               => 'ha ocultat contingut',
+'revdelete-summary-hid'               => "ha ocultat el resum d'edició",
+'revdelete-uname-hid'                 => "ha ocultat el nom d'usuari",
+'revdelete-content-unhid'             => 'ha revelat contingut que era ocult',
+'revdelete-summary-unhid'             => "ha revelat el resum d'edició que era ocult",
+'revdelete-uname-unhid'               => "ha revelat un nom d'usuari que era ocult",
+'revdelete-restricted'                => 'ha aplicat restriccions als administradors',
+'revdelete-unrestricted'              => 'ha tret les restriccions als administradors',
+'logentry-move-move'                  => '$1 {{GENDER:$2|ha desplaçat}} la pàgina $3 a $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|ha desplaçat}} la pàgina $3 a $4 sense deixar cap redirecció',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|ha desplaçat}} la pàgina $3 a $4, on hi havia una redirecció',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|ha desplaçat}} la pàgina $3 a $4 on hi havia una redirecció i sense crear una nova redirecció',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|ha marcat}} la versió $4 de la pàgina $3 com a patrullada',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|ha marcat}} automàticament la versió $4 de la pàgina $3 com a patrullada',
+'logentry-newusers-newusers'          => "$1 {{GENDER:$2|ha creat}} un compte d'usuari",
+'logentry-newusers-create'            => "$1 {{GENDER:$2|ha creat}} un compte d'usuari",
+'logentry-newusers-create2'           => "$1 {{GENDER:$2|ha creat}} {{GENDER:$4|el compte d'usuari}} $3",
+'logentry-newusers-autocreate'        => "El compte d'usuari $1 {{GENDER:$2|ha estat creat}} de manera automàtica",
+'newuserlog-byemail'                  => 'contrasenya enviada per correu electrònic',
 
 );

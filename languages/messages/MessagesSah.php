@@ -759,9 +759,6 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'templatesused'                    => 'Манна туттуллубут {{PLURAL:$1|халыып|халыыптар}} :',
 'templatesusedpreview'             => 'Манна туттуллубут {{PLURAL:$1|халыып|халыыптар}} бигэргэтиэх иннинэ көстүүлэрэ:',
 'templatesusedsection'             => 'Манна туттуллубут {{PLURAL:$1|халыып|халыыптар}}:',
-'distanttemplatesused'             => 'Манна туттуллубут ыраахтан туттуллар {{PLURAL:$1|халыып|халыыптар}}:',
-'distanttemplatesusedpreview'      => 'Эрдэ көрүүгэ туттуллубут ыраахтан туттуллар {{PLURAL:$1|халыып|халыыптар}}:',
-'distanttemplatesusedsection'      => 'Бу салааҕа туттуллубут ыраахтан туттуллар {{PLURAL:$1|халыып|халыыптар}}:',
 'template-protected'               => '(хатаммыт)',
 'template-semiprotected'           => '(хатаммыт аҥардаах)',
 'hiddencategories'                 => 'Бу сирэй кистэммит {{PLURAL:$1|1 категорияҕа|$1 категорияларга}} киирэр:',
@@ -3446,27 +3443,6 @@ MediaWiki туһалаах буоллун диэн тарҕатыллар, ол 
 'compare-invalid-title'       => 'Суруллубут аат туттуллара сатаммат.',
 'compare-title-not-exists'    => 'Ыйбыт аатыҥ суох эбит.',
 'compare-revision-not-exists' => 'Ыйбыт барылыҥ суох эбит.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Билэлэри киэҥник туттуу',
-'globalfileusage-for'         => '«$1» билэни киэҥник туттуу',
-'globalfileusage-desc'        => 'Билэни киэҥник туттууну көрдөрөр [[Special:GlobalFileUsage|аналлаах сирэй]]',
-'globalfileusage-ok'          => 'Бул',
-'globalfileusage-text'        => 'Билэни киэҥник туттууну көрдөөһүн',
-'globalfileusage-no-results'  => '[[$1]] атын биикигэ туттуллубат эбит.',
-'globalfileusage-on-wiki'     => 'Манна туттуллар $2',
-'globalfileusage-more'        => 'Билэ [[{{#Special:GlobalUsage}}/$1|атын сиргэ киэҥник туттуллуутун]] көрүү.',
-'globalfileusage-filterlocal' => 'Локаал туттууну көрдөрүмэ',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Халыыптары киэҥник туттуу',
-'globaltemplateusage-for'         => '"$1" халыыбы киэҥник туттуу',
-'globaltemplateusage-ok'          => 'Бул',
-'globaltemplateusage-text'        => 'Халыыбы киэҥник туттууну көрдөөһүн',
-'globaltemplateusage-no-results'  => '[[$1]] атын биикигэ туттуллубат эбит.',
-'globaltemplateusage-on-wiki'     => 'Манна туттуллар $2',
-'globaltemplateusage-more'        => 'Халыып [[{{#Special:GlobalUsage}}/$1|атын сиргэ киэҥник туттуллуутун]] көрүү.',
-'globaltemplateusage-filterlocal' => 'Локаал туттууну көрдөрүмэ',
 
 # Database error messages
 'dberr-header'      => 'Бу биики туга эрэ сатаммата',

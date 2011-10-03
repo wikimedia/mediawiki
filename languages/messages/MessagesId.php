@@ -3732,27 +3732,6 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'compare-title-not-exists'    => 'Judul yang Anda minta tidak ada.',
 'compare-revision-not-exists' => 'Revisi yang Anda minta tidak ada.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Penggunaan berkas global',
-'globalfileusage-for'         => 'Penggunaan berkas global untuk "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Halaman istimewa]] untuk melihat penggunaan berkas secara global',
-'globalfileusage-ok'          => 'Cari',
-'globalfileusage-text'        => 'Cari penggunaan secara global berkas.',
-'globalfileusage-no-results'  => '[[$1]] tidak digunakan di wiki lain.',
-'globalfileusage-on-wiki'     => 'Penggunaan pada $2',
-'globalfileusage-more'        => 'Lihat [[{{#Special:GlobalUsage}}/$1|lebih banyak penggunaan global]] dari berkas ini.',
-'globalfileusage-filterlocal' => 'Jangan tunjukkan penggunaan lokal',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Penggunaan templat global',
-'globaltemplateusage-for'         => 'Penggunaan templat global untuk "$1"',
-'globaltemplateusage-ok'          => 'Cari',
-'globaltemplateusage-text'        => 'Cari penggunaan templat secara global.',
-'globaltemplateusage-no-results'  => '[[$1]] tidak digunakan di wiki lain.',
-'globaltemplateusage-on-wiki'     => 'Penggunaan pada $2',
-'globaltemplateusage-more'        => 'Lihat [[{{#Special:GlobalUsage}}/$1|penggunaan global]] dari templat ini.',
-'globaltemplateusage-filterlocal' => 'Jangan tunjukkan penggunaan lokal',
-
 # Database error messages
 'dberr-header'      => 'Wiki ini bermasalah',
 'dberr-problems'    => 'Maaf! Situs ini mengalami masalah teknis.',

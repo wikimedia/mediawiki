@@ -1016,9 +1016,6 @@ Kitaa an $2 para hin talaan han mga gibag-ohi nga mga ginpamara.',
 'compare-rev1'  => 'Pagliwat 1',
 'compare-rev2'  => 'Pagliwat 2',
 
-# Special:GlobalTemplateUsage
-'globaltemplateusage-ok' => 'Pamilnga',
-
 # Database error messages
 'dberr-header' => 'Ini nga wiki mayda problema',
 

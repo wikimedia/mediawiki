@@ -726,7 +726,6 @@ This message is displayed when someone tried to login and the CSRF failed (most 
 $1 is the minimum number of characters in the password.',
 'password-login-forbidden'   => 'Error message shown when the user has tried to log in using one of the special username/password combinations used for MediaWiki testing. (See [[mwr:75589]], [[mwr:75605]].)',
 'mailmypassword'             => 'Shown at [[Special:UserLogin]]',
-'cannotchangeemail'          => 'Error message shown when user goes to [[Special:ChangeEmail]] but email addresses cannot be changed on the site.',
 'passwordremindertitle'      => 'Title of e-mail which contains temporary password',
 'passwordremindertext'       => 'This text is used in an e-mail sent when a user requests a new temporary password (he has forgotten his password) or when an sysop creates a new user account choosing to have password and username sent to the new user by e-mail.
 * $1 is an IP addres. Example: 123.123.123.123
@@ -750,6 +749,7 @@ Parameters:
 'noemailprefs'               => "Message appearing in the 'E-mail options' section of the 'User profile' page in [[Special:Preferences|Preferences]], when no user e-mail address has been entered.",
 'emailconfirmlink'           => 'Link to [[Special:ConfirmEmail]]. Appears in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}} after saving your e-mail address but before it has been authenticated.',
 'invalidemailaddress'        => 'Shown as a warning when written an invalid e-mail adress in [[Special:Preferences]] and {{fullurl:Special:UserLogin|type=signup}} page',
+'cannotchangeemail'          => 'Error message shown when user goes to [[Special:ChangeEmail]] but email addresses cannot be changed on the site.',
 'createaccount-title'        => 'This is the subject of an e-mail sent to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.',
 'createaccount-text'         => 'This text is sent as an e-mail to the e-mail address entered at [[Special:CreateAccount]] if the button "by e-mail" is clicked.
 
@@ -1486,7 +1486,7 @@ Parameters:
 {{Identical|User}}',
 'group-autoconfirmed' => 'Name of group. On Wikimedia sites autoconfirmed users are users which are older than 4 days. After those 4 days, they have more rights.',
 'group-bot'           => 'Name of group',
-'group-sysop'         => 'Name of group',
+'group-sysop'         => '{{doc-group|sysop}}',
 'group-bureaucrat'    => 'Name of group',
 'group-suppress'      => 'This is an optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
 
@@ -4277,33 +4277,6 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'compare-rev2'     => 'Label for the field of the 2nd revision in the comparison for [[Special:ComparePages]]
 {{Identical|Revision}}',
 'compare-submit'   => 'Submit button on [[Special:ComparePages]]',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Title of [[Special:GlobalFileUsage]] that lists all the places where one shared file has been used. "Global" refers to the usage, not to the file. "File" is singular.',
-'globalfileusage-for'         => 'Title of special page ([http://commons.wikimedia.org/w/index.php?title=Special%3AGlobalUsage&limit=50&target=Example.jpg example]).
-$1 is a file name.',
-'globalfileusage-desc'        => '{{desc}}',
-'globalfileusage-ok'          => 'Text of submit button
-
-{{Identical|Search}}',
-'globalfileusage-text'        => 'Dialog box heading on [[Special:GlobalFileUsage]]. "Global" refers to "usage" not "file".',
-'globalfileusage-no-results'  => 'Used for empty result on [[Special:GlobalUsage]].
-$1 is a file name (with namespace)',
-'globalfileusage-on-wiki'     => 'Heading for list of files. Example: [[Commons:Special:GlobalUsage/Example.jpg]] and [[Commons:File:Example.jpg]]
-
-* $1 the file name, but unused in this message
-* $2 is a wiki name, given as a domain, e.g. en.wiktionary.org',
-'globalfileusage-more'        => 'Used on an image page, when more global usage results are available. Example: [[Commons:File:Example.jpg]]
-* $1 - name of the file (without namespace)',
-'globalfileusage-filterlocal' => 'Filter option for GlobalUsage special page, ([http://commons.wikimedia.org/wiki/Special:GlobalUsage/Hacienda_jaral_de_berrios.jpg example]).
-
-"Local" here means "on this wiki".',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage-for'        => '$1 is a template name',
-'globaltemplateusage-ok'         => '{{Identical|Search}}',
-'globaltemplateusage-no-results' => '$1 is a template name including the namespace',
-'globaltemplateusage-on-wiki'    => '$2 is a wiki name',
 
 # Database error messages
 'dberr-header'    => 'This message does not allow any wiki nor html markup.',

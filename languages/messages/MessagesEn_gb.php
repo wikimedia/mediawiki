@@ -9,6 +9,7 @@
  *
  * @author Dantman
  * @author Fitoschido
+ * @author Hazard-SJ
  * @author Jon Harald Søby
  * @author Reedy
  * @author The Evil IP address
@@ -22,6 +23,12 @@ $specialPageAliases = array(
 );
 
 $messages = array(
+# User preference toggles
+'tog-watchcreations' => 'Add pages I create to my watchlist',
+'tog-watchdefault'   => 'Add pages I edit to my watchlist',
+'tog-watchmoves'     => 'Add pages I move to my watchlist',
+'tog-watchdeletion'  => 'Add pages I delete to my watchlist',
+
 # General errors
 'missing-article' => 'The database did not find the text of a page that it should have found, named ‘$1’ $2.
 

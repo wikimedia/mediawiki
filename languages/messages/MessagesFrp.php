@@ -1046,9 +1046,6 @@ La dèrriére entrâ du jornal est montrâ ce-desot coment refèrence :",
 'templatesused'                    => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} per ceta pâge :',
 'templatesusedpreview'             => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} dens ceta prèvisualisacion :',
 'templatesusedsection'             => '{{PLURAL:$1|Modèlo utilisâ|Modèlos utilisâs}} dens ceta sèccion :',
-'distanttemplatesused'             => '{{PLURAL:$1|Modèlo distant utilisâ|Modèlos distants utilisâs}} per ceta pâge :',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Modèlo distant utilisâ|Modèlos distants utilisâs}} dens ceta prèvisualisacion :',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Modèlo distant utilisâ|Modèlos distants utilisâs}} dens ceta sèccion :',
 'template-protected'               => '(protègiê)',
 'template-semiprotected'           => '(mié-protègiê)',
 'hiddencategories'                 => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}} que ceta pâge est avouéc :',
@@ -3906,27 +3903,6 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'compare-invalid-title'       => 'Lo titro que vos éd spècefiâ est fôx.',
 'compare-title-not-exists'    => 'Lo titro que vos éd spècefiâ ègziste pas.',
 'compare-revision-not-exists' => 'La vèrsion que vos éd spècefiâ ègziste pas.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Usâjo globâl du fichiér',
-'globalfileusage-for'         => 'Usâjo globâl du fichiér por « $1 »',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Pâge spèciâla]] por vêre l’usâjo globâl d’un fichiér.',
-'globalfileusage-ok'          => 'Rechèrchiér',
-'globalfileusage-text'        => 'Rechèrchiér l’usâjo globâl du fichiér',
-'globalfileusage-no-results'  => '[[$1]] est pas utilisâ sur d’ôtros vouiquis.',
-'globalfileusage-on-wiki'     => 'Usâjo dessus $2',
-'globalfileusage-more'        => 'Vêre [[{{#Special:GlobalUsage}}/$1|més d’usâjos globâls]] de ceti fichiér.',
-'globalfileusage-filterlocal' => 'Pas montrar l’usâjo local',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Usâjo globâl du modèlo',
-'globaltemplateusage-for'         => 'Usâjo globâl du modèlo por « $1 »',
-'globaltemplateusage-ok'          => 'Rechèrchiér',
-'globaltemplateusage-text'        => 'Rechèrchiér l’usâjo globâl du modèlo',
-'globaltemplateusage-no-results'  => '[[$1]] est pas utilisâ sur d’ôtros vouiquis.',
-'globaltemplateusage-on-wiki'     => 'Usâjo dessus $2',
-'globaltemplateusage-more'        => 'Vêre [[{{#Special:GlobalUsage}}/$1|més d’usâjos globâls]] de ceti modèlo.',
-'globaltemplateusage-filterlocal' => 'Pas montrar l’usâjo local',
 
 # Database error messages
 'dberr-header'      => 'Ceti vouiqui at un problèmo',

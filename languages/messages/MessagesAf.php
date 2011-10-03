@@ -918,9 +918,6 @@ Die nuutste logboekinskrywing word hieronder ter verwysing vertoon:",
 'templatesused'                    => 'Hierdie bladsy {{PLURAL:$1|gebruik sjabloon|gebruik sjablone}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Sjabloon|Sjablone}} gebruik in hierdie voorskou:',
 'templatesusedsection'             => 'Die volgende {{PLURAL:$1|sjabloon|sjablone}} word in hierdie afdeling gebruik:',
-'distanttemplatesused'             => "{{PLURAL:$1|Sjabloon|Sjablone}} uit 'n andere wiki op hierdie bladsy:",
-'distanttemplatesusedpreview'      => "{{PLURAL:$1|Sjabloon|Sjablone}} uit 'n ander wiki in hierdie voorskou:",
-'distanttemplatesusedsection'      => "{{PLURAL:$1|Sjabloon|Sjablone}} uit 'n ander wiki in hierdie paragraaf:",
 'template-protected'               => '(beskermd)',
 'template-semiprotected'           => '(half-beskerm)',
 'hiddencategories'                 => "Hierdie bladsy is 'n lid van {{PLURAL:$1|1 versteekte kategorie|$1 versteekte kategorië}}:",
@@ -1452,6 +1449,7 @@ Die inligting is vir ander gebruikers sigbaar.',
 'right-siteadmin'             => 'Sluit en ontsluit die datbasis',
 'right-override-export-depth' => "Eksporteer bladsye insluitend geskakelde bladsye tot 'n diepte van 5",
 'right-sendemail'             => 'Stuur e-pos aan ander gebruikers',
+'right-passwordreset'         => "Herstel 'n gebruiker se wagwoord ([[Special:PasswordReset|spesiale bladsy]])",
 
 # User rights log
 'rightslog'                  => 'Gebruikersregtelogboek',
@@ -2918,6 +2916,13 @@ $1',
 'bydate'                => 'volgens datum',
 'sp-newimages-showfrom' => 'Wys nuwe lêers vanaf $2, $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 sekonde|$1 sekondes}}',
+'minutes' => '{{PLURAL:$1|$1 minuut|$1 minute}}',
+'hours'   => '{{PLURAL:$1|$1 uur|$1 ure}}',
+'days'    => '{{PLURAL:$1|$1 dag|$1 dae}}',
+'ago'     => '$1 gelede',
+
 # Bad image list
 'bad_image_list' => "Die formaat is as volg:
 
@@ -3613,27 +3618,6 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'compare-invalid-title'       => 'Die titel wat u verskaf het is ongeldig.',
 'compare-title-not-exists'    => 'Die titel wat u verskaf het bestaan ​​nie.',
 'compare-revision-not-exists' => 'Die hersiening wat u verskaf het bestaan ​​nie.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Globale lêergebruik',
-'globalfileusage-for'         => 'Globale lêergebruik vir "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Spesiale bladsy]] om globale lêergebruik te wys',
-'globalfileusage-ok'          => 'Soek',
-'globalfileusage-text'        => 'Soek globale lêergebruik',
-'globalfileusage-no-results'  => "[[$1]] word nie in ander wiki's gebruik nie.",
-'globalfileusage-on-wiki'     => 'Gebruik in $2',
-'globalfileusage-more'        => 'Wys [[{{#Special:GlobalUsage}}/$1|globale gebruik]] van die lêer.',
-'globalfileusage-filterlocal' => 'Moenie lokale gebruik wys nie',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Globale sjabloongebruik',
-'globaltemplateusage-for'         => 'Globaal sjabloongebruik vir "$1"',
-'globaltemplateusage-ok'          => 'Soek',
-'globaltemplateusage-text'        => 'Soek globale sjabloongebruik',
-'globaltemplateusage-no-results'  => "[[$1]] word nie in ander wiki's gebruik nie.",
-'globaltemplateusage-on-wiki'     => 'Gebruik in $2',
-'globaltemplateusage-more'        => 'Wys [[{{#Special:GlobalUsage}}/$1|globale gebruik]] van die sjabloon.',
-'globaltemplateusage-filterlocal' => 'Moenie lokale gebruik wys nie',
 
 # Database error messages
 'dberr-header'      => "Die wiki het 'n probleem",

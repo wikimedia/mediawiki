@@ -1039,9 +1039,6 @@ $2
 'templatesused'                    => '{{PLURAL:$1|Πρότυπο|Πρότυπα}} που χρησιμοποιούνται στη σελίδα αυτή:',
 'templatesusedpreview'             => '{{PLURAL:$1|Πρότυπο|Πρότυπα}} που χρησιμοποιούνται σε αυτή την προεπισκόπηση:',
 'templatesusedsection'             => '{{PLURAL:$1|Πρότυπο|Πρότυπα}} που χρησιμοποιούνται σε αυτή την ενότητα:',
-'distanttemplatesused'             => '{{PLURAL:$1|Απομακρυσμένο πρότυπο|Απομακρυσμένα πρότυπα}} σε αυτήν τη σελίδα:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Απομακρυσμένο πρότυπο|Απομακρυσμένα πρότυπα}} σε αυτήν την προεπισκόπηση:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Απομακρυσμένο πρότυπο|Απομακρυσμένα πρότυπα}} σε αυτήν την ενότητα:',
 'template-protected'               => '(προστατευμένη)',
 'template-semiprotected'           => '(ημιπροστατευμένη)',
 'hiddencategories'                 => 'Αυτή η σελίδα είναι μέλος {{PLURAL:$1|μίας κρυμμένης κατηγορίας|$1 κρυμμένων κατηγοριών}}',
@@ -3717,27 +3714,6 @@ $1',
 'compare-invalid-title'       => 'Ο τίτλος που καθορίσατε δεν είναι έγκυρος.',
 'compare-title-not-exists'    => 'Ο τίτλος που καθορίσατε δεν υπάρχει.',
 'compare-revision-not-exists' => 'Η αναθεώρηση που καθορίσατε δεν υπάρχει.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Καθολική χρήση αρχείου',
-'globalfileusage-for'         => 'Καθολική χρήση αρχείου για "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Ειδική σελίδα]] για να δείτε την καθολική χρήση του αρχείου',
-'globalfileusage-ok'          => 'Αναζήτηση',
-'globalfileusage-text'        => 'Αναζήτηση καθολικής χρήσης αρχείου',
-'globalfileusage-no-results'  => 'Το αρχείο [[$1]] δεν χρησιμοποιείται σε άλλα βίκι.',
-'globalfileusage-on-wiki'     => 'Χρήση στο $2',
-'globalfileusage-more'        => 'Δείτε  [[{{#Special:GlobalUsage}}/$1|περισσότερη καθολική χρήση]] αυτού του αρχείου.',
-'globalfileusage-filterlocal' => 'Απόκρυψη τοπικής χρήσης',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Καθολική χρήση προτύπου',
-'globaltemplateusage-for'         => 'Καθολική χρήση πρότυπου για "$1"',
-'globaltemplateusage-ok'          => 'Αναζήτηση',
-'globaltemplateusage-text'        => 'Αναζήτηση καθολικής χρήσης προτύπου',
-'globaltemplateusage-no-results'  => 'Το αρχείο [[$1]] δεν χρησιμοποιείται σε άλλα βίκι.',
-'globaltemplateusage-on-wiki'     => 'Χρήση στο $2',
-'globaltemplateusage-more'        => 'Δείτε  [[{{#Special:GlobalUsage}}/$1|περισσότερη καθολική χρήση]] αυτού του προτύπου.',
-'globaltemplateusage-filterlocal' => 'Απόκρυψη τοπικής χρήσης',
 
 # Database error messages
 'dberr-header'      => 'Αυτό το βίκι έχει ένα πρόβλημα',

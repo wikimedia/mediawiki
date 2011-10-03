@@ -269,7 +269,7 @@ $messages = array(
 'imagepage'         => 'Ver la páxina de ficheros',
 'mediawikipage'     => 'Ver la páxina de mensaxe',
 'templatepage'      => 'Ver la páxina de plantía',
-'viewhelppage'      => "Ver la páxina d'aida",
+'viewhelppage'      => "Ver la páxina d'ayuda",
 'categorypage'      => 'Ver páxina de categoríes',
 'viewtalkpage'      => 'Ver alderique',
 'otherlanguages'    => 'Otres llingües',
@@ -299,7 +299,7 @@ $1",
 'currentevents-url'    => 'Project:Fechos actuales',
 'disclaimers'          => 'Avisu llegal',
 'disclaimerpage'       => 'Project:Llimitación xeneral de responsabilidá',
-'edithelp'             => "Aida d'edición",
+'edithelp'             => "Ayuda d'edición",
 'edithelppage'         => 'Help:Edición de páxines',
 'helppage'             => 'Help:Conteníos',
 'mainpage'             => 'Portada',
@@ -357,7 +357,7 @@ $1",
 'nstab-image'     => 'Ficheru',
 'nstab-mediawiki' => 'Mensaxe',
 'nstab-template'  => 'Plantía',
-'nstab-help'      => 'Aida',
+'nstab-help'      => 'Ayuda',
 'nstab-category'  => 'Categoría',
 
 # Main script and global functions
@@ -533,6 +533,7 @@ Nun s'unviará corréu de denguna de les funciones siguientes.",
 'emailconfirmlink'           => 'Confirmar la direición de corréu',
 'invalidemailaddress'        => "La direición de corréu nun se pue aceutar yá que paez tener un formatu non válidu.
 Por favor escribi una direición con formatu afayadizu o dexa vaciu'l campu.",
+'cannotchangeemail'          => 'Les direiciones de corréu de la cuenta nun puen camudase nesta wiki.',
 'accountcreated'             => 'Cuenta creada',
 'accountcreatedtext'         => "La cuenta d'usuariu de $1 ta creada.",
 'createaccount-title'        => 'Creación de cuenta pa {{SITENAME}}',
@@ -571,16 +572,18 @@ Seique yá camudasti la clave temporal o que solicitasti otra nueva.",
 'resetpass-temp-password'   => 'Clave temporal:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Reaniciar contraseña',
-'passwordreset-text'           => 'Completa esti formulariu pa recibir un corréu que te recuerde los detalles de la to cuenta.',
-'passwordreset-legend'         => 'Reaniciar contraseña',
-'passwordreset-disabled'       => 'Los reanicios de contraseña tan desactivaos nesta wiki.',
-'passwordreset-pretext'        => "{{PLURAL:$1||Escribi una de les partes de los datos d'abaxo}}",
-'passwordreset-username'       => "Nome d'usuariu:",
-'passwordreset-domain'         => 'Dominiu:',
-'passwordreset-email'          => 'Direición de corréu:',
-'passwordreset-emailtitle'     => 'Detalles de la cuenta en {{SITENAME}}',
-'passwordreset-emailtext-ip'   => "Dalguién (seique tu, dende la direición IP $1) pidió un recordatoriu cola
+'passwordreset'                    => 'Reaniciar contraseña',
+'passwordreset-text'               => 'Completa esti formulariu pa recibir un corréu que te recuerde los detalles de la to cuenta.',
+'passwordreset-legend'             => 'Reaniciar contraseña',
+'passwordreset-disabled'           => 'Los reanicios de contraseña tan desactivaos nesta wiki.',
+'passwordreset-pretext'            => "{{PLURAL:$1||Escribi una de les partes de los datos d'abaxo}}",
+'passwordreset-username'           => "Nome d'usuariu:",
+'passwordreset-domain'             => 'Dominiu:',
+'passwordreset-capture'            => '¿Ver el mensaxe de corréu resultante?',
+'passwordreset-capture-help'       => "Si marques esta caxella, podrás ver el corréu (cola contraseña temporal) de la que s'unvía al usuariu.",
+'passwordreset-email'              => 'Direición de corréu:',
+'passwordreset-emailtitle'         => 'Detalles de la cuenta en {{SITENAME}}',
+'passwordreset-emailtext-ip'       => "Dalguién (seique tu, dende la direición IP $1) pidió un recordatoriu cola
 información de la to cuenta de {{SITENAME}} ($4).
 {{PLURAL:$3|La siguiente cuenta d'usuariu ta asociada|Les siguientes cuentes d'usuariu tan asociaes}} con esta direición de corréu:
 
@@ -590,7 +593,7 @@ $2
 Tendríes d'entrar al sistema y escoyer una contraseña nueva agora. Si esta
 solicitú ye d'otru o recordasti la contraseña orixinal y nun quies camudala,
 inora esti mensaxe y sigui emplegando la contraseña antigua.",
-'passwordreset-emailtext-user' => "L'usuariu $1 de {{SITENAME}} pidió un recordatoriu cola información de la to cuenta de {{SITENAME}} ($4).
+'passwordreset-emailtext-user'     => "L'usuariu $1 de {{SITENAME}} pidió un recordatoriu cola información de la to cuenta de {{SITENAME}} ($4).
 {{PLURAL:$3|La siguiente cuenta d'usuariu ta asociada|Les siguientes cuentes d'usuariu tan asociaes}} con esta direición de corréu:
 
 $2
@@ -599,9 +602,11 @@ $2
 Tendríes d'entrar al sistema y escoyer una contraseña nueva agora. Si esta
 solicitú ye d'otru o recordasti la contraseña orixinal y nun quies camudala,
 inora esti mensaxe y sigui emplegando la contraseña antigua.",
-'passwordreset-emailelement'   => "Nome d'usuariu: $1
+'passwordreset-emailelement'       => "Nome d'usuariu: $1
 Contraseña temporal: $2",
-'passwordreset-emailsent'      => "S'unvió un corréu de recordatoriu.",
+'passwordreset-emailsent'          => "S'unvió un corréu de recordatoriu.",
+'passwordreset-emailsent-capture'  => "S'unvió un corréu de recordatoriu, que s'amuesa abaxo.",
+'passwordreset-emailerror-capture' => "Se xeneró un corréu de recordatoriu, que s'amuesa abaxo; pero falló unvialu al usuariu: $1",
 
 # Special:ChangeEmail
 'changeemail'          => 'Camudar la direición de corréu electrónicu',
@@ -700,7 +705,9 @@ Seique se treslladara o desaniciara mientres visitabes la páxina.',
 
 La clave pa esta cuenta nueva pue camudase na páxina ''[[Special:ChangePassword|camudar clave]]'' depués d'identificate.",
 'newarticle'                       => '(Nuevu)',
-'newarticletext'                   => 'Siguisti un enllaz a un artículu qu\'inda nun esiste. Pa crealu, empecipia a escribir na caxa que vien darréu (mira la [[{{MediaWiki:Helppage}}|páxina d\'aida]] pa más información). Si llegasti equí por enquivocu, namás tienes que calcar nel botón "Dir atrás" del to navegador.',
+'newarticletext'                   => "Siguisti un enllaz a un artículu qu'inda nun esiste.
+Pa crear la páxina, empecipia a escribir nel cuadru que vien darréu (mira la [[{{MediaWiki:Helppage}}|páxina d'ayuda]] pa más información).
+Si llegasti equí por enquivocu, calca nel botón '''atrás''' del to navegador.",
 'anontalkpagetext'                 => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:UserLogin/signup|crea una cuenta]] o [[Special:UserLogin/signup|rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
 'noarticletext'                    => 'Anguaño nun hai testu nesta páxina.
 Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines,
@@ -780,9 +787,6 @@ La cabera entrada del rexistru s'ufre darréu pa referencia:",
 'templatesused'                    => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta páxina:',
 'templatesusedpreview'             => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta vista previa:',
 'templatesusedsection'             => '{{PLURAL:$1|Plantía usada|Plantíes usaes}} nesta seición:',
-'distanttemplatesused'             => '{{PLURAL:$1|Plantía distante usada|Plantíes distantes usaes}} nesta páxina:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Plantía distante usada|Plantíes distantes usaes}} nesta vista previa:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Plantía distante usada|Plantíes distantes usaes}} nesta seición:',
 'template-protected'               => '(protexida)',
 'template-semiprotected'           => '(semi-protexida)',
 'hiddencategories'                 => 'Esta páxina pertenez a {{PLURAL:$1|una categoría oculta|$1 categoríes ocultes}}:',
@@ -1312,6 +1316,7 @@ Esta información sedrá pública.",
 'right-siteadmin'             => 'Candar y descandar la base de datos',
 'right-override-export-depth' => 'Esportar páxines, incluyendo páxines enllazaes fasta una fondura de 5',
 'right-sendemail'             => 'Unviar corréu a otros usuarios',
+'right-passwordreset'         => 'Ver los correos de restablecimientu de contraseña',
 
 # User rights log
 'rightslog'                  => "Rexistru de perfil d'usuariu",
@@ -2659,7 +2664,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'tooltip-ca-nstab-image'          => 'Amuesa la páxina del archivu',
 'tooltip-ca-nstab-mediawiki'      => "Amuesa'l mensaxe de sistema",
 'tooltip-ca-nstab-template'       => 'Amuesa la plantía',
-'tooltip-ca-nstab-help'           => "Amuesa la páxina d'aida",
+'tooltip-ca-nstab-help'           => "Amuesa la páxina d'ayuda",
 'tooltip-ca-nstab-category'       => 'Amuesa la páxina de categoría',
 'tooltip-minoredit'               => 'Marca esti cambéu como una edición menor',
 'tooltip-save'                    => 'Guarda los tos cambeos',
@@ -2816,6 +2821,13 @@ Al executalu pues comprometer el to sistema.",
 'ilsubmit'              => 'Guetar',
 'bydate'                => 'por fecha',
 'sp-newimages-showfrom' => "Amosar los archivos nuevos emprimando dende'l $1 a les $2",
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 segundu|$1 segundos}}',
+'minutes' => '{{PLURAL:$1|$1 minutu|$1 minutos}}',
+'hours'   => '{{PLURAL:$1|$1 hora|$1 hores}}',
+'days'    => '{{PLURAL:$1|$1 día|$1 díes}}',
+'ago'     => 'hai $1',
 
 # Bad image list
 'bad_image_list' => "El formatu ye'l que sigue:
@@ -3518,27 +3530,6 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'compare-title-not-exists'    => 'El títulu que conseñasti nun esiste.',
 'compare-revision-not-exists' => 'La revisión que conseñasti nun esiste.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Usu global del ficheru',
-'globalfileusage-for'         => 'Usu global del ficheru pa "$1"',
-'globalfileusage-desc'        => "[[Special:GlobalFileUsage|Páxina especial]] pa ver l'usu global d'un ficheru",
-'globalfileusage-ok'          => 'Guetar',
-'globalfileusage-text'        => "Guetar l'usu global del ficheru",
-'globalfileusage-no-results'  => "[[$1]] nun s'usa n'otres wikis.",
-'globalfileusage-on-wiki'     => 'Usu en $2',
-'globalfileusage-more'        => "Ver [[{{#Special:GlobalUsage}}/$1|más usos globales]] d'esti ficheru.",
-'globalfileusage-filterlocal' => "Nun amosar l'usu llocal",
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Usu global de la plantía',
-'globaltemplateusage-for'         => 'Usu global de la plantía pa "$1"',
-'globaltemplateusage-ok'          => 'Guetar',
-'globaltemplateusage-text'        => "Guetar l'usu global de la plantía",
-'globaltemplateusage-no-results'  => "[[$1]] nun s'usa n'otres wikis.",
-'globaltemplateusage-on-wiki'     => 'Usu en $2',
-'globaltemplateusage-more'        => "Ver [[{{#Special:GlobalUsage}}/$1|más usos globales]] d'esta plantía.",
-'globaltemplateusage-filterlocal' => "Nun amosar l'usu llocal",
-
 # Database error messages
 'dberr-header'      => 'Esta wiki tien un problema',
 'dberr-problems'    => '¡Sentímoslo! Esti sitiu ta esperimentando dificultaes téuniques.',
@@ -3590,6 +3581,10 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|treslladó}} la páxina "$3" a "$4" sobre una redireición ensin dexar una redireición',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcó}} la revisión $4 de la páxina "$3" como patrullada',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcó}} automaticamente la revisión $4 de la páxina "$3" como patrullada',
+'logentry-newusers-newusers'          => "$1 {{GENDER:$2|creó}} una cuenta d'usuariu",
+'logentry-newusers-create'            => "$1 {{GENDER:$2|creó}} una cuenta d'usuariu",
+'logentry-newusers-create2'           => "$1 {{GENDER:$2|creó}} {{GENDER:$4|una cuenta d'usuariu}} $3",
+'logentry-newusers-autocreate'        => 'La cuenta $1 {{GENDER:$2|se creó}} automáticamente',
 'newuserlog-byemail'                  => 'clave unviada per corréu electrónicu',
 
 );

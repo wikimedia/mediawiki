@@ -723,6 +723,7 @@ $2',
 'emailconfirmlink'           => 'Пацьвердзіць Ваш адрас электроннай пошты',
 'invalidemailaddress'        => 'Уведзены адрас электроннай пошты не адпавядае фармату адрасоў электроннай пошты.
 Увядзіце слушны адрас электроннай пошты ці ачысьціце гэтае поле.',
+'cannotchangeemail'          => 'Электронная пошта рахунку ня можа быць зьмененая ў {{GRAMMAR:месны|{{SITENAME}}}}.',
 'accountcreated'             => 'Рахунак створаны',
 'accountcreatedtext'         => 'Рахунак удзельніка для $1 быў створаны.',
 'createaccount-title'        => 'Стварэньне рахунку ў {{GRAMMAR:месны|{{SITENAME}}}}',
@@ -970,9 +971,6 @@ $2
 'templatesused'                    => 'На гэтай старонцы {{PLURAL:$1|выкарыстаны наступны шаблён|выкарыстаныя наступныя шаблёны}}:',
 'templatesusedpreview'             => 'У гэтым папярэднім праглядзе {{PLURAL:$1|выкарыстаны наступны шаблён|выкарыстаныя наступныя шаблёны}}:',
 'templatesusedsection'             => 'У гэтай сэкцыі {{PLURAL:$1|выкарыстаны наступны шаблён|выкарыстаныя наступныя шаблёны}}:',
-'distanttemplatesused'             => '{{PLURAL:$1|Дыстанцыйны шаблён, выкарыстаны|Дыстанцыйныя шаблёны, выкарыстаныя}} на гэтай старонцы:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Дыстанцыйны шаблён, выкарыстаны|Дыстанцыйныя шаблёны, выкарыстаныя}} ў гэтым праглядзе:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Дыстанцыйны шаблён, выкарыстаны|Дыстанцыйныя шаблёны, выкарыстаныя}} ў гэтай сэкцыі:',
 'template-protected'               => '(абаронены)',
 'template-semiprotected'           => '(часткова абароненая)',
 'hiddencategories'                 => 'Гэтая старонка належыць $1 {{PLURAL:$1|схаванай катэгорыі|схаваным катэгорыям|схаваным катэгорыям}}:',
@@ -3654,27 +3652,6 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'compare-invalid-title'       => 'Пазначаная няслушная назва.',
 'compare-title-not-exists'    => 'Пазначаная старонка не існуе.',
 'compare-revision-not-exists' => 'Пазначаная вэрсія не існуе.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Глябальнае выкарыстаньне файла',
-'globalfileusage-for'         => 'Глябальнае выкарыстаньне файла для «$1»',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Спэцыяльная старонка]] для прагляду глябальнага выкарыстаньня файла',
-'globalfileusage-ok'          => 'Шукаць',
-'globalfileusage-text'        => 'Пошук глябальнага выкарыстаньня файла',
-'globalfileusage-no-results'  => '[[$1]] не выкарыстоўваецца ў іншых вікі.',
-'globalfileusage-on-wiki'     => 'Выкарыстоўваецца ў $2',
-'globalfileusage-more'        => 'Паказаць [[{{#Special:GlobalUsage}}/$1|глябальнае выкарыстаньне]] гэтага файла.',
-'globalfileusage-filterlocal' => 'Не паказваць лякальнае выкарыстаньне',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Глябальнае выкарыстаньне шаблёну',
-'globaltemplateusage-for'         => 'Глябальнае выкарыстаньне шаблёну «$1»',
-'globaltemplateusage-ok'          => 'Шукаць',
-'globaltemplateusage-text'        => 'Пошук глябальнага выкарыстаньня шаблёну',
-'globaltemplateusage-no-results'  => '[[$1]] не выкарыстоўваецца ў іншых вікі.',
-'globaltemplateusage-on-wiki'     => 'Выкарыстоўваецца ў $2',
-'globaltemplateusage-more'        => 'Паказаць [[{{#Special:GlobalUsage}}/$1|глябальнае выкарыстаньне]] гэтага шаблёну.',
-'globaltemplateusage-filterlocal' => 'Не паказваць лякальнае выкарыстаньне',
 
 # Database error messages
 'dberr-header'      => 'Гэтая вікі не функцыянуе спраўна',

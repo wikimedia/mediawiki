@@ -1022,9 +1022,6 @@ Det siste loggelementet er oppgitt under som referanse:",
 'templatesused'                    => '{{PLURAL:$1|Mal|Maler}} som brukes på denne siden:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mal|Maler}} brukt i denne forhåndsvisningen:',
 'templatesusedsection'             => '{{PLURAL:$1|Mal|Maler}} brukt i denne seksjonen:',
-'distanttemplatesused'             => '{{PLURAL:$1|Fjernmal|Fjernmaler}} som brukes på denne siden:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Fjernmal|Fjernmaler}} som brukes i denne forhåndsvisningen:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Fjernmal|Fjernmaler}} som brukes i denne seksjonen:',
 'template-protected'               => '(beskyttet)',
 'template-semiprotected'           => '(halvbeskyttet)',
 'hiddencategories'                 => 'Denne siden er medlem av {{PLURAL:$1|1 skjult kategori|$1 skjulte kategorier}}:',
@@ -3733,27 +3730,6 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'compare-title-not-exists'    => 'Tittelen du oppga eksisterer ikke.',
 'compare-revision-not-exists' => 'Versjonen du oppga eksisterer ikke.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Global filbruk',
-'globalfileusage-for'         => 'Global filbruk for «$1»',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Spesialside]] for å se global filbruk',
-'globalfileusage-ok'          => 'Søk',
-'globalfileusage-text'        => 'Søk global filbruk',
-'globalfileusage-no-results'  => '[[$1]] brukes ikke på andre wikier.',
-'globalfileusage-on-wiki'     => 'Bruk på $2',
-'globalfileusage-more'        => 'Vis [[{{#Special:GlobalUsage}}/$1|mer global bruk]] av denne filen.',
-'globalfileusage-filterlocal' => 'Ikke vis lokal bruk',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Global malbruk',
-'globaltemplateusage-for'         => 'Global malbruk for «$1»',
-'globaltemplateusage-ok'          => 'Søk',
-'globaltemplateusage-text'        => 'Søk global malbruk',
-'globaltemplateusage-no-results'  => '[[$1]] brukes ikke på andre wikier.',
-'globaltemplateusage-on-wiki'     => 'Bruk på $2',
-'globaltemplateusage-more'        => 'Vis [[{{#Special:GlobalUsage}}/$1|mer global bruk]] av denne malen.',
-'globaltemplateusage-filterlocal' => 'Ikke vis lokal bruk',
-
 # Database error messages
 'dberr-header'      => 'Wikien har et problem',
 'dberr-problems'    => 'Siden har tekniske problemer.',
@@ -3805,8 +3781,9 @@ Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom s
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttet}} siden $3 til $4 over en omdirigering uten å etterlate en omdirigering',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerte}} revisjon $4 av siden $3 som patruljert',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerte}} automatisk revisjon $4 av siden $3 som patruljert',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|opprettet}} en brukerkonto',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|opprettet}}en brukerkonto',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|opprettet}} brukerkontoen $3',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|opprettet}} {{GENDER:$4|en brukerkonto}} $3',
 'logentry-newusers-autocreate'        => 'Konto $1 ble {{GENDER:$2|opprettet}} automatisk',
 'newuserlog-byemail'                  => 'passord sendt på e-post',
 

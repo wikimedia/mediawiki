@@ -897,9 +897,6 @@ Masukan log terakhir ditunjukkan di bawah untuk rujukan:",
 'templatesused'                    => '{{PLURAL:$1|Templat|Templat}} yang digunakan dalam laman ini:',
 'templatesusedpreview'             => '{{PLURAL:$1|Templat|Templat}} yang digunakan dalam pralihat ini:',
 'templatesusedsection'             => '{{PLURAL:$1|Templat|Templat}} digunakan dalam bahagian ini:',
-'distanttemplatesused'             => '{{PLURAL:$1|Templat|templat-templat}} jauh yang digunakan dalam laman ini:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Templat|templat-templat}} jauh yang digunakan dalam pralihat ini:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Templat|templat-templat}} jauh yang digunakan dalam bahagian ini:',
 'template-protected'               => '(dilindungi)',
 'template-semiprotected'           => '(dilindungi separa)',
 'hiddencategories'                 => 'Laman ini terdapat dalam $1 kategori tersembunyi:',
@@ -3561,27 +3558,6 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'compare-title-not-exists'    => 'Tajuk yang anda nyatakan tidak wujud.',
 'compare-revision-not-exists' => 'Semakan yang anda nyatakan tidak wujud.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Penggunaan fail sejagat',
-'globalfileusage-for'         => 'Penggunaan fail sejagat untuk "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Laman khas]] untuk melihat penggunaan fail sejagat',
-'globalfileusage-ok'          => 'Cari',
-'globalfileusage-text'        => 'Cari penggunaan fail sejagat',
-'globalfileusage-no-results'  => '[[$1]] tidak digunakan di wiki lain.',
-'globalfileusage-on-wiki'     => 'Penggunaan di $2',
-'globalfileusage-more'        => 'Lihat [[{{#Special:GlobalUsage}}/$1|banyak lagi penggunaan sejagat]] bagi fail ini.',
-'globalfileusage-filterlocal' => 'Jangan tunjukkan penggunaan setempat',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Penggunaan templat sejagat',
-'globaltemplateusage-for'         => 'Penggunaan fail sejagat untuk "$1"',
-'globaltemplateusage-ok'          => 'Cari',
-'globaltemplateusage-text'        => 'Cari penggunaan fail sejagat',
-'globaltemplateusage-no-results'  => '[[$1]] tidak digunakan di wiki lain.',
-'globaltemplateusage-on-wiki'     => 'Penggunaan di $2',
-'globaltemplateusage-more'        => 'Lihat [[{{#Special:GlobalUsage}}/$1|banyak lagi penggunaan sejagat]] bagi templat ini.',
-'globaltemplateusage-filterlocal' => 'Jangan tunjukkan penggunaan setempat',
-
 # Database error messages
 'dberr-header'      => 'Wiki ini dilanda masalah',
 'dberr-problems'    => 'Harap maaf. Tapak web ini dilanda masalah teknikal.',
@@ -3633,8 +3609,9 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|mengalihkan}} laman $3 ke $4 pada satu lencongan tanpa meninggalkan lencongan',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|menandakan}} semakan $4 daripada laman $3 sebagai dironda',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|menandakan}} semakan $4 daripada laman $3 sebagai dironda secara automatik',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|membuka}} akaun pengguna',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|membuka}} akaun pengguna',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|membuka}} akaun pengguna $3',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|membuka}} {{GENDER:$4|akaun pengguna}} $3',
 'logentry-newusers-autocreate'        => 'Akaun $1 {{GENDER:$2|dibuka}} secara automatik',
 'newuserlog-byemail'                  => 'kata laluan dihantar melalui e-mel',
 

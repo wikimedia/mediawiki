@@ -1032,9 +1032,6 @@ Para referência, é apresentada abaixo a última entrada do registo:",
 'templatesused'                    => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta página:',
 'templatesusedpreview'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta antevisão:',
 'templatesusedsection'             => '{{PLURAL:$1|Predefinição utilizada|Predefinições utilizadas}} nesta secção:',
-'distanttemplatesused'             => '{{PLURAL:$1|Modelo distante usado|Modelos distantes usados}} nesta página:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Modelo distante usado|Modelos distantes usados}} nesta prévia',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Modelo distante usado|Modelos distantes usados}} nesta seção:',
 'template-protected'               => '(protegida)',
 'template-semiprotected'           => '(semi-protegida)',
 'hiddencategories'                 => 'Esta página pertence a {{PLURAL:$1|uma categoria oculta|$1 categorias ocultas}}:',
@@ -3781,27 +3778,6 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'compare-invalid-title'       => 'O título que especificou é inválido.',
 'compare-title-not-exists'    => 'O título que especificou não existe.',
 'compare-revision-not-exists' => 'A revisão que especificou não existe.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Utilização global do ficheiro.',
-'globalfileusage-for'         => 'Utilização global de ficheiro para "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Special page]] para visualizar a utilização global do ficheiro.',
-'globalfileusage-ok'          => 'Pesquisar',
-'globalfileusage-text'        => 'Pesquisar utilização global do ficheiro.',
-'globalfileusage-no-results'  => '[[$1]] não é usado em outras wikis.',
-'globalfileusage-on-wiki'     => 'Uso na $2',
-'globalfileusage-more'        => 'Ver [[{{#Special:GlobalUsage}}/$1|a utilização global]] deste ficheiro.',
-'globalfileusage-filterlocal' => 'Não mostrar uso local.',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Uso global da predefinição',
-'globaltemplateusage-for'         => 'Utilização global da predefinição para "$1"',
-'globaltemplateusage-ok'          => 'Pesquisar',
-'globaltemplateusage-text'        => 'Pesquisar utilização global da predefinição',
-'globaltemplateusage-no-results'  => '[[$1]] não é utilizado em outras wikis.',
-'globaltemplateusage-on-wiki'     => 'Uso na $2',
-'globaltemplateusage-more'        => 'Ver [[{{#Special:GlobalUsage}}/$1|a utilização global]] desta predefinição.',
-'globaltemplateusage-filterlocal' => 'Não mostrar utilização local.',
 
 # Database error messages
 'dberr-header'      => 'Esta wiki tem um problema',

@@ -760,6 +760,7 @@ $2',
 'emailconfirmlink'           => 'Подтвердить ваш адрес электронной почты',
 'invalidemailaddress'        => 'Адрес электронной почты не может быть принят, так как он не соответствует формату.
 Пожалуйста, введите корректный адрес или оставьте поле пустым.',
+'cannotchangeemail'          => 'Адреса электронной почты этой учётной записи не могут быть изменены в этой вики.',
 'accountcreated'             => 'Учётная запись создана',
 'accountcreatedtext'         => 'Создана учётная запись участника $1.',
 'createaccount-title'        => '{{SITENAME}}: создание учётной записи',
@@ -1018,9 +1019,6 @@ $2
 'templatesused'                    => '{{PLURAL:$1|Шаблон, использованный|Шаблоны, использованные}} на текущей версии страницы:',
 'templatesusedpreview'             => '{{PLURAL:$1|Шаблон, используемый|Шаблоны, используемые}} в предпросматриваемой странице:',
 'templatesusedsection'             => '{{PLURAL:$1|Шаблон, используемый|Шаблоны, использованные}} в этом разделе:',
-'distanttemplatesused'             => '{{PLURAL:$1|Дистанционный шаблон, использованный|Дистанционное шаблоны, использованные}} на этой странице:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Дистанционный шаблон, использованный|Дистанционное шаблоны, использованные}} в этом предпросмотре:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Дистанционный шаблон, использованный|Дистанционное шаблоны, использованные}} в этом разделе:',
 'template-protected'               => '(защищено)',
 'template-semiprotected'           => '(частично защищено)',
 'hiddencategories'                 => 'Эта страница относится к $1 {{PLURAL:$1|скрытой категории|скрытым категориям|скрытым категориям}}:',
@@ -3798,27 +3796,6 @@ MediaWiki распространяется в надежде, что она бу
 'compare-invalid-title'       => 'Указанное вами название недопустимо.',
 'compare-title-not-exists'    => 'Не существует указанного вами названия.',
 'compare-revision-not-exists' => 'Указанной вами версии не существует.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Глобальное использование файлов',
-'globalfileusage-for'         => 'Глобальное использование файла «$1»',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Служебная страница]] для просмотра глобального использования файла',
-'globalfileusage-ok'          => 'Найти',
-'globalfileusage-text'        => 'Поиск глобального использования файла',
-'globalfileusage-no-results'  => '[[$1]] не используется в других вики.',
-'globalfileusage-on-wiki'     => 'Используется в $2',
-'globalfileusage-more'        => 'Просмотреть [[{{#Special:GlobalUsage}}/$1|другие глобальные использования]] этого файла.',
-'globalfileusage-filterlocal' => 'Не показывать локальное использование',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Глобальное использование шаблонов',
-'globaltemplateusage-for'         => 'Глобальное использование шаблона «$1»',
-'globaltemplateusage-ok'          => 'Найти',
-'globaltemplateusage-text'        => 'Поиск глобального использования шаблона',
-'globaltemplateusage-no-results'  => '[[$1]] не используется в других вики.',
-'globaltemplateusage-on-wiki'     => 'Используется в $2',
-'globaltemplateusage-more'        => 'Просмотреть [[{{#Special:GlobalUsage}}/$1|другие глобальные использования]] этого шаблона.',
-'globaltemplateusage-filterlocal' => 'Не показывать локальное использование',
 
 # Database error messages
 'dberr-header'      => 'Эта вики испытывает затруднения',

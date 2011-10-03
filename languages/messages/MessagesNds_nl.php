@@ -1021,9 +1021,6 @@ De leste logboekregel steet hieronder:",
 'templatesused'                    => '{{PLURAL:$1|Mal|Mallen}} die op disse pagina gebruukt wörden:',
 'templatesusedpreview'             => '{{PLURAL:$1|Mal|Mallen}} die in disse bewarking gebruukt wörden:',
 'templatesusedsection'             => '{{PLURAL:$1|Mal|Mallen}} die in dit subkopjen gebruukt wörden:',
-'distanttemplatesused'             => '{{PLURAL:$1|Mal|Mallen}} uut n aandere wiki die op disse pagina gebruukt wörden:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Mal|Mallen}} uut n aandere wiki die op disse pagina gebruukt wörden:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Mal|Mallen}} uut n aandere wiki die in disse paragraaf gebruukt wörden:',
 'template-protected'               => '(beveilig)',
 'template-semiprotected'           => '(semibeveilig)',
 'hiddencategories'                 => 'Disse pagina vuilt in de volgende verbörgen {{PLURAL:$1|kategorie|kategorieën}}:',
@@ -3678,27 +3675,6 @@ Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma 
 'compare-invalid-title'       => "De titel die'j op-egeven hebben, is ongeldig.",
 'compare-title-not-exists'    => "De titel die'j op-egeven hebben, besteet niet.",
 'compare-revision-not-exists' => "De versie die'j op-egeven hebben, besteet niet.",
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Globaal bestaandsgebruuk',
-'globalfileusage-for'         => 'Globaal gebruuk veur "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Spesiale pagina]] veur t bekieken van globaal bestaandsgebruuk',
-'globalfileusage-ok'          => 'Zeuken',
-'globalfileusage-text'        => 'Globaal bestaandsgebruuk bekieken',
-'globalfileusage-no-results'  => "[[$1]] wörden niet gebruukt in aandere wiki's.",
-'globalfileusage-on-wiki'     => 'Gebruuk in $2',
-'globalfileusage-more'        => '[[{{#Special:GlobalUsage}}/$1|Globaal gebruuk]] van dit bestaand bekieken.',
-'globalfileusage-filterlocal' => 'Plaotselik gebruuk niet laoten zien',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Globaal malgebruuk',
-'globaltemplateusage-for'         => 'Globaal malgebruuk veur "$1"',
-'globaltemplateusage-ok'          => 'Zeuken',
-'globaltemplateusage-text'        => 'Globaal malgebruuk bekieken',
-'globaltemplateusage-no-results'  => "[[$1]] wörden niet gebruukt in aandere wiki's.",
-'globaltemplateusage-on-wiki'     => 'Gebruuk in $2',
-'globaltemplateusage-more'        => '[[{{#Special:GlobalUsage}}/$1|Globaal gebruuk]] van disse mal bekieken.',
-'globaltemplateusage-filterlocal' => 'Plaotselik gebruuk niet laoten zien',
 
 # Database error messages
 'dberr-header'      => 'Disse wiki hef n probleem',

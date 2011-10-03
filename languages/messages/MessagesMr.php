@@ -3317,9 +3317,6 @@ $1',
 'compare-rev2'     => 'आवर्तन २',
 'compare-submit'   => 'तुलना करा',
 
-# Special:GlobalTemplateUsage
-'globaltemplateusage-ok' => 'शोधा',
-
 # Database error messages
 'dberr-header'      => 'या विकीत एक चूक आहे',
 'dberr-problems'    => 'माफ करा, हे संकेतस्थळ सध्या तांत्रिक अडचणींना सामोरे जात आहे.',

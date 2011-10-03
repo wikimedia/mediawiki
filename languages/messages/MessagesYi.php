@@ -3140,9 +3140,6 @@ $5
 'compare-rev2'     => 'רעוויזיע 2',
 'compare-submit'   => 'פֿאַרגלייַכן',
 
-# Special:GlobalTemplateUsage
-'globaltemplateusage-no-results' => '[[$1]] ווערט נישט געניצט אויף אַנדערע וויקיס.',
-
 # Database error messages
 'dberr-header'      => 'די וויקי האט א פראבלעם',
 'dberr-problems'    => 'אנטשולדיגט! דער דאזיקער סייט האט טעכנישע פראבלעמען.',

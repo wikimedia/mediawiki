@@ -3096,12 +3096,6 @@ $1',
 'compare-rev2'     => 'সংশোধন ২',
 'compare-submit'   => 'তুলনা',
 
-# Special:GlobalFileUsage
-'globalfileusage-ok' => 'অনুসন্ধান',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage-ok' => 'অনুসন্ধান',
-
 # Database error messages
 'dberr-header'      => 'এই উইকিতে কোন সমস্যা রয়েছে',
 'dberr-problems'    => 'দুঃখিত!

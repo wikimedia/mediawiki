@@ -750,6 +750,7 @@ Nếu bạn không yêu cầu gửi mật khẩu mới, hoặc bạn đã nhớ 
 'emailconfirmlink'           => 'Xác nhận địa chỉ thư điện tử',
 'invalidemailaddress'        => 'Địa chỉ thư điện tử không được chấp nhận vì định dạng thư có vẻ sai.
 Hãy nhập một địa chỉ có định dạng đúng hoặc bỏ trống ô đó.',
+'cannotchangeemail'          => 'Không có thể thay đổi địa chỉ thư điện tử của các tài khoản trên wiki này.',
 'accountcreated'             => 'Mở tài khoản thành công',
 'accountcreatedtext'         => 'Tài khoản thành viên cho $1 đã được mở.',
 'createaccount-title'        => 'Tài khoản mới tại {{SITENAME}}',
@@ -1003,9 +1004,6 @@ Thông tin mới nhất trong nhật trình được ghi dưới đây để ti�
 'templatesused'                    => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} dùng trong trang này:',
 'templatesusedpreview'             => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} sẽ được dùng trong trang này:',
 'templatesusedsection'             => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} dùng trong phần này:',
-'distanttemplatesused'             => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} xa dùng trong trang này:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} xa sẽ được dùng trong trang này:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Bản mẫu|Các bản mẫu}} xa dùng trong phần này:',
 'template-protected'               => '(khóa hoàn toàn)',
 'template-semiprotected'           => '(bị hạn chế sửa đổi)',
 'hiddencategories'                 => 'Trang này thuộc về {{PLURAL:$1|1 thể loại ẩn|$1 thể loại ẩn}}:',
@@ -3811,27 +3809,6 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'compare-title-not-exists'    => 'Tựa trang chỉ định không tồn tại.',
 'compare-revision-not-exists' => 'Phiên bản chỉ định không tồn tại.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Sử dụng tập tin toàn cục',
-'globalfileusage-for'         => 'Trang dùng tập tin “$1” toàn cục',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Trang đặc biệt]] để xem tập tin này đang dùng ở đâu trên toàn hệ thống',
-'globalfileusage-ok'          => 'Tìm kiếm',
-'globalfileusage-text'        => 'Tìm trang dùng tập tin toàn cục',
-'globalfileusage-no-results'  => '[[$1]] không được sử dụng tại các wiki khác.',
-'globalfileusage-on-wiki'     => 'Trang sử dụng tại $2',
-'globalfileusage-more'        => 'Xem tập tin này [[{{#Special:GlobalUsage}}/$1|đang dùng ở đâu toàn hệ thống]].',
-'globalfileusage-filterlocal' => 'Ẩn trang nội bộ sử dụng',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Trang sử dụng bản mẫu toàn cục',
-'globaltemplateusage-for'         => 'Tìm trang dùng bản mẫu “$1” toàn cục',
-'globaltemplateusage-ok'          => 'Tìm kiếm',
-'globaltemplateusage-text'        => 'Tìm trang dùng bản mẫu toàn cục',
-'globaltemplateusage-no-results'  => '[[$1]] không được sử dụng tại các wiki khác.',
-'globaltemplateusage-on-wiki'     => 'Trang sử dụng tại $2',
-'globaltemplateusage-more'        => 'Xem bản mẫu này [[{{#Special:GlobalUsage}}/$1|đang dùng ở đâu toàn hệ thống]].',
-'globaltemplateusage-filterlocal' => 'Ẩn trang nội bộ sử dụng',
-
 # Database error messages
 'dberr-header'      => 'Wiki này đang gặp trục trặc',
 'dberr-problems'    => 'Xin lỗi! Trang này đang gặp phải những khó khăn về kỹ thuật.',
@@ -3883,8 +3860,9 @@ Các hình ảnh được hiển thị ở kích thước tối đa, còn các l
 'logentry-move-move_redir-noredirect' => '$1 đã {{GENDER:$2|đổi}} trang $3 thành $4 qua trang đổi hướng mà không để lại một trang đổi hướng',
 'logentry-patrol-patrol'              => '$1 đã {{GENDER:$2|đánh dấu}} tuần tra phiên bản $4 của trang $3',
 'logentry-patrol-patrol-auto'         => '$1 đã tự động {{GENDER:$2|đánh dấu}} tuần tra phiên bản $4 của trang $3',
+'logentry-newusers-newusers'          => '$1 đã {{GENDER:$2|mở}} một tài khoản người dùng',
 'logentry-newusers-create'            => '$1 đã {{GENDER:$2|mở}} một tài khoản người dùng',
-'logentry-newusers-create2'           => '$1 đã {{GENDER:$2|mở}} tài khoản người dùng $3',
+'logentry-newusers-create2'           => '$1 đã {{GENDER:$2|mở}} tài khoản {{GENDER:$4}}người dùng $3',
 'logentry-newusers-autocreate'        => 'Tài khoản $1 đã được {{GENDER:$2|mở}} tự động',
 'newuserlog-byemail'                  => 'gửi mật khẩu qua thư điện tử',
 

@@ -2903,14 +2903,6 @@ $1',
 'compare-rev2'     => 'Dəyişiklik 2',
 'compare-submit'   => 'Qarşılaşdır',
 
-# Special:GlobalFileUsage
-'globalfileusage'     => 'Faylın qlobal istifadə olunması',
-'globalfileusage-for' => 'Faylın "$1" üçün qlobal istifadə olunması',
-'globalfileusage-ok'  => 'Axtar',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage-ok' => 'Axtar',
-
 # Database error messages
 'dberr-header'   => 'Bu vikidə problem var',
 'dberr-problems' => 'Üzr istəyirik!

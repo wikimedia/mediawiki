@@ -3402,20 +3402,6 @@ $1',
 'compare-invalid-title'    => 'మీరు ఇచ్చిన శీర్షిక చెల్లనిది.',
 'compare-title-not-exists' => 'మీరు పేర్కొన్న శీర్షిక లేనే లేదు.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'సార్వత్రిక ఫైలు వాడుక',
-'globalfileusage-for'         => '"$1" కొరకు సార్వత్రిక వాడుక',
-'globalfileusage-ok'          => 'వెతుకు',
-'globalfileusage-no-results'  => '[[:$1]]ను ఇతర వికీలలో ఉపయోగించట్లేదు.',
-'globalfileusage-on-wiki'     => '$2 లో వాడుక',
-'globalfileusage-filterlocal' => 'స్థానిక వాడుకని చూపించవద్దు',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'సార్వత్రిక మూస వాడుక',
-'globaltemplateusage-ok'          => 'శోధించు',
-'globaltemplateusage-text'        => 'సార్వత్రిక మూస వాడుకలో శోధించు',
-'globaltemplateusage-filterlocal' => 'స్థానిక వాడుకని చూపించవద్దు',
-
 # Database error messages
 'dberr-header'      => 'ఈ వికీ సమస్యాత్మకంగా ఉంది',
 'dberr-problems'    => 'క్షమించండి! ఈ సైటు సాంకేతిక సమస్యలని ఎదుర్కొంటుంది.',

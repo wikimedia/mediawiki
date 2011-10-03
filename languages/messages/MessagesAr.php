@@ -1184,9 +1184,6 @@ $2
 'templatesused'                    => '{{PLURAL:$1||القالب المستخدم|القالبان المستخدمان|القوالب المستخدمة}} في هذه الصفحة:',
 'templatesusedpreview'             => '{{PLURAL:$1||القالب المستخدم|القالبان المستخدمان|القوالب المستخدمة}} في هذه المعاينة:',
 'templatesusedsection'             => '{{PLURAL:$1||القالب المستخدم|القالبان المستخدمان|القوالب المستخدمة}} في هذا القسم:',
-'distanttemplatesused'             => '{{PLURAL:$1||القالب البعيد المستخدم|القالبان البعيدان المستخدمان|القوالب البعيدة المستخدمة}} في هذه الصفحة:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1||القالب البعيد المستخدم|القالبان البعيدان المستخدمان|القوالب البعيدة المستخدمة}} في هذه المعاينة:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1||القالب البعيد المستخدم|القالبان البعيدان المستخدمان|القوالب البعيدة المستخدمة}} في هذا القسم:',
 'template-protected'               => '(حماية كاملة)',
 'template-semiprotected'           => '(حماية جزئية)',
 'hiddencategories'                 => '{{PLURAL:$1|هذه الصفحة غير موجودة في أي تصنايف مخفية|هذه الصفحة موجودة في تصنيف مخفي واحد|هذه الصفحة موجودة في تصنيفين مخفيين|هذه الصفحة موجودة في $1 تصانيف مخفية|هذه الصفحة موجودة في $1 تصنيفا مخفيا|هذه الصفحة موجودة في $1 تصنيف مخفي}}:',
@@ -4053,27 +4050,6 @@ $1',
 'compare-invalid-title'       => 'العنوان الذي حددته غير متاح.',
 'compare-title-not-exists'    => 'العنوان الذي حددته غير موجود.',
 'compare-revision-not-exists' => 'المراجعة التي حددتها غير موجودة.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'الاستخدام العام للملف',
-'globalfileusage-for'         => 'الاستخدام العام للملف "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|صفحة خاصة]] لرؤية الاستخدام العام للملف',
-'globalfileusage-ok'          => 'ابحث',
-'globalfileusage-text'        => 'ابحث عن الاستخدام العام لملف',
-'globalfileusage-no-results'  => '[[$1]] غير مستخدم في ويكيات أخرى.',
-'globalfileusage-on-wiki'     => 'الاستخدام في $2',
-'globalfileusage-more'        => 'اعرض [[{{#Special:GlobalUsage}}/$1|المزيد من الاستخدام العام]] لهذا الملف.',
-'globalfileusage-filterlocal' => 'لا تعرض الاستخدام المحلي',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'الاستخدام العام للقالب',
-'globaltemplateusage-for'         => 'الاستخدام العام للقالب "$1"',
-'globaltemplateusage-ok'          => 'ابحث',
-'globaltemplateusage-text'        => 'ابحث عن الاستخدام العام لقالب',
-'globaltemplateusage-no-results'  => '[[$1]] غير مستخدم في ويكيات أخرى.',
-'globaltemplateusage-on-wiki'     => 'الاستخدام في $2',
-'globaltemplateusage-more'        => 'اعرض [[{{#Special:GlobalUsage}}/$1|المزيد من الاستخدام العام]] لهذا القالب.',
-'globaltemplateusage-filterlocal' => 'لا تعرض الاستخدام المحلي',
 
 # Database error messages
 'dberr-header'      => 'هذا الويكي به مشكلة',
