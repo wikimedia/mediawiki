@@ -28,15 +28,8 @@ abstract class FileCacheBase {
 	 * @return string
 	 */
 	final protected function baseCacheDirectory() {
-		global $wgCacheDirectory, $wgFileCacheDirectory, $wgFileCacheDepth;
-		if ( $wgFileCacheDirectory ) {
-			$dir = $wgFileCacheDirectory;
-		} elseif ( $wgCacheDirectory ) {
-			$dir = $wgCacheDirectory;
-		} else {
-			throw new MWException( 'Please set $wgCacheDirectory in LocalSettings.php if you wish to use the HTML file cache' );
-		}
-		return $dir;
+		global $wgFileCacheDirectory;
+		return $wgFileCacheDirectory;
 	}
 
 	/**
