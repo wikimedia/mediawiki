@@ -357,7 +357,7 @@ class ProtectionForm {
 			$msg = wfMessage( 'restriction-' . $action );
 			$out .= "<tr><td>".
 			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null, $msg->exists() ? $action : $msg->text() ) .
+			Xml::element( 'legend', null, $msg->exists() ? $msg->text() : $action ) .
 			Xml::openElement( 'table', array( 'id' => "mw-protect-table-$action" ) ) .
 				"<tr><td>" . $this->buildSelector( $action, $selected ) . "</td></tr><tr><td>";
 
@@ -569,7 +569,7 @@ class ProtectionForm {
 			return wfMsg( 'protect-default' );
 		} else {
 			$msg = wfMessage( "protect-level-{$permission}" );
-			if( !$msg->exists() ) {
+			if( $msg->exists() ) {
 				return $msg->text();
 			}
 			return wfMsg( 'protect-fallback', $permission );
