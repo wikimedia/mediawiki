@@ -1,5 +1,5 @@
 /*
- * jQuery UI Autocomplete 1.8.14
+ * jQuery UI Autocomplete 1.8.16
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -48,7 +48,7 @@ $.widget( "ui.autocomplete", {
 				"aria-haspopup": "true"
 			})
 			.bind( "keydown.autocomplete", function( event ) {
-				if ( self.options.disabled || self.element.attr( "readonly" ) ) {
+				if ( self.options.disabled || self.element.propAttr( "readOnly" ) ) {
 					return;
 				}
 

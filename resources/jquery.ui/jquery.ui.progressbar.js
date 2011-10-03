@@ -1,5 +1,5 @@
 /*
- * jQuery UI Progressbar 1.8.11
+ * jQuery UI Progressbar 1.8.16
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -95,6 +95,7 @@ $.widget( "ui.progressbar", {
 		}
 
 		this.valueDiv
+			.toggle( value > this.min )
 			.toggleClass( "ui-corner-right", value === this.options.max )
 			.width( percentage.toFixed(0) + "%" );
 		this.element.attr( "aria-valuenow", value );
@@ -102,7 +103,7 @@ $.widget( "ui.progressbar", {
 });
 
 $.extend( $.ui.progressbar, {
-	version: "1.8.11"
+	version: "1.8.16"
 });
 
 })( jQuery );
