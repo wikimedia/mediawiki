@@ -2622,7 +2622,7 @@ $templates
 	 * Get an array containing the variables to be set in mw.config in JavaScript.
 	 *
 	 * Do not add things here which can be evaluated in ResourceLoaderStartupScript
-	 * - in other words, page-indendent/site-wide variables (without state).
+	 * - in other words, page-independent/site-wide variables (without state).
 	 * You will only be adding bloat to the html page and causing page caches to
 	 * have to be purged on configuration changes.
 	 */
