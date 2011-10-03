@@ -378,7 +378,7 @@ class DeleteLogFormatter extends LogFormatter {
 		if ( in_array( $subtype, array( 'event', 'revision' ) ) ) {
 			if (
 				($subtype === 'event' && count( $params ) === 6 ) ||
-				($subtype === 'revision' && $params[3] === 'revision' )
+				($subtype === 'revision' && isset( $params[3] ) && $params[3] === 'revision' )
 			) {
 				$paramStart = $subtype === 'revision' ? 4 : 3;
 
