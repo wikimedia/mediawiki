@@ -323,6 +323,7 @@ return array(
 			'fo' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-fo.js',
 			'fr-ch' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-fr-CH.js',
 			'fr' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-fr.js',
+			'gl' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-gl.js',
 			'he' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-he.js',
 			'hr' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-hr.js',
 			'hu' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-hu.js',
@@ -334,11 +335,14 @@ return array(
 			'ko' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ko.js',
 			'lt' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-lt.js',
 			'lv' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-lv.js',
+			'ml' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ml.js',
 			'ms' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ms.js',
 			'nl' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-nl.js',
 			'no' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-no.js',
 			'pl' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-pl.js',
+			'pt' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-pt.js',
 			'pt-br' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-pt-BR.js',
+			'rm' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-rm.js',
 			'ro' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ro.js',
 			'ru' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-ru.js',
 			'sk' => 'resources/jquery.ui/i18n/jquery.ui.datepicker-sk.js',
@@ -483,7 +487,7 @@ return array(
 		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
 		'dependencies' => 'mediawiki.util',
 	),
-	'mediawiki.Uri' => array( 
+	'mediawiki.Uri' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
 	),
 	'mediawiki.user' => array(
@@ -627,7 +631,7 @@ return array(
 		),
 		'position' => 'top',
 	),
-	
+
 
 	/* MediaWiki Special pages */
 
