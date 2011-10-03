@@ -269,8 +269,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 	}
 
 	protected function listItem( $row, $nt, $notClose = false ) {
-		global $wgLang;
-		$dirmark = $wgLang->getDirMark();
+		$dirmark = $this->getLang()->getDirMark();
 
 		# local message cache
 		static $msgcache = null;
@@ -346,11 +345,9 @@ class SpecialWhatLinksHere extends SpecialPage {
 	}
 
 	function getPrevNext( $prevId, $nextId ) {
-		global $wgLang;
 		$currentLimit = $this->opts->getValue( 'limit' );
-		$fmtLimit = $wgLang->formatNum( $currentLimit );
-		$prev = wfMsgExt( 'whatlinkshere-prev', array( 'parsemag', 'escape' ), $fmtLimit );
-		$next = wfMsgExt( 'whatlinkshere-next', array( 'parsemag', 'escape' ), $fmtLimit );
+		$prev = wfMessage( 'whatlinkshere-prev' )->numParams( $currentLimit )->escaped();
+		$next = wfMessage( 'whatlinkshere-next' )->numParams( $currentLimit )->escaped();
 
 		$changed = $this->opts->getChangedValues();
 		unset($changed['target']); // Already in the request title
@@ -365,13 +362,14 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 
 		$limitLinks = array();
+		$lang = $this->getLang();
 		foreach ( $this->limits as $limit ) {
-			$prettyLimit = $wgLang->formatNum( $limit );
+			$prettyLimit = htmlspecialchars( $lang->formatNum( $limit ) );
 			$overrides = array( 'limit' => $limit );
 			$limitLinks[] = $this->makeSelfLink( $prettyLimit, array_merge( $changed, $overrides ) );
 		}
 
-		$nums = $wgLang->pipeList( $limitLinks );
+		$nums = $lang->pipeList( $limitLinks );
 
 		return wfMsgHtml( 'viewprevnext', $prev, $next, $nums );
 	}
@@ -425,7 +423,6 @@ class SpecialWhatLinksHere extends SpecialPage {
 	 * @return string HTML fieldset and filter panel with the show/hide links
 	 */
 	function getFilterPanel() {
-		global $wgLang;
 		$show = wfMsgHtml( 'show' );
 		$hide = wfMsgHtml( 'hide' );
 
@@ -445,6 +442,6 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$overrides = array( $type => !$chosen );
 			$links[] =  wfMsgHtml( "whatlinkshere-{$type}", $this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) );
 		}
-		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), $wgLang->pipeList( $links ) );
+		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), $this->getLang()->pipeList( $links ) );
 	}
 }
