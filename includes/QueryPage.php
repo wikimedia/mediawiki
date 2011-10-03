@@ -597,10 +597,17 @@ abstract class QueryPage extends SpecialPage {
 		}
 	}
 
+	/**
+	 * @param $offset
+	 * @return string
+	 */
 	function openList( $offset ) {
 		return "\n<ol start='" . ( $offset + 1 ) . "' class='special'>\n";
 	}
 
+	/**
+	 * @return string
+	 */
 	function closeList() {
 		return "</ol>\n";
 	}
