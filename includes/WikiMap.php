@@ -20,11 +20,13 @@ class WikiMap {
 		if( $major === null ) {
 			return null;
 		}
-		$server = $wgConf->get( 'wgCanonicalServer', $wikiID, $major,
+		$canonicalServer = $wgConf->get( 'wgCanonicalServer', $wikiID, $major,
+			array( 'lang' => $minor, 'site' => $major ) );
+		$server = $wgConf->get( 'wgServer', $wikiID, $major,
 			array( 'lang' => $minor, 'site' => $major ) );
 		$path = $wgConf->get( 'wgArticlePath', $wikiID, $major,
 			array( 'lang' => $minor, 'site' => $major ) );
-		return new WikiReference( $major, $minor, $server, $path );
+		return new WikiReference( $major, $minor, $canonicalServer, $path, $server );
 	}
 	
 	/**
@@ -100,21 +102,23 @@ class WikiMap {
 class WikiReference {
 	private $mMinor; ///< 'en', 'meta', 'mediawiki', etc
 	private $mMajor; ///< 'wiki', 'wiktionary', etc
-	private $mServer; ///< server override, 'www.mediawiki.org'
-	private $mPath;   ///< path override, '/wiki/$1'
+	private $mCanonicalServer; ///< canonical server URL, e.g. 'http://www.mediawiki.org'
+	private $mServer; ///< server URL, may be protocol-relative, e.g. '//www.mediawiki.org'
+	private $mPath;   ///< path, '/wiki/$1'
 
-	public function __construct( $major, $minor, $server, $path ) {
+	public function __construct( $major, $minor, $canonicalServer, $path, $server = null ) {
 		$this->mMajor = $major;
 		$this->mMinor = $minor;
-		$this->mServer = $server;
+		$this->mCanonicalServer = $canonicalServer;
 		$this->mPath = $path;
+		$this->mServer = $server === null ? $canonicalServer : $server;
 	}
 
 	public function getHostname() {
 		$prefixes = array( 'http://', 'https://' );
 		foreach ( $prefixes as $prefix ) {
-			if ( substr( $this->mServer, 0, strlen( $prefix ) ) ) {
-				return substr( $this->mServer, strlen( $prefix ) );
+			if ( substr( $this->mCanonicalServer, 0, strlen( $prefix ) ) ) {
+				return substr( $this->mCanonicalServer, strlen( $prefix ) );
 			}
 		}
 		throw new MWException( "Invalid hostname for wiki {$this->mMinor}.{$this->mMajor}" );
@@ -149,12 +153,32 @@ class WikiReference {
 	}
 
 	/**
-	 * Get a URL to a page on this foreign wiki
+	 * Get a canonical (i.e. based on $wgCanonicalServer) URL to a page on this foreign wiki
 	 *
 	 * @param $page String: page name (must be normalised before calling this function!)
 	 * @return String: Url
 	 */
+	public function getCanonicalUrl( $page ) {
+		return
+			$this->mCanonicalServer .
+			$this->getLocalUrl( $page );
+	}
+	
+	/**
+	 * Alias for getCanonicalUrl(), for backwards compatibility.
+	 */
 	public function getUrl( $page ) {
+		return $this->getCanonicalUrl( $page );
+	}
+	
+	/**
+	 * Get a URL based on $wgServer, like Title::getFullUrl() would produce
+	 * when called locally on the wiki.
+	 * 
+	 * @param $page String: page name (must be normalized before calling this function!)
+	 * @return String: URL
+	 */
+	public function getFullUrl( $page ) {
 		return
 			$this->mServer .
 			$this->getLocalUrl( $page );
