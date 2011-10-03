@@ -17,13 +17,18 @@ class TiffHandler extends ExifBitmapHandler {
 	 * Conversion to PNG for inline display can be disabled here...
 	 * Note scaling should work with ImageMagick, but may not with GD scaling.
 	 *
+	 * Files pulled from an another MediaWiki instance via ForeignAPIRepo /
+	 * InstantCommons will have thumbnails managed from the remote instance,
+	 * so we can skip this check.
+	 *
 	 * @param $file
 	 *
 	 * @return bool
 	 */
 	function canRender( $file ) {
 		global $wgTiffThumbnailType;
-		return (bool)$wgTiffThumbnailType;
+		return (bool)$wgTiffThumbnailType
+			|| ($file->getRepo() instanceof ForeignAPIRepo);
 	}
 
 	/**
