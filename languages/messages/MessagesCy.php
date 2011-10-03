@@ -623,6 +623,7 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 'passwordreset-pretext'        => "{{PLURAL:$1|||Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod}}",
 'passwordreset-username'       => 'Eich enw defnyddiwr:',
 'passwordreset-domain'         => 'Parth:',
+'passwordreset-capture'        => 'Gweld yr e-bost a gaiff ei anfon?',
 'passwordreset-email'          => 'Eich cyfeiriad e-bost:',
 'passwordreset-emailtitle'     => 'Manylion eich cyfrif ar {{SITENAME}}',
 'passwordreset-emailtext-ip'   => "Mae rhywun (chi yn ôl pob tebyg, o'r cyfeiriad IP $1) wedi gofyn am nodyn atgoffa o fanylion eich cyfrif ar {{SITENAME}} ($4). Mae'r {{PLURAL:$3|cyfrif|cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
@@ -818,9 +819,6 @@ Dyma'r cofnod lòg diweddaraf, er gwybodaeth:",
 'templatesused'                    => 'Defnyddir y {{PLURAL:$1|nodyn hwn|nodyn hwn|nodiadau hyn|nodiadau hyn|nodiadau hyn|nodiadau hyn}} yn y dudalen hon:',
 'templatesusedpreview'             => 'Defnyddir y {{PLURAL:$1|nodyn hwn|nodyn hwn|nodiadau hyn|nodiadau hyn|nodiadau hyn|nodiadau hyn}} yn y rhagolwg hwn:',
 'templatesusedsection'             => 'Defnyddir y {{PLURAL:$1|nodyn hwn|nodyn hwn|nodiadau hyn|nodiadau hyn|nodiadau hyn|nodiadau hyn}} yn yr adran hon:',
-'distanttemplatesused'             => 'Defnyddir {{PLURAL:$1|nodyn|nodyn|nodiadau|nodiadau|nodiadau|nodiadau}} o bell yn y dudalen hon:',
-'distanttemplatesusedpreview'      => 'Defnyddir y {{PLURAL:$1|nodyn hwn|nodyn hwn|nodiadau hyn|nodiadau hyn|nodiadau hyn|nodiadau hyn}} o bell yn y rhagolwg hwn:',
-'distanttemplatesusedsection'      => 'Defnyddir y {{PLURAL:$1|nodyn hwn|nodyn hwn|nodiadau hyn|nodiadau hyn|nodiadau hyn|nodiadau hyn}} o bell yn yr adran hon:',
 'template-protected'               => '(wedi ei diogelu)',
 'template-semiprotected'           => '(lled-diogelwyd)',
 'hiddencategories'                 => "Mae'r dudalen hon yn aelod o $1 {{PLURAL:$1|categori|categori|gategori|chategori|chategori|categori}} cuddiedig:",
@@ -3485,27 +3483,6 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'compare-title-not-exists'    => "Nid yw'r teitl a enwyd ar gael.",
 'compare-revision-not-exists' => "Nid yw'r diwygiad a enwyd ar gael.",
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Defnydd cydwici o ffeil',
-'globalfileusage-for'         => 'Defnydd y ffeil "$1" yn y wicïau oll',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Tudalen arbennig]] yn dangos defnydd ffeil ar yr holl wicïau',
-'globalfileusage-ok'          => 'Chwilier',
-'globalfileusage-text'        => 'Chwilio am ddefnydd ffeil yn y wicïau oll',
-'globalfileusage-no-results'  => 'Ni ddefnyddir [[$1]] ar wicïau eraill.',
-'globalfileusage-on-wiki'     => 'Y defnydd ar $2',
-'globalfileusage-more'        => "Gweld [[{{#Special:GlobalUsage}}/$1|rhagor o ddefnydd cydwici]]'r ffeil hon.",
-'globalfileusage-filterlocal' => 'Peidied â dangos y defnydd ar y wici hwn',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Defnydd cydwici o nodyn',
-'globaltemplateusage-for'         => 'Defnydd y nodyn "$1" yn y wicïau oll',
-'globaltemplateusage-ok'          => 'Chwilier',
-'globaltemplateusage-text'        => 'Chwilio am ddefnydd ffeil yn y wicïau oll',
-'globaltemplateusage-no-results'  => 'Ni ddefnyddir [[$1]] ar wicïau eraill.',
-'globaltemplateusage-on-wiki'     => 'Y defnydd ar $2',
-'globaltemplateusage-more'        => "Gweld [[{{#Special:GlobalUsage}}/$1|rhagor o ddefnydd cydwici]]'r nodyn hwn.",
-'globaltemplateusage-filterlocal' => 'Peidied â dangos y defnydd ar y wici hwn',
-
 # Database error messages
 'dberr-header'      => 'Mae problem gan y wici hwn',
 'dberr-problems'    => "Mae'n ddrwg gennym! Mae'r wefan hon yn dioddef anawsterau technegol.",
@@ -3544,6 +3521,7 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-move-move-noredirect'       => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1 heb adael dolen ailgyfeirio',
 'logentry-move-move_redir'            => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1 dros y ddolen ailgyfeirio',
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1 dros ddolen ailgyfeirio heb adael dolen ailgyfeirio newydd',
+'logentry-newusers-autocreate'        => '{{GENDER:$2|Crëwyd}} y cyfrif $1 yn awtomatig',
 'newuserlog-byemail'                  => 'anfonwyd y cyfrinair trwy e-bost',
 
 );

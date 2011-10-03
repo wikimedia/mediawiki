@@ -977,9 +977,6 @@ L-aħħar daħla fir-reġistru hija disponibbli hawn taħt għar-referenza:",
 'templatesused'                    => "{{PLURAL:$1|Mudell użat|Mudelli wżati}} f'din il-paġna:",
 'templatesusedpreview'             => "{{PLURAL:$1|Mudell użat|Mudelli wżati}} f'din id-dehra proviżorja.",
 'templatesusedsection'             => "{{PLURAL:$1|Mudell użat|Mudelli wżati}} f'din is-sezzjoni:",
-'distanttemplatesused'             => '{{PLURAL:$1|Mudell distint użat|Mudelli distinti użati}} fuq din il-paġna:',
-'distanttemplatesusedpreview'      => "{{PLURAL:$1|Mudell distint użat|Mudelli distinti wżati}} f'din id-dehra proviżorja:",
-'distanttemplatesusedsection'      => "{{PLURAL:$1|Mudell distint użat|Mudelli distinti wżati}} f'din is-sezzjoni:",
 'template-protected'               => '(protetta)',
 'template-semiprotected'           => '(semi-protetta)',
 'hiddencategories'                 => "Din il-paġna hija membru ta' {{PLURAL:$1|1 kategorija moħbija|$1 kategoriji moħbija}}:",
@@ -3665,27 +3662,6 @@ Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-p
 'compare-invalid-title'       => 'It-titlu li speċifikajt huwa invalidu.',
 'compare-title-not-exists'    => 'It-titlu li speċifikajt huwa ma jeżistix.',
 'compare-revision-not-exists' => 'Ir-reviżjoni li speċifikajt ma teżistix.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Użu globali tal-fajl',
-'globalfileusage-for'         => 'Użu globali tal-fajl "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Paġna speċjali]] biex tara l-użu globali tal-fajl',
-'globalfileusage-ok'          => 'Fittex',
-'globalfileusage-text'        => 'Fittex l-użu globali tal-fajl',
-'globalfileusage-no-results'  => '[[$1]] mhuwiex użat fuq wikis oħrajn.',
-'globalfileusage-on-wiki'     => 'Użu fuq $2',
-'globalfileusage-more'        => "Ara [[{{#Special:GlobalUsage}}/$1|aktar użu globali]] ta' dan il-fajl.",
-'globalfileusage-filterlocal' => 'Turix l-użu lokali',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Użu globali tal-mudell',
-'globaltemplateusage-for'         => 'Użu globali tal-mudell "$1"',
-'globaltemplateusage-ok'          => 'Fittex',
-'globaltemplateusage-text'        => 'Fittex l-użu globali tal-mudell',
-'globaltemplateusage-no-results'  => '[[$1]] mhuwiex użat fuq wikis oħrajn.',
-'globaltemplateusage-on-wiki'     => 'Użu fuq $2',
-'globaltemplateusage-more'        => "Ara [[{{#Special:GlobalUsage}}/$1|aktar użu globali]] ta' dan il-mudell.",
-'globaltemplateusage-filterlocal' => 'Turix l-użu lokali',
 
 # Database error messages
 'dberr-header'      => 'Din il-wiki għandha problema',

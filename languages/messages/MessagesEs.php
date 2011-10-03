@@ -3722,27 +3722,6 @@ Las imágenes se muestran en resolución máxima, otros tipos de archivo se inic
 'compare-title-not-exists'    => 'El título especificado no existe.',
 'compare-revision-not-exists' => 'La revisión especificada no existe.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Uso de archivo global',
-'globalfileusage-for'         => 'Uso global del archivo «$1»',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Página especial]] para ver el uso global de archivos',
-'globalfileusage-ok'          => 'Buscar',
-'globalfileusage-text'        => 'Buscar uso de archivo global',
-'globalfileusage-no-results'  => '[[$1]] no se utiliza en otros wikis.',
-'globalfileusage-on-wiki'     => 'Uso en $2',
-'globalfileusage-more'        => 'Ver [[{{#Special:GlobalUsage}}/$1|más uso global]] de este archivo.',
-'globalfileusage-filterlocal' => 'No mostrar el uso local',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Uso global de la plantilla',
-'globaltemplateusage-for'         => 'Uso global de la plantilla «$1»',
-'globaltemplateusage-ok'          => 'Buscar',
-'globaltemplateusage-text'        => 'Buscar uso de plantilla global',
-'globaltemplateusage-no-results'  => '[[$1]] no se utiliza en otros wikis.',
-'globaltemplateusage-on-wiki'     => 'Uso en $2',
-'globaltemplateusage-more'        => 'Ver [[{{#Special:GlobalUsage}}/$1|más uso global]] de esta plantilla.',
-'globaltemplateusage-filterlocal' => 'No mostrar el uso local',
-
 # Database error messages
 'dberr-header'      => 'Este wiki tiene un problema',
 'dberr-problems'    => 'Lo sentimos.

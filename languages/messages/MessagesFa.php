@@ -1168,9 +1168,6 @@ $2
 'templatesused'                    => '{{PLURAL:$1|الگوی|الگوهای}} استفاده شده در این صفحه:',
 'templatesusedpreview'             => '{{PLURAL:$1|الگوی|الگوهای}} استفاده شده در این پیش‌نمایش:',
 'templatesusedsection'             => '{{PLURAL:$1|الگوی|الگوهای}} استفاده شده در این بخش:',
-'distanttemplatesused'             => '{{PLURAL:$1|الگوی|الگوهای}} دوردست استفاده شده در این صفحه:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|الگوی|الگوهای}} دوردست استفاده شده در این پیش‌نمایش:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|الگوی|الگوهای}} دوردست استفاده شده در این بخش:',
 'template-protected'               => '(حفاظت‌شده)',
 'template-semiprotected'           => '(نیمه‌حفاظت‌شده)',
 'hiddencategories'                 => 'این صفحه در {{PLURAL:$1|یک ردهٔ پنهان|$1 ردهٔ پنهان}} قرار دارد:',
@@ -3190,6 +3187,9 @@ $1',
 'bydate'                => 'از روی تاریخ',
 'sp-newimages-showfrom' => 'نشان‌دادن تصویرهای جدید از $2، $1 به بعد',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'ago' => '$1 پیش',
+
 # Bad image list
 'bad_image_list' => 'اطلاعات را باید به این شکل وارد کنید:
 
@@ -3946,27 +3946,6 @@ $1',
 'compare-title-not-exists'    => 'عنوان مشخص شده وجود ندارد.',
 'compare-revision-not-exists' => 'پالایهٔ مشخص شده وجود ندارد.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'کاربرد سراسری پرونده',
-'globalfileusage-for'         => 'کاربرد سراسری برای "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|صفحهٔ ویژه]] برای نمایش استفاده سراسری پرونده',
-'globalfileusage-ok'          => 'جستجو',
-'globalfileusage-text'        => 'جستجوی استفاده‌های سراسری پرونده',
-'globalfileusage-no-results'  => '[[$1]] در ویکی‌های دیگر استفاده نشده‌است.',
-'globalfileusage-on-wiki'     => 'کاربرد در $2',
-'globalfileusage-more'        => '[[{{#Special:GlobalUsage}}/$1|کاربردهای سراسری دیگر]] این پرونده را ببینید.',
-'globalfileusage-filterlocal' => 'استفاده‌های محلی را نشان نده',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'استفاده سراسری الگو',
-'globaltemplateusage-for'         => 'کاربرد سراسری الگو برای "$1"',
-'globaltemplateusage-ok'          => 'جستجو',
-'globaltemplateusage-text'        => 'جستجوی استفاده‌های سراسری الگو',
-'globaltemplateusage-no-results'  => '[[$1]] در ویکی‌های دیگر استفاده نشده‌است.',
-'globaltemplateusage-on-wiki'     => 'کاربرد در $2',
-'globaltemplateusage-more'        => '[[{{#Special:GlobalUsage}}/$1|کاربردهای سراسری دیگر]] این الگو را ببینید.',
-'globaltemplateusage-filterlocal' => 'استفاده‌های محلی را نشان نده',
-
 # Database error messages
 'dberr-header'      => 'این ویکی یک ایراد دارد',
 'dberr-problems'    => 'شرمنده!
@@ -4019,6 +3998,10 @@ $1',
 'logentry-move-move_redir-noredirect' => '$1 صفحه $3 را بدون بر جا گذاشتن تغییر مسیر به $4 که تغییر مسیر بود {{GENDER:$2|منتقل کرد}}',
 'logentry-patrol-patrol'              => '$1 نسخه $4 صفحه $3 را به عنوان گشت خورده {{GENDER:$2|علامت زد}}',
 'logentry-patrol-patrol-auto'         => '$1 نسخه $4 صفحه $3 را به طور خودکار به عنوان گشت خورده {{GENDER:$2|علامت زد}}',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2| بساتن}} اتا حساب کاروری',
+'logentry-newusers-create'            => '$1 {{GENDER:$2| بساتن}} اتا حساب کاروری',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2| بساتن}} {{GENDER:$4| حساب کاروری}} $3',
+'logentry-newusers-autocreate'        => 'کاروری حساب $1 {{GENDER:$2| بساتن}} به شکل خودکار',
 'newuserlog-byemail'                  => 'گذرواژه با پست الکترونیکی ارسال شد',
 
 );

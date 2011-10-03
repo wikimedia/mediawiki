@@ -906,9 +906,6 @@ $2
 'templatesused'                    => '此頁面包含以下{{PLURAL:$1|模板|模板}}:',
 'templatesusedpreview'             => '此次預覽中使用的{{PLURAL:$1|模板|模板}}有:',
 'templatesusedsection'             => '在這個段落上使用的{{PLURAL:$1|模板|模板}}有:',
-'distanttemplatesused'             => '此頁面包含以下遙遠{{PLURAL:$1|模板|模板}}：',
-'distanttemplatesusedpreview'      => '此次預覽中使用的遙遠{{PLURAL:$1|模板|模板}}：',
-'distanttemplatesusedsection'      => '在這個段落上使用的遙遠{{PLURAL:$1|模板|模板}}：',
 'template-protected'               => '（保護）',
 'template-semiprotected'           => '（半保護）',
 'hiddencategories'                 => '這個頁面是屬於$1個隱藏分類的成員:',
@@ -3596,27 +3593,6 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'compare-invalid-title'       => '所指定標題無效。',
 'compare-title-not-exists'    => '所指定的話題不存在。',
 'compare-revision-not-exists' => '所指定的修訂不存在。',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => '全域檔案使用情況',
-'globalfileusage-for'         => '「$1」的全域檔案使用情況',
-'globalfileusage-desc'        => '檢視全域檔案使用情況的[[Special:GlobalFileUsage|特殊頁面]]',
-'globalfileusage-ok'          => '搜尋',
-'globalfileusage-text'        => '搜尋全域檔案使用情況',
-'globalfileusage-no-results'  => '[[$1]]未在其他維基項目中使用。',
-'globalfileusage-on-wiki'     => '$2 中的使用情況',
-'globalfileusage-more'        => '檢視本檔案的[[{{#Special:GlobalUsage}}/$1|更多全域使用情況]]。',
-'globalfileusage-filterlocal' => '勿顯示本地使用情況',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => '全域模板使用',
-'globaltemplateusage-for'         => '「$1」的全域模板使用情況',
-'globaltemplateusage-ok'          => '搜尋',
-'globaltemplateusage-text'        => '搜尋全域模板使用情況',
-'globaltemplateusage-no-results'  => '[[$1]]未在其他維基項目中使用。',
-'globaltemplateusage-on-wiki'     => '$2 中的使用情況',
-'globaltemplateusage-more'        => '檢視本模板的[[{{#Special:GlobalUsage}}/$1|更多全域使用情況]]。',
-'globaltemplateusage-filterlocal' => '勿顯示本地使用情況',
 
 # Database error messages
 'dberr-header'      => '這個 wiki 出現了問題',

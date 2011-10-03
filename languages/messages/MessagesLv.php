@@ -2915,14 +2915,6 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'compare-rev2'     => '2. versija',
 'compare-submit'   => 'Salīdzināt',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Globālais faila lietojums',
-'globalfileusage-no-results'  => '[[$1]] nav lietots citās viki.',
-'globalfileusage-filterlocal' => 'Nerādīt lokālo lietojumu',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage-filterlocal' => 'Nerādīt lokālo lietojumu',
-
 # Database error messages
 'dberr-header'      => 'Šim viki ir problēma',
 'dberr-problems'    => 'Atvainojiet! 

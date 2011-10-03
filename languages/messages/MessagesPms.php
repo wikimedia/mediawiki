@@ -753,9 +753,6 @@ L'ùltima vos dël registr a l'é smonùa sì-sota për arferiment:",
 'templatesused'                    => '{{PLURAL:$1|Stamp|Stamp}} dovrà dzora a sta pàgina-sì:',
 'templatesusedpreview'             => '{{PLURAL:$1|Stamp|Stamp}} dovrà ant sta preuva-sì:',
 'templatesusedsection'             => '{{PLURAL:$1|Stamp|Stamp}} dovrà ant sta session-sì:',
-'distanttemplatesused'             => '{{PLURAL:$1|Stamp|Stamp}} distant dovrà dzora a sta pàgina-sì:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Stamp|Stamp}} distant dovrà ant sta preuva-sì:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Stamp|Stamp}} distant dovrà ant sta session-sì:',
 'template-protected'               => '(protet)',
 'template-semiprotected'           => '(mes-protet)',
 'hiddencategories'                 => 'Sta pàgina-sì a fa part ëd {{PLURAL:$1|na categorìa|$1 categorìe}} stërmà:',
@@ -1285,6 +1282,7 @@ Costa anformassion a sarà pùblica.",
 'right-siteadmin'             => 'Bloché e dësbloché la base ëd dàit',
 'right-override-export-depth' => 'Esporté le pàgine ancludend le pàgine colegà fin-a a na profondeur ëd 5',
 'right-sendemail'             => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
+'right-passwordreset'         => "Torna amposté la ciav ëd n'utent ([[Special:PasswordReset|pàgina special]])",
 
 # User rights log
 'rightslog'                  => "Argistr dij drit ëd j'utent",
@@ -2024,17 +2022,16 @@ Për piasì, che an conferma che sòn a l'é da bon sò but, che a as rend cont 
 'deletedtext'            => "La pàgina «$1» a l'é stàita scancelà.
 Che a varda $2 për na lista dle pàgine scancelà ant j'ùltim temp.",
 'dellogpage'             => 'Registr djë scancelament',
-'dellogpagetext'         => "Ambelessì sota na lista dle pàgine scancelà ant j'ùltim temp.
-Ij temp a son conforma a l'ora dël server.",
+'dellogpagetext'         => "Ambelessì-sota a-i é na lista dle pàgine scancelà ant j'ùltim temp.",
 'deletionlog'            => 'Registr djë scancelament',
 'reverted'               => 'Version prima butà torna sù',
 'deletecomment'          => 'Rason:',
 'deleteotherreason'      => 'Rason àutra/adissional:',
 'deletereasonotherlist'  => 'Àutra rason',
-'deletereason-dropdown'  => "*Rason sòlite ch'as ëscancela la ròba
-** a lo ciama l'àutor
-** violassion dij drit d'autor
-** vanadalism",
+'deletereason-dropdown'  => "*Rason sòlite ch'a së scancela la ròba
+** A lo ciama l'àutor
+** Violassion dij drit d'autor
+** Vandalism",
 'delete-edit-reasonlist' => 'Modifiché la rason dlë scancelament',
 'delete-toobig'          => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 {{PLURAL:$1|revision|revision}}.
 Lë scancelassion ëd pàgine parej a l'é stàita limità për evité ch'as fasa darmagi për eror a {{SITENAME}}.",
@@ -3471,27 +3468,6 @@ Le figure a së smon-o a amzura pijn-a, j'àotre sòrt d'archivi a ven-o fàite 
 'compare-invalid-title'       => "Ël tìtol ch'a l'ha spessificà a va pa bin.",
 'compare-title-not-exists'    => "Ël tìtol ch'a l'ha spessificà a esist pa",
 'compare-revision-not-exists' => "La revision che it l'has spessificà a esist pa.",
-
-# Special:GlobalFileUsage
-'globalfileusage'             => "Utilisassion ëd l'archivi global",
-'globalfileusage-for'         => 'Usagi global dl\'archivi për "$1"',
-'globalfileusage-desc'        => "[[Special:GlobalFileUsage|Pàgina special]] për vëdde l'utilisassion global ëd j'archivi",
-'globalfileusage-ok'          => 'Sërca',
-'globalfileusage-text'        => "Arserché l'utilisassion ëd l'archivi global",
-'globalfileusage-no-results'  => "[[$1]] a l'é pa dovrà dzora d'àutre wiki.",
-'globalfileusage-on-wiki'     => 'Usagi dzora $2',
-'globalfileusage-more'        => "Varda l'[[{{#Special:GlobalUsage}}/$1|usagi global]] dë st'archivi-sì.",
-'globalfileusage-filterlocal' => "Smon-e nen l'utilisassion local.",
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Dovragi dlë stamp global',
-'globaltemplateusage-for'         => 'Usagi dlë stamp global për "$1"',
-'globaltemplateusage-ok'          => 'Sërca',
-'globaltemplateusage-text'        => "Serca l'usagi dlë stamp global",
-'globaltemplateusage-no-results'  => "[[$1]] a l'é pa dovrà dzora d'àutre wiki.",
-'globaltemplateusage-on-wiki'     => 'Usagi dzora $2',
-'globaltemplateusage-more'        => "Varda l'[[{{#Special:GlobalUsage}}/$1|àutr usagi global]] dë sto stamp-sì.",
-'globaltemplateusage-filterlocal' => "Smon-e nen l'utilisassion local.",
 
 # Database error messages
 'dberr-header'      => "Sta wiki-sì a l'ha un problema",

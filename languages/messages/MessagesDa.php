@@ -689,30 +689,34 @@ Du har muligvis allerede skiftet din adgangskode eller anmodet om en ny midlerti
 'resetpass-temp-password'   => 'Midlertidig adgangskode',
 
 # Special:PasswordReset
-'passwordreset'                => 'Nulstil adgangskode',
-'passwordreset-text'           => 'Udfyld denne formular for at modtage en påmindelse om dine kontooplysninger som e-mail.',
-'passwordreset-legend'         => 'Nulstil adgangskode',
-'passwordreset-disabled'       => 'Nulstilling af kodeord er slået fra på denne wiki.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Indtast en af de nedenstående oplysninger}}',
-'passwordreset-username'       => 'Brugernavn:',
-'passwordreset-domain'         => 'Domæne:',
-'passwordreset-email'          => 'E-mail adresse:',
-'passwordreset-emailtitle'     => 'Kontooplysninger på {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
+'passwordreset'                    => 'Nulstil adgangskode',
+'passwordreset-text'               => 'Udfyld denne formular for at modtage en påmindelse om dine kontooplysninger som e-mail.',
+'passwordreset-legend'             => 'Nulstil adgangskode',
+'passwordreset-disabled'           => 'Nulstilling af kodeord er slået fra på denne wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Indtast en af de nedenstående oplysninger}}',
+'passwordreset-username'           => 'Brugernavn:',
+'passwordreset-domain'             => 'Domæne:',
+'passwordreset-capture'            => 'Se den resulterende email?',
+'passwordreset-capture-help'       => 'Hvis du krydser dette felt af, vil emailen (med den midlertidige adgangskode) blive vist til dig i tillæg til at blive sendt til brugeren.',
+'passwordreset-email'              => 'E-mail adresse:',
+'passwordreset-emailtitle'         => 'Kontooplysninger på {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Nogen (sandsynligvis dig, fra IP-adressen $1) har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
 
 $2
 
 {{PLURAL:$3|Denne midlertidige adgangskode|Disse midlertidige adgangskoder}} vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
 Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har anmodet om denne påmindelse, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
-'passwordreset-emailtext-user' => 'Brugeren $1 har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
+'passwordreset-emailtext-user'     => 'Brugeren $1 har anmodet om en påmindelse om dine kontooplysninger for {{SITENAME}} ($4). Følgende {{PLURAL:$3|brugerkonto|brugerkonti}} er associerede med denne e-mail-adresse:
 
 $2
 
 {{PLURAL:$3|Denne midlertidige adgangskode|Disse midlertidige adgangskoder}} vil udløbe om {{PLURAL:$5|en dag|$5 dage}}.
 Du bør logge på og vælge en ny adgangskode nu. Hvis en anden end dig har anmodet om denne påmindelse, eller hvis du er kommet i tanke om din oprindelig adgangskode og ikke længere ønsker at ændre den, kan du ignorere denne meddelelse og fortsætte med at bruge din gamle adgangskode.',
-'passwordreset-emailelement'   => 'Brugernavn: $1
+'passwordreset-emailelement'       => 'Brugernavn: $1
 Midlertidig adgangskode: $2',
-'passwordreset-emailsent'      => 'En påmindelse er blevet sendt som e-mail.',
+'passwordreset-emailsent'          => 'En påmindelse er blevet sendt som e-mail.',
+'passwordreset-emailsent-capture'  => 'En påmindelsesemail, som vist nedenfor, er blevet sendt.',
+'passwordreset-emailerror-capture' => 'En påmindelsesemail, som vist nedenfor, blev genereret, men det lykkedes ikke at sende den til brugeren: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Ændr email-adresse',
@@ -895,9 +899,6 @@ Den seneste logpost vises nedenfor:",
 'templatesused'                    => '{{PLURAL:$1|Skabelon|Skabeloner}} der er brugt på denne side:',
 'templatesusedpreview'             => 'Følgende {{PLURAL:$1|Skabelon|Skabeloner}} bruges af denne artikelforhåndsvisning:',
 'templatesusedsection'             => 'Følgende {{PLURAL:$1|skabelon|skabeloner}} bruges af dette afsnit:',
-'distanttemplatesused'             => '{{PLURAL:$1|Fjernskabelon|Fjernskabeloner}}, der er brugt på denne side:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Fjernskabelon|Fjernskabeloner}}, der er brugt i denne forhåndsvisning:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Fjernskabelon|Fjernskabeloner}}, der er brugt i dette afsnit:',
 'template-protected'               => '(skrivebeskyttet)',
 'template-semiprotected'           => '(delvist beskyttet)',
 'hiddencategories'                 => 'Denne side er i {{PLURAL:$1|en skjult kategori|$1 skjulte kategorier}}:',
@@ -1419,6 +1420,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-siteadmin'             => 'Låse og frigive databasen',
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
 'right-sendemail'             => 'Sende e-mail til andre brugere',
+'right-passwordreset'         => 'Se emails til nulstilling af adgangskoder',
 
 # User rights log
 'rightslog'                  => 'Rettighedslog',
@@ -3534,27 +3536,6 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'compare-title-not-exists'    => 'Den titel, du har angivet, findes ikke.',
 'compare-revision-not-exists' => 'Den version, du har angivet, findes ikke.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Global filanvendelse',
-'globalfileusage-for'         => 'Global filanvendelse af "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Specialside]], der viser global filanvendelse',
-'globalfileusage-ok'          => 'Søg',
-'globalfileusage-text'        => 'Søg i global filanvendelse',
-'globalfileusage-no-results'  => '[[$1]] er ikke i brug på andre wikier.',
-'globalfileusage-on-wiki'     => 'Anvendelse på $2',
-'globalfileusage-more'        => 'Vis [[{{#Special:GlobalUsage}}/$1|flere globale anvendelser]] af denne fil.',
-'globalfileusage-filterlocal' => 'Vis ikke lokal anvendelse',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Global skabelonanvendelse',
-'globaltemplateusage-for'         => 'Global skabelonanvendelse af "$1"',
-'globaltemplateusage-ok'          => 'Søg',
-'globaltemplateusage-text'        => 'Søg i global skabelonanvendelse',
-'globaltemplateusage-no-results'  => '[[$1]] er ikke i brug på andre wikier.',
-'globaltemplateusage-on-wiki'     => 'Anvendelse på $2',
-'globaltemplateusage-more'        => 'Vis [[{{#Special:GlobalUsage}}/$1|flere globale anvendelser]] af denne skabelon.',
-'globaltemplateusage-filterlocal' => 'Vis ikke lokal anvendelse',
-
 # Database error messages
 'dberr-header'      => 'Wikien har et problem',
 'dberr-problems'    => 'Undskyld! Siden har tekniske problemer.',
@@ -3606,6 +3587,10 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttede}} siden $3 til $4 hen over en omdirigering og uden at efterlade en omdirigering',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerede}} version $4 af siden $3 som patruljeret',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerede}} automatisk version $4 af siden $3 som patruljeret',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|oprettede}} en brugerkonto',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|oprettede}} en brugerkonto',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|oprettede}} {{GENDER:$4|brugerkontoen}} $3',
+'logentry-newusers-autocreate'        => 'Kontoen $1 blev automatisk {{GENDER:$2|oprettet}}',
 'newuserlog-byemail'                  => 'kodeord tilsendt pr. e-mail',
 
 );

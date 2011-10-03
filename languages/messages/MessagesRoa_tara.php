@@ -767,9 +767,6 @@ L'urteme archivije de le trasute jè provviste sotte pe referimende:",
 'templatesused'                    => "{{PLURAL:$1|Template|Template}} ausate sus 'a sta pàgene:",
 'templatesusedpreview'             => "{{PLURAL:$1|Template|Template}} ausate jndr'à sta andeprime:",
 'templatesusedsection'             => "{{PLURAL:$1|Template|Template}} ausate jndr'à sta sezione:",
-'distanttemplatesused'             => "{{PLURAL:$1|Template|Template}} lundane ausate sus 'a sta pàgene:",
-'distanttemplatesusedpreview'      => "{{PLURAL:$1|Template|Template}} lundane ausate jndr'à sta andeprime:",
-'distanttemplatesusedsection'      => "{{PLURAL:$1|Template|Template}} lundane ausate jndr'à sta sezione:",
 'template-protected'               => '(prutette)',
 'template-semiprotected'           => '(mmienze protette)',
 'hiddencategories'                 => 'Sta pàgene jè membre de {{PLURAL:$1|1 categorja|$1 categorije}} scunnute:',
@@ -1626,7 +1623,7 @@ Quanne jè filtrate da l'utende, sulamende le file ca quidde utende ave carecate
 'filehist-filesize'         => "Dimenzione d'u file",
 'filehist-comment'          => 'Commende',
 'filehist-missing'          => 'File ca no se iacchje',
-'imagelinks'                => 'Collegaminde de file',
+'imagelinks'                => "Ause d'u file",
 'linkstoimage'              => '{{PLURAL:$1|sta pàgene apponde |$1 ste pàggene appondene}} a stu fail:',
 'linkstoimage-more'         => "Cchiù de $1 {{PLURAL:$1|pàgene se colleghe|pàggene se collegane}} a stu file.<br />
 'A seguende liste face vedè {{PLURAL:$1|'a prima pàgene ca se colleghe|le prime $1 pàggene ca se colleghene}} sulamende a stu file.<br />
@@ -2780,6 +2777,12 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'bydate'                => 'pe date',
 'sp-newimages-showfrom' => 'Fa vedè le file nuève partenne da $2, $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'minutes' => '{{PLURAL:$1|$1 minute|$1 minute}}',
+'hours'   => '{{PLURAL: $1|$1ore|$1 ore}}',
+'days'    => '{{PLURAL: $1|$1 sciurne|$1 sciurne}}',
+'ago'     => '$1 fà',
+
 # Bad image list
 'bad_image_list' => "'U formete jè 'u seguende:
 
@@ -3403,9 +3406,7 @@ Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenz
 'filepath-page'    => 'File:',
 'filepath-submit'  => 'Véje',
 'filepath-summary' => "Sta pàgena speciale retorne 'u percorse comblete pe 'nu file.<br />
-Le immaggine sonde mostrate jndr'à resoluziona megghie, otre tipe de file rechiamane 'u lore programme associate direttamende.
-
-Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
+Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file rechiamane 'u lore programme associate direttamende.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Cirche pe le file duplichete',
@@ -3475,27 +3476,6 @@ Mitte 'u nome d'u file senza 'u prefisse \"{{ns:file}}\".",
 'compare-invalid-title'       => "'U titele ca è specificate jè invalide.",
 'compare-title-not-exists'    => "'U titele ca è specificate non g'esiste.",
 'compare-revision-not-exists' => "'A revisione ca è specificate non g'esiste.",
-
-# Special:GlobalFileUsage
-'globalfileusage'             => "Ause d'u file globale",
-'globalfileusage-for'         => 'Ause globale pe "$1"',
-'globalfileusage-desc'        => "[[Special:GlobalFileUsage|Pàgena speciale]] pe vedè l'ause de le file globale",
-'globalfileusage-ok'          => 'Cirche',
-'globalfileusage-text'        => 'Cirche le file de ause globale',
-'globalfileusage-no-results'  => "[[$1]] non g'è ausate jndr'à otre Uicchi.",
-'globalfileusage-on-wiki'     => 'Ause sus a $2',
-'globalfileusage-more'        => 'Vide [[{{#Special:GlobalUsage}}/$1|ause globale]] de stu file.',
-'globalfileusage-filterlocal' => "No fà vedè l'ause locale",
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Template de ause globale',
-'globaltemplateusage-for'         => 'Template de ause globale pe "$1"',
-'globaltemplateusage-ok'          => 'Cirche',
-'globaltemplateusage-text'        => 'Cirche le template de ause globale',
-'globaltemplateusage-no-results'  => "[[$1]] non g'è ausate jndr'à otre Uicchi.",
-'globaltemplateusage-on-wiki'     => 'Ause sus a $2',
-'globaltemplateusage-more'        => 'Vide [[{{#Special:GlobalUsage}}/$1|ause globale]] de stu template.',
-'globaltemplateusage-filterlocal' => "No fà vedè l'ause locale",
 
 # Database error messages
 'dberr-header'      => "Sta Uicchi tène 'nu probbleme",

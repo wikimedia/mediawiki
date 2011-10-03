@@ -734,9 +734,6 @@ $2
 'templatesused'                    => '{{PLURAL:$1|नमूना|नमूना सभ}} ऐ पन्नापर प्रयुक्त:',
 'templatesusedpreview'             => '{{PLURAL:$1|मास्टरफाइल|सभटा मास्टरफाइल}} used in this preview:ऐ पूर्वप्रदर्शनमे प्रयुक्त :',
 'templatesusedsection'             => '{{PLURAL:$1|नमूना|नमूना सभ}} ऐ संवर्गमे प्रयुक्त:',
-'distanttemplatesused'             => 'दूर {{PLURAL:$1|नमूना|नमूना सभ}} ऐ पन्नापर प्रयुक्त:',
-'distanttemplatesusedpreview'      => 'दूर {{PLURAL:$1|नमूना|नमूना सभ}} ऐ पूर्वप्रदर्शनमे प्रयुक्त:',
-'distanttemplatesusedsection'      => 'दूर {{PLURAL:$1|नमूना|नमूना सभ}} ऐ संवर्गमे प्रयुक्त:',
 'template-protected'               => '(सुरक्षित)',
 'template-semiprotected'           => '(अर्ध-रक्षित)',
 'hiddencategories'                 => 'ई पन्ना सदस्य अछि {{PLURAL:$1|1 नुकाएल संवर्ग|$1 नुकाएल संवर्ग सभ}}:',
@@ -3422,27 +3419,6 @@ $1',
 'compare-invalid-title'       => 'जे शीर्षक अहाँ देलौं से अमान्य अछि।',
 'compare-title-not-exists'    => 'जे शीर्षक अहाँ कहलौं से अछिये नै।',
 'compare-revision-not-exists' => 'जे संशोधन अहाँ कहलौं से अछिये नै।',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'सार्वत्रिक संचिका प्रयोग',
-'globalfileusage-for'         => '"$1" लेल सार्वत्रिक संचिका प्रयोग',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|विशिष्ट पन्ना]] सार्वत्रिक संचिका प्रयोग देखबा लेल',
-'globalfileusage-ok'          => 'खोज',
-'globalfileusage-text'        => 'सार्वत्रिक संचिका प्रयोग ताकू',
-'globalfileusage-no-results'  => '[[$1]] दोसर विकी सभ पर प्रयोग नै होइए।',
-'globalfileusage-on-wiki'     => '$2 पर प्रयोग',
-'globalfileusage-more'        => 'देखू [[{{#Special:GlobalUsage}}/$1|आर सार्वत्रिक प्रयोग]] ऐ संचिकाक।',
-'globalfileusage-filterlocal' => 'स्थानीय प्रयोग नै देखाउ',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'सार्वत्रिक नमूना प्रयोग',
-'globaltemplateusage-for'         => '"$1" लेल सार्वत्रिक नमूना प्रयोग',
-'globaltemplateusage-ok'          => 'ताकू',
-'globaltemplateusage-text'        => 'सार्वत्रिक नमूना प्रयोग ताकू',
-'globaltemplateusage-no-results'  => '[[$1]] दोसर विकी सभ पर प्रयोग नै होइए।',
-'globaltemplateusage-on-wiki'     => '$2 पर प्रयोग',
-'globaltemplateusage-more'        => 'देखू [[{{#Special:GlobalUsage}}/$1|आर सार्वत्रिक प्रयोग]] ऐ नमूनाक।',
-'globaltemplateusage-filterlocal' => 'स्थानीय प्रयोग नै देखाउ',
 
 # Database error messages
 'dberr-header'      => 'ऐ विकीमे एकटा समस्या अछि',

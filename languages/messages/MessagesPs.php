@@ -424,7 +424,7 @@ $1',
 'toc'                     => 'نيوليک',
 'showtoc'                 => 'ښکاره کول',
 'hidetoc'                 => 'پټول',
-'collapsible-collapse'    => 'پرزول',
+'collapsible-collapse'    => 'پرځول',
 'collapsible-expand'      => 'غځول',
 'thisisdeleted'           => '$1 کتل او يا بيازېرمل؟',
 'viewdeleted'             => '$1 کتل؟',
@@ -2359,12 +2359,6 @@ $5
 'compare-rev1'     => '۱ بڼه',
 'compare-rev2'     => '۲ بڼه',
 'compare-submit'   => 'پرتلل',
-
-# Special:GlobalFileUsage
-'globalfileusage-ok' => 'پلټل',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage-ok' => 'پلټل',
 
 # Database error messages
 'dberr-header'    => 'دا ويکي يوه ستونزه لري',

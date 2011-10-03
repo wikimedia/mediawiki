@@ -1089,9 +1089,6 @@ De laatste logboekregel staat hieronder:",
 'templatesused'                    => 'Op deze pagina {{PLURAL:$1|gebruikt sjabloon|gebruikte sjablonen}}:',
 'templatesusedpreview'             => '{{PLURAL:$1|Sjabloon|Sjablonen}} gebruikt in deze voorvertoning:',
 'templatesusedsection'             => 'In dit subkopje {{PLURAL:$1|wordt het volgende sjabloon|worden de volgende sjablonen}} gebruikt:',
-'distanttemplatesused'             => '{{PLURAL:$1|Sjabloon|Sjablonen}} uit een andere wiki op deze pagina:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Sjabloon|Sjablonen}} uit een andere wiki in deze voorvertoning:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Sjabloon|Sjablonen}} uit een andere wiki in deze paragraaf:',
 'template-protected'               => '(beveiligd)',
 'template-semiprotected'           => '(semibeveiligd)',
 'hiddencategories'                 => 'Deze pagina valt in de volgende verborgen {{PLURAL:$1|categorie|categorieën}}:',
@@ -3889,27 +3886,6 @@ Andere bestandstypen worden direct in het met het MIME-type verbonden programma 
 'compare-invalid-title'       => 'De titel die u hebt opgegeven is ongeldig.',
 'compare-title-not-exists'    => 'De titel die u hebt opgegeven bestaat niet.',
 'compare-revision-not-exists' => 'De versie die u hebt opgegeven bestaat niet.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Globaal bestandsgebruik',
-'globalfileusage-for'         => 'Globaal gebruik voor "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Speciale pagina]] voor het bekijken van globaal bestandsgebruik',
-'globalfileusage-ok'          => 'Zoeken',
-'globalfileusage-text'        => 'Globaal bestandsgebruik bekijken',
-'globalfileusage-no-results'  => "[[$1]] wordt niet gebruikt in andere wiki's.",
-'globalfileusage-on-wiki'     => 'Gebruik in $2',
-'globalfileusage-more'        => '[[{{#Special:GlobalUsage}}/$1|Globaal gebruik]] van dit bestand bekijken.',
-'globalfileusage-filterlocal' => 'Lokaal gebruik niet weergeven',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Globaal sjabloongebruik',
-'globaltemplateusage-for'         => 'Globaal sjabloongebruik voor "$1"',
-'globaltemplateusage-ok'          => 'Zoeken',
-'globaltemplateusage-text'        => 'Globaal sjabloongebruik bekijken',
-'globaltemplateusage-no-results'  => "[[$1]] wordt niet gebruikt in andere wiki's.",
-'globaltemplateusage-on-wiki'     => 'Gebruik in $2',
-'globaltemplateusage-more'        => '[[{{#Special:GlobalUsage}}/$1|Globaal gebruik]] van dit sjabloon bekijken.',
-'globaltemplateusage-filterlocal' => 'Lokaal gebruik niet weergeven',
 
 # Database error messages
 'dberr-header'      => 'Deze wiki heeft een probleem',

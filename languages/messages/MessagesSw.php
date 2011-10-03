@@ -613,6 +613,9 @@ Tafadhali subiri kwanza kabla ya kujaribu tena.',
 'loginlanguagelabel'         => 'Lugha: $1',
 'suspicious-userlogout'      => 'Ombi lako la kutoka kwenye akaunti yako limehiniwa, kwa sababu inaonekana kwamba ombi lilitumwa na kivinjari kilichoharibika au seva ya kuwakilisha yenye kache.',
 
+# E-mail sending
+'user-mail-no-addy' => 'Umejaribu kutuma barua pepe bila anwani ya barua pepe.',
+
 # Change password dialog
 'resetpass'                 => 'Kubadilisha neno la siri',
 'resetpass_announce'        => 'Umeingia na kodi za barua pepe za muda tu.
@@ -638,6 +641,7 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'passwordreset-disabled'       => 'Kuweka neno la siri jipya kumeshitishwa katika wiki hii.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Ingiza moja kati ya data hizi hapo chini}}',
 'passwordreset-username'       => 'Jina la mtumiaji:',
+'passwordreset-capture'        => 'Kutazama barua pepe itakayotumwa',
 'passwordreset-email'          => 'Anwani ya barua pepe:',
 'passwordreset-emailtitle'     => 'Maelezo ya akaunti kwenye {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Kuna mtu (huenda ikawa ni wewe, kutoka anwani ya IP $1) aliyeomba kukumbushwa kuhusu maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
@@ -838,9 +842,6 @@ Rejea kumbukumbu ya mwisho inayoandikwa chini:",
 'templatesused'                    => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} kwenye ukurasa huu:',
 'templatesusedpreview'             => '{{PLURAL:$1|Kigezo kinachotumiwa|Vigezo vinavyotumiwa}} katika mandhari haya:',
 'templatesusedsection'             => '{{PLURAL:$1|Kigezo kinachotumika|Vigezo vinavyotumika}} katika sehemu hii:',
-'distanttemplatesused'             => '{{PLURAL:$1|Kigezo cha mbali kinachotumika|Vigezo vya mbali vinavyotumika}} katika ukurasa huu:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Kigezo cha mbali kinachotumika|Vigezo vya mbali vinavyotumika}} katika hakikisho hii:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Kigezo cha mbali kinachotumika|Vigezo vya mbali vinavyotumika}} katika sehemu hii:',
 'template-protected'               => '(kulindwa)',
 'template-semiprotected'           => '(ulindaji kwa kiasi)',
 'hiddencategories'                 => 'Ukurasa huu uliomo katika jamii $1 {{PLURAL:$1|iliofichwa|zilizofichwa}}:',
@@ -2992,27 +2993,6 @@ Andika jina la faili bila kiambishi awali cha "{{ns:file}}:".',
 'compare-invalid-title'       => 'Jina la ukurasa uliloliandika ni batili.',
 'compare-title-not-exists'    => 'Jina la ukurasa ulilotaja halipatikani.',
 'compare-revision-not-exists' => 'Pitio ulilotaja halipatikani.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Utumiaji wa faili katika wiki zote',
-'globalfileusage-for'         => 'Matumizi ya faili "$1" katika wiki zote',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Ukurasa maalum]] unayoonyesha matumizi ya faili katika wiki zote',
-'globalfileusage-ok'          => 'Tafuta',
-'globalfileusage-text'        => 'Tafuta matumizi ya faili katika wiki zote',
-'globalfileusage-no-results'  => '[[$1]] haitumiki katika wiki zingine.',
-'globalfileusage-on-wiki'     => 'Matumizi kwenye $2',
-'globalfileusage-more'        => 'Tazama matumizi mengine ya faili hili [[{{#Special:GlobalUsage}}/$1|katika wiki zote]].',
-'globalfileusage-filterlocal' => 'Matumizi katika wiki hii isionyeshwe',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Matumizi ya kigezo katika wiki zote',
-'globaltemplateusage-for'         => 'Matumizi ya kigezo "$1" katika wiki zote',
-'globaltemplateusage-ok'          => 'Tafuta',
-'globaltemplateusage-text'        => 'Tafuta matumizi ya kigezo katika wiki zote',
-'globaltemplateusage-no-results'  => '[[$1]] haitumiki katika wiki zingine.',
-'globaltemplateusage-on-wiki'     => 'Matumizi katika $2',
-'globaltemplateusage-more'        => 'Tazama matumizi mengine ya kigezo hiki [[{{#Special:GlobalUsage}}/$1|katika wiki zote]].',
-'globaltemplateusage-filterlocal' => 'Matumizi katika wiki hii isionyeshwe',
 
 # Database error messages
 'dberr-header'      => 'Wiki imekuta tatizo',

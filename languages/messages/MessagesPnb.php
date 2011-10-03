@@ -2889,27 +2889,6 @@ $1',
 'compare-title-not-exists'    => 'ٹائیٹل جیہڑا تساں چنیاں اوہ ہے ای نئیں۔',
 'compare-revision-not-exists' => 'دوبارہ وکھالہ جیہڑا تساں دسیا اے ہے ای نئیں۔',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'گلوبل فائل ورتن',
-'globalfileusage-for'         => 'گلوبل فائل ورتن "$1" لئی',
-'globalfileusage-desc'        => '[[خاص:گلوبل فآغل ورتن|خاص صفے]] گلوبل فائل ورتن ویکھن لئی',
-'globalfileusage-ok'          => 'کھوج',
-'globalfileusage-text'        => 'گلوبل فائل ورتن کھوجو',
-'globalfileusage-no-results'  => '[[$1]] دوجے وکیاں تے نئیں ورتیا جاندا۔',
-'globalfileusage-on-wiki'     => '$2 تے ورتن',
-'globalfileusage-more'        => 'ایس فائل دے [[{{#Special:GlobalUsage}}/$1|more global usage]] ویکھو۔',
-'globalfileusage-filterlocal' => 'لوکل ورتن ناں دسو',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'گلوبل ٹمپلیٹ ورتن',
-'globaltemplateusage-for'         => 'گلوبل ٹمپلیٹ ورتن "$1" لئی',
-'globaltemplateusage-ok'          => 'کھوج',
-'globaltemplateusage-text'        => 'گلوبل ٹمپلیٹ ورتن کھوجو',
-'globaltemplateusage-no-results'  => '[[$1]] دوجے وکیاں تے نئیں ورتیا جاندا۔',
-'globaltemplateusage-on-wiki'     => '$2 تے ورتن',
-'globaltemplateusage-more'        => 'ایس ٹیمپلیٹ دے [[{{#Special:GlobalUsage}}/$1|more global usage]] ویکھو۔',
-'globaltemplateusage-filterlocal' => 'لوکل ورتن ناں دسو',
-
 # Database error messages
 'dberr-header'      => 'ایس وکی چ کوئی مسلہ اے۔',
 'dberr-problems'    => 'معاف کرنا !

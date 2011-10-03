@@ -3614,17 +3614,6 @@ Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva progra
 'compare-title-not-exists'    => 'Valitud pealkirja ei ole.',
 'compare-revision-not-exists' => 'Valitud redaktsiooni ei ole.',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Globaalne failikasutus',
-'globalfileusage-for'         => 'Faili "$1" globaalne kasutus',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Erilehekülg]] faili globaalse kasutuse vaatamiseks',
-'globalfileusage-ok'          => 'Otsi',
-'globalfileusage-text'        => 'Faili globaalse kasutuse otsimine',
-'globalfileusage-no-results'  => '[[$1]] pole teistes vikides kasutusel.',
-'globalfileusage-on-wiki'     => 'Kasutus vikis $2',
-'globalfileusage-more'        => 'Vaata selle faili [[{{#Special:GlobalUsage}}/$1|ülejäänud globaalset kasutust]].',
-'globalfileusage-filterlocal' => 'Ära näita kohalikku kasutust',
-
 # Database error messages
 'dberr-header'      => 'Selles vikis on probleem',
 'dberr-problems'    => 'Kahjuks on sellel saidil tehnilisi probleeme',

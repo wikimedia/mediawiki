@@ -644,6 +644,7 @@ A-raok na vije kaset postel ebet d'ar gont-se e vo ret deoc'h heuliañ ar c'huzu
 'emailconfirmlink'           => "Kadarnait ho chomlec'h postel",
 'invalidemailaddress'        => "N'haller ket degemer ar chomlec'h postel-mañ rak faziek eo e furmad evit doare.
 Merkit ur chomlec'h reizh pe goullonderit ar vaezienn-mañ.",
+'cannotchangeemail'          => "N'haller ket cheñch chomlec'hioù postel ar c'hontoù war ar wiki-mañ.",
 'accountcreated'             => 'Kont krouet',
 'accountcreatedtext'         => 'Krouet eo bet kont implijer $1.',
 'createaccount-title'        => 'Krouiñ ur gont war {{SITENAME}}',
@@ -680,30 +681,34 @@ Gortozit a-raok klask en-dro.",
 'resetpass-temp-password'   => "Ger-tremen da c'hortoz :",
 
 # Special:PasswordReset
-'passwordreset'                => 'Adderaouekaat ar ger-tremen',
-'passwordreset-text'           => "Leuniañ ar furmskrid-mañ da resev ur postel da zegas soñj deoc'h eus titouroù ho kont.",
-'passwordreset-legend'         => 'Adsevel ar ger-tremen',
-'passwordreset-disabled'       => 'Diweredekaet eo bet an adsevel gerioù-tremen war ar wiki-mañ.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Merkit unan eus an tammoù roadennoù dindan}}',
-'passwordreset-username'       => 'Anv implijer :',
-'passwordreset-domain'         => 'Domani :',
-'passwordreset-email'          => 'Postel :',
-'passwordreset-emailtitle'     => 'Titouroù kont war {{SITENAME}}',
-'passwordreset-emailtext-ip'   => "Unan bennak (c'hwi moarvat gant ar chomlec'h IP $1) en deus goulennet ma vefe degaset soñj dezhañ eus titouroù e gont evit {{SITENAME}} ($4). Emañ liammet {{PLURAL:$3|ar gont implijer|ar c'hontoù implijer}} da-heul gant ar chomlec'h postel-mañ :
+'passwordreset'                    => 'Adderaouekaat ar ger-tremen',
+'passwordreset-text'               => "Leuniañ ar furmskrid-mañ da resev ur postel da zegas soñj deoc'h eus titouroù ho kont.",
+'passwordreset-legend'             => 'Adsevel ar ger-tremen',
+'passwordreset-disabled'           => 'Diweredekaet eo bet an adsevel gerioù-tremen war ar wiki-mañ.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Merkit unan eus an tammoù roadennoù dindan}}',
+'passwordreset-username'           => 'Anv implijer :',
+'passwordreset-domain'             => 'Domani :',
+'passwordreset-capture'            => 'Gwelet ar postel ?',
+'passwordreset-capture-help'       => "Ma askit al logell-mañ e vo diskouezet deoc'h ar postel (gant ar ger-tremen da c'hortoz) war un dro pa vo kaset d'an implijer.",
+'passwordreset-email'              => 'Postel :',
+'passwordreset-emailtitle'         => 'Titouroù kont war {{SITENAME}}',
+'passwordreset-emailtext-ip'       => "Unan bennak (c'hwi moarvat gant ar chomlec'h IP $1) en deus goulennet ma vefe degaset soñj dezhañ eus titouroù e gont evit {{SITENAME}} ($4). Emañ liammet {{PLURAL:$3|ar gont implijer|ar c'hontoù implijer}} da-heul gant ar chomlec'h postel-mañ :
 
 $2
 
 Mont a raio da get {{PLURAL:$3|ar ger-tremen da c'hortoz|ar gerioù-tremen da c'hortoz}} a-benn {{PLURAL:$5|un devezh|$5 deiz}}.
 Mat e vefe deoc'h kevreañ ha dibab ur ger-tremen nevez bremañ. Mard eo bet goulennet kement-se gant unan bennak all pe m'hoc'h eus soñj eus ho ker-tremen orin ha mar ne fell ket deoc'h e cheñch ken, na daolit ket evezh ouzh ar gemennadenn-mañ ha dalc'hit d'ober gant ho ker-tremen kozh.",
-'passwordreset-emailtext-user' => "Goulennet en deus an implijer $1 war  {{SITENAME}} e vefe degaset soñj dezhañ eus titouroù e gont evit {{SITENAME}} ($4). Emañ liammet {{PLURAL:$3|ar gont implijer|ar c'hontoù implijer}} da-heul gant ar chomlec'h postel-mañ :
+'passwordreset-emailtext-user'     => "Goulennet en deus an implijer $1 war  {{SITENAME}} e vefe degaset soñj dezhañ eus titouroù e gont evit {{SITENAME}} ($4). Emañ liammet {{PLURAL:$3|ar gont implijer|ar c'hontoù implijer}} da-heul gant ar chomlec'h postel-mañ :
 
 $2
 
 Mont a raio da get {{PLURAL:$3|ar ger-tremen da c'hortoz|ar gerioù-tremen da c'hortoz}} a-benn {{PLURAL:$5|un devezh|$5 deiz}}.
 Mat e vefe deoc'h kevreañ ha dibab ur ger-tremen nevez bremañ. Mard eo bet goulennet kement-se gant unan bennak all pe m'hoc'h eus soñj eus ho ker-tremen orin ha mar ne fell ket deoc'h e cheñch ken, na daolit ket evezh ouzh ar gemennadenn-mañ ha dalc'hit d'ober gant ho ker-tremen kozh.",
-'passwordreset-emailelement'   => "Anv implijer :           $1
+'passwordreset-emailelement'       => "Anv implijer :           $1
 Ger-tremen da c'hortoz : $2",
-'passwordreset-emailsent'      => "Kaset ez eus bet ur postel da zegas soñj deoc'h.",
+'passwordreset-emailsent'          => "Kaset ez eus bet ur postel da zegas soñj deoc'h.",
+'passwordreset-emailsent-capture'  => 'Ur postel degas da soñj evel zo diskouezet amañ dindan zo bet kaset.',
+'passwordreset-emailerror-capture' => "Kaset ez eus bet ur postel degas da soñj evel m'emañ diskouezet amañ dindan met c'hwitet eo bet ar c'has : $1",
 
 # Special:ChangeEmail
 'changeemail'          => "Kemmañ ar chomlec'h postel",
@@ -884,9 +889,6 @@ Moned ziwezhañ ar marilh a vez diskouezet amañ a-is evel dave :",
 'templatesused'                    => '{{PLURAL:$1|Patrom|Patromoù}} implijet war ar bajenn-mañ :',
 'templatesusedpreview'             => '{{PLURAL:$1|Patrom|Patromoù}} implijet er rakweladenn-mañ :',
 'templatesusedsection'             => '{{PLURAL:$1|Patrom|Patromoù}} implijet er rann-mañ :',
-'distanttemplatesused'             => '{{PLURAL:$1|Patrom|Patromoù}} a-bell implijet war ar bajenn-mañ :',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Patrom|Patromoù}} a-bell implijet er rakweled-mañ :',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Patrom|Patromoù}} a-bell implijet er rann-mañ :',
 'template-protected'               => '(gwarezet)',
 'template-semiprotected'           => '(damwarezet)',
 'hiddencategories'                 => "{{PLURAL:$1|1 rummad kuzhet|$1 rummad kuzhet}} m'emañ rollet ar bajenn-mañ :",
@@ -1481,7 +1483,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'diff'                              => "diforc'h",
 'hist'                              => 'ist',
 'hide'                              => 'kuzhat',
-'show'                              => 'diskouez',
+'show'                              => 'Diskouez',
 'minoreditletter'                   => 'D',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -3612,27 +3614,6 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'compare-title-not-exists'    => "N'eus ket eus an titl spisaet ganeoc'h.",
 'compare-revision-not-exists' => "N'eus ket eus an adweladenn spisaet ganeoc'h.",
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Implij hollek ar restr',
-'globalfileusage-for'         => 'Implij hollek ar restr evit "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Pajenn dibar]] da welet implij hollek ar restroù',
-'globalfileusage-ok'          => 'Klask',
-'globalfileusage-text'        => 'Klask implij hollek ar restr',
-'globalfileusage-no-results'  => 'Ne reer ket gant [[$1]] war wikioù all.',
-'globalfileusage-on-wiki'     => 'Implij war $2',
-'globalfileusage-more'        => "Gwelet [[{{#Special:GlobalUsage}}/$1|muioc'h eus implij hollek]] ar restr-mañ.",
-'globalfileusage-filterlocal' => "Arabat diskouez an implij lec'hel",
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Implij hollek ar patrom',
-'globaltemplateusage-for'         => 'Implij hollek ar patrom evit "$1"',
-'globaltemplateusage-ok'          => 'Klask',
-'globaltemplateusage-text'        => 'Klask implij hollek ar patrom',
-'globaltemplateusage-no-results'  => 'Ne reer ket gant [[$1]] war wikioù all.',
-'globaltemplateusage-on-wiki'     => 'Implij war $2',
-'globaltemplateusage-more'        => "Gwelet [[{{#Special:GlobalUsage}}/$1|muioc'h eus implij hollek]] ar patrom-mañ.",
-'globaltemplateusage-filterlocal' => "Arabat diskouez an implij lec'hel",
-
 # Database error messages
 'dberr-header'      => 'Ur gudenn zo gant ar wiki-mañ',
 'dberr-problems'    => "Ho tigarez ! Kudennoù teknikel zo gant al lec'hienn-mañ.",
@@ -3684,6 +3665,10 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|kaset}} ar bajenn $3 da $4 gant $1 dreist un adkas hep lezel un adkas',
 'logentry-patrol-patrol'              => '{{GENDER:$2|Merket eo bet}} an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
 'logentry-patrol-patrol-auto'         => '{{GENDER:$2|Merket eo bet}} ent emgefre an adweladenn $4 eus ar bajenn $3 evel gwiriet gant $1',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|en deus krouet}} ur gont implijer',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|en deus krouet}} ur gont implijer',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|en deus krouet}} {{GENDER:$4|ur gont implijer}} $3',
+'logentry-newusers-autocreate'        => '{{GENDER:$2|Krouet}} eo bet kont $1 ent emgefre',
 'newuserlog-byemail'                  => 'ger-tremen kaset dre bostel',
 
 );

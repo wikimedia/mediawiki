@@ -688,6 +688,7 @@ Za posledicu, posetioci koji koriste ovu IP adresu trenutno ne mogu da otvore jo
 'emailconfirmlink'           => 'Potvrdite vašu adresu e-pošte',
 'invalidemailaddress'        => 'Adresa e-pošte ne može biti primljena jer izgleda nije pravilnog formata.
 Molimo unesite dobro-formatiranu adresu ili ispraznite to polje.',
+'cannotchangeemail'          => 'Na ovom vikiju ne možete promeniti e-adresu naloga.',
 'accountcreated'             => 'Nalog je napravljen',
 'accountcreatedtext'         => 'Korisnički nalog za $1 je napravljen.',
 'createaccount-title'        => 'Pravljenje korisničkog naloga za {{SITENAME}}',
@@ -932,9 +933,6 @@ Istorija najskorijih izmena je prikazana ispod:",
 'templatesused'                    => '{{PLURAL:$1|Šablon korišćen|Šabloni korišćeni}} na ovoj strani:',
 'templatesusedpreview'             => '{{PLURAL:$1|Šablon korišćen|Šabloni korišćeni}} u ovom pretpregledu:',
 'templatesusedsection'             => '{{PLURAL:$1|Šablon korišćen|Šabloni korišćeni}} u ovom odeljku:',
-'distanttemplatesused'             => '{{PLURAL:$1|Udaljeni šablon koji se koristi|Udaljeni šabloni koji se koriste}} na ovoj stranici:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Udaljeni šablon koji se koristi|Udaljeni šabloni koji se koriste}} u ovom pregledu:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Udaljeni šablon koji se koristi|Udaljeni šabloni koji se koriste}} u ovom odeljku:',
 'template-protected'               => '(zaštićeno)',
 'template-semiprotected'           => '(poluzaštićeno)',
 'hiddencategories'                 => 'Ova stranica je član {{PLURAL:$1|1 skrivene kategorije|$1 skrivene kategorije|$1 skrivenih kategorija}}:',
@@ -3615,27 +3613,6 @@ Slike su prikazane u punoj veličini, a druge vrste datoteka se pokreću pomoću
 'compare-invalid-title'       => 'Navedeni naslov je neispravan.',
 'compare-title-not-exists'    => 'Navedeni naslov ne postoji.',
 'compare-revision-not-exists' => 'Navedena izmena ne postoji.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Globalna upotreba datoteke',
-'globalfileusage-for'         => 'Globalna upotreba datoteke „$1“',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|Posebna stranica]] za pregled globalne upotrebe datoteka',
-'globalfileusage-ok'          => 'Pretraži',
-'globalfileusage-text'        => 'Pretraga globalne upotrebe datoteke',
-'globalfileusage-no-results'  => '[[$1]] se ne koristi na drugim vikijima.',
-'globalfileusage-on-wiki'     => 'Upotreba na vikiju $2',
-'globalfileusage-more'        => 'Pogledaj [[{{#Special:GlobalUsage}}/$1|još globalne upotrebe]] ove datoteke.',
-'globalfileusage-filterlocal' => 'Ne prikazuj lokalnu upotrebu',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Globalna upotreba šablona',
-'globaltemplateusage-for'         => 'Globalna upotreba šablona „$1“',
-'globaltemplateusage-ok'          => 'Pretraži',
-'globaltemplateusage-text'        => 'Pretraga globalne upotrebe šablona',
-'globaltemplateusage-no-results'  => '[[$1]] se ne koristi na drugim vikijima.',
-'globaltemplateusage-on-wiki'     => 'Upotreba na vikiju $2',
-'globaltemplateusage-more'        => 'Pogledaj [[{{#Special:GlobalUsage}}/$1|još globalne upotrebe]] ovog šablona.',
-'globaltemplateusage-filterlocal' => 'Ne prikazuj lokalnu upotrebu',
 
 # Database error messages
 'dberr-header'      => 'Ovaj viki ima problem',

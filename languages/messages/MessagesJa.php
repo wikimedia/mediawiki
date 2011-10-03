@@ -3908,24 +3908,6 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'compare-title-not-exists'    => '指定されたページは存在しません。',
 'compare-revision-not-exists' => '指定された版は存在しません。',
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'グローバルなファイル使用状況',
-'globalfileusage-for'         => '"$1"のグローバルなファイルの使用状況',
-'globalfileusage-ok'          => '検索',
-'globalfileusage-text'        => 'グローバルなファイル使用状況を検索',
-'globalfileusage-no-results'  => '[[$1]] は他のウィキでは使われていません。',
-'globalfileusage-on-wiki'     => '$2 での使用状況',
-'globalfileusage-filterlocal' => 'ローカル使用状況を表示しない',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'グローバルテンプレートの使用',
-'globaltemplateusage-for'         => '"$1" のグローバルなテンプレートの使用状況',
-'globaltemplateusage-ok'          => '検索',
-'globaltemplateusage-text'        => 'グローバルなテンプレートの使用状況を検索',
-'globaltemplateusage-no-results'  => '[[$1]] は他のウィキでは使われていません。',
-'globaltemplateusage-on-wiki'     => '$2 での使用状況',
-'globaltemplateusage-filterlocal' => 'ローカル使用状況を表示しない',
-
 # Database error messages
 'dberr-header'      => '問題発生中です',
 'dberr-problems'    => '申し訳ありません！

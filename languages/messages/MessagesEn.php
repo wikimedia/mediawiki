@@ -4578,7 +4578,6 @@ Images are shown in full resolution, other file types are started with their ass
 'compare-title-not-exists'    => 'The title you specified does not exist.',
 'compare-revision-not-exists' => 'The revision you specified does not exist.',
 
-
 # Database error messages
 'dberr-header'      => 'This wiki has a problem',
 'dberr-problems'    => 'Sorry!

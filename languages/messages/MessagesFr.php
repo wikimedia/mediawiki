@@ -828,6 +828,7 @@ Par conséquent, la création de compte a été temporairement désactivée pour
 'emailconfirmlink'           => 'Confirmez votre adresse de courriel',
 'invalidemailaddress'        => 'Cette adresse courriel ne peut pas être acceptée car elle semble avoir un format incorrect.
 Entrez une adresse bien formatée ou laissez ce champ vide.',
+'cannotchangeemail'          => 'Les adresses de courriel des comptes ne peuvent pas être modifiées sur ce wiki.',
 'accountcreated'             => 'Compte créé',
 'accountcreatedtext'         => 'Le compte utilisateur pour $1 a été créé.',
 'createaccount-title'        => 'Création d’un compte pour {{SITENAME}}',
@@ -865,28 +866,32 @@ Vous avez peut-être déjà changé votre mot de passe ou demandé un nouveau mo
 'resetpass-temp-password'   => 'Mot de passe temporaire :',
 
 # Special:PasswordReset
-'passwordreset'                => 'Remise à zéro du mot de passe',
-'passwordreset-text'           => 'Remplissez ce formulaire pour recevoir un courriel de rappel des détails de votre compte.',
-'passwordreset-legend'         => 'Remise à zéro du mot de passe',
-'passwordreset-disabled'       => 'La réinitialisation des mots de passe a été désactivée sur ce wiki.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Entrez un élément de données ci-dessous}}',
-'passwordreset-username'       => 'Nom d’utilisateur :',
-'passwordreset-domain'         => 'Domaine :',
-'passwordreset-email'          => 'Adresse de courriel :',
-'passwordreset-emailtitle'     => 'Détails du compte sur {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Quelqu’un (probablement vous, depuis l’adresse IP $1) a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
+'passwordreset'                    => 'Remise à zéro du mot de passe',
+'passwordreset-text'               => 'Remplissez ce formulaire pour recevoir un courriel de rappel des détails de votre compte.',
+'passwordreset-legend'             => 'Remise à zéro du mot de passe',
+'passwordreset-disabled'           => 'La réinitialisation des mots de passe a été désactivée sur ce wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Entrez un élément de données ci-dessous}}',
+'passwordreset-username'           => 'Nom d’utilisateur :',
+'passwordreset-domain'             => 'Domaine :',
+'passwordreset-capture'            => 'Voir le courriel résultant?',
+'passwordreset-capture-help'       => "Si vous cochez cette case, le courriel (avec le mot de passe temporaire) vous sera affiché en même temps qu'il sera envoyé à l'utilisateur.",
+'passwordreset-email'              => 'Adresse de courriel :',
+'passwordreset-emailtitle'         => 'Détails du compte sur {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Quelqu’un (probablement vous, depuis l’adresse IP $1) a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
 
 $2
 
 {{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
-'passwordreset-emailtext-user' => 'L’utilisateur $1 sur {{SITENAME}} a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
+'passwordreset-emailtext-user'     => 'L’utilisateur $1 sur {{SITENAME}} a demandé un rappel des informations de votre compte pour {{SITENAME}} ($4). {{PLURAL:$3|Le compte utilisateur suivant est associé|Les comptes utilisateurs suivants sont associés}} à cette adresse de courriel :
 
 $2
 
 {{PLURAL:$3|Ce mot de passe temporaire expirera|Ces mots de passe temporaires expireront}} dans {{PLURAL:$5|un jour|$5 jours}}. Vous devez maintenant vous connecter et choisir un nouveau mot de passe. Si cette demande ne provient pas de vous, ou que vous vous êtes souvenu de votre mot de passe initial, et ne souhaitez plus le modifier, vous pouvez ignorer ce message et continuer à utiliser votre ancien mot de passe.',
-'passwordreset-emailelement'   => "Nom d'utilisateur :       $1
+'passwordreset-emailelement'       => "Nom d'utilisateur :       $1
 Mot de passe temporaire : $2",
-'passwordreset-emailsent'      => 'Un courriel de rappel a été envoyé.',
+'passwordreset-emailsent'          => 'Un courriel de rappel a été envoyé.',
+'passwordreset-emailsent-capture'  => 'Un courriel de rappel a été envoyé, qui est affiché ci-dessous.',
+'passwordreset-emailerror-capture' => "Un courriel de rappel a été généré, qui est affiché ci-dessous, mais l'envoi à l'utilisateur a échoué: $1",
 
 # Special:ChangeEmail
 'changeemail'          => 'Changer l’adresse de courriel',
@@ -1066,9 +1071,6 @@ La dernière entrée du journal est affichée ci-dessous pour référence :",
 'templatesused'                    => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} par cette page :',
 'templatesusedpreview'             => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette prévisualisation :',
 'templatesusedsection'             => '{{PLURAL:$1|Modèle utilisé|Modèles utilisés}} dans cette section :',
-'distanttemplatesused'             => '{{PLURAL:$1|Modèle distant utilisé|Modèles distants utilisés}} sur cette page:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Modèle distant utilisé|Modèles distants utilisés}} dans cet aperçu:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Modèle distant utilisé|Modèles distants utilisés}} dans cette section:',
 'template-protected'               => '(protégé)',
 'template-semiprotected'           => '(semi-protégé)',
 'hiddencategories'                 => '{{PLURAL:$1|Catégorie cachée|Catégories cachées}} dont cette page fait partie :',
@@ -1591,6 +1593,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'right-siteadmin'             => 'Verrouiller ou déverrouiller la base de données',
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
 'right-sendemail'             => 'Envoyer un courriel aux autres utilisateurs',
+'right-passwordreset'         => 'Réinitialise le mot de passe d’un utilisateur ([[Special:PasswordReset|page spéciale]])',
 
 # User rights log
 'rightslog'                  => 'Journal des modifications de droits d’utilisateurs',
@@ -3079,6 +3082,13 @@ Si vous l’exécutez, votre système peut être compromis.",
 'bydate'                => 'par date',
 'sp-newimages-showfrom' => 'Afficher les nouveaux fichiers à partir du $1 à $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 seconde|$1 secondes}}',
+'minutes' => '{{PLURAL:$1|$1 minute|$1 minutes}}',
+'hours'   => '{{PLURAL:$1|$1 heure|$1 heures}}',
+'days'    => '{{PLURAL:$1|$1 jour|$1 jours}}',
+'ago'     => 'Il y a $1',
+
 # Bad image list
 'bad_image_list' => 'Le format est le suivant :
 
@@ -3800,27 +3810,6 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'compare-title-not-exists'    => "Le titre que vous avez spécifié n'existe pas.",
 'compare-revision-not-exists' => "La révision que vous avez spécifié n'existe pas.",
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Utilisation du fichier global',
-'globalfileusage-for'         => 'Utilisation du fichier global pour "$1"',
-'globalfileusage-desc'        => "[[Special:GlobalFileUsage|Page spéciale]] pour afficher l'utilisation globale des fichiers",
-'globalfileusage-ok'          => 'Rechercher',
-'globalfileusage-text'        => "Rechercher l'utilisation du fichier global",
-'globalfileusage-no-results'  => "[[$1]] n'est pas utilisé sur d'autres wikis.",
-'globalfileusage-on-wiki'     => 'Utilisation sur $2',
-'globalfileusage-more'        => "Voyez [[{{#Special:GlobalUsage}}/$1|l'utilisation plus globale]] de ce fichier.",
-'globalfileusage-filterlocal' => "Ne pas afficher l'utilisation locale",
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Utilisation globale du modèle',
-'globaltemplateusage-for'         => 'Utilisation globale du modèle pour "$1"',
-'globaltemplateusage-ok'          => 'Rechercher',
-'globaltemplateusage-text'        => "Rechercher l'utilisation globale du modèle",
-'globaltemplateusage-no-results'  => "[[$1]] n'est pas utilisé sur d'autres wikis.",
-'globaltemplateusage-on-wiki'     => 'Utilisation sur $2',
-'globaltemplateusage-more'        => "Voyez [[{{#Special:GlobalUsage}}/$1|l'utilisation plus globale]] de ce modèle.",
-'globaltemplateusage-filterlocal' => "Ne pas afficher l'utilisation locale",
-
 # Database error messages
 'dberr-header'      => 'Ce wiki a un problème',
 'dberr-problems'    => 'Désolé ! Ce site rencontre des difficultés techniques.',
@@ -3872,6 +3861,10 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|a déplacé}} la page $3 vers $4 par-dessus une redirection sans laisser de redirection',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|a marqué}} la révision $4 de la page $3 comme contrôlée',
 'logentry-patrol-patrol-auto'         => '$1 a automatiquement {{GENDER:$2|marqué}} la révision $4 de la page $3 comme contrôlée',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|a créé}} un compte utilisateur',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|a créé}} un compte utilisateur',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|a créé}} {{GENDER:$4|un compte utilisateur}} $3',
+'logentry-newusers-autocreate'        => 'Le compte $1 a été {{GENDER:$2|créé}} automatiquement',
 'newuserlog-byemail'                  => 'mot de passe envoyé par courriel',
 
 );

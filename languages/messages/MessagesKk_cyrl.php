@@ -2954,12 +2954,6 @@ $1',
 'blankpage'              => 'Бос бет',
 'intentionallyblankpage' => 'Бұл бет әдейі бос қалдырылған',
 
-# Special:GlobalFileUsage
-'globalfileusage-ok' => 'Іздеу',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage-ok' => 'Іздеу',
-
 # New logging system
 'revdelete-restricted'   => 'әкімшілерге тиымдар қолдады',
 'revdelete-unrestricted' => 'әкімшілерден тиымдарды аластады',

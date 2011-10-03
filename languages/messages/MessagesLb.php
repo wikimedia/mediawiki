@@ -681,6 +681,7 @@ Vläicht hutt Dir Äert Passwuert scho geännert oder en neit temporäert Passwu
 'passwordreset-username'           => 'Benotzernumm:',
 'passwordreset-domain'             => 'Domaine:',
 'passwordreset-capture'            => "D'Mail kucken?",
+'passwordreset-capture-help'       => 'Wann Dir dës Këscht ukräizt, gëtt de Mail (mam temporäre Passwuert) Iech gewisen an dem Benotzer geschéckt.',
 'passwordreset-email'              => 'E-Mailadress:',
 'passwordreset-emailtitle'         => 'Detailer vum Benotzerkont op{{SITENAME}}',
 'passwordreset-emailelement'       => 'Benotzernumm: $1
@@ -865,9 +866,6 @@ Den Administrateur den d'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 'templatesused'                    => '{{PLURAL:$1|Schabloun|Schablounen}} déi op dëser Säit am Gebrauch sinn:',
 'templatesusedpreview'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dëser nach net gespäicherter Versioun benotzt {{PLURAL:$1|gëtt|ginn}}:',
 'templatesusedsection'             => '{{PLURAL:$1|Schabloun|Schablounen}} déi an dësem Abschnitt benotzt {{PLURAL:$1|gëtt|ginn}}:',
-'distanttemplatesused'             => 'Global {{PLURAL:$1|Schabloun|Schablounen}} déi op dëser Säit benotzt {{PLURAL:$1|gëtt|ginn}}:',
-'distanttemplatesusedpreview'      => 'Global {{PLURAL:$1|Schabloun|Schablounen}} déi an dëser nach net gespäicherter Versioun benotzt {{PLURAL:$1|gëtt|ginn}}:',
-'distanttemplatesusedsection'      => 'Global {{PLURAL:$1|Schabloun|Schablounen}} déi an dësem Abschnitt benotzt {{PLURAL:$1|gëtt|ginn}}:',
 'template-protected'               => '(gespaart)',
 'template-semiprotected'           => '(gespaart fir net-ugemellten an nei Benotzer)',
 'hiddencategories'                 => 'Dës Säit gehéiert zu {{PLURAL:$1|1 verstoppter Kategorie|$1 verstoppte Kategorien}}:',
@@ -3527,27 +3525,6 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'compare-title-not-exists'    => 'Den Titel deen Dir uginn hutt gëtt et net.',
 'compare-revision-not-exists' => "D'Versioun déi Dir uginn hutt gëtt et net.",
 
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Globaalt Benotze vum Fichier',
-'globalfileusage-for'         => 'Globale Gebrauch vum "$1"',
-'globalfileusage-desc'        => "[[Special:GlobalFileUsage|Spezialsäit]] fir d'globaalt Benotze vum Fichier ze gesinn",
-'globalfileusage-ok'          => 'Sichen',
-'globalfileusage-text'        => 'Nom globale Benotze vum Fichier sichen.',
-'globalfileusage-no-results'  => '[[$1]] gëtt net op anere Wikie benotzt.',
-'globalfileusage-on-wiki'     => 'Benotzt op $2',
-'globalfileusage-more'        => 'Kuckt [[{{#Special:GlobalUsage}}/$1|globale Gebrauch]] vun dësem Fichier.',
-'globalfileusage-filterlocal' => 'Déi lokal Benotzung net weisen',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Global Benotzung vun der Schabloun',
-'globaltemplateusage-for'         => 'Globale Gebrauch vun der Schabloun "$1"',
-'globaltemplateusage-ok'          => 'Sichen',
-'globaltemplateusage-text'        => 'Nom globale Benotze vun der Schabloun sichen.',
-'globaltemplateusage-no-results'  => '[[$1]] gëtt net op anere Wikie benotzt.',
-'globaltemplateusage-on-wiki'     => 'Benotzt op $2',
-'globaltemplateusage-more'        => 'Kuckt [[{{#Special:GlobalUsage}}/$1|globale Gebrauch]] vun dëser Schabloun.',
-'globaltemplateusage-filterlocal' => 'Déi lokal Benotzung net weisen',
-
 # Database error messages
 'dberr-header'      => 'Dës Wiki huet e Problem',
 'dberr-problems'    => 'Pardon! Dëse Site huet technesch Schwieregkeeten.',
@@ -3595,6 +3572,10 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-move-move_redir-noredirect' => "$1 {{GENDER:$2|huet}} d'Säit $3 op $4 geréckelt an dobäi gouf eng Viruleedung iwwerschriwwen an et et gouf keng nei Viruleedung ugeluecht",
 'logentry-patrol-patrol'              => "$1 {{GENDER:$2|huet}} d'Versioun $4 vun der Säit $3 als nogekuckt markéiert",
 'logentry-patrol-patrol-auto'         => "$1 {{GENDER:$2|huet}} d'Versioun $4 vun der Säit $3 automatesch als nogekuckt markéiert",
+'logentry-newusers-newusers'          => '$1  huet e Benotzerkont {{GENDER:$2|ugeluecht}}',
+'logentry-newusers-create'            => '$1  huet e Benotzerkont {{GENDER:$2|ugeluecht}}',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|huet}} {{GENDER:$4|ee Benotzerkont ugeluecht}} $3',
+'logentry-newusers-autocreate'        => 'De Benotzerkont $1 gouf automatesch {{GENDER:$2|ugeluecht}}',
 'newuserlog-byemail'                  => "d'Passwuert gouf per E-Mail geschéckt",
 
 );

@@ -773,9 +773,6 @@ $2
 'templatesused'                    => 'यस पृष्ठमा प्रयोग भएका {{PLURAL:$1|Template|टेम्प्लेट(नमूना)हरु}} :',
 'templatesusedpreview'             => 'यस पृष्ठमा प्रयोग भएका {{PLURAL:$1|Template|टेम्प्लेट(नमूना)हरु}} :',
 'templatesusedsection'             => '{{PLURAL:$1|ढाँचा प्रयोग गरिएकोछ|ढाँचाहरु प्रयोग गरिएकाछन्}} यस खण्डमा:',
-'distanttemplatesused'             => 'यस पृष्ठमा दूर{{PLURAL:$1|टेम्प्लेट|टेम्प्लेटहरु}} प्रयोग गरिएका छन्:',
-'distanttemplatesusedpreview'      => 'यस पूर्वावलोकनमा दूर{{PLURAL:$1|टेम्प्लेट|टेम्प्लेटहरु}} प्रयोग गरिएका छन्:',
-'distanttemplatesusedsection'      => 'यस खण्डमा दूर{{PLURAL:$1|टेम्प्लेट|टेम्प्लेटहरु}} प्रयोग गरिएका छन्:',
 'template-protected'               => '(सुरक्षित)',
 'template-semiprotected'           => '(अर्ध-सुरक्षित)',
 'hiddencategories'                 => 'यो पृष्ठ निम्न {{PLURAL:$1|1 लुकाइएको श्रेणी|$1 लुकाइएका श्रेणीहरु}}को सदस्य हो :',
@@ -3354,27 +3351,6 @@ $1',
 'compare-invalid-title'       => 'तपाईले खुलाउनु भएको शिर्षक अमान्य छ।',
 'compare-title-not-exists'    => 'तपाईले खुलाउनु भएको शिर्षक उपलब्ध छैन ।',
 'compare-revision-not-exists' => 'तपाईले खुलाउनु भएको संस्करण उपलब्ध छैन ।',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => ' विश्वव्यापी फाइल उपयोग \\',
-'globalfileusage-for'         => ' "$1"को विश्व व्यापी फाइल उपयोग \\',
-'globalfileusage-desc'        => 'विश्वव्यापी फाइल उपयोग हेर्न [[Special:GlobalTemplateUsage|विशेष पृष्ठ]]',
-'globalfileusage-ok'          => 'खोज्ने',
-'globalfileusage-text'        => 'विश्वव्यापी फाइल उपयोग खोज्नुहोस् \\',
-'globalfileusage-no-results'  => '[[$1]] अरु विकिमा रहेको छैन ।',
-'globalfileusage-on-wiki'     => ' $2मा प्रयोग',
-'globalfileusage-more'        => 'यस फाइलको [[{{#Special:GlobalUsage}}/$1|थप विश्वव्यापी]] उपयोग हेर्नुहोस् ।',
-'globalfileusage-filterlocal' => 'स्थानीय उपयोग नदेखाउने',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'विश्वव्यापी टेम्प्लेट उपयोग \\',
-'globaltemplateusage-for'         => ' "$1"को विश्व व्यापी टेम्प्लेट उपयोग \\',
-'globaltemplateusage-ok'          => 'खोज',
-'globaltemplateusage-text'        => 'विश्वव्यापी नमुना उपयोग खोज्नुहोस् \\',
-'globaltemplateusage-no-results'  => '[[$1]] अरु विकिमा रहेको छैन ।',
-'globaltemplateusage-on-wiki'     => ' $2मा प्रयोग',
-'globaltemplateusage-more'        => 'यस नमुनाको[[{{#Special:GlobalUsage}}/$1|थप विश्वव्यापी प्रयोग]] हेर्नुहोस् ।',
-'globaltemplateusage-filterlocal' => 'स्थानीय प्रयोग नदेखाउने \\',
 
 # Database error messages
 'dberr-header'      => 'यो विकिमा समस्या छ',

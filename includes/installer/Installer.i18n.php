@@ -4151,6 +4151,8 @@ $messages['fi'] = array(
 	'config-localsettings-upgrade' => '<code>LocalSettings.php</code>-tiedosto on havaittu.
 Syötä kohdan <code>$wgUpgradeKey</code> arvo alla olevaan kenttään päivittääksesi asennuksen.
 Löydät sen LocalSettings.php-tiedostosta.',
+	'config-localsettings-key' => 'Päivitysavain',
+	'config-localsettings-badkey' => 'Antamasi avain on virheellinen.',
 	'config-session-error' => 'Istunnon aloittaminen epäonnistui: $1',
 	'config-session-expired' => 'Istuntotietosi näyttävät olevan vanhentuneita.
 Istuntojen elinajaksi on määritelty $1.
@@ -4196,11 +4198,15 @@ Voit asentaa MediaWikin.',
 	'config-env-bad' => 'Asennusympäristö on tarkastettu.
 Et voi asentaa MediaWikiä.',
 	'config-env-php' => 'PHP $1 on asennettu.',
-	'config-no-db' => 'Sopivaa tietokanta-ajuria ei löytynyt!',
+	'config-no-db' => 'Sopivaa tietokanta-ajuria ei löytynyt! Sinun täytyy asentaa tietokanta-ajurit PHP:lle.
+Seuraavat tietokantatyypit ovat tuettuja: $1.',
 	'config-safe-mode' => "'''Varoitus:''' PHP:n [http://www.php.net/features.safe-mode safe mode] -tila on aktiivinen.
 Se voi aiheuttaa ongelmia erityisesti tiedostojen tallentamisen ja matemaattisten kaavojen kanssa.",
 	'config-pcre' => 'PCRE-tukimoduuli puuttuu.
 MediaWiki vaatii toimiakseen Perl-yhteensopivat säännölliset lausekkeet.',
+	'config-memory-bad' => "'''Varoitus:''' PHP:n <code>memory_limit</code> on $1.
+Tämä on luultavasti liian alhainen.
+Asennus saattaa epäonnistua!",
 	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] on asennettu',
 	'config-apc' => '[http://www.php.net/apc APC] on asennettu.',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] on asennettu',
@@ -4230,17 +4236,20 @@ MediaWiki vaatii toimiakseen Perl-yhteensopivat säännölliset lausekkeet.',
 	'config-invalid-db-type' => 'Virheellinen tietokantatyyppi',
 	'config-missing-db-name' => 'Kenttä »Tietokannan nimi» on pakollinen',
 	'config-invalid-db-name' => '”$1” ei kelpaa tietokannan nimeksi.
-Se voi sisältää vain kirjaimia (a-z, A-Z), numeroita (0-9) ja alaviivan (_).',
+Käytä ainoastaan kirjaimia (a-z, A-Z), numeroita (0-9), alaviivoja (_) ja tavuviivoja (-).',
 	'config-invalid-db-prefix' => '”$1” ei kelpaa tietokannan etuliitteeksi.
-Se voi sisältää vain kirjaimia (a-z, A-Z), numeroita (0-9) ja alaviivan (_).',
+Käytä ainoastaan kirjaimia (a-z, A-Z), numeroita (0-9), alaviivoja (_) ja tavuviivoja (-).',
 	'config-postgres-old' => 'MediaWiki tarvitsee PostgreSQL:n version $1 tai uudemman. Nykyinen versio on $2.',
 	'config-sqlite-name-help' => 'Valitse nimi, joka yksilöi tämän wikin.
 Älä käytä välilyöntejä tai viivoja.
-Nimeä käytetään SQlite-tietokannan tiedostonimessä.',
+Nimeä käytetään SQLite-tietokannan tiedostonimessä.',
 	'config-sqlite-dir-unwritable' => 'Hakemistoon ”$1” kirjoittaminen epäonnistui.
 Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoittaa siihen ja koita uudelleen.',
 	'config-sqlite-readonly' => 'Tiedostoon <code>$1</code> ei voi kirjoittaa.',
 	'config-sqlite-fts3-downgrade' => 'PHP:stä puuttuu FTS3-tuki. Poistetaan ominaisuus käytöstä tietokantatauluista.',
+	'config-upgrade-done-no-regenerate' => 'Päivitys valmis.
+
+Voit [$1 aloittaa wikin käytön].',
 	'config-show-table-status' => 'Kysely SHOW TABLE STATUS epäonnistui!',
 	'config-mysql-engine' => 'Tallennusmoottori',
 	'config-mysql-innodb' => 'InnoDB',
@@ -4248,16 +4257,21 @@ Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoitta
 	'config-mysql-binary' => 'Binääri',
 	'config-mysql-utf8' => 'UTF-8',
 	'config-site-name' => 'Wikin nimi',
-	'config-project-namespace' => 'Projektinimiavaruus:',
+	'config-project-namespace' => 'Projektinimiavaruus',
 	'config-ns-generic' => 'Projekti',
 	'config-admin-name' => 'Nimesi',
 	'config-admin-password' => 'Salasana',
 	'config-admin-password-confirm' => 'Salasana uudelleen',
 	'config-admin-name-blank' => 'Anna ylläpitäjän käyttäjänimi.',
 	'config-admin-email' => 'Sähköpostiosoite',
+	'config-almost-done' => 'Olet jo lähes valmis!
+Voit ohittaa jäljellä olevat määritykset ja asentaa wikin juuri nyt.',
 	'config-profile-wiki' => 'Perinteinen wiki',
+	'config-profile-no-anon' => 'Tunnuksen luonti vaaditaan',
 	'config-profile-private' => 'Yksityinen wiki',
 	'config-email-settings' => 'Sähköpostiasetukset',
+	'config-logo' => 'Logon URL-osoite',
+	'config-cc-again' => 'Valitse uudelleen...',
 	'config-extensions' => 'Laajennukset',
 	'config-install-step-done' => 'tehty',
 	'config-install-step-failed' => 'epäonnistui',

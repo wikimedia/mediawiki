@@ -878,9 +878,6 @@ Naujausias įrašas žurnale yra pateiktas žemiau:",
 'templatesused'                    => '{{PLURAL:$1|Šablonas|Šablonai}}, naudojami puslapyje:',
 'templatesusedpreview'             => '{{PLURAL:$1|Šablonas|Šablonai}}, naudoti šioje peržiūroje:',
 'templatesusedsection'             => 'Šiame skyriuje {{PLURAL:$1|naudojamas šablonas|naudojami šablonai}}:',
-'distanttemplatesused'             => '{{PLURAL:$1|Šablonas|Šablonai}}, naudojami puslapyje:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|Šablonas|Šablonai}}, naudojami puslapyje:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|Šablonas|Šablonai}}, naudojami puslapyje:',
 'template-protected'               => '(apsaugotas)',
 'template-semiprotected'           => '(pusiau apsaugotas)',
 'hiddencategories'                 => 'Šis puslapis priklauso $1 {{PLURAL:$1|paslėptai kategorijai|paslėptoms kategorijoms|paslėptų kategorijų}}:',
@@ -3566,27 +3563,6 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'compare-invalid-title'       => 'Jūsų nurodytas pavadinimas neleistinas.',
 'compare-title-not-exists'    => 'Pavadinimas, kurį nurodėte, neegzistuoja.',
 'compare-revision-not-exists' => 'Keitimas, kurį nurodėte, neegzistuoja.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'Visuotinis failo naudojimas',
-'globalfileusage-for'         => 'Pasaulio failo naudojimo, " $1 "',
-'globalfileusage-desc'        => '[[Specialus: GlobalFileUsage|Specialus puslapis]] peržiūrėti pasaulio failo naudojimo',
-'globalfileusage-ok'          => 'Paieška',
-'globalfileusage-text'        => 'Paieškos pasaulio failo naudojimo',
-'globalfileusage-no-results'  => '[[:$1]] nenaudojama kituose Wiki projektuose.',
-'globalfileusage-on-wiki'     => 'Naudojimo$2',
-'globalfileusage-more'        => 'Peržiūrėti [[{{# specialus: GlobalUsage}} / $1 |kiti pasaulio naudojimo]] šio failo.',
-'globalfileusage-filterlocal' => 'Nerodyti vietos naudojimo',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'Bendrasis šablonas naudojimo',
-'globaltemplateusage-for'         => 'Pasaulio failo naudojimo, " $1 "',
-'globaltemplateusage-ok'          => 'Paieška',
-'globaltemplateusage-text'        => 'Paieškos pasaulio failo naudojimo',
-'globaltemplateusage-no-results'  => '[[:$1]] nenaudojama kituose Wiki projektuose.',
-'globaltemplateusage-on-wiki'     => 'Naudojimo$2',
-'globaltemplateusage-more'        => 'Peržiūrėti [[{{# specialus: GlobalUsage}} / $1 |kiti pasaulio naudojimo]] šio failo.',
-'globaltemplateusage-filterlocal' => 'Nerodyti vietos naudojimo',
 
 # Database error messages
 'dberr-header'      => 'Ši svetainė turi problemų.',

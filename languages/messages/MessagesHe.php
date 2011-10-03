@@ -1078,9 +1078,6 @@ $2
 'templatesused'                    => '{{PLURAL:$1|תבנית המופיעה|תבניות המופיעות}} בדף זה:',
 'templatesusedpreview'             => '{{PLURAL:$1|תבנית המופיעה|תבניות המופיעות}} בתצוגה המקדימה הזו:',
 'templatesusedsection'             => '{{PLURAL:$1|תבנית המופיעה|תבניות המופיעות}} בפסקה זו:',
-'distanttemplatesused'             => '{{PLURAL:$1|תבנית מרוחקת המופיעה|תבניות מרוחקות המופיעות}} בדף זה:',
-'distanttemplatesusedpreview'      => '{{PLURAL:$1|תבנית מרוחקת המופיעה|תבניות מרוחקות המופיעות}} בתצוגה המקדימה הזו:',
-'distanttemplatesusedsection'      => '{{PLURAL:$1|תבנית מרוחקת המופיעה|תבניות מרוחקות המופיעות}} בפסקה זו:',
 'template-protected'               => '(מוגנת)',
 'template-semiprotected'           => '(מוגנת חלקית)',
 'hiddencategories'                 => 'דף זה כלול ב{{PLURAL:$1|קטגוריה מוסתרת אחת|־$1 קטגוריות מוסתרות}}:',
@@ -3868,27 +3865,6 @@ $1',
 'compare-invalid-title'       => 'שם הדף שציינתם אינו תקין.',
 'compare-title-not-exists'    => 'הדף שציינתם אינו קיים.',
 'compare-revision-not-exists' => 'הגרסה שציינתם אינה קיימת.',
-
-# Special:GlobalFileUsage
-'globalfileusage'             => 'שימוש גלובלי בקבצים',
-'globalfileusage-for'         => 'שימוש גלובלי בקובץ "$1"',
-'globalfileusage-desc'        => '[[Special:GlobalFileUsage|דף מיוחד]] לצפיה בכל האתרים המשתמשים בקובץ',
-'globalfileusage-ok'          => 'חיפוש',
-'globalfileusage-text'        => 'חיפוש שימוש גלובלי בקובץ',
-'globalfileusage-no-results'  => '[[$1]] אינו בשימוש באתרי ויקי אחרים.',
-'globalfileusage-on-wiki'     => 'שימוש ב{{grammar:תחילית|{{SITENAME}}}}$2',
-'globalfileusage-more'        => 'הצגת [[{{#Special:GlobalUsage}}/$1|שימושים גלובליים נוספים]] בקובץ זה.',
-'globalfileusage-filterlocal' => 'הסתרת השימוש המקומי',
-
-# Special:GlobalTemplateUsage
-'globaltemplateusage'             => 'שימוש גלובלי בתבניות',
-'globaltemplateusage-for'         => 'שימוש גלובלי בתבנית "$1"',
-'globaltemplateusage-ok'          => 'חיפוש',
-'globaltemplateusage-text'        => 'חיפוש שימוש גלובלי בתבנית',
-'globaltemplateusage-no-results'  => '[[$1]] אינה בשימוש באתרי ויקי אחרים.',
-'globaltemplateusage-on-wiki'     => 'שימוש ב{{grammar:תחילית|{{SITENAME}}}}$2',
-'globaltemplateusage-more'        => 'הצגת [[{{#Special:GlobalUsage}}/$1|שימושים גלובליים נוספים]] בתבנית זו.',
-'globaltemplateusage-filterlocal' => 'הסתרת השימוש המקומי',
 
 # Database error messages
 'dberr-header'      => 'בעיה בוויקי',

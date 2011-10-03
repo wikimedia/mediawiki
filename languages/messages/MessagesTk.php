@@ -3126,9 +3126,6 @@ Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
 'compare-rev2'     => 'Wersiýa 2',
 'compare-submit'   => 'Deňeşdir',
 
-# Special:GlobalTemplateUsage
-'globaltemplateusage-ok' => 'Gözle',
-
 # Database error messages
 'dberr-header'      => 'Bu wikiniň bir problemasy bar',
 'dberr-problems'    => 'Bagyşlaň! Bu saýtda tehniki kynçylyklar ýüze çykdy.',
