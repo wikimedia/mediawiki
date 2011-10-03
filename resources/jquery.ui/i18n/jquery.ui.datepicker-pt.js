@@ -1,10 +1,9 @@
-/* Brazilian initialisation for the jQuery UI date picker plugin. */
-/* Written by Leonildo Costa Silva (leocsilva@gmail.com). */
+/* Portuguese initialisation for the jQuery UI date picker plugin. */
 jQuery(function($){
-	$.datepicker.regional['pt-BR'] = {
+	$.datepicker.regional['pt'] = {
 		closeText: 'Fechar',
 		prevText: '&#x3c;Anterior',
-		nextText: 'Pr&oacute;ximo&#x3e;',
+		nextText: 'Seguinte',
 		currentText: 'Hoje',
 		monthNames: ['Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho',
 		'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
@@ -13,11 +12,11 @@ jQuery(function($){
 		dayNames: ['Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','S&aacute;bado'],
 		dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','S&aacute;b'],
 		dayNamesMin: ['Dom','Seg','Ter','Qua','Qui','Sex','S&aacute;b'],
-		weekHeader: 'Sm',
+		weekHeader: 'Sem',
 		dateFormat: 'dd/mm/yy',
 		firstDay: 0,
 		isRTL: false,
 		showMonthAfterYear: false,
 		yearSuffix: ''};
-	$.datepicker.setDefaults($.datepicker.regional['pt-BR']);
+	$.datepicker.setDefaults($.datepicker.regional['pt']);
 });

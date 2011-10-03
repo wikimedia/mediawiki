@@ -1,5 +1,5 @@
 /*
- * jQuery UI Accordion 1.8.11
+ * jQuery UI Accordion 1.8.16
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -518,7 +518,7 @@ $.widget( "ui.accordion", {
 });
 
 $.extend( $.ui.accordion, {
-	version: "1.8.11",
+	version: "1.8.16",
 	animations: {
 		slide: function( options, additions ) {
 			options = $.extend({
