@@ -34,7 +34,7 @@ class ExternalStoreDB {
 		$wiki = isset($this->mParams['wiki']) ? $this->mParams['wiki'] : false;
 		$lb =& $this->getLoadBalancer( $cluster );
 
-		if ( !in_array( "DB://" . $cluster, $wgDefaultExternalStore ) ) {
+		if ( !in_array( "DB://" . $cluster, (array)$wgDefaultExternalStore ) ) {
 			wfDebug( "read only external store" );
 			$lb->allowLagged(true);
 		} else {
