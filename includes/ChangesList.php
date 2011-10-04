@@ -193,10 +193,10 @@ class ChangesList extends ContextSource {
 			$fastCharDiff[$code] = $wgMiserMode || wfMsgNoTrans( 'rc-change-size' ) === '$1';
 		}
 
-		$formatedSize = $wgLang->formatNum($szdiff);
+		$formattedSize = $wgLang->formatNum($szdiff);
 
 		if ( !$fastCharDiff[$code] ) {
-			$formatedSize = wfMsgExt( 'rc-change-size', array( 'parsemag', 'escape' ), $formatedSize );
+			$formattedSize = wfMsgExt( 'rc-change-size', array( 'parsemag', 'escape' ), $formattedSize );
 		}
 
 		if( abs( $szdiff ) > abs( $wgRCChangedSizeThreshold ) ) {
@@ -204,13 +204,20 @@ class ChangesList extends ContextSource {
 		} else {
 			$tag = 'span';
 		}
-		if( $szdiff === 0 ) {
-			return "<$tag class='mw-plusminus-null'>($formatedSize)</$tag>";
-		} elseif( $szdiff > 0 ) {
-			return "<$tag class='mw-plusminus-pos'>(+$formatedSize)</$tag>";
-		} else {
-			return "<$tag class='mw-plusminus-neg'>($formatedSize)</$tag>";
+		$formattedSizeClass = 'mw-plusminus-';
+		if ( $szdiff === 0 ) {
+			$formattedSizeClass .= 'null';
 		}
+		if ( $szdiff > 0 ) {
+			$formattedSize = '+' . $formattedSize;
+			$formattedSizeClass .= 'pos';
+		}
+		if ( $szdiff < 0 ) {
+			$formattedSizeClass .= 'neg';
+		}
+		return Xml::element($tag,
+			array('dir' => 'ltr', 'class' => $formattedSizeClass),
+			"($formattedSize)");
 	}
 
 	/**
@@ -344,7 +351,7 @@ class ChangesList extends ContextSource {
 		if( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
 			$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-			$s .= Linker::userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+			$s .= $this->getLang()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 			$s .= Linker::userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 		}
 	}
@@ -1068,7 +1075,7 @@ class EnhancedChangesList extends ChangesList {
 	 * Enhanced RC ungrouped line.
 	 *
 	 * @param $rcObj RecentChange
-	 * @return String: a HTML formated line (generated using $r)
+	 * @return String: a HTML formatted line (generated using $r)
 	 */
 	protected function recentChangesBlockLine( $rcObj ) {
 		global $wgRCShowChangedSize;
