@@ -1851,7 +1851,7 @@ HTML
 		global $wgOut, $wgUser;
 
 		$wikitext = $this->safeUnicodeOutput( $content );
-		if ( $wikitext !== '' ) {
+		if ( strval($wikitext) !== '' ) {
 			// Ensure there's a newline at the end, otherwise adding lines
 			// is awkward.
 			// But don't add a newline if the ext is empty, or Firefox in XHTML
