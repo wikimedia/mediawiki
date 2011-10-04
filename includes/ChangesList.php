@@ -206,14 +206,14 @@ class ChangesList extends ContextSource {
 		}
 
 		if ( $szdiff === 0 ) {
-			$formattedSizeClass .= 'mw-plusminus-null';
+			$formattedSizeClass = 'mw-plusminus-null';
 		}
 		if ( $szdiff > 0 ) {
 			$formattedSize = '+' . $formattedSize;
-			$formattedSizeClass .= 'mw-plusminus-pos';
+			$formattedSizeClass = 'mw-plusminus-pos';
 		}
 		if ( $szdiff < 0 ) {
-			$formattedSizeClass .= 'mw-plusminus-neg';
+			$formattedSizeClass = 'mw-plusminus-neg';
 		}
 		return Xml::element($tag,
 			array('dir' => 'ltr', 'class' => $formattedSizeClass),
