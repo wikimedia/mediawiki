@@ -148,7 +148,7 @@
 	'it' => 'Italiano',		# Italian
 	'iu' => 'ᐃᓄᒃᑎᑐᑦ/inuktitut',	# Inuktitut (macro language - do no localise, see ike/ikt - falls back to ike-cans)
 	'ja' => '日本語',	# Japanese
-	'jam' => 'Patios',	# Jamaican Creole English
+	'jam' => 'Patois',	# Jamaican Creole English
 	'jbo' => 'Lojban',		# Lojban
 	'jut' => 'Jysk',	# Jutish / Jutlandic
 	'jv' => 'Basa Jawa',	# Javanese
