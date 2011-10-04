@@ -652,6 +652,7 @@ Derfor kan besøgende ikke oprette flere kontoer fra denne IP-adresse i øjeblik
 'noemailprefs'               => 'Angiv en e-mail-adresse, så følgende funktioner er til rådighed.',
 'emailconfirmlink'           => 'Bekræft e-mail-adressen (autentificering).',
 'invalidemailaddress'        => 'E-mail-adressen kan ikke accepteres da den tilsyneladende har et ugyldigt format. Skriv venligst en e-mail-adresse med et korrekt format eller tøm feltet.',
+'cannotchangeemail'          => 'De email-adresser, der er tilknyttet brugerkontoer, kan ikke ændres på denne wiki.',
 'accountcreated'             => 'Brugerkonto oprettet',
 'accountcreatedtext'         => 'Brugerkontoen $1 er oprettet.',
 'createaccount-title'        => 'Opret brugerkonto på {{SITENAME}}',

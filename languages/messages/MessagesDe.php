@@ -2485,9 +2485,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Namensraum:',
 'invert'                        => 'Auswahl umkehren',
-'tooltip-invert'                => 'Dieses Kästchen anklicken, um Änderungen im gewählten Namensraum und, sofern ausgewählt, dem entsprechenden zugehörigen Namensraum auszublenden',
+'tooltip-invert'                => 'Dieses Auswahlfeld anklicken, um Änderungen im gewählten Namensraum und, sofern ausgewählt, dem entsprechenden zugehörigen Namensraum auszublenden',
 'namespace_association'         => 'Zugeordneter Namensraum',
-'tooltip-namespace_association' => 'Dieses Kästchen anklicken, um den deiner Auswahl zugehörigen Diskussionsnamensraum, oder im umgekehrten Fall Namensraum, mit einzubeziehen',
+'tooltip-namespace_association' => 'Dieses Auswahlfeld anklicken, um den deiner Auswahl zugehörigen Diskussionsnamensraum, oder im umgekehrten Fall, den zugehörigen Namensraum, mit einzubeziehen',
 'blanknamespace'                => '(Seiten)',
 
 # Contributions

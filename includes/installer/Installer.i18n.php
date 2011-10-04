@@ -4468,11 +4468,13 @@ Installation interrompue.',
 	'config-suhosin-max-value-length' => 'Suhosin est installé et limite la longueur du paramètre GET à $1 octets. Le <code>ResourceLoader</code> de MediaWiki va répondre en respectant cette limite, mais ses performances seront dégradées. Si possible, vous devriez définir <code>suhosin.get.max_value_length</code> à 1024 ou plus dans le fichier <code>php.ini</code>, et fixer <code>$wgResourceLoaderMaxQueryLength</code> à la même valeur dans <code>LocalSettings.php</code>.',
 	'config-db-type' => 'Type de base de données :',
 	'config-db-host' => 'Nom d’hôte de la base de données :',
-	'config-db-host-help' => "Si votre serveur de base de données est sur un serveur différent, saisissez ici son nom d’hôte ou son adresse IP.
+	'config-db-host-help' => 'Si votre serveur de base de données est sur un serveur différent, saisissez ici son nom d’hôte ou son adresse IP.
 
 Si vous utilisez un hébergement mutualisé, votre hébergeur doit vous avoir fourni le nom d’hôte correct dans sa documentation.
 
-Si vous installez sur un serveur Windows et utilisez MySQL, « localhost » peut ne pas fonctionner comme nom de serveur. S'il ne fonctionne pas, essayez « 127.0.0.1 » comme adresse IP locale.",
+Si vous installez sur un serveur Windows et utilisez MySQL, « localhost » peut ne pas fonctionner comme nom de serveur. S’il ne fonctionne pas, essayez « 127.0.0.1 » comme adresse IP locale.
+
+Si vous utilisez PostgreSQL, laissez ce champ vide pour vous connecter via un socket Unix.',
 	'config-db-host-oracle' => 'Nom TNS de la base de données :',
 	'config-db-host-oracle-help' => 'Entrez un [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nom de connexion locale] valide ; un fichier tnsnames.ora doit être visible par cette installation.<br /> Si vous utilisez les bibliothèques clientes version 10g ou plus récentes, vous pouvez également utiliser la méthode de nommage [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identifier ce wiki',

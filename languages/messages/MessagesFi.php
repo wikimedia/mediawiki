@@ -1167,7 +1167,7 @@ Sinulla ei ole oikeutta siihen.',
 [[Special:IPBlockList|Muokkausestolistassa]] on tämänhetkiset muokkausestot.',
 
 # History merging
-'mergehistory'                     => 'Yhdistä sivuhistoriat',
+'mergehistory'                     => 'Yhdistä muutoshistoriat',
 'mergehistory-header'              => 'Tämä sivu mahdollistaa sivun muutoshistorian yhdistämisen uudemman sivun muutoshistoriaan.
 Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa mennä ristikkäin.',
 'mergehistory-box'                 => 'Yhdistä kahden sivun muutoshistoria',

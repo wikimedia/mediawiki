@@ -825,6 +825,7 @@ U ontvangt geen e-mail voor de onderstaande functies.',
 'emailconfirmlink'           => 'Bevestig uw e-mailadres',
 'invalidemailaddress'        => 'Het e-mailadres is niet aanvaard, omdat het een ongeldige opmaak heeft.
 Geef een geldig e-mailadres op of laat het veld leeg.',
+'cannotchangeemail'          => 'Het e-mailadres voor een gebruiker kan op deze wiki niet gewijzigd worden.',
 'accountcreated'             => 'Gebruiker aangemaakt',
 'accountcreatedtext'         => 'De gebruiker $1 is aangemaakt.',
 'createaccount-title'        => 'Gebruikers registreren voor {{SITENAME}}',

@@ -668,6 +668,7 @@ $2',
 'noemailprefs'               => '在您的參數設置中指定一個電子郵件地址以使用此功能。',
 'emailconfirmlink'           => '確認您的郵箱地址',
 'invalidemailaddress'        => '郵箱地址格式不正確，請輸入正確的郵箱位址或清空該輸入框。',
+'cannotchangeemail'          => '本wiki不允許對賬戶的電郵地址進行更改。',
 'accountcreated'             => '已建立賬戶',
 'accountcreatedtext'         => '$1的賬戶已經被建立。',
 'createaccount-title'        => '在{{SITENAME}}中建立新賬戶',
@@ -705,16 +706,18 @@ $2',
 'resetpass-temp-password'   => '臨時密碼:',
 
 # Special:PasswordReset
-'passwordreset'                => '重新設定密碼',
-'passwordreset-text'           => '完成此表格以接收一個電郵以提示你的帳戶詳情。',
-'passwordreset-legend'         => '重設密碼',
-'passwordreset-disabled'       => '此維基上已禁止了重設密碼。',
-'passwordreset-pretext'        => '{{PLURAL:$1||輸入下列其中一個}}',
-'passwordreset-username'       => '使用者名稱：',
-'passwordreset-domain'         => '域名：',
-'passwordreset-email'          => '電郵地址：',
-'passwordreset-emailtitle'     => '在{{SITENAME}}上的詳細信息',
-'passwordreset-emailtext-ip'   => '有人（可能是你，來自$1這個IP）要求發出一個在{{SITENAME}}（$4）的帳戶信
+'passwordreset'                    => '重新設定密碼',
+'passwordreset-text'               => '完成此表格以接收一個電郵以提示你的帳戶詳情。',
+'passwordreset-legend'             => '重設密碼',
+'passwordreset-disabled'           => '此維基上已禁止了重設密碼。',
+'passwordreset-pretext'            => '{{PLURAL:$1||輸入下列其中一個}}',
+'passwordreset-username'           => '使用者名稱：',
+'passwordreset-domain'             => '域名：',
+'passwordreset-capture'            => '查看生成的電子郵件嗎？',
+'passwordreset-capture-help'       => '如果您選中此框，電子郵件（包括臨時密碼）將顯示，並發送給用戶。',
+'passwordreset-email'              => '電郵地址：',
+'passwordreset-emailtitle'         => '在{{SITENAME}}上的詳細信息',
+'passwordreset-emailtext-ip'       => '有人（可能是你，來自$1這個IP）要求發出一個在{{SITENAME}}（$4）的帳戶信
 息提示。該用戶{{PLURAL:$3|是|是}}與以下電郵地址有關：
 
 $2
@@ -722,7 +725,7 @@ $2
 {{PLURAL:$3|這個臨時密碼|這些臨時密碼}}會在{{PLURAL:$5|一天|$5天}}到期。
 你應該現在登入並選擇一個新的密碼。如果不是你作出這個請求，又或你已經記
 起你原來的密碼，你可以忽略本信息並使用你原來的密碼。',
-'passwordreset-emailtext-user' => '用戶$1要求發出一個在{{SITENAME}}（$4）的帳戶信息提示。該用戶{{PLURAL:$3|是|是}}與以下
+'passwordreset-emailtext-user'     => '用戶$1要求發出一個在{{SITENAME}}（$4）的帳戶信息提示。該用戶{{PLURAL:$3|是|是}}與以下
 電郵地址有關：
 
 $2
@@ -730,9 +733,11 @@ $2
 {{PLURAL:$3|這個臨時密碼|這些臨時密碼}}會在{{PLURAL:$5|一天|$5天}}到期。
 你應該現在登入並選擇一個新的密碼。如果不是你作出這個請求，又或你已經記
 起你原來的密碼，你可以忽略本信息並使用你原來的密碼。',
-'passwordreset-emailelement'   => '用戶名：$1
+'passwordreset-emailelement'       => '用戶名：$1
 臨時密碼：$2',
-'passwordreset-emailsent'      => '已發送提示電郵。',
+'passwordreset-emailsent'          => '已發送提示電郵。',
+'passwordreset-emailsent-capture'  => '提醒電子郵件已發送，並在下面顯示。',
+'passwordreset-emailerror-capture' => '生成的提醒電子郵件如下所示，但發送失敗：$1',
 
 # Special:ChangeEmail
 'changeemail'          => '更改電郵地址',
@@ -1283,7 +1288,8 @@ $1",
 'prefs-registration'            => '註冊時間:',
 'yourrealname'                  => '真實姓名：',
 'yourlanguage'                  => '介面語言：',
-'yourvariant'                   => '字體變換:',
+'yourvariant'                   => '內容語言變體：',
+'prefs-help-variant'            => '您希望用於顯示本站內容的語種或拼寫語系。',
 'yournick'                      => '新簽名:',
 'prefs-help-signature'          => '在討論頁面上的評論應該要用「<nowiki>~~~~</nowiki>」簽名，這樣便會轉換成{{GENDER:|你|妳|你}}的簽名以及一個時間截記。',
 'badsig'                        => '錯誤的原始簽名。請檢查HTML標籤。',
@@ -1425,6 +1431,7 @@ $1",
 'right-siteadmin'             => '鎖定和解除鎖定資料庫',
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
 'right-sendemail'             => '發電子郵件給其他用戶',
+'right-passwordreset'         => '使用者的密碼重新設定（[[Special:PasswordReset|特殊頁面]]）',
 
 # User rights log
 'rightslog'                  => '用戶權限日誌',
@@ -1728,7 +1735,7 @@ $1',
 'filehist-filesize'                 => '檔案大小',
 'filehist-comment'                  => '註解',
 'filehist-missing'                  => '檔案遺失',
-'imagelinks'                        => '檔案連結',
+'imagelinks'                        => '文件使用情況',
 'linkstoimage'                      => '以下的$1個頁面連接到本檔案:',
 'linkstoimage-more'                 => '多於$1個頁面連接到這個檔案。
 下面的清單只列示了連去這個檔案的最首$1個頁面。
@@ -2866,7 +2873,7 @@ $1',
 'svg-long-desc'          => 'SVG 檔案，表面大小：$1 × $2 像素，檔案大小：$3',
 'show-big-image'         => '完整解像度',
 'show-big-image-preview' => '此預覽的大小：$1.',
-'show-big-image-other'   => '其他大小：$1。',
+'show-big-image-other'   => '其他{{PLURAL:$2||}}解決方案：$1。',
 'show-big-image-size'    => '$1× $2 像素',
 'file-info-gif-looped'   => '循環',
 'file-info-gif-frames'   => '$1幀',
@@ -2885,6 +2892,13 @@ $1',
 'ilsubmit'              => '搜尋',
 'bydate'                => '按日期',
 'sp-newimages-showfrom' => '從$1 $2開始顯示新檔案',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '$1秒',
+'minutes' => '$1分鍾',
+'hours'   => '$1小時',
+'days'    => '$1天',
+'ago'     => '$1前',
 
 # Bad image list
 'bad_image_list' => '請按照下列格式編寫：
@@ -3621,6 +3635,9 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'sqlite-no-fts'  => '不帶全文搜尋的版本$1',
 
 # New logging system
+'logentry-delete-delete'              => '$1{{GENDER:$2|刪除}}頁面$3',
+'logentry-delete-restore'             => '$1{{GENDER:$2|恢復}}頁面$3',
+'logentry-delete-event'               => '$1{{GENDER:$2|已更改}}$3中$5項日誌的可見性：$4',
 'revdelete-restricted'                => '已應用限制至操作員',
 'revdelete-unrestricted'              => '已移除對於操作員的限制',
 'logentry-move-move'                  => '$1{{GENDER:$2|移動}}$3頁面至$4',

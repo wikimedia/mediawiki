@@ -235,9 +235,9 @@ $messages = array(
 'tog-previewontop'            => 'Prikaži pretpregled pre polja za izmenu',
 'tog-previewonfirst'          => 'Prikaži pretpregled pri prvoj izmeni',
 'tog-nocache'                 => 'Onemogući privremeno memorisanje stranica',
-'tog-enotifwatchlistpages'    => 'Pošalji mi e-poruku kada se promeni stranica koju nadgledam',
-'tog-enotifusertalkpages'     => 'Pošalji mi e-poruku kada se promeni moja stranica za razgovor',
-'tog-enotifminoredits'        => 'Pošalji mi e-poruku i kod manjih izmena',
+'tog-enotifwatchlistpages'    => 'Pošalji mi imejl kada se promeni stranica koju nadgledam',
+'tog-enotifusertalkpages'     => 'Pošalji mi imejl kada se promeni moja stranica za razgovor',
+'tog-enotifminoredits'        => 'Pošalji mi imejl i za manje izmene',
 'tog-enotifrevealaddr'        => 'Otkrij adresu moje e-pošte u pošti obaveštenja',
 'tog-shownumberswatching'     => 'Prikaži broj korisnika koji nadgledaju',
 'tog-oldsig'                  => 'Postojeći potpis:',
@@ -357,7 +357,7 @@ $messages = array(
 'qbbrowse'       => 'Prelistavaj',
 'qbedit'         => 'Izmeni',
 'qbpageoptions'  => 'Opcije stranice',
-'qbpageinfo'     => 'Podaci o stranici',
+'qbpageinfo'     => 'Sadržaj stranice',
 'qbmyoptions'    => 'Moje opcije',
 'qbspecialpages' => 'Posebne stranice',
 'faq'            => 'NPP',
@@ -469,7 +469,7 @@ $1',
 'badaccess-groups' => 'Akcija koju ste pokrenuli je rezervisana za korisnike iz {{PLURAL:$2|grupe|iz jedne od grupa}}: $1.',
 
 'versionrequired'     => 'Verzija $1 MedijaVikija je potrebna',
-'versionrequiredtext' => 'Potrebno je izdanje $1 Medijavikija da bi se koristila ova stranica.
+'versionrequiredtext' => 'Potrebno je izdanje $1 Medijavikija da biste koristili ovu stranicu.
 Pogledajte stranicu za [[Special:Version|izdanje]].',
 
 'ok'                      => 'U redu',
@@ -506,7 +506,7 @@ Pogledajte stranicu za [[Special:Version|izdanje]].',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Članak',
-'nstab-user'      => 'Korisnik',
+'nstab-user'      => '{{GENDER:{{BASEPAGENAME}}|Korisnik|Korisnica}}',
 'nstab-media'     => 'Medij',
 'nstab-special'   => 'Posebno',
 'nstab-project'   => 'Projekat',
@@ -518,9 +518,9 @@ Pogledajte stranicu za [[Special:Version|izdanje]].',
 
 # Main script and global functions
 'nosuchaction'      => 'Nema takve akcije',
-'nosuchactiontext'  => 'Akciju navedenu u URL-u viki softver nije prepoznao.
-Moguće je da ste ukucali pogrešan URL, ili sledili zastarelu vezu.
-Takođe je moguće da se radi o grešci u viki softveru.',
+'nosuchactiontext'  => 'Radnja navedena u adresi nije ispravna.
+Možda ste pogrešno napisali adresu ili ste pratili zastarelu vezu.
+Moguće je i da se radi o grešci u softveru vikija.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
 'nospecialpagetext' => '<strong>Tražili ste nepostojeću posebnu stranicu.</strong>
 
@@ -799,7 +799,7 @@ Privremena lozinka: $2',
 'showpreview'                      => 'Prikaži pretpregled',
 'showlivepreview'                  => 'Živi pretpregled',
 'showdiff'                         => 'Prikaži promene',
-'anoneditwarning'                  => "'''Pažnja:''' Niste prijavljeni.
+'anoneditwarning'                  => "'''Upozorenje:''' Niste prijavljeni.
 Vaša IP adresa će biti zabeležena u istoriji ove stranice.",
 'anonpreviewwarning'               => "''Niste prijavljeni. Čuvanje će postaviti Vašu IP adresu u stranici za uređivanje.''",
 'missingsummary'                   => "'''Podsetnik:''' Niste uneli opis izmene. Ukoliko kliknete Snimi stranicu ponovo, vaše izmene će biti snimljene bez opisa.",
@@ -2294,8 +2294,8 @@ Možete promeniti stepen zaštite ove stranice, ali on neće uticati na prenosiv
 'undeletepage'                 => 'Pogledaj i vrati obrisane stranice',
 'undeletepagetitle'            => "'''Sledeće sadrži obrisane izmene članka: [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Pogledaj obrisane strane',
-'undeletepagetext'             => '{{PLURAL:$1|Sledeća stranica je obrisana, ali je|Sledeće $1 stranice su obrisane, ali su|Sledećih $1 stranica je obrisano, ali su}} još uvek u arhivi i mogu biti vraćene.
-Arhiva može biti periodično čišćena.',
+'undeletepagetext'             => '{{PLURAL:$1|Sledeća stranica je obrisana, ali je još uvek u arhivi i može biti vraćena|Sledeće $1 stranice su obrisane, ali su još uvek u arhivi i mogu biti vraćene|Sledećih $1 stranica je obrisano, ali su još uvek u arhivi i mogu biti vraćene}}.
+Arhiva se povremeno čisti od ovakvih stranica.',
 'undelete-fieldset-title'      => 'vraćanje verzija',
 'undeleteextrahelp'            => "Da biste vratili celu istoriju stranice, ostavite sve kućice neoznačene i kliknite na dugme '''''{{int:undeletebtn}}'''''.
 Ako želite da vratite određene izmene, označite ih i kliknite na '''''{{int:undeletebtn}}'''''.",

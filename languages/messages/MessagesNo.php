@@ -769,6 +769,7 @@ Som et resultat kan det ikke opprettes flere kontoer fra denne IP-adressen.',
 'emailconfirmlink'           => 'Bekreft e-postadressen din.',
 'invalidemailaddress'        => 'Din e-postadresse kan ikke aksepteres, fordi den er ugyldig formatert.
 Skriv inn en fungerende e-postadresse eller tøm feltet.',
+'cannotchangeemail'          => 'E-post-adresser knyttet til brukerkontoer kan ikke endres på denne wikien.',
 'accountcreated'             => 'Konto opprettet',
 'accountcreatedtext'         => 'Brukerkonto for $1 har blitt opprettet.',
 'createaccount-title'        => 'Kontooppretting på {{SITENAME}}',
