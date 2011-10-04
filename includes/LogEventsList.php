@@ -707,16 +707,15 @@ class LogEventsList {
 		}
 
 		/* hook can return false, if we don't want the message to be emitted (Wikia BugId:7093) */
-		if ( !wfRunHooks( 'LogEventsListShowLogExtract', array( &$s, $types, $page, $user, $param ) ) ) {
-			return $pager->getNumRows();
+		if ( wfRunHooks( 'LogEventsListShowLogExtract', array( &$s, $types, $page, $user, $param ) ) ) {
+			// $out can be either an OutputPage object or a String-by-reference
+			if ( $out instanceof OutputPage ){
+				$out->addHTML( $s );
+			} else {
+				$out = $s;
+			}
 		}
 
-		// $out can be either an OutputPage object or a String-by-reference
-		if( $out instanceof OutputPage ){
-			$out->addHTML( $s );
-		} else {
-			$out = $s;
-		}
 		return $pager->getNumRows();
 	}
 
