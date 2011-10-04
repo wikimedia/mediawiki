@@ -19,9 +19,9 @@ class ResourceFileCache extends FileCacheBase {
 		$cache = new self();
 
 		if ( $context->getOnly() === 'styles' ) {
-			$cache->mType = $cache->mExt = 'css';
+			$cache->mType = 'css';
 		} else {
-			$cache->mType = $cache->mExt = 'js';
+			$cache->mType = 'js';
 		}
 		$modules = array_unique( $context->getModules() ); // remove duplicates
 		sort( $modules ); // normalize the order (permutation => combination)
