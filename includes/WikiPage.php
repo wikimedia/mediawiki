@@ -1061,7 +1061,7 @@ class WikiPage extends Page {
 		$status = Status::newGood( array() );
 
 		# Load $this->mTitle->getArticleID() and $this->mLatest if it's not already
-		$this->loadPageData();
+		$this->loadPageData( 'fromdbmaster' );
 
 		$flags = $this->checkFlags( $flags );
 
