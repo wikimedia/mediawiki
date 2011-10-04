@@ -496,7 +496,7 @@ Hesabınız yaradıldı.
 'createaccount'              => 'Hesab aç',
 'gotaccount'                 => "Giriş hesabınız varsa '''$1'''.",
 'gotaccountlink'             => 'daxil olun',
-'userlogin-resetlink'        => 'Loqininizi unutmusunuzmu?',
+'userlogin-resetlink'        => 'Daxilolma məlumatlarınızı unutmusunuz?',
 'createaccountmail'          => 'e-məktub ilə',
 'createaccountreason'        => 'Səbəb:',
 'badretype'                  => 'Daxil etdiyiniz parol uyğun gəlmir.',
@@ -504,17 +504,17 @@ Hesabınız yaradıldı.
 Lütfən başqa ad seçin.',
 'loginerror'                 => 'Daxil olunma xətası',
 'createaccounterror'         => '$1 Hesab açılmadı',
-'nocookiesnew'               => 'İstifadəçi qeydiyyata düşüb, lakin təmsil olunmayıb.
-{{SITENAME}} iştirakçıların təqdim olunması üçün kökələrdən istifadə olunur.
-Siz kökələrin qəbuluna qadağa qoymusunuz.
-Lütfən, onları qəbul etməyə icazə verdikdən sonra yeni istifadəçi adı və parolunuzla təmsil olunuz.',
-'nocookieslogin'             => '{{SITENAME}} saytında girmək üçün alətlərinizin açıq olması lazımdır. Alətləriniz bağlıdır. Zəhmət olmasa açın və bir daha yoxlayın.',
+'nocookiesnew'               => 'İstifadəçi qeydiyyatı yaradıldı, lakin daxil ola bilmədiniz.
+{{SITENAME}} iştirakçıların təqdim olunması üçün "cookie"lərdən istifadə edir.
+Siz "cookie"lərin qəbuluna qadağa qoymusunuz.
+Lütfən, onları qəbul etməyə icazə verdikdən sonra yeni istifadəçi adı və parolunuzla daxil olun.',
+'nocookieslogin'             => '{{SITENAME}} istifadəçilərin daxil ola bilməsi üçün "cookie"lərdən istifadə edir. Siz "cookie"lərin qəbuluna qadağa qoymusunuz. Lütfən, onların qəbuluna icazə verin və bir daha daxil olmağa cəhd edin.',
 'nocookiesfornew'            => 'İstifadəçinin akkauntu yaradılmayıb, ona görə də biz onun mənbəsini təsdiqləyə bilmədik.
 Kukların qoşulmasına əmin olduqdan sonra səhifəni yeniləyib bir daha sınayın.',
 'nocookiesforlogin'          => '{{int:nocookieslogin}}',
-'noname'                     => 'İşlək istifadəçi adı daxil etməmişdiniz.',
-'loginsuccesstitle'          => 'Daxil olundu',
-'loginsuccess'               => "'''\"\$1\" olaraq {{SITENAME}}-ya daxil oldunuz.'''",
+'noname'                     => 'Siz mövcud olan istifadəçi adı daxil etməmisiniz.',
+'loginsuccesstitle'          => 'Daxil oldunuz',
+'loginsuccess'               => "'''\"\$1\" adı ilə {{SITENAME}}ya daxil oldunuz.'''",
 'nosuchuser'                 => '"$1" adında istifadəçi mövcud deyil.
 İstifadəçi adları hərflərin böyük və ya kiçik olmasına həssasdırlar.
 Düzgün yazdığına əmin ol, yaxud [[Special:UserLogin/signup|yeni hesab aç]].',

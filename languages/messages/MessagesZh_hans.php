@@ -704,6 +704,7 @@ $2',
 'noemailprefs'               => '指定一个电子邮箱地址以使用此功能。',
 'emailconfirmlink'           => '确认您的邮箱地址',
 'invalidemailaddress'        => '邮箱地址格式不正确，请输入正确的邮箱地址或清空该输入框。',
+'cannotchangeemail'          => '本wiki不允许对账户的电子邮件地址进行更改。',
 'accountcreated'             => '已建立账户',
 'accountcreatedtext'         => '$1的账户已经被创建。',
 'createaccount-title'        => '在{{SITENAME}}中创建新账户',
@@ -1742,7 +1743,7 @@ $1',
 'filehist-filesize'                 => '文件大小',
 'filehist-comment'                  => '注解',
 'filehist-missing'                  => '文件遗失',
-'imagelinks'                        => '文件使用量',
+'imagelinks'                        => '文件使用情况',
 'linkstoimage'                      => '以下的$1个页面链接到本文件：',
 'linkstoimage-more'                 => '多于$1个页面连接到这个文件。
 下面的列表只列示了连去这个文件的最首$1个页面。
@@ -2879,10 +2880,10 @@ $1',
 'sp-newimages-showfrom' => '从$1 $2开始显示新文件',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds' => '{{PLURAL:$1|$1秒|$1秒}}',
-'minutes' => '{{PLURAL:$1|$1分钟|$1分钟}}',
-'hours'   => '{{PLURAL:$1|$1小时|$1小时}}',
-'days'    => '{{PLURAL:$1|$1天|$1天}}',
+'seconds' => '$1秒',
+'minutes' => '$1分钟',
+'hours'   => '$1小时',
+'days'    => '$1天',
 'ago'     => '$1前',
 
 # Bad image list
@@ -3628,7 +3629,7 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 # New logging system
 'logentry-delete-delete'              => '$1{{GENDER:$2|删除}}页面$3',
 'logentry-delete-restore'             => '$1{{GENDER:$2|恢复}}页面$3',
-'logentry-delete-event'               => '$1{{GENDER:$2|已更改}}$3中{{PLURAL:$5|$5项日志|$5项日志}}的可见性：$4',
+'logentry-delete-event'               => '$1{{GENDER:$2|已更改}}$3中$5项日志的可见性：$4',
 'logentry-delete-revision'            => '$1{{GENDER:$2|已更改}}$3中{{PLURAL:$5|$5个历史版本|$5个历史版本}}的可见性：$4',
 'logentry-delete-event-legacy'        => '$1{{GENDER:$2|已更改}}$3中日志的可见性',
 'logentry-delete-revision-legacy'     => '$1{{GENDER:$2|已更改}}$3中历史版本的可见性',
