@@ -196,7 +196,7 @@ class ChangesList extends ContextSource {
 		$formattedSize = $wgLang->formatNum($szdiff);
 
 		if ( !$fastCharDiff[$code] ) {
-			$formattedSize = wfMsgExt( 'rc-change-size', array( 'parsemag', 'escape' ), $formattedSize );
+			$formattedSize = wfMsgExt( 'rc-change-size', array( 'parsemag' ), $formattedSize );
 		}
 
 		if( abs( $szdiff ) > abs( $wgRCChangedSizeThreshold ) ) {
@@ -204,16 +204,16 @@ class ChangesList extends ContextSource {
 		} else {
 			$tag = 'span';
 		}
-		$formattedSizeClass = 'mw-plusminus-';
+
 		if ( $szdiff === 0 ) {
-			$formattedSizeClass .= 'null';
+			$formattedSizeClass .= 'mw-plusminus-null';
 		}
 		if ( $szdiff > 0 ) {
 			$formattedSize = '+' . $formattedSize;
-			$formattedSizeClass .= 'pos';
+			$formattedSizeClass .= 'mw-plusminus-pos';
 		}
 		if ( $szdiff < 0 ) {
-			$formattedSizeClass .= 'neg';
+			$formattedSizeClass .= 'mw-plusminus-neg';
 		}
 		return Xml::element($tag,
 			array('dir' => 'ltr', 'class' => $formattedSizeClass),
