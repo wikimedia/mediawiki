@@ -1807,7 +1807,7 @@ Povzetek na njeni [$2 opisni strani datoteke] je prikazan spodaj.',
 'uploadnewversion-linktext'         => 'Naložite novo različico datoteke',
 'shared-repo-from'                  => 'iz $1',
 'shared-repo'                       => 'skupno skladišče',
-'shared-repo-name-wikimediacommons' => 'Wikimedijine Zbirke',
+'shared-repo-name-wikimediacommons' => 'Wikimedijina Zbirka',
 
 # File reversion
 'filerevert'                => 'Vrni $1',
@@ -3570,7 +3570,9 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'filepath-page'    => 'Datoteka:',
 'filepath-submit'  => 'Pojdi',
 'filepath-summary' => 'Ta posebna stran vrne polno pot do datoteke.
-Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v zanje določenih programih.',
+Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v zanje določenih programih.
+
+Vnesite ime datoteke brez predpone »{{ns:file}}:«.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Iskanje podvojenih datotek',

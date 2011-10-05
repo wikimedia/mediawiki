@@ -720,6 +720,7 @@ $2',
 'passwordreset-disabled'     => 'මෙම විකියෙහි මුර පද ප්‍රත්‍යාරම්භ කිරීම් අක්‍රීය කොට ඇත.',
 'passwordreset-pretext'      => '{{PLURAL:$1||පහත දැක්වෙන දත්ත කණ්ඩ වලින් එකක් ඇතුල් කරන්න}}',
 'passwordreset-username'     => 'පරිශීලක නාමය:',
+'passwordreset-domain'       => 'වසම:',
 'passwordreset-email'        => 'විද්‍යුත්-තැපැල් ලිපිනය:',
 'passwordreset-emailtitle'   => '{{SITENAME}}යෙහි ගිණුම් තොරතුරු',
 'passwordreset-emailtext-ip' => 'කවුරුන්හෝ (බොහෝවිට ඔබ, $1 අන්තර්ජාල ලිපිනය භාවිතයෙන්) {{SITENAME}} ($4) සඳහා ඔබගේ ගිණුම් විස්තර සිහිකැඳවීමක් ඉල්ලා ඇත.  පහත පරිශීලක {{PLURAL:$3|ගිණුම|ගිණුම්}}

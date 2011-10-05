@@ -1411,7 +1411,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'prefs-registration'            => 'Tempo de registrado:',
 'yourrealname'                  => 'Vera nomo:',
 'yourlanguage'                  => 'Lingvo',
-'yourvariant'                   => 'Varianto',
+'yourvariant'                   => 'Varianto de la lingvo de enhavo:',
 'yournick'                      => 'Subskribo:',
 'prefs-help-signature'          => 'Komentoj en diskuto-paĝoj estu subskribita kun "<nowiki>~~~~</nowiki>" kiu estos konvertita al via subskribo kaj tempindiko.',
 'badsig'                        => 'Via kaŝnomo (por subskriboj) malvalidas. Bv. kontroli la HTML-etikedojn!',
@@ -1863,7 +1863,7 @@ Kiam oni filtras ĝin laŭ uzanto, nur la lasta versio de la dosiero estos montr
 'filehist-filesize'         => 'Grando de dosiero',
 'filehist-comment'          => 'Komento',
 'filehist-missing'          => 'Dosiero mankas',
-'imagelinks'                => 'Dosieraj ligiloj',
+'imagelinks'                => 'Dosiera uzado',
 'linkstoimage'              => 'La {{PLURAL:$1|jena paĝo|jenaj paĝoj}} ligas al ĉi tiu dosiero:',
 'linkstoimage-more'         => 'Pli ol $1 {{PLURAL:$1|paĝo|paĝoj}} ligas ĉi tiun dosieron.
 La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al nur ĉi tiu dosiero.
@@ -2969,7 +2969,7 @@ $1',
 'svg-long-desc'          => 'SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3',
 'show-big-image'         => 'Plena distingivo',
 'show-big-image-preview' => 'Grandeco de ĉi antaŭvido: $1.',
-'show-big-image-other'   => 'Aliaj distingivoj: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Alia distingivo|Aliaj distingivoj}}: $1.',
 'show-big-image-size'    => '$1 × $2 rastrumeroj',
 'file-info-gif-looped'   => 'ripeta GIF',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|ĉelo|ĉeloj}}',
@@ -2988,6 +2988,9 @@ $1',
 'ilsubmit'              => 'Serĉi',
 'bydate'                => 'laŭ dato',
 'sp-newimages-showfrom' => 'Montru novajn dosierojn komencante de $2, $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'ago' => 'antaŭ $1',
 
 # Bad image list
 'bad_image_list' => 'La formato estas jen:

@@ -753,6 +753,7 @@ Tästä johtuen tästä IP-osoitteesta ei voi tällä hetkellä luoda uusia tunn
 'noemailprefs'               => 'Sähköpostiosoitetta ei ole määritelty.',
 'emailconfirmlink'           => 'Varmenna sähköpostiosoite',
 'invalidemailaddress'        => 'Sähköpostiosoitetta ei voida hyväksyä, koska se ei ole oikeassa muodossa. Ole hyvä ja anna oikea sähköpostiosoite tai jätä kenttä tyhjäksi.',
+'cannotchangeemail'          => 'Tunnuksien sähköpostiosoitteita ei voi muuttaa tässä wikissä.',
 'accountcreated'             => 'Käyttäjätunnus luotiin',
 'accountcreatedtext'         => 'Käyttäjän $1 käyttäjätunnus luotiin.',
 'createaccount-title'        => 'Tunnuksen luominen {{GRAMMAR:illative|{{SITENAME}}}}',
@@ -790,16 +791,18 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'resetpass-temp-password'   => 'Väliaikainen salasana:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Salasanan alustus',
-'passwordreset-text'           => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
-'passwordreset-legend'         => 'Salasanan vaihto',
-'passwordreset-disabled'       => 'Salasanojen alustus ei ole mahdollista tässä wikissä.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Kirjoita jokin jäljempänä pyydetty tieto}}',
-'passwordreset-username'       => 'Käyttäjätunnus',
-'passwordreset-domain'         => 'Verkkotunnus',
-'passwordreset-email'          => 'Sähköpostiosoite',
-'passwordreset-emailtitle'     => 'Tunnuksen tiedot {{GRAMMAR:inessive|{{SITENAME}}}}',
-'passwordreset-emailtext-ip'   => 'Joku (todennäköisesti sinä, IP-osoitteesta $1) pyysi muistutusta tunnuksesi tiedoista sivustolla {{SITENAME}} ($4).
+'passwordreset'                    => 'Salasanan alustus',
+'passwordreset-text'               => 'Saat sähköpostimuistutuksen tunnuksesi tiedoista, kun täytät tämän lomakkeen.',
+'passwordreset-legend'             => 'Salasanan vaihto',
+'passwordreset-disabled'           => 'Salasanojen alustus ei ole mahdollista tässä wikissä.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Kirjoita jokin jäljempänä pyydetty tieto}}',
+'passwordreset-username'           => 'Käyttäjätunnus',
+'passwordreset-domain'             => 'Verkkotunnus',
+'passwordreset-capture'            => 'Näytä lähetettävä sähköpostiviesti',
+'passwordreset-capture-help'       => 'Jos valitset tämän, sähköposti (tilapäisellä salasanalla) näytetään sinulle sekä lähetetään käyttäjälle.',
+'passwordreset-email'              => 'Sähköpostiosoite',
+'passwordreset-emailtitle'         => 'Tunnuksen tiedot {{GRAMMAR:inessive|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'       => 'Joku (todennäköisesti sinä, IP-osoitteesta $1) pyysi muistutusta tunnuksesi tiedoista sivustolla {{SITENAME}} ($4).
 {{PLURAL:$3|Seuraava käyttäjätunnus on|Seuraavat käyttäjätunnukset ovat}} liitetty tähän sähköpostiosoitteeseen:
 
 $2
@@ -808,7 +811,7 @@ $2
 Sinun kannattaa kirjautua sisään ja valita uusi salasana. Jos joku toinen teki tämän
 pyynnön, tai muistat sittenkin vanhan salasanasi, etkä halua muuttaa sitä,
 voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
-'passwordreset-emailtext-user' => 'Käyttäjä $1 pyysi muistutusta tunnuksesi tiedoista sivustolla {{SITENAME}} ($4).
+'passwordreset-emailtext-user'     => 'Käyttäjä $1 pyysi muistutusta tunnuksesi tiedoista sivustolla {{SITENAME}} ($4).
 {{PLURAL:$3|Seuraava käyttäjätunnus on|Seuraavat käyttäjätunnukset ovat}} liitetty tähän sähköpostiosoitteeseen:
 
 $2
@@ -817,9 +820,11 @@ $2
 Sinun kannattaa kirjautua sisään ja valita uusi salasana. Jos joku toinen teki tämän
 pyynnön, tai muistat sittenkin vanhan salasanasi, etkä halua muuttaa sitä,
 voit jättää tämän viestin huomiotta ja jatkaa vanhan salasanan käyttöä.',
-'passwordreset-emailelement'   => 'Käyttäjätunnus: $1
+'passwordreset-emailelement'       => 'Käyttäjätunnus: $1
 Väliaikainen salasana: $2',
-'passwordreset-emailsent'      => 'Sähköpostimuistutus on lähetetty.',
+'passwordreset-emailsent'          => 'Sähköpostimuistutus on lähetetty.',
+'passwordreset-emailsent-capture'  => 'Muistutussähköposti on lähetetty. Se näkyy myös alla.',
+'passwordreset-emailerror-capture' => 'Alla näytettävä sähköpostiviesti luotiin, mutta sen lähettäminen käyttäjälle epäonnistui: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Muuta sähköpostiosoitetta',
@@ -1365,6 +1370,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'yourrealname'                  => 'Oikea nimi',
 'yourlanguage'                  => 'Käyttöliittymän kieli',
 'yourvariant'                   => 'Sisällön kielivariantti',
+'prefs-help-variant'            => 'Valitse se variantti tai ortografia, jolla haluat näyttää tämän wikin sisällön.',
 'yournick'                      => 'Allekirjoitus',
 'prefs-help-signature'          => 'Kommentit keskustelusivuilla allekirjoitetaan merkinnällä <nowiki>~~~~</nowiki>, joka muuntuu allekirjoitukseksi ja aikaleimaksi.',
 'badsig'                        => 'Allekirjoitus ei kelpaa.',
@@ -2711,6 +2717,8 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 'import-upload'              => 'Tallenna XML-tiedosto',
 'import-token-mismatch'      => 'Istuntotiedot ovat kadonneet. Yritä uudelleen.',
 'import-invalid-interwiki'   => 'Määritellystä wikistä ei voi tuoda.',
+'import-error-edit'          => 'Sivua $1 ei tuotu, koska sinulla ei ole oikeutta muokata sitä.',
+'import-error-create'        => 'Sivua $1 ei tuotu, koska sinulla ei ole oikeutta luoda sitä.',
 
 # Import log
 'importlogpage'                    => 'Tuontiloki',
@@ -2910,7 +2918,11 @@ Suorittamalla sen järjestelmäsi voi muuttua epäluotettavaksi.",
 'sp-newimages-showfrom' => 'Näytä uudet tiedostot alkaen $1 kello $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'ago' => '$1 sitten',
+'seconds' => '{{PLURAL:$1|$1 sekunti|$1 sekuntia}}',
+'minutes' => '{{PLURAL:$1|$1 minuutti|$1 minuuttia}}',
+'hours'   => '{{PLURAL:$1|$1 tunti|$1 tuntia}}',
+'days'    => '{{PLURAL:$1|$1 päivä|$1 päivää}}',
+'ago'     => '$1 sitten',
 
 # Bad image list
 'bad_image_list' => 'Listan muoto on seuraava:
@@ -3630,11 +3642,15 @@ Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
 # New logging system
 'logentry-delete-delete'              => '$1 {{GENDER:$2|poisti}} sivun $3',
 'logentry-delete-restore'             => '$1 {{GENDER:$2|palautti}} sivun $3',
-'logentry-delete-event'               => '$1 {{GENDER:$2|muutti}} {{PLURAL:$5|lokitapahtuman|$5 lokitapahtuman}} näkyvyyttä $3: $4',
+'logentry-delete-event'               => '$1 {{GENDER:$2|muutti}} {{PLURAL:$5|lokitapahtuman|$5 lokitapahtuman}} näkyvyyttä kohteessa $3: $4',
 'logentry-delete-revision'            => '$1 {{GENDER:$2|muutti}} {{PLURAL:$5|muutoksen|$5 muutoksen}} näkyvyyttä sivulla $3: $4',
-'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|muutti}} lokitapahtumien näkyvyyttä $3',
+'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|muutti}} kohteen $3 lokitapahtumien näkyvyyttä',
 'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|muutti}} sivun $3 muutosten näkyvyyttä',
 'logentry-suppress-delete'            => '$1 {{GENDER:$2|häivytti}} sivun $3',
+'logentry-suppress-event'             => '$1 {{GENDER:$2|muutti}} salaa {{PLURAL:$5|lokitapahtuman|$5 lokitapahtuman}} näkyvyyttä kohteessa $3: $4',
+'logentry-suppress-revision'          => '$1 {{GENDER:$2|muutti}} salaa {{PLURAL:$5|muutoksen|$5 muutoksen}} näkyvyyttä sivulla $3: $4',
+'logentry-suppress-event-legacy'      => '$1 {{GENDER:$2|muutti}} salaa kohteen $3 lokitapahtumien näkyvyyttä',
+'logentry-suppress-revision-legacy'   => '$1 {{GENDER:$2|muutti}} salaa sivun $3 muutosten näkyvyyttä',
 'revdelete-content-hid'               => 'sisältö piilotettu',
 'revdelete-summary-hid'               => 'muokkausyhteenveto piilotettu',
 'revdelete-uname-hid'                 => 'käyttäjätunnus piilotettu',

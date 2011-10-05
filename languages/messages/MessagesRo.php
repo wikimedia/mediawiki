@@ -767,6 +767,7 @@ Prin urmare, vizitatorii care folosesc același IP nu mai pot crea alte conturi 
 'noemailprefs'               => 'Nu a fost specificată o adresă email, următoarele nu vor funcționa.',
 'emailconfirmlink'           => 'Confirmați adresa dvs. de email',
 'invalidemailaddress'        => 'Adresa de email nu a putut fi acceptată pentru că pare a avea un format invalid. Vă rugăm să reintroduceți o adresă bine formatată sau să goliți acel câmp.',
+'cannotchangeemail'          => 'Adresele de e-mail asociate conturilor nu pot fi schimbate pe acest wiki.',
 'accountcreated'             => 'Contul a fost creat.',
 'accountcreatedtext'         => 'Contul utilizatorului pentru $1 a fost creat.',
 'createaccount-title'        => 'Creare de cont la {{SITENAME}}',

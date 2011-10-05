@@ -773,6 +773,7 @@ Um misbruuk te veurkoemen wörden der mer één wachtwoordherinnering per {{PLUR
 'emailconfirmlink'           => 'Bevestig netpostadres',
 'invalidemailaddress'        => 't Netpostadres kon niet aksepteerd wörden umdat de opmaak ongeldig is.
 Voer de juuste opmaak van t adres in of laot t veld leeg.',
+'cannotchangeemail'          => 't Netpostadres veur n gebruker kan op disse wiki niet ewiezigd wörden.',
 'accountcreated'             => 'Gebrukersprofiel is an-emaakt',
 'accountcreatedtext'         => 'De gebrukersnaam veur $1 is an-emaakt.',
 'createaccount-title'        => 'Gebrukers anmaken veur {{SITENAME}}',
@@ -3727,8 +3728,9 @@ Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma 
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|herneumden}} de pagina $3 naor $4 over n deurverwiezing heer zonder n deurverwiezing achter te laoten',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|hef}} versie $4 van pagina $3 as ekontroleerd emarkeerd',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|hef}} versie $4 van pagina $3 automaties as ekontroleerd emarkeerd',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|hef}} n gebruker an-emaakt',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|hef}} n gebruker an-emaakt',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|hef}} n gebruker $3 an-emaakt',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|hef}} n {{GENDER:$4|gebruker}} $3 an-emaakt',
 'logentry-newusers-autocreate'        => 'De gebruker $1 is automaties {{GENDER:$2|an-emaakt}}',
 'newuserlog-byemail'                  => 'wachtwoord is verstuurd via de netpost',
 
