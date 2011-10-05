@@ -447,6 +447,13 @@ return array(
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
 		'debugRaw' => false,
 	),
+	'mediawiki.Title' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.Title.js',
+		'dependencies' => 'mediawiki.util',
+	),
+	'mediawiki.Uri' => array( 
+		'scripts' => 'resources/mediawiki/mediawiki.Uri.js',
+	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 	),
