@@ -2022,6 +2022,8 @@ class Title {
 	public function getSkinFromCssJsSubpage() {
 		$subpage = explode( '/', $this->mTextform );
 		$subpage = $subpage[ count( $subpage ) - 1 ];
+		// FIXME: Should only match endings
+		// Consider 'Foo/.js.monobook' or 'Foo/mon.js.obook.css'
 		return( str_replace( array( '.css', '.js' ), array( '', '' ), $subpage ) );
 	}
 
