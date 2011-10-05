@@ -842,15 +842,17 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'resetpass-temp-password'   => 'Contraseña temporal:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Restablecimiento de contraseña',
-'passwordreset-text'         => 'Completa este formulario para recibir un recordatorio por correo electrónico de los detalles de tu cuenta.',
-'passwordreset-legend'       => 'Restablecer contraseña',
-'passwordreset-disabled'     => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Introduce uno de los elementos de datos siguientes}}',
-'passwordreset-username'     => 'Nombre de usuario:',
-'passwordreset-email'        => 'Dirección de correo electrónico:',
-'passwordreset-emailtitle'   => 'Detalles de la cuenta en {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Alguien (probablemente tú, desde la dirección IP $1) pidió un recordatorio de tus
+'passwordreset'                    => 'Restablecimiento de contraseña',
+'passwordreset-text'               => 'Completa este formulario para recibir un recordatorio por correo electrónico de los detalles de tu cuenta.',
+'passwordreset-legend'             => 'Restablecer contraseña',
+'passwordreset-disabled'           => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Introduce uno de los elementos de datos siguientes}}',
+'passwordreset-username'           => 'Nombre de usuario:',
+'passwordreset-domain'             => 'Dominio:',
+'passwordreset-capture'            => '¿Ver el mensaje resultante?',
+'passwordreset-email'              => 'Dirección de correo electrónico:',
+'passwordreset-emailtitle'         => 'Detalles de la cuenta en {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Alguien (probablemente tú, desde la dirección IP $1) pidió un recordatorio de tus
 datos de cuenta para {{SITENAME}} ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}}
 con esta dirección de correo electrónico:
 
@@ -860,9 +862,20 @@ $2
 Deberías iniciar sesión y establecer una contraseña nueva ahora. Si alguien más hizo este pedido,
 o recuerdas tu contraseña original, y no deseas cambiarla, puedes
 ignorar este mensaje y continuar usando tu contraseña anterior.',
-'passwordreset-emailelement' => 'Nombre de usuario: $1
+'passwordreset-emailtext-user'     => 'El usuario $1 en {{SITENAME}} pidió un recordatorio de tus datos de cuenta para {{SITENAME}}
+($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}} con esta dirección de correo electrónico:
+
+$2
+
+{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} expirarán en {{PLURAL:$5|un día|$5 días}}.
+Deberías iniciar sesión y establecer una contraseña nueva ahora. Si alguien más hizo este pedido,
+o recuerdas tu contraseña original, y no deseas cambiarla, puedes
+ignorar este mensaje y continuar usando tu contraseña anterior.',
+'passwordreset-emailelement'       => 'Nombre de usuario: $1
 Contraseña temporal: $2',
-'passwordreset-emailsent'    => 'Se ha enviado un correo electrónico de recordatorio.',
+'passwordreset-emailsent'          => 'Se ha enviado un correo electrónico de recordatorio.',
+'passwordreset-emailsent-capture'  => 'Un recordatorio por correo electrónico ha sido enviado, que se muestra a continuación.',
+'passwordreset-emailerror-capture' => 'Un recordatorio por correo electrónico fue generado, que se muestra a continuación, pero el envío al usuario falló: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Cambiar la dirección de correo-e',
@@ -1341,12 +1354,13 @@ Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo p
 Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
 
 # Quickbar
-'qbsettings'               => 'Quickbar',
-'qbsettings-none'          => 'Ninguna',
-'qbsettings-fixedleft'     => 'Fija a la izquierda',
-'qbsettings-fixedright'    => 'Fija a la derecha',
-'qbsettings-floatingleft'  => 'Flotante a la izquierda',
-'qbsettings-floatingright' => 'Flotante a la derecha',
+'qbsettings'                => 'Quickbar',
+'qbsettings-none'           => 'Ninguna',
+'qbsettings-fixedleft'      => 'Fija a la izquierda',
+'qbsettings-fixedright'     => 'Fija a la derecha',
+'qbsettings-floatingleft'   => 'Flotante a la izquierda',
+'qbsettings-floatingright'  => 'Flotante a la derecha',
+'qbsettings-directionality' => 'Fijos, dependiendo de la direccionalidad de la escritura de su idioma',
 
 # Preferences page
 'preferences'                   => 'Preferencias',
@@ -1430,7 +1444,7 @@ Esto no se puede deshacer.',
 'prefs-registration'            => 'Hora de registro:',
 'yourrealname'                  => 'Nombre real:',
 'yourlanguage'                  => 'Idioma:',
-'yourvariant'                   => 'Variante lingüística',
+'yourvariant'                   => 'Variante lingüística del contenido:',
 'yournick'                      => 'Nueva firma:',
 'prefs-help-signature'          => 'Los comentarios en páginas de discusión deberían firmarse con «<nowiki>~~~~</nowiki>», que se convertirá en tu firma con fecha y hora.',
 'badsig'                        => 'El código de tu firma no es válido; comprueba las etiquetas HTML.',
@@ -1470,7 +1484,7 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'userrights-lookup-user'       => 'Configurar grupos de usuarios',
 'userrights-user-editname'     => 'Escriba un nombre de usuario:',
 'editusergroup'                => 'Modificar grupos de usuarios',
-'editinguser'                  => "Cambiando los derechos del usuario '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] {{int:pipe-separator}} [[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "Cambiando los derechos del usuario '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Modificar grupos de usuarios',
 'saveusergroups'               => 'Guardar grupos de usuarios',
 'userrights-groupsmember'      => 'Miembro de:',
@@ -1880,7 +1894,7 @@ archivo a esa fecha.',
 'filehist-filesize'         => 'Tamaño',
 'filehist-comment'          => 'Comentario',
 'filehist-missing'          => 'No se encuentra el archivo',
-'imagelinks'                => 'Enlaces al archivo',
+'imagelinks'                => 'Usos del archivo',
 'linkstoimage'              => '{{PLURAL:$1|La siguiente página enlaza|Las siguientes páginas enlazan}} a este archivo:',
 'linkstoimage-more'         => 'Hay más de {{PLURAL:$1|una página que enlaza|$1 páginas que enlazan}} con este archivo.
 
@@ -2550,6 +2564,7 @@ Véase la [[Special:IPBlockList|lista de bloqueos]] para revisarlo.',
 'blocklist-userblocks'            => 'Ocultar bloqueos de cuenta',
 'blocklist-tempblocks'            => 'Ocultar bloqueos temporales',
 'blocklist-addressblocks'         => 'Ocultar bloqueos de una sola dirección IP',
+'blocklist-rangeblocks'           => 'Ocultar bloqueos de rango',
 'blocklist-timestamp'             => 'Marca de tiempo',
 'blocklist-target'                => 'Destino',
 'blocklist-expiry'                => 'Caduca',
@@ -2572,6 +2587,7 @@ Véase la [[Special:IPBlockList|lista de bloqueos]] para revisarlo.',
 'unblocklink'                     => 'desbloquear',
 'change-blocklink'                => 'cambiar bloqueo',
 'contribslink'                    => 'contribuciones',
+'emaillink'                       => 'enviar correo electrónico',
 'autoblocker'                     => 'Has sido bloqueado automáticamente porque tu dirección IP ha sido usada recientemente por «[[User:$1|$1]]». La razón dada para bloquear a «[[User:$1|$1]]» fue «$2».',
 'blocklogpage'                    => 'Registro de bloqueos',
 'blocklog-showlog'                => 'Este usuario ha sido bloqueado previamente. Debajo se provee el registro de bloqueos para mayor referencia:',
@@ -3013,7 +3029,7 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'svg-long-desc'          => 'archivo SVG, nominalmente $1 × $2 píxeles, tamaño de archivo: $3',
 'show-big-image'         => 'Resolución original',
 'show-big-image-preview' => 'Tamaño de esta previsualización: $1.',
-'show-big-image-other'   => 'Otras resoluciones: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Otra resolución|Otras resoluciones}}: $1.',
 'show-big-image-size'    => '$1 × $2 píxeles',
 'file-info-gif-looped'   => 'bucleado',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|frame|frames}}',
@@ -3036,6 +3052,11 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'minutes-abbrev' => 'm',
 'hours-abbrev'   => 'h',
+'seconds'        => '{{PLURAL:$1|un segundo|$1 segundos}}',
+'minutes'        => '{{PLURAL:$1|un minuto|$1 minutos}}',
+'hours'          => '{{PLURAL:$1|una hora|$1 horas}}',
+'days'           => '{{PLURAL:$1|un día|$1 días}}',
+'ago'            => 'hace $1',
 
 # Bad image list
 'bad_image_list' => 'El formato es el siguiente:
@@ -3201,6 +3222,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-urgency'                     => 'Urgencia',
 'exif-locationdest'                => 'Ubicación mostrada',
 'exif-locationdestcode'            => 'Código de la ubicación mostrada',
+'exif-objectcycle'                 => 'Hora del día para la cual está destinado este archivo',
 'exif-contact'                     => 'Información de contacto',
 'exif-writer'                      => 'Escritor',
 'exif-languagecode'                => 'Idioma',
@@ -3215,6 +3237,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-serialnumber'                => 'Número de serie de la cámara',
 'exif-cameraownername'             => 'Propietario de la cámara',
 'exif-label'                       => 'Etiqueta',
+'exif-datetimemetadata'            => 'Fecha en la cual fueron modificados por última vez los metadatos',
 'exif-nickname'                    => 'Nombre informal de la imagen',
 'exif-rating'                      => 'Valoración (sobre 5)',
 'exif-rightscertificate'           => 'Certificado de gestión de derechos',
@@ -3256,9 +3279,9 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-orientation-3' => 'Rotada 180°',
 'exif-orientation-4' => 'Volteada verticalmente',
 'exif-orientation-5' => 'Rotada 90° CCW y volteada verticalmente',
-'exif-orientation-6' => 'Rotada 90° CW',
+'exif-orientation-6' => 'Rotada 90° a la izquierda',
 'exif-orientation-7' => 'Rotada 90° CW y volteada verticalmente',
-'exif-orientation-8' => 'Rotada 90° CCW',
+'exif-orientation-8' => 'Rotada 90° a la derecha',
 
 'exif-planarconfiguration-1' => 'formato panorámico',
 'exif-planarconfiguration-2' => 'formato plano',
@@ -3749,8 +3772,15 @@ Este sitio está experimentando dificultades técnicas.',
 'sqlite-no-fts'  => '$1 sin soporte para búsqueda de texto completo',
 
 # New logging system
-'revdelete-restricted'   => 'restricciones para administradores aplicadas',
-'revdelete-unrestricted' => 'restricciones para administradores eliminadas',
-'newuserlog-byemail'     => 'contraseña enviada por correo electrónico',
+'logentry-suppress-delete' => '$1 {{GENDER:$2|borró}} la página $3',
+'revdelete-content-hid'    => 'contenido oculto',
+'revdelete-summary-hid'    => 'resumen de edición oculto',
+'revdelete-uname-hid'      => 'nombre de usuario oculto',
+'revdelete-content-unhid'  => 'contenido mostrado',
+'revdelete-summary-unhid'  => 'resumen de edición mostrado',
+'revdelete-uname-unhid'    => 'nombre de usuario mostrado',
+'revdelete-restricted'     => 'restricciones para administradores aplicadas',
+'revdelete-unrestricted'   => 'restricciones para administradores eliminadas',
+'newuserlog-byemail'       => 'contraseña enviada por correo electrónico',
 
 );

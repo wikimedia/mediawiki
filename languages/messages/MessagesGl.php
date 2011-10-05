@@ -2350,7 +2350,7 @@ Se se creou unha páxina nova co mesmo nome desde o seu borrado, as revisións r
 'undeleterevdel'               => 'Non se levará a cabo a reversión do borrado se ocasiona que a última revisión da páxina ou ficheiro se elimine parcialmente.
 Nestes casos, debe retirar a selección ou quitar a ocultación das revisións borradas máis recentes.',
 'undeletehistorynoadmin'       => 'Esta páxina foi borrada.
-O motivo do borrado consta no resumo de embaixo, xunto cos detalles dos usuarios que editaron esta páxina antes da súa eliminación.
+O motivo do borrado consta no resumo que aparece a continuación, xunto cos detalles dos usuarios que editaron esta páxina antes da súa eliminación.
 O texto destas revisións eliminadas só está á disposición dos administradores.',
 'undelete-revision'            => 'Revisión eliminada de "$1" (o $4 ás $5) feita por $3:',
 'undeleterevision-missing'     => 'Revisión non válida ou inexistente. Pode que a ligazón conteña un erro ou que a revisión se restaurase ou eliminase do arquivo.',

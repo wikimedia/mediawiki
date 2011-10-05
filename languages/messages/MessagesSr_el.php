@@ -914,12 +914,14 @@ Moraćete da unesete svoje promene u postojeći tekst.
 'editingold'                       => "'''PAŽNJA: Vi menjate stariju reviziju ove stranice.
 Ako je snimite, sve promene učinjene od ove revizije biće izgubljene.'''",
 'yourdiff'                         => 'Razlike',
-'copyrightwarning'                 => "Napomena: Za sve vaše doprinose se smatra da su izdati pod $2 (vidite $1 za detalje). Ako ne želite da se vaši doprinosi nemilosrdno menjaju, ne šaljite ih ovde.<br />
-Takođe nam obećavate da ste ovo sami napisali ili prekopirali iz izvora u javnom vlasništvu ili sličnog slobodnog izvora.
-'''NE ŠALJITE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOZVOLE!'''",
-'copyrightwarning2'                => "Napomena: Sve vaše doprinose ostali korisnici mogu da menjaju ili uklone. Ako ne želite da se vaši doprinosi nemilosrdno menjaju, ne šaljite ih ovde.<br />
-Takođe nam obećavate da ste ovo sami napisali ili prekopirali iz izvora u javnom vlasništvu ili sličnog slobodnog izvora (vidite $1 za detalje).
-'''NE ŠALJITE RADOVE ZAŠTIĆENE AUTORSKIM PRAVIMA BEZ DOZVOLE!'''",
+'copyrightwarning'                 => "Imajte na umu da se svi prilozi na ovom vikiju smatraju da su objavljeni pod licencom $2 (pogledajte $1 za detalje).
+Ako ne želite da se vaš rad menja i raspodeljuje bez ograničenja, onda ga ne šaljite ovde.<br>
+Takođe nam obećavate da ste ga sami napisali ili umnožili s izvora koji je u javnom vlasništvu.
+'''Ne šaljite radove zaštićene autorskim pravima bez dozvole!'''",
+'copyrightwarning2'                => "Svi prilozi na ovom vikiju mogu da se menjaju, vraćaju ili brišu od strane drugih korisnika.
+Ako ne želite da se vaši prilozi nemilosrdno menjaju, ne šaljite ih ovde.<br />
+Takođe nam obećavate da ste ovo sami napisali ili umnožili s izvora u javnom vlasništvu (pogledajte $1 za detalje).
+'''Ne šaljite radove zaštićene autorskim pravima bez dozvole!'''",
 'longpageerror'                    => "'''GREŠKA: Tekst koji snimate je velik $1 kilobajta, što je veće od maksimalno dozvoljene veličine koja iznosi $2 kilobajta. Nemoguće je snimiti stranicu.'''",
 'readonlywarning'                  => "'''PAŽNJA: Baza je upravo zaključana zbog održavanja, tako da sada nećete moći da snimite svoje izmene.
 Možda bi bilo dobro da iskopirate tekst u neki editor teksta i sačuvate za kasnije.'''
@@ -2001,8 +2003,8 @@ Takođe pogledajte [[Special:WantedCategories|tražene kategorije]].',
 'special-categories-sort-abc'   => 'sortiraj azbučno',
 
 # Special:DeletedContributions
-'deletedcontributions'             => 'Obrisane izmene',
-'deletedcontributions-title'       => 'Obrisane izmene',
+'deletedcontributions'             => 'Obrisani prilozi',
+'deletedcontributions-title'       => 'Obrisani prilozi',
 'sp-deletedcontributions-contribs' => 'doprinosi',
 
 # Special:LinkSearch
@@ -2348,8 +2350,8 @@ $1',
 
 # Contributions
 'contributions'       => 'Prilozi korisnika',
-'contributions-title' => 'Prilozi korisnika za $1',
-'mycontris'           => 'Moji prilozi',
+'contributions-title' => 'Prilozi {{GENDER:$1|korisnika|korisnice|korisnika}} $1',
+'mycontris'           => 'Prilozi',
 'contribsub2'         => 'Za $1 ($2)',
 'nocontribs'          => 'Nisu nađene promene koje zadovoljavaju ove uslove.',
 'uctop'               => ' (vrh)',
@@ -2358,9 +2360,9 @@ $1',
 
 'sp-contributions-newbies'             => 'Prikaži samo priloge novih naloga',
 'sp-contributions-newbies-sub'         => 'Za novajlije',
-'sp-contributions-newbies-title'       => 'Doprinosi korisnika sa novim nalozima',
+'sp-contributions-newbies-title'       => 'Prilozi novih korisnika',
 'sp-contributions-blocklog'            => 'istorija blokiranja',
-'sp-contributions-deleted'             => 'obrisane izmene korisnika',
+'sp-contributions-deleted'             => 'obrisani prilozi',
 'sp-contributions-uploads'             => 'slanja',
 'sp-contributions-logs'                => 'istorije',
 'sp-contributions-talk'                => 'razgovor',
@@ -2442,7 +2444,7 @@ Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled blokiran
 'ipb-unblock-addr'                => 'Deblokiraj $1',
 'ipb-unblock'                     => 'Deblokiraj korisničko ime ili IP adresu',
 'ipb-blocklist'                   => 'Pogledajte postojeće blokove',
-'ipb-blocklist-contribs'          => 'Doprinosi za $1',
+'ipb-blocklist-contribs'          => 'Prilozi za $1',
 'unblockip'                       => 'Deblokiraj korisnika',
 'unblockiptext'                   => 'Upotrebite donji upitnik da biste vratili pravo pisanja
 ranije blokiranoj IP adresi ili korisničkom imenu.',
@@ -2907,7 +2909,7 @@ Njegovim izvršavanjem biste mogli da oštetite Vaš sistem.",
 # Special:NewFiles
 'newimages'             => 'Galerija novih slika',
 'imagelisttext'         => "Ispod je spisak od '''$1''' {{PLURAL:$1|fajla|fajla|fajlova}} poređanih $2.",
-'newimages-summary'     => 'Ova posebna stranica prikazuje poslednje poslate fajlove.',
+'newimages-summary'     => 'Ova posebna stranica prikazuje poslednje poslate datoteke.',
 'newimages-legend'      => 'Filter',
 'newimages-label'       => 'Ime fajla (ili njegov deo):',
 'showhidebots'          => '($1 botove)',

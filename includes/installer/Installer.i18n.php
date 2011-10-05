@@ -4228,6 +4228,7 @@ Asennus saattaa epäonnistua!",
 	'config-type-sqlite' => 'SQLite',
 	'config-type-oracle' => 'Oracle',
 	'config-type-ibm_db2' => 'IBM DB2',
+	'config-support-ibm_db2' => '* $1 on kaupallinen tietokanta yrityskäyttöön.',
 	'config-header-mysql' => 'MySQL-asetukset',
 	'config-header-postgres' => 'PostgreSQL-asetukset',
 	'config-header-sqlite' => 'SQLite-asetukset',
@@ -4247,9 +4248,16 @@ Nimeä käytetään SQLite-tietokannan tiedostonimessä.',
 Muuta hakemiston käyttöoikeuksia siten, että palvelinohjelmisto voi kirjoittaa siihen ja koita uudelleen.',
 	'config-sqlite-readonly' => 'Tiedostoon <code>$1</code> ei voi kirjoittaa.',
 	'config-sqlite-fts3-downgrade' => 'PHP:stä puuttuu FTS3-tuki. Poistetaan ominaisuus käytöstä tietokantatauluista.',
+	'config-upgrade-done' => "Päivitys valmis.
+
+Voit [$1 aloittaa wikin käytön].
+
+Napsauta alla olevaa painiketta, jos haluat luoda uudelleen <code>LocalSettings.php</code>-tiedoston.
+Tämä '''ei ole suositeltavaa''', jos wikissäsi ei ole ongelmia.",
 	'config-upgrade-done-no-regenerate' => 'Päivitys valmis.
 
 Voit [$1 aloittaa wikin käytön].',
+	'config-regenerate' => 'Luo uudelleen LocalSettings.php →',
 	'config-show-table-status' => 'Kysely SHOW TABLE STATUS epäonnistui!',
 	'config-mysql-engine' => 'Tallennusmoottori',
 	'config-mysql-innodb' => 'InnoDB',
@@ -4259,6 +4267,8 @@ Voit [$1 aloittaa wikin käytön].',
 	'config-site-name' => 'Wikin nimi',
 	'config-project-namespace' => 'Projektinimiavaruus',
 	'config-ns-generic' => 'Projekti',
+	'config-ns-site-name' => 'Sama kuin wikin nimi: $1',
+	'config-ns-other' => 'Muu (määritä)',
 	'config-admin-name' => 'Nimesi',
 	'config-admin-password' => 'Salasana',
 	'config-admin-password-confirm' => 'Salasana uudelleen',

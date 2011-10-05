@@ -635,6 +635,7 @@ Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen 
 'emailconfirmlink'           => 'Confirméiert är E-Mailadress w.e.g..',
 'invalidemailaddress'        => 'Dës E-Mailadress gëtt net akzeptéiert well se en ongëltegt Format (z.B. ongëlteg Zeechen) ze hu schéngt.
 Gitt eng valabel E-Mailadress an oder loosst dëst Feld eidel.',
+'cannotchangeemail'          => 'Mailadresse vu Benotzerkonte kënnen op dëser Wiki net geännert ginn.',
 'accountcreated'             => 'De Kont gouf geschaf',
 'accountcreatedtext'         => 'De Benotzerkont fir $1 gouf geschaf.',
 'createaccount-title'        => 'Opmaache vun engem Benotzerkont op {{SITENAME}}',
