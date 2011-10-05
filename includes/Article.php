@@ -75,6 +75,10 @@ class Article extends Page {
 		$this->mPage = $this->newPage( $title );
 	}
 
+	/**
+	 * @param $title Title
+	 * @return WikiPage
+	 */
 	protected function newPage( Title $title ) {
 		return new WikiPage( $title );
 	}
