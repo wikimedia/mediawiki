@@ -147,7 +147,7 @@ class SquidPurgeClient {
 	 * @param $url string
 	 */
 	public function queuePurge( $url ) {
-		$url = str_replace( "\n", '', $url );
+		$url = SquidUpdate::expand( str_replace( "\n", '', $url ) );
 		$this->requests[] = "PURGE $url HTTP/1.0\r\n" .
 			"Connection: Keep-Alive\r\n" .
 			"Proxy-Connection: Keep-Alive\r\n" .
