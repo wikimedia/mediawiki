@@ -59,14 +59,14 @@ class AncientPagesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgLang, $wgContLang;
+		global $wgContLang;
 
-		$d = $wgLang->timeanddate( wfTimestamp( TS_MW, $result->value ), true );
+		$d = $this->getLang()->timeanddate( wfTimestamp( TS_MW, $result->value ), true );
 		$title = Title::makeTitle( $result->namespace, $result->title );
-		$link = $skin->linkKnown(
+		$link = Linker::linkKnown(
 			$title,
 			htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) )
 		);
-		return wfSpecialList( $link, htmlspecialchars($d) );
+		return wfSpecialList( $link, htmlspecialchars( $d ) );
 	}
 }
