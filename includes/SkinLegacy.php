@@ -271,7 +271,8 @@ class LegacyTemplate extends BaseTemplate {
 		/* show links to different language variants */
 		global $wgDisableLangConversion, $wgLang;
 
-		$lang = $this->getSkin()->getTitle()->getPageLanguage();
+		$title = $this->getSkin()->getTitle();
+		$lang = $title->getPageLanguage();
 		$variants = $lang->getVariants();
 
 		if ( !$wgDisableLangConversion && sizeof( $variants ) > 1
