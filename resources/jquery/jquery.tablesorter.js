@@ -663,6 +663,10 @@
 							};
 							return false;
 						}
+					} )
+					// Allow links in headers to be clicked
+					.find( 'a' ).click( function( e ) {
+						e.stopPropagation();
 					} );
 
 				} );
