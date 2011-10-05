@@ -513,7 +513,7 @@ class SpecialBlock extends SpecialPage {
 			list( $ip, $range ) = explode( '/', $target, 2 );
 
 			if( ( IP::isIPv4( $ip ) && $wgBlockCIDRLimit['IPv4'] == 32 )
-				|| ( IP::isIPv6( $ip ) && $wgBlockCIDRLimit['IPV6'] == 128 ) )
+				|| ( IP::isIPv6( $ip ) && $wgBlockCIDRLimit['IPv6'] == 128 ) )
 			{
 				# Range block effectively disabled
 				return wfMessage( 'range_block_disabled' );
