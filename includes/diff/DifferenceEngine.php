@@ -262,6 +262,11 @@ CONTROL;
 		# a diff between a version V and its previous version V' AND the version V
 		# is the first version of that article. In that case, V' does not exist.
 		if ( $this->mOldRev === false ) {
+			$wgOut->setPageTitle( $this->mNewPage->getPrefixedText() );
+			$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
+			$samePage = true;
+			$oldHeader = '';
+		} else {
 			wfRunHooks( 'DiffViewHeader', array( $this, $this->mOldRev, $this->mNewRev ) );
 
 			$sk = $wgUser->getSkin();
@@ -269,11 +274,6 @@ CONTROL;
 				$sk->suppressQuickbar();
 			}
 
-			$wgOut->setPageTitle( $this->mNewPage->getPrefixedText() );
-			$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
-			$samePage = true;
-			$oldHeader = '';
-		} else {
 			if ( $this->mNewPage->equals( $this->mOldPage ) ) {
 				$wgOut->setPageTitle( $this->mNewPage->getPrefixedText() );
 				$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
