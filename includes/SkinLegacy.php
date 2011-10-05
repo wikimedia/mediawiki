@@ -66,10 +66,10 @@ class SkinLegacy extends SkinTemplate {
 }
 
 class LegacyTemplate extends BaseTemplate {
-	
+
 	// How many search boxes have we made?  Avoid duplicate id's.
 	protected $searchboxes = '';
-	
+
 	function execute() {
 		$this->html( 'headelement' );
 		echo $this->beforeContent();
@@ -80,7 +80,7 @@ class LegacyTemplate extends BaseTemplate {
 		$this->printTrail();
 		echo "\n</body></html>";
 	}
-	
+
 	/**
 	 * This will be called immediately after the <body> tag.  Split into
 	 * two functions to make it easier to subclass.
@@ -486,7 +486,7 @@ class LegacyTemplate extends BaseTemplate {
 
 				if ( $image ) {
 					$link = htmlspecialchars( $image->getURL() );
-					$style = $this->getInternalLinkAttributes( $link, $name );
+					$style = Linker::getInternalLinkAttributes( $link, $name );
 					$s[] = "<a href=\"{$link}\"{$style}>{$name}</a>";
 				}
 			}
