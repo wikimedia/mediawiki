@@ -215,9 +215,10 @@ class ChangesList extends ContextSource {
 		if ( $szdiff < 0 ) {
 			$formattedSizeClass = 'mw-plusminus-neg';
 		}
-		return Xml::element($tag,
-			array('dir' => 'ltr', 'class' => $formattedSizeClass),
-			"($formattedSize)");
+
+		return Html::element( $tag,
+			array( 'dir' => 'ltr', 'class' => $formattedSizeClass ),
+			"($formattedSize)" );
 	}
 
 	/**
