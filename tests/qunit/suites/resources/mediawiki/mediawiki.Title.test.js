@@ -181,7 +181,7 @@ test( 'Exists', function() {
 	title = new mw.Title( 'Project:Sandbox rules' );
 	assertTrue( title.exists(), 'Return true for page titles marked as existing' );
 	title = new mw.Title( 'Foobar' );
-	assertFalse( title.exists(), 'Return false for page titles marked as inexistent' );
+	assertFalse( title.exists(), 'Return false for page titles marked as nonexistent' );
 
 });
 

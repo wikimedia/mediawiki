@@ -111,7 +111,7 @@ test( 'mw.message & mw.messages', function() {
 	strictEqual( hello.exists(), true, 'Message.exists returns true for existing messages' );
 
 	var goodbye = mw.message( 'goodbye' );
-	strictEqual( goodbye.exists(), false, 'Message.exists returns false for inexistent messages' );
+	strictEqual( goodbye.exists(), false, 'Message.exists returns false for nonexistent messages' );
 
 	equal( goodbye.plain(), '<goodbye>', 'Message.toString returns plain <key> if format is "plain" and key does not exist' );
 	// bug 30684
@@ -124,7 +124,7 @@ test( 'mw.msg', function() {
 	ok( mw.messages.set( 'hello', 'Hello <b>awesome</b> world' ), 'mw.messages.set: Register' );
 
 	equal( mw.msg( 'hello' ), 'Hello <b>awesome</b> world', 'Gets message with default options (existing message)' );
-	equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (inexistent message)' );
+	equal( mw.msg( 'goodbye' ), '<goodbye>', 'Gets message with default options (nonexistent message)' );
 });
 
 test( 'mw.loader', function() {
