@@ -735,7 +735,7 @@ abstract class File {
 			// Get the descriptionUrl to embed it as comment into the thumbnail. Bug 19791.
 			$descriptionUrl =  $this->getDescriptionUrl();
 			if ( $descriptionUrl ) {
-				$params['descriptionUrl'] = $wgServer . $descriptionUrl;
+				$params['descriptionUrl'] = wfExpandUrl( $descriptionUrl, PROTO_CANONICAL );
 			}
 
 			$script = $this->getTransformScript();
