@@ -143,7 +143,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$contWhere = "cl_sortkey $op $escSortkey OR " .
 					"(cl_sortkey = $escSortkey AND " .
 					"cl_from $op= $from)";
-
+				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
+				$this->addWhereRange( 'cl_sortkey', $dir, null, null );
+				$this->addWhereRange( 'cl_from', $dir, null, null );
 			} else {
 				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
 				$this->addWhereRange( 'cl_sortkey',
