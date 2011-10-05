@@ -2001,7 +2001,7 @@ HTML
 
 			$de = new DifferenceEngine( $this->mTitle );
 			$de->setText( $this->textbox2, $this->textbox1 );
-			$de->showDiff( wfMsg( "yourtext" ), wfMsg( "storedversion" ) );
+			$de->showDiff( wfMsgExt( 'yourtext', 'parseinline' ), wfMsg( 'storedversion' ) );
 
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
 			$this->showTextbox2();
@@ -2291,7 +2291,7 @@ HTML
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 		$de = new DifferenceEngine( $this->mTitle );
 		$de->setText( $this->getContent(), $this->textbox2 );
-		$de->showDiff( wfMsg( "storedversion" ), wfMsg( "yourtext" ) );
+		$de->showDiff( wfMsg( "storedversion" ), wfMsgExt( 'yourtext', 'parseinline' ) );
 
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourtext" );
 		$this->showTextbox2();
