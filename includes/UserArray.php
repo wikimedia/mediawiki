@@ -77,6 +77,9 @@ class UserArrayFromResult extends UserArray {
 		return $this->res->numRows();
 	}
 
+	/**
+	 * @return User
+	 */
 	function current() {
 		return $this->current;
 	}

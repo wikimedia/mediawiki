@@ -86,7 +86,8 @@ class LinkBatch {
 
 	/**
 	 * Do the query and add the results to the LinkCache object
-	 * Return an array mapping PDBK to ID
+	 *
+	 * @return Array mapping PDBK to ID
 	 */
 	public function execute() {
 		$linkCache = LinkCache::singleton();
@@ -96,6 +97,9 @@ class LinkBatch {
 	/**
 	 * Do the query and add the results to a given LinkCache object
 	 * Return an array mapping PDBK to ID
+	 *
+	 * @param $cache LinkCache
+	 * @return Array remaining IDs
 	 */
 	protected function executeInto( &$cache ) {
 		wfProfileIn( __METHOD__ );
@@ -112,8 +116,9 @@ class LinkBatch {
 	 * This function *also* stores extra fields of the title used for link
 	 * parsing to avoid extra DB queries.
 	 *
-	 * @param $cache
+	 * @param $cache LinkCache
 	 * @param $res
+	 * @return Array of remaining titles
 	 */
 	public function addResultToCache( $cache, $res ) {
 		if ( !$res ) {
@@ -144,6 +149,7 @@ class LinkBatch {
 
 	/**
 	 * Perform the existence test query, return a ResultWrapper with page_id fields
+	 * @return Bool|ResultWrapper
 	 */
 	public function doQuery() {
 		if ( $this->isEmpty() ) {
@@ -168,6 +174,11 @@ class LinkBatch {
 		return $res;
 	}
 
+	/**
+	 * Do (and cache) {{GENDER:...}} information for userpages in this LinkBatch
+	 *
+	 * @return bool whether the query was successful
+	 */
 	public function doGenderQuery() {
 		if ( $this->isEmpty() ) {
 			return false;
@@ -180,6 +191,7 @@ class LinkBatch {
 
 		$genderCache = GenderCache::singleton();
 		$genderCache->dolinkBatch( $this->data, $this->caller );
+		return true;
 	}
 
 	/**
