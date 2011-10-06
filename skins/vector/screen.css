@@ -211,12 +211,14 @@ div#mw-head h5 {
 		float: left;
 		/* @embed */
 		background-image: url(images/arrow-down-icon.png);
-		background-position: 0px 60%;
+		background-position: 100% 60%;
 		background-repeat: no-repeat;
 		cursor: pointer;
 	}
 	div.vectorMenuFocus {
-		background-position: -22px 60%;
+        /* @embed */
+		background-image: url(images/arrow-down-focus-icon.png);
+		background-position: 100% 60%;
 	}
 	/* @noflip */
 	body.rtl div.vectorMenu {
