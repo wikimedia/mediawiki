@@ -216,7 +216,7 @@ div#mw-head h5 {
 		cursor: pointer;
 	}
 	div.vectorMenuFocus {
-        /* @embed */
+		/* @embed */
 		background-image: url(images/arrow-down-focus-icon.png);
 		background-position: 100% 60%;
 	}
