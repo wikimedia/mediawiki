@@ -4,7 +4,7 @@
  * @file
  * @ingroup Cache
  */
-abstract class ObjectFileCache extends FileCacheBase {
+class ObjectFileCache extends FileCacheBase {
 	/**
 	 * Construct an ObjectFileCache from a key and a type
 	 * @param $key string
@@ -16,7 +16,6 @@ abstract class ObjectFileCache extends FileCacheBase {
 
 		$cache->mKey = (string)$key;
 		$cache->mType = (string)$type;
-		$cache->mExt = 'cache';
 
 		return $cache;
 	}
