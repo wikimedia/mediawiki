@@ -1,5 +1,6 @@
 /* Table Sorting */
 table.jquery-tablesorter th.headerSort {
+	/* @embed */
         background-image: url(images/sort_both.gif);
         cursor: pointer;
         background-repeat: no-repeat;
@@ -7,8 +8,10 @@ table.jquery-tablesorter th.headerSort {
         padding-right: 21px;
 }
 table.jquery-tablesorter th.headerSortUp {
+	/* @embed */
         background-image: url(images/sort_up.gif);
 }
 table.jquery-tablesorter th.headerSortDown {
+	/* @embed */
         background-image: url(images/sort_down.gif);
 }
