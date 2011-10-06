@@ -1613,7 +1613,7 @@ HTML
 			if ( $this->isCssJsSubpage ) {
 				# Check the skin exists
 				if ( $this->isWrongCaseCssJsPage ) {
-					$wgOut->wrapWikiMsg( "<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>", array( 'userinvalidcssjstitle', $this->getContextTitle()->getSkinFromCssJsSubpage() ) );
+					$wgOut->wrapWikiMsg( "<div class='error' id='mw-userinvalidcssjstitle'>\n$1\n</div>", array( 'userinvalidcssjstitle', $this->mTitle->getSkinFromCssJsSubpage() ) );
 				}
 				if ( $this->formtype !== 'preview' ) {
 					if ( $this->isCssSubpage )

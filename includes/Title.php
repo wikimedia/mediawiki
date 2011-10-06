@@ -2022,9 +2022,10 @@ class Title {
 	public function getSkinFromCssJsSubpage() {
 		$subpage = explode( '/', $this->mTextform );
 		$subpage = $subpage[ count( $subpage ) - 1 ];
-		// FIXME: Should only match endings
-		// Consider 'Foo/.js.monobook' or 'Foo/mon.js.obook.css'
-		return( str_replace( array( '.css', '.js' ), array( '', '' ), $subpage ) );
+		$lastdot = strrpos( $subpage, '.' );
+		if ( $lastdot === false )
+			return $subpage; # Never happens: only called for names ending in '.css' or '.js'
+		return substr( $subpage, 0, $lastdot );
 	}
 
 	/**
