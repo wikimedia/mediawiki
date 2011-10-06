@@ -259,7 +259,7 @@ class BlockListPager extends TablePager {
 
 		switch( $name ) {
 			case 'ipb_timestamp':
-				$formatted = $this->getLang()->timeanddate( $value, /* User preference timezome */ true );
+				$formatted = $this->getLang()->timeanddate( $value, /* User preference timezone */ true );
 				break;
 
 			case 'ipb_target':
@@ -285,7 +285,7 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_expiry':
-				$formatted = $this->getLang()->formatExpiry( $value, /* User preference timezome */ true );
+				$formatted = $this->getLang()->formatExpiry( $value, /* User preference timezone */ true );
 				if( $this->getUser()->isAllowed( 'block' ) ){
 					if( $row->ipb_auto ){
 						$links[] = Linker::linkKnown(
