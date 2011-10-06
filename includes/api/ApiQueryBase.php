@@ -220,6 +220,16 @@ abstract class ApiQueryBase extends ApiBase {
 			}
 		}
 	}
+	/**
+	 * Add a WHERE clause corresponding to a range, similar to addWhereRange,
+	 * but converts $start and $end to database timestamps.
+	 * @see addWhereRange
+	 */
+	protected function addTimestampWhereRange( $field, $dir, $start, $end, $sort = true ) {
+		$db = $this->getDb();
+		return $this->addWhereRange( $field, $dir, 
+			$db->timestamp( $start ), $db->timestamp( $end ), $sort );
+	}
 
 	/**
 	 * Add an option such as LIMIT or USE INDEX. If an option was set

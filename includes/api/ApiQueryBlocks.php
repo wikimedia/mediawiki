@@ -81,7 +81,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 							$fld_flags );
 
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
-		$this->addWhereRange( 'ipb_timestamp', $params['dir'], $params['start'], $params['end'] );
+		$this->addTimestampWhereRange( 'ipb_timestamp', $params['dir'], $params['start'], $params['end'] );
 		if ( isset( $params['ids'] ) ) {
 			$this->addWhereFld( 'ipb_id', $params['ids'] );
 		}
