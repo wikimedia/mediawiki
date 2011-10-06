@@ -959,9 +959,12 @@ class MWMemcached {
 			$this->stats[$cmd] = 1;
 		}
 		
-		// Memcached doesn't seem to handle very high TTL values very well,
-		// so clamp them at 30 days
-		if ( $exp > 2592000 ) {
+		// TTLs higher than 30 days will be detected as absolute TTLs
+		// (UNIX timestamps), and will result in the cache entry being
+		// discarded immediately because the expiry is in the past.
+		// Clamp expiries >30d at 30d, unless they're >=1e9 in which
+		// case they are likely to really be absolute (1e9 = 2011-09-09)
+		if ( $exp > 2592000 && $exp < 1000000000 ) {
 			$exp = 2592000;
 		}
 
