@@ -95,6 +95,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 	/** True if the current result set is the first one */
 	public $mIsFirst;
+	public $mIsLast;
+
+	protected $mLastShown, $mFirstShown, $mPastTheEndIndex, $mDefaultQuery, $mNavigationBar;
 
 	/**
 	 * Result object for the query. Warning: seek before use.
@@ -190,12 +193,16 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 	/**
 	 * Set the offset from an other source than the request
+	 *
+	 * @param $offset Int|String
 	 */
 	function setOffset( $offset ) {
 		$this->mOffset = $offset;
 	}
 	/**
 	 * Set the limit from an other source than the request
+	 *
+	 * @param $limit Int|String
 	 */
 	function setLimit( $limit ) {
 		$this->mLimit = $limit;
@@ -497,6 +504,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * $linkTexts will be used. Both $linkTexts and $disabledTexts are arrays
 	 * of HTML.
 	 *
+	 * @param $linkTexts Array
+	 * @param $disabledTexts Array
 	 * @return Array
 	 */
 	function getPagingLinks( $linkTexts, $disabledTexts = array() ) {
@@ -619,9 +628,12 @@ abstract class IndexPager extends ContextSource implements Pager {
  * @ingroup Pager
  */
 abstract class AlphabeticPager extends IndexPager {
+
 	/**
 	 * Shamelessly stolen bits from ReverseChronologicalPager,
 	 * didn't want to do class magic as may be still revamped
+	 *
+	 * @return String HTML
 	 */
 	function getNavigationBar() {
 		if ( !$this->isNavigationBarShown() ) return '';
@@ -884,9 +896,13 @@ abstract class TablePager extends IndexPager {
 		return "<tr><td colspan=\"$colspan\">$msgEmpty</td></tr>\n";
 	}
 
+	/**
+	 * @param $row Array
+	 * @return String HTML
+	 */
 	function formatRow( $row ) {
 		$this->mCurrentRow = $row;  	# In case formatValue etc need to know
-		$s = Xml::openElement( 'tr', $this->getRowAttrs($row) );
+		$s = Xml::openElement( 'tr', $this->getRowAttrs( $row ) );
 		$fieldNames = $this->getFieldNames();
 		foreach ( $fieldNames as $field => $name ) {
 			$value = isset( $row->$field ) ? $row->$field : null;
@@ -914,7 +930,7 @@ abstract class TablePager extends IndexPager {
 	 * Get attributes to be applied to the given row.
 	 *
 	 * @param $row Object: the database result row
-	 * @return Associative array
+	 * @return Array of <attr> => <value>
 	 */
 	function getRowAttrs( $row ) {
 		$class = $this->getRowClass( $row );
@@ -931,9 +947,9 @@ abstract class TablePager extends IndexPager {
 	 * take this as an excuse to hardcode styles; use classes and
 	 * CSS instead.  Row context is available in $this->mCurrentRow
 	 *
-	 * @param $field The column
-	 * @param $value The cell contents
-	 * @return Associative array
+	 * @param $field String The column
+	 * @param $value String The cell contents
+	 * @return Array of attr => value
 	 */
 	function getCellAttrs( $field, $value ) {
 		return array( 'class' => 'TablePager_col_' . $field );
@@ -957,6 +973,7 @@ abstract class TablePager extends IndexPager {
 
 	/**
 	 * A navigation bar with images
+	 * @return String HTML
 	 */
 	function getNavigationBar() {
 		global $wgStylePath;
@@ -1044,6 +1061,7 @@ abstract class TablePager extends IndexPager {
 	 * Resubmits all defined elements of the query string, except for a
 	 * blacklist, passed in the $blacklist parameter.
 	 *
+	 * @param $blacklist Array parameters from the request query which should not be resubmitted
 	 * @return String: HTML fragment
 	 */
 	function getHiddenFields( $blacklist = array() ) {
@@ -1120,6 +1138,8 @@ abstract class TablePager extends IndexPager {
 	 * An array mapping database field names to a textual description of the
 	 * field name, for use in the table header. The description should be plain
 	 * text, it will be HTML-escaped later.
+	 *
+	 * @return Array
 	 */
 	abstract function getFieldNames();
 }
