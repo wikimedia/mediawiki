@@ -17,7 +17,7 @@ class LanguageTr extends Language {
 	 * @return string
 	 */
 	function ucfirst ( $string ) {
-		if ( !empty( $string ) && $string[0] == 'i' ) {
+		if ( strlen( $string ) && $string[0] == 'i' ) {
 			return 'İ' . substr( $string, 1 );
 		} else {
 			return parent::ucfirst( $string );
@@ -29,7 +29,7 @@ class LanguageTr extends Language {
 	 * @return mixed|string
 	 */
 	function lcfirst ( $string ) {
-		if ( !empty( $string ) && $string[0] == 'I' ) {
+		if ( strlen( $string ) && $string[0] == 'I' ) {
 			return 'ı' . substr( $string, 1 );
 		} else {
 			return parent::lcfirst( $string );
@@ -45,7 +45,15 @@ class LanguageTr extends Language {
 	 * @return string
 	 */
 	function uc( $string, $first = false ) {
-		$string = preg_replace( '/i/', 'İ', $string );
+		if ( strlen( $string ) ) {
+			if ( $first ) {
+				if ( $string[0] === 'i' ) {
+					$string = 'İ' . substr( $string, 1 );
+				}
+			} else {
+				$string = str_replace( 'i', 'İ', $string );
+			}
+		}
 		return parent::uc( $string, $first );
 	}
 
@@ -58,7 +66,15 @@ class LanguageTr extends Language {
 	 * @return string
 	 */
 	function lc( $string, $first = false ) {
-		$string = preg_replace( '/I/', 'ı', $string );
+		if ( strlen( $string ) ) {
+			if ( $first ) {
+				if ( $string[0] == 'I' ) {
+					$string = 'ı' . substr( $string, 1 );
+				}
+			} else {
+				$string = str_replace( 'I', 'ı', $string );
+			}
+		}
 		return parent::lc( $string, $first );
 	}
 
