@@ -826,7 +826,7 @@ class SpecialBlock extends SpecialPage {
 	 * Return a comma-delimited list of "flags" to be passed to the log
 	 * reader for this block, to provide more information in the logs
 	 * @param $data Array from HTMLForm data
-	 * @param $type Block::TYPE_ constant
+	 * @param $type Block::TYPE_ constant (USER, RANGE, or IP)
 	 * @return array
 	 */
 	protected static function blockLogFlags( array $data, $type ) {
@@ -845,7 +845,7 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		# Same as anononly, this is not displayed when blocking an IP address
-		if( !$data['AutoBlock'] && $type != Block::TYPE_IP ){
+		if( !$data['AutoBlock'] && $type == Block::TYPE_USER ){
 			// For grepping: message block-log-flags-noautoblock
 			$flags[] = 'noautoblock';
 		}
