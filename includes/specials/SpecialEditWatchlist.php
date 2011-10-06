@@ -443,7 +443,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @return HTMLForm
 	 */
 	protected function getRawForm(){
-		$titles = implode( array_map( 'htmlspecialchars', $this->getWatchlist() ), "\n" );
+		$titles = implode( $this->getWatchlist(), "\n" );
 		$fields = array(
 			'Titles' => array(
 				'type' => 'textarea',
