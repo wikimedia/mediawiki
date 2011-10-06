@@ -415,8 +415,8 @@ table.os-suggest-results {
 
 /** Generic minor/bot/newpage styling (recent changes) */
 .newpage,
-.minor,
-.bot {
+.minoredit,
+.botedit {
 	font-weight: bold;
 }
 
