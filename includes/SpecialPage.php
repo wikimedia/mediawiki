@@ -1005,7 +1005,9 @@ class SpecialMypage extends RedirectSpecialPage {
 	function __construct() {
 		parent::__construct( 'Mypage' );
 		$this->mAllowedRedirectParams = array( 'action' , 'preload' , 'editintro',
-			'section', 'oldid', 'diff', 'dir' );
+			'section', 'oldid', 'diff', 'dir',
+			// Options for action=raw; missing ctype can break JS or CSS in some browsers
+			'ctype', 'maxage', 'smaxage' );
 	}
 
 	function getRedirect( $subpage ) {
