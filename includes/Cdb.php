@@ -72,7 +72,7 @@ abstract class CdbWriter {
 	 *
 	 * @param $fileName string
 	 *
-	 * @return bool
+	 * @return CdbWriter_DBA|CdbWriter_PHP
 	 */
 	public static function open( $fileName ) {
 		if ( CdbReader::haveExtension() ) {
