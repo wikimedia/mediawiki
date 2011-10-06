@@ -745,6 +745,7 @@ Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
 'emailconfirmlink'           => 'Kinnita oma e-posti aadress',
 'invalidemailaddress'        => 'E-aadress ei ole aktsepteeritav, sest see on vigaselt kirjutatud.
 Ole hea ja anna õige e-aadress või jäta lahter tühjaks.',
+'cannotchangeemail'          => 'Selles vikis ei saa konto e-posti aadressi muuta.',
 'accountcreated'             => 'Konto loodud',
 'accountcreatedtext'         => 'Kasutajakonto kasutajatunnusele $1 loodud.',
 'createaccount-title'        => '{{GRAMMAR:illative|{{SITENAME}}}} konto loomine',
@@ -2954,6 +2955,7 @@ Selle avamine võib su arvutit kahjustada.",
 'svg-long-desc'          => 'SVG fail, algsuurus $1 × $2 pikslit, faili suurus: $3',
 'show-big-image'         => 'Originaalsuurus',
 'show-big-image-preview' => 'Selle eelvaate suurus: $1.',
+'show-big-image-other'   => '{{PLURAL:$2|Teine eraldusvõime|Teised eraldusvõimed}}: $1.',
 'show-big-image-size'    => '$1 × $2 pikslit',
 'file-info-gif-looped'   => 'korduv',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|kaader|kaadrit}}',
@@ -2973,6 +2975,13 @@ Järgnevas loendis, mis on sorteeritud $2, on '''$1''' {{PLURAL:$1|fail|faili}}.
 'ilsubmit'              => 'Otsi',
 'bydate'                => 'kuupäeva järgi',
 'sp-newimages-showfrom' => 'Näita uusi faile alates $2 $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|üks sekund|$1 sekundit}}',
+'minutes' => '{{PLURAL:$1|üks minut|$1 minutit}}',
+'hours'   => '{{PLURAL:$1|üks tund|$1 tundi}}',
+'days'    => '{{PLURAL:$1|üks päev|$1 päeva}}',
+'ago'     => '$1 tagasi',
 
 # Bad image list
 'bad_image_list' => 'Arvesse võetakse ainult nimekirja ühikud (read, mis algavad sümboliga *).

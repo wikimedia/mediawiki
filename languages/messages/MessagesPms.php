@@ -2034,10 +2034,10 @@ Che a varda $2 për na lista dle pàgine scancelà ant j'ùltim temp.",
 ** Vandalism",
 'delete-edit-reasonlist' => 'Modifiché la rason dlë scancelament',
 'delete-toobig'          => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 {{PLURAL:$1|revision|revision}}.
-Lë scancelassion ëd pàgine parej a l'é stàita limità për evité ch'as fasa darmagi për eror a {{SITENAME}}.",
+Lë scancelassion ëd pàgine parèj a l'é stàita limità për evité ch'as fasa darmagi për eror a {{SITENAME}}.",
 'delete-warning-toobig'  => "Sta pàgina-sì a l'ha na stòria motobin longa, bele pì che $1 {{PLURAL:$1|revision|revision}}.
-A scancelela as peul fesse darmagi a j'operassion dla base dat ëd {{SITENAME}};
-ch'a fasa euj a lòn ch'a fa.",
+A scancelela as peul fesse darmagi a j'operassion dla base ëd dat ëd {{SITENAME}};
+ch'a daga da ment a lòn ch'a fa.",
 
 # Rollback
 'rollback'          => 'Dòvra na revision pì veja',
