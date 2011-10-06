@@ -120,6 +120,9 @@ production.
 * (bug 26885) Allow show/hide of account blocks, temporary blocks and single IP
   address blocks for list=blocks.
 * (bug 30591) Add support to only return keys in ApiAllMessages.
+* (bug 29392) Setting the start or end parameter now works with lists blocks,
+  categorymembers, deletedrevs, logevents, protectedtitles, usercontributions 
+  and watchlist in Postgres
 
 === Languages updated in 1.19 ===
 

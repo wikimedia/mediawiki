@@ -64,7 +64,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addFieldsIf( 'pt_expiry', isset( $prop['expiry'] ) );
 		$this->addFieldsIf( 'pt_create_perm', isset( $prop['level'] ) );
 
-		$this->addWhereRange( 'pt_timestamp', $params['dir'], $params['start'], $params['end'] );
+		$this->addTimestampWhereRange( 'pt_timestamp', $params['dir'], $params['start'], $params['end'] );
 		$this->addWhereFld( 'pt_namespace', $params['namespace'] );
 		$this->addWhereFld( 'pt_create_perm', $params['level'] );
 

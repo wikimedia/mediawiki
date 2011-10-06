@@ -252,14 +252,14 @@ class ApiQueryRevisions extends ApiQueryBase {
 			// one row with the same timestamp for the same page.
 			// The order needs to be the same as start parameter to avoid SQL filesort.
 			if ( is_null( $params['startid'] ) && is_null( $params['endid'] ) ) {
-				$this->addWhereRange( 'rev_timestamp', $params['dir'],
+				$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
 					$params['start'], $params['end'] );
 			} else {
 				$this->addWhereRange( 'rev_id', $params['dir'],
 					$params['startid'], $params['endid'] );
 				// One of start and end can be set
 				// If neither is set, this does nothing
-				$this->addWhereRange( 'rev_timestamp', $params['dir'],
+				$this->addTimestampWhereRange( 'rev_timestamp', $params['dir'],
 					$params['start'], $params['end'], false );
 			}
 

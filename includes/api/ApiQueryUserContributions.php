@@ -182,7 +182,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ( $this->multiUserMode ) {
 			$this->addWhereRange( 'rev_user_text', $this->params['dir'], null, null );
 		}
-		$this->addWhereRange( 'rev_timestamp',
+		$this->addTimestampWhereRange( 'rev_timestamp',
 			$this->params['dir'], $this->params['start'], $this->params['end'] );
 		$this->addWhereFld( 'page_namespace', $this->params['namespace'] );
 
