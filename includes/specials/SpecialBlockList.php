@@ -200,6 +200,17 @@ class BlockListPager extends TablePager {
 	protected $conds;
 	protected $page;
 
+	/**
+	 * Getting the user names from the userids stored in the ipb_by column can be
+	 * expensive, so we cache the data here.
+	 * @var Array of ID => Name
+	 */
+	private $userNameCache;
+
+	/**
+	 * @param $page SpecialPage
+	 * @param $conds Array
+	 */
 	function __construct( $page, $conds ) {
 		$this->page = $page;
 		$this->conds = $conds;
@@ -241,7 +252,9 @@ class BlockListPager extends TablePager {
 			$msg = array_combine( $msg, array_map( 'wfMessage', $msg ) );
 		}
 
+		/** @var $row object */
 		$row = $this->mCurrentRow;
+
 		$formatted = '';
 
 		switch( $name ) {
@@ -300,11 +313,12 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_by':
-				$user = User::newFromId( $value );
-				if( $user instanceof User ){
-					$formatted = Linker::userLink( $user->getId(), $user->getName() );
-					$formatted .= Linker::userToolLinks( $user->getId(), $user->getName() );
-				}
+				$username = array_key_exists( $value, $this->userNameCache )
+					? $this->userNameCache[$value]
+					: User::newFromId( $value )->getName();
+
+				$formatted = Linker::userLink( $value, $username );
+				$formatted .= Linker::userToolLinks( $value, $username );
 				break;
 
 			case 'ipb_reason':
@@ -388,5 +402,41 @@ class BlockListPager extends TablePager {
 
 	function isFieldSortable( $name ) {
 		return false;
+	}
+
+	/**
+	 * Do a LinkBatch query to minimise database load when generating all these links
+	 * @param $result
+	 */
+	function preprocessResults( $result ){
+		wfProfileIn( __METHOD__ );
+		# Do a link batch query
+		$lb = new LinkBatch;
+		$lb->setCaller( __METHOD__ );
+
+		$userids = array();
+
+		foreach ( $result as $row ) {
+			$userids[] = $row->ipb_by;
+
+			# Usernames and titles are in fact related by a simple substitution of space -> underscore
+			# The last few lines of Title::secureAndSplit() tell the story.
+			$name = str_replace( ' ', '_', $row->ipb_address );
+			$lb->add( NS_USER, $name );
+			$lb->add( NS_USER_TALK, $name );
+		}
+
+		$ua = UserArray::newFromIDs( $userids );
+		foreach( $ua as $user ){
+			/* @var $user User */
+			$this->userNameCache[$user->getID()] = $user->getName();
+
+			$name = str_replace( ' ', '_', $user->getName() );
+			$lb->add( NS_USER, $name );
+			$lb->add( NS_USER_TALK, $name );
+		} 
+
+		$lb->execute();
+		wfProfileOut( __METHOD__ );
 	}
 }
