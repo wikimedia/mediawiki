@@ -91,6 +91,10 @@ class SpecialComparePages extends SpecialPage {
 				'type' => 'hidden',
 				'name' => 'diffonly',
 			),
+			'Unhide' => array(
+				'type' => 'hidden',
+				'name' => 'unhide',
+			),
 		), $this->getContext(), 'compare' );
 		$form->setSubmitText( wfMsg( 'compare-submit' ) );
 		$form->suppressReset();
@@ -111,8 +115,9 @@ class SpecialComparePages extends SpecialPage {
 				$rev1,
 				$rev2,
 				null, // rcid
-				( $data["Action"] == 'purge' ),
-				false );
+				( $data['Action'] == 'purge' ),
+				( $data['Unhide'] == '1' )
+			);
 			$de->showDiffPage( true );
 		}
 	}
