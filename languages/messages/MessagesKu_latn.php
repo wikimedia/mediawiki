@@ -1322,6 +1322,7 @@ Li [[Special:WantedCategories|kategoriyên xwestî]] binêre.',
 'listgrouprights-group'           => 'Kom',
 'listgrouprights-rights'          => 'Maf',
 'listgrouprights-members'         => '(lîsteya endaman)',
+'listgrouprights-addgroup-all'    => 'Hemû koman tevlî bike',
 'listgrouprights-removegroup-all' => 'Hemû koman jê bibe',
 
 # E-mail user
@@ -1400,7 +1401,7 @@ Heta tu li vê guherandinê nenêrî, peyamên din ên guhertinê yên vê rûpe
              Peyamên {{SITENAME}}
 
 --
-Heke tu dixwazî lîsteya xwe yê şopandinê biguherînî, li
+Heke tu dixwazî lîsteya xwe ya şopandinê biguherînî, li
 {{canonicalurl:{{#special:EditWatchlist}}}} binêre.
 
 Paşagahîdan û alîkaraya din:
@@ -1511,9 +1512,10 @@ Ji bo jêbirinan û çêkirinên nuh ra, xêra xwe di [[Special:Log/delete|reşa
 'undelete-show-file-submit' => 'Erê',
 
 # Namespace form on various pages
-'namespace'      => 'Boşahîya nav:',
-'invert'         => 'Hilbijardinê pêçewane bike',
-'blanknamespace' => '(Sereke)',
+'namespace'             => 'Boşahîya nav:',
+'invert'                => 'Hilbijardinê pêçewane bike',
+'namespace_association' => 'Navê têkilîdar',
+'blanknamespace'        => '(Sereke)',
 
 # Contributions
 'contributions'       => 'Beşdariyên vê bikarhêner',
@@ -1964,13 +1966,28 @@ if (wgUserLanguage == "ku-arab")
 
 'exif-subjectdistancerange-0' => 'Nenas',
 
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-m' => 'Serê saetê mîl',
+
 # Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kîlometre',
 'exif-gpsdestdistance-m' => 'Mîl',
+
+'exif-objectcycle-a' => 'Tenê sibehan',
+'exif-objectcycle-p' => 'Tenê êvaran',
 
 'exif-dc-date'   => 'Dîrok',
 'exif-dc-rights' => 'Maf',
 
+'exif-iimcategory-edu' => 'Perwerdehî',
+'exif-iimcategory-evn' => 'Hawirdor',
+'exif-iimcategory-hth' => 'Tenduristî',
+'exif-iimcategory-pol' => 'Siyaset',
+'exif-iimcategory-rel' => 'Dîn û bawerî',
+'exif-iimcategory-sci' => 'Zanist û teknolojî',
 'exif-iimcategory-spo' => 'Werzîş',
+'exif-iimcategory-war' => 'Şer, pevçûn û alozî',
+'exif-iimcategory-wea' => 'Hewa',
 
 # External editor support
 'edit-externally-help' => '(Ji bo agahîyên zav [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] li vir binêre)',

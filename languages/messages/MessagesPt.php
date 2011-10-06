@@ -3828,6 +3828,10 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moveu}} página $3 para $4 sem deixar um redireccionamento',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|moveu}} a página $3 para $4 através de um redireccionamento',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a página $3 para $4 sem um redireccionamento',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|criou}} uma conta de utilizador',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|criou}} uma conta de utilizador',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|criou}} {{GENDER:$4|uma conta de utilizador}} $3',
+'logentry-newusers-autocreate'        => 'A conta $1 foi {{GENDER:$2|criada}} automaticalmente',
 'newuserlog-byemail'                  => 'palavra-chave enviada por correio-electrónico',
 
 );

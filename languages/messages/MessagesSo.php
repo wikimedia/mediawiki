@@ -179,7 +179,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Qalad',
 'returnto'          => 'Ku noqo $1.',
-'tagline'           => 'Ka socoto {{SITENAME}}',
+'tagline'           => 'Ka {{SITENAME}}',
 'help'              => 'Caawinaad',
 'search'            => 'Raadi',
 'searchbutton'      => 'Raadi',
@@ -1006,7 +1006,7 @@ si aad ugu dirto E-boosto isticmaalayaasha kale.',
 'emailpage'       => 'Isticmaalaha e-mailka',
 'noemailtitle'    => 'Malahan cinwaan E-mail',
 'emailfrom'       => 'Ka socoto:',
-'emailto'         => 'Ku socoto:',
+'emailto'         => 'Ku:',
 'emailsubject'    => 'Arinta:',
 'emailmessage'    => 'Fariinta:',
 'emailsend'       => 'Dir',
@@ -1107,7 +1107,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 # Namespace form on various pages
 'namespace'      => 'Meesha magacyada:',
 'invert'         => 'Dabagedi dalabka',
-'blanknamespace' => '(Muhiim)',
+'blanknamespace' => '(Bogga hore)',
 
 # Contributions
 'contributions'       => 'Isticmaalada wax ku darsaday',
@@ -1168,7 +1168,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'movedto'     => 'loo wareejiyey',
 'movetalk'    => "Wareejiyey bogga wadahadalka la'xiriira",
 'movelogpage' => 'Wareejinta guda galaheeda',
-'revertmove'  => 'soo celin',
+'revertmove'  => 'soo celi',
 
 # Export
 'export'            => 'Dhoofi boggag',

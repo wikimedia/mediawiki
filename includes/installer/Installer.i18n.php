@@ -10998,6 +10998,13 @@ $messages['myv'] = array(
 	'mainpagetext' => "'''МедияВикинь тевс аравтомазо парсте лиссь.'''",
 );
 
+/** Mazanderani (مازِرونی)
+ * @author محک
+ */
+$messages['mzn'] = array(
+	'config-help' => 'راهنما',
+);
+
 /** Nahuatl (Nāhuatl) */
 $messages['nah'] = array(
 	'mainpagetext' => "'''MediaHuiqui cualli ōmotlahtlāli.'''",
