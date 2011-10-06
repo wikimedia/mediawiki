@@ -90,7 +90,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		$description_items[] = $protType;
 
-		$expiry = strlen( $row->pt_expiry ) ? $lang->formatExpiry( $row->pt_expiry, TS_MW ) : $infinity;
+		$expiry = strlen( $row->pt_expiry ) ? $this->getLang()->formatExpiry( $row->pt_expiry, TS_MW ) : $infinity;
 		if( $expiry != $infinity ) {
 			$expiry_description = wfMsg(
 				'protect-expiring-local',
