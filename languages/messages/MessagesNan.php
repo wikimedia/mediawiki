@@ -133,7 +133,7 @@ $messages = array(
 'dec'           => '12g',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|Lūi-pia̍t|Lūi-pia̍t}}',
+'pagecategories'                 => '{{PLURAL:$1|Lūi-pia̍t|ê lūi-pia̍t}}',
 'category_header'                => 'Tī "$1" chit ê lūi-pia̍t ê bûn-chiuⁿ',
 'subcategories'                  => 'Ē-lūi-pia̍t',
 'category-media-header'          => 'Tī lūi-pia̍t "$1" ê mûi-thé',
@@ -302,7 +302,13 @@ Chhiáⁿ khoàⁿ [[Special:Version|pán-pún ia̍h]].',
 'thisisdeleted'           => 'Khoàⁿ a̍h-sī kiù $1?',
 'viewdeleted'             => 'Beh khoàⁿ $1？',
 'restorelink'             => '{{PLURAL:$1|chi̍t ê thâi-tiàu ê pian-chi̍p|$1 thâi-tiàu ê pian-chi̍p}}',
-'feedlinks'               => 'Chhī-liāu:',
+'feedlinks'               => 'Tēng khoàⁿ:',
+'feed-invalid'            => 'Bô-hāu ê tēng khoàⁿ lūi-hêng.',
+'feed-unavailable'        => 'Bô thê-kiong liân-ha̍p tēng khoàⁿ.',
+'site-rss-feed'           => '$1 ê RSS tēng khoàⁿ',
+'site-atom-feed'          => '$1 ê Atom tēng-khoàⁿ',
+'page-rss-feed'           => '"$1" ê RSS tēng khoàⁿ',
+'page-atom-feed'          => '"$1" ê Atom tēng khoàⁿ',
 'red-link-title'          => '$1 (bô hit ia̍h)',
 'sort-descending'         => 'Hā-kàng pâi-lia̍t',
 'sort-ascending'          => 'Seng-koân pâi-lia̍t',
@@ -321,7 +327,13 @@ Chhiáⁿ khoàⁿ [[Special:Version|pán-pún ia̍h]].',
 
 # Main script and global functions
 'nosuchaction'      => 'Bô chit-khoán tōng-chok',
+'nosuchactiontext'  => 'Hit ê URL só͘ chí-tēng ê tōng-chok bô-hāu.
+Lí khó-lêng phah m̄-tio̍h URL, ia̍h sī ji̍h tio̍h chhò-ngō͘ ê liân-kiat.
+Che mā khó-lêng sī {{SITENAME}} só͘ sú-iōng ê nńg-thé chhut būn-tê.',
 'nosuchspecialpage' => 'Bô chit ê te̍k-sû-ia̍h',
+'nospecialpagetext' => '<strong>Bô lí beh tih ê te̍k-sû-ia̍h。</strong>
+
+[[Special:SpecialPages|{{int:specialpages}}]] sī só͘-ū ê te̍k-sû-ia̍h lia̍t-pió.',
 
 # General errors
 'error'                => 'Chhò-gō·',

@@ -2380,6 +2380,7 @@ $1',
 Това трябва да се направи само за да се предотвратят прояви на вандализъм
 и в съответствие с [[{{MediaWiki:Policy-url}}|политиката за поведение]] в {{SITENAME}}.
 Необходимо е да се посочи и причина за блокирането (например заглавия на страници, станали обект на вандализъм).',
+'ipaddress'                       => 'IP-адрес:',
 'ipadressorusername'              => 'IP-адрес или потребител:',
 'ipbexpiry'                       => 'Срок:',
 'ipbreason'                       => 'Причина:',
@@ -2881,6 +2882,12 @@ $1',
 'ilsubmit'              => 'Търсене',
 'bydate'                => 'по дата',
 'sp-newimages-showfrom' => 'Показване на новите файлове, като се започва от $2, $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 секунда|$1 секунди}}',
+'minutes' => '{{PLURAL:$1|$1 минута|$1 минути}}',
+'hours'   => '{{PLURAL:$1|$1 час|$1 часа}}',
+'days'    => '{{PLURAL:$1|$1 ден|$1 дни}}',
 
 # Bad image list
 'bad_image_list' => 'Спазва се следният формат:

@@ -428,6 +428,8 @@ $1',
 'page-rss-feed'           => '„$1-ის“ არხი RSS',
 'page-atom-feed'          => '„$1-ის“ არხი Atom',
 'red-link-title'          => '$1 (გვერდი არ არსებობს)',
+'sort-descending'         => 'კლების მიხედვით დალაგება',
+'sort-ascending'          => 'ზრდის მიხედვით დალაგება',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'სტატია',
@@ -650,7 +652,10 @@ $1 საათში.',
 
 # Special:PasswordReset
 'passwordreset'              => 'პაროლის აღდგენა',
+'passwordreset-text'         => 'შეავსეთ ეს ფორმა, რათა ელ.ფოსტით მიიღოთ შეხსენება თქვენი ანგარიშის პარამეტრების შესახებ.',
 'passwordreset-legend'       => 'პაროლის აღდგენა',
+'passwordreset-disabled'     => 'ამ ვიკიში პაროლის კვლავ დაყენების ფუნქცია გამორთულია.',
+'passwordreset-pretext'      => '{{PLURAL:$1||შეიყვანეთ ქვემოთ მოცემულ მონაცემთა ერთ-ერთი ნაწილი.}}',
 'passwordreset-username'     => 'მომხმარებლის სახელი:',
 'passwordreset-domain'       => 'დომენი:',
 'passwordreset-email'        => 'ელ. ფოსტის მისამართი:',
@@ -1592,22 +1597,23 @@ $1',
 'uploadstash-refresh'  => 'ფაილების სიის განახლება',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'მოქმედება აკრძალულია',
-'img-auth-nopathinfo'   => 'არ არის PATH_INFO.
+'img-auth-accessdenied'     => 'მოქმედება აკრძალულია',
+'img-auth-nopathinfo'       => 'არ არის PATH_INFO.
 თქვენი სერვერი არ არის ამ ინფორმაციის გადაცემისთვის გამართული.
 შესაძლოა მას იგი მუშაობს CGI-ს ბაზაზე და არ აქვს img_auth-ის მხარდაჭერა.
 იხ. http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'მოთხოვნილი გზა არ შეესაბამება ატვირთვის ფოლდერს.',
-'img-auth-badtitle'     => 'შეუძლებელია სწორი სათაურის შექმნა "$1"-დან.',
-'img-auth-nologinnWL'   => 'თქვენ არ შესულხართ სისტემაში, ხოლო «$1» არ არის თეთრ სიაში.',
-'img-auth-nofile'       => 'ფაილი "$1" არ არსებობს.',
-'img-auth-isdir'        => 'თქვენ ცდილობთ «$1» კატალოგთან მისავლის მიგნებას.
+'img-auth-notindir'         => 'მოთხოვნილი გზა არ შეესაბამება ატვირთვის ფოლდერს.',
+'img-auth-badtitle'         => 'შეუძლებელია სწორი სათაურის შექმნა "$1"-დან.',
+'img-auth-nologinnWL'       => 'თქვენ არ შესულხართ სისტემაში, ხოლო «$1» არ არის თეთრ სიაში.',
+'img-auth-nofile'           => 'ფაილი "$1" არ არსებობს.',
+'img-auth-isdir'            => 'თქვენ ცდილობთ «$1» კატალოგთან მისავლის მიგნებას.
 ნებადართულია მხოლოდ ფაილებთან კავშირი.',
-'img-auth-streaming'    => 'ნაკადური გადაცემა «$1».',
-'img-auth-public'       => 'img_auth.php-ის დანიშვნა გამოიწვევს ფაილების დახურული ვიკიდან გაოტანას.
+'img-auth-streaming'        => 'ნაკადური გადაცემა «$1».',
+'img-auth-public'           => 'img_auth.php-ის დანიშვნა გამოიწვევს ფაილების დახურული ვიკიდან გაოტანას.
 ეს ვიკი გამართულია როგორც საზოგადი.
 უსაფრთხოების ოპტიმიზააციისთვის img_auth.php გათიშულია.',
-'img-auth-noread'       => 'მომხმარებელს არა აქვს ნებართვა "$1"-ის წასაკითხად.',
+'img-auth-noread'           => 'მომხმარებელს არა აქვს ნებართვა "$1"-ის წასაკითხად.',
+'img-auth-bad-query-string' => 'URL შეიცავს არასწორ მოთხოვნას.',
 
 # HTTP errors
 'http-invalid-url'      => 'არასწორი ბმული: $1',
@@ -2121,7 +2127,7 @@ $UNWATCHURL
 იხილეთ ასევე [[Special:ProtectedPages|დაცული გვერდების სია]] ამ მომენტისთვის.',
 'protectedarticle'            => 'დაცულია "[[$1]]"',
 'modifiedarticleprotection'   => 'შეცვლილია დაცვის დონე გვერდისთვის "[[$1]]"',
-'unprotectedarticle'          => 'დაცვა მოხსნილია „[[$1]]“',
+'unprotectedarticle'          => '„[[$1]]“-დან დაცვა მოხსნილია',
 'movedarticleprotection'      => 'დაცვის პარამეტრების გადატანა გვერდიდან «[[$2]]» გვერდზე «[[$1]]»',
 'protect-title'               => 'დაცვის დონის შეცვლა გვერდისთვის "$1"',
 'prot_1movedto2'              => '[[$1]] გადატანილია გვერდზე [[$2]]',
@@ -2290,6 +2296,7 @@ $1',
 და [[{{MediaWiki:Policy-url}}|პოლიტიკასთან]] თანხმობაში.
 ჩაწერეთ სპეციფიური მიზეზი ქვემოთ (მაგ. მიუთითეთ გვერდები,
 რომლებზეც ვანდალიზმი განხორციელდა).',
+'ipaddress'                       => 'IP მისამართი',
 'ipadressorusername'              => 'IP მისამართი ან მომხმარებლის სახელი',
 'ipbexpiry'                       => 'ვადა',
 'ipbreason'                       => 'მიზეზი:',
@@ -2701,11 +2708,14 @@ $1',
 'pageinfo-title'            => 'ინფორმაცია „$1“-თვის',
 'pageinfo-header-edits'     => 'რედაქტირებები',
 'pageinfo-header-watchlist' => 'კონტროლის სია',
+'pageinfo-header-views'     => 'ხილვა',
 'pageinfo-subjectpage'      => 'გვერდი',
 'pageinfo-talkpage'         => 'განხილვის გვერდი',
 'pageinfo-watchers'         => 'დამკვირვებელთა რაოდენობა',
 'pageinfo-edits'            => 'რედაქციების რაოდენობა',
 'pageinfo-authors'          => 'განსხვავებულ ავტორთა რაოდენობა',
+'pageinfo-views'            => 'ხილვების რაოდენობა',
+'pageinfo-viewsperedit'     => 'შესწორებათა ხილვა',
 
 # Skin names
 'skinname-standard'  => 'კლასიკური',
@@ -2796,7 +2806,7 @@ $1',
 'metadata-help'     => 'ეს ფაილი შეიცავს დამატებით ინფორმაციას, სავარაუდოდ ციფრული კამერიდან ან სკანერიდან, რომელიც მის შესაქმნელად გამოიყენეს. თუ ფაილის ორიგინალი შეცვლილია, ზოგიერთი დეტალი შესაძლოა სრულად არ ასახავდეს ფაილში შეტანილ ცვლილებებს.',
 'metadata-expand'   => 'დამატებითი ინფორმაციის ჩვენება',
 'metadata-collapse' => 'დამატებითი ინფორმაციის დამალვა',
-'metadata-fields'   => 'EXIF მეტამონაცემების ჩამონათვალი ამ შეტყობინებაში დამატებული იქნება სურათის გვერდზე, როცა მეტამონაცემების ცხრილი გახსნილია.
+'metadata-fields'   => 'მეტამონაცემების ჩამონათვალი ამ შეტყობინებაში დამატებული იქნება სურათის გვერდზე, როცა მეტამონაცემების ცხრილი გახსნილია.
 სხვები უპირობოდ დამალული იქნება.
 * make
 * model
@@ -2931,11 +2941,13 @@ $1',
 'exif-worldregiondest'             => 'მსოფლიოს ნაჩვენები რეგიონი',
 'exif-countrydest'                 => 'ნაჩვენები სახელმწიფო',
 'exif-countrycodedest'             => 'ნაჩვენები სახელმწიფოს კოდი',
+'exif-citydest'                    => 'ნაჩვენები ქალაქი',
 'exif-objectname'                  => 'მოკლე სათაური',
 'exif-specialinstructions'         => 'სპეციალური ინსტრუქციები',
 'exif-headline'                    => 'სათაური',
 'exif-source'                      => 'წყარო',
 'exif-contact'                     => 'საკონტაქტო ინფორმაცია',
+'exif-writer'                      => 'ავტორი',
 'exif-languagecode'                => 'ენა',
 'exif-iimversion'                  => 'IIM-ვერსია',
 'exif-iimcategory'                 => 'კატეგორია',
@@ -3037,6 +3049,8 @@ $1',
 'exif-sensingmethod-7' => 'სამფერიანი ხაზოვანი სენსორი',
 'exif-sensingmethod-8' => 'ხაზოვანი სენსორი ფერთა შეცვლით',
 
+'exif-filesource-3' => 'ციფრული ფოტოაპარატი',
+
 'exif-scenetype-1' => 'გამოსახულება გადაღებულია პირდაპირ',
 
 'exif-customrendered-0' => 'სტანდარტული დამუშავება',
@@ -3108,14 +3122,46 @@ $1',
 'exif-gpsdop-excellent' => 'შესანიშნავი ($1)',
 'exif-gpsdop-good'      => 'კარგი ($1)',
 'exif-gpsdop-moderate'  => 'ზომიერი ($1)',
+'exif-gpsdop-fair'      => 'საშუალოზე დაბალი ($1)',
 'exif-gpsdop-poor'      => 'ცუდი ($1)',
+
+'exif-objectcycle-a' => 'მხოლოდ დილით',
+'exif-objectcycle-p' => 'მხოლოდ საღამოს',
+'exif-objectcycle-b' => 'ორივე დილას და საღამოს',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ჭეშმარიტი',
 'exif-gpsdirection-m' => 'მაგნიტური',
 
-'exif-dc-date'      => 'თარიღ(ებ)ი',
-'exif-dc-publisher' => 'გამომქვეყნებელი',
+'exif-dc-contributor' => 'წვლილის შემომტანები',
+'exif-dc-date'        => 'თარიღ(ებ)ი',
+'exif-dc-publisher'   => 'გამომქვეყნებელი',
+'exif-dc-rights'      => 'უფლებები',
+'exif-dc-type'        => 'მედიის ტიპი',
+
+'exif-rating-rejected' => 'უარყოფილია',
+
+'exif-isospeedratings-overflow' => '65535-ზე მეტი',
+
+'exif-iimcategory-ace' => 'ხელოვნება, კულტურა და გართობა',
+'exif-iimcategory-clj' => 'დანაშაული და კანონი',
+'exif-iimcategory-dis' => 'კატასტროფები და ავარიები',
+'exif-iimcategory-fin' => 'ეკონომიკა და ბიზნესი',
+'exif-iimcategory-edu' => 'განათლება',
+'exif-iimcategory-evn' => 'გარემო',
+'exif-iimcategory-hth' => 'ჯანმრთელობა',
+'exif-iimcategory-lab' => 'შრომა',
+'exif-iimcategory-lif' => 'ცხოვრების წესი და დასვენება',
+'exif-iimcategory-pol' => 'პოლიტიკა',
+'exif-iimcategory-rel' => 'რელიგია და რწმენა',
+'exif-iimcategory-sci' => 'მეცნიერება და ტექნოლოგია',
+'exif-iimcategory-spo' => 'სპორტი',
+'exif-iimcategory-war' => 'ომი, კონფლიქტი და არეულობა',
+'exif-iimcategory-wea' => 'ამინდი',
+
+'exif-urgency-normal' => 'ნორმალური ($1)',
+'exif-urgency-low'    => 'დაბალი',
+'exif-urgency-high'   => 'მაღალი ($1)',
 
 # External editor support
 'edit-externally'      => 'ამ ფაილის რედაქტირებისას გამოიყენეთ გარე პროგრამა',
@@ -3221,6 +3267,12 @@ $1',
 'confirm_purge_button' => 'კარგი',
 'confirm-purge-top'    => 'გსურთ ამ გვერდის ქეშის წაშლა?',
 'confirm-purge-bottom' => 'ქეშის გაწმენდის შემდეგ იქნება ნაჩვენები ბოლო ვერსია.',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'კარგი',
+'confirm-watch-top'      => 'დავამატო ეს გვერდი თქვენი კონტროლის სიას?',
+'confirm-unwatch-button' => 'კარგი',
+'confirm-unwatch-top'    => 'მოვხსნა ეს გვერდი თქვენი კონტროლის სიიდან?',
 
 # Multipage image navigation
 'imgmultipageprev' => '&larr; წინა გვერდი',

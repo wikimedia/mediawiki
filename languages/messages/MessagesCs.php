@@ -812,6 +812,7 @@ Heslo může být zasláno jen jednou za $1 {{PLURAL:$1|hodinu|hodiny|hodin}}.',
 'noemailprefs'               => 'Pro zprovoznění následujících možností musíte zadat svou e-mailovou adresu.',
 'emailconfirmlink'           => 'Podvrďte svou e-mailovou adresu',
 'invalidemailaddress'        => 'Zadaná e-mailová adresa nemůže být přijata, neboť nemá správný formát. Zadejte platnou e-mailovou adresu nebo obsah tohoto pole vymažte.',
+'cannotchangeemail'          => 'U uživatelských účtů na této wiki nelze měnit e-mailové adresy.',
 'accountcreated'             => 'Účet vytvořen',
 'accountcreatedtext'         => 'Uživatelský účet $1 byl vytvořen.',
 'createaccount-title'        => 'Vytvoření účtu na {{grammar:6sg|{{SITENAME}}}}',
@@ -851,16 +852,18 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'resetpass-temp-password'   => 'Dočasné heslo:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Reset hesla',
-'passwordreset-text'           => 'Pro obdržení e-mailu s připomenutím detailů vašeho účtu vyplňte tento formulář.',
-'passwordreset-legend'         => 'Znovu nastavit heslo',
-'passwordreset-disabled'       => 'Znovunastavení hesla je na této wiki zakázáno.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',
-'passwordreset-username'       => 'Uživatelské jméno:',
-'passwordreset-domain'         => 'Doména:',
-'passwordreset-email'          => 'E-mailová adresa:',
-'passwordreset-emailtitle'     => 'Informace k účtu na {{grammar:6sg|{{SITENAME}}}}',
-'passwordreset-emailtext-ip'   => 'Někdo (patrně vy, z IP adresy $1) zažádal o připomenutí informací k vašemu
+'passwordreset'                    => 'Reset hesla',
+'passwordreset-text'               => 'Pro obdržení e-mailu s připomenutím detailů vašeho účtu vyplňte tento formulář.',
+'passwordreset-legend'             => 'Znovu nastavit heslo',
+'passwordreset-disabled'           => 'Znovunastavení hesla je na této wiki zakázáno.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Zadejte jeden z údajů níže}}',
+'passwordreset-username'           => 'Uživatelské jméno:',
+'passwordreset-domain'             => 'Doména:',
+'passwordreset-capture'            => 'Prohlédnout si výsledný e-mail?',
+'passwordreset-capture-help'       => 'Pokud zaškrtnete toto políčko, bude e-mail (s dočasným heslem) navíc k zaslání uživateli zobrazen i vám.',
+'passwordreset-email'              => 'E-mailová adresa:',
+'passwordreset-emailtitle'         => 'Informace k účtu na {{grammar:6sg|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'       => 'Někdo (patrně vy, z IP adresy $1) zažádal o připomenutí informací k vašemu
 účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
 
 $2
@@ -869,7 +872,7 @@ $2
 Nyní byste se měl(a) přihlásit a zvolit si nové heslo. Pokud tento požadavek
 poslal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete ho
 tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.',
-'passwordreset-emailtext-user' => '{{gender:$1|Uživatel|Uživatelka|Uživatel}} $1 {{grammar:2sg|{{SITENAME}}}} {{gender:$1|zažádal|zažádala|zažádal}} o připomenutí informací k vašemu
+'passwordreset-emailtext-user'     => '{{gender:$1|Uživatel|Uživatelka|Uživatel}} $1 {{grammar:2sg|{{SITENAME}}}} {{gender:$1|zažádal|zažádala|zažádal}} o připomenutí informací k vašemu
 účtu na {{grammar:6sg|{{SITENAME}}}} ($4). K této adrese {{PLURAL:$3|je přiřazen následující účet|jsou přiřazeny následující účty}}:
 
 $2
@@ -878,9 +881,11 @@ $2
 Nyní byste se měl(a) přihlásit a zvolit si nové heslo. Pokud tento požadavek
 poslal někdo jiný nebo jste si na své staré heslo vzpomněl(a), a nechcete ho
 tedy změnit, můžete tuto zprávu ignorovat a nadále používat původní heslo.',
-'passwordreset-emailelement'   => 'Uživatelské jméno: $1
+'passwordreset-emailelement'       => 'Uživatelské jméno: $1
 Dočasné heslo: $2',
-'passwordreset-emailsent'      => 'E-mail s heslem byl odeslán.',
+'passwordreset-emailsent'          => 'E-mail s heslem byl odeslán.',
+'passwordreset-emailsent-capture'  => 'Byl vygenerován připomínací e-mail, který je zobrazen níže.',
+'passwordreset-emailerror-capture' => 'Byl vygenerován připomínací e-mail, který je zobrazen níže, ale nepodařilo se ho odeslat uživateli: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Změna e-mailové adresy',
@@ -2508,6 +2513,7 @@ Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
 'blockiptext'                     => 'Tento formulář slouží k zablokování editací z konkrétní IP adresy nebo uživatelského jména.
 Toto by mělo být používáno jen v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].
 Udejte přesný důvod níže (například ocitujte, které stránky byly poškozeny).',
+'ipaddress'                       => 'IP adresa:',
 'ipadressorusername'              => 'IP adresa nebo uživatelské jméno:',
 'ipbexpiry'                       => 'Čas vypršení:',
 'ipbreason'                       => 'Důvod:',

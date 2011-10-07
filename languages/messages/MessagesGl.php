@@ -989,9 +989,9 @@ Esta xa existe.',
 
 Debe ter menos {{PLURAL:$2|dunha chamada|de $2 chamadas}}, e agora hai $1.",
 'expensive-parserfunction-category'       => 'Páxinas con moitos analizadores de funcións de chamadas moi caros',
-'post-expand-template-inclusion-warning'  => 'Aviso: o tamaño do modelo incluído é moi grande.
-Algúns modelos non serán incluídos.',
-'post-expand-template-inclusion-category' => 'Páxinas onde o tamaño dos modelos incluídos é excedido',
+'post-expand-template-inclusion-warning'  => "'''Aviso:''' O tamaño do modelo é moi grande.
+Algúns modelos non se incluirán.",
+'post-expand-template-inclusion-category' => 'Páxinas nas que se excede o tamaño dos modelos',
 'post-expand-template-argument-warning'   => "'''Aviso:''' Esta páxina contén, polo menos, un argumento de modelo que ten un tamaño e expansión moi grande.
 Estes argumentos foron omitidos.",
 'post-expand-template-argument-category'  => 'Páxinas que conteñen argumentos de modelo omitidos',
@@ -2448,6 +2448,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 'blockiptext'                     => 'Use o seguinte formulario para bloquear o acceso de escritura desde un enderezo IP ou para bloquear un usuario específico.
 Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:Policy-url}}|política e normas]] vixentes.
 Explique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).',
+'ipaddress'                       => 'Enderezo IP:',
 'ipadressorusername'              => 'Enderezo IP ou nome de usuario:',
 'ipbexpiry'                       => 'Duración:',
 'ipbreason'                       => 'Motivo:',
@@ -3001,8 +3002,8 @@ O seu sistema pode quedar comprometido se o executa.",
 'bad_image_list' => 'O formato é o seguinte:
 
 Só se consideran os elementos dunha lista (liñas que comezan por *).
-A primeira ligazón dunha liña ten que apuntar cara a un ficheiro mala.
-As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páxinas nas que o ficheiro pode aparecer inserido na liña.',
+A primeira ligazón dunha liña ten que apuntar cara a un ficheiro que se queira bloquear.
+As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páxinas nas que o ficheiro pode aparecer inserido.',
 
 # Metadata
 'metadata'          => 'Metadatos',
