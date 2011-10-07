@@ -2119,6 +2119,7 @@ See the [[Special:NewFiles|gallery of new files]] for a more visual overview.',
 'minlength1'                  => 'File names must be at least one letter.',
 'illegalfilename'             => 'The filename "$1" contains characters that are not allowed in page titles.
 Please rename the file and try uploading it again.',
+'filename-toolong'            => 'File names may not be longer than 240 bytes.',
 'badfilename'                 => 'File name has been changed to "$1".',
 'filetype-mime-mismatch'      => 'File extension ".$1" does not match the detected MIME type of the file ($2).',
 'filetype-badmime'            => 'Files of the MIME type "$1" are not allowed to be uploaded.',

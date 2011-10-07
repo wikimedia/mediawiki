@@ -558,6 +558,9 @@ class SpecialUpload extends SpecialPage {
 				$this->showRecoverableUploadError( wfMsgExt( 'illegalfilename',
 					'parseinline', $details['filtered'] ) );
 				break;
+			case UploadBase::FILENAME_TOO_LONG:
+				$this->showRecoverableUploadError( wfMsgHtml( 'filename-toolong' ) );
+				break;
 			case UploadBase::FILETYPE_MISSING:
 				$this->showRecoverableUploadError( wfMsgExt( 'filetype-missing',
 					'parseinline' ) );
