@@ -350,6 +350,9 @@ class ApiUpload extends ApiBase {
 				$this->dieRecoverableError( 'illegal-filename', 'filename',
 						array( 'filename' => $verification['filtered'] ) );
 				break;
+			case UploadBase::FILENAME_TOO_LONG:
+				$this->dieRecoverableError( 'filename-toolong', 'filename' );
+				break;
 			case UploadBase::FILETYPE_MISSING:
 				$this->dieRecoverableError( 'filetype-missing', 'filename' );
 				break;

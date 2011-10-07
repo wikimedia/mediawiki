@@ -1273,6 +1273,7 @@ $wgMessageStructure = array(
 		'ignorewarnings',
 		'minlength1',
 		'illegalfilename',
+		'filename-toolong',
 		'badfilename',
 		'filetype-mime-mismatch',
 		'filetype-badmime',
