@@ -2236,6 +2236,7 @@ L'ùltima intrada dël registr dij blocagi a l'é butà sì-sota për arferiment
 Ël blocagi a peul nen ën gnun-a manera esse dovrà për dle question d'ideologìa.
 
 Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà (pr'esempi, che a buta ij tìtoj ëd pàgine che a l'abio già patì dj'at vandàlich da cost'adrëssa IP-sì).",
+'ipaddress'                       => 'Adrëssa IP',
 'ipadressorusername'              => 'Adrëssa IP ò stranòm',
 'ipbexpiry'                       => 'Fin-a al',
 'ipbreason'                       => 'Rason:',

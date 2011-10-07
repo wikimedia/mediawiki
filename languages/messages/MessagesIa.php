@@ -1552,6 +1552,7 @@ Vide le [[Special:NewFiles|galeria de nove files]] pro un presentation plus visu
 'minlength1'                  => 'Le nomines de file debe haber al minus un littera.',
 'illegalfilename'             => 'Le nomine de file "$1" contine characteres que non es permittite in le titulos de paginas.
 Per favor renomina le file e tenta re-incargar lo.',
+'filename-toolong'            => 'Nomines de file non pote esser plus longe de 240 bytes.',
 'badfilename'                 => 'Le nomine del imagine esseva cambiate a "$1".',
 'filetype-mime-mismatch'      => 'Le extension del nomine del file ".$1" non corresponde a su typo MIME detegite ($2).',
 'filetype-badmime'            => 'Non es permittite incargar files del typo MIME "$1".',
@@ -2403,6 +2404,7 @@ Isto debe esser facite solmente pro impedir vandalismo, e de
 accordo con le [[{{MediaWiki:Policy-url}}|politica de {{SITENAME}}]].
 Scribe un motivo specific infra (per exemplo, citante paginas
 specific que ha essite vandalisate).',
+'ipaddress'                       => 'Adresse IP:',
 'ipadressorusername'              => 'Adresse IP o nomine de usator:',
 'ipbexpiry'                       => 'Expiration:',
 'ipbreason'                       => 'Motivo:',
