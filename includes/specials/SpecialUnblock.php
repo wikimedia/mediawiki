@@ -193,11 +193,17 @@ class SpecialUnblock extends SpecialPage {
 			RevisionDeleteUser::unsuppressUserName( $block->getTarget(), $id );
 		}
 
+		# Redact the name (IP address) for autoblocks
+		if ( $block->getType() == Block::TYPE_AUTO ) {
+			$page = Title::makeTitle( NS_USER, '#' . $block->getId() );
+		} else {
+			$page = $block->getTarget() instanceof User
+				? $block->getTarget()->getUserpage()
+				: Title::makeTitle( NS_USER, $block->getTarget() );
+		}
+
 		# Make log entry
 		$log = new LogPage( 'block' );
-		$page = $block->getTarget() instanceof User
-			? $block->getTarget()->getUserpage()
-			: Title::makeTitle( NS_USER, $block->getTarget() );
 		$log->addEntry( 'unblock', $page, $data['Reason'] );
 
 		return true;
