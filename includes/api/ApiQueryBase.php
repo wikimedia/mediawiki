@@ -228,7 +228,7 @@ abstract class ApiQueryBase extends ApiBase {
 	protected function addTimestampWhereRange( $field, $dir, $start, $end, $sort = true ) {
 		$db = $this->getDb();
 		return $this->addWhereRange( $field, $dir, 
-			$db->timestamp( $start ), $db->timestamp( $end ), $sort );
+			$db->timestampOrNull( $start ), $db->timestampOrNull( $end ), $sort );
 	}
 
 	/**
