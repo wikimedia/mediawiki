@@ -318,7 +318,8 @@ class BitmapHandler extends ImageHandler {
 			( $params['comment'] !== ''
 				? " -set comment " . wfEscapeShellArg( $this->escapeMagickProperty( $params['comment'] ) )
 				: '' ) .
-			" -depth 8 $sharpen -auto-orient" .
+			" -depth 8 $sharpen " .
+			" -rotate -$rotation " .
 			" {$animation_post} " .
 			wfEscapeShellArg( $this->escapeMagickOutput( $params['dstPath'] ) ) . " 2>&1";
 
