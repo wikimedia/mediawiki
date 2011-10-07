@@ -266,10 +266,6 @@ class DeletedContributionsPage extends SpecialPage {
 			return;
 		}
 
-		if( $user->isBlocked() ){
-			throw new UserBlockedError( $user->getBlock() );
-		}
-
 		$request = $this->getRequest();
 		$out = $this->getOutput();
 		$out->setPageTitle( wfMsgExt( 'deletedcontributions-title', array( 'parsemag' ) ) );
