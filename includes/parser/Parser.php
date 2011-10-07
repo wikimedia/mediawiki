@@ -4140,7 +4140,7 @@ class Parser {
 			);
 
 			# give headline the correct <h#> tag
-			if ( $showEditLink && $sectionIndex !== false ) {
+			if ( $sectionIndex !== false ) {
 				// Output edit section links as markers with styles that can be customized by skins
 				if ( $isTemplate ) {
 					# Put a T flag in the section identifier, to indicate to extractSections()

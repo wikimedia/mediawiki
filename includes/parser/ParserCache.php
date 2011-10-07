@@ -177,6 +177,11 @@ class ParserCache {
 		}
 
 		wfDebug( "Found.\n" );
+		
+		// The edit section preference may not be the appropiate one in 
+		// the ParserOutput, as we are not storing it in the parsercache 
+		// key. Force it here. See bug 31445.
+		$value->setEditSectionTokens( $popts->getEditSection() );
 
 		if ( !$useOutdated && $value->expired( $touched ) ) {
 			wfIncrStats( "pcache_miss_expired" );
