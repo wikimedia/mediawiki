@@ -142,7 +142,7 @@ class DifferenceEngine {
 	 */
 	function deletedLink( $id ) {
 		global $wgUser;
-		if ( $wgUser->isAllowed( 'deletedhistory' ) && !$wgUser->isBlocked() ) {
+		if ( $wgUser->isAllowed( 'deletedhistory' ) ) {
 			$dbr = wfGetDB( DB_SLAVE );
 			$row = $dbr->selectRow('archive', '*',
 				array( 'ar_rev_id' => $id ),

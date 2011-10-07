@@ -118,8 +118,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			throw new PermissionsError( 'deletedhistory' );
 		} elseif( wfReadOnly() ) {
 			throw new ReadOnlyError;
-		} elseif( $user->isBlocked() ) {
-			throw new UserBlockedError( $user->getBlock() );
 		}
 
 		$this->mIsAllowed = $user->isAllowed('deleterevision'); // for changes

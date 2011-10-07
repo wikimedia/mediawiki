@@ -636,7 +636,7 @@ abstract class Skin extends ContextSource {
 	function getUndeleteLink() {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 
-		if ( $this->getUser()->isAllowed( 'deletedhistory' ) && !$this->getUser()->isBlocked() &&
+		if ( $this->getUser()->isAllowed( 'deletedhistory' ) &&
 			( $this->getTitle()->getArticleId() == 0 || $action == 'history' ) ) {
 			$n = $this->getTitle()->isDeleted();
 
