@@ -160,6 +160,17 @@ abstract class Action {
 	}
 
 	/**
+	 * Get a Message object with context set
+	 * Parameters are the same as wfMessage()
+	 *
+	 * @return Message object
+	 */
+	protected final function msg() {
+		$params = func_get_args();
+		return call_user_func_array( array( $this->getContext(), 'msg' ), $params );
+	}
+
+	/**
 	 * Protected constructor: use Action::factory( $action, $page ) to actually build
 	 * these things in the real world
 	 * @param Page $page
