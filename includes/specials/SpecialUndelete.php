@@ -639,10 +639,6 @@ class SpecialUndelete extends SpecialPage {
 			return;
 		}
 
-		if ( $this->getUser()->isBlocked() ) {
-			throw new UserBlockedError( $this->getUser()->getBlock() );
-		}
-
 		$this->outputHeader();
 
 		$this->loadRequest();
