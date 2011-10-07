@@ -68,10 +68,10 @@ class UploadTest extends MediaWikiTestCase {
 			array( '.jpg', null, UploadBase::MIN_LENGTH_PARTNAME, 
 				'upload title without basename' ),
 			/* A title that is longer than 255 bytes */
-			array( str_repeat( 'a', 255 ) . '.jpg', null, UploadBase::ILLEGAL_FILENAME, 
+			array( str_repeat( 'a', 255 ) . '.jpg', null, UploadBase::FILENAME_TOO_LONG, 
 				'upload title longer than 255 bytes' ),
 			/* A title that is longer than 240 bytes */
-			array( str_repeat( 'a', 240 ) . '.jpg', null, UploadBase::ILLEGAL_FILENAME, 
+			array( str_repeat( 'a', 240 ) . '.jpg', null, UploadBase::FILENAME_TOO_LONG, 
 				'upload title longer than 240 bytes' ),
 		);
 	}
