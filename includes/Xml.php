@@ -466,7 +466,7 @@ class Xml {
 		if( $selected ) {
 			$attribs['selected'] = 'selected';
 		}
-		return self::element( 'option', $attribs, $text );
+		return Html::element( 'option', $attribs, $text );
 	}
 
 	/**
@@ -888,7 +888,7 @@ class XmlSelect {
 	 * @return array|null
 	 */
 	public function getAttribute( $name ) {
-		if ( isset($this->attributes[$name]) ) {
+		if ( isset( $this->attributes[$name] ) ) {
 			return $this->attributes[$name];
 		} else {
 			return null;
@@ -932,7 +932,7 @@ class XmlSelect {
 		foreach( $options as $label => $value ) {
 			if ( is_array( $value ) ) {
 				$contents = self::formatOptions( $value, $default );
-				$data .= Xml::tags( 'optgroup', array( 'label' => $label ), $contents ) . "\n";
+				$data .= Html::rawElement( 'optgroup', array( 'label' => $label ), $contents ) . "\n";
 			} else {
 				$data .= Xml::option( $label, $value, $value === $default ) . "\n";
 			}
@@ -951,7 +951,7 @@ class XmlSelect {
 			$contents .= self::formatOptions( $options, $this->default );
 		}
 
-		return Xml::tags( 'select', $this->attributes, rtrim( $contents ) );
+		return Html::rawElement( 'select', $this->attributes, rtrim( $contents ) );
 	}
 }
 
