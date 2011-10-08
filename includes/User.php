@@ -3562,10 +3562,11 @@ class User {
 	 * Get the localized descriptive name for a member of a group, if it exists
 	 *
 	 * @param $group String Internal group name
+	 * @param $username String Username for gender (since 1.19)
 	 * @return String Localized name for group member
 	 */
-	public static function getGroupMember( $group ) {
-		$msg = wfMessage( "group-$group-member" );
+	public static function getGroupMember( $group, $username = '#' ) {
+		$msg = wfMessage( "group-$group-member", $username );
 		return $msg->isBlank() ? $group : $msg->text();
 	}
 

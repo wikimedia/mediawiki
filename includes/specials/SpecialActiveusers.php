@@ -124,7 +124,7 @@ class ActiveUsersPager extends UsersPager {
 			if ( isset( $this->groups[$group] ) ) {
 				return;
 			}
-			$list[] = self::buildGroupLink( $group );
+			$list[] = self::buildGroupLink( $group, $userName );
 		}
 		$groups = $this->getLang()->commaList( $list );
 

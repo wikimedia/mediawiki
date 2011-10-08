@@ -450,7 +450,7 @@ class UserrightsPage extends SpecialPage {
 			wfMessage( 'editinguser' )->params( wfEscapeWikiText( $user->getName() ) )->rawParams( $userToolLinks )->parse() .
 			wfMsgExt( 'userrights-groups-help', array( 'parse' ) ) .
 			$grouplist .
-			Xml::tags( 'p', null, $this->groupCheckboxes( $groups ) ) .
+			Xml::tags( 'p', null, $this->groupCheckboxes( $groups, $user ) ) .
 			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-userrights-table-outer' ) ) .
 				"<tr>
 					<td class='mw-label'>" .
@@ -501,7 +501,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param $usergroups Array: groups the user belongs to
 	 * @return string XHTML table element with checkboxes
 	 */
-	private function groupCheckboxes( $usergroups ) {
+	private function groupCheckboxes( $usergroups, $user ) {
 		$allgroups = $this->getAllGroups();
 		$ret = '';
 
@@ -549,11 +549,11 @@ class UserrightsPage extends SpecialPage {
 			foreach( $column as $group => $checkbox ) {
 				$attr = $checkbox['disabled'] ? array( 'disabled' => 'disabled' ) : array();
 
+				$member = User::getGroupMember( $group, $user->getName() );
 				if ( $checkbox['irreversible'] ) {
-					$text = htmlspecialchars( wfMsg( 'userrights-irreversible-marker',
-						User::getGroupMember( $group ) ) );
+					$text = wfMessage( 'userrights-irreversible-marker', $member )->escaped();
 				} else {
-					$text = htmlspecialchars( User::getGroupMember( $group ) );
+					$text = htmlspecialchars( $member );
 				}
 				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
 					"wpGroup-" . $group, $checkbox['set'], $attr );
