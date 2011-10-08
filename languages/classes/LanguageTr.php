@@ -36,30 +36,4 @@ class LanguageTr extends Language {
 		}
 	}
 
-	/**
-	 * @see bug 28040
-	 *
-	 * @param $string string
-	 * @param $first string|bool
-	 *
-	 * @return string
-	 */
-	function uc( $string, $first = false ) {
-		$string = preg_replace( '/i/', 'İ', $string );
-		return parent::uc( $string, $first );
-	}
-
-	/**
-	 * @see bug 28040
-	 *
-	 * @param $string string
-	 * @param $first string|bool
-	 *
-	 * @return string
-	 */
-	function lc( $string, $first = false ) {
-		$string = preg_replace( '/I/', 'ı', $string );
-		return parent::lc( $string, $first );
-	}
-
 }
