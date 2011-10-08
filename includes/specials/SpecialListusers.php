@@ -135,7 +135,7 @@ class UsersPager extends AlphabeticPager {
 		if( count( $groups_list ) > 0 ) {
 			$list = array();
 			foreach( $groups_list as $group )
-				$list[] = self::buildGroupLink( $group );
+				$list[] = self::buildGroupLink( $group, $userPage->getText() );
 			$groups = $this->getLang()->commaList( $list );
 		} else {
 			$groups = '';
@@ -263,11 +263,8 @@ class UsersPager extends AlphabeticPager {
 	 * @param $group String: group name
 	 * @return string
 	 */
-	protected static function buildGroupLink( $group ) {
-		static $cache = array();
-		if( !isset( $cache[$group] ) )
-			$cache[$group] = User::makeGroupLinkHtml( $group, htmlspecialchars( User::getGroupMember( $group ) ) );
-		return $cache[$group];
+	protected static function buildGroupLink( $group, $username ) {
+		return User::makeGroupLinkHtml( $group, htmlspecialchars( User::getGroupMember( $group, $username ) ) );
 	}
 }
 

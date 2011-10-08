@@ -159,7 +159,7 @@ class Preferences {
 			$groupName  = User::getGroupName( $ueg );
 			$userGroups[] = User::makeGroupLinkHTML( $ueg, $groupName );
 
-			$memberName = User::getGroupMember( $ueg );
+			$memberName = User::getGroupMember( $ueg, $user->getName() );
 			$userMembers[] = User::makeGroupLinkHTML( $ueg, $memberName );
 		}
 		asort( $userGroups );
