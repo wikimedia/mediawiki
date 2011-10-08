@@ -596,7 +596,12 @@
 							// and put the <tfoot> at the end of the <table>
 							var $sortbottoms = $table.find( 'tr.sortbottom' );
 							if ( $sortbottoms.length ) {
-								$table.append( $( '<tfoot>' ).append( $sortbottoms ) )
+								var $tfoot = $table.find( 'tfoot' );
+								if( $tfoot ) {
+									$tfoot.eq(0).prepend( $sortbottoms );
+								} else {
+									$table.append( $( '<tfoot>' ).append( $sortbottoms ) )
+								}
 							}
 
 							explodeRowspans( $table );
