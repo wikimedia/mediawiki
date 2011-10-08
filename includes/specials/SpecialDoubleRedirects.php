@@ -76,8 +76,6 @@ class DoubleRedirectsPage extends PageQueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		global $wgLang;
-
 		$titleA = Title::makeTitle( $result->namespace, $result->title );
 
 		if ( $result && !isset( $result->nsb ) ) {
@@ -91,19 +89,20 @@ class DoubleRedirectsPage extends PageQueryPage {
 			}
 		}
 		if ( !$result ) {
-			return '<del>' . $skin->link( $titleA, null, array(), array( 'redirect' => 'no' ) ) . '</del>';
+			return '<del>' . Linker::link( $titleA, null, array(), array( 'redirect' => 'no' ) ) . '</del>';
 		}
 
 		$titleB = Title::makeTitle( $result->nsb, $result->tb );
 		$titleC = Title::makeTitle( $result->nsc, $result->tc );
 
-		$linkA = $skin->linkKnown(
+		$linkA = Linker::linkKnown(
 			$titleA,
 			null,
 			array(),
 			array( 'redirect' => 'no' )
 		);
-		$edit = $skin->linkKnown(
+
+		$edit = Linker::linkKnown(
 			$titleA,
 			wfMsgExt( 'parentheses', array( 'escape' ), wfMsg( 'editlink' ) ),
 			array(),
@@ -112,14 +111,18 @@ class DoubleRedirectsPage extends PageQueryPage {
 				'action' => 'edit'
 			)
 		);
-		$linkB = $skin->linkKnown(
+
+		$linkB = Linker::linkKnown(
 			$titleB,
 			null,
 			array(),
 			array( 'redirect' => 'no' )
 		);
-		$linkC = $skin->linkKnown( $titleC );
-		$arr = $wgLang->getArrow() . $wgLang->getDirMark();
+
+		$linkC = Linker::linkKnown( $titleC );
+
+		$lang = $this->getLang();
+		$arr = $lang->getArrow() . $lang->getDirMark();
 
 		return( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );
 	}
