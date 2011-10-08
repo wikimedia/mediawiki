@@ -1,4 +1,8 @@
-/* Table Sorting */
+/* 
+ * The !important is to make sure someone doesn't use element styling 
+ * to set the background or padding of a headercell and 
+ * accidently override all these options.
+ */
 table.jquery-tablesorter th.headerSort {
 	/* @embed */
 	background-image: url(images/sort_both.gif) !important;
