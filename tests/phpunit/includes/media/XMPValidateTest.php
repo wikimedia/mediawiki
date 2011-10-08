@@ -1,5 +1,5 @@
 <?php
-class XMPTest extends MediaWikiTestCase {
+class XMPValidateTest extends MediaWikiTestCase {
 
 	/**
 	 * @dataProvider providerDate
