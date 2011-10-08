@@ -1284,9 +1284,6 @@ class User {
 			$this->mBlockreason = $this->mBlock->mReason;
 			$this->mHideName = $this->mBlock->mHideName;
 			$this->mAllowUsertalk = !$this->mBlock->prevents( 'editownusertalk' );
-			if ( $this->isLoggedIn() && $wgUser->getID() == $this->getID() ) {
-				$this->spreadBlock();
-			}
 		}
 
 		# Proxy blocking
@@ -2940,22 +2937,35 @@ class User {
 	}
 
 	/**
-	 * If this (non-anonymous) user is blocked, block any IP address
-	 * they've successfully logged in from.
+	 * If this user is logged-in and blocked,
+	 * block any IP address they've successfully logged in from.
+	 * @return bool A block was spread
 	 */
-	public function spreadBlock() {
+	public function spreadAnyEditBlock() {
+		if ( $this->isLoggedIn() && $this->isBlocked() ) {
+			return $this->spreadBlock();
+		}
+		return false;
+	}
+
+	/**
+	 * If this (non-anonymous) user is blocked,
+	 * block the IP address they've successfully logged in from.
+	 * @return bool A block was spread
+	 */
+	protected function spreadBlock() {
 		wfDebug( __METHOD__ . "()\n" );
 		$this->load();
 		if ( $this->mId == 0 ) {
-			return;
+			return false;
 		}
 
 		$userblock = Block::newFromTarget( $this->getName() );
 		if ( !$userblock ) {
-			return;
+			return false;
 		}
 
-		$userblock->doAutoblock( $this->getRequest()->getIP() );
+		return (bool)$userblock->doAutoblock( $this->getRequest()->getIP() );
 	}
 
 	/**
