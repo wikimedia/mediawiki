@@ -346,11 +346,9 @@ class SpecialPageFactory {
 		$pages = array();
 		foreach ( self::getList() as $name => $rec ) {
 			$page = self::getPage( $name );
-			if ( $page->isListed()
-				&& (
-					!$page->isRestricted()
-					|| $page->userCanExecute( $wgUser )
-				)
+			if ( $page // not null
+				&& $page->isListed()
+				&& ( !$page->isRestricted() || $page->userCanExecute( $wgUser ) )
 			) {
 				$pages[$name] = $page;
 			}
