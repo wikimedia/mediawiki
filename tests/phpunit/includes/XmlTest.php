@@ -102,7 +102,7 @@ class XmlTest extends MediaWikiTestCase {
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> <input name="year" size="4" value="2011" id="year" maxlength="4" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
 '<option value="1">January</option>' . "\n" .
-'<option value="2" selected="selected">February</option>' . "\n" .
+'<option value="2" selected="">February</option>' . "\n" .
 '<option value="3">March</option>' . "\n" .
 '<option value="4">April</option>' . "\n" .
 '<option value="5">May</option>' . "\n" .
