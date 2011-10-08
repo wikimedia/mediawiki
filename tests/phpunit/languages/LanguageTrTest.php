@@ -16,40 +16,13 @@ class LanguageTrTest extends MediaWikiTestCase {
 		unset( $this->lang );
 	}
 
-##### Full Turkish alphabet #################################################
-
-	function testLowerCaseTurkishAlphabetToUppercase() {
-		$this->assertEquals( 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ',
-			$this->lang->uc( 'abcçdefgğhıijklmnoöprsştuüvyz' ),
-			'Lower case Turkish alphabet to upper case'
-		);
-	}
-	function testUpperCaseTurkishAlphabetToUppercase() {
-		$this->assertEquals( 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ',
-			$this->lang->uc( 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ' ),
-			'Upper case Turkish alphabet to upper case'
-		);
-	}
-	function testUpperCaseTurkishAlphabetToLowercase() {
-		$this->assertEquals( 'abcçdefgğhıijklmnoöprsştuüvyz',
-			$this->lang->lc( 'ABCÇDEFGĞHIİJKLMNOÖPRSŞTUÜVYZ' ),
-			'Upper case Turkish alphabet to lower case'
-		);
-	}	
-	function testLowerCaseTurkishAlphabetToLowercase() {
-		$this->assertEquals( 'abcçdefgğhıijklmnoöprsştuüvyz',
-			$this->lang->lc( 'abcçdefgğhıijklmnoöprsştuüvyz' ),
-			'Lower case Turkish alphabet to lower case'
-		);
-	}
-
 	/**
 	 * See @bug 28040
 	 * Credits to #wikipedia-tr users berm, []LuCkY[] and Emperyan
 	 * @see http://en.wikipedia.org/wiki/Dotted_and_dotless_I
 	 * @dataProvider provideDottedAndDotlessI
 	 */
-	function testChangeCaseOfFirstCharBeingDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
+	function testDottedAndDotlessI( $func, $input, $inputCase, $expected ) {
 		if( $func == 'ucfirst' ) {
 			$res = $this->lang->ucfirst( $input );
 		} elseif( $func == 'lcfirst' ) {
@@ -86,60 +59,6 @@ class LanguageTrTest extends MediaWikiTestCase {
 			# consider IPhone is English!
 			array( 'lcfirst', 'IPhone', 'upper', 'ıPhone' ),
 
-		);
-	} 
-
-##### LanguageTr specificities  #############################################
-	/**
-	 * @cover LanguageTr:lc
-	 * See @bug 28040
-	 */
-	function testLanguageTrLowerCasingOverride() {
-		$this->assertEquals( 'ııııı', $this->lang->lc( 'IIIII') );
-	}
-	/**
-	 * @cover LanguageTr:uc
-	 * See @bug 28040
-	 */
-	function testLanguageTrUpperCasingOverride() {
-		$this->assertEquals( 'İİİİİ', $this->lang->uc( 'iiiii') );
-	}
-
-##### Upper casing a string #################################################
-	/**
-	 * Generic test for the Turkish dotted and dotless I strings
-	 * See @bug 28040
-	 * @dataProvider provideUppercaseStringsWithDottedAndDotlessI
-	 */
-	function testUpperCasingOfAStringWithDottedAndDotLessI( $expected, $input ) {
-		$this->assertEquals( $expected, $this->lang->uc( $input ) );
-	}
-	function provideUppercaseStringsWithDottedAndDotlessI() {
-		return array(
-			# expected, input string to uc()
-			array( 'IIIII', 'ııııı' ),
-			array( 'IIIII', 'IIIII' ), #identity
-			array( 'İİİİİ', 'iiiii' ), # Specifically handled by LanguageTr:uc
-			array( 'İİİİİ', 'İİİİİ' ), #identity
-		);
-	}
-
-##### Lower casing a string #################################################
-	/**
-	 * Generic test for the Turkish dotted and dotless I strings
-	 * See @bug 28040
-	 * @dataProvider provideLowercaseStringsWithDottedAndDotlessI
-	 */
-	function testLowerCasingOfAStringWithDottedAndDotLessI( $expected, $input ) {
-		$this->assertEquals( $expected, $this->lang->lc( $input ) );
-	}
-	function provideLowercaseStringsWithDottedAndDotlessI() {
-		return array(
-			# expected, input string to lc()
-			array( 'ııııı', 'IIIII' ), # Specifically handled by LanguageTr:lc
-			array( 'ııııı', 'ııııı' ), #identity
-			array( 'iiiii', 'İİİİİ' ),
-			array( 'iiiii', 'iiiii' ), #identity
 		);
 	}
 

@@ -16,7 +16,7 @@ language=tr
 !! input
 {{ucfirst:ix}}
 !! result
-<p>Ix
+<p>İx
 </p>
 !! end
 
@@ -38,7 +38,7 @@ language=tr
 !! input
 {{ucfırst:blah}}
 !! result
-<p><a href="/index.php?title=Template:Ucf%C4%B1rst:blah&amp;action=edit&amp;redlink=1" class="new" title="Template:Ucfırst:blah (page does not exist)">Template:Ucfırst:blah</a>
+<p><a href="/index.php?title=%C5%9Eablon:Ucf%C4%B1rst:blah&amp;action=edit&amp;redlink=1" class="new" title="Şablon:Ucfırst:blah (sayfa mevcut değil)">Şablon:Ucfırst:blah</a>
 </p>
 !! end
 
