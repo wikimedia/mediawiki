@@ -72,6 +72,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Check rights
 		$permErrors = $this->oldTitle->getUserPermissionsErrors( 'move', $user );
 		if( !empty( $permErrors ) ) {
+			// Auto-block user's IP if the account was "hard" blocked
+			$user->spreadAnyEditBlock();
 			$this->getOutput()->showPermissionsErrorPage( $permErrors );
 			return;
 		}

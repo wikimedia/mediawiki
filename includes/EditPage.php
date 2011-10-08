@@ -405,6 +405,9 @@ class EditPage {
 
 		$permErrors = $this->getEditPermissionErrors();
 		if ( $permErrors ) {
+			// Auto-block user's IP if the account was "hard" blocked
+			$wgUser->spreadAnyEditBlock();
+
 			wfDebug( __METHOD__ . ": User can't edit\n" );
 			$content = $this->getContent( null );
 			$content = $content === '' ? null : $content;
