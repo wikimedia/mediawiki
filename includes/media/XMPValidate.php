@@ -201,10 +201,20 @@ class XMPValidate {
 	}
 
 	/**
-	* function to validate date properties, and convert to Exif format.
+	* function to validate date properties, and convert to (partial) Exif format.
+	*
+	* Dates can be one of the following formats:
+	* YYYY
+	* YYYY-MM
+	* YYYY-MM-DD
+	* YYYY-MM-DDThh:mmTZD
+	* YYYY-MM-DDThh:mm:ssTZD
+	* YYYY-MM-DDThh:mm:ss.sTZD
 	*
 	* @param $info Array information about current property
 	* @param &$val Mixed current value to validate. Converts to TS_EXIF as a side-effect.
+	*	in cases where there's only a partial date, it will give things like
+	*	2011:04.
 	* @param $standalone Boolean if this is a simple property or array
 	*/
 	public static function validateDate( $info, &$val, $standalone ) {
@@ -240,25 +250,41 @@ class XMPValidate {
 				$val = null;
 				return;
 			}
-			//if month, etc unspecified, full out as 01.
-			$res[2] = isset( $res[2] ) ? $res[2] : '01'; //month
-			$res[3] = isset( $res[3] ) ? $res[3] : '01'; //day
+
 			if ( !isset( $res[4] ) ) { //hour
-				//just have the year month day
-				$val = $res[1] . ':' . $res[2] . ':' . $res[3];
+				//just have the year month day (if that)
+				$val = $res[1];
+				if ( isset( $res[2] ) ) {
+					$val .= ':' . $res[2];
+				}
+				if ( isset( $res[3] ) ) {
+					$val .= ':' . $res[3];
+				}
 				return;
 			}
-			//if hour is set, so is minute or regex above will fail.
-			//Extra check for empty string necessary due to TZ but no second case.
-			$res[6] = isset( $res[6] ) && $res[6] != '' ? $res[6] : '00';
 
 			if ( !isset( $res[7] ) || $res[7] === 'Z' ) {
+				//if hour is set, then minute must also be or regex above will fail.
 				$val = $res[1] . ':' . $res[2] . ':' . $res[3]
-					. ' ' . $res[4] . ':' . $res[5] . ':' . $res[6];
+					. ' ' . $res[4] . ':' . $res[5];
+				if ( isset( $res[6] ) && $res[6] !== '' ) {
+					$val .= ':' . $res[6];
+				}
 				return;
 			}
 
-			//do timezone processing. We've already done the case that tz = Z.
+
+			// Extra check for empty string necessary due to TZ but no second case.
+			$stripSeconds = false;
+			if ( !isset( $res[6] ) || $res[6] === '' ) {
+				$res[6] = '00';
+				$stripSeconds = true;
+			}
+
+			// Do timezone processing. We've already done the case that tz = Z.
+
+			// We know that if we got to this step, year, month day hour and min must be set
+			// by virtue of regex not failing.
 
 			$unix = wfTimestamp( TS_UNIX, $res[1] . $res[2] . $res[3] . $res[4] . $res[5] . $res[6] );
 			$offset = intval( substr( $res[7], 1, 2 ) ) * 60 * 60;
@@ -267,6 +293,11 @@ class XMPValidate {
 				$offset = -$offset;
 			}
 			$val = wfTimestamp( TS_EXIF, $unix + $offset );
+
+			if ( $stripSeconds ) {
+				// If seconds weren't specified, remove the trailing ':00'.
+				$val = substr( $val, 0, -3 );
+			}
 		}
 
 	}
