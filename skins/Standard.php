@@ -116,10 +116,10 @@ class StandardTemplate extends LegacyTemplate {
 
 		$barnumber = 1;
 		foreach ( $bar as $browseLinks ) {
-			if ( $barnumber > 1 ) {
-				$s .= "\n<hr class='sep' />";
-			}
 			if ( is_array( $browseLinks ) ) {
+				if ( $barnumber > 1 ) {
+					$s .= "\n<hr class='sep' />";
+				}
 				foreach ( $browseLinks as $link ) {
 					if ( $link['text'] != '-' ) {
 						$s .= "<a href=\"{$link['href']}\">" .
