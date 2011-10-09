@@ -277,7 +277,7 @@ class HTMLForm {
 
 		$data = $this->filterDataForSubmit( $this->mFieldData );
 
-		$res = call_user_func( $callback, $data );
+		$res = call_user_func( $callback, $data, $this );
 
 		return $res;
 	}
