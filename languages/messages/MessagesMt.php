@@ -1410,7 +1410,7 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'userrights-reason'            => 'Raġuni:',
 'userrights-no-interwiki'      => "M'għandekx permess tagħmel modifiki fid-drittijiet tal-utenti fuq siti oħrajn.",
 'userrights-nodatabase'        => 'Id-Database $1 ma jeżistix jew inkella mhux database lokali.',
-'userrights-nologin'           => "Sabiex tkun tista' tagħti d-drittijiet lill-utenti hemm bżonn li [[Special:UserLogin|tidħol]] bħalha amministratur.",
+'userrights-nologin'           => "Sabiex tkun tista' tagħti drittijiet lill-utenti hemm bżonn li [[Special:UserLogin|tidħol]] bħala amministratur.",
 'userrights-notallowed'        => "Il-kont tiegħek m'għandux il-permessi neċessarji li jżid jew ineħħi drittijiet tal-utent.",
 'userrights-changeable-col'    => "Gruppi li tista' tbiddel",
 'userrights-unchangeable-col'  => 'Gruppi li ma tistax tbiddel',
@@ -2442,6 +2442,7 @@ L-aħħar daħla fir-reġistru tal-imblokki tinsab hawn taħt bħala referenza:'
 'blockiptext'                     => "Uża l-formola t'hawn taħt sabiex biex tibblokkja l-aċċess tal-kitba lil IP speċifiku jew utent.
 Il-blokk irid ikun użat biss sabiex jitnaqqas iċ-ċans ta' vandaliżmu, u għandu josservja b'mod strett il-[[{{MediaWiki:Policy-url}}|politika ta' {{SITENAME}}]].
 Indika r-raġuni speċifika għalfejn tixtieq tipproċedi bil-blokk (per eżempju, billi turi l-paġni partikolari li ġew ivvandalizzati).",
+'ipaddress'                       => 'Indirizz tal-IP:',
 'ipadressorusername'              => 'Indirizz tal-IP jew isem tal-utent:',
 'ipbexpiry'                       => 'Skadenza tal-imblokk:',
 'ipbreason'                       => 'Raġuni:',

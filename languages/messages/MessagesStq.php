@@ -1211,6 +1211,7 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'right-siteadmin'             => 'Doatenboank speere un äntspeere',
 'right-override-export-depth' => 'Exportier Sieden touhoope mäd ferlinkede Sieden bit tou ne Djüpte fon 5',
 'right-sendemail'             => 'E-Mails an uur Benutsere seende',
+'right-passwordreset'         => 'Paaswoud fon n Benutser touräächsätte ([[Special:PasswordReset|Spezioalsiede]])',
 
 # User rights log
 'rightslog'      => 'Gjuchte-Logbouk',
@@ -2126,6 +2127,7 @@ Foar Information foulget die aktuelle Iendraach uut dät Speer-Logbouk:',
 'blockiptext'                     => 'Mäd dit Formular speerst du ne IP-Adresse of n Benutsernoome, so dät fon deer neen Annerengen moor foarnuumen wäide konnen.
 Dit skuul bloot geböäre, uum Vandalismus tou ferhinnerjen un in Uureenstimmenge mäd do [[{{MediaWiki:Policy-url}}|Gjuchtlienjen]].
 Reek dän Gruund foar ju Speere oun.',
+'ipaddress'                       => 'IP-Adrässe:',
 'ipadressorusername'              => 'IP-Adresse of Benutsernoome:',
 'ipbexpiry'                       => 'Oulooptied (Speerduur):',
 'ipbreason'                       => 'Begruundenge:',

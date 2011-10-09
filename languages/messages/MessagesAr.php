@@ -721,8 +721,8 @@ $1',
 'toc'                     => 'محتويات',
 'showtoc'                 => 'اعرض',
 'hidetoc'                 => 'أخف',
-'collapsible-collapse'    => 'اطوِ',
-'collapsible-expand'      => 'وسّع',
+'collapsible-collapse'    => 'اطو',
+'collapsible-expand'      => 'وسع',
 'thisisdeleted'           => 'أأعرض أو أسترجع $1؟',
 'viewdeleted'             => 'أأعرض $1؟',
 'restorelink'             => '{{PLURAL:$1|$1 تعديل محذوف|تعديلا واحدا محذوفا|تعديلين محذوفين|$1 تعديلات محذوفة|$1 تعديلا محذوفا|$1 تعديلا محذوفا}}',
@@ -968,32 +968,36 @@ $2',
 'resetpass-temp-password'   => 'كلمة سر مؤقتة:',
 
 # Special:PasswordReset
-'passwordreset'                => 'تمت إعادة ضبط كلمة السر',
-'passwordreset-text'           => 'أكمل هذا النموذج لتتلقى بريدا إلكترونيا يذكر بتفاصيل حسابك.',
-'passwordreset-legend'         => 'إعادة تعيين كلمة السر',
-'passwordreset-disabled'       => 'عُطّلت إعادة تعيين كلمة السر على هذه الويكي.',
-'passwordreset-pretext'        => '{{PLURAL:$1||أدخل أحد أجزاء البيانات أدناه}}',
-'passwordreset-username'       => 'اسم المستخدم:',
-'passwordreset-domain'         => 'النطاق:',
-'passwordreset-email'          => 'عنوان البريد الإلكتروني:',
-'passwordreset-emailtitle'     => 'تفاصيل حساب {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'احد ما (قد يكون انت$1)طلب مذكرة تفاصيل الحساب ل{{SITENAME}} ($4).المستخدم الاتي {{PLURAL:$3|الحساب هو|الحسابات هي}} قد قرن بهذا العنوان :
+'passwordreset'                    => 'تمت إعادة ضبط كلمة السر',
+'passwordreset-text'               => 'أكمل هذا النموذج لتتلقى بريدا إلكترونيا يذكر بتفاصيل حسابك.',
+'passwordreset-legend'             => 'إعادة تعيين كلمة السر',
+'passwordreset-disabled'           => 'عُطّلت إعادة تعيين كلمة السر على هذه الويكي.',
+'passwordreset-pretext'            => '{{PLURAL:$1||أدخل أحد أجزاء البيانات أدناه}}',
+'passwordreset-username'           => 'اسم المستخدم:',
+'passwordreset-domain'             => 'النطاق:',
+'passwordreset-capture'            => 'أأعرض البريد الإلكتروني الناتج؟',
+'passwordreset-capture-help'       => 'إذا علّمت هذا الصندوق فسيعرض لك البريد الإلكتروني (الذي يحتوي كلمة سر مؤقتة) وسيرسل أيضا للمستخدم.',
+'passwordreset-email'              => 'عنوان البريد الإلكتروني:',
+'passwordreset-emailtitle'         => 'تفاصيل حساب {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'احد ما (قد يكون انت$1)طلب مذكرة تفاصيل الحساب ل{{SITENAME}} ($4).المستخدم الاتي {{PLURAL:$3|الحساب هو|الحسابات هي}} قد قرن بهذا العنوان :
 
 $2
 
 {{PLURAL:$3|كلمة المرور المؤقتة|كلمات المرور المؤقة}}سينتهي في {{PLURAL:$5|يوم|ايام$5 }}
 من الافضل ان تسجل الدخول وتختار كلمة مرور جديدة الان .
 إذا قام شخص آخر بهذا الطلب، أو إذا  تذكرت كلمة المرور الأصلية الخاصة بك،ولم تعد ترغب في تغييره، يمكنك تجاهل هذه الرسالة ومتابعة استخدام  كلمة المرورالقديمة.',
-'passwordreset-emailtext-user' => 'احد ما (قد يكون انت$1)طلب مذكرة تفاصيل الحساب ل{{SITENAME}} ($4).المستخدم الاتي {{PLURAL:$3|الحساب هو|الحسابات هي}} قد قرن بهذا العنوان :
+'passwordreset-emailtext-user'     => 'احد ما (قد يكون انت$1)طلب مذكرة تفاصيل الحساب ل{{SITENAME}} ($4).المستخدم الاتي {{PLURAL:$3|الحساب هو|الحسابات هي}} قد قرن بهذا العنوان :
 
 $2
 
 {{PLURAL:$3|كلمة المرور المؤقتة|كلمات المرور المؤقة}}سينتهي في {{PLURAL:$5|يوم|ايام$5 }}
 من الافضل ان تسجل الدخول وتختار كلمة مرور جديدة الان .
 إذا قام شخص آخر بهذا الطلب، أو إذا  تذكرت كلمة المرور الأصلية الخاصة بك،ولم تعد ترغب في تغييره، يمكنك تجاهل هذه الرسالة ومتابعة استخدام  كلمة المرورالقديمة.',
-'passwordreset-emailelement'   => 'اسم المستخدم: $1
+'passwordreset-emailelement'       => 'اسم المستخدم: $1
 كلمة السر المؤقتة: $2',
-'passwordreset-emailsent'      => 'أرسل بريد إلكتروني تذكيري',
+'passwordreset-emailsent'          => 'أرسل بريد إلكتروني تذكيري',
+'passwordreset-emailsent-capture'  => 'أرسل بريد إلكتروني تذكيري وهو معروض بالأسفل.',
+'passwordreset-emailerror-capture' => 'ولّد بريد إلكتروني تذكيري وهو معروض بالأسفل لكن فشل إرساله للمستخدم: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'تغيير عنوان البريد الإلكتروني',
@@ -1617,7 +1621,7 @@ $1",
 'userrights-lookup-user'       => 'إدارة مجموعات المستخدم',
 'userrights-user-editname'     => 'أدخل اسم مستخدم:',
 'editusergroup'                => 'عدل مجموعات المستخدم',
-'editinguser'                  => "تغيير صلاحيات المستخدم '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "تغيير صلاحيات المستخدم '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'تعديل مجموعات المستخدم',
 'saveusergroups'               => 'احفظ مجموعات المستخدم',
 'userrights-groupsmember'      => 'عضو في:',
@@ -1630,7 +1634,7 @@ $1",
 'userrights-no-interwiki'      => 'أنت لا تمتلك الصلاحية لتعديل صلاحيات المستخدمين على الويكيات الأخرى.',
 'userrights-nodatabase'        => 'قاعدة البيانات $1 غير موجودة أو ليست محلية.',
 'userrights-nologin'           => 'يجب عليك [[Special:UserLogin|تسجيل الدخول]] بحساب إداري لتعديل صلاحيات المستخدم.',
-'userrights-notallowed'        => 'حسابك لا يمتلك السماح لتعديل صلاحيات المستخدم.',
+'userrights-notallowed'        => 'حسابك لا يمتلك إذنا لإضافة أو إزالة صلاحيات المستخدمين.',
 'userrights-changeable-col'    => 'المجموعات التي يمكنك تغييرها',
 'userrights-unchangeable-col'  => 'المجموعات التي لا يمكنك تغييرها',
 
@@ -1718,7 +1722,7 @@ $1",
 'right-siteadmin'             => 'غلق ورفع غلق قاعدة البيانات',
 'right-override-export-depth' => 'تصدير الصفحات متضمنة الصفحات الموصولة حتى عمق 5',
 'right-sendemail'             => 'إرسال رسائل بريد إلكتروني إلى مستخدمين آخرين',
-'right-passwordreset'         => 'إعادة ضبط كلمة سر مستخدم([[Special:PasswordReset|صفحة خاصة]])',
+'right-passwordreset'         => 'عرض رسائل إعادة ضبط كلمات السر',
 
 # User rights log
 'rightslog'                  => 'سجل صلاحيات المستخدمين',
@@ -2686,6 +2690,7 @@ $1',
 'blockip-title'                   => 'منع مستخدم',
 'blockip-legend'                  => 'منع المستخدم',
 'blockiptext'                     => 'استخدم النموذج التالي لمنع مستخدم، أو عنوان آيبي، معين من التعديل أو إنشاء حسابات جديدة. تُستخدم هذه العملية لمنع التخريب فقط، ويجب أن تتماشى مع [[{{MediaWiki:Policy-url}}|سياسة المنع]]. أدخل تعليلاً واضحًا لسبب المنع في الخانة المخصصة لذلك (مثلاً: ذكر صفحات محددة تمّ تخريبها من قبل المستخدم).',
+'ipaddress'                       => 'عنوان الأيبي:',
 'ipadressorusername'              => 'عنوان الأيبي أو اسم المستخدم:',
 'ipbexpiry'                       => 'مدة المنع:',
 'ipbreason'                       => 'السبب:',

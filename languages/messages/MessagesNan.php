@@ -338,11 +338,23 @@ Che mā khó-lêng sī {{SITENAME}} só͘ sú-iōng ê nńg-thé chhut būn-tê.
 # General errors
 'error'                => 'Chhò-gō·',
 'databaseerror'        => 'Chu-liāu-khò· chhò-gō·',
+'dberrortext'          => 'Chu-liāu-khò͘ hoat-seng cha-sûn ê gí-hoat chhò-ngō͘.
+Che khó-lêng sī nńg-thé ê chhò-ngō͘.
+Téng chi̍t ê cha-sûn sī :
+<blockquote><tt>$1</tt></blockquote>
+tī hâm-sò͘  "<tt>$2</tt>".
+Chu-liāu-khò͘ thoân hoê ê chhò-ngō͘ "<tt>$3: $4</tt>".',
 'readonly'             => 'Chu-liāu-khò· só tiâu leh',
 'enterlockreason'      => 'Phah beh hong-só ê lí-iû, pau-koah ko͘-kè siáⁿ-mi̍h sî-chūn ē kái-tû hong-só.',
 'readonlytext'         => 'Chu-liāu-khò· hiān-chú-sî só tiâu leh, bô khai-hòng hō· lâng siu-kái. Che tāi-khài sī in-ūi teh pān î-siu khang-khòe, oân-sêng liáu-āu èng-tong tō ē hôe-ho̍k chèng-siông. Hū-chek ê hêng-chèng jîn-oân lâu chit-ê soat-bêng: $1',
+'missing-article'      => 'Chu-liāu-khò͘ chhoē bô ia̍h ê luē-iông, ia̍h ê miâ "$1" $2 .
+
+Che it-poaⁿ sī in-ūi koè-sî ê cheng-chha ia̍h sī le̍k-sú liân-kiat ê ia̍h í-keng hông thâi tiàu.
+
+Nā m̄-sī hit chióng chêng-hêng, lí khó-lêng tú tio̍h nńg-thé ê chhò-ngō͘. Chhiáⁿ pò hō͘ chi̍t ūi [[Special:ListUsers/sysop|koán-lí-goân]], ūi liân-kiat hiâ khì lâu thong-ti .',
 'internalerror'        => 'Loē-pō͘ ê chhò-ngō͘',
 'internalerror_info'   => 'Loē-pō͘ ê chhò-ngō͘: $1',
+'fileappenderrorread'  => 'Ka-ji̍p(append) ê sî bô-hoat-tō͘ thak "$1".',
 'fileappenderror'      => 'Bô-hoat-tō͘ kā "$1" chiap khì "$2".',
 'filecopyerror'        => 'Bô-hoat-tō· kā tóng-àn "$1" khó·-pih khì "$2".',
 'filerenameerror'      => 'Bô-hoat-tō· kā tóng-àn "$1" kái-miâ chò "$2".',
@@ -350,6 +362,7 @@ Che mā khó-lêng sī {{SITENAME}} só͘ sú-iōng ê nńg-thé chhut būn-tê.
 'directorycreateerror' => 'Bô-hoat-tō͘ khui bo̍k-lo̍k "$1".',
 'filenotfound'         => 'Chhōe bô tóng-àn "$1".',
 'fileexistserror'      => 'Bô-hoat-tō͘ chûn-ji̍p tóng-àn "$1": í-keng ū chit ê tóng-àn',
+'unexpected'           => 'Koài-koài ê pió-tat: "$1"="$2"。',
 'formerror'            => 'Chhò-gō·: bô-hoat-tō· kā pió sàng chhut khì.',
 'badarticleerror'      => 'Bē-tàng tiàm chit ia̍h chip-hêng chit ê tōng-chok.',
 'cannotdelete'         => 'Bô-hoat-tō· kā  "$1" hit ê ia̍h a̍h-sī iáⁿ-siōng thâi tiāu. (Khó-lêng pa̍t-lâng í-keng kā thâi tiāu ah.)',
@@ -357,14 +370,25 @@ Che mā khó-lêng sī {{SITENAME}} só͘ sú-iōng ê nńg-thé chhut būn-tê.
 'badtitletext'         => 'Iau-kiû ê piau-tê sī bô-hāu ê, khang ê, a̍h-sī liân-kiat chhò-gō· ê inter-language/inter-wiki piau-tê.',
 'perfcached'           => 'Ē-kha ê chu-liāu tùi lâi--ê, só·-í bī-pit oân-choân hoán-èng siōng sin ê chōng-hóng.',
 'perfcachedts'         => 'Ē-kha ê chu-liāu tùi lâi--ê, tī $1 keng-sin--koè.',
+'querypage-no-updates' => 'Chit-má bē-sái kái chit ia̍h.
+Chia ê chu-liāu bē-tàng sui tiông-sin chéng-lí.',
+'wrong_wfQuery_params' => 'Chhò-ngō͘ ê chham-sò͘ chhoân hō͘ wfQuery（）<br />
+Hâm-sò͘: $1<br />
+Cha-sûn: $2',
 'viewsource'           => 'Khoàⁿ goân-sú lōe-iông',
 'viewsourcefor'        => '$1 ê',
+'actionthrottled'      => 'Tōng-chok hông tóng leh.',
+'actionthrottledtext'  => 'Ūi-tio̍h thê-hông lah-sap ê chhú-tì,  lí ū hông hān-chè tī té sî-kan lāi chò siuⁿ chē pái chit ê tōng-chok,  taⁿ lí í-keng chhiau-koè hān-chè.
+Chhiáⁿ tī kúi hun-cheng hāu chiah koh chhì.',
 'protectedpagetext'    => 'Chit ia̍h hông só tiâu leh, bē pian-chi̍p tit.',
 'viewsourcetext'       => 'Lí ē-sái khoàⁿ ia̍h khó͘-pih chit ia̍h ê goân-sú loē-iông:',
 'protectedinterface'   => 'Chit ia̍h thê-kiong nńg-thé kài-bīn ēng ê bûn-jī. Ūi beh ī-hông lâng chau-that, só͘-í ū siū tio̍h pó-hō͘.',
 'editinginterface'     => "'''Sè-jī:''' Lí tng teh siu-kái 1 bīn thê-kiong nńg-thé kài-bīn bûn-jī ê ia̍h. 
 Jīn-hô kái-piàn to ē éng-hióng tio̍h kî-thaⁿ iōng-chiá ê sú-iōng kài-bīn.
 Nā ūi-tio̍h hoan-e̍k, chhiáⁿ khó-lū sú-iōng [http://translatewiki.net/wiki/Main_Page?setlang=nan translatewiki.net], MediaWiki ê chāi-tē hoà sū-kang.",
+'sqlhidden'            => '(Tshàng SQL tsa-sûn)',
+'cascadeprotected'     => 'Chit-ê ia̍h í-keng hông pó-hō͘ bē kái tit. In-ūi i tī ē-bīn {{PLURAL:$1|ê|ê}} liân-só pó-hō͘ lāi-té:
+$2',
 'namespaceprotected'   => "Lí bô khoân-lī kái '''$1'''  miâ-khong-kan ê ia̍h",
 
 # Virus scanner

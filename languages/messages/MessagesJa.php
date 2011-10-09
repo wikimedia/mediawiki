@@ -832,6 +832,7 @@ $2',
 'emailconfirmlink'           => 'メールアドレスを確認する',
 'invalidemailaddress'        => '入力されたメールアドレスが正しい形式に従っていないため、受け付けられません。
 正しい形式で入力し直すか、メールアドレス欄を空にしておいてください。',
+'cannotchangeemail'          => 'このウィキでは、アカウントの電子メールアドレスを変更できません。',
 'accountcreated'             => 'アカウントを作成しました',
 'accountcreatedtext'         => '利用者アカウント：$1が作成されました。',
 'createaccount-title'        => '{{SITENAME}}のアカウント作成',
@@ -861,7 +862,7 @@ $2',
 'retypenew'                 => '新しいパスワードを再入力:',
 'resetpass_submit'          => '再設定してログイン',
 'resetpass_success'         => 'パスワードの変更に成功しました！
-ログインしています・・・',
+ログインしています…',
 'resetpass_forbidden'       => 'パスワードは変更できません',
 'resetpass-no-info'         => 'このページに直接アクセスするためにはログインしている必要があります。',
 'resetpass-submit-loggedin' => 'パスワードを変更',
@@ -871,17 +872,44 @@ $2',
 'resetpass-temp-password'   => '仮パスワード：',
 
 # Special:PasswordReset
-'passwordreset'              => 'パスワードの再設定',
-'passwordreset-text'         => 'このフォームに回答すると、ご自身のアカウントの詳細が電子メールで通知されます。',
-'passwordreset-legend'       => 'パスワードのリセット',
-'passwordreset-disabled'     => 'パスワードのリセットは、このウィキでは無効になっています。',
-'passwordreset-pretext'      => '{{PLURAL:$1||以下のデータのうちのひとつを入力してください。}}',
-'passwordreset-username'     => '利用者名：',
-'passwordreset-email'        => '電子メールアドレス:',
-'passwordreset-emailtitle'   => '{{SITENAME}}上のアカウントの詳細',
-'passwordreset-emailelement' => '利用者名： $1
+'passwordreset'                    => 'パスワードの再設定',
+'passwordreset-text'               => 'このフォームに回答すると、ご自身のアカウントの詳細が電子メールで通知されます。',
+'passwordreset-legend'             => 'パスワードの再設定',
+'passwordreset-disabled'           => 'パスワードの再設定は、このウィキでは無効になっています。',
+'passwordreset-pretext'            => '{{PLURAL:$1||以下のデータのうちのひとつを入力してください。}}',
+'passwordreset-username'           => '利用者名：',
+'passwordreset-domain'             => 'ドメイン:',
+'passwordreset-capture'            => '送られるメールの内容を見ますか？',
+'passwordreset-capture-help'       => 'このボックスをチェックすると、利用者に送られるメールの内容（一時的なパスワードを含む）をあなたも見ることができます。',
+'passwordreset-email'              => '電子メールアドレス:',
+'passwordreset-emailtitle'         => '{{SITENAME}}上のアカウントの詳細',
+'passwordreset-emailtext-ip'       => 'どなたかが（おそらくあなた、IP アドレス $1 ）あなたの {{SITENAME}} ($4)
+におけるアカウントの詳細情報を送信するよう申請されました。
+下記の利用者{{PLURAL:$3|アカウント}}がこのメールアドレスと紐付けられています。
+
+$2
+
+{{PLURAL:$3|この一時的なパスワード}}は{{PLURAL:$5|$5日}}で有効期限が切れます。
+あなたはログインし、新しいパスワードをすぐに選ぶ必要があります。
+この申請が他のだれかによるものであるか、あるいはあなたが自身の元々のパスワードを
+覚えており、変えたくない場合には、このメッセージを無視して
+以前のパスワードを使い続けることができます。',
+'passwordreset-emailtext-user'     => '{{SITENAME}} の利用者 $1 があなたの {{SITENAME}} ($4)
+におけるアカウントの詳細情報を送信するよう申請されました。
+下記の利用者{{PLURAL:$3|アカウント}}がこのメールアドレスと紐付けられています。
+
+$2
+
+{{PLURAL:$3|この一時的なパスワード}}は{{PLURAL:$5|$5日}}で有効期限が切れます。
+あなたはログインし、新しいパスワードをすぐに選ぶ必要があります。
+この申請が他のだれかによるものであるか、あるいはあなたが自身の元々のパスワードを
+覚えており、変えたくない場合には、このメッセージを無視して
+以前のパスワードを使い続けることができます。',
+'passwordreset-emailelement'       => '利用者名： $1
 仮パスワード： $2',
-'passwordreset-emailsent'    => '確認のメールが送信されました。',
+'passwordreset-emailsent'          => '確認のメールが送信されました。',
+'passwordreset-emailsent-capture'  => '確認のメールが送信されました。以下に表示します。',
+'passwordreset-emailerror-capture' => '生成された確認メールを以下に表示していますが、利用者への送信には失敗しました: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'メールアドレスの変更',
@@ -1261,8 +1289,8 @@ $1",
 
 # Suppression log
 'suppressionlog'     => '秘匿記録',
-'suppressionlogtext' => '以下は管理者から秘匿された内容を含む削除およびブロック記録です。
-現在操作できるブロックについては[[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
+'suppressionlogtext' => '以下は管理者から秘匿された内容を含む削除およびブロックの一覧です。
+現在操作できる追放とブロックの一覧については[[Special:BlockList|IPブロックの一覧]]を参照してください。',
 
 # History merging
 'mergehistory'                     => 'ページ履歴の統合',
@@ -1466,6 +1494,7 @@ $1",
 'yourrealname'                  => '本名：',
 'yourlanguage'                  => '使用言語：',
 'yourvariant'                   => 'コンテンツ言語変種：',
+'prefs-help-variant'            => 'あなたがこのウィキのコンテンツに表示に使いたい言語変種または正書法',
 'yournick'                      => '新しい署名：',
 'prefs-help-signature'          => 'トークページ上での発言には「<nowiki>~~~~</nowiki>」と付けて署名するべきです。これは自分の署名に時刻印を付加したものに変換されます。',
 'badsig'                        => '署名用のソースが正しくありません。
@@ -1534,12 +1563,12 @@ HTMLタグを見直してください。',
 'group-suppress'      => '秘匿者',
 'group-all'           => '（全員）',
 
-'group-user-member'          => '利用者',
-'group-autoconfirmed-member' => '自動承認された利用者',
-'group-bot-member'           => 'ボット',
-'group-sysop-member'         => '管理者',
-'group-bureaucrat-member'    => 'ビューロクラット',
-'group-suppress-member'      => '秘匿者',
+'group-user-member'          => '{{GENDER:$1|利用者}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|自動承認された利用者}}',
+'group-bot-member'           => '{{GENDER:$1|ボット}}',
+'group-sysop-member'         => '{{GENDER:$1|管理者}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|ビューロクラット}}',
+'group-suppress-member'      => '{{GENDER:$1|秘匿者}}',
 
 'grouppage-user'          => '{{ns:project}}:利用者',
 'grouppage-autoconfirmed' => '{{ns:project}}:自動承認された利用者',
@@ -1608,6 +1637,7 @@ HTMLタグを見直してください。',
 'right-siteadmin'             => 'データベースのロックおよびロック解除',
 'right-override-export-depth' => 'リンク先ページを5階層まで含めて書き出す',
 'right-sendemail'             => '他の利用者へ電子メールを送る',
+'right-passwordreset'         => 'パスワード再設定メールを閲覧する',
 
 # User rights log
 'rightslog'                  => '利用者権限変更記録',
@@ -1737,6 +1767,7 @@ HTMLタグを見直してください。',
 'minlength1'                  => 'ファイル名は1文字以上である必要があります。',
 'illegalfilename'             => 'ファイル名「$1」にページ名として許可されていない文字が含まれています。
 ファイル名を変更してからもう一度アップロードしてください。',
+'filename-toolong'            => '240バイトを超えるファイル名は禁止されています。',
 'badfilename'                 => 'ファイル名は「$1」へ変更されました。',
 'filetype-mime-mismatch'      => 'ファイルの拡張子「$1」がMIMEタイプ「$2」と一致しません。',
 'filetype-badmime'            => 'MIMEタイプ「$1」のファイルのアップロードは許可されていません。',
@@ -1947,7 +1978,7 @@ URLが正しいものであるか、指定したサイトが現在使用可能�
 'filehist-filesize'                 => 'ファイルサイズ',
 'filehist-comment'                  => 'コメント',
 'filehist-missing'                  => 'ファイルがみつかりません',
-'imagelinks'                        => 'ファイルリンク',
+'imagelinks'                        => 'ファイルの使用状況',
 'linkstoimage'                      => '以下の{{PLURAL:$1|ページ|$1ページ}}が、このファイルへリンクしています：',
 'linkstoimage-more'                 => '$1より多いページが、このファイルにリンクしています。
 以下の一覧は、このファイルにリンクしている最初の$1ページのみを表示しています。
@@ -2583,6 +2614,7 @@ $1',
 'blockiptext'                     => '以下のフォームを使用して、指定した利用者やIPアドレスからの書き込みアクセスブロックすることができます。
 このような措置は、荒らしからの防御のためにのみ行われるべきで、また[[{{MediaWiki:Policy-url}}|方針]]に沿ったものであるべきです。
 以下にブロックの理由を具体的に書いてください（例えば、荒らされたページへの言及など）。',
+'ipaddress'                       => 'IPアドレス：',
 'ipadressorusername'              => 'IPアドレスまたは利用者名：',
 'ipbexpiry'                       => '有効期限：',
 'ipbreason'                       => '理由：',
@@ -2910,6 +2942,8 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'import-token-mismatch'      => 'セッションデータを損失しました。
 もう一度試してください。',
 'import-invalid-interwiki'   => '指定されたウィキから取り込めませんでした。',
+'import-error-edit'          => 'あなたにそのページを編集する許可がないため、ページ「$1」は取り込まれませんでした。',
+'import-error-create'        => 'あなたにそのページを作成する許可がないため、ページ「$1」は取り込まれませんでした。',
 
 # Import log
 'importlogpage'                    => '取り込み記録',
@@ -3115,7 +3149,7 @@ $1',
 'svg-long-desc'          => 'SVGファイル、$1×$2ピクセル、ファイルサイズ：$3',
 'show-big-image'         => '高解像度での画像',
 'show-big-image-preview' => ' このプレビューのサイズ: $1。',
-'show-big-image-other'   => 'その他の解像度: $1。',
+'show-big-image-other'   => 'その他の{{PLURAL:$2|解像度}}: $1。',
 'show-big-image-size'    => '$1 × $2 ピクセル',
 'file-info-gif-looped'   => 'ループします',
 'file-info-gif-frames'   => '$1フレーム',
@@ -3137,6 +3171,11 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims' => '$1、 $2 × $3',
+'seconds'    => '{{PLURAL:$1|$1秒}}',
+'minutes'    => '{{PLURAL:$1|$1分}}',
+'hours'      => '{{PLURAL:$1|$1時間}}',
+'days'       => '{{PLURAL:$1|$1日}}',
+'ago'        => '$1前',
 
 # Bad image list
 'bad_image_list' => '書式は以下の通りです：
@@ -3853,9 +3892,10 @@ MediaWikiは、有用であることを期待して配布されていますが�
 
 # Special:SpecialPages
 'specialpages'                   => '特別ページ',
-'specialpages-note'              => '* 通常の特別ページ。
-* <span class="mw-specialpagerestricted">制限されている特別ページ。</span>
-* <span class="mw-specialpagecached">(廃止されたかもしれない)キャッシュされた特別ページ。</span>',
+'specialpages-note'              => '----
+* 通常の特別ページ
+* <span class="mw-specialpagerestricted">制限されている特別ページ</span>
+* <span class="mw-specialpagecached">（廃止されたかもしれない）キャッシュされた特別ページ</span>',
 'specialpages-group-maintenance' => 'メンテナンス報告',
 'specialpages-group-other'       => 'その他の特別ページ',
 'specialpages-group-login'       => 'ログイン/利用者登録',
@@ -3935,8 +3975,14 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'sqlite-no-fts'  => '$1（全文検索なし）',
 
 # New logging system
-'revdelete-restricted'   => '管理者に対する制限を適用',
-'revdelete-unrestricted' => '管理者に対する制限を除去しました',
-'newuserlog-byemail'     => 'パスワードを電子メールで送信しました',
+'revdelete-content-hid'   => '本文の不可視化',
+'revdelete-summary-hid'   => '編集要約の不可視化',
+'revdelete-uname-hid'     => '利用者名の不可視化',
+'revdelete-content-unhid' => '本文の可視化',
+'revdelete-summary-unhid' => '編集要約の可視化',
+'revdelete-uname-unhid'   => '利用者名の可視化',
+'revdelete-restricted'    => '管理者に対する制限を適用',
+'revdelete-unrestricted'  => '管理者に対する制限を除去しました',
+'newuserlog-byemail'      => 'パスワードを電子メールで送信しました',
 
 );

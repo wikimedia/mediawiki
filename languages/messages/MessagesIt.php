@@ -380,7 +380,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'cont.',
 'index-category'                 => 'Pagine indicizzate',
 'noindex-category'               => 'Pagine non indicizzate',
-'broken-file-category'           => 'Pagine con link a file inesistenti',
+'broken-file-category'           => 'Pagine che includono file inesistenti',
 
 'about'         => 'Informazioni',
 'article'       => 'Voce',

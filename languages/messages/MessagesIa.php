@@ -1077,7 +1077,7 @@ Per favor verifica le registros.',
 # Suppression log
 'suppressionlog'     => 'Registro de suppressiones',
 'suppressionlogtext' => 'Infra es un lista de deletiones e blocadas que involve contento que es celate de administratores.
-Vide le [[Special:IPBlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
+Vide le [[Special:BlockList|lista de blocadas IP]] pro le lista de bannimentos e blocadas actualmente in operation.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historias del paginas',
@@ -1349,12 +1349,12 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'group-suppress'      => 'Supervisores',
 'group-all'           => '(totes)',
 
-'group-user-member'          => 'Usator',
-'group-autoconfirmed-member' => 'Usator autoconfirmate',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Bureaucrate',
-'group-suppress-member'      => 'Supervisor',
+'group-user-member'          => '{{GENDER:$1|usator|usatrice|usator}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usator|usatrice|usator}} autoconfirmate',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|administratrice|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bureaucrate}}',
+'group-suppress-member'      => '{{GENDER:$1|supervisor|supervisora}}',
 
 'grouppage-user'          => '{{ns:project}}:Usatores',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usatores autoconfirmate',
@@ -1423,7 +1423,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-siteadmin'             => 'Blocar e disblocar le base de datos',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
 'right-sendemail'             => 'Inviar e-mail a altere usatores',
-'right-passwordreset'         => 'Reinitialisar le contrasigno de un usator ([[Special:PasswordReset|pagina special]])',
+'right-passwordreset'         => 'Vider le e-mails pro reinitialisar le contrasigno',
 
 # User rights log
 'rightslog'                  => 'Registro de derectos de usator',

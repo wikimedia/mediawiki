@@ -1344,6 +1344,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-siteadmin'             => 'Datebank sperre un entsperre',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
+'right-passwordreset'         => 'Passwort vun eme Benutzer zruggsetze ([[Special:PasswordReset|Spezialsyte]])',
 
 # User rights log
 'rightslog'                  => 'Benutzerrächt-Logbuech',
@@ -2264,6 +2265,7 @@ Do chunnt dr aktuäll Yytrag us em Benutzersperr-Logbuech:',
 'blockip-legend'                  => 'IP-Adräss/Benutzer sperre',
 'blockiptext'                     => 'Nimm des Formular go ne Benutzer oder e IP-Adräss sperre.
 Des sott numme erfolge go Vandalismus verhindere un in Ibereinstimmig mit in dr [[{{MediaWiki:Policy-url}}|Leitlinie]]. Bitte gib au ne Grund fi d Sperri aa (z. B. indäm du einzel ni Syte zitiersch, wu vandaliert wore sin).',
+'ipaddress'                       => 'IP-Adräss oder Benutzername:',
 'ipadressorusername'              => 'IP-Adräss oder Benutzername:',
 'ipbexpiry'                       => 'Sperrduur:',
 'ipbreason'                       => 'Grund:',

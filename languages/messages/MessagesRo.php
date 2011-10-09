@@ -1205,7 +1205,7 @@ Nu ai acces asupra lui.',
 # Suppression log
 'suppressionlog'     => 'Înlătură jurnalul',
 'suppressionlogtext' => 'Mai jos este afișată o listă a ștergerilor și a blocărilor care implică conținutul ascuns de administratori.
-Vezi [[Special:IPBlockList|adresele IP blocate]] pentru o listă a interzicerilor operaționale sau a blocărilor.',
+Vedeți [[Special:BlockList|adresele IP blocate]] pentru o listă a interzicerilor operaționale sau a blocărilor.',
 
 # History merging
 'mergehistory'                     => 'Unește istoricul paginilor',
@@ -1476,12 +1476,12 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'group-suppress'      => 'Oversights',
 'group-all'           => '(toți)',
 
-'group-user-member'          => 'Utilizator',
-'group-autoconfirmed-member' => 'Utilizator autoconfirmat',
-'group-bot-member'           => 'Robot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Birocrat',
-'group-suppress-member'      => 'oversight',
+'group-user-member'          => '{{GENDER:$1|utilizator|utilizatoare|utilizator}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|utilizator autoconfirmat|utilizatoare autoconfirmată|utilizator autoconfirmat}}',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birocrat}}',
+'group-suppress-member'      => '{{GENDER:$1|supraveghetor}}',
 
 'grouppage-user'          => '{{ns:project}}:Utilizatori',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilizator autoconfirmați',
@@ -1682,6 +1682,7 @@ Vezi [[Special:NewFiles|galeria fișierelor noi]] pentru o mai bună vizualizare
 'ignorewarnings'              => 'Ignoră orice avertismente',
 'minlength1'                  => 'Numele fișierelor trebuie să fie cel puțin o literă.',
 'illegalfilename'             => 'Numele fișierului "$1" conține caractere care nu sunt permise în titlurile paginilor. Vă rugăm redenumiți fișierul și încercați să îl încărcați din nou.',
+'filename-toolong'            => 'Numele fișierelor nu trebuie să fie mai lungi de 240 de octeți.',
 'badfilename'                 => 'Numele fișierului a fost schimbat în „$1”.',
 'filetype-mime-mismatch'      => 'Extensia „.$1” nu se potrivește cu tipul MIME al fișierului ($2).',
 'filetype-badmime'            => 'Nu este permisă încărcarea de fișiere de tipul MIME "$1".',
@@ -3770,6 +3771,7 @@ Imaginile sunt afișate la rezoluția lor maximă, în timp ce alte tipuri de fi
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|a redenumit}} pagina $3 în $4 înlocuind redirecționarea și fără a lăsa o redirecționare în loc',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|a marcat}} versiunea $4 a paginii $3 ca patrulată',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|a marcat}} automat versiunea $4 a paginii $3 ca patrulată',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|a creat}} un cont de utilizator',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|a creat}} un cont de utilizator',
 'logentry-newusers-create2'           => '$1 {{GENDER:$2|a creat}} {{GENDER:$4|un cont de utilizator}} $3',
 'logentry-newusers-autocreate'        => 'Contul $1 a fost {{GENDER:$2|creat}} în mod automat',

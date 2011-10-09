@@ -178,7 +178,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'tẹ̀síwájú',
 'index-category'                 => 'Àwọn ojúewé títọ́kasí',
 'noindex-category'               => 'Àwọn ojúewé àìjẹ́ títọ́kasí',
-'broken-file-category'           => 'Àwọn ojúewé pẹ̀lú àwọn ìjápọ̀ gígé',
+'broken-file-category'           => 'Àwọn ojúewé pẹ̀lú àwọn ìjápọ̀ fáìlì gígé',
 
 'about'         => 'Nípa',
 'article'       => 'Ojúewé àkóónú',
@@ -1806,6 +1806,7 @@ $1',
 'blockip'                     => 'Dínà oníṣe',
 'blockip-title'               => 'Ìdínà oníṣẹ',
 'blockip-legend'              => 'Ìdínà oníṣẹ',
+'ipaddress'                   => 'Àdírẹ́ẹ̀sì IP',
 'ipadressorusername'          => 'Àdírẹ́ẹ̀sì IP tàbí orúkọ oníṣe:',
 'ipbexpiry'                   => 'Ìwásópin:',
 'ipbreason'                   => 'Ìdíẹ̀:',
@@ -2132,6 +2133,9 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 
 'exif-sharpness-0' => 'Déédé',
 
+'exif-iimcategory-edu' => 'Ẹ̀kọ́',
+'exif-iimcategory-hth' => 'Ìlera',
+
 # External editor support
 'edit-externally'      => "Ẹ lo ìmúlò òde láti ṣ'àtúnṣe fáìlì yìí",
 'edit-externally-help' => '(Ẹ wo [http://www.mediawiki.org/wiki/Manual:External_editors ìlànà ìṣètò] fún ẹ̀kúnrẹ́rẹ́)',
@@ -2162,6 +2166,10 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 # action=purge
 'confirm_purge_button' => 'OK',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-unwatch-button' => 'OK',
+
 # Multipage image navigation
 'imgmultipageprev' => '← ojúewé tókọjá',
 'imgmultipagenext' => 'ojúewé tóúnbọ̀ →',
@@ -2180,6 +2188,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 
 # Auto-summaries
 'autoredircomment' => 'Ti ṣàtunjúwe ojúewé sí [[$1]]',
+'autosumm-new'     => 'Ṣ\'èdá ojúewé pẹ̀lú "$1"',
 
 # Live preview
 'livepreview-loading' => 'Únrùjáde...',
@@ -2203,6 +2212,7 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'version-other'            => 'Òmíràn',
 'version-version'          => '(Àtẹ̀jáde $1)',
 'version-license'          => 'Ìwé àṣẹ',
+'version-poweredby-others' => 'àwọn mìíràn',
 'version-software-version' => 'Àtẹ̀jáde',
 
 # Special:FilePath
@@ -2211,15 +2221,17 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'filepath-submit' => 'Lọ',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-filename' => 'Orúkọ fáìlì:',
-'fileduplicatesearch-submit'   => 'Àwárí',
-'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Ìtóbi fáìlì: $3<br />Irú MIME: $4',
+'fileduplicatesearch-filename'  => 'Orúkọ fáìlì:',
+'fileduplicatesearch-submit'    => 'Àwárí',
+'fileduplicatesearch-info'      => '$1 × $2 pixel<br />Ìtóbi fáìlì: $3<br />Irú MIME: $4',
+'fileduplicatesearch-noresults' => 'Kò sí fáìlì tó únjẹ́ "$1".',
 
 # Special:SpecialPages
 'specialpages'                   => 'Àwọn ojúewé pàtàkì',
 'specialpages-group-maintenance' => 'Àwọn ìjábọ̀ ìtọ́jú',
 'specialpages-group-other'       => 'Àwọn ojúewé pàtàkì míràn',
 'specialpages-group-login'       => 'Ìwọlé / ìforúkọsílẹ́',
+'specialpages-group-users'       => 'Àwọn oníṣe àti àwọn ẹ̀tọ́ wọn',
 'specialpages-group-pages'       => 'Àkójọ àwọn ojúewé',
 'specialpages-group-pagetools'   => 'Àwọn irinṣẹ́ ojúewé',
 
@@ -2251,6 +2263,13 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'htmlform-selectorother-other' => 'Òmíràn',
 
 # New logging system
-'newuserlog-byemail' => 'ọ̀rọ̀ìpamọ́ jẹ́ fífiránṣẹ́ pẹ̀lú e-mail',
+'logentry-move-move'                  => '$1 {{GENDER:$2|ṣeyípòdà}} ojúewé $3 sí $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|ṣeyípòdà}} ojúewé $3 sí $4 láìfi àtúnjúwe sílẹ̀',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|ṣeyípòdà}} ojúewé $3 sí $4 lórí àtúnjúwe',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|ṣeyípòdà}} ojúewé $3 sí $4 lórí àtúnjúwe láìfi àtúnjúwe sílẹ̀',
+'logentry-newusers-newusers'          => "$1 {{GENDER:$2|ṣ'èdá}} àpamọ́ oníṣe",
+'logentry-newusers-create'            => "$1 {{GENDER:$2|ṣ'èdá}} àpamọ́ oníṣe",
+'logentry-newusers-create2'           => "$1 {{GENDER:$2|ṣ'èdá}} {{GENDER:$4|àpamọ́ oníṣe}} $3",
+'newuserlog-byemail'                  => 'ọ̀rọ̀ìpamọ́ jẹ́ fífiránṣẹ́ pẹ̀lú e-mail',
 
 );

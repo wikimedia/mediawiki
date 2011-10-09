@@ -1311,6 +1311,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-siteadmin'             => 'Datowu banku zastajiś a zastajenje wótpóraś',
 'right-override-export-depth' => 'Boki inkluziwnje wótkazanych bokow až do dłyma 5 eksportěrowaś',
 'right-sendemail'             => 'Drugim wužywarjam e-mail pósłaś',
+'right-passwordreset'         => 'Gronidło wužywarja slědk stajiś ([[Special:PasswordReset|specialny bok]])',
 
 # User rights log
 'rightslog'      => 'Protokol wužywarskich pšawow',
@@ -2223,6 +2224,7 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'blockip-title'                   => 'Wužywarja blokěrowaś',
 'blockip-legend'                  => 'Wužywarja blokěrowaś',
 'blockiptext'                     => 'Wužywaj slědujucy formular, jolic až coš wěstej IP-adresy abo konkretnemu wužywarjeju pśistup znjemóžniś. Take dejało se pó [[{{MediaWiki:Policy-url}}|směrnicach]] jano staś, aby se wandalizmoju zadorało. Pšosym zapódaj pśicynu za twójo blokěrowanje (na pś. mógu se citěrowaś konkretne boki, źo jo se wandalěrowało).',
+'ipaddress'                       => 'IP-adresa',
 'ipadressorusername'              => 'IP-adresa abo wužywarske mě',
 'ipbexpiry'                       => 'Cas blokěrowanja:',
 'ipbreason'                       => 'Pśicyna:',

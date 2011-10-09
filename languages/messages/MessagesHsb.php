@@ -1319,6 +1319,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-siteadmin'             => 'Datowu banku zawrěć a wotewrěć',
 'right-override-export-depth' => 'Strony inkluziwnje wotkazanych stronow hač do hłubokosće 5 eksportować',
 'right-sendemail'             => 'Druhim wužiwarjam e-mejl pósłać',
+'right-passwordreset'         => 'Hesło wužiwarskeje ([[Special:PasswordReset|specialneje strony]]) wróćo stajić',
 
 # User rights log
 'rightslog'      => 'Protokol zrjadowanja wužiwarskich prawow',
@@ -2238,6 +2239,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'blockip-title'                   => 'Wužiwarja blokować',
 'blockip-legend'                  => 'Wužiwarja blokować',
 'blockiptext'                     => 'Wužij slědowacy formular deleka, zo by pisanski přistup za podatu IP-adresu abo wužiwarske mjeno blokował. To měło so jenož stać, zo by wandalizmej zadźěwało a woptpowědujo [[{{MediaWiki:Policy-url}}|zasadam]]. Zapodaj deleka přičinu (na př. citujo wosebite strony, kotrež běchu z woporom wandalizma).',
+'ipaddress'                       => 'IP-adresa',
 'ipadressorusername'              => 'IP-adresa abo wužiwarske mjeno',
 'ipbexpiry'                       => 'Spadnjenje',
 'ipbreason'                       => 'Přičina:',

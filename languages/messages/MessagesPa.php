@@ -881,6 +881,7 @@ to upload files.',
 
 # Block/unblock
 'blockip'            => 'ਯੂਜ਼ਰ ਬਲਾਕ ਕਰੋ',
+'ipaddress'          => 'IP ਐਡਰੈੱਸ:',
 'ipadressorusername' => 'IP ਐਡਰੈਸ ਜਾਂ ਯੂਜ਼ਰ ਨਾਂ:',
 'ipbexpiry'          => 'ਮਿਆਦ:',
 'ipbreason'          => 'ਕਾਰਨ:',

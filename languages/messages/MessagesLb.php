@@ -1048,8 +1048,8 @@ Kuckt w.e.g. an de Logbicher no.",
 
 # Suppression log
 'suppressionlog'     => 'Lëscht vun de verstoppten a geläschte Säiten',
-'suppressionlogtext' => "Ënnendrënner ass eng Lëscht vun de geläschte Säiten a Spären déi fir d'Administrateuren net sichtbar sinn.
-Kuckt [[Special:IPBlockList|Lëscht vun de gespaarten IPen]] fir déi aktuell Spären.",
+'suppressionlogtext' => 'Ënnendrënner ass eng Lëscht vun de geläschte Säiten a Spären a vun den Administrateuren verstopptem Inhalt.
+Kuckt [[Special:BlockList|Lëscht vun de gespaarten IPen]] fir déi aktuell Spären.',
 
 # History merging
 'mergehistory'                     => 'Historiquë fusionéieren',
@@ -1319,11 +1319,11 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'group-suppress'      => 'Iwwersicht',
 'group-all'           => '(all)',
 
-'group-user-member'          => 'Benotzer',
-'group-autoconfirmed-member' => 'Registréierte Benotzer',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrateur',
-'group-bureaucrat-member'    => 'Bürokrat',
+'group-user-member'          => '{{GENDER:$1|Benotzer}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatesch confirméiert Benotzer}}',
+'group-bot-member'           => '{{GENDER:$1|Bot}}',
+'group-sysop-member'         => '{{GENDER:$1|Administrateur|Administratrice}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|Bürokrat|Bürokratin}}',
 'group-suppress-member'      => 'Iwwersiicht',
 
 'grouppage-user'          => '{{ns:project}}:Benotzer',
@@ -1393,7 +1393,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'right-siteadmin'             => "Datebank spären an d'Spär ophiewen",
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
 'right-sendemail'             => 'Anere Benotzer E-Maile schécken',
-'right-passwordreset'         => 'Passwuert vun engem Benotzer zrécksetzen ([[Special:PasswordReset|Spezialsäit]])',
+'right-passwordreset'         => 'Maile vum Zrécksetze vum Passwuert weisen',
 
 # User rights log
 'rightslog'                  => 'Logbuch vun de Benotzerrechter',
@@ -1522,6 +1522,7 @@ Kuckt [[Special:NewFiles|d'Gallerie vun de neie Fichieren]] wann Dir méi e visu
 'ignorewarnings'              => 'Ignoréier all Iwwerschreiwungswarnungen',
 'minlength1'                  => "D'Nimm vu Fichiere musse mindestens e Buschtaf am Numm hunn.",
 'illegalfilename'             => 'Am Fichiersnumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
+'filename-toolong'            => 'Nimm vu Fichieren däerfen net méi laang si wéi 240 Byten.',
 'badfilename'                 => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
 'filetype-mime-mismatch'      => 'Dateierweiderung ".$1" passt net op de MIME-Typ vum Fichier ($2).',
 'filetype-badmime'            => 'Fichiere vum MIME-Typ "$1" kënnen net eropgeluede ginn.',

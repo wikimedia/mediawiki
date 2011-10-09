@@ -1212,6 +1212,7 @@ Binsiren ti [[Special:Log/delete|log ti naik-ikkat]] para iti rekord dagiti naud
 # Block/unblock
 'blockip'                     => 'Pengdan ti agar-aramat',
 'blockip-legend'              => 'Pengdan ti agar-aramat',
+'ipaddress'                   => 'IP Address:',
 'ipadressorusername'          => 'IP Address wenno nagan-agar-aramat:',
 'ipbexpiry'                   => 'Panagpaso:',
 'ipbreason'                   => 'Rason:',

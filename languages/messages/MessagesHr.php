@@ -1531,6 +1531,7 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
 'right-sendemail'             => 'Slanje e-maila drugim korisnicima',
+'right-passwordreset'         => 'Ponovno postavljanje lozinke za suradnika ([[Special:PasswordReset|posebna stranica]])',
 
 # User rights log
 'rightslog'                  => 'Evidencija suradničkih prava',
@@ -2453,6 +2454,7 @@ To biste trebali raditi samo zbog sprječavanja vandalizma i u skladu
 sa [[{{MediaWiki:Policy-url}}|smjernicama]].
 Upišite i razlog za ovo blokiranje (npr. stranice koje su
 vandalizirane).',
+'ipaddress'                       => 'IP adresa',
 'ipadressorusername'              => 'IP adresa ili suradničko ime',
 'ipbexpiry'                       => 'Rok (na engleskom)',
 'ipbreason'                       => 'Razlog:',

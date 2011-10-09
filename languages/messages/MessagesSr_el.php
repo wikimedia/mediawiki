@@ -915,7 +915,7 @@ Moraćete da unesete svoje promene u postojeći tekst.
 Ako je snimite, sve promene učinjene od ove revizije biće izgubljene.'''",
 'yourdiff'                         => 'Razlike',
 'copyrightwarning'                 => "Imajte na umu da se svi prilozi na ovom vikiju smatraju da su objavljeni pod licencom $2 (pogledajte $1 za detalje).
-Ako ne želite da se vaš rad menja i raspodeljuje bez ograničenja, onda ga ne šaljite ovde.<br>
+Ako ne želite da se vaš rad menja i raspodeljuje bez ograničenja, onda ga ne šaljite ovde.<br />
 Takođe nam obećavate da ste ga sami napisali ili umnožili s izvora koji je u javnom vlasništvu.
 '''Ne šaljite radove zaštićene autorskim pravima bez dozvole!'''",
 'copyrightwarning2'                => "Svi prilozi na ovom vikiju mogu da se menjaju, vraćaju ili brišu od strane drugih korisnika.
@@ -1588,6 +1588,7 @@ Datoteku dodajete na željenu stranicu koristeći sledeće obrasce:
 'ignorewarnings'              => 'Ignoriši sva upozorenja',
 'minlength1'                  => 'Imena fajlova moraju imati najmanje jedan karakter.',
 'illegalfilename'             => 'Fajl "$1" sadrži karaktere koji nisu dozvoljeni u nazivima stranica. Molimo Vas promenite ime fajla i ponovo ga pošaljite.',
+'filename-toolong'            => 'Nazivi datoteka mogu imati najviše 240 bajtova.',
 'badfilename'                 => 'Ime slike je promenjeno u "$1".',
 'filetype-mime-mismatch'      => 'Ekstenzija „.$1“ ne odgovara prepoznatoj vrsti MIME datoteke ($2).',
 'filetype-badmime'            => 'Nije dozvoljeno slati datoteke MIME tipa „$1“.',

@@ -1662,6 +1662,7 @@ Xem [[Special:NewFiles|trang trưng bày các tập tin mới]] để xem trực
 'ignorewarnings'              => 'Bỏ qua cảnh báo',
 'minlength1'                  => 'Tên tập tin phải có ít nhất một ký tự.',
 'illegalfilename'             => 'Tên tập tin “$1” có chứa ký tự không được phép dùng cho tựa trang. Xin hãy đổi tên và tải lên lại.',
+'filename-toolong'            => 'Tên tập tin không có thể dài quá 240 byte.',
 'badfilename'                 => 'Tên tập tin đã được đổi thành “$1”.',
 'filetype-mime-mismatch'      => 'Phần mở rộng của tập tin (“.$1”) không phù hợp kiểu MIME được nhận ra ($2).',
 'filetype-badmime'            => 'Không thể tải lên các tập tin có kiểu MIME “$1”.',
@@ -2482,6 +2483,7 @@ $1',
 'blockiptext'                     => 'Dùng mẫu dưới để cấm một địa chỉ IP hoặc thành viên không được viết trang.
 Điều này chỉ nên làm để tránh phá hoại, và phải theo [[{{MediaWiki:Policy-url}}|quy định]].
 Điền vào lý do cụ thể ở dưới (ví dụ, chỉ ra trang nào bị phá hoại).',
+'ipaddress'                       => 'Địa chỉ IP:',
 'ipadressorusername'              => 'Địa chỉ IP hay tên thành viên:',
 'ipbexpiry'                       => 'Thời hạn:',
 'ipbreason'                       => 'Lý do:',

@@ -1138,6 +1138,7 @@ Mundeni me zgjedhe që të tjerët me ju kontaktue përmjet faqe së diskutimit 
 'right-unwatchedpages'   => 'Shiko listën e faqeve të pa vëzhguara',
 'right-mergehistory'     => 'Bashko historinë e faqeve',
 'right-userrights'       => 'Redakto të gjitha të drejtat e përdoruesit',
+'right-passwordreset'    => 'Fjalëkalimi Reset e një përdoruesi ([[Special:PasswordReset|faqe veçantë]])',
 
 # User rights log
 'rightslog'      => 'Regjsitri i tagrit të përdoruesve',

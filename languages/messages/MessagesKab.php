@@ -1132,6 +1132,7 @@ G leɛnayek wekki ɣef taqeffalt "Back/Précédent" n browser/explorateur inek, 
 
 # Block/unblock
 'blockip'                     => 'Ɛekkel amseqdac',
+'ipaddress'                   => 'Tansa IP',
 'ipadressorusername'          => 'Tansa IP neɣ isem n wemseqdac',
 'ipbreason'                   => 'Ayɣer',
 'ipbsubmit'                   => 'Ɛekkel amseqdac-agi',

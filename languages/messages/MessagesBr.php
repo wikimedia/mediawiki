@@ -1074,7 +1074,8 @@ N\'oc\'h ket aotreet da vont outi.',
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',
-'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. Gwelet [[Special:IPBlockList|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
+'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. 
+Gwelet [[Special:BlockList|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
 
 # History merging
 'mergehistory'                     => 'Kendeuziñ istor ur bajenn',
@@ -1341,12 +1342,12 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'group-suppress'      => 'Dindan evezh',
 'group-all'           => '(pep tra)',
 
-'group-user-member'          => 'Implijer',
-'group-autoconfirmed-member' => 'Implijer bet kadarnaet ent emgefre',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Merour',
-'group-bureaucrat-member'    => 'bureviad',
-'group-suppress-member'      => 'Dindan evezh',
+'group-user-member'          => '{{GENDER:$1|implijer}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|Implijer bet kadarnaet ent emgefre}}',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|merour}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|bureviad}}',
+'group-suppress-member'      => '{{GENDER:$1|evezhier}}',
 
 'grouppage-user'          => '{{ns:project}}:Implijerien',
 'grouppage-autoconfirmed' => '{{ns:project}}: Implijerien bet kadarnaet ent emgefre',
@@ -1415,7 +1416,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-siteadmin'             => 'Prennañ ha dibrennañ ar bank-titouroù',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
 'right-sendemail'             => "Kas ur postel d'an implijerien all",
-'right-passwordreset'         => 'Adderaouekaat ger-tremen un implijer ([[Special:PasswordReset|pajenn ispisial]])',
+'right-passwordreset'         => 'Gwelet ar posteloù assevel gerioù-tremen',
 
 # User rights log
 'rightslog'                  => 'Marilh statud an implijerien',
@@ -1543,6 +1544,7 @@ S.o [[Special:NewFiles|rann ar skeudennoù nevez]] evit kaout ur sell gwiroc'h",
 'ignorewarnings'              => "Na ober van ouzh ar c'hemennoù diwall",
 'minlength1'                  => 'Anv ar restroù a rank bezañ keit hag ul lizherenn da nebeutañ.',
 'illegalfilename'             => "Lakaet ez eus bet er restr « $1 » arouezennoù n'int ket aotreet evit titl ur bajenn. Mar plij, adanvit ar restr hag adkasit anezhi.",
+'filename-toolong'            => "N'hallet ket anvioù ar restroù bezañ hiroc'h eget 240 okted.",
 'badfilename'                 => 'Anvet eo bet ar skeudenn « $1 ».',
 'filetype-mime-mismatch'      => 'Ne glot ket astenn ar restr ".$1" gant seurt MIME detektet ar restr ($2).',
 'filetype-badmime'            => 'N\'eo ket aotreet pellgargañ ar restroù a seurt MIME "$1".',
@@ -2367,6 +2369,7 @@ Dindan emañ merket enmont diwezhañ marilh ar stankadennoù, d'ho kelaouiñ :",
 'blockiptext'                     => "Grit gant ar furmskrid a-is evit stankañ ar moned skrivañ ouzh ur chomlec'h IP pe un implijer bennak.
 Seurt diarbennoù n'hallont bezañ kemeret nemet evit mirout ouzh ar vandalerezh hag a-du gant an [[{{MediaWiki:Policy-url}}|erbedadennoù ha reolennoù da heuliañ]].
 Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou outo).",
+'ipaddress'                       => "Chomlec'h IP",
 'ipadressorusername'              => "Chomlec'h IP pe anv implijer",
 'ipbexpiry'                       => 'Pad ar stankadenn',
 'ipbreason'                       => 'Abeg :',
