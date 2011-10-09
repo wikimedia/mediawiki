@@ -947,6 +947,8 @@ class EditPage {
 		}
 
 		if ( $wgUser->isBlockedFrom( $this->mTitle, false ) ) {
+			// Auto-block user's IP if the account was "hard" blocked
+			$wgUser->spreadAnyEditBlock();
 			# Check block state against master, thus 'false'.
 			$status->setResult( false, self::AS_BLOCKED_PAGE_FOR_USER );
 			wfProfileOut( __METHOD__ . '-checks' );
