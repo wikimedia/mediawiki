@@ -68,14 +68,27 @@ class CategoryPage extends Article {
 		// Use these as defaults for back compat --catrope
 		$oldFrom = $wgRequest->getVal( 'from' );
 		$oldUntil = $wgRequest->getVal( 'until' );
+
+		$reqArray = $wgRequest->getValues();
 		
 		$from = $until = array();
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
 			$from[$type] = $wgRequest->getVal( "{$type}from", $oldFrom );
 			$until[$type] = $wgRequest->getVal( "{$type}until", $oldUntil );
+
+			// Do not want old-style from/until propagating in nav links.
+			if ( !isset( $reqArray["{$type}from"] ) && isset( $reqArray["from"] ) ) {
+				$reqArray["{$type}from"] = $reqArray["from"];
+			}
+			if ( !isset( $reqArray["{$type}to"] ) && isset( $reqArray["to"] ) ) {
+				$reqArray["{$type}to"] = $reqArray["to"];
+			}
 		}
 
-		$viewer = new $this->mCategoryViewerClass( $this->mTitle, $from, $until, $wgRequest->getValues() );
+		unset( $reqArray["from"] );
+		unset( $reqArray["to"] );
+
+		$viewer = new $this->mCategoryViewerClass( $this->mTitle, $from, $until, $reqArray );
 		$wgOut->addHTML( $viewer->getHTML() );
 	}
 }
