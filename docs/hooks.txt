@@ -1666,6 +1666,10 @@ $checkEdit: Whether or not the action=edit query should be added if appropriate.
 'SkinTemplateToolboxEnd': Called by SkinTemplate skins after toolbox links have
 been rendered (useful for adding more)
 $sk: The QuickTemplate based skin template running the hook.
+$dummy: Called when SkinTemplateToolboxEnd is used from a BaseTemplate skin,
+  extensions that add support for BaseTemplateToolbox should watch for this dummy
+  parameter with "$dummy=false" in their code and return without echoing any html
+  to avoid creating duplicate toolbox items.
 
 'SoftwareInfo': Called by Special:Version for returning information about
 the software
