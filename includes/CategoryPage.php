@@ -313,7 +313,7 @@ class CategoryViewer {
 		}
 		$this->articles[] = $link;
 
-		$this->articles_start_char[] = $this->getLang()->convert->convert(
+		$this->articles_start_char[] = $this->getLang()->convert(
 			$this->collation->getFirstLetter( $sortkey ) );
 	}
 
