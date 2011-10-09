@@ -34,10 +34,10 @@ class CategoryPage extends Article {
 	}
 
 	function view() {
-		global $wgRequest, $wgUser;
-
-		$diff = $wgRequest->getVal( 'diff' );
-		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
+		$request = $this->getContext()->getRequest();
+		$diff = $request->getVal( 'diff' );
+		$diffOnly = $request->getBool( 'diffonly',
+			$this->getContext()->getUser()->getOption( 'diffonly' ) );
 
 		if ( isset( $diff ) && $diffOnly ) {
 			return parent::view();
@@ -63,18 +63,17 @@ class CategoryPage extends Article {
 	}
 
 	function closeShowCategory() {
-		global $wgOut, $wgRequest;
-
 		// Use these as defaults for back compat --catrope
-		$oldFrom = $wgRequest->getVal( 'from' );
-		$oldUntil = $wgRequest->getVal( 'until' );
+		$request = $this->getContext()->getRequest();
+		$oldFrom = $request->getVal( 'from' );
+		$oldUntil = $request->getVal( 'until' );
 
-		$reqArray = $wgRequest->getValues();
+		$reqArray = $request->getValues();
 		
 		$from = $until = array();
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
-			$from[$type] = $wgRequest->getVal( "{$type}from", $oldFrom );
-			$until[$type] = $wgRequest->getVal( "{$type}until", $oldUntil );
+			$from[$type] = $request->getVal( "{$type}from", $oldFrom );
+			$until[$type] = $request->getVal( "{$type}until", $oldUntil );
 
 			// Do not want old-style from/until propagating in nav links.
 			if ( !isset( $reqArray["{$type}from"] ) && isset( $reqArray["from"] ) ) {
@@ -88,8 +87,8 @@ class CategoryPage extends Article {
 		unset( $reqArray["from"] );
 		unset( $reqArray["to"] );
 
-		$viewer = new $this->mCategoryViewerClass( $this->mTitle, $from, $until, $reqArray );
-		$wgOut->addHTML( $viewer->getHTML() );
+		$viewer = new $this->mCategoryViewerClass( $this->mTitle, $this->getContext(), $from, $until, $reqArray );
+		$this->getContext()->getOutput()->addHTML( $viewer->getHTML() );
 	}
 }
 
@@ -138,9 +137,26 @@ class CategoryViewer {
 	 */
 	private $query;
 
-	function __construct( $title, $from = '', $until = '', $query = array() ) {
+	/**
+	 * Context object
+	 * @var IContextSource
+	 */
+	protected $context;
+
+	/**
+	 * Constructor
+	 *
+	 * @since 1.19 $context is a second, required parameter
+	 * @param $title Title
+	 * @param $context IContextSource
+	 * @param $from String
+	 * @param $until String
+	 * @param $query Array
+	 */
+	function __construct( $title, IContextSource $context, $from = '', $until = '', $query = array() ) {
 		global $wgCategoryPagingLimit;
 		$this->title = $title;
+		$this->context = $context;
 		$this->from = $from;
 		$this->until = $until;
 		$this->limit = $wgCategoryPagingLimit;
@@ -156,10 +172,10 @@ class CategoryViewer {
 	 * @return string HTML output
 	 */
 	public function getHTML() {
-		global $wgOut, $wgCategoryMagicGallery, $wgLang;
+		global $wgCategoryMagicGallery;
 		wfProfileIn( __METHOD__ );
 
-		$this->showGallery = $wgCategoryMagicGallery && !$wgOut->mNoGallery;
+		$this->showGallery = $wgCategoryMagicGallery && !$this->context->getOutput()->mNoGallery;
 
 		$this->clearCategoryState();
 		$this->doCategoryQuery();
@@ -187,7 +203,8 @@ class CategoryViewer {
 			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
 		}
 
-		$langAttribs = array( 'lang' => $wgLang->getCode(), 'dir' => $wgLang->getDir() );
+		$lang = $this->getLang();
+		$langAttribs = array( 'lang' => $lang->getCode(), 'dir' => $lang->getDir() );
 		# put a div around the headings which are in the user language
 		$r = Html::openElement( 'div', $langAttribs ) . $r . '</div>';
 
@@ -248,8 +265,6 @@ class CategoryViewer {
 	* @param string $sortkey The human-readable sortkey (before transforming to icu or whatever).
 	*/
 	function getSubcategorySortChar( $title, $sortkey ) {
-		global $wgContLang;
-
 		if ( $title->getPrefixedText() == $sortkey ) {
 			$word = $title->getDBkey();
 		} else {
@@ -258,14 +273,13 @@ class CategoryViewer {
 
 		$firstChar = $this->collation->getFirstLetter( $word );
 
-		return $wgContLang->convert( $firstChar );
+		return $this->getLang()->convert( $firstChar );
 	}
 
 	/**
 	 * Add a page in the image namespace
 	 */
 	function addImage( Title $title, $sortkey, $pageLength, $isRedirect = false ) {
-		global $wgContLang;
 		if ( $this->showGallery ) {
 			$flip = $this->flip['file'];
 			if ( $flip ) {
@@ -282,7 +296,7 @@ class CategoryViewer {
 			}
 			$this->imgsNoGallery[] = $link;
 
-			$this->imgsNoGallery_start_char[] = $wgContLang->convert( 
+			$this->imgsNoGallery_start_char[] = $this->getLang()->convert(
 				$this->collation->getFirstLetter( $sortkey ) );
 		}
 	}
@@ -291,8 +305,6 @@ class CategoryViewer {
 	 * Add a miscellaneous page
 	 */
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
-		global $wgContLang;
-
 		$link = Linker::link( $title );
 		if ( $isRedirect ) {
 			// This seems kind of pointless given 'mw-redirect' class,
@@ -301,7 +313,7 @@ class CategoryViewer {
 		}
 		$this->articles[] = $link;
 
-		$this->articles_start_char[] = $wgContLang->convert( 
+		$this->articles_start_char[] = $this->getLang()->convert->convert(
 			$this->collation->getFirstLetter( $sortkey ) );
 	}
 
@@ -610,7 +622,7 @@ class CategoryViewer {
 	private function pagingLinks( $first, $last, $type = '' ) {
 		global $wgLang;
 
-		$limitText = $wgLang->formatNum( $this->limit );
+		$limitText = $this->getLang()->formatNum( $this->limit );
 
 		$prevLink = wfMsgExt( 'prevn', array( 'escape', 'parsemag' ), $limitText );
 
@@ -685,7 +697,6 @@ class CategoryViewer {
 	 * @return String: A message giving the number of items, to output to HTML.
 	 */
 	private function getCountMessage( $rescnt, $dbcnt, $type ) {
-		global $wgLang;
 		# There are three cases:
 		#   1) The category table figure seems sane.  It might be wrong, but
 		#      we can't do anything about it if we don't recalculate it on ev-
@@ -725,13 +736,22 @@ class CategoryViewer {
 		} else {
 			# Case 3: hopeless.  Don't give a total count at all.
 			return wfMsgExt( "category-$type-count-limited", 'parse',
-				$wgLang->formatNum( $rescnt ) );
+				$this->getLang()->formatNum( $rescnt ) );
 		}
 		return wfMsgExt(
 			"category-$type-count",
 			'parse',
-			$wgLang->formatNum( $rescnt ),
-			$wgLang->formatNum( $totalcnt )
+			$this->getLang()->formatNum( $rescnt ),
+			$this->getLang()->formatNum( $totalcnt )
 		);
+	}
+
+	/**
+	 * Returns a language object from the context
+	 *
+	 * @return Language
+	 */
+	protected function getLang() {
+		return $this->context->getLang();
 	}
 }
