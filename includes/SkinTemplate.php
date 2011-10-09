@@ -1643,43 +1643,73 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * If an "id" or "single-id" (if you don't want the actual id to be output on the link)
 	 * is present it will be used to generate a tooltip and accesskey for the link.
 	 * If you don't want an accesskey, set $item['tooltiponly'] = true;
+	 * $options can be used to affect the output of a link:
+	 *   You can use a text-wrapper key to specify a list of elements to wrap the
+	 *     text of a link in. This should be an array of arrays containing a 'tag' and
+	 *     optionally an 'attributes' key. If you only have one element you don't need
+	 *     to wrap it in another array. eg: To use <a><span>...</span></a> in all links
+	 *     use array( 'text-wrapper' => array( 'tag' => 'span' ) ) for your options.
+	 *   A link-class key can be used to specify additional classes to apply to all links.
+	 *   A link-fallback can be used to specify a tag to use instead of <a> if there is
+	 *   no link. eg: If you specify 'link-fallback' => 'span' than any non-link will
+	 *   output a <span> instead of just text.
 	 */
-	function makeLink( $key, $item ) {
+	function makeLink( $key, $item, $options = array() ) {
 		if ( isset( $item['text'] ) ) {
 			$text = $item['text'];
 		} else {
 			$text = $this->translator->translate( isset( $item['msg'] ) ? $item['msg'] : $key );
 		}
 
-		if ( !isset( $item['href'] ) ) {
-			return htmlspecialchars( $text );
-		}
+		$html = htmlspecialchars( $text );
 
-		$attrs = array();
-		foreach ( array( 'href', 'id', 'class', 'rel', 'type', 'target') as $attr ) {
-			if ( isset( $item[$attr] ) ) {
-				$attrs[$attr] = $item[$attr];
+		if ( isset( $options['text-wrapper'] ) ) {
+			$wrapper = $options['text-wrapper'];
+			if ( isset( $wrapper['tag'] ) ) {
+				$wrapper = array( $wrapper );
+			}
+			while ( count( $wrapper ) > 0 ) {
+				$element = array_pop( $wrapper );
+				$html = Html::rawElement( $element['tag'], isset( $element['attributes'] ) ? $element['attributes'] : null, $html );
 			}
 		}
 
-		if ( isset( $item['id'] ) ) {
-			$item['single-id'] = $item['id'];
-		}
-		if ( isset( $item['single-id'] ) ) {
-			if ( isset( $item['tooltiponly'] ) && $item['tooltiponly'] ) {
-				$attrs['title'] = Linker::titleAttrib( $item['single-id'] );
-				if ( $attrs['title'] === false ) {
-					unset( $attrs['title'] );
+		if ( isset( $item['href'] ) || isset( $options['link-fallback'] ) ) {
+			$attrs = $item;
+			foreach ( array( 'single-id', 'text', 'msg', 'tooltiponly' ) as $k ) {
+				unset( $attrs[$k] );
+			}
+
+			if ( isset( $item['id'] ) && !isset( $item['single-id'] ) ) {
+				$item['single-id'] = $item['id'];
+			}
+			if ( isset( $item['single-id'] ) ) {
+				if ( isset( $item['tooltiponly'] ) && $item['tooltiponly'] ) {
+					$title = Linker::titleAttrib( $item['single-id'] );
+					if ( $title !== false ) {
+						$attrs['title'] = $title;
+					}
+				} else {
+					$tip = Linker::tooltipAndAccesskeyAttribs( $item['single-id'] );
+					if ( isset( $tip['title'] ) && $tip['title'] !== false ) {
+						$attrs['title'] = $tip['title'];
+					}
+					if ( isset( $tip['accesskey'] ) && $tip['accesskey'] !== false ) {
+						$attrs['accesskey'] = $tip['accesskey'];
+					}
 				}
-			} else {
-				$attrs = array_merge(
-					$attrs,
-					Linker::tooltipAndAccesskeyAttribs( $item['single-id'] )
-				);
 			}
+			if ( isset( $options['link-class'] ) ) {
+				if ( isset( $attrs['class'] ) ) {
+					$attrs['class'] .= " {$options['link-class']}";
+				} else {
+					$attrs['class'] = $options['link-class'];
+				}
+			}
+			$html = Html::rawElement( isset( $attrs['href'] ) ? 'a' : $options['link-fallback'], $attrs, $html );
 		}
 
-		return Html::element( 'a', $attrs, $text );
+		return $html;
 	}
 
 	/**
@@ -1700,19 +1730,19 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * (however the link will still support a tooltip and accesskey from it)
 	 * If you need an id or class on a single link you should include a "links"
 	 * array with just one link item inside of it.
+	 * $options is also passed on to makeLink calls
 	 */
 	function makeListItem( $key, $item, $options = array() ) {
 		if ( isset( $item['links'] ) ) {
 			$html = '';
 			foreach ( $item['links'] as $linkKey => $link ) {
-				$html .= $this->makeLink( $linkKey, $link );
+				$html .= $this->makeLink( $linkKey, $link, $options );
 			}
 		} else {
-			$link = array();
-			foreach ( array( 'text', 'msg', 'href', 'rel', 'type', 'tooltiponly', 'target' ) as $k ) {
-				if ( isset( $item[$k] ) ) {
-					$link[$k] = $item[$k];
-				}
+			$link = $item;
+			// These keys are used by makeListItem and shouldn't be passed on to the link
+			foreach ( array( 'id', 'class', 'active', 'tag' ) as $k ) {
+				unset( $link[$k] );
 			}
 			if ( isset( $item['id'] ) ) {
 				// The id goes on the <li> not on the <a> for single links
@@ -1720,7 +1750,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				// generating tooltips and accesskeys.
 				$link['single-id'] = $item['id'];
 			}
-			$html = $this->makeLink( $key, $link );
+			$html = $this->makeLink( $key, $link, $options );
 		}
 
 		$attrs = array();
