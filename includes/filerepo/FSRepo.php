@@ -44,6 +44,7 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * Get the public root directory of the repository.
+	 * @return string
 	 */
 	function getRootDirectory() {
 		return $this->directory;
@@ -51,6 +52,7 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * Get the public root URL of the repository
+	 * @return string
 	 */
 	function getRootUrl() {
 		return $this->url;
@@ -58,6 +60,7 @@ class FSRepo extends FileRepo {
 
 	/**
 	 * Returns true if the repository uses a multi-level directory structure
+	 * @return string
 	 */
 	function isHashed() {
 		return (bool)$this->hashLevels;
@@ -90,7 +93,7 @@ class FSRepo extends FileRepo {
 	 *
 	 * @param $zone string
 	 *
-	 * @return url
+	 * @return string url
 	 */
 	function getZoneUrl( $zone ) {
 		switch ( $zone ) {
@@ -160,6 +163,7 @@ class FSRepo extends FileRepo {
 	 *     self::OVERWRITE         Overwrite an existing destination file instead of failing
 	 *     self::OVERWRITE_SAME    Overwrite the file if the destination exists and has the
 	 *                             same contents as the source
+	 * @return Status
 	 */
 	function storeBatch( $triplets, $flags = 0 ) {
 		wfDebug( __METHOD__  . ': Storing ' . count( $triplets ) .
@@ -283,6 +287,7 @@ class FSRepo extends FileRepo {
 	 * ignores any errors that may occur
 	 *
 	 * @param $pairs array List of files to delete
+	 * @return void
 	 */
 	function cleanupBatch( $files ) {
 		foreach ( $files as $file ) {
@@ -307,6 +312,9 @@ class FSRepo extends FileRepo {
 		}
 	}
 
+	/**
+	 * @return Status
+	 */
 	function append( $srcPath, $toAppendPath, $flags = 0 ) {
 		$status = $this->newGood();
 
@@ -377,6 +385,7 @@ class FSRepo extends FileRepo {
 	/**
 	 * Take all available measures to prevent web accessibility of new deleted
 	 * directories, in case the user has not configured offline storage
+	 * @return void
 	 */
 	protected function initDeletedDir( $dir ) {
 		// Add a .htaccess file to the root of the deleted zone
@@ -429,6 +438,7 @@ class FSRepo extends FileRepo {
 	 * @param $triplets Array: (source,dest,archive) triplets as per publish()
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source files should be deleted if possible
+	 * @return Status
 	 */
 	function publishBatch( $triplets, $flags = 0 ) {
 		// Perform initial checks
@@ -620,6 +630,7 @@ class FSRepo extends FileRepo {
 	/**
 	 * Get a relative path for a deletion archive key,
 	 * e.g. s/z/a/ for sza251lrxrc1jad41h5mgilp8nysje52.jpg
+	 * @return string
 	 */
 	function getDeletedHashPath( $key ) {
 		$path = '';
@@ -632,6 +643,7 @@ class FSRepo extends FileRepo {
 	/**
 	 * Call a callback function for every file in the repository.
 	 * Uses the filesystem even in child classes.
+	 * @return void
 	 */
 	function enumFilesInFS( $callback ) {
 		$numDirs = 1 << ( $this->hashLevels * 4 );
@@ -657,6 +669,7 @@ class FSRepo extends FileRepo {
 	/**
 	 * Call a callback function for every file in the repository
 	 * May use either the database or the filesystem
+	 * @return void
 	 */
 	function enumFiles( $callback ) {
 		$this->enumFilesInFS( $callback );
@@ -665,6 +678,7 @@ class FSRepo extends FileRepo {
 	/**
 	 * Get properties of a file with a given virtual URL
 	 * The virtual URL must refer to this repo
+	 * @return array
 	 */
 	function getFileProps( $virtualUrl ) {
 		$path = $this->resolveVirtualUrl( $virtualUrl );
@@ -706,6 +720,7 @@ class FSRepo extends FileRepo {
 	/**
 	 * Chmod a file, supressing the warnings.
 	 * @param $path String: the path to change
+	 * @return void
 	 */
 	protected function chmod( $path ) {
 		wfSuppressWarnings();
