@@ -780,6 +780,7 @@ Som ett resultat kan besökare som använder den här IP-adressen inte skapa nå
 'emailconfirmlink'           => 'Bekräfta din e-postadress',
 'invalidemailaddress'        => 'E-postadressen kan inte godtas då formatet verkar vara felaktigt.
 Skriv in en adress med korrekt format eller töm fältet.',
+'cannotchangeemail'          => 'E-post-adresser som är bundna till användarkonton kan inte ändras på denna wiki.',
 'accountcreated'             => 'Användarkontot har skapats',
 'accountcreatedtext'         => 'Användarkontot $1 har skapats.',
 'createaccount-title'        => 'Konto skapat på {{SITENAME}}',
@@ -1215,7 +1216,7 @@ Vänligen kontrollera loggarna.',
 # Suppression log
 'suppressionlog'     => 'Undanhållandelogg',
 'suppressionlogtext' => 'Nedan visas en lista över raderingar och blockeringar som berör innehåll dolt för administratörer.
-Se [[Special:IPBlockList|blockeringslistan]] för listan över gällande blockeringar.',
+Se [[Special:BlockList|IP-blockeringslistan]] för listan över gällande blockeringar.',
 
 # History merging
 'mergehistory'                     => 'Sammanfoga sidhistoriker',
@@ -1484,12 +1485,12 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'group-suppress'      => 'Censorer',
 'group-all'           => '(alla)',
 
-'group-user-member'          => 'användare',
-'group-autoconfirmed-member' => 'bekräftad användare',
-'group-bot-member'           => 'robot',
-'group-sysop-member'         => 'administratör',
-'group-bureaucrat-member'    => 'byråkrat',
-'group-suppress-member'      => 'censor',
+'group-user-member'          => '{{GENDER:$1|användare}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|bekräftad användare}}',
+'group-bot-member'           => '{{GENDER:$1|robot}}',
+'group-sysop-member'         => '{{GENDER:$1|administratör}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|byråkrat}}',
+'group-suppress-member'      => '{{GENDER:$1|censor}}',
 
 'grouppage-user'          => '{{ns:project}}:Användare',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bekräftade användare',
@@ -1558,7 +1559,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-siteadmin'             => 'Låsa och låsa upp databasen',
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
 'right-sendemail'             => 'Skicka e-post till andra användare',
-'right-passwordreset'         => 'Återställ en användares lösenord ([[Special:PasswordReset|specialsida]])',
+'right-passwordreset'         => 'Visa e-postmeddelanden med lösenordsåterställning',
 
 # User rights log
 'rightslog'                  => 'Användarrättighetslogg',
@@ -1686,6 +1687,7 @@ Se [[Special:NewFiles|galleriet över nya filer]] för en mer visuell översikt.
 'ignorewarnings'              => 'Ignorera eventuella varningar',
 'minlength1'                  => 'Filens namn måste innehålla minst ett tecken.',
 'illegalfilename'             => 'Filnamnet "$1" innehåller tecken som inte är tillåtna i sidtitlar. Byt namn på filen och försök ladda upp igen.',
+'filename-toolong'            => 'Filnamn får inte vara längre än 240 bytes.',
 'badfilename'                 => 'Filens namn har blivit ändrat till "$1".',
 'filetype-mime-mismatch'      => 'Filtillägget ".$1" matchar inte med den identifierade MIME-typen för filen ($2).',
 'filetype-badmime'            => 'Uppladdning av filer med MIME-typen "$1" är inte tillåten.',
@@ -2503,6 +2505,7 @@ Den senaste posten i blockeringsloggen visas nedan som referens:',
 'blockiptext'                     => 'Använd formuläret nedan för att blockera möjligheten att redigera sidor från en specifik IP-adress eller ett användarnamn.
 Detta bör endast göras för att förhindra vandalisering, och i överensstämmelse med gällande [[{{MediaWiki:Policy-url}}|policy]].
 Ange orsak nedan (exempelvis genom att nämna sidor som blivit vandaliserade).',
+'ipaddress'                       => 'IP-adress',
 'ipadressorusername'              => 'IP-adress eller användarnamn:',
 'ipbexpiry'                       => 'Varaktighet:',
 'ipbreason'                       => 'Anledning:',
@@ -3022,7 +3025,7 @@ Om du kör den kan din dator skadas.",
 'show-big-image-size'    => '$1 × $2 pixlar',
 'file-info-gif-looped'   => 'upprepad',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|ram|ramar}}',
-'file-info-png-looped'   => 'loopad',
+'file-info-png-looped'   => 'upprepad',
 'file-info-png-repeat'   => 'spelad $1 {{PLURAL:$1|gång|gånger}}',
 'file-info-png-frames'   => '$1 {{PLURAL:$1|bild|bilder}}',
 
@@ -3794,8 +3797,9 @@ Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som 
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|flyttade}} sidan $3 till $4 över en omdirigering utan att lämna en omdirigering',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|markerade}} versionen $4 av sidan $3 som patrullerad',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|markerade}} automatiskt versionen $4 av sidan $3 som patrullerad',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|skapade}} ett användarkonto',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|skapade}} ett användarkonto',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|skapade}} ett användarkonto $3',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|skapade}} {{GENDER:$4|ett användarkonto}} $3',
 'logentry-newusers-autocreate'        => 'Kontot $1 {{GENDER:$2|skapades}} automatiskt',
 'newuserlog-byemail'                  => 'lösenord skickat med e-post',
 

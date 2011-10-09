@@ -1164,7 +1164,7 @@ Proszę sprawdzić rejestr operacji.',
 # Suppression log
 'suppressionlog'     => 'Rejestr utajniania',
 'suppressionlogtext' => 'Poniżej znajduje się lista usunięć i blokad utajnionych przed administratorami.
-Zobacz [[Special:IPBlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
+Zobacz [[Special:BlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
 # History merging
 'mergehistory'                     => 'Scal historię zmian stron',
@@ -1435,12 +1435,12 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'group-suppress'      => 'Rewizorzy',
 'group-all'           => '(wszyscy)',
 
-'group-user-member'          => 'użytkownik',
-'group-autoconfirmed-member' => 'automatycznie zatwierdzony użytkownik',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'administrator',
-'group-bureaucrat-member'    => 'biurokrata',
-'group-suppress-member'      => 'rewizor',
+'group-user-member'          => '{{GENDER:$1|użytkownik|użytkowniczka}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatycznie zatwierdzony użytkownik|automatycznie zatwierdzona użytkowniczka}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|administratorka}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|biurokrata|biurokratka}}',
+'group-suppress-member'      => '{{GENDER:$1|rewizor|rewizorka}}',
 
 'grouppage-user'          => '{{ns:project}}:Użytkownicy',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatycznie zatwierdzeni użytkownicy',
@@ -1638,6 +1638,7 @@ Przejdź na stronę [[Special:NewFiles|galerii nowych plików]], by zobaczyć pl
 'minlength1'                  => 'Nazwa pliku musi składać się co najmniej z jednej litery.',
 'illegalfilename'             => 'Nazwa pliku „$1” zawiera znaki niedozwolone w tytułach stron.
 Zmień nazwę pliku i prześlij go ponownie.',
+'filename-toolong'            => 'Nazwy plików nie mogą być dłuższe niż 240 bajtów.',
 'badfilename'                 => 'Nazwa pliku została zmieniona na „$1”.',
 'filetype-mime-mismatch'      => 'Rozszerzenie pliku „.$1“ nie pasuje do wykrytego typu MIME $2.',
 'filetype-badmime'            => 'Przesyłanie plików z typem MIME „$1” jest niedozwolone.',
@@ -2465,6 +2466,7 @@ Poniżej znajduje się ostatni wpis w rejestrze blokowania.',
 'blockiptext'                     => 'Użyj poniższego formularza do zablokowania możliwości edycji spod określonego adresu IP lub konkretnemu użytkownikowi.
 Blokować należy jedynie po to, by zapobiec wandalizmom, zgodnie z [[{{MediaWiki:Policy-url}}|przyjętymi zasadami]].
 Podaj powód (np. umieszczając nazwy stron, na których dopuszczono się wandalizmu).',
+'ipaddress'                       => 'Adres IP',
 'ipadressorusername'              => 'Adres IP lub nazwa użytkownika',
 'ipbexpiry'                       => 'Upływa',
 'ipbreason'                       => 'Powód',
@@ -3006,9 +3008,9 @@ Jeśli go otworzysz, możesz zarazić swój system.",
 'sp-newimages-showfrom' => 'pokaż nowe pliki począwszy od $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => '&nbsp;s',
-'minutes-abbrev' => '&nbsp;min',
-'hours-abbrev'   => '&nbsp;h',
+'seconds-abbrev' => '$1&nbsp;s',
+'minutes-abbrev' => '$1&nbsp;min',
+'hours-abbrev'   => '$1&nbsp;godz.',
 'seconds'        => '{{PLURAL:$1|$1 sekunda|$1 sekundy|$1 sekund}}',
 'minutes'        => '{{PLURAL:$1|$1 minuta|$1 minuty|$1 minut}}',
 'hours'          => '{{PLURAL:$1|$1 godzina|$1 godziny|$1 godzin}}',
@@ -3812,7 +3814,7 @@ Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwieran
 'revdelete-restricted'                => 'ograniczono widoczność dla administratorów',
 'revdelete-unrestricted'              => 'wycofano ograniczenie widoczności dla administratorów',
 'logentry-move-move'                  => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4',
-'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, ale bez pozostawienia przekierowania pod starym tytułem',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, bez pozostawienia przekierowania pod starym tytułem',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, czyli w miejsce przekierowania',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|przeniósł|przeniosła}} stronę $3 na $4, czyli w miejsce przekierowania i bez pozostawienia przekierowania pod starym tytułem',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|oznaczył|oznaczyła}} wersję $4 strony $3 jako sprawdzoną',

@@ -1558,6 +1558,7 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'right-siteadmin'             => 'Mengunci dan membuka kunci basis data',
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
 'right-sendemail'             => 'Mengirim surel ke pengguna lain',
+'right-passwordreset'         => 'Aturulang kunci untuk pengguna ([[Special:PasswordReset|special page]])',
 
 # User rights log
 'rightslog'                  => 'Log perubahan hak akses',
@@ -2479,6 +2480,7 @@ Catatan log pemblokiran terakhir tersedia di bawah ini sebagai rujukan:',
 'blockiptext'                     => 'Gunakan formulir di bawah untuk memblokir akses penulisan dari sebuah alamat IP atau pengguna tertentu.
 Ini hanya boleh dilakukan untuk mencegah vandalisme, dan sejalan dengan [[{{MediaWiki:Policy-url}}|kebijakan]].
 Masukkan alasan Anda di bawah (contoh, menuliskan nama halaman yang telah divandalisasi).',
+'ipaddress'                       => 'Alamat IP:',
 'ipadressorusername'              => 'Alamat IP atau nama pengguna:',
 'ipbexpiry'                       => 'Kedaluwarsa:',
 'ipbreason'                       => 'Alasan:',

@@ -1541,6 +1541,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'right-siteadmin'             => 'Bloquear e desbloquear o banco de dados',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
 'right-sendemail'             => 'Enviar email a outros usuários',
+'right-passwordreset'         => 'Repor palavra-chave de um utilizador ([[Special:PasswordReset|página especial]])',
 
 # User rights log
 'rightslog'                  => 'Registro de privilégios de usuário',
@@ -2484,6 +2485,7 @@ Segue, para referência, a entrada mais recente no registro de bloqueios:',
 'blockip-legend'                  => 'Bloquear usuário',
 'blockiptext'                     => 'Utilize o formulário abaixo para bloquear o acesso à escrita de um endereço específico de IP ou nome de usuário.
 Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWiki:Policy-url}}|política]]. Preencha com um motivo específico a seguir (por exemplo, citando páginas que sofreram vandalismo).',
+'ipaddress'                       => 'Endereço de IP:',
 'ipadressorusername'              => 'Endereço de IP ou nome de usuário:',
 'ipbexpiry'                       => 'Expiração:',
 'ipbreason'                       => 'Motivo:',

@@ -4318,6 +4318,7 @@ $messages['fo'] = array(
  * @author Aadri
  * @author Crochet.david
  * @author Gomoko
+ * @author Grondin
  * @author Hashar
  * @author IAlex
  * @author Jean-Frédéric
@@ -4705,7 +4706,7 @@ Avec MediaWiki, il est facile de vérifier les modifications récentes et de ré
 Cependant, de nombreuses autres utilisations ont été trouvées au logiciel et il n’est pas toujours facile de convaincre tout le monde des bénéfices de l’esprit wiki.
 Vous avez donc le choix.
 
-'''{{int:config-profile-wiki}}''' autorise quiconque à modifier, y compris sans s’identifier.
+'''{{int:config-profile-wiki}}''' autorise toute personne à modifier, y compris sans s’identifier.
 '''{{int:config-profile-no-anon}}''' fournit plus de contrôle, par l’identification, mais peut rebuter les contributeurs occasionnels.
 
 '''{{int:config-profile-fishbowl}}''' autorise la modification par les utilisateurs approuvés, mais le public peut toujours lire les pages et leur historique.
@@ -14663,12 +14664,16 @@ $messages['sq'] = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]',
 );
 
-/** Serbian Cyrillic ekavian (‪Српски (ћирилица)‬)
+/** Serbian (Cyrillic script) (‪Српски (ћирилица)‬)
  * @author Rancher
  */
 $messages['sr-ec'] = array(
 	'config-continue' => 'Настави →',
 	'config-page-language' => 'Језик',
+	'config-type-mysql' => 'MySQL',
+	'config-type-postgres' => 'PostgreSQL',
+	'config-type-sqlite' => 'SQLite',
+	'config-type-oracle' => 'Oracle',
 	'mainpagetext' => "'''Медијавики је успешно инсталиран.'''",
 	'mainpagedocfooter' => 'Погледајте [http://meta.wikimedia.org/wiki/Help:Contents кориснички водич] за коришћење програма.
 

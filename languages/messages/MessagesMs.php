@@ -1549,6 +1549,7 @@ Untuk menyertakan sebarang fail ke dalam sesebuah laman, gunakan pautan dengan s
 'ignorewarnings'              => 'Abaikan sebarang amaran',
 'minlength1'                  => 'Panjang nama fail mestilah sekurang-kurangnya satu huruf.',
 'illegalfilename'             => 'Nama fail "$1" mengandungi aksara yang tidak dibenarkan dalam tajuk laman. Sila tukar nama fail ini dan muat naik sekali lagi.',
+'filename-toolong'            => 'Nama fail tidak boleh melebihi 240 bait.',
 'badfilename'                 => 'Nama fail telah ditukar kepada "$1".',
 'filetype-mime-mismatch'      => 'Sambungan fail ".$1" tidak padan dengan jenis MIME fail ($2).',
 'filetype-badmime'            => 'Memuat naik fail jenis MIME "$1" adalah tidak dibenarkan.',

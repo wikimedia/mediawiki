@@ -174,12 +174,15 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-edit'    => '↓ Sprowjej',
-'vector-view-history' => '↓Uobocz gyszichta',
-'vector-view-view'    => 'Czytej',
-'actions'             => '↓ Akcyje',
-'namespaces'          => '↓ Raumy mjan',
-'variants'            => '↓ Warjanty',
+'vector-action-addsection' => 'Nowo tajla',
+'vector-action-delete'     => 'Wyćep',
+'vector-action-move'       => 'Przećep',
+'vector-view-edit'         => '↓ Sprowjej',
+'vector-view-history'      => '↓Uobocz gyszichta',
+'vector-view-view'         => 'Czytej',
+'actions'                  => '↓ Akcyje',
+'namespaces'               => '↓ Raumy mjan',
+'variants'                 => '↓ Warjanty',
 
 'errorpagetitle'    => 'Feler',
 'returnto'          => 'Nazod do zajty $1.',
@@ -195,6 +198,7 @@ $messages = array(
 'printableversion'  => 'Wersyjo do durku',
 'permalink'         => 'Bezpostrzedńi link',
 'print'             => 'Durkuj',
+'view'              => 'Podglůnd',
 'edit'              => 'Sprowjej',
 'create'            => 'Stwůrz',
 'editthispage'      => 'Sprowjej ta zajta',
@@ -396,6 +400,7 @@ Uotwarli my sam lo Ćebje kůnto.
 'nav-login-createaccount'    => 'Logowańy / tworzyńy kůnta',
 'loginprompt'                => 'Muśiš mjeć zouůnčůne cookies coby můc śe sam zalůgować.',
 'userlogin'                  => 'Lůgowańy / Twořyńy kůnta',
+'userloginnocreate'          => 'Zalůguj śe',
 'logout'                     => 'Wyloguj',
 'userlogout'                 => 'Wylogowańy',
 'notloggedin'                => 'Ńy ježeś zalůgowany',
@@ -405,6 +410,7 @@ Uotwarli my sam lo Ćebje kůnto.
 'gotaccount'                 => "Moš juž kůnto? '''$1'''.",
 'gotaccountlink'             => 'Zalůguj śe',
 'createaccountmail'          => 'e-brifym',
+'createaccountreason'        => 'Kůmyntorz:',
 'badretype'                  => 'Hasua kere žeś naškryflou ńy zgodzajům śe jydne s drugim.',
 'userexists'                 => 'Mjano užytkowńika, kere žeś wybrou, je zajynte. Wybjer, proša, inkše mjano.',
 'loginerror'                 => 'Feler při logůwańu',
@@ -419,16 +425,16 @@ Sprowdź šrajbůng, abo [[Special:UserLogin/signup|utwůř nowe kůnto]].',
 'nouserspecified'            => 'Podej mjano užytkowńika.',
 'wrongpassword'              => 'Hasuo kere žeś naškryflou je felerne. Poprůbůj naškryflać je ješče roz.',
 'wrongpasswordempty'         => 'Hasuo kere žeś podou je puste. Naškryflej je ješče roz.',
-'passwordtooshort'           => 'Hasuo kere žeś podou je felerne abo za krůtke.
-Hasuo muśi mjeć přinojmńij {{PLURAL:$1|1 buchštaba|$1 buchštabůw}} a być inkše uod mjana užytkowńika.',
+'passwordtooshort'           => 'Hasło kere żeś podoł je felerne abo za krůtke.
+Hasło muśi mjeć przinojmńij {{PLURAL:$1|1 buchsztaba|$1 buchsztabůw}} a być inksze od mjana użytkowńika.',
 'mailmypassword'             => 'Wyślij mi nowe hasuo bez e-brif',
 'passwordremindertitle'      => 'Nowe tymčasowe hasuo dla {{SITENAME}}',
 'passwordremindertext'       => 'Ftůś (cheba Ty, s IP $1)
-pado, aže chce nowe hasuo do {{SITENAME}} ($4).
-Lo užytkowńika "$2" wygenyrowano nowe hasuo a je ńim "$3".
-Jak chćoužeś gynau to zrobjyć, to zalůgůj śe terozki a podej swoje hasuo.
+pado, aże chce nowe hasło do {{SITENAME}} ($4).
+Lo użytkowńika "$2" wygenyrowano nowe hasło a je ńim "$3".
+Jak chćołżeś gynał to zrobjyć, to zalůgůj śe terozki a podej swoje hasło.
 
-Jak ktůś inkšy chćou nowe hasuo abo jak Ci śe připůmńouo stare a ńy chceš nowygo, to zignoruj to a užywej starygo hasua.',
+Jak ktůś inkszy chćoł nowe hasło abo jak Ci śe przipůmńouo stare a ńy chcesz nowygo, to zignoruj to a używej starygo hasła.',
 'noemail'                    => 'Ńy mo u nos adresu e-brifa do "$1".',
 'passwordsent'               => 'Nowe hasuo pošuo na e-brifa uod užytkowńika "$1".
 Zalůguj śe zaś jak dostańyš tygo brifa.',
@@ -466,6 +472,13 @@ Coby powstřimać nadužyća, možliwość wysyuańa připůmńeń naštalowano 
 'resetpass-wrong-oldpass'   => 'Felerne tymczasowe abo aktualne hasło.
 Możliwe co właśńy zmjyńiłżeś swoje hasło abo poprosiłżeś uo nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
+
+# Special:PasswordReset
+'passwordreset-username'          => 'Mjano używacza:',
+'passwordreset-email'             => 'E-brif:',
+'passwordreset-emailtitle'        => 'Kůnto na {{GRAMMAR:MS.lp|{{SITENAME}}}}',
+'passwordreset-emailsent'         => 'E-brif posłany.',
+'passwordreset-emailsent-capture' => 'E-brif posłony, kerego widać niżej.',
 
 # Edit page toolbar
 'bold_sample'     => 'Ruby tekst',
@@ -1727,6 +1740,7 @@ $1',
 'blockiptext'                     => 'Tyn formulař suužy do zawjerańo sprowjyń spod uokreślůnygo adresu IP abo kůnkretnymu užytkowńikowi.
 Zawjerać noležy jydyńy po to, by zapobjec wandalizmům, zgodńy s [[{{MediaWiki:Policy-url}}|přijyntymi zasadami]].
 Podej powůd (np. umješčajůnc mjana zajtůw, na kerych dopuščůno śe wandalizmu).',
+'ipaddress'                       => 'Adres IP',
 'ipadressorusername'              => 'Adres IP abo mjano užytkowńika',
 'ipbexpiry'                       => 'Wygaso:',
 'ipbreason'                       => 'Čymu:',

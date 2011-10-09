@@ -599,6 +599,7 @@ Hakuna hata barua  pepe moja itakayotumwa kwa lolote katika vipengele hivi vifua
 'emailconfirmlink'           => 'Yakinisha anwani yako ya barua pepe',
 'invalidemailaddress'        => 'Anwani ya barua pepe haiwezi kukubalika ikiwa inaonekana kuwa na muundo batili.
 Tafadhali ingiza anwani ya miundo-mizuri au acha tupu kipengele hicho.',
+'cannotchangeemail'          => 'Anwani za barua pepe haziwezi kubadilishwa katika akaunti za wiki hii.',
 'accountcreated'             => 'Akaunti imeundwa',
 'accountcreatedtext'         => 'Akaunti imeundwa kwa ajili ya mtumiaji $1.',
 'createaccount-title'        => 'Kuanzisha akaunti kwa ajili ya {{SITENAME}}',
@@ -635,30 +636,32 @@ Inawezekana ikawa tayari umefaulu kubadilisha neno lako la siri au neno la siri 
 'resetpass-temp-password'   => 'Neno la siri la muda:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Seti upya neno la siri',
-'passwordreset-text'           => 'Jaza fomu hii ili upate barua pepe inayotoa maelezo ya akaunti yako.',
-'passwordreset-legend'         => 'Seti upya neno la siri',
-'passwordreset-disabled'       => 'Kuweka neno la siri jipya kumeshitishwa katika wiki hii.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Ingiza moja kati ya data hizi hapo chini}}',
-'passwordreset-username'       => 'Jina la mtumiaji:',
-'passwordreset-capture'        => 'Kutazama barua pepe itakayotumwa',
-'passwordreset-email'          => 'Anwani ya barua pepe:',
-'passwordreset-emailtitle'     => 'Maelezo ya akaunti kwenye {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Kuna mtu (huenda ikawa ni wewe, kutoka anwani ya IP $1) aliyeomba kukumbushwa kuhusu maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
+'passwordreset'                    => 'Seti upya neno la siri',
+'passwordreset-text'               => 'Jaza fomu hii ili upate barua pepe inayotoa maelezo ya akaunti yako.',
+'passwordreset-legend'             => 'Seti upya neno la siri',
+'passwordreset-disabled'           => 'Kuweka neno la siri jipya kumeshitishwa katika wiki hii.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Ingiza moja kati ya data hizi hapo chini}}',
+'passwordreset-username'           => 'Jina la mtumiaji:',
+'passwordreset-capture'            => 'Kutazama barua pepe itakayotumwa',
+'passwordreset-email'              => 'Anwani ya barua pepe:',
+'passwordreset-emailtitle'         => 'Maelezo ya akaunti kwenye {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Kuna mtu (huenda ikawa ni wewe, kutoka anwani ya IP $1) aliyeomba kukumbushwa kuhusu maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
 
 $2
 
 {{PLURAL:$3|Neno la siri hili litakwisha|Maneno ya siri haya yatakwisha}} baada ya siku {{PLURAL:$5|$5}}.
 Tafadhali ingia sasa na uchague neno jipya la siri. Kama mtu mwingine ameomba hili, au ikiwa umekumbuka neno lako la siri na hutaki kulibadilisha tena, basi usijali ujumbe huu, na uendelee kutumia neno la siri lako la zamani.',
-'passwordreset-emailtext-user' => 'Mtumiaji $1 kwenye {{SITENAME}} ameomba akumbushwe maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
+'passwordreset-emailtext-user'     => 'Mtumiaji $1 kwenye {{SITENAME}} ameomba akumbushwe maelezo ya akaunti yako katika {{SITENAME}} ($4). {{PLURAL:$3|Akaunti inayofuata imeunganishwa|Akaunti zinazofuata zimeunganishwa}} na anwani ya barua pepe hii:
 
 $2
 
 {{PLURAL:$3|Neno la siri hili litakwisha|Maneno ya siri haya yatakwisha}} baada ya siku {{PLURAL:$5|$5}}.
 Tafadhali ingia sasa na uchague neno jipya la siri. Kama mtu mwingine ameomba hili, au ikiwa umekumbuka neno lako la siri na hutaki kulibadilisha tena, basi usijali ujumbe huu, na uendelee kutumia neno la siri lako la zamani.',
-'passwordreset-emailelement'   => 'Jina la mtumiaji: $1
+'passwordreset-emailelement'       => 'Jina la mtumiaji: $1
 Neno la siri la muda: $2',
-'passwordreset-emailsent'      => 'Barua pepe ya ukumbusho imetumwa.',
+'passwordreset-emailsent'          => 'Barua pepe ya ukumbusho imetumwa.',
+'passwordreset-emailsent-capture'  => 'Barua pepe ya kukumbusha ilitumwa, na inaonekana chini.',
+'passwordreset-emailerror-capture' => 'Barua pepe ya kukumbusha iliandikwa, kama inayoonekana chini, lakini kuipeleka kwa mtumiaji ilishindikana: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Badilisha anwani ya barua pepe',
@@ -992,7 +995,7 @@ Haliwezi kufichwa.',
 # Suppression log
 'suppressionlog'     => 'Kumbukumbu za kuficha',
 'suppressionlogtext' => 'Hapo chini panaonyeshwa orodha ya matukio ya ufutaji na ya uzuio ambayo maelezo yao yamefichwa kutoka kwa wakabidhi.
-Tazama [[Special:IPBlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizopo sasa hivi.',
+Tazama [[Special:BlockList|orodha ya uzuio wa IP]] kuona orodha ya zuio zilizopo sasa hivi.',
 
 # History merging
 'mergehistory'                     => 'Unganisha historia za kurasa',
@@ -1253,11 +1256,11 @@ Taarifa hii itakuwa wazi.',
 'group-suppress'      => 'Ukomeshaji',
 'group-all'           => '(vyote)',
 
-'group-user-member'          => 'Mtumiaji',
-'group-autoconfirmed-member' => 'Mtumiaji aliyethibitishwa na tarakilishi',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Mkabidhi',
-'group-bureaucrat-member'    => 'mrasimu',
+'group-user-member'          => '{{GENDER:$1|mtumiaji}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|mtumiaji aliyethibitishwa na tarakilishi}}',
+'group-bot-member'           => '{{GENDER:$1|boti}}',
+'group-sysop-member'         => '{{GENDER:$1|mkabidhi}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|mrasimu}}',
 'group-suppress-member'      => 'usimamizi',
 
 'grouppage-user'          => '{{ns:project}}:Watumiaji',
@@ -1313,6 +1316,7 @@ Taarifa hii itakuwa wazi.',
 'right-userrights-interwiki' => 'Kuhariri wezo za watumiaji kwenye wiki zingine',
 'right-siteadmin'            => 'Kufunga na kufungua hifadhidata',
 'right-sendemail'            => 'Kutuma barua-pepe kwa watumiaji wengine',
+'right-passwordreset'        => 'Kuona barua pepe zinazoweka neno la siri upya',
 
 # User rights log
 'rightslog'      => 'Kumbukumbu za vyeo vya watumiaji',
@@ -1434,6 +1438,7 @@ Tazama [[Special:NewFiles|mkusanyiko wa mafaili mapya]] kuona picha zenyewe.',
 'minlength1'                  => 'Majina ya mafaili yanatakiwa kuwa na herufi moja au zaidi.',
 'illegalfilename'             => 'Jina la faili la "$1" lina herufi zisizoruhusiwa katika majina ya kurasa.
 Tafadhali uweke jina jipya kwenye faili, halafu jaribu kulipakia upya.',
+'filename-toolong'            => 'Majina ya mafaili yasizidi baiti 240.',
 'badfilename'                 => 'Jina la faili limebadilishwa kuwa "$1".',
 'filetype-mime-mismatch'      => 'Tawi (extension) ".$1" la faili halingani na aina yake ya MIME ($2).',
 'filetype-badmime'            => 'Mafaili ya aina ya MIME ya "$1" hayaruhusiwi kupakiwa.',
@@ -2185,6 +2190,7 @@ Rejea kumbukumbu ya uzuio ya mwisho inayoandikwa chini:',
 'blockiptext'                => 'Tumia fomu iliyopo chini kumzuia mtu asihariri kwa kupitia anwani fulani wa IP au kwa kutumia jina fulani la mtumiaji.
 Nia ya kumzuia mtu inatakiwa kuwa kuzuia uharibifu tu, na ifanikiwe kutokana na masharti ya [[{{MediaWiki:Policy-url}}|sera]].
 Andika sababu ya kuzuia chini (kwa mfano, kwa kutaja mifano ya kurasa zilizoharibiwa).',
+'ipaddress'                  => 'Anwani ya IP:',
 'ipadressorusername'         => 'Anwani ya IP au jina la mtumiaji:',
 'ipbexpiry'                  => 'Itakwisha:',
 'ipbreason'                  => 'Sababu:',
@@ -2538,11 +2544,11 @@ Ukilitekeleza faili, mashine yako huenda ikawa matatani.',
 'sp-newimages-showfrom' => 'Onyesha mafaili mapya kuanzia saa $2, tarehe $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds' => 'sekunde $1 {{PLURAL:$1|iliyopita|zilizopita}}',
-'minutes' => 'dakika $1 {{PLURAL:$1|iliyopita|zilizopita}}',
-'hours'   => '{{PLURAL:$1|saa $1 lililopita|masaa $1 yaliyopita}}',
-'days'    => 'siku $1 {{PLURAL:$1|iliyopita|zilizopita}}',
-'ago'     => '$1',
+'seconds' => 'sekunde {{PLURAL:$1|$1}}',
+'minutes' => 'dakika {{PLURAL:$1|$1}}',
+'hours'   => '{{PLURAL:$1|saa $1|masaa $1}}',
+'days'    => 'siku {{PLURAL:$1|$1}}',
+'ago'     => '$1 zilizopita',
 
 # Bad image list
 'bad_image_list' => 'Fomati ni hii:
@@ -3017,8 +3023,22 @@ Tovuti hii inapata matatatizo wakati huu.',
 'htmlform-selectorother-other' => 'Nyingine',
 
 # New logging system
-'revdelete-restricted'   => 'aliwazuia pia wakabidhi wasiyaone maelezo',
-'revdelete-unrestricted' => 'aliwarudishia wakabidhi uwezo wa kuona maelezo',
-'newuserlog-byemail'     => 'neno la siri limetumwa kwa barua pepe',
+'logentry-delete-delete'            => '$1 {{GENDER:$2|alifuta}} ukurasa wa $3',
+'logentry-delete-restore'           => '$1 {{GENDER:$2|alirudisha}} ukurasa wa $3',
+'logentry-delete-event'             => '$1 {{GENDER:$2|alibadilisha}} hali ya kuonekana wazi ya {{PLURAL:$5|kumbukumbu $5}} katika $3: $4',
+'logentry-delete-revision'          => '$1 {{GENDER:$2|alibadilisha}} hali ya kuonekana wazi ya {{PLURAL:$5|pitio 1|mapitio $5}} kwenye ukurasa wa $3: $4',
+'logentry-delete-event-legacy'      => '$1 {{GENDER:$2|alibadilisha}} hali ya kuonekana wazi ya kumbukumbu za $3',
+'logentry-delete-revision-legacy'   => '$1 {{GENDER:$2|alibadilisha}} hali ya kuonekana wazi ya mapitio ya ukurasa $3',
+'logentry-suppress-delete'          => '$1 {{GENDER:$2|alificha}} ukurasa wa $3',
+'logentry-suppress-event'           => '$1 {{GENDER:$2|alibadilisha}} kwa siri hali ya kuonekana wazi {{PLURAL:$5|kumbukumbu $5}} katika $3: $4',
+'logentry-suppress-revision'        => '$1 {{GENDER:$2|alibadilisha}} kwa siri hali ya kuonekana wazi {{PLURAL:$5|kumbukumbu $5 ya|kumbukumbu $5 za}} ukurasa wa $3: $4',
+'logentry-suppress-event-legacy'    => '$1 alibadilisha kwa siri hali ya kuonekana wazi ya kumbukumbu za $3',
+'logentry-suppress-revision-legacy' => '$1 alibadilisha kwa siri hali ya kuonekana wazi mapitio ya ukurasa $3',
+'revdelete-restricted'              => 'aliwazuia pia wakabidhi wasiyaone maelezo',
+'revdelete-unrestricted'            => 'aliwarudishia wakabidhi uwezo wa kuona maelezo',
+'logentry-newusers-newusers'        => '$1 {{GENDER:$2|alianzisha}} akaunti ya mtumiaji',
+'logentry-newusers-create'          => '$1 {{GENDER:$2|alianzisha}} akaunti ya mtumiaji',
+'logentry-newusers-create2'         => '$1 {{GENDER:$2|alianzisha}} {{GENDER:$4|akaunti ya mtumiaji}} $3',
+'newuserlog-byemail'                => 'neno la siri limetumwa kwa barua pepe',
 
 );

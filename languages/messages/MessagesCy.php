@@ -580,6 +580,7 @@ Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfri
 'noemailprefs'               => "Mae'n rhaid i chi gynnig cyfeiriad e-bost er mwyn i'r nodweddion hyn weithio.",
 'emailconfirmlink'           => 'Cadarnhewch eich cyfeiriad e-bost',
 'invalidemailaddress'        => 'Ni allwn dderbyn y cyfeiriad e-bost gan fod ganddo fformat annilys. Mewnbynnwch cyfeiriad dilys neu gwagiwch y maes hwnnw, os gwelwch yn dda.',
+'cannotchangeemail'          => 'Ni ellir newid cyfeiriadau e-bost i gyfrifon ar y wici hwn.',
 'accountcreated'             => 'Crëwyd y cyfrif',
 'accountcreatedtext'         => 'Crëwyd cyfrif defnyddiwr ar gyfer $1.',
 'createaccount-title'        => 'Creu cyfrif ar {{SITENAME}}',
@@ -616,31 +617,34 @@ Gall fod eich bod wedi llwyddo newid eich cyfrinair eisoes neu eich bod wedi gof
 'resetpass-temp-password'   => 'Cyfrinair dros dro:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Ailosod cyfrinair',
-'passwordreset-text'           => "Cwblhewch y ffurflen hon er mwyn derbyn e-bost i'ch atgoffa o fanylion eich cyfrif.",
-'passwordreset-legend'         => 'Ailosod y cyfrinair',
-'passwordreset-disabled'       => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
-'passwordreset-pretext'        => "{{PLURAL:$1|||Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod}}",
-'passwordreset-username'       => 'Eich enw defnyddiwr:',
-'passwordreset-domain'         => 'Parth:',
-'passwordreset-capture'        => 'Gweld yr e-bost a gaiff ei anfon?',
-'passwordreset-email'          => 'Eich cyfeiriad e-bost:',
-'passwordreset-emailtitle'     => 'Manylion eich cyfrif ar {{SITENAME}}',
-'passwordreset-emailtext-ip'   => "Mae rhywun (chi yn ôl pob tebyg, o'r cyfeiriad IP $1) wedi gofyn am nodyn atgoffa o fanylion eich cyfrif ar {{SITENAME}} ($4). Mae'r {{PLURAL:$3|cyfrif|cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
+'passwordreset'                    => 'Ailosod cyfrinair',
+'passwordreset-text'               => "Cwblhewch y ffurflen hon er mwyn derbyn e-bost i'ch atgoffa o fanylion eich cyfrif.",
+'passwordreset-legend'             => 'Ailosod y cyfrinair',
+'passwordreset-disabled'           => 'Analluogwyd ailosod cyfrineiriau ar y wici hwn.',
+'passwordreset-pretext'            => "{{PLURAL:$1|||Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod|Rhowch un o'r darnau o ddata isod}}",
+'passwordreset-username'           => 'Eich enw defnyddiwr:',
+'passwordreset-domain'             => 'Parth:',
+'passwordreset-capture'            => 'Gweld yr e-bost a gaiff ei anfon?',
+'passwordreset-capture-help'       => "Os y ticiwch y blwch hwn, bydd yr e-bost (gyda'r cyfrinair dros dro) yn cael ei ddangos i chi yn ogystal a chael ei anfon at y defnyddiwr.",
+'passwordreset-email'              => 'Eich cyfeiriad e-bost:',
+'passwordreset-emailtitle'         => 'Manylion eich cyfrif ar {{SITENAME}}',
+'passwordreset-emailtext-ip'       => "Mae rhywun (chi yn ôl pob tebyg, o'r cyfeiriad IP $1) wedi gofyn am nodyn atgoffa o fanylion eich cyfrif ar {{SITENAME}} ($4). Mae'r {{PLURAL:$3|cyfrif|cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
 
 $2
 
 Bydd y {{PLURAL:$3||cyfrinair dros dro hwn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn|cyfrineiriau dros dro hyn}} yn dod i ben ymhen {{PLURAL:$5||diwrnod |deuddydd|tridiau|$5 diwrnod|$5 diwrnod}}. Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd am ailosod y cyfrinair, neu os ydych wedi cofio eich cyfrinair gwreiddiol, neu os nad ydych am ei newid bellach, gallwch anwybyddu'r neges hon a pharhau i ddefnyddio eich hen gyfrinair.",
-'passwordreset-emailtext-user' => "Gofynodd y defnyddiwr $1 ar {{SITENAME}} am gael ei atgoffa o fanylion eich cyfrif ar {{SITENAME}}
+'passwordreset-emailtext-user'     => "Gofynodd y defnyddiwr $1 ar {{SITENAME}} am gael ei atgoffa o fanylion eich cyfrif ar {{SITENAME}}
 ($4). Mae'r {{PLURAL:$3||cyfrif|cyfrifon|cyfrifon|cyfrifon|cyfrifon}} canlynol ynghlwm wrth y cyfeiriad e-bost hwn:
 
 $2
 
 Bydd y {{PLURAL:$3||cyfrinair|cyfrineiriau|cyfrineiriau|cyfrineiriau|cyfrineiriau}} dros dro hyn yn dod i ben ymhen {{PLURAL:$5||diwrnod|deuddydd|tridiau|$5 diwrnod|$5 diwrnod}}.
 Dylech fewngofnodi nawr a dewis cyfrinair newydd. Os mai rhywun arall a ofynodd am ailosod y cyfrinair, neu os ydych wedi cofio eich cyfrinair gwreiddiol, neu os nad ydych am ei newid bellach, gallwch anwybyddu'r neges hon a pharhau i ddefnyddio eich hen gyfrinair.",
-'passwordreset-emailelement'   => "Enw'r defnyddiwr: $1
+'passwordreset-emailelement'       => "Enw'r defnyddiwr: $1
 Y cyfrinair dros dro: $2",
-'passwordreset-emailsent'      => 'Anfonwyd nodyn atgoffa drwy e-bost.',
+'passwordreset-emailsent'          => 'Anfonwyd nodyn atgoffa drwy e-bost.',
+'passwordreset-emailsent-capture'  => 'Anfonwyd e-bost atgoffa, a ddangosir isod.',
+'passwordreset-emailerror-capture' => "Lluniwyd e-bost atgoffa fel ag a welir isod, ond ni lwyddwyd i'w anfon at y defnyddiwr: $1",
 
 # Special:ChangeEmail
 'changeemail'          => 'Newid y cyfeiriad e-bost',
@@ -1003,7 +1007,7 @@ Edrychwch ar y logiau er mwyn cael rhagor o wybodaeth.",
 # Suppression log
 'suppressionlog'     => 'Lòg cuddio',
 'suppressionlogtext' => "Dyma restr y dileuon a'r blociau lle y cuddiwyd cynnwys rhag y gweinyddwyr.
-Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:IPBlockList|rhestr blociau IP]].",
+Gallwch weld rhestr y gwaharddiadau a'r blociau gweithredol ar y [[Special:BlockList|rhestr blociau IP]].",
 
 # History merging
 'mergehistory'                     => 'Cyfuno hanesion y tudalennau',
@@ -1203,8 +1207,8 @@ Ni allwch ddadwneud y weithred hon.",
 'prefs-registration'            => "Amser dechrau'r cyfrif:",
 'yourrealname'                  => 'Eich enw cywir*',
 'yourlanguage'                  => 'Iaith y rhyngwyneb',
-'yourvariant'                   => 'Amrywiolyn iaith cynnwys:',
-'prefs-help-variant'            => 'Eich dewis amrywiad neu orgraff i ddangos y tudalennau cynnwys y wici.',
+'yourvariant'                   => 'Tafodiaith neu orgraff y cynnwys:',
+'prefs-help-variant'            => 'Dewis amrywiad iaith neu orgraff yr hoffech ei weld wrth ddarllen cynnwys y wici hwn.',
 'yournick'                      => 'Eich llysenw (fel llofnod):',
 'prefs-help-signature'          => 'Dylid arwyddo sylwadau ar dudalennau sgwrs gyda "<nowiki>~~~~</nowiki>". Fe ymddengys hwn fel eich enw ac amser y sylw.',
 'badsig'                        => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
@@ -1272,12 +1276,12 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'group-suppress'      => 'Goruchwylwyr',
 'group-all'           => '(pawb)',
 
-'group-user-member'          => 'Defnyddiwr',
-'group-autoconfirmed-member' => "Defnyddiwr wedi ei gadarnhau'n awtomatig",
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Gweinyddwr',
-'group-bureaucrat-member'    => 'Biwrocrat',
-'group-suppress-member'      => 'Goruchwyliwr',
+'group-user-member'          => '{{GENDER:$1|defnyddiwr}}',
+'group-autoconfirmed-member' => "{{GENDER:$1|defnyddiwr wedi ei gadarnhau'n awtomatig}}",
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|gweinyddwr}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|biwrocrat}}',
+'group-suppress-member'      => '{{GENDER:$1|goruchwyliwr}}',
 
 'grouppage-user'          => '{{ns:project}}:Defnyddwyr',
 'grouppage-autoconfirmed' => "{{ns:project}}:Defnyddwyr wedi eu cadarnhau'n awtomatig",
@@ -1346,6 +1350,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'right-siteadmin'             => "Cloi a datgloi'r databas",
 'right-override-export-depth' => 'Allforio tudalennau gan gynnwys tudalennau cysylltiedig hyd at ddyfnder o 5',
 'right-sendemail'             => 'Anfon e-bost at ddefnyddwyr eraill',
+'right-passwordreset'         => "Gweld e-byst sy'n ailosod cyfrinair",
 
 # User rights log
 'rightslog'                  => 'Lòg galluoedd defnyddiwr',
@@ -1472,6 +1477,7 @@ Gweler [[Special:NewFiles|oriel y ffeiliau newydd]] i fwrw golwg drostynt.",
 'ignorewarnings'              => 'Anwybydder pob rhybudd',
 'minlength1'                  => 'Rhaid i enwau ffeiliau gynnwys un llythyren neu ragor.',
 'illegalfilename'             => 'Mae\'r enw ffeil "$1" yn cynnwys nodau sydd wedi\'u gwahardd mewn teitlau tudalennau. Ail-enwch y ffeil ac uwchlwythwch hi eto os gwelwch yn dda.',
+'filename-toolong'            => 'Ni ddylai enw ffeil fod yn hwy na 240 beit.',
 'badfilename'                 => 'Newidiwyd enw\'r ffeil i "$1".',
 'filetype-mime-mismatch'      => 'Nid yw\'r estyniad ".$1" ar y ffeil yn cysefeillio â\'i math MIME ($2).',
 'filetype-badmime'            => "Ni chaniateir uwchlwytho ffeiliau o'r math MIME '$1'.",
@@ -2287,6 +2293,7 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'blockiptext'                     => "Defnyddiwch y ffurflen hon i rwystro cyfeiriad IP neu ddefnyddiwr rhag ysgrifennu i'r gronfa ddata. 
 Dylech chi ddim ond gwneud hyn er mwyn rhwystro fandaliaeth, a chan ddilyn [[{{MediaWiki:Policy-url}}|polisi'r wici]]. 
 Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a fandaleiddiwyd).",
+'ipaddress'                       => 'Cyfeiriad IP:',
 'ipadressorusername'              => 'Cyfeiriad IP neu enw defnyddiwr:',
 'ipbexpiry'                       => 'Am gyfnod:',
 'ipbreason'                       => 'Rheswm:',
@@ -2796,9 +2803,9 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'minutes-abbrev' => 'm',
 'hours-abbrev'   => 'a',
 'seconds'        => '{{PLURAL:$1|$1 eiliad}}',
-'minutes'        => '{{PLURAL:$1||$1 munud|$1 funud|munud|munud|munud}}',
+'minutes'        => '{{PLURAL:$1||$1 munud|$1 funud|$1 munud|$1 munud|$1 munud}}',
 'hours'          => '{{PLURAL:$1|$1 awr}}',
-'days'           => '{{PLURAL:$1||diwrnod|deuddydd|tridiau|$1 diwrnod|$1 diwrnod}}',
+'days'           => '{{PLURAL:$1||$1 diwrnod|$1 ddiwrnod|$1 diwrnod|$1 diwrnod|$1 diwrnod}}',
 'ago'            => '$1 yn ôl',
 
 # Bad image list
@@ -3509,6 +3516,17 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'sqlite-no-fts'  => '$1 heb gymorth chwiliad yr holl destun',
 
 # New logging system
+'logentry-delete-delete'              => '{{GENDER:$2|Dileodd}} $1 y dudalen $3',
+'logentry-delete-restore'             => '{{GENDER:$2|Adferodd}} $1 y dudalen $3',
+'logentry-delete-event'               => '{{GENDER:$2|Newidiodd}} $1 ymddangosiad {{PLURAL:$5||cofnod lòg|$5 gofnod lòg|$5 chofnod lòg|$5 chofnod lòg|$5 cofnod lòg}} ar $3: $4',
+'logentry-delete-revision'            => "{{GENDER:$2|Newidiodd}} $1 ymddangosiad {{PLURAL:$5||diwygiad|$5 ddiwygiad|$5 diwygiad|$5 diwygiad|$5 diwygiad}} o'r dudalen $3: $4",
+'logentry-delete-event-legacy'        => '{{GENDER:$2|Newidiodd}} $1 welededd cofnodion lòg ar $3',
+'logentry-delete-revision-legacy'     => "{{GENDER:$2|Newidiodd}} $1 welededd diwygiadau o'r dudalen $3",
+'logentry-suppress-delete'            => '{{GENDER:$2|Cuddiodd}} $1 y dudalen $3',
+'logentry-suppress-event'             => 'Yn y dirgel, {{GENDER:$2|newidiodd}} $1 ymddangosiad {{PLURAL:$5||cofnod lòg|$5 gofnod lòg|$5 chofnod lòg|$5 chofnod lòg|$5 cofnod lòg}} ar $3: $4',
+'logentry-suppress-revision'          => "Yn y dirgel, {{GENDER:$2|newidiodd}} $1 ymddangosiad {{PLURAL:$5||diwygiad|$5 ddiwygiad|$5 diwygiad|$5 diwygiad|$5 diwygiad}} o'r dudalen $3: $4",
+'logentry-suppress-event-legacy'      => '{{GENDER:$2|Newidiodd}} $1 welededd cofnodion lòg ar $3, yn y dirgel',
+'logentry-suppress-revision-legacy'   => "{{GENDER:$2|Newidiodd}} $1 welededd diwygiadau o'r dudalen $3, yn y dirgel",
 'revdelete-content-hid'               => 'cuddiwyd y cynnwys',
 'revdelete-summary-hid'               => 'cuddiwyd y crynodeb golygu',
 'revdelete-uname-hid'                 => 'cuddiwyd yr enw defnyddiwr',
@@ -3521,6 +3539,11 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-move-move-noredirect'       => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1 heb adael dolen ailgyfeirio',
 'logentry-move-move_redir'            => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1 dros y ddolen ailgyfeirio',
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|Symudwyd}} y dudalen $3 i $4 gan $1 dros ddolen ailgyfeirio heb adael dolen ailgyfeirio newydd',
+'logentry-patrol-patrol'              => "{{GENDER:$2|Rhoddodd}} $1 nod ar ddiwygiad $4 o'r dudalen $3 yn dynodi ei fod wedi derbyn ymweliad patrôl",
+'logentry-patrol-patrol-auto'         => "{{GENDER:$2|Rhoddodd}} $1 nod yn awtomatig ar ddiwygiad $4 o'r dudalen $3 yn dynodi ei fod wedi derbyn ymweliad patrôl",
+'logentry-newusers-newusers'          => '{{GENDER:$2|Crëodd}} $1 gyfrif defnyddiwr',
+'logentry-newusers-create'            => '{{GENDER:$2|Crëodd}} $1 gyfrif defnyddiwr',
+'logentry-newusers-create2'           => '{{GENDER:$2|Crëodd}} $1 {{GENDER:$4|y cyfrif defnyddiwr}} $3',
 'logentry-newusers-autocreate'        => '{{GENDER:$2|Crëwyd}} y cyfrif $1 yn awtomatig',
 'newuserlog-byemail'                  => 'anfonwyd y cyfrinair trwy e-bost',
 

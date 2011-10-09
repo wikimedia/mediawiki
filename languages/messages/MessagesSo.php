@@ -42,7 +42,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'E-mail Ii soo dir xataa markii bedelo yar lagu sameeyo bogyada',
 'tog-enotifrevealaddr'        => 'Iigu soo bandhig cinwaankayga e-mailka ah fariimaha wargelinta',
 'tog-shownumberswatching'     => "I'tus tirada isticmaalayaasha wax waardiyeynaayo",
-'tog-oldsig'                  => 'itusi saxiixa jiro',
+'tog-oldsig'                  => 'Saxiixa jiro:',
 'tog-fancysig'                => "u isticmaal saxiixa sida qoraalada wiki  (ayada oo linki auomaatik la'aan)",
 'tog-externaleditor'          => "Isticmaal qoraal wax ka bedelyaal ka madaxbanaan (La'iskuogyahay)",
 'tog-externaldiff'            => "Isticmaal qoraal wax ka bedelyaal ka madaxbanaan oo (La'iskuogyahay)",
@@ -167,7 +167,7 @@ $messages = array(
 'vector-action-move'             => 'Wareeji',
 'vector-action-protect'          => 'Difaac',
 'vector-action-undelete'         => 'La tirtirin',
-'vector-action-unprotect'        => "Ha'difaacin",
+'vector-action-unprotect'        => 'Bedel difaacida',
 'vector-simplesearch-preference' => 'Shid kuwa ugu fiican oo kuu soo jeedinaayo raadinta  (Jirka vector kaliya)',
 'vector-view-create'             => 'Sameey',
 'vector-view-edit'               => 'Wax ka bedel',
@@ -203,8 +203,8 @@ $messages = array(
 'protect'           => 'Difaac',
 'protect_change'    => 'Wax ka bedel',
 'protectthispage'   => 'Difaac boggaan',
-'unprotect'         => "ha'difaacin",
-'unprotectthispage' => "Boggaan ha' difaacin",
+'unprotect'         => 'Bedel difaacida',
+'unprotectthispage' => 'Bedel difaacida boggaan',
 'newpage'           => 'Bog cusub',
 'talkpage'          => 'Wadahadalka boggan',
 'talkpagelinktext'  => 'Wadahadal',
@@ -392,7 +392,8 @@ Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqyadaa
 'createaccountmail'          => 'E-mail ahaan',
 'createaccountreason'        => 'Sababta:',
 'badretype'                  => 'Ereyada sirta ah oo qortay ma islahan.',
-'userexists'                 => 'Magaca isticmaalaha aad qortay woo jiraa. Fadlan dooro magac kale.',
+'userexists'                 => 'Magaca isticmaalaha aad qortay woo jiraa.
+Fadlan dooro magac kale.',
 'loginerror'                 => 'Qalad gudagalista',
 'createaccounterror'         => 'Ma sameeyn karin akoon: $1',
 'nocookiesnew'               => "Magaca isticmaalahaan waa la sameeyay, laakiin adiga gudaha uma soo gelin.
@@ -470,12 +471,22 @@ Hadda gudaha ku gal',
 'resetpass-temp-password'   => 'Ereysir ku meel gaar ah:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Bedel ereysirka',
-'passwordreset-legend'       => 'Bedel ereysirka',
-'passwordreset-username'     => 'Magaca gudagalka',
-'passwordreset-email'        => 'Ciwaanka e-mailka',
-'passwordreset-emailelement' => 'Magaca gudagalka: $1
+'passwordreset'                => 'Bedel ereysirka',
+'passwordreset-legend'         => 'Bedel ereysirka',
+'passwordreset-username'       => 'Magaca gudagalka',
+'passwordreset-email'          => 'Ciwaanka e-mailka',
+'passwordreset-emailtext-user' => 'Isticmaale $1 ee {{SITENAME}} waxoo codsaday xasuus tafaasiil akoonkaada {{SITENAME}}
+($4). Isticmaaladaan soo socota {{PLURAL:$3|akoonkooda waxee|akoonkooda waxee}} la xiriiraan ciwaankaan e-mailka ah:
+
+$2
+
+{{PLURAL:$3|eraysirkaan kumeel gaarka ah|Eraysiryadaan kumeel gaarka ah}} waxee dhacaayaan {{PLURAL:$5|hal maalin|$5 maalmood}}.
+Waa in aad gudaha gashaa oo e-mail cusub doorataa hadda. Hadii ee qof kale codsigaan sameysay, ama hadii aad soo xasuusatay eraysirkaagii hore, oo aadna u baahneen in aad badashid, iska ilaaw fariintaan siina isticmaal eraysirkaagii duqi ahaa.',
+'passwordreset-emailelement'   => 'Magaca gudagalka: $1
 Ereysirka kumeelgaarka ah: $2',
+
+# Special:ChangeEmail
+'changeemail' => 'Bedel ciwaanka E-mailka',
 
 # Edit page toolbar
 'bold_sample'     => 'Far butac ah',
@@ -1145,7 +1156,7 @@ waxoo dib ugu celiyay bedelaadka $2.',
 'whatlinkshere-hideimages' => '$1 sawirka inta oo la xiriiro',
 
 # Block/unblock
-'ipboptions'               => '2 saacadood:2 hours,1 maalin:1 day,3 maalmood:3 days,1 isbuuc:1 week,2 isbuuc:2 weeks,1 bil:1 month,3 bilood:3 months,6 bilood:6 months,1 sano:1 year,waligeed:infinite',
+'ipboptions'               => "2 saacadood:2 hours,1 maalin:1 day,3 maalmood:3 days,1 usbuuc:1 week,2 isbuuc:2 weeks,1 bil:1 month,3 bilood:3 months,6 bilood:6 months,1 sano:1 year,daa'im:infinite",
 'ipblocklist'              => 'isticmaalada la mamnuucay',
 'ipblocklist-submit'       => 'Raadi',
 'anononlyblock'            => 'qarsoon. kaliya',

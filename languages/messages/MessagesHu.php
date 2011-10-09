@@ -1520,6 +1520,7 @@ A műveletet nem lehet visszavonni.',
 'right-siteadmin'             => 'adatbázis lezárása, felnyitása',
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-sendemail'             => 'e-mail küldése más felhasználóknak',
+'right-passwordreset'         => 'Szerkesztő jelszavának alaphelyzetbe állítása ([[Special:PasswordReset|speciális lap]])',
 
 # User rights log
 'rightslog'      => 'Szerkesztői jogosultságok naplója',
@@ -2465,6 +2466,7 @@ A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
 'blockiptext'                     => 'Az alábbi űrlap segítségével megvonhatod egy szerkesztő vagy IP-cím szerkesztési jogait.
 Ügyelj rá, hogy az intézkedésed mindig legyen tekintettel a vonatkozó [[{{MediaWiki:Policy-url}}|irányelvekre]].
 Add meg a blokkolás okát is (például idézd a blokkolandó személy által vandalizált lapokat).',
+'ipaddress'                       => 'IP-cím',
 'ipadressorusername'              => 'IP-cím vagy felhasználói név',
 'ipbexpiry'                       => 'Lejárat:',
 'ipbreason'                       => 'Ok:',

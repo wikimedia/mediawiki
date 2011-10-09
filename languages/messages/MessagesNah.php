@@ -1156,6 +1156,7 @@ Xiquitta $2 ic yancuīc tlapololiztli.',
 # Block/unblock
 'blockip'            => 'Tiquitzacuilīz tlatequitiltilīlli',
 'blockip-legend'     => 'Tiquitzacuilīz tlatequitiltilīlli',
+'ipaddress'          => 'IP:',
 'ipadressorusername' => 'IP nozo tlatequitiltilīlli ītōcā:',
 'ipbexpiry'          => 'Motlamia:',
 'ipbreason'          => 'Īxtlamatiliztli:',

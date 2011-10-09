@@ -100,6 +100,7 @@
  * @author Tedjuh10
  * @author Tgr
  * @author The Evil IP address
+ * @author Toliño
  * @author UV
  * @author Umherirrender
  * @author Urhixidur
@@ -785,29 +786,34 @@ Used on [[Special:ResetPass]]',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
 
 # Special:PasswordReset
-'passwordreset'                => 'Title of [[Special:PasswordReset]].
+'passwordreset'                    => 'Title of [[Special:PasswordReset]].
 {{Identical|Reset password}}',
-'passwordreset-text'           => 'Text on [[Special:PasswordReset]]',
-'passwordreset-legend'         => '{{Identical|Reset password}}',
-'passwordreset-pretext'        => '$1 is the number of password reset routes. Apparently, this is never 1, but always two or more. Thus, the first plural option is empty in English.',
-'passwordreset-username'       => '{{Identical|Username}}',
-'passwordreset-domain'         => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
-'passwordreset-capture'        => 'Label for checkbox asking the user whether they want to see the contents of the password reset email (only shown if they have the <tt>passwordreset</tt> permission',
-'passwordreset-capture-help'   => 'Longer explanatory message for the capture checkbox label.',
-'passwordreset-email'          => '{{Identical|E-mail address}}',
-'passwordreset-emailtext-ip'   => 'Parameters:
+'passwordreset-text'               => 'Text on [[Special:PasswordReset]]',
+'passwordreset-legend'             => '{{Identical|Reset password}}',
+'passwordreset-pretext'            => '$1 is the number of password reset routes. Apparently, this is never 1, but always two or more. Thus, the first plural option is empty in English.',
+'passwordreset-username'           => '{{Identical|Username}}',
+'passwordreset-domain'             => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
+'passwordreset-capture'            => 'Label for checkbox asking the user whether they want to see the contents of the password reset email (only shown if they have the <tt>passwordreset</tt> permission',
+'passwordreset-capture-help'       => 'Longer explanatory message for the capture checkbox label.',
+'passwordreset-email'              => '{{Identical|E-mail address}}',
+'passwordreset-emailtext-ip'       => 'Be consistent with {{msg-mw|Passwordreset-emailtext-user|notext=y}}.
+
+Parameters:
 * $1 - an IP address
 * $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
 * $3 - the number of repetitions in $2
 * $4 - base URL of the wiki',
-'passwordreset-emailtext-user' => 'Parameters:
+'passwordreset-emailtext-user'     => 'Be consistent with {{msg-mw|Passwordreset-emailtext-ip|notext=y}}.
+
+Parameters:
 * $1 - a user name
 * $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
 * $3 - the number of repetitions in $2
 * $4 - base URL of the wiki',
-'passwordreset-emailelement'   => "This is a body of a reminder email to allow them into the system with a new password.
+'passwordreset-emailelement'       => "This is a body of a reminder email to allow them into the system with a new password.
 $1 will be the user's login name.
 $2 will be the temporary password given by the system.",
+'passwordreset-emailerror-capture' => 'What is $1?',
 
 # Special:ChangeEmail
 'changeemail'          => 'Title of [[Special:ChangeEmail|special page]].',
@@ -1482,77 +1488,77 @@ Parameters:
 
 # Groups
 'group'               => '{{Identical|Group}}',
-'group-user'          => 'Name of group
+'group-user'          => '{{doc-group|user}}
 {{Identical|User}}',
-'group-autoconfirmed' => 'Name of group. On Wikimedia sites autoconfirmed users are users which are older than 4 days. After those 4 days, they have more rights.',
-'group-bot'           => 'Name of group',
+'group-autoconfirmed' => '{{doc-group|autoconfirmed}}
+On Wikimedia sites autoconfirmed users are users which are older than 4 days. After those 4 days, they have more rights.',
+'group-bot'           => '{{doc-group|bot}}',
 'group-sysop'         => '{{doc-group|sysop}}',
-'group-bureaucrat'    => 'Name of group',
-'group-suppress'      => 'This is an optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
+'group-bureaucrat'    => '{{doc-group|bureaucrat}}',
+'group-suppress'      => '{{doc-group|suppress}}
+This is an optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
 
-* See also: {{msg-mw|Group-suppress-member|pl=yes}} for a member of this group.
 {{Identical|Oversight}}',
 'group-all'           => 'The name of the user group that contains all users, including anonymous users
 
 {{Identical|All}}',
 
-'group-user-member'          => 'Name of member of group',
-'group-autoconfirmed-member' => 'Name of a member of group',
-'group-bot-member'           => 'Name of a member of group',
-'group-sysop-member'         => 'Name of member of group',
-'group-bureaucrat-member'    => 'Name of member of group',
-'group-suppress-member'      => 'This is a member of the optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
+'group-user-member'          => '{{doc-group|user|member}}',
+'group-autoconfirmed-member' => '{{doc-group|autoconfirmed|member}}',
+'group-bot-member'           => '{{doc-group|bot|member}}',
+'group-sysop-member'         => '{{doc-group|sysop|member}}',
+'group-bureaucrat-member'    => '{{doc-group|bureaucrat|member}}',
+'group-suppress-member'      => '{{doc-group|suppress|member}}
+This is a member of the optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
 
-* See also: {{msg|Group-suppress|pl=yes}} for the name of the group.
 {{Identical|Oversight}}',
 
-'grouppage-user'          => 'Link to group page on wiki',
-'grouppage-autoconfirmed' => 'Link to group page on wiki.',
-'grouppage-bot'           => 'Link to project page of this group, displayed on [[Special:ListUsers/bot]].',
-'grouppage-sysop'         => 'Link to project page of this group, displayed on [[Special:ListUsers/sysop]].',
-'grouppage-bureaucrat'    => 'Name of project page of this group, linked to from [[Special:ListUsers/bureaucrat]], [[Special:ListGroupRights]], and some other special pages.',
-'grouppage-suppress'      => 'Link to project page of this group, displayed on [[Special:ListUsers/suppress]].
-
+'grouppage-user'          => '{{doc-group|user|page}}',
+'grouppage-autoconfirmed' => '{{doc-group|autoconfirmed|page}}',
+'grouppage-bot'           => '{{doc-group|bot|page}}',
+'grouppage-sysop'         => '{{doc-group|sysop|page}}',
+'grouppage-bureaucrat'    => '{{doc-group|bureaucrat|page}}',
+'grouppage-suppress'      => '{{doc-group|suppress|page}}
 {{Identical|Oversight}}',
 
 # Rights
-'right-read'                  => '{{doc-right}}
+'right-read'                  => '{{doc-right|read}}
 Basic right to read any page.',
-'right-edit'                  => '{{doc-right}}
+'right-edit'                  => '{{doc-right|edit}}
 Basic right to edit pages that are not protected.',
-'right-createpage'            => '{{doc-right}}
+'right-createpage'            => '{{doc-right|createpage}}
 Basic right to create pages. The right to edit discussion/talk pages is {{msg|right-createtalk|pl=yes}}.',
-'right-createtalk'            => '{{doc-right}}
+'right-createtalk'            => '{{doc-right|createtalk}}
 Basic right to create discussion/talk pages. The right to edit other pages is {{msg|right-createpage|pl=yes}}.',
-'right-createaccount'         => '{{doc-right}}
+'right-createaccount'         => '{{doc-right|createaccount}}
 The right to [[Special:CreateAccount|create a user account]].',
-'right-minoredit'             => '{{doc-right}}
+'right-minoredit'             => '{{doc-right|minoredit}}
 The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes}} for the message used for that checkbox.',
-'right-move'                  => '{{doc-right}}
+'right-move'                  => '{{doc-right|move}}
 The right to move any page that is not protected from moving.',
 'right-move-subpages'         => '{{doc-right|move-subpages}}',
-'right-move-rootuserpages'    => '{{doc-right}}',
-'right-movefile'              => '{{doc-right}}',
+'right-move-rootuserpages'    => '{{doc-right|move-rootuserpages}}',
+'right-movefile'              => '{{doc-right|movefile}}',
 'right-suppressredirect'      => '{{doc-right|suppressredirect}}',
-'right-upload'                => '{{doc-right}}
+'right-upload'                => '{{doc-right|upload}}
 The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
-'right-reupload'              => '{{doc-right}}
+'right-reupload'              => '{{doc-right|reupload}}
 The right to upload a file under a file name that already exists. Related messages: {{msg|right-upload|pl=yes}}, {{msg|right-reupload-own|pl=yes}} and {{msg|right-reupload-shared|pl=yes}}.',
-'right-reupload-own'          => '{{doc-right}}
+'right-reupload-own'          => '{{doc-right|reupload-own}}
 Right to upload a file under a file name that already exists, and that the same user has uploaded. Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
-'right-reupload-shared'       => '{{doc-right}}
+'right-reupload-shared'       => '{{doc-right|reupload-shared}}
 The right to upload a file locally under a file name that already exists in a shared database (for example Commons). Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
 'right-upload_by_url'         => '{{doc-right|upload by url}}',
-'right-purge'                 => '{{doc-right}}
+'right-purge'                 => '{{doc-right|purge}}
 The right to use <tt>&action=purge</tt> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).',
-'right-autoconfirmed'         => "{{doc-right}}
+'right-autoconfirmed'         => "{{doc-right|autoconfirmed}}
 If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:\$wgAutoConfirmCount|\$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:ListUsers]]).
 If you are in that group, you have (by default) the '''right \"autoconfirmed\"'''. With this right, you can for example <!-- I think this right includes more things --> edit semi-protected pages.",
 'right-bot'                   => '{{doc-right|bot}}',
-'right-nominornewtalk'        => '{{doc-right}}
+'right-nominornewtalk'        => '{{doc-right|nominornewtalk}}
 If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg|right-minoredit|pl=yes}}), the user will not get a notification "You have new messages".',
 'right-apihighlimits'         => '{{doc-right|apihighlimits}}',
-'right-writeapi'              => '{{doc-right}}',
+'right-writeapi'              => '{{doc-right|writeapi}}',
 'right-delete'                => '{{doc-right|delete}}',
 'right-bigdelete'             => '{{doc-right|bigdelete}}',
 'right-deleterevision'        => '{{doc-right|deleterevision}}
@@ -1605,17 +1611,17 @@ This user automatically bypasses IP blocks, auto-blocks and range blocks - so I 
 'right-edituserjs'            => '{{doc-right|edituserjs}}',
 'right-rollback'              => '{{doc-right|rollback}}
 {{Identical|Rollback}}',
-'right-markbotedits'          => '{{doc-right}}
+'right-markbotedits'          => '{{doc-right|markbotedits}}
 A user with this right can mark a roll-back edit as a bot edit by adding <tt>&bot=1</tt> to the URL (not by default).',
-'right-noratelimit'           => '{{doc-right}}
+'right-noratelimit'           => '{{doc-right|noratelimit}}
 The rate limits have no effect on the groups that have this right. Rate limits is a restriction that you can only do X actions (edits, moves, etc.) in Y number of seconds (set by [[mw:Manual:$wgRateLimits|$wgRateLimits]]).',
-'right-import'                => '{{doc-right}}',
-'right-importupload'          => '{{doc-right}}',
-'right-patrol'                => '{{doc-right}}',
+'right-import'                => '{{doc-right|import}}',
+'right-importupload'          => '{{doc-right|importupload}}',
+'right-patrol'                => '{{doc-right|patrol}}',
 'right-autopatrol'            => '{{doc-right|autopatrol}}',
 'right-patrolmarks'           => '{{doc-right|patrolmarks}}',
 'right-unwatchedpages'        => '{{doc-right|unwatchedpages}}',
-'right-trackback'             => '{{doc-right}}
+'right-trackback'             => '{{doc-right|trackback}}
 
 "Submit" in this instance means that something called [[:wikipedia:trackback|trackback]] is being sent to the wiki, and the wiki accepts it. When the right is not given to the user, the wiki rejects, or ignores it. There is a nice description at [http://cruftbox.com/cruft/docs/trackback.html How TrackBack Works]. In MediaWiki it is one of those obscure features that probably nobody uses (it is a huge spam trap).
 
@@ -1625,8 +1631,8 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 'right-userrights-interwiki'  => '{{doc-right|userrights-interwiki}}',
 'right-siteadmin'             => '{{doc-right|siteadmin}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
-'right-sendemail'             => '{{doc-right}}',
-'right-passwordreset'         => '{{doc-right}}',
+'right-sendemail'             => '{{doc-right|sendemail}}',
+'right-passwordreset'         => '{{doc-right|passwordreset}}',
 
 # User rights log
 'rightslog'                  => 'In [[Special:Log]]',
@@ -1649,44 +1655,44 @@ Parameters:
 {{Identical|None}}',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'                 => '{{Doc-action}}',
-'action-edit'                 => '{{Doc-action}}',
-'action-createpage'           => '{{Doc-action}}',
-'action-createtalk'           => '{{Doc-action}}',
-'action-createaccount'        => '{{Doc-action}}',
-'action-minoredit'            => '{{Doc-action}}',
-'action-move'                 => '{{Doc-action}}',
-'action-move-subpages'        => '{{Doc-action}}',
-'action-move-rootuserpages'   => '{{Doc-action}}',
-'action-movefile'             => '{{doc-action}}',
-'action-upload'               => '{{Doc-action}}',
-'action-reupload'             => '{{Doc-action}}',
-'action-reupload-shared'      => '{{Doc-action}}',
+'action-read'                 => '{{Doc-action|read}}',
+'action-edit'                 => '{{Doc-action|edit}}',
+'action-createpage'           => '{{Doc-action|createpage}}',
+'action-createtalk'           => '{{Doc-action|createtalk}}',
+'action-createaccount'        => '{{Doc-action|createaccount}}',
+'action-minoredit'            => '{{Doc-action|minoredit}}',
+'action-move'                 => '{{Doc-action|move}}',
+'action-move-subpages'        => '{{Doc-action|move-subpages}}',
+'action-move-rootuserpages'   => '{{Doc-action|move-rootuserpages}}',
+'action-movefile'             => '{{doc-action|movefile}}',
+'action-upload'               => '{{Doc-action|upload}}',
+'action-reupload'             => '{{Doc-action|reupload}}',
+'action-reupload-shared'      => '{{Doc-action|reupload-shared}}',
 'action-upload_by_url'        => '{{Doc-action|upload by url}}',
-'action-writeapi'             => '{{Doc-action}}
+'action-writeapi'             => '{{Doc-action|writeapi}}
 
 API is an abbreviation for [http://en.wikipedia.org/wiki/API application programming interface].',
-'action-delete'               => '{{Doc-action}}',
-'action-deleterevision'       => '{{Doc-action}}',
-'action-deletedhistory'       => '{{Doc-action}}',
-'action-browsearchive'        => '{{Doc-action}}',
-'action-undelete'             => '{{Doc-action}}',
-'action-suppressrevision'     => '{{Doc-action}}',
+'action-delete'               => '{{Doc-action|delete}}',
+'action-deleterevision'       => '{{Doc-action|deleterevision}}',
+'action-deletedhistory'       => '{{Doc-action|deletedhistory}}',
+'action-browsearchive'        => '{{Doc-action|browsearchive}}',
+'action-undelete'             => '{{Doc-action|undelete}}',
+'action-suppressrevision'     => '{{Doc-action|suppressrevision}}',
 'action-suppressionlog'       => '{{Doc-action|suppressionlog}}',
-'action-block'                => '{{Doc-action}}',
-'action-protect'              => '{{Doc-action}}',
-'action-import'               => '{{Doc-action}}',
-'action-importupload'         => '{{Doc-action}}',
-'action-patrol'               => '{{Doc-action}}',
-'action-autopatrol'           => '{{Doc-action}}',
-'action-unwatchedpages'       => '{{Doc-action}}',
-'action-trackback'            => '{{Doc-action}}',
-'action-mergehistory'         => '{{Doc-action}}',
-'action-userrights'           => '{{Doc-action}}
+'action-block'                => '{{Doc-action|block}}',
+'action-protect'              => '{{Doc-action|protect}}',
+'action-import'               => '{{Doc-action|import}}',
+'action-importupload'         => '{{Doc-action|importupload}}',
+'action-patrol'               => '{{Doc-action|patrol}}',
+'action-autopatrol'           => '{{Doc-action|autopatrol}}',
+'action-unwatchedpages'       => '{{Doc-action|unwatchedpages}}',
+'action-trackback'            => '{{Doc-action|trackback}}',
+'action-mergehistory'         => '{{Doc-action|mergehistory}}',
+'action-userrights'           => '{{Doc-action|userrights}}
 
 This action allows editing of all of the "user rights", not just the rights of the group "all users".',
-'action-userrights-interwiki' => '{{Doc-action}}',
-'action-siteadmin'            => '{{Doc-action}}',
+'action-userrights-interwiki' => '{{Doc-action|userrights-interwiki}}',
+'action-siteadmin'            => '{{Doc-action|siteadmin}}',
 
 # Recent changes
 'nchanges'                        => 'Appears on the [[Special:RecentChanges]] special page in brackets after pages having more than one change on that date. $1 is the number of changes on that day.',
@@ -2325,8 +2331,12 @@ See also {{msg|listgrouprights-removegroup}}.',
 * $1 is an enumeration of group names.
 * $2 is the number of group names in $1.
 See also {{msg|listgrouprights-addgroup}}.',
-'listgrouprights-addgroup-all'     => '{{doc-right}}',
-'listgrouprights-removegroup-all'  => '{{doc-right}}',
+'listgrouprights-addgroup-all'     => 'Used on [[Special:ListGroupRights]].
+
+See also {{msg-mw|listgrouprights-removegroup-all}}.',
+'listgrouprights-removegroup-all'  => 'Used on [[Special:ListGroupRights]].
+
+See also {{msg-mw|listgrouprights-addgroup-all}}.',
 'listgrouprights-addgroup-self'    => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 are the group names.
 * $2 is the number of group names in $1.',
@@ -2698,6 +2708,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 'blockip-legend'              => 'Legend/Header for the fieldset around the input form of [[Special:BlockIP]].
 
 {{Identical|Block user}}',
+'ipaddress'                   => '{{Identical|IP Address}}',
 'ipadressorusername'          => '{{Identical/IP address or username}}',
 'ipbexpiry'                   => '{{Identical|Expiry}}',
 'ipbreason'                   => 'Label of the block reason dropdown in [[Special:BlockIP]] and the unblock reason textfield in [{{fullurl:Special:IPBlockList|action=unblock}} Special:IPBlockList?action=unblock].
@@ -4311,7 +4322,9 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 'logentry-delete-event-legacy'        => '{{Logentry}}
 $3 is the name of the log page inside parenthesis',
 'logentry-delete-revision-legacy'     => '{{Logentry}}',
-'logentry-suppress-delete'            => '{{Logentry}}',
+'logentry-suppress-delete'            => "{{Logentry}}
+
+'Hid' is a possible alternative to 'suppressed' in this message.",
 'logentry-suppress-event'             => '{{Logentry}}
 {{Logentryparam}}
 $3 is the name of the log page inside parenthesis',

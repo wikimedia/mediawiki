@@ -413,7 +413,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(продолжение)',
 'index-category'                 => 'Индексируемые страницы',
 'noindex-category'               => 'Неиндексируемые страницы',
-'broken-file-category'           => 'Страниц с неработающими файловыми ссылками',
+'broken-file-category'           => 'Страницы с неработающими файловыми ссылками',
 
 'about'         => 'Описание',
 'article'       => 'Статья',
