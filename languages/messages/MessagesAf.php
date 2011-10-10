@@ -1015,8 +1015,8 @@ Dit was moontlik geskrap of geskuif.
 'rev-deleted-text-permission' => "Die weergawe van die bladsy is '''verwyder'''.
 Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skrapingslogboek].",
 'rev-deleted-text-unhide'     => "Hierdie weergawe van die bladsy is '''verwyder'''.
-Details kan moontlik in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] aanwesig wees.
-As administrateur kan u, as u wil, na [$1 die weergawe kyk].",
+Details kan in die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skraplogboek] gevind word.
+U kan steeds na [$1 die weergawe kyk] as u wil voortgaan.",
 'rev-suppressed-text-unhide'  => "Hierdie weergawe van die blad word '''onderdruk'''.
 Details kan moontlik in die [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek van onderdrukte weergawes] gesien word.
 As administrateur kan u, as u wil, na [$1 die verskille kyk].",

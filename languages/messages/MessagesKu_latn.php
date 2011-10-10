@@ -1179,10 +1179,10 @@ Xêra xwe navekî din bibîne.",
 'unusedtemplateswlh' => 'lînkên din',
 
 # Random page
-'randompage' => 'Rûpeleke rasthatinî',
+'randompage' => 'Rûpeleke ketober',
 
 # Random redirect
-'randomredirect' => 'Beralîkirina rasthatinî',
+'randomredirect' => 'Beralîkirina ketober',
 
 # Statistics
 'statistics'              => 'Statîstîk',

@@ -1191,7 +1191,7 @@ Xin hãy kiểm tra nhật trình.',
 # Suppression log
 'suppressionlog'     => 'Nhật trình ẩn giấu',
 'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy.
-Xem [[Special:IPBlockList|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
+Xem [[Special:BlockList|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
 
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
@@ -1459,12 +1459,12 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'group-suppress'      => 'Giám sát viên',
 'group-all'           => '(tất cả)',
 
-'group-user-member'          => 'thành viên',
-'group-autoconfirmed-member' => 'thành viên tự động xác nhận',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'bảo quản viên',
-'group-bureaucrat-member'    => 'hành chính viên',
-'group-suppress-member'      => 'giám sát viên',
+'group-user-member'          => '{{GENDER:$1}}thành viên',
+'group-autoconfirmed-member' => '{{GENDER:$1}}thành viên tự động xác nhận',
+'group-bot-member'           => '{{GENDER:$1}}bot',
+'group-sysop-member'         => '{{GENDER:$1}}bảo quản viên',
+'group-bureaucrat-member'    => '{{GENDER:$1}}hành chính viên',
+'group-suppress-member'      => '{{GENDER:$1}}giám sát viên',
 
 'grouppage-user'          => '{{ns:project}}:Thành viên',
 'grouppage-autoconfirmed' => '{{ns:project}}:Thành viên tự xác nhận',
@@ -1533,7 +1533,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-siteadmin'             => 'Khóa và mở khóa cơ sở dữ liệu',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
 'right-sendemail'             => 'Gửi thư điện tử cho thành viên khác',
-'right-passwordreset'         => 'Tái tạo mật khẩu của người dùng ([[Special:PasswordReset|trang đặc biệt]])',
+'right-passwordreset'         => 'Xem các thư điện tử đặt lại mật khẩu',
 
 # User rights log
 'rightslog'                  => 'Nhật trình cấp quyền thành viên',

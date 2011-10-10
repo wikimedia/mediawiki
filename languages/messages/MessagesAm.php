@@ -165,6 +165,7 @@ $messages = array(
 'category-file-count-limited'    => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|የሚከተለው ፋይል አለ|የሚከተሉት $1 ፋይሎች አሉ}}።',
 'listingcontinuesabbrev'         => '(ተቀጥሏል)',
 'index-category'                 => ' ማውጫው ላይ የተመዘገብ ገጾች',
+'broken-file-category'           => 'የማይኖሩ ፋይሎች ያሉባቸው ገጾች',
 
 'about'         => 'ስለ',
 'article'       => 'መጣጥፍ',

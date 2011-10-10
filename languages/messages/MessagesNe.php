@@ -3243,6 +3243,7 @@ $1',
 'hebrew-calendar-m12-gen' => 'एलल्',
 
 # Signatures
+'signature'    => '[[{{ns:user}}:$1|$2]]',
 'timezone-utc' => 'युटिसी(UTC)',
 
 # Core parser functions
