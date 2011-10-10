@@ -275,9 +275,9 @@
 		return Uri;	
 	};
 
-	// inject the current document location, for relative URLs
-	mw.Uri = mw.UriRelative( document.location.href );
-
-	
+	// if we are running in a browser, inject the current document location, for relative URLs
+	if ( document && document.location && document.location.href ) { 
+		mw.Uri = mw.UriRelative( document.location.href );
+	}
 
 } )( jQuery, mediaWiki );
