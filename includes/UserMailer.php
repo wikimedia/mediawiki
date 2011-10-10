@@ -256,8 +256,13 @@ class UserMailer {
 			ini_set( 'html_errors', '0' );
 			set_error_handler( 'UserMailer::errorHandler' );
 
+			$safeMode = wfIniGetBool( 'safe_mode' );
 			foreach ( $dest as $recip ) {
-				$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
+				if ( $safeMode ) {
+					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers );
+				} else {
+					$sent = mail( $recip, self::quotedPrintable( $subject ), $body, $headers, $wgAdditionalMailParams );
+				}
 			}
 
 			restore_error_handler();
