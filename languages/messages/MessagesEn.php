@@ -1517,27 +1517,27 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-deleted-text-unhide'     => "This page revision has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
-As an administrator you can still [$1 view this revision] if you wish to proceed.",
+You can still [$1 view this revision] if you wish to proceed.",
 'rev-suppressed-text-unhide'  => "This page revision has been '''suppressed'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
-As an administrator you can still [$1 view this revision] if you wish to proceed.",
+You can still [$1 view this revision] if you wish to proceed.",
 'rev-deleted-text-view'       => "This page revision has been '''deleted'''.
-As an administrator you can view it; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+You can view it; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-text-view'    => "This page revision has been '''suppressed'''.
-As an administrator you can view it; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
+You can view it; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-deleted-no-diff'         => "You cannot view this diff because one of the revisions has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-no-diff'      => "You cannot view this diff because one of the revisions has been '''deleted'''.",
 'rev-deleted-unhide-diff'     => "One of the revisions of this diff has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
-As an administrator you can still [$1 view this diff] if you wish to proceed.",
+You can still [$1 view this diff] if you wish to proceed.",
 'rev-suppressed-unhide-diff'  => "One of the revisions of this diff has been '''suppressed'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
-As an administrator you can still [$1 view this diff] if you wish to proceed.",
+You can still [$1 view this diff] if you wish to proceed.",
 'rev-deleted-diff-view'       => "One of the revisions of this diff has been '''deleted'''.
-As an administrator you can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+You can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-diff-view'    => "One of the revisions of this diff has been '''suppressed'''.
-As an administrator you can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
+You can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-delundel'                => 'show/hide',
 'rev-showdeleted'             => 'show',
 'revisiondelete'              => 'Delete/undelete revisions',
