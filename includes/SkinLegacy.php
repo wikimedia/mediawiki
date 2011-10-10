@@ -430,34 +430,18 @@ class LegacyTemplate extends BaseTemplate {
 	 * Show a drop-down box of special pages
 	 */
 	function specialPagesList() {
-		global $wgContLang, $wgServer, $wgRedirectScript;
+		global $wgScript;
 
+		$select = new XmlSelect( 'title' );
 		$pages = SpecialPageFactory::getUsablePages();
-
-		foreach ( $pages as $name => $page ) {
-			$pages[$name] = $page->getDescription();
+		array_unshift( $pages, SpecialPageFactory::getPage( 'SpecialPages' ) );
+		foreach ( $pages as $obj ) {
+			$select->addOption( $obj->getDescription(),
+				$obj->getTitle()->getPrefixedDBkey() );
 		}
 
-		$go = wfMsg( 'go' );
-		$sp = wfMsg( 'specialpages' );
-		$spp = $wgContLang->specialPage( 'Specialpages' );
-
-		$s = '<form id="specialpages" method="get" ' .
-		  'action="' . htmlspecialchars( "{$wgServer}{$wgRedirectScript}" ) . "\">\n";
-		$s .= "<select name=\"wpDropdown\">\n";
-		$s .= "<option value=\"{$spp}\">{$sp}</option>\n";
-
-
-		foreach ( $pages as $name => $desc ) {
-			$p = $wgContLang->specialPage( $name );
-			$s .= "<option value=\"{$p}\">{$desc}</option>\n";
-		}
-
-		$s .= "</select>\n";
-		$s .= "<input type='submit' value=\"{$go}\" name='redirect' />\n";
-		$s .= "</form>\n";
-
-		return $s;
+		return Html::rawElement( 'form', array( 'id' => 'specialpages', 'method' => 'get',
+			'action' => $wgScript ), $select->getHTML() . Xml::submitButton( wfMsg( 'go' ) ) );
 	}
 
 	function pageTitleLinks() {
