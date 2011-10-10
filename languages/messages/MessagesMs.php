@@ -1079,8 +1079,8 @@ Mohon semak log.',
 
 # Suppression log
 'suppressionlog'     => 'Log penahanan',
-'suppressionlogtext' => 'Yang berikut ialah senarai penghapusan dan sekatan yang membabitkan kandungan yang terselindung daripada penyelia.
-Sila lihat juga [[Special:IPBlockList|senarai sekatan IP]] yang sedang berkuatkuasa.',
+'suppressionlogtext' => 'Berikut adalah daftar penghapusan dan sekatan yang melibatkan kandungan yang disembunyikan daripada pentadbir.
+Lihat [[Special:BlockList|senarai sekatan IP]] untuk senarai larangan dan sekatan semasa.',
 
 # History merging
 'mergehistory'                     => 'Gabungkan sejarah laman',
@@ -1348,12 +1348,12 @@ Tindakan ini tidak boleh dibatalkan.',
 'group-suppress'      => 'Penyemak',
 'group-all'           => '(semua)',
 
-'group-user-member'          => 'pengguna',
-'group-autoconfirmed-member' => 'pengguna sah automatik',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'pentadbir',
-'group-bureaucrat-member'    => 'birokrat',
-'group-suppress-member'      => 'penyemak',
+'group-user-member'          => '{{GENDER:$1|pengguna}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|pengguna sah automatik}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|pentadbir}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birokrat}}',
+'group-suppress-member'      => '{{GENDER:$1|penyemak}}',
 
 'grouppage-user'          => '{{ns:project}}:Pengguna',
 'grouppage-autoconfirmed' => '{{ns:project}}:Pengguna yang disahkan secara automatik',

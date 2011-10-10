@@ -14,6 +14,7 @@
  * @author Alexander Sigachov (alexander.sigachov@gmail.com)
  * @author Alexandr Efremov
  * @author Amikeco
+ * @author Askarmuk
  * @author Assele
  * @author Chilin
  * @author Claymore
@@ -1203,8 +1204,8 @@ $1",
 
 # Suppression log
 'suppressionlog'     => 'Журнал сокрытий',
-'suppressionlogtext' => 'Ниже представлен список недавних удалений и блокировок, включающих скрытые от администраторов материалы.
-См. [[Special:IPBlockList|список IP-блокировок]], чтобы просмотреть список текущих блокировок.',
+'suppressionlogtext' => 'Ниже представлен список удалений и блокировок, затрагивающих скрытые от администраторов материалы.
+В [[Special:BlockList|списке блокировок]] можно найти перечень текущих блокировок.',
 
 # History merging
 'mergehistory'                     => 'Объединение историй правок',
@@ -1472,12 +1473,12 @@ $1",
 'group-suppress'      => 'Ревизоры',
 'group-all'           => '(все)',
 
-'group-user-member'          => 'участник',
-'group-autoconfirmed-member' => 'автоподтверждённый участник',
-'group-bot-member'           => 'бот',
-'group-sysop-member'         => 'администратор',
-'group-bureaucrat-member'    => 'бюрократ',
-'group-suppress-member'      => 'ревизор',
+'group-user-member'          => '{{GENDER:$1|участник|участница}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|автоподтверждённый участник|автоподтверждённая участница}}',
+'group-bot-member'           => '{{GENDER:$1|бот}}',
+'group-sysop-member'         => '{{GENDER:$1|администратор}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|бюрократ}}',
+'group-suppress-member'      => '{{GENDER:$1|ревизор}}',
 
 'grouppage-user'          => '{{ns:project}}:Участники',
 'grouppage-autoconfirmed' => '{{ns:project}}:Автоподтверждённые участники',
@@ -1546,7 +1547,7 @@ $1",
 'right-siteadmin'             => 'блокировка и разблокировка базы данных',
 'right-override-export-depth' => 'экспортирование страниц, включая связанные страницы с глубиной до 5',
 'right-sendemail'             => 'отправлять электронную почту другим участникам',
-'right-passwordreset'         => 'сброс пароля участника ([[Special:PasswordReset|служебная страница]])',
+'right-passwordreset'         => 'просмотр электронных писем с изменением пароля',
 
 # User rights log
 'rightslog'                  => 'Журнал прав участника',
@@ -1676,6 +1677,7 @@ $1",
 'ignorewarnings'              => 'Игнорировать предупреждения',
 'minlength1'                  => 'Название файла должно содержать хотя бы одну букву.',
 'illegalfilename'             => 'Имя файла «$1» содержит символы, которые не разрешается использовать в заголовках. Пожалуйста, переименуйте файл и попытайтесь загрузить его снова.',
+'filename-toolong'            => 'Имена файлов не должны превышать 240 байт.',
 'badfilename'                 => 'Название файла было изменено на $1.',
 'filetype-mime-mismatch'      => 'Расширение файла «.$1» не соответствует его MIME-типу ($2).',
 'filetype-badmime'            => 'Файлы, имеющие MIME-тип «$1», не могут быть загружены.',
@@ -2074,7 +2076,7 @@ $1',
 'alllogstext'          => 'Общий список журналов сайта {{SITENAME}}.
 Вы можете отфильтровать результаты по типу журнала, имени участника (учитывается регистр) или затронутой странице (также учитывается регистр).',
 'logempty'             => 'Подходящие записи в журнале отсутствуют.',
-'log-title-wildcard'   => 'Найти заголовки, начинающиеся на с данных символов',
+'log-title-wildcard'   => 'Найти заголовки, начинающиеся с данных символов',
 
 # Special:AllPages
 'allpages'          => 'Все страницы',

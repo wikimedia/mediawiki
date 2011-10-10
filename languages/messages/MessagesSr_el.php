@@ -1120,7 +1120,7 @@ Pogledajte istoriju.',
 
 # Suppression log
 'suppressionlog'     => 'Log sakrivanja',
-'suppressionlogtext' => 'Ispod se nalazi spisak blokova i obrisanih stranica koji su sakriveni od administratora. Pogledaj [[Special:IPBlockList|spisak blokiranih IP adresa]] za spisak trenutno važećih banova i blokova.',
+'suppressionlogtext' => 'Ispod se nalazi spisak brisanja i blokiranja koji uključuje sadržaj sakriven od administratora. Pogledajte [[Special:BlockList|spisak blokiranih IP adresa]] za pregled važećih zabrana i blokiranja.',
 
 # History merging
 'mergehistory'                     => 'Spoji istorije stranica',
@@ -1387,12 +1387,12 @@ Ova informacija će biti javna.',
 'group-suppress'      => 'Revizori',
 'group-all'           => '(svi)',
 
-'group-user-member'          => 'Korisnik',
-'group-autoconfirmed-member' => 'Automatski potvrđen korisnik',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'administrator',
-'group-bureaucrat-member'    => 'birokrata',
-'group-suppress-member'      => 'revizor',
+'group-user-member'          => '{{GENDER:$1|korisnik|korisnica|korisnik}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatski potvrđen korisnik|automatski potvrđena korisnica|automatski potvrđen korisnik}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|administratorka|administrator}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birokrata|birokratica|birokrata}}',
+'group-suppress-member'      => '{{GENDER:$1|revizor|revizorka|revizor}}',
 
 'grouppage-user'          => '{{ns:project}}:Korisnici',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automatski potvrđeni korisnici',

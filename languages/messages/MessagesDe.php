@@ -46,6 +46,7 @@
  * @author SVG
  * @author Spacebirdy
  * @author Srhat
+ * @author TMg
  * @author Tbleher
  * @author The Evil IP address
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
@@ -951,7 +952,7 @@ Temporäres Passwort: $2',
 'missingcommenttext'               => 'Dein Abschnitt enthält keinen Text.',
 'missingcommentheader'             => "'''Achtung:''' Du hast kein Betreff/Überschrift eingegeben. Wenn du erneut auf „{{int:savearticle}}“ klickst, wird deine Bearbeitung ohne Überschrift gespeichert.",
 'summary-preview'                  => 'Vorschau der Zusammenfassungszeile:',
-'subject-preview'                  => 'Vorschau des Betreffs:',
+'subject-preview'                  => 'Vorschau der Zusammenfassungszeile:',
 'blockedtitle'                     => 'Benutzer ist gesperrt',
 'blockedtext'                      => "'''Dein Benutzername oder deine IP-Adresse wurde gesperrt.'''
 

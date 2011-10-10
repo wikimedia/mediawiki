@@ -937,7 +937,7 @@ It peule pa vëddlo.',
 # Suppression log
 'suppressionlog'     => 'Registr ëd le scancelassion',
 'suppressionlogtext' => "Sota a-i é na lista djë scancelament e dij blocagi che a rësguardo contnù stërmà a j'aministrator.
-Beiché la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij blocagi ativ.",
+Beiché la [[Special:BlockList|lista dj'IP blocà]] për la lista dij band operassionaj e dij blocagi ativ.",
 
 # History merging
 'mergehistory'                     => 'Buté ansema je stòrie',
@@ -1208,12 +1208,12 @@ Costa anformassion a sarà pùblica.",
 'group-suppress'      => 'Supervisor',
 'group-all'           => '(utent)',
 
-'group-user-member'          => 'utent',
-'group-autoconfirmed-member' => "utent ch'a l'é convalidasse daspërchiel/chila",
-'group-bot-member'           => 'trigomiro',
-'group-sysop-member'         => 'aministrator',
-'group-bureaucrat-member'    => 'mangiapapé',
-'group-suppress-member'      => 'supervisor',
+'group-user-member'          => '{{GENDER:$1|utent}}',
+'group-autoconfirmed-member' => "{{GENDER:$1|utent ch'a l'é convalidasse daspërchiel|utent ch'a l'é convalidasse daspërchila}}",
+'group-bot-member'           => '{{GENDER:$1|trigomiro}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|aministratris}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|mangiapapé}}',
+'group-suppress-member'      => '{{GENDER:$1|supervisor}}',
 
 'grouppage-user'          => '{{ns:project}}:Utent',
 'grouppage-autoconfirmed' => "{{ns:project}}:Utent ch'a son convalidasse daspërlor",

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Alchimista
  * @author Capmo
  * @author Crazymadlover
  * @author Daemorris
@@ -778,6 +779,7 @@ Não serão enviados correios de nenhuma das seguintes funcionalidades.',
 'emailconfirmlink'           => 'Confirme o seu endereço de correio electrónico',
 'invalidemailaddress'        => 'O endereço de correio electrónico não pode ser aceite porque parece ter um formato inválido.
 Introduza um endereço formatado correctamente ou deixe o campo vazio.',
+'cannotchangeemail'          => 'A conta de e-mail não pode ser alterado nesta wiki.',
 'accountcreated'             => 'Conta criada',
 'accountcreatedtext'         => 'A conta de utilizador para $1 foi criada.',
 'createaccount-title'        => 'Criação de conta na {{SITENAME}}',
@@ -816,28 +818,32 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'resetpass-temp-password'   => 'Palavra-chave temporária:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Repor palavra-chave',
-'passwordreset-text'           => 'Preencha este formulário para recuperar os dados da sua conta por correio electrónico.',
-'passwordreset-legend'         => 'Reiniciar a palavra-chave',
-'passwordreset-disabled'       => 'Reiniciar a palavra-chave foi impossibilitado nesta wiki.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
-'passwordreset-username'       => 'Nome de utilizador:',
-'passwordreset-domain'         => 'Domínio',
-'passwordreset-email'          => 'Correio electrónico:',
-'passwordreset-emailtitle'     => 'Detalhes da conta na {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Alguém, provavelmente você a partir do endereço IP $1, pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este correio electrónico:
+'passwordreset'                    => 'Repor palavra-chave',
+'passwordreset-text'               => 'Preencha este formulário para recuperar os dados da sua conta por correio electrónico.',
+'passwordreset-legend'             => 'Reiniciar a palavra-chave',
+'passwordreset-disabled'           => 'Reiniciar a palavra-chave foi impossibilitado nesta wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
+'passwordreset-username'           => 'Nome de utilizador:',
+'passwordreset-domain'             => 'Domínio',
+'passwordreset-capture'            => 'Ver o email resultante?',
+'passwordreset-capture-help'       => 'Se marcar esta caixa, o e-mail (com a senha temporária) será-lhe mostrado, além de ser enviado para o utilizador.',
+'passwordreset-email'              => 'Correio electrónico:',
+'passwordreset-emailtitle'         => 'Detalhes da conta na {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Alguém, provavelmente você a partir do endereço IP $1, pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este correio electrónico:
 
 $2
 
 {{PLURAL:$3|Esta palavra-chave temporária irá|Estas palavras-chave temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}. Deve autenticar-se e escolher uma palavra-chave nova agora. Se este pedido não foi feito por si, ou se entretanto se recordou da sua palavra-chave original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a palavra-chave antiga.',
-'passwordreset-emailtext-user' => 'O utilizador $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este correio electrónico:
+'passwordreset-emailtext-user'     => 'O utilizador $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este correio electrónico:
 
 $2
 
 {{PLURAL:$3|Esta palavra-chave temporária irá|Estas palavras-chave temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}. Deve autenticar-se e escolher uma palavra-chave nova agora. Se este pedido não foi feito por si, ou se entretanto se recordou da sua palavra-chave original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a palavra-chave antiga.',
-'passwordreset-emailelement'   => 'Utilizador: $1
+'passwordreset-emailelement'       => 'Utilizador: $1
 Palavra-chave temporária: $2',
-'passwordreset-emailsent'      => 'Foi enviado um correio electrónico de recuperação dos dados da conta.',
+'passwordreset-emailsent'          => 'Foi enviado um correio electrónico de recuperação dos dados da conta.',
+'passwordreset-emailsent-capture'  => 'Foi enviado um e-mail de lembrete, que é mostrado abaixo.',
+'passwordreset-emailerror-capture' => 'Foi gerado o lembrete de e-mail mostrado abaixo, contudo falhou o envio para o utilizador: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Alterar o endereço de correio electrónico',
@@ -1222,7 +1228,7 @@ Verifique os registos, por favor.',
 
 # Suppression log
 'suppressionlog'     => 'Registo de supressões',
-'suppressionlogtext' => 'Abaixo está uma lista das remoções e bloqueios envolvendo conteúdo ocultado por administradores.
+'suppressionlogtext' => 'Abaixo está uma lista das eliminações e bloqueios envolvendo conteúdo ocultado por administradores.
 Veja a [[Special:IPBlockList|lista de bloqueios]] para uma lista de banimentos e bloqueios em efeito neste momento.',
 
 # History merging
@@ -1496,12 +1502,12 @@ Esta informação será pública.',
 'group-suppress'      => 'Supervisores',
 'group-all'           => '(todos)',
 
-'group-user-member'          => 'Utilizador',
-'group-autoconfirmed-member' => 'Utilizador auto-confirmado',
+'group-user-member'          => '{{GENDER:$1| Utilizador| Utilizadora}}',
+'group-autoconfirmed-member' => '{{GENDER:$1| Utilizador autoconfirmado| Utilizadora autoconfirmada}}',
 'group-bot-member'           => 'robô',
-'group-sysop-member'         => 'administrador',
+'group-sysop-member'         => '{{GENDER:$1| administrador | administradora}}',
 'group-bureaucrat-member'    => 'burocrata',
-'group-suppress-member'      => 'supervisor',
+'group-suppress-member'      => '{{GENDER:$1| supressor | supressora}}',
 
 'grouppage-user'          => '{{ns:project}}:Utilizadores',
 'grouppage-autoconfirmed' => '{{ns:project}}:Auto-confirmados',
@@ -1700,6 +1706,7 @@ Consulte a [[Special:NewFiles|galeria de novos ficheiros]] para visioná-los.',
 'minlength1'                  => 'Os nomes de ficheiros devem de ter pelo menos uma letra.',
 'illegalfilename'             => 'O nome do ficheiro "$1" contém caracteres que não são permitidos no título das páginas.
 Altere o nome do ficheiro e tente enviá-lo novamente, por favor.',
+'filename-toolong'            => 'Os nomes de arquivo não podem ser superiores a 240 bytes.',
 'badfilename'                 => 'O nome do ficheiro foi alterado para "$1".',
 'filetype-mime-mismatch'      => 'A extensão ".$1" não corresponde ao tipo MIME do ficheiro ($2).',
 'filetype-badmime'            => 'Não é permitido carregar ficheiros do tipo MIME "$1".',
@@ -3829,6 +3836,8 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moveu}} página $3 para $4 sem deixar um redireccionamento',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|moveu}} a página $3 para $4 através de um redireccionamento',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a página $3 para $4 sem um redireccionamento',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcou}} a revisão $4  da página  $3  como patrulhada',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcou}} automáticamente a revisão $4 da página $3 como patrulhada',
 'logentry-newusers-newusers'          => '$1 {{GENDER:$2|criou}} uma conta de utilizador',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|criou}} uma conta de utilizador',
 'logentry-newusers-create2'           => '$1 {{GENDER:$2|criou}} {{GENDER:$4|uma conta de utilizador}} $3',

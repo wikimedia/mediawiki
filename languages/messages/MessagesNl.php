@@ -1629,7 +1629,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'right-siteadmin'             => 'De database blokkeren en weer vrijgeven',
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
 'right-sendemail'             => 'E-mail versturen aan andere gebruikers',
-'right-passwordreset'         => 'Wachtwoord van een gebruiker opnieuw instellen ([[Special:PasswordReset|speciale pagina]])',
+'right-passwordreset'         => 'E-mails voor wachtwoord opnieuw instellen bekijken',
 
 # User rights log
 'rightslog'                  => 'Gebruikersrechtenlogboek',
@@ -1763,6 +1763,7 @@ Zie de [[Special:NewFiles|galerij met nieuwe bestanden]] voor een visueler overz
 'minlength1'                  => 'Bestandsnamen moeten minstens één letter bevatten.',
 'illegalfilename'             => 'De bestandsnaam "$1" bevat ongeldige karakters.
 Geef het bestand een andere naam, en probeer het dan opnieuw te uploaden.',
+'filename-toolong'            => 'Bestandsnamen mogen niet langer zijn dan 240 bytes.',
 'badfilename'                 => 'De naam van het bestand is gewijzigd in "$1".',
 'filetype-mime-mismatch'      => 'De bestandsextensie ".$1" hoort niet bij het MIME-type van het bestand ($2).',
 'filetype-badmime'            => 'Het is niet toegestaan om bestanden van MIME-type "$1" te uploaden.',

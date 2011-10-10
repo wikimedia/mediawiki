@@ -1485,7 +1485,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-siteadmin'             => 'Fechar e abrir a base de datos',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
-'right-passwordreset'         => 'Restablecer o contrasinal dun usuario ([[Special:PasswordReset|páxina especial]])',
+'right-passwordreset'         => 'Ver os correos electrónicos de restablecemento de contrasinais',
 
 # User rights log
 'rightslog'                  => 'Rexistro de dereitos de usuario',

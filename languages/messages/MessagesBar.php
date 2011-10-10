@@ -51,7 +51,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Aa ba kloane Änderrungen voh beówochterde Seiten a E-Mail schicker',
 'tog-enotifrevealaddr'        => 'Deih E-Mail-Adress in Benoochrichtigungs-E-Mails åzoang',
 'tog-shownumberswatching'     => "D' Åzoi voh dé beówochterden Benutzer åzoang",
-'tog-oldsig'                  => 'Vurschau voh da aktuön Unterschrift:',
+'tog-oldsig'                  => 'Existente Unterschrift',
 'tog-fancysig'                => 'Unterschrift ois Wikitext bhåndln (óne autómaatische Valinkung)',
 'tog-externaleditor'          => "An externen Editor ois Standard bnutzen (netter fyr Experten, braucht spezielle Eihstellungen auf'm eigernen Computer)",
 'tog-externaldiff'            => "A externs Programm fyr Versionsunterschiad ois Standard bnutzen (netter fyr Experten, dafordert spezielle Eihstellungen auf'm eiganen Computer)",
@@ -430,7 +430,7 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'createaccountmail'          => 'per E-Mail',
 'createaccountreason'        => 'Grund',
 'badretype'                  => 'De zwoa Posswerter stimmer ned ywereih.',
-'userexists'                 => 'Da Benytzernåm is scho vageem. Bittschee nimm an åndern her.',
+'userexists'                 => 'Der Benutzernaum do is schoh vageem. Bittscheh nimm an aundern her.',
 'loginerror'                 => 'Feeler bei da Åmödung',
 'createaccounterror'         => 'Des Benutzerkonto hod ned erstöd wern kenner: $1',
 'nocookiesnew'               => "Da Benytzerzuagång is erstöid worn, du bist ower ned ågmöidt. {{SITENAME}} benedigt fyr de Funkzion Cookies, bittschee aktiviar de und möidt de danoch mid daim naichn Benytzernåm und 'm dazuaghering Posswort å.",
@@ -839,7 +839,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'filehist-dimensions'       => 'Moosse',
 'filehist-filesize'         => 'Dataigress',
 'filehist-comment'          => 'Kommentar',
-'imagelinks'                => 'Daateivawendungen',
+'imagelinks'                => 'Daateivawendung',
 'linkstoimage'              => "{{PLURAL:$1|D'foignde Seitn vawendt|De foigndn $1 Seitn vawendn}} de Datei:",
 'linkstoimage-more'         => "Es {{PLURAL:$1|valinkt|valinkn}} mea wia {{PLURAL:$1|oa Seitn |$1 Seitn}} auf de Datei.
 De foignde Listn zaagt netta {{PLURAL:$1|in easten Link|de easten $1 Links}} auf de Datei.
