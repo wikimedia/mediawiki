@@ -92,7 +92,7 @@ class CategoryPage extends Article {
 	}
 }
 
-class CategoryViewer {
+class CategoryViewer extends ContextSource {
 	var $limit, $from, $until,
 		$articles, $articles_start_char,
 		$children, $children_start_char,
@@ -138,12 +138,6 @@ class CategoryViewer {
 	private $query;
 
 	/**
-	 * Context object
-	 * @var IContextSource
-	 */
-	protected $context;
-
-	/**
 	 * Constructor
 	 *
 	 * @since 1.19 $context is a second, required parameter
@@ -156,7 +150,7 @@ class CategoryViewer {
 	function __construct( $title, IContextSource $context, $from = '', $until = '', $query = array() ) {
 		global $wgCategoryPagingLimit;
 		$this->title = $title;
-		$this->context = $context;
+		$this->setContext( $context );
 		$this->from = $from;
 		$this->until = $until;
 		$this->limit = $wgCategoryPagingLimit;
@@ -175,7 +169,7 @@ class CategoryViewer {
 		global $wgCategoryMagicGallery;
 		wfProfileIn( __METHOD__ );
 
-		$this->showGallery = $wgCategoryMagicGallery && !$this->context->getOutput()->mNoGallery;
+		$this->showGallery = $wgCategoryMagicGallery && !$this->getOutput()->mNoGallery;
 
 		$this->clearCategoryState();
 		$this->doCategoryQuery();
@@ -265,6 +259,8 @@ class CategoryViewer {
 	* @param string $sortkey The human-readable sortkey (before transforming to icu or whatever).
 	*/
 	function getSubcategorySortChar( $title, $sortkey ) {
+		global $wgContLang;
+
 		if ( $title->getPrefixedText() == $sortkey ) {
 			$word = $title->getDBkey();
 		} else {
@@ -273,13 +269,14 @@ class CategoryViewer {
 
 		$firstChar = $this->collation->getFirstLetter( $word );
 
-		return $this->getLang()->convert( $firstChar );
+		return $wgContLang->convert( $firstChar );
 	}
 
 	/**
 	 * Add a page in the image namespace
 	 */
 	function addImage( Title $title, $sortkey, $pageLength, $isRedirect = false ) {
+		global $wgContLang;
 		if ( $this->showGallery ) {
 			$flip = $this->flip['file'];
 			if ( $flip ) {
@@ -296,7 +293,7 @@ class CategoryViewer {
 			}
 			$this->imgsNoGallery[] = $link;
 
-			$this->imgsNoGallery_start_char[] = $this->getLang()->convert(
+			$this->imgsNoGallery_start_char[] = $wgContLang->convert(
 				$this->collation->getFirstLetter( $sortkey ) );
 		}
 	}
@@ -305,6 +302,8 @@ class CategoryViewer {
 	 * Add a miscellaneous page
 	 */
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
+		global $wgContLang;
+
 		$link = Linker::link( $title );
 		if ( $isRedirect ) {
 			// This seems kind of pointless given 'mw-redirect' class,
@@ -313,7 +312,7 @@ class CategoryViewer {
 		}
 		$this->articles[] = $link;
 
-		$this->articles_start_char[] = $this->getLang()->convert(
+		$this->articles_start_char[] = $wgContLang->convert(
 			$this->collation->getFirstLetter( $sortkey ) );
 	}
 
@@ -620,11 +619,7 @@ class CategoryViewer {
 	 * @return String HTML
 	 */
 	private function pagingLinks( $first, $last, $type = '' ) {
-		global $wgLang;
-
-		$limitText = $this->getLang()->formatNum( $this->limit );
-
-		$prevLink = wfMsgExt( 'prevn', array( 'escape', 'parsemag' ), $limitText );
+		$prevLink = wfMessage( 'prevn' )->numParams( $this->limit )->escaped();
 
 		if ( $first != '' ) {
 			$prevQuery = $this->query;
@@ -638,7 +633,7 @@ class CategoryViewer {
 			);
 		}
 
-		$nextLink = wfMsgExt( 'nextn', array( 'escape', 'parsemag' ), $limitText );
+		$nextLink = wfMessage( 'nextn' )->numParams( $this->limit )->escaped();
 
 		if ( $last != '' ) {
 			$lastQuery = $this->query;
@@ -735,23 +730,8 @@ class CategoryViewer {
 			$this->cat->refreshCounts();
 		} else {
 			# Case 3: hopeless.  Don't give a total count at all.
-			return wfMsgExt( "category-$type-count-limited", 'parse',
-				$this->getLang()->formatNum( $rescnt ) );
+			return wfMessage( "category-$type-count-limited" )->numParams( $rescnt )->parseAsBlock();
 		}
-		return wfMsgExt(
-			"category-$type-count",
-			'parse',
-			$this->getLang()->formatNum( $rescnt ),
-			$this->getLang()->formatNum( $totalcnt )
-		);
-	}
-
-	/**
-	 * Returns a language object from the context
-	 *
-	 * @return Language
-	 */
-	protected function getLang() {
-		return $this->context->getLang();
+		return wfMessage( "category-$type-count" )->numParams( $rescnt, $totalcnt )->parseAsBlock();
 	}
 }
