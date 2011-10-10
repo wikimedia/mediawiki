@@ -808,6 +808,25 @@ div.gallerytext {
 	background-repeat: no-repeat;
 }
 
+/* Language specific height correction for titles. Ref Bug 29405 and Bug 30809 */
+/* Languages like hi or ml require slightly more vertical space to show diacritics properly */
+h1:lang(hi),
+h1:lang(ml) {
+	line-height: 1.5em;
+}
+h2:lang(hi),
+h2:lang(ml),
+h3:lang(hi),
+h3:lang(ml),
+h4:lang(hi),
+h4:lang(ml),
+h5:lang(hi),
+h5:lang(ml),
+h6:lang(hi),
+h6:lang(ml) {
+	line-height: 1.2em;
+}
+
 /* Localised ordered list numbering for some languages */
 ol:lang(bcc) li,
 ol:lang(bqi) li,
