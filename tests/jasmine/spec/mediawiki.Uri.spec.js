@@ -1,5 +1,10 @@
 ( function() {
 
+	// ensure we have a generic URI parser if not running in a browser
+	if ( !mw.Uri ) {
+		mw.Uri = mw.UriRelative( 'http://sample.com/' );
+	}
+
 	describe( "mw.Uri", function() {
 
 		describe( "should work well in loose and strict mode", function() {
