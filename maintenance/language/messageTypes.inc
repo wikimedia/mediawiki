@@ -125,7 +125,6 @@ $wgIgnoredMessages = array(
 	'revision-nav',
 	'rfcurl',
 	'shareddescriptionfollows',
-	'signature',
 	'signature-anon',
 	'signupstart',
 	'signupend',
