@@ -1201,6 +1201,19 @@ class OutputPage extends ContextSource {
 	public function addHTML( $text ) {
 		$this->mBodytext .= $text;
 	}
+	
+	/**
+	 * Shortcut for adding an Html::element via addHTML.
+	 * 
+	 * @since 1.19
+	 * 
+	 * @param $element string
+	 * @param $attribs array
+	 * @param $contents string
+	 */
+	public function addElement( $element, $attribs = array(), $contents = '' ) {
+		$this->addHTML( Html::element( $element, $attribs, $contents ) );
+	}
 
 	/**
 	 * Clear the body HTML
