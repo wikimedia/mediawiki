@@ -7,7 +7,7 @@
 			function basicTests( strict ) {
 			
 				describe( "should parse a simple HTTP URI correctly", function() { 
-					
+
 					var uriString = 'http://www.ietf.org/rfc/rfc2396.txt';
 					var uri;
 					if ( strict ) {
@@ -238,6 +238,16 @@
 
 		} );
 
+		describe( "should handle protocol-relative URLs", function() { 
+
+			it ( "should create protocol-relative URLs with same protocol as document", function() {
+				var uriRel = mw.UriRelative( 'glork://en.wiki.local/foo.php' );
+				var uri = new uriRel( '//en.wiki.local/w/api.php' );
+				expect( uri.protocol ).toEqual( 'glork' );
+			} );
+
+		} );
+
 		it( "should throw error on no arguments to constructor", function() {
 			expect( function() { 
 				var uri = new mw.Uri();
@@ -262,10 +272,15 @@
 			} ).toThrow( "Bad constructor arguments" );
 		} );
 
-		it( "should throw error on URI without protocol as argument to constructor", function() {
+		it( "should throw error on URI without protocol or // in strict mode", function() {
 			expect( function() { 
-				var uri = new mw.Uri( 'foo.com/bar/baz' );
+				var uri = new mw.Uri( 'foo.com/bar/baz', true );
 			} ).toThrow( "Bad constructor arguments" );
+		} );
+
+		it( "should normalize URI without protocol or // in loose mode", function() {
+			var uri = new mw.Uri( 'foo.com/bar/baz', false );
+			expect( uri.toString() ).toEqual( 'http://foo.com/bar/baz' );
 		} );
 
 	} );
