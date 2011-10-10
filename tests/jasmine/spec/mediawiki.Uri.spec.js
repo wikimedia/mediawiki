@@ -240,34 +240,33 @@
 
 		it( "should throw error on no arguments to constructor", function() {
 			expect( function() { 
-				uri = new mw.Uri();
+				var uri = new mw.Uri();
 			} ).toThrow( "Bad constructor arguments" );
 		} );
 
 		it( "should throw error on empty string as argument to constructor", function() {
 			expect( function() { 
-				uri = new mw.Uri( '' );
+				var uri = new mw.Uri( '' );
 			} ).toThrow( "Bad constructor arguments" );
 		} );
 
 		it( "should throw error on non-URI as argument to constructor", function() {
 			expect( function() { 
-				uri = new mw.Uri( 'glaswegian penguins' );
+				var uri = new mw.Uri( 'glaswegian penguins' );
 			} ).toThrow( "Bad constructor arguments" );
 		} );
 
 		it( "should throw error on improper URI as argument to constructor", function() {
 			expect( function() { 
-				uri = new mw.Uri( 'http:/foo.com' );
+				var uri = new mw.Uri( 'http:/foo.com' );
 			} ).toThrow( "Bad constructor arguments" );
 		} );
 
 		it( "should throw error on URI without protocol as argument to constructor", function() {
 			expect( function() { 
-				uri = new mw.Uri( 'foo.com/bar/baz' );
+				var uri = new mw.Uri( 'foo.com/bar/baz' );
 			} ).toThrow( "Bad constructor arguments" );
 		} );
-
 
 	} );
 
