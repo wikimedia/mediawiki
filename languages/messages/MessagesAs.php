@@ -15,6 +15,7 @@
  * @author Psneog
  * @author Rajuonline
  * @author Reedy
+ * @author Simbu123
  * @author Urhixidur
  */
 
@@ -2867,6 +2868,7 @@ $1',
 'exif-gpsaltitude'         => 'উচ্চতা',
 'exif-gpstimestamp'        => 'GPS সময় (পাৰমাণৱিক ঘড়ি)',
 'exif-gpssatellites'       => 'জোখ মাপত ব্যৱহৃত উপগ্ৰহ সমূহ',
+'exif-gpsspeedref'         => 'দ্রুতি একক',
 'exif-countrycodedest'     => 'দেশৰ ক’ড প্ৰদৰ্শিত',
 'exif-citydest'            => 'চহৰ প্ৰদৰ্শিত',
 'exif-objectname'          => 'চমু শীৰ্ষক',

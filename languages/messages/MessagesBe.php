@@ -598,6 +598,9 @@ $2
 Часовы пароль: $2',
 'passwordreset-emailsent'      => 'Па электроннай пошце быў адпраўлены напамін.',
 
+# Special:ChangeEmail
+'changeemail-cancel' => 'Адмена',
+
 # Edit page toolbar
 'bold_sample'     => 'Цёмны тэкст',
 'bold_tip'        => 'Цёмны тэкст',
@@ -1066,6 +1069,7 @@ $1",
 'prefs-watchlist-token'         => 'Сакрэтны ключ для RSS:',
 'prefs-misc'                    => 'Рознае',
 'prefs-resetpass'               => 'Змяніць пароль',
+'prefs-changeemail'             => 'Змяніць e-mail',
 'prefs-email'                   => 'Эл.пошта',
 'prefs-rendering'               => 'Від',
 'saveprefs'                     => 'Запісаць',
@@ -1807,6 +1811,7 @@ $1",
 'noemailtext'          => 'Удзельнік не паведаміў карэктнага адрасу эл.пошты.',
 'nowikiemailtitle'     => 'Не дазволеная эл.пошта',
 'nowikiemailtext'      => 'Гэты ўдзельнік не жадае атрымліваць эл.пошты ад іншых удзельнікаў.',
+'emailusername'        => 'Логін',
 'emailusernamesubmit'  => 'Адправіць',
 'email-legend'         => 'Адаслаць эл.ліст іншаму ўдзельніку праекта {{SITENAME}}',
 'emailfrom'            => 'Ад каго:',
@@ -1827,6 +1832,7 @@ $1",
 'watchlistanontext'    => 'Каб бачыць або правіць складнікі назіранага, трэба $1.',
 'watchnologin'         => 'Без прадстаўлення',
 'watchnologintext'     => 'Каб правіць свой спіс назіранага, трэба [[Special:UserLogin|ўвайсці ў сістэму]].',
+'addwatch'             => 'Дадаць у назіранае',
 'addedwatchtext'       => "Старонка \"[[:\$1]]\" была дададзена да [[Special:Watchlist|назіраных]] вамі.
 Змяненні, якія адбудуцца з гэтай старонкай і з Размовай пра яе, будуць паказвацца там, і старонка будзе '''вылучацца шрыфтам''' у [[Special:RecentChanges|спісе нядаўніх змяненняў]], каб лягчэй пазнаваць яе.
 
@@ -2138,6 +2144,7 @@ $1',
 'ipblocklist'                     => 'Усе заблакаваныя IP-адрасы і ўдзельнікі',
 'ipblocklist-legend'              => 'Знайсці заблакаванага ўдзельніка',
 'blocklist-addressblocks'         => 'Схаваць блакаванні асобных IP',
+'blocklist-target'                => 'Мэта',
 'blocklist-reason'                => 'Прычына',
 'ipblocklist-submit'              => 'Шукаць',
 'infiniteblock'                   => 'бясконца',
@@ -2464,6 +2471,10 @@ $1',
 'spambot_username'    => 'Чыстка спаму MediaWiki',
 'spam_reverting'      => 'Вяртаемся да апошняй версіі без спасылак на $1',
 'spam_blanking'       => 'Усе версіі ўтрымлівалі спасылкі на $1, чысцім',
+
+# Info page
+'pageinfo-subjectpage' => 'Старонка',
+'pageinfo-talkpage'    => 'Старонка размоў',
 
 # Skin names
 'skinname-standard'    => 'Класіка',

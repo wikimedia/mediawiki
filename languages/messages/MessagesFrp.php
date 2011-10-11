@@ -788,6 +788,7 @@ Nion mèssâjo serat mandâ por châcuna de cetes fonccions.',
 'emailconfirmlink'           => 'Confirmâd voutra adrèce èlèctronica',
 'invalidemailaddress'        => 'Ceta adrèce èlèctronica pôt pas étre accèptâ perce que semble avêr un format fôx.
 Volyéd buchiér una adrèce bien formatâ ou ben lèssiér cél champ vouedo.',
+'cannotchangeemail'          => 'Les adrèces èlèctroniques des comptos pôvont pas étre changiês sur ceti vouiqui.',
 'accountcreated'             => 'Compto fêt.',
 'accountcreatedtext'         => 'Lo compto utilisator por $1 at étâ fêt.',
 'createaccount-title'        => 'Crèacion d’un compto por {{SITENAME}}',
@@ -826,30 +827,34 @@ Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben de
 'resetpass-temp-password'   => 'Mot de pâssa temporèro :',
 
 # Special:PasswordReset
-'passwordreset'                => 'Remisa a zérô du mot de pâssa',
-'passwordreset-text'           => 'Rempléd ceti formulèro por recêvre un mèssâjo de rapèl des dètalys de voutron compto.',
-'passwordreset-legend'         => 'Remisa a zérô du mot de pâssa',
-'passwordreset-disabled'       => 'La remisa a zérô des mots de pâssa at étâ dèsactivâ sur ceti vouiqui.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Buchiéd yon des bocons de balyês ce-desot}}',
-'passwordreset-username'       => 'Nom d’utilisator :',
-'passwordreset-domain'         => 'Domêno :',
-'passwordreset-email'          => 'Adrèce èlèctronica :',
-'passwordreset-emailtitle'     => 'Dètalys du compto dessus {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un rapèl des dètalys
+'passwordreset'                    => 'Remisa a zérô du mot de pâssa',
+'passwordreset-text'               => 'Rempléd ceti formulèro por recêvre un mèssâjo de rapèl des dètalys de voutron compto.',
+'passwordreset-legend'             => 'Remisa a zérô du mot de pâssa',
+'passwordreset-disabled'           => 'La remisa a zérô des mots de pâssa at étâ dèsactivâ sur ceti vouiqui.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Buchiéd yon des bocons de balyês ce-desot}}',
+'passwordreset-username'           => 'Nom d’utilisator :',
+'passwordreset-domain'             => 'Domêno :',
+'passwordreset-capture'            => 'Vêre lo mèssâjo que rèsulte ?',
+'passwordreset-capture-help'       => 'Se vos pouentâd ceta câsa, lo mèssâjo (avouéc lo mot de pâssa temporèro) vos serat montrâ en mémo temps que serat mandâ a l’utilisator.',
+'passwordreset-email'              => 'Adrèce èlèctronica :',
+'passwordreset-emailtitle'         => 'Dètalys du compto dessus {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un rapèl des dètalys
 de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}} a cela adrèce èlèctronica :
 
 $2
 
 {{PLURAL:$3|Cél mot de pâssa temporèro èxpirerat|Celos mots de pâssa temporèros èxpireront}} dens $5 jorn{{PLURAL:$5||s}}. Ora, vos vos dête branchiér et pués chouèsir un mot de pâssa novél. Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora de voutron mot de pâssa originâl et que vos souhètâd pas més nen changiér, vos pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
-'passwordreset-emailtext-user' => 'L’utilisator $1 dessus {{SITENAME}} at demandâ un rapèl des dètalys
+'passwordreset-emailtext-user'     => 'L’utilisator $1 dessus {{SITENAME}} at demandâ un rapèl des dètalys
 de voutron compto por {{SITENAME}} ($4). {{PLURAL:$3|Ceti compto utilisator est associyê|Cetos comptos utilisators sont associyês}} a cela adrèce èlèctronica :
 
 $2
 
 {{PLURAL:$3|Cél mot de pâssa temporèro èxpirerat|Celos mots de pâssa temporèros èxpireront}} dens $5 jorn{{PLURAL:$5||s}}. Ora, vos vos dête branchiér et pués chouèsir un mot de pâssa novél. Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora de voutron mot de pâssa originâl et que vos souhètâd pas més nen changiér, vos pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
-'passwordreset-emailelement'   => 'Nom d’utilisator : $1
+'passwordreset-emailelement'       => 'Nom d’utilisator : $1
 Mot de pâssa temporèro : $2',
-'passwordreset-emailsent'      => 'Un mèssâjo de rapèl at étâ mandâ.',
+'passwordreset-emailsent'          => 'Un mèssâjo de rapèl at étâ mandâ.',
+'passwordreset-emailsent-capture'  => 'Un mèssâjo de rapèl at étâ mandâ, qu’est montrâ ce-desot.',
+'passwordreset-emailerror-capture' => 'Un mèssâjo de rapèl at étâ fêt, qu’est montrâ ce-desot, mas l’èxpèdicion a l’utilisator at pas reussia : $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Changiér l’adrèce èlèctronica',
@@ -1144,27 +1149,27 @@ Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des pâg
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-text-unhide'     => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
-Coment administrator, vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
+Vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
 'rev-suppressed-text-unhide'  => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
-Coment administrator, vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
+Vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
 'rev-deleted-text-view'       => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Coment administrator, vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-suppressed-text-view'    => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Coment administrator, vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-no-diff'         => "Vos pouede pas vêre ceti dif perce que yona de les vèrsions at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-suppressed-no-diff'      => "Vos pouede pas vêre ceta difèrence perce que yona de les vèrsions at étâ '''suprimâ'''.",
 'rev-deleted-unhide-diff'     => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
-Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
+Vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
 'rev-suppressed-unhide-diff'  => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
-Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
+Vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
 'rev-deleted-diff-view'       => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
-Coment administrator, vos pouede vêre ceti dif ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Vos pouede vêre ceti dif ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-suppressed-diff-view'    => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
-Coment administrator, vos pouede vêre ceti dif ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Vos pouede vêre ceti dif ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-delundel'                => 'fâre vêre / cachiér',
 'rev-showdeleted'             => 'fâre vêre',
 'revisiondelete'              => 'Suprimar / refâre des vèrsions',
@@ -1233,7 +1238,7 @@ Volyéd controlar los jornals.',
 # Suppression log
 'suppressionlog'     => 'Jornal de les suprèssions',
 'suppressionlogtext' => 'Vê-que la lista de les suprèssions et des blocâjos qu’ont de contegnu cachiê ux administrators.
-Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
+Vêde la [[Special:BlockList|lista ux utilisators et a les adrèces IP blocâs]] por vêre los banissements et los blocâjos que sont ora opèracionèls.',
 
 # History merging
 'mergehistory'                     => 'Fusionar los historicos de les pâges',
@@ -1506,12 +1511,12 @@ Ceta enformacion serat publica.',
 'group-suppress'      => 'Supèrvisors',
 'group-all'           => '(tôs)',
 
-'group-user-member'          => '{{GENDER:$1|utilisator|utilisatrice}}',
-'group-autoconfirmed-member' => '{{GENDER:$1|utilisator encartâ|utilisatrice encartâ}}',
+'group-user-member'          => 'utilisat{{GENDER:$1|or|rice}}',
+'group-autoconfirmed-member' => 'utilisat{{GENDER:$1|or|rice}} encartâ',
 'group-bot-member'           => '{{GENDER:$1|bot}}',
-'group-sysop-member'         => '{{GENDER:$1|administrator|administratrice}}',
+'group-sysop-member'         => 'administrat{{GENDER:$1|or|rice}}',
 'group-bureaucrat-member'    => '{{GENDER:$1|grata-papiér}}',
-'group-suppress-member'      => '{{GENDER:$1|supèrvisor|supèrvisosa}}',
+'group-suppress-member'      => 'supèrviso{{GENDER:$1|r|sa}}',
 
 'grouppage-user'          => '{{ns:project}}:Utilisators',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utilisators encartâs',
@@ -1580,6 +1585,7 @@ Ceta enformacion serat publica.',
 'right-siteadmin'             => 'Vèrrolyér ou dèvèrrolyér la bâsa de balyês',
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
 'right-sendemail'             => 'Mandar un mèssâjo ux ôtros utilisators',
+'right-passwordreset'         => 'Vêre los mèssâjos de rèinicialisacion des mots de pâssa',
 
 # User rights log
 'rightslog'                  => 'Jornal des changements de statut d’utilisator',
@@ -1709,6 +1715,7 @@ Vêde la [[Special:NewFiles|galerie des novéls fichiérs]] por una presentacion
 'minlength1'                  => 'Los noms de fichiér dêvont comprendre u muens yona lètra.',
 'illegalfilename'             => 'Lo nom de fichiér « $1 » contint des caractèros dèfendus dens los titros de pâges.
 Lo volyéd renomar et pués lo tornar tèlèchargiér.',
+'filename-toolong'            => 'Lo nom du fichiér pôt pas dèpassar 240 octèts.',
 'badfilename'                 => 'Lo fichiér at étâ renomâ en « $1 ».',
 'filetype-mime-mismatch'      => 'L’èxtension du fichiér « .$1 » corrèspond pas u tipo MIME dècelâ du fichiér ($2).',
 'filetype-badmime'            => 'Los fichiérs du tipo MIME « $1 » pôvont pas étre tèlèchargiês.',
@@ -3795,6 +3802,9 @@ Vos pouede asse-ben utilisar l’[[Special:EditWatchlist|èditor normal]].',
 'hebrew-calendar-m11-gen' => 'd’av',
 'hebrew-calendar-m12-gen' => 'd’èloul',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|discutar]])</sup>',
+
 # Core parser functions
 'unknown_extension_tag' => 'Balisa d’èxtension « $1 » encognua',
 'duplicate-defaultsort' => "'''Atencion :''' la cllâf de tri per dèfôt « $2 » ècllafe cela « $1 ».",
@@ -3956,6 +3966,10 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'logentry-move-move_redir-noredirect' => '$1 at {{GENDER:$2|dèplaciê}} la pâge $3 vers $4 en ècrasent sa redirèccion sen lèssiér una redirèccion',
 'logentry-patrol-patrol'              => '$1 at {{GENDER:$2|marcâ}} la vèrsion $4 de la pâge $3 coment survelyê',
 'logentry-patrol-patrol-auto'         => '$1 at {{GENDER:$2|marcâ}} ôtomaticament la vèrsion $4 de la pâge $3 coment survelyê',
+'logentry-newusers-newusers'          => '$1 at fêt{{GENDER:$2||a}} un compto utilisator',
+'logentry-newusers-create'            => '$1 at fêt{{GENDER:$2||a}} un compto utilisator',
+'logentry-newusers-create2'           => '$1 at fêt{{GENDER:$2||a}} {{GENDER:$4|un compto utilisator}} $3',
+'logentry-newusers-autocreate'        => 'Lo compto $1 at étâ {{GENDER:$2|fêt}} ôtomaticament',
 'newuserlog-byemail'                  => 'mot de pâssa mandâ per mèssageria èlèctronica',
 
 );

@@ -986,29 +986,29 @@ Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 'rev-deleted-text-permission' => "Iste version del pagina ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-deleted-text-unhide'     => "Iste version del pagina ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
-Tu, qua administrator, pote totevia [$1 vider iste version] si tu vole proceder.",
+Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
+Tu pote totevia [$1 vider iste version] si tu vole.",
 'rev-suppressed-text-unhide'  => "Iste version del pagina ha essite '''supprimite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].
-Tu, qua administrator, pote totevia [$1 vider iste version] si tu vole proceder.",
+Detalios se trova in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].
+Tu pote totevia [$1 vider iste version] si tu vole.",
 'rev-deleted-text-view'       => "Iste version del pagina ha essite '''delite'''.
-Tu, qua administrator, pote vider lo;
-es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+Tu pote vider lo;
+detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-suppressed-text-view'    => "Iste version del pagina ha essite '''supprimite'''.
-Tu, qua administrator, pote vider lo; es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
+Tu pote vider lo; detalios se trova in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
 'rev-deleted-no-diff'         => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-suppressed-no-diff'      => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.",
 'rev-deleted-unhide-diff'     => "Un del versiones de iste diff ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
-Tu, qua administrator, pote ancora [$1 vider iste diff] si tu vole proceder.",
+Detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
+Tu pote totevia [$1 vider iste diff] si tu vole.",
 'rev-suppressed-unhide-diff'  => "Un del versiones de iste diff ha essite '''supprimite'''.
-Il pote haber detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppresiones].
-Tu, qua administrator, pote totevia [$1 vider iste diff] si tu vole proceder.",
+Detalios se trova in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].
+Tu pote totevia [$1 vider iste diff] si tu vole.",
 'rev-deleted-diff-view'       => "Un del versiones de iste diff ha essite '''delite'''.
-Como administrator tu pote vider iste diff; il pote haber detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+Tu pote vider iste diff; detalios se trova in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-suppressed-diff-view'    => "Un del versiones de iste diff ha essite '''supprimite'''.
-Como administrator tu pote vider iste diff; il pote haber detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
+Tu pote vider iste diff; detalios se trova in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
 'rev-delundel'                => 'revelar/celar',
 'rev-showdeleted'             => 'monstrar',
 'revisiondelete'              => 'Deler/restaurar versiones',
@@ -3543,6 +3543,9 @@ Tu pote etiam [[Special:EditWatchlist|usar le editor standard]].',
 'watchlisttools-view' => 'Vider modificationes pertinente',
 'watchlisttools-edit' => 'Vider e modificar le observatorio',
 'watchlisttools-raw'  => 'Modificar observatorio crude',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|discussion]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiquetta de extension incognite "$1"',

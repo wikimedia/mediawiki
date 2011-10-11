@@ -20,6 +20,7 @@
  * @author Joseph
  * @author Karduelis
  * @author Katpatuka
+ * @author Khutuck
  * @author Mach
  * @author Manco Capac
  * @author Metal Militia
@@ -831,6 +832,7 @@ $2
 Bu geçici parola ile giriş yapın ve yeni bir şifre seçin. Şifre değişimini siz istemediyseniz veya şifrenizi hatırladıysanız ve artık şifrenizi değiştirmek istemiyorsanız; bu iletiyi önemsemeyerek eski şifrenizi kullanmaya devam edebilirsiniz.',
 'passwordreset-emailelement' => 'Kullanıcı adı: $1
 Geçici şifre: $2',
+'passwordreset-emailsent'    => 'Hatırlatma e-postası gönderildi.',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-posta adresini değiştir',
@@ -2175,6 +2177,7 @@ Gelecekte, bu sayfaya ve ilgili tartışma sayfasına yapılacak değişiklikler
 Kolayca seçilebilmeleri için de [[Special:RecentChanges|son değişiklikler listesi]] başlığı altında koyu harflerle listeleneceklerdir.
 
 Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur" bağlantısına tıklayabilirsiniz.',
+'removewatch'          => 'İzleme listesinden kaldır',
 'removedwatchtext'     => '"[[:$1]]" sayfası [[Special:Watchlist|izleme listenizden]] silinmiştir.',
 'watch'                => 'İzle',
 'watchthispage'        => 'Sayfayı izle',

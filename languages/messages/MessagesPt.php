@@ -3678,6 +3678,9 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'watchlisttools-edit' => 'Ver e editar a lista de páginas vigiadas',
 'watchlisttools-raw'  => 'Editar a lista de páginas vigiadas em forma de texto',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|discussão]])</sup>',
+
 # Core parser functions
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',
 'duplicate-defaultsort' => 'Aviso: A chave de ordenação padrão "$2" sobrepõe-se à anterior chave de ordenação padrão "$1".',

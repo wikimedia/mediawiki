@@ -508,7 +508,7 @@ $messages = array(
 # Special:ListFiles
 'listfiles_date' => 'Нумра',
 'listfiles_name' => 'ТIар',
-'listfiles_user' => 'Ишлемишчи',
+'listfiles_user' => 'Иштиракчи',
 'listfiles_size' => 'Кьадар',
 
 # File description page

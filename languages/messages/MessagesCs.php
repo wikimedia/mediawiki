@@ -1508,12 +1508,12 @@ Tuto operaci nelze vrátit zpět.',
 'group-suppress'      => 'Dohlížitelé',
 'group-all'           => '(všichni)',
 
-'group-user-member'          => 'uživatel',
-'group-autoconfirmed-member' => 'automaticky schválený uživatel',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'správce',
-'group-bureaucrat-member'    => 'byrokrat',
-'group-suppress-member'      => 'dohlížitel',
+'group-user-member'          => '{{GENDER:$1|uživatel|uživatelka|uživatel}}',
+'group-autoconfirmed-member' => 'automaticky {{GENDER:$1|schválený uživatel|schválená uživatelka|schválený uživatel}}',
+'group-bot-member'           => '{{GENDER:$1|bot|botka|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|správce|správkyně|správce}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|byrokrat|byrokratka|byrokrat}}',
+'group-suppress-member'      => '{{GENDER:$1|dohlížitel|dohlížitelka|dohlížitel}}',
 
 'grouppage-user'          => '{{ns:project}}:Uživatelé',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automaticky schválení uživatelé',
@@ -1582,7 +1582,7 @@ Tuto operaci nelze vrátit zpět.',
 'right-siteadmin'             => 'Zamykání a odemykání databáze',
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
 'right-sendemail'             => 'Odesílání e-mailů ostatním uživatelům',
-'right-passwordreset'         => 'Reset hesla uživatele ([[Special:PasswordReset|speciální stránka]])',
+'right-passwordreset'         => 'Prohlížení e-mailů pro znovunastavení hesla',
 
 # User rights log
 'rightslog'                  => 'Kniha práv uživatelů',
@@ -1708,6 +1708,7 @@ Pro vložení obrázku do stránky použijte jeden z následujících způsobů 
 'ignorewarnings'              => 'Ignorovat všechna varování',
 'minlength1'                  => 'Jméno souboru musí mít alespoň jeden znak.',
 'illegalfilename'             => 'Název souboru "$1" obsahuje znaky, které nejsou povoleny v názvech stránek. Prosím přejmenujte soubor a zkuste jej nahrát znovu.',
+'filename-toolong'            => 'Jména souborů nemohou být delší než 240 bajtů.',
 'badfilename'                 => 'Jméno souboru bylo změněno na „$1“.',
 'filetype-mime-mismatch'      => 'Přípona souboru „.$1“ neodpovídá rozpoznanému MIME typu souboru ($2).',
 'filetype-badmime'            => 'Není povoleno načítat soubory MIME typu „$1“.',
@@ -3678,6 +3679,9 @@ Seznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve 
 'hebrew-calendar-m10-gen' => 'tamuzu',
 'hebrew-calendar-m11-gen' => 'avu',
 'hebrew-calendar-m12-gen' => 'elulu',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|diskuse]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Neznámá značka rozšíření: „$1“',

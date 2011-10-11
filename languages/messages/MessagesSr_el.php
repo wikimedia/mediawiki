@@ -1029,29 +1029,29 @@ Pokušajte [[Special:Search|da pretražite viki]] za relevantne nove stranice.',
 'rev-deleted-user-contribs'   => '[korisničko ime ili IP adresa su obrisani - izmena je sakrivena iz spiska doprinosa]',
 'rev-deleted-text-permission' => "Ova revizija stranice je '''obrisana'''.
 Detalji vezani za ovo brisanje bi se mogli nalaziti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
-'rev-deleted-text-unhide'     => "Ova revizija stranice je '''obrisana'''.
-Detalji vezani za ovo brisanje bi se mogli nalaziti [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].
-Pošto ste administrator, takođe možete [$1 pogledati ovu reviziju], ukoliko želite.",
+'rev-deleted-text-unhide'     => "Izmena ove stranice je '''obrisana'''.
+Detalje možete videti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].
+Ipak možete da [$1 vidite ovu izmenu] ako želite da nastavite.",
 'rev-suppressed-text-unhide'  => "Izmena ove stranice je '''sakrivena'''.
 Detalje možete videti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} istoriji sakrivanja].
-Pošto ste administrator, još uvek možete da [$1 vidite ovu izmenu].",
+Ipak možete da [$1 vidite ovu izmenu] ako želite da nastavite.",
 'rev-deleted-text-view'       => "Izmena ove stranice je '''obrisana'''.
-Pošto ste administrator, možete je videti. Detalji se nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
+Možete je pogledati; više detalja možete naći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
 'rev-suppressed-text-view'    => "Izmena ove stranice je '''sakrivena'''.
-Pošto ste administrator, možete je videti. Detalji se nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} istoriji sakrivanja].",
+Možete je pogledati; više detalja možete naći u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} istoriji sakrivanja].",
 'rev-deleted-no-diff'         => "Ne možete videti ovu razliku izmena zato što je jedna od revizija '''obrisana'''.
 Detalji vezani za ovo brisanje bi se mogli nalaziti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
 'rev-suppressed-no-diff'      => "Ne možete da vidite ovaj dif zato što je jedna od revizija '''obrisana'''.",
-'rev-deleted-unhide-diff'     => "Jedna od revizija za ovaj dif je '''obrisana'''.
-Detalji vezani za ovo brisanje bi se mogli nalaziti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].
-Pošto ste administrator, ipak možete [$1 videti ovaj dif], ako želite da nastavite.",
+'rev-deleted-unhide-diff'     => "Jedna od izmena u ovom pregledu razlika je '''obrisana'''.
+Detalji se nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].
+Ipak možete da [$1 vidite ovu razliku] ako želite da nastavite.",
 'rev-suppressed-unhide-diff'  => "Jedna od izmena ove razlike je '''sakrivena'''.
 Detalji se nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} istoriji sakrivanja].
-Pošto ste administrator, još uvek možete da [$1 vidite ovu razliku].",
+Ipak možete da [$1 vidite ovu razliku] ako želite da nastavite.",
 'rev-deleted-diff-view'       => "Jedna od izmena ove razlike je '''obrisana'''.
-Pošto ste administrator, možete videti ovu razliku. Detalji se nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
+Ipak možete da vidite ovu razliku; više detalja možete naći u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].",
 'rev-suppressed-diff-view'    => "Jedna od izmena ove razlike je '''sakrivena'''.
-Pošto ste administrator, možete videti ovu razliku. Detalji se nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} istoriji sakrivanja].",
+Ipak možete da vidite ovu razliku; više detalja možete naći u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} istoriji sakrivanja].",
 'rev-delundel'                => 'pokaži/sakrij',
 'rev-showdeleted'             => 'pokaži',
 'revisiondelete'              => 'Obriši/vrati reviziju',
@@ -1823,7 +1823,7 @@ Opis na [$2 stranici datoteke] je prikazan ispod.',
 
 # MIME search
 'mimesearch'         => 'MIME pretraga',
-'mimesearch-summary' => 'Ova stranica omogućava filterisanje fajlova za svoj MIME-tip. Ulaz: contenttype/subtype, tj. <tt>image/jpeg</tt>.',
+'mimesearch-summary' => 'Ova stranica omogućava filtriranje datoteka prema njihovim vrstama MIME. Ulazni podaci: contenttype/subtype, npr. <tt>image/jpeg</tt>.',
 'mimetype'           => 'MIME tip:',
 'download'           => 'Preuzmi',
 
@@ -3508,6 +3508,9 @@ Takođe, možete [[Special:EditWatchlist|koristiti standardan uređivač spiska]
 'watchlisttools-view' => 'Pogledaj srodne promene',
 'watchlisttools-edit' => 'Pogledaj i izmeni spisak nadgledanja',
 'watchlisttools-raw'  => 'Izmeni sirov spisak nadgledanja',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|razgovor]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nepoznati tag za ekstenziju: "$1".',

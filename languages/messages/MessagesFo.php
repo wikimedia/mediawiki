@@ -231,7 +231,8 @@ $messages = array(
 'vector-action-delete'     => 'Strika',
 'vector-action-move'       => 'Flyt',
 'vector-action-protect'    => 'Friða',
-'vector-action-unprotect'  => 'Strika friðing',
+'vector-action-undelete'   => 'Endurstovna',
+'vector-action-unprotect'  => 'Broyt friðing',
 'vector-view-create'       => 'Stovna',
 'vector-view-edit'         => 'Rætta',
 'vector-view-history'      => 'Søga',
@@ -261,7 +262,7 @@ $messages = array(
 'deletethispage'    => 'Strika hesa síðuna',
 'protect'           => 'Friða',
 'protectthispage'   => 'Friða hesa síðuna',
-'unprotect'         => 'Strika friðing',
+'unprotect'         => 'Broyt friðing',
 'unprotectthispage' => 'Ófriða hesa síðuna',
 'newpage'           => 'Nýggj síða',
 'talkpage'          => 'Kjakast um hesa síðuna',
@@ -321,6 +322,8 @@ $messages = array(
 'editsection'             => 'rætta',
 'editold'                 => 'rætta',
 'viewsourceold'           => 'vís keldu',
+'editlink'                => 'rætta',
+'viewsourcelink'          => 'vís keldu',
 'editsectionhint'         => 'Rætta part: $1',
 'toc'                     => 'Innihaldsyvirlit',
 'showtoc'                 => 'skoða',
@@ -391,6 +394,7 @@ Gloym ikki at broyta tínar [[Special:Preferences|{{SITENAME}} innstillingar]].'
 'nav-login-createaccount'    => 'Stovna kontu ella rita inn',
 'loginprompt'                => 'Cookies má verða sett til fyri at innrita á {{SITENAME}}.',
 'userlogin'                  => 'Stovna kontu ella rita inn',
+'userloginnocreate'          => 'Rita inn',
 'logout'                     => 'Útrita',
 'userlogout'                 => 'Rita út',
 'notloggedin'                => 'Ikki ritað inn',
@@ -583,6 +587,9 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 'yourrealname'          => 'Títt navn*:',
 'yourlanguage'          => 'Mál til brúkaraflatu:',
 'yournick'              => 'Títt eyknevni (til undirskriftir):',
+'yourgender'            => 'Kyn:',
+'gender-male'           => 'Maður',
+'gender-female'         => 'Kvinna',
 'email'                 => 'T-post',
 'prefs-help-email'      => 'T-postur (valfríður): Loyvir øðrum at seta seg í samband við teg gjøgnum brúkara tín ella brúkarakjaksíðu uttan at avdúka samleika tín.',
 
@@ -607,7 +614,7 @@ Við at senda arbeiði títt inn, lovar tú, at tú hevur skrivað tað, ella at
 # Recent changes
 'nchanges'          => '$1 {{PLURAL:$1|broyting|broytingar}}',
 'recentchanges'     => 'Seinastu broytingar',
-'rcnote'            => "Niðanfyri {{PLURAL:$1|stendur '''1''' tann seinasta broytingin|standa '''$1''' tær seinastu broytingarnar}} {{PLURAL:$2|seinasta dagin|seinastu '''$2''' dagarnar}}, frá $3.",
+'rcnote'            => "Niðanfyri {{PLURAL:$1|stendur '''1''' tann seinasta broytingin|standa '''$1''' tær seinastu broytingarnar}} {{PLURAL:$2|seinasta dagin|seinastu '''$2''' dagarnar}}, frá $5, $4.",
 'rcnotefrom'        => "Niðanfyri standa broytingarnar síðani '''$2''', (upp til '''$1''' er sýndar).",
 'rclistfrom'        => 'Sýn nýggjar broytingar byrjandi við $1',
 'rcshowhideminor'   => '$1 minni rættingar',
@@ -952,8 +959,8 @@ at læsa dátugrunnin upp aftur tá ið viðgerðin er liðug.',
 <br />Minst til at [[Special:UnlockDB|læsa upp]] aftur, tá ið viðgerðin er liðug.',
 
 # Move page
-'move-page-legend'        => 'Flyt síðu',
-'movepagetext'            => "Við frymlinum niðanfyri kanst tú umnevna eina síðu og flyta alla hennara søgu við til nýggja navnið.
+'move-page-legend'             => 'Flyt síðu',
+'movepagetext'                 => "Við frymlinum niðanfyri kanst tú umnevna eina síðu og flyta alla hennara søgu við til nýggja navnið.
 Gamla navnið verður ein tilvísingarsíða til ta nýggju.
 Slóðirnar til gomlu síðuna verða ikki broyttar.
 Ansa eftir at kanna um tvífaldar ella brotnar tilvísingar eru.
@@ -966,25 +973,37 @@ Tú kanst ikki skriva yvir eina verandi síðu.
 '''ÁVARING!'''
 Hetta kann vera ein ógvuslig og óvæntað flyting av einari vældámdari síðu.
 Vinarliga tryggja tær, at tú skilur avleiðingarnar av hesum áðrenn tú heldur áfam.",
-'movearticle'             => 'Flyt síðu:',
-'movenologin'             => 'Hevur ikki ritað inn',
-'newtitle'                => 'Til nýtt heiti:',
-'move-watch'              => 'Hav eftirlit við hesi síðuni',
-'movepagebtn'             => 'Flyt síðu',
-'pagemovedsub'            => 'Flyting væleydnað',
-'articleexists'           => 'Ein síða finst longu við hasum navninum,
+'movepagetext-noredirectfixer' => "Við frymlinum niðanfyri kanst tú umnevna eina síðu og flyta alla hennara søgu við til nýggja navnið.
+Gamla navnið verður ein tilvísingarsíða til ta nýggju.
+Slóðirnar til gomlu síðuna verða ikki broyttar.
+Ansa eftir at kanna um [[Special:DoubleRedirects|tvífaldar]] ella [[Special:BrokenRedirects|brotnar]] tilvísingar eru.
+Tú hevur ábyrgdina fyri at ansa eftir at slóðir framvegis fara hagar, tær skulu.
+
+Legg merki til at síðan '''ikki''' verður flutt, um ein síða longu er við nýggja navninum, uttan at hon er tóm og onga søgu hevur.
+Hetta merkir at tú kanst umnevna eina síðu aftur hagani hon kom, um tú gjørdi eitt mistak. Tú kanst ikki skriva yvir eina verandi síðu.
+
+'''ÁVARING!'''
+Hetta kann vera ein ógvuslig og óvæntað flyting av einari vældámdari síðu.
+Vinarliga tryggja tær, at tú skilur avleiðingarnar av hesum áðrenn tú heldur áfam.",
+'movearticle'                  => 'Flyt síðu:',
+'movenologin'                  => 'Hevur ikki ritað inn',
+'newtitle'                     => 'Til nýtt heiti:',
+'move-watch'                   => 'Hav eftirlit við hesi síðuni',
+'movepagebtn'                  => 'Flyt síðu',
+'pagemovedsub'                 => 'Flyting væleydnað',
+'articleexists'                => 'Ein síða finst longu við hasum navninum,
 ella er navnið tú valdi ógyldugt.
 Vinarliga vel eitt annað navn.',
-'movedto'                 => 'flyt til',
-'movetalk'                => 'Flyt kjaksíðuna eisini, um hon er til.',
-'movelogpage'             => 'Flyt gerðabók',
-'movereason'              => 'Orsøk:',
-'delete_and_move'         => 'Strika og flyt',
-'delete_and_move_text'    => '==Striking krevst==
+'movedto'                      => 'flyt til',
+'movetalk'                     => 'Flyt kjaksíðuna eisini, um hon er til.',
+'movelogpage'                  => 'Flyt gerðabók',
+'movereason'                   => 'Orsøk:',
+'delete_and_move'              => 'Strika og flyt',
+'delete_and_move_text'         => '==Striking krevst==
 
 Grein við navninum "[[:$1]]" finst longu. Ynskir tú at strika hana til tess at skapa pláss til flytingina?',
-'delete_and_move_confirm' => 'Ja, strika hesa síðuna',
-'delete_and_move_reason'  => 'Strika til at gera pláss til flyting',
+'delete_and_move_confirm'      => 'Ja, strika hesa síðuna',
+'delete_and_move_reason'       => 'Strika til at gera pláss til flyting',
 
 # Export
 'export' => 'Útflutningssíður',
