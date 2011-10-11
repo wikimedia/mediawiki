@@ -470,7 +470,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
-			$this->output( "Dropping $index from table $table... " );
+			$this->output( "Dropping $index key from table $table... " );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "ok\n" );
 		} else {
