@@ -1230,7 +1230,7 @@ Do kanns kein Enndrääsch vör de Wiki_Köbeße verschteijsche, der oohne noch 
 # Suppression log
 'suppressionlog'     => 'Et Logboch fum Versteiche',
 'suppressionlogtext' => 'Heh noh kütt et Logboch fum Versteiche, woh Versione fun Sigge, Zosammefassunge, Quelle, Metmaachername un Metmaacher-Sperre ze fenge sin, di fun de Oure vun de Öffentleschkeit, un och fun de Wiki-Köbesse verstoche woodte, udder widder zeröck op nommaal jebraat woodte.
-Loor en de [[Special:IPBlockList|{{int:ipblocklist}}]] öm ze sinn, wää un wat em Momang wie jesperrt es.',
+Loor en de [[Special:BlockList|{{int:ipblocklist}}]] öm ze sinn, wää un wat em Momang wie jesperrt es.',
 
 # History merging
 'mergehistory'                     => 'Versione fun Sigge zosamme schmiiße',
@@ -1508,11 +1508,11 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'group-suppress'      => 'Kontrollettis',
 'group-all'           => '(jeede)',
 
-'group-user-member'          => 'Metmaacher',
-'group-autoconfirmed-member' => 'Bestätichte Metmaacher',
+'group-user-member'          => '{{GENDER:$1|Metmaacher|Metmaacherin|Metmaacher|Metmaacherin|Metmaacher}}',
+'group-autoconfirmed-member' => 'Beshtääteshte {{GENDER:$1|Metmaacher|Metmaacherin|Metmaacher|Metmaacherin|Metmaacher}}',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Wiki-Köbes',
-'group-bureaucrat-member'    => 'Bürrokrad',
+'group-bureaucrat-member'    => '{{GENDER:$1|Bürrokrad|Bürrokraatėn|Bürrokrad|Bürrokraatėn|Bürrokrad}}',
 'group-suppress-member'      => 'Kontrolletti',
 
 'grouppage-user'          => '{{ns:project}}:Metmaacher',
@@ -1582,7 +1582,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-siteadmin'             => 'De Datebank deeschmaache un opmaache för Änderunge',
 'right-override-export-depth' => 'Beim Sigge Expoteere de Sigge metnämme, woh Lingks drop jon — beß fönef Schredde wigk',
 'right-sendemail'             => '<i lang="en">e-mail</i> aan ander Metmaacher schecke',
-'right-passwordreset'         => 'Dat Paßwoot fun enem Metmaacher zeröck setze ([[Special:PasswordReset|Söndersigg]])',
+'right-passwordreset'         => 'De <i lang="en">e-mails</i> vum Paßwoot neu Säze aanloore',
 
 # User rights log
 'rightslog'                  => 'Logboch för Änderunge aan Metmaacher-Räächde',
@@ -1722,6 +1722,7 @@ die mer en Titele vun Sigge nit bruche kann.
 <br />
 Sök Der statt „$1“ jet anders us,
 un dann muss de dat Dinge noch ens huhlade.',
+'filename-toolong'            => 'Name för Dateije künne nit mih wi 240 Bytes lang sind.',
 'badfilename'                 => 'De Datei es en „$1“ ömjedäuf.',
 'filetype-mime-mismatch'      => 'Dä Datei ier Ängk vum Name (<code lang="en">.$1</code>) paß nit zo dä <i lang="en">MIME</i>-Zoot (<code lang="en">$2</code>)',
 'filetype-badmime'            => 'Dateie mem MIME-Typ „<code>$1</code>“ wulle mer nit huhjelade krijje.',

@@ -3396,6 +3396,9 @@ De kèns ouch [[Special:EditWatchlist|'t sjtanderd bewirkingssjirm gebroeke]].",
 'watchlisttools-edit' => 'Volglies bekieke en bewirke',
 'watchlisttools-raw'  => 'Roew volglies bewirke',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|euverlègk]])</sup>',
+
 # Core parser functions
 'unknown_extension_tag' => 'Ónbekindje tag "$1"',
 'duplicate-defaultsort' => 'Waarsjuwing: De standaardsortering "$2" krieg veurrang veur de sortering "$1".',

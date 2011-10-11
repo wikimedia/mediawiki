@@ -2891,6 +2891,12 @@ Ma rica keno konfirme bike ke ti raştî wazeno eno pel bivirazo.",
 'confirm-purge-top'    => 'Cacheyê eno pel biestere?',
 'confirm-purge-bottom' => 'Purge kerdişê yew pel cacheyî estereno u revizyonê penîyî mucneno.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'TEMAM',
+'confirm-watch-top'      => 'Ena pele lista xoya seyrkerdışi ke',
+'confirm-unwatch-button' => 'TEMAM',
+'confirm-unwatch-top'    => 'Ena pele lista xoya seyirkerdışi ra bıvece?',
+
 # Multipage image navigation
 'imgmultipageprev' => 'peleyê verin',
 'imgmultipagenext' => 'pelo serîn →',
@@ -2981,18 +2987,19 @@ Ti hem zi eşkeno [[Special:EditWatchlist|use the standard editor]].',
 'filepath'         => 'Raherê dosyayi',
 'filepath-page'    => 'Dosya:',
 'filepath-submit'  => 'Şo',
-'filepath-summary' => 'Ena pela xasî ser yew dosyayî patikayê temamî ano.
-Resiman ful resolasyon de mocnayiyê, tipê dosyayî binî pê direktorê programî başlî beno.',
+'filepath-summary' => 'Na pela xısusiye raya temame jû dosya rê ana.
+Resımi be tam asayış mocniyayê, tipê dosyaê bini be programê cıyo elaqedar direkt dest keno pê.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'kopyayê dosyayi bigêre',
-'fileduplicatesearch-summary'  => 'Dosyanê çıftan bınê têmiyankewteyan de bıgeyre.',
-'fileduplicatesearch-legend'   => 'kopyayê ena dosya bigêre',
-'fileduplicatesearch-filename' => 'Nameyê dosyayi',
-'fileduplicatesearch-submit'   => 'bigêre',
-'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Ebatê dosyayî: $3<br />Tipê MIMEî: $4',
-'fileduplicatesearch-result-1' => "Dosyayê ''$1î'' de hem-kopya çini yo.",
-'fileduplicatesearch-result-n' => "Dosyayê ''$1î'' de {{PLURAL:$2|1 hem-kopya|$2 hem-kopyayî'}} esto.",
+'fileduplicatesearch'           => 'kopyayê dosyayi bigêre',
+'fileduplicatesearch-summary'   => 'Dosyanê çıftan bınê têmiyankewteyan de bıgeyre.',
+'fileduplicatesearch-legend'    => 'kopyayê ena dosya bigêre',
+'fileduplicatesearch-filename'  => 'Nameyê dosyayi',
+'fileduplicatesearch-submit'    => 'bigêre',
+'fileduplicatesearch-info'      => '$1 × $2 piksel<br />Ebatê dosyayî: $3<br />Tipê MIMEî: $4',
+'fileduplicatesearch-result-1'  => "Dosyayê ''$1î'' de hem-kopya çini yo.",
+'fileduplicatesearch-result-n'  => "Dosyayê ''$1î'' de {{PLURAL:$2|1 hem-kopya|$2 hem-kopyayî'}} esto.",
+'fileduplicatesearch-noresults' => 'Ebe namey "$1" ra dosya nêdiyayê.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pelê xasi',

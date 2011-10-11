@@ -1115,29 +1115,29 @@ E posibil să fi fost ștearsă sau redenumită.
 'rev-deleted-user-contribs'   => '[nume de utilizator sau adresă IP ștearsă - modificare ascunsă din contribuții]',
 'rev-deleted-text-permission' => "Această revizie a paginii a fost '''ștearsă'''.
 Mai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].",
-'rev-deleted-text-unhide'     => "Această revizie a paginii a fost '''ștearsă'''.
-Pot exista detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].
-Ca administrator puteți [$1 vedea această revizie] în continuare, dacă doriți acest lucru.",
-'rev-suppressed-text-unhide'  => "Această revizie a paginii a fost '''suprimată'''.
-Pot exista detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].
-Ca administrator puteți [$1 vedea această revizie] în continuare, dacă doriți acest lucru.",
-'rev-deleted-text-view'       => "Această revizie a paginii a fost '''ștearsă'''.
-Ca administrator puteți să o vedeți; s-ar putea să găsiți mai multe detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].",
-'rev-suppressed-text-view'    => "Această revizie a paginii a fost '''suprimată'''.
-Ca administrator puteți să o vedeți; s-ar putea să găsiți mai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
+'rev-deleted-text-unhide'     => "Această versiune a paginii a fost '''ștearsă'''.
+Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].
+Ca administrator puteți [$1 vedea această versiune] în continuare, dacă doriți acest lucru.",
+'rev-suppressed-text-unhide'  => "Această versiune a paginii a fost '''suprimată'''.
+Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].
+Ca administrator puteți [$1 vedea această versiune] în continuare, dacă doriți acest lucru.",
+'rev-deleted-text-view'       => "Această versiune a paginii a fost '''ștearsă'''.
+Ca administrator puteți să o vedeți; detalii puteți găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].",
+'rev-suppressed-text-view'    => "Această versiune a paginii a fost '''suprimată'''.
+Ca administrator puteți să o vedeți; detalii puteți găsi în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
 'rev-deleted-no-diff'         => "Nu poți vedea acestă diferență deoarece una dintre revizii a fost '''ștearsă'''.
 Pot exista mai multe detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].",
 'rev-suppressed-no-diff'      => "Nu puteți vizualiza această diferență între versiuni deoarece una dintre versiuni a fost '''ștearsă'''.",
-'rev-deleted-unhide-diff'     => "Una din reviziile acestui istoric a fost '''ștearsă'''.
-Pot exista detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].
+'rev-deleted-unhide-diff'     => "Una din versiunile acestui istoric a fost '''ștearsă'''.
+Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].
 Ca administrator puteți [$1 vedea diferența] în continuare, dacă doriți acest lucru.",
-'rev-suppressed-unhide-diff'  => "Una dintre reviziile acestui diff a fost '''suprimată'''.
-Ar putea fi detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].
+'rev-suppressed-unhide-diff'  => "Una dintre versiunile acestui istoric a fost '''suprimată'''.
+Detalii se pot găsi în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].
 Ca administrator puteți [$1 vedea diferența] în continuare, dacă doriți acest lucru.",
-'rev-deleted-diff-view'       => "Una dintre reviziile acestui diff a fost '''ștearsă'''.
-Ca administrator puteți vedea în continuare acest diff; s-ar putea să existe detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].",
-'rev-suppressed-diff-view'    => "Una dintre reviziile acestui diff a fost '''suprimată'''.
-Ca administrator puteți vedea în continuare acest diff; s-ar putea să existe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
+'rev-deleted-diff-view'       => "Una dintre versiunile acestui istoric a fost '''ștearsă'''.
+Ca administrator puteți vedea în continuare această diferență dinte versiuni; detalii puteți găsi în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ștergerilor].",
+'rev-suppressed-diff-view'    => "Una dintre reviziile acestui istoric a fost '''suprimată'''.
+Ca administrator puteți vedea în continuare această diferență dinte versiuni; detalii puteți găsi în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
 'rev-delundel'                => 'șterge/recuperează',
 'rev-showdeleted'             => 'arată',
 'revisiondelete'              => 'Șterge/recuperează versiuni',

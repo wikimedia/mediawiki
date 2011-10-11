@@ -1188,30 +1188,28 @@ Wellicht is die verwijderd of hernoemd.
 'rev-deleted-text-permission' => "Deze bewerking is '''verwijderd'''.
 Er kunnen details aanwezig zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
 'rev-deleted-text-unhide'     => "Deze versie van de pagina is '''verwijderd'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].
-Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
+Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].
+Als u wilt kunt u [$1 deze versie bekijken].",
 'rev-suppressed-text-unhide'  => "Deze paginaversie is '''onderdrukt'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].
-Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
+Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].
+Als u wilt kunt u [$1 deze versie bekijken].",
 'rev-deleted-text-view'       => "Deze bewerking is '''verwijderd'''.
-Als beheerder kunt u deze zien;
-er kunnen details aanwezig zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
+U kunt deze bekijken; er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
 'rev-suppressed-text-view'    => "Deze paginaversie is '''onderdrukt'''.
-Als beheerder kunt u deze bekijken;
-achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].",
+U kunt deze bekijken; er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].",
 'rev-deleted-no-diff'         => "U kunt de verschillen niet bekijken, omdat een van de versies is '''verwijderd'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
 'rev-suppressed-no-diff'      => "U kunt de verschillen niet bekijken, omdat een van de versies is '''verwijderd'''.",
 'rev-deleted-unhide-diff'     => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''verwijderd'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].
-Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
+Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].
+Als u wilt kunt u [$1 de verschillen bekijken].",
 'rev-suppressed-unhide-diff'  => "Een van de versies in deze verschillen is '''onderdrukt'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].
-Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
+Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].
+Als u wilt kunt u [$1 deze versie bekijken].",
 'rev-deleted-diff-view'       => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd, is '''verwijderd'''.
-Als beheerder kunt u deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
+U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
 'rev-suppressed-diff-view'    => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd, is '''onderdrukt'''.
-Als beheerder kunt u deze verschillen bekijken. Mogelijk zijn details zichtbaar in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].",
+U kunt deze verschillen bekijken. Er kunnen details te vinden zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verbergingslogboek].",
 'rev-delundel'                => 'weergeven/verbergen',
 'rev-showdeleted'             => 'weergeven',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
@@ -3779,6 +3777,9 @@ U kunt ook [[Special:EditWatchlist|het standaard bewerkingsscherm gebruiken]].',
 'iranian-calendar-m10' => 'Tiende Perzische maand',
 'iranian-calendar-m11' => 'Elfde Perzische maand',
 'iranian-calendar-m12' => 'Twaalfde Perzische maand',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|overleg]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekende tag "$1"',

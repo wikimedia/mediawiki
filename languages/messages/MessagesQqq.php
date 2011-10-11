@@ -4158,6 +4158,9 @@ Name of month in Hebrew calender.',
 Name of month in Hebrew calender.',
 
 # Signatures
+'signature'    => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp)
+* $1: the username that are currently login
+* $2: the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw",
 'timezone-utc' => '{{optional}}',
 
 # Core parser functions

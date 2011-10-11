@@ -1017,26 +1017,27 @@ Prosimo, poskusite [[Special:Search|poiskati v wikiju]] ustrezajoče nove strani
 Podrobnosti so na razpolago v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
 'rev-deleted-text-unhide'     => "Ta sprememba je bila '''izbrisana'''.
 Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].
-Kot administrator lahko še vedno [$1 pogledate to redakcijo], če želite nadaljevati.",
+Še vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
 'rev-suppressed-text-unhide'  => "Ta sprememba je bila '''zavrnjena'''.
 Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zavračanj].
-Kot administrator lahko še vedno [$1 pogledate to redakcijo], če želite nadaljevati.",
-'rev-deleted-text-view'       => 'Prikazana redakacija strani je bila iz javnih arhivov odstranjena. Ogledate si jo lahko, ker ste administrator. Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].',
+Še vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
+'rev-deleted-text-view'       => 'Prikazana redakacija strani je bila iz javnih arhivov odstranjena.
+Lahko si jo ogledate; podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].',
 'rev-suppressed-text-view'    => "Ta sprememba je bila '''zavrnjena'''.
-Kot administrator lahko jo vidite; podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zavračanj].",
+Lahko si jo ogledate; podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zavračanj].",
 'rev-deleted-no-diff'         => "Povzetka sprememb ne morete videti, ker je bil eden od popravkov '''izbrisan'''.
 Podrobnosti so morda navedene v  [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
 'rev-suppressed-no-diff'      => "Ogled redakcije ni mogoč, ker je bila ena od sprememb '''izbrisana'''.",
 'rev-deleted-unhide-diff'     => "Ena od sprememb v tej redakciji je bila '''izbrisana'''.
 Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].
-Kot administrator lahko še vedno [$1 pogledate to redakcijo], če želite nadaljevati.",
+Še vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
 'rev-suppressed-unhide-diff'  => "Ena od sprememb v tej redakciji je bila '''zadržana'''.
 Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zadržkov].
-Kot administrator lahko še vedno [$1 pogledate to redakcijo], če želite nadaljevati.",
+Še vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
 'rev-deleted-diff-view'       => "Ena od sprememb v tej redakciji je bila '''izbrisana'''.
-Kot administrator si to redakcijo lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
+To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
 'rev-suppressed-diff-view'    => "Ena od sprememb v tej redakciji je bila '''zadržana'''.
-Kot administrator si to redakcijo lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zadržkov].",
+To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zadržkov].",
 'rev-delundel'                => 'pokaži/skrij',
 'rev-showdeleted'             => 'prikaži',
 'revisiondelete'              => 'Izbriši/obnovi redakcije',
@@ -3533,6 +3534,9 @@ Uporabite lahko tudi [[Special:EditWatchlist|standardni urejevalnik]].',
 'watchlisttools-view' => 'Oglej si ustrezne spremembe',
 'watchlisttools-edit' => 'Poglej in uredi spisek nadzorov',
 'watchlisttools-raw'  => 'Uredi gol spisek nadzorov',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|pogovor]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Neznana razširitvena etiketa »$1«',

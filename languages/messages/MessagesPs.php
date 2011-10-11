@@ -436,6 +436,8 @@ $1',
 'page-atom-feed'          => 'د "$1" د اټوم کتنې',
 'feed-rss'                => 'آر اس اس',
 'red-link-title'          => '$1 (تر اوسه پورې نه شته)',
+'sort-descending'         => 'مخښکته اوډل',
+'sort-ascending'          => 'مخپورته اوډل',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ليکنه',
@@ -537,7 +539,7 @@ $1',
 'createaccount'              => 'ګڼون جوړول',
 'gotaccount'                 => 'آيا وار دمخې يو ګڼون لری؟ $1.',
 'gotaccountlink'             => 'ننوتل',
-'userlogin-resetlink'        => 'آيا خپل د ننوتلو مالومات مو هېرې کړي؟',
+'userlogin-resetlink'        => 'د ننوتلو مالومات مو هېر شوي؟',
 'createaccountmail'          => 'د برېښليک له مخې',
 'createaccountreason'        => 'سبب:',
 'badretype'                  => 'دا پټنوم چې تاسې ليکلی د مخکني پټنوم سره ورته نه دی.',
@@ -614,10 +616,12 @@ $1',
 'resetpass-no-info'         => 'همدې مخ ته د لاسرسي موندلو پخاطر تاسې ته پکار ده چې لومړی غونډال ته ورننوځۍ.',
 'resetpass-submit-loggedin' => 'پټنوم بدلول',
 'resetpass-submit-cancel'   => 'ناګارل',
+'resetpass-wrong-oldpass'   => 'لنډمهال او يا هم اوسنی پټنوم مو ناسم دی',
 'resetpass-temp-password'   => 'لنډمهالی پټنوم:',
 
 # Special:PasswordReset
 'passwordreset'              => 'پټنوم بياپرځايول',
+'passwordreset-text'         => 'د دې لپاره چې ستاسې د ګڼون بشپړې څرګندنې دربرېښليک شي نو دا فورمه ډکه کړۍ.',
 'passwordreset-legend'       => 'پټنوم بياپرځايول',
 'passwordreset-username'     => 'کارن-نوم:',
 'passwordreset-domain'       => 'شپول:',
@@ -1069,10 +1073,10 @@ $1',
 'group-suppress'   => 'څارونکي',
 'group-all'        => '(ټول)',
 
-'group-user-member'       => 'کارن',
-'group-bot-member'        => 'روباټ',
-'group-sysop-member'      => 'پازوال',
-'group-bureaucrat-member' => 'بيوروکراټ',
+'group-user-member'       => '{{doc-group|کارن|غړی}}',
+'group-bot-member'        => '{{doc-group|روباټ|غړی}}',
+'group-sysop-member'      => '{{doc-group|پازوال|غړی}}',
+'group-bureaucrat-member' => '{{doc-group|بيوروکراټ|غړی}}',
 'group-suppress-member'   => 'څارن',
 
 'grouppage-user'       => '{{ns:project}}:کارنان',
@@ -2090,8 +2094,12 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-gpsareainformation' => 'د جي پي اس د سيمې نوم',
 'exif-gpsdatestamp'       => 'د جي پي اس نېټه',
 'exif-jpegfilecomment'    => 'د JPEG دوتنې تبصرې',
+'exif-worldregiondest'    => 'د نړۍ ښکاره شوې سيمه',
+'exif-countrydest'        => 'ښکاره شوی هېواد',
+'exif-citydest'           => 'ښکاره شوی ښار',
 'exif-objectname'         => 'لنډ سرليک',
 'exif-source'             => 'سرچينه',
+'exif-contact'            => 'د اړيکې مالومات',
 'exif-writer'             => 'ليکوال',
 'exif-languagecode'       => 'ژبه',
 'exif-iimcategory'        => 'وېشنيزه',
@@ -2193,6 +2201,8 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'exif-iimcategory-wea' => 'هوا',
 
 'exif-urgency-normal' => 'نورمال ($1)',
+'exif-urgency-low'    => 'لږ ($1)',
+'exif-urgency-high'   => 'ډېر ($1)',
 
 # External editor support
 'edit-externally'      => 'د باندنيو پروګرامونو په کارولو سره دا دوتنه سمول',
@@ -2212,7 +2222,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'confirmemail_oncreate'  => 'ستاسو د برېښناليک پتې ته يو تاييدي کوډ درولېږل شو.
 ددې لپاره چې تاسو غونډال ته ورننوځی تاسو ته د همدغه کوډ اړتيا نشته، خو تاسو ته د همدغه کوډ اړتيا په هغه وخت کې پکارېږي کله چې په ويکي کې خپلې برېښناليکي کړنې چارن کول غواړی.',
 'confirmemail_needlogin' => 'ددې لپاره چې ستاسې د برېښليک پتې پخلی وشي، تاسې ته پکار ده چې $1.',
-'confirmemail_loggedin'  => 'اوس ستاسې د برېښناليک پتې پخلی وشو.',
+'confirmemail_loggedin'  => 'اوس ستاسې د برېښليک پتې پخلی وشو.',
 'confirmemail_error'     => 'ستاسې د برېښليک پتې د تاييد په خوندي کولو کې يوه ستونزه رامېنڅ ته شوه.',
 'confirmemail_subject'   => 'د {{SITENAME}} د برېښليک پتې تاييد',
 'confirmemail_body'      => 'يو چا او يا هم کيدای شي چې تاسې پخپله، د $1 IP پتې نه،
@@ -2330,11 +2340,13 @@ $5
 'filepath-submit' => 'ورځه',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'د دوه ګونو دوتنو پلټنه',
-'fileduplicatesearch-legend'   => 'د دوه ګونو دوتنو پلټنه',
-'fileduplicatesearch-filename' => 'د دوتنې نوم:',
-'fileduplicatesearch-submit'   => 'پلټل',
-'fileduplicatesearch-result-1' => '"$1" بله کټ مټ ورته غبرګونې دوتنه نلري.',
+'fileduplicatesearch'           => 'د دوه ګونو دوتنو پلټنه',
+'fileduplicatesearch-legend'    => 'د دوه ګونو دوتنو پلټنه',
+'fileduplicatesearch-filename'  => 'د دوتنې نوم:',
+'fileduplicatesearch-submit'    => 'پلټل',
+'fileduplicatesearch-info'      => '<span dir="ltr">$1 × $2</span> پېکسل<br />د دوتنې کچه: $3<br />ډول MIME: $4',
+'fileduplicatesearch-result-1'  => '"$1" بله کټ مټ ورته غبرګونې دوتنه نلري.',
+'fileduplicatesearch-noresults' => 'د "$1" په نوم دوتنه و نه موندل شوه.',
 
 # Special:SpecialPages
 'specialpages'                 => 'ځانګړي مخونه',
@@ -2379,7 +2391,7 @@ $5
 
 # HTML forms
 'htmlform-invalid-input'       => 'ستاسې ځينې ورکړېينې ستونزې لري',
-'htmlform-select-badoption'    => 'کوم څه چې تاسو ځانګړي کړي هغه د منلو وړ خوښه نه ده.',
+'htmlform-select-badoption'    => 'څه چې تاسې ځانګړي کړل هغه د منلو وړ خوښنه نه ده.',
 'htmlform-int-invalid'         => 'کوم څه چې تاسو ځانګړي کړي هغه يوه سمه شمېره نه ده.',
 'htmlform-float-invalid'       => 'کوم څه چې تاسو ځانګړي کړي هغه يوه شمېره نه ده.',
 'htmlform-int-toolow'          => 'کوم ارزښت چې تاسې ځانګړی کړی هغه تر $1 لږ دی',
@@ -2390,7 +2402,11 @@ $5
 'htmlform-selectorother-other' => 'بل',
 
 # New logging system
-'revdelete-content-hid' => 'مېنځپانګه پټېدلې',
-'newuserlog-byemail'    => 'پټنوم مو برېښليک ته درولېږه',
+'revdelete-content-hid'      => 'مېنځپانګه پټېدلې',
+'revdelete-uname-hid'        => 'کارن نوم پټ شوی',
+'revdelete-content-unhid'    => 'مېنځپانګه ښکاره شوی',
+'logentry-newusers-newusers' => '$1 يو کارن ګڼون {{GENDER:$2|جوړ کړ}}',
+'logentry-newusers-create'   => '$1 يو کارن ګڼون {{GENDER:$2|جوړ کړ}}',
+'newuserlog-byemail'         => 'پټنوم مو برېښليک ته درولېږه',
 
 );

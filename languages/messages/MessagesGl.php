@@ -563,9 +563,9 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'filedeleteerror'      => 'Non se deu borrado o ficheiro "$1".',
 'directorycreateerror' => 'Non se puido crear o directorio "$1".',
 'filenotfound'         => 'Non se deu atopado o ficheiro "$1".',
-'fileexistserror'      => 'Resultou imposíbel escribir no ficheiro "$1": o ficheiro xa existe',
+'fileexistserror'      => 'Resultou imposíbel escribir no ficheiro "$1": O ficheiro xa existe',
 'unexpected'           => 'Valor inesperado: "$1"="$2".',
-'formerror'            => 'Erro: non se pode enviar o formulario',
+'formerror'            => 'Erro: Non se pode enviar o formulario',
 'badarticleerror'      => 'Non pode efectuarse esta acción nesta páxina.',
 'cannotdelete'         => 'Non se puido borrar a páxina ou imaxe "$1".
 Se cadra, xa a borrou alguén.',
@@ -814,8 +814,8 @@ Contrasinal temporal: $2',
 'anoneditwarning'                  => "'''Aviso:''' Non accedeu ao sistema.
 O seu enderezo IP quedará rexistrado no historial de revisións desta páxina.",
 'anonpreviewwarning'               => "''Non accedeu ao sistema. Se garda a páxina, o seu enderezo IP quedará rexistrado no historial de edicións.''",
-'missingsummary'                   => "'''Aviso:''' esqueceu incluír o texto do campo resumo.
-Se preme en \"Gardar a páxina\" a súa edición gardarase sen ningunha descrición da edición.",
+'missingsummary'                   => "'''Aviso:''' Esqueceu incluír o texto do campo resumo.
+Se preme en \"{{int:savearticle}}\" a súa edición gardarase sen ningunha descrición da edición.",
 'missingcommenttext'               => 'Por favor, escriba un comentario a continuación.',
 'missingcommentheader'             => "'''Aviso:''' non escribiu ningún texto no asunto/título deste comentario.
 Se preme sobre \"{{int:savearticle}}\", a súa edición gardarase sen el.",
@@ -1145,7 +1145,7 @@ Por favor, comprobe o rexistros.',
 Vexa a [[Special:BlockList|lista de enderezos IP bloqueados]] para comprobar as prohibicións e os bloqueos vixentes.',
 
 # History merging
-'mergehistory'                     => 'Fusionar historiais das páxinas',
+'mergehistory'                     => 'Fusionar os historiais das páxinas',
 'mergehistory-header'              => 'Esta páxina permítelle fusionar revisións dos historiais da páxina de orixe nunha nova páxina.
 Asegúrese de que esta modificación da páxina mantén a continuidade histórica.',
 'mergehistory-box'                 => 'Fusionar as revisións de dúas páxinas:',
@@ -1843,18 +1843,18 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 # File reversion
 'filerevert'                => 'Desfacer $1',
 'filerevert-legend'         => 'Reverter o ficheiro',
-'filerevert-intro'          => 'Está revertendo "\'\'\'[[Media:$1|$1]]\'\'\'", vai volver á versión [$4 de $2, ás $3].',
+'filerevert-intro'          => 'Está a piques de reverter o ficheiro "\'\'\'[[Media:$1|$1]]\'\'\'" ata a [$4 versión do $2 ás $3].',
 'filerevert-comment'        => 'Motivo:',
 'filerevert-defaultcomment' => 'Volveuse á versión do $1 ás $2',
 'filerevert-submit'         => 'Reverter',
-'filerevert-success'        => 'Reverteuse "\'\'\'[[Media:$1|$1]]\'\'\'" á versión [$4 de $2, ás $3].',
+'filerevert-success'        => 'Reverteuse "\'\'\'[[Media:$1|$1]]\'\'\'" á [$4 versión do $2 ás $3].',
 'filerevert-badversion'     => 'Non existe unha versión local anterior deste ficheiro coa data e hora indicadas.',
 
 # File deletion
 'filedelete'                  => 'Eliminar "$1"',
 'filedelete-legend'           => 'Eliminar un ficheiro',
 'filedelete-intro'            => "Está a piques de eliminar o ficheiro \"'''[[Media:\$1|\$1]]'''\" xunto con todo o seu historial.",
-'filedelete-intro-old'        => 'Vai eliminar a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" do [$4 $2, ás $3].',
+'filedelete-intro-old'        => 'Vai eliminar a versión de "\'\'\'[[Media:$1|$1]]\'\'\'" do [$4 $2 ás $3].',
 'filedelete-comment'          => 'Motivo:',
 'filedelete-submit'           => 'Borrar',
 'filedelete-success'          => "Borrouse o ficheiro \"'''\$1'''\".",
@@ -2549,7 +2549,7 @@ Olle a [[Special:BlockList|lista de enderezos IP e usuarios bloqueados]] se quer
 'ipb-needreblock'                 => '"$1" xa está bloqueado. Quere cambiar as configuracións?',
 'ipb-otherblocks-header'          => '{{PLURAL:$1|Outro bloqueo|Outros bloqueos}}',
 'unblock-hideuser'                => 'Non pode desbloquear o usuario porque o seu nome foi agochado.',
-'ipb_cant_unblock'                => 'Erro: Non se atopa o Block ID $1. Posiblemente xa foi desbloqueado.',
+'ipb_cant_unblock'                => 'Erro: Non se atopa o identificador do bloqueo $1. Posiblemente xa foi desbloqueado.',
 'ipb_blocked_as_range'            => 'Erro: O enderezo IP $1 non está bloqueado directamente e non se pode desbloquear. Porén, está bloqueado por estar no rango $2, que si se pode desbloquear.',
 'ip_range_invalid'                => 'Rango IP non válido.',
 'ip_range_toolarge'               => 'Non están permitidos os rangos de bloqueo maiores que /$1.',
@@ -2568,7 +2568,7 @@ Polo tanto, non pode crear unha conta",
 'ipbnounblockself'                => 'Non ten os permisos necesarios para desbloquearse a si mesmo',
 
 # Developer tools
-'lockdb'              => 'Fechar base de datos',
+'lockdb'              => 'Fechar a base de datos',
 'unlockdb'            => 'Desbloquear a base de datos',
 'lockdbtext'          => 'Ao fechar a base de datos quitaralles aos usuarios a posibilidade de editar páxinas, cambiar as súas preferencias, editar as súas listas de vixilancia e outras cousas que requiren cambios na base de datos.
 Por favor, confirme que isto é o que realmente quere facer e que retirará o bloqueo da base de datos cando remate co mantemento.',
@@ -2576,9 +2576,9 @@ Por favor, confirme que isto é o que realmente quere facer e que retirará o bl
 Por favor confirme que isto é o que quere facer.',
 'lockconfirm'         => 'Si, realmente quero fechar a base de datos.',
 'unlockconfirm'       => 'Si, realmente quero desbloquear a base de datos',
-'lockbtn'             => 'Fechar base de datos',
+'lockbtn'             => 'Fechar a base de datos',
 'unlockbtn'           => 'Desbloquear a base de datos',
-'locknoconfirm'       => 'Vostede non marcou o sinal de confirmación.',
+'locknoconfirm'       => 'Non marcou a caixa de confirmación.',
 'lockdbsuccesssub'    => 'A base de datos foi fechada con éxito',
 'unlockdbsuccesssub'  => 'Quitouse a protección da base de datos',
 'lockdbsuccesstext'   => 'Fechouse a base de datos.<br />
@@ -2690,7 +2690,7 @@ Para exportar páxinas, insira os títulos na caixa de texto que está máis aba
 No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]], para a páxina "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Incluír só a revisión actual, non o historial completo',
 'exportnohistory'   => "----
-'''Aviso:''' foi desactivada a exportación do historial completo das páxinas mediante este formulario debido a razóns relacionadas co rendemento do servidor.",
+'''Aviso:''' Foi desactivada a exportación do historial completo das páxinas mediante este formulario debido a razóns relacionadas co rendemento do servidor.",
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Engadir as páxinas da categoría:',
 'export-addcat'     => 'Engadir',
@@ -2930,11 +2930,11 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como revisada',
 'markaspatrolledtext'                 => 'Marcar esta páxina como revisada',
-'markedaspatrolled'                   => 'Marcar coma revisado',
+'markedaspatrolled'                   => 'Marcar como revisado',
 'markedaspatrolledtext'               => 'A revisión seleccionada de "[[:$1]]" foi marcada como revisada.',
 'rcpatroldisabled'                    => 'A patrulla dos cambios recentes está desactivada',
 'rcpatroldisabledtext'                => 'A funcionalidade da patrulla dos cambios recentes está actualmente desactivada.',
-'markedaspatrollederror'              => 'Non se pode marcar coma revisada',
+'markedaspatrollederror'              => 'Non se pode marcar como revisada',
 'markedaspatrollederrortext'          => 'É preciso especificar unha revisión para marcala como revisada.',
 'markedaspatrollederror-noautopatrol' => 'Non está permitido que un mesmo marque as propias edicións como revisadas.',
 
@@ -3108,7 +3108,7 @@ Os demais agocharanse por omisión.
 'exif-sharpness'                   => 'Nitidez',
 'exif-devicesettingdescription'    => 'Descrición da configuración do dispositivo',
 'exif-subjectdistancerange'        => 'Distancia ao suxeito',
-'exif-imageuniqueid'               => 'ID única da imaxe',
+'exif-imageuniqueid'               => 'ID único da imaxe',
 'exif-gpsversionid'                => 'Versión da etiqueta GPS',
 'exif-gpslatituderef'              => 'Latitude norte ou sur',
 'exif-gpslatitude'                 => 'Latitude',
@@ -3592,6 +3592,9 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'watchlisttools-view' => 'Ver as modificacións relevantes',
 'watchlisttools-edit' => 'Ver e editar a lista de vixilancia',
 'watchlisttools-raw'  => 'Editar a lista de vixilancia simple',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|conversa]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta de extensión descoñecida "$1"',
