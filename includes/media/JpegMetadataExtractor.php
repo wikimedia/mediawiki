@@ -58,7 +58,7 @@ class JpegMetadataExtractor {
 				throw new MWException( 'Too many jpeg segments. Aborting' );
 			}
 			if ( $buffer !== "\xFF" ) {
-				throw new MWException( "Error reading jpeg file marker" );
+				throw new MWException( "Error reading jpeg file marker. Expected 0xFF but got " . bin2hex( $buffer ) );
 			}
 
 			$buffer = fread( $fh, 1 );
@@ -123,6 +123,9 @@ class JpegMetadataExtractor {
 			} elseif ( $buffer === "\xD9" || $buffer === "\xDA" ) {
 				// EOI - end of image or SOS - start of scan. either way we're past any interesting segments
 				return $segments;
+			} elseif ( $buffer === "\xFF" ) {
+				// Padding byte. Skip.
+				continue;
 			} else {
 				// segment we don't care about, so skip
 				$size = unpack( "nint", fread( $fh, 2 ) );
