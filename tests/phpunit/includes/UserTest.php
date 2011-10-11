@@ -165,21 +165,28 @@ class UserTest extends MediaWikiTestCase {
 		);
 	}
 
-	public function testIsValidUserName() {
-		$this->assertFalse( $this->user->isValidUserName( '' ) );
-		$this->assertFalse( $this->user->isValidUserName( ' ' ) );
-		$this->assertFalse( $this->user->isValidUserName( 'abcd' ) );
-		$this->assertFalse( $this->user->isValidUserName( 'Ab/cd' ) );
-		$this->assertTrue( $this->user->isValidUserName( 'Ab cd' ) ); // Whitespace
-		$this->assertFalse( $this->user->isValidUserName( '192.168.1.1' ) ); // IP
-		$this->assertFalse( $this->user->isValidUserName( 'User:Abcd' ) ); // Reserved Namespace
-		$this->assertTrue( $this->user->isValidUserName( '12abcd232' ) );
-		$this->assertTrue( $this->user->isValidUserName( '12abcd.232' ) );
-		$this->assertTrue( $this->user->isValidUserName( '?abcd' ) );
-		$this->assertFalse( $this->user->isValidUserName( '#abcd' ) );
-		$this->assertTrue( $this->user->isValidUserName( 'Abcdകഖഗഘ' ) ); // Mixed scripts
-		$this->assertFalse( $this->user->isValidUserName( 'ജോസ്‌തോമസ്' ) ); // ZWNJ
-		$this->assertFalse( $this->user->isValidUserName( 'Ab　cd' ) ); // Ideographic space
+	/**
+	 * @dataProvider provideUserNames
+	 */
+	public function testIsValidUserName( $username, $result, $message ) {
+		$this->assertEquals( $this->user->isValidUserName( $username ), $result, $message );
 	}
 
+	public function provideUserNames() {
+		return array(
+			array( '', false, 'Empty string' ),
+			array( ' ', false, 'Blank space' ),
+			array( 'abcd', false, 'Starts with small letter' ),
+			array( 'Ab/cd', false,  'Contains slash' ),
+			array( 'Ab cd' , true, 'Whitespace' ),
+			array( '192.168.1.1', false,  'IP' ),
+			array( 'User:Abcd', false, 'Reserved Namespace' ),
+			array( '12abcd232' , true  , 'Starts with Numbers' ),
+			array( '?abcd' , true,  'Start with ? mark' ),
+			array( '#abcd', false, 'Start with #' ),
+			array( 'Abcdകഖഗഘ', true,  ' Mixed scripts' ),
+			array( 'ജോസ്‌തോമസ്',  false, 'ZWNJ- Format control character' ),
+			array( 'Ab　cd', false, ' Ideographic space' ),
+		);
+	}
 }
