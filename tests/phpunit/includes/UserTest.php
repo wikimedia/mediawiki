@@ -164,4 +164,22 @@ class UserTest extends MediaWikiTestCase {
 			),				
 		);
 	}
+
+	public function testIsValidUserName() {
+		$this->assertFalse( $this->user->isValidUserName( '' ) );
+		$this->assertFalse( $this->user->isValidUserName( ' ' ) );
+		$this->assertFalse( $this->user->isValidUserName( 'abcd' ) );
+		$this->assertFalse( $this->user->isValidUserName( 'Ab/cd' ) );
+		$this->assertTrue( $this->user->isValidUserName( 'Ab cd' ) ); // Whitespace
+		$this->assertFalse( $this->user->isValidUserName( '192.168.1.1' ) ); // IP
+		$this->assertFalse( $this->user->isValidUserName( 'User:Abcd' ) ); // Reserved Namespace
+		$this->assertTrue( $this->user->isValidUserName( '12abcd232' ) );
+		$this->assertTrue( $this->user->isValidUserName( '12abcd.232' ) );
+		$this->assertTrue( $this->user->isValidUserName( '?abcd' ) );
+		$this->assertFalse( $this->user->isValidUserName( '#abcd' ) );
+		$this->assertTrue( $this->user->isValidUserName( 'Abcdകഖഗഘ' ) ); // Mixed scripts
+		$this->assertFalse( $this->user->isValidUserName( 'ജോസ്‌തോമസ്' ) ); // ZWNJ
+		$this->assertFalse( $this->user->isValidUserName( 'Ab　cd' ) ); // Ideographic space
+	}
+
 }
