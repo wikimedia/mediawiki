@@ -38,7 +38,7 @@ class ConvertUserOptions extends Maintenance {
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( !$dbw->fieldExists( 'user', 'user_options ' ) ) {
-			$this->output( "No user_options field in the user table. Nothing to migrate" );
+			$this->output( "No user_options field in the user table. Nothing to migrate..." );
 			return;
 		}
 		while ( $id !== null ) {
