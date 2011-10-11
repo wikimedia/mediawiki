@@ -431,8 +431,9 @@ END;
 				}
 				$sql .= " USING $default";
 			}
-			$sql .= ";\nCOMMIT;\n";
+			$this->db->begin( __METHOD__ );
 			$this->db->query( $sql );
+			$this->db->commit( __METHOD__ );
 		}
 	}
 

@@ -463,7 +463,7 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	function commitChanges() {
-		$this->db->query( 'COMMIT' );
+		$this->db->commit();
 		return Status::newGood();
 	}
 
