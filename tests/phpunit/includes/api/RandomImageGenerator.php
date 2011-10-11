@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * RandomImageGenerator -- does what it says on the tin.
  * Requires Imagick, the ImageMagick library for PHP, or the command line equivalent (usually 'convert').
  *

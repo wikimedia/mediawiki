@@ -2488,7 +2488,7 @@ $wgResourceModules = array();
  */
 $wgResourceLoaderSources = array();
 
-/*
+/**
  * Default 'remoteBasePath' value for resource loader modules.
  * If not set, then $wgScriptPath will be used as a fallback.
  */
@@ -3635,7 +3635,7 @@ $wgAutopromoteOnce = array(
 	'onView' => array()
 );
 
-/*
+/**
  * Put user rights log entries for autopromotion in recent changes?
  * @since 1.18
  */

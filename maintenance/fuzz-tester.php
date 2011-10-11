@@ -2395,8 +2395,8 @@ function wikiTestOutput( pageTest $test ) {
 
 // ////////////////// HTML VALIDATION /////////////////////////
 
-/*
- ** Asks the validator whether this is valid HTML, or not.
+/**
+ * Asks the validator whether this is valid HTML, or not.
  */
 function validateHTML( $text ) {
 

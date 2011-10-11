@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Populates the rev_len field for old revisions created before MW 1.10.
  *
  * This program is free software; you can redistribute it and/or modify

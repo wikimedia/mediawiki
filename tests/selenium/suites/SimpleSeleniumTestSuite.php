@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Sample test suite. 
  * Two ways to configure MW for these tests
  * 1) If you are running multiple test suites, add the following in LocalSettings.php

@@ -29,7 +29,7 @@
 
 require_once (dirname(__FILE__).'/'.'MediaWikiInstallationCommonFunction.php');
 
-/*
+/**
  * Test Case ID   : 18 - 27 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
  * Test Case Name : UI of MediaWiki initial/ Language/ Welcome to MediaWiki!/ Connect to database/
  * Database settings/ Name/ Options/ Install/ Complete/ Restart Inslation pages

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Makes the required database updates for rev_parent_id
  * to be of any use. It can be used for some simple tracking
  * and to find new page edits by users.

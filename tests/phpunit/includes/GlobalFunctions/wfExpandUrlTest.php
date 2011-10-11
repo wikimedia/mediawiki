@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Unit tests for wfExpandUrl()
  */
 

@@ -30,7 +30,7 @@
 
 require_once ( dirname( __FILE__ ) . '/MediaWikiInstallationCommonFunction.php' );
 
-/*
+/**
  * Test Case ID   : 09 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
  * Test Case Name : Invalid/ blank values for fields in 'Connect to database' page.
  * Version        : MediaWiki 1.18alpha

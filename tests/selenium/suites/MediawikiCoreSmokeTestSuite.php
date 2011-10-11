@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Stubs for now. We're going to start populating this test.
  */
 class MediawikiCoreSmokeTestSuite extends SeleniumTestSuite
