@@ -866,7 +866,7 @@ class Linker {
 	/**
 	 * Make a link to a special page given its name and, optionally,
 	 * a message key from the link text.
-	 * Usage example: $skin->specialLink( 'recentchanges' )
+	 * Usage example: Linker::specialLink( 'Recentchanges' )
 	 *
 	 * @return string
 	 */
