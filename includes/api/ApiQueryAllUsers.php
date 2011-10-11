@@ -234,11 +234,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::dieDebug( __METHOD__,
 					'MediaWiki configuration error: the database contains more user groups than known to User::getAllGroups() function' );
 			}
+			
+			$lastUserObj = User::newFromName( $lastUser );
 
 			// Add user's group info
 			if ( $fld_groups ) {
-				if ( !isset( $lastUserData['groups'] ) ) {
-					$lastUserData['groups'] = ApiQueryUsers::getAutoGroups( User::newFromName( $lastUser ) );
+				if ( !isset( $lastUserData['groups'] ) && $lastUserObj ) {
+					$lastUserData['groups'] = ApiQueryUsers::getAutoGroups( $lastUserObj );
 				}
 
 				if ( !is_null( $row->ug_group2 ) ) {
@@ -247,13 +249,13 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				$result->setIndexedTagName( $lastUserData['groups'], 'g' );
 			}
 
-			if ( $fld_implicitgroups && !isset( $lastUserData['implicitgroups'] ) ) {
-				$lastUserData['implicitgroups'] = ApiQueryUsers::getAutoGroups( User::newFromName( $lastUser ) );
+			if ( $fld_implicitgroups && !isset( $lastUserData['implicitgroups'] ) && $lastUserObj ) {
+				$lastUserData['implicitgroups'] = ApiQueryUsers::getAutoGroups( $lastUserObj );
 				$result->setIndexedTagName( $lastUserData['implicitgroups'], 'g' );
 			}
 			if ( $fld_rights ) {
-				if ( !isset( $lastUserData['rights'] ) ) {
-					$lastUserData['rights'] =  User::getGroupPermissions( User::newFromName( $lastUser )->getAutomaticGroups() );
+				if ( !isset( $lastUserData['rights'] ) && $lastUserObj ) {
+					$lastUserData['rights'] =  User::getGroupPermissions( $lastUserObj->getAutomaticGroups() );
 				}
 				if ( !is_null( $row->ug_group2 ) ) {
 					$lastUserData['rights'] = array_unique( array_merge( $lastUserData['rights'],
