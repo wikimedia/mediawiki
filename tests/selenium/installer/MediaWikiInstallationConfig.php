@@ -28,7 +28,7 @@
  */
 
 
-/*
+/**
  * MediaWikiInstallerTestSuite.php can be run one time successfully
  * with current value of the 'DB_NAME_PREFIX'.
  * If you wish to run the suite more than one time, you need to change
@@ -39,7 +39,7 @@ define('DIRECTORY_NAME', "mediawiki" );
 define( 'PORT', "8080" );
 define( 'HOST_NAME', "localhost" );
 
-/*
+/**
  *  Use the followings to run the test suite in different browsers.
  *  Firefox : *firefox
  *  IE :  *iexplore

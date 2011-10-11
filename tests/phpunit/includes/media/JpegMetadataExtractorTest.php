@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * @todo Could use a test of extended XMP segments. Hard to find programs that
  * create example files, and creating my own in vim propbably wouldn't
  * serve as a very good "test". (Adobe photoshop probably creates such files

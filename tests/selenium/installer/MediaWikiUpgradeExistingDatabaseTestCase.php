@@ -30,7 +30,7 @@
 
 require_once (dirname(__FILE__).'/'.'MediaWikiInstallationCommonFunction.php');
 
-/*
+/**
  * Test Case ID   : 05 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
  * Test Case Name : Install Mediawiki by updating the existing database.
  * Version        : MediaWiki 1.18alpha

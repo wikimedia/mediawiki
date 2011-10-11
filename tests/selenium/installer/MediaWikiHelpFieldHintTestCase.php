@@ -27,7 +27,7 @@
  *
  */
 
-/*
+/**
  * Test Case ID   : 29 (http://www.mediawiki.org/wiki/New_installer/Test_plan)
  * Test Case Name : Help field hint availability for the fields.
  * Version        : MediaWiki 1.18alpha

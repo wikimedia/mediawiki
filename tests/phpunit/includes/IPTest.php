@@ -1,5 +1,5 @@
 <?php
-/*
+/**
  * Tests for IP validity functions. Ported from /t/inc/IP.t by avar.
  */
 

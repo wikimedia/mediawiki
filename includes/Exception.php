@@ -131,7 +131,10 @@ class MWException extends Exception {
 		}
 	}
 
-	/* Return titles of this error page */
+	/**
+	 * Return titles of this error page
+	 * @return String
+	 */
 	function getPageTitle() {
 		global $wgSitename;
 		return $this->msg( 'internalerror', "$wgSitename error" );
