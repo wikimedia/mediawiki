@@ -383,6 +383,10 @@ class PostgresInstaller extends DatabaseInstaller {
 	}
 
 	public function preInstall() {
+		$createDbAccount = array(
+			'name' => 'user',
+			'callback' => array( $this, 'setupUser' ),
+		);
 		$commitCB = array(
 			'name' => 'pg-commit',
 			'callback' => array( $this, 'commitChanges' ),
@@ -395,15 +399,13 @@ class PostgresInstaller extends DatabaseInstaller {
 			'name' => 'schema',
 			'callback' => array( $this, 'setupSchema' )
 		);
+
+		if( $this->getVar( '_CreateDBAccount' ) ) {
+			$this->parent->addInstallStep( $createDbAccount, 'database' );
+		}
 		$this->parent->addInstallStep( $commitCB, 'interwiki' );
 		$this->parent->addInstallStep( $plpgCB, 'database' );
 		$this->parent->addInstallStep( $schemaCB, 'database' );
-		if( $this->getVar( '_CreateDBAccount' ) ) {
-			$this->parent->addInstallStep( array(
-				'name' => 'user',
-				'callback' => array( $this, 'setupUser' ),
-			) );
-		}
 	}
 
 	function setupDatabase() {
