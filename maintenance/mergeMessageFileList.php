@@ -32,7 +32,7 @@ class MergeMessageFileList extends Maintenance {
 
 	function __construct() {
 		parent::__construct();
-		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', false, true );
+		$this->addOption( 'list-file', 'A file containing a list of extension setup files, one per line.', true, true );
 		$this->addOption( 'output', 'Send output to this file (omit for stdout)', false, true );
 		$this->mDescription = 'Merge $wgExtensionMessagesFiles from various extensions to produce a ' .
 			'single array containing all message files.';
@@ -40,10 +40,6 @@ class MergeMessageFileList extends Maintenance {
 
 	public function execute() {
 		global $mmfl;
-		if ( !$this->hasOption( 'list-file' ) ) {
-			$this->error( 'The --list-file option must be specified.' );
-			return;
-		}
 
 		$lines = file( $this->getOption( 'list-file' ) );
 		if ( $lines === false ) {
