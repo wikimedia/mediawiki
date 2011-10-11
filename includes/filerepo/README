@@ -42,18 +42,21 @@ Tim Starling, June 2007
 
 Structure:
 
-File.php defines an abstract class File.
-    ForeignAPIFile.php extends File.
-    LocalFile.php extends File.
-        ForeignDBFile.php extends LocalFile
-        Image.php extends LocalFile
-    UnregisteredLocalFile.php extends File.
-FileRepo.php defines an abstract class FileRepo.
-    ForeignAPIRepo.php extends FileRepo
+File defines an abstract class File.
+    ForeignAPIFile extends File.
+    LocalFile extends File.
+        ForeignDBFile extends LocalFile
+        Image extends LocalFile
+        SwiftFile extends LocalFile
+    UnregisteredLocalFile extends File.
+        UploadStashFile extends UnregisteredLocalFile.
+FileRepo defines an abstract class FileRepo.
+    ForeignAPIRepo extends FileRepo
     FSRepo extends FileRepo
-        LocalRepo.php extends FSRepo
-            ForeignDBRepo.php extends LocalRepo
-            ForeignDBViaLBRepo.php extends LocalRepo
+        LocalRepo extends FSRepo
+            ForeignDBRepo extends LocalRepo
+            ForeignDBViaLBRepo extends LocalRepo
+            SwiftRepo extends LocalRepo
     NullRepo extends FileRepo
 
 Russ Nelson, March 2011

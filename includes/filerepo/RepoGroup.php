@@ -56,6 +56,9 @@ class RepoGroup {
 
 	/**
 	 * Set the singleton instance to a given object
+	 * Used by extensions which hook into the Repo chain.
+	 * It's not enough to just create a superclass ... you have
+	 * to get people to call into it even though all they know is RepoGroup::singleton()
 	 *
 	 * @param $instance RepoGroup
 	 */
