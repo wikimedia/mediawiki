@@ -766,8 +766,8 @@ class DatabasePostgres extends DatabaseBase {
 		$q = <<<SQL
 	SELECT 1 FROM pg_class, pg_namespace, pg_trigger
 		WHERE relnamespace=pg_namespace.oid AND relkind='r'
-		      AND tgrelid=pg_class.oid
-		      AND nspname=%s AND relname=%s AND tgname=%s
+			  AND tgrelid=pg_class.oid
+			  AND nspname=%s AND relname=%s AND tgname=%s
 SQL;
 		$res = $this->query(
 			sprintf(
@@ -878,7 +878,11 @@ SQL;
 		} elseif ( is_bool( $s ) ) {
 			return intval( $s );
 		} elseif ( $s instanceof Blob ) {
-			return "'" . $s->fetch( $s ) . "'";
+			$ret = "'" . $s->fetch( $s ) . "'";
+			if ( $this->numeric_version >= 8.1 ) {
+				$ret = "E$ret";
+			}
+			return $ret;
 		}
 		return "'" . pg_escape_string( $this->mConn, $s ) . "'";
 	}
