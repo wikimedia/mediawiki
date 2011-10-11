@@ -1177,7 +1177,7 @@ abstract class Installer {
 
 	/**
 	 * Checks for presence of an Apache module. Works only if PHP is running as an Apache module, too.
-	 * 
+	 *
 	 * @param $moduleName String: Name of module to check.
 	 * @return bool
 	 */
