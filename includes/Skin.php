@@ -562,7 +562,7 @@ abstract class Skin extends ContextSource {
 			$pre = '';
 			if ( $wgDebugTimestamps ) {
 				$matches = array();
-				if ( preg_match( '/^(\d+\.\d+\s{2})/', $line, $matches ) ) {
+				if ( preg_match( '/^(\d+\.\d+   \d+.\dM\s{2})/', $line, $matches ) ) {
 					$pre = $matches[1];
 					$line = substr( $line, strlen( $pre ) );
 				}
