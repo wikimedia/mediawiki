@@ -432,7 +432,7 @@ abstract class DatabaseUpdater {
 	 * @param $patch String Path to the patch file
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
-	public function addIndex( $table, $index, $patch, $fullpath = false ) {
+	protected function addIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "...$index key already set on $table table.\n" );
 		} else {
@@ -468,7 +468,7 @@ abstract class DatabaseUpdater {
 	 * @param $patch String: Path to the patch file
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 */
-	public function dropIndex( $table, $index, $patch, $fullpath = false ) {
+	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
 		if ( $this->db->indexExists( $table, $index ) ) {
 			$this->output( "Dropping $index from table $table... " );
 			$this->applyPatch( $patch, $fullpath );
