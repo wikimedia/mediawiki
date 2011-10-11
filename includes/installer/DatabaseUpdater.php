@@ -172,6 +172,24 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * @param $tableName string
+	 * @param $indexName string
+	 * @param $sqlPath string
+	 */
+	public function addExtensionIndex( $tableName, $indexName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'addIndex', $tableName, $indexName, $sqlPath, true );
+	}
+
+	/**
+	 * @param $tableName string
+	 * @param $columnName string
+	 * @param $sqlPath string
+	 */
+	public function addExtensionField( $tableName, $columnName, $sqlPath ) {
+		$this->extensionUpdates[] = array( 'addField', $tableName, $columnName, $sqlPath );
+	}
+
+	/**
 	 * Get the list of extension-defined updates
 	 *
 	 * @return Array
@@ -180,6 +198,9 @@ abstract class DatabaseUpdater {
 		return $this->extensionUpdates;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getPostDatabaseUpdateMaintenance() {
 		return $this->postDatabaseUpdateMaintenance;
 	}
@@ -232,6 +253,10 @@ abstract class DatabaseUpdater {
 		$this->updates = array_merge( $this->updates, $updates );
 	}
 
+	/**
+	 * @param $version
+	 * @param $updates array
+	 */
 	protected function setAppliedUpdates( $version, $updates = array() ) {
 		$this->db->clearFlag( DBO_DDLMODE );
 		if( !$this->canUseNewUpdatelog() ) {
@@ -249,6 +274,8 @@ abstract class DatabaseUpdater {
 	 * Obviously, only use this for updates that occur after the updatelog table was
 	 * created!
 	 * @param $key String Name of the key to check for
+	 *
+	 * @return bool
 	 */
 	public function updateRowExists( $key ) {
 		$row = $this->db->selectRow(
@@ -295,6 +322,8 @@ abstract class DatabaseUpdater {
 	 * $wgExtNewTables/Fields/Indexes. This is nasty :) We refactored a lot
 	 * of this in 1.17 but we want to remain back-compatible for a while. So
 	 * load up these old global-based things into our update list.
+	 *
+	 * @return array
 	 */
 	protected function getOldGlobalUpdates() {
 		global $wgExtNewFields, $wgExtNewTables, $wgExtModifiedFields,
