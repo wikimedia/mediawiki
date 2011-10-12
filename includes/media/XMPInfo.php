@@ -557,13 +557,16 @@ class XMPInfo {
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_SIMPLE,
 			),
-			'Orientation'       => array(
-				'map_group' => 'exif',
-				'mode'      => XMPReader::MODE_SIMPLE,
-				'validate'  => 'validateClosed',
-				'choices'   => array( '1' => true, '2' => true, '3' => true, '4' => true, 5 => true,
-						'6' => true, '7' => true, '8' => true ),
-			),
+			/**** Do not extract this property
+			 * It interferes with auto exif rotation.
+			 * 'Orientation'       => array(
+			 *	'map_group' => 'exif',
+			 *	'mode'      => XMPReader::MODE_SIMPLE,
+			 *	'validate'  => 'validateClosed',
+			 *	'choices'   => array( '1' => true, '2' => true, '3' => true, '4' => true, 5 => true,
+			 *			'6' => true, '7' => true, '8' => true ),
+			 *),
+			 ******/
 			'PhotometricInterpretation' => array(
 				'map_group' => 'exif',
 				'mode'      => XMPReader::MODE_SIMPLE,
