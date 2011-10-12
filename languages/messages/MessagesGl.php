@@ -46,6 +46,11 @@ $namespaceAliases = array(
 	'Conversa_Categoría' => NS_CATEGORY_TALK,
 );
 
+$namespaceGenderAliases = array(
+	NS_USER => array( 'male' => 'Usuario', 'female' => 'Usuaria' ),
+	NS_USER_TALK => array( 'male' => 'Conversa_usuario', 'female' => 'Conversa_usuaria' ),
+);
+
 $defaultDateFormat = 'dmy';
 
 $dateFormats = array(
