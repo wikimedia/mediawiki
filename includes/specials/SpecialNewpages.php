@@ -78,7 +78,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function parseParams( $par ) {
-		global $wgLang;
 		$bits = preg_split( '/\s*,\s*/', trim( $par ) );
 		foreach ( $bits as $bit ) {
 			if ( 'shownav' == $bit ) {
@@ -112,7 +111,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 				$this->opts->setValue( 'username', $m[1] );
 			}
 			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
-				$ns = $wgLang->getNsIndex( $m[1] );
+				$ns = $this->getLang()->getNsIndex( $m[1] );
 				if( $ns !== false ) {
 					$this->opts->setValue( 'namespace',  $ns );
 				}
@@ -163,7 +162,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function filterLinks() {
-		global $wgGroupPermissions, $wgLang;
+		global $wgGroupPermissions;
 
 		// show/hide links
 		$showhide = array( wfMsgHtml( 'show' ), wfMsgHtml( 'hide' ) );
@@ -201,7 +200,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$links[$key] = wfMsgHtml( $msg, $link );
 		}
 
-		return $wgLang->pipeList( $links );
+		return $this->getLang()->pipeList( $links );
 	}
 
 	protected function form() {
@@ -284,8 +283,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @return String
 	 */
 	public function formatRow( $result ) {
-		global $wgLang;
-
 		# Revision deletion works on revisions, so we should cast one
 		$row = array(
 					  'comment' => $result->rc_comment,
@@ -297,11 +294,12 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$classes = array();
 
-		$dm = $wgLang->getDirMark();
+		$lang = $this->getLang();
+		$dm = $lang->getDirMark();
 
 		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
 		$time = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),
-			$wgLang->timeAndDate( $result->rc_timestamp, true )
+			$lang->timeanddate( $result->rc_timestamp, true )
 		);
 
 		$query = array( 'redirect' => 'no' );
@@ -325,9 +323,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		);
 		$hist = Html::rawElement( 'span', array( 'class' => 'mw-newpages-history' ), wfMsg( 'parentheses', $histLink ) );
 
-		$length = Html::rawElement( 'span', array( 'class' => 'mw-newpages-length' ),
-				'[' . wfMsgExt( 'nbytes', array( 'parsemag', 'escape' ), $wgLang->formatNum( $result->length ) ) .
-				']'
+		$length = Html::element( 'span', array( 'class' => 'mw-newpages-length' ),
+				'[' . $this->msg( 'nbytes' )->numParams( $result->length )->text() . ']'
 		);
 
 		$ulink = Linker::revUserTools( $rev );
