@@ -1437,9 +1437,10 @@ abstract class File {
 	 * field of this file, if it's marked as deleted.
 	 * STUB
 	 * @param $field Integer
+	 * @param $user User object to check, or null to use $wgUser
 	 * @return Boolean
 	 */
-	function userCan( $field ) {
+	function userCan( $field, User $user = null ) {
 		return true;
 	}
 

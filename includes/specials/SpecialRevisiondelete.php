@@ -278,7 +278,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->getOutput()->addWikiMsg( 'revdelete-no-file' );
 			return;
 		}
-		if( !$oimage->userCan(File::DELETED_FILE) ) {
+		if( !$oimage->userCan( File::DELETED_FILE, $this->getUser() ) ) {
 			if( $oimage->isDeleted( File::DELETED_RESTRICTED ) ) {
 				$this->getOutput()->permissionRequired( 'suppressrevision' );
 			} else {

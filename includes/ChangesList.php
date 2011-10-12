@@ -262,7 +262,7 @@ class ChangesList extends ContextSource {
 		# Diff link
 		if( $rc->mAttribs['rc_type'] == RC_NEW || $rc->mAttribs['rc_type'] == RC_LOG ) {
 			$diffLink = $this->message['diff'];
-		} elseif( !self::userCan($rc,Revision::DELETED_TEXT) ) {
+		} elseif ( !self::userCan( $rc, Revision::DELETED_TEXT, $this->getUser() ) ) {
 			$diffLink = $this->message['diff'];
 		} else {
 			$query = array(
@@ -422,13 +422,14 @@ class ChangesList extends ContextSource {
 	 * field of this revision, if it's marked as deleted.
 	 * @param $rc RCCacheEntry
 	 * @param $field Integer
+	 * @param $user User object to check, or null to use $wgUser
 	 * @return Boolean
 	 */
-	public static function userCan( $rc, $field ) {
+	public static function userCan( $rc, $field, User $user = null ) {
 		if( $rc->mAttribs['rc_type'] == RC_LOG ) {
-			return LogEventsList::userCanBitfield( $rc->mAttribs['rc_deleted'], $field );
+			return LogEventsList::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $user );
 		} else {
-			return Revision::userCanBitfield( $rc->mAttribs['rc_deleted'], $field );
+			return Revision::userCanBitfield( $rc->mAttribs['rc_deleted'], $field, $user );
 		}
 	}
 
@@ -675,7 +676,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Don't show unusable diff links
-		if ( !ChangesList::userCan($rc,Revision::DELETED_TEXT) ) {
+		if ( !ChangesList::userCan( $rc, Revision::DELETED_TEXT, $this->getUser() ) ) {
 			$showdifflinks = false;
 		}
 
@@ -883,7 +884,7 @@ class EnhancedChangesList extends ChangesList {
 		$r .= ' ';
 		if( !$allLogs ) {
 			$r .= '(';
-			if( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT ) ) {
+			if( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$r .= $nchanges[$n];
 			} elseif( $isnew ) {
 				$r .= $nchanges[$n];
@@ -972,7 +973,7 @@ class EnhancedChangesList extends ChangesList {
 			if( $type == RC_LOG ) {
 				$link = $rcObj->timestamp;
 			# Revision link
-			} elseif( !ChangesList::userCan($rcObj,Revision::DELETED_TEXT) ) {
+			} elseif( !ChangesList::userCan( $rcObj, Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$link = '<span class="history-deleted">'.$rcObj->timestamp.'</span> ';
 			} else {
 				if ( $rcObj->unpatrolled && $type == RC_NEW) {

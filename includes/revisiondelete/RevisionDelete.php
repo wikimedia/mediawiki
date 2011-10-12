@@ -132,11 +132,11 @@ class RevDel_RevisionItem extends RevDel_Item {
 	}
 
 	public function canView() {
-		return $this->revision->userCan( Revision::DELETED_RESTRICTED );
+		return $this->revision->userCan( Revision::DELETED_RESTRICTED, $this->list->getUser() );
 	}
 
 	public function canViewContent() {
-		return $this->revision->userCan( Revision::DELETED_TEXT );
+		return $this->revision->userCan( Revision::DELETED_TEXT, $this->list->getUser() );
 	}
 
 	public function getBits() {
@@ -509,11 +509,11 @@ class RevDel_FileItem extends RevDel_Item {
 	}
 
 	public function canView() {
-		return $this->file->userCan( File::DELETED_RESTRICTED );
+		return $this->file->userCan( File::DELETED_RESTRICTED, $this->list->getUser() );
 	}
 
 	public function canViewContent() {
-		return $this->file->userCan( File::DELETED_FILE );
+		return $this->file->userCan( File::DELETED_FILE, $this->list->getUser() );
 	}
 
 	public function getBits() {
@@ -596,7 +596,7 @@ class RevDel_FileItem extends RevDel_Item {
 	 * @return string HTML
 	 */
 	protected function getUserTools() {
-		if( $this->file->userCan( Revision::DELETED_USER ) ) {
+		if( $this->file->userCan( Revision::DELETED_USER, $this->list->getUser() ) ) {
 			$link = Linker::userLink( $this->file->user, $this->file->user_text ) .
 				Linker::userToolLinks( $this->file->user, $this->file->user_text );
 		} else {
@@ -615,7 +615,7 @@ class RevDel_FileItem extends RevDel_Item {
 	 * @return string HTML
 	 */
 	protected function getComment() {
-		if( $this->file->userCan( File::DELETED_COMMENT ) ) {
+		if( $this->file->userCan( File::DELETED_COMMENT, $this->list->getUser() ) ) {
 			$block = Linker::commentBlock( $this->file->description );
 		} else {
 			$block = ' ' . wfMsgHtml( 'rev-deleted-comment' );
@@ -807,7 +807,7 @@ class RevDel_LogItem extends RevDel_Item {
 	}
 
 	public function canView() {
-		return LogEventsList::userCan( $this->row, Revision::DELETED_RESTRICTED );
+		return LogEventsList::userCan( $this->row, Revision::DELETED_RESTRICTED, $this->list->getUser() );
 	}
 
 	public function canViewContent() {

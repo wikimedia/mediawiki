@@ -300,11 +300,11 @@ class RevisionItem extends RevisionItemBase {
 	}
 
 	public function canView() {
-		return $this->revision->userCan( Revision::DELETED_RESTRICTED );
+		return $this->revision->userCan( Revision::DELETED_RESTRICTED, $this->context->getUser() );
 	}
 
 	public function canViewContent() {
-		return $this->revision->userCan( Revision::DELETED_TEXT );
+		return $this->revision->userCan( Revision::DELETED_TEXT, $this->context->getUser() );
 	}
 
 	public function isDeleted() {
