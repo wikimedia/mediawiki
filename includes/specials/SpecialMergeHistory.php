@@ -296,31 +296,6 @@ class SpecialMergeHistory extends SpecialPage {
 		return "<li>$checkBox ($last) $pageLink . . $userLink $stxt $comment</li>";
 	}
 
-	/**
-	 * Fetch revision text link if it's available to all users
-	 * @return string
-	 */
-	function getPageLink( $row, $titleObj, $ts, $target ) {
-		if( !$this->userCan( $row, Revision::DELETED_TEXT ) ) {
-			return '<span class="history-deleted">' .
-				$this->getLang()->timeanddate( $ts, true ) . '</span>';
-		} else {
-			$link = Linker::linkKnown(
-				$titleObj,
-				$this->getLang()->timeanddate( $ts, true ),
-				array(),
-				array(
-					'target' => $target,
-					'timestamp' => $ts
-				)
-			);
-			if( $this->isDeleted( $row, Revision::DELETED_TEXT ) ) {
-				$link = '<span class="history-deleted">' . $link . '</span>';
-			}
-			return $link;
-		}
-	}
-
 	function merge() {
 		# Get the titles directly from the IDs, in case the target page params
 		# were spoofed. The queries are done based on the IDs, so it's best to
