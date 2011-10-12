@@ -1114,27 +1114,27 @@ De deur $3 op-egeven reden is ''$2''",
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].",
 'rev-deleted-text-unhide'     => "Disse bewarking is '''vortedaon'''.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].
-As beheerder ku'j [$1 disse versie bekieken] a'j willen.",
+Je kunnen [$1 disse versie bekieken] a'j willen.",
 'rev-suppressed-text-unhide'  => "Disse bewarking is '''onderdrokt'''.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek mit onderdrokten informasie].
-As beheerder ku'j [$1 disse versie bekieken] a'j willen.",
+Je kunnen [$1 disse versie bekieken] a'j willen.",
 'rev-deleted-text-view'       => "Disse bewarking is '''vortedaon'''.
-As beheerder van disse wiki ku'j t wel zien; as der meer informasie is, ku'j dat vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
+Je kunnnen t bekieken; as der meer informasie is, ku'j dat vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
 'rev-suppressed-text-view'    => "Disse bewarking is '''onderdrok'''.
-As beheerder van disse wiki ku'j t wel zien; as der meer informasie is, ku'j dat vienen in t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokten versies].",
+Je kunnen t bekieken; as der meer informasie is, ku'j dat vienen in t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokten versies].",
 'rev-deleted-no-diff'         => "Je kunnen de verschillen niet bekieken umdat één van de versies '''vortedaon''' is.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].",
 'rev-suppressed-no-diff'      => "Je kunnen de verschillen niet bekieken umdat één van de versies '''vortedaon''' is.",
 'rev-deleted-unhide-diff'     => "Eén van de bewarkingen in disse vergeliekingen is '''vortedaon'''.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].
-As beheerder ku'j [$1 de verschillen bekieken] a'j willen.",
+Je kunnen [$1 de verschillen bekieken] a'j willen.",
 'rev-suppressed-unhide-diff'  => "Eén van de bewarkingen in disse vergeliekingen is '''vortedaon'''.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek mit onderdrokten informasie].
-As beheerder ku'j [$1 de verschillen bekieken] a'j willen.",
+Je kunnen [$1 de verschillen bekieken] a'j willen.",
 'rev-deleted-diff-view'       => "Eén van de bewarkingen veur de verschillen die'j op-evreugen hebben, is '''vortedaon'''.
-As beheerder ku'j disse verschillen bekieken. Misschien steet der meer over in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
+Je kunnen disse verschillen bekieken. Misschien steet der meer over in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
 'rev-suppressed-diff-view'    => "Eén van de bewarkingen veur de verschillen die'j op-evreugen hebben, is '''onderdrokt'''.
-As beheerder ku'j disse verschillen bekieken. Misschien steet der over in t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokten versies].",
+Je kunnen disse verschillen bekieken. Misschien steet der over in t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokten versies].",
 'rev-delundel'                => 'bekiek/verbarg',
 'rev-showdeleted'             => 'bekiek',
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
@@ -1468,12 +1468,12 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'group-suppress'      => 'toezichthouwers',
 'group-all'           => '(alles)',
 
-'group-user-member'          => 'gebruker',
-'group-autoconfirmed-member' => 'an-emelde gebruker',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'beheerder',
-'group-bureaucrat-member'    => 'burokraot',
-'group-suppress-member'      => 'toezichthouwer',
+'group-user-member'          => '{{GENDER:$1|gebruker}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|autobevestigden gebruker}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|beheerder}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|burokraot}}',
+'group-suppress-member'      => '{{GENDER:$1|toezichthouwer}}',
 
 'grouppage-user'          => '{{ns:project}}:Gebrukers',
 'grouppage-autoconfirmed' => '{{ns:project}}:An-emelde gebrukers',
@@ -1671,6 +1671,7 @@ Zie de [[Special:NewFiles|uutstalling mit media]] veur n overzichte.',
 'ignorewarnings'              => 'Negeer waorschuwingen',
 'minlength1'                  => 'Bestaandsnamen mutten uut tenminsten één letter bestaon.',
 'illegalfilename'             => 'Der staon karakters in bestaandsnaam "$1" die niet in namen van artikels veur maggen koemen. Geef t bestaand n aandere naam, en probeer t dan opniej toe te voegen.',
+'filename-toolong'            => 'Bestaandsnamen maggen niet langer ween as 240 bytes.',
 'badfilename'                 => 'De naam van t bestaand is ewiezigd naor "$1".',
 'filetype-mime-mismatch'      => 'De bestaandsextensie ".$1" heurt niet bie t MIME-type van t bestaand ($2).',
 'filetype-badmime'            => 'Bestaanden mit t MIME-type "$1" ma\'j hier niet opsturen.',
@@ -3566,6 +3567,9 @@ Je kunnen oek [[Special:EditWatchlist|t standardbewarkingsscharm gebruken]].",
 'watchlisttools-view' => 'Wiezigingen bekieken',
 'watchlisttools-edit' => 'Volglieste bekieken en bewarken',
 'watchlisttools-raw'  => 'Roewe volglieste bewarken',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|overleg]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekende tag "$1"',

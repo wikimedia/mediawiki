@@ -91,12 +91,12 @@ $messages = array(
 'tog-numberheadings'        => 'Вуймутым автоматик йӧн дене радамлаш',
 'tog-showtoolbar'           => 'Тӧрлатымаш ӱзгараҥам ончыкташ (JavaScript кӱлеш)',
 'tog-showtoc'               => 'Вуймут радамым ончыкташ (3 деч шуко вуймутан лаштык-влаклан)',
-'tog-rememberpassword'      => 'Тиде компьютерышто мыйын шолыпмутым шарнаш (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'      => 'Тиде компьютерышто мыйын шолыпмутым шарнаш (эн шуко $1 {{PLURAL:$1|кечылын|кечылан}})',
 'tog-watchcreations'        => 'Мыйын ыштыме лаштык-влакым эскерыме лӱмерыш ешараш',
 'tog-watchdefault'          => 'Мыйын тӧрлатыме лаштык-влакым эскерыме лӱмерыш ешараш',
 'tog-watchmoves'            => 'Мыйын лӱмым вашталтыме лаштык-влакым эскерыме лӱмерыш ешараш',
 'tog-watchdeletion'         => 'Мыйын шӧрымӧ лаштык-влакым эскерыме лӱмерыш ешараш',
-'tog-minordefault'          => 'Посна каласыме огыл дык, чыла тӧрлатымашым изи тӧрлатымаш гай палемдаш',
+'tog-minordefault'          => 'Посна каласыме огыл гын, чыла тӧрлатымашым изи тӧрлатымаш гай палемдаш',
 'tog-previewontop'          => 'Тӧрлатымаш тӧрза деч ончыч ончылгоч ончымашым шындаш',
 'tog-previewonfirst'        => 'Ончылгоч ончымашым икымше тӧрлатымаш годым ончыкташ',
 'tog-nocache'               => 'Лаштыкым кешироватлымым чараш',
@@ -338,7 +338,7 @@ $messages = array(
 'yourname'                => 'Пайдаланышын лӱмжӧ:',
 'yourpassword'            => 'Шолыпмут:',
 'yourpasswordagain'       => 'Шолыпмутым угыч пуртымаш:',
-'remembermypassword'      => 'Тиде компьютерышто мыйын шолыпмутым шарнаш (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'remembermypassword'      => 'Тиде компьютерышто мыйын шолыпмутым шарнаш (эн шуко $1 {{PLURAL:$1|кечылан|кечылан}})',
 'yourdomainname'          => 'Тендан домен:',
 'login'                   => 'Шке денет палымым ыште',
 'nav-login-createaccount' => 'Пураш/Регистрацийым эрте',
@@ -449,6 +449,7 @@ $messages = array(
 'nextrevision'           => 'Вес тӱрлык →',
 'currentrevisionlink'    => 'Кызытсе тӱрлык',
 'cur'                    => 'кызыт',
+'next'                   => 'весе',
 'last'                   => 'ончычсо',
 'page_first'             => 'икымше',
 'page_last'              => 'пытартыш',
@@ -464,6 +465,8 @@ $messages = array(
 'rev-showdeleted'           => 'ончыкташ',
 'revdelete-hide-image'      => 'Файл кӧргым шылташ',
 'revdelete-hide-user'       => 'Тӧрлатышын лӱмжым шылташ',
+'revdelete-radio-set'       => 'Йӧ',
+'revdelete-radio-unset'     => 'Уке',
 'revdel-restore'            => 'Койымашым вашталташ',
 'pagehist'                  => 'Лаштыкын эртымгорно',
 'deletedhist'               => 'Шӧрымо эртымгорно',
@@ -1072,6 +1075,9 @@ $messages = array(
 
 # Special:FilePath
 'filepath-page' => 'Файл:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Кычалаш',
 
 # Special:SpecialPages
 'specialpages'                 => 'Лӱмын ыштыме лаштык-влак',

@@ -1058,27 +1058,27 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-deleted-text-unhide'     => "Esta revisión da páxina foi '''borrada'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
-Como administrador aínda podería [$1 ver esta revisión] se quixese.",
+Aínda pode [$1 ver esta revisión] se quere.",
 'rev-suppressed-text-unhide'  => "Esta revisión da páxina foi '''suprimida'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].
-Como administrador aínda podería [$1 ver esta revisión] se quixese.",
+Aínda pode [$1 ver esta revisión] se quere.",
 'rev-deleted-text-view'       => "Esta revisión da páxina foi '''borrada'''.
-Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+Aínda ten a posibilidade de vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-suppressed-text-view'    => "Esta revisión da páxina foi '''suprimida'''.
-Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
+Aínda ten a posibilidade de vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
 'rev-deleted-no-diff'         => "Non pode ver esta diferenza porque unha das revisións foi '''borrada'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-suppressed-no-diff'      => "Non pode ver esta diferenza porque unha das revisións foi '''borrada'''.",
 'rev-deleted-unhide-diff'     => "Unha das revisións desta diferenza foi '''borrada'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
-Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
+Aínda pode [$1 ver esta diferenza] se quere.",
 'rev-suppressed-unhide-diff'  => "Unha das revisións desta diferenza foi '''suprimida'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].
-Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
+Aínda pode [$1 ver esta diferenza] se quere.",
 'rev-deleted-diff-view'       => "Unha das revisións desta diferenza foi '''borrada'''.
-Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+Aínda ten a posibilidade de vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-suppressed-diff-view'    => "Unha das revisións desta diferenza foi '''suprimida'''.
-Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
+Aínda ten a posibilidade de vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
 'rev-delundel'                => 'mostrar/agochar',
 'rev-showdeleted'             => 'mostrar',
 'revisiondelete'              => 'Borrar/restaurar revisións',
@@ -3763,7 +3763,7 @@ As imaxes móstranse na súa resolución completa; outros tipos de ficheiros in�
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcou}} automaticamente a revisión $4 da páxina "$3" como patrullada',
 'logentry-newusers-newusers'          => '$1 {{GENDER:$2|creou}} unha conta de usuario',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|creou}} unha conta de usuario',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|creou}} {{GENDER:$4|unha conta de usuario}} $3',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|creou}} unha conta de {{GENDER:$4|usuario|usuaria}} $3',
 'logentry-newusers-autocreate'        => 'A conta $1 {{GENDER:$2|creouse}} automaticamente',
 'newuserlog-byemail'                  => 'contrasinal enviado por correo electrónico',
 

@@ -496,7 +496,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(Fortsetzung)',
 'index-category'                 => 'Indizierte Seiten',
 'noindex-category'               => 'Nichtindizierte Seiten',
-'broken-file-category'           => 'Seiten mit kaputten Dateilinks',
+'broken-file-category'           => 'Seiten mit defekten Dateilinks',
 
 'about'         => 'Über',
 'article'       => 'Seite',

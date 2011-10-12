@@ -1436,12 +1436,12 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'group-suppress'      => 'häivytysoikeuden käyttäjät',
 'group-all'           => '(kaikki)',
 
-'group-user-member'          => 'käyttäjä',
-'group-autoconfirmed-member' => 'automaattisesti hyväksytty käyttäjä',
-'group-bot-member'           => 'botti',
-'group-sysop-member'         => 'ylläpitäjä',
-'group-bureaucrat-member'    => 'byrokraatti',
-'group-suppress-member'      => 'häivytysoikeuden käyttäjä',
+'group-user-member'          => '{{GENDER:$1|käyttäjä}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automaattisesti hyväksytty käyttäjä}}',
+'group-bot-member'           => '{{GENDER:$1|botti}}',
+'group-sysop-member'         => '{{GENDER:$1|ylläpitäjä}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|byrokraatti}}',
+'group-suppress-member'      => '{{GENDER:$1|häivytysoikeuden käyttäjä}}',
 
 'grouppage-user'          => '{{ns:project}}:Käyttäjät',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automaattisesti hyväksytyt käyttäjät',
@@ -3505,6 +3505,9 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 'watchlisttools-view' => 'Näytä muutokset',
 'watchlisttools-edit' => 'Muokkaa listaa',
 'watchlisttools-raw'  => 'Lista raakamuodossa',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|keskustelu]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tuntematon laajennuskoodi ”$1”.',

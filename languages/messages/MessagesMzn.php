@@ -194,6 +194,7 @@ $messages = array(
 'listingcontinuesabbrev'   => '(دمباله)',
 'index-category'           => 'صفحه‌ئون نمایه بَیی',
 'noindex-category'         => 'صفحه‌ئون نمایه نَیی',
+'broken-file-category'     => 'صفحه‌ئونی که اتا عکس اسا وشون سر دنی‌یه',
 
 'about'         => 'درباره',
 'article'       => 'صفحه‌ی بنویشته‌ئون',

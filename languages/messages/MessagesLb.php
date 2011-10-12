@@ -3419,6 +3419,9 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'watchlisttools-edit' => 'Iwwerwaachungslëscht weisen an änneren',
 'watchlisttools-raw'  => 'Net-formatéiert Iwwerwaachungslëscht änneren',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|Diskussioun]])</sup>',
+
 # Core parser functions
 'unknown_extension_tag' => 'Onbekannten Erweiderungs-Tag "$1"',
 'duplicate-defaultsort' => 'Opgepasst: Den Zortéierschlëssel "$2" iwwerschreift de viregen Zortéierschlëssel "$1".',

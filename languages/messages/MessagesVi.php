@@ -1100,27 +1100,27 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-deleted-text-unhide'     => "Phiên bản này đã bị '''xóa'''.
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
-Vì là bảo quản viên, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
+Bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
 'rev-suppressed-text-unhide'  => "Phiên bản này đã bị '''giấu'''.
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].
-Vì là bảo quản viên, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
+Bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
 'rev-deleted-text-view'       => "Phiên bản này đã bị '''xóa'''.
-Vì là bảo quản viên bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-suppressed-text-view'    => "Phiên bản này đã bị '''giấu'''.
-Vì là bảo quản viên bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
+Bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
 'rev-deleted-no-diff'         => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-suppressed-no-diff'      => "Bạn không thể xem khác biệt vì một trong hai phiên bản đã bị '''xóa'''.",
 'rev-deleted-unhide-diff'     => "Một trong những phiên bản của khác biệt này đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
-Vì là bảo quản viên, bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
+Bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
 'rev-suppressed-unhide-diff'  => "Một trong các phiên bản trong lần so sánh này đã được '''ẩn giấu'''.
 Bạn có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình ẩn giấu].
-Là bảo quản viên bạn vẫn có thể [$1 so sánh khác biệt] nếu bạn muốn.",
+Bạn vẫn có thể [$1 so sánh khác biệt] nếu bạn muốn.",
 'rev-deleted-diff-view'       => "Một trong những phiên bản trong khác biệt này đã bị '''xóa'''.
-Là bảo quản viên bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-suppressed-diff-view'    => "Trong trong những phiên bản trong khác biệt này đã bị '''ẩn giấu'''.
-Là bảo quản viên bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình ẩn giấu].",
+Bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình ẩn giấu].",
 'rev-delundel'                => 'hiện/ẩn',
 'rev-showdeleted'             => 'hiện',
 'revisiondelete'              => 'Xóa hay phục hồi phiên bản',
@@ -3696,6 +3696,9 @@ Bạn cũng có thể [[Special:EditWatchlist|dùng trang sửa đổi bình th�
 'hebrew-calendar-m10' => 'Tamuz',
 'hebrew-calendar-m11' => 'Av',
 'hebrew-calendar-m12' => 'Elul',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|thảo luận]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Không hiểu thẻ mở rộng “$1”',

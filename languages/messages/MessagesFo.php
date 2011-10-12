@@ -344,9 +344,9 @@ $messages = array(
 'nstab-project'   => 'Verkætlanarsíða',
 'nstab-image'     => 'Mynd',
 'nstab-mediawiki' => 'Grein',
-'nstab-template'  => 'Formur',
+'nstab-template'  => 'Fyrimynd',
 'nstab-help'      => 'Hjálp',
-'nstab-category'  => 'Flokkur',
+'nstab-category'  => 'Bólkur',
 
 # Main script and global functions
 'nosuchaction'      => 'Ongin slík gerð',
@@ -1109,8 +1109,9 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'metadata' => 'Metadáta',
 
 # EXIF tags
-'exif-artist'    => 'Rithøvundur',
-'exif-copyright' => 'Upphavsrætt haldari',
+'exif-artist'      => 'Rithøvundur',
+'exif-copyright'   => 'Upphavsrætt haldari',
+'exif-iimcategory' => 'Bólkur',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alt',

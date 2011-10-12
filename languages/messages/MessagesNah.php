@@ -704,9 +704,9 @@ Intlā ticnequi, tlācah quimatīzqueh motequi.',
 'group-sysop' => 'Tlahcuilōlpixqueh',
 'group-all'   => '(mochīntīn)',
 
-'group-user-member'  => 'Tlatequitiltilīlli',
-'group-bot-member'   => 'Tepoztlācatl',
-'group-sysop-member' => 'Tlahcuilōlpixqui',
+'group-user-member'  => '{{GENDER:$1|tlatequitiltilīlli}}',
+'group-bot-member'   => '{{GENDER:$1|tepozcuāyōllōtl}}',
+'group-sysop-member' => '{{GENDER:$1|tētlamahmacani}}',
 
 'grouppage-user'  => '{{ns:project}}:Tlatequitiltilīlli',
 'grouppage-bot'   => '{{ns:project}}:Tepoztlācah',
@@ -849,7 +849,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'filehist-user'             => 'Tlatequitiltilīlli',
 'filehist-dimensions'       => 'Octacayōtl',
 'filehist-comment'          => 'TlahtōIcaquiliztīlōni',
-'imagelinks'                => 'Īxiphuīc tzonhuiliztli',
+'imagelinks'                => 'Tlahcuilōlli tlanemītīliztli',
 'linkstoimage'              => 'Inīn {{PLURAL:$1|zāzanilli tzonhuilia|$1 zāzaniltin tzonhuiliah}} inīn tlahcuilōlhuīc:',
 'nolinkstoimage'            => 'Ahmo cateh zāzaniltin tlein tzonhuiliah inīn tlahcuilōlhuīc.',
 'morelinkstoimage'          => 'Tiquinttāz [[Special:WhatLinksHere/$1|achi tzonhuiliztli]] inīn tlahcuilōlhuīc.',
@@ -1486,9 +1486,9 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 # Special:SpecialPages
 'specialpages'                 => 'Nònkuâkìskàtlaìxtlapaltìn',
 'specialpages-note'            => '----
-* Kèn sanỉman nònkuâkìskàtlaìxtlapaltìn.
-* <span class="mw-specialpagerestricted>Âmò tlakàwiltìn nònkuâkìskàtlaìxtlapaltìn.</span>
-* <span class="mw-specialpagecached">Tlatlaìxkopìnèuhtìn nònkuâkìskàtlaìxtlapaltìn.</span>',
+* Yeliztli nōncuahquīzqui āmatl.
+* <span class="mw-specialpagerestricted">Tlaquīxtīlli nōncuahquīzqui āmatl.</span>
+* <span class="mw-specialpagecached">Tlatlātīlli nōncuahquīzqui āmatl (aocmo monemitīa).</span>',
 'specialpages-group-other'     => 'Oksẻki nònkuâkìskàtlaìxtlapaltìn',
 'specialpages-group-login'     => 'Ximocalaqui / ximomachiyōmaca',
 'specialpages-group-changes'   => 'Yancuīc tlapatlaliztli īhuān tlahcuilōlloh',
