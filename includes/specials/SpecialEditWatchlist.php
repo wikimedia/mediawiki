@@ -28,10 +28,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	 * @param $mode int
 	 */
 	public function execute( $mode ) {
-		if( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
-
 		$this->setHeaders();
 
 		$out = $this->getOutput();
@@ -47,6 +43,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			);
 			$out->addHTML( wfMessage( 'watchlistanontext' )->rawParams( $llink )->parse() );
 			return;
+		}
+
+		if ( wfReadOnly() ) {
+			throw new ReadOnlyError;
 		}
 
 		$this->outputHeader();
