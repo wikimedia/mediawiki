@@ -24,6 +24,7 @@
  * @author Byrial
  * @author Claudia Hattitten
  * @author Codex Sinaiticus
+ * @author Crt
  * @author Dalibor Bosits
  * @author Darth Kule
  * @author Deadelf
@@ -3703,13 +3704,13 @@ Lempel-Ziv & Welch algorithm',
 CCW is an abbreviation for counter-clockwise',
 'exif-orientation-6' => '0th row: right; 0th column: top
 
-CW is an abbreviation for clockwise',
+CCW is an abbreviation for counter-clockwise.',
 'exif-orientation-7' => '0th row: right; 0th column: bottom
 
 CW is an abbreviation for clockwise',
 'exif-orientation-8' => '0th row: left; 0th column: bottom
 
-CCW is an abbreviation for counter-clockwise.',
+CW is an abbreviation for clockwise.',
 
 'exif-xyresolution-i' => '{{Optional}} Used to format {{msg-mw|exif-xresolution}} and {{msg-mw|exif-yresolution}} if the unit is dots per inch. $1 is the number of dots/in.',
 'exif-xyresolution-c' => '{{Optional}} Used to format {{msg-mw|exif-xresolution}} and {{msg-mw|exif-yresolution}} if the unit is dots per centimetre. $1 is the number of dots/cm.',

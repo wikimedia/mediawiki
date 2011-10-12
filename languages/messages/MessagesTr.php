@@ -595,6 +595,7 @@ $1',
 'page-atom-feed'          => '"$1" Atom beslemesi',
 'red-link-title'          => '$1 (sayfa mevcut değil)',
 'sort-descending'         => 'Azalan sıralama',
+'sort-ascending'          => 'Artan sıralama',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Madde',
@@ -836,6 +837,8 @@ Geçici şifre: $2',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-posta adresini değiştir',
+'changeemail-header'   => 'Hesabın e-posta adresini değiştirin',
+'changeemail-no-info'  => 'Bu sayfaya doğrudan ulaşabilmek için oturum açmış olmalısınız.',
 'changeemail-oldemail' => 'Mevcut E-posta adresi:',
 'changeemail-newemail' => 'Yeni E-posta adresi:',
 'changeemail-submit'   => "E-posta'yı değiştir",
@@ -940,7 +943,7 @@ ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}
 'userpage-userdoesnotexist-view'   => '"$1" kullanıcı hesabı kayıtlı değil.',
 'blocked-notice-logextract'        => 'Bu kullanıcı şuanda engellenmiş.
 Son engelleme günlüğü girdisi referans için aşağıda sağlanmıştır:',
-'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
+'clearyourcache'                   => "Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
 'usercssyoucanpreview'             => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni CSSinizi deneyin.",
 'userjsyoucanpreview'              => "'''İpucu:''' Kaydetmeden önce \"{{int:showpreview}}\"e tıklayarak yeni JavaScript'inizi test edin.",
 'usercsspreview'                   => "'''Sadece kullanıcı CSS dosyanızın önizlemesini görüyorsun.''' '''Kullanıcı CSS dosyası henüz kaydolmadı!'''",
@@ -1295,12 +1298,13 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'searchdisabled'                   => '{{SITENAME}} sitesinde arama yapma geçici olarak durdurulmuştur. Bu arada Google kullanarak {{SITENAME}} içinde arama yapabilirsiniz. Arama sitelerinde dizinlerin biraz eski kalmış olabileceğini göz önünde bulundurunuz.',
 
 # Quickbar
-'qbsettings'               => 'Hızlı erişim sütun ayarları',
-'qbsettings-none'          => 'Hiçbiri',
-'qbsettings-fixedleft'     => 'Sola sabitlendi',
-'qbsettings-fixedright'    => 'Sağa sabitlendi',
-'qbsettings-floatingleft'  => 'Sola yaslanıyor',
-'qbsettings-floatingright' => 'Sağa yaslanıyor',
+'qbsettings'                => 'Hızlı erişim sütun ayarları',
+'qbsettings-none'           => 'Hiçbiri',
+'qbsettings-fixedleft'      => 'Sola sabitlendi',
+'qbsettings-fixedright'     => 'Sağa sabitlendi',
+'qbsettings-floatingleft'   => 'Sola yaslanıyor',
+'qbsettings-floatingright'  => 'Sağa yaslanıyor',
+'qbsettings-directionality' => 'Sabit, dilinizin komut dosyasının yönüne bağlı',
 
 # Preferences page
 'preferences'                   => 'Tercihler',
@@ -1326,6 +1330,7 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'prefs-misc'                    => 'Diğer ayarlar',
 'prefs-resetpass'               => 'Parolayı değiştir',
 'prefs-changeemail'             => "E-posta'yı değiştir",
+'prefs-setemail'                => 'E-posta adresini ayarlayın',
 'prefs-email'                   => 'E-posta seçenekleri',
 'prefs-rendering'               => 'Görünüm',
 'saveprefs'                     => 'Kaydet',
@@ -1651,6 +1656,7 @@ Bir sayfaya dosya koymak için bağlantınızda aşağıdaki formlardan birini k
 'ignorewarnings'              => 'Uyarıyı önemseme',
 'minlength1'                  => 'Dosya adı en az bir harften oluşmalıdır.',
 'illegalfilename'             => '"$1" dosya adı bazı kullanılmayan karekterler içermektedir. Lütfen, yeni bir dosya adıyla tekrar deneyin.',
+'filename-toolong'            => 'Dosya isimleri 240 bayttan uzun olamaz',
 'badfilename'                 => 'Görüntü dosyasının ismi "$1" olarak değiştirildi.',
 'filetype-mime-mismatch'      => '".$1" dosya uzantısının, ($2) dosyasının MIME türüyle uyuşmadığı tespit edildi.',
 'filetype-badmime'            => '"$1" MIME tipindeki dosyaların yüklenmesine izin verilmez.',
@@ -1673,6 +1679,7 @@ Bir sayfaya dosya koymak için bağlantınızda aşağıdaki formlardan birini k
 bu dosyanın boyutu $2.',
 'largefileserver'             => 'Bu dosyanın uzunluğu sunucuda izin verilenden daha büyüktür.',
 'emptyfile'                   => 'Yüklediğiniz dosya boş görünüyor. Bunun sebebi dosya adındaki bir yazım hatası olabilir. Lütfen dosyayı gerçekten yüklemek isteyip istemediğinizden emin olun.',
+'windows-nonascii-filename'   => 'Bu wiki dosya isimlerinde özel karakter kullanımını desteklemiyor',
 'fileexists'                  => "Bu isimde bir dosya mevcut.
 Eğer değiştirmekten emin değilseniz ilk önce '''<tt>[[:$1]]</tt>''' dosyasına bir gözatın.
 [[$1|thumb]]",
@@ -1850,7 +1857,7 @@ Bir sütünun başlığına tıklayarak sıralamayı değiştirebilirsiniz.',
 'filehist-filesize'         => 'Dosya boyutu',
 'filehist-comment'          => 'Açıklama',
 'filehist-missing'          => 'Dosya kayıp',
-'imagelinks'                => 'Dosya bağlantıları',
+'imagelinks'                => 'Dosya kullanımı',
 'linkstoimage'              => 'Bu görüntü dosyasına bağlantısı olan {{PLURAL:$1|sayfa|$1 sayfa}}:',
 'linkstoimage-more'         => "$1'den fazla {{PLURAL:$1|sayfa|sayfa}} bu dosyaya bağlantı veriyor.
 Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk $1 dosyayı}} gösteriyor.
@@ -2143,6 +2150,7 @@ Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bil
 'noemailtext'          => 'Bu kullanıcı geçerli bir e-posta adresi belirtmemiş.',
 'nowikiemailtitle'     => 'E-postalara izin verilmiyor',
 'nowikiemailtext'      => 'Bu kullanıcı, diğer kullanıcılardan e-posta almamayı tercih etti.',
+'emailtarget'          => 'Alıcının kullanıcı adını giriniz',
 'emailusername'        => 'Kullanıcı Adı:',
 'emailusernamesubmit'  => 'Gönder',
 'email-legend'         => 'Diğer {{SITENAME}} kullanıcısına e-posta gönder',
@@ -2895,6 +2903,8 @@ Geçici dosya kayıp.',
 'pageinfo-header-views'     => 'Görüntüle',
 'pageinfo-subjectpage'      => 'Sayfa',
 'pageinfo-talkpage'         => 'Tartışma sayfası',
+'pageinfo-watchers'         => 'İzleyen sayısı',
+'pageinfo-edits'            => 'Değişiklik sayısı',
 'pageinfo-views'            => 'Görüntülenme sayısı',
 'pageinfo-viewsperedit'     => 'Değişiklik başına görüntüleme',
 
@@ -3122,6 +3132,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-gpsareainformation'          => 'GPS alan adı',
 'exif-gpsdatestamp'                => 'GPS zamanı',
 'exif-gpsdifferential'             => 'GPS differential correction',
+'exif-jpegfilecomment'             => 'JPEG dosyası yorumu',
 'exif-keywords'                    => 'Anahtar kelimeler',
 'exif-objectname'                  => 'Kısa başlık',
 'exif-headline'                    => 'Başlık',
@@ -3140,6 +3151,9 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-copyrighted'                 => 'Telif hakkı durumu',
 'exif-copyrightowner'              => 'Telif hakkı sahibi',
 'exif-usageterms'                  => 'Kullanım şartları',
+'exif-pngfilecomment'              => 'PNG dosyası yorumu',
+'exif-contentwarning'              => 'İçerik uyarısı',
+'exif-giffilecomment'              => 'GIF dosyası yorumu',
 
 # EXIF attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
@@ -3318,10 +3332,13 @@ Diğerleri varsayılan olarak gizlenecektir.
 
 'exif-objectcycle-a' => 'Sadece sabah',
 'exif-objectcycle-p' => 'Sadece akşam',
+'exif-objectcycle-b' => 'Gece ve gündüz',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gerçek yönü',
 'exif-gpsdirection-m' => 'Manyetik yönü',
+
+'exif-ycbcrpositioning-1' => 'Ortalanmış',
 
 'exif-dc-contributor' => 'Katkıda bulunanlar',
 'exif-dc-date'        => 'Tarih(ler)',
@@ -3330,6 +3347,8 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-dc-rights'      => 'Haklar',
 'exif-dc-source'      => 'Kaynak medya',
 'exif-dc-type'        => 'Medya türü',
+
+'exif-rating-rejected' => 'Reddedildi',
 
 'exif-isospeedratings-overflow' => "65535'den büyüktür",
 
@@ -3340,6 +3359,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-iimcategory-edu' => 'Eğitim',
 'exif-iimcategory-evn' => 'Çevre',
 'exif-iimcategory-hth' => 'Sağlık',
+'exif-iimcategory-hum' => 'İnsan ilgisi',
 'exif-iimcategory-lab' => 'Çalışma',
 'exif-iimcategory-lif' => 'Yaşam tarzı ve eğlence',
 'exif-iimcategory-pol' => 'Siyaset',
@@ -3353,6 +3373,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-urgency-normal' => 'Normal ( $1 )',
 'exif-urgency-low'    => 'Düşük ( $1 )',
 'exif-urgency-high'   => 'Yüksek ( $1 )',
+'exif-urgency-other'  => 'Kullanıcı tanımlı öncelik ($1)',
 
 # External editor support
 'edit-externally'      => 'Dosyayı harici bir uygulamayla değiştirin.',
@@ -3457,7 +3478,9 @@ Sayfayı baştan açmak isityorsanız, lütfen onaylayın.",
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'TAMAM',
+'confirm-watch-top'      => 'Bu sayfayı izleme listenize ekleyin',
 'confirm-unwatch-button' => 'TAMAM',
+'confirm-unwatch-top'    => 'Bu sayfayı izleme listenizden çıkarın',
 
 # Separators for various lists, etc.
 'percent' => '%$1',
@@ -3578,7 +3601,7 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'specialpages'                   => 'Özel sayfalar',
 'specialpages-note'              => '* Normal özel sayfalar.
 * <span class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</span>
-* <span class="mw-specialpagecached">Yalnızca önbelleğe alınan özel sayfalar.</span>',
+* <span class="mw-specialpagecached">Yalnızca önbelleğe alınan özel sayfalar (eskimiş olabilir)</span>',
 'specialpages-group-maintenance' => 'Bakım raporları',
 'specialpages-group-other'       => 'Diğer özel sayfalar',
 'specialpages-group-login'       => 'Oturum aç / hesap edin',
@@ -3654,8 +3677,11 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'sqlite-no-fts'  => '$1 tam-metin arama desteği olmaksızın',
 
 # New logging system
-'revdelete-restricted'   => 'hizmetliler için uygulanmış kısıtlamalar',
-'revdelete-unrestricted' => 'hizmetliler için kaldırılmış kısıtlamalar',
-'newuserlog-byemail'     => 'e-posta yoluyla şifre gönderilmiştir',
+'revdelete-content-unhid' => 'içerik gösterildi',
+'revdelete-summary-unhid' => 'değişiklik özeti gösterildi',
+'revdelete-uname-unhid'   => 'kullanıcı adı gösterildi',
+'revdelete-restricted'    => 'hizmetliler için uygulanmış kısıtlamalar',
+'revdelete-unrestricted'  => 'hizmetliler için kaldırılmış kısıtlamalar',
+'newuserlog-byemail'      => 'e-posta yoluyla şifre gönderilmiştir',
 
 );

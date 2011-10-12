@@ -936,8 +936,8 @@ It peule pa vëddlo.',
 
 # Suppression log
 'suppressionlog'     => 'Registr ëd le scancelassion',
-'suppressionlogtext' => "Sota a-i é na lista djë scancelament e dij blocagi che a rësguardo contnù stërmà a j'aministrator.
-Beiché la [[Special:BlockList|lista dj'IP blocà]] për la lista dij band operassionaj e dij blocagi ativ.",
+'suppressionlogtext' => "Sì-sota a-i é na lista djë scancelament e dij blocagi che a rësguardo dij contnù stërmà a j'aministrator.
+Beiché la [[Special:BlockList|lista dj'IP blocà]] për la lista dj'esclusion operassionaj e dij blocagi ativ.",
 
 # History merging
 'mergehistory'                     => 'Buté ansema je stòrie',
@@ -1211,7 +1211,7 @@ Costa anformassion a sarà pùblica.",
 'group-user-member'          => '{{GENDER:$1|utent}}',
 'group-autoconfirmed-member' => "{{GENDER:$1|utent ch'a l'é convalidasse daspërchiel|utent ch'a l'é convalidasse daspërchila}}",
 'group-bot-member'           => '{{GENDER:$1|trigomiro}}',
-'group-sysop-member'         => '{{GENDER:$1|administrator|aministratris}}',
+'group-sysop-member'         => '{{GENDER:$1|aministrator|aministratris}}',
 'group-bureaucrat-member'    => '{{GENDER:$1|mangiapapé}}',
 'group-suppress-member'      => '{{GENDER:$1|supervisor}}',
 
@@ -2040,8 +2040,8 @@ A scancelela as peul fesse darmagi a j'operassion dla base ëd dat ëd {{SITENAM
 ch'a daga da ment a lòn ch'a fa.",
 
 # Rollback
-'rollback'          => 'Dòvra na revision pì veja',
-'rollback_short'    => 'Ripristinè',
+'rollback'          => 'Gavé via le modìfiche',
+'rollback_short'    => 'Ripristiné',
 'rollbacklink'      => "ripristiné j'archivi",
 'rollbackfailed'    => "A l'é pa podusse ripristiné",
 'cantrollback'      => "As peul pa tornesse a na version pì veja: l'ùltima modìfica a l'ha fala l'ùnich utent che a l'abia travajà a cost artìcol-sì.",

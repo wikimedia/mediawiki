@@ -1392,7 +1392,7 @@ Le pagine [[Special:Watchlist|tegnùe d'ocio]] le xe in '''grosso'''.",
 'recentchangeslinked-to'       => 'Mostra solo i canbiamenti a le pagine ligà a quela indicà',
 
 # Upload
-'upload'                      => 'Carga on file',
+'upload'                      => 'Carga un file',
 'uploadbtn'                   => 'Carga file',
 'reuploaddesc'                => 'Lassa pèrdar el caricamento e torna al modulo de caricamento',
 'upload-tryagain'             => 'Invia la descrission del file modificà',

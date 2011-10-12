@@ -597,6 +597,7 @@ Fir d Bstätigung muesch em Gleich nogoh, wu Dir gschickt woren isch. Du chasch 
 'emailconfirmlink'           => 'E-Poscht-Adräss bstätige',
 'invalidemailaddress'        => 'Diä E-Mail-Adress isch nit akzeptiert worre, wil s ä ugültigs Format ghet het.
 Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
+'cannotchangeemail'          => 'E-Mail-Adrässe chönne in däm Wiki nit gänderet werde.',
 'accountcreated'             => 'S Benutzerkonto isch aagleit wore.',
 'accountcreatedtext'         => 'S Benutzerkonto $1 isch aagleit wore.',
 'createaccount-title'        => 'Aalege vum e Benutzerkonto fir {{SITENAME}}',
@@ -611,6 +612,7 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 
 # E-mail sending
 'php-mail-error-unknown' => 'Nit bekannte Fähler mit dr Funktion mail() vu PHP',
+'user-mail-no-addy'      => 'Es isch versuecht worde e E-Mail ohni Angab vunere E-Mail-Adräss z verschigge.',
 
 # Change password dialog
 'resetpass'                 => 'Passwort fir s Benutzerkonto ändere oder zrucksetze',
@@ -631,30 +633,45 @@ Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagford
 'resetpass-temp-password'   => 'Temporär Passwort:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Passwort zruggsetze',
-'passwordreset-text'           => 'Bitte des Formular uusfille, ass De E-Mail e Erinnerig zue dr Aamäldeinformatione vu Dyym Benutzerkonto iberchunnsch.',
-'passwordreset-legend'         => 'Passwort zrucksetze',
-'passwordreset-disabled'       => 'S Zrucksetze vu Passwerter isch in däm Wiki deaktiviert wore.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Gib eis vu däne Daten aa}}',
-'passwordreset-username'       => 'Benutzername:',
-'passwordreset-domain'         => 'Domain:',
-'passwordreset-email'          => 'E-Mail-Adräss:',
-'passwordreset-emailtitle'     => 'Benutzerkontoinformationen uf {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Eber mit dr IP-Adresse $1, wahrschyns Du sälber, het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). {{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft:
+'passwordreset'                    => 'Passwort zruggsetze',
+'passwordreset-text'               => 'Bitte des Formular uusfille, ass De E-Mail e Erinnerig zue dr Aamäldeinformatione vu Dyym Benutzerkonto iberchunnsch.',
+'passwordreset-legend'             => 'Passwort zrucksetze',
+'passwordreset-disabled'           => 'S Zrucksetze vu Passwerter isch in däm Wiki deaktiviert wore.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Gib eis vu däne Daten aa}}',
+'passwordreset-username'           => 'Benutzername:',
+'passwordreset-domain'             => 'Domain:',
+'passwordreset-capture'            => 'Die E-Mail aaluege?',
+'passwordreset-capture-help'       => 'Wänn du des Chäschtli aachrüüzesch, no wird die E-Mail (mit em temporäre Passwort) dir aazeigt, un au em Benutzer zuegschiggt.',
+'passwordreset-email'              => 'E-Mail-Adräss:',
+'passwordreset-emailtitle'         => 'Benutzerkontoinformationen uf {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Eber mit dr IP-Adresse $1, wahrschyns Du sälber, het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). {{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft:
 
 $2
 
 {{PLURAL:$3|Des temporär Passwort lauft|Die temporäre Passwerter laufe}} in {{PLURAL:$5|eim Tag|$5 Täg}} ab.
 Du sottsch di aamälden un e nej Passwort vergee. Wänn eber ander die Aafrog gstellt het oder Du di wider an Dyy alt Passwort chasch erinnere un s nimi wettsch ändere, chasch die Nochricht ignorieren un alsfurt Dyy alt Passwort bruche.',
-'passwordreset-emailtext-user' => 'Benutzer $1 uf {{SITENAME}} het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). {{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft:
+'passwordreset-emailtext-user'     => 'Benutzer $1 uf {{SITENAME}} het e Erinnerig an Dyyni Benutzerkonteninformatione fir {{SITENAME}} aagforderet ($4). {{PLURAL:$3|Des Benutzerkonto isch|Die Benutzerkonte sin}} mit däre E-Mail-Adräss verchnipft:
 
 $2
 
 {{PLURAL:$3|Des temporär Passwort lauft|Die temporäre Passwerter laufe}} in {{PLURAL:$5|eim Tag|$5 Täg}} ab.
 Du sottsch di aamälden un e nej Passwort vergee. Wänn eber ander die Aafrog gstellt het oder Du di wider an Dyy alt Passwort chasch erinnere un s nimi wettsch ändere, chasch die Nochricht ignorieren un alsfurt Dyy alt Passwort bruche.',
-'passwordreset-emailelement'   => 'Benutzername: $1
+'passwordreset-emailelement'       => 'Benutzername: $1
 Temporär Passwort: $2',
-'passwordreset-emailsent'      => 'E Erinnerig isch per E-Mail verschickt wore.',
+'passwordreset-emailsent'          => 'E Erinnerig isch per E-Mail verschickt wore.',
+'passwordreset-emailsent-capture'  => 'E Erinnerigsmail isch abgschiggt worde, un isch unte aazeigt.',
+'passwordreset-emailerror-capture' => 'Die Erinnerigsmail, wo unte aazeigt isch, isch generiert worde, aber de Versand aa de Benutzer isch gschyyteret: $1',
+
+# Special:ChangeEmail
+'changeemail'          => 'E-Mail-Adräss ändre',
+'changeemail-header'   => 'D E-Mail-Adräss vo däm Chonto ändre',
+'changeemail-text'     => 'Füll des Formular ganz uss, zume dyni E-Mail-Adräss ändre. Du muesch dyn Passwort aagee, zum die Änderig z bstätige.',
+'changeemail-no-info'  => 'Du muesch aagmolde sy zum uff die Syte diräkt zuegryfe z chönne.',
+'changeemail-oldemail' => 'Aktuelli E-Mail-Adräss',
+'changeemail-newemail' => 'Nöii E-Mail-Adräss:',
+'changeemail-none'     => '(nyt)',
+'changeemail-submit'   => 'E-Mail Adräss ändre',
+'changeemail-cancel'   => 'Abbräche',
 
 # Edit page toolbar
 'bold_sample'     => 'fetti Schrift',
@@ -920,29 +937,29 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'rev-deleted-user-contribs'   => '[Benutzername oder IP-Adräss uusegnuu - Bearbeitig in dr Byytragslischt versteckt]',
 'rev-deleted-text-permission' => "Die Version isch '''glescht''' wore.
 Information zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-text-unhide'     => "Die Version isch '''glescht''' wore.
-Detail stehn im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
-As Ammann chasch Du [$1 des Gleich aaluege], wänn du witt wytermache.",
-'rev-suppressed-text-unhide'  => "Die Version isch '''unterdruckt''' wore.
-Detail stehn im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdruckigs-Logbuech].
-As Ammann chasch [$1 die Version alno aaluege], wänn Du witt.",
-'rev-deleted-text-view'       => "Die Version isch '''glescht''' wore. As Amman chasch si aber alno aaluege.
-Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+'rev-deleted-text-unhide'     => "Die Version isch '''gelöscht''' worde.
+Mee Angabe chasch im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuech] finde.
+Du chasch [$1 die Version allno aaluege], wänn de wottsch.",
+'rev-suppressed-text-unhide'  => "Die Version isch '''unterdrückt''' worde.
+Mee Angabe chasch im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückigs-Logbuech] finde.
+Du chasch [$1 die Version allno aaluege], wänn de wottsch.",
+'rev-deleted-text-view'       => "Die Version isch '''glescht''' wore.
+Du chasch si allno aaluege. Details findsch im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuech].",
 'rev-suppressed-text-view'    => "Die Version isch '''unterdruckt''' wore.
-As Ammann chasch si aaluege; s cha syy, ass es Detail het im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdruckigs-Logbuech].",
+Du chasch si allno aaluege; Detail het's im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdruckigs-Logbuech].",
 'rev-deleted-no-diff'         => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''glescht''' woren isch.
 Villicht het s Detail im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
 'rev-suppressed-no-diff'      => "Du chasch dää Versionsunterschid nit bschaue, wel eini vu dr Versione '''glescht''' woren isch.",
 'rev-deleted-unhide-diff'     => "Eini vu dr Versione isch '''glescht''' wore.
-Villicht het s Detail im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
-Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
+Details het's im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
+Du chasch [$1 dä Unterschid allno aaluege] wänn Du wytermache witt.",
 'rev-suppressed-unhide-diff'  => "Eini vu dr Versione vu däne bode isch '''unterdruckt'''.
-Villicht het s Einzelheite derzue im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdruckigs-Logbuech].
-As Administrator chasch [$1 dr Unterschid allno aaluege] wänn du witt wytermache.",
+Einzelheite derzue het's im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdruckigs-Logbuech].
+Du chasch [$1 dr Unterschid allno aaluege] wänn du witt.",
 'rev-deleted-diff-view'       => "Eine vu dr Versione vu däm Unterschid isch '''glescht''' wore.
-As Ammann (Administrator) chasch dää Unterschid bschaue; villicht het s Detail im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Leschlogbuech].",
-'rev-suppressed-diff-view'    => "Eine vu dr Versione vu däm Unterschid isch '''uusbländet''' wore.
-As Ammann (Administrator) chasch dää Unterschid bschaue; villicht het s Detail im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Logbuech vu dr Uusbländige].",
+Du chasch dää Unterschid allno aaluege; Details het's im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Leschlogbuech].",
+'rev-suppressed-diff-view'    => "Eine vu dr Versione vu däm Unterschid isch '''unterdruckt''' wore.
+Du chasch dää Unterschid allno aaluege; Details het's im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückigslogbuech].",
 'rev-delundel'                => 'zeig/versteck',
 'rev-showdeleted'             => 'zeig',
 'revisiondelete'              => 'Versione lesche/widerherstelle',
@@ -1009,7 +1026,8 @@ Bitte prief d Logbiecher.',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuech',
-'suppressionlogtext' => 'Des isch s Logbuech vu dr Oversight-Aktione (Änderige vu dr Sichtbarkeit vu Versione, Bearbeitigskommentar, Benutzernäme un Benutzersperrine).',
+'suppressionlogtext' => 'Des isch s Logbuech vu dr Oversight-Aktione (Änderige vu dr Sichtbarkeit vu Versione, Bearbeitigskommentar, Benutzernäme un Benutzersperrine).
+Lueg uff d [[Special:BlockList|Lischt vo gsperrte IP-Adrässe un Benutzernäme]] für aktuell Sperre.',
 
 # History merging
 'mergehistory'                     => 'Versionsgschichte zämmefiere',
@@ -1147,6 +1165,8 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'prefs-watchlist-token'         => 'Beobachtigslischte-Chännzeiche:',
 'prefs-misc'                    => 'Verschidnigs',
 'prefs-resetpass'               => 'Passwort ändere',
+'prefs-changeemail'             => 'E-Mail Adräss ändre',
+'prefs-setemail'                => 'E-Mail-Adräss festlaie',
 'prefs-email'                   => 'E-Mail-Optione',
 'prefs-rendering'               => 'Sytedarstellig',
 'saveprefs'                     => 'Änderige spychere',
@@ -1205,7 +1225,8 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'prefs-registration'            => 'Aamäldzyt:',
 'yourrealname'                  => 'Echte Name:',
 'yourlanguage'                  => 'Sproch:',
-'yourvariant'                   => 'Variante:',
+'yourvariant'                   => 'Sproochvariante vum Inhalt:',
+'prefs-help-variant'            => 'Dyni bevorzugti Schrybvariante oder Orthographi, wo de Inhalt vo däm Wiki aazeigt drin aazeigt werde söll.',
 'yournick'                      => 'Unterschrift:',
 'prefs-help-signature'          => 'Byyträg uf Diskussionssyte sotte mit „<nowiki>~~~~</nowiki>“ unterschribe wäre, was derno in d Unterschrift mit eme Zytstämpfel umgwandlet wird.',
 'badsig'                        => 'Dr Syntax vu dr Signatur isch nid giltig; bitte d HTML iberpriefe.',
@@ -1270,12 +1291,12 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'group-suppress'      => 'Oversighter',
 'group-all'           => '(alli)',
 
-'group-user-member'          => 'Benutzer',
-'group-autoconfirmed-member' => 'Bstätigte Benutzer',
-'group-bot-member'           => 'Bötli',
-'group-sysop-member'         => 'Ammann',
-'group-bureaucrat-member'    => 'Bürokrat',
-'group-suppress-member'      => 'Oversighter',
+'group-user-member'          => '{{GENDER:$1|Benutzer|Benutzeri}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|Automatisch bstätigter Benutzer|Automatisch bstätigti Benutzeri}}',
+'group-bot-member'           => '{{GENDER:$1|Bötli}}',
+'group-sysop-member'         => '{{GENDER:$1|Ammann|Amtsfrou}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|Bürokrat|Bürokrati}}',
+'group-suppress-member'      => '{{GENDER:$1|Oversighter|Oversighterin}}',
 
 'grouppage-user'          => '{{ns:project}}:Benutzer',
 'grouppage-autoconfirmed' => '{{ns:project}}:Bstetigti Benutzer',
@@ -1344,7 +1365,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-siteadmin'             => 'Datebank sperre un entsperre',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
 'right-sendemail'             => 'E-Mail an anderi Benutzer schicke',
-'right-passwordreset'         => 'Passwort vun eme Benutzer zruggsetze ([[Special:PasswordReset|Spezialsyte]])',
+'right-passwordreset'         => 'Passwort vun eme Benutzer zruggsetze',
 
 # User rights log
 'rightslog'                  => 'Benutzerrächt-Logbuech',
@@ -1473,6 +1494,7 @@ Lueg au d [[Special:NewFiles|Galerii vu neije Dateie]] fir e visuälle Iberblick
 'ignorewarnings'              => 'Warnige ignoriere',
 'minlength1'                  => 'Dateinäme mien zmindescht e Buechstab lang syy.',
 'illegalfilename'             => 'Im Dateiname „$1“ het s zmindescht ei Zeiche, wu nit erlaubt isch. Bitte gib dr Datei e andere Name un versuech nomol si uffezlade.',
+'filename-toolong'            => 'Dateiname dürfe nit grösser wie 240 Bytes sy.',
 'badfilename'                 => 'Dr Dateiname isch in „$1“ gänderet wore.',
 'filetype-mime-mismatch'      => 'D Dateierwyterig „.$1“ passt nit zum MIME-Typ ($2).',
 'filetype-badmime'            => 'Dateie mit em MIME-Typ „$1“ derfe nit uffeglade wäre.',
@@ -2123,6 +2145,7 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 'protect-level-sysop'         => 'Nur Adminischtratore',
 'protect-summary-cascade'     => 'Kaskade',
 'protect-expiring'            => 'bis $1 (UTC)',
+'protect-expiring-local'      => 'bis $1',
 'protect-expiry-indefinite'   => 'uubschränkt',
 'protect-cascade'             => 'Kaskadesperrig – alli yybundnige Vorlage sy mitgsperrt.',
 'protect-cantedit'            => 'Du chasch der Schutzstatus vo dere Syte nid ändere, wil du kener Berächtigunge hesch, für se z bearbeite.',
@@ -2317,6 +2340,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'blocklist-userblocks'            => 'Benutzersperrine uusblände',
 'blocklist-tempblocks'            => 'Befrischteti Sperrine uusblände',
 'blocklist-addressblocks'         => 'IP-Sperrine uusblände',
+'blocklist-rangeblocks'           => 'Beryychssperre ussblände',
 'blocklist-timestamp'             => 'Zytstämpfel',
 'blocklist-target'                => 'Ziil',
 'blocklist-expiry'                => 'Gsperrt bis',
@@ -2339,6 +2363,7 @@ Go d Sperri ufhebe lueg d [[Special:IPBlockList|Lisch vu allene aktive Sperrine]
 'unblocklink'                     => 'freigä',
 'change-blocklink'                => 'Sperri ändere',
 'contribslink'                    => 'Byträg',
+'emaillink'                       => 'E-Mail abschicke',
 'autoblocker'                     => 'Automatischi Sperri, wel Du e gmeinsami IP-Adräss mit [[User:$1|Benutzer:$1]] bruchsch. Grund: „$2“.',
 'blocklogpage'                    => 'Sperrigs-Protokoll',
 'blocklog-showlog'                => 'Dää Benutzer isch schon emol gsperrt wore. S Sperrine-Logbuech git s do as Referänz:',
@@ -2560,6 +2585,8 @@ Die uf em lokale Rächner spychere un derno do uffelade.',
 'import-upload'              => 'XML-Date ufelade',
 'import-token-mismatch'      => 'D Sitzigsdate sin verlore gange. Bitte versuech es noo emool.',
 'import-invalid-interwiki'   => 'Us däm Wiki wo du aagää hesch isch kei Import mögli.',
+'import-error-edit'          => 'Die Syte „$1“ isch nit importiert worde, wyl du nit dezue berächtigt bisch, si z bearbeite.',
+'import-error-create'        => 'Die Syte „$1“ isch nit importiert worde, wyl du nit dezue berächtigt bisch, si z erstelle.',
 
 # Import log
 'importlogpage'                    => 'Import-Logbuech',
@@ -2715,7 +2742,7 @@ $1',
 'svg-long-desc'          => 'SVG-Datei, Basisgrößi: $1 × $2 Pixel, Dateigrößi: $3',
 'show-big-image'         => 'Originalgrößi',
 'show-big-image-preview' => 'Greßi vu däre Vorschau: $1.',
-'show-big-image-other'   => 'Wyteri Uflesige: $1.',
+'show-big-image-other'   => 'Wyteri {{PLURAL:$2|Ufflösig|Ufflösige}}: $1.',
 'show-big-image-size'    => '$1 × $2 Pixel',
 'file-info-gif-looped'   => 'Ändlosschlupf',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|Ramme|Ramme}}',
@@ -2734,6 +2761,13 @@ $1',
 'ilsubmit'              => 'Suech',
 'bydate'                => 'noch Datum',
 'sp-newimages-showfrom' => 'Zeig neiji Dateie ab $1, $2 Uhr',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|1 Sekund|$1 Sekunde}}',
+'minutes' => '{{PLURAL:$1|1 Minut|$1 Minute}}',
+'hours'   => '{{PLURAL:$1|1 Stund|$1 Stunde}}',
+'days'    => '{{PLURAL:$1|1 Tag|$1 Täg}}',
+'ago'     => 'vor $1',
 
 # Bad image list
 'bad_image_list' => 'Format:
@@ -3318,6 +3352,9 @@ Du chasch au d [[Special:EditWatchlist|Standard-Bearbeitigssyte]] bruuche.',
 'watchlisttools-edit' => 'normal bearbeite',
 'watchlisttools-raw'  => 'imene große Textfäld bearbeite',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|Diskussion]])</sup>',
+
 # Core parser functions
 'unknown_extension_tag' => 'Nit bekannte Extension-Tag „$1“',
 'duplicate-defaultsort' => 'Obacht: Dr Sortierigsschlüssel „$2“ iberschrybt dr vorig brucht Schlüssel „$1“.',
@@ -3415,13 +3452,16 @@ Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gsta
 'tags-hitcount'           => '$1 {{PLURAL:$1|Änderig|Änderige}}',
 
 # Special:ComparePages
-'comparepages'     => 'Syte verglyyche',
-'compare-selector' => 'Syteversione verglyyche',
-'compare-page1'    => 'Syte 1',
-'compare-page2'    => 'Syte 2',
-'compare-rev1'     => 'Version 1',
-'compare-rev2'     => 'Version 2',
-'compare-submit'   => 'Verglyyche',
+'comparepages'                => 'Syte verglyyche',
+'compare-selector'            => 'Syteversione verglyyche',
+'compare-page1'               => 'Syte 1',
+'compare-page2'               => 'Syte 2',
+'compare-rev1'                => 'Version 1',
+'compare-rev2'                => 'Version 2',
+'compare-submit'              => 'Verglyyche',
+'compare-invalid-title'       => 'Dr Sytename, wu Du aagee hesch, isch nit giltig',
+'compare-title-not-exists'    => 'Dr Sytename, wu Du aagee hesch, git s nit.',
+'compare-revision-not-exists' => 'Die Version, wu Du aagee hesch, git s nit.',
 
 # Database error messages
 'dberr-header'      => 'Des Wiki het e Probläm',
@@ -3449,8 +3489,35 @@ Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gsta
 'sqlite-no-fts'  => '$1 ohni Unterstitzig vu dr Volltextsuechi',
 
 # New logging system
-'revdelete-restricted'   => 'Yyschränkige gälte au fir Ammanne',
-'revdelete-unrestricted' => 'Yyschränkige fir Ammanne ufghobe',
-'newuserlog-byemail'     => 's Passwort isch per E-Mail gschickt wore',
+'logentry-delete-delete'              => '$1 het d Syte $3 {{GENDER:$2|glöscht}}',
+'logentry-delete-restore'             => '$1 het d Syte $3 {{GENDER:$2|wiiderhergstellt}}',
+'logentry-delete-event'               => '$1 het die Sichtbarkeit {{PLURAL:$5|vumene Logbuechyytrag|vo $5 Logbuechyyträg}} uff $3: $4 {{GENDER:$2|gänderet}}',
+'logentry-delete-revision'            => '$1 het die Sichtbarkeit {{PLURAL:$5|vunere Version|vo $5 Versione}} uff $3: $4 {{GENDER:$2|gänderet}}',
+'logentry-delete-event-legacy'        => '$1 het d Sichtbarkeit vo Logbuechyyträg uff $3 {{GENDER:$2|gänderet}}',
+'logentry-delete-revision-legacy'     => '$1 het d Sichtbarkeit vo Versione uff $3 {{GENDER:$2|gänderet}}',
+'logentry-suppress-delete'            => '$1 het d Syte $3 {{GENDER:$2|unterdrückt}}',
+'logentry-suppress-event'             => '$1 het diskret d Sichtbarkeit {{PLURAL:$5|vumene Logbuechyytrag|vo $5 Logbuechyyträg}} uff $3: $4 {{GENDER:$2|gänderet}}',
+'logentry-suppress-revision'          => '$1 het diskret d Sichtbarkeit {{PLURAL:$5|vunere Version|vo $5 Versione}} uff $3: $4 {{GENDER:$2|gänderet}}',
+'logentry-suppress-event-legacy'      => '$1 het d Sichtbarkeit vo Logbuechyyträg diskret uff $3 {{GENDER:$2|gänderet}}',
+'logentry-suppress-revision-legacy'   => '$1 het diskret d Sichtbarkeit vo Versione uff $3 {{GENDER:$2|gänderet}}',
+'revdelete-content-hid'               => 'Inhalt versteckt',
+'revdelete-summary-hid'               => 'Bearbeitigszämmefassig versteckt',
+'revdelete-uname-hid'                 => 'Benutzername versteckt',
+'revdelete-content-unhid'             => 'Inhalt füregholt',
+'revdelete-summary-unhid'             => 'Bearbeitigszämmefassig füregholt',
+'revdelete-uname-unhid'               => 'Benutzername freigee',
+'revdelete-restricted'                => 'Yyschränkige gälte au fir Ammanne',
+'revdelete-unrestricted'              => 'Yyschränkige fir Ammanne ufghobe',
+'logentry-move-move'                  => '$1 het d Syte $3 nooch $4 {{GENDER:$2|verschobe}}',
+'logentry-move-move-noredirect'       => '$1 het d Syte $3 nooch $4 {{GENDER:$2|verschobe}} ohni e Wyterleitig aazlege',
+'logentry-move-move_redir'            => '$1 het d Syte $3 nooch $4 {{GENDER:$2|verschobe}} un het debi e Wyterleitig überschrybe',
+'logentry-move-move_redir-noredirect' => '$1 het d Syte $3 nooch $4 {{GENDER:$2|verschobe}} un het debi e Wyterleitig überschrybe, ohni sälber eini aazlege',
+'logentry-patrol-patrol'              => '$1 het Version $4 vo Syte $3 als kontrolliert {{GENDER:$2|markiert}}',
+'logentry-patrol-patrol-auto'         => '$1 het Version $4 vo Syte $3 automatisch als kontrolliert {{GENDER:$2|markiert}}',
+'logentry-newusers-newusers'          => '$1 het en Benutzerchonto {{GENDER:$2|erstellt}}',
+'logentry-newusers-create'            => '$1 het en Benutzerchonto {{GENDER:$2|erstellt}}',
+'logentry-newusers-create2'           => '$1 het {{GENDER:$4|en Benutzerchonto}} $3 {{GENDER:$2|erstellt}}',
+'logentry-newusers-autocreate'        => 'S Benutzerchonto $1 isch automatisch {{GENDER:$2|erstellt}} worde',
+'newuserlog-byemail'                  => 's Passwort isch per E-Mail gschickt wore',
 
 );

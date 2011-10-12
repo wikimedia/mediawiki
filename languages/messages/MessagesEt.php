@@ -1081,28 +1081,28 @@ See võib olla vikist kustutatud või ümber nimetatud.
 'rev-deleted-text-permission' => "See lehekülje redaktsioon on '''kustutatud'''.
 Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
 'rev-deleted-text-unhide'     => "See lehekülje redaktsioon on '''kustutatud'''.
-Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].
-Administraatorina võid [$1 seda redaktsiooni] näha, kui soovid jätkata.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib leiduda üksikasju.
+Soovi korral saad siiski [$1 seda redaktsiooni] näha.",
 'rev-suppressed-text-unhide'  => "See redaktsioon leheküljest on '''varjatud'''.
-Võimalik, et [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} varjamislogis] on üksikasju.
-Ülemana saad soovi korral siiski [$1 seda redaktsiooni vaadata].",
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib leiduda üksikasju.
+Saad soovi korral siiski [$1 seda redaktsiooni vaadata].",
 'rev-deleted-text-view'       => "See lehekülje redaktsioon on '''kustutatud'''.
-Administraatorina võid seda näha. Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
+Saad seda näha. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib leiduda üksikasju.",
 'rev-suppressed-text-view'    => "See redaktsioon leheküljest on '''varjatud'''.
-Ülemana saad seda vaadata. Võimalik, et üksikasjad on [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} varjamislogis].",
+Saad seda vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib leiduda üksikasju.",
 'rev-deleted-no-diff'         => "Seda erinevust ei saa vaadata, kuna üks redaktsioonidest on '''kustutatud'''.
 Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
 'rev-suppressed-no-diff'      => "Erinevusi ei saa vaadata, sest üks redaktsioonidest on '''kustutatud'''.",
 'rev-deleted-unhide-diff'     => "Üks selle lehekülje muudatustest on '''kustutatud'''.
-Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].
-Administraatorina võid [$1 seda muudatust] näha, kui soovid jätkata.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib leiduda üksikasju.
+Soovi korral saad siiski [$1 seda muudatust] näha.",
 'rev-suppressed-unhide-diff'  => "Üks selle lehekülje muudatustest on '''varjatud'''.
-Üksikasju võib olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} varjamislogis].
-Administraatorina saad soovi korral siiski [$1 seda muudatust vaadata].",
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib leiduda üksikasju.
+Saad soovi korral siiski [$1 seda muudatust vaadata].",
 'rev-deleted-diff-view'       => "Üks selle lehekülje muudatustest on '''kustutatud'''.
-Administraatorina saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib üksikasju olla.",
+Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib leiduda üksikasju.",
 'rev-suppressed-diff-view'    => "Üks selle lehekülje muudatustest on '''varjatud'''.
-Administraatorina saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib üksikasju olla.",
+Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib üksikasju olla.",
 'rev-delundel'                => 'näita/peida',
 'rev-showdeleted'             => 'näita',
 'revisiondelete'              => 'Redaktsioonide kustutamine või taastamine',
@@ -1170,7 +1170,7 @@ Palun vaata logisid.',
 # Suppression log
 'suppressionlog'     => 'Varjamislogi',
 'suppressionlogtext' => 'Allpool on nimekiri kustutamistest ja blokeeringutest, millega kaasneb administraatorite eest sisu varjamine.
-Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-aadresside loendist]].',
+Jõus olevad keelud ja blokeeringud leiad [[Special:BlockList|blokeeritud IP-aadresside loendist]].',
 
 # History merging
 'mergehistory'                     => 'Ühenda lehtede ajalood',

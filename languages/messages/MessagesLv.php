@@ -741,7 +741,7 @@ Lūdzu, pārbaudi zemāk redzamajā salīdzinājumā, vai tu to tiešām vēlies
 $3 norādītais iemesls ir ''$2''",
 
 # History pages
-'viewpagelogs'           => 'Apskatīties ar šo lapu saistītos reģistru ierakstus',
+'viewpagelogs'           => 'Apskatīt ar šo lapu saistītos reģistru ierakstus',
 'nohistory'              => 'Šai lapai nav pieejama versiju hronoloģija.',
 'currentrev'             => 'Pašreizējā versija',
 'currentrev-asof'        => 'Pašreizējā versija, $1',
