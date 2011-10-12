@@ -557,10 +557,11 @@ class LogEventsList {
 	 *
 	 * @param $row Row
 	 * @param $field Integer
+	 * @param $user User object to check, or null to use $wgUser
 	 * @return Boolean
 	 */
-	public static function userCan( $row, $field ) {
-		return self::userCanBitfield( $row->log_deleted, $field );
+	public static function userCan( $row, $field, User $user = null ) {
+		return self::userCanBitfield( $row->log_deleted, $field, $user );
 	}
 
 	/**
@@ -569,19 +570,22 @@ class LogEventsList {
 	 *
 	 * @param $bitfield Integer (current field)
 	 * @param $field Integer
+	 * @param $user User object to check, or null to use $wgUser
 	 * @return Boolean
 	 */
-	public static function userCanBitfield( $bitfield, $field ) {
+	public static function userCanBitfield( $bitfield, $field, User $user = null ) {
 		if( $bitfield & $field ) {
-			global $wgUser;
-
 			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
 				$permission = 'suppressrevision';
 			} else {
 				$permission = 'deletedhistory';
 			}
 			wfDebug( "Checking for $permission due to $field match on $bitfield\n" );
-			return $wgUser->isAllowed( $permission );
+			if ( $user === null ) {
+				global $wgUser;
+				$user = $wgUser;
+			}
+			return $user->isAllowed( $permission );
 		} else {
 			return true;
 		}

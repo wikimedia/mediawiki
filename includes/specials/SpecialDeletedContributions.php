@@ -184,7 +184,7 @@ class DeletedContribsPager extends IndexPager {
 		$comment = Linker::revComment( $rev );
 		$date = htmlspecialchars( $this->getLang()->timeanddate( $rev->getTimestamp(), true ) );
 
-		if( !$user->isAllowed('undelete') || !$rev->userCan(Revision::DELETED_TEXT) ) {
+		if( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$link = $date; // unusable link
 		} else {
 			$link = Linker::linkKnown(

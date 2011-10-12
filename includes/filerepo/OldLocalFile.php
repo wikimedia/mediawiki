@@ -205,11 +205,12 @@ class OldLocalFile extends LocalFile {
 	 * field of this image file, if it's marked as deleted.
 	 *
 	 * @param $field Integer
+	 * @param $user User object to check, or null to use $wgUser
 	 * @return bool
 	 */
-	function userCan( $field ) {
+	function userCan( $field, User $user = null ) {
 		$this->load();
-		return Revision::userCanBitfield( $this->deleted, $field );
+		return Revision::userCanBitfield( $this->deleted, $field, $user );
 	}
 	
 	/**

@@ -616,8 +616,9 @@ class ContribsPager extends ReverseChronologicalPager {
 				$topmarktext .= ' '.Linker::generateRollback( $rev );
 			}
 		}
+		$user = $this->getUser();
 		# Is there a visible previous revision?
-		if( $rev->userCan( Revision::DELETED_TEXT ) && $rev->getParentId() !== 0 ) {
+		if( $rev->userCan( Revision::DELETED_TEXT, $user ) && $rev->getParentId() !== 0 ) {
 			$difftext = Linker::linkKnown(
 				$page,
 				$this->messages['diff'],
@@ -646,7 +647,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$comment = $this->getLang()->getDirMark() . Linker::revComment( $rev, false, true );
 		$date = $this->getLang()->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
-		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
+		if( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$d = Linker::linkKnown(
 				$page,
 				htmlspecialchars($date),
@@ -680,9 +681,9 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		// Don't show useless link to people who cannot hide revisions
-		$canHide = $this->getUser()->isAllowed( 'deleterevision' );
-		if( $canHide || ($rev->getVisibility() && $this->getUser()->isAllowed('deletedhistory')) ) {
-			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
+		$canHide = $user->isAllowed( 'deleterevision' );
+		if( $canHide || ($rev->getVisibility() && $user->isAllowed('deletedhistory')) ) {
+			if( !$rev->userCan( Revision::DELETED_RESTRICTED, $user ) ) {
 				$del = Linker::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
 				$query = array(

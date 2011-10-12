@@ -634,7 +634,9 @@ class SpecialUndelete extends SpecialPage {
 
 	function execute( $par ) {
 		$this->setHeaders();
-		if ( !$this->userCanExecute( $this->getUser() ) ) {
+
+		$user = $this->getUser();
+		if ( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
@@ -663,7 +665,7 @@ class SpecialUndelete extends SpecialPage {
 
 		if( is_null( $this->mTargetObj ) ) {
 			# Not all users can just browse every deleted page from the list
-			if( $this->getUser()->isAllowed( 'browsearchive' ) ) {
+			if( $user->isAllowed( 'browsearchive' ) ) {
 				$this->showSearchForm();
 
 				# List undeletable articles
@@ -685,14 +687,14 @@ class SpecialUndelete extends SpecialPage {
 			if ( !$file->exists() ) {
 				$out->addWikiMsg( 'filedelete-nofile', $this->mFilename );
 				return;
-			} elseif( !$file->userCan( File::DELETED_FILE ) ) {
+			} elseif( !$file->userCan( File::DELETED_FILE, $user ) ) {
 				if( $file->isDeleted( File::DELETED_RESTRICTED ) ) {
 					$out->permissionRequired( 'suppressrevision' );
 				} else {
 					$out->permissionRequired( 'deletedtext' );
 				}
 				return false;
-			} elseif ( !$this->getUser()->matchEditToken( $this->mToken, $this->mFilename ) ) {
+			} elseif ( !$user->matchEditToken( $this->mToken, $this->mFilename ) ) {
 				$this->showFileConfirmationForm( $this->mFilename );
 				return false;
 			} else {
@@ -772,8 +774,6 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	private function showRevision( $timestamp ) {
-		$out = $this->getOutput();
-
 		if( !preg_match( '/[0-9]{14}/', $timestamp ) ) {
 			return 0;
 		}
@@ -782,13 +782,16 @@ class SpecialUndelete extends SpecialPage {
 		wfRunHooks( 'UndeleteForm::showRevision', array( &$archive, $this->mTargetObj ) );
 		$rev = $archive->getRevision( $timestamp );
 
+		$out = $this->getOutput();
+		$user = $this->getUser();
+
 		if( !$rev ) {
 			$out->addWikiMsg( 'undeleterevision-missing' );
 			return;
 		}
 
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
+			if( !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 				$out->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1\n</div>\n", 'rev-deleted-text-permission' );
 				return;
 			} else {
@@ -804,7 +807,7 @@ class SpecialUndelete extends SpecialPage {
 			$previousRev = $archive->getPreviousRevision( $timestamp );
 			if( $previousRev ) {
 				$this->showDiff( $previousRev, $rev );
-				if( $this->getUser()->getOption( 'diffonly' ) ) {
+				if( $user->getOption( 'diffonly' ) ) {
 					return;
 				} else {
 					$out->addHTML( '<hr />' );
@@ -824,7 +827,7 @@ class SpecialUndelete extends SpecialPage {
 		$time = $this->getLang()->timeAndDate( $timestamp, true );
 		$d = $this->getLang()->date( $timestamp, true );
 		$t = $this->getLang()->time( $timestamp, true );
-		$user = Linker::revUserTools( $rev );
+		$userLink = Linker::revUserTools( $rev );
 
 		if( $this->mPreview ) {
 			$openDiv = '<div id="mw-undelete-revision" class="mw-warning">';
@@ -835,14 +838,14 @@ class SpecialUndelete extends SpecialPage {
 
 		// Revision delete links
 		if ( !$this->mDiff ) {
-			$revdel = Linker::getRevDeleteLink( $this->getUser(), $rev, $this->mTargetObj );
+			$revdel = Linker::getRevDeleteLink( $user, $rev, $this->mTargetObj );
 			if ( $revdel ) {
 				$out->addHTML( "$revdel " );
 			}
 		}
 
 		$out->addHTML( wfMessage( 'undelete-revision' )->rawParams( $link )->params(
-			$time )->rawParams( $user )->params( $d, $t )->parse() . '</div>' );
+			$time )->rawParams( $userLink )->params( $d, $t )->parse() . '</div>' );
 		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
 
 		if( $this->mPreview ) {
@@ -850,15 +853,15 @@ class SpecialUndelete extends SpecialPage {
 			$popts = $out->parserOptions();
 			$popts->setEditSection( false );
 			$out->parserOptions( $popts );
-			$out->addWikiTextTitleTidy( $rev->getText( Revision::FOR_THIS_USER ), $this->mTargetObj, true );
+			$out->addWikiTextTitleTidy( $rev->getText( Revision::FOR_THIS_USER, $user ), $this->mTargetObj, true );
 		}
 
 		$out->addHTML(
 			Xml::element( 'textarea', array(
 					'readonly' => 'readonly',
-					'cols' => intval( $this->getUser()->getOption( 'cols' ) ),
-					'rows' => intval( $this->getUser()->getOption( 'rows' ) ) ),
-				$rev->getText( Revision::FOR_THIS_USER ) . "\n" ) .
+					'cols' => intval( $user->getOption( 'cols' ) ),
+					'rows' => intval( $user->getOption( 'rows' ) ) ),
+				$rev->getText( Revision::FOR_THIS_USER, $user ) . "\n" ) .
 			Xml::openElement( 'div' ) .
 			Xml::openElement( 'form', array(
 				'method' => 'post',
@@ -874,7 +877,7 @@ class SpecialUndelete extends SpecialPage {
 			Xml::element( 'input', array(
 				'type' => 'hidden',
 				'name' => 'wpEditToken',
-				'value' => $this->getUser()->editToken() ) ) .
+				'value' => $user->editToken() ) ) .
 			Xml::element( 'input', array(
 				'type' => 'submit',
 				'name' => 'preview',
@@ -1189,7 +1192,7 @@ class SpecialUndelete extends SpecialPage {
 		if( $this->mCanView ) {
 			$titleObj = $this->getTitle();
 			# Last link
-			if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
+			if( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 				$pageLink = htmlspecialchars( $this->getLang()->timeanddate( $ts, true ) );
 				$last = wfMsgHtml( 'diff' );
 			} elseif( $remaining > 0 || ( $earliestLiveTime && $ts > $earliestLiveTime ) ) {
@@ -1250,9 +1253,10 @@ class SpecialUndelete extends SpecialPage {
 		$comment = $this->getFileComment( $file );
 
 		// Add show/hide deletion links if available
-		$canHide = $this->getUser()->isAllowed( 'deleterevision' );
-		if( $canHide || ( $file->getVisibility() && $this->getUser()->isAllowed( 'deletedhistory' ) ) ) {
-			if( !$file->userCan( File::DELETED_RESTRICTED ) ) {
+		$user = $this->getUser();
+		$canHide = $user->isAllowed( 'deleterevision' );
+		if( $canHide || ( $file->getVisibility() && $user->isAllowed( 'deletedhistory' ) ) ) {
+			if( !$file->userCan( File::DELETED_RESTRICTED, $user ) ) {
 				$revdlink = Linker::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 			} else {
 				$query = array(
@@ -1279,7 +1283,7 @@ class SpecialUndelete extends SpecialPage {
 	function getPageLink( $rev, $titleObj, $ts ) {
 		$time = htmlspecialchars( $this->getLang()->timeanddate( $ts, true ) );
 
-		if( !$rev->userCan( Revision::DELETED_TEXT ) ) {
+		if( !$rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 			return '<span class="history-deleted">' . $time . '</span>';
 		} else {
 			$link = Linker::linkKnown(
@@ -1305,7 +1309,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	function getFileLink( $file, $titleObj, $ts, $key ) {
-		if( !$file->userCan( File::DELETED_FILE ) ) {
+		if( !$file->userCan( File::DELETED_FILE, $this->getUser() ) ) {
 			return '<span class="history-deleted">' . $this->getLang()->timeanddate( $ts, true ) . '</span>';
 		} else {
 			$link = Linker::linkKnown(
@@ -1332,7 +1336,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	function getFileUser( $file ) {
-		if( !$file->userCan( File::DELETED_USER ) ) {
+		if( !$file->userCan( File::DELETED_USER, $this->getUser() ) ) {
 			return '<span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
 			$link = Linker::userLink( $file->getRawUser(), $file->getRawUserText() ) .
@@ -1351,7 +1355,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	function getFileComment( $file ) {
-		if( !$file->userCan( File::DELETED_COMMENT ) ) {
+		if( !$file->userCan( File::DELETED_COMMENT, $this->getUser() ) ) {
 			return '<span class="history-deleted"><span class="comment">' .
 				wfMsgHtml( 'rev-deleted-comment' ) . '</span></span>';
 		} else {
