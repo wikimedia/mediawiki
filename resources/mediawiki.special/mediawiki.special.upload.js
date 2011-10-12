@@ -19,12 +19,13 @@ jQuery( function( $ ) {
 	 * Also excludes files over 10M to avoid going insane on memory usage.
 	 *
 	 * @todo is there a way we can ask the browser what's supported in <img>s?
+	 * @todo put SVG back after working around Firefox 7 bug <https://bugzilla.wikimedia.org/show_bug.cgi?id=31643>
 	 *
 	 * @param {File} file
 	 * @return boolean
 	 */
 	function fileIsPreviewable( file ) {
-		var	known = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'],
+		var	known = ['image/png', 'image/gif', 'image/jpeg'],
 			tooHuge = 10 * 1024 * 1024;
 		return ( $.inArray( file.type, known ) !== -1 ) && file.size > 0 && file.size < tooHuge;
 	}
