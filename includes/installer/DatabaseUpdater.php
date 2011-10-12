@@ -186,7 +186,7 @@ abstract class DatabaseUpdater {
 	 * @param $sqlPath string
 	 */
 	public function addExtensionField( $tableName, $columnName, $sqlPath ) {
-		$this->extensionUpdates[] = array( 'addField', $tableName, $columnName, $sqlPath );
+		$this->extensionUpdates[] = array( 'addField', $tableName, $columnName, $sqlPath, true );
 	}
 
 	/**
