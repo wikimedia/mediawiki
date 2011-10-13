@@ -1860,9 +1860,9 @@ Faylnı işletip işletim sistemañızğa zarar ketirip olursıñız.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
-'seconds-abbrev' => 'san.',
-'minutes-abbrev' => 'daq.',
-'hours-abbrev'   => 'saat',
+'seconds-abbrev' => '$1san.',
+'minutes-abbrev' => '$1daq.',
+'hours-abbrev'   => '$1saat',
 
 # Bad image list
 'bad_image_list' => 'Format böyle olmalı:

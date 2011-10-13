@@ -4325,6 +4325,7 @@ $messages['fo'] = array(
  * @author McDutchie
  * @author Peter17
  * @author Sherbrooke
+ * @author Urhixidur
  * @author Verdy p
  * @author Yumeki
  */
@@ -4441,8 +4442,8 @@ Ceci peut causer des problèmes, en particulier si vous utilisez le téléversem
 	'config-xml-bad' => 'Le module XML de PHP est manquant.
 MediaWiki requiert des fonctions de ce module et ne fonctionnera pas avec cette configuration.
 Si vous êtes sous Mandrake, installez le paquet php-xml.',
-	'config-pcre' => "Le module de support PCRE semble manquer.
-MediaWiki requiert les fonctions d'expression régulière compatible avec Perl.",
+	'config-pcre' => 'Le module de support PCRE semble manquer.
+MediaWiki requiert les fonctions d’expressions rationnelles compatibles avec Perl.',
 	'config-pcre-no-utf8' => "'''Erreur fatale''': Le module PCRE de PHP semble être compilé sans le support PCRE_UTF8.
 MédiaWiki nécessite la gestion d’UTF-8 pour fonctionner correctement.",
 	'config-memory-raised' => 'Le paramètre <code>memory_limit</code> de PHP était à $1, porté à $2.',

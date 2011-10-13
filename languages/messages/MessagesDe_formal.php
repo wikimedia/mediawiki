@@ -275,7 +275,7 @@ Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAME
 Sie können [$1 diese Version einsehen], sofern Sie möchten.",
 'rev-suppressed-text-unhide'  => "Diese Version wurde '''unterdrückt'''.
 Nähere Angaben stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].
-Sie können sie [$1 diese Version einsehen], sofern Sie möchten.",
+Sie können [$1 diese Version einsehen], sofern Sie möchten.",
 'rev-deleted-text-view'       => "Diese Version wurde '''gelöscht'''.
 Sie können sie einsehen, sofern Sie möchten. Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
 'rev-suppressed-text-view'    => "Diese Version wurde '''unterdrückt'''.

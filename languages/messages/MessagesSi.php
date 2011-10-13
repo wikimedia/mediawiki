@@ -1381,9 +1381,9 @@ HTML ටැගයන් පිරික්සන්න.',
 
 'group-user-member'          => 'පරිශීලක',
 'group-autoconfirmed-member' => 'ස්වයං-චිරස්ථිත පරිශීලකයා',
-'group-bot-member'           => 'රොබෝවරයා',
-'group-sysop-member'         => 'පරිපාලකවරයා',
-'group-bureaucrat-member'    => 'නිලබලධාරියා',
+'group-bot-member'           => '{{GENDER:$1|රොබෝවරයා}}',
+'group-sysop-member'         => '{{GENDER:$1|පරිපාලකවරයා}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|නිලබලධාරියා}}',
 'group-suppress-member'      => 'ප්‍රමාද දෝෂය',
 
 'grouppage-user'          => '{{ns:project}}:පරිශිලකයෝ',
@@ -2963,9 +2963,9 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2×$3',
-'seconds-abbrev' => 'තත්',
-'minutes-abbrev' => 'විනා',
-'hours-abbrev'   => 'පැය',
+'seconds-abbrev' => '$1තත්',
+'minutes-abbrev' => '$1විනා',
+'hours-abbrev'   => '$1පැය',
 'ago'            => '$1 පෙර',
 
 # Bad image list

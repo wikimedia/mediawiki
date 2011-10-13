@@ -2369,8 +2369,8 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
-'minutes-abbrev' => 'mïn',
-'hours-abbrev'   => 'sağ',
+'minutes-abbrev' => '$1mïn',
+'hours-abbrev'   => '$1sağ',
 
 # Bad image list
 'bad_image_list' => 'Pişimi tömendegideý:

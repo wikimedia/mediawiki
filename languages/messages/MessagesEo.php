@@ -1120,11 +1120,11 @@ Provu [[Special:Search|serĉi en la vikio]] por rilataj novaj paĝoj.',
 'rev-deleted-text-permission' => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
 'rev-deleted-text-unhide'     => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
-Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
-Kiel administranto, vi ankoraŭ povas [$1 vidi ĉi tiun revizio] se vi volas kontinui.",
+Detaloj estas troveblaj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
+Vi ankoraŭ povas [$1 vidi ĉi tiun revizion] se vi volas kontinui.",
 'rev-suppressed-text-unhide'  => "Ĉi tiu paĝa revizio estis '''forigita'''.
-Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
-Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun revizion] se vi volas daŭrigi.",
+Detaloj estas troveblaj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
+Vi povas ankoraŭ [$1 rigardi ĉi tiun revizion] se vi volas daŭrigi.",
 'rev-deleted-text-view'       => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Kiel administranto vi povas rigardi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
 'rev-suppressed-text-view'    => "Ĉi tiu paĝa revizio estis '''forigita'''.
@@ -1478,10 +1478,10 @@ Jen hazarde generita valoro por via uzo: $1',
 'group-suppress'      => 'Superrigardoj',
 'group-all'           => '(ĉiuj)',
 
-'group-user-member'          => 'uzanto',
+'group-user-member'          => '{{GENDER:$1|uzanto|uzantino}}',
 'group-autoconfirmed-member' => 'Aŭtomate konfirmita uzanto',
-'group-bot-member'           => 'Roboto',
-'group-sysop-member'         => 'Administranto',
+'group-bot-member'           => '{{GENDER:$1|roboto}}',
+'group-sysop-member'         => '{{GENDER:$1|Administranto|Administrantino}}',
 'group-bureaucrat-member'    => 'Burokrato',
 'group-suppress-member'      => 'Superrigardo',
 

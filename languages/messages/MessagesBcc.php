@@ -2491,9 +2491,9 @@ $1',
 'sp-newimages-showfrom' => 'پیش دار نوکین فایلان شروع بینت چه $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 'س',
-'minutes-abbrev' => 'م',
-'hours-abbrev'   => 'ه',
+'seconds-abbrev' => '$1س',
+'minutes-abbrev' => '$1م',
+'hours-abbrev'   => '$1ه',
 
 # Bad image list
 'bad_image_list' => 'فرمت په داب جهلیگی انت:

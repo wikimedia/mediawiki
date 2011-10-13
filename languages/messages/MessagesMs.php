@@ -2856,7 +2856,7 @@ Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'sp-newimages-showfrom' => 'Tunjukkan imej baru bermula daripada $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 'j',
+'hours-abbrev' => '$1j',
 'seconds'      => '$1 saat',
 'minutes'      => '$1 minit',
 'hours'        => '$1 jam',

@@ -493,7 +493,7 @@ $messages = array(
 'ilsubmit' => 'Kintu',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 'o',
+'hours-abbrev' => '$1o',
 
 # EXIF tags
 'exif-artist'              => 'Che llitun mew',

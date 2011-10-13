@@ -2799,9 +2799,9 @@ Mae'n bosib y bydd eich cyfrifiadur yn cael ei danseilio wrth ddefnyddio'r ffeil
 'sp-newimages-showfrom' => "Dangos ffeiliau sy'n newydd ers: $2, $1",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 'e',
-'minutes-abbrev' => 'm',
-'hours-abbrev'   => 'a',
+'seconds-abbrev' => '$1e',
+'minutes-abbrev' => '$1m',
+'hours-abbrev'   => '$1a',
 'seconds'        => '{{PLURAL:$1|$1 eiliad}}',
 'minutes'        => '{{PLURAL:$1||$1 munud|$1 funud|$1 munud|$1 munud|$1 munud}}',
 'hours'          => '{{PLURAL:$1|$1 awr}}',

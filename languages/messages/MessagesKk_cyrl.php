@@ -1749,6 +1749,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Watchlist
 'watchlist'            => 'Бақылау тізімі',
 'mywatchlist'          => 'Бақылауым',
+'watchlistfor2'        => '$1 ($2) бақылау тізімі',
 'nowatchlist'          => 'Бақылау тізіміңізде еш дана жоқ',
 'watchlistanontext'    => 'Бақылау тізіміңіздегі даналарды қарау, не өңдеу үшін $1 керек.',
 'watchnologin'         => 'Кірмегенсіз',
@@ -1763,7 +1764,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'notanarticle'         => 'Мағлұмат беті емес',
 'notvisiblerev'        => 'Түзету жойылды',
 'watchnochange'        => 'Көрсетілген мерзімде еш бақыланған дана өңделген жоқ.',
-'watchlist-details'    => 'Талқылау беттерін санамағанда $1 бет бақланылады.',
+'watchlist-details'    => 'Тізіміңізде $1 бет бар (талқылау беттері саналмайды).',
 'wlheader-enotif'      => '* Ескерту хат жіберуі қосылған.',
 'wlheader-showupdated' => "* Соңғы келіп-кетуіңізден бері өзгертілген беттерді '''жуан''' қаріпімен көрсет",
 'watchmethod-recent'   => 'бақылаулы беттер үшін жуықтағы өзгерістерді тексеру',
@@ -1772,6 +1773,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'iteminvalidname'      => "'$1' данада ақау бар — жарамсыз атау…",
 'wlnote'               => "Төменде соңғы {{PLURAL:$2|сағатта|'''$2''' сағатта}} болған, {{PLURAL:$1|жуықтағы өзгеріс|жуықтағы '''$1''' өзгеріс}} көрсетіледі.",
 'wlshowlast'           => 'Соңғы $1 сағаттағы, $2 күндегі, $3 болған өзгерісті көрсету',
+'watchlist-options'    => 'Бақылау тізім баптаулары',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Бақылауда…',
@@ -1965,9 +1967,10 @@ $2 соңғы нұсқасына өзгертті.',
 $1',
 
 # Namespace form on various pages
-'namespace'      => 'Есім аясы:',
-'invert'         => 'Бөлектеуді керілеу',
-'blanknamespace' => 'Негізгі беттерден',
+'namespace'             => 'Есім аясы:',
+'invert'                => 'Бөлектеуді керілеу',
+'namespace_association' => 'Қатысты есім аясы',
+'blanknamespace'        => 'Негізгі беттерден',
 
 # Contributions
 'contributions' => 'Қатысушы үлесі',
@@ -2428,9 +2431,9 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
-'seconds-abbrev' => 'с',
-'minutes-abbrev' => 'мин',
-'hours-abbrev'   => 'сағ',
+'seconds-abbrev' => '$1с',
+'minutes-abbrev' => '$1мин',
+'hours-abbrev'   => '$1сағ',
 
 # Bad image list
 'bad_image_list' => 'Пішімі төмендегідей:

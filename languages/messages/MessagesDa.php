@@ -988,29 +988,27 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-text-unhide'     => "Denne version af siden er '''slettet'''.
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].
-Som administrator kan du stadig [$1 se versionen] hvis du ønsker at fortsætte.",
+Du kan du stadig [$1 se versionen], hvis du ønsker at fortsætte.",
 'rev-suppressed-text-unhide'  => "Denne version af siden er '''skjult'''.
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].
-Som administrator kan du stadig [$1 se versionen] hvis du ønsker at fortsætte.",
+Du kan stadig [$1 se versionen], hvis du ønsker at fortsætte.",
 'rev-deleted-text-view'       => "Denne version af siden er '''slettet'''.
-Som administrator kan du se den.
-Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
+Du kan du se den. Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
 'rev-suppressed-text-view'    => "Denne version af siden er '''skjult'''.
-Som administrator kan du se den.
-Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
+Du kan se den. Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise denne forskel fordi en af versionerne er '''slettet'''
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
 'rev-suppressed-no-diff'      => "Du kan ikke se denne forskel, fordi en af revisionerne er blevet '''slettet'''.",
 'rev-deleted-unhide-diff'     => "En af versionerne for denne forskel er '''slettet'''.
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].
-Som administrator kan du stadig [$1 se forskellen] hvis du ønsker at fortsætte.",
+Du kan stadig [$1 se forskellen], hvis du ønsker at fortsætte.",
 'rev-suppressed-unhide-diff'  => "En af sideversionerne i denne forskel er blevet '''skjult'''.
 Der kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].
-Som en administrator kan du stadig [$1 se denne forskel] hvis du ønsker det.",
+Du kan stadig [$1 se denne forskel], hvis du ønsker det.",
 'rev-deleted-diff-view'       => "En af revisionerne i denne forskel er blevet '''slettet'''.
-Som administrator kan du se denne forskel; detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
+Du kan se denne forskel; detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
 'rev-suppressed-diff-view'    => "En af revisionerne i denne forskel er blevet '''skjult'''.
-Som administrator kan du se denne forskel; der kan findes detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
+Du kan se denne forskel; der kan findes detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
 'rev-delundel'                => 'vise/skjule',
 'rev-showdeleted'             => 'vis',
 'revisiondelete'              => 'Slette/gendanne versioner',
@@ -2847,7 +2845,7 @@ Du kan beskadige dit system hvis du udfører den.",
 'sp-newimages-showfrom' => 'Vis nye filer startende fra $1 $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 't',
+'hours-abbrev' => '$1t',
 'seconds'      => '{{PLURAL: $1|$1 sekund|$1 sekunder}}',
 'minutes'      => '{{PLURAL: $1|$1 minut|$1 minutter}}',
 'hours'        => '{{PLURAL: $1|$1 time|$1 timer}}',
@@ -3429,6 +3427,9 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'watchlisttools-view' => 'Se ændrede sider i overvågningslisten',
 'watchlisttools-edit' => 'Rediger overvågningsliste',
 'watchlisttools-raw'  => 'Rediger rå overvågningsliste',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|diskussion]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ukendt tag "$1"',

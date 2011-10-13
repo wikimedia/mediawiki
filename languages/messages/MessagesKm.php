@@ -2900,9 +2900,9 @@ $1',
 'sp-newimages-showfrom' => 'បង្ហាញឯកសារថ្មីៗចាប់ពី$2 $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 'វិ​.',
-'minutes-abbrev' => 'និ​.',
-'hours-abbrev'   => 'ម៉.',
+'seconds-abbrev' => '$1វិ​.',
+'minutes-abbrev' => '$1និ​.',
+'hours-abbrev'   => '$1ម៉.',
 
 # Bad image list
 'bad_image_list' => 'ទម្រង់ ដូចតទៅ ៖

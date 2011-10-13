@@ -3125,7 +3125,7 @@ Se vos l’ègzécutâd, voutron sistèmo pôt étre compromês.",
 'sp-newimages-showfrom' => 'Fâre vêre los novéls fichiérs dês lo $1 a $2',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'days-abbrev' => 'j',
+'days-abbrev' => '$1j',
 'seconds'     => '$1 second{{PLURAL:$1|a|es}}',
 'minutes'     => '$1 menut{{PLURAL:$1|a|es}}',
 'hours'       => '$1 hor{{PLURAL:$1|a|es}}',

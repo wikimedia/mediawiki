@@ -2400,9 +2400,9 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
-'seconds-abbrev' => 'س',
-'minutes-abbrev' => 'مىين',
-'hours-abbrev'   => 'ساع',
+'seconds-abbrev' => '$1س',
+'minutes-abbrev' => '$1مىين',
+'hours-abbrev'   => '$1ساع',
 
 # Bad image list
 'bad_image_list' => 'ٴپىشىمى تومەندەگىدەي:
