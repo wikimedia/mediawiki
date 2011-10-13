@@ -3159,9 +3159,9 @@ $1',
 'sp-newimages-showfrom' => 'Zeich de neu Dateie av däm $1 öm $2 Uhr',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 'Sek.',
-'minutes-abbrev' => 'Min.',
-'hours-abbrev'   => 'Std.',
+'seconds-abbrev' => '$1Sek.',
+'minutes-abbrev' => '$1Min.',
+'hours-abbrev'   => '$1Std.',
 'seconds'        => '{{PLURAL:$1|eine Sekund|$1 Sekunde|keine Sekund}}',
 'minutes'        => '{{PLURAL:$1|eine Menutt|$1 Menutte|keine Menutt}}',
 'hours'          => '{{PLURAL:$1|eine Shtundt|$1 Shtunde|keine Shtundt}}',

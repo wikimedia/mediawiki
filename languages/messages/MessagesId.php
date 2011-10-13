@@ -2997,9 +2997,9 @@ Jika dijalankan, sistem Anda akan berisiko terserang.",
 'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 'd',
-'minutes-abbrev' => 'm',
-'hours-abbrev'   => 'j',
+'seconds-abbrev' => '$1d',
+'minutes-abbrev' => '$1m',
+'hours-abbrev'   => '$1j',
 
 # Bad image list
 'bad_image_list' => 'Formatnya sebagai berikut:

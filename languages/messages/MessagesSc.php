@@ -1417,9 +1417,9 @@ Podes agiùnger unu motivu in s\'ogetu de s\'acontzu.',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2×$3',
-'seconds-abbrev' => 's',
-'minutes-abbrev' => 'm',
-'hours-abbrev'   => 'h',
+'seconds-abbrev' => '$1s',
+'minutes-abbrev' => '$1m',
+'hours-abbrev'   => '$1h',
 
 # Bad image list
 'bad_image_list' => 'Su formau est su chi sighit:

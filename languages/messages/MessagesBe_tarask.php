@@ -1498,7 +1498,7 @@ $1",
 'right-siteadmin'             => 'блякаваньне і разблякаваньне базы зьвестак',
 'right-override-export-depth' => 'экспартаваньне старонак, уключаючы зьвязаныя старонкі з глыбінёй да 5',
 'right-sendemail'             => 'адпраўка электронных лістоў іншым удзельнікам',
-'right-passwordreset'         => 'ачыстка пароляў удзельнікаў з дапамогай [[Special:PasswordReset|службовай старонкі]]',
+'right-passwordreset'         => 'прагляд электронных лістоў з ачысткай паролю',
 
 # User rights log
 'rightslog'                  => 'Журнал правоў удзельнікаў',
@@ -1625,6 +1625,7 @@ $1",
 'ignorewarnings'              => 'Ігнараваць усе папярэджаньні',
 'minlength1'                  => 'Назва файла павінна ўтрымліваць хаця б адзін сымбаль.',
 'illegalfilename'             => 'Назва файла «$1» зьмяшчае сымбалі, якія нельга выкарыстоўваць у назвах старонак. Калі ласка, зьмяніце назву файла і паспрабуйце загрузіць яго зноў.',
+'filename-toolong'            => 'Назвы файлаў ня могуць быць даўжэй 240 байтаў.',
 'badfilename'                 => 'Назва файла была зьмененая на «$1».',
 'filetype-mime-mismatch'      => 'Пашырэньне файла «.$1» не адпавядае выяўленаму MIME-тыпу файла ($2).',
 'filetype-badmime'            => 'Загрузка файлаў тыпу MIME «$1» забароненая.',
@@ -2952,9 +2953,9 @@ $1',
 'sp-newimages-showfrom' => 'Паказаць новыя файлы, загружаныя пазьней за $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 'с',
-'minutes-abbrev' => 'хв',
-'hours-abbrev'   => 'г',
+'seconds-abbrev' => '$1 с',
+'minutes-abbrev' => '$1 хв',
+'hours-abbrev'   => '$1 г',
 'seconds'        => '$1 {{PLURAL:$1|сэкунда|сэкунды|сэкундаў}}',
 'minutes'        => '$1 {{PLURAL:$1|хвіліна|хвіліны|хвілінаў}}',
 'hours'          => '$1 {{PLURAL:$1|гадзіна|гадзіны|гадзінаў}}',
@@ -3544,6 +3545,9 @@ $1',
 'watchlisttools-edit' => 'Праглядзець альбо рэдагаваць сьпіс назіраньня',
 'watchlisttools-raw'  => 'Рэдагаваць як тэкст',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|гутаркі]])</sup>',
+
 # Core parser functions
 'unknown_extension_tag' => 'Невядомы тэг пашырэньня «$1»',
 'duplicate-defaultsort' => 'Папярэджаньне: Ключ сартыроўкі па змоўчваньні «$2» замяняе папярэдні ключ сартыроўкі па змоўчваньні «$1».',
@@ -3707,7 +3711,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'logentry-newusers-newusers'          => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак',
 'logentry-newusers-create2'           => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак $3',
-'logentry-newusers-autocreate'        => 'Рахунак $1 быў створаны аўтаматычна',
+'logentry-newusers-autocreate'        => 'Аўтаматычна створаны рахунак $1',
 'newuserlog-byemail'                  => 'Пароль адасланы па электроннай пошце',
 
 );

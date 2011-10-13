@@ -1865,9 +1865,9 @@ MediaWiki интерфейсининъ чешит тиллерге терджи�
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
-'seconds-abbrev' => 'сан.',
-'minutes-abbrev' => 'дакъ.',
-'hours-abbrev'   => 'саат',
+'seconds-abbrev' => '$1сан.',
+'minutes-abbrev' => '$1дакъ.',
+'hours-abbrev'   => '$1саат',
 
 # Bad image list
 'bad_image_list' => 'Формат бойле олмалы:

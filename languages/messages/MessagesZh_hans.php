@@ -891,8 +891,8 @@ $2
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
 'edit_form_incomplete'             => "'''编辑表单的某些部分没有到达服务器 ；请检查您的编辑内容是否完整并再试一次。'''",
 'editing'                          => '编辑“$1”',
-'editingsection'                   => '编辑“$1（段落）”',
-'editingcomment'                   => '编辑“$1（新段落）”',
+'editingsection'                   => '编辑“$1”（段落）',
+'editingcomment'                   => '编辑“$1”（新段落）',
 'editconflict'                     => '编辑冲突：$1',
 'explainconflict'                  => "有人在你开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。

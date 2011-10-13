@@ -2757,9 +2757,9 @@ $1',
 'sp-newimages-showfrom' => 'Баччаттан киирбит саҥа ойуулары көрдөр: $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 'с.',
-'minutes-abbrev' => 'м.',
-'hours-abbrev'   => 'ч.',
+'seconds-abbrev' => '$1с.',
+'minutes-abbrev' => '$1м.',
+'hours-abbrev'   => '$1ч.',
 
 # Bad image list
 'bad_image_list' => 'Формаата маннык буолуохтаах:

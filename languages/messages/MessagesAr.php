@@ -3244,9 +3244,9 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1، $2×$3',
-'seconds-abbrev' => 'ث',
-'minutes-abbrev' => 'د',
-'hours-abbrev'   => 'س',
+'seconds-abbrev' => '$1ث',
+'minutes-abbrev' => '$1د',
+'hours-abbrev'   => '$1س',
 'seconds'        => '{{PLURAL:$1||ثانية واحدة|ثانيتين|$1 ثوانٍ|$1 ثانية}}',
 'minutes'        => '{{PLURAL:$1||دقيقة واحدة|دقيقتين|$1 دقائق|$1 دقيقة}}',
 'hours'          => '{{PLURAL:$1||ساعة واحدة|ساعتين|$1 ساعات|$1 ساعة}}',

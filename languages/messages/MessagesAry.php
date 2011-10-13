@@ -2186,9 +2186,9 @@ Imken lek ṫċof l-ĝin dyalha.',
 'sp-newimages-showfrom' => 'biyn lmilfat mn $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 's',
-'minutes-abbrev' => 'm',
-'hours-abbrev'   => 'h',
+'seconds-abbrev' => '$1s',
+'minutes-abbrev' => '$1m',
+'hours-abbrev'   => '$1h',
 
 # Bad image list
 'bad_image_list' => "L-forma howa ṫ-ṫali :

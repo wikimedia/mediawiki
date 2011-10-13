@@ -2221,9 +2221,9 @@ $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2 × $3',
-'seconds-abbrev' => 'վ',
-'minutes-abbrev' => 'ր',
-'hours-abbrev'   => 'ժ',
+'seconds-abbrev' => '$1վ',
+'minutes-abbrev' => '$1ր',
+'hours-abbrev'   => '$1ժ',
 
 # Bad image list
 'bad_image_list' => 'Գրաձևը հետևյալն է.

@@ -3054,8 +3054,8 @@ Ejecutarlo podría comprometer la seguridad de su equipo.",
 'sp-newimages-showfrom' => 'Mostrar nuevas imágenes empezando por $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'minutes-abbrev' => 'm',
-'hours-abbrev'   => 'h',
+'minutes-abbrev' => '$1m',
+'hours-abbrev'   => '$1h',
 'seconds'        => '{{PLURAL:$1|un segundo|$1 segundos}}',
 'minutes'        => '{{PLURAL:$1|un minuto|$1 minutos}}',
 'hours'          => '{{PLURAL:$1|una hora|$1 horas}}',

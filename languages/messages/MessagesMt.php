@@ -2959,7 +2959,7 @@ $1',
 'sp-newimages-showfrom' => "Uri l-fajls l-aktar riċenti mill-ħin $2 ta' $1",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 'S',
+'hours-abbrev' => '$1S',
 
 # Bad image list
 'bad_image_list' => "Il-format huwa kif imiss:

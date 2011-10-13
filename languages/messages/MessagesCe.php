@@ -1391,7 +1391,7 @@ PICT # тайп тайпан
 'ilsubmit'         => 'Лаха',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 'оцу',
+'seconds-abbrev' => '$1оцу',
 
 # Bad image list
 'bad_image_list' => 'Барам хила беза ишта:

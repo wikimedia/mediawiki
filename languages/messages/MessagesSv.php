@@ -1125,27 +1125,27 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-deleted-text-unhide'     => "Den här versionen av sidan har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].
-Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
+Du kan fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
 'rev-suppressed-text-unhide'  => "Den här versionen av sidan har blivit '''undanhållen'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
-Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
+Du kan fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
 'rev-deleted-text-view'       => "Denna version av sidan har '''raderats'''.
-Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
+Du kan se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-suppressed-text-view'    => "Denna version av sidan har '''undanhållits'''.
-Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
+Du kan se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-deleted-no-diff'         => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-suppressed-no-diff'      => "Du kan inte se den här diffen för en av sidversionerna har '''raderats'''.",
-'rev-deleted-unhide-diff'     => "En av versionerna för den här diffen har '''raderats'''.
+'rev-deleted-unhide-diff'     => "En av versionerna för denna diff har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].
-Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
+Du kan fortfarande [$1 se denna diff] om du önskar att fortsätta.",
 'rev-suppressed-unhide-diff'  => "En av versionerna för denna diff har blivit '''undanhållen'''.
 Det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
-Som administratör kan du fortfarande [$1 se denna diff] om du önskar fortsätta.",
+Du kan fortfarande [$1 se denna diff] om du önskar fortsätta.",
 'rev-deleted-diff-view'       => "En av sidversionerna i denna diff har '''raderats'''.
-Som administratör kan du se denna diff. Mer information kan finnas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
+Du kan se denna diff; mer information kan finnas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-suppressed-diff-view'    => "En av versionerna för denna diff har blivit '''undanhållen'''.
-Som administratör kan du se denna diff; det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
+Du kan se denna diff; detaljer kan finnas i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-delundel'                => 'visa/göm',
 'rev-showdeleted'             => 'visa',
 'revisiondelete'              => 'Ta bort/återställ versioner',
@@ -3042,7 +3042,7 @@ Om du kör den kan din dator skadas.",
 'sp-newimages-showfrom' => 'Visa nya filer från och med kl. $2 den $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 't',
+'hours-abbrev' => '$1t',
 'seconds'      => '{{PLURAL:$1|$1 sekund|$1 sekunder}}',
 'minutes'      => '{{PLURAL:$1|$1 minut|$1 minuter}}',
 'hours'        => '{{PLURAL:$1|$1 timme|$1 timmar}}',
@@ -3636,6 +3636,9 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 'watchlisttools-view' => 'Visa relevanta ändringar',
 'watchlisttools-edit' => 'Visa och redigera bevakningslistan',
 'watchlisttools-raw'  => 'Redigera bevakningslistan i råformat',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|diskussion]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Okänd tagg "$1"',

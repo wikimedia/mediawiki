@@ -1635,6 +1635,7 @@ Voit käyttää tiedostoja wikisivuilla seuraavilla tavoilla:
 'ignorewarnings'              => 'Ohita kaikki varoitukset',
 'minlength1'                  => 'Tiedoston nimessä pitää olla vähintään yksi merkki.',
 'illegalfilename'             => "Tiedoston nimessä '''$1''' on merkkejä, joita ei sallita sivujen nimissä. Vaihda tiedoston nimeä, ja yritä lähettämistä uudelleen.",
+'filename-toolong'            => 'Tiedostonimen sallittu enimmäispituus on 240 merkkiä.',
 'badfilename'                 => 'Tiedoston nimi vaihdettiin: $1.',
 'filetype-mime-mismatch'      => 'Tiedostopääte <tt>.$1</tt> ei vastaa havaittua tiedoston MIME-tyyppiä (<tt>$2</tt>).',
 'filetype-badmime'            => '<tt>$1</tt> -tyypisten tiedostojen tallennus on kielletty.',
@@ -3546,8 +3547,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'filepath'         => 'Tiedoston osoite',
 'filepath-page'    => 'Tiedosto',
 'filepath-submit'  => 'Siirry',
-'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen.
-Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
+'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston täydellisen polun. Polku näkyy selaimesi osoitekentässä. Kuvat näytetään täysikokoisina, muut tiedostot avataan suoraan niiden avaamiseen tarkoitetussa ohjelmassa. Anna tiedoston nimi ilman {{ns:file}}-nimiavaruusliitettä.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Kaksoiskappaleiden haku',

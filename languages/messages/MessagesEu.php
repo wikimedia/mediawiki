@@ -2637,9 +2637,9 @@ Zure sisteman exekutatzea arriskutsua izan liteke.",
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1, $2×$3',
-'seconds-abbrev' => 's',
-'minutes-abbrev' => 'm',
-'hours-abbrev'   => 'o',
+'seconds-abbrev' => '$1s',
+'minutes-abbrev' => '$1m',
+'hours-abbrev'   => '$1o',
 
 # Bad image list
 'bad_image_list' => 'Formatua hurrengoa da:

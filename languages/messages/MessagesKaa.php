@@ -1819,7 +1819,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'   => '$1, $2 × $3',
-'hours-abbrev' => 'st',
+'hours-abbrev' => '$1st',
 
 # Bad image list
 'bad_image_list' => "Formatı to'mendegishe:

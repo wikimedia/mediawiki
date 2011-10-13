@@ -3016,9 +3016,9 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'sp-newimages-showfrom' => 'Trưng bày những tập tin mới, bắt đầu từ lúc $2, ngày $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'seconds-abbrev' => 's',
-'minutes-abbrev' => 'm',
-'hours-abbrev'   => 'h',
+'seconds-abbrev' => '$1s',
+'minutes-abbrev' => '$1m',
+'hours-abbrev'   => '$1h',
 'seconds'        => '$1 giây',
 'minutes'        => '$1 phút',
 'hours'          => '$1 giờ',

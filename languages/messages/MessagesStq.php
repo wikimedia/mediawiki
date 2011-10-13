@@ -2605,7 +2605,7 @@ $1',
 'sp-newimages-showfrom' => 'Wies näie Doatäie, ounfangend mäd $1, $2 Uure',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => 'U',
+'hours-abbrev' => '$1U',
 
 # Bad image list
 'bad_image_list' => 'Dät Formoat is as foulget:

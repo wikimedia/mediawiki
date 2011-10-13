@@ -1026,16 +1026,19 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'tooltip-n-randompage'           => 'Chhìn-chhái hian chi̍t ia̍h',
 'tooltip-n-help'                 => 'Beh chhoé ê só͘-chāi',
 'tooltip-t-whatlinkshere'        => 'Só͘-ū liân kàu chia ê liat-toaⁿ',
+'tooltip-t-recentchangeslinked'  => 'Liân kàu chit ia̍h koh choè-kīn ū kái koè--ê',
 'tooltip-t-contributions'        => 'Khoàⁿ chit ê iōng-chiá ê kòng-hiàn lia̍t-toaⁿ',
 'tooltip-t-upload'               => 'Í-keng sàng chiūⁿ-bāng ê tóng-àn',
 'tooltip-t-specialpages'         => 'Só͘-ū te̍k-sû-ia̍h ê lia̍t-toaⁿ',
 'tooltip-t-print'                => 'Chit ia̍h ê ìn-soat pán-pún',
+'tooltip-t-permalink'            => 'Chi̍t ia̍h kái--koè pán-pún ê éng-kiú liân-kiat',
 'tooltip-ca-nstab-main'          => 'khoàⁿ ia̍h ê loē-iông',
 'tooltip-ca-nstab-user'          => 'Khoàⁿ iōng-chiá ê Ia̍h',
 'tooltip-ca-nstab-image'         => 'Khoàⁿ tóng-àn ia̍h',
 'tooltip-ca-nstab-category'      => 'Khoàⁿ lūi-pia̍t ia̍h',
 'tooltip-save'                   => 'Pó-chhûn lí chò ê kái-piàn',
 'tooltip-preview'                => 'Chhiáⁿ tī pó-chûn chìn-chêng,  sian khoàⁿ lí chò ê kái-piàn !',
+'tooltip-rollback'               => 'Ji̍h "Hoê-choán" ē-sái thè tńg-khì téng-chi̍t-ê kái ê lâng ê ia̍h.',
 'tooltip-summary'                => 'Siá chi̍t-ê kán-tan soat-bêng',
 
 # Attribution
@@ -1116,7 +1119,7 @@ Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe 
 # Watchlist editor
 'watchlistedit-numitems'      => 'Lí ê kàm-sī-toaⁿ ū $1 ia̍h, thó-lūn-ia̍h bô sǹg chāi-lāi.',
 'watchlistedit-normal-submit' => 'Mài kàm-sī',
-'watchlistedit-normal-done'   => 'Í-keng ū $1 ia̍h ùi lí ê kám-sī-toaⁿ soá cháu:',
+'watchlistedit-normal-done'   => 'Í-keng ū {{PLURAL:$1| ia̍h| ia̍h}} ùi lí ê kám-sī-toaⁿ soá cháu:',
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'Khoàⁿ koh kái kàm-sī-toaⁿ',

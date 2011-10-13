@@ -860,7 +860,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'passwordreset-username'           => 'Uživatelské jméno:',
 'passwordreset-domain'             => 'Doména:',
 'passwordreset-capture'            => 'Prohlédnout si výsledný e-mail?',
-'passwordreset-capture-help'       => 'Pokud zaškrtnete toto políčko, bude e-mail (s dočasným heslem) navíc k zaslání uživateli zobrazen i vám.',
+'passwordreset-capture-help'       => 'Pokud zaškrtnete toto políčko, bude e-mail (s dočasným heslem) kromě zaslání uživateli zobrazen i vám.',
 'passwordreset-email'              => 'E-mailová adresa:',
 'passwordreset-emailtitle'         => 'Informace k účtu na {{grammar:6sg|{{SITENAME}}}}',
 'passwordreset-emailtext-ip'       => 'Někdo (patrně vy, z IP adresy $1) zažádal o připomenutí informací k vašemu
