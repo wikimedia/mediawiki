@@ -1051,8 +1051,8 @@ class EnhancedChangesList extends ChangesList {
 	 * @return String: HTML <img> tag
 	 */
 	protected function sideArrow() {
-		global $wgContLang;
-		$dir = $wgContLang->isRTL() ? 'l' : 'r';
+		global $wgLang;
+		$dir = $wgLang->isRTL() ? 'l' : 'r';
 		return $this->arrow( $dir, '+', wfMsg( 'rc-enhanced-expand' ) );
 	}
 
