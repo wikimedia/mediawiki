@@ -65,10 +65,11 @@ class RevisionDeleter {
 		return $ret;
 	}
 
-	// Get DB field name for URL param...
-	// Future code for other things may also track
-	// other types of revision-specific changes.
-	// @returns string One of log_id/rev_id/fa_id/ar_timestamp/oi_archive_name
+	/** Get DB field name for URL param...
+	 * Future code for other things may also track
+	 * other types of revision-specific changes.
+	 * @return string One of log_id/rev_id/fa_id/ar_timestamp/oi_archive_name
+	 */
 	public static function getRelationType( $typeName ) {
 		if ( isset( SpecialRevisionDelete::$deprecatedTypeMap[$typeName] ) ) {
 			$typeName = SpecialRevisionDelete::$deprecatedTypeMap[$typeName];

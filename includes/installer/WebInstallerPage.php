@@ -122,7 +122,7 @@ abstract class WebInstallerPage {
 	/**
 	 * Get the end tag of a fieldset.
 	 *
-	 * @returns string
+	 * @return string
 	 */
 	protected function getFieldsetEnd() {
 		return "</fieldset>\n";
