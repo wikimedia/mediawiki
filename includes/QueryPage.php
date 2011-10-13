@@ -777,7 +777,7 @@ abstract class WantedQueryPage extends QueryPage {
 					array( 'broken' )
 				);
 			}
-			return wfSpecialList( $pageLink, $this->makeWlhLink( $title, $skin, $result ) );
+			return $this->getLang()->specialList( $pageLink, $this->makeWlhLink( $title, $skin, $result ) );
 		} else {
 			$tsafe = htmlspecialchars( $result->title );
 			return wfMsgHtml( 'wantedpages-badtitle', $tsafe );

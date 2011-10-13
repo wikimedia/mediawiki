@@ -61,19 +61,19 @@ class UnusedtemplatesPage extends QueryPage {
 	 */
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_TEMPLATE, $result->title );
-		$pageLink = $skin->linkKnown(
+		$pageLink = Linker::linkKnown(
 			$title,
 			null,
 			array(),
 			array( 'redirect' => 'no' )
 		);
-		$wlhLink = $skin->linkKnown(
+		$wlhLink = Linker::linkKnown(
 			SpecialPage::getTitleFor( 'Whatlinkshere' ),
 			wfMsgHtml( 'unusedtemplateswlh' ),
 			array(),
 			array( 'target' => $title->getPrefixedText() )
 		);
-		return wfSpecialList( $pageLink, $wlhLink );
+		return $this->getLang()->specialList( $pageLink, $wlhLink );
 	}
 
 	function getPageHeader() {

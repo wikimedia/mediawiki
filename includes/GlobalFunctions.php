@@ -2619,13 +2619,11 @@ function in_string( $needle, $str, $insensitive = false ) {
  * @param $oppositedm Boolean	Add the direction mark opposite to your
  *								language, to display text properly
  * @return String
+ * @deprecated since 1.19; use Language::specialList() instead
  */
 function wfSpecialList( $page, $details, $oppositedm = true ) {
 	global $wgLang;
-	$dirmark = ( $oppositedm ? $wgLang->getDirMark( true ) : '' ) .
-		$wgLang->getDirMark();
-	$details = $details ? $dirmark . " ($details)" : '';
-	return $page . $details;
+	return $wgLang->specialList( $page, $details, $oppositedm );
 }
 
 /**

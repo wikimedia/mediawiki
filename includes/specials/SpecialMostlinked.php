@@ -99,6 +99,6 @@ class MostlinkedPage extends QueryPage {
 		$link = Linker::link( $title );
 		$wlh = $this->makeWlhLink( $title,
 			$this->msg( 'nlinks' )->numParams( $result->value )->escaped() );
-		return wfSpecialList( $link, $wlh );
+		return $this->getLang()->specialList( $link, $wlh );
 	}
 }

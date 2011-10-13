@@ -105,7 +105,7 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		wfProfileOut( __METHOD__ );
 
-		return '<li>' . wfSpecialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
+		return '<li>' . $lang->specialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
 	}
 
 	/**

@@ -62,6 +62,6 @@ class MostcategoriesPage extends QueryPage {
 
 		$count = $this->msg( 'ncategories' )->numParams( $result->value )->escaped();
 		$link = Linker::link( $title );
-		return wfSpecialList( $link, $count );
+		return $this->getLang()->specialList( $link, $count );
 	}
 }
