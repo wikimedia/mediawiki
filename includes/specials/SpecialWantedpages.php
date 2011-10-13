@@ -44,7 +44,7 @@ class WantedPagesPage extends WantedQueryPage {
 		} else {
 			$nlinks = true;
 		}
-		$this->setListOutput( $inc );
+		$this->setListoutput( $inc );
 		$this->shownavigation = !$inc;
 		parent::execute( $par );
 	}
