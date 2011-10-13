@@ -84,6 +84,6 @@ class MostlinkedCategoriesPage extends QueryPage {
 		$plink = Linker::link( $nt, htmlspecialchars( $text ) );
 
 		$nlinks = $this->msg( 'nmembers' )->numParams( $result->value )->escaped();
-		return wfSpecialList( $plink, $nlinks );
+		return $this->getLang()->specialList( $plink, $nlinks );
 	}
 }

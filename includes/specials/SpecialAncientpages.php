@@ -67,6 +67,6 @@ class AncientPagesPage extends QueryPage {
 			$title,
 			htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) )
 		);
-		return wfSpecialList( $link, htmlspecialchars( $d ) );
+		return $this->getLang()->specialList( $link, htmlspecialchars( $d ) );
 	}
 }

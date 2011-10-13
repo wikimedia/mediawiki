@@ -119,6 +119,8 @@ class ActiveUsersPager extends UsersPager {
 		$ulinks = Linker::userLink( $row->user_id, $userName );
 		$ulinks .= Linker::userToolLinks( $row->user_id, $userName );
 
+		$lang = $this->getLang();
+
 		$list = array();
 		foreach( self::getGroups( $row->user_id ) as $group ) {
 			if ( isset( $this->groups[$group] ) ) {
@@ -126,14 +128,14 @@ class ActiveUsersPager extends UsersPager {
 			}
 			$list[] = self::buildGroupLink( $group, $userName );
 		}
-		$groups = $this->getLang()->commaList( $list );
+		$groups = $lang->commaList( $list );
 
-		$item = wfSpecialList( $ulinks, $groups );
+		$item = $lang->specialList( $ulinks, $groups );
 		$count = wfMsgExt( 'activeusers-count',
 			array( 'parsemag' ),
-			$this->getLang()->formatNum( $row->recentedits ),
+			$lang->formatNum( $row->recentedits ),
 			$userName,
-			$this->getLang()->formatNum( $this->RCMaxAge )
+			$lang->formatNum( $this->RCMaxAge )
 		);
 		$blocked = $row->blocked ? ' ' . wfMsgExt( 'listusers-blocked', array( 'parsemag' ), $userName ) : '';
 

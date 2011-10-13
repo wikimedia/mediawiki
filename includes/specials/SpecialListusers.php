@@ -131,24 +131,26 @@ class UsersPager extends AlphabeticPager {
 		$userPage = Title::makeTitle( NS_USER, $row->user_name );
 		$name = Linker::link( $userPage, htmlspecialchars( $userPage->getText() ) );
 
+		$lang = $this->getLang();
+
 		$groups_list = self::getGroups( $row->user_id );
 		if( count( $groups_list ) > 0 ) {
 			$list = array();
 			foreach( $groups_list as $group )
 				$list[] = self::buildGroupLink( $group, $userPage->getText() );
-			$groups = $this->getLang()->commaList( $list );
+			$groups = $lang->commaList( $list );
 		} else {
 			$groups = '';
 		}
 
-		$item = wfSpecialList( $name, $groups );
+		$item = $lang->specialList( $name, $groups );
 		if( $row->ipb_deleted ) {
 			$item = "<span class=\"deleted\">$item</span>";
 		}
 
 		global $wgEdititis;
 		if ( $wgEdititis ) {
-			$editCount = $this->getLang()->formatNum( $row->edits );
+			$editCount = $lang->formatNum( $row->edits );
 			$edits = ' [' . wfMsgExt( 'usereditcount', array( 'parsemag', 'escape' ), $editCount ) . ']';
 		} else {
 			$edits = '';
@@ -157,8 +159,8 @@ class UsersPager extends AlphabeticPager {
 		$created = '';
 		# Some rows may be NULL
 		if( $row->creation ) {
-			$d = $this->getLang()->date( wfTimestamp( TS_MW, $row->creation ), true );
-			$t = $this->getLang()->time( wfTimestamp( TS_MW, $row->creation ), true );
+			$d = $lang->date( wfTimestamp( TS_MW, $row->creation ), true );
+			$t = $lang->time( wfTimestamp( TS_MW, $row->creation ), true );
 			$created = ' (' . wfMsg( 'usercreated', $d, $t ) . ')';
 			$created = htmlspecialchars( $created );
 		}

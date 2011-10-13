@@ -3702,6 +3702,22 @@ class Language {
 	}
 
 	/**
+	 * Make a list item, used by various special pages
+	 *
+	 * @param $page String Page link
+	 * @param $details String Text between brackets
+	 * @param $oppositedm Boolean Add the direction mark opposite to your
+	 *                    language, to display text properly
+	 * @return String
+	 */
+	function specialList( $page, $details, $oppositedm = true ) {
+		$dirmark = ( $oppositedm ? $this->getDirMark( true ) : '' ) .
+			$this->getDirMark();
+		$details = $details ? $dirmark . " ($details)" : '';
+		return $page . $details;
+	}
+
+	/**
 	 * Get the conversion rule title, if any.
 	 *
 	 * @return string

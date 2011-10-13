@@ -114,9 +114,10 @@ class CategoryPager extends AlphabeticPager {
 	function formatRow($result) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
 		$titleText = Linker::link( $title, htmlspecialchars( $title->getText() ) );
+		$lang = $this->getLang();
 		$count = wfMsgExt( 'nmembers', array( 'parsemag', 'escape' ),
-				$this->getLang()->formatNum( $result->cat_pages ) );
-		return Xml::tags('li', null, wfSpecialList( $titleText, $count ) ) . "\n";
+				$lang->formatNum( $result->cat_pages ) );
+		return Xml::tags('li', null, $lang->specialList( $titleText, $count ) ) . "\n";
 	}
 
 	public function getStartForm( $from ) {

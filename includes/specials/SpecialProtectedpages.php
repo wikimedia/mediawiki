@@ -142,7 +142,7 @@ class SpecialProtectedpages extends SpecialPage {
 		return Html::rawElement(
 			'li',
 			array(),
-			wfSpecialList( $link . $stxt, $lang->commaList( $description_items ), false ) . $changeProtection ) . "\n";
+			$lang->specialList( $link . $stxt, $lang->commaList( $description_items ), false ) . $changeProtection ) . "\n";
 	}
 
 	/**
