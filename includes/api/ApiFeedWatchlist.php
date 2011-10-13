@@ -100,7 +100,7 @@ class ApiFeedWatchlist extends ApiBase {
 			}
 
 			// Check for 'allrev' parameter, and if found, show all revisions to each page on wl.
-			if ( !is_null( $params['allrev'] ) ) {
+			if ( $params['allrev'] ) {
 				$fauxReqArr['wlallrev'] = '';
 			}
 
