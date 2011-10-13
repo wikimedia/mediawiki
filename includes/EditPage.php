@@ -169,7 +169,7 @@ class EditPage {
 	 * Fetch initial editing page content.
 	 *
 	 * @param $def_text string
-	 * @returns mixed string on success, $def_text for invalid sections
+	 * @return mixed string on success, $def_text for invalid sections
 	 * @private
 	 */
 	function getContent( $def_text = '' ) {

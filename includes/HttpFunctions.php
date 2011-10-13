@@ -127,7 +127,7 @@ class Http {
 	 * @fixme this is wildly inaccurate and fails to actually check most stuff
 	 *
 	 * @param $uri Mixed: URI to check for validity
-	 * @returns Boolean
+	 * @return Boolean
 	 */
 	public static function isValidURI( $uri ) {
 		return preg_match(
@@ -525,7 +525,7 @@ class MWHttpRequest {
 	/**
 	 * Returns the cookie jar in use.
 	 *
-	 * @returns CookieJar
+	 * @return CookieJar
 	 */
 	public function getCookieJar() {
 		if ( !$this->respHeaders ) {
@@ -571,7 +571,7 @@ class MWHttpRequest {
 	 * Relative values of the "Location" header are incorrect as stated in RFC, however they do happen and modern browsers support them.
 	 * This function loops backwards through all locations in order to build the proper absolute URI - Marooned at wikia-inc.com
 	 *
-	 * @returns string
+	 * @return string
 	 */
 	public function getFinalUrl() {
 		$headers = $this->getResponseHeaders();
