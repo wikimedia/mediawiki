@@ -55,7 +55,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	/**
 	 * Fetch the context's user options, or if it doesn't match current user,
 	 * the default options.
-	 * 
+	 *
 	 * @param $context ResourceLoaderContext: Context object
 	 * @return Array: List of user options keyed by option name
 	 */
@@ -75,7 +75,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return string
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		return Xml::encodeJsCall( 'mw.user.options.set', 
+		return Xml::encodeJsCall( 'mw.user.options.set',
 			array( $this->contextUserOptions( $context ) ) );
 	}
 
@@ -96,7 +96,7 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 
 			// Underline: 2 = browser default, 1 = always, 0 = never
 			if ( $options['underline'] < 2 ) {
-				$rules[] = "a { text-decoration: " . 
+				$rules[] = "a { text-decoration: " .
 					( $options['underline'] ? 'underline !important' : 'none' ) . "; }";
 			}
 			if ( $options['highlightbroken'] ) {
@@ -133,7 +133,10 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	public function getGroup() {
 		return 'private';
 	}
-	
+
+	/**
+	 * @return array
+	 */
 	public function getDependencies() {
 		return array( 'mediawiki.user' );
 	}

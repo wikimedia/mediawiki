@@ -38,16 +38,16 @@ class ResourceLoaderUserModule extends ResourceLoaderWikiModule {
 			$username = $context->getUser();
 			$userpageTitle = Title::makeTitleSafe( NS_USER, $username );
 			$userpage = $userpageTitle->getPrefixedDBkey(); // Needed so $excludepages works
-			
+
 			$pages = array(
 				"$userpage/common.js" => array( 'type' => 'script' ),
-				"$userpage/" . $context->getSkin() . '.js' => 
+				"$userpage/" . $context->getSkin() . '.js' =>
 					array( 'type' => 'script' ),
 				"$userpage/common.css" => array( 'type' => 'style' ),
-				"$userpage/" . $context->getSkin() . '.css' => 
+				"$userpage/" . $context->getSkin() . '.css' =>
 					array( 'type' => 'style' ),
 			);
-			
+
 			// Hack for bug 26283: if we're on a preview page for a CSS/JS page,
 			// we need to exclude that page from this module. In that case, the excludepage
 			// parameter will be set to the name of the page we need to exclude.

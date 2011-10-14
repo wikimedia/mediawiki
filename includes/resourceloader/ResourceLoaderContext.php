@@ -21,7 +21,7 @@
  */
 
 /**
- * Object passed around to modules which contains information about the state 
+ * Object passed around to modules which contains information about the state
  * of a specific loader request
  */
 class ResourceLoaderContext {
@@ -42,6 +42,10 @@ class ResourceLoaderContext {
 
 	/* Methods */
 
+	/**
+	 * @param $resourceLoader ResourceLoader
+	 * @param $request WebRequest
+	 */
 	public function __construct( $resourceLoader, WebRequest $request ) {
 		global $wgDefaultSkin, $wgResourceLoaderDebug;
 
@@ -63,7 +67,7 @@ class ResourceLoaderContext {
 			$this->skin = $wgDefaultSkin;
 		}
 	}
-	
+
 	/**
 	 * Expand a string of the form jquery.foo,bar|jquery.ui.baz,quux to
 	 * an array of module names like array( 'jquery.foo', 'jquery.bar',
@@ -99,9 +103,10 @@ class ResourceLoaderContext {
 		}
 		return $retval;
 	}
-	
+
 	/**
 	 * Return a dummy ResourceLoaderContext object suitable for passing into things that don't "really" need a context
+	 * @return ResourceLoaderContext
 	 */
 	public static function newDummyContext() {
 		return new self( null, new FauxRequest( array() ) );
@@ -218,7 +223,7 @@ class ResourceLoaderContext {
 	public function getHash() {
 		if ( !isset( $this->hash ) ) {
 			$this->hash = implode( '|', array(
-				$this->getLanguage(), $this->getDirection(), $this->skin, $this->user, 
+				$this->getLanguage(), $this->getDirection(), $this->skin, $this->user,
 				$this->debug, $this->only, $this->version
 			) );
 		}
