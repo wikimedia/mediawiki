@@ -35,7 +35,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		try {
 			$this->stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
 		} catch ( UploadStashNotAvailableException $e ) {
-			return null;
 		}
 	}
 
@@ -48,16 +47,14 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	public function execute( $subPage ) {
 		if ( !$this->userCanExecute( $this->getUser() ) ) {
 			$this->displayRestrictionError();
-			return;
+			return false;
 		}
 
 		if ( $subPage === null || $subPage === '' ) {
 			return $this->showUploads();
-		} else {
-			return $this->showUpload( $subPage );
 		}
+		return $this->showUpload( $subPage );
 	}
-
 
 	/**
 	 * If file available in stash, cats it out to the client as a simple HTTP response.
@@ -206,7 +203,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// do not use trailing slash
 		global $wgUploadStashScalerBaseUrl;
 		$scalerBaseUrl = $wgUploadStashScalerBaseUrl;
-		
+
 		if( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
 			// this is apparently a protocol-relative URL, which makes no sense in this context,
 			// since this is used for communication that's internal to the application.

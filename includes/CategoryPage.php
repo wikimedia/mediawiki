@@ -17,6 +17,15 @@ class CategoryPage extends Article {
 	# Subclasses can change this to override the viewer class.
 	protected $mCategoryViewerClass = 'CategoryViewer';
 
+	/**
+	 * @var Title
+	 */
+	protected $mTitle;
+
+	/**
+	 * @param $title Title
+	 * @return WikiCategoryPage
+	 */
 	protected function newPage( Title $title ) {
 		// Overload mPage with a category-specific page
 		return new WikiCategoryPage( $title );
@@ -69,7 +78,7 @@ class CategoryPage extends Article {
 		$oldUntil = $request->getVal( 'until' );
 
 		$reqArray = $request->getValues();
-		
+
 		$from = $until = array();
 		foreach ( array( 'page', 'subcat', 'file' ) as $type ) {
 			$from[$type] = $request->getVal( "{$type}from", $oldFrom );
@@ -101,7 +110,7 @@ class CategoryViewer extends ContextSource {
 		$imgsNoGallery;
 
 	/**
-	 * @var 
+	 * @var
 	 */
 	var $nextPage;
 
@@ -236,7 +245,7 @@ class CategoryViewer extends ContextSource {
 		}
 		$this->children[] = $link;
 
-		$this->children_start_char[] = 
+		$this->children_start_char[] =
 			$this->getSubcategorySortChar( $cat->getTitle(), $sortkey );
 	}
 

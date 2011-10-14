@@ -77,7 +77,7 @@ class Block {
 		$this->mAuto = $auto;
 		$this->isHardblock( !$anonOnly );
 		$this->prevents( 'createaccount', $createAccount );
-		if ( $expiry == 'infinity' || $expiry == Block::infinity() ) {
+		if ( $expiry == 'infinity' || $expiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
 			$this->mExpiry = 'infinity';
 		} else {
 			$this->mExpiry = wfTimestamp( TS_MW, $expiry );

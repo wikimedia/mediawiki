@@ -723,6 +723,9 @@ class LoadBalancer {
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * @return int
+	 */
 	function getWriterIndex() {
 		return 0;
 	}

@@ -154,6 +154,7 @@ class RawPage {
 		} else {
 			return $this->getArticleText();
 		}
+		return '';
 	}
 
 	function getArticleText() {

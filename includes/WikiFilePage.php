@@ -5,6 +5,9 @@
  * @ingroup Media
  */
 class WikiFilePage extends WikiPage {
+	/**
+	 * @var File
+	 */
 	protected $mFile = false; 				// !< File object
 	protected $mRepo = null;			    // !<
 	protected $mFileLoaded = false;		    // !<
@@ -43,6 +46,7 @@ class WikiFilePage extends WikiPage {
 			}
 		}
 		$this->mRepo = $this->mFile->getRepo();
+		return true;
 	}
 
 	public function getRedirectTarget() {
@@ -77,7 +81,7 @@ class WikiFilePage extends WikiPage {
 		if ( $this->mFile->isLocal() ) {
 			return parent::isRedirect( $text );
 		}
-			
+
 		return (bool)$this->mFile->getRedirected();
 	}
 

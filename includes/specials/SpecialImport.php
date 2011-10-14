@@ -112,11 +112,11 @@ class SpecialImport extends SpecialPage {
 			if( $user->isAllowed( 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
-				return $this->getOutput()->permissionRequired( 'importupload' );
+				throw new PermissionsError( 'importupload' );
 			}
 		} elseif ( $sourceName == "interwiki" ) {
 			if( !$user->isAllowed( 'import' ) ){
-				return $this->getOutput()->permissionRequired( 'import' );
+				throw new PermissionsError( 'import' );
 			}
 			$this->interwiki = $request->getVal( 'interwiki' );
 			if ( !in_array( $this->interwiki, $wgImportSources ) ) {

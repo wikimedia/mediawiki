@@ -103,13 +103,14 @@ class ExternalUser_vB extends ExternalUser {
 
 	private function getDb() {
 		global $wgExternalAuthConf;
-		return new Database(
-			$wgExternalAuthConf['server'],
-			$wgExternalAuthConf['username'],
-			$wgExternalAuthConf['password'],
-			$wgExternalAuthConf['dbname'],
-			0,
-			$wgExternalAuthConf['tablePrefix']
+		return DatabaseBase::factory( 'mysql',
+			array(
+				'host' => $wgExternalAuthConf['server'],
+				'user' => $wgExternalAuthConf['username'],
+				'password' => $wgExternalAuthConf['password'],
+				'dbname' => $wgExternalAuthConf['dbname'],
+				'tablePrefix' => $wgExternalAuthConf['tablePrefix'],
+			)
 		);
 	}
 

@@ -81,7 +81,7 @@ class Preprocessor_DOM implements Preprocessor {
 	 */
 	function memCheck() {
 		if ( $this->memoryLimit === false ) {
-			return;
+			return true;
 		}
 		$usage = memory_get_usage();
 		if ( $usage > $this->memoryLimit * 0.9 ) {
