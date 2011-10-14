@@ -1353,7 +1353,7 @@ function wfEmptyMsg( $key ) {
  * Throw a debugging exception. This function previously once exited the process,
  * but now throws an exception instead, with similar results.
  *
- * @param $msg String: message shown when dieing.
+ * @param $msg String: message shown when dying.
  */
 function wfDebugDieBacktrace( $msg = '' ) {
 	throw new MWException( $msg );
