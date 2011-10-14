@@ -760,8 +760,8 @@ abstract class WantedQueryPage extends QueryPage {
 		if ( $title instanceof Title ) {
 			if ( $this->isCached() || $this->forceExistenceCheck() ) {
 				$pageLink = $title->isKnown()
-					? '<del>' . $skin->link( $title ) . '</del>'
-					: $skin->link(
+					? '<del>' . Linker::link( $title ) . '</del>'
+					: Linker::link(
 						$title,
 						null,
 						array(),
@@ -769,7 +769,7 @@ abstract class WantedQueryPage extends QueryPage {
 						array( 'broken' )
 					);
 			} else {
-				$pageLink = $skin->link(
+				$pageLink = Linker::link(
 					$title,
 					null,
 					array(),
@@ -777,10 +777,9 @@ abstract class WantedQueryPage extends QueryPage {
 					array( 'broken' )
 				);
 			}
-			return $this->getLang()->specialList( $pageLink, $this->makeWlhLink( $title, $skin, $result ) );
+			return $this->getLang()->specialList( $pageLink, $this->makeWlhLink( $title, $result ) );
 		} else {
-			$tsafe = htmlspecialchars( $result->title );
-			return wfMsgHtml( 'wantedpages-badtitle', $tsafe );
+			return $this->msg( 'wantedpages-badtitle', $result->title )->escaped();
 		}
 	}
 
@@ -788,14 +787,12 @@ abstract class WantedQueryPage extends QueryPage {
 	 * Make a "what links here" link for a given title
 	 *
 	 * @param $title Title to make the link for
-	 * @param $skin Skin object to use
 	 * @param $result Object: result row
 	 * @return string
 	 */
-	private function makeWlhLink( $title, $skin, $result ) {
-		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere' );
-		$label = wfMsgExt( 'nlinks', array( 'parsemag', 'escape' ),
-		$this->getLang()->formatNum( $result->value ) );
-		return $skin->link( $wlh, $label, array(), array( 'target' => $title->getPrefixedText() ) );
+	private function makeWlhLink( $title, $result ) {
+		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedText() );
+		$label = $this->msg( 'nlinks' )->numParams( $result->value )->escaped();
+		return Linker::link( $wlh, $label );
 	}
 }
