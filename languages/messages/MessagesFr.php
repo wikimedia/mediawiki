@@ -1041,7 +1041,7 @@ Ce problème se produit parfois lorsque vous utilisez un serveur mandataire anon
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (nouvelle section)',
 'editconflict'                     => 'Conflit de modification : $1',
-'explainconflict'                  => "Cette page a été changée après que vous avez commencé à la modifier.
+'explainconflict'                  => "Cette page a été changée après que vous ayez commencé à la modifier.
 La zone de modification supérieure contient le texte tel qu’il est actuellement enregistré dans la base de données.
 Vos modifications apparaissent dans la zone de modification inférieure.
 Vous allez devoir fusionner vos modifications dans le texte existant.
@@ -1768,7 +1768,7 @@ Si vous voulez toujours importer votre fichier, merci de retourner en arrière e
 'fileexists-shared-forbidden' => 'Un fichier portant ce nom existe déjà dans le dépôt de fichiers partagé.
 Si vous voulez toujours importer votre fichier, veuillez revenir en arrière et utiliser un autre nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Ce fichier est un doublon {{PLURAL:$1|du fichier suivant|des fichiers suivants}} :',
-'file-deleted-duplicate'      => "Un fichier identique à celui-ci ([[:$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de l'importer à nouveau.",
+'file-deleted-duplicate'      => 'Un fichier identique à celui-ci ([[:$1]]) a déjà été supprimé. Vous devriez vérifier le journal des suppressions de ce fichier avant de l’importer à nouveau.',
 'uploadwarning'               => 'Attention !',
 'uploadwarning-text'          => 'Modifiez la description du fichier et essayez de nouveau.',
 'savefile'                    => 'Sauvegarder le fichier',
@@ -1791,8 +1791,8 @@ Le téléchargement de fichiers Java n'est pas autorisé, car ils peuvent entra�
 'upload-description'          => 'Description du fichier',
 'upload-options'              => "Options d'import de fichiers",
 'watchthisupload'             => 'Suivre ce fichier',
-'filewasdeleted'              => "Un fichier avec ce nom a déjà été importé, puis supprimé.
-Vous devriez vérifier $1 avant de l'importer à nouveau.",
+'filewasdeleted'              => 'Un fichier avec ce nom a déjà été importé, puis supprimé.
+Vous devriez vérifier $1 avant de l’importer à nouveau.',
 'filename-bad-prefix'         => "Le nom du fichier commence par '''« $1 »''' qui est typiquement un nom attribué automatiquement par les appareils photo numériques.
 Veuillez choisir un nom de fichier descriptif.",
 'filename-prefix-blacklist'   => ' #<!-- laisser cette ligne telle quelle --><pre>
@@ -2961,6 +2961,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'modern.css'      => '/* Le CSS placé ici affectera les utilisateurs de l’habillage Modern. */',
 'print.css'       => '/* Le CSS placé ici affectera les impressions */',
 'handheld.css'    => '/* Le CSS placé ici affectera les appareils mobiles en fonction de l\'habillage configuré $wgHandheldStyle */',
+'group-sysop.css' => '/* Le CSS inclus ici n’affectera que les administrateurs */',
 
 # Scripts
 'common.js'      => '/* Tout JavaScript ici sera chargé avec chaque page accédée par n’importe quel utilisateur. */',
@@ -2972,6 +2973,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 'chick.js'       => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Poussin uniquement */',
 'simple.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Simple uniquement */',
 'modern.js'      => '/* Tout JavaScript ici sera chargé avec les pages accédées par les utilisateurs de l’habillage Moderne uniquement */',
+'group-sysop.js' => '/* Le JavaScript inclus ici n’affectera que les administrateurs */',
 
 # Metadata
 'notacceptable' => 'Ce serveur wiki ne peut pas fournir les données dans un format que votre client soit capable de lire.',
@@ -3249,7 +3251,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-headline'                    => 'Titre',
 'exif-credit'                      => 'Crédit / fournisseur',
 'exif-source'                      => 'Source',
-'exif-editstatus'                  => "Statut éditorial de l'image",
+'exif-editstatus'                  => 'Statut éditorial de l’image',
 'exif-urgency'                     => 'Urgence',
 'exif-fixtureidentifier'           => 'Nom élément récurrent',
 'exif-locationdest'                => 'Lieu représenté',
@@ -3266,17 +3268,17 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-originaltransmissionref'     => 'Code de localisation de la transmission originale',
 'exif-identifier'                  => 'Identifiant',
 'exif-lens'                        => 'Lentille utilisée',
-'exif-serialnumber'                => "Numéro de série de l'appareil photo",
+'exif-serialnumber'                => 'Numéro de série de l’appareil photo',
 'exif-cameraownername'             => "Propriétaire de l'appareil photo",
 'exif-label'                       => 'Étiquette',
 'exif-datetimemetadata'            => 'Date de la dernière modification des métadonnées',
-'exif-nickname'                    => "Nom informel de l'image",
+'exif-nickname'                    => 'Nom informel de l’image',
 'exif-rating'                      => 'Note (sur 5)',
 'exif-rightscertificate'           => 'Certificat de gestion des droits',
-'exif-copyrighted'                 => "Statut du droit d'auteur",
-'exif-copyrightowner'              => "Propriétaire du droit d'auteur",
-'exif-usageterms'                  => "Conditions d'utilisation",
-'exif-webstatement'                => "Déclaration de droits d'auteur en ligne",
+'exif-copyrighted'                 => 'Statut du droit d’auteur',
+'exif-copyrightowner'              => 'Détenteur du droit d’auteur',
+'exif-usageterms'                  => 'Conditions d’utilisation',
+'exif-webstatement'                => 'Déclaration de droits d’auteur en ligne',
 'exif-originaldocumentid'          => 'Identifiant unique du document original',
 'exif-licenseurl'                  => 'URL de la licence',
 'exif-morepermissionsurl'          => 'Informations sur les licences alternatives',
@@ -3286,7 +3288,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-disclaimer'                  => 'Désistement',
 'exif-contentwarning'              => 'Avertissement sur le contenu',
 'exif-giffilecomment'              => 'Commentaire de fichier GIF',
-'exif-intellectualgenre'           => "Type d'élément",
+'exif-intellectualgenre'           => 'Type d’élément',
 'exif-subjectnewscode'             => 'Code du sujet',
 'exif-scenecode'                   => 'Code de scène IPTC',
 'exif-event'                       => 'Événement représenté',
@@ -3301,7 +3303,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-compression-3' => 'CCITT Groupe 3 codage du fax',
 'exif-compression-4' => 'CCITT Groupe 4 codage du fax',
 
-'exif-copyrighted-true'  => 'Soumis à droit d’auteur',
+'exif-copyrighted-true'  => 'Soumis au droit d’auteur',
 'exif-copyrighted-false' => 'Domaine public',
 
 'exif-unknowndate' => 'Date inconnue',
@@ -3505,7 +3507,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-urgency-normal' => 'Normale ($1)',
 'exif-urgency-low'    => 'Faible ($1)',
 'exif-urgency-high'   => 'Haute ($1)',
-'exif-urgency-other'  => "Priorité définie par l'utilisateur ($1)",
+'exif-urgency-other'  => 'Urgence définie par l’utilisateur ($1)',
 
 # External editor support
 'edit-externally'      => 'Modifier ce fichier en utilisant une application externe',
@@ -3576,19 +3578,17 @@ confirmation de votre adresse courriel :
 $5
 
 Ce code de confirmation expirera le $4.',
-'confirmemail_body_set'     => "Quelqu'un, probablement vous, de l'adresse IP address $1,
-a modifié l'adresse de courriel du compte « $2 » à cette adresse sur {{SITENAME}}.
+'confirmemail_body_set'     => 'Quelqu’un, probablement vous, de l’adresse IP $1, a modifié l’adresse de courriel du compte « $2 » en celle-ci sur {{SITENAME}}.
 
-Pour confirmer que ce compte vous appartient et réactiver les fonctions de courriel
-sur {{SITENAME}}, ouvrez ce lien dans votre navigateur web :
+Pour confirmer que ce compte vous appartient et réactiver les fonctions de courriel sur {{SITENAME}}, ouvrez ce lien dans votre navigateur Web :
 
 $3
 
-Si le compte ne vous appartient PAS, suivez plutôt ce lien pour annuler la confirmation de l'adresse de courriel :
+Ce code de confirmation expirera le $4.
 
-$5
+Si le compte ne vous appartient PAS, suivez plutôt ce lien pour annuler la confirmation de l’adresse de courriel :
 
-Ce code de confirmation expirera le $4.",
+$5',
 'confirmemail_invalidated'  => 'Confirmation de l’adresse courriel annulée',
 'invalidateemail'           => 'Annuler la confirmation de l’adresse de courriel',
 

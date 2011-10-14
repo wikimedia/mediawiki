@@ -19,6 +19,7 @@
  * @author Habjchen
  * @author Hannibal
  * @author Jon Harald Søby
+ * @author LPfi
  * @author Lejonel
  * @author Leo Johannes
  * @author Lokal Profil
@@ -997,7 +998,7 @@ Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.
 'editingsection'                   => 'Redigerar $1 (avsnitt)',
 'editingcomment'                   => 'Redigerar $1 (nytt avsnitt)',
 'editconflict'                     => 'Redigeringskonflikt: $1',
-'explainconflict'                  => "Någon annan har ändrat den här sidan efter att du började att redigera den.
+'explainconflict'                  => "Någon har ändrat den här sidan efter att du började att redigera den.
 Den översta textrutan innehåller den nuvarande sparade versionen av texten.
 Din ändrade version visas i den nedre rutan.
 Om du vill spara dina ändringar så måste du infoga dem i den övre texten.

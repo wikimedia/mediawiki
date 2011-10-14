@@ -352,6 +352,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
 'tog-diffonly'                => 'Sayfa içeriğini sürüm farklarının aşağısında gösterme',
 'tog-showhiddencats'          => 'Gizli kategorileri göster',
+'tog-noconvertlink'           => 'Bağlantı başlığı dönüştürmesini devre dışı bırakma',
 'tog-norollbackdiff'          => 'Rollback uygulandıktan sonra değişikliği sil',
 
 'underline-always'  => 'Daima',
@@ -593,6 +594,8 @@ $1',
 'site-atom-feed'          => '$1 Atom beslemesi',
 'page-rss-feed'           => '"$1" RSS Beslemesi',
 'page-atom-feed'          => '"$1" Atom beslemesi',
+'feed-atom'               => 'Atom',
+'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (sayfa mevcut değil)',
 'sort-descending'         => 'Azalan sıralama',
 'sort-ascending'          => 'Artan sıralama',
@@ -841,6 +844,7 @@ Geçici şifre: $2',
 'changeemail-no-info'  => 'Bu sayfaya doğrudan ulaşabilmek için oturum açmış olmalısınız.',
 'changeemail-oldemail' => 'Mevcut E-posta adresi:',
 'changeemail-newemail' => 'Yeni E-posta adresi:',
+'changeemail-none'     => '(yok)',
 'changeemail-submit'   => "E-posta'yı değiştir",
 'changeemail-cancel'   => 'İptal',
 
@@ -1007,6 +1011,7 @@ Son günlük girdisi referans amaçlı aşağıda verilmiştir:",
 'template-protected'               => '(korumada)',
 'template-semiprotected'           => '(yarı-korumada)',
 'hiddencategories'                 => 'Bu sayfa {{PLURAL:$1|1 gizli kategoriye|$1 gizli kategoriye}} mensuptur:',
+'edittools'                        => '<!-- Buradaki metin düzenleme ve yükleme formlarının altında gösterilecektir. -->',
 'nocreatetitle'                    => 'Sayfa oluşturulması sınırlandı',
 'nocreatetext'                     => '{{SITENAME}}, yeni sayfa oluşturulabilmesini engelledi.
 Geri giderek varolan sayfayı değiştirebilirsiniz ya da kayıtlı iseniz [[Special:UserLogin|oturum açabilir]], değilseniz [[Special:UserLogin|kayıt olabilirsiniz]].',
@@ -1442,7 +1447,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'userrights-no-interwiki'      => 'Diğer vikilerdeki kullanıcıların izinlerini değiştirmeye yetkiniz yok.',
 'userrights-nodatabase'        => '$1 veritabanı mevcut veya bölgesel değil',
 'userrights-nologin'           => 'Kullanıcı haklarını atamak için hizmetli hesabı ile [[Special:UserLogin|giriş yapmanız gerekir]].',
-'userrights-notallowed'        => 'Kullanıcı hesabınızın kullanıcı haklarını atamak için izni yok.',
+'userrights-notallowed'        => 'Hesabınızın kullanıcı hakları eklemek veya kaldırmak için izni yok.',
 'userrights-changeable-col'    => 'Değiştirebildiğiniz gruplar',
 'userrights-unchangeable-col'  => 'Değiştirebilmediğiniz gruplar',
 
@@ -1533,10 +1538,11 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-passwordreset'         => 'Bir kullanıcının parolasını sıfırlar ([[Special:PasswordReset|özel sayfa]])',
 
 # User rights log
-'rightslog'      => 'Kullanıcı hakları kayıtları',
-'rightslogtext'  => 'Kullanıcı hakları değişiklikleri kayıtları.',
-'rightslogentry' => '$1 adlı kullanıcının yetkileri $2 iken $3 olarak değiştirildi',
-'rightsnone'     => '(hiçbiri)',
+'rightslog'                  => 'Kullanıcı hakları kayıtları',
+'rightslogtext'              => 'Kullanıcı hakları değişiklikleri kayıtları.',
+'rightslogentry'             => '$1 adlı kullanıcının yetkileri $2 iken $3 olarak değiştirildi',
+'rightslogentry-autopromote' => '$2 otomatik olarak yükseltilerek $3 yapıldı.',
+'rightsnone'                 => '(hiçbiri)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'bu sayfayı okumaya',
@@ -1782,22 +1788,23 @@ Güvenlik denetimi uygun bir şekilde gerçekleştirilemiyor.',
 'uploadstash-refresh'  => 'Dosya listelerini yenile',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Erişim engellendi',
-'img-auth-nopathinfo'   => 'Eksik PATH_INFO.
+'img-auth-accessdenied'     => 'Erişim engellendi',
+'img-auth-nopathinfo'       => 'Eksik PATH_INFO.
 Sunucunuz bu bilgiyi geçirmek için ayarlanmamış.
 CGI-tabanlı olabilir ve img_auth desteklenmiyor olabilir.
 http://www.mediawiki.org/wiki/Manual:Image_Authorization sayfasına bakın.',
-'img-auth-notindir'     => 'İstenen yol yapılandırılmış yükleme dizininde değil.',
-'img-auth-badtitle'     => '"$1" ile geçerli bir başlık yapılamıyor.',
-'img-auth-nologinnWL'   => 'Giriş yapmadınız ve "$1" beyaz listede değil.',
-'img-auth-nofile'       => '"$1" dosyası mevcut değil.',
-'img-auth-isdir'        => '"$1" dizinine erişmeye çalışıyorsunuz.
+'img-auth-notindir'         => 'İstenen yol yapılandırılmış yükleme dizininde değil.',
+'img-auth-badtitle'         => '"$1" ile geçerli bir başlık yapılamıyor.',
+'img-auth-nologinnWL'       => 'Giriş yapmadınız ve "$1" beyaz listede değil.',
+'img-auth-nofile'           => '"$1" dosyası mevcut değil.',
+'img-auth-isdir'            => '"$1" dizinine erişmeye çalışıyorsunuz.
 Sadece dosya erişimine izin veriliyor.',
-'img-auth-streaming'    => '"$1" oynatılıyor.',
-'img-auth-public'       => "img_auth.php'nin fonksiyonu özel bir vikiden dosyaları çıkarmaktır.
+'img-auth-streaming'        => '"$1" oynatılıyor.',
+'img-auth-public'           => "img_auth.php'nin fonksiyonu özel bir vikiden dosyaları çıkarmaktır.
 Bu viki genel bir viki olarak ayarlanmış.
 En uygun güvenlik için, img_auth.php devre dışı bırakıldı.",
-'img-auth-noread'       => 'Kullanıcının "$1" dosyasını okumaya erişimi yok.',
+'img-auth-noread'           => 'Kullanıcının "$1" dosyasını okumaya erişimi yok.',
+'img-auth-bad-query-string' => "URL'de geçersiz bir sorgu dizesi vardır.",
 
 # HTTP errors
 'http-invalid-url'      => 'Geçersiz URL: $1',
@@ -1826,9 +1833,8 @@ Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 'upload_source_file' => ' (bilgisayarınızdaki bir dosya)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Bu özel sayfa yüklenilen tüm dosyaları gösterir.
-Varsayılan olarak en son yüklenen dosyalar listenin başında gösterilir.
-Bir sütünun başlığına tıklayarak sıralamayı değiştirebilirsiniz.',
+'listfiles-summary'     => 'Bu özel sayfa yüklenilen tüm dosyaları gösterir. 
+Kullanıcı tarafından filtrelendiğinde, sadece o kullanıcı dosyanın en son sürümünü yüklediği dosyalar gösterilir.',
 'listfiles_search_for'  => 'Medya adı ara:',
 'imgfile'               => 'dosya',
 'listfiles'             => 'Dosya listesi',
@@ -2467,6 +2473,7 @@ Son engelleme günlüğü girdisi kaynak amacıyla aşağıda verilmiştir:',
 'whatlinkshere-filters'    => 'Süzgeçler',
 
 # Block/unblock
+'autoblockid'                     => 'Otomatik engelleme #$1',
 'block'                           => 'Kullanıcıyı engelle',
 'unblock'                         => 'Kullanıcının engelini kaldır',
 'blockip'                         => 'Kullanıcıyı engelle',
@@ -3138,6 +3145,8 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-gpsdifferential'             => 'GPS differential correction',
 'exif-jpegfilecomment'             => 'JPEG dosyası yorumu',
 'exif-keywords'                    => 'Anahtar kelimeler',
+'exif-countrydest'                 => 'Gösterilen ülke',
+'exif-citydest'                    => 'Gösterilen Şehir',
 'exif-objectname'                  => 'Kısa başlık',
 'exif-headline'                    => 'Başlık',
 'exif-source'                      => 'Kaynak',
@@ -3153,14 +3162,17 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-serialnumber'                => 'Kameranın seri numarası',
 'exif-cameraownername'             => 'Kameranın sahibi',
 'exif-label'                       => 'Etiket',
+'exif-rating'                      => 'Oylama (5 üzerinden)',
 'exif-copyrighted'                 => 'Telif hakkı durumu',
 'exif-copyrightowner'              => 'Telif hakkı sahibi',
 'exif-usageterms'                  => 'Kullanım şartları',
+'exif-webstatement'                => 'Çevrimiçi telif hakkı bildirimi',
 'exif-morepermissionsurl'          => 'Alternatif lisans bilgileri',
 'exif-pngfilecomment'              => 'PNG dosyası yorumu',
 'exif-disclaimer'                  => 'Sorumluluk reddi',
 'exif-contentwarning'              => 'İçerik uyarısı',
 'exif-giffilecomment'              => 'GIF dosyası yorumu',
+'exif-personinimage'               => 'Adı geçen kişi',
 
 # EXIF attributes
 'exif-compression-1' => 'Sıkıştırılmamış',
@@ -3179,9 +3191,9 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-orientation-3' => '180° döndürülmüş',
 'exif-orientation-4' => 'Dikey çevirme',
 'exif-orientation-5' => '90° döndürülmüş (sola doğru) ve dikey çevirme',
-'exif-orientation-6' => '90° döndürülmüş (saat yönünde)',
+'exif-orientation-6' => '90° döndürülmüş (saat yönünün tersine)',
 'exif-orientation-7' => '90° döndürülmüş (saat yönünde) ve dikey çevirme',
-'exif-orientation-8' => '90° döndürülmüş (sola doğru)',
+'exif-orientation-8' => '90° döndürülmüş (saat yönünde)',
 
 'exif-planarconfiguration-1' => 'chunky format',
 'exif-planarconfiguration-2' => 'Düzlemsel biçim',
@@ -3314,6 +3326,9 @@ Diğerleri varsayılan olarak gizlenecektir.
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Doğu boylamı',
 'exif-gpslongitude-w' => 'Batı boylamı',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => 'Deniz seviyesinden $1 {{PLURAL:$1|metre|metre}} yukarıda',
 
 'exif-gpsstatus-a' => 'Ölçüm devam ediyor',
 'exif-gpsstatus-v' => 'Ölçüm işlerliği',
@@ -3553,6 +3568,9 @@ Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabili
 'watchlisttools-edit' => 'İzleme listesini gör ve düzenle',
 'watchlisttools-raw'  => 'Ham izleme listesini düzenle',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|tartışma]])</sup>',
+
 # Core parser functions
 'unknown_extension_tag' => 'Bilinmeyen eklenti etiketi "$1"',
 'duplicate-defaultsort' => '\'\'\'Uyarı:\'\'\' Varsayılan "$2" sınıflandırma anahtarı, önceki "$1" sınıflandırma anahtarını geçersiz kılıyor.',
@@ -3606,9 +3624,10 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 
 # Special:SpecialPages
 'specialpages'                   => 'Özel sayfalar',
-'specialpages-note'              => '* Normal özel sayfalar.
+'specialpages-note'              => '----
+* Normal özel sayfalar.
 * <span class="mw-specialpagerestricted">Kısıtlı özel sayfalar.</span>
-* <span class="mw-specialpagecached">Yalnızca önbelleğe alınan özel sayfalar (eskimiş olabilir)</span>',
+* <span class="mw-specialpagecached">Önbelleğe alınan özel sayfalar (eskimiş olabilir)</span>',
 'specialpages-group-maintenance' => 'Bakım raporları',
 'specialpages-group-other'       => 'Diğer özel sayfalar',
 'specialpages-group-login'       => 'Oturum aç / hesap edin',
@@ -3650,13 +3669,14 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'tags-hitcount'           => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
 
 # Special:ComparePages
-'comparepages'     => 'Sayfaları karşılaştır',
-'compare-selector' => 'Sayfa sürümlerini karşılaştır',
-'compare-page1'    => 'Sayfa 1',
-'compare-page2'    => 'Sayfa 2',
-'compare-rev1'     => 'Sürüm 1',
-'compare-rev2'     => 'Sürüm 2',
-'compare-submit'   => 'Karşılaştır',
+'comparepages'          => 'Sayfaları karşılaştır',
+'compare-selector'      => 'Sayfa sürümlerini karşılaştır',
+'compare-page1'         => 'Sayfa 1',
+'compare-page2'         => 'Sayfa 2',
+'compare-rev1'          => 'Sürüm 1',
+'compare-rev2'          => 'Sürüm 2',
+'compare-submit'        => 'Karşılaştır',
+'compare-invalid-title' => 'Belirttiğiniz başlık geçersiz.',
 
 # Database error messages
 'dberr-header'      => 'Bu vikinin bir sorunu var',
@@ -3684,6 +3704,8 @@ Resimler tam çözünürlükte görüntülenir, diğer dosya tipleri ilgili prog
 'sqlite-no-fts'  => '$1 tam-metin arama desteği olmaksızın',
 
 # New logging system
+'revdelete-content-hid'   => 'Gizli içerik',
+'revdelete-uname-hid'     => 'kullanıcı adı gizli',
 'revdelete-content-unhid' => 'içerik gösterildi',
 'revdelete-summary-unhid' => 'değişiklik özeti gösterildi',
 'revdelete-uname-unhid'   => 'kullanıcı adı gösterildi',
