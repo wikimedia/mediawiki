@@ -61,7 +61,7 @@ class languages {
 	/**
 	 * Get the language list.
 	 *
-	 * @return The language list.
+	 * @return array The language list.
 	 */
 	public function getLanguages() {
 		return $this->mLanguages;
@@ -70,7 +70,7 @@ class languages {
 	/**
 	 * Get the ignored messages list.
 	 *
-	 * @return The ignored messages list.
+	 * @return array The ignored messages list.
 	 */
 	public function getIgnoredMessages() {
 		return $this->mIgnoredMessages;
@@ -79,7 +79,7 @@ class languages {
 	/**
 	 * Get the optional messages list.
 	 *
-	 * @return The optional messages list.
+	 * @return array The  optional messages list.
 	 */
 	public function getOptionalMessages() {
 		return $this->mOptionalMessages;
@@ -137,7 +137,7 @@ class languages {
 	 * obsolete - messages which should not be translated, either because they do not exist, or they are ignored messages.
 	 * translated - messages which are either required or optional, but translated from English and needed.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 */
 	private function loadMessages( $code ) {
 		if ( isset( $this->mMessages[$code] ) ) {
@@ -203,7 +203,7 @@ class languages {
 	 * obsolete - messages which should not be translated, either because they do not exist, or they are ignored messages.
 	 * translated - messages which are either required or optional, but translated from English and needed.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
 	 * @return string The messages in this language.
 	 */
@@ -220,7 +220,7 @@ class languages {
 	 * ignored - messages which should not be translated to other languages.
 	 * translatable - messages which are either required or optional, but can be translated from English.
 	 *
-	 * @return The general English messages.
+	 * @return array The general English messages.
 	 */
 	public function getGeneralMessages() {
 		$this->loadGeneralMessages();
@@ -230,9 +230,9 @@ class languages {
 	/**
 	 * Get fallback language code for a specific language.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return Fallback code.
+	 * @return string Fallback code.
 	 */
 	public function getFallback( $code ) {
 		$this->loadFile( $code );
@@ -242,7 +242,7 @@ class languages {
 	/**
 	 * Get namespace names for a specific language.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
 	 * @return Namespace names.
 	 */
@@ -254,7 +254,7 @@ class languages {
 	/**
 	 * Get namespace aliases for a specific language.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
 	 * @return Namespace aliases.
 	 */
@@ -266,7 +266,7 @@ class languages {
 	/**
 	 * Get magic words for a specific language.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
 	 * @return Magic words.
 	 */
@@ -278,7 +278,7 @@ class languages {
 	/**
 	 * Get special page aliases for a specific language.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
 	 * @return Special page aliases.
 	 */
@@ -290,9 +290,9 @@ class languages {
 	/**
 	 * Get the untranslated messages for a specific language.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The untranslated messages for this language.
+	 * @return array The untranslated messages for this language.
 	 */
 	public function getUntranslatedMessages( $code ) {
 		$this->loadGeneralMessages();
@@ -303,9 +303,9 @@ class languages {
 	/**
 	 * Get the duplicate messages for a specific language.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The duplicate messages for this language.
+	 * @return array The duplicate messages for this language.
 	 */
 	public function getDuplicateMessages( $code ) {
 		$this->loadGeneralMessages();
@@ -322,9 +322,9 @@ class languages {
 	/**
 	 * Get the obsolete messages for a specific language.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The obsolete messages for this language.
+	 * @return array The obsolete messages for this language.
 	 */
 	public function getObsoleteMessages( $code ) {
 		$this->loadGeneralMessages();
@@ -335,9 +335,9 @@ class languages {
 	/**
 	 * Get the messages whose variables do not match the original ones.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The messages whose variables do not match the original ones.
+	 * @return array The messages whose variables do not match the original ones.
 	 */
 	public function getMessagesWithMismatchVariables( $code ) {
 		$this->loadGeneralMessages();
@@ -366,9 +366,9 @@ class languages {
 	/**
 	 * Get the messages which do not use plural.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The messages which do not use plural in this language.
+	 * @return array The messages which do not use plural in this language.
 	 */
 	public function getMessagesWithoutPlural( $code ) {
 		$this->loadGeneralMessages();
@@ -385,9 +385,9 @@ class languages {
 	/**
 	 * Get the empty messages.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The empty messages for this language.
+	 * @return array The empty messages for this language.
 	 */
 	public function getEmptyMessages( $code ) {
 		$this->loadGeneralMessages();
@@ -404,9 +404,9 @@ class languages {
 	/**
 	 * Get the messages with trailing whitespace.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The messages with trailing whitespace in this language.
+	 * @return array The messages with trailing whitespace in this language.
 	 */
 	public function getMessagesWithWhitespace( $code ) {
 		$this->loadGeneralMessages();
@@ -423,9 +423,9 @@ class languages {
 	/**
 	 * Get the non-XHTML messages.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The non-XHTML messages for this language.
+	 * @return array The non-XHTML messages for this language.
 	 */
 	public function getNonXHTMLMessages( $code ) {
 		$this->loadGeneralMessages();
@@ -451,9 +451,9 @@ class languages {
 	/**
 	 * Get the messages which include wrong characters.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The messages which include wrong characters in this language.
+	 * @return array The messages which include wrong characters in this language.
 	 */
 	public function getMessagesWithWrongChars( $code ) {
 		$this->loadGeneralMessages();
@@ -488,9 +488,9 @@ class languages {
 	/**
 	 * Get the messages which include dubious links.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The messages which include dubious links in this language.
+	 * @return array The messages which include dubious links in this language.
 	 */
 	public function getMessagesWithDubiousLinks( $code ) {
 		$this->loadGeneralMessages();
@@ -517,9 +517,9 @@ class languages {
 	/**
 	 * Get the messages which include unbalanced brackets.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The messages which include unbalanced brackets in this language.
+	 * @return array The messages which include unbalanced brackets in this language.
 	 */
 	public function getMessagesWithUnbalanced( $code ) {
 		$this->loadGeneralMessages();
@@ -547,7 +547,7 @@ class languages {
 			if ( $a !== $b || $c !== $d ) {
 				$messages[$key] = "$a, $b, $c, $d";
 			}
-			
+
 		}
 		return $messages;
 	}
@@ -555,9 +555,9 @@ class languages {
 	/**
 	 * Get the untranslated namespace names.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The untranslated namespace names in this language.
+	 * @return array The untranslated namespace names in this language.
 	 */
 	public function getUntranslatedNamespaces( $code ) {
 		$this->loadFile( 'en' );
@@ -570,9 +570,9 @@ class languages {
 	/**
 	 * Get the project talk namespace names with no $1.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The problematic project talk namespaces in this language.
+	 * @return array The problematic project talk namespaces in this language.
 	 */
 	public function getProblematicProjectTalks( $code ) {
 		$this->loadFile( $code );
@@ -599,9 +599,9 @@ class languages {
 	/**
 	 * Get the untranslated magic words.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The untranslated magic words in this language.
+	 * @return array The untranslated magic words in this language.
 	 */
 	public function getUntranslatedMagicWords( $code ) {
 		$this->loadFile( 'en' );
@@ -618,9 +618,9 @@ class languages {
 	/**
 	 * Get the obsolete magic words.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The obsolete magic words in this language.
+	 * @return array The obsolete magic words in this language.
 	 */
 	public function getObsoleteMagicWords( $code ) {
 		$this->loadFile( 'en' );
@@ -637,9 +637,9 @@ class languages {
 	/**
 	 * Get the magic words that override the original English magic word.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The overriding magic words in this language.
+	 * @return array The overriding magic words in this language.
 	 */
 	public function getOverridingMagicWords( $code ) {
 		$this->loadFile( 'en' );
@@ -666,9 +666,9 @@ class languages {
 	/**
 	 * Get the magic words which do not match the case-sensitivity of the original words.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The magic words whose case does not match in this language.
+	 * @return array The magic words whose case does not match in this language.
 	 */
 	public function getCaseMismatchMagicWords( $code ) {
 		$this->loadFile( 'en' );
@@ -689,9 +689,9 @@ class languages {
 	/**
 	 * Get the untranslated special page names.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The untranslated special page names in this language.
+	 * @return array The untranslated special page names in this language.
 	 */
 	public function getUntraslatedSpecialPages( $code ) {
 		$this->loadFile( 'en' );
@@ -708,9 +708,9 @@ class languages {
 	/**
 	 * Get the obsolete special page names.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 *
-	 * @return The obsolete special page names in this language.
+	 * @return array The obsolete special page names in this language.
 	 */
 	public function getObsoleteSpecialPages( $code ) {
 		$this->loadFile( 'en' );
@@ -726,7 +726,11 @@ class languages {
 }
 
 class extensionLanguages extends languages {
-	private $mMessageGroup; # The message group
+
+	/**
+	 * @var MessageGroup
+	 */
+	private $mMessageGroup;
 
 	/**
 	 * Load the messages group.
@@ -743,7 +747,7 @@ class extensionLanguages extends languages {
 	/**
 	 * Get the extension name.
 	 *
-	 * @return The extension name.
+	 * @return string The extension name.
 	 */
 	public function name() {
 		return $this->mMessageGroup->getLabel();
@@ -752,7 +756,7 @@ class extensionLanguages extends languages {
 	/**
 	 * Load the language file.
 	 *
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 */
 	protected function loadFile( $code ) {
 		if( !isset( $this->mRawMessages[$code] ) ) {
