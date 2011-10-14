@@ -923,7 +923,7 @@ class EditPage {
 			wfProfileOut( __METHOD__ );
 			return $status;
 		}
-		if ( $wgFilterCallback && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
+		if ( $wgFilterCallback && is_callable( $wgFilterCallback ) && $wgFilterCallback( $this->mTitle, $this->textbox1, $this->section, $this->hookError, $this->summary ) ) {
 			# Error messages or other handling should be performed by the filter function
 			$status->setResult( false, self::AS_FILTERING );
 			wfProfileOut( __METHOD__ . '-checks' );

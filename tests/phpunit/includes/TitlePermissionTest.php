@@ -5,12 +5,16 @@
  */
 class TitlePermissionTest extends MediaWikiLangTestCase {
 	protected $title;
-	protected $user;
-	protected $anonUser;
-	protected $userUser;
-	protected $altUser;
-	protected $userName;
-	protected $altUserName;
+
+	/**
+	 * @var User
+	 */
+	protected $user, $anonUser, $userUser, $altUser;
+
+	/**
+	 * @var string
+	 */
+	protected $userName, $altUserName;
 
 	function setUp() {
 		global $wgLocaltimezone, $wgLocalTZoffset, $wgMemc, $wgContLang, $wgLang;
@@ -64,7 +68,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		for ($i = 0; $i < 100; $i++) {
 			$this->user->mRights[$i] = $perm;
 		}
-		
+
 		// Hack, hack hack ...
 		$this->user->mRights['*'] = $perm;
 	}
@@ -543,7 +547,7 @@ class TitlePermissionTest extends MediaWikiLangTestCase {
 		$this->setTitle( NS_MAIN, "test page" );
 		$this->title->mTitleProtection['pt_create_perm'] = '';
 		$this->title->mTitleProtection['pt_user'] = $this->user->getID();
-		$this->title->mTitleProtection['pt_expiry'] = Block::infinity();
+		$this->title->mTitleProtection['pt_expiry'] = wfGetDB( DB_SLAVE )->getInfinity();
 		$this->title->mTitleProtection['pt_reason'] = 'test';
 		$this->title->mCascadeRestriction = false;
 

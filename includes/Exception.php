@@ -53,7 +53,7 @@ class MWException extends Exception {
 		global $wgExceptionHooks;
 
 		if ( !isset( $wgExceptionHooks ) || !is_array( $wgExceptionHooks ) ) {
-			return;	// Just silently ignore
+			return; // Just silently ignore
 		}
 
 		if ( !array_key_exists( $name, $wgExceptionHooks ) || !is_array( $wgExceptionHooks[ $name ] ) ) {

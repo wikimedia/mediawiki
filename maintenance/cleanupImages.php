@@ -89,6 +89,9 @@ class ImageCleanup extends TableCleanup {
 		$this->progress( 0 );
 	}
 
+	/**
+	 * @param $name string
+	 */
 	private function killRow( $name ) {
 		if ( $this->dryrun ) {
 			$this->output( "DRY RUN: would delete bogus row '$name'\n" );

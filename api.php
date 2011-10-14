@@ -117,7 +117,7 @@ $processor = new ApiMain( $wgRequest, $wgEnableWriteAPI );
 $processor->execute();
 
 // Execute any deferred updates
-wfDoUpdates();
+DeferredUpdates::doUpdates();
 
 // Log what the user did, for book-keeping purposes.
 $endtime = microtime( true );
