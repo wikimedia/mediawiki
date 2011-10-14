@@ -8,6 +8,7 @@
  * @file
  *
  * @author -iNu-
+ * @author Aldnonymous
  * @author Anakmalaysia
  * @author ArdWar
  * @author Bennylin
@@ -1217,7 +1218,7 @@ Silakan periksa catatan log.',
 # Suppression log
 'suppressionlog'     => 'Log penyembunyian',
 'suppressionlogtext' => 'Berikut adalah daftar penghapusan dan pemblokiran, termasuk konten yang disembunyikan dari para opsis.
-Lihat [[Special:IPBlockList|daftar IP yang diblokir]] untuk daftar terkininya.',
+Lihat [[Special:BlockList|IP block list]] untuk daftar terkininya.',
 
 # History merging
 'mergehistory'                     => 'Gabung sejarah halaman',
@@ -1484,12 +1485,12 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'group-suppress'      => 'Pengawas',
 'group-all'           => '(semua)',
 
-'group-user-member'          => 'Pengguna',
-'group-autoconfirmed-member' => 'Pengguna terkonfirmasi otomatis',
+'group-user-member'          => '{{GENDER:$1| pengguna}}',
+'group-autoconfirmed-member' => '{{GENDER:$1| pengguna}} terkonfimasi otomatis',
 'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Pengurus',
-'group-bureaucrat-member'    => 'Birokrat',
-'group-suppress-member'      => 'Pengawas',
+'group-sysop-member'         => '{{GENDER:$1|pengurus}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birokrat}}',
+'group-suppress-member'      => '{{GENDER:$1|pengawas}}',
 
 'grouppage-user'          => '{{ns:project}}:Pengguna',
 'grouppage-autoconfirmed' => '{{ns:project}}:Pengguna terkonfirmasi otomatis',

@@ -717,6 +717,7 @@ Perciò, gli utenti che usano questo indirizzo IP non possono creare altri accou
 'noemailprefs'               => 'Indicare un indirizzo e-mail per attivare queste funzioni.',
 'emailconfirmlink'           => 'Confermare il proprio indirizzo e-mail',
 'invalidemailaddress'        => "L'indirizzo e-mail indicato ha un formato non valido. Inserire un indirizzo valido o svuotare la casella.",
+'cannotchangeemail'          => 'Gli indirizzi e-mail non possono essere modificati in questo wiki.',
 'accountcreated'             => 'Accesso creato',
 'accountcreatedtext'         => "È stato creato un accesso per l'utente $1.",
 'createaccount-title'        => 'Creazione di un accesso a {{SITENAME}}',
@@ -754,16 +755,18 @@ La password potrebbe essere stata già cambiata, oppure potrebbe essere stata ri
 'resetpass-temp-password'   => 'Password temporanea:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Reimposta password',
-'passwordreset-text'           => 'Completa questo modulo per ricevere i dettagli del tuo account via e-mail.',
-'passwordreset-legend'         => 'Reimposta password',
-'passwordreset-disabled'       => 'La reimpostazione delle password è stata disabilitata su questa wiki',
-'passwordreset-pretext'        => '{{PLURAL:$1||Immetti una delle porzioni di dati qui sotto}}',
-'passwordreset-username'       => 'Nome utente:',
-'passwordreset-domain'         => 'Dominio:',
-'passwordreset-email'          => 'Indirizzo e-mail:',
-'passwordreset-emailtitle'     => 'Dettagli account su {{SITENAME}}',
-'passwordreset-emailtext-ip'   => "Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo e-mail sono:
+'passwordreset'                    => 'Reimposta password',
+'passwordreset-text'               => 'Completa questo modulo per ricevere i dettagli del tuo account via e-mail.',
+'passwordreset-legend'             => 'Reimposta password',
+'passwordreset-disabled'           => 'La reimpostazione delle password è stata disabilitata su questa wiki',
+'passwordreset-pretext'            => '{{PLURAL:$1||Immetti una delle porzioni di dati qui sotto}}',
+'passwordreset-username'           => 'Nome utente:',
+'passwordreset-domain'             => 'Dominio:',
+'passwordreset-capture'            => 'Visualizzare il contenuto del messaggio e-mail?',
+'passwordreset-capture-help'       => "Se si seleziona questa casella, l'indirizzo e-mail (con la password temporanea), verrà mostrato a voi, oltre ad essere inviato all'utente.",
+'passwordreset-email'              => 'Indirizzo e-mail:',
+'passwordreset-emailtitle'         => 'Dettagli account su {{SITENAME}}',
+'passwordreset-emailtext-ip'       => "Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo e-mail sono:
 
 $2
 
@@ -771,7 +774,7 @@ $2
 Dovresti accedere e scegliere una nuova password ora. 
 
 Se non sei stato tu a fare la richiesta, o se ti sei ricordato la password originale e non vuoi più cambiarla, puoi ignorare questo messaggio e continuare al utilizzare la tua vecchia password.",
-'passwordreset-emailtext-user' => "L'utente $1 di {{SITENAME}} ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo e-mail sono:
+'passwordreset-emailtext-user'     => "L'utente $1 di {{SITENAME}} ha richiesto l'invio di una nuova password per l'accesso a {{SITENAME}} ($4). {{PLURAL:$3|L'utente associato|Gli utenti associati}} a questo indirizzo e-mail sono:
 
 $2
 
@@ -779,9 +782,11 @@ $2
 Dovresti accedere e scegliere una nuova password ora. 
 
 Se non sei stato tu a fare la richiesta, o se ti sei ricordato la password originale e non vuoi più cambiarla, puoi ignorare questo messaggio e continuare al utilizzare la tua vecchia password.",
-'passwordreset-emailelement'   => 'Nome utente: $1
+'passwordreset-emailelement'       => 'Nome utente: $1
 Password temporanea: $2',
-'passwordreset-emailsent'      => 'È stata inviata una e-mail di promemoria.',
+'passwordreset-emailsent'          => 'È stata inviata una e-mail di promemoria.',
+'passwordreset-emailsent-capture'  => "E' stato inviato un e-mail promemoria, il contenuto è riportato di seguito.",
+'passwordreset-emailerror-capture' => "E' stata generata l'e-mail promemoria riportata di seguito. L'invio all'utente non è riuscito: $1",
 
 # Special:ChangeEmail
 'changeemail'          => "Modifica l'indirizzo e-mail",
