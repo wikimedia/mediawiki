@@ -3713,7 +3713,8 @@ class Language {
 	function specialList( $page, $details, $oppositedm = true ) {
 		$dirmark = ( $oppositedm ? $this->getDirMark( true ) : '' ) .
 			$this->getDirMark();
-		$details = $details ? $dirmark . " ($details)" : '';
+		$details = $details ? $dirmark . $this->getMessageFromDB( 'word-separator' ) .
+			wfMsgExt( 'parentheses', array( 'escape', 'replaceafter', 'language' => $this ), $details ) : '';
 		return $page . $details;
 	}
 
