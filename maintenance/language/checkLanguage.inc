@@ -304,17 +304,17 @@ ENDS;
 
 	/**
 	 * Check a language.
-	 * @param $code The language code.
-	 * @return The results.
+	 * @param $code string The language code.
+	 * @return array The results.
 	 */
 	protected function checkLanguage( $code ) {
 		# Syntax check only
+		$results = array();
 		if ( $this->level === 0 ) {
 			$this->L->getMessages( $code );
-			return;
+			return $results;
 		}
 
-		$results = array();
 		$checkFunctions = $this->getChecks();
 		$checkBlacklist = $this->getCheckBlacklist();
 		foreach ( $this->checks as $check ) {
@@ -643,7 +643,7 @@ ENDS;
 
 	/**
 	 * Check a language and show the results.
-	 * @param $code The language code.
+	 * @param $code string The language code.
 	 */
 	protected function checkLanguage( $code ) {
 		foreach( $this->extensions as $extension ) {

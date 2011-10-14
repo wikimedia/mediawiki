@@ -12,7 +12,7 @@ class LanguageKk_cyrl extends Language {
 	 * Cases: genitive, dative, accusative, locative, ablative, comitative + possessive forms
 	 *
 	 * @param $word string
-	 * @param $case stirng
+	 * @param $case string
 	 *
 	 * @return string
 	 */

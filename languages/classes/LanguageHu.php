@@ -25,5 +25,6 @@ class LanguageHu extends Language {
 			case 'k':
 				return $word . 'k';
 		}
+		return '';
 	}
 }
