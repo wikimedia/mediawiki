@@ -344,9 +344,8 @@ class SpecialSearch extends SpecialPage {
 		if( $num || $this->offset ) {
 			// Show the create link ahead
 			$this->showCreateLink( $t );
-			$prevnext = wfViewPrevNext( $this->offset, $this->limit,
-				SpecialPage::getTitleFor( 'Search' ),
-				wfArrayToCGI( $this->powerSearchOptions(), array( 'search' => $term ) ),
+			$prevnext = $this->getLang()->viewPrevNext( $this->getTitle(), $this->offset, $this->limit,
+				$this->powerSearchOptions() + array( 'search' => $term ),
 				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
 			);
 			//$out->addHTML( "<p class='mw-search-pager-top'>{$prevnext}</p>\n" );
@@ -1039,7 +1038,10 @@ class SpecialSearch extends SpecialPage {
 					$lang->formatNum( $resultsShown )
 				);
 			} elseif ( $resultsShown >= $this->limit ) {
-				$top = wfShowingResults( $this->offset, $this->limit );
+				$top = wfMsgExt( 'showingresults', array( 'parseinline' ),
+					$lang->formatNum( $this->limit ),
+					$lang->formatNum( $this->offset + 1 )
+				);
 			} else {
 				$top =  wfMsgExt( 'showingresultsnum', array( 'parseinline' ),
 					$lang->formatNum( $this->limit ),

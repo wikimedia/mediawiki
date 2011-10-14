@@ -502,16 +502,16 @@ abstract class QueryPage extends SpecialPage {
 		if ( $this->shownavigation ) {
 			$out->addHTML( $this->getPageHeader() );
 			if ( $this->numRows > 0 ) {
-				$out->addHTML( '<p>' . wfShowingResults( $this->offset, $this->numRows ) . '</p>' );
+				$out->addHTML( $this->msg( 'showingresults' )->numParams(
+					$this->numRows, $this->offset + 1 )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
-				$paging = wfViewPrevNext( $this->offset, $this->limit,
-					$this->getTitle( $par ),
-					wfArrayToCGI( $this->linkParameters() ), ( $this->numRows < $this->limit ) );
+				$paging = $this->getLang()->viewPrevNext( $this->getTitle( $par ), $this->offset,
+					$this->limit, $this->linkParameters(), ( $this->numRows < $this->limit ) );
 				$out->addHTML( '<p>' . $paging . '</p>' );
 			} else {
 				# No results to show, so don't bother with "showing X of Y" etc.
 				# -- just let the user know and give up now
-				$out->addHTML( '<p>' . wfMsgHtml( 'specialpage-empty' ) . '</p>' );
+				$out->addWikiMsg( 'specialpage-empty' );
 				$out->addHTML( Xml::closeElement( 'div' ) );
 				return;
 			}
@@ -699,7 +699,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	function feedDesc() {
-		return wfMsgExt( 'tagline', 'parsemag' );
+		return $this->msg( 'tagline' )->text();
 	}
 
 	function feedUrl() {

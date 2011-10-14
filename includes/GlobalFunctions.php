@@ -1575,80 +1575,38 @@ function wfShowingResults( $offset, $limit ) {
  * @param $query String: optional URL query parameter string
  * @param $atend Bool: optional param for specified if this is the last page
  * @return String
+ * @deprecated in 1.19; use Language::viewPrevNext() instead
  */
 function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	global $wgLang;
-	$fmtLimit = $wgLang->formatNum( $limit );
-	// @todo FIXME: Why on earth this needs one message for the text and another one for tooltip?
-	# Get prev/next link display text
-	$prev = wfMsgExt( 'prevn', array( 'parsemag', 'escape' ), $fmtLimit );
-	$next = wfMsgExt( 'nextn', array( 'parsemag', 'escape' ), $fmtLimit );
-	# Get prev/next link title text
-	$pTitle = wfMsgExt( 'prevn-title', array( 'parsemag', 'escape' ), $fmtLimit );
-	$nTitle = wfMsgExt( 'nextn-title', array( 'parsemag', 'escape' ), $fmtLimit );
-	# Fetch the title object
+
+	$query = wfCgiToArray( $query );
+
 	if( is_object( $link ) ) {
-		$title =& $link;
+		$title = $link;
 	} else {
 		$title = Title::newFromText( $link );
 		if( is_null( $title ) ) {
 			return false;
 		}
 	}
-	# Make 'previous' link
-	if( 0 != $offset ) {
-		$po = $offset - $limit;
-		$po = max( $po, 0 );
-		$q = "limit={$limit}&offset={$po}";
-		if( $query != '' ) {
-			$q .= '&' . $query;
-		}
-		$plink = '<a href="' . $title->escapeLocalURL( $q ) . "\" title=\"{$pTitle}\" class=\"mw-prevlink\">{$prev}</a>";
-	} else {
-		$plink = $prev;
-	}
-	# Make 'next' link
-	$no = $offset + $limit;
-	$q = "limit={$limit}&offset={$no}";
-	if( $query != '' ) {
-		$q .= '&' . $query;
-	}
-	if( $atend ) {
-		$nlink = $next;
-	} else {
-		$nlink = '<a href="' . $title->escapeLocalURL( $q ) . "\" title=\"{$nTitle}\" class=\"mw-nextlink\">{$next}</a>";
-	}
-	# Make links to set number of items per page
-	$nums = $wgLang->pipeList( array(
-		wfNumLink( $offset, 20, $title, $query ),
-		wfNumLink( $offset, 50, $title, $query ),
-		wfNumLink( $offset, 100, $title, $query ),
-		wfNumLink( $offset, 250, $title, $query ),
-		wfNumLink( $offset, 500, $title, $query )
-	) );
-	return wfMsgHtml( 'viewprevnext', $plink, $nlink, $nums );
+
+	return $wgLang->viewPrevNext( $title, $offset, $limit, $query, $atend );
 }
 
 /**
- * Generate links for (20|50|100...) items-per-page links
+ * Make a list item, used by various special pages
  *
- * @param $offset String
- * @param $limit Integer
- * @param $title Title
- * @param $query String: optional URL query parameter string
+ * @param $page String Page link
+ * @param $details String Text between brackets
+ * @param $oppositedm Boolean	Add the direction mark opposite to your
+ *								language, to display text properly
+ * @return String
+ * @deprecated since 1.19; use Language::specialList() instead
  */
-function wfNumLink( $offset, $limit, $title, $query = '' ) {
+function wfSpecialList( $page, $details, $oppositedm = true ) {
 	global $wgLang;
-	if( $query == '' ) {
-		$q = '';
-	} else {
-		$q = $query.'&';
-	}
-	$q .= "limit={$limit}&offset={$offset}";
-	$fmtLimit = $wgLang->formatNum( $limit );
-	$lTitle = wfMsgExt( 'shown-title', array( 'parsemag', 'escape' ), $limit );
-	$s = '<a href="' . $title->escapeLocalURL( $q ) . "\" title=\"{$lTitle}\" class=\"mw-numlink\">{$fmtLimit}</a>";
-	return $s;
+	return $wgLang->specialList( $page, $details, $oppositedm );
 }
 
 /**
@@ -2609,21 +2567,6 @@ function in_string( $needle, $str, $insensitive = false ) {
 	if( $insensitive ) $func = 'stripos';
 
 	return $func( $str, $needle ) !== false;
-}
-
-/**
- * Make a list item, used by various special pages
- *
- * @param $page String Page link
- * @param $details String Text between brackets
- * @param $oppositedm Boolean	Add the direction mark opposite to your
- *								language, to display text properly
- * @return String
- * @deprecated since 1.19; use Language::specialList() instead
- */
-function wfSpecialList( $page, $details, $oppositedm = true ) {
-	global $wgLang;
-	return $wgLang->specialList( $page, $details, $oppositedm );
 }
 
 /**

@@ -3718,6 +3718,67 @@ class Language {
 	}
 
 	/**
+	 * Generate (prev x| next x) (20|50|100...) type links for paging
+	 *
+	 * @param $title Title object to link
+	 * @param $offset Integer offset parameter
+	 * @param $limit Integer limit parameter
+	 * @param $query String optional URL query parameter string
+	 * @param $atend Bool optional param for specified if this is the last page
+	 * @return String
+	 */
+	public function viewPrevNext( Title $title, $offset, $limit, array $query = array(), $atend = false ) {
+		// @todo FIXME: Why on earth this needs one message for the text and another one for tooltip?
+
+		# Make 'previous' link
+		$prev = wfMessage( 'prevn' )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
+		if( $offset > 0 ) {
+			$plink = $this->numLink( $title, max( $offset - $limit, 0 ), $limit,
+				$query, $prev, 'prevn-title', 'mw-prevlink' );
+		} else {
+			$plink = htmlspecialchars( $prev );
+		}
+
+		# Make 'next' link
+		$next = wfMessage( 'nextn' )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
+		if( $atend ) {
+			$nlink = htmlspecialchars( $next );
+		} else {
+			$nlink = $this->numLink( $title, $offset + $limit, $limit,
+				$query, $next, 'prevn-title', 'mw-nextlink' );
+		}
+
+		# Make links to set number of items per page
+		$numLinks = array();
+		foreach( array( 20, 50, 100, 250, 500 ) as $num ) {
+			$numLinks[] = $this->numLink( $title, $offset, $num,
+				$query, $this->formatNum( $num ), 'shown-title', 'mw-numlink' );
+		}
+
+		return wfMessage( 'viewprevnext' )->inLanguage( $this )->title( $title
+			)->rawParams( $plink, $nlink, $this->pipeList( $numLinks ) )->escaped();
+	}
+
+	/**
+	 * Helper function for viewPrevNext() that generates links
+	 *
+	 * @param $title Title object to link
+	 * @param $offset Integer offset parameter
+	 * @param $limit Integer limit parameter
+	 * @param $query Array extra query parameters
+	 * @param $link String text to use for the link; will be escaped
+	 * @param $tooltipMsg String name of the message to use as tooltip
+	 * @param $class String value of the "class" attribute of the link
+	 * @return String HTML fragment
+	 */
+	private function numLink( Title $title, $offset, $limit, array $query, $link, $tooltipMsg, $class ) {
+		$query = array( 'limit' => $limit, 'offset' => $offset ) + $query;
+		$tooltip = wfMessage( $tooltipMsg )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
+		return Html::element( 'a', array( 'href' => $title->getLocalURL( $query ),
+			'title' => $tooltip, 'class' => $class ), $link );
+	}
+
+	/**
 	 * Get the conversion rule title, if any.
 	 *
 	 * @return string
