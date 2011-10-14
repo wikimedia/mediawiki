@@ -241,6 +241,9 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return $out;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsURLLoading() {
 		return false;
 	}

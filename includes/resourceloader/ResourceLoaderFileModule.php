@@ -223,7 +223,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$files = $this->getScriptFiles( $context );
 		return $this->readScriptFiles( $files );
 	}
-	
+
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return array
+	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
 		$urls = array();
 		foreach ( $this->getScriptFiles( $context ) as $file ) {
@@ -232,6 +236,9 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return $urls;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function supportsURLLoading() {
 		return $this->debugRaw;
 	}
@@ -275,6 +282,10 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		return $styles;
 	}
 
+	/**
+	 * @param $context ResourceLoaderContext
+	 * @return array
+	 */
 	public function getStyleURLsForDebug( ResourceLoaderContext $context ) {
 		$urls = array();
 		foreach ( $this->getStyleFiles( $context ) as $mediaType => $list ) {
@@ -582,7 +593,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			$style, $dir, $remoteDir, true
 		);
 	}
-	
+
 	/**
 	 * Safe version of filemtime(), which doesn't throw a PHP warning if the file doesn't exist
 	 * but returns 1 instead.

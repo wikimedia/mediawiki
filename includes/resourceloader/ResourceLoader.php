@@ -263,10 +263,10 @@ class ResourceLoader {
 
 	/**
 	 * Add a foreign source of modules.
-	 * 
+	 *
 	 * Source properties:
 	 * 'loadScript': URL (either fully-qualified or protocol-relative) of load.php for this source
-	 * 
+	 *
 	 * @param $id Mixed: source ID (string), or array( id1 => props1, id2 => props2, ... )
 	 * @param $properties Array: source properties
 	 */
@@ -340,7 +340,7 @@ class ResourceLoader {
 
 	/**
 	 * Get the list of sources
-	 * 
+	 *
 	 * @return Array: array( id => array of properties, .. )
 	 */
 	public function getSources() {
@@ -401,6 +401,9 @@ class ResourceLoader {
 		// the last modified time
 		$mtime = wfTimestamp( TS_UNIX, $wgCacheEpoch );
 		foreach ( $modules as $module ) {
+			/**
+			 * @var $module ResourceLoaderModule
+			 */
 			try {
 				// Bypass Squid and other shared caches if the request includes any private modules
 				if ( $module->getGroup() === 'private' ) {
@@ -571,7 +574,7 @@ class ResourceLoader {
 			$this->sendResponseHeaders( $context, $ts, false );
 			// If there's an If-Modified-Since header, respond with a 304 appropriately
 			if ( $this->tryRespondLastModified( $context, $ts ) ) {
-				return; // output handled (buffers cleared)
+				return false; // output handled (buffers cleared)
 			}
 			$response = $fileCache->fetchText();
 			// Remove the output buffer and output the response
@@ -617,6 +620,10 @@ class ResourceLoader {
 
 		// Generate output
 		foreach ( $modules as $name => $module ) {
+			/**
+			 * @var $module ResourceLoaderModule
+			 */
+
 			wfProfileIn( __METHOD__ . '-' . $name );
 			try {
 				$scripts = '';
@@ -876,13 +883,13 @@ class ResourceLoader {
 	/**
 	 * Returns JS code which calls mw.loader.addSource() with the given
 	 * parameters. Has two calling conventions:
-	 * 
+	 *
 	 *   - ResourceLoader::makeLoaderSourcesScript( $id, $properties ):
 	 *       Register a single source
-	 * 
+	 *
 	 *   - ResourceLoader::makeLoaderSourcesScript( array( $id1 => $props1, $id2 => $props2, ... ) );
 	 *       Register sources with the given IDs and properties.
-	 * 
+	 *
 	 * @param $id String: source ID
 	 * @param $properties Array: source properties (see addSource())
 	 *
@@ -982,7 +989,7 @@ class ResourceLoader {
 		$query = self::makeLoaderQuery( $modules, $lang, $skin, $user, $version, $debug,
 			$only, $printable, $handheld, $extraQuery
 		);
-		
+
 		// Prevent the IE6 extension check from being triggered (bug 28840)
 		// by appending a character that's invalid in Windows extensions ('*')
 		return wfExpandUrl( wfAppendQuery( $wgLoadScript, $query ) . '&*', PROTO_RELATIVE );
@@ -1017,7 +1024,7 @@ class ResourceLoader {
 			$query['handheld'] = 1;
 		}
 		$query += $extraQuery;
-		
+
 		// Make queries uniform in order
 		ksort( $query );
 		return $query;
