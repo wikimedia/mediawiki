@@ -125,6 +125,7 @@ return array(
 	'jquery.farbtastic' => array(
 		'scripts' => 'resources/jquery/jquery.farbtastic.js',
 		'styles' => 'resources/jquery/jquery.farbtastic.css',
+		'dependencies' => 'jquery.colorUtil',
 	),
 	'jquery.form' => array(
 		'scripts' => 'resources/jquery/jquery.form.js',
