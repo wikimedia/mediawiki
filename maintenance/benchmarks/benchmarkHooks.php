@@ -44,20 +44,33 @@ class BenchmarkHooks extends Benchmarker {
 		}
 		$time = $this->benchHooks();
 		$this->output( 'Loaded (ten) hook: ' . $time . "\n" );
+
+		for( $i = 0; $i < 90; $i++ ) {
+			$wgHooks['Test'][] = array( $this, 'test' );
+		}
+		$time = $this->benchHooks();
+		$this->output( 'Loaded (ten) hook: ' . $time . "\n" );
 		$this->output( "\n" );
 	}
 
-	private function benchHooks( $trials = 1 ) {
+	/**
+	 * @param $trials int
+	 * @return string
+	 */
+	private function benchHooks( $trials = 10 ) {
 		$start = wfTime();
 		for ( $i = 0; $i < $trials; $i++ ) {
 			wfRunHooks( 'Test' );
 		}
 		$delta = wfTime() - $start;
 		$pertrial = $delta / $trials;
-		return sprintf( "Took %6.2fms",
+		return sprintf( "Took %6.2fs",
 			$pertrial );
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function test() {
 		return true;
 	}
