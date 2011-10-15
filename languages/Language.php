@@ -806,6 +806,82 @@ class Language {
 	}
 
 	/**
+	 * Used by date() and time() to adjust the time output.
+	 *
+	 * @param $ts Int the time in date('YmdHis') format
+	 * @param $tz Mixed: adjust the time by this amount (default false, mean we
+	 *            get user timecorrection setting)
+	 * @return int
+	 */
+	function userAdjust( $ts, $tz = false )	{
+		global $wgUser, $wgLocalTZoffset;
+
+		if ( $tz === false ) {
+			$tz = $wgUser->getOption( 'timecorrection' );
+		}
+
+		$data = explode( '|', $tz, 3 );
+
+		if ( $data[0] == 'ZoneInfo' ) {
+			wfSuppressWarnings();
+			$userTZ = timezone_open( $data[2] );
+			wfRestoreWarnings();
+			if ( $userTZ !== false ) {
+				$date = date_create( $ts, timezone_open( 'UTC' ) );
+				date_timezone_set( $date, $userTZ );
+				$date = date_format( $date, 'YmdHis' );
+				return $date;
+			}
+			# Unrecognized timezone, default to 'Offset' with the stored offset.
+			$data[0] = 'Offset';
+		}
+
+		$minDiff = 0;
+		if ( $data[0] == 'System' || $tz == '' ) {
+			#  Global offset in minutes.
+			if ( isset( $wgLocalTZoffset ) ) {
+				$minDiff = $wgLocalTZoffset;
+			}
+		} elseif ( $data[0] == 'Offset' ) {
+			$minDiff = intval( $data[1] );
+		} else {
+			$data = explode( ':', $tz );
+			if ( count( $data ) == 2 ) {
+				$data[0] = intval( $data[0] );
+				$data[1] = intval( $data[1] );
+				$minDiff = abs( $data[0] ) * 60 + $data[1];
+				if ( $data[0] < 0 ) {
+					$minDiff = -$minDiff;
+				}
+			} else {
+				$minDiff = intval( $data[0] ) * 60;
+			}
+		}
+
+		# No difference ? Return time unchanged
+		if ( 0 == $minDiff ) {
+			return $ts;
+		}
+
+		wfSuppressWarnings(); // E_STRICT system time bitching
+		# Generate an adjusted date; take advantage of the fact that mktime
+		# will normalize out-of-range values so we don't have to split $minDiff
+		# into hours and minutes.
+		$t = mktime( (
+		  (int)substr( $ts, 8, 2 ) ), # Hours
+		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
+		  (int)substr( $ts, 12, 2 ), # Seconds
+		  (int)substr( $ts, 4, 2 ), # Month
+		  (int)substr( $ts, 6, 2 ), # Day
+		  (int)substr( $ts, 0, 4 ) ); # Year
+
+		$date = date( 'YmdHis', $t );
+		wfRestoreWarnings();
+
+		return $date;
+	}
+
+	/**
 	 * This is a workalike of PHP's date() function, but with better
 	 * internationalisation, a reduced set of format characters, and a better
 	 * escaping format.
@@ -1644,82 +1720,6 @@ class Language {
 	}
 
 	/**
-	 * Used by date() and time() to adjust the time output.
-	 *
-	 * @param $ts Int the time in date('YmdHis') format
-	 * @param $tz Mixed: adjust the time by this amount (default false, mean we
-	 *            get user timecorrection setting)
-	 * @return int
-	 */
-	function userAdjust( $ts, $tz = false )	{
-		global $wgUser, $wgLocalTZoffset;
-
-		if ( $tz === false ) {
-			$tz = $wgUser->getOption( 'timecorrection' );
-		}
-
-		$data = explode( '|', $tz, 3 );
-
-		if ( $data[0] == 'ZoneInfo' ) {
-			wfSuppressWarnings();
-			$userTZ = timezone_open( $data[2] );
-			wfRestoreWarnings();
-			if ( $userTZ !== false ) {
-				$date = date_create( $ts, timezone_open( 'UTC' ) );
-				date_timezone_set( $date, $userTZ );
-				$date = date_format( $date, 'YmdHis' );
-				return $date;
-			}
-			# Unrecognized timezone, default to 'Offset' with the stored offset.
-			$data[0] = 'Offset';
-		}
-
-		$minDiff = 0;
-		if ( $data[0] == 'System' || $tz == '' ) {
-			#  Global offset in minutes.
-			if ( isset( $wgLocalTZoffset ) ) {
-				$minDiff = $wgLocalTZoffset;
-			}
-		} elseif ( $data[0] == 'Offset' ) {
-			$minDiff = intval( $data[1] );
-		} else {
-			$data = explode( ':', $tz );
-			if ( count( $data ) == 2 ) {
-				$data[0] = intval( $data[0] );
-				$data[1] = intval( $data[1] );
-				$minDiff = abs( $data[0] ) * 60 + $data[1];
-				if ( $data[0] < 0 ) {
-					$minDiff = -$minDiff;
-				}
-			} else {
-				$minDiff = intval( $data[0] ) * 60;
-			}
-		}
-
-		# No difference ? Return time unchanged
-		if ( 0 == $minDiff ) {
-			return $ts;
-		}
-
-		wfSuppressWarnings(); // E_STRICT system time bitching
-		# Generate an adjusted date; take advantage of the fact that mktime
-		# will normalize out-of-range values so we don't have to split $minDiff
-		# into hours and minutes.
-		$t = mktime( (
-		  (int)substr( $ts, 8, 2 ) ), # Hours
-		  (int)substr( $ts, 10, 2 ) + $minDiff, # Minutes
-		  (int)substr( $ts, 12, 2 ), # Seconds
-		  (int)substr( $ts, 4, 2 ), # Month
-		  (int)substr( $ts, 6, 2 ), # Day
-		  (int)substr( $ts, 0, 4 ) ); # Year
-
-		$date = date( 'YmdHis', $t );
-		wfRestoreWarnings();
-
-		return $date;
-	}
-
-	/**
 	 * This is meant to be used by time(), date(), and timeanddate() to get
 	 * the date preference they're supposed to use, it should be used in
 	 * all children.
@@ -1837,113 +1837,6 @@ class Language {
 		}
 		$df = $this->getDateFormatString( 'both', $this->dateFormat( $format ) );
 		return $this->sprintfDate( $df, $ts );
-	}
-
-	/**
-	 * Internal helper function for userDate(), userTime() and userTimeAndDate()
-	 *
-	 * @param $type String: can be 'date', 'time' or 'both'
-	 * @param $ts Mixed: the time format which needs to be turned into a
-	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param $user User object used to get preferences for timezone and format
-	 * @param $options Array, can contain the following keys:
-	 *        - 'timecorrection': time correction, can have the following values:
-	 *             - true: use user's preference
-	 *             - false: don't use time correction
-	 *             - integer: value of time correction in minutes
-	 *        - 'format': format to use, can have the following values:
-	 *             - true: use user's preference
-	 *             - false: use default preference
-	 *             - string: format to use
-	 * @return String
-	 */
-	private function internalUserTimeAndDate( $type, $ts, User $user, array $options ) {
-		$ts = wfTimestamp( TS_MW, $ts );
-		$options += array( 'timecorrection' => true, 'format' => true );
-		if ( $options['timecorrection'] !== false ) {
-			if ( $options['timecorrection'] === true ) {
-				$offset = $user->getOption( 'timecorrection' );
-			} else {
-				$offset = $options['timecorrection'];
-			}
-			$ts = $this->userAdjust( $ts, $offset );
-		}
-		if ( $options['format'] === true ) {
-			$format = $user->getDatePreference();
-		} else {
-			$format = $options['format'];
-		}
-		$df = $this->getDateFormatString( $type, $this->dateFormat( $format ) );
-		return $this->sprintfDate( $df, $ts );
-	}
-
-	/**
-	 * Get the formatted date for the given timestamp and formatted for
-	 * the given user.
-	 *
-	 * @param $type String: can be 'date', 'time' or 'both'
-	 * @param $ts Mixed: the time format which needs to be turned into a
-	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param $user User object used to get preferences for timezone and format
-	 * @param $options Array, can contain the following keys:
-	 *        - 'timecorrection': time correction, can have the following values:
-	 *             - true: use user's preference
-	 *             - false: don't use time correction
-	 *             - integer: value of time correction in minutes
-	 *        - 'format': format to use, can have the following values:
-	 *             - true: use user's preference
-	 *             - false: use default preference
-	 *             - string: format to use
-	 * @return String
-	 */
-	public function userDate( $ts, User $user, array $options = array() ) {
-		return $this->internalUserTimeAndDate( 'date', $ts, $user, $options );
-	}
-
-	/**
-	 * Get the formatted time for the given timestamp and formatted for
-	 * the given user.
-	 *
-	 * @param $type String: can be 'date', 'time' or 'both'
-	 * @param $ts Mixed: the time format which needs to be turned into a
-	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param $user User object used to get preferences for timezone and format
-	 * @param $options Array, can contain the following keys:
-	 *        - 'timecorrection': time correction, can have the following values:
-	 *             - true: use user's preference
-	 *             - false: don't use time correction
-	 *             - integer: value of time correction in minutes
-	 *        - 'format': format to use, can have the following values:
-	 *             - true: use user's preference
-	 *             - false: use default preference
-	 *             - string: format to use
-	 * @return String
-	 */
-	public function userTime( $ts, User $user, array $options = array() ) {
-		return $this->internalUserTimeAndDate( 'time', $ts, $user, $options );
-	}
-
-	/**
-	 * Get the formatted date and time for the given timestamp and formatted for
-	 * the given user.
-	 *
-	 * @param $type String: can be 'date', 'time' or 'both'
-	 * @param $ts Mixed: the time format which needs to be turned into a
-	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param $user User object used to get preferences for timezone and format
-	 * @param $options Array, can contain the following keys:
-	 *        - 'timecorrection': time correction, can have the following values:
-	 *             - true: use user's preference
-	 *             - false: don't use time correction
-	 *             - integer: value of time correction in minutes
-	 *        - 'format': format to use, can have the following values:
-	 *             - true: use user's preference
-	 *             - false: use default preference
-	 *             - string: format to use
-	 * @return String
-	 */
-	public function userTimeAndDate( $ts, User $user, array $options = array() ) {
-		return $this->internalUserTimeAndDate( 'both', $ts, $user, $options );
 	}
 
 	/**
