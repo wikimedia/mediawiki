@@ -22,7 +22,7 @@
  */
 
 /**
- * A special page listing redirects tonon existent page. Those should be
+ * A special page listing redirects to non existent page. Those should be
  * fixed to point to an existing page.
  *
  * @ingroup SpecialPage

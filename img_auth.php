@@ -50,8 +50,7 @@ $whitelist = array();
 if ( $dotPos !== false ) {
 	$whitelist[] = substr( $path, $dotPos + 1 );
 }
-if ( !$wgRequest->checkUrlExtension( $whitelist ) )
-{
+if ( !$wgRequest->checkUrlExtension( $whitelist ) ) {
 	return;
 }
 
@@ -59,38 +58,44 @@ $filename = realpath( $wgUploadDirectory . $path );
 $realUpload = realpath( $wgUploadDirectory );
 
 // Basic directory traversal check
-if( substr( $filename, 0, strlen( $realUpload ) ) != $realUpload )
+if( substr( $filename, 0, strlen( $realUpload ) ) != $realUpload ) {
 	wfForbidden('img-auth-accessdenied','img-auth-notindir');
+}
 
 // Extract the file name and chop off the size specifier
 // (e.g. 120px-Foo.png => Foo.png)
 $name = wfBaseName( $path );
-if( preg_match( '!\d+px-(.*)!i', $name, $m ) )
+if( preg_match( '!\d+px-(.*)!i', $name, $m ) ) {
 	$name = $m[1];
+}
 
 // Check to see if the file exists
-if( !file_exists( $filename ) )
+if( !file_exists( $filename ) ) {
 	wfForbidden('img-auth-accessdenied','img-auth-nofile',$filename);
+}
 
 // Check to see if tried to access a directory
-if( is_dir( $filename ) )
+if( is_dir( $filename ) ) {
 	wfForbidden('img-auth-accessdenied','img-auth-isdir',$filename);
-
+}
 
 $title = Title::makeTitleSafe( NS_FILE, $name );
 
 // See if could create the title object
-if( !$title instanceof Title )
+if( !$title instanceof Title ) {
 	wfForbidden('img-auth-accessdenied','img-auth-badtitle',$name);
+}
 
 // Run hook
-if (!wfRunHooks( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) )
+if (!wfRunHooks( 'ImgAuthBeforeStream', array( &$title, &$path, &$name, &$result ) ) ) {
 	wfForbidden($result[0],$result[1],array_slice($result,2));
+}
 
 //  Check user authorization for this title
 //  UserCanRead Checks Whitelist too
-if( !$title->userCanRead() )
+if( !$title->userCanRead() ) {
 	wfForbidden('img-auth-accessdenied','img-auth-noread',$name);
+}
 
 // Stream the requested file
 wfDebugLog( 'img_auth', "Streaming `".$filename."`." );
@@ -101,16 +106,18 @@ wfLogProfilingData();
  * Issue a standard HTTP 403 Forbidden header ($msg1-a message index, not a message) and an
  * error message ($msg2, also a message index), (both required) then end the script
  * subsequent arguments to $msg2 will be passed as parameters only for replacing in $msg2
+ * @param $msg1
+ * @param $msg2
  */
-function wfForbidden($msg1,$msg2) {
+function wfForbidden( $msg1, $msg2 ) {
 	global $wgImgAuthDetails;
 	$args = func_get_args();
 	array_shift( $args );
 	array_shift( $args );
-	$MsgHdr = htmlspecialchars(wfMsg($msg1));
-	$detailMsg = (htmlspecialchars(wfMsg(($wgImgAuthDetails ? $msg2 : 'badaccess-group0'),$args)));
-	wfDebugLog('img_auth', "wfForbidden Hdr:".wfMsgExt( $msg1, array('language' => 'en'))." Msg: ".
-				wfMsgExt($msg2,array('language' => 'en'),$args));
+	$MsgHdr = htmlspecialchars( wfMsg( $msg1 ) );
+	$detailMsg = ( htmlspecialchars( wfMsg( ( $wgImgAuthDetails ? $msg2 : 'badaccess-group0' ), $args ) ) );
+	wfDebugLog('img_auth', "wfForbidden Hdr:".wfMsgExt( $msg1, array( 'language' => 'en' ) )." Msg: ".
+		wfMsgExt( $msg2, array('language' => 'en' ), $args ) );
 	header( 'HTTP/1.0 403 Forbidden' );
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );

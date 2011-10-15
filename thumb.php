@@ -75,7 +75,7 @@ function wfThumbMain() {
 	// Check permissions if there are read restrictions
 	if ( !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) ) {
 		if ( !$img->getTitle()->userCanRead() ) {
-			wfThumbError( 403, 'Access denied. You do not have permission to access ' . 
+			wfThumbError( 403, 'Access denied. You do not have permission to access ' .
 				'the source file.' );
 			wfProfileOut( __METHOD__ );
 			return;
@@ -162,6 +162,10 @@ function wfThumbMain() {
 	wfProfileOut( __METHOD__ );
 }
 
+/**
+ * @param $status
+ * @param $msg
+ */
 function wfThumbError( $status, $msg ) {
 	global $wgShowHostnames;
 	header( 'Cache-Control: no-cache' );
