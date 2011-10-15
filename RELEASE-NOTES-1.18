@@ -90,6 +90,9 @@ production.
 
 === New features in 1.18 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.
+* (bug 27860) Minor edit after clicking 'new section' tab
+Now the "This is a minor edit" checkbox is not available when you
+create a page or new section.
 * (bug 8130) Query pages should limit to content namespaces, not just main
   namespace.
 * Search suggestions (other than in the Vector skin) will now use the HTML5
@@ -227,6 +230,7 @@ production.
   Same for signupend on the account creation page.
 
 === Bug fixes in 1.18 ===
+* (bug 27860) Minor edit after clicking 'new section' tab
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
 * (bug 23119) WikiError class and subclasses are now marked as deprecated.
 * (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer
