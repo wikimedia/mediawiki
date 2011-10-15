@@ -2606,6 +2606,14 @@ class User {
 	}
 
 	/**
+	 * Cleans up watchlist by removing invalid entries from it
+	 */
+	public function cleanupWatchlist() {
+		$dbw = wfGetDB( DB_MASTER );
+		$dbw->delete( 'watchlist', array( 'wl_namespace < 0', 'wl_user' => $this->getId() ), __METHOD__ );
+	}
+
+	/**
 	 * Clear the user's notification timestamp for the given title.
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of the page if it's watched etc.

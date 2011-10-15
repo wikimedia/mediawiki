@@ -376,8 +376,13 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		$fields = array();
 
+		$haveInvalidNamespaces = false;
 		foreach( $this->getWatchlistInfo() as $namespace => $pages ){
-
+			if ( $namespace < 0 ) {
+				$haveInvalidNamespaces = true;
+				continue;
+			}
+		
 			$namespace == NS_MAIN
 				? wfMsgHtml( 'blanknamespace' )
 				: htmlspecialchars( $wgContLang->getFormattedNsText( $namespace ) );
@@ -393,6 +398,10 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$text = $this->buildRemoveLine( $title );
 				$fields['TitlesNs'.$namespace]['options'][$text] = $title->getEscapedText();
 			}
+		}
+		if ( $haveInvalidNamespaces ) {
+			wfDebug( "User {$this->getContext()->getUser()->getId()} has invalid watchlist entries, clening up...\n" );
+			$this->getContext()->getUser()->cleanupWatchlist();
 		}
 
 		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
