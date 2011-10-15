@@ -29,31 +29,25 @@ class BenchmarkHooks extends Benchmarker {
 	}
 
 	public function execute() {
-		$time = $this->benchEmptyHooks();
-		$this->output( 'Empty hook: ' . $time . "\n" );
-		$time = $this->benchLoadedHooks();
-		$this->output( 'Loaded hook: ' . $time . "\n" );
-		$this->output( "\n" );
-	}
-
-	private function benchEmptyHooks( $trials = 1 ) {
 		global $wgHooks;
 		$wgHooks['Test'] = array();
 
-		$start = wfTime();
-		for ( $i = 0; $i < $trials; $i++ ) {
-			wfRunHooks( 'Test' );
+		$time = $this->benchHooks();
+		$this->output( 'Empty hook: ' . $time . "\n" );
+
+		$wgHooks['Test'][] = array( $this, 'test' );
+		$time = $this->benchHooks();
+		$this->output( 'Loaded (one) hook: ' . $time . "\n" );
+
+		for( $i = 0; $i < 9; $i++ ) {
+			$wgHooks['Test'][] = array( $this, 'test' );
 		}
-		$delta = wfTime() - $start;
-		$pertrial = $delta / $trials;
-		return sprintf( "Took %6.2fms",
-			$pertrial );
+		$time = $this->benchHooks();
+		$this->output( 'Loaded (ten) hook: ' . $time . "\n" );
+		$this->output( "\n" );
 	}
 
-	private function benchLoadedHooks( $trials = 1 ) {
-		global $wgHooks;
-		$wgHooks['Test'][] = array( $this, 'test' );
-
+	private function benchHooks( $trials = 1 ) {
 		$start = wfTime();
 		for ( $i = 0; $i < $trials; $i++ ) {
 			wfRunHooks( 'Test' );
