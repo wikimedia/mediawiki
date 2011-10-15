@@ -1,11 +1,12 @@
-/*
+/**
  * oldshared.css
  * This file contains CSS settings common to Wikistandard, Nostalgia and
  * CologneBlue, the old pre-Monobook skins
  */
 
-/* For clarity, explicitly state some recommendations from <http://www.w3.org/
-   TR/CSS21/sample.html> to make sure the editsection links scale right */
+/* For clarity, explicitly state some recommendations from
+ * http://www.w3.org/TR/CSS21/sample.html to make sure the editsection links scale right
+ */
 
 h1 { font-size: 2em; }
 h2 { font-size: 1.5em; }
@@ -99,7 +100,8 @@ div.magnify {
 	border: none !important;
 	background: none !important;
 }
-div.magnify a, div.magnify img {
+div.magnify a,
+div.magnify img {
 	display: block;
 	border: none !important;
 	background: none !important;
@@ -306,7 +308,8 @@ table.mw_metadata {
 	border: none;
 	border-collapse: collapse;
 }
-table.mw_metadata td, table.mw_metadata th {
+table.mw_metadata td,
+table.mw_metadata th {
 	border: 1px solid #aaaaaa;
 	padding-left: 4px;
 	padding-right: 4px;
@@ -386,7 +389,9 @@ table.multipageimage td {
 .TablePager {
 	border-collapse: collapse;
 }
-.TablePager, .TablePager td, .TablePager th {
+.TablePager,
+.TablePager td,
+.TablePager th {
 	border: 0.15em solid #777777;
 	padding: 0 0.15em 0 0.15em;
 }
@@ -400,7 +405,8 @@ table.multipageimage td {
 	background-color: #eeeeff;
 }
 
-.imagelist td, .imagelist th {
+.imagelist td,
+.imagelist th {
 	white-space: nowrap;
 }
 .imagelist .TablePager_col_links {

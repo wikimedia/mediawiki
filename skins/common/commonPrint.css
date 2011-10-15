@@ -1,10 +1,10 @@
-/*
-** MediaWiki Print style sheet for CSS2-capable browsers.
-** Copyright Gabriel Wicke, http://www.aulinx.de/
-**
-** Derived from the plone (http://plone.org/) styles
-** Copyright Alexander Limi
-*/
+/**
+ * MediaWiki Print style sheet for CSS2-capable browsers.
+ * Copyright Gabriel Wicke, http://www.aulinx.de/
+ *
+ * Derived from the plone (http://plone.org/) styles
+ * Copyright Alexander Limi
+ */
 
 /* Thanks to A List Apart (http://alistapart.com/) for useful extras */
 a.stub,
@@ -22,7 +22,7 @@ a.new {
 	margin-left: 2em;
 }
 .tocline {
-	margin-bottom: 0px;
+	margin-bottom: 0;
 }
 
 /* images */
@@ -105,9 +105,8 @@ table.rimage {
 }
 
 body {
-	background: White;
-	/*font-size: 11pt !important;*/
-	color: Black;
+	background: white;
+	color: black;
 	margin: 0;
 	padding: 0;
 }
@@ -142,9 +141,9 @@ ul {
 
 #content {
 	background: none;
-	border: none ! important;
-	padding: 0 ! important;
-	margin: 0 ! important;
+	border: none !important;
+	padding: 0 !important;
+	margin: 0 !important;
 	direction: ltr;
 }
 #footer {
@@ -160,12 +159,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p, .documentDescription {
-	margin: 1em 0 ! important;
+	margin: 1em 0 !important;
 	line-height: 1.2em;
 }
 
 .tocindent p {
-	margin: 0 0 0 0 ! important;
+	margin: 0 0 0 0 !important;
 }
 
 pre {
@@ -185,7 +184,7 @@ table.listing td {
 }
 
 a {
-	color: Black !important;
+	color: black !important;
 	background: none !important;
 	padding: 0 !important;
 }
@@ -196,7 +195,8 @@ a:link, a:visited {
 	text-decoration: underline;
 }
 
-#content a.external.text:after, #content a.external.autonumber:after {
+#content a.external.text:after,
+#content a.external.autonumber:after {
 	/* Expand URLs for printing */
 	content: " (" attr(href) ") ";
 }
@@ -219,16 +219,23 @@ a:link, a:visited {
 	padding: 1em;
 	margin: 0 !important;
 }
+
 /* MSIE/Win doesn't understand 'inherit' */
-a, a.external, a.new, a.stub {
-	color: black ! important;
-	text-decoration: none ! important;
+a,
+a.external,
+a.new,
+a.stub {
+	color: black !important;
+	text-decoration: none !important;
 }
 
 /* Continue ... */
-a, a.external, a.new, a.stub {
-	color: inherit ! important;
-	text-decoration: inherit ! important;
+a,
+a.external,
+a.new,
+a.stub {
+	color: inherit !important;
+	text-decoration: inherit !important;
 }
 
 img {
@@ -237,9 +244,13 @@ img {
 }
 
 /* math */
-span.texhtml { font-family: serif; }
+span.texhtml {
+	font-family: serif;
+}
 
-#siteNotice { display: none; }
+#siteNotice {
+	display: none;
+}
 
 /* Galleries (see shared.css for more info) */
 li.gallerybox {
@@ -279,9 +290,10 @@ div.gallerytext {
 	padding: 2px 4px;
 	word-wrap: break-word;
 }
-/*
-** Diff rendering
-*/
+
+/**
+ * Diff rendering
+ */
 table.diff {
 	background: white;
 }
@@ -311,10 +323,10 @@ td.diff-context {
 	text-decoration: underline;
 }
 
-/*
-** Table rendering
-** As on shared.css but with white background.
-*/
+/**
+ * Table rendering
+ * As on shared.css but with white background.
+ */
 table.wikitable,
 table.mw_metadata {
 	margin: 1em 1em 1em 0;
@@ -339,7 +351,7 @@ table.mw_metadata {
 }
 
 a.sortheader {
-	margin: 0px 0.3em;
+	margin: 0 0.3em;
 }
 
 /* Some pagination options */
@@ -359,7 +371,7 @@ p {
  */
 .catlinks ul {
 	display: inline;
-	margin: 0px;
+	margin: 0;
 	list-style: none;
 	list-style-type: none;
 	list-style-image: none;

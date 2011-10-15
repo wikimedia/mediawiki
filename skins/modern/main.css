@@ -1,7 +1,6 @@
 body {
 	margin: 0 0 0 0;
 	padding: 0 0 0 0;
-	/*font-size: 10pt;*/
 	font-size: x-small;
 
 
@@ -371,9 +370,6 @@ h1, h2, h3, h4, h5, h6 {
 	border: none;
 }
 
-#preferences h2 {
-}
-
 .mainLegend {
 	display: none;
 }
@@ -455,7 +451,7 @@ h1, h2, h3, h4, h5, h6 {
 #mw_content a.external[href $=".wma"], #mw_content a.external[href $=".WMA"],
 .link-audio {
 	/* @embed */
-	background: url("audio.png") center right no-repeat;
+	background: url(audio.png) center right no-repeat;
 	padding-right: 13px;
 }
 #mw_content a.external[href $=".ogm"], #mw_content a.external[href $=".OGM"],
@@ -464,7 +460,7 @@ h1, h2, h3, h4, h5, h6 {
 #mw_content a.external[href $=".mpg"], #mw_content a.external[href $=".MPG"],
 .link-video {
 	/* @embed */
-	background: url("video.png") center right no-repeat;
+	background: url(video.png) center right no-repeat;
 	padding-right: 13px;
 }
 #mw_content a.external[href $=".pdf"], #mw_content a.external[href $=".PDF"],
@@ -472,7 +468,7 @@ h1, h2, h3, h4, h5, h6 {
 #mw_content a.external[href *=".pdf?"], #mw_content a.external[href *=".PDF?"],
 .link-document {
 	/* @embed */
-	background: url("document.png") center right no-repeat;
+	background: url(document.png) center right no-repeat;
 	padding-right: 12px;
 }
 
@@ -480,22 +476,18 @@ h1, h2, h3, h4, h5, h6 {
 /* @noflip */div.floatright, table.floatright {
 	margin: 0 0 .5em .5em;
 	border: 0;
-/*
-	border: .5em solid white;
-	border-width: .5em 0 .8em 1.4em;
-*/
 }
-div.floatright p { font-style: italic; }
+div.floatright p {
+	font-style: italic;
+}
 /* @noflip */div.floatleft, table.floatleft {
 	margin: 0 .5em .5em 0;
 	border: 0;
-/*
-	margin: .3em .5em .5em 0;
-	border: .5em solid white;
-	border-width: .5em 1.4em .8em 0;
-*/
 }
-div.floatleft p { font-style: italic; }
+div.floatleft p {
+	font-style: italic;
+}
+
 /* thumbnails */
 div.thumb {
 	margin-bottom: .5em;
@@ -704,17 +696,17 @@ div.noarticletext {
 }
 
 div#searchTargetContainer {
-	left:       10px;
-	top:        10px;
-	width:      90%;
+	left: 10px;
+	top: 10px;
+	width: 90%;
 	background: white;
 }
 
 div#searchTarget {
-	padding:    3px;
-	margin:     5px;
+	padding: 3px;
+	margin: 5px;
 	background: #F0F0F0;
-	border:     solid 1px blue;
+	border: solid 1px blue;
 }
 
 div#searchTarget ul li {
@@ -754,7 +746,9 @@ table.multipageimage td {
 	text-align: center;
 }
 
-.templatesUsed { margin-top: 1.5em; }
+.templatesUsed {
+	margin-top: 1.5em;
+}
 
 .mw-summary-preview {
 	margin: 0.1em 0;

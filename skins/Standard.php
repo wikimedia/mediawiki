@@ -40,12 +40,12 @@ class SkinStandard extends SkinLegacy {
 				$rules[] = "/* @noflip */#quickbar { position: fixed; padding: 4px; }";
 			}
 		} elseif ( 4 == $qb ) {
-			$rules[] = "/* @noflip */#quickbar { position: fixed; right: 0px; top: 0px; padding: 4px;}";
+			$rules[] = "/* @noflip */#quickbar { position: fixed; right: 0; top: 0; padding: 4px; }";
 			$rules[] = "/* @noflip */#quickbar { border-right: 1px solid gray; }";
 			$rules[] = "/* @noflip */#article, #mw-data-after-content { margin-right: 152px; margin-left: 4px; }";
 			$rules[] = "/* @noflip */#topbar, #footer { margin-right: 152px; }";
 		}
- 		$style = implode( "\n", $rules );
+		$style = implode( "\n", $rules );
 		$out->addInlineStyle( $style, 'flip' );
 	}
 
@@ -214,12 +214,12 @@ class StandardTemplate extends LegacyTemplate {
 					)
 				);
 
-			/*
-			watching could cause problems in edit mode:
-			if user edits article, then loads "watch this article" in background and then saves
-			article with "Watch this article" checkbox disabled, the article is transparently
-			unwatched. Therefore we do not show the "Watch this page" link in edit mode
-			*/
+			/**
+			 * Watching could cause problems in edit mode:
+			 * if user edits article, then loads "watch this article" in background and then saves
+			 * article with "Watch this article" checkbox disabled, the article is transparently
+			 * unwatched. Therefore we do not show the "Watch this page" link in edit mode.
+			 */
 			if ( $this->data['loggedin'] && $articleExists ) {
 				if( $action != 'edit' && $action != 'submit' ) {
 					$s .= $sep . $this->watchThisPage();
@@ -268,7 +268,7 @@ class StandardTemplate extends LegacyTemplate {
 		global $wgSiteSupportPage;
 		if( $wgSiteSupportPage ) {
 			$s .= "\n<br /><a href=\"" . htmlspecialchars( $wgSiteSupportPage ) .
-			  '" class="internal">' . wfMsg( 'sitesupport' ) . '</a>';
+			'" class="internal">' . wfMsg( 'sitesupport' ) . '</a>';
 		}
 
 		$s .= "\n<br /></div>\n";

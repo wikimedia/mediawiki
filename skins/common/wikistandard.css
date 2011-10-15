@@ -39,13 +39,14 @@
 }
 
 /* Table of contents */
-.toctoggle, .editsection {
+.toctoggle,
+.editsection {
 	font-size: smaller;
 }
 
 /* ... */
 #toolbar {
-	padding: 0px;
+	padding: 0;
 }
 
 #infobox {
@@ -57,7 +58,8 @@
 	margin-top: 1px;
 }
 
-a.interwiki, a.external {
+a.interwiki,
+a.external {
 	color: #3366BB;
 }
 
@@ -75,7 +77,7 @@ a:visited {
 }
 
 body {
-	margin: 0px;
+	margin: 0;
 	padding: 4px;
 	color: black;
 }

@@ -1,5 +1,5 @@
 body {
-	/* Background color is set separately on page type */
+	/* background color is set separately on page type */
 	color: black;
 }
 
@@ -14,7 +14,8 @@ body {
 	padding: 2px;
 }
 
-a.interwiki, a.external {
+a.interwiki,
+a.external {
 	color: #3366BB;
 }
 
