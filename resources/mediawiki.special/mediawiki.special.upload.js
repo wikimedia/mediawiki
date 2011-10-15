@@ -46,20 +46,15 @@ jQuery( function( $ ) {
 		var	previewSize = 180,
 			thumb = $( '<div id="mw-upload-thumbnail" class="thumb tright">' +
 						'<div class="thumbinner">' +
-							'<canvas width="' + previewSize + '" height="' + previewSize + '" ></canvas>' +
+							'<div class="mw-small-spinner" style="width: 180px; height: 180px"></div>' +
 							'<div class="thumbcaption"><div class="filename"></div><div class="fileinfo"></div></div>' +
 						'</div>' +
 					'</div>' );
 		thumb.find( '.filename' ).text( file.name ).end()
 			.find( '.fileinfo' ).text( prettySize( file.size ) ).end();
 
-		var	ctx = thumb.find( 'canvas' )[0].getContext( '2d' ),
-			spinner = new Image();
-		spinner.onload = function() {
-			ctx.drawImage( spinner, (previewSize - spinner.width) / 2,
-					(previewSize - spinner.height) / 2 );
-		};
-		spinner.src = mw.config.get( 'wgScriptPath' ) + '/skins/common/images/spinner.gif';
+		var	$canvas = $('<canvas width="' + previewSize + '" height="' + previewSize + '" ></canvas>'),
+			ctx = $canvas[0].getContext( '2d' );
 		$( '#mw-htmlform-source' ).parent().prepend( thumb );
 
 		var meta;
@@ -131,6 +126,7 @@ jQuery( function( $ ) {
 				ctx.clearRect( 0, 0, 180, 180 );
 				ctx.rotate( rotation / 180 * Math.PI );
 				ctx.drawImage( img, x, y, width, height );
+				thumb.find('.mw-small-spinner').replaceWith($canvas);
 
 				// Image size
 				var info = mw.msg( 'widthheight', logicalWidth, logicalHeight ) +
