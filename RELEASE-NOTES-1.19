@@ -15,6 +15,8 @@ production.
 * (bug 27132) movefile right granted by default to registered users.
 * Default cookie lifetime ($wgCookieExpiration) is increased to 180 days.
 * (bug 31204) Removed old user.user_options
+* $wgMaxImageArea now applies to jpeg files if they are not scaled with
+  ImageMagick. 
 
 === New features in 1.19 ===
 * (bug 19838) Possibility to get all interwiki prefixes if the interwiki

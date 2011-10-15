@@ -21,7 +21,7 @@ class BitmapHandler extends ImageHandler {
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {
-		global $wgMaxImageArea;
+		
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
 		}
@@ -42,19 +42,43 @@ class BitmapHandler extends ImageHandler {
 				return true;
 			}
 		}
-
+		
+		return true;
+	}
+	
+	/**
+	 * Check if the file is smaller than the maximum image area for 
+	 * thumbnailing. Check will always pass if the scaler is 'hookaborted' or
+	 * if the scaler is 'im' and the mime type is 'image/jpeg'
+	 * 
+	 * @param File $image
+	 * @param string $scaler 
+	 */
+	function checkImageArea( $image, $scaler ) {
+		global $wgMaxImageArea;
 		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
 		# an exception for it.
-		# @todo FIXME: This actually only applies to ImageMagick
-		if ( $mimeType !== 'image/jpeg' &&
-			$srcWidth * $srcHeight > $wgMaxImageArea )
+		
+		
+		if ( $image->getMimeType() == 'image/jpeg' && $scaler == 'im' )
 		{
-			return false;
+			# ImageMagick can efficiently downsize jpg images without loading
+			# the entire file in memory
+			return true;
 		}
-
-		return true;
+		
+		if ( $scaler == 'hookaborted' )
+		{
+			# If a hook wants to transform the image, it is responsible for 
+			# checking the image size, so abort here
+			return true;
+		}
+		
+		# Do the actual check
+		return $this->getImageArea( $image, $image->getWidth(), $image->getHeight() ) <= $wgMaxImageArea;
 	}
+
 
 	/**
 	 * Extracts the width/height if the image will be scaled before rotating
@@ -159,6 +183,12 @@ class BitmapHandler extends ImageHandler {
 		if ( !is_null( $mto ) ) {
 			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto\n" );
 			$scaler = 'hookaborted';
+		}
+		
+		# Check max image area
+		if ( !$this->checkImageArea( $image, $scaler ) )
+		{
+			return new TransformParameterError( $params );
 		}
 
 		switch ( $scaler ) {
