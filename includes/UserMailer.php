@@ -158,7 +158,7 @@ class UserMailer {
 		global $wgEnotifMaxRecips, $wgAdditionalMailParams;
 
 		$emails = '';
-		wfDebug( __METHOD__ . ': sending mail to ' . implode( ',', array( $to->toString() ) ) . "\n" );
+		wfDebug( __METHOD__ . ': sending mail to ' . is_array( $to ) ? implode( ', ', $to ) : $to . "\n" );
 
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->toString();
@@ -571,8 +571,14 @@ class EmailNotification {
 		$keys    = array();
 
 		if ( $this->oldid ) {
-			$difflink = $this->title->getCanonicalUrl( 'diff=0&oldid=' . $this->oldid );
-			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastvisited', $difflink );
+			if ( $wgEnotifImpersonal ) {
+				// For impersonal mail, show a diff link to the last revision.
+				$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
+					$this->title->getCanonicalUrl( 'diff=next&oldid=' . $this->oldid ) );
+			} else {
+				$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastvisited',
+					$this->title->getCanonicalUrl( 'diff=0&oldid=' . $this->oldid ) );
+			}
 			$keys['$OLDID']   = $this->oldid;
 			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'changed' );
 		} else {
@@ -580,15 +586,6 @@ class EmailNotification {
 			# clear $OLDID placeholder in the message template
 			$keys['$OLDID']   = '';
 			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'created' );
-		}
-
-		if ( $wgEnotifImpersonal && $this->oldid ) {
-			/**
-			 * For impersonal mail, show a diff link to the last
-			 * revision.
-			 */
-			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastdiff',
-					$this->title->getCanonicalUrl( "oldid={$this->oldid}&diff=next" ) );
 		}
 
 		$body = strtr( $body, $keys );
@@ -691,22 +688,18 @@ class EmailNotification {
 		//     Note:  The to parameter cannot be an address in the form of "Something <someone@example.com>".
 		//     The mail command will not parse this properly while talking with the MTA.
 		$to = new MailAddress( $watchingUser );
-		$name = $wgEnotifUseRealName ? $watchingUser->getRealName() : $watchingUser->getName();
-		$body = str_replace( '$WATCHINGUSERNAME', $name, $this->body );
-
-		$timecorrection = $watchingUser->getOption( 'timecorrection' );
 
 		# $PAGEEDITDATE is the time and date of the page change
 		# expressed in terms of individual local time of the notification
 		# recipient, i.e. watching user
 		$body = str_replace(
-			array( '$PAGEEDITDATEANDTIME',
+			array( '$WATCHINGUSERNAME',
 				'$PAGEEDITDATE',
 				'$PAGEEDITTIME' ),
-			array( $wgContLang->timeanddate( $this->timestamp, true, false, $timecorrection ),
-				$wgContLang->date( $this->timestamp, true, false, $timecorrection ),
-				$wgContLang->time( $this->timestamp, true, false, $timecorrection ) ),
-			$body );
+			array( $wgEnotifUseRealName ? $watchingUser->getRealName() : $watchingUser->getName(),
+				$wgContLang->userDate( $this->timestamp, $watchingUser ),
+				$wgContLang->userTime( $this->timestamp, $watchingUser ) ),
+			$this->body );
 
 		return UserMailer::send( $to, $this->from, $this->subject, $body, $this->replyto );
 	}
@@ -726,8 +719,8 @@ class EmailNotification {
 					'$PAGEEDITDATE',
 					'$PAGEEDITTIME' ),
 				array( wfMsgForContent( 'enotif_impersonal_salutation' ),
-					$wgContLang->date( $this->timestamp, true, false, false ),
-					$wgContLang->time( $this->timestamp, true, false, false ) ),
+					$wgContLang->date( $this->timestamp, false, false ),
+					$wgContLang->time( $this->timestamp, false, false ) ),
 				$this->body );
 
 		return UserMailer::send( $addresses, $this->from, $this->subject, $body, $this->replyto );
