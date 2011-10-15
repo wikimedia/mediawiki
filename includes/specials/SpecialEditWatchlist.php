@@ -400,7 +400,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			}
 		}
 		if ( $haveInvalidNamespaces ) {
-			wfDebug( "User {$this->getContext()->getUser()->getId()} has invalid watchlist entries, clening up...\n" );
+			wfDebug( "User {$this->getContext()->getUser()->getId()} has invalid watchlist entries, cleaning up...\n" );
 			$this->getContext()->getUser()->cleanupWatchlist();
 		}
 
