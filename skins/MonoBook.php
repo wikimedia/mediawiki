@@ -39,8 +39,6 @@ class SkinMonoBook extends SkinTemplate {
 		}
 
 		// TODO: Migrate all of these
-		$out->addStyle( 'monobook/IE50Fixes.css', 'screen', 'lt IE 5.5000' );
-		$out->addStyle( 'monobook/IE55Fixes.css', 'screen', 'IE 5.5000' );
 		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
 		$out->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
 
