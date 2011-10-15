@@ -105,10 +105,39 @@ class PreprocessorTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Get XML preprocessor tree from the preprocessor (which may not be the
+	 * native XML-based one).
+	 *
+	 * @param string $wikiText
+	 * @return string
+	 */
+	function preprocessToXml( $wikiText ) {
+		$dom = $this->mPreprocessor->preprocessToObj( $wikiText );
+		if ( is_callable( array( $dom, 'saveXML' ) ) ) {
+			return $dom->saveXML();
+		} else {
+			return $this->normalizeXml( $dom->__toString() );
+		}
+	}
+
+	/**
+	 * Normalize XML string to the form that a DOMDocument saves out.
+	 *
+	 * @param string $xml
+	 * @return string
+	 */
+	function normalizeXml( $xml ) {
+		$dom = new DOMDocument();
+		// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
+		$dom->loadXML( $xml, 1 << 19 );
+		return $dom->saveXML();
+	}
+
+	/**
 	 * @dataProvider provideCases
 	 */
 	function testPreprocessorOutput( $wikiText, $expectedXml ) {
-		$this->assertEquals( $expectedXml, $this->mPreprocessor->preprocessToXml( $wikiText ) );
+		$this->assertEquals( $this->normalizeXml( $expectedXml ), $this->preprocessToXml( $wikiText ) );
 	}
 
 	/**
@@ -129,11 +158,12 @@ class PreprocessorTest extends MediaWikiTestCase {
 	function testPreprocessorOutputFiles( $filename ) {
 		$folder = dirname( __FILE__ ) . "/../../../parser/preprocess";
 		$wikiText = file_get_contents( "$folder/$filename.txt" );
-		$output = $this->mPreprocessor->preprocessToXml( $wikiText );
+		$output = $this->preprocessToXml( $wikiText );
 
 		$expectedFilename = "$folder/$filename.expected";
 		if ( file_exists( $expectedFilename ) ) {
-			$this->assertStringEqualsFile( $expectedFilename, $output );
+			$expectedXml = $this->normalizeXml( file_get_contents( $expectedFilename ) );
+			$this->assertEquals( $expectedXml, $output );
 		} else {
 			$tempFilename = tempnam( $folder, "$filename." );
 			file_put_contents( $tempFilename, $output );
@@ -188,7 +218,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 	 * @dataProvider provideHeadings
 	 */
 	function testHeadings( $wikiText, $expectedXml ) {
-		$this->assertEquals( $expectedXml, $this->mPreprocessor->preprocessToXml( $wikiText ) );
+		$this->assertEquals( $this->normalizeXml( $expectedXml ), $this->preprocessToXml( $wikiText ) );
 	}
 }
 
