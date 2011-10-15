@@ -557,6 +557,7 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'whatlinkshere-title'      => 'Nkásá ikangísí na « $1 »',
 'whatlinkshere-page'       => 'Lonkásá:',
 'isredirect'               => 'Lonkásá la boyendisi',
+'isimage'                  => 'Bikangisele  bya kásá',
 'whatlinkshere-links'      => '← bikangiseli',
 'whatlinkshere-hideredirs' => '$1 mayendisi',
 'whatlinkshere-hidetrans'  => '$1 botíyi na káti',

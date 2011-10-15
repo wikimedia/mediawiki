@@ -3853,8 +3853,8 @@ MediaWiki поширюється в надії, що вона буде кори�
 'specialpages'                   => 'Спеціальні сторінки',
 'specialpages-note'              => '----
 * Звичайні службові сторінки
-* <span class="mw-specialpagerestricted">Restricted special pages.</span>
-* <span class="mw-specialpagecached">Cached special pages (might be obsolete).</span>',
+* <span class="mw-specialpagerestricted">Сторінки з обмеженим доступом.</span>
+* <span class="mw-specialpagecached">Кешовані сторінки (можуть бути застарілими).</span>',
 'specialpages-group-maintenance' => 'Технічні звіти',
 'specialpages-group-other'       => 'Інші',
 'specialpages-group-login'       => 'Вхід до системи / реєстрація',

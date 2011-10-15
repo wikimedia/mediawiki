@@ -3623,6 +3623,9 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'watchlisttools-edit' => 'Vezi și modifică lista paginilor urmărite',
 'watchlisttools-raw'  => 'Modifică lista brută a paginilor urmărite',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|discuție]])</sup>',
+
 # Core parser functions
 'unknown_extension_tag' => 'Extensie etichetă necunoscută "$1"',
 'duplicate-defaultsort' => "'''Atenție:''' Cheia de sortare implicită („$2”) o înlocuiește pe precedenta („$1”).",

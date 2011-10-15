@@ -985,30 +985,29 @@ Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe
 'rev-deleted-user-contribs'   => "[anv implijer pe chomlec'h IP diverket - kemm kuzhet diouzh an degasadennoù]",
 'rev-deleted-text-permission' => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
 Marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].",
-'rev-deleted-text-unhide'     => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
+'rev-deleted-text-unhide'     => "!'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
 Marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
-Evel merour e c'hallit [$1 gwelet ar stumm-se] c'hoazh mar fell deoc'h kenderc'hel.",
+Gallout a rit [$1 gwelet ar stumm-se] c'hoazh mar fell deoc'h kenderc'hel.",
 'rev-suppressed-text-unhide'  => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
-Marteze e kavor muioc'h a vunudoù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
-Pa'z oc'h merour e c'hallit [$1 gwelet ar stummm-se] mar fell deoc'h kenderc'hel ganti.",
+Titouroù zo da gaout war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
+Gallout a rit [$1 gwelet ar stumm-se] c'hoazh mar fell deoc'h kenderc'hel.",
 'rev-deleted-text-view'       => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
-Pa'z oc'h merour e c'hallit sellet outañ;
-Marteze e kavot munudoù all war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].",
+Gallout a rit sellet outañ ; titouroù all a gavot war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].",
 'rev-suppressed-text-view'    => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn-mañ.
-Pa'z oc'h merour e c'hallit sellet outañ; marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
+Gallout a rit sellet outañ ; titouroù all zo war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].",
 'rev-deleted-no-diff'         => "N'hallit ket gwelet an diforc'h-mañ rak '''diverket''' eo bet unan eus ar stummoù.
 Marteze ez eus muioc'h a vunudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
 'rev-suppressed-no-diff'      => "N'hallit ket gwelet an diforc'h-se rak '''diverket''' ez eus bet unan eus an adweladennoù.",
-'rev-deleted-unhide-diff'     => "'''Diverket''' eo bet unan eus kemmoù an diforc'h-mañ.
-Marteze e kavot muoic'h a ditouroù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
-Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
-'rev-suppressed-unhide-diff'  => "'''Diverket''' ez eus bet unan eus adweladennoù an diff-mañ.
-Titouroù ouzhpenn a c'hall bezañ war [{{lurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
-Evel merour e c'hallit atav [$1 sellet ouzh an diff-se] mar fell deoc'h kenderc'hel.",
-'rev-deleted-diff-view'       => "'''Dilamet''' ez eus bet unan eus stummoù an dif.-mañ.
-Evel merour e c'hallit gwelet an dif.-mañ; muioc'h a ditouroù a c'hall bezañ e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù]",
-'rev-suppressed-diff-view'    => "'''Diverket''' ez eus bet unan eus stummoù an dif.-mañ.
-Evel merour e c'hallit gwelet an dif.-mañ; muioc'h a ditouroù a c'hall bezañ e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù]",
+'rev-deleted-unhide-diff'     => "'''Diverket''' ez eus bet unan eus kemmoù an diforc'h-mañ.
+Titouroù zo da gaout war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
+Gallout a rit c'hoazh [$1 sellet ouzh an diforc'h-mañ] mar fell deoc'h kenderc'hel.",
+'rev-suppressed-unhide-diff'  => "'''Diverket''' ez eus bet unan eus adweladennoù an diforc'h-mañ.
+Titouroù ouzhpenn zo war [{{lurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
+Gallout a rit c'hoazh [$1 sellet ouzh an diforc'h-se] mar fell deoc'h kenderc'hel.",
+'rev-deleted-diff-view'       => "'''Diverket''' ez eus bet unan eus stummoù an diforc'h-mañ.
+Gallout a rit gwelet an diforc'h-mañ ; titouroù zo war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket]",
+'rev-suppressed-diff-view'    => "'''Diverket''' ez eus bet unan eus stummoù an diforc'h-mañ.
+Gallout a ri gwelet an diforc'h-mañ ; titouroù zo war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket]",
 'rev-delundel'                => 'diskouez/kuzhat',
 'rev-showdeleted'             => 'diskouez',
 'revisiondelete'              => 'Diverkañ/diziverkañ stummoù',
@@ -3507,6 +3506,9 @@ Gallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].',
 'iranian-calendar-m10' => '10vet miz Jalāli',
 'iranian-calendar-m11' => '11vet miz Jalāli',
 'iranian-calendar-m12' => '12vet miz Jalāli',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|kaozeal]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Balizenn astenn "$1" dianav',

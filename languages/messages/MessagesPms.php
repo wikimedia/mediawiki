@@ -2045,12 +2045,12 @@ ch'a daga da ment a lòn ch'a fa.",
 'rollbacklink'      => "ripristiné j'archivi",
 'rollbackfailed'    => "A l'é pa podusse ripristiné",
 'cantrollback'      => "As peul pa tornesse a na version pì veja: l'ùltima modìfica a l'ha fala l'ùnich utent che a l'abia travajà a cost artìcol-sì.",
-'alreadyrolled'     => "As peulo pa anulé j'ultime modìfiche ëd [[:$1]] faite da [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'     => "As peulo pa anulé j'ultime modìfiche ëd [[:$1]] fàite da [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 cheidun d'àutr a l'ha già modificà ò pura anulà le modìfiche a sta pàgina-sì.
 
-L'ùltima modìfica a la pàgina a l'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
+L'ùltima modìfica a la pàgina a l'é stàita fàita da [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
 'editcomment'       => "Ël coment dla modìfica a l'era: \"''\$1''\".",
-'revertpage'        => "Gavà via le modìfiche ëd [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]",
+'revertpage'        => "Gavà via le modìfiche ëd [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); ël contnù a l'é stàit tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]",
 'revertpage-nouser' => "Scanselà le modìfiche dë (stranòm gavà) a l'ùltima vërsion ëd [[User:$1|$1]]",
 'rollback-success'  => "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
 

@@ -609,6 +609,9 @@ Parameters:
 	'config-apc' => 'Message indicates if this program is available',
 	'config-eaccel' => 'Message indicates if this program is available',
 	'config-wincache' => 'Message indicates if this program is available',
+	'config-imagemagick' => '$1 is ImageMagick\'s <code>convert</code> executable file name.
+
+Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 	'config-no-cli-uri' => 'Parameters:
 * $1 is the default value for scriptpath.',
 	'config-no-cli-uploads-check' => 'CLI = Call Level Interface',
@@ -5880,7 +5883,7 @@ $1',
 	'config-page-copying' => 'העתקה',
 	'config-page-upgradedoc' => 'שדרוג',
 	'config-page-existingwiki' => 'ויקי קיים',
-	'config-help-restart' => 'האם ברצונך לפנות את כל הנתונים שנשמרו שהוזנו על ידיך ולהתחיל מחדש את תהליך ההתקנה?',
+	'config-help-restart' => 'האם ברצונך לנקות את כל הנתונים שהזנת ולהתחיל מחדש את תהליך ההתקנה?',
 	'config-restart' => 'כן, להפעיל מחדש',
 	'config-welcome' => '=== בדיקות סביבה ===
 בדיקות בסיסיות מתבצעות כדי לבדוק שהסביבה מתאימה להתקנת מדיה־ויקי.
@@ -5907,15 +5910,15 @@ $1
 אפשר להתקין מדיה־ויקי.',
 	'config-env-bad' => 'הסביבה שלכם נבדקה.
 אי־אפשר להתקין מדיה־ויקי.',
-	'config-env-php' => 'מותקנת PHP $1.',
-	'config-env-php-toolow' => 'מותקנת PHP $1.
-למדיה־ויקי נדרשת PHP $2 או גרסה גבוהה יותר.',
+	'config-env-php' => 'מותקנת <span dir="ltr">PHP $1</span>.',
+	'config-env-php-toolow' => 'מותקנת <span dir="ltr">PHP $1</span>.
+למדיה־ויקי נדרשת <span dir="ltr">PHP $2</span> או גרסה גבוהה יותר.',
 	'config-unicode-using-utf8' => 'משתמש ב־normalize.so של בריון ויבר לנרמול יוניקוד.',
 	'config-unicode-using-intl' => 'משתמש בהרחבת [http://pecl.php.net/intl הרחבת intl PECL] לנרמול יוניקוד',
 	'config-unicode-pure-php-warning' => "'''אזהרה''': [http://pecl.php.net/intl הרחבת intl PECL] אינה זמינה לטיפול בנרמול יוניקוד. משתמש ביישום PHP טהור ואטי יותר.
-אם זה אתר בעל תעבורה גבוהה, כדאי לקרוא את המסמך הבא: [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
+אם זהו אתר בעל תעבורה גבוהה, כדאי לקרוא את המסמך הבא: [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
 	'config-unicode-update-warning' => "'''אזהרה''': הגרסה המותקנת של מעטפת נרמול יוניקוד משתמשת בגרסה ישנה של הספרייה של [http://site.icu-project.org/ פרויקט ICU].
-כדאי [http://www.mediawiki.org/wiki/Unicode_normalization_considerations לעדכן] אם יש חשוב לכם הטיפול ביוניקוד.",
+כדאי [http://www.mediawiki.org/wiki/Unicode_normalization_considerations לעדכן] אם חשוב לכם הטיפול ביוניקוד.",
 	'config-no-db' => 'לא נמצא דרייבר מסד נתונים מתאים. יש להתקין דרייבר מסד נתונים ל־PHP.
 נתמכים הסוגים הבאים של מסדי נתונים: $1.
 
@@ -5957,7 +5960,7 @@ $1
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] מותקן',
 	'config-no-cache' => "'''אזהרה:''' אחת מהתוכנות הבאות לא נמצאה: [http://eaccelerator.sourceforge.net eAccelerator]&rlm;, [http://www.php.net/apc APC]&rlm;, [http://trac.lighttpd.net/xcache/ XCache] או [http://www.iis.net/download/WinCacheForPhp WinCache].
 מטמון עצמים לא מופעל.",
-	'config-mod-security' => "'''אזהרה''': בשרת הווב שלכם מופעל [http://modsecurity.org/ mod_security]. אם זה לא מוגדר טוב, זה יכול לגרום לבעיות במדיה־ויקי ובתכנה אחרת שמאפשרת למשתמשים לשלוח תוכן שרירותי.
+	'config-mod-security' => "'''אזהרה''': בשרת הווב שלכם מופעל [http://modsecurity.org/ mod_security]. אם הוא לא מוגדר טוב, זה יכול לגרום לבעיות במדיה־ויקי ובתכנה אחרת שמאפשרת למשתמשים לשלוח תוכן שרירותי.
 קראו את [http://modsecurity.org/documentation/ התיעוד של mod_security] או צרו קשר עם אנשי התמיכה של שירותי האירוח שלכם אם אתם נתקלים בשגיאות אקראיות.",
 	'config-diff3-bad' => 'GNU diff3 לא נמצא.',
 	'config-imagemagick' => 'נמצא ImageMagick&rlm;: <code dir="ltr">$1</code>.
@@ -5968,26 +5971,26 @@ $1
 מזעור תמונות לא יופעל.',
 	'config-no-uri' => "'''שגיאה:''' אי־אפשר לזהות את הכתובת הנוכחית.
 ההתקנה בוטלה.",
-	'config-no-cli-uri' => 'אזהרה: לא הוגדר ‎--scriptpath, משתמש בבררת המחדל: <code>$1</code>.',
+	'config-no-cli-uri' => 'אזהרה: לא הוגדר <span dir="ltr">--scriptpath</span>, משתמש בבררת המחדל: <code dir="ltr">$1</code>.',
 	'config-using-server' => 'שם השרת בשימוש: "<nowiki>$1</nowiki>".',
 	'config-using-uri' => 'נעשה שימוש בכתובת השרת "<nowiki>$1$2</nowiki>".',
-	'config-uploads-not-safe' => "'''אזהרה:''' התיקייה ההתחלתית להעלות <code>$1</code> חשופה להרצת סקריפטים.
+	'config-uploads-not-safe' => "'''אזהרה:''' תיקיית ההעלאות ההתחלתית <code>$1</code> חשופה להרצת סקריפטים שרירותיים.
 מדיה־ויקי בודקת את כל הקבצים המוּעלים לאיומי אבטחה, מומלץ מאוד למנוע את [http://www.mediawiki.org/wiki/Manual:Security#Upload_security פרצת האבטחה] הזאת לפני שאתם מפעילים את ההעלאות.",
 	'config-no-cli-uploads-check' => "'''אזהרה:''' תיקיית בררת המחדל להעלאות (<code>$1</code>) לא נבדקת לפגיעוּת להרצת תסריטים אקראיים בזמן התקנה דרך CLI.",
 	'config-brokenlibxml' => 'במערכת שלכם יש שילוב של גרסאות של PHP ושל libxml2 שחשוף לבאגים ויכול לגרום לעיוות נתונים נסתר במדיה־ויקי וביישומי רשת אחרים.
 שדרגו ל־PHP 5.2.9 או לגרסה חדשה יותר ול־libxml2 2.7.3 או גרסה חדשה יותר ([http://bugs.php.net/bug.php?id=45996 באג מתויק ב־PHP]).
 ההתקנה בוטלה.',
-	'config-using531' => 'אי־אפשר להשתמש במדיה־ויקי עם PHP $1 בגלל באג בפרמטרים של הפניות (reference parameters) ל־<span dir="ltr"><code>__call()</code></span>.
-שדרגו ל־PHP 5.3.2 או לגרסה גבוהה יותר כדי לתקן את זה ([http://bugs.php.net/bug.php?id=50394 bug filed with PHP]) או שנמכו ל־PHP 5.3.0 כדי לפתור את הבעיה הזאת.
+	'config-using531' => 'אי־אפשר להשתמש במדיה־ויקי עם <span dir="ltr">PHP $1</span> בגלל באג בפרמטרים של הפניות (reference parameters) ל־<code dir="ltr">__call()</code>.
+שדרגו ל־PHP 5.3.2 או לגרסה גבוהה יותר כדי לתקן את זה ([http://bugs.php.net/bug.php?id=50394 bug filed with PHP]) או שַנמכו ל־PHP 5.3.0 כדי לפתור את הבעיה הזאת.
 ההתקנה בוטלה.',
-	'config-suhosin-max-value-length' => 'מותקן פה Suhosin והוא מגביל את אורך פרמטר GET ל־$1 בתים. רכית ResourceLoader של מדיה־ויקי יעקוף את המגלבה הזאת, אבל זה יפחית את הביצועים. אם זה בכלל אפשרי, כדי לתקן את הערך של suhosin.get.max_value_length ל־1024 בקובץ php.ini ולהגדיר את ‎$wgResourceLoaderMaxQueryLength לאותו הערך בקובץ LocalSettings.php.',
+	'config-suhosin-max-value-length' => 'מותקן פה Suhosin והוא מגביל את אורך פרמטר GET ל־$1 בתים. רכיב ResourceLoader של מדיה־ויקי יעקוף את המגלבה הזאת, אבל זה יפגע בביצועים. אם זה בכלל אפשרי, כדי לתקן את הערך של suhosin.get.max_value_length ל־1024 בקובץ php.ini ולהגדיר את ‎$wgResourceLoaderMaxQueryLength לאותו הערך בקובץ LocalSettings.php.',
 	'config-db-type' => 'סוג מסד הנתונים:',
 	'config-db-host' => 'שרת מסד הנתונים:',
-	'config-db-host-help' => 'אם שרת מסד הנתונים שלכם נמצא על שרת מחשב אחר, הקלידו את שם המחשב או כתובת ה־IP כאן.
+	'config-db-host-help' => 'אם שרת מסד הנתונים שלכם נמצא על שרת אחר, הקלידו את שם המחשב או את כתובת ה־IP כאן.
 
 אם אתם משתמשים באירוח משותף, ספק האירוח שלכם אמור לתת לכם את שם השרת הנכון במסמכים.
 
-אם אתם מתקינים בשרת חלונות ומשתמשים ב־MySQL, השימוש ב־localhost עשוי לא לעבוד. אם הוא לא עובד, נסו את "127.0.0.1" בתור כתובת ה־IP המקומית.
+אם אתם מתקינים בשרת Windows ומשתמשים ב־MySQL, השימוש ב־localhost עשוי לא לעבוד. אם הוא לא עובד, נסו את "127.0.0.1" בתור כתובת ה־IP המקומית.
 
 אם אתם משתמשים ב־PostgreSQL, תשאירו את השדה הזה ריק כדי להתחבר דרך שקע יוניקס.',
 	'config-db-host-oracle' => 'TNS של מסד הנתונים:',
@@ -6033,7 +6036,7 @@ $1
 ב'''מצב בינרי''' (binary mode) מדיה־ויקי שומרת טקסט UTF-8 במסד הנתונים בשדות בינריים.
 זה יעיל יותר ממצב UTF-8 של MySQL ומאפשר לכם להשתמש בכל הטווח של תווי יוניקוד.
 ב'''מצב UTF-8'''&rlm; (UTF-8 mode)&rlm; MySQL יֵדַע מה קבוצת התווים (character set) של הטקסט שלכם ויציג וימיר אותו בהתאם, אבל לא יאפשר לכם לשמור תווים שאינם נמצאים בטווח הרב־לשוני הבסיסי ([http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane]).",
-	'config-mysql-old' => 'נדרשת גרסה $1 של MySQL או גרסה חדשה יותר. הגרסה הנוכחית שלכם היא $2.',
+	'config-mysql-old' => 'נדרשת גרסה <span dir="ltr">$1</span> של MySQL או גרסה חדשה יותר. הגרסה הנוכחית שלכם היא $2.',
 	'config-db-port' => 'פִּתְחַת מסד הנתונים (database port):',
 	'config-db-schema' => 'סכמה למדיה־ויקי',
 	'config-db-schema-help' => 'הסְכֵמָה הבאה בדרך כלל מתאימה.
@@ -6046,9 +6049,9 @@ $1
 
 היא לא צריכה נגישה לכולם דרך האינטרנט – בגלל זה איננו שמים אותה באותו מקום עם קובצי ה־PHP.
 
-תוכנת ההתקנה תכתוב קובץ <span dir="ltr"><code>.htaccess</code></span> יחד אִתו, אבל אם זה ייכשל, מישהו יוכל להשיג גישה למסד הנתונים שלכם. שם נמצא מידע מפורש של משתמשים (כתובות דוא״ל, ססמאות מגובבות) וגם גרסאות מחוקות של דפים ומידע מוגבל אחר.
+תוכנת ההתקנה תכתוב קובץ <code dir="ltr">.htaccess</code> יחד אִתו, אבל אם זה ייכשל, מישהו יוכל להשיג גישה למסד הנתונים שלכם. שם נמצא מידע מפורש של משתמשים (כתובות דוא״ל, ססמאות מגובבות) וגם גרסאות מחוקות של דפים ומידע מוגבל אחר.
 
-כדאי לשקול לשים את מסד הנתונים במקום אחר לגמרי, למשל ב־<span dir="ltr"><code>/var/lib/mediawiki/yourwik</code></span>.',
+כדאי לשקול לשים את מסד הנתונים במקום אחר לגמרי, למשל ב־<code dir="ltr">/var/lib/mediawiki/yourwik</code>.',
 	'config-oracle-def-ts' => 'מרחב טבלאות לפי בררת מחדל (default tablespace):',
 	'config-oracle-temp-ts' => 'מרחב טבלאות זמני (temporary tablespace):',
 	'config-type-ibm_db2' => 'IBM DB2',
