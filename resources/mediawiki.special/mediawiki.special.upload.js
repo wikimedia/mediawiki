@@ -25,7 +25,7 @@ jQuery( function( $ ) {
 	 * @return boolean
 	 */
 	function fileIsPreviewable( file ) {
-		var	known = ['image/png', 'image/gif', 'image/jpeg'],
+		var	known = ['image/png', 'image/gif', 'image/jpeg', 'image/svg+xml'],
 			tooHuge = 10 * 1024 * 1024;
 		return ( $.inArray( file.type, known ) !== -1 ) && file.size > 0 && file.size < tooHuge;
 	}
@@ -160,20 +160,33 @@ jQuery( function( $ ) {
 	 */
 	function fetchPreview( file, callback, callbackBinary ) {
 		var reader = new FileReader();
-		reader.onload = function() {
-			if ( callbackBinary ) {
-				callbackBinary( reader.result );
-				reader.onload = function() {
-					callback( reader.result );
-				};
-				reader.readAsDataURL( file );
-			} else {
-				callback( reader.result );
-			}
-		};
 		if ( callbackBinary ) {
+			// To fetch JPEG metadata we need a binary string; start there.
+			// todo: 
+			reader.onload = function() {
+				callbackBinary( reader.result );
+
+				// Now run back through the regular code path.
+				fetchPreview(file, callback );
+			};
 			reader.readAsBinaryString( file );
+		} else if ('URL' in window && 'createObjectURL' in window.URL) {
+			// Supported in Firefox 4.0 and above <https://developer.mozilla.org/en/DOM/window.URL.createObjectURL>
+			// WebKit has it in a namespace for now but that's ok. ;)
+			//
+			// Lifetime of this URL is until document close, which is fine
+			// for Special:Upload -- if this code gets used on longer-running
+			// pages, add a revokeObjectURL() when it's no longer needed.
+			//
+			// Prefer this over readAsDataURL for Firefox 7 due to bug reading
+			// some SVG files from data URIs <https://bugzilla.mozilla.org/show_bug.cgi?id=694165>
+			callback(window.URL.createObjectURL(file));
 		} else {
+			// This ends up decoding the file to base-64 and back again, which
+			// feels horribly inefficient.
+			reader.onload = function() {
+				callback( reader.result );
+			};
 			reader.readAsDataURL( file );
 		}
 	}
