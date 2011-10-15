@@ -187,6 +187,11 @@ if ( $wgUseInstantCommons ) {
 	);
 }
 
+if ( is_null( $wgEnableAutoRotation ) ) {
+	// Only enable auto-rotation when the bitmap handler can rotate
+	$wgEnableAutoRotation = BitmapHandler::canRotate();
+}
+
 if ( $wgRCFilterByAge ) {
 	# # Trim down $wgRCLinkDays so that it only lists links which are valid
 	# # as determined by $wgRCMaxAge.

@@ -744,6 +744,12 @@ $wgShowArchiveThumbnails = true;
 /** Obsolete, always true, kept for compatibility with extensions */
 $wgUseImageResize = true;
 
+/**
+ * If set to true, images that contain certain the exif orientation tag will
+ * be rotated accordingly. If set to null, try to auto-detect whether a scaler
+ * is available that can rotate.
+ */
+$wgEnableAutoRotation = null;
 
 /**
  * Internal name of virus scanner. This servers as a key to the

@@ -85,6 +85,8 @@ production.
 * New hook "Collation::factory" to allow extensions to create custom
   category collations.
 * $wgGroupPermissions now supports per namespace permissions.
+* $wgEnableAutoRotation enables or disables auto-rotation. Leaving it set to
+  null will cause MediaWiki to determine if auto-rotation is available.
 
 === New features in 1.18 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.
