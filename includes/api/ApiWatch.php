@@ -49,7 +49,7 @@ class ApiWatch extends ApiBase {
 		$params = $this->extractRequestParams();
 		$title = Title::newFromText( $params['title'] );
 
-		if ( !$title ) {
+		if ( !$title || $titile->getNamespace() < 0 ) {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
