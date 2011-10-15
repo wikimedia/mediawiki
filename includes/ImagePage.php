@@ -287,6 +287,9 @@ class ImagePage extends Article {
 			$width = $width_orig;
 			$height_orig = $this->displayImg->getHeight( $page );
 			$height = $height_orig;
+			$mustRender = $this->displayImg->getHandler() &&
+				$this->displayImg->getHandler()->mustRender( $this->displayImg );
+			$addFullResolutionLink = false;
 
 			$longDesc = wfMsg( 'parentheses', $this->displayImg->getLongDesc() );
 
@@ -312,14 +315,19 @@ class ImagePage extends Article {
 						# Note that $height <= $maxHeight now, but might not be identical
 						# because of rounding.
 					}
-					$msgbig  = wfMsgHtml( 'show-big-image' );
+
 					$otherSizes = array();
 					foreach ( $wgImageLimits as $size ) {
 						if ( $size[0] < $width_orig && $size[1] < $height_orig &&
 								$size[0] != $width && $size[1] != $height ) {
 							$otherSizes[] = $this->makeSizeLink( $params, $size[0], $size[1] );
-						}
+						} 
 					}
+					if ( $mustRender ) {
+						$otherSizes[] = $this->makeSizeLink( $params, $width_orig, $height_orig, 'show-big-image' );
+					} else {
+						$addFullResolutionLink = true; 
+					} 
 					$msgsmall = wfMessage( 'show-big-image-preview' )->
 						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
 						parse() . ' ' .
@@ -347,7 +355,7 @@ class ImagePage extends Article {
 				if ( $thumbnail ) {
 					$options = array(
 						'alt' => $this->displayImg->getTitle()->getPrefixedText(),
-						'file-link' => true,
+						'file-link' => !$mustRender,
 					);
 					$wgOut->addHTML( '<div class="fullImageLink" id="file">' .
 						$thumbnail->toHtml( $options ) .
@@ -428,8 +436,8 @@ class ImagePage extends Article {
 			if ( $showLink ) {
 				$filename = wfEscapeWikiText( $this->displayImg->getName() );
 				$linktext = $filename;
-				if ( isset( $msgbig ) ) {
-					$linktext = wfEscapeWikiText( $msgbig );
+				if ( $addFullResolutionLink ) {
+					$linktext = wfMsg( 'show-big-image' );
 				}
 				$medialink = "[[Media:$filename|$linktext]]";
 
@@ -484,7 +492,7 @@ EOT
 	 * @param int $width
 	 * @param int $height
 	 */
-	private function makeSizeLink( $params, $width, $height ) {
+	private function makeSizeLink( $params, $width, $height, $msg = 'show-big-image-size' ) {
 		$params['width'] = $width;
 		$params['height'] = $height;
 		$thumbnail = $this->displayImg->transform( $params );
@@ -492,7 +500,7 @@ EOT
 			return Html::rawElement( 'a', array(
 				'href' => $thumbnail->getUrl(),
 				'class' => 'mw-thumbnail-link'
-				), wfMessage( 'show-big-image-size' )->numParams(
+				), wfMessage( $msg )->numParams(
 					$thumbnail->getWidth(), $thumbnail->getHeight()
 				)->parse() );
 		} else {
