@@ -122,6 +122,10 @@ return array(
 		'scripts' => 'resources/jquery/jquery.expandableField.js',
 		'dependencies' => 'jquery.delayedBind',
 	),
+	'jquery.farbtastic' => array(
+		'scripts' => 'resources/jquery/jquery.farbtastic.js',
+		'styles' => 'resources/jquery/jquery.farbtastic.css',
+	),
 	'jquery.form' => array(
 		'scripts' => 'resources/jquery/jquery.form.js',
 	),
