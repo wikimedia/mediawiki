@@ -63,20 +63,11 @@ class LocalRepo extends FSRepo {
 			$hashPath = $this->getDeletedHashPath( $key );
 			$path = "$root/$hashPath$key";
 			$dbw->begin();
-			$inuse = $dbw->selectField( 'filearchive', '1',
-				array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
-				__METHOD__, array( 'FOR UPDATE' ) );
-			if( !$inuse ) {
-				$sha1 = self::getHashFromKey( $key );
-				$ext = substr( $key, strcspn( $key, '.' ) + 1 );
-				$ext = File::normalizeExtension($ext);
-				$inuse = $dbw->selectField( 'oldimage', '1',
-					array( 'oi_sha1' => $sha1,
-						'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
-						$dbw->bitAnd('oi_deleted', File::DELETED_FILE) => File::DELETED_FILE ),
-					__METHOD__, array( 'FOR UPDATE' ) );
-			}
-			if ( !$inuse ) {
+			// Check for usage in deleted/hidden files and pre-emptively
+			// lock the key to avoid any future use until we are finished.
+			$deleted = $this->deletedFileHasKey( $key, 'lock' );
+			$hidden = $this->hiddenFileHasKey( $key, 'lock' );
+			if ( !$deleted && !$hidden ) { // not in use now
 				wfDebug( __METHOD__ . ": deleting $key\n" );
 				wfSuppressWarnings();
 				$unlink = unlink( $path );
@@ -92,6 +83,43 @@ class LocalRepo extends FSRepo {
 			$dbw->commit();
 		}
 		return $status;
+	}
+
+	/**
+	 * Check if a deleted (filearchive) file has this sha1 key
+	 * @param $key String File storage key (base-36 sha1 key with file extension)
+	 * @param $lock String|null Use "lock" to lock the row via FOR UPDATE
+	 * @return bool File with this key is in use
+	 */
+	protected function deletedFileHasKey( $key, $lock = null ) {
+		$options = ( $lock === 'lock' ) ? array( 'FOR UPDATE' ) : array();
+
+		$dbw = $this->getMasterDB();
+		return (bool)$dbw->selectField( 'filearchive', '1',
+			array( 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ),
+			__METHOD__, $options
+		);
+	}
+
+	/**
+	 * Check if a hidden (revision delete) file has this sha1 key
+	 * @param $key String File storage key (base-36 sha1 key with file extension)
+	 * @param $lock String|null Use "lock" to lock the row via FOR UPDATE
+	 * @return bool File with this key is in use
+	 */
+	protected function hiddenFileHasKey( $key, $lock = null ) {
+		$options = ( $lock === 'lock' ) ? array( 'FOR UPDATE' ) : array();
+
+		$sha1 = self::getHashFromKey( $key );
+		$ext = File::normalizeExtension( substr( $key, strcspn( $key, '.' ) + 1 ) );
+
+		$dbw = $this->getMasterDB();
+		return (bool)$dbw->selectField( 'oldimage', '1',
+			array( 'oi_sha1' => $sha1,
+				'oi_archive_name ' . $dbw->buildLike( $dbw->anyString(), ".$ext" ),
+				$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE ),
+			__METHOD__, array( 'FOR UPDATE' )
+		);
 	}
 
 	/**
