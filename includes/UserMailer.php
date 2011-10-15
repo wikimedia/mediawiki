@@ -158,7 +158,7 @@ class UserMailer {
 		global $wgEnotifMaxRecips, $wgAdditionalMailParams;
 
 		$emails = '';
-		wfDebug( __METHOD__ . ': sending mail to ' . is_array( $to ) ? implode( ', ', $to ) : $to . "\n" );
+		wfDebug( __METHOD__ . ': sending mail to ' . ( is_array( $to ) ? implode( ', ', $to ) : $to ) . "\n" );
 
 		$headers['From'] = $from->toString();
 		$headers['Return-Path'] = $from->toString();
