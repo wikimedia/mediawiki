@@ -569,18 +569,29 @@ class Preferences {
 
 		// Grab existing pref.
 		$tzOffset = $user->getOption( 'timecorrection' );
-		$tz = explode( '|', $tzOffset, 2 );
+		$tz = explode( '|', $tzOffset, 3 );
+
+		$tzOptions = self::getTimezoneOptions( $context );
 
 		$tzSetting = $tzOffset;
 		if ( count( $tz ) > 1 && $tz[0] == 'Offset' ) {
 			$minDiff = $tz[1];
 			$tzSetting = sprintf( '%+03d:%02d', floor( $minDiff / 60 ), abs( $minDiff ) % 60 );
+		} elseif ( count( $tz ) > 1 && $tz[0] == 'ZoneInfo' &&
+			!in_array( $tzOffset, HTMLFormField::flattenOptions( $tzOptions ) ) )
+		{
+			# Timezone offset can vary with DST
+			$userTZ = timezone_open( $tz[2] );
+			if ( $userTZ !== false ) {
+				$minDiff = floor( timezone_offset_get( $userTZ, date_create( 'now' ) ) / 60 );
+				$tzSetting = "ZoneInfo|$minDiff|{$tz[2]}";
+			}
 		}
 
 		$defaultPreferences['timecorrection'] = array(
 			'class' => 'HTMLSelectOrOtherField',
 			'label-message' => 'timezonelegend',
-			'options' => self::getTimezoneOptions( $context ),
+			'options' => $tzOptions,
 			'default' => $tzSetting,
 			'size' => 20,
 			'section' => 'datetime/timeoffset',
