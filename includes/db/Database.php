@@ -608,15 +608,13 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 	}
 
- 	/**
-	 * Called by unserialize. Needed to reopen DB connection, which
-	 * is not saved by serialize.
+	/**
+	 * Called by serialize. Throw an exception when DB connection is serialized.
+	 * This causes problems on some database engines because the connection is 
+	 * not restored on unserialize.
 	 */
-	public function __wakeup() {
-        if ( $this->isOpen() ) {
-			$this->open( $this->mServer, $this->mUser,
-				     $this->mPassword, $this->mDBname);
-		}
+	public function __sleep() {
+		throw new MWException( 'Database serialization may cause problems, since the connection is not restored on wakeup.' );
 	}
 
 	/**
