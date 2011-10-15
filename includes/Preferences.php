@@ -494,7 +494,6 @@ class Preferences {
 		$selectedSkin = $user->getOption( 'skin' );
 		if ( in_array( $selectedSkin, array( 'cologneblue', 'standard' ) ) ) {
 			$settings = array_flip( $context->getLang()->getQuickbarSettings() );
-
 			$defaultPreferences['quickbar'] = array(
 				'type' => 'radio',
 				'options' => $settings,
