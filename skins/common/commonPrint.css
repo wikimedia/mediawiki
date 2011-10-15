@@ -372,6 +372,7 @@ p {
 .catlinks ul {
 	display: inline;
 	margin: 0;
+	padding: 0;
 	list-style: none;
 	list-style-type: none;
 	list-style-image: none;
