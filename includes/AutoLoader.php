@@ -471,6 +471,7 @@ $wgAutoloadLocalClasses = array(
 	'LocalFileMoveBatch' => 'includes/filerepo/LocalFile.php',
 	'LocalFileRestoreBatch' => 'includes/filerepo/LocalFile.php',
 	'LocalRepo' => 'includes/filerepo/LocalRepo.php',
+	'NullRepo' => 'includes/filerepo/NullRepo.php',
 	'OldLocalFile' => 'includes/filerepo/OldLocalFile.php',
 	'RepoGroup' => 'includes/filerepo/RepoGroup.php',
 	'UnregisteredLocalFile' => 'includes/filerepo/UnregisteredLocalFile.php',
