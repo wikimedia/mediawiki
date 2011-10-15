@@ -2,7 +2,7 @@
  * Any rules which should not be flipped automatically in right-to-left situations should be
  * prepended with @noflip in a comment block. Images that should be embedded as base64 data-URLs
  * should be prepended with @embed in a comment block.
- * 
+ *
  * This style-sheet employs a few CSS trick to accomplish compatibility with a wide range of web
  * browsers. The most common trick is to use some styles in IE6 only. This is accomplished by using
  * a rule that makes things work in IE6, and then following it with a rule that begins with
@@ -293,7 +293,8 @@ div#mw-head h5 {
 		margin-left: 23px;
 	}
 	/* Enable forcing showing of the menu for accessibility */
-	div.vectorMenu:hover div.menu, div.vectorMenu div.menuForceShow {
+	div.vectorMenu:hover div.menu,
+	div.vectorMenu div.menuForceShow {
 		display: block;
 	}
 	div.vectorMenu ul {
@@ -395,7 +396,7 @@ div#mw-head h5 {
 	div#simpleSearch input.placeholder {
 		color: #999999;
 	}
-	div#simpleSearch input::-webkit-input-placeholder { 
+	div#simpleSearch input::-webkit-input-placeholder {
 		color: #999999;
 	}
 	div#simpleSearch input#searchInput {
@@ -561,7 +562,7 @@ div#footer #footer-places li {
 }
 
 /*
- * 
+ *
  * The following code is highly modified from monobook. It would be nice if the
  * preftoc id was more human readable like preferences-toc for instance,
  * howerver this would require backporting the other skins.
@@ -663,10 +664,8 @@ div#footer #footer-places li {
 	margin-right: 0.25em;
 }
 
-/*
- * 
+/**
  * The following code is slightly modified from monobook
- * 
  */
 div#content {
 	line-height: 1.5em;
@@ -675,7 +674,9 @@ div#content {
 	font-size: 0.8em;
 }
 
-.editsection { float: right; }
+.editsection {
+	float: right;
+}
 
 ul {
 	/* @embed */
@@ -740,7 +741,7 @@ div#content a.external[href $=".wav"], div#content a.external[href $=".WAV"],
 div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"],
 .link-audio {
 	/* @embed */
-	background: url("images/audio-icon.png?2") center right no-repeat;
+	background: url(images/audio-icon.png) center right no-repeat;
 	padding-right: 13px;
 }
 div#content a.external[href $=".ogm"], div#content a.external[href $=".OGM"],
@@ -749,7 +750,7 @@ div#content a.external[href $=".mpeg"], div#content a.external[href $=".MPEG"],
 div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"],
 .link-video {
 	/* @embed */
-	background: url("images/video-icon.png?2") center right no-repeat;
+	background: url(images/video-icon.png) center right no-repeat;
 	padding-right: 13px;
 }
 div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"],
@@ -757,7 +758,7 @@ div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"],
 div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"],
 .link-document {
 	/* @embed */
-	background: url("images/document-icon.png?2") center right no-repeat;
+	background: url(images/document-icon.png) center right no-repeat;
 	padding-right: 13px;
 }
 

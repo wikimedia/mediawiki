@@ -1,7 +1,7 @@
 /* IE5.5/win- only fixes */
 
-#column-content { 
-    float: none; 
+#column-content {
+    float: none;
     margin-left: 0;
     height: 1%;
 }
@@ -24,12 +24,13 @@
     border-left: 1px solid #fabd23;
 }
 
-/*#bodyContent div,
-#bodyContent pre { overflow: auto; }*/
+#p-personal {
+	padding-bottom: 0.1em;
+}
 
-#p-personal { padding-bottom: 0.1em; }
-
-body { font-size: xx-small; }
+body {
+	font-size: xx-small;
+}
 
 #p-cactions {
     width: 76% !important;

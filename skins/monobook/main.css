@@ -65,7 +65,8 @@ a {
 a:visited {
 	color: #5a3696;
 }
-a.new, #p-personal a.new {
+a.new,
+#p-personal a.new {
 	color: #cc2200;
 }
 
@@ -193,7 +194,7 @@ table.rimage {
 #bodyContent a.external[href $=".wma"], #bodyContent a.external[href $=".WMA"],
 .link-audio {
 	/* @embed */
-	background: url("audio.png") center right no-repeat;
+	background: url(audio.png) center right no-repeat;
 	padding-right: 13px;
 }
 #bodyContent a.external[href $=".ogm"], #bodyContent a.external[href $=".OGM"],
@@ -202,7 +203,7 @@ table.rimage {
 #bodyContent a.external[href $=".mpg"], #bodyContent a.external[href $=".MPG"],
 .link-video {
 	/* @embed */
-	background: url("video.png") center right no-repeat;
+	background: url(video.png) center right no-repeat;
 	padding-right: 13px;
 }
 #bodyContent a.external[href $=".pdf"], #bodyContent a.external[href $=".PDF"],
@@ -210,10 +211,10 @@ table.rimage {
 #bodyContent a.external[href *=".pdf?"], #bodyContent a.external[href *=".PDF?"],
 .link-document {
 	/* @embed */
-	background: url("document.png") center right no-repeat;
+	background: url(document.png) center right no-repeat;
 	padding-right: 12px;
 }
- 
+
 /* Interwiki Styling */
 #bodyContent a.extiw,
 #bodyContent a.extiw:active {
@@ -516,7 +517,10 @@ li#pt-login {
 li#ca-talk {
 	margin-right: 1.6em;
 }
-li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
+li#ca-watch,
+li#ca-unwatch,
+li#ca-varlang-0,
+li#ca-print {
 	margin-left: 1.6em;
 }
 #p-cactions .pBody {
@@ -729,15 +733,21 @@ div#userloginForm .captcha {
 ** @import("IEMacFixes.css");
 */
 /* tabs: border on the a, not the div */
-* > html #p-cactions li { border: none; }
+* > html #p-cactions li {
+	border: none;
+}
 * > html #p-cactions li a {
 	border: 1px solid #aaa;
 	border-bottom: none;
 }
-* > html #p-cactions li.selected a { border-color: #fabd23; }
+* > html #p-cactions li.selected a {
+	border-color: #fabd23;
+}
 /* footer icons need a fixed width */
 * > html #f-poweredbyico,
-* > html #f-copyrightico { width: 88px; }
+* > html #f-copyrightico {
+	width: 88px;
+}
 * > html #bodyContent,
 * > html #bodyContent pre {
 	overflow-x: auto;
@@ -747,12 +757,16 @@ div#userloginForm .captcha {
 
 /* more IE fixes */
 /* float/negative margin brokenness */
-* html div#footer {margin-top: 0;}
+* html div#footer {
+	margin-top: 0;
+}
 * html div#column-content {
 	display: inline;
 	margin-bottom: 0;
 }
-#pagehistory li.selected { position: relative; }
+#pagehistory li.selected {
+	position: relative;
+}
 
 /* Mac IE 5.0 fix; floated content turns invisible */
 * > html div#column-content {
@@ -808,7 +822,8 @@ span.updatedmarker {
 }
 
 /* @bug 1714 */
-input#wpSave, input#wpDiff {
+input#wpSave,
+input#wpDiff {
 	margin-right: 0.33em;
 }
 
@@ -825,17 +840,17 @@ div.noarticletext {
 }
 
 div#searchTargetContainer {
-	left:       10px;
-	top:        10px;
-	width:      90%;
+	left: 10px;
+	top: 10px;
+	width: 90%;
 	background: white;
 }
 
 div#searchTarget {
-	padding:    3px;
-	margin:     5px;
+	padding: 3px;
+	margin: 5px;
 	background: #F0F0F0;
-	border:     solid 1px blue;
+	border: solid 1px blue;
 }
 
 div#searchTarget ul li {
@@ -848,10 +863,10 @@ div#searchTarget ul li:before {
 }
 
 div#searchTargetHide {
-	float:right;
-	border:solid 1px black;
-	background:#DCDCDC;
-	padding:2px;
+	float: right;
+	border: solid 1px black;
+	background: #DCDCDC;
+	padding: 2px;
 }
 
 #powersearch p {
@@ -879,7 +894,9 @@ table.multipageimage td {
 	text-align: center;
 }
 
-.templatesUsed { margin-top: 1.5em; }
+.templatesUsed {
+	margin-top: 1.5em;
+}
 
 .mw-summary-preview {
 	margin: 0.1em 0;

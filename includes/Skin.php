@@ -1204,10 +1204,9 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Should we include common/wikiprintable.css?  Skins that have their own
+	 * Should we load mediawiki.legacy.wikiprintable?  Skins that have their own
 	 * print stylesheet should override this and return false.  (This is an
-	 * ugly hack to get Monobook to play nicely with
-	 * OutputPage::headElement().)
+	 * ugly hack to get Monobook to play nicely with OutputPage::headElement().)
 	 *
 	 * @return bool
 	 */

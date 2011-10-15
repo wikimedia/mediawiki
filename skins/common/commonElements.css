@@ -80,10 +80,18 @@ h6 {
 	border-bottom: 1px solid #aaa;
 	width: auto;
 }
-h1 { font-size: 188%; }
-h1 .editsection { font-size: 53%; }
-h2 { font-size: 150%; }
-h2 .editsection { font-size: 67%; }
+h1 {
+	font-size: 188%;
+}
+h1 .editsection {
+	font-size: 53%;
+}
+h2 {
+	font-size: 150%;
+}
+h2 .editsection {
+	font-size: 67%;
+}
 h3,
 h4,
 h5,
@@ -91,14 +99,32 @@ h6 {
 	border-bottom: none;
 	font-weight: bold;
 }
-h3 { font-size: 132%; }
-h3 .editsection { font-size: 76%; font-weight: normal; }
-h4 { font-size: 116%; }
-h4 .editsection { font-size: 86%; font-weight: normal; }
-h5 { font-size: 100%; }
-h5 .editsection { font-weight: normal; }
-h6 { font-size: 80%;  }
-h6 .editsection { font-size: 125%; font-weight: normal; }
+h3 {
+	font-size: 132%;
+}
+h3 .editsection {
+	font-size: 76%;
+	font-weight: normal;
+}
+h4 {
+	font-size: 116%;
+}
+h4 .editsection {
+	font-size: 86%;
+	font-weight: normal; }
+h5 {
+	font-size: 100%;
+}
+h5 .editsection {
+	font-weight: normal;
+}
+h6 {
+	font-size: 80%;
+}
+h6 .editsection {
+	font-size: 125%;
+	font-weight: normal;
+}
 
 /* Some space under the headers in the content area */
 h1,

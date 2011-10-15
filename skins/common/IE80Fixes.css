@@ -1,5 +1,5 @@
 /**
- * Fixes textarea scrolling bug (bug #19334).  The bug only occurs when a
+ * Fixes textarea scrolling bug (bug #19334). The bug only occurs when a
  * percentage width is given, so instead of width: 100%, use min-width: 100%;
  * max-width: 100%.  We also need to give a fixed width for the actual width
  * property for the hack to work, although the actual value (500px here) ends
