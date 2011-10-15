@@ -18,11 +18,6 @@ class CategoryPage extends Article {
 	protected $mCategoryViewerClass = 'CategoryViewer';
 
 	/**
-	 * @var Title
-	 */
-	protected $mTitle;
-
-	/**
 	 * @param $title Title
 	 * @return WikiCategoryPage
 	 */
@@ -49,20 +44,22 @@ class CategoryPage extends Article {
 			$this->getContext()->getUser()->getOption( 'diffonly' ) );
 
 		if ( isset( $diff ) && $diffOnly ) {
-			return parent::view();
+			parent::view();
+			return;
 		}
 
 		if ( !wfRunHooks( 'CategoryPageView', array( &$this ) ) ) {
 			return;
 		}
 
-		if ( NS_CATEGORY == $this->mTitle->getNamespace() ) {
+		$title = $this->getTitle();
+		if ( NS_CATEGORY == $title->getNamespace() ) {
 			$this->openShowCategory();
 		}
 
 		parent::view();
 
-		if ( NS_CATEGORY == $this->mTitle->getNamespace() ) {
+		if ( NS_CATEGORY == $title->getNamespace() ) {
 			$this->closeShowCategory();
 		}
 	}
