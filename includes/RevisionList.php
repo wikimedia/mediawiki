@@ -184,19 +184,19 @@ abstract class RevisionItemBase {
 	}
 
 	/**
-	 * Get the date, formatted with $wgLang
+	 * Get the date, formatted in user's languae
 	 */
 	public function formatDate() {
-		global $wgLang;
-		return $wgLang->date( $this->getTimestamp() );
+		return $this->list->context->getLang()->userDate( $this->getTimestamp(),
+			$this->list->context->getUser() );
 	}
 
 	/**
-	 * Get the time, formatted with $wgLang
+	 * Get the time, formatted in user's languae
 	 */
 	public function formatTime() {
-		global $wgLang;
-		return $wgLang->time( $this->getTimestamp() );
+		return $this->list->context->getLang()->userTime( $this->getTimestamp(),
+			$this->list->context->getUser() );
 	}
 
 	/**
