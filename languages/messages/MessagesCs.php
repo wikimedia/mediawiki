@@ -10,6 +10,7 @@
  * @author Danny B.
  * @author Dontlietome7
  * @author Helix84
+ * @author Jachym
  * @author Jkjk
  * @author Kuvaly
  * @author Li-sung
@@ -3041,6 +3042,8 @@ Otevřením souboru můžete ohrozit svůj počítač.",
 'minutes' => '{{PLURAL:$1|$1 minuta|$1 minuty|$1 minut}}',
 'hours'   => '{{PLURAL:$1|$1 hodina|$1 hodiny|$1 hodin}}',
 'days'    => '{{PLURAL:$1|$1 den|$1 dny|$1 dní}}',
+'ago'     => 'před 
+$1',
 
 # Bad image list
 'bad_image_list' => 'Tato stránka má následující formát:

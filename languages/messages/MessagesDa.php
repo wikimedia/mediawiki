@@ -2731,7 +2731,7 @@ Det giver mulighed for at tilføje en begrundelse i beskrivelsen.',
 
 # Scripts
 'common.js'   => '/* Javascript inkluderet her vil være aktivt for alle brugere. */',
-'monobook.js' => '/* Udgået; brug [[MediaWiki:common.js]] */',
+'monobook.js' => '/* JavaScript i denne fil vil indlæses for brugere af udseendet MonoBook */',
 
 # Metadata
 'notacceptable' => 'Wiki-serveren kan ikke levere data i et format, som din klient understøtter.',

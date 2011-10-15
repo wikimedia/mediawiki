@@ -2274,10 +2274,11 @@ $1',
 'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
-'namespace'             => 'Nummraum:',
-'invert'                => 'Auswiel ëmdréinen',
-'namespace_association' => 'Associéierten Nummraum',
-'blanknamespace'        => '(Haapt)',
+'namespace'                     => 'Nummraum:',
+'invert'                        => 'Auswiel ëmdréinen',
+'namespace_association'         => 'Associéierten Nummraum',
+'tooltip-namespace_association' => 'Dës Këscht uklicke fir den Diskussiouns oder den associéierten Nummraum mat dem erausgesichten Nummraum matanzebezéien',
+'blanknamespace'                => '(Haapt)',
 
 # Contributions
 'contributions'       => 'Kontributioune vum Benotzer',
