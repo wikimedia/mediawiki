@@ -47,7 +47,7 @@ interface DatabaseType {
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables.
 	 *
-	 * @param $res SQL result object as returned from DatabaseBase::query(), etc.
+	 * @param $res ResultWrapper|object as returned from DatabaseBase::query(), etc.
 	 * @return Row object
 	 * @throws DBUnexpectedError Thrown if the database returns an error
 	 */
