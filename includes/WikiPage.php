@@ -15,7 +15,6 @@ abstract class Page {}
 class WikiPage extends Page {
 	/**
 	 * @var Title
-	 * @protected
 	 */
 	public $mTitle = null;
 

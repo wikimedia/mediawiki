@@ -296,7 +296,7 @@ function wfUrlencode( $s ) {
 	static $needle;
 	if ( is_null( $s ) ) {
 		$needle = null;
-		return;
+		return '';
 	}
 
 	if ( is_null( $needle ) ) {
@@ -537,6 +537,7 @@ function wfUrlProtocols( $includeProtocolRelative = true ) {
  * Like wfUrlProtocols(), but excludes '//' from the protocol list. Use this if
  * you need a regex that matches all URL protocols but does not match protocol-
  * relative URLs
+ * @return String
  */
 function wfUrlProtocolsWithoutProtRel() {
 	return wfUrlProtocols( false );
@@ -960,6 +961,9 @@ function wfReadOnly() {
 	return (bool)$wgReadOnly;
 }
 
+/**
+ * @return bool
+ */
 function wfReadOnlyReason() {
 	global $wgReadOnly;
 	wfReadOnly();
@@ -2888,6 +2892,7 @@ function wfRelativePath( $path, $from ) {
  *
  * @deprecated since 1.19
  * @see DeferredUpdates::doUpdate()
+ * @param $commit string
  */
 function wfDoUpdates( $commit = '' ) {
 	DeferredUpdates::doUpdates( $commit );
@@ -2985,6 +2990,7 @@ function wfBaseConvert( $input, $sourceBase, $destBase, $pad = 1, $lowercase = t
  *
  * @param $name String
  * @param $p Array: parameters
+ * @return object
  * @deprecated since 1.18, warnings in 1.18, removal in 1.20
  */
 function wfCreateObject( $name, $p ) {
@@ -2992,6 +2998,9 @@ function wfCreateObject( $name, $p ) {
 	return MWFunction::newObj( $name, $p );
 }
 
+/**
+ * @return bool
+ */
 function wfHttpOnlySafe() {
 	global $wgHttpOnlyBlacklist;
 
@@ -3122,7 +3131,6 @@ function wfWikiID() {
  * Split a wiki ID into DB name and table prefix
  *
  * @param $wiki String
- * @param $bits String
  *
  * @return array
  */
@@ -3382,7 +3390,6 @@ function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
  *
  * @param $maxLag Integer (deprecated)
  * @param $wiki mixed Wiki identifier accepted by wfGetLB
- * @return null
  */
 function wfWaitForSlaves( $maxLag = false, $wiki = false ) {
 	$lb = wfGetLB( $wiki );
@@ -3414,6 +3421,7 @@ function wfOut( $s ) {
  * Count down from $n to zero on the terminal, with a one-second pause
  * between showing each number. For use in command-line scripts.
  * @codeCoverageIgnore
+ * @param $n int
  */
 function wfCountDown( $n ) {
 	for ( $i = $n; $i >= 0; $i-- ) {
@@ -3522,7 +3530,7 @@ function wfShorthandToInteger( $string = '' ) {
  * See unit test for examples.
  *
  * @param $code String: The language code.
- * @return $langCode String: The language code which complying with BCP 47 standards.
+ * @return String: The language code which complying with BCP 47 standards.
  */
 function wfBCP47( $code ) {
 	$codeSegment = explode( '-', $code );

@@ -26,6 +26,9 @@ XML;
 		exit;
 	}
 
+	/**
+	 * @param $err string
+	 */
 	private function XMLerror( $err = "Invalid request." ) {
 		header( "HTTP/1.0 400 Bad Request" );
 		header( "Content-Type: application/xml; charset=utf-8" );
