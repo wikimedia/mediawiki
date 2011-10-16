@@ -4464,7 +4464,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'hebrew-calendar-m12-gen' => 'Elul', # only translate this message to other languages if you have to change it
 
 # Signatures
-'signature'      => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|talk]])</sup>',
+'signature'      => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|talk]])',
 'signature-anon' => '[[{{#special:Contributions}}/$1|$2]]', # do not translate or duplicate this message to other languages
 'timezone-utc'   => 'UTC', # only translate this message to other languages if you have to change it
 
