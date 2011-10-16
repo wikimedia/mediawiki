@@ -99,6 +99,9 @@ class CheckStorage {
 			$res = $dbr->select( 'text', array( 'old_id', 'old_flags' ),
 				'old_id IN (' . implode( ',', $this->oldIdMap ) . ')', __METHOD__ );
 			foreach ( $res as $row ) {
+				/**
+				 * @var $flags int
+				 */
 				$flags = $row->old_flags;
 				$id = $row->old_id;
 

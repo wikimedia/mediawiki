@@ -1201,12 +1201,12 @@ class OutputPage extends ContextSource {
 	public function addHTML( $text ) {
 		$this->mBodytext .= $text;
 	}
-	
+
 	/**
 	 * Shortcut for adding an Html::element via addHTML.
-	 * 
+	 *
 	 * @since 1.19
-	 * 
+	 *
 	 * @param $element string
 	 * @param $attribs array
 	 * @param $contents string
@@ -1730,6 +1730,7 @@ class OutputPage extends ContextSource {
 		} elseif ( $this->mPreventClickjacking && $wgEditPageFrameOptions ) {
 			return $wgEditPageFrameOptions;
 		}
+		return false;
 	}
 
 	/**

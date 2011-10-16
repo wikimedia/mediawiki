@@ -49,7 +49,7 @@ class BenchmarkHooks extends Benchmarker {
 			$wgHooks['Test'][] = array( $this, 'test' );
 		}
 		$time = $this->benchHooks();
-		$this->output( 'Loaded (ten) hook: ' . $time . "\n" );
+		$this->output( 'Loaded (one hundred) hook: ' . $time . "\n" );
 		$this->output( "\n" );
 	}
 

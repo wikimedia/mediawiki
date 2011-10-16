@@ -2938,6 +2938,7 @@ HTML
 				$wgOut->permissionRequired( 'upload' );
 				return false;
 		}
+		return false;
 	}
 
 	/**

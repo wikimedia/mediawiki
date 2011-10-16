@@ -3685,7 +3685,7 @@ class Language {
 			$format['noabbrevs'] ? 'hours' : 'hours-abbrev' )->inLanguage( $this );
 		$daysMsg = wfMessage(
 			$format['noabbrevs'] ? 'days' : 'days-abbrev' )->inLanguage( $this );
-		
+
 		if ( round( $seconds * 10 ) < 100 ) {
 			$s = $this->formatNum( sprintf( "%.1f", round( $seconds * 10 ) / 10 ) );
 			$s = $secondsMsg->params( $s )->text();

@@ -1823,9 +1823,8 @@ class Linker {
 				return Linker::revDeleteLink( $query,
 					$rev->isDeleted( File::DELETED_RESTRICTED ), $canHide );
 			}
-		} else {
-			return '';
 		}
+		return '';
 	}
 
 	/**
