@@ -1881,7 +1881,6 @@ class Language {
 	 * Get the formatted date for the given timestamp and formatted for
 	 * the given user.
 	 *
-	 * @param $type String: can be 'date', 'time' or 'both'
 	 * @param $ts Mixed: the time format which needs to be turned into a
 	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param $user User object used to get preferences for timezone and format
@@ -1904,7 +1903,6 @@ class Language {
 	 * Get the formatted time for the given timestamp and formatted for
 	 * the given user.
 	 *
-	 * @param $type String: can be 'date', 'time' or 'both'
 	 * @param $ts Mixed: the time format which needs to be turned into a
 	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param $user User object used to get preferences for timezone and format
@@ -1927,7 +1925,6 @@ class Language {
 	 * Get the formatted date and time for the given timestamp and formatted for
 	 * the given user.
 	 *
-	 * @param $type String: can be 'date', 'time' or 'both'
 	 * @param $ts Mixed: the time format which needs to be turned into a
 	 *            date('YmdHis') format with wfTimestamp(TS_MW,$ts)
 	 * @param $user User object used to get preferences for timezone and format
