@@ -557,18 +557,11 @@ class EmailNotification {
 
 		$this->composed_common = true;
 
-		$summary = ( $this->summary == '' ) ? ' - ' : $this->summary;
-		$medit   = ( $this->minorEdit ) ? wfMsgForContent( 'minoredit' ) : '';
-
 		# You as the WikiAdmin and Sysops can make use of plenty of
 		# named variables when composing your notification emails while
 		# simply editing the Meta pages
 
-		$subject = wfMsgForContent( 'enotif_subject' );
-		$body    = wfMsgForContent( 'enotif_body' );
-		$from    = ''; /* fail safe */
-		$replyto = ''; /* fail safe */
-		$keys    = array();
+		$keys = array();
 
 		if ( $this->oldid ) {
 			if ( $wgEnotifImpersonal ) {
@@ -588,60 +581,54 @@ class EmailNotification {
 			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'created' );
 		}
 
-		$body = strtr( $body, $keys );
-		$pagetitle = $this->title->getPrefixedText();
-		$keys['$PAGETITLE']          = $pagetitle;
-		$keys['$PAGETITLE_URL']      = $this->title->getCanonicalUrl();
+		$keys['$PAGETITLE'] = $this->title->getPrefixedText();
+		$keys['$PAGETITLE_URL'] = $this->title->getCanonicalUrl();
+		$keys['$PAGEMINOREDIT'] = $this->minorEdit ? wfMsgForContent( 'minoredit' ) : '';
+		$keys['$PAGESUMMARY'] = $this->summary == '' ? ' - ' : $this->summary;
+		$keys['$UNWATCHURL'] = $this->title->getCanonicalUrl( 'action=unwatch' );
 
-		$keys['$PAGEMINOREDIT']      = $medit;
-		$keys['$PAGESUMMARY']        = $summary;
-		$keys['$UNWATCHURL']         = $this->title->getCanonicalUrl( 'action=unwatch' );
+		if ( $this->editor->isAnon() ) {
+			# real anon (user:xxx.xxx.xxx.xxx)
+			$keys['$PAGEEDITOR'] = wfMsgForContent( 'enotif_anon_editor', $this->editor->getName() );
+			$keys['$PAGEEDITOR_EMAIL'] = wfMsgForContent( 'noemailtitle' );
+		} else {
+			$keys['$PAGEEDITOR'] = $wgEnotifUseRealName ? $this->editor->getRealName() : $this->editor->getName();
+			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $this->editor->getName() );
+			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getCanonicalUrl();
+		}
 
+		$keys['$PAGEEDITOR_WIKI'] = $this->editor->getUserPage()->getCanonicalUrl();
+
+		# Now build message's subject and body
+
+		$subject = wfMsgExt( 'enotif_subject', 'content' );
 		$subject = strtr( $subject, $keys );
+		$this->subject = MessageCache::singleton()->transform( $subject, false, null, $this->title );
+
+		$body = wfMsgExt( 'enotif_body', 'content' );
+		$body = strtr( $body, $keys );
+		$body = MessageCache::singleton()->transform( $body, false, null, $this->title );
+		$this->body = wordwrap( $body, 72 );
 
 		# Reveal the page editor's address as REPLY-TO address only if
 		# the user has not opted-out and the option is enabled at the
 		# global configuration level.
-		$editor = $this->editor;
-		$name    = $wgEnotifUseRealName ? $editor->getRealName() : $editor->getName();
 		$adminAddress = new MailAddress( $wgPasswordSender, $wgPasswordSenderName );
-		$editorAddress = new MailAddress( $editor );
 		if ( $wgEnotifRevealEditorAddress
-			&& ( $editor->getEmail() != '' )
-			&& $editor->getOption( 'enotifrevealaddr' ) ) {
+			&& ( $this->editor->getEmail() != '' )
+			&& $this->editor->getOption( 'enotifrevealaddr' ) )
+		{
+			$editorAddress = new MailAddress( $this->editor );
 			if ( $wgEnotifFromEditor ) {
-				$from    = $editorAddress;
+				$this->from    = $editorAddress;
 			} else {
-				$from    = $adminAddress;
-				$replyto = $editorAddress;
+				$this->from    = $adminAddress;
+				$this->replyto = $editorAddress;
 			}
 		} else {
-			$from    = $adminAddress;
-			$replyto = new MailAddress( $wgNoReplyAddress );
+			$this->from    = $adminAddress;
+			$this->replyto = new MailAddress( $wgNoReplyAddress );
 		}
-
-		if ( $editor->isAnon() ) {
-			# real anon (user:xxx.xxx.xxx.xxx)
-			$utext = wfMsgForContent( 'enotif_anon_editor', $name );
-			$subject = str_replace( '$PAGEEDITOR', $utext, $subject );
-			$keys['$PAGEEDITOR']       = $utext;
-			$keys['$PAGEEDITOR_EMAIL'] = wfMsgForContent( 'noemailtitle' );
-		} else {
-			$subject = str_replace( '$PAGEEDITOR', $name, $subject );
-			$keys['$PAGEEDITOR']          = $name;
-			$emailPage = SpecialPage::getSafeTitleFor( 'Emailuser', $name );
-			$keys['$PAGEEDITOR_EMAIL'] = $emailPage->getCanonicalUrl();
-		}
-		$userPage = $editor->getUserPage();
-		$keys['$PAGEEDITOR_WIKI'] = $userPage->getCanonicalUrl();
-		$body = strtr( $body, $keys );
-		$body = wordwrap( $body, 72 );
-
-		# now save this as the constant user-independent part of the message
-		$this->from    = $from;
-		$this->replyto = $replyto;
-		$this->subject = $subject;
-		$this->body    = $body;
 	}
 
 	/**
