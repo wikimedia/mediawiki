@@ -220,9 +220,11 @@ class FSRepo extends FileRepo {
 					$hashDest = sha1_file( $dstPath );
 					if ( $hashSource != $hashDest ) {
 						$status->fatal( 'fileexistserror', $dstPath );
+						$status->failCount++;
 					}
 				} else {
 					$status->fatal( 'fileexistserror', $dstPath );
+					$status->failCount++;
 				}
 			}
 		}
