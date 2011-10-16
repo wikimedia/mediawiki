@@ -2491,7 +2491,6 @@ HTML
 				'key'    => 'R'
 			)
 		);
-		$toolbar = "<div id='toolbar'>\n";
 
 		$script = '';
 		foreach ( $toolarray as $tool ) {
@@ -2516,15 +2515,11 @@ HTML
 				$cssId = $tool['id'],
 			);
 
-			$paramList = implode( ',',
-				array_map( array( 'Xml', 'encodeJsVar' ), $params ) );
-			$script .= "mw.toolbar.addButton($paramList);\n";
+			$script .= Xml::encodeJsCall( 'mw.toolbar.addButton', $params );
 		}
-		$wgOut->addScript( Html::inlineScript(
-			"if ( window.mediaWiki ) {{$script}}"
-		) );
+		$wgOut->addScript( Html::inlineScript( ResourceLoader::makeLoaderConditionalScript( $script ) ) );
 
-		$toolbar .= "\n</div>";
+		$toolbar = '<div id="toolbar"></div>';
 
 		wfRunHooks( 'EditPageBeforeEditToolbar', array( &$toolbar ) );
 

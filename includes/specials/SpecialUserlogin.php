@@ -1037,7 +1037,7 @@ class LoginForm extends SpecialPage {
 		
 		// Use loginend-https for HTTPS requests if it's not blank, loginend otherwise
 		// Ditto for signupend
-		$usingHTTPS = WebRequest::detectProtocol();
+		$usingHTTPS = WebRequest::detectProtocol() == 'https';
 		$loginendHTTPS = wfMessage( 'loginend-https' );
 		$signupendHTTPS = wfMessage( 'signupend-https' );
 		if ( $usingHTTPS && !$loginendHTTPS->isBlank() ) {
