@@ -16,7 +16,7 @@ production.
 * Default cookie lifetime ($wgCookieExpiration) is increased to 180 days.
 * (bug 31204) Removed old user.user_options
 * $wgMaxImageArea now applies to jpeg files if they are not scaled with
-  ImageMagick. 
+  ImageMagick.
 
 === New features in 1.19 ===
 * (bug 19838) Possibility to get all interwiki prefixes if the interwiki
@@ -69,8 +69,6 @@ production.
 * New common*.css files usable by skins instead of having to copy piles
   of generic styles from MonoBook or Vector's css.
 * Some deprecated presentational html attributes will now be automatically converted to css.
-* (bug 31233) New OutputPage::addJsConfigVars() method to make the output page specific
-  mw.config map extendable.
 * (bug 31297) Add support for namespaces in Special:RecentChanges subpage filter syntax.
 * The default user signature now contains a talk link in addition to the user link.
 
@@ -126,7 +124,7 @@ production.
   address blocks for list=blocks.
 * (bug 30591) Add support to only return keys in ApiAllMessages.
 * (bug 29392) Setting the start or end parameter now works with lists blocks,
-  categorymembers, deletedrevs, logevents, protectedtitles, usercontributions 
+  categorymembers, deletedrevs, logevents, protectedtitles, usercontributions
   and watchlist in Postgres
 
 === Languages updated in 1.19 ===

@@ -228,6 +228,8 @@ create a page or new section.
 * (bug 31293) If Special:Userlogin is loaded over HTTPS, display
   MediaWiki:loginend-https instead of MediaWiki:loginend, if it's not empty.
   Same for signupend on the account creation page.
+* (bug 31233) New OutputPage::addJsConfigVars() method to make the output page specific
+  mw.config map extendable.
 
 === Bug fixes in 1.18 ===
 * (bug 27860) Minor edit after clicking 'new section' tab
