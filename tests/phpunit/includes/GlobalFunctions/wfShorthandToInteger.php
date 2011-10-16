@@ -21,6 +21,7 @@ class wfShorthandToIntegerTest extends MediaWikiTestCase {
 			array( '1M', 1024 * 1024, 'One meg uppercased' ),
 			array( '1m', 1024 * 1024, 'One meg lowercased' ),
 			array( '1K', 1024, 'One kb uppercased' ),
+			array( '1k', 1024, 'One kb lowercased' ),
 		);
 	}
 	
