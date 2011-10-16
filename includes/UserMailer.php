@@ -154,39 +154,36 @@ class UserMailer {
 	 * @return Status object
 	 */
 	public static function send( $to, $from, $subject, $body, $replyto = null, $contentType = 'text/plain; charset=UTF-8' ) {
-		global $wgSMTP, $wgEnotifImpersonal;
-		global $wgEnotifMaxRecips, $wgAdditionalMailParams;
+		global $wgSMTP, $wgEnotifMaxRecips, $wgAdditionalMailParams;
 
-		$emails = '';
-		wfDebug( __METHOD__ . ': sending mail to ' . ( is_array( $to ) ? implode( ', ', $to ) : $to ) . "\n" );
+		if ( !is_array( $to ) ) {
+			$to = array( $to );
+		}
 
-		$headers['From'] = $from->toString();
-		$headers['Return-Path'] = $from->toString();
+		wfDebug( __METHOD__ . ': sending mail to ' . implode( ', ', $to ) . "\n" );
 
 		$dest = array();
-		if ( is_array( $to ) ) {
-			foreach ( $to as $u ) {
-				if ( $u->address ) {
-					$dest[] = $u->address;
-				}
+		foreach ( $to as $u ) {
+			if ( $u->address ) {
+				$dest[] = $u->address;
 			}
-		} else if( $to->address ) {
-			$dest[] = $to->address;
 		}
 		if ( count( $dest ) == 0 ) {
 			return Status::newFatal( 'user-mail-no-addy' );
 		}
 
-		if ( $wgEnotifImpersonal ) {
+		$headers['From'] = $from->toString();
+		$headers['Return-Path'] = $from->address;
+		if ( count( $to ) == 1 ) {
+			$headers['To'] = $to[0]->toString();
+		} else {
 			$headers['To'] = 'undisclosed-recipients:;';
-		}
-		else {
-			$headers['To'] = implode( ", ", $dest );
 		}
 
 		if ( $replyto ) {
 			$headers['Reply-To'] = $replyto->toString();
 		}
+
 		$headers['Subject'] = self::quotedPrintable( $subject );
 		$headers['Date'] = date( 'r' );
 		$headers['MIME-Version'] = '1.0';
