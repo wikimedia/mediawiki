@@ -2539,7 +2539,7 @@ O motivo do bloqueo de $1 é: "$2"',
 Non se listan os enderezos IP bloqueados automaticamente.
 Olle a [[Special:BlockList|lista de enderezos IP e usuarios bloqueados]] se quere comprobar a lista cos bloqueos vixentes.',
 'unblocklogentry'                 => 'desbloqueou a "$1"',
-'block-log-flags-anononly'        => 'só usuarios anónimos',
+'block-log-flags-anononly'        => 'só os usuarios anónimos',
 'block-log-flags-nocreate'        => 'desactivada a creación de contas de usuario',
 'block-log-flags-noautoblock'     => 'bloqueo automático deshabilitado',
 'block-log-flags-noemail'         => 'correo electrónico bloqueado',

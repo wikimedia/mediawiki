@@ -4262,7 +4262,7 @@ Tämä '''ei ole suositeltavaa''', jos wikissäsi ei ole ongelmia.",
 	'config-upgrade-done-no-regenerate' => 'Päivitys valmis.
 
 Voit [$1 aloittaa wikin käytön].',
-	'config-regenerate' => 'Luo uudelleen LocalSettings.php →',
+	'config-regenerate' => 'Luo LocalSettings.php uudelleen →',
 	'config-show-table-status' => 'Kysely SHOW TABLE STATUS epäonnistui!',
 	'config-mysql-engine' => 'Tallennusmoottori',
 	'config-mysql-innodb' => 'InnoDB',

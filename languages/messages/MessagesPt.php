@@ -824,7 +824,7 @@ Pode ter já alterado com sucesso a sua palavra-chave ou solicitado uma nova pal
 'passwordreset-disabled'           => 'Reiniciar a palavra-chave foi impossibilitado nesta wiki.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
 'passwordreset-username'           => 'Nome de utilizador:',
-'passwordreset-domain'             => 'Domínio',
+'passwordreset-domain'             => 'Domínio:',
 'passwordreset-capture'            => 'Ver o email resultante?',
 'passwordreset-capture-help'       => 'Se marcar esta caixa, o e-mail (com a senha temporária) será-lhe mostrado, além de ser enviado para o utilizador.',
 'passwordreset-email'              => 'Correio electrónico:',
@@ -1139,10 +1139,10 @@ Tente [[Special:Search|pesquisar na wiki]] novas páginas relevantes.',
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-deleted-text-unhide'     => "Esta revisão de página foi '''eliminada'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
-Como administrador, pode mesmo assim [$1 ver esta edição] se deseja prosseguir.",
+Pode mesmo assim [$1 ver esta edição] se deseja prosseguir.",
 'rev-suppressed-text-unhide'  => "Esta revisão de página foi '''suprimida'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
-Como administrador, pode mesmo assim [$1 ver esta revisão] se deseja prosseguir.",
+Pode mesmo assim [$1 ver esta revisão] se deseja prosseguir.",
 'rev-deleted-text-view'       => "Esta revisão de página foi '''eliminada'''.
 Como administrador, pode vê-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-suppressed-text-view'    => "Esta revisão de página foi '''suprimida'''.
@@ -1152,10 +1152,10 @@ Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAG
 'rev-suppressed-no-diff'      => "Não pode ver esta diferença entre versões porque uma das revisões foi '''eliminada'''.",
 'rev-deleted-unhide-diff'     => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
-Como administrador, pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
+Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
 'rev-suppressed-unhide-diff'  => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressões].
-Como administrador, pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
+Pode mesmo assim [$1 ver estas diferenças] se deseja prosseguir.",
 'rev-deleted-diff-view'       => "Uma das revisões desta diferença entre revisões foi '''eliminada'''.
 Como administrador, pode ver a diferença entre revisões; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-suppressed-diff-view'    => "Uma das revisões desta diferença entre revisões foi '''suprimida'''.
@@ -1502,12 +1502,12 @@ Esta informação será pública.',
 'group-suppress'      => 'Supervisores',
 'group-all'           => '(todos)',
 
-'group-user-member'          => '{{GENDER:$1| Utilizador| Utilizadora}}',
-'group-autoconfirmed-member' => '{{GENDER:$1| Utilizador autoconfirmado| Utilizadora autoconfirmada}}',
+'group-user-member'          => '{{GENDER:$1|utilizador|utilizadora}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|utilizador autoconfirmado|utilizadora autoconfirmada}}',
 'group-bot-member'           => 'robô',
-'group-sysop-member'         => '{{GENDER:$1| administrador | administradora}}',
+'group-sysop-member'         => '{{GENDER:$1|administrador|administradora}}',
 'group-bureaucrat-member'    => 'burocrata',
-'group-suppress-member'      => '{{GENDER:$1| supressor | supressora}}',
+'group-suppress-member'      => '{{GENDER:$1|supressor|supressora}}',
 
 'grouppage-user'          => '{{ns:project}}:Utilizadores',
 'grouppage-autoconfirmed' => '{{ns:project}}:Auto-confirmados',
@@ -3839,8 +3839,8 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moveu}} página $3 para $4 sem deixar um redireccionamento',
 'logentry-move-move_redir'            => '$1 {{GENDER:$2|moveu}} a página $3 para $4 através de um redireccionamento',
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a página $3 para $4 sem um redireccionamento',
-'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcou}} a revisão $4  da página  $3  como patrulhada',
-'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcou}} automáticamente a revisão $4 da página $3 como patrulhada',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcou}} a revisão $4 da página $3 como patrulhada',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcou}} automaticamente a revisão $4 da página $3 como patrulhada',
 'logentry-newusers-newusers'          => '$1 {{GENDER:$2|criou}} uma conta de utilizador',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|criou}} uma conta de utilizador',
 'logentry-newusers-create2'           => '$1 {{GENDER:$2|criou}} {{GENDER:$4|uma conta de utilizador}} $3',

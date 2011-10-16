@@ -550,6 +550,8 @@ Kā só tiâu ê koán-lí-goân ū lâu oē: $1",
 
 Lí tio̍h chim-chiok soà-chiap pian-chi̍p chit ia̍h ê pit-iàu-sèng. 
 Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
+'moveddeleted-notice'              => '這頁已經hông刣掉，
+刣掉佮徙走的記錄佇下跤通參考。',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning' => "'''Kéng-pò:'''Pau ji̍t lâi ê pán-bôo sioⁿ koè tsē ia̍h tuā.
@@ -579,6 +581,9 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 # Revision feed
 'history-feed-item-nocomment' => '$1 tī $2',
 
+# Revision deletion
+'rev-delundel' => '顯示／掩',
+
 # Diffs
 'difference'              => '(Bô kâng pán-pún ê cheng-chha)',
 'lineno'                  => 'Tē $1 chōa:',
@@ -606,6 +611,7 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'searchprofile-images-tooltip'   => 'Chhoé tóng-àn',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 jī-goân|$2 jī-goân}})',
 'search-section'                 => '(toān-lo̍h $1)',
+'search-suggest'                 => '你是欲：$1',
 'searchall'                      => 'choân-pō·',
 'showingresults'                 => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.',
 'showingresultsnum'              => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
@@ -726,14 +732,18 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'listfiles_description' => 'Soat-bêng',
 
 # File description page
-'file-anchor-link'  => 'Tóng-àn',
-'filehist'          => 'Tóng-àn ê le̍k-sú',
-'filehist-current'  => 'hiān-chāi',
-'filehist-datetime' => 'Ji̍t-kî/ Sî-kan',
-'filehist-user'     => 'Iōng-chiá',
-'imagelinks'        => 'Ēng tio̍h ê  tóng-àn',
-'linkstoimage'      => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
-'nolinkstoimage'    => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
+'file-anchor-link'    => 'Tóng-àn',
+'filehist'            => 'Tóng-àn ê le̍k-sú',
+'filehist-help'       => '揤日期／時間通看彼時陣的檔案',
+'filehist-current'    => 'hiān-chāi',
+'filehist-datetime'   => 'Ji̍t-kî/ Sî-kan',
+'filehist-thumb'      => '小圖',
+'filehist-user'       => 'Iōng-chiá',
+'filehist-dimensions' => '長闊',
+'filehist-comment'    => '註釋',
+'imagelinks'          => 'Ēng tio̍h ê  tóng-àn',
+'linkstoimage'        => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
+'nolinkstoimage'      => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
 
 # MIME search
 'mimesearch' => 'MIME chhiau-chhoē',
@@ -843,6 +853,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 # Special:LinkSearch
 'linksearch' => 'Chhiau-chhoē chām-goā liân-kiat',
 
+# Special:Log/newusers
+'newuserlogpage' => '用者建立的記錄',
+
 # E-mail user
 'mailnologin'     => 'Bô siu-phoe ê chū-chí',
 'mailnologintext' => 'Lí it-tēng ài [[Special:UserLogin|teng-ji̍p]] jī-chhiáⁿ ū 1 ê ū-hāu ê e-mail chū-chí tī lí ê [[Special:Preferences|iōng-chiá siat-tēng]] chiah ē-tàng kià e-mail hō· pa̍t-ūi iōng-chiá.',
@@ -903,6 +916,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'editcomment'    => "Siu-kái phêng-lūn sī: \"''\$1''\".",
 
 # Protect
+'protectlogpage'   => '保護的記錄',
 'protectedarticle' => 'pó-hō͘ "[[$1]]"',
 'protect-title'    => 'Pó-hō· "$1"',
 'prot_1movedto2'   => '[[$1]] sóa khì tī [[$2]]',
@@ -925,16 +939,19 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'blanknamespace' => '(Thâu-ia̍h)',
 
 # Contributions
-'contributions' => 'Iōng-chiá ê kòng-hiàn',
-'mycontris'     => 'Góa ê kòng-hiàn',
-'nocontribs'    => 'Chhōe bô tiâu-kiāⁿ ū-tùi ê hāng-bo̍k.',
-'uctop'         => '(siōng téng ê)',
-'month'         => 'Kàu tó 1 kó͘ goe̍h ûi-chí:',
-'year'          => 'Kàu tó 1 nî ûi-chí:',
+'contributions'       => 'Iōng-chiá ê kòng-hiàn',
+'contributions-title' => '用者佇$1的貢獻',
+'mycontris'           => 'Góa ê kòng-hiàn',
+'nocontribs'          => 'Chhōe bô tiâu-kiāⁿ ū-tùi ê hāng-bo̍k.',
+'uctop'               => '(siōng téng ê)',
+'month'               => 'Kàu tó 1 kó͘ goe̍h ûi-chí:',
+'year'                => 'Kàu tó 1 nî ûi-chí:',
 
 'sp-contributions-newbies'     => 'Kan-taⁿ hián-sī sin kháu-chō ê kòng-kiàn',
 'sp-contributions-newbies-sub' => 'Sin lâi--ê',
 'sp-contributions-deleted'     => 'Hō͘ lâng thâi tiāu ê kòng-hiàn',
+'sp-contributions-uploads'     => '上載',
+'sp-contributions-logs'        => '記錄',
 'sp-contributions-talk'        => 'thó-lūn',
 'sp-contributions-search'      => 'Chhoē chhut kòng-kiàn',
 'sp-contributions-username'    => 'IP Chū-chí a̍h iōng-chiá miâ:',
@@ -942,9 +959,11 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # What links here
 'whatlinkshere'       => 'Tó-ūi liân kàu chia',
+'whatlinkshere-page'  => '頁：',
 'linkshere'           => "Í-hā '''[[:$1]]''' liân kàu chia:",
 'nolinkshere'         => "Bô poàⁿ ia̍h liân kàu '''[[:$1]]'''.",
 'isredirect'          => 'choán-ia̍h',
+'isimage'             => '檔案連結',
 'whatlinkshere-prev'  => '{{PLURAL:$1|chêng|chêng $1 ê}}',
 'whatlinkshere-next'  => '{{PLURAL:$1|āu|āu $1 ê}}',
 'whatlinkshere-links' => '← Liân kàu chia',
@@ -1024,6 +1043,7 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'tooltip-pt-logout'              => 'Teng-chhut',
 'tooltip-ca-talk'                => 'Loē-iông ê thó-lūn',
 'tooltip-ca-edit'                => 'Lí ē-sái kái chit ia̍h. Beh chhûn chìn-chiân, chhiáⁿ chhi̍h  sing-khoàⁿ-māi ê liú-á',
+'tooltip-ca-addsection'          => '寫新的一段',
 'tooltip-ca-viewsource'          => 'Chit ia̍h pó-hō͘ tiâu leh.
 Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'tooltip-ca-history'             => 'Chit ia̍h ê chá-chêng pán-pún',
@@ -1048,7 +1068,9 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'tooltip-t-permalink'            => 'Chi̍t ia̍h kái--koè pán-pún ê éng-kiú liân-kiat',
 'tooltip-ca-nstab-main'          => 'khoàⁿ ia̍h ê loē-iông',
 'tooltip-ca-nstab-user'          => 'Khoàⁿ iōng-chiá ê Ia̍h',
+'tooltip-ca-nstab-special'       => '這是一篇特殊頁，你袂當編輯。',
 'tooltip-ca-nstab-image'         => 'Khoàⁿ tóng-àn ia̍h',
+'tooltip-ca-nstab-template'      => '看枋模',
 'tooltip-ca-nstab-category'      => 'Khoàⁿ lūi-pia̍t ia̍h',
 'tooltip-save'                   => 'Pó-chhûn lí chò ê kái-piàn',
 'tooltip-preview'                => 'Chhiáⁿ tī pó-chûn chìn-chêng,  sian khoàⁿ lí chò ê kái-piàn !',
@@ -1073,9 +1095,10 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'nextdiff'     => 'Khì āu 1 ê siu-kái →',
 
 # Media information
-'imagemaxsize' => 'Iáⁿ-siōng biô-su̍t-ia̍h ê tô· ke̍k-ke hián-sī jōa tōa tiuⁿ:',
-'thumbsize'    => 'Sok-tô· (thumbnail) jōa tōa tiuⁿ:',
-'file-nohires' => 'Bô khah koân ê kái-sek-tō͘.',
+'imagemaxsize'   => 'Iáⁿ-siōng biô-su̍t-ia̍h ê tô· ke̍k-ke hián-sī jōa tōa tiuⁿ:',
+'thumbsize'      => 'Sok-tô· (thumbnail) jōa tōa tiuⁿ:',
+'file-nohires'   => 'Bô khah koân ê kái-sek-tō͘.',
+'show-big-image' => '檔案解析度',
 
 # Special:NewFiles
 'newimages'     => 'Sin iáⁿ-siōng oē-lóng',
@@ -1084,6 +1107,7 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'bydate'        => 'chiàu ji̍t-kî',
 
 # Metadata
+'metadata'          => '元資訊',
 'metadata-expand'   => 'Hián-sī iù-chiat',
 'metadata-collapse' => 'Am iù-chiat',
 
