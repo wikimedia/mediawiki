@@ -18,6 +18,7 @@ class wfShorthandToIntegerTest extends MediaWikiTestCase {
 			array( '     ', -1, 'String of spaces' ),
 			array( '1G', 1024 * 1024 * 1024, 'One gig uppercased' ),
 			array( '1g', 1024 * 1024 * 1024, 'One gig lowercased' ),
+			array( '1M', 1024 * 1024, 'One meg uppercased' ),
 		);
 	}
 	
