@@ -597,7 +597,7 @@
 							var $sortbottoms = $table.find( 'tr.sortbottom' );
 							if ( $sortbottoms.length ) {
 								var $tfoot = $table.find( 'tfoot' );
-								if( $tfoot ) {
+								if( $tfoot.length ) {
 									$tfoot.eq(0).prepend( $sortbottoms );
 								} else {
 									$table.append( $( '<tfoot>' ).append( $sortbottoms ) )
