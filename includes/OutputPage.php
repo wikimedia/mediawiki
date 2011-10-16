@@ -118,6 +118,7 @@ class OutputPage extends ContextSource {
 	// @todo FIXME: Next variables probably comes from the resource loader
 	var $mModules = array(), $mModuleScripts = array(), $mModuleStyles = array(), $mModuleMessages = array();
 	var $mResourceLoader;
+	var $mJsConfigVars = array();
 
 	/** @todo FIXME: Is this still used ?*/
 	var $mInlineMsg = array();
@@ -1314,7 +1315,7 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add wikitext with a custom Title object and
+	 * Add wikitext with a custom Title object and tidy enabled.
 	 *
 	 * @param $text String: wikitext
 	 * @param $title Title object
@@ -2576,11 +2577,29 @@ $templates
 	}
 
 	/**
-	 * Get an array containing global JS variables
+	 * Add one or more variables to be set in mw.config in JavaScript.
 	 *
-	 * Do not add things here which can be evaluated in
-	 * ResourceLoaderStartupScript - in other words, without state.
-	 * You will only be adding bloat to the page and causing page caches to
+	 * @param $key {String|Array} Key or array of key/value pars.
+	 * @param $value {Mixed} Value of the configuration variable.
+	 */
+	public function addJsConfigVars( $keys, $value ) {
+		if ( is_array( $keys ) ) {
+			foreach ( $keys as $key => $value ) {
+				$this->mJsConfigVars[$key] = $value;
+			}
+			return;
+		}
+
+		$this->mJsConfigVars[$keys] = $value;
+	}
+
+
+	/**
+	 * Get an array containing the variables to be set in mw.config in JavaScript.
+	 *
+	 * Do not add things here which can be evaluated in ResourceLoaderStartupScript
+	 * - in other words, page-indendent/site-wide variables (without state).
+	 * You will only be adding bloat to the html page and causing page caches to
 	 * have to be purged on configuration changes.
 	 */
 	protected function getJSVars() {
@@ -2623,10 +2642,14 @@ $templates
 			$vars['wgIsMainPage'] = true;
 		}
 
-		// Allow extensions to add their custom variables to the global JS variables
+		// Allow extensions to add their custom variables to the mw.config map.
+		// Use the 'ResourceLoaderGetConfigVars' hook if the variable is not
+		// page-dependant but site-wide (without state).
+		// Alternatively, you may want to use OutputPage->addJsConfigVars() instead.
 		wfRunHooks( 'MakeGlobalVariablesScript', array( &$vars ) );
 
-		return $vars;
+		// Merge in variables from addJsConfigVars last
+		return array_merge( $vars, $this->mJsConfigVars );
 	}
 
 	/**

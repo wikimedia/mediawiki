@@ -221,11 +221,6 @@ class SquidUpdate {
 	 * @return string
 	 */
 	static function expand( $url ) {
-		global $wgInternalServer, $wgServer;
-		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
-		if( $url !== '' && $url[0] == '/' ) {
-			return $server . $url;
-		}
-		return $url;
+		return wfExpandUrl( $url, PROTO_INTERNAL );
 	}
 }

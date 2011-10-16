@@ -84,6 +84,8 @@ production.
   hooks have been removed.
 * New hook "Collation::factory" to allow extensions to create custom
   category collations.
+* (bug 31233) New OutputPage::addJsConfigVars() method to make the output page specific
+  mw.config map extendable.
 
 === New features in 1.18 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.
