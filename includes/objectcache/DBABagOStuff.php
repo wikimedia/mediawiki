@@ -187,7 +187,7 @@ class DBABagOStuff extends BagOStuff {
 		$key = dba_nextkey( $reader );
 		while ( $key ) {
 			$result[] = $key;
-			$key = dba_nextkey( $reader )
+			$key = dba_nextkey( $reader );
 		}
 
 		return $result;
