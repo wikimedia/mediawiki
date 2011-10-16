@@ -36,6 +36,8 @@ test( 'Is functions', function() {
 
 	strictEqual( $.isEmpty( 'string' ), false, 'isEmptry: "string"' );
 	strictEqual( $.isEmpty( '0' ), true, 'isEmptry: "0"' );
+	strictEqual( $.isEmpty( '' ), true, 'isEmptry: ""' );
+	strictEqual( $.isEmpty( 1 ), false, 'isEmptry: 1' );
 	strictEqual( $.isEmpty( [] ), true, 'isEmptry: []' );
 	strictEqual( $.isEmpty( {} ), true, 'isEmptry: {}' );
 
