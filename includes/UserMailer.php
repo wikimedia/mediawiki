@@ -193,7 +193,6 @@ class UserMailer {
 
 		$headers['Message-ID'] = self::makeMsgId();
 		$headers['X-Mailer'] = 'MediaWiki mailer';
-		$headers['From'] = $from->toString();
 
 		$ret = wfRunHooks( 'AlternateUserMailer', array( $headers, $to, $from, $subject, $body ) );
 		if ( $ret === false ) {
