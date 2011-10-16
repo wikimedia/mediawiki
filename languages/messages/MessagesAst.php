@@ -885,27 +885,27 @@ Prueba a [[Special:Search|buscar na wiki]] otres páxines nueves.',
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 'rev-deleted-text-unhide'     => "Esta revisión de la páxina se '''desanició'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].
-Como alministrador entá pues [$1 ver esta revisión] si quies continuar.",
+Entá pues [$1 ver esta revisión] si quies siguir.",
 'rev-suppressed-text-unhide'  => "Esta revisión de la páxina se '''suprimió'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].
-Como alministrador entá pues [$1 ver esta revisión] si quies continuar.",
+Entá pues [$1 ver esta revisión] si quies siguir.",
 'rev-deleted-text-view'       => "Esta revisión de la páxina se '''desanició'''.
-Como alministrador pues vela; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
+Pues vela; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 'rev-suppressed-text-view'    => "Esta revisión de la páxina se '''suprimió'''.
-Como alministrador pues vela; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].",
+Pues vela; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].",
 'rev-deleted-no-diff'         => "Nun pues ver esti diff porque una de les revisiones se '''desanició'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 'rev-suppressed-no-diff'      => "Nun pues ver esti diff porque una de les revisiones se '''desanició'''.",
 'rev-deleted-unhide-diff'     => "Una de les revisiones d'esti diff se '''desanició'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].
-Como alministrador entá pues [$1 ver esti diff] si quies continuar.",
+Entá pues [$1 ver esti diff] si quies siguir.",
 'rev-suppressed-unhide-diff'  => "Una de les revisiones d'esti diff se '''suprimió'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].
-Como alministrador entá pues [$1 ver esti diff] si quies continuar.",
+Entá pues [$1 ver esti diff] si quies siguir.",
 'rev-deleted-diff-view'       => "Una de les revisiones d'esti diff se '''desanició'''.
-Como alministrador pues ver esti diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
+Pues ver esti diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 'rev-suppressed-diff-view'    => "Una de les revisiones d'esti diff se '''suprimió'''.
-Como alministrador pues ver el diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].",
+Pues ver el diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].",
 'rev-delundel'                => 'amosar/anubrir',
 'rev-showdeleted'             => 'amosar',
 'revisiondelete'              => 'Desaniciar/restaurar revisiones',
@@ -974,8 +974,8 @@ Comprueba los rexistros, por favor.",
 
 # Suppression log
 'suppressionlog'     => 'Rexistru de supresiones',
-'suppressionlogtext' => "Embaxo amuésase una llista de los esborraos y bloqueos rellacionaos con conteníu ocultu a los alministradores.
-Mira'l [[Special:IPBlockList|rexistru de bloqueos d'IP]] pa ver una llista de los bloqueos activos anguaño.",
+'suppressionlogtext' => "Embaxo hai una llista de desanicios y bloqueos rellacionaos con conteníu anubríu a los alministradores.
+Mira la [[Special:BlockList|llista de bloqueos d'IP]] pa ver la llista de los bloqueos y torgues activos anguaño.",
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páxina',
@@ -1242,12 +1242,12 @@ Esta información sedrá pública.",
 'group-suppress'      => 'Güeyadores',
 'group-all'           => '(toos)',
 
-'group-user-member'          => 'usuariu',
-'group-autoconfirmed-member' => 'usuariu autoconfirmáu',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'alministrador',
-'group-bureaucrat-member'    => 'burócrata',
-'group-suppress-member'      => 'güeyador',
+'group-user-member'          => '{{GENDER:$1|usuariu|usuaria}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usuariu auto-confirmáu|usuaria auto-confirmada}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|alministrador|alministradora}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|burócrata}}',
+'group-suppress-member'      => '{{GENDER:$1|supervisor|supervisora}}',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmaos',
@@ -1443,6 +1443,7 @@ Mira la [[Special:NewFiles|galería d'archivos nuevos]] pa una güeyada más vis
 'ignorewarnings'              => 'Inorar tolos avisos',
 'minlength1'                  => "Los nomes d'archivu han tener a lo menos una lletra.",
 'illegalfilename'             => 'El nome d\'archivu "$1" contién carauteres non permitíos en títulos de páxina. Por favor renoma l\'archivu y xúbilu otra vuelta.',
+'filename-toolong'            => 'Los nomes de ficheru nun puen tener más de 240 bytes.',
 'badfilename'                 => 'Nome de la imaxe camudáu a "$1".',
 'filetype-mime-mismatch'      => 'La estensión de ficheru ".$1" nun casa cola triba MIME detectada del ficheru ($2).',
 'filetype-badmime'            => 'Los ficheros de la triba MIME "$1" nun tienen permitida la xubida.',
@@ -3421,6 +3422,9 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'watchlisttools-view' => 'Ver cambeos relevantes',
 'watchlisttools-edit' => 'Ver y editar la llista de vixilancia',
 'watchlisttools-raw'  => 'Editar la llista de vixilancia (en bruto)',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|alderique]])</sup>',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" desconocida',

@@ -556,6 +556,7 @@ Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea 
 'passwordreset-pretext'        => '{{PLURAL:$1||Mitte une de le stuèzze de le date aqquà sotte}}',
 'passwordreset-username'       => 'Nome utende:',
 'passwordreset-domain'         => 'Dominie:',
+'passwordreset-capture'        => "Vide 'a mail resultande?",
 'passwordreset-email'          => 'Indirizze e-mail:',
 'passwordreset-emailtitle'     => "Dettaglie d'u cunde utende sus a {{SITENAME}}",
 'passwordreset-emailtext-ip'   => "Quacchedune (pò essere tu, da 'u 'ndirizze IP $1) ha richieste 'na mail pe arrecurdarse de le dettaglie d'u cunde sue pe {{SITENAME}} ($4). {{PLURAL:$3|'U cunde utende seguende jè|le cunde utinde seguende sonde}} associate cu st'indirizze e-mail:
@@ -864,27 +865,27 @@ Pruève a [[Special:Search|cercò sus a Uicchi]] 'mbrà le vosce cchiù rilevand
 Puè acchijà cchiù 'mbormaziune sus a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} l'archivije de le scangellaminde].",
 'rev-deleted-text-unhide'     => "Sta revisione d'a pàgene ha state '''scangellate'''.
 Puè acchijà cchiù 'mbormaziune sus a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} l'archivije de le scangellaminde].
-Cumme a 'n'amministratore tu puè angore [$1 vedè sta revisiona] ce tu avveramende a vuè ccù vide.",
+Tu puè angore [$1 vedè sta revisiona] ce tu avveramende a vuè ccù vide.",
 'rev-suppressed-text-unhide'  => "Sta revisione d'a pàgene ha state '''soppresse'''.
 Puè acchijà cchiù 'mbormaziune sus a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} l'archivije de le soppressiune].
-Cumme a 'n'amministratore tu puè angore [$1 vedè sta revisiona] ce tu avveramende a vuè ccù vide.",
+Tu puè angore [$1 vedè sta revisiona] ce tu avveramende a vuè ccù vide.",
 'rev-deleted-text-view'       => "Sta revisione d'a pàgene ha state '''scangellate'''.
-Cumme a 'n'amministratore tu a puè vedè angore; stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde].",
+Tu a puè vedè angore; stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde].",
 'rev-suppressed-text-view'    => "Sta revisione d'a pàgene ha state '''soppresse'''.
-Cumme a 'n'amministratore tu puè vedè; puè acchijà cchiù 'mbormaziune sus a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} l'archivije de le soppressiune].",
+Tu a puè vedè; puè acchijà cchiù 'mbormaziune sus a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} l'archivije de le soppressiune].",
 'rev-deleted-no-diff'         => "Tu non ge piè vedè sta differenze purcè une de le revisiune ha state '''scangellate'''.
 Pò essere ca jacchie quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde].",
 'rev-suppressed-no-diff'      => "Tu non ge puè vedè sta differenze purcé une de le revisiune ha state '''scangellate'''.",
 'rev-deleted-unhide-diff'     => "Une de le revisiune de sta differenza ha state '''scangellate'''.
 Pò essere ca iacchije quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde]..
-Cumme a 'n'amministratore tu puè angore [$1 vedè sta differenze] ce tu proprie si inderessate.",
+Tu puè angore [$1 vedè sta differenze] ce tu avveramende a vuè ccù vide.",
 'rev-suppressed-unhide-diff'  => "Une de le revisiune de sta differenze ha state '''soppresse'''.
 Pò essere ca stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} archivie de le soppressiune].
-Cumme 'n'amministratore tu puè angore [$1 vedè sta differenze] ce te inderesse avveramende.",
+Tu puè angore [$1 vedè sta differenze] ce tu avveramende a vuè ccù vide.",
 'rev-deleted-diff-view'       => "Une de le revisiune de sta differenze ha state '''scangellate'''.
-Cumme 'n'amministratore tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archivie de le scangellaminde].",
+Tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} archivie de le scangellaminde].",
 'rev-suppressed-diff-view'    => "Une de le revisiune de sta differenze ha state '''soppresse'''.
-Cumme 'n'amministratore tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} archivie de le soppressiune].",
+Tu puè vedè ste differenze; pò essere ca stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} archivie de le soppressiune].",
 'rev-delundel'                => 'fa vedè/scunne',
 'rev-showdeleted'             => 'fà vedè',
 'revisiondelete'              => 'Scangille/Repristine revisiune',
@@ -952,8 +953,8 @@ Pe piacere condrolle l'archivije.",
 
 # Suppression log
 'suppressionlog'     => 'Archivie de le soppressiune',
-'suppressionlogtext' => "Sotte stè 'na liste de scangellaminde e blocche sus a le condenute scunnute da l'amministrature.
-Vide 'a [[Special:IPBlockList|liste de le IP bloccate]] pa liste de le operazziune corrende de espulsione e blocche.",
+'suppressionlogtext' => "Sotte stè 'n'elenghe de scangellaminde e blocche sus a le condenute scunnute da l'amministrature.
+Vide l'[[Special:BlockList|elenghe de le IP bloccate]] pa liste de le operazziune corrende de espulsione e blocche.",
 
 # History merging
 'mergehistory'                     => "Scuagghie 'a storie de le pàggene",
@@ -1227,12 +1228,12 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'group-suppress'      => 'Supervisionature',
 'group-all'           => '(tutte)',
 
-'group-user-member'          => 'Utende',
-'group-autoconfirmed-member' => 'Utende Autoconfermete',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Sysop',
-'group-bureaucrat-member'    => 'Burocrate',
-'group-suppress-member'      => 'Supervisionatore',
+'group-user-member'          => '{{GENDER:$1|utende}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|utende autoconfermate}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|amministratore}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|burocrate}}',
+'group-suppress-member'      => '{{GENDER:$1|supervisionatore}}',
 
 'grouppage-user'          => '{{ns:project}}:Utinde',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utinde Autoconfermete',
@@ -3504,12 +3505,21 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'sqlite-no-fts'  => "$1 senze 'u supporte d'a ricerche full-text",
 
 # New logging system
+'logentry-delete-delete'              => '$1 pàgena {{GENDER:$2|scangellate}} $3',
+'logentry-delete-restore'             => '$1 pàgena {{GENDER:$2|repristinate}} $3',
+'revdelete-content-hid'               => 'condenute scunnute',
+'revdelete-summary-hid'               => "riepileghe d'u cangiamende scunnute",
+'revdelete-uname-hid'                 => "nome de l'utende scunnute",
+'revdelete-content-unhid'             => 'condenute fatte vedè',
+'revdelete-summary-unhid'             => "riepileghe d'u cangiamende fatte vedè",
+'revdelete-uname-unhid'               => "nome de l'utende fatte vedè",
 'revdelete-restricted'                => 'appliche le restriziune a le SysOps',
 'revdelete-unrestricted'              => 'live le restriziune a le SysOps',
 'logentry-move-move'                  => '$1 pàgena {{GENDER:$2|spustate}} $3 a $4',
 'logentry-move-move-noredirect'       => "$1 pàgena {{GENDER:$2|spustate}} $3 a $4 senze lassà 'nu redirezionamende",
 'logentry-move-move_redir'            => "$1 pàgena {{GENDER:$2|spustate}} $3 a $4 cu 'u redirezionamende",
 'logentry-move-move_redir-noredirect' => "$1 pàgena {{GENDER:$2|spustate}} $3 a $4 sus a 'nu redirezionamende senze lassà 'nu redirezionamende",
+'logentry-newusers-autocreate'        => "'U cunde utende $1 ha state {{GENDER:$2|ccrejate}} automaticamende",
 'newuserlog-byemail'                  => 'password mannete pe e-mail',
 
 );

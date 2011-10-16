@@ -328,7 +328,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de usuários que estão vigiando',
-'tog-oldsig'                  => 'Previsão da assinatura existente:',
+'tog-oldsig'                  => 'Assinatura existente:',
 'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem link automático)',
 'tog-externaleditor'          => 'Utilizar editor externo por padrão (apenas para usuários avançados; requer configurações adicionais em seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
 'tog-externaldiff'            => 'Utilizar comparador de versões externo por padrão (apenas para usuários avançados; requer configurações adicionais em seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Mais informações.])',
@@ -771,6 +771,7 @@ Como resultado, visitantes que usam este endereço IP não podem criar mais nenh
 'noemailprefs'               => 'Especifique um endereço de e-mail para que os seguintes recursos funcionem.',
 'emailconfirmlink'           => 'Confirme o seu endereço de e-mail',
 'invalidemailaddress'        => "O endereço de ''e-mail'' não pode ser aceite devido a talvez possuir um formato inválido. Por favor, introduza um endereço bem formatado ou esvazie o campo.",
+'cannotchangeemail'          => 'A conta de e-mail não pode ser alterado nesta wiki.',
 'accountcreated'             => 'Conta criada',
 'accountcreatedtext'         => 'A conta do usuário para $1 foi criada.',
 'createaccount-title'        => 'Criação de conta em {{SITENAME}}',
@@ -807,28 +808,33 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'resetpass-temp-password'   => 'Senha temporária:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Repor Palavra-chave',
-'passwordreset-text'           => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
-'passwordreset-legend'         => 'Reiniciar a senha',
-'passwordreset-disabled'       => 'Reiniciar a senha foi impossibilitado nesta wiki.',
-'passwordreset-pretext'        => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
-'passwordreset-username'       => 'Nome de usuário:',
-'passwordreset-email'          => 'Endereço de e-mail:',
-'passwordreset-emailtitle'     => 'Detalhes da conta na {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Alguém (provavelmente você, do endereço IP $1) solicitou um lembrete do seu detalhes de conta para {{SITENAME}} ($4). O seguinte usuário {{PLURAL:$3|conta|são contas}} associado com este endereço de e-mail:
+'passwordreset'                    => 'Repor Palavra-chave',
+'passwordreset-text'               => 'Preencha este formulário para recuperar os dados da sua conta pelo e-mail.',
+'passwordreset-legend'             => 'Reiniciar a senha',
+'passwordreset-disabled'           => 'Reiniciar a senha foi impossibilitado nesta wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Introduza um dos dados abaixo}}',
+'passwordreset-username'           => 'Nome de usuário:',
+'passwordreset-domain'             => 'Domínio:',
+'passwordreset-capture'            => 'Ver o e-mail resultante?',
+'passwordreset-capture-help'       => 'Se marcar esta caixa, o e-mail (com a senha temporária) será-lhe mostrado, além de ser enviado para o usuário.',
+'passwordreset-email'              => 'Endereço de e-mail:',
+'passwordreset-emailtitle'         => 'Detalhes da conta na {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Alguém (provavelmente você, do endereço IP $1) solicitou um lembrete do seu detalhes de conta para {{SITENAME}} ($4). O seguinte usuário {{PLURAL:$3|conta|são contas}} associado com este endereço de e-mail:
 
 $2
 
 {{PLURAL:$3|Esta senha temporária |Essas senhas temporárias}} vão expirar em {{PLURAL:$5|um dia|$5 dias}}.
 Você deve efetuar login e escolher uma nova senha agora. Se você conseguir lembrar da senha, ignore este e-mail e continue usando sua senha anterior, do contrário, prossiga com as instruções clicando no link.',
-'passwordreset-emailtext-user' => 'O usuário $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:
+'passwordreset-emailtext-user'     => 'O usuário $1 da {{SITENAME}} pediu a recuperação dos detalhes da sua conta na {{SITENAME}} ($4). {{PLURAL:$3|A seguinte conta está associada|As seguintes contas estão associadas}} a este e-mail:
 
 $2
 
 {{PLURAL:$3|Esta senha temporária irá|Estas senhas temporárias irão}} expirar dentro de {{PLURAL:$5|um dia|$5 dias}}. Deve autenticar-se e escolher uma senha nova agora. Se este pedido não foi feito por si, ou se entretanto se recordou da sua senha original e já não deseja alterá-la, pode ignorar esta mensagem e continuar a usar a senha antiga.',
-'passwordreset-emailelement'   => 'Usuário: $1
+'passwordreset-emailelement'       => 'Usuário: $1
 Senha temporária: $2',
-'passwordreset-emailsent'      => 'Foi enviado um e-mail de lembrete.',
+'passwordreset-emailsent'          => 'Foi enviado um e-mail de lembrete.',
+'passwordreset-emailsent-capture'  => 'Foi enviado um e-mail de lembrete, que é mostrado abaixo.',
+'passwordreset-emailerror-capture' => 'Foi gerado o lembrete de e-mail mostrado abaixo, contudo falhou o envio para o usuário: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Alterar o endereço de e-mail',
@@ -1110,14 +1116,14 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 Podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminações].",
 'rev-deleted-text-unhide'     => "Esta revisão desta página foi '''removida'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].
-Como administrador, você ainda pode [$1 ver esta revisão] se desejar continuar.",
+Você ainda pode [$1 ver esta revisão] se deseja prosseguir.",
 'rev-suppressed-text-unhide'  => "Esta revisão desta página foi '''removida'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].
-Como administrador, você ainda pode [$1 ver esta revisão] se desejar continuar.",
+Você ainda pode [$1 ver esta revisão] se deseja prosseguir.",
 'rev-deleted-text-view'       => "A revisão desta página foi '''eliminada'''.
-Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+Você pode visualizá-la; pode haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-suppressed-text-view'    => "A revisão desta página foi '''eliminada'''.
-Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+Você pode visualizá-la; podem existir mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-deleted-no-diff'         => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-suppressed-no-diff'      => "Você não pode ver esta comparação porque uma das revisões foi '''eliminada'''.",
@@ -1399,7 +1405,8 @@ Esta ação não pode ser desfeita.',
 'prefs-registration'            => 'Hora de registro:',
 'yourrealname'                  => 'Nome verdadeiro:',
 'yourlanguage'                  => 'Língua:',
-'yourvariant'                   => 'Variante:',
+'yourvariant'                   => 'Variante da língua de conteúdo:',
+'prefs-help-variant'            => 'A sua variante preferida ou ortografia para mostrar no conteúdo das páginas desta wiki.',
 'yournick'                      => 'Assinatura:',
 'prefs-help-signature'          => 'Ao inserir comentários em páginas de discussão, assine-os colocando quatro tiles (<nowiki>~~~~</nowiki>) no fim dos comentários. Ao salvar, estes serão convertidos na sua assinatura mais a data e a hora da edição.',
 'badsig'                        => 'Assinatura inválida; verifique o código HTML utilizado.',
@@ -1453,7 +1460,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'userrights-no-interwiki'      => 'Você não tem permissão de alterar privilégios de usuários em outras wikis.',
 'userrights-nodatabase'        => 'O banco de dados $1 não existe ou não é um banco de dados local.',
 'userrights-nologin'           => 'Você precisa [[Special:UserLogin|autenticar-se]] como um administrador para especificar os privilégios de usuário.',
-'userrights-notallowed'        => 'Sua conta não possui permissão para conceder privilégios a usuários.',
+'userrights-notallowed'        => 'A sua conta não tem permissão para adicionar ou remover privilégios a usuários.',
 'userrights-changeable-col'    => 'Grupos que pode alterar',
 'userrights-unchangeable-col'  => 'Grupos que não pode alterar',
 
@@ -1467,12 +1474,12 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'group-suppress'      => 'Oversights',
 'group-all'           => '(todos)',
 
-'group-user-member'          => 'Usuário',
-'group-autoconfirmed-member' => 'Usuário auto-confirmado',
+'group-user-member'          => '{{GENDER:$1|usuário|usuária}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usuário autoconfirmado|usuária autoconfirmada}}',
 'group-bot-member'           => 'robô',
-'group-sysop-member'         => 'administrador',
+'group-sysop-member'         => '{{GENDER:$1|administrador |administradora}}',
 'group-bureaucrat-member'    => 'burocrata',
-'group-suppress-member'      => 'supervisor',
+'group-suppress-member'      => '{{GENDER:$1|supressor|supressora}}',
 
 'grouppage-user'          => '{{ns:project}}:Usuários',
 'grouppage-autoconfirmed' => '{{ns:project}}:Auto-confirmados',
@@ -1669,6 +1676,7 @@ A [[Special:NewFiles|galeria de arquivos novos]] oferece uma listagem mais visua
 'ignorewarnings'              => 'Ignorar todos os avisos',
 'minlength1'                  => 'Os nomes de arquivos devem de ter pelo menos uma letra.',
 'illegalfilename'             => 'O arquivo "$1" possui caracteres que não são permitidos no título de uma página. Por favor, altere o nome do arquivo e tente carregar novamente.',
+'filename-toolong'            => 'Os nomes dos arquivo não podem ser superiores a 240 bytes.',
 'badfilename'                 => 'O nome do arquivo foi alterado para "$1".',
 'filetype-mime-mismatch'      => 'A extensão ".$1" não corresponde ao tipo MIME do arquivo ($2).',
 'filetype-badmime'            => 'Arquivos de tipo MIME "$1" não são permitidos de serem enviados.',
@@ -1864,7 +1872,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'filehist-filesize'         => 'Tamanho do arquivo',
 'filehist-comment'          => 'Comentário',
 'filehist-missing'          => 'Arquivo faltando',
-'imagelinks'                => 'Links para este arquivo',
+'imagelinks'                => 'Uso do arquivo',
 'linkstoimage'              => '{{PLURAL:$1|A página|As $1 páginas}} a seguir tem link para este arquivo:',
 'linkstoimage-more'         => 'Mais de $1 {{PLURAL:$1|página|páginas}} tem algum link para este arquivo.
 A lista a seguir mostra apenas {{PLURAL:$1|o primeiro link|os $1 primeiros links}} para este arquivo.
@@ -2577,7 +2585,7 @@ Consulte a [[Special:BlockList|lista de IPs bloqueados]] para obter a lista de b
 'block-log-flags-noemail'         => 'impedido de enviar e-mail',
 'block-log-flags-nousertalk'      => 'impossibilitado de editar a própria página de discussão',
 'block-log-flags-angry-autoblock' => 'autobloqueio melhorado ativado',
-'block-log-flags-hiddenname'      => 'Nome de usuário oculto',
+'block-log-flags-hiddenname'      => 'nome de usuário oculto',
 'range_block_disabled'            => 'A funcionalidade de bloquear gamas de IPs encontra-se desativada.',
 'ipb_expiry_invalid'              => 'Tempo de expiração inválido.',
 'ipb_expiry_temp'                 => 'Bloqueios com nome de usuário ocultado devem ser permanentes.',
@@ -3001,6 +3009,13 @@ Executá-lo poderá comprometer a segurança do seu sistema.",
 'bydate'                => 'por data',
 'sp-newimages-showfrom' => 'Mostrar novos arquivos a partir das $2 de $1',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|um segundo|$1 segundos}}',
+'minutes' => '{{PLURAL:$1|um minuto|$1 minutos}}',
+'hours'   => '{{PLURAL:$1|uma hora|$1 horas}}',
+'days'    => '{{PLURAL:$1|um dia|$1 dias}}',
+'ago'     => '$1 atrás',
+
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
 
@@ -3223,9 +3238,9 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-orientation-3' => 'Rotacionado em 180°',
 'exif-orientation-4' => 'Espelhamento vertical',
 'exif-orientation-5' => 'Rotacionado em 90º em sentido anti-horário e espelhado verticalmente',
-'exif-orientation-6' => 'Rotacionado em 90° no sentido horário',
+'exif-orientation-6' => 'Rodado 90° no sentido anti-horário',
 'exif-orientation-7' => 'Rotacionado em 90° no sentido horário e espelhado verticalmente',
-'exif-orientation-8' => 'Rotacionado 90° no sentido anti-horário',
+'exif-orientation-8' => 'Rodado 90° no sentido horário',
 
 'exif-planarconfiguration-1' => 'formato irregular',
 'exif-planarconfiguration-2' => 'formato plano',
@@ -3588,6 +3603,9 @@ Você também pode [[Special:EditWatchlist|editar a lista da maneira convenciona
 'watchlisttools-edit' => 'Ver e editar a lista de páginas vigiadas',
 'watchlisttools-raw'  => 'Edição crua da lista de páginas vigiadas',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|discussão]])</sup>',
+
 # Core parser functions
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',
 'duplicate-defaultsort' => 'Aviso: A chave de ordenação padrão "$2" sobrepõe-se à anterior chave de ordenação padrão "$1".',
@@ -3626,9 +3644,7 @@ Em conjunto com este programa deve ter recebido [{{SERVER}}{{SCRIPTPATH}}/COPYIN
 'filepath-page'    => 'arquivo:',
 'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Esta página especial retorna o endereço completo de um arquivo.
-As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos serão abertos diretamente pelos programas associados.
-
-Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
+As imagens serão exibidas em sua resolução máxima, outros tipos de arquivos serão abertos diretamente pelos programas associados.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Procurar por arquivos duplicados',
@@ -3725,8 +3741,35 @@ Insira o nome do arquivo sem o prefixo "{{ns:file}}:".',
 'sqlite-no-fts'  => '$1 sem suporte de pesquisa de texto completo',
 
 # New logging system
-'revdelete-restricted'   => 'restrições a administradores aplicadas',
-'revdelete-unrestricted' => 'restrições a administradores removidas',
-'newuserlog-byemail'     => 'senha enviada por correio-eletrônico',
+'logentry-delete-delete'              => '$1 {{GENDER:$2|apagou}} a página $3',
+'logentry-delete-restore'             => '$1 {{GENDER:$2|restaurou}} a página $3',
+'logentry-delete-event'               => '$1 {{GENDER:$2|alterou}} a visibilidade {{PLURAL:$5|de uma entrada|$5 das entradas}} em $3: $4',
+'logentry-delete-revision'            => '$1 {{GENDER:$2|alterou}} a visibilidade {{PLURAL:$5|de uma revisão|$5 das revisões}} em $3: $4',
+'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|alterou}} a visibilidade de uma entrada em $3',
+'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|alterou}} a visibilidade de uma revisão em $3',
+'logentry-suppress-delete'            => '$1 {{GENDER:$2|suprimiu}} a página $3',
+'logentry-suppress-event'             => '$1 {{GENDER:$2|alterou}} secretamente a visibilidade {{PLURAL:$5|de uma entrada|$5 das entradas}} em $3: $4',
+'logentry-suppress-revision'          => '$1 {{GENDER:$2|alterou}} secretamente a visibilidade {{PLURAL:$5|de uma revisão|$5 das revisões}} em $3: $4',
+'logentry-suppress-event-legacy'      => '$1 {{GENDER:$2|alterou}} secretamente a visibilidade das entradas em $3',
+'logentry-suppress-revision-legacy'   => '$1 {{GENDER:$2|alterou}} secretamente a visibilidade das revisões em $3',
+'revdelete-content-hid'               => 'conteúdo oculto',
+'revdelete-summary-hid'               => 'editar sumário oculto',
+'revdelete-uname-hid'                 => 'nome de usuário oculto',
+'revdelete-content-unhid'             => 'conteúdo não oculto',
+'revdelete-summary-unhid'             => 'editar sumário não oculto',
+'revdelete-uname-unhid'               => 'nome de usuário não oculto',
+'revdelete-restricted'                => 'restrições a administradores aplicadas',
+'revdelete-unrestricted'              => 'restrições a administradores removidas',
+'logentry-move-move'                  => '$1 {{GENDER:$2|moveu}} página $3 para $4',
+'logentry-move-move-noredirect'       => '$1 {{GENDER:$2|moveu}} página $3 para $4 sem deixar um redirecionamento',
+'logentry-move-move_redir'            => '$1 {{GENDER:$2|moveu}} a página $3 para $4 através de um redirecionamento',
+'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|moveu}} a página $3 para $4 sem um redirecionamento',
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|marcou}} a revisão $4 da página $3 como patrulhada',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|marcou}} automaticamente a revisão $4 da página $3 como patrulhada',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|criou}} uma conta de usuário',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|criou}} uma conta de usuário',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|criou}} {{GENDER:$4|uma conta de usuário|uma conta de usuária}} $3',
+'logentry-newusers-autocreate'        => 'A conta $1 foi {{GENDER:$2|criada}} automaticalmente',
+'newuserlog-byemail'                  => 'senha enviada por correio-eletrônico',
 
 );

@@ -333,7 +333,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Értesítés e-mailben a lapok apró változtatásairól',
 'tog-enotifrevealaddr'        => 'Jelenítse meg az e-mail címemet a figyelmeztető e-mailekben',
 'tog-shownumberswatching'     => 'Az oldalt figyelő szerkesztők számának mutatása',
-'tog-oldsig'                  => 'A jelenlegi aláírás előnézete:',
+'tog-oldsig'                  => 'A jelenlegi aláírás:',
 'tog-fancysig'                => 'Az aláírás wikiszöveg (nem lesz automatikusan hivatkozásba rakva)',
 'tog-externaleditor'          => 'Külső szerkesztőprogram használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [http://www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
 'tog-externaldiff'            => 'Külső diff program használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [http://www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
@@ -722,7 +722,7 @@ Ne felejtsd el átnézni a [[Special:Preferences|személyes beállításaidat]].
 'createaccountmail'          => 'e-mailben',
 'createaccountreason'        => 'Indoklás:',
 'badretype'                  => 'A megadott jelszavak nem egyeznek.',
-'userexists'                 => 'A megadott szerkesztőnév már foglalt.
+'userexists'                 => 'A megadott felhasználónév már foglalt.
 Kérlek, válassz másikat!',
 'loginerror'                 => 'Hiba történt a bejelentkezés során',
 'createaccounterror'         => 'Nem sikerült létrehozni a felhasználói fiókot: $1',
@@ -773,6 +773,7 @@ A visszaélések elkerülése végett {{PLURAL:$1|egy|$1}} óránként csak egy 
 'noemailprefs'               => 'Az alábbi funkciók használatához meg kell adnod az e-mail címedet.',
 'emailconfirmlink'           => 'E-mail cím megerősítése',
 'invalidemailaddress'        => 'A megadott e-mail cím érvénytelen formátumú. Kérlek, adj meg egy érvényes e-mail címet vagy hagyd üresen azt a mezőt.',
+'cannotchangeemail'          => 'Ezen a wikin nem módosítható a fiókhoz tartozó e-mail cím.',
 'accountcreated'             => 'Felhasználói fiók létrehozva',
 'accountcreatedtext'         => '$1 felhasználói fiókja sikeresen létrejött.',
 'createaccount-title'        => 'Új {{SITENAME}}-azonosító létrehozása',
@@ -789,6 +790,7 @@ Várj egy kicsit, mielőtt újra próbálkozol.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Ismeretlen hiba a PHP mail() függvényében',
+'user-mail-no-addy'      => 'E-mail üzenetet próbáltál küldeni e-mail cím megadása nélkül.',
 
 # Change password dialog
 'resetpass'                 => 'Jelszó módosítása',
@@ -815,6 +817,9 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'passwordreset-disabled'     => 'Új jelszó kérése nem engedélyezett ezen a wikin.',
 'passwordreset-pretext'      => '{{PLURAL:$1||Írd be az alábbi adatok egyikét}}',
 'passwordreset-username'     => 'Felhasználónév:',
+'passwordreset-domain'       => 'Tartomány:',
+'passwordreset-capture'      => 'Meg szeretnéd nézni az elkészült üzenetet?',
+'passwordreset-capture-help' => 'Ha kipipálod a dobozt, amellett, hogy kiküldődik az üzenet a felhasználónak, megjelenik számodra (az ideiglenes jelszavakkal együtt)',
 'passwordreset-email'        => 'E-mail cím:',
 'passwordreset-emailtitle'   => 'A(z) {{SITENAME}}-fiók adatai',
 'passwordreset-emailelement' => 'Felhaználónév: $1
@@ -825,6 +830,7 @@ Ideiglenes jelszó: $2',
 'changeemail'          => 'E-mail cím megváltoztatása',
 'changeemail-header'   => 'A fiókhoz tartozó e-mail cím megváltoztatása',
 'changeemail-text'     => 'Az e-mail címed megváltoztatásához ki kell töltened az alábbi űrlapot. Megerősítésképpen meg kell adnod a jelszavadat is.',
+'changeemail-no-info'  => 'A lap közvetlen eléréséhez be kell jelentkezned.',
 'changeemail-oldemail' => 'Jelenlegi e-mail cím:',
 'changeemail-newemail' => 'Új e-mail cím:',
 'changeemail-none'     => '(nincs)',
@@ -934,11 +940,12 @@ Nézd meg, hogy valóban ezt a lapot szeretnéd-e létrehozni vagy szerkeszteni.
 'userpage-userdoesnotexist-view'   => 'Nincs regisztrálva „$1” szerkesztői azonosító.',
 'blocked-notice-logextract'        => 'A felhasználó jelenleg blokkolva van.
 A blokkolási napló legutóbbi ide vonatkozó bejegyzése a következő:',
-'clearyourcache'                   => "'''Megjegyzés: mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.'''
-'''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R'');
-'''Konqueror:''' egyszerűen csak kattints a ''Frissítés'' gombra vagy nyomj ''F5''-öt;
-'''Opera:''' ürítsd ki a gyorsítótárat a ''Beállítások / Haladó / Előzmények→Törlés most'' gombbal, majd frissítsd az oldalt;
-'''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt.",
+'clearyourcache'                   => "'''Megjegyzés:''' mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.
+'''Firefox / Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' vagy ''Ctrl–R'' billentyűkombinációt (Mac-en ''Command–R'');
+'''Google Chrome:''' használd a ''Ctrl–Shift–R'' billentyűkombinációt (Mac-en ''Command–Shift–R'');
+'''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt;
+'''Konqueror: '''kattints a ''Frissítés'' gombra vagy nyomj ''F5''-öt;
+'''Opera:''' ürítsd ki a gyorsítótárat a ''Beállítások / Haladó / Előzmények→Törlés most'' gombbal, majd frissítsd az oldalt.",
 'usercssyoucanpreview'             => "'''Tipp:''' mentés előtt használd az „{{int:showpreview}}” gombot az új CSS-ed teszteléséhez.",
 'userjsyoucanpreview'              => "'''Tipp:''' mentés előtt használd az „{{int:showpreview}}” gombot az új JavaScipted teszteléséhez.",
 'usercsspreview'                   => "'''Ne felejtsd el, hogy ez csak a felhasználói CSS-ed előnézete és még nincs elmentve!'''",
@@ -3643,13 +3650,16 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'tags-hitcount'           => '{{PLURAL:$1|Egy|$1}} változtatás',
 
 # Special:ComparePages
-'comparepages'     => 'Lapok összehasonlítása',
-'compare-selector' => 'Lapváltozatok összehasonlítása',
-'compare-page1'    => '1. lap',
-'compare-page2'    => '2. lap',
-'compare-rev1'     => '1. változat',
-'compare-rev2'     => '2. változat',
-'compare-submit'   => 'Összehasonlítás',
+'comparepages'                => 'Lapok összehasonlítása',
+'compare-selector'            => 'Lapváltozatok összehasonlítása',
+'compare-page1'               => '1. lap',
+'compare-page2'               => '2. lap',
+'compare-rev1'                => '1. változat',
+'compare-rev2'                => '2. változat',
+'compare-submit'              => 'Összehasonlítás',
+'compare-invalid-title'       => 'A megadott cím érvénytelen.',
+'compare-title-not-exists'    => 'A megadott cím nem létezik.',
+'compare-revision-not-exists' => 'A megadott lapváltozat nem létezik.',
 
 # Database error messages
 'dberr-header'      => 'A wikivel problémák vannak',
