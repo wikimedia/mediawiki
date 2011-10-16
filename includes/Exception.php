@@ -70,8 +70,9 @@ class MWException extends Exception {
 				$result = null;
 			}
 
-			if ( is_string( $result ) )
+			if ( is_string( $result ) ) {
 				return $result;
+			}
 		}
 	}
 

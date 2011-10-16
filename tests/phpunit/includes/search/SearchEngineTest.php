@@ -64,8 +64,10 @@ class SearchEngineTest extends MediaWikiTestCase {
 		$this->assertTrue( is_object( $results ) );
 
 		$matches = array();
-		while ( $row = $results->next() ) {
+		$row = $results->next();
+		while ( $row ) {
 			$matches[] = $row->getTitle()->getPrefixedText();
+			$row = $results->next();
 		}
 		$results->free();
 		# Search is not guaranteed to return results in a certain order;

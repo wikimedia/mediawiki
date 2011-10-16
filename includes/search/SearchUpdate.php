@@ -37,7 +37,7 @@ class SearchUpdate implements DeferrableUpdate {
 		global $wgContLang, $wgDisableSearchUpdate;
 
 		if( $wgDisableSearchUpdate || !$this->mId ) {
-			return false;
+			return;
 		}
 
 		wfProfileIn( __METHOD__ );

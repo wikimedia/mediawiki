@@ -35,7 +35,7 @@ class SpecialSearch extends SpecialPage {
 	 * string when applicable. Extensions can add new profiles with hooks
 	 * with custom search options just for that profile.
 	 * null|string
-	 */ 
+	 */
 	protected $profile;
 
 	/// Search engine
@@ -497,8 +497,10 @@ class SpecialSearch extends SpecialPage {
 			$out .= "\n<!-- {$infoLine} -->\n";
 		}
 		$out .= "<ul class='mw-search-results'>\n";
-		while( $result = $matches->next() ) {
+		$result = $matches->next();
+		while( $result ) {
 			$out .= $this->showHit( $result, $terms );
+			$result = $matches->next();
 		}
 		$out .= "</ul>\n";
 
@@ -717,9 +719,11 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$prev = null;
-		while( $result = $matches->next() ) {
+		$result = $matches->next();
+		while( $result ) {
 			$out .= $this->showInterwikiHit( $result, $prev, $terms, $query, $customCaptions );
 			$prev = $result->getInterwikiPrefix();
+			$result = $matches->next();
 		}
 		// TODO: should support paging in a non-confusing way (not sure how though, maybe via ajax)..
 		$out .= "</ul></div>\n";

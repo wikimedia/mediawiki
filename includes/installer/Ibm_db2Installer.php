@@ -216,12 +216,13 @@ class Ibm_db2Installer extends DatabaseInstaller {
 			$result = $this->db->query( 'SELECT PAGESIZE FROM SYSCAT.TABLESPACES' );
 			if( $result == false ) {
 				$status->fatal( 'config-connection-error', '' );
-			}
-			else {
-				while ( $row = $this->db->fetchRow( $result ) ) {
+			} else {
+				$row = $this->db->fetchRow( $result );
+				while ( $row ) {
 					if( $row[0] >= 32768 ) {
 						return $status;
 					}
+					$row = $this->db->fetchRow( $result );
 				}
 				$status->fatal( 'config-ibm_db2-low-db-pagesize', '' );
 			}

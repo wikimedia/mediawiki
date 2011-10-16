@@ -2552,7 +2552,7 @@ class Title {
 	 */
 	public function invalidateCache() {
 		if ( wfReadOnly() ) {
-			return;
+			return false;
 		}
 		$dbw = wfGetDB( DB_MASTER );
 		$success = $dbw->update(

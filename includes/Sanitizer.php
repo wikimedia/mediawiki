@@ -33,7 +33,7 @@ class Sanitizer {
 	 * Regular expression to match various types of character references in
 	 * Sanitizer::normalizeCharReferences and Sanitizer::decodeCharReferences
 	 */
-	const CHAR_REFS_REGEX = 
+	const CHAR_REFS_REGEX =
 		'/&([A-Za-z0-9\x80-\xff]+);
 		 |&\#([0-9]+);
 		 |&\#[xX]([0-9A-Fa-f]+);
@@ -335,7 +335,7 @@ class Sanitizer {
 			$attribFirst = '[:A-Z_a-z0-9]';
 			$attrib = '[:A-Z_a-z-.0-9]';
 			$space = '[\x09\x0a\x0d\x20]';
-			self::$attribsRegex = 
+			self::$attribsRegex =
 				"/(?:^|$space)({$attribFirst}{$attrib}*)
 				  ($space*=$space*
 					(?:
@@ -465,8 +465,14 @@ class Sanitizer {
 								if ( $t != $ot ) {
 									# No match. Push the optional elements back again
 									$badtag = true;
-									while ( $ot = @array_pop( $optstack ) ) {
+									wfSuppressWarnings();
+									$ot = array_pop( $optstack );
+									wfRestoreWarnings();
+									while ( $ot  ) {
 										array_push( $tagstack, $ot );
+										wfSuppressWarnings();
+										$ot = array_pop( $optstack );
+										wfRestoreWarnings();
 									}
 								}
 							} else {
@@ -608,7 +614,7 @@ class Sanitizer {
 	 * This does not validate properties, so you should ensure that you call
 	 * validateTagAttributes AFTER this to ensure that the resulting style rule
 	 * this may add is safe.
-	 * 
+	 *
 	 * - Converts most presentational attributes like align into inline css
 	 *
 	 * @param $attribs Array
@@ -617,19 +623,19 @@ class Sanitizer {
 	 */
 	static function fixDeprecatedAttributes( $attribs, $element ) {
 		global $wgHtml5, $wgCleanupPresentationalAttributes;
-		
+
 		// presentational attributes were removed from html5, we can leave them
 		// in when html5 is turned off
 		if ( !$wgHtml5 || !$wgCleanupPresentationalAttributes ) {
 			return $attribs;
 		}
-		
+
 		$table = array( 'table' );
 		$cells = array( 'td', 'th' );
 		$colls = array( 'col', 'colgroup' );
 		$tblocks = array( 'tbody', 'tfoot', 'thead' );
 		$h = array( 'h1', 'h2', 'h3', 'h4', 'h5', 'h6' );
-		
+
 		$presentationalAttribs = array(
 			'align' => array( 'text-align', array_merge( array( 'caption', 'hr', 'div', 'p', 'tr' ), $table, $cells, $colls, $tblocks, $h ) ),
 			'clear' => array( 'clear', array( 'br' ) ),
@@ -640,7 +646,7 @@ class Sanitizer {
 			'valign' => array( 'vertical-align', array_merge( $cells, $colls, $tblocks ) ),
 			'width' => array( 'width', array_merge( array( 'hr', 'pre' ), $table, $cells, $colls ) ),
 		);
-		
+
 		// Ensure that any upper case or mixed case attributes are converted to lowercase
 		foreach ( $attribs as $attribute => $value ) {
 			if ( $attribute !== strtolower( $attribute ) && array_key_exists( strtolower( $attribute ), $presentationalAttribs ) ) {
@@ -648,45 +654,45 @@ class Sanitizer {
 				unset( $attribs[$attribute] );
 			}
 		}
-		
+
 		$style = "";
 		foreach ( $presentationalAttribs as $attribute => $info ) {
 			list( $property, $elements ) = $info;
-			
+
 			// Skip if this attribute is not relevant to this element
 			if ( !in_array( $element, $elements ) ) {
 				continue;
 			}
-			
+
 			// Skip if the attribute is not used
 			if ( !array_key_exists( $attribute, $attribs ) ) {
 				continue;
 			}
-			
+
 			$value = $attribs[$attribute];
-			
+
 			// For nowrap the value should be nowrap instead of whatever text is in the value
 			if ( $attribute === 'nowrap' ) {
 				$value = 'nowrap';
 			}
-			
+
 			// clear="all" is clear: both; in css
 			if ( $attribute === 'clear' && strtolower( $value ) === 'all' ) {
 				$value = 'both';
 			}
-			
+
 			// Size based properties should have px applied to them if they have no unit
 			if ( in_array( $attribute, array( 'height', 'width', 'size' ) ) ) {
 				if ( preg_match( '/^[\d.]+$/', $value ) ) {
 					$value = "{$value}px";
 				}
 			}
-			
+
 			$style .= " $property: $value;";
-			
+
 			unset( $attribs[$attribute] );
 		}
-		
+
 		if ( $style ) {
 			// Prepend our style rules so that they can be overridden by user css
 			if ( isset($attribs['style']) ) {
@@ -694,7 +700,7 @@ class Sanitizer {
 			}
 			$attribs['style'] = trim($style);
 		}
-		
+
 		return $attribs;
 	}
 
@@ -766,7 +772,7 @@ class Sanitizer {
 			}
 
 			//RDFa and microdata properties allow URLs, URIs and/or CURIs. check them for sanity
-			if ( $attribute === 'rel' || $attribute === 'rev' || 
+			if ( $attribute === 'rel' || $attribute === 'rev' ||
 				$attribute === 'about' || $attribute === 'property' || $attribute === 'resource' || #RDFa
 				$attribute === 'datatype' || $attribute === 'typeof' ||                             #RDFa
 				$attribute === 'itemid' || $attribute === 'itemprop' || $attribute === 'itemref' || #HTML5 microdata
@@ -774,7 +780,7 @@ class Sanitizer {
 
 				//Paranoia. Allow "simple" values but suppress javascript
 				if ( preg_match( self::EVIL_URI_PATTERN, $value ) ) {
-					continue; 
+					continue;
 				}
 			}
 
@@ -839,7 +845,7 @@ class Sanitizer {
 	 * returned string may contain character references given certain
 	 * clever input strings. These character references must
 	 * be escaped before the return value is embedded in HTML.
-	 * 
+	 *
 	 * @param $value String
 	 * @return String
 	 */
@@ -861,7 +867,7 @@ class Sanitizer {
 			$space = '[\\x20\\t\\r\\n\\f]';
 			$nl = '(?:\\n|\\r\\n|\\r|\\f)';
 			$backslash = '\\\\';
-			$decodeRegex = "/ $backslash 
+			$decodeRegex = "/ $backslash
 				(?:
 					($nl) |  # 1. Line continuation
 					([0-9A-Fa-f]{1,6})$space? |  # 2. character number
@@ -871,7 +877,7 @@ class Sanitizer {
 		}
 		$value = preg_replace_callback( $decodeRegex,
 			array( __CLASS__, 'cssDecodeCallback' ), $value );
-		
+
 		// Remove any comments; IE gets token splitting wrong
 		// This must be done AFTER decoding character references and
 		// escape sequences, because those steps can introduce comments
@@ -1446,7 +1452,7 @@ class Sanitizer {
 		if ( $wgAllowRdfaAttributes ) {
 			#RDFa attributes as specified in section 9 of http://www.w3.org/TR/2008/REC-rdfa-syntax-20081014
 			$common = array_merge( $common, array(
-			    'about', 'property', 'resource', 'datatype', 'typeof', 
+			    'about', 'property', 'resource', 'datatype', 'typeof',
 			) );
 		}
 
@@ -1563,7 +1569,7 @@ class Sanitizer {
 			'th'         => array_merge( $common, $tablecell, $tablealign ),
 
 			# 12.2 # NOTE: <a> is not allowed directly, but the attrib whitelist is used from the Parser object
-			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ), # rel/rev esp. for RDFa 
+			'a'          => array_merge( $common, array( 'href', 'rel', 'rev' ) ), # rel/rev esp. for RDFa
 
 			# 13.2
 			# Not usually allowed, but may be used for extension-style hooks
@@ -1654,7 +1660,7 @@ class Sanitizer {
 		$url = Sanitizer::decodeCharReferences( $url );
 
 		# Escape any control characters introduced by the above step
-		$url = preg_replace_callback( '/[\][<>"\\x00-\\x20\\x7F\|]/', 
+		$url = preg_replace_callback( '/[\][<>"\\x00-\\x20\\x7F\|]/',
 			array( __CLASS__, 'cleanUrlCallback' ), $url );
 
 		# Validate hostname portion

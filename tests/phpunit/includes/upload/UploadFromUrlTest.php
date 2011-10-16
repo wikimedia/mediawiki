@@ -36,7 +36,10 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * Ensure that the job queue is empty before continuing
 	 */
 	public function testClearQueue() {
-		while ( $job = Job::pop() ) { }
+		$job = Job::pop();
+		while ( $job ) {
+			$job = Job::pop();
+		}
 		$this->assertFalse( $job );
 	}
 
