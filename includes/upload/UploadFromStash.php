@@ -134,6 +134,7 @@ class UploadFromStash extends UploadBase {
 
 	/**
 	 * This should return the key instead of the UploadStashFile instance, for backward compatibility.
+	 * @return String
 	 */
 	public function stashSession() {
 		return $this->stashFile()->getFileKey();
@@ -164,9 +165,12 @@ class UploadFromStash extends UploadBase {
 	/**
 	 * Append a chunk to the temporary file.
 	 *
+	 * @param $chunk
+	 * @param $chunkSize
+	 * @param $offset
 	 * @return Status
 	 */
-	public function appendChunk($chunk, $chunkSize, $offset) {
+	public function appendChunk( $chunk, $chunkSize, $offset ) {
 		//to use $this->getFileSize() here, db needs to be updated
 		//in appendToUploadFile for that
 		$fileSize = $this->stash->getFile( $this->mFileKey )->getSize();
