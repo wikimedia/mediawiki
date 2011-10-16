@@ -1376,6 +1376,7 @@ $wgExternalServers = array();
  *
  * $wgDefaultExternalStore = array( 'DB://cluster1', 'DB://cluster2' );
  *
+ * @var array
  */
 $wgDefaultExternalStore = false;
 
@@ -2457,6 +2458,12 @@ $wgBetterDirectionality = true;
  *   );
  */
 $wgResourceModules = array();
+
+/*
+ * Default 'remoteBasePath' value for resource loader modules.
+ * If not set, then $wgScriptPath will be used as a fallback.
+ */
+$wgResourceBasePath = null;
 
 /**
  * Maximum time in seconds to cache resources served by the resource loader
