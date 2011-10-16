@@ -702,17 +702,17 @@ Documentation for both end-users and site administrators is available on
 MediaWiki.org, and is covered under the GNU Free Documentation License (except
 for pages that explicitly state that their contents are in the public domain):
 
-    http://www.mediawiki.org/wiki/Documentation
+	http://www.mediawiki.org/wiki/Documentation
 
 == Mailing list ==
 
 A mailing list is available for MediaWiki user support and discussion:
 
-    http://lists.wikimedia.org/mailman/listinfo/mediawiki-l
+	http://lists.wikimedia.org/mailman/listinfo/mediawiki-l
 
 A low-traffic announcements-only list is also available:
 
-    http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
+	http://lists.wikimedia.org/mailman/listinfo/mediawiki-announce
 
 It's highly recommended that you sign up for one of these lists if you're
 going to run a public MediaWiki, so you can be notified of security fixes.
