@@ -10,6 +10,7 @@ if ( !isset( $wgVersion ) ) {
 	$wgVersion = 'VERSION';
 }
 
+# bug 30219 : can not use pathinfo() on URLs since slashes do not match
 $matches = array();
 $ext = 'php';
 $path = '/';
