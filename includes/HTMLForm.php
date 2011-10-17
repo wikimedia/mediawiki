@@ -1706,7 +1706,17 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
 
 		} else {
 			$final = $this->getDefault();
-			$list = $text = '';
+
+			$list = 'other';
+			$text = $final;
+			foreach ( $this->mFlatOptions as $option ) {
+				$match = $option . wfMsgForContent( 'colon-separator' );
+				if( strpos( $text, $match ) === 0 ) {
+					$list = $option;
+					$text = substr( $text, strlen( $match ) );
+					break;
+				}
+			}
 		}
 		return array( $final, $list, $text );
 	}
