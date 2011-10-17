@@ -25,7 +25,7 @@ class BenchmarkHooks extends Benchmarker {
 
 	public function __construct() {
 		parent::__construct();
-		$this->mDescription = "Benchmark MediaWiki Hooks.";
+		$this->mDescription = 'Benchmark MediaWiki Hooks.';
 	}
 
 	public function execute() {
@@ -76,5 +76,5 @@ class BenchmarkHooks extends Benchmarker {
 	}
 }
 
-$maintClass = "BenchmarkHooks";
+$maintClass = 'BenchmarkHooks';
 require_once( RUN_MAINTENANCE_IF_MAIN );
