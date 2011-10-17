@@ -2369,8 +2369,7 @@ $templates
 	 * @return string html <script> and <style> tags
 	 */
 	protected function makeResourceLoaderLink( $modules, $only, $useESI = false, array $extraQuery = array() ) {
-		global $wgLoadScript, $wgResourceLoaderUseESI,
-			$wgResourceLoaderInlinePrivateModules;
+		global $wgResourceLoaderUseESI, $wgResourceLoaderInlinePrivateModules;
 
 		if ( !count( $modules ) ) {
 			return '';
