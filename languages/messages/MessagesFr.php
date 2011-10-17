@@ -3704,7 +3704,7 @@ Vous pouvez aussi [[Special:EditWatchlist|utiliser l’éditeur normal]].',
 'hijri-calendar-m11' => 'Dhu al-Qi’dah',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|discussion]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussion]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Balise d’extension « $1 » inconnue',

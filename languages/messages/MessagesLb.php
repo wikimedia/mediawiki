@@ -3421,7 +3421,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'watchlisttools-raw'  => 'Net-formatéiert Iwwerwaachungslëscht änneren',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|Diskussioun]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|Diskussioun]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekannten Erweiderungs-Tag "$1"',

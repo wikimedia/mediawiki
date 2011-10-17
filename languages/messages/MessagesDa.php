@@ -3429,7 +3429,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'watchlisttools-raw'  => 'Rediger rå overvågningsliste',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|diskussion]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskussion]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ukendt tag "$1"',

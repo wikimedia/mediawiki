@@ -3639,7 +3639,7 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 'watchlisttools-raw'  => 'Redigera bevakningslistan i råformat',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|diskussion]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskussion]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Okänd tagg "$1"',

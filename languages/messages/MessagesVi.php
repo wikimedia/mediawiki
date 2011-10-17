@@ -3698,7 +3698,7 @@ Bạn cũng có thể [[Special:EditWatchlist|dùng trang sửa đổi bình th�
 'hebrew-calendar-m12' => 'Elul',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|thảo luận]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|thảo luận]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Không hiểu thẻ mở rộng “$1”',

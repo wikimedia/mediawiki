@@ -3536,7 +3536,7 @@ Uporabite lahko tudi [[Special:EditWatchlist|standardni urejevalnik]].',
 'watchlisttools-raw'  => 'Uredi gol spisek nadzorov',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|pogovor]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|pogovor]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Neznana razširitvena etiketa »$1«',

@@ -4007,7 +4007,7 @@ $1',
 'hebrew-calendar-m12-gen' => 'Елул',
 
 # Signatures
-'signature'    => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|разговор]])</sup>',
+'signature'    => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|разговор]])',
 'timezone-utc' => 'UTC',
 
 # Core parser functions

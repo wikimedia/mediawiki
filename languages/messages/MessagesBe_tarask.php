@@ -3546,7 +3546,7 @@ $1',
 'watchlisttools-raw'  => 'Рэдагаваць як тэкст',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|гутаркі]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|гутаркі]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Невядомы тэг пашырэньня «$1»',

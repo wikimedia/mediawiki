@@ -3508,7 +3508,7 @@ Gallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].',
 'iranian-calendar-m12' => '12vet miz Jalāli',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|kaozeal]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|kaozeal]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Balizenn astenn "$1" dianav',

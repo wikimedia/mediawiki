@@ -3424,7 +3424,7 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'watchlisttools-raw'  => 'Editar la llista de vixilancia (en bruto)',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|alderique]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|alderique]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta d\'estensión "$1" desconocida',
