@@ -3292,7 +3292,6 @@ class Title {
 			MessageCache::singleton()->replace( $nt->getDBkey(), $newarticle->getContent() );
 		}
 
-		global $wgUser;
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
 		return true;
 	}
