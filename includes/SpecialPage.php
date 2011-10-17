@@ -558,7 +558,7 @@ class SpecialPage {
 		} else {
 			$msg = $summaryMessageKey;
 		}
-		if ( !wfMessage( $msg )->isBlank() and ! $this->including() ) {
+		if ( !$this->msg( $msg )->isBlank() && !$this->including() ) {
 			$this->getOutput()->wrapWikiMsg(
 				"<div class='mw-specialpage-summary'>\n$1\n</div>", $msg );
 		}
@@ -576,7 +576,7 @@ class SpecialPage {
 	 * @return String
 	 */
 	function getDescription() {
-		return wfMsg( strtolower( $this->mName ) );
+		return $this->msg( strtolower( $this->mName ) )->text();
 	}
 
 	/**
@@ -742,9 +742,9 @@ abstract class FormSpecialPage extends SpecialPage {
 
 		$form = new HTMLForm( $this->fields, $this->getContext() );
 		$form->setSubmitCallback( array( $this, 'onSubmit' ) );
-		$form->setWrapperLegend( wfMessage( strtolower( $this->getName() ) . '-legend' ) );
+		$form->setWrapperLegend( $this->msg( strtolower( $this->getName() ) . '-legend' ) );
 		$form->addHeaderText(
-			wfMessage( strtolower( $this->getName() ) . '-text' )->parseAsBlock() );
+			$this->msg( strtolower( $this->getName() ) . '-text' )->parseAsBlock() );
 
 		// Retain query parameters (uselang etc)
 		$params = array_diff_key(
