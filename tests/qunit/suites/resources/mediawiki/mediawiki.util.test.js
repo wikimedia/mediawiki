@@ -142,6 +142,13 @@ test( '$content', function() {
 	strictEqual( mw.util.$content.length, 1, 'mw.util.$content must have length of 1' );
 });
 
+
+/**
+ * Portlet names are prefixed with 'p-test' to avoid conflict with core
+ * when running the test suite under a wiki page.
+ * Previously, test elements where invisible to the selector since only
+ * one element can have a given id. 
+ */
 test( 'addPortletLink', function() {
 	expect(7);
 
