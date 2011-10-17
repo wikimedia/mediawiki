@@ -81,7 +81,10 @@ class HTMLForm {
 	);
 
 	protected $mMessagePrefix;
+
+	/** @var HTMLFormField[] */
 	protected $mFlatFields;
+
 	protected $mFieldTree;
 	protected $mShowReset = false;
 	public $mFieldData;
@@ -512,6 +515,7 @@ class HTMLForm {
 
 	/**
 	 * Get the whole body of the form.
+	 * @return String
 	 */
 	function getBody() {
 		return $this->displaySection( $this->mFieldTree );
@@ -686,9 +690,10 @@ class HTMLForm {
 
 	/**
 	 * TODO: Document
-	 * @param $fields array of fields (either arrays or objects)
+	 * @param $fields array[]|HTMLFormField[] array of fields (either arrays or objects)
 	 * @param $sectionName string ID attribute of the <table> tag for this section, ignored if empty
 	 * @param $fieldsetIDPrefix string ID prefix for the <fieldset> tag of each subsection, ignored if empty
+	 * @return String
 	 */
 	function displaySection( $fields, $sectionName = '', $fieldsetIDPrefix = '' ) {
 		$tableHtml = '';
@@ -1310,6 +1315,7 @@ class HTMLCheckField extends HTMLFormField {
 	/**
 	 * For a checkbox, the label goes on the right hand side, and is
 	 * added in getInputHTML(), rather than HTMLFormField::getRow()
+	 * @return String
 	 */
 	function getLabel() {
 		return '&#160;';
@@ -1756,6 +1762,8 @@ class HTMLRadioField extends HTMLFormField {
 	/**
 	 * This returns a block of all the radio options, in one cell.
 	 * @see includes/HTMLFormField#getInputHTML()
+	 * @param $value String
+	 * @return String
 	 */
 	function getInputHTML( $value ) {
 		$html = $this->formatOptions( $this->mParams['options'], $value );
@@ -1881,6 +1889,9 @@ class HTMLSubmitField extends HTMLFormField {
 
 	/**
 	 * Button cannot be invalid
+	 * @param $value String
+	 * @param $alldata Array
+	 * @return Bool
 	 */
 	public function validate( $value, $alldata ){
 		return true;

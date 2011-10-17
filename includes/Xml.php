@@ -334,10 +334,10 @@ class Xml {
 
 	/**
 	 * Convenience function to build an HTML radio button
-	 * @param $name value of the name attribute
-	 * @param $value value of the value attribute
-	 * @param $checked Whether the checkbox is checked or not
-	 * @param $attribs other attributes
+	 * @param $name String value of the name attribute
+	 * @param $value String value of the value attribute
+	 * @param $checked Bool Whether the checkbox is checked or not
+	 * @param $attribs Array other attributes
 	 * @return string HTML
 	 */
 	public static function radio( $name, $value, $checked = false, $attribs = array() ) {
@@ -376,8 +376,8 @@ class Xml {
 	 * @param $label String text of the label
 	 * @param $name String value of the name attribute
 	 * @param $id String id of the input
-	 * @param $size int value of the size attribute
-	 * @param $value value of the value attribute
+	 * @param $size Int|Bool value of the size attribute
+	 * @param $value String|Bool value of the value attribute
 	 * @param $attribs array other attributes
 	 * @return string HTML
 	 */
@@ -389,11 +389,11 @@ class Xml {
 	/**
 	 * Same as Xml::inputLabel() but return input and label in an array
 	 *
-	 * @param $label
-	 * @param $name
-	 * @param $id
-	 * @param $size
-	 * @param $value
+	 * @param $label String
+	 * @param $name String
+	 * @param $id String
+	 * @param $size Int|Bool
+	 * @param $value String|Bool
 	 * @param $attribs array
 	 *
 	 * @return array
