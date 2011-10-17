@@ -536,7 +536,7 @@ class MovePageForm extends UnlistedSpecialPage {
 					if ( $this->fixRedirects ) {
 						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage, $newSubpage );
 					}
-					$oldLink = Linker::linkKnown(
+					$oldLink = Linker::link(
 						$oldSubpage,
 						null,
 						array(),
