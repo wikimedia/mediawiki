@@ -339,16 +339,21 @@ class SpecialPageFactory {
 	 * Return categorised listable special pages which are available
 	 * for the current user, and everyone.
 	 *
+	 * @param $user User object to check permissions, $wgUser will be used
+	 *              if not provided
 	 * @return Array( String => Specialpage )
 	 */
-	public static function getUsablePages() {
-		global $wgUser;
+	public static function getUsablePages( User $user = null ) {
 		$pages = array();
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
 		foreach ( self::getList() as $name => $rec ) {
 			$page = self::getPage( $name );
 			if ( $page // not null
 				&& $page->isListed()
-				&& ( !$page->isRestricted() || $page->userCanExecute( $wgUser ) )
+				&& ( !$page->isRestricted() || $page->userCanExecute( $user ) )
 			) {
 				$pages[$name] = $page;
 			}

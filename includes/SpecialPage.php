@@ -189,11 +189,13 @@ class SpecialPage {
 	 * Return categorised listable special pages which are available
 	 * for the current user, and everyone.
 	 *
+	 * @param $user User object to check permissions, $wgUser will be used
+	 *              if not provided
 	 * @return Associative array mapping page's name to its SpecialPage object
 	 * @deprecated since 1.18 call SpecialPageFactory method directly
 	 */
-	static function getUsablePages() {
-		return SpecialPageFactory::getUsablePages();
+	static function getUsablePages( User $user = null ) {
+		return SpecialPageFactory::getUsablePages( $user );
 	}
 
 	/**
