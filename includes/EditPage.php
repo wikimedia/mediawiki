@@ -238,7 +238,12 @@ class EditPage {
 						$firstrev = $oldrev->getNext();
 						# If we just undid one rev, use an autosummary
 						if ( $firstrev->mId == $undo ) {
-							$this->summary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
+							$undoSummary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
+							if ( $this->summary === '' ) {
+								$this->summary = $undoSummary;
+							} else {
+								$this->summary = $undoSummary . wfMsgForContent( 'colon-separator' ) . $this->summary;
+							}
 							$this->undidRev = $undo;
 						}
 						$this->formtype = 'diff';
