@@ -197,7 +197,7 @@
 	'lfn' => 'Lingua Franca Nova',	# Lingua Franca Nova
 	'lg' => 'Luganda',		# Ganda
 	'li' => 'Limburgs',	# Limburgian
-	'lij' => 'Líguru',	# Ligurian
+	'lij' => 'Ligure',	# Ligurian
 	'liv' => 'Līvõ kēļ',	# Livonian
 	'lmo' => 'Lumbaart',	# Lombard
 	'ln' => 'Lingála',		# Lingala
