@@ -308,6 +308,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(ต่อ)',
 'index-category'                 => 'หน้าที่มีดัชนี',
 'noindex-category'               => 'หน้าที่ไม่มีดัชนี',
+'broken-file-category'           => 'หน้าที่มีลิงก์ไฟล์เสีย',
 
 'about'         => 'เว็บไซต์นี้',
 'article'       => 'หน้าเนื้อหา',

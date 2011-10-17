@@ -304,7 +304,7 @@ $messages = array(
 'editthispage'      => 'Golygwch y dudalen hon',
 'create-this-page'  => "Creu'r dudalen",
 'delete'            => 'Dileu',
-'deletethispage'    => 'Dilëer y dudalen hon',
+'deletethispage'    => 'Dileer y dudalen hon',
 'undelete_short'    => 'Adfer $1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|golygiad}}',
 'viewdeleted_short' => "Edrych ar y {{PLURAL:$1|golygiad sydd wedi'i ddileu|golygiad sydd wedi'i ddileu|$1 olygiad sydd wedi'u dileu|$1 golygiad sydd wedi'u dileu|$1 golygiad sydd wedi'u dileu|$1 golygiad sydd wedi'u dileu}}",
 'protect'           => 'Diogelu',
@@ -655,7 +655,7 @@ Y cyfrinair dros dro: $2",
 'changeemail-newemail' => 'Cyfeiriad e-bost newydd:',
 'changeemail-none'     => '(dim)',
 'changeemail-submit'   => 'Newidier y cyfeiriad e-bost',
-'changeemail-cancel'   => 'Dilëer',
+'changeemail-cancel'   => 'Dileer',
 
 # Edit page toolbar
 'bold_sample'     => 'Testun cryf',
@@ -2063,7 +2063,7 @@ Am fwy o gymorth ac adborth:
 {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'             => 'Dilëer y dudalen',
+'deletepage'             => 'Dileer y dudalen',
 'confirm'                => 'Cadarnhau',
 'excontent'              => "y cynnwys oedd: '$1'",
 'excontentauthor'        => "y cynnwys oedd: '$1' (a'r unig gyfrannwr oedd '[[Special:Contributions/$2|$2]]')",

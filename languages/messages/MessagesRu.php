@@ -3692,7 +3692,7 @@ $1',
 'hebrew-calendar-m12-gen' => 'Элула',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|обсуждение]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|обсуждение]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Неизвестный тег дополнения «$1»',

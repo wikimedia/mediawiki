@@ -3510,7 +3510,7 @@ Takođe, možete [[Special:EditWatchlist|koristiti standardan uređivač spiska]
 'watchlisttools-raw'  => 'Izmeni sirov spisak nadgledanja',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|razgovor]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|razgovor]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nepoznati tag za ekstenziju: "$1".',

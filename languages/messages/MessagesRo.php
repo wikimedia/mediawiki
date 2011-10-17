@@ -3624,7 +3624,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'watchlisttools-raw'  => 'Modifică lista brută a paginilor urmărite',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|discuție]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discuție]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Extensie etichetă necunoscută "$1"',

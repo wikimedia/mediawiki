@@ -3685,7 +3685,7 @@ Seznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve 
 'hebrew-calendar-m12-gen' => 'elulu',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|diskuse]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskuse]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Neznámá značka rozšíření: „$1“',

@@ -3569,7 +3569,7 @@ Je kunnen oek [[Special:EditWatchlist|t standardbewarkingsscharm gebruken]].",
 'watchlisttools-raw'  => 'Roewe volglieste bewarken',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|overleg]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|overleg]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Onbekende tag "$1"',

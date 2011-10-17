@@ -3545,7 +3545,7 @@ Tu pote etiam [[Special:EditWatchlist|usar le editor standard]].',
 'watchlisttools-raw'  => 'Modificar observatorio crude',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|discussion]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussion]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiquetta de extension incognite "$1"',

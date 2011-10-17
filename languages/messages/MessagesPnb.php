@@ -3313,7 +3313,7 @@ $1',
 'watchlisttools-raw'  => 'کچی اکھ تھلے رکھی ہوئی نو تبدیل کرو',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:ورتن گل بات}}:$1|گل بات]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:ورتن گل بات}}:$1|گل بات]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'انجان ایکسٹنشن ٹیگ "$1"',

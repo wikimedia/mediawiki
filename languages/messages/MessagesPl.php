@@ -3661,7 +3661,7 @@ Możesz także użyć [[Special:EditWatchlist|standardowego edytora obserwowanyc
 'hebrew-calendar-m11-gen' => 'Aw',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|dyskusja]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|dyskusja]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Nieznany znacznik rozszerzenia „$1”',

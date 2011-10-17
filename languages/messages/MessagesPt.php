@@ -3679,7 +3679,7 @@ Também pode [[Special:EditWatchlist|editar a lista da maneira convencional]].',
 'watchlisttools-raw'  => 'Editar a lista de páginas vigiadas em forma de texto',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|discussão]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussão]])',
 
 # Core parser functions
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',

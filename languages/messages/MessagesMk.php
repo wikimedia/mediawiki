@@ -776,7 +776,7 @@ $2',
 'passwordtooshort'           => 'Лозинката мора да има најмалку {{PLURAL:$1|1 знак|$1 знаци}}.',
 'password-name-match'        => 'Лозинката мора да се разликува од корисничкото име.',
 'password-login-forbidden'   => 'Употребата на ова корисничко име и лозинка е забранета.',
-'mailmypassword'             => 'Испрати ми нова лозинка (на е-пошта)',
+'mailmypassword'             => 'Испрати нова лозинка',
 'passwordremindertitle'      => 'Нова привремена лозинка за {{SITENAME}}',
 'passwordremindertext'       => 'Некој (најверојатно вие, од IP-адреса $1) побара нова лозинка за {{SITENAME}} ($4).
 Создадена е привремена лозинка „$3“ за корисничката сметка „$2“.
@@ -3863,7 +3863,7 @@ $1',
 'hebrew-calendar-m12-gen' => 'Елул',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|разговор]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|разговор]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Непозната ознака на додатокот „$1“',

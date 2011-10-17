@@ -3397,7 +3397,7 @@ De kèns ouch [[Special:EditWatchlist|'t sjtanderd bewirkingssjirm gebroeke]].",
 'watchlisttools-raw'  => 'Roew volglies bewirke',
 
 # Signatures
-'signature' => '[[{{ns:user}}:$1|$2]] <sup>([[{{ns:user_talk}}:$1|euverlègk]])</sup>',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|euverlègk]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ónbekindje tag "$1"',
