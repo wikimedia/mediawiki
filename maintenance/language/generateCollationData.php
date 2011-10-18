@@ -12,7 +12,7 @@ class GenerateCollationData extends Maintenance {
 	/** The primary weights, indexed by codepoint */
 	var $weights;
 
-	/** 
+	/**
 	 * A hashtable keyed by codepoint, where presence indicates that a character
 	 * has a decomposition mapping. This makes it non-preferred for group header
 	 * selection.
@@ -30,7 +30,7 @@ class GenerateCollationData extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( 'data-dir', 'A directory on the local filesystem ' .
-			'containing allkeys.txt and ucd.all.grouped.xml from unicode.org', 
+			'containing allkeys.txt and ucd.all.grouped.xml from unicode.org',
 			false, true );
 		$this->addOption( 'debug-output', 'Filename for sending debug output to',
 			false, true );
@@ -72,7 +72,7 @@ class GenerateCollationData extends Maintenance {
 		// but do not skip a normal space (U+0020) since
 		// people like to use that as a fake no header symbol.
 		$category = substr( $data['gc'], 0, 1 );
-		if ( strpos( 'LNPS', $category ) === false 
+		if ( strpos( 'LNPS', $category ) === false
 			&& $data['cp'] !== '0020' ) {
 			return;
 		}
@@ -84,7 +84,7 @@ class GenerateCollationData extends Maintenance {
 			return;
 		}
 
-		// Skip the composed Hangul syllables, we will use the bare Jamo 
+		// Skip the composed Hangul syllables, we will use the bare Jamo
 		// as first letters
 		if ( $data['block'] == 'Hangul Syllables' ) {
 			return;
@@ -163,7 +163,7 @@ class GenerateCollationData extends Maintenance {
 			}
 			$this->weights[$cp] = $primary;
 			if ( $tertiary === '.0008'
-				|| $tertiary === '.000E' ) 
+				|| $tertiary === '.000E' )
 			{
 				$goodTertiaryChars[$cp] = true;
 			}
@@ -192,8 +192,8 @@ class GenerateCollationData extends Maintenance {
 		}
 
 		// If one character has a given primary weight sequence, and a second
-		// character has a longer primary weight sequence with an initial 
-		// portion equal to the first character, then remove the second 
+		// character has a longer primary weight sequence with an initial
+		// portion equal to the first character, then remove the second
 		// character. This avoids having characters like U+A732 (double A)
 		// polluting the basic latin sort area.
 
@@ -306,11 +306,12 @@ class UcdXmlReader {
 		while ( $this->xml->name !== 'ucd' && $this->xml->read() );
 		$this->xml->read();
 		return $this->xml;
-	}	
+	}
 
 	/**
-	 * Read the attributes of the current element node and return them 
+	 * Read the attributes of the current element node and return them
 	 * as an array
+	 * @return array
 	 */
 	protected function readAttributes() {
 		$attrs = array();

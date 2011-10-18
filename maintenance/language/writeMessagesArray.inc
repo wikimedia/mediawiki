@@ -106,6 +106,9 @@ class MessageWriter {
 		# Sort messages to blocks
 		$sortedMessages['unknown'] = $messages;
 		foreach( self::$messageStructure as $blockName => $block ) {
+			/**
+			 * @var $block array
+			 */
 			foreach( $block as $key ) {
 				if( array_key_exists( $key, $sortedMessages['unknown'] ) ) {
 					$sortedMessages[$blockName][$key] = $sortedMessages['unknown'][$key];

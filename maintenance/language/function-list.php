@@ -23,6 +23,7 @@ define( 'MEDIAWIKI', 1 );
 define( 'NOT_REALLY_MEDIAWIKI', 1 );
 
 class Language { }
+
 foreach ( glob( 'Language*.php' ) as $file ) {
 	if ( $file != 'Language.php' ) {
 		require_once( $file );
@@ -59,5 +60,3 @@ foreach ( $classes as $class ) {
 }
 
 print "$numRemoved will be removed out of $total\n";
-
-
