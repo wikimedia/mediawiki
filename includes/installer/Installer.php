@@ -1118,6 +1118,9 @@ abstract class Installer {
 	/**
 	 * Same as locateExecutable(), but checks in getPossibleBinPaths() by default
 	 * @see locateExecutable()
+	 * @param $names
+	 * @param $versionInfo bool
+	 * @return bool|string
 	 */
 	public static function locateExecutableInDefaultPaths( $names, $versionInfo = false ) {
 		foreach( self::getPossibleBinPaths() as $path ) {
@@ -1204,6 +1207,8 @@ abstract class Installer {
 
 	/**
 	 * Overridden by WebInstaller to provide lastPage parameters.
+	 * @param $page stirng
+	 * @return string
 	 */
 	protected function getDocUrl( $page ) {
 		return "{$_SERVER['PHP_SELF']}?page=" . urlencode( $page );
@@ -1491,6 +1496,7 @@ abstract class Installer {
 	/**
 	 * Insert Main Page with default content.
 	 *
+	 * @param $installer DatabaseInstaller
 	 * @return Status
 	 */
 	protected function createMainpage( DatabaseInstaller $installer ) {

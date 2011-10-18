@@ -187,7 +187,7 @@ class LocalSettingsGenerator {
 			$locale = '';
 		}
 
-		$rightsUrl = $this->values['wgRightsUrl'] ? '' : '#';
+		//$rightsUrl = $this->values['wgRightsUrl'] ? '' : '#'; // TODO: Fixme, I'm unused!
 		$hashedUploads = $this->safeMode ? '' : '#';
 		$metaNamespace = '';
 		if( $this->values['wgMetaNamespace'] !== $this->values['wgSitename'] ) {

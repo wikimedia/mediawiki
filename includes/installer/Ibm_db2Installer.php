@@ -144,6 +144,9 @@ class Ibm_db2Installer extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		/**
+		 * @var $conn DatabaseBase
+		 */
 		$conn = $status->value;
 		$dbName = $this->getVar( 'wgDBname' );
 		if( !$conn->selectDB( $dbName ) ) {

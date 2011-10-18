@@ -281,6 +281,7 @@ abstract class DatabaseInstaller {
 	/**
 	 * Construct and initialise parent.
 	 * This is typically only called from Installer::getDBInstaller()
+	 * @param $parent
 	 */
 	public function __construct( $parent ) {
 		$this->parent = $parent;
@@ -291,6 +292,8 @@ abstract class DatabaseInstaller {
 	 * Check if a named extension is present.
 	 *
 	 * @see wfDl
+	 * @param $name
+	 * @return bool
 	 */
 	protected static function checkExtension( $name ) {
 		wfSuppressWarnings();
@@ -323,6 +326,9 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Get a variable, taking local defaults into account.
+	 * @param $var string
+	 * @param $default null
+	 * @return mixed
 	 */
 	public function getVar( $var, $default = null ) {
 		$defaults = $this->getGlobalDefaults();
@@ -337,6 +343,8 @@ abstract class DatabaseInstaller {
 
 	/**
 	 * Convenience alias for $this->parent->setVar()
+	 * @param $name string
+	 * @param $value mixed
 	 */
 	public function setVar( $name, $value ) {
 		$this->parent->setVar( $name, $value );
@@ -345,6 +353,10 @@ abstract class DatabaseInstaller {
 	/**
 	 * Get a labelled text box to configure a local variable.
 	 *
+	 * @param $var string
+	 * @param $label string
+	 * @param $attribs array
+	 * @param $helpData string
 	 * @return string
 	 */
 	public function getTextBox( $var, $label, $attribs = array(), $helpData = "" ) {
@@ -367,6 +379,10 @@ abstract class DatabaseInstaller {
 	 * Get a labelled password box to configure a local variable.
 	 * Implements password hiding.
 	 *
+	 * @param $var string
+	 * @param $label string
+	 * @param $attribs array
+	 * @param $helpData string
 	 * @return string
 	 */
 	public function getPasswordBox( $var, $label, $attribs = array(), $helpData = "" ) {
