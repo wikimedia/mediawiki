@@ -352,6 +352,7 @@ Chu-liāu-khò͘ thoân hoê ê chhò-ngō͘ "<tt>$3: $4</tt>".',
 Che it-poaⁿ sī in-ūi koè-sî ê cheng-chha ia̍h sī le̍k-sú liân-kiat ê ia̍h í-keng hông thâi tiàu.
 
 Nā m̄-sī hit chióng chêng-hêng, lí khó-lêng tú tio̍h nńg-thé ê chhò-ngō͘. Chhiáⁿ pò hō͘ chi̍t ūi [[Special:ListUsers/sysop|koán-lí-goân]], ūi liân-kiat hiâ khì lâu thong-ti .',
+'missingarticle-rev'   => '（修訂本#: $1）',
 'internalerror'        => 'Loē-pō͘ ê chhò-ngō͘',
 'internalerror_info'   => 'Loē-pō͘ ê chhò-ngō͘: $1',
 'fileappenderrorread'  => 'Ka-ji̍p(append) ê sî bô-hoat-tō͘ thak "$1".',
@@ -418,6 +419,7 @@ Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-go�
 'createaccount'              => 'Khui sin kháu-chō',
 'gotaccount'                 => "Í-keng ū kháu-chō? '''$1'''.",
 'gotaccountlink'             => 'Teng-ji̍p',
+'userlogin-resetlink'        => '袂記哩你登入的資料？',
 'createaccountmail'          => 'Thàu koè tiān-chú-phoe',
 'createaccountreason'        => 'Lí-iû:',
 'badretype'                  => 'Lí su-ji̍p ê 2-cho· bi̍t-bé bô tùi.',
@@ -570,6 +572,7 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'nohistory'              => 'Chit ia̍h bô pian-chi̍p-sú.',
 'currentrev'             => 'Hiān-chú-sî ê siu-tēng-pún',
 'revisionasof'           => '$1 ê siu-tēng-pún',
+'revision-info'          => '$2佇$1的修訂本',
 'previousrevision'       => '←Khah kū ê siu-tēng-pún',
 'nextrevision'           => 'Khah sin ê siu-tēng-pún→',
 'currentrevisionlink'    => 'khoàⁿ siōng sin ê siu-tēng-pún',
@@ -579,6 +582,7 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'page_last'              => 'Tùi āu-piah',
 'histlegend'             => 'Pán-pún pí-phēng: tiám-soán beh pí-phēng ê pán-pún ê liú-á, liáu-āu chhi̍h ENTER a̍h-sī ē-kha hit tè sì-kak.<br />Soat-bêng: (taⁿ) = kap siōng sin pán-pún pí-phēng, (chêng) = kap chêng-1-ê pán-pún pí-phēng, ~ = sió siu-kái.',
 'history-fieldset-title' => '看歷史',
+'history-show-deleted'   => '只有刣掉的',
 'histfirst'              => 'Tùi thâu-chêng',
 'histlast'               => 'Tùi āu-piah',
 
@@ -593,6 +597,7 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'lineno'                  => 'Tē $1 chōa:',
 'compareselectedversions' => 'Pí-phēng soán-te̍k ê pán-pún',
 'editundo'                => 'chhú-siau',
+'diff-multi'              => '（由{{PLURAL:$2|个用者|$2个用者}}的{{PLURAL:$1|一个中央修訂本|$1个中央修訂本}}無顯示）',
 
 # Search results
 'searchresults'                  => 'Kiám-sek kiat-kó',
@@ -615,8 +620,10 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'searchprofile-project-tooltip'  => '揣$1內底的',
 'searchprofile-images-tooltip'   => 'Chhoé tóng-àn',
 'search-result-size'             => '$1 ({{PLURAL:$2|1 jī-goân|$2 jī-goân}})',
+'search-result-category-size'    => '{{PLURAL:$1|一个成員|$1成員}} ({{PLURAL:$2|一个下類別|$2个下類別}}，{{PLURAL:$3|一个檔案|$3个檔案}})',
 'search-section'                 => '(toān-lo̍h $1)',
 'search-suggest'                 => '你是欲：$1',
+'searchrelated'                  => '相關的',
 'searchall'                      => 'choân-pō·',
 'showingresults'                 => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$1</b> hāng kiat-kó.',
 'showingresultsnum'              => 'Ē-kha tùi #<b>$2</b> khai-sí hián-sī <b>$3</b> hāng kiat-kó.',
@@ -678,7 +685,9 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'action-edit' => 'Siu-kái chit ia̍h',
 
 # Recent changes
+'nchanges'                        => '$1 {{PLURAL:$1|改|改}}',
 'recentchanges'                   => 'Chòe-kīn ê kái-piàn',
+'recentchangestext'               => '佇這頁，看阮這个Wiki最近改的',
 'recentchanges-label-newpage'     => 'Chit ê siu-kái ē sán-seng sin ia̍h',
 'recentchanges-label-minor'       => 'Che sī sió siu-kái',
 'recentchanges-label-bot'         => '這个編輯是機器人做的',
@@ -688,6 +697,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'rcshowhideminor'                 => '$1 sió siu-kái',
 'rcshowhideliu'                   => '$1 teng-ji̍p ê iōng-chiá',
 'rcshowhideanons'                 => '$1 bû-bêng-sī',
+'rcshowhidepatr'                  => '$1巡過的編輯',
 'rcshowhidemine'                  => '$1 góa ê pian-chi̍p',
 'rclinks'                         => 'Hían-sī $2 ji̍t lāi siōng sin ê $1 hāng kái-piàn<br />$3',
 'diff'                            => 'Cheng-chha',
@@ -746,6 +756,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'file-anchor-link'    => 'Tóng-àn',
 'filehist'            => 'Tóng-àn ê le̍k-sú',
 'filehist-help'       => '揤日期／時間通看彼時陣的檔案',
+'filehist-revert'     => '回轉',
 'filehist-current'    => 'hiān-chāi',
 'filehist-datetime'   => 'Ji̍t-kî/ Sî-kan',
 'filehist-thumb'      => '小圖',
@@ -832,8 +843,9 @@ Template:Khu-pia̍t-ia̍h',
 'unusedcategoriestext'    => 'Ū ē-kha chiah-ê lūi-pia̍t-ia̍h, m̄-koh bô kî-thaⁿ ê bûn-chiuⁿ a̍h-sī lūi-pia̍t lī-iōng.',
 
 # Book sources
-'booksources'    => 'Tô͘-su chu-liāu',
-'booksources-go' => '來去',
+'booksources'               => 'Tô͘-su chu-liāu',
+'booksources-search-legend' => '揣圖書資料',
+'booksources-go'            => '來去',
 
 # Special:Log
 'specialloguserlabel'  => 'Iōng-chiá:',
@@ -868,6 +880,9 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # Special:Log/newusers
 'newuserlogpage' => '用者建立的記錄',
+
+# Special:ListGroupRights
+'listgrouprights-members' => '(成員列單)',
 
 # E-mail user
 'mailnologin'     => 'Bô siu-phoe ê chū-chí',
@@ -919,6 +934,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'actioncomplete'    => 'Chip-hêng sêng-kong',
 'actionfailed'      => '做無成',
 'deletedtext'       => '"$1" í-keng thâi tiāu. Tùi $2 khoàⁿ-ē-tio̍h chòe-kīn thâi ê kì-lo̍k.',
+'dellogpage'        => '刣掉的記錄',
 'dellogpagetext'    => 'Í-hā lia̍t chhut chòe-kīn thâi tiāu ê hāng-bo̍k.',
 'deletecomment'     => 'Lí-iû:',
 
@@ -988,6 +1004,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'whatlinkshere-links'      => '← Liân kàu chia',
 'whatlinkshere-hideredirs' => '$1 改向',
 'whatlinkshere-hidelinks'  => '$1 連到遮',
+'whatlinkshere-hideimages' => '$1圖像的連結',
 
 # Block/unblock
 'blockip'                  => 'Hong-só iōng-chiá',
@@ -1052,8 +1069,9 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'allmessagestext'    => 'Chia lia̍t chhut só·-ū tī MediaWiki: miâ-khong-kan ê hē-thóng sìn-sit.',
 
 # Thumbnails
-'thumbnail-more' => 'Hòng-tōa',
-'filemissing'    => 'Bô tóng-àn',
+'thumbnail-more'  => 'Hòng-tōa',
+'filemissing'     => 'Bô tóng-àn',
+'thumbnail_error' => '產生小圖時錯誤：$1',
 
 # Special:Import
 'import' => 'Su-ji̍p ia̍h',
@@ -1099,8 +1117,10 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 'tooltip-ca-nstab-image'         => 'Khoàⁿ tóng-àn ia̍h',
 'tooltip-ca-nstab-template'      => '看枋模',
 'tooltip-ca-nstab-category'      => 'Khoàⁿ lūi-pia̍t ia̍h',
+'tooltip-minoredit'              => '共這做一个小修改記號',
 'tooltip-save'                   => 'Pó-chhûn lí chò ê kái-piàn',
 'tooltip-preview'                => 'Chhiáⁿ tī pó-chûn chìn-chêng,  sian khoàⁿ lí chò ê kái-piàn !',
+'tooltip-watch'                  => '共這頁加入你的監視單',
 'tooltip-rollback'               => 'Ji̍h "Hoê-choán" ē-sái thè tńg-khì téng-chi̍t-ê kái ê lâng ê ia̍h.',
 'tooltip-summary'                => 'Siá chi̍t-ê kán-tan soat-bêng',
 

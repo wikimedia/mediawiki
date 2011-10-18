@@ -922,7 +922,7 @@ Gweler cofnod y dileu ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAM
 Ond gallwch chi [$1 weld y diwygiad] o hyd os y mynnwch.",
 'rev-suppressed-text-unhide'  => "Mae’r diwygiad hwn o’r dudalen wedi cael ei '''guddio'''.
 Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].
-Gan eich bod yn weinyddwr cewch [$1 weld y golygiad] o hyd os y dymunwch.",
+Cewch dal [$1 weld y golygiad] os y mynwch.",
 'rev-deleted-text-view'       => "'''Dilëwyd''' y diwygiad hwn o'r dudalen.
 Gan mai gweinyddwr rydych chi, gallwch ei weld; mae manylion ar gael yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileuon].",
 'rev-suppressed-text-view'    => "Mae’r diwygiad hwn o’r dudalen wedi cael ei '''guddio'''.
@@ -2323,7 +2323,7 @@ Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a
 'badipaddress'                    => 'Cyfeiriad IP annilys.',
 'blockipsuccesssub'               => 'Llwyddodd y rhwystr',
 'blockipsuccesstext'              => 'Mae cyfeiriad IP [[Special:Contributions/$1|$1]] wedi cael ei flocio.<br />
-Gwelwch y [[Special:BlockList|rhestr blociau IP]] er mwyn arolygu blociau.',
+Gwelwch y [[Special:BlockList|rhestr flociau IP]] er mwyn arolygu blociau.',
 'ipb-blockingself'                => "Rydych ar rwystro'ch hunan! A ydych yn siŵr eich bod chi am wneud hyn?",
 'ipb-confirmhideuser'             => 'Rydych ar rwystro defnyddiwr sydd yn "guddiedig." Bydd hyn yn atal enw\'r defnyddiwr ym mhob rhestr a chofnod lòg. A ydych yn siŵr eich bod chi am wneud hyn?',
 'ipb-edit-dropdown'               => "Golygu'r rhesymau dros flocio",
@@ -3380,6 +3380,9 @@ Gallwch hefyd [[Special:EditWatchlist|ddefnyddio\'r rhestr arferol]].',
 'watchlisttools-view' => 'Gweld newidiadau perthnasol',
 'watchlisttools-edit' => "Gweld a golygu'r rhestr wylio",
 'watchlisttools-raw'  => "Golygu'r rhestr wylio syml",
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|sgwrs]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag estyniad anhysbys "$1"',

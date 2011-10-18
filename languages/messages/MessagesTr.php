@@ -1193,7 +1193,7 @@ Lütfen günlükleri kontrol edin.',
 # Suppression log
 'suppressionlog'     => 'Gizleme kayıtları',
 'suppressionlogtext' => 'Aşağıdaki, hizmetlilerden gizlenen içerik içeren silinmelerin ve engellemelerin listesidir.
-Şu anda işlevsel olan yasak ve engellemelerin listesi için [[Special:IPBlockList|IP engelleme listesine]] bakın.',
+Şu anda işlevsel olan yasak ve engellemelerin listesi için [[Special:BlockList|IP engelleme listesine]] bakın.',
 
 # History merging
 'mergehistory'                     => 'Sayfa geçmişlerini takas et.',
@@ -1434,7 +1434,7 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'userrights-lookup-user'       => 'Kullanıcı gruplarını düzenle',
 'userrights-user-editname'     => 'Kullanıcı adı giriniz:',
 'editusergroup'                => 'Kullanıcı grupları düzenle',
-'editinguser'                  => "'''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) kullanıcısının yetkilerini değiştirmektesiniz",
+'editinguser'                  => "'''[[User:$1|$1]]'''  $2 kullanıcısının yetkilerini değiştirmektesiniz",
 'userrights-editusergroup'     => 'Kullanıcı grupları düzenle',
 'saveusergroups'               => 'Kullanıcı grupları kaydet',
 'userrights-groupsmember'      => 'İçinde olduğu gruplar:',

@@ -1396,12 +1396,12 @@ L'operazione non può essere annullata.",
 'group-suppress'      => 'Oversight',
 'group-all'           => 'Utenti',
 
-'group-user-member'          => 'Utente',
-'group-autoconfirmed-member' => 'Utente autoconvalidato',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Amministratore',
-'group-bureaucrat-member'    => 'Burocrate',
-'group-suppress-member'      => 'Oversight',
+'group-user-member'          => '{{GENDER:$1|utente}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|utente autoconvalidato}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|amministratore|amministratrice}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|burocrate}}',
+'group-suppress-member'      => '{{GENDER:$1|oversight}}',
 
 'grouppage-user'          => '{{ns:project}}:Utenti',
 'grouppage-autoconfirmed' => '{{ns:project}}:Utenti autoconvalidati',
@@ -3503,6 +3503,9 @@ Si noti che è anche possibile [[Special:EditWatchlist|modificare la lista con l
 # Hebrew month names
 'hebrew-calendar-m10'     => 'Tammuz',
 'hebrew-calendar-m10-gen' => 'Tammuz',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discussioni]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag estensione sconosciuto: "$1"',
