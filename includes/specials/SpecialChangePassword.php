@@ -91,6 +91,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 						$data['wpRemember'] = 1;
 					}
 					$login = new LoginForm( new FauxRequest( $data, true ) );
+					$login->setContext( $this->getContext() );
 					$login->execute( null );
 				}
 				$this->doReturnTo();
