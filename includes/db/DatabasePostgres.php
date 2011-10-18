@@ -200,6 +200,7 @@ class DatabasePostgres extends DatabaseBase {
 		$this->query( "SET client_encoding='UTF8'", __METHOD__ );
 		$this->query( "SET datestyle = 'ISO, YMD'", __METHOD__ );
 		$this->query( "SET timezone = 'GMT'", __METHOD__ );
+		$this->query( "SET standard_conforming_strings = on", __METHOD__ );
 
 		global $wgDBmwschema;
 		if ( $this->schemaExists( $wgDBmwschema ) ) {
@@ -878,11 +879,7 @@ SQL;
 		} elseif ( is_bool( $s ) ) {
 			return intval( $s );
 		} elseif ( $s instanceof Blob ) {
-			$ret = "'" . $s->fetch( $s ) . "'";
-			if ( $this->numeric_version >= 8.1 ) {
-				$ret = "E$ret";
-			}
-			return $ret;
+			return "'" . $s->fetch( $s ) . "'";
 		}
 		return "'" . pg_escape_string( $this->mConn, $s ) . "'";
 	}
