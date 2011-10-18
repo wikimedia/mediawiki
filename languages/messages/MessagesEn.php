@@ -3625,8 +3625,8 @@ $1',
 By executing it, your system may be compromised.",
 'imagemaxsize'           => "Image size limit:<br />''(for file description pages)''",
 'thumbsize'              => 'Thumbnail size:',
-'widthheight'            => '$1×$2', # only translate this message to other languages if you have to change it
-'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|page|pages}}',
+'widthheight'            => '$1 × $2', # only translate this message to other languages if you have to change it
+'widthheightpage'        => '$1 × $2, $3 {{PLURAL:$3|page|pages}}',
 'file-info'              => 'file size: $1, MIME type: $2',
 'file-info-size'         => '$1 × $2 pixels, file size: $3, MIME type: $4',
 'file-info-size-pages'   => '$1 × $2 pixels, file size: $3, MIME type: $4, $5 {{PLURAL:$5|page|pages}}',
@@ -3655,7 +3655,7 @@ By executing it, your system may be compromised.",
 'sp-newimages-showfrom' => 'Show new files starting from $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'video-dims'     => '$1, $2×$3', # only translate this message to other languages if you have to change it
+'video-dims'     => '$1, $2 × $3', # only translate this message to other languages if you have to change it
 'seconds-abbrev' => '$1s', # only translate this message to other languages if you have to change it
 'minutes-abbrev' => '$1m', # only translate this message to other languages if you have to change it
 'hours-abbrev'   => '$1h', # only translate this message to other languages if you have to change it
