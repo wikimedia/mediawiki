@@ -212,6 +212,10 @@ class WebInstaller_Language extends WebInstallerPage {
 	/**
 	 * Get a <select> for selecting languages.
 	 *
+	 * @param $name
+	 * @param $label
+	 * @param $selectedCode
+	 * @param $helpHtml string
 	 * @return string
 	 */
 	public function getLanguageSelector( $name, $label, $selectedCode, $helpHtml = '' ) {

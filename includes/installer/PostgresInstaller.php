@@ -80,6 +80,9 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		/**
+		 * @var $conn DatabaseBase
+		 */
 		$conn = $status->value;
 
 		// Check version
@@ -139,6 +142,9 @@ class PostgresInstaller extends DatabaseInstaller {
 		$status = $this->openPgConnection( $type );
 
 		if ( $status->isOK() ) {
+			/**
+			 * @var $conn DatabaseBase
+			 */
 			$conn = $status->value;
 			$conn->clearFlag( DBO_TRX );
 			$conn->commit();
@@ -186,6 +192,9 @@ class PostgresInstaller extends DatabaseInstaller {
 			case 'create-tables':
 				$status = $this->openPgConnection( 'create-schema' );
 				if ( $status->isOK() ) {
+					/**
+					 * @var $conn DatabaseBase
+					 */
 					$conn = $status->value;
 					$safeRole = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 					$conn->query( "SET ROLE $safeRole" );
@@ -204,6 +213,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !in_array( $this->getVar( 'wgDBname' ), $dbs ) ) {
 			array_unshift( $dbs, $this->getVar( 'wgDBname' ) );
 		}
+		$conn = false;
 		$status = Status::newGood();
 		foreach ( $dbs as $db ) {
 			try {
@@ -233,6 +243,9 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return false;
 		}
+		/**
+		 * @var $conn DatabaseBase
+		 */
 		$conn = $status->value;
 		$superuser = $this->getVar( '_InstallUser' );
 
@@ -418,8 +431,8 @@ class PostgresInstaller extends DatabaseInstaller {
 		$dbName = $this->getVar( 'wgDBname' );
 		$schema = $this->getVar( 'wgDBmwschema' );
 		$user = $this->getVar( 'wgDBuser' );
-		$safeschema = $conn->addIdentifierQuotes( $schema );
-		$safeuser = $conn->addIdentifierQuotes( $user );
+		//$safeschema = $conn->addIdentifierQuotes( $schema );
+		//$safeuser = $conn->addIdentifierQuotes( $user );
 
 		$exists = $conn->selectField( '"pg_catalog"."pg_database"', '1',
 			array( 'datname' => $dbName ), __METHOD__ );
@@ -481,7 +494,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		$schema = $this->getVar( 'wgDBmwschema' );
 		$safeuser = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 		$safepass = $conn->addQuotes( $this->getVar( 'wgDBpassword' ) );
-		$safeschema = $conn->addIdentifierQuotes( $schema );
+		//$safeschema = $conn->addIdentifierQuotes( $schema );
 
 		// Check if the user already exists
 		$userExists = $conn->roleExists( $this->getVar( 'wgDBuser' ) );
@@ -532,6 +545,10 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+
+		/**
+		 * @var $conn DatabaseBase
+		 */
 		$conn = $status->value;
 
 		if( $conn->tableExists( 'user' ) ) {
@@ -567,6 +584,9 @@ class PostgresInstaller extends DatabaseInstaller {
 		if ( !$status->isOK() ) {
 			return $status;
 		}
+		/**
+		 * @var $conn DatabaseBase
+		 */
 		$conn = $status->value;
 
 		$exists = $conn->selectField( '"pg_catalog"."pg_language"', 1,

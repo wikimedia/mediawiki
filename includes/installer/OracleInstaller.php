@@ -117,6 +117,10 @@ class OracleInstaller extends DatabaseInstaller {
 				return $statusIS3;
 			}
 		}
+
+		/**
+		 * @var $conn DatabaseBase
+		 */
 		$conn = $status->value;
 
 		// Check version
