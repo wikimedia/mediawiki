@@ -3139,7 +3139,7 @@ It is, however, blocked as part of the range $2, which can be unblocked.',
 'proxyblocker'                    => 'Proxy blocker',
 'proxyblocker-disabled'           => 'This function is disabled.',
 'proxyblockreason'                => 'Your IP address has been blocked because it is an open proxy.
-Please contact your Internet service provider or tech support and inform them of this serious security problem.',
+Please contact your Internet service provider or technical support of your oranization and inform them of this serious security problem.',
 'proxyblocksuccess'               => 'Done.',
 'sorbs'                           => 'DNSBL', # only translate this message to other languages if you have to change it
 'sorbsreason'                     => 'Your IP address is listed as an open proxy in the DNSBL used by {{SITENAME}}.',
