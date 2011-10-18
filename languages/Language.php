@@ -239,7 +239,7 @@ class Language {
 	/**
 	 * Includes language class files
 	 *
-	 * @param $class Name of the language class
+	 * @param $class string Name of the language class
 	 */
 	public static function preloadLanguageClass( $class ) {
 		global $IP;
@@ -1212,7 +1212,7 @@ class Language {
 		}
 
 		// Days passed in current month
-		$gDayNo += $gd;
+		$gDayNo += (int)$gd;
 
 		$jDayNo = $gDayNo - 79;
 
@@ -1573,7 +1573,7 @@ class Language {
 		$s = '';
 		for ( $pow10 = 1000, $i = 3; $i >= 0; $pow10 /= 10, $i-- ) {
 			if ( $num >= $pow10 ) {
-				$s .= $table[$i][floor( $num / $pow10 )];
+				$s .= $table[$i][(int)floor( $num / $pow10 )];
 			}
 			$num = $num % $pow10;
 		}
@@ -3097,10 +3097,10 @@ class Language {
 	 * truncateHtml() helper function
 	 * (a) push or pop $tag from $openTags as needed
 	 * (b) clear $tag value
-	 * @param String &$tag Current HTML tag name we are looking at
-	 * @param int $tagType (0-open tag, 1-close tag)
-	 * @param char $lastCh Character before the '>' that ended this tag
-	 * @param array &$openTags Open tag stack (not accounting for $tag)
+	 * @param &$tag string Current HTML tag name we are looking at
+	 * @param $tagType int (0-open tag, 1-close tag)
+	 * @param $lastCh char|string Character before the '>' that ended this tag
+	 * @param &$openTags array Open tag stack (not accounting for $tag)
 	 */
 	private function truncate_endBracket( &$tag, $tagType, $lastCh, &$openTags ) {
 		$tag = ltrim( $tag );
@@ -3762,7 +3762,7 @@ class Language {
 		if ( $bps <= 0 ) {
 			return $this->formatNum( $bps ) . $units[0];
 		}
-		$unitIndex = floor( log10( $bps ) / 3 );
+		$unitIndex = (int)floor( log10( $bps ) / 3 );
 		$mantissa = $bps / pow( 1000, $unitIndex );
 		if ( $mantissa < 10 ) {
 			$mantissa = round( $mantissa, 1 );

@@ -117,7 +117,7 @@ class LanguageConverter {
 	 * in this case. Right now this is only used by zh.
 	 *
 	 * @param $variant String: the language code of the variant
-	 * @return String: The code of the fallback language or the
+	 * @return String|array: The code of the fallback language or the
 	 *				 main code if there is no fallback
 	 */
 	public function getVariantFallbacks( $variant ) {
@@ -368,11 +368,11 @@ class LanguageConverter {
 			$sourceBlob .= substr( $text, $startPos, $elementPos - $startPos ) . "\000";
 
 			// Advance to the next position
-			$startPos = $elementPos + strlen( $element );		
+			$startPos = $elementPos + strlen( $element );
 
 			// Translate any alt or title attributes inside the matched element
-			if ( $element !== '' && preg_match( '/^(<[^>\s]*)\s([^>]*)(.*)$/', $element, 
-				$elementMatches ) ) 
+			if ( $element !== '' && preg_match( '/^(<[^>\s]*)\s([^>]*)(.*)$/', $element,
+				$elementMatches ) )
 			{
 				$attrs = Sanitizer::decodeTagAttributes( $elementMatches[2] );
 				$changed = false;
@@ -385,7 +385,7 @@ class LanguageConverter {
 					if ( !strpos( $attr, '://' ) ) {
 						$attr = $this->translate( $attr, $toVariant );
 					}
-					
+
 					// Remove HTML tags to avoid disrupting the layout
 					$attr = preg_replace( '/<[^>]+>/', '', $attr );
 					if ( $attr !== $attrs[$attrName] ) {
@@ -394,7 +394,7 @@ class LanguageConverter {
 					}
 				}
 				if ( $changed ) {
-					$element = $elementMatches[1] . Html::expandAttributes( $attrs ) . 
+					$element = $elementMatches[1] . Html::expandAttributes( $attrs ) .
 						$elementMatches[3];
 				}
 			}
