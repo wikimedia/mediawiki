@@ -110,6 +110,8 @@ production.
 * Timezones are now recognised in user preferences when offset is different
   due to DST
 * (bug 31692) "summary" parameter now also work when undoing revisions
+* (bug 18823) "move succeeded" text displays bluelinks even when redirect was
+   suppressed
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
