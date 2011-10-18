@@ -7,7 +7,7 @@
 * Conversion script between Latin and Tifinagh for Tachelhit.
 * - Tifinagh -> lowercase Latin
 * - lowercase/uppercase Latin -> Tifinagh
-* 
+*
 *
 * Based on:
 *   - http://en.wikipedia.org/wiki/Shilha_language
@@ -21,6 +21,9 @@ require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
  *
  */
 class ShiConverter extends LanguageConverter {
+
+	protected $mDoContentConvert;
+
 	var $mToLatin = array(
 		'ⴰ' => 'a', 'ⴱ' => 'b', 'ⴳ' => 'g', 'ⴷ' => 'd', 'ⴹ' => 'ḍ', 'ⴻ' => 'e',
 		'ⴼ' => 'f', 'ⴽ' => 'k', 'ⵀ' => 'h', 'ⵃ' => 'ḥ', 'ⵄ' => 'ε', 'ⵅ' => 'x',
@@ -89,10 +92,7 @@ class ShiConverter extends LanguageConverter {
 	 * @return string
 	 */
 	function parserConvert( $text, &$parser ) {
-		if ( is_object( $parser->getTitle() ) && $parser->getTitle()->isTalkPage() )
-			$this->mDoContentConvert = false;
-		else
-			$this->mDoContentConvert = true;
+		$this->mDoContentConvert = !( is_object( $parser->getTitle() ) && $parser->getTitle()->isTalkPage() );
 
 		return parent::parserConvert( $text, $parser );
 	}

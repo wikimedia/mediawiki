@@ -9,6 +9,10 @@
  * @ingroup Language
  */
 class LanguageQqx extends Language {
+	/**
+	 * @param $key string
+	 * @return string
+	 */
 	function getMessage( $key ) {
 		return "($key)";
 	}

@@ -7,7 +7,7 @@
 * Conversion script between Latin and Syllabics for Inuktitut.
 * - Syllabics -> lowercase Latin
 * - lowercase/uppercase Latin -> Syllabics
-* 
+*
 *
 * Based on:
 *   - http://commons.wikimedia.org/wiki/Image:Inuktitut.png
@@ -21,6 +21,8 @@ require_once( dirname( __FILE__ ) . '/../LanguageConverter.php' );
  *
  */
 class IuConverter extends LanguageConverter {
+
+	protected $mDoContentConvert;
 	var $mToLatin = array(
 		'ᐦ' => 'h',   'ᐃ' => 'i',    'ᐄ' => 'ii',    'ᐅ' => 'u',    'ᐆ' => 'uu',    'ᐊ' => 'a',    'ᐋ' => 'aa',
 		'ᑉ' => 'p',   'ᐱ' => 'pi',   'ᐲ' => 'pii',   'ᐳ' => 'pu',   'ᐴ' => 'puu',   'ᐸ' => 'pa',   'ᐹ' => 'paa',
@@ -111,10 +113,7 @@ class IuConverter extends LanguageConverter {
 	 * @return string
 	 */
 	function parserConvert( $text, &$parser ) {
-		if ( is_object( $parser->getTitle() ) && $parser->getTitle()->isTalkPage() )
-			$this->mDoContentConvert = false;
-		else
-			$this->mDoContentConvert = true;
+		$this->mDoContentConvert = !( is_object( $parser->getTitle() ) && $parser->getTitle()->isTalkPage() );
 
 		return parent::parserConvert( $text, $parser );
 	}
