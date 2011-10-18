@@ -2225,7 +2225,6 @@ class WikiPage extends Page {
 		$title->touchLinks();
 		$title->purgeSquid();
 		$title->deleteTitleProtection();
-		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'globaltemplatelinks' );
 	}
 
 	/**
@@ -2269,7 +2268,6 @@ class WikiPage extends Page {
 
 		# Image redirects
 		RepoGroup::singleton()->getLocalRepo()->invalidateImageRedirect( $title );
-		$wgDeferredUpdateList[] = new HTMLCacheUpdate( $title, 'globaltemplatelinks' );
 	}
 
 	/**
