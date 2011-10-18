@@ -165,6 +165,8 @@ class CheckSyntax extends Maintenance {
 
 	/**
 	 * Returns true if $file is of a type we can check
+	 * @param $file string
+	 * @return bool
 	 */
 	private function isSuitableFile( $file ) {
 		$file = str_replace( '\\', '/', $file );
@@ -181,6 +183,8 @@ class CheckSyntax extends Maintenance {
 
 	/**
 	 * Add given path to file list, searching it in include path if needed
+	 * @param $path string
+	 * @return bool
 	 */
 	private function addPath( $path ) {
 		global $IP;
@@ -188,8 +192,10 @@ class CheckSyntax extends Maintenance {
 	}
 
 	/**
-	* Add given file to file list, or, if it's a directory, add its content
-	*/
+	 * Add given file to file list, or, if it's a directory, add its content
+	 * @param $path string
+	 * @return bool
+	 */
 	private function addFileOrDir( $path ) {
 		if ( is_dir( $path ) ) {
 			$this->addDirectoryContent( $path );

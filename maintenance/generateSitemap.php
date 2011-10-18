@@ -188,6 +188,9 @@ class GenerateSitemap extends Maintenance {
 
 		// Custom priorities
 		if ( $wgSitemapNamespacesPriorities !== false ) {
+			/**
+			 * @var $wgSitemapNamespacesPriorities array
+			 */
 			foreach ( $wgSitemapNamespacesPriorities as $namespace => $priority ) {
 				$float = floatval( $priority );
 				if ( $float > 1.0 ) {
@@ -202,6 +205,8 @@ class GenerateSitemap extends Maintenance {
 
 	/**
 	 * Create directory if it does not exist and return pathname with a trailing slash
+	 * @param $fspath string
+	 * @return null|string
 	 */
 	private static function init_path( $fspath ) {
 		if ( !isset( $fspath ) ) {

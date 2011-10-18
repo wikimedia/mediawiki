@@ -73,8 +73,9 @@ class ImageCleanup extends TableCleanup {
 		if ( is_null( $title ) ) {
 			$this->output( "page $source ($cleaned) is illegal.\n" );
 			$safe = $this->buildSafeTitle( $cleaned );
-			if ( $safe === false )
+			if ( $safe === false ) {
 				return $this->progress( 0 );
+			}
 			$this->pokeFile( $source, $safe );
 			return $this->progress( 1 );
 		}
@@ -86,7 +87,7 @@ class ImageCleanup extends TableCleanup {
 			return $this->progress( 1 );
 		}
 
-		$this->progress( 0 );
+		return $this->progress( 0 );
 	}
 
 	/**
@@ -123,7 +124,8 @@ class ImageCleanup extends TableCleanup {
 		$path = $this->filePath( $orig );
 		if ( !file_exists( $path ) ) {
 			$this->output( "missing file: $path\n" );
-			return $this->killRow( $orig );
+			$this->killRow( $orig );
+			return;
 		}
 
 		$db = wfGetDB( DB_MASTER );
@@ -138,7 +140,7 @@ class ImageCleanup extends TableCleanup {
 		$version = 0;
 		$final = $new;
 		$conflict = ( $this->imageExists( $final, $db ) ||
-				  ( $this->pageExists( $orig, $db ) && $this->pageExists( $final, $db ) ) );
+				( $this->pageExists( $orig, $db ) && $this->pageExists( $final, $db ) ) );
 
 		while ( $conflict ) {
 			$this->output( "Rename conflicts with '$final'...\n" );
@@ -170,7 +172,7 @@ class ImageCleanup extends TableCleanup {
 			$dir = dirname( $finalPath );
 			if ( !file_exists( $dir ) ) {
 				if ( !wfMkdirParents( $dir, null, __METHOD__ ) ) {
-					$this->log( "RENAME FAILED, COULD NOT CREATE $dir" );
+					$this->output( "RENAME FAILED, COULD NOT CREATE $dir" );
 					$db->rollback();
 					return;
 				}

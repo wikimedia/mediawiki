@@ -88,9 +88,8 @@ class CapsCleanup extends TableCleanup {
 					return $this->processRow( $row );
 				}
 			}
-		} else {
-			$this->progress( 0 );
 		}
+		return $this->progress( 0 );
 	}
 }
 

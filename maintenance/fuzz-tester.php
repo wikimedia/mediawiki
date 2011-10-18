@@ -759,14 +759,18 @@ class wikiFuzz {
 	static private $maxparams = 10;
 
 	/**
-	 ** Returns random number between finish and start.
+	 * Returns random number between finish and start.
+	 * @param $finish
+	 * @param $start int
+	 * @return int
 	 */
 	static public function randnum( $finish, $start = 0 ) {
 		return mt_rand( $start, $finish );
 	}
 
 	/**
-	 ** Returns a mix of random text and random wiki syntax.
+	 * Returns a mix of random text and random wiki syntax.
+	 * @return string
 	 */
 	static private function randstring() {
 		$thestring = "";
@@ -796,18 +800,17 @@ class wikiFuzz {
 	}
 
 	/**
-	 ** Returns either random text, or random wiki syntax, or random data from "ints",
-	 **        or random data from "other".
+	 * Returns either random text, or random wiki syntax, or random data from "ints",
+	 *        or random data from "other".
+	 * @return string
 	 */
 	static private function makestring() {
 		$what = wikiFuzz::randnum( 2 );
 		if ( $what == 0 ) {
 			return wikiFuzz::randstring();
-		}
-		elseif ( $what == 1 ) {
+		} elseif ( $what == 1 ) {
 			return wikiFuzz::$ints[wikiFuzz::randnum( count( wikiFuzz::$ints ) - 1 )];
-		}
-		else {
+		} else {
 			return wikiFuzz::$other[wikiFuzz::randnum( count( wikiFuzz::$other ) - 1 )];
 		}
 	}
@@ -815,6 +818,8 @@ class wikiFuzz {
 	/**
 	 * Returns the matched character slash-escaped as in a C string
 	 * Helper for makeTitleSafe callback
+	 * @param $matches
+	 * @return atring
 	 */
 	static private function stringEscape( $matches ) {
 		return sprintf( "\\x%02x", ord( $matches[1] ) );
@@ -823,6 +828,8 @@ class wikiFuzz {
 	/**
 	 ** Strips out the stuff that Mediawiki balks at in a page's title.
 	 **        Implementation copied/pasted from cleanupTable.inc & cleanupImages.php
+	 * @param $str string
+	 * @return string
 	 */
 	static public function makeTitleSafe( $str ) {
 		$legalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF";
@@ -833,6 +840,7 @@ class wikiFuzz {
 
 	/**
 	 ** Returns a string of fuzz text.
+	 * @return string
 	 */
 	static private function loop() {
 		switch ( wikiFuzz::randnum( 3 ) ) {
@@ -860,7 +868,8 @@ class wikiFuzz {
 	}
 
 	/**
-	 ** Returns one of the three styles of random quote: ', ", and nothing.
+	 * Returns one of the three styles of random quote: ', ", and nothing.
+	 * @return string
 	 */
 	static private function getRandQuote() {
 		switch ( wikiFuzz::randnum( 3 ) ) {
@@ -872,6 +881,8 @@ class wikiFuzz {
 
 	/**
 	 ** Returns fuzz text, with the parameter indicating approximately how many lines of text you want.
+	 * @param $maxtypes int
+	 * @return string
 	 */
 	static public function makeFuzz( $maxtypes = 2 ) {
 		$page = "";
@@ -2174,9 +2185,10 @@ class GeSHi_Test extends pageTest {
 	}
 }
 
-
 /**
  ** selects a page test to run.
+ * @param $count
+ * @return \api|\confirmEmail|\contributionsTest|\editPageTest|\imagelistTest|\imagepageTest|\ipblocklistTest|\listusersTest|\mimeSearchTest|\newImagesTest|\pageDeletion|\pageHistoryTest|\pageProtectionForm|\prefixindexTest|\profileInfo|\recentchangesTest|\redirectTest|\searchTest|\specialAllmessagesTest|\specialAllpagesTest|\specialBlockip|\specialBlockmeTest|\specialBooksourcesTest|\specialCategoryTree|\specialChemicalsourcesTest|\specialCitePageTest|\specialExportTest|\specialFilepathPageTest|\specialImportPageTest|\specialLinksearch|\specialLockdbPageTest|\specialLogTest|\specialMovePage|\specialNewpagesPageTest|\specialRenameuserPageTest|\specialRevisionDeletePageTest|\specialUndeletePageTest|\specialUnlockdbPageTest|\specialUserrights|\successfulUserLoginTest|\thumbTest|\trackbackTest|\userLoginTest|\viewPageTest|\watchlistTest
  */
 function selectPageTest( $count ) {
 
@@ -2248,11 +2260,12 @@ function saveFile( $data, $name ) {
 	file_put_contents( $name, $data );
 }
 
-
 /**
  ** Returns a test as an experimental GET-to-POST URL.
  **        This doesn't seem to always work though, and sometimes the output is too long
  **        to be a valid GET URL, so we also save in other formats.
+ * @param $test pageTest
+ * @return string
  */
 function getAsURL( pageTest $test ) {
 	$used_question_mark = ( strpos( $test->getPagePath(), "?" ) !== false );
@@ -2304,11 +2317,12 @@ function saveTestAsPHP( pageTest $test, $filename ) {
 	saveFile( $str, $filename );
 }
 
-
 /**
- ** Escapes a value so that it can be used on the command line by Curl.
- **        Specifically, "<" and "@" need to be escaped if they are the first character,
- **        otherwise  curl interprets these as meaning that we want to insert a file.
+ * Escapes a value so that it can be used on the command line by Curl.
+ *        Specifically, "<" and "@" need to be escaped if they are the first character,
+ *        otherwise  curl interprets these as meaning that we want to insert a file.
+ * @param $input_params array
+ * @return array
  */
 function escapeForCurl( array $input_params ) {
 	$output_params = array();
@@ -2359,18 +2373,21 @@ function saveTest( pageTest $test, $testname ) {
 	saveTestData  ( $test, $base_name . DATA_FILE );
 }
 
-
 // ////////////////// MEDIAWIKI OUTPUT /////////////////////////
 
 /**
- ** Asks MediaWiki for the HTML output of a test.
+ * Asks MediaWiki for the HTML output of a test.
+ * @param $test pageTest
+ * @return string
  */
 function wikiTestOutput( pageTest $test ) {
 
 	$ch = curl_init();
 
 	// specify the cookie, if required.
-	if ( $test->getCookie() ) curl_setopt( $ch, CURLOPT_COOKIE, $test->getCookie() );
+	if ( $test->getCookie() ) {
+		curl_setopt( $ch, CURLOPT_COOKIE, $test->getCookie() );
+	}
 	curl_setopt( $ch, CURLOPT_POST, 1 );                          // save form using a POST
 
 	$params = escapeForCurl( $test->getParams() );
@@ -2397,6 +2414,8 @@ function wikiTestOutput( pageTest $test ) {
 
 /**
  * Asks the validator whether this is valid HTML, or not.
+ * @param $text string
+ * @return array
  */
 function validateHTML( $text ) {
 
@@ -2425,9 +2444,10 @@ function validateHTML( $text ) {
 	return array( $valid, $result );
 }
 
-
 /**
- ** Get tidy to check for no HTML errors in the output file (e.g. unescaped strings).
+ * Get tidy to check for no HTML errors in the output file (e.g. unescaped strings).
+ * @param $name
+ * @return bool
  */
 function tidyCheckFile( $name ) {
 	$file = DIRECTORY . "/" . $name;
@@ -2446,10 +2466,10 @@ function tidyCheckFile( $name ) {
 	}
 }
 
-
 /**
  ** Returns whether or not an database error log file has changed in size since
  **        the last time this was run. This is used to tell if a test caused a DB error.
+ * @return bool
  */
 function dbErrorLogged() {
 	static $filesize;
@@ -2477,8 +2497,12 @@ function dbErrorLogged() {
 // //////////////// TOP-LEVEL PROBLEM-FINDING FUNCTION ////////////////////////
 
 /**
- ** takes a page test, and runs it and tests it for problems in the output.
- **        Returns: False on finding a problem, or True on no problems being found.
+ * takes a page test, and runs it and tests it for problems in the output.
+ *        Returns: False on finding a problem, or True on no problems being found.
+ * @param $test pageTest
+ * @param $testname
+ * @param $can_overwrite bool
+ * @return bool
  */
 function runWikiTest( pageTest $test, &$testname, $can_overwrite = false ) {
 

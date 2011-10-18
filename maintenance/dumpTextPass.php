@@ -66,6 +66,11 @@ class TextPassDumper extends BackupDumper {
 	var $checkpointJustWritten = false;
 	var $checkpointFiles = array();
 
+	/**
+	 * @var DatabaseBase
+	 */
+	protected $db;
+
 	function initProgress( $history ) {
 		parent::initProgress();
 		$this->timeOfCheckpoint = $this->startTime;
@@ -169,7 +174,8 @@ class TextPassDumper extends BackupDumper {
 	 */
 	function showReport() {
 		if ( !$this->prefetch ) {
-			return parent::showReport();
+			parent::showReport();
+			return;
 		}
 
 		if ( $this->reporting ) {
@@ -186,8 +192,7 @@ class TextPassDumper extends BackupDumper {
 				$etats = wfTimestamp( TS_DB, intval( $eta ) );
 				if ( $this->fetchCount ) {
 					$fetchRate = 100.0 * $this->prefetchCount / $this->fetchCount;
-				}
-				else {
+				} else {
 					$fetchRate = '-';
 				}
 				$pageRate = $this->pageCount / $deltaAll;
@@ -201,8 +206,7 @@ class TextPassDumper extends BackupDumper {
 			if ( $deltaPart ) {
 				if ( $this->fetchCountLast ) {
 					$fetchRatePart = 100.0 * $this->prefetchCountLast / $this->fetchCountLast;
-				}
-				else {
+				} else {
 					$fetchRatePart = '-';
 				}
 				$pageRatePart = $this->pageCountPart / $deltaPart;
@@ -228,9 +232,9 @@ class TextPassDumper extends BackupDumper {
 
 	function checkIfTimeExceeded() {
 		if ( $this->maxTimeAllowed &&  ( $this->lastTime - $this->timeOfCheckpoint  > $this->maxTimeAllowed ) ) {
-			return True;
+			return true;
 		}
-		return False;
+		return false;
 	}
 
 	function finalOptionCheck() {
@@ -286,7 +290,7 @@ class TextPassDumper extends BackupDumper {
 			// we wrote some stuff after last checkpoint that needs renamed
 			if (file_exists($filenameList[0])) {
 				$newFilenames = array();
-				# we might have just written the header and footer and had no 
+				# we might have just written the header and footer and had no
 				# pages or revisions written... perhaps they were all deleted
 				# there's no pageID 0 so we use that. the caller is responsible
 				# for deciding what to do with a file containing only the
@@ -332,7 +336,6 @@ class TextPassDumper extends BackupDumper {
 	}
 
 	private function doGetText( $id ) {
-
 		$id = intval( $id );
 		$this->failures = 0;
 		$ex = new MWException( "Graceful storage failure" );
@@ -345,9 +348,9 @@ class TextPassDumper extends BackupDumper {
 					$this->closeSpawn();
 					$this->openSpawn();
 				}
-				$text =	 $this->getTextSpawned( $id );
+				$text = $this->getTextSpawned( $id );
 			} else {
-				$text =	 $this->getTextDbSafe( $id );
+				$text = $this->getTextDbSafe( $id );
 			}
 			if ( $text === false ) {
 				$this->failures++;
@@ -359,11 +362,10 @@ class TextPassDumper extends BackupDumper {
 					$this->failedTextRetrievals++;
 					if ($this->failedTextRetrievals > $this->maxConsecutiveFailedTextRetrievals) {
 						throw $ex;
-					}
-					else {
+					} else {
 						// would be nice to return something better to the caller someday,
 						// log what we know about the failure and about the revision
-						return("");
+						return "";
 					}
 				} else {
 					$this->progress( "Error $this->failures " .
@@ -373,16 +375,18 @@ class TextPassDumper extends BackupDumper {
 				}
 			} else {
 				$this->failedTextRetrievals= 0;
-				return( $text );
+				return $text;
 			}
 		}
-
+		return '';
 	}
 
 	/**
 	 * Fetch a text revision from the database, retrying in case of failure.
 	 * This may survive some transitory errors by reconnecting, but
 	 * may not survive a long-term server outage.
+	 *
+	 * FIXME: WTF? Why is it using a loop and then returning unconditionally?
 	 */
 	private function getTextDbSafe( $id ) {
 		while ( true ) {
@@ -397,6 +401,8 @@ class TextPassDumper extends BackupDumper {
 
 	/**
 	 * May throw a database error if, say, the server dies during query.
+	 * @param $id
+	 * @return bool|string
 	 */
 	private function getTextDb( $id ) {
 		global $wgContLang;
@@ -584,15 +590,15 @@ class TextPassDumper extends BackupDumper {
 				$this->egress->writeClosePage( $this->buffer );
 				// nasty hack, we can't just write the chardata after the
 				// page tag, it will include leading blanks from the next line
-				$this->egress->sink->write("\n"); 
-				
+				$this->egress->sink->write("\n");
+
 				$this->buffer = $this->xmlwriterobj->closeStream();
 				$this->egress->writeCloseStream( $this->buffer );
 
 				$this->buffer = "";
 				$this->thisPage = "";
 				// this could be more than one file if we had more than one output arg
-				$checkpointFilenames = array();
+
 				$filenameList = (array)$this->egress->getFilenames();
 				$newFilenames = array();
 				$firstPageID = str_pad($this->firstPageWritten,9,"0",STR_PAD_LEFT);
@@ -669,10 +675,10 @@ Options:
 			  pressure on the database.
 			  (Requires the XMLReader extension)
   --maxtime=<minutes> Write out checkpoint file after this many minutes (writing
-	          out complete page, closing xml file properly, and opening new one 
+	          out complete page, closing xml file properly, and opening new one
 	          with header).  This option requires the checkpointfile option.
   --checkpointfile=<filenamepattern> Use this string for checkpoint filenames,
-		      substituting first pageid written for the first %s (required) and the 
+		      substituting first pageid written for the first %s (required) and the
               last pageid written for the second %s if it exists.
   --quiet	  Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
