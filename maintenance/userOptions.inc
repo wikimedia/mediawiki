@@ -50,7 +50,14 @@ class userOptions {
 	}
 
 
-	/** This is used to check options. Only needed on construction */
+	/**
+	 * This is used to check options. Only needed on construction
+	 *
+	 * @param $opts array
+	 * @param $args array
+	 *
+	 * @return bool
+	 */
 	private function checkOpts( $opts, $args ) {
 		// The three possible ways to run the script:
 		$list   = isset( $opts['list'] );
@@ -63,7 +70,14 @@ class userOptions {
 		return $isValid;
 	}
 
-	/** load script options in the object */
+	/**
+	 * load script options in the object
+	 *
+	 * @param $opts array
+	 * @param $args array
+	 *
+	 * @return true
+	 */
 	private function initializeOpts( $opts, $args ) {
 
 		$this->mQuick = isset( $opts['nowarn'] );
@@ -94,8 +108,8 @@ class userOptions {
 			return false;
 		}
 
-		$this-> { $this->mMode } ( );
-
+		$this->{ $this->mMode } ( );
+		return true;
 	}
 
 	#
@@ -206,8 +220,10 @@ class userOptions {
 		}
 	}
 
-
-	/** Return an array of option names */
+	/**
+	 * Return an array of option names
+	 * @return array
+	 */
 	public static function getDefaultOptionsNames() {
 		$def = User::getDefaultOptions();
 		$ret = array();
@@ -216,7 +232,6 @@ class userOptions {
 		}
 		return $ret;
 	}
-
 
 	#
 	# Helper methods
@@ -250,7 +265,10 @@ USAGE;
 	exit( 0 );
 	}
 
-	/** The warning message and countdown */
+	/**
+	 * The warning message and countdown
+	 * @return bool
+	 */
 	public function warn() {
 
 		if ( $this->mQuick ) {

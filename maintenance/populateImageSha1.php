@@ -105,11 +105,7 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$t += microtime( true );
 		$this->output( sprintf( "\nDone %d files in %.1f seconds\n", $numRows, $t ) );
 
-		if ( $file ) {
-			return false; // we only updated *some* files, don't log
-		} else {
-			return true;
-		}
+		return !$file; // we only updated *some* files, don't log
 	}
 }
 

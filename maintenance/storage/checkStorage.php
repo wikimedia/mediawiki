@@ -56,7 +56,6 @@ class CheckStorage {
 	function check( $fix = false, $xml = '' ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		if ( $fix ) {
-			$dbw = wfGetDB( DB_MASTER );
 			print "Checking, will fix errors if possible...\n";
 		} else {
 			print "Checking...\n";

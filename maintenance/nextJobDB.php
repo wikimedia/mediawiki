@@ -37,7 +37,7 @@ class nextJobDB extends Maintenance {
 		$memcKey = 'jobqueue:dbs:v2';
 		$pendingDBs = $wgMemc->get( $memcKey );
 
-		// If the cache entry wasn't present, or in 1% of cases otherwise, 
+		// If the cache entry wasn't present, or in 1% of cases otherwise,
 		// regenerate the cache.
 		if ( !$pendingDBs || mt_rand( 0, 100 ) == 0 ) {
 			$pendingDBs = $this->getPendingDbs();
@@ -65,7 +65,7 @@ class nextJobDB extends Maintenance {
 			$candidates = array_values( $candidates );
 			$db = $candidates[ mt_rand( 0, count( $candidates ) - 1 ) ];
 			if ( !$this->checkJob( $type, $db ) ) {
-				// This job is not available in the current database. Remove it from 
+				// This job is not available in the current database. Remove it from
 				// the cache.
 				if ( $type === false ) {
 					foreach ( $pendingDBs as $type2 => $dbs ) {
@@ -85,7 +85,10 @@ class nextJobDB extends Maintenance {
 
 	/**
 	 * Check if the specified database has a job of the specified type in it.
-	 * The type may be false to indicate "all". 
+	 * The type may be false to indicate "all".
+	 * @param $type string
+	 * @param $dbName string
+	 * @return bool
 	 */
 	function checkJob( $type, $dbName ) {
 		$lb = wfGetLB( $dbName );
