@@ -32,7 +32,6 @@ class JSParseHelper extends Maintenance {
 	}
 
 	public function execute() {
-		$iterations = $this->getOption( 'i', 100 );
 		if ( $this->hasArg() ) {
 			$files = $this->mArgs;
 		} else {

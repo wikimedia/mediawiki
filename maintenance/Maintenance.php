@@ -526,6 +526,7 @@ abstract class Maintenance {
 	 * to allow sysadmins to explicitly set one if they'd prefer to override
 	 * defaults (or for people using Suhosin which yells at you for trying
 	 * to disable the limits)
+	 * @return string
 	 */
 	public function memoryLimit() {
 		$limit = $this->getOption( 'memory-limit', 'max' );
@@ -852,6 +853,9 @@ abstract class Maintenance {
 			$wgDBpassword = $wgDBadminpassword;
 
 			if ( $wgDBservers ) {
+				/**
+				 * @var $wgDBservers array
+				 */
 				foreach ( $wgDBservers as $i => $server ) {
 					$wgDBservers[$i]['user'] = $wgDBuser;
 					$wgDBservers[$i]['password'] = $wgDBpassword;
@@ -980,6 +984,7 @@ abstract class Maintenance {
 
 	/**
 	 * Get the maintenance directory.
+	 * @return string
 	 */
 	protected function getDir() {
 		return dirname( __FILE__ );
@@ -1127,6 +1132,7 @@ abstract class Maintenance {
 	 * Update the searchindex table for a given pageid
 	 * @param $dbw Database: a database write handle
 	 * @param $pageId Integer: the page ID to update.
+	 * @return null|string
 	 */
 	public function updateSearchIndexForPage( $dbw, $pageId ) {
 		// Get current revision

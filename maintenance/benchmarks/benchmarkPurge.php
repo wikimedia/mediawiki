@@ -54,6 +54,7 @@ class BenchmarkPurge extends Benchmarker {
 	 * to benchmark Squid response times.
 	 * @param $urls array A bunch of URLs to purge
 	 * @param $trials int How many times to run the test?
+	 * @return string
 	 */
 	private function benchSquid( $urls, $trials = 1 ) {
 		$start = wfTime();
@@ -70,6 +71,7 @@ class BenchmarkPurge extends Benchmarker {
 	/**
 	 * Get an array of randomUrl()'s.
 	 * @param $length int How many urls to add to the array
+	 * @return array
 	 */
 	private function randomUrlList( $length ) {
 		$list = array();
@@ -82,6 +84,7 @@ class BenchmarkPurge extends Benchmarker {
 	/**
 	 * Return a random URL of the wiki. Not necessarily an actual title in the
 	 * database, but at least a URL that looks like one.
+	 * @return string
 	 */
 	private function randomUrl() {
 		global $wgServer, $wgArticlePath;
@@ -91,6 +94,7 @@ class BenchmarkPurge extends Benchmarker {
 	/**
 	 * Create a random title string (not necessarily a Title object).
 	 * For use with randomUrl().
+	 * @return string
 	 */
 	private function randomTitle() {
 		$str = '';

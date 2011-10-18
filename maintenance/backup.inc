@@ -252,6 +252,7 @@ class BackupDumper {
 	 * @todo Fixme: the --server parameter is currently not respected, as it
 	 * doesn't seem terribly easy to ask the load balancer for a particular
 	 * connection by name.
+	 * @return DatabaseBase
 	 */
 	function backupDb() {
 		$this->lb = wfGetLBFactory()->newMainLB();

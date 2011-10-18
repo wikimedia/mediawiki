@@ -89,6 +89,7 @@ require_once( "$mwPath/includes/GlobalFunctions.php" );
 /**
  * Read a line from the shell
  * @param $prompt String
+ * @return string
  */
 function readaline( $prompt = '' ) {
 	print $prompt;
@@ -151,6 +152,7 @@ function getSvnRevision( $dir ) {
  * @param $exclude String: Additionals path regex to exclude
  * @param $exclude_patterns String: Additionals path regex to exclude
  *                 (LocalSettings.php, AdminSettings.php, .svn and .git directories are always excluded)
+ * @return string
  */
 function generateConfigFile( $doxygenTemplate, $outputDirectory, $stripFromPath, $currentVersion, $svnstat, $input, $exclude, $exclude_patterns ) {
 

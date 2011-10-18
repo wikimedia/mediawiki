@@ -133,6 +133,7 @@ class BaseDump {
 
 	/**
 	 * @access private
+	 * @return string
 	 */
 	function nextText() {
 		$this->skipTo( 'text' );
@@ -141,6 +142,9 @@ class BaseDump {
 
 	/**
 	 * @access private
+	 * @param $name string
+	 * @param $parent string
+	 * @return bool|null
 	 */
 	function skipTo( $name, $parent = 'page' ) {
 		if ( $this->atEnd ) {
@@ -192,6 +196,7 @@ class BaseDump {
 
 	/**
 	 * @access private
+	 * @return null
 	 */
 	function close() {
 		$this->reader->close();

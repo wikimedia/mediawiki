@@ -36,12 +36,12 @@ class UploadStashCleanup extends Maintenance {
 
   	public function execute() {
 		$repo = RepoGroup::singleton()->getLocalRepo();
-	
+
 		$dbr = $repo->getSlaveDb();
 
 		// how far back should this look for files to delete?
 		global $wgUploadStashMaxAge;
-		
+
 		$this->output( "Getting list of files to clean up...\n" );
 		$res = $dbr->select(
 			'uploadstash',
@@ -49,10 +49,11 @@ class UploadStashCleanup extends Maintenance {
 			'us_timestamp < ' . $dbr->timestamp( time() - $wgUploadStashMaxAge ),
 			__METHOD__
 		);
-		
+
 		if( !is_object( $res ) || $res->numRows() == 0 ) {
+			$this->output( 'No files to cleanup!' );
 			// nothing to do.
-			return false;
+			return;
 		}
 
 		// finish the read before starting writes.
@@ -60,13 +61,13 @@ class UploadStashCleanup extends Maintenance {
 		foreach($res as $row) {
 			array_push( $keys, $row->us_key );
 		}
-		
+
 		$this->output( 'Removing ' . count($keys) . " file(s)...\n" );
 		// this could be done some other, more direct/efficient way, but using
 		// UploadStash's own methods means it's less likely to fall accidentally
 		// out-of-date someday
 		$stash = new UploadStash( $repo );
-		
+
 		foreach( $keys as $key ) {
 			$stash->getFile( $key, true );
 			$stash->removeFileNoAuth( $key );

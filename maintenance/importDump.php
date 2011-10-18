@@ -57,7 +57,7 @@ TEXT;
 		$this->stderr = fopen( "php://stderr", "wt" );
 		$this->addOption( 'report',
 			'Report position and speed after every n pages processed', false, true );
-		$this->addOption( 'namespaces', 
+		$this->addOption( 'namespaces',
 			'Import only the pages from namespaces belonging to the list of ' .
 			'pipe-separated namespace names or namespace indexes', false, true );
 		$this->addOption( 'dry-run', 'Parse dump without actually importing pages' );
@@ -154,10 +154,14 @@ TEXT;
 		}
 	}
 
+	/**
+	 * @param $revision Revision
+	 * @return bool
+	 */
 	function handleUpload( $revision ) {
 		if ( $this->uploads ) {
 			if ( $this->skippedNamespace( $revision ) ) {
-				return;
+				return ;
 			}
 			$this->uploadCount++;
 			// $this->report();
