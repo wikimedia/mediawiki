@@ -424,15 +424,18 @@ class MovePageForm extends UnlistedSpecialPage {
 		$out = $this->getOutput();
 		$out->setPagetitle( wfMsg( 'pagemovedsub' ) );
 
-		$oldUrl = $ot->getFullUrl( 'redirect=no' );
-		$newUrl = $nt->getFullUrl();
+		$oldLink = Linker::link(
+			$ot,
+			null,
+			array(),
+			array( 'redirect' => 'no' )
+		);
+		$newLink = Linker::linkKnown( $nt );	
 		$oldText = $ot->getPrefixedText();
 		$newText = $nt->getPrefixedText();
-		$oldLink = "<span class='plainlinks'>[$oldUrl $oldText]</span>";
-		$newLink = "<span class='plainlinks'>[$newUrl $newText]</span>";
 
 		$msgName = $createRedirect ? 'movepage-moved-redirect' : 'movepage-moved-noredirect';
-		$out->addWikiMsg( 'movepage-moved', $oldLink, $newLink, $oldText, $newText );
+		$out->addHTML( wfMessage( 'movepage-moved' )->rawParams( $oldLink, $newLink, $oldText, $newText ) );
 		$out->addWikiMsg( $msgName );
 
 		# Now we move extra pages we've been asked to move: subpages and talk
