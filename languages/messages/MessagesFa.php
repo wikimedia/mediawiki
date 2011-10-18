@@ -1279,7 +1279,7 @@ $2
 'rev-suppressed-no-diff'      => "شما نمی‌توانید این تفاوت را مشاهده کنید چون یکی از نسخه‌ها '''حذف شده‌است'''.",
 'rev-deleted-unhide-diff'     => "یکی از دو نسخهٔ این تفاوت '''حذف شده‌است'''.
 ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.
-شما به عنوان یک مدیر کماکان می‌توانید در صورت تمایل [$1 این تفاوت را ببینید].",
+شما کماکان می‌توانید در صورت تمایل [$1 این تفاوت را ببینید].",
 'rev-suppressed-unhide-diff'  => "یکی از نسخه‌های این تفاوت '''فرونشانی شده‌است'''.
 ممکن است جزئیاتی در [{{fullurl:{{#Special:Log}}/suppress|page=سیاههٔ فرونشانی{{FULLPAGENAMEE}}}}] موجود باشد.
 شما به عنوان یک مدیر کماکان می‌توانید در صورت تمایل [$1 این تفاوت را ببینید].",
@@ -1353,7 +1353,7 @@ $1",
 # Suppression log
 'suppressionlog'     => 'سیاههٔ فرونشانی',
 'suppressionlogtext' => 'در زیر فهرستی از آخرین حذف‌ها و قطع دسترسی‌هایی که حاوی محتوایی هستند که از مدیران پنهان شده‌اند را می‌بینید.
-برای مشاهدهٔ فهرستی از قطع دسترسی‌های فعال [[Special:IPBlockList|فهرست قطع‌دسترسی‌ها]] را ببینید.',
+برای مشاهدهٔ فهرستی از قطع دسترسی‌های فعال [[Special:BlockList|IP block list]] را ببینید.',
 
 # History merging
 'mergehistory'                     => 'ادغام تاریخچه صفحه‌ها',
@@ -1628,12 +1628,12 @@ $1",
 'group-suppress'      => 'ناظران',
 'group-all'           => '(همه)',
 
-'group-user-member'          => 'کاربر',
-'group-autoconfirmed-member' => 'کاربر تاییدشده',
-'group-bot-member'           => 'ربات',
-'group-sysop-member'         => 'مدیر',
-'group-bureaucrat-member'    => 'دیوان‌سالار',
-'group-suppress-member'      => 'ناظر',
+'group-user-member'          => '{{GENDER:$1|کاربر}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|کاربر تاییدشده}}',
+'group-bot-member'           => '{{GENDER:$1|{{ربات}}',
+'group-sysop-member'         => '{{GENDER:$1|مدیر}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|دیوانسالار}}',
+'group-suppress-member'      => '{{GENDER:$1|نظارت}}',
 
 'grouppage-user'          => '{{ns:project}}:کاربران',
 'grouppage-autoconfirmed' => '{{ns:project}}:کاربران تاییدشده',

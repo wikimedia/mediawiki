@@ -454,6 +454,9 @@ Fadlan waxyar sug intii aadan soo gelin.',
 'login-abort-generic'        => 'Ma u soo gali karin gudaha - waa la noqay',
 'loginlanguagelabel'         => 'Luqada: $1',
 
+# E-mail sending
+'user-mail-no-addy' => "Isku dayday in aa dirto e-mail ayada oo ciwaan e-mail la'aan ah.",
+
 # Change password dialog
 'resetpass'                 => 'Bedel ereysirka',
 'resetpass_announce'        => 'waxaa ku soo geshay eraysir ku meelgaar ah  oo e-mail laguugu soo diray.
@@ -486,7 +489,8 @@ Waa in aad gudaha gashaa oo e-mail cusub doorataa hadda. Hadii ee qof kale codsi
 Ereysirka kumeelgaarka ah: $2',
 
 # Special:ChangeEmail
-'changeemail' => 'Bedel ciwaanka E-mailka',
+'changeemail'      => 'Bedel ciwaanka E-mailka',
+'changeemail-none' => '(waxna)',
 
 # Edit page toolbar
 'bold_sample'     => 'Far butac ah',
@@ -593,6 +597,7 @@ Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
 'hiddencategories'                 => 'Boggaan waxoo ka mid yahay {{PLURAL:$1|1 qeyb oo qarsoon|$1 oo ah qeybaha qarsoon}}:',
 'nocreate-loggedin'                => 'Ma laguu ogolo in aad sameyso boggag cusub.',
 'permissionserrors'                => 'Cillado ogolaashada ah',
+'permissionserrorstext'            => 'Ma laguu ogolo in aa taas sameysid,{{PLURAL:$1|sababtaan|sababahaan}} soo socota:',
 'permissionserrorstext-withaction' => 'Ma laguu ogolo in aad $2, ku sameysid  {{PLURAL:$1| sababtaan|sababahaan }} soo socota:',
 'recreate-moveddeleted-warn'       => "'''Digniin: waxaa dib u sameyn rabtaa bog mar hore la tirtiray.'''
 

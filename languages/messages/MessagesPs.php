@@ -2042,7 +2042,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'sp-newimages-showfrom' => 'هغه نوې دوتنې چې په $1 په $2 بجو پيلېږي ښکاره کول',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'hours-abbrev' => '$1ساعتونه',
+'hours-abbrev' => '$1ګ',
 
 # Bad image list
 'bad_image_list' => 'بڼه يې په لاندې توګه ده:

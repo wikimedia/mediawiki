@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Lam-ang
  * @author Saluyot
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -355,6 +356,7 @@ Dimo liplipatan a sukatan dagiti preferenciam iti [[Special:Preferences|{{SITENA
 'gotaccount'                 => "Addaanka kadin iti account? '''$1'''.",
 'gotaccountlink'             => 'Sumrek',
 'createaccountmail'          => 'babaen ti e-mail',
+'createaccountreason'        => 'Rason:',
 'badretype'                  => 'Saan nga agparis dagiti impanmo a pasesbalikas.',
 'userexists'                 => 'Maus-usaren ti nagan nga impanmo.
 Pangngaasim ta mangpilika sabali a nagan.',
@@ -397,14 +399,15 @@ Saankan a makaaramid pay.',
 'loginlanguagelabel'         => 'Lengguahe: $1',
 
 # Change password dialog
-'resetpass'           => 'Sukatan ti pasesbalikas ti account',
-'resetpass_header'    => 'Sukatan ti pasesbalikas ti account',
-'oldpassword'         => 'Daan a pasesbalikas:',
-'newpassword'         => 'Baro a pasesbalikas:',
-'retypenew'           => 'Isurat manen ti baro a pasesbalikas:',
-'resetpass_submit'    => 'Ikabil ti pasesbalikas ken login',
-'resetpass_success'   => 'Sibaballigi a nabaliwan ti pasesbalikasmo! Sumsumrekkan...',
-'resetpass_forbidden' => 'Saan a mabalin a baliwan dagiti pasesbalikas iti {{SITENAME}}',
+'resetpass'                 => 'Sukatan ti pasesbalikas ti account',
+'resetpass_header'          => 'Sukatan ti pasesbalikas ti account',
+'oldpassword'               => 'Daan a pasesbalikas:',
+'newpassword'               => 'Baro a pasesbalikas:',
+'retypenew'                 => 'Isurat manen ti baro a pasesbalikas:',
+'resetpass_submit'          => 'Ikabil ti pasesbalikas ken login',
+'resetpass_success'         => 'Sibaballigi a nabaliwan ti pasesbalikasmo! Sumsumrekkan...',
+'resetpass_forbidden'       => 'Saan a mabalin a baliwan dagiti pasesbalikas iti {{SITENAME}}',
+'resetpass-submit-loggedin' => 'Sukatan ti pasesbalikas',
 
 # Edit page toolbar
 'bold_sample'     => 'Napuskol a texto',
@@ -543,6 +546,7 @@ Ti inted a rason ni $3 ket ''$2''",
 Legend: (agdama) = paggidiatan iti agdama a version,
 (naudi) = naggidiatan iti sarsarunuen a version, M = minor nga edit.',
 'history-fieldset-title' => 'Palabsan ti pakasaritaan',
+'history-show-deleted'   => 'Dagiti naikkat laeng',
 'histfirst'              => 'Kaunaan',
 'histlast'               => 'Kaudian',
 'historysize'            => '({{PLURAL:$1|1 a byte|$1 a bytes}})',
@@ -553,24 +557,29 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 'history-feed-item-nocomment' => '$1 iti $2',
 
 # Revision deletion
-'rev-deleted-comment'     => '(naikkat ti komento)',
-'rev-deleted-user'        => '(naikkat ti nagan ti agar-aramat)',
-'rev-deleted-event'       => '(naikkat ti log action)',
-'rev-delundel'            => 'ipakita/ilemmeng',
-'revdelete-nooldid-title' => 'Saan a valido a target revision',
-'revdelete-selected'      => "'''{{PLURAL:$2|Napili a revision|Napili a revisions}} ti [[:$1]]:'''",
-'revdelete-legend'        => 'Iplastar ti visibility restrictions',
-'revdelete-hide-text'     => 'Ilemmeng ti texto ti revision',
-'revdelete-hide-image'    => 'Ilemmeng ti linaon ti file',
-'revdelete-hide-name'     => 'Ilemmeng ti action ken target',
-'revdelete-hide-comment'  => 'Ilemmeng ti komento ti edit',
-'revdelete-hide-user'     => 'Ilemmeng ti nagan-agaramat/IP ti editor',
-'revdelete-unsuppress'    => 'Ikkaten dagiti pannakaiparit kadagiti naisubli a revisions',
-'revdelete-log'           => 'Rason:',
-'revdelete-submit'        => 'Ipakat iti napili a panamalbaliw',
-'revdel-restore'          => 'Sukatan ti visibility',
-'pagehist'                => 'Pakasaritaan ti panid',
-'deletedhist'             => 'Naikkat ti pakasaritaan',
+'rev-deleted-comment'       => '(naikkat ti komento)',
+'rev-deleted-user'          => '(naikkat ti nagan ti agar-aramat)',
+'rev-deleted-event'         => '(naikkat ti log action)',
+'rev-delundel'              => 'ipakita/ilemmeng',
+'rev-showdeleted'           => 'ipakita',
+'revdelete-nooldid-title'   => 'Saan a valido a target revision',
+'revdelete-selected'        => "'''{{PLURAL:$2|Napili a revision|Napili a revisions}} ti [[:$1]]:'''",
+'revdelete-legend'          => 'Iplastar ti visibility restrictions',
+'revdelete-hide-text'       => 'Ilemmeng ti texto ti revision',
+'revdelete-hide-image'      => 'Ilemmeng ti linaon ti file',
+'revdelete-hide-name'       => 'Ilemmeng ti action ken target',
+'revdelete-hide-comment'    => 'Ilemmeng ti komento ti edit',
+'revdelete-hide-user'       => 'Ilemmeng ti nagan-agaramat/IP ti editor',
+'revdelete-radio-same'      => 'saan nga sukatan',
+'revdelete-radio-set'       => 'Wen',
+'revdelete-radio-unset'     => 'Saan',
+'revdelete-unsuppress'      => 'Ikkaten dagiti pannakaiparit kadagiti naisubli a revisions',
+'revdelete-log'             => 'Rason:',
+'revdelete-submit'          => 'Ipakat iti napili a panamalbaliw',
+'revdel-restore'            => 'Sukatan ti visibility',
+'pagehist'                  => 'Pakasaritaan ti panid',
+'deletedhist'               => 'Naikkat ti pakasaritaan',
+'revdelete-reasonotherlist' => 'Sabali nga rason',
 
 # Suppression log
 'suppressionlog' => 'Log ti suppression',
@@ -588,6 +597,7 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 'mergehistory-invalid-source' => 'Masapul nga addaan valido a titulo ti taudan a panid.',
 'mergehistory-autocomment'    => 'Naitipon ti [[:$1]] iti [[:$2]]',
 'mergehistory-comment'        => 'Naitipon ti [[:$1]] iti [[:$2]]: $3',
+'mergehistory-reason'         => 'Rason:',
 
 # Merge log
 'mergelog'           => 'Itipon ti log',
@@ -604,6 +614,7 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 
 # Search results
 'searchresults'             => 'Dagiti resulta ti panagbirok',
+'searchresults-title'       => 'Dagiti nabirukan nga resulta ti $1',
 'searchsubtitle'            => "Sinapul mo ti '''[[:$1]]'''",
 'searchsubtitleinvalid'     => "Sinapulmo ti '''$1'''",
 'notextmatches'             => 'Awan ti page text matches',
@@ -631,6 +642,7 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 'powersearch-legend'        => 'Advanced a panagsapul',
 'powersearch-redir'         => 'Ilista dagiti panagibaw-ing',
 'powersearch-field'         => 'Agsapul iti',
+'powersearch-toggleall'     => 'Amin',
 'search-external'           => 'Akinruar a pagsapul',
 
 # Quickbar
@@ -646,7 +658,7 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 'mypreferences'             => 'Dagiti preferenciak',
 'prefs-edits'               => 'Bilang dagiti binalbaliwan:',
 'prefsnologin'              => 'Saan a naka-log in',
-'changepassword'            => 'Baliwan ti password',
+'changepassword'            => 'Baliwan ti pasesbalikas',
 'prefs-skin'                => 'Kudil',
 'skin-preview'              => 'I-preview',
 'datedefault'               => 'Awanan preferencia',
@@ -656,6 +668,7 @@ Legend: (agdama) = paggidiatan iti agdama a version,
 'prefs-watchlist'           => 'Listaan ti bambantayan',
 'prefs-watchlist-days'      => 'Bilang ti aldaw nga agparang iti listaan ti bambantayan:',
 'prefs-misc'                => 'Misc',
+'prefs-resetpass'           => 'Sukatan ti pasesbalikas',
 'saveprefs'                 => 'I-save',
 'resetprefs'                => 'Dalusan dagiti saan a naidulin a panamalbaliw',
 'searchresultshead'         => 'Sapulen',
@@ -738,6 +751,12 @@ Ngem no kayatmo nga ited, maaramat daytoy kas pammadayaw ken pangpatalged iti ob
 'rightslog'      => 'Log dagiti karbengan ti agar-aramat',
 'rightslogentry' => 'Nasukatan ti panagkameng iti bunggoy ti $1 manipud $2 iti $3',
 'rightsnone'     => '(awan)',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-read'       => 'basaem datoy panid',
+'action-edit'       => 'baliwam datoy panid',
+'action-createpage' => 'Agaramid ka ti panid',
+'action-delete'     => 'ikkatem datoy nga panid',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|baliw|balbaliw}}',
@@ -881,6 +900,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'filedelete-reason-dropdown'  => '*Kadawyan a rasrason ti pannakaikkat
 ** Panagsalungasing iti copyright
 ** Nadoble a file',
+'filedelete-edit-reasonlist'  => 'Baliwan ti rason ti pinaikkat',
 
 # MIME search
 'mimesearch' => 'MIME a pagbirok',
@@ -1158,6 +1178,7 @@ Mabalinmo a sukatan ti level ti saluad daytoy a panid, ngem saanna nga apektaran
 'undelete-nodiff'          => 'Awan nasarakan a kallabes a revision.',
 'undeletebtn'              => 'Isubli',
 'undeletelink'             => 'isubli',
+'undeleteviewlink'         => 'kitaen',
 'undeletereset'            => 'I-reset',
 'undeletecomment'          => 'Komento:',
 'undeletedrevisions'       => '{{PLURAL:$1|1 a revision|$1 a revision}} ti naisubli',

@@ -55,19 +55,27 @@ $messages = array(
 'go'               => 'Kɔ',
 'searcharticle'    => 'Kɔ',
 'history'          => 'Krataafa abakɔsɛm',
-'history_short'    => 'Beeme',
+'history_short'    => 'Abakɔsɛm',
 'talkpagelinktext' => 'Kasa',
-'talk'             => 'Kasa',
+'talk'             => 'Nkɔmbɔ',
 'jumptosearch'     => 'hwehwɛ',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite' => 'Fa {{SITENAME}} ho',
+'mainpage'  => 'Krataafa Titiriw',
+
+'editsection'     => 'sesa',
+'editsectionhint' => 'Sesa sɛkhyɛn: $1',
+'red-link-title'  => '$1 (krataafa nni hɔ)',
 
 # Login and logout pages
 'login'                   => 'Bra mu',
 'nav-login-createaccount' => 'Bra mu / yɛ akawnt',
-'userlogin'               => 'Bra mu',
+'userlogin'               => 'Bra mu / yɛ akawnt',
 'logout'                  => 'Pue',
 'userlogout'              => 'Pue',
 'notloggedin'             => 'Mmbaa mu',
-'nologin'                 => "Wo nni akawnt anaa? '''$1'''.",
+'nologin'                 => 'Wo nni akawnt anaa? $1.',
 
 # Search results
 'powersearch' => 'Hwehwɛ',
@@ -76,7 +84,7 @@ $messages = array(
 'searchresultshead' => 'Hwehwɛ',
 
 # Recent changes
-'hist' => 'beeme',
+'hist' => 'abakɔsɛm',
 
 # Watchlist
 'watch' => 'Hwɛ',
