@@ -35,6 +35,8 @@ class SqliteMaintenance extends Maintenance {
 	/**
 	 * While we use database connection, this simple lie prevents useless --dbpass and
 	 * --dbuser options from appearing in help message for this script.
+	 *
+	 * @return int DB constant
 	 */
 	public function getDbType() {
 		return Maintenance::DB_NONE;

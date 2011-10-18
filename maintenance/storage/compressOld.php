@@ -123,7 +123,12 @@ class CompressOld extends Maintenance {
 		} while( true );
 	}
 
-	/** @todo document */
+	/**
+	 * @todo document
+	 * @param $row
+	 * @param $extdb
+	 * @return bool
+	 */
 	private function compressPage( $row, $extdb ) {
 		if ( false !== strpos( $row->old_flags, 'gzip' ) || false !== strpos( $row->old_flags, 'object' ) ) {
 			#print "Already compressed row {$row->old_id}\n";
@@ -156,7 +161,15 @@ class CompressOld extends Maintenance {
 		return true;
 	}
 
-	/** @todo document */
+	/**
+	 * @param $startId
+	 * @param $maxChunkSize
+	 * @param $beginDate
+	 * @param $endDate
+	 * @param $extdb string
+	 * @param $maxPageId bool|int
+	 * @return bool
+	 */
 	private function compressWithConcat( $startId, $maxChunkSize, $beginDate,
 		$endDate, $extdb = "", $maxPageId = false )
 	{

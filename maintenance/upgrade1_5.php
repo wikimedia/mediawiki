@@ -39,6 +39,12 @@ define( 'MW_UPGRADE_CALLBACK', null  ); // for self-documentation only
  * @ingroup Maintenance
  */
 class FiveUpgrade extends Maintenance {
+
+	/**
+	 * @var DatabaseBase
+	 */
+	protected $db;
+
 	function __construct() {
 		parent::__construct();
 
@@ -321,6 +327,8 @@ class FiveUpgrade extends Maintenance {
 
 	/**
 	 * Helper function for copyTable array_filter
+	 * @param $x
+	 * @return bool
 	 */
 	static private function notUpgradeNull( $x ) {
 		return $x !== MW_UPGRADE_NULL;
@@ -800,8 +808,10 @@ END;
 	 * Rename a given image or archived image file to the converted filename,
 	 * leaving a symlink for URL compatibility.
 	 *
-	 * @param string $oldname pre-conversion filename
-	 * @param string $basename pre-conversion base filename for dir hashing, if an archive
+	 * @param $oldname string pre-conversion filename
+	 * @param $subdirCallback string
+	 * @param $basename string pre-conversion base filename for dir hashing, if an archive
+	 * @return bool|string
 	 * @access private
 	 */
 	function renameFile( $oldname, $subdirCallback = 'wfImageDir', $basename = null ) {

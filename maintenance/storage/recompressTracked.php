@@ -169,6 +169,7 @@ class RecompressTracked {
 
 	/**
 	 * Make sure the tracking table exists and isn't empty
+	 * @return bool
 	 */
 	function checkTrackingTable() {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -588,6 +589,7 @@ class RecompressTracked {
 
 	/**
 	 * Returns the name of the next target cluster
+	 * @return string
 	 */
 	function getTargetCluster() {
 		$cluster = next( $this->destClusters );
@@ -599,6 +601,8 @@ class RecompressTracked {
 
 	/**
 	 * Gets a DB master connection for the given external cluster name
+	 * @param $cluster string
+	 * @return DatabaseBase
 	 */
 	function getExtDB( $cluster ) {
 		$lb = wfGetLBFactory()->getExternalLB( $cluster );
@@ -684,6 +688,9 @@ class CgzCopyTransaction {
 	/**
 	 * Add text.
 	 * Returns false if it's ready to commit.
+	 * @param $text string
+	 * @param $textId
+	 * @return bool
 	 */
 	function addItem( $text, $textId ) {
 		if ( !$this->cgz ) {

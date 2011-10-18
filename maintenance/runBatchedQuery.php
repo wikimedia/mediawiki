@@ -36,7 +36,6 @@ class BatchedQueryRunner extends Maintenance {
 			$this->error( "No query specified. Specify the query as a command line parameter.", true );
 
 		$query = $this->getArg();
-		$wait = $this->getOption( 'wait', 5 );
 		$n = 1;
 		$dbw = wfGetDB( DB_MASTER );
 		do {
