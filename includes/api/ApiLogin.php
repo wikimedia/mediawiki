@@ -68,7 +68,10 @@ class ApiLogin extends ApiBase {
 			wfSetupSession();
 		}
 
-		$loginForm = new LoginForm( $req );
+		$context = $this->createContext();
+		$context->setRequest( $req );
+		$loginForm = new LoginForm();
+		$loginForm->setContext( $context );
 
 		global $wgCookiePrefix, $wgUser, $wgPasswordAttemptThrottle;
 
