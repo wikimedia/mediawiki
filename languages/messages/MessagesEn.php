@@ -1078,7 +1078,7 @@ Please enable them and try again.',
 'nosuchuser'                 => 'There is no user by the name "$1".
 Usernames are case sensitive.
 Check your spelling, or [[Special:UserLogin/signup|create a new account]].',
-'nosuchusershort'            => 'There is no user by the name "<nowiki>$1</nowiki>".
+'nosuchusershort'            => 'There is no user by the name "$1".
 Check your spelling.',
 'nouserspecified'            => 'You have to specify a username.',
 'login-userblocked'          => 'This user is blocked. Login not allowed.',
@@ -1459,27 +1459,27 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-deleted-text-unhide'     => "This page revision has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
-As an administrator you can still [$1 view this revision] if you wish to proceed.",
+You can still [$1 view this revision] if you wish to proceed.",
 'rev-suppressed-text-unhide'  => "This page revision has been '''suppressed'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
-As an administrator you can still [$1 view this revision] if you wish to proceed.",
+You can still [$1 view this revision] if you wish to proceed.",
 'rev-deleted-text-view'       => "This page revision has been '''deleted'''.
-As an administrator you can view it; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+You can view it; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-text-view'    => "This page revision has been '''suppressed'''.
-As an administrator you can view it; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
+You can view it; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-deleted-no-diff'         => "You cannot view this diff because one of the revisions has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-no-diff'      => "You cannot view this diff because one of the revisions has been '''deleted'''.",
 'rev-deleted-unhide-diff'     => "One of the revisions of this diff has been '''deleted'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
-As an administrator you can still [$1 view this diff] if you wish to proceed.",
+You can still [$1 view this diff] if you wish to proceed.",
 'rev-suppressed-unhide-diff'  => "One of the revisions of this diff has been '''suppressed'''.
 Details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
-As an administrator you can still [$1 view this diff] if you wish to proceed.",
+You can still [$1 view this diff] if you wish to proceed.",
 'rev-deleted-diff-view'       => "One of the revisions of this diff has been '''deleted'''.
-As an administrator you can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
+You can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
 'rev-suppressed-diff-view'    => "One of the revisions of this diff has been '''suppressed'''.
-As an administrator you can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
+You can view this diff; details can be found in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-delundel'                => 'show/hide',
 'rev-showdeleted'             => 'show',
 'revisiondelete'              => 'Delete/undelete revisions',
@@ -3550,8 +3550,8 @@ $1',
 By executing it, your system may be compromised.",
 'imagemaxsize'         => "Image size limit:<br />''(for file description pages)''",
 'thumbsize'            => 'Thumbnail size:',
-'widthheight'          => '$1×$2', # only translate this message to other languages if you have to change it
-'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|page|pages}}',
+'widthheight'          => '$1 × $2', # only translate this message to other languages if you have to change it
+'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|page|pages}}',
 'file-info'            => 'file size: $1, MIME type: $2',
 'file-info-size'       => '$1 × $2 pixels, file size: $3, MIME type: $4',
 'file-nohires'         => '<small>No higher resolution available.</small>',
@@ -3577,7 +3577,7 @@ By executing it, your system may be compromised.",
 'sp-newimages-showfrom' => 'Show new files starting from $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'video-dims'     => '$1, $2×$3', # only translate this message to other languages if you have to change it
+'video-dims'     => '$1, $2 × $3', # only translate this message to other languages if you have to change it
 'seconds-abbrev' => 's', # only translate this message to other languages if you have to change it
 'minutes-abbrev' => 'm', # only translate this message to other languages if you have to change it
 'hours-abbrev'   => 'h', # only translate this message to other languages if you have to change it
