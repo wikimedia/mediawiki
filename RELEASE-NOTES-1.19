@@ -146,9 +146,9 @@ changes to languages because of Bugzilla reports.
   populateImageSha1.php
 * The Client-IP header is no longer checked for when trying to resolve a client's
   real IP address.
-* Although IE5.x was already unsupported officially, stylesheets existing
-  exclusively for IE5.0 and IE5.5 have now been removed (were in skins 'chick'
-  and 'monobook').
+* (bug 22096) Although IE5.x and below was already unsupported officially, stylesheets
+  existing exclusively for IE5.0 and IE5.5 have now been removed (which were in skins
+  'chick' and 'monobook').
 
 == Compatibility ==
 
