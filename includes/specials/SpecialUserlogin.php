@@ -49,6 +49,7 @@ class LoginForm extends SpecialPage {
 	var $mSkipCookieCheck, $mReturnToQuery, $mToken, $mStickHTTPS;
 	var $mType, $mReason, $mRealName;
 	var $mAbortLoginErrorMsg = 'login-abort-generic';
+	private $mLoaded = false;
 
 	/**
 	 * @var ExternalUser
@@ -74,8 +75,19 @@ class LoginForm extends SpecialPage {
 	 *
 	 * @param $request WebRequest object
 	 */
-	function load( $request ) {
+	function load() {
 		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail, $wgRedirectOnLogin;
+
+		if ( $this->mLoaded ) {
+			return;
+		}
+		$this->mLoaded = true;
+
+		if ( $this->mOverrideRequest === null ) {
+			$request = $this->getRequest();
+		} else {
+			$request = $this->mOverrideRequest;
+		}
 
 		$this->mType = $request->getText( 'type' );
 		$this->mUsername = $request->getText( 'wpName' );
@@ -132,12 +144,7 @@ class LoginForm extends SpecialPage {
 			wfSetupSession();
 		}
 
-		if ( $this->mOverrideRequest === null ) {
-			$request = $this->getRequest();
-		} else {
-			$request = $this->mOverrideRequest;
-		}
-		$this->load( $request );
+		$this->load();
 
 		if ( $par == 'signup' ) { # Check for [[Special:Userlogin/signup]]
 			$this->mType = 'signup';
@@ -458,6 +465,8 @@ class LoginForm extends SpecialPage {
 	 */
 	public function authenticateUserData() {
 		global $wgUser, $wgAuth;
+
+		$this->load();
 
 		if ( $this->mUsername == '' ) {
 			return self::NO_NAME;
