@@ -1950,7 +1950,7 @@ class WikiPage extends Page {
 	 * Returns a stdclass with source, pst and output members
 	 */
 	public function prepareTextForEdit( $text, $revid = null, User $user = null ) {
-		global $wgParser, $wgUser;
+		global $wgParser, $wgContLang, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 		// @TODO fixme: check $user->getId() here???
 		if ( $this->mPreparedEdit
@@ -1961,7 +1961,7 @@ class WikiPage extends Page {
 			return $this->mPreparedEdit;
 		}
 
-		$popts = ParserOptions::newFromUser( $user );
+		$popts = ParserOptions::newFromUserAndLang( $user, $wgContLang );
 		wfRunHooks( 'ArticlePrepareTextForEdit', array( $this, $popts ) );
 
 		$edit = (object)array();
@@ -2507,12 +2507,11 @@ class WikiPage extends Page {
 	* @return ParserOptions
 	*/
 	public function makeParserOptions( $user ) {
-		global $wgLanguageCode;
+		global $wgContLang;
 		if ( $user instanceof User ) { // settings per user (even anons)
 			$options = ParserOptions::newFromUser( $user );
 		} else { // canonical settings
-			$options = ParserOptions::newFromUser( new User );
-			$options->setUserLang( $wgLanguageCode ); # Must be set explicitily
+			$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		}
 		$options->enableLimitReport(); // show inclusion/loop reports
 		$options->setTidy( true ); // fix bad HTML

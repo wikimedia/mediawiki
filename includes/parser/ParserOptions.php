@@ -41,7 +41,7 @@ class ParserOptions {
 	var $mMath;                      # User math preference (as integer)
 	var $mThumbSize;                 # Thumb size preferred by the user.
 	private $mStubThreshold;         # Maximum article size of an article to be marked as "stub"
-	var $mUserLang;                  # Language code of the User language.
+	var $mUserLang;                  # Language object of the User language.
 
 	/**
 	 * @var User
@@ -119,12 +119,23 @@ class ParserOptions {
 	 * You shouldn't use this. Really. $parser->getFunctionLang() is all you need.
 	 * Using this fragments the cache and is discouraged. Yes, {{int: }} uses this,
 	 * producing inconsistent tables (Bug 14404).
+	 *
+	 * @return Language object
+	 * @since 1.19
+	 */
+	function getUserLangObj() {
+		$this->optionUsed( 'userlang' );
+		return $this->mUserLang;
+	}
+
+	/**
+	 * Same as getUserLangObj() but returns a string instead.
+	 *
 	 * @return String   Language code
 	 * @since 1.17
 	 */
 	function getUserLang() {
-		$this->optionUsed( 'userlang' );
-		return $this->mUserLang;
+		return $this->getUserLangObj()->getCode();
 	}
 
 	function setUseDynamicDates( $x )           { return wfSetVar( $this->mUseDynamicDates, $x ); }
@@ -153,8 +164,8 @@ class ParserOptions {
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
 	function setMath( $x )                      { return wfSetVar( $this->mMath, $x ); }
 	function setUserLang( $x )                  {
-		if ( $x instanceof Language ) {
-			$x = $x->getCode();
+		if ( is_string( $x ) ) {
+			$x = Language::factory( $x );
 		}
 		return wfSetVar( $this->mUserLang, $x );
 	}
@@ -173,41 +184,62 @@ class ParserOptions {
 		$this->mExtraKey .= '!' . $key;
 	}
 
-	function __construct( $user = null ) {
-		$this->initialiseFromUser( $user );
+	function __construct( $user = null, $lang = null ) {
+		if ( $user === null ) {
+			global $wgUser;
+			if ( $wgUser === null ) {
+				$user = new User;
+			} else {
+				$user = $wgUser;
+			}
+		}
+		if ( $lang === null ) {
+			global $wgLang;
+			$lang = $wgLang;
+		}
+		$this->initialiseFromUser( $user, $lang );
 	}
 
 	/**
-	 * Get parser options
+	 * Get a ParserOptions object from a given user.
+	 * Language will be taken from $wgLang.
 	 *
 	 * @param $user User object
 	 * @return ParserOptions object
 	 */
-	static function newFromUser( $user ) {
+	public static function newFromUser( $user ) {
 		return new ParserOptions( $user );
 	}
 
+	/**
+	 * Get a ParserOptions object from a given user and language
+	 *
+	 * @param $user User object
+	 * @param $lang Language object
+	 * @return ParserOptions object
+	 */
+	public static function newFromUserAndLang( User $user, Language $lang ) {
+		return new ParserOptions( $user, $lang );
+	}
+
+	/**
+	 * Get a ParserOptions object from a IContextSource object
+	 *
+	 * @param $context IContextSource object
+	 * @return ParserOptions object
+	 */
+	public static function newFromContext( IContextSource $context ) {
+		return new ParserOptions( $context->getUser(), $context->getLang() );
+	}
+
 	/** Get user options */
-	function initialiseFromUser( $userInput ) {
-		global $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages;
-		global $wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion, $wgMaxArticleSize;
-		global $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth, $wgCleanSignatures;
-		global $wgExternalLinkTarget, $wgLang;
+	private function initialiseFromUser( $user, $lang ) {
+		global $wgUseDynamicDates, $wgInterwikiMagic, $wgAllowExternalImages,
+			$wgAllowExternalImagesFrom, $wgEnableImageWhitelist, $wgAllowSpecialInclusion,
+			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
+			$wgCleanSignatures, $wgExternalLinkTarget;
 
 		wfProfileIn( __METHOD__ );
-
-		if ( !$userInput ) {
-			global $wgUser;
-			if ( isset( $wgUser ) ) {
-				$user = $wgUser;
-			} else {
-				$user = new User;
-			}
-		} else {
-			$user =& $userInput;
-		}
-
-		$this->mUser = $user;
 
 		$this->mUseDynamicDates = $wgUseDynamicDates;
 		$this->mInterwikiMagic = $wgInterwikiMagic;
@@ -222,11 +254,12 @@ class ParserOptions {
 		$this->mCleanSignatures = $wgCleanSignatures;
 		$this->mExternalLinkTarget = $wgExternalLinkTarget;
 
+		$this->mUser = $user;
 		$this->mNumberHeadings = $user->getOption( 'numberheadings' );
 		$this->mMath = $user->getOption( 'math' );
 		$this->mThumbSize = $user->getOption( 'thumbsize' );
 		$this->mStubThreshold = $user->getStubThreshold();
-		$this->mUserLang = $wgLang->getCode();
+		$this->mUserLang = $lang;
 
 		wfProfileOut( __METHOD__ );
 	}
@@ -312,7 +345,7 @@ class ParserOptions {
 		}
 
 		if ( in_array( 'userlang', $forOptions ) ) {
-			$confstr .= '!' . $this->mUserLang;
+			$confstr .= '!' . $this->mUserLang->getCode();
 		} else {
 			$confstr .= '!*';
 		}

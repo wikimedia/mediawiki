@@ -32,9 +32,9 @@
  *     Removes <noinclude> sections, and <includeonly> tags.
  *
  * Globals used:
- *    objects:   $wgLang, $wgContLang
+ *    object: $wgContLang
  *
- * NOT $wgUser or $wgTitle or $wgRequest. Keep them away!
+ * NOT $wgUser or $wgTitle or $wgRequest or $wgLang. Keep them away!
  *
  * settings:
  *  $wgUseDynamicDates*, $wgInterwikiMagic*,
@@ -698,8 +698,7 @@ class Parser {
 		if ( $target !== null ) {
 			return $target;
 		} elseif( $this->mOptions->getInterfaceMessage() ) {
-			global $wgLang;
-			return $wgLang;
+			return $this->mOptions->getUserLangObj();
 		} elseif( is_null( $this->mTitle ) ) {
 			throw new MWException( __METHOD__.': $this->mTitle is null' );
 		}
@@ -3237,7 +3236,7 @@ class Parser {
 					$context->setTitle( $title );
 					$context->setRequest( new FauxRequest( $pageArgs ) );
 					$context->setUser( $this->getUser() );
-					$context->setLang( Language::factory( $this->mOptions->getUserLang() ) );
+					$context->setLang( $this->mOptions->getUserLangObj() );
 					$ret = SpecialPageFactory::capturePath( $title, $context );
 					if ( $ret ) {
 						$text = $context->getOutput()->getHTML();

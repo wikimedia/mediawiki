@@ -305,7 +305,7 @@ class Preferences {
 		}
 
 		// show a preview of the old signature first
-		$oldsigWikiText = $wgParser->preSaveTransform( "~~~", $context->getTitle(), $user, new ParserOptions );
+		$oldsigWikiText = $wgParser->preSaveTransform( "~~~", $context->getTitle(), $user, ParserOptions::newFromContext( $context ) );
 		$oldsigHTML = $context->getOutput()->parseInline( $oldsigWikiText, true, true );
 		$defaultPreferences['oldsig'] = array(
 			'type' => 'info',
