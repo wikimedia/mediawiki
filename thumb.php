@@ -53,16 +53,16 @@ function wfThumbMain() {
 	$fileName = strtr( $fileName, '\\/', '__' );
 
 	// Actually fetch the image. Method depends on whether it is archived or not.
-	if( $isOld ) {
+	if ( $isOld ) {
 		// Format is <timestamp>!<name>
 		$bits = explode( '!', $fileName, 2 );
-		if( !isset($bits[1]) ) {
+		if ( count( $bits ) != 2 ) {
 			wfThumbError( 404, wfMsg( 'badtitletext' ) );
 			wfProfileOut( __METHOD__ );
 			return;
 		}
 		$title = Title::makeTitleSafe( NS_FILE, $bits[1] );
-		if( is_null($title) ) {
+		if ( is_null( $title ) ) {
 			wfThumbError( 404, wfMsg( 'badtitletext' ) );
 			wfProfileOut( __METHOD__ );
 			return;
@@ -118,11 +118,11 @@ function wfThumbMain() {
 		}
 	}
 
-	// Stream the file if it exists already
+	// Stream the file if it exists already...
 	try {
-		if ( false != ( $thumbName = $img->thumbName( $params ) ) ) {
+		$thumbName = $img->thumbName( $params );
+		if ( $thumbName !== false ) { // valid params?
 			$thumbPath = $img->getThumbPath( $thumbName );
-
 			if ( is_file( $thumbPath ) ) {
 				StreamFile::stream( $thumbPath, $headers );
 				wfProfileOut( __METHOD__ );
@@ -135,6 +135,7 @@ function wfThumbMain() {
 		return;
 	}
 
+	// Thumbnail isn't already there, so create the new thumbnail...
 	try {
 		$thumb = $img->transform( $params, File::RENDER_NOW );
 	} catch( Exception $ex ) {
@@ -142,6 +143,7 @@ function wfThumbMain() {
 		$thumb = false;
 	}
 
+	// Check for thumbnail generation errors...
 	$errorMsg = false;
 	if ( !$thumb ) {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'File::transform() returned false' );
@@ -152,11 +154,13 @@ function wfThumbMain() {
 	} elseif ( $thumb->getPath() == $img->getPath() ) {
 		$errorMsg = wfMsgHtml( 'thumbnail_error', 'Image was not scaled, ' .
 			'is the requested width bigger than the source?' );
-	} else {
-		StreamFile::stream( $thumb->getPath(), $headers );
 	}
+
 	if ( $errorMsg !== false ) {
 		wfThumbError( 500, $errorMsg );
+	} else {
+		// Stream the file if there were no errors
+		StreamFile::stream( $thumb->getPath(), $headers );
 	}
 
 	wfProfileOut( __METHOD__ );
