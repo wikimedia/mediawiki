@@ -23,9 +23,7 @@ class Revision {
 	 * @return Revision or null
 	 */
 	public static function newFromId( $id ) {
-		return Revision::newFromConds(
-			array( 'page_id=rev_page',
-				   'rev_id' => intval( $id ) ) );
+		return Revision::newFromConds( array( 'rev_id' => intval( $id ) ) );
 	}
 
 	/**
@@ -57,7 +55,6 @@ class Revision {
 			// Use a join to get the latest revision
 			$conds[] = 'rev_id=page_latest';
 		}
-		$conds[] = 'page_id=rev_page';
 		return Revision::newFromConds( $conds );
 	}
 
@@ -85,7 +82,6 @@ class Revision {
 		} else {
 			$conds[] = 'rev_id = page_latest';
 		}
-		$conds[] = 'page_id=rev_page';
 		return Revision::newFromConds( $conds );
 	}
 
@@ -141,9 +137,7 @@ class Revision {
 	 * @return Revision or null
 	 */
 	public static function loadFromId( $db, $id ) {
-		return Revision::loadFromConds( $db,
-			array( 'page_id=rev_page',
-				   'rev_id' => intval( $id ) ) );
+		return Revision::loadFromConds( $db, array( 'rev_id' => intval( $id ) ) );
 	}
 
 	/**
@@ -157,7 +151,7 @@ class Revision {
 	 * @return Revision or null
 	 */
 	public static function loadFromPageId( $db, $pageid, $id = 0 ) {
-		$conds = array( 'page_id=rev_page','rev_page' => intval( $pageid ), 'page_id'=>intval( $pageid ) );
+		$conds = array( 'rev_page' => intval( $pageid ), 'page_id'  => intval( $pageid ) );
 		if( $id ) {
 			$conds['rev_id'] = intval( $id );
 		} else {
@@ -182,12 +176,11 @@ class Revision {
 		} else {
 			$matchId = 'page_latest';
 		}
-		return Revision::loadFromConds(
-			$db,
+		return Revision::loadFromConds( $db,
 			array( "rev_id=$matchId",
-				   'page_id=rev_page',
 				   'page_namespace' => $title->getNamespace(),
-				   'page_title'     => $title->getDBkey() ) );
+				   'page_title'     => $title->getDBkey() )
+		);
 	}
 
 	/**
@@ -201,12 +194,11 @@ class Revision {
 	 * @return Revision or null
 	 */
 	public static function loadFromTimestamp( $db, $title, $timestamp ) {
-		return Revision::loadFromConds(
-			$db,
+		return Revision::loadFromConds( $db,
 			array( 'rev_timestamp'  => $db->timestamp( $timestamp ),
-				   'page_id=rev_page',
 				   'page_namespace' => $title->getNamespace(),
-				   'page_title'     => $title->getDBkey() ) );
+				   'page_title'     => $title->getDBkey() )
+		);
 	}
 
 	/**
@@ -217,12 +209,12 @@ class Revision {
 	 */
 	public static function newFromConds( $conditions ) {
 		$db = wfGetDB( DB_SLAVE );
-		$row = Revision::loadFromConds( $db, $conditions );
-		if( is_null( $row ) && wfGetLB()->getServerCount() > 1 ) {
+		$rev = Revision::loadFromConds( $db, $conditions );
+		if( is_null( $rev ) && wfGetLB()->getServerCount() > 1 ) {
 			$dbw = wfGetDB( DB_MASTER );
-			$row = Revision::loadFromConds( $dbw, $conditions );
+			$rev = Revision::loadFromConds( $dbw, $conditions );
 		}
-		return $row;
+		return $rev;
 	}
 
 	/**
@@ -237,7 +229,6 @@ class Revision {
 		$res = Revision::fetchFromConds( $db, $conditions );
 		if( $res ) {
 			$row = $res->fetchObject();
-			$res->free();
 			if( $row ) {
 				$ret = new Revision( $row );
 				return $ret;
@@ -260,8 +251,8 @@ class Revision {
 			wfGetDB( DB_SLAVE ),
 			array( 'rev_id=page_latest',
 				   'page_namespace' => $title->getNamespace(),
-				   'page_title'     => $title->getDBkey(),
-				   'page_id=rev_page' ) );
+				   'page_title'     => $title->getDBkey() )
+		);
 	}
 
 	/**
@@ -274,16 +265,20 @@ class Revision {
 	 * @return ResultWrapper
 	 */
 	private static function fetchFromConds( $db, $conditions ) {
-		$fields = self::selectFields();
-		$fields[] = 'page_namespace';
-		$fields[] = 'page_title';
-		$fields[] = 'page_latest';
+		$fields = array_merge(
+			self::selectFields(),
+			self::selectPageFields(),
+			self::selectUserFields()
+		);
 		return $db->select(
-			array( 'page', 'revision' ),
+			array( 'revision', 'page', 'user' ),
 			$fields,
 			$conditions,
 			__METHOD__,
-			array( 'LIMIT' => 1 ) );
+			array( 'LIMIT' => 1 ),
+			array( 'page' => array( 'INNER JOIN', 'page_id = rev_page' ),
+				'user' => array( 'LEFT JOIN', 'user_id = rev_user' ) )
+		);
 	}
 
 	/**
@@ -329,6 +324,13 @@ class Revision {
 	}
 
 	/**
+	 * Return the list of user fields that should be selected from user table
+	 */
+	static function selectUserFields() {
+		return array( 'COALESCE(user_name,rev_user_text) AS rev_user_name' );
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param $row Mixed: either a database row or an array
@@ -340,7 +342,6 @@ class Revision {
 			$this->mPage      = intval( $row->rev_page );
 			$this->mTextId    = intval( $row->rev_text_id );
 			$this->mComment   =         $row->rev_comment;
-			$this->mUserText  =         $row->rev_user_text;
 			$this->mUser      = intval( $row->rev_user );
 			$this->mMinorEdit = intval( $row->rev_minor_edit );
 			$this->mTimestamp =         $row->rev_timestamp;
@@ -373,6 +374,12 @@ class Revision {
 			} else {
 				// 'text' table row entry will be lazy-loaded
 				$this->mTextRow = null;
+			}
+
+			if ( isset( $row->rev_user_name ) ) {
+				$this->mUserText = $row->rev_user_name; // current user name
+			} else { // fallback to rev_user_text
+				$this->mUserText = $row->rev_user_text; // de-normalized
 			}
 		} elseif( is_array( $row ) ) {
 			// Build a new revision to be saved...
