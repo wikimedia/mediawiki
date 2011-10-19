@@ -39,7 +39,6 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 					if( in_array( $group, array( '*', 'user' ) ) ){
 						continue;
 					}
-					$g = ucfirst( $group );
 					$pages["MediaWiki:Group-$g.js"] = array( 'type' => 'script' );
 					$pages["MediaWiki:Group-$g.css"] = array( 'type' => 'style' );
 				}
