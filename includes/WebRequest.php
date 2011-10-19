@@ -962,7 +962,7 @@ HTML;
 
 		// Break up string into pieces (languages and q factors)
 		$lang_parse = null;
-		preg_match_all( '/([a-z]{1,8}(-[a-z]{1,8})?|\*)\s*(;\s*q\s*=\s*(1|0(\.[0-9]+)?)?)?/',
+		preg_match_all( '/([a-z]{1,8}(-[a-z]{1,8})*|\*)\s*(;\s*q\s*=\s*(1(\.0{0,3})?|0(\.[0-9]{0,3})?)?)?/',
 			$acceptLang, $lang_parse );
 
 		if ( !count( $lang_parse[1] ) ) {
