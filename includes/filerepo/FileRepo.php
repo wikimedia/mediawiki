@@ -74,7 +74,7 @@ abstract class FileRepo {
 	 * @return File
 	 */
 	function newFile( $title, $time = false ) {
-		if ( !($title instanceof Title) ) {
+		if ( !( $title instanceof Title ) ) {
 			$title = Title::makeTitleSafe( NS_FILE, $title );
 			if ( !is_object( $title ) ) {
 				return null;
@@ -130,9 +130,9 @@ abstract class FileRepo {
 		if ( $time !== false ) {
 			$img = $this->newFile( $title, $time );
 			if ( $img && $img->exists() ) {
-				if ( !$img->isDeleted(File::DELETED_FILE) ) {
-					return $img;
-				} elseif ( !empty( $options['private'] )  && $img->userCan(File::DELETED_FILE) ) {
+				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
+					return $img; // always OK
+				} elseif ( !empty( $options['private'] ) && $img->userCan( File::DELETED_FILE ) ) {
 					return $img;
 				}
 			}
@@ -187,30 +187,6 @@ abstract class FileRepo {
 	}
 
 	/**
-	 * Create a new File object from the local repository
-	 * @param $sha1 Mixed: base 36 SHA-1 hash
-	 * @param $time Mixed: time at which the image was uploaded.
-	 *              If this is specified, the returned object will be an
-	 *              of the repository's old file class instead of a current
-	 *              file. Repositories not supporting version control should
-	 *              return false if this parameter is set.
-	 *
-	 * @return File
-	 */
-	function newFileFromKey( $sha1, $time = false ) {
-		if ( $time ) {
-			if ( $this->oldFileFactoryKey ) {
-				return call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
-			}
-		} else {
-			if ( $this->fileFactoryKey ) {
-				return call_user_func( $this->fileFactoryKey, $sha1, $this );
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * Find an instance of the file with this key, created at the specified time
 	 * Returns false if the file does not exist. Repositories not supporting
 	 * version control should return false if the time is specified.
@@ -221,21 +197,22 @@ abstract class FileRepo {
 	function findFileFromKey( $sha1, $options = array() ) {
 		$time = isset( $options['time'] ) ? $options['time'] : false;
 
-		# First try the current version of the file to see if it precedes the timestamp
-		$img = $this->newFileFromKey( $sha1 );
-		if ( !$img ) {
-			return false;
+		# First try to find a matching current version of a file...
+		if ( $this->fileFactoryKey ) {
+			$img = call_user_func( $this->fileFactoryKey, $sha1, $this, $time );
+		} else {
+			return false; // find-by-sha1 not supported
 		}
-		if ( $img->exists() && ( !$time || $img->getTimestamp() == $time ) ) {
+		if ( $img && $img->exists() ) {
 			return $img;
 		}
-		# Now try an old version of the file
-		if ( $time !== false ) {
-			$img = $this->newFileFromKey( $sha1, $time );
+		# Now try to find a matching old version of a file...
+		if ( $time !== false && $this->oldFileFactoryKey ) { // find-by-sha1 supported?
+			$img = call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
 			if ( $img && $img->exists() ) {
-				if ( !$img->isDeleted(File::DELETED_FILE) ) {
-					return $img;
-				} elseif ( !empty( $options['private'] ) && $img->userCan(File::DELETED_FILE) ) {
+				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
+					return $img; // always OK
+				} elseif ( !empty( $options['private'] ) && $img->userCan( File::DELETED_FILE ) ) {
 					return $img;
 				}
 			}

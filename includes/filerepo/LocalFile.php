@@ -95,22 +95,21 @@ class LocalFile extends File {
 	 * Create a LocalFile from a SHA-1 key
 	 * Do not call this except from inside a repo class.
 	 *
-	 * @param $sha1 string
+	 * @param $sha1 string base-36 SHA-1
 	 * @param $repo LocalRepo
-	 * @param $timestamp string
+	 * @param string|bool $timestamp MW_timestamp (optional)
 	 *
-	 * @return LocalFile
+	 * @return bool|LocalFile
 	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
-		$conds = array( 'img_sha1' => $sha1 );
+		$dbr = $repo->getSlaveDB();
 
+		$conds = array( 'img_sha1' => $sha1 );
 		if ( $timestamp ) {
-			$conds['img_timestamp'] = $timestamp;
+			$conds['img_timestamp'] = $dbr->timestamp( $timestamp );
 		}
 
-		$dbr = $repo->getSlaveDB();
 		$row = $dbr->selectRow( 'image', self::selectFields(), $conds, __METHOD__ );
-
 		if ( $row ) {
 			return self::newFromRow( $row, $repo );
 		} else {
