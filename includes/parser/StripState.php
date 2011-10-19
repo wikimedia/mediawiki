@@ -107,9 +107,6 @@ class StripState {
 		if ( isset( $this->data[$this->tempType][$m[1]] ) ) {
 			return $this->data[$this->tempType][$m[1]];
 		} else {
-			if( preg_match( $this->regex, $m[0] ) ) {
-				return "<strong class='error'>".htmlspecialchars( wfMsg( "stripstate-error" ) )."</strong>";
-			}
 			return $m[0];
 		}
 	}
