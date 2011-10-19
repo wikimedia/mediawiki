@@ -277,7 +277,7 @@ class Revision {
 			__METHOD__,
 			array( 'LIMIT' => 1 ),
 			array( 'page' => array( 'INNER JOIN', 'page_id = rev_page' ),
-				'user' => array( 'LEFT JOIN', 'user_id = rev_user' ) )
+				'user' => array( 'LEFT JOIN', 'rev_user != 0 AND user_id = rev_user' ) )
 		);
 	}
 
