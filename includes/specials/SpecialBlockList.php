@@ -201,13 +201,6 @@ class BlockListPager extends TablePager {
 	protected $page;
 
 	/**
-	 * Getting the user names from the userids stored in the ipb_by column can be
-	 * expensive, so we cache the data here.
-	 * @var Array of ID => Name
-	 */
-	private $userNameCache;
-
-	/**
 	 * @param $page SpecialPage
 	 * @param $conds Array
 	 */
@@ -313,12 +306,12 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_by':
-				$username = array_key_exists( $value, $this->userNameCache )
-					? $this->userNameCache[$value]
-					: User::newFromId( $value )->getName();
-
-				$formatted = Linker::userLink( $value, $username );
-				$formatted .= Linker::userToolLinks( $value, $username );
+				if ( isset( $row->by_user_name ) ) {
+					$formatted = Linker::userLink( $value, $row->by_user_name );
+					$formatted .= Linker::userToolLinks( $value, $row->by_user_name );
+				} else {
+					$formatted = htmlspecialchars( $row->ipb_by_text ); // foreign user?
+				}
 				break;
 
 			case 'ipb_reason':
@@ -358,12 +351,14 @@ class BlockListPager extends TablePager {
 
 	function getQueryInfo() {
 		$info = array(
-			'tables' => array( 'ipblocks' ),
+			'tables' => array( 'ipblocks', 'user' ),
 			'fields' => array(
 				'ipb_id',
 				'ipb_address',
 				'ipb_user',
 				'ipb_by',
+				'ipb_by_text',
+				'user_name AS by_user_name',
 				'ipb_reason',
 				'ipb_timestamp',
 				'ipb_auto',
@@ -378,6 +373,7 @@ class BlockListPager extends TablePager {
 				'ipb_allow_usertalk',
 			),
 			'conds' => $this->conds,
+			'join_conds' => array( 'user' => array( 'LEFT JOIN', 'user_id = ipb_by' ) )
 		);
 
 		# Is the user allowed to see hidden blocks?
@@ -428,9 +424,6 @@ class BlockListPager extends TablePager {
 
 		$ua = UserArray::newFromIDs( $userids );
 		foreach( $ua as $user ){
-			/* @var $user User */
-			$this->userNameCache[$user->getID()] = $user->getName();
-
 			$name = str_replace( ' ', '_', $user->getName() );
 			$lb->add( NS_USER, $name );
 			$lb->add( NS_USER_TALK, $name );
