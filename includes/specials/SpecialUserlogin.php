@@ -388,7 +388,7 @@ class LoginForm extends SpecialPage {
 		}
 
 		// Hook point to check for exempt from account creation throttle
-		if ( !wfRunHooks( 'exemptFromAccountCreationThrottle', array( $ip ) ) ) {
+		if ( !wfRunHooks( 'ExemptFromAccountCreationThrottle', array( $ip ) ) ) {
 			wfDebug( "LoginForm::exemptFromAccountCreationThrottle: a hook allowed account creation w/o throttle\n" );
 		} else {
 			if ( ( $wgAccountCreationThrottle && $currentUser->isPingLimitable() ) ) {
