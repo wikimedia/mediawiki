@@ -3160,16 +3160,30 @@ class User {
 	}
 
 	/**
-	 * Initialize (if necessary) and return a session token value
-	 * which can be used in edit forms to show that the user's
-	 * login credentials aren't being hijacked with a foreign form
-	 * submission.
-	 *
+	 * Alias for getEditToken.
+	 * @deprecated since 1.19, use getEditToken instead. 
+	 * 
 	 * @param $salt String|Array of Strings Optional function-specific data for hashing
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return String The new edit token
 	 */
 	public function editToken( $salt = '', $request = null ) {
+		return $this->getEditToken( $salt, $request );
+	}
+	
+	/**
+	 * Initialize (if necessary) and return a session token value
+	 * which can be used in edit forms to show that the user's
+	 * login credentials aren't being hijacked with a foreign form
+	 * submission.
+	 *
+	 * @since 1.19
+	 *
+	 * @param $salt String|Array of Strings Optional function-specific data for hashing
+	 * @param $request WebRequest object to use or null to use $wgRequest
+	 * @return String The new edit token
+	 */
+	public function getEditToken( $salt = '', $request = null ) {
 		if ( $request == null ) {
 			$request = $this->getRequest();
 		}
