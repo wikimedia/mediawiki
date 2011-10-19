@@ -22,7 +22,7 @@ class RefreshLinksJob extends Job {
 	 * @return boolean success
 	 */
 	function run() {
-		global $wgParser;
+		global $wgParser, $wgContLang;
 		wfProfileIn( __METHOD__ );
 
 		$linkCache = LinkCache::singleton();
@@ -42,7 +42,7 @@ class RefreshLinksJob extends Job {
 		}
 
 		wfProfileIn( __METHOD__.'-parse' );
-		$options = new ParserOptions;
+		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		$parserOutput = $wgParser->parse( $revision->getText(), $this->title, $options, true, true, $revision->getId() );
 		wfProfileOut( __METHOD__.'-parse' );
 		wfProfileIn( __METHOD__.'-update' );
@@ -71,7 +71,7 @@ class RefreshLinksJob2 extends Job {
 	 * @return boolean success
 	 */
 	function run() {
-		global $wgParser;
+		global $wgParser, $wgContLang;
 
 		wfProfileIn( __METHOD__ );
 
@@ -105,6 +105,7 @@ class RefreshLinksJob2 extends Job {
 			wfProfileOut( __METHOD__ );
 			return true;
 		}
+		$options = ParserOptions::newFromUserAndLang( new User, $wgContLang );
 		# Re-parse each page that transcludes this page and update their tracking links...
 		foreach ( $titles as $title ) {
 			$revision = Revision::newFromTitle( $title );
@@ -114,7 +115,6 @@ class RefreshLinksJob2 extends Job {
 				return false;
 			}
 			wfProfileIn( __METHOD__.'-parse' );
-			$options = new ParserOptions;
 			$parserOutput = $wgParser->parse( $revision->getText(), $title, $options, true, true, $revision->getId() );
 			wfProfileOut( __METHOD__.'-parse' );
 			wfProfileIn( __METHOD__.'-update' );
