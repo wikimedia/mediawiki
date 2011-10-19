@@ -4471,6 +4471,7 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 # Core parser functions
 'unknown_extension_tag' => 'Unknown extension tag "$1"',
 'duplicate-defaultsort' => '\'\'\'Warning:\'\'\' Default sort key "$2" overrides earlier default sort key "$1".',
+'stripstate-error'      => 'unstripCallback called with strip markers still intact.  Please fix your markup.',
 
 # Special:Version
 'version'                       => 'Version',
