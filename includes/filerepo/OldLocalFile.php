@@ -19,8 +19,9 @@ class OldLocalFile extends LocalFile {
 
 	static function newFromTitle( $title, $repo, $time = null ) {
 		# The null default value is only here to avoid an E_STRICT
-		if( $time === null )
+		if ( $time === null ) {
 			throw new MWException( __METHOD__.' got null for $time parameter' );
+		}
 		return new self( $title, $repo, $time, null );
 	}
 
@@ -36,19 +37,25 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
-	 * @param  $sha1
+	 * Create a OldLocalFile from a SHA-1 key
+	 * Do not call this except from inside a repo class.
+	 *
+	 * @param $sha1 string base-36 SHA-1
 	 * @param $repo LocalRepo
-	 * @param bool $timestamp
+	 * @param string|bool $timestamp MW_timestamp (optional)
+	 *
 	 * @return bool|OldLocalFile
 	 */
 	static function newFromKey( $sha1, $repo, $timestamp = false ) {
-		$conds = array( 'oi_sha1' => $sha1 );
-		if( $timestamp ) {
-			$conds['oi_timestamp'] = $timestamp;
-		}
 		$dbr = $repo->getSlaveDB();
+
+		$conds = array( 'oi_sha1' => $sha1 );
+		if ( $timestamp ) {
+			$conds['oi_timestamp'] = $dbr->timestamp( $timestamp );
+		}
+
 		$row = $dbr->selectRow( 'oldimage', self::selectFields(), $conds, __METHOD__ );
-		if( $row ) {
+		if ( $row ) {
 			return self::newFromRow( $row, $repo );
 		} else {
 			return false;
