@@ -81,7 +81,8 @@ def parserCore( fp, pos, beginmark = None, endmark = None ):
             elems = line.split()
             if len( elems ) < 2:
                 continue
-            elif len( elems[0] ) > 1:
+            elif len( elems[0] ) > 1 and \
+                len( elems[pos] ) > 1: # words only
                 mlist.add( elems[pos] )
     return mlist
 
