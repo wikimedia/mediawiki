@@ -183,56 +183,16 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function pageStats() {
-		global $wgOut, $wgLang, $wgRequest, $wgUser;
-		global $wgDisableCounters, $wgMaxCredits, $wgShowCreditsIfMax, $wgPageShowWatchingUsers;
+		$ret = array();
+		$items = array( 'viewcount', 'credits', 'lastmod', 'numberofwatchingusers', 'copyright' );
 
-		if ( !is_null( $wgRequest->getVal( 'oldid' ) ) || !is_null( $wgRequest->getVal( 'diff' ) ) ) {
-			return '';
-		}
-
-		$title = $this->getSkin()->getTitle();
-
-		if ( !$wgOut->isArticle() || !$title->exists() ) {
-			return '';
-		}
-
-		$article = new Article( $title, 0 );
-
-		$s = '';
-
-		if ( !$wgDisableCounters ) {
-			$count = $wgLang->formatNum( $article->getCount() );
-
-			if ( $count ) {
-				$s = wfMsgExt( 'viewcount', array( 'parseinline' ), $count );
+		foreach( $items as $item ) {
+			if ( $this->data[$item] !== false ) {
+				$ret[] = $this->data[$item];
 			}
 		}
 
-		if ( $wgMaxCredits != 0 ) {
-			$s .= ' ' . Action::factory( 'credits', $article )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax );
-		} else {
-			$s .= $this->data['lastmod'];
-		}
-
-		if ( $wgPageShowWatchingUsers && $wgUser->getOption( 'shownumberswatching' ) ) {
-			$dbr = wfGetDB( DB_SLAVE );
-			$res = $dbr->select(
-				'watchlist',
-				array( 'COUNT(*) AS n' ),
-				array(
-					'wl_title' => $dbr->strencode( $title->getDBkey() ),
-					'wl_namespace' => $title->getNamespace()
-				),
-				__METHOD__
-			);
-			$x = $dbr->fetchObject( $res );
-
-			$s .= ' ' . wfMsgExt( 'number_of_watching_users_pageview',
-				array( 'parseinline' ), $wgLang->formatNum( $x->n )
-			);
-		}
-
-		return $s . ' ' .  $this->getSkin()->getCopyright();
+		return implode( ' ', $ret );
 	}
 
 	function topLinks() {
