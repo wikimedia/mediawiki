@@ -33,14 +33,14 @@ class ResourceLoaderUserGroupsModule extends ResourceLoaderWikiModule {
 	protected function getPages( ResourceLoaderContext $context ) {
 		if ( $context->getUser() ) {
 			$user = User::newFromName( $context->getUser() );
-			if( $user instanceof User ){
+			if ( $user instanceof User ) {
 				$pages = array();
-				foreach( $user->getEffectiveGroups() as $group ){
-					if( in_array( $group, array( '*', 'user' ) ) ){
+				foreach( $user->getEffectiveGroups() as $group ) {
+					if ( in_array( $group, array( '*', 'user' ) ) ) {
 						continue;
 					}
-					$pages["MediaWiki:Group-$g.js"] = array( 'type' => 'script' );
-					$pages["MediaWiki:Group-$g.css"] = array( 'type' => 'style' );
+					$pages["MediaWiki:Group-$group.js"] = array( 'type' => 'script' );
+					$pages["MediaWiki:Group-$group.css"] = array( 'type' => 'style' );
 				}
 				return $pages;
 			}
