@@ -924,22 +924,22 @@ Ond gallwch chi [$1 weld y diwygiad] o hyd os y mynnwch.",
 Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].
 Cewch dal [$1 weld y golygiad] os y mynwch.",
 'rev-deleted-text-view'       => "'''Dilëwyd''' y diwygiad hwn o'r dudalen.
-Gan mai gweinyddwr rydych chi, gallwch ei weld; mae manylion ar gael yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileuon].",
+Gallwch ei weld; mae manylion ar gael yn y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg dileuon].",
 'rev-suppressed-text-view'    => "Mae’r diwygiad hwn o’r dudalen wedi cael ei '''guddio'''.
-Gan eich bod yn weinyddwr cewch weld y golygiad;  mae'r manylion ar gael ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].",
+Eto i gyd, gallwch weld y golygiad;  mae'r manylion ar gael ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].",
 'rev-deleted-no-diff'         => "Ni allwch gymharu'r diwygiadau oherwydd bod un ohonynt wedi cael ei '''ddileu'''.
 Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].",
 'rev-suppressed-no-diff'      => "Ni allwch gymharu'r diwygiadau oherwydd bod un ohonynt wedi cael ei '''ddileu'''.",
 'rev-deleted-unhide-diff'     => "Cafodd un o'r diwygiadau yr ydych am eu cymharu ei '''ddileu'''.
 Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].
-Gan eich bod yn weinyddwr gallwch [$1 weld y gwahaniaeth] rhyngddynt o hyd, os y dymunwch.",
+Serch hyn, gallwch [$1 weld y gwahaniaeth] rhyngddynt o hyd, os y dymunwch.",
 'rev-suppressed-unhide-diff'  => "Cafodd un o'r diwygiadau yr ydych am eu cymharu ei '''guddio'''.
 Cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].
-Gan eich bod yn weinyddwr gallwch [$1 weld y gwahaniaeth] rhyngddynt o hyd, os y dymunwch.",
+Serch hyn, gallwch [$1 weld y gwahaniaeth] rhyngddynt o hyd, os y dymunwch.",
 'rev-deleted-diff-view'       => "Cafodd un o'r diwygiadau yr ydych am eu cymharu ei '''ddileu'''.
-Gan eich bod yn weinyddwr gallwch eu cymharu o hyd; cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].",
+Serch hyn, gallwch eu cymharu o hyd; cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lòg dileu].",
 'rev-suppressed-diff-view'    => "Cafodd un o'r diwygiadau yr ydych am eu cymharu ei '''guddio'''.
-Gan eich bod yn weinyddwr gallwch eu cymharu o hyd; cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].",
+Serch hyn, gallwch eu cymharu o hyd; cewch weld y manylion ar y [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lòg cuddio].",
 'rev-delundel'                => 'dangos/cuddio',
 'rev-showdeleted'             => 'dangos',
 'revisiondelete'              => 'Dileu/dad-ddileu diwygiadau',
@@ -1249,7 +1249,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'userrights-lookup-user'       => 'Rheoli grwpiau defnyddiwr',
 'userrights-user-editname'     => 'Rhowch enw defnyddiwr:',
 'editusergroup'                => 'Golygu Grwpiau Defnyddwyr',
-'editinguser'                  => "Newid hawliau defnyddiwr '''[[User:$1|$1]]''' $2",
+'editinguser'                  => "Newid galluoedd y defnyddiwr '''[[User:$1|$1]]''' $2",
 'userrights-editusergroup'     => 'Golygu grwpiau defnyddwyr',
 'saveusergroups'               => "Cadw'r Grwpiau Defnyddwyr",
 'userrights-groupsmember'      => 'Yn aelod o:',
@@ -2613,8 +2613,8 @@ Mae ffolder dros dro yn eisiau.',
 'import-upload'              => 'Uwchlwytho data XML',
 'import-token-mismatch'      => "Collwyd data'r sesiwn. Ceisiwch eto.",
 'import-invalid-interwiki'   => "Ni ellir uwchlwytho o'r wici dewisedig.",
-'import-error-edit'          => 'Ni fewnforiwyd y dudalen "$1" oherwydd nad yw\'r caniatâd i\'w golygu gennych.',
-'import-error-create'        => 'Ni fewnforiwyd y dudalen "$1" oherwydd nad yw\'r caniatâd i\'w chreu gennych.',
+'import-error-edit'          => 'Ni fewnforiwyd y dudalen "$1" oherwydd nad yw\'r gallu i\'w golygu gennych.',
+'import-error-create'        => 'Ni fewnforiwyd y dudalen "$1" oherwydd nad yw\'r gallu i\'w chreu gennych.',
 
 # Import log
 'importlogpage'                    => 'Lòg mewnforio',
@@ -3030,9 +3030,9 @@ Cuddir y meysydd eraill trwy ragosodiad.
 'exif-orientation-3' => 'Wedi ei droi 180°',
 'exif-orientation-4' => 'Wedi troi wyneb i waered',
 'exif-orientation-5' => 'Wedi troi 90° yn erbyn y cloc a thu chwith yn fertigol',
-'exif-orientation-6' => 'Cylchdrowyd yn 90° gwrthglocwedd',
+'exif-orientation-6' => 'Cylchdrowyd 90° gwrthglocwedd',
 'exif-orientation-7' => "Wedi troi 90° gyda'r cloc a thu chwith yn fertigol",
-'exif-orientation-8' => 'Cylchdrowyd yn 90° clocwedd',
+'exif-orientation-8' => 'Cylchdrowyd 90° clocwedd',
 
 'exif-planarconfiguration-1' => 'fformat talpiog',
 'exif-planarconfiguration-2' => 'fformat planar',

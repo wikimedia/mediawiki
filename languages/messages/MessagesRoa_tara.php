@@ -1432,6 +1432,7 @@ Vide 'a [[Special:NewFiles|gallerie de le file nuève]] pe vedè l'otre andeprim
 'minlength1'                  => "'U nome d'u file addà tenè almene 'na lettere.",
 'illegalfilename'             => "'U nome d'u file \"\$1\" tène carattere ca non ge sonde conzendite jndr'à le titele de le pàggene.
 Pe piacere vide ce renomene 'u file e pruève a carecarle 'n'otra vote.",
+'filename-toolong'            => 'Le nome de le file non ge ponne essere cchiù luènghe de 240 byte.',
 'badfilename'                 => '\'U nome d\'u file ha state cangete jndr\'à "$1".',
 'filetype-mime-mismatch'      => 'L\'estenzione d\'u file ".$1" non ge se iacchie cu \'u tipe MIME idendificate d\'u file ($2).',
 'filetype-badmime'            => 'Le file d\'u tipe MIME "$1" non ge se ponne carecà.',
@@ -2780,6 +2781,7 @@ Ce l'esegue sus a 'u sisteme tue pò essere ca se combromette.",
 'sp-newimages-showfrom' => 'Fa vedè le file nuève partenne da $2, $1',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|seconde|seconde}}',
 'minutes' => '{{PLURAL:$1|$1 minute|$1 minute}}',
 'hours'   => '{{PLURAL: $1|$1ore|$1 ore}}',
 'days'    => '{{PLURAL: $1|$1 sciurne|$1 sciurne}}',

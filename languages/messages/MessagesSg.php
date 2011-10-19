@@ -109,7 +109,7 @@ $messages = array(
 'privacy'              => 'Ndarä tî bätängö vivîi tënë',
 'privacypage'          => 'Project:Vivîi tënë',
 
-'ok'              => 'Habe',
+'ok'              => 'Nî laâ!',
 'retrievedfrom'   => 'Awara na yâ tî "$1"',
 'editsection'     => 'Sepe',
 'editold'         => 'sepe',
@@ -126,7 +126,7 @@ $messages = array(
 'yourpassword'            => 'Pafungûla',
 'nav-login-createaccount' => 'Linda wala Zî kônde',
 'userlogin'               => 'Linda wala  Zî kônde',
-'logout'                  => 'Woza',
+'logout'                  => 'Sïgî',
 'userlogout'              => 'Sigî',
 
 # Edit pages
@@ -198,7 +198,7 @@ $messages = array(
 'tooltip-ca-history'             => 'Ângbêre mbâlê tî lêmbëtï sô (na ïrï tî âwasüngö-nî)',
 'tooltip-search'                 => 'Gi {{SITENAME}}',
 'tooltip-search-fulltext'        => 'Gi âlêmbëtï sô ayeke na gbâsû sô',
-'tooltip-p-logo'                 => 'Tölêmbëtï',
+'tooltip-p-logo'                 => 'Gue na Tölêmbëtï',
 'tooltip-n-mainpage'             => 'Gue na tölêmbëtï Gä nzönî.',
 'tooltip-n-mainpage-description' => 'Gue na tölêmbëtï Gä nzönî.',
 'tooltip-n-portal'               => 'Tënë tî pialö nî',
