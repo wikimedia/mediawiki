@@ -297,7 +297,7 @@ class Revision {
 			'rev_text_id',
 			'rev_timestamp',
 			'rev_comment',
-			'rev_user_text,'.
+			'rev_user_text',
 			'rev_user',
 			'rev_minor_edit',
 			'rev_deleted',
@@ -397,8 +397,9 @@ class Revision {
 			$this->mTitle     = null; # Load on demand if needed
 			$this->mCurrent   = false;
 			# If we still have no len_size, see it we have the text to figure it out
-			if ( !$this->mSize )
+			if ( !$this->mSize ) {
 				$this->mSize      = is_null( $this->mText ) ? null : strlen( $this->mText );
+			}
 		} else {
 			throw new MWException( 'Revision constructor passed invalid row format.' );
 		}
