@@ -1273,7 +1273,6 @@ Simple table
 !! end
 
 !! test
-!! test
 Multiplication table
 !! input
 {| border="1" cellpadding="2"
