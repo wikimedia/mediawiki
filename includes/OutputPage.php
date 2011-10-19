@@ -1249,7 +1249,7 @@ class OutputPage extends ContextSource {
 	 */
 	public function parserOptions( $options = null ) {
 		if ( !$this->mParserOptions ) {
-			$this->mParserOptions = new ParserOptions;
+			$this->mParserOptions = ParserOptions::newFromContext( $this->getContext() );
 			$this->mParserOptions->setEditSection( false );
 		}
 		return wfSetVar( $this->mParserOptions, $options );

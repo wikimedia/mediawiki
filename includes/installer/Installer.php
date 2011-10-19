@@ -1202,7 +1202,7 @@ abstract class Installer {
 	 */
 	public function setParserLanguage( $lang ) {
 		$this->parserOptions->setTargetLanguage( $lang );
-		$this->parserOptions->setUserLang( $lang->getCode() );
+		$this->parserOptions->setUserLang( $lang );
 	}
 
 	/**
