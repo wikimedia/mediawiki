@@ -616,6 +616,9 @@ create a page or new section.
 * (bug 29938) list=users&usprop=rights shows rights the user doesn't have
 * (bug 24781) The API will include an XML namespace if the includexmlnamespace
   parameter is set.
+* (bug 29392) Setting the start or end parameter now works with lists blocks,
+  categorymembers, deletedrevs, logevents, protectedtitles, usercontributions
+  and watchlist in Postgres
 
 === Languages updated in 1.18 ===
 
