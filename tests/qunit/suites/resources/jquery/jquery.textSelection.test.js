@@ -222,3 +222,54 @@ encapsulateTest({
 	},
 	replace: ulist
 });
+
+
+var caretTest = function(options) {
+	test(options.description, function() {
+		expect(2);
+
+		var $fixture = $( '<div id="qunit-fixture"></div>' );
+		var $textarea = $( '<textarea>' ).text(options.text);
+
+		$fixture.append($textarea);
+		$( 'body' ).append($fixture);
+
+		if (options.mode == 'set') {
+			$textarea.textSelection('setSelection', {
+				start: options.start,
+				end: options.end
+			});
+		}
+
+		var pos = $textarea.textSelection('getCaretPosition', {startAndEnd: true});
+		equal(pos[0], options.start, 'Caret start should be where we set it.');
+		equal(pos[1], options.end, 'Caret end should be where we set it.');
+	});
+}
+
+var caretSample = "Some big text that we like to work with. Nothing fancy... you know what I mean?";
+
+caretTest({
+	description: 'getCaretPosition with original/empty selection - bug 31847 with IE 6/7/8',
+	text: caretSample,
+	start: 0,
+	end: 0,
+	mode: 'get'
+});
+
+caretTest({
+	description: 'set/getCaretPosition with forced empty selection',
+	text: caretSample,
+	start: 7,
+	end: 7,
+	mode: 'set'
+});
+
+caretTest({
+	description: 'set/getCaretPosition with small selection',
+	text: caretSample,
+	start: 6,
+	end: 11,
+	mode: 'set'
+});
+
