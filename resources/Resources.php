@@ -173,6 +173,7 @@ return array(
 	),
 	'jquery.qunit.completenessTest' => array(
 		'scripts' => 'resources/jquery/jquery.qunit.completenessTest.js',
+		'dependencies' => 'jquery.qunit',
 	),
 	'jquery.spinner' => array(
 		'scripts' => 'resources/jquery/jquery.spinner.js',
