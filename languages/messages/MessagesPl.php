@@ -2678,7 +2678,7 @@ Wybierz inną nazwę.',
 Strona docelowa „[[:$1]]” istnieje.
 Czy chcesz ją usunąć, by zrobić miejsce dla przenoszonej strony?',
 'delete_and_move_confirm'      => 'Tak, usuń stronę',
-'delete_and_move_reason'       => 'Usunięto, by zrobić miejsce dla przenoszonej strony',
+'delete_and_move_reason'       => 'Usunięto, by zrobić miejsce dla przenoszonej strony „[[$1]]”',
 'selfmove'                     => 'Nazwy stron źródłowej i docelowej są takie same.
 Strony nie można przenieść na nią samą.',
 'immobile-source-namespace'    => 'Nie można przenieść stron w przestrzeni nazw „$1”',

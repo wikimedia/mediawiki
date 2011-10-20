@@ -2629,7 +2629,7 @@ stranica za razgovor nije mogla biti premeštena jer takva već postoji na novom
 
 Ciljani članak "[[:$1]]" već postoji. Da li želite da ga obrišete da biste napravili mesto za premeštanje?',
 'delete_and_move_confirm'      => 'Da, obriši stranicu',
-'delete_and_move_reason'       => 'Obrisano kako bi se napravilo mesto za premeštanje',
+'delete_and_move_reason'       => 'Obrisano da se oslobodi mesto za premeštanje iz „[[$1]]“',
 'selfmove'                     => 'Izvorni i ciljani naziv su isti; stranica ne može da se premesti preko same sebe.',
 'immobile-source-namespace'    => 'Strane iz imenskog prostora "$1" nisu mogle biti premeštene',
 'immobile-target-namespace'    => 'Ne može da premesti stranice u imenski prostor „$1”',

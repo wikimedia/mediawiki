@@ -2692,7 +2692,7 @@ Xin hãy chọn tên khác.',
 
 Trang với tên “[[:$1]]” đã tồn tại. Bạn có muốn xóa nó để dọn chỗ di chuyển tới tên này không?',
 'delete_and_move_confirm'      => 'Xóa trang để đổi tên',
-'delete_and_move_reason'       => 'Xóa để có chỗ đổi tên',
+'delete_and_move_reason'       => 'Xóa để có chỗ đổi tên “[[$1]]”',
 'selfmove'                     => 'Tên mới giống tên cũ; không đổi tên một trang thành chính nó.',
 'immobile-source-namespace'    => 'Không thể di chuyển các trang trong không gian tên    	 	 	 	“$1”',
 'immobile-target-namespace'    => 'Không thể di chuyển trang vào không gian tên    	 	 	 	“$1”',

@@ -1841,7 +1841,7 @@ Quaesumus, titulum alterum elige.',
 'delete_and_move_text'      => '==Deletio necesse est==
 Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic moveatur?',
 'delete_and_move_confirm'   => 'Ita, paginam delere',
-'delete_and_move_reason'    => 'Deleta ut moveatur',
+'delete_and_move_reason'    => 'Deleta ut moveatur ex "[[$1]]"',
 'immobile-source-namespace' => 'Paginae spatii nominalis "$1" moveri non possunt.',
 'immobile-target-namespace' => 'Paginae in spatium nominale "$1" moveri non possunt.',
 'immobile-source-page'      => 'Haec pagina moveri non potest.',

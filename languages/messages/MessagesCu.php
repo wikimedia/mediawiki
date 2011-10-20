@@ -232,6 +232,7 @@ $messages = array(
 'portal'               => 'обьщєниꙗ съвѣтъ',
 'portal-url'           => 'Project:Обьщєниꙗ съвѣтъ',
 
+'pagetitle'           => '$1 · {{SITENAME}}',
 'retrievedfrom'       => 'поѩто иꙁ ⁖ $1 ⁖',
 'youhavenewmessages'  => '$1 тєбѣ напьсанꙑ сѫтъ ($2)',
 'newmessageslink'     => 'нови напьсаниꙗ',
@@ -496,7 +497,7 @@ $messages = array(
 'filehist-user'      => 'польꙃєватєл҄ь',
 'filehist-filesize'  => 'дѣла мѣра',
 'filehist-comment'   => 'опьсаниѥ',
-'imagelinks'         => 'дѣла съвѧꙁи',
+'imagelinks'         => 'дѣла польꙃєваниѥ',
 'sharedupload'       => 'сѥ дѣло въ $1 съхранѥно ѥстъ дѣла · ѥгожє дроугꙑ опꙑтьствованиѩ польꙃєвати могѫтъ',
 
 # File reversion
