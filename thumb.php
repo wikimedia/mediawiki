@@ -46,7 +46,7 @@ function wfThumbMain() {
 	unset( $params['r'] ); // ignore 'r' because we unconditionally pass File::RENDER
 
 	// Is this a thumb of an archived file?
-	$isOld = (isset( $params['archived'] ) && $params['archived']);
+	$isOld = ( isset( $params['archived'] ) && $params['archived'] );
 	unset( $params['archived'] );
 
 	// Some basic input validation
@@ -182,7 +182,7 @@ function wfThumbError( $status, $msg ) {
 	} else {
 		header( 'HTTP/1.1 500 Internal server error' );
 	}
-	if( $wgShowHostnames ) {
+	if ( $wgShowHostnames ) {
 		$url = htmlspecialchars( isset( $_SERVER['REQUEST_URI'] ) ? $_SERVER['REQUEST_URI'] : '' );
 		$hostname = htmlspecialchars( wfHostname() );
 		$debug = "<!-- $url -->\n<!-- $hostname -->\n";
