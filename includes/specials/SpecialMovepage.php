@@ -377,11 +377,11 @@ class MovePageForm extends UnlistedSpecialPage {
 			// Delete an associated image if there is
 			$file = wfLocalFile( $nt );
 			if( $file->exists() ) {
-				$file->delete( wfMsgForContent( 'delete_and_move_reason' ), false );
+				$file->delete( wfMessage( 'delete_and_move_reason', $ot )->inContentLanguage()->text(), false );
 			}
 
 			// This may output an error message and exit
-			$article->doDelete( wfMsgForContent( 'delete_and_move_reason' ) );
+			$article->doDelete(wfMessage( 'delete_and_move_reason', $ot )->inContentLanguage()->text() );
 		}
 
 		# don't allow moving to pages with # in

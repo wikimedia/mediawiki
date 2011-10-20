@@ -3244,7 +3244,7 @@ Please merge them manually.'''",
 The destination page "[[:$1]]" already exists.
 Do you want to delete it to make way for the move?',
 'delete_and_move_confirm'      => 'Yes, delete the page',
-'delete_and_move_reason'       => 'Deleted to make way for move',
+'delete_and_move_reason'       => 'Deleted to make way for move from "[[$1]]"',
 'selfmove'                     => 'Source and destination titles are the same;
 cannot move a page over itself.',
 'immobile-source-namespace'    => 'Cannot move pages in namespace "$1"',
