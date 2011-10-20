@@ -719,7 +719,7 @@ return array(
 		'scripts' => 'common/mwsuggest.js',
 		'remoteBasePath' => $GLOBALS['wgStylePath'],
 		'localBasePath' => $GLOBALS['wgStyleDirectory'],
-		'dependencies' => array( 'mediawiki.legacy.wikibits', 'jquery.client' ),
+		'dependencies' => 'mediawiki.legacy.wikibits',
 		'messages' => array( 'search-mwsuggest-enabled', 'search-mwsuggest-disabled' ),
 	),
 	'mediawiki.legacy.preview' => array(
