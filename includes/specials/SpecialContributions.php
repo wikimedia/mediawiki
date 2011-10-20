@@ -549,6 +549,18 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function doBatchLookups() {
+		global $wgRCShowChangedSize;
+
+		$this->mParentLens = array();
+		if ( $wgRCShowChangedSize ) {
+			$this->mResult->rewind();
+			$revIds = array();
+			foreach ( $this->mResult as $row ) {
+				$revIds[] = $row->rev_parent_id;
+			}
+			$this->mParentLens = $this->getParentLengths( $revIds );
+			$this->mResult->rewind(); // reset
+		}
 		if ( $this->contribs === 'newbie' ) { // multiple users
 			# Do a link batch query
 			$this->mResult->seek( 0 );
@@ -561,32 +573,6 @@ class ContribsPager extends ReverseChronologicalPager {
 			$batch->execute();
 			$this->mResult->seek( 0 );
 		}
-	}
-
-	function getStartBody() {
-		return "<ul>\n";
-	}
-
-	function getEndBody() {
-		return "</ul>\n";
-	}
-
-	function getBody() {
-		global $wgRCShowChangedSize;
-		if( !$this->mQueryDone ) {
-			$this->doQuery();
-		}
-		$this->mParentLens = array();
-		if( $wgRCShowChangedSize ) {
-			$this->mResult->rewind();
-			$revIds = array();
-			foreach( $this->mResult as $row ) {
-				$revIds[] = $row->rev_parent_id;
-			}
-			$this->mParentLens = $this->getParentLengths( $revIds );
-			$this->mResult->rewind();
-		}
-		return parent::getBody();
 	}
 
 	/*
@@ -607,6 +593,14 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 		wfProfileOut( __METHOD__ );
 		return $revLens;
+	}
+
+	function getStartBody() {
+		return "<ul>\n";
+	}
+
+	function getEndBody() {
+		return "</ul>\n";
 	}
 
 	/**
