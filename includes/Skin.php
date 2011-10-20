@@ -295,31 +295,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Generated JavaScript action=raw&gen=js
-	 * This used to load MediaWiki:Common.js and the skin-specific style
-	 * before the ResourceLoader.
-	 *
-	 * @deprecated since 1.18 Use the ResourceLoader instead. This may be removed at some
-	 * point.
-	 * @param $skinName String: If set, overrides the skin name
-	 * @return String
-	 */
-	public function generateUserJs( $skinName = null ) {
-		return '';
-	}
-
-	/**
-	 * Generate user stylesheet for action=raw&gen=css
-	 *
-	 * @deprecated since 1.18 Use the ResourceLoader instead. This may be removed at some
-	 * point.
-	 * @return String
-	 */
-	public function generateUserStylesheet() {
-		return '';
-	}
-
-	/**
 	 * Get the query to generate a dynamic stylesheet
 	 *
 	 * @return array

@@ -5244,6 +5244,7 @@ $wgActions = array(
 	'info' => true,
 	'markpatrolled' => true,
 	'purge' => true,
+	'raw' => true,
 	'revert' => true,
 	'revisiondelete' => true,
 	'rollback' => true,

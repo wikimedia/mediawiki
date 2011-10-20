@@ -468,12 +468,6 @@ class MediaWiki {
 				$output->setSquidMaxage( $wgSquidMaxage );
 				$article->view();
 				break;
-			case 'raw': // includes JS/CSS
-				wfProfileIn( __METHOD__ . '-raw' );
-				$raw = new RawPage( $article );
-				$raw->view();
-				wfProfileOut( __METHOD__ . '-raw' );
-				break;
 			case 'delete':
 			case 'protect':
 			case 'unprotect':
