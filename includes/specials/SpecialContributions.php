@@ -481,15 +481,15 @@ class ContribsPager extends ReverseChronologicalPager {
 		$join_cond['user'] = array( 'LEFT JOIN', 'rev_user != 0 AND user_id = rev_user' );
 
 		$queryInfo = array(
-			'tables' => $tables,
-			'fields' => array_merge( Revision::selectUserFields(), array(
-				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
-				'page_len', 'rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
-				'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted',
-				'rev_len'
-			) ),
-			'conds' => $conds,
-			'options' => array( 'USE INDEX' => array('revision' => $index) ),
+			'tables'     => $tables,
+			'fields'     => array_merge(
+				Revision::selectFields(),
+				Revision::selectUserFields(),
+				array( 'page_namespace', 'page_title', 'page_is_new',
+					'page_latest', 'page_is_redirect', 'page_len' )
+			),
+			'conds'      => $conds,
+			'options'    => array( 'USE INDEX' => array( 'revision' => $index ) ),
 			'join_conds' => $join_cond
 		);
 
@@ -567,8 +567,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			$batch = new LinkBatch();
 			# Give some pointers to make (last) links
 			foreach ( $this->mResult as $row ) {
-				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->rev_user_name ) );
-				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->rev_user_name ) );
+				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
+				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
 			}
 			$batch->execute();
 			$this->mResult->seek( 0 );

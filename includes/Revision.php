@@ -327,7 +327,7 @@ class Revision {
 	 * Return the list of user fields that should be selected from user table
 	 */
 	public static function selectUserFields() {
-		return array( 'COALESCE(user_name,rev_user_text) AS rev_user_name' );
+		return array( 'user_name' );
 	}
 
 	/**
@@ -376,10 +376,12 @@ class Revision {
 				$this->mTextRow = null;
 			}
 
-			if ( isset( $row->rev_user_name ) ) {
-				$this->mUserText = $row->rev_user_name; // current user name
-			} else { // fallback to rev_user_text
-				$this->mUserText = $row->rev_user_text; // de-normalized
+			// Use user_name for users and rev_user_text for IPs.
+			// Also fallback to rev_user_text if user_name not given.
+			if ( isset( $row->user_name ) ) {
+				$this->mUserText = $row->user_name; // logged-in user (ideally)
+			} else {
+				$this->mUserText = $row->rev_user_text; // IP user (ideally)
 			}
 		} elseif( is_array( $row ) ) {
 			// Build a new revision to be saved...
