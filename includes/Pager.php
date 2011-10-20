@@ -388,8 +388,9 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
-	 * Called from getBody(), before getStartBody() is called. This
-	 * will be called even if there are no rows in the result set.
+	 * Called from getBody(), before getStartBody() is called and
+	 * after doQuery() was called. This will be called even if there
+	 * are no rows in the result set.
 	 *
 	 * @return void
 	 */
