@@ -2757,7 +2757,7 @@ Veuillez en choisir un autre.',
 La page de destination « [[:$1]] » existe déjà.
 Êtes-vous certain{{GENDER:||e|}} de vouloir la supprimer pour permettre ce renommage ?',
 'delete_and_move_confirm'      => 'Oui, supprimer la page de destination',
-'delete_and_move_reason'       => 'Page supprimée pour permettre le renommage',
+'delete_and_move_reason'       => 'Page supprimée pour permettre le renommage depuis "[[$1]]"',
 'selfmove'                     => 'Les titres d’origine et de destination sont les mêmes ;
 impossible de renommer une page sur elle-même.',
 'immobile-source-namespace'    => 'Vous ne pouvez pas renommer les pages dans l’espace de noms « $1 »',

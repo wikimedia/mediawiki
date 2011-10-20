@@ -2723,7 +2723,7 @@ Te rugăm să le unifici manual.'''",
 
 Pagina destinație „[[:$1]]” există deja. Doriți să o ștergeți pentru a face loc redenumirii?',
 'delete_and_move_confirm'      => 'Da, șterge pagina.',
-'delete_and_move_reason'       => 'Șters pentru a face loc redenumirii',
+'delete_and_move_reason'       => 'Șters pentru a face loc redenumirii paginii „[[$1]]”',
 'selfmove'                     => 'Titlurile sursei și ale destinației sunt aceleași; nu puteți muta o pagină peste ea însăși.',
 'immobile-source-namespace'    => 'Nu se pot redenumi paginile din spațiul de nume „$1”',
 'immobile-target-namespace'    => 'Nu se pot redenumi paginile în spațiul de nume „$1”',

@@ -2480,7 +2480,7 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 
 D Syte „[[:$1]]“ gits scho. Wottsch du si lösche, zume Platz zum verschiebe mache?',
 'delete_and_move_confirm'      => 'D Ziilsyte für d Verschiebig lösche',
-'delete_and_move_reason'       => 'glöscht, zume Platz für zum verschiebe mache',
+'delete_and_move_reason'       => 'glöscht, zume Platz für s Verschiebe vo „[[$1]]“ z mache',
 'selfmove'                     => 'Der nöi Artikelname mues en andere sy als der alt!',
 'immobile-source-namespace'    => 'Syte ussem „$1“-Namensruum chönne nüt verschobe werde',
 'immobile-target-namespace'    => 'Syte chönne nüt in de „$1“-Namensruum verschobe werde',

@@ -2637,7 +2637,7 @@ Prosimo, združite ju ročno.'''",
 
 Ciljna stran »[[:$1]]« že obstaja. Ali jo želite, da bi pripravili prostor za prestavitev, izbrisati?',
 'delete_and_move_confirm'      => 'Da, izbriši stran',
-'delete_and_move_reason'       => 'Izbrisano z namenom pripraviti prostor za prestavitev',
+'delete_and_move_reason'       => 'Izbrisano z namenom pripraviti prostor za »[[$1]]«',
 'selfmove'                     => 'Izvirni in ciljni naslov sta enaka;
 strani ni mogoče prestaviti samo vaše.',
 'immobile-source-namespace'    => 'Ne morem premikati strani v imenskem prostoru »$1«',

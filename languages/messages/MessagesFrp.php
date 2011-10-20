@@ -2782,7 +2782,7 @@ Nen volyéd chouèsir un ôtro.',
 La pâge de dèstinacion « [[:$1]] » ègziste ja.
 La voléd-vos suprimar por pèrmetre lo changement de nom ?',
 'delete_and_move_confirm'      => 'Ouè, j’accèpto de suprimar la pâge de dèstinacion por pèrmetre lo changement de nom.',
-'delete_and_move_reason'       => 'Pâge suprimâ ôtomaticament por pèrmetre un changement de nom',
+'delete_and_move_reason'       => 'Pâge suprimâ por pèrmetre lo changement de nom dês « [[$1]] »',
 'selfmove'                     => 'Los titros d’origina et de dèstinacion sont los mémos ;
 empossiblo de renomar una pâge sur lyé-méma.',
 'immobile-source-namespace'    => 'Vos pouede pas renomar les pâges dens l’èspâço de noms « $1 »',

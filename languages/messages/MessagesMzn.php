@@ -752,7 +752,7 @@ $2، $1',
 
 # Delete
 'deletepage' => 'صفحه پاک هاکردن',
-'dellogpage' => 'وربأئیته‌نه‌ئون گوزارش',
+'dellogpage' => 'وه ره بییته‌ئون گوزارش',
 
 # Rollback
 'rollback'          => 'دچی‌یه‌ئون ره واچی‌ین',
@@ -939,6 +939,7 @@ $5
 'version-specialpages' => 'شا صفحه‌ئون',
 
 # Special:SpecialPages
-'specialpages' => 'شا صفحه‌ئون',
+'specialpages'                   => 'شا صفحه‌ئون',
+'specialpages-group-maintenance' => 'چله‌بندی صفحه‌ئون',
 
 );

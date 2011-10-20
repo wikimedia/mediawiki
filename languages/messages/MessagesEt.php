@@ -1133,7 +1133,7 @@ Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAG
 'revdelete-radio-same'        => '(ära muuda)',
 'revdelete-radio-set'         => 'Jah',
 'revdelete-radio-unset'       => 'Ei',
-'revdelete-suppress'          => 'Varja andmed nii ülemate kui ka teiste eest.',
+'revdelete-suppress'          => 'Varja andmed nii administraatorite kui ka teiste eest',
 'revdelete-unsuppress'        => 'Eemalda taastatud redaktsioonidelt piirangud',
 'revdelete-log'               => 'Põhjus:',
 'revdelete-submit'            => 'Rakenda valitud {{PLURAL:$1|redaktsiooni|redaktsioonide}} suhtes',
@@ -1485,7 +1485,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-deletedtext'           => 'Vaadata kustutatud teksti ja võrrelda kustutatud redaktsioone',
 'right-browsearchive'         => 'Otsida kustutatud lehekülgi',
 'right-undelete'              => 'Taastada lehekülg',
-'right-suppressrevision'      => 'Üle vaadata ja taastada ülemate eest peidetud redaktsioone',
+'right-suppressrevision'      => 'Üle vaadata ja taastada administraatorite eest peidetud redaktsioone',
 'right-suppressionlog'        => 'Vaadata eralogisid',
 'right-block'                 => 'Keelata lehekülgede muutmist mõnel kasutajal',
 'right-blockemail'            => 'Keelata kasutajal e-kirjade saatmine',
@@ -1515,6 +1515,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-siteadmin'             => 'Panna lukku ja lukust lahti teha andmebaasi',
 'right-override-export-depth' => 'Eksportida lehekülgi, kaasates viidatud leheküljed kuni viienda tasemeni',
 'right-sendemail'             => 'Saata teistele kasutajatele e-kirju',
+'right-passwordreset'         => 'Vaadata parooli lähtestamise e-kirju',
 
 # User rights log
 'rightslog'      => 'Kasutaja õiguste logi',
@@ -1643,6 +1644,7 @@ Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest:
 'ignorewarnings'              => 'Ignoreeri hoiatusi',
 'minlength1'                  => 'Faili nimes peab olema vähemalt üks kirjamärk.',
 'illegalfilename'             => 'Faili "$1" nimi sisaldab sümboleid, mis pole pealkirjades lubatud. Palun nimetage fail ümber ja proovige uuesti.',
+'filename-toolong'            => 'Failinimed ei või olla pikemad kui 240 baiti.',
 'badfilename'                 => 'Pildi nimi on muudetud. Uus nimi on "$1".',
 'filetype-mime-mismatch'      => 'Faililaiend ".$1" ei vasta faili ($2) MIME tüübile.',
 'filetype-badmime'            => 'MIME tüübiga "$1" faile ei ole lubatud üles laadida.',
@@ -1841,6 +1843,7 @@ Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esime
 [[Special:WhatLinksHere/$2|Kogu loetelu]] on saadaval.',
 'nolinkstoimage'            => 'Sellele pildile ei viita ükski lehekülg.',
 'morelinkstoimage'          => 'Vaata [[Special:WhatLinksHere/$1|veel linke]], mis sellele failile viitavad.',
+'linkstoimage-redirect'     => '$1 (failiümbersuunamine) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Järgnev fail|Järgnevad $1 faili}} on selle faili {{PLURAL:$1|duplikaat|duplikaadid}} ([[Special:FileDuplicateSearch/$2|üksikasjad]]):',
 'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'sharedupload-desc-there'   => 'See fail pärineb kesksest failivaramust $1. Palun vaata [$2 faili kirjelduse lehekülge], et saada rohkem teavet.',
@@ -2360,7 +2363,7 @@ Kui vahepeal on loodud uus samanimeline lehekülg, ilmuvad taastatud versioonid 
 Sellisel juhul tuleb uusima kustutatud redaktsiooni juurest linnuke eemaldada või see peitmata jätta.',
 'undeletehistorynoadmin'       => 'See lehekülg on kustutatud.
 Kustutamise põhjus ning selle lehekülje kustutamiseelne redigeerimislugu on näha allolevas kokkuvõttes.
-Lehekülje kustutamiseelsed redaktsioonid on kättesaadavad ainult ülematele.',
+Lehekülje kustutamiseelsed redaktsioonid on kättesaadavad ainult administraatoritele.',
 'undelete-revision'            => 'Lehekülje $1 kustutatud redaktsioonid, mille autor on $3, seisuga $4 kell $5.',
 'undeleterevision-missing'     => 'Vigane või puuduv redaktsioon.
 Link võib olla kõlbmatu või redaktsioon võib olla taastatud või arhiivist eemaldatud.',
@@ -2595,6 +2598,7 @@ Kui sinu hooldustöö on läbi, ära unusta [[Special:UnlockDB|kirjutuspääsu t
 'lockfilenotwritable' => 'Andmebaasi lukufail ei ole kirjutatav.
 Andmebaasi lukustamiseks ja avamiseks peavad veebiserveril olema sellele kirjutusõigused.',
 'databasenotlocked'   => 'Andmebaas ei ole lukustatud.',
+'lockedbyandtime'     => '(lukustas $1; $2, kell $3)',
 
 # Move page
 'move-page'                    => 'Teisalda $1',
@@ -3514,6 +3518,9 @@ Sa võid [[Special:EditWatchlist|kasutada ka harilikku tekstiredaktorit]].',
 'watchlisttools-view' => 'Näita vastavaid muudatusi',
 'watchlisttools-edit' => 'Vaata ja redigeeri jälgimisloendit',
 'watchlisttools-raw'  => 'Muuda lähteteksti',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|arutelu]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tundmatu lisa märgend "$1".',

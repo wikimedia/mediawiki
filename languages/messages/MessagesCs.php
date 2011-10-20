@@ -2716,7 +2716,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 
 Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolnění místa pro přesun?',
 'delete_and_move_confirm'      => 'Ano, smazat cílovou stránku',
-'delete_and_move_reason'       => 'Smazáno pro umožnění přesunu',
+'delete_and_move_reason'       => 'Smazáno pro umožnění přesunu z „[[$1]]“',
 'selfmove'                     => 'Původní a nový název jsou stejné; nelze stránku přesunout na sebe samu.',
 'immobile-source-namespace'    => 'Stránky ve jmenném prostoru „$1“ nelze přesouvat',
 'immobile-target-namespace'    => 'Stránky nelze přesouvat do jmenného prostoru „$1“',

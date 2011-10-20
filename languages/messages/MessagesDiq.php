@@ -432,6 +432,7 @@ Hesabê şıma biyo a.
 'createaccount'              => 'hesab vıraze',
 'gotaccount'                 => "Hesabê şıma esto? '''$1'''.",
 'gotaccountlink'             => 'Cıkewe',
+'userlogin-resetlink'        => 'Melumatê cıkewtışi xo vira kerdê?',
 'createaccountmail'          => 'mı rê e-mail sera parola bırışe',
 'createaccountreason'        => 'Sebeb:',
 'badretype'                  => 'Parolayê ke şıma nuşti yewbini nêtepışneni.',
@@ -894,7 +895,7 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'compareselectedversions'  => 'Verziyonan kontrol bıke',
 'showhideselectedversions' => 'Revizyonanê weçinıtan bımocne/bınımne',
 'editundo'                 => 'peyser bia',
-'diff-multi'               => '({{PLURAL:$1|Yew revizyono miyanên|$1 revizyonê miyanêni}} nimocno)',
+'diff-multi'               => '({{PLURAL:$1|Yew revizyono miyanên|$1 revizyonê miyanêni}} terefê {{PLURAL:$2|yew karberi|$2 karberan}} nêmocno)',
 
 # Search results
 'searchresults'                    => 'Neticeyê cıgeyrayışi',
@@ -1063,7 +1064,9 @@ $1 gani bınê no {{PLURAL:$1|karakter|karakter}}de bıbo.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'Nameyo raşt waştena şıma rê mendo.
 Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de mocnenê.',
-'prefs-help-email'              => 'Dayişê adresê e-postayi keyfiyo; labele wexta ke parolayê şıma vind bıbo yew adres bıbo şıma re yewna parola erşawiyeno. Hem zi karberê binan de şıma eşkeni nımtıki xeberdayişi bıkeri.',
+'prefs-help-email'              => 'Dayışê adresa e-postey keyfiyo, labelê seba eyarê parola lazıma, wexto ke şıma naye xo vira kerê.',
+'prefs-help-email-others'       => 'Şıma şenê weçinê ke ê bini be yew gırey pela şımaya karberi ya zi pela werênayışi sera şıma de ebe e-poste irtıbat kewê.
+Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena.',
 'prefs-help-email-required'     => 'E-mail adrese mecburiya.',
 'prefs-info'                    => 'Enformasyonê temelî',
 'prefs-i18n'                    => 'Beynelbinel kerdişî',
@@ -1472,7 +1475,7 @@ keyepel nıka zaf meşğulo yew dema herayi de newe ra tesel bıkerê.',
 'filehist-filesize'         => 'Ebatê dosyayî',
 'filehist-comment'          => 'Rexne',
 'filehist-missing'          => 'Dosya nieseno',
-'imagelinks'                => 'Gıreyê dosya',
+'imagelinks'                => 'Gurenayışê dosya',
 'linkstoimage'              => 'Ena {{PLURAL:$1|pelge şın|$1 pelgayan şın}} ena dosya:',
 'linkstoimage-more'         => '$1 ra ziyed {{PLURAL:$1|pel|pel}} re gırey dano.
 listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocnena.
@@ -2031,6 +2034,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Îştîrakê karberî ser hesabê neweyî',
 'sp-contributions-blocklog'            => 'Cıkewtışê kılit-kerdışi',
 'sp-contributions-deleted'             => 'vurnayîşê karberî wedariyayê',
+'sp-contributions-uploads'             => 'barkerdey',
 'sp-contributions-logs'                => 'logî',
 'sp-contributions-talk'                => 'werênayış',
 'sp-contributions-userrights'          => 'Îdarayê heqqanê karberan',
@@ -2052,7 +2056,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'nolinkshere-ns'           => "Ena cayê nameyî de yew pel zi '''[[:$1]]''' rê link nibeno.",
 'isredirect'               => 'pele redireksiyon',
 'istemplate'               => 'transklusyon',
-'isimage'                  => 'grey resimi',
+'isimage'                  => 'gıreyê dosya',
 'whatlinkshere-prev'       => '{{PLURAL:$1|peni|peni $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|verni|verni $1}}',
 'whatlinkshere-links'      => '← gırey',
@@ -2105,7 +2109,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'ipusubmit'                       => 'Ena blok wedarne',
 'unblocked'                       => '[[User:$1|$1]] blok biyo',
 'unblocked-id'                    => 'Blokê $1î wedariyayo',
-'ipblocklist'                     => 'IP adresan u name karberan ke blok biyê',
+'ipblocklist'                     => 'Karberê kılitbiyaey',
 'ipblocklist-legend'              => 'Yew karberê blok biyaye bivîne',
 'ipblocklist-submit'              => 'Bigêre',
 'ipblocklist-localblock'          => 'blokê mehelli',
@@ -2532,8 +2536,8 @@ Na rêze de her gırêyo bin zey istisna vêniyeno, yanê pelê ke dosya beno ke
 Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.',
 'metadata-expand'   => 'Extended detayan bımoc',
 'metadata-collapse' => 'extended details bınım',
-'metadata-fields'   => 'Ke tabloyê metadatayi nıeseno, ma EXIF metadata (eno mesaj dı) zerri pele resimi ri ken de.
-Ma aya bini numnen.
+'metadata-fields'   => 'Resımê meydanê metadataê ke na pele de benê lista, pela resımmocnaene de ke tabloê metadata gına waro, gureniyenê.
+Ê bini zey sayekerdoğan nımiyenê.
 * make
 * model
 * datetimeoriginal
