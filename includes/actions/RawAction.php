@@ -28,6 +28,14 @@ class RawAction extends FormlessAction {
 		return 'read';
 	}
 
+	public function requiresWrite() {
+		return false;
+	}
+
+	public function requiresUnblock() {
+		return false;
+	}
+
 	function onView() {
 		global $wgGroupPermissions, $wgSquidMaxage, $wgForcedRawSMaxage, $wgJsMimeType;
 
