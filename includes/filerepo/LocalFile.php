@@ -872,7 +872,6 @@ class LocalFile extends File {
 		}
 	}
 
-	/** getFullPath inherited */
 	/** getHashPath inherited */
 	/** getRel inherited */
 	/** getUrlRel inherited */
