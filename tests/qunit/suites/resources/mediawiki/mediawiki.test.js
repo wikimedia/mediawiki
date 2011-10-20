@@ -131,7 +131,7 @@ test( 'mw.loader', function() {
 	expect(1);
 
 	// Asynchronous ahead
-	stop(5000);
+	stop();
 
 	mw.loader.implement( 'is.awesome', [QUnit.fixurl( mw.config.get( 'wgScriptPath' ) + '/tests/qunit/data/defineTestCallback.js' )], {}, {} );
 
@@ -155,9 +155,9 @@ test( 'mw.loader.bug29107' , function() {
 	// Message doesn't exist already
 	ok( !mw.messages.exists( 'bug29107' ) );
 
-	// Async! Include a timeout, as failure in this test leads to neither the
-	// success nor failure callbacks getting called.
-	stop(5000);
+	// Async! Failure in this test may lead to neither the success nor error callbacks getting called.
+	// Due to QUnit's timeout feauture we won't hang here forever if this happends.
+	stop();
 
 	mw.loader.implement( 'bug29107.messages-only', [], {}, {'bug29107': 'loaded'} );
 	mw.loader.using( 'bug29107.messages-only', function() {
@@ -180,9 +180,8 @@ test( 'mw.loader.bug30825', function() {
 		base = ('//' + loc.hostname + loc.pathname).replace(/\/[^\/]*$/, ''),
 		target = base + '/data/qunitOkCall.js?' + (new Date()).getTime();
 
-	// Async! Include a timeout, as failure in this test leads to neither the
-	// success nor failure callbacks getting called.
-	stop(5000);
+	// Async!
+	stop();
 	mw.loader.load( target );
 });
 

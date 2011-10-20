@@ -11,6 +11,11 @@ QUnit.fixurl = function(value) {
 };
 
 /**
+ * Configuration
+ */
+QUnit.config.testTimeout = 5000;
+
+/**
  *  Load TestSwarm agent
  */
 if ( QUnit.urlParams.swarmURL  ) {
