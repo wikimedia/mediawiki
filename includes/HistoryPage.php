@@ -382,6 +382,19 @@ class HistoryPager extends ReverseChronologicalPager {
 		return $s;
 	}
 
+	function doBatchLookups() {
+		# Do a link batch query
+		$this->mResult->seek( 0 );
+		$batch = new LinkBatch();
+		# Give some pointers to make (last) links
+		foreach ( $this->mResult as $row ) {
+			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->rev_user_name ) );
+			$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->rev_user_name ) );
+		}
+		$batch->execute();
+		$this->mResult->seek( 0 );
+	}
+
 	/**
 	 * Creates begin of history list with a submit button
 	 *
