@@ -191,7 +191,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 				$this->addWhereRange( 'ar_namespace', $dir, null, null );
 				$this->addWhereRange( 'ar_title', $dir, null, null );
 			}
-			$this->addWhereRange( 'ar_timestamp', $dir, $params['start'], $params['end'] );
+			$this->addTimestampWhereRange( 'ar_timestamp', $dir, $params['start'], $params['end'] );
 		}
 		$res = $this->select( __METHOD__ );
 		$pageMap = array(); // Maps ns&title to (fake) pageid

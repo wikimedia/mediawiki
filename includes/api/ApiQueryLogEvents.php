@@ -116,7 +116,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$index['logging'] = 'type_time';
 		}
 
-		$this->addWhereRange( 'log_timestamp', $params['dir'], $params['start'], $params['end'] );
+		$this->addTimestampWhereRange( 'log_timestamp', $params['dir'], $params['start'], $params['end'] );
 
 		$limit = $params['limit'];
 		$this->addOption( 'LIMIT', $limit + 1 );

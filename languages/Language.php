@@ -3423,7 +3423,7 @@ class Language {
 				: $infinity;
 		} else {
 			return $format === true
-				? $this->timeanddate( $expiry, /* User preference timezome */ true )
+				? $this->timeanddate( $expiry, /* User preference timezone */ true )
 				: wfTimestamp( $format, $expiry );
 		}
 	}
