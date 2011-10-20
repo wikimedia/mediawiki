@@ -122,7 +122,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		if( !$ret instanceof User ) {
 			if( $this->mTarget != '' ) {
 				$ret = ( $ret == 'notarget' ) ? 'emailnotarget' : ( $ret . 'text' );
-				$out->wrapWikiMsg( "<p class='error'>$1</p>", $ret );
+				$wgOut->wrapWikiMsg( "<p class='error'>$1</p>", $ret );
 			}
 			$wgOut->addHTML( self::userForm( $this->mTarget ) );
 			return false;

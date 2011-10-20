@@ -295,7 +295,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_parsedcomment && isset( $row->rc_comment ) ) {
-			$vals['parsedcomment'] = $this->getSkin()->formatComment( $row->rc_comment, $title );
+			$vals['parsedcomment'] = Linker::formatComment( $row->rc_comment, $title );
 		}
 
 		if ( $this->fld_loginfo && $row->rc_type == RC_LOG ) {
