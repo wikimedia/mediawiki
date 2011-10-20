@@ -57,6 +57,8 @@ class SpecialContributions extends SpecialPage {
 		if( $request->getVal( 'contribs' ) == 'newbie' ) {
 			$target = 'newbies';
 			$this->opts['contribs'] = 'newbie';
+		} else {
+			$this->opts['contribs'] = 'user';
 		}
 
 		$this->opts['deletedOnly'] = $request->getBool( 'deletedOnly' );
@@ -79,7 +81,7 @@ class SpecialContributions extends SpecialPage {
 		}
 		$id = User::idFromName( $nt->getText() );
 
-		if( $target != 'newbies' ) {
+		if( $this->opts['contribs'] != 'newbie' ) {
 			$target = $nt->getText();
 			$out->setSubtitle( $this->contributionsSub( $nt, $id ) );
 			$out->setHTMLTitle( wfMsg( 'pagetitle', wfMsgExt( 'contributions-title', array( 'parsemag' ),$target ) ) );
@@ -159,6 +161,7 @@ class SpecialContributions extends SpecialPage {
 
 			$pager = new ContribsPager( array(
 				'target' => $target,
+				'contribs' => $this->opts['contribs'],
 				'namespace' => $this->opts['namespace'],
 				'year' => $this->opts['year'],
 				'month' => $this->opts['month'],
@@ -182,7 +185,7 @@ class SpecialContributions extends SpecialPage {
 			$out->preventClickjacking( $pager->getPreventClickjacking() );
 
 			# Show the appropriate "footer" message - WHOIS tools, etc.
-			if( $target != 'newbies' ) {
+			if( $this->opts['contribs'] != 'newbie' ) {
 				$message = 'sp-contributions-footer';
 				if ( IP::isIPAddress( $target ) ) {
 					$message = 'sp-contributions-footer-anon';
@@ -439,6 +442,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		$this->target = isset( $options['target'] ) ? $options['target'] : '';
+		$this->contribs = isset( $options['contribs'] ) ? $options['contribs'] : 'users';
 		$this->namespace = isset( $options['namespace'] ) ? $options['namespace'] : '';
 		$this->tagFilter = isset( $options['tagFilter'] ) ? $options['tagFilter'] : false;
 
@@ -506,7 +510,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$condition = array();
 		$join_conds = array();
 		$tables = array( 'revision', 'page', 'user' );
-		if( $this->target == 'newbies' ) {
+		if( $this->contribs == 'newbie' ) {
 			$tables[] = 'user_groups';
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 			$condition[] = 'rev_user >' . (int)($max - $max / 100);
@@ -542,6 +546,21 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function getIndexField() {
 		return 'rev_timestamp';
+	}
+
+	function doBatchLookups() {
+		if ( $this->contribs === 'newbie' ) { // multiple users
+			# Do a link batch query
+			$this->mResult->seek( 0 );
+			$batch = new LinkBatch();
+			# Give some pointers to make (last) links
+			foreach ( $this->mResult as $row ) {
+				$batch->addObj( Title::makeTitleSafe( NS_USER, $row->rev_user_name ) );
+				$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->rev_user_name ) );
+			}
+			$batch->execute();
+			$this->mResult->seek( 0 );
+		}
 	}
 
 	function getStartBody() {
@@ -672,7 +691,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		# Show user names for /newbies as there may be different users.
 		# Note that we already excluded rows with hidden user names.
-		if( $this->target == 'newbies' ) {
+		if( $this->contribs == 'newbie' ) {
 			$userlink = ' . . ' . Linker::userLink( $rev->getUser(), $rev->getUserText() );
 			$userlink .= ' ' . wfMsg( 'parentheses',
 				Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) ) . ' ';
