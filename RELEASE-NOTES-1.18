@@ -95,8 +95,6 @@ Now the "This is a minor edit" checkbox is not available when you
 create a page or new section.
 * (bug 8130) Query pages should limit to content namespaces, not just main
   namespace.
-* Search suggestions (other than in the Vector skin) will now use the HTML5
-  datalist feature where supported, currently only Firefox 4.
 * Special:Contribs now redirects to Special:Contributions.
 * (bug 6672) Images are now autorotated according to their EXIF orientation.
   This only affects thumbnails; the source remains unrotated.
