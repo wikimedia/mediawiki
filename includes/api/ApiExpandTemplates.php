@@ -90,7 +90,10 @@ class ApiExpandTemplates extends ApiBase {
 			'title' => array(
 				ApiBase::PARAM_DFLT => 'API',
 			),
-			'text' => null,
+			'text' => array(
+				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true,
+			),
 			'generatexml' => false,
 			'includecomments' => false,
 		);
