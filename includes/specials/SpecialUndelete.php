@@ -399,6 +399,10 @@ class PageArchive {
 
 		# Does this page already exist? We'll have to update it...
 		$article = new Article( $this->title );
+		# Load latest data for the current page (bug 31179)
+		$article->loadPageData( 'fromdbmaster' );
+		$oldcountable = $article->isCountable();
+
 		$options = 'FOR UPDATE'; // lock page
 		$page = $dbw->selectRow( 'page',
 			array( 'page_id', 'page_latest' ),
@@ -532,7 +536,6 @@ class PageArchive {
 		}
 
 		$created = (bool)$newid;
-		$oldcountable = $article->isCountable();
 
 		// Attach the latest revision to the page...
 		$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );

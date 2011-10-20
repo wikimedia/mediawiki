@@ -338,7 +338,7 @@ class SpecialContributions extends SpecialPage {
 	 * @return String: HTML fragment
 	 */
 	protected function getForm() {
-		global $wgScript, $wgMiserMode;
+		global $wgScript;
 
 		$this->opts['title'] = $this->getTitle()->getPrefixedText();
 		if( !isset( $this->opts['target'] ) ) {
@@ -388,12 +388,6 @@ class SpecialContributions extends SpecialPage {
 
 		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagFilter'] );
 
-		$fNS = ( $wgMiserMode ) ? '' :
-			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
-				Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
-				Xml::namespaceSelector( $this->opts['namespace'], '' )
-			);
-
 		$f .= 	Xml::fieldset( wfMsg( 'sp-contributions-search' ) ) .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parsemag' ) ),
 				'contribs', 'newbie' , 'newbie', $this->opts['contribs'] == 'newbie' ) . '<br />' .
@@ -403,7 +397,10 @@ class SpecialContributions extends SpecialPage {
 				'size' => '20',
 				'required' => ''
 			) + ( $this->opts['target'] ? array() : array( 'autofocus' ) ) ) . ' '.
-			$fNS.
+			Html::rawElement( 'span', array( 'style' => 'white-space: nowrap' ),
+				Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
+				Xml::namespaceSelector( $this->opts['namespace'], '' )
+			) .
 			Xml::checkLabel( wfMsg( 'history-show-deleted' ),
 				'deletedOnly', 'mw-show-deleted-only', $this->opts['deletedOnly'] ) . '<br />' .
 			Xml::tags( 'p', null, Xml::checkLabel( wfMsg( 'sp-contributions-toponly' ),
@@ -531,8 +528,7 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function getNamespaceCond() {
-		global $wgMiserMode;
-		if( $this->namespace !== '' && !$wgMiserMode ) {
+		if( $this->namespace !== '' ) {
 			return array( 'page_namespace' => (int)$this->namespace );
 		} else {
 			return array();
