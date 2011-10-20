@@ -470,16 +470,20 @@ class ContribsPager extends ReverseChronologicalPager {
 			$conds[] = $this->mDb->bitAnd('rev_deleted',Revision::SUPPRESSED_USER) .
 				' != ' . Revision::SUPPRESSED_USER;
 		}
-		$join_cond['page'] = array( 'INNER JOIN', 'page_id=rev_page' );
+
+		# Don't include orphaned revisions
+		$join_cond['page'] = array( 'INNER JOIN', 'page_id = rev_page' );
+		# Get the current user name for accounts
+		$join_cond['user'] = array( 'LEFT JOIN', 'rev_user != 0 AND user_id = rev_user' );
 
 		$queryInfo = array(
 			'tables' => $tables,
-			'fields' => array(
+			'fields' => array_merge( Revision::selectUserFields(), array(
 				'page_namespace', 'page_title', 'page_is_new', 'page_latest', 'page_is_redirect',
-				'page_len','rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
+				'page_len', 'rev_id', 'rev_page', 'rev_text_id', 'rev_timestamp', 'rev_comment',
 				'rev_minor_edit', 'rev_user', 'rev_user_text', 'rev_parent_id', 'rev_deleted',
-				'rev_len', 'rev_parent_id'
-			),
+				'rev_len'
+			) ),
 			'conds' => $conds,
 			'options' => array( 'USE INDEX' => array('revision' => $index) ),
 			'join_conds' => $join_cond
@@ -501,8 +505,9 @@ class ContribsPager extends ReverseChronologicalPager {
 	function getUserCond() {
 		$condition = array();
 		$join_conds = array();
+		$tables = array( 'revision', 'page', 'user' );
 		if( $this->target == 'newbies' ) {
-			$tables = array( 'user_groups', 'page', 'revision' );
+			$tables[] = 'user_groups';
 			$max = $this->mDb->selectField( 'user', 'max(user_id)', false, __METHOD__ );
 			$condition[] = 'rev_user >' . (int)($max - $max / 100);
 			$condition[] = 'ug_group IS NULL';
@@ -510,9 +515,13 @@ class ContribsPager extends ReverseChronologicalPager {
 			# @todo FIXME: Other groups may have 'bot' rights
 			$join_conds['user_groups'] = array( 'LEFT JOIN', "ug_user = rev_user AND ug_group = 'bot'" );
 		} else {
-			$tables = array( 'page', 'revision' );
-			$condition['rev_user_text'] = $this->target;
-			$index = 'usertext_timestamp';
+			if ( IP::isIPAddress( $this->target ) ) {
+				$condition['rev_user_text'] = $this->target;
+				$index = 'usertext_timestamp';
+			} else {
+				$condition['rev_user'] = User::idFromName( $this->target );
+				$index = 'user_timestamp';
+			}
 		}
 		if( $this->deletedOnly ) {
 			$condition[] = "rev_deleted != '0'";
@@ -661,9 +670,12 @@ class ContribsPager extends ReverseChronologicalPager {
 			$d = '<span class="history-deleted">' . $d . '</span>';
 		}
 
+		# Show user names for /newbies as there may be different users.
+		# Note that we already excluded rows with hidden user names.
 		if( $this->target == 'newbies' ) {
-			$userlink = ' . . ' . Linker::userLink( $row->rev_user, $row->rev_user_text );
-			$userlink .= ' ' . wfMsg( 'parentheses', Linker::userTalkLink( $row->rev_user, $row->rev_user_text ) ) . ' ';
+			$userlink = ' . . ' . Linker::userLink( $rev->getUser(), $rev->getUserText() );
+			$userlink .= ' ' . wfMsg( 'parentheses',
+				Linker::userTalkLink( $rev->getUser(), $rev->getUserText() ) ) . ' ';
 		} else {
 			$userlink = '';
 		}

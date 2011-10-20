@@ -25,14 +25,17 @@ class RevDel_RevisionList extends RevDel_List {
 	 */
 	public function doQuery( $db ) {
 		$ids = array_map( 'intval', $this->ids );
-		$live = $db->select( array('revision','page'), '*',
+		$live = $db->select(
+			array( 'revision', 'page', 'user' ),
+			array_merge( Revision::selectFields(), Revision::selectUserFields() ),
 			array(
 				'rev_page' => $this->title->getArticleID(),
 				'rev_id'   => $ids,
-				'rev_page = page_id'
 			),
 			__METHOD__,
-			array( 'ORDER BY' => 'rev_id DESC' )
+			array( 'ORDER BY' => 'rev_id DESC' ),
+			array( 'page' => array( 'INNER JOIN', 'rev_page = page_id' ),
+				'user' => array( 'LEFT JOIN', 'user_id = rev_user' ) )
 		);
 
 		if ( $live->numRows() >= count( $ids ) ) {
@@ -128,7 +131,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	}
 
 	public function getAuthorNameField() {
-		return 'rev_user_text';
+		return 'rev_user_name'; // see Revision::selectUserFields()
 	}
 
 	public function canView() {

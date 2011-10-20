@@ -342,13 +342,15 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	function getQueryInfo() {
 		$queryInfo = array(
-			'tables'  => array( 'revision' ),
-			'fields'  => Revision::selectFields(),
+			'tables'  => array( 'revision', 'user' ),
+			'fields'  => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
 			'conds'   => array_merge(
 				array( 'rev_page' => $this->title->getArticleID() ),
 				$this->conds ),
 			'options' => array( 'USE INDEX' => array( 'revision' => 'page_timestamp' ) ),
-			'join_conds' => array( 'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),
+			'join_conds' => array(
+				'user'        => array( 'LEFT JOIN', 'rev_user != 0 AND user_id = rev_user' ),
+				'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),
 		);
 		ChangeTags::modifyDisplayQuery(
 			$queryInfo['tables'],
