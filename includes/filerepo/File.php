@@ -272,18 +272,6 @@ abstract class File {
 	}
 
 	/**
-	 * Alias for getPath()
-	 *
-	 * @deprecated since 1.18 Use getPath().
-	 *
-	 * @return string
-	 */
-	public function getFullPath() {
-		wfDeprecated( __METHOD__ );
-		return $this->getPath();
-	}
-
-	/**
 	 * Return the width of the image. Returns false if the width is unknown
 	 * or undefined.
 	 *
