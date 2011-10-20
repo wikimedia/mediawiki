@@ -131,7 +131,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	}
 
 	public function getAuthorNameField() {
-		return 'rev_user_name'; // see Revision::selectUserFields()
+		return 'user_name'; // see Revision::selectUserFields()
 	}
 
 	public function canView() {

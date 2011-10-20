@@ -295,7 +295,7 @@ class RevisionItem extends RevisionItemBase {
 	}
 
 	public function getAuthorNameField() {
-		return 'rev_user_name'; // see Revision::selectUserFields()
+		return 'user_name'; // see Revision::selectUserFields()
 	}
 
 	public function canView() {
