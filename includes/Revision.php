@@ -305,7 +305,7 @@ class Revision {
 	 * Return the list of text fields that should be selected to read the
 	 * revision text
 	 */
-	static function selectTextFields() {
+	public static function selectTextFields() {
 		return array(
 			'old_text',
 			'old_flags'
@@ -315,7 +315,7 @@ class Revision {
 	/**
 	 * Return the list of page fields that should be selected from page table
 	 */
-	static function selectPageFields() {
+	public static function selectPageFields() {
 		return array(
 			'page_namespace',
 			'page_title',
@@ -326,7 +326,7 @@ class Revision {
 	/**
 	 * Return the list of user fields that should be selected from user table
 	 */
-	static function selectUserFields() {
+	public static function selectUserFields() {
 		return array( 'COALESCE(user_name,rev_user_text) AS rev_user_name' );
 	}
 
