@@ -4,6 +4,22 @@
  * @todo document
  */
 class Revision {
+	protected $mId;
+	protected $mPage;
+	protected $mUserText;
+	protected $mOrigUserText;
+	protected $mUser;
+	protected $mMinorEdit;
+	protected $mTimestamp;
+	protected $mDeleted;
+	protected $mSize;
+	protected $mParentId;
+	protected $mComment;
+	protected $mText;
+	protected $mTextRow;
+	protected $mTitle;
+	protected $mCurrent;
+
 	const DELETED_TEXT = 1;
 	const DELETED_COMMENT = 2;
 	const DELETED_USER = 4;
@@ -348,7 +364,7 @@ class Revision {
 			$this->mDeleted   = intval( $row->rev_deleted );
 
 			if( !isset( $row->rev_parent_id ) ) {
-				$this->mParentId = is_null($row->rev_parent_id) ? null : 0;
+				$this->mParentId = is_null( $row->rev_parent_id ) ? null : 0;
 			} else {
 				$this->mParentId  = intval( $row->rev_parent_id );
 			}
@@ -376,13 +392,14 @@ class Revision {
 				$this->mTextRow = null;
 			}
 
-			// Use user_name for users and rev_user_text for IPs.
-			// Also fallback to rev_user_text if user_name not given.
-			if ( isset( $row->user_name ) ) {
-				$this->mUserText = $row->user_name; // logged-in user (ideally)
-			} else {
-				$this->mUserText = $row->rev_user_text; // IP user (ideally)
+			// Use user_name for users and rev_user_text for IPs...
+			$this->mUserText = null; // lazy load if left null
+			if ( $this->mUser == 0 ) {
+				$this->mUserText = $row->rev_user_text; // IP user
+			} elseif ( isset( $row->user_name ) ) {
+				$this->mUserText = $row->user_name; // logged-in user
 			}
+			$this->mOrigUserText = $row->rev_user_text;
 		} elseif( is_array( $row ) ) {
 			// Build a new revision to be saved...
 			global $wgUser;
@@ -542,7 +559,7 @@ class Revision {
 		} elseif( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER, $user ) ) {
 			return '';
 		} else {
-			return $this->mUserText;
+			return $this->getRawUserText();
 		}
 	}
 
@@ -552,6 +569,14 @@ class Revision {
 	 * @return String
 	 */
 	public function getRawUserText() {
+		if ( $this->mUserText === null ) {
+			$this->mUserText = User::whoIs( $this->mUser ); // load on demand
+			if ( $this->mUserText === false ) {
+				# This shouldn't happen, but it can if the wiki was recovered
+				# via importing revs and there is no user table entry yet.
+				$this->mUserText = $this->mOrigUserText;
+			}
+		}
 		return $this->mUserText;
 	}
 

@@ -448,9 +448,9 @@ class User {
 	/**
 	 * Get the username corresponding to a given user ID
 	 * @param $id Int User ID
-	 * @return String The corresponding username
+	 * @return String|false The corresponding username
 	 */
-	static function whoIs( $id ) {
+	public static function whoIs( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
 		return $dbr->selectField( 'user', 'user_name', array( 'user_id' => $id ), __METHOD__ );
 	}
@@ -459,7 +459,7 @@ class User {
 	 * Get the real name of a user given their user ID
 	 *
 	 * @param $id Int User ID
-	 * @return String The corresponding user's real name
+	 * @return String|false The corresponding user's real name
 	 */
 	public static function whoIsReal( $id ) {
 		$dbr = wfGetDB( DB_SLAVE );
