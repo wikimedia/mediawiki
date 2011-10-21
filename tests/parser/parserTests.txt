@@ -5675,7 +5675,6 @@ http://===r:::https://b
 {|
 !!result
 <p><a rel="nofollow" class="external free" href="http://===r:::https://b">http://===r:::https://b</a>
-</p><p><br />
 </p>
 <table>
 <tr><td></td></tr>
