@@ -466,7 +466,7 @@ class LogEventsList {
 		// If an edit was hidden from a page give a review link to the history
 		} elseif( self::typeAction( $row, array( 'delete', 'suppress' ), 'revision', 'deletedhistory' ) ) {
 			$revert = RevisionDeleter::getLogLinks( $title, $paramArray,
-								$this->skin, $this->message );
+								$this->message );
 		// Hidden log items, give review link
 		} elseif( self::typeAction( $row, array( 'delete', 'suppress' ), 'event', 'deletedhistory' ) ) {
 			if( count($paramArray) >= 1 ) {
