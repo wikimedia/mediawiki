@@ -208,12 +208,20 @@ encapsulateSelection: function( options ) {
  * Get the position (in resolution of bytes not nessecarily characters)
  * in a textarea
  *
+ * Will focus the textarea in some browsers (IE/Opera)
+ *
  * @fixme document the options parameters
  */
  getCaretPosition: function( options ) {
 	function getCaret( e ) {
 		var caretPos = 0, endPos = 0;
 		if ( $.browser.msie ) {
+			// IE doesn't properly report non-selected caret position through
+			// the selection ranges when textarea isn't focused. This can
+			// lead to saving a bogus empty selection, which then screws up
+			// whatever we do later (bug 31847).
+			e.focus();
+
 			// IE Support
 			var preFinished = false;
 			var periFinished = false;
