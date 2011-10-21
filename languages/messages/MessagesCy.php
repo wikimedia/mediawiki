@@ -2502,7 +2502,7 @@ Dewiswch enw arall os gwelwch yn dda.",
 
 Mae'r erthygl \"[[:\$1]]\" yn bodoli'n barod. Ydych chi am ddileu'r erthygl er mwyn cwblhau'r symudiad?",
 'delete_and_move_confirm'      => "Ie, dileu'r dudalen",
-'delete_and_move_reason'       => "Wedi'i dileu er mwyn symud tudalen arall yn ei lle.",
+'delete_and_move_reason'       => 'Wedi\'i dileu er mwyn gallu symud y dudalen "[[$1]]" i gymryd ei lle',
 'selfmove'                     => "Mae'r teitlau hen a newydd yn union yr un peth;
 nid yw'n bosib cyflawnu'r symud.",
 'immobile-source-namespace'    => 'Ni ellir symud tudalennau yn y parth "$1".',

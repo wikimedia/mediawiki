@@ -1035,9 +1035,8 @@ $3的理由是''$2''",
 'rev-deleted-unhide-diff'     => "该页面的其中一次修订已经被'''删除'''。
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到更多的信息。
 作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
-'rev-suppressed-unhide-diff'  => "该页面的其中一次修订已经被'''废止'''。
-在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 废止日志]中可以找到更多的资料。
-作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
+'rev-suppressed-unhide-diff'  => "该页面的其中一次修订已经被'''监督隐藏'''。
+在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 监督日志]中可以找到更多的资料。如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
 'rev-deleted-diff-view'       => "差异中的一次修订已被'''删除'''。
 作为管理员，您可以查看此差异。详细信息可在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。",
 'rev-suppressed-diff-view'    => "差异中的一次修订已被'''废止'''。

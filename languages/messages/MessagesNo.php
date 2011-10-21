@@ -1112,14 +1112,14 @@ Forklaring: '''({{int:cur}})''' = forskjell fra nåværende revisjon, '''({{int:
 'rev-deleted-user-contribs'   => '[brukernavn eller IP-adresse fjernet – redigeringen vises ikke blant bidragene]',
 'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''.
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
-'rev-deleted-text-unhide'     => "Denne sideversjonen har blitt '''slettet'''.
-Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
-Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker å fortsette.",
-'rev-suppressed-text-unhide'  => "Denne revisjonen har blitt '''unndratt'''.
-Det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unndragelseslogg].
-Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker å fortsette.",
-'rev-deleted-text-view'       => "Denne sideversjonen har blitt '''slettet'''.
-Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
+'rev-deleted-text-unhide'     => "Denne siderevisjonen har blitt '''slettet'''.
+Se etter detaljer i slettingsloggen: [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].
+Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker det.",
+'rev-suppressed-text-unhide'  => "Denne siderevisjonen har blitt '''strøket'''.
+Informasjon om dette finnes i strykningsloggen: [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}}].
+Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker det.",
+'rev-deleted-text-view'       => "Denne siderevisjonen har blitt '''slettet'''.
+Som administrator kan du fortsatt se den. Detaljer finnes i slettingsloggen: [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
 'rev-suppressed-text-view'    => "Denne revisjonen har blitt '''unndratt'''.
 Som administrator kan du se den; det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unndragelsesloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.

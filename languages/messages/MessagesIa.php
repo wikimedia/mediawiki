@@ -2622,7 +2622,7 @@ Per favor fusiona los manualmente.'''",
 Le pagina de destination "[[:$1]]" existe ja.
 Esque tu vole deler lo pro permitter le renomination?',
 'delete_and_move_confirm'      => 'Si, deler le pagina',
-'delete_and_move_reason'       => 'Delite pro permitter renomination',
+'delete_and_move_reason'       => 'Delite pro permitter le renomination de "[[$1]]"',
 'selfmove'                     => 'Le titulos de origine e de destination es identic;
 non pote renominar un pagina al mesme titulo.',
 'immobile-source-namespace'    => 'Non pote renominar paginas in le spatio de nomines "$1"',

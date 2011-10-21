@@ -2491,7 +2491,7 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 
 La páxina de destín "[[:$1]]" yá esiste. ¿Quies esborrala pa dexar sitiu pal treslláu?',
 'delete_and_move_confirm'      => 'Sí, esborrar la páxina',
-'delete_and_move_reason'       => 'Esborrada pa facer sitiu pal treslláu',
+'delete_and_move_reason'       => 'Desaniciada pa facer sitiu pa treslladar dende «[[$1]]»',
 'selfmove'                     => "Los nomes d'orixe y destín son los mesmos, nun se pue treslladar una páxina sobre ella mesma.",
 'immobile-source-namespace'    => 'Nun se puen treslladar páxines nel espaciu de nomes "$1"',
 'immobile-target-namespace'    => 'Nun se puen treslladar páxines al espaciu de nomes "$1"',

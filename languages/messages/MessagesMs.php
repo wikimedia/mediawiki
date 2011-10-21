@@ -2564,7 +2564,7 @@ Sila pilih nama lain.',
 
 Laman destinasi "[[:$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supaya laman ini dapat dipindahkan?',
 'delete_and_move_confirm'      => 'Ya, hapuskan laman ini',
-'delete_and_move_reason'       => 'Dihapuskan supaya laman lain dapat dipindahkan',
+'delete_and_move_reason'       => 'Dihapuskan untuk membuka laluan untuk pemindahan dari "[[$1]]"',
 'selfmove'                     => 'Tajuk sumber dan tajuk destinasi tidak boleh sama.',
 'immobile-source-namespace'    => 'Anda tidak boleh memindahkan laman dari ruang nama "$1"',
 'immobile-target-namespace'    => 'Anda tidak boleh memindahkan mana-mana laman ke dalam ruang nama "$1"',

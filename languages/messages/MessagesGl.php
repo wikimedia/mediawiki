@@ -2664,7 +2664,7 @@ Por favor, escolla outro nome.',
 A páxina de destino, chamada "[[:$1]]", xa existe.
 Quérea eliminar para facer sitio para mover?',
 'delete_and_move_confirm'      => 'Si, borrar a páxina',
-'delete_and_move_reason'       => 'Eliminado para facer sitio para mover',
+'delete_and_move_reason'       => 'Eliminado para facer sitio para mover "[[$1]]"',
 'selfmove'                     => 'O título de orixe e o de destino é o mesmo; non se pode mover unha páxina sobre si mesma.',
 'immobile-source-namespace'    => 'Non se poden mover as páxinas que están no espazo de nomes "$1"',
 'immobile-target-namespace'    => 'Non se poden mover as páxinas ao espazo de nomes "$1"',
