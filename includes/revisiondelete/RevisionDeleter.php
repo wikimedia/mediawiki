@@ -113,11 +113,10 @@ class RevisionDeleter {
 	 *
 	 * @param $title Title
 	 * @param $paramArray Array
-	 * @param $skin Skin
 	 * @param $messages
 	 * @return String
 	 */
-	public static function getLogLinks( $title, $paramArray, $skin, $messages ) {
+	public static function getLogLinks( $title, $paramArray, $messages ) {
 		global $wgLang;
 
 		if ( count( $paramArray ) >= 2 ) {
@@ -132,19 +131,18 @@ class RevisionDeleter {
 			if ( count( $Ids ) == 1 ) {
 				// Live revision diffs...
 				if ( in_array( $key, array( 'oldid', 'revision' ) ) ) {
-					$revert[] = $skin->link(
+					$revert[] = Linker::linkKnown(
 						$title,
 						$messages['diff'],
 						array(),
 						array(
 							'diff' => intval( $Ids[0] ),
 							'unhide' => 1
-						),
-						array( 'known', 'noclasses' )
+						)
 					);
 				// Deleted revision diffs...
 				} elseif ( in_array( $key, array( 'artimestamp','archive' ) ) ) {
-					$revert[] = $skin->link(
+					$revert[] = Linker::linkKnown(
 						SpecialPage::getTitleFor( 'Undelete' ),
 						$messages['diff'],
 						array(),
@@ -152,14 +150,13 @@ class RevisionDeleter {
 							'target'    => $title->getPrefixedDBKey(),
 							'diff'      => 'prev',
 							'timestamp' => $Ids[0]
-						),
-						array( 'known', 'noclasses' )
+						)
 					);
 				}
 			}
 
 			// View/modify link...
-			$revert[] = $skin->link(
+			$revert[] = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Revisiondelete' ),
 				$messages['revdel-restore'],
 				array(),
@@ -167,8 +164,7 @@ class RevisionDeleter {
 					'target' => $title->getPrefixedText(),
 					'type' => $key,
 					'ids' => implode(',', $Ids),
-				),
-				array( 'known', 'noclasses' )
+				)
 			);
 
 			// Pipe links
