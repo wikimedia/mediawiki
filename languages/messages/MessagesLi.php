@@ -2516,7 +2516,7 @@ Haaj d'r raekening mit det allein de pagina wuuertj hernömp, ''neet'' de gebroe
 
 De doeltitel "[[:$1]]" besjteit al. Wils te dit artikel wisse óm ruumde te make veur de verplaatsing?',
 'delete_and_move_confirm'      => 'Jao, wis de pazjena',
-'delete_and_move_reason'       => 'Gewis óm artikel te kónne verplaatse',
+'delete_and_move_reason'       => 'Gewis óm artikel [[$1]] te kónne verplaatse',
 'selfmove'                     => "De kèns 'n pazjena neet verplaatse nao dezelfde paginanaam.",
 'immobile-source-namespace'    => 'Pagina\'s in de naamruumde "$1" kinne nwet hernump waere',
 'immobile-target-namespace'    => 'Pagina\'s kinne neet hernömp waere nao de naamruumde "$1"',

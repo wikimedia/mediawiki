@@ -3794,7 +3794,7 @@ $1',
 'version-hook-subscribedby'     => 'הפונקציה הרושמת',
 'version-version'               => '(גרסה $1)',
 'version-license'               => 'רישיון',
-'version-poweredby-credits'     => "אתר הוויקי הזה מופעל על ידי '''[http://www.mediawiki.org/ מדיה־ויקי]''', © 2001-$1 $2.",
+'version-poweredby-credits'     => "אתר הוויקי הזה מופעל על ידי '''[http://www.mediawiki.org/ מדיה־ויקי]''', © 2001–$1 $2.",
 'version-poweredby-others'      => 'אחרים',
 'version-license-info'          => "מדיה־ויקי היא תוכנה חופשית; באפשרותכם להפיץ אותה מחדש ו/או לשנות אותה לפי תנאי הרישיון הציבורי הכללי של גנו המפורסם על ידי המוסד לתוכנה חופשית: גרסה 2 של רישיון זה, או (לפי בחירתכם) כל גרסה מאוחרת יותר.
 

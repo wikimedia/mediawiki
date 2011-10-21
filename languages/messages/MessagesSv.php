@@ -2715,7 +2715,7 @@ Försök att sammanfoga dem manuellt.'''",
 'delete_and_move_text'         => '==Radering krävs==
 Den titel du vill flytta sidan till, "[[:$1]]", finns redan. Vill du radera den för att möjliggöra flytt av denna sida dit?',
 'delete_and_move_confirm'      => 'Ja, radera sidan',
-'delete_and_move_reason'       => 'Raderad för att flytta hit en annan sida.',
+'delete_and_move_reason'       => 'Raderad för att göra plats till flyttning av "[[$1]]"',
 'selfmove'                     => 'Ursprungstitel och destinationstitel är identiska. Sidan kan inte flyttas till sig själv.',
 'immobile-source-namespace'    => 'Kan inte flytta sidor i namnrymden "$1"',
 'immobile-target-namespace'    => 'Kan inte flytta sidor till namnrymden "$1"',

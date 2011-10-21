@@ -2826,7 +2826,7 @@ De overige pagina's worden niet automatisch hernoemd.",
 Onder de naam "[[:$1]]" bestaat al een pagina.
 Wilt u deze verwijderen om plaats te maken voor de te hernoemen pagina?',
 'delete_and_move_confirm'      => 'Ja, de pagina verwijderen',
-'delete_and_move_reason'       => 'Verwijderd in verband met hernoeming',
+'delete_and_move_reason'       => 'Verwijderd in verband met hernoeming van "[[$1]]"',
 'selfmove'                     => 'U kunt een pagina niet hernoemen naar dezelfde paginanaam.',
 'immobile-source-namespace'    => 'Pagina\'s in de naamruimte "$1" kunnen niet hernoemd worden',
 'immobile-target-namespace'    => 'Pagina\'s kunnen niet hernoemd worden naar de naamruimte "$1"',

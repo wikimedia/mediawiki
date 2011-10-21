@@ -54,6 +54,7 @@
  * @author عمرو
  * @author محمد الجداوي
  * @author نصوح
+ * @author وهراني
  */
 
 $linkPrefixExtension = true;
@@ -930,6 +931,7 @@ $2',
 'emailconfirmlink'           => 'أكد عنوان بريدك الإلكتروني',
 'invalidemailaddress'        => 'لا يمكن قبول عنوان البريد الإلكتروني حيث تبدو صيغته خاطئة.
 ضع عنوانا مضبوطا أو أفرغ هذا الحقل.',
+'cannotchangeemail'          => 'تغيير عنوان البريد الإلكتروني لهذا الحساب غير ممكن على هذا الويكي',
 'accountcreated'             => 'تم إنشاء الحساب',
 'accountcreatedtext'         => 'تم إنشاء الحساب الخاص ب$1.',
 'createaccount-title'        => 'إنشاء حساب في {{SITENAME}}',
@@ -1852,6 +1854,7 @@ $1",
 'minlength1'                  => 'أسماء الملفات يجب أن تتكون من حرف واحد على الأقل.',
 'illegalfilename'             => 'اسم الملف "$1" يحتوي على حروف غير مسموح بها في عناوين الصفحات.
 من فضلك أعد تسمية الملف وحاول رفعه مرة أخرى.',
+'filename-toolong'            => 'طول أسماء الملفات يجب أن لا يتجاوز 240 حرف (بايت)',
 'badfilename'                 => 'تم تغيير اسم الملف إلى "$1".',
 'filetype-mime-mismatch'      => 'امتداد الملف ".$1" لا يطابق نوع MIME للملف ($2).',
 'filetype-badmime'            => 'من غير المسموح به رفع ملفات من النوع "$1".',
@@ -3018,6 +3021,8 @@ $1',
 'import-upload'              => 'رفع بيانات XML',
 'import-token-mismatch'      => 'فقد لبيانات الجلسة. من فضلك حاول مرة أخرى.',
 'import-invalid-interwiki'   => 'لم يمكن الاستيراد من الويكي المحدد.',
+'import-error-edit'          => 'الصفحة "$1" لم يتم استيرادها لأنه لا يمكن لك تحريرها.',
+'import-error-create'        => 'الصفحة "$1" لم يتم استيرادها لأنه لا يمكن لك استحداثها أصلا.',
 
 # Import log
 'importlogpage'                    => 'سجل الاستيراد',
@@ -4084,12 +4089,17 @@ $1',
 # New logging system
 'logentry-delete-delete'              => '{{GENDER:$2|حذف|حذفت}} $1 صفحة $3',
 'logentry-delete-restore'             => '{{GENDER:$2|استعاد|استعادت}} $1 صفحة $3',
+'revdelete-content-hid'               => 'محتوى مخفي',
+'revdelete-summary-hid'               => 'ملخص التحرير مخفي',
+'revdelete-content-unhid'             => 'محتوى غير مخفي',
+'revdelete-summary-unhid'             => 'ملخص التحرير غير مخفي',
 'revdelete-restricted'                => 'طبق الضوابط لمديري النظام',
 'revdelete-unrestricted'              => 'أزال الضوابط لمديري النظام',
 'logentry-move-move'                  => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى $4',
 'logentry-move-move-noredirect'       => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى $4 دون ترك تحويلة',
 'logentry-move-move_redir'            => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى التحويلة $4',
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى التحويلة $4 دون ترك تحويلة',
+'logentry-newusers-autocreate'        => 'حساب  $1  قد  {{GENDER:$2| استحدث}} تلقائياً',
 'newuserlog-byemail'                  => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
 
 );
