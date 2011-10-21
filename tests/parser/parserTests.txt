@@ -5702,7 +5702,7 @@ MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 {{{|
 <u class="&#124;">}}}} &gt;
 <br style="onmouseover=&#39;alert(document.cookie);&#39;" />
-MOVE YOUR MOUSE CURSOR OVER THIS TEXT
+
 MOVE YOUR MOUSE CURSOR OVER THIS TEXT
 <tr>
 <td></u>
