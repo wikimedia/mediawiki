@@ -36,7 +36,7 @@ class LogFormatter {
 			$handler = $wgLogActionsHandlers[$wildcard];
 		}
 
-		if ( $handler !== '' && class_exists( $handler ) ) {
+		if ( $handler !== '' && !is_array( $handler ) && class_exists( $handler ) ) {
 			return new $handler( $entry );
 		}
 
