@@ -581,6 +581,14 @@ class HTMLForm {
 	}
 
 	/**
+	 * Set the text for the submit button to a message
+	 * @param $msg String message key
+	 */
+	public function setSubmitTextMsg( $msg ) {
+		return $this->setSubmitText( wfMsg( $msg ) );
+	}
+
+	/**
 	 * Get the text for the submit button, either customised or a default.
 	 * @return unknown_type
 	 */
@@ -617,6 +625,15 @@ class HTMLForm {
 	 *	 Will be escaped
 	 */
 	public function setWrapperLegend( $legend ) { $this->mWrapperLegend = $legend; }
+
+	/**
+	 * Prompt the whole form to be wrapped in a <fieldset>, with
+	 * this message as its <legend> element.
+	 * @param $msg String message key
+	 */
+	public function setWrapperLegendMsg( $msg ) {
+		return $this->setWrapperLegend( wfMsg( $msg ) );
+	}
 
 	/**
 	 * Set the prefix for various default messages
@@ -1357,6 +1374,8 @@ class HTMLSelectField extends HTMLFormField {
 			return $p;
 		}
 
+		print_r( $value );
+
 		$validOptions = HTMLFormField::flattenOptions( $this->mParams['options'] );
 
 		if ( in_array( $value, $validOptions ) )
@@ -1382,9 +1401,53 @@ class HTMLSelectField extends HTMLFormField {
 			$select->setAttribute( 'disabled', 'disabled' );
 		}
 
+		if ( !empty( $this->mParams['multiple'] ) ) {
+			$select->setAttribute( 'name', $this->mName . '[]' );
+			$select->setAttribute( 'multiple', 'multiple' );
+
+			if ( !empty( $this->mParams['size'] ) ) {
+				$select->setAttribute( 'size', $this->mParams['size'] );
+			}
+		}
+
 		$select->addOptions( $this->mParams['options'] );
 
 		return $select->getHTML();
+	}
+
+	/**
+	 * @param  $request WebRequest
+	 * @return String
+	 */
+	function loadDataFromRequest( $request ) {
+		if ( $this->mParent->getMethod() == 'post' ) {
+			if( $request->wasPosted() ){
+				# Checkboxes are just not added to the request arrays if they're not checked,
+				# so it's perfectly possible for there not to be an entry at all
+				return $request->getArray( $this->mName, array() );
+			} else {
+				# That's ok, the user has not yet submitted the form, so show the defaults
+				return $this->getDefault();
+			}
+		} else {
+			# This is the impossible case: if we look at $_GET and see no data for our
+			# field, is it because the user has not yet submitted the form, or that they
+			# have submitted it with all the options unchecked? We will have to assume the
+			# latter, which basically means that you can't specify 'positive' defaults
+			# for GET forms.
+			# @todo FIXME...
+			return $request->getArray( $this->mName, array() );
+		}
+	}
+
+	public static function keysAreValues( $array ) {
+		$resultArray = array();
+		
+		foreach ( $array as $name => $value ) {
+			$resultArray[$value] = $value;
+		}
+
+		return $resultArray;
 	}
 }
 
@@ -1861,7 +1924,7 @@ class HTMLHiddenField extends HTMLFormField {
 
 		$this->mParent->addHiddenField(
 			$this->mName,
-			$this->mDefault,
+			$value,
 			$params
 		);
 
