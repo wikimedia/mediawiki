@@ -33,7 +33,7 @@ class UnusedCategoriesPage extends QueryPage {
 	}
 
 	function getPageHeader() {
-		return wfMsgExt( 'unusedcategoriestext', array( 'parse' ) );
+		return $this->msg( 'unusedcategoriestext' )->parseAsBlock();
 	}
 
 	function getQueryInfo() {
@@ -59,6 +59,6 @@ class UnusedCategoriesPage extends QueryPage {
 
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->title );
-		return $skin->link( $title, $title->getText() );
+		return Linker::link( $title, htmlspecialchars( $title->getText() ) );
 	}
 }
