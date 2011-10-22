@@ -2698,7 +2698,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 
 'exif-subjectdistance-value' => '$1 metreyi',
 
-'exif-meteringmode-0'   => 'Nizanyeno',
+'exif-meteringmode-0'   => 'Nêzanıte',
 'exif-meteringmode-1'   => 'orta',
 'exif-meteringmode-2'   => 'gıraniyê merkeziyi ser',
 'exif-meteringmode-3'   => 'noqtayın',
@@ -2707,7 +2707,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'exif-meteringmode-6'   => 'qısmî',
 'exif-meteringmode-255' => 'Bin',
 
-'exif-lightsource-0'   => 'Nizanyeno',
+'exif-lightsource-0'   => 'Nêzanıte',
 'exif-lightsource-1'   => 'Roşnê Tici',
 'exif-lightsource-2'   => 'Florasant',
 'exif-lightsource-3'   => 'roşnê bêbızate',
@@ -2782,7 +2782,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'exif-sharpness-1' => 'Nerm',
 'exif-sharpness-2' => 'Huşk',
 
-'exif-subjectdistancerange-0' => 'Nizanyeno',
+'exif-subjectdistancerange-0' => 'Nêzanıte',
 'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'Vinayişê nezdiyi',
 'exif-subjectdistancerange-3' => 'Vinayişê duri',

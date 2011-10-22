@@ -856,22 +856,22 @@ A peul anco' [$1 vardé sta version-sì] se a veul.",
 A peulo ess-ie dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion]. 
 A peul anco' [$1 vëdde sta version] se a veul.",
 'rev-deleted-text-view'       => "Costa revision dla pàgina-sì a l'é staita '''scancelà'''.
-Coma aministrator chiel a peul ës-ciairela; a peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
+Chiel a peul ës-ciairela; a peulo ess-ie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
 'rev-suppressed-text-view'    => "Costa revision dla pàgina-sì a l'é stàita '''gavà via'''.
-Coma aministrator chiel a peul ës-ciairela; a peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
+Chiel a peul ës-ciairela; a peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
 'rev-deleted-no-diff'         => "A peul pa vëdde coste diferense përchè un-a dle revision a l'é stàita '''scancelà'''.
 A peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
 'rev-suppressed-no-diff'      => "It peule pa vëdde sta diferensa-sì përchè un-a dle revision a l'é stàita '''scanselà'''.",
 'rev-deleted-unhide-diff'     => "Un-a dle revision ëd coste diferense a l'é stàita '''scancelà'''.
-A peulo essnie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].
-Com aministrator it peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
+A peulo ess-ie dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].
+It peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
 'rev-suppressed-unhide-diff'  => "Un-a dle revision dë sta diferensa-sì a l'é stàita '''scancelà'''.
-A peulo essnje dij detaj ant ël  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].
-Com aministrator a peul ancò [$1 vëdde sta diferensa-sì] s'a veul.",
+A peulo ess-ie dij detaj ant ël  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].
+Chiel a peul ancò [$1 vëdde sta diferensa-sì] s'a veul.",
 'rev-deleted-diff-view'       => "Un-a dle revision dë sta diferensa-sì a l'é stàita '''scancelà'''.
-Com aministrator it peule ancó vëdde sta diferensa-sì; a peulo ess-ie dij detaj ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].",
+It peule ancó vëdde sta diferensa-sì; a peulo ess-ie dij detaj ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scancelassion].",
 'rev-suppressed-diff-view'    => "Un-a dle revision ëd costa diferensa-sì a l'é stàita '''eliminà'''.
-Tanme aministrator, a peul ancora s-ciairé costa diferensa; a peulo essje pì 'd detaj ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd j'eliminassion].",
+Chiel a peul ancora s-ciairé costa diferensa; a peulo essje pì 'd detaj ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd j'eliminassion].",
 'rev-delundel'                => 'mostra/stërma',
 'rev-showdeleted'             => 'Mostra',
 'revisiondelete'              => 'Scancela/disdëscancela revision',
@@ -1283,7 +1283,7 @@ Costa anformassion a sarà pùblica.",
 'right-siteadmin'             => 'Bloché e dësbloché la base ëd dàit',
 'right-override-export-depth' => 'Esporté le pàgine ancludend le pàgine colegà fin-a a na profondeur ëd 5',
 'right-sendemail'             => "Mandé un mëssagi an pòsta eletrònica a j'àutri utent",
-'right-passwordreset'         => "Torna amposté la ciav ëd n'utent ([[Special:PasswordReset|pàgina special]])",
+'right-passwordreset'         => 'Mosta corej ëd rimpostassion ëd ciav',
 
 # User rights log
 'rightslog'                  => "Argistr dij drit ëd j'utent",
@@ -2446,7 +2446,7 @@ Che as sërna, për piasì, un nòm diferent për st'articol.",
 
 L\'artìcol ëd destinassion "[[:$1]]" a-i é già. Veul-lo scancelelo për avej ëd pòst për tramudé l\'àutr?',
 'delete_and_move_confirm'      => 'É, scancela la pàgina',
-'delete_and_move_reason'       => "Scancelà për liberé ël pòst për tramudene n'àutra",
+'delete_and_move_reason'       => 'Scancelà për liberé ël pòst për tramudé "[[$1]]"',
 'selfmove'                     => "Tìtol neuv e tìtol vej a resto midem antra lor; as peul pa tramudesse na pàgina butand-la andoa che a l'é già.",
 'immobile-source-namespace'    => 'As peul pa tramudé ëd pàgine ant ël namespace "$1"',
 'immobile-target-namespace'    => 'As peul pa tramudé ëd pàgine ant ël namespace "$1"',

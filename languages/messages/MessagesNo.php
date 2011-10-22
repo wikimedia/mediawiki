@@ -1115,26 +1115,26 @@ Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 'rev-deleted-text-unhide'     => "Denne siderevisjonen har blitt '''slettet'''.
 Se etter detaljer i slettingsloggen: [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].
 Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker det.",
-'rev-suppressed-text-unhide'  => "Denne siderevisjonen har blitt '''strøket'''.
-Informasjon om dette finnes i strykningsloggen: [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}}].
+'rev-suppressed-text-unhide'  => "Denne siderevisjonen har blitt '''skjult'''.
+Informasjon om dette kan finnes i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
 Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker det.",
 'rev-deleted-text-view'       => "Denne siderevisjonen har blitt '''slettet'''.
 Som administrator kan du fortsatt se den. Detaljer finnes i slettingsloggen: [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
-'rev-suppressed-text-view'    => "Denne revisjonen har blitt '''unndratt'''.
-Som administrator kan du se den; det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unndragelsesloggen].",
+'rev-suppressed-text-view'    => "!Denne siderevisjonen har blitt '''skjult'''.
+Som administrator kan du se den; detaljer kan finnes i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-suppressed-no-diff'      => "Du kanne ikke se revisjonsforskjellen fordi en av revisjonene har blitt '''slettet'''.",
-'rev-deleted-unhide-diff'     => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
-Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
-Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette.",
-'rev-suppressed-unhide-diff'  => "En av sideversjonene i denne diffen har blitt '''skjul'''.
+'rev-deleted-unhide-diff'     => "Én av revisjonene i denne diffen har blitt '''slettet'''.
+Det finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
+Som administrator kan du fortsatt [$1 se diffen] om du ønsker å gå videre.",
+'rev-suppressed-unhide-diff'  => "En av siderevisjonene i denne diffen har blitt '''skjult'''.
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
-Som administrator kan du fortsatt [$1 se diffen] om du ønsker det.",
+Som administrator kan du fortsatt [$1 se diffen] om du ønsker å gå videre.",
 'rev-deleted-diff-view'       => "En av revisjonene i denne diffen har blitt '''slettet'''.
-Som administrator kan du se diffen; det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Som administrator kan du se diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-suppressed-diff-view'    => "En av revisjonene i denne diffen har blitt '''skjult'''.
-Som administrator kan du se denne diffen; det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
+Som administrator kan du se denne diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
 'rev-delundel'                => 'vis/skjul',
 'rev-showdeleted'             => 'vis',
 'revisiondelete'              => 'Slett/gjenopprett revisjoner',
@@ -1152,9 +1152,10 @@ Som administrator kan du se denne diffen; det kan være detaljer i [{{fullurl:{{
 'revdelete-text'              => "'''Slettede versjoner og oppføringer vil fortsatt vises i sidehistorikken og loggene, men deler av innholdet vil ikke lenger bli offentliggjort.'''
 Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.",
 'revdelete-confirm'           => 'Bekreft at du ønsker å gjøre dette, at du forstår konsekvensene, og at du gjør det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinjene]].',
-'revdelete-suppress-text'     => "Utelatelse bør '''kun''' brukes i følgende tilfeller:
-* Upassende personlige opplysninger
-*: ''hjemmeadresser og -telefonnummer, personnummer og lignende''",
+'revdelete-suppress-text'     => "Skjuling bør '''kun''' brukes i følgende tilfeller:
+* Mulig injurierende utsagn
+* Upassende personlige opplysninger, herunder
+*: ''privatadresser og -telefonnumre, fødselsnumre og lignende''",
 'revdelete-legend'            => 'Fastsett synlighetsbegrensninger',
 'revdelete-hide-text'         => 'Skjul revisjonstekst',
 'revdelete-hide-image'        => 'Skjul filinnhold',
@@ -1165,7 +1166,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'revdelete-radio-same'        => '(ikke endre)',
 'revdelete-radio-set'         => 'Ja',
 'revdelete-radio-unset'       => 'Nei',
-'revdelete-suppress'          => 'Fjern informasjon også fra administratorer',
+'revdelete-suppress'          => 'Skjul informasjon også fra administratorer',
 'revdelete-unsuppress'        => 'Fjern betingelser på gjenopprettede revisjoner',
 'revdelete-log'               => 'Årsak:',
 'revdelete-submit'            => 'Utfør på {{PLURAL:$1|valgt revisjon|valgte revisjoner}}',
@@ -1201,9 +1202,9 @@ Vennligst sjekk loggen.',
 'revdelete-offender'          => 'Forfatter av denne versjonen:',
 
 # Suppression log
-'suppressionlog'     => 'Sidefjerningslogg',
-'suppressionlogtext' => 'Nedenfor er en liste over sider og blokkeringer med innhold skjult fra administratorer.
-Se [[Special:IPBlockList|blokkeringslisten]] for oversikten over nåværende blokkeringer.',
+'suppressionlog'     => 'Sideskjulingslogg',
+'suppressionlogtext' => 'Under er en liste over sider som er slettet eller blokkert med innhold skjult fra administratorer.
+Se [[Special:BlockList|IP-blokkeringsliste]] for oversikt over aktuelle utelukkelser og blokkeringer.',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikker',
@@ -1483,7 +1484,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'grouppage-bot'           => '{{ns:project}}:Roboter',
 'grouppage-sysop'         => '{{ns:project}}:Administratorer',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byråkrater',
-'grouppage-suppress'      => '{{ns:project}}:Sidefjerning',
+'grouppage-suppress'      => '{{ns:project}}:Historikkrydding',
 
 # Rights
 'right-read'                  => 'Se sider',
@@ -1545,7 +1546,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'right-siteadmin'             => 'Låse og låse opp databasen',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkede sider til en dypde på 5',
 'right-sendemail'             => 'Send e-post til andre brukere',
-'right-passwordreset'         => 'Tilbakestille en brukers passord ([[Special:PasswordReset|spesialside]])',
+'right-passwordreset'         => 'Vis e-poster over tilbakestilte passord',
 
 # User rights log
 'rightslog'                  => 'Brukerrettighetslogg',
@@ -1673,6 +1674,7 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'ignorewarnings'              => 'Ignorer eventuelle advarsler',
 'minlength1'                  => 'Filnavn må være på minst én bokstav.',
 'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn. Gi filen et nytt navn og prøv igjen.',
+'filename-toolong'            => 'Filnavn kan ikke overstige 240 bytes.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
 'filetype-mime-mismatch'      => 'Filendelsen «.$1» tilsvarer ikke MIME-typen som oppgis i filen ($2).',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
@@ -2050,7 +2052,7 @@ Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen li
 'nopagetext'              => 'Siden du ville flytte finnes ikke.',
 'pager-newer-n'           => '{{PLURAL:$1|1 nyere|$1 nyere}}',
 'pager-older-n'           => '{{PLURAL:$1|1 eldre|$1 eldre}}',
-'suppress'                => 'Sidefjerning',
+'suppress'                => 'Historikkrydding',
 'querypage-disabled'      => 'Denne spesialsiden er deaktivert av ytelsesårsaker.',
 
 # Book sources
@@ -2690,7 +2692,7 @@ Du er nødt til å flette dem manuelt.'''",
 'delete_and_move_text'         => '==Sletting nødvendig==
 Målsiden «[[:$1]]» finnes allerede. Vil du slette den så denne siden kan flyttes dit?',
 'delete_and_move_confirm'      => 'Ja, slett siden',
-'delete_and_move_reason'       => 'Slettet grunnet flytting',
+'delete_and_move_reason'       => 'Slettet for å muliggjøre flytting fra "[[$1]]"',
 'selfmove'                     => 'Kilde- og destinasjonstittel er den samme; kan ikke flytte siden.',
 'immobile-source-namespace'    => 'Kan ikke flytte sider i navnerommet «$1»',
 'immobile-target-namespace'    => 'Kan ikke flytte sider til navnerommet «$1»',
@@ -3622,6 +3624,9 @@ Du kan også [[Special:EditWatchlist|bruke standardverktøyet]].',
 'hebrew-calendar-m10-gen' => 'Tammúz',
 'hebrew-calendar-m11-gen' => 'Ab',
 'hebrew-calendar-m12-gen' => 'Elúl',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskusjon]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Ukjent tilleggsmerking «$1»',
