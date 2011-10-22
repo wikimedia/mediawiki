@@ -150,7 +150,7 @@ class MWException extends Exception {
 		$line = $this->getLine();
 		$message = $this->getMessage();
 
-		if ( isset( $wgRequest ) ) {
+		if ( isset( $wgRequest ) && !$wgRequest instanceof FauxRequest ) {
 			$url = $wgRequest->getRequestURL();
 			if ( !$url ) {
 				$url = '[no URL]';

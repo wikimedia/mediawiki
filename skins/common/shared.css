@@ -792,20 +792,6 @@ ol:lang(or) li {
 	right: 10px;
 	background-position: 0% 100%;
 }
-/* Table Sorting */
-th.headerSort { 
-	background-image: url(images/sort_both.gif);     
-	cursor: pointer;
-	background-repeat: no-repeat; 
-	background-position: center right; 
-	padding-right: 21px;
-}
-th.headerSortUp { 
-	background-image: url(images/sort_up.gif); 
-}
-th.headerSortDown { 
-	background-image: url(images/sort_down.gif); 
-}
 
 /* LTR content in RTL layout */
 .ltr {
