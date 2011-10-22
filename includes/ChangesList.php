@@ -1103,7 +1103,7 @@ class EnhancedChangesList extends ChangesList {
 		} else {
 			$r .= $this->recentChangesFlags( array(
 				'newpage' => $type == RC_NEW,
-				'mino' => $rcObj->mAttribs['rc_minor'],
+				'minor' => $rcObj->mAttribs['rc_minor'],
 				'unpatrolled' => $rcObj->unpatrolled,
 				'bot' => $rcObj->mAttribs['rc_bot'],
 			) );
