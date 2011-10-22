@@ -3139,8 +3139,11 @@ class Title {
 	 * @return Mixed true on success, getUserPermissionsErrors()-like array on failure
 	 */
 	public function moveTo( &$nt, $auth = true, $reason = '', $createRedirect = true ) {
+		global $wgUser;
 		$err = $this->isValidMoveOperation( $nt, $auth, $reason );
 		if ( is_array( $err ) ) {
+			// Auto-block user's IP if the account was "hard" blocked
+			$wgUser->spreadAnyEditBlock();
 			return $err;
 		}
 
