@@ -41,6 +41,11 @@ $namespaceAliases = array(
 	'Diskusija_k_wobrazej' => NS_FILE_TALK,
 );
 
+$namespaceGenderAliases = array(
+        NS_USER => array( 'male' => 'Wužiwar', 'female' => 'Wužiwarka' ),
+        NS_USER_TALK => array( 'male' => 'Diskusija_z_wužiwarjom', 'female' => 'Diskusija_z_wužiwarku' ),
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktiwni_wužiwarjo' ),
 	'Allmessages'               => array( 'MediaWiki-zdźělenki' ),

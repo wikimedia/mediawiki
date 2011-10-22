@@ -46,6 +46,11 @@ $namespaceAliases = array(
 	'Diskusija_wó_wobrazu' => NS_FILE_TALK,
 );
 
+$namespaceGenderAliases = array(
+        NS_USER => array( 'male' => 'Wužywaŕ', 'female' => 'Wužywarka' ),
+        NS_USER_TALK => array( 'male' => 'Diskusija_wužywarja', 'female' => 'Diskusija_wužywarki' ),
+);
+
 $datePreferences = array(
 	'default',
 	'dmy',
