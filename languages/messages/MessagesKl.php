@@ -8,6 +8,7 @@
  * @file
  *
  * @author Aputtu
+ * @author Iketsi
  * @author Kaare
  * @author Kaniina (on kl.wikipedia.org)
  * @author Qaqqalik

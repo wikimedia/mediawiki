@@ -1236,8 +1236,8 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'recentchangesdays-max'         => '(maks. $1 {{PLURAL:$1|dag|dage}})',
 'recentchangescount'            => 'Antal redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Det gælder for seneste ændringer, historikker og logger.',
-'prefs-help-watchlist-token'    => 'Hvis du udfylder dette felt med en hemmelig værdi, vil der laves et RSS-feed for din overvågingsliste.
-Alle som kender nøglen i feltet vil være i stand til at læse din overvågingsliste, så vælg en sikker værdi.
+'prefs-help-watchlist-token'    => 'Hvis du udfylder dette felt med en hemmelig værdi, vil der laves et RSS-feed for din overvågningsliste.
+Alle som kender nøglen i feltet vil være i stand til at læse din overvågningsliste, så vælg en sikker værdi.
 Her er en tilfældig genereret værdi som du kan bruge: $1',
 'savedprefs'                    => 'Dine indstillinger er blevet gemt.',
 'timezonelegend'                => 'Tidszone:',
