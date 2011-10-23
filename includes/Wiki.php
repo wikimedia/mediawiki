@@ -501,13 +501,6 @@ class MediaWiki {
 					}
 				}
 				break;
-			case 'history':
-				if ( $request->getFullRequestURL() == $title->getInternalURL( 'action=history' ) ) {
-					$output->setSquidMaxage( $wgSquidMaxage );
-				}
-				$history = new HistoryPage( $article, $this->context );
-				$history->history();
-				break;
 			default:
 				if ( wfRunHooks( 'UnknownAction', array( $act, $article ) ) ) {
 					$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
