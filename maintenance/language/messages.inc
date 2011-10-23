@@ -2049,7 +2049,6 @@ $wgMessageStructure = array(
 		'blockip-title',
 		'blockip-legend',
 		'blockiptext',
-		'ipaddress',
 		'ipadressorusername',
 		'ipbexpiry',
 		'ipbreason',
