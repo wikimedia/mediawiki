@@ -784,7 +784,7 @@ class OutputPage extends ContextSource {
 		$this->mPagetitle = $nameWithTags;
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
-		$this->setHTMLTitle( wfMsg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) ) );
+		$this->setHTMLTitle( $this->msg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) )->text() );
 	}
 
 	/**
@@ -1927,8 +1927,8 @@ class OutputPage extends ContextSource {
 		if ( $this->getTitle() ) {
 			$this->mDebugtext .= 'Original title: ' . $this->getTitle()->getPrefixedText() . "\n";
 		}
-		$this->setPageTitle( wfMsg( $title ) );
-		$this->setHTMLTitle( wfMsg( 'errorpagetitle' ) );
+		$this->setPageTitle( $this->msg( $title )->text() );
+		$this->setHTMLTitle( $this->msg( 'errorpagetitle' )->text() );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -1953,8 +1953,8 @@ class OutputPage extends ContextSource {
 	public function showPermissionsErrorPage( $errors, $action = null ) {
 		$this->mDebugtext .= 'Original title: ' .
 		$this->getTitle()->getPrefixedText() . "\n";
-		$this->setPageTitle( wfMsg( 'permissionserrors' ) );
-		$this->setHTMLTitle( wfMsg( 'permissionserrors' ) );
+		$this->setPageTitle( $this->msg( 'permissionserrors' )->text() );
+		$this->setHTMLTitle( $this->msg( 'permissionserrors' )->text() );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -1970,8 +1970,8 @@ class OutputPage extends ContextSource {
 	 * @param $version Mixed: the version of MediaWiki needed to use the page
 	 */
 	public function versionRequired( $version ) {
-		$this->setPageTitle( wfMsg( 'versionrequired', $version ) );
-		$this->setHTMLTitle( wfMsg( 'versionrequired', $version ) );
+		$this->setPageTitle( $this->msg( 'versionrequired', $version )->text() );
+		$this->setHTMLTitle( $this->msg( 'versionrequired', $version )->text() );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
@@ -1997,19 +1997,19 @@ class OutputPage extends ContextSource {
 			throw new PermissionsError( 'read' );
 		}
 
-		$this->setPageTitle( wfMsg( 'loginreqtitle' ) );
-		$this->setHtmlTitle( wfMsg( 'errorpagetitle' ) );
+		$this->setPageTitle( $this->msg( 'loginreqtitle' )->text() );
+		$this->setHTMLTitle( $this->msg( 'errorpagetitle' )->text() );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
 		$loginLink = Linker::linkKnown(
 			$loginTitle,
-			wfMsgHtml( 'loginreqlink' ),
+			$this->msg( 'loginreqlink' )->escaped(),
 			array(),
 			array( 'returnto' => $this->getTitle()->getPrefixedText() )
 		);
-		$this->addHTML( wfMessage( 'loginreqpagetext' )->rawParams( $loginLink )->parse() .
+		$this->addHTML( $this->msg( 'loginreqpagetext' )->rawParams( $loginLink )->parse() .
 			"\n<!--" . $this->getTitle()->getPrefixedUrl() . '-->' );
 
 		# Don't return to the main page if the user can't read it
@@ -2029,14 +2029,14 @@ class OutputPage extends ContextSource {
 	 */
 	public function formatPermissionsErrorMessage( $errors, $action = null ) {
 		if ( $action == null ) {
-			$text = wfMsgNoTrans( 'permissionserrorstext', count( $errors ) ) . "\n\n";
+			$text = $this->msg( 'permissionserrorstext', count( $errors ) )->plain() . "\n\n";
 		} else {
-			$action_desc = wfMsgNoTrans( "action-$action" );
-			$text = wfMsgNoTrans(
+			$action_desc = $this->msg( "action-$action" )->plain();
+			$text = $this->msg(
 				'permissionserrorstext-withaction',
 				count( $errors ),
 				$action_desc
-			) . "\n\n";
+			)->plain() . "\n\n";
 		}
 
 		if ( count( $errors ) > 1 ) {
@@ -2044,13 +2044,13 @@ class OutputPage extends ContextSource {
 
 			foreach( $errors as $error ) {
 				$text .= '<li>';
-				$text .= call_user_func_array( 'wfMsgNoTrans', $error );
+				$text .= call_user_func_array( array( $this, 'msg' ), $error )->plain();
 				$text .= "</li>\n";
 			}
 			$text .= '</ul>';
 		} else {
 			$text .= "<div class=\"permissions-errors\">\n" .
-					call_user_func_array( 'wfMsgNoTrans', reset( $errors ) ) .
+					call_user_func_array( array( $this, 'msg' ), reset( $errors ) )->plain() .
 					"\n</div>";
 		}
 
@@ -2090,12 +2090,12 @@ class OutputPage extends ContextSource {
 		if ( !empty( $reasons ) ) {
 			// Permissions error
 			if( $source ) {
-				$this->setPageTitle( wfMsg( 'viewsource' ) );
+				$this->setPageTitle( $this->msg( 'viewsource' )->text() );
 				$this->setSubtitle(
-					wfMsg( 'viewsourcefor', Linker::linkKnown( $this->getTitle() ) )
+					$this->msg( 'viewsourcefor', Linker::linkKnown( $this->getTitle() ) )->text()
 				);
 			} else {
-				$this->setPageTitle( wfMsg( 'badaccess' ) );
+				$this->setPageTitle( $this->msg( 'badaccess' )->text() );
 			}
 			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ) );
 		} else {
@@ -2160,12 +2160,12 @@ $templates
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
 			$wrap = Html::rawElement( 'div', array( 'class' => "mw-{$message}" ), "\n$1\n" );
-			$this->wrapWikiMsg( "$wrap\n", array( $message, $this->getContext()->getLang()->formatNum( $lag ) ) );
+			$this->wrapWikiMsg( "$wrap\n", array( $message, $this->getLang()->formatNum( $lag ) ) );
 		}
 	}
 
 	public function showFatalError( $message ) {
-		$this->setPageTitle( wfMsg( 'internalerror' ) );
+		$this->setPageTitle( $this->msg( 'internalerror' )->text() );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -2174,23 +2174,23 @@ $templates
 	}
 
 	public function showUnexpectedValueError( $name, $val ) {
-		$this->showFatalError( wfMsg( 'unexpected', $name, $val ) );
+		$this->showFatalError( $this->msg( 'unexpected', $name, $val )->text() );
 	}
 
 	public function showFileCopyError( $old, $new ) {
-		$this->showFatalError( wfMsg( 'filecopyerror', $old, $new ) );
+		$this->showFatalError( $this->msg( 'filecopyerror', $old, $new )->text() );
 	}
 
 	public function showFileRenameError( $old, $new ) {
-		$this->showFatalError( wfMsg( 'filerenameerror', $old, $new ) );
+		$this->showFatalError( $this->msg( 'filerenameerror', $old, $new )->text() );
 	}
 
 	public function showFileDeleteError( $name ) {
-		$this->showFatalError( wfMsg( 'filedeleteerror', $name ) );
+		$this->showFatalError( $this->msg( 'filedeleteerror', $name )->text() );
 	}
 
 	public function showFileNotFoundError( $name ) {
-		$this->showFatalError( wfMsg( 'filenotfound', $name ) );
+		$this->showFatalError( $this->msg( 'filenotfound', $name )->text() );
 	}
 
 	/**
@@ -2202,10 +2202,8 @@ $templates
 	 */
 	public function addReturnTo( $title, $query = array(), $text = null ) {
 		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullURL() ) );
-		$link = wfMsgHtml(
-			'returnto',
-			Linker::link( $title, $text, array(), $query )
-		);
+		$link = $this->msg( 'returnto' )->rawParams(
+			Linker::link( $title, $text, array(), $query ) )->escaped();
 		$this->addHTML( "<p id=\"mw-returnto\">{$link}</p>\n" );
 	}
 
@@ -2259,7 +2257,7 @@ $templates
 		$ret = Html::htmlHeader( array( 'lang' => $this->getLang()->getCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
-			$this->setHTMLTitle( wfMsg( 'pagetitle', $this->getPageTitle() ) );
+			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() )->text() );
 		}
 
 		$openHead = Html::openElement( 'head' );
@@ -2291,7 +2289,7 @@ $templates
 		# Classes for LTR/RTL directionality support
 		$bodyAttrs['class'] = "mediawiki $userdir sitedir-$sitedir";
 
-		if ( $this->getContext()->getLang()->capitalizeAllNouns() ) {
+		if ( $this->getLang()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
 			$bodyAttrs['class'] .= ' capitalize-all-nouns';
 		}
@@ -2425,7 +2423,7 @@ $templates
 			// correct timestamp and emptiness data
 			$query = ResourceLoader::makeLoaderQuery(
 				array(), // modules; not determined yet
-				$this->getContext()->getLang()->getCode(),
+				$this->getLang()->getCode(),
 				$this->getSkin()->getSkinName(),
 				$user,
 				null, // version; not determined yet
@@ -2481,7 +2479,7 @@ $templates
 
 			$url = ResourceLoader::makeLoaderURL(
 				array_keys( $modules ),
-				$this->getContext()->getLang()->getCode(),
+				$this->getLang()->getCode(),
 				$this->getSkin()->getSkinName(),
 				$user,
 				$version,
@@ -2800,7 +2798,7 @@ $templates
 			if ( $this->isArticleRelated() && $this->getTitle() && $this->getTitle()->quickUserCan( 'edit' )
 				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create' ) ) ) {
 				// Original UniversalEditButton
-				$msg = wfMsg( 'edit' );
+				$msg = $this->msg( 'edit' )->text();
 				$tags[] = Html::element( 'link', array(
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
@@ -2833,7 +2831,7 @@ $templates
 			'rel' => 'search',
 			'type' => 'application/opensearchdescription+xml',
 			'href' => wfScript( 'opensearch_desc' ),
-			'title' => wfMsgForContent( 'opensearch-desc' ),
+			'title' => $this->msg( 'opensearch-desc' )->inContentLanguage()->text(),
 		) );
 
 		if ( $wgEnableAPI ) {
@@ -2908,7 +2906,7 @@ $templates
 					$format,
 					$link,
 					# Used messages: 'page-rss-feed' and 'page-atom-feed' (for an easier grep)
-					wfMsg( "page-{$format}-feed", $this->getTitle()->getPrefixedText() )
+					$this->msg( "page-{$format}-feed", $this->getTitle()->getPrefixedText() )->text()
 				);
 			}
 
@@ -2928,7 +2926,7 @@ $templates
 					$tags[] = $this->feedLink(
 						$type,
 						$feedUrl,
-						wfMsg( "site-{$type}-feed", $wgSitename )
+						$this->msg( "site-{$type}-feed", $wgSitename )->text()
 					);
 				}
 			} elseif ( $this->getTitle()->getPrefixedText() != $rctitle->getPrefixedText() ) {
@@ -2936,7 +2934,7 @@ $templates
 					$tags[] = $this->feedLink(
 						$format,
 						$rctitle->getLocalURL( "feed={$format}" ),
-						wfMsg( "site-{$format}-feed", $wgSitename ) # For grep: 'site-rss-feed', 'site-atom-feed'.
+						$this->msg( "site-{$format}-feed", $wgSitename )->text() # For grep: 'site-rss-feed', 'site-atom-feed'.
 					);
 				}
 			}
@@ -3199,16 +3197,11 @@ $templates
 	 * Like addWikiMsg() except the parameters are taken as an array
 	 * instead of a variable argument list.
 	 *
-	 * $options is passed through to wfMsgExt(), see that function for details.
-	 *
 	 * @param $name string
 	 * @param $args array
-	 * @param $options array
 	 */
-	public function addWikiMsgArray( $name, $args, $options = array() ) {
-		$options[] = 'parse';
-		$text = wfMsgExt( $name, $options, $args );
-		$this->addHTML( $text );
+	public function addWikiMsgArray( $name, $args ) {
+		$this->addWikiText( $this->msg( $name, $args )->plain() );
 	}
 
 	/**
