@@ -1,0 +1,39 @@
+<?php
+/**
+ * @cond file_level_code
+ * This is not a valid entry point, perform no further processing unless THUMB_HANDLER is defined
+ */
+if ( !defined( 'THUMB_HANDLER' ) ) {
+	echo "This file is part of MediaWiki and is not a valid entry point\n";
+	die( 1 );
+}
+
+/**
+ * Sample configuration file for thumb-handler.php.
+ * In order to use thumb-handler.php:
+ * 1) Copy this file to thumb.config.php and modify the settings.
+ * 2) The webserver must be setup to have thumb-handler.php as a 404 handler.
+ *    This can be done in apache by editing .htaccess in the /thumb directory by adding:
+ *       ErrorDocument 404 /path/to/thumb-handler.php
+ */
+
+# URL name of the server (e.g. "upload.wikipedia.org").
+$thgThumbServer = "http://localhost";
+# URL fragment after the server name to the thumb directory
+$thgThumbFragment = "MW_trunk/images/thumb";
+# URL regex fragment correspond to the directory hashing of thumbnails.
+# This must correspond to $wgLocalFileRepo['hashLevels'].
+$thgThumbHashFragment = '\w/\w\w/'; // 2-level directory hashing
+
+# The URL to thumb.php, accessible from the web server.
+$thgThumbScriptPath = "http://localhost/MW_trunk/thumb.php";
+
+# Timeout to use for cURL request to thumb.php.
+# Leave it long enough to generate a ulimit timeout in ordinary
+# cases, but short enough to avoid a local PHP timeout.
+$thgThumbCurlTimeout = 53;
+# Optional proxy server to use to access thumb.php
+$thgThumbCurlProxy = null; // proxy to thumb.php
+
+# File path to a php file the gives a 404 error message
+$thgThumb404File = "404.php";
