@@ -1726,217 +1726,6 @@ function wfSetBit( &$dest, $bit, $state = true ) {
 }
 
 /**
- * Windows-compatible version of escapeshellarg()
- * Windows doesn't recognise single-quotes in the shell, but the escapeshellarg()
- * function puts single quotes in regardless of OS.
- *
- * Also fixes the locale problems on Linux in PHP 5.2.6+ (bug backported to
- * earlier distro releases of PHP)
- *
- * @param varargs
- * @return String
- */
-function wfEscapeShellArg( ) {
-	wfInitShellLocale();
-
-	$args = func_get_args();
-	$first = true;
-	$retVal = '';
-	foreach ( $args as $arg ) {
-		if ( !$first ) {
-			$retVal .= ' ';
-		} else {
-			$first = false;
-		}
-
-		if ( wfIsWindows() ) {
-			// Escaping for an MSVC-style command line parser and CMD.EXE
-			// Refs:
-			//  * http://web.archive.org/web/20020708081031/http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
-			//  * http://technet.microsoft.com/en-us/library/cc723564.aspx
-			//  * Bug #13518
-			//  * CR r63214
-			// Double the backslashes before any double quotes. Escape the double quotes.
-			$tokens = preg_split( '/(\\\\*")/', $arg, -1, PREG_SPLIT_DELIM_CAPTURE );
-			$arg = '';
-			$iteration = 0;
-			foreach ( $tokens as $token ) {
-				if ( $iteration % 2 == 1 ) {
-					// Delimiter, a double quote preceded by zero or more slashes
-					$arg .= str_replace( '\\', '\\\\', substr( $token, 0, -1 ) ) . '\\"';
-				} elseif ( $iteration % 4 == 2 ) {
-					// ^ in $token will be outside quotes, need to be escaped
-					$arg .= str_replace( '^', '^^', $token );
-				} else { // $iteration % 4 == 0
-					// ^ in $token will appear inside double quotes, so leave as is
-					$arg .= $token;
-				}
-				$iteration++;
-			}
-			// Double the backslashes before the end of the string, because
-			// we will soon add a quote
-			$m = array();
-			if ( preg_match( '/^(.*?)(\\\\+)$/', $arg, $m ) ) {
-				$arg = $m[1] . str_replace( '\\', '\\\\', $m[2] );
-			}
-
-			// Add surrounding quotes
-			$retVal .= '"' . $arg . '"';
-		} else {
-			$retVal .= escapeshellarg( $arg );
-		}
-	}
-	return $retVal;
-}
-
-/**
- * wfMerge attempts to merge differences between three texts.
- * Returns true for a clean merge and false for failure or a conflict.
- *
- * @param $old String
- * @param $mine String
- * @param $yours String
- * @param $result String
- * @return Bool
- */
-function wfMerge( $old, $mine, $yours, &$result ) {
-	global $wgDiff3;
-
-	# This check may also protect against code injection in
-	# case of broken installations.
-	wfSuppressWarnings();
-	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
-	wfRestoreWarnings();
-
-	if( !$haveDiff3 ) {
-		wfDebug( "diff3 not found\n" );
-		return false;
-	}
-
-	# Make temporary files
-	$td = wfTempDir();
-	$oldtextFile = fopen( $oldtextName = tempnam( $td, 'merge-old-' ), 'w' );
-	$mytextFile = fopen( $mytextName = tempnam( $td, 'merge-mine-' ), 'w' );
-	$yourtextFile = fopen( $yourtextName = tempnam( $td, 'merge-your-' ), 'w' );
-
-	fwrite( $oldtextFile, $old );
-	fclose( $oldtextFile );
-	fwrite( $mytextFile, $mine );
-	fclose( $mytextFile );
-	fwrite( $yourtextFile, $yours );
-	fclose( $yourtextFile );
-
-	# Check for a conflict
-	$cmd = $wgDiff3 . ' -a --overlap-only ' .
-		wfEscapeShellArg( $mytextName ) . ' ' .
-		wfEscapeShellArg( $oldtextName ) . ' ' .
-		wfEscapeShellArg( $yourtextName );
-	$handle = popen( $cmd, 'r' );
-
-	if( fgets( $handle, 1024 ) ) {
-		$conflict = true;
-	} else {
-		$conflict = false;
-	}
-	pclose( $handle );
-
-	# Merge differences
-	$cmd = $wgDiff3 . ' -a -e --merge ' .
-		wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
-	$handle = popen( $cmd, 'r' );
-	$result = '';
-	do {
-		$data = fread( $handle, 8192 );
-		if ( strlen( $data ) == 0 ) {
-			break;
-		}
-		$result .= $data;
-	} while ( true );
-	pclose( $handle );
-	unlink( $mytextName );
-	unlink( $oldtextName );
-	unlink( $yourtextName );
-
-	if ( $result === '' && $old !== '' && !$conflict ) {
-		wfDebug( "Unexpected null result from diff3. Command: $cmd\n" );
-		$conflict = true;
-	}
-	return !$conflict;
-}
-
-/**
- * Returns unified plain-text diff of two texts.
- * Useful for machine processing of diffs.
- *
- * @param $before String: the text before the changes.
- * @param $after String: the text after the changes.
- * @param $params String: command-line options for the diff command.
- * @return String: unified diff of $before and $after
- */
-function wfDiff( $before, $after, $params = '-u' ) {
-	if ( $before == $after ) {
-		return '';
-	}
-
-	global $wgDiff;
-	wfSuppressWarnings();
-	$haveDiff = $wgDiff && file_exists( $wgDiff );
-	wfRestoreWarnings();
-
-	# This check may also protect against code injection in
-	# case of broken installations.
-	if( !$haveDiff ) {
-		wfDebug( "diff executable not found\n" );
-		$diffs = new Diff( explode( "\n", $before ), explode( "\n", $after ) );
-		$format = new UnifiedDiffFormatter();
-		return $format->format( $diffs );
-	}
-
-	# Make temporary files
-	$td = wfTempDir();
-	$oldtextFile = fopen( $oldtextName = tempnam( $td, 'merge-old-' ), 'w' );
-	$newtextFile = fopen( $newtextName = tempnam( $td, 'merge-your-' ), 'w' );
-
-	fwrite( $oldtextFile, $before );
-	fclose( $oldtextFile );
-	fwrite( $newtextFile, $after );
-	fclose( $newtextFile );
-
-	// Get the diff of the two files
-	$cmd = "$wgDiff " . $params . ' ' . wfEscapeShellArg( $oldtextName, $newtextName );
-
-	$h = popen( $cmd, 'r' );
-
-	$diff = '';
-
-	do {
-		$data = fread( $h, 8192 );
-		if ( strlen( $data ) == 0 ) {
-			break;
-		}
-		$diff .= $data;
-	} while ( true );
-
-	// Clean up
-	pclose( $h );
-	unlink( $oldtextName );
-	unlink( $newtextName );
-
-	// Kill the --- and +++ lines. They're not useful.
-	$diff_lines = explode( "\n", $diff );
-	if ( strpos( $diff_lines[0], '---' ) === 0 ) {
-		unset( $diff_lines[0] );
-	}
-	if ( strpos( $diff_lines[1], '+++' ) === 0 ) {
-		unset( $diff_lines[1] );
-	}
-
-	$diff = implode( "\n", $diff_lines );
-
-	return $diff;
-}
-
-/**
  * A wrapper around the PHP function var_export().
  * Either print it or add it to the regular output ($wgOut).
  *
@@ -2641,6 +2430,70 @@ function wfDl( $extension, $fileName = null ) {
 }
 
 /**
+ * Windows-compatible version of escapeshellarg()
+ * Windows doesn't recognise single-quotes in the shell, but the escapeshellarg()
+ * function puts single quotes in regardless of OS.
+ *
+ * Also fixes the locale problems on Linux in PHP 5.2.6+ (bug backported to
+ * earlier distro releases of PHP)
+ *
+ * @param varargs
+ * @return String
+ */
+function wfEscapeShellArg( ) {
+	wfInitShellLocale();
+
+	$args = func_get_args();
+	$first = true;
+	$retVal = '';
+	foreach ( $args as $arg ) {
+		if ( !$first ) {
+			$retVal .= ' ';
+		} else {
+			$first = false;
+		}
+
+		if ( wfIsWindows() ) {
+			// Escaping for an MSVC-style command line parser and CMD.EXE
+			// Refs:
+			//  * http://web.archive.org/web/20020708081031/http://mailman.lyra.org/pipermail/scite-interest/2002-March/000436.html
+			//  * http://technet.microsoft.com/en-us/library/cc723564.aspx
+			//  * Bug #13518
+			//  * CR r63214
+			// Double the backslashes before any double quotes. Escape the double quotes.
+			$tokens = preg_split( '/(\\\\*")/', $arg, -1, PREG_SPLIT_DELIM_CAPTURE );
+			$arg = '';
+			$iteration = 0;
+			foreach ( $tokens as $token ) {
+				if ( $iteration % 2 == 1 ) {
+					// Delimiter, a double quote preceded by zero or more slashes
+					$arg .= str_replace( '\\', '\\\\', substr( $token, 0, -1 ) ) . '\\"';
+				} elseif ( $iteration % 4 == 2 ) {
+					// ^ in $token will be outside quotes, need to be escaped
+					$arg .= str_replace( '^', '^^', $token );
+				} else { // $iteration % 4 == 0
+					// ^ in $token will appear inside double quotes, so leave as is
+					$arg .= $token;
+				}
+				$iteration++;
+			}
+			// Double the backslashes before the end of the string, because
+			// we will soon add a quote
+			$m = array();
+			if ( preg_match( '/^(.*?)(\\\\+)$/', $arg, $m ) ) {
+				$arg = $m[1] . str_replace( '\\', '\\\\', $m[2] );
+			}
+
+			// Add surrounding quotes
+			$retVal .= '"' . $arg . '"';
+		} else {
+			$retVal .= escapeshellarg( $arg );
+		}
+	}
+	return $retVal;
+}
+
+/**
  * Execute a shell command, with time and memory limits mirrored from the PHP
  * configuration if supported.
  * @param $cmd String Command line, properly escaped for shell.
@@ -2772,6 +2625,153 @@ function wfShellMaintenanceCmd( $script, array $parameters = array(), array $opt
 	$cmd[] = $script;
 	// Escape each parameter for shell
 	return implode( " ", array_map( 'wfEscapeShellArg', array_merge( $cmd, $parameters ) ) );
+}
+
+/**
+ * wfMerge attempts to merge differences between three texts.
+ * Returns true for a clean merge and false for failure or a conflict.
+ *
+ * @param $old String
+ * @param $mine String
+ * @param $yours String
+ * @param $result String
+ * @return Bool
+ */
+function wfMerge( $old, $mine, $yours, &$result ) {
+	global $wgDiff3;
+
+	# This check may also protect against code injection in
+	# case of broken installations.
+	wfSuppressWarnings();
+	$haveDiff3 = $wgDiff3 && file_exists( $wgDiff3 );
+	wfRestoreWarnings();
+
+	if( !$haveDiff3 ) {
+		wfDebug( "diff3 not found\n" );
+		return false;
+	}
+
+	# Make temporary files
+	$td = wfTempDir();
+	$oldtextFile = fopen( $oldtextName = tempnam( $td, 'merge-old-' ), 'w' );
+	$mytextFile = fopen( $mytextName = tempnam( $td, 'merge-mine-' ), 'w' );
+	$yourtextFile = fopen( $yourtextName = tempnam( $td, 'merge-your-' ), 'w' );
+
+	fwrite( $oldtextFile, $old );
+	fclose( $oldtextFile );
+	fwrite( $mytextFile, $mine );
+	fclose( $mytextFile );
+	fwrite( $yourtextFile, $yours );
+	fclose( $yourtextFile );
+
+	# Check for a conflict
+	$cmd = $wgDiff3 . ' -a --overlap-only ' .
+		wfEscapeShellArg( $mytextName ) . ' ' .
+		wfEscapeShellArg( $oldtextName ) . ' ' .
+		wfEscapeShellArg( $yourtextName );
+	$handle = popen( $cmd, 'r' );
+
+	if( fgets( $handle, 1024 ) ) {
+		$conflict = true;
+	} else {
+		$conflict = false;
+	}
+	pclose( $handle );
+
+	# Merge differences
+	$cmd = $wgDiff3 . ' -a -e --merge ' .
+		wfEscapeShellArg( $mytextName, $oldtextName, $yourtextName );
+	$handle = popen( $cmd, 'r' );
+	$result = '';
+	do {
+		$data = fread( $handle, 8192 );
+		if ( strlen( $data ) == 0 ) {
+			break;
+		}
+		$result .= $data;
+	} while ( true );
+	pclose( $handle );
+	unlink( $mytextName );
+	unlink( $oldtextName );
+	unlink( $yourtextName );
+
+	if ( $result === '' && $old !== '' && !$conflict ) {
+		wfDebug( "Unexpected null result from diff3. Command: $cmd\n" );
+		$conflict = true;
+	}
+	return !$conflict;
+}
+
+/**
+ * Returns unified plain-text diff of two texts.
+ * Useful for machine processing of diffs.
+ *
+ * @param $before String: the text before the changes.
+ * @param $after String: the text after the changes.
+ * @param $params String: command-line options for the diff command.
+ * @return String: unified diff of $before and $after
+ */
+function wfDiff( $before, $after, $params = '-u' ) {
+	if ( $before == $after ) {
+		return '';
+	}
+
+	global $wgDiff;
+	wfSuppressWarnings();
+	$haveDiff = $wgDiff && file_exists( $wgDiff );
+	wfRestoreWarnings();
+
+	# This check may also protect against code injection in
+	# case of broken installations.
+	if( !$haveDiff ) {
+		wfDebug( "diff executable not found\n" );
+		$diffs = new Diff( explode( "\n", $before ), explode( "\n", $after ) );
+		$format = new UnifiedDiffFormatter();
+		return $format->format( $diffs );
+	}
+
+	# Make temporary files
+	$td = wfTempDir();
+	$oldtextFile = fopen( $oldtextName = tempnam( $td, 'merge-old-' ), 'w' );
+	$newtextFile = fopen( $newtextName = tempnam( $td, 'merge-your-' ), 'w' );
+
+	fwrite( $oldtextFile, $before );
+	fclose( $oldtextFile );
+	fwrite( $newtextFile, $after );
+	fclose( $newtextFile );
+
+	// Get the diff of the two files
+	$cmd = "$wgDiff " . $params . ' ' . wfEscapeShellArg( $oldtextName, $newtextName );
+
+	$h = popen( $cmd, 'r' );
+
+	$diff = '';
+
+	do {
+		$data = fread( $h, 8192 );
+		if ( strlen( $data ) == 0 ) {
+			break;
+		}
+		$diff .= $data;
+	} while ( true );
+
+	// Clean up
+	pclose( $h );
+	unlink( $oldtextName );
+	unlink( $newtextName );
+
+	// Kill the --- and +++ lines. They're not useful.
+	$diff_lines = explode( "\n", $diff );
+	if ( strpos( $diff_lines[0], '---' ) === 0 ) {
+		unset( $diff_lines[0] );
+	}
+	if ( strpos( $diff_lines[1], '+++' ) === 0 ) {
+		unset( $diff_lines[1] );
+	}
+
+	$diff = implode( "\n", $diff_lines );
+
+	return $diff;
 }
 
 /**
