@@ -1834,7 +1834,6 @@ $1',
 'blockiptext'                     => 'Tērpaus zemmaisin fōrmularan, kāi blōkilai enpeisāsenes mazīngiskwan iz kōnkretai IP adressin anga kōnkretasmu tērpautajan.
 Blōkitun prawerru tēr kāi ebsergītun ezze wandalisman be preitarīngi sen [[{{MediaWiki:Policy-url}}|pōlitikin]].
 Padāis brewīnslin zemmais (p. endījanei tītelins stēisan wandalizītan pāusan).',
-'ipaddress'                       => 'IP adressi:',
 'ipadressorusername'              => 'IP adressi anga tērpautajas pabilisnā:',
 'ipbexpiry'                       => 'Blōkisenis wanginna:',
 'ipbreason'                       => 'Brewīnsli:',

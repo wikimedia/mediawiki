@@ -523,7 +523,7 @@ $1',
 'viewsourceold'           => '查看源码',
 'editlink'                => '编辑',
 'viewsourcelink'          => '查看源码',
-'editsectionhint'         => '编辑段落“$1”',
+'editsectionhint'         => '编辑段落：$1',
 'toc'                     => '目录',
 'showtoc'                 => '显示',
 'hidetoc'                 => '隐藏',
@@ -858,8 +858,7 @@ $2
 或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 搜索有关日志]</span>。',
 'userpage-userdoesnotexist'        => '用户账户“<nowiki>$1</nowiki>”未曾创建。请在创建／编辑这个页面前先检查一下。',
 'userpage-userdoesnotexist-view'   => '用户账户“$1”未曾创建。',
-'blocked-notice-logextract'        => '这位用户现正被封锁。
-下面有最近的封锁纪录以供参考：',
+'blocked-notice-logextract'        => '这位用户目前已被封禁。以下提供最近的封禁日志以供参考：',
 'clearyourcache'                   => "'''注意：在保存以后，您必须绕过浏览器缓存才能看到所作出的改变。'''
 * '''火狐（Firefox）／Safari'''：按住“Shift”键再点击“刷新”，或按下“Ctrl-F5”或“Ctrl-R”（Mac上为“Command-R”）
 * '''谷歌浏览器（Google Chrome）'''：按下“Ctrl-Shift-R”（Mac上为“Command-Shift-R”）
@@ -891,8 +890,8 @@ $2
 这种情况通常出现于使用含有很多臭虫、以网络为主的匿名代理服务的时候。",
 'edit_form_incomplete'             => "'''编辑表单的某些部分没有到达服务器 ；请检查您的编辑内容是否完整并再试一次。'''",
 'editing'                          => '编辑“$1”',
-'editingsection'                   => '编辑“$1（段落）”',
-'editingcomment'                   => '编辑“$1（新段落）”',
+'editingsection'                   => '编辑“$1”（段落）',
+'editingcomment'                   => '编辑“$1”（新段落）',
 'editconflict'                     => '编辑冲突：$1',
 'explainconflict'                  => "有人在你开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。
@@ -2148,7 +2147,7 @@ $UNWATCHURL
 'actioncomplete'         => '操作完成',
 'actionfailed'           => '操作失败',
 'deletedtext'            => '"$1"已经被删除。最近删除的记录请参见$2。',
-'dellogpage'             => '删除记录',
+'dellogpage'             => '删除日志',
 'dellogpagetext'         => '以下是最近的删除的列表。',
 'deletionlog'            => '删除记录',
 'reverted'               => '恢复到早期版本',
@@ -2352,7 +2351,6 @@ $1',
 'blockiptext'                     => '使用下方的表单来禁止来自特定IP地址或用户名的写访问。
 只有在为了防止破坏，并符合[[{{MediaWiki:Policy-url}}|方针]]的情况下才可采取此行动。
 请在下面输入一个具体的理由（例如引述一个被破坏的页面）。',
-'ipaddress'                       => 'IP地址：',
 'ipadressorusername'              => 'IP地址或用户名：',
 'ipbexpiry'                       => '期限：',
 'ipbreason'                       => '原因：',

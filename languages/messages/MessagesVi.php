@@ -1638,11 +1638,11 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 Nhật trình xóa và di chuyển của trang này được ghi ở dưới để bạn tiện theo dõi:",
 'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin lên.
 Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:FileList|danh sách các tập tin đã tải lên]].
-việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]],  việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
+việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]], việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
 
 Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.jpg]]</nowiki></tt>''' để phiên bản đầy đủ của tập tin
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</nowiki></tt>''' để dùng hình đã được co lại còn 200 pixel chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</nowiki></tt>''' để dùng hình đã được co lại còn 200 điểm ảnh chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki></tt>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó",
 'upload-permitted'            => 'Các định dạng tập tin được phép tải lên: $1.',
 'upload-preferred'            => 'Các định dạng tập tin nên dùng: $1.',
@@ -2163,7 +2163,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'email-legend'         => 'Gửi thư điện tử đến thành viên {{SITENAME}} khác',
 'emailfrom'            => 'Người gửi:',
 'emailto'              => 'Người nhận:',
-'emailsubject'         => 'Chủ đề:',
+'emailsubject'         => 'Tiêu đề:',
 'emailmessage'         => 'Nội dung:',
 'emailsend'            => 'Gửi',
 'emailccme'            => 'Gửi cho tôi bản sao của thư này.',
@@ -2483,7 +2483,6 @@ $1',
 'blockiptext'                     => 'Dùng mẫu dưới để cấm một địa chỉ IP hoặc thành viên không được viết trang.
 Điều này chỉ nên làm để tránh phá hoại, và phải theo [[{{MediaWiki:Policy-url}}|quy định]].
 Điền vào lý do cụ thể ở dưới (ví dụ, chỉ ra trang nào bị phá hoại).',
-'ipaddress'                       => 'Địa chỉ IP:',
 'ipadressorusername'              => 'Địa chỉ IP hay tên thành viên:',
 'ipbexpiry'                       => 'Thời hạn:',
 'ipbreason'                       => 'Lý do:',
@@ -2996,7 +2995,7 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'show-big-image'         => 'Độ phân giải tối đa',
 'show-big-image-preview' => 'Kích thước của ảnh xem thử: $1.',
 'show-big-image-other'   => '{{PLURAL:$2|Độ phân giải|Các độ phân giải}} khác: $1.',
-'show-big-image-size'    => '$1 × $2 pixel',
+'show-big-image-size'    => '$1 × $2 điểm ảnh',
 'file-info-gif-looped'   => 'có lặp',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|khung ảnh|khung ảnh}}',
 'file-info-png-looped'   => 'có lặp',

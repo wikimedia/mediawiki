@@ -2293,7 +2293,6 @@ Mae'r cofnod diweddaraf yn y lòg blocio i'w weld isod:",
 'blockiptext'                     => "Defnyddiwch y ffurflen hon i rwystro cyfeiriad IP neu ddefnyddiwr rhag ysgrifennu i'r gronfa ddata. 
 Dylech chi ddim ond gwneud hyn er mwyn rhwystro fandaliaeth, a chan ddilyn [[{{MediaWiki:Policy-url}}|polisi'r wici]]. 
 Rhowch reswm dros rwystro'r defnyddiwr (er enghraifft, dywedwch pa dudalen(au) a fandaleiddiwyd).",
-'ipaddress'                       => 'Cyfeiriad IP:',
 'ipadressorusername'              => 'Cyfeiriad IP neu enw defnyddiwr:',
 'ipbexpiry'                       => 'Am gyfnod:',
 'ipbreason'                       => 'Rheswm:',

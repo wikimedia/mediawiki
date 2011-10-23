@@ -423,7 +423,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'istemplate' => 'inclusione',
 
 # Block/unblock
-'ipaddress'                => 'Adrizzu IP',
 'ipadressorusername'       => 'Adrizzu IP o nome di cuntributore',
 'ipbreason'                => 'Mutivu:',
 'blocklist-reason'         => 'Mutivu',

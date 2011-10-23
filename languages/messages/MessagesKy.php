@@ -335,7 +335,6 @@ $messages = array(
 'whatlinkshere' => 'Жетелеме шилтемелер',
 
 # Block/unblock
-'ipaddress'      => 'IP дареги',
 'ipbreason'      => 'Себеп',
 'ipbotheroption' => 'башка',
 'contribslink'   => 'салымдары',

@@ -1463,7 +1463,6 @@ Your e-mail address is not revealed when other users contact you.
 'blockip'                     => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
 'blockip-title'               => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
 'blockip-legend'              => 'အသုံးပြုသူကို ပိတ်ပင်ရန်',
-'ipaddress'                   => 'အိုင်ပီလိပ်စာ -',
 'ipadressorusername'          => 'အိုင်ပီလိပ်စာ သို့ အသုံးပြုသူအမည် -',
 'ipbexpiry'                   => 'သက်တမ်းကုန်လွန်ရက် -',
 'ipbreason'                   => 'အ​ကြောင်း​ပြ​ချက်:',
