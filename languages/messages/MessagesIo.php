@@ -1221,7 +1221,6 @@ restauris ad lasta versiono da $2.',
 # Block/unblock
 'blockip'            => 'Blokusado di IP-adresi',
 'blockip-legend'     => 'Blokusar uzanto',
-'ipaddress'          => 'IP-adreso:',
 'ipadressorusername' => 'IP-adreso od uzantonomo:',
 'ipbexpiry'          => 'Expiro:',
 'ipbreason'          => 'Motivo:',

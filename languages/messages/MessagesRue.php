@@ -1940,7 +1940,7 @@ $1',
 'enotif_anon_editor'           => 'анонімный хоснователь $1',
 'enotif_body'                  => 'Дорогый хоснователю $WATCHINGUSERNAME,
 
-У $PAGEEDITDATE $CHANGEDORCREATED $PAGEEDITOR сторінку $PAGETITLE, смотьте актуалну верзію на $PAGETITLE_URL .
+У $PAGEEDITDATE была хоснователём $PAGEEDITOR $CHANGEDORCREATED сторінка $PAGETITLE, смотьте актуалну верзію на $PAGETITLE_URL .
 
 $NEWPAGE
 Куртый опис змін: $PAGESUMMARY $PAGEMINOREDIT
@@ -2191,7 +2191,6 @@ $1',
 'blockiptext'                     => 'Тот формуларь служыть про заблокованя едітованя з конкретной IP адресы або мена хоснователя.
 Тото бы мало быти хосноване лем в згодї з [[{{MediaWiki:Policy-url}}|правилами]].
 Задайте причіну ниже (наприклад вкажте, котры сторінкы были пошкоджены).',
-'ipaddress'                       => 'IP-адреса:',
 'ipadressorusername'              => 'IP-адреса або мено хоснователя:',
 'ipbexpiry'                       => 'Кінчіть:',
 'ipbreason'                       => 'Причіна:',
