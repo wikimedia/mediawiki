@@ -35,6 +35,8 @@ class SpecialLog extends SpecialPage {
 	}
 
 	public function execute( $par ) {
+		global $wgLogRestrictions;
+		
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -62,7 +64,13 @@ class SpecialLog extends SpecialPage {
 			$opts->setValue( 'month', '' );
 		}
 
-		if ( !LogPage::isLogType( $opts->getValue( 'type' ) ) ) {
+		// Reset the log type to default (nothing) if it's invalid or if the
+		// user does not possess the right to view it
+		$type = $opts->getValue( 'type' );
+		if ( !LogPage::isLogType( $type )
+			|| ( isset( $wgLogRestrictions[$type] )
+				&& !$this->getUser()->isAllowed( $wgLogRestrictions[$type] ) )
+		) {
 			$opts->setValue( 'type', '' );
 		}
 
