@@ -582,10 +582,11 @@ class HTMLForm {
 
 	/**
 	 * Set the text for the submit button to a message
+	 * @since 1.19
 	 * @param $msg String message key
 	 */
 	public function setSubmitTextMsg( $msg ) {
-		return $this->setSubmitText( wfMsg( $msg ) );
+		return $this->setSubmitText( wfMessage( $msg )->escaped() );
 	}
 
 	/**
@@ -629,10 +630,11 @@ class HTMLForm {
 	/**
 	 * Prompt the whole form to be wrapped in a <fieldset>, with
 	 * this message as its <legend> element.
+	 * @since 1.19
 	 * @param $msg String message key
 	 */
 	public function setWrapperLegendMsg( $msg ) {
-		return $this->setWrapperLegend( wfMsg( $msg ) );
+		return $this->setWrapperLegend( wfMessage( $msg )->escaped() );
 	}
 
 	/**
