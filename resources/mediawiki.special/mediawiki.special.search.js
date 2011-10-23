@@ -22,7 +22,7 @@ var headerLinks = $('.search-types a');
 $('#searchText, #powerSearchText').change(function() {
 	var searchterm = $(this).val();
 	headerLinks.each( function() {
-		var parts = this.href.split( 'search=' );
+		var parts = $(this).attr('href').split( 'search=' );
 		var lastpart = '';
 		var prefix = 'search=';
 		if( parts.length > 1 && parts[1].indexOf('&') >= 0 ) {
