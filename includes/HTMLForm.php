@@ -1768,6 +1768,14 @@ class HTMLSelectAndOtherField extends HTMLSelectField {
  * Radio checkbox fields.
  */
 class HTMLRadioField extends HTMLFormField {
+	function __construct( $params ) {
+		parent::__construct( $params );
+		if ( isset( $params['flatlist'] ) ) {
+			$this->mClass .= ' mw-htmlform-radio-flatlist';
+		}
+	}
+
+
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
@@ -1815,16 +1823,16 @@ class HTMLRadioField extends HTMLFormField {
 				$html .= $this->formatOptions( $info, $value );
 			} else {
 				$id = Sanitizer::escapeId( $this->mID . "-$info" );
-				$html .= Xml::radio(
+				$radio = Xml::radio(
 					$this->mName,
 					$info,
 					$info == $value,
 					$attribs + array( 'id' => $id )
 				);
-				$html .= '&#160;' .
+				$radio .= '&#160;' .
 						Html::rawElement( 'label', array( 'for' => $id ), $label );
 
-				$html .= "<br />\n";
+				$html .= ' ' . Html::rawElement( 'div', array( 'class' => 'mw-htmlform-radio-item' ), $radio );
 			}
 		}
 
