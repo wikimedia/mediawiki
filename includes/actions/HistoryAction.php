@@ -388,7 +388,6 @@ class HistoryPager extends ReverseChronologicalPager {
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();
-		# Give some pointers to make (last) links
 		foreach ( $this->mResult as $row ) {
 			$batch->addObj( Title::makeTitleSafe( NS_USER, $row->user_name ) );
 			$batch->addObj( Title::makeTitleSafe( NS_USER_TALK, $row->user_name ) );
