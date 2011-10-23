@@ -99,7 +99,7 @@ abstract class Action {
 	 * Get the IContextSource in use here
 	 * @return IContextSource
 	 */
-	protected final function getContext() {
+	public final function getContext() {
 		if ( $this->context instanceof IContextSource ) {
 			return $this->context;
 		}
@@ -111,7 +111,7 @@ abstract class Action {
 	 *
 	 * @return WebRequest
 	 */
-	protected final function getRequest() {
+	public final function getRequest() {
 		return $this->getContext()->getRequest();
 	}
 
@@ -120,7 +120,7 @@ abstract class Action {
 	 *
 	 * @return OutputPage
 	 */
-	protected final function getOutput() {
+	public final function getOutput() {
 		return $this->getContext()->getOutput();
 	}
 
@@ -129,7 +129,7 @@ abstract class Action {
 	 *
 	 * @return User
 	 */
-	protected final function getUser() {
+	public final function getUser() {
 		return $this->getContext()->getUser();
 	}
 
@@ -138,7 +138,7 @@ abstract class Action {
 	 *
 	 * @return Skin
 	 */
-	protected final function getSkin() {
+	public final function getSkin() {
 		return $this->getContext()->getSkin();
 	}
 
@@ -147,7 +147,7 @@ abstract class Action {
 	 *
 	 * @return Skin
 	 */
-	protected final function getLang() {
+	public final function getLang() {
 		return $this->getContext()->getLang();
 	}
 
@@ -155,7 +155,7 @@ abstract class Action {
 	 * Shortcut to get the Title object from the page
 	 * @return Title
 	 */
-	protected final function getTitle() {
+	public final function getTitle() {
 		return $this->page->getTitle();
 	}
 
@@ -165,7 +165,7 @@ abstract class Action {
 	 *
 	 * @return Message object
 	 */
-	protected final function msg() {
+	public final function msg() {
 		$params = func_get_args();
 		return call_user_func_array( array( $this->getContext(), 'msg' ), $params );
 	}
