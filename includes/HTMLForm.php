@@ -53,7 +53,7 @@
  *
  * TODO: Document 'section' / 'subsection' stuff
  */
-class HTMLForm {
+class HTMLForm extends ContextSource {
 
 	# A mapping of 'type' inputs onto standard HTMLFormField subclasses
 	static $typeMappings = array(
@@ -105,7 +105,6 @@ class HTMLForm {
 	protected $mSubmitText;
 	protected $mSubmitTooltip;
 
-	protected $mContext; // <! IContextSource
 	protected $mTitle;
 	protected $mMethod = 'post';
 
@@ -124,7 +123,7 @@ class HTMLForm {
 	 */
 	public function __construct( $descriptor, /*IContextSource*/ $context = null, $messagePrefix = '' ) {
 		if( $context instanceof IContextSource ){
-			$this->mContext = $context;
+			$this->setContext( $context );
 			$this->mTitle = false; // We don't need them to set a title
 			$this->mMessagePrefix = $messagePrefix;
 		} else {
@@ -586,7 +585,7 @@ class HTMLForm {
 	 * @param $msg String message key
 	 */
 	public function setSubmitTextMsg( $msg ) {
-		return $this->setSubmitText( wfMessage( $msg )->escaped() );
+		return $this->setSubmitText( $this->msg( $msg )->escaped() );
 	}
 
 	/**
@@ -634,7 +633,7 @@ class HTMLForm {
 	 * @param $msg String message key
 	 */
 	public function setWrapperLegendMsg( $msg ) {
-		return $this->setWrapperLegend( wfMessage( $msg )->escaped() );
+		return $this->setWrapperLegend( $this->msg( $msg )->escaped() );
 	}
 
 	/**
@@ -663,36 +662,6 @@ class HTMLForm {
 		return $this->mTitle === false
 			? $this->getContext()->getTitle()
 			: $this->mTitle;
-	}
-
-	/**
-	 * @return IContextSource
-	 */
-	public function getContext(){
-		return $this->mContext instanceof IContextSource
-			? $this->mContext
-			: RequestContext::getMain();
-	}
-
-	/**
-	 * @return OutputPage
-	 */
-	public function getOutput(){
-		return $this->getContext()->getOutput();
-	}
-
-	/**
-	 * @return WebRequest
-	 */
-	public function getRequest(){
-		return $this->getContext()->getRequest();
-	}
-
-	/**
-	 * @return User
-	 */
-	public function getUser(){
-		return $this->getContext()->getUser();
 	}
 
 	/**
