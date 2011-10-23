@@ -237,7 +237,7 @@ class EditPage {
 							wfMsgNoTrans( 'undo-success' ) . '</div>', true, /* interface */true );
 						$firstrev = $oldrev->getNext();
 						# If we just undid one rev, use an autosummary
-						if ( $firstrev->mId == $undo ) {
+						if ( $firstrev->getId() == $undo ) {
 							$undoSummary = wfMsgForContent( 'undo-summary', $undo, $undorev->getUserText() );
 							if ( $this->summary === '' ) {
 								$this->summary = $undoSummary;
