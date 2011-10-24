@@ -117,6 +117,24 @@ class MagicVariableTest extends MediaWikiTestCase {
 		$this->assertUnPadded( 'revisionmonth1', $month );
 	}
 
+	/**
+	 * Rough tests for {{SERVERNAME}} magic word
+	 * Bug 31176
+	 */
+	function testServernameFromDifferentProtocols() {
+		global $wgServer;
+		$saved_wgServer= $wgServer;
+
+		$wgServer = 'http://localhost/';
+		$this->assertMagic( 'localhost', 'servername' );
+		$wgServer = 'https://localhost/';
+		$this->assertMagic( 'localhost', 'servername' );
+		$wgServer = '//localhost/';  # bug 31176
+		$this->assertMagic( 'localhost', 'servername' );
+
+		$wgServer = $saved_wgServer;
+	}
+
 	############### HELPERS ############################################
 
 	/** assertion helper expecting a magic output which is zero padded */
