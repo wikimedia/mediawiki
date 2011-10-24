@@ -189,7 +189,7 @@ class LoginForm extends SpecialPage {
 		$u->addNewUserLogEntry( true, $this->mReason );
 
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'accmailtitle' )->text() );
+		$out->setPageTitleMsg( 'accmailtitle' );
 
 		if( !$result->isGood() ) {
 			$this->mainLoginForm( $this->msg( 'mailerror', $result->getWikiText() )->text() );
@@ -251,7 +251,7 @@ class LoginForm extends SpecialPage {
 			}
 		} else {
 			# Confirm that the account was created
-			$out->setPageTitle( $this->msg( 'accountcreated' )->text() );
+			$out->setPageTitleMsg( 'accountcreated' );
 			$out->addWikiMsg( 'accountcreatedtext', $u->getName() );
 			$out->returnToMain( false, $this->getTitle() );
 			wfRunHooks( 'AddNewAccount', array( $u, false ) );
@@ -883,7 +883,7 @@ class LoginForm extends SpecialPage {
 	 */
 	private function displaySuccessfulLogin( $msgname, $injected_html ) {
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'loginsuccesstitle' )->text() );
+		$out->setPageTitleMsg( 'loginsuccesstitle' );
 		if( $msgname ){
 			$out->addWikiMsg( $msgname, wfEscapeWikiText( $this->getUser()->getName() ) );
 		}
@@ -914,7 +914,7 @@ class LoginForm extends SpecialPage {
 		# out.
 
 		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'cantcreateaccounttitle' )->text() );
+		$out->setPageTitleMsg( 'cantcreateaccounttitle' );
 
 		$block_reason = $block->mReason;
 		if ( strval( $block_reason ) === '' ) {
@@ -1077,9 +1077,9 @@ class LoginForm extends SpecialPage {
 		// Changes the title depending on permissions for creating account
 		$out = $this->getOutput();
 		if ( $user->isAllowed( 'createaccount' ) ) {
-			$out->setPageTitle( $this->msg( 'userlogin' )->text() );
+			$out->setPageTitleMsg( 'userlogin' );
 		} else {
-			$out->setPageTitle( $this->msg( 'userloginnocreate' )->text() );
+			$out->setPageTitleMsg( 'userloginnocreate' );
 		}
 
 		$out->disallowUserJs(); // just in case...

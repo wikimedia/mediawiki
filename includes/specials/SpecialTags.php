@@ -40,7 +40,7 @@ class SpecialTags extends SpecialPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
-		$out->setPageTitle( wfMsg( 'tags-title' ) );
+		$out->setPageTitleMsg( 'tags-title' );
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
 		// Write the headers

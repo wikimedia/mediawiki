@@ -34,7 +34,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		# Anons don't get a watchlist
 		if( $this->getUser()->isAnon() ) {
-			$out->setPageTitle( wfMsg( 'watchnologin' ) );
+			$out->setPageTitleMsg( 'watchnologin' );
 			$llink = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Userlogin' ),
 				wfMsgHtml( 'loginreqlink' ),
@@ -75,7 +75,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				// Pass on to the raw editor, from which it's very easy to clear.
 
 			case self::EDIT_RAW:
-				$out->setPageTitle( wfMsg( 'watchlistedit-raw-title' ) );
+				$out->setPageTitleMsg( 'watchlistedit-raw-title' );
 				$form = $this->getRawForm();
 				if( $form->show() ){
 					$out->addHTML( $this->successMessage );
@@ -85,7 +85,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 			case self::EDIT_NORMAL:
 			default:
-				$out->setPageTitle( wfMsg( 'watchlistedit-normal-title' ) );
+				$out->setPageTitleMsg( 'watchlistedit-normal-title' );
 				$form = $this->getNormalForm();
 				if( $form->show() ){
 					$out->addHTML( $this->successMessage );

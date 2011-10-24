@@ -43,7 +43,7 @@ class SpecialBlockList extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$out->setPageTitle( wfMsg( 'ipblocklist' ) );
+		$out->setPageTitleMsg( 'ipblocklist' );
 		$out->addModuleStyles( 'mediawiki.special' );
 
 		$request = $this->getRequest();

@@ -78,7 +78,7 @@ class FileDeleteForm {
 				$wgOut->addHTML( '</span>' );
 			}
 			if( $status->ok ) {
-				$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
+				$wgOut->setPageTitleMsg( 'actioncomplete' );
 				$wgOut->addHTML( $this->prepareMessage( 'filedelete-success' ) );
 				// Return to the main page if we just deleted all versions of the
 				// file, otherwise go back to the description page
@@ -271,7 +271,7 @@ class FileDeleteForm {
 	 */
 	private function setHeaders() {
 		global $wgOut;
-		$wgOut->setPageTitle( wfMsg( 'filedelete', $this->title->getText() ) );
+		$wgOut->setPageTitleMsg( 'filedelete', $this->title->getText() );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setSubtitle( wfMsg(
 			'filedelete-backlink',

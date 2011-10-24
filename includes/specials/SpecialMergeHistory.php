@@ -167,9 +167,6 @@ class SpecialMergeHistory extends SpecialPage {
 	}
 
 	private function showHistory() {
-		$out = $this->getOutput();
-		$out->setPageTitle( wfMsg( 'mergehistory' ) );
-
 		$this->showMergeForm();
 
 		# List all stored revisions
@@ -178,6 +175,7 @@ class SpecialMergeHistory extends SpecialPage {
 		);
 		$haveRevisions = $revisions && $revisions->getNumRows() > 0;
 
+		$out = $this->getOutput();
 		$titleObj = $this->getTitle();
 		$action = $titleObj->getLocalURL( array( 'action' => 'submit' ) );
 		# Start the form here

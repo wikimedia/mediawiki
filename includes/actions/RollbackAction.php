@@ -54,7 +54,7 @@ class RollbackAction extends FormlessAction {
 		}
 
 		if ( isset( $result[0][0] ) && ( $result[0][0] == 'alreadyrolled' || $result[0][0] == 'cantrollback' ) ) {
-			$this->getOutput()->setPageTitle( wfMsg( 'rollbackfailed' ) );
+			$this->getOutput()->setPageTitleMsg( 'rollbackfailed' );
 			$errArray = $result[0];
 			$errMsg = array_shift( $errArray );
 			$this->getOutput()->addWikiMsgArray( $errMsg, $errArray );
@@ -95,7 +95,7 @@ class RollbackAction extends FormlessAction {
 		$current = $details['current'];
 		$target = $details['target'];
 		$newId = $details['newid'];
-		$this->getOutput()->setPageTitle( wfMsg( 'actioncomplete' ) );
+		$this->getOutput()->setPageTitleMsg( 'actioncomplete' );
 		$this->getOutput()->setRobotPolicy( 'noindex,nofollow' );
 
 		if ( $current->getUserText() === '' ) {

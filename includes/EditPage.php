@@ -1360,14 +1360,11 @@ class EditPage {
 	function setHeaders() {
 		global $wgOut;
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		if ( $this->formtype == 'preview' ) {
-			$wgOut->setPageTitleActionText( wfMsg( 'preview' ) );
-		}
 		if ( $this->isConflict ) {
-			$wgOut->setPageTitle( wfMsg( 'editconflict', $this->getContextTitle()->getPrefixedText() ) );
+			$wgOut->setPageTitleMsg( 'editconflict', $this->getContextTitle()->getPrefixedText() );
 		} elseif ( $this->section != '' ) {
 			$msg = $this->section == 'new' ? 'editingcomment' : 'editingsection';
-			$wgOut->setPageTitle( wfMsg( $msg, $this->getContextTitle()->getPrefixedText() ) );
+			$wgOut->setPageTitleMsg( $msg, $this->getContextTitle()->getPrefixedText() );
 		} else {
 			# Use the title defined by DISPLAYTITLE magic word when present
 			if ( isset( $this->mParserOutput )
@@ -1376,7 +1373,7 @@ class EditPage {
 			} else {
 				$title = $this->getContextTitle()->getPrefixedText();
 			}
-			$wgOut->setPageTitle( wfMsg( 'editing', $title ) );
+			$wgOut->setPageTitleMsg( 'editing', $title );
 		}
 	}
 
@@ -2229,7 +2226,7 @@ HTML
 			array( 'returnto' => $this->getContextTitle()->getPrefixedText() )
 		);
 
-		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
+		$wgOut->setPageTitleMsg( 'whitelistedittitle' );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
@@ -2244,7 +2241,7 @@ HTML
 	function noSuchSectionPage() {
 		global $wgOut;
 
-		$wgOut->setPageTitle( wfMsg( 'nosuchsectiontitle' ) );
+		$wgOut->setPageTitleMsg( 'nosuchsectiontitle' );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
@@ -2264,7 +2261,7 @@ HTML
 	static function spamPage( $match = false ) {
 		global $wgOut, $wgTitle;
 
-		$wgOut->setPageTitle( wfMsg( 'spamprotectiontitle' ) );
+		$wgOut->setPageTitleMsg( 'spamprotectiontitle' );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
@@ -2287,7 +2284,7 @@ HTML
 		global $wgOut;
 		$this->textbox2 = $this->textbox1;
 
-		$wgOut->setPageTitle( wfMsg( 'spamprotectiontitle' ) );
+		$wgOut->setPageTitleMsg( 'spamprotectiontitle' );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 
@@ -2848,7 +2845,7 @@ HTML
 
 	function noCreatePermission() {
 		global $wgOut;
-		$wgOut->setPageTitle( wfMsg( 'nocreatetitle' ) );
+		$wgOut->setPageTitleMsg( 'nocreatetitle' );
 		$wgOut->addWikiMsg( 'nocreatetext' );
 	}
 

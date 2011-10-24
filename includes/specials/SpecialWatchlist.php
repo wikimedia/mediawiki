@@ -55,7 +55,7 @@ class SpecialWatchlist extends SpecialPage {
 
 		# Anons don't get a watchlist
 		if( $user->isAnon() ) {
-			$output->setPageTitle( wfMsg( 'watchnologin' ) );
+			$output->setPageTitleMsg( 'watchnologin' );
 			$llink = Linker::linkKnown(
 				SpecialPage::getTitleFor( 'Userlogin' ),
 				wfMsgHtml( 'loginreqlink' ),

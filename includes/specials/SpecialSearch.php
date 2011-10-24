@@ -435,8 +435,8 @@ class SpecialSearch extends SpecialPage {
 		$this->searchAdvanced = ($this->profile === 'advanced');
 		$out = $this->getOutput();
 		if( strval( $term ) !== ''  ) {
-			$out->setPageTitle( wfMsg( 'searchresults') );
-			$out->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'searchresults-title', $term ) ) );
+			$out->setPageTitleMsg( 'searchresults' );
+			$out->setHTMLTitleMsg( 'pagetitle', wfMsg( 'searchresults-title', $term ) );
 		}
 		// add javascript specific to special:search
 		$out->addModules( 'mediawiki.special.search' );

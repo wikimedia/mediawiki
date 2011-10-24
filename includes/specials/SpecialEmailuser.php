@@ -135,11 +135,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return false;
 		}
 
-		$out->setPageTitle( wfMsg( 'emailpage' ) );
+		$out->setPageTitleMsg( 'emailpage' );
 		$result = $form->show();
 
 		if( $result === true || ( $result instanceof Status && $result->isGood() ) ) {
-			$out->setPageTitle( wfMsg( 'emailsent' ) );
+			$out->setPageTitleMsg( 'emailsent' );
 			$out->addWikiMsg( 'emailsenttext' );
 			$out->returnToMain( false, $this->mTargetObj->getUserPage() );
 		}
