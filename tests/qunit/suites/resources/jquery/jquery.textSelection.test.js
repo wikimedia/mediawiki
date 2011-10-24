@@ -241,9 +241,17 @@ var caretTest = function(options) {
 			});
 		}
 
+		var among = function(actual, expected, message) {
+			if ($.isArray(expected)) {
+				ok($.inArray(actual, expected) !== -1 , message + ' (got ' + actual + '; expected one of ' + expected.join(', ') + ')');
+			} else {
+				equal(actual, expected, message);
+			}
+		};
+
 		var pos = $textarea.textSelection('getCaretPosition', {startAndEnd: true});
-		equal(pos[0], options.start, 'Caret start should be where we set it.');
-		equal(pos[1], options.end, 'Caret end should be where we set it.');
+		among(pos[0], options.start, 'Caret start should be where we set it.');
+		among(pos[1], options.end, 'Caret end should be where we set it.');
 	});
 }
 
@@ -252,8 +260,8 @@ var caretSample = "Some big text that we like to work with. Nothing fancy... you
 caretTest({
 	description: 'getCaretPosition with original/empty selection - bug 31847 with IE 6/7/8',
 	text: caretSample,
-	start: 0,
-	end: 0,
+	start: [0, caretSample.length], // Opera and Firefox (prior to FF 6.0) default caret to the end of the box (caretSample.length)
+	end: [0, caretSample.length], // Other browsers default it to the beginning (0), so check both.
 	mode: 'get'
 });
 
