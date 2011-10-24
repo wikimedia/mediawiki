@@ -66,7 +66,7 @@ class PNGMetadataExtractor {
 			throw new Exception( __METHOD__ . ": File $filename does not exist" );
 		}
 
-		$fh = fopen( $filename, 'r' );
+		$fh = fopen( $filename, 'rb' );
 
 		if ( !$fh ) {
 			throw new Exception( __METHOD__ . ": Unable to open file $filename" );
@@ -81,20 +81,24 @@ class PNGMetadataExtractor {
 		// Read chunks
 		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 4 );
-			if ( !$buf ) {
+			if ( !$buf || strlen( $buf ) < 4 ) {
 				throw new Exception( __METHOD__ . ": Read error" );
 			}
 			$chunk_size = unpack( "N", $buf );
 			$chunk_size = $chunk_size[1];
 
+			if ( $chunk_size < 0 ) {
+				throw new Exception( __METHOD__ . ": Chunk size too big for unpack" );
+			}
+
 			$chunk_type = fread( $fh, 4 );
-			if ( !$chunk_type ) {
+			if ( !$chunk_type || strlen( $chunk_type ) < 4 ) {
 				throw new Exception( __METHOD__ . ": Read error" );
 			}
 
 			if ( $chunk_type == "IHDR" ) {
 				$buf = self::read( $fh, $chunk_size );
-				if ( !$buf ) {
+				if ( !$buf || strlen( $buf ) < $chunk_size ) {
 					throw new Exception( __METHOD__ . ": Read error" );
 				}
 				$bitDepth = ord( substr( $buf, 8, 1 ) );
@@ -122,7 +126,7 @@ class PNGMetadataExtractor {
 				}
 			} elseif ( $chunk_type == "acTL" ) {
 				$buf = fread( $fh, $chunk_size );
-				if( !$buf ) {
+				if( !$buf || strlen( $buf ) < $chunk_size || $chunk_size < 4 ) {
 					throw new Exception( __METHOD__ . ": Read error" );
 				}
 
@@ -131,10 +135,13 @@ class PNGMetadataExtractor {
 				$loopCount = $actl['plays'];
 			} elseif ( $chunk_type == "fcTL" ) {
 				$buf = self::read( $fh, $chunk_size );
-				if ( !$buf ) {
+				if ( !$buf || strlen( $buf ) < $chunk_size ) {
 					throw new Exception( __METHOD__ . ": Read error" );
 				}
 				$buf = substr( $buf, 20 );
+				if ( strlen( $buf ) < 4 ) {
+					throw new Exception( __METHOD__ . ": Read error" );
+				}
 
 				$fctldur = unpack( "ndelay_num/ndelay_den", $buf );
 				if ( $fctldur['delay_den'] == 0 ) {
@@ -294,7 +301,7 @@ class PNGMetadataExtractor {
 					throw new Exception( __METHOD__ . ": tIME wrong size" );
 				}
 				$buf = self::read( $fh, $chunk_size );
-				if ( !$buf ) {
+				if ( !$buf || strlen( $buf ) < $chunk_size ) {
 					throw new Exception( __METHOD__ . ": Read error" );
 				}
 
@@ -317,20 +324,24 @@ class PNGMetadataExtractor {
 				}
 
 				$buf = self::read( $fh, $chunk_size );
-				if ( !$buf ) {
+				if ( !$buf || strlen( $buf ) < $chunk_size ) {
 					throw new Exception( __METHOD__ . ": Read error" );
 				}
 
 				$dim = unpack( "Nwidth/Nheight/Cunit", $buf );
 				if ( $dim['unit'] == 1 ) {
-					// unit is meters
-					// (as opposed to 0 = undefined )
-					$text['XResolution'] = $dim['width']
-						. '/100';
-					$text['YResolution'] = $dim['height']
-						. '/100';
-					$text['ResolutionUnit'] = 3;
-					// 3 = dots per cm (from Exif).
+					// Need to check for negative because php
+					// doesn't deal with super-large unsigned 32-bit ints well
+					if ( $dim['width'] > 0 && $dim['height'] > 0 ) {
+						// unit is meters
+						// (as opposed to 0 = undefined )
+						$text['XResolution'] = $dim['width']
+							. '/100';
+						$text['YResolution'] = $dim['height']
+							. '/100';
+						$text['ResolutionUnit'] = 3;
+						// 3 = dots per cm (from Exif).
+					}
 				}
 
 			} elseif ( $chunk_type == "IEND" ) {

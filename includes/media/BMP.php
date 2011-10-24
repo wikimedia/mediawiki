@@ -42,7 +42,7 @@ class BmpHandler extends BitmapHandler {
 	 * @return array
 	 */
 	function getImageSize( $image, $filename ) {
-		$f = fopen( $filename, 'r' );
+		$f = fopen( $filename, 'rb' );
 		if( !$f ) {
 			return false;
 		}
@@ -54,8 +54,12 @@ class BmpHandler extends BitmapHandler {
 		$h = substr( $header, 22, 4);
 
 		// Convert the unsigned long 32 bits (little endian):
-		$w = unpack( 'V' , $w );
-		$h = unpack( 'V' , $h );
+		try {
+			$w = wfUnpack( 'V', $w, 4 );
+			$h = wfUnpack( 'V', $h, 4 );
+		} catch ( MWException $e ) {
+			return false;
+		}
 		return array( $w[1], $h[1] );
 	}
 }

@@ -128,7 +128,7 @@ class JpegMetadataExtractor {
 				continue;
 			} else {
 				// segment we don't care about, so skip
-				$size = unpack( "nint", fread( $fh, 2 ) );
+				$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
 				if ( $size['int'] <= 2 ) throw new MWException( "invalid marker size in jpeg" );
 				fseek( $fh, $size['int'] - 2, SEEK_CUR );
 			}
@@ -144,9 +144,11 @@ class JpegMetadataExtractor {
 	* @return data content of segment.
 	*/
 	private static function jpegExtractMarker( &$fh ) {
-		$size = unpack( "nint", fread( $fh, 2 ) );
+		$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
 		if ( $size['int'] <= 2 ) throw new MWException( "invalid marker size in jpeg" );
-		return fread( $fh, $size['int'] - 2 );
+		$segment = fread( $fh, $size['int'] - 2 );
+		if ( strlen( $segment ) !== $size['int'] - 2 ) throw new MWException( "Segment shorter than expected" );
+		return $segment;
 	}
 
 	/**
@@ -205,7 +207,12 @@ class JpegMetadataExtractor {
 			$offset += $lenName;
 
 			// now length of data (unsigned long big endian)
-			$lenData = unpack( 'Nlen', substr( $app13, $offset, 4 ) );
+			$lenData = wfUnpack( 'Nlen', substr( $app13, $offset, 4 ), 4 );
+			// PHP can take issue with very large unsigned ints and make them negative.
+			// Which should never ever happen, as this has to be inside a segment
+			// which is limited to a 16 bit number.
+			if ( $lenData['len'] < 0 ) throw new MWException( "Too big PSIR (" . $lenData['len'] . ')' );
+
 			$offset += 4; // 4bytes length field;
 
 			// this should not happen, but check.
