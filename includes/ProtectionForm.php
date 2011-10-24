@@ -224,7 +224,7 @@ class ProtectionForm {
 		}
 
 		$titleLink = Linker::link( $this->mTitle );
-		$wgOut->setPageTitle( wfMsg( 'protect-title', $this->mTitle->getPrefixedText() ) );
+		$wgOut->setPageTitleMsg( 'protect-title', $this->mTitle->getPrefixedText() );
 		$wgOut->setSubtitle( wfMsg( 'protect-backlink', $titleLink ) );
 
 		# Show an appropriate message if the user isn't allowed or able to change

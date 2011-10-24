@@ -268,7 +268,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 		$request = $this->getRequest();
 		$out = $this->getOutput();
-		$out->setPageTitle( wfMsgExt( 'deletedcontributions-title', array( 'parsemag' ) ) );
+		$out->setPageTitleMsg( 'deletedcontributions-title' );
 
 		$options = array();
 

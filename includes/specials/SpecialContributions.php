@@ -84,14 +84,14 @@ class SpecialContributions extends SpecialPage {
 		if( $this->opts['contribs'] != 'newbie' ) {
 			$target = $nt->getText();
 			$out->setSubtitle( $this->contributionsSub( $nt, $id ) );
-			$out->setHTMLTitle( wfMsg( 'pagetitle', wfMsgExt( 'contributions-title', array( 'parsemag' ),$target ) ) );
+			$out->setHTMLTitleMsg( 'pagetitle', wfMsgExt( 'contributions-title', array( 'parsemag' ),$target ) );
 			$userObj = User::newFromName( $target, false );
 			if ( is_object( $userObj ) ) {
 				$this->getSkin()->setRelevantUser( $userObj );
 			}
 		} else {
 			$out->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
-			$out->setHTMLTitle( wfMsg( 'pagetitle', wfMsg( 'sp-contributions-newbies-title' ) ) );
+			$out->setHTMLTitleMsg( 'pagetitle', wfMsg( 'sp-contributions-newbies-title' ) );
 		}
 
 		if( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {

@@ -75,7 +75,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 			return false;
 		}
 
-		$this->getOutput()->setPageTitle( wfMsg( 'recentchangeslinked-title', $title->getPrefixedText() ) );
+		$this->getOutput()->setPageTitleMsg( 'recentchangeslinked-title', $title->getPrefixedText() );
 
 		/*
 		 * Ordinary links are in the pagelinks table, while transclusions are

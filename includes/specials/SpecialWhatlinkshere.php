@@ -86,7 +86,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		$this->selfTitle = $this->getTitle( $this->target->getPrefixedDBkey() );
 
-		$out->setPageTitle( wfMsg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
+		$out->setPageTitleMsg( 'whatlinkshere-title', $this->target->getPrefixedText() );
 		$out->setSubtitle( wfMsg( 'whatlinkshere-backlink', Linker::link( $this->target, $this->target->getPrefixedText(), array(), array( 'redirect' => 'no'  ) ) ) );
 
 		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),

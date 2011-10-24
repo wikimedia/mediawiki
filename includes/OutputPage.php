@@ -761,6 +761,19 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Same as setHTMLTitle(), but takes a message name and parameter instead
+	 * of directly the string to display.
+	 *
+	 * @since 1.19
+	 * @param $name String message name
+	 * @param $args Array|String message parameters, if there's only one
+	 *              parameter it can be passed directly as a string.
+	 */
+	public function setHTMLTitleMsg( $name, $args = array() ) {
+		$this->setHTMLTitle( $this->msg( $name, $args )->text() );
+	}
+
+	/**
 	 * Return the "HTML title", i.e. the content of the <title> tag.
 	 *
 	 * @return String
@@ -784,7 +797,20 @@ class OutputPage extends ContextSource {
 		$this->mPagetitle = $nameWithTags;
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
-		$this->setHTMLTitle( $this->msg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) )->text() );
+		$this->setHTMLTitleMsg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) );
+	}
+
+	/**
+	 * Same as setPageTitle(), but takes a message name and parameter instead
+	 * of directly the string to display.
+	 *
+	 * @since 1.19
+	 * @param $name String message name
+	 * @param $args Array|String message parameters, if there's only one
+	 *              parameter it can be passed directly as a string.
+	 */
+	public function setPageTitleMsg( $name, $args = array() ) {
+		$this->setPageTitle( $this->msg( $name, $args )->text() );
 	}
 
 	/**
@@ -1927,8 +1953,8 @@ class OutputPage extends ContextSource {
 		if ( $this->getTitle() ) {
 			$this->mDebugtext .= 'Original title: ' . $this->getTitle()->getPrefixedText() . "\n";
 		}
-		$this->setPageTitle( $this->msg( $title )->text() );
-		$this->setHTMLTitle( $this->msg( 'errorpagetitle' )->text() );
+		$this->setPageTitleMsg( $title );
+		$this->setHTMLTitleMsg( 'errorpagetitle' );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -1953,8 +1979,8 @@ class OutputPage extends ContextSource {
 	public function showPermissionsErrorPage( $errors, $action = null ) {
 		$this->mDebugtext .= 'Original title: ' .
 		$this->getTitle()->getPrefixedText() . "\n";
-		$this->setPageTitle( $this->msg( 'permissionserrors' )->text() );
-		$this->setHTMLTitle( $this->msg( 'permissionserrors' )->text() );
+		$this->setPageTitleMsg( 'permissionserrors' );
+		$this->setHTMLTitleMsg( 'permissionserrors' );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -1970,8 +1996,8 @@ class OutputPage extends ContextSource {
 	 * @param $version Mixed: the version of MediaWiki needed to use the page
 	 */
 	public function versionRequired( $version ) {
-		$this->setPageTitle( $this->msg( 'versionrequired', $version )->text() );
-		$this->setHTMLTitle( $this->msg( 'versionrequired', $version )->text() );
+		$this->setPageTitleMsg( 'versionrequired' );
+		$this->setHTMLTitleMsg( 'versionrequired', $version );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
@@ -1997,8 +2023,8 @@ class OutputPage extends ContextSource {
 			throw new PermissionsError( 'read' );
 		}
 
-		$this->setPageTitle( $this->msg( 'loginreqtitle' )->text() );
-		$this->setHTMLTitle( $this->msg( 'errorpagetitle' )->text() );
+		$this->setPageTitleMsg( 'loginreqtitle' );
+		$this->setHTMLTitleMsg( 'errorpagetitle' );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
@@ -2090,12 +2116,12 @@ class OutputPage extends ContextSource {
 		if ( !empty( $reasons ) ) {
 			// Permissions error
 			if( $source ) {
-				$this->setPageTitle( $this->msg( 'viewsource' )->text() );
+				$this->setPageTitleMsg( 'viewsource' );
 				$this->setSubtitle(
 					$this->msg( 'viewsourcefor', Linker::linkKnown( $this->getTitle() ) )->text()
 				);
 			} else {
-				$this->setPageTitle( $this->msg( 'badaccess' )->text() );
+				$this->setPageTitleMsg( 'badaccess' );
 			}
 			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ) );
 		} else {
@@ -2165,7 +2191,7 @@ $templates
 	}
 
 	public function showFatalError( $message ) {
-		$this->setPageTitle( $this->msg( 'internalerror' )->text() );
+		$this->setPageTitleMsg( 'internalerror' );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -2257,7 +2283,7 @@ $templates
 		$ret = Html::htmlHeader( array( 'lang' => $this->getLang()->getCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
-			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() )->text() );
+			$this->setHTMLTitleMsg( 'pagetitle', $this->getPageTitle() );
 		}
 
 		$openHead = Html::openElement( 'head' );
