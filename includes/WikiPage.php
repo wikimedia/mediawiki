@@ -1599,7 +1599,7 @@ class WikiPage extends Page {
 	public function doDeleteArticle(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
-		global $wgDeferredUpdateList, $wgUseTrackbacks, $wgUser;
+		global $wgUseTrackbacks, $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 
 		wfDebug( __METHOD__ . "\n" );
