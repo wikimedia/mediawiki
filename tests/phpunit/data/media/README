@@ -25,7 +25,8 @@ test.tiff, test.jpg, jpeg-comment-multiple.jpg, jpeg-comment-utf.jpg,
 jpeg-comment-iso8859-1.jpg, jpeg-comment-binary.jpg, jpeg-xmp-psir.jpg,
 jpeg-xmp-alt.jpg, animated.gif, exif-user-comment.jpg, animated-xmp.gif,
 iptc-timetest-invalid.jpg, jpeg-iptc-bad-hash.jpg, iptc-timetest.jpg,
-xmp.png, nonanimated.gif, exif-gps.jpg, jpeg-xmp-psir.xmp, jpeg-iptc-good-hash.jpg
+xmp.png, nonanimated.gif, exif-gps.jpg, jpeg-xmp-psir.xmp, jpeg-iptc-good-hash.jpg,
+jpeg-padding-even.jpg, jpeg-padding-odd.jpg
 Are all by Bawolff. I don't think they contain enough originality to
 claim copyright, but on the off chance they do, feel free to use them
 however you feel fit, without restriction.

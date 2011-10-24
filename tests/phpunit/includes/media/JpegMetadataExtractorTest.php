@@ -12,9 +12,24 @@ class JpegMetadataExtractorTest extends MediaWikiTestCase {
 		$this->filePath = dirname( __FILE__ ) . '/../../data/media/';
 	}
 
-	public function testUtf8Comment() {
-		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . 'jpeg-comment-utf.jpg' );
+	/**
+	 * We also use this test to test padding bytes don't
+	 * screw stuff up
+	 *
+	 * @param $file filename
+	 *
+	 * @dataProvider dataUtf8Comment
+	 */
+	public function testUtf8Comment( $file ) {
+		$res = JpegMetadataExtractor::segmentSplitter( $this->filePath . $file );
 		$this->assertEquals( array( 'UTF-8 JPEG Comment — ¼' ), $res['COM'] );
+	}
+	public function dataUtf8Comment() {
+		return array(
+			array( 'jpeg-comment-utf.jpg' ),
+			array( 'jpeg-padding-even.jpg' ),
+			array( 'jpeg-padding-odd.jpg' ),
+		);
 	}
 	/** The file is iso-8859-1, but it should get auto converted */
 	public function testIso88591Comment() {
