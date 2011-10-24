@@ -101,6 +101,19 @@ class Html {
 		'itemscope',
 	);
 
+	private static $HTMLFiveOnlyAttribs = array(
+		'autocomplete',
+		'autofocus',
+		'max',
+		'min',
+		'multiple',
+		'pattern',
+		'placeholder',
+		'required',
+		'step',
+		'spellcheck',
+	);
+
 	/**
 	 * Returns an HTML element in a string.  The major advantage here over
 	 * manually typing out the HTML is that it will escape all attribute
@@ -408,18 +421,8 @@ class Html {
 			$key = strtolower( $key );
 
 			# Here we're blacklisting some HTML5-only attributes...
-			if ( !$wgHtml5 && in_array( $key, array(
-					'autocomplete',
-					'autofocus',
-					'max',
-					'min',
-					'multiple',
-					'pattern',
-					'placeholder',
-					'required',
-					'step',
-					'spellcheck',
-			) ) ) {
+			if ( !$wgHtml5 && in_array( $key, self::$HTMLFiveOnlyAttribs )
+			 ) {
 				continue;
 			}
 
