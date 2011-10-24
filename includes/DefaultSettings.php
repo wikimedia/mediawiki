@@ -78,7 +78,7 @@ $wgCanonicalServer = false;
  * Other paths will be set to defaults based on it unless they are directly
  * set in LocalSettings.php
  */
-$wgScriptPath	    = '/wiki';
+$wgScriptPath       = '/wiki';
 
 /**
  * Whether to support URLs like index.php/Page_title These often break when PHP
@@ -302,7 +302,7 @@ $wgImgAuthPublicTest = true;
  *   - class            The class name for the repository. May come from the core or an extension.
  *                      The core repository classes are LocalRepo, ForeignDBRepo, FSRepo.
  *
- *   - name	            A unique name for the repository (but $wgLocalFileRepo should be 'local').
+ *   - name             A unique name for the repository (but $wgLocalFileRepo should be 'local').
  *
  * For most core repos:
  *   - url              Base public URL
@@ -431,10 +431,10 @@ $wgAllowAsyncCopyUploads = false;
  * for non-specified types.
  *
  * For example:
- * 	$wgMaxUploadSize = array(
- * 		'*' => 250 * 1024,
- * 		'url' => 500 * 1024,
- * 	);
+ * $wgMaxUploadSize = array(
+ *     '*' => 250 * 1024,
+ *     'url' => 500 * 1024,
+ * );
  * Sets the maximum for all uploads to 250 kB except for upload-by-url, which
  * will have a maximum of 500 kB.
  *
@@ -877,11 +877,11 @@ $wgTrivialMimeDetection = false;
  * array = ( 'rootElement' => 'associatedMimeType' )
  */
 $wgXMLMimeTypes = array(
-		'http://www.w3.org/2000/svg:svg'    			=> 'image/svg+xml',
-		'svg'                               			=> 'image/svg+xml',
-		'http://www.lysator.liu.se/~alla/dia/:diagram' 	=> 'application/x-dia-diagram',
-		'http://www.w3.org/1999/xhtml:html'				=> 'text/html', // application/xhtml+xml?
-		'html'                              			=> 'text/html', // application/xhtml+xml?
+		'http://www.w3.org/2000/svg:svg'               => 'image/svg+xml',
+		'svg'                                          => 'image/svg+xml',
+		'http://www.lysator.liu.se/~alla/dia/:diagram' => 'application/x-dia-diagram',
+		'http://www.w3.org/1999/xhtml:html'            => 'text/html', // application/xhtml+xml?
+		'html'                                         => 'text/html', // application/xhtml+xml?
 );
 
 /**
@@ -1172,7 +1172,7 @@ $wgDBpassword       = '';
 $wgDBtype           = 'mysql';
 
 /** Separate username for maintenance tasks. Leave as null to use the default. */
-$wgDBadminuser = null;
+$wgDBadminuser      = null;
 /** Separate password for maintenance tasks. Leave as null to use the default. */
 $wgDBadminpassword = null;
 
@@ -1182,7 +1182,7 @@ $wgDBadminpassword = null;
  * selected database type (eg SearchMySQL), or set to a class
  * name to override to a custom search engine.
  */
-$wgSearchType	    = null;
+$wgSearchType       = null;
 
 /** Table name prefix */
 $wgDBprefix         = '';
@@ -2645,12 +2645,12 @@ $wgMetaNamespaceTalk = false;
  * Custom namespaces should start at 100 to avoid conflicting with standard
  * namespaces, and should always follow the even/odd main/talk pattern.
  */
-#$wgExtraNamespaces =
-#	array(100 => "Hilfe",
-#	      101 => "Hilfe_Diskussion",
-#	      102 => "Aide",
-#	      103 => "Discussion_Aide"
-#	      );
+# $wgExtraNamespaces = array(
+#     100 => "Hilfe",
+#     101 => "Hilfe_Diskussion",
+#     102 => "Aide",
+#     103 => "Discussion_Aide"
+# );
 $wgExtraNamespaces = array();
 
 /**
@@ -4551,9 +4551,9 @@ $wgFeedClasses = array(
 $wgAdvertisedFeedTypes = array( 'atom' );
 
 /** Show watching users in recent changes, watchlist and page history views */
-$wgRCShowWatchingUsers 				= false; # UPO
+$wgRCShowWatchingUsers				= false; # UPO
 /** Show watching users in Page views */
-$wgPageShowWatchingUsers 			= false;
+$wgPageShowWatchingUsers			= false;
 /** Show the amount of changed characters in recent changes */
 $wgRCShowChangedSize				= true;
 
@@ -4567,7 +4567,7 @@ $wgRCChangedSizeThreshold			= 500;
 /**
  * Show "Updated (since my last visit)" marker in RC view, watchlist and history
  * view for watched pages with new changes */
-$wgShowUpdatedMarker 				= true;
+$wgShowUpdatedMarker				= true;
 
 /**
  * Disable links to talk pages of anonymous users (IPs) in listings on special
@@ -4788,13 +4788,13 @@ $wgAutoloadClasses = array();
  *
  * <code>
  * $wgExtensionCredits[$type][] = array(
- * 	'name' => 'Example extension',
- *	'version' => 1.9,
- *	'path' => __FILE__,
- *	'author' => 'Foo Barstein',
- *	'url' => 'http://wwww.example.com/Example%20Extension/',
- *	'description' => 'An example extension',
- *	'descriptionmsg' => 'exampleextension-desc',
+ *     'name' => 'Example extension',
+ *     'version' => 1.9,
+ *     'path' => __FILE__,
+ *     'author' => 'Foo Barstein',
+ *     'url' => 'http://wwww.example.com/Example%20Extension/',
+ *     'description' => 'An example extension',
+ *     'descriptionmsg' => 'exampleextension-desc',
  * );
  * </code>
  *
