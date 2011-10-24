@@ -5,10 +5,10 @@
  *
  * Copyright © 2008, Niklas Laxstiröm
  *
- * Copyright © 2011, Ashar Voultoiz
+ * Copyright © 2011, Antoine Musso
  *
  * @author Niklas Laxström
- * @author Ashar Voultoiz 
+ * @author Antoine Musso 
  */
 
 class FormOptions implements ArrayAccess {

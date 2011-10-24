@@ -107,7 +107,7 @@ class SpecialVersion extends SpecialPage {
 			'Aryeh Gregor', 'Aaron Schulz', 'Andrew Garrett', 'Raimond Spekking',
 			'Alexandre Emsenhuber', 'Siebrand Mazeland', 'Chad Horohoe',
 			'Roan Kattouw', 'Trevor Parscal', 'Bryan Tong Minh', 'Sam Reed',
-			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Ashar Voultoiz',
+			'Victor Vasiliev', 'Rotem Liss', 'Platonides', 'Antoine Musso',
 			wfMsg( 'version-poweredby-others' )
 		);
 
