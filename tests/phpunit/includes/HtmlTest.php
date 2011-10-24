@@ -143,4 +143,43 @@ class HtmlTest extends MediaWikiTestCase {
 			'Normalization should remove duplicates in string-lists in the array'
 		);
 	}
+
+	/**
+	 * Test feature added by r96188, let pass attributes values as
+	 * a PHP array. Restricted to class,rel, accesskey.
+	 */
+	function testExpandAttributesSpaceSeparatedAttributesWithBoolean() {
+		$this->assertEquals(
+			' class="booltrue one"',
+			Html::expandAttributes( array( 'class' => array(
+				'booltrue' => true,
+				'one' => 1,
+
+				# Method use isset() internally, make sure we do discard
+			    # attributes values which have been assigned well known values
+				'emptystring' => '',
+				'boolfalse' => false,
+				'zero' => 0,
+				'null' => null,
+			)))
+		);
+	}
+
+	/**
+	 * How do we handle duplicate keys in HTML attributes expansion?
+	 * We could pass a "class" the values: 'GREEN' and array( 'GREEN' => false )
+	 * The later will take precedence.
+	 *
+	 * Feature added by r96188
+	 */
+	function testValueIsAuthoritativeInSpaceSeparatedAttributesArrays() {
+		$this->assertEquals(
+			' class=""',
+			HTML::expandAttributes( array( 'class' => array(
+				'GREEN',
+				'GREEN' => false,
+				'GREEN',
+			)))
+		);
+	}
 }
