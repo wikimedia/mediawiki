@@ -526,38 +526,28 @@ class MediaWiki {
 	/**
 	 * Checks if the request should abort due to a lagged server,
 	 * for given maxlag parameter.
-	 *
-	 * @param boolean $abort True if this class should abort the
-	 * script execution. False to return the result as a boolean.
-	 * @return boolean True if we passed the check, false if we surpass the maxlag
 	 */
-	private function checkMaxLag( $abort ) {
+	private function checkMaxLag() {
 		global $wgShowHostnames;
 
 		wfProfileIn( __METHOD__ );
 		$maxLag = $this->context->getRequest()->getVal( 'maxlag' );
 		if ( !is_null( $maxLag ) ) {
-			$lb = wfGetLB(); // foo()->bar() is not supported in PHP4
-			list( $host, $lag ) = $lb->getMaxLag();
+			list( $host, $lag ) = wfGetLB()->getMaxLag();
 			if ( $lag > $maxLag ) {
-				if ( $abort ) {
-					$resp = $this->context->getRequest()->response();
-					$resp->header( 'HTTP/1.1 503 Service Unavailable' );
-					$resp->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
-					$resp->header( 'X-Database-Lag: ' . intval( $lag ) );
-					$resp->header( 'Content-Type: text/plain' );
-					if( $wgShowHostnames ) {
-						echo "Waiting for $host: $lag seconds lagged\n";
-					} else {
-						echo "Waiting for a database server: $lag seconds lagged\n";
-					}
+				$resp = $this->context->getRequest()->response();
+				$resp->header( 'HTTP/1.1 503 Service Unavailable' );
+				$resp->header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
+				$resp->header( 'X-Database-Lag: ' . intval( $lag ) );
+				$resp->header( 'Content-Type: text/plain' );
+				if( $wgShowHostnames ) {
+					echo "Waiting for $host: $lag seconds lagged\n";
+				} else {
+					echo "Waiting for a database server: $lag seconds lagged\n";
 				}
 
 				wfProfileOut( __METHOD__ );
 
-				if ( !$abort ) {
-					return false;
-				}
 				exit;
 			}
 		}
