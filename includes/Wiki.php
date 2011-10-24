@@ -515,7 +515,7 @@ class MediaWiki {
 	 */
 	public function run() {
 		try {
-			$this->checkMaxLag( true );
+			$this->checkMaxLag();
 			$this->main();
 			$this->restInPeace();
 		} catch ( Exception $e ) {
