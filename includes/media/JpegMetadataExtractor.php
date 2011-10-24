@@ -62,6 +62,10 @@ class JpegMetadataExtractor {
 			}
 
 			$buffer = fread( $fh, 1 );
+			while( $buffer === "\xFF" && !feof( $fh ) ) {
+				// Skip through any 0xFF padding bytes.
+				$buffer = fread( $fh, 1 );
+			}
 			if ( $buffer === "\xFE" ) {
 
 				// COM section -- file comment
@@ -123,9 +127,6 @@ class JpegMetadataExtractor {
 			} elseif ( $buffer === "\xD9" || $buffer === "\xDA" ) {
 				// EOI - end of image or SOS - start of scan. either way we're past any interesting segments
 				return $segments;
-			} elseif ( $buffer === "\xFF" ) {
-				// Padding byte. Skip.
-				continue;
 			} else {
 				// segment we don't care about, so skip
 				$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );
