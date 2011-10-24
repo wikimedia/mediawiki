@@ -54,7 +54,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addTable', 'msg_resource',      'patch-msg_resource.sql' ),
 			array( 'addTable', 'msg_resource_links','patch-msg_resource_links.sql' ),
 			array( 'addTable', 'module_deps',       'patch-module_deps.sql' ),
-			array( 'addTable', 'uploadstash',		'patch-uploadstash.sql' ),
+			array( 'addTable', 'uploadstash',       'patch-uploadstash.sql' ),
+			array( 'addTable', 'user_former_groups','patch-user_former_groups.sql' ),
 
 			# Needed before new field
 			array( 'convertArchive2' ),
