@@ -37,3 +37,6 @@ $thgThumbCurlProxy = null; // proxy to thumb.php
 
 # File path to a php file the gives a 404 error message
 $thgThumb404File = "404.php";
+
+# Custom functions for overriding aspects of thumb handling
+$thgThumbCallbacks = array();

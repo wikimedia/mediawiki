@@ -12,7 +12,7 @@ if ( !file_exists( $configPath ) ) {
 require( $configPath );
 
 function wfHandleThumb404() {
-	global $thgThumb404File;
+	global $thgThumbCallbacks, $thgThumb404File;
 
 	# lighttpd puts the original request in REQUEST_URI, while
 	# sjs sets that to the 404 handler, and puts the original
@@ -24,9 +24,12 @@ function wfHandleThumb404() {
 		$uri = $_SERVER['REQUEST_URI'];
 	}
 
-	# Extract thumb.php params from the URI.
-	if ( function_exists( 'wfCustomExtractThumbParams' ) ) {
-		$params = wfCustomExtractThumbParams( $uri ); // overridden by configuration
+	# Extract thumb.php params from the URI...
+	if ( isset( $thgThumbCallbacks['extractParams'] )
+		&& is_callable( $thgThumbCallbacks['extractParams'] ) )
+	{
+		# Overridden by configuration
+		$params = call_user_func_array( $thgThumbCallbacks['extractParams'], array( $uri ) );
 	} else {
 		$params = wfExtractThumbParams( $uri ); // basic wiki URL param extracting
 	}
@@ -40,7 +43,7 @@ function wfHandleThumb404() {
 	if ( preg_match( '/[\x80-\xff]/', $uri ) ) {
 		header( 'HTTP/1.0 400 Bad request' );
 		header( 'Content-Type: text/html' );
-		echo "<html><head><title>Bad request</title></head><body>" . 
+		print "<html><head><title>Bad request</title></head><body>" . 
 			"The URI contained bytes with the high bit set, this is not allowed." . 
 			"</body></html>";
 		return;
@@ -48,10 +51,19 @@ function wfHandleThumb404() {
 		header( 'HTTP/1.0 404 Not found' );
 		header( 'Content-Type: text/html' );
 		header( 'X-Debug: filename contains a space' ); // useful for debugging
-		echo "<html><head><title>Not found</title></head><body>" . 
+		print "<html><head><title>Not found</title></head><body>" . 
 			"The URL contained spaces, we don't have any thumbnail files with spaces." . 
 			"</body></html>";
 		return;
+	}
+
+	# Check any backend caches for the thumbnail...
+	if ( isset( $thgThumbCallbacks['checkCache'] )
+		&& is_callable( $thgThumbCallbacks['checkCache'] ) )
+	{
+		if ( call_user_func_array( $thgThumbCallbacks['checkCache'], array( $uri, $params ) ) ) {
+			return; // file streamed from backend thumb cache
+		}
 	}
 
 	wfStreamThumbViaCurl( $params, $uri );
@@ -69,11 +81,11 @@ function wfExtractThumbParams( $uri ) {
 
 	$thumbRegex = '!^(?:' . preg_quote( $thgThumbServer ) . ')?/' .
 		preg_quote( $thgThumbFragment ) . '(/archive|/temp|)/' .
-		$thgThumbHashFragment . '([^/]*)/' . '(page(\d*)-)*(\d*)px-([^/]*)$!';
+		$thgThumbHashFragment . '([^/]*)/(page(\d*)-)*(\d*)px-[^/]*$!';
 
 	# Is this a thumbnail?
 	if ( preg_match( $thumbRegex, $uri, $matches ) ) {
-		list( $all, $archOrTemp, $filename, $pagefull, $pagenum, $size, $fn2 ) = $matches;
+		list( $all, $archOrTemp, $filename, $pagefull, $pagenum, $size ) = $matches;
 		$params = array( 'f' => $filename, 'width' => $size );
 		if ( $pagenum ) {
 			$params['page'] = $pagenum;
@@ -98,13 +110,13 @@ function wfExtractThumbParams( $uri ) {
  * @return void
  */
 function wfStreamThumbViaCurl( array $params, $uri ) {
-	global $thgThumbScriptPath, $thgThumbCurlProxy, $thgThumbCurlTimeout;
+	global $thgThumbCallbacks, $thgThumbScriptPath, $thgThumbCurlProxy, $thgThumbCurlTimeout;
 
 	if ( !function_exists( 'curl_init' ) ) {
 		header( 'HTTP/1.0 404 Not found' );
 		header( 'Content-Type: text/html' );
 		header( 'X-Debug: cURL is not enabled' ); // useful for debugging
-		echo "<html><head><title>Not found</title></head><body>" . 
+		print "<html><head><title>Not found</title></head><body>" . 
 			"cURL is not enabled for PHP on this wiki. Unable to send request thumb.php." . 
 			"</body></html>";
 		return;
@@ -119,29 +131,32 @@ function wfStreamThumbViaCurl( array $params, $uri ) {
 		} else {
 			$reqURL .= '&';
 		}
-		// Note: value is already urlencoded
-		$reqURL .= "$name=$value";
+		$reqURL .= "$name=$value"; // Note: value is already urlencoded
 	}
 
-	$ch = curl_init( $reqURL );
-	if ( $thgThumbCurlProxy ) {
-		curl_setopt( $ch, CURLOPT_PROXY, $thgThumbCurlProxy );
-	}
-
-	$headers = array(); // HTTP headers
-	# Set certain headers...
+	# Set relevant HTTP headers...
+	$headers = array();
 	$headers[] = "X-Original-URI: " . str_replace( "\n", '', $uri );
-	if ( function_exists( 'wfCustomThumbRequestHeaders' ) ) {
-		wfCustomThumbRequestHeaders( $headers ); // add on any custom headers (like XFF)
+	if ( isset( $thgThumbCallbacks['curlHeaders'] )
+		&& is_callable( $thgThumbCallbacks['curlHeaders'] ) )
+	{
+		# Add on any custom headers (like XFF)
+		call_user_func_array( $thgThumbCallbacks['curlHeaders'], array( &$headers ) );
 	}
+
 	# Pass through some other headers...
-	$passthrough = array( 'If-Modified-Since', 'Referer', 'User-Agent' );
-	foreach ( $passthrough as $headerName ) {
+	$passThrough = array( 'If-Modified-Since', 'Referer', 'User-Agent' );
+	foreach ( $passThrough as $headerName ) {
 		$serverVarName = 'HTTP_' . str_replace( '-', '_', strtoupper( $headerName ) );
 		if ( !empty( $_SERVER[$serverVarName] ) ) {
 			$headers[] = $headerName . ': ' . 
 				str_replace( "\n", '', $_SERVER[$serverVarName] );
 		}
+	}
+
+	$ch = curl_init( $reqURL );
+	if ( $thgThumbCurlProxy ) {
+		curl_setopt( $ch, CURLOPT_PROXY, $thgThumbCurlProxy );
 	}
 
 	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
@@ -177,6 +192,13 @@ function wfStreamThumbViaCurl( array $params, $uri ) {
 		# Error message, suppress cache
 		header( 'HTTP/1.1 500 Internal server error' );
 		header( 'Cache-Control: no-cache' );
+	} else {
+		# OK thumbnail; save to any backend caches...
+		if ( isset( $thgThumbCallbacks['fillCache'] )
+			&& is_callable( $thgThumbCallbacks['fillCache'] ) )
+		{
+			call_user_func_array( $thgThumbCallbacks['fillCache'], array( $uri, $text ) );
+		}
 	}
 
 	if ( !$contentType ) {
