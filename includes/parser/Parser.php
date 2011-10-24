@@ -5368,20 +5368,18 @@ class Parser {
 		if ( is_null( $this->mRevisionTimestamp ) ) {
 			wfProfileIn( __METHOD__ );
 
+			global $wgContLang;
+
 			$revObject = $this->getRevisionObject();
-			$timestamp = $revObject ? $revObject->getTimestamp() : false;
+			$timestamp = $revObject ? $revObject->getTimestamp() : wfTimestampNow();
 
-			if( $timestamp !== false ) {
-				global $wgContLang;
-
-				# The cryptic '' timezone parameter tells to use the site-default
-				# timezone offset instead of the user settings.
-				#
-				# Since this value will be saved into the parser cache, served
-				# to other users, and potentially even used inside links and such,
-				# it needs to be consistent for all visitors.
-				$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp, '' );
-			}
+			# The cryptic '' timezone parameter tells to use the site-default
+			# timezone offset instead of the user settings.
+			#
+			# Since this value will be saved into the parser cache, served
+			# to other users, and potentially even used inside links and such,
+			# it needs to be consistent for all visitors.
+			$this->mRevisionTimestamp = $wgContLang->userAdjust( $timestamp, '' );
 
 			wfProfileOut( __METHOD__ );
 		}
