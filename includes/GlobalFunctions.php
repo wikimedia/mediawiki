@@ -3609,3 +3609,39 @@ function wfGetParserCacheStorage() {
 function wfRunHooks( $event, $args = array() ) {
 	return Hooks::run( $event, $args );
 }
+
+/**
+ * Wrapper around php's unpack.
+ *
+ * @param $format String: The format string (See php's docs)
+ * @param $data: A binary string of binary data
+ * @param $length integer or false: The minimun length of $data. This is to
+ *	prevent reading beyond the end of $data. false to disable the check.
+ *
+ * Also be careful when using this function to read unsigned 32 bit integer
+ * because php might make it negative.
+ *
+ * @throws MWException if $data not long enough, or if unpack fails
+ * @return Associative array of the extracted data
+ */
+function wfUnpack( $format, $data, $length=false ) {
+	if ( $length !== false ) {
+		$realLen = strlen( $data );
+		if ( $realLen < $length ) {
+			throw new MWException( "Tried to use wfUnpack on a "
+				. "string of length $realLen, but needed one "
+				. "of at least length $length."
+			);
+		}
+	}
+
+	wfSuppressWarnings();
+	$result = unpack( $format, $data );
+	wfRestoreWarnings();
+
+	if ( $result === false ) {
+		// If it cannot extract the packed data.
+		throw new MWException( "unpack could not unpack binary data" );
+	}
+	return $result;
+}
