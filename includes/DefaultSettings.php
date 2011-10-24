@@ -679,9 +679,17 @@ $wgSVGMetadataCutoff = 262144;
 $wgAllowTitlesInSVG = false;
 
 /**
- * Don't thumbnail an image if it will use too much working memory.
- * Default is 50 MB if decompressed to RGBA form, which corresponds to
- * 12.5 million pixels or 3500x3500
+ * The maximum number of pixels a source image can have if it is to be scaled 
+ * down by a scaler that requires the full source image to be decompressed 
+ * and stored in decompressed form, before the thumbnail is generated. 
+ *
+ * This provides a limit on memory usage for the decompression side of the 
+ * image scaler. The limit is used when scaling PNGs with any of the 
+ * built-in image scalers, such as ImageMagick or GD. It is ignored for 
+ * JPEGs with ImageMagick, and when using the VipsScaler extension.
+ *
+ * The default is 50 MB if decompressed to RGBA form, which corresponds to
+ * 12.5 million pixels or 3500x3500.
  */
 $wgMaxImageArea = 1.25e7;
 /**
