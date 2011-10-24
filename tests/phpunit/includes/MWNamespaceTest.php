@@ -1,7 +1,7 @@
 <?php
 /**
- * @author Ashar Voultoiz
- * @copyright Copyright © 2011, Ashar Voultoiz
+ * @author Antoine Musso
+ * @copyright Copyright © 2011, Antoine Musso
  * @file
  */
 

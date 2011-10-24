@@ -13,7 +13,7 @@ if ( !defined( 'MEDIAWIKI' ) ) {
  *
  * @todo FIXME: Another class handles sending the whole page to the client.
  *
- * Some comments comes from a pairing session between Zak Greant and Ashar Voultoiz
+ * Some comments comes from a pairing session between Zak Greant and Antoine Musso
  * in November 2010.
  *
  * @todo document

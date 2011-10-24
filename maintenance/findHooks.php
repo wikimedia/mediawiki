@@ -12,7 +12,7 @@
  *
  * Any instance of wfRunHooks that doesn't meet these parameters will be noted.
  *
- * Copyright © Ashar Voultoiz
+ * Copyright © Antoine Musso
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@
  *
  * @file
  * @ingroup Maintenance
- * @author Ashar Voultoiz <hashar at free dot fr>
+ * @author Antoine Musso <hashar at free dot fr>
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );

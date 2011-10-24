@@ -6,8 +6,8 @@
  * As of february 2011, it only tests some revisions and date related
  * magic variables.
  *
- * @author Ashar Voultoiz
- * @copyright Copyright © 2011, Ashar Voultoiz
+ * @author Antoine Musso
+ * @copyright Copyright © 2011, Antoine Musso
  * @file
  */
 

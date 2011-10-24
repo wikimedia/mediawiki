@@ -18,7 +18,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Ashar Voultoiz <hashar at free dot fr>, Aaron Schulz
+ * @author Antoine Musso <hashar at free dot fr>, Aaron Schulz
  */
 
 // Some regex definition to "play" with IP address and IP address blocks

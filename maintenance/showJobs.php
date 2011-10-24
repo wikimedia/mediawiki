@@ -21,7 +21,7 @@
  *
  * @ingroup Maintenance
  * @author Tim Starling
- * @author Ashar Voultoiz
+ * @author Antoine Musso
  */
 
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );

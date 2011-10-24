@@ -33,7 +33,7 @@
  * @todo document
  * @ingroup Maintenance
  *
- * @author Ashar Voultoiz <hashar at free dot fr>
+ * @author Antoine Musso <hashar at free dot fr>
  * @author Brion Vibber
  * @author Alexandre Emsenhuber
  * @version first release

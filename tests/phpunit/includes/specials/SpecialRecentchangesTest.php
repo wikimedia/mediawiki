@@ -2,9 +2,9 @@
 /**
  * Test class for SpecialRecentchanges class
  *
- * Copyright © 2011, Ashar Voultoiz
+ * Copyright © 2011, Antoine Musso
  *
- * @author Ashar Voultoiz
+ * @author Antoine Musso
  * @group Database
  */
 class SpecialRecentchangesTest extends MediaWikiTestCase {

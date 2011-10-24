@@ -22,7 +22,7 @@
  * @author Tim Starling
  * @copyright © 2009, Tim Starling, Domas Mituzas
  * @copyright © 2010, Max Sem
- * @copyright © 2011, Ashar Voultoiz
+ * @copyright © 2011, Antoine Musso
  */
 class BacklinkCache {
 

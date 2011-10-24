@@ -3,7 +3,7 @@
  * Implements Special:Listusers
  *
  * Copyright © 2004 Brion Vibber, lcrocker, Tim Starling,
- * Domas Mituzas, Ashar Voultoiz, Jens Frank, Zhengzhu,
+ * Domas Mituzas, Antoine Musso, Jens Frank, Zhengzhu,
  * 2006 Rob Church <robchur@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
