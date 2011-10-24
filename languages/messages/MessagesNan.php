@@ -344,6 +344,11 @@ Téng chi̍t ê cha-sûn sī :
 <blockquote><tt>$1</tt></blockquote>
 tī hâm-sò͘  "<tt>$2</tt>".
 Chu-liāu-khò͘ thoân hoê ê chhò-ngō͘ "<tt>$3: $4</tt>".',
+'dberrortextcl'        => '發生一个查詢資料庫語法錯誤，頂一个欲查詢資料庫是：
+"$1"
+佇"$2"
+資料庫送回一个錯誤"$3: $4"',
+'laggedslavemode'      => "'''提醒你：'''這頁可能最近改的無包括。",
 'readonly'             => 'Chu-liāu-khò· só tiâu leh',
 'enterlockreason'      => 'Phah beh hong-só ê lí-iû, pau-koah ko͘-kè siáⁿ-mi̍h sî-chūn ē kái-tû hong-só.',
 'readonlytext'         => 'Chu-liāu-khò· hiān-chú-sî só tiâu leh, bô khai-hòng hō· lâng siu-kái. Che tāi-khài sī in-ūi teh pān î-siu khang-khòe, oân-sêng liáu-āu èng-tong tō ē hôe-ho̍k chèng-siông. Hū-chek ê hêng-chèng jîn-oân lâu chit-ê soat-bêng: $1',
@@ -353,6 +358,8 @@ Che it-poaⁿ sī in-ūi koè-sî ê cheng-chha ia̍h sī le̍k-sú liân-kiat �
 
 Nā m̄-sī hit chióng chêng-hêng, lí khó-lêng tú tio̍h nńg-thé ê chhò-ngō͘. Chhiáⁿ pò hō͘ chi̍t ūi [[Special:ListUsers/sysop|koán-lí-goân]], ūi liân-kiat hiâ khì lâu thong-ti .',
 'missingarticle-rev'   => '（修訂本#: $1）',
+'missingarticle-diff'  => '(精差：$1, $2)',
+'readonly_lag'         => '資料庫已經自動鎖牢咧，從屬資料庫伺服器當咧更新綴到主伺服器',
 'internalerror'        => 'Loē-pō͘ ê chhò-ngō͘',
 'internalerror_info'   => 'Loē-pō͘ ê chhò-ngō͘: $1',
 'fileappenderrorread'  => 'Ka-ji̍p(append) ê sî bô-hoat-tō͘ thak "$1".',
@@ -391,8 +398,14 @@ Nā ūi-tio̍h hoan-e̍k, chhiáⁿ khó-lū sú-iōng [http://translatewiki.net
 'cascadeprotected'     => 'Chit-ê ia̍h í-keng hông pó-hō͘ bē kái tit. In-ūi i tī ē-bīn {{PLURAL:$1|ê|ê}} liân-só pó-hō͘ lāi-té:
 $2',
 'namespaceprotected'   => "Lí bô khoân-lī kái '''$1'''  miâ-khong-kan ê ia̍h",
+'customcssprotected'   => '你無權限通改這CSS頁面，因為伊包括著其他用戶的個人設定。',
+'customjsprotected'    => '你無權限通改這javaScript頁面，因為伊包括著其他用戶的個人設定。',
+'ns-specialprotected'  => '特殊頁袂使改得',
+'titleprotected'       => "這个標題已經予[[User:$1|$1]]保護牢咧袂使用。理由是''$2''。",
 
 # Virus scanner
+'virus-badscanner'     => "毋著的設定: 毋知影的病毒掃瞄器：''$1''",
+'virus-scanfailed'     => '掃描失敗（號碼 $1）',
 'virus-unknownscanner' => 'M̄-chai siáⁿ pēⁿ-to̍k:',
 
 # Login and logout pages
@@ -406,6 +419,9 @@ Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-go�
 'yourpassword'               => 'Lí ê bi̍t-bé:',
 'yourpasswordagain'          => 'Têng phah bi̍t-bé:',
 'remembermypassword'         => 'Kì tiâu góa ê bi̍t-bé (āu-chhiú teng-ji̍p iōng) (tī $1 {{PLURAL:$1|day|days}} kang lāi)',
+'securelogin-stick-https'    => '登入後繼續以HTTPS連接',
+'yourdomainname'             => '你的網域',
+'externaldberror'            => '這可能是因為驗證資料庫錯誤，抑是你hông禁止改你的外部口座。',
 'login'                      => 'Teng-ji̍p',
 'nav-login-createaccount'    => 'Teng-ji̍p / khui sin kháu-chō',
 'loginprompt'                => 'Thiⁿ ē-kha ê chu-liāu thang khui sin hō·-thâu a̍h-sī teng-ji̍p {{SITENAME}}.',
@@ -426,16 +442,35 @@ Chhiaⁿ chù-ì: ū-kóa ia̍h ū khó-lêng khoàⁿ-tio̍h bē-su lí iû-go�
 'userexists'                 => 'Lí beh ti̍h ê iōng-chiá miâ-chheng í-keng ū lâng iōng. Chhiáⁿ kéng pa̍t-ê miâ.',
 'loginerror'                 => 'Teng-ji̍p chhò-gō·',
 'createaccounterror'         => 'Bô hoat-tō͘ khui kháu-chō: $1',
+'nocookiesnew'               => '口座開好矣，毋過你猶未登入，
+{{SITENAME}}用cookies記錄用者，
+你無拍開cookies功能，
+請拍開，通記錄你的用者名稱佮密碼。',
+'nocookieslogin'             => '{{SITENAME}}用 Cookies 記錄用戶，你共關掉，請拍開閣重新登入。',
+'nocookiesfornew'            => '這个用者口座猶未開，阮無法度確認伊的來源，
+請確定你您已經拍開cookies功能了，重新載入這頁閣重試。',
+'noname'                     => '你無拍一个有效的用者名稱。',
 'loginsuccesstitle'          => 'Teng-ji̍p sêng-kong',
 'loginsuccess'               => 'Lí hiān-chhú-sî í-keng teng-ji̍p {{SITENAME}} chò "$1".',
 'nosuchuser'                 => 'Chia bô iōng-chiá hō-chò "$1". Miâ-jī  ū hun toā-siá, sio-siá . Chhiáⁿ kiám-cha lí ê phèng-im, a̍h-sī [[Special:UserLogin/signup|khui sin káu-chō]].',
 'nosuchusershort'            => 'Bô "$1" chit ê iōng-chiá miâ.
 Tùi khoàⁿ-māi,  lí phah--ê.',
 'nouserspecified'            => 'Lí ài chí-tēng chi̍t ê iōng-chiá miâ.',
+'login-userblocked'          => '這个用者已經hông封鎖，無允准登入。',
 'wrongpassword'              => 'Lí su-ji̍p ê bi̍t-bé ū têng-tâⁿ. Chhiáⁿ têng chhì.',
 'wrongpasswordempty'         => 'Bi̍t-bé keh-á khang-khang. Chhiáⁿ têng chhì.',
+'passwordtooshort'           => '密碼至少愛有{{PLURAL:$1|一个字元|$1字元}}',
+'password-name-match'        => '你的密碼袂使佮你的用者名稱相仝',
+'password-login-forbidden'   => '這个用者名稱佮密碼已經hông禁止',
 'mailmypassword'             => 'Kià sin bi̍t-bé hō· góa',
 'passwordremindertitle'      => '{{SITENAME}} the-chheN li e bit-be',
+'passwordremindertext'       => '有人（可能是你，佇$1 IP地址）已經佇{{SITENAME}}申請新密碼 （$4）。
+用者"$2"的一个臨時密碼已經設定做"$3"。
+若毋是你申請的，你需要馬上登入並且選擇一个新密碼。
+你的臨時密碼會佇{{PLURAL:$5|一工|$5工}}內過期。
+
+若是別人申請的，抑是你已經想起你的密碼，而且不想欲改，
+你會使莫管這个信息而且繼續用你的舊密碼。',
 'noemail'                    => 'Kì-lo̍k bô iōng-chiá "$1" ê e-mail chū-chí.',
 'passwordsent'               => 'Ū kià sin bi̍t-bé khì "$1" chù-chheh ê e-mail chū-chí. Siu--tio̍h liáu-āu chhiáⁿ têng teng-ji̍p.',
 'mailerror'                  => 'Kià phoe tú tio̍h chhò-gō·: $1',
@@ -764,7 +799,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'filehist-dimensions' => '長闊',
 'filehist-comment'    => '註釋',
 'imagelinks'          => 'Ēng tio̍h ê  tóng-àn',
-'linkstoimage'        => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
+'linkstoimage'        => 'Ē-bīn ê {{PLURAL:$1|ia̍h liân kàu|$1 ia̍h liân kàu}}  chit ê tóng-àn:',
 'nolinkstoimage'      => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
 
 # MIME search

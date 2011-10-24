@@ -221,7 +221,7 @@ $messages = array(
 'dec'           => 'ডিচে:',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|শ্ৰেণী|শ্ৰেণী}}',
+'pagecategories'                 => '{{PLURAL:$1|বৰ্গ|বৰ্গ}}',
 'category_header'                => '"$1" শ্ৰেণীৰ পৃষ্ঠাসমূহ',
 'subcategories'                  => 'উপশ্ৰেণীসমুহ',
 'category-media-header'          => '"$1" শ্ৰেণীৰ মিডিয়া',
@@ -2826,6 +2826,13 @@ $1',
 'hours'   => '{{PLURAL:$1|$1 ঘন্টা|$1 ঘন্টা}}',
 'days'    => '{{PLURAL:$1|$1 দিন|$1 দিন}}',
 'ago'     => '$1 আগেয়ে',
+
+# Bad image list
+'bad_image_list' => 'The format is as follows:
+
+Only list items (lines starting with *) are considered.
+The first link on a line must be a link to a bad file.
+Any subsequent links on the same line are considered to be exceptions, i.e. pages where the file may occur inline.',
 
 # Metadata
 'metadata'          => 'মেটাডাটা',

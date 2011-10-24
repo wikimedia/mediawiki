@@ -263,7 +263,7 @@ $1',
 
 'badaccess'        => 'Qalad dhinaca ogolaashada',
 'badaccess-group0' => 'Laguuma ogolo in aad sameyso waxa aad rabtid',
-'badaccess-groups' => 'Wixii aad na weydiisay waxaa loogu tala galay isticmaaleyaashaan u gaarka ah {{PLURAL:$2|kooxdaan|qaar ka mid ah kooxdaan}}: $1.',
+'badaccess-groups' => 'Dalabkaan wuxuu u gaar yahay isticmaaleyaasha ka mid ah {{PLURAL:$2|kooxda|kooxahaan}}: $1.',
 
 'versionrequired'     => 'Nuuca  $1 oo MediaWiki ah aa loo baahanyahy',
 'versionrequiredtext' => 'Nooca $1 ee MediaWiki aa loo baahanyahay in lagu isticmaalo boggaan.

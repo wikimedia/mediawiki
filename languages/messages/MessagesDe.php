@@ -1613,7 +1613,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'rightslog'                  => 'Rechte-Logbuch',
 'rightslogtext'              => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 'rightslogentry'             => 'änderte die Benutzerrechte für „$1“ von „$2“ auf „$3“',
-'rightslogentry-autopromote' => 'die Zuordnung zur Benutzergruppe wurde automatisch von $2 in $3 geändert',
+'rightslogentry-autopromote' => 'die Zuordnung zur Benutzergruppe wurde automatisch von „$2“ in „$3“ geändert',
 'rightsnone'                 => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"

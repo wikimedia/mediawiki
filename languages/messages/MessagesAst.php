@@ -1406,8 +1406,8 @@ Esta información sedrá pública.",
 'recentchangeslinked-to'       => "Amosar los cambeos a les páxines enllaciaes en cuenta d'a la páxina dada",
 
 # Upload
-'upload'                      => 'Xubir imaxe',
-'uploadbtn'                   => 'Xubir',
+'upload'                      => 'Xubir ficheru',
+'uploadbtn'                   => 'Xubir ficheru',
 'reuploaddesc'                => 'Cancelar la xubida y tornar al formulariu de xubíes',
 'upload-tryagain'             => 'Unviar descripción camudada del ficheru',
 'uploadnologin'               => 'Non identificáu',
