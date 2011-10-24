@@ -126,5 +126,31 @@ class SanitizerTest extends MediaWikiTestCase {
 		$GLOBALS['wgCleanupPresentationalAttributes'] = false;
 		$this->assertEquals( Sanitizer::fixTagAttributes( 'clear="left"', 'br' ), ' clear="left"', 'Deprecated attributes are not converted to styles when enabled.' );
 	}
+
+	/**
+	 * @dataProvider provideCssCommentsFixtures
+	 */
+	function testCssCommentsChecking( $expected, $css, $message = '' ) {
+		$this->assertEquals(
+			$expected,
+			Sanitizer::checkCss( $css ),
+			$message
+		);
+	}
+
+	function provideCssCommentsFixtures() {
+		/** array( <expected>, <css>, [message] ) */
+		return array(
+			array( ' ', '/**/' ),
+			array( ' ', '/****/' ),
+			array( ' ', '/* comment */' ),
+			array( ' ', "\\2f\\2a foo \\2a\\2f",
+				'Backslash-escaped comments must be stripped (bug 28450)' ),
+			array( '', '/* unfinished comment structure',
+	 			'Remove anything after a comment-start token' ),
+			array( '', "\\2f\\2a unifinished comment'",
+	 			'Remove anything after a backslash-escaped comment-start token' ),
+		);
+	}
 }
 
