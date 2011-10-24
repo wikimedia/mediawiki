@@ -688,6 +688,24 @@ class DatabasePostgres extends DatabaseBase {
 		return $this->query( 'CREATE ' . ( $temporary ? 'TEMPORARY ' : '' ) . " TABLE $newName (LIKE $oldName INCLUDING DEFAULTS)", $fname );
 	}
 
+	function listTables( $prefix = null, $fname = 'DatabasePostgres::listTables' ) {
+		global $wgDBmwschema;
+		$eschema = $this->addQuotes( $wgDBmwschema );
+		$result = $this->query( "SELECT tablename FROM pg_tables WHERE schemaname = $eschema", $fname );
+
+		$endArray = array();
+
+		foreach( $result as $table ) {
+			$vars = get_object_vars($table);
+			$table = array_pop( $vars );
+			if( !$prefix || strpos( $table, $prefix ) === 0 ) {
+				$endArray[] = $table;
+			}
+		}
+
+		return $endArray;
+	}
+
 	function timestamp( $ts = 0 ) {
 		return wfTimestamp( TS_POSTGRES, $ts );
 	}
