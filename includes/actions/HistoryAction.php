@@ -498,7 +498,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @todo document some more, and maybe clean up the code (some params redundant?)
 	 *
 	 * @param $row Object: the database row corresponding to the previous line.
-	 * @param $next Mixed: the database row corresponding to the next line.
+	 * @param $next Mixed: the database row corresponding to the next line. (chronologically previous)
 	 * @param $notificationtimestamp
 	 * @param $latest Boolean: whether this row corresponds to the page's latest revision.
 	 * @param $firstInList Boolean: whether this row corresponds to the first displayed on this history page.
@@ -509,6 +509,13 @@ class HistoryPager extends ReverseChronologicalPager {
 	{
 		$rev = new Revision( $row );
 		$rev->setTitle( $this->getTitle() );
+
+		if ( is_object( $next ) ) {
+			$prevRev = new Revision( $next );
+			$prevRev->setTitle( $this->getTitle() );
+		} else {
+			$prevRev = null;
+		}
 
 		$curlink = $this->curLink( $rev, $latest );
 		$lastlink = $this->lastLink( $rev, $next );
@@ -566,8 +573,12 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= ' ' . ChangesList::flag( 'minor' );
 		}
 
-		if ( !is_null( $size = $rev->getSize() ) && !$rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$s .= ' ' . Linker::formatRevisionSize( $size );
+		if ( $prevRev
+			&& !$prevRev->isDeleted( Revision::DELETED_TEXT )
+			&& !$rev->isDeleted( Revision::DELETED_TEXT ) )
+		{
+			$sDiff = ChangesList::showCharacterDifference( $prevRev->getSize(), $rev->getSize() );
+			$s .= ' . . ' . $sDiff . ' . . ';
 		}
 
 		$s .= Linker::revComment( $rev, false, true );
@@ -579,7 +590,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$tools = array();
 
 		# Rollback and undo links
-		if ( !is_null( $next ) && is_object( $next ) &&
+		if ( $prevRev &&
 			!count( $this->getTitle()->getUserPermissionsErrors( 'edit', $this->getUser() ) ) )
 		{
 			if ( $latest && !count( $this->getTitle()->getUserPermissionsErrors( 'rollback', $this->getUser() ) ) ) {
@@ -589,7 +600,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			}
 
 			if ( !$rev->isDeleted( Revision::DELETED_TEXT )
-				&& !$next->rev_deleted & Revision::DELETED_TEXT )
+				&& !$prevRev->isDeleted( Revision::DELETED_TEXT ) )
 			{
 				# Create undo tooltip for the first (=latest) line only
 				$undoTooltip = $latest
@@ -600,9 +611,9 @@ class HistoryPager extends ReverseChronologicalPager {
 					$this->msg( 'editundo' )->escaped(),
 					$undoTooltip,
 					array(
-						'action' => 'edit',
-						'undoafter' => $next->rev_id,
-						'undo' => $rev->getId()
+						'action'    => 'edit',
+						'undoafter' => $prevRev->getId(),
+						'undo'      => $rev->getId()
 					)
 				);
 				$tools[] = "<span class=\"mw-history-undo\">{$undolink}</span>";

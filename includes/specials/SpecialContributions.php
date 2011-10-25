@@ -549,18 +549,14 @@ class ContribsPager extends ReverseChronologicalPager {
 	}
 
 	function doBatchLookups() {
-		global $wgRCShowChangedSize;
-
-		$this->mParentLens = array();
-		if ( $wgRCShowChangedSize ) {
-			$this->mResult->rewind();
-			$revIds = array();
-			foreach ( $this->mResult as $row ) {
-				$revIds[] = $row->rev_parent_id;
-			}
-			$this->mParentLens = $this->getParentLengths( $revIds );
-			$this->mResult->rewind(); // reset
+		$this->mResult->rewind();
+		$revIds = array();
+		foreach ( $this->mResult as $row ) {
+			$revIds[] = $row->rev_parent_id;
 		}
+		$this->mParentLens = $this->getParentLengths( $revIds );
+		$this->mResult->rewind(); // reset
+
 		if ( $this->contribs === 'newbie' ) { // multiple users
 			# Do a link batch query
 			$this->mResult->seek( 0 );
