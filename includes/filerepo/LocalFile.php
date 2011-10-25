@@ -705,6 +705,9 @@ class LocalFile extends File {
 		}
 		wfRestoreWarnings();
 
+		# Temporary hook for purging Swift thumbnail cache
+		wfRunHooks( 'LocalFilePurgeThumbnails', array( $dir, 'old' ) );
+
 		// Purge the squid
 		if ( $wgUseSquid ) {
 			$urls = array();
@@ -733,6 +736,9 @@ class LocalFile extends File {
 		
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
+
+		# Temporary hook for purging Swift thumbnail cache
+		wfRunHooks( 'LocalFilePurgeThumbnails', array( $dir, 'current' ) );
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
