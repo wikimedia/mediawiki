@@ -749,7 +749,7 @@ class LocalFile extends File {
 	 * @param $dir string base dir of the files.
 	 * @param $files array of strings: relative filenames (to $dir)
 	 */
-	function purgeThumbList($dir, $files) {
+	protected function purgeThumbList($dir, $files) {
 		global $wgExcludeFromThumbnailPurge;
 
 		wfDebug( __METHOD__ . ": " . var_export( $files, true ) . "\n" );
