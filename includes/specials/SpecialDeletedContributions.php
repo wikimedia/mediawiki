@@ -257,6 +257,7 @@ class DeletedContributionsPage extends SpecialPage {
 	 * @param	$par	String: (optional) user name of the user for which to show the contributions
 	 */
 	function execute( $par ) {
+		global $wgQueryPageDefaultLimit;
 		$this->setHeaders();
 
 		$user = $this->getUser();
@@ -283,7 +284,7 @@ class DeletedContributionsPage extends SpecialPage {
 			return;
 		}
 
-		$options['limit'] = $request->getInt( 'limit', 50 );
+		$options['limit'] = $request->getInt( 'limit', $wgQueryPageDefaultLimit );
 		$options['target'] = $target;
 
 		$nt = Title::makeTitleSafe( NS_USER, $target );

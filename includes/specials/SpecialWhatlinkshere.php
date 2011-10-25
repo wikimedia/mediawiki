@@ -47,7 +47,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 	}
 
 	function execute( $par ) {
-		global $wgWhatlinkshereLimit;
+		global $wgQueryPageDefaultLimit;
 		$out = $this->getOutput();
 
 		$this->setHeaders();
@@ -56,7 +56,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		$opts->add( 'target', '' );
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
-		$opts->add( 'limit', $wgWhatlinkshereLimit );
+		$opts->add( 'limit', $wgQueryPageDefaultLimit );
 		$opts->add( 'from', 0 );
 		$opts->add( 'back', 0 );
 		$opts->add( 'hideredirs', false );
