@@ -195,6 +195,9 @@ class ParserOptions {
 		}
 		if ( $lang === null ) {
 			global $wgLang;
+			if ( !StubObject::isRealObject( $wgLang ) ) {
+				$wgLang->_unstub();
+			}
 			$lang = $wgLang;
 		}
 		$this->initialiseFromUser( $user, $lang );
