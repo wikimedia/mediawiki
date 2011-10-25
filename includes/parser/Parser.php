@@ -3883,8 +3883,9 @@ class Parser {
 
 		# Inhibit editsection links if requested in the page
 		if ( isset( $this->mDoubleUnderscores['noeditsection'] ) ) {
-			$showEditLink = 0;
+			$maybeShowEditLink = $showEditLink = false;
 		} else {
+			$maybeShowEditLink = true; /* Actual presence will depend on ParserOptions option */
 			$showEditLink = $this->mOptions->getEditSection();
 		}
 		if ( $showEditLink ) {
@@ -4139,7 +4140,7 @@ class Parser {
 			);
 
 			# give headline the correct <h#> tag
-			if ( $sectionIndex !== false ) {
+			if ( $maybeShowEditLink && $sectionIndex !== false ) {
 				// Output edit section links as markers with styles that can be customized by skins
 				if ( $isTemplate ) {
 					# Put a T flag in the section identifier, to indicate to extractSections()
