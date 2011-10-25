@@ -26,85 +26,46 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialUnlockdb extends SpecialPage {
+class SpecialUnlockdb extends FormSpecialPage {
 
 	public function __construct() {
 		parent::__construct( 'Unlockdb', 'siteadmin' );
 	}
 
-	public function execute( $par ) {
-		$this->setHeaders();
+	public function requiresWrite() {
+		return false;
+	}
 
-		# Permission check
-		if( !$this->userCanExecute( $this->getUser() ) ) {
-			$this->displayRestrictionError();
-			return;
-		}
+	public function userCanExecute( User $user ) {
+		parent::userCanExecute( $user );
 
-		$this->outputHeader();
-
-		$request = $this->getRequest();
-		$action = $request->getVal( 'action' );
-
-		if ( $action == 'success' ) {
-			$this->showSuccess();
-		} elseif ( $action == 'submit' && $request->wasPosted() &&
-			$this->getUser()->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
-			$this->doSubmit();
-		} else {
-			$this->showForm();
+		# If the lock file isn't writable, we can do sweet bugger all
+		global $wgReadOnlyFile;
+		if ( !file_exists( $wgReadOnlyFile ) ) {
+			throw new ErrorPageError( 'lockdb', 'databasenotlocked' );
 		}
 	}
 
-	private function showForm( $err = '' ) {
-		global $wgReadOnlyFile;
-
-		$out = $this->getOutput();
-
-		if( !file_exists( $wgReadOnlyFile ) ) {
-			$out->addWikiMsg( 'databasenotlocked' );
-			return;
-		}
-
-		$out->addWikiMsg( 'unlockdbtext' );
-
-		if ( $err != '' ) {
-			$out->setSubtitle( wfMsg( 'formerror' ) );
-			$out->addHTML( '<p class="error">' . htmlspecialchars( $err ) . "</p>\n" );
-		}
-
-		$out->addHTML(
-			Html::openElement( 'form', array( 'id' => 'unlockdb', 'method' => 'POST',
-				'action' => $this->getTitle()->getLocalURL( 'action=submit' ) ) ) . "
-<table>
-	<tr>
-		" . Html::openElement( 'td', array( 'style' => 'text-align:right' ) ) . "
-			" . Html::input( 'wpLockConfirm', null, 'checkbox',  array( 'id' => 'mw-input-wpunlockconfirm' )  ) . "
-		</td>
-		" . Html::openElement( 'td', array( 'style' => 'text-align:left' ) ) .
-			Html::openElement( 'label', array( 'for' => 'mw-input-wpunlockconfirm' ) ) .
-			wfMsgHtml( 'unlockconfirm' ) . "</label>
-		</td>
-	</tr>
-	<tr>
-		<td>&#160;</td>
-		" . Html::openElement( 'td', array( 'style' => 'text-align:left' ) ) . "
-			" . Html::input( 'wpLock', wfMsg( 'unlockbtn' ), 'submit' ) . "
-		</td>
-	</tr>
-</table>\n" .
-			Html::hidden( 'wpEditToken', $this->getUser()->editToken() ) . "\n" .
-			Html::closeElement( 'form' )
+	protected function getFormFields() {
+		return array(
+			'Confirm' => array(
+				'type' => 'toggle',
+				'label-message' => 'unlockconfirm',
+			),
 		);
-
 	}
 
-	private function doSubmit() {
+	protected function alterForm( HTMLForm $form ) {
+		$form->setWrapperLegend( false );
+		$form->setHeaderText( $this->msg( 'unlockdbtext' )->parseAsBlock() );
+		$form->setSubmitTextMsg( 'unlockbtn' );
+	}
+
+	public function onSubmit( array $data ) {
 		global $wgReadOnlyFile;
 
-		if ( !$this->getRequest()->getCheck( 'wpLockConfirm' ) ) {
-			$this->showForm( wfMsg( 'locknoconfirm' ) );
-			return;
+		if ( !$data['Confirm'] ) {
+			return Status::newFatal( 'locknoconfirm' );
 		}
 
 		wfSuppressWarnings();
@@ -112,13 +73,13 @@ class SpecialUnlockdb extends SpecialPage {
 		wfRestoreWarnings();
 
 		if ( $res ) {
-			$this->getOutput()->redirect( $this->getTitle()->getFullURL( 'action=success' ) );
+			return Status::newGood();
 		} else {
-			$this->getOutput()->addWikiMsg( 'filedeleteerror', $wgReadOnlyFile );
+			return Status::newFatal( 'filedeleteerror', $wgReadOnlyFile );
 		}
 	}
 
-	private function showSuccess() {
+	public function onSuccess() {
 		$out = $this->getOutput();
 		$out->setSubtitle( wfMsg( 'unlockdbsuccesssub' ) );
 		$out->addWikiMsg( 'unlockdbsuccesstext' );
