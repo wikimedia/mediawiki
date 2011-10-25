@@ -585,8 +585,13 @@
 					cacheRegexs();
 
 					// Apply event handling to headers
-					// this is to big, perhaps break it out?
+					// this is too big, perhaps break it out?
 					$headers.click( function( e ) {
+						if ( e.target.nodeName.toLowerCase() == 'a' ) {
+							// The user clicked on a link inside a table header
+							// Do nothing and let the default link click action continue
+							return true;
+						}
 
 						if ( firstTime ) {
 							firstTime = false;
@@ -668,12 +673,7 @@
 							};
 							return false;
 						}
-					} )
-					// Allow links in headers to be clicked
-					.find( 'a' ).click( function( e ) {
-						e.stopPropagation();
 					} );
-
 				} );
 			},
 
