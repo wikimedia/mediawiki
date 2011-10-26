@@ -131,6 +131,8 @@ production.
 * (bug 26885) Allow show/hide of account blocks, temporary blocks and single IP
   address blocks for list=blocks.
 * (bug 30591) Add support to only return keys in ApiAllMessages.
+* The API now respects $wgShowHostnames and won't share the hostname in
+  severedby if it's set to false
 
 === Languages updated in 1.19 ===
 
