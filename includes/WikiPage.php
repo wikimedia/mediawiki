@@ -26,8 +26,17 @@ class WikiPage extends Page {
 	public $mIsRedirect = false;         // !< Boolean
 	public $mLatest = false;             // !< Boolean
 	public $mPreparedEdit = false;		 // !< Array
-	public $mRedirectTarget = null;		 // !< Title object
-	public $mLastRevision = null;		 // !< Revision object
+
+	/**
+	 * @var Title
+	 */
+	public $mRedirectTarget = null;
+
+	/**
+	 * @var Revision
+	 */
+	public $mLastRevision = null;
+
 	public $mTimestamp = '';             // !< String
 	public $mTouched = '19700101000000'; // !< String
 	/**@}}*/
@@ -700,6 +709,7 @@ class WikiPage extends Page {
 	 * Should the parser cache be used?
 	 *
 	 * @param $user User The relevant user
+	 * @param $oldid int
 	 * @return boolean
 	 */
 	public function isParserCacheUsed( User $user, $oldid ) {
@@ -756,7 +766,6 @@ class WikiPage extends Page {
 	 *
 	 * @param $dbw DatabaseBase
 	 * @return int The newly created page_id key, or false if the title already existed
-	 * @private
 	 */
 	public function insertOn( $dbw ) {
 		wfProfileIn( __METHOD__ );
@@ -1585,7 +1594,7 @@ class WikiPage extends Page {
 	 * Deletes the article with database consistency, writes logs, purges caches
 	 *
 	 * @param $reason string delete reason for deletion log
-	 * @param suppress bitfield
+	 * @param $suppress bitfield
 	 * 	Revision::DELETED_TEXT
 	 * 	Revision::DELETED_COMMENT
 	 * 	Revision::DELETED_USER
@@ -2585,7 +2594,7 @@ class WikiPage extends Page {
 	 * Updates cascading protections
 	 *
 	 * @param $parserOutput ParserOutput object for the current version
-	 **/
+	 */
 	public function doCascadeProtectionUpdates( ParserOutput $parserOutput ) {
 		if ( wfReadOnly() || !$this->mTitle->areRestrictionsCascading() ) {
 			return;
@@ -2632,25 +2641,25 @@ class WikiPage extends Page {
 		}
 	}
 
-	/*
-	* @deprecated since 1.18
-	*/
+	/**
+	 * @deprecated since 1.18
+	 */
 	public function quickEdit( $text, $comment = '', $minor = 0 ) {
 		global $wgUser;
 		return $this->doQuickEdit( $text, $wgUser, $comment, $minor );
 	}
 
-	/*
-	* @deprecated since 1.18
-	*/
+	/**
+	 * @deprecated since 1.18
+	 */
 	public function viewUpdates() {
 		global $wgUser;
 		return $this->doViewUpdates( $wgUser );
 	}
 
-	/*
-	* @deprecated since 1.18
-	*/
+	/**
+	 * @deprecated since 1.18
+	 */
 	public function useParserCache( $oldid ) {
 		global $wgUser;
 		return $this->isParserCacheUsed( $wgUser, $oldid );

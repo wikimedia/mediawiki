@@ -1192,6 +1192,10 @@ class FauxRequest extends WebRequest {
 			$this->session = $session;
 	}
 
+	/**
+	 * @param $method string
+	 * @throws MWException
+	 */
 	private function notImplemented( $method ) {
 		throw new MWException( "{$method}() not implemented" );
 	}

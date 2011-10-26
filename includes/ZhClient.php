@@ -41,10 +41,7 @@ class ZhClient {
 		$errno = $errstr = '';
 		$this->mFP = fsockopen( $this->mHost, $this->mPort, $errno, $errstr, 30 );
 		wfRestoreWarnings();
-		if ( !$this->mFP ) {
-			return false;
-		}
-		return true;
+		return !$this->mFP;
 	}
 
 	/**
@@ -77,10 +74,7 @@ class ZhClient {
 			$data .= $str;
 		}
 		// data should be of length $len. otherwise something is wrong
-		if ( strlen( $data ) != $len ) {
-			return false;
-		}
-		return $data;
+		return strlen( $data ) == $len;
 	}
 
 	/**
@@ -124,6 +118,7 @@ class ZhClient {
 		}
 		return $ret;
 	}
+
 	/**
 	 * Perform word segmentation
 	 *

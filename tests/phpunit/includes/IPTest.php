@@ -43,20 +43,20 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertFalse( IP::isIPv6( 'fc:100:::' ), 'IPv6 ending with a ":::"' );
 		$this->assertFalse( IP::isIPv6( 'fc:300' ), 'IPv6 with only 2 words' );
 		$this->assertFalse( IP::isIPv6( 'fc:100:300' ), 'IPv6 with only 3 words' );
-		
+
 		$this->assertTrue( IP::isIPv6( 'fc:100::' ) );
 		$this->assertTrue( IP::isIPv6( 'fc:100:a::' ) );
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d::' ) );
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1::' ) );
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e::' ) );
 		$this->assertTrue( IP::isIPv6( 'fc:100:a:d:1:e:ac::' ) );
-		
+
 		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0::' ), 'IPv6 with 8 words ending with "::"' );
 		$this->assertFalse( IP::isIPv6( 'fc:100:a:d:1:e:ac:0:1::' ), 'IPv6 with 9 words ending with "::"' );
 
 		$this->assertFalse( IP::isIPv6( ':::' ) );
 		$this->assertFalse( IP::isIPv6( '::0:' ), 'IPv6 ending in a lone ":"' );
-		
+
 		$this->assertTrue( IP::isIPv6( '::' ), 'IPv6 zero address' );
 		$this->assertTrue( IP::isIPv6( '::0' ) );
 		$this->assertTrue( IP::isIPv6( '::fc' ) );
@@ -66,14 +66,14 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1' ) );
 		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1:e' ) );
 		$this->assertTrue( IP::isIPv6( '::fc:100:a:d:1:e:ac' ) );
-		
+
 		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 words' );
 		$this->assertFalse( IP::isIPv6( '::fc:100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 words' );
 
 		$this->assertFalse( IP::isIPv6( ':fc::100' ), 'IPv6 starting with lone ":"' );
 		$this->assertFalse( IP::isIPv6( 'fc::100:' ), 'IPv6 ending with lone ":"' );
 		$this->assertFalse( IP::isIPv6( 'fc:::100' ), 'IPv6 with ":::" in the middle' );
-		
+
 		$this->assertTrue( IP::isIPv6( 'fc::100' ), 'IPv6 with "::" and 2 words' );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a' ), 'IPv6 with "::" and 3 words' );
 		$this->assertTrue( IP::isIPv6( 'fc::100:a:d', 'IPv6 with "::" and 4 words' ) );
@@ -83,7 +83,7 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertTrue( IP::isIPv6( '2001::df'), 'IPv6 with "::" and 2 words' );
 		$this->assertTrue( IP::isIPv6( '2001:5c0:1400:a::df'), 'IPv6 with "::" and 5 words' );
 		$this->assertTrue( IP::isIPv6( '2001:5c0:1400:a::df:2'), 'IPv6 with "::" and 6 words' );
-		
+
 		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0' ), 'IPv6 with "::" and 8 words' );
 		$this->assertFalse( IP::isIPv6( 'fc::100:a:d:1:e:ac:0:1' ), 'IPv6 with 9 words' );
 
@@ -135,11 +135,11 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertFalse( IP::isValid( 'fc:100:::' ), 'IPv6 ending with a ":::"' );
 		$this->assertFalse( IP::isValid( 'fc:300' ), 'IPv6 with only 2 words' );
 		$this->assertFalse( IP::isValid( 'fc:100:300' ), 'IPv6 with only 3 words' );
-		
+
 		$this->assertTrue( IP::isValid( 'fc:100::' ) );
 		$this->assertTrue( IP::isValid( 'fc:100:a:d:1:e::' ) );
 		$this->assertTrue( IP::isValid( 'fc:100:a:d:1:e:ac::' ) );
-		
+
 		$this->assertTrue( IP::isValid( 'fc::100' ), 'IPv6 with "::" and 2 words' );
 		$this->assertTrue( IP::isValid( 'fc::100:a' ), 'IPv6 with "::" and 3 words' );
 		$this->assertTrue( IP::isValid( '2001::df'), 'IPv6 with "::" and 2 words' );
@@ -147,7 +147,7 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertTrue( IP::isValid( '2001:5c0:1400:a::df:2'), 'IPv6 with "::" and 6 words' );
 		$this->assertTrue( IP::isValid( 'fc::100:a:d:1' ), 'IPv6 with "::" and 5 words' );
 		$this->assertTrue( IP::isValid( 'fc::100:a:d:1:e:ac' ), 'IPv6 with "::" and 7 words' );
-		
+
 		$this->assertFalse( IP::isValid( 'fc:100:a:d:1:e:ac:0::' ), 'IPv6 with 8 words ending with "::"' );
 		$this->assertFalse( IP::isValid( 'fc:100:a:d:1:e:ac:0:1::' ), 'IPv6 with 9 words ending with "::"' );
 	}
@@ -332,7 +332,7 @@ class IPTest extends MediaWikiTestCase {
 		$this->assertEquals( '0:0:0:0:0:0:FCCF:FAFF', IP::hexToOctet( 'FCCFFAFF' ) );
 	}
 
-	/*
+	/**
 	 * IP::parseCIDR() returns an array containing a signed IP address
 	 * representing the network mask and the bit mask.
 	 * @covers IP::parseCIDR
@@ -391,7 +391,7 @@ class IPTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * Issues there are most probably from IP::toHex() or IP::parseRange()		
+	 * Issues there are most probably from IP::toHex() or IP::parseRange()
 	 * @covers IP::isInRange
 	 * @dataProvider provideIPsAndRanges
 	 */
@@ -464,9 +464,9 @@ class IPTest extends MediaWikiTestCase {
 	 */
 	function testCombineHostAndPort( $expected, $input, $description ) {
 		list( $host, $port, $defaultPort ) = $input;
-		$this->assertEquals( 
-			$expected, 
-			IP::combineHostAndPort( $host, $port, $defaultPort ), 
+		$this->assertEquals(
+			$expected,
+			IP::combineHostAndPort( $host, $port, $defaultPort ),
 			$description );
 	}
 

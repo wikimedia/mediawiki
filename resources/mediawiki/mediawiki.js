@@ -222,7 +222,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 
 	/* Public Members */
 
-	/*
+	/**
 	 * Dummy function which in debug mode can be replaced with a function that
 	 * emulates console.log in console-less environments.
 	 */
@@ -249,7 +249,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 	 */
 	this.libs = {};
 
-	/*
+	/**
 	 * Localization system
 	 */
 	this.messages = new this.Map();
@@ -556,7 +556,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 							callback();
 							return;
 						}
-						
+
 						addScript( arr[i], function() {
 							nestedAddScript( arr, callback, i + 1 );
 						} );
@@ -1175,7 +1175,7 @@ window.mw = window.mediaWiki = new ( function( $ ) {
 			} );
 			return names;
 		};
-		
+
 		/**
 		 * For backwards-compatibility with Squid-cached pages. Loads mw.user
 		 */

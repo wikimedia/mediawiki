@@ -5,7 +5,7 @@ if ( !defined( 'SELENIUMTEST' ) ) {
 
 class SeleniumConfig {
 
-	/*
+	/**
 	 * Retreives the Selenium configuration values from an ini file.
 	 * See sample config file in selenium_settings.ini.sample
 	 *
@@ -72,14 +72,14 @@ class SeleniumConfig {
 			return false;
 		}
 		$header = '';
-		
+
 		$configArray = array();
-		
+
 		while ( ( $line = fgets( $file ) ) !== false ) {
 			$line = strtok( $line, "\r\n" );
-			
+
 			if ( !$line || $line[0] == ';' ) continue;
-			
+
 			if ( $line[0] == '[' && substr( $line, -1 ) == ']' ) {
 				$header = substr( $line, 1, -1 );
 				$configArray[$header] = array();
@@ -95,19 +95,19 @@ class SeleniumConfig {
 		list( $key, $value ) = explode( '=', $iniLine, 2 );
 		$key = trim( $key );
 		$value = trim( $value );
-		
+
 		if ( isset( $specialValues[$value] ) ) {
 			$value = $specialValues[$value];
 		} else {
 			$value = trim( $value, '"' );
 		}
-		
+
 		/* Support one-level arrays */
 		if ( preg_match( '/^([A-Za-z]+)\[([A-Za-z]+)\]/', $key, $m ) ) {
 			$key = $m[1];
 			$value = array( $m[2] => $value );
 		}
-		
+
 		return array( $key => $value );
 	}
 }
