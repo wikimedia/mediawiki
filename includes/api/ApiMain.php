@@ -551,6 +551,7 @@ class ApiMain extends ApiBase {
 		if ( !is_null( $requestid ) ) {
 			$result->addValue( null, 'requestid', $requestid );
 		}
+		// TODO: Isn't there a setting to disable sharing the server hostname?
 		$servedby = $this->getParameter( 'servedby' );
 		if ( $servedby ) {
 			$result->addValue( null, 'servedby', wfHostName() );
