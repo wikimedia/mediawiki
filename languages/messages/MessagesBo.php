@@ -648,6 +648,7 @@ $messages = array(
 
 # Miscellaneous special pages
 'nbytes'            => '{{PLURAL:$1|ཡིག་ཚགས།|ཡིག་ཚགས།}} $1',
+'shortpages'        => 'ཤོག་ངོས་ཐུང་ངུ་།',
 'newpages'          => 'ཤོག་ངོས་གསར་བ།',
 'newpages-username' => 'དྲ་མིང་།:',
 'move'              => 'སྤོར་བ།',
