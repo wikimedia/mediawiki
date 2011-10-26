@@ -19,7 +19,7 @@ class DoubleRedirectJob extends Job {
 	 */
 	static $user;
 
-	/** 
+	/**
 	 * Insert jobs into the job queue to fix redirects to the given title
 	 * @param $reason String: the reason for the fix, see message double-redirect-fixed-<reason>
 	 * @param $redirTitle Title: the title which has changed, redirects pointing to this title are fixed
@@ -28,10 +28,10 @@ class DoubleRedirectJob extends Job {
 	public static function fixRedirects( $reason, $redirTitle, $destTitle = false ) {
 		# Need to use the master to get the redirect table updated in the same transaction
 		$dbw = wfGetDB( DB_MASTER );
-		$res = $dbw->select( 
-			array( 'redirect', 'page' ), 
-			array( 'page_namespace', 'page_title' ), 
-			array( 
+		$res = $dbw->select(
+			array( 'redirect', 'page' ),
+			array( 'page_namespace', 'page_title' ),
+			array(
 				'page_id = rd_from',
 				'rd_namespace' => $redirTitle->getNamespace(),
 				'rd_title' => $redirTitle->getDBkey()
@@ -46,7 +46,7 @@ class DoubleRedirectJob extends Job {
 				continue;
 			}
 
-			$jobs[] = new self( $title, array( 
+			$jobs[] = new self( $title, array(
 				'reason' => $reason,
 				'redirTitle' => $redirTitle->getPrefixedDBkey() ) );
 			# Avoid excessive memory usage
@@ -65,6 +65,9 @@ class DoubleRedirectJob extends Job {
 		$this->destTitleText = !empty( $params['destTitle'] ) ? $params['destTitle'] : '';
 	}
 
+	/**
+	 * @return bool
+	 */
 	function run() {
 		if ( !$this->redirTitle ) {
 			$this->setLastError( 'Invalid title' );
@@ -103,13 +106,13 @@ class DoubleRedirectJob extends Job {
 		}
 
 		# Preserve fragment (bug 14904)
-		$newTitle = Title::makeTitle( $newTitle->getNamespace(), $newTitle->getDBkey(), 
+		$newTitle = Title::makeTitle( $newTitle->getNamespace(), $newTitle->getDBkey(),
 			$currentDest->getFragment() );
 
 		# Fix the text
 		# Remember that redirect pages can have categories, templates, etc.,
 		# so the regex has to be fairly general
-		$newText = preg_replace( '/ \[ \[  [^\]]*  \] \] /x', 
+		$newText = preg_replace( '/ \[ \[  [^\]]*  \] \] /x',
 			'[[' . $newTitle->getFullText() . ']]',
 			$text, 1 );
 
@@ -123,7 +126,7 @@ class DoubleRedirectJob extends Job {
 		$oldUser = $wgUser;
 		$wgUser = $this->getUser();
 		$article = new Article( $this->title );
-		$reason = wfMsgForContent( 'double-redirect-fixed-' . $this->reason, 
+		$reason = wfMsgForContent( 'double-redirect-fixed-' . $this->reason,
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText() );
 		$article->doEdit( $newText, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC );
 		$wgUser = $oldUser;
@@ -152,10 +155,10 @@ class DoubleRedirectJob extends Job {
 			}
 			$seenTitles[$titleText] = true;
 
-			$row = $dbw->selectRow( 
+			$row = $dbw->selectRow(
 				array( 'redirect', 'page' ),
 				array( 'rd_namespace', 'rd_title' ),
-				array( 
+				array(
 					'rd_from=page_id',
 					'page_namespace' => $title->getNamespace(),
 					'page_title' => $title->getDBkey()
@@ -172,6 +175,7 @@ class DoubleRedirectJob extends Job {
 
 	/**
 	 * Get a user object for doing edits, from a request-lifetime cache
+	 * @return User
 	 */
 	function getUser() {
 		if ( !self::$user ) {

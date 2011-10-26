@@ -175,6 +175,8 @@ class CSSJanus {
 	 *
 	 * See http://code.google.com/p/cssjanus/issues/detail?id=15 and
 	 * TODO: URL
+	 * @param $css string
+	 * @return string
 	 */
 	private static function fixDirection( $css ) {
 		$css = preg_replace( self::$patterns['direction_ltr'],
@@ -187,6 +189,8 @@ class CSSJanus {
 
 	/**
 	 * Replace 'ltr' with 'rtl' and vice versa in background URLs
+	 * @param $css string
+	 * @return string
 	 */
 	private static function fixLtrRtlInURL( $css ) {
 		$css = preg_replace( self::$patterns['ltr_in_url'], self::$patterns['tmpToken'], $css );
@@ -198,6 +202,8 @@ class CSSJanus {
 
 	/**
 	 * Replace 'left' with 'right' and vice versa in background URLs
+	 * @param $css string
+	 * @return string
 	 */
 	private static function fixLeftRightInURL( $css ) {
 		$css = preg_replace( self::$patterns['left_in_url'], self::$patterns['tmpToken'], $css );
@@ -209,6 +215,8 @@ class CSSJanus {
 
 	/**
 	 * Flip rules like left: , padding-right: , etc.
+	 * @param $css string
+	 * @return string
 	 */
 	private static function fixLeftAndRight( $css ) {
 		$css = preg_replace( self::$patterns['left'], self::$patterns['tmpToken'], $css );
@@ -220,6 +228,8 @@ class CSSJanus {
 
 	/**
 	 * Flip East and West in rules like cursor: nw-resize;
+	 * @param $css string
+	 * @return string
 	 */
 	private static function fixCursorProperties( $css ) {
 		$css = preg_replace( self::$patterns['cursor_east'],
@@ -239,6 +249,8 @@ class CSSJanus {
 	 * and four-part color rules with multiple whitespace characters between
 	 * colors are not recognized.
 	 * See http://code.google.com/p/cssjanus/issues/detail?id=16
+	 * @param $css string
+	 * @return string
 	 */
 	private static function fixFourPartNotation( $css ) {
 		$css = preg_replace( self::$patterns['four_notation_quantity'], '$1$2$7$4$5$6$3', $css );
@@ -249,6 +261,8 @@ class CSSJanus {
 
 	/**
 	 * Flip horizontal background percentages.
+	 * @param $css string
+	 * @return string
 	 */
 	private static function fixBackgroundPosition( $css ) {
 		$css = preg_replace_callback( self::$patterns['bg_horizontal_percentage'],
@@ -261,6 +275,8 @@ class CSSJanus {
 
 	/**
 	 * Callback for calculateNewBackgroundPosition()
+	 * @param $matches array
+	 * @return string
 	 */
 	private static function calculateNewBackgroundPosition( $matches ) {
 		return $matches[1] . ( 100 - $matches[2] ) . $matches[3];
@@ -297,6 +313,10 @@ class CSSJanus_Tokenizer {
 		return preg_replace_callback( $this->regex, array( $this, 'tokenizeCallback' ), $str );
 	}
 
+	/**
+	 * @param $matches array
+	 * @return string
+	 */
 	private function tokenizeCallback( $matches ) {
 		$this->originals[] = $matches[0];
 		return $this->token;
@@ -316,6 +336,10 @@ class CSSJanus_Tokenizer {
 			array( $this, 'detokenizeCallback' ), $str );
 	}
 
+	/**
+	 * @param $matches
+	 * @return mixed
+	 */
 	private function detokenizeCallback( $matches ) {
 		$retval = current( $this->originals );
 		next( $this->originals );
