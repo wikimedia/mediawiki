@@ -33,10 +33,10 @@
  *	'help-message'        -- message key for a message to use as a help text.
  *	                         can be an array of msg key and then parameters to
  *	                         the message.
- *                           Overwrites 'help-messages'.
- *  'help-messages'       -- array of message key. As above, each item can
- *                           be an array of msg key and then parameters.
- *                           Overwrites 'help-message'.
+ *	                         Overwrites 'help-messages'.
+ *	'help-messages'       -- array of message key. As above, each item can
+ *	                         be an array of msg key and then parameters.
+ *	                         Overwrites 'help-message'.
  *	'required'            -- passed through to the object, indicating that it
  *	                         is a required field.
  *	'size'                -- the length of text fields
