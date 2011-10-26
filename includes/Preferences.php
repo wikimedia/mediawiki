@@ -1425,7 +1425,7 @@ class Preferences {
 		return Status::newGood();
 	}
 
-	/*
+	/**
 	 * Try to set a user's email address.
 	 * This does *not* try to validate the address.
 	 * Caller is responsible for checking $wgAuth.

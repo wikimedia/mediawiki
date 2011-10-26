@@ -290,6 +290,10 @@ abstract class FormAction extends Action {
 	 * @return String HTML which will be sent to $form->addPreText()
 	 */
 	protected function preText() { return ''; }
+
+	/**
+	 * @return string
+	 */
 	protected function postText() { return ''; }
 
 	/**

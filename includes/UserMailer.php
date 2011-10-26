@@ -348,8 +348,18 @@ class UserMailer {
  */
 class EmailNotification {
 	protected $to, $subject, $body, $replyto, $from;
-	protected $user, $title, $timestamp, $summary, $minorEdit, $oldid, $composed_common, $editor;
+	protected $timestamp, $summary, $minorEdit, $oldid, $composed_common;
 	protected $mailTargets = array();
+
+	/**
+	 * @var Title
+	 */
+	protected $title;
+
+	/**
+	 * @var User
+	 */
+	protected $user, $editor;
 
 	/**
 	 * Send emails corresponding to the user $editor editing the page $title.
@@ -632,6 +642,7 @@ class EmailNotification {
 	 * depending on settings.
 	 *
 	 * Call sendMails() to send any mails that were queued.
+	 * @param $user User
 	 */
 	function compose( $user ) {
 		global $wgEnotifImpersonal;

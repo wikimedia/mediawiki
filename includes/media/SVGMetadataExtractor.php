@@ -166,7 +166,7 @@ class SVGReader {
 		}
 	}
 
-	/*
+	/**
 	 * Read an XML snippet from an element
 	 *
 	 * @param String $metafield that we will fill with the result

@@ -468,7 +468,7 @@ class Sanitizer {
 									wfSuppressWarnings();
 									$ot = array_pop( $optstack );
 									wfRestoreWarnings();
-									while ( $ot  ) {
+									while ( $ot ) {
 										array_push( $tagstack, $ot );
 										wfSuppressWarnings();
 										$ot = array_pop( $optstack );

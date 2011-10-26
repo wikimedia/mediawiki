@@ -602,7 +602,7 @@ class LoginForm extends SpecialPage {
 		return $retval;
 	}
 
-	/*
+	/**
 	 * Increment the login attempt throttle hit count for the (username,current IP)
 	 * tuple unless the throttle was already reached.
 	 * @param $username string The user name
@@ -631,7 +631,7 @@ class LoginForm extends SpecialPage {
 		return $throttleCount;
 	}
 
-	/*
+	/**
 	 * Clear the login attempt throttle hit count for the (username,current IP) tuple.
 	 * @param $username string The user name
 	 * @return void
@@ -1049,7 +1049,7 @@ class LoginForm extends SpecialPage {
 			if( $this->mLanguage )
 				$template->set( 'uselang', $this->mLanguage );
 		}
-		
+
 		// Use loginend-https for HTTPS requests if it's not blank, loginend otherwise
 		// Ditto for signupend
 		$usingHTTPS = WebRequest::detectProtocol() == 'https';

@@ -60,6 +60,7 @@ class StubObject {
 
 	/**
 	 * Create a new object to replace this stub object.
+	 * @return object
 	 */
 	function _newObject() {
 		return MWFunction::newObj( $this->mClass, $this->mParams );
@@ -91,7 +92,7 @@ class StubObject {
 
 		if ( !($GLOBALS[$this->mGlobal] instanceof StubObject) )
 			return $GLOBALS[$this->mGlobal]; // already unstubbed.
-		
+
 		if ( get_class( $GLOBALS[$this->mGlobal] ) != $this->mClass ) {
 			$fname = __METHOD__.'-'.$this->mGlobal;
 			wfProfileIn( $fname );
