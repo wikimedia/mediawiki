@@ -23,7 +23,7 @@ $thgThumbServer = "http://localhost";
 $thgThumbFragment = "MW_trunk/images/thumb";
 # URL regex fragment correspond to the directory hashing of thumbnails.
 # This must correspond to $wgLocalFileRepo['hashLevels'].
-$thgThumbHashFragment = '\w/\w\w/'; // 2-level directory hashing
+$thgThumbHashFragment = '[0-9a-f]/[0-9a-f][0-9a-f]/'; // 2-level directory hashing
 
 # The URL to thumb.php, accessible from the web server.
 $thgThumbScriptPath = "http://localhost/MW_trunk/thumb.php";
@@ -36,7 +36,7 @@ $thgThumbCurlTimeout = 53;
 $thgThumbCurlProxy = null; // proxy to thumb.php
 
 # File path to a php file the gives a 404 error message
-$thgThumb404File = "404.php";
+$thgThumb404File = null;
 
 # Custom functions for overriding aspects of thumb handling
 $thgThumbCallbacks = array();
