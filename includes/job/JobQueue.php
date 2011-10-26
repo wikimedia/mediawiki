@@ -213,6 +213,10 @@ abstract class Job {
 		throw new MWException( "Invalid job command `{$command}`" );
 	}
 
+	/**
+	 * @param $params
+	 * @return string
+	 */
 	static function makeBlob( $params ) {
 		if ( $params !== false ) {
 			return serialize( $params );
@@ -221,6 +225,10 @@ abstract class Job {
 		}
 	}
 
+	/**
+	 * @param $blob
+	 * @return bool|mixed
+	 */
 	static function extractBlob( $blob ) {
 		if ( (string)$blob !== '' ) {
 			return unserialize( $blob );
@@ -323,13 +331,16 @@ abstract class Job {
 		if ( $this->removeDuplicates ) {
 			$res = $dbw->select( 'job', array( '1' ), $fields, __METHOD__ );
 			if ( $dbw->numRows( $res ) ) {
-				return;
+				return true;
 			}
 		}
 		wfIncrStats( 'job-insert' );
 		return $dbw->insert( 'job', $fields, __METHOD__ );
 	}
 
+	/**
+	 * @return array
+	 */
 	protected function insertFields() {
 		$dbw = wfGetDB( DB_MASTER );
 		return array(
@@ -362,6 +373,9 @@ abstract class Job {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	function toString() {
 		$paramString = '';
 		if ( $this->params ) {

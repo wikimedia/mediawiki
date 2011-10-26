@@ -64,7 +64,7 @@ class UploadFromUrlJob extends Job {
 
 				# Stash the upload
 				$key = $this->upload->stashFile();
-				
+
 				if ( $this->params['leaveMessage'] ) {
 					$this->user->leaveUserMessage(
 						wfMsg( 'upload-warning-subj' ),
@@ -73,7 +73,7 @@ class UploadFromUrlJob extends Job {
 							$this->params['url'] )
 					);
 				} else {
-					wfSetupSession( $this->params['sessionId'] );					
+					wfSetupSession( $this->params['sessionId'] );
 					$this->storeResultInSession( 'Warning',
 						'warnings', $warnings );
 					session_write_close();
@@ -151,6 +151,10 @@ class UploadFromUrlJob extends Job {
 		$$session['result'] = 'Queued';
 	}
 
+	/**
+	 * @param $key
+	 * @return mixed
+	 */
 	public static function &getSessionData( $key ) {
 		if ( !isset( $_SESSION[self::SESSION_KEYNAME][$key] ) ) {
 			$_SESSION[self::SESSION_KEYNAME][$key] = array();

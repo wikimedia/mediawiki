@@ -1,19 +1,19 @@
 <?php
 
 /**
- * This class simulates Microsoft Internet Explorer's terribly broken and 
+ * This class simulates Microsoft Internet Explorer's terribly broken and
  * insecure MIME type detection algorithm. It can be used to check web uploads
- * with an apparently safe type, to see if IE will reinterpret them to produce 
+ * with an apparently safe type, to see if IE will reinterpret them to produce
  * something dangerous.
  *
- * It is full of bugs and strange design choices should not under any 
- * circumstances be used to determine a MIME type to present to a user or 
+ * It is full of bugs and strange design choices should not under any
+ * circumstances be used to determine a MIME type to present to a user or
  * client. (Apple Safari developers, this means you too.)
  *
- * This class is based on a disassembly of IE 5.0, 6.0 and 7.0. Although I have 
- * attempted to ensure that this code works in exactly the same way as Internet 
- * Explorer, it does not share any source code, or creative choices such as 
- * variable names, thus I (Tim Starling) claim copyright on it. 
+ * This class is based on a disassembly of IE 5.0, 6.0 and 7.0. Although I have
+ * attempted to ensure that this code works in exactly the same way as Internet
+ * Explorer, it does not share any source code, or creative choices such as
+ * variable names, thus I (Tim Starling) claim copyright on it.
  *
  * It may be redistributed without restriction. To aid reuse, this class does
  * not depend on any MediaWiki module.
@@ -24,8 +24,8 @@ class IEContentAnalyzer {
 	 */
 	protected $baseTypeTable = array(
 		'ambiguous' /*1*/ => array(
-			'text/plain', 
-			'application/octet-stream', 
+			'text/plain',
+			'application/octet-stream',
 			'application/x-netcdf', // [sic]
 		),
 		'text' /*3*/ => array(
@@ -34,8 +34,8 @@ class IEContentAnalyzer {
 		),
 		'binary' /*4*/ => array(
 			'application/pdf', 'audio/x-aiff', 'audio/basic', 'audio/wav', 'image/gif',
-			'image/pjpeg', 'image/jpeg', 'image/tiff', 'image/x-png', 'image/png', 'image/bmp', 
-			'image/x-jg', 'image/x-art', 'image/x-emf', 'image/x-wmf', 'video/avi', 
+			'image/pjpeg', 'image/jpeg', 'image/tiff', 'image/x-png', 'image/png', 'image/bmp',
+			'image/x-jg', 'image/x-art', 'image/x-emf', 'image/x-wmf', 'video/avi',
 			'video/x-msvideo', 'video/mpeg', 'application/x-compressed',
 			'application/x-zip-compressed', 'application/x-gzip-compressed', 'application/java',
 			'application/x-msdownload'
@@ -293,21 +293,21 @@ class IEContentAnalyzer {
 		'.xsl' => 'text/xml',
 	);
 
-	/** 
-	 * IE versions which have been analysed to bring you this class, and for 
-	 * which some substantive difference exists. These will appear as keys 
+	/**
+	 * IE versions which have been analysed to bring you this class, and for
+	 * which some substantive difference exists. These will appear as keys
 	 * in the return value of getRealMimesFromData(). The names are chosen to sort correctly.
 	 */
 	protected $versions = array( 'ie05', 'ie06', 'ie07', 'ie07.strict', 'ie07.nohtml' );
 
 	/**
-	 * Type table with versions expanded 
+	 * Type table with versions expanded
 	 */
 	protected $typeTable = array();
 
 	/** constructor */
 	function __construct() {
-		// Construct versioned type arrays from the base type array plus additions 
+		// Construct versioned type arrays from the base type array plus additions
 		$types = $this->baseTypeTable;
 		foreach ( $this->versions as $version ) {
 			if ( isset( $this->addedTypes[$version] ) ) {
@@ -320,7 +320,7 @@ class IEContentAnalyzer {
 	}
 
 	/**
-	 * Get the MIME types from getMimesFromData(), but convert the result from IE's 
+	 * Get the MIME types from getMimesFromData(), but convert the result from IE's
 	 * idiosyncratic private types into something other apps will understand.
 	 *
 	 * @param $fileName String: the file name (unused at present)
@@ -338,6 +338,8 @@ class IEContentAnalyzer {
 	/**
 	 * Translate a MIME type from IE's idiosyncratic private types into
 	 * more commonly understood type strings
+	 * @param $type
+	 * @return string
 	 */
 	public function translateMimeType( $type ) {
 		static $table = array(
@@ -375,6 +377,11 @@ class IEContentAnalyzer {
 
 	/**
 	 * Get the MIME type for a given named version
+	 * @param $version
+	 * @param $fileName
+	 * @param $chunk
+	 * @param $proposed
+	 * @return bool|string
 	 */
 	protected function getMimeTypeForVersion( $version, $fileName, $chunk, $proposed ) {
 		// Strip text after a semicolon
@@ -397,8 +404,8 @@ class IEContentAnalyzer {
 		// Truncate chunk at 255 bytes
 		$chunk = substr( $chunk, 0, 255 );
 
-		// IE does the Check*Headers() calls last, and instead does the following image 
-		// type checks by directly looking for the magic numbers. What I do here should 
+		// IE does the Check*Headers() calls last, and instead does the following image
+		// type checks by directly looking for the magic numbers. What I do here should
 		// have the same effect since the magic number checks are identical in both cases.
 		$result = $this->sampleData( $version, $chunk );
 		$sampleFound = $result['found'];
@@ -413,7 +420,7 @@ class IEContentAnalyzer {
 			return 'image/gif';
 		}
 		if ( ( $proposed == 'image/pjpeg' || $proposed == 'image/jpeg' )
-			&& $binaryType == 'image/pjpeg' ) 
+			&& $binaryType == 'image/pjpeg' )
 		{
 			return $proposed;
 		}
@@ -430,7 +437,7 @@ class IEContentAnalyzer {
 			return 'application/x-cdf';
 		}
 
-		// RSS and Atom were added in IE 7 so they won't be in $sampleFound for 
+		// RSS and Atom were added in IE 7 so they won't be in $sampleFound for
 		// previous versions
 		if ( isset( $sampleFound['rss'] ) ) {
 			return 'application/rss+xml';
@@ -483,8 +490,8 @@ class IEContentAnalyzer {
 
 		// Freaky heuristics to determine if the data is text or binary
 		// The heuristic is of course broken for non-ASCII text
-		if ( $counters['ctrl'] != 0 && ( $counters['ff'] + $counters['low'] ) 
-			< ( $counters['ctrl'] + $counters['high'] ) * 16 ) 
+		if ( $counters['ctrl'] != 0 && ( $counters['ff'] + $counters['low'] )
+			< ( $counters['ctrl'] + $counters['high'] ) * 16 )
 		{
 			$kindOfBinary = true;
 			$type = $binaryType ? $binaryType : $textType;
@@ -529,8 +536,8 @@ class IEContentAnalyzer {
 			return $this->registry[$ext];
 		}
 
-		// TODO: If the extension has an application registered to it, IE will return 
-		// application/octet-stream. We'll skip that, so we could erroneously 
+		// TODO: If the extension has an application registered to it, IE will return
+		// application/octet-stream. We'll skip that, so we could erroneously
 		// return text/plain or application/x-netcdf where application/octet-stream
 		// would be correct.
 
@@ -540,6 +547,9 @@ class IEContentAnalyzer {
 	/**
 	 * Check for text headers at the start of the chunk
 	 * Confirmed same in 5 and 7.
+	 * @param $version
+	 * @param $chunk
+	 * @return bool|string
 	 */
 	private function checkTextHeaders( $version, $chunk ) {
 		$chunk2 = substr( $chunk, 0, 2 );
@@ -563,6 +573,9 @@ class IEContentAnalyzer {
 	/**
 	 * Check for binary headers at the start of the chunk
 	 * Confirmed same in 5 and 7.
+	 * @param $version
+	 * @param $chunk
+	 * @return bool|string
 	 */
 	private function checkBinaryHeaders( $version, $chunk ) {
 		$chunk2 = substr( $chunk, 0, 2 );
@@ -578,13 +591,13 @@ class IEContentAnalyzer {
 			return 'image/pjpeg'; // actually plain JPEG but this is what IE returns
 		}
 
-		if ( $chunk2 == 'BM' 
+		if ( $chunk2 == 'BM'
 			&& substr( $chunk, 6, 2 ) == "\000\000"
 			&& substr( $chunk, 8, 2 ) == "\000\000" )
 		{
 			return 'image/bmp'; // another non-standard MIME
 		}
-		if ( $chunk4 == 'RIFF' 
+		if ( $chunk4 == 'RIFF'
 			&& substr( $chunk, 8, 4 ) == 'WAVE' )
 		{
 			return 'audio/wav';
@@ -661,6 +674,9 @@ class IEContentAnalyzer {
 	/**
 	 * Do heuristic checks on the bulk of the data sample.
 	 * Search for HTML tags.
+	 * @param $version
+	 * @param $chunk
+	 * @return array
 	 */
 	protected function sampleData( $version, $chunk ) {
 		$found = array();
@@ -774,7 +790,7 @@ class IEContentAnalyzer {
 			}
 
 			if ( !strncasecmp( $remainder, $rdfPurl, strlen( $rdfPurl ) ) ) {
-				if ( isset( $found['rdf-tag'] ) 
+				if ( isset( $found['rdf-tag'] )
 					&& isset( $found['rdf-url'] ) ) // [sic]
 				{
 					break;
@@ -808,6 +824,11 @@ class IEContentAnalyzer {
 		return array( 'found' => $found, 'counters' => $counters );
 	}
 
+	/**
+	 * @param $version
+	 * @param $type
+	 * @return int|string
+	 */
 	protected function getDataFormat( $version, $type ) {
 		$types = $this->typeTable[$version];
 		if ( $type == '(null)' || strval( $type ) === '' ) {

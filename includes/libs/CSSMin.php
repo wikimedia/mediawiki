@@ -79,6 +79,10 @@ class CSSMin {
 		return $files;
 	}
 
+	/**
+	 * @param $file string
+	 * @return bool|string
+	 */
 	protected static function getMimeType( $file ) {
 		$realpath = realpath( $file );
 		// Try a couple of different ways to get the mime-type of a file, in order of

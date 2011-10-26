@@ -48,7 +48,7 @@ class HttpTest extends MediaWikiTestCase {
 
 	/**
 	 * Test Http::isValidURI()
-	 * @bug 27854 : Http::isValidURI is to lax
+	 * @bug 27854 : Http::isValidURI is too lax
 	 * @dataProvider provideURI
 	 */
 	function testIsValidUri( $expect, $URI, $message = '' ) {
@@ -76,7 +76,7 @@ class HttpTest extends MediaWikiTestCase {
 			array( false, '\\host\directory', 'CIFS share' ),
 			array( false, 'gopher://host/dir', 'Reject gopher scheme' ),
 			array( false, 'telnet://host', 'Reject telnet scheme' ),
-			
+
 			# :\/\/ - double slashes
 			array( false,  'http//example.org', 'Reject missing colon in protocol' ),
 			array( false,  'http:/example.org', 'Reject missing slash in protocol' ),
