@@ -555,12 +555,14 @@ MySQL returned error "$3: $4".',
 'resetpass-temp-password'   => 'தற்காலிக கடவுச்சொல்:',
 
 # Special:PasswordReset
-'passwordreset'              => 'கடவுச்சொல்லை மீட்டமை',
-'passwordreset-legend'       => 'கடவுச்சொல்லை மீட்டமை',
-'passwordreset-username'     => 'பயனர் பெயர்:',
-'passwordreset-email'        => 'மின்னஞ்சல் முகவரி:',
-'passwordreset-emailelement' => 'பயனர் பெயர்:  $1
+'passwordreset'                   => 'கடவுச்சொல்லை மீட்டமை',
+'passwordreset-legend'            => 'கடவுச்சொல்லை மீட்டமை',
+'passwordreset-username'          => 'பயனர் பெயர்:',
+'passwordreset-email'             => 'மின்னஞ்சல் முகவரி:',
+'passwordreset-emailelement'      => 'பயனர் பெயர்:  $1
 தற்காலிகக் கடவுச்சொல்: $2',
+'passwordreset-emailsent'         => 'நினைவூட்டும் மின்னஞ்சல் அனுப்பப்பட்டது.',
+'passwordreset-emailsent-capture' => 'கீழே காண்பிக்கப்பட்டுள்ளது போல் நினைவுபடுத்தி மின்னஞ்சல் அனுப்பப்பட்டது.',
 
 # Special:ChangeEmail
 'changeemail'          => 'மின்னஞ்சல் முகவரியை மாற்று',
@@ -568,6 +570,7 @@ MySQL returned error "$3: $4".',
 'changeemail-oldemail' => 'தற்பொழுதுள்ள மின்னஞ்சல் முகவரி:',
 'changeemail-newemail' => 'புதிய மின்னஞ்சல் முகவரி:',
 'changeemail-submit'   => 'மின்னஞ்சலை மாற்று',
+'changeemail-cancel'   => 'விட்டுவிடு',
 
 # Edit page toolbar
 'bold_sample'     => 'தடித்த எழுத்துக்கள்',
@@ -1349,6 +1352,10 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 # img_auth script messages
 'img-auth-accessdenied' => 'அனுமதி மறுக்கப்பட்டது',
 
+# HTTP errors
+'http-invalid-url' => 'செல்லாத உரலி: $1',
+'http-curl-error'  => '$1 உரலியை பெறுவதில் பிழை நேரிட்டது',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'இணைய முகவரியை அடைய முடியவில்லை',
 'upload-curl-error6-text'  => 'கொடுக்கப்பட்ட யூ.ஆர்.எல்.லை அடைய முடியவில்லை. அருள் கூர்ந்து யூ.ஆர்.எல்.லை இரு முறை சரிபார்த்து தளம் செயற்படுகிறாதா என்பதையும் உறுதிப்படுத்தவும்.',
@@ -1635,28 +1642,31 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'listgrouprights-removegroup-all' => 'எல்லா குழுக்களையும் நீக்கு',
 
 # E-mail user
-'mailnologin'     => 'அனுப்பும் முகவரி இல்லை',
-'mailnologintext' => 'நீங்கள்[[Special:UserLogin|புகுபதிகை செய்திருப்பதுடன்]]
+'mailnologin'         => 'அனுப்பும் முகவரி இல்லை',
+'mailnologintext'     => 'நீங்கள்[[Special:UserLogin|புகுபதிகை செய்திருப்பதுடன்]]
 ஏனைய பயனர்களுக்கு மின்னஞ்சல் அனுப்பக்கூடியத்தாக செல்லுபடியாகக்கூடிய மின்னஞ்சல் முகவரியொன்றும் உங்களுடைய  [[Special:Preferences|விருப்பத் தெரிவுகளில்]] கொடுபட்டிருக்கவேண்டும்.',
-'emailuser'       => 'இப் பயனருக்கு மின்னஞ்சல் செய்',
-'emailpage'       => 'மின்னஞ்சல் பயனர்',
-'emailpagetext'   => 'நீங்கள் கீழ்வரும் படிவத்தை உபயோகித்து இந்த பயனருக்கு மின்னஞ்சல் செய்யலாம்.
+'emailuser'           => 'இப் பயனருக்கு மின்னஞ்சல் செய்',
+'emailpage'           => 'மின்னஞ்சல் பயனர்',
+'emailpagetext'       => 'நீங்கள் கீழ்வரும் படிவத்தை உபயோகித்து இந்த பயனருக்கு மின்னஞ்சல் செய்யலாம்.
 
 [[Special:Preferences|என் விருப்பத்தேர்வுகளில்]] நீங்கள் கொடுத்துள்ள மின்னஞ்சல் முகவரி மின்னஞ்சலின் "From" முகவரியாகக் காட்சி தரும், இதனால் பெறுநர் உங்களுக்கு நேரடியாக பதில் எழுத முடியும்.',
-'usermailererror' => 'மின்னஞ்சல் விளைவாக்கிய தவறு:',
-'defemailsubject' => '{{SITENAME}} மின்னஞ்சல்',
-'noemailtitle'    => 'மின்னஞ்சல் முகவரி இல்லை',
-'noemailtext'     => 'இப் பயனர் ஒரு செல்லுபடியாகக்கூடிய மின்னஞ்சல் முகவரியைக் குறிப்பிடவில்லை.',
-'emailusername'   => 'பயனர் பெயர்:',
-'emailfrom'       => 'அனுப்புநர்:',
-'emailto'         => 'பெறுநர்:',
-'emailsubject'    => 'பொருள்:',
-'emailmessage'    => 'தகவல்:',
-'emailsend'       => 'அனுப்பு',
-'emailccme'       => 'என் கருத்துக்களின் நகலொன்றை எனக்கு மின்னஞ்சலிடு',
-'emailccsubject'  => '$1 பயனருக்கான உங்கள் மின்னஞ்சலின் நகல்: $2',
-'emailsent'       => 'மின்னஞ்சல் அனுப்பப்பட்டது',
-'emailsenttext'   => 'உங்கள் மின்னஞ்சல் செய்தி அனுப்பப்பட்டது.',
+'usermailererror'     => 'மின்னஞ்சல் விளைவாக்கிய தவறு:',
+'defemailsubject'     => '{{SITENAME}} மின்னஞ்சல்',
+'noemailtitle'        => 'மின்னஞ்சல் முகவரி இல்லை',
+'noemailtext'         => 'இப் பயனர் ஒரு செல்லுபடியாகக்கூடிய மின்னஞ்சல் முகவரியைக் குறிப்பிடவில்லை.',
+'emailtarget'         => 'பெறுநரின் பயனர் பெயரை உள்ளிடவும்',
+'emailusername'       => 'பயனர் பெயர்:',
+'emailusernamesubmit' => 'சமர்ப்பி',
+'email-legend'        => 'மற்றொரு {{SITENAME}} பயனருக்கு ஒரு மின்னஞ்சல் அனுப்பு',
+'emailfrom'           => 'அனுப்புநர்:',
+'emailto'             => 'பெறுநர்:',
+'emailsubject'        => 'பொருள்:',
+'emailmessage'        => 'தகவல்:',
+'emailsend'           => 'அனுப்பு',
+'emailccme'           => 'என் கருத்துக்களின் நகலொன்றை எனக்கு மின்னஞ்சலிடு',
+'emailccsubject'      => '$1 பயனருக்கான உங்கள் மின்னஞ்சலின் நகல்: $2',
+'emailsent'           => 'மின்னஞ்சல் அனுப்பப்பட்டது',
+'emailsenttext'       => 'உங்கள் மின்னஞ்சல் செய்தி அனுப்பப்பட்டது.',
 
 # Watchlist
 'watchlist'            => 'என் கவனிப்புப் பட்டியல்',
@@ -2410,6 +2420,8 @@ $1',
 'exif-gpsprocessingmethod'         => 'புவியிடம் காலம் விரைவு காட்டி செயல்முறையின் பெயர்',
 'exif-gpsareainformation'          => 'புவியிடம் காலம் விரைவு காட்டி பிரதேசத்தின் பெயர்',
 'exif-gpsdatestamp'                => 'புவியிடம் காலம் விரைவு காட்டி நாள்',
+'exif-contact'                     => 'தொடர்பு விவரம்',
+'exif-copyrighted'                 => 'பதிப்புரிமை நிலை',
 
 # EXIF attributes
 'exif-compression-1' => 'சுருக்கப்படாத',
@@ -2513,9 +2525,25 @@ $1',
 'exif-gpsspeed-m' => 'மணித்தியாலத்துக்கு மைல்கள்',
 'exif-gpsspeed-n' => 'கடல் மைல்/மணி',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-m' => 'மைல்கள்',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'உண்மைத் திசை',
 'exif-gpsdirection-m' => 'காந்த திசை',
+
+'exif-dc-contributor' => 'பங்களிப்பாளர்கள்',
+'exif-dc-rights'      => 'உரிமைகள்',
+
+'exif-iimcategory-edu' => 'கல்வி',
+'exif-iimcategory-evn' => 'சுற்றுச்சூழல்',
+'exif-iimcategory-hth' => 'சுகாதாரம்',
+'exif-iimcategory-pol' => 'அரசியல்',
+'exif-iimcategory-rel' => 'மதம் மற்றும் நம்பிக்கை',
+'exif-iimcategory-sci' => 'அறிவியல் மற்றும் தொழில்நுட்பம்',
+'exif-iimcategory-soi' => 'சமூகப் பிரச்னைகள்',
+'exif-iimcategory-spo' => 'விளையாட்டு',
+'exif-iimcategory-wea' => 'வானிலை',
 
 # External editor support
 'edit-externally'      => 'இக்கோப்பை வெளி மென்பொருள் கொண்டு தொகுக்க',

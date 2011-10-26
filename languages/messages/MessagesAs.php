@@ -221,7 +221,7 @@ $messages = array(
 'dec'           => 'ডিচে:',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|বৰ্গ|বৰ্গ}}',
+'pagecategories'                 => '{{PLURAL:$1|শ্রেণী|শ্রেণী}}',
 'category_header'                => '"$1" শ্ৰেণীৰ পৃষ্ঠাসমূহ',
 'subcategories'                  => 'উপশ্ৰেণীসমুহ',
 'category-media-header'          => '"$1" শ্ৰেণীৰ মিডিয়া',

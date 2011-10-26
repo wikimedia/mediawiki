@@ -665,7 +665,7 @@ $2',
 'userlogout'                 => 'Выйсьці',
 'notloggedin'                => 'Вы не ўвайшлі ў сыстэму',
 'nologin'                    => "Ня маеце рахунку? '''$1'''.",
-'nologinlink'                => 'Стварыце рахунак',
+'nologinlink'                => 'Стварыць рахунак',
 'createaccount'              => 'Стварыць рахунак',
 'gotaccount'                 => "Ужо маеце рахунак? '''$1'''.",
 'gotaccountlink'             => 'Увайдзіце',
@@ -3711,7 +3711,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'logentry-newusers-newusers'          => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак',
 'logentry-newusers-create2'           => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак $3',
-'logentry-newusers-autocreate'        => 'Аўтаматычна створаны рахунак $1',
+'logentry-newusers-autocreate'        => 'Рахунак $1 быў {{GENDER:$2|}}створаны аўтаматычна',
 'newuserlog-byemail'                  => 'Пароль адасланы па электроннай пошце',
 
 );

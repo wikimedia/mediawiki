@@ -334,8 +334,8 @@ $messages = array(
 'protect'           => 'پاراستن',
 'protect_change'    => 'گۆڕین',
 'protectthispage'   => 'ئه‌م په‌ڕه‌یه‌ بپارێزه‌',
-'unprotect'         => 'مه‌پارێزه‌',
-'unprotectthispage' => 'ئه‌م په‌ڕه‌یه‌ مه‌پارێزه‌',
+'unprotect'         => 'پاراستنی بگۆڕە',
+'unprotectthispage' => 'پاراستنی ئەم پەڕەیە بگۆڕە',
 'newpage'           => 'پەڕەی نوێ',
 'talkpage'          => 'باس لەسەر ئەم پەڕە بکە‌',
 'talkpagelinktext'  => 'لێدوان',
@@ -632,6 +632,10 @@ $2',
 وا دیارە تێپەڕوشەکەت بە سەرکەوتوویی گۆڕدراوە یان داوای تێپەڕوشەیەکی نوێت کردووە.',
 'resetpass-temp-password'   => 'تێپەڕوشەی کاتی:',
 
+# Special:PasswordReset
+'passwordreset-emailelement' => 'ناوی بەکارھێنەری: $1
+تێپەڕوشەی کاتی: $2',
+
 # Edit page toolbar
 'bold_sample'     => 'دەقی ئەستوور',
 'bold_tip'        => 'دەقی ئەستوور',
@@ -730,11 +734,12 @@ $2',
 دەتوانی بۆ ئەم ناوە لە [[Special:Search/{{PAGENAME}}|پەڕەکانی تردا بگەڕێی]]، <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} لە لۆگەکاندا بگەڕێی]، یان [{{fullurl:{{FULLPAGENAME}}|action=edit}} ئەم پەڕە دەستکاری بکەیت]</span>.',
 'userpage-userdoesnotexist'        => 'هەژماری بەکارهێنەری "<nowiki>$1</nowiki>" تۆمار نەکراوە.<br />
 گەر دەتەوێ ئەم لاپەڕە درووست‌کەی یان دەستکاری بکەی تکایە تاقی‌بکەوە .',
-'clearyourcache'                   => "'''ئاگاداری - دوای پەشەکەوت‌کردن، بۆ بینینی گۆڕانکارییەکان دەبێ کاشی وێبگەڕەکەت دەور لێ‌دەیتەوە.'''<br />
-'''Mozilla / Firefox / Safari:'''کاتێ لەسەر ''Reload'' کرتە دەکەی، دەست لەسەر''Shift'' ڕاگرە، یان ''Ctrl-F5'' لێدە یا ''Ctrl-R''. (لە ماکینتاش ''Command-R'' ئەبێ لێدەی)<br />
-'''Konqueror: ''' لەسەر ''Reload'' کرتە بکە یا ''F5'' لێدە ؛<br />
-'''Opera:''' کاشەکەت لە ''Tools → Preferences'' بسڕەوە ؛<br />
-'''Internet Explorer:''' کاتێ ''Refresh'' لێ‌ئەدەی ''Ctrl'' ڕاگرە، یان ''Ctrl-F5'' لێدە .",
+'clearyourcache'                   => "'''ئاگاداری:''' لە دوای پاشەکەوت کردن، لەوانەیە  بۆ بینینی گۆڕانکارییەکان پێویست بێ کاشی وێبگەڕەکەت دەور لێ‌دەیتەوە.
+* '''Firefox / Safari:''' دوگمەی ''Shift'' بگرە کاتێک لەسەر ''Reload''دا کرتە دەکەی، یان ھەرکام لە ''Ctrl-F5'' یان ''Ctrl-R'' لێبدە (''Command-R'' لەسەر Mac دا)
+* '''Google Chrome:''' دوگمەکانی ''Ctrl-Shift-R'' لێبدە  (''Command-Shift-R'' لەسەر Mac دا)
+* '''Internet Explorer:''' دوگمەی ''Ctrl'' بگرە کاتێک لەسەر  ''Refresh''دا کرتە دەکەی، یان ''Ctrl-F5'' لێبدە
+* '''Konqueror:''' کرتە بکە لەسەر ''Reload'' یان دوگمەی ''F5'' لێبدە
+* '''Opera:''' کاشەکە لە ڕێگەی ''Tools → Preferences'' بسڕەوە.",
 'usercssyoucanpreview'             => "'''سەرچەشن:''' «{{int:showpreview}}» بەکاربێنە بۆ تاقی‌کردنەوەی CSS نوێ‌کەت، پێش پاشەکەوت‌کردن.",
 'userjsyoucanpreview'              => "'''سەرچەشن:''' «{{int:showpreview}}» بەکاربێنە بۆ تاقی‌کردنەوەی جاڤاسکریپتە نوێ‌کەت، پێش پاشەکەوت‌کردن.",
 'usercsspreview'                   => "'''له‌یادت بێ که‌ ئێسته‌ ته‌نها پێشبینینی CSS به‌کارهێنه‌ریه‌که‌ت ده‌که‌ی.'''
@@ -966,8 +971,14 @@ $1",
 'revdelete-concurrent-change' => 'هەڵە لە چاکسازی بابەتی ڕێکەوتی $2 کات $1: لەوانەیە کاتێ تۆ هەوڵی چاکسازیت ئەدا، کەسێکی‌تر دۆخەکەی گۆڕابێت.
 تکایە چاو لە لۆگەکەی بکە.',
 'revdelete-only-restricted'   => 'ھەڵە لە شاردنەوەی بابەتی ڕێکەوتی $2ی $1: ناتوانی لە بینینی بابەتەکان لە لایەن بەڕێوبەرانەوە بەرگری بکەیت، مەگەر یەکێکی تر لە ھەڵبژاردەکانی بەرچاوکەوتن ھەڵبژێریت.',
+'revdelete-reason-dropdown'   => '*ھۆکارە باوەکانی سڕینەوە
+** لادان لە مافی لەبەرگرتنەوە
+** زانیارە تاکەکەسییە نابەجێیەکان
+** Potentially libelous information',
+'revdelete-otherreason'       => 'هۆکاری دیکە/زیادی:',
 'revdelete-reasonotherlist'   => 'هۆکاری دیکە',
 'revdelete-edit-reasonlist'   => 'دەستکاری هۆکارەکانی سڕینەوە',
+'revdelete-offender'          => 'نووسەری پیاچوونەوە:',
 
 # Suppression log
 'suppressionlog'     => 'لۆگی بەرگری‌کردن',
@@ -1169,7 +1180,7 @@ $1",
 'prefs-registration'            => 'کاتی خۆتۆمارکردن:',
 'yourrealname'                  => 'ناوی ڕاستی:',
 'yourlanguage'                  => 'زمان',
-'yourvariant'                   => 'شێوەزارە:',
+'yourvariant'                   => 'شێوەزاری زمانی ناوەرۆک:',
 'yournick'                      => 'نازناو',
 'prefs-help-signature'          => 'بۆچوونەکان لە لاپەڕەکانی وتووێژدا دەبێ بە "<nowiki>~~~~</nowiki>" دیاری بکرێن، کە دواتر خۆکار دەگۆڕێ بە واژۆکەت و مۆری کاتی.',
 'badsig'                        => 'ئیمزاكه‌ هه‌ڵه‌یه‌، ته‌ماشای كۆدی HTML بكه‌‌',
@@ -1231,12 +1242,12 @@ $1",
 'group-suppress'      => 'چاودێرەکان',
 'group-all'           => '(هەموو)',
 
-'group-user-member'          => 'بەکارھێنەر',
-'group-autoconfirmed-member' => 'بەکارھێنەری خۆکار پەسەندکراو',
+'group-user-member'          => '{{GENDER:$1|بەکارھێنەر}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|بەکارھێنەری خۆکار پەسەندکراو}}',
 'group-bot-member'           => 'بۆت',
 'group-sysop-member'         => 'بەڕێوەبەر',
 'group-bureaucrat-member'    => 'بورووکرات',
-'group-suppress-member'      => 'چاودێر',
+'group-suppress-member'      => '{{GENDER:$1|چاودێر}}',
 
 'grouppage-user'          => '{{ns:project}}:بەکارھێنەران',
 'grouppage-autoconfirmed' => '{{ns:project}}:بەکارهێنەرانی خۆکار-بڕواکراو',

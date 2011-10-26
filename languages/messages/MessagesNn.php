@@ -1057,12 +1057,12 @@ Det kan vere detaljar i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}
 'rev-deleted-text-unhide'     => "Denne sideversjonen er vorten '''sletta'''.
 Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du framleis [$1 sjå denne versjonen] om du ynskjer å halde fram.",
-'rev-suppressed-text-unhide'  => "Denne versjonen har vorten '''utelatt'''.
+'rev-suppressed-text-unhide'  => "Denne versjonen har vorten '''gøymd'''.
 Det finst kanskje meir informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} utelatingsloggen].
 Som administrator kan du framleis [$1 sjå versjonen] om du ynskjer å halde fram.",
 'rev-deleted-text-view'       => "Denne sideversjonen er vorten '''sletta'''.
 Som administrator kan du sjå han. Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
-'rev-suppressed-text-view'    => "Denne sideversjonen har vorten '''utelatt'''.
+'rev-suppressed-text-view'    => "Denne sideversjonen har vorten '''gøymd'''.
 Som administrator kan du sjå han. Det finst kanskje meir informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} utelatingsloggen].",
 'rev-deleted-no-diff'         => "Du kan ikkje vise denne skilnaden fordi ein av versjonane er vorten '''sletta'''.
 Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
