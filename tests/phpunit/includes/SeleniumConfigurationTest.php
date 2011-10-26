@@ -2,13 +2,13 @@
 
 class SeleniumConfigurationTest extends MediaWikiTestCase {
 
-	/*
+	/**
 	 * The file where the test temporarity stores the selenium config.
 	 * This should be cleaned up as part of teardown.
 	 */
 	private $tempFileName;
 
-	/*
+	/**
 	 * String containing the a sample selenium settings
 	 */
 	private $testConfig0 =
@@ -32,14 +32,14 @@ runAgainstGrid	= false
 testSuite[SimpleSeleniumTestSuite] = "tests/selenium/SimpleSeleniumTestSuite.php"
 testSuite[TestSuiteName] = "testSuitePath"
 ';
-	/*
+	/**
 	 * Array of expected browsers from $testConfig0
 	 */
 	private $testBrowsers0 = array(	'firefox' => '*firefox',
 							'iexplorer' => '*iexploreproxy',
 							'chrome' => '*chrome'
 	);
-	/*
+	/**
 	 * Array of expected selenium settings from $testConfig0
 	 */
 	private $testSettings0 = array(
@@ -55,7 +55,7 @@ testSuite[TestSuiteName] = "testSuitePath"
 		'jUnitLogFile' => null,
 		'runAgainstGrid' => null
 	);
-	/*
+	/**
 	 * Array of expected testSuites from $testConfig0
 	 */
 	private $testSuites0 = array(
@@ -64,7 +64,7 @@ testSuite[TestSuiteName] = "testSuitePath"
 	);
 
 
-	/*
+	/**
 	 * Another sample selenium settings file contents
 	 */
 	private $testConfig1 =
@@ -73,11 +73,11 @@ testSuite[TestSuiteName] = "testSuitePath"
 host 				= "localhost"
 testBrowser 		= "firefox"
 ';
-	/*
+	/**
 	 * Expected browsers from $testConfig1
 	 */
 	private $testBrowsers1 = null;
-	/*
+	/**
 	 * Expected selenium settings from $testConfig1
 	 */
 	private $testSettings1 = array(
@@ -93,7 +93,7 @@ testBrowser 		= "firefox"
 		'jUnitLogFile' => null,
 		'runAgainstGrid' => null
 	);
-	/*
+	/**
 	 * Expected test suites from $testConfig1
 	 */
 	private $testSuites1 = null;
@@ -105,7 +105,7 @@ testBrowser 		= "firefox"
 		}
 	}
 
-	/*
+	/**
 	 * Clean up the temporary file used to store the selenium settings.
 	 */
 	public function tearDown() {
@@ -199,7 +199,7 @@ testBrowser 		= "firefox"
 
 	}
 
-	/*
+	/**
 	 * create a temp file and write text to it.
 	 * @param $testToWrite the text to write to the temp file
 	 */
@@ -210,7 +210,7 @@ testBrowser 		= "firefox"
 		fclose($tempFile);
 	}
 
-	/*
+	/**
 	 * Returns an array containing:
 	 * 	The contents of the selenium cingiguration ini file
 	 *  The expected selenium configuration array that getSeleniumSettings should return

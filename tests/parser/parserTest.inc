@@ -1199,7 +1199,7 @@ class ParserTest {
 		return true;
 	}
 
-	/*
+	/**
 	 * Run the "tidy" command on text if the $wgUseTidy
 	 * global is true
 	 *

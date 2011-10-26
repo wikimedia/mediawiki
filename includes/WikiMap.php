@@ -28,7 +28,7 @@ class WikiMap {
 			array( 'lang' => $minor, 'site' => $major ) );
 		return new WikiReference( $major, $minor, $canonicalServer, $path, $server );
 	}
-	
+
 	/**
 	 * Convenience to get the wiki's display name
 	 *
@@ -87,11 +87,11 @@ class WikiMap {
 	 */
 	public static function getForeignURL( $wikiID, $page ) {
 		$wiki = WikiMap::getWiki( $wikiID );
-		
+
 		if ( $wiki ) {
 			return $wiki->getUrl( $page );
 		}
-			
+
 		return false;
 	}
 }
@@ -114,6 +114,10 @@ class WikiReference {
 		$this->mServer = $server === null ? $canonicalServer : $server;
 	}
 
+	/**
+	 * @return string
+	 * @throws MWException
+	 */
 	public function getHostname() {
 		$prefixes = array( 'http://', 'https://' );
 		foreach ( $prefixes as $prefix ) {
@@ -159,22 +163,21 @@ class WikiReference {
 	 * @return String: Url
 	 */
 	public function getCanonicalUrl( $page ) {
-		return
-			$this->mCanonicalServer .
-			$this->getLocalUrl( $page );
+		return $this->mCanonicalServer . $this->getLocalUrl( $page );
 	}
-	
+
 	/**
 	 * Alias for getCanonicalUrl(), for backwards compatibility.
+	 * @return String
 	 */
 	public function getUrl( $page ) {
 		return $this->getCanonicalUrl( $page );
 	}
-	
+
 	/**
 	 * Get a URL based on $wgServer, like Title::getFullUrl() would produce
 	 * when called locally on the wiki.
-	 * 
+	 *
 	 * @param $page String: page name (must be normalized before calling this function!)
 	 * @return String: URL
 	 */

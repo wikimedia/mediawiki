@@ -12,7 +12,7 @@ class SearchEngineTest extends MediaWikiTestCase {
 		unset( $this->search );
 	}
 
-	/*
+	/**
 	 * Checks for database type & version.
 	 * Will skip current test if DB does not support search.
 	 */

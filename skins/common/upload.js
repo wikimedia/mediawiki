@@ -34,46 +34,45 @@ window.wgUploadSetup = function() {
 			}
 		}
 	}
-	
-	
+
 	// AJAX wpDestFile warnings
 	if ( wgAjaxUploadDestCheck ) {
 		// Insert an event handler that fetches upload warnings when wpDestFile
 		// has been changed
-		document.getElementById( 'wpDestFile' ).onchange = function ( e ) { 
+		document.getElementById( 'wpDestFile' ).onchange = function ( e ) {
 			wgUploadWarningObj.checkNow(this.value);
 		};
-		// Insert a row where the warnings will be displayed just below the 
+		// Insert a row where the warnings will be displayed just below the
 		// wpDestFile row
 		var optionsTable = document.getElementById( 'mw-htmlform-description' ).tBodies[0];
 		var row = optionsTable.insertRow( 1 );
 		var td = document.createElement( 'td' );
 		td.id = 'wpDestFile-warning';
 		td.colSpan = 2;
-		
+
 		row.appendChild( td );
 	}
-	
+
 	var wpLicense = document.getElementById( 'wpLicense' );
 	if ( wgAjaxLicensePreview && wpLicense ) {
 		// License selector check
 		wpLicense.onchange = licenseSelectorCheck;
-	
+
 		// License selector table row
 		var wpLicenseRow = wpLicense.parentNode.parentNode;
 		var wpLicenseTbody = wpLicenseRow.parentNode;
-		
+
 		var row = document.createElement( 'tr' );
 		var td = document.createElement( 'td' );
 		row.appendChild( td );
 		td = document.createElement( 'td' );
 		td.id = 'mw-license-preview';
 		row.appendChild( td );
-		
+
 		wpLicenseTbody.insertBefore( row, wpLicenseRow.nextSibling );
 	}
-	
-	
+
+
 	// fillDestFile setup
 	for ( var i = 0; i < wgUploadSourceIds.length; i++ )
 		document.getElementById( wgUploadSourceIds[i] ).onchange = function (e) {
@@ -150,7 +149,7 @@ window.wgUploadWarningObj = {
 		var ackElt = document.getElementsByName( 'wpDestFileWarningAck' );
 
 		this.setInnerHTML(warningElt, warning);
-		
+
 		// Set a value in the form indicating that the warning is acknowledged and
 		// doesn't need to be redisplayed post-upload
 		if ( warning == '' || warning == '&nbsp;' ) {
@@ -196,7 +195,7 @@ window.fillDestFilename = function(id) {
 	}
 
 	// Clear the filename if it does not have a valid extension.
-	// URLs are less likely to have a useful extension, so don't include them in the 
+	// URLs are less likely to have a useful extension, so don't include them in the
 	// extension check.
 	if( wgStrictFileExtensions && wgFileExtensions && id != 'wpUploadFileURL' ) {
 		var found = false;
@@ -262,15 +261,15 @@ window.wgUploadLicenseObj = {
 			}
 		}
 		injectSpinner( document.getElementById( 'wpLicense' ), 'license' );
-		
+
 		var title = document.getElementById('wpDestFile').value;
 		if ( !title ) title = 'File:Sample.jpg';
-		
+
 		var url = wgScriptPath + '/api' + wgScriptExtension
 			+ '?action=parse&text={{' + encodeURIComponent( license ) + '}}'
-			+ '&title=' + encodeURIComponent( title ) 
+			+ '&title=' + encodeURIComponent( title )
 			+ '&prop=text&pst&format=json';
-		
+
 		var req = sajax_init_object();
 		req.onreadystatechange = function() {
 			if ( req.readyState == 4 && req.status == 200 )
@@ -284,7 +283,6 @@ window.wgUploadLicenseObj = {
 		removeSpinner( 'license' );
 		this.responseCache[license] = result['parse']['text']['*'];
 		this.showPreview( this.responseCache[license] );
-
 	},
 
 	'showPreview' : function( preview ) {

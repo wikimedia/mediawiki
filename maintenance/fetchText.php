@@ -29,7 +29,7 @@ class FetchText extends Maintenance {
 		$this->mDescription = "Fetch the revision text from an old_id";
 	}
 
-	/*
+	/**
 	 * returns a string containing the following in order:
 	 *	 textid
 	 *	 \n

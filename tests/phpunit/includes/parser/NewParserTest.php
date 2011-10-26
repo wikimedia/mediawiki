@@ -729,7 +729,7 @@ class NewParserTest extends MediaWikiTestCase {
 	}
 	//Various "cleanup" functions
 
-	/*
+	/**
 	 * Run the "tidy" command on text if the $wgUseTidy
 	 * global is true
 	 *
