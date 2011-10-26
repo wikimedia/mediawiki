@@ -571,7 +571,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 	}
 
-	/*
+	/**
 	 * Do a batched query to get the parent revision lengths
 	 */
 	private function getParentLengths( array $revIds ) {

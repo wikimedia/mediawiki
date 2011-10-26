@@ -85,6 +85,13 @@ class UserRightsProxy {
 		return self::newFromLookup( $database, 'user_name', $name, $ignoreInvalidDB );
 	}
 
+	/**
+	 * @param $database
+	 * @param $field
+	 * @param $value
+	 * @param $ignoreInvalidDB bool
+	 * @return null|UserRightsProxy
+	 */
 	private static function newFromLookup( $database, $field, $value, $ignoreInvalidDB = false ) {
 		$db = self::getDB( $database, $ignoreInvalidDB );
 		if( $db ) {
@@ -122,10 +129,16 @@ class UserRightsProxy {
 		return null;
 	}
 
+	/**
+	 * @return int
+	 */
 	public function getId() {
 		return $this->id;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function isAnon() {
 		return $this->getId() == 0;
 	}
@@ -187,14 +200,14 @@ class UserRightsProxy {
 			),
 			__METHOD__ );
 	}
-	
+
 	/**
 	 * Replaces User::setOption()
 	 */
 	public function setOption( $option, $value ) {
 		$this->newOptions[$option] = $value;
 	}
-	
+
 	public function saveSettings() {
 		$rows = array();
 		foreach ( $this->newOptions as $option => $value ) {

@@ -119,6 +119,7 @@ class MWException extends Exception {
 	/**
 	 * If $wgShowExceptionDetails is true, return a text message with a
 	 * backtrace to the error.
+	 * @return string
 	 */
 	function getText() {
 		global $wgShowExceptionDetails;
@@ -214,6 +215,10 @@ class MWException extends Exception {
 		}
 	}
 
+	/**
+	 * @static
+	 * @return bool
+	 */
 	static function isCommandLine() {
 		return !empty( $GLOBALS['wgCommandLineMode'] );
 	}
@@ -225,10 +230,17 @@ class MWException extends Exception {
  * @ingroup Exception
  */
 class FatalError extends MWException {
+
+	/**
+	 * @return string
+	 */
 	function getHTML() {
 		return $this->getMessage();
 	}
 
+	/**
+	 * @return string
+	 */
 	function getText() {
 		return $this->getMessage();
 	}
@@ -326,6 +338,7 @@ class ThrottledError extends ErrorPageError {
 			'actionthrottledtext'
 		);
 	}
+
 	public function report(){
 		global $wgOut;
 		$wgOut->setStatusCode( 503 );

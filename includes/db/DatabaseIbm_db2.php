@@ -460,16 +460,16 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 */
 	protected function doQuery( $sql ) {
 		$this->applySchema();
-		
+
 		// Needed to handle any UTF-8 encoding issues in the raw sql
 		// Note that we fully support prepared statements for DB2
 		// prepare() and execute() should be used instead of doQuery() whenever possible
 		$sql = utf8_decode($sql);
-		
+
 		$ret = db2_exec( $this->mConn, $sql, $this->mStmtOptions );
 		if( $ret == false ) {
 			$error = db2_stmt_errormsg();
-			
+
 			$this->installPrint( "<pre>$sql</pre>" );
 			$this->installPrint( $error );
 			throw new DBUnexpectedError( $this, 'SQL error: '
@@ -494,8 +494,8 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 */
 	public function tableExists( $table ) {
 		$schema = $this->mSchema;
-		
-		$sql = "SELECT COUNT( * ) FROM SYSIBM.SYSTABLES ST WHERE ST.NAME = '" . 
+
+		$sql = "SELECT COUNT( * ) FROM SYSIBM.SYSTABLES ST WHERE ST.NAME = '" .
 			strtoupper( $table ) .
 			"' AND ST.CREATOR = '" .
 			strtoupper( $schema ) . "'";
@@ -939,14 +939,14 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 */
 	private function removeNullPrimaryKeys( $table, $args ) {
 		$schema = $this->mSchema;
-		
+
 		// find out the primary keys
-		$keyres = $this->doQuery( "SELECT NAME FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '" 
-		  . strtoupper( $table ) 
-		  . "' AND TBCREATOR = '" 
-		  . strtoupper( $schema ) 
+		$keyres = $this->doQuery( "SELECT NAME FROM SYSIBM.SYSCOLUMNS WHERE TBNAME = '"
+		  . strtoupper( $table )
+		  . "' AND TBCREATOR = '"
+		  . strtoupper( $schema )
 		  . "' AND KEYSEQ > 0" );
-		
+
 		$keys = array();
 		for (
 			$row = $this->fetchRow( $keyres );
@@ -1046,7 +1046,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
 		}
-		
+
 		if ( $this->mNumRows ) {
 			return $this->mNumRows;
 		} else {

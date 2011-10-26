@@ -610,7 +610,7 @@ abstract class DatabaseBase implements DatabaseType {
 
 	/**
 	 * Called by serialize. Throw an exception when DB connection is serialized.
-	 * This causes problems on some database engines because the connection is 
+	 * This causes problems on some database engines because the connection is
 	 * not restored on unserialize.
 	 */
 	public function __sleep() {
@@ -807,7 +807,7 @@ abstract class DatabaseBase implements DatabaseType {
 			# that would delay transaction initializations to once connection
 			# is really used by application
 			$sqlstart = substr( $sql, 0, 10 ); // very much worth it, benchmark certified(tm)
-			if ( strpos( $sqlstart, "SHOW " ) !== 0 and strpos( $sqlstart, "SET " ) !== 0 )
+			if ( strpos( $sqlstart, "SHOW " ) !== 0 && strpos( $sqlstart, "SET " ) !== 0 )
 				$this->begin();
 		}
 

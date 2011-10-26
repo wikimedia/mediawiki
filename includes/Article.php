@@ -591,7 +591,7 @@ class Article extends Page {
 		wfProfileOut( __METHOD__ );
 	}
 
-	/*
+	/**
 	 * Adjust title for pages with displaytitle, -{T|}- or language conversion
 	 * @param $pOutput ParserOutput
 	 */
@@ -1884,7 +1884,7 @@ class Article extends Page {
 
 	/**
 	 * Get parser options suitable for rendering the primary article wikitext
-	 * @return mixed ParserOptions object or boolean false
+	 * @return ParserOptions|false
 	 */
 	public function getParserOptions() {
 		global $wgUser;
@@ -1969,47 +1969,103 @@ class Article extends Page {
 	}
 
 	// ****** B/C functions to work-around PHP silliness with __call and references ****** //
+
+	/**
+	 * @param $limit array
+	 * @param $reason string
+	 * @param $cascade int
+	 * @param $expiry array
+	 * @return bool
+	 */
 	public function updateRestrictions( $limit = array(), $reason = '', &$cascade = 0, $expiry = array() ) {
 		return $this->mPage->updateRestrictions( $limit, $reason, $cascade, $expiry );
 	}
 
+	/**
+	 * @param $reason string
+	 * @param $suppress bool
+	 * @param $id int
+	 * @param $commit bool
+	 * @param $error string
+	 * @return bool
+	 */
 	public function doDeleteArticle( $reason, $suppress = false, $id = 0, $commit = true, &$error = '' ) {
 		return $this->mPage->doDeleteArticle( $reason, $suppress, $id, $commit, $error );
 	}
 
+	/**
+	 * @param $fromP
+	 * @param $summary
+	 * @param $token
+	 * @param $bot
+	 * @param $resultDetails
+	 * @param $user User
+	 * @return array
+	 */
 	public function doRollback( $fromP, $summary, $token, $bot, &$resultDetails, User $user = null ) {
 		global $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 		return $this->mPage->doRollback( $fromP, $summary, $token, $bot, $resultDetails, $user );
 	}
 
+	/**
+	 * @param $fromP
+	 * @param $summary
+	 * @param $bot
+	 * @param $resultDetails
+	 * @param $guser User
+	 * @return array
+	 */
 	public function commitRollback( $fromP, $summary, $bot, &$resultDetails, User $guser = null ) {
 		global $wgUser;
 		$guser = is_null( $guser ) ? $wgUser : $guser;
 		return $this->mPage->commitRollback( $fromP, $summary, $bot, $resultDetails, $guser );
 	}
 
+	/**
+	 * @param $hasHistory bool
+	 * @return mixed
+	 */
 	public function generateReason( &$hasHistory ) {
 		return $this->mPage->getAutoDeleteReason( $hasHistory );
 	}
 
 	// ****** B/C functions for static methods ( __callStatic is PHP>=5.3 ) ****** //
+
+	/**
+	 * @return array
+	 */
 	public static function selectFields() {
 		return WikiPage::selectFields();
 	}
 
+	/**
+	 * @param $title Title
+	 */
 	public static function onArticleCreate( $title ) {
 		return WikiPage::onArticleCreate( $title );
 	}
 
+	/**
+	 * @param $title Title
+	 */
 	public static function onArticleDelete( $title ) {
 		return WikiPage::onArticleDelete( $title );
 	}
 
+	/**
+	 * @param $title Title
+	 */
 	public static function onArticleEdit( $title ) {
 		return WikiPage::onArticleEdit( $title );
 	}
 
+	/**
+	 * @param $oldtext
+	 * @param $newtext
+	 * @param $flags
+	 * @return string
+	 */
 	public static function getAutosummary( $oldtext, $newtext, $flags ) {
 		return WikiPage::getAutosummary( $oldtext, $newtext, $flags );
 	}

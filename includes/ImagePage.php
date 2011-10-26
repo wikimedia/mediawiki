@@ -18,6 +18,10 @@ class ImagePage extends Article {
 
 	var $mExtraDescription = false;
 
+	/**
+	 * @param $title Title
+	 * @return WikiFilePage
+	 */
 	protected function newPage( Title $title ) {
 		// Overload mPage with a file-specific page
 		return new WikiFilePage( $title );

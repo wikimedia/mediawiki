@@ -111,7 +111,7 @@ class GenderCache {
 		}
 
 		if ( count( $users ) === 0 ) {
-			return false;
+			return;
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
