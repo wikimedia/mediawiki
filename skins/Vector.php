@@ -315,7 +315,7 @@ class VectorTemplate extends BaseTemplate {
 <?php
 			endforeach;
 			if ( isset( $hook ) ) {
-				wfRunHooks( $hook, array( &$this ) );
+				wfRunHooks( $hook, array( &$this, true ) );
 			}
 			?>
 		</ul>

@@ -162,6 +162,11 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return int 0, 90, 180 or 270
 	 */
 	public function getRotation( $file ) {
+		global $wgEnableAutoRotation;
+		if ( !$wgEnableAutoRotation ) {
+			return 0;
+		}
+		
 		$data = $file->getMetadata();
 		return $this->getRotationForExif( $data );
 	}

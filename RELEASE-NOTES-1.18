@@ -86,6 +86,8 @@ production.
   category collations.
 * (bug 31233) New OutputPage::addJsConfigVars() method to make the output page specific
   mw.config map extendable.
+* $wgEnableAutoRotation enables or disables auto-rotation. Leaving it set to
+  null will cause MediaWiki to determine if auto-rotation is available.
 
 === New features in 1.18 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.
@@ -462,6 +464,8 @@ production.
   to let styles easily hide or show things based on general JS availability
 * (bug 18424) Special:Prefixindex and Special:Allpages paging links are
   really small, and somewhat inconsistent with each other.
+* (bug 31213) Exception thrown when trying to move file cross-namespace
+* (bug 31674) Can't edit watchlist if it contains special pages
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
