@@ -486,6 +486,8 @@ class ApiMain extends ApiBase {
 	 * @return string
 	 */
 	protected function substituteResultWithError( $e ) {
+		global $wgShowHostnames;
+
 		$result = $this->getResult();
 		// Printer may not be initialized if the extractRequestParams() fails for the main module
 		if ( !isset ( $this->mPrinter ) ) {
@@ -533,8 +535,12 @@ class ApiMain extends ApiBase {
 		if ( !is_null( $requestid ) ) {
 			$result->addValue( null, 'requestid', $requestid );
 		}
-		// servedby is especially useful when debugging errors
-		$result->addValue( null, 'servedby', wfHostName() );
+
+		if ( $wgShowHostnames ) {
+			// servedby is especially useful when debugging errors
+			$result->addValue( null, 'servedby', wfHostName() );
+		}
+
 		$result->addValue( null, 'error', $errMessage );
 
 		return $errMessage['code'];
@@ -545,16 +551,20 @@ class ApiMain extends ApiBase {
 	 * @return array
 	 */
 	protected function setupExecuteAction() {
+		global $wgShowHostnames;
+
 		// First add the id to the top element
 		$result = $this->getResult();
 		$requestid = $this->getParameter( 'requestid' );
 		if ( !is_null( $requestid ) ) {
 			$result->addValue( null, 'requestid', $requestid );
 		}
-		// TODO: Isn't there a setting to disable sharing the server hostname?
-		$servedby = $this->getParameter( 'servedby' );
-		if ( $servedby ) {
-			$result->addValue( null, 'servedby', wfHostName() );
+
+		if ( $wgShowHostnames ) {
+			$servedby = $this->getParameter( 'servedby' );
+			if ( $servedby ) {
+				$result->addValue( null, 'servedby', wfHostName() );
+			}
 		}
 
 		$params = $this->extractRequestParams();
