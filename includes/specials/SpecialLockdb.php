@@ -37,11 +37,11 @@ class SpecialLockdb extends FormSpecialPage {
 		return false;
 	}
 
-	public function userCanExecute( User $user ) {
-		parent::userCanExecute( $user );
-
-		# If the lock file isn't writable, we can do sweet bugger all
+	public function checkExecutePermissions( User $user ) {
 		global $wgReadOnlyFile;
+
+		parent::checkExecutePermissions( $user );
+		# If the lock file isn't writable, we can do sweet bugger all
 		if ( !is_writable( dirname( $wgReadOnlyFile ) ) ) {
 			throw new ErrorPageError( 'lockdb', 'lockfilenotwritable' );
 		}

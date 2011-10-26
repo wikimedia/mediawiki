@@ -43,6 +43,10 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	public function userCanExecute( User $user ) {
+		return $this->canChangePassword( $user ) === true && parent::userCanExecute( $user );
+	}
+
+	public function checkExecutePermissions( User $user ) {
 		$error = $this->canChangePassword( $user );
 		if ( is_string( $error ) ) {
 			throw new ErrorPageError( 'internalerror', $error );
@@ -50,7 +54,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 			throw new ErrorPageError( 'internalerror', 'resetpass_forbidden' );
 		}
 
-		return parent::userCanExecute( $user );
+		return parent::checkExecutePermissions( $user );
 	}
 
 	protected function getFormFields() {
