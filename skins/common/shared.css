@@ -295,16 +295,16 @@ input#wpSummary {
 
 .catlinks li {
 	display: inline-block;
-	line-height: 1.35em;
-	padding: 0 .7em;
+	line-height: 1em;
 	border-left: 1px solid #AAA;
-	margin: 0.3em 0;
+	margin: 0.25em 0;
+	padding: 0 0.5em;
 	zoom: 1;
 	display: inline !ie;
 }
 
 .catlinks li:first-child {
-	padding-left: .4em;
+	padding-left: 0.25em;
 	border-left: none;
 }
 /**
