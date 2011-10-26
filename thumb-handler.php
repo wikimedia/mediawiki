@@ -8,10 +8,14 @@ define( 'THUMB_HANDLER', true );
 $configPath = dirname( __FILE__ ) . "/thumb.config.php";
 if ( !file_exists( $configPath ) ) {
 	die( "Thumb-handler.php is not enabled for this wiki.\n" );
+} elseif ( !extension_loaded( 'curl' ) ) {
+	die( "cURL is not enabled for PHP on this wiki.\n" ); // sanity
 }
 require( $configPath );
 
-function wfHandleThumb404() {
+wfHandleThumb404Main();
+
+function wfHandleThumb404Main() {
 	global $thgThumbCallbacks, $thgThumb404File;
 
 	# lighttpd puts the original request in REQUEST_URI, while
@@ -26,34 +30,21 @@ function wfHandleThumb404() {
 
 	# Extract thumb.php params from the URI...
 	if ( isset( $thgThumbCallbacks['extractParams'] )
-		&& is_callable( $thgThumbCallbacks['extractParams'] ) )
+		&& is_callable( $thgThumbCallbacks['extractParams'] ) ) // overridden by configuration?
 	{
-		# Overridden by configuration
 		$params = call_user_func_array( $thgThumbCallbacks['extractParams'], array( $uri ) );
 	} else {
 		$params = wfExtractThumbParams( $uri ); // basic wiki URL param extracting
 	}
-	if ( $params === null ) { // not a valid thumb request
-		header( 'X-Debug: no regex match' ); // useful for debugging
-		require_once( $thgThumb404File ); // standard 404 message
-		return;
-	}
 
-	# Do some basic checks on the filename...
-	if ( preg_match( '/[\x80-\xff]/', $uri ) ) {
-		header( 'HTTP/1.0 400 Bad request' );
-		header( 'Content-Type: text/html' );
-		print "<html><head><title>Bad request</title></head><body>" . 
-			"The URI contained bytes with the high bit set, this is not allowed." . 
-			"</body></html>";
-		return;
-	} elseif ( strpos( $params['f'], '%20' ) !== false ) {
-		header( 'HTTP/1.0 404 Not found' );
-		header( 'Content-Type: text/html' );
-		header( 'X-Debug: filename contains a space' ); // useful for debugging
-		print "<html><head><title>Not found</title></head><body>" . 
-			"The URL contained spaces, we don't have any thumbnail files with spaces." . 
-			"</body></html>";
+	# Show 404 error if this is not a valid thumb request...
+	if ( !is_array( $params ) ) {
+		header( 'X-Debug: no regex match' ); // useful for debugging
+		if ( $thgThumb404File ) { // overridden by configuration?
+			require( $thgThumb404File );
+		} else {
+			wfDisplay404Error(); // standard 404 message
+		}
 		return;
 	}
 
@@ -83,7 +74,6 @@ function wfExtractThumbParams( $uri ) {
 		preg_quote( $thgThumbFragment ) . '(/archive|/temp|)/' .
 		$thgThumbHashFragment . '([^/]*)/(page(\d*)-)*(\d*)px-[^/]*$!';
 
-	# Is this a thumbnail?
 	if ( preg_match( $thumbRegex, $uri, $matches ) ) {
 		list( $all, $archOrTemp, $filename, $pagefull, $pagenum, $size ) = $matches;
 		$params = array( 'f' => $filename, 'width' => $size );
@@ -96,7 +86,7 @@ function wfExtractThumbParams( $uri ) {
 			$params['temp'] = 1;
 		}
 	} else {
-		$params = null;
+		$params = null; // not a valid thumbnail URL
 	}
 
 	return $params;
@@ -111,16 +101,6 @@ function wfExtractThumbParams( $uri ) {
  */
 function wfStreamThumbViaCurl( array $params, $uri ) {
 	global $thgThumbCallbacks, $thgThumbScriptPath, $thgThumbCurlProxy, $thgThumbCurlTimeout;
-
-	if ( !function_exists( 'curl_init' ) ) {
-		header( 'HTTP/1.0 404 Not found' );
-		header( 'Content-Type: text/html' );
-		header( 'X-Debug: cURL is not enabled' ); // useful for debugging
-		print "<html><head><title>Not found</title></head><body>" . 
-			"cURL is not enabled for PHP on this wiki. Unable to send request thumb.php." . 
-			"</body></html>";
-		return;
-	}
 
 	# Build up the request URL to use with CURL...
 	$reqURL = "{$thgThumbScriptPath}?";
@@ -166,29 +146,28 @@ function wfStreamThumbViaCurl( array $params, $uri ) {
 	# Actually make the request
 	$text = curl_exec( $ch );
 
-	# Send it on to the client
+	# Send it on to the client...
 	$errno = curl_errno( $ch );
 	$contentType = curl_getinfo( $ch, CURLINFO_CONTENT_TYPE );
 	$httpCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
 	if ( $errno ) {
 		header( 'HTTP/1.1 500 Internal server error' );
 		header( 'Cache-Control: no-cache' );
-		list( $text, $contentType ) = wfCurlErrorText( $ch );
-	} elseif ( $httpCode == 304 ) {
+		$contentType = 'text/html';
+		$text = wfCurlErrorText( $ch );
+	} elseif ( $httpCode == 304 ) { // OK
 		header( 'HTTP/1.1 304 Not modified' );
 		$contentType = '';
 		$text = '';
 	} elseif ( strval( $text ) == '' ) {
 		header( 'HTTP/1.1 500 Internal server error' );
 		header( 'Cache-Control: no-cache' );
-		list( $text, $contentType ) = wfCurlEmptyText( $ch );
+		$contentType = 'text/html';
+		$text = wfCurlEmptyText( $ch );
 	} elseif ( $httpCode == 404 ) {
 		header( 'HTTP/1.1 404 Not found' );
 		header( 'Cache-Control: s-maxage=300, must-revalidate, max-age=0' );
-	} elseif ( $httpCode != 200
-		|| substr( $contentType, 0, 9 ) == 'text/html'
-		|| substr( $text, 0, 5 ) == '<html' )
-	{
+	} elseif ( $httpCode != 200 || substr( $contentType, 0, 9 ) == 'text/html' ) {
 		# Error message, suppress cache
 		header( 'HTTP/1.1 500 Internal server error' );
 		header( 'Cache-Control: no-cache' );
@@ -213,40 +192,61 @@ function wfStreamThumbViaCurl( array $params, $uri ) {
 }
 
 /**
- * Get error message and content type for when the cURL response is empty.
+ * Get error message HTML for when the cURL response is an error.
  *
  * @param $ch cURL handle
- * @return Array (error html, content type)
+ * @return string
  */
 function wfCurlErrorText( $ch ) {
-	$contentType = 'text/html';
 	$error = htmlspecialchars( curl_error( $ch ) );
-	$text = <<<EOT
+	return <<<EOT
 <html>
 <head><title>Thumbnail error</title></head>
 <body>Error retrieving thumbnail from scaling server: $error</body>
 </html>
 EOT;
-	return array( $text, $contentType );
 }
 
 /**
- * Get error message and content type for when the cURL response is an error.
+ * Get error message HTML for when the cURL response is empty.
  *
  * @param $ch cURL handle
- * @return Array (error html, content type)
+ * @return string
  */
 function wfCurlEmptyText( $ch ) {
-	$contentType = 'text/html';
-	$error = htmlspecialchars( curl_error( $ch ) );
-	$text = <<<EOT
+	return <<<EOT
 <html>
 <head><title>Thumbnail error</title></head>
 <body>Error retrieving thumbnail from scaling server: empty response</body>
 </html>
 EOT;
-	return array( $text, $contentType );
 }
 
-# Entry point
-wfHandleThumb404();
+/**
+ * Print out a generic 404 error message.
+ *
+ * @return void
+ */
+function wfDisplay404Error() {
+	header( 'HTTP/1.1 404 Not Found' );
+	header( 'Content-Type: text/html;charset=utf-8' );
+
+	$prot = isset( $_SERVER['HTTPS'] ) ? "https://" : "http://";
+	$serv = strlen( $_SERVER['HTTP_HOST'] ) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
+	$loc = $_SERVER["REQUEST_URI"];
+
+	$encUrl = htmlspecialchars( $prot . $serv . $loc );
+
+	// Looks like a typical apache2 error
+	$standard_404 = <<<ENDTEXT
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<html><head>
+<title>404 Not Found</title>
+</head><body>
+<h1>Not Found</h1>
+<p>The requested URL $encUrl was not found on this server.</p>
+</body></html>
+ENDTEXT;
+
+	print $standard_404;
+}
