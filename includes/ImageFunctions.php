@@ -19,7 +19,7 @@
  * @return bool
  */
 function wfIsBadImage( $name, $contextTitle = false ) {
-	static $badImages = false;
+	static $badImages = null;
 	wfProfileIn( __METHOD__ );
 
 	# Handle redirects
@@ -35,7 +35,7 @@ function wfIsBadImage( $name, $contextTitle = false ) {
 		return $bad;
 	}
 
-	if( !$badImages ) {
+	if( $badImages === null ) {
 		# Build the list now
 		$badImages = array();
 		$lines = explode( "\n", wfMsgForContentNoTrans( 'bad_image_list' ) );
