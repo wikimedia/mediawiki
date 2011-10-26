@@ -46,7 +46,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgUser, $wgContLang;
+		global $wgContLang;
 
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'users', 'ip' );
@@ -136,7 +136,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereIf( "ipb_range_end > ipb_range_start", isset( $show['range'] ) );
 		}
 
-		if ( !$wgUser->isAllowed( 'hideuser' ) ) {
+		if ( !$this->getUser()->isAllowed( 'hideuser' ) ) {
 			$this->addWhereFld( 'ipb_deleted', 0 );
 		}
 

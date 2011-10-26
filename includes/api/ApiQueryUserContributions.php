@@ -146,7 +146,7 @@ class ApiQueryContributions extends ApiQueryBase {
 		// We're after the revision table, and the corresponding page
 		// row for anything we retrieve. We may also need the
 		// recentchanges row and/or tag summary row.
-		global $wgUser;
+		$user = $this->getUser();
 		$tables = array( 'page', 'revision' ); // Order may change
 		$this->addWhere( 'page_id=rev_page' );
 
@@ -167,7 +167,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			);
 		}
 
-		if ( !$wgUser->isAllowed( 'hideuser' ) ) {
+		if ( !$user->isAllowed( 'hideuser' ) ) {
 			$this->addWhere( $this->getDB()->bitAnd( 'rev_deleted', Revision::DELETED_USER ) . ' = 0' );
 		}
 		// We only want pages by the specified users.
@@ -216,7 +216,7 @@ class ApiQueryContributions extends ApiQueryBase {
 
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
 				 $this->fld_patrolled ) {
-			if ( !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() ) {
+			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 			}
 

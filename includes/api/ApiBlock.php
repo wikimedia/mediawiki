@@ -48,29 +48,29 @@ class ApiBlock extends ApiBase {
 	 * of success. If it fails, the result will specify the nature of the error.
 	 */
 	public function execute() {
-		global $wgUser;
+		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
 		if ( $params['gettoken'] ) {
-			$res['blocktoken'] = $wgUser->editToken( '', $this->getMain()->getRequest() );
+			$res['blocktoken'] = $user->editToken( '', $this->getMain()->getRequest() );
 			$this->getResult()->addValue( null, $this->getModuleName(), $res );
 			return;
 		}
 
-		if ( !$wgUser->isAllowed( 'block' ) ) {
+		if ( !$user->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( 'cantblock' );
 		}
 		# bug 15810: blocked admins should have limited access here
-		if ( $wgUser->isBlocked() ) {
+		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'] );
 			if ( $status !== true ) {
 				$this->dieUsageMsg( array( $status ) );
 			}
 		}
-		if ( $params['hidename'] && !$wgUser->isAllowed( 'hideuser' ) ) {
+		if ( $params['hidename'] && !$user->isAllowed( 'hideuser' ) ) {
 			$this->dieUsageMsg( 'canthide' );
 		}
-		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $wgUser ) ) {
+		if ( $params['noemail'] && !SpecialBlock::canBlockEmail( $user ) ) {
 			$this->dieUsageMsg( 'cantblock-email' );
 		}
 

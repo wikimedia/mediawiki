@@ -44,7 +44,7 @@ class ApiUserrights extends ApiBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$user = $this->getUser();
+		$user = $this->getUrUser();
 
 		$form = new UserrightsPage;
 		$r['user'] = $user->getName();
@@ -62,7 +62,7 @@ class ApiUserrights extends ApiBase {
 	/**
 	 * @return User
 	 */
-	private function getUser() {
+	private function getUrUser() {
 		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}
@@ -130,7 +130,7 @@ class ApiUserrights extends ApiBase {
 	}
 
 	public function getTokenSalt() {
-		return $this->getUser()->getName();
+		return $this->getUrUser()->getName();
 	}
 
 	public function getExamples() {

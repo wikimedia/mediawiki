@@ -41,9 +41,9 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgUser;
+		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
-		if ( !$wgUser->isAllowed( 'deletedhistory' ) ) {
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$this->dieUsage( 'You don\'t have permission to view deleted revision information', 'permissiondenied' );
 		}
 
@@ -113,7 +113,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addWhere( 'ar_text_id = old_id' );
 
 			// This also means stricter restrictions
-			if ( !$wgUser->isAllowed( 'undelete' ) ) {
+			if ( !$user->isAllowed( 'undelete' ) ) {
 				$this->dieUsage( 'You don\'t have permission to view deleted revision content', 'permissiondenied' );
 			}
 		}
@@ -132,7 +132,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $fld_token ) {
 			// Undelete tokens are identical for all pages, so we cache one here
-			$token = $wgUser->editToken( '', $this->getMain()->getRequest() );
+			$token = $user->editToken( '', $this->getMain()->getRequest() );
 		}
 
 		$dir = $params['dir'];

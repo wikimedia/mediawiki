@@ -45,11 +45,11 @@ class ApiUnblock extends ApiBase {
 	 * Unblocks the specified user or provides the reason the unblock failed.
 	 */
 	public function execute() {
-		global $wgUser;
+		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
 		if ( $params['gettoken'] ) {
-			$res['unblocktoken'] = $wgUser->editToken( '', $this->getMain()->getRequest() );
+			$res['unblocktoken'] = $user->editToken( '', $this->getMain()->getRequest() );
 			$this->getResult()->addValue( null, $this->getModuleName(), $res );
 			return;
 		}
@@ -61,11 +61,11 @@ class ApiUnblock extends ApiBase {
 			$this->dieUsageMsg( 'unblock-idanduser' );
 		}
 
-		if ( !$wgUser->isAllowed( 'block' ) ) {
+		if ( !$user->isAllowed( 'block' ) ) {
 			$this->dieUsageMsg( 'cantunblock' );
 		}
 		# bug 15810: blocked admins should have limited access here
-		if ( $wgUser->isBlocked() ) {
+		if ( $user->isBlocked() ) {
 			$status = SpecialBlock::checkUnblockSelf( $params['user'] );
 			if ( $status !== true ) {
 				$this->dieUsageMsg( $status );

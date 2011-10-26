@@ -132,7 +132,7 @@ class ApiMain extends ApiBase {
 	private $mPrinter;
 
 	private $mModules, $mModuleNames, $mFormats, $mFormatNames;
-	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest;
+	private $mResult, $mAction, $mShowVersions, $mEnableWrite/*, $mRequest*/;
 	private $mInternalMode, $mSquidMaxage, $mModule;
 
 	private $mCacheMode = 'private';
@@ -141,11 +141,22 @@ class ApiMain extends ApiBase {
 	/**
 	 * Constructs an instance of ApiMain that utilizes the module and format specified by $request.
 	 *
-	 * @param $request WebRequest - if this is an instance of FauxRequest, errors are thrown and no printing occurs
+	 * @param $context IContextSource|WebRequest - if this is an instance of FauxRequest, errors are thrown and no printing occurs
 	 * @param $enableWrite bool should be set to true if the api may modify data
 	 */
-	public function __construct( $request, $enableWrite = false ) {
-		$this->mInternalMode = ( $request instanceof FauxRequest );
+	public function __construct( $context = null, $enableWrite = false ) {
+		if ( $context === null ) {
+			$context = RequestContext::getMain();
+		} elseif ( $context instanceof WebRequest ) {
+			// BC for pre-1.19
+			$request = $context;
+			$context = RequestContext::getMain();
+			$context->setRequest( $request );
+		}
+		// We set a derivative context so we can change stuff later
+		$this->setContext( new DerivativeContext( $context ) );
+
+		$this->mInternalMode = ( $this->getRequest() instanceof FauxRequest );
 
 		// Special handling for the main module: $parent === $this
 		parent::__construct( $this, $this->mInternalMode ? 'main_int' : 'main' );
@@ -156,11 +167,12 @@ class ApiMain extends ApiBase {
 			// Remove all modules other than login
 			global $wgUser;
 
-			if ( $request->getVal( 'callback' ) !== null ) {
+			if ( $this->getRequest()->getVal( 'callback' ) !== null ) {
 				// JSON callback allows cross-site reads.
 				// For safety, strip user credentials.
 				wfDebug( "API: stripping user credentials for JSON callback\n" );
 				$wgUser = new User();
+				$this->getContext()->setUser( $wgUser );
 			}
 		}
 
@@ -175,7 +187,7 @@ class ApiMain extends ApiBase {
 		$this->mShowVersions = false;
 		$this->mEnableWrite = $enableWrite;
 
-		$this->mRequest = &$request;
+		//$this->mRequest = &$request;
 
 		$this->mSquidMaxage = - 1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
@@ -193,9 +205,9 @@ class ApiMain extends ApiBase {
 	 * Return the request object that contains client's request
 	 * @return WebRequest
 	 */
-	public function getRequest() {
+	/*public function getRequest() {
 		return $this->mRequest;
-	}
+	}*/
 
 	/**
 	 * Get the ApiResult object associated with current request
@@ -596,8 +608,7 @@ class ApiMain extends ApiBase {
 			if ( !isset( $moduleParams['token'] ) ) {
 				$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 			} else {
-				global $wgUser;
-				if ( !$wgUser->matchEditToken( $moduleParams['token'], $salt, $this->getRequest() ) ) {
+				if ( !$this->getUser()->matchEditToken( $moduleParams['token'], $salt, $this->getRequest() ) ) {
 					$this->dieUsageMsg( 'sessionfailure' );
 				}
 			}
@@ -639,9 +650,9 @@ class ApiMain extends ApiBase {
 	 * @param $module ApiBase An Api module
 	 */
 	protected function checkExecutePermissions( $module ) {
-		global $wgUser;
+		$user = $this->getUser();
 		if ( $module->isReadMode() && !in_array( 'read', User::getGroupPermissions( array( '*' ) ), true ) &&
-			!$wgUser->isAllowed( 'read' ) )
+			!$user->isAllowed( 'read' ) )
 		{
 			$this->dieUsageMsg( 'readrequired' );
 		}
@@ -649,7 +660,7 @@ class ApiMain extends ApiBase {
 			if ( !$this->mEnableWrite ) {
 				$this->dieUsageMsg( 'writedisabled' );
 			}
-			if ( !$wgUser->isAllowed( 'writeapi' ) ) {
+			if ( !$user->isAllowed( 'writeapi' ) ) {
 				$this->dieUsageMsg( 'writerequired' );
 			}
 			if ( wfReadOnly() ) {
@@ -665,7 +676,7 @@ class ApiMain extends ApiBase {
 	 */
 	protected function setupExternalResponse( $module, $params ) {
 		// Ignore mustBePosted() for internal calls
-		if ( $module->mustBePosted() && !$this->mRequest->wasPosted() ) {
+		if ( $module->mustBePosted() && !$this->getRequest()->wasPosted() ) {
 			$this->dieUsageMsg( array( 'mustbeposted', $this->mAction ) );
 		}
 
@@ -975,8 +986,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function canApiHighLimits() {
 		if ( !isset( $this->mCanApiHighLimits ) ) {
-			global $wgUser;
-			$this->mCanApiHighLimits = $wgUser->isAllowed( 'apihighlimits' );
+			$this->mCanApiHighLimits = $this->getUser()->isAllowed( 'apihighlimits' );
 		}
 
 		return $this->mCanApiHighLimits;

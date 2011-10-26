@@ -75,12 +75,11 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	 * @param $resultPageSet ApiPageSet
 	 */
 	public function run( $resultPageSet = null ) {
-		global $wgUser;
 		$params = $this->extractRequestParams();
 		$result = $this->getResult();
 
 		$qp = new $this->qpMap[$params['page']]();
-		if ( !$qp->userCanExecute( $wgUser ) ) {
+		if ( !$qp->userCanExecute( $this->getUser() ) ) {
 			$this->dieUsageMsg( 'specialpage-cantexecute' );
 		}
 

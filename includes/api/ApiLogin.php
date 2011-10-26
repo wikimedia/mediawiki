@@ -68,29 +68,32 @@ class ApiLogin extends ApiBase {
 			wfSetupSession();
 		}
 
-		$context = $this->createContext();
+		$context = new DerivativeContext( $this->getContext() );
 		$context->setRequest( $req );
+		/*$context = $this->createContext();
+		$context->setRequest( $req );*/
 		$loginForm = new LoginForm();
 		$loginForm->setContext( $context );
+		$user = $this->getUser();
 
-		global $wgCookiePrefix, $wgUser, $wgPasswordAttemptThrottle;
+		global $wgCookiePrefix, $wgPasswordAttemptThrottle;
 
 		$authRes = $loginForm->authenticateUserData();
 		switch ( $authRes ) {
 			case LoginForm::SUCCESS:
-				$wgUser->setOption( 'rememberpassword', 1 );
-				$wgUser->setCookies( $this->getMain()->getRequest() );
+				$user->setOption( 'rememberpassword', 1 );
+				$user->setCookies( $this->getMain()->getRequest() );
 
 				// Run hooks.
 				// @todo FIXME: Split back and frontend from this hook.
 				// @todo FIXME: This hook should be placed in the backend
 				$injected_html = '';
-				wfRunHooks( 'UserLoginComplete', array( &$wgUser, &$injected_html ) );
+				wfRunHooks( 'UserLoginComplete', array( &$user, &$injected_html ) );
 
 				$result['result'] = 'Success';
-				$result['lguserid'] = intval( $wgUser->getId() );
-				$result['lgusername'] = $wgUser->getName();
-				$result['lgtoken'] = $wgUser->getToken();
+				$result['lguserid'] = intval( $user->getId() );
+				$result['lgusername'] = $user->getName();
+				$result['lgtoken'] = $user->getToken();
 				$result['cookieprefix'] = $wgCookiePrefix;
 				$result['sessionid'] = session_id();
 				break;

@@ -46,12 +46,12 @@ class ApiUpload extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser;
-
 		// Check whether upload is enabled
 		if ( !UploadBase::isEnabled() ) {
 			$this->dieUsageMsg( 'uploaddisabled' );
 		}
+
+		$user = $this->getUser();
 
 		// Parameter handling
 		$this->mParams = $this->extractRequestParams();
@@ -75,7 +75,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		// First check permission to upload
-		$this->checkPermissions( $wgUser );
+		$this->checkPermissions( $user );
 
 		// Fetch the file
 		$status = $this->mUpload->fetchFile();
@@ -100,7 +100,7 @@ class ApiUpload extends ApiBase {
 		// (This check is irrelevant if stashing is already requested, since the errors
 		//  can always be fixed by changing the title)
 		if ( ! $this->mParams['stash'] ) {
-			$permErrors = $this->mUpload->verifyTitlePermissions( $wgUser );
+			$permErrors = $this->mUpload->verifyTitlePermissions( $user );
 			if ( $permErrors !== true ) {
 				$this->dieRecoverableError( $permErrors[0], 'filename' );
 			}
@@ -254,17 +254,7 @@ class ApiUpload extends ApiBase {
 				$this->dieUsageMsg( 'invalid-file-key' );
 			}
 
-			if( class_exists( 'RequestContext' ) ) {
-				// context allows access to the current user without creating new $wgUser references
-				$context = $this->createContext();
-				$this->mUpload = new UploadFromStash( $context->getUser() );
-			} else {
-				// this is here to maintain 1.17 compatibility, so these changes can
-				// be merged into production
-				// remove this after we've moved to 1.18
-				global $wgUser;
-				$this->mUpload = new UploadFromStash( $wgUser );
-			}
+			$this->mUpload = new UploadFromStash( $this->getUser() );
 
 			$this->mUpload->initialize( $this->mParams['filekey'], $this->mParams['filename'] );
 
@@ -440,8 +430,6 @@ class ApiUpload extends ApiBase {
 	 * @return array
 	 */
 	protected function performUpload() {
-		global $wgUser;
-
 		// Use comment as initial page text by default
 		if ( is_null( $this->mParams['text'] ) ) {
 			$this->mParams['text'] = $this->mParams['comment'];
@@ -457,7 +445,7 @@ class ApiUpload extends ApiBase {
 
 		// No errors, no warnings: do the upload
 		$status = $this->mUpload->performUpload( $this->mParams['comment'],
-			$this->mParams['text'], $watch, $wgUser );
+			$this->mParams['text'], $watch, $this->getUser() );
 
 		if ( !$status->isGood() ) {
 			$error = $status->getErrorsArray();

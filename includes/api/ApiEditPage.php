@@ -43,7 +43,7 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser;
+		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
 		if ( is_null( $params['text'] ) && is_null( $params['appendtext'] ) &&
@@ -88,6 +88,7 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// Some functions depend on $wgTitle == $ep->mTitle
+		// TODO: Make them not or check if they still do
 		global $wgTitle;
 		$wgTitle = $titleObj;
 
@@ -99,9 +100,9 @@ class ApiEditPage extends ApiBase {
 		}
 
 		// Now let's check whether we're even allowed to do this
-		$errors = $titleObj->getUserPermissionsErrors( 'edit', $wgUser );
+		$errors = $titleObj->getUserPermissionsErrors( 'edit', $user );
 		if ( !$titleObj->exists() ) {
-			$errors = array_merge( $errors, $titleObj->getUserPermissionsErrors( 'create', $wgUser ) );
+			$errors = array_merge( $errors, $titleObj->getUserPermissionsErrors( 'create', $user ) );
 		}
 		if ( count( $errors ) ) {
 			$this->dieUsageMsg( $errors[0] );
@@ -207,7 +208,7 @@ class ApiEditPage extends ApiBase {
 			$reqArr['wpStarttime'] = wfTimestampNow();	// Fake wpStartime
 		}
 
-		if ( $params['minor'] || ( !$params['notminor'] && $wgUser->getOption( 'minordefault' ) ) )	{
+		if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) )	{
 			$reqArr['wpMinoredit'] = '';
 		}
 
@@ -270,7 +271,7 @@ class ApiEditPage extends ApiBase {
 		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 
-		$status = $ep->internalAttemptSave( $result, $wgUser->isAllowed( 'bot' ) && $params['bot'] );
+		$status = $ep->internalAttemptSave( $result, $user->isAllowed( 'bot' ) && $params['bot'] );
 		$wgRequest = $oldRequest;
 		global $wgMaxArticleSize;
 
