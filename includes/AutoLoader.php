@@ -51,7 +51,7 @@ $wgAutoloadLocalClasses = array(
 	'DeferrableUpdate' => 'includes/DeferredUpdates.php',
 	'DeferredUpdates' => 'includes/DeferredUpdates.php',
 	'DiffHistoryBlob' => 'includes/HistoryBlob.php',
-	'DjVuImage' => 'includes/DjVuImage.php',
+
 	'DoubleReplacer' => 'includes/StringUtils.php',
 	'DummyLinker' => 'includes/Linker.php',
 	'Dump7ZipOutput' => 'includes/Export.php',
@@ -560,6 +560,7 @@ $wgAutoloadLocalClasses = array(
 	'BitmapHandler_ClientOnly' => 'includes/media/Bitmap_ClientOnly.php',
 	'BitmapMetadataHandler' => 'includes/media/BitmapMetadataHandler.php',
 	'BmpHandler' => 'includes/media/BMP.php',
+	'DjVuImage' => 'includes/media/DjVuImage.php',
 	'DjVuHandler' => 'includes/media/DjVu.php',
 	'Exif' => 'includes/media/Exif.php',
 	'FormatExif' => 'includes/media/FormatMetadata.php',
