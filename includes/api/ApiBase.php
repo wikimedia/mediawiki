@@ -183,11 +183,11 @@ abstract class ApiBase extends ContextSource {
 	 * The object will have the WebRequest and the User object set to the ones
 	 * used in this instance.
 	 *
-	 * @deprecated 1.19 use getContext to get the current context
-	 * @return RequestContext
+	 * @deprecated since 1.19 use getContext to get the current context
+	 * @return DerivativeContext
 	 */
 	public function createContext() {
-		return $this->getContext();
+		return new DerivativeContext( $this->getContext() );
 	}
 
 	/**
