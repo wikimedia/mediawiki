@@ -164,7 +164,7 @@ class DerivativeContext extends ContextSource {
 		if ( $l instanceof Language ) {
 			$this->lang = $l;
 		} elseif ( is_string( $l ) ) {
-			$l = self::sanitizeLangCode( $l );
+			$l = self::sanitizeLangCode( $l ); // FIXME: Undefined method, is at RequestContext::sanitizeLangCode()
 			$obj = Language::factory( $l );
 			$this->lang = $obj;
 		} else {
