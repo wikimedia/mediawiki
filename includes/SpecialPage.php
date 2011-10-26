@@ -786,7 +786,7 @@ abstract class FormSpecialPage extends SpecialPage {
 		$this->setHeaders();
 
 		// This will throw exceptions if there's a problem
-		$this->userCanExecute( $this->getUser() );
+		$this->checkExecutePermissions( $this->getUser() );
 
 		$form = $this->getForm();
 		if ( $form->show() ) {
@@ -801,20 +801,18 @@ abstract class FormSpecialPage extends SpecialPage {
 	protected function setParameter( $par ){}
 
 	/**
-	 * Checks if the given user (identified by an object) can perform this action.  Can be
-	 * overridden by sub-classes with more complicated permissions schemes.  Failures here
-	 * must throw subclasses of ErrorPageError
-	 *
-	 * @param $user User: the user to check, or null to use the context user
+	 * Called from execute() to check if the given user can perform this action.
+	 * Failures here must throw subclasses of ErrorPageError.
+	 * @param $user User
 	 * @return Bool true
 	 * @throws ErrorPageError
 	 */
-	public function userCanExecute( User $user ) {
+	protected function checkExecutePermissions( User $user ) {
 		if ( $this->requiresWrite() && wfReadOnly() ) {
 			throw new ReadOnlyError();
 		}
 
-		if ( $this->getRestriction() !== null && !$user->isAllowed( $this->getRestriction() ) ) {
+		if ( !$this->userCanExecute( $this->getUser() ) ) {
 			throw new PermissionsError( $this->getRestriction() );
 		}
 
