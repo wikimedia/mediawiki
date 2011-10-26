@@ -143,7 +143,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	}
 
 	public function getBits() {
-		return $this->revision->mDeleted;
+		return $this->revision->getVisibility();
 	}
 
 	public function setBits( $bits ) {
