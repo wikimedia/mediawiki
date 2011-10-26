@@ -100,7 +100,7 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['namespace'] = '';
 		}
 
-		$this->opts['tagFilter'] = (string) $request->getVal( 'tagFilter' );
+		$this->opts['tagfilter'] = (string) $request->getVal( 'tagfilter' );
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
 		// be passed in the form at the top of the page
@@ -133,8 +133,8 @@ class SpecialContributions extends SpecialPage {
 			if ( $this->opts['deletedOnly'] ) {
 				$apiParams['deletedonly'] = true;
 			}
-			if ( $this->opts['tagFilter'] !== '' ) {
-				$apiParams['tagfilter'] = $this->opts['tagFilter'];
+			if ( $this->opts['tagfilter'] !== '' ) {
+				$apiParams['tagfilter'] = $this->opts['tagfilter'];
 			}
 			if ( $this->opts['namespace'] !== '' ) {
 				$apiParams['namespace'] = $this->opts['namespace'];
@@ -369,8 +369,8 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['target'] = '';
 		}
 
-		if( !isset( $this->opts['tagFilter'] ) ) {
-			$this->opts['tagFilter'] = '';
+		if( !isset( $this->opts['tagfilter'] ) ) {
+			$this->opts['tagfilter'] = '';
 		}
 
 		if( !isset( $this->opts['topOnly'] ) ) {
@@ -388,7 +388,7 @@ class SpecialContributions extends SpecialPage {
 			$f .= "\t" . Html::hidden( $name, $value ) . "\n";
 		}
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagFilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
 
 		$f .= 	Xml::fieldset( wfMsg( 'sp-contributions-search' ) ) .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parsemag' ) ),
@@ -444,7 +444,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->target = isset( $options['target'] ) ? $options['target'] : '';
 		$this->contribs = isset( $options['contribs'] ) ? $options['contribs'] : 'users';
 		$this->namespace = isset( $options['namespace'] ) ? $options['namespace'] : '';
-		$this->tagFilter = isset( $options['tagFilter'] ) ? $options['tagFilter'] : false;
+		$this->tagFilter = isset( $options['tagfilter'] ) ? $options['tagfilter'] : false;
 
 		$this->deletedOnly = !empty( $options['deletedOnly'] );
 		$this->topOnly = !empty( $options['topOnly'] );
