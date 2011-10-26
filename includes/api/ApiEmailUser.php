@@ -40,8 +40,6 @@ class ApiEmailUser extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser;
-
 		$params = $this->extractRequestParams();
 
 		// Validate target
@@ -51,7 +49,7 @@ class ApiEmailUser extends ApiBase {
 		}
 
 		// Check permissions and errors
-		$error = SpecialEmailUser::getPermissionsError( $wgUser, $params['token'] );
+		$error = SpecialEmailUser::getPermissionsError( $this->getUser(), $params['token'] );
 		if ( $error ) {
 			$this->dieUsageMsg( array( $error ) );
 		}

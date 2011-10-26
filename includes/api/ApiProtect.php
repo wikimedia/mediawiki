@@ -39,7 +39,7 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser, $wgRestrictionLevels;
+		global $wgRestrictionLevels;
 		$params = $this->extractRequestParams();
 
 		$titleObj = Title::newFromText( $params['title'] );
@@ -47,7 +47,7 @@ class ApiProtect extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
-		$errors = $titleObj->getUserPermissionsErrors( 'protect', $wgUser );
+		$errors = $titleObj->getUserPermissionsErrors( 'protect', $this->getUser() );
 		if ( $errors ) {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg( reset( $errors ) );

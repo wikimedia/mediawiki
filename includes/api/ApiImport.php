@@ -41,13 +41,12 @@ class ApiImport extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser;
-
+		$user = $this->getUser();
 		$params = $this->extractRequestParams();
 
 		$isUpload = false;
 		if ( isset( $params['interwikisource'] ) ) {
-			if ( !$wgUser->isAllowed( 'import' ) ) {
+			if ( !$user->isAllowed( 'import' ) ) {
 				$this->dieUsageMsg( 'cantimport' );
 			}
 			if ( !isset( $params['interwikipage'] ) ) {
@@ -61,7 +60,7 @@ class ApiImport extends ApiBase {
 			);
 		} else {
 			$isUpload = true;
-			if ( !$wgUser->isAllowed( 'importupload' ) ) {
+			if ( !$user->isAllowed( 'importupload' ) ) {
 				$this->dieUsageMsg( 'cantimport-upload' );
 			}
 			$source = ImportStreamSource::newFromUpload( 'xml' );

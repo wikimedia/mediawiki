@@ -43,10 +43,10 @@ class ApiPurge extends ApiBase {
 	 * Purges the cache of a page
 	 */
 	public function execute() {
-		global $wgUser;
+		$user = $this->getUser();
 		$params = $this->extractRequestParams();
-		if ( !$wgUser->isAllowed( 'purge' ) && !$this->getMain()->isInternalMode() &&
-				!$this->getMain()->getRequest()->wasPosted() ) {
+		if ( !$user->isAllowed( 'purge' ) && !$this->getMain()->isInternalMode() &&
+				!$this->getRequest()->wasPosted() ) {
 			$this->dieUsageMsg( array( 'mustbeposted', $this->getModuleName() ) );
 		}
 
@@ -75,7 +75,7 @@ class ApiPurge extends ApiBase {
 			$r['purged'] = '';
 
 			if( $forceLinkUpdate ) {
-				if ( !$wgUser->pingLimiter() ) {
+				if ( !$user->pingLimiter() ) {
 					global $wgParser, $wgEnableParserCache;
 					$popts = new ParserOptions();
 					$p_result = $wgParser->parse( $article->getContent(), $title, $popts );

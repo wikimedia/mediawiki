@@ -39,14 +39,13 @@ class ApiUndelete extends ApiBase {
 	}
 
 	public function execute() {
-		global $wgUser;
 		$params = $this->extractRequestParams();
 
-		if ( !$wgUser->isAllowed( 'undelete' ) ) {
+		if ( !$this->getUser()->isAllowed( 'undelete' ) ) {
 			$this->dieUsageMsg( 'permdenied-undelete' );
 		}
 
-		if ( $wgUser->isBlocked() ) {
+		if ( $this->getUser()->isBlocked() ) {
 			$this->dieUsageMsg( 'blockedtext' );
 		}
 
@@ -74,7 +73,7 @@ class ApiUndelete extends ApiBase {
 
 		if ( $retval[1] ) {
 			wfRunHooks( 'FileUndeleteComplete',
-				array( $titleObj, array(), $wgUser, $params['reason'] ) );
+				array( $titleObj, array(), $this->getUser(), $params['reason'] ) );
 		}
 
 		$this->setWatch( $params['watchlist'], $titleObj );

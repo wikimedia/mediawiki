@@ -129,7 +129,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 	 * @param $resultPageSet ApiPageSet
 	 */
 	public function run( $resultPageSet = null ) {
-		global $wgUser;
+		$user = $this->getUser();
 		/* Get the parameters of the request. */
 		$params = $this->extractRequestParams();
 
@@ -163,7 +163,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 			// Check permissions
 			if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ) {
-				if ( !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() ) {
+				if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 					$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 				}
 			}
@@ -219,7 +219,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			/* Set up internal members based upon params. */
 			$this->initProperties( $prop );
 
-			if ( $this->fld_patrolled && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol() ) {
+			if ( $this->fld_patrolled && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieUsage( 'You need the patrol right to request the patrolled flag', 'permissiondenied' );
 			}
 

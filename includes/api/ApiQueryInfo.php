@@ -619,9 +619,9 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * Get information about watched status and put it in $this->watched
 	 */
 	private function getWatchedInfo() {
-		global $wgUser;
+		$user = $this->getUser();
 
-		if ( $wgUser->isAnon() || count( $this->everything ) == 0 ) {
+		if ( $user->isAnon() || count( $this->everything ) == 0 ) {
 			return;
 		}
 
@@ -635,7 +635,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->addFields( array( 'wl_title', 'wl_namespace' ) );
 		$this->addWhere( array(
 			$lb->constructSet( 'wl', $db ),
-			'wl_user' => $wgUser->getID()
+			'wl_user' => $user->getID()
 		) );
 
 		$res = $this->select( __METHOD__ );

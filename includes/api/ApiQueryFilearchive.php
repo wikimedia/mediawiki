@@ -43,9 +43,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgUser;
+		$user = $this->getUser();
 		// Before doing anything at all, let's check permissions
-		if ( !$wgUser->isAllowed( 'deletedhistory' ) ) {
+		if ( !$user->isAllowed( 'deletedhistory' ) ) {
 			$this->dieUsage( 'You don\'t have permission to view deleted file information', 'permissiondenied' );
 		}
 
@@ -110,7 +110,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			}
 		}
 
-		if ( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+		if ( !$user->isAllowed( 'suppressrevision' ) ) {
 			// Filter out revisions that the user is not allowed to see. There
 			// is no way to indicate that we have skipped stuff because the
 			// continuation parameter is fa_name

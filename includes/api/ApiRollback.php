@@ -52,11 +52,11 @@ class ApiRollback extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// User and title already validated in call to getTokenSalt from Main
-		$titleObj = $this->getTitle();
+		$titleObj = $this->getRbTitle();
 		$articleObj = new Article( $titleObj );
 		$summary = ( isset( $params['summary'] ) ? $params['summary'] : '' );
 		$details = array();
-		$retval = $articleObj->doRollback( $this->getUser(), $summary, $params['token'], $params['markbot'], $details );
+		$retval = $articleObj->doRollback( $this->getRbUser(), $summary, $params['token'], $params['markbot'], $details );
 
 		if ( $retval ) {
 			// We don't care about multiple errors, just report one of them
@@ -141,10 +141,10 @@ class ApiRollback extends ApiBase {
 	}
 
 	public function getTokenSalt() {
-		return array( $this->getTitle()->getPrefixedText(), $this->getUser() );
+		return array( $this->getRbTitle()->getPrefixedText(), $this->getRbUser() );
 	}
 
-	private function getUser() {
+	private function getRbUser() {
 		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}
@@ -165,7 +165,7 @@ class ApiRollback extends ApiBase {
 	/**
 	 * @return Title
 	 */
-	private function getTitle() {
+	private function getRbTitle() {
 		if ( $this->mTitleObj !== null ) {
 			return $this->mTitleObj;
 		}

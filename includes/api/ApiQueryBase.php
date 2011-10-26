@@ -502,8 +502,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 * @return void
 	 */
 	public function showHiddenUsersAddBlockInfo( $showBlockInfo ) {
-		global $wgUser;
-		$userCanViewHiddenUsers = $wgUser->isAllowed( 'hideuser' );
+		$userCanViewHiddenUsers = $this->getUser()->isAllowed( 'hideuser' );
 
 		if ( $showBlockInfo || !$userCanViewHiddenUsers ) {
 			$this->addTables( 'ipblocks' );

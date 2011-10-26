@@ -62,7 +62,8 @@ class ApiParse extends ApiBase {
 
 		// The parser needs $wgTitle to be set, apparently the
 		// $title parameter in Parser::parse isn't enough *sigh*
-		global $wgParser, $wgUser, $wgTitle, $wgLang;
+		// TODO: Does this still need $wgTitle?
+		global $wgParser, $wgTitle, $wgLang;
 
 		// Currently unnecessary, code to act as a safeguard against any change in current behaviour of uselang breaks
 		$oldLang = null;
@@ -179,7 +180,7 @@ class ApiParse extends ApiBase {
 			}
 
 			if ( $params['pst'] || $params['onlypst'] ) {
-				$this->pstText = $wgParser->preSaveTransform( $this->text, $titleObj, $wgUser, $popts );
+				$this->pstText = $wgParser->preSaveTransform( $this->text, $titleObj, $this->getUser(), $popts );
 			}
 			if ( $params['onlypst'] ) {
 				// Build a result and bail out
