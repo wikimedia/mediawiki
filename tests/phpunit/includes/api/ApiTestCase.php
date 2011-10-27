@@ -7,6 +7,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	public static $users;
 	protected static $apiUrl;
 
+	/**
+	 * @var ApiTestContext
+	 */
+	protected $apiContext;
+
 	function setUp() {
 		global $wgContLang, $wgAuth, $wgMemc, $wgRequest, $wgUser, $wgServer;
 
@@ -34,6 +39,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 		$wgUser = self::$users['sysop']->user;
 
+		$this->apiContext = new ApiTestContext();
+
 	}
 
 	protected function doApiRequest( $params, $session = null, $appendModule = false ) {
@@ -41,11 +48,15 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			$session = array();
 		}
 
-		$request = new FauxRequest( $params, true, $session );
-		$module = new ApiMain( $request, true );
+		$context = $this->apiContext->newTestContext( $params, $session );
+		$module = new ApiMain( $context, true );
 		$module->execute();
 
-		$results = array( $module->getResultData(), $request, $request->getSessionArray() );
+		$results = array(
+			$module->getResultData(),
+			$context->getRequest(),
+			$context->getRequest()->getSessionArray()
+		);
 		if( $appendModule ) {
 			$results[] = $module;
 		}
@@ -135,5 +146,21 @@ class MockApi extends ApiBase {
 			'enablechunks' => false,
 			'sessionkey' => null,
 		);
+	}
+}
+
+class ApiTestContext extends RequestContext {
+
+	/**
+	 * Returns a DerivativeContext with the request variables in place
+	 *
+	 * @param $params Array key-value API params
+	 * @param $session Array session data
+	 * @return DerivativeContext
+	 */
+	public function newTestContext( $params, $session ) {
+		$context = new DerivativeContext( $this );
+		$context->setRequest( new FauxRequest( $params, true, $session ) );
+		return $context;
 	}
 }
