@@ -8522,6 +8522,8 @@ comment
 !! end
 
 !! test
+!! options
+disabled
 Bad images - basic functionality
 !! input
 [[File:Bad.jpg]]
@@ -8529,6 +8531,8 @@ Bad images - basic functionality
 !! end
 
 !! test
+!! options
+disabled
 Bad images - bug 16039: text after bad image disappears
 !! input
 Foo bar
