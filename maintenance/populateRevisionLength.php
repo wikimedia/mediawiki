@@ -26,6 +26,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Populates the rev_len field";
+		$this->setBatchSize( 200 );
 	}
 
 	protected function getUpdateKey() {
