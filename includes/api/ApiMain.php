@@ -151,10 +151,13 @@ class ApiMain extends ApiBase {
 			// BC for pre-1.19
 			$request = $context;
 			$context = RequestContext::getMain();
-			$context->setRequest( $request );
 		}
 		// We set a derivative context so we can change stuff later
 		$this->setContext( new DerivativeContext( $context ) );
+
+		if ( isset( $request ) ) {
+			$context->setRequest( $request );
+		}
 
 		$this->mInternalMode = ( $this->getRequest() instanceof FauxRequest );
 
@@ -187,8 +190,6 @@ class ApiMain extends ApiBase {
 		$this->mShowVersions = false;
 		$this->mEnableWrite = $enableWrite;
 
-		//$this->mRequest = &$request;
-
 		$this->mSquidMaxage = - 1; // flag for executeActionWithErrorHandling()
 		$this->mCommit = false;
 	}
@@ -200,14 +201,6 @@ class ApiMain extends ApiBase {
 	public function isInternalMode() {
 		return $this->mInternalMode;
 	}
-
-	/**
-	 * Return the request object that contains client's request
-	 * @return WebRequest
-	 */
-	/*public function getRequest() {
-		return $this->mRequest;
-	}*/
 
 	/**
 	 * Get the ApiResult object associated with current request
