@@ -1518,7 +1518,7 @@ class ImportStreamSource {
 		# quicker and sorts out user-agent problems which might
 		# otherwise prevent importing from large sites, such
 		# as the Wikimedia cluster, etc.
-		$data = Http::request( $method, $url );
+		$data = Http::request( $method, $url, array( 'followRedirects' => true ) );
 		if( $data !== false ) {
 			$file = tmpfile();
 			fwrite( $file, $data );
