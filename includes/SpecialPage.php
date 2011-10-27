@@ -967,7 +967,7 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
  */
 class SpecialListAdmins extends SpecialRedirectToSpecial {
 	function __construct(){
-		parent::__construct( 'ListAdmins', 'ListUsers', 'sysop' );
+		parent::__construct( 'Listadmins', 'Listusers', 'sysop' );
 	}
 }
 
@@ -976,7 +976,7 @@ class SpecialListAdmins extends SpecialRedirectToSpecial {
  */
 class SpecialListBots extends SpecialRedirectToSpecial {
 	function __construct(){
-		parent::__construct( 'ListAdmins', 'ListUsers', 'bot' );
+		parent::__construct( 'Listadmins', 'Listusers', 'bot' );
 	}
 }
 
