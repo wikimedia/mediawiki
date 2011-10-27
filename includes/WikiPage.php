@@ -1529,10 +1529,6 @@ class WikiPage extends Page {
 	 */
 	public function estimateRevisionCount() {
 		$dbr = wfGetDB( DB_SLAVE );
-
-		// For an exact count...
-		// return $dbr->selectField( 'revision', 'COUNT(*)',
-		//	array( 'rev_page' => $this->getId() ), __METHOD__ );
 		return $dbr->estimateRowCount( 'revision', '*',
 			array( 'rev_page' => $this->getId() ), __METHOD__ );
 	}

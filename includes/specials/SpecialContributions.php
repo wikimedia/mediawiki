@@ -476,9 +476,9 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		# Don't include orphaned revisions
-		$join_cond['page'] = array( 'INNER JOIN', 'page_id = rev_page' );
+		$join_cond['page'] = Revision::pageJoinCond();
 		# Get the current user name for accounts
-		$join_cond['user'] = array( 'LEFT JOIN', 'rev_user != 0 AND user_id = rev_user' );
+		$join_cond['user'] = Revision::userJoinCond();
 
 		$queryInfo = array(
 			'tables'     => $tables,

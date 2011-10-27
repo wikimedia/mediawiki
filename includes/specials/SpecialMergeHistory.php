@@ -483,8 +483,8 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 			'fields' => array_merge( Revision::selectFields(), Revision::selectUserFields() ),
 			'conds'  => $conds,
 			'join_conds' => array(
-				'page' => array( 'INNER JOIN', 'rev_page = page_id' ),
-				'user' => array( 'LEFT JOIN', 'user_id = rev_user' ) )
+				'page' => Revision::pageJoinCond(),
+				'user' => Revision::userJoinCond() )
 		);
 	}
 
