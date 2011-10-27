@@ -252,7 +252,7 @@ class RequestContext implements IContextSource {
 	 */
 	public function msg() {
 		$args = func_get_args();
-		return call_user_func_array( 'wfMessage', $args )->inLanguage( $this->getLang() )->title( $this->getTitle() );
+		return call_user_func_array( 'wfMessage', $args )->setContext( $this );
 	}
 
 	/** Static methods **/

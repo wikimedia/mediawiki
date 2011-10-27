@@ -53,7 +53,7 @@ class SpecialUnblock extends SpecialPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
-		$out->setPageTitleMsg( 'unblockip' );
+		$out->setPageTitle( $this->msg( 'unblockip' ) );
 		$out->addModules( 'mediawiki.special' );
 
 		$form = new HTMLForm( $this->getFields(), $this->getContext() );

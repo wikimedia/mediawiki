@@ -67,7 +67,7 @@ class MarkpatrolledAction extends FormlessAction {
 		$return = SpecialPage::getTitleFor( $returnto );
 
 		if ( in_array( array( 'markedaspatrollederror-noautopatrol' ), $errors ) ) {
-			$this->getOutput()->setPageTitleMsg( 'markedaspatrollederror' );
+			$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrollederror' ) );
 			$this->getOutput()->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
 			$this->getOutput()->returnToMain( null, $return );
 			return;
@@ -79,7 +79,7 @@ class MarkpatrolledAction extends FormlessAction {
 		}
 
 		# Inform the user
-		$this->getOutput()->setPageTitleMsg( 'markedaspatrolled' );
+		$this->getOutput()->setPageTitle( $this->msg( 'markedaspatrolled' ) );
 		$this->getOutput()->addWikiMsg( 'markedaspatrolledtext', $rc->getTitle()->getPrefixedText() );
 		$this->getOutput()->returnToMain( null, $return );
 	}

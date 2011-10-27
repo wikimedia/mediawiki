@@ -73,10 +73,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$namespaces = $wgContLang->getNamespaces();
 
-		$out->setPagetitle(
+		$out->setPageTitle(
 			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) ) ?
-			wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
-			wfMsg( 'allarticles' )
+			$this->msg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
+			$this->msg( 'allarticles' )
 		);
 		$out->addModuleStyles( 'mediawiki.special' );
 

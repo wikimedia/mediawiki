@@ -91,7 +91,7 @@ class SpecialBlock extends SpecialPage {
 		$this->outputHeader();
 
 		$out = $this->getOutput();
-		$out->setPageTitleMsg( 'blockip-title' );
+		$out->setPageTitle( $this->msg( 'blockip-title' ) );
 		$out->addModules( array( 'mediawiki.special', 'mediawiki.special.block' ) );
 
 		$fields = $this->getFormFields();
@@ -111,7 +111,7 @@ class SpecialBlock extends SpecialPage {
 		$this->doPostText( $form );
 
 		if( $form->show() ){
-			$out->setPageTitleMsg( 'blockipsuccesssub' );
+			$out->setPageTitle( $this->msg( 'blockipsuccesssub' ) );
 			$out->addWikiMsg( 'blockipsuccesstext',  $this->target );
 		}
 	}

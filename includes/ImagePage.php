@@ -795,7 +795,7 @@ EOT
 	 */
 	function showError( $description ) {
 		global $wgOut;
-		$wgOut->setPageTitle( wfMsg( 'internalerror' ) );
+		$wgOut->setPageTitle( wfMessage( 'internalerror' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->setArticleRelated( false );
 		$wgOut->enableClientCache( false );

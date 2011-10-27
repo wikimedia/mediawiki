@@ -205,6 +205,19 @@ class Message {
 	}
 
 	/**
+	 * Set the language and the title from a context object
+	 *
+	 * @param $context IContextSource
+	 * @return Message: $this
+	 */
+	public function setContext( IContextSource $context ) {
+		$this->inLanguage( $context->getLang() );
+		$this->title( $context->getTitle() );
+
+		return $this;
+	}
+
+	/**
 	 * Request the message in any language that is supported.
 	 * As a side effect interface message status is unconditionally
 	 * turned off.

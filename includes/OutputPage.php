@@ -760,20 +760,11 @@ class OutputPage extends ContextSource {
 	 * @param $name string
 	 */
 	public function setHTMLTitle( $name ) {
-		$this->mHTMLtitle = $name;
-	}
-
-	/**
-	 * Same as setHTMLTitle(), but takes a message name and parameter instead
-	 * of directly the string to display.
-	 *
-	 * @since 1.19
-	 * @param $name String message name
-	 * @param $args Array|String message parameters, if there's only one
-	 *              parameter it can be passed directly as a string.
-	 */
-	public function setHTMLTitleMsg( $name, $args = array() ) {
-		$this->setHTMLTitle( $this->msg( $name, $args )->text() );
+		if ( $name instanceof Message ) {
+			$this->mHTMLtitle = $name->setContext( $this->getContext() )->text();
+		} else {
+			$this->mHTMLtitle = $name;
+		}
 	}
 
 	/**
@@ -791,29 +782,20 @@ class OutputPage extends ContextSource {
 	 * This function automatically sets \<title\> to the same content as \<h1\> but with all tags removed.
 	 * Bad tags that were escaped in \<h1\> will still be escaped in \<title\>, and good tags like \<i\> will be dropped entirely.
 	 *
-	 * @param $name string
+	 * @param $name string|Message
 	 */
 	public function setPageTitle( $name ) {
+		if ( $name instanceof Message ) {
+			$name = $name->setContext( $this->getContext() )->text();
+		}
+
 		# change "<script>foo&bar</script>" to "&lt;script&gt;foo&amp;bar&lt;/script&gt;"
 		# but leave "<i>foobar</i>" alone
 		$nameWithTags = Sanitizer::normalizeCharReferences( Sanitizer::removeHTMLtags( $name ) );
 		$this->mPagetitle = $nameWithTags;
 
 		# change "<i>foo&amp;bar</i>" to "foo&bar"
-		$this->setHTMLTitleMsg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) );
-	}
-
-	/**
-	 * Same as setPageTitle(), but takes a message name and parameter instead
-	 * of directly the string to display.
-	 *
-	 * @since 1.19
-	 * @param $name String message name
-	 * @param $args Array|String message parameters, if there's only one
-	 *              parameter it can be passed directly as a string.
-	 */
-	public function setPageTitleMsg( $name, $args = array() ) {
-		$this->setPageTitle( $this->msg( $name, $args )->text() );
+		$this->setHTMLTitle( $this->msg( 'pagetitle', Sanitizer::stripAllTags( $nameWithTags ) ) );
 	}
 
 	/**
@@ -1956,8 +1938,8 @@ class OutputPage extends ContextSource {
 		if ( $this->getTitle() ) {
 			$this->mDebugtext .= 'Original title: ' . $this->getTitle()->getPrefixedText() . "\n";
 		}
-		$this->setPageTitleMsg( $title );
-		$this->setHTMLTitleMsg( 'errorpagetitle' );
+		$this->setPageTitle( $this->msg( $title ) );
+		$this->setHTMLTitle( $this->msg( 'errorpagetitle' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -1982,8 +1964,8 @@ class OutputPage extends ContextSource {
 	public function showPermissionsErrorPage( $errors, $action = null ) {
 		$this->mDebugtext .= 'Original title: ' .
 		$this->getTitle()->getPrefixedText() . "\n";
-		$this->setPageTitleMsg( 'permissionserrors' );
-		$this->setHTMLTitleMsg( 'permissionserrors' );
+		$this->setPageTitle( $this->msg( 'permissionserrors' ) );
+		$this->setHTMLTitle( $this->msg('permissionserrors' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -1999,8 +1981,8 @@ class OutputPage extends ContextSource {
 	 * @param $version Mixed: the version of MediaWiki needed to use the page
 	 */
 	public function versionRequired( $version ) {
-		$this->setPageTitleMsg( 'versionrequired' );
-		$this->setHTMLTitleMsg( 'versionrequired', $version );
+		$this->setPageTitle( $this->msg( 'versionrequired' ) );
+		$this->setHTMLTitle( $this->msg( 'versionrequired', $version ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->mBodytext = '';
@@ -2026,8 +2008,8 @@ class OutputPage extends ContextSource {
 			throw new PermissionsError( 'read' );
 		}
 
-		$this->setPageTitleMsg( 'loginreqtitle' );
-		$this->setHTMLTitleMsg( 'errorpagetitle' );
+		$this->setPageTitle( $this->msg( 'loginreqtitle' ) );
+		$this->setHTMLTitle( $this->msg( 'errorpagetitle' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 
@@ -2119,12 +2101,12 @@ class OutputPage extends ContextSource {
 		if ( !empty( $reasons ) ) {
 			// Permissions error
 			if( $source ) {
-				$this->setPageTitleMsg( 'viewsource' );
+				$this->setPageTitle( $this->msg( 'viewsource' ) );
 				$this->setSubtitle(
 					$this->msg( 'viewsourcefor', Linker::linkKnown( $this->getTitle() ) )->text()
 				);
 			} else {
-				$this->setPageTitleMsg( 'badaccess' );
+				$this->setPageTitle( $this->msg( 'badaccess' ) );
 			}
 			$this->addWikiText( $this->formatPermissionsErrorMessage( $reasons, $action ) );
 		} else {
@@ -2194,7 +2176,7 @@ $templates
 	}
 
 	public function showFatalError( $message ) {
-		$this->setPageTitleMsg( 'internalerror' );
+		$this->setPageTitle( $this->msg( 'internalerror' ) );
 		$this->setRobotPolicy( 'noindex,nofollow' );
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
@@ -2286,7 +2268,7 @@ $templates
 		$ret = Html::htmlHeader( array( 'lang' => $this->getLang()->getCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
-			$this->setHTMLTitleMsg( 'pagetitle', $this->getPageTitle() );
+			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() ) );
 		}
 
 		$openHead = Html::openElement( 'head' );
