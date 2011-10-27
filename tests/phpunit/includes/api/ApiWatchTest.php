@@ -93,7 +93,9 @@ class ApiWatchTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'edit', $data[0]['protect']['protections'][0] );
 	}
 
-	
+	/**
+	 * @group Broken
+	 */
 	function testGetRollbackToken() {
 		
 		$data = $this->getTokens();
