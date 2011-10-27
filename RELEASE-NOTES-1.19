@@ -153,6 +153,8 @@ changes to languages because of Bugzilla reports.
 * (bug 22096) Although IE5.x and below was already unsupported officially, stylesheets
   existing exclusively for IE5.0 and IE5.5 have now been removed (which were in skins
   'chick' and 'monobook').
+* The constructor for CategoryView has changed, the second parameter is now a
+  Context source and is required.
 
 == Compatibility ==
 
