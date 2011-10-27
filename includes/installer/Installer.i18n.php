@@ -11017,6 +11017,19 @@ $messages['nah'] = array(
 	'mainpagetext' => "'''MediaHuiqui cualli ōmotlahtlāli.'''",
 );
 
+/** Min Nan Chinese (Bân-lâm-gú)
+ * @author Ianbu
+ */
+$messages['nan'] = array(
+	'mainpagetext' => "'''MediaWiki已經裝好矣。'''",
+	'mainpagedocfooter' => '請查看[http://meta.wikimedia.org/wiki/Help:Contents 用者說明書]的資料通使用wiki 軟體
+
+== 入門 ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings 配置的設定]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki時常問答]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki的公布列單]',
+);
+
 /** Low German (Plattdüütsch) */
 $messages['nds'] = array(
 	'mainpagetext' => "'''De MediaWiki-Software is mit Spood installeert worrn.'''",

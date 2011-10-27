@@ -2087,8 +2087,8 @@ Ch'a varda la [[Special:ProtectedPages|Lista dle pàgine protegiùe]] për la li
 Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
 'protect-locked-access'       => "Sò cont a l'ha pa la qualìfica për podèj cambié ij livej ëd protession.
 Ambelessì a-i son j'ampostassion atuaj për la pàgina '''$1''':",
-'protect-cascadeon'           => "Sta pàgina për adess a l'é blocà përchè a-i intra an {{PLURAL:$1|la pàgina sì sota, ch'a l'ha|le pàgine sì sota, ch'a l'han}} na protession a sàut avisca. A peul cambie-je sò livel ëd protession a sta pàgina-sì ma lòn a tochërà pa la protession a sàut.",
-'protect-default'             => "Autorisa tùit j'utent",
+'protect-cascadeon'           => "Sta pàgina për adess a l'é blocà përchè a-i intra ant {{PLURAL:$1|la pàgina sì-sota, ch'a l'ha|le-pàgine sì sota, ch'a l'han}} na protession a sàut anvisca. A peul cambie-je sò livel ëd protession a sta pàgina-sì ma lòn a tochërà pa la protession a sàut.",
+'protect-default'             => "Autorisé tùit j'utent",
 'protect-fallback'            => 'A-i va ël përmess "$1"',
 'protect-level-autoconfirmed' => "Bloca j'utent neuv e coj nen registrà",
 'protect-level-sysop'         => "mach për j'aministrator",

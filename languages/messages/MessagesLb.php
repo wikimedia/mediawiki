@@ -3559,6 +3559,7 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 # New logging system
 'logentry-delete-delete'              => "$1 {{GENDER:$2|huet}} d'Säit $3 geläscht",
 'logentry-delete-restore'             => "$1 {{GENDER:$2|huet}} d'Säit $3 restauréiert",
+'logentry-delete-event'               => "$1 {{GENDER:$2|huet}} d'Visibilitéit vun {{PLURAL:$5|engem Evenement|$5 Evenementer}} am Logbuch op $3:$4 geännert",
 'logentry-delete-event-legacy'        => "$1 {{GENDER:$2|huet}} d'Visibilitéit vun Elementer am Log op $3 geännert",
 'logentry-delete-revision-legacy'     => "$1 {{GENDER:$2|huet}} d'Visibilitéit vu Versioune vun der Säit $3 geännert",
 'logentry-suppress-delete'            => "$1 {{GENDER:$2|huet}} d'Säit $3 ewechgeholl",

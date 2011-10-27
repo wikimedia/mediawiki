@@ -2668,7 +2668,7 @@ Neil juhtudel saad lehekülje soovi korral käsitsi teisaldada või liita.",
 Sihtlehekülg "[[:$1]]" on juba olemas.
 Kas kustutad selle, et luua võimalus teisaldamiseks?',
 'delete_and_move_confirm'      => 'Jah, kustuta lehekülg',
-'delete_and_move_reason'       => 'Kustutatud, et asemele tõsta teine lehekülg',
+'delete_and_move_reason'       => 'Kustutatud, et tõsta asemele lehekülg "[[$1]]"',
 'selfmove'                     => 'Algne nimi ja uus nimi on samad.',
 'immobile-source-namespace'    => 'Lehekülgi ei saa teisaldada nimeruumis $1',
 'immobile-target-namespace'    => 'Lehekülgi ei saa teisaldada nimeruumi "$1"',

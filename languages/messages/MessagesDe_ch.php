@@ -78,7 +78,6 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'img-auth-nologinnWL' => 'Du bist nicht angemeldet und „$1“ ist nicht in der weissen Liste.',
 
 # Special:ListFiles
-'listfiles-summary' => 'Diese Spezialseite listet alle hochgeladenen Dateien auf. Standardmässig werden die zuletzt hochgeladenen Dateien zuerst angezeigt. Durch einen Klick auf die Spaltenüberschriften kann die Sortierung umgedreht werden oder es kann nach einer anderen Spalte sortiert werden.',
 'listfiles_size'    => 'Grösse',
 
 # File description page
