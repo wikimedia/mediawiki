@@ -246,6 +246,10 @@ form#powersearch {
 }
 
 /**** Special:Specialpages ****/
+.mw-specialpagecached {
+	font-style:italic;
+}
+
 .mw-specialpagerestricted {
 	font-weight: bold;
 }
