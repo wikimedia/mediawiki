@@ -43,12 +43,12 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 
 	}
 
-	protected function doApiRequest( $params, $session = null, $appendModule = false ) {
+	protected function doApiRequest( $params, $session = null, $appendModule = false, $user = null ) {
 		if ( is_null( $session ) ) {
 			$session = array();
 		}
 
-		$context = $this->apiContext->newTestContext( $params, $session );
+		$context = $this->apiContext->newTestContext( $params, $session, $user );
 		$module = new ApiMain( $context, true );
 		$module->execute();
 
@@ -71,13 +71,13 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 * @param $params: key-value API params
 	 * @param $session: session array
 	 */
-	protected function doApiRequestWithToken( $params, $session ) {
+	protected function doApiRequestWithToken( $params, $session, $user = null ) {
 		if ( $session['wsToken'] ) {
 			// add edit token to fake session
 			$session['wsEditToken'] = $session['wsToken'];
 			// add token to request parameters
 			$params['token'] = md5( $session['wsToken'] ) . User::EDIT_TOKEN_SUFFIX;
-			return $this->doApiRequest( $params, $session );
+			return $this->doApiRequest( $params, $session, false, $user );
 		} else {
 			throw new Exception( "request data not in right format" );
 		}
@@ -102,12 +102,11 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	}
 
 	protected function getTokenList( $user ) {
-		$GLOBALS['wgUser'] = $user->user;
 		$data = $this->doApiRequest( array(
 			'action' => 'query',
 			'titles' => 'Main Page',
 			'intoken' => 'edit|delete|protect|move|block|unblock',
-			'prop' => 'info' ) );
+			'prop' => 'info' ), false, $user->user );
 		return $data;
 	}
 }
@@ -156,11 +155,15 @@ class ApiTestContext extends RequestContext {
 	 *
 	 * @param $params Array key-value API params
 	 * @param $session Array session data
+	 * @param $user User or null
 	 * @return DerivativeContext
 	 */
-	public function newTestContext( $params, $session ) {
+	public function newTestContext( $params, $session, $user = null ) {
 		$context = new DerivativeContext( $this );
 		$context->setRequest( new FauxRequest( $params, true, $session ) );
+		if ( $user !== null ) {
+			$context->setUser( $user );
+		}
 		return $context;
 	}
 }

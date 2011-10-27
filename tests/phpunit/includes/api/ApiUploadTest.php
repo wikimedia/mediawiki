@@ -79,14 +79,11 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 * @depends testLogin
 	 */
 	public function testUploadMissingParams( $session ) {
-		global $wgUser;
-		$wgUser = self::$users['uploader']->user;
-
 		$exception = false;
 		try {
 			$this->doApiRequestWithToken( array(
 				'action' => 'upload',
-			), $session );
+			), $session, self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
 			$this->assertEquals( "One of the parameters filekey, file, url, statuskey is required",
@@ -100,9 +97,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 * @depends testLogin
 	 */
 	public function testUpload( $session ) {
-		global $wgUser;
-		$wgUser = self::$users['uploader']->user;
-
 		$extension = 'png';
 		$mimeType = 'image/png';
 
@@ -136,7 +130,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			list( $result, , ) = $this->doApiRequestWithToken( $params, $session );
+			list( $result, , ) = $this->doApiRequestWithToken( $params, $session,
+				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
@@ -156,9 +151,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 * @depends testLogin
 	 */
 	public function testUploadZeroLength( $session ) {
-		global $wgUser;
-		$wgUser = self::$users['uploader']->user;
-
 		$mimeType = 'image/png';
 
 		$filePath = tempnam( wfTempDir(), "" );
@@ -180,7 +172,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			$this->doApiRequestWithToken( $params, $session );
+			$this->doApiRequestWithToken( $params, $session, self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$this->assertContains( 'The file you submitted was empty', $e->getMessage() );
 			$exception = true;
@@ -197,9 +189,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 * @depends testLogin
 	 */
 	public function testUploadSameFileName( $session ) {
-		global $wgUser;
-		$wgUser = self::$users['uploader']->user;
-
 		$extension = 'png';
 		$mimeType = 'image/png';
 
@@ -234,7 +223,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			list( $result, , $session ) = $this->doApiRequestWithToken( $params, $session );
+			list( $result, , $session ) = $this->doApiRequestWithToken( $params, $session,
+				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
@@ -250,7 +240,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			list( $result, , ) = $this->doApiRequestWithToken( $params, $session );
+			list( $result, , ) = $this->doApiRequestWithToken( $params, $session,
+				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
@@ -271,9 +262,6 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 * @depends testLogin
 	 */
 	public function testUploadSameContent( $session ) {
-		global $wgUser;
-		$wgUser = self::$users['uploader']->user;
-
 		$extension = 'png';
 		$mimeType = 'image/png';
 
@@ -309,7 +297,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session );
+			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
@@ -334,7 +323,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session );
+			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
@@ -356,7 +346,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 	 */
 	public function testUploadStash( $session ) {
 		global $wgUser;
-		$wgUser = self::$users['uploader']->user;
+		$wgUser = self::$users['uploader']->user; // @todo FIXME: still used somewhere
 
 		$extension = 'png';
 		$mimeType = 'image/png';
@@ -391,7 +381,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 
 		$exception = false;
 		try {
-			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session );
+			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
@@ -419,7 +410,8 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->clearFakeUploads();
 		$exception = false;
 		try {
-			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session );
+			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
+				self::$users['uploader']->user );
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
