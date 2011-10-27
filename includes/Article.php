@@ -145,7 +145,6 @@ class Article extends Page {
 
 	/**
 	 * Clear the object
-	 * @todo FIXME: Shouldn't this be public?
 	 * @private
 	 */
 	public function clear() {
