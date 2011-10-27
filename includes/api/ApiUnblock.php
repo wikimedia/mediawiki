@@ -49,7 +49,7 @@ class ApiUnblock extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		if ( $params['gettoken'] ) {
-			$res['unblocktoken'] = $user->editToken( '', $this->getMain()->getRequest() );
+			$res['unblocktoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
 			$this->getResult()->addValue( null, $this->getModuleName(), $res );
 			return;
 		}

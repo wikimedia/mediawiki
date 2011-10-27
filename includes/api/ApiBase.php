@@ -436,6 +436,7 @@ abstract class ApiBase extends ContextSource {
 	 * Callback for preg_replace_callback() call in makeHelpMsg().
 	 * Replaces a source file name with a link to ViewVC
 	 *
+	 * @param $matches array
 	 * @return string
 	 */
 	public function makeHelpMsg_callback( $matches ) {
