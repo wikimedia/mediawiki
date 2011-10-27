@@ -175,7 +175,7 @@ class HtmlTest extends MediaWikiTestCase {
 	function testValueIsAuthoritativeInSpaceSeparatedAttributesArrays() {
 		$this->assertEquals(
 			' class=""',
-			HTML::expandAttributes( array( 'class' => array(
+			Html::expandAttributes( array( 'class' => array(
 				'GREEN',
 				'GREEN' => false,
 				'GREEN',
