@@ -362,8 +362,6 @@ class ManualLogEntry extends LogEntryBase {
 	 * @return int If of the log entry
 	 */
 	public function insert() {
-		global $wgLogRestrictions;
-
 		$dbw = wfGetDB( DB_MASTER );
 		$id = $dbw->nextSequenceValue( 'logging_log_id_seq' );
 

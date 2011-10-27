@@ -710,7 +710,7 @@ abstract class File {
 	 * @return MediaTransformOutput | false
 	 */
 	function transform( $params, $flags = 0 ) {
-		global $wgUseSquid, $wgServer;
+		global $wgUseSquid;
 
 		wfProfileIn( __METHOD__ );
 		do {

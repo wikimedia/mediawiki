@@ -786,7 +786,6 @@ class SkinTemplate extends Skin {
 	 * @return array
 	 */
 	protected function buildContentNavigationUrls() {
-		global $wgContLang;
 		global $wgDisableLangConversion;
 
 		wfProfileIn( __METHOD__ );

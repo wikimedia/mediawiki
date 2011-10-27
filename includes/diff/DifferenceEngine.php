@@ -175,7 +175,7 @@ class DifferenceEngine {
 	}
 
 	function showDiffPage( $diffOnly = false ) {
-		global $wgUser, $wgOut, $wgRequest, $wgUseExternalEditor, $wgUseRCPatrol;
+		global $wgUser, $wgOut, $wgRequest, $wgUseExternalEditor;
 		wfProfileIn( __METHOD__ );
 
 		# Allow frames except in certain special cases
@@ -509,7 +509,7 @@ CONTROL;
 	 * Show the new revision of the page.
 	 */
 	function renderNewRevision() {
-		global $wgOut, $wgUser;
+		global $wgOut;
 		wfProfileIn( __METHOD__ );
 		$revHeader = $this->getRevisionHeader( $this->mNewRev );
 		# Add "current version as of X" title
@@ -1023,8 +1023,6 @@ CONTROL;
 	 * @return bool
 	 */
 	function loadRevisionData() {
-		global $wgUser;
-
 		if ( $this->mRevisionsLoaded ) {
 			return true;
 		}
