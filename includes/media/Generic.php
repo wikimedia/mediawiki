@@ -504,16 +504,6 @@ abstract class MediaHandler {
 		}
 		return false;
 	}
-	
-	/**
-	 * Remove files from the purge list
-	 * 
-	 * @param array $files
-	 * @param array $options
-	 */
-	public function filterThumbnailPurgeList( &$files, $options ) {
-		// Do nothing
-	}
 }
 
 /**

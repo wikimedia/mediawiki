@@ -674,12 +674,12 @@ class LocalFile extends File {
 	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
 	 */
-	function purgeCache( $options = array() ) {
+	function purgeCache() {
 		// Refresh metadata cache
 		$this->purgeMetadataCache();
 
 		// Delete thumbnails
-		$this->purgeThumbnails( $options );
+		$this->purgeThumbnails();
 
 		// Purge squid cache for this file
 		SquidUpdate::purge( array( $this->getURL() ) );
@@ -722,18 +722,11 @@ class LocalFile extends File {
 	/**
 	 * Delete cached transformed files for the current version only.
 	 */
-	function purgeThumbnails( $options = array() ) {
+	function purgeThumbnails() {
 		global $wgUseSquid;
-		
-		// Get a list of thumbnails and URLs
+
+		// Delete thumbnails
 		$files = $this->getThumbnails();
-		
-		// Give media handler a chance to filter the purge list
-		$handler = $this->getHandler();
-		if ( $handler ) {
-			$handler->filterThumbnailPurgeList( $files, $options );
-		}
-		
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 
@@ -756,16 +749,8 @@ class LocalFile extends File {
 	 * @param $files array of strings: relative filenames (to $dir)
 	 */
 	protected function purgeThumbList($dir, $files) {
-		global $wgExcludeFromThumbnailPurge;
-
 		wfDebug( __METHOD__ . ": " . var_export( $files, true ) . "\n" );
 		foreach ( $files as $file ) {
-			// Only remove files not in the $wgExcludeFromThumbnailPurge configuration variable
-			$ext = pathinfo( "$dir/$file", PATHINFO_EXTENSION );
-			if ( in_array( $ext, $wgExcludeFromThumbnailPurge ) ) {
-				continue;
-			}
-
 			# Check that the base file name is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
 			if ( strpos( $file, $this->getName() ) !== false ) {
