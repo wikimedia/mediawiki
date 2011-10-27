@@ -54,6 +54,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$this->assertEquals( "Success", $result['login']['result'] );
 		$this->assertArrayHasKey( 'lgtoken', $result['login'] );
 
+		$this->assertNotEmpty( $session, 'API Login must return a session' );
 		return $session;
 
 	}
