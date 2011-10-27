@@ -78,7 +78,8 @@ class RawAction extends FormlessAction {
 		$response->header( 'Content-type: ' . $contentType . '; charset=UTF-8' );
 		# Output may contain user-specific data;
 		# vary generated content for open sessions on private wikis
-		$privateCache = !$wgGroupPermissions['*']['read'] && ( $smaxage == 0 || session_id() != '' );
+		$privateCache = !$wgGroupPermissions['*']['read']
+			&& ( $smaxage == 0 || session_id() != '' );
 		# allow the client to cache this for 24 hours
 		$mode = $privateCache ? 'private' : 'public';
 		$response->header( 'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage );
@@ -120,8 +121,7 @@ class RawAction extends FormlessAction {
 
 		// If it's a MediaWiki message we can just hit the message cache
 		if ( $request->getBool( 'usemsgcache' ) && $title->getNamespace() == NS_MEDIAWIKI ) {
-			$key = $title->getDBkey();
-			$msg = wfMessage( $key )->inContentLanguage();
+			$msg = wfMessage( $title->getDBkey() )->inContentLanguage();
 			# If the message doesn't exist, return a blank
 			$text = !$msg->exists() ? '' : $msg->plain();
 		} else {
@@ -131,7 +131,7 @@ class RawAction extends FormlessAction {
 				$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
 				$request->response()->header( "Last-modified: $lastmod" );
 
-				$text = $rev->getText();
+				$text = $rev->getText( Revision::FOR_THIS_USER, $this->getUser() );
 				$section = $request->getIntOrNull( 'section' );
 				if ( $section !== null ) {
 					$text = $wgParser->getSection( $text, $section );
