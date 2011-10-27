@@ -16,10 +16,11 @@
  *
  * @param $name string the image name to check
  * @param $contextTitle Title|bool the page on which the image occurs, if known
+ * @param $blacklist string wikitext of a file blacklist
  * @return bool
  */
-function wfIsBadImage( $name, $contextTitle = false ) {
-	static $badImages = null;
+function wfIsBadImage( $name, $contextTitle = false, $blacklist = null ) {
+	static $badImageCache = null; // based on bad_image_list msg
 	wfProfileIn( __METHOD__ );
 
 	# Handle redirects
@@ -34,11 +35,17 @@ function wfIsBadImage( $name, $contextTitle = false ) {
 		wfProfileOut( __METHOD__ );
 		return $bad;
 	}
-
-	if( $badImages === null ) {
+ 
+	$cacheable = ( $blacklist === null );
+	if( $cacheable && $badImageCache !== null ) {
+		$badImages = $badImageCache;
+	} else { // cache miss
+		if ( $blacklist === null ) {
+			$blacklist = wfMsgForContentNoTrans( 'bad_image_list' ); // site list
+		}
 		# Build the list now
 		$badImages = array();
-		$lines = explode( "\n", wfMsgForContentNoTrans( 'bad_image_list' ) );
+		$lines = explode( "\n", $blacklist );
 		foreach( $lines as $line ) {
 			# List items only
 			if ( substr( $line, 0, 1 ) !== '*' ) {
@@ -67,6 +74,9 @@ function wfIsBadImage( $name, $contextTitle = false ) {
 			if ( $imageDBkey !== false ) {
 				$badImages[$imageDBkey] = $exceptions;
 			}
+		}
+		if ( $cacheable ) {
+			$badImageCache = $badImages;
 		}
 	}
 
