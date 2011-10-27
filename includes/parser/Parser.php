@@ -3049,7 +3049,8 @@ class Parser {
 		# @todo FIXME: If piece['parts'] is null then the call to getLength() below won't work b/c this $args isn't an object
 		$args = ( null == $piece['parts'] ) ? array() : $piece['parts'];
 		wfProfileOut( __METHOD__.'-setup' );
-		wfProfileIn( __METHOD__."-title-$originalTitle" );
+
+		$titleProfileIn = null; // profile templates
 
 		# SUBST
 		wfProfileIn( __METHOD__.'-modifiers' );
@@ -3212,6 +3213,8 @@ class Parser {
 
 		# Load from database
 		if ( !$found && $title ) {
+			$titleProfileIn = __METHOD__ . "-title-" . $title->getDBKey();
+			wfProfileIn( $titleProfileIn ); // template in
 			wfProfileIn( __METHOD__ . '-loadtpl' );
 			if ( !$title->isExternal() ) {
 				if ( $title->getNamespace() == NS_SPECIAL
@@ -3289,7 +3292,9 @@ class Parser {
 		# Recover the source wikitext and return it
 		if ( !$found ) {
 			$text = $frame->virtualBracketedImplode( '{{', '|', '}}', $titleWithSpaces, $args );
-			wfProfileOut( __METHOD__."-title-$originalTitle" );
+			if ( $titleProfileIn ) {
+				wfProfileOut( $titleProfileIn ); // template out
+			}
 			wfProfileOut( __METHOD__ );
 			return array( 'object' => $text );
 		}
@@ -3317,6 +3322,10 @@ class Parser {
 		if ( $isLocalObj && $nowiki ) {
 			$text = $frame->expand( $text, PPFrame::RECOVER_ORIG );
 			$isLocalObj = false;
+		}
+
+		if ( $titleProfileIn ) {
+			wfProfileOut( $titleProfileIn ); // template out
 		}
 
 		# Replace raw HTML by a placeholder
@@ -3358,7 +3367,6 @@ class Parser {
 			$ret = array( 'text' => $text );
 		}
 
-		wfProfileOut( __METHOD__."-title-$originalTitle" );
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
