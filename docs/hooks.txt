@@ -1475,6 +1475,13 @@ $action : Action being performed
 Change $result and return false to give a definitive answer, otherwise
 the built-in rate limiting checks are used, if enabled.
 
+'PlaceNewSection': Override placement of new sections.
+$wikipage : WikiPage object
+$oldtext : the text of the article before editing
+$subject : subject of the new section
+&$text : text of the new section
+Return false and put the merged text into $text to override the default behavior.
+
 'PrefixSearchBackend': Override the title prefix search used for OpenSearch and
 AJAX search suggestions. Put results into &$results outparam and return false.
 $ns : array of int namespace keys to search in
