@@ -481,6 +481,21 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * @param $table string
+	 * @param $patch string
+	 * @param $fullpath bool
+	 */
+	protected function dropTable( $table, $patch, $fullpath = false ) {
+		if ( $this->db->tableExists( $table ) ) {
+			$this->output( "Dropping table $table... " );
+			$this->applyPatch( $patch, $fullpath );
+			$this->output( "ok\n" );
+		} else {
+			$this->output( "...$table doesn't exist.\n" );
+		}
+	}
+
+	/**
 	 * Modify an existing field
 	 *
 	 * @param $table String: name of the table to which the field belongs
