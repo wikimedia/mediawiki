@@ -709,8 +709,9 @@ class ParserTest {
 			'archive', 'user_groups', 'page_props', 'category', 'msg_resource', 'msg_resource_links'
 		);
 
-		if ( in_array( $this->db->getType(), array( 'mysql', 'sqlite', 'oracle' ) ) )
+		if ( in_array( $this->db->getType(), array( 'mysql', 'sqlite', 'oracle' ) ) ) {
 			array_push( $tables, 'searchindex' );
+		}
 
 		// Allow extensions to add to the list of tables to duplicate;
 		// may be necessary if they hook into page save or other code
@@ -760,10 +761,8 @@ class ParserTest {
 		$this->dbClone->useTemporaryTables( $temporary );
 		$this->dbClone->cloneTableStructure();
 
-		if ( $dbType == 'oracle' )
-			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
-
 		if ( $dbType == 'oracle' ) {
+			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 			# Insert 0 user to prevent FK violations
 
 			# Anonymous user
