@@ -424,6 +424,7 @@ class ResourceLoader {
 
 		// If there's an If-Modified-Since header, respond with a 304 appropriately
 		if ( $this->tryRespondLastModified( $context, $mtime ) ) {
+			wfProfileOut( __METHOD__ );
 			return; // output handled (buffers cleared)
 		}
 
