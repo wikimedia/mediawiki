@@ -30,6 +30,7 @@ def unichr3( *args ):
     return [unichr( int( i[2:7], 16 ) ) for i in args if i[2:7]]
 
 # DEFINE
+UNIHAN_VER = '5.2.0'
 SF_MIRROR = 'cdnetworks-kr-2'
 SCIM_TABLES_VER = '0.5.10'
 SCIM_PINYIN_VER = '0.5.91'
@@ -44,7 +45,7 @@ def download( url, dest ):
     if islinux:
         # we use wget instead urlretrieve under Linux, 
         # because wget could display details like download progress
-        os.system('wget %s' % url)
+        os.system( 'wget %s -O %s' % ( url, dest ) )
     else:
         print( 'Downloading from [%s] ...' % url )
         urllib_request.urlretrieve( url, dest )
@@ -81,7 +82,8 @@ def parserCore( fp, pos, beginmark = None, endmark = None ):
             elems = line.split()
             if len( elems ) < 2:
                 continue
-            elif len( elems[0] ) > 1:
+            elif len( elems[0] ) > 1 and \
+                len( elems[pos] ) > 1: # words only
                 mlist.add( elems[pos] )
     return mlist
 
@@ -258,7 +260,7 @@ def PHPArray( table ):
 
 def main():
     #Get Unihan.zip:
-    url  = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
+    url = 'http://www.unicode.org/Public/%s/ucd/Unihan.zip' % UNIHAN_VER
     han_dest = 'Unihan.zip'
     download( url, han_dest )
     
