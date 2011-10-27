@@ -357,7 +357,7 @@ $1',
 'mainpage'             => 'বেটুপাত',
 'mainpage-description' => 'বেটুপাত',
 'policy-url'           => 'Project:নীতি',
-'portal'               => 'সদন',
+'portal'               => "ৱিকিচ'ৰা",
 'portal-url'           => 'Project:সমজুৱা পৃষ্ঠা',
 'privacy'              => 'গোপনীয়তা নীতি',
 'privacypage'          => 'Project:গোপনীয়তা নীতি',
@@ -425,7 +425,7 @@ $1',
 # General errors
 'error'                => 'ভুল',
 'databaseerror'        => 'তথ্যকোষৰ ভুল',
-'dberrortext'          => 'এক ডাটাবেচ চিণ্টেক্স ত্ৰুটি ঘটিছে।
+'dberrortext'          => 'Database query-ত ভুল আছে।
 ছফ্টৱেৰত থকা কোনো বাগৰ বাবে এনে হব পাৰে।
 অন্তিমবাৰ চেষ্টা কৰা ডাটাবেচ কুৱেৰীটো আছিল এনেধৰণৰ:
 <blockquote><tt>$1</tt></blockquote>
@@ -550,7 +550,7 @@ $2',
 আপোনাৰ বানানতো চাওক, বা  [[Special:UserLogin/signup|নতুন সদস্যভুক্তি কৰক]]।',
 'nosuchusershort'            => '"$1" এই নামৰ কোনো সদস্য নাই ।
 বানানতো আকৌ এবাৰ ভালদৰে চাওক ।',
-'nouserspecified'            => 'আপুনি সদস্যনাম এটা দিবই লাগিব।',
+'nouserspecified'            => 'সদস্যনাম দিয়া বাধ্যতামূলক।',
 'login-userblocked'          => 'এই সদস্যক নিষেধ কৰা হৈছে । লগ্ইন্ অসম্ভৱ ।',
 'wrongpassword'              => 'আপুনি ভুল গুপ্তশব্দ দিছে। অনুগ্ৰহ কৰি আকৌ এবাৰ চেষ্টা কৰক।',
 'wrongpasswordempty'         => 'দিয়া গুপ্তশব্দতো খালী; অনুগ্ৰহ কৰি আকৌ এবাৰ চেষ্টা কৰক। ।',

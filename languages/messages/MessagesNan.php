@@ -348,7 +348,7 @@ Chu-liāu-khò͘ thoân hoê ê chhò-ngō͘ "<tt>$3: $4</tt>".',
 "$1"
 佇"$2"
 資料庫送回一个錯誤"$3: $4"',
-'laggedslavemode'      => "'''提醒你：'''這頁可能最近改的無包括。",
+'laggedslavemode'      => "'''提醒你：'''這頁可能無包括最近改的。",
 'readonly'             => 'Chu-liāu-khò· só tiâu leh',
 'enterlockreason'      => 'Phah beh hong-só ê lí-iû, pau-koah ko͘-kè siáⁿ-mi̍h sî-chūn ē kái-tû hong-só.',
 'readonlytext'         => 'Chu-liāu-khò· hiān-chú-sî só tiâu leh, bô khai-hòng hō· lâng siu-kái. Che tāi-khài sī in-ūi teh pān î-siu khang-khòe, oân-sêng liáu-āu èng-tong tō ē hôe-ho̍k chèng-siông. Hū-chek ê hêng-chèng jîn-oân lâu chit-ê soat-bêng: $1',
@@ -472,7 +472,12 @@ Tùi khoàⁿ-māi,  lí phah--ê.',
 若是別人申請的，抑是你已經想起你的密碼，而且不想欲改，
 你會使莫管這个信息而且繼續用你的舊密碼。',
 'noemail'                    => 'Kì-lo̍k bô iōng-chiá "$1" ê e-mail chū-chí.',
+'noemailcreate'              => '你愛提供一个有效的電子批地址',
 'passwordsent'               => 'Ū kià sin bi̍t-bé khì "$1" chù-chheh ê e-mail chū-chí. Siu--tio̍h liáu-āu chhiáⁿ têng teng-ji̍p.',
+'blocked-mailpassword'       => '你的IP地址hông封鎖，袂當編輯，為著安全起見，袂當使用密碼恢復功能。',
+'eauthentsent'               => '一張確認的批已經寄去提示的電子批地址。
+佇其它批寄去彼的口座進前，你愛先照彼張批的指示，才通確定彼个口座是你的。',
+'throttled-mailpassword'     => '密碼提醒的資料已經佇{{PLURAL:$1|點鐘|$1點鐘}}前寄出。為著防止濫使用，限定佇{{PLURAL:$1|點鐘|$1點鐘}}內只通送一擺密碼提醒。',
 'mailerror'                  => 'Kià phoe tú tio̍h chhò-gō·: $1',
 'acct_creation_throttle_hit' => 'Tī koè-khì 24 tiám-cheng lāi,  ū chit ê iōng lí IP bāng-chí ê lâng í-keng khui {{PLURAL:$1|1 account|$1 kháu-chō}}. He sī hit ê sî-kan lāi thang chò ê.
 Tiō-sī kóng, tī chit-má iōng chit ê IP bāng-chí ê lâng bē-sái koh khui jīm-hô kháu-chō.',
@@ -480,22 +485,42 @@ Tiō-sī kóng, tī chit-má iōng chit ê IP bāng-chí ê lâng bē-sái koh k
 'emailnotauthenticated'      => 'Lí ê e-mail chū-chí iáu-bōe khak-jīn ū-hāu, só·-í ē--kha ê e-mail kong-lêng bē-ēng-tit.',
 'noemailprefs'               => 'Tī lí ê siat-piān chí-tēng chi̍t ê tiān-chú-phoe tē-chí thang hō͘ chia ê kong-lêng ē-tàng ēng.',
 'emailconfirmlink'           => 'Chhiáⁿ khak-jīn lí ê e-mail chū-chí ū-hāu',
+'invalidemailaddress'        => '電子批的地址無正確，規格毋著，
+請拍一个符合規格的地址抑是放空格。',
 'cannotchangeemail'          => '口座的e-mail住址無法度佇這个wiki改',
 'accountcreated'             => '口座開好矣',
+'accountcreatedtext'         => '$1的口座開好矣',
+'createaccount-title'        => '佇{{SITENAME}}開好口座',
+'createaccount-text'         => '有人佇{{SITENAME}}用你的電子批地址開一个名"$2"的口座($4)，密碼是 "$3"，
+你這馬應該去登入，而且去改密碼。
+
+若是彼个口座開毋著，你會使莫管這个訊息。',
+'usernamehasherror'          => '用者名稱袂使有#字元',
+'login-throttled'            => '你已經試傷濟擺登入的動作，
+請小等一下才閣試。',
 'loginlanguagelabel'         => '話語：$1',
+'suspicious-userlogout'      => '你登出的要求已經被拒絕，因為伊看起來是對無連線的瀏覽器抑是快取代理傳送來的。',
 
 # E-mail sending
-'user-mail-no-addy' => 'Siūⁿ beh kià tiān-chú-phoe, m̄-koh bô siá tē-chí.',
+'php-mail-error-unknown' => '佇PHP的 mail() 函數的未知錯誤',
+'user-mail-no-addy'      => 'Siūⁿ beh kià tiān-chú-phoe, m̄-koh bô siá tē-chí.',
 
 # Change password dialog
 'resetpass'                 => 'Kái bi̍t-bé',
+'resetpass_announce'        => '你是對一張電子批的臨時編碼登入的。欲完成登入，你愛佇遮設定新密碼：',
 'resetpass_header'          => 'Kái káu-chō ê bi̍t-bé.',
 'oldpassword'               => 'Kū bi̍t-bé:',
 'newpassword'               => 'Sin bi̍t-bé:',
 'retypenew'                 => 'Têng phah sin bi̍t-bé:',
+'resetpass_submit'          => '設定密碼而且登入',
+'resetpass_success'         => '你的密碼已經改成功！
+這馬你咧登入...',
 'resetpass_forbidden'       => 'Bi̍t-bé bē-sái piàn.',
+'resetpass-no-info'         => '你愛登入了，才通直接進入這頁',
 'resetpass-submit-loggedin' => 'Kái bi̍t-bé',
 'resetpass-submit-cancel'   => 'Chhú-siau',
+'resetpass-wrong-oldpass'   => '無效的臨時抑是現在的密碼，
+你可能已經成功更過你的密碼，抑是申請一个新的臨時密碼。',
 'resetpass-temp-password'   => 'Lîm-sî ê bi̍t-bé:',
 
 # Special:PasswordReset
@@ -540,10 +565,27 @@ Lîm-sî ê bi̍t-bé: $2',
 'savearticle'                      => 'Pó-chûn chit ia̍h',
 'preview'                          => 'Seng khoàⁿ-māi',
 'showpreview'                      => 'Seng khoàⁿ-māi',
+'showlivepreview'                  => '即時先看覓',
 'showdiff'                         => 'Khòaⁿ kái-piàn ê pō·-hūn',
 'anoneditwarning'                  => "'''Kéng-kò:''' Lí bô teng-ji̍p. Lí ê IP chū-chí ē kì tī pún ia̍h ê pian-chi̍p le̍k-sú lāi-bīn.",
+'anonpreviewwarning'               => "''你並無登入，保存頁面的時陣，會共你的IP地址記錄佇這頁的編輯歷史。''",
+'missingsummary'                   => "'''提醒：'''你無拍一个編輯標題，若你閣點「{{int:savearticle}}」一擺，你的編輯會無不帶標題保存起來。",
 'summary-preview'                  => 'Khài-iàu ê preview:',
 'subject-preview'                  => 'Ū-lám tê-bo̍k/piau-tê:',
+'blockedtitle'                     => '用者hông封鎖',
+'blockedtext'                      => "'''你的用者名稱抑是IP地址已經hông封鎖'''
+
+這擺的封鎖是由$1所做的，
+原因是''$2''。
+
+* 這擺封鎖開始的時間是：$8
+* 這擺封鎖到期的時間是：$6
+* Intended blockee：$7
+
+妳會使聯絡$1抑是其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]來討論這擺封鎖。
+除非你有佇你的[[Special:Preferences|口座設定]]當中，有設一个有效的電子批地址，若無，你是袂當使用「寄電子批予用者」的功能。若有，這个功能是無封鎖。
+你這馬IP地址是$3，被封鎖用者ID是 #$5，
+請佇你的詢問當中包括以上資料。",
 'whitelistedittitle'               => 'Su-iàu teng-ji̍p chiah ē-sái siu-kái',
 'whitelistedittext'                => 'Lí ài $1 chiah ē-sái siu-kái.',
 'nosuchsectiontitle'               => 'Chhoé bô toān-lo̍h',
@@ -1267,8 +1309,8 @@ Lí ē-sái khoàⁿ i ê goân-sú-bé.',
 若檔案有人改過，一寡說明就無完全反應改過的檔案',
 'metadata-expand'   => 'Hián-sī iù-chiat',
 'metadata-collapse' => 'Am iù-chiat',
-'metadata-fields'   => '這个信息內所排出的影相元資訊會佇欲顯示元資訊表的時陣顯示。
-其他的元資訊是先藏起來。
+'metadata-fields'   => '這个信息所排來出的影相元資料，是會佇欲顯示元資料表的時陣顯示。
+其他的元資料是先藏起來。
 * make
 * model
 * datetimeoriginal

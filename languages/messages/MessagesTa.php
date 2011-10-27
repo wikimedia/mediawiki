@@ -2246,6 +2246,7 @@ $1',
 'pageinfo-header-views'     => 'பார்வைகள்',
 'pageinfo-subjectpage'      => 'பக்கம்',
 'pageinfo-talkpage'         => 'பேச்சுப் பக்கம்',
+'pageinfo-edits'            => 'தொகுப்புகளின் எண்ணிக்கை:',
 
 # Skin names
 'skinname-standard'    => 'இயல்பான',
@@ -2426,6 +2427,8 @@ $1',
 # EXIF attributes
 'exif-compression-1' => 'சுருக்கப்படாத',
 
+'exif-copyrighted-true' => 'பதிப்புரிமைப்பட்டது',
+
 'exif-unknowndate' => 'நாள் தெரியாது',
 
 'exif-orientation-1' => 'வழமையான',
@@ -2526,14 +2529,22 @@ $1',
 'exif-gpsspeed-n' => 'கடல் மைல்/மணி',
 
 # Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'கிலோ மீட்டர்கள்',
 'exif-gpsdestdistance-m' => 'மைல்கள்',
+'exif-gpsdestdistance-n' => 'கடல் மைல்கள்',
+
+'exif-objectcycle-a' => 'காலை மட்டும்',
+'exif-objectcycle-p' => 'மாலை மட்டும்',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'உண்மைத் திசை',
 'exif-gpsdirection-m' => 'காந்த திசை',
 
 'exif-dc-contributor' => 'பங்களிப்பாளர்கள்',
+'exif-dc-publisher'   => 'பதிப்பாளர்',
 'exif-dc-rights'      => 'உரிமைகள்',
+
+'exif-rating-rejected' => 'நிராகரித்தது',
 
 'exif-iimcategory-edu' => 'கல்வி',
 'exif-iimcategory-evn' => 'சுற்றுச்சூழல்',

@@ -258,7 +258,7 @@ $1',
 'policy-url'           => 'Project: Siyaasada',
 'portal'               => 'Bortaalka jaaliyada',
 'portal-url'           => 'Project:Bortaalka jaaliyada',
-'privacy'              => 'siyaasada u gaarka ah',
+'privacy'              => 'Wixii adiga kugu saabsan',
 'privacypage'          => 'Project:siyaasada u gaarka ah',
 
 'badaccess'        => 'Qalad dhinaca ogolaashada',
@@ -465,6 +465,7 @@ Hadii aad rabtid in aad dhameestirtid gudagelkaaga, waa in aad meeshaan ku qorta
 'oldpassword'               => 'Ereysirkii hore:',
 'newpassword'               => 'Ereysir cusub:',
 'retypenew'                 => 'Qor mar labaad ereysirka cusub:',
+'resetpass_submit'          => 'Qor eraysirka gudaha neh gal',
 'resetpass_success'         => 'Ereysirkaada si fiican oo kuugu bedelmay!
 Hadda gudaha ku gal',
 'resetpass_forbidden'       => 'ereyada sirta ah mala bedeli karo',
@@ -675,7 +676,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'mergehistory-reason' => 'Sabab:',
 
 # Diffs
-'history-title'            => 'Badalaadka taariikhiga ee "$1"',
+'history-title'            => 'Taariikhda badalka "$1"',
 'difference'               => '(Qeybaha kala duwan)',
 'lineno'                   => 'Safka $1:',
 'compareselectedversions'  => 'Isku aadi bedelaadka aad dooratay',
