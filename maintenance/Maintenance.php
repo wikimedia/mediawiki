@@ -1277,6 +1277,15 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	}
 
 	/**
+	 * Message to show that the update was done already and was just skipped
+	 * @return String
+	 */
+	protected function updateSkippedMessage() {
+		$key = $this->getUpdateKey();
+		return "Update '{$key}' already logged as completed.";
+	}
+
+	/**
 	 * Message to show the the update log was unable to log the completion of this update
 	 * @return String
 	 */
@@ -1297,10 +1306,4 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	 * @return String
 	 */
 	abstract protected function getUpdateKey();
-
-	/**
-	 * Message to show that the update was done already and was just skipped
-	 * @return String
-	 */
-	abstract protected function updateSkippedMessage();
 }
