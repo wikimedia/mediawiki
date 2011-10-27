@@ -98,20 +98,15 @@ class ApiDelete extends ApiBase {
 	}
 
 	/**
-	 *
-	 * @param &$title Title
+	 * @param $title Title
 	 * @param $token String
+	 * @return array
 	 */
 	private static function getPermissionsError( &$title, $token ) {
 		global $wgUser;
 
 		// Check permissions
-		$errors = $title->getUserPermissionsErrors( 'delete', $wgUser );
-		if ( count( $errors ) > 0 ) {
-			return $errors;
-		}
-
-		return array();
+		return $title->getUserPermissionsErrors( 'delete', $wgUser );
 	}
 
 	/**

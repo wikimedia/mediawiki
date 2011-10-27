@@ -119,7 +119,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return $cachedEditToken;
 		}
 
-		$cachedEditToken = $wgUser->editToken();
+		$cachedEditToken = $wgUser->getEditToken();
 		return $cachedEditToken;
 	}
 
@@ -134,7 +134,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return $cachedDeleteToken;
 		}
 
-		$cachedDeleteToken = $wgUser->editToken();
+		$cachedDeleteToken = $wgUser->getEditToken();
 		return $cachedDeleteToken;
 	}
 
@@ -149,7 +149,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return $cachedProtectToken;
 		}
 
-		$cachedProtectToken = $wgUser->editToken();
+		$cachedProtectToken = $wgUser->getEditToken();
 		return $cachedProtectToken;
 	}
 
@@ -164,7 +164,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return $cachedMoveToken;
 		}
 
-		$cachedMoveToken = $wgUser->editToken();
+		$cachedMoveToken = $wgUser->getEditToken();
 		return $cachedMoveToken;
 	}
 
@@ -179,7 +179,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return $cachedBlockToken;
 		}
 
-		$cachedBlockToken = $wgUser->editToken();
+		$cachedBlockToken = $wgUser->getEditToken();
 		return $cachedBlockToken;
 	}
 
@@ -199,7 +199,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return $cachedEmailToken;
 		}
 
-		$cachedEmailToken = $wgUser->editToken();
+		$cachedEmailToken = $wgUser->getEditToken();
 		return $cachedEmailToken;
 	}
 
@@ -214,7 +214,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return $cachedImportToken;
 		}
 
-		$cachedImportToken = $wgUser->editToken();
+		$cachedImportToken = $wgUser->getEditToken();
 		return $cachedImportToken;
 	}
 
@@ -229,7 +229,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return $cachedWatchToken;
 		}
 
-		$cachedWatchToken = $wgUser->editToken( 'watch' );
+		$cachedWatchToken = $wgUser->getEditToken( 'watch' );
 		return $cachedWatchToken;
 	}
 

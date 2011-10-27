@@ -235,8 +235,10 @@ See <a href='http://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 	public function getBuffer() {
 		return $this->mBuffer;
 	}
+
 	/**
 	 * Set the flag to buffer the result instead of printing it.
+	 * @param $value bool
 	 */
 	public function setBufferResult( $value ) {
 		$this->mBufferResult = $value;
@@ -335,6 +337,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 
 	/**
 	 * Feed does its own headers
+	 *
+	 * @return null
 	 */
 	public function getMimeType() {
 		return null;

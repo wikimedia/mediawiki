@@ -132,7 +132,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		if ( $fld_token ) {
 			// Undelete tokens are identical for all pages, so we cache one here
-			$token = $user->editToken( '', $this->getMain()->getRequest() );
+			$token = $user->getEditToken( '', $this->getMain()->getRequest() );
 		}
 
 		$dir = $params['dir'];

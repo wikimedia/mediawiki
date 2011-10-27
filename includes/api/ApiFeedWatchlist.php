@@ -152,6 +152,10 @@ class ApiFeedWatchlist extends ApiBase {
 		}
 	}
 
+	/**
+	 * @param $info array
+	 * @return FeedItem
+	 */
 	private function createFeedItem( $info ) {
 		$titleStr = $info['title'];
 		$title = Title::newFromText( $titleStr );

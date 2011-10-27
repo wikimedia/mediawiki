@@ -74,7 +74,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		global $wgUser;
 		// Since the permissions check for userrights is non-trivial,
 		// don't bother with it here
-		return $wgUser->editToken( $user->getName() );
+		return $wgUser->getEditToken( $user->getName() );
 	}
 
 	public function execute() {
