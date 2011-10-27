@@ -868,6 +868,13 @@ class ParserTest {
 		$this->databaseSetupDone = false;
 
 		if ( $this->useTemporaryTables ) {
+			if( $this->db->getType() == 'sqlite' ) {
+				# Under SQLite the searchindex table is virtual and need
+				# to be explicitly destroyed. See bug 29912
+				# See also MediaWikiTestCase::destroyDB()
+				wfDebug( __METHOD__ . " explicitly destroying sqlite virtual table parsertest_searchindex\n" );
+				$this->db->query( "DROP TABLE `parsertest_searchindex`" );
+			}
 			# Don't need to do anything
 			$this->teardownGlobals();
 			return;
