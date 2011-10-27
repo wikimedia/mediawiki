@@ -843,8 +843,6 @@ class Title {
 	 * @return String the URL
 	 */
 	public function getFullURL( $query = '', $variant = false ) {
-		global $wgServer, $wgRequest;
-
 		# Hand off all the decisions on urls to getLocalURL
 		$url = $this->getLocalURL( $query, $variant );
 
