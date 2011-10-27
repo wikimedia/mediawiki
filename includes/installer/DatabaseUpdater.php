@@ -41,7 +41,9 @@ abstract class DatabaseUpdater {
 
 	protected $postDatabaseUpdateMaintenance = array(
 		'DeleteDefaultMessages',
-		'PopulateRevisionLength'
+		'PopulateRevisionLength',
+		'PopulateRevisionSha1',
+		'PopulateImageSha1'
 	);
 
 	/**

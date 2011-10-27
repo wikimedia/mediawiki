@@ -1667,7 +1667,8 @@ class WikiPage extends Page {
 				'ar_flags'      => '\'\'', // MySQL's "strict mode"...
 				'ar_len'        => 'rev_len',
 				'ar_page_id'    => 'page_id',
-				'ar_deleted'    => $bitfield
+				'ar_deleted'    => $bitfield,
+				'ar_sha1'       => 'rev_sha1'
 			), array(
 				'page_id' => $id,
 				'page_id = rev_page'
