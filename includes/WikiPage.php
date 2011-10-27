@@ -977,9 +977,11 @@ class WikiPage extends Page {
 			if ( $section == 'new' ) {
 				# Inserting a new section
 				$subject = $summary ? wfMsgForContent( 'newsectionheaderdefaultlevel', $summary ) . "\n\n" : '';
-				$text = strlen( trim( $oldtext ) ) > 0
+				if ( wfRunHooks( 'PlaceNewSection', array( $this, $oldtext, $subject, &$text ) ) ) {
+					$text = strlen( trim( $oldtext ) ) > 0
 						? "{$oldtext}\n\n{$subject}{$text}"
 						: "{$subject}{$text}";
+				}
 			} else {
 				# Replacing an existing section; roll out the big guns
 				global $wgParser;
