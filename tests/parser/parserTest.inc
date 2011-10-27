@@ -136,7 +136,8 @@ class ParserTest {
 			$wgUser, $wgLang, $wgOut, $wgRequest, $wgStyleDirectory, $wgEnableParserCache,
 			$wgNamespaceAliases, $wgNamespaceProtection, $wgLocalFileRepo,
 			$parserMemc, $wgThumbnailScriptPath, $wgScriptPath,
-			$wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath, $wgExtensionAssetsPath;
+			$wgArticlePath, $wgStyleSheetPath, $wgScript, $wgStylePath, $wgExtensionAssetsPath,
+			$wgMainCacheType, $wgMessageCacheType, $wgParserCacheType;
 
 		$wgScript = '/index.php';
 		$wgScriptPath = '/';
@@ -158,10 +159,20 @@ class ParserTest {
 		$wgNamespaceAliases['Image'] = NS_FILE;
 		$wgNamespaceAliases['Image_talk'] = NS_FILE_TALK;
 
+		// XXX: tests won't run without this (for CACHE_DB)
+		if ( $wgMainCacheType === CACHE_DB ) {
+			$wgMainCacheType = CACHE_NONE;
+		}
+		if ( $wgMessageCacheType === CACHE_DB ) {
+			$wgMessageCacheType = CACHE_NONE;
+		}
+		if ( $wgParserCacheType === CACHE_DB ) {
+			$wgParserCacheType = CACHE_NONE;
+		}
 
 		$wgEnableParserCache = false;
 		DeferredUpdates::clearPendingUpdates();
-		$wgMemc = wfGetMainCache();
+		$wgMemc = wfGetMainCache(); // checks $wgMainCacheType
 		$messageMemc = wfGetMessageCacheStorage();
 		$parserMemc = wfGetParserCacheStorage();
 
