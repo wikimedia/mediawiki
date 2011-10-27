@@ -112,7 +112,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$oldTitleLink = Linker::link( $this->oldTitle );
 
 		$out = $this->getOutput();
-		$out->setPagetitle( wfMsg( 'move-page', $this->oldTitle->getPrefixedText() ) );
+		$out->setPageTitle( $this->msg( 'move-page', $this->oldTitle->getPrefixedText() ) );
 		$out->addModules( 'mediawiki.special.movePage' );
 
 		$newTitle = $this->newTitle;

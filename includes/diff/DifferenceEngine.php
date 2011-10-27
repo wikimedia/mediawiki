@@ -188,7 +188,7 @@ class DifferenceEngine {
 			$d = wfMsgExt( 'missingarticle-diff', array( 'escape' ),
 				$this->deletedIdMarker( $this->mOldid ),
 				$this->deletedIdMarker( $this->mNewid ) );
-			$wgOut->setPagetitle( wfMsg( 'errorpagetitle' ) );
+			$wgOut->setPageTitle( wfMessage( 'errorpagetitle' ) );
 			$wgOut->addWikiMsg( 'missing-article', "<nowiki>$t</nowiki>", "<span class='plainlinks'>$d</span>" );
 			wfProfileOut( __METHOD__ );
 			return;

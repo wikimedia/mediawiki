@@ -269,7 +269,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 		$request = $this->getRequest();
 		$out = $this->getOutput();
-		$out->setPageTitleMsg( 'deletedcontributions-title' );
+		$out->setPageTitle( $this->msg( 'deletedcontributions-title' ) );
 
 		$options = array();
 

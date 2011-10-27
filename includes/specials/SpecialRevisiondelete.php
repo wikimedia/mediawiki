@@ -538,7 +538,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * Report that the submit operation succeeded
 	 */
 	protected function success() {
-		$this->getOutput()->setPagetitle( wfMsg( 'actioncomplete' ) );
+		$this->getOutput()->setPageTitle( $this->msg( 'actioncomplete' ) );
 		$this->getOutput()->wrapWikiMsg( "<span class=\"success\">\n$1\n</span>", $this->typeInfo['success'] );
 		$this->list->reloadFromMaster();
 		$this->showForm();
@@ -548,7 +548,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * Report that the submit operation failed
 	 */
 	protected function failure( $status ) {
-		$this->getOutput()->setPagetitle( wfMsg( 'actionfailed' ) );
+		$this->getOutput()->setPageTitle( $this->msg( 'actionfailed' ) );
 		$this->getOutput()->addWikiText( $status->getWikiText( $this->typeInfo['failure'] ) );
 		$this->showForm();
 	}

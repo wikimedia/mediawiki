@@ -649,9 +649,9 @@ class SpecialUndelete extends SpecialPage {
 		$out = $this->getOutput();
 
 		if ( $this->mAllowed ) {
-			$out->setPageTitleMsg( 'undeletepage' );
+			$out->setPageTitle( $this->msg( 'undeletepage' ) );
 		} else {
-			$out->setPageTitleMsg( 'viewdeletedpage' );
+			$out->setPageTitle( $this->msg( 'viewdeletedpage' ) );
 		}
 
 		if( $par != '' ) {
@@ -802,7 +802,7 @@ class SpecialUndelete extends SpecialPage {
 			}
 		}
 
-		$out->setPageTitleMsg( 'undeletepage' );
+		$out->setPageTitle( $this->msg( 'undeletepage' ) );
 
 		if( $this->mDiff ) {
 			$previousRev = $archive->getPreviousRevision( $timestamp );
@@ -1016,9 +1016,9 @@ class SpecialUndelete extends SpecialPage {
 		$out = $this->getOutput();
 		if( $this->mAllowed ) {
 			$out->addModules( 'mediawiki.special.undelete' );
-			$out->setPageTitleMsg( 'undeletepage' );
+			$out->setPageTitle( $this->msg( 'undeletepage' ) );
 		} else {
-			$out->setPageTitleMsg( 'viewdeletedpage' );
+			$out->setPageTitle( $this->msg( 'viewdeletedpage' ) );
 		}
 		$out->wrapWikiMsg(
 			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",

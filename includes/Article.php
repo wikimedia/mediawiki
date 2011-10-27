@@ -1334,7 +1334,7 @@ class Article extends Page {
 			return;
 		}
 
-		$wgOut->setPagetitle( wfMsg( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
+		$wgOut->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
 
 		# Better double-check that it hasn't been deleted yet!
 		$dbw = wfGetDB( DB_MASTER );
@@ -1529,7 +1529,7 @@ class Article extends Page {
 		if ( $this->mPage->doDeleteArticle( $reason, $suppress, $id, $error ) ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
-			$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
+			$wgOut->setPageTitle( wfMessage( 'actioncomplete' ) );
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
 			$loglink = '[[Special:Log/delete|' . wfMsgNoTrans( 'deletionlog' ) . ']]';
