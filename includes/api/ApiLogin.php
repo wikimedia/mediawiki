@@ -74,15 +74,16 @@ class ApiLogin extends ApiBase {
 		$context->setRequest( $req );*/
 		$loginForm = new LoginForm();
 		$loginForm->setContext( $context );
-		$user = $this->getUser();
 
 		global $wgCookiePrefix, $wgPasswordAttemptThrottle;
 
 		$authRes = $loginForm->authenticateUserData();
 		switch ( $authRes ) {
 			case LoginForm::SUCCESS:
+				$user = $context->getUser();
+				$this->getContext()->setUser( $user );
 				$user->setOption( 'rememberpassword', 1 );
-				$user->setCookies( $this->getMain()->getRequest() );
+				$user->setCookies( $this->getRequest() );
 
 				// Run hooks.
 				// @todo FIXME: Split back and frontend from this hook.
