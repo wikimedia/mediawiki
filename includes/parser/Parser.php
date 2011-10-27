@@ -3132,6 +3132,7 @@ class Parser {
 					}
 				}
 				if ( $function ) {
+					wfProfileIn( __METHOD__ . '-pfunc-' . $function );
 					list( $callback, $flags ) = $this->mFunctionHooks[$function];
 					$initialArgs = array( &$this );
 					$funcArgs = array( trim( substr( $part1, $colonPos + 1 ) ) );
@@ -3153,6 +3154,7 @@ class Parser {
 
 					# Workaround for PHP bug 35229 and similar
 					if ( !is_callable( $callback ) ) {
+						wfProfileOut( __METHOD__ . '-pfunc-' . $function );
 						wfProfileOut( __METHOD__ . '-pfunc' );
 						wfProfileOut( __METHOD__ );
 						throw new MWException( "Tag hook for $function is not callable\n" );
@@ -3178,6 +3180,7 @@ class Parser {
 						$text = $this->preprocessToDom( $text, $preprocessFlags );
 						$isChildObj = true;
 					}
+					wfProfileOut( __METHOD__ . '-pfunc-' . $function );
 				}
 			}
 			wfProfileOut( __METHOD__ . '-pfunc' );
