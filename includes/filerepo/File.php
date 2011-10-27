@@ -811,9 +811,8 @@ abstract class File {
 	 * Purge shared caches such as thumbnails and DB data caching
 	 * STUB
 	 * Overridden by LocalFile
-	 * @param array $options Array with options, currently undefined
 	 */
-	function purgeCache( $options = array() ) {}
+	function purgeCache() {}
 
 	/**
 	 * Purge the file description page, but don't go after

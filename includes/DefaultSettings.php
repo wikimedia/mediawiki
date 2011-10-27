@@ -4837,12 +4837,6 @@ $wgJobClasses = array(
 );
 
 /**
- * Extensions of "thumbnails" that are very expensive to regenerate and should be
- * excluded from normal action=purge thumbnail removal.
- */
-$wgExcludeFromThumbnailPurge = array();
-
-/**
 
  * Jobs that must be explicitly requested, i.e. aren't run by job runners unless special flags are set.
  *
