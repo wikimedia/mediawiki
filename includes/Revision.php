@@ -294,9 +294,26 @@ class Revision {
 			$conditions,
 			__METHOD__,
 			array( 'LIMIT' => 1 ),
-			array( 'page' => array( 'INNER JOIN', 'page_id = rev_page' ),
-				'user' => array( 'LEFT JOIN', 'rev_user != 0 AND user_id = rev_user' ) )
+			array( 'page' => self::pageJoinCond(), 'user' => self::userJoinCond() )
 		);
+	}
+
+	/**
+	 * Return the value of a select() JOIN conds array for the user table.
+	 * This will get user table rows for logged-in users.
+	 * @return Array
+	 */
+	public static function userJoinCond() {
+		return array( 'LEFT JOIN', array( 'rev_user != 0', 'user_id = rev_user' ) );
+	}
+
+	/**
+	 * Return the value of a select() page conds array for the paeg table.
+	 * This will assure that the revision(s) are not orphaned from live pages.
+	 * @return Array
+	 */
+	public static function pageJoinCond() {
+		return array( 'INNER JOIN', array( 'page_id = rev_page' ) );
 	}
 
 	/**

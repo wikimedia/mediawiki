@@ -34,8 +34,9 @@ class RevDel_RevisionList extends RevDel_List {
 			),
 			__METHOD__,
 			array( 'ORDER BY' => 'rev_id DESC' ),
-			array( 'page' => array( 'INNER JOIN', 'rev_page = page_id' ),
-				'user' => array( 'LEFT JOIN', 'user_id = rev_user' ) )
+			array(
+				'page' => Revision::pageJoinCond(),
+				'user' => Revision::userJoinCond() )
 		);
 
 		if ( $live->numRows() >= count( $ids ) ) {

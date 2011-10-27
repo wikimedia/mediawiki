@@ -351,7 +351,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$this->conds ),
 			'options' => array( 'USE INDEX' => array( 'revision' => 'page_timestamp' ) ),
 			'join_conds' => array(
-				'user'        => array( 'LEFT JOIN', 'rev_user != 0 AND user_id = rev_user' ),
+				'user'        => Revision::userJoinCond(),
 				'tag_summary' => array( 'LEFT JOIN', 'ts_rev_id=rev_id' ) ),
 		);
 		ChangeTags::modifyDisplayQuery(
