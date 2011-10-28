@@ -96,7 +96,7 @@ class ApiTest extends ApiTestCase {
 			"lgtoken" => $token,
 			"lgname" => $user->username,
 			"lgpassword" => "badnowayinhell",
-			)
+			), $ret[2]
 		);
 
 		$result = $ret[0];
@@ -137,7 +137,7 @@ class ApiTest extends ApiTestCase {
 			"lgtoken" => $token,
 			"lgname" => $user->username,
 			"lgpassword" => $user->password,
-			)
+			), $ret[2]
 		);
 
 		$result = $ret[0];
@@ -230,7 +230,7 @@ class ApiTest extends ApiTestCase {
 			'action' => 'login',
 			"lgtoken" => $token,
 			"lgname" => $sysopUser->username,
-			"lgpassword" => $sysopUser->password ), $data );
+			"lgpassword" => $sysopUser->password ), $data[2] );
 
 		$this->assertArrayHasKey( "login", $data[0] );
 		$this->assertArrayHasKey( "result", $data[0]['login'] );
