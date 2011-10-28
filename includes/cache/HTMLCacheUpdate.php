@@ -32,6 +32,12 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 	public $mTable, $mPrefix, $mStart, $mEnd;
 	public $mRowsPerJob, $mRowsPerQuery;
 
+	/**
+	 * @param $titleTo
+	 * @param $table
+	 * @param $start bool
+	 * @param $end bool
+	 */
 	function __construct( $titleTo, $table, $start = false, $end = false ) {
 		global $wgUpdateRowsPerJob, $wgUpdateRowsPerQuery;
 
@@ -49,7 +55,6 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 			$this->doPartialUpdate();
 			return;
 		}
-
 
 		# Get an estimate of the number of rows from the BacklinkCache
 		$numRows = $this->mCache->getNumLinks( $this->mTable );
@@ -138,6 +143,9 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 		Job::batchInsert( $jobs );
 	}
 
+	/**
+	 * @return mixed
+	 */
 	protected function insertJobs() {
 		$batches = $this->mCache->partition( $this->mTable, $this->mRowsPerJob );
 		if ( !$batches ) {
@@ -157,6 +165,7 @@ class HTMLCacheUpdate implements DeferrableUpdate {
 
 	/**
 	 * Invalidate an array (or iterator) of Title objects, right now
+	 * @param $titleArray array
 	 */
 	protected function invalidateTitles( $titleArray ) {
 		global $wgUseFileCache, $wgUseSquid;

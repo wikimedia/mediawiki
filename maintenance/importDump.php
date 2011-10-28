@@ -117,6 +117,10 @@ TEXT;
 		$this->error( "Unknown namespace text / index specified: $namespace", true );
 	}
 
+	/**
+	 * @param $obj Title|Revision
+	 * @return bool
+	 */
 	private function skippedNamespace( $obj ) {
 		if ( $obj instanceof Title ) {
 			$ns = $obj->getNamespace();
@@ -135,6 +139,10 @@ TEXT;
 		$this->pageCount++;
 	}
 
+	/**
+	 * @param $rev Revision
+	 * @return mixed
+	 */
 	function handleRevision( $rev ) {
 		$title = $rev->getTitle();
 		if ( !$title ) {
@@ -161,7 +169,7 @@ TEXT;
 	function handleUpload( $revision ) {
 		if ( $this->uploads ) {
 			if ( $this->skippedNamespace( $revision ) ) {
-				return ;
+				return;
 			}
 			$this->uploadCount++;
 			// $this->report();
@@ -223,11 +231,9 @@ TEXT;
 	function importFromFile( $filename ) {
 		if ( preg_match( '/\.gz$/', $filename ) ) {
 			$filename = 'compress.zlib://' . $filename;
-		}
-		elseif ( preg_match( '/\.bz2$/', $filename ) ) {
+		} elseif ( preg_match( '/\.bz2$/', $filename ) ) {
 			$filename = 'compress.bzip2://' . $filename;
-		}
-		elseif ( preg_match( '/\.7z$/', $filename ) ) {
+		} elseif ( preg_match( '/\.7z$/', $filename ) ) {
 			$filename = 'mediawiki.compress.7z://' . $filename;
 		}
 
