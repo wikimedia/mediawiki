@@ -691,7 +691,7 @@ class LocalFile extends File {
 	 */
 	function purgeOldThumbnails( $archiveName ) {
 		global $wgUseSquid;
-		// get a list of old thumbnails and URLs
+		// Get a list of old thumbnails and URLs
 		$files = $this->getThumbnails( $archiveName );
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
@@ -705,8 +705,8 @@ class LocalFile extends File {
 		}
 		wfRestoreWarnings();
 
-		# Temporary hook for purging Swift thumbnail cache
-		wfRunHooks( 'LocalFilePurgeThumbnails', array( $dir, 'old' ) );
+		// Purge any custom thumbnail caches
+		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, 'archive' ) );
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
@@ -730,8 +730,8 @@ class LocalFile extends File {
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 
-		# Temporary hook for purging Swift thumbnail cache
-		wfRunHooks( 'LocalFilePurgeThumbnails', array( $dir, 'current' ) );
+		// Purge any custom thumbnail caches
+		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, 'current' ) );
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
