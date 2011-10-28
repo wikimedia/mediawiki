@@ -108,6 +108,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'addPgField', 'logging',       'log_page',             'INTEGER' ),
 			array( 'addPgField', 'interwiki',     'iw_api',               "TEXT NOT NULL DEFAULT ''"),
 			array( 'addPgField', 'interwiki',     'iw_wikiid',            "TEXT NOT NULL DEFAULT ''"),
+			array( 'addPgField', 'revision',      'rev_sha1',             "BYTEA NOT NULL DEFAULT ''" ),
+			array( 'addPgField', 'archive',       'ar_sha1',              "BYTEA NOT NULL DEFAULT ''" ),
 
 			# type changes
 			array( 'changeField', 'archive',       'ar_deleted',      'smallint', '' ),
