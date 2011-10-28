@@ -726,7 +726,7 @@ class LogEventsList {
 	/**
 	 * SQL clause to skip forbidden log types for this user
 	 *
-	 * @param $db Database
+	 * @param $db DatabaseBase
 	 * @param $audience string, public/user
 	 * @return Mixed: string or false
 	 */

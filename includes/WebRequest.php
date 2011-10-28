@@ -1259,15 +1259,26 @@ class FauxRequest extends WebRequest {
 		$this->headers[$name] = $val;
 	}
 
+	/**
+	 * @param $key
+	 * @return mixed
+	 */
 	public function getSessionData( $key ) {
 		if( isset( $this->session[$key] ) )
 			return $this->session[$key];
 	}
 
+	/**
+	 * @param $key
+	 * @param $data
+	 */
 	public function setSessionData( $key, $data ) {
 		$this->session[$key] = $data;
 	}
 
+	/**
+	 * @return array|Mixed|null
+	 */
 	public function getSessionArray() {
 		return $this->session;
 	}
