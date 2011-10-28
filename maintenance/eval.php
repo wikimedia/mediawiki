@@ -31,8 +31,6 @@
  * @ingroup Maintenance
  */
 
-$wgUseNormalUser = (bool)getenv( 'MW_WIKIUSER' );
-
 $optionsWithArgs = array( 'd' );
 
 /** */
