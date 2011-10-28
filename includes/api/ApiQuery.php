@@ -281,6 +281,8 @@ class ApiQuery extends ApiBase {
 	 * The cache mode may increase in the level of privacy, but public modules
 	 * added to private data do not decrease the level of privacy.
 	 *
+	 * @param $cacheMode string
+	 * @param $modCacheMode string
 	 * @return string
 	 */
 	protected function mergeCacheMode( $cacheMode, $modCacheMode ) {

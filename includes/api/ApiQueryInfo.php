@@ -76,7 +76,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($pageid, $title)
 	 * it should return a token or false (permission denied)
-	 * @return array(tokenname => function)
+	 * @return array array(tokenname => function)
 	 */
 	protected function getTokenFunctions() {
 		// Don't call the hooks twice
