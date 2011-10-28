@@ -138,8 +138,7 @@ class MWException extends Exception {
 	 * @return String
 	 */
 	function getPageTitle() {
-		global $wgSitename;
-		return $this->msg( 'internalerror', "$wgSitename error" );
+		return $this->msg( 'internalerror', "Internal error" );
 	}
 
 	/**
@@ -171,12 +170,7 @@ class MWException extends Exception {
 	function reportHTML() {
 		global $wgOut;
 		if ( $this->useOutputPage() ) {
-			$wgOut->setPageTitle( $this->getPageTitle() );
-			$wgOut->setRobotPolicy( "noindex,nofollow" );
-			$wgOut->setArticleRelated( false );
-			$wgOut->enableClientCache( false );
-			$wgOut->redirect( '' );
-			$wgOut->clearHTML();
+			$wgOut->prepareErrorPage( $this->getPageTitle() );
 
 			$hookResult = $this->runHooks( get_class( $this ) );
 			if ( $hookResult ) {
