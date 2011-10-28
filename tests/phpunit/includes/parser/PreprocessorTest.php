@@ -131,6 +131,8 @@ class PreprocessorTest extends MediaWikiTestCase {
 	 * @return string
 	 */
 	function normalizeXml( $xml ) {
+		return preg_replace( '!<([a-z]+)/>!', '<$1></$1>', str_replace( ' />', '/>', $xml ) );
+		
 		$dom = new DOMDocument();
 		// 1 << 19 == XML_PARSE_HUGE, needed so newer versions of libxml2 don't barf when the XML is >256 levels deep
 		$dom->loadXML( $xml, 1 << 19 );
