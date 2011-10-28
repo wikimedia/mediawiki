@@ -741,7 +741,7 @@ $2',
 
 # Special:PasswordReset
 'passwordreset'                    => '重置密码',
-'passwordreset-text'               => '完成此窗体可以接收电子邮件提醒您帐户详细信息。',
+'passwordreset-text'               => '完成此表格以接收一个电邮以提示你的帐户详情。',
 'passwordreset-legend'             => '重置密码',
 'passwordreset-disabled'           => '此wiki已经禁用密码重置。',
 'passwordreset-pretext'            => '{{PLURAL:$1||输入下面的数据块之一}}',

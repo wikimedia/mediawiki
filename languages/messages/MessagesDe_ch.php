@@ -78,7 +78,7 @@ Bitte prüfe, ob du das Bild in voller Auflösung vorliegen hast und lade dieses
 'img-auth-nologinnWL' => 'Du bist nicht angemeldet und „$1“ ist nicht in der weissen Liste.',
 
 # Special:ListFiles
-'listfiles_size'    => 'Grösse',
+'listfiles_size' => 'Grösse',
 
 # File description page
 'filehist-dimensions' => 'Masse',
