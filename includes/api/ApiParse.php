@@ -259,7 +259,7 @@ class ApiParse extends ApiBase {
 		}
 
 		if ( isset( $prop['headitems'] ) || isset( $prop['headhtml'] ) ) {
-			$context = $this->createContext();
+			$context = $this->getContext();
 			$context->setTitle( $titleObj );
 			$context->getOutput()->addParserOutputNoText( $p_result );
 
@@ -382,7 +382,7 @@ class ApiParse extends ApiBase {
 	}
 
 	private function categoriesHtml( $categories ) {
-		$context = $this->createContext();
+		$context = $this->getContext();
 		$context->getOutput()->addCategoryLinks( $categories );
 		return $context->getSkin()->getCategories();
 	}
