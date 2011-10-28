@@ -26,10 +26,12 @@ function wfThumbMain() {
 	$headers = array();
 
 	// Get input parameters
-	if ( get_magic_quotes_gpc() ) {
-		$params = array_map( 'stripslashes', $_REQUEST );
+	if ( defined( 'THUMB_HANDLER' ) ) {
+		$params = $_REQUEST; // called from thumb_handler.php
 	} else {
-		$params = $_REQUEST;
+		$params = get_magic_quotes_gpc()
+			? array_map( 'stripslashes', $_REQUEST )
+			: $_REQUEST;
 	}
 
 	$fileName = isset( $params['f'] ) ? $params['f'] : '';
