@@ -134,7 +134,7 @@ class LocalisationCache {
 	 */
 	static public $preloadedKeys = array( 'dateFormats', 'namespaceNames' );
 
-	var $mergeableKeys = array();
+	var $mergeableKeys = null;
 
 	/**
 	 * Constructor.
