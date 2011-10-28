@@ -218,7 +218,7 @@ class ChangesList extends ContextSource {
 
 		return Html::element( $tag,
 			array( 'dir' => 'ltr', 'class' => $formattedSizeClass ),
-			"($formattedSize)" );
+			"($formattedSize)" ) . $wgLang->getDirMark();
 	}
 
 	/**
