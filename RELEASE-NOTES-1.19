@@ -70,8 +70,10 @@ production.
   in outdated text browsers.
 * New common*.css files usable by skins instead of having to copy piles
   of generic styles from MonoBook or Vector's css.
-* Some deprecated presentational html attributes will now be automatically converted to css.
-* (bug 31297) Add support for namespaces in Special:RecentChanges subpage filter syntax.
+* Some deprecated presentational html attributes will now be automatically
+  converted to css.
+* (bug 31297) Add support for namespaces in Special:RecentChanges subpage filter
+  syntax.
 * The default user signature now contains a talk link in addition to the user link.
 * (bug 25306) Add link of old page title to MediaWiki:Delete_and_move_reason
 
