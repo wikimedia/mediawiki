@@ -1925,6 +1925,32 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Prepare this object to display an error page; disable caching and
+	 * indexing, clear the current text and redirect, set the page's title
+	 * and optionally an custom HTML title (content of the <title> tag).
+	 *
+	 * @param $pageTitle String|Message will be passed directly to setPageTitle()
+	 * @param $htmlTitle String|Message will be passed directly to setHTMLTitle();
+	 *                   optional, if not passed the <title> attribute will be
+	 *                   based on $pageTitle
+	 */
+	public function prepareErrorPage( $pageTitle, $htmlTitle = false ) {
+		if ( $this->getTitle() ) {
+			$this->mDebugtext .= 'Original title: ' . $this->getTitle()->getPrefixedText() . "\n";
+		}
+
+		$this->setPageTitle( $pageTitle );
+		if ( $htmlTitle !== false ) {
+			$this->setHTMLTitle( $htmlTitle );
+		}
+		$this->setRobotPolicy( 'noindex,nofollow' );
+		$this->setArticleRelated( false );
+		$this->enableClientCache( false );
+		$this->mRedirect = '';
+		$this->clearHTML();
+	}
+
+	/**
 	 * Output a standard error page
 	 *
 	 * showErrorPage( 'titlemsg', 'pagetextmsg', array( 'param1', 'param2' ) );
@@ -1935,16 +1961,7 @@ class OutputPage extends ContextSource {
 	 * @param $params Array: message parameters; ignored if $msg is a Message object
 	 */
 	public function showErrorPage( $title, $msg, $params = array() ) {
-		if ( $this->getTitle() ) {
-			$this->mDebugtext .= 'Original title: ' . $this->getTitle()->getPrefixedText() . "\n";
-		}
-		$this->setPageTitle( $this->msg( $title ) );
-		$this->setHTMLTitle( $this->msg( 'errorpagetitle' ) );
-		$this->setRobotPolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-		$this->enableClientCache( false );
-		$this->mRedirect = '';
-		$this->mBodytext = '';
+		$this->prepareErrorPage( $this->msg( $title ), $this->msg( 'errorpagetitle' ) );
 
 		if ( $msg instanceof Message ){
 			$this->addHTML( $msg->parse() );
@@ -1962,15 +1979,8 @@ class OutputPage extends ContextSource {
 	 * @param $action String: action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( $errors, $action = null ) {
-		$this->mDebugtext .= 'Original title: ' .
-		$this->getTitle()->getPrefixedText() . "\n";
-		$this->setPageTitle( $this->msg( 'permissionserrors' ) );
-		$this->setHTMLTitle( $this->msg('permissionserrors' ) );
-		$this->setRobotPolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-		$this->enableClientCache( false );
-		$this->mRedirect = '';
-		$this->mBodytext = '';
+		$this->prepareErrorPage( $this->msg( 'permissionserrors' ), $this->msg( 'permissionserrors' ) );
+
 		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
 	}
 
@@ -1981,11 +1991,7 @@ class OutputPage extends ContextSource {
 	 * @param $version Mixed: the version of MediaWiki needed to use the page
 	 */
 	public function versionRequired( $version ) {
-		$this->setPageTitle( $this->msg( 'versionrequired' ) );
-		$this->setHTMLTitle( $this->msg( 'versionrequired', $version ) );
-		$this->setRobotPolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-		$this->mBodytext = '';
+		$this->prepareErrorPage( $this->msg( 'versionrequired', $version ) );
 
 		$this->addWikiMsg( 'versionrequiredtext', $version );
 		$this->returnToMain();
@@ -2008,14 +2014,10 @@ class OutputPage extends ContextSource {
 			throw new PermissionsError( 'read' );
 		}
 
-		$this->setPageTitle( $this->msg( 'loginreqtitle' ) );
-		$this->setHTMLTitle( $this->msg( 'errorpagetitle' ) );
-		$this->setRobotPolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
+		$this->prepareErrorPage( $this->msg( 'loginreqtitle' ), $this->msg( 'errorpagetitle' ) );
 
-		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
 		$loginLink = Linker::linkKnown(
-			$loginTitle,
+			SpecialPage::getTitleFor( 'Userlogin' ),
 			$this->msg( 'loginreqlink' )->escaped(),
 			array(),
 			array( 'returnto' => $this->getTitle()->getPrefixedText() )
@@ -2176,12 +2178,9 @@ $templates
 	}
 
 	public function showFatalError( $message ) {
-		$this->setPageTitle( $this->msg( 'internalerror' ) );
-		$this->setRobotPolicy( 'noindex,nofollow' );
-		$this->setArticleRelated( false );
-		$this->enableClientCache( false );
-		$this->mRedirect = '';
-		$this->mBodytext = $message;
+		$this->prepareErrorPage( $this->msg( 'internalerror' ) );
+
+		$this->addHTML( $message );
 	}
 
 	public function showUnexpectedValueError( $name, $val ) {
