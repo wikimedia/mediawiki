@@ -570,6 +570,9 @@ Lîm-sî ê bi̍t-bé: $2',
 'anoneditwarning'                  => "'''Kéng-kò:''' Lí bô teng-ji̍p. Lí ê IP chū-chí ē kì tī pún ia̍h ê pian-chi̍p le̍k-sú lāi-bīn.",
 'anonpreviewwarning'               => "''你並無登入，保存頁面的時陣，會共你的IP地址記錄佇這頁的編輯歷史。''",
 'missingsummary'                   => "'''提醒：'''你無拍一个編輯標題，若你閣點「{{int:savearticle}}」一擺，你的編輯會無不帶標題保存起來。",
+'missingcommenttext'               => '請佇下跤拍意見',
+'missingcommentheader'             => "'''提醒：'''你無為你的意見寫一个標題，
+若你閣點「{{int:savearticle}}」一擺，你的編輯會無帶標題保存起來。",
 'summary-preview'                  => 'Khài-iàu ê preview:',
 'subject-preview'                  => 'Ū-lám tê-bo̍k/piau-tê:',
 'blockedtitle'                     => '用者hông封鎖',
@@ -586,9 +589,30 @@ Lîm-sî ê bi̍t-bé: $2',
 除非你有佇你的[[Special:Preferences|口座設定]]當中，有設一个有效的電子批地址，若無，你是袂當使用「寄電子批予用者」的功能。若有，這个功能是無封鎖。
 你這馬IP地址是$3，被封鎖用者ID是 #$5，
 請佇你的詢問當中包括以上資料。",
+'autoblockedtext'                  => "你的IP地址已經自動封鎖，因為彼个地址是一个予$1封鎖掉的用者咧用。
+
+理由是：
+：''$2''
+
+* 這擺封鎖開始的時間是：$8
+* 這擺封鎖到期的時間是：$6
+* hông封鎖的用者：$7
+
+你會使聯絡$1抑是其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]，討論這擺的封鎖。
+除非你有佇你的[[Special:Preferences|用者設定]]當中，設一个有效的電子批地址，若無你是袂當使用「寄電子批予這个用戶」的功能。你並無hông封鎖寄電子批。
+
+你這馬的IP地址是$3，被封鎖用者ID是 #$5，
+請佇你的查詢當中，註明面頂所有的資料。",
+'blockednoreason'                  => '無寫理由',
+'blockedoriginalsource'            => "下跤顯示的是'''$1'''的原始碼：",
+'blockededitsource'                => "你對'''$1'''所'''編輯'''的文字顯示佇下跤：",
 'whitelistedittitle'               => 'Su-iàu teng-ji̍p chiah ē-sái siu-kái',
 'whitelistedittext'                => 'Lí ài $1 chiah ē-sái siu-kái.',
+'confirmedittext'                  => '佇改這頁進前，你愛確認你的電子批地址，
+請透過[[Special:Preferences|用者設便]]的設定來驗證你的電子批地址。',
 'nosuchsectiontitle'               => 'Chhoé bô toān-lo̍h',
+'nosuchsectiontext'                => '你欲改的段落已經無佇咧，
+可能佇你看頁面的時陣，已經徙位抑是刣掉。',
 'loginreqtitle'                    => 'Su-iàu Teng-ji̍p',
 'loginreqlink'                     => 'Teng-ji̍p',
 'loginreqpagetext'                 => 'Lí ài $1 chiah thang khoàⁿ pat ia̍h.',

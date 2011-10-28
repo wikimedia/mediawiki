@@ -599,6 +599,7 @@ Prjedy hač so druha mejlka ke kontu pósćele, dyrbiš so po instrukcijach w me
 'noemailprefs'               => 'Podaj e-mejlowu adresu w swojich nastajenjach, zo bychu tute funkcije k dispoziciji stali.',
 'emailconfirmlink'           => 'Wobkruć swoju e-mejlowu adresu',
 'invalidemailaddress'        => 'E-mejlowa adresa so njeakceptuje, dokelž ma po zdaću njepłaćiwy format. Prošu zapodaj płaćiwu adresu abo wuprózdń te polo.',
+'cannotchangeemail'          => 'Kontowe e-mejlowe adresy njehodźa so na tutym wikiju změnić.',
 'accountcreated'             => 'Wužiwarske konto wutworjene',
 'accountcreatedtext'         => 'Wužiwarske konto za $1 bu wutworjene.',
 'createaccount-title'        => 'Wutworjenje wužiwarskeho konta za {{SITENAME}}',
@@ -1459,6 +1460,7 @@ Hlej [[Special:NewFiles|galeriju nowych datajow]] za wizuelny přehlad.',
 'ignorewarnings'              => 'Wšě warnowanja ignorować',
 'minlength1'                  => 'Datajowe mjena dyrbja znajmjeńša jedyn pismik dołhe być.',
 'illegalfilename'             => 'Mjeno dataje „$1” wobsahuje znamješka, kotrež w titlach stronow dowolene njejsu. Prošu přemjenuj dataju a spytaj ju znowa nahrać.',
+'filename-toolong'            => 'Datajowe mjena njesmědźa dlěše hač 240 bajtow być.',
 'badfilename'                 => 'Mjeno dataje bu do „$1” změnjene.',
 'filetype-mime-mismatch'      => 'Datajowy sufiks ".$1" njewotpowěduje MIME-typej dataje ($2).',
 'filetype-badmime'            => 'Dataje typa MIME „$1” njesmědźa so nahrać.',
@@ -2385,6 +2387,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'unlockdbsuccesstext' => 'Datowa banka bu wotamknjena.',
 'lockfilenotwritable' => 'Do dataje zamknjenja datoweje banki njeda so zapisować. Za zamknjenje abo wotamknjenje datoweje banki dyrbi webowy serwer pisanske prawo měć.',
 'databasenotlocked'   => 'Datajowa banka zamknjena njeje.',
+'lockedbyandtime'     => '(wot {{GENDER:$1|$1}} dnja $2 $3)',
 
 # Move page
 'move-page'                    => '$1 přesunyć',
@@ -2552,6 +2555,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'import-upload'              => 'XML-daty nahrać',
 'import-token-mismatch'      => 'Strata posedźenskich datow. Prošu spytaj hišće raz.',
 'import-invalid-interwiki'   => 'Njeje móžno z podateho wikija importować.',
+'import-error-edit'          => 'Strona "$1" so njeimportuje, dokelž nimaš prawo ju wobdźěłać.',
 
 # Import log
 'importlogpage'                    => 'Protokol importow',
@@ -2660,13 +2664,14 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'spam_blanking'       => 'Wšě wersije wobsahowachu wotkazy na $1, wučisćene.',
 
 # Info page
-'pageinfo-title'        => 'Informacije za stronu "$1"',
-'pageinfo-header-edits' => 'Změny',
-'pageinfo-subjectpage'  => 'Strona',
-'pageinfo-talkpage'     => 'Diskusijna strona',
-'pageinfo-watchers'     => 'Ličba wobkedźbowarjow',
-'pageinfo-edits'        => 'Ličba změnow',
-'pageinfo-authors'      => 'Ličba rozdźělnych awtorow',
+'pageinfo-title'            => 'Informacije za stronu "$1"',
+'pageinfo-header-edits'     => 'Změny',
+'pageinfo-header-watchlist' => 'Wobkedźbowanki',
+'pageinfo-subjectpage'      => 'Strona',
+'pageinfo-talkpage'         => 'Diskusijna strona',
+'pageinfo-watchers'         => 'Ličba wobkedźbowarjow',
+'pageinfo-edits'            => 'Ličba změnow',
+'pageinfo-authors'          => 'Ličba rozdźělnych awtorow',
 
 # Skin names
 'skinname-standard'    => 'Klasiski',
@@ -2929,6 +2934,9 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 
 # EXIF attributes
 'exif-compression-1' => 'Njekomprimowany',
+
+'exif-copyrighted-true'  => 'Přez awtorske prawo škitany',
+'exif-copyrighted-false' => 'Zjawnosći přistupny',
 
 'exif-unknowndate' => 'Njeznaty datum',
 
@@ -3443,6 +3451,11 @@ Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym prog
 'revdelete-uname-unhid'             => 'wužiwarske mjeno widźomne',
 'revdelete-restricted'              => 'na administratorow nałožene wobmjezowanja',
 'revdelete-unrestricted'            => 'Wobmjezowanja za administratorow wotstronjene',
+'logentry-move-move'                => '$1 je stronu $3 do $4 {{GENDER:$2|přesunył|přesunyła}}',
+'logentry-newusers-newusers'        => '$1 je wužiwarske konto {{GENDER:$2|załožił|załožiła}}',
+'logentry-newusers-create'          => '$1 je wužiwarske konto {{GENDER:$2|załožił|załožiła}}',
+'logentry-newusers-create2'         => '$1 {{GENDER:$2|załoži}} {{GENDER:$4|wužiwarske konto}} $3',
+'logentry-newusers-autocreate'      => 'Konto $1 je so awtomatisce {{GENDER:$2|załožiło}}',
 'newuserlog-byemail'                => 'Hesło z e-mejlku pósłane',
 
 );

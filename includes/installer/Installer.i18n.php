@@ -6487,7 +6487,12 @@ Njemóžeš MediaWiki instalować.',
 Ale MediaWiki wužaduje sej PHP $2 abo wyši.',
 	'config-unicode-using-utf8' => 'Za normalizaciju Unicode so utf8_normalize.so Briona Vibbera wužiwa.',
 	'config-unicode-using-intl' => 'Za normalizaciju Unicode so [http://pecl.php.net/intl PECL-rozšěrjenje intl] wužiwa.',
-	'config-no-db' => 'Njeda so přihódny ćěrjak datoweje banki namakać!',
+	'config-no-db' => 'Njeda so přihódny ćěrjak datoweje banki namakać! Dyrbiš ćěrjak datoweje banki za PHP instalować.
+Slědowace typy datoweje banki so podpěruja: $1.
+
+Jeli wužiwaš zhromadnje wužiwany serwer, proš swojeho poskićowarja, zo by přihódny ćěrjak datoweje banki instalował.
+Jeli sy PHP sam kompilował, konfiguruj jón znowa z aktiwizowanym programom datoweje banki, na přikład z pomocu <code>./configure --with-mysql</code>.
+Jeli sy PHP z Debianoweho abo Ubuntuoweho paketa instalował, dyrbiš tež modul php5-mysql instalować.',
 	'config-no-fts3' => "'''Warnowanje''': SQLite je so bjez [http://sqlite.org/fts3.html FTS3-modula] kompilował, pytanske funkcije njebudu k dispoziciji stać.",
 	'config-register-globals' => "'''Warnowanje: Funkcija <code>[http://php.net/register_globals register_globals]</code> PHP je zmóžnjena.'''
 '''Znjemóžń ju, jeli móžeš.'''
@@ -6646,7 +6651,7 @@ Móžeš nětko zbytnu konfiguraciju přeskočić a wiki hnydom instalować.',
 	'config-license-none' => 'Žane licencne podaća w nohowej lince',
 	'config-license-cc-by-sa' => 'Creative Commons Attribution Share Alike',
 	'config-license-cc-by-nc-sa' => 'Creative Commons Attribution Non-Commercial Share Alike',
-	'config-license-cc-0' => 'Creative Commons "Zero"',
+	'config-license-cc-0' => 'Creative Commons Zero (zjawnosći přistupny)',
 	'config-license-pd' => 'Powšitkownosći přistupny',
 	'config-license-cc-choose' => 'Swójsku licencu Creative Commons wubrać',
 	'config-email-settings' => 'E-mejlowe nastajenja',
@@ -6719,9 +6724,9 @@ Wutworjenje so přeskakuje.",
 	'config-install-interwiki-exists' => "'''Warnowanje''': Zda so, zo tabela interwikjow hižo zapiski wobsahuje.
 Standardna lisćina sp přeskakuje.",
 	'config-install-stats' => 'Statistika so inicializuje',
-	'config-install-keys' => 'Tworjenje tajneho kluča',
+	'config-install-keys' => 'Tajne kluče so tworja',
 	'config-install-sysop' => 'Tworjenje administratoroweho wužiwarskeho konta',
-	'config-install-subscribe-fail' => 'Abonowanje "mediawiki-announce" njemóžno',
+	'config-install-subscribe-fail' => 'Abonowanje "mediawiki-announce" njemóžno: $1',
 	'config-install-mainpage' => 'Hłowna strona so ze standardnym wobsahom wutworja',
 	'config-install-extension-tables' => 'Tabele za zmóžnjene rozšěrjenja so tworja',
 	'config-install-mainpage-failed' => 'Powěsć njeda so zasunyć: $1',
@@ -12330,11 +12335,13 @@ Uaktualnij do PHP 5.3.2 lub nowszego. Możesz również cofnąć wersję do PHP 
 Instalacja została przerwana.',
 	'config-db-type' => 'Typ bazy danych',
 	'config-db-host' => 'Adres serwera bazy danych',
-	'config-db-host-help' => 'Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.
+	'config-db-host-help' => "Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.
 
 Jeśli korzystasz ze współdzielonego hostingu, operator serwera powinien podać Ci prawidłową nazwę serwera w swojej dokumentacji.
 
-Jeśli instalujesz oprogramowanie na serwerze Windowsowym i korzystasz z MySQL, użycie „localhost” może nie zadziałać jako nazwa hosta. Jeśli wystąpi ten problem użyj „127.0.0.1” jako lokalnego adresu IP.',
+Jeśli instalujesz oprogramowanie na serwerze Windowsowym i korzystasz z MySQL, użycie „localhost” może nie zadziałać jako nazwa hosta. Jeśli wystąpi ten problem użyj „127.0.0.1” jako lokalnego adresu IP.
+
+Jeżeli korzystasz z PostgreSQL, pozostaw to pole puste aby połączyć się poprzez gniazdo Unix'a.",
 	'config-db-host-oracle' => 'TNS bazy danych',
 	'config-db-host-oracle-help' => 'Wprowadź prawidłową [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nazwę połączenia lokalnego]. Plik „tnsnames.ora” musi być widoczny dla instalatora.<br />Jeśli używasz biblioteki klienckiej 10g lub nowszej możesz również skorzystać z metody nazw [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm łatwego łączenia].',
 	'config-db-wiki-settings' => 'Zidentyfikuj tę wiki',

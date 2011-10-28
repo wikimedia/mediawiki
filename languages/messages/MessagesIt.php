@@ -1133,7 +1133,7 @@ $1",
 
 # Suppression log
 'suppressionlog'     => 'Log delle soppressioni',
-'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi più recenti riguardanti contenuti nascosti agli amministratori. Vedi l'[[Special:BlockList|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
+'suppressionlogtext' => "Di seguito sono elencate le cancellazioni e i blocchi con del contenuto nascosto agli amministratori. Vedi l'[[Special:BlockList|elenco degli IP bloccati]] per l'elenco dei blocchi attivi al momento.",
 
 # History merging
 'mergehistory'                     => 'Unione cronologie',
@@ -1330,6 +1330,7 @@ L'operazione non può essere annullata.",
 'yourrealname'                  => 'Nome vero:',
 'yourlanguage'                  => "Lingua dell'interfaccia:",
 'yourvariant'                   => 'Variante della lingua:',
+'prefs-help-variant'            => 'La variante o grafia in cui preferisci che le pagine del wiki ti siano mostrate.',
 'yournick'                      => 'Soprannome (nickname):',
 'prefs-help-signature'          => 'I commenti nelle pagine di discussione devono essere firmati con "<nowiki>~~~~</nowiki>" che verrà convertito nella propria firma seguita dalla data.',
 'badsig'                        => 'Errore nella firma non standard, verificare i tag HTML.',
@@ -1469,7 +1470,7 @@ L'operazione non può essere annullata.",
 'right-siteadmin'             => 'Blocca e sblocca il database',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
 'right-sendemail'             => 'Invia e-mail ad altri utenti',
-'right-passwordreset'         => 'Reimposta la password di un utente ([[Special:PasswordReset|pagina speciale]])',
+'right-passwordreset'         => 'Vede i messaggi di reimpostazione della password',
 
 # User rights log
 'rightslog'                  => 'Diritti degli utenti',
@@ -2044,7 +2045,7 @@ Protocolli supportati: <tt>$1</tt>',
 
 # Special:Log/newusers
 'newuserlogpage'     => 'Nuovi utenti',
-'newuserlogpagetext' => 'Di seguito sono elencate le creazioni di nuovi account.',
+'newuserlogpagetext' => 'Di seguito sono elencate le utenze di nuova creazione.',
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'Diritti del gruppo utente',
@@ -2123,7 +2124,7 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 'watchnochange'        => 'Nessuna delle pagine osservate è stata modificata nel periodo selezionato.',
 'watchlist-details'    => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina (e la rispettiva pagina di discussione)|$1 pagine (e le rispettive pagine di discussione)}}.',
 'wlheader-enotif'      => '* La notifica via e-mail è attiva.',
-'wlheader-showupdated' => "* Le pagine che sono state modificate dopo l'ultima visita sono evidenziate in '''grassetto'''",
+'wlheader-showupdated' => "* Le pagine che sono state modificate dopo l'ultima visita sono evidenziate in '''grassetto'''.",
 'watchmethod-recent'   => 'controllo delle modifiche recenti per gli osservati speciali',
 'watchmethod-list'     => 'controllo degli osservati speciali per modifiche recenti',
 'watchlistcontains'    => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
@@ -3642,11 +3643,22 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 
 # New logging system
 'logentry-delete-delete'              => '$1 {{GENDER:$2|ha cancellato}} la pagina $3',
+'logentry-delete-restore'             => '$1 {{GENDER:$2|ha ripristinato}} "$3"',
+'logentry-delete-event'               => '$1 {{GENDER:$2|ha modificato}} la visibilità di {{PLURAL:$5|un\'azione del registro|$5 azioni del registro}} di "$3": $4',
 'logentry-delete-revision'            => '$1 {{GENDER:$2|ha modificato}} la visibilità per {{PLURAL:$5|una revisione|$5 revisioni}} della pagina $3: $4',
+'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|ha modificato}} la visibilità di alcune azioni del registro di "$3"',
 'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|ha modificato}} la visibilità per le revisioni della pagina $3',
+'logentry-suppress-delete'            => '$1 {{GENDER:$2|ha nascosto}} la pagina "$3"',
+'logentry-suppress-event'             => '$1 ha segretamente {{GENDER:$2|modificato}} la visibilità di {{PLURAL:$5|un\'azione del registro|$5 azioni del registro}} di "$3": $4',
+'logentry-suppress-revision'          => '$1 ha segretamente {{GENDER:$2|modificato}} la visibilità di {{PLURAL:$5|una versione|$5 versioni}} di "$3": $4',
+'logentry-suppress-event-legacy'      => '$1 ha segretamente {{GENDER:$2|modificato}} la visibilità di alcune azioni del registro di "$3"',
+'logentry-suppress-revision-legacy'   => '$1 ha segretamente {{GENDER:$2|modificato}} la visibilità di alcune versioni di "$3"',
 'revdelete-content-hid'               => 'contenuto nascosto',
 'revdelete-summary-hid'               => 'oggetto della modifica nascosto',
 'revdelete-uname-hid'                 => 'nome utente nascosto',
+'revdelete-content-unhid'             => 'contenuto ripristinato',
+'revdelete-summary-unhid'             => 'oggetto ripristinato',
+'revdelete-uname-unhid'               => 'nome utente ripristinato',
 'revdelete-restricted'                => 'limitazioni ai soli amministratori attivate',
 'revdelete-unrestricted'              => 'limitazioni ai soli amministratori rimosse',
 'logentry-move-move'                  => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4',
@@ -3655,6 +3667,10 @@ Le immagini vengono mostrate alla massima risoluzione disponibile, per gli altri
 'logentry-move-move_redir-noredirect' => '$1 {{GENDER:$2|ha spostato}} la pagina $3 a $4 tramite redirect senza lasciare redirect',
 'logentry-patrol-patrol'              => '$1 {{GENDER:$2|ha segnato}} la versione $4 della pagina $3 come verificata',
 'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|ha segnato}} automaticamente la versione $4 della pagina $3 come verificata',
+'logentry-newusers-newusers'          => "$1 {{GENDER:$2|ha creato}} un'utenza",
+'logentry-newusers-create'            => "$1 {{GENDER:$2|ha creato}} un'utenza",
+'logentry-newusers-create2'           => "$1 {{GENDER:$2|ha creato}} {{GENDER:$4|un'utenza}} $3",
+'logentry-newusers-autocreate'        => "L'utenza $1 {{GENDER:$2|è stata creata}} automaticamente",
 'newuserlog-byemail'                  => 'password inviata via mail',
 
 );
