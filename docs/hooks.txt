@@ -1177,12 +1177,16 @@ completed
 &updater: A DatabaseUpdater subclass
 
 'LocalFile::getHistory': called before file history query performed
-$file: the file
+$file: the File object
 $tables: tables
 $fields: select fields
 $conds: conditions
 $opts: query options
 $join_conds: JOIN conditions
+
+'LocalFilePurgeThumbnails': called before thumbnails for a local file a purged
+$file: the File object
+$type: either "current" or "archive"
 
 'LocalisationCacheRecache': Called when loading the localisation data into cache
 $cache: The LocalisationCache object
