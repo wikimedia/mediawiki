@@ -49,15 +49,6 @@ function wfHandleThumb404Main() {
 		return;
 	}
 
-	# Check any backend caches for the thumbnail...
-	if ( isset( $thgThumbCallbacks['checkCache'] )
-		&& is_callable( $thgThumbCallbacks['checkCache'] ) )
-	{
-		if ( call_user_func_array( $thgThumbCallbacks['checkCache'], array( $uri, $params ) ) ) {
-			return; // file streamed from backend thumb cache
-		}
-	}
-
 	# Obtain and stream the thumbnail or setup for wfThumbMain() call...
 	if ( $thgThumbCurlConfig['enabled'] ) {
 		wfStreamThumbViaCurl( $params, $uri );
@@ -109,6 +100,15 @@ function wfExtractThumbParams( $uri ) {
  */
 function wfStreamThumbViaCurl( array $params, $uri ) {
 	global $thgThumbCallbacks, $thgThumbCurlConfig;
+
+	# Check any backend caches for the thumbnail...
+	if ( isset( $thgThumbCallbacks['checkCache'] )
+		&& is_callable( $thgThumbCallbacks['checkCache'] ) )
+	{
+		if ( call_user_func_array( $thgThumbCallbacks['checkCache'], array( $uri, $params ) ) ) {
+			return; // file streamed from backend thumb cache
+		}
+	}
 
 	if ( !extension_loaded( 'curl' ) ) {
 		die( "cURL is not enabled for PHP on this wiki.\n" ); // sanity
