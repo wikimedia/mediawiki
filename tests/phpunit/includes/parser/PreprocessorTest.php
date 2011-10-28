@@ -112,6 +112,10 @@ class PreprocessorTest extends MediaWikiTestCase {
 	 * @return string
 	 */
 	function preprocessToXml( $wikiText ) {
+		if ( method_exists( $this->mPreprocessor, 'preprocessToXml' ) ) {
+			return $this->normalizeXml( $this->mPreprocessor->preprocessToXml( $wikiText ) );
+		}
+		
 		$dom = $this->mPreprocessor->preprocessToObj( $wikiText );
 		if ( is_callable( array( $dom, 'saveXML' ) ) ) {
 			return $dom->saveXML();
