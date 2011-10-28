@@ -36,7 +36,7 @@ class ProfilerSimpleTrace extends ProfilerSimple {
 			$this->debug(str_repeat(' ', count($this->mWorkStack) - 1).'Exiting '.$functionname."\n");
 		}
 
-		list( $ofname, /* $ocount */ , $ortime, $octime ) = array_pop( $this->mWorkStack );
+		list( $ofname, /* $ocount */ , $ortime ) = array_pop( $this->mWorkStack );
 
 		if ( !$ofname ) {
 			$this->trace .= "Profiling error: $functionname\n";
