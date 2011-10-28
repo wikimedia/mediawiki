@@ -256,7 +256,7 @@ class SkinTemplate extends Skin {
 			$feeds = array();
 			foreach( $out->getSyndicationLinks() as $format => $link ) {
 				$feeds[$format] = array(
-					'text' => wfMsg( "feed-$format" ),
+					'text' => $this->msg( "feed-$format" )->text(),
 					'href' => $link
 				);
 			}
@@ -281,7 +281,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'exists', $this->getTitle()->getArticleID() != 0 );
 		$tpl->set( 'watch', $this->getTitle()->userIsWatching() ? 'unwatch' : 'watch' );
 		$tpl->set( 'protect', count( $this->getTitle()->isProtected() ) ? 'unprotect' : 'protect' );
-		$tpl->set( 'helppage', wfMsg( 'helppage' ) );
+		$tpl->set( 'helppage', $this->msg( 'helppage' )->text() );
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
 		$tpl->set( 'searchtitle', SpecialPage::getTitleFor( 'Search' )->getPrefixedDBKey() );
@@ -336,9 +336,9 @@ class SkinTemplate extends Skin {
 			if ( $this->isRevisionCurrent() ) {
 				$article = new Article( $this->getTitle(), 0 );
 				if ( !$wgDisableCounters ) {
-					$viewcount = $this->getLang()->formatNum( $article->getCount() );
+					$viewcount = $article->getCount();
 					if ( $viewcount ) {
-						$tpl->set( 'viewcount', wfMsgExt( 'viewcount', array( 'parseinline' ), $viewcount ) );
+						$tpl->set( 'viewcount', $this->msg( 'viewcount' )->numParams( $viewcount )->parse() );
 					}
 				}
 
@@ -350,8 +350,7 @@ class SkinTemplate extends Skin {
 					);
 					if( $num > 0 ) {
 						$tpl->set( 'numberofwatchingusers',
-							wfMsgExt( 'number_of_watching_users_pageview', array( 'parseinline' ),
-							$this->getLang()->formatNum( $num ) )
+							$this->msg( 'number_of_watching_users_pageview' )->numParams( $num )->parse()
 						);
 					}
 				}
@@ -566,20 +565,20 @@ class SkinTemplate extends Skin {
 			);
 			$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
 			$personal_urls['mytalk'] = array(
-				'text' => wfMsg( 'mytalk' ),
+				'text' => $this->msg( 'mytalk' )->text(),
 				'href' => &$usertalkUrlDetails['href'],
 				'class' => $usertalkUrlDetails['exists'] ? false : 'new',
 				'active' => ( $usertalkUrlDetails['href'] == $pageurl )
 			);
 			$href = self::makeSpecialUrl( 'Preferences' );
 			$personal_urls['preferences'] = array(
-				'text' => wfMsg( 'mypreferences' ),
+				'text' => $this->msg( 'mypreferences' )->text(),
 				'href' => $href,
 				'active' => ( $href == $pageurl )
 			);
 			$href = self::makeSpecialUrl( 'Watchlist' );
 			$personal_urls['watchlist'] = array(
-				'text' => wfMsg( 'mywatchlist' ),
+				'text' => $this->msg( 'mywatchlist' )->text(),
 				'href' => $href,
 				'active' => ( $href == $pageurl )
 			);
@@ -601,12 +600,12 @@ class SkinTemplate extends Skin {
 
 			$href = self::makeSpecialUrlSubpage( 'Contributions', $this->username );
 			$personal_urls['mycontris'] = array(
-				'text' => wfMsg( 'mycontris' ),
+				'text' => $this->msg( 'mycontris' )->text(),
 				'href' => $href,
 				'active' => $active
 			);
 			$personal_urls['logout'] = array(
-				'text' => wfMsg( 'userlogout' ),
+				'text' => $this->msg( 'userlogout' )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogout',
 					// userlogout link must always contain an & character, otherwise we might not be able
 					// to detect a buggy precaching proxy (bug 17790)
@@ -623,13 +622,13 @@ class SkinTemplate extends Skin {
 
 			# anonlogin & login are the same
 			$login_url = array(
-				'text' => wfMsg( $loginlink ),
+				'text' => $this->msg( $loginlink )->text(),
 				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
 				'active' => $title->isSpecial( 'Userlogin' ) && ( $loginlink == "nav-login-createaccount" || !$is_signup )
 			);
 			if ( $this->getUser()->isAllowed( 'createaccount' ) && !$useCombinedLoginLink ) {
 				$createaccount_url = array(
-					'text' => wfMsg( 'createaccount' ),
+					'text' => $this->msg( 'createaccount' )->text(),
 					'href' => self::makeSpecialUrl( 'Userlogin', "$returnto&type=signup" ),
 					'active' => $title->isSpecial( 'Userlogin' ) && $is_signup
 				);
@@ -662,7 +661,7 @@ class SkinTemplate extends Skin {
 				$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
 				$href = &$usertalkUrlDetails['href'];
 				$personal_urls['anontalk'] = array(
-					'text' => wfMsg( 'anontalk' ),
+					'text' => $this->msg( 'anontalk' )->text(),
 					'href' => $href,
 					'class' => $usertalkUrlDetails['exists'] ? false : 'new',
 					'active' => ( $pageurl == $href )
@@ -702,7 +701,7 @@ class SkinTemplate extends Skin {
 
 		// wfMessageFallback will nicely accept $message as an array of fallbacks
 		// or just a single key
-		$msg = wfMessageFallback( $message );
+		$msg = wfMessageFallback( $message )->setContext( $this->getContext() );
 		if ( is_array($message) ) {
 			// for hook compatibility just keep the last message name
 			$message = end($message);
@@ -882,7 +881,7 @@ class SkinTemplate extends Skin {
 					"edit" : "create";
 				$content_navigation['views']['edit'] = array(
 					'class' => ( $selected ? 'selected' : '' ) . $isTalkClass,
-					'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->text(),
+					'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->setContext( $this->getContext() )->text(),
 					'href' => $title->getLocalURL( $this->editUrlOptions() ),
 					'primary' => true, // don't collapse this in vector
 				);
@@ -895,7 +894,7 @@ class SkinTemplate extends Skin {
 						//$content_navigation['actions']['addsection']
 						$content_navigation['views']['addsection'] = array(
 							'class' => $section == 'new' ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->text(),
+							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->setContext( $this->getContext() )->text(),
 							'href' => $title->getLocalURL( 'action=edit&section=new' )
 						);
 					}
@@ -905,7 +904,7 @@ class SkinTemplate extends Skin {
 				// Adds view source view link
 				$content_navigation['views']['viewsource'] = array(
 					'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
-					'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )->text(),
+					'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )->setContext( $this->getContext() )->text(),
 					'href' => $title->getLocalURL( $this->editUrlOptions() ),
 					'primary' => true, // don't collapse this in vector
 				);
@@ -919,7 +918,7 @@ class SkinTemplate extends Skin {
 				// Adds history view link
 				$content_navigation['views']['history'] = array(
 					'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
-					'text' => wfMessageFallback( "$skname-view-history", 'history_short' )->text(),
+					'text' => wfMessageFallback( "$skname-view-history", 'history_short' )->setContext( $this->getContext() )->text(),
 					'href' => $title->getLocalURL( 'action=history' ),
 					'rel' => 'archives',
 				);
@@ -927,7 +926,7 @@ class SkinTemplate extends Skin {
 				if( $user->isAllowed( 'delete' ) ) {
 					$content_navigation['actions']['delete'] = array(
 						'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->text(),
+						'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( 'action=delete' )
 					);
 				}
@@ -935,7 +934,7 @@ class SkinTemplate extends Skin {
 					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 					$content_navigation['actions']['move'] = array(
 						'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-move", 'move' )->text(),
+						'text' => wfMessageFallback( "$skname-action-move", 'move' )->setContext( $this->getContext() )->text(),
 						'href' => $moveTitle->getLocalURL()
 					);
 				}
@@ -944,7 +943,7 @@ class SkinTemplate extends Skin {
 					$mode = !$title->isProtected() ? 'protect' : 'unprotect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->text(),
+						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( "action=$mode" )
 					);
 				}
@@ -959,7 +958,7 @@ class SkinTemplate extends Skin {
 						$content_navigation['actions']['undelete'] = array(
 							'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
-								->params( $this->getLang()->formatNum( $n ) )->text(),
+								->setContext( $this->getContext() )->numParams( $n )->text(),
 							'href' => $undelTitle->getLocalURL( array( 'target' => $title->getPrefixedDBkey() ) )
 						);
 					}
@@ -969,7 +968,7 @@ class SkinTemplate extends Skin {
 					$mode = !$title->getRestrictions( 'create' ) ? 'protect' : 'unprotect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->text(),
+						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( "action=$mode" )
 					);
 				}
@@ -991,7 +990,7 @@ class SkinTemplate extends Skin {
 				$token = WatchAction::getWatchToken( $title, $user, $mode );
 				$content_navigation['actions'][$mode] = array(
 					'class' => $onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : false,
-					'text' => wfMsg( $mode ), // uses 'watch' or 'unwatch' message
+					'text' => $this->msg( $mode )->text(), // uses 'watch' or 'unwatch' message
 					'href' => $title->getLocalURL( array( 'action' => $mode, 'token' => $token ) )
 				);
 			}
@@ -1001,7 +1000,7 @@ class SkinTemplate extends Skin {
 			// If it's not content, it's got to be a special page
 			$content_navigation['namespaces']['special'] = array(
 				'class' => 'selected',
-				'text' => wfMsg( 'nstab-special' ),
+				'text' => $this->msg( 'nstab-special' )->text(),
 				'href' => $request->getRequestURL(), // @bug 2457, 2510
 				'context' => 'subject'
 			);
@@ -1163,7 +1162,7 @@ class SkinTemplate extends Skin {
 		if( $out->isArticle() ) {
 			if ( !$out->isPrintable() ) {
 				$nav_urls['print'] = array(
-					'text' => wfMsg( 'printableversion' ),
+					'text' => $this->msg( 'printableversion' )->text(),
 					'href' => $this->getTitle()->getLocalURL(
 						$request->appendQueryValue( 'printable', 'yes', true ) )
 				);
@@ -1173,7 +1172,7 @@ class SkinTemplate extends Skin {
 			$revid = $this->getRevisionId();
 			if ( $revid ) {
 				$nav_urls['permalink'] = array(
-					'text' => wfMsg( 'permalink' ),
+					'text' => $this->msg( 'permalink' )->text(),
 					'href' => $out->getTitle()->getLocalURL( "oldid=$revid" )
 				);
 			}
@@ -1411,6 +1410,28 @@ abstract class QuickTemplate {
 abstract class BaseTemplate extends QuickTemplate {
 
 	/**
+	 * Get a Message object with its context set
+	 *
+	 * @param $name Str message name
+	 * @return Message
+	 */
+	public function getMsg( $name ) {
+		return $this->getSkin()->msg( $name );
+	}
+
+	function msg( $str ) {
+		echo $this->getMsg( $str )->escaped();
+	}
+
+	function msgHtml( $str ) {
+		echo $this->getMsg( $str )->text();
+	}
+
+	function msgWiki( $str ) {
+		echo $this->getMsg( $str )->parseAsBlock();
+	}
+
+	/**
 	 * Create an array of common toolbox items from the data in the quicktemplate
 	 * stored by SkinTemplate.
 	 * The resulting array is built acording to a format intended to be passed
@@ -1533,13 +1554,13 @@ abstract class BaseTemplate extends QuickTemplate {
 				// Search is a special case, skins should custom implement this
 				$boxes[$boxName] = array(
 					'id'        => "p-search",
-					'header'    => wfMessage( 'search' )->text(),
+					'header'    => $this->getMsg( 'search' )->text(),
 					'generated' => false,
 					'content'   => true,
 				);
 				break;
 			case 'TOOLBOX':
-				$msgObj = wfMessage( 'toolbox' );
+				$msgObj = $this->getMsg( 'toolbox' );
 				$boxes[$boxName] = array(
 					'id'        => "p-tb",
 					'header'    => $msgObj->exists() ? $msgObj->text() : 'toolbox',
@@ -1549,7 +1570,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				break;
 			case 'LANGUAGES':
 				if ( $this->data['language_urls'] ) {
-					$msgObj = wfMessage( 'otherlanguages' );
+					$msgObj = $this->getMsg( 'otherlanguages' );
 					$boxes[$boxName] = array(
 						'id'        => "p-lang",
 						'header'    => $msgObj->exists() ? $msgObj->text() : 'otherlanguages',
@@ -1559,7 +1580,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				} 
 				break;
 			default:
-				$msgObj = wfMessage( $boxName );
+				$msgObj = $this->getMsg( $boxName );
 				$boxes[$boxName] = array(
 					'id'        => "p-$boxName",
 					'header'    => $msgObj->exists() ? $msgObj->text() : $boxName,
