@@ -1384,6 +1384,9 @@ class OutputPage extends ContextSource {
 		$this->mNoGallery = $parserOutput->getNoGallery();
 		$this->mHeadItems = array_merge( $this->mHeadItems, $parserOutput->getHeadItems() );
 		$this->addModules( $parserOutput->getModules() );
+		$this->addModuleScripts( $parserOutput->getModuleScripts() );
+		$this->addModuleStyles( $parserOutput->getModuleStyles() );
+		$this->addModuleMessages( $parserOutput->getModuleMessages() );
 
 		// Template versioning...
 		foreach ( (array)$parserOutput->getTemplateIds() as $ns => $dbks ) {

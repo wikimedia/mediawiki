@@ -130,6 +130,9 @@ class ParserOutput extends CacheTime {
 		$mNoGallery = false,          # No gallery on category page? (__NOGALLERY__)
 		$mHeadItems = array(),        # Items to put in the <head> section
 		$mModules = array(),          # Modules to be loaded by the resource loader
+		$mModuleScripts = array(),    # Modules of which only the JS will be loaded by the resource loader
+		$mModuleStyles = array(),     # Modules of which only the CSSS will be loaded by the resource loader
+		$mModuleMessages = array(),   # Modules of which only the messages will be loaded by the resource loader
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
 		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections = array(),         # Table of contents
@@ -197,6 +200,9 @@ class ParserOutput extends CacheTime {
 	function getNoGallery()              { return $this->mNoGallery; }
 	function getHeadItems()              { return $this->mHeadItems; }
 	function getModules()                { return $this->mModules; }
+	function getModuleScripts()          { return $this->mModuleScripts; }
+	function getModuleStyles()           { return $this->mModuleStyles; }
+	function getModuleMessages()         { return $this->mModuleMessages; }
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
 	function getIndexPolicy()            { return $this->mIndexPolicy; }
@@ -336,8 +342,20 @@ class ParserOutput extends CacheTime {
 		}
 	}
 	
-	function addModules( $modules ) {
+	public function addModules( $modules ) {
 		$this->mModules = array_merge( $this->mModules, (array) $modules );
+	}
+
+	public function addModuleScripts( $modules ) {
+		$this->mModuleScripts = array_merge( $this->mModuleScripts, (array)$modules );
+	}
+
+	public function addModuleStyles( $modules ) {
+		$this->mModuleStyles = array_merge( $this->mModuleStyles, (array)$modules );
+	}
+
+	public function addModuleMessages( $modules ) {
+		$this->mModuleMessages = array_merge( $this->mModuleMessages, (array)$modules );
 	}
 
 	/**
