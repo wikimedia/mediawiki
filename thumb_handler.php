@@ -3,20 +3,19 @@
 # Valid web server entry point
 define( 'THUMB_HANDLER', true );
 
-# Load thumb-handler configuration. We don't want to use
-# WebStart.php or the like as it would kill performance.
-$configPath = dirname( __FILE__ ) . "/thumb.config.php";
-if ( !file_exists( $configPath ) ) {
-	die( "Thumb-handler.php is not enabled for this wiki.\n" );
-} elseif ( !extension_loaded( 'curl' ) ) {
-	die( "cURL is not enabled for PHP on this wiki.\n" ); // sanity
+# Load thumb-handler configuration. Avoids WebStart.php for performance.
+if ( !file_exists( dirname( __FILE__ ) . "/thumb.config.php" ) ) {
+	die( "thumb_handler.php is not enabled for this wiki.\n" );
 }
-require( $configPath );
+require( dirname( __FILE__ ) . "/thumb.config.php" );
 
-wfHandleThumb404Main();
+# Execute thumb.php if not handled via cURL
+if ( wfHandleThumb404Main() === 'wfThumbMain' ) {
+	require( dirname( __FILE__ ) . '/thumb.php' );
+}
 
 function wfHandleThumb404Main() {
-	global $thgThumbCallbacks, $thgThumb404File;
+	global $thgThumbCallbacks, $thgThumbCurlConfig;
 
 	# lighttpd puts the original request in REQUEST_URI, while
 	# sjs sets that to the 404 handler, and puts the original
@@ -40,8 +39,10 @@ function wfHandleThumb404Main() {
 	# Show 404 error if this is not a valid thumb request...
 	if ( !is_array( $params ) ) {
 		header( 'X-Debug: no regex match' ); // useful for debugging
-		if ( $thgThumb404File ) { // overridden by configuration?
-			require( $thgThumb404File );
+		if ( isset( $thgThumbCallbacks['error404'] )
+			&& is_callable( $thgThumbCallbacks['error404'] ) ) // overridden by configuration?
+		{
+			call_user_func( $thgThumbCallbacks['error404'] );
 		} else {
 			wfDisplay404Error(); // standard 404 message
 		}
@@ -57,7 +58,14 @@ function wfHandleThumb404Main() {
 		}
 	}
 
-	wfStreamThumbViaCurl( $params, $uri );
+	# Obtain and stream the thumbnail or setup for wfThumbMain() call...
+	if ( $thgThumbCurlConfig['enabled'] ) {
+		wfStreamThumbViaCurl( $params, $uri );
+		return true; // done
+	} else {
+		$_REQUEST = $params; // pass params to thumb.php
+		return 'wfThumbMain';
+	}
 }
 
 /**
@@ -68,11 +76,11 @@ function wfHandleThumb404Main() {
  * @return Array|null associative params array or null
  */
 function wfExtractThumbParams( $uri ) {
-	global $thgThumbServer, $thgThumbFragment, $thgThumbHashFragment;
+	global $thgThumbUrlMatch;
 
-	$thumbRegex = '!^(?:' . preg_quote( $thgThumbServer ) . ')?/' .
-		preg_quote( $thgThumbFragment ) . '(/archive|/temp|)/' .
-		$thgThumbHashFragment . '([^/]*)/(page(\d*)-)*(\d*)px-[^/]*$!';
+	$thumbRegex = '!^(?:' . preg_quote( $thgThumbUrlMatch['server'] ) . ')?/' .
+		preg_quote( $thgThumbUrlMatch['dirFragment'] ) . '(/archive|/temp|)/' .
+		$thgThumbUrlMatch['hashFragment'] . '([^/]*)/(page(\d*)-)*(\d*)px-[^/]*$!';
 
 	if ( preg_match( $thumbRegex, $uri, $matches ) ) {
 		list( $all, $archOrTemp, $filename, $pagefull, $pagenum, $size ) = $matches;
@@ -100,10 +108,14 @@ function wfExtractThumbParams( $uri ) {
  * @return void
  */
 function wfStreamThumbViaCurl( array $params, $uri ) {
-	global $thgThumbCallbacks, $thgThumbScriptPath, $thgThumbCurlProxy, $thgThumbCurlTimeout;
+	global $thgThumbCallbacks, $thgThumbCurlConfig;
+
+	if ( !extension_loaded( 'curl' ) ) {
+		die( "cURL is not enabled for PHP on this wiki.\n" ); // sanity
+	}
 
 	# Build up the request URL to use with CURL...
-	$reqURL = "{$thgThumbScriptPath}?";
+	$reqURL = $thgThumbCurlConfig['url'] . '?';
 	$first = true;
 	foreach ( $params as $name => $value ) {
 		if ( $first ) {
@@ -135,13 +147,13 @@ function wfStreamThumbViaCurl( array $params, $uri ) {
 	}
 
 	$ch = curl_init( $reqURL );
-	if ( $thgThumbCurlProxy ) {
-		curl_setopt( $ch, CURLOPT_PROXY, $thgThumbCurlProxy );
+	if ( $thgThumbCurlConfig['proxy'] ) {
+		curl_setopt( $ch, CURLOPT_PROXY, $thgThumbCurlConfig['proxy'] );
 	}
 
 	curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-	curl_setopt( $ch, CURLOPT_TIMEOUT, $thgThumbCurlTimeout );
+	curl_setopt( $ch, CURLOPT_TIMEOUT, $thgThumbCurlConfig['timeout'] );
 
 	# Actually make the request
 	$text = curl_exec( $ch );
