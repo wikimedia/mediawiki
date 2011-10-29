@@ -201,16 +201,30 @@ $.fn.makeCollapsible = function() {
 			},
 			// Toggles customcollapsible
 			toggleLinkCustom = function( $that, e, $collapsible ) {
+				var instantHide = true;
 				// For the initial state call of customtogglers there is no event passed
 				if (e) {
 					e.preventDefault();
-				e.stopPropagation();
+					e.stopPropagation();
+					$collapsible.toggleClass( 'mw-collapsed' );
+					instantHide = false;
 				}
-				// Get current state and toggle to the opposite
-				var action = $collapsible.hasClass( 'mw-collapsed' ) ? 'expand' : 'collapse';
-				$collapsible.toggleClass( 'mw-collapsed' );
-				toggleElement( $collapsible, action, $that );
 
+				// It's expanded right now
+				if ( $collapsible.hasClass( 'mw-collapsed' ) ) {
+					// Change text to "Show"
+					$( '.mw-customtoggletext', $that ).text( expandtext );
+					// Collapse element
+					toggleElement( $collapsible, 'collapse', $that, instantHide );
+
+				// It's collapsed right now
+				} else {
+					// Change text to "Hide"
+					$( '.mw-customtoggletext', $that ).text( collapsetext );
+					// Expand element
+					toggleElement( $collapsible, 'expand', $that, instantHide );
+				}
+				return;
 			};
 
 		// Use custom text or default ?
@@ -260,8 +274,9 @@ $.fn.makeCollapsible = function() {
 
 			// Initial state
 			if ( $that.hasClass( 'mw-collapsed' ) ) {
-				$that.removeClass( 'mw-collapsed' );
 				toggleLinkCustom( $customTogglers, null, $that );
+			} else {
+				$( '.mw-customtoggletext', $customTogglers ).text( collapsetext );
 			}
 
 		// Custom toggle link specified by children with a certain class
@@ -275,13 +290,14 @@ $.fn.makeCollapsible = function() {
 					toggleLinkCustom( $(this), e, $that );
 				} );
 			} else {
-				mw.log( _fn + '<children> .mw-customtoggle: Missing toggler!' );
+				mw.log( _fn + '.mw-customcollapsiblechildren: Missing toggler!' );
 			}
 
 			// Initial state
 			if ( $that.hasClass( 'mw-collapsed' ) ) {
-				$that.removeClass( 'mw-collapsed' );
 				toggleLinkCustom( $customTogglers, null, $that );
+			} else {
+				$( '.mw-customtoggletext', $customTogglers ).text( collapsetext );
 			}
 
 		// If this is not a custom case, do the default:
@@ -346,7 +362,8 @@ $.fn.makeCollapsible = function() {
 		}
 
 		// Initial state (only for those that are not custom)
-		if ( $that.hasClass( 'mw-collapsed' ) && ( $that.attr( 'id' ) || '').indexOf( 'mw-customcollapsible-' ) !== 0 ) {
+		if ( $that.hasClass( 'mw-collapsed' ) && !$that.hasClass( 'mw-customcollapsiblechildren' )
+			&& ( $that.attr( 'id' ) || '').indexOf( 'mw-customcollapsible-' ) !== 0 ) {
 			$that.removeClass( 'mw-collapsed' );
 			// The collapsible element could have multiple togglers
 			// To toggle the initial state only click one of them (ie. the first one, eq(0) )
