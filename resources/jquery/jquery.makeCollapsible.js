@@ -264,6 +264,26 @@ $.fn.makeCollapsible = function() {
 				toggleLinkCustom( $customTogglers, null, $that );
 			}
 
+		// Custom toggle link specified by children with a certain class
+		} else if ( $that.hasClass( 'mw-customcollapsiblechildren' ) ) {
+
+			var $customTogglers = $( '.mw-customtoggle', $that );
+
+			// Double check that there is actually a customtoggle link
+			if ( $customTogglers.length ) {
+				$customTogglers.bind( 'click.mw-collapse', function( e ) {
+					toggleLinkCustom( $(this), e, $that );
+				} );
+			} else {
+				mw.log( _fn + '<children> .mw-customtoggle: Missing toggler!' );
+			}
+
+			// Initial state
+			if ( $that.hasClass( 'mw-collapsed' ) ) {
+				$that.removeClass( 'mw-collapsed' );
+				toggleLinkCustom( $customTogglers, null, $that );
+			}
+
 		// If this is not a custom case, do the default:
 		// Wrap the contents add the toggle link
 		} else {
