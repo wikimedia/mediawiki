@@ -371,7 +371,7 @@ class _DiffEngine {
 				}
 				$matches = $ymatches[$line];
 				reset( $matches );
-				while ( list( , $y ) = each( $matches ) ) {
+				foreach ( $matches as $y ) {
 					if ( empty( $this->in_seq[$y] ) ) {
 						$k = $this->_lcs_pos( $y );
 						assert( $k > 0 );
@@ -379,7 +379,7 @@ class _DiffEngine {
 						break;
 					}
 				}
-				while ( list ( , $y ) = each( $matches ) ) {
+				foreach ( $matches as $y ) {
 					if ( $y > $this->seq[$k -1] ) {
 						assert( $y < $this->seq[$k] );
 						// Optimization: this is a common case:
@@ -493,7 +493,7 @@ class _DiffEngine {
 			// Use the partitions to split this problem into subproblems.
 			reset( $seps );
 			$pt1 = $seps[0];
-			while ( $pt2 = next( $seps ) ) {
+			foreach ( $seps as $pt2 ) {
 				$this->_compareseq ( $pt1[0], $pt2[0], $pt1[1], $pt2[1] );
 				$pt1 = $pt2;
 			}
