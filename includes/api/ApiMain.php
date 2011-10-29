@@ -156,7 +156,7 @@ class ApiMain extends ApiBase {
 		$this->setContext( new DerivativeContext( $context ) );
 
 		if ( isset( $request ) ) {
-			$context->setRequest( $request );
+			$this->getContext()->setRequest( $request );
 		}
 
 		$this->mInternalMode = ( $this->getRequest() instanceof FauxRequest );
