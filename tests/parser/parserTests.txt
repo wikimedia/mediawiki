@@ -8795,12 +8795,12 @@ Template:Identical
 
 !! test
 Bug 31098 Template which includes system messages which includes the template
-!! options
-disabled
 !! input
 {{Identical}}
 !! result
-...
+<p><span class="error">Template loop detected: <a href="/wiki/Template:Identical" title="Template:Identical">Template:Identical</a></span>
+<span class="error">Template loop detected: <a href="/wiki/Template:Identical" title="Template:Identical">Template:Identical</a></span>
+</p>
 !! end
 
 !! test
