@@ -120,6 +120,8 @@ production.
 * (bug 31921) Magic words REVISIONDAY, REVISIONMONTH and REVISIONYEAR now give
   current values on preview
 * (bug 29912) Unit tests break if parsertest tables are still present
+* (bug 19186) Special:UserLogin's title on Special:SpecialPages now says
+  "create account" when the user cannot create an account
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
