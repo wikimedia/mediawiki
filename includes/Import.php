@@ -40,6 +40,7 @@ class WikiImporter {
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
+	 * @param $source
 	 */
 	function __construct( $source ) {
 		$this->reader = new XMLReader();
@@ -48,8 +49,7 @@ class WikiImporter {
 		$id = UploadSourceAdapter::registerSource( $source );
 		if (defined( 'LIBXML_PARSEHUGE' ) ) {
 			$this->reader->open( "uploadsource://$id", null, LIBXML_PARSEHUGE );
-		}
-		else {
+		} else {
 			$this->reader->open( "uploadsource://$id" );
 		}
 
@@ -87,6 +87,7 @@ class WikiImporter {
 
 	/**
 	 * Set debug mode...
+	 * @param $debug bool
 	 */
 	function setDebug( $debug ) {
 		$this->mDebug = $debug;
@@ -94,6 +95,7 @@ class WikiImporter {
 
 	/**
 	 * Set 'no updates' mode. In this mode, the link tables will not be updated by the importer
+	 * @param $noupdates bool
 	 */
 	function setNoUpdates( $noupdates ) {
 		$this->mNoUpdates = $noupdates;
@@ -171,6 +173,8 @@ class WikiImporter {
 
 	/**
 	 * Set a target namespace to override the defaults
+	 * @param $namespace
+	 * @return bool
 	 */
 	public function setTargetNamespace( $namespace ) {
 		if( is_null( $namespace ) ) {
@@ -185,7 +189,7 @@ class WikiImporter {
 	}
 
 	/**
-	 * @parma $dir
+	 * @param $dir
 	 */
 	public function setImageBasePath( $dir ) {
 		$this->mImageBasePath = $dir;
@@ -201,6 +205,7 @@ class WikiImporter {
 	/**
 	 * Default per-revision callback, performs the import.
 	 * @param $revision WikiRevision
+	 * @return bool
 	 */
 	public function importRevision( $revision ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -210,6 +215,7 @@ class WikiImporter {
 	/**
 	 * Default per-revision callback, performs the import.
 	 * @param $rev WikiRevision
+	 * @return bool
 	 */
 	public function importLogItem( $rev ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -218,6 +224,8 @@ class WikiImporter {
 
 	/**
 	 * Dummy for now...
+	 * @param $revision
+	 * @return bool
 	 */
 	public function importUpload( $revision ) {
 		$dbw = wfGetDB( DB_MASTER );
@@ -226,6 +234,12 @@ class WikiImporter {
 
 	/**
 	 * Mostly for hook use
+	 * @param $title
+	 * @param $origTitle
+	 * @param $revCount
+	 * @param $sRevCount
+	 * @param $pageInfo
+	 * @return
 	 */
 	public function finishImportPage( $title, $origTitle, $revCount, $sRevCount, $pageInfo ) {
 		$args = func_get_args();
@@ -930,6 +944,10 @@ class XMLReader2 extends XMLReader {
  */
 class WikiRevision {
 	var $importer = null;
+
+	/**
+	 * @var Title
+	 */
 	var $title = null;
 	var $id = 0;
 	var $timestamp = "20010115000000";
@@ -945,6 +963,7 @@ class WikiRevision {
 	var $sha1base36 = false;
 	var $isTemp = false;
 	var $archiveName = '';
+	var $fileIsTemp;
 	private $mNoUpdates = false;
 
 	/**
@@ -1062,6 +1081,9 @@ class WikiRevision {
 		$this->type = $type;
 	}
 
+	/**
+	 * @param $action
+	 */
 	function setAction( $action ) {
 		$this->action = $action;
 	}
@@ -1428,10 +1450,16 @@ class ImportStringSource {
 		$this->mRead = false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function atEnd() {
 		return $this->mRead;
 	}
 
+	/**
+	 * @return bool|string
+	 */
 	function readChunk() {
 		if( $this->atEnd() ) {
 			return false;
@@ -1457,6 +1485,9 @@ class ImportStreamSource {
 		return feof( $this->mHandle );
 	}
 
+	/**
+	 * @return string
+	 */
 	function readChunk() {
 		return fread( $this->mHandle, 32768 );
 	}

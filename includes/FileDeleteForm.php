@@ -8,12 +8,23 @@
  */
 class FileDeleteForm {
 
+	/**
+	 * @var Title
+	 */
 	private $title = null;
+
+	/**
+	 * @var File
+	 */
 	private $file = null;
 
+	/**
+	 * @var File
+	 */
 	private $oldfile = null;
 	private $oldimage = '';
 
+	private $DeleteReason, $DeleteReasonList;
 	/**
 	 * Constructor
 	 *
@@ -295,6 +306,9 @@ class FileDeleteForm {
 	 * value was provided, does it correspond to an
 	 * existing, local, old version of this file?
 	 *
+	 * @param $file File
+	 * @param $oldfile File
+	 * @param $oldimage File
 	 * @return bool
 	 */
 	public static function haveDeletableFile(&$file, &$oldfile, $oldimage) {

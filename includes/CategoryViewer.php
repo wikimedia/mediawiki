@@ -133,6 +133,9 @@ class CategoryViewer extends ContextSource {
 
 	/**
 	 * Add a subcategory to the internal lists, using a Category object
+	 * @param $cat Category
+	 * @param $sortkey
+	 * @param $pageLength
 	 */
 	function addSubcategoryObject( Category $cat, $sortkey, $pageLength ) {
 		// Subcategory; strip the 'Category' namespace from the link text.
@@ -185,6 +188,10 @@ class CategoryViewer extends ContextSource {
 
 	/**
 	 * Add a page in the image namespace
+	 * @param $title Title
+	 * @param $sortkey
+	 * @param $pageLength
+	 * @param $isRedirect bool
 	 */
 	function addImage( Title $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
@@ -211,6 +218,10 @@ class CategoryViewer extends ContextSource {
 
 	/**
 	 * Add a miscellaneous page
+	 * @param $title
+	 * @param $sortkey
+	 * @param $pageLength
+	 * @param $isRedirect bool
 	 */
 	function addPage( $title, $sortkey, $pageLength, $isRedirect = false ) {
 		global $wgContLang;
@@ -316,6 +327,9 @@ class CategoryViewer extends ContextSource {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	function getCategoryTop() {
 		$r = $this->getCategoryBottom();
 		return $r === ''
@@ -323,6 +337,9 @@ class CategoryViewer extends ContextSource {
 			: "<br style=\"clear:both;\"/>\n" . $r;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getSubcategorySection() {
 		# Don't show subcategories section if there are none.
 		$r = '';
@@ -343,6 +360,9 @@ class CategoryViewer extends ContextSource {
 		return $r;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getPagesSection() {
 		$ti = htmlspecialchars( $this->title->getText() );
 		# Don't show articles section if there are none.
@@ -369,6 +389,9 @@ class CategoryViewer extends ContextSource {
 		return $r;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getImageSection() {
 		$r = '';
 		$rescnt = $this->showGallery ? $this->gallery->count() : count( $this->imgsNoGallery );
@@ -408,6 +431,9 @@ class CategoryViewer extends ContextSource {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	function getCategoryBottom() {
 		return '';
 	}
@@ -567,6 +593,7 @@ class CategoryViewer extends ContextSource {
 	 *
 	 * @param Title $title: The title (usually $this->title)
 	 * @param String $section: Which section
+	 * @return Title
 	 */
 	private function addFragmentToTitle( $title, $section ) {
 		switch ( $section ) {

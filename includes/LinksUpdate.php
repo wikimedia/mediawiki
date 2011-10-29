@@ -297,14 +297,17 @@ class LinksUpdate {
 		);
 	}
 
+	/**
+	 * @param $cats
+	 */
 	function invalidateCategories( $cats ) {
 		$this->invalidatePages( NS_CATEGORY, array_keys( $cats ) );
 	}
 
 	/**
 	 * Update all the appropriate counts in the category table.
-	 * @param $added associative array of category name => sort key
-	 * @param $deleted associative array of category name => sort key
+	 * @param $added array associative array of category name => sort key
+	 * @param $deleted array associative array of category name => sort key
 	 */
 	function updateCategoryCounts( $added, $deleted ) {
 		$a = new Article($this->mTitle);
@@ -313,10 +316,18 @@ class LinksUpdate {
 		);
 	}
 
+	/**
+	 * @param $images
+	 */
 	function invalidateImageDescriptions( $images ) {
 		$this->invalidatePages( NS_FILE, array_keys( $images ) );
 	}
 
+	/**
+	 * @param $table
+	 * @param $insertions
+	 * @param $fromField
+	 */
 	function dumbTableUpdate( $table, $insertions, $fromField ) {
 		$this->mDb->delete( $table, array( $fromField => $this->mId ), __METHOD__ );
 		if ( count( $insertions ) ) {
@@ -329,7 +340,10 @@ class LinksUpdate {
 
 	/**
 	 * Update a table by doing a delete query then an insert query
-	 *
+	 * @param $table
+	 * @param $prefix
+	 * @param $deletions
+	 * @param $insertions
 	 */
 	function incrTableUpdate( $table, $prefix, $deletions, $insertions ) {
 		if ( $table == 'page_props' ) {
@@ -372,11 +386,11 @@ class LinksUpdate {
 		}
 	}
 
-
 	/**
 	 * Get an array of pagelinks insertions for passing to the DB
 	 * Skips the titles specified by the 2-D array $existing
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getLinkInsertions( $existing = array() ) {
 		$arr = array();
@@ -397,7 +411,8 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of template insertions. Like getLinkInsertions()
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getTemplateInsertions( $existing = array() ) {
 		$arr = array();
@@ -417,6 +432,8 @@ class LinksUpdate {
 	/**
 	 * Get an array of image insertions
 	 * Skips the names specified in $existing
+	 * @param $existing array
+	 * @return array
 	 */
 	function getImageInsertions( $existing = array() ) {
 		$arr = array();
@@ -432,6 +449,8 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of externallinks insertions. Skips the names specified in $existing
+	 * @param $existing array
+	 * @return array
 	 */
 	function getExternalInsertions( $existing = array() ) {
 		$arr = array();
@@ -449,8 +468,10 @@ class LinksUpdate {
 	/**
 	 * Get an array of category insertions
 	 *
-	 * @param $existing Array mapping existing category names to sort keys. If both
+	 * @param $existing array mapping existing category names to sort keys. If both
 	 * match a link in $this, the link will be omitted from the output
+	 *
+	 * @return array
 	 */
 	function getCategoryInsertions( $existing = array() ) {
 		global $wgContLang, $wgCategoryCollation;
@@ -493,6 +514,7 @@ class LinksUpdate {
 	 *
 	 * @param $existing Array mapping existing language codes to titles
 	 *
+	 * @return array
 	 */
 	function getInterlangInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mInterlangs, $existing );
@@ -509,6 +531,8 @@ class LinksUpdate {
 
 	/**
 	 * Get an array of page property insertions
+	 * @param $existing array
+	 * @return array
 	 */
 	function getPropertyInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mProperties, $existing );
@@ -526,7 +550,8 @@ class LinksUpdate {
 	/**
 	 * Get an array of interwiki insertions for passing to the DB
 	 * Skips the titles specified by the 2-D array $existing
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getInterwikiInsertions( $existing = array() ) {
 		$arr = array();
@@ -546,7 +571,8 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing links, returns those links which are not in $this
 	 * and thus should be deleted.
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getLinkDeletions( $existing ) {
 		$del = array();
@@ -563,7 +589,8 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing templates, returns those templates which are not in $this
 	 * and thus should be deleted.
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getTemplateDeletions( $existing ) {
 		$del = array();
@@ -580,7 +607,8 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing images, returns those images which are not in $this
 	 * and thus should be deleted.
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getImageDeletions( $existing ) {
 		return array_diff_key( $existing, $this->mImages );
@@ -589,7 +617,8 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing external links, returns those links which are not
 	 * in $this and thus should be deleted.
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getExternalDeletions( $existing ) {
 		return array_diff_key( $existing, $this->mExternals );
@@ -598,7 +627,8 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing categories, returns those categories which are not in $this
 	 * and thus should be deleted.
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getCategoryDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mCategories );
@@ -607,7 +637,8 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing interlanguage links, returns those links which are not
 	 * in $this and thus should be deleted.
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getInterlangDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mInterlangs );
@@ -615,7 +646,8 @@ class LinksUpdate {
 
 	/**
 	 * Get array of properties which should be deleted.
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getPropertyDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mProperties );
@@ -624,7 +656,8 @@ class LinksUpdate {
 	/**
 	 * Given an array of existing interwiki links, returns those links which are not in $this
 	 * and thus should be deleted.
-	 *
+	 * @param $existing array
+	 * @return array
 	 */
 	function getInterwikiDeletions( $existing ) {
 		$del = array();
@@ -641,6 +674,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of existing links, as a 2-D array
 	 *
+	 * @return array
 	 */
 	function getExistingLinks() {
 		$res = $this->mDb->select( 'pagelinks', array( 'pl_namespace', 'pl_title' ),
@@ -658,6 +692,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of existing templates, as a 2-D array
 	 *
+	 * @return array
 	 */
 	function getExistingTemplates() {
 		$res = $this->mDb->select( 'templatelinks', array( 'tl_namespace', 'tl_title' ),
@@ -675,6 +710,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of existing images, image names in the keys
 	 *
+	 * @return array
 	 */
 	function getExistingImages() {
 		$res = $this->mDb->select( 'imagelinks', array( 'il_to' ),
@@ -689,6 +725,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of existing external links, URLs in the keys
 	 *
+	 * @return array
 	 */
 	function getExistingExternals() {
 		$res = $this->mDb->select( 'externallinks', array( 'el_to' ),
@@ -703,6 +740,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of existing categories, with the name in the key and sort key in the value.
 	 *
+	 * @return array
 	 */
 	function getExistingCategories() {
 		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_sortkey_prefix' ),
@@ -718,6 +756,7 @@ class LinksUpdate {
 	 * Get an array of existing interlanguage links, with the language code in the key and the
 	 * title in the value.
 	 *
+	 * @return array
 	 */
 	function getExistingInterlangs() {
 		$res = $this->mDb->select( 'langlinks', array( 'll_lang', 'll_title' ),
@@ -749,6 +788,7 @@ class LinksUpdate {
 	/**
 	 * Get an array of existing categories, with the name in the key and sort key in the value.
 	 *
+	 * @return array
 	 */
 	function getExistingProperties() {
 		$res = $this->mDb->select( 'page_props', array( 'pp_propname', 'pp_value' ),
@@ -760,9 +800,9 @@ class LinksUpdate {
 		return $arr;
 	}
 
-
 	/**
 	 * Return the title object of the page being updated
+	 * @return Title
 	 */
 	function getTitle() {
 		return $this->mTitle;
@@ -770,6 +810,7 @@ class LinksUpdate {
 
 	/**
 	 * Return the list of images used as generated by the parser
+	 * @return array
 	 */
 	public function getImages() {
 		return $this->mImages;
@@ -777,6 +818,7 @@ class LinksUpdate {
 
 	/**
 	 * Invalidate any necessary link lists related to page property changes
+	 * @param $changed
 	 */
 	function invalidateProperties( $changed ) {
 		global $wgPagePropLinkInvalidations;

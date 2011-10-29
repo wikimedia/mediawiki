@@ -28,6 +28,8 @@ class DependencyWrapper {
 
 	/**
 	 * Returns true if any of the dependencies have expired
+	 *
+	 * @return bool
 	 */
 	function isExpired() {
 		foreach ( $this->deps as $dep ) {
@@ -51,6 +53,7 @@ class DependencyWrapper {
 
 	/**
 	 * Get the user-defined value
+	 * @return bool|\Mixed
 	 */
 	function getValue() {
 		return $this->value;
@@ -143,6 +146,9 @@ class FileDependency extends CacheDependency {
 		$this->timestamp = $timestamp;
 	}
 
+	/**
+	 * @return array
+	 */
 	function __sleep() {
 		$this->loadDependencyValues();
 		return array( 'filename', 'timestamp' );
@@ -265,11 +271,15 @@ class TitleListDependency extends CacheDependency {
 
 	/**
 	 * Construct a dependency on a list of titles
+	 * @param $linkBatch LinkBatch
 	 */
 	function __construct( LinkBatch $linkBatch ) {
 		$this->linkBatch = $linkBatch;
 	}
 
+	/**
+	 * @return array
+	 */
 	function calculateTimestamps() {
 		# Initialise values to false
 		$timestamps = array();
@@ -314,6 +324,9 @@ class TitleListDependency extends CacheDependency {
 		return array( 'timestamps' );
 	}
 
+	/**
+	 * @return LinkBatch
+	 */
 	function getLinkBatch() {
 		if ( !isset( $this->linkBatch ) ) {
 			$this->linkBatch = new LinkBatch;

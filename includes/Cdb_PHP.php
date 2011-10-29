@@ -1,6 +1,6 @@
 <?php
 /**
- * This is a port of D.J. Bernstein's CDB to PHP. It's based on the copy that 
+ * This is a port of D.J. Bernstein's CDB to PHP. It's based on the copy that
  * appears in PHP 5.3. Changes are:
  *    * Error returns replaced with exceptions
  *    * Exception thrown if sizes or offsets are between 2GB and 4GB
@@ -50,7 +50,7 @@ class CdbFunctions {
 
 	/**
 	 * The CDB hash function.
-	 * 
+	 *
 	 * @param $s
 	 *
 	 * @return
@@ -62,7 +62,7 @@ class CdbFunctions {
 			// Do a 32-bit sum
 			// Inlined here for speed
 			$sum = ($h & 0x3fffffff) + ($h5 & 0x3fffffff);
-			$h = 
+			$h =
 				(
 					( $sum & 0x40000000 ? 1 : 0 )
 					+ ( $h & 0x80000000 ? 2 : 0 )
@@ -104,8 +104,11 @@ class CdbReader_PHP extends CdbReader {
 	var $dpos;
 
 	/* initialized if cdb_findnext() returns 1 */
-	var $dlen; 
+	var $dlen;
 
+	/**
+	 * @param $fileName string
+	 */
 	function __construct( $fileName ) {
 		$this->handle = fopen( $fileName, 'rb' );
 		if ( !$this->handle ) {
@@ -257,8 +260,11 @@ class CdbWriter_PHP extends CdbWriter {
 	var $handle, $realFileName, $tmpFileName;
 
 	var $hplist;
-	var $numEntries, $pos;
+	var $numentries, $pos;
 
+	/**
+	 * @param $fileName string
+	 */
 	function __construct( $fileName ) {
 		$this->realFileName = $fileName;
 		$this->tmpFileName = $fileName . '.tmp.' . mt_rand( 0, 0x7fffffff );
@@ -391,7 +397,7 @@ class CdbWriter_PHP extends CdbWriter {
 		}
 
 		// Excessively clever and indulgent code to simultaneously fill $packedTables
-		// with the packed hashtables, and adjust the elements of $starts 
+		// with the packed hashtables, and adjust the elements of $starts
 		// to actually point to the starts instead of the ends.
 		$packedTables = array_fill( 0, $this->numentries, false );
 		foreach ( $this->hplist as $item ) {
@@ -416,7 +422,7 @@ class CdbWriter_PHP extends CdbWriter {
 			// is taken.
 			for ( $u = 0; $u < $count; ++$u ) {
 				$hp = $packedTables[$starts[$i] + $u];
-				$where = CdbFunctions::unsignedMod( 
+				$where = CdbFunctions::unsignedMod(
 					CdbFunctions::unsignedShiftRight( $hp['h'], 8 ), $len );
 				while ( $hashtable[$where]['p'] )
 					if ( ++$where == $len )
@@ -426,7 +432,7 @@ class CdbWriter_PHP extends CdbWriter {
 
 			// Write the hashtable
 			for ( $u = 0; $u < $len; ++$u ) {
-				$buf = pack( 'vvV', 
+				$buf = pack( 'vvV',
 					$hashtable[$u]['h'] & 0xffff,
 					CdbFunctions::unsignedShiftRight( $hashtable[$u]['h'], 16 ),
 					$hashtable[$u]['p'] );
