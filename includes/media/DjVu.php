@@ -222,7 +222,7 @@ class DjVuHandler extends ImageHandler {
 				$image->dejaMetaTree = $tree;
 			}
 		} catch( Exception $e ) {
-			wfDebug( "Bogus multipage XML metadata on '$image->name'\n" );
+			wfDebug( "Bogus multipage XML metadata on '{$image->getName()}'\n" );
 		}
 		wfRestoreWarnings();
 		wfProfileOut( __METHOD__ );
