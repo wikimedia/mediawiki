@@ -98,8 +98,7 @@ class CoreParserFunctions {
 		if ( strval( $part1 ) !== '' ) {
 			$args = array_slice( func_get_args(), 2 );
 			$message = wfMessage( $part1, $args )->inLanguage( $parser->getOptions()->getUserLangObj() )->plain();
-			$message = $parser->replaceVariables( $message ); // like MessageCache::transform()
-			return $message;
+			return array( $message, 'noparse' => false );
 		} else {
 			return array( 'found' => false );
 		}
