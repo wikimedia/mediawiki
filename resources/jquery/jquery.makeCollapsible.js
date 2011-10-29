@@ -268,6 +268,15 @@ $.fn.makeCollapsible = function() {
 				$customTogglers.bind( 'click.mw-collapse', function( e ) {
 					toggleLinkCustom( $(this), e, $that );
 				} );
+
+				// If there's no link for users using keyboard navigation
+				if ( !$customTogglers.is( 'a' ) && !$customTogglers.find( 'a' ).length ) {
+					$customTogglers.attr( 'tabindex', '0' ).bind( 'keydown.mw-collapse', function( e ) {
+						if ( e.which === 13 ) { // Enter key
+							toggleLinkCustom( $(this), e, $that );
+						}
+					} );
+				}
 			} else {
 				mw.log( _fn + '#' + thatId + ': Missing toggler!' );
 			}
@@ -289,6 +298,15 @@ $.fn.makeCollapsible = function() {
 				$customTogglers.bind( 'click.mw-collapse', function( e ) {
 					toggleLinkCustom( $(this), e, $that );
 				} );
+
+				// If there's no link for users using keyboard navigation
+				if ( !$customTogglers.is( 'a' ) && !$customTogglers.find( 'a' ).length ) {
+					$customTogglers.attr( 'tabindex', '0' ).bind( 'keydown.mw-collapse', function( e ) {
+						if ( e.which === 13 ) { // Enter key
+							toggleLinkCustom( $(this), e, $that );
+						}
+					} );
+				}
 			} else {
 				mw.log( _fn + '.mw-customcollapsiblechildren: Missing toggler!' );
 			}
