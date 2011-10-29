@@ -139,12 +139,18 @@ class LoginForm extends SpecialPage {
 		}
 	}
 
+	function getDescription() {
+		return $this->msg( $this->getUser()->isAllowed( 'createaccount' ) ?
+			'userlogin' : 'userloginnocreate' )->text();
+	}
+
 	public function execute( $par ) {
 		if ( session_id() == '' ) {
 			wfSetupSession();
 		}
 
 		$this->load();
+		$this->setHeaders();
 
 		if ( $par == 'signup' ) { # Check for [[Special:Userlogin/signup]]
 			$this->mType = 'signup';
@@ -1074,14 +1080,7 @@ class LoginForm extends SpecialPage {
 			wfRunHooks( 'UserLoginForm', array( &$template ) );
 		}
 
-		// Changes the title depending on permissions for creating account
 		$out = $this->getOutput();
-		if ( $user->isAllowed( 'createaccount' ) ) {
-			$out->setPageTitle( $this->msg( 'userlogin' ) );
-		} else {
-			$out->setPageTitle( $this->msg( 'userloginnocreate' ) );
-		}
-
 		$out->disallowUserJs(); // just in case...
 		$out->addTemplate( $template );
 	}
