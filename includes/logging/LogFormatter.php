@@ -481,7 +481,6 @@ class NewUsersLogFormatter extends LogFormatter {
 	}
 
 	public function getComment() {
-		$subtype = $this->entry->getSubtype();
 		$timestamp = wfTimestamp( TS_MW, $this->entry->getTimestamp() );
 		if ( $timestamp < '20080129000000' ) {
 			# Suppress $comment from old entries (before 2008-01-29),

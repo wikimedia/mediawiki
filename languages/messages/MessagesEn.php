@@ -4525,8 +4525,7 @@ Images are shown in full resolution, other file types are started with their ass
 'specialpages-summary'           => '', # do not translate or duplicate this message to other languages
 'specialpages-note'              => '----
 * Normal special pages.
-* <span class="mw-specialpagerestricted">Restricted special pages.</span>
-* <span class="mw-specialpagecached">Cached special pages (might be obsolete).</span>',
+* <span class="mw-specialpagerestricted">Restricted special pages.</span>',
 'specialpages-group-maintenance' => 'Maintenance reports',
 'specialpages-group-other'       => 'Other special pages',
 'specialpages-group-login'       => 'Login / sign up',

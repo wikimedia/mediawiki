@@ -429,8 +429,8 @@ class PostgresInstaller extends DatabaseInstaller {
 		$conn = $status->value;
 
 		$dbName = $this->getVar( 'wgDBname' );
-		$schema = $this->getVar( 'wgDBmwschema' );
-		$user = $this->getVar( 'wgDBuser' );
+		//$schema = $this->getVar( 'wgDBmwschema' );
+		//$user = $this->getVar( 'wgDBuser' );
 		//$safeschema = $conn->addIdentifierQuotes( $schema );
 		//$safeuser = $conn->addIdentifierQuotes( $user );
 
@@ -491,7 +491,7 @@ class PostgresInstaller extends DatabaseInstaller {
 		}
 		$conn = $status->value;
 
-		$schema = $this->getVar( 'wgDBmwschema' );
+		//$schema = $this->getVar( 'wgDBmwschema' );
 		$safeuser = $conn->addIdentifierQuotes( $this->getVar( 'wgDBuser' ) );
 		$safepass = $conn->addQuotes( $this->getVar( 'wgDBpassword' ) );
 		//$safeschema = $conn->addIdentifierQuotes( $schema );

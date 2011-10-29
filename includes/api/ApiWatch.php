@@ -53,7 +53,6 @@ class ApiWatch extends ApiBase {
 			$this->dieUsageMsg( array( 'invalidtitle', $params['title'] ) );
 		}
 
-		$article = new Article( $title, 0 );
 		$res = array( 'title' => $title->getPrefixedText() );
 
 		if ( $params['unwatch'] ) {

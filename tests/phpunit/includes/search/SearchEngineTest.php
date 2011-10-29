@@ -85,7 +85,6 @@ class SearchEngineTest extends MediaWikiTestCase {
 	 * @param $n Integer: unused
 	 */
 	function insertPage( $pageName, $text, $ns ) {
-		$dbw = $this->db;
 		$title = Title::newFromText( $pageName );
 
 		$user = User::newFromName( 'WikiSysop' );

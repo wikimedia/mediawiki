@@ -127,8 +127,6 @@ class DatabaseLogEntry extends LogEntryBase {
 			'user_id', 'user_name', 'user_editcount',
 		);
 
-		$conds = array();
-
 		$joins = array(
 			// IP's don't have an entry in user table
 			'user' => array( 'LEFT JOIN', 'log_user=user_id' ),
@@ -321,7 +319,7 @@ class ManualLogEntry extends LogEntryBase {
 	}
 
 	/**
-	 * Set extra log parameters. 
+	 * Set extra log parameters.
 	 * You can pass params to the log action message
 	 * by prefixing the keys with a number and colon.
 	 * The numbering should start with number 4, the

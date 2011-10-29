@@ -58,12 +58,20 @@ class RecentChange {
 
 	# Factory methods
 
+	/**
+	 * @param $row
+	 * @return RecentChange
+	 */
 	public static function newFromRow( $row ) {
 		$rc = new RecentChange;
 		$rc->loadFromRow( $row );
 		return $rc;
 	}
 
+	/**
+	 * @staticw
+	 * @return RecentChange
+	 */
 	public static function newFromCurRow( $row ) {
 		$rc = new RecentChange;
 		$rc->loadFromCurRow( $row );
@@ -137,6 +145,9 @@ class RecentChange {
 		return $this->mTitle;
 	}
 
+	/**
+	 * @return bool|\Title
+	 */
 	public function getMovedToTitle() {
 		if( $this->mMovedToTitle === false ) {
 			$this->mMovedToTitle = Title::makeTitle( $this->mAttribs['rc_moved_to_ns'],
@@ -145,7 +156,9 @@ class RecentChange {
 		return $this->mMovedToTitle;
 	}
 
-	# Writes the data in this object to the database
+	/**
+	 * Writes the data in this object to the database
+	 */
 	public function save() {
 		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPOmitBots;
 		$fname = 'RecentChange::save';
@@ -180,7 +193,7 @@ class RecentChange {
 
 		# Set the ID
 		$this->mAttribs['rc_id'] = $dbw->insertId();
-		
+
 		# Notify extensions
 		wfRunHooks( 'RecentChange_save', array( &$this ) );
 
@@ -194,11 +207,11 @@ class RecentChange {
 		if( $wgUseEnotif || $wgShowUpdatedMarker ) {
 			// Users
 			if( $this->mAttribs['rc_user'] ) {
-				$editor = ($wgUser->getId() == $this->mAttribs['rc_user']) ? 
+				$editor = ($wgUser->getId() == $this->mAttribs['rc_user']) ?
 					$wgUser : User::newFromID( $this->mAttribs['rc_user'] );
 			// Anons
 			} else {
-				$editor = ($wgUser->getName() == $this->mAttribs['rc_user_text']) ? 
+				$editor = ($wgUser->getName() == $this->mAttribs['rc_user_text']) ?
 					$wgUser : User::newFromName( $this->mAttribs['rc_user_text'], false );
 			}
 			# @todo FIXME: This would be better as an extension hook
@@ -211,7 +224,7 @@ class RecentChange {
 				$this->mAttribs['rc_last_oldid'] );
 		}
 	}
-	
+
 	public function notifyRC2UDP() {
 		global $wgRC2UDPAddress, $wgRC2UDPOmitBots;
 		# Notify external application via UDP
@@ -250,7 +263,7 @@ class RecentChange {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * Remove newlines, carriage returns and decode html entites
 	 * @param $text String
@@ -279,7 +292,7 @@ class RecentChange {
 		}
 		return $change->doMarkPatrolled( $wgUser, $auto );
 	}
-	
+
 	/**
 	 * Mark this RecentChange as patrolled
 	 *
@@ -321,7 +334,7 @@ class RecentChange {
 		wfRunHooks( 'MarkPatrolledComplete', array($this->getAttribute('rc_id'), &$user, false) );
 		return array();
 	}
-	
+
 	/**
 	 * Mark this RecentChange patrolled, without error checking
 	 * @return Integer: number of affected rows
@@ -470,7 +483,21 @@ class RecentChange {
 		return $rc;
 	}
 
-	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip='', $type, 
+	/**
+	 * @param $timestamp
+	 * @param $title
+	 * @param $user
+	 * @param $actionComment
+	 * @param $ip string
+	 * @param $type
+	 * @param $action
+	 * @param $target
+	 * @param $logComment
+	 * @param $params
+	 * @param $newId int
+	 * @return bool
+	 */
+	public static function notifyLog( $timestamp, &$title, &$user, $actionComment, $ip='', $type,
 		$action, $target, $logComment, $params, $newId=0 )
 	{
 		global $wgLogRestrictions;
@@ -544,14 +571,22 @@ class RecentChange {
 		return $rc;
 	}
 
-	# Initialises the members of this object from a mysql row object
+	/**
+	 * Initialises the members of this object from a mysql row object
+	 *
+	 * @param $row
+	 */
 	public function loadFromRow( $row ) {
 		$this->mAttribs = get_object_vars( $row );
 		$this->mAttribs['rc_timestamp'] = wfTimestamp(TS_MW, $this->mAttribs['rc_timestamp']);
 		$this->mAttribs['rc_deleted'] = $row->rc_deleted; // MUST be set
 	}
 
-	# Makes a pseudo-RC entry from a cur row
+	/**
+	 * Makes a pseudo-RC entry from a cur row
+	 *
+	 * @param $row
+	 */
 	public function loadFromCurRow( $row ) {
 		$this->mAttribs = array(
 			'rc_timestamp' => wfTimestamp(TS_MW, $row->rev_timestamp),
@@ -593,6 +628,9 @@ class RecentChange {
 		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : null;
 	}
 
+	/**
+	 * @return array
+	 */
 	public function getAttributes() {
 		return $this->mAttribs;
 	}
@@ -600,6 +638,8 @@ class RecentChange {
 	/**
 	 * Gets the end part of the diff URL associated with this object
 	 * Blank if no diff link should be displayed
+	 * @param $forceCur
+	 * @return string
 	 */
 	public function diffLinkTrail( $forceCur ) {
 		if( $this->mAttribs['rc_type'] == RC_EDIT ) {
@@ -616,6 +656,9 @@ class RecentChange {
 		return $trail;
 	}
 
+	/**
+	 * @return string
+	 */
 	public function getIRCLine() {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgRC2UDPInterwikiPrefix, $wgLocalInterwiki,
 			$wgCanonicalServer, $wgScript;
@@ -684,18 +727,21 @@ class RecentChange {
 		} else {
 			$titleString = "\00314[[\00307$title\00314]]";
 		}
-		
+
 		# see http://www.irssi.org/documentation/formats for some colour codes. prefix is \003,
 		# no colour (\003) switches back to the term default
 		$fullString = "$titleString\0034 $flag\00310 " .
 		              "\00302$url\003 \0035*\003 \00303$user\003 \0035*\003 $szdiff \00310$comment\003\n";
-			
+
 		return $fullString;
 	}
 
 	/**
 	 * Returns the change size (HTML).
 	 * The lengths can be given optionally.
+	 * @param $old int
+	 * @param $new int
+	 * @return string
 	 */
 	public function getCharacterDifference( $old = 0, $new = 0 ) {
 		if( $old === 0 ) {

@@ -407,7 +407,7 @@ class SpecialSearch extends SpecialPage {
 			$this->getOutput()->addHtml( '<p></p>' );
 			return;
 		}
-		$messageName = '';
+
 		if( $t->isKnown() ) {
 			$messageName = 'searchmenu-exists';
 		} elseif( $t->userCan( 'create' ) ) {
