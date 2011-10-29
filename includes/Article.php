@@ -33,7 +33,6 @@ class Article extends Page {
 	protected $mPage;
 
 	/**
-	 * @protected
 	 * @var ParserOptions: ParserOptions object for $wgUser articles
 	 */
 	public $mParserOptions;
@@ -1091,6 +1090,10 @@ class Article extends Page {
 		}
 
 		// the loop prepends the arrow image before the link, so the first case needs to be outside
+
+		/**
+		 * @var $title Title
+		 */
 		$title = array_shift( $target );
 
 		if ( $forceKnown ) {
@@ -1521,6 +1524,8 @@ class Article extends Page {
 
 	/**
 	 * Perform a deletion and output success or failure messages
+	 * @param $reason
+	 * @param $suppress bool
 	 */
 	public function doDelete( $reason, $suppress = false ) {
 		global $wgOut;
@@ -2044,21 +2049,21 @@ class Article extends Page {
 	 * @param $title Title
 	 */
 	public static function onArticleCreate( $title ) {
-		return WikiPage::onArticleCreate( $title );
+		WikiPage::onArticleCreate( $title );
 	}
 
 	/**
 	 * @param $title Title
 	 */
 	public static function onArticleDelete( $title ) {
-		return WikiPage::onArticleDelete( $title );
+		WikiPage::onArticleDelete( $title );
 	}
 
 	/**
 	 * @param $title Title
 	 */
 	public static function onArticleEdit( $title ) {
-		return WikiPage::onArticleEdit( $title );
+		WikiPage::onArticleEdit( $title );
 	}
 
 	/**
@@ -2087,10 +2092,16 @@ class PoolWorkArticleView extends PoolCounterWork {
 		$this->parserOptions = $parserOptions;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function doWork() {
 		return $this->mArticle->doViewParse();
 	}
 
+	/**
+	 * @return bool
+	 */
 	function getCachedWork() {
 		global $wgOut;
 
@@ -2108,6 +2119,9 @@ class PoolWorkArticleView extends PoolCounterWork {
 		return false;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function fallback() {
 		return $this->mArticle->tryDirtyCache();
 	}

@@ -188,6 +188,9 @@ class ImagePage extends Article {
 		$wgOut->addModuleStyles( 'filepage' );
 	}
 
+	/**
+	 * @return File
+	 */
 	public function getDisplayedFile() {
 		$this->loadFile();
 		return $this->displayImg;
@@ -247,6 +250,7 @@ class ImagePage extends Article {
 	 *
 	 * Omit noarticletext if sharedupload; text will be fetched from the
 	 * shared upload server if possible.
+	 * @return string
 	 */
 	public function getContent() {
 		$this->loadFile();
@@ -398,7 +402,7 @@ class ImagePage extends Article {
 						'action' => $wgScript,
 						'onchange' => 'document.pageselector.submit();',
 					);
-
+					$options = array();
 					for ( $i = 1; $i <= $count; $i++ ) {
 						$options[] = Xml::option( $wgLang->formatNum( $i ), $i, $i == $page );
 					}
@@ -484,9 +488,10 @@ EOT
 
 	/**
 	 * Creates an thumbnail of specified size and returns an HTML link to it
-	 * @param array $params Scaler parameters
-	 * @param int $width
-	 * @param int $height
+	 * @param $params array Scaler parameters
+	 * @param $width int
+	 * @param $height int
+	 * @return string
 	 */
 	private function makeSizeLink( $params, $width, $height ) {
 		$params['width'] = $width;
@@ -615,6 +620,11 @@ EOT
 		}
 	}
 
+	/**
+	 * @param $target
+	 * @param $limit
+	 * @return ResultWrapper
+	 */
 	protected function queryImageLinks( $target, $limit ) {
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -747,6 +757,9 @@ EOT
 		);
 		$wgOut->addHTML( "<ul class='mw-imagepage-duplicates'>\n" );
 
+		/**
+		 * @var $file File
+		 */
 		foreach ( $dupes as $file ) {
 			$fromSrc = '';
 			if ( $file->isLocal() ) {
@@ -841,6 +854,11 @@ class ImageHistoryList {
 	 */
 	protected $imagePage;
 
+	/**
+	 * @var File
+	 */
+	protected $current;
+
 	protected $repo, $showThumb;
 	protected $preventClickjacking = false;
 
@@ -856,14 +874,24 @@ class ImageHistoryList {
 		$this->showThumb = $wgShowArchiveThumbnails && $this->img->canRender();
 	}
 
+	/**
+	 * @return ImagePage
+	 */
 	public function getImagePage() {
 		return $this->imagePage;
 	}
 
+	/**
+	 * @return File
+	 */
 	public function getFile() {
 		return $this->img;
 	}
 
+	/**
+	 * @param $navLinks string
+	 * @return string
+	 */
 	public function beginImageHistoryList( $navLinks = '' ) {
 		global $wgOut, $wgUser;
 		return Xml::element( 'h2', array( 'id' => 'filehistory' ), wfMsg( 'filehist' ) ) . "\n"
@@ -881,6 +909,10 @@ class ImageHistoryList {
 			. "</tr>\n";
 	}
 
+	/**
+	 * @param $navLinks string
+	 * @return string
+	 */
 	public function endImageHistoryList( $navLinks = '' ) {
 		return "</table>\n$navLinks\n</div>\n";
 	}
@@ -1071,10 +1103,16 @@ class ImageHistoryList {
 		}
 	}
 
+	/**
+	 * @param $enable bool
+	 */
 	protected function preventClickjacking( $enable = true ) {
 		$this->preventClickjacking = $enable;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getPreventClickjacking() {
 		return $this->preventClickjacking;
 	}
@@ -1106,6 +1144,9 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->mRange = array( 0, 0 ); // display range
 	}
 
+	/**
+	 * @return Title
+	 */
 	function getTitle() {
 		return $this->mTitle;
 	}
@@ -1114,14 +1155,23 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		return false;
 	}
 
+	/**
+	 * @return string
+	 */
 	function getIndexField() {
 		return '';
 	}
 
+	/**
+	 * @return string
+	 */
 	function formatRow( $row ) {
 		return '';
 	}
 
+	/**
+	 * @return string
+	 */
 	function getBody() {
 		$s = '';
 		$this->doQuery();
@@ -1225,10 +1275,16 @@ class ImageHistoryPseudoPager extends ReverseChronologicalPager {
 		$this->mQueryDone = true;
 	}
 
+	/**
+	 * @param $enable bool
+	 */
 	protected function preventClickjacking( $enable = true ) {
 		$this->preventClickjacking = $enable;
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function getPreventClickjacking() {
 		return $this->preventClickjacking;
 	}
