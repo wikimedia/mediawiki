@@ -367,7 +367,7 @@ $messages = array(
 'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informatie]).',
 'tog-showjumplinks'           => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
 'tog-uselivepreview'          => '“live voorvertoning” gebruiken (vereist JavaScript – experimenteel)',
-'tog-forceeditsummary'        => 'Een melding geven bij een lege samenvatting',
+'tog-forceeditsummary'        => 'Een melding geven bij een lege bewerkingssamenvatting',
 'tog-watchlisthideown'        => 'Eigen bewerkingen op mijn volglijst verbergen',
 'tog-watchlisthidebots'       => 'Botbewerkingen op mijn volglijst verbergen',
 'tog-watchlisthideminor'      => 'Kleine bewerkingen op mijn volglijst verbergen',
@@ -478,7 +478,7 @@ $messages = array(
 'qbfind'         => 'Zoeken',
 'qbbrowse'       => 'Bladeren',
 'qbedit'         => 'Bewerken',
-'qbpageoptions'  => 'Paginaopties',
+'qbpageoptions'  => 'Deze pagina',
 'qbpageinfo'     => 'Pagina-informatie',
 'qbmyoptions'    => "Mijn pagina's",
 'qbspecialpages' => 'Speciale pagina’s',
@@ -503,7 +503,7 @@ $messages = array(
 'variants'                       => 'Varianten',
 
 'errorpagetitle'    => 'Fout',
-'returnto'          => 'Ga naar $1.',
+'returnto'          => 'Terug naar $1.',
 'tagline'           => 'Uit {{SITENAME}}',
 'help'              => 'Hulp',
 'search'            => 'Zoeken',
@@ -552,7 +552,7 @@ $messages = array(
 'redirectedfrom'    => '(Doorverwezen vanaf $1)',
 'redirectpagesub'   => 'Doorverwijspagina',
 'lastmodifiedat'    => 'Deze pagina is het laatst bewerkt op $1 om $2.',
-'viewcount'         => 'Deze pagina is {{PLURAL:$1|1 maal|$1 maal}} bekeken.',
+'viewcount'         => 'Deze pagina is {{PLURAL:$1|één keer|$1 keer}} bekeken.',
 'protectedpage'     => 'Beveiligde pagina',
 'jumpto'            => 'Ga naar:',
 'jumptonavigation'  => 'navigatie',
@@ -595,7 +595,7 @@ $1',
 Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].',
 
 'ok'                      => 'OK',
-'retrievedfrom'           => 'Ontvangen van "$1"',
+'retrievedfrom'           => 'Overgenomen van "$1"',
 'youhavenewmessages'      => 'U hebt $1 ($2).',
 'newmessageslink'         => 'nieuwe berichten',
 'newmessagesdifflink'     => 'laatste wijziging',
@@ -610,7 +610,7 @@ Meer informatie is beschikbaar op de pagina [[Special:Version|softwareversie]].'
 'showtoc'                 => 'weergeven',
 'hidetoc'                 => 'verbergen',
 'collapsible-collapse'    => 'Inklappen',
-'collapsible-expand'      => 'Uitklappen',
+'collapsible-expand'      => 'Uitvouwen',
 'thisisdeleted'           => '$1 bekijken of terugplaatsen?',
 'viewdeleted'             => '$1 bekijken?',
 'restorelink'             => '$1 verwijderde {{PLURAL:$1|versie|versies}}',
@@ -645,7 +645,7 @@ Het kan ook wijzen op een fout in de software van {{SITENAME}}.',
 'nosuchspecialpage' => 'Deze speciale pagina bestaat niet',
 'nospecialpagetext' => '<strong>U hebt een onbestaande speciale pagina opgevraagd.</strong>
 
-Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|speciale pagina’s]].',
+Een lijst met bestaande speciale pagina’s staat op [[Special:SpecialPages|{{int:specialpages}}]].',
 
 # General errors
 'error'                => 'Fout',
@@ -661,11 +661,10 @@ Het laatste verzoek aan de database was:
 “$1”
 vanuit de functie “$2”.
 De database gaf de volgende foutmelding: “$3: $4”',
-'laggedslavemode'      => 'Waarschuwing: de pagina zou verouderd kunnen zijn.',
+'laggedslavemode'      => "'''Waarschuwing:''' de pagina kan verouder zijn.",
 'readonly'             => 'Database geblokkeerd',
 'enterlockreason'      => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven',
-'readonlytext'         => 'De database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud.
-Na afronding wordt de functionaliteit hersteld.
+'readonlytext'         => 'De database is geblokkeerd voor bewerkingen, waarschijnlijk voor regulier databaseonderhoud. Na afronding wordt de functionaliteit hersteld.
 
 De beheerder heeft de volgende reden opgegeven: $1',
 'missing-article'      => 'In de database is geen inhoud aangetroffen voor de pagina "$1" die er wel zou moeten zijn ($2).
@@ -673,7 +672,7 @@ De beheerder heeft de volgende reden opgegeven: $1',
 Dit kan voorkomen als u een verouderde verwijzing naar het verschil tussen twee versies van een pagina volgt of een versie opvraagt die is verwijderd.
 
 Als dit niet het geval is, hebt u wellicht een fout in de software gevonden.
-Maak hiervan melding bij een [[Special:ListUsers/sysop|systeembeheerder]] van {{SITENAME}} en vermeld daarbij de URL van deze pagina.',
+Maak hiervan melding bij een [[Special:ListUsers/sysop|beheerder]] van {{SITENAME}} en vermeld daarbij de URL van deze pagina.',
 'missingarticle-rev'   => '(versienummer: $1)',
 'missingarticle-diff'  => '(Wijziging: $1, $2)',
 'readonly_lag'         => 'De database is automatisch vergrendeld terwijl de ondergeschikte databaseservers synchroniseren met de hoofdserver.',
@@ -681,12 +680,12 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|systeembeheerder]] van {{
 'internalerror_info'   => 'Interne fout: $1',
 'fileappenderrorread'  => '"$1" kon niet gelezen worden tijdens het toevoegen.',
 'fileappenderror'      => 'Het was niet mogelijk "$1" toe te voegen aan "$2".',
-'filecopyerror'        => 'Bestand “$1” kon niet naar “$2” gekopieerd worden.',
-'filerenameerror'      => '“$1” kon niet tot “$2” hernoemd worden.',
-'filedeleteerror'      => 'Bestand “$1” kon niet verwijderd worden.',
+'filecopyerror'        => 'Bestand "$1" kon niet naar "$2" gekopieerd worden.',
+'filerenameerror'      => '"$1" kon niet hernoemd worden naar "$2".',
+'filedeleteerror'      => 'Bestand "$1" kon niet verwijderd worden.',
 'directorycreateerror' => 'Map “$1” kon niet aangemaakt worden.',
-'filenotfound'         => 'Bestand “$1” werd niet gevonden.',
-'fileexistserror'      => 'Schrijven naar bestand “$1” onmogelijk: bestand bestaat al',
+'filenotfound'         => 'Bestand "$1" kon niet gevonden worden.',
+'fileexistserror'      => 'Schrijven naar bestand "$1" onmogelijk: het bestand bestaat al.',
 'unexpected'           => 'Onverwachte waarde: "$1"="$2".',
 'formerror'            => 'Fout: formulier kon niet verzonden worden',
 'badarticleerror'      => 'Deze handeling kan niet op deze pagina worden uitgevoerd.',
@@ -697,8 +696,8 @@ Mogelijk is deze al door iemand anders verwijderd.',
 Wellicht bevat de paginanaam niet toegestane karakters.',
 'perfcached'           => 'De gegevens komen uit een cache en zijn mogelijk niet actueel.',
 'perfcachedts'         => 'De gegevens komen uit een cache en zijn voor het laatst bijgewerkt op $1.',
-'querypage-no-updates' => 'Deze pagina kan niet bijgewerkt worden.
-Deze gegevens worden niet ververst.',
+'querypage-no-updates' => 'Deze pagina wordt niet bijgewerkt.
+Gegevens op deze pagina worden niet ververst.',
 'wrong_wfQuery_params' => 'Verkeerde parameters voor wfQuery()<br />
 Functie: $1<br />
 Zoekopdracht: $2',
@@ -712,9 +711,9 @@ Probeer het over een aantal minuten opnieuw.',
 Bewerken is niet mogelijk.',
 'viewsourcetext'       => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
 'protectedinterface'   => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
-'editinginterface'     => "'''Waarschuwing:''' U bewerkt een pagina die gebruikt wordt door de software.
+'editinginterface'     => "'''Waarschuwing:''' U bewerkt een pagina die interfacetekst voor de software bevat.
 Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen.
-Overweeg voor vertalingen om [http://translatewiki.net/wiki/Main_Page?setlang=nl translatewiki.net] te gebruiken, het vertalingsproject voor MediaWiki.",
+Overweeg voor vertalingen om [http://translatewiki.net/wiki/Main_Page?setlang=nl translatewiki.net] te gebruiken, het vertaalproject voor MediaWiki.",
 'sqlhidden'            => '(SQL-zoekopdracht verborgen)',
 'cascadeprotected'     => "Deze pagina kan niet bewerkt worden, omdat die is opgenomen in de volgende {{PLURAL:$1|pagina|pagina's}} die beveiligd {{PLURAL:$1|is|zijn}} met de cascade-optie:
 $2",
@@ -726,9 +725,9 @@ $2",
 De gegeven reden is ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => "Slechte configuratie: onbekende virusscanner: ''$1''",
+'virus-badscanner'     => "Onjuiste configuratie: onbekende virusscanner: ''$1''.",
 'virus-scanfailed'     => 'scannen is mislukt (code $1)',
-'virus-unknownscanner' => 'onbekend antivirus:',
+'virus-unknownscanner' => 'onbekend antivirusprogramma:',
 
 # Login and logout pages
 'logouttext'                 => "'''U bent nu afgemeld.'''
@@ -753,10 +752,10 @@ Vergeet niet uw [[Special:Preferences|voorkeuren voor {{SITENAME}}]] aan te pass
 'logout'                     => 'Afmelden',
 'userlogout'                 => 'Afmelden',
 'notloggedin'                => 'Niet aangemeld',
-'nologin'                    => "Nog geen gebruikersnaam? '''$1'''.",
+'nologin'                    => 'Nog geen gebruikersnaam? $1.',
 'nologinlink'                => 'Registreren',
 'createaccount'              => 'Registreren',
-'gotaccount'                 => "Hebt u al een gebruikersnaam? '''$1'''.",
+'gotaccount'                 => 'Hebt u al een gebruikersnaam? $1.',
 'gotaccountlink'             => 'Aanmelden',
 'userlogin-resetlink'        => 'Bent u uw aanmeldgegevens vergeten?',
 'createaccountmail'          => 'Per e-mail',
@@ -819,7 +818,7 @@ Om misbruik te voorkomen wordt er slechts één wachtwoordherinnering per {{PLUR
 'acct_creation_throttle_hit' => 'Bezoekers van deze wiki met hetzelfde IP-adres als u hebben de afgelopen dag {{PLURAL:$1|al 1 gebruiker|al $1 gebruikers}} geregistreerd, wat het maximale aantal in deze periode is.
 Daarom kunt u als vanaf uw IP-adres op dit moment geen nieuwe gebruiker registreren.',
 'emailauthenticated'         => 'Uw e-mailadres is bevestigd op $2 om $3.',
-'emailnotauthenticated'      => 'Uw e-mailadres is <strong>niet bevestigd</strong>.
+'emailnotauthenticated'      => 'Uw e-mailadres is niet bevestigd.
 U ontvangt geen e-mail voor de onderstaande functies.',
 'noemailprefs'               => 'Geef een e-mailadres op in uw voorkeuren om deze functies te gebruiken.',
 'emailconfirmlink'           => 'Bevestig uw e-mailadres',
@@ -874,7 +873,7 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 'passwordreset-username'           => 'Gebruiker:',
 'passwordreset-domain'             => 'Domein:',
 'passwordreset-capture'            => 'De resulterende e-mail bekijken?',
-'passwordreset-capture-help'       => 'Als u dit vakje aanvinkt, wordt de e-mail (met het tijdelijke wachtwoord) naar de gebruiker verzonden en ook aan u getoond.',
+'passwordreset-capture-help'       => 'Als u dit vakje aanvinkt, wordt de e-mail (met het tijdelijke wachtwoord) naar de gebruiker verzonden en ook aan u weergegeven.',
 'passwordreset-email'              => 'E-mailadres:',
 'passwordreset-emailtitle'         => 'Gebruikersgegevens op {{SITENAME}}',
 'passwordreset-emailtext-ip'       => 'Iemand, waarschijnlijk u, vanaf het IP-adres $1, heeft uw gebruikersgegevens voor {{SITENAME}} ($4) opgevraagd.

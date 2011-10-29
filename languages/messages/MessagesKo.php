@@ -1639,6 +1639,7 @@ $1",
 'ignorewarnings'              => '모든 경고 무시하기',
 'minlength1'                  => '파일 이름은 적어도 1글자 이상이어야 합니다.',
 'illegalfilename'             => '파일 이름 "$1"에는 문서 제목으로 허용되지 않는 글자가 포함되어 있습니다. 이름을 바꾸어 다시 시도해 주세요.',
+'filename-toolong'            => '파일 이름은 240바이트를 넘을 수 없습니다.',
 'badfilename'                 => '파일 이름이 ‘$1’(으)로 바뀌었습니다.',
 'filetype-mime-mismatch'      => '파일 확장자 ".$1"와 이 파일의 MIME($2)가 일치하지 않습니다.',
 'filetype-badmime'            => '‘$1’ MIME을 가진 파일은 올릴 수 없습니다.',
@@ -2663,7 +2664,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 이동하려는 제목으로 된 [[:$1]] 문서가 이미 존재합니다.
 삭제하고 이동할까요?',
 'delete_and_move_confirm'      => '네. 문서를 삭제합니다',
-'delete_and_move_reason'       => '문서를 이동하기 위해 삭제함',
+'delete_and_move_reason'       => '"[[$1]]"에서 문서를 이동하기 위해 삭제함',
 'selfmove'                     => '이동하려는 제목이 원래 제목과 같습니다. 이동할 수 없습니다.',
 'immobile-source-namespace'    => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
 'immobile-target-namespace'    => '"$1" 이름공간에 속한 문서는 이동시킬 수 없습니다.',
@@ -2970,6 +2971,13 @@ $1',
 'ilsubmit'              => '찾기',
 'bydate'                => '날짜',
 'sp-newimages-showfrom' => '$1 $2부터 올라온 파일 목록 보기',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '$1초',
+'minutes' => '$1분',
+'hours'   => '$1시간',
+'days'    => '$1일',
+'ago'     => '$1 전',
 
 # Bad image list
 'bad_image_list' => '형식은 아래와 같습니다.
@@ -3440,6 +3448,9 @@ $1',
 'watchlisttools-edit' => '주시문서 목록 보기/편집하기',
 'watchlisttools-raw'  => '주시문서 목록 직접 편집하기',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|토론]])',
+
 # Core parser functions
 'unknown_extension_tag' => '알 수 없는 확장 기능 태그 "$1"',
 'duplicate-defaultsort' => '\'\'\'경고:\'\'\' 기본 정렬 키 "$2"가 이전의 기본 정렬 키 "$1"를 덮어쓰고 있습니다.',
@@ -3495,8 +3506,7 @@ $1',
 'specialpages'                   => '특수 문서 목록',
 'specialpages-note'              => '----
 * 일반 특수 문서.
-* <span class="mw-specialpagerestricted">제한된 특수 문서.</span>
-* <span class="mw-specialpagecached">캐시되는 특수 문서.</span>',
+* <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other'       => '다른 특수문서',
 'specialpages-group-login'       => '로그인 / 등록',
@@ -3538,13 +3548,16 @@ $1',
 'tags-hitcount'           => '$1개 바뀜',
 
 # Special:ComparePages
-'comparepages'     => '문서 비교',
-'compare-selector' => '문서의 특정판 비교',
-'compare-page1'    => '첫 번째 문서',
-'compare-page2'    => '두 번째 문서',
-'compare-rev1'     => '첫 번째 판',
-'compare-rev2'     => '두 번째 판',
-'compare-submit'   => '비교하기',
+'comparepages'                => '문서 비교',
+'compare-selector'            => '문서의 특정판 비교',
+'compare-page1'               => '첫 번째 문서',
+'compare-page2'               => '두 번째 문서',
+'compare-rev1'                => '첫 번째 판',
+'compare-rev2'                => '두 번째 판',
+'compare-submit'              => '비교하기',
+'compare-invalid-title'       => '당신이 입력한 제목이 잘못되었습니다.',
+'compare-title-not-exists'    => '당신이 입력한 문서가 존재하지 않습니다.',
+'compare-revision-not-exists' => '당신이 지정한 판이 없습니다.',
 
 # Database error messages
 'dberr-header'      => '이 위키에 문제가 있습니다.',

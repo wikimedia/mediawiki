@@ -2142,7 +2142,7 @@ Der Schutzstatus vo dere Syte lat sech la ändere, aber das het kei Yfluss uf d 
 'protect-default'             => 'Alle Benutzer',
 'protect-fallback'            => '«$1»-Berächtigung nötig',
 'protect-level-autoconfirmed' => 'Neji un nit regischtrierti Benutzer sperre',
-'protect-level-sysop'         => 'Nur Adminischtratore',
+'protect-level-sysop'         => 'Numme Ammanne',
 'protect-summary-cascade'     => 'Kaskade',
 'protect-expiring'            => 'bis $1 (UTC)',
 'protect-expiring-local'      => 'bis $1',
