@@ -1016,6 +1016,7 @@ CREATE TABLE /*_*/recentchanges (
   -- default view.
   rc_bot tinyint unsigned NOT NULL default 0,
 
+  -- Set if this change corresponds to a page creation
   rc_new tinyint unsigned NOT NULL default 0,
 
   -- Key to page_id (was cur_id prior to 1.5).
@@ -1029,8 +1030,10 @@ CREATE TABLE /*_*/recentchanges (
   -- rev_id of the prior revision, for generating diff links.
   rc_last_oldid int unsigned NOT NULL default 0,
 
-  -- These may no longer be used, with the new move log.
+  -- The type of change entry (RC_EDIT,RC_NEW,RC_LOG)
   rc_type tinyint unsigned NOT NULL default 0,
+
+  -- These may no longer be used, with the new move log.
   rc_moved_to_ns tinyint unsigned NOT NULL default 0,
   rc_moved_to_title varchar(255) binary NOT NULL default '',
 
