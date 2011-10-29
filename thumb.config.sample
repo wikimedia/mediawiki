@@ -14,7 +14,12 @@ if ( !defined( 'THUMB_HANDLER' ) ) {
  * 1) Copy this file to thumb.config.php and modify the settings.
  * 2) The webserver must be setup to have thumb-handler.php as a 404 handler.
  *    This can be done in apache by editing .htaccess in the /thumb directory by adding:
- *       ErrorDocument 404 /path/to/thumb_handler.php
+ *    <IfModule rewrite_module>
+ *          RewriteEngine on
+ *          RewriteCond %{REQUEST_FILENAME} !-f
+ *          RewriteCond %{REQUEST_FILENAME} !-d
+ *          RewriteRule ^([^/]+/)?[0-9a-f]/[0-9a-f][0-9a-f]/[^/]+/[^/]+$ /path/to/thumb_handler.php [L]
+ *    </IfModule>
  */
 
 $thgThumbUrlMatch = array(
