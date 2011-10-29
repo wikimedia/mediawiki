@@ -145,7 +145,6 @@ class Article extends Page {
 
 	/**
 	 * Clear the object
-	 * @private
 	 */
 	public function clear() {
 		$this->mContentLoaded = false;
