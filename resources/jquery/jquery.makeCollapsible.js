@@ -200,7 +200,7 @@ $.fn.makeCollapsible = function() {
 				return;
 			},
 			// Toggles customcollapsible
-			toggleLinkCustom = function( $that, e, $collapsible ) {
+			toggleLinkCustom = function( $that, e, $collapsible, $customTogglers ) {
 				var instantHide = true;
 				// For the initial state call of customtogglers there is no event passed
 				if (e) {
@@ -213,14 +213,14 @@ $.fn.makeCollapsible = function() {
 				// It's expanded right now
 				if ( $collapsible.hasClass( 'mw-collapsed' ) ) {
 					// Change text to "Show"
-					$( '.mw-customtoggletext', $that ).text( expandtext );
+					$( '.mw-customtoggletext', $customTogglers ).text( expandtext );
 					// Collapse element
 					toggleElement( $collapsible, 'collapse', $that, instantHide );
 
 				// It's collapsed right now
 				} else {
 					// Change text to "Hide"
-					$( '.mw-customtoggletext', $that ).text( collapsetext );
+					$( '.mw-customtoggletext', $customTogglers ).text( collapsetext );
 					// Expand element
 					toggleElement( $collapsible, 'expand', $that, instantHide );
 				}
@@ -257,63 +257,46 @@ $.fn.makeCollapsible = function() {
 		// Check if this element has a custom position for the toggle link
 		// (ie. outside the container or deeper inside the tree)
 		// Then: Locate the custom toggle link(s) and bind them
-		if ( ( $that.attr( 'id' ) || '' ).indexOf( 'mw-customcollapsible-' ) === 0 ) {
+		if ( ( $that.attr( 'id' ) || '' ).indexOf( 'mw-customcollapsible-' ) === 0
+			|| $that.hasClass( 'mw-customcollapsiblechildren' ) ) {
 
-			var thatId = $that.attr( 'id' ),
-				$customTogglers = $( '.' + thatId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
-			mw.log( _fn + 'Found custom collapsible: #' + thatId );
+			var $customTogglers = $();
+
+			// Custom toggle link specified by id/class name match
+			if ( ( $that.attr( 'id' ) || '' ).indexOf( 'mw-customcollapsible-' ) === 0 ) {
+				var thatId = $that.attr( 'id' );
+				$customTogglers = $customTogglers.add(
+					'.' + thatId.replace( 'mw-customcollapsible', 'mw-customtoggle' ) );
+				mw.log( _fn + 'Found custom collapsible: #' + thatId );
+			}
+
+			// Custom toggle link specified by children with a certain class
+			if ( $that.hasClass( 'mw-customcollapsiblechildren' ) ) {
+				$customTogglers = $customTogglers.add( $( '.mw-customtoggle', $that ) );
+				mw.log( _fn + 'Found custom collapsible: <children>' );
+			}
 
 			// Double check that there is actually a customtoggle link
 			if ( $customTogglers.length ) {
 				$customTogglers.bind( 'click.mw-collapse', function( e ) {
-					toggleLinkCustom( $(this), e, $that );
+					toggleLinkCustom( $(this), e, $that, $customTogglers );
 				} );
 
 				// If there's no link for users using keyboard navigation
 				if ( !$customTogglers.is( 'a' ) && !$customTogglers.find( 'a' ).length ) {
 					$customTogglers.attr( 'tabindex', '0' ).bind( 'keydown.mw-collapse', function( e ) {
 						if ( e.which === 13 ) { // Enter key
-							toggleLinkCustom( $(this), e, $that );
+							toggleLinkCustom( $(this), e, $that, $customTogglers );
 						}
 					} );
 				}
 			} else {
-				mw.log( _fn + '#' + thatId + ': Missing toggler!' );
+				mw.log( _fn + 'mw-customcollapsible: Missing toggler!' );
 			}
 
 			// Initial state
 			if ( $that.hasClass( 'mw-collapsed' ) ) {
-				toggleLinkCustom( $customTogglers, null, $that );
-			} else {
-				$( '.mw-customtoggletext', $customTogglers ).text( collapsetext );
-			}
-
-		// Custom toggle link specified by children with a certain class
-		} else if ( $that.hasClass( 'mw-customcollapsiblechildren' ) ) {
-
-			var $customTogglers = $( '.mw-customtoggle', $that );
-
-			// Double check that there is actually a customtoggle link
-			if ( $customTogglers.length ) {
-				$customTogglers.bind( 'click.mw-collapse', function( e ) {
-					toggleLinkCustom( $(this), e, $that );
-				} );
-
-				// If there's no link for users using keyboard navigation
-				if ( !$customTogglers.is( 'a' ) && !$customTogglers.find( 'a' ).length ) {
-					$customTogglers.attr( 'tabindex', '0' ).bind( 'keydown.mw-collapse', function( e ) {
-						if ( e.which === 13 ) { // Enter key
-							toggleLinkCustom( $(this), e, $that );
-						}
-					} );
-				}
-			} else {
-				mw.log( _fn + '.mw-customcollapsiblechildren: Missing toggler!' );
-			}
-
-			// Initial state
-			if ( $that.hasClass( 'mw-collapsed' ) ) {
-				toggleLinkCustom( $customTogglers, null, $that );
+				toggleLinkCustom( $customTogglers, null, $that, $customTogglers );
 			} else {
 				$( '.mw-customtoggletext', $customTogglers ).text( collapsetext );
 			}
