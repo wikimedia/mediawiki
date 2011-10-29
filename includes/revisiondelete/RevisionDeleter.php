@@ -121,7 +121,7 @@ class RevisionDeleter {
 
 		if ( count( $paramArray ) >= 2 ) {
 			// Different revision types use different URL params...
-			$originalKey = $key = $paramArray[0];
+			$key = $paramArray[0];
 			// $paramArray[1] is a CSV of the IDs
 			$Ids = explode( ',', $paramArray[1] );
 

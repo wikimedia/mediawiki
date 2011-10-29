@@ -546,9 +546,12 @@ class WikiDiff3 {
 		}
 
 		// return the middle diagonal with maximal progress.
-		return $max_progress[floor( $num_progress / 2 )];
+		return $max_progress[(int)floor( $num_progress / 2 )];
 	}
 
+	/**
+	 * @return mixed
+	 */
 	public function getLcsLength() {
 		if ( $this->heuristicUsed && !$this->lcsLengthCorrectedForHeuristic ) {
 			$this->lcsLengthCorrectedForHeuristic = true;

@@ -565,7 +565,7 @@ class DatabasePostgres extends DatabaseBase {
 		$ignore = in_array( 'IGNORE', $insertOptions ) ? 'mw' : '';
 
 		if( is_array( $insertOptions ) ) {
-			$insertOptions = implode( ' ', $insertOptions );
+			$insertOptions = implode( ' ', $insertOptions ); // FIXME: This is unused
 		}
 		if( !is_array( $selectOptions ) ) {
 			$selectOptions = array( $selectOptions );

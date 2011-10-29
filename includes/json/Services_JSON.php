@@ -136,7 +136,7 @@ class Services_JSON
 	{
 		$this->use = $use;
 	}
-	
+
 	private static $mHavePear = null;
 	/**
 	 * Returns cached result of class_exists('pear'), to avoid calling AutoLoader numerous times
@@ -872,7 +872,7 @@ if (class_exists('PEAR_Error')) {
 		{
 			$this->message = $message;
 		}
-		
+
 		function __toString()
 		{
 			return $this->message;

@@ -21,12 +21,11 @@ class BitmapHandler extends ImageHandler {
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {
-		
+
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
 		}
 
-		$mimeType = $image->getMimeType();
 		# Obtain the source, pre-rotation dimensions
 		$srcWidth = $image->getWidth( $params['page'] );
 		$srcHeight = $image->getHeight( $params['page'] );
@@ -42,39 +41,39 @@ class BitmapHandler extends ImageHandler {
 				return true;
 			}
 		}
-		
+
 		return true;
 	}
-	
+
 	/**
-	 * Check if the file is smaller than the maximum image area for 
+	 * Check if the file is smaller than the maximum image area for
 	 * thumbnailing. Check will always pass if the scaler is 'hookaborted' or
 	 * if the scaler is 'im' and the mime type is 'image/jpeg'
-	 * 
+	 *
 	 * @param File $image
-	 * @param string $scaler 
+	 * @param string $scaler
 	 */
 	function checkImageArea( $image, $scaler ) {
 		global $wgMaxImageArea;
 		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
 		# an exception for it.
-		
-		
+
+
 		if ( $image->getMimeType() == 'image/jpeg' && $scaler == 'im' )
 		{
 			# ImageMagick can efficiently downsize jpg images without loading
 			# the entire file in memory
 			return true;
 		}
-		
+
 		if ( $scaler == 'hookaborted' )
 		{
-			# If a hook wants to transform the image, it is responsible for 
+			# If a hook wants to transform the image, it is responsible for
 			# checking the image size, so abort here
 			return true;
 		}
-		
+
 		# Do the actual check
 		return $this->getImageArea( $image, $image->getWidth(), $image->getHeight() ) <= $wgMaxImageArea;
 	}
@@ -184,7 +183,7 @@ class BitmapHandler extends ImageHandler {
 			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto\n" );
 			$scaler = 'hookaborted';
 		}
-		
+
 		# Check max image area
 		if ( !$this->checkImageArea( $image, $scaler ) )
 		{

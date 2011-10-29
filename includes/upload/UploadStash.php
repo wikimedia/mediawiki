@@ -91,8 +91,6 @@ class UploadStash {
 			}
 		}
 
-		$dbr = $this->repo->getSlaveDb();
-
 		if ( !isset( $this->fileMetadata[$key] ) ) {
 			if ( !$this->fetchFileMetadata( $key ) ) {
 				// If nothing was received, it's likely due to replication lag.  Check the master to see if the record is there.
@@ -188,7 +186,7 @@ class UploadStash {
 		$usec = substr($usec, 2);
 		$key = wfBaseConvert( $sec . $usec, 10, 36 ) . '.' .
 			wfBaseConvert( mt_rand(), 10, 36 ) . '.'.
-			$this->userId . '.' . 
+			$this->userId . '.' .
 			$extension;
 
 		$this->fileProps[$key] = $fileProps;

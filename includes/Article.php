@@ -86,6 +86,7 @@ class Article extends Page {
 	/**
 	 * Constructor from a page id
 	 * @param $id Int article ID to load
+	 * @return Article|null
 	 */
 	public static function newFromID( $id ) {
 		$t = Title::newFromID( $id );
@@ -1008,6 +1009,7 @@ class Article extends Page {
 
 	/**
 	 * Execute the uncached parse for action=view
+	 * @return bool
 	 */
 	public function doViewParse() {
 		global $wgOut;
