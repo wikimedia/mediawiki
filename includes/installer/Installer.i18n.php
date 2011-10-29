@@ -12335,13 +12335,13 @@ Uaktualnij do PHP 5.3.2 lub nowszego. Możesz również cofnąć wersję do PHP 
 Instalacja została przerwana.',
 	'config-db-type' => 'Typ bazy danych',
 	'config-db-host' => 'Adres serwera bazy danych',
-	'config-db-host-help' => "Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.
+	'config-db-host-help' => 'Jeśli serwer bazy danych jest na innej maszynie, wprowadź jej nazwę domenową lub adres IP.
 
 Jeśli korzystasz ze współdzielonego hostingu, operator serwera powinien podać Ci prawidłową nazwę serwera w swojej dokumentacji.
 
 Jeśli instalujesz oprogramowanie na serwerze Windowsowym i korzystasz z MySQL, użycie „localhost” może nie zadziałać jako nazwa hosta. Jeśli wystąpi ten problem użyj „127.0.0.1” jako lokalnego adresu IP.
 
-Jeżeli korzystasz z PostgreSQL, pozostaw to pole puste aby połączyć się poprzez gniazdo Unix'a.",
+Jeżeli korzystasz z PostgreSQL, pozostaw to pole puste, aby połączyć się poprzez gniazdo Unix‐a.',
 	'config-db-host-oracle' => 'TNS bazy danych',
 	'config-db-host-oracle-help' => 'Wprowadź prawidłową [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm nazwę połączenia lokalnego]. Plik „tnsnames.ora” musi być widoczny dla instalatora.<br />Jeśli używasz biblioteki klienckiej 10g lub nowszej możesz również skorzystać z metody nazw [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm łatwego łączenia].',
 	'config-db-wiki-settings' => 'Zidentyfikuj tę wiki',

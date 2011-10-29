@@ -989,26 +989,27 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-text-unhide'     => "La revisió d'aquesta pàgina ha estat '''eliminada'''.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
-Com a {{GENDER:|administrador|administradora}} encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
+Encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
 'rev-suppressed-text-unhide'  => "Aquesta versió de la pàgina ha estat '''eliminada'''.
 Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].
-Com a administrador, encara podeu [$1 veure aquesta revisió].",
+Encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
 'rev-deleted-text-view'       => "Aquesta versió de la pàgina ha estat '''eliminada'''.
-Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+Podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-suppressed-text-view'    => "Aquesta versió de la pàgina ha estat '''eliminada'''.
-Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+Podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-no-diff'         => "No podeu veure aquesta comparativa perquè una de les versions ha estat '''esborrada'''.
 Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-suppressed-no-diff'      => "No podeu veure aquesta diferència perquè una de les revisions ha estat '''esborrada'''.",
 'rev-deleted-unhide-diff'     => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
 Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
-Com a administrador encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
-'rev-suppressed-unhide-diff'  => "Una de les revisions d'aquest diff ha estat '''esborrada'''.
-Podeu veure'n més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions]. Com a administrador, podeu seguir [$1 veient aquest diff] si voleu continuar.",
-'rev-deleted-diff-view'       => "Una de les revisions d'aquest diff ha estat '''esborrada'''.
-Com a administrador pot veure aquest diff; poden haver-hi més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborraments].",
-'rev-suppressed-diff-view'    => "Una de les revisions d'aquest diff ha estat '''esborrada'''.
-Com a administrador pot veure aquest diff; pot haver-hi més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborraments].",
+Encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
+'rev-suppressed-unhide-diff'  => "Una de les revisions d'aquesta comparativa ha estat '''esborrada'''.
+Podeu veure'n més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions].
+Podeu seguir [$1 veient aquesta comparativa] si així ho desitgeu.",
+'rev-deleted-diff-view'       => "Una de les revisions d'aquesta comparativa ha estat '''esborrada'''.
+Podeu veure aquesta comparativa; poden haver-hi més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborraments].",
+'rev-suppressed-diff-view'    => "Una de les revisions d'aquesta comparativa ha estat '''esborrada'''.
+Podeu veure aquesta comparativa; pot haver-hi més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre de supressions].",
 'rev-delundel'                => 'mostra/amaga',
 'rev-showdeleted'             => 'mostra',
 'revisiondelete'              => 'Esborrar/restaurar revisions',
@@ -1026,7 +1027,7 @@ funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'ac
 'logdelete-selected'          => "'''{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:'''",
 'revdelete-text'              => "'''Les revisions esborrades es mostraran encara als historials de les pàgines i als registres, si bé part del seu contingut serà inaccessible al públic.'''
 Els altres administradors de {{SITENAME}} encara podran accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional.",
-'revdelete-confirm'           => "Si us plau, confirmeu que és això el que desitjeu fer, que enteneu les conseqüències, i que esteu fent-ho d'acord amb [[{{MediaWiki:Policy-url}}|les polítiques acordades]].",
+'revdelete-confirm'           => "Si us plau, confirmeu que és això el que desitgeu fer, que enteneu les conseqüències, i que esteu fent-ho d'acord amb [[{{MediaWiki:Policy-url}}|les polítiques acordades]].",
 'revdelete-suppress-text'     => "Les supressions '''només''' han de ser portades a terme en els següents casos:
 * Informació personal inapropiada
 *: ''adreces personals, números de telèfon, números de la seguretat social, etc.''",
@@ -1343,7 +1344,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'group-suppress'      => 'Oversights',
 'group-all'           => '(tots)',
 
-'group-user-member'          => 'usuari',
+'group-user-member'          => '{{GENDER:$1|usuari|usuària}}',
 'group-autoconfirmed-member' => 'usuari autoconfirmat',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'administrador',

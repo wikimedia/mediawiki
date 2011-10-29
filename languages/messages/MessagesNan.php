@@ -583,7 +583,7 @@ Lîm-sî ê bi̍t-bé: $2',
 
 * 這擺封鎖開始的時間是：$8
 * 這擺封鎖到期的時間是：$6
-* Intended blockee：$7
+* hông封鎖的用者：$7
 
 妳會使聯絡$1抑是其他的[[{{MediaWiki:Grouppage-sysop}}|管理員]]來討論這擺封鎖。
 除非你有佇你的[[Special:Preferences|口座設定]]當中，有設一个有效的電子批地址，若無，你是袂當使用「寄電子批予用者」的功能。若有，這个功能是無封鎖。
@@ -630,11 +630,28 @@ Kháu-chō ê sin bi̍t-bé thang tī teng-ji̍p liáu tī ''[[Special:ChangePas
 'noarticletext-nopermission'       => '這頁這馬無內容，
 你會使佇別頁[[Special:Search/{{PAGENAME}}|揣這頁標題]]，
 抑是<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}}揣有關的記錄]</span>。',
-'clearyourcache'                   => "'''Chù-ì:''' Pó-chûn liáu-āu, tio̍h ē-kì leh kā liû-lám-khì ê cache piàⁿ tiāu chiah khoàⁿ-ē-tio̍h kái-piàn: '''Mozilla:''' chhi̍h ''reload/têng-sin chài-ji̍p'' (a̍h-sī ''Ctrl-R''), '''Internet Explorer kap Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
+'userpage-userdoesnotexist-view'   => '用者口座「$1」猶未開',
+'blocked-notice-logextract'        => '這个用者這馬hông封鎖，
+下跤有最近封鎖的紀錄通參考：',
+'clearyourcache'                   => "'''Chù-ì:''' Pó-chûn liáu-āu, tio̍h ē-kì leh kā liû-lám-khì ê cache piàⁿ tiāu chiah khoàⁿ-ē-tio̍h kái-piàn: *'''Firefox / Safari:''' chhi̍h tiâu \"Shift\" kâng-sî-chūn tiám-kik ''Reload/têng-sin chài-ji̍p'' a̍h-sī chhi̍h ''Ctrl-F5'' \"Ctrl-R\" kî-tiong chi̍t ê (''Command-R'' tī Mac) 
+* '''Google Chrome:''' chhi̍h ''Ctrl-Shift-R'' (''Command-Shift-R'' tī Mac)
+'''Internet Explorer :'''chhi̍h tiâu \"Ctrl\" kâng-sî-chūn tiám-kek ''Refresh/têng-sin chài-ji̍p'' a̍h-sī chhi̍h \"Ctrl-F5\" 
+* '''Konqueror:'''  tiám-kek ''Reload/têng-sin chài-ji̍p'' a̍h-sī chhi̍h ''F5''
+* '''Opera:''' piàⁿ-tiāu cache tī ''Tools(ke-si) → Preferences(siat-piān)''",
 'usercssyoucanpreview'             => "'''Phiat-pō·''': Pó-chûn chìn-chêng ē-sái chhi̍h 'Seng khoàⁿ-māi' kiám-cha sin ê CSS.",
-'userjsyoucanpreview'              => "'''Phiat-pō·''': Pó-chûn chìn-chêng ē-sái chhi̍h 'Seng khoàⁿ-māi' kiám-cha sin ê CSS a̍h-sī JavaScript.",
-'usercsspreview'                   => "'''Sè-jī! Lí hiān-chú-sî khoàⁿ--ê sī lí ê su-jîn css ê preview; che iáu-bōe pó-chûn--khí-lâi!'''",
+'userjsyoucanpreview'              => "'''Phiat-pō·''': Pó-chûn chìn-chêng ē-sái tiám-kek \"{{int:showpreview}}\" ; chhì lí ê sin JavaScript.",
+'usercsspreview'                   => "'''Thê-chhíⁿ lí,  che chí-sī sian khoàⁿ-māi  lí ê su-jîn CSS'''
+'''Che iáu-bōe pó-chûn--khí-lâi !'''",
 'userjspreview'                    => "'''Sè-jī! Lí hiān-chú-sî chhì khoàⁿ--ê sī lí ka-kī ê javascript; che iáu-bōe pó-chûn--khí-lâi!'''",
+'sitecsspreview'                   => "'''提醒你，這只是先看覓你的私人CSS'''
+'''猶未保存！'''",
+'sitejspreview'                    => "'''提醒你，這只是先看覓這个JavaScrpt程式'''
+'''猶未保存！'''",
+'userinvalidcssjstitle'            => "'''提醒：'''遐無面板\"\$1\"，
+家己設的 .css 佮 .js 頁愛用小寫標題，親像，
+{{ns:user}}:Foo/vector.css 無仝
+{{ns:user}}:Foo/Vector.css。",
+'updated'                          => '（改過矣）',
 'note'                             => "'''Chù-ì:'''",
 'previewnote'                      => "'''Thê-chhéⁿ lí che sī 1 bīn kiám-cha chho͘-phe ēng--ê \"seng-khoàⁿ-ia̍h\", iáu-bōe pó-chûn--khí-lâi!'''",
 'session_fail_preview'             => "'''Pháiⁿ-sè! Gún chiām-sî bô hoat-tō͘ chhú-lí lí ê pian-chi̍p (goân-in: \"phàng-kiàn sú-iōng kî-kan ê chu-liāu\"). Lô-hoân têng chhì khoàⁿ-māi. Ká-sú iû-goân bô-hāu, ē-sái teng-chhut koh-chài teng-ji̍p hoān-sè tō ē-tit kái-koat.'''",

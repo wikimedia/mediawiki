@@ -2429,7 +2429,7 @@ $1',
 'enotif_lastvisited'           => 'انظر $1 لكل التغييرات منذ زيارتك الأخيرة.',
 'enotif_lastdiff'              => 'انظر $1 لرؤية هذا التغيير.',
 'enotif_anon_editor'           => 'مستخدم مجهول $1',
-'enotif_body'                  => 'عزيزي $ WATCHINGUSERNAMEE
+'enotif_body'                  => 'عزيزي $ WATCHINGUSERNAME
 صفحة  $PAGETITLE قد  $ CHANGEDORCREATEDفي $PAGEEDITDATE ب$PAGEEDITOR, انظر$PAGETITLE_URL للمراجعة الحالية
 موجز للمحرر: $PAGESUMMARY $PAGEMINOREDIT
 

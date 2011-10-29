@@ -14,6 +14,7 @@
  * @author Krun
  * @author Maxí
  * @author S.Örvarr.S
+ * @author Snævar
  * @author Spacebirdy
  * @author Steinninn
  * @author Urhixidur
@@ -783,6 +784,9 @@ Ef þú ert óþekktur notandi og finnst að óviðkomandi athugasemdum hafa ver
 'noarticletext'                    => 'Enginn texti er á þessari síðu enn sem komið er.
 Þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám], eða [{{fullurl:{{FULLPAGENAME}}|action=edit}} breytt henni sjálfur]</span>.',
+'noarticletext-nopermission'       => 'Enginn texti er á þessari síðu enn sem komið er.
+Þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]],
+eða <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} leitað í tengdum skrám]</span>.',
 'userpage-userdoesnotexist'        => 'Notandaaðgangurinn „<nowiki>$1</nowiki>“ er ekki skráður.
 Gjörðu svo vel og athugaðu hvort að þú viljir skapa/breyta þessari síðu.',
 'clearyourcache'                   => "'''Athugaðu - Eftir vistun, má vera að þú þurfir að komast hjá skyndiminni vafrans þíns til að sjá breytingarnar.'''
@@ -853,7 +857,10 @@ Svo virðist sem henni hafi verið eytt.',
 Hún er nú þegar til.',
 
 # Parser/template warnings
-'parser-template-loop-warning' => 'Lykkja í sniði fundin: [[$1]]',
+'post-expand-template-inclusion-warning'  => "'''Viðvörun:''' Sniðið tekur of mikið pláss.
+Hluti sniðsins verður ekki með.",
+'post-expand-template-inclusion-category' => 'Síður þar sem eru stærri en stærðartakmörkun sniða segir til um',
+'parser-template-loop-warning'            => 'Lykkja í sniði fundin: [[$1]]',
 
 # "Undo" feature
 'undo-success' => 'Breytingin hefur verið tekin tilbaka. Vinsamlegast staðfestu og vistaðu svo.',
@@ -886,6 +893,7 @@ Hún er nú þegar til.',
 Skýringartexti: (nú) = skoðanamunur á núverandi útgáfu,
 (síðast) = skoðanamunur á undanfarandi útgáfu, M = minniháttar breyting.',
 'history-fieldset-title' => 'Skoða breytingaskrá',
+'history-show-deleted'   => 'Eingöngu eyddar breytingar',
 'histfirst'              => 'elstu',
 'histlast'               => 'yngstu',
 'historysize'            => '({{PLURAL:$1|1 bæti|$1 bæti}})',
@@ -944,7 +952,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'compareselectedversions'  => 'Bera saman valdar útgáfur',
 'showhideselectedversions' => 'Sýna/fela valdar breytingar',
 'editundo'                 => 'Taka aftur þessa breytingu',
-'diff-multi'               => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}}.)',
+'diff-multi'               => '({{PLURAL:$1|Ein millibreyting ekki sýnd|$1 millibreytingar ekki sýndar}} frá {{PLURAL:$2|notanda|$2 notendum}}.)',
 
 # Search results
 'searchresults'                    => 'Leitarniðurstöður',
@@ -959,6 +967,8 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'notextmatches'                    => 'Engar samsvaranir á texta í síðum',
 'prevn'                            => 'síðustu {{PLURAL:$1|$1}}',
 'nextn'                            => 'næstu {{PLURAL:$1|$1}}',
+'prevn-title'                      => 'Fyrri $1 {{PLURAL:$1|niðurstaða|niðurstöður}}',
+'shown-title'                      => 'Sýna $1 {{PLURAL:$1|niðurstöðu|niðurstöður}} á hverri síðu',
 'viewprevnext'                     => 'Skoða ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'                => 'Leitarvalmöguleikar',
 'searchmenu-exists'                => "'''Það er síða að nafni „[[$1]]“ á þessum wiki'''",
@@ -974,7 +984,9 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'searchprofile-project-tooltip'    => 'Leita í $1',
 'searchprofile-images-tooltip'     => 'Leita að skrám',
 'searchprofile-everything-tooltip' => 'Leita í öllu efni (þar á meðal spjallsíðum)',
+'searchprofile-advanced-tooltip'   => 'Leita í ákveðnum nafnrýmum',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 orð|$2 orð}})',
+'search-result-category-size'      => '{{PLURAL:$1|1 meðlimur|$1 meðlimir}} ({{PLURAL:$2|1 undirflokks|$2 undirflokka}}, {{PLURAL:$3|1 skrá|$3 skrár}})',
 'search-result-score'              => 'Gildi: $1%',
 'search-redirect'                  => '(tilvísun $1)',
 'search-section'                   => '(hluti $1)',
@@ -1091,8 +1103,9 @@ Hún þarf að vera færri en $1 {{PLURAL:$1|rittákn|rittákn}}.',
 'email'                     => 'Tölvupóstur',
 'prefs-help-realname'       => 'Alvöru nafn er valfrjálst.
 Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiður af verkum þínum.',
-'prefs-help-email'          => 'Tölvupóstfang er valfrjálst, en gerir það kleift að fá nýtt lykilorð sent ef þú gleymir lykilorðinu þínu.
-Þú getur einnig leyft öðrum að hafa samband við þig á notanda- eða spjallsíðunni þinni án þess að opinbera þig.',
+'prefs-help-email'          => 'Tölvupóstfang er valfrjálst, en gerir þér kleift að fá nýtt lykilorð ef þú gleymir lykilorðinu þínu.',
+'prefs-help-email-others'   => 'Þú er einnig valið að láta aðra hafa samband við þig með tölvupósti í gegnum tengil á notendasíðu eða notendaspjallsíðu þinni.
+Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband við þig.',
 'prefs-help-email-required' => 'Þörf er á netfangi.',
 'prefs-info'                => 'Undirstöðuupplýsingar',
 'prefs-signature'           => 'Undirskrift',
@@ -1349,7 +1362,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'filehist-dimensions'       => 'Víddir',
 'filehist-filesize'         => 'Stærð skráar',
 'filehist-comment'          => 'Athugasemd',
-'imagelinks'                => 'Skráatenglar',
+'imagelinks'                => 'Skráartenglar',
 'linkstoimage'              => 'Eftirfarandi {{PLURAL:$1|síða tengist|$1 síður tengjast}} í þessa skrá:',
 'nolinkstoimage'            => 'Engar síður tengja í þessa skrá.',
 'sharedupload'              => 'Skrá þessi er af $1, og deilt meðal annarra verkefna og nýtist því þar.',
@@ -1483,6 +1496,7 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'protectedtitles'         => 'Verndaðir titlar',
 'listusers'               => 'Notendalisti',
 'usereditcount'           => '$1 {{PLURAL:$1|breyting|breytingar}}',
+'usercreated'             => 'Stofnað $1 $2',
 'newpages'                => 'Nýjustu greinar',
 'newpages-username'       => 'Notandanafn:',
 'ancientpages'            => 'Elstu síður',
@@ -1780,7 +1794,7 @@ Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og end
 'nolinkshere-ns'           => "Engar síður tengjast '''[[:$1]]''' í þessu nafnrými.",
 'isredirect'               => 'tilvísun',
 'istemplate'               => 'innifalið',
-'isimage'                  => 'myndatengill',
+'isimage'                  => 'Skráartengill',
 'whatlinkshere-prev'       => '{{PLURAL:$1|fyrra|fyrri $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|næst|næstu $1}}',
 'whatlinkshere-links'      => '← tenglar',
@@ -2155,7 +2169,7 @@ Allir síðari tenglar á sömu línu eru taldir vera undantekningar, þ.e. sí�
 Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi ekki við um hana.',
 'metadata-expand'   => 'Sýna frekari upplýsingar',
 'metadata-collapse' => 'Fela auka upplýsingar',
-'metadata-fields'   => 'EXIF-lýsigögn listuð í þessu skilaboði munu vera innifalin á myndasíðusýningu þegar lýsigagnataflan er samfallin.
+'metadata-fields'   => 'EXIF-lýsigögn í þessum skilaboðum verða innifalin á síðu myndarinnar þegar tafla lýsisgangnana er samfallin.
 Önnur verða sjálfkrafa falin.
 * make
 * model

@@ -3177,6 +3177,7 @@ Diğerleri varsayılan olarak gizlenecektir.
 'exif-disclaimer'                  => 'Sorumluluk reddi',
 'exif-contentwarning'              => 'İçerik uyarısı',
 'exif-giffilecomment'              => 'GIF dosyası yorumu',
+'exif-event'                       => 'Adı geçen olay',
 'exif-personinimage'               => 'Adı geçen kişi',
 
 # EXIF attributes
