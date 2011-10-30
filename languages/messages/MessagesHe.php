@@ -3826,8 +3826,7 @@ $1',
 'specialpages'                   => 'דפים מיוחדים',
 'specialpages-note'              => '----
 * דפים מיוחדים רגילים.
-* <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>
-* <span class="mw-specialpagecached">דפים מיוחדים המתקבלים מזיכרון המטמון (שעלולים להיות לא מעודכנים).</span>',
+* <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other'       => 'דפים מיוחדים אחרים',
 'specialpages-group-login'       => 'כניסה / הרשמה לחשבון',
