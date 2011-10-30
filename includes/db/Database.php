@@ -3303,6 +3303,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @param $tableName string
 	 * @param $fName string
 	 * @return bool|ResultWrapper
+	 * @since 1.18
 	 */
 	public function dropTable( $tableName, $fName = 'DatabaseBase::dropTable' ) {
 		if( !$this->tableExists( $tableName ) ) {
