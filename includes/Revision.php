@@ -1097,7 +1097,8 @@ class Revision {
 				'minor_edit' => $minor,
 				'text_id'    => $current->rev_text_id,
 				'parent_id'  => $current->page_latest,
-				'len'        => $current->rev_len
+				'len'        => $current->rev_len,
+				'sha1'       => $current->rev_sha1
 				) );
 		} else {
 			$revision = null;
