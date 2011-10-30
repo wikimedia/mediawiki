@@ -997,6 +997,8 @@ CREATE INDEX /*i*/us_timestamp ON /*_*/uploadstash (us_timestamp);
 CREATE TABLE /*_*/recentchanges (
   rc_id int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   rc_timestamp varbinary(14) NOT NULL default '',
+
+  -- This is no longer used
   rc_cur_time varbinary(14) NOT NULL default '',
 
   -- As in revision
