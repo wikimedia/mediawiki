@@ -1083,7 +1083,7 @@ class Revision {
 
 		$current = $dbw->selectRow(
 			array( 'page', 'revision' ),
-			array( 'page_latest', 'rev_text_id', 'rev_len' ),
+			array( 'page_latest', 'rev_text_id', 'rev_len', 'rev_sha1' ),
 			array(
 				'page_id' => $pageId,
 				'page_latest=rev_id',
