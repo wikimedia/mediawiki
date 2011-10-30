@@ -654,7 +654,15 @@ Kháu-chō ê sin bi̍t-bé thang tī teng-ji̍p liáu tī ''[[Special:ChangePas
 'updated'                          => '（改過矣）',
 'note'                             => "'''Chù-ì:'''",
 'previewnote'                      => "'''Thê-chhéⁿ lí che sī 1 bīn kiám-cha chho͘-phe ēng--ê \"seng-khoàⁿ-ia̍h\", iáu-bōe pó-chûn--khí-lâi!'''",
+'previewconflict'                  => '這个先看覓會反應你文字編輯區的內容，顯示佇面頂。佇你保存了就會公開。',
 'session_fail_preview'             => "'''Pháiⁿ-sè! Gún chiām-sî bô hoat-tō͘ chhú-lí lí ê pian-chi̍p (goân-in: \"phàng-kiàn sú-iōng kî-kan ê chu-liāu\"). Lô-hoân têng chhì khoàⁿ-māi. Ká-sú iû-goân bô-hāu, ē-sái teng-chhut koh-chài teng-ji̍p hoān-sè tō ē-tit kái-koat.'''",
+'session_fail_preview_html'        => "'''歹勢！因為phàng見資料，阮無法度處理你的編輯。'''
+
+''因為{{SITENAME}}有開放原始 HTML 碼，先看覓先看無，以防止 JavaScript 的攻擊。''
+
+'''若這改編輯過程無問題，請閣試一改。若閣有問題，請[[Special:UserLogout|登出]]了後，才閣重登入。'''",
+'token_suffix_mismatch'            => "'''因為你用者端的編輯毀損一寡標點符號字元，你的編輯無被接受。'''
+這種情況會出現佇你用網路上匿名代理服務的時陣。",
 'editing'                          => 'Siu-kái $1',
 'editingsection'                   => 'Pian-chi̍p $1 (section)',
 'editingcomment'                   => 'Teh pian-chi̍p $1 (lâu-oē)',
@@ -665,6 +673,9 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 '''Kan-na''' téng-koân keh-á ê bûn-jī ē tī lí chhi̍h \"{{int:savearticle}}\" liáu-āu pó-chûn khí lâi.",
 'yourtext'                         => 'Lí ê bûn-jī',
 'storedversion'                    => 'Chu-liāu-khò· ê pán-pún',
+'nonunicodebrowser'                => "'''提醒：你的瀏覽器佮Unicode編碼袂合。''
+遮有一个工作區會使予你通安全編輯頁面: 
+非ASCII字元會以十六進位編碼模式出現佇編輯框當中。",
 'editingold'                       => "'''KÉNG-KÒ: Lí tng teh siu-kái chit ia̍h ê 1 ê kū siu-tēng-pún. Lí nā kā pó-chûn khí lâi, chit ê siu-tēng-pún sòa-āu ê jīm-hô kái-piàn ē bô khì.'''",
 'yourdiff'                         => 'Chha-pia̍t',
 'readonlywarning'                  => "'''CHÙ-Ì: Chu-liāu-khò· taⁿ só tiâu leh thang pān î-siu khang-khòe, só·-í lí hiān-chú-sî bô thang pó-chûn jīn-hô phian-chi̍p hāng-bo̍k. Lí ē-sái kā siong-koan pō·-hūn tah--ji̍p-khì 1-ê bûn-jī tóng-àn pó-chûn, āu-chhiú chiah koh kè-sio̍k.'''
@@ -832,7 +843,18 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'rightslogtext' => 'Chit-ê log lia̍t-chhut kái-piàn iōng-chiá koân-lī ê tōng-chok.',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'Siu-kái chit ia̍h',
+'action-edit'                 => 'Siu-kái chit ia̍h',
+'action-protect'              => '改這頁的保護層級',
+'action-import'               => '對別个Wiki匯入這頁',
+'action-importupload'         => '對一个上載檔案匯入這頁',
+'action-patrol'               => '標示其它的編輯是巡過的',
+'action-autopatrol'           => '你的編輯標示做已巡查過',
+'action-unwatchedpages'       => '看無予人監視的頁列單',
+'action-trackback'            => '送交一个trackback',
+'action-mergehistory'         => '相佮這頁的歷史',
+'action-userrights'           => '編輯所有用者的權限',
+'action-userrights-interwiki' => '編輯對其它wiki來的用者權限',
+'action-siteadmin'            => '封鎖抑開鎖資料庫',
 
 # Recent changes
 'nchanges'                        => '$1 {{PLURAL:$1|改|改}}',

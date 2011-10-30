@@ -759,6 +759,7 @@ $2',
 'emailconfirmlink'           => '이메일 주소 확인',
 'invalidemailaddress'        => '이메일 주소의 형식이 잘못되어 인식할 수 없습니다.
 정상적인 형식의 이메일을 입력하거나 칸을 비워 주세요.',
+'cannotchangeemail'          => '이 위키에서는 계정의 이메일 주소를 바꿀 수 없습니다.',
 'accountcreated'             => '계정 만들어짐',
 'accountcreatedtext'         => '‘$1’ 사용자 계정이 만들어졌습니다.',
 'createaccount-title'        => '{{SITENAME}} 계정 만들기',
@@ -794,30 +795,34 @@ $2',
 'resetpass-temp-password'   => '임시 비밀번호:',
 
 # Special:PasswordReset
-'passwordreset'                => '암호 재설정',
-'passwordreset-text'           => '이메일을 입력하여 알림을 받으세요.',
-'passwordreset-legend'         => '암호 초기화',
-'passwordreset-disabled'       => '위키 암호 초기화가 중단 되었습니다.',
-'passwordreset-pretext'        => '{{PLURAL:$1||아래에 한 가지 정보를 입력해주십시오}}',
-'passwordreset-username'       => '계정 이름:',
-'passwordreset-domain'         => '도메인:',
-'passwordreset-email'          => '이메일 주소:',
-'passwordreset-emailtitle'     => '{{SITENAME}} 계정 상세 정보',
-'passwordreset-emailtext-ip'   => 'IP 주소 $1을 사용하는 누군가(아마도 당신이), {{SITENAME}} ($4)의 비밀번호 찾기를 요청하였습니다. 이 이메일 주소와 연관된 계정의 목록입니다:
+'passwordreset'                    => '암호 재설정',
+'passwordreset-text'               => '이메일을 입력하여 알림을 받으세요.',
+'passwordreset-legend'             => '암호 초기화',
+'passwordreset-disabled'           => '위키 암호 초기화가 중단 되었습니다.',
+'passwordreset-pretext'            => '{{PLURAL:$1||아래에 한 가지 정보를 입력해주십시오}}',
+'passwordreset-username'           => '계정 이름:',
+'passwordreset-domain'             => '도메인:',
+'passwordreset-capture'            => '발송 결과 이메일을 보시겠습니까?',
+'passwordreset-capture-help'       => '이 상자에 체크하면 이메일이 발송된 즉시 임시 비밀번호가 담긴 이메일을 볼 수 있습니다.',
+'passwordreset-email'              => '이메일 주소:',
+'passwordreset-emailtitle'         => '{{SITENAME}} 계정 상세 정보',
+'passwordreset-emailtext-ip'       => 'IP 주소 $1을 사용하는 누군가(아마도 당신이), {{SITENAME}} ($4)의 비밀번호 찾기를 요청하였습니다. 이 이메일 주소와 연관된 계정의 목록입니다:
 
 $2
 
 이 {{PLURAL:$3|임시 비밀번호}}의 효력은 $5일 후 만료됩니다.
 이 비밀번호로 로그인한 후 비밀번호를 변경하십시오. 만약 당신이 아닌 다른 사람이 요청하였거나, 원래의 비밀번호를 기억해냈다면, 이 메시지를 무시하고 이전의 비밀번호를 계속 사용할 수 있습니다.',
-'passwordreset-emailtext-user' => '{{SITENAME}} ($4)의 사용자 $1이 비밀번호 찾기를 요청하였습니다. 이 이메일 주소와 연관된 계정의 목록입니다:
+'passwordreset-emailtext-user'     => '{{SITENAME}} ($4)의 사용자 $1이 비밀번호 찾기를 요청하였습니다. 이 이메일 주소와 연관된 계정의 목록입니다:
 
 $2
 
 이 {{PLURAL:$3|임시 비밀번호}}의 효력은 $5일 후 만료됩니다.
 이 비밀번호로 로그인한 후 비밀번호를 변경하십시오. 만약 당신이 아닌 다른 사람이 요청하였거나, 원래의 비밀번호를 기억해냈다면, 이 메시지를 무시하고 이전의 비밀번호를 계속 사용할 수 있습니다.',
-'passwordreset-emailelement'   => '계정 이름: $1
+'passwordreset-emailelement'       => '계정 이름: $1
 임시 비밀번호: $2',
-'passwordreset-emailsent'      => '비밀번호 찾기 이메일을 보냈습니다.',
+'passwordreset-emailsent'          => '비밀번호 찾기 이메일을 보냈습니다.',
+'passwordreset-emailsent-capture'  => '비밀번호 찾기 이메일이 발송되었으며, 아래에 표시되어 있습니다.',
+'passwordreset-emailerror-capture' => '비밀번호 찾기 이메일이 생성되어 아래에 표시되었지만 발송하는 데에는 실패했습니다: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-mail 주소 변경',
@@ -1083,29 +1088,27 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 자세한 사항은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 볼 수 있습니다.",
 'rev-deleted-text-unhide'     => "해당 편집이 문서 역사에서 '''삭제'''되었습니다.
 자세한 사항은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 볼 수 있습니다.
-관리자 권한을 이용하여 [$1 해당 편집]을 볼 수도 있습니다.",
+이 편집을 보기를 원하신다면 [$1 해당 편집]을 볼 수 있습니다.",
 'rev-suppressed-text-unhide'  => "해당 편집이 문서 역사에서 '''숨겨져''' 있습니다.
-자세한 사항은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 숨김 기록]에서 볼 수 있습니다.
-관리자 권한을 이용하여 [$1 해당 편집]을 볼 수도 있습니다.",
+자세한 사항은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]에서 볼 수 있습니다.
+이 편집을 보기를 원하신다면 [$1 해당 편집]을 볼 수 있습니다.",
 'rev-deleted-text-view'       => "이 문서의 편집은 역사에서 '''삭제'''되었습니다.
-당신은 관리자로서 삭제된 편집을 볼 수 있습니다.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
+삭제된 편집을 볼 수 있으며, [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-suppressed-text-view'    => "이 문서의 편집은 역사에서 '''숨겨져''' 있습니다.
-당신은 관리자로서 숨겨진 편집을 볼 수 있습니다.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]에서 자세한 내용을 볼 수 있습니다.",
+숨겨진 편집을 볼 수 있으며, [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-deleted-no-diff'         => "특정 판이 문서 역사에서 '''삭제'''되었기 때문에 비교할 수 없습니다.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-suppressed-no-diff'      => "두 판 중 일부가 '''삭제'''되었기 때문에 문서 편집 내용을 비교할 수 없습니다.",
 'rev-deleted-unhide-diff'     => "이 비교에 사용된 판 가운데 하나가 '''삭제'''되었습니다.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에 자세한 내용이 있을 수 있습니다.
-관리자로서 작업하고 싶다면 여전히 [$1 비교 보기]를 계속할 수 있습니다.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에 자세한 내용을 찾아볼 수 있습니다.
+계속 작업하고 싶다면 여전히 [$1 비교 보기]를 계속할 수 있습니다.",
 'rev-suppressed-unhide-diff'  => "이 비교에 사용된 판 가운데 하나가 '''숨김'''되었습니다.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]에 자세한 내용이 있을 수 있습니다.
-관리자로 작업하고 싶다면 [$1 해당 편집]을 볼 수도 있습니다.",
+계속 작업하고 싶다면 [$1 해당 편집]을 볼 수도 있습니다.",
 'rev-deleted-diff-view'       => "비교 대상 중 어느 한 판이 '''삭제'''되었습니다.
-관리자로서 삭제된 판과 다른 판의 비교를 할 수 있습니다; 자세한 것은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]을 참고하십시오.",
+삭제된 판과 다른 판의 비교를 할 수 있습니다; 자세한 것은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]을 참고하십시오.",
 'rev-suppressed-diff-view'    => "비교하려는 판 중 일부가 '''숨겨져''' 있습니다.
-관리자 권한이 있다면 편집 비교가 가능합니다. 자세한 내용은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 해당 숨김 기록]에서 볼 수 있습니다.",
+숨겨진 판과 이 판의 편집 비교가 가능합니다. 자세한 내용은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 해당 숨김 기록]에서 볼 수 있습니다.",
 'rev-delundel'                => '보이기/숨기기',
 'rev-showdeleted'             => '표시',
 'revisiondelete'              => '판 삭제/복구',
@@ -1172,8 +1175,8 @@ $1",
 
 # Suppression log
 'suppressionlog'     => '숨기기 기록',
-'suppressionlogtext' => '다음은 관리자로부터 숨겨진 내용에 대한 삭제, 차단 기록입니다.
-현재 차단된 사용자 목록을 보시려면 [[Special:IPBlockList|차단된 사용자 목록]]을 참조하십시오.',
+'suppressionlogtext' => '다음은 관리자로부터 숨겨진 내용에 관한 삭제, 차단 기록입니다.
+현재 차단된 사용자 목록을 보시려면 [[Special:BlockList|차단된 사용자 목록]]을 참조하십시오.',
 
 # History merging
 'mergehistory'                     => '문서 역사 합치기',
@@ -1438,12 +1441,12 @@ $1",
 'group-suppress'      => '오버사이트',
 'group-all'           => '(모두)',
 
-'group-user-member'          => '사용자',
-'group-autoconfirmed-member' => '자동 인증된 사용자',
-'group-bot-member'           => '봇',
-'group-sysop-member'         => '관리자',
-'group-bureaucrat-member'    => '사무관',
-'group-suppress-member'      => '오버사이트',
+'group-user-member'          => '{{GENDER:$1|사용자}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|자동 인증된 사용자}}',
+'group-bot-member'           => '{{GENDER:$1|봇}}',
+'group-sysop-member'         => '{{GENDER:$1|관리자}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|사무관}}',
+'group-suppress-member'      => '{{GENDER:$1|오버사이트}}',
 
 'grouppage-user'          => '{{ns:project}}:일반 사용자',
 'grouppage-autoconfirmed' => '{{ns:project}}:자동 인증된 사용자',
@@ -1512,6 +1515,7 @@ $1",
 'right-siteadmin'             => '데이터베이스를 잠그거나 잠금 해제',
 'right-override-export-depth' => '5단계로 링크된 문서를 포함하여 문서를 내보내기',
 'right-sendemail'             => '다른 사용자에게 이메일 보내기',
+'right-passwordreset'         => '암호 재설정 이메일을 보기',
 
 # User rights log
 'rightslog'                  => '사용자 권한 기록',
@@ -2396,6 +2400,7 @@ $1',
 # Namespace form on various pages
 'namespace'             => '이름공간:',
 'invert'                => '선택 반전',
+'tooltip-invert'        => '선택한 이름공간에 있는 문서의 바뀜을 숨기려면 이 상자에 체크해주세요.',
 'namespace_association' => '관련된 이름공간',
 'blanknamespace'        => '(일반)',
 
@@ -2514,7 +2519,7 @@ $1',
 'ipblocklist-localblock'          => '로컬 차단',
 'ipblocklist-otherblocks'         => '다른 {{PLURAL:$1|}}차단 기록',
 'infiniteblock'                   => '무기한',
-'expiringblock'                   => '$1 $2에 해제됩니다',
+'expiringblock'                   => '$1 $2에 해제',
 'anononlyblock'                   => '익명 사용자만',
 'noautoblockblock'                => '자동 차단 비활성화됨',
 'createaccountblock'              => '계정 생성 금지됨',
@@ -3138,6 +3143,7 @@ Variants for Chinese language
 'exif-languagecode'                => '언어',
 'exif-lens'                        => '사용된 렌즈',
 'exif-serialnumber'                => '카메라 일련 번호',
+'exif-disclaimer'                  => '면책 조항',
 
 # EXIF attributes
 'exif-compression-1' => '압축되지 않음',
@@ -3151,7 +3157,7 @@ Variants for Chinese language
 'exif-orientation-3' => '180° 회전됨',
 'exif-orientation-4' => '수직으로 뒤집음',
 'exif-orientation-5' => '시계 반대 방향으로 90° 회전하고 수직으로 뒤집음',
-'exif-orientation-6' => '시계 방향으로 90° 회전함',
+'exif-orientation-6' => '반시계 방향으로 90° 회전함',
 'exif-orientation-7' => '시계 방향으로 90° 회전하고 수직으로 뒤집음',
 'exif-orientation-8' => '시계 방향으로 90° 회전됨',
 
@@ -3585,8 +3591,27 @@ $1',
 'sqlite-no-fts'  => '$1 (본문은 검색에서 제외)',
 
 # New logging system
-'revdelete-restricted'   => '관리자에게 제한을 적용함',
-'revdelete-unrestricted' => '관리자에 대한 제한을 해제함',
-'newuserlog-byemail'     => '이메일로 보낸 암호',
+'logentry-delete-delete'              => '$1 사용자가 $3 문서를 {{GENDER:$2|삭제}}하였습니다.',
+'logentry-delete-restore'             => '$1 사용자가 $3 문서를 {{GENDER:$2|복구}}하였습니다.',
+'logentry-delete-event'               => '$1 사용자가 $3의 $5개의 기록에 대해 표시 설정을 {{GENDER:$2|바꾸었습니다}}: $4',
+'revdelete-content-hid'               => '내용 숨겨짐',
+'revdelete-summary-hid'               => '편집 요약 숨겨짐',
+'revdelete-uname-hid'                 => '계정 이름 숨겨짐',
+'revdelete-content-unhid'             => '내용 숨김 해제됨',
+'revdelete-summary-unhid'             => '편집 요약 숨김 해제됨',
+'revdelete-uname-unhid'               => '계정 이름 숨김 해제됨',
+'revdelete-restricted'                => '관리자에게 제한을 적용함',
+'revdelete-unrestricted'              => '관리자에 대한 제한을 해제함',
+'logentry-move-move'                  => '$1 사용자가 $3 문서를 $4로 {{GENDER:$2|옮겼}}습니다.',
+'logentry-move-move-noredirect'       => '$1 사용자가 $3 문서를 넘겨주기를 생성하지 않고 $4로 {{GENDER:$2|옮겼}}습니다.',
+'logentry-move-move_redir'            => '$1 사용자가 $3 문서를 $4로 {{GENDER:$2|옮기}}면서 넘겨주기를 덮어썼습니다.',
+'logentry-move-move_redir-noredirect' => '$1 사용자가 $3 문서를 $4로 넘겨주기를 남기지 않으면서 {{GENDER:$2|옮기}}면서 옮길 대상에 있던 넘겨주기를 덮어썼습니다..',
+'logentry-patrol-patrol'              => '$1 사용자가 $3 문서의 $4판을 {{GENDER:$2|검토}}한 것으로 표시했습니다.',
+'logentry-patrol-patrol-auto'         => '$1 사용자가 자동적으로 $3 문서의 $4판을 {{GENDER:$2|검토}}한 것으로 표시했습니다.',
+'logentry-newusers-newusers'          => '$1 사용자가 계정을 {{GENDER:$2|생성}}했습니다.',
+'logentry-newusers-create'            => '$1 사용자가 계정을 {{GENDER:$2|생성}}했습니다.',
+'logentry-newusers-create2'           => '$1 사용자가 $3 {{GENDER:$4|계정}}을 {{GENDER:$2|생성}}했습니다.',
+'logentry-newusers-autocreate'        => '$1 계정이 자동적으로 {{GENDER:$2|생성}}되었습니다.',
+'newuserlog-byemail'                  => '이메일로 보낸 암호',
 
 );

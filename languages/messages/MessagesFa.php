@@ -15,6 +15,7 @@
  * @author Huji
  * @author Ibrahim
  * @author Ladsgroup
+ * @author Leyth
  * @author Mardetanha
  * @author Meisam
  * @author Meno25
@@ -1832,6 +1833,7 @@ $1",
 'minlength1'                  => 'نام پرونده دست کم باید یک حرف باشد.',
 'illegalfilename'             => 'نام پرونده «$1» نویسه‌هایی را شامل می‌شود که در نام صفحه‌ها مجاز نیستند.
 لطفاً نام پرونده را تغییر دهید و آن را دوباره بارگذاری کنید.',
+'filename-toolong'            => 'نام پرونده نباید از ۲۴۰ بایت طولانی‌تر باشد.',
 'badfilename'                 => 'نام پرونده به «$1» تغییر کرد.',
 'filetype-mime-mismatch'      => 'پسوند پرونده «$1.‎» با نوع MIME آن ($2) مطابقت ندارد.',
 'filetype-badmime'            => 'پرونده‌هایی که نوع MIME آن‌ها $1 باشد برای بارگذاری مجاز نیستند.',

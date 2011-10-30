@@ -516,6 +516,8 @@ Wotprašenje: $2',
 'cascadeprotected'     => 'Strona je za wobdźěłowanje zawrjena, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacymaj stronomaj|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrejž stej|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitanej|škitane}}:
 $2',
 'namespaceprotected'   => "Nimaš dowolnosć, zo by stronu w mjenowym rumje '''$1''' wobdźěłał.",
+'customcssprotected'   => 'Nimaš prawo, zo by tutu CSS-stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.',
+'customjsprotected'    => 'Nimaš prawo, zo by tutu JavaScript-stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.',
 'ns-specialprotected'  => 'Specialne strony njedadźa so wobdźěłać.',
 'titleprotected'       => "Tutón titul bu přećiwo wutworjenju přez [[User:$1|$1]] škitany.
 Podata přičina je ''$2''.",
@@ -636,10 +638,14 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 
 # Special:PasswordReset
 'passwordreset'                    => 'Hesło wróćo stajić',
+'passwordreset-text'               => 'Wupjelń tutón formular, zo by dopomnjensku e-mejl wo swojich kontowych podrobnosćach dóstał.',
 'passwordreset-legend'             => 'Hesło wróćo stajić',
+'passwordreset-disabled'           => 'Wróćostajenje hesłow je so na  tutym wikiju znjemóžniło.',
 'passwordreset-pretext'            => '{{PLURAL:$1||Zapodaj deleka jedne ze slědowacych datowych podaćow}}',
 'passwordreset-username'           => 'Wužiwarske mjeno:',
 'passwordreset-domain'             => 'Domena:',
+'passwordreset-capture'            => 'E-mejlku sej wobhladać?',
+'passwordreset-capture-help'       => 'Jeli nakřižuješ tutón kašćik, budźe so e-mejlka z nachwilnym hesło pokazować a tež wužiwarjej pósłać.',
 'passwordreset-email'              => 'E-mejlowa adresa:',
 'passwordreset-emailtitle'         => 'Kontowe podrobnosće na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'passwordreset-emailelement'       => 'Wužiwarske mjeno: $1
@@ -651,6 +657,7 @@ Nachwilne hesło: $2',
 # Special:ChangeEmail
 'changeemail'          => 'E-mejlowu adresu změnić',
 'changeemail-header'   => 'Kontowu e-mejlowu adresu změnić',
+'changeemail-text'     => 'Wupjelń tutón formular, zo by swoju e-mejlowu adresu změnił. Dyrbiš swoje hesło zapodać, zo by tutu změnu wobkrućił.',
 'changeemail-no-info'  => 'Dyrbiš so přizjewić, zo by direktny přistup na tutu stronu měł.',
 'changeemail-oldemail' => 'Aktualna e-mejlowa adresa:',
 'changeemail-newemail' => 'Nowa e-mejlowa adresa:',
@@ -1102,12 +1109,13 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'searchdisabled'                   => 'Pytanje w {{GRAMMAR:lokatiw|{{SITENAME}}}} tuchwilu móžne njeje. Móžeš mjeztym z Google pytać. Wobkedźbuj, zo móža wuslědki z wobsaha {{GRAMMAR:genitiw|{{SITENAME}}}} zestarjene być.',
 
 # Quickbar
-'qbsettings'               => 'Pobóčna lajsta',
-'qbsettings-none'          => 'Žane',
-'qbsettings-fixedleft'     => 'Leži nalěwo',
-'qbsettings-fixedright'    => 'Leži naprawo',
-'qbsettings-floatingleft'  => 'Wisa nalěwo',
-'qbsettings-floatingright' => 'Wisa naprawo',
+'qbsettings'                => 'Pobóčna lajsta',
+'qbsettings-none'           => 'Žane',
+'qbsettings-fixedleft'      => 'Leži nalěwo',
+'qbsettings-fixedright'     => 'Leži naprawo',
+'qbsettings-floatingleft'   => 'Wisa nalěwo',
+'qbsettings-floatingright'  => 'Wisa naprawo',
+'qbsettings-directionality' => 'Kruty, wotwisny wot pisanskeho směra twojeje rěče',
 
 # Preferences page
 'preferences'                   => 'Nastajenja',
@@ -1193,6 +1201,7 @@ Móžeš tutu stronu wužiwać, zo by swoje nastajenja na standardne hódnoty sy
 'yourrealname'                  => 'Woprawdźite mjeno *',
 'yourlanguage'                  => 'Rěč:',
 'yourvariant'                   => 'Rěčna warianta:',
+'prefs-help-variant'            => 'Twoja preferowana warianta abo ortografija, w kotrejž so wikistrony maja zwobraznić.',
 'yournick'                      => 'Podpis:',
 'prefs-help-signature'          => 'Komentary na diskusijnch stronach měli so přez "<nowiki>~~~~</nowiki>" podpisać, kotrež so do twojeje signatury a časoweho kołka konwertuje.',
 'badsig'                        => 'Njepłaćiwa signatura, prošu HTML přepruwować.',
@@ -1336,10 +1345,11 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-passwordreset'         => 'E-mejlki za wróćostajenje hesłow sej wobhladać',
 
 # User rights log
-'rightslog'      => 'Protokol zrjadowanja wužiwarskich prawow',
-'rightslogtext'  => 'To je protokol změnow wužiwarskich prawow.',
-'rightslogentry' => 'skupinowe čłonstwo za $1 z $2 na $3 změnjene',
-'rightsnone'     => '(ničo)',
+'rightslog'                  => 'Protokol zrjadowanja wužiwarskich prawow',
+'rightslogtext'              => 'To je protokol změnow wužiwarskich prawow.',
+'rightslogentry'             => 'skupinowe čłonstwo za $1 z $2 na $3 změnjene',
+'rightslogentry-autopromote' => 'je so awtomatisce wot $2 do $3 změnił',
+'rightsnone'                 => '(ničo)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'tutu stronu čitać',
@@ -2001,8 +2011,9 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'watchlist-options'    => 'Opcije wobkedźbowankow',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Wobkedźbuju…',
-'unwatching' => 'Njewobkedźbuju…',
+'watching'       => 'Wobkedźbuju…',
+'unwatching'     => 'Njewobkedźbuju…',
+'watcherrortext' => 'Při měnjenju nastajenjow wašich wobkedźbowankow za "$1" je zmylk wustupił.',
 
 'enotif_mailer'                => '{{SITENAME}} E-mejlowe zdźělenje',
 'enotif_reset'                 => 'Wšě strony jako wopytane woznamjenić',
@@ -2672,11 +2683,14 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'pageinfo-title'            => 'Informacije za stronu "$1"',
 'pageinfo-header-edits'     => 'Změny',
 'pageinfo-header-watchlist' => 'Wobkedźbowanki',
+'pageinfo-header-views'     => 'Zwobraznjenja',
 'pageinfo-subjectpage'      => 'Strona',
 'pageinfo-talkpage'         => 'Diskusijna strona',
 'pageinfo-watchers'         => 'Ličba wobkedźbowarjow',
 'pageinfo-edits'            => 'Ličba změnow',
 'pageinfo-authors'          => 'Ličba rozdźělnych awtorow',
+'pageinfo-views'            => 'Ličba zwobraznjenjow',
+'pageinfo-viewsperedit'     => 'Zwobraznjenja na změnu',
 
 # Skin names
 'skinname-standard'    => 'Klasiski',
@@ -2905,16 +2919,19 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-countrycodecreated'          => 'Kod za kraj, w kotrymž je so sfotografowało',
 'exif-provinceorstatecreated'      => 'Zwjazkowy kraj, w kotrymž bu sfotografowane',
 'exif-citycreated'                 => 'Město, w kotrymž bu sfotografowane',
+'exif-sublocationcreated'          => 'Wobwod města, w kotrymž wobraz je so sfotografował',
 'exif-worldregiondest'             => 'Pokazany swětowy region',
 'exif-countrydest'                 => 'Pokazany kraj',
 'exif-countrycodedest'             => 'Kod za pokazany kraj',
 'exif-provinceorstatedest'         => 'Pokazany zwjazkowy kraj',
 'exif-citydest'                    => 'Pokazane město',
+'exif-sublocationdest'             => 'Wobwod pokazaneho města',
 'exif-objectname'                  => 'Krótki titul',
 'exif-specialinstructions'         => 'Wosebite instrukcije',
 'exif-headline'                    => 'Nadpis',
 'exif-credit'                      => 'Mjenowanje/Poskićowar',
 'exif-source'                      => 'Žórło',
+'exif-editstatus'                  => 'Wobdźěłowanski status wobraza',
 'exif-urgency'                     => 'Nuznosć',
 'exif-fixtureidentifier'           => 'Objektowe mjeno',
 'exif-locationdest'                => 'Zwobraznjene městno',
@@ -2927,6 +2944,8 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-iimcategory'                 => 'Kategorija',
 'exif-iimsupplementalcategory'     => 'Přidatne kategorije',
 'exif-datetimeexpires'             => 'Njewužiwać po',
+'exif-datetimereleased'            => 'Wozjewjeny dnja',
+'exif-originaltransmissionref'     => 'Kod městna, wot kotrehož je so foto přenjesło',
 'exif-identifier'                  => 'Identfikator',
 'exif-lens'                        => 'Wužity objektiw',
 'exif-serialnumber'                => 'Serijowe čisło kamery',
@@ -2934,24 +2953,35 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-label'                       => 'Pomjenowanje',
 'exif-datetimemetadata'            => 'Datum, hdyž su so metadaty posledni raz změnili',
 'exif-nickname'                    => 'Zwučene mjeno wobraza',
+'exif-rating'                      => 'Pohódnoćenje (z 5)',
+'exif-rightscertificate'           => 'Certifikat zarjadowanja prawow',
 'exif-copyrighted'                 => 'Status awtorskeho prawa:',
 'exif-copyrightowner'              => 'Mějićel awtorskeho prawa',
 'exif-usageterms'                  => 'Wužiwanske wuměnjenja',
+'exif-webstatement'                => 'Online-deklaracija wo awtorskim prawje',
 'exif-originaldocumentid'          => 'Jednozmyslny ID originalneho dokumenta',
 'exif-licenseurl'                  => 'URL za licencu awtorskeho prawa',
 'exif-morepermissionsurl'          => 'Alternatiwne licencne informacije',
+'exif-attributionurl'              => 'Při zasowužiwanju tutoho dźěła, wotkazaj prošu do:',
+'exif-preferredattributionname'    => 'Při zasowužiwanju tutoho dźěła, naspomń prošu',
 'exif-pngfilecomment'              => 'Komentar PNG-dataje',
 'exif-disclaimer'                  => 'Wuzamknjenje rukowanja',
 'exif-contentwarning'              => 'Wobsahowe warnowanje',
 'exif-giffilecomment'              => 'Komentar GIF-dataje',
 'exif-intellectualgenre'           => 'Typ medija',
 'exif-subjectnewscode'             => 'Temowy kod',
+'exif-scenecode'                   => 'IPTC-kod napohlada',
 'exif-event'                       => 'Zwobraznjeny podawk',
 'exif-organisationinimage'         => 'Zwobraznjena organizacija',
 'exif-personinimage'               => 'Zwobraznjena wosoba',
+'exif-originalimageheight'         => 'Wysokosć wobraza před přitřihowanjom',
+'exif-originalimagewidth'          => 'Šěrokosć wobraza před přitřihowanjom',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekomprimowany',
+'exif-compression-2' => 'CCITT skupina 3 jednodimensionalne modificěrowane kodowanje Huffman běhoweje dołhosće',
+'exif-compression-3' => 'CCITT skupina 3 faksowe kodowanje',
+'exif-compression-4' => 'CCITT skupina 4 faksowe kodowanje',
 
 'exif-copyrighted-true'  => 'Přez awtorske prawo škitany',
 'exif-copyrighted-false' => 'Zjawnosći přistupny',
@@ -3085,6 +3115,10 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpslongitude-e' => 'Wuchodna dołhosć',
 'exif-gpslongitude-w' => 'Zapadna dołhosć',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|metraj|metry|metrow}} nad mórskej hładźinu',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|metraj|metry|metrow}} pod mórskej hładźinu',
+
 'exif-gpsstatus-a' => 'Měrjenje běži',
 'exif-gpsstatus-v' => 'Interoperabilita měrjenja',
 
@@ -3103,6 +3137,9 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 
 'exif-gpsdop-excellent' => 'Wuběrny ($1)',
 'exif-gpsdop-good'      => 'Dobry ($1)',
+'exif-gpsdop-moderate'  => 'Srěni ($1)',
+'exif-gpsdop-fair'      => 'Akceptabelny ($1)',
+'exif-gpsdop-poor'      => 'Špatny ($1)',
 
 'exif-objectcycle-a' => 'Jenož rano',
 'exif-objectcycle-p' => 'Jenož wječor',
@@ -3113,8 +3150,10 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpsdirection-m' => 'Magnetiski směr',
 
 'exif-ycbcrpositioning-1' => 'Centrowano',
+'exif-ycbcrpositioning-2' => 'Susodny',
 
 'exif-dc-contributor' => 'Sobuskutkowarjo',
+'exif-dc-coverage'    => 'Městny abo časny wobłuk medija',
 'exif-dc-date'        => 'Datumowe podaća',
 'exif-dc-publisher'   => 'Wudawaćel',
 'exif-dc-relation'    => 'Přiwuzne medije',
