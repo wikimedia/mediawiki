@@ -409,7 +409,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				' parsedcomment          - Adds parsed comment of the edit',
 				' timestamp              - Adds timestamp of the edit',
 				' patrol                 - Tags edits that are patrolled',
-				' size                   - Adds the old and new lengths of the page',
+				' sizes                  - Adds the old and new lengths of the page',
 				' notificationtimestamp  - Adds timestamp of when the user was last notified about the edit',
 				' loginfo                - Adds log information where appropriate',
 			),
