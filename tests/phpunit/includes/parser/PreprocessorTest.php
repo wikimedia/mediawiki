@@ -57,6 +57,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "{{Foo|1=bar}}", "<root><template><title>Foo</title><part><name>1</name>=<value>bar</value></part></template></root>" ),
 			array( "{{Foo|=bar}}", "<root><template><title>Foo</title><part><name></name>=<value>bar</value></part></template></root>" ),
 			array( "{{Foo|bar=baz}}", "<root><template><title>Foo</title><part><name>bar</name>=<value>baz</value></part></template></root>" ), 
+			array( "{{Foo|{{bar}}=baz}}", "<root><template><title>Foo</title><part><name><template><title>bar</title></template></name>=<value>baz</value></part></template></root>" ),
 			array( "{{Foo|1=bar|baz}}", "<root><template><title>Foo</title><part><name>1</name>=<value>bar</value></part><part><name index=\"1\" /><value>baz</value></part></template></root>" ), 
 			array( "{{Foo|1=bar|2=baz}}", "<root><template><title>Foo</title><part><name>1</name>=<value>bar</value></part><part><name>2</name>=<value>baz</value></part></template></root>" ),
 			array( "{{Foo|bar|foo=baz}}", "<root><template><title>Foo</title><part><name index=\"1\" /><value>bar</value></part><part><name>foo</name>=<value>baz</value></part></template></root>" ), 
