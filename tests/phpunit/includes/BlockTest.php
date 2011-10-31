@@ -27,6 +27,10 @@ class BlockTest extends MediaWikiLangTestCase {
 			$user->saveSettings();
 		}
 
+		$this->createBlock( 100500 );
+	}
+
+	private function createBlock( $expiry ) {
 		// Delete the last round's block if it's still there
 		$oldBlock = Block::newFromTarget( 'UTBlockee' );
 		if ( $oldBlock ) {
@@ -35,7 +39,7 @@ class BlockTest extends MediaWikiLangTestCase {
 		}
 
 		$this->block = new Block( 'UTBlockee', 1, 0,
-			'Parce que'
+			'Parce que', 0, false, time() + $expiry
 		);
 		$this->madeAt = wfTimestamp( TS_MW );
 
@@ -75,6 +79,8 @@ class BlockTest extends MediaWikiLangTestCase {
 	 * per bug 26425
 	 */
 	function testBug26425BlockTimestampDefaultsToTime() {
+		$this->createBlock( 0 );
+
 		// delta to stop one-off errors when things happen to go over a second mark.
 		$delta = abs( $this->madeAt - $this->block->mTimestamp );
 		$this->assertLessThan( 2, $delta, "If no timestamp is specified, the block is recorded as time()");
