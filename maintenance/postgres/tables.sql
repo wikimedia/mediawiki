@@ -116,7 +116,8 @@ CREATE TABLE revision (
   rev_minor_edit  SMALLINT     NOT NULL  DEFAULT 0,
   rev_deleted     SMALLINT     NOT NULL  DEFAULT 0,
   rev_len         INTEGER          NULL,
-  rev_parent_id   INTEGER          NULL
+  rev_parent_id   INTEGER          NULL,
+  rev_sha1        TEXT         NOT NULL DEFAULT ''
 );
 CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
 CREATE INDEX rev_text_id_idx        ON revision (rev_text_id);
@@ -159,6 +160,7 @@ CREATE TABLE archive (
   ar_text        TEXT, -- technically should be bytea, but not used anymore
   ar_page_id     INTEGER          NULL,
   ar_parent_id   INTEGER          NULL,
+  ar_sha1        TEXT         NOT NULL DEFAULT '',
   ar_comment     TEXT,
   ar_user        INTEGER          NULL  REFERENCES mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED,
   ar_user_text   TEXT         NOT NULL,
