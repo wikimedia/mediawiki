@@ -230,7 +230,7 @@
 	 * @param $table jQuery object for a <table>
 	 */ 
 	function emulateTHeadAndFoot( $table ) {
-		var $rows = $table.find( 'tr' );
+		var $rows = $table.find( '> tbody > tr' );
 		if( !$table.get(0).tHead ) {
 			var $thead = $( '<thead>' );
 			$rows.each( function() {
@@ -270,7 +270,7 @@
 			});
 			$tableHeaders = $( longest );
 		}
-		$tableHeaders = $tableHeaders.find( 'th' ).each( function( index ) {
+		$tableHeaders = $tableHeaders.children( 'th' ).each( function( index ) {
 			this.column = realCellIndex;
 
 			var colspan = this.colspan;
@@ -442,13 +442,13 @@
 
 	function explodeRowspans( $table ) {
 		// Split multi row cells into multiple cells with the same content
-		$table.find( 'tbody [rowspan]' ).each(function() {
+		$table.find( '> tbody [rowspan]' ).each(function() {
 			var rowSpan = this.rowSpan;
 			this.rowSpan = 1;
 			var cell = $( this );
 			var next = cell.parent().nextAll();
 			for ( var i = 0; i < rowSpan - 1; i++ ) {
-				var td = next.eq( i ).find( 'td' );
+				var td = next.eq( i ).children( 'td' );
 				if ( !td.length ) {
 					next.eq( i ).append( cell.clone() );
 				} else if ( this.cellIndex === 0 ) {
@@ -599,10 +599,10 @@
 							// Legacy fix of .sortbottoms
 							// Wrap them inside inside a tfoot (because that's what they actually want to be) &
 							// and put the <tfoot> at the end of the <table>
-							var $sortbottoms = $table.find( 'tr.sortbottom' );
+							var $sortbottoms = $table.find( '> tbody > tr.sortbottom' );
 							if ( $sortbottoms.length ) {
-								var $tfoot = $table.find( 'tfoot' );
-								if( $tfoot.length ) {
+								var $tfoot = $table.children( 'tfoot' );
+								if ( $tfoot.length ) {
 									$tfoot.eq(0).prepend( $sortbottoms );
 								} else {
 									$table.append( $( '<tfoot>' ).append( $sortbottoms ) )
