@@ -81,6 +81,7 @@ class PreprocessorTest extends MediaWikiTestCase {
 			array( "Foo <display map>Bar</display map             >Baz", "<root>Foo <ext><name>display map</name><attr></attr><inner>Bar</inner><close>&lt;/display map             &gt;</close></ext>Baz</root>" ),
 			array( "Foo <display map foo>Bar</display map             >Baz", "<root>Foo <ext><name>display map</name><attr> foo</attr><inner>Bar</inner><close>&lt;/display map             &gt;</close></ext>Baz</root>" ),
 			array( "Foo <gallery bar=\"baz\" />", "<root>Foo <ext><name>gallery</name><attr> bar=&quot;baz&quot; </attr></ext></root>" ),
+			array( "Foo <gallery bar=\"1\" baz=2 />", "<root>Foo <ext><name>gallery</name><attr> bar=&quot;1&quot; baz=2 </attr></ext></root>" ),
 			array( "</foo>Foo<//foo>", "<root><ext><name>/foo</name><attr></attr><inner>Foo</inner><close>&lt;//foo&gt;</close></ext></root>" ), # Worth blacklisting IMHO
 			array( "{{#ifexpr: ({{{1|1}}} = 2) | Foo | Bar }}", "<root><template><title>#ifexpr: (<tplarg><title>1</title><part><name index=\"1\" /><value>1</value></part></tplarg> = 2) </title><part><name index=\"1\" /><value> Foo </value></part><part><name index=\"2\" /><value> Bar </value></part></template></root>"),
 			array( "{{#if: {{{1|}}} | Foo | {{Bar}} }}", "<root><template><title>#if: <tplarg><title>1</title><part><name index=\"1\" /><value></value></part></tplarg> </title><part><name index=\"1\" /><value> Foo </value></part><part><name index=\"2\" /><value> <template><title>Bar</title></template> </value></part></template></root>"),
