@@ -648,7 +648,7 @@ Ilmoita tämän sivun osoite wikin [[Special:ListUsers/sysop|ylläpitäjälle]].
 'filedeleteerror'      => 'Tiedostoa <b>$1</b> ei voitu poistaa.',
 'directorycreateerror' => 'Hakemiston ”$1” luominen epäonnistui.',
 'filenotfound'         => 'Tiedostoa <b>$1</b> ei löytynyt.',
-'fileexistserror'      => 'Tiedostoon ”$1” kirjoittaminen epäonnistui: tiedosto on olemassa',
+'fileexistserror'      => 'Tiedostoon ”$1” kirjoittaminen epäonnistui: Tiedosto on olemassa.',
 'unexpected'           => 'Odottamaton arvo: ”$1” on ”$2”.',
 'formerror'            => 'Lomakkeen tiedot eivät kelpaa',
 'badarticleerror'      => 'Toimintoa ei voi suorittaa tälle sivulle.',
@@ -680,7 +680,7 @@ $2',
 'titleprotected'       => "Käyttäjä [[User:$1|$1]] on asettanut tämän sivun luontikieltoon: ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => "Virheellinen asetus: tuntematon virustutka: ''$1''",
+'virus-badscanner'     => "Virheellinen asetus: Tuntematon virustutka: ''$1''",
 'virus-scanfailed'     => 'virustarkistus epäonnistui virhekoodilla $1',
 'virus-unknownscanner' => 'tuntematon virustutka:',
 
@@ -1083,28 +1083,28 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-text-permission' => "Tämä versio on '''poistettu'''.
 Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-deleted-text-unhide'     => "Tämä versio sivusta on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].
-Ylläpitäjänä voit silti [$1 katsoa tämän version].",
+Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].
+Voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 'rev-suppressed-text-unhide'  => "Tämä versio sivusta on '''häivytetty'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].
-Ylläpitäjänä voit silti [$1 katsoa tämän version].",
+Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokista].
+Voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 'rev-deleted-text-view'       => "Tämä versio on '''poistettu'''.
-Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
+Voit silti nähdä sen. Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",
 'rev-suppressed-text-view'    => "Tämä sivun versio on '''häivytetty'''.
-Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
+Voit silti nähdä sen. Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokista].",
 'rev-deleted-no-diff'         => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu'''.
 Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-suppressed-no-diff'      => "Et voi katsoa tätä eroa koska yksi korjattu versio on '''poistettu'''.",
 'rev-deleted-unhide-diff'     => "Yksi tämän muutoksen versioista on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].
-Ylläpitäjänä voit silti [$1 nähdä tämän muutoksen].",
+Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].
+Voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 'rev-suppressed-unhide-diff'  => "Yksi tämän muutosvertailun versioista on '''häivytetty'''.
-Yksityiskohtia saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].
-Ylläpitäjänä voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
+Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokista].
+Voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 'rev-deleted-diff-view'       => "Yksi tämän muutosvertailun versioista on '''poistettu'''.
-Ylläpitäjänä voit silti nähdä tämän muutoksen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
+Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",
 'rev-suppressed-diff-view'    => "Yksi tämän muutosvertailun versioista on '''häivytetty'''.
-Ylläpitäjänä voit silti nähdä tämän muutoksen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
+Voit silti nähdä tämän muutoksen. Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokista].",
 'rev-delundel'                => 'näytä tai piilota',
 'rev-showdeleted'             => 'näytä',
 'revisiondelete'              => 'Poista tai palauta versioita',
@@ -1510,7 +1510,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'right-siteadmin'             => 'Lukita tietokanta',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
 'right-sendemail'             => 'Lähettää sähköpostia muille käyttäjille',
-'right-passwordreset'         => 'Alustaa käyttäjän salasana ([[Special:PasswordReset|toimintosivu alustamiseen]])',
+'right-passwordreset'         => 'Tarkastella salasanan alustusviestejä',
 
 # User rights log
 'rightslog'                  => 'Käyttöoikeusloki',
@@ -2610,7 +2610,7 @@ $1 {{PLURAL:$1|sivu|sivua}} siirrettiin.',
 'delete_and_move'              => 'Poista kohdesivu ja siirrä',
 'delete_and_move_text'         => 'Kohdesivu [[:$1]] on jo olemassa. Haluatko poistaa sen, jotta nykyinen sivu voitaisiin siirtää?',
 'delete_and_move_confirm'      => 'Poista sivu',
-'delete_and_move_reason'       => 'Sivu on siirron tiellä.',
+'delete_and_move_reason'       => 'Sivu on sivun [[$1]] siirron tiellä.',
 'selfmove'                     => 'Lähde- ja kohdenimi ovat samat.',
 'immobile-source-namespace'    => 'Sivuja ei voi siirtää nimiavaruudessa ”$1”',
 'immobile-target-namespace'    => 'Sivuja ei voi siirtää nimiavaruuteen ”$1”',
@@ -3547,7 +3547,7 @@ Sinun olisi pitänyt saada [{{SERVER}}{{SCRIPTPATH}}/COPYING kopio GNU General P
 'filepath-page'    => 'Tiedosto',
 'filepath-submit'  => 'Siirry',
 'filepath-summary' => 'Tämä toimintosivu palauttaa tiedoston URL-osoitteen.
-Kuvat näytetään täysikokoisina, muut tiedostot avataan niille määritetyssä ohjelmassa.',
+Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyssä ohjelmassa.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Kaksoiskappaleiden haku',
@@ -3564,8 +3564,7 @@ Kuvat näytetään täysikokoisina, muut tiedostot avataan niille määritetyss�
 'specialpages'                   => 'Toimintosivut',
 'specialpages-note'              => '----
 * Normaalit toimintosivut.
-* <span class="mw-specialpagerestricted">Rajoitetut toimintosivut.</span>
-* <span class="mw-specialpagecached">Välimuistia käyttävät toimintosivut (saattavat olla vanhentuneita).</span>',
+* <span class="mw-specialpagerestricted">Rajoitetut toimintosivut.</span>',
 'specialpages-group-maintenance' => 'Ylläpito',
 'specialpages-group-other'       => 'Muut',
 'specialpages-group-login'       => 'Kirjautuminen ja tunnusten luonti',

@@ -59,7 +59,7 @@ Bitte versuchen Sie es in ein paar Minuten erneut.',
 'editinginterface'    => "'''Warnung:''' Diese Seite enthält von der MediaWiki-Software genutzten Text.
 Änderungen auf dieser Seite wirken sich auf die Benutzeroberfläche aus.
 Ziehen Sie bitte im Fall von Übersetzungen in Betracht, diese bei [http://translatewiki.net/wiki/Main_Page?setlang=de-formal translatewiki.net], der Lokalisierungsplattform für MediaWiki, durchzuführen.",
-'namespaceprotected'  => "Sie haben keine Berechtigung, Seiten im '''$1'''-Namensraum zu bearbeiten.",
+'namespaceprotected'  => "Sie haben nicht die erforderliche Berechtigung, um Seiten im Namensraum '''$1''' bearbeiten zu können.",
 'customcssprotected'  => 'Sie haben nicht die Berechtigung diese CSS enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.',
 'customjsprotected'   => 'Sie haben nicht die Berechtigung diese JavaScript enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.',
 
@@ -252,7 +252,7 @@ Sichern Sie den Text bitte lokal auf Ihrem Computer und versuchen Sie zu einem s
 
 Grund für die Sperre: $1",
 'nocreatetext'                     => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Sie können bestehende Seiten ändern oder sich [[Special:UserLogin|anmelden]].',
-'nocreate-loggedin'                => 'Sie haben keine Berechtigung, neue Seiten zu erstellen.',
+'nocreate-loggedin'                => 'Sie haben nicht die erforderliche Berechtigung, um neue Seiten erstellen zu können.',
 'permissionserrorstext'            => 'Sie sind nicht berechtigt, die Aktion auszuführen. {{PLURAL:$1|Grund|Gründe}}:',
 'permissionserrorstext-withaction' => 'Sie sind nicht berechtigt, $2.
 {{PLURAL:$1|Grund|Gründe}}:',
@@ -335,7 +335,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'userrights-groups-help'      => 'Sie können die Gruppenzugehörigkeit dieses Benutzer ändern.
 * Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist.
 * Ein * bedeutet, dass Sie das Benutzerrecht nach Erteilung nicht wieder zurücknehmen können (oder umgekehrt).',
-'userrights-no-interwiki'     => 'Sie haben keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
+'userrights-no-interwiki'     => 'Sie haben nicht die erforderliche Berechtigung, um Benutzerrechte in anderen Wikis ändern zu können.',
 'userrights-nologin'          => 'Sie müssen sich mit einem Administrator-Benutzerkonto [[Special:UserLogin|anmelden]], um Benutzerrechte zu ändern.',
 'userrights-notallowed'       => 'Sie verfügen nicht über die erforderlichen Berechtigungen, um Benutzerrechte vergeben oder entziehen zu können.',
 'userrights-changeable-col'   => 'Gruppenzugehörigkeit, die Sie ändern dürfen',
@@ -568,9 +568,9 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'moveuserpage-warning'         => "'''Warnung:''' Sie sind dabei, eine Benutzerseite zu verschieben. Bitte bedenken Sie, dass dadurch nur die Benutzerseite verschoben, '''nicht''' aber der Benutzer umbenannt wird.",
 'movenologin'                  => 'Sie sind nicht angemeldet',
 'movenologintext'              => 'Sie müssen ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
-'movenotallowed'               => 'Sie haben keine Berechtigung, Seiten zu verschieben.',
-'movenotallowedfile'           => 'Sie haben keine Berechtigung, Dateien zu verschieben.',
-'cant-move-user-page'          => 'Sie haben keine Berechtigung, Benutzerhauptseiten zu verschieben.',
+'movenotallowed'               => 'Sie haben nicht die erforderliche Berechtigung, um Seiten verschieben zu können.',
+'movenotallowedfile'           => 'Sie haben nicht die erforderliche Berechtigung, um Dateien verschieben zu können.',
+'cant-move-user-page'          => 'Sie haben nicht die erforderliche Berechtigung, Benutzerhauptseiten verschieben zu können.',
 'cant-move-to-user-page'       => 'Sie haben nicht die Berechtigung, Seiten auf eine Benutzerseite zu verschieben (mit Ausnahme von Benutzerunterseiten).',
 'articleexists'                => 'Unter diesem Namen existiert bereits eine Seite. Bitte wählen Sie einen anderen Namen.',
 'talkexists'                   => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussionsseite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleichen Sie die Inhalte von Hand ab.',

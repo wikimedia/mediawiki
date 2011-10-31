@@ -648,6 +648,18 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 'passwordreset-capture-help'       => 'Jeli nakřižuješ tutón kašćik, budźe so e-mejlka z nachwilnym hesło pokazować a tež wužiwarjej pósłać.',
 'passwordreset-email'              => 'E-mejlowa adresa:',
 'passwordreset-emailtitle'         => 'Kontowe podrobnosće na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'       => 'Něchtó (najskerje ty, z IP-adresu $1) je dopomnjenku na twoje kontowe podrobnosće za {{SITENAME}} požadał ($4).  {{PLURAL:$3|Slědowace wužiwarske konto je|Slědowacej wužiwarskej konće stej|Slědowace wužiwarske konta su|Slědowace wužiwarske konta su}} z tutej e-mejlowej adresu {{PLURAL:$3|zwjazane|zwjazanej|zwjazane|zwjazane}}:
+
+$2
+
+{{PLURAL:$3|Tute nachwilne hesło spadnje|Tutej nachwilnej hesle spadnjetej|Tute nachwilne hesła spadnu|Tute nachwilne hesła spadnu}} za {{PLURAL:$5|jedyn dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
+Ty měł so nětko přizjewić a nowe hesło wubrać. Jeli něchtó druhi je tute naprašowanje pósłał, abo jeli sy so zaso na prěnjotne hesło dopomnił a wjace nochceš jo změnić, móžeš tutu zdźělenku ignorować a swoje stare hesło dale wužiwać.',
+'passwordreset-emailtext-user'     => 'Wužiwar $1 je dopomnjenku na twoje kontowe podrobnosće za {{SITENAME}} požadał ($4).  {{PLURAL:$3|Slědowace wužiwarske konto je|Slědowacej wužiwarskej konće stej|Slědowace wužiwarske konta su|Slědowace wužiwarske konta su}} z tutej e-mejlowej adresu {{PLURAL:$3|zwjazane|zwjazanej|zwjazane|zwjazane}}:
+
+$2
+
+{{PLURAL:$3|Tute nachwilne hesło spadnje|Tutej nachwilnej hesle spadnjetej|Tute nachwilne hesła spadnu|Tute nachwilne hesła spadnu}} za {{PLURAL:$5|jedyn dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
+Ty měł so nětko přizjewić a nowe hesło wubrać. Jeli něchtó druhi je tute naprašowanje pósłał, abo jeli sy so zaso na prěnjotne hesło dopomnił a wjace nochceš jo změnić, móžeš tutu zdźělenku ignorować a swoje stare hesło dale wužiwać.',
 'passwordreset-emailelement'       => 'Wužiwarske mjeno: $1
 Nachwilne hesło: $2',
 'passwordreset-emailsent'          => 'Wopomnjenska e-mejlka je so pósłała.',
@@ -1831,7 +1843,7 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'listusers-editsonly'     => 'Jenož wužiwarjow ze změnami pokazać',
 'listusers-creationsort'  => 'Po datumje wutworjenja sortěrować',
 'usereditcount'           => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
-'usercreated'             => 'Wutworjeny $1 $2 hodź.',
+'usercreated'             => 'je so $1 $2 hodź. {{GENDER:$3|wutworił|wutworiła}}',
 'newpages'                => 'Nowe strony',
 'newpages-username'       => 'Wužiwarske mjeno:',
 'ancientpages'            => 'Najstarše nastawki',
@@ -2132,7 +2144,7 @@ Hlej [[Special:ProtectedPages|lisćinu škitanych stronow]] za lisćinu tuchwilu
 'protect-level-sysop'         => 'jenož administratorojo',
 'protect-summary-cascade'     => 'kaskadowacy',
 'protect-expiring'            => 'spadnje $1 (UTC)',
-'protect-expiring-local'      => 'płaćiwy hč do $1',
+'protect-expiring-local'      => 'płaćiwy hač do $1',
 'protect-expiry-indefinite'   => 'njewobmjezowany',
 'protect-cascade'             => 'Kaskadowacy škit – wšě w tutej stronje zapřijate strony so škituja.',
 'protect-cantedit'            => 'Njemóžeš škitowe runiny tuteje strony změnić, dokelž nimaš dowolnosć, zo by ju wobdźěłał.',
@@ -2213,10 +2225,12 @@ $1',
 'undelete-show-file-submit'    => 'Haj',
 
 # Namespace form on various pages
-'namespace'             => 'Mjenowy rum:',
-'invert'                => 'Wuběr wobroćić',
-'namespace_association' => 'Nawjazany mjenowy rum',
-'blanknamespace'        => '(Nastawki)',
+'namespace'                     => 'Mjenowy rum:',
+'invert'                        => 'Wuběr wobroćić',
+'tooltip-invert'                => 'Klikń na tutón kašćik, zo by změny na stronach we wubranym mjenowym rumje schował (a, jeli wubrany, w zwjazanym mjenowym rumje)',
+'namespace_association'         => 'Nawjazany mjenowy rum',
+'tooltip-namespace_association' => 'Klikń na tutón kašćik, zo by diskusijny mjenowy rum abo temowy mjenowy rum, kotryž je z wubranym mjenowym rumom zwjazany, tež zapřijał',
+'blanknamespace'                => '(Nastawki)',
 
 # Contributions
 'contributions'       => 'Přinoški wužiwarja',
@@ -2304,6 +2318,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] bu zablokowany.
 <br />Hlej [[Special:IPBlockList|lisćinu blokowanjow IP]], zo by zablokowanjow pruwował.',
 'ipb-blockingself'                => 'Chceš samoho blokować! Chceš to woprawdźe činić?',
+'ipb-confirmhideuser'             => 'Chceš runje wužiwarja z nastajenjom "wužiwarja schować" blokować. To k tomu dowjedźe, zo mjeno wužiwarja so we wšch lisćinach a protokolowych zapiskach potłóči. Chceš to woprawdźe činić?',
 'ipb-edit-dropdown'               => 'přičiny zablokowanjow wobdźěłać',
 'ipb-unblock-addr'                => 'zablokowanje wužiwarja „$1“ zběhnyć',
 'ipb-unblock'                     => 'zablokowanje wužiwarja abo IP-adresy zběhnyć',

@@ -451,10 +451,7 @@ Se, se ka hlolwa ke ge letlakala le phumulwa goba la hudušwa ge wena o sa le le
 Go tlhola letlakala, thoma go ngwalo lepokising le letelago
 (lebelela [[{{MediaWiki:Helppage}}|letlakala la thušo]] go hwetša šedi).
 Ga eba o le fa ka phošo, o ka boela morago ka go šumiša konopo ya '''back''' go ''browser'' ya gago.",
-'noarticletext'                    => 'Ga gona ditlhaka letlakaleng le, 
-oka [[Special:Search/{{PAGENAME}}|fetleka liena la letlakala]] matlakaleng a mangwe,
-<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} fetleka "logs"],
- goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola letlakala le]</span>.',
+'noarticletext'                    => 'Ga gona ditlhaka letlakaleng le, oka [[Special:Search/{{PAGENAME}}|fetleka liena la letlakala]] matlakaleng a mangwe, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} fetleka "logs"], goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola letlakala le]</span>.',
 'noarticletext-nopermission'       => 'Ga gona ditlhaka letlakaleng le, 
 oka [[Special:Search/{{PAGENAME}}|fetleka liena la letlakala]] matlakaleng a mangwe,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} fetleka "logs"],

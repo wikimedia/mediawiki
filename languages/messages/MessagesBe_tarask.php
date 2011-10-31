@@ -3710,7 +3710,7 @@ MediaWiki распаўсюджваецца з надзеяй, што будзе 
 'logentry-patrol-patrol-auto'         => '$1 аўтаматычна {{GENDER:$2|пазначыў|пазначыла}} вэрсію $4 старонкі $3 як правераную',
 'logentry-newusers-newusers'          => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак',
 'logentry-newusers-create'            => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак',
-'logentry-newusers-create2'           => '$1 {{GENDER:$2|стварыў|стварыла}} рахунак $3',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|стварыў|стварыла}} {{GENDER:$4|}}рахунак $3',
 'logentry-newusers-autocreate'        => 'Рахунак $1 быў {{GENDER:$2|}}створаны аўтаматычна',
 'newuserlog-byemail'                  => 'Пароль адасланы па электроннай пошце',
 
