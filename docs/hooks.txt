@@ -1487,6 +1487,7 @@ $subject : subject of the new section
 Return false and put the merged text into $text to override the default behavior.
 
 'PreferencesGetLegend': Override the text used for the <legend> of a preferences section
+$form: the PreferencesForm object. This is a ContextSource as well
 $key: the section name
 &$legend: the legend text. Defaults to wfMsg( "prefs-$key" ) but may be overridden
 
