@@ -1650,12 +1650,12 @@ $1",
 'group-suppress'      => 'نظار',
 'group-all'           => '(الكل)',
 
-'group-user-member'          => 'مستخدم',
-'group-autoconfirmed-member' => 'مستخدم مؤكد تلقائيا',
+'group-user-member'          => '{{GENDER:$1|مستخدم|مستخدمة}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|مستخدم مؤكد تلقائيًا|مستخدمة مؤكدة تلقائيًا}}',
 'group-bot-member'           => 'بوت',
-'group-sysop-member'         => 'مدير نظام',
+'group-sysop-member'         => '{{GENDER:$1|إداري|إدارية}}',
 'group-bureaucrat-member'    => 'بيروقراط',
-'group-suppress-member'      => 'ناظر',
+'group-suppress-member'      => '{{GENDER:$1|ناظر|ناظرة}}',
 
 'grouppage-user'          => '{{ns:project}}:مستخدمون',
 'grouppage-autoconfirmed' => '{{ns:project}}:مستخدمون مؤكدون تلقائيا',
@@ -2909,7 +2909,7 @@ $1',
 الصفحة الهدف "[[:$1]]" موجودة بالفعل.
 هل تريد حذفها لإفساح المجال للنقل؟',
 'delete_and_move_confirm'      => 'نعم، احذف الصفحة',
-'delete_and_move_reason'       => 'تم الحذف لإفساح مجال للنقل',
+'delete_and_move_reason'       => 'حُذِفت لإفساح مجال لنقل "[[$1]]"',
 'selfmove'                     => 'لا يوجد اختلاف في عنوان المصدر والهدف؛
 لا يمكن نقل الصفحة على نفسها.',
 'immobile-source-namespace'    => 'غير قادر على نقل الصفحات في النطاق "$1"',
@@ -3948,6 +3948,7 @@ $1',
 'hebrew-calendar-m12-gen' => 'أيلول',
 
 # Signatures
+'signature'    => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|نقاش]])',
 'timezone-utc' => 'ت ع م',
 
 # Core parser functions

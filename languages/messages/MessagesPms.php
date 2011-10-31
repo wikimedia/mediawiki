@@ -2089,7 +2089,7 @@ Ambelessì a-i son le regolassion corente për la pàgina '''$1''':",
 Ambelessì a-i son j'ampostassion atuaj për la pàgina '''$1''':",
 'protect-cascadeon'           => "Sta pàgina për adess a l'é blocà përchè a-i intra ant {{PLURAL:$1|la pàgina sì-sota, ch'a l'ha|le-pàgine sì sota, ch'a l'han}} na protession a sàut anvisca. A peul cambie-je sò livel ëd protession a sta pàgina-sì ma lòn a tochërà pa la protession a sàut.",
 'protect-default'             => "Autorisé tùit j'utent",
-'protect-fallback'            => 'A-i va ël përmess "$1"',
+'protect-fallback'            => 'A-i va ël përmess «$1»',
 'protect-level-autoconfirmed' => "Bloca j'utent neuv e coj nen registrà",
 'protect-level-sysop'         => "mach për j'aministrator",
 'protect-summary-cascade'     => 'a sàut',
@@ -2105,8 +2105,8 @@ Ambelessì a-i son j'ampostassion atuaj për la pàgina '''$1''':",
 'protect-otherreason-op'      => 'Àutra rason',
 'protect-dropdown'            => '*Rason comun-e ëd protession
 ** Tròp vandalism
-** Tròp spamming
-** Edit war nen produtiv
+** Tròpa rumenta
+** Guère ëd modìfiche danose
 ** Pàgina con motobin ëd tràfich',
 'protect-edit-reasonlist'     => 'Rason ëd la protession da le modìfiche',
 'protect-expiry-options'      => '1 ora:1 hour,1 di:1 day,1 sman-a:1 week,2 sman-e:2 weeks,1 meis:1 month,3 meis:3 months,6 meis:6 months,1 ann:1 year,për sempe:infinite',
@@ -2117,10 +2117,10 @@ Ambelessì a-i son j'ampostassion atuaj për la pàgina '''$1''':",
 'pagesize'                    => '(byte)',
 
 # Restrictions (nouns)
-'restriction-edit'   => 'Modìfica',
-'restriction-move'   => 'Tramuda',
+'restriction-edit'   => 'Modifiché',
+'restriction-move'   => 'Tramudé',
 'restriction-create' => 'Creé',
-'restriction-upload' => 'Caria',
+'restriction-upload' => 'Carié',
 
 # Restriction levels
 'restriction-level-sysop'         => 'protegiùa',
@@ -2128,7 +2128,7 @@ Ambelessì a-i son j'ampostassion atuaj për la pàgina '''$1''':",
 'restriction-level-all'           => 'tuti ij livej',
 
 # Undelete
-'undelete'                     => 'Pija andré na pàgina scancelà',
+'undelete'                     => 'Vëdde le pàgine scancelà',
 'undeletepage'                 => 'S-ciàira e pija andaré le pàgine scancelà',
 'undeletepagetitle'            => "'''Lòn ch'a-i é ambelessì a son tute revision scancelà ëd [[:$1]]'''.",
 'viewdeletedpage'              => 'Smon le pàgine scancelà',

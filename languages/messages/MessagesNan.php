@@ -678,17 +678,40 @@ Lí ê kái-piàn tī ē-kha ê bûn-jī-keh. Lí su-iàu chiōng lí chò ê k�
 非ASCII字元會以十六進位編碼模式出現佇編輯框當中。",
 'editingold'                       => "'''KÉNG-KÒ: Lí tng teh siu-kái chit ia̍h ê 1 ê kū siu-tēng-pún. Lí nā kā pó-chûn khí lâi, chit ê siu-tēng-pún sòa-āu ê jīm-hô kái-piàn ē bô khì.'''",
 'yourdiff'                         => 'Chha-pia̍t',
+'copyrightwarning'                 => "請注意你佇{{SITENAME}}的所有貢獻攏會照$2發布（看$1的說明）。
+若你無希望你寫的文字hông隨意改抑是傳送，請毋莫佇遮送出。<br />
+你嘛向阮保證你送出來的內容是你家己寫的，抑是對無版權抑有授權的遐抄來的。
+'''毋通無授權就送出有版權作品！'''",
+'copyrightwarning2'                => "請注意你佇{{SITENAME}}的所有貢獻，可能會予別的用者修改抑徙走，
+若你無希望你寫的文字hông無情修改，就毋莫佇遮提交。<br />
+你嘛向阮保證這是你家己寫的，抑是對無版權抑有授權(看$1的說明)的遐抄來的。
+'''毋通無授權就送出有版權作品！'''",
+'longpageerror'                    => "'''錯誤: 你送出來的文章長度有$1KB，這大過$2KB的上大界限。'''
+伊無法度保存。",
 'readonlywarning'                  => "'''CHÙ-Ì: Chu-liāu-khò· taⁿ só tiâu leh thang pān î-siu khang-khòe, só·-í lí hiān-chú-sî bô thang pó-chûn jīn-hô phian-chi̍p hāng-bo̍k. Lí ē-sái kā siong-koan pō·-hūn tah--ji̍p-khì 1-ê bûn-jī tóng-àn pó-chûn, āu-chhiú chiah koh kè-sio̍k.'''
 
 Kā só tiâu ê koán-lí-goân ū lâu oē: $1",
 'protectedpagewarning'             => "'''KÉNG-KÒ: Pún ia̍h só tiâu leh. Kan-taⁿ ū hêng-chèng te̍k-koân ê iōng-chiá (sysop) ē-sái siu-kái.'''
 Ē-kha ū choè-kīn ê kì-lo̍k thang chham-khó:",
+'semiprotectedpagewarning'         => "'''注意：'''這頁hông保護牢咧，只有有註冊的用者通編輯。
+下跤有最近的記錄通參考：",
+'cascadeprotectedwarning'          => "'''注意：'''這頁已經hông保護牢咧，只有有管理員權限的用者才有法度改，因為這頁佇{{PLURAL:$1|頁|頁}}的連鎖保護內底:",
+'titleprotectedwarning'            => "'''注意：這頁已經hông保護牢咧，需要有[[Special:ListGroupRights|指定權限]]的才會當創建。'''
+下跤有最近的記錄通參考：",
 'templatesused'                    => 'Chit ia̍h iōng {{PLURAL:$1|Template|Templates}} chia ê pang-bô· :',
 'templatesusedpreview'             => 'Chit ê preview iōng chia ê {{PLURAL:$1|Template|pang-bô͘}}',
 'templatesusedsection'             => 'Chit ê toāⁿ-lo̍k iōng chia ê {{PLURAL:$1|Template|pang-bô͘}}',
 'template-protected'               => '(pó-hō͘)',
 'template-semiprotected'           => '(poàⁿ pó-hō͘)',
 'hiddencategories'                 => '這頁是屬於{{PLURAL:$1|一个隱藏類別|$1个隱藏類別}}的成員：',
+'nocreatetitle'                    => '欲創建頁hông限制',
+'nocreatetext'                     => '{{SITENAME}}限制創建新頁的功能。你會當倒退佮改現有的頁，抑是[[Special:UserLogin|登入抑是開一个口座]]。',
+'nocreate-loggedin'                => '你無授權去創建新頁。',
+'sectioneditnotsupported-title'    => '編輯段落是袂當得',
+'sectioneditnotsupported-text'     => '段落編輯佇這頁袂當得',
+'permissionserrors'                => '授權錯誤',
+'permissionserrorstext'            => '你無允准去做彼，因為下跤
+{{PLURAL:$1|原因|原因}}:',
 'permissionserrorstext-withaction' => 'Lí bô ún-chún chò $2, in-ūi ē-kha
 {{PLURAL:$1|iân-kò͘|iân-kò͘}}:',
 'recreate-moveddeleted-warn'       => "'''Sè-jī: Lí taⁿ chún-pī beh khui ê ia̍h, chêng bat hō͘ lâng thâi tiāu koè.''' 

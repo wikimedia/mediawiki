@@ -150,7 +150,7 @@ $messages = array(
 
 'about'         => 'Ouer',
 'article'       => 'Sid',
-'newwindow'     => '(wårt önj en nai waning änäämmååged)',
+'newwindow'     => '(wårt önj en nai waning ääm mååged)',
 'cancel'        => 'Oufbreege',
 'moredotdotdot' => 'Mör ...',
 'mypage'        => 'Äine sid',
@@ -177,7 +177,7 @@ $messages = array(
 'vector-action-protect'          => 'Sääkere',
 'vector-action-undelete'         => 'Wi mååge',
 'vector-action-unprotect'        => 'Frijeewe unti späre',
-'vector-simplesearch-preference' => 'Erwiderde säkforsliike aktiwiire (bloot vector)',
+'vector-simplesearch-preference' => 'Ütwidede säkforsliike aktiwiire (bloot vector)',
 'vector-view-create'             => 'Mååge',
 'vector-view-edit'               => 'Beårbe',
 'vector-view-history'            => 'Dootäifärsjoone',
@@ -247,6 +247,9 @@ Tufoole brükere fersäke, jüdeer sid tu besäken.
 Wees sü gödj än täiw hu minuute, iir dü dåt nuch iinjsen ferseechst.
 
 $1',
+'pool-timeout'      => "Tidj uflepen bi't teewen üüb't sperang",
+'pool-queuefull'    => 'Pool as auerläästet',
+'pool-errorunknown' => 'Ünbekäänd feeler',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Ouer {{SITENAME}}',
@@ -294,6 +297,8 @@ Sii jü [[Special:Version|Färsjoonssid]]',
 'toc'                     => 'Inhåltsfertiiknis',
 'showtoc'                 => 'Wise',
 'hidetoc'                 => 'Ferbärje',
+'collapsible-collapse'    => 'Tuupdoble',
+'collapsible-expand'      => 'Ütjenööderdoble',
 'thisisdeleted'           => '$1 önjkiike unti widermååge?',
 'viewdeleted'             => '$1 wise?',
 'restorelink'             => '$1 {{PLURAL:$1|sträägen Färsjoon|sträägene Färsjoone}}',
@@ -307,9 +312,11 @@ Sii jü [[Special:Version|Färsjoonssid]]',
 'feed-atom'               => 'Atom',
 'feed-rss'                => 'RSS',
 'red-link-title'          => '$1 (sid ai deer)',
+'sort-descending'         => 'Sortiare faan boowen tu onern',
+'sort-ascending'          => 'Sortiare faan onern tu boowen',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'sid',
+'nstab-main'      => 'Sid',
 'nstab-user'      => 'Brükersid',
 'nstab-media'     => 'Meediesid',
 'nstab-special'   => 'Spetsjåålsid',
@@ -394,9 +401,11 @@ For ouerseetinge tånk deeram, jü önj di  [http://translatewiki.net/wiki/Main_
 önjbünen, {{PLURAL:$1|jü|da}} madels e kaskaadespäropsjoon önj febading hüüljen {{PLURAL:$1|as|san}}:
 $2',
 'namespaceprotected'   => "Dü hääst niinj beruchtiging, jü sid önj di '''$1'''-noomerüm tu beårben.",
+'customcssprotected'   => 'Dü mutst detheer CSS sidj ei bewerke, auer det hoker ööders hiart.',
+'customjsprotected'    => 'Dü mutst detheer JavaScript sidj ei bewerke, auer det hoker ööders hiart.',
 'ns-specialprotected'  => 'Spetsjåålside koone ai beårbed wårde.',
 'titleprotected'       => 'En sid ma dideer noome koon ai önjläid wårde.
-Jü späre wörd döör [[User:$1|$1]] ma grün "$2" önjruchted.',
+Jü späre wörd döör [[User:$1|$1]] ma grün "$2" inruchted.',
 
 # Virus scanner
 'virus-badscanner'     => "Hiinje konfigurasjoon: ünbekånde fiirusscanner: ''$1''",
@@ -418,7 +427,7 @@ Ferjees ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen
 'remembermypassword'         => 'Aw diheere komputer foon duur önjmälde (maksimool for {{PLURAL:$1|däi|deege}})',
 'securelogin-stick-https'    => 'Eefter önjmälding ma HTTPS ferbünen bliwe',
 'yourdomainname'             => 'Din domain:',
-'externaldberror'            => 'Önjtwider deer läit en fäägel bai jü äkstärn autentifisiiring for, unti dü möist din äkstärn brükerkonto äi aktualisiire.',
+'externaldberror'            => 'Deer läit en fäägel bai jü äkstärn autentifisiiring for, unti dü möist din äkstärn brükerkonto äi aktualisiire.',
 'login'                      => 'Önjmälde',
 'nav-login-createaccount'    => 'Önjmälde',
 'loginprompt'                => 'For jü önjmälding monje cookies aktiwiird weese.',
@@ -428,8 +437,8 @@ Ferjees ai, din [[Special:Preferences|{{SITENAME}}-önjstalinge]] önjtupååsen
 'userlogout'                 => 'Oufmälde',
 'notloggedin'                => 'Ai önjmälded',
 'nologin'                    => "Dü hääst niinj brükerkonto? '''$1'''.",
-'nologinlink'                => 'Nai brükerkonto anleede',
-'createaccount'              => 'Brükerkonto anleede',
+'nologinlink'                => 'Nai brükerkonto inruchte',
+'createaccount'              => 'Brükerkonto inruchte',
 'gotaccount'                 => "Dü hääst ål en brükerkonto? '''$1'''.",
 'gotaccountlink'             => 'Önjmälde',
 'userlogin-resetlink'        => 'Heest dü din login dooten ferjiden?',
@@ -444,6 +453,8 @@ Wees sü gödj en kiis en ouderen.',
 Wees sü gödj än aktiwiir da än mäld de dan ma dan naien benjüternoome än dåt tuhiirend pååsuurd önj.',
 'nocookieslogin'             => '{{SITENAME}} benjütet cookies tu e önjmälding foon da benjütere. Dü heest Cookis deaktiwiird.
 Wees sü gödj än aktiwiir da än fersäk dåt wider.',
+'nocookiesfornew'            => 'Det brükerkonto as ei iinracht wurden, auer wi ei witj, huar a dooten faan kem.
+Üüb dan kompjuuter skel cookies aktiwiaret wees. Do rep detheer sidj noch ans nei ap.',
 'noname'                     => 'Dü möist en gültigen brükernooem önjjeewe.',
 'loginsuccesstitle'          => 'Önjmälding erfolchrik',
 'loginsuccess'               => "'''Dü bast nü ås „$1“ bai {{SITENAME}} önjmälded.'''",
@@ -461,6 +472,12 @@ Wees sü gödje än fersäk dåt nuch iinjsen.',
 'password-login-forbidden'   => 'Jüdeer brükernoome än paasuurd as ferbin.',
 'mailmypassword'             => 'Nai pååsuurd tusiinje',
 'passwordremindertitle'      => 'Nai tidwise pååsuurd for {{SITENAME}}',
+'passwordremindertext'       => 'En brüker (woorskiinelk dü, faan IP adres $1) hää am en nei paaswurd för {{SITENAME}} ($4) fraaget.
+En nei paaswurd för di brüker "$2" as maaget wurden an het nü "$3".
+
+Wan dü det würelk so haa wel, do melde di nü uun an feranere det paaswurd. Det nei paaswurd täält för {{PLURAL:$5|ään dai|$5 daar}}.
+
+Wan dü ei salew am en nei paaswurd fraaget heest, do säärst dü di am niks widjer komre. Do könst dü din ual paaswurd widjer brük.',
 'noemail'                    => 'Deer as niinj E-mail-adräs bekånd for brüker "$1".',
 'noemailcreate'              => 'Dü möist en gülti E-mail-adräs önjjeewe',
 'passwordsent'               => 'En nai pååsuurd as sånd tu jü E-mail-adräs registriird for "$1".
@@ -480,6 +497,7 @@ Besäkere, da iüheer IP-adräse brüke, koone tu jü tutids niinj benutserkonte
 'emailconfirmlink'           => 'E-mail-adräs bestääsie (autäntifisiire).',
 'invalidemailaddress'        => 'Jü E-mail adräs wörd ai aksäptiird, ouerdåt jü en üngülti formoot (ewentuäl üngültie tiikne) tu heewen scheent.
 Wees sü gödj än jeef en koräkt adräs önj unti mäág dåt fäalj lääsi.',
+'cannotchangeemail'          => 'E-mail-adresen kön uun detheer wiki ei feranert wurd.',
 'accountcreated'             => 'Benjüterkonto mååged',
 'accountcreatedtext'         => 'Dåt benjüteraccount for $1 as mååged wörden.',
 'createaccount-title'        => 'Måågen foon en benjüterkonto for {{SITENAME}}',
@@ -495,7 +513,8 @@ Wees sü gödj än täif, bit dü wider ferseechst.',
 'suspicious-userlogout'      => 'Dan Oufmäldönjfrååge wörd ferwaigred, deer ja fermouslik foon en defäkte browser unti en cache-proxy sånd wörd.',
 
 # E-mail sending
-'user-mail-no-addy' => 'Köö niinj e-mail schake suner e-mail-adres.',
+'php-mail-error-unknown' => 'Ünbekäänd feeler mä det funktsjuun mail() faan PHP.',
+'user-mail-no-addy'      => 'Köö niinj e-mail schake suner e-mail-adres.',
 
 # Change password dialog
 'resetpass'                 => 'Pååsuurd änre',
@@ -517,10 +536,14 @@ Möölikerwise heest dü din pååsuurd ål ma erfolch änred heest unti en nai 
 
 # Special:PasswordReset
 'passwordreset'              => 'Paasuurd tubääg seete',
+'passwordreset-text'         => 'Fal detheer formulaar ütj, an do woort di en e-mail tusjüürd mä henwiiser tu din brükerkonto-uunmeldang.',
 'passwordreset-legend'       => 'Paasuurd tubääg seete',
 'passwordreset-disabled'     => 'Dü koost din paasuurd aw jüdeer wiki ai tubääg seete',
+'passwordreset-pretext'      => '{{PLURAL:$1||Du ian faan jo dooten oner iin}}',
 'passwordreset-username'     => 'Brükernoome:',
 'passwordreset-domain'       => 'Domain:',
+'passwordreset-capture'      => 'Wel dü det e-mail nooracht uunluke?',
+'passwordreset-capture-help' => 'Wan dü detheer kasje uunkrüsagst, woort det e-mail nooracht mä det nei paaswurd uunwiset an tu di brüker sjüürd.',
 'passwordreset-email'        => 'E-mail adres:',
 'passwordreset-emailtitle'   => 'Brükerkonto aw {{SITENAME}}',
 'passwordreset-emailelement' => 'Brükernoome: $1
@@ -530,6 +553,8 @@ Tidwis paasuurd: $2',
 'changeemail-oldemail' => 'Aktuel e-mail adres',
 'changeemail-newemail' => 'Nei e-mail adres',
 'changeemail-none'     => '(niin)',
+'changeemail-submit'   => 'E-mail adres feranere',
+'changeemail-cancel'   => 'Ufbreeg',
 
 # Edit page toolbar
 'bold_sample'     => 'Fåten täkst',
@@ -601,6 +626,12 @@ Wees sü gödj än präif, weer dü jüdeer sid wörklik mååge/beårbe wååt.
 'userpage-userdoesnotexist-view'   => 'Benjüterkonto "$1" bestoont ai.',
 'blocked-notice-logextract'        => 'Dideer benjüter as tutids spärd.
 For informasjoon füliet di leeste üttooch üt dåt benjüterspär-logbök:',
+'clearyourcache'                   => "'''Beaachte:''' Maage di cache faan dan browser leesag, wan dü a feranerangen sä wel.
+* '''Firefox / Safari:''' Hual ''Shift'' bi't aktualisiarin, of trak ''Strg an F5'' of ''Strg an R'' (''Command-R'' üüb en Mac)
+* '''Google Chrome:''' Trak ''Strg an Shift an R'' (''Command an Shift an R'' üüb en Mac)
+* '''Internet Explorer:''' Hual ''Strg'' bi't aktualisiarin, of trak ''Strg an F5''
+* '''Konqueror:''' Trak ''Aktualisiarin'' of trak ''F5''
+* '''Opera:''' ''Extras - Internetspuren löschen - Individuelle Auswahl - Den kompletten Cache löschen''",
 'usercssyoucanpreview'             => "'''Tip:''' Brük di „{{int:showpreview}}“-knoop, am din nai CSS for dåt spiikern tu tästen.",
 'userjsyoucanpreview'              => "'''Tip:''' Brük di „{{int:showpreview}}“-knoop, am din nai JavaScript for dåt spiikern tu tästen.",
 'usercsspreview'                   => "'''Påås aw dåt dü bloot din brüker CSS forbekiikest.'''
@@ -1445,6 +1476,16 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 
 # Special:SpecialPages
 'specialpages' => 'Spetsjåålside',
+
+# External image whitelist
+'external_image_whitelist' => " #Feranere detheer rä ei<pre>
+#Dialen faan reguleer ütjdrüker (tesken a tiakens //) kön oner iinden wurd.
+#Jo wurd do mä URLs faan ekstern bilen ferglikt.
+#Huar't auerianstemet, woort det bil uunwiset, ööders bluas en ferwis üüb det bil.
+#Räen mä en # bi a began san komentaaren.
+#Grat- an letjskriiwang woort ei onerskääst.
+
+#Skriiw dialen faan reguleer ütjdrüker auer detheer rä. Feranere detheer rä ei</pre>",
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|Kääntiaken]] filter:',

@@ -3403,7 +3403,7 @@ Variants for Chinese language
 'exif-copyrighted-true'  => 'Заштитена',
 'exif-copyrighted-false' => 'Јавна сопственост',
 
-'exif-photometricinterpretation-2' => 'ЦЗС (RGB)',
+'exif-photometricinterpretation-2' => 'RGB',
 'exif-photometricinterpretation-6' => 'YCbCr',
 
 'exif-unknowndate' => 'Непознат датум',
@@ -3423,7 +3423,7 @@ Variants for Chinese language
 'exif-xyresolution-i' => '$1 точки на инч',
 'exif-xyresolution-c' => '$1 точки на сантиметар',
 
-'exif-colorspace-1'     => 'пЦЗС (sRGB)',
+'exif-colorspace-1'     => 'sRGB',
 'exif-colorspace-65535' => 'Неизбаждарена',
 
 'exif-componentsconfiguration-0' => 'не постои',

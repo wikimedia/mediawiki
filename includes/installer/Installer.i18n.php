@@ -5179,8 +5179,8 @@ Comprobe o seu php.ini e asegúrese de que en <code>session.save_path</code> est
 	'config-page-existingwiki' => 'Wiki existente',
 	'config-help-restart' => 'Quere eliminar todos os datos gardados e reiniciar o proceso de instalación?',
 	'config-restart' => 'Si, reiniciala',
-	'config-welcome' => '=== Comprobación do entorno ===
-Cómpre realizar unhas comprobacións básicas para ver se o entorno é axeitado para a instalación de MediaWiki.
+	'config-welcome' => '=== Comprobación da contorna ===
+Cómpre realizar unhas comprobacións básicas para ver se a contorna é axeitada para a instalación de MediaWiki.
 Deberá proporcionar os resultados destas comprobacións se necesita axuda durante a instalación.',
 	'config-copyright' => "=== Dereitos de autor e termos de uso ===
 
@@ -5201,9 +5201,9 @@ Debería recibir <doclink href=Copying>unha copia da licenza pública xeral GNU<
 * <doclink href=ReleaseNotes>Notas de lanzamento</doclink>
 * <doclink href=Copying>Copia</doclink>
 * <doclink href=UpgradeDoc>Actualización</doclink>',
-	'config-env-good' => 'Rematou a comprobación do entorno.
+	'config-env-good' => 'Rematou a comprobación da contorna.
 Pode instalar MediaWiki.',
-	'config-env-bad' => 'Rematou a comprobación do entorno.
+	'config-env-bad' => 'Rematou a comprobación da contorna.
 Non pode instalar MediaWiki.',
 	'config-env-php' => 'Está instalado o PHP $1.',
 	'config-env-php-toolow' => 'Está instalado o PHP $1.
@@ -5359,7 +5359,7 @@ $1
 
 Se non ve listado a continuación o sistema de base de datos que intenta usar, siga as instrucións ligadas enriba para activar o soporte.',
 	'config-support-mysql' => '* $1 é o obxectivo principal para MediaWiki e está mellor soportado ([http://www.php.net/manual/en/mysql.installation.php como compilar o PHP con soporte MySQL])',
-	'config-support-postgres' => '* $1 é un sistema de base de datos popular e de código aberto como alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar o PHP con soporte PostgreSQL]). É posible que haxa algúns pequenos erros e non se recomenda o seu uso nun entorno de produción.',
+	'config-support-postgres' => '* $1 é un sistema de base de datos popular e de código aberto como alternativa a MySQL ([http://www.php.net/manual/en/pgsql.installation.php como compilar o PHP con soporte PostgreSQL]). É posible que haxa algúns pequenos erros e non se recomenda o seu uso nunha contorna de produción.',
 	'config-support-sqlite' => '* $1 é un sistema de base de datos lixeiro moi ben soportado. ([http://www.php.net/manual/en/pdo.installation.php Como compilar o PHP con soporte SQLite], emprega PDO)',
 	'config-support-oracle' => '* $1 é un sistema comercial de xestión de base de datos de empresa. ([http://www.php.net/manual/en/oci8.installation.php Como compilar PHP con soporte OCI8])',
 	'config-support-ibm_db2' => '* $1 é unha base de datos de empresa comercial.',
