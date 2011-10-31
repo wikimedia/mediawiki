@@ -1487,6 +1487,9 @@ class Preferences {
 
 /** Some tweaks to allow js prefs to work */
 class PreferencesForm extends HTMLForm {
+	// Override default value from HTMLForm
+	protected $mSubSectionBeforeFields = false;
+	
 	private $modifiedUser;
 
 	public function setModifiedUser( $user ) {

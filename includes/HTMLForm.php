@@ -113,6 +113,15 @@ class HTMLForm extends ContextSource {
 	protected $mButtons = array();
 
 	protected $mWrapperLegend = false;
+	
+	/**
+	 * If true, sections that contain both fields and subsections will
+	 * render their subsections before their fields.
+	 * 
+	 * Subclasses may set this to false to render subsections after fields
+	 * instead.
+	 */
+	protected $mSubSectionBeforeFields = true;
 
 	/**
 	 * Build a new HTMLForm from an array of field attributes
@@ -775,7 +784,11 @@ class HTMLForm extends ContextSource {
 		$tableHtml = Html::rawElement( 'table', $attribs,
 			Html::rawElement( 'tbody', array(), "\n$tableHtml\n" ) ) . "\n";
 
-		return $subsectionHtml . "\n" . $tableHtml;
+		if ( $this->mSubSectionBeforeFields ) {
+			return $subsectionHtml . "\n" . $tableHtml;
+		} else {
+			return $tableHtml . "\n" . $subsectionHtml;
+		}
 	}
 
 	/**
