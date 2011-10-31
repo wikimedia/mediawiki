@@ -442,7 +442,7 @@
 
 	function explodeRowspans( $table ) {
 		// Split multi row cells into multiple cells with the same content
-		$table.find( '> tbody [rowspan]' ).each(function() {
+		$table.find( '> tbody > tr > [rowspan]' ).each(function() {
 			var rowSpan = this.rowSpan;
 			this.rowSpan = 1;
 			var cell = $( this );
