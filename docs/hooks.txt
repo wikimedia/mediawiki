@@ -1486,6 +1486,10 @@ $subject : subject of the new section
 &$text : text of the new section
 Return false and put the merged text into $text to override the default behavior.
 
+'PreferencesGetLegend': Override the text used for the <legend> of a preferences section
+$key: the section name
+&$legend: the legend text. Defaults to wfMsg( "prefs-$key" ) but may be overridden
+
 'PrefixSearchBackend': Override the title prefix search used for OpenSearch and
 AJAX search suggestions. Put results into &$results outparam and return false.
 $ns : array of int namespace keys to search in

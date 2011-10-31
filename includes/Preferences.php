@@ -1565,4 +1565,14 @@ class PreferencesForm extends HTMLForm {
 	function getBody() {
 		return $this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' );
 	}
+	
+	/**
+	 * Get the <legend> for a given section key. Normally this is the
+	 * prefs-$key message but we'll allow extensions to override it.
+	 */
+	function getLegend( $key ) {
+		$legend = parent::getLegend( $key );
+		wfRunHooks( 'PreferencesGetLegend', array( $key, &$legend ) );
+		return $legend;
+	}
 }
