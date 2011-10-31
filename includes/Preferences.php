@@ -1572,7 +1572,7 @@ class PreferencesForm extends HTMLForm {
 	 */
 	function getLegend( $key ) {
 		$legend = parent::getLegend( $key );
-		wfRunHooks( 'PreferencesGetLegend', array( $key, &$legend ) );
+		wfRunHooks( 'PreferencesGetLegend', array( $this, $key, &$legend ) );
 		return $legend;
 	}
 }
