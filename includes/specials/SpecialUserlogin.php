@@ -931,7 +931,7 @@ class LoginForm extends SpecialPage {
 			'cantcreateaccount-text',
 			$block->getTarget(),
 			$block_reason,
-			$block->getBlocker()->getName()
+			$block->getByName()
 		);
 
 		$out->returnToMain( false );
