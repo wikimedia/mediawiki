@@ -24,21 +24,21 @@ class WikiPage extends Page {
 	public $mCounter = -1;               // !< Integer (-1 means "not loaded")
 	public $mDataLoaded = false;         // !< Boolean
 	public $mIsRedirect = false;         // !< Boolean
-	public $mLatest = false;             // !< Boolean
+	public $mLatest = false;             // !< Integer (false means "not loaded")
 	public $mPreparedEdit = false;		 // !< Array
 
 	/**
 	 * @var Title
 	 */
-	public $mRedirectTarget = null;
+	protected $mRedirectTarget = null;
 
 	/**
 	 * @var Revision
 	 */
-	public $mLastRevision = null;
+	protected $mLastRevision = null;
 
-	public $mTimestamp = '';             // !< String
-	public $mTouched = '19700101000000'; // !< String
+	protected $mTimestamp = '';             // !< String
+	protected $mTouched = '19700101000000'; // !< String
 	/**@}}*/
 
 	/**
@@ -1758,6 +1758,8 @@ class WikiPage extends Page {
 	 * roll back to, e.g. user is the sole contributor. This function
 	 * performs permissions checks on $user, then calls commitRollback()
 	 * to do the dirty work
+	 * 
+	 * @todo: seperate the business/permission stuff out from backend code
 	 *
 	 * @param $fromP String: Name of the user whose edits to rollback.
 	 * @param $summary String: Custom summary. Set to default summary if empty.
