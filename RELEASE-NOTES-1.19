@@ -122,6 +122,7 @@ production.
 * (bug 29912) Unit tests break if parsertest tables are still present
 * (bug 19186) Special:UserLogin's title on Special:SpecialPages now says
   "create account" when the user cannot create an account
+* (bug 31818) 'usercreated' message now supports GENDER
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
