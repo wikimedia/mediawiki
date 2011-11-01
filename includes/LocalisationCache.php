@@ -851,7 +851,9 @@ class LCStore_Accel implements LCStore {
 
 	public function get( $code, $key ) {
 		$k = wfMemcKey( 'l10n', $code, 'k', $key );
-		return $this->cache->get( $k );
+		$r = $this->cache->get( $k );
+		if ( $r === false ) return null;
+		return $r;
 	}
 
 	public function startWrite( $code ) {
