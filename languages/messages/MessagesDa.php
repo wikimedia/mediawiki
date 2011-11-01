@@ -556,7 +556,7 @@ Forespørgsel: $2',
 'protectedinterface'   => 'Denne side indeholder tekst til softwarens sprog-interface og er skrivebeskyttet for at forhindre misbrug.',
 'editinginterface'     => "'''Advarsel:''' Du redigerer en side som bruges i programmets grænseflade. Ændringer på denne side vil påvirke udseendet af grænsefladen for andre brugere.
 For oversættelser bedes du venligst overveje at bruge [http://translatewiki.net/wiki/Main_Page?setlang=da translatewiki.net], projektet for oversættelse af MediaWiki.",
-'sqlhidden'            => '(SQL forespørgsel gemt)',
+'sqlhidden'            => '(SQL forespørgsel skjult)',
 'cascadeprotected'     => 'Denne side er skrivebeskyttet, da den er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse":
 $2',
 'namespaceprotected'   => 'Du har ikke rettigheder til at redigere sider i $1-navnerummet.',
@@ -971,29 +971,27 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-text-unhide'     => "Denne version af siden er '''slettet'''.
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].
-Som administrator kan du stadig [$1 se versionen] hvis du ønsker at fortsætte.",
+Du kan du stadig [$1 se versionen], hvis du ønsker at fortsætte.",
 'rev-suppressed-text-unhide'  => "Denne version af siden er '''skjult'''.
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].
-Som administrator kan du stadig [$1 se versionen] hvis du ønsker at fortsætte.",
+Du kan stadig [$1 se versionen], hvis du ønsker at fortsætte.",
 'rev-deleted-text-view'       => "Denne version af siden er '''slettet'''.
-Som administrator kan du se den.
-Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
+Du kan du se den. Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
 'rev-suppressed-text-view'    => "Denne version af siden er '''skjult'''.
-Som administrator kan du se den.
-Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
+Du kan se den. Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise denne forskel fordi en af versionerne er '''slettet'''
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
 'rev-suppressed-no-diff'      => "Du kan ikke se denne forskel, fordi en af revisionerne er blevet '''slettet'''.",
 'rev-deleted-unhide-diff'     => "En af versionerne for denne forskel er '''slettet'''.
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].
-Som administrator kan du stadig [$1 se forskellen] hvis du ønsker at fortsætte.",
+Du kan stadig [$1 se forskellen], hvis du ønsker at fortsætte.",
 'rev-suppressed-unhide-diff'  => "En af sideversionerne i denne forskel er blevet '''skjult'''.
 Der kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].
-Som en administrator kan du stadig [$1 se denne forskel] hvis du ønsker det.",
+Du kan stadig [$1 se denne forskel], hvis du ønsker det.",
 'rev-deleted-diff-view'       => "En af revisionerne i denne forskel er blevet '''slettet'''.
-Som administrator kan du se denne forskel; detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
+Du kan se denne forskel; detaljer kan findes i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
 'rev-suppressed-diff-view'    => "En af revisionerne i denne forskel er blevet '''skjult'''.
-Som administrator kan du se denne forskel; der kan findes detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
+Du kan se denne forskel; der kan findes detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
 'rev-delundel'                => 'vise/skjule',
 'rev-showdeleted'             => 'vis',
 'revisiondelete'              => 'Slette/gendanne versioner',
@@ -1230,8 +1228,8 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'recentchangesdays-max'         => '(maks. $1 {{PLURAL:$1|dag|dage}})',
 'recentchangescount'            => 'Antal redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Det gælder for seneste ændringer, historikker og logger.',
-'prefs-help-watchlist-token'    => 'Hvis du udfylder dette felt med en hemmelig værdi, vil der laves et RSS-feed for din overvågingsliste.
-Alle som kender nøglen i feltet vil være i stand til at læse din overvågingsliste, så vælg en sikker værdi.
+'prefs-help-watchlist-token'    => 'Hvis du udfylder dette felt med en hemmelig værdi, vil der laves et RSS-feed for din overvågningsliste.
+Alle som kender nøglen i feltet vil være i stand til at læse din overvågningsliste, så vælg en sikker værdi.
 Her er en tilfældig genereret værdi som du kan bruge: $1',
 'savedprefs'                    => 'Dine indstillinger er blevet gemt.',
 'timezonelegend'                => 'Tidszone:',
@@ -1718,7 +1716,7 @@ Når der filtreres efter bruger, vil kun filer, hvor den pågældende bruger lag
 'filehist-filesize'         => 'Filstørrelse',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Fil mangler',
-'imagelinks'                => 'Filhenvisninger',
+'imagelinks'                => 'Filanvendelse',
 'linkstoimage'              => '{{Plural:$1|Den følgende side|De følgende $1 sider}} henviser til denne fil:',
 'linkstoimage-more'         => 'Flere end $1 {{PLURAL:$1|side|sider}} henviser til denne fil.
 Den følgende liste viser kun {{PLURAL:$1|den første henvisning|de $1 første henvisninger}}.
@@ -1886,7 +1884,7 @@ Hver linje indeholder henvisninger til den første og den anden omdirigering, s�
 'listusers-editsonly'     => 'Vis kun brugere med redigeringer',
 'listusers-creationsort'  => 'Sorter efter oprettelsesdato',
 'usereditcount'           => '{{PLURAL:$1|én redigering|$1 redigeringer}}',
-'usercreated'             => 'Oprettet den $1 $2',
+'usercreated'             => '{{GENDER:$3|Oprettet}} den $1 $2',
 'newpages'                => 'Nyeste sider',
 'newpages-username'       => 'Brugernavn:',
 'ancientpages'            => 'Ældste sider',
@@ -2726,7 +2724,7 @@ Det giver mulighed for at tilføje en begrundelse i beskrivelsen.',
 
 # Scripts
 'common.js'   => '/* Javascript inkluderet her vil være aktivt for alle brugere. */',
-'monobook.js' => '/* Udgået; brug [[MediaWiki:common.js]] */',
+'monobook.js' => '/* JavaScript i denne fil vil indlæses for brugere af udseendet MonoBook */',
 
 # Metadata
 'notacceptable' => 'Wiki-serveren kan ikke levere data i et format, som din klient understøtter.',
@@ -3459,9 +3457,7 @@ Du skulle have modtaget [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi af GNU General
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Vis sti',
 'filepath-summary' => 'Denne specialside giver et direkte link til en fil.
-Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med deres tilhørende program.
-
-Angiv filnavnet uden "{{ns:file}}:"-præfiks.',
+Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med deres tilhørende program.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Find dubletfiler',

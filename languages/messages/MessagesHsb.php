@@ -167,7 +167,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Tež dla snadnych změnow mejlki pósłać',
 'tog-enotifrevealaddr'        => 'Moju e-mejlowu adresu w e-mejlowych zdźělenkach wotkryć',
 'tog-shownumberswatching'     => 'Ličbu wobkedźbowacych wužiwarjow pokazać',
-'tog-oldsig'                  => 'Přehlad eksistowaceje signatury:',
+'tog-oldsig'                  => 'Eksistowaca signatura:',
 'tog-fancysig'                => 'Ze signaturu kaž z wikitekstom wobchadźeć  (bjez awtomatiskeho wotkaza)',
 'tog-externaleditor'          => 'Eksterny editor jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku. [http://www.mediawiki.org/wiki/Manual:External_editors Dalše informacije.])',
 'tog-externaldiff'            => 'Eksterny diff-program jako standard wužiwać (jenož za ekspertow, žada sej specialne nastajenja na wašim ličaku. [http://www.mediawiki.org/wiki/Manual:External_editors Dalše informacije.])',
@@ -426,6 +426,8 @@ $1',
 'page-rss-feed'           => 'RSS-kanal za „$1“',
 'page-atom-feed'          => 'Atom-Kanal za „$1“',
 'red-link-title'          => '$1 (strona njeeksistuje)',
+'sort-descending'         => 'Spadowacy sortěrować',
+'sort-ascending'          => 'Postupowacy sortěrować',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'nastawk',
@@ -514,6 +516,8 @@ Wotprašenje: $2',
 'cascadeprotected'     => 'Strona je za wobdźěłowanje zawrjena, dokelž je w {{PLURAL:$1|slědowacej stronje|slědowacymaj stronomaj|slědowacych stronach}} zapřijata, {{PLURAL:$1|kotraž je|kotrejž stej|kotrež su}} přez kaskadowu opciju {{PLURAL:$1|škitana|škitanej|škitane}}:
 $2',
 'namespaceprotected'   => "Nimaš dowolnosć, zo by stronu w mjenowym rumje '''$1''' wobdźěłał.",
+'customcssprotected'   => 'Nimaš prawo, zo by tutu CSS-stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.',
+'customjsprotected'    => 'Nimaš prawo, zo by tutu JavaScript-stronu wobdźěłał, dokelž wosobinske nastajenja druheho wužiwarja wobsahuje.',
 'ns-specialprotected'  => 'Specialne strony njedadźa so wobdźěłać.',
 'titleprotected'       => "Tutón titul bu přećiwo wutworjenju přez [[User:$1|$1]] škitany.
 Podata přičina je ''$2''.",
@@ -555,7 +559,8 @@ Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|
 'createaccountmail'          => 'z mejlku',
 'createaccountreason'        => 'Přičina:',
 'badretype'                  => 'Hesle, kotrejž sy zapodał, so njekryjetej.',
-'userexists'                 => 'Wužiwarske mjeno, kotrež sy zapodał, so hižo wužiwa. Wubjer druhe mjeno.',
+'userexists'                 => 'Wužiwarske mjeno, kotrež sy zapodał, so hižo wužiwa.
+Prošu wubjer druhe mjeno.',
 'loginerror'                 => 'Zmylk při přizjewjenju',
 'createaccounterror'         => 'Wužiwarske konto njeda so załožić: $1',
 'nocookiesnew'               => 'Wužiwarske konto bu wutworjene, njejsy pak přizjewjeny. {{SITENAME}} wužiwa placki (cookies), zo bychu so wužiwarjo přizjewili. Sy placki znjemóžnił. Prošu zmóžń je a přizjew so potom ze swojim nowym wužiwarskim mjenom a hesłom.',
@@ -630,15 +635,30 @@ Snano sy swoje hesło hižo wuspěšnje změnił abo nowe nachwilne hesło poža
 'resetpass-temp-password'   => 'Nachwilne hesło:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Hesło wróćo stajić',
-'passwordreset-legend'       => 'Hesło wróćo stajić',
-'passwordreset-pretext'      => '{{PLURAL:$1||Zapodaj deleka jedne ze slědowacych datowych podaćow}}',
-'passwordreset-username'     => 'Wužiwarske mjeno:',
-'passwordreset-email'        => 'E-mejlowa adresa:',
-'passwordreset-emailtitle'   => 'Kontowe podrobnosće na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'passwordreset-emailelement' => 'Wužiwarske mjeno: $1
+'passwordreset'                => 'Hesło wróćo stajić',
+'passwordreset-text'           => 'Wupjelń tutón formular, zo by dopomnjensku e-mejl wo swojich kontowych podrobnosćach dóstał.',
+'passwordreset-legend'         => 'Hesło wróćo stajić',
+'passwordreset-disabled'       => 'Wróćostajenje hesłow je so na  tutym wikiju znjemóžniło.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Zapodaj deleka jedne ze slědowacych datowych podaćow}}',
+'passwordreset-username'       => 'Wužiwarske mjeno:',
+'passwordreset-domain'         => 'Domena:',
+'passwordreset-email'          => 'E-mejlowa adresa:',
+'passwordreset-emailtitle'     => 'Kontowe podrobnosće na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'   => 'Něchtó (najskerje ty, z IP-adresu $1) je dopomnjenku na twoje kontowe podrobnosće za {{SITENAME}} požadał ($4).  {{PLURAL:$3|Slědowace wužiwarske konto je|Slědowacej wužiwarskej konće stej|Slědowace wužiwarske konta su|Slědowace wužiwarske konta su}} z tutej e-mejlowej adresu {{PLURAL:$3|zwjazane|zwjazanej|zwjazane|zwjazane}}:
+
+$2
+
+{{PLURAL:$3|Tute nachwilne hesło spadnje|Tutej nachwilnej hesle spadnjetej|Tute nachwilne hesła spadnu|Tute nachwilne hesła spadnu}} za {{PLURAL:$5|jedyn dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
+Ty měł so nětko přizjewić a nowe hesło wubrać. Jeli něchtó druhi je tute naprašowanje pósłał, abo jeli sy so zaso na prěnjotne hesło dopomnił a wjace nochceš jo změnić, móžeš tutu zdźělenku ignorować a swoje stare hesło dale wužiwać.',
+'passwordreset-emailtext-user' => 'Wužiwar $1 je dopomnjenku na twoje kontowe podrobnosće za {{SITENAME}} požadał ($4).  {{PLURAL:$3|Slědowace wužiwarske konto je|Slědowacej wužiwarskej konće stej|Slědowace wužiwarske konta su|Slědowace wužiwarske konta su}} z tutej e-mejlowej adresu {{PLURAL:$3|zwjazane|zwjazanej|zwjazane|zwjazane}}:
+
+$2
+
+{{PLURAL:$3|Tute nachwilne hesło spadnje|Tutej nachwilnej hesle spadnjetej|Tute nachwilne hesła spadnu|Tute nachwilne hesła spadnu}} za {{PLURAL:$5|jedyn dźeń|$5 dnjej|$5 dny|$5 dnjow}}.
+Ty měł so nětko přizjewić a nowe hesło wubrać. Jeli něchtó druhi je tute naprašowanje pósłał, abo jeli sy so zaso na prěnjotne hesło dopomnił a wjace nochceš jo změnić, móžeš tutu zdźělenku ignorować a swoje stare hesło dale wužiwać.',
+'passwordreset-emailelement'   => 'Wužiwarske mjeno: $1
 Nachwilne hesło: $2',
-'passwordreset-emailsent'    => 'Wopomnjenska e-mejlka je so pósłała.',
+'passwordreset-emailsent'      => 'Wopomnjenska e-mejlka je so pósłała.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tučny tekst',
@@ -888,27 +908,27 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 Hlej podrobnosće w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
 'rev-deleted-text-unhide'     => "Tuta wersija strony bu '''wušmórnjena'''.
 Hlej podrobnosće w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].
-Jako administrator móžeš [$1 sej tutu wersiju wobhladać], jeli chceš pokročować.",
+Móžeš [$1 sej tutu wersiju wobhladać], jeli chceš pokročować.",
 'rev-suppressed-text-unhide'  => "Tuta wersija strony bu '''potłóčena'''.
-Snano su podrobnosće w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].
-Jako administrator móžeš [$1 sej tutu wersiju wobhladać], jeli chceš pokročować.",
+Hlej podrobnosće w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].
+Móžeš [$1 sej tutu wersiju wobhladać], jeli chceš pokročować.",
 'rev-deleted-text-view'       => "Tuta wersija strony bu '''wušmórnjena'''.
-Jako administrator móžeš sej ju wobhladać; hlej podrobnosće w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
+Móžeš sej ju wobhladać; hlej podrobnosće w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
 'rev-suppressed-text-view'    => "Tuta wersija strony bu '''potłóčena'''.
-Jako administrator móžeš sej ju wobhladać; snano su podrobnosće w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].",
+Móžeš sej ju wobhladać; hlej podrobnosće w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].",
 'rev-deleted-no-diff'         => "Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow bu '''wušmórnjena'''.
 Hlej podrobnosće w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
 'rev-suppressed-no-diff'      => "Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow bu '''zničena'''.",
 'rev-deleted-unhide-diff'     => "Jedna z wersijow tutoho rozdźěla bu '''wušmórnjena'''.
-Podrobnosće hlej w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokol wušmórnjenjow].
-Jako administrator móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
+Podrobnosće hlej w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].
+Móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
 'rev-suppressed-unhide-diff'  => "Jedna z wersijow tutoho rozdźěla je so '''potłóčiła'''.
-Za podrobnosće hlej [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokol potłóčenjow].
-Jako administrator móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
-'rev-deleted-diff-view'       => "Jedna z wersijiw tutoho rozdźěla je so '''wušmórnyła'''.
-Jako administrator móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
-'rev-suppressed-diff-view'    => "Jedna z wersijiw tutoho rozdźěla je so '''potłóčiła'''.
-Jako administrator móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].",
+Za podrobnosće hlej [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].
+Móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
+'rev-deleted-diff-view'       => "Jedna z wersijow tutoho rozdźěla je so '''wušmórnyła'''.
+Móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
+'rev-suppressed-diff-view'    => "Jedna z wersijow tutoho rozdźěla je so '''potłóčiła'''.
+Móžeš sej tutón rozdźěl wobhladać; podrobnosće namakaš w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].",
 'rev-delundel'                => 'pokazać/schować',
 'rev-showdeleted'             => 'pokazać',
 'revisiondelete'              => 'Wersije wušmórnyć/wobnowić',
@@ -986,7 +1006,8 @@ Prošu přepruwuj protokole.',
 
 # Suppression log
 'suppressionlog'     => 'Protokol potłóčenjow',
-'suppressionlogtext' => 'Deleka je lisćina wušmórnjenjow a zablokowanjow, inkluziwnje wobsaha schowaneho wot administratorow. Hlej [[Special:IPBlockList|Lisćina zablokowanjow IP]] za lisćinu tuchwilnych zablokowanjow.',
+'suppressionlogtext' => 'Deleka je lisćina wušmórnjenjow a zablokowanjow, inkluziwnje wobsaha schowaneho wot administratorow.
+Hlej [[Special:BlockList|Lisćina zablokowanych IP-adresow]] za lisćinu tuchwilnych zablokowanjow.',
 
 # History merging
 'mergehistory'                     => 'Stawizny stronow zjednoćić',
@@ -1094,12 +1115,13 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'searchdisabled'                   => 'Pytanje w {{GRAMMAR:lokatiw|{{SITENAME}}}} tuchwilu móžne njeje. Móžeš mjeztym z Google pytać. Wobkedźbuj, zo móža wuslědki z wobsaha {{GRAMMAR:genitiw|{{SITENAME}}}} zestarjene być.',
 
 # Quickbar
-'qbsettings'               => 'Pobóčna lajsta',
-'qbsettings-none'          => 'Žane',
-'qbsettings-fixedleft'     => 'Leži nalěwo',
-'qbsettings-fixedright'    => 'Leži naprawo',
-'qbsettings-floatingleft'  => 'Wisa nalěwo',
-'qbsettings-floatingright' => 'Wisa naprawo',
+'qbsettings'                => 'Pobóčna lajsta',
+'qbsettings-none'           => 'Žane',
+'qbsettings-fixedleft'      => 'Leži nalěwo',
+'qbsettings-fixedright'     => 'Leži naprawo',
+'qbsettings-floatingleft'   => 'Wisa nalěwo',
+'qbsettings-floatingright'  => 'Wisa naprawo',
+'qbsettings-directionality' => 'Kruty, wotwisny wot pisanskeho směra twojeje rěče',
 
 # Preferences page
 'preferences'                   => 'Nastajenja',
@@ -1182,7 +1204,7 @@ Móžeš tutu stronu wužiwać, zo by swoje nastajenja na standardne hódnoty sy
 'prefs-registration'            => 'Čas registracije:',
 'yourrealname'                  => 'Woprawdźite mjeno *',
 'yourlanguage'                  => 'Rěč:',
-'yourvariant'                   => 'Warianta:',
+'yourvariant'                   => 'Rěčna warianta:',
 'yournick'                      => 'Podpis:',
 'prefs-help-signature'          => 'Komentary na diskusijnch stronach měli so přez "<nowiki>~~~~</nowiki>" podpisać, kotrež so do twojeje signatury a časoweho kołka konwertuje.',
 'badsig'                        => 'Njepłaćiwa signatura, prošu HTML přepruwować.',
@@ -1235,7 +1257,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'userrights-no-interwiki'      => 'Nimaš prawo wužiwarske prawa w druhich wikijach změnić.',
 'userrights-nodatabase'        => 'Datowa banka $1 njeeksistuje abo lokalna njeje.',
 'userrights-nologin'           => 'Dyrbiš so z admininstratorowym kontom [[Special:UserLogin|přizjewić]], zo by wužiwarske prawa změnił.',
-'userrights-notallowed'        => 'Twoje konto nima trěbne prawa, zo by wužiwarske prawa přidźělił.',
+'userrights-notallowed'        => 'Twoje konto nima trěbne prawa, zo by wužiwarske prawa přidźěliło abo zebrało.',
 'userrights-changeable-col'    => 'Skupiny, kotrež móžeš změnić',
 'userrights-unchangeable-col'  => 'Skupiny, kotrež njemóžeš změnić',
 
@@ -1325,10 +1347,11 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-sendemail'             => 'Druhim wužiwarjam e-mejl pósłać',
 
 # User rights log
-'rightslog'      => 'Protokol zrjadowanja wužiwarskich prawow',
-'rightslogtext'  => 'To je protokol změnow wužiwarskich prawow.',
-'rightslogentry' => 'skupinowe čłonstwo za $1 z $2 na $3 změnjene',
-'rightsnone'     => '(ničo)',
+'rightslog'                  => 'Protokol zrjadowanja wužiwarskich prawow',
+'rightslogtext'              => 'To je protokol změnow wužiwarskich prawow.',
+'rightslogentry'             => 'skupinowe čłonstwo za $1 z $2 na $3 změnjene',
+'rightslogentry-autopromote' => 'je so awtomatisce wot $2 do $3 změnił',
+'rightsnone'                 => '(ničo)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'tutu stronu čitać',
@@ -1616,7 +1639,8 @@ Za optimalnu wěstotu je img_auth.php znjemóžnjeny.',
 'upload_source_file' => ' (dataja na twojim ličaku)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Tuta specialna strona naliči wšě nahrate dataje. Standardnje so naposlědk nahrate dateje cyle horjeka pokazuja. Kliknjo na nadpisma stołpikow móžeš sortěrowanje wobroćić abo po druhich kriterijach rjadować.',
+'listfiles-summary'     => 'Tuta specialna strona pokazuje wšě nahrate dataje.
+Jeli so po wužiwarju filtruje, pokazuja so jenož dataje, při kotrychž tón wužiwar je najnowšu wersiju nahrał.',
 'listfiles_search_for'  => 'Za mjenom wobraza pytać:',
 'imgfile'               => 'dataja',
 'listfiles'             => 'Lisćina datajow',
@@ -1645,7 +1669,7 @@ Za optimalnu wěstotu je img_auth.php znjemóžnjeny.',
 'filehist-filesize'         => 'Wulkosć dataje',
 'filehist-comment'          => 'Komentar',
 'filehist-missing'          => 'Dataja pobrachuje',
-'imagelinks'                => 'Datajowe wotkazy',
+'imagelinks'                => 'Datajowe wužiwanje',
 'linkstoimage'              => '{{PLURAL:$1|Slědowaca strona wotkazuje|Slědowacej $1 stronje wotkazujetej|Slědowace $1 strony wotkazuja|Slědowacych $1 stronow wotkazuje}} na tutu dataju:',
 'linkstoimage-more'         => 'Wjace hač $1 {{PLURAL:$1|strona wotkazuje|stronje wotkazujetej|strony wotkazuja|stronow wotkazuje}} na tutu dataju.
 Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1 wotkazaj strony|prěnje $1 wotkazy strony|prěnich $1 wotkazow strony}} na tutu dataju.
@@ -1808,7 +1832,7 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'listusers-editsonly'     => 'Jenož wužiwarjow ze změnami pokazać',
 'listusers-creationsort'  => 'Po datumje wutworjenja sortěrować',
 'usereditcount'           => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
-'usercreated'             => 'Wutworjeny $1 $2 hodź.',
+'usercreated'             => 'je so $1 $2 hodź. {{GENDER:$3|wutworił|wutworiła}}',
 'newpages'                => 'Nowe strony',
 'newpages-username'       => 'Wužiwarske mjeno:',
 'ancientpages'            => 'Najstarše nastawki',
@@ -1966,10 +1990,12 @@ E-mejlowa adresa, kotruž sy w [[Special:Preferences|swojich wužiwarskich nasta
 'watchlistanontext'    => 'Dyrbiš so $1, zo by swoje wobkedźbowanki wobhladać abo wobdźěłać móhł.',
 'watchnologin'         => 'Njejsy přizjewjeny.',
 'watchnologintext'     => 'Dyrbiš [[Special:UserLogin|přizjewjeny]] być, zo by swoje wobkedźbowanki změnić móhł.',
+'addwatch'             => 'K wobkedźbowankam přidać',
 'addedwatchtext'       => "Strona [[:$1]] bu k twojim [[Special:Watchlist|wobkedźbowankam]] přidata.
 Přichodne změny tuteje strony a přisłušneje diskusijneje strony budu so tam nalistować a strona so '''w tučnym pismje''' w [[Special:RecentChanges|lisćinje aktualnych změnach]] zjewi, zo by so wosnadniło ju wubrać.
 
 Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na rajtark „njewobkedźbować” horjeka na tutej stronje.",
+'removewatch'          => 'Z wobkedźbowankow wotstronić',
 'removedwatchtext'     => 'Strona "[[:$1]]" bu z [[Special:Watchlist|twojich wobkedźbowankow]] wotstronjena.',
 'watch'                => 'wobkedźbować',
 'watchthispage'        => 'stronu wobkedźbować',
@@ -1990,8 +2016,9 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'watchlist-options'    => 'Opcije wobkedźbowankow',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Wobkedźbuju…',
-'unwatching' => 'Njewobkedźbuju…',
+'watching'       => 'Wobkedźbuju…',
+'unwatching'     => 'Njewobkedźbuju…',
+'watcherrortext' => 'Při měnjenju nastajenjow wašich wobkedźbowankow za "$1" je zmylk wustupił.',
 
 'enotif_mailer'                => '{{SITENAME}} E-mejlowe zdźělenje',
 'enotif_reset'                 => 'Wšě strony jako wopytane woznamjenić',
@@ -2010,9 +2037,9 @@ Strona we {{GRAMMAR:lokatiw|{{SITENAME}}}} z mjenom $PAGETITLE bu dnja $PAGEEDIT
 
 $NEWPAGE
 
-Zjeće wobdźěłaćerja: $PAGESUMMARY $PAGEMINOREDIT
+Zjeće wobdźěłarja: $PAGESUMMARY $PAGEMINOREDIT
 
-Skontaktuj wobdźěłarja:
+Staj so z wobdźěłarjom do zwiska:
 e-mejl: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
@@ -2022,7 +2049,10 @@ Móžeš tež zdźělenske marki za wšě swoje wobkedźbowane strony we swojich
                Twój přećelny zdźělenski system {{GRAMMAR:genitiw|{{SITENAME}}}}
 
 --
-Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
+Zo by swoje nastajenja za e-mejlowe zdźělenja změnił, wopytaj
+{{canonicalurl:{{#special:Preferences}}}}
+
+Zo by nastajenja swojich wobkedźbowankow změnił, wopytaj
 {{canonicalurl:{{#special:EditWatchlist}}}}
 
 Zo by stronu ze swojich wobkedźbowankow zhašał, wopytaj
@@ -2149,8 +2179,8 @@ Hlej [[Special:ProtectedPages|lisćinu škitanych stronow]] za lisćinu tuchwilu
 'undeletepagetext'             => '{{PLURAL:$1|Slědowaca strona bu wušmórnjena, ale je|Slědowacej $1 stronje buštej wušmórnjenej, ale stej|Slědowace $1 strony buchu wušmórnjene, ale su|Slědowacych $1 bu wušmórnjene, ale je}} hišće w archiwje a {{PLURAL:$1|da so|datej so|dadźa so|da so}} wobnowić.
 Archiw da so periodisce wuprózdnić.',
 'undelete-fieldset-title'      => 'Wersije wobnowić',
-'undeleteextrahelp'            => "Zo by wšě stawizny strony wobnowił, wostaj prošu wšě kontrolowe kašćiki njewubrane a klikń na '''''Wobnowić'''''. Zo by selektiwne wobnowjenje přewjedł, wubjer kašćiki, kotrež wersijam wotpowěduja, kotrež maja so wobnowić a klikń na '''''Wobnowić'''''.
-Kliknjenje na '''''Wróćo stajić''''' komentarne polo a wšě kontrolowe kašćiki wuprózdni.",
+'undeleteextrahelp'            => "Zo by wšě stawizny strony wobnowił, wostaj prošu wšě kontrolowe kašćiki njewubrane a klikń na '''''{{int:undeletebtn}}'''''.
+Zo by selektiwne wobnowjenje přewjedł, wubjer kašćiki, kotrež wersijam wotpowěduja, kotrež maja so wobnowić, a klikń na '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|wersija|wersiji|wersije|wersijow}} {{PLURAL:$1|archiwowana|archiwowanej|archiwowane|archiwowane}}',
 'undeletehistory'              => 'Jeli tutu stronu wobnowiš, so wšě (tež prjedy wušmórnjene) wersije zaso do stawiznow wobnowja. Jeli bu po wušmórnjenju nowa strona ze samsnym mjenom wutworjena, budu so wobnowjene wersije w prjedawšich stawiznach jewić.',
 'undeleterevdel'               => 'Wobnowjenje so njepřewjedźe, jeli je najwyša strona docpěta abo datajowa wersija budźe so zdźěla wušmórnje.
@@ -2190,10 +2220,12 @@ $1',
 'undelete-show-file-submit'    => 'Haj',
 
 # Namespace form on various pages
-'namespace'             => 'Mjenowy rum:',
-'invert'                => 'Wuběr wobroćić',
-'namespace_association' => 'Nawjazany mjenowy rum',
-'blanknamespace'        => '(Nastawki)',
+'namespace'                     => 'Mjenowy rum:',
+'invert'                        => 'Wuběr wobroćić',
+'tooltip-invert'                => 'Klikń na tutón kašćik, zo by změny na stronach we wubranym mjenowym rumje schował (a, jeli wubrany, w zwjazanym mjenowym rumje)',
+'namespace_association'         => 'Nawjazany mjenowy rum',
+'tooltip-namespace_association' => 'Klikń na tutón kašćik, zo by diskusijny mjenowy rum abo temowy mjenowy rum, kotryž je z wubranym mjenowym rumom zwjazany, tež zapřijał',
+'blanknamespace'                => '(Nastawki)',
 
 # Contributions
 'contributions'       => 'Přinoški wužiwarja',
@@ -2281,6 +2313,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] bu zablokowany.
 <br />Hlej [[Special:IPBlockList|lisćinu blokowanjow IP]], zo by zablokowanjow pruwował.',
 'ipb-blockingself'                => 'Chceš samoho blokować! Chceš to woprawdźe činić?',
+'ipb-confirmhideuser'             => 'Chceš runje wužiwarja z nastajenjom "wužiwarja schować" blokować. To k tomu dowjedźe, zo mjeno wužiwarja so we wšch lisćinach a protokolowych zapiskach potłóči. Chceš to woprawdźe činić?',
 'ipb-edit-dropdown'               => 'přičiny zablokowanjow wobdźěłać',
 'ipb-unblock-addr'                => 'zablokowanje wužiwarja „$1“ zběhnyć',
 'ipb-unblock'                     => 'zablokowanje wužiwarja abo IP-adresy zběhnyć',
@@ -2377,6 +2410,7 @@ Najnowši zapisk w protokolu blokowanjow so deleka jako referenca podawa:',
 'unlockdbsuccesstext' => 'Datowa banka bu wotamknjena.',
 'lockfilenotwritable' => 'Do dataje zamknjenja datoweje banki njeda so zapisować. Za zamknjenje abo wotamknjenje datoweje banki dyrbi webowy serwer pisanske prawo měć.',
 'databasenotlocked'   => 'Datajowa banka zamknjena njeje.',
+'lockedbyandtime'     => '(wot {{GENDER:$1|$1}} dnja $2 $3)',
 
 # Move page
 'move-page'                    => '$1 přesunyć',
@@ -2655,13 +2689,17 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'spam_blanking'       => 'Wšě wersije wobsahowachu wotkazy na $1, wučisćene.',
 
 # Info page
-'pageinfo-title'        => 'Informacije za stronu "$1"',
-'pageinfo-header-edits' => 'Změny',
-'pageinfo-subjectpage'  => 'Strona',
-'pageinfo-talkpage'     => 'Diskusijna strona',
-'pageinfo-watchers'     => 'Ličba wobkedźbowarjow',
-'pageinfo-edits'        => 'Ličba změnow',
-'pageinfo-authors'      => 'Ličba rozdźělnych awtorow',
+'pageinfo-title'            => 'Informacije za stronu "$1"',
+'pageinfo-header-edits'     => 'Změny',
+'pageinfo-header-watchlist' => 'Wobkedźbowanki',
+'pageinfo-header-views'     => 'Zwobraznjenja',
+'pageinfo-subjectpage'      => 'Strona',
+'pageinfo-talkpage'         => 'Diskusijna strona',
+'pageinfo-watchers'         => 'Ličba wobkedźbowarjow',
+'pageinfo-edits'            => 'Ličba změnow',
+'pageinfo-authors'          => 'Ličba rozdźělnych awtorow',
+'pageinfo-views'            => 'Ličba zwobraznjenjow',
+'pageinfo-viewsperedit'     => 'Zwobraznjenja na změnu',
 
 # Skin names
 'skinname-standard'    => 'Klasiski',
@@ -2715,6 +2753,7 @@ $1',
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|strona|stronje|strony|stronow}}',
 'file-info'              => 'Wulkosć dataje: $1, typ MIME: $2',
 'file-info-size'         => '$1 × $2 pikselow, wulkosć dataje: $3, typ MIME: $4',
+'file-info-size-pages'   => '$1 × $2 pikselow, wulkosć dataje: $3, MIME-typ: $4, $5 {{PLURAL:$5|strona|stronje|strony|stronow}}',
 'file-nohires'           => '<small>Za tutu dataju žane wyše rozeznaće njeje.</small>',
 'svg-long-desc'          => 'SVG-dataja, zakładna wulkosć: $1 × $2 pikselow, datajowa wulkosć: $3',
 'show-big-image'         => 'Wersija z wyšim rozeznaćom',
@@ -2885,17 +2924,24 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-countrycodecreated'          => 'Kod za kraj, w kotrymž je so sfotografowało',
 'exif-provinceorstatecreated'      => 'Zwjazkowy kraj, w kotrymž bu sfotografowane',
 'exif-citycreated'                 => 'Město, w kotrymž bu sfotografowane',
+'exif-sublocationcreated'          => 'Wobwod města, w kotrymž wobraz je so sfotografował',
 'exif-worldregiondest'             => 'Pokazany swětowy region',
 'exif-countrydest'                 => 'Pokazany kraj',
 'exif-countrycodedest'             => 'Kod za pokazany kraj',
 'exif-provinceorstatedest'         => 'Pokazany zwjazkowy kraj',
 'exif-citydest'                    => 'Pokazane město',
+'exif-sublocationdest'             => 'Wobwod pokazaneho města',
 'exif-objectname'                  => 'Krótki titul',
 'exif-specialinstructions'         => 'Wosebite instrukcije',
 'exif-headline'                    => 'Nadpis',
+'exif-credit'                      => 'Mjenowanje/Poskićowar',
 'exif-source'                      => 'Žórło',
+'exif-editstatus'                  => 'Wobdźěłowanski status wobraza',
 'exif-urgency'                     => 'Nuznosć',
 'exif-fixtureidentifier'           => 'Objektowe mjeno',
+'exif-locationdest'                => 'Zwobraznjene městno',
+'exif-locationdestcode'            => 'Kod za zwobraznjene městno',
+'exif-objectcycle'                 => 'Čas dnja, za kotryž medij je mysleny',
 'exif-contact'                     => 'Kontaktowe informacije',
 'exif-writer'                      => 'Spisar',
 'exif-languagecode'                => 'Rěč',
@@ -2903,21 +2949,47 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-iimcategory'                 => 'Kategorija',
 'exif-iimsupplementalcategory'     => 'Přidatne kategorije',
 'exif-datetimeexpires'             => 'Njewužiwać po',
+'exif-datetimereleased'            => 'Wozjewjeny dnja',
+'exif-originaltransmissionref'     => 'Kod městna, wot kotrehož je so foto přenjesło',
 'exif-identifier'                  => 'Identfikator',
 'exif-lens'                        => 'Wužity objektiw',
 'exif-serialnumber'                => 'Serijowe čisło kamery',
 'exif-cameraownername'             => 'Wobsedźer kamery',
+'exif-label'                       => 'Pomjenowanje',
 'exif-datetimemetadata'            => 'Datum, hdyž su so metadaty posledni raz změnili',
 'exif-nickname'                    => 'Zwučene mjeno wobraza',
+'exif-rating'                      => 'Pohódnoćenje (z 5)',
+'exif-rightscertificate'           => 'Certifikat zarjadowanja prawow',
+'exif-copyrighted'                 => 'Status awtorskeho prawa:',
+'exif-copyrightowner'              => 'Mějićel awtorskeho prawa',
 'exif-usageterms'                  => 'Wužiwanske wuměnjenja',
+'exif-webstatement'                => 'Online-deklaracija wo awtorskim prawje',
 'exif-originaldocumentid'          => 'Jednozmyslny ID originalneho dokumenta',
+'exif-licenseurl'                  => 'URL za licencu awtorskeho prawa',
+'exif-morepermissionsurl'          => 'Alternatiwne licencne informacije',
+'exif-attributionurl'              => 'Při zasowužiwanju tutoho dźěła, wotkazaj prošu do:',
+'exif-preferredattributionname'    => 'Při zasowužiwanju tutoho dźěła, naspomń prošu',
 'exif-pngfilecomment'              => 'Komentar PNG-dataje',
 'exif-disclaimer'                  => 'Wuzamknjenje rukowanja',
+'exif-contentwarning'              => 'Wobsahowe warnowanje',
 'exif-giffilecomment'              => 'Komentar GIF-dataje',
 'exif-intellectualgenre'           => 'Typ medija',
+'exif-subjectnewscode'             => 'Temowy kod',
+'exif-scenecode'                   => 'IPTC-kod napohlada',
+'exif-event'                       => 'Zwobraznjeny podawk',
+'exif-organisationinimage'         => 'Zwobraznjena organizacija',
+'exif-personinimage'               => 'Zwobraznjena wosoba',
+'exif-originalimageheight'         => 'Wysokosć wobraza před přitřihowanjom',
+'exif-originalimagewidth'          => 'Šěrokosć wobraza před přitřihowanjom',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekomprimowany',
+'exif-compression-2' => 'CCITT skupina 3 jednodimensionalne modificěrowane kodowanje Huffman běhoweje dołhosće',
+'exif-compression-3' => 'CCITT skupina 3 faksowe kodowanje',
+'exif-compression-4' => 'CCITT skupina 4 faksowe kodowanje',
+
+'exif-copyrighted-true'  => 'Přez awtorske prawo škitany',
+'exif-copyrighted-false' => 'Zjawnosći přistupny',
 
 'exif-unknowndate' => 'Njeznaty datum',
 
@@ -2926,9 +2998,9 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-orientation-3' => '180° zwjertnjeny',
 'exif-orientation-4' => 'Padorunje wobroćeny',
 'exif-orientation-5' => '90° přećiwo směrej časnika zwjertneny a padorunje wobroćeny',
-'exif-orientation-6' => '90° w směrje časnika zwjertnjeny',
+'exif-orientation-6' => '90° přećiwo směrej časnika zwjertnjeny',
 'exif-orientation-7' => '90° w směrje časnika zwjertnjeny a padorunje wobroćeny',
-'exif-orientation-8' => '90° přećiwo směrej časnika zwjertnjeny',
+'exif-orientation-8' => '90° w směrje časnika zwjertnjeny',
 
 'exif-planarconfiguration-1' => 'Škropawy format',
 'exif-planarconfiguration-2' => 'Płony format',
@@ -3048,6 +3120,10 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpslongitude-e' => 'Wuchodna dołhosć',
 'exif-gpslongitude-w' => 'Zapadna dołhosć',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|metraj|metry|metrow}} nad mórskej hładźinu',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|metraj|metry|metrow}} pod mórskej hładźinu',
+
 'exif-gpsstatus-a' => 'Měrjenje běži',
 'exif-gpsstatus-v' => 'Interoperabilita měrjenja',
 
@@ -3066,6 +3142,9 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 
 'exif-gpsdop-excellent' => 'Wuběrny ($1)',
 'exif-gpsdop-good'      => 'Dobry ($1)',
+'exif-gpsdop-moderate'  => 'Srěni ($1)',
+'exif-gpsdop-fair'      => 'Akceptabelny ($1)',
+'exif-gpsdop-poor'      => 'Špatny ($1)',
 
 'exif-objectcycle-a' => 'Jenož rano',
 'exif-objectcycle-p' => 'Jenož wječor',
@@ -3076,8 +3155,10 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-gpsdirection-m' => 'Magnetiski směr',
 
 'exif-ycbcrpositioning-1' => 'Centrowano',
+'exif-ycbcrpositioning-2' => 'Susodny',
 
 'exif-dc-contributor' => 'Sobuskutkowarjo',
+'exif-dc-coverage'    => 'Městny abo časny wobłuk medija',
 'exif-dc-date'        => 'Datumowe podaća',
 'exif-dc-publisher'   => 'Wudawaćel',
 'exif-dc-relation'    => 'Přiwuzne medije',
@@ -3204,7 +3285,9 @@ Prošu potwjerdź, zo chceš tutu stronu woprawdźe znowa wutworić.",
 
 # action=watch/unwatch
 'confirm-watch-button'   => 'W porjadku',
+'confirm-watch-top'      => 'Tutu stronu wobkedźbowankam přidać?',
 'confirm-unwatch-button' => 'W porjadku',
+'confirm-unwatch-top'    => 'Tutu stronu z wobkedźbowankow wotstronić?',
 
 # Multipage image navigation
 'imgmultipageprev' => '← předchadna strona',
@@ -3310,9 +3393,8 @@ Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public Lic
 'filepath'         => 'Datajowy puć',
 'filepath-page'    => 'Dataja:',
 'filepath-submit'  => 'Pytać',
-'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije. Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.
-
-Zapodaj datajowe mjeno bjez dodawka "{{ns:file}}:".',
+'filepath-summary' => 'Tuta specialna strona wróća dospołny puć aktualneje datajoweje wersije.
+Wobrazy so połnym rozeznaću pokazuja, druhe datajowe typy so ze zwjazanym programom startuja.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Dwójne dataje pytać',

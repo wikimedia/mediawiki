@@ -860,7 +860,7 @@ $2',
 'retypenew'                 => '新しいパスワードを再入力:',
 'resetpass_submit'          => '再設定してログイン',
 'resetpass_success'         => 'パスワードの変更に成功しました！
-ログインしています・・・',
+ログインしています…',
 'resetpass_forbidden'       => 'パスワードは変更できません',
 'resetpass-no-info'         => 'このページに直接アクセスするためにはログインしている必要があります。',
 'resetpass-submit-loggedin' => 'パスワードを変更',
@@ -870,17 +870,40 @@ $2',
 'resetpass-temp-password'   => '仮パスワード：',
 
 # Special:PasswordReset
-'passwordreset'              => 'パスワードの再設定',
-'passwordreset-text'         => 'このフォームに回答すると、ご自身のアカウントの詳細が電子メールで通知されます。',
-'passwordreset-legend'       => 'パスワードのリセット',
-'passwordreset-disabled'     => 'パスワードのリセットは、このウィキでは無効になっています。',
-'passwordreset-pretext'      => '{{PLURAL:$1||以下のデータのうちのひとつを入力してください。}}',
-'passwordreset-username'     => '利用者名：',
-'passwordreset-email'        => '電子メールアドレス:',
-'passwordreset-emailtitle'   => '{{SITENAME}}上のアカウントの詳細',
-'passwordreset-emailelement' => '利用者名： $1
+'passwordreset'                => 'パスワードの再設定',
+'passwordreset-text'           => 'このフォームに回答すると、ご自身のアカウントの詳細が電子メールで通知されます。',
+'passwordreset-legend'         => 'パスワードの再設定',
+'passwordreset-disabled'       => 'パスワードの再設定は、このウィキでは無効になっています。',
+'passwordreset-pretext'        => '{{PLURAL:$1||以下のデータのうちのひとつを入力してください。}}',
+'passwordreset-username'       => '利用者名：',
+'passwordreset-domain'         => 'ドメイン:',
+'passwordreset-email'          => '電子メールアドレス:',
+'passwordreset-emailtitle'     => '{{SITENAME}}上のアカウントの詳細',
+'passwordreset-emailtext-ip'   => 'どなたかが（おそらくあなた、IP アドレス $1 ）あなたの {{SITENAME}} ($4)
+におけるアカウントの詳細情報を送信するよう申請されました。
+下記の利用者{{PLURAL:$3|アカウント}}がこのメールアドレスと紐付けられています。
+
+$2
+
+{{PLURAL:$3|この一時的なパスワード}}は{{PLURAL:$5|$5日}}で有効期限が切れます。
+あなたはログインし、新しいパスワードをすぐに選ぶ必要があります。
+この申請が他のだれかによるものであるか、あるいはあなたが自身の元々のパスワードを
+覚えており、変えたくない場合には、このメッセージを無視して
+以前のパスワードを使い続けることができます。',
+'passwordreset-emailtext-user' => '{{SITENAME}} の利用者 $1 があなたの {{SITENAME}} ($4)
+におけるアカウントの詳細情報を送信するよう申請されました。
+下記の利用者{{PLURAL:$3|アカウント}}がこのメールアドレスと紐付けられています。
+
+$2
+
+{{PLURAL:$3|この一時的なパスワード}}は{{PLURAL:$5|$5日}}で有効期限が切れます。
+あなたはログインし、新しいパスワードをすぐに選ぶ必要があります。
+この申請が他のだれかによるものであるか、あるいはあなたが自身の元々のパスワードを
+覚えており、変えたくない場合には、このメッセージを無視して
+以前のパスワードを使い続けることができます。',
+'passwordreset-emailelement'   => '利用者名： $1
 仮パスワード： $2',
-'passwordreset-emailsent'    => '確認のメールが送信されました。',
+'passwordreset-emailsent'      => '確認のメールが送信されました。',
 
 # Edit page toolbar
 'bold_sample'     => '太字',
@@ -1260,8 +1283,8 @@ $1",
 
 # Suppression log
 'suppressionlog'     => '秘匿記録',
-'suppressionlogtext' => '以下は管理者から秘匿された内容を含む削除およびブロック記録です。
-現在操作できるブロックについては[[Special:IPBlockList|投稿ブロック中の利用者やIPアドレス]]を参照してください。',
+'suppressionlogtext' => '以下は管理者から秘匿された内容を含む削除およびブロックの一覧です。
+現在操作できる追放とブロックの一覧については[[Special:BlockList|IPブロックの一覧]]を参照してください。',
 
 # History merging
 'mergehistory'                     => 'ページ履歴の統合',
@@ -1325,7 +1348,6 @@ $1",
 'searchmenu-legend'                => '検索オプション',
 'searchmenu-exists'                => "'''このウィキには「[[:$1]]」という名前のページがあります'''",
 'searchmenu-new'                   => "'''このウィキでページ「[[:$1|$1]]」を新規作成する'''",
-'searchmenu-new-nocreate'          => '「$1」は、あなたが作成することができない、もしくは無効な記事名です。',
 'searchhelp-url'                   => 'Help:目次',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|この文字列から始まる名前のページを見る]]',
 'searchprofile-articles'           => '記事',
@@ -1463,7 +1485,7 @@ $1",
 'prefs-registration'            => '登録日時：',
 'yourrealname'                  => '本名：',
 'yourlanguage'                  => '使用言語：',
-'yourvariant'                   => '言語変種：',
+'yourvariant'                   => 'コンテンツ言語変種：',
 'yournick'                      => '新しい署名：',
 'prefs-help-signature'          => 'トークページ上での発言には「<nowiki>~~~~</nowiki>」と付けて署名するべきです。これは自分の署名に時刻印を付加したものに変換されます。',
 'badsig'                        => '署名用のソースが正しくありません。
@@ -1945,7 +1967,7 @@ URLが正しいものであるか、指定したサイトが現在使用可能�
 'filehist-filesize'                 => 'ファイルサイズ',
 'filehist-comment'                  => 'コメント',
 'filehist-missing'                  => 'ファイルがみつかりません',
-'imagelinks'                        => 'ファイルリンク',
+'imagelinks'                        => 'ファイルの使用状況',
 'linkstoimage'                      => '以下の{{PLURAL:$1|ページ|$1ページ}}が、このファイルへリンクしています：',
 'linkstoimage-more'                 => '$1より多いページが、このファイルにリンクしています。
 以下の一覧は、このファイルにリンクしている最初の$1ページのみを表示しています。
@@ -3846,9 +3868,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'filepath'         => 'ファイルパス',
 'filepath-page'    => 'ファイル：',
 'filepath-submit'  => '取得',
-'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。
-
-ファイル名は接頭辞「{{ns:file}}:」を付けずに入力してください。',
+'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => '重複ファイルの検索',

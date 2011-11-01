@@ -13,6 +13,7 @@
  * @author Malafaya
  * @author Mongvras
  * @author Nicky.ker
+ * @author Scryfer
  */
 
 $namespaceNames = array(

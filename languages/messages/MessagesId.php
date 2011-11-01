@@ -8,6 +8,7 @@
  * @file
  *
  * @author -iNu-
+ * @author Aldnonymous
  * @author ArdWar
  * @author Bennylin
  * @author Borgx
@@ -352,7 +353,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Kirimkan saya surel juga pada perubahan kecil',
 'tog-enotifrevealaddr'        => 'Tampilkan alamat surel saya pada surel notifikasi',
 'tog-shownumberswatching'     => 'Tunjukkan jumlah pemantau',
-'tog-oldsig'                  => 'Pratayang tanda tangan:',
+'tog-oldsig'                  => 'Tanda tangan sekarang:',
 'tog-fancysig'                => 'Perlakukan tanda tangan sebagai teks wiki (tanpa suatu pranala otomatis)',
 'tog-externaleditor'          => 'Gunakan editor eksternal secara bawaan (hanya untuk ahli, perlu pengaturan khusus pada komputer Anda.
 [http://www.mediawiki.org/wiki/Manual:External_editors Informasi selengkapnya].)',
@@ -829,6 +830,7 @@ Anda mungkin telah berhasil mengganti kata sandi Anda atau telah meminta kata sa
 'passwordreset-disabled'       => 'Penyetelan ulang sandi telah dimatikan di wiki ini.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Masukkan salah satu data di bawah ini}}',
 'passwordreset-username'       => 'Nama pengguna:',
+'passwordreset-domain'         => 'Domain:',
 'passwordreset-email'          => 'Alamat surel:',
 'passwordreset-emailtitle'     => 'Detail akun di {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Seseorang (mungkin Anda, dari alamat IP $1) meminta pengingat
@@ -1214,7 +1216,7 @@ Silakan periksa catatan log.',
 # Suppression log
 'suppressionlog'     => 'Log penyembunyian',
 'suppressionlogtext' => 'Berikut adalah daftar penghapusan dan pemblokiran, termasuk konten yang disembunyikan dari para opsis.
-Lihat [[Special:IPBlockList|daftar IP yang diblokir]] untuk daftar terkininya.',
+Lihat [[Special:BlockList|IP block list]] untuk daftar terkininya.',
 
 # History merging
 'mergehistory'                     => 'Gabung sejarah halaman',
@@ -3225,9 +3227,9 @@ Data lain akan disembunyikan secara bawaan.
 'exif-orientation-3' => 'Diputar 180°',
 'exif-orientation-4' => 'Dibalik vertikal',
 'exif-orientation-5' => 'Diputar 90° CCW dan dibalik vertikal',
-'exif-orientation-6' => 'Diputar 90° CW',
+'exif-orientation-6' => 'Diputar 90° CCW',
 'exif-orientation-7' => 'Diputar 90° CW dan dibalik vertikal',
-'exif-orientation-8' => 'Diputar 90° CCW',
+'exif-orientation-8' => 'Diputar 90° CW',
 
 'exif-planarconfiguration-1' => 'format chunky',
 'exif-planarconfiguration-2' => 'format planar',
@@ -3666,9 +3668,7 @@ Anda seharusnya telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING salinan Lisensi
 'filepath-page'    => 'Berkas:',
 'filepath-submit'  => 'Cari',
 'filepath-summary' => 'Halaman istimewa ini menampilkan jalur lengkap untuk suatu berkas.
-Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsung dengan program terkaitnya.
-
-Masukkan nama berkas tanpa prefiks "{{ns:file}}:"-nya.',
+Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsung dengan program terkaitnya.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Pencarian berkas duplikat',

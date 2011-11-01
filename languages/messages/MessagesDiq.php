@@ -432,6 +432,7 @@ Hesabê şıma biyo a.
 'createaccount'              => 'hesab vıraze',
 'gotaccount'                 => "Hesabê şıma esto? '''$1'''.",
 'gotaccountlink'             => 'Cıkewe',
+'userlogin-resetlink'        => 'Melumatê cıkewtışi xo vira kerdê?',
 'createaccountmail'          => 'mı rê e-mail sera parola bırışe',
 'createaccountreason'        => 'Sebeb:',
 'badretype'                  => 'Parolayê ke şıma nuşti yewbini nêtepışneni.',
@@ -905,7 +906,7 @@ no vurnayişo ke şıma keni kontrol bıkere yew pelo kehen nêbo.',
 'compareselectedversions'  => 'Verziyonan kontrol bıke',
 'showhideselectedversions' => 'Revizyonanê weçinıtan bımocne/bınımne',
 'editundo'                 => 'peyser bia',
-'diff-multi'               => '({{PLURAL:$1|Yew revizyono miyanên|$1 revizyonê miyanêni}} nimocno)',
+'diff-multi'               => '({{PLURAL:$1|Yew revizyono miyanên|$1 revizyonê miyanêni}} terefê {{PLURAL:$2|yew karberi|$2 karberan}} nêmocno)',
 
 # Search results
 'searchresults'                    => 'Neticeyê cıgeyrayışi',
@@ -1074,7 +1075,9 @@ $1 gani bınê no {{PLURAL:$1|karakter|karakter}}de bıbo.',
 'email'                         => 'E-mail',
 'prefs-help-realname'           => 'Nameyo raşt waştena şıma rê mendo.
 Eka tu wazene ke nameyo raşt xo bide, ma nameyo raşt ti iştirakanê ti de mocnenê.',
-'prefs-help-email'              => 'Dayişê adresê e-postayi keyfiyo; labele wexta ke parolayê şıma vind bıbo yew adres bıbo şıma re yewna parola erşawiyeno. Hem zi karberê binan de şıma eşkeni nımtıki xeberdayişi bıkeri.',
+'prefs-help-email'              => 'Dayışê adresa e-postey keyfiyo, labelê seba eyarê parola lazıma, wexto ke şıma naye xo vira kerê.',
+'prefs-help-email-others'       => 'Şıma şenê weçinê ke ê bini be yew gırey pela şımaya karberi ya zi pela werênayışi sera şıma de ebe e-poste irtıbat kewê.
+Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena.',
 'prefs-help-email-required'     => 'E-mail adrese mecburiya.',
 'prefs-info'                    => 'Enformasyonê temelî',
 'prefs-i18n'                    => 'Beynelbinel kerdişî',
@@ -1483,7 +1486,7 @@ keyepel nıka zaf meşğulo yew dema herayi de newe ra tesel bıkerê.',
 'filehist-filesize'         => 'Ebatê dosyayî',
 'filehist-comment'          => 'Rexne',
 'filehist-missing'          => 'Dosya nieseno',
-'imagelinks'                => 'Gıreyê dosya',
+'imagelinks'                => 'Gurenayışê dosya',
 'linkstoimage'              => 'Ena {{PLURAL:$1|pelge şın|$1 pelgayan şın}} ena dosya:',
 'linkstoimage-more'         => '$1 ra ziyed {{PLURAL:$1|pel|pel}} re gırey dano.
 listeya ke ha ver a têna na {{PLURAL:$1|dosyaya ewwili|dosyaya $1 ewwili}} mocnena.
@@ -2049,6 +2052,7 @@ $1',
 'sp-contributions-newbies-title'       => 'Îştîrakê karberî ser hesabê neweyî',
 'sp-contributions-blocklog'            => 'Cıkewtışê kılit-kerdışi',
 'sp-contributions-deleted'             => 'vurnayîşê karberî wedariyayê',
+'sp-contributions-uploads'             => 'barkerdey',
 'sp-contributions-logs'                => 'logî',
 'sp-contributions-talk'                => 'werênayış',
 'sp-contributions-userrights'          => 'Îdarayê heqqanê karberan',
@@ -2070,7 +2074,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'nolinkshere-ns'           => "Ena cayê nameyî de yew pel zi '''[[:$1]]''' rê link nibeno.",
 'isredirect'               => 'pele redireksiyon',
 'istemplate'               => 'transklusyon',
-'isimage'                  => 'grey resimi',
+'isimage'                  => 'gıreyê dosya',
 'whatlinkshere-prev'       => '{{PLURAL:$1|peni|peni $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|verni|verni $1}}',
 'whatlinkshere-links'      => '← gırey',
@@ -2122,7 +2126,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'ipusubmit'                       => 'Ena blok wedarne',
 'unblocked'                       => '[[User:$1|$1]] blok biyo',
 'unblocked-id'                    => 'Blokê $1î wedariyayo',
-'ipblocklist'                     => 'IP adresan u name karberan ke blok biyê',
+'ipblocklist'                     => 'Karberê kılitbiyaey',
 'ipblocklist-legend'              => 'Yew karberê blok biyaye bivîne',
 'ipblocklist-submit'              => 'Bigêre',
 'ipblocklist-localblock'          => 'blokê mehelli',
@@ -2555,8 +2559,8 @@ Na rêze de her gırêyo bin zey istisna vêniyeno, yanê pelê ke dosya beno ke
 Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.',
 'metadata-expand'   => 'Extended detayan bımoc',
 'metadata-collapse' => 'extended details bınım',
-'metadata-fields'   => 'Ke tabloyê metadatayi nıeseno, ma EXIF metadata (eno mesaj dı) zerri pele resimi ri ken de.
-Ma aya bini numnen.
+'metadata-fields'   => 'Resımê meydanê metadataê ke na pele de benê lista, pela resımmocnaene de ke tabloê metadata gına waro, gureniyenê.
+Ê bini zey sayekerdoğan nımiyenê.
 * make
 * model
 * datetimeoriginal
@@ -2717,7 +2721,7 @@ Ma aya bini numnen.
 
 'exif-subjectdistance-value' => '$1 metreyi',
 
-'exif-meteringmode-0'   => 'Nizanyeno',
+'exif-meteringmode-0'   => 'Nêzanıte',
 'exif-meteringmode-1'   => 'orta',
 'exif-meteringmode-2'   => 'gıraniyê merkeziyi ser',
 'exif-meteringmode-3'   => 'noqtayın',
@@ -2726,7 +2730,7 @@ Ma aya bini numnen.
 'exif-meteringmode-6'   => 'qısmî',
 'exif-meteringmode-255' => 'Bin',
 
-'exif-lightsource-0'   => 'Nizanyeno',
+'exif-lightsource-0'   => 'Nêzanıte',
 'exif-lightsource-1'   => 'Roşnê Tici',
 'exif-lightsource-2'   => 'Florasant',
 'exif-lightsource-3'   => 'roşnê bêbızate',
@@ -2801,7 +2805,7 @@ Ma aya bini numnen.
 'exif-sharpness-1' => 'Nerm',
 'exif-sharpness-2' => 'Huşk',
 
-'exif-subjectdistancerange-0' => 'Nizanyeno',
+'exif-subjectdistancerange-0' => 'Nêzanıte',
 'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'Vinayişê nezdiyi',
 'exif-subjectdistancerange-3' => 'Vinayişê duri',
@@ -2914,6 +2918,12 @@ Ma rica keno konfirme bike ke ti raştî wazeno eno pel bivirazo.",
 'confirm-purge-top'    => 'Cacheyê eno pel biestere?',
 'confirm-purge-bottom' => 'Purge kerdişê yew pel cacheyî estereno u revizyonê penîyî mucneno.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => 'TEMAM',
+'confirm-watch-top'      => 'Ena pele lista xoya seyrkerdışi ke',
+'confirm-unwatch-button' => 'TEMAM',
+'confirm-unwatch-top'    => 'Ena pele lista xoya seyirkerdışi ra bıvece?',
+
 # Multipage image navigation
 'imgmultipageprev' => 'peleyê verin',
 'imgmultipagenext' => 'pelo serîn →',
@@ -3004,20 +3014,19 @@ Ti hem zi eşkeno [[Special:EditWatchlist|use the standard editor]].',
 'filepath'         => 'Raherê dosyayi',
 'filepath-page'    => 'Dosya:',
 'filepath-submit'  => 'Şo',
-'filepath-summary' => 'Ena pela xasî ser yew dosyayî patikayê temamî ano.
-Resiman ful resolasyon de mocnayiyê, tipê dosyayî binî pê direktorê programî başlî beno.
-
-Nameyê dosyayî de bike feqet prefiksê  "{{ns:file}}:"î menuse.',
+'filepath-summary' => 'Na pela xısusiye raya temame jû dosya rê ana.
+Resımi be tam asayış mocniyayê, tipê dosyaê bini be programê cıyo elaqedar direkt dest keno pê.',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch'          => 'kopyayê dosyayi bigêre',
-'fileduplicatesearch-summary'  => 'Dosyanê çıftan bınê têmiyankewteyan de bıgeyre.',
-'fileduplicatesearch-legend'   => 'kopyayê ena dosya bigêre',
-'fileduplicatesearch-filename' => 'Nameyê dosyayi',
-'fileduplicatesearch-submit'   => 'bigêre',
-'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Ebatê dosyayî: $3<br />Tipê MIMEî: $4',
-'fileduplicatesearch-result-1' => "Dosyayê ''$1î'' de hem-kopya çini yo.",
-'fileduplicatesearch-result-n' => "Dosyayê ''$1î'' de {{PLURAL:$2|1 hem-kopya|$2 hem-kopyayî'}} esto.",
+'fileduplicatesearch'           => 'kopyayê dosyayi bigêre',
+'fileduplicatesearch-summary'   => 'Dosyanê çıftan bınê têmiyankewteyan de bıgeyre.',
+'fileduplicatesearch-legend'    => 'kopyayê ena dosya bigêre',
+'fileduplicatesearch-filename'  => 'Nameyê dosyayi',
+'fileduplicatesearch-submit'    => 'bigêre',
+'fileduplicatesearch-info'      => '$1 × $2 piksel<br />Ebatê dosyayî: $3<br />Tipê MIMEî: $4',
+'fileduplicatesearch-result-1'  => "Dosyayê ''$1î'' de hem-kopya çini yo.",
+'fileduplicatesearch-result-n'  => "Dosyayê ''$1î'' de {{PLURAL:$2|1 hem-kopya|$2 hem-kopyayî'}} esto.",
+'fileduplicatesearch-noresults' => 'Ebe namey "$1" ra dosya nêdiyayê.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Pelê xasi',

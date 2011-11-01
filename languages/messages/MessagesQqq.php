@@ -24,6 +24,7 @@
  * @author Byrial
  * @author Claudia Hattitten
  * @author Codex Sinaiticus
+ * @author Crt
  * @author Dalibor Bosits
  * @author Darth Kule
  * @author Deadelf
@@ -98,6 +99,7 @@
  * @author Tedjuh10
  * @author Tgr
  * @author The Evil IP address
+ * @author Toliño
  * @author UV
  * @author Umherirrender
  * @author Urhixidur
@@ -398,14 +400,14 @@ Also used as title of [[Special:Search]] page in [[Special:SpecialPages]].
 'editthispage'      => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
 'create-this-page'  => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg|editthispage}} for when the page already exists.
 {{Identical|Createpage}}',
-'delete'            => 'Name of the Delete tab shown for admins. Should be in the imperative mood.
+'delete'            => 'Name of the Delete tab shown for admins. Should be in the infinitive mood.
 
 {{Identical|Delete}}',
 'deletethispage'    => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for link to delete the page in admin view.
 {{Identical|Delete this page}}',
 'undelete_short'    => "It is tab label. It's really can be named ''nstab-undelete''.",
 'viewdeleted_short' => 'Tab label for the undelete button when the user has permission to view the deleted history but not undelete.',
-'protect'           => 'Name of protect tab displayed for admins
+'protect'           => 'Name of protect tab displayed for admins. Should be in the infinitive mood.
 
 {{Identical|Protect}}',
 'protect_change'    => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).
@@ -787,12 +789,16 @@ Used on [[Special:ResetPass]]',
 'passwordreset-username'       => '{{Identical|Username}}',
 'passwordreset-domain'         => 'A domain like used in Domain Name System (DNS) or more specifically like a domain component in the Lightweight Directory Access Protocol (LDAP)',
 'passwordreset-email'          => '{{Identical|E-mail address}}',
-'passwordreset-emailtext-ip'   => 'Parameters:
+'passwordreset-emailtext-ip'   => 'Be consistent with {{msg-mw|Passwordreset-emailtext-user|notext=y}}.
+
+Parameters:
 * $1 - an IP address
 * $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
 * $3 - the number of repetitions in $2
 * $4 - base URL of the wiki',
-'passwordreset-emailtext-user' => 'Parameters:
+'passwordreset-emailtext-user' => 'Be consistent with {{msg-mw|Passwordreset-emailtext-ip|notext=y}}.
+
+Parameters:
 * $1 - a user name
 * $2 - message {{msg-mw|passwordreset-emailelement|notext=1}} repeated $3 times
 * $3 - the number of repetitions in $2
@@ -933,7 +939,8 @@ See also {{msg-mw|Noarticletext-nopermission}}.',
 'template-semiprotected'           => 'Used on [[Special:ProtectedPages]]. Appears in brackets after listed page titles which are semi-protected.',
 'hiddencategories'                 => "This message is shown below the edit form, like you have a section ''\"Templates used on this page\"''.",
 'edittools'                        => 'This text will be shown below edit and upload forms. It can be used to offer special characters not present on most keyboards for copying/pasting, and also often makes them clickable for insertion via a javascript. Since these are seen as specific to a wiki, however, this message should not contain anything but an html comment explaining how it should be used once the wiki has been installed.',
-'edittools-upload'                 => 'This text will be shown below upload forms. It will default to the contents of edittools.',
+'edittools-upload'                 => '{{optional}}
+This text will be shown below upload forms. It will default to the contents of edittools.',
 'sectioneditnotsupported-title'    => 'Page title of special page, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'sectioneditnotsupported-text'     => 'I think this is the text of an error message, which presumably appears when someone tries to edit a section, and section editing is disabled. Explanation of section editing on [http://meta.wikimedia.org/wiki/Help:Section_editing#Section_editing meta].',
 'permissionserrorstext-withaction' => '* $1 is the number of reasons that were found why the action cannot be performed.
@@ -1113,8 +1120,16 @@ Possible alternative message - 'Restrictions could not be set on the visibility 
 'revdelete-uname'             => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the username for a revision or event.
 
 {{Identical|Username}}',
-'revdelete-restricted'        => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when setting visibility restrictions for administrators.',
-'revdelete-unrestricted'      => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when removing visibility restrictions for administrators.',
+'revdelete-restricted'        => 'This message is used as parameter $4 when setting visibility restrictions for administrators in:
+* {{msg-mw|logentry-delete-event}}
+* {{msg-mw|logentry-delete-revision}}
+* {{msg-mw|logentry-suppress-event}}
+* {{msg-mw|logentry-suppress-event}}',
+'revdelete-unrestricted'      => 'This message is used as parameter $4 when setting visibility restrictions for administrators in:
+* {{msg-mw|logentry-delete-event}}
+* {{msg-mw|logentry-delete-revision}}
+* {{msg-mw|logentry-suppress-event}}
+* {{msg-mw|logentry-suppress-event}}',
 'revdelete-hid'               => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when hiding revisions, and {{msg|logdelete-log-message}} when hiding information in the log entry about hiding revisions.
 
 Parameter $1 is either {{msg|revdelete-content}} (when hiding the page content), {{msg|revdelete-summary}} (when hiding the edit summary), {{msg|revdelete-uname}} (when hiding the user name), or a combination of these three messages.',
@@ -1492,15 +1507,16 @@ Parameters:
 
 # Groups
 'group'               => '{{Identical|Group}}',
-'group-user'          => 'Name of group
+'group-user'          => '{{doc-group|user}}
 {{Identical|User}}',
-'group-autoconfirmed' => 'Name of group. On Wikimedia sites autoconfirmed users are users which are older than 4 days. After those 4 days, they have more rights.',
-'group-bot'           => 'Name of group',
-'group-sysop'         => 'Name of group',
-'group-bureaucrat'    => 'Name of group',
-'group-suppress'      => 'This is an optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
+'group-autoconfirmed' => '{{doc-group|autoconfirmed}}
+On Wikimedia sites autoconfirmed users are users which are older than 4 days. After those 4 days, they have more rights.',
+'group-bot'           => '{{doc-group|bot}}',
+'group-sysop'         => '{{doc-group|sysop}}',
+'group-bureaucrat'    => '{{doc-group|bureaucrat}}',
+'group-suppress'      => '{{doc-group|suppress}}
+This is an optional (disabled by default) user group, meant for the [[mw:RevisionDelete|RevisionDelete]] feature, to change the visibility of revisions through [[Special:RevisionDelete]].
 
-* See also: {{msg-mw|Group-suppress-member|pl=yes}} for a member of this group.
 {{Identical|Oversight}}',
 'group-all'           => 'The name of the user group that contains all users, including anonymous users
 
@@ -1516,56 +1532,56 @@ Parameters:
 * See also: {{msg|Group-suppress|pl=yes}} for the name of the group.
 {{Identical|Oversight}}',
 
-'grouppage-user'          => 'Link to group page on wiki',
-'grouppage-autoconfirmed' => 'Link to group page on wiki.',
-'grouppage-bot'           => 'Link to project page of this group, displayed on [[Special:ListUsers/bot]].',
-'grouppage-sysop'         => 'Link to project page of this group, displayed on [[Special:ListUsers/sysop]].',
-'grouppage-bureaucrat'    => 'Name of project page of this group, linked to from [[Special:ListUsers/bureaucrat]], [[Special:ListGroupRights]], and some other special pages.',
-'grouppage-suppress'      => 'Link to project page of this group, displayed on [[Special:ListUsers/suppress]].
-
+'grouppage-user'          => '{{doc-group|user|page}}',
+'grouppage-autoconfirmed' => '{{doc-group|autoconfirmed|page}}',
+'grouppage-bot'           => '{{doc-group|bot|page}}',
+'grouppage-sysop'         => '{{doc-group|sysop|page}}',
+'grouppage-bureaucrat'    => '{{doc-group|bureaucrat|page}}',
+'grouppage-suppress'      => '{{doc-group|suppress|page}}
 {{Identical|Oversight}}',
 
 # Rights
-'right-read'                  => '{{doc-right}}
+'right-read'                  => '{{doc-right|read}}
 Basic right to read any page.',
-'right-edit'                  => '{{doc-right}}
+'right-edit'                  => '{{doc-right|edit}}
 Basic right to edit pages that are not protected.',
-'right-createpage'            => '{{doc-right}}
+'right-createpage'            => '{{doc-right|createpage}}
 Basic right to create pages. The right to edit discussion/talk pages is {{msg|right-createtalk|pl=yes}}.',
-'right-createtalk'            => '{{doc-right}}
+'right-createtalk'            => '{{doc-right|createtalk}}
 Basic right to create discussion/talk pages. The right to edit other pages is {{msg|right-createpage|pl=yes}}.',
-'right-createaccount'         => '{{doc-right}}
+'right-createaccount'         => '{{doc-right|createaccount}}
 The right to [[Special:CreateAccount|create a user account]].',
-'right-minoredit'             => '{{doc-right}}
+'right-minoredit'             => '{{doc-right|minoredit}}
 The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes}} for the message used for that checkbox.',
-'right-move'                  => '{{doc-right}}
+'right-move'                  => '{{doc-right|move}}
 The right to move any page that is not protected from moving.',
 'right-move-subpages'         => '{{doc-right|move-subpages}}',
-'right-move-rootuserpages'    => '{{doc-right}}',
-'right-movefile'              => '{{doc-right}}',
+'right-move-rootuserpages'    => '{{doc-right|move-rootuserpages}}',
+'right-movefile'              => '{{doc-right|movefile}}',
 'right-suppressredirect'      => '{{doc-right|suppressredirect}}',
-'right-upload'                => '{{doc-right}}
+'right-upload'                => '{{doc-right|upload}}
 The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
-'right-reupload'              => '{{doc-right}}
+'right-reupload'              => '{{doc-right|reupload}}
 The right to upload a file under a file name that already exists. Related messages: {{msg|right-upload|pl=yes}}, {{msg|right-reupload-own|pl=yes}} and {{msg|right-reupload-shared|pl=yes}}.',
-'right-reupload-own'          => '{{doc-right}}
+'right-reupload-own'          => '{{doc-right|reupload-own}}
 Right to upload a file under a file name that already exists, and that the same user has uploaded. Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
-'right-reupload-shared'       => '{{doc-right}}
+'right-reupload-shared'       => '{{doc-right|reupload-shared}}
 The right to upload a file locally under a file name that already exists in a shared database (for example Commons). Related messages: {{msg|right-upload|pl=yes}} and {{msg|right-reupload|pl=yes}}.',
 'right-upload_by_url'         => '{{doc-right|upload by url}}',
-'right-purge'                 => '{{doc-right}}
+'right-purge'                 => '{{doc-right|purge}}
 The right to use <tt>&action=purge</tt> in the URL, without needing to confirm it (by default, anonymous users need to confirm it).',
-'right-autoconfirmed'         => "{{doc-right}}
+'right-autoconfirmed'         => "{{doc-right|autoconfirmed}}
 If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:\$wgAutoConfirmCount|\$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:ListUsers]]).
 If you are in that group, you have (by default) the '''right \"autoconfirmed\"'''. With this right, you can for example <!-- I think this right includes more things --> edit semi-protected pages.",
 'right-bot'                   => '{{doc-right|bot}}',
-'right-nominornewtalk'        => '{{doc-right}}
+'right-nominornewtalk'        => '{{doc-right|nominornewtalk}}
 If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg|right-minoredit|pl=yes}}), the user will not get a notification "You have new messages".',
 'right-apihighlimits'         => '{{doc-right|apihighlimits}}',
-'right-writeapi'              => '{{doc-right}}',
+'right-writeapi'              => '{{doc-right|writeapi}}',
 'right-delete'                => '{{doc-right|delete}}',
 'right-bigdelete'             => '{{doc-right|bigdelete}}',
-'right-deleterevision'        => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-deleterevision'        => '{{doc-right|deleterevision}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
 
 See also
@@ -1576,14 +1592,16 @@ See also
 'right-deletedtext'           => '{{doc-right|deletedtext}}',
 'right-browsearchive'         => '{{doc-right|browsearchive}}',
 'right-undelete'              => '{{doc-right|undelete}}',
-'right-suppressrevision'      => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-suppressrevision'      => '{{doc-right|suppressrevision}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-suppressionlog'        => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-suppressionlog'        => '{{doc-right|suppressionlog}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
@@ -1592,15 +1610,16 @@ See also
 * {{msg|right-deleterevision|pl=yes}}',
 'right-block'                 => '{{doc-right|block}}',
 'right-blockemail'            => '{{doc-right|blockemail}}',
-'right-hideuser'              => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
+'right-hideuser'              => '{{doc-right|hideuser}}
+This user right is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
 See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
-'right-ipblock-exempt'        => 'This user automatically
-bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
+'right-ipblock-exempt'        => '{{doc-right|ipblock-exempt}}
+This user automatically bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
 'right-proxyunbannable'       => '{{doc-right|proxyunbannable}}',
 'right-unblockself'           => '{{doc-right|unblockself}}',
 'right-protect'               => '{{doc-right|protect}}',
@@ -1609,18 +1628,19 @@ bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncer
 'right-editusercssjs'         => '{{doc-right|editusercssjs}}',
 'right-editusercss'           => '{{doc-right|editusercss}}',
 'right-edituserjs'            => '{{doc-right|edituserjs}}',
-'right-rollback'              => '{{Identical|Rollback}}',
-'right-markbotedits'          => '{{doc-right}}
+'right-rollback'              => '{{doc-right|rollback}}
+{{Identical|Rollback}}',
+'right-markbotedits'          => '{{doc-right|markbotedits}}
 A user with this right can mark a roll-back edit as a bot edit by adding <tt>&bot=1</tt> to the URL (not by default).',
-'right-noratelimit'           => '{{doc-right}}
+'right-noratelimit'           => '{{doc-right|noratelimit}}
 The rate limits have no effect on the groups that have this right. Rate limits is a restriction that you can only do X actions (edits, moves, etc.) in Y number of seconds (set by [[mw:Manual:$wgRateLimits|$wgRateLimits]]).',
-'right-import'                => '{{doc-right}}',
-'right-importupload'          => '{{doc-right}}',
-'right-patrol'                => '{{doc-right}}',
+'right-import'                => '{{doc-right|import}}',
+'right-importupload'          => '{{doc-right|importupload}}',
+'right-patrol'                => '{{doc-right|patrol}}',
 'right-autopatrol'            => '{{doc-right|autopatrol}}',
 'right-patrolmarks'           => '{{doc-right|patrolmarks}}',
 'right-unwatchedpages'        => '{{doc-right|unwatchedpages}}',
-'right-trackback'             => '{{doc-right}}
+'right-trackback'             => '{{doc-right|trackback}}
 
 "Submit" in this instance means that something called [[:wikipedia:trackback|trackback]] is being sent to the wiki, and the wiki accepts it. When the right is not given to the user, the wiki rejects, or ignores it. There is a nice description at [http://cruftbox.com/cruft/docs/trackback.html How TrackBack Works]. In MediaWiki it is one of those obscure features that probably nobody uses (it is a huge spam trap).
 
@@ -1630,7 +1650,7 @@ An alternative wording for translators could be \'Get the wiki to accept a track
 'right-userrights-interwiki'  => '{{doc-right|userrights-interwiki}}',
 'right-siteadmin'             => '{{doc-right|siteadmin}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
-'right-sendemail'             => '{{doc-right}}',
+'right-sendemail'             => '{{doc-right|sendemail}}',
 
 # User rights log
 'rightslog'                  => 'In [[Special:Log]]',
@@ -1653,44 +1673,44 @@ Parameters:
 {{Identical|None}}',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'                 => '{{Doc-action}}',
-'action-edit'                 => '{{Doc-action}}',
-'action-createpage'           => '{{Doc-action}}',
-'action-createtalk'           => '{{Doc-action}}',
-'action-createaccount'        => '{{Doc-action}}',
-'action-minoredit'            => '{{Doc-action}}',
-'action-move'                 => '{{Doc-action}}',
-'action-move-subpages'        => '{{Doc-action}}',
-'action-move-rootuserpages'   => '{{Doc-action}}',
-'action-movefile'             => '{{doc-action}}',
-'action-upload'               => '{{Doc-action}}',
-'action-reupload'             => '{{Doc-action}}',
-'action-reupload-shared'      => '{{Doc-action}}',
+'action-read'                 => '{{Doc-action|read}}',
+'action-edit'                 => '{{Doc-action|edit}}',
+'action-createpage'           => '{{Doc-action|createpage}}',
+'action-createtalk'           => '{{Doc-action|createtalk}}',
+'action-createaccount'        => '{{Doc-action|createaccount}}',
+'action-minoredit'            => '{{Doc-action|minoredit}}',
+'action-move'                 => '{{Doc-action|move}}',
+'action-move-subpages'        => '{{Doc-action|move-subpages}}',
+'action-move-rootuserpages'   => '{{Doc-action|move-rootuserpages}}',
+'action-movefile'             => '{{doc-action|movefile}}',
+'action-upload'               => '{{Doc-action|upload}}',
+'action-reupload'             => '{{Doc-action|reupload}}',
+'action-reupload-shared'      => '{{Doc-action|reupload-shared}}',
 'action-upload_by_url'        => '{{Doc-action|upload by url}}',
-'action-writeapi'             => '{{Doc-action}}
+'action-writeapi'             => '{{Doc-action|writeapi}}
 
 API is an abbreviation for [http://en.wikipedia.org/wiki/API application programming interface].',
-'action-delete'               => '{{Doc-action}}',
-'action-deleterevision'       => '{{Doc-action}}',
-'action-deletedhistory'       => '{{Doc-action}}',
-'action-browsearchive'        => '{{Doc-action}}',
-'action-undelete'             => '{{Doc-action}}',
-'action-suppressrevision'     => '{{Doc-action}}',
+'action-delete'               => '{{Doc-action|delete}}',
+'action-deleterevision'       => '{{Doc-action|deleterevision}}',
+'action-deletedhistory'       => '{{Doc-action|deletedhistory}}',
+'action-browsearchive'        => '{{Doc-action|browsearchive}}',
+'action-undelete'             => '{{Doc-action|undelete}}',
+'action-suppressrevision'     => '{{Doc-action|suppressrevision}}',
 'action-suppressionlog'       => '{{Doc-action|suppressionlog}}',
-'action-block'                => '{{Doc-action}}',
-'action-protect'              => '{{Doc-action}}',
-'action-import'               => '{{Doc-action}}',
-'action-importupload'         => '{{Doc-action}}',
-'action-patrol'               => '{{Doc-action}}',
-'action-autopatrol'           => '{{Doc-action}}',
-'action-unwatchedpages'       => '{{Doc-action}}',
-'action-trackback'            => '{{Doc-action}}',
-'action-mergehistory'         => '{{Doc-action}}',
-'action-userrights'           => '{{Doc-action}}
+'action-block'                => '{{Doc-action|block}}',
+'action-protect'              => '{{Doc-action|protect}}',
+'action-import'               => '{{Doc-action|import}}',
+'action-importupload'         => '{{Doc-action|importupload}}',
+'action-patrol'               => '{{Doc-action|patrol}}',
+'action-autopatrol'           => '{{Doc-action|autopatrol}}',
+'action-unwatchedpages'       => '{{Doc-action|unwatchedpages}}',
+'action-trackback'            => '{{Doc-action|trackback}}',
+'action-mergehistory'         => '{{Doc-action|mergehistory}}',
+'action-userrights'           => '{{Doc-action|userrights}}
 
 This action allows editing of all of the "user rights", not just the rights of the group "all users".',
-'action-userrights-interwiki' => '{{Doc-action}}',
-'action-siteadmin'            => '{{Doc-action}}',
+'action-userrights-interwiki' => '{{Doc-action|userrights-interwiki}}',
+'action-siteadmin'            => '{{Doc-action|siteadmin}}',
 
 # Recent changes
 'nchanges'                        => 'Appears on the [[Special:RecentChanges]] special page in brackets after pages having more than one change on that date. $1 is the number of changes on that day.',
@@ -1940,7 +1960,7 @@ Example: [[:Image:Addon-icn.png]]',
 'filehist-comment'                  => 'In file description page
 
 {{Identical|Comment}}',
-'imagelinks'                        => 'In top header of the image description page, see for example [[:Image:Yes.png]].',
+'imagelinks'                        => 'In top header of the image description page, see for example [[:Image:Yes.png]]. Shows a list of pages where this file is used.',
 'linkstoimage'                      => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
 * Parameter $1 is the number of pages that link to the file/image.',
 'linkstoimage-more'                 => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
@@ -2071,7 +2091,8 @@ A 'content page' is a page that forms part of the purpose of the wiki. It includ
 Possible alternatives to the word 'content' are 'subject matter' or 'wiki subject' or 'wiki purpose'.
 
 {{Identical|Content page}}",
-'statistics-pages'             => 'Used in [[Special:Statistics]]',
+'statistics-pages'             => 'Used in [[Special:Statistics]]
+{{Identical|Pages}}',
 'statistics-pages-desc'        => "Tooltip shown over ''Pages'' (or as a note below it) in [[Special:Statistics]]",
 'statistics-files'             => 'Used in [[Special:Statistics]]',
 'statistics-edits'             => 'Used in [[Special:Statistics]]',
@@ -2167,7 +2188,8 @@ $1 is a page title",
 'usereditcount'           => 'Shown behind every username on [[Special:ListUsers]].',
 'usercreated'             => 'Used in [[Special:ListUsers]].
 * <code>$1</code> is a date
-* <code>$2</code> is a time',
+* <code>$2</code> is a time
+* <code>$3</code> is the name of the user, for use in GENDER',
 'newpages'                => 'Name of special page displayed in [[Special:SpecialPages]]
 {{Identical|New page}}',
 'newpages-username'       => '{{Identical|Username}}',
@@ -2333,8 +2355,12 @@ See also {{msg|listgrouprights-removegroup}}.',
 * $1 is an enumeration of group names.
 * $2 is the number of group names in $1.
 See also {{msg|listgrouprights-addgroup}}.',
-'listgrouprights-addgroup-all'     => '{{doc-right}}',
-'listgrouprights-removegroup-all'  => '{{doc-right}}',
+'listgrouprights-addgroup-all'     => 'Used on [[Special:ListGroupRights]].
+
+See also {{msg-mw|listgrouprights-removegroup-all}}.',
+'listgrouprights-removegroup-all'  => 'Used on [[Special:ListGroupRights]].
+
+See also {{msg-mw|listgrouprights-addgroup-all}}.',
 'listgrouprights-addgroup-self'    => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 are the group names.
 * $2 is the number of group names in $1.',
@@ -2657,6 +2683,7 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 {{Identical/IP address or username}}',
 'sp-contributions-toponly'             => '"top revision" means the "latest revision"',
 'sp-contributions-submit'              => '{{Identical|Search}}',
+'sp-contributions-explain'             => '{{optional}}',
 
 # What links here
 'whatlinkshere'            => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].',
@@ -3285,6 +3312,11 @@ Varient Option for wikis with variants conversion enabled.',
 'variantname-tg-latn' => '{{optional}}',
 'variantname-tg'      => '{{optional}}',
 
+# Variants for Inuktitut language
+'variantname-ike-cans' => '{{optional}}',
+'variantname-ike-latn' => '{{optional}}',
+'variantname-iu'       => '{{optional}}',
+
 # Metadata
 'metadata'                  => 'The title of a section on an image description page, with information and data about the image. For example of message in use see [http://commons.wikimedia.org/wiki/File:Titan-crystal_bar.JPG Commons].
 
@@ -3294,10 +3326,12 @@ Varient Option for wikis with variants conversion enabled.',
 'metadata-fields'           => "'''Warning:''' Do not translate list items, only translate the text! So leave \"<tt>* make</tt>\" and the other items exactly as they are.
 
 The sentences are for explanation only and are not shown to the user.",
-'metadata-langitem'         => 'This is used for constructing the list of translations when a metadata property is translated into multiple languages.
+'metadata-langitem'         => '{{optional}}
+This is used for constructing the list of translations when a metadata property is translated into multiple languages.
 
 $1 is the value of the property (in one language), $2 is the language name that this translation is for (or language code if language name cannot be determined), $3 is the language code.',
-'metadata-langitem-default' => 'Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
+'metadata-langitem-default' => '{{optional}}
+Similar to "metadata-langitem" but for the case where a multilingual property has a default specified that does not specify what language the default is in. $1 is the value of the property.',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Exif is a format for storing metadata in image files. See this [http://en.wikipedia.org/wiki/Exchangeable_image_file_format Wikipedia article] and the example at the bottom of [http://commons.wikimedia.org/wiki/File:Phalacrocorax-auritus-020.jpg this page on Commons]. The tags are explained [http://www.awaresystems.be/imaging/tiff/tifftags/privateifd/exif.html briefly] and [http://www.kodak.com/global/plugins/acrobat/en/service/digCam/exifStandard2.pdf in further detail].
@@ -3581,7 +3615,8 @@ This is taken from IPTC-iim 2:135 and XMP's dc:language.
 'exif-cameraownername'             => 'Who owns the camera.',
 'exif-label'                       => 'Label given to the image for organizational purposes. This is very similar to {{msg-mw|exif-keywords}}. Label is more used by a person to organize their media, where keywords are used to describe the photo contents itself.
 
-This property can come from xmp:Label in XMP ( http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart1.pdf ) or the label textual chunk in PNG.',
+This property can come from xmp:Label in XMP ( http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart1.pdf ) or the label textual chunk in PNG.
+{{Identical|Label}}',
 'exif-datetimemetadata'            => 'Date metadata was last modified. Typically this refers to XMP metadata.',
 'exif-nickname'                    => 'Short informal name of image. See http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
 'exif-rating'                      => 'This is a rating for how good the image is. The range is between 1 to 5 (5 highest), with an additional option of "reject".',
@@ -3625,7 +3660,8 @@ Note, not all fields are guaranteed to be present, some may be empty strings.',
 *$2 is one of 17 broad categories that the code falls into. For example any code starting with 15 has the contents of {{msg-mw|exif-iimcategory-spo}} for $2.',
 
 # EXIF attributes
-'exif-compression-5'     => 'Lempel-Ziv & Welch algorithm {{optional}}',
+'exif-compression-5'     => '{{optional}}
+Lempel-Ziv & Welch algorithm',
 'exif-compression-6'     => '{{optional}}',
 'exif-compression-7'     => '{{optional}}',
 'exif-compression-8'     => '{{optional}}',
@@ -3649,13 +3685,13 @@ Note, not all fields are guaranteed to be present, some may be empty strings.',
 CCW is an abbreviation for counter-clockwise',
 'exif-orientation-6' => '0th row: right; 0th column: top
 
-CW is an abbreviation for clockwise',
+CCW is an abbreviation for counter-clockwise.',
 'exif-orientation-7' => '0th row: right; 0th column: bottom
 
 CW is an abbreviation for clockwise',
 'exif-orientation-8' => '0th row: left; 0th column: bottom
 
-CCW is an abbreviation for counter-clockwise.',
+CW is an abbreviation for clockwise.',
 
 'exif-xyresolution-i' => '{{Optional}} Used to format {{msg-mw|exif-xresolution}} and {{msg-mw|exif-yresolution}} if the unit is dots per inch. $1 is the number of dots/in.',
 'exif-xyresolution-c' => '{{Optional}} Used to format {{msg-mw|exif-xresolution}} and {{msg-mw|exif-yresolution}} if the unit is dots per centimetre. $1 is the number of dots/cm.',
@@ -3896,7 +3932,7 @@ Do \'\'not\'\' change the leading ;  and the first : as it is wiki markup.
 
 * $1: title of the trackback
 * $2: URL of the trackback
-* <font style="color:grey;">$3: unused in this message, see [[MediaWiki:trackbackexcerpt]] instead</font>
+* <span style="color:grey;">$3: unused in this message, see [[MediaWiki:trackbackexcerpt]] instead</span>
 * $4: name of the trackback
 * $5: a link to delete the trackback. The content of [[MediaWiki:Trackbackremove]] is injected here.',
 'trackbackexcerpt' => "{{optional}}
@@ -3919,16 +3955,18 @@ Do ''not'' change the leading ;  and the first : as it is wiki markup.
 'confirm-unwatch-button' => '{{Identical|OK}}',
 
 # Separators for various lists, etc.
-'comma-separator' => '{{optional}}',
-'colon-separator' => "Optional message. Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
-'pipe-separator'  => '{{optional}}',
-'word-separator'  => 'This is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.
+'semicolon-separator' => '{{optional}}',
+'comma-separator'     => '{{optional}}',
+'colon-separator'     => "{{optional}}
+Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
+'autocomment-prefix'  => '{{optional}}',
+'pipe-separator'      => '{{optional}}',
+'word-separator'      => '{{optional}}
+This is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.
 
-Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.
-
-{{optional}}',
-'percent'         => '{{optional}}',
-'parentheses'     => '{{optional}}',
+Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.',
+'percent'             => '{{optional}}',
+'parentheses'         => '{{optional}}',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',

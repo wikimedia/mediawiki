@@ -2904,19 +2904,6 @@ Në qoftë se skeda është ndryshuar nga gjendja origjinale, disa hollësira mu
 * imagedescription
 * gpslatitude
 * gpslongitude
-* gpsaltitude
-* make
-* model
-* datetimeoriginal
-* exposuretime
-* fnumber
-* isospeedratings
-* focallength
-* artist
-* copyright
-* imagedescription
-* gpslatitude
-* gpslongitude
 * gpsaltitude',
 
 # EXIF tags

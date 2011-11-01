@@ -3102,7 +3102,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 # Table pager
 'ascending_abbrev'         => 'naik',
 'descending_abbrev'        => 'turun',
-'table_pager_next'         => 'Tungkaran barikutnya',
+'table_pager_next'         => 'Tungkaran salanjutnya',
 'table_pager_prev'         => 'Tungkaran sabalumnya',
 'table_pager_first'        => 'Tungkaran panambaian',
 'table_pager_last'         => 'Tungkaran pauncitnya',
@@ -3114,7 +3114,7 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 'autosumm-blank'   => 'Kusungakan tungkaran',
 'autosumm-replace' => "Mangganti isi wan ''$1''",
 'autoredircomment' => 'Paugahan tungkaran ka [[$1]]',
-'autosumm-new'     => "Diulah tungkaran wan ''$1''",
+'autosumm-new'     => "Ma-ulah tungkaran nang isinya ''$1''",
 
 # Watchlist editor
 'watchlistedit-normal-title' => 'Babak daptar itihan',

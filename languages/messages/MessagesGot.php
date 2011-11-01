@@ -438,7 +438,7 @@ $messages = array(
 
 # Block/unblock
 'blockip'            => '𐌰𐍆𐌳𐍂𐌰𐌿𐍃𐌾𐌰𐌽 𐌽𐌹𐌿𐍄𐌰𐌽𐌳𐌹𐍃',
-'ipbreason'          => 'Faírina:',
+'ipbreason'          => '𐍆𐌰𐌹𐍂𐌹𐌽𐌰:',
 'ipbotheroption'     => 'anþar',
 'ipblocklist-submit' => 'Sokeiþ',
 'infiniteblock'      => 'ajukduþs',
@@ -457,7 +457,7 @@ $messages = array(
 '1movedto2'       => '[[$1]] 𐍃𐌺𐌹𐌿𐌱𐌹𐌸 𐌳𐌿 [[$2]]',
 '1movedto2_redir' => '[[$1]] 𐍃𐌺𐌹𐌿𐌱𐌹𐌸 𐌳𐌿 [[$2]] 𐌿𐍆𐌰𐍂 𐍄𐌰𐌹𐌺𐌾𐌰𐌽𐌱𐌰𐌽𐌳𐌹',
 'movelogpage'     => 'Log af skiubans',
-'movereason'      => 'Faírina:',
+'movereason'      => '𐍆𐌰𐌹𐍂𐌹𐌽𐌰:',
 'revertmove'      => 'ráidjan',
 
 # Thumbnails

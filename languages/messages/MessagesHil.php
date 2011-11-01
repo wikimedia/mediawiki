@@ -44,7 +44,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Padal-i man ako sang e-mail kon may diyutay nga pag-ilis sa akon mga panid',
 'tog-enotifrevealaddr'        => 'Ipakita ang akon e-mail adres sa mga e-mail nga nagapahibalo',
 'tog-shownumberswatching'     => 'Ipakita ang numero sang mga nagalantaw nga manug-gamit',
-'tog-oldsig'                  => 'Preview sang nagapabilin nga pirma:',
+'tog-oldsig'                  => 'Nagapabilin nga pirma:',
 'tog-fancysig'                => 'Tratoha ang pirma bilang wikitext (wala sang tabid nga dayon)',
 'tog-externaleditor'          => 'Gamiton dayon ang pang-guha nga manug-ilis (para sa mga sagad lamang, nagakinahanglan sang espesyal nga pagkay-o sa imo computer. [http://www.mediawiki.org/wiki/Manual:External_editors Mas madamo pa nga impormasyon.])',
 'tog-externaldiff'            => 'Gamiton dayon ang pang-guha nga diff (para sa mga sagad lamang, nagakinahanglan sang espesyal nga pagkay-o sa imo computer. [http://www.mediawiki.org/wiki/Manual:External_editors Mas madamo pa nga impormasyon.])',
@@ -172,7 +172,7 @@ $messages = array(
 'vector-action-move'             => 'Saylohon',
 'vector-action-protect'          => 'Pangapinan',
 'vector-action-undelete'         => 'Dulaon ang pagpanas',
-'vector-action-unprotect'        => 'Dulaon ang pagpangapin',
+'vector-action-unprotect'        => 'Ilisan ang pagpangapin',
 'vector-simplesearch-preference' => 'Sugtan ang mas ginpamaayo nga suhestiyon sa pagpangita (Para sa vector nga panit lamang)',
 'vector-view-create'             => 'Himuon',
 'vector-view-edit'               => 'Ilisan',
@@ -210,7 +210,7 @@ $messages = array(
 'protect_change'    => 'bag-ohon',
 'protectthispage'   => 'Pangapinan ang ini nga panid',
 'unprotect'         => 'Dulaon ang pagpangapin',
-'unprotectthispage' => 'Dulaon ang pagpangapin sa sini nga panid',
+'unprotectthispage' => 'Ilisan ang pagpangapin sa sini nga panid',
 'newpage'           => 'Bag-o nga pahina',
 'talkpage'          => 'Istoryahan ta ang ini nga pahina',
 'talkpagelinktext'  => 'Hisayranay',
@@ -397,6 +397,8 @@ Para sa mga paglubad/pagbadbad, palihog kilalanon ang paggamit sang [http://tran
 'cascadeprotected'     => 'Ang ini nga panid ginpangapinan agod nga indi ma-ilisan, bangud nga ini nadal sa masunod nga {{PLURAL:$1|panid, nga|mga panid, nga}} ginapangapinan sang naga-"kaskad" nga pililian nga naga-andar:
 $2',
 'namespaceprotected'   => "Wala ka ginapasugtan nga mag-ilis sang mga panid sa '''$1''' nga lugar-espasyo.",
+'customcssprotected'   => 'Wala ka ginapasugtan nga mag-ilis sang sini nga panid nga CSS, tungod nga may yara ini sang pagpilian sang isa pa gid nga manug-gamit.',
+'customjsprotected'    => 'Wala ka ginapasugtan nga mag-ilis sang sini nga panid nga JavaScript, tungod nga may yara ini sang pagpilian sang isa pa gid nga manug-gamit.',
 'ns-specialprotected'  => 'Ang mga espesyal nga panid indi mahimo nga paga-ilisan.',
 'titleprotected'       => 'Ang ini nga titulo ginpangapinan batok sa pagbuhat ni [[User:$1|$1]].
 Ang iya rason amo ang "\'\'$2\'\'".',
@@ -541,6 +543,7 @@ Mahimo nga madinalag-on mo nga nga gin-ilisan ang imo pasword ukon nagpangabay k
 'passwordreset-disabled'       => 'Ang mga pagliwat sang pasword gin-untat sa sini nga wiki.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Magbutang sang isa sang mga datos sa idalom}}',
 'passwordreset-username'       => 'Ngalan sang Manog-gamit"',
+'passwordreset-domain'         => 'Domeyn:',
 'passwordreset-email'          => 'Adres sang e-mail:',
 'passwordreset-emailtitle'     => 'Ang mga detalye sang akawnt sa {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'May tawo nga (mahimo ikaw, halin sa IP adres nga $1) nagpangabay sang pahanumdom sang mga detalye
@@ -670,11 +673,12 @@ Palihog tsek kon luyag mo nga himuon/ilisan ang ini nga panid.',
 'userpage-userdoesnotexist-view'   => 'Ang akawnt sang manuggamit nga "$1" wala pa marehistro.',
 'blocked-notice-logextract'        => 'Ang ini nga manuggamit ginapunggan karon.
 Ang pinaka-ulihi nga log sa pagpuggong yara sa idalom para mahibaluan nimo:',
-'clearyourcache'                   => "'''Pahibalo: Pagkatapos mo magtipon, mahimo nga kinahanglan mo pa nga laktawan ang talaguan sang imo brawser agod nga makita ang mga pag-ilis.'''
-'''Mozilla / Firefox / Safari:''' tum-ukon sang madugay ang ''Shift'' samtang ginatum-ok ang ''Reload'', ukon tum-ukon ang ''Ctrl-F5'' ukon ''Ctrl-R'' (''Command-R'' sa Mac);
-'''Konqueror: '''tum-ukon ang ''Reload'' ukon ang ''F5'';
-'''Opera:''' panason ang talaguan sa ''Tools → Preferences'';
-'''Internet Explorer:''' hold ''Ctrl'' while clicking ''Refresh,'' or press ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Tandaan:''' Pagkatapos nga tiponon, mahimo nga kinahanglan mo pa nga i-baipas ang cache sang imo brawser agod makita ang mga pagbag-o.
+* '''Firefox / Safari:''' pinduton sing madugay ang ''Shift'' samtang ginapitik ang ''Reload'', ukon pinduton ang ''Ctrl-F5'' ukon ''Ctrl-R'' (''Command-R'' sa Mac)
+* '''Google Chrome:''' pinduton ang ''Ctrl-Shift-R'' (''Command-Shift-R'' sa Mac)
+* '''Internet Explorer:''' pinduton sing madugay ang ''Ctrl'' samtang ginapitik ''Refresh'', ukon pinduton ang ''Ctrl-F5''
+* '''Konqueror:''' pitikon ang ''Reload'' ukon pinduton ang ''F5''
+* '''Opera:''' hawanon ang  cache sa ''Tools → Preferences''",
 'usercssyoucanpreview'             => "'''Pagbulig:''' Gamiton ang \"{{int:showpreview}}\" nga tulom-ukon agod matilawan ang imo bag-o nga CSS bag-o magtipon.",
 'userjsyoucanpreview'              => "'''Pagbulig:''' Gamiton ang \"{{int:showpreview}}\" nga tulom-ukon agod matilawan ang imo bag-o nga JavaScript bag-o magtipon.",
 'usercsspreview'                   => "'''Tandai nga ginalantaw mo pa lang ang imo CSS sang manuggamit.'''
@@ -844,26 +848,26 @@ Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAME
 'rev-deleted-text-unhide'     => "Ang pagbag-o sa sini nga panid '''ginpanas'''. 
 Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].
 Bilang administrador makita mo man ini sa gihapon [$1 lantawon ang ini nga pagbag-o] kon luyag mo pa magpadayon.",
-'rev-suppressed-text-unhide'  => "Ang pagbag-o sa sini nga panid '''ginpahugotan'''. 
+'rev-suppressed-text-unhide'  => "Ang isa sang mga pagbag-o sang sini nga panid '''ginpahugotan'''.
 Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].
 Bilang administrador makita mo man ini sa gihapon [$1 lantawon ang ini nga pagbag-o] kon luyag mo pa magpadayon.",
 'rev-deleted-text-view'       => "Ang pagbag-o sa sini nga panid '''ginpanas'''.
-Bilang administrador makita mo ini; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
+Makita mo ini; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
 'rev-suppressed-text-view'    => "Ang pagbag-o sa sini nga panid '''ginpahugotan'''.
-Bilang administrador makita mo ini; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].",
+Makita mo ini; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].",
 'rev-deleted-no-diff'         => "Indi mo makita ang ini nga diff tungod na ang isa sa mga pagbag-o '''ginpanas'''.
 Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
 'rev-suppressed-no-diff'      => "Indi mo makita ang ini nga diff tungod nga ang isa sa mga pagbag-o '''ginpanas'''.",
 'rev-deleted-unhide-diff'     => "Ang isa sa mga pagbag-o sa sini nga diff '''ginpanas'''.
 Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].
-Bilang administrador makita mo man ini sa gihapon [$1 lantawon ang ini nga diff] kon luyag mo pa magpadayon.",
+Makita mo man ini sa gihapon [$1 lantawon ang ini nga diff] kon luyag mo pa magpadayon.",
 'rev-suppressed-unhide-diff'  => "Ang isa sang mga pagbag-o sang sini nga diff '''ginpahugotan'''.
 Makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].
-Bilang administrador makita mo man ini sa gihapon [$1 lantawon ang ini nga diff] kon luyag mo pa magpadayon.",
+Makita mo man ini sa gihapon [$1 lantawon ang ini nga diff] kon luyag mo pa magpadayon.",
 'rev-deleted-diff-view'       => "Ang isa sa mga pagbag-o sa sini nga diff '''ginpanas'''.
-Bilang administrador makita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
+Makita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpanas].",
 'rev-suppressed-diff-view'    => "Ang isa sa mga pagbag-o sa sini nga diff '''ginpahugotan'''.
-Bilang administrador makita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].",
+Makita mo ini nga diff; makita ang mga detalye sa [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log sang pagpahugot].",
 'rev-delundel'                => 'pakita/tagu-on',
 'rev-showdeleted'             => 'ipakita',
 'revisiondelete'              => 'Panason/indi pagpanason ang mga pagbag-o',
@@ -1057,12 +1061,13 @@ Mahimo ka nga magpangita gamit ang Google sa sini nga tion.
 Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga madaan na.',
 
 # Quickbar
-'qbsettings'               => 'Bar nga mahapos',
-'qbsettings-none'          => 'Wala',
-'qbsettings-fixedleft'     => 'Gintadlong sa wala',
-'qbsettings-fixedright'    => 'Gintadlong sa too',
-'qbsettings-floatingleft'  => 'Nagalutaw sa wala',
-'qbsettings-floatingright' => 'Nagalutaw sa too',
+'qbsettings'                => 'Bar nga mahapos',
+'qbsettings-none'           => 'Wala',
+'qbsettings-fixedleft'      => 'Gintadlong sa wala',
+'qbsettings-fixedright'     => 'Gintadlong sa too',
+'qbsettings-floatingleft'   => 'Nagalutaw sa wala',
+'qbsettings-floatingright'  => 'Nagalutaw sa too',
+'qbsettings-directionality' => 'Indi na maliwat, depende sa direksyon sang iskrip sang imo lenggwahe',
 
 # Preferences page
 'preferences'                   => 'Mga Ginabasehan',
@@ -1074,7 +1079,9 @@ Tandai nga ang ila nga palasulundan sang mga unod sang {{SITENAME}} mahimo nga m
 'prefs-skin'                    => 'Panit',
 'skin-preview'                  => 'Ipakita subong',
 'datedefault'                   => 'Wala sang pagpalabi',
+'prefs-beta'                    => 'Mga kaupod sang Beta',
 'prefs-datetime'                => 'Petsa kag oras',
+'prefs-labs'                    => 'Mga kaupod sang Labs',
 'prefs-personal'                => 'Profayl sang manuggamit',
 'prefs-rc'                      => 'Mga Bag-o nga Inislan',
 'prefs-watchlist'               => 'Lista sang mga ginabantayan',
@@ -1143,6 +1150,7 @@ Indi na ini maliwat pa.',
 'prefs-registration'            => 'Oras sang pagparehistro:',
 'yourrealname'                  => 'Matood-tood nga pangalan:',
 'yourlanguage'                  => 'Lenguahe:',
+'yourvariant'                   => 'Ang lain nga lenggwahe sang kaundan:',
 'yournick'                      => 'Bag-o nga pirma:',
 'prefs-help-signature'          => 'Ang mga kumento sa mga panid sang pag-estorya kinahanglan nga napirmahan sang "<nowiki>~~~~</nowiki>" nga pagasayluhon sa imo pirma sang stamp sang oras.',
 'badsig'                        => 'Indi mabaton nga hilaw nga pirma.

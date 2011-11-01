@@ -329,7 +329,7 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Ẩn các sửa đổi của robot khỏi danh sách theo dõi',
 'tog-watchlisthideminor'      => 'Ẩn các sửa đổi nhỏ khỏi danh sách theo dõi',
 'tog-watchlisthideliu'        => 'Ẩn sửa đổi của thành viên đã đăng nhập khỏi danh sách theo dõi',
-'tog-watchlisthideanons'      => 'Ẩn sửa đổi của thành viên vô danh khỏi danh sách theo dõi',
+'tog-watchlisthideanons'      => 'Ẩn sửa đổi của người dùng vô danh khỏi danh sách theo dõi',
 'tog-watchlisthidepatrolled'  => 'Ẩn sửa đổi đã tuần tra trong danh sách theo dõi',
 'tog-nolangconversion'        => 'Tắt chuyển đổi biến thể',
 'tog-ccmeonemails'            => 'Gửi bản sao cho tôi khi gửi thư điện tử cho người khác',
@@ -907,7 +907,7 @@ Có thể nó đã bị di chuyển hoặc xóa đi trong khi bạn đang xem tr
 Có thể đổi mật khẩu cho tài khoản mới này tại trang ''[[Special:ChangePassword|đổi mật khẩu]]'' sau khi đã đăng nhập.",
 'newarticle'                       => '(Mới)',
 'newarticletext'                   => "Bạn đi đến đây từ một liên kết đến một trang chưa tồn tại. Để tạo trang, hãy bắt đầu gõ vào ô bên dưới (xem [[{{MediaWiki:Helppage}}|trang trợ giúp]] để có thêm thông tin). Nếu bạn đến đây do nhầm lẫn, chỉ cần nhấn vào nút '''Back''' trên trình duyệt của bạn.",
-'anontalkpagetext'                 => "----''Đây là trang thảo luận của một thành viên vô danh chưa tạo tài khoản hoặc có tài khoản nhưng không đăng nhập.
+'anontalkpagetext'                 => "----''Đây là trang thảo luận của một người dùng vô danh chưa tạo tài khoản hoặc có tài khoản nhưng không đăng nhập.
 Do đó chúng ta phải dùng một dãy số gọi là địa chỉ IP để xác định anh/chị ta.
 Một địa chỉ IP như vậy có thể có nhiều người cùng dùng chung.
 Nếu bạn là một thành viên vô danh và cảm thấy rằng có những lời bàn luận không thích hợp đang nhắm vào bạn, xin hãy [[Special:UserLogin/signup|tạo tài khoản]] hoặc [[Special:UserLogin|đăng nhập]] để tránh sự nhầm lẫn về sau với những thành viên vô danh khác.''",
@@ -1083,27 +1083,27 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-deleted-text-unhide'     => "Phiên bản này đã bị '''xóa'''.
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
-Vì là bảo quản viên, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
+Bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
 'rev-suppressed-text-unhide'  => "Phiên bản này đã bị '''giấu'''.
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].
-Vì là bảo quản viên, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
+Bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
 'rev-deleted-text-view'       => "Phiên bản này đã bị '''xóa'''.
-Vì là bảo quản viên bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-suppressed-text-view'    => "Phiên bản này đã bị '''giấu'''.
-Vì là bảo quản viên bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
+Bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
 'rev-deleted-no-diff'         => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-suppressed-no-diff'      => "Bạn không thể xem khác biệt vì một trong hai phiên bản đã bị '''xóa'''.",
 'rev-deleted-unhide-diff'     => "Một trong những phiên bản của khác biệt này đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
-Vì là bảo quản viên, bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
+Bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
 'rev-suppressed-unhide-diff'  => "Một trong các phiên bản trong lần so sánh này đã được '''ẩn giấu'''.
 Bạn có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình ẩn giấu].
-Là bảo quản viên bạn vẫn có thể [$1 so sánh khác biệt] nếu bạn muốn.",
+Bạn vẫn có thể [$1 so sánh khác biệt] nếu bạn muốn.",
 'rev-deleted-diff-view'       => "Một trong những phiên bản trong khác biệt này đã bị '''xóa'''.
-Là bảo quản viên bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-suppressed-diff-view'    => "Trong trong những phiên bản trong khác biệt này đã bị '''ẩn giấu'''.
-Là bảo quản viên bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình ẩn giấu].",
+Bạn vẫn có thể xem khác biệt này; có thể xem chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình ẩn giấu].",
 'rev-delundel'                => 'hiện/ẩn',
 'rev-showdeleted'             => 'hiện',
 'revisiondelete'              => 'Xóa hay phục hồi phiên bản',
@@ -1124,6 +1124,7 @@ hoặc bạn đang tìm cách ẩn phiên bản hiện tại.',
 Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.",
 'revdelete-confirm'           => 'Xin hãy xác nhận rằng bạn có ý định xóa, nhận biết tầm quan trọng của việc này, và việc xóa tuân theo [[{{MediaWiki:Policy-url}}|quy định]].',
 'revdelete-suppress-text'     => "Việc ẩn giấu '''chỉ''' nên dùng trong các trường hợp sau:
+* Thông tin có thể phỉ báng
 * Thông tin cá nhân không thích hợp
 *: ''địa chỉ nhà và số điện thoại, số an sinh xã hội, v.v.''",
 'revdelete-legend'            => 'Thiết lập hạn chế khả kiến',
@@ -1156,8 +1157,8 @@ $1",
 'revdelete-content'           => 'nội dung',
 'revdelete-summary'           => 'tóm lược sửa đổi',
 'revdelete-uname'             => 'tên người dùng',
-'revdelete-restricted'        => 'áp dụng hạn chế này cho sysop',
-'revdelete-unrestricted'      => 'gỡ bỏ hạn chế này cho sysop',
+'revdelete-restricted'        => 'đã áp dụng hạn chế cho bảo quản viên',
+'revdelete-unrestricted'      => 'đã gỡ bỏ hạn chế cho bảo quản viên',
 'revdelete-hid'               => 'đã ẩn $1',
 'revdelete-unhid'             => 'đã hiện $1',
 'revdelete-log-message'       => '$2 {{PLURAL:$2|phiên bản|phiên bản}} được $1',
@@ -1184,7 +1185,7 @@ Xin hãy kiểm tra nhật trình.',
 # Suppression log
 'suppressionlog'     => 'Nhật trình ẩn giấu',
 'suppressionlogtext' => 'Dưới đây là danh sách các tác vụ xóa và cấm liên quan đến nội dung mà các quản lý không nhìn thấy.
-Xem [[Special:IPBlockList|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
+Xem [[Special:BlockList|danh sách các IP bị cấm]] để xem danh sách các tác vụ cấm chỉ và cấm thông thường hiện nay.',
 
 # History merging
 'mergehistory'                     => 'Trộn lịch sử trang',
@@ -1627,11 +1628,11 @@ Các trang trong [[Special:Watchlist|danh sách bạn theo dõi]] được '''t�
 Nhật trình xóa và di chuyển của trang này được ghi ở dưới để bạn tiện theo dõi:",
 'uploadtext'                  => "Hãy sử dụng mẫu sau để tải tập tin lên.
 Để xem hoặc tìm kiếm những hình ảnh đã được tải lên trước đây, xin mời xem [[Special:FileList|danh sách các tập tin đã tải lên]].
-việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]],  việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
+việc tải lên và tải lên lại được ghi lại trong [[Special:Log/upload|nhật trình tải lên]], việc xóa đi được ghi trong [[Special:Log/delete|nhật trình xóa]].
 
 Để đưa tập tin vào trang, hãy dùng liên kết có một trong các dạng sau:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.jpg]]</nowiki></tt>''' để phiên bản đầy đủ của tập tin
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</nowiki></tt>''' để dùng hình đã được co lại còn 200 pixel chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Tập tin.png|200px|nhỏ|trái|văn bản thay thế]]</nowiki></tt>''' để dùng hình đã được co lại còn 200 điểm ảnh chiều rộng đặt trong một hộp ở lề bên trái với 'văn bản thay thế' dùng để mô tả
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Tập tin.ogg]]</nowiki></tt>''' để liên kết trực tiếp đến tập tin mà không hiển thị nó",
 'upload-permitted'            => 'Các định dạng tập tin được phép tải lên: $1.',
 'upload-preferred'            => 'Các định dạng tập tin nên dùng: $1.',
@@ -1847,7 +1848,7 @@ Lọc theo người dùng để chỉ hiện các tập tin mà người đó đ
 'filehist-filesize'         => 'Kích thước tập tin',
 'filehist-comment'          => 'Miêu tả',
 'filehist-missing'          => 'Không thấy tập tin',
-'imagelinks'                => 'Liên kết đến tập tin',
+'imagelinks'                => 'Các trang sử dụng tập tin',
 'linkstoimage'              => '{{PLURAL:$1|Trang|$1 trang}} sau có liên kết đến tập tin này:',
 'linkstoimage-more'         => 'Có hơn $1 {{PLURAL:$1|trang|trang}} liên kết đến tập tin này.
 Danh sách dưới đây chỉ hiển thị {{PLURAL:$1|liên kết đầu tiên|$1 liên kết đầu tiên}} đến tập tin này.
@@ -2093,7 +2094,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 
 # Special:ListUsers
 'listusersfrom'      => 'Hiển thị thành viên bắt đầu từ:',
-'listusers-submit'   => 'Liệt kê',
+'listusers-submit'   => 'Xem',
 'listusers-noresult' => 'Không thấy thành viên.',
 'listusers-blocked'  => '(bị cấm)',
 
@@ -2155,7 +2156,7 @@ Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhó
 'email-legend'         => 'Gửi thư điện tử đến thành viên {{SITENAME}} khác',
 'emailfrom'            => 'Người gửi:',
 'emailto'              => 'Người nhận:',
-'emailsubject'         => 'Chủ đề:',
+'emailsubject'         => 'Tiêu đề:',
 'emailmessage'         => 'Nội dung:',
 'emailsend'            => 'Gửi',
 'emailccme'            => 'Gửi cho tôi bản sao của thư này.',
@@ -2214,7 +2215,7 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'enotif_subject'               => '$PAGETITLE tại {{SITENAME}} đã được $CHANGEDORCREATED bởi $PAGEEDITOR',
 'enotif_lastvisited'           => 'Xem $1 để biết các thay đổi diễn ra từ lần xem cuối cùng của bạn.',
 'enotif_lastdiff'              => 'Vào $1 để xem sự thay đổi này.',
-'enotif_anon_editor'           => 'thành viên vô danh $1',
+'enotif_anon_editor'           => 'người dùng vô danh $1',
 'enotif_body'                  => 'Xin chào $WATCHINGUSERNAME,
 
 
@@ -2560,7 +2561,7 @@ $1',
 'reblock-logentry'                => 'thay đổi thiết lập cấm [[$1]] thành thời hạn $2 $3',
 'blocklogtext'                    => 'Đây là nhật trình ghi lại những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê ở đây. Xem thêm [[Special:BlockList|danh sách cấm]] để có danh sách cấm và cấm hẳn hiện tại.',
 'unblocklogentry'                 => 'đã bỏ cấm “$1”',
-'block-log-flags-anononly'        => 'chỉ cấm thành viên vô danh',
+'block-log-flags-anononly'        => 'chỉ cấm người dùng vô danh',
 'block-log-flags-nocreate'        => 'cấm mở tài khoản',
 'block-log-flags-noautoblock'     => 'tắt tự động cấm',
 'block-log-flags-noemail'         => 'cấm thư điện tử',
@@ -2901,7 +2902,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'notacceptable' => 'Máy chủ không thể cho ra định dạng dữ liệu tương thích với phần mềm của bạn.',
 
 # Attribution
-'anonymous'        => '{{PLURAL:$1|Thành viên|Thành viên}} vô danh của {{SITENAME}}',
+'anonymous'        => '{{PLURAL:$1|Người dùng|Người dùng}} vô danh của {{SITENAME}}',
 'siteuser'         => 'thành viên $1 của {{SITENAME}}',
 'anonuser'         => 'người vô danh $1 tại {{SITENAME}}',
 'lastmodifiedatby' => 'Trang này được $3 cập nhật lần cuối lúc $2 $1.',
@@ -2991,7 +2992,7 @@ Nếu thực thi nó máy tính của bạn có thể bị tiếm quyền.",
 'show-big-image'         => 'Độ phân giải tối đa',
 'show-big-image-preview' => '<small>Kích thước của ảnh xem thử: $1.</small>',
 'show-big-image-other'   => '<small>Độ phân giải khác: $1.</small>',
-'show-big-image-size'    => '$1 × $2 pixel',
+'show-big-image-size'    => '$1 × $2 điểm ảnh',
 'file-info-gif-looped'   => 'có lặp',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|khung ảnh|khung ảnh}}',
 'file-info-png-looped'   => 'có lặp',
@@ -3729,9 +3730,8 @@ hoặc [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html đọc nó trực 
 'filepath'         => 'Đường dẫn tập tin',
 'filepath-page'    => 'Tập tin:',
 'filepath-submit'  => 'Hiển thị tập tin',
-'filepath-summary' => 'Trang này chuyển bạn thẳng đến địa chỉ của một tập tin. Nếu là hình, địa chỉ là của hình kích thước tối đa; các loại tập tin khác sẽ được mở lên ngay trong chương trình đúng.
-
-Hãy ghi vào tên tập tin, không bao gồm tiền tố “{{ns:file}}:”.',
+'filepath-summary' => 'Trang này cho ra địa chỉ đầy đủ của một tập tin.
+Các hình ảnh được hiển thị ở kích thước tối đa, còn các loại tập tin khác được mở lên ngay trong chương trình mặc định.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Tìm kiếm các tập tin trùng lắp',

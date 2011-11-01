@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bugoslav
  * @author CERminator
  * @author Demicx
  * @author Fulup
@@ -291,7 +292,7 @@ $messages = array(
 'tog-rememberpassword'        => 'Zapamti moju šifru u ovom pregledniku (najviše $1 {{PLURAL:$1|dan|dana}})',
 'tog-watchcreations'          => 'Dodaj stranice koje ja napravim u moj spisak praćenih članaka',
 'tog-watchdefault'            => 'Dodaj stranice koje uređujem u moj spisak praćenih članaka',
-'tog-watchmoves'              => 'Stranice koje premjestim dodaj na spisak praćenja',
+'tog-watchmoves'              => 'Stranice koje pomjerim dodaj na spisak praćenja',
 'tog-watchdeletion'           => 'Stranice koje obrišem dodaj na spisak praćenja',
 'tog-minordefault'            => 'Označi sve izmjene malim isprva',
 'tog-previewontop'            => 'Prikaži pretpregled prije polja za izmjenu a ne poslije',
@@ -429,7 +430,7 @@ $messages = array(
 # Vector skin
 'vector-action-addsection'       => 'Dodaj temu',
 'vector-action-delete'           => 'Brisanje',
-'vector-action-move'             => 'Preusmjeri',
+'vector-action-move'             => 'Pomjeri',
 'vector-action-protect'          => 'Zaštiti',
 'vector-action-undelete'         => 'Vrati obrisano',
 'vector-action-unprotect'        => 'Promijeni zaštitu',
@@ -608,7 +609,7 @@ Baza podataka je vratila grešku "$3: $4".',
 Administrator koji ju je zaključao je ponudio ovo objašnjenje: $1',
 'missing-article'      => 'U bazi podataka nije pronađen tekst stranice tražen pod nazivom "$1" $2.
 
-Do ovoga dolazi kada se prati premještaj ili historija linka za stranicu koja je pobrisana.
+Do ovoga dolazi kada se prati pomjeranje ili historija linka za stranicu koja je pobrisana.
 
 
 U slučaju da se ne radi o gore navedenom, moguće je da ste pronašli grešku u programu.
@@ -893,7 +894,7 @@ Molimo da navedete sve gore navedene detalje u zahtjevu za deblokadu.',
 Molimo da postavite i verifikujete Vašu e-mail adresu putem Vaših [[Special:Preferences|korisničkih opcija]].',
 'nosuchsectiontitle'               => 'Ne mogu pronaći sekciju',
 'nosuchsectiontext'                => 'Pokušali ste uređivati sekciju koja ne postoji.
-Možda je premještena ili obrisana dok ste pregledavali stranicu.',
+Možda je pomjerena ili obrisana dok ste pregledavali stranicu.',
 'loginreqtitle'                    => 'Potrebno je prijavljivanje',
 'loginreqlink'                     => 'prijavi se',
 'loginreqpagetext'                 => 'Morate $1 da bi ste vidjeli druge strane.',
@@ -1009,9 +1010,9 @@ Možete se vratiti i uređivati već postojeće stranice ili se [[Special:UserLo
 'recreate-moveddeleted-warn'       => "'''Upozorenje: Postavljate stranicu koja je prethodno brisana.'''
 
 Razmotrite da li je nastavljanje uređivanja ove stranice u skladu s pravilima.
-Ovdje je naveden zapisnik brisanja i premještanja s obrazloženjem:",
+Ovdje je naveden zapisnik brisanja i pomjeranja s obrazloženjem:",
 'moveddeleted-notice'              => 'Ova stranica je obrisana.
-Zapis brisanja i premještanja stranice je prikazan ispod kao referenca.',
+Zapis brisanja i pomjeranja stranice je prikazan ispod kao referenca.',
 'log-fulllog'                      => 'Vidi potpuni zapisnik',
 'edit-hook-aborted'                => 'Izmjena je poništena putem interfejsa.
 Nije ponuđeno nikakvo objašnjenje.',
@@ -1478,8 +1479,8 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'right-createtalk'            => 'Pravljenje stranica za razgovor',
 'right-createaccount'         => 'Pravljenje korisničkog računa',
 'right-minoredit'             => 'Označavanje izmjena kao malih',
-'right-move'                  => 'Preusmjeravanje stranica',
-'right-move-subpages'         => 'Preusmjeravanje stranica sa svim podstranicama',
+'right-move'                  => 'Pomjeranje stranica',
+'right-move-subpages'         => 'Pomjeranje stranica sa svim podstranicama',
 'right-move-rootuserpages'    => 'Premještanje stranica osnovnih korisnika',
 'right-movefile'              => 'Premještanje datoteka',
 'right-suppressredirect'      => 'Ne pravi preusmjeravanje sa starog imena pri preusmjeravanju stranica',
@@ -1546,10 +1547,10 @@ Ako izaberete da date ime, biće korišteno za pripisivanje za vaš rad.',
 'action-createtalk'           => 'kreirate stranice za razgovor',
 'action-createaccount'        => 'napravite ovaj korisnički račun',
 'action-minoredit'            => 'da označite ovu izmjenu kao malu',
-'action-move'                 => 'premjestite ovu stranicu',
-'action-move-subpages'        => 'premjestite ovu stranicu, i njene podstranice',
-'action-move-rootuserpages'   => 'premjestite stranice osnovnog korisnika',
-'action-movefile'             => 'premjesti ovu datoteku',
+'action-move'                 => 'pomjerite ovu stranicu',
+'action-move-subpages'        => 'pomjerite ovu stranicu, i njene podstranice',
+'action-move-rootuserpages'   => 'pomjerite stranice osnovnog korisnika',
+'action-movefile'             => 'pomjeri ovu datoteku',
 'action-upload'               => 'postavljate ovu datoteku',
 'action-reupload'             => 'stavite novu verziju postojeće datoteke',
 'action-reupload-shared'      => 'postavite ovu datoteku iz zajedničke ostave',
@@ -1630,8 +1631,8 @@ Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podeblja
 'upload_directory_missing'    => 'Folder za postavljanje ($1) nedostaje i webserver ga ne može napraviti.',
 'upload_directory_read_only'  => 'Folder za postavljanje ($1) na webserveru je postavljen samo za čitanje.',
 'uploaderror'                 => 'Greška pri slanju',
-'upload-recreate-warning'     => "'''Upozorenje: Datoteka s tim imenom je obrisana ili premještena.'''
-Zapisnik brisanja i premještanja za ovu stranicu je dostupan ovdje na uvid:",
+'upload-recreate-warning'     => "'''Upozorenje: Datoteka s tim imenom je obrisana ili pomjerena.'''
+Zapisnik brisanja i pomjeranja za ovu stranicu je dostupan ovdje na uvid:",
 'uploadtext'                  => "Koristite formu ispod za postavljanje datoteka.
 Da bi ste vidjeli ili pretražili ranije postavljene datoteke, pogledajte [[Special:FileList|spisak postavljenih datoteka]], ponovna postavljanja su također zapisana u [[Special:Log/upload|zapisnik postavljanja]], a brisanja u [[Special:Log/delete|zapisnik brisanja]].
 
@@ -2034,7 +2035,7 @@ Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju tekst
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Korisničko ime:',
 'ancientpages'            => 'Najstarije stranice',
-'move'                    => 'Preusmjeri',
+'move'                    => 'Pomjeri',
 'movethispage'            => 'Premjesti ovu stranicu',
 'unusedimagestext'        => 'Slijedeće datoteke postoje ali nisu uključene ni u jednu stranicu.
 Molimo obratite pažnju da druge web stranice mogu biti povezane s datotekom putem direktnog URLa, tako da i pored toga mogu biti prikazane ovdje pored aktivne upotrebe.',
@@ -2640,7 +2641,7 @@ Ako želite otključati ili zaključati bazu, ova datoteka mora biti omogućena 
 'lockedbyandtime'     => '(od $1 dana $2 u $3)',
 
 # Move page
-'move-page'                    => 'Preusmjeravanje $1',
+'move-page'                    => 'Pomjeranje $1',
 'move-page-legend'             => 'Premjestite stranicu',
 'movepagetext'                 => "Korištenjem ovog formulara možete preusmjeriti članak
 zajedno sa stranicom za diskusiju tog članka.
@@ -2686,10 +2687,10 @@ U tim slučajevima, moraćete ručno da premjestite stranicu ukoliko to želite.
 'cant-move-to-user-page'       => 'Nemate dopuštenje da premjestite stranicu na korisničku stranicu (osim na korisničku podstranicu).',
 'newtitle'                     => 'Novi naslov',
 'move-watch'                   => 'Prati ovu stranicu',
-'movepagebtn'                  => 'premjestite stranicu',
+'movepagebtn'                  => 'pomjerite stranicu',
 'pagemovedsub'                 => 'Premještanje uspjelo',
 'movepage-moved'               => '\'\'\'"$1" je premještena na "$2"\'\'\'',
-'movepage-moved-redirect'      => 'Preusmjerenje je napravljeno.',
+'movepage-moved-redirect'      => 'Pomjeranje je napravljeno.',
 'movepage-moved-noredirect'    => 'Pravljenje preusmjerenja je onemogućeno.',
 'articleexists'                => 'Stranica pod tim imenom već postoji, ili je ime koje ste izabrali neispravno.  Molimo Vas da izaberete drugo ime.',
 'cantmove-titleprotected'      => 'Ne možete premjestiti stranicu na ovu lokaciju, jer je novi naslov zaštićen od pravljenja',
@@ -3559,6 +3560,10 @@ Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
 'confirm-purge-top'    => 'Da li želite obrisati keš ove stranice?',
 'confirm-purge-bottom' => 'Ispražnjava keš stranice i prikazuje najsvježiju verziju.',
 
+# action=watch/unwatch
+'confirm-watch-top'   => 'Dodajte ovu stranu na Vaš spisak praćenih članaka',
+'confirm-unwatch-top' => 'Izbrišite ovu stranu sa Vašeg spiska praćenih članaka',
+
 # Multipage image navigation
 'imgmultipageprev' => '← prethodna stranica',
 'imgmultipagenext' => 'slijedeća stranica →',
@@ -3725,9 +3730,7 @@ Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] z
 'filepath-page'    => 'Datoteka:',
 'filepath-submit'  => 'Idi',
 'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju za datoteku.
-Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktno sa, s njima povezanim, programom.
-
-Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
+Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktno sa, s njima povezanim, programom.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Pretraga za duplim datotekama',

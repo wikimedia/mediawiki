@@ -427,7 +427,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'daŭrigo',
 'index-category'                 => 'Indeksitaj paĝoj',
 'noindex-category'               => 'Neindeksitaj paĝoj',
-'broken-file-category'           => 'Paĝoj kun trompitaj dosierligiloj',
+'broken-file-category'           => 'Paĝoj kun eraraj dosierligiloj',
 
 'about'         => 'Enkonduko',
 'article'       => 'Artikolo',
@@ -1108,11 +1108,11 @@ Provu [[Special:Search|serĉi en la vikio]] por rilataj novaj paĝoj.',
 'rev-deleted-text-permission' => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
 'rev-deleted-text-unhide'     => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
-Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
-Kiel administranto, vi ankoraŭ povas [$1 vidi ĉi tiun revizio] se vi volas kontinui.",
+Detaloj estas troveblaj en la [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
+Vi ankoraŭ povas [$1 vidi ĉi tiun revizion] se vi volas kontinui.",
 'rev-suppressed-text-unhide'  => "Ĉi tiu paĝa revizio estis '''forigita'''.
-Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
-Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun revizion] se vi volas daŭrigi.",
+Detaloj estas troveblaj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
+Vi povas ankoraŭ [$1 rigardi ĉi tiun revizion] se vi volas daŭrigi.",
 'rev-deleted-text-view'       => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Kiel administranto vi povas rigardi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
 'rev-suppressed-text-view'    => "Ĉi tiu paĝa revizio estis '''forigita'''.
@@ -1179,7 +1179,7 @@ $1",
 'pagehist'                    => 'Paĝa historio',
 'deletedhist'                 => 'Forigita historio',
 'revdelete-content'           => 'enhavon',
-'revdelete-summary'           => 'redakti resumon',
+'revdelete-summary'           => 'redaktoresumon',
 'revdelete-uname'             => 'salutnomo',
 'revdelete-restricted'        => 'aplikis limojn al administrantoj',
 'revdelete-unrestricted'      => 'forigis limojn por administrantoj',
@@ -1408,7 +1408,7 @@ Jen hazarde generita valoro por via uzo: $1',
 'prefs-registration'            => 'Tempo de registrado:',
 'yourrealname'                  => 'Vera nomo:',
 'yourlanguage'                  => 'Lingvo',
-'yourvariant'                   => 'Varianto',
+'yourvariant'                   => 'Varianto de la lingvo de enhavo:',
 'yournick'                      => 'Subskribo:',
 'prefs-help-signature'          => 'Komentoj en diskuto-paĝoj estu subskribita kun "<nowiki>~~~~</nowiki>" kiu estos konvertita al via subskribo kaj tempindiko.',
 'badsig'                        => 'Via kaŝnomo (por subskriboj) malvalidas. Bv. kontroli la HTML-etikedojn!',
@@ -1856,10 +1856,10 @@ Kiam oni filtras ĝin laŭ uzanto, nur la lasta versio de la dosiero estos montr
 'filehist-nothumb'          => 'Neniu bildeto',
 'filehist-user'             => 'Uzanto',
 'filehist-dimensions'       => 'Dimensioj',
-'filehist-filesize'         => 'Pezo de dosiero',
+'filehist-filesize'         => 'Grando de dosiero',
 'filehist-comment'          => 'Komento',
 'filehist-missing'          => 'Dosiero mankas',
-'imagelinks'                => 'Dosieraj ligiloj',
+'imagelinks'                => 'Dosiera uzado',
 'linkstoimage'              => 'La {{PLURAL:$1|jena paĝo|jenaj paĝoj}} ligas al ĉi tiu dosiero:',
 'linkstoimage-more'         => 'Pli ol $1 {{PLURAL:$1|paĝo|paĝoj}} ligas ĉi tiun dosieron.
 La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al nur ĉi tiu dosiero.
@@ -2797,7 +2797,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'importhistoryconflict'      => 'Malkongrua historia versio ekzistas (eble la paĝo importiĝis antaŭe)',
 'importnosources'            => 'Neniu transvikia importfonto estis difinita kaj rekta historio de alŝutoj estas malaktivigita.',
 'importnofile'               => 'Neniu import-dosiero estis alŝutita.',
-'importuploaderrorsize'      => 'Alŝuto de import-dosiero malsukcesis. La dosiero estas pli granda ol la permesita alŝut-pezo.',
+'importuploaderrorsize'      => 'Alŝuto de import-dosiero malsukcesis. La dosiero estas pli granda ol la permesita alŝut-grando.',
 'importuploaderrorpartial'   => 'Alŝuto de la import-dosiero malsukcesis. La dosiero estis nur parte alŝutita.',
 'importuploaderrortemp'      => 'Alŝutigo de import-dosiero malsukcesis. Labor-dosierujo ne estas trovita.',
 'import-parse-failure'       => 'sintaksa fuŝo de XML-importo',
@@ -2966,7 +2966,7 @@ $1',
 'imagemaxsize'           => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'              => 'Grandeco de bildetoj:',
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
-'file-info'              => 'pezo de dosiero: $1, MIME-tipo: $2',
+'file-info'              => 'grando de dosiero: $1, MIME-tipo: $2',
 'file-info-size'         => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4',
 'file-info-size-pages'   => '$1 × $2 rastrumeroj, dosiera grandeco: $3, MIME-tipo: $4, $5 {{PLURAL:$5|paĝo|paĝoj}}',
 'file-nohires'           => '<small>Nenia pli granda distingivo havebla.</small>',
@@ -3613,9 +3613,7 @@ Oni devis doni al vi [{{SERVER}}{{SCRIPTPATH}}/COPYING ekzempleron de la GNU Gen
 'filepath-page'    => 'Dosiero:',
 'filepath-submit'  => 'Vojo',
 'filepath-summary' => 'Ĉi tiu speciala paĝo liveras kompletan vojon al dosiero.
-Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte per ties asociita programo.
-
-Entajpu la dosiernomon sen la prefikso "{{ns:file}}:"',
+Bildoj montriĝas en plena distingivo, aliaj dosiertipoj estas malfermataj rekte per ties asociita programo.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Serĉu duplikatajn dosierojn',

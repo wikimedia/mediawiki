@@ -841,15 +841,16 @@ Puede que ya hayas cambiado la contraseña o que hayas pedido una temporal.',
 'resetpass-temp-password'   => 'Contraseña temporal:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Restablecimiento de contraseña',
-'passwordreset-text'         => 'Completa este formulario para recibir un recordatorio por correo electrónico de los detalles de tu cuenta.',
-'passwordreset-legend'       => 'Restablecer contraseña',
-'passwordreset-disabled'     => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Introduce uno de los elementos de datos siguientes}}',
-'passwordreset-username'     => 'Nombre de usuario:',
-'passwordreset-email'        => 'Dirección de correo electrónico:',
-'passwordreset-emailtitle'   => 'Detalles de la cuenta en {{SITENAME}}',
-'passwordreset-emailtext-ip' => 'Alguien (probablemente tú, desde la dirección IP $1) pidió un recordatorio de tus
+'passwordreset'                => 'Restablecimiento de contraseña',
+'passwordreset-text'           => 'Completa este formulario para recibir un recordatorio por correo electrónico de los detalles de tu cuenta.',
+'passwordreset-legend'         => 'Restablecer contraseña',
+'passwordreset-disabled'       => 'Se ha desactivado el restablecimiento de contraseñas en este wiki.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Introduce uno de los elementos de datos siguientes}}',
+'passwordreset-username'       => 'Nombre de usuario:',
+'passwordreset-domain'         => 'Dominio:',
+'passwordreset-email'          => 'Dirección de correo electrónico:',
+'passwordreset-emailtitle'     => 'Detalles de la cuenta en {{SITENAME}}',
+'passwordreset-emailtext-ip'   => 'Alguien (probablemente tú, desde la dirección IP $1) pidió un recordatorio de tus
 datos de cuenta para {{SITENAME}} ($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}}
 con esta dirección de correo electrónico:
 
@@ -859,9 +860,18 @@ $2
 Deberías iniciar sesión y establecer una contraseña nueva ahora. Si alguien más hizo este pedido,
 o recuerdas tu contraseña original, y no deseas cambiarla, puedes
 ignorar este mensaje y continuar usando tu contraseña anterior.',
-'passwordreset-emailelement' => 'Nombre de usuario: $1
+'passwordreset-emailtext-user' => 'El usuario $1 en {{SITENAME}} pidió un recordatorio de tus datos de cuenta para {{SITENAME}}
+($4). {{PLURAL:$3|La siguiente cuenta está asociada|Las siguientes cuentas están asociadas}} con esta dirección de correo electrónico:
+
+$2
+
+{{PLURAL:$3|Esta contraseña temporal|Estas contraseñas temporales}} expirarán en {{PLURAL:$5|un día|$5 días}}.
+Deberías iniciar sesión y establecer una contraseña nueva ahora. Si alguien más hizo este pedido,
+o recuerdas tu contraseña original, y no deseas cambiarla, puedes
+ignorar este mensaje y continuar usando tu contraseña anterior.',
+'passwordreset-emailelement'   => 'Nombre de usuario: $1
 Contraseña temporal: $2',
-'passwordreset-emailsent'    => 'Se ha enviado un correo electrónico de recordatorio.',
+'passwordreset-emailsent'      => 'Se ha enviado un correo electrónico de recordatorio.',
 
 # Edit page toolbar
 'bold_sample'     => 'Texto en negrita',
@@ -1340,12 +1350,13 @@ Prueba a usar el prefijo ''all:'' para buscar en todo el contenido (incluyendo p
 Mientras tanto puedes buscar mediante Google, pero ten en cuenta que sus índices relativos a {{SITENAME}} pueden estar desactualizados.',
 
 # Quickbar
-'qbsettings'               => 'Quickbar',
-'qbsettings-none'          => 'Ninguna',
-'qbsettings-fixedleft'     => 'Fija a la izquierda',
-'qbsettings-fixedright'    => 'Fija a la derecha',
-'qbsettings-floatingleft'  => 'Flotante a la izquierda',
-'qbsettings-floatingright' => 'Flotante a la derecha',
+'qbsettings'                => 'Quickbar',
+'qbsettings-none'           => 'Ninguna',
+'qbsettings-fixedleft'      => 'Fija a la izquierda',
+'qbsettings-fixedright'     => 'Fija a la derecha',
+'qbsettings-floatingleft'   => 'Flotante a la izquierda',
+'qbsettings-floatingright'  => 'Flotante a la derecha',
+'qbsettings-directionality' => 'Fijos, dependiendo de la direccionalidad de la escritura de su idioma',
 
 # Preferences page
 'preferences'                   => 'Preferencias',
@@ -1427,7 +1438,7 @@ Esto no se puede deshacer.',
 'prefs-registration'            => 'Hora de registro:',
 'yourrealname'                  => 'Nombre real:',
 'yourlanguage'                  => 'Idioma:',
-'yourvariant'                   => 'Variante lingüística',
+'yourvariant'                   => 'Variante lingüística del contenido:',
 'yournick'                      => 'Nueva firma:',
 'prefs-help-signature'          => 'Los comentarios en páginas de discusión deberían firmarse con «<nowiki>~~~~</nowiki>», que se convertirá en tu firma con fecha y hora.',
 'badsig'                        => 'El código de tu firma no es válido; comprueba las etiquetas HTML.',
@@ -1480,7 +1491,7 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'userrights-no-interwiki'      => 'No tienes permiso para editar los grupos a los que pertenece un usuario en otros wikis.',
 'userrights-nodatabase'        => 'La base de datos $1 no existe o no es local.',
 'userrights-nologin'           => 'Debes [[Special:UserLogin|iniciar sesión]] con una cuenta de administrador para poder editar los grupos de los usuarios.',
-'userrights-notallowed'        => 'No tienes permiso para realizar cambios de grupos a usuarios.',
+'userrights-notallowed'        => 'Tu cuenta no tiene permiso para añadir o retirar permisos de usuario.',
 'userrights-changeable-col'    => 'Grupos que puedes cambiar',
 'userrights-unchangeable-col'  => 'Grupos que no puedes cambiar',
 
@@ -1876,7 +1887,7 @@ archivo a esa fecha.',
 'filehist-filesize'         => 'Tamaño',
 'filehist-comment'          => 'Comentario',
 'filehist-missing'          => 'No se encuentra el archivo',
-'imagelinks'                => 'Enlaces al archivo',
+'imagelinks'                => 'Usos del archivo',
 'linkstoimage'              => '{{PLURAL:$1|La siguiente página enlaza|Las siguientes páginas enlazan}} a este archivo:',
 'linkstoimage-more'         => 'Hay más de {{PLURAL:$1|una página que enlaza|$1 páginas que enlazan}} con este archivo.
 
@@ -1913,7 +1924,7 @@ La descripción en su [$2 página de descripción del archivo] está mostrada de
 'filedelete-intro'            => "Estás borrando el archivo '''[[Media:$1|$1]]''' así como todo su historial.",
 'filedelete-intro-old'        => "Estás borrando la versión de '''[[Media:$1|$1]]''' del [$4 $2 a las $3].",
 'filedelete-comment'          => 'Motivo:',
-'filedelete-submit'           => 'Borrar',
+'filedelete-submit'           => 'Eliminar',
 'filedelete-success'          => "'''$1''' ha sido borrado.",
 'filedelete-success-old'      => "La version de '''[[Media:$1|$1]]''' del $2 a las $3 ha sido borrada.",
 'filedelete-nofile'           => "'''$1''' no existe.",
@@ -1961,7 +1972,7 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 'statistics-header-hooks'      => 'Otras estadísticas',
 'statistics-articles'          => 'Páginas de contenido',
 'statistics-pages'             => 'Páginas',
-'statistics-pages-desc'        => 'Todas las páginas de la wiki, incluyendo discusiones, redirecciones, etc.',
+'statistics-pages-desc'        => 'Todas las páginas en el wiki, incluyendo páginas de discusión, redirecciones, etc.',
 'statistics-files'             => 'Ficheros subidos',
 'statistics-edits'             => 'Ediciones en páginas desde que {{SITENAME}} fue instalado',
 'statistics-edits-average'     => 'Media de ediciones por página',
@@ -2534,6 +2545,7 @@ Explica la razón específica del bloqueo (por ejemplo, citando las páginas en 
 'blockipsuccesstext'              => '"[[Special:Contributions/$1|$1]]" ha sido bloqueado.<br />
 Véase la [[Special:IPBlockList|lista de bloqueos]] para revisarlo.',
 'ipb-blockingself'                => '¡Estás a punto de bloquearte a ti mismo!  ¿Estás seguro de que quieres hacerlo?',
+'ipb-confirmhideuser'             => 'Estás a punto de bloquear un usuario con la opción de supresión activada. Esto suprimirá el nombre de usuario en todas las listas y entradas de registro. ¿Estás seguro de que deseas proceder?',
 'ipb-edit-dropdown'               => 'Editar motivo del bloqueo',
 'ipb-unblock-addr'                => 'Desbloquear $1',
 'ipb-unblock'                     => 'Desbloquear un usuario o una IP',
@@ -2709,7 +2721,8 @@ Por favor, elige otro nombre.',
 La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al traslado?',
 'delete_and_move_confirm'      => 'Sí, borrar la página',
 'delete_and_move_reason'       => 'Borrada para permitir el traslado',
-'selfmove'                     => 'Los títulos de origen y destino son los mismos. No se puede trasladar un página sobre sí misma.',
+'selfmove'                     => 'Los títulos de origen y destino son los mismos;
+no se puede trasladar una página sobre sí misma.',
 'immobile-source-namespace'    => 'No se pueden trasladar páginas en el espacio de nombres «$1»',
 'immobile-target-namespace'    => 'No se puede trasladar páginas al espacio de nombres «$1»',
 'immobile-target-namespace-iw' => 'Un enlace interwiki no es un destino válido para trasladar una página.',
@@ -2833,7 +2846,7 @@ No hay un directorio temporal.',
 'tooltip-pt-mytalk'               => 'Tu página de discusión',
 'tooltip-pt-anontalk'             => 'Discusión sobre ediciones hechas desde esta dirección IP',
 'tooltip-pt-preferences'          => 'Tus preferencias',
-'tooltip-pt-watchlist'            => 'La lista de páginas cuyos cambios vigilas',
+'tooltip-pt-watchlist'            => 'Lista de páginas cuyos cambios vigilas',
 'tooltip-pt-mycontris'            => 'Lista de tus contribuciones',
 'tooltip-pt-login'                => 'Te recomendamos iniciar sesión, sin embargo no es obligatorio',
 'tooltip-pt-anonlogin'            => 'Te invitamos a registrarte, aunque no es obligatorio',
@@ -2859,14 +2872,14 @@ Puedes ver su código fuente',
 'tooltip-n-mainpage-description'  => 'Visitar la página principal',
 'tooltip-n-portal'                => 'Acerca del proyecto, lo que puedes hacer, dónde encontrar información',
 'tooltip-n-currentevents'         => 'Información de contexto sobre acontecimientos actuales',
-'tooltip-n-recentchanges'         => 'La lista de cambios recientes en el wiki',
+'tooltip-n-recentchanges'         => 'Lista de cambios recientes en el wiki',
 'tooltip-n-randompage'            => 'Cargar una página al azar',
 'tooltip-n-help'                  => 'El lugar para aprender',
 'tooltip-t-whatlinkshere'         => 'Lista de todas las páginas del wiki que enlazan aquí',
 'tooltip-t-recentchangeslinked'   => 'Cambios recientes en las páginas que enlazan con ésta',
 'tooltip-feed-rss'                => 'Sindicación RSS de esta página',
 'tooltip-feed-atom'               => 'Sindicación Atom de esta página',
-'tooltip-t-contributions'         => 'Ver la lista de contribuciones de este usuario',
+'tooltip-t-contributions'         => 'Lista de contribuciones de este usuario',
 'tooltip-t-emailuser'             => 'Enviar un mensaje de correo a este usuario',
 'tooltip-t-upload'                => 'Subir imágenes o archivos multimedia',
 'tooltip-t-specialpages'          => 'Lista de todas las páginas especiales',
@@ -3205,6 +3218,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-urgency'                     => 'Urgencia',
 'exif-locationdest'                => 'Ubicación mostrada',
 'exif-locationdestcode'            => 'Código de la ubicación mostrada',
+'exif-objectcycle'                 => 'Hora del día para la cual está destinado este archivo',
 'exif-contact'                     => 'Información de contacto',
 'exif-writer'                      => 'Escritor',
 'exif-languagecode'                => 'Idioma',
@@ -3219,6 +3233,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-serialnumber'                => 'Número de serie de la cámara',
 'exif-cameraownername'             => 'Propietario de la cámara',
 'exif-label'                       => 'Etiqueta',
+'exif-datetimemetadata'            => 'Fecha en la cual fueron modificados por última vez los metadatos',
 'exif-nickname'                    => 'Nombre informal de la imagen',
 'exif-rating'                      => 'Valoración (sobre 5)',
 'exif-rightscertificate'           => 'Certificado de gestión de derechos',
@@ -3260,9 +3275,9 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-orientation-3' => 'Rotada 180°',
 'exif-orientation-4' => 'Volteada verticalmente',
 'exif-orientation-5' => 'Rotada 90° CCW y volteada verticalmente',
-'exif-orientation-6' => 'Rotada 90° CW',
+'exif-orientation-6' => 'Rotada 90° a la izquierda',
 'exif-orientation-7' => 'Rotada 90° CW y volteada verticalmente',
-'exif-orientation-8' => 'Rotada 90° CCW',
+'exif-orientation-8' => 'Rotada 90° a la derecha',
 
 'exif-planarconfiguration-1' => 'formato panorámico',
 'exif-planarconfiguration-2' => 'formato plano',
@@ -3655,9 +3670,7 @@ Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública
 'filepath-page'    => 'Archivo:',
 'filepath-submit'  => 'Ir',
 'filepath-summary' => 'Esta página devuelve la ruta completa de un archivo.
-Las imágenes se muestran en resolución máxima, otros tipos de archivo se inician directamente con su programa asociado.
-
-Ingrese el nombre del archivo sin su prefijo "{{ns:file}}:".',
+Las imágenes se muestran en resolución máxima, otros tipos de archivo se inician directamente con su programa asociado.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Búsqueda de archivos duplicados',

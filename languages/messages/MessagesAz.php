@@ -419,7 +419,7 @@ Bu vəziyyət səhifənin, silinmiş bir səhifənin keçmiş versiyası olması
 
 Əgər niyə bu deyilsə, proqramda bir səhv ilə qarşılaşmış ola bilərsiniz.
 Xahiş edirik bunu bir [[Special:ListUsers/sysop|İdarəçilərə]], URL not edərək göndərin.',
-'missingarticle-rev'   => '(təftiş#: $1)',
+'missingarticle-rev'   => '(təftiş № $1)',
 'missingarticle-diff'  => '(fərq: $1, $2)',
 'readonly_lag'         => 'Məlumatlar bazasının ikinci dərəcəli serveri əsas serverlə əlaqə yaradanadək məlumatlar bazası avtomatik olaraq bloklanmışdır',
 'internalerror'        => 'Daxili xəta',
@@ -496,7 +496,7 @@ Hesabınız yaradıldı.
 'createaccount'              => 'Hesab aç',
 'gotaccount'                 => "Giriş hesabınız varsa '''$1'''.",
 'gotaccountlink'             => 'daxil olun',
-'userlogin-resetlink'        => 'Loqininizi unutmusunuzmu?',
+'userlogin-resetlink'        => 'Daxilolma məlumatlarınızı unutmusunuz?',
 'createaccountmail'          => 'e-məktub ilə',
 'createaccountreason'        => 'Səbəb:',
 'badretype'                  => 'Daxil etdiyiniz parol uyğun gəlmir.',
@@ -504,17 +504,17 @@ Hesabınız yaradıldı.
 Lütfən başqa ad seçin.',
 'loginerror'                 => 'Daxil olunma xətası',
 'createaccounterror'         => '$1 Hesab açılmadı',
-'nocookiesnew'               => 'İstifadəçi qeydiyyata düşüb, lakin təmsil olunmayıb.
-{{SITENAME}} iştirakçıların təqdim olunması üçün kökələrdən istifadə olunur.
-Siz kökələrin qəbuluna qadağa qoymusunuz.
-Lütfən, onları qəbul etməyə icazə verdikdən sonra yeni istifadəçi adı və parolunuzla təmsil olunuz.',
-'nocookieslogin'             => '{{SITENAME}} saytında girmək üçün alətlərinizin açıq olması lazımdır. Alətləriniz bağlıdır. Zəhmət olmasa açın və bir daha yoxlayın.',
+'nocookiesnew'               => 'İstifadəçi qeydiyyatı yaradıldı, lakin daxil ola bilmədiniz.
+{{SITENAME}} iştirakçıların təqdim olunması üçün "cookie"lərdən istifadə edir.
+Siz "cookie"lərin qəbuluna qadağa qoymusunuz.
+Lütfən, onları qəbul etməyə icazə verdikdən sonra yeni istifadəçi adı və parolunuzla daxil olun.',
+'nocookieslogin'             => '{{SITENAME}} istifadəçilərin daxil ola bilməsi üçün "cookie"lərdən istifadə edir. Siz "cookie"lərin qəbuluna qadağa qoymusunuz. Lütfən, onların qəbuluna icazə verin və bir daha daxil olmağa cəhd edin.',
 'nocookiesfornew'            => 'İstifadəçinin akkauntu yaradılmayıb, ona görə də biz onun mənbəsini təsdiqləyə bilmədik.
 Kukların qoşulmasına əmin olduqdan sonra səhifəni yeniləyib bir daha sınayın.',
 'nocookiesforlogin'          => '{{int:nocookieslogin}}',
-'noname'                     => 'İşlək istifadəçi adı daxil etməmişdiniz.',
-'loginsuccesstitle'          => 'Daxil olundu',
-'loginsuccess'               => "'''\"\$1\" olaraq {{SITENAME}}-ya daxil oldunuz.'''",
+'noname'                     => 'Siz mövcud olan istifadəçi adı daxil etməmisiniz.',
+'loginsuccesstitle'          => 'Daxil oldunuz',
+'loginsuccess'               => "'''\"\$1\" adı ilə {{SITENAME}}ya daxil oldunuz.'''",
 'nosuchuser'                 => '"$1" adında istifadəçi mövcud deyil.
 İstifadəçi adları hərflərin böyük və ya kiçik olmasına həssasdırlar.
 Düzgün yazdığına əmin ol, yaxud [[Special:UserLogin/signup|yeni hesab aç]].',
@@ -1034,7 +1034,7 @@ Təsadüfi yolla seçilmiş bu paroldan istifadə edə bilərsiniz: $1',
 'prefs-registration-date-time'  => '$1',
 'yourrealname'                  => 'Əsl adınız:',
 'yourlanguage'                  => 'Dil:',
-'yourvariant'                   => 'Variant:',
+'yourvariant'                   => 'Dil variant;:',
 'yournick'                      => 'Ləqəb:',
 'badsig'                        => 'Səhv xam imza.
 HTML kodu yoxla.',
@@ -1370,11 +1370,13 @@ $1',
 'img-auth-noread'       => 'İstifadəçinin "$1"i oxumaq hüququ yoxdur.',
 
 # HTTP errors
-'http-invalid-url' => 'Səhv URL: $1',
-'http-read-error'  => 'HTTP oxuma xətası',
-'http-timed-out'   => 'HTTP istəyinin vaxtı bitdi.',
+'http-invalid-url'      => 'Səhv URL: $1',
+'http-read-error'       => 'HTTP oxuma xətası',
+'http-timed-out'        => 'HTTP istəyinin vaxtı bitdi.',
+'http-host-unreachable' => 'URL-ə çatmaq olmadı.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'  => 'URL-ə çatmaq olmadı',
 'upload-curl-error28' => 'Yükləmə vaxtı bitdi',
 
 'license'            => 'Lisenziya',
@@ -1414,6 +1416,7 @@ $1',
 'filehist-missing'                  => 'Fayl çatışmır',
 'imagelinks'                        => 'Fayl keçidləri',
 'linkstoimage'                      => '{{PLURAL:$1|səhifə|$1 səhifə}} bu fayla istinad edir:',
+'nolinkstoimage'                    => 'Bu fayla keçid verən səhifə yoxdur.',
 'linkstoimage-redirect'             => '$1 (fayl istiqamətləndirilir) $2',
 'sharedupload'                      => 'Bu fayl $1-dandır və ola bilsin ki, başqa layihələrdə də istifadə edilir.',
 'uploadnewversion-linktext'         => 'Bu faylın yeni versiyasını yüklə',
@@ -1693,6 +1696,7 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'nowatchlist'          => 'İzləmə siyahınız böşdur.',
 'watchnologin'         => 'Daxil olmamısınız',
 'watchnologintext'     => 'İzləmə siyahınızda dəyişiklik aparmaq üçün [[Special:UserLogin|daxil olmalısınız]].',
+'addwatch'             => 'İzləmə siyahısına əlavə et',
 'addedwatchtext'       => '"$1" səhifəsi [[Special:Watchlist|izlədiyiniz səhifələrə]] əlavə edildi. Bu səhifədə və əlaqəli müzakirə səhifəsində olacaq dəyişikliklər orada göstəriləcək və səhifə asanlıqla seçiləbilmək üçün [[Special:RecentChanges|son dəyişikliklər]]-də qalın şriftlərlə görsənəcəkdir.
 
 Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə" düyməsinə vurun.',
@@ -1702,6 +1706,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'unwatch'              => 'İzləmə',
 'unwatchthispage'      => 'İzləmə',
 'notanarticle'         => 'Səhifə boşdur',
+'notvisiblerev'        => 'Başqa istifadıçinin son dəyişikliyi silinib',
 'watchnochange'        => 'Verilən vaxt ərzində heç bir izlədiyiniz səhifə redaktə edilməmişdir.',
 'watchlist-details'    => 'Müzakirə səhifələrini çıxmaq şərtilə {{PLURAL:$1|$1 səhifəni|$1 səhifəni}} izləyirsiniz.',
 'wlheader-enotif'      => '*  E-məktubla bildiriş aktivdir.',
@@ -2064,6 +2069,7 @@ Bloklama şərtlərini dəyişmək istəyirsiniz?',
 'unlockdbsuccesssub'  => 'Bloklanma verilənlər bazası silinib',
 'unlockdbsuccesstext' => 'Verilənlər bazası bağlanmış aola bilər.',
 'databasenotlocked'   => 'Verilənlər bazası bloklanmayıb.',
+'lockedbyandtime'     => '(by {{GENDER:$1|$1}} on $2 at $3)',
 
 # Move page
 'move-page'                    => 'Dəyişdir $1',
@@ -2153,6 +2159,7 @@ Zəhmət olmasa başqa ad seçin.',
 # Thumbnails
 'thumbnail-more'          => 'Böyüt',
 'filemissing'             => 'Şəkil gözlənilir',
+'thumbnail_error'         => 'Kiçik şəkil yaratma xətası: $1',
 'djvu_page_error'         => 'DjVu səhifəsi əlçatmazdır',
 'djvu_no_xml'             => 'DjVu üçün XML faylı almaq mümkün deyil.',
 'thumbnail_image-missing' => 'Belə görünür ki, $1 faylı yoxdur',
@@ -2252,6 +2259,7 @@ Zəhmət olmasa başqa ad seçin.',
 'tooltip-rollback'                => 'Sonuncu istifadəçi tərəfindən edilmiş bütün dəyişiklikləri bir dəfəyə geri qaytar',
 'tooltip-undo'                    => 'Edilmiş dəyişikliyi geri qaytar və geri qaytarma səbəbini qeyd etmək üçün sınaq göstərişini aç',
 'tooltip-preferences-save'        => 'Nizamlamaları saxla',
+'tooltip-summary'                 => 'Qısa rezyume daxil edin',
 
 # Stylesheets
 'common.css'              => '/* Burada yerləşən CSS bütün skinlərə tətbiq olunur */',
@@ -2470,8 +2478,10 @@ Variants for Chinese language
 'exif-exposureprogram'             => 'Ekspozisiya proqramı',
 'exif-spectralsensitivity'         => 'Spektral həssaslıq',
 'exif-isospeedratings'             => 'ISO sürət reytinqi',
+'exif-shutterspeedvalue'           => 'APEX shutter speed',
 'exif-aperturevalue'               => 'Obyektiv gözü',
 'exif-brightnessvalue'             => 'Parlaqlıq',
+'exif-exposurebiasvalue'           => 'APEX exposure bias',
 'exif-subjectdistance'             => 'Obyektə qədər məsafə',
 'exif-lightsource'                 => 'İşıq mənbəsi',
 'exif-flash'                       => 'Flaş',
@@ -2545,8 +2555,10 @@ Variants for Chinese language
 'exif-licenseurl'                  => 'Müəllif hüququ lisenziyası üçün URL',
 'exif-morepermissionsurl'          => 'Alternativ lisenziya məlumatı',
 'exif-pngfilecomment'              => 'PNG şəkil şərhi',
+'exif-disclaimer'                  => 'Məsuliyyətdən imtina',
 'exif-contentwarning'              => 'Mətn xəbərdarlığı',
 'exif-giffilecomment'              => 'GIF şəkil şərhi',
+'exif-intellectualgenre'           => 'Obyektin tipi',
 'exif-subjectnewscode'             => 'Mövzunun kodu',
 'exif-scenecode'                   => 'IPTC səhnə kodu',
 
@@ -2838,11 +2850,13 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => '"$1" Naməlum ayırma teqi',
+'duplicate-defaultsort' => '\'\'\'Diqqət:\'\'\' Ehtimal edilən "$2" klassifikasiya açarı əvvəlki "$1" klassifikasiya açarını keçərsiz edir.',
 
 # Special:Version
 'version'                     => 'Versiya',
 'version-extensions'          => 'NIzamlanmış genişlənmələr',
 'version-specialpages'        => 'Xüsusi səhifələr',
+'version-parserhooks'         => 'Parser hooks',
 'version-variables'           => 'Dəyişkənlər',
 'version-antispam'            => 'Spam önləmə',
 'version-skins'               => 'Üzlük',

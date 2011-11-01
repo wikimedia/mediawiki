@@ -12,6 +12,7 @@
  * @author Cwt96
  * @author Devunt
  * @author Ficell
+ * @author Freebiekr
  * @author Gapo
  * @author Gjue
  * @author IRTC1015
@@ -1070,29 +1071,27 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 자세한 사항은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 볼 수 있습니다.",
 'rev-deleted-text-unhide'     => "해당 편집이 문서 역사에서 '''삭제'''되었습니다.
 자세한 사항은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 볼 수 있습니다.
-관리자 권한을 이용하여 [$1 해당 편집]을 볼 수도 있습니다.",
+이 편집을 보기를 원하신다면 [$1 해당 편집]을 볼 수 있습니다.",
 'rev-suppressed-text-unhide'  => "해당 편집이 문서 역사에서 '''숨겨져''' 있습니다.
-자세한 사항은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 숨김 기록]에서 볼 수 있습니다.
-관리자 권한을 이용하여 [$1 해당 편집]을 볼 수도 있습니다.",
+자세한 사항은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]에서 볼 수 있습니다.
+이 편집을 보기를 원하신다면 [$1 해당 편집]을 볼 수 있습니다.",
 'rev-deleted-text-view'       => "이 문서의 편집은 역사에서 '''삭제'''되었습니다.
-당신은 관리자로서 삭제된 편집을 볼 수 있습니다.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
+삭제된 편집을 볼 수 있으며, [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-suppressed-text-view'    => "이 문서의 편집은 역사에서 '''숨겨져''' 있습니다.
-당신은 관리자로서 숨겨진 편집을 볼 수 있습니다.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]에서 자세한 내용을 볼 수 있습니다.",
+숨겨진 편집을 볼 수 있으며, [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-deleted-no-diff'         => "특정 판이 문서 역사에서 '''삭제'''되었기 때문에 비교할 수 없습니다.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-suppressed-no-diff'      => "두 판 중 일부가 '''삭제'''되었기 때문에 문서 편집 내용을 비교할 수 없습니다.",
 'rev-deleted-unhide-diff'     => "이 비교에 사용된 판 가운데 하나가 '''삭제'''되었습니다.
-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에 자세한 내용이 있을 수 있습니다.
-관리자로서 작업하고 싶다면 여전히 [$1 비교 보기]를 계속할 수 있습니다.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에 자세한 내용을 찾아볼 수 있습니다.
+계속 작업하고 싶다면 여전히 [$1 비교 보기]를 계속할 수 있습니다.",
 'rev-suppressed-unhide-diff'  => "이 비교에 사용된 판 가운데 하나가 '''숨김'''되었습니다.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 숨김 기록]에 자세한 내용이 있을 수 있습니다.
-관리자로 작업하고 싶다면 [$1 해당 편집]을 볼 수도 있습니다.",
+계속 작업하고 싶다면 [$1 해당 편집]을 볼 수도 있습니다.",
 'rev-deleted-diff-view'       => "비교 대상 중 어느 한 판이 '''삭제'''되었습니다.
-관리자로서 삭제된 판과 다른 판의 비교를 할 수 있습니다; 자세한 것은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]을 참고하십시오.",
+삭제된 판과 다른 판의 비교를 할 수 있습니다; 자세한 것은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]을 참고하십시오.",
 'rev-suppressed-diff-view'    => "비교하려는 판 중 일부가 '''숨겨져''' 있습니다.
-관리자 권한이 있다면 편집 비교가 가능합니다. 자세한 내용은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 해당 숨김 기록]에서 볼 수 있습니다.",
+숨겨진 판과 이 판의 편집 비교가 가능합니다. 자세한 내용은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 해당 숨김 기록]에서 볼 수 있습니다.",
 'rev-delundel'                => '보이기/숨기기',
 'rev-showdeleted'             => '표시',
 'revisiondelete'              => '판 삭제/복구',
@@ -1170,8 +1169,8 @@ $1",
 
 # Suppression log
 'suppressionlog'     => '숨기기 기록',
-'suppressionlogtext' => '다음은 관리자로부터 숨겨진 내용에 대한 삭제, 차단 기록입니다.
-현재 차단된 사용자 목록을 보시려면 [[Special:IPBlockList|차단된 사용자 목록]]을 참조하십시오.',
+'suppressionlogtext' => '다음은 관리자로부터 숨겨진 내용에 관한 삭제, 차단 기록입니다.
+현재 차단된 사용자 목록을 보시려면 [[Special:BlockList|차단된 사용자 목록]]을 참조하십시오.',
 
 # History merging
 'mergehistory'                     => '문서 역사 합치기',
@@ -1235,7 +1234,6 @@ $1",
 'searchmenu-legend'                => '검색 설정',
 'searchmenu-exists'                => "'''이 위키에 \"[[:\$1]]\"의 이름을 가진 문서가 있습니다.'''",
 'searchmenu-new'                   => "'''이 위키에 \"[[:\$1]]\" 문서를 만드십시오!'''",
-'searchmenu-new-nocreate'          => '"$1"은 잘못된 문서 제목이거나 당신이 생성할 수 없는 문서입니다.',
 'searchhelp-url'                   => 'Help:목차',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|이 접두어로 시작하는 문서 찾기]]',
 'searchprofile-articles'           => '일반 문서',
@@ -1831,7 +1829,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist-filesize'                 => '파일 크기',
 'filehist-comment'                  => '내용',
 'filehist-missing'                  => '파일을 찾을 수 없음',
-'imagelinks'                        => '파일 링크',
+'imagelinks'                        => '이 파일을 사용하는 문서',
 'linkstoimage'                      => '다음 $1개의 문서가 이 파일을 사용하고 있습니다:',
 'linkstoimage-more'                 => '$1개 이상의 문서가 이 파일을 가리키고 있습니다.
 다음 목록은 이 파일을 가리키는 처음 $1개 문서만 보여주고 있습니다.
@@ -2398,6 +2396,7 @@ $1',
 # Namespace form on various pages
 'namespace'             => '이름공간:',
 'invert'                => '선택 반전',
+'tooltip-invert'        => '선택한 이름공간에 있는 문서의 바뀜을 숨기려면 이 상자에 체크해주세요.',
 'namespace_association' => '관련된 이름공간',
 'blanknamespace'        => '(일반)',
 
@@ -3137,6 +3136,7 @@ Variants for Chinese language
 'exif-languagecode'                => '언어',
 'exif-lens'                        => '사용된 렌즈',
 'exif-serialnumber'                => '카메라 일련 번호',
+'exif-disclaimer'                  => '면책 조항',
 
 # EXIF attributes
 'exif-compression-1' => '압축되지 않음',
@@ -3150,9 +3150,9 @@ Variants for Chinese language
 'exif-orientation-3' => '180° 회전됨',
 'exif-orientation-4' => '수직으로 뒤집음',
 'exif-orientation-5' => '시계 반대 방향으로 90° 회전하고 수직으로 뒤집음',
-'exif-orientation-6' => '시계 방향으로 90° 회전함',
+'exif-orientation-6' => '반시계 방향으로 90° 회전함',
 'exif-orientation-7' => '시계 방향으로 90° 회전하고 수직으로 뒤집음',
-'exif-orientation-8' => '시계 반대 방향으로 90° 회전됨',
+'exif-orientation-8' => '시계 방향으로 90° 회전됨',
 
 'exif-planarconfiguration-1' => '덩어리 형식',
 'exif-planarconfiguration-2' => '평면형',
@@ -3485,9 +3485,7 @@ $1',
 'filepath-page'    => '파일:',
 'filepath-submit'  => '가기',
 'filepath-summary' => '파일의 실제 URL 주소를 엽니다.
-그림 파일일 경우 원본 해상도의 파일이 열립니다. 다른 종류의 파일일 경우 그 파일의 종류에 맞는 프로그램이 실행됩니다.
-
-"{{ns:file}}:" 접두어를 뺀 파일 이름을 입력해주세요.',
+그림 파일일 경우 원본 해상도의 파일이 열립니다. 다른 종류의 파일일 경우 그 파일의 종류에 맞는 프로그램이 실행됩니다.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => '중복된 파일 찾기',

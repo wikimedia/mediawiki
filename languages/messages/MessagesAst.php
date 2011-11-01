@@ -269,7 +269,7 @@ $messages = array(
 'imagepage'         => 'Ver la páxina de ficheros',
 'mediawikipage'     => 'Ver la páxina de mensaxe',
 'templatepage'      => 'Ver la páxina de plantía',
-'viewhelppage'      => "Ver la páxina d'aida",
+'viewhelppage'      => "Ver la páxina d'ayuda",
 'categorypage'      => 'Ver páxina de categoríes',
 'viewtalkpage'      => 'Ver alderique',
 'otherlanguages'    => 'Otres llingües',
@@ -299,7 +299,7 @@ $1",
 'currentevents-url'    => 'Project:Fechos actuales',
 'disclaimers'          => 'Avisu llegal',
 'disclaimerpage'       => 'Project:Llimitación xeneral de responsabilidá',
-'edithelp'             => "Aida d'edición",
+'edithelp'             => "Ayuda d'edición",
 'edithelppage'         => 'Help:Edición de páxines',
 'helppage'             => 'Help:Conteníos',
 'mainpage'             => 'Portada',
@@ -357,7 +357,7 @@ $1",
 'nstab-image'     => 'Ficheru',
 'nstab-mediawiki' => 'Mensaxe',
 'nstab-template'  => 'Plantía',
-'nstab-help'      => 'Aida',
+'nstab-help'      => 'Ayuda',
 'nstab-category'  => 'Categoría',
 
 # Main script and global functions
@@ -688,7 +688,9 @@ Seique se treslladara o desaniciara mientres visitabes la páxina.',
 
 La clave pa esta cuenta nueva pue camudase na páxina ''[[Special:ChangePassword|camudar clave]]'' depués d'identificate.",
 'newarticle'                       => '(Nuevu)',
-'newarticletext'                   => 'Siguisti un enllaz a un artículu qu\'inda nun esiste. Pa crealu, empecipia a escribir na caxa que vien darréu (mira la [[{{MediaWiki:Helppage}}|páxina d\'aida]] pa más información). Si llegasti equí por enquivocu, namás tienes que calcar nel botón "Dir atrás" del to navegador.',
+'newarticletext'                   => "Siguisti un enllaz a un artículu qu'inda nun esiste.
+Pa crear la páxina, empecipia a escribir nel cuadru que vien darréu (mira la [[{{MediaWiki:Helppage}}|páxina d'ayuda]] pa más información).
+Si llegasti equí por enquivocu, calca nel botón '''atrás''' del to navegador.",
 'anontalkpagetext'                 => "----''Esta ye la páxina de'alderique pa un usuariu anónimu qu'inda nun creó una cuenta o que nun la usa. Pola mor d'ello ha usase la direición numérica IP pa identificalu/la. Tala IP pue ser compartida por varios usuarios. Si yes un usuariu anónimu y notes qu'hai comentarios irrelevantes empobinaos pa ti, por favor [[Special:UserLogin/signup|crea una cuenta]] o [[Special:UserLogin/signup|rexístrate]] pa evitar futures confusiones con otros usuarios anónimos.''",
 'noarticletext'                    => 'Anguaño nun hai testu nesta páxina.
 Pues [[Special:Search/{{PAGENAME}}|buscar esti títulu de páxina]] n\'otres páxines,
@@ -866,27 +868,27 @@ Prueba a [[Special:Search|buscar na wiki]] otres páxines nueves.',
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 'rev-deleted-text-unhide'     => "Esta revisión de la páxina se '''desanició'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].
-Como alministrador entá pues [$1 ver esta revisión] si quies continuar.",
+Entá pues [$1 ver esta revisión] si quies siguir.",
 'rev-suppressed-text-unhide'  => "Esta revisión de la páxina se '''suprimió'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].
-Como alministrador entá pues [$1 ver esta revisión] si quies continuar.",
+Entá pues [$1 ver esta revisión] si quies siguir.",
 'rev-deleted-text-view'       => "Esta revisión de la páxina se '''desanició'''.
-Como alministrador pues vela; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
+Pues vela; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 'rev-suppressed-text-view'    => "Esta revisión de la páxina se '''suprimió'''.
-Como alministrador pues vela; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].",
+Pues vela; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].",
 'rev-deleted-no-diff'         => "Nun pues ver esti diff porque una de les revisiones se '''desanició'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 'rev-suppressed-no-diff'      => "Nun pues ver esti diff porque una de les revisiones se '''desanició'''.",
 'rev-deleted-unhide-diff'     => "Una de les revisiones d'esti diff se '''desanició'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].
-Como alministrador entá pues [$1 ver esti diff] si quies continuar.",
+Entá pues [$1 ver esti diff] si quies siguir.",
 'rev-suppressed-unhide-diff'  => "Una de les revisiones d'esti diff se '''suprimió'''.
 Los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].
-Como alministrador entá pues [$1 ver esti diff] si quies continuar.",
+Entá pues [$1 ver esti diff] si quies siguir.",
 'rev-deleted-diff-view'       => "Una de les revisiones d'esti diff se '''desanició'''.
-Como alministrador pues ver esti diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
+Pues ver esti diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistru de desanicios].",
 'rev-suppressed-diff-view'    => "Una de les revisiones d'esti diff se '''suprimió'''.
-Como alministrador pues ver el diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].",
+Pues ver el diff; los detalles s'alcuentren nel [{{fullurl:{{#Special:Log}}/supress|page={{FULLPAGENAMEE}}}} rexistru de supresiones].",
 'rev-delundel'                => 'amosar/anubrir',
 'rev-showdeleted'             => 'amosar',
 'revisiondelete'              => 'Desaniciar/restaurar revisiones',
@@ -966,8 +968,8 @@ Comprueba los rexistros, por favor.",
 
 # Suppression log
 'suppressionlog'     => 'Rexistru de supresiones',
-'suppressionlogtext' => "Embaxo amuésase una llista de los esborraos y bloqueos rellacionaos con conteníu ocultu a los alministradores.
-Mira'l [[Special:IPBlockList|rexistru de bloqueos d'IP]] pa ver una llista de los bloqueos activos anguaño.",
+'suppressionlogtext' => "Embaxo hai una llista de desanicios y bloqueos rellacionaos con conteníu anubríu a los alministradores.
+Mira la [[Special:BlockList|llista de bloqueos d'IP]] pa ver la llista de los bloqueos y torgues activos anguaño.",
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páxina',
@@ -1394,8 +1396,8 @@ Esta información sedrá pública.",
 'recentchangeslinked-to'       => "Amosar los cambeos a les páxines enllaciaes en cuenta d'a la páxina dada",
 
 # Upload
-'upload'                      => 'Xubir imaxe',
-'uploadbtn'                   => 'Xubir',
+'upload'                      => 'Xubir ficheru',
+'uploadbtn'                   => 'Xubir ficheru',
 'reuploaddesc'                => 'Cancelar la xubida y tornar al formulariu de xubíes',
 'upload-tryagain'             => 'Unviar descripción camudada del ficheru',
 'uploadnologin'               => 'Non identificáu',
@@ -1638,7 +1640,7 @@ Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que 
 'filehist-filesize'         => 'Tamañu del archivu',
 'filehist-comment'          => 'Comentariu',
 'filehist-missing'          => 'Falta ficheru',
-'imagelinks'                => 'Enllaces del ficheru',
+'imagelinks'                => 'Usu del ficheru',
 'linkstoimage'              => '{{PLURAL:$1|La páxina siguiente enllacia|Les páxines siguientes enllacien}} a esti archivu:',
 'linkstoimage-more'         => "Más de $1 {{PLURAL:$1|páxina enllacia|páxines enllacien}} a esti archivu.
 La llista siguiente amuesa{{PLURAL:$1|'l primer enllaz de páxina| los primeros $1 enllaces de páxina}} a esti archivu namái.
@@ -2260,7 +2262,7 @@ La cabera entrada del rexistru de bloqueos s'ufre darréu pa referencia:",
 'whatlinkshere-hidetrans'  => '$1 tresclusiones',
 'whatlinkshere-hidelinks'  => '$1 enllaces',
 'whatlinkshere-hideimages' => "$1 enllaces d'imaxe",
-'whatlinkshere-filters'    => 'Filtros',
+'whatlinkshere-filters'    => 'Peñeres',
 
 # Block/unblock
 'autoblockid'                     => 'Autobloquiar #$1',
@@ -2657,7 +2659,7 @@ Guárdalu nel ordenador y xúbilu equí.",
 'tooltip-ca-nstab-image'          => 'Amuesa la páxina del archivu',
 'tooltip-ca-nstab-mediawiki'      => "Amuesa'l mensaxe de sistema",
 'tooltip-ca-nstab-template'       => 'Amuesa la plantía',
-'tooltip-ca-nstab-help'           => "Amuesa la páxina d'aida",
+'tooltip-ca-nstab-help'           => "Amuesa la páxina d'ayuda",
 'tooltip-ca-nstab-category'       => 'Amuesa la páxina de categoría',
 'tooltip-minoredit'               => 'Marca esti cambéu como una edición menor',
 'tooltip-save'                    => 'Guarda los tos cambeos',
@@ -2810,7 +2812,7 @@ Al executalu pues comprometer el to sistema.",
 'newimages'             => "Galería d'imáxenes nueves",
 'imagelisttext'         => "Embaxo ta la llista {{PLURAL:$1|d'un archivu ordenáu|de '''$1''' archivos ordenaos}} $2.",
 'newimages-summary'     => 'Esta páxina especial amuesa los caberos archivos xubíos.',
-'newimages-legend'      => "Nome d'archivu",
+'newimages-legend'      => 'Peñera',
 'newimages-label'       => "Nome d'archivu (o una parte d'él):",
 'showhidebots'          => '($1 bots)',
 'noimages'              => 'Nun hai nada que ver.',
@@ -3447,9 +3449,8 @@ Tendríes d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Lli
 'filepath'         => "Ruta d'archivu",
 'filepath-page'    => 'Ficheru:',
 'filepath-submit'  => 'Dir',
-'filepath-summary' => "Esta páxina especial devuelve la ruta completa d'un archivu. Les imáxenes amuésense a resolución completa; les demás tribes d'archivu execútense direutamente col so programa asociáu.
-
-Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
+'filepath-summary' => "Esta páxina especial devuelve la ruta completa d'un archivu.
+Les imáxenes amuésense a resolución completa; les demás tribes d'archivu execútense direutamente col so programa asociáu.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Buscar archivos duplicaos',
@@ -3498,7 +3499,7 @@ Escribi'l nome d'archivu ensin el prefixu \"{{ns:file}}:\".",
 # Special:Tags
 'tags'                    => 'Etiquetes válides pa cambeos',
 'tag-filter'              => "Filtru d'[[Special:Tags|etiquetes]]:",
-'tag-filter-submit'       => 'Filtrar',
+'tag-filter-submit'       => 'Peñera',
 'tags-title'              => 'Etiquetes',
 'tags-intro'              => "Esta páxina llista les etiquetes coles que'l software pue marcar una edición, y el so significáu.",
 'tags-tag'                => "Nome d'etiqueta",

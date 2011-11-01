@@ -1941,7 +1941,7 @@ $1',
 'enotif_anon_editor'           => 'анонімный хоснователь $1',
 'enotif_body'                  => 'Дорогый хоснователю $WATCHINGUSERNAME,
 
-У $PAGEEDITDATE $CHANGEDORCREATED $PAGEEDITOR сторінку $PAGETITLE, смотьте актуалну верзію на $PAGETITLE_URL .
+У $PAGEEDITDATE была хоснователём $PAGEEDITOR $CHANGEDORCREATED сторінка $PAGETITLE, смотьте актуалну верзію на $PAGETITLE_URL .
 
 $NEWPAGE
 Куртый опис змін: $PAGESUMMARY $PAGEMINOREDIT
@@ -3290,7 +3290,7 @@ $1',
 'version-license'               => 'Ліценція',
 'version-poweredby-credits'     => "Тота вікі біжыть на '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'іншы',
-'version-license-info'          => 'MediaWiki є слободный софтвер; можете го шырити або управляти подля подмінок GNU General Public License, выдаваной Free Software Foundation; будь верзія 2 той ліценції або (подля вашого уважіня) будьяка пізнїша верзія.
+'version-license-info'          => 'MediaWiki є слободный софтвер; можете го шырити або управляти подля условій GNU General Public License, выдаваной Free Software Foundation; будь верзія 2 той ліценції або (подля вашого уважіня) будьяка пізнїша верзія.
 
 MediaWiki є дістрібуована в надїї, же буде хосновна, але БЕЗ БУДЬЯКОЙ ЗАРУКЫ; не давають ся ани зарукы ПРОДАЙНОСТИ або ВАЛУШНОСТИ ПРО СТАНОВЛЕНЫЙ ЦІЛЬ. Детайлы ся дочітате в текстї  GNU General Public License.
 

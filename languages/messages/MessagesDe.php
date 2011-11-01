@@ -15,6 +15,7 @@
  * @author Duesentrieb
  * @author Giftpflanze
  * @author Imre
+ * @author Inkowik
  * @author Jan Luca
  * @author Jens Liebenau
  * @author Jimmy Collins <jimmy.collins@web.de>
@@ -45,6 +46,7 @@
  * @author SVG
  * @author Spacebirdy
  * @author Srhat
+ * @author TMg
  * @author Tbleher
  * @author The Evil IP address
  * @author Tim Bartel (avatar) <wikipedistik@computerkultur.org> small changes
@@ -494,7 +496,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(Fortsetzung)',
 'index-category'                 => 'Indizierte Seiten',
 'noindex-category'               => 'Nichtindizierte Seiten',
-'broken-file-category'           => 'Seiten mit kaputten Dateilinks',
+'broken-file-category'           => 'Seiten mit defekten Dateilinks',
 
 'about'         => 'Über',
 'article'       => 'Seite',
@@ -744,7 +746,7 @@ Ziehe bitte im Fall von Übersetzungen in Betracht, diese bei [http://translatew
 'sqlhidden'            => '(SQL-Abfrage versteckt)',
 'cascadeprotected'     => 'Diese Seite ist zur Bearbeitung gesperrt. Sie ist in die {{PLURAL:$1|folgende Seite|folgenden Seiten}} eingebunden, die mittels der Kaskadensperroption geschützt {{PLURAL:$1|ist|sind}}:
 $2',
-'namespaceprotected'   => "Du hast keine Berechtigung, Seiten im '''$1'''-Namensraum zu bearbeiten.",
+'namespaceprotected'   => "Du hast nicht die erforderliche Berechtigung, um Seiten im Namensraum '''$1''' bearbeiten zu können.",
 'customcssprotected'   => 'Du hast nicht die Berechtigung diese CSS enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.',
 'customjsprotected'    => 'Du hast nicht die Berechtigung diese JavaScript enthaltende Seite zu bearbeiten, da sie die persönlichen Einstellungen eines anderen Benutzers enthält.',
 'ns-specialprotected'  => 'Spezialseiten können nicht bearbeitet werden.',
@@ -933,7 +935,7 @@ Temporäres Passwort: $2',
 'missingcommenttext'               => 'Dein Abschnitt enthält keinen Text.',
 'missingcommentheader'             => "'''Achtung:''' Du hast kein Betreff/Überschrift eingegeben. Wenn du erneut auf „{{int:savearticle}}“ klickst, wird deine Bearbeitung ohne Überschrift gespeichert.",
 'summary-preview'                  => 'Vorschau der Zusammenfassungszeile:',
-'subject-preview'                  => 'Vorschau des Betreffs:',
+'subject-preview'                  => 'Vorschau der Zusammenfassungszeile:',
 'blockedtitle'                     => 'Benutzer ist gesperrt',
 'blockedtext'                      => "'''Dein Benutzername oder deine IP-Adresse wurde gesperrt.'''
 
@@ -996,7 +998,7 @@ oder die zugehörigen <span class="plainlinks">[{{fullurl:{{#special:Log}}|page=
 'blocked-notice-logextract'        => '{{GENDER:$1|Dieser Benutzer|Diese Benutzerin|Dieser Benutzer}} ist zurzeit gesperrt.
 Zur Information folgt ein aktueller Auszug aus dem Benutzersperr-Logbuch:',
 'clearyourcache'                   => "'''Hinweis:''' Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können.
-* '''Firefox/ Safari:''' ''Umschaltung'' drücken und gleichzeitig ''Aktualisieren'' anklicken oder entweder ''Strg+F5'' oder ''Strg+R'' (''Befehlstaste-R'' auf dem Mac) drücken
+* '''Firefox/Safari:''' ''Umschaltung'' drücken und gleichzeitig ''Aktualisieren'' anklicken oder entweder ''Strg+F5'' oder ''Strg+R'' (''Befehlstaste-R'' auf dem Mac) drücken
 * '''Google Chrome:''' ''Umschaltung+Strg+R'' (''Befehlstaste-R'' auf dem Mac) drücken
 * '''Internet Explorer:''' ''Strg+F5'' drücken oder ''Strg'' drücken und gleichzeitig ''Aktualisieren'' anklicken
 * '''Opera:''' ''Extras → Internetspuren löschen … → Individuelle Auswahl → Den kompletten Cache löschen''
@@ -1072,7 +1074,7 @@ Zur Information folgt der aktuelle Logbucheintrag:",
 'edittools'                        => '<!-- Dieser Text wird unter dem „Bearbeiten“-Formular sowie dem „Hochladen“-Formular angezeigt. -->',
 'nocreatetitle'                    => 'Die Erstellung neuer Seiten ist eingeschränkt.',
 'nocreatetext'                     => 'Auf {{SITENAME}} wurde das Erstellen neuer Seiten eingeschränkt. Du kannst bestehende Seiten ändern oder dich [[Special:UserLogin|anmelden]].',
-'nocreate-loggedin'                => 'Du hast keine Berechtigung, neue Seiten zu erstellen.',
+'nocreate-loggedin'                => 'Du hast nicht die erforderliche Berechtigung, um neue Seiten erstellen zu können.',
 'sectioneditnotsupported-title'    => 'Die Bearbeitung von Abschnitten wird nicht unterstützt',
 'sectioneditnotsupported-text'     => 'Die Bearbeitung von Abschnitten wird auf dieser Bearbeitungsseite nicht unterstützt.',
 'permissionserrors'                => 'Berechtigungsfehler',
@@ -1155,31 +1157,30 @@ Grund der Sperre: ''$2''",
 'rev-deleted-event'           => '(Logbuchaktion entfernt)',
 'rev-deleted-user-contribs'   => '[Benutzername oder IP-Adresse entfernt – Bearbeitung aus Beiträgen versteckt]',
 'rev-deleted-text-permission' => "Diese Version wurde '''gelöscht'''.
-Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+Nähere Angaben zum Löschvorgang sowie eine Begründung stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
 'rev-deleted-text-unhide'     => "Diese Version wurde '''gelöscht'''.
-Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
-Als Administrator kannst du [$1 diese Version einsehen].",
+Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
+Du kannst [$1 diese Version einsehen], sofern du möchtest.",
 'rev-suppressed-text-unhide'  => "Diese Version wurde '''unterdrückt'''.
-Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].
-Als Administrator kannst du [$1 diese Version einsehen].",
+Nähere Angaben stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].
+Du kannst [$1 diese Version einsehen], sofern du möchtest.",
 'rev-deleted-text-view'       => "Diese Version wurde '''gelöscht'''.
-Als Administrator kannst du sie weiterhin einsehen.
-Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+Du kannst sie einsehen, sofern du möchtest. Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
 'rev-suppressed-text-view'    => "Diese Version wurde '''unterdrückt'''.
-Administratoren können sie einsehen; Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].",
+Du kannst sie einsehen, sofern du möchtest. Nähere Angaben stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].",
 'rev-deleted-no-diff'         => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.
 Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
 'rev-suppressed-no-diff'      => "Du kannst diesen Versionsunterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.",
-'rev-deleted-unhide-diff'     => "Eine der Versionen dieses Unterschieds wurde '''gelöscht'''.
-Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
-Als Administrator kannst du [$1 diese Version einsehen].",
-'rev-suppressed-unhide-diff'  => "Eine der Versionen dieses Unterschieds wurde '''unterdrückt'''.
-Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].
-Als Administrator kannst du [$1 diese Version einsehen].",
-'rev-deleted-diff-view'       => "Eine Version dieses Versionsunterschiedes wurde '''gelöscht'''.
-Als Administrator kannst du diesen Versionsunterschied sehen. Details finden sich im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+'rev-deleted-unhide-diff'     => "Eine der Versionen dieses Versionsunterschieds wurde '''gelöscht'''.
+Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
+Du kannst [$1 diesen Versionsunterschied einsehen], sofern du möchtest.",
+'rev-suppressed-unhide-diff'  => "Eine der Versionen dieses Versionsunterschieds wurde '''unterdrückt'''.
+Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].
+Du kannst [$1 diesen Versionsunterschied einsehen], sofern du möchtest.",
+'rev-deleted-diff-view'       => "Eine Version dieses Versionsunterschieds wurde '''gelöscht'''.
+Du kannst diesen Versionsunterschied einsehen, sofern du möchtest. Nähere Angaben stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
 'rev-suppressed-diff-view'    => "Eine der Versionen dieses Versionsunterschiedes wurde '''unterdrückt'''.
-Als Administrator kannst du diesen Versionsunterschied sehen. Details finden sich im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].",
+Du kannst diesen Versionsunterschied einsehen, sofern du möchtest. Nähere Angaben stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].",
 'rev-delundel'                => 'zeige/verstecke',
 'rev-showdeleted'             => 'zeige',
 'revisiondelete'              => 'Versionen löschen/wiederherstellen',
@@ -1258,7 +1259,7 @@ Bitte prüfe die Logbücher.',
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuch',
 'suppressionlogtext' => 'Dies ist das Logbuch der Oversight-Aktionen (Änderungen der Sichtbarkeit von Versionen, Bearbeitungskommentaren, Benutzernamen und Benutzersperren).
-Siehe die [[Special:IPBlockList|Liste der gesperrten IP-Adressen und Benutzernamen]] für aktuelle Sperren.',
+Siehe die [[Special:BlockList|Liste der gesperrten IP-Adressen und Benutzernamen]] für aktuelle Sperren.',
 
 # History merging
 'mergehistory'                     => 'Versionsgeschichten vereinen',
@@ -1465,7 +1466,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'gender-unknown'                => 'Nicht angegeben',
 'gender-male'                   => 'Männlich',
 'gender-female'                 => 'Weiblich',
-'prefs-help-gender'             => 'Optional: Wird von der Software für die geschlechtsspezifische Anrede genutzt. Diese Information ist öffentlich.',
+'prefs-help-gender'             => 'Optional: Wird unter anderem von der Software für die geschlechtsspezifische Anrede genutzt. Diese Information ist <u>öffentlich</u>.',
 'email'                         => 'E-Mail',
 'prefs-help-realname'           => 'Optional. Damit kann dein bürgerlicher Name deinen Beiträgen zugeordnet werden.',
 'prefs-help-email'              => 'Die Angabe einer E-Mail-Adresse ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, sofern du dein Passwort vergessen hast.',
@@ -1487,7 +1488,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-diffs'                   => 'Versionsvergleich',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => 'E-Mail-Adresse scheint gültig zu sein',
+'email-address-validity-valid'   => 'Diese E-Mail-Adresse scheint gültig zu sein.',
 'email-address-validity-invalid' => 'Eine gültige E-Mail-Adresse ist erforderlich.',
 
 # User rights
@@ -1500,11 +1501,12 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'saveusergroups'               => 'Gruppenzugehörigkeit ändern',
 'userrights-groupsmember'      => 'Mitglied von:',
 'userrights-groupsmember-auto' => 'Automatisch Mitglied von:',
-'userrights-groups-help'       => 'Du kannst die Gruppenzugehörigkeit dieses Benutzer ändern:
+'userrights-groups-help'       => 'Du kannst die Gruppenzugehörigkeit dieses Benutzers ändern:
 * Ein markiertes Kästchen bedeutet, dass der Benutzer Mitglied dieser Gruppe ist
+* Ein nicht-markiertes Kästchen bedeutet, dass der Benutzer nicht Mitglied dieser Gruppe ist
 * Ein * bedeutet, dass du das Benutzerrecht nach Erteilung nicht wieder zurücknehmen kannst (oder umgekehrt).',
 'userrights-reason'            => 'Grund:',
-'userrights-no-interwiki'      => 'Du hast keine Berechtigung, Benutzerrechte in anderen Wikis zu ändern.',
+'userrights-no-interwiki'      => 'Du hast nicht die erforderliche Berechtigung, um Benutzerrechte in anderen Wikis ändern zu können.',
 'userrights-nodatabase'        => 'Die Datenbank $1 ist nicht vorhanden oder nicht lokal.',
 'userrights-nologin'           => 'Du musst dich mit einem Administrator-Benutzerkonto [[Special:UserLogin|anmelden]], um Benutzerrechte zu ändern.',
 'userrights-notallowed'        => 'Du verfügst nicht über die erforderlichen Berechtigungen, um Benutzerrechte vergeben oder entziehen zu können.',
@@ -1600,7 +1602,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'rightslog'                  => 'Rechte-Logbuch',
 'rightslogtext'              => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 'rightslogentry'             => 'änderte die Benutzerrechte für „$1“ von „$2“ auf „$3“',
-'rightslogentry-autopromote' => 'die Zuordnung zur Benutzergruppe wurde automatisch von $2 in $3 geändert',
+'rightslogentry-autopromote' => 'die Zuordnung zur Benutzergruppe wurde automatisch von „$2“ in „$3“ geändert',
 'rightsnone'                 => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1920,7 +1922,7 @@ Sofern nach einem bestimmten Benutzer gefiltert wird, werden nur die Dateien gez
 'filehist-filesize'         => 'Dateigröße',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Datei fehlt',
-'imagelinks'                => 'Dateiverwendungen',
+'imagelinks'                => 'Dateiverwendung',
 'linkstoimage'              => 'Die {{PLURAL:$1|folgende Seite verwendet|folgenden $1 Seiten verwenden}} diese Datei:',
 'linkstoimage-more'         => 'Mehr als {{PLURAL:$1|eine Seite verlinkt|$1 Seiten verlinken}} auf diese Datei.
 Die folgende Liste zeigt nur {{PLURAL:$1|den ersten Link|die ersten $1 Links}} auf diese Datei.
@@ -1962,8 +1964,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'filedelete-nofile-old'       => "Es gibt von '''„$1“''' keine archivierte Version mit den angegebenen Attributen.",
 'filedelete-otherreason'      => 'Anderer/ergänzender Grund:',
 'filedelete-reason-otherlist' => 'Anderer Grund',
-'filedelete-reason-dropdown'  => '
-* Allgemeine Löschgründe
+'filedelete-reason-dropdown'  => '* Allgemeine Löschgründe
 ** Urheberrechtsverletzung
 ** Duplikat',
 'filedelete-edit-reasonlist'  => 'Löschgründe bearbeiten',
@@ -2090,7 +2091,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'listusers-editsonly'     => 'Zeige nur Benutzer mit Beiträgen',
 'listusers-creationsort'  => 'Nach Erstelldatum sortieren',
 'usereditcount'           => '$1 {{PLURAL:$1|Bearbeitung|Bearbeitungen}}',
-'usercreated'             => 'Erstellt am $1 um $2 Uhr',
+'usercreated'             => '{{GENDER:$3|Erstellt}} am $1 um $2 Uhr',
 'newpages'                => 'Neue Seiten',
 'newpages-username'       => 'Benutzername:',
 'ancientpages'            => 'Seit längerem unbearbeitete Seiten',
@@ -2481,9 +2482,9 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Namensraum:',
 'invert'                        => 'Auswahl umkehren',
-'tooltip-invert'                => 'Dieses Kästchen anklicken, um Änderungen im gewählten Namensraum und, sofern ausgewählt, dem entsprechenden zugehörigen Namensraum auszublenden',
+'tooltip-invert'                => 'Dieses Auswahlfeld anklicken, um Änderungen im gewählten Namensraum und, sofern ausgewählt, dem entsprechenden zugehörigen Namensraum auszublenden',
 'namespace_association'         => 'Zugeordneter Namensraum',
-'tooltip-namespace_association' => 'Dieses Kästchen anklicken, um den deiner Auswahl zugehörigen Diskussionsnamensraum, oder im umgekehrten Fall Namensraum, mit einzubeziehen',
+'tooltip-namespace_association' => 'Dieses Auswahlfeld anklicken, um den deiner Auswahl zugehörigen Diskussionsnamensraum, oder im umgekehrten Fall, den zugehörigen Namensraum, mit einzubeziehen',
 'blanknamespace'                => '(Seiten)',
 
 # Contributions
@@ -2565,13 +2566,13 @@ Bitte gib den Grund für die Sperre an.',
 'ipbotherreason'                  => 'Anderer/ergänzender Grund:',
 'ipbhidename'                     => 'Benutzername in Bearbeitungen und Listen verstecken',
 'ipbwatchuser'                    => 'Benutzer(diskussions)seite beobachten',
-'ipb-disableusertalk'             => 'Diese Benutzer daran hindern seine eigene Diskussionsseite zu bearbeiten, solange er gesperrt ist',
+'ipb-disableusertalk'             => 'Diesen Benutzer daran hindern seine eigene Diskussionsseite zu bearbeiten, solange er gesperrt ist',
 'ipb-change-block'                => 'Sperre mit diesen Sperrparametern erneuern',
 'ipb-confirm'                     => 'Sperrung bestätigen',
 'badipaddress'                    => 'Die IP-Adresse hat ein falsches Format.',
 'blockipsuccesssub'               => 'Sperre erfolgreich',
 'blockipsuccesstext'              => 'Der Benutzer/die IP-Adresse [[Special:Contributions/$1|$1]] wurde gesperrt.<br />
-Zur Aufhebung der Sperre siehe die [[Special:IPBlockList|Liste aller aktiven Sperren]].',
+Zur Aufhebung der Sperre siehe die [[Special:BlockList|Liste aller aktiven Sperren]].',
 'ipb-blockingself'                => 'Du bist gerade dabei, dich selbst zu sperren! Möchtest du das wirklich tun?',
 'ipb-confirmhideuser'             => 'Du bist gerade dabei einen Benutzer im Modus „Benutzer verstecken“ zu sperren. Dies führt dazu, dass der Benutzername in allen Listen und Logbüchern unterdrückt wird. Möchtest du das wirklich tun?',
 'ipb-edit-dropdown'               => 'Sperrgründe bearbeiten',
@@ -2710,9 +2711,9 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'moveuserpage-warning'         => "'''Warnung:''' Du bist dabei, eine Benutzerseite zu verschieben. Bitte bedenke, dass dadurch nur die Benutzerseite verschoben, '''nicht''' aber der Benutzer umbenannt wird.",
 'movenologin'                  => 'Du bist nicht angemeldet',
 'movenologintext'              => 'Du musst ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
-'movenotallowed'               => 'Du hast keine Berechtigung, Seiten zu verschieben.',
-'movenotallowedfile'           => 'Du hast keine Berechtigung, Dateien zu verschieben.',
-'cant-move-user-page'          => 'Du hast keine Berechtigung, Benutzerhauptseiten zu verschieben.',
+'movenotallowed'               => 'Du hast nicht die erforderliche Berechtigung, um Seiten verschieben zu können.',
+'movenotallowedfile'           => 'Du hast nicht die erforderliche Berechtigung, um Dateien verschieben zu können.',
+'cant-move-user-page'          => 'Du hast nicht die erforderliche Berechtigung, Benutzerhauptseiten verschieben zu können.',
 'cant-move-to-user-page'       => 'Du hast nicht die Berechtigung, Seiten auf eine Benutzerseite zu verschieben (mit Ausnahme von Benutzerunterseiten).',
 'newtitle'                     => 'Ziel:',
 'move-watch'                   => 'Quell- und Zielseite beobachten',
@@ -2725,7 +2726,7 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'cantmove-titleprotected'      => 'Die Verschiebung kann nicht durchgeführt werden, da der Zieltitel zur Erstellung gesperrt ist.',
 'talkexists'                   => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussionsseite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',
 'movedto'                      => 'verschoben nach',
-'movetalk'                     => 'Sofern möglich die Diskussionsseite mitverschieben',
+'movetalk'                     => 'Sofern möglich, die Diskussionsseite mitverschieben',
 'move-subpages'                => 'Unterseiten verschieben (bis zu $1)',
 'move-talk-subpages'           => 'Unterseiten der Diskussionsseite verschieben (bis zu $1)',
 'movepage-page-exists'         => 'Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.',
@@ -3239,7 +3240,7 @@ Weitere werden standardmäßig nicht angezeigt.
 'exif-objectname'                  => 'Kurztitel',
 'exif-specialinstructions'         => 'Besondere Anweisungen',
 'exif-headline'                    => 'Titel',
-'exif-credit'                      => 'Namensnennung/ Veröffentlicher',
+'exif-credit'                      => 'Namensnennung/Veröffentlicher',
 'exif-source'                      => 'Quelle',
 'exif-editstatus'                  => 'Redaktioneller Status des Fotos',
 'exif-urgency'                     => 'Dringlichkeit',
@@ -3640,7 +3641,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'size-gigabytes' => '$1 GB',
 
 # Live preview
-'livepreview-loading' => 'Laden …',
+'livepreview-loading' => 'Am Laden …',
 'livepreview-ready'   => 'Laden … Fertig!',
 'livepreview-failed'  => 'Die sofortige Vorschau ist nicht möglich!
 Bitte die normale Vorschau nutzen.',
@@ -3723,9 +3724,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'filepath'         => 'Dateipfad',
 'filepath-page'    => 'Datei:',
 'filepath-submit'  => 'Los',
-'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.
-
-Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
+'filepath-summary' => 'Mit dieser Spezialseite lässt sich der komplette Pfad der aktuellen Version einer Datei ohne Umweg abfragen. Die angefragte Datei wird direkt dargestellt bzw. mit der verknüpften Anwendung gestartet.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Dateiduplikatsuche',

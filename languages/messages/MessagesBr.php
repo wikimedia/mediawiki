@@ -968,30 +968,29 @@ Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe
 'rev-deleted-user-contribs'   => "[anv implijer pe chomlec'h IP diverket - kemm kuzhet diouzh an degasadennoù]",
 'rev-deleted-text-permission' => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
 Marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].",
-'rev-deleted-text-unhide'     => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
+'rev-deleted-text-unhide'     => "!'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
 Marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
-Evel merour e c'hallit [$1 gwelet ar stumm-se] c'hoazh mar fell deoc'h kenderc'hel.",
+Gallout a rit [$1 gwelet ar stumm-se] c'hoazh mar fell deoc'h kenderc'hel.",
 'rev-suppressed-text-unhide'  => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
-Marteze e kavor muioc'h a vunudoù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
-Pa'z oc'h merour e c'hallit [$1 gwelet ar stummm-se] mar fell deoc'h kenderc'hel ganti.",
+Titouroù zo da gaout war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
+Gallout a rit [$1 gwelet ar stumm-se] c'hoazh mar fell deoc'h kenderc'hel.",
 'rev-deleted-text-view'       => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
-Pa'z oc'h merour e c'hallit sellet outañ;
-Marteze e kavot munudoù all war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].",
+Gallout a rit sellet outañ ; titouroù all a gavot war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].",
 'rev-suppressed-text-view'    => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn-mañ.
-Pa'z oc'h merour e c'hallit sellet outañ; marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
+Gallout a rit sellet outañ ; titouroù all zo war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].",
 'rev-deleted-no-diff'         => "N'hallit ket gwelet an diforc'h-mañ rak '''diverket''' eo bet unan eus ar stummoù.
 Marteze ez eus muioc'h a vunudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
 'rev-suppressed-no-diff'      => "N'hallit ket gwelet an diforc'h-se rak '''diverket''' ez eus bet unan eus an adweladennoù.",
-'rev-deleted-unhide-diff'     => "'''Diverket''' eo bet unan eus kemmoù an diforc'h-mañ.
-Marteze e kavot muoic'h a ditouroù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
-Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
-'rev-suppressed-unhide-diff'  => "'''Diverket''' ez eus bet unan eus adweladennoù an diff-mañ.
-Titouroù ouzhpenn a c'hall bezañ war [{{lurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
-Evel merour e c'hallit atav [$1 sellet ouzh an diff-se] mar fell deoc'h kenderc'hel.",
-'rev-deleted-diff-view'       => "'''Dilamet''' ez eus bet unan eus stummoù an dif.-mañ.
-Evel merour e c'hallit gwelet an dif.-mañ; muioc'h a ditouroù a c'hall bezañ e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù]",
-'rev-suppressed-diff-view'    => "'''Diverket''' ez eus bet unan eus stummoù an dif.-mañ.
-Evel merour e c'hallit gwelet an dif.-mañ; muioc'h a ditouroù a c'hall bezañ e [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù]",
+'rev-deleted-unhide-diff'     => "'''Diverket''' ez eus bet unan eus kemmoù an diforc'h-mañ.
+Titouroù zo da gaout war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
+Gallout a rit c'hoazh [$1 sellet ouzh an diforc'h-mañ] mar fell deoc'h kenderc'hel.",
+'rev-suppressed-unhide-diff'  => "'''Diverket''' ez eus bet unan eus adweladennoù an diforc'h-mañ.
+Titouroù ouzhpenn zo war [{{lurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
+Gallout a rit c'hoazh [$1 sellet ouzh an diforc'h-se] mar fell deoc'h kenderc'hel.",
+'rev-deleted-diff-view'       => "'''Diverket''' ez eus bet unan eus stummoù an diforc'h-mañ.
+Gallout a rit gwelet an diforc'h-mañ ; titouroù zo war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket]",
+'rev-suppressed-diff-view'    => "'''Diverket''' ez eus bet unan eus stummoù an diforc'h-mañ.
+Gallout a ri gwelet an diforc'h-mañ ; titouroù zo war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket]",
 'rev-delundel'                => 'diskouez/kuzhat',
 'rev-showdeleted'             => 'diskouez',
 'revisiondelete'              => 'Diverkañ/diziverkañ stummoù',
@@ -1068,7 +1067,8 @@ N\'oc\'h ket aotreet da vont outi.',
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',
-'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. Gwelet [[Special:IPBlockList|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
+'suppressionlogtext' => 'A-is emañ roll an diverkadennoù hag ar stankadennoù diwezhañ enno an adweladennoù kuzhet ouzh ar verourien. 
+Gwelet [[Special:BlockList|roll an IPoù stanket]] evit kaout roll ar stankadennoù ha forbannadennoù e talvoud evit poent.',
 
 # History merging
 'mergehistory'                     => 'Kendeuziñ istor ur bajenn',
@@ -1263,7 +1263,7 @@ Setu aze un dalvoudenn ganet dre zegouezh hag a c'hallfec'h implijout : $1",
 'prefs-registration'            => 'Deiziad enskrivañ :',
 'yourrealname'                  => 'Anv gwir*',
 'yourlanguage'                  => 'Yezh an etrefas&nbsp;',
-'yourvariant'                   => 'Adstumm:',
+'yourvariant'                   => 'Adstumm yezh :',
 'yournick'                      => 'Sinadur :',
 'prefs-help-signature'          => 'Dleout a rafe an evezhiadennoù war ar pajennoù kaozeal bezañ sinet gant "<nowiki>~~~~</nowiki>" a vo treuzfurmet en ho sinadur hag euriet.',
 'badsig'                        => 'Direizh eo ho sinadur kriz; gwiriit ho palizennoù HTML.',
@@ -1318,7 +1318,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'userrights-no-interwiki'      => "N'oc'h ket aotreet da gemmañ ar gwirioù implijer war wikioù all.",
 'userrights-nodatabase'        => "N'eus ket eus an diaz titouroù $1 pe n'eo ket lec'hel.",
 'userrights-nologin'           => "Ret eo deoc'h [[Special:UserLogin|bezañ enrollet]] gant ur gont merour a-benn reiñ gwirioù implijer.",
-'userrights-notallowed'        => "N'eo ket aotreet ho kont da reiñ gwirioù implijer.",
+'userrights-notallowed'        => "N'eo ket aotreet ho kont da cheñch gwirioù an implijerien.",
 'userrights-changeable-col'    => "Ar strolladoù a c'hallit cheñch",
 'userrights-unchangeable-col'  => "Ar strolladoù n'hallit ket cheñch",
 
@@ -1473,7 +1473,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'diff'                              => "diforc'h",
 'hist'                              => 'ist',
 'hide'                              => 'kuzhat',
-'show'                              => 'diskouez',
+'show'                              => 'Diskouez',
 'minoreditletter'                   => 'D',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -1500,7 +1500,7 @@ E '''tev''' emañ ar pajennoù zo war ho [[Special:Watchlist|roll evezhiañ]].",
 'uploadbtn'                   => 'Kargañ ur restr',
 'reuploaddesc'                => "Distreiñ d'ar furmskrid.",
 'upload-tryagain'             => 'Kas deskrivadur ar restr kemmet',
-'uploadnologin'               => 'digevreet',
+'uploadnologin'               => 'Digevreet',
 'uploadnologintext'           => "Ret eo deoc'h bezañ [[Special:UserLogin|kevreetet]] a-benn gellout enporzhiañ restroù war ar servijer.",
 'upload_directory_missing'    => "Mankout a ra ar c'havlec'h enporzhiañ ($1) ha n'eo ket bet ar servijer Web evit e grouiñ.",
 'upload_directory_read_only'  => "N'hall ket ar servijer skrivañ e renkell ar c'hargadennoù ($1).",
@@ -1729,7 +1729,7 @@ Pa vez silet dre implijerien, ne vez diskouezet nemet ar restroù eo bet enporzh
 'filehist-filesize'         => 'Ment ar restr',
 'filehist-comment'          => 'Notenn',
 'filehist-missing'          => 'Restr diank',
-'imagelinks'                => "Liammoù d'ar restr",
+'imagelinks'                => 'Implij ar restr',
 'linkstoimage'              => "Liammet eo {{PLURAL:$1|ar bajenn-mañ|an $1 pajenn-mañ}} d'ar restr-mañ :",
 'linkstoimage-more'         => "Ouzhpenn $1 {{PLURAL:$1|bajenn zo liammet ouzh|pajenn zo liammet ouzh}} ar restr-mañ.
 Ne laka ar roll-mañ war wel nemet {{PLURAL:$1|ar bajenn gentañ liammet ouzh|an $1 pajenn gentañ liammet ouzh}} ar rest-mañ.
@@ -2496,7 +2496,7 @@ Kadarnait, mar plij, eo se hoc'h eus c'hoant da ober.",
 <br />Na zisoñjit ket e zibrennañ pa vo bet kaset da benn vat hoc'h oberiadenn drezalc'h.",
 'unlockdbsuccesstext' => 'Dibrennet eo bank roadennoù {{SITENAME}}.',
 'lockfilenotwritable' => "N'haller ket skrivañ war restr prennañ ar bank roadennoù. A-benn prennañ-dibrennañ ar bank e rankit bezañ aotreet da skrivañ war ar servijer Kenrouedad.",
-'databasenotlocked'   => "N'eo ket prennet ar bank titouroù.",
+'databasenotlocked'   => "N'eo ket prennet an diaz roadennoù.",
 'lockedbyandtime'     => "(gant $1 d'an $2 da $3)",
 
 # Move page
@@ -2984,7 +2984,7 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-focalplanexresolution'       => 'Muzuliadur a-led ur fokalenn blaen',
 'exif-focalplaneyresolution'       => 'Muzuliadur a-serzh ur fokalenn blaen',
 'exif-focalplaneresolutionunit'    => 'Unanenn spisder evit ur fokalenn blaen',
-'exif-subjectlocation'             => "Lec'hiadur ar sujed",
+'exif-subjectlocation'             => "Lec'hiadur an danvez",
 'exif-exposureindex'               => "Meneger louc'hañ",
 'exif-sensingmethod'               => 'Hentenn detektiñ',
 'exif-filesource'                  => 'Tarzh ar restr',
@@ -3114,7 +3114,7 @@ Kuzhet e vo ar re all dre ziouer.
 'exif-orientation-3' => 'Troet eus 180°',
 'exif-orientation-4' => 'Eilpennet a-serzh',
 'exif-orientation-5' => 'Troet eus 90° a-gleiz hag eilpennet a-serzh',
-'exif-orientation-6' => 'Troet eus 90° a-zehou',
+'exif-orientation-6' => "Troet eus 90° a-enep d'an eur",
 'exif-orientation-7' => 'Troet eus 90° a-zehou hag eilpennet a-serzh',
 'exif-orientation-8' => 'Troet eus 90° a-gleiz',
 
@@ -3533,9 +3533,8 @@ Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar
 'filepath'         => 'Hent moned ur restr',
 'filepath-page'    => 'Restr :',
 'filepath-submit'  => 'Mont',
-'filepath-summary' => 'Diskouez a ra ar bajenn-mañ hent moned klok ur restr. Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all war-eeun gant o frogramm stag.
-
-Merkit anv ar restr hep ar rakger "{{ns:file}} :"',
+'filepath-summary' => 'Diskouez a ra ar bajenn-mañ hent moned klok ur restr.
+Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all war-eeun gant o frogramm stag.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Klask ar restroù e doubl',

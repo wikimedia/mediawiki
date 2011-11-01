@@ -1060,27 +1060,27 @@ Spróbuj [[Special:Search|poszukać]] tej strony.',
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-deleted-text-unhide'     => "Ta wersja strony została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
-Jako administrator możesz [$1 obejrzeć tę wersję].",
+Jeśli chcesz możesz [$1 obejrzeć tę wersję].",
 'rev-suppressed-text-unhide'  => "Ta wersja strony została '''ukryta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze utajniania].
-Jako administrator możesz [$1 obejrzeć tę wersję].",
+Jeśli chcesz możesz [$1 obejrzeć tę wersję].",
 'rev-deleted-text-view'       => "Ta wersja strony została '''usunięta'''.
-Jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+Jeśli chcesz możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-suppressed-text-view'    => "Ta wersja strony została '''utajniona'''.
-Jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze utajniania].",
+Jeśli chcesz możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze utajniania].",
 'rev-deleted-no-diff'         => "Nie możesz zobaczyć porównania wersji, ponieważ jedna z nich została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-suppressed-no-diff'      => "Nie można wyświetlić różnic, ponieważ jedna z wersji została '''usunięta'''.",
 'rev-deleted-unhide-diff'     => "Jedna z porównywanych wersji została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
-Jako administrator możesz [$1 obejrzeć porównanie wersji].",
+Jeśli chcesz możesz [$1 obejrzeć porównanie wersji].",
 'rev-suppressed-unhide-diff'  => "Jedna z porównywanych wersji została '''ukryta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].
-Jako administrator możesz [$1 obejrzeć to porównanie wersji].",
+Jeśli chcesz możesz [$1 obejrzeć porównanie wersji].",
 'rev-deleted-diff-view'       => "Jedna z wersji użytych w porównaniu została '''usunięta'''.
-Jako administrator możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+Jeśli chcesz możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-suppressed-diff-view'    => "Jedna z wersji użytych w porównaniu została '''ukryta'''.
-Jako administrator możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].",
+Jeśli chcesz możesz zobaczyć porównanie. Szczegóły mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze ukrywania].",
 'rev-delundel'                => 'pokaż/ukryj',
 'rev-showdeleted'             => 'pokaż',
 'revisiondelete'              => 'Usuń/odtwórz wersje',
@@ -1132,8 +1132,8 @@ $1",
 'revdelete-content'           => 'zawartość',
 'revdelete-summary'           => 'opis zmian',
 'revdelete-uname'             => 'nazwę użytkownika',
-'revdelete-restricted'        => 'ustaw ograniczenia dla administratorów',
-'revdelete-unrestricted'      => 'usuń ograniczenia dla administratorów',
+'revdelete-restricted'        => 'ograniczono widoczność dla administratorów',
+'revdelete-unrestricted'      => 'wycofano ograniczenie widoczności dla administratorów',
 'revdelete-hid'               => 'ukryto $1',
 'revdelete-unhid'             => 'nie ukrywaj $1',
 'revdelete-log-message'       => '$1 – $2 {{PLURAL:$2|wersja|wersje|wersji}}',
@@ -1157,7 +1157,7 @@ Proszę sprawdzić rejestr operacji.',
 # Suppression log
 'suppressionlog'     => 'Rejestr utajniania',
 'suppressionlogtext' => 'Poniżej znajduje się lista usunięć i blokad utajnionych przed administratorami.
-Zobacz [[Special:IPBlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
+Zobacz [[Special:BlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
 # History merging
 'mergehistory'                     => 'Scal historię zmian stron',
@@ -1221,7 +1221,6 @@ Użycie linków nawigacyjnych kasuje wybór w kolumnie.',
 'searchmenu-legend'                => 'Opcje wyszukiwania',
 'searchmenu-exists'                => "* Strona '''[[$1]]'''",
 'searchmenu-new'                   => "'''Utwórz stronę „[[:$1|$1]]” na tej wiki.'''",
-'searchmenu-new-nocreate'          => '„$1” nie jest prawidłową nazwą strony lub nie może zostać utworzona przez Ciebie.',
 'searchhelp-url'                   => 'Help:Spis treści',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Przeglądaj strony zaczynające się od tego przedrostka]]',
 'searchprofile-articles'           => 'Strony',
@@ -1358,7 +1357,7 @@ Tej operacji nie można później cofnąć.',
 'prefs-registration'            => 'Moment rejestracji',
 'yourrealname'                  => 'Imię i nazwisko',
 'yourlanguage'                  => 'Język interfejsu',
-'yourvariant'                   => 'Wariant',
+'yourvariant'                   => 'Wariant języka treści',
 'yournick'                      => 'Twój podpis',
 'prefs-help-signature'          => 'Wypowiedzi na stronach dyskusji powinny być podpisywane za pomocą „<nowiki>~~~~</nowiki>”, dzięki temu automatycznie wstawiany jest Twój podpis wraz z bieżącą datą.',
 'badsig'                        => 'Nieprawidłowy podpis, sprawdź znaczniki HTML.',
@@ -1535,7 +1534,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'action-protect'              => 'zmiany poziomu zabezpieczenia tej strony',
 'action-import'               => 'importu tej strony z innej wiki',
 'action-importupload'         => 'importu tej strony poprzez przesłanie pliku',
-'action-patrol'               => 'oznaczenia edycji jako „sprawdzonej”',
+'action-patrol'               => 'oznaczenia cudzej edycji jako „sprawdzonej”',
 'action-autopatrol'           => 'oznaczenia własnej edycji jako „sprawdzonej”',
 'action-unwatchedpages'       => 'podglądu listy nieobserwowanych stron',
 'action-trackback'            => 'wysyłania trackbacka',
@@ -1748,9 +1747,9 @@ Nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.',
 Plik nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.',
 
 # Special:UploadStash
-'uploadstash'          => 'Ukryte przesyłanie',
+'uploadstash'          => 'Schowek z przesłanymi plikami',
 'uploadstash-summary'  => 'Ta strona umożliwia dostęp do przesłanych lub właśnie przesyłanych plików, ale jeszcze nie opublikowanych na wiki. Pliki widzi wyłącznie użytkownik, które je przesłał.',
-'uploadstash-clear'    => 'Wyczyść ukryte pliki',
+'uploadstash-clear'    => 'Wyczyść schowek z plikami',
 'uploadstash-nofiles'  => 'Nie masz żadnych ukrytych plików.',
 'uploadstash-badtoken' => 'Operacja nie powiodła się. Możliwą przyczyną jest, że Twoje upoważnienie do edytowania wygasło. Spróbuj ponownie.',
 'uploadstash-errclear' => 'Czyszczenie plików nie powiodło się.',
@@ -1830,7 +1829,7 @@ Jeśli włączono filtrowanie dla konkretnego użytkownika, prezentowane są wy�
 'filehist-filesize'         => 'Rozmiar pliku',
 'filehist-comment'          => 'Opis',
 'filehist-missing'          => 'Brak pliku',
-'imagelinks'                => 'Odnośniki do pliku',
+'imagelinks'                => 'Wykorzystanie pliku',
 'linkstoimage'              => '{{PLURAL:$1|Poniższa strona odwołuje|Następujące strony odwołują}} się do tego pliku:',
 'linkstoimage-more'         => 'Więcej niż $1 {{PLURAL:$1|strona linkuje|strony linkują|stron linkuje}} do tego pliku.
 Poniższa lista pokazuje jedynie {{PLURAL:$1|pierwszy link|pierwsze $1 linki|pierwszych $1 linków}} do tego pliku.
@@ -3689,9 +3688,7 @@ Powinieneś otrzymać [{{SERVER}}{{SCRIPTPATH}}/COPYING kopię licencji GNU Gene
 'filepath-page'    => 'Plik',
 'filepath-submit'  => 'Przejdź',
 'filepath-summary' => 'Ta strona specjalna zwraca pełną ścieżkę do pliku.
-Grafiki są pokazywane w pełnej rozdzielczości, inne typy plików są otwierane w skojarzonym z nimi programie.
-
-Wpisz nazwę pliku bez prefiksu „{{ns:file}}:”.',
+Grafiki są pokazywane w pełnej rozdzielczości. Inne typy plików są otwierane w skojarzonym z nimi programie.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Szukaj duplikatów pliku',

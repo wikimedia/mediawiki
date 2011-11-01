@@ -9,6 +9,8 @@
  *
  * @author Kanags
  * @author Karthi.dr
+ * @author Krishnaprasaths
+ * @author Logicwiki
  * @author Mahir78
  * @author Mayooranathan
  * @author Naveen
@@ -98,7 +100,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'பக்கங்களுக்கான சிறு தொகுப்புக்கள் குறித்தும் எனக்கு மின்னஞ்சல் செய்யவும்',
 'tog-enotifrevealaddr'        => 'அறிவித்தல் மின்னஞ்சல்களில் எனது மின்னஞ்சல் முகவரியை வெளிப்படுத்து',
 'tog-shownumberswatching'     => 'கவனிக்கும் பயனர்களின் எண்ணிக்கையைக் காட்டவும்',
-'tog-oldsig'                  => 'நடப்பு கையொப்பத்தின் முன்தோற்றம்:',
+'tog-oldsig'                  => 'நடப்பு கையொப்பம்:',
 'tog-fancysig'                => 'வெற்றுக் கையொப்பம் (தானியங்கி இணைப்பின்றி)',
 'tog-externaleditor'          => 'இயல்பிருப்பாக வெளி தொகுப்பு மென்பொருளைப் பயன்படுத்து (இது நிபுணர்களுக்கு மட்டும், உங்கள் கணினியில் சிறப்பு அமைப்புகள் தேவைப்படும்)',
 'tog-externaldiff'            => 'வெளி வேறுபாட்டை இயல்பிருப்பாக பயன்படுத்து (இது நிபுணர்களுக்கு மட்டும், உங்கள் கணினியில் சிறப்பு அமைப்புகள் தேவைப்படும்)',
@@ -551,7 +553,13 @@ MySQL returned error "$3: $4".',
 'resetpass-temp-password'   => 'தற்காலிக கடவுச்சொல்:',
 
 # Special:PasswordReset
-'passwordreset-username' => 'பயனர் பெயர்:',
+'passwordreset'              => 'கடவுச்சொல்லை மீட்டமை',
+'passwordreset-legend'       => 'கடவுச்சொல்லை மீட்டமை',
+'passwordreset-username'     => 'பயனர் பெயர்:',
+'passwordreset-email'        => 'மின்னஞ்சல் முகவரி:',
+'passwordreset-emailelement' => 'பயனர் பெயர்:  $1
+தற்காலிகக் கடவுச்சொல்: $2',
+'passwordreset-emailsent'    => 'நினைவூட்டும் மின்னஞ்சல் அனுப்பப்பட்டது.',
 
 # Edit page toolbar
 'bold_sample'     => 'தடித்த எழுத்துக்கள்',
@@ -1067,6 +1075,10 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'prefs-displaywatchlist'        => 'விருப்பத்தேர்வுகளைக் காட்டு',
 'prefs-diffs'                   => 'வித்தியாசங்கள்',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'மின்னஞ்சல் முகவரி முறையானதாகத் தோன்றுகிறது',
+'email-address-validity-invalid' => 'முறையான மின்னஞ்சல் முகவரியை உள்ளிடுக',
+
 # User rights
 'userrights'                   => 'பயனர் அனுமதி முகாமைத்துவம்',
 'userrights-lookup-user'       => 'பயனர்க் குழுக்களைப் பராமரி',
@@ -1340,6 +1352,10 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 # img_auth script messages
 'img-auth-accessdenied' => 'அனுமதி மறுக்கப்பட்டது',
 
+# HTTP errors
+'http-invalid-url' => 'செல்லாத உரலி: $1',
+'http-curl-error'  => '$1 உரலியை பெறுவதில் பிழை நேரிட்டது',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'இணைய முகவரியை அடைய முடியவில்லை',
 'upload-curl-error6-text'  => 'கொடுக்கப்பட்ட யூ.ஆர்.எல்.லை அடைய முடியவில்லை. அருள் கூர்ந்து யூ.ஆர்.எல்.லை இரு முறை சரிபார்த்து தளம் செயற்படுகிறாதா என்பதையும் உறுதிப்படுத்தவும்.',
@@ -1421,6 +1437,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 ** காப்புரிமை மீறப்பட்டமை
 ** இன்னொரு படிமம் உள்ளது',
 'filedelete-edit-reasonlist'  => 'நீக்கல் காரணங்களைத் தொகு',
+'filedelete-maintenance'      => 'கோப்புகள் நீக்கம் மற்றும் மீட்பு ஆகியவை பராமரிப்பின் பொழுது தற்காலிகமாக முடக்கப்பட்டுள்ளது.',
 
 # MIME search
 'mimesearch'         => 'பலநோக்கு இணைய அஞ்சல் நீட்சித் தேடல்',
@@ -1544,6 +1561,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'pager-newer-n'           => '{{PLURAL:$1|புதிய ஒரு|புதிய $1}}',
 'pager-older-n'           => '{{PLURAL:$1|பழைய ஒரு|பழைய $1}}',
 'suppress'                => 'கவனக்குறைவு',
+'querypage-disabled'      => 'செயல்பாட்டு காரணங்களுக்காக இந்த சிறப்பு பக்கம் முடக்கப்பட்டுள்ளது.',
 
 # Book sources
 'booksources'               => 'நூல் மூலங்கள்',
@@ -1593,6 +1611,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 
 # Special:LinkSearch
 'linksearch'      => 'வெளி இணைப்புகள்',
+'linksearch-pat'  => 'தேடல் அமைப்பு:',
 'linksearch-ns'   => 'பெயர்வெளி:',
 'linksearch-ok'   => 'தேடுக',
 'linksearch-line' => '$1-ஆனது $2-லிருந்து இணைக்கப்பட்டுள்ளது',
@@ -1612,6 +1631,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 
 # Special:Log/newusers
 'newuserlogpage'              => 'பயனர் உருவாக்கம் பற்றிய குறிப்பு',
+'newuserlogpagetext'          => 'இது பயனர் படைப்புகளின் பதிவு ஆகும்.',
 'newuserlog-byemail'          => 'மின்னஞ்சல் மூலம் கடவுச்சொல் அனுப்பப்பட்டுவிட்டது',
 'newuserlog-create-entry'     => 'புதிய பயனர் கணக்கு',
 'newuserlog-create2-entry'    => '$1-என்ற புதிய கணக்குத் தொடங்கப்பட்டுவிட்டது',
@@ -1626,27 +1646,31 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'listgrouprights-removegroup-all' => 'எல்லா குழுக்களையும் நீக்கு',
 
 # E-mail user
-'mailnologin'     => 'அனுப்பும் முகவரி இல்லை',
-'mailnologintext' => 'நீங்கள்[[Special:UserLogin|புகுபதிகை செய்திருப்பதுடன்]]
+'mailnologin'         => 'அனுப்பும் முகவரி இல்லை',
+'mailnologintext'     => 'நீங்கள்[[Special:UserLogin|புகுபதிகை செய்திருப்பதுடன்]]
 ஏனைய பயனர்களுக்கு மின்னஞ்சல் அனுப்பக்கூடியத்தாக செல்லுபடியாகக்கூடிய மின்னஞ்சல் முகவரியொன்றும் உங்களுடைய  [[Special:Preferences|விருப்பத் தெரிவுகளில்]] கொடுபட்டிருக்கவேண்டும்.',
-'emailuser'       => 'இப் பயனருக்கு மின்னஞ்சல் செய்',
-'emailpage'       => 'மின்னஞ்சல் பயனர்',
-'emailpagetext'   => 'நீங்கள் கீழ்வரும் படிவத்தை உபயோகித்து இந்த பயனருக்கு மின்னஞ்சல் செய்யலாம்.
+'emailuser'           => 'இப் பயனருக்கு மின்னஞ்சல் செய்',
+'emailpage'           => 'மின்னஞ்சல் பயனர்',
+'emailpagetext'       => 'நீங்கள் கீழ்வரும் படிவத்தை உபயோகித்து இந்த பயனருக்கு மின்னஞ்சல் செய்யலாம்.
 
 [[Special:Preferences|என் விருப்பத்தேர்வுகளில்]] நீங்கள் கொடுத்துள்ள மின்னஞ்சல் முகவரி மின்னஞ்சலின் "From" முகவரியாகக் காட்சி தரும், இதனால் பெறுநர் உங்களுக்கு நேரடியாக பதில் எழுத முடியும்.',
-'usermailererror' => 'மின்னஞ்சல் விளைவாக்கிய தவறு:',
-'defemailsubject' => '{{SITENAME}} மின்னஞ்சல்',
-'noemailtitle'    => 'மின்னஞ்சல் முகவரி இல்லை',
-'noemailtext'     => 'இப் பயனர் ஒரு செல்லுபடியாகக்கூடிய மின்னஞ்சல் முகவரியைக் குறிப்பிடவில்லை.',
-'emailfrom'       => 'அனுப்புநர்:',
-'emailto'         => 'பெறுநர்:',
-'emailsubject'    => 'பொருள்:',
-'emailmessage'    => 'தகவல்:',
-'emailsend'       => 'அனுப்பு',
-'emailccme'       => 'என் கருத்துக்களின் நகலொன்றை எனக்கு மின்னஞ்சலிடு',
-'emailccsubject'  => '$1 பயனருக்கான உங்கள் மின்னஞ்சலின் நகல்: $2',
-'emailsent'       => 'மின்னஞ்சல் அனுப்பப்பட்டது',
-'emailsenttext'   => 'உங்கள் மின்னஞ்சல் செய்தி அனுப்பப்பட்டது.',
+'usermailererror'     => 'மின்னஞ்சல் விளைவாக்கிய தவறு:',
+'defemailsubject'     => '{{SITENAME}} மின்னஞ்சல்',
+'noemailtitle'        => 'மின்னஞ்சல் முகவரி இல்லை',
+'noemailtext'         => 'இப் பயனர் ஒரு செல்லுபடியாகக்கூடிய மின்னஞ்சல் முகவரியைக் குறிப்பிடவில்லை.',
+'emailtarget'         => 'பெறுநரின் பயனர் பெயரை உள்ளிடவும்',
+'emailusername'       => 'பயனர் பெயர்:',
+'emailusernamesubmit' => 'சமர்ப்பி',
+'email-legend'        => 'மற்றொரு {{SITENAME}} பயனருக்கு ஒரு மின்னஞ்சல் அனுப்பு',
+'emailfrom'           => 'அனுப்புநர்:',
+'emailto'             => 'பெறுநர்:',
+'emailsubject'        => 'பொருள்:',
+'emailmessage'        => 'தகவல்:',
+'emailsend'           => 'அனுப்பு',
+'emailccme'           => 'என் கருத்துக்களின் நகலொன்றை எனக்கு மின்னஞ்சலிடு',
+'emailccsubject'      => '$1 பயனருக்கான உங்கள் மின்னஞ்சலின் நகல்: $2',
+'emailsent'           => 'மின்னஞ்சல் அனுப்பப்பட்டது',
+'emailsenttext'       => 'உங்கள் மின்னஞ்சல் செய்தி அனுப்பப்பட்டது.',
 
 # Watchlist
 'watchlist'            => 'என் கவனிப்புப் பட்டியல்',
@@ -1655,7 +1679,9 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'watchlistanontext'    => 'உமது கவனிப்புப் பட்டியலை பார்க அல்லது தொகுக்க அருள் கூர்ந்து $1.',
 'watchnologin'         => 'புகுபதிகை செய்யப்படவில்லை.',
 'watchnologintext'     => 'உங்கள் கவனிப்புப் பட்டியலில் திருத்தம் செய்வதற்கு, நீங்கள்[[Special:UserLogin|புகுபதிகை செய்திருக்கவேண்டும்]].',
+'addwatch'             => 'கவனிப்புப் பட்டியலில் சேர்',
 'addedwatchtext'       => "\"[[:\$1]]\" பக்கம் உங்கள் [[Special:Watchlist|கவனிப்புப் பக்கத்தில்]] சேர்க்கப்பட்டுள்ளது. இந்தப் பக்கத்துக்கு எதிர்காலத்தில் செய்யப்படவுள்ள மாற்றங்களும், அதனோடிணைந்த பேச்சுப் பக்கமும், அங்கே பட்டியலிடப்படும். அத்துடன் தெரிந்தெடுக்க வசதியாக [[Special:RecentChanges|அண்மைய மாற்றங்களின் பட்டியலில்]] இது தடித்த எழுத்துக்களில் காட்டப்படும். பின்னர், இப் பக்கத்தை உங்கள் கவனிப்புப் பட்டியலிலிருந்து நீக்க விரும்பினால், பக்கச் சட்டத்திலுள்ள ''கவனிப்பு நீக்கு'' என்ற இணைப்பைச் சொடுக்கவும்.",
+'removewatch'          => 'கவனிப்புப் பட்டியலிருந்து நீக்கு',
 'removedwatchtext'     => '"[[:$1]]" பக்கம் [[Special:Watchlist|உங்கள் கவனிப்புப் பட்டியலில்]] இருந்து நீக்கப்பட்டது.',
 'watch'                => 'கவனி',
 'watchthispage'        => 'இந்தப் பக்கத்தைக் கவனிக்கவும்',
@@ -1863,9 +1889,10 @@ $1',
 'undelete-show-file-submit'    => 'ஆம்',
 
 # Namespace form on various pages
-'namespace'      => 'பெயர்வெளி:',
-'invert'         => 'தெரிவைத் தலைகீழாக்கு',
-'blanknamespace' => '(முதன்மை)',
+'namespace'             => 'பெயர்வெளி:',
+'invert'                => 'தெரிவைத் தலைகீழாக்கு',
+'namespace_association' => 'தொடர்புடைய  பெயர்வெளி',
+'blanknamespace'        => '(முதன்மை)',
 
 # Contributions
 'contributions'       => 'பயனர் பங்களிப்புக்கள்',
@@ -1881,6 +1908,8 @@ $1',
 'sp-contributions-newbies-sub' => 'புதிய கணக்குகளுக்கு',
 'sp-contributions-blocklog'    => 'தடைப் பதிகை',
 'sp-contributions-deleted'     => 'பயனரின நீக்கப்பட்ட பங்களிப்புக்கள்',
+'sp-contributions-uploads'     => 'பதிவேற்றங்கள்',
+'sp-contributions-logs'        => 'பதிகைகள்',
 'sp-contributions-talk'        => 'உரையாடல்',
 'sp-contributions-userrights'  => 'பயனர் அனுமதி முகாமைத்துவம்',
 'sp-contributions-search'      => 'பங்களிப்புகளைத் தேடு',
@@ -1906,6 +1935,8 @@ $1',
 'whatlinkshere-filters'    => 'வடிகட்டிகள்',
 
 # Block/unblock
+'block'                       => 'பயனரைத் தடைசெய்',
+'unblock'                     => 'பயனர் தடையை நீக்கு',
 'blockip'                     => 'பயனரைத் தடு',
 'blockip-legend'              => 'பயனரைத் தடு',
 'blockiptext'                 => 'ஒரு குறிப்பிட்ட ஐபி முகவரி அல்லது பயனரிடமிருந்து எழுத்து அணுக்கத்தைத் தடுப்பதற்குக் கீழேயுள்ள படிவத்தை உபயோகிக்கவும். இது விசமத்தனத்தைத் தடுப்பதற்கும் [[{{MediaWiki:Policy-url}}|{{SITENAME}} கொள்கை]]க்கு எற்புடைய வகையிலும் மட்டுமே பயன்படுத்தப்பட வேண்டும்.
@@ -1931,6 +1962,7 @@ $1',
 'ipbotheroption'              => 'மற்றவை',
 'ipbotherreason'              => 'வேறு மேலதிக காரணம்:',
 'ipbhidename'                 => 'தொகுப்புக்கள் மற்றும் பட்டியல்களிலிருந்து பயனர் பெயரை மறைக்கவும்',
+'ipb-confirm'                 => 'தடையை உறுதிசெய்',
 'badipaddress'                => 'செல்லுபடியற்ற ஐ.பி. முகவரி',
 'blockipsuccesssub'           => 'தடுப்பு வெற்றி',
 'blockipsuccesstext'          => '[[Special:Contributions/$1|$1]] தடுக்கப்பட்டுள்ளார்.<br />
@@ -1939,13 +1971,16 @@ $1',
 'ipb-unblock-addr'            => '$1 இன் தடையை நீக்கு',
 'ipb-unblock'                 => 'ஐ.பி. அல்லது பயனருக்கான தடையை நீக்கு',
 'ipb-blocklist'               => 'தற்போதுள்ள தடுப்புகளைப் பார்',
+'ipb-blocklist-contribs'      => '$1 யின் பங்களிப்புகள்',
 'unblockip'                   => 'பயனர் தடையை நீக்கு',
 'unblockiptext'               => 'முன்னர் தடுக்கப்பட்ட ஐ.பி. முகவரி அல்லது பயனர்பெயரின் எழுத்து அணுக்கத்தை மீழ்விப்பதற்கு கீழேயுள்ள படிவத்தை பயன்படுத்தவும்.',
 'ipusubmit'                   => 'இந்தத் தடையை நீக்கு',
 'unblocked'                   => '[[User:$1|$1]] பயனருக்கான தடை நீக்கப்பட்டது',
 'unblocked-id'                => '$1 தடை நீக்கப்பட்டது',
+'blocklist'                   => 'தடைசெய்யப்பட்ட பயனர்கள்',
 'ipblocklist'                 => 'தடுக்கப்பட்ட ஐபி முகவரிகள் மற்றும் பயனர்பெயர்களின் பட்டியல்',
 'ipblocklist-legend'          => 'தடுக்கப்பட்ட பயனரொருவரைத் தேடு',
+'blocklist-reason'            => 'காரணம்',
 'ipblocklist-submit'          => 'தேடுக',
 'infiniteblock'               => 'காலவரையறையற்ற',
 'expiringblock'               => '$1-தேதியில், $2-மணிக்கு இது காலாவதியாகிறது',
@@ -2092,6 +2127,7 @@ $1',
 எல்லா விக்கியிடை இறக்குமதிகளும் [[Special:Log/import|இறக்குமதிப் பதிகையில்]] பதியப்படும்.',
 'import-interwiki-source'    => 'மூல விக்கி/பக்கம்:',
 'import-interwiki-history'   => 'இப்பக்கத்தின் அனைத்து வரலாற்றுப் பதிப்புகளையும் நகலெடு',
+'import-interwiki-templates' => 'அனைத்து வார்ப்புருக்களையும் சேர்',
 'import-interwiki-submit'    => 'இறக்கு',
 'import-interwiki-namespace' => 'பின்வரும் பெயர்வெளிக்கு மாற்று:',
 'import-upload-filename'     => 'கோப்புப்பெயர்:',
@@ -2189,6 +2225,7 @@ $1',
 'tooltip-upload'                  => 'பதிவேற்றத்தை தொடங்கு',
 'tooltip-rollback'                => '"முன்பிருந்த நிலைக்குக் கொண்டுவருதல்" என்பது தொகுப்புக்கள் அனைத்தையும் பழையபடி இப்பக்கத்தில் கடைசி பயனர் தொகுத்த நிலைக்கு ஒரே ஒரு சொடுக்கில் கொண்டுவரும்.',
 'tooltip-undo'                    => '"பின்வாங்கு" என்பது முன்பு செய்த தொகுப்புக்களை இல்லாது செய்கிறது. மேலும் தாங்கள் செய்த தொகுப்பினை முன்தோற்ற நிலைக்கு கொண்டுவந்து காட்டும். அது தங்களுக்குச் சிறுகுறிப்புப் பகுதியில் அதற்கான காரணத்தைக் கூற அனுமதிக்கிறது.',
+'tooltip-preferences-save'        => 'விருப்பங்களை சேமி',
 
 # Metadata
 'notacceptable' => 'உங்களது சேவையாளர் வாசிக்க கூடிய விதத்தில் இந்த விக்கியால தரவுகளை வழங்க முடியாது.',
@@ -2210,6 +2247,14 @@ $1',
 'spam_reverting'      => '$1 தளத்துக்கு இணைப்புகளற்ற பதிப்புக்கு முன்நிலையாக்கப்பட்டது',
 'spam_blanking'       => '$1 தளத்துக்கு இணைப்பை கொண்ட திருத்தங்களை வெறுமையாக்கல்',
 
+# Info page
+'pageinfo-header-edits'     => 'தொகுப்புகள்',
+'pageinfo-header-watchlist' => 'கவனிப்புப் பட்டியல்',
+'pageinfo-header-views'     => 'பார்வைகள்',
+'pageinfo-subjectpage'      => 'பக்கம்',
+'pageinfo-talkpage'         => 'பேச்சுப் பக்கம்',
+'pageinfo-edits'            => 'தொகுப்புகளின் எண்ணிக்கை:',
+
 # Skin names
 'skinname-standard'    => 'இயல்பான',
 'skinname-nostalgia'   => 'பசுமை நினைவு (Nostalgia)',
@@ -2227,10 +2272,11 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'உமது மாற்றங்களை நீரே ரோந்திட்டதாக குறிக்க அனுமதி கிடையாது.',
 
 # Patrol log
-'patrol-log-page' => 'ரோந்துப் பதிகை',
-'patrol-log-line' => '$1 பக்கத்தின் $2 திருத்தத்தை ரோந்திடப்பட்டதாகக் குறித்தார் $3',
-'patrol-log-auto' => '(தன்னிச்சையாக)',
-'patrol-log-diff' => 'திருத்தம் $1',
+'patrol-log-page'      => 'ரோந்துப் பதிகை',
+'patrol-log-line'      => '$1 பக்கத்தின் $2 திருத்தத்தை ரோந்திடப்பட்டதாகக் குறித்தார் $3',
+'patrol-log-auto'      => '(தன்னிச்சையாக)',
+'patrol-log-diff'      => 'திருத்தம் $1',
+'log-show-hide-patrol' => '$1 ரோந்து குறிப்பேடு',
 
 # Image deletion
 'deletedrevision'                 => 'பழைய திருத்தம் $1 நீக்கப்பட்டது',
@@ -2385,9 +2431,13 @@ $1',
 'exif-gpsprocessingmethod'         => 'புவியிடம் காலம் விரைவு காட்டி செயல்முறையின் பெயர்',
 'exif-gpsareainformation'          => 'புவியிடம் காலம் விரைவு காட்டி பிரதேசத்தின் பெயர்',
 'exif-gpsdatestamp'                => 'புவியிடம் காலம் விரைவு காட்டி நாள்',
+'exif-contact'                     => 'தொடர்பு விவரம்',
+'exif-copyrighted'                 => 'பதிப்புரிமை நிலை',
 
 # EXIF attributes
 'exif-compression-1' => 'சுருக்கப்படாத',
+
+'exif-copyrighted-true' => 'பதிப்புரிமைப்பட்டது',
 
 'exif-unknowndate' => 'நாள் தெரியாது',
 
@@ -2488,9 +2538,33 @@ $1',
 'exif-gpsspeed-m' => 'மணித்தியாலத்துக்கு மைல்கள்',
 'exif-gpsspeed-n' => 'கடல் மைல்/மணி',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'கிலோ மீட்டர்கள்',
+'exif-gpsdestdistance-m' => 'மைல்கள்',
+'exif-gpsdestdistance-n' => 'கடல் மைல்கள்',
+
+'exif-objectcycle-a' => 'காலை மட்டும்',
+'exif-objectcycle-p' => 'மாலை மட்டும்',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'உண்மைத் திசை',
 'exif-gpsdirection-m' => 'காந்த திசை',
+
+'exif-dc-contributor' => 'பங்களிப்பாளர்கள்',
+'exif-dc-publisher'   => 'பதிப்பாளர்',
+'exif-dc-rights'      => 'உரிமைகள்',
+
+'exif-rating-rejected' => 'நிராகரித்தது',
+
+'exif-iimcategory-edu' => 'கல்வி',
+'exif-iimcategory-evn' => 'சுற்றுச்சூழல்',
+'exif-iimcategory-hth' => 'சுகாதாரம்',
+'exif-iimcategory-pol' => 'அரசியல்',
+'exif-iimcategory-rel' => 'மதம் மற்றும் நம்பிக்கை',
+'exif-iimcategory-sci' => 'அறிவியல் மற்றும் தொழில்நுட்பம்',
+'exif-iimcategory-soi' => 'சமூகப் பிரச்னைகள்',
+'exif-iimcategory-spo' => 'விளையாட்டு',
+'exif-iimcategory-wea' => 'வானிலை',
 
 # External editor support
 'edit-externally'      => 'இக்கோப்பை வெளி மென்பொருள் கொண்டு தொகுக்க',

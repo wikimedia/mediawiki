@@ -899,7 +899,6 @@ $1",
 'searchmenu-legend'                => '尋選',
 'searchmenu-exists'                => "'''在此wiki中有頁為\"[[:\$1]]\"。'''",
 'searchmenu-new'                   => "'''在此wiki上建頁\"[[:\$1]]\"！'''",
-'searchmenu-new-nocreate'          => '「$1」為效無之頁名或建於爾也。',
 'searchhelp-url'                   => 'Help:目錄',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|查此首之頁]]',
 'searchprofile-articles'           => '容',
@@ -2704,9 +2703,7 @@ MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU�
 'filepath'         => '檔路',
 'filepath-page'    => '檔名：',
 'filepath-submit'  => '往',
-'filepath-summary' => '此奇頁取一檔之整路。圖以全解像示之，他檔會以有關之程式啟動也。
-
-輸檔名之，不包「{{ns:file}}:」開頭也。',
+'filepath-summary' => '此奇頁取一檔之整路。圖以全解像示之，他檔會以有關之程式啟動也。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '擇重檔',

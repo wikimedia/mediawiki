@@ -1068,28 +1068,28 @@ See võib olla vikist kustutatud või ümber nimetatud.
 'rev-deleted-text-permission' => "See lehekülje redaktsioon on '''kustutatud'''.
 Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
 'rev-deleted-text-unhide'     => "See lehekülje redaktsioon on '''kustutatud'''.
-Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].
-Administraatorina võid [$1 seda redaktsiooni] näha, kui soovid jätkata.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib leiduda üksikasju.
+Soovi korral saad siiski [$1 seda redaktsiooni] näha.",
 'rev-suppressed-text-unhide'  => "See redaktsioon leheküljest on '''varjatud'''.
-Võimalik, et [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} varjamislogis] on üksikasju.
-Ülemana saad soovi korral siiski [$1 seda redaktsiooni vaadata].",
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib leiduda üksikasju.
+Saad soovi korral siiski [$1 seda redaktsiooni vaadata].",
 'rev-deleted-text-view'       => "See lehekülje redaktsioon on '''kustutatud'''.
-Administraatorina võid seda näha. Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
+Saad seda näha. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib leiduda üksikasju.",
 'rev-suppressed-text-view'    => "See redaktsioon leheküljest on '''varjatud'''.
-Ülemana saad seda vaadata. Võimalik, et üksikasjad on [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} varjamislogis].",
+Saad seda vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib leiduda üksikasju.",
 'rev-deleted-no-diff'         => "Seda erinevust ei saa vaadata, kuna üks redaktsioonidest on '''kustutatud'''.
 Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
 'rev-suppressed-no-diff'      => "Erinevusi ei saa vaadata, sest üks redaktsioonidest on '''kustutatud'''.",
 'rev-deleted-unhide-diff'     => "Üks selle lehekülje muudatustest on '''kustutatud'''.
-Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].
-Administraatorina võid [$1 seda muudatust] näha, kui soovid jätkata.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib leiduda üksikasju.
+Soovi korral saad siiski [$1 seda muudatust] näha.",
 'rev-suppressed-unhide-diff'  => "Üks selle lehekülje muudatustest on '''varjatud'''.
-Üksikasju võib olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} varjamislogis].
-Administraatorina saad soovi korral siiski [$1 seda muudatust vaadata].",
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib leiduda üksikasju.
+Saad soovi korral siiski [$1 seda muudatust vaadata].",
 'rev-deleted-diff-view'       => "Üks selle lehekülje muudatustest on '''kustutatud'''.
-Administraatorina saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib üksikasju olla.",
+Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Kustutamislogis] võib leiduda üksikasju.",
 'rev-suppressed-diff-view'    => "Üks selle lehekülje muudatustest on '''varjatud'''.
-Administraatorina saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib üksikasju olla.",
+Saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Varjamislogis] võib üksikasju olla.",
 'rev-delundel'                => 'näita/peida',
 'rev-showdeleted'             => 'näita',
 'revisiondelete'              => 'Redaktsioonide kustutamine või taastamine',
@@ -1120,7 +1120,7 @@ Administraatorina saad seda muudatust vaadata. [{{fullurl:{{#Special:Log}}/suppr
 'revdelete-radio-same'        => '(ära muuda)',
 'revdelete-radio-set'         => 'Jah',
 'revdelete-radio-unset'       => 'Ei',
-'revdelete-suppress'          => 'Varja andmed nii ülemate kui ka teiste eest.',
+'revdelete-suppress'          => 'Varja andmed nii administraatorite kui ka teiste eest',
 'revdelete-unsuppress'        => 'Eemalda taastatud redaktsioonidelt piirangud',
 'revdelete-log'               => 'Põhjus:',
 'revdelete-submit'            => 'Rakenda valitud {{PLURAL:$1|redaktsiooni|redaktsioonide}} suhtes',
@@ -1140,8 +1140,8 @@ $1",
 'revdelete-content'           => 'sisu',
 'revdelete-summary'           => 'resümee',
 'revdelete-uname'             => 'kasutajanimi',
-'revdelete-restricted'        => 'kohta administraatoritele piirangud kehtestatud',
-'revdelete-unrestricted'      => 'kohta administraatoritelt piirangud eemaldatud',
+'revdelete-restricted'        => 'kehtestati piirangud administraatoritele',
+'revdelete-unrestricted'      => 'eemaldati administraatoritelt piirangud',
 'revdelete-hid'               => '$1 peidetud',
 'revdelete-unhid'             => '$1 nähtavaks tehtud',
 'revdelete-log-message'       => '{{PLURAL:$2|Ühe|$2}} redaktsiooni $1',
@@ -1168,7 +1168,7 @@ Palun vaata logisid.',
 # Suppression log
 'suppressionlog'     => 'Varjamislogi',
 'suppressionlogtext' => 'Allpool on nimekiri kustutamistest ja blokeeringutest, millega kaasneb administraatorite eest sisu varjamine.
-Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-aadresside loendist]].',
+Jõus olevad keelud ja blokeeringud leiad [[Special:BlockList|blokeeritud IP-aadresside loendist]].',
 
 # History merging
 'mergehistory'                     => 'Ühenda lehtede ajalood',
@@ -1481,7 +1481,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-deletedtext'           => 'Vaadata kustutatud teksti ja võrrelda kustutatud redaktsioone',
 'right-browsearchive'         => 'Otsida kustutatud lehekülgi',
 'right-undelete'              => 'Taastada lehekülg',
-'right-suppressrevision'      => 'Üle vaadata ja taastada ülemate eest peidetud redaktsioone',
+'right-suppressrevision'      => 'Üle vaadata ja taastada administraatorite eest peidetud redaktsioone',
 'right-suppressionlog'        => 'Vaadata eralogisid',
 'right-block'                 => 'Keelata lehekülgede muutmist mõnel kasutajal',
 'right-blockemail'            => 'Keelata kasutajal e-kirjade saatmine',
@@ -1830,13 +1830,14 @@ Kui kasutaja järgi filtrida, kuvatakse ainult need failid, mille viimase versio
 'filehist-filesize'         => 'Faili suurus',
 'filehist-comment'          => 'Kommentaar',
 'filehist-missing'          => 'Fail puudub',
-'imagelinks'                => 'Viited failile',
+'imagelinks'                => 'Failikasutus',
 'linkstoimage'              => 'Sellele pildile {{PLURAL:$1|viitab järgmine lehekülg|viitavad järgmised leheküljed}}:',
 'linkstoimage-more'         => 'Sellele failile viitab enam kui $1 {{PLURAL:$1|lehekülg|lehekülge}}.
 Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esimesed $1 viitavat lehekülge}}.
 [[Special:WhatLinksHere/$2|Kogu loetelu]] on saadaval.',
 'nolinkstoimage'            => 'Sellele pildile ei viita ükski lehekülg.',
 'morelinkstoimage'          => 'Vaata [[Special:WhatLinksHere/$1|veel linke]], mis sellele failile viitavad.',
+'linkstoimage-redirect'     => '$1 (failiümbersuunamine) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Järgnev fail|Järgnevad $1 faili}} on selle faili {{PLURAL:$1|duplikaat|duplikaadid}} ([[Special:FileDuplicateSearch/$2|üksikasjad]]):',
 'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'sharedupload-desc-there'   => 'See fail pärineb kesksest failivaramust $1. Palun vaata [$2 faili kirjelduse lehekülge], et saada rohkem teavet.',
@@ -1996,7 +1997,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'listusers-editsonly'     => 'Näita vaid kasutajaid, kes on teinud muudatusi',
 'listusers-creationsort'  => 'Järjesta konto loomise aja järgi',
 'usereditcount'           => '$1 {{PLURAL:$1|redigeerimine|redigeerimist}}',
-'usercreated'             => 'Konto loomise aeg: $1 kell $2',
+'usercreated'             => 'Konto {{GENDER:$3|loomise}} aeg: $1 kell $2',
 'newpages'                => 'Uued leheküljed',
 'newpages-username'       => 'Kasutajanimi:',
 'ancientpages'            => 'Vanimad leheküljed',
@@ -2361,7 +2362,7 @@ Kui vahepeal on loodud uus samanimeline lehekülg, ilmuvad taastatud versioonid 
 Sellisel juhul tuleb uusima kustutatud redaktsiooni juurest linnuke eemaldada või see peitmata jätta.',
 'undeletehistorynoadmin'       => 'See lehekülg on kustutatud.
 Kustutamise põhjus ning selle lehekülje kustutamiseelne redigeerimislugu on näha allolevas kokkuvõttes.
-Lehekülje kustutamiseelsed redaktsioonid on kättesaadavad ainult ülematele.',
+Lehekülje kustutamiseelsed redaktsioonid on kättesaadavad ainult administraatoritele.',
 'undelete-revision'            => 'Lehekülje $1 kustutatud redaktsioonid, mille autor on $3, seisuga $4 kell $5.',
 'undeleterevision-missing'     => 'Vigane või puuduv redaktsioon.
 Link võib olla kõlbmatu või redaktsioon võib olla taastatud või arhiivist eemaldatud.',
@@ -2594,6 +2595,7 @@ Kui sinu hooldustöö on läbi, ära unusta [[Special:UnlockDB|kirjutuspääsu t
 'lockfilenotwritable' => 'Andmebaasi lukufail ei ole kirjutatav.
 Andmebaasi lukustamiseks ja avamiseks peavad veebiserveril olema sellele kirjutusõigused.',
 'databasenotlocked'   => 'Andmebaas ei ole lukustatud.',
+'lockedbyandtime'     => '(lukustas $1; $2, kell $3)',
 
 # Move page
 'move-page'                    => 'Teisalda $1',
@@ -3547,9 +3549,7 @@ GNU Üldise Avaliku Litsentsi [{{SERVER}}{{SCRIPTPATH}}/COPYING eksemplar] peaks
 'filepath-page'    => 'Fail:',
 'filepath-submit'  => 'Mine',
 'filepath-summary' => 'See erileht määrab otsitava failini viiva tee.
-Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva programmiga.
-
-Sisesta faili nimi eesliiteta "{{ns:file}}:".',
+Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva programmiga.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Faili duplikaatide otsimine',

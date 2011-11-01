@@ -1135,27 +1135,27 @@ Zkuste [[Special:Search|hledání]].',
 Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-deleted-text-unhide'     => "Tato revize byla '''smazána'''.
 Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
-Jako správce si však můžete [$1 tuto revizi prohlédnout], pokud chcete.",
+Pokud chcete, můžete si přesto [$1 tuto revizi prohlédnout].",
 'rev-suppressed-text-unhide'  => "Tato revize byla '''utajena'''.
 Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].
-Jako správce si však můžete [$1 tuto revizi prohlédnout], pokud chcete.",
+Pokud chcete, můžete si přesto [$1 tuto revizi prohlédnout].",
 'rev-deleted-text-view'       => "Tato revize byla '''smazána'''.
-Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+Můžete si ji prohlédnout; podrobnosti jsou uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-suppressed-text-view'    => "Tato revize byla '''utajena'''.
-Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].",
+Můžete si ji prohlédnout; podrobnosti jsou uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize utajení].",
 'rev-deleted-no-diff'         => "Tento rozdíl si nemůžete prohlédnout, protože jedna z&nbsp;revizí byla '''smazána'''.
 Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-suppressed-no-diff'      => "Tento rozdíl si nemůžete prohlédnout, protože jedna z revizí byla '''smazána'''.",
 'rev-deleted-unhide-diff'     => "Jedna z revizí k tomuto porovnání byla '''smazána'''.
 Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
-Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
+Pokud chcete, můžete si přesto [$1 tuto revizi prohlédnout].",
 'rev-suppressed-unhide-diff'  => "Jedna z revizí k tomuto porovnání byla '''utajena'''.
 Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].
-Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
+Pokud chcete, můžete si přesto [$1 tuto revizi prohlédnout].",
 'rev-deleted-diff-view'       => "Jedna z revizí k tomuto porovnání byla '''smazána'''.
-Jako správce si můžete tento rozdíl prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+Můžete si toto porovnání prohlédnout; podrobnosti jsou uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-suppressed-diff-view'    => "Jedna z revizí k tomuto porovnání byla '''utajena'''.
-Jako správce si můžete tento rozdíl prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+Můžete si toto porovnání prohlédnout; podrobnosti jsou uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize utajení].",
 'rev-delundel'                => 'skrýt/zobrazit',
 'rev-showdeleted'             => 'zobrazit',
 'revisiondelete'              => 'Smazat/obnovit revize',
@@ -1236,7 +1236,8 @@ Prohlédněte si protokolovací záznamy.',
 
 # Suppression log
 'suppressionlog'     => 'Záznam utajení',
-'suppressionlogtext' => 'Toto je záznam činností dohlížitelů – mazání a blokování zahrnující skrytí obsahu i před správci. Vizte též [[Special:IPBlockList|seznam všech probíhajících bloků]].',
+'suppressionlogtext' => 'Toto je seznam mazání a blokování zahrnující skrytí obsahu i před správci.
+Vizte též [[Special:BlockList|seznam všech probíhajících bloků]].',
 
 # History merging
 'mergehistory'                     => 'Slučování historií stránek',
@@ -1520,8 +1521,8 @@ Tuto operaci nelze vrátit zpět.',
 'right-createtalk'            => 'Zakládání diskusních stránek',
 'right-createaccount'         => 'Vytváření nových uživatelských účtů',
 'right-minoredit'             => 'Označování editací jako malé',
-'right-move'                  => 'Přesun stránek',
-'right-move-subpages'         => 'Přesunování stránek i s jejich podstránkami',
+'right-move'                  => 'Přesouvání stránek',
+'right-move-subpages'         => 'Přesouvání stránek i s jejich podstránkami',
 'right-move-rootuserpages'    => 'Přesouvání kořenových uživatelských stránek',
 'right-movefile'              => 'Přesouvání souborů',
 'right-suppressredirect'      => 'Nevytváření přesměrování po přesunu stránky',
@@ -1890,7 +1891,7 @@ Při filtrování podle uživatele se zobrazují jen soubory, u kterých tento u
 'filehist-filesize'         => 'Velikost souboru',
 'filehist-comment'          => 'Komentář',
 'filehist-missing'          => 'Soubor chybí',
-'imagelinks'                => 'Odkazy na soubor',
+'imagelinks'                => 'Využití souboru',
 'linkstoimage'              => 'Na soubor {{PLURAL:$1|odkazuje tato stránka|odkazují tyto $1 stránky|odkazuje těchto $1 stránek}}:',
 'linkstoimage-more'         => 'Na tento soubor {{PLURAL:$1|odkazuje více stránek|odkazují více než $1 stránky|odkazuje více než $1 stránek}}.
 Následující seznam zobrazuje pouze {{PLURAL:$1|tu první|první $1|prvních $1}}.
@@ -2057,7 +2058,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'listusers-editsonly'     => 'Zobrazit pouze uživatele s editacemi',
 'listusers-creationsort'  => 'Seřadit podle data registrace',
 'usereditcount'           => '$1 {{PLURAL:$1|editace|editace|editací}}',
-'usercreated'             => 'Registrován(a) $1 v $2',
+'usercreated'             => '{{GENDER:$3|Registrován|Registrována|Registrován(a)}} $1 v $2',
 'newpages'                => 'Nejnovější stránky',
 'newpages-username'       => 'Uživatelské jméno:',
 'ancientpages'            => 'Nejdéle needitované stránky',
@@ -3707,9 +3708,8 @@ MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOL
 'filepath'         => 'Cesta k souboru',
 'filepath-page'    => 'Soubor:',
 'filepath-submit'  => 'Přejít',
-'filepath-summary' => 'Tato speciální stránka vrátí úplnou cestu k souboru. Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v  přiřazených programech.
-
-Jméno souboru vkládejte bez označení "{{ns:file}}:" .',
+'filepath-summary' => 'Tato speciální stránka vrátí úplnou cestu k souboru.
+Obrázky se zobrazí v plném rozlišení, jiné typy souborů se otevřenou v přiřazených programech.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Hledání duplicitních souborů',

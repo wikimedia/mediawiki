@@ -1000,26 +1000,27 @@ Prosimo, poskusite [[Special:Search|poiskati v wikiju]] ustrezajoče nove strani
 Podrobnosti so na razpolago v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
 'rev-deleted-text-unhide'     => "Ta sprememba je bila '''izbrisana'''.
 Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].
-Kot administrator lahko še vedno [$1 pogledate to redakcijo], če želite nadaljevati.",
+Še vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
 'rev-suppressed-text-unhide'  => "Ta sprememba je bila '''zavrnjena'''.
 Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zavračanj].
-Kot administrator lahko še vedno [$1 pogledate to redakcijo], če želite nadaljevati.",
-'rev-deleted-text-view'       => 'Prikazana redakacija strani je bila iz javnih arhivov odstranjena. Ogledate si jo lahko, ker ste administrator. Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].',
+Še vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
+'rev-deleted-text-view'       => 'Prikazana redakacija strani je bila iz javnih arhivov odstranjena.
+Lahko si jo ogledate; podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].',
 'rev-suppressed-text-view'    => "Ta sprememba je bila '''zavrnjena'''.
-Kot administrator lahko jo vidite; podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zavračanj].",
+Lahko si jo ogledate; podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zavračanj].",
 'rev-deleted-no-diff'         => "Povzetka sprememb ne morete videti, ker je bil eden od popravkov '''izbrisan'''.
 Podrobnosti so morda navedene v  [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
 'rev-suppressed-no-diff'      => "Ogled redakcije ni mogoč, ker je bila ena od sprememb '''izbrisana'''.",
 'rev-deleted-unhide-diff'     => "Ena od sprememb v tej redakciji je bila '''izbrisana'''.
 Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].
-Kot administrator lahko še vedno [$1 pogledate to redakcijo], če želite nadaljevati.",
+Še vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
 'rev-suppressed-unhide-diff'  => "Ena od sprememb v tej redakciji je bila '''zadržana'''.
 Podrobnosti so morda navedene v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zadržkov].
-Kot administrator lahko še vedno [$1 pogledate to redakcijo], če želite nadaljevati.",
+Še vedno lahko [$1 pogledate to redakcijo], če želite nadaljevati.",
 'rev-deleted-diff-view'       => "Ena od sprememb v tej redakciji je bila '''izbrisana'''.
-Kot administrator si to redakcijo lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
+To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} dnevniku brisanja].",
 'rev-suppressed-diff-view'    => "Ena od sprememb v tej redakciji je bila '''zadržana'''.
-Kot administrator si to redakcijo lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zadržkov].",
+To redakcijo si lahko ogledate; podrobnosti lahko najdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} dnevniku zadržkov].",
 'rev-delundel'                => 'pokaži/skrij',
 'rev-showdeleted'             => 'prikaži',
 'revisiondelete'              => 'Izbriši/obnovi redakcije',
@@ -1100,7 +1101,7 @@ Prosimo, preverite dnevnik.',
 # Suppression log
 'suppressionlog'     => 'Dnevnik vračanj',
 'suppressionlogtext' => 'Spodaj je seznam izbrisov in blokiranj, ki vključuje vsebino skrito pred administratorji.
-Oglejte si [[Special:IPBlockList|seznam blokiranih IP-jev]] za seznam trenutno aktivnih prepovedi in blokiranj.',
+Oglejte si [[Special:BlockList|seznam blokiranih IP-jev]] za seznam trenutno aktivnih prepovedi in blokiranj.',
 
 # History merging
 'mergehistory'                     => 'Združi zgodovine strani',
@@ -1303,7 +1304,7 @@ Tega ni mogoče razveljaviti.',
 'yourlanguage'                  => 'Jezik:',
 'yourvariant'                   => 'Jezikovna različica vsebine:',
 'yournick'                      => 'Nov podpis:',
-'prefs-help-signature'          => 'Komentarje na pogovornih straneh, je treba podpisati s »<nowiki>~~~~</nowiki>«, kar bo pretvorjeno v vaš podpis s časom.',
+'prefs-help-signature'          => 'Komentarje na pogovornih straneh je treba podpisati s »<nowiki>~~~~</nowiki>«, kar bo pretvorjeno v vaš podpis s časovnim žigom.',
 'badsig'                        => 'Neveljaven surovi podpis; preverite oznake HTML.',
 'badsiglength'                  => 'Vaš podpis je preobsežen.
 Ne sme biti daljši od $1 {{PLURAL:$1|znaka|znakov}}.',
@@ -1778,7 +1779,7 @@ Ko so rezultati filtrirani po uporabniku, so prikazane samo datoteke, pri kateri
 'filehist-filesize'                 => 'Velikost datoteke',
 'filehist-comment'                  => 'Komentar',
 'filehist-missing'                  => 'Datoteka manjka',
-'imagelinks'                        => 'Strani z datoteko',
+'imagelinks'                        => 'Uporaba datoteke',
 'linkstoimage'                      => 'Datoteka je del {{PLURAL:$1|naslednje $1 strani|naslednjih $1 strani}} {{GRAMMAR:rodilnik|{{SITENAME}}}}:',
 'linkstoimage-more'                 => 'Na to datoteko se {{PLURAL:$1|povezuje več kot $1 stran|povezujeta več kot $1 strani|povezujejo več kot $1 strani|povezuje več kot $1 strani}}.
 Naslednji seznam obsega samo {{PLURAL:$1|prvo stran, ki se povezuje|prvi $1 strani, ki se povezujeta|prve $1 strani, ki se povezujejo|prvih $1 strani, ki se povezujejo}} na to datoteko.
@@ -1797,7 +1798,7 @@ Povzetek na njeni [$2 opisni strani datoteke] je prikazan spodaj.',
 'uploadnewversion-linktext'         => 'Naložite novo različico datoteke',
 'shared-repo-from'                  => 'iz $1',
 'shared-repo'                       => 'skupno skladišče',
-'shared-repo-name-wikimediacommons' => 'Wikimedijine Zbirke',
+'shared-repo-name-wikimediacommons' => 'Wikimedijina Zbirka',
 
 # File reversion
 'filerevert'                => 'Vrni $1',
@@ -1950,7 +1951,7 @@ Sedaj je preusmeritev na [[$2]].',
 'listusers-editsonly'     => 'Pokaži samo uporabnike z urejanji',
 'listusers-creationsort'  => 'Razvrsti po datumu ustvaritve',
 'usereditcount'           => '$1 {{PLURAL:$1|urejanje|urejanji|urejanja|urejanj}}',
-'usercreated'             => 'Ustvarjen $1 ob $2',
+'usercreated'             => '{{GENDER:$3|Ustvarjen|Ustvarjena}} dne $1 ob $2',
 'newpages'                => 'Nove strani',
 'newpages-username'       => 'Uporabniško ime:',
 'ancientpages'            => 'Najdlje nespremenjeni članki',
@@ -2059,12 +2060,12 @@ Na voljo so morda [[{{MediaWiki:Listgrouprights-helppage}}|dodatne informacije]]
 'listgrouprights-rights'               => 'Pravice',
 'listgrouprights-helppage'             => 'Help:Pravice skupin',
 'listgrouprights-members'              => '(seznam članov)',
-'listgrouprights-addgroup'             => 'Dodajte {{PLURAL:$2|skupino|skupini|skupine}}: $1',
-'listgrouprights-removegroup'          => 'Odstranite {{PLURAL:$2|skupino|skupini|skupine}}: $1',
+'listgrouprights-addgroup'             => 'Dodajanje {{PLURAL:$2|skupini|skupinama|skupinam}}: $1',
+'listgrouprights-removegroup'          => 'Odstranitev iz {{PLURAL:$2|skupine|skupin}}: $1',
 'listgrouprights-addgroup-all'         => 'Dodaj vse skupine',
 'listgrouprights-removegroup-all'      => 'Odstrani vse skupine',
-'listgrouprights-addgroup-self'        => 'Dodajte {{PLURAL:$2|skupino|skupini|skupine}} svojemu računu: $1',
-'listgrouprights-removegroup-self'     => 'Odstranite {{PLURAL:$2|skupino|skupini|skupine}} od svojega računa: $1',
+'listgrouprights-addgroup-self'        => 'Dodajanje {{PLURAL:$2|skupine|skupin}} svojemu računu: $1',
+'listgrouprights-removegroup-self'     => 'Odstranitev svojega računa iz {{PLURAL:$2|skupine|skupin}}: $1',
 'listgrouprights-addgroup-self-all'    => 'Lastni račun dodaj v vse skupine',
 'listgrouprights-removegroup-self-all' => 'Lastni račun odstrani iz vseh skupin',
 
@@ -2908,7 +2909,7 @@ Z njenim zagonom lahko ogrozite vaš sistem.",
 'show-big-image'         => 'Slika v višji ločljivosti',
 'show-big-image-preview' => '<small>Velikost predogleda: $1.</small>',
 'show-big-image-other'   => '<small>Druge ločljivosti: $1.</small>',
-'show-big-image-size'    => '$1 × $2 slikovnih pik',
+'show-big-image-size'    => '$1 × $2 točk',
 'file-info-gif-looped'   => 'ponavljajoče',
 'file-info-gif-frames'   => '$1 {{PLURAL:$1|sličica|sličici|sličice|sličic}}',
 'file-info-png-looped'   => 'ponavljajoče',
@@ -3561,7 +3562,7 @@ Skupaj s programom bi morali bi prejeti [{{SERVER}}{{SCRIPTPATH}}/COPYING kopijo
 'filepath-summary' => 'Ta posebna stran vrne polno pot do datoteke.
 Slike so prikazane v polni ločljivosti, druge vrste datotek pa se zaženejo v zanje določenih programih.
 
-Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
+Vnesite ime datoteke brez predpone »{{ns:file}}:«.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Iskanje podvojenih datotek',

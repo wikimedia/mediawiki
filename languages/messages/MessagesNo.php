@@ -332,7 +332,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Send meg en e-post også ved mindre sideendringer',
 'tog-enotifrevealaddr'        => 'Vis min e-postadresse i utgående meldinger',
 'tog-shownumberswatching'     => 'Vis antall overvåkende brukere',
-'tog-oldsig'                  => 'Forhåndsvisning av nåværende signatur:',
+'tog-oldsig'                  => 'Nåværende signatur:',
 'tog-fancysig'                => 'Signatur som wikitekst uten automatisk lenke',
 'tog-externaleditor'          => 'Bruk ekstern behandler som standard (kun for viderekomne, krever spesielle innstillinger på din datamaskin. [http://www.mediawiki.org/wiki/Manual:External_editors Mer informasjon.])',
 'tog-externaldiff'            => 'Bruk ekstern differanse som standard (kun for viderekomne, krever spesielle innstillinger på din datamaskin. [http://www.mediawiki.org/wiki/Manual:External_editors Mer informasjon.])',
@@ -431,7 +431,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'forts.',
 'index-category'                 => 'Indekserte sider',
 'noindex-category'               => 'Ikke-indekserte sider',
-'broken-file-category'           => 'SIder med brutte fillenker',
+'broken-file-category'           => 'Sider med brutte fillenker',
 
 'about'         => 'Om',
 'article'       => 'Innholdsside',
@@ -578,8 +578,8 @@ $1',
 'toc'                     => 'Innhold',
 'showtoc'                 => 'vis',
 'hidetoc'                 => 'skjul',
-'collapsible-collapse'    => 'Legg sammen',
-'collapsible-expand'      => 'Utvid',
+'collapsible-collapse'    => 'skjul',
+'collapsible-expand'      => 'vis',
 'thisisdeleted'           => 'Se eller gjenopprett $1?',
 'viewdeleted'             => 'Vis $1?',
 'restorelink'             => '{{PLURAL:$1|én slettet revisjon|$1 slettede revisjoner}}',
@@ -608,8 +608,8 @@ $1',
 
 # Main script and global functions
 'nosuchaction'      => 'Funksjonen finnes ikke',
-'nosuchactiontext'  => 'Handlingen spesifisert i URLen er ugyldig.
-Du kan ha skrevet URLen feil, eller fulgt en link som var feil.
+'nosuchactiontext'  => 'Handlingen spesifisert i URL-en er ugyldig.
+Du kan ha skrevet URL-en feil, eller fulgt en link som var feil.
 Det kan også være en bug i {{SITENAME}}.',
 'nosuchspecialpage' => 'En slik spesialside finnes ikke',
 'nospecialpagetext' => 'Du ba om en ugyldig spesialside; en liste over gyldige spesialsider finnes på [[Special:SpecialPages|{{int:specialpages}}]].',
@@ -656,7 +656,7 @@ Vennligst rapporter dette til en [[Special:ListUsers/sysop|administrator]], oppg
 'unexpected'           => 'Uventet verdi: «$1»=«$2».',
 'formerror'            => 'Feil: klarte ikke å sende skjema',
 'badarticleerror'      => 'Handlingen kan ikke utføres på denne siden.',
-'cannotdelete'         => 'Kunne ikke slette fila «$1». Den kan ha blitt slettet av noen andre.',
+'cannotdelete'         => 'Kunne ikke slette filen «$1». Den kan ha blitt slettet av noen andre.',
 'badtitle'             => 'Ugyldig tittel',
 'badtitletext'         => 'Den ønskede tittelen var ugyldig, tom eller feilaktig lenket fra en annen wiki.
 Det kan inneholder en eller flere tegn som ikke kan brukes i titler.',
@@ -701,7 +701,7 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 'yourpassword'               => 'Passord:',
 'yourpasswordagain'          => 'Gjenta passord',
 'remembermypassword'         => 'Husk meg på denne datamaskinen (i maks $1 {{PLURAL:$1|dag|dager}})',
-'securelogin-stick-https'    => 'Vær fortsatt tilkoblet til HTTPS etter innlogging',
+'securelogin-stick-https'    => 'Vær fortsatt koblet til HTTPS etter innlogging',
 'yourdomainname'             => 'Ditt domene',
 'externaldberror'            => 'Det var en ekstern autentifiseringsfeil, eller du kan ikke oppdatere din eksterne konto.',
 'login'                      => 'Logg inn',
@@ -725,15 +725,15 @@ Ikke glem å endre [[Special:Preferences|innstillingene]] dine.',
 Velg et annet brukernavn.',
 'loginerror'                 => 'Innloggingsfeil',
 'createaccounterror'         => 'Kunne ikke opprette konto: $1',
-'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem p åfor å kunne logge på med ditt nye brukernavn og passord.',
-'nocookieslogin'             => '{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på. Du har slått dem av. Slå dem på og prøv igjen.',
+'nocookiesnew'               => 'Din brukerkonto er nå opprettet, men du har ikke logget på. {{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på og du har slått dem av. Slå dem på for å kunne logge på med ditt nye brukernavn og passord.',
+'nocookieslogin'             => '{{SITENAME}} bruker informasjonskapsler («cookies») for å logge brukere på og du har slått dem av. Slå dem på og prøv igjen.',
 'nocookiesfornew'            => 'Brukerkontoen ble ikke opprettet siden vi ikke kunne bekrefte dens kilde.
 Kontroller at du har aktivert informasjonskapsler, oppdater siden og prøv igjen.',
 'noname'                     => 'Du har ikke oppgitt et gyldig brukernavn.',
 'loginsuccesstitle'          => 'Du er nå logget inn',
 'loginsuccess'               => 'Du er nå logget inn på {{SITENAME}} som «$1».',
 'nosuchuser'                 => 'Det eksisterer ingen bruker ved navn «$1».
-Husk at det er forskjell på store og små bokstaver.
+Merk at det skilles mellom store og små bokstaver.
 Sjekk stavemåten eller [[Special:UserLogin/signup|opprett en ny konto]].',
 'nosuchusershort'            => 'Det finnes ingen bruker ved navn «$1». Kontroller stavemåten.',
 'nouserspecified'            => 'Du må oppgi et brukernavn.',
@@ -809,6 +809,7 @@ Du kan ha allerede byttet passordet, eller bedt om et nytt midlertidig passord.'
 'passwordreset-disabled'       => 'Tilbakestilling av passord har blitt deaktivert på denne wikien.',
 'passwordreset-pretext'        => '{{PLURAL:$1||Angi en av datadelene nedenfor}}',
 'passwordreset-username'       => 'Brukernavn:',
+'passwordreset-domain'         => 'Domene:',
 'passwordreset-email'          => 'E-postadresse:',
 'passwordreset-emailtitle'     => 'Kontodetaljer på {{SITENAME}}',
 'passwordreset-emailtext-ip'   => 'Noen (sannsynligvis deg fra IP-adressen $1) ba om en påminnelse om dine
@@ -1094,29 +1095,29 @@ Forklaring: '''({{int:cur}})''' = forskjell fra nåværende revisjon, '''({{int:
 'rev-deleted-user-contribs'   => '[brukernavn eller IP-adresse fjernet – redigeringen vises ikke blant bidragene]',
 'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''.
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
-'rev-deleted-text-unhide'     => "Denne sideversjonen har blitt '''slettet'''.
-Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
-Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker å fortsette.",
-'rev-suppressed-text-unhide'  => "Denne revisjonen har blitt '''unndratt'''.
-Det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unndragelseslogg].
-Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker å fortsette.",
-'rev-deleted-text-view'       => "Denne sideversjonen har blitt '''slettet'''.
-Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
-'rev-suppressed-text-view'    => "Denne revisjonen har blitt '''unndratt'''.
-Som administrator kan du se den; det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unndragelsesloggen].",
+'rev-deleted-text-unhide'     => "Denne siderevisjonen har blitt '''slettet'''.
+Se etter detaljer i slettingsloggen: [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].
+Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker det.",
+'rev-suppressed-text-unhide'  => "Denne siderevisjonen har blitt '''skjult'''.
+Informasjon om dette kan finnes i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
+Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker det.",
+'rev-deleted-text-view'       => "Denne siderevisjonen har blitt '''slettet'''.
+Som administrator kan du fortsatt se den. Detaljer finnes i slettingsloggen: [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}}].",
+'rev-suppressed-text-view'    => "!Denne siderevisjonen har blitt '''skjult'''.
+Som administrator kan du se den; detaljer kan finnes i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-suppressed-no-diff'      => "Du kanne ikke se revisjonsforskjellen fordi en av revisjonene har blitt '''slettet'''.",
-'rev-deleted-unhide-diff'     => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
-Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
-Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette.",
-'rev-suppressed-unhide-diff'  => "En av sideversjonene i denne diffen har blitt '''skjul'''.
+'rev-deleted-unhide-diff'     => "Én av revisjonene i denne diffen har blitt '''slettet'''.
+Det finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
+Som administrator kan du fortsatt [$1 se diffen] om du ønsker å gå videre.",
+'rev-suppressed-unhide-diff'  => "En av siderevisjonene i denne diffen har blitt '''skjult'''.
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulingsloggen].
-Som administrator kan du fortsatt [$1 se diffen] om du ønsker det.",
+Som administrator kan du fortsatt [$1 se diffen] om du ønsker å gå videre.",
 'rev-deleted-diff-view'       => "En av revisjonene i denne diffen har blitt '''slettet'''.
-Som administrator kan du se diffen; det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Som administrator kan du se diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-suppressed-diff-view'    => "En av revisjonene i denne diffen har blitt '''skjult'''.
-Som administrator kan du se denne diffen; det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
+Som administrator kan du se denne diffen; det kan finnes detaljer i [{{fullurl:{{#Special:Log}}/suppcess|page={{FULLPAGENAMEE}}}} skjulingsloggen].",
 'rev-delundel'                => 'vis/skjul',
 'rev-showdeleted'             => 'vis',
 'revisiondelete'              => 'Slett/gjenopprett revisjoner',
@@ -1134,9 +1135,10 @@ Som administrator kan du se denne diffen; det kan være detaljer i [{{fullurl:{{
 'revdelete-text'              => "'''Slettede versjoner og oppføringer vil fortsatt vises i sidehistorikken og loggene, men deler av innholdet vil ikke lenger bli offentliggjort.'''
 Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.",
 'revdelete-confirm'           => 'Bekreft at du ønsker å gjøre dette, at du forstår konsekvensene, og at du gjør det i samsvar med [[{{MediaWiki:Policy-url}}|retningslinjene]].',
-'revdelete-suppress-text'     => "Utelatelse bør '''kun''' brukes i følgende tilfeller:
-* Upassende personlige opplysninger
-*: ''hjemmeadresser og -telefonnummer, personnummer og lignende''",
+'revdelete-suppress-text'     => "Skjuling bør '''kun''' brukes i følgende tilfeller:
+* Mulig injurierende utsagn
+* Upassende personlige opplysninger, herunder
+*: ''privatadresser og -telefonnumre, fødselsnumre og lignende''",
 'revdelete-legend'            => 'Fastsett synlighetsbegrensninger',
 'revdelete-hide-text'         => 'Skjul revisjonstekst',
 'revdelete-hide-image'        => 'Skjul filinnhold',
@@ -1147,7 +1149,7 @@ Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innhold
 'revdelete-radio-same'        => '(ikke endre)',
 'revdelete-radio-set'         => 'Ja',
 'revdelete-radio-unset'       => 'Nei',
-'revdelete-suppress'          => 'Fjern informasjon også fra administratorer',
+'revdelete-suppress'          => 'Skjul informasjon også fra administratorer',
 'revdelete-unsuppress'        => 'Fjern betingelser på gjenopprettede revisjoner',
 'revdelete-log'               => 'Årsak:',
 'revdelete-submit'            => 'Utfør på {{PLURAL:$1|valgt revisjon|valgte revisjoner}}',
@@ -1194,9 +1196,9 @@ Vennligst sjekk loggen.',
 'revdelete-offender'          => 'Forfatter av denne versjonen:',
 
 # Suppression log
-'suppressionlog'     => 'Sidefjerningslogg',
-'suppressionlogtext' => 'Nedenfor er en liste over sider og blokkeringer med innhold skjult fra administratorer.
-Se [[Special:IPBlockList|blokkeringslisten]] for oversikten over nåværende blokkeringer.',
+'suppressionlog'     => 'Sideskjulingslogg',
+'suppressionlogtext' => 'Under er en liste over sider som er slettet eller blokkert med innhold skjult fra administratorer.
+Se [[Special:BlockList|IP-blokkeringsliste]] for oversikt over aktuelle utelukkelser og blokkeringer.',
 
 # History merging
 'mergehistory'                     => 'Flett sidehistorikker',
@@ -1352,8 +1354,8 @@ For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler,
 'recentchangesdays-max'         => '(maksimum $1 {{PLURAL:$1|dag|dager}})',
 'recentchangescount'            => 'Antall redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Dette inkluderer nylige endringer, sidehistorikk og logger.',
-'prefs-help-watchlist-token'    => 'Om du fyller ut dette feltet med et hemmelig tall vil lage en RSS-liste for overvåkingslista di.
-Alle som vet det rette tallet vil være i stand til å lese overvåkingslista di, så velg en sikker verdi.
+'prefs-help-watchlist-token'    => 'Om du fyller ut dette feltet med et hemmelig tall, vil det lages en RSS-liste for overvåkningslisten din.
+Alle som vet det rette tallet vil være i stand til å lese overvåkningslisten din, så velg en sikker verdi.
 Her er et tilfeldig tall du kan bruke: $1',
 'savedprefs'                    => 'Innstillingene ble lagret.',
 'timezonelegend'                => 'Tidssone:',
@@ -1393,6 +1395,7 @@ Dette kan ikke tilbakestilles.',
 'prefs-registration'            => 'Registreringstid:',
 'yourrealname'                  => 'Virkelig navn:',
 'yourlanguage'                  => 'Språk:',
+'yourvariant'                   => 'Språkvariant for innhold:',
 'yournick'                      => 'Signatur:',
 'prefs-help-signature'          => 'Kommentarer på diskusjonssider bør alltid signeres med «<nowiki>~~~~</nowiki>», som vil bli konvertert til din signatur med tidspunkt.',
 'badsig'                        => 'Ugyldig råsignatur; sjekk HTML-elementer.',
@@ -1445,7 +1448,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'userrights-no-interwiki'        => 'Du har ikke tillatelse til å endre brukerrettigheter på andre wikier.',
 'userrights-nodatabase'          => 'Databasen $1 finnes ikke, eller er ikke lokal.',
 'userrights-nologin'             => 'Du må [[Special:UserLogin|logge inn]] med en administratorkonto for å endre brukerrettigheter.',
-'userrights-notallowed'          => 'Kontoen din har ikke tillatelse til å endre brukerrettigheter.',
+'userrights-notallowed'          => 'Kontoen din har ikke tillatelse til å legge til eller fjerne brukerrettigheter.',
 'userrights-changeable-col'      => 'Grupper du kan endre',
 'userrights-unchangeable-col'    => 'Grupper du ikke kan endre',
 'userrights-irreversible-marker' => '$1 *',
@@ -1472,7 +1475,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'grouppage-bot'           => '{{ns:project}}:Roboter',
 'grouppage-sysop'         => '{{ns:project}}:Administratorer',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byråkrater',
-'grouppage-suppress'      => '{{ns:project}}:Sidefjerning',
+'grouppage-suppress'      => '{{ns:project}}:Historikkrydding',
 
 # Rights
 'right-read'                  => 'Se sider',
@@ -1660,9 +1663,9 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'ignorewarning'               => 'Ignorer advarselen og lagre filen likevel',
 'ignorewarnings'              => 'Ignorer eventuelle advarsler',
 'minlength1'                  => 'Filnavn må være på minst én bokstav.',
-'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn; gi fila et nytt navn og prøv igjen.',
+'illegalfilename'             => 'Filnavnet «$1» inneholder ugyldige tegn. Gi filen et nytt navn og prøv igjen.',
 'badfilename'                 => 'Navnet på filen er blitt endret til «$1».',
-'filetype-mime-mismatch'      => 'Filendelsen «.$1» tilsvarer ikke MIME-typen som oppgis i fila ($2).',
+'filetype-mime-mismatch'      => 'Filendelsen «.$1» tilsvarer ikke MIME-typen som oppgis i filen ($2).',
 'filetype-badmime'            => 'Filer av typen «$1» kan ikke lastes opp.',
 'filetype-bad-ie-mime'        => 'Kan ikke laste opp denne filen fordi Internet Explorer ville detektert denne som «$1», noe som er ikke er tillatt, og en potensielt farlig filtype.',
 'filetype-unwanted-type'      => "'''«.$1»''' er en uønsket filtype.
@@ -1682,8 +1685,8 @@ Se [[Special:NewFiles|galleriet over nye filer]] for en mer visuell visning',
 'tmp-create-error'            => 'Kunne ikke opprette midlertidig fil.',
 'tmp-write-error'             => 'Feil ved skriving av midlertidig fil.',
 'large-file'                  => 'Det er anbefalt at filen ikke er større enn $1; denne filen er $2.',
-'largefileserver'             => 'Denne fila er større enn det tjeneren er satt opp til å tillate.',
-'emptyfile'                   => 'Fila du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne fila.',
+'largefileserver'             => 'Denne filen er større enn det tjeneren er satt opp til å tillate.',
+'emptyfile'                   => 'Filen du lastet opp ser ut til å være tom. Dette kan komme av en skrivefeil i filnavnet. Sjekk om du virkelig vil laste opp denne filen.',
 'windows-nonascii-filename'   => 'Denne wikien støtter ikke filnavn med spesialtegn.',
 'fileexists'                  => "Ei fil med dette navnet finnes allerede.
 Sjekk '''<tt>[[:$1]]</tt>''' hvis du ikke er sikker på at du vil forandre den.
@@ -1701,9 +1704,9 @@ Om filen du sjekket er det samme bildet, men i opprinnelig størrelse, er det ik
 Det virker som om det er et bilde av redusert størrelse ''(miniatyrbilde)''.
 Om du har dette bildet i stor utgave, last opp det, eller endre filnavnet på denne filen.",
 'fileexists-forbidden'        => 'En fil med dette navnet finnes fra før, og kan ikke erstattes.
-Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
+Om du fortsatt ønsker å laste opp filen, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Ei fil med dette navnet finnes fra før i det delte fillageret.
-Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
+Om du fortsatt ønsker å laste opp filen, gå tilbake og last den opp under et nytt navn. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Denne filen er en dublett av følgende {{PLURAL:$1|fil|filer}}:',
 'file-deleted-duplicate'      => 'En fil identisk med denne filen ([[:$1]]) har tidligere blitt slettet. Du bør sjekke denne filens slettehistorikk før du prøver å laste den opp på nytt.',
 'uploadwarning'               => 'Opplastingsadvarsel',
@@ -1716,9 +1719,9 @@ Om du fortsatt ønsker å laste opp fila, gå tilbake og last den opp under et n
 'uploadfromurl-queued'        => 'Opplastingen din har blitt satt i kø.',
 'uploaddisabledtext'          => 'Opplasting er slått av.',
 'php-uploaddisabledtext'      => 'PHP-filopplasting er deaktivert. Sjekk innstillingen for file_uploads.',
-'uploadscripted'              => 'Denne fila inneholder HTML eller skripting som kan feiltolkes av en nettleser.',
-'uploadvirus'                 => 'Denne fila inneholder virus! Detaljer: $1',
-'uploadjava'                  => 'Fila er en ZIP-fil som inneholder en Java-fil av typen .class.
+'uploadscripted'              => 'Denne filen inneholder HTML eller skripting som kan feiltolkes av en nettleser.',
+'uploadvirus'                 => 'Denne filen inneholder virus! Detaljer: $1',
+'uploadjava'                  => 'Filen er en ZIP-fil som inneholder en Java-fil av typen .class.
 Det er ikke tillatt å laste opp Java-filer, fordi de kan omgå sikkerhetsrestriksjoner.',
 'upload-source'               => 'Kildefil',
 'sourcefilename'              => 'Velg en fil:',
@@ -1729,7 +1732,7 @@ Det er ikke tillatt å laste opp Java-filer, fordi de kan omgå sikkerhetsrestri
 'upload-options'              => 'Opplastingsvalg',
 'watchthisupload'             => 'Overvåk denne filen',
 'filewasdeleted'              => 'Ei fil ved dette navnet har blitt lastet opp tidligere, og så slettet. Sjekk $1 før du forsøker å laste det opp igjen.',
-'filename-bad-prefix'         => "Navnet på filen du laster opp begynner med '''«$1»''', hvilket er et ikke-beksrivende navn som vanligvis brukes automatisk av digitalkameraer. Vennligst bruk et mer beskrivende navn på filen.",
+'filename-bad-prefix'         => "Navnet på filen du laster opp begynner med '''«$1»''', hvilket er et ikke-beskrivende navn som vanligvis brukes automatisk av digitalkameraer. Vennligst bruk et mer beskrivende navn på filen.",
 'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
 # Syntaksen er som følger:
 #   * Alt fra tegnet «#» til slutten av linja er en kommentar
@@ -1761,16 +1764,16 @@ $1',
 'upload-misc-error-text'    => 'En ukjent feil forekom under opplastingen.
 Bekreft at adressen er gyldig og tilgjengelig, og prøv igjen.
 Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
-'upload-too-many-redirects' => 'URLen inneholdt for mange omdirigeringer',
+'upload-too-many-redirects' => 'URL-en inneholdt for mange omdirigeringer',
 'upload-unknown-size'       => 'Ukjent størrelse',
 'upload-http-error'         => 'En HTTP-feil oppstod: $1',
 
 # ZipDirectoryReader
-'zip-file-open-error' => 'Det oppsto en feil under åpning av fila for ZIP-sjekking.',
-'zip-wrong-format'    => 'Den angitte fila var ikke en ZIP-fil.',
-'zip-bad'             => 'Fila er en skadd eller på annen måte uleselig ZIP-fil.
+'zip-file-open-error' => 'Det oppsto en feil under åpning av filen for ZIP-sjekking.',
+'zip-wrong-format'    => 'Den angitte filen var ikke en ZIP-fil.',
+'zip-bad'             => 'Filen er en skadd eller på annen måte uleselig ZIP-fil.
 Den kan ikke sikkerhetskontrolleres.',
-'zip-unsupported'     => 'Fila er en ZIP-fil som bruker funksjoner som ikke støttes av MediaWiki.
+'zip-unsupported'     => 'Filen er en ZIP-fil som bruker funksjoner som ikke støttes av MediaWiki.
 Den kan ikke sikkerhetskontrolleres.',
 
 # Special:UploadStash
@@ -1855,19 +1858,19 @@ Når den filtreres av en bruker, vises bare de sist opplastede versjonene av fil
 'filehist-filesize'         => 'Filstørrelse',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Fil mangler',
-'imagelinks'                => 'Fillenker',
+'imagelinks'                => 'Filbruk',
 'linkstoimage'              => 'Følgende {{PLURAL:$1|side|$1 sider}} har lenker til denne filen:',
-'linkstoimage-more'         => 'Mer enn $1 {{PLURAL:$1|side|sider}} lenker til denne fila.
+'linkstoimage-more'         => 'Mer enn $1 {{PLURAL:$1|side|sider}} lenker til denne filen.
 Følgende liste viser {{PLURAL:$1|den første siden|de $1 første sidene}}.
 En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
-'nolinkstoimage'            => 'Det er ingen sider som bruker denne fila.',
+'nolinkstoimage'            => 'Det er ingen sider som bruker denne filen.',
 'morelinkstoimage'          => 'Vis [[Special:WhatLinksHere/$1|flere lenker]] til denne filen.',
 'linkstoimage-redirect'     => '$1 (filomdirigering) $2',
 'duplicatesoffile'          => 'Følgende {{PLURAL:$1|fil er en dublett|filer er dubletter}} av denne filen ([[Special:FileDuplicateSearch/$2|fler detaljer]]):',
 'sharedupload'              => 'Denne filen er fra $1 og kan bli brukt av andre prosjekter.',
-'sharedupload-desc-there'   => 'Denne fila er fra $1 og kan brukes på andre prosjekter.
+'sharedupload-desc-there'   => 'Denne filen er fra $1 og kan brukes på andre prosjekter.
 Se [$2 filbeskrivelsessida] for mer informasjon.',
-'sharedupload-desc-here'    => 'Denne fila er fra $1 og kan brukes av andre prosjekter.
+'sharedupload-desc-here'    => 'Denne filen er fra $1 og kan brukes av andre prosjekter.
 Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 'filepage-nofile'           => 'Det finnes ingen fil med dette navnet.',
 'filepage-nofile-link'      => 'Ingen fil med dette navnet eksisterer, men du kan [$1 laste den opp].',
@@ -1888,7 +1891,7 @@ Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 # File deletion
 'filedelete'                  => 'Slett $1',
 'filedelete-legend'           => 'Slett fil',
-'filedelete-intro'            => "Du er i ferd med å slette fila '''[[Media:$1|$1]]''' sammen med hele dens historikk.",
+'filedelete-intro'            => "Du er i ferd med å slette filen '''[[Media:$1|$1]]''' sammen med hele dens historikk.",
 'filedelete-intro-old'        => "Du sletter versjonen av '''[[Media:$1|$1]]''' à [$4 $3, $2].",
 'filedelete-comment'          => 'Årsak:',
 'filedelete-submit'           => 'Slett',
@@ -2023,7 +2026,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'listusers-editsonly'     => 'Vis bare brukere med redigeringer',
 'listusers-creationsort'  => 'Sorter etter opprettelsesdato',
 'usereditcount'           => '{{PLURAL:$1|én redigering|$1 redigeringer}}',
-'usercreated'             => 'Opprettet den $1 $2',
+'usercreated'             => '{{GENDER:$3|Opprettet}} $2 $1',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukernavn:',
 'ancientpages'            => 'Eldste sider',
@@ -2038,7 +2041,7 @@ Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen li
 'nopagetext'              => 'Siden du ville flytte finnes ikke.',
 'pager-newer-n'           => '{{PLURAL:$1|1 nyere|$1 nyere}}',
 'pager-older-n'           => '{{PLURAL:$1|1 eldre|$1 eldre}}',
-'suppress'                => 'Sidefjerning',
+'suppress'                => 'Historikkrydding',
 'querypage-disabled'      => 'Denne spesialsiden er deaktivert av ytelsesårsaker.',
 
 # Book sources
@@ -2745,7 +2748,7 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 
 # Thumbnails
 'thumbnail-more'           => 'Forstørr',
-'filemissing'              => 'Fila mangler',
+'filemissing'              => 'Filen mangler',
 'thumbnail_error'          => 'Feil under oppretting av miniatyrbilde: $1',
 'djvu_page_error'          => 'DjVu-side ute av rekkevidde',
 'djvu_no_xml'              => 'Klarte ikke å hente XML for DjVu-fil',
@@ -2753,7 +2756,7 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 'thumbnail_dest_directory' => 'Klarte ikke å opprette målmappe',
 'thumbnail_image-type'     => 'Bildetypen støttes ikke',
 'thumbnail_gd-library'     => 'Ufullstendig konfigurering av GD library: mangler funksjonen $1',
-'thumbnail_image-missing'  => 'Fila ser ut til å mangle: $1',
+'thumbnail_image-missing'  => 'Filen ser ut til å mangle: $1',
 
 # Special:Import
 'import'                     => 'Importer sider',
@@ -2766,7 +2769,7 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 'import-interwiki-namespace' => 'Målnavnerom:',
 'import-upload-filename'     => 'Filnavn:',
 'import-comment'             => 'Kommentar:',
-'importtext'                 => 'Importer fila fra kildewikien med [[Special:Export|eksporteringsverktøyet]].
+'importtext'                 => 'Importer filen fra kildewikien med [[Special:Export|eksporteringsverktøyet]].
 Lagre den på din egen datamaskin og last den opp her.',
 'importstart'                => 'Importerer sider&nbsp;…',
 'import-revision-count'      => '({{PLURAL:$1|Én revisjon|$1 revisjoner}})',
@@ -2971,7 +2974,7 @@ $1',
 'nextdiff'     => 'Neste endring →',
 
 # Media information
-'mediawarning'           => "'''Advarsel''': Denne fila kan inneholde farlig kode.
+'mediawarning'           => "'''Advarsel''': Denne filen kan inneholde farlig kode.
 Ved å åpne den kan systemet ditt kompromitteres.",
 'imagemaxsize'           => "Bildestørrelsesgrense:<br />''(for filbeskrivelsessider)''",
 'thumbsize'              => 'Miniatyrbildestørrelse:',
@@ -3231,9 +3234,9 @@ Andre vil skjules som standard.
 'exif-orientation-5' => 'Rotated 90° CCW and flipped vertically
 
 Rotert 90° mot klokka og vridd vertikalt',
-'exif-orientation-6' => 'Rotert 90° med klokka',
+'exif-orientation-6' => 'Rotert 90° mot klokka',
 'exif-orientation-7' => 'Rotert 90° med klokka og vridd vertikalt',
-'exif-orientation-8' => 'Rotert 90° mot klokka',
+'exif-orientation-8' => 'Rotert 90° med klokka',
 
 'exif-planarconfiguration-1' => 'chunkformat',
 'exif-planarconfiguration-2' => 'planærformat',
@@ -3650,9 +3653,8 @@ Du skal ha mottatt [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopi av GNU General Publ
 'filepath'         => 'Filsti',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Gå',
-'filepath-summary' => 'Denne spesialsiden gir den fullstendige stien for en fil. Bilder vises i full oppløsning; andre filtyper startes direkte i sine assosierte programmer.
-
-	Skriv inn filnavnet uten «{{ns:file}}:»-prefikset.',
+'filepath-summary' => 'Denne spesialsiden returnerer den fullstendige stien for en fil.
+Bilder vises med full oppløsning, mens andre filtyper startes direkte gjennom sine tilknyttede programmer.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'           => 'Søk etter duplikatfiler',

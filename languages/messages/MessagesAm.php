@@ -165,6 +165,7 @@ $messages = array(
 'category-file-count-limited'    => 'በዚሁ መደብ ውስጥ {{PLURAL:$1|የሚከተለው ፋይል አለ|የሚከተሉት $1 ፋይሎች አሉ}}።',
 'listingcontinuesabbrev'         => '(ተቀጥሏል)',
 'index-category'                 => ' ማውጫው ላይ የተመዘገብ ገጾች',
+'broken-file-category'           => 'የማይኖሩ ፋይሎች ያሉባቸው ገጾች',
 
 'about'         => 'ስለ',
 'article'       => 'መጣጥፍ',
@@ -2270,9 +2271,7 @@ $3
 'filepath-page'    => 'ፋይሉ፦',
 'filepath-submit'  => 'መንገድ',
 'filepath-summary' => 'ይህ ልዩ ገጽ ለ1 ፋይል ሙሉ መንገድ ይሰጣል።<br />
-ስዕል በሙሉ ማጉላት ይታያል፤ ሌላ አይነት ፋይል በሚገባው ፕሮግራም በቀጥታ ይጀመራል።
-
-የፋይሉ ስም («{{ns:file}}:» የሚለው ባዕድ መነሻ ሳይኖር) ከዚህ ታች ይግባ፦',
+ስዕል በሙሉ ማጉላት ይታያል፤ ሌላ አይነት ፋይል በሚገባው ፕሮግራም በቀጥታ ይጀመራል።',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'ለቅጂ ፋይሎች መፈልግ',
