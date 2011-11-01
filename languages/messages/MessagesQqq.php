@@ -11,6 +11,7 @@
  * @author Ahonc
  * @author Aleator
  * @author AlexSm
+ * @author Amire80
  * @author AnakngAraw
  * @author Ans
  * @author Antime
@@ -2265,9 +2266,7 @@ The title is {{msg-mw|nopagetitle}}.',
 'sp-deletedcontributions-contribs' => 'Link to user’s contributions on [[Special:DeletedContributions]]',
 
 # Special:LinkSearch
-'linksearch'       => 'Title of [[Special:LinkSearch|special page]] and legend of fieldset on that page.
-
-{{Identical|External link}}',
+'linksearch'       => 'Title of [[Special:LinkSearch|special page]] and label of fieldset on that page.',
 'linksearch-pat'   => 'Legend for input box on [[Special:LinkSearch]].',
 'linksearch-ns'    => 'Legend for dropdown box on [[Special:LinkSearch|special page]].
 

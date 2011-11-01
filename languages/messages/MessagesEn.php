@@ -2618,7 +2618,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'sp-deletedcontributions-contribs' => 'contributions',
 
 # Special:LinkSearch
-'linksearch'       => 'External links',
+'linksearch'       => 'External links search',
 'linksearch-pat'   => 'Search pattern:',
 'linksearch-ns'    => 'Namespace:',
 'linksearch-ok'    => 'Search',
