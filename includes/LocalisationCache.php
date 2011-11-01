@@ -190,12 +190,12 @@ class LocalisationCache {
 	public function isMergeableKey( $key ) {
 		if ( !isset( $this->mergeableKeys ) ) {
 			$this->mergeableKeys = array_flip( array_merge(
-				self::$mergeableMapKeys,
-				self::$mergeableListKeys,
-				self::$mergeableAliasListKeys,
-				self::$optionalMergeKeys,
-				self::$magicWordKeys
-			) );
+					self::$mergeableMapKeys,
+					self::$mergeableListKeys,
+					self::$mergeableAliasListKeys,
+					self::$optionalMergeKeys,
+					self::$magicWordKeys
+				) );
 		}
 		return isset( $this->mergeableKeys[$key] );
 	}
@@ -231,9 +231,8 @@ class LocalisationCache {
 	 * @return null
 	 */
 	public function getSubitem( $code, $key, $subkey ) {
-		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] )
-			&& !isset( $this->loadedItems[$code][$key] ) )
-		{
+		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) &&
+			 !isset( $this->loadedItems[$code][$key] ) ) {
 			wfProfileIn( __METHOD__.'-load' );
 			$this->loadSubitem( $code, $key, $subkey );
 			wfProfileOut( __METHOD__.'-load' );
@@ -324,9 +323,8 @@ class LocalisationCache {
 		}
 
 		// Check to see if initLanguage() loaded it for us
-		if ( isset( $this->loadedItems[$code][$key] )
-			|| isset( $this->loadedSubitems[$code][$key][$subkey] ) )
-		{
+		if ( isset( $this->loadedItems[$code][$key] ) ||
+			 isset( $this->loadedSubitems[$code][$key][$subkey] ) ) {
 			return;
 		}
 
@@ -507,7 +505,7 @@ class LocalisationCache {
 				$oldSynonyms = array_slice( $fallbackInfo, 1 );
 				$newSynonyms = array_slice( $value[$magicName], 1 );
 				$synonyms = array_values( array_unique( array_merge(
-					$newSynonyms, $oldSynonyms ) ) );
+							$newSynonyms, $oldSynonyms ) ) );
 				$value[$magicName] = array_merge( array( $fallbackInfo[0] ), $synonyms );
 			}
 		}
