@@ -624,8 +624,8 @@ abstract class DatabaseUpdater {
 		global $wgLocalisationCacheConf;
 		$wgLocalisationCacheConf['forceRecache'] = true;
 		$cl = $this->maintenance->runChild( 'RebuildLocalisationCache', 'rebuildLocalisationCache.php' );
-		$this->output( "Rebuilding Localisation Cache... " );
+		$this->output( "Rebuilding localisation cache...\n" );
 		$cl->execute();
-		$this->output( "done.\n" );
+		$this->output( "Rebuilding localisation cache done.\n" );
 	}
 }
