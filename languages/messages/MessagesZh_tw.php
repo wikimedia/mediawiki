@@ -10,6 +10,7 @@
  * @author Alexsh
  * @author Andrew971218
  * @author BobChao
+ * @author Ianbu
  * @author Jidanni
  * @author Mark85296341
  * @author Pbdragonwang
@@ -204,15 +205,16 @@ $messages = array(
 
 'badaccess-groups' => '您剛才的請求只有{{PLURAL:$2|這個|這些}}使用者組的使用者才能使用: $1',
 
-'editold'        => '編輯',
-'showtoc'        => '顯示',
-'hidetoc'        => '隱藏',
-'thisisdeleted'  => '檢視或復原$1?',
-'site-rss-feed'  => '訂閱 $1 的 RSS 資料來源',
-'site-atom-feed' => '訂閱 $1 的 Atom 資料來源',
-'page-rss-feed'  => '訂閱「$1」的 RSS 資料來源',
-'page-atom-feed' => '訂閱「$1」的 Atom 資料來源',
-'red-link-title' => '$1 (頁面不存在)',
+'editold'         => '編輯',
+'editsectionhint' => '编辑段落：$1',
+'showtoc'         => '顯示',
+'hidetoc'         => '隱藏',
+'thisisdeleted'   => '檢視或復原$1?',
+'site-rss-feed'   => '訂閱 $1 的 RSS 資料來源',
+'site-atom-feed'  => '訂閱 $1 的 Atom 資料來源',
+'page-rss-feed'   => '訂閱「$1」的 RSS 資料來源',
+'page-atom-feed'  => '訂閱「$1」的 Atom 資料來源',
+'red-link-title'  => '$1 (頁面不存在)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '頁面',
@@ -633,10 +635,10 @@ $NEWPAGE
 
 --
 要改變您的監視列表設定，請參閱
-{{fullurl:{{#special:EditWatchlist}}}}
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
 回饋和進一步的說明:
-{{fullurl:{{MediaWiki:Helppage}}}}',
+{{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'confirmdeletetext' => '您即將從資料庫中永遠刪除一個頁面或圖片以及其歷史。
@@ -860,7 +862,7 @@ $NEWPAGE
 
 # Media information
 'imagemaxsize'   => '在圖片描述頁對圖片大小限制為:',
-'file-nohires'   => '<small>無更高解析度可提供。</small>',
+'file-nohires'   => '無更高解析度可提供。',
 'show-big-image' => '完整解析度',
 
 # Special:NewFiles

@@ -342,6 +342,7 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|Þessi flokkur inniheldur einungis eftirfarandi skrá.|Eftirfarandi {{PLURAL:$1|skrá er|$1 skrár eru}} í þessum flokki, af alls $2.}}',
 'category-file-count-limited'    => 'Eftirfarandi {{PLURAL:$1|skrá er|$1 skrár eru}} í þessum flokki.',
 'listingcontinuesabbrev'         => 'frh.',
+'noindex-category'               => 'Óraðaðar skrár',
 
 'linkprefix' => '/^(.*?)([áÁðÐéÉíÍóÓúÚýÝþÞæÆöÖA-Za-z-–]+)$/sDu',
 
@@ -945,6 +946,7 @@ Hún er nú þegar til.',
 'post-expand-template-inclusion-warning'  => "'''Viðvörun:''' Sniðið tekur of mikið pláss.
 Hluti sniðsins verður ekki með.",
 'post-expand-template-inclusion-category' => 'Síður þar sem eru stærri en stærðartakmörkun sniða segir til um',
+'post-expand-template-argument-category'  => 'Síður sem innihalda sniða breytur sem hefur verið sleppt',
 'parser-template-loop-warning'            => 'Lykkja í sniði fundin: [[$1]]',
 
 # "Undo" feature
@@ -1027,6 +1029,8 @@ Frekari upplýsingar eru í [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'revdelete-log'               => 'Ástæða:',
 'revdelete-submit'            => 'Setja á valda breytingu',
 'revdel-restore'              => 'Breyta sýn',
+'revdel-restore-deleted'      => 'eyddar breytingar',
+'revdel-restore-visible'      => 'sýnilegar breytingar',
 'pagehist'                    => 'Breytingaskrá',
 'deletedhist'                 => 'Eyðingaskrá',
 'revdelete-edit-reasonlist'   => 'Eyðingarástæður',
@@ -1103,6 +1107,7 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 'searchall'                        => 'öllum',
 'showingresults'                   => "Sýni {{PLURAL:$1|'''1''' niðurstöðu|'''$1''' niðurstöður}} frá og með #'''$2'''.",
 'showingresultsnum'                => "Sýni {{PLURAL:$3|'''$3''' niðurstöðu|'''$3''' niðurstöður}} frá og með #<b>$2</b>.",
+'showingresultsheader'             => "{{PLURAL:$5|Niðurstaða '''$1''' af '''$3'''|Niðurstöður'''$1 - $2''' af '''$3'''}} fyrir '''$4'''",
 'nonefound'                        => "'''Athugaðu''': Það er aðeins leitað í sumum nafnrýmum sjálfkrafa. Prófaðu að setja forskeytið ''all:'' í fyrirspurnina til að leita í öllu efni (þar á meðal notandaspjallsíðum, sniðum, o.s.frv.), eða notaðu tileigandi nafnrými sem forskeyti.",
 'search-nonefound'                 => 'Engar niðurstöður pössuðu við fyrirspurnina.',
 'powersearch'                      => 'Ítarleg leit',
@@ -1716,9 +1721,10 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'deletedcontributions-title' => 'Eyddar breytingar notanda',
 
 # Special:LinkSearch
-'linksearch'    => 'Útværir tenglar',
-'linksearch-ns' => 'Nafnrými:',
-'linksearch-ok' => 'Leita',
+'linksearch'      => 'Útværir tenglar',
+'linksearch-ns'   => 'Nafnrými:',
+'linksearch-ok'   => 'Leita',
+'linksearch-line' => 'Tengt er í $1 á síðunni $2',
 
 # Special:ListUsers
 'listusersfrom'      => 'Sýna notendur sem byrja á:',
@@ -1763,6 +1769,7 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 # Watchlist
 'watchlist'            => 'Vaktlistinn',
 'mywatchlist'          => 'Vaktlistinn',
+'watchlistfor2'        => 'Eftir $1 $2',
 'nowatchlist'          => 'Vaktlistinn er tómur.',
 'watchlistanontext'    => 'Vinsamlegast $1 til að skoða eða breyta vaktlistanum þínum.',
 'watchnologin'         => 'Óinnskráð(ur)',
@@ -1940,10 +1947,13 @@ Skoðaðu [[Special:Log/delete|eyðingaskrána]] til að skoða eyðingar og end
 'sp-contributions-newbies-sub' => 'Fyrir nýliða',
 'sp-contributions-blocklog'    => 'Fyrri bönn',
 'sp-contributions-deleted'     => 'Eyddar breytingar notanda',
+'sp-contributions-uploads'     => 'upphlöð',
+'sp-contributions-logs'        => 'Aðgerðaskrá',
 'sp-contributions-talk'        => 'spjall',
 'sp-contributions-userrights'  => 'Breyta notandaréttindum',
 'sp-contributions-search'      => 'Leita að framlögum',
 'sp-contributions-username'    => 'Vistfang eða notandanafn:',
+'sp-contributions-toponly'     => 'Aðeins sýna síðustu breytingar',
 'sp-contributions-submit'      => 'Leita að breytingum',
 
 # What links here
@@ -2243,6 +2253,8 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'tooltip-watch'                   => 'Bæta þessari síðu á vaktlistann þinn',
 'tooltip-recreate'                => 'Endurvekja síðuna þó henni hafi verið eytt',
 'tooltip-upload'                  => 'Hefja innhleðslu',
+'tooltip-rollback'                => '"taka aftur" breytir greininni til síðasta höfundar með einum smelli',
+'tooltip-undo'                    => '"Tek aftur þessa breytingu" breytir aftur til síðustu breytingu og opnar breytinguna í forskoðun. Hægt er að bæta við ástæðu í breytingarávarpinu.',
 
 # Stylesheets
 'common.css'   => '/* Allt CSS sem sett er hér mun virka á öllum þemum. */',

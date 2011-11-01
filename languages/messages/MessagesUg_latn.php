@@ -1,5 +1,5 @@
 <?php
-/** Uighur (Latin) (ئۇيغۇرچە / Uyghurche‎ (Latin))
+/** Uyghur (Latin script) (Uyghurche‎)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -83,6 +83,9 @@ $messages = array(
 'userlogout'         => 'Chikish',
 'gotaccountlink'     => 'Kirish',
 'loginlanguagelabel' => 'Til: $1',
+
+# Special:PasswordReset
+'passwordreset-username' => 'Ishletkuchi ismi:',
 
 # Edit pages
 'summary'      => 'Hulasa:',

@@ -8,6 +8,7 @@
  * @file
  *
  * @author Slamet Serayu (on map-bms.wikipedia.org)
+ * @author לערי ריינהארט
  */
 
 $fallback = 'jv, id';
