@@ -1154,8 +1154,15 @@ class SkinTemplate extends Skin {
 		}
 		$nav_urls['specialpages'] = array( 'href' => self::makeSpecialUrl( 'Specialpages' ) );
 
-		// default permalink to being off, will override it as required below.
+		$nav_urls['print'] = false;
 		$nav_urls['permalink'] = false;
+		$nav_urls['whatlinkshere'] = false;
+		$nav_urls['recentchangeslinked'] = false;
+		$nav_urls['trackbacklink'] = false;
+		$nav_urls['contributions'] = false;
+		$nav_urls['log'] = false;
+		$nav_urls['blockip'] = false;
+		$nav_urls['emailuser'] = false;
 
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
@@ -1182,72 +1189,50 @@ class SkinTemplate extends Skin {
 				array( &$this, &$nav_urls, &$revid, &$revid ) );
 		}
 
-		if( $this->getTitle()->getNamespace() != NS_SPECIAL ) {
-			$wlhTitle = SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage );
+		if ( $out->isArticleRelated() ) {
 			$nav_urls['whatlinkshere'] = array(
-				'href' => $wlhTitle->getLocalUrl()
+				'href' => SpecialPage::getTitleFor( 'Whatlinkshere', $this->thispage )->getLocalUrl()
 			);
-			if( $this->getTitle()->getArticleId() ) {
-				$rclTitle = SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage );
+			if ( $this->getTitle()->getArticleId() ) {
 				$nav_urls['recentchangeslinked'] = array(
-					'href' => $rclTitle->getLocalUrl()
+					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalUrl()
 				);
-			} else {
-				$nav_urls['recentchangeslinked'] = false;
 			}
-			if( $wgUseTrackbacks )
+			if ( $wgUseTrackbacks ) {
 				$nav_urls['trackbacklink'] = array(
 					'href' => $out->getTitle()->trackbackURL()
 				);
+			}
 		}
 
 		$user = $this->getRelevantUser();
 		if ( $user ) {
-			$id = $user->getID();
-			$ip = $user->isAnon();
 			$rootUser = $user->getName();
-		} else {
-			$id = 0;
-			$ip = false;
-			$rootUser = null;
-		}
 
-		if( $id || $ip ) { # both anons and non-anons have contribs list
 			$nav_urls['contributions'] = array(
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser )
 			);
 
-			if( $id ) {
+			if ( $user->isLoggedIn() ) {
 				$logPage = SpecialPage::getTitleFor( 'Log' );
 				$nav_urls['log'] = array(
-					'href' => $logPage->getLocalUrl(
-						array(
-							'user' => $rootUser
-						)
-					)
+					'href' => $logPage->getLocalUrl( array( 'user' => $rootUser ) )
 				);
-			} else {
-				$nav_urls['log'] = false;
 			}
 
 			if ( $this->getUser()->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = array(
 					'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
 				);
-			} else {
-				$nav_urls['blockip'] = false;
 			}
-		} else {
-			$nav_urls['contributions'] = false;
-			$nav_urls['log'] = false;
-			$nav_urls['blockip'] = false;
+
+			if ( $this->showEmailUser( $user ) ) {
+				$nav_urls['emailuser'] = array(
+					'href' => self::makeSpecialUrlSubpage( 'Emailuser', $rootUser )
+				);
+			}
 		}
-		$nav_urls['emailuser'] = false;
-		if( $this->showEmailUser( $id ) ) {
-			$nav_urls['emailuser'] = array(
-				'href' => self::makeSpecialUrlSubpage( 'Emailuser', $rootUser )
-			);
-		}
+
 		wfProfileOut( __METHOD__ );
 		return $nav_urls;
 	}
@@ -1441,16 +1426,16 @@ abstract class BaseTemplate extends QuickTemplate {
 		wfProfileIn( __METHOD__ );
 
 		$toolbox = array();
-		if ( $this->data['notspecialpage'] ) {
+		if ( $this->data['nav_urls']['whatlinkshere'] ) {
 			$toolbox['whatlinkshere'] = $this->data['nav_urls']['whatlinkshere'];
 			$toolbox['whatlinkshere']['id'] = 't-whatlinkshere';
-			if ( $this->data['nav_urls']['recentchangeslinked'] ) {
-				$toolbox['recentchangeslinked'] = $this->data['nav_urls']['recentchangeslinked'];
-				$toolbox['recentchangeslinked']['msg'] = 'recentchangeslinked-toolbox';
-				$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
-			}
 		}
-		if( isset( $this->data['nav_urls']['trackbacklink'] ) && $this->data['nav_urls']['trackbacklink'] ) {
+		if ( $this->data['nav_urls']['recentchangeslinked'] ) {
+			$toolbox['recentchangeslinked'] = $this->data['nav_urls']['recentchangeslinked'];
+			$toolbox['recentchangeslinked']['msg'] = 'recentchangeslinked-toolbox';
+			$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
+		}
+		if ( $this->data['nav_urls']['trackbacklink'] ) {
 			$toolbox['trackbacklink'] = $this->data['nav_urls']['trackbacklink'];
 			$toolbox['trackbacklink']['id'] = 't-trackbacklink';
 		}
@@ -1471,7 +1456,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				$toolbox[$special]['id'] = "t-$special";
 			}
 		}
-		if ( !empty( $this->data['nav_urls']['print']['href'] ) ) {
+		if ( $this->data['nav_urls']['print'] ) {
 			$toolbox['print'] = $this->data['nav_urls']['print'];
 			$toolbox['print']['rel'] = 'alternate';
 			$toolbox['print']['msg'] = 'printableversion';

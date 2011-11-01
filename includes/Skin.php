@@ -929,7 +929,11 @@ abstract class Skin extends ContextSource {
 	}
 
 	function showEmailUser( $id ) {
-		$targetUser = User::newFromId( $id );
+		if ( $id instanceof User ) {
+			$targetUser = $id;
+		} else {
+			$targetUser = User::newFromId( $id );
+		}
 		return $this->getUser()->canSendEmail() && # the sending user must have a confirmed email address
 			$targetUser->canReceiveEmail(); # the target user must have a confirmed email address and allow emails from users
 	}
