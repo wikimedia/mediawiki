@@ -125,10 +125,10 @@ class DoubleRedirectJob extends Job {
 		global $wgUser;
 		$oldUser = $wgUser;
 		$wgUser = $this->getUser();
-		$article = new Article( $this->title );
+		$article = WikiPage::factory( $this->title );
 		$reason = wfMsgForContent( 'double-redirect-fixed-' . $this->reason,
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText() );
-		$article->doEdit( $newText, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC );
+		$article->doEdit( $newText, $reason, EDIT_UPDATE | EDIT_SUPPRESS_RC, false, $this->getUser() );
 		$wgUser = $oldUser;
 
 		return true;
