@@ -20,6 +20,11 @@
 
 class MWFunction {
 
+	/**
+	 * @param $callback
+	 * @return array
+	 * @throws MWException
+	 */
 	protected static function cleanCallback( $callback ) {
 		if( is_string( $callback ) ) {
 			if ( strpos( $callback, '::' ) !== false ) {
@@ -39,6 +44,10 @@ class MWFunction {
 		return $callback;
 	}
 
+	/**
+	 * @param $callback
+	 * @return mixed
+	 */
 	public static function call( $callback ) {
 		$callback = self::cleanCallback( $callback );
 
@@ -47,11 +56,21 @@ class MWFunction {
 		return call_user_func_array( 'call_user_func', $args );
 	}
 
+	/**
+	 * @param $callback
+	 * @param $argsarams
+	 * @return mixed
+	 */
 	public static function callArray( $callback, $argsarams ) {
 		$callback = self::cleanCallback( $callback );
 		return call_user_func_array( $callback, $argsarams );
 	}
 
+	/**
+	 * @param $class
+	 * @param $args array
+	 * @return object
+	 */
 	public static function newObj( $class, $args = array() ) {
 		if( !count( $args ) ) {
 			return new $class;
