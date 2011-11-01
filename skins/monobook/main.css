@@ -241,15 +241,6 @@ table.rimage {
 	width: 11.6em;
 	overflow: hidden;
 }
-html > body .portlet {
-	float: left;
-	clear: left;
-}
-/* recover IEMac (might be fine with the float, but usually it's close to IE */
-*>body .portlet {
-	float: none;
-	clear: none;
-}
 .portlet h4 {
 	font-size: 95%;
 	font-weight: normal;
