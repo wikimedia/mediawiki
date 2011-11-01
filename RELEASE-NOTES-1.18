@@ -656,6 +656,8 @@ changes to languages because of Bugzilla reports.
 * (bug 30817) Restored linktrail for kk (Kazakh)
 * (bug 27398) Add $wgExtraGenderNamespaces for configured gendered namespaces
 * (bug 30846) New LanguageOs class
+* (bug 31913) Special:MostLinkedTemplates had an incorrect GROUP BY clause
+  under Microsoft SQL.
 
 === Other changes in 1.18 ===
 * Removed legacy wgAjaxWatch javascript global object, no longer in use.
