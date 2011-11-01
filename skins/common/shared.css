@@ -52,17 +52,6 @@ input[dir="rtl"] {
 	direction: rtl;
 }
 
-/* The scripts of these languages are very hard to read with underlines */
-[lang="ar"] a,
-[lang="ckb"] a,
-[lang="fa"] a,
-[lang="kk-arab"] a,
-[lang="mzn"] a,
-[lang="ps"] a,
-[lang="ur"] a {
-	text-decoration: none;
-}
-
 /* Default style for semantic tags */
 abbr,
 acronym,
