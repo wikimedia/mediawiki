@@ -2509,7 +2509,10 @@ In other cases the message {{msg-mw|revertpage}} is used.',
 Example:
 <code>00:51, 16 September 2010 Siebrand +(Talk • contribs • block) moved protection settings from "User:Siebrand/prot-move" to "User:Siebrand/prot-moved" ‎ (User:Siebrand/prot-move moved to User:Siebrand/prot-moved: prot_move test.)</code>',
 'protect-title'               => 'Title for the protection form. $1 is the title of the page to be (un)protected.',
+'protect-title-notallowed'    => 'Same as {{msg-mw|protect-title}}, but when the user does not have the right to change protection levels.',
 'prot_1movedto2'              => 'Message description: [[mw:Manual:Interface/1movedto2]]',
+'protect-badnamespace-title'  => 'Title of error page when trying to access action=protect on a non-protectable namespace (currently this only for the MediaWiki: namespace).',
+'protect-badnamespace-text'   => 'Content of the error page that goes with {{msg-mw|protect-badnamespace-title}}.',
 'protect-backlink'            => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
 
 Shown as subtitle of the protection form. $1 is the title of the page to be (un)protected.',
