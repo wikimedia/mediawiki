@@ -748,7 +748,7 @@ class MagicWordArray {
 	 * Returns array(magic word ID, parameter value)
 	 * If there is no parameter value, that element will be false.
 	 *
-	 * @param $m arrray
+	 * @param $m array
 	 *
 	 * @return array
 	 */

@@ -3192,6 +3192,8 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * Get schema variables. If none have been set via setSchemaVars(), then
 	 * use some defaults from the current object.
+	 *
+	 * @return array
 	 */
 	protected function getSchemaVars() {
 		if ( $this->mSchemaVars ) {

@@ -456,6 +456,9 @@ abstract class Maintenance {
 			}
 		}
 
+		/**
+		 * @var $child Maintenance
+		 */
 		$child = new $maintClass();
 		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
 		if ( !is_null( $this->mDb ) ) {

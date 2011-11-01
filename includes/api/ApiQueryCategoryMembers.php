@@ -153,7 +153,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$endsortkey = $params['endsortkeyprefix'] !== null ?
 					Collation::singleton()->getSortkey( $params['endsortkeyprefix'] ) :
 					$params['endsortkey'];
-				
+
 				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
 				$this->addWhereRange( 'cl_sortkey',
 					$dir,

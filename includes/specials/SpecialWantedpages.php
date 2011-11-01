@@ -39,10 +39,10 @@ class WantedPagesPage extends WantedQueryPage {
 			$parts = explode( '/', $par, 2 );
 			$this->limit = (int)$parts[0];
 			// @todo FIXME: nlinks is ignored
-			$nlinks = isset( $parts[1] ) && $parts[1] === 'nlinks';
+			//$nlinks = isset( $parts[1] ) && $parts[1] === 'nlinks';
 			$this->offset = 0;
 		} else {
-			$nlinks = true;
+			//$nlinks = true;
 		}
 		$this->setListoutput( $inc );
 		$this->shownavigation = !$inc;
