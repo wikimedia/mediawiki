@@ -147,11 +147,18 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 				$this->addWhereRange( 'cl_sortkey', $dir, null, null );
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			} else {
+				$startsortkey = $params['startsortkeyprefix'] !== null ?
+					Collation::singleton()->getSortkey( $params['startsortkeyprefix'] ) :
+					$params['startsortkey'];
+				$endsortkey = $params['endsortkeyprefix'] !== null ?
+					Collation::singleton()->getSortkey( $params['endsortkeyprefix'] ) :
+					$params['endsortkey'];
+				
 				// The below produces ORDER BY cl_sortkey, cl_from, possibly with DESC added to each of them
 				$this->addWhereRange( 'cl_sortkey',
 					$dir,
-					$params['startsortkey'],
-					$params['endsortkey'] );
+					$startsortkey,
+					$endsortkey );
 				$this->addWhereRange( 'cl_from', $dir, null, null );
 			}
 			$this->addOption( 'USE INDEX', 'cl_sortkey' );
@@ -325,6 +332,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			),
 			'startsortkey' => null,
 			'endsortkey' => null,
+			'startsortkeyprefix' => null,
+			'endsortkeyprefix' => null,
 		);
 	}
 
@@ -351,6 +360,8 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'end' => "Timestamp to end listing at. Can only be used with {$p}sort=timestamp",
 			'startsortkey' => "Sortkey to start listing from. Must be given in binary format. Can only be used with {$p}sort=sortkey",
 			'endsortkey' => "Sortkey to end listing at. Must be given in binary format. Can only be used with {$p}sort=sortkey",
+			'startsortkeyprefix' => "Sortkey prefix to start listing from. Can only be used with {$p}sort=sortkey. Overrides {$p}startsortkey",
+			'endsortkeyprefix' => "Sortkey prefix to end listing BEFORE (not at, if this value occurs it will not be included!). Can only be used with {$p}sort=sortkey. Overrides {$p}endsortkey",
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
