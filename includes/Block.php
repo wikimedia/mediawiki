@@ -59,7 +59,7 @@ class Block {
 	 */
 	function __construct( $address = '', $user = 0, $by = 0, $reason = '',
 		$timestamp = 0, $auto = 0, $expiry = '', $anonOnly = 0, $createAccount = 0, $enableAutoblock = 0,
-		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0 )
+		$hideName = 0, $blockEmail = 0, $allowUsertalk = 0, $byText = '' )
 	{
 		if( $timestamp === 0 ){
 			$timestamp = wfTimestampNow();
@@ -71,7 +71,11 @@ class Block {
 		}
 
 		$this->setTarget( $address );
-		$this->setBlocker( User::newFromID( $by ) );
+		if ( $by ) { // local user
+			$this->setBlocker( User::newFromID( $by ) );
+		} else { // foreign user
+			$this->setBlocker( $byText );
+		}
 		$this->mReason = $reason;
 		$this->mTimestamp = wfTimestamp( TS_MW, $timestamp );
 		$this->mAuto = $auto;
@@ -345,7 +349,11 @@ class Block {
 	 */
 	protected function initFromRow( $row ) {
 		$this->setTarget( $row->ipb_address );
-		$this->setBlocker( User::newFromId( $row->ipb_by ) );
+		if ( $row->ipb_by ) { // local user
+			$this->setBlocker( User::newFromID( $row->ipb_by ) );
+		} else { // foreign user
+			$this->setBlocker( $row->ipb_by_text );
+		}
 
 		$this->mReason = $row->ipb_reason;
 		$this->mTimestamp = wfTimestamp( TS_MW, $row->ipb_timestamp );
@@ -470,8 +478,8 @@ class Block {
 		$a = array(
 			'ipb_address'          => (string)$this->target,
 			'ipb_user'             => $this->target instanceof User ? $this->target->getID() : 0,
-			'ipb_by'               => $this->getBlocker()->getId(),
-			'ipb_by_text'          => $this->getBlocker()->getName(),
+			'ipb_by'               => $this->getBy(),
+			'ipb_by_text'          => $this->getByName(),
 			'ipb_reason'           => $this->mReason,
 			'ipb_timestamp'        => $db->timestamp( $this->mTimestamp ),
 			'ipb_auto'             => $this->mAuto,
@@ -760,11 +768,12 @@ class Block {
 	/**
 	 * Get the user id of the blocking sysop
 	 *
-	 * @return Integer
+	 * @return Integer (0 for foreign users)
 	 */
 	public function getBy() {
-		return $this->getBlocker() instanceof User
-			? $this->getBlocker()->getId()
+		$blocker = $this->getBlocker();
+		return ( $blocker instanceof User )
+			? $blocker->getId()
 			: 0;
 	}
 
@@ -774,9 +783,10 @@ class Block {
 	 * @return String
 	 */
 	public function getByName() {
-		return $this->getBlocker() instanceof User
-			? $this->getBlocker()->getName()
-			: null;
+		$blocker = $this->getBlocker();
+		return ( $blocker instanceof User )
+			? $blocker->getName()
+			: (string)$blocker; // username
 	}
 
 	/**
@@ -926,7 +936,8 @@ class Block {
 	 */
 	public static function purgeExpired() {
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->delete( 'ipblocks', array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), __METHOD__ );
+		$dbw->delete( 'ipblocks',
+			array( 'ipb_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ), __METHOD__ );
 	}
 
 	/**
@@ -1135,7 +1146,7 @@ class Block {
 
 	/**
 	 * Get the user who implemented this block
-	 * @return User
+	 * @return User|string Local User object or string for a foreign user
 	 */
 	public function getBlocker(){
 		return $this->blocker;
@@ -1143,9 +1154,9 @@ class Block {
 
 	/**
 	 * Set the user who implemented (or will implement) this block
-	 * @param $user User
+	 * @param $user User|string Local User object or username string for foriegn users
 	 */
-	public function setBlocker( User $user ){
+	public function setBlocker( $user ){
 		$this->blocker = $user;
 	}
 }
