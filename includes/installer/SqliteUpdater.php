@@ -59,6 +59,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			array( 'addIndex', 'user',          'user_email',       'patch-user_email_index.sql' ),
 			array( 'addTable', 'uploadstash',                       'patch-uploadstash.sql' ),
 			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
+			array( 'doRebuildLocalisationCache' ),
 
 			// 1.19
 			array( 'addTable', 'config',                            'patch-config.sql' ),

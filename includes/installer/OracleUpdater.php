@@ -36,6 +36,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addIndex',	'user',          'i02',       'patch-user_email_index.sql' ),
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
 			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
+			array( 'doRebuildLocalisationCache' ),
 
 			//1.19
 			array( 'addTable', 'config', 'patch-config.sql' ),
@@ -43,7 +44,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addTable', 'globaltemplatelinks', 'patch-globaltemplatelinks.sql' ),
 			array( 'addTable', 'globalnamespaces', 'patch-globalnamespaces.sql' ),
 			array( 'addTable', 'globalinterwiki', 'patch-globalinterwiki.sql' ),
-			
+
 			// till 2.0 i guess
 			array( 'doRebuildDuplicateFunction' ),
 
