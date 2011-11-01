@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Boulaur
  * @author Cedric31
  * @author ChrisPtDe
  * @author Fryed-peach
@@ -456,7 +457,7 @@ $messages = array(
 'vector-action-move'       => 'Tornar nomenar',
 'vector-action-protect'    => 'Protegir',
 'vector-action-undelete'   => 'Restablir',
-'vector-action-unprotect'  => 'Desprotegir',
+'vector-action-unprotect'  => 'Suprimir la proteccion',
 'vector-view-create'       => 'Crear',
 'vector-view-edit'         => 'Modificar',
 'vector-view-history'      => "Veire l'istoric",
@@ -525,6 +526,7 @@ Tròp d’utilizaires cercan a accedir a aquesta pagina.
 Esperatz un moment abans d'ensajar d’accedir a aquesta pagina.
 
 $1",
+'pool-errorunknown' => 'Error desconeguda',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A prepaus de {{SITENAME}}',
@@ -725,6 +727,7 @@ Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creat
 'wrongpasswordempty'         => 'Lo senhal picat èra void. Se vos plai, ensajatz tornarmai.',
 'passwordtooshort'           => 'Vòstre senhal deu conténer al mens {{PLURAL:$1|1 caractèr|$1 caractèrs}}.',
 'password-name-match'        => 'Vòstre senhal deu èsser diferent de vòstre nom d’utilizaire.',
+'password-login-forbidden'   => "L'usatge d'aquestes nom d'utilizaire e senhal es pas autorisat",
 'mailmypassword'             => 'Mandar un senhal novèl per corrièr electronic',
 'passwordremindertitle'      => 'Senhal temporari novèl sus {{SITENAME}}',
 'passwordremindertext'       => "Qualqu'un (probablament vos, amb l'adreça IP $1) a demandat un senhal novèl
@@ -1165,11 +1168,13 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 # Diffs
 'history-title'            => 'Istoric de las versions de « $1 »',
 'difference'               => '(Diferéncias entre las versions)',
+'difference-multipage'     => '(Diferéncias entre las paginas)',
 'lineno'                   => 'Linha $1 :',
 'compareselectedversions'  => 'Comparar las versions seleccionadas',
 'showhideselectedversions' => 'Afichar/amagar las versions seleccionadas',
 'editundo'                 => 'desfar',
 'diff-multi'               => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}}) per ({{PLURAL:$2|un utilizaire pas afichada|$2 utilizaires pas afichadas}})',
+'diff-multi-manyusers'     => '({{PLURAL:$1|Una revision intermediària amagada|$1 revisions intermediàrias amagadas}}) per ({{PLURAL:$2|un utilizaire pas afichada|$2 utilizaires pas afichadas}})',
 
 # Search results
 'searchresults'                    => 'Resultats de la recèrca',
@@ -1354,7 +1359,13 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'prefs-advancedsearchoptions'   => 'Opcions avançadas',
 'prefs-advancedwatchlist'       => 'Opcions avançadas',
 'prefs-displayrc'               => "Opcions d'afichatge",
+'prefs-displaysearchoptions'    => "Opcions d'afichatge",
+'prefs-displaywatchlist'        => "Opcions d'afichatge",
 'prefs-diffs'                   => 'Diferéncias',
+
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => "L'adreça electronica sembla bona",
+'email-address-validity-invalid' => 'entrar una adreça electronica valida',
 
 # User rights
 'userrights'                   => "Gestion dels dreches d'utilizaire",
@@ -1677,6 +1688,7 @@ PICT # misc.
 'upload-success-msg'          => 'Çò mandat es disponible aicí : [[:{{ns:file}}:$1]]',
 'upload-failure-subj'         => 'Problèma de mandadís',
 'upload-failure-msg'          => 'I a agut un problèma amb vòstre mandadís :$1',
+'upload-warning-subj'         => 'Avertiment al moment del telecargament',
 
 'upload-proto-error'        => 'Protocòl incorrècte',
 'upload-proto-error-text'   => "L’impòrt requerís d'URLs començant per <code>http://</code> o <code>ftp://</code>.",
@@ -1738,6 +1750,7 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'listfiles_search_for'  => 'Recèrca del mèdia nomenat :',
 'imgfile'               => 'fichièr',
 'listfiles'             => 'Lista dels imatges',
+'listfiles_thumb'       => 'Apercebut',
 'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Nom',
 'listfiles_user'        => 'Utilizaire',
@@ -1887,6 +1900,8 @@ Las entradas <del>barradas</del> son estadas resolgudas.',
 'nmembers'                => '$1 {{PLURAL:$1|membre|membres}}',
 'nrevisions'              => '$1 {{PLURAL:$1|revision|revisions}}',
 'nviews'                  => '$1 {{PLURAL:$1|consultacion|consultacions}}',
+'nimagelinks'             => 'Utilisat sus $1 {{PLURAL:$1|pagina|paginas}}',
+'ntransclusions'          => 'Utilisat sus $1 {{PLURAL:$1|pagina|paginas}}',
 'specialpage-empty'       => 'Aquesta pagina es voida.',
 'lonelypages'             => 'Paginas orfanèlas',
 'lonelypagestext'         => 'Las paginas seguentas son pas ligadas o enclusas a partir d’autras paginas de {{SITENAME}}.',
@@ -3345,6 +3360,7 @@ Ensajatz la previsualizacion normala.',
 'version-specialpages'             => 'Paginas especialas',
 'version-parserhooks'              => 'Extensions del parser',
 'version-variables'                => 'Variablas',
+'version-skins'                    => 'Abilhatges',
 'version-other'                    => 'Divèrs',
 'version-mediahandlers'            => 'Supòrts mèdia',
 'version-hooks'                    => 'Croquets',
@@ -3356,6 +3372,7 @@ Ensajatz la previsualizacion normala.',
 'version-hook-subscribedby'        => 'Definit per',
 'version-version'                  => '(Version $1)',
 'version-license'                  => 'Licéncia',
+'version-poweredby-others'         => 'autres',
 'version-software'                 => 'Logicial installat',
 'version-software-product'         => 'Produch',
 'version-software-version'         => 'Version',
@@ -3424,6 +3441,10 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'tags-hitcount-header'    => 'Modificacions balisadas',
 'tags-edit'               => 'modificar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
+
+# Special:ComparePages
+'compare-page1' => 'Pagina 1',
+'compare-page2' => 'Pagina 2',
 
 # Database error messages
 'dberr-header'      => 'Aqueste wiki a un problèma',

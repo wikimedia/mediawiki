@@ -1556,18 +1556,25 @@ Saméméh ngahapus, pariksa heula bisi aya tumbu ka ieu citakan.',
 'randomredirect-nopages' => 'Euweuh alihan dina ieu spasi ngaran "$1".',
 
 # Statistics
-'statistics'              => 'Statistik',
-'statistics-header-pages' => 'Statistik kaca',
-'statistics-header-edits' => 'Statistik éditan',
-'statistics-header-views' => 'Statistik pidangan',
-'statistics-header-users' => 'Statistik pamaké',
-'statistics-header-hooks' => 'Statistika lianna',
-'statistics-articles'     => 'Halaman eusi',
-'statistics-pages'        => 'Kaca',
-'statistics-pages-desc'   => 'Sakabéh kaca di ieu wiki, kaasup kaca obrolan, alihan, jeung nu lianna.',
-'statistics-files'        => 'Koropak nu geus dimuat',
-'statistics-users-active' => 'Pamaké getol',
-'statistics-mostpopular'  => 'Kaca nu pangmindengna dibuka',
+'statistics'                   => 'Statistik',
+'statistics-header-pages'      => 'Statistik kaca',
+'statistics-header-edits'      => 'Statistik éditan',
+'statistics-header-views'      => 'Statistik pidangan',
+'statistics-header-users'      => 'Statistik pamaké',
+'statistics-header-hooks'      => 'Statistika lianna',
+'statistics-articles'          => 'Halaman eusi',
+'statistics-pages'             => 'Kaca',
+'statistics-pages-desc'        => 'Sakabéh kaca di ieu wiki, kaasup kaca obrolan, alihan, jeung nu lianna.',
+'statistics-files'             => 'Koropak nu geus dimuat',
+'statistics-edits'             => 'Ëditan kaca ti saprak {{SITENAME}} mimiti dibuka',
+'statistics-edits-average'     => 'Rata-rata éditan unggal kaca',
+'statistics-views-total'       => 'Lobana dibuka',
+'statistics-views-total-desc'  => 'Muka kaca nu can aya jeung kaca husus teu diitung',
+'statistics-views-peredit'     => 'Muka unggal édit',
+'statistics-users'             => '[[Special:ListUsers|Kontributor]] kadaptar',
+'statistics-users-active'      => 'Pamaké getol',
+'statistics-users-active-desc' => 'Kontributor nu ngoprék salila {{PLURAL:$1|poé|$1 poé}} panungtung',
+'statistics-mostpopular'       => 'Kaca nu pangmindengna dibuka',
 
 'disambiguations'      => 'Kaca disambiguasi',
 'disambiguationspage'  => 'Template:disambig',
@@ -1576,8 +1583,9 @@ Kaca eta sakuduna numbu ka topik-topik anu luyu.<br />
 Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun citakan anu nyambung ka [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Alihan ganda',
-'doubleredirectstext'        => 'Unggal baris ngandung tumbu ka pangalihan kahiji jeung kadua, kitu ogé téks dina baris kahiji pangalihan kadua, nu biasana méré kaca tujuan nu bener, nu sakuduna ditujul dina pangalihan kahiji.',
+'doubleredirectstext'        => 'Ieu kaca ngabéréndélkeun kaca-kaca alihan ka kaca alihan lianna. Unggal baris ngandung tutumbu ka alihan kahiji jeung kadua, ogé tujul alihan kadua anu biasana tujul kaca anu "bener", anu sakuduna dituju ku alihan kahiji. Ëntri nu <del>dicorét</del> geus diropéa.',
 'double-redirect-fixed-move' => '[[$1]] geus pindah, dialihkeun ka [[$2]].',
+'double-redirect-fixer'      => 'Pangomé alihan',
 
 'brokenredirects'        => 'Alihan buntu',
 'brokenredirectstext'    => 'Alihan di handap numbu ka kaca nu teu aya:',
@@ -1633,6 +1641,7 @@ Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun c
 'protectedtitlestext'     => 'Judul-judul di handap ieu teu bisa dijieun:',
 'protectedtitlesempty'    => 'Dina danget ieu, euweuh judul nu keur dikonci tina paraméter-paraméter éta.',
 'listusers'               => 'Daptar pamaké',
+'listusers-editsonly'     => 'Témbongkeun ukur kontributor anu ngédit',
 'listusers-creationsort'  => 'Éntépkeun dumasar titimangsa dijieun',
 'usereditcount'           => '$1 {{PLURAL:$1|édit|édit}}',
 'usercreated'             => 'Dijieun ping $1 jam $2',
@@ -1641,7 +1650,8 @@ Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun c
 'ancientpages'            => 'Kaca pangheubeulna',
 'move'                    => 'Pindahkeun',
 'movethispage'            => 'Pindahkeun kaca ieu',
-'unusedimagestext'        => 'Perhatikeun yén jalaloka séjén bisa numbukeun ka hiji gambar ku URL langsung, sahingga masih didaptarkeun di dieu najan sabenerna dipaké.',
+'unusedimagestext'        => '!Berkas-berkas di handap aya tapi taya nu maké.
+Najan kitu, inget yén raramat loka séjén bisa numbu ka berkas maké URL langsung.',
 'unusedcategoriestext'    => 'Kaca kategori di handap ieu aya, tapi taya artikel nu diasupkeun kana kategori ieu.',
 'notargettitle'           => 'Taya tujuleun',
 'notargettext'            => 'Anjeun can nangtukeun hiji targét atawa pamaké pikeun migawé sangkan fungsi ieu jalan.',
@@ -1687,11 +1697,12 @@ Bisa dipondokkeun ku cara milih tipe log, ngaran pamaké, atawa kaca nu dimaksud
 
 # Special:Categories
 'categories'                    => 'Kategori',
-'categoriespagetext'            => 'Kategori-kategori di handap ieu ngandung kaca & média.
-[[Special:UnusedCategories|Kategori nu teu kapaké]] henteu ditémbongkeun.
+'categoriespagetext'            => '{{PLURAL:$1|Kategori|Kategori}} ngandung kaca atawa média.
+[[Special:UnusedCategories|Kategori nu teu kapaké]] henteu ditémbongkeun di dieu.
 Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'categoriesfrom'                => 'Tembongkeun kategori-kategori dimimitian ku:',
 'special-categories-sort-count' => 'ngurut numutkeun jumlah',
+'special-categories-sort-abc'   => 'runtuykeun dumasar abjad',
 
 # Special:DeletedContributions
 'deletedcontributions'             => 'Kontribusi nu dihapus',
@@ -1708,15 +1719,19 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'linksearch-error' => "''Wildcard'' ngan bisa némbongan dina awal ngaran indung (''host'').",
 
 # Special:ListUsers
-'listusersfrom'      => 'Témbongkeun pamaké nu dimimitian ku',
+'listusersfrom'      => 'Témbongkeun kontributor dimimitian ku:',
 'listusers-submit'   => 'Témbongkeun',
 'listusers-noresult' => 'Teu kapendak.',
 'listusers-blocked'  => '(diblokir)',
 
 # Special:ActiveUsers
 'activeusers'            => 'Béréndélan pamaké nu getol',
+'activeusers-intro'      => 'Ieu béréndélan kontributor anu geus ngoprék $1 {{PLURAL:$1|poé|poé}} panungtung.',
+'activeusers-count'      => '$1 {{PLURAL:$1|édit|édit}}an salila {{PLURAL:$3|poé|$3 poé}} panungtung',
+'activeusers-from'       => 'Témbongkeun kontributor dimimitian ku:',
 'activeusers-hidebots'   => 'Sumputkeun bot',
 'activeusers-hidesysops' => 'Sumputkeun kuncén',
+'activeusers-noresult'   => 'Teu kapendak.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Log akun anyar',
@@ -1727,36 +1742,48 @@ Baca ogé [[Special:WantedCategories|kategori nu dipikabutuh]].',
 'newuserlog-autocreate-entry' => 'rekening pamaké dijieun sacara otomatis',
 
 # Special:ListGroupRights
-'listgrouprights'          => 'Hak-hak grup pamaké',
-'listgrouprights-summary'  => 'Ieu mangrupa daptar jumplukan pamaké anu aya di wiki ieu, kalawan daptar hak aksés maranéhanana.
+'listgrouprights'                      => 'Hak-hak grup pamaké',
+'listgrouprights-summary'              => 'Ieu mangrupa daptar jumplukan pamaké anu aya di wiki ieu, kalawan daptar hak aksés maranéhanana.
 Émbaran leuwih luyu ngeunaan hak pamaké bisa ditingali di [[{{MediaWiki:Listgrouprights-helppage}}|dieu]].',
-'listgrouprights-group'    => 'Jumplukan',
-'listgrouprights-rights'   => 'Hak',
-'listgrouprights-helppage' => 'Help:Hak Jumplukan',
-'listgrouprights-members'  => '(daptar anggota)',
-'listgrouprights-addgroup' => 'Tambahan {{PLURAL:$2|grup|grup}}: $1',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Hak anu dipimilik</span>
+* <span class="listgrouprights-revoked">Hak anu dicabut</span>',
+'listgrouprights-group'                => 'Jumplukan',
+'listgrouprights-rights'               => 'Hak',
+'listgrouprights-helppage'             => 'Help:Hak Jumplukan',
+'listgrouprights-members'              => '(daptar anggota)',
+'listgrouprights-addgroup'             => 'Tambahan {{PLURAL:$2|grup|grup}}: $1',
+'listgrouprights-removegroup'          => 'Piceun {{PLURAL:$2|grup|grup}}: $1',
+'listgrouprights-addgroup-all'         => 'Tambahkeun sakabéh grup',
+'listgrouprights-removegroup-all'      => 'Piceun sakabéh grup',
+'listgrouprights-addgroup-self'        => 'Tambahkeun {{PLURAL:$2|grup|grup}} ka akun sorangan: $1',
+'listgrouprights-removegroup-self'     => 'Piceun {{PLURAL:$2|grup|grups}} ti akun sorangan: $1',
+'listgrouprights-addgroup-self-all'    => 'Tambahkeun sakabéh grup ka akun sorangan',
+'listgrouprights-removegroup-self-all' => 'Piceun sakabéh grup ti akun sorangan',
 
 # E-mail user
-'mailnologin'     => 'Euweuh alamat ngirim',
-'mailnologintext' => "Anjeun kudu '''[[Special:UserLogin|asup log]]''' sarta boga alamat surélék nu sah na [[Special:Preferences|préferénsi]] anjeun sangkan bisa nyurélékan pamaké séjén.",
-'emailuser'       => 'Surélékan pamaké ieu',
-'emailpage'       => 'Surélékan pamaké',
-'emailpagetext'   => 'Anjeun bisa maké formulir di handap pikeun ngirim surélék ka ieu pamaké.
+'mailnologin'          => 'Euweuh alamat ngirim',
+'mailnologintext'      => "Anjeun kudu '''[[Special:UserLogin|asup log]]''' sarta boga alamat surélék nu sah na [[Special:Preferences|préferénsi]] anjeun sangkan bisa nyurélékan pamaké séjén.",
+'emailuser'            => 'Surélékan pamaké ieu',
+'emailpage'            => 'Surélékan pamaké',
+'emailpagetext'        => 'Anjeun bisa maké formulir di handap pikeun ngirim surélék ka ieu pamaké.
 Alamat surélék nu diasupkeun kana [[Special:Preferences|préferénsi pamaké anjeun]] bakal katémbong salaku alamat "Ti" dina surélékna, sahingga nu dituju bisa males langsung.',
-'defemailsubject' => 'Surélék {{SITENAME}}',
-'noemailtitle'    => 'Teu aya alamat surélék',
-'noemailtext'     => 'Ieu pamaké ieu teu méré alamat surélék nu sah.',
-'email-legend'    => 'Kirim surélék ka kontributor {{SITENAME}} lianna',
-'emailfrom'       => 'Ti:',
-'emailto'         => 'Ka:',
-'emailsubject'    => 'Ngeunaan:',
-'emailmessage'    => 'Surat:',
-'emailsend'       => 'Kirim',
-'emailccme'       => 'Tembuskeun surat kuring kana surélék.',
-'emailccsubject'  => 'Tembusan surat anjeun keur $1: $2',
-'emailsent'       => 'Surélék geus dikirim',
-'emailsenttext'   => 'Surélék anjeun geus dikirim.',
-'emailuserfooter' => 'Ieu surélék dikirim ku $1 ka $2 migunakeun fungsi "Surélékan pamaké ieu" di {{SITENAME}}.',
+'defemailsubject'      => 'Surélék {{SITENAME}}',
+'usermaildisabled'     => 'Surélék kontributor ditumpurkeun',
+'usermaildisabledtext' => 'Anjeun teu bisa ngirim surélék ka kontributor séjén di ieu wiki',
+'noemailtitle'         => 'Teu aya alamat surélék',
+'noemailtext'          => 'Ieu pamaké ieu teu méré alamat surélék nu sah.',
+'nowikiemailtext'      => 'Ieu kontributor milih teu nampa surélék ti kontributor séjén.',
+'email-legend'         => 'Kirim surélék ka kontributor {{SITENAME}} lianna',
+'emailfrom'            => 'Ti:',
+'emailto'              => 'Ka:',
+'emailsubject'         => 'Ngeunaan:',
+'emailmessage'         => 'Surat:',
+'emailsend'            => 'Kirim',
+'emailccme'            => 'Tembuskeun surat kuring kana surélék.',
+'emailccsubject'       => 'Tembusan surat anjeun keur $1: $2',
+'emailsent'            => 'Surélék geus dikirim',
+'emailsenttext'        => 'Surélék anjeun geus dikirim.',
+'emailuserfooter'      => 'Ieu surélék dikirim ku $1 ka $2 migunakeun fungsi "Surélékan pamaké ieu" di {{SITENAME}}.',
 
 # Watchlist
 'watchlist'            => 'Awaskeuneun',

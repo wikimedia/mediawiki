@@ -1060,27 +1060,27 @@ De deur $3 op-egeven reden is ''$2''",
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].",
 'rev-deleted-text-unhide'     => "Disse bewarking is '''vortedaon'''.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].
-As beheerder ku'j [$1 disse versie bekieken] a'j willen.",
+Je kunnen [$1 disse versie bekieken] a'j willen.",
 'rev-suppressed-text-unhide'  => "Disse bewarking is '''onderdrokt'''.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek mit onderdrokten informasie].
-As beheerder ku'j [$1 disse versie bekieken] a'j willen.",
+Je kunnen [$1 disse versie bekieken] a'j willen.",
 'rev-deleted-text-view'       => "Disse bewarking is '''vortedaon'''.
-As beheerder van disse wiki ku'j t wel zien; as der meer informasie is, ku'j dat vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
+Je kunnnen t bekieken; as der meer informasie is, ku'j dat vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
 'rev-suppressed-text-view'    => "Disse bewarking is '''onderdrok'''.
-As beheerder van disse wiki ku'j t wel zien; as der meer informasie is, ku'j dat vienen in t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokten versies].",
+Je kunnen t bekieken; as der meer informasie is, ku'j dat vienen in t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokten versies].",
 'rev-deleted-no-diff'         => "Je kunnen de verschillen niet bekieken umdat één van de versies '''vortedaon''' is.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].",
 'rev-suppressed-no-diff'      => "Je kunnen de verschillen niet bekieken umdat één van de versies '''vortedaon''' is.",
 'rev-deleted-unhide-diff'     => "Eén van de bewarkingen in disse vergeliekingen is '''vortedaon'''.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} vortdologboek].
-As beheerder ku'j [$1 de verschillen bekieken] a'j willen.",
+Je kunnen [$1 de verschillen bekieken] a'j willen.",
 'rev-suppressed-unhide-diff'  => "Eén van de bewarkingen in disse vergeliekingen is '''vortedaon'''.
 As der meer informasie is, ku'j t vienen in t [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek mit onderdrokten informasie].
-As beheerder ku'j [$1 de verschillen bekieken] a'j willen.",
+Je kunnen [$1 de verschillen bekieken] a'j willen.",
 'rev-deleted-diff-view'       => "Eén van de bewarkingen veur de verschillen die'j op-evreugen hebben, is '''vortedaon'''.
-As beheerder ku'j disse verschillen bekieken. Misschien steet der meer over in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
+Je kunnen disse verschillen bekieken. Misschien steet der meer over in t [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} vortdologboek].",
 'rev-suppressed-diff-view'    => "Eén van de bewarkingen veur de verschillen die'j op-evreugen hebben, is '''onderdrokt'''.
-As beheerder ku'j disse verschillen bekieken. Misschien steet der over in t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokten versies].",
+Je kunnen disse verschillen bekieken. Misschien steet der over in t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek mit onderdrokten versies].",
 'rev-delundel'                => 'bekiek/verbarg',
 'rev-showdeleted'             => 'bekiek',
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
@@ -1354,7 +1354,7 @@ Disse haandeling kan niet ongedaonemaakt wörden.',
 'prefs-registration'            => 'Registrasiedaotum:',
 'yourrealname'                  => 'Echte naam (niet verplicht)',
 'yourlanguage'                  => 'Taal veur systeemteksten',
-'yourvariant'                   => 'Gewunste taal:',
+'yourvariant'                   => 'Taalvariaant veur inhoud:',
 'yournick'                      => 'Alias veur ondertekeningen',
 'prefs-help-signature'          => 'Reaksies op de overlegpagina\'s mutten ondertekend wörden mit "<nowiki>~~~~</nowiki>", dit wörden dan ummezet in joew ondertekening mit daorbie de daotum en tied van de bewarking.',
 'badsig'                        => 'Ongeldige haandtekening; HTML naokieken.',
@@ -1792,7 +1792,7 @@ As disse pagina efilterd wörden op gebruker, zie'j allinnig bestaanden waor de 
 'filehist-filesize'         => 'Bestaandsgrootte',
 'filehist-comment'          => 'Opmarkingen',
 'filehist-missing'          => 'Bestaand ontbreekt',
-'imagelinks'                => 'Verwiezingen naor dit bestaand',
+'imagelinks'                => 'Bestaandsgebruuk',
 'linkstoimage'              => "Dit bestaand wörden gebruukt op de volgende {{PLURAL:$1|pagina|$1 pagina's}}:",
 'linkstoimage-more'         => 'Der {{PLURAL:$2|is|bin}} meer as $1 {{PLURAL:$1|verwiezing|verwiezingen}} naor dit bestaand.
 De volgende lieste geef allinnig de eerste {{PLURAL:$1|verwiezing|$1 verwiezingen}} naor dit bestaand weer.
@@ -3396,9 +3396,9 @@ Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de
 'filepath'         => 'Bestaandslokasie',
 'filepath-page'    => 'Bestaand:',
 'filepath-submit'  => 'Zeuken',
-'filepath-summary' => 'Disse spesiale pagina geef t hele pad veur n bestaand. Aofbeeldingen wörden in resolusie helemaole weeregeven. Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma los edaon.
-
-Voer de bestaandsnaam in zonder t veurvoegsel "{{ns:file}}:".',
+'filepath-summary' => 'Disse spesiale pagina geef t hele pad veur n bestaand. 
+Aofbeeldingen wörden in resolusie helemaole weeregeven. 
+Aandere bestaandstypen wörden gelieke in t mit t MIME-type verbunnen programma opend.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Dubbele bestaanden zeuken',

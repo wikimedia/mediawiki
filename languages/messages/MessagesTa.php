@@ -9,6 +9,8 @@
  *
  * @author Kanags
  * @author Karthi.dr
+ * @author Krishnaprasaths
+ * @author Logicwiki
  * @author Mahir78
  * @author Mayooranathan
  * @author Naveen
@@ -98,7 +100,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'பக்கங்களுக்கான சிறு தொகுப்புக்கள் குறித்தும் எனக்கு மின்னஞ்சல் செய்யவும்',
 'tog-enotifrevealaddr'        => 'அறிவித்தல் மின்னஞ்சல்களில் எனது மின்னஞ்சல் முகவரியை வெளிப்படுத்து',
 'tog-shownumberswatching'     => 'கவனிக்கும் பயனர்களின் எண்ணிக்கையைக் காட்டவும்',
-'tog-oldsig'                  => 'நடப்பு கையொப்பத்தின் முன்தோற்றம்:',
+'tog-oldsig'                  => 'நடப்பு கையொப்பம்:',
 'tog-fancysig'                => 'வெற்றுக் கையொப்பம் (தானியங்கி இணைப்பின்றி)',
 'tog-externaleditor'          => 'இயல்பிருப்பாக வெளி தொகுப்பு மென்பொருளைப் பயன்படுத்து (இது நிபுணர்களுக்கு மட்டும், உங்கள் கணினியில் சிறப்பு அமைப்புகள் தேவைப்படும்)',
 'tog-externaldiff'            => 'வெளி வேறுபாட்டை இயல்பிருப்பாக பயன்படுத்து (இது நிபுணர்களுக்கு மட்டும், உங்கள் கணினியில் சிறப்பு அமைப்புகள் தேவைப்படும்)',
@@ -1073,6 +1075,10 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'prefs-displaywatchlist'        => 'விருப்பத்தேர்வுகளைக் காட்டு',
 'prefs-diffs'                   => 'வித்தியாசங்கள்',
 
+# User preference: e-mail validation using jQuery
+'email-address-validity-valid'   => 'மின்னஞ்சல் முகவரி முறையானதாகத் தோன்றுகிறது',
+'email-address-validity-invalid' => 'முறையான மின்னஞ்சல் முகவரியை உள்ளிடுக',
+
 # User rights
 'userrights'                   => 'பயனர் அனுமதி முகாமைத்துவம்',
 'userrights-lookup-user'       => 'பயனர்க் குழுக்களைப் பராமரி',
@@ -1351,6 +1357,10 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 # img_auth script messages
 'img-auth-accessdenied' => 'அனுமதி மறுக்கப்பட்டது',
 
+# HTTP errors
+'http-invalid-url' => 'செல்லாத உரலி: $1',
+'http-curl-error'  => '$1 உரலியை பெறுவதில் பிழை நேரிட்டது',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'இணைய முகவரியை அடைய முடியவில்லை',
 'upload-curl-error6-text'  => 'கொடுக்கப்பட்ட யூ.ஆர்.எல்.லை அடைய முடியவில்லை. அருள் கூர்ந்து யூ.ஆர்.எல்.லை இரு முறை சரிபார்த்து தளம் செயற்படுகிறாதா என்பதையும் உறுதிப்படுத்தவும்.',
@@ -1432,6 +1442,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 ** காப்புரிமை மீறப்பட்டமை
 ** இன்னொரு படிமம் உள்ளது',
 'filedelete-edit-reasonlist'  => 'நீக்கல் காரணங்களைத் தொகு',
+'filedelete-maintenance'      => 'கோப்புகள் நீக்கம் மற்றும் மீட்பு ஆகியவை பராமரிப்பின் பொழுது தற்காலிகமாக முடக்கப்பட்டுள்ளது.',
 
 # MIME search
 'mimesearch'         => 'பலநோக்கு இணைய அஞ்சல் நீட்சித் தேடல்',
@@ -1604,6 +1615,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 
 # Special:LinkSearch
 'linksearch'      => 'வெளி இணைப்புகள்',
+'linksearch-pat'  => 'தேடல் அமைப்பு:',
 'linksearch-ns'   => 'பெயர்வெளி:',
 'linksearch-ok'   => 'தேடுக',
 'linksearch-line' => '$1-ஆனது $2-லிருந்து இணைக்கப்பட்டுள்ளது',
@@ -1623,6 +1635,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 
 # Special:Log/newusers
 'newuserlogpage'              => 'பயனர் உருவாக்கம் பற்றிய குறிப்பு',
+'newuserlogpagetext'          => 'இது பயனர் படைப்புகளின் பதிவு ஆகும்.',
 'newuserlog-byemail'          => 'மின்னஞ்சல் மூலம் கடவுச்சொல் அனுப்பப்பட்டுவிட்டது',
 'newuserlog-create-entry'     => 'புதிய பயனர் கணக்கு',
 'newuserlog-create2-entry'    => '$1-என்ற புதிய கணக்குத் தொடங்கப்பட்டுவிட்டது',
@@ -1649,6 +1662,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'defemailsubject' => '{{SITENAME}} மின்னஞ்சல்',
 'noemailtitle'    => 'மின்னஞ்சல் முகவரி இல்லை',
 'noemailtext'     => 'இப் பயனர் ஒரு செல்லுபடியாகக்கூடிய மின்னஞ்சல் முகவரியைக் குறிப்பிடவில்லை.',
+'email-legend'    => 'மற்றொரு {{SITENAME}} பயனருக்கு ஒரு மின்னஞ்சல் அனுப்பு',
 'emailfrom'       => 'அனுப்புநர்:',
 'emailto'         => 'பெறுநர்:',
 'emailsubject'    => 'பொருள்:',
@@ -1894,6 +1908,8 @@ $1',
 'sp-contributions-newbies-sub' => 'புதிய கணக்குகளுக்கு',
 'sp-contributions-blocklog'    => 'தடைப் பதிகை',
 'sp-contributions-deleted'     => 'பயனரின நீக்கப்பட்ட பங்களிப்புக்கள்',
+'sp-contributions-uploads'     => 'பதிவேற்றங்கள்',
+'sp-contributions-logs'        => 'பதிகைகள்',
 'sp-contributions-talk'        => 'உரையாடல்',
 'sp-contributions-userrights'  => 'பயனர் அனுமதி முகாமைத்துவம்',
 'sp-contributions-search'      => 'பங்களிப்புகளைத் தேடு',
@@ -1954,6 +1970,7 @@ $1',
 'ipb-unblock-addr'            => '$1 இன் தடையை நீக்கு',
 'ipb-unblock'                 => 'ஐ.பி. அல்லது பயனருக்கான தடையை நீக்கு',
 'ipb-blocklist'               => 'தற்போதுள்ள தடுப்புகளைப் பார்',
+'ipb-blocklist-contribs'      => '$1 யின் பங்களிப்புகள்',
 'unblockip'                   => 'பயனர் தடையை நீக்கு',
 'unblockiptext'               => 'முன்னர் தடுக்கப்பட்ட ஐ.பி. முகவரி அல்லது பயனர்பெயரின் எழுத்து அணுக்கத்தை மீழ்விப்பதற்கு கீழேயுள்ள படிவத்தை பயன்படுத்தவும்.',
 'ipusubmit'                   => 'இந்தத் தடையை நீக்கு',
@@ -2109,6 +2126,7 @@ $1',
 எல்லா விக்கியிடை இறக்குமதிகளும் [[Special:Log/import|இறக்குமதிப் பதிகையில்]] பதியப்படும்.',
 'import-interwiki-source'    => 'மூல விக்கி/பக்கம்:',
 'import-interwiki-history'   => 'இப்பக்கத்தின் அனைத்து வரலாற்றுப் பதிப்புகளையும் நகலெடு',
+'import-interwiki-templates' => 'அனைத்து வார்ப்புருக்களையும் சேர்',
 'import-interwiki-submit'    => 'இறக்கு',
 'import-interwiki-namespace' => 'பின்வரும் பெயர்வெளிக்கு மாற்று:',
 'import-upload-filename'     => 'கோப்புப்பெயர்:',
@@ -2206,6 +2224,7 @@ $1',
 'tooltip-upload'                  => 'பதிவேற்றத்தை தொடங்கு',
 'tooltip-rollback'                => '"முன்பிருந்த நிலைக்குக் கொண்டுவருதல்" என்பது தொகுப்புக்கள் அனைத்தையும் பழையபடி இப்பக்கத்தில் கடைசி பயனர் தொகுத்த நிலைக்கு ஒரே ஒரு சொடுக்கில் கொண்டுவரும்.',
 'tooltip-undo'                    => '"பின்வாங்கு" என்பது முன்பு செய்த தொகுப்புக்களை இல்லாது செய்கிறது. மேலும் தாங்கள் செய்த தொகுப்பினை முன்தோற்ற நிலைக்கு கொண்டுவந்து காட்டும். அது தங்களுக்குச் சிறுகுறிப்புப் பகுதியில் அதற்கான காரணத்தைக் கூற அனுமதிக்கிறது.',
+'tooltip-preferences-save'        => 'விருப்பங்களை சேமி',
 
 # Metadata
 'notacceptable' => 'உங்களது சேவையாளர் வாசிக்க கூடிய விதத்தில் இந்த விக்கியால தரவுகளை வழங்க முடியாது.',
@@ -2269,10 +2288,11 @@ $1',
 'markedaspatrollederror-noautopatrol' => 'உமது மாற்றங்களை நீரே ரோந்திட்டதாக குறிக்க அனுமதி கிடையாது.',
 
 # Patrol log
-'patrol-log-page' => 'ரோந்துப் பதிகை',
-'patrol-log-line' => '$1 பக்கத்தின் $2 திருத்தத்தை ரோந்திடப்பட்டதாகக் குறித்தார் $3',
-'patrol-log-auto' => '(தன்னிச்சையாக)',
-'patrol-log-diff' => 'திருத்தம் $1',
+'patrol-log-page'      => 'ரோந்துப் பதிகை',
+'patrol-log-line'      => '$1 பக்கத்தின் $2 திருத்தத்தை ரோந்திடப்பட்டதாகக் குறித்தார் $3',
+'patrol-log-auto'      => '(தன்னிச்சையாக)',
+'patrol-log-diff'      => 'திருத்தம் $1',
+'log-show-hide-patrol' => '$1 ரோந்து குறிப்பேடு',
 
 # Image deletion
 'deletedrevision'                 => 'பழைய திருத்தம் $1 நீக்கப்பட்டது',

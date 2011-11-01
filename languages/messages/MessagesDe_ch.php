@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Ianusius
  * @author Kghbln
  * @author MichaelFrey
  * @author SVG
@@ -18,7 +19,7 @@ $separatorTransformTable = array( ',' => "'", '.' => ',' );
 
 $messages = array(
 # General errors
-'actionthrottledtext' => 'Im Rahmen einer Anti-Spam-Massnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
+'actionthrottledtext' => 'Im Rahmen einer Anti-Spam-Massnahme oder aufgrund eines Missbrauchsfilters kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
 Bitte versuche es in ein paar Minuten erneut.',
 
 # Login and logout pages

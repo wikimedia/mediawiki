@@ -2816,9 +2816,8 @@ Kanol i [[Special:Watchlist/edit|gebön redakametodi kösömik]].',
 'filepath'         => 'Ragivaluveg',
 'filepath-page'    => 'Ragiv:',
 'filepath-submit'  => 'Gololöd',
-'filepath-summary' => 'Pad patik at tuvon luvegi lölöfik ragiva. Magods pajonons ma fomät gudikün, ragivasots votik pamaifükons stedöfo kobü programs onsik.
-
-Penolös ragivanemi nen foyümot: „{{ns:file}}:“',
+'filepath-summary' => 'Pad patik at tuvon luvegi lölöfik ragiva.
+Magods pajonons ma fomät gudikün, ragivasots votik pamaifükons stedöfo kobü programs onsik.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Sukön ragivis petelüköl',

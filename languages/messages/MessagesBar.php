@@ -51,7 +51,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Aa ba kloane Änderrungen voh beówochterde Seiten a E-Mail schicker',
 'tog-enotifrevealaddr'        => 'Deih E-Mail-Adress in Benoochrichtigungs-E-Mails åzoang',
 'tog-shownumberswatching'     => "D' Åzoi voh dé beówochterden Benutzer åzoang",
-'tog-oldsig'                  => 'Vurschau voh da aktuön Unterschrift:',
+'tog-oldsig'                  => 'Existente Unterschrift',
 'tog-fancysig'                => 'Unterschrift ois Wikitext bhåndln (óne autómaatische Valinkung)',
 'tog-externaleditor'          => "An externen Editor ois Standard bnutzen (netter fyr Experten, braucht spezielle Eihstellungen auf'm eigernen Computer)",
 'tog-externaldiff'            => "A externs Programm fyr Versionsunterschiad ois Standard bnutzen (netter fyr Experten, dafordert spezielle Eihstellungen auf'm eiganen Computer)",
@@ -399,7 +399,16 @@ Bittscheh vasuachs in a por Minunten nuamoi.',
 Änderrungen auf derer Seiten wirken sé auf d' Benutzerówerflächen aus.
 Ziag bittscheh im Foi voh Ywersétzungen in Betrocht, dé bei [http://translatewiki.net/wiki/Main_Page?setlang=de translatewiki.net], da Lókaalisiarungsblottform fyr MediaWiki, durchzfyrn.",
 'sqlhidden'            => '(SQL-Obfrog vastéckt)',
+'cascadeprotected'     => "Dé Seiten is zua da Beorweitung gsperrd worn. Sie is in d' {{PLURAL:$1|fóigande Seiten|fóiganden Seiten}} eihbunden, dé mid da Kaskaadensperrópzión gschytzd {{PLURAL:$1|is|san}}:
+$2",
+'namespaceprotected'   => "Du host néd d' daforderliche Berechtigung, Seiten im Náumensraum '''$1''' b'orweiden z' kenner.",
+'ns-specialprotected'  => "Speziaalseiten kennern néd b'orweidt wern.",
 'titleprotected'       => "A Seiten mid dém Nåm kå néd åglégd wern. Dé Sperrn is durch [[User:$1|$1]] mid da Begryndung ''„$2“'' eihgerichtt worn.",
+
+# Virus scanner
+'virus-badscanner'     => "Feelerhofte Kónfigurazión: unbekaunnter Virnscanner: ''$1''",
+'virus-scanfailed'     => 'Scan is föögschlong (code $1)',
+'virus-unknownscanner' => 'Néd bekaunnter Virnscanner:',
 
 # Login and logout pages
 'logouttext'                 => "'''Iatzerd bist obgmödt.'''
@@ -414,6 +423,7 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'yourpassword'               => 'Posswort:',
 'yourpasswordagain'          => 'Posswort nóamoi',
 'remembermypassword'         => 'Mid dém Browser dauerhoft ågmödt bleim (maximoi $1 {{PLURAL:$1|Dog|Dog}})',
+'securelogin-stick-https'    => "Noch'm Auhmöden mid HTTPS vabunden bleim",
 'yourdomainname'             => 'Eanerne Domain:',
 'externaldberror'            => 'Entweder es ligt a Feeler bai da externen Authentifiziarung vur oder du derfst dai externs Benytzerkonto ned aktualisirn.',
 'login'                      => 'Åmöden',
@@ -432,7 +442,7 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'createaccountmail'          => 'per E-Mail',
 'createaccountreason'        => 'Grund',
 'badretype'                  => 'De zwoa Posswerter stimmer ned ywereih.',
-'userexists'                 => 'Da Benytzernåm is scho vageem. Bittschee nimm an åndern her.',
+'userexists'                 => 'Der Benutzernaum do is schoh vageem. Bittscheh nimm an aundern her.',
 'loginerror'                 => 'Feeler bei da Åmödung',
 'createaccounterror'         => 'Des Benutzerkonto hod ned erstöd wern kenner: $1',
 'nocookiesnew'               => "Da Benytzerzuagång is erstöid worn, du bist ower ned ågmöidt. {{SITENAME}} benedigt fyr de Funkzion Cookies, bittschee aktiviar de und möidt de danoch mid daim naichn Benytzernåm und 'm dazuaghering Posswort å.",
@@ -847,7 +857,7 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'filehist-dimensions'       => 'Moosse',
 'filehist-filesize'         => 'Dataigress',
 'filehist-comment'          => 'Kommentar',
-'imagelinks'                => 'Daateivawendungen',
+'imagelinks'                => 'Daateivawendung',
 'linkstoimage'              => "{{PLURAL:$1|D'foignde Seitn vawendt|De foigndn $1 Seitn vawendn}} de Datei:",
 'linkstoimage-more'         => "Es {{PLURAL:$1|valinkt|valinkn}} mea wia {{PLURAL:$1|oa Seitn |$1 Seitn}} auf de Datei.
 De foignde Listn zaagt netta {{PLURAL:$1|in easten Link|de easten $1 Links}} auf de Datei.

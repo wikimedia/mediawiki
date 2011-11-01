@@ -10,6 +10,7 @@
  * @author Alexsh
  * @author Andrew971218
  * @author BobChao
+ * @author Ianbu
  * @author Jidanni
  * @author Mark85296341
  * @author Pbdragonwang
@@ -212,15 +213,16 @@ $messages = array(
 
 'badaccess-groups' => '您剛才的請求只有{{PLURAL:$2|這個|這些}}使用者組的使用者才能使用: $1',
 
-'editold'        => '編輯',
-'showtoc'        => '顯示',
-'hidetoc'        => '隱藏',
-'thisisdeleted'  => '檢視或復原$1?',
-'site-rss-feed'  => '訂閱 $1 的 RSS 資料來源',
-'site-atom-feed' => '訂閱 $1 的 Atom 資料來源',
-'page-rss-feed'  => '訂閱「$1」的 RSS 資料來源',
-'page-atom-feed' => '訂閱「$1」的 Atom 資料來源',
-'red-link-title' => '$1 (頁面不存在)',
+'editold'         => '編輯',
+'editsectionhint' => '编辑段落：$1',
+'showtoc'         => '顯示',
+'hidetoc'         => '隱藏',
+'thisisdeleted'   => '檢視或復原$1?',
+'site-rss-feed'   => '訂閱 $1 的 RSS 資料來源',
+'site-atom-feed'  => '訂閱 $1 的 Atom 資料來源',
+'page-rss-feed'   => '訂閱「$1」的 RSS 資料來源',
+'page-atom-feed'  => '訂閱「$1」的 Atom 資料來源',
+'red-link-title'  => '$1 (頁面不存在)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => '頁面',

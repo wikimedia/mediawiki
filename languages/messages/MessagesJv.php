@@ -74,7 +74,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Kirimana aku layang e-mail uga yèn ana pangowahan cilik',
 'tog-enotifrevealaddr'        => 'Kirimana aku layang e-mail ing layang notifikasi',
 'tog-shownumberswatching'     => 'Tuduhna cacahé pangawas',
-'tog-oldsig'                  => 'Pratayang tapak asta sing ana:',
+'tog-oldsig'                  => 'Tapak asma sing ana:',
 'tog-fancysig'                => 'Anggepen tapak asta minangka teks wiki (tanpa pranala otomatis)',
 'tog-externaleditor'          => 'Pigunakaken program pangolah tembung jawi (namung tumrap ahli, perlu pangaturan mligi ing komputer panjenengan. 
 [http://www.mediawiki.org/wiki/Manual:External_editors Informasi sajangkepipun].)',
@@ -211,7 +211,7 @@ $messages = array(
 'vector-action-move'             => 'Pindhahna',
 'vector-action-protect'          => 'Reksa',
 'vector-action-undelete'         => 'Batalna pambusakan',
-'vector-action-unprotect'        => 'Batalna pangreksan',
+'vector-action-unprotect'        => 'Owahi pangreksan',
 'vector-simplesearch-preference' => 'Aktifaken pamrayogi pamadosan ingkang kasampurnakaken (namung kulit vektor)',
 'vector-view-create'             => 'Gawé',
 'vector-view-edit'               => 'Sunting',
@@ -247,8 +247,8 @@ $messages = array(
 'protect'           => 'Reksanen',
 'protect_change'    => 'ngowahi reksanan',
 'protectthispage'   => 'Reksanen kaca iki',
-'unprotect'         => 'Pangreksan',
-'unprotectthispage' => 'Owahana pangreksan kaca iki',
+'unprotect'         => 'Owahi pangreksan',
+'unprotectthispage' => 'Owahi pangreksan kaca iki',
 'newpage'           => 'Kaca anyar',
 'talkpage'          => 'Dhiskusèkna kaca iki',
 'talkpagelinktext'  => 'Wicara',
@@ -2919,9 +2919,7 @@ Panjenengan uga bisa [[Special:Watchlist/edit|nganggo éditor standar panjenenga
 'filepath-page'    => 'Berkas:',
 'filepath-submit'  => 'Golèk',
 'filepath-summary' => 'Kaca astaméwa utawa kusus iki nuduhaké jalur pepak sawijining berkas.
-Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka langsung mawa program kagandhèng.
-
-Lebokna jeneng berkas tanpa imbuhan awalan "{{ns:file}}:".',
+Gambar dituduhaké mawa résolusi kebak lan tipe liyané berkas bakal dibuka langsung mawa program kagandhèng.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Golèk berkas duplikat',

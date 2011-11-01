@@ -852,7 +852,7 @@ $2',
 'retypenew'                 => '新しいパスワードを再入力:',
 'resetpass_submit'          => '再設定してログイン',
 'resetpass_success'         => 'パスワードの変更に成功しました！
-ログインしています・・・',
+ログインしています…',
 'resetpass_forbidden'       => 'パスワードは変更できません',
 'resetpass-no-info'         => 'このページに直接アクセスするためにはログインしている必要があります。',
 'resetpass-submit-loggedin' => 'パスワードを変更',
@@ -1442,7 +1442,7 @@ $1",
 'prefs-registration'            => '登録日時：',
 'yourrealname'                  => '本名：',
 'yourlanguage'                  => '使用言語：',
-'yourvariant'                   => '言語変種：',
+'yourvariant'                   => 'コンテンツ言語変種：',
 'yournick'                      => '新しい署名：',
 'prefs-help-signature'          => 'トークページ上での発言には「<nowiki>~~~~</nowiki>」と付けて署名するべきです。これは自分の署名に時刻印を付加したものに変換されます。',
 'badsig'                        => '署名用のソースが正しくありません。
@@ -1908,7 +1908,7 @@ URLが正しいものであるか、指定したサイトが現在使用可能�
 'filehist-filesize'                 => 'ファイルサイズ',
 'filehist-comment'                  => 'コメント',
 'filehist-missing'                  => 'ファイルがみつかりません',
-'imagelinks'                        => 'ファイルリンク',
+'imagelinks'                        => 'ファイルの使用状況',
 'linkstoimage'                      => '以下の{{PLURAL:$1|ページ|$1ページ}}が、このファイルへリンクしています：',
 'linkstoimage-more'                 => '$1より多いページが、このファイルにリンクしています。
 以下の一覧は、このファイルにリンクしている最初の$1ページのみを表示しています。
@@ -3703,9 +3703,7 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'filepath'         => 'ファイルパス',
 'filepath-page'    => 'ファイル：',
 'filepath-submit'  => '取得',
-'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。
-
-ファイル名は接頭辞「{{ns:file}}:」を付けずに入力してください。',
+'filepath-summary' => 'この特別ページは、ファイルへの完全なパスを返します。画像は最大解像度で表示され、他のファイルタイプは関連付けされたプログラムが直接起動します。',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => '重複ファイルの検索',

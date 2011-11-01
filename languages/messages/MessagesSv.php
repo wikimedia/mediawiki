@@ -18,6 +18,7 @@
  * @author Habj
  * @author Habjchen
  * @author Jon Harald Søby
+ * @author LPfi
  * @author Lejonel
  * @author Leo Johannes
  * @author Lokal Profil
@@ -350,7 +351,7 @@ $messages = array(
 'tog-watchlisthideanons'      => 'Visa inte redigeringar av anonyma användare i bevakningslistan',
 'tog-watchlisthidepatrolled'  => 'Göm patrullerade redigeringar från bevakningslistan',
 'tog-nolangconversion'        => 'Konvertera inte mellan språkvarianter',
-'tog-ccmeonemails'            => 'Skicka mig kopior av epost jag skickar till andra användare',
+'tog-ccmeonemails'            => 'Skicka kopior till mig av e-post jag skickar till andra användare',
 'tog-diffonly'                => 'Visa inte sidinnehåll under diffar',
 'tog-showhiddencats'          => 'Visa dolda kategorier',
 'tog-noconvertlink'           => 'Stäng av konvertering av sidtitlar',
@@ -950,7 +951,7 @@ Detta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.
 'editingsection'                   => 'Redigerar $1 (avsnitt)',
 'editingcomment'                   => 'Redigerar $1 (nytt avsnitt)',
 'editconflict'                     => 'Redigeringskonflikt: $1',
-'explainconflict'                  => "Någon annan har ändrat den här sidan efter att du började att redigera den.
+'explainconflict'                  => "Någon har ändrat den här sidan efter att du började att redigera den.
 Den översta textrutan innehåller den nuvarande sparade versionen av texten.
 Din ändrade version visas i den nedre rutan.
 Om du vill spara dina ändringar så måste du infoga dem i den övre texten.
@@ -1078,27 +1079,27 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-deleted-text-unhide'     => "Den här versionen av sidan har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].
-Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
+Du kan fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
 'rev-suppressed-text-unhide'  => "Den här versionen av sidan har blivit '''undanhållen'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
-Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
+Du kan fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
 'rev-deleted-text-view'       => "Denna version av sidan har '''raderats'''.
-Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
+Du kan se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-suppressed-text-view'    => "Denna version av sidan har '''undanhållits'''.
-Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
+Du kan se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-deleted-no-diff'         => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-suppressed-no-diff'      => "Du kan inte se den här diffen för en av sidversionerna har '''raderats'''.",
-'rev-deleted-unhide-diff'     => "En av versionerna för den här diffen har '''raderats'''.
+'rev-deleted-unhide-diff'     => "En av versionerna för denna diff har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].
-Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
+Du kan fortfarande [$1 se denna diff] om du önskar att fortsätta.",
 'rev-suppressed-unhide-diff'  => "En av versionerna för denna diff har blivit '''undanhållen'''.
 Det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
-Som administratör kan du fortfarande [$1 se denna diff] om du önskar fortsätta.",
+Du kan fortfarande [$1 se denna diff] om du önskar fortsätta.",
 'rev-deleted-diff-view'       => "En av sidversionerna i denna diff har '''raderats'''.
-Som administratör kan du se denna diff. Mer information kan finnas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
+Du kan se denna diff; mer information kan finnas i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
 'rev-suppressed-diff-view'    => "En av versionerna för denna diff har blivit '''undanhållen'''.
-Som administratör kan du se denna diff; det kan finnas detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
+Du kan se denna diff; detaljer kan finnas i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-delundel'                => 'visa/göm',
 'rev-showdeleted'             => 'visa',
 'revisiondelete'              => 'Ta bort/återställ versioner',
@@ -1829,7 +1830,7 @@ När den filtreras av en användare visas endast den senast uppladdade versionen
 'filehist-filesize'         => 'Filstorlek',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Fil saknas',
-'imagelinks'                => 'Fillänkar',
+'imagelinks'                => 'Filanvändning',
 'linkstoimage'              => 'Följande {{PLURAL:$1|sida|$1 sidor}} länkar till den här filen:',
 'linkstoimage-more'         => 'Mer är {{PLURAL:$1|en sida|$1 sidor}} länkar till den här filen.
 Följande lista visar bara {{PLURAL:$1|den första sidan|de $1 första sidorna}} som länkar till filen.
@@ -2767,7 +2768,7 @@ Spara den på din dator och ladda upp den här.',
 'tooltip-pt-anonuserpage'         => 'Användarsida för ip-numret du redigerar från',
 'tooltip-pt-mytalk'               => 'Din diskussionssida',
 'tooltip-pt-anontalk'             => 'Diskussion om redigeringar från det här ip-numret',
-'tooltip-pt-preferences'          => 'Mina inställningar',
+'tooltip-pt-preferences'          => 'Dina inställningar',
 'tooltip-pt-watchlist'            => 'Listan över sidor du bevakar för ändringar',
 'tooltip-pt-mycontris'            => 'Lista över dina bidrag',
 'tooltip-pt-login'                => 'Du får gärna logga in, men det är inte nödvändigt',
@@ -2968,7 +2969,7 @@ Om du kör den kan din dator skadas.",
 'show-big-image-thumb' => '<small>Storlek på förhandsvisningen: $1 × $2 pixlar</small>',
 'file-info-gif-looped' => 'upprepad',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|ram|ramar}}',
-'file-info-png-looped' => 'loopad',
+'file-info-png-looped' => 'upprepad',
 'file-info-png-repeat' => 'spelad $1 {{PLURAL:$1|gång|gånger}}',
 'file-info-png-frames' => '$1 {{PLURAL:$1|bild|bilder}}',
 
@@ -3478,9 +3479,8 @@ Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Publi
 'filepath'         => 'Sökväg till fil',
 'filepath-page'    => 'Fil:',
 'filepath-submit'  => 'Sökväg',
-'filepath-summary' => 'Den här sidan ger den fullständiga sökvägen till en fil. Bilder visas i full upplösning i din webbläsare, andra filtyper öppnas direkt i de program som är associerade till dem.
-
-Ange filens namn utan prefixet "{{ns:file}}:".',
+'filepath-summary' => 'Den här specialsidan ger den fullständiga sökvägen till en fil.
+Bilder visas i full upplösning, andra filtyper öppnas direkt i de program som är associerade till dem.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Sök efter dubblettfiler',

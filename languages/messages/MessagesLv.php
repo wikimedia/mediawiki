@@ -715,7 +715,10 @@ Tā jau eksistē.',
 
 # Parser/template warnings
 'expensive-parserfunction-category'       => 'Lapas ar pārāk daudz laikietilpīgiem apstrādes funkciju izsaukumiem',
+'post-expand-template-inclusion-warning'  => "'''Brīdinājums:''' iekļauto veidņu izmērs ir par lielu.
+Dažas veidnes netiks iekļautas.",
 'post-expand-template-inclusion-category' => 'Lapas, kurām pārsniegts iekļauto veidņu apjoms',
+'post-expand-template-argument-category'  => 'Lapas, kurās ir izlaisti veidņu argumenti',
 'parser-template-loop-warning'            => 'Veidne ir ievietota tādā pašā veidnē: [[$1]]',
 
 # "Undo" feature
@@ -732,7 +735,7 @@ Lūdzu, pārbaudi zemāk redzamajā salīdzinājumā, vai tu to tiešām vēlies
 $3 norādītais iemesls ir ''$2''",
 
 # History pages
-'viewpagelogs'           => 'Apskatīties ar šo lapu saistītos reģistru ierakstus',
+'viewpagelogs'           => 'Apskatīt ar šo lapu saistītos reģistru ierakstus',
 'nohistory'              => 'Šai lapai nav pieejama versiju hronoloģija.',
 'currentrev'             => 'Pašreizējā versija',
 'currentrev-asof'        => 'Pašreizējā versija, $1',
@@ -1013,6 +1016,7 @@ Ja vēlies, tu vari izmantot šo nejauši uzģenerēto kodu: $1',
 'prefs-registration'            => 'Reģistrēšanās datums:',
 'yourrealname'                  => 'Tavs īstais vārds:',
 'yourlanguage'                  => 'Valoda:',
+'yourvariant'                   => 'Satura valodas variants:',
 'yournick'                      => 'Tava iesauka (parakstam):',
 'prefs-help-signature'          => 'Komentāri diskusiju lapās ir jāparaksta, pievienojot simbolu virkni "<nowiki>~~~~</nowiki>", kas tiek automātiski aizstāta ar tavu parakstu un parakstīšanās laiku.',
 'badsig'                        => "Kļūdains ''paraksta'' kods; pārbaudi HTML (ja tāds ir lietots).",
@@ -1065,7 +1069,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'userrights-no-interwiki'     => 'Tev nav atļaujas izmainīt lietotāju tiesības citos wiki.',
 'userrights-nodatabase'       => 'Datubāze $1 neeksistē vai nav lokāla.',
 'userrights-nologin'          => 'Tev ir [[Special:UserLogin|jāieiet iekšā]] kā adminam, lai varētu izmainīt lietotāju grupas.',
-'userrights-notallowed'       => 'Tavam lietotājvārdam nav atļauju izmainīt lietotāju grupas.',
+'userrights-notallowed'       => 'Jūsu lietotāja kontam nav atļaujas pievienot vai noņemt lietotāju tiesības.',
 'userrights-changeable-col'   => 'Grupas, kuras tu vari izmainīt',
 'userrights-unchangeable-col' => 'Grupas, kuras tu nevari izmainīt',
 
@@ -1427,7 +1431,7 @@ Filtrējot pēc lietotāja, tiek rādītas tikai pēdējās lietotāja augšupie
 'filehist-filesize'         => 'Faila izmērs',
 'filehist-comment'          => 'Komentārs',
 'filehist-missing'          => 'Fails pazudis',
-'imagelinks'                => 'Failu saites',
+'imagelinks'                => 'Faila lietojums',
 'linkstoimage'              => '{{PLURAL:$1|Šajā lapā ir saite|Šajās $1 lapās ir saites}} uz šo failu:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
 'morelinkstoimage'          => 'Skatīt [[Special:WhatLinksHere/$1|vairāk saites]] uz šo failu.',
@@ -1583,15 +1587,15 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'usercreated'             => 'Izveidots $1, $2',
 'newpages'                => 'Jaunas lapas',
 'newpages-username'       => 'Lietotājs:',
-'ancientpages'            => 'Senākās lapas',
+'ancientpages'            => 'Vecākās lapas',
 'move'                    => 'Pārvietot',
 'movethispage'            => 'Pārvietot šo lapu',
 'unusedcategoriestext'    => 'Šīs kategorijas eksistē, tomēr nevienā rakstā vai kategorijās tās nav izmantotas.',
 'notargettitle'           => 'Bez mērķa',
 'nopagetitle'             => 'Nav tādas mērķa lapas',
 'nopagetext'              => 'Mērķa lapa, ko Jūs norādījāt, nepastāv.',
-'pager-newer-n'           => '{{PLURAL:$1|jaunāku 1|jaunākas $1}}',
-'pager-older-n'           => '{{PLURAL:$1|senāku 1|senākas $1}}',
+'pager-newer-n'           => '{{PLURAL:$1|1 jaunāku|$1 jaunākas}}',
+'pager-older-n'           => '{{PLURAL:$1|1 vecāku|$1 vecākas}}',
 
 # Book sources
 'booksources'               => 'Grāmatu avoti',

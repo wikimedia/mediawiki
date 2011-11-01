@@ -43,7 +43,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Panna me mamuli badlao khatir bhi hame E-mail karo',
 'tog-enotifrevealaddr'        => 'Notification E-mail me hamaar E-mail address ke dekhao.',
 'tog-shownumberswatching'     => 'Ketna sadasya dekhe hai ke number dekhao',
-'tog-oldsig'                  => 'Abhi ke signature ke preview:',
+'tog-oldsig'                  => 'Abhi ke signature:',
 'tog-fancysig'                => 'Signature ke wikitext ke rakam dekho (binaa automatic jorr se)',
 'tog-externaleditor'          => 'Apne se bahaari editor ke kaam me lao (khaali chalaak logan khatir, computer me special settings ke jaruri hai. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => ' Apne se bahaari editor ke kaam me lao (khaali chalaak logan khatir, computer me special settings ke jaruri hai. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
@@ -436,8 +436,8 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'createaccountmail'          => 'e-mail se',
 'createaccountreason'        => 'Kaaran:',
 'badretype'                  => 'Jon duuno password aap likha hai uu ek rakam nai hae.',
-'userexists'                 => 'Ii username aur koi ke hae.
-Duusra username ke choose karo.',
+'userexists'                 => 'Ii sadasya ke naam aur koi ke hae.
+Duusra sadasya ke naam ke choose karo.',
 'loginerror'                 => 'Login me kuchh wrong hae',
 'createaccounterror'         => 'Account ke nai banae sakaa hae: $1',
 'nocookiesnew'               => 'Aap ke account banae dewa gais hae lekin aap logged in nai hae.
@@ -1099,7 +1099,7 @@ Iske pahile jaise nai karaa jaawe sake hai.',
 'prefs-registration'            => 'Registration kare ke time:',
 'yourrealname'                  => 'Asli naam:',
 'yourlanguage'                  => 'Bhasa:',
-'yourvariant'                   => 'Variant:',
+'yourvariant'                   => 'Bahasa ke variant:',
 'yournick'                      => 'Chinh:',
 'prefs-help-signature'          => 'Baat waala panna me aap ke bichar ke "<nowiki>~~~~</nowiki>" se sign kare ke chaahi jiske signature aur timestamp me badal dewa jaai.',
 'badsig'                        => 'Invalid raw signature; HTML tags ke check karo.',
@@ -1152,7 +1152,7 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'userrights-no-interwiki'      => 'Aap ke duusra wiki me user rights ke badle ke adhikaar nai hai.',
 'userrights-nodatabase'        => 'Database $1 abhi hai nai, nai to local nai hai.',
 'userrights-nologin'           => 'Sadasya ke user rights de ke khatir, ap ke chaahi ki aap [[Special:UserLogin|log in]] karo ek administrator ke account se.',
-'userrights-notallowed'        => 'Aap ke account ke user rights de ke adhikar nai hai.',
+'userrights-notallowed'        => 'Aap ke account ke user rights de aur hatae ke adhikar nai hai.',
 'userrights-changeable-col'    => 'Groups jiske aap badle sakta hai',
 'userrights-unchangeable-col'  => 'Groups jiske aap badle nai sakta hai',
 
@@ -1510,8 +1510,7 @@ Saait aap ke kamti busy time kosis kare ke chaahi.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ii khaas panna sab uploaded file ke dekhae hai.
-Default se akhri uploaded file ke list me pahile dekhawa gais hai.
-Column header me click kare se sorting badal jaai.',
+Jab sadasya filter kare hae, tab sadasys ke upload karaa gais sab se nawaa file ke version ke dekhawa jaae hae.',
 'listfiles_search_for'  => 'Media ke naam khojo:',
 'imgfile'               => 'file',
 'listfiles'             => 'Chapa ke suchi',
@@ -1540,7 +1539,7 @@ Column header me click kare se sorting badal jaai.',
 'filehist-filesize'         => 'File ke size',
 'filehist-comment'          => 'Tiprrin',
 'filehist-missing'          => 'File nai hai',
-'imagelinks'                => 'File ke jorr',
+'imagelinks'                => 'File ke kaise kaam me lawa gais hae',
 'linkstoimage'              => 'Ii sab panna ii file {{PLURAL:$1|panna ke jorr|$1 panna ke jorr}} se link hoe hai:',
 'linkstoimage-more'         => '$1 se jaada {{PLURAL:$1|panna ke jorr|panna ke jorr}} ii file se hai.
 Niche ke suchi dekhae hai {{PLURAL:$1|pahila panna ke jorr|pahila $1 panna ke jorr}} khaali ii file se.

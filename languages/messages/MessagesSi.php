@@ -1751,7 +1751,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization බලන්න.',
 'filehist-filesize'         => 'ගොනුවේ විශාලත්වය',
 'filehist-comment'          => 'පරිකථනය',
 'filehist-missing'          => 'ගොනුව සොයාගත නොහැක',
-'imagelinks'                => 'ගොනු සබැඳියන්',
+'imagelinks'                => 'ගොනු භාවිතය',
 'linkstoimage'              => 'මෙම ගොනුවට  {{PLURAL:$1|ලිපිය බැ‍ඳෙයි|ලිපි $1 ක් බැඳෙති}}:',
 'linkstoimage-more'         => 'මෙම ගොනුවට {{PLURAL:$1|පිටුවකට |පිටු  $1 කට}} වඩා වැඩි ගණනක් සබැ‍ඳේ.
 මෙම පිටුවට පමණක් අදාළ වන {{PLURAL:$1|පළමු පිටු සබැඳිය|පළමු පිටු සබැඳියන් $1 }} මෙහි පහත ලැයිස්තුවෙහි දැක්වේ.

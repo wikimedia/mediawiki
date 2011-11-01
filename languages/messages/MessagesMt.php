@@ -298,7 +298,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Ibgħatli wkoll ittra-e għall-modifiki minuri fuq paġni',
 'tog-enotifrevealaddr'        => "Ikxef l-indirizz tal-posta elettronika tiegħi fil-messaġġi ta' avviż",
 'tog-shownumberswatching'     => "Uri n-numru ta' utenti li qegħdin isegwu din il-paġna",
-'tog-oldsig'                  => 'Dehra proviżorja tal-firma attwali:',
+'tog-oldsig'                  => 'Firma attwali:',
 'tog-fancysig'                => 'Interpreta l-firma bħala test tal-wiki (mingħajr ħolqa awtomatika)',
 'tog-externaleditor'          => 'Uża awtomatikament editur estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [http://www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
 'tog-externaldiff'            => 'Uża awtomatikament diff estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [http://www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
@@ -1232,7 +1232,7 @@ Ipprova għamel prefiss għall-inkjesta tiegħek ma' ''all:'' sabiex tfittex il-
 'powersearch'                      => 'Tfittxija avvanzata',
 'powersearch-legend'               => 'Tfittxija avvanzata',
 'powersearch-ns'                   => 'Fittex fl-ispazju tal-isem:',
-'powersearch-redir'                => "Lista ta' riindirizzi",
+'powersearch-redir'                => 'Uri r-rindirizzi',
 'powersearch-field'                => 'Fittex',
 'powersearch-togglelabel'          => 'Agħżel:',
 'powersearch-toggleall'            => 'Kollha',
@@ -1273,7 +1273,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-resetpass'               => 'Biddel il-password',
 'prefs-email'                   => 'Opzjonijiet għall-posta elettronika',
 'prefs-rendering'               => 'Dehra',
-'saveprefs'                     => 'Żomm il-preferenzi',
+'saveprefs'                     => 'Salva l-preferenzi',
 'resetprefs'                    => 'Neħħi modifiki mhux salvati',
 'restoreprefs'                  => 'Irkupra l-impostazzjonijiet awtomatiċi',
 'prefs-editing'                 => 'Modifiki',
@@ -1297,7 +1297,7 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'timezonelegend'                => 'Żona tal-ħin:',
 'localtime'                     => 'Ħin lokali:',
 'timezoneuseserverdefault'      => 'Uża l-ħin tas-server',
-'timezoneuseoffset'             => 'Ieħor (ispeċifika d-differenza)',
+'timezoneuseoffset'             => 'Ieħor (speċifika d-differenza)',
 'timezoneoffset'                => 'Differenza¹:',
 'servertime'                    => 'Ħin tas-server:',
 'guesstimezone'                 => "Uża l-ħin tal-''browser'' tiegħek",
@@ -1381,7 +1381,7 @@ Hawnhekk hawn valur iġġenerat b'mod każwali li inti tista' tuża: $1",
 'userrights-reason'            => 'Raġuni:',
 'userrights-no-interwiki'      => "M'għandekx permess tagħmel modifiki fid-drittijiet tal-utenti fuq siti oħrajn.",
 'userrights-nodatabase'        => 'Id-Database $1 ma jeżistix jew inkella mhux database lokali.',
-'userrights-nologin'           => "Sabiex tkun tista' tagħti d-drittijiet lill-utenti hemm bżonn li [[Special:UserLogin|tidħol]] bħalha amministratur.",
+'userrights-nologin'           => "Sabiex tkun tista' tagħti drittijiet lill-utenti hemm bżonn li [[Special:UserLogin|tidħol]] bħala amministratur.",
 'userrights-notallowed'        => "Il-kont tiegħek m'għandux il-permessi neċessarji li jżid jew ineħħi drittijiet tal-utent.",
 'userrights-changeable-col'    => "Gruppi li tista' tbiddel",
 'userrights-unchangeable-col'  => 'Gruppi li ma tistax tbiddel',
@@ -1836,7 +1836,7 @@ Daħħal: tip/sottotip, eż. <tt>image/jpeg</tt>.",
 'unwatchedpages' => 'Paġni mhux osservati',
 
 # List redirects
-'listredirects' => "Lista ta' riindirizzi",
+'listredirects' => "Lista ta' rindirizzi",
 
 # Unused templates
 'unusedtemplates'     => 'Templates mhux użati',
@@ -3410,10 +3410,8 @@ Flimkien ma' dan il-programm suppost kellek tirċievi [{{SERVER}}{{SCRIPTPATH}}/
 'filepath'         => 'Post tal-fajl',
 'filepath-page'    => 'Fajl:',
 'filepath-submit'  => 'Mur',
-'filepath-summary' => 'Din il-paġna speċjali tagħti lura l-indirizz komplet tal-posta għal fajl.
-Stampi huwa mogħrija b\'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-program assoċjat magħhom direttament.
-
-Daħħal l-isem tal-fajl bla l-prefiss "{{ns:file}}:".',
+'filepath-summary' => "Din il-paġna speċjali tagħti lura l-indirizz komplet tal-posta għal fajl.
+Stampi huwa mogħrija b'risoluzzjoni sħiħa, tipi tal-fajl oħrajn jibdew bil-program assoċjat magħhom direttament.",
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Fittex fajls duplikati',
