@@ -1207,6 +1207,10 @@ class User {
 	 */
 	public static function getDefaultOptions() {
 		global $wgNamespacesToBeSearchedDefault, $wgDefaultUserOptions, $wgContLang, $wgDefaultSkin;
+		static $defOpt = null;
+		if ( $defOpt !== null ) {
+			return $defOpt;
+		}
 
 		$defOpt = $wgDefaultUserOptions;
 		# default language setting
