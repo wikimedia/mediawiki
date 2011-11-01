@@ -2848,7 +2848,10 @@ See the [[Special:ProtectedPages|protected pages list]] for the list of currentl
 'unprotectedarticle'          => 'removed protection from "[[$1]]"',
 'movedarticleprotection'      => 'moved protection settings from "[[$2]]" to "[[$1]]"',
 'protect-title'               => 'Change protection level for "$1"',
+'protect-title-notallowed'    => 'View protection level of "$1"',
 'prot_1movedto2'              => '[[$1]] moved to [[$2]]',
+'protect-badnamespace-title'  => 'Non-protectable namespace',
+'protect-badnamespace-text'   => 'Pages in this namespace cannot be protected.',
 'protect-backlink'            => '← $1', # only translate this message to other languages if you have to change it
 'protect-legend'              => 'Confirm protection',
 'protectcomment'              => 'Reason:',

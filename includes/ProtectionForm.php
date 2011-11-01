@@ -66,8 +66,11 @@ class ProtectionForm {
 		
 		// Check if the form should be disabled.
 		// If it is, the form will be available in read-only to show levels.
-		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors('protect',$wgUser);
-		$this->disabled = wfReadOnly() || $this->mPermErrors != array();
+		$this->mPermErrors = $this->mTitle->getUserPermissionsErrors( 'protect', $wgUser );
+		if ( wfReadOnly() ) {
+			$this->mPermErrors[] = array( 'readonlytext', wfReadOnlyReason() );
+		}
+		$this->disabled = $this->mPermErrors != array();
 		$this->disabledAttrib = $this->disabled
 			? array( 'disabled' => 'disabled' )
 			: array();
@@ -180,6 +183,11 @@ class ProtectionForm {
 	 */
 	function execute() {
 		global $wgRequest, $wgOut;
+
+		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
+			throw new ErrorPageError( 'protect-badnamespace-title', 'protect-badnamespace-text' );
+		}
+
 		if( $wgRequest->wasPosted() ) {
 			if( $this->save() ) {
 				$q = $this->mArticle->isRedirect() ? 'redirect=no' : '';
@@ -200,19 +208,13 @@ class ProtectionForm {
 
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 
-		if( is_null( $this->mTitle ) ||
-			$this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			$wgOut->showFatalError( wfMsg( 'badarticleerror' ) );
-			return;
-		}
-
-		list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
-
-		if ( $err != "" ) {
-			$wgOut->setSubtitle( wfMsgHtml( 'formerror' ) );
+		if ( is_array( $err ) ) {
+			$wgOut->wrapWikiMsg( "<p class='error'>\n$1\n</p>\n", $err );
+		} elseif ( is_string( $err ) ) {
 			$wgOut->addHTML( "<p class='error'>{$err}</p>\n" );
 		}
 
+		list( $cascadeSources, /* $restrictions */ ) = $this->mTitle->getCascadeProtectionSources();
 		if ( $cascadeSources && count($cascadeSources) > 0 ) {
 			$titles = '';
 
@@ -223,22 +225,19 @@ class ProtectionForm {
 			$wgOut->wrapWikiMsg( "<div id=\"mw-protect-cascadeon\">\n$1\n" . $titles . "</div>", array( 'protect-cascadeon', count($cascadeSources) ) );
 		}
 
-		$titleLink = Linker::link( $this->mTitle );
-		$wgOut->setPageTitle( wfMessage( 'protect-title', $this->mTitle->getPrefixedText() ) );
-		$wgOut->setSubtitle( wfMsg( 'protect-backlink', $titleLink ) );
-
 		# Show an appropriate message if the user isn't allowed or able to change
 		# the protection settings at this time
-		if( $this->disabled ) {
-			if( wfReadOnly() ) {
-				$wgOut->readOnlyPage();
-			} elseif( $this->mPermErrors ) {
-				$wgOut->showPermissionsErrorPage( $this->mPermErrors );
-			}
+		if ( $this->disabled ) {
+			$wgOut->setPageTitle( wfMessage( 'protect-title-notallowed', $this->mTitle->getPrefixedText() ) );
+			$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $this->mPermErrors, 'protect' ) );
 		} else {
+			$wgOut->setPageTitle( wfMessage( 'protect-title', $this->mTitle->getPrefixedText() ) );
 			$wgOut->addWikiMsg( 'protect-text',
 				wfEscapeWikiText( $this->mTitle->getPrefixedText() ) );
 		}
+
+		$titleLink = Linker::link( $this->mTitle );
+		$wgOut->setSubtitle( wfMsg( 'protect-backlink', $titleLink ) );
 
 		$wgOut->addHTML( $this->buildForm() );
 
@@ -260,8 +259,8 @@ class ProtectionForm {
 		}
 
 		$token = $wgRequest->getVal( 'wpEditToken' );
-		if ( !$wgUser->matchEditToken( $token ) ) {
-			$this->show( wfMsg( 'sessionfailure' ) );
+		if ( !$wgUser->matchEditToken( $token, array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) ) {
+			$this->show( array( 'sessionfailure' ) );
 			return false;
 		}
 
@@ -279,11 +278,11 @@ class ProtectionForm {
 			if( empty($this->mRestrictions[$action]) )
 				continue; // unprotected
 			if ( !$expiry[$action] ) {
-				$this->show( wfMsg( 'protect_expiry_invalid' ) );
+				$this->show( array( 'protect_expiry_invalid' ) );
 				return false;
 			}
 			if ( $expiry[$action] < wfTimestampNow() ) {
-				$this->show( wfMsg( 'protect_expiry_old' ) );
+				$this->show( array( 'protect_expiry_old' ) );
 				return false;
 			}
 		}
@@ -308,10 +307,17 @@ class ProtectionForm {
 			throw new FatalError( "Unknown error at restriction save time." );
 		}
 
+		/**
+		 * Give extensions a change to handle added form items
+		 *
+		 * @since 1.19 you can (and you should) return false to abort saving;
+		 *             you can also return an array of message name and its parameters
+		 */
 		$errorMsg = '';
-		# Give extensions a change to handle added form items
-		if( !wfRunHooks( 'ProtectionForm::save', array($this->mArticle,&$errorMsg) ) ) {
-			throw new FatalError( "Unknown hook error at restriction save time." );
+		if( !wfRunHooks( 'ProtectionForm::save', array( $this->mArticle, &$errorMsg ) ) ) {
+			if ( $errorMsg == '' ) {
+				$errorMsg = array( 'hookaborted' );
+			}
 		}
 		if( $errorMsg != '' ) {
 			$this->show( $errorMsg );
@@ -343,7 +349,6 @@ class ProtectionForm {
 			$out .= Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->mTitle->getLocalUrl( 'action=protect' ),
 				'id' => 'mw-Protect-Form', 'onsubmit' => 'ProtectionForm.enableUnchainedInputs(true)' ) );
-			$out .= Html::hidden( 'wpEditToken',$wgUser->editToken() );
 		}
 
 		$out .= Xml::openElement( 'fieldset' ) .
@@ -510,6 +515,7 @@ class ProtectionForm {
 		}
 
 		if ( !$this->disabled ) {
+			$out .= Html::hidden( 'wpEditToken', $wgUser->getEditToken( array( 'protect', $this->mTitle->getPrefixedDBkey() ) ) );
 			$out .= Xml::closeElement( 'form' );
 			$wgOut->addScript( $this->buildCleanupScript() );
 		}
