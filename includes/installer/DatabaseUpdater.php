@@ -619,4 +619,13 @@ abstract class DatabaseUpdater {
 		$cl->execute();
 		$this->output( "done.\n" );
 	}
+
+	protected function doRebuildLocalisationCache() {
+		global $wgLocalisationCacheConf;
+		$wgLocalisationCacheConf['forceRecache'] = true;
+		$cl = $this->maintenance->runChild( 'RebuildLocalisationCache', 'rebuildLocalisationCache.php' );
+		$this->output( "Rebuilding Localisation Cache... " );
+		$cl->execute();
+		$this->output( "done.\n" );
+	}
 }
