@@ -724,6 +724,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'edit-already-exists'              => 'Од лопась кодаяк эзь тееве; сон уш ули.',
 
 # Parser/template warnings
+'post-expand-template-inclusion-warning'  => 'Ванок: Парцунлопатнеде кельгстят пек ламо.
+Совавтовомо аволь весе парцунлопатне кельгить.',
 'post-expand-template-inclusion-category' => 'Лопатне, конатнень лопапарцун марто покшолмаст пек ламо',
 'post-expand-template-argument-category'  => 'Лопатнесэ улить лопа парцунонь нардань аргументт',
 'parser-template-loop-warning'            => 'Лопа парцунсто "чары реве" муевсь: [[$1]]',
@@ -827,9 +829,13 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'notextmatches'                    => 'Лопанть сёрмадсткэнзэ марто вейтьс прамот арасть',
 'prevn'                            => 'седе икелень {{PLURAL:$1|$1}}',
 'nextn'                            => 'сы {{PLURAL:$1|$1}}',
+'prevn-title'                      => 'Седе икелень $1 {{PLURAL:$1|савкс|савкст}}',
+'nextn-title'                      => 'Седе меелень $1 {{PLURAL:$1|савкс|савкст}}',
+'shown-title'                      => 'Невтть лопазонзо $1 {{PLURAL:$1|савкс|савкст}}',
 'viewprevnext'                     => 'Ванномс ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Вешнемань аравтомкат',
 'searchmenu-exists'                => "'''Те викисэнть ули \"[[\$1]]\" лем марто лопа'''",
+'searchmenu-new'                   => "'''Шкик \"[[:\$1]]\" лопанть те викисэнть!'''",
 'searchhelp-url'                   => 'Help:Лопась мезе кирди',
 'searchprofile-articles'           => 'Потмокс лопат',
 'searchprofile-project'            => 'Лезкс ды проекттэ лопат',
@@ -840,6 +846,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'searchprofile-project-tooltip'    => 'Вешнемс вана тестэ $1',
 'searchprofile-images-tooltip'     => 'Вешнемс файлат',
 'searchprofile-everything-tooltip' => 'Вешнемс весе лопатнева (кортнема лопатневаяк)',
+'searchprofile-advanced-tooltip'   => 'Вешнемс башка теезь лемпотмотнестэ',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 вал|$2 валт}})',
 'search-redirect'                  => '(йутавтт $1-с)',
 'search-section'                   => '(пелькс $1)',
@@ -1162,7 +1169,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'filehist-filesize'         => 'Файланть покшолмазо',
 'filehist-comment'          => 'Мельполадкс',
 'filehist-missing'          => 'Файлась арась',
-'imagelinks'                => 'Файлань сюлмавомапеть',
+'imagelinks'                => 'Ков файлась нолдави тевс',
 'linkstoimage'              => 'Те файланть марто сюлмавозь вана {{PLURAL:$1|истямо сюлмавома пене|$1 истят сюлмавома пенеть}}:',
 'nolinkstoimage'            => 'Арась вейкеяк лопа, кона сюлмавови те файланть марто.',
 'sharedupload'              => 'Те файлась саезь "$1" файлань пусмосто, сон нолдави тевс лия проектсэяк.',
@@ -1281,7 +1288,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'listusers-editsonly'     => 'Невтемс ансяк витнема-петнема марто совийтнень-лисийтнень',
 'listusers-creationsort'  => 'Аравтомс мельга мельцек шкамо чинь коряс',
 'usereditcount'           => '$1 {{PLURAL:$1|витнема-петнема|витнемат-петнемат}}',
-'usercreated'             => 'Шказь $1 чистэ $2 шкасто',
+'usercreated'             => '{{GENDER:$3|Шказь}} on $1 чистэ $2 шкасто',
 'newpages'                => 'Од лопат',
 'newpages-username'       => 'Теицянь лем:',
 'ancientpages'            => 'Весемеде умонь лопат',
@@ -1334,10 +1341,11 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'sp-deletedcontributions-contribs' => 'путовксонзо',
 
 # Special:LinkSearch
-'linksearch'     => 'Ушонь сюлмавомапенеть',
-'linksearch-pat' => 'Вешнемкс парцун:',
-'linksearch-ns'  => 'Лем потмозо:',
-'linksearch-ok'  => 'Вешнэмс',
+'linksearch'      => 'Ушонь сюлмавомапенеть',
+'linksearch-pat'  => 'Вешнемкс парцун:',
+'linksearch-ns'   => 'Лем потмозо:',
+'linksearch-ok'   => 'Вешнэмс',
+'linksearch-line' => '$1-в сюлмавома песь моли вана тестэ $2',
 
 # Special:ListUsers
 'listusers-submit'   => 'Невтемс',
@@ -1523,6 +1531,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'sp-contributions-talk'        => 'кортнеме',
 'sp-contributions-search'      => 'Путовксонь вешнеме',
 'sp-contributions-username'    => 'IP адрес эли теицянь лем:',
+'sp-contributions-toponly'     => 'Невтемс ансяк не витнематнень-петнематнень, конат совавтовить меельце верзиятнень юткс',
 'sp-contributions-submit'      => 'Вешнэмс',
 
 # What links here
@@ -2137,6 +2146,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'intentionallyblankpage' => 'Те лопась арьсезь-содазь чавосто кадозь',
 
 # Special:Tags
+'tag-filter'        => '[[Special:Tags|Tag]] сувтемесь:',
 'tag-filter-submit' => 'Сувтемень пачк нолдамс',
 'tags-edit'         => 'витнемс-петнемс',
 

@@ -1941,7 +1941,7 @@ Svaki red sadrži veze prema prvom i drugom preusmerenju, kao i ciljanu stranicu
 'listusers-editsonly'     => 'Prikaži korisnike koji imaju izmene',
 'listusers-creationsort'  => 'Sortiraj po datumu pravljenja',
 'usereditcount'           => '$1 {{PLURAL:$1|izmena|izmena}}',
-'usercreated'             => 'Napravljeno $1, u $2',
+'usercreated'             => '{{GENDER:$3|je napravio|je napravila|je napravio}} dana $1 u $2',
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Korisničko ime:',
 'ancientpages'            => 'Najstariji članci',

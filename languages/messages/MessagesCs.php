@@ -2070,7 +2070,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'listusers-editsonly'     => 'Zobrazit pouze uživatele s editacemi',
 'listusers-creationsort'  => 'Seřadit podle data registrace',
 'usereditcount'           => '$1 {{PLURAL:$1|editace|editace|editací}}',
-'usercreated'             => 'Registrován(a) $1 v $2',
+'usercreated'             => '{{GENDER:$3|Registrován|Registrována|Registrován(a)}} $1 v $2',
 'newpages'                => 'Nejnovější stránky',
 'newpages-username'       => 'Uživatelské jméno:',
 'ancientpages'            => 'Nejdéle needitované stránky',

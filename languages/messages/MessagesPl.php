@@ -1167,7 +1167,7 @@ Proszę sprawdzić rejestr operacji.',
 Zobacz [[Special:BlockList|rejestr blokowania adresów IP]], jeśli chcesz sprawdzić aktualne zakazy i blokady.',
 
 # History merging
-'mergehistory'                     => 'Scal historię zmian stron',
+'mergehistory'                     => 'Scalanie historii stron',
 'mergehistory-header'              => 'Ta strona pozwala na scalenie historii zmian jednej strony z historią innej, nowszej strony.
 Upewnij się, że zmiany będą zapewniać ciągłość historyczną edycji strony.',
 'mergehistory-box'                 => 'Scal historię zmian dwóch stron:',

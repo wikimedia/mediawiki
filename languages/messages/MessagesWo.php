@@ -9,6 +9,7 @@
  *
  * @author Ahloubadar
  * @author Ibou
+ * @author Maax
  * @author Reedy
  * @author SF-Language
  * @author Urhixidur

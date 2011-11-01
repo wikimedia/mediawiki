@@ -118,7 +118,7 @@ $messages = array(
 'feb'           => 'Dibokwane',
 'mar'           => 'Hlakola',
 'apr'           => 'Moranang',
-'may'           => 'May',
+'may'           => 'Mopitlo',
 'jun'           => 'Phupu',
 'jul'           => 'Mosegamanye',
 'aug'           => 'Phato',
@@ -451,9 +451,9 @@ Se, se ka hlolwa ke ge letlakala le phumulwa goba la hudušwa ge wena o sa le le
 Go tlhola letlakala, thoma go ngwalo lepokising le letelago
 (lebelela [[{{MediaWiki:Helppage}}|letlakala la thušo]] go hwetša šedi).
 Ga eba o le fa ka phošo, o ka boela morago ka go šumiša konopo ya '''back''' go ''browser'' ya gago.",
-'noarticletext'                    => 'Ga gona ditlhaka letlakaleng le, oka [[Special:Search/{{PAGENAME}}|fetleka liena la letlakala]] matlakaleng a mangwe, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} fetleka "logs"], goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola letlakala le]</span>.',
+'noarticletext'                    => 'Ga gona ditlhaka letlakaleng le, oka [[Special:Search/{{PAGENAME}}|fetleka leina la letlakala]] matlakaleng a mangwe, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} fetleka "logs"], goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola letlakala le]</span>.',
 'noarticletext-nopermission'       => 'Ga gona ditlhaka letlakaleng le, 
-oka [[Special:Search/{{PAGENAME}}|fetleka liena la letlakala]] matlakaleng a mangwe,
+oka [[Special:Search/{{PAGENAME}}|fetleka leina la letlakala]] matlakaleng a mangwe,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} fetleka "logs"],
  goba [{{fullurl:{{FULLPAGENAME}}|action=edit}} wa fetola letlakala le]</span>.',
 'note'                             => "'''Ela hloko:'''",
@@ -740,7 +740,7 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'filehist-dimensions'       => 'Bogolo',
 'filehist-filesize'         => 'Bogolo ba faele',
 'filehist-comment'          => 'Comment',
-'imagelinks'                => 'Dihlamaganyago tša matlakala',
+'imagelinks'                => 'Tirišo ya Faele',
 'linkstoimage'              => '{{PLURAL:$1|Letlakala le ke |$1 ya matlakala a}} latelago a hlomaganya go faele ye:',
 'nolinkstoimage'            => 'Gago matlakala a hlomaganyago faeleng ye.',
 'sharedupload'              => 'Faele ye e tšwa $1 e bile a kaba  e šumišwa ke ditirotherwa tše dingwe.',
@@ -824,7 +824,7 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'deadendpages'            => "Matlakala a seye felo(''Dead-end'')",
 'protectedpages'          => 'Matlakala a go lotiwa',
 'listusers'               => 'Lanano la mošomiši',
-'usercreated'             => 'Hlodilwe $1 ka $2',
+'usercreated'             => '{{GENDER:$3|Hlodilwe}} ka $1 go $2',
 'newpages'                => 'Matlakala a mampsha',
 'ancientpages'            => 'Matlakala a kgalekgale',
 'move'                    => 'Huduša',
@@ -1264,7 +1264,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 'watchlisttools-raw'  => "Fetola lenano le letala (''raw'') la ditlhapetšo",
 
 # Core parser functions
-'duplicate-defaultsort' => '\'\'\'Hlokomela:\'\'\' Default sort key "$2" e phula ya pele default sort key "$1".',
+'duplicate-defaultsort' => '\'\'\'Hlokomela:\'\'\' Default sort key "$2" e tla phumula ya pele default sort key "$1".',
 
 # Special:Version
 'version' => "''Version''",

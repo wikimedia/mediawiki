@@ -2003,7 +2003,7 @@ Igal real on 채ra toodud esimene ja teine 체mbersuunamisleht ning samuti teise �
 'listusers-editsonly'     => 'N채ita vaid kasutajaid, kes on teinud muudatusi',
 'listusers-creationsort'  => 'J채rjesta konto loomise aja j채rgi',
 'usereditcount'           => '$1 {{PLURAL:$1|redigeerimine|redigeerimist}}',
-'usercreated'             => 'Konto loomise aeg: $1 kell $2',
+'usercreated'             => 'Konto {{GENDER:$3|loomise}} aeg: $1 kell $2',
 'newpages'                => 'Uued lehek체ljed',
 'newpages-username'       => 'Kasutajanimi:',
 'ancientpages'            => 'Vanimad lehek체ljed',

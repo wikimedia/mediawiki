@@ -1909,7 +1909,7 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'sp-deletedcontributions-contribs' => 'přinoški',
 
 # Special:LinkSearch
-'linksearch'       => 'Eksterne wotkazy',
+'linksearch'       => 'Pytanje eksternych wotkazow',
 'linksearch-pat'   => 'Pytanski muster:',
 'linksearch-ns'    => 'Mjenowy rum:',
 'linksearch-ok'    => 'Pytać',
@@ -2126,7 +2126,10 @@ Hlej [[Special:ProtectedPages|lisćinu škitanych stronow]] za lisćinu tuchwilu
 'unprotectedarticle'          => 'je škit za [[$1]] wotstronił',
 'movedarticleprotection'      => 'škitowe nastajenja z "[[$2]]" do "[[$1]]" přesunjene',
 'protect-title'               => 'Stronu „$1” škitać',
+'protect-title-notallowed'    => 'Škitny stopjeń za "$1" pokazać',
 'prot_1movedto2'              => 'je [[$1]] pod hesło [[$2]] přesunył',
+'protect-badnamespace-title'  => 'Nješkitajomny mjenowy rum',
+'protect-badnamespace-text'   => 'Strony w tutym mjenowym rumje njehodźa so škitać.',
 'protect-legend'              => 'Škit wobkrućić',
 'protectcomment'              => 'Přičina:',
 'protectexpiry'               => 'Čas škita:',
@@ -2799,7 +2802,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'metadata-help'     => 'Dataja wobsahuje přidatne informacije, kotrež pochadźa z digitalneje kamery abo skenera. Jeli dataja bu wot toho změnjena je móžno, zo někotre podrobnosće z nětčišeho stawa wotchila.',
 'metadata-expand'   => 'Podrobnosće pokazać',
 'metadata-collapse' => 'Podrobnosće schować',
-'metadata-fields'   => 'Slědowace pola metadatow, kotrež su w tutej zdźělence podate, budu so do do stronow wopisanje wobrazowa zapřijimać, hdyž tabela metadatow je sfałdowana. Druhe so po standardźe njepokazuja.
+'metadata-fields'   => 'Slědowace pola metadatow, kotrež su w tutej zdźělence podate, budu so do stronow wopisanje wobrazow zapřijimać, hdyž tabela metadatow je sfałdowana. Druhe so po standardźe njepokazuja.
 * make
 * model
 * datetimeoriginal

@@ -2429,29 +2429,29 @@ $1',
 'enotif_lastvisited'           => 'انظر $1 لكل التغييرات منذ زيارتك الأخيرة.',
 'enotif_lastdiff'              => 'انظر $1 لرؤية هذا التغيير.',
 'enotif_anon_editor'           => 'مستخدم مجهول $1',
-'enotif_body'                  => 'عزيزي $ WATCHINGUSERNAME
-صفحة  $PAGETITLE قد  $ CHANGEDORCREATEDفي $PAGEEDITDATE ب$PAGEEDITOR, انظر$PAGETITLE_URL للمراجعة الحالية
-موجز للمحرر: $PAGESUMMARY $PAGEMINOREDIT
+'enotif_body'                  => 'عزيزي $WATCHINGUSERNAME
+صفحة  $PAGETITLE قد  $CHANGEDORCREATED في $PAGEEDITDATE بواسطة $PAGEEDITOR, انظر $PAGETITLE_URL للنسخة الحالية
+ملخص التعديل: $PAGESUMMARY $PAGEMINOREDIT
 
 
 الاتصال بالمحرر:
- البريد: $PAGEEDITOR_EMAIL
- ويكي: $PAGEEDITOR_WIKI
+البريد: $PAGEEDITOR_EMAIL
+ويكي: $PAGEEDITOR_WIKI
 
-لن يكون هناك لا إخطارات أخرى في حالة حدوث مزيد من التغييرات إلا إذا قمت بزيارة هذه الصفحة.
+لن يكون هناك إخطارات أخرى في حالة حدوث مزيد من التغييرات إلا إذا قمت بزيارة تلك الصفحة.
 يمكن أيضا تعيين إشارات الإعلام لجميع صفحات شاهد على هيئة الرصد الخاصة بك.
 
-			 {{SITENAME}} إعلام النظام الخاص بك ودية
+			 {{SITENAME}} إعلام البريد الإلكتروني لموقع
 
 --
 لتغيير إعدادات إعلام البريد الإلكتروني الخاص بك، قم بزيارة
-{{canonicalurl: {{# الخاص: تفضيلات}}}}
+{{canonicalurl:{{#special:Preferences}}}}
 
-لتغيير إعدادات الرصد الخاصة بك، قم بزيارة
-{{canonicalurl: {{# الخاص: الرصد}}/تحرير}}
+لتغيير إعدادات المراقبة الخاصة بك، قم بزيارة
+{{canonicalurl:{{#special:EditWatchlist}}}}
 
-لحذف الصفحة من هيئة الرصد الخاصة بك، قم بزيارة
-$ أونواتشورل
+لحذف الصفحة من قائمة المراقبة الخاصة بك، قم بزيارة
+$UNWATCHURL
 
 التغذية المرتدة، والحصول على مساعدة إضافية:
 {{canonicalurl: {{MediaWiki:Helppage}}}}',

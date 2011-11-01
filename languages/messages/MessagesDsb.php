@@ -285,6 +285,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'dalej',
 'index-category'                 => 'Indicěrowane boki',
 'noindex-category'               => 'Njeindicěrowane boki',
+'broken-file-category'           => 'Boki z njepłaśiwymi datajowymi wótkazami',
 
 'about'         => 'Wó',
 'article'       => 'Nastawk',
@@ -656,6 +657,8 @@ Nachylne gronidło: $2',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-mailowu adresu změniś',
+'changeemail-header'   => 'Kontowu e-mailowu adresu změniś',
+'changeemail-no-info'  => 'Dejš pśizjawjony byś, aby direktny pśistup na toś ten bok měł.',
 'changeemail-oldemail' => 'Aktualna e-mailowa adresa:',
 'changeemail-newemail' => 'Nowa e-mailowa adresa:',
 'changeemail-none'     => '(žedna)',
@@ -756,8 +759,12 @@ abo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}
 'userpage-userdoesnotexist-view'   => 'Wužywarske konto "$1" njejo zregistrowane.',
 'blocked-notice-logextract'        => 'Toś ten wužywaŕ jo tuchylu blokěrowany.
 Nejnowšy zapisk blokěrowańskego protokola pódawa se dołojce ako referenca:',
-'clearyourcache'                   => "'''Pokazka: Jo móžno, až dejš wuprozniś cache wobglědowaka, aby změny wiźeł.'''
-'''Mozilla/Firefox/Safari:''' Źarź ''Umsch'' tłocony, mjaztym až kliknjoš ''Znowego'' abo tłoc pak ''Strg-F5'' pak ''Strg-R'' (''Command-R'' na Makintošu); '''Konqueror: '''Klikni ''' na ''Aktualisieren'' abo tłoc ''F5;'' '''Opera:''' wuprozni cache w ''Extras -> Einstellungen;'' '''Internet Explorer:''' źarź ''Strg'' tłocony, mjaztym až kliknjoš na ''Aktualisieren'' abo tłoc ''Strg-F5.''",
+'clearyourcache'                   => "'''Pokazka:''' Pó składowanju dejš snaź wuprozniś cache wobglědowaka, aby změny wiźeł.
+* '''Firefox/Safari:''' Źarź ''Umsch'' tłocony, mjaztym až kliknjoš na ''Znowego'' abo tłoc pak ''Strg-F5'' pak ''Strg-R'' (''Command-R'' na Makintošu)
+* '''Google Chrome:''' Tłoc na ''Strg-Umsch-R'' (''command-Umsch-R'' na Makintošu)
+* '''Internet Explorer:''' Źarź ''Strg'' tłocony, mjaztym až kliknjoš na ''Aktualisieren'' abo tłoc ''Strg-F5''
+* '''Konqueror:''' Klikni na ''Aktualisieren'' abo tłoc ''F5''
+* '''Opera:''' Wuprozni cache w ''Extras → Einstellungen''",
 'usercssyoucanpreview'             => "'''Pokazka:''' Wužywaj tłocašk '{{int:showpreview}}', aby swój nowy css testował, nježli až jen składujoš.",
 'userjsyoucanpreview'              => "'''Pokazka:''' Wužywaj tłocašk \"{{int:showpreview}}\", aby swój nowy JavaScript testował, nježli až jen składujoš.",
 'usercsspreview'                   => "'''Źiwaj na to, až wobglědujoš se jano pśeglěd swójogo wužywarskego CSS. Njejo se hyšći składował!'''",
@@ -908,27 +915,27 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'rev-deleted-text-permission' => "Toś ta wersija boka jo se '''wulašowała'''. Ewentuelne su drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-deleted-text-unhide'     => "Toś ta wersija boka jo se '''wulašowała'''.
 Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
-Ako administrator móžoš se hyšći [$1 toś tu wersiju woglědaś], jolic coš pókšacowaś.",
+Móžoš se hyšći [$1 toś tu wersiju woglědaś], jolic coš pókšacowaś.",
 'rev-suppressed-text-unhide'  => "Toś ta wersija boka jo se '''pódtłocyła'''.
-Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódłocenjow].
-Ako administrator móžoš se hyšći [$1 toś tu wersiju woglědaś], jolic coš pókšacowaś.",
+Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódtłocenjow].
+Móžoš se hyšći [$1 toś tu wersiju woglědaś], jolic coš pókšacowaś.",
 'rev-deleted-text-view'       => "Toś ta wersija boka jo se '''wulašowała'''.
-Ako administrator móžoš se ju woglědaś; glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+Móžoš se ju woglědaś; glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-suppressed-text-view'    => "Toś ta wersija boka jo se '''pódtłocyła'''.
-Ako administrator móžoš se ju woglědaś; glědaj drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódtłocenjow].",
+Móžoš se ju woglědaś; glědaj drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódtłocenjow].",
 'rev-deleted-no-diff'         => "Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se '''wulašowała'''.
 Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-suppressed-no-diff'      => "Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se '''wulašowała'''.",
 'rev-deleted-unhide-diff'     => "Jadna z wersijow toś togo rozdźěla jo se '''wulašowała'''.
 Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
-Ako administrator móžoš hyšći se [$1 toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
+Móžoš se hyšći [$1 toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
 'rev-suppressed-unhide-diff'  => "Jadna z wersijow twójogo rozdźěla jo se '''pódtłócyła'''.
-Za drobnostki glědaj [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokol pódłócenjow].
-Ako administrator móžoš hyšći [$1 se toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
+Za drobnostki glědaj [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokol pódtłocenjow].
+Móžoš se hyšći [$1 toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
 'rev-deleted-diff-view'       => "Jadna z wersijow toś togo rozdźěla jo se '''wulašowała'''.
-Ako administrator móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+Móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-suppressed-diff-view'    => "Jadna z wersijow toś togo rozdźěla jo se '''pódtłocyła'''.
-Ako administrator móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódtłocenjow].",
+Móžoš se toś ten rozdźěl woglědaś; drobnostki glědaj w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódtłocenjow].",
 'rev-delundel'                => 'pokazaś/schowaś',
 'rev-showdeleted'             => 'pokazaś',
 'revisiondelete'              => 'Wersije wulašowaś/wótnowiś',
@@ -995,7 +1002,7 @@ Pšosym pśeglědaj protokole.',
 
 # Suppression log
 'suppressionlog'     => 'Protokol pódłocowanjow',
-'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo za administratorow schowane. Glědaj  [[Special:IPBlockList|lisćinu blokěrowanjow IP]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
+'suppressionlogtext' => 'To jo lisćina wulašowanjow a blokěrowanjow, kótaraž ma wopśimjeśe, kótarež jo wót administratorow schowane. Glědaj  [[Special:BlockList|lisćinu IP-blokěrowanjow]] za lisćinu aktualnych wugnanjow a blokěrowanjow.',
 
 # History merging
 'mergehistory'                     => 'Zwězaś stawizny bokow',
@@ -1459,6 +1466,7 @@ Glědaj [[Special:NewFiles|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'ignorewarnings'              => 'Wše warnowanja ignorěrowaś',
 'minlength1'                  => 'Mjenja datajow muse wopśimjeś nanejmjenjej jaden pismik.',
 'illegalfilename'             => 'Datajowe mě „$1“ wopśimjejo njedowólone znamuška, kótarež njejsu dowólone w titulami bokow. Pšosym pśemjeń dataju a wopytaj ju wótnowotki nagraś.',
+'filename-toolong'            => 'Datajowe mjenja njesměju dlejše ako 240 bajtow byś.',
 'badfilename'                 => 'Mě dataje jo se změniło na „$1“.',
 'filetype-mime-mismatch'      => 'Datajowy sufiks ".$1" njewótpowědujo MIME-typoju dataje ($2).',
 'filetype-badmime'            => 'Dataje z MIME-typom „$1“ njesměju se nagraś.',
@@ -1482,6 +1490,7 @@ Glědaj [[Special:NewFiles|galeriju nowych datajow]] za wizuelny pśeglěd.',
 'large-file'                  => 'Pó móžnosći njedejała dataja wětša byś ako $1. Toś ta dataja jo $2 wjelika.',
 'largefileserver'             => 'Dataja jo wětša ako serwer dopušćijo.',
 'emptyfile'                   => 'Dataja, kótaruž sy nagrał, jo prozna. Pśicyna móžo byś zmólka w mjenju dataje. Kontrolěruj pšosym, lěc coš dataju napšawdu nagraś.',
+'windows-nonascii-filename'   => 'Toś ten wiki njepódpěra datajowe mjenja z wósebnymi znamuškami.',
 'fileexists'                  => "Dataja z toś tym mjenim južo eksistěrujo.
 Tłocyš-lic na \"Dataju składowaś\", ga se dataja pśepišo.
 Pšosym kontrolěruj '''<tt>[[:\$1]]</tt>''', gaž njejsy se kradu wěsty.
@@ -1813,7 +1822,7 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'listusers-editsonly'     => 'Jano wužywarjow ze změnami pokazaś',
 'listusers-creationsort'  => 'Pó datumje napóranja sortěrowaś',
 'usereditcount'           => '$1 {{PLURAL:$1|změna|změnje|změny|změnow}}',
-'usercreated'             => 'Napórany $1 $2 goź.',
+'usercreated'             => 'jo se $1 $2 góź. {{GENDER:$3|napórał|napórała}}',
 'newpages'                => 'Nowe boki',
 'newpages-username'       => 'Wužywarske mě:',
 'ancientpages'            => 'Nejstarše boki',
@@ -1879,7 +1888,7 @@ Glědaj teke [[Special:WantedCategories|póžedane kategorije]].',
 'sp-deletedcontributions-contribs' => 'pśinoski',
 
 # Special:LinkSearch
-'linksearch'       => 'Eksterne wótkaze',
+'linksearch'       => 'Pytanje eksternych wótkazow',
 'linksearch-pat'   => 'Pytański muster:',
 'linksearch-ns'    => 'Mjenjowy rum:',
 'linksearch-ok'    => 'Pytaś',
@@ -1940,6 +1949,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 'noemailtext'          => 'Toś ten wužywaŕ njejo pódał płaśiwu e-mailowu adresu.',
 'nowikiemailtitle'     => 'Žedna e-mail dowólona',
 'nowikiemailtext'      => 'Toś ten wužywaŕ njoco žednu e-mail wót drugich wužywarjow dostaś.',
+'emailnotarget'        => 'Njeeksistěrujuce abo njepłaśiwe wužywarske mě za dostawarja.',
 'emailtarget'          => 'Wužywarske mě dostawarja zapódaś',
 'emailusername'        => 'Wužywarske mě:',
 'emailusernamesubmit'  => 'Wótpósłaś',
@@ -2089,7 +2099,10 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'unprotectedarticle'          => 'jo šćit za „[[$1]]“ wótpórał',
 'movedarticleprotection'      => 'šćitowe nastajenja z "[[$2]]" do "[[$1]]" psésunjone',
 'protect-title'               => 'Šćit boka „$1“ změniś',
+'protect-title-notallowed'    => 'Šćitny stopjeń za "$1" pokazaś',
 'prot_1movedto2'              => '„[[$1]]“ pśesunjone na „[[$2]]“',
+'protect-badnamespace-title'  => 'Nješćitajobny mjenjowy rum',
+'protect-badnamespace-text'   => 'Boki w toś tom mjenjowem rumje njedaju se šćitaś.',
 'protect-legend'              => 'Šćitanje wobkšuśiś',
 'protectcomment'              => 'Pśicyna:',
 'protectexpiry'               => 'cas wótběžy:',
@@ -2142,15 +2155,14 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 
 # Undelete
 'undelete'                     => 'Wulašowane boki woglědaś',
-'undeletepage'                 => 'Wulašowane boki pokazaś a nawrośiś.',
+'undeletepage'                 => 'Wulašowane boki pokazaś a wótnowiś.',
 'undeletepagetitle'            => "'''Slědujuce wudaśe wobstoj z wulašowanych wersijow wót [[:$1|$1]]'''.",
 'viewdeletedpage'              => 'Wulašowane boki pokazaś',
 'undeletepagetext'             => '{{PLURAL:$1|Slědujucy bok jo se wulašował, ale jo|Slědujucej $1 boka stej se wulašowałej, ale stej|Slědujuce $1 boki su se wulašowali, ale su|Slědujucych $1 bokow jo se wulašowało, ale jo}} hyšći w archiwje a {{PLURAL:$1|dajo|dajotej|daju|dajo}} se nawrośiś.
 Archiw dajo se periodiski wuprozniś.',
 'undelete-fieldset-title'      => 'Wersije wótnowiś',
-'undeleteextrahelp'            => "Aby wšyknymi wersijami boka nawrośiś, wóstaj wšykne kontrolowe kašćiki prozne a klikni na zapódaj '''''Nawrośíś'''''.
-Aby jano wěste wersije nawrośił, wubjeŕ kašćiki, kótarež wótpowěduju wersijam, kótarež maju se nawrośiś a klikni na '''''Nawrośiś'''''.
-Kliknjenje na '''''Pśetergnuś''''' wuprozni komentarne pólo a wšykne kontrolowe kašćiki.",
+'undeleteextrahelp'            => "Aby wšykne wersije boka wótnowił, wóstaj wšykne kontrolowe kašćiki prozne a klikni na zapódaj '''''{{int:undeletebtn}}'''''.
+Aby jano wěste wersije wótnowił, wubjeŕ kašćiki, kótarež wótpowěduju wersijam, kótarež maju se wótnowiś a klikni na '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|wersija archiwěrowana|wersiji archiwěrowanej|wersije archiwěrowane}}',
 'undeletehistory'              => 'Jolic nawrośijoš bok, nawrośiju se wšykne wersije stawiznow.
 Joli až jo se wutwórił nowy bok ze samskim mjenim wót casa wulašowanja, nawrośone wersije zjawiju se w  pjerwješnych stawiznach.',
@@ -2160,7 +2172,7 @@ W takich padach dejš nejnowše wulašowane wersije markěroanje abo schowanje w
 'undelete-revision'            => 'Wulašowana wersija boka $1 (wót $4, $5) wót $3:',
 'undeleterevision-missing'     => 'Njepłaśeca abo felujuca wersija. Snaź jo link wopacny abo wersija jo z archiwa se nawrośiła resp. wulašowała.',
 'undelete-nodiff'              => 'Žedne něgajšne wersije',
-'undeletebtn'                  => 'Wulašowaś',
+'undeletebtn'                  => 'Wótnowiś',
 'undeletelink'                 => 'woglědaś se/wótnowiś',
 'undeleteviewlink'             => 'woglědaś se',
 'undeletereset'                => 'Slědk wześ',
@@ -2529,7 +2541,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-interwiki-namespace' => 'Celowy mjenjowy rum:',
 'import-upload-filename'     => 'Datajowe mě:',
 'import-comment'             => 'Komentar:',
-'importtext'                 => 'Eksportěruj pšosym dataju ze žredlowego wikija z pomocu [[Special:Export|eksporteje funkcije]]. Składuj ju na swójom licadle a nagraj su sem.',
+'importtext'                 => 'Eksportěruj pšosym dataju ze žredlowego wikija z pomocu [[Special:Export|eksporteje funkcije]]. Składuj ju na swójom licadle a nagraj ju sem.',
 'importstart'                => 'Importěrowanje bokow...',
 'import-revision-count'      => '$1 {{PLURAL:$1|wersija|wersiji|wersije}}',
 'importnopages'              => 'Boki za importěrowanje njeeksistěruju.',
@@ -2714,6 +2726,7 @@ $1',
 'widthheightpage'        => '$1×$2, $3 {{PLURAL:$3|bok|boka|boki|bokow}}',
 'file-info'              => 'wjelikosć dataje: $1, MIME-Typ: $2',
 'file-info-size'         => '$1 × $2 pikselow, wjelikosć dataje: $3, MIME-Typ: $4',
+'file-info-size-pages'   => '$1 × $2 pikselow, wjelikosć dataje: $3, MIME-typ: $4, $5 {{PLURAL:$5|bok|boka|boki|bokow}}',
 'file-nohires'           => 'Wuše wótgranicowanje njeeksistěrujo.',
 'svg-long-desc'          => 'dataja SVG, nominalnje: $1 × $2 piksele, wjelikosć dataje: $3',
 'show-big-image'         => 'Połne optiske wótgranicowanje.',
@@ -2756,8 +2769,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'metadata-help'     => 'Toś ta dataja wopśimjejo pśidatne informacije, kótarež nejskerjej póchadaju wót digitalneje kamery abo scannera. Jolic dataja bu pozdźej změnjona, njeby mógli někotare detaile změnjonu dataju wótbłyšćowaś.',
 'metadata-expand'   => 'rozšyrjone detaile pokazaś',
 'metadata-collapse' => 'rozšyrjone detaile schowaś',
-'metadata-fields'   => 'Slědujuce póla EXIF-metadatow se pokazuju na bokach, kótarež wopisuju wobraze; dalšne detaile, kótarež normalnje su schowane, mógu se pśidatnje pokazaś.
-
+'metadata-fields'   => 'Slědujuce póla metadatow, kótarež su w toś tej powěźeńce pódane, budu se do bokow wopisanja wobrazow zapśimowaś, gaž tabela metadatow jo schowana. Druge se pó standarźe njepokazuju.
 * make
 * model
 * datetimeoriginal
@@ -2898,6 +2910,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-cameraownername'             => 'Wobsejźaŕ kamery',
 'exif-copyrighted'                 => 'Status awtorskego pšawa',
 'exif-copyrightowner'              => 'Wobsejźaŕ awtorskego pšawa',
+'exif-contentwarning'              => 'Wopśimjeśowe warnowanje',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekompriměrowany',
@@ -3053,9 +3066,21 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsdirection-m' => 'Magnetiski směr',
 
 'exif-dc-contributor' => 'Sobuźěłaśerje',
+'exif-dc-date'        => 'Pódaśa datuma',
 'exif-dc-rights'      => 'Pšawa',
+'exif-dc-source'      => 'Medijowe žrědło',
+'exif-dc-type'        => 'Medijowy typ',
 
 'exif-rating-rejected' => 'Wótpokazany',
+
+'exif-iimcategory-edu' => 'Kubłanje',
+'exif-iimcategory-hth' => 'Strowje',
+'exif-iimcategory-pol' => 'Politika',
+'exif-iimcategory-rel' => 'Nabóžnina a wěra',
+'exif-iimcategory-sci' => 'Wědomnosć a technika',
+'exif-iimcategory-soi' => 'Socialne problemy',
+'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-wea' => 'Wjedro',
 
 'exif-urgency-normal' => 'Normalna ($1)',
 'exif-urgency-low'    => 'Niska ($1)',
@@ -3225,6 +3250,9 @@ Móžoš teke [[Special:EditWatchlist|standardny wobźěłowański bok wužywaś
 'iranian-calendar-m11' => 'Bahman',
 'iranian-calendar-m12' => 'Esfand',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|diskusija]])',
+
 # Core parser functions
 'unknown_extension_tag' => 'Njeznaty tag rozšyrjenja „$1“',
 'duplicate-defaultsort' => 'Glědaj: Standardny sortěrowański kluc (DEFAULT SORT KEY) "$2" pśepišo pjerwjej wužyty kluc "$1".',
@@ -3359,8 +3387,14 @@ Wobraze se w połnym wótgranicowanju pokazuju, druge datajowe typy se ze zwěza
 'sqlite-no-fts'  => 'Wersija $1 bźez pódpěry za połnotekstowe pytanje',
 
 # New logging system
-'revdelete-restricted'   => 'Wobgranicowanja se teke na administratorow nałožuju',
-'revdelete-unrestricted' => 'Wobgranicowanja za administratorow wótpórane',
-'newuserlog-byemail'     => 'Pótajne słowo bu pśez e-mail pósłane.',
+'revdelete-content-hid'   => 'wopśimjeśe schowane',
+'revdelete-summary-hid'   => 'Zespominanje schowane',
+'revdelete-uname-hid'     => 'wužywarske mě schowane',
+'revdelete-content-unhid' => 'wopśimjeśe widobne',
+'revdelete-summary-unhid' => 'zespominanje widobne',
+'revdelete-uname-unhid'   => 'wužywarske mě widobne',
+'revdelete-restricted'    => 'Wobgranicowanja se teke na administratorow nałožuju',
+'revdelete-unrestricted'  => 'Wobgranicowanja za administratorow wótpórane',
+'newuserlog-byemail'      => 'Pótajne słowo bu pśez e-mail pósłane.',
 
 );

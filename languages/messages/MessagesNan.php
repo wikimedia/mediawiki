@@ -720,19 +720,42 @@ Lí tio̍h chim-chiok soà-chiap pian-chi̍p chit ia̍h ê pit-iàu-sèng.
 Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'moveddeleted-notice'              => '這頁已經hông刣掉，
 刣掉佮徙走的記錄佇下跤通參考。',
+'log-fulllog'                      => '看全部的記錄',
+'edit-hook-aborted'                => '取消編輯，
+無講啥物原因',
+'edit-gone-missing'                => '無法度改新這頁，
+伊可能拄hông刣掉。',
+'edit-conflict'                    => 'Siu-kái sio-chhiong',
+'edit-no-change'                   => '你的編輯閬過，因為攏無改著字。',
+'edit-already-exists'              => '無法度開新頁，
+已經有彼頁。',
 
 # Parser/template warnings
+'expensive-parserfunction-warning'        => "'''警示：'''這頁用傷濟擺函數呼叫。
+
+伊應該少過{PLURAL:$2|擺|擺}，這馬有{PLURAL:$1|擺|擺}。",
+'expensive-parserfunction-category'       => '用傷濟擺函數呼叫的頁',
 'post-expand-template-inclusion-warning'  => "'''Kéng-pò:'''Pau ji̍t lâi ê pán-bôo sioⁿ koè tsē ia̍h tuā.
 Ū chi̍t-koá-á ē bô pau ji̍t lâi.",
 'post-expand-template-inclusion-category' => '頁的枋模所包的量已經超過',
-'post-expand-template-argument-warning'   => "'''提醒你'''：這个頁至少包括一个枋模的參數超過展開時的大細。
+'post-expand-template-argument-warning'   => "'''警示'''：這个頁至少包括一个枋模的參數超過展開時的大細。
 遮的參數會忽略過。",
 'post-expand-template-argument-category'  => '包括跳過枋模參數的頁面',
+'parser-template-loop-warning'            => '踅圓框的枋模: [[$1]]',
+'parser-template-recursion-depth-warning' => '已經超過枋模的recusion深度限制($1)',
+'language-converter-depth-warning'        => '已經超過字詞轉換器的深度限制（$1）',
 
 # "Undo" feature
 'undo-success' => 'Pian-chi̍p í-keng chhú-siau. Chhiáⁿ khak-tēng, liáu-āu kā ē-kha ho̍k-goân ê kái-piàn pó-chûn--khí-lâi.',
 'undo-failure' => 'Pian-chi̍p bē-tàng chhú-siau, in-ūi chhiong tio̍h kî-kan chhah-ji̍p ê pian-chi̍p.',
+'undo-norev'   => '這个編輯袂當取消，因為無這个修訂本，抑是hông刣掉。',
 'undo-summary' => 'Chhú-siau [[Special:Contributions/$2|$2]] ([[User talk:$2|thó-lūn]]) ê siu-tēng-pún $1',
+
+# Account creation failure
+'cantcreateaccounttitle' => '無法度開口座',
+'cantcreateaccount-text' => "對這个 IP 地址 ('''$1''') 開口座已經予 [[User:$3|$3]] 禁止。
+
+$3共禁止的原因是 ''$2''。",
 
 # History pages
 'viewpagelogs'           => 'Khoàⁿ chit ia̍h ê logs',
@@ -745,6 +768,7 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'nextrevision'           => 'Khah sin ê siu-tēng-pún→',
 'currentrevisionlink'    => 'khoàⁿ siōng sin ê siu-tēng-pún',
 'cur'                    => 'taⁿ',
+'next'                   => '下一个',
 'last'                   => 'chêng',
 'page_first'             => 'Tùi thâu-chêng',
 'page_last'              => 'Tùi āu-piah',
@@ -753,6 +777,8 @@ Chia ū chit ia̍h ê san-tû kì-lo̍k hō͘ lí chham-khó:",
 'history-show-deleted'   => '只有刣掉的',
 'histfirst'              => 'Tùi thâu-chêng',
 'histlast'               => 'Tùi āu-piah',
+'historysize'            => '({{PLURAL:$1|1位元組|$1位元組}})',
+'historyempty'           => '（空的）',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 tī $2',
@@ -1041,7 +1067,7 @@ Template:Khu-pia̍t-ia̍h',
 'protectedpages'          => 'Siū pó-hō͘ ê ia̍h',
 'protectedpagestext'      => 'Ē-kha ê ia̍h siū pó-hō͘, bē-tit soá-ūi ia̍h pian-chi̍p',
 'listusers'               => 'Iōng-chiá lia̍t-toaⁿ',
-'usercreated'             => '佇$1 $2 建立',
+'usercreated'             => ' {{GENDER:$3|}}佇$1 $2創建',
 'newpages'                => 'Sin ia̍h',
 'newpages-username'       => 'Iōng-chiá miâ-chheng:',
 'ancientpages'            => 'Kó·-ia̍h',
