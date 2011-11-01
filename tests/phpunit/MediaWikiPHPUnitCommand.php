@@ -28,6 +28,17 @@ class MediaWikiPHPUnitCommand extends PHPUnit_TextUI_Command {
 			# Probably fix bug 29226
 			$command->arguments['colors'] = false;
 		}
+
+		# Makes MediaWiki PHPUnit directory includable so the PHPUnit will
+	    # be able to resolve relative files inclusion such as suites/*
+		# PHPUnit uses stream_resolve_include_path() internally
+		# See bug 32022
+		set_include_path(
+			dirname( __FILE__ )
+			.PATH_SEPARATOR
+			. get_include_path()
+		);
+
 		$command->run($_SERVER['argv'], $exit);
 	}
 

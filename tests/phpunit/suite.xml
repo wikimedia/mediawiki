@@ -12,19 +12,19 @@
 		 verbose="true">
 	<testsuites>
 		<testsuite name="includes">
-			<directory>./includes</directory>
+			<directory>includes</directory>
 		</testsuite>
 		<testsuite name="languages">
-			<directory>./languages</directory>
+			<directory>languages</directory>
 		</testsuite>
 		<testsuite name="skins">
-			<directory>./skins</directory>
+			<directory>skins</directory>
 		</testsuite>
 		<testsuite name="uploadfromurl">
-			<file>./suites/UploadFromUrlTestSuite.php</file>
+			<file>suites/UploadFromUrlTestSuite.php</file>
 		</testsuite>
 		<testsuite name="extensions">
-			<file>./suites/ExtensionsTestSuite.php</file>
+			<file>suites/ExtensionsTestSuite.php</file>
 		</testsuite>
 	</testsuites>
 	<groups>
