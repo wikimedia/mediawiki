@@ -159,13 +159,8 @@ class LocalisationCache {
 				case 'db':
 					$storeClass = 'LCStore_DB';
 					break;
-				case 'accel':
 				case 'detect':
-					if ( !( wfGetCache( CACHE_ACCEL ) instanceof FakeMemCachedClient ) ) {
-						$storeClass = 'LCStore_Accel';
-					} else {
-						$storeClass = $wgCacheDirectory ? 'LCStore_CDB' : 'LCStore_DB';
-					}
+					$storeClass = $wgCacheDirectory ? 'LCStore_CDB' : 'LCStore_DB';
 					break;
 				default:
 					throw new MWException(
@@ -353,9 +348,7 @@ class LocalisationCache {
 		}
 
 		$deps = $this->store->get( $code, 'deps' );
-		$keys = $this->store->get( $code, 'list', 'messages' );
-		// 'list:messages' sometimes expires separately of 'deps' in LCStore_Accel
-		if ( $deps === null || $keys === null ) {
+		if ( $deps === null ) {
 			wfDebug( __METHOD__."($code): cache missing, need to make one\n" );
 			return true;
 		}
@@ -834,56 +827,6 @@ interface LCStore {
 	 * @param $value
 	 */
 	function set( $key, $value );
-}
-
-/**
- * LCStore implementation which uses PHP accelerator to store data.
- * This will work if one of XCache, eAccelerator, or APC cacher is configured.
- * (See ObjectCache.php)
- */
-class LCStore_Accel implements LCStore {
-	var $currentLang;
-	var $keys;
-
-	public function __construct() {
-		$this->cache = wfGetCache( CACHE_ACCEL );
-	}
-
-	public function get( $code, $key ) {
-		$k = wfMemcKey( 'l10n', $code, 'k', $key );
-		$r = $this->cache->get( $k );
-		if ( $r === false ) return null;
-		return $r;
-	}
-
-	public function startWrite( $code ) {
-		$k = wfMemcKey( 'l10n', $code, 'l' );
-		$keys = $this->cache->get( $k );
-		if ( $keys ) {
-			foreach ( $keys as $k ) {
-				$this->cache->delete( $k );
-			}
-		}
-		$this->currentLang = $code;
-		$this->keys = array();
-	}
-
-	public function finishWrite() {
-		if ( $this->currentLang ) {
-			$k = wfMemcKey( 'l10n', $this->currentLang, 'l' );
-			$this->cache->set( $k, array_keys( $this->keys ) );
-		}
-		$this->currentLang = null;
-		$this->keys = array();
-	}
-
-	public function set( $key, $value ) {
-		if ( $this->currentLang ) {
-			$k = wfMemcKey( 'l10n', $this->currentLang, 'k', $key );
-			$this->keys[$k] = true;
-			$this->cache->set( $k, $value );
-		}
-	}
 }
 
 /**
