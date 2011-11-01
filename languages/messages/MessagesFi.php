@@ -1080,22 +1080,22 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-user'            => '(käyttäjänimi poistettu)',
 'rev-deleted-event'           => '(lokitapahtuma poistettu)',
 'rev-deleted-user-contribs'   => '[käyttäjänimi tai IP-osoite poistettu – muokkaus piilotettu muokkauksista]',
-'rev-deleted-text-permission' => "Tämä versio on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
+'rev-deleted-text-permission' => "Tämä versio sivusta on '''poistettu'''.
+Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",
 'rev-deleted-text-unhide'     => "Tämä versio sivusta on '''poistettu'''.
 Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].
 Voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 'rev-suppressed-text-unhide'  => "Tämä versio sivusta on '''häivytetty'''.
 Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokista].
 Voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
-'rev-deleted-text-view'       => "Tämä versio on '''poistettu'''.
+'rev-deleted-text-view'       => "Tämä versio sivusta on '''poistettu'''.
 Voit silti nähdä sen. Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",
-'rev-suppressed-text-view'    => "Tämä sivun versio on '''häivytetty'''.
+'rev-suppressed-text-view'    => "Tämä versio sivusta on '''häivytetty'''.
 Voit silti nähdä sen. Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokista].",
-'rev-deleted-no-diff'         => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
-'rev-suppressed-no-diff'      => "Et voi katsoa tätä eroa koska yksi korjattu versio on '''poistettu'''.",
-'rev-deleted-unhide-diff'     => "Yksi tämän muutoksen versioista on '''poistettu'''.
+'rev-deleted-no-diff'         => "Et voi nähdä tätä muutosvertailua, koska yksi versioista on '''poistettu'''.
+Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].",
+'rev-suppressed-no-diff'      => "Et voi nähdä tätä muutosvertailua, koska yksi versioista on '''poistettu'''.",
+'rev-deleted-unhide-diff'     => "Yksi tämän muutosvertailun versioista on '''poistettu'''.
 Lisätietoja löytyy [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokista].
 Voit silti [$1 nähdä tämän muutoksen], jos haluat jatkaa.",
 'rev-suppressed-unhide-diff'  => "Yksi tämän muutosvertailun versioista on '''häivytetty'''.
@@ -1977,7 +1977,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'listusers-editsonly'     => 'Näytä vain käyttäjät, joilla on muokkauksia',
 'listusers-creationsort'  => 'Lajittele tunnuksen luontipäivämäärän mukaan',
 'usereditcount'           => '$1 {{PLURAL:$1|muokkaus|muokkausta}}',
-'usercreated'             => 'Luotu $1 kello $2',
+'usercreated'             => '{{GENDER:$3|Luotu}} $1 kello $2',
 'newpages'                => 'Uudet sivut',
 'newpages-username'       => 'Käyttäjätunnus',
 'ancientpages'            => 'Kauan muokkaamattomat sivut',
@@ -2045,7 +2045,7 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'sp-deletedcontributions-contribs' => 'muokkaukset',
 
 # Special:LinkSearch
-'linksearch'       => 'Ulkoiset linkit',
+'linksearch'       => 'Etsi ulkoisia linkkejä',
 'linksearch-pat'   => 'Osoite',
 'linksearch-ns'    => 'Nimiavaruus',
 'linksearch-ok'    => 'Etsi',
@@ -2257,14 +2257,16 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'unprotectedarticle'          => 'poisti suojauksen sivulta [[$1]]',
 'movedarticleprotection'      => 'siirsi suojausasetukset sivulta [[$2]] sivulle [[$1]]',
 'protect-title'               => 'Sivun $1 suojaus',
+'protect-title-notallowed'    => 'Sivun $1 suojaustaso',
 'prot_1movedto2'              => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
+'protect-badnamespace-text'   => 'Tämän nimiavaruuden sivuja ei voi suojata.',
 'protect-legend'              => 'Suojaukset',
 'protectcomment'              => 'Syy',
 'protectexpiry'               => 'Vanhenee',
 'protect_expiry_invalid'      => 'Vanhenemisaika ei kelpaa.',
 'protect_expiry_old'          => 'Vanhenemisaika on menneisyydessä.',
 'protect-unchain-permissions' => 'Avaa lisäsuojausvalinnat',
-'protect-text'                => "Voit katsoa ja muuttaa sivun '''$1''' suojauksia.",
+'protect-text'                => "Voit tarkastella ja muuttaa sivun '''$1''' suojauksia.",
 'protect-locked-blocked'      => "Et voi muuttaa sivun suojauksia, koska sinut on estetty. Alla on sivun ”'''$1'''” nykyiset suojaukset:",
 'protect-locked-dblock'       => "Sivun suojauksia ei voi muuttaa, koska tietokanta on lukittu. Alla on sivun ”'''$1'''” nykyiset suojaukset:",
 'protect-locked-access'       => "Sinulla ei ole tarvittavia oikeuksia sivujen suojauksen muuttamiseen. Alla on sivun ”'''$1'''” nykyiset suojaukset:",

@@ -2037,7 +2037,7 @@ Hver rad inneholder lenker til første og andre omdirigering, samt målet for de
 'listusers-editsonly'     => 'Vis bare brukere med redigeringer',
 'listusers-creationsort'  => 'Sorter etter opprettelsesdato',
 'usereditcount'           => '{{PLURAL:$1|én redigering|$1 redigeringer}}',
-'usercreated'             => 'Opprettet den $1 $2',
+'usercreated'             => '{{GENDER:$3|Opprettet}} $2 $1',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukernavn:',
 'ancientpages'            => 'Eldste sider',

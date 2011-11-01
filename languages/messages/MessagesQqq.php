@@ -815,7 +815,8 @@ Parameters:
 'passwordreset-emailelement'       => "This is a body of a reminder email to allow them into the system with a new password.
 $1 will be the user's login name.
 $2 will be the temporary password given by the system.",
-'passwordreset-emailerror-capture' => 'What is $1?',
+'passwordreset-emailerror-capture' => 'Error message displayed when sending an e-mail fails. Parameters:
+* $1 is the name of a user who was supposed to get the e-mail.',
 
 # Special:ChangeEmail
 'changeemail'          => 'Title of [[Special:ChangeEmail|special page]].',
@@ -2266,7 +2267,9 @@ The title is {{msg-mw|nopagetitle}}.',
 'sp-deletedcontributions-contribs' => 'Link to user’s contributions on [[Special:DeletedContributions]]',
 
 # Special:LinkSearch
-'linksearch'       => 'Title of [[Special:LinkSearch|special page]] and label of fieldset on that page.',
+'linksearch'       => 'Title of [[Special:LinkSearch|special page]] and legend of fieldset on that page.
+
+{{Identical|External link}}',
 'linksearch-pat'   => 'Legend for input box on [[Special:LinkSearch]].',
 'linksearch-ns'    => 'Legend for dropdown box on [[Special:LinkSearch|special page]].
 

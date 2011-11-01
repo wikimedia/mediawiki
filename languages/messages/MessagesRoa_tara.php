@@ -511,6 +511,7 @@ Nisciuna mail t'avène mannete pe tutte le seguende dettaglie.",
 'emailconfirmlink'           => "Conferme l'indirizze e-mail tue",
 'invalidemailaddress'        => "L'indirizze e-mail non ge pò essere accettete cumme l'è scritte purcè tène 'nu formete invalide.
 Pe piacere mitte l'indirizze a cumme criste cumanne, ce nò no 'u scè mettènne proprie.",
+'cannotchangeemail'          => "Le indirizze e-mail d'u cunde utende non ge ponne essere cangiate sus a sta uicchi.",
 'accountcreated'             => 'cunde utende ccrejete',
 'accountcreatedtext'         => "'U cunde utende pe $1 ha state ccrejete.",
 'createaccount-title'        => "Ccreazzione de 'u cunde utende pe {{SITENAME}}",
@@ -549,32 +550,35 @@ Pò essere ca tu è già cangete 'a password toje o è richieste una temboranea 
 'resetpass-temp-password'   => 'Password temboranea:',
 
 # Special:PasswordReset
-'passwordreset'                => "Azzere 'a passuord",
-'passwordreset-text'           => "Comblete stu module pe avè 'na mail pe arrecurdarte le dettaglie d'u cunde tune.",
-'passwordreset-legend'         => "Azzere 'a passuord",
-'passwordreset-disabled'       => "'U reset de le passuord ha state desabbilitate sus a sta uicchi.",
-'passwordreset-pretext'        => '{{PLURAL:$1||Mitte une de le stuèzze de le date aqquà sotte}}',
-'passwordreset-username'       => 'Nome utende:',
-'passwordreset-domain'         => 'Dominie:',
-'passwordreset-capture'        => "Vide 'a mail resultande?",
-'passwordreset-email'          => 'Indirizze e-mail:',
-'passwordreset-emailtitle'     => "Dettaglie d'u cunde utende sus a {{SITENAME}}",
-'passwordreset-emailtext-ip'   => "Quacchedune (pò essere tu, da 'u 'ndirizze IP $1) ha richieste 'na mail pe arrecurdarse de le dettaglie d'u cunde sue pe {{SITENAME}} ($4). {{PLURAL:$3|'U cunde utende seguende jè|le cunde utinde seguende sonde}} associate cu st'indirizze e-mail:
+'passwordreset'                    => "Azzere 'a passuord",
+'passwordreset-text'               => "Comblete stu module pe avè 'na mail pe arrecurdarte le dettaglie d'u cunde tune.",
+'passwordreset-legend'             => "Azzere 'a passuord",
+'passwordreset-disabled'           => "'U reset de le passuord ha state desabbilitate sus a sta uicchi.",
+'passwordreset-pretext'            => '{{PLURAL:$1||Mitte une de le stuèzze de le date aqquà sotte}}',
+'passwordreset-username'           => 'Nome utende:',
+'passwordreset-domain'             => 'Dominie:',
+'passwordreset-capture'            => "Vide 'a mail resultande?",
+'passwordreset-capture-help'       => "Ce tu signe sta sckatele, 'a mail (cu 'a passuord temboranèe) t'avène fatte vedè cumme adda essere mannate a l'utende.",
+'passwordreset-email'              => 'Indirizze e-mail:',
+'passwordreset-emailtitle'         => "Dettaglie d'u cunde utende sus a {{SITENAME}}",
+'passwordreset-emailtext-ip'       => "Quacchedune (pò essere tu, da 'u 'ndirizze IP $1) ha richieste 'na mail pe arrecurdarse de le dettaglie d'u cunde sue pe {{SITENAME}} ($4). {{PLURAL:$3|'U cunde utende seguende jè|le cunde utinde seguende sonde}} associate cu st'indirizze e-mail:
 
 $2
 
 {{PLURAL:$3|Sta passuord temboranèe scade|Ste passuord temboranèe scadene}}  'mbrà {{PLURAL:$5|'nu sciurne|$5 sciurne}}.
 Tu avissa trasè e scacchià 'na passuord nova. Ce quacchedun'otre ha fatte sta richieste, o ce tu t'è arrecurdate 'a passuord origgenale toje, e non g'a vuè ccu cange cchiù, tu puè ignorà stu messagge e condinuà ausanne 'a passuord vecchie.",
-'passwordreset-emailtext-user' => "L'utende $1 sus a {{SITENAME}} ave richieste 'na mail pe arrecurdarse le dettaglie d'u cunde sue pe {{SITENAME}}
+'passwordreset-emailtext-user'     => "L'utende $1 sus a {{SITENAME}} ave richieste 'na mail pe arrecurdarse le dettaglie d'u cunde sue pe {{SITENAME}}
 ($4). {{PLURAL:$3|'U cunde utende seguende jè|le cunde utinde seguende sonde}} associate cu st'indirizze e-mail:
 
 $2
 
 {{PLURAL:$3|Sta passuord temboranèe scade|Ste passuord temboranèe scadene}}  'mbrà {{PLURAL:$5|'nu sciurne|$5 sciurne}}.
 Tu avissa trasè e scacchià 'na passuord nova. Ce quacchedun'otre ha fatte sta richieste, o ce tu t'è arrecurdate 'a passuord origgenale toje, e non g'a vuè ccu cange cchiù, tu puè ignorà stu messagge e condinuà ausanne 'a passuord vecchie.",
-'passwordreset-emailelement'   => 'Nome utende: $1<br />
+'passwordreset-emailelement'       => 'Nome utende: $1<br />
 Passuord temboranèe: $2',
-'passwordreset-emailsent'      => "'N'e-mail pe arrecurdarte ha state mannate.",
+'passwordreset-emailsent'          => "'N'e-mail pe arrecurdarte ha state mannate.",
+'passwordreset-emailsent-capture'  => "'Na e-mail de promemorie ha state mannate, ca jè fatte vedè aqquà sotte.",
+'passwordreset-emailerror-capture' => "'Na e-mail de promemorie ha state generate, ca jè fatte vedè aqquà sotte, ma 'u 'nvie a l'utende ha fallite: $1",
 
 # Special:ChangeEmail
 'changeemail'          => "Cange 'u 'ndirizze e-mail",
@@ -1302,6 +1306,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'right-siteadmin'             => "Blocche e sblocche 'u database",
 'right-override-export-depth' => "L'esportazione de pàggene inglude pàggene collegate 'mbonde a 'na profonnetà de 5",
 'right-sendemail'             => "Manne 'a mail a otre utinde",
+'right-passwordreset'         => "Vide l'e-mail de azzeramende d'a passuord",
 
 # User rights log
 'rightslog'                  => "Archivie de le diritte de l'utende",
@@ -1798,7 +1803,7 @@ Mò s'avène redirette a [[$2]].",
 'listusers-editsonly'     => "Fà vedè sulamende l'utinde cu cangiaminde fatte",
 'listusers-creationsort'  => 'Arrenghete pe date de ccreazione',
 'usereditcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
-'usercreated'             => "Ccrejete 'u $1 a le ore $2",
+'usercreated'             => "{{GENDER:$3|Ccrejate}} 'u $1 a le ore $2",
 'newpages'                => 'Pàggene nuève',
 'newpages-username'       => "Nome de l'utende:",
 'ancientpages'            => 'Pàggene vìcchje',
@@ -1867,7 +1872,7 @@ Vide pure [[Special:WantedCategories|Categorije cercate]].",
 'sp-deletedcontributions-contribs' => 'condrebbute',
 
 # Special:LinkSearch
-'linksearch'       => 'Collegaminde fore a Uicchipèdie',
+'linksearch'       => 'Ricerche de collegaminde fore a Uicchipèdie',
 'linksearch-pat'   => 'Cirche le cambiune:',
 'linksearch-ns'    => 'Neimspeise:',
 'linksearch-ok'    => 'Cirche',
@@ -2093,7 +2098,10 @@ Vide 'a [[Special:ProtectedPages|liste de le pàggene prutette]] pa liste de le 
 'unprotectedarticle'          => 'sprutette da "[[$1]]"',
 'movedarticleprotection'      => '\'mbostaziune de protezzione spustate da "[[$2]]" a "[[$1]]"',
 'protect-title'               => 'Cange levèlle de protezione pe "$1"',
+'protect-title-notallowed'    => 'Vide \'u levèlle de protezione pe "$1"',
 'prot_1movedto2'              => "[[$1]] spustete jndr'à [[$2]]",
+'protect-badnamespace-title'  => 'Namespace none proteggibbele',
+'protect-badnamespace-text'   => "Le pàggene jndr'à stu namespace non ge ponne essere prutette.",
 'protect-backlink'            => '← $1',
 'protect-legend'              => "Conferme 'a protezione",
 'protectcomment'              => 'Mutive:',
@@ -3511,6 +3519,15 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 # New logging system
 'logentry-delete-delete'              => '$1 pàgena {{GENDER:$2|scangellate}} $3',
 'logentry-delete-restore'             => '$1 pàgena {{GENDER:$2|repristinate}} $3',
+'logentry-delete-event'               => "$1 {{GENDER:$2|cangiate}} 'a vesibbilità {{PLURAL:$5|de l'archivije de le fatte|$5 de l'archivije de le fatte}} sus 'a $3: $4",
+'logentry-delete-revision'            => "$1 {{GENDER:$2|cangiate}} 'a vesibbilità {{PLURAL:$5|d'a revisione|$5 de le revisiune}} sus 'a pàgene $3: $4",
+'logentry-delete-event-legacy'        => "$1 {{GENDER:$2|cangiate}} 'a vesibbilità d'u archivije de le fatte sus 'a $3",
+'logentry-delete-revision-legacy'     => "$1 {{GENDER:$2|cangiate}} 'a vesibbilità de le revisiune sus 'a pàgene $3",
+'logentry-suppress-delete'            => '$1 pàgena {{GENDER:$2|soppresse}} $3',
+'logentry-suppress-event'             => "$1 a scunnute {{GENDER:$2|cangiate}} 'a vesibbilità {{PLURAL:$5|de l'archivije de le fatte|$5 de l'archivije de le fatte}} sus 'a $3: $4",
+'logentry-suppress-revision'          => "$1 a scunnute {{GENDER:$2|cangiate}} 'a vesibbilità {{PLURAL:$5|d'a revisione|$5 de le revisiune}} sus 'a pàgene $3: $4",
+'logentry-suppress-event-legacy'      => "$1 a scunnute {{GENDER:$2|cangiate}} 'a vesibbilità d'u archivije de le fatte sus 'a $3",
+'logentry-suppress-revision-legacy'   => "$1 a scunnute {{GENDER:$2|cangiate}} 'a vesibbilità de le revisiune sus 'a pàgene $3",
 'revdelete-content-hid'               => 'condenute scunnute',
 'revdelete-summary-hid'               => "riepileghe d'u cangiamende scunnute",
 'revdelete-uname-hid'                 => "nome de l'utende scunnute",
@@ -3523,6 +3540,8 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'logentry-move-move-noredirect'       => "$1 pàgena {{GENDER:$2|spustate}} $3 a $4 senze lassà 'nu redirezionamende",
 'logentry-move-move_redir'            => "$1 pàgena {{GENDER:$2|spustate}} $3 a $4 cu 'u redirezionamende",
 'logentry-move-move_redir-noredirect' => "$1 pàgena {{GENDER:$2|spustate}} $3 a $4 sus a 'nu redirezionamende senze lassà 'nu redirezionamende",
+'logentry-patrol-patrol'              => '$1 revisione {{GENDER:$2|marcate}} $4 de pàgene condrollate $3',
+'logentry-patrol-patrol-auto'         => '$1 automaticamende revisione {{GENDER:$2|marcate}} $4 de pàgene condrollate $3',
 'logentry-newusers-newusers'          => "$1 {{GENDER:$2|ccrejate}} 'nu cunde utende",
 'logentry-newusers-create'            => "$1 {{GENDER:$2|ccrejate}} 'nu cunde utende",
 'logentry-newusers-create2'           => "$1 {{GENDER:$2|ccrejate}} {{GENDER:$4|'nu cunde utende}} $3",

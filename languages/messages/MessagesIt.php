@@ -883,7 +883,7 @@ Potrebbe essere stata spostata o eliminata mentre si stava visionando la pagina.
 
 La password per questo nuovo account può essere modificata all'accesso nella pagina per ''[[Special:ChangePassword|cambiare la password]]''.",
 'newarticle'                       => '(Nuovo)',
-'newarticletext'                   => "Il collegamento appena aperto corrisponde ad una pagina non ancora esistente.
+'newarticletext'                   => "Il collegamento appena seguito corrisponde ad una pagina non ancora esistente.
 Se vuoi creare la pagina ora, basta cominciare a scrivere il testo nella casella qui sotto (vedi la [[{{MediaWiki:Helppage}}|pagina di aiuto]] per maggiori informazioni).
 Se il collegamento è stato aperto per errore, è sufficiente fare clic sul pulsante '''Indietro''' del proprio browser.",
 'anontalkpagetext'                 => "----''Questa è la pagina di discussione di un utente anonimo, che non ha ancora creato un accesso o comunque non lo usa. Per identificarlo è quindi necessario usare il numero del suo indirizzo IP. Gli indirizzi IP possono però essere condivisi da più utenti. Se sei un utente anonimo e ritieni che i commenti presenti in questa pagina non si riferiscano a te, [[Special:UserLogin/signup|crea un nuovo accesso]] o [[Special:UserLogin|entra con quello che già hai]] per evitare di essere confuso con altri utenti anonimi in futuro.''",
@@ -3128,9 +3128,9 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-orientation-3' => 'Ruotato di 180°',
 'exif-orientation-4' => 'Capovolto verticalmente',
 'exif-orientation-5' => 'Ruotato 90° in senso antiorario e capovolto verticalmente',
-'exif-orientation-6' => 'Ruotato di 90° CCW',
+'exif-orientation-6' => 'Ruotato di 90° in senso antiorario',
 'exif-orientation-7' => 'Ruotato 90° in senso orario e capovolto verticalmente',
-'exif-orientation-8' => 'Ruotato di 90° CW',
+'exif-orientation-8' => 'Ruotato di 90° in senso orario',
 
 'exif-planarconfiguration-1' => 'a blocchi (chunky)',
 'exif-planarconfiguration-2' => 'lineare (planar)',

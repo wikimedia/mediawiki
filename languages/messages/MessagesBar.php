@@ -396,7 +396,18 @@ Bittscheh vasuachs in a por Minunten nuamoi.',
 Änderrungen auf derer Seiten wirken sé auf d' Benutzerówerflächen aus.
 Ziag bittscheh im Foi voh Ywersétzungen in Betrocht, dé bei [http://translatewiki.net/wiki/Main_Page?setlang=de translatewiki.net], da Lókaalisiarungsblottform fyr MediaWiki, durchzfyrn.",
 'sqlhidden'            => '(SQL-Obfrog vastéckt)',
+'cascadeprotected'     => "Dé Seiten is zua da Beorweitung gsperrd worn. Sie is in d' {{PLURAL:$1|fóigande Seiten|fóiganden Seiten}} eihbunden, dé mid da Kaskaadensperrópzión gschytzd {{PLURAL:$1|is|san}}:
+$2",
+'namespaceprotected'   => "Du host néd d' daforderliche Berechtigung, Seiten im Náumensraum '''$1''' b'orweiden z' kenner.",
+'customcssprotected'   => "Du host néd d' Berechtigung dé CSS enthoitende Seiten z' b'orweiden, weis d' persénlichen Eihstöungen vohram aundern Benutzer enthoitt.",
+'customjsprotected'    => "Du host néd d' Berechtigung dé JavaScript enthoitende Seiten z' b'orweiden, weis d' persénlichen Eihstöungen vohram aundern Benutzer enthoitt.",
+'ns-specialprotected'  => "Speziaalseiten kennern néd b'orweidt wern.",
 'titleprotected'       => "A Seiten mid dém Nåm kå néd åglégd wern. Dé Sperrn is durch [[User:$1|$1]] mid da Begryndung ''„$2“'' eihgerichtt worn.",
+
+# Virus scanner
+'virus-badscanner'     => "Feelerhofte Kónfigurazión: unbekaunnter Virnscanner: ''$1''",
+'virus-scanfailed'     => 'Scan is föögschlong (code $1)',
+'virus-unknownscanner' => 'Néd bekaunnter Virnscanner:',
 
 # Login and logout pages
 'logouttext'                 => "'''Iatzerd bist obgmödt.'''
@@ -411,6 +422,7 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'yourpassword'               => 'Posswort:',
 'yourpasswordagain'          => 'Posswort nóamoi',
 'remembermypassword'         => 'Mid dém Browser dauerhoft ågmödt bleim (maximoi $1 {{PLURAL:$1|Dog|Dog}})',
+'securelogin-stick-https'    => "Noch'm Auhmöden mid HTTPS vabunden bleim",
 'yourdomainname'             => 'Eanerne Domain:',
 'externaldberror'            => 'Entweder es ligt a Feeler bai da externen Authentifiziarung vur oder du derfst dai externs Benytzerkonto ned aktualisirn.',
 'login'                      => 'Åmöden',
@@ -435,6 +447,8 @@ Vagiss bittscheh néd, deine [[Special:Preferences|{{SITENAME}}-Eishtellungen]] 
 'createaccounterror'         => 'Des Benutzerkonto hod ned erstöd wern kenner: $1',
 'nocookiesnew'               => "Da Benytzerzuagång is erstöid worn, du bist ower ned ågmöidt. {{SITENAME}} benedigt fyr de Funkzion Cookies, bittschee aktiviar de und möidt de danoch mid daim naichn Benytzernåm und 'm dazuaghering Posswort å.",
 'nocookieslogin'             => '{{SITENAME}} nimmt Cookies zum Ailoggen vo de Benytzer her. Du host Cookies deaktivird, bittschee aktivir de und vasuchs nuamoi.',
+'nocookiesfornew'            => "Dés Benutzerkóntó is néd erstöd worn, wei d' Daatenherkumft néd damittelt wern hod kenner.
+Es muass sichergstöd seih, daas Cookies aktivierd san. Danoch bittscheh d' Seiten daneit loon und wieder vasuacher.",
 'loginsuccesstitle'          => "D' Åmöidung is erfoigraich gween",
 'loginsuccess'               => 'Du bist jetzad ois „$1“ bai {{SITENAME}} ågmöidt.',
 'wrongpassword'              => 'Des Posswort is foisch! Bitschee prowirs nuamoi.',

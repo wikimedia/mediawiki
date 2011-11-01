@@ -1842,7 +1842,7 @@ In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Zii
 'listusers-editsonly'     => 'Zeig nume Benutzer mit Byytreg',
 'listusers-creationsort'  => 'Sortiert noch em Datum',
 'usereditcount'           => '$1 {{PLURAL:$1|Bearbeitig|Bearbeitige}}',
-'usercreated'             => 'Aagleit uf $1 am $2',
+'usercreated'             => '{{GENDER:$3|Aagleit}} uf $1 am $2',
 'newpages'                => 'Nöji Artikel',
 'newpages-username'       => 'Benutzername:',
 'ancientpages'            => 'alti Sytene',

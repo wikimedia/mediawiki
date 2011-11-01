@@ -615,6 +615,7 @@ Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 	'config-no-cli-uri' => 'Parameters:
 * $1 is the default value for scriptpath.',
 	'config-no-cli-uploads-check' => 'CLI = Call Level Interface',
+	'config-suhosin-max-value-length' => 'Message shown when PHP parameter suhosin.get.max_value_length is between 0 and 1023 (that max value is hard set in MediaWiki software',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
 	'config-db-account-lock' => "It might be easier to translate ''normal operation'' as \"also after the installation process\"",
@@ -640,7 +641,6 @@ Parameters:
 	'config-admin-password' => '{{Identical|Password}}',
 	'config-admin-email' => '{{Identical|E-mail address}}',
 	'config-subscribe' => 'Used as label for the installer checkbox',
-	'config-suhosin-max-value-length' => 'Message shown when PHP parameter suhosin.get.max_value_length is between 0 and 1023 (that max value is hard set in MediaWiki software',
 	'config-profile-help' => 'Messages referenced:
 * {{msg-mw|config-profile-wiki}}
 * {{msg-mw|config-profile-no-anon}}
@@ -3100,7 +3100,7 @@ Die Datei <code>php.ini</code> muss geprüft und es muss dabei sichergestellt we
 	'config-help-restart' => 'Sollen alle bereits eingegebene Daten gelöscht und der Installationsvorgang erneut gestartet werden?',
 	'config-restart' => 'Ja, erneut starten',
 	'config-welcome' => '=== Prüfung der Installationsumgebung ===
-Basisprüfungen werden durchgeführt, um festzustellen, ob die Installationsumgebung für die Installation von MediaWiki geeignet ist.
+Die Basisprüfungen werden durchgeführt, um festzustellen, ob die Installationsumgebung für die Installation von MediaWiki geeignet ist.
 Die Ergebnisse dieser Prüfung sollten angegeben werden, sofern während des Installationsvorgangs Hilfe benötigt und erfragt wird.',
 	'config-copyright' => "=== Lizenz und Nutzungsbedingungen ===
 
@@ -3233,7 +3233,7 @@ Obzwar es möglich ist Datenbankbenutzer ohne Passwort anzulegen, so ist dies ab
 	'config-db-wiki-help' => 'Bitte Benutzernamen und Passwort angeben, die der Webserver während des Normalbetriebes dazu verwenden soll, eine Verbindung zum Datenbankserver herzustellen.
 Sofern ein entsprechendes Benutzerkonto nicht vorhanden ist und das Benutzerkonto für den Installationsvorgang über ausreichende Berechtigungen verfügt, wird dieses Benutzerkonto automatisch mit den Mindestberechtigungen zum Normalbetrieb des Wikis angelegt.',
 	'config-db-prefix' => 'Datenbanktabellenpräfix:',
-	'config-db-prefix-help' => 'Sofern eine Datenbank für mehrere Wikiinstallationen oder eine Wikiinstallation und eine andere Programminstallation genutzt werden soll, muss ein weiterer Datenbanktabellenpräfix angegeben werden, um Datenbankprobleme zu vermeiden.
+	'config-db-prefix-help' => 'Sofern eine Datenbank für mehrere Wikiinstallationen oder eine Wikiinstallation und eine andere Programminstallation genutzt werden soll, muss ein Datenbanktabellenpräfix angegeben werden, um Datenbankprobleme zu vermeiden.
 Es können keine Leerzeichen verwendet werden.
 
 Gewöhnlich bleibt dieses Datenfeld leer.',
@@ -3386,7 +3386,7 @@ allerdings können keine Zeichen außerhalb des [http://de.wikipedia.org/wiki/Ba
 	'config-project-namespace' => 'Name des Projektnamensraums:',
 	'config-ns-generic' => 'Projekt',
 	'config-ns-site-name' => 'Entspricht dem Namen des Wikis: $1',
-	'config-ns-other' => 'Sonstige (bitte angeben)',
+	'config-ns-other' => 'Anderer Name (bitte angeben)',
 	'config-ns-other-default' => 'MeinWiki',
 	'config-project-namespace-help' => "Dem Beispiel von Wikipedia folgend, unterscheiden viele Wikis zwischen den Seiten für Inhalte und denen für Richtlinien. Letztere werden im „'''Projektnamensraum'''“ hinterlegt.
 Alle Seiten dieses Namensraumes verfügen über einen Seitenpräfix, der nun an dieser Stelle angegeben werden kann.

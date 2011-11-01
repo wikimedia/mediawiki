@@ -2129,9 +2129,9 @@ Ambelessì a-i son j'ampostassion atuaj për la pàgina '''$1''':",
 
 # Undelete
 'undelete'                     => 'Vëdde le pàgine scancelà',
-'undeletepage'                 => 'S-ciàira e pija andaré le pàgine scancelà',
+'undeletepage'                 => 'Vëdde e pijé andaré le pàgine scancelà',
 'undeletepagetitle'            => "'''Lòn ch'a-i é ambelessì a son tute revision scancelà ëd [[:$1]]'''.",
-'viewdeletedpage'              => 'Smon le pàgine scancelà',
+'viewdeletedpage'              => 'Smon-e le pàgine scancelà',
 'undeletepagetext'             => "{{PLURAL:$1|La pàgina ambelessì sota a l'é staita scancelà, ma a resta|$1 Le pàgine ambelessì sota a son staite scancelà, ma a resto}} ancó memorisà ant l'archivi a as peulo pijesse andaré.
 L'archivi a ven polidà passaje un pòch ëd temp.",
 'undelete-fieldset-title'      => 'Arcùpera le revision',
