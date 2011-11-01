@@ -92,7 +92,7 @@ abstract class BagOStuff {
 	}
 
 	/**
-	 * Delete all objects expiring before a certain date. 
+	 * Delete all objects expiring before a certain date.
 	 *
 	 * @return true on success, false if unimplemented
 	 */
