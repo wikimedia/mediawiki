@@ -372,7 +372,7 @@ class UserBlockedError extends ErrorPageError {
 				$link,
 				$reason,
 				$wgRequest->getIP(),
-				$block->getBlocker()->getName(),
+				$block->getByName(),
 				$block->getId(),
 				$wgLang->formatExpiry( $block->mExpiry ),
 				$intended,
