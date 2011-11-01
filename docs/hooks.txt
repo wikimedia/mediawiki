@@ -2032,7 +2032,10 @@ $user: User to get groups for
 &$rights: Array of rights, which may be added to.
 
 'UserGetDefaultOptions': after fetching the core default, this hook is ran
-right before returning the options to the caller.
+right before returning the options to the caller. WARNING: this hook is
+called for every call to User::getDefaultOptions(), which means it's
+potentially called dozens or hundreds of times. You may want to cache
+the results of non-trivial operations in your hook function for this reason.
 &$defaultOptions: Array of preference keys and their default values. 
 
 'UserGetEmail': called when getting an user email address
