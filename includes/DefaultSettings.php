@@ -2928,11 +2928,6 @@ $wgPasswordSalt = true;
 $wgMinimalPasswordLength = 1;
 
 /**
- * Enabes or disables JavaScript-based suggestions of password strength
- */
-$wgLivePasswordStrengthChecks = false;
-
-/**
  * Maximum number of Unicode characters in signature
  */
 $wgMaxSigChars		= 255;
