@@ -1080,6 +1080,10 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 
 	function getRedirect( $subpage ) {
 		$subpage = intval( $subpage );
+		if( $subpage === 0 ) {
+			# throw an error page when no subpage was given
+			throw new ErrorPageError( 'nopagetitle', 'nopagetext' );
+		}
 		$this->mAddedRedirectParams['oldid'] = $subpage;
 		return true;
 	}
