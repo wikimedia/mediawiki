@@ -621,10 +621,12 @@ abstract class DatabaseUpdater {
 	}
 
 	protected function doRebuildLocalisationCache() {
-		global $wgLocalisationCacheConf;
-		$wgLocalisationCacheConf['forceRecache'] = true;
+		/**
+		 * @var $cl RebuildLocalisationCache
+		 */
 		$cl = $this->maintenance->runChild( 'RebuildLocalisationCache', 'rebuildLocalisationCache.php' );
 		$this->output( "Rebuilding localisation cache...\n" );
+		$cl->setForce();
 		$cl->execute();
 		$this->output( "Rebuilding localisation cache done.\n" );
 	}
