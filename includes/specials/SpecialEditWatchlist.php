@@ -388,7 +388,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				: htmlspecialchars( $wgContLang->getFormattedNsText( $namespace ) );
 
 			$fields['TitlesNs'.$namespace] = array(
-				'type' => 'multiselect',
+				'class' => 'EditWatchlistCheckboxSeriesField',
 				'options' => array(),
 				'section' => "ns$namespace",
 			);
@@ -538,5 +538,23 @@ class EditWatchlistNormalHTMLForm extends HTMLForm {
 		return $namespace == NS_MAIN
 			? wfMsgHtml( 'blanknamespace' )
 			: htmlspecialchars( $this->getContext()->getLang()->getFormattedNsText( $namespace ) );
+	}
+}
+
+class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
+	/**
+	 * HTMLMultiSelectField throws validation errors if we get input data
+	 * that doesn't match the data set in the form setup. This causes
+	 * problems if something gets removed from the watchlist while the
+	 * form is open (bug 32126), but we know that invalid items will
+	 * be harmless so we can override it here.
+	 *
+	 * @param $value String the value the field was submitted with
+	 * @param $alldata Array the data collected from the form
+	 * @return Mixed Bool true on success, or String error to display.
+	 */
+	function validate( $value, $alldata ) {
+		// Need to call into grandparent to be a good citizen. :)
+		return HTMLFormField::validate( $value, $alldata );
 	}
 }
