@@ -99,24 +99,21 @@ class UserrightsPage extends SpecialPage {
 			$this->isself = true;
 		}
 
-		$out = $this->getOutput();
-
 		if( !$this->userCanChangeRights( $user, true ) ) {
 			// @todo FIXME: There may be intermediate groups we can mention.
-			$out->showPermissionsErrorPage( array( array(
-				$user->isAnon()
-					? 'userrights-nologin'
-					: 'userrights-notallowed' ) ) );
-			return;
+			$msg = $user->isAnon() ? 'userrights-nologin' : 'userrights-notallowed';
+			throw new PermissionsError( null, array( array( $msg ) ) );
 		}
 
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError;
 		}
 
-		$this->outputHeader();
-		$out->addModuleStyles( 'mediawiki.special' );
 		$this->setHeaders();
+		$this->outputHeader();
+
+		$out = $this->getOutput();
+		$out->addModuleStyles( 'mediawiki.special' );
 
 		// show the general form
 		if ( count( $available['add'] ) || count( $available['remove'] ) ) {

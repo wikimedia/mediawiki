@@ -83,9 +83,7 @@ class RollbackAction extends FormlessAction {
 					$out [] = $error;
 				}
 			}
-			$this->getOutput()->showPermissionsErrorPage( $out );
-
-			return;
+			throw new PermissionsError( 'rollback', $out );
 		}
 
 		if ( $result == array( array( 'readonlytext' ) ) ) {

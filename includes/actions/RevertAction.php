@@ -35,7 +35,7 @@ class RevertAction extends Action {
 	}
 
 	public function getRestriction() {
-		return 'read';
+		return null;
 	}
 
 	public function show() {

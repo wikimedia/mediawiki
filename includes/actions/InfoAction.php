@@ -30,7 +30,7 @@ class InfoAction extends FormlessAction {
 	}
 
 	public function getRestriction() {
-		return 'read';
+		return null;
 	}
 
 	protected function getDescription() {

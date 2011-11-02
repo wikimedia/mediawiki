@@ -1979,7 +1979,7 @@ class OutputPage extends ContextSource {
 	 * @param $action String: action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( $errors, $action = null ) {
-		$this->prepareErrorPage( $this->msg( 'permissionserrors' ), $this->msg( 'permissionserrors' ) );
+		$this->prepareErrorPage( $this->msg( 'permissionserrors' ) );
 
 		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
 	}

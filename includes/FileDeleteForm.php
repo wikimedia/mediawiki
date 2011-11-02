@@ -41,17 +41,17 @@ class FileDeleteForm {
 	 */
 	public function execute() {
 		global $wgOut, $wgRequest, $wgUser;
-		$this->setHeaders();
 
-		$permission_errors = $this->title->getUserPermissionsErrors('delete', $wgUser);
-		if ( count( $permission_errors ) > 0 ) {
-			$wgOut->showPermissionsErrorPage( $permission_errors );
-			return;
+		$permissionErrors = $this->title->getUserPermissionsErrors( 'delete', $wgUser );
+		if ( count( $permissionErrors ) ) {
+			throw new PermissionsError( 'delete', $permissionErrors );
 		}
 
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError;
 		}
+
+		$this->setHeaders();
 
 		$this->oldimage = $wgRequest->getText( 'oldimage', false );
 		$token = $wgRequest->getText( 'wpEditToken' );

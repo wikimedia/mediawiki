@@ -27,7 +27,7 @@ class WatchAction extends FormAction {
 	}
 
 	public function getRestriction() {
-		return 'read';
+		return null;
 	}
 
 	public function requiresUnblock() {

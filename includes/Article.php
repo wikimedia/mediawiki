@@ -1302,6 +1302,19 @@ class Article extends Page {
 	public function delete() {
 		global $wgOut, $wgRequest;
 
+		# This code desperately needs to be totally rewritten
+
+		# Check permissions
+		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $this->getContext()->getUser() );
+		if ( count( $permission_errors ) ) {
+			throw new PermissionsError( 'delete', $permission_errors );
+		}
+
+		# Read-only check...
+		if ( wfReadOnly() ) {
+			throw new ReadOnlyError;
+		}
+
 		$confirm = $wgRequest->wasPosted() &&
 				$this->getContext()->getUser()->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
 
@@ -1319,24 +1332,6 @@ class Article extends Page {
 
 		# Flag to hide all contents of the archived revisions
 		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $this->getContext()->getUser()->isAllowed( 'suppressrevision' );
-
-		# This code desperately needs to be totally rewritten
-
-		# Read-only check...
-		if ( wfReadOnly() ) {
-			$wgOut->readOnlyPage();
-
-			return;
-		}
-
-		# Check permissions
-		$permission_errors = $this->getTitle()->getUserPermissionsErrors( 'delete', $this->getContext()->getUser() );
-
-		if ( count( $permission_errors ) > 0 ) {
-			$wgOut->showPermissionsErrorPage( $permission_errors );
-
-			return;
-		}
 
 		$wgOut->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
 

@@ -1684,6 +1684,7 @@ API is an abbreviation for [http://en.wikipedia.org/wiki/API application program
 'action-suppressionlog'       => '{{Doc-action|suppressionlog}}',
 'action-block'                => '{{Doc-action|block}}',
 'action-protect'              => '{{Doc-action|protect}}',
+'action-rollback'             => '{{Doc-action|rollback}}',
 'action-import'               => '{{Doc-action|import}}',
 'action-importupload'         => '{{Doc-action|importupload}}',
 'action-patrol'               => '{{Doc-action|patrol}}',

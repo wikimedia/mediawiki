@@ -29,7 +29,7 @@ class MarkpatrolledAction extends FormlessAction {
 	}
 
 	public function getRestriction() {
-		return 'read';
+		return null;
 	}
 
 	protected function getDescription() {
@@ -73,9 +73,8 @@ class MarkpatrolledAction extends FormlessAction {
 			return;
 		}
 
-		if ( !empty( $errors ) ) {
-			$this->getOutput()->showPermissionsErrorPage( $errors );
-			return;
+		if ( count( $errors ) ) {
+			throw new PermissionsErrorPage( 'patrol', $errors );
 		}
 
 		# Inform the user
