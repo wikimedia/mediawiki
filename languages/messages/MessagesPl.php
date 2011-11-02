@@ -25,6 +25,7 @@
  * @author Mikołka
  * @author Nux
  * @author Odder
+ * @author Przemub
  * @author Remember the dot
  * @author Saper
  * @author Sp5uhe
@@ -1543,6 +1544,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'action-suppressionlog'       => 'podglądu rejestru ukrywania',
 'action-block'                => 'zablokowania temu użytkownikowi możliwości edycji',
 'action-protect'              => 'zmiany poziomu zabezpieczenia tej strony',
+'action-rollback'             => 'szybkie cofnięcie edycji użytkownika, który jako ostatni edytował jakąś stronę',
 'action-import'               => 'importu tej strony z innej wiki',
 'action-importupload'         => 'importu tej strony poprzez przesłanie pliku',
 'action-patrol'               => 'oznaczenia cudzej edycji jako „sprawdzonej”',
@@ -2011,7 +2013,7 @@ Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, d
 'listusers-editsonly'     => 'Pokaż tylko użytkowników z edycjami',
 'listusers-creationsort'  => 'Sortuj według daty utworzenia',
 'usereditcount'           => '$1 {{PLURAL:$1|edycja|edycje|edycji}}',
-'usercreated'             => 'Utworzono $1 o $2',
+'usercreated'             => '{{GENDER:$3|Utworzył|Utworzyła|Utworzone}} $1 o $2',
 'newpages'                => 'Nowe strony',
 'newpages-username'       => 'Nazwa użytkownika',
 'ancientpages'            => 'Najstarsze strony',
@@ -2078,7 +2080,7 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'sp-deletedcontributions-contribs' => 'wkład',
 
 # Special:LinkSearch
-'linksearch'       => 'Linki zewnętrzne',
+'linksearch'       => 'Wyszukiwarka linków zewnętrznych',
 'linksearch-pat'   => 'Wzorzec wyszukiwania',
 'linksearch-ns'    => 'Przestrzeń nazw',
 'linksearch-ok'    => 'Szukaj',
@@ -2297,7 +2299,10 @@ Wszystkie aktywne zabezpieczenia odnajdziesz na liście [[Special:ProtectedPages
 'unprotectedarticle'          => 'odbezpieczył „[[$1]]“',
 'movedarticleprotection'      => 'przeniósł ustawienia zabezpieczeń z [[$2]] do [[$1]]',
 'protect-title'               => 'Zmiana poziomu zabezpieczenia „$1”',
+'protect-title-notallowed'    => 'Podgląd poziomu zabezpieczenia „$1”',
 'prot_1movedto2'              => 'stronę [[$1]] przeniósł do [[$2]]',
+'protect-badnamespace-title'  => 'Przestrzeń nazw, w której nie można zabezpieczać stron',
+'protect-badnamespace-text'   => 'Stron w tej przestrzeni nazw nie można zabezpieczać.',
 'protect-legend'              => 'Potwierdź zabezpieczenie',
 'protectcomment'              => 'Powód',
 'protectexpiry'               => 'Czas wygaśnięcia',

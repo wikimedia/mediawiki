@@ -1811,7 +1811,7 @@ Kitaen met ti [[Special:WantedCategories|dagiti makidkiddaw nga kategoria]].',
 'sp-deletedcontributions-contribs' => 'dagiti naararamid',
 
 # Special:LinkSearch
-'linksearch'      => 'Dagiti ruar nga panilpo',
+'linksearch'      => 'Dagiti pinagbirok ti ruar nga panilpo',
 'linksearch-pat'  => 'Kita ti pinagbirok:',
 'linksearch-ns'   => 'Namespace:',
 'linksearch-ok'   => 'Biroken',

@@ -2029,7 +2029,7 @@ Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca 
 'listusers-editsonly'     => 'Sadece değişiklik yapan kullanıcıları göster',
 'listusers-creationsort'  => 'Oluşturma tarihine göre sırala',
 'usereditcount'           => '$1 {{PLURAL:$1|değişiklik|değişiklik}}',
-'usercreated'             => "$1 tarihinde $2'de oluşturuldu",
+'usercreated'             => "$1 tarihinde $2'de {{GENDER:$3|oluşturuldu}}.",
 'newpages'                => 'Yeni sayfalar',
 'newpages-username'       => 'Kullanıcı adı:',
 'ancientpages'            => 'En son değişiklik tarihi en eski olan maddeler',

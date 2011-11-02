@@ -946,7 +946,7 @@ Hún er nú þegar til.',
 'post-expand-template-inclusion-warning'  => "'''Viðvörun:''' Sniðið tekur of mikið pláss.
 Hluti sniðsins verður ekki með.",
 'post-expand-template-inclusion-category' => 'Síður þar sem eru stærri en stærðartakmörkun sniða segir til um',
-'post-expand-template-argument-category'  => 'Síður sem innihalda sniða breytur sem hefur verið sleppt',
+'post-expand-template-argument-category'  => 'Síður sem innihalda frumbreytur sniða sem hefur verið sleppt',
 'parser-template-loop-warning'            => 'Lykkja í sniði fundin: [[$1]]',
 
 # "Undo" feature
@@ -1662,7 +1662,7 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'protectedtitles'         => 'Verndaðir titlar',
 'listusers'               => 'Notendalisti',
 'usereditcount'           => '$1 {{PLURAL:$1|breyting|breytingar}}',
-'usercreated'             => 'Stofnað $1 $2',
+'usercreated'             => '{{GENDER:$3|Stofnað|}} $1 $2',
 'newpages'                => 'Nýjustu greinar',
 'newpages-username'       => 'Notandanafn:',
 'ancientpages'            => 'Elstu síður',
@@ -2255,6 +2255,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'tooltip-upload'                  => 'Hefja innhleðslu',
 'tooltip-rollback'                => '"taka aftur" breytir greininni til síðasta höfundar með einum smelli',
 'tooltip-undo'                    => '"Tek aftur þessa breytingu" breytir aftur til síðustu breytingu og opnar breytinguna í forskoðun. Hægt er að bæta við ástæðu í breytingarávarpinu.',
+'tooltip-summary'                 => 'Bættu við stuttu ágripi',
 
 # Stylesheets
 'common.css'   => '/* Allt CSS sem sett er hér mun virka á öllum þemum. */',
@@ -2524,6 +2525,9 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 'watchlisttools-edit' => 'Skoða og breyta vaktlistanum',
 'watchlisttools-raw'  => 'Breyta opnum vaktlistanum',
 
+# Core parser functions
+'duplicate-defaultsort' => '\'\'\'Viðvörun:\'\'\' Sjálfgildur flýtihnappur "$2" tekur yfir fyrri flýtihnapp "$1".',
+
 # Special:Version
 'version'                  => 'Útgáfa',
 'version-extensions'       => 'Uppsettar viðbætur',
@@ -2563,6 +2567,16 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 
 # Special:BlankPage
 'blankpage' => 'Tóm síða',
+
+# External image whitelist
+'external_image_whitelist' => '#Ekki breyta þessari línu<pre>
+#Settu brot úr reglulegum segðum (bara þann hluta sem er á milli //) hér fyrir neðan
+#Þær verða bornar saman við vefslóðir ytri mynda
+#Þær sem passa saman verða sýndar sem myndir, en hinar eingöngu sem tengill á myndina
+#Línur sem byrja á # verða sýndar sem athugasemdir
+#Þetta er hástafafrjálst
+
+#Settu allar reglulegar segðir fyrir ofan þessa línu. Ekki breyta þessari línu.</pre>',
 
 # Special:Tags
 'tags-edit' => 'breyta',

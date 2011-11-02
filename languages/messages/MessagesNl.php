@@ -2213,7 +2213,7 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'sp-deletedcontributions-contribs' => 'bijdragen',
 
 # Special:LinkSearch
-'linksearch'       => 'Externe verwijzingen',
+'linksearch'       => 'Externe verwijzingen zoeken',
 'linksearch-pat'   => 'Zoekpatroon:',
 'linksearch-ns'    => 'Naamruimte:',
 'linksearch-ok'    => 'Zoeken',
@@ -2436,7 +2436,10 @@ Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveil
 'unprotectedarticle'          => 'heeft de beveiliging van "[[$1]]" opgeheven',
 'movedarticleprotection'      => 'heeft beveiligingsinstellingen verplaatst van "[[$2]]" naar "[[$1]]"',
 'protect-title'               => 'Instellen van beveiligingsniveau voor "$1"',
+'protect-title-notallowed'    => 'Beveiligingsniveau voor "$1" bekijken',
 'prot_1movedto2'              => '[[$1]] hernoemd naar [[$2]]',
+'protect-badnamespace-title'  => 'Niet te beveiligen naamruimte',
+'protect-badnamespace-text'   => "Pagina's in deze naamruimte kunnen niet beveiligd worden.",
 'protect-legend'              => 'Beveiliging bevestigen',
 'protectcomment'              => 'Reden:',
 'protectexpiry'               => 'Duur:',

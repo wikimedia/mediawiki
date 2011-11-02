@@ -1453,6 +1453,7 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'action-suppressionlog'       => 'se denne private log',
 'action-block'                => 'blokere denne bruger fra at redigere',
 'action-protect'              => 'ændre på beskyttelsen af denne side',
+'action-rollback'             => 'hurtigt gendanne alle redigeringerne foretaget af den bruger, som senest redigerede en bestemt side,',
 'action-import'               => 'importere denne side fra en anden wiki',
 'action-importupload'         => 'importere denne side fra en filoplægning',
 'action-patrol'               => 'patruljere andres redigeringer',
