@@ -228,7 +228,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				array(),
 				array( 'page' => $this->targetObj->getPrefixedText() )
 			);
-			if ( $this->targetObj->getNamespace() != NS_SPECIAL ) {
+			if ( !$this->targetObj->isSpecialPage() ) {
 				# Give a link to the page history
 				$links[] = Linker::linkKnown(
 					$this->targetObj,

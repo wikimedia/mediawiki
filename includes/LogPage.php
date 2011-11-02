@@ -391,7 +391,7 @@ class LogPage {
 				$params[1] = $lang->timeanddate( $params[1] );
 				break;
 			default:
-				if( $title->getNamespace() == NS_SPECIAL ) {
+				if( $title->isSpecialPage() ) {
 					list( $name, $par ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 
 					# Use the language name for log titles, rather than Log/X

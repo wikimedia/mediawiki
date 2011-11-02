@@ -238,7 +238,7 @@ class LegacyTemplate extends BaseTemplate {
 		$variants = $lang->getVariants();
 
 		if ( !$wgDisableLangConversion && sizeof( $variants ) > 1
-			&& $title->getNamespace() != NS_SPECIAL ) {
+			&& !$title->isSpecialPage() ) {
 			foreach ( $variants as $code ) {
 				$varname = $lang->getVariantname( $code );
 
@@ -770,7 +770,7 @@ class LegacyTemplate extends BaseTemplate {
 		global $wgOut;
 
 		$title = $this->getSkin()->getTitle();
-		if ( $title->getNamespace() == NS_SPECIAL ) {
+		if ( $title->isSpecialPage() ) {
 			return '';
 		}
 

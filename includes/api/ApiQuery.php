@@ -443,7 +443,7 @@ class ApiQuery extends ApiBase {
 			$vals = array();
 			ApiQueryBase::addTitleInfo( $vals, $title );
 			$vals['special'] = '';
-			if ( $title->getNamespace() == NS_SPECIAL &&
+			if ( $title->isSpecialPage() &&
 					!SpecialPageFactory::exists( $title->getDbKey() ) ) {
 				$vals['missing'] = '';
 			} elseif ( $title->getNamespace() == NS_MEDIA &&
