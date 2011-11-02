@@ -12,7 +12,6 @@
  * @ingroup Media
  */
 class BitmapHandler extends ImageHandler {
-
 	/**
 	 * @param $image File
 	 * @param $params array Transform parameters. Entries with the keys 'width'
@@ -21,7 +20,6 @@ class BitmapHandler extends ImageHandler {
 	 * @return bool
 	 */
 	function normaliseParams( $image, &$params ) {
-
 		if ( !parent::normaliseParams( $image, $params ) ) {
 			return false;
 		}
@@ -41,41 +39,26 @@ class BitmapHandler extends ImageHandler {
 				return true;
 			}
 		}
+		
 
+		# Check if the file is smaller than the maximum image area for thumbnailing
+		$checkImageAreaHookResult = null;
+		wfRunHooks( 'BitmapHandlerCheckImageArea', array( $image, &$params, &$checkImageAreaHookResult ) );
+		if ( is_null( $checkImageAreaHookResult ) ) {
+			global $wgMaxImageArea;
+			
+			if ( $this->getImageArea( $image ) > $wgMaxImageArea &&
+					!( $image->getMimeType() == 'image/jpeg' && 
+						self::getScalerType( false, false ) == 'im' ) ) {
+				# Only ImageMagick can efficiently downsize jpg images without loading
+				# the entire file in memory
+				return false;
+			}
+		} else {
+			return $checkImageAreaHookResult;
+		}
+		
 		return true;
-	}
-
-	/**
-	 * Check if the file is smaller than the maximum image area for
-	 * thumbnailing. Check will always pass if the scaler is 'hookaborted' or
-	 * if the scaler is 'im' and the mime type is 'image/jpeg'
-	 *
-	 * @param File $image
-	 * @param string $scaler
-	 */
-	function checkImageArea( $image, $scaler ) {
-		global $wgMaxImageArea;
-		# Don't thumbnail an image so big that it will fill hard drives and send servers into swap
-		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
-		# an exception for it.
-
-
-		if ( $image->getMimeType() == 'image/jpeg' && $scaler == 'im' )
-		{
-			# ImageMagick can efficiently downsize jpg images without loading
-			# the entire file in memory
-			return true;
-		}
-
-		if ( $scaler == 'hookaborted' )
-		{
-			# If a hook wants to transform the image, it is responsible for
-			# checking the image size, so abort here
-			return true;
-		}
-
-		# Do the actual check
-		return $this->getImageArea( $image, $image->getWidth(), $image->getHeight() ) <= $wgMaxImageArea;
 	}
 
 
@@ -104,10 +87,15 @@ class BitmapHandler extends ImageHandler {
 	}
 
 
-	// Function that returns the number of pixels to be thumbnailed.
-	// Intended for animated GIFs to multiply by the number of frames.
-	function getImageArea( $image, $width, $height ) {
-		return $width * $height;
+	/**
+	 * Function that returns the number of pixels to be thumbnailed.
+	 * Intended for animated GIFs to multiply by the number of frames.
+	 * 
+	 * @param File $image
+	 * @return int
+	 */ 
+	function getImageArea( $image ) {
+		return $image->getWidth() * $image->getHeight();
 	}
 
 	/**
@@ -143,7 +131,10 @@ class BitmapHandler extends ImageHandler {
 			'dstUrl' => $dstUrl,
 		);
 
-		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} thumbnail at $dstPath\n" );
+		# Determine scaler type
+		$scaler = self::getScalerType( $dstPath );
+		
+		wfDebug( __METHOD__ . ": creating {$scalerParams['physicalDimensions']} thumbnail at $dstPath using scaler $scaler\n" );
 
 		if ( !$image->mustRender() &&
 				$scalerParams['physicalWidth'] == $scalerParams['srcWidth']
@@ -154,9 +145,6 @@ class BitmapHandler extends ImageHandler {
 			return $this->getClientScalingThumbnailImage( $image, $scalerParams );
 		}
 
-		# Determine scaler type
-		$scaler = self::getScalerType( $dstPath );
-		wfDebug( __METHOD__ . ": scaler $scaler\n" );
 
 		if ( $scaler == 'client' ) {
 			# Client-side image scaling, use the source URL
@@ -182,12 +170,6 @@ class BitmapHandler extends ImageHandler {
 		if ( !is_null( $mto ) ) {
 			wfDebug( __METHOD__ . ": Hook to BitmapHandlerTransform created an mto\n" );
 			$scaler = 'hookaborted';
-		}
-
-		# Check max image area
-		if ( !$this->checkImageArea( $image, $scaler ) )
-		{
-			return new TransformParameterError( $params );
 		}
 
 		switch ( $scaler ) {

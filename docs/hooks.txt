@@ -624,6 +624,11 @@ $image: File
 &$scalerParams: Array with scaler parameters 
 &$mto: null, set to a MediaTransformOutput
 
+'BitmapHandlerCheckImageArea': by BitmapHandler::normaliseParams, after all normalizations have been performed, except for the $wgMaxImageArea check
+$image: File
+&$params: Array of parameters
+&$checkImageAreaHookResult: null, set to true or false to override the $wgMaxImageArea check result
+
 'PerformRetroactiveAutoblock': called before a retroactive autoblock is applied to a user
 $block: Block object (which is set to be autoblocking)
 &$blockIds: Array of block IDs of the autoblock

@@ -119,6 +119,12 @@ class BitmapScalingTest extends MediaWikiTestCase {
 		$this->assertEquals( 'TransformParameterError', 
 			get_class( $handler->doTransform( $file, 'dummy path', '', $params ) ) );
 	}
+	
+	function testImageArea() {
+		$file = new FakeDimensionFile( array( 7, 9 ) );
+		$handler = new BitmapHandler;
+		$this->assertEquals( 63, $handler->getImageArea( $file ) );
+	}
 }
 
 class FakeDimensionFile extends File {

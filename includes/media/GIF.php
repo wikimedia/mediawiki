@@ -50,17 +50,16 @@ class GIFHandler extends BitmapHandler {
 
 	/**
 	 * @param $image File
-	 * @param  $width
-	 * @param  $height
-	 * @return
+	 * @todo unittests
+	 * @return bool
 	 */
-	function getImageArea( $image, $width, $height ) {
+	function getImageArea( $image ) {
 		$ser = $image->getMetadata();
 		if ( $ser ) {
 			$metadata = unserialize( $ser );
-			return $width * $height * $metadata['frameCount'];
+			return $image->getWidth() * $image->getHeight() * $metadata['frameCount'];
 		} else {
-			return $width * $height;
+			return $image->getWidth() * $image->getHeight();
 		}
 	}
 
