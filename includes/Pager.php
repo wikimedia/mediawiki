@@ -329,9 +329,12 @@ abstract class IndexPager extends ContextSource implements Pager {
 		if ( !$this->mQueryDone ) {
 			$this->doQuery();
 		}
-		# Do any special query batches before display
-		$this->doBatchLookups();
-		
+
+		if ( $this->mResult->numRows() ) {
+			# Do any special query batches before display
+			$this->doBatchLookups();
+		}
+
 		# Don't use any extra rows returned by the query
 		$numRows = min( $this->mResult->numRows(), $this->mLimit );
 
@@ -389,8 +392,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 	/**
 	 * Called from getBody(), before getStartBody() is called and
-	 * after doQuery() was called. This will be called even if there
-	 * are no rows in the result set.
+	 * after doQuery() was called. This will be called only if there
+	 * are rows in the result set.
 	 *
 	 * @return void
 	 */
