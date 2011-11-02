@@ -387,8 +387,8 @@ class Title {
 		$titles = array( $title );
 		while ( --$recurse > 0 ) {
 			if ( $title->isRedirect() ) {
-				$article = new Article( $title, 0 );
-				$newtitle = $article->getRedirectTarget();
+				$page = WikiPage::factory( $title );
+				$newtitle = $page->getRedirectTarget();
 			} else {
 				break;
 			}
@@ -3281,13 +3281,13 @@ class Title {
 			if ( $this->getArticleID() === 0 ) {
 				MessageCache::singleton()->replace( $this->getDBkey(), false );
 			} else {
-				$oldarticle = new Article( $this );
-				MessageCache::singleton()->replace( $this->getDBkey(), $oldarticle->getContent() );
+				$rev = Revision::newFromTitle( $this );
+				MessageCache::singleton()->replace( $this->getDBkey(), $rev->getText() );
 			}
 		}
 		if ( $nt->getNamespace() == NS_MEDIAWIKI ) {
-			$newarticle = new Article( $nt );
-			MessageCache::singleton()->replace( $nt->getDBkey(), $newarticle->getContent() );
+			$rev = Revision::newFromTitle( $nt );
+			MessageCache::singleton()->replace( $nt->getDBkey(), $rev->getText() );
 		}
 
 		wfRunHooks( 'TitleMoveComplete', array( &$this, &$nt, &$wgUser, $pageid, $redirid ) );
@@ -3395,7 +3395,7 @@ class Title {
 		);
 		$nt->resetArticleID( $oldid );
 
-		$article = new Article( $nt );
+		$article = WikiPage::factory( $nt );
 		wfRunHooks( 'NewRevisionFromEditComplete',
 			array( $article, $nullRevision, $latest, $wgUser ) );
 		$article->setCachedLastEditTime( $now );
@@ -3404,7 +3404,7 @@ class Title {
 		if ( $createRedirect || !$wgUser->isAllowed( 'suppressredirect' ) ) {
 			$mwRedir = MagicWord::get( 'redirect' );
 			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $nt->getPrefixedText() . "]]\n";
-			$redirectArticle = new Article( $this );
+			$redirectArticle = WikiPage::factory( $this );
 			$newid = $redirectArticle->insertOn( $dbw );
 			if ( $newid ) { // sanity
 				$redirectRevision = new Revision( array(
