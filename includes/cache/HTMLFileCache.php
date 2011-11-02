@@ -7,18 +7,20 @@
 class HTMLFileCache extends FileCacheBase {
 	/**
 	 * Construct an ObjectFileCache from a Title and an action
-	 * @param $title Title
+	 * @param $title Title|string Title object or prefixed DB key string
 	 * @param $action string
 	 * @return HTMLFileCache
 	 */
-	public static function newFromTitle( Title $title, $action ) {
+	public static function newFromTitle( $title, $action ) {
 		$cache = new self();
 
 		$allowedTypes = self::cacheablePageActions();
 		if ( !in_array( $action, $allowedTypes ) ) {
 			throw new MWException( "Invalid filecache type given." );
 		}
-		$cache->mKey = $title->getPrefixedDBkey();
+		$cache->mKey = ( $title instanceof Title )
+			? $title->getPrefixedDBkey()
+			: (string)$title;
 		$cache->mType = (string)$action;
 		$cache->mExt = 'html';
 
