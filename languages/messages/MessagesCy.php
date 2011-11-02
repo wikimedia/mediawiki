@@ -1902,7 +1902,7 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'sp-deletedcontributions-contribs' => 'cyfraniadau',
 
 # Special:LinkSearch
-'linksearch'       => 'Cysylltiadau allanol',
+'linksearch'       => 'Chwilio am gysylltiadau allanol',
 'linksearch-pat'   => 'Patrwm chwilio:',
 'linksearch-ns'    => 'Parth:',
 'linksearch-ok'    => 'Chwilio',
@@ -2125,6 +2125,7 @@ Mae'r tudalennau sydd wedi eu diogelu ar hyn o bryd wedi eu rhestri ar y [[Speci
 'movedarticleprotection'      => 'wedi symud y gosodiadau gwarchod o "[[$2]]" i "[[$1]]"',
 'protect-title'               => "Newid y lefel diogelu ar gyfer '$1'",
 'prot_1movedto2'              => 'wedi symud [[$1]] i [[$2]]',
+'protect-badnamespace-text'   => 'Ni ellir diogelu tudalennau yn y parth hwn.',
 'protect-legend'              => "Cadarnháu'r diogelu",
 'protectcomment'              => 'Rheswm:',
 'protectexpiry'               => 'Yn dod i ben:',

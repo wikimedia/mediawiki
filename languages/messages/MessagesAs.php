@@ -165,7 +165,7 @@ $messages = array(
 'editfont-style'     => 'সম্পাদনাৰ ফন্ট ষ্টাইল',
 'editfont-default'   => "ব্ৰাউজাৰ ডিফ'ল্ট",
 'editfont-monospace' => 'মনোস্পেচ ফন্ট',
-'editfont-sansserif' => 'চেৰিফ-বিহীন ফন্ট',
+'editfont-sansserif' => 'চেন্‌চেৰিফ ফন্ট',
 'editfont-serif'     => 'চেৰিফ ফন্ট',
 
 # Dates
@@ -227,7 +227,7 @@ $messages = array(
 'category-media-header'          => '"$1" শ্ৰেণীৰ মিডিয়া',
 'category-empty'                 => "''এই শ্ৰেণীত বৰ্তমান কোনো পৃষ্ঠা বা মিডিয়া ফাইল নাই ।''",
 'hidden-categories'              => '{{PLURAL:$1|নিহিত শ্ৰেণী|নিহিত শ্ৰেণীসমূহ}}',
-'hidden-category-category'       => 'নিহিত শ্ৰেণী সমূহ',
+'hidden-category-category'       => 'অদৃশ্য শ্ৰেণী সমূহ',
 'category-subcat-count'          => '{{PLURAL:$2|এই শ্ৰেণীত নিম্নলিখিত উপশ্ৰেণীসমূহ আছে । মুঠ $2টা উপশ্ৰেণীৰ ভিতৰত এই শ্ৰেণীত নিম্নলিখিত {{PLURAL:$1|এটা উপশ্ৰেণী|$1 টা উপশ্ৰেণী}} আছে, }}',
 'category-subcat-count-limited'  => 'এই শ্ৰেণীত নিম্নলিখিত {{PLURAL:$1|টা উপশ্ৰেণী আছে|$1টা উপশ্ৰেণী আছে}}।',
 'category-article-count'         => '{{PLURAL:$2|এই শ্ৰেণীটোত কেৱল তলত দিয়া পৃষ্ঠাহে আছে । মুঠ $2 খনৰ ভিতৰত এই শ্ৰেণীটোত তলৰ {{PLURAL:$1|এখন পৃষ্ঠা আছে|$1 খন পৃষ্ঠা আছে}}।}}',
@@ -252,14 +252,14 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'বিচৰা হওক',
-'qbbrowse'       => 'বিচৰণ',
+'qbbrowse'       => 'ব্রাওজ',
 'qbedit'         => 'সম্পাদনা',
 'qbpageoptions'  => 'এই পৃষ্ঠা',
 'qbpageinfo'     => 'প্ৰসংগ',
 'qbmyoptions'    => 'মোৰ পৃষ্ঠাসমূহ',
 'qbspecialpages' => 'বিশেষ পৃষ্ঠাসমূহ',
-'faq'            => 'প্ৰায়ে উঠা প্ৰশ্ন',
-'faqpage'        => 'Project:প্ৰায়ে উঠা প্ৰশ্ন',
+'faq'            => 'সততে উঠা প্ৰশ্ন (FAQ)',
+'faqpage'        => 'Project:সততে উঠা প্ৰশ্ন',
 
 # Vector skin
 'vector-action-addsection'       => 'বিষয় যোগ',
@@ -3159,6 +3159,7 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'অজ্ঞাত এক্সটেনচন টেগ "$1"',
+'duplicate-defaultsort' => '\'\'\'সাবধান!\'\'\' পূৰ্বনিৰ্ধাৰিত ক্ৰমসূচক "$2"-এ আগৰ ক্রমসূচক "$1"-অক বিস্থাপিত কৰিছে।',
 
 # Special:Version
 'version'                       => 'সংস্কৰণ',

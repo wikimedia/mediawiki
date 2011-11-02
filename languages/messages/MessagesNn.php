@@ -9,6 +9,7 @@
  *
  * @author Boivie
  * @author Dittaeva
+ * @author Diupwijk
  * @author Eirik
  * @author Finnrind
  * @author Frokor
@@ -1944,7 +1945,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'listusers-editsonly'     => 'Vis berre brukarar med endringar',
 'listusers-creationsort'  => 'Sorter etter opprettingsdato',
 'usereditcount'           => '{{PLURAL:$1|éi endring|$1 endringar}}',
-'usercreated'             => 'Oppretta den $1 $2',
+'usercreated'             => '{{GENDER:$3|Oppretta}} den $1 $2',
 'newpages'                => 'Nye sider',
 'newpages-username'       => 'Brukarnamn:',
 'ancientpages'            => 'Eldste sider',

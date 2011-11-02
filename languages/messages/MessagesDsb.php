@@ -566,6 +566,7 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'createaccount'              => 'Wužywarske konto załožyś',
 'gotaccount'                 => "Maš južo wužywarske konto? '''$1'''.",
 'gotaccountlink'             => 'Pśizjawiś se',
+'userlogin-resetlink'        => 'Sy pśizjawjeńske daty zabył?',
 'createaccountmail'          => 'z e-mailku',
 'createaccountreason'        => 'Pśicyna:',
 'badretype'                  => 'Šćitnej gronidle, kótarejž sy zapódał, se njemakajotej.',
@@ -613,6 +614,7 @@ Woglědowarje, kótarež wužywaju toś tu IP-adresu njamógu tuchylu dalšne ko
 'noemailprefs'               => 'Zapódaj e-mailowu adresu w swójich nastajenjach, aby toś te funkcije stali k dispoziciji.',
 'emailconfirmlink'           => 'Wobkšuś swóju e-mailowu adresu.',
 'invalidemailaddress'        => 'Toś ta e-mailowa adresa njamóžo se akceptěrowaś, dokulaž zda se, až jo njepłaśiwy format. Pšošym zapódaj adresu w korektnem formaśe abo wuprozń to pólo.',
+'cannotchangeemail'          => 'Kontowe e-mailowe adrese njedaju se změniś na toś tom wikiju.',
 'accountcreated'             => 'Wužywarske konto jo se wutwóriło.',
 'accountcreatedtext'         => 'Wužywarske konto $1 jo se wutwóriło.',
 'createaccount-title'        => 'Wužywarske konto za {{SITENAME}} nawarjone',
@@ -627,6 +629,7 @@ Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnj
 
 # E-mail sending
 'php-mail-error-unknown' => 'Njeznata zmólka w PHP-funkciji mail()',
+'user-mail-no-addy'      => 'Jo se wopytało, e-mail bźez e-mailoweje adrese pósłaś',
 
 # Change password dialog
 'resetpass'                 => 'Gronidło změniś',
@@ -648,6 +651,9 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 
 # Special:PasswordReset
 'passwordreset'              => 'Gronidło slědk stajiś',
+'passwordreset-legend'       => 'Gronidło slědk stajiś',
+'passwordreset-disabled'     => 'Slědkstajenja gronidłow su se znjemóžnili na toś tom wikiju.',
+'passwordreset-pretext'      => '{{PLURAL:$1||Zapódaj dołojce jadne ze slědujucych datowych podaśow}}',
 'passwordreset-username'     => 'Wužywarske mě:',
 'passwordreset-domain'       => 'Domena:',
 'passwordreset-email'        => 'E-mailowa adresa:',
@@ -2014,7 +2020,7 @@ Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicu
 'enotif_anon_editor'           => 'anonymny wužywaŕ $1',
 'enotif_body'                  => 'Luby $WATCHINGUSERNAME,
 
-PAGEEDITOR jo bok {{SITENAME}} "$PAGETITLE" $PAGEEDITDATE $CHANGEDORCREATED, glědaj $PAGETITLE_URL za aktualnu wersiju.
+$PAGEEDITOR jo bok $PAGETITLE na {{GRAMMAR:lokatiw|{{SITENAME}}}} $PAGEEDITDATE $CHANGEDORCREATED, glědaj $PAGETITLE_URL za aktualnu wersiju.
 
 $NEWPAGE
 
@@ -2024,18 +2030,18 @@ Kontakt z wobźěłarjom:
 E-mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-There will be no other notifications in case of further changes unless you visit this page.
-You could also reset the notification flags for all your watched pages on your watchlist.
-
 Njebudu žedne dalšne powěźeńki w paźe dalšnych změnow, snaźkuli woglědujoš se toś ten bok.
-Móźoś teke chórgojcki powěźeńkow za wšykne twóje wobglědowane boki.
+Móźoś teke chórgojcki powěźeńkow za wšykne twóje wobglědowane boki slědk stajiś.
 
              Twój pśijaśelny powěsćowy system {{SITENAME}}
 --
-Aby nastajenja twójeje wobglědowańki změnił, woglědaj:
-{{canonicalurl:Special:Watchlist/edit}}
+Aby swoje nastajenja za e-mailowe zdźělenja změnił, woglědaj
+{{canonicalurl:{{#special:Preferences}}}}
 
-Aby se bok z twójeje wobglědowańki wulašował, woglědaj se
+Aby nastajenja twójeje wobglědowańki změnił, woglědaj:
+{{canonicalurl:{{#special:EditWatchlist}}}}
+
+Aby se bok z twójeje wobglědowańki wulašował, woglědaj
 $UNWATCHURL
 
 Pšašanja a dalšna pomoc:
@@ -2565,6 +2571,8 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'import-upload'              => 'XML-daty nagraś',
 'import-token-mismatch'      => 'Zgubjenje posejźeńskich datow. Pšosym wopytaj hyšći raz.',
 'import-invalid-interwiki'   => 'Njejo móžno importěrowaś z pódanego wikija.',
+'import-error-edit'          => 'Bok "$1" se njeimportěrujo, dokulaž njesmějoš jen wobźěłaś.',
+'import-error-create'        => 'Bok "$1" se njeimportěrujo, dokulaž njesmějoš jen napóraś.',
 
 # Import log
 'importlogpage'                    => 'Log-lisćinu importěrowaś',
@@ -2674,9 +2682,12 @@ W zespominanju dajo se pśicyna pódaś.',
 'spam_blanking'       => 'Wšykne wersije su wopśimowali wótkaze na $1, do rěcha spórane.',
 
 # Info page
-'pageinfo-title'       => 'Informacije za bok "$1"',
-'pageinfo-subjectpage' => 'Bok',
-'pageinfo-talkpage'    => 'Diskusijny bok',
+'pageinfo-title'        => 'Informacije za bok "$1"',
+'pageinfo-header-edits' => 'Změny',
+'pageinfo-header-views' => 'Zwobraznjenja',
+'pageinfo-subjectpage'  => 'Bok',
+'pageinfo-talkpage'     => 'Diskusijny bok',
+'pageinfo-viewsperedit' => 'Zwobraznjenja na změnu',
 
 # Skin names
 'skinname-standard'    => 'Klasiski',
@@ -2898,6 +2909,15 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsdatestamp'                => 'Datum GPS',
 'exif-gpsdifferential'             => 'Diferencialna korektura GPS',
 'exif-keywords'                    => 'Klucowe słowa',
+'exif-countrycreated'              => 'Kraj, w kótaremž wobraz jo se fotografěrował',
+'exif-countrycodecreated'          => 'Code za kraj, w kótaremž wobraz jo se fotografěrował',
+'exif-provinceorstatecreated'      => 'Prowinca abo źělny stat, w kótaremž wobraz jo se fotografěrował',
+'exif-citycreated'                 => 'Město, w kótaremž wobraz jo se fotografěrował',
+'exif-worldregiondest'             => 'Pokazany swětowy region',
+'exif-countrydest'                 => 'Pokazany kraj',
+'exif-countrycodedest'             => 'Kod za pokazany kraj',
+'exif-provinceorstatedest'         => 'Pokazana prowinca abo pokazany źělny stat',
+'exif-citydest'                    => 'Pokazane město',
 'exif-objectname'                  => 'Krotki titel',
 'exif-source'                      => 'Žrědło',
 'exif-contact'                     => 'Kontaktowe informacije',
@@ -3042,6 +3062,10 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpslongitude-e' => 'Pódzajtšna dliń',
 'exif-gpslongitude-w' => 'Pódwjacorna dliń',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '$1 {{PLURAL:$1|meter|metraj|metry|metrow}} nad mórskeju głaźinu',
+'exif-gpsaltitude-below-sealevel' => '$1 {{PLURAL:$1|meter|metraj|metry|metrow}} pód mórskeju głaźinu',
+
 'exif-gpsstatus-a' => 'Měrjenje w běgu',
 'exif-gpsstatus-v' => 'kompatibelnosć měry',
 
@@ -3074,12 +3098,17 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-rating-rejected' => 'Wótpokazany',
 
 'exif-iimcategory-edu' => 'Kubłanje',
+'exif-iimcategory-evn' => 'Wobswět',
 'exif-iimcategory-hth' => 'Strowje',
+'exif-iimcategory-hum' => 'Zajm',
+'exif-iimcategory-lab' => 'Źěło',
+'exif-iimcategory-lif' => 'Žywjeński stil a wólny cas',
 'exif-iimcategory-pol' => 'Politika',
 'exif-iimcategory-rel' => 'Nabóžnina a wěra',
 'exif-iimcategory-sci' => 'Wědomnosć a technika',
 'exif-iimcategory-soi' => 'Socialne problemy',
 'exif-iimcategory-spo' => 'Sport',
+'exif-iimcategory-war' => 'Wójna, konfilkty a zběgi',
 'exif-iimcategory-wea' => 'Wjedro',
 
 'exif-urgency-normal' => 'Normalna ($1)',

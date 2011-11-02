@@ -1388,6 +1388,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'action-suppressionlog'       => 'Tutón priwatny protokol wobhladać',
 'action-block'                => 'Wobdźěłanju přez wužiwarja zadźěwać',
 'action-protect'              => 'škitowe runiny za tutu stronu změnić',
+'action-rollback'             => 'Změny poslednjeho wužiwarja, kiž je wěstu stronu wobdźěłał, spěšnje wróćo stajić',
 'action-import'               => 'Tutu stronu z druheho wikija importować',
 'action-importupload'         => 'Tutu stronu z datajoweho nahraća importować',
 'action-patrol'               => 'Změny druhich wužiwarjiw jako dohladowane markować',
