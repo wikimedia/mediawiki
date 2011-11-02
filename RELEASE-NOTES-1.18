@@ -478,6 +478,7 @@ create a page or new section.
   already set above 1024 bytes
 * (bug 32086) Special:PermanentLink now show an error message when no subpage
   was specified.
+* (bug 31822) Error during upgrade due to output buffer reset in stdout
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
