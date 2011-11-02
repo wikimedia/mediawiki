@@ -385,6 +385,13 @@ class EditPage {
 		wfProfileIn( __METHOD__ );
 		wfDebug( __METHOD__.": enter\n" );
 
+		// If they used redlink=1 and the page exists, redirect to the main article
+		if ( $wgRequest->getBool( 'redlink' ) && $this->mTitle->exists() ) {
+			$wgOut->redirect( $this->mTitle->getFullURL() );
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
 		$this->importFormData( $wgRequest );
 		$this->firsttime = false;
 
@@ -419,26 +426,21 @@ class EditPage {
 			$this->readOnlyPage( $content, true, $permErrors, 'edit' );
 			wfProfileOut( __METHOD__ );
 			return;
-		} else {
-			if ( $this->save ) {
-				$this->formtype = 'save';
-			} elseif ( $this->preview ) {
-				$this->formtype = 'preview';
-			} elseif ( $this->diff ) {
-				$this->formtype = 'diff';
-			} else { # First time through
-				$this->firsttime = true;
-				if ( $this->previewOnOpen() ) {
-					$this->formtype = 'preview';
-				} else {
-					$this->formtype = 'initial';
-				}
-			}
 		}
-
-		// If they used redlink=1 and the page exists, redirect to the main article
-		if ( $wgRequest->getBool( 'redlink' ) && $this->mTitle->exists() ) {
-			$wgOut->redirect( $this->mTitle->getFullURL() );
+		
+		if ( $this->save ) {
+			$this->formtype = 'save';
+		} elseif ( $this->preview ) {
+			$this->formtype = 'preview';
+		} elseif ( $this->diff ) {
+			$this->formtype = 'diff';
+		} else { # First time through
+			$this->firsttime = true;
+			if ( $this->previewOnOpen() ) {
+				$this->formtype = 'preview';
+			} else {
+				$this->formtype = 'initial';
+			}
 		}
 
 		wfProfileIn( __METHOD__."-business-end" );
