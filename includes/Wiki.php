@@ -78,7 +78,12 @@ class MediaWiki {
 			$ret = Title::newMainPage();
 		} else {
 			$ret = Title::newFromURL( $title );
-			// check variant links so that interwiki links don't have to worry
+			// Alias NS_MEDIA page URLs to NS_FILE...we only use NS_MEDIA
+			// in wikitext links to tell Parser to make a direct file link
+			if ( !is_null( $ret ) && $ret->getNamespace() == NS_MEDIA ) {
+				$ret = Title::makeTitle( NS_FILE, $ret->getDBkey() );
+			}
+			// Check variant links so that interwiki links don't have to worry
 			// about the possible different language variants
 			if ( count( $wgContLang->getVariants() ) > 1
 				&& !is_null( $ret ) && $ret->getArticleID() == 0 )
