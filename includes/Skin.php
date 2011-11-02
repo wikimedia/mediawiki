@@ -183,7 +183,7 @@ abstract class Skin extends ContextSource {
 		$titles = array( $user->getUserPage(), $user->getTalkPage() );
 
 		// Other tab link
-		if ( $this->getTitle()->getNamespace() == NS_SPECIAL ) {
+		if ( $this->getTitle()->isSpecialPage() ) {
 			// nothing
 		} elseif ( $this->getTitle()->isTalkPage() ) {
 			$titles[] = $this->getTitle()->getSubjectPage();
@@ -329,7 +329,7 @@ abstract class Skin extends ContextSource {
 	function getPageClasses( $title ) {
 		$numeric = 'ns-' . $title->getNamespace();
 
-		if ( $title->getNamespace() == NS_SPECIAL ) {
+		if ( $title->isSpecialPage() ) {
 			$type = 'ns-special';
 			// bug 23315: provide a class based on the canonical special page name without subpages
 			list( $canonicalName ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );

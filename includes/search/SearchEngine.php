@@ -171,7 +171,7 @@ class SearchEngine {
 				return null;
 			}
 
-			if ( $title->getNamespace() == NS_SPECIAL || $title->isExternal() || $title->exists() ) {
+			if ( $title->isSpecialPage() || $title->isExternal() || $title->exists() ) {
 				return $title;
 			}
 

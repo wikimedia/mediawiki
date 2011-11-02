@@ -275,9 +275,9 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'printable', $out->isPrintable() );
 		$tpl->set( 'handheld', $request->getBool( 'handheld' ) );
 		$tpl->setRef( 'loggedin', $this->loggedin );
-		$tpl->set( 'notspecialpage', $this->getTitle()->getNamespace() != NS_SPECIAL );
+		$tpl->set( 'notspecialpage', !$this->getTitle()->isSpecialPage() );
 		/* XXX currently unused, might get useful later
-		$tpl->set( 'editable', ( $this->getTitle()->getNamespace() != NS_SPECIAL ) );
+		$tpl->set( 'editable', ( !$this->getTitle()->isSpecialPage() ) );
 		$tpl->set( 'exists', $this->getTitle()->getArticleID() != 0 );
 		$tpl->set( 'watch', $this->getTitle()->userIsWatching() ? 'unwatch' : 'watch' );
 		$tpl->set( 'protect', count( $this->getTitle()->isProtected() ) ? 'unprotect' : 'protect' );
@@ -589,7 +589,7 @@ class SkinTemplate extends Skin {
 			# thickens, because $wgTitle is altered for special pages, so doesn't
 			# contain the original alias-with-subpage.
 			$origTitle = Title::newFromText( $request->getText( 'title' ) );
-			if( $origTitle instanceof Title && $origTitle->getNamespace() == NS_SPECIAL ) {
+			if( $origTitle instanceof Title && $origTitle->isSpecialPage() ) {
 				list( $spName, $spPar ) = SpecialPageFactory::resolveAlias( $origTitle->getText() );
 				$active = $spName == 'Contributions'
 					&& ( ( $spPar && $spPar == $this->username )
@@ -814,7 +814,7 @@ class SkinTemplate extends Skin {
 		wfRunHooks( 'SkinTemplatePreventOtherActiveTabs', array( &$this, &$preventActiveTabs ) );
 
 		// Checks if page is some kind of content
-		if( $title->getNamespace() != NS_SPECIAL ) {
+		if( !$title->isSpecialPage() ) {
 			// Gets page objects for the related namespaces
 			$subjectPage = $title->getSubjectPage();
 			$talkPage = $title->getTalkPage();
@@ -1009,7 +1009,7 @@ class SkinTemplate extends Skin {
 				array( &$this, &$content_navigation ) );
 		}
 
-		if ( !$wgDisableLangConversion && $title->getNamespace() != NS_SPECIAL ) {
+		if ( !$wgDisableLangConversion && !$title->isSpecialPage() ) {
 			$pageLang = $title->getPageLanguage();
 			// Gets list of language variants
 			$variants = $pageLang->getVariants();

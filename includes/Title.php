@@ -1112,7 +1112,7 @@ class Title {
 		$restrictionTypes = $this->getRestrictionTypes();
 
 		# Special pages have inherent protection
-		if( $this->getNamespace() == NS_SPECIAL ) {
+		if( $this->isSpecialPage() ) {
 			return true;
 		}
 
@@ -1863,7 +1863,7 @@ class Title {
 			}
 
 			# If it's a special page, ditch the subpage bit and check again
-			if ( $this->getNamespace() == NS_SPECIAL ) {
+			if ( $this->isSpecialPage() ) {
 				$name = $this->getDBkey();
 				list( $name, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $name );
 				if ( $name === false ) {
@@ -4152,7 +4152,7 @@ class Title {
 	 * @return boolean
 	 */
 	public function isSpecial( $name ) {
-		if ( $this->getNamespace() == NS_SPECIAL ) {
+		if ( $this->isSpecialPage() ) {
 			list( $thisName, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $this->getDBkey() );
 			if ( $name == $thisName ) {
 				return true;
@@ -4168,7 +4168,7 @@ class Title {
 	 * @return Title
 	 */
 	public function fixSpecialName() {
-		if ( $this->getNamespace() == NS_SPECIAL ) {
+		if ( $this->isSpecialPage() ) {
 			list( $canonicalName, $par ) = SpecialPageFactory::resolveAlias( $this->mDbkeyform );
 			if ( $canonicalName ) {
 				$localName = SpecialPageFactory::getLocalNameFor( $canonicalName, $par );
@@ -4279,7 +4279,7 @@ class Title {
 	 * @return array applicable restriction types
 	 */
 	public function getRestrictionTypes() {
-		if ( $this->getNamespace() == NS_SPECIAL ) {
+		if ( $this->isSpecialPage() ) {
 			return array();
 		}
 
@@ -4356,7 +4356,7 @@ class Title {
 	 */
 	public function getPageLanguage() {
 		global $wgLang;
-		if ( $this->getNamespace() == NS_SPECIAL ) {
+		if ( $this->isSpecialPage() ) {
 			// special pages are in the user language
 			return $wgLang;
 		} elseif ( $this->isCssOrJsPage() ) {

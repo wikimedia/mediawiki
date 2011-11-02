@@ -92,7 +92,7 @@ class MediaWiki {
 			}
 		}
 		// For non-special titles, check for implicit titles
-		if ( is_null( $ret ) || $ret->getNamespace() != NS_SPECIAL ) {
+		if ( is_null( $ret ) || !$ret->isSpecialPage() ) {
 			// We can have urls with just ?diff=,?oldid= or even just ?diff=
 			$oldid = $request->getInt( 'oldid' );
 			$oldid = $oldid ? $oldid : $request->getInt( 'diff' );
@@ -190,7 +190,7 @@ class MediaWiki {
 			&& !count( $request->getValueNames( array( 'action', 'title' ) ) )
 			&& wfRunHooks( 'TestCanonicalRedirect', array( $request, $title, $output ) ) )
 		{
-			if ( $title->getNamespace() == NS_SPECIAL ) {
+			if ( $title->isSpecialPage() ) {
 				list( $name, $subpage ) = SpecialPageFactory::resolveAlias( $title->getDBkey() );
 				if ( $name ) {
 					$title = SpecialPage::getTitleFor( $name, $subpage );

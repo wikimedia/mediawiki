@@ -205,7 +205,7 @@ class WikiPage extends Page {
 					return $rt->getFullURL( 'rdfrom=' . urlencode( $source ) );
 				}
 			} else {
-				if ( $rt->getNamespace() == NS_SPECIAL ) {
+				if ( $rt->isSpecialPage() ) {
 					// Gotta handle redirects to special pages differently:
 					// Fill the HTTP response "Location" header and ignore
 					// the rest of the page we're on.
