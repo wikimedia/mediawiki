@@ -82,7 +82,7 @@ class CliInstaller extends Installer {
 			$this->setVar( '_InstallUser',
 				$option['installdbuser'] );
 			$this->setVar( '_InstallPassword',
-				$option['installdbpass'] );
+				isset( $option['installdbpass'] ) ? $option['installdbpass'] : "" );
 
 			// Assume that if we're given the installer user, we'll create the account.
 			$this->setVar( '_CreateDBAccount', true );
