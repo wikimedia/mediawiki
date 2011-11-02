@@ -763,7 +763,13 @@ class DumpFileOutput extends DumpOutput {
 		$this->closeAndRename( $newname, true );
 	}
 
-	function closeAndRename( $newname, $open = false ) {
+	function renameOrException( $newname ) {
+			if (! rename( $this->filename, $newname ) ) {
+				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
+			}
+	}
+
+	function checkRenameArgCount( $newname ) {
 		if ( is_array( $newname ) ) {
 			if ( count( $newname ) > 1 ) {
 				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
@@ -771,12 +777,15 @@ class DumpFileOutput extends DumpOutput {
 				$newname = $newname[0];
 			}
 		}
+		return $newname;
+	}
+
+	function closeAndRename( $newname, $open = false ) {
+		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
 			fclose( $this->handle );
-			if (! rename( $this->filename, $newname ) ) {
-				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
-			}
-			elseif ( $open ) {
+			$this->renameOrException( $newname );
+			if ( $open ) {
 				$this->handle = fopen( $this->filename, "wt" );
 			}
 		}
@@ -820,20 +829,12 @@ class DumpPipeOutput extends DumpFileOutput {
 	}
 
 	function closeAndRename( $newname, $open = false ) {
-		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1 ) {
-				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
-			} else {
-				$newname = $newname[0];
-			}
-		}
+		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
 			fclose( $this->handle );
 			proc_close( $this->procOpenResource );
-			if (! rename( $this->filename, $newname ) ) {
-				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
-			}
-			elseif ( $open ) {
+			$this->renameOrException( $newname );
+			if ( $open ) {
 				$command = $this->command;
 				$command .=  " > " . wfEscapeShellArg( $this->filename );
 				$this->startCommand( $command );
@@ -889,20 +890,12 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	}
 
 	function closeAndRename( $newname, $open = false ) {
-		if ( is_array( $newname ) ) {
-			if ( count( $newname ) > 1 ) {
-				throw new MWException( __METHOD__ . ": passed multiple arguments for rename of single file\n" );
-			} else {
-				$newname = $newname[0];
-			}
-		}
+		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
 			fclose( $this->handle );
 			proc_close( $this->procOpenResource );
-			if (! rename( $this->filename, $newname ) ) {
-				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
-			}
-			elseif ( $open ) {
+			$this->renameOrException( $newname );
+			if ( $open ) {
 				$command = setup7zCommand( $file );
 				$this->startCommand( $command );
 			}
