@@ -310,7 +310,7 @@ abstract class Maintenance {
 		if ( $channel === null ) {
 			$this->cleanupChanneled();
 
-			$f = fopen( 'php://stdout', 'w' );
+			$f = fopen( 'php://stdout', 'a' );
 			fwrite( $f, $out );
 			fclose( $f );
 		}
@@ -331,7 +331,7 @@ abstract class Maintenance {
 		if ( php_sapi_name() == 'cli' ) {
 			fwrite( STDERR, $err . "\n" );
 		} else {
-			$f = fopen( 'php://stderr', 'w' );
+			$f = fopen( 'php://stderr', 'a' );
 			fwrite( $f, $err . "\n" );
 			fclose( $f );
 		}
@@ -370,7 +370,7 @@ abstract class Maintenance {
 			return;
 		}
 
-		$handle = fopen( 'php://stdout', 'w' );
+		$handle = fopen( 'php://stdout', 'a' );
 
 		// End the current line if necessary
 		if ( !$this->atLineStart && $channel !== $this->lastChannel ) {
