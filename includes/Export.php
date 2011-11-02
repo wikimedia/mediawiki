@@ -871,9 +871,17 @@ class Dump7ZipOutput extends DumpPipeOutput {
 	protected $filename;
 
 	function __construct( $file ) {
-		$command = setup7zCommand( $file );
+		$command = $this->setup7zCommand( $file );
 		parent::__construct( $command );
 		$this->filename = $file;
+	}
+
+	function setup7zCommand( $file ) {
+		$command = "7za a -bd -si " . wfEscapeShellArg( $file );
+		// Suppress annoying useless crap from p7zip
+		// Unfortunately this could suppress real error messages too
+		$command .= ' >' . wfGetNull() . ' 2>&1';
+		return( $command );
 	}
 
 	function closeRenameAndReopen( $newname ) {
@@ -895,10 +903,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 				throw new MWException( __METHOD__ . ": rename of file {$this->filename} to $newname failed\n" );
 			}
 			elseif ( $open ) {
-				$command = "7za a -bd -si " . wfEscapeShellArg( $file );
-				// Suppress annoying useless crap from p7zip
-				// Unfortunately this could suppress real error messages too
-				$command .= ' >' . wfGetNull() . ' 2>&1';
+				$command = setup7zCommand( $file );
 				$this->startCommand( $command );
 			}
 		}
