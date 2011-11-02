@@ -276,33 +276,34 @@ class ErrorPageError extends MWException {
  * @ingroup Exception
  */
 class PermissionsError extends ErrorPageError {
-	public $permission;
+	public $permission, $errors;
 
-	function __construct( $permission ) {
+	function __construct( $permission, $errors = array() ) {
 		global $wgLang;
 
 		$this->permission = $permission;
 
-		$groups = array_map(
-			array( 'User', 'makeGroupLinkWiki' ),
-			User::getGroupsWithPermission( $this->permission )
-		);
+		if ( !count( $errors ) ) {
+			$groups = array_map(
+				array( 'User', 'makeGroupLinkWiki' ),
+				User::getGroupsWithPermission( $this->permission )
+			);
 
-		if( $groups ) {
-			parent::__construct(
-				'badaccess',
-				'badaccess-groups',
-				array(
-					$wgLang->commaList( $groups ),
-					count( $groups )
-				)
-			);
-		} else {
-			parent::__construct(
-				'badaccess',
-				'badaccess-group0'
-			);
+			if ( $groups ) {
+				$errors[] = array( 'badaccess-groups', $wgLang->commaList( $groups ), count( $groups ) );
+			} else {
+				$errors[] = array( 'badaccess-group0' );
+			}
 		}
+
+		$this->errors = $errors;
+	}
+
+	function report() {
+		global $wgOut;
+
+		$wgOut->showPermissionsErrorPage( $this->errors, $this->permission );
+		$wgOut->output();
 	}
 }
 

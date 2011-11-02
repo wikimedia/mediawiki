@@ -953,14 +953,14 @@ class LoginForm extends SpecialPage {
 			// Block signup here if in readonly. Keeps user from
 			// going through the process (filling out data, etc)
 			// and being informed later.
-			if ( wfReadOnly() ) {
-				throw new ReadOnlyError;
+			$permErrors = $titleObj->getUserPermissionsErrors( 'createaccount', $user, true );
+			if ( count( $permErrors ) ) {
+				throw new PermissionsError( 'createaccount', $permErrors );
 			} elseif ( $user->isBlockedFromCreateAccount() ) {
 				$this->userBlockedMessage( $user->isBlockedFromCreateAccount() );
 				return;
-			} elseif ( count( $permErrors = $titleObj->getUserPermissionsErrors( 'createaccount', $user, true ) )>0 ) {
-				$this->getOutput()->showPermissionsErrorPage( $permErrors, 'createaccount' );
-				return;
+			} elseif ( wfReadOnly() ) {
+				throw new ReadOnlyError;
 			}
 		}
 

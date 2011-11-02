@@ -1181,6 +1181,7 @@ $wgMessageStructure = array(
 		'action-suppressionlog',
 		'action-block',
 		'action-protect',
+		'action-rollback',
 		'action-import',
 		'action-importupload',
 		'action-patrol',

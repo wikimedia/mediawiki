@@ -60,10 +60,6 @@ class SpecialImport extends SpecialPage {
 			throw new PermissionsError( 'import' );
 		}
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
-
 		# @todo Allow Title::getUserPermissionsErrors() to take an array
 		# @todo FIXME: Title::checkSpecialsAndNSPermissions() has a very wierd expectation of what
 		# getUserPermissionsErrors() might actually be used for, hence the 'ns-specialprotected'
@@ -78,9 +74,12 @@ class SpecialImport extends SpecialPage {
 			)
 		);
 
-		if( $errors ){
-			$this->getOutput()->showPermissionsErrorPage( $errors );
-			return;
+		if ( $errors ) {
+			throw new PermissionsError( 'import', $errors );
+		}
+
+		if ( wfReadOnly() ) {
+			throw new ReadOnlyError;
 		}
 
 		$request = $this->getRequest();

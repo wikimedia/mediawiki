@@ -200,17 +200,24 @@ abstract class Action {
 	 * @throws ErrorPageError
 	 */
 	protected function checkCanExecute( User $user ) {
-		if ( $this->requiresWrite() && wfReadOnly() ) {
-			throw new ReadOnlyError();
-		}
-
-		if ( $this->getRestriction() !== null && !$user->isAllowed( $this->getRestriction() ) ) {
-			throw new PermissionsError( $this->getRestriction() );
+		$right = $this->getRestriction();
+		if ( $right !== null ) {
+			$errors = $this->getTitle()->getUserPermissionsErrors( $right, $user );
+			if ( count( $errors ) ) {
+				throw new PermissionsError( $right, $errors );
+			}
 		}
 
 		if ( $this->requiresUnblock() && $user->isBlocked() ) {
 			$block = $user->mBlock;
 			throw new UserBlockedError( $block );
+		}
+
+		// This should be checked at the end so that the user won't think the
+		// error is only temporary when he also don't have the rights to execute
+		// this action
+		if ( $this->requiresWrite() && wfReadOnly() ) {
+			throw new ReadOnlyError();
 		}
 	}
 
