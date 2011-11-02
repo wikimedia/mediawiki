@@ -385,6 +385,11 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	function doBatchLookups() {
+		# No results? Nothing to batch
+		if ( !$this->mResult->numRows() ) {
+			return;
+		}
+
 		# Do a link batch query
 		$this->mResult->seek( 0 );
 		$batch = new LinkBatch();
