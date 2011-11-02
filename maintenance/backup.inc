@@ -217,6 +217,8 @@ class BackupDumper {
 		} else if ( is_null( $this->pages ) ) {
 			if ( $this->startId || $this->endId ) {
 				$exporter->pagesByRange( $this->startId, $this->endId );
+			} elseif ( $this->revStartId || $this->revEndId ) {
+				$exporter->revsByRange( $this->revStartId, $this->revEndId );
 			} else {
 				$exporter->allPages();
 			}
