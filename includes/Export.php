@@ -41,6 +41,7 @@ class WikiExporter {
 	const CURRENT = 2;
 	const STABLE = 4; // extension defined
 	const LOGS = 8;
+	const RANGE = 16;
 
 	const BUFFER = 0;
 	const STREAM = 1;
@@ -56,7 +57,8 @@ class WikiExporter {
 	 * main query is still running.
 	 *
 	 * @param $db Database
-	 * @param $history Mixed: one of WikiExporter::FULL or WikiExporter::CURRENT,
+	 * @param $history Mixed: one of WikiExporter::FULL, WikiExporter::CURRENT,
+	 *                 WikiExporter::RANGE or WikiExporter::STABLE,
 	 *                 or an associative array:
 	 *                   offset: non-inclusive offset at which to start the query
 	 *                   limit: maximum number of rows to return
@@ -115,6 +117,21 @@ class WikiExporter {
 		$condition = 'page_id >= ' . intval( $start );
 		if ( $end ) {
 			$condition .= ' AND page_id < ' . intval( $end );
+		}
+		return $this->dumpFrom( $condition );
+	}
+
+	/**
+	 * Dumps a series of page and revision records for those pages
+	 * in the database with revisions falling within the rev_id range given.
+	 * @param $start Int: inclusive lower limit (this id is included)
+	 * @param $end   Int: Exclusive upper limit (this id is not included)
+	 *                   If 0, no upper limit.
+	 */
+	public function revsByRange( $start, $end ) {
+		$condition = 'rev_id >= ' . intval( $start );
+		if ( $end ) {
+			$condition .= ' AND rev_id < ' . intval( $end );
 		}
 		return $this->dumpFrom( $condition );
 	}
@@ -259,6 +276,10 @@ class WikiExporter {
 					wfProfileOut( __METHOD__ );
 					throw new MWException( __METHOD__ . " given invalid history dump type." );
 				}
+			} elseif ( $this->history & WikiExporter::RANGE ) {
+				# Dump of revisions within a specified range
+				$join['revision'] = array( 'INNER JOIN', 'page_id=rev_page' );
+				$opts['ORDER BY'] = 'rev_page ASC, rev_id ASC';
 			} else {
 				# Uknown history specification parameter?
 				wfProfileOut( __METHOD__ );
