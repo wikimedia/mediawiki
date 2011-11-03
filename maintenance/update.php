@@ -43,7 +43,7 @@ class UpdateMediaWiki extends Maintenance {
 		$this->addOption( 'quick', 'Skip 5 second countdown before starting' );
 		$this->addOption( 'doshared', 'Also update shared tables' );
 		$this->addOption( 'nopurge', 'Do not purge the objectcache table after updates' );
-		$this->addOption( 'force', 'Override when $wgMiserMode disables this script' );
+		$this->addOption( 'force', 'Override when $wgAllowSchemaUpdates disables this script' );
 	}
 
 	function getDbType() {
@@ -76,9 +76,9 @@ class UpdateMediaWiki extends Maintenance {
 	}
 
 	function execute() {
-		global $wgVersion, $wgTitle, $wgLang, $wgMiserMode;
+		global $wgVersion, $wgTitle, $wgLang, $wgAllowSchemaUpdates;
 
-		if( $wgMiserMode && !$this->hasOption( 'force' ) ) {
+		if( $wgAllowSchemaUpdates && !$this->hasOption( 'force' ) ) {
 			$this->error( "Do not run update.php on this wiki. If you're seeing this you should\n"
 				. "probably ask for some help in performing your schema updates.\n\n"
 				. "If you know what you are doing, you can continue with --force", true );
