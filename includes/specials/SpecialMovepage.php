@@ -363,24 +363,30 @@ class MovePageForm extends UnlistedSpecialPage {
 		$nt = $this->newTitle;
 
 		# Delete to make way if requested
-		if ( $user->isAllowed( 'delete' ) && $this->deleteAndMove ) {
-			$article = new Article( $nt );
+		if ( !count( $nt->getUserPermissionsErrors( 'delete', $user ) ) && $this->deleteAndMove ) {
+			$page = WikiPage::factory( $nt );
 
 			# Disallow deletions of big articles
-			$bigHistory = $article->isBigDeletion();
+			$bigHistory = $page->isBigDeletion();
 			if( $bigHistory && count( $nt->getUserPermissionsErrors( 'bigdelete', $user ) ) ) {
-				$this->showForm( array('delete-toobig', $this->getLang()->formatNum( $wgDeleteRevisionsLimit ) ) );
+				$this->showForm( array( 'delete-toobig', $this->getLang()->formatNum( $wgDeleteRevisionsLimit ) ) );
 				return;
 			}
+
+			$reason = wfMessage( 'delete_and_move_reason', $ot )->inContentLanguage()->text();
 
 			// Delete an associated image if there is
 			$file = wfLocalFile( $nt );
 			if( $file->exists() ) {
-				$file->delete( wfMessage( 'delete_and_move_reason', $ot )->inContentLanguage()->text(), false );
+				$file->delete( $reason, false );
 			}
 
-			// This may output an error message and exit
-			$article->doDelete(wfMessage( 'delete_and_move_reason', $ot )->inContentLanguage()->text() );
+			$error = ''; // passed by ref
+			if ( !$page->doDeleteArticle( $reason, false, 0, true, $error, $user ) ) {
+				$this->showForm( array( 'cannotdelete', wfEscapeWikiText( $nt->getPrefixedText() ) ) );
+				return;
+			}
+
 		}
 
 		# don't allow moving to pages with # in
