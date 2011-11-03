@@ -158,10 +158,10 @@ class RecentChange {
 
 	/**
 	 * Writes the data in this object to the database
+	 * @param $noudp bool 
 	 */
-	public function save() {
-		global $wgLocalInterwiki, $wgPutIPinRC, $wgRC2UDPAddress, $wgRC2UDPOmitBots;
-		$fname = 'RecentChange::save';
+	public function save( $noudp = false ) {
+		global $wgLocalInterwiki, $wgPutIPinRC;
 
 		$dbw = wfGetDB( DB_MASTER );
 		if( !is_array($this->mExtra) ) {
@@ -189,7 +189,7 @@ class RecentChange {
 		}
 
 		# Insert new row
-		$dbw->insert( 'recentchanges', $this->mAttribs, $fname );
+		$dbw->insert( 'recentchanges', $this->mAttribs, __METHOD__ );
 
 		# Set the ID
 		$this->mAttribs['rc_id'] = $dbw->insertId();
@@ -198,8 +198,8 @@ class RecentChange {
 		wfRunHooks( 'RecentChange_save', array( &$this ) );
 
 		# Notify external application via UDP
-		if( $wgRC2UDPAddress && ( !$this->mAttribs['rc_bot'] || !$wgRC2UDPOmitBots ) ) {
-			self::sendToUDP( $this->getIRCLine() );
+		if ( !$noudp ) {
+			$this->notifyRC2UDP()
 		}
 
 		# E-mail notifications
