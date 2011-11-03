@@ -55,7 +55,7 @@ class EditPage {
 	 */
 	var $mTitle;
 	private $mContextTitle = null;
-	var $action;
+	var $action = 'submit';
 	var $isConflict = false;
 	var $isCssJsSubpage = false;
 	var $isCssSubpage = false;
@@ -96,15 +96,15 @@ class EditPage {
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
-	public $editFormPageTop; // Before even the preview
-	public $editFormTextTop;
-	public $editFormTextBeforeContent;
-	public $editFormTextAfterWarn;
-	public $editFormTextAfterTools;
-	public $editFormTextBottom;
-	public $editFormTextAfterContent;
-	public $previewTextAfterContent;
-	public $mPreloadText;
+	public $editFormPageTop = ''; // Before even the preview
+	public $editFormTextTop = '';
+	public $editFormTextBeforeContent = '';
+	public $editFormTextAfterWarn = '';
+	public $editFormTextAfterTools = '';
+	public $editFormTextBottom = '';
+	public $editFormTextAfterContent = '';
+	public $previewTextAfterContent = '';
+	public $mPreloadText = '';
 
 	/* $didSave should be set to true whenever an article was succesfully altered. */
 	public $didSave = false;
@@ -116,28 +116,24 @@ class EditPage {
 	 * @todo document
 	 * @param $article Article
 	 */
-	function __construct( $article ) {
-		$this->mArticle =& $article;
+	public function __construct( $article ) {
+		$this->mArticle = $article;
 		$this->mTitle = $article->getTitle();
-		$this->action = 'submit';
-
-		# Placeholders for text injection by hooks (empty per default)
-		$this->editFormPageTop =
-		$this->editFormTextTop =
-		$this->editFormTextBeforeContent =
-		$this->editFormTextAfterWarn =
-		$this->editFormTextAfterTools =
-		$this->editFormTextBottom =
-		$this->editFormTextAfterContent =
-		$this->previewTextAfterContent =
-		$this->mPreloadText = "";
 	}
 
 	/**
 	 * @return Article
 	 */
-	function getArticle() {
+	public function getArticle() {
 		return $this->mArticle;
+	}
+
+	/**
+	 * @since 1.19
+	 * @return Title
+	 */
+	public function getTitle() {
+		return $this->mTitle;
 	}
 
 	/**
