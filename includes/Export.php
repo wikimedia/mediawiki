@@ -896,7 +896,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 			proc_close( $this->procOpenResource );
 			$this->renameOrException( $newname );
 			if ( $open ) {
-				$command = setup7zCommand( $file );
+				$command = $this->setup7zCommand( $file );
 				$this->startCommand( $command );
 			}
 		}
