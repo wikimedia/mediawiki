@@ -30,7 +30,14 @@ abstract class File {
 	const DELETED_COMMENT = 2;
 	const DELETED_USER = 4;
 	const DELETED_RESTRICTED = 8;
-	const RENDER_NOW = 1;
+
+	/** Force rendering in the current process */
+	const RENDER_NOW   = 1;
+	/**
+	 * Force rendering even if thumbnail already exist and using RENDER_NOW
+	 * I.e. you have to pass both flags: File::RENDER_NOW | File::RENDER_FORCE 
+	 */
+	const RENDER_FORCE = 2;
 
 	const DELETE_SOURCE = 1;
 
@@ -672,18 +679,21 @@ abstract class File {
 
 		$thumbPath = $this->getThumbPath( $thumbName );
 		if ( $this->repo && $this->repo->canTransformVia404() && !($flags & self::RENDER_NOW ) ) {
+			wfDebug( __METHOD__ . " transformation deferred." );
 			return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 		}
 
 		wfDebug( __METHOD__.": Doing stat for $thumbPath\n" );
 		$this->migrateThumbFile( $thumbName );
-		if ( file_exists( $thumbPath )) {
+		if ( file_exists( $thumbPath ) && !($flags & self::RENDER_FORCE) ) { 
 			$thumbTime = filemtime( $thumbPath );
 			if ( $thumbTime !== FALSE &&
 			     gmdate( 'YmdHis', $thumbTime ) >= $wgThumbnailEpoch ) { 
 
 				return $this->handler->getTransform( $this, $thumbPath, $thumbUrl, $params );
 			}
+		} elseif( $flags & self::RENDER_FORCE ) {
+			wfDebug( __METHOD__ . " forcing rendering per flag File::RENDER_FORCE\n" ); 
 		}
 		$thumb = $this->handler->doTransform( $this, $thumbPath, $thumbUrl, $params );
 
