@@ -417,7 +417,7 @@ class ManualLogEntry extends LogEntryBase {
 		);
 
 		if ( $to === 'rc' || $to === 'rcandudp' ) {
-			$rc->save();
+			$rc->save( 'pleasedontudp' );
 		}
 
 		if ( $to === 'udp' || $to === 'rcandudp' ) {
