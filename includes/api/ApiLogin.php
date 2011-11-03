@@ -55,23 +55,22 @@ class ApiLogin extends ApiBase {
 
 		$result = array();
 
-		$req = new FauxRequest( array(
-			'wpName' => $params['name'],
-			'wpPassword' => $params['password'],
-			'wpDomain' => $params['domain'],
-			'wpLoginToken' => $params['token'],
-			'wpRemember' => ''
-		) );
-
 		// Init session if necessary
 		if ( session_id() == '' ) {
 			wfSetupSession();
 		}
 
 		$context = new DerivativeContext( $this->getContext() );
-		$context->setRequest( $req );
-		/*$context = $this->createContext();
-		$context->setRequest( $req );*/
+		$context->setRequest( new DerivativeRequest(
+			$this->getContext()->getRequest(),
+			array(
+				'wpName' => $params['name'],
+				'wpPassword' => $params['password'],
+				'wpDomain' => $params['domain'],
+				'wpLoginToken' => $params['token'],
+				'wpRemember' => ''
+			)
+		) );
 		$loginForm = new LoginForm();
 		$loginForm->setContext( $context );
 

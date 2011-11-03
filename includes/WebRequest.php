@@ -1306,3 +1306,43 @@ class FauxRequest extends WebRequest {
 		return '127.0.0.1';
 	}
 }
+
+/**
+ * Similar to FauxRequest, but only fakes URL parameters and method
+ * (POST or GET) and use the base request for the remaining stuff
+ * (cookies, session and headers).
+ *
+ * @ingroup HTTP
+ */
+class DerivativeRequest extends FauxRequest {
+	private $base;
+
+	public function __construct( WebRequest $base, $data, $wasPosted = false ) {
+		$this->base = $base;
+		parent::__construct( $data, $wasPosted );
+	}
+
+	public function getCookie( $key, $prefix = null, $default = null ) {
+		return $this->base->getCookie( $key, $prefix, $default );
+	}
+
+	public function checkSessionCookie() {
+		return $this->base->checkSessionCookie();
+	}
+
+	public function getHeader( $name ) {
+		return $this->base->getHeader( $name );
+	}
+
+	public function getAllHeaders() {
+		return $this->base->getAllHeaders();
+	}
+
+	public function getSessionData( $key ) {
+		return $this->base->getSessionData( $key );
+	}
+
+	public function setSessionData( $key, $data ) {
+		return $this->base->setSessionData( $key, $data );
+	}
+}
