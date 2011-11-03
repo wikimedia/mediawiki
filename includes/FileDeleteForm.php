@@ -24,7 +24,6 @@ class FileDeleteForm {
 	private $oldfile = null;
 	private $oldimage = '';
 
-	private $DeleteReason, $DeleteReasonList;
 	/**
 	 * Constructor
 	 *
@@ -70,14 +69,16 @@ class FileDeleteForm {
 
 		// Perform the deletion if appropriate
 		if( $wgRequest->wasPosted() && $wgUser->matchEditToken( $token, $this->oldimage ) ) {
-			$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList' );
-			$this->DeleteReason = $wgRequest->getText( 'wpReason' );
-			$reason = $this->DeleteReasonList;
-			if ( $reason != 'other' && $this->DeleteReason != '') {
+			$deleteReasonList = $wgRequest->getText( 'wpDeleteReasonList' );
+			$deleteReason = $wgRequest->getText( 'wpReason' );
+
+			if ( $deleteReasonList == 'other' ) {
+				$reason = $deleteReason;
+			} elseif ( $deleteReason != '' ) {
 				// Entry from drop down menu + additional comment
-				$reason .= wfMsgForContent( 'colon-separator' ) . $this->DeleteReason;
-			} elseif ( $reason == 'other' ) {
-				$reason = $this->DeleteReason;
+				$reason = $deleteReasonList . wfMsgForContent( 'colon-separator' ) . $deleteReason;
+			} else {
+				$reason = $deleteReasonList;
 			}
 
 			$status = self::doDelete( $this->title, $this->file, $this->oldimage, $reason, $suppress );

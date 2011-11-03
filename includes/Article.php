@@ -1300,12 +1300,15 @@ class Article extends Page {
 	 * UI entry point for page deletion
 	 */
 	public function delete() {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgLang;
 
 		# This code desperately needs to be totally rewritten
 
+		$title = $this->getTitle();
+		$user = $this->getContext()->getUser();
+
 		# Check permissions
-		$permission_errors = $this->mTitle->getUserPermissionsErrors( 'delete', $this->getContext()->getUser() );
+		$permission_errors = $title->getUserPermissionsErrors( 'delete', $user );
 		if ( count( $permission_errors ) ) {
 			throw new PermissionsError( 'delete', $permission_errors );
 		}
@@ -1315,44 +1318,20 @@ class Article extends Page {
 			throw new ReadOnlyError;
 		}
 
-		$confirm = $wgRequest->wasPosted() &&
-				$this->getContext()->getUser()->matchEditToken( $wgRequest->getVal( 'wpEditToken' ) );
-
-		$this->DeleteReasonList = $wgRequest->getText( 'wpDeleteReasonList', 'other' );
-		$this->DeleteReason = $wgRequest->getText( 'wpReason' );
-
-		$reason = $this->DeleteReasonList;
-
-		if ( $reason != 'other' && $this->DeleteReason != '' ) {
-			// Entry from drop down menu + additional comment
-			$reason .= wfMsgForContent( 'colon-separator' ) . $this->DeleteReason;
-		} elseif ( $reason == 'other' ) {
-			$reason = $this->DeleteReason;
-		}
-
-		# Flag to hide all contents of the archived revisions
-		$suppress = $wgRequest->getVal( 'wpSuppress' ) && $this->getContext()->getUser()->isAllowed( 'suppressrevision' );
-
-		$wgOut->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
-
 		# Better double-check that it hasn't been deleted yet!
 		$dbw = wfGetDB( DB_MASTER );
-		$conds = $this->getTitle()->pageCond();
+		$conds = $title->pageCond();
 		$latest = $dbw->selectField( 'page', 'page_latest', $conds, __METHOD__ );
 		if ( $latest === false ) {
-			$wgOut->showFatalError(
-				Html::rawElement(
-					'div',
-					array( 'class' => 'error mw-error-cannotdelete' ),
-					wfMsgExt( 'cannotdelete', array( 'parse' ),
-						wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) )
-				)
-			);
+			$wgOut->setPageTitle( wfMessage( 'cannotdelete-title', $title->getPrefixedText() ) );
+			$wgOut->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
+					array( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) )
+				);
 			$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
 			LogEventsList::showLogExtract(
 				$wgOut,
 				'delete',
-				$this->getTitle()->getPrefixedText()
+				$title->getPrefixedText()
 			);
 
 			return;
@@ -1360,21 +1339,39 @@ class Article extends Page {
 
 		# Hack for big sites
 		$bigHistory = $this->mPage->isBigDeletion();
-		if ( $bigHistory && !$this->getTitle()->userCan( 'bigdelete' ) ) {
-			global $wgLang, $wgDeleteRevisionsLimit;
+		if ( $bigHistory && !$title->userCan( 'bigdelete' ) ) {
+			global $wgDeleteRevisionsLimit;
 
+			$wgOut->setPageTitle( wfMessage( 'cannotdelete-title', $title->getPrefixedText() ) );
 			$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n",
 				array( 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ) );
 
 			return;
 		}
 
-		if ( $confirm ) {
+		$deleteReasonList = $wgRequest->getText( 'wpDeleteReasonList', 'other' );
+		$deleteReason = $wgRequest->getText( 'wpReason' );
+
+		if ( $deleteReasonList == 'other' ) {
+			$reason = $deleteReason;
+		} elseif ( $deleteReason != '' ) {
+			// Entry from drop down menu + additional comment
+			$reason = $deleteReasonList . wfMsgForContent( 'colon-separator' ) . $deleteReason;
+		} else {
+			$reason = $deleteReasonList;
+		}
+
+		if ( $wgRequest->wasPosted() && $user->matchEditToken( $wgRequest->getVal( 'wpEditToken' ),
+			array( 'delete', $this->getTitle()->getPrefixedText() ) ) )
+		{
+			# Flag to hide all contents of the archived revisions
+			$suppress = $wgRequest->getVal( 'wpSuppress' ) && $user->isAllowed( 'suppressrevision' );
+
 			$this->doDelete( $reason, $suppress );
 
-			if ( $wgRequest->getCheck( 'wpWatch' ) && $this->getContext()->getUser()->isLoggedIn() ) {
+			if ( $wgRequest->getCheck( 'wpWatch' ) && $user->isLoggedIn() ) {
 				$this->doWatch();
-			} elseif ( $this->getTitle()->userIsWatching() ) {
+			} elseif ( $title->userIsWatching() ) {
 				$this->doUnwatch();
 			}
 
@@ -1388,14 +1385,12 @@ class Article extends Page {
 		}
 
 		// If the page has a history, insert a warning
-		if ( $hasHistory && !$confirm ) {
-			global $wgLang;
-
+		if ( $hasHistory ) {
 			$revisions = $this->mPage->estimateRevisionCount();
 			// @todo FIXME: i18n issue/patchwork message
 			$wgOut->addHTML( '<strong class="mw-delete-warning-revisions">' .
 				wfMsgExt( 'historywarning', array( 'parseinline' ), $wgLang->formatNum( $revisions ) ) .
-				wfMsgHtml( 'word-separator' ) . Linker::link( $this->getTitle(),
+				wfMsgHtml( 'word-separator' ) . Linker::link( $title,
 					wfMsgHtml( 'history' ),
 					array( 'rel' => 'archives' ),
 					array( 'action' => 'history' ) ) .
@@ -1422,6 +1417,7 @@ class Article extends Page {
 
 		wfDebug( "Article::confirmDelete\n" );
 
+		$wgOut->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
 		$deleteBackLink = Linker::linkKnown( $this->getTitle() );
 		$wgOut->setSubtitle( wfMsgHtml( 'delete-backlink', $deleteBackLink ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -1429,7 +1425,9 @@ class Article extends Page {
 
 		wfRunHooks( 'ArticleConfirmDelete', array( $this, $wgOut, &$reason ) );
 
-		if ( $this->getContext()->getUser()->isAllowed( 'suppressrevision' ) ) {
+		$user = $this->getContext()->getUser();
+
+		if ( $user->isAllowed( 'suppressrevision' ) ) {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\">
 					<td></td>
 					<td class='mw-input'><strong>" .
@@ -1440,7 +1438,7 @@ class Article extends Page {
 		} else {
 			$suppress = '';
 		}
-		$checkWatch = $this->getContext()->getUser()->getBoolOption( 'watchdeletion' ) || $this->getTitle()->userIsWatching();
+		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $this->getTitle()->userIsWatching();
 
 		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->getTitle()->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
@@ -1473,7 +1471,7 @@ class Article extends Page {
 			</tr>";
 
 		# Disallow watching if user is not logged in
-		if ( $this->getContext()->getUser()->isLoggedIn() ) {
+		if ( $user->isLoggedIn() ) {
 			$form .= "
 			<tr>
 				<td></td>
@@ -1495,10 +1493,10 @@ class Article extends Page {
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
-			Html::hidden( 'wpEditToken', $this->getContext()->getUser()->editToken() ) .
+			Html::hidden( 'wpEditToken', $user->editToken( array( 'delete', $this->getTitle()->getPrefixedText() ) ) ) .
 			Xml::closeElement( 'form' );
 
-			if ( $this->getContext()->getUser()->isAllowed( 'editinterface' ) ) {
+			if ( $user->isAllowed( 'editinterface' ) ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
 				$link = Linker::link(
 					$title,
@@ -1527,7 +1525,7 @@ class Article extends Page {
 		$id = $this->getTitle()->getArticleID( Title::GAID_FOR_UPDATE );
 
 		$error = '';
-		if ( $this->mPage->doDeleteArticle( $reason, $suppress, $id, $error ) ) {
+		if ( $this->mPage->doDeleteArticle( $reason, $suppress, $id, true, $error ) ) {
 			$deleted = $this->getTitle()->getPrefixedText();
 
 			$wgOut->setPageTitle( wfMessage( 'actioncomplete' ) );
@@ -1538,16 +1536,11 @@ class Article extends Page {
 			$wgOut->addWikiMsg( 'deletedtext', wfEscapeWikiText( $deleted ), $loglink );
 			$wgOut->returnToMain( false );
 		} else {
+			$wgOut->setPageTitle( wfMessage( 'cannotdelete-title', $this->getTitle()->getPrefixedText() ) );
 			if ( $error == '' ) {
-				$wgOut->showFatalError(
-					Html::rawElement(
-						'div',
-						array( 'class' => 'error mw-error-cannotdelete' ),
-						wfMsgExt( 'cannotdelete', array( 'parse' ),
-							wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) )
-					)
+				$wgOut->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
+					array( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) )
 				);
-
 				$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
 
 				LogEventsList::showLogExtract(
@@ -1556,7 +1549,7 @@ class Article extends Page {
 					$this->getTitle()->getPrefixedText()
 				);
 			} else {
-				$wgOut->showFatalError( $error );
+				$wgOut->addHTML( $error );
 			}
 		}
 	}
