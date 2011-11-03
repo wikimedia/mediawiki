@@ -196,7 +196,7 @@ class LocalisationCache {
 	 * @return bool
 	 */
 	public function isMergeableKey( $key ) {
-		if ( !isset( $this->mergeableKeys ) ) {
+		if ( $this->mergeableKeys === null ) {
 			$this->mergeableKeys = array_flip( array_merge(
 				self::$mergeableMapKeys,
 				self::$mergeableListKeys,
