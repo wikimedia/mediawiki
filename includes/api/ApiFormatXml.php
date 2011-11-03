@@ -72,7 +72,7 @@ class ApiFormatXml extends ApiFormatBase {
 		} else {
 			$data = $this->getResultData();
 		}
-		
+
 		$this->printText(
 			self::recXmlPrint( $this->mRootElemName,
 				$data,
@@ -94,7 +94,7 @@ class ApiFormatXml extends ApiFormatBase {
 	 *
 	 * If neither key is found, all keys become element names, and values become element content.
 	 * The method is recursive, so the same rules apply to any sub-arrays.
-	 * 
+	 *
 	 * @param $elemName
 	 * @param $elemValue
 	 * @param $indent
