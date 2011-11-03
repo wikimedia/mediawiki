@@ -781,13 +781,50 @@ $3共禁止的原因是 ''$2''。",
 'historyempty'           => '（空的）',
 
 # Revision feed
+'history-feed-title'          => '修改的歷史',
+'history-feed-description'    => '這頁佇本站的修改歷史',
 'history-feed-item-nocomment' => '$1 tī $2',
+'history-feed-empty'          => '無你欲挃的頁，
+伊可能hông刣掉抑是改名，
+試[[Special:Search|搜揣本站]]，通創建新頁。',
 
 # Revision deletion
-'rev-delundel'           => '顯示／掩',
-'revdel-restore'         => '改敢看會著',
-'revdel-restore-deleted' => '刣掉去的修訂本',
-'revdel-restore-visible' => '看會著的修訂本',
+'rev-deleted-comment'         => '（編輯概要已經清掉）',
+'rev-deleted-user'            => '用者名稱已經清掉',
+'rev-deleted-event'           => '動作的記錄已經清掉',
+'rev-deleted-user-contribs'   => '[用者名稱抑是IP地址已經徙掉 - 佇貢獻當中隱藏編輯]',
+'rev-deleted-text-permission' => "這頁的修訂本已經hông'''刣掉'''。
+佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刣掉記錄]，有詳細的訊息。",
+'rev-deleted-text-unhide'     => "這頁的修訂本已經hông'''刣掉'''。
+佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刣掉記錄]，
+若你欲繼續行，你照仝會使[$1看這个修訂本]。",
+'rev-suppressed-text-unhide'  => "這頁的修訂本已經hông'''壓縮掉'''。
+佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 壓縮記錄]，
+若你欲繼續行，你照仝會使[$1看這个修訂本]。",
+'rev-deleted-text-view'       => "這頁的修訂本已經hông'''刣掉'''。
+佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刣掉記錄]，有詳細的訊息。",
+'rev-suppressed-text-view'    => "這頁的修訂本已經hông'''壓縮掉'''。
+你會使佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 壓縮記錄]看詳細。",
+'rev-deleted-no-diff'         => "你無法度看精差，因為其中一个修訂本已經hông'''刣掉'''。
+佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刣掉記錄]有通看詳細。",
+'rev-suppressed-no-diff'      => "你無法度看精差，因為其中一个修訂本已經hông'''刣掉\"。",
+'rev-deleted-unhide-diff'     => "欲做精差比並的一个修訂本已經hông'''刣掉'''。
+佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刣掉記錄]，
+若你欲繼續行，你照仝會使[$1看這个精差比並]。",
+'rev-suppressed-unhide-diff'  => '精差比並的其中一个修訂本已經hông壓縮掉。
+佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 壓縮記錄]通看詳細，
+若你欲繼續行，你照仝會使[$1看這个精差比並]。',
+'rev-deleted-diff-view'       => "欲做精差比並的一个修訂本已經hông'''刣掉'''。
+佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刣掉記錄]，通看這个精差比並。",
+'rev-suppressed-diff-view'    => "欲做精差比並的一个修訂本已經hông'''壓縮掉'''。
+你會使佇[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 壓縮記錄]，看這个精差比並。",
+'rev-delundel'                => '顯示／掩',
+'rev-showdeleted'             => '顯示',
+'revisiondelete'              => '刣掉/取消刣掉 修訂本',
+'revdelete-nooldid-title'     => '目標是無效的修訂本',
+'revdel-restore'              => '改敢看會著',
+'revdel-restore-deleted'      => '刣掉去的修訂本',
+'revdel-restore-visible'      => '看會著的修訂本',
 
 # Merge log
 'revertmerge' => '取消合併',
@@ -893,6 +930,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit'                 => 'Siu-kái chit ia̍h',
+'action-block'                => '封鎖這个用者，予伊袂當編輯',
 'action-protect'              => '改這頁的保護層級',
 'action-import'               => '對別个Wiki匯入這頁',
 'action-importupload'         => '對一个上載檔案匯入這頁',

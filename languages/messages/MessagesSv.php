@@ -669,6 +669,7 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'badarticleerror'      => 'Den åtgärden kan inte utföras på den här sidan.',
 'cannotdelete'         => 'Sidan eller filen "$1" kunde inte raderas.
 Den kanske redan har raderats av någon annan.',
+'cannotdelete-title'   => 'Sidan "$1" kan inte raderas',
 'badtitle'             => 'Felaktig titel',
 'badtitletext'         => 'Den begärda sidtiteln är antingen ogiltig eller tom, eller så är titeln felaktigt länkad från en annan wiki.
 Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
@@ -1594,7 +1595,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'action-suppressionlog'       => 'se denna privata logg',
 'action-block'                => 'blockera denna användare från redigering',
 'action-protect'              => 'ändra skyddsnivå för denna sida',
-'action-rollback'             => 'rulla snabbt tillbaka ändringarna gjorda av den användare som senast redigerade en viss sida',
+'action-rollback'             => 'snabbt rulla tillbaka ändringarna gjorda av den användare som senast redigerade en viss sida',
 'action-import'               => 'importera denna sida från en annan wiki',
 'action-importupload'         => 'importera denna sida från en uppladdad fil',
 'action-patrol'               => 'märka annans redigering som patrullerad',

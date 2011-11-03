@@ -657,6 +657,7 @@ Te rog anunță acest aspect unui [[Special:ListUsers/sysop|administrator]], ind
 'badarticleerror'      => 'Această acțiune nu poate fi efectuată pe această pagină.',
 'cannotdelete'         => 'Pagina sau fișierul „$1” nu a putut fi șters.
 S-ar putea ca acesta să fi fost deja șters de altcineva.',
+'cannotdelete-title'   => 'Imposibil de șters pagina „$1”',
 'badtitle'             => 'Titlu incorect',
 'badtitletext'         => 'Titlul căutat a fost invalid, gol sau o legătură invalidă inter-linguală sau inter-wiki.
 

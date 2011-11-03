@@ -235,7 +235,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Кече үзгәртүләр турында да электрон почтага хәбәр җибәрелсен',
 'tog-enotifrevealaddr'        => 'Хәбәрләрдә e-mail адресым күрсәтелсен',
 'tog-shownumberswatching'     => 'Битне күзәтү исемлекләренә өстәгән кулланучылар санын күрсәтелсен',
-'tog-oldsig'                  => 'Хәзерге имзаны алдан карау:',
+'tog-oldsig'                  => 'Хәзерге имза:',
 'tog-fancysig'                => 'Имзаның шәхси вики-билгеләмәсе (автоматик сылтамасыз)',
 'tog-externaleditor'          => 'Тышкы редактор куллану (бары тик белгечләргә генә һәм санак махсус көйләнгән булу зарур; [http://www.mediawiki.org/wiki/Manual:External_editors тулырак...])',
 'tog-externaldiff'            => 'Тышкы версия чагыштыру программасын куллану (бары тик белгечләр өчен һшм санак махсус көйләнгән булу зарур; [http://www.mediawiki.org/wiki/Manual:External_editors тулырак...])',
@@ -710,6 +710,7 @@ $2',
 'passwordreset-text'         => 'Сезнең хисап язмасының параметрлары турында хат алыр өчен, түбәндәгеләрне тутырыгыз',
 'passwordreset-legend'       => 'Серсүзне яңадан кую',
 'passwordreset-username'     => 'Кулланучы исеме:',
+'passwordreset-domain'       => 'Домен:',
 'passwordreset-email'        => 'E-mail адресы',
 'passwordreset-emailelement' => 'Кулланучы исеме: $1
 Вакытлыча серсүз: $2',
@@ -984,27 +985,27 @@ $3 күрсәткән сәбәп: ''$2''",
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Бетерүләр көндәлегендә] аңлатмалар калдырылган булырга мөмкин.",
 'rev-deleted-text-unhide'     => "Битнең бу юрамасы '''бетерелгән'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Бетерүләр көндәлегендә]  аңлатмалар калдырылган булырга мөмкин.
-Сез идарәче булу сәбәпле, [$1 бирелгән юраманы карый аласыз].",
+Теләгегез булса сез [$1 бирелгән юраманы карый аласыз].",
 'rev-suppressed-text-unhide'  => "Битнең бу юрамасы '''яшерелгән'''.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Яшерүләр көндәлегендә] аңлатмалар бирелгән булырга мөмкин.
-Сез идарәче булу сәбәпле, [$1 бирелгән юраманы карый аласыз].",
+Теләгегез булса сез  [$1 бирелгән юраманы карый аласыз].",
 'rev-deleted-text-view'       => "Битнең бу юрамасы '''бетерелгән'''.
-Сез идарәче булу сәбәпле, аны карый аласыз. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Бетерүләр көндәлегендә] аңлатмалар бирелгән булырга мөмкин.",
+Сез аны карый аласыз. [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Бетерүләр көндәлегендә] аңлатмалар бирелгән булырга мөмкин.",
 'rev-suppressed-text-view'    => "Битнең бу юрамасы '''яшерелгән'''.
-Сез идарәче булу сәбәпле, аны карый аласыз. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Яшерүләр көндәлегендә] аңлатмалар бирелгән булырга мөмкин.",
+Сез аны карый аласыз. [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Яшерүләр көндәлегендә] аңлатмалар бирелгән булырга мөмкин.",
 'rev-deleted-no-diff'         => "Сез юрамалар арасындагы аермаларны карый алмыйсыз. Сәбәбе: кайсыдыр юрама '''бетерелгән'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Бетерүләр көндәлегендә] тулырак мәгълүмат табып була.",
 'rev-suppressed-no-diff'      => "Сез юрамалар  арасындагы үзгәртүләрне карый алмыйсыз, чөнки аларның берсе '''бетерелгән'''.",
 'rev-deleted-unhide-diff'     => "Битнең кайсыдыр юрамасы '''бетерелгән'''.
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Бетерүләр көндәлегендә] тулырак мәгълүмат табып була.
-Сез идарәче булу сәбәпле, [$1 бирелгән юраманы карый аласыз]",
+Теләгегез булса сез  [$1 бирелгән юраманы карый аласыз]",
 'rev-suppressed-unhide-diff'  => "Битнең кайсыдыр юрамасы '''яшерелгән'''.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Яшерүләр көндәлегендә] тулырак мәгълүмат табып була.
-Сез идарәче булу сәбәпле, [$1 яшерелгән юраманы карый аласыз]",
+Теләгегез булса сез  [$1 яшерелгән юраманы карый аласыз]",
 'rev-deleted-diff-view'       => "Бу юрамалар чагыштыруының бер юрамасы '''бетерелгән'''.
-Сез идарәче буларак чагыштыруны карый аласыз, [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} бетерүләр көндәлегендә] тулырак мәгълүмат бирелгән булырга мөмкин.",
+Сез  чагыштыруны карый аласыз, [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} бетерүләр көндәлегендә] тулырак мәгълүмат бирелгән булырга мөмкин.",
 'rev-suppressed-diff-view'    => "Бу юрамалар чагыштыруының бер юрамасы '''яшерелгән'''.
-Сез идарәче буларак чагыштыруны карый аласыз, [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} яшерүләр көндәлегендә] тулырак мәгълүмат бирелгән булырга мөмкин.",
+Сез чагыштыруны карый аласыз, [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} яшерүләр көндәлегендә] тулырак мәгълүмат бирелгән булырга мөмкин.",
 'rev-delundel'                => 'күрсәтү/яшерү',
 'rev-showdeleted'             => 'күрсәтү',
 'revisiondelete'              => 'Битнең юрамасын бетерү / кайтару',
@@ -1069,6 +1070,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'nextn'                            => 'чираттагы {{PLURAL:$1|$1}}',
 'viewprevnext'                     => 'Күрсәтелүе: ($1 {{int:pipe-separator}} $2) ($3)',
 'searchmenu-legend'                => 'Эзләү көйләнмәләре',
+'searchmenu-exists'                => "'''Бу вики-проекта «[[:$1]]» исемле бит бар инде'''",
 'searchmenu-new'                   => "'''«[[:$1]]»  исемле яңа бит ясау'''",
 'searchhelp-url'                   => 'Help:Эчтәлек',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Бу префикслы битләрне күрсәтү]]',
@@ -1201,7 +1203,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'prefs-registration-date-time'  => '$1',
 'yourrealname'                  => 'Чын исем:',
 'yourlanguage'                  => 'Тел:',
-'yourvariant'                   => 'Телнең төрләре:',
+'yourvariant'                   => 'Эчтәлекнең тел варианты:',
 'yournick'                      => 'Яңа имзагыз:',
 'prefs-help-signature'          => 'Бәхәслек битләрендә сезнең язмаларыгызны калдыру «<nowiki>~~~~</nowiki>» тамгалары куелу нәтиҗәсендә булырга тиеш.',
 'badsig'                        => 'Имза дөрес түгел. HTML теглары тикшерегез.',
@@ -1309,6 +1311,7 @@ $3 күрсәткән сәбәп: ''$2''",
 'recentchanges-label-newpage'       => 'Бу үзгәртү белән яңа бит төзелде',
 'recentchanges-label-minor'         => 'Бу кече үзгәртү',
 'recentchanges-label-bot'           => 'Бу үзгәртү бот белән эшләнгән иде',
+'recentchanges-label-unpatrolled'   => 'Үзгәртүне әлегә тикшермәгәннәр',
 'rcnote'                            => 'Аста $4 $5 вакытынна соңгы {{PLURAL:$2|1|$2}} көн эчендә булган соңгы {{PLURAL:$1|1|$1}} үзгәртмә күрсәтелә:',
 'rcnotefrom'                        => "Астарак '''$2''' башлап ('''$1''' кадәр) үзгәртүләр күрсәтелгән.",
 'rclistfrom'                        => '$1 башлап яңа үзгәртүләрне күрсәт',
@@ -1465,7 +1468,7 @@ PICT # төрле
 'filehist-filesize'         => 'Файлның зурлыгы',
 'filehist-comment'          => 'Искәрмә',
 'filehist-missing'          => 'Файл табылмады',
-'imagelinks'                => 'Файлга сылтамалар',
+'imagelinks'                => 'Файлны куллану',
 'linkstoimage'              => 'Бу файлга әлеге {{PLURAL:$1|бит|$1 бит}} сылтый:',
 'nolinkstoimage'            => 'Бу файлга сылтаган битләр юк.',
 'duplicatesoffile'          => '{{PLURAL:$1|Әлеге $1 файл }} астагы файлның күчерелмәсе булып тора ([[Special:FileDuplicateSearch/$2|тулырак]]):',
@@ -1530,7 +1533,8 @@ PICT # төрле
 'statistics-users-active-desc' => '{{PLURAL:$1|$1 көн }} өчендә нинди дә булса үзгәртүләр керткән кулланучылар',
 'statistics-mostpopular'       => 'Иң күп каралучы битләр',
 
-'disambiguations' => 'Күп мәгънәле сүзләр турында битләр',
+'disambiguations'     => 'Күп мәгънәле сүзләр турында битләр',
+'disambiguationspage' => 'Template:disambig',
 
 'doubleredirects' => 'Икеләтә юнәлтүләр',
 
@@ -1629,10 +1633,11 @@ PICT # төрле
 'sp-deletedcontributions-contribs' => 'кертем',
 
 # Special:LinkSearch
-'linksearch'     => 'Тышкы сылтамалар',
-'linksearch-pat' => 'Эзләү өчен үрнәк:',
-'linksearch-ns'  => 'Исемнәр мәйданы:',
-'linksearch-ok'  => 'Эзләү',
+'linksearch'      => 'Тышкы сылтамалар',
+'linksearch-pat'  => 'Эзләү өчен үрнәк:',
+'linksearch-ns'   => 'Исемнәр мәйданы:',
+'linksearch-ok'   => 'Эзләү',
+'linksearch-line' => '$2 мәкаләсеннән $1 мәкаләгә сылтама',
 
 # Special:ListUsers
 'listusers-submit'   => 'Күрсәтү',
@@ -1836,9 +1841,11 @@ $1',
 'undelete-show-file-submit' => 'Әйе',
 
 # Namespace form on various pages
-'namespace'      => 'Исемнәр мәйданы:',
-'invert'         => 'Киресен сайлау',
-'blanknamespace' => '(Төп)',
+'namespace'                     => 'Исемнәр мәйданы:',
+'invert'                        => 'Киресен сайлау',
+'namespace_association'         => 'Бәйле тирәлек',
+'tooltip-namespace_association' => 'Сайланган бәйле исемнәр тирәлегенә караган мәкаләләр исемлеген кабызу өчен элеге урынга тамганы куегыз',
+'blanknamespace'                => '(Төп)',
 
 # Contributions
 'contributions'       => 'Кулланучының кертеме',
@@ -1852,6 +1859,7 @@ $1',
 'sp-contributions-newbies'     => 'Яңа хисап язмаларыннан ясалган кертемне генә карау',
 'sp-contributions-newbies-sub' => 'Яңа хисап язмалары өчен',
 'sp-contributions-blocklog'    => 'тыю көндәлеге',
+'sp-contributions-uploads'     => 'йөкләүләр',
 'sp-contributions-logs'        => 'көндәлекләр',
 'sp-contributions-talk'        => 'бәхәс',
 'sp-contributions-search'      => 'Кертемне эзләү',
@@ -1976,6 +1984,7 @@ $1',
 # Namespace 8 related
 'allmessages'                   => 'Система хәбәрләре',
 'allmessagesname'               => 'Исем',
+'allmessagesdefault'            => 'Баштан ук куелган текс',
 'allmessagestext'               => 'Бу исемлек MediaWiki исемнәр мәйданында булган система хәбәрләренең исемлеге.
 Гомуми MediaWiki локализациясендә катнашырга теләсәгез, зинһар [http://www.mediawiki.org/wiki/Localisation MediaWiki Локализациясе] һәм [http://translatewiki.net translatewiki.net] сәхифәләрне кулланыгыз.',
 'allmessages-filter-legend'     => 'Фильтр',
