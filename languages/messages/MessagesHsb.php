@@ -494,6 +494,7 @@ Zdźěl to prošu [[Special:ListUsers/sysop|admininistratorej]] podawajo wotpow�
 'badarticleerror'      => 'Tuta akcija njeda so na tutej stronje wuwjesć.',
 'cannotdelete'         => 'Strona abo dataja "$1" njeje so dała wušmórnyć.
 Móže być, zo je hižo wot někoho druheho wušmórnjena.',
+'cannotdelete-title'   => 'Strona "$1" njehodźi so zhašeć',
 'badtitle'             => 'Wopačny titul',
 'badtitletext'         => 'Požadane mjeno strony běše njepłaćiwy, prózdny abo njekorektny titul z mjezyrěcneho abo interwikijoweho wotkaza. Snano wobsahuje jedne znamješko abo wjacore znamješka, kotrež w titulach dowolene njejsu.',
 'perfcached'           => 'Sćěhowace daty z pufrowaka pochadźeja a snano cyle aktualne njejsu.',

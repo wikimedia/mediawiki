@@ -2032,7 +2032,7 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 'listusers-editsonly'     => 'Montri uzantojn kun redaktoj nur',
 'listusers-creationsort'  => 'Ordigi laŭ dato de kreado',
 'usereditcount'           => '$1 {{PLURAL:$1|redakto|redaktoj}}',
-'usercreated'             => 'Kreita je $1, $2',
+'usercreated'             => '{{GENDER:$3|Kreita}} je $1, $2',
 'newpages'                => 'Novaj paĝoj',
 'newpages-username'       => 'Salutnomo:',
 'ancientpages'            => 'Plej malnovaj artikoloj',

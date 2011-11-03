@@ -915,7 +915,8 @@ Stjórnandinn sem læsti honum gaf þessa skýringu: $1",
 Síðasta færsla síðunnar úr verndunarskrá er sýnd til skýringar:",
 'semiprotectedpagewarning'         => "'''Athugið''': Þessari síðu hefur verið læst þannig að aðeins innskráðir notendur geti breytt henni.
 Síðasta færsla síðunnar úr verndunarskrá er sýnd til skýringar:",
-'titleprotectedwarning'            => "'''VIÐVÖRUN: Þessari síðu hefur verið læst svo aðeins [[Special:ListGroupRights|sérstakir notendur]] geta breytt henni.'''",
+'titleprotectedwarning'            => "''VIÐVÖRUN: Þessari síðu hefur verið læst svo aðeins [[Special:ListGroupRights|sérstakir notendur]] geta breytt henni.'''
+Verndunarskrá síðunnar er gefin fyrir neðan til tilvísunar.",
 'templatesused'                    => 'Snið {{PLURAL:$1|notað|notuð}} á þessari síðu:',
 'templatesusedpreview'             => 'Snið {{PLURAL:$1|notað|notuð}} í forskoðuninni:',
 'templatesusedsection'             => 'Snið {{PLURAL:$1|notað|notuð}} í þessum hluta:',
@@ -1541,13 +1542,13 @@ Hér fyrir neðan er afrit af [$2 skráarsíðunni þar].',
 # File reversion
 'filerevert'         => 'Taka aftur $1',
 'filerevert-legend'  => 'Taka aftur skrá',
-'filerevert-comment' => 'Athugasemdir:',
+'filerevert-comment' => 'Ástæða:',
 'filerevert-submit'  => 'Taka aftur',
 
 # File deletion
 'filedelete'                  => 'Eyði „$1“',
 'filedelete-legend'           => 'Eyða skrá',
-'filedelete-intro'            => "Þú ert að eyða '''[[Media:$1|$1]]'''.",
+'filedelete-intro'            => "Þú ert að eyða '''[[Media:$1|$1]]''' ásamt breytingarskrá hennar.",
 'filedelete-comment'          => 'Ástæða:',
 'filedelete-submit'           => 'Eyða',
 'filedelete-success'          => "'''$1''' hefur verið eytt.",
@@ -1572,7 +1573,7 @@ Hér fyrir neðan er afrit af [$2 skráarsíðunni þar].',
 
 # Unused templates
 'unusedtemplates'     => 'Ónotuð snið',
-'unusedtemplatestext' => 'Þetta er listi yfir allar síður í sniðanafnrýminu sem ekki eru notaðar í neinum öðrum síðum. Munið að gá að öðrum tenglum í sniðin áður en þeim er eytt.',
+'unusedtemplatestext' => 'Þetta er listi yfir allar síður í {{ns:sniða}} nafnrýminu sem ekki eru notaðar í neinum öðrum síðum. Munið að gá að öðrum tenglum í sniðin áður en þeim er eytt.',
 'unusedtemplateswlh'  => 'aðrir tenglar',
 
 # Random page
@@ -1668,7 +1669,8 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 'ancientpages'            => 'Elstu síður',
 'move'                    => 'Færa',
 'movethispage'            => 'Færa þessa síðu',
-'unusedimagestext'        => 'Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan, svo að þær gætu komið fram á þessum lista þrátt fyrir að vera í notkun.',
+'unusedimagestext'        => 'Eftirfarandi skrár eru til, en eru ekki notaðar í greinum.
+Vinsamlegast athugið að aðrar vefsíður gætu tengt beint í skrár héðan, svo að þær gætu komið fram á þessum lista þrátt fyrir að vera í notkun.',
 'unusedcategoriestext'    => 'Þessir flokkar eru til en engar síður eða flokkar eru í þeim.',
 'pager-newer-n'           => '{{PLURAL:$1|nýrri 1|nýrri $1}}',
 'pager-older-n'           => '{{PLURAL:$1|1 eldri|$1 eldri}}',
@@ -1709,7 +1711,7 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 
 # Special:Categories
 'categories'                    => 'Flokkar',
-'categoriespagetext'            => 'Eftirfarandi flokkar innihalda síður eða skrár.
+'categoriespagetext'            => 'Eftirfarandi {{PLURAL:$1|flokkur inniheldur|flokkar innihalda}} síður eða skrár.
 [[Special:UnusedCategories|Ónotaðir flokkar]] birtast ekki hér.
 Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'categoriesfrom'                => 'Sýna flokka frá:',
@@ -1721,7 +1723,7 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'deletedcontributions-title' => 'Eyddar breytingar notanda',
 
 # Special:LinkSearch
-'linksearch'      => 'Útværir tenglar',
+'linksearch'      => 'Leita að útværum tenglum',
 'linksearch-ns'   => 'Nafnrými:',
 'linksearch-ok'   => 'Leita',
 'linksearch-line' => 'Tengt er í $1 á síðunni $2',
@@ -1752,7 +1754,7 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'emailuser'       => 'Senda þessum notanda tölvupóst',
 'emailpage'       => 'Senda tölvupóst',
 'emailpagetext'   => 'Hafi notandi þessi fyllt út gild tölvupóstfang í stillingum sínum er hægt að senda póst til hans hér. Póstfangið sem þú fylltir út í stillingum þínum mun birtast í „From:“ hlutanum svo viðtakandinn geti svarað.',
-'defemailsubject' => 'Varðandi {{SITENAME}}',
+'defemailsubject' => '{{SITENAME}} netfang notanda "$1"',
 'noemailtitle'    => 'Ekkert póstfang',
 'noemailtext'     => 'Notandi þessi hefur kosið að fá ekki tölvupóst frá öðrum notendum eða hefur ekki fyllt út netfang sitt í stillingum.',
 'email-legend'    => 'Senda tölvupóst á annan {{SITENAME}}-notanda',
@@ -1815,7 +1817,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'exblank'                => 'síðan var tóm',
 'delete-confirm'         => 'Eyða „$1“',
 'delete-legend'          => 'Eyða',
-'historywarning'         => 'Athugið: Síðan sem þú ert um það bil að eyða á sér',
+'historywarning'         => "'''Viðvörun:''' Síðan sem þú ert um það bil að eyða hefur breytingarskrá með $1 {{PLURAL:$1|breytingu|breytingum}}:",
 'confirmdeletetext'      => 'Þú ert um það bil að eyða síðu ásamt breytingaskrá hennar.
 Vinsamlegast staðfestu það að þú ætlir að gera svo, það að þú skiljir afleiðingarnar, og að þú sért að gera þetta í samræmi við [[{{MediaWiki:Policy-url}}]].',
 'actioncomplete'         => 'Aðgerð lokið',
@@ -1841,10 +1843,10 @@ Sjá lista yfir nýlegar eyðingar í $2.',
 'rollbacklink'     => 'taka aftur',
 'rollbackfailed'   => 'Mistókst að taka aftur',
 'cantrollback'     => 'Ekki hægt að taka aftur breytingu, síðasti höfundur er eini höfundur þessarar síðu.',
-'alreadyrolled'    => 'Ekki var hægt að taka síðustu breytingu [[:$1]] eftir [[User:$2|$2]] ([[User talk:$2|spjall]]) til baka;
-eitthver annar hefur breytt síðunni eða nú þegar tekið breytinguna til baka.
+'alreadyrolled'    => 'Ekki var hægt að taka síðustu breytingu [[:$1]] eftir [[User:$2|$2]] ([[User talk:$2|talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) til baka;
+einhver annar hefur breytt síðunni eða tekið breytinguna til baka.
 
-Síðasta breyting er frá [[User:$3|$3]] ([[User talk:$3|Spjall]]).',
+Síðasta breyting síðunnar er frá [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Beytingarágripið var: \"''\$1''\".",
 'revertpage'       => 'Tók aftur breytingar [[Special:Contributions/$2|$2]] ([[User talk:$2|spjall]]), breytt til síðustu útgáfu [[User:$1|$1]]',
 'rollback-success' => 'Tók til baka breytingar eftir $1; núverandi $2.',
@@ -1852,7 +1854,7 @@ Síðasta breyting er frá [[User:$3|$3]] ([[User talk:$3|Spjall]]).',
 # Protect
 'protectlogpage'              => 'Verndunarskrá',
 'protectlogtext'              => 'Fyrir neðan er listi yfir síðuverndanir og -afverndanir.
-Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núverandi lista yfir verndaðar síður.',
+Sjáðu [[Special:ProtectedPages|Verndunarskrá]] fyrir núverandi lista yfir verndaðar síður.',
 'protectedarticle'            => 'verndaði „[[$1]]“',
 'modifiedarticleprotection'   => 'breytti verndunarstigi fyrir "[[$1]]"',
 'unprotectedarticle'          => 'afverndaði „[[$1]]“',
@@ -2124,7 +2126,7 @@ Gjörðu svo vel og færðu hana handvirkt.'''",
 
 Síðan „[[:$1]]“ er þegar til. Viltu eyða henni til þess að rýma til fyrir flutningi?',
 'delete_and_move_confirm'   => 'Já, eyða síðunni',
-'delete_and_move_reason'    => 'Eytt til að rýma til fyrir flutning',
+'delete_and_move_reason'    => 'Eytt til að rýma til fyrir flutning frá "[[$1]]"',
 'selfmove'                  => 'Nýja nafnið er það sama og gamla, þú verður að velja annað nafn.',
 'immobile-source-namespace' => 'Get ekki fært síður í nafnrýminu „$1“',
 'immobile-target-namespace' => 'Get ekki fært síður inn í nafnrýmið „$1“',
@@ -2286,7 +2288,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'markaspatrolleddiff'                 => 'Merkja sem yfirfarið',
 'markaspatrolledtext'                 => 'Merkja þessa síðu sem yfirfarna',
 'markedaspatrolled'                   => 'Merkja sem yfirfarið',
-'markedaspatrolledtext'               => 'Valin breyting hefur verið merkt sem yfirfarin.',
+'markedaspatrolledtext'               => 'Valda breytingin [[:$1]] hefur verið merkt sem yfirfarin.',
 'rcpatroldisabled'                    => 'Slökkt á yfirferð nýlegra breytinga',
 'rcpatroldisabledtext'                => 'Yfirferð nýlegra breytinga er ekki virk.',
 'markedaspatrollederror'              => 'Get ekki merkt sem yfirfarið',
@@ -2309,7 +2311,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 
 # Media information
 'mediawarning'    => "'''AÐVÖRUN''': Þessi skrá kann að hafa meinfýsinn kóða, ef keyrður kann hann að stofna kerfinu þínu í hættu.",
-'imagemaxsize'    => 'Takmarka myndir á skráarlýsingasíðum við:',
+'imagemaxsize'    => "Takmarka stærð mynda við<br />: ''(fyrir skráarsíður)''",
 'thumbsize'       => 'Stærð smámynda:',
 'widthheightpage' => '$1×$2, $3 {{PLURAL:$3|síða|síður}}',
 'file-info'       => 'stærð skráar: $1, MIME-tegund: $2',
@@ -2369,14 +2371,21 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-model'            => 'Tegund',
 'exif-software'         => 'Hugbúnaður notaður',
 'exif-artist'           => 'Höfundur',
+'exif-copyright'        => 'höfundur',
 'exif-exifversion'      => 'Exif-útgáfa',
-'exif-pixelydimension'  => 'Leyfð myndalengd',
-'exif-pixelxdimension'  => 'Leyfð myndahæð',
+'exif-pixelydimension'  => 'Breidd myndar',
+'exif-pixelxdimension'  => 'Hæð myndar',
 'exif-usercomment'      => 'Athugunarsemdir notanda',
+'exif-datetimeoriginal' => 'Upprunaleg dagsetning',
+'exif-exposuretime'     => 'lýsingartími',
+'exif-isospeedratings'  => 'ISO filmuhraði',
 'exif-flash'            => 'Leiftur',
+'exif-focallength'      => 'Brennivídd',
 'exif-gpslatitude'      => 'Breiddargráða',
 'exif-gpslongitude'     => 'Lengdargráða',
 'exif-gpsaltitude'      => 'Stjörnuhæð',
+'exif-gpsdestlatitude'  => 'Breiddargráða',
+'exif-gpsdestlongitude' => 'Lengdargráða',
 
 # EXIF attributes
 'exif-compression-1' => 'Ósamþjappað',
@@ -2432,7 +2441,7 @@ Athugaðu hvort ógild tákn séu í netfanginu þínu.
 Póstþjónninn skilaði: $1',
 'confirmemail_invalid'     => 'Ógildur staðfestingarkóði. Hann gæti verið útrunninn.',
 'confirmemail_needlogin'   => 'Þú verður að $1 til að staðfesta netfangið þitt.',
-'confirmemail_success'     => 'Netfang þitt hefur verið staðfest. Þú getur nú skráð þig inn og vafrað um wiki-kerfið.',
+'confirmemail_success'     => 'Netfang þitt hefur verið staðfest. Þú getur nú [[Special:UserLogin|skráð þig inn]] og vafrað um wiki-kerfið.',
 'confirmemail_loggedin'    => 'Netfang þitt hefur verið staðfest.',
 'confirmemail_error'       => 'Eitthvað fór úrskeiðis við vistun staðfestingarinnar.',
 'confirmemail_subject'     => '{{SITENAME}} netfangs-staðfesting',
@@ -2513,7 +2522,10 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 'watchlistedit-normal-done'    => '{{PLURAL:$1|Ein síða var fjarlægð|$1 síður voru fjarlægðar}} af vaktlistanum þínum:',
 'watchlistedit-raw-title'      => 'Breyta opnum vaktlistanum',
 'watchlistedit-raw-legend'     => 'Breyta opnum vaktlistanum',
-'watchlistedit-raw-explain'    => 'Titlarnir á vaktlistanum þínum er sýndir fyrir neðan, þar sem mögulegt er að breyta þeim með því að bæta við hann og taka af honum; einn tiltil í hverri línu. Þegar þú er búinn, smelltu þá á „Uppfæra vaktlistann“. Þú getur einnig notað [[Special:EditWatchlist|staðlaða breytinn]].',
+'watchlistedit-raw-explain'    => 'Titlarnir á vaktlistanum þínum eru sýndir hér fyrir neðan og þeim er hægt að breyta með því að bæta við og taka út af honum;
+einn titil í hverri línu.
+Þegar þú ert búinn, smelltu á "{{int:Watchlistedit-raw-submit}}". 
+Þú getur einnig notað [[Special:EditWatchlist|hefðbundna ritilinn]].',
 'watchlistedit-raw-titles'     => 'Titlar:',
 'watchlistedit-raw-submit'     => 'Uppfæra vaktlistann',
 'watchlistedit-raw-done'       => 'Vaktlistinn þinn hefur verið uppfærður.',
@@ -2543,7 +2555,7 @@ Vinsamlegast staðfestu að þú viljir endurvekja hana.",
 # Special:FilePath
 'filepath'        => 'Slóð skráar',
 'filepath-page'   => 'Skrá:',
-'filepath-submit' => 'Slóð',
+'filepath-submit' => 'Áfram',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-legend'   => 'Leita að afriti',

@@ -691,6 +691,7 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|beheerder]] van {{SITENAM
 'badarticleerror'      => 'Deze handeling kan niet op deze pagina worden uitgevoerd.',
 'cannotdelete'         => 'De pagina of het bestand "$1" kon niet verwijderd worden.
 Mogelijk is deze al door iemand anders verwijderd.',
+'cannotdelete-title'   => 'Pagina "$1" kan niet verwijderd worden',
 'badtitle'             => 'Ongeldige paginanaam',
 'badtitletext'         => 'De naam van de opgevraagde pagina was ongeldig, leeg of bevatte een verkeerde intertaal- of interwikinaamverwijzing.
 Wellicht bevat de paginanaam niet toegestane karakters.',
@@ -1660,6 +1661,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'action-suppressionlog'       => 'dit beschermde logboek te bekijken',
 'action-block'                => 'deze gebruiker een bewerkingsblokkade op te leggen',
 'action-protect'              => 'het beveiligingsniveau van deze pagina aan te passen',
+'action-rollback'             => 'bewerkingen van de laatste gebruiker die een pagina heeft bewerkt snel terugdraaien',
 'action-import'               => 'deze pagina van een andere wiki te importeren',
 'action-importupload'         => 'deze pagina van een bestandsupload te importeren',
 'action-patrol'               => 'bewerkingen van anderen als gecontroleerd te markeren',

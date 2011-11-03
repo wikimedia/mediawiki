@@ -1723,7 +1723,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'filehist-filesize'         => 'Madhësia e skedës',
 'filehist-comment'          => 'Koment',
 'filehist-missing'          => 'Mungon skeda',
-'imagelinks'                => 'Lidhje skedash',
+'imagelinks'                => 'Përdorimi i skedës',
 'linkstoimage'              => '{{PLURAL:$1|faqe lidhet|$1 faqe lidhen}} tek kjo skedë:',
 'linkstoimage-more'         => 'Më shumë se $1 {{PLURAL:$1|lidhje faqeje|lidhje faqesh}} tek kjo skedë.
 Lista e mëposhtme tregon {{PLURAL:$1|lidhjen e parë të faqes|lidhjet e para $1 të faqeve}} vetëm tek kjo skedë.
