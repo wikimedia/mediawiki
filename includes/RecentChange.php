@@ -199,7 +199,7 @@ class RecentChange {
 
 		# Notify external application via UDP
 		if ( !$noudp ) {
-			$this->notifyRC2UDP()
+			$this->notifyRC2UDP();
 		}
 
 		# E-mail notifications
