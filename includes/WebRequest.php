@@ -1345,4 +1345,12 @@ class DerivativeRequest extends FauxRequest {
 	public function setSessionData( $key, $data ) {
 		return $this->base->setSessionData( $key, $data );
 	}
+
+	public function getAcceptLang() {
+		return $this->base->getAcceptLang();
+	}
+
+	public function getIP() {
+		return $this->base->getIP();
+	}
 }
