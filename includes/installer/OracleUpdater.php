@@ -36,8 +36,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addIndex',	'user',          'i02',       'patch-user_email_index.sql' ),
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
 			array( 'addTable', 'uploadstash', 'patch-uploadstash.sql' ),
-
-			// till 2.0 i guess
+			array( 'doRebuildLocalisationCache' ),
 			array( 'doRebuildDuplicateFunction' ),
 			
 		);

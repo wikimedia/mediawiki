@@ -573,4 +573,15 @@ abstract class DatabaseUpdater {
 		$task = $this->maintenance->runChild( 'UpdateCollation' );
 		$task->execute();
 	}
+
+	protected function doRebuildLocalisationCache() {
+		/**
+		 * @var $cl RebuildLocalisationCache
+		 */
+		$cl = $this->maintenance->runChild( 'RebuildLocalisationCache', 'rebuildLocalisationCache.php' );
+		$this->output( "Rebuilding localisation cache...\n" );
+		$cl->setForce();
+		$cl->execute();
+		$this->output( "Rebuilding localisation cache done.\n" );
+	}
 }

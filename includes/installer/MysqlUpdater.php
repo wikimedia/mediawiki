@@ -182,6 +182,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ),
 			array( 'addTable', 'uploadstash',                       'patch-uploadstash.sql' ),
 			array( 'addTable', 'user_former_groups',                'patch-user_former_groups.sql'),
+			array( 'doRebuildLocalisationCache' ),
 		);
 	}
 

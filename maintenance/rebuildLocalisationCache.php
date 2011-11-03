@@ -112,9 +112,9 @@ class RebuildLocalisationCache extends Maintenance {
 	 * Helper function to rebuild list of languages codes. Prints the code
 	 * for each language which is rebuilt.
 	 * @param $codes  list  List of language codes to rebuild.
-	 * @param $lc  object  Instance of LocalisationCache_BulkLoad (?)
-	 * @param $force  bool  Rebuild up-to-date languages
-	 * @return  int  Number of rebuilt languages
+	 * @param $lc LocalisationCache Instance of LocalisationCache_BulkLoad (?)
+	 * @param $force bool Rebuild up-to-date languages
+	 * @return int Number of rebuilt languages
 	 */
 	private function doRebuild( $codes, $lc, $force ) {
 		$numRebuilt = 0;
@@ -126,6 +126,15 @@ class RebuildLocalisationCache extends Maintenance {
 			}
 		}
 		return $numRebuilt;
+	}
+
+	/**
+	 * Sets whether a run of this maintenance script has the force parameter set
+	 *
+	 * @param bool $forced
+	 */
+	public function setForce( $forced = true ) {
+		$this->mOptions['force'] = $forced;
 	}
 }
 
