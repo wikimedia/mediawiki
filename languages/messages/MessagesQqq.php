@@ -640,6 +640,8 @@ HTML markup cannot be used.
 'fileappenderrorread'  => '"Append" is a computer procedure, explained on [http://en.wikipedia.org/wiki/Append Wikipedia].
 
 $1 is a filename, I think.',
+'cannotdelete-title'   => 'Title of error page when the user cannot delete a page
+* $1 is the page name',
 'badtitle'             => 'The page title when a user requested a page with invalid page name. The content will be {{msg-mw|badtitletext}}.',
 'badtitletext'         => 'The message shown when a user requested a page with invalid page name. The page title will be {{msg-mw|badtitle}}.',
 'perfcachedts'         => 'Used on pages that list page lists for which the displayed data is cached. Parameters:
