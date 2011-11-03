@@ -553,6 +553,7 @@ class PostgresInstaller extends DatabaseInstaller {
 
 		if( $conn->tableExists( 'user' ) ) {
 			$status->warning( 'config-install-tables-exist' );
+			$this->enableLB();
 			return $status;
 		}
 
