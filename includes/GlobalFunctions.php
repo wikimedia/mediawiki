@@ -2260,7 +2260,7 @@ function wfMkdirParents( $dir, $mode = null, $caller = null ) {
 	global $wgDirectoryMode;
 
 	if ( !is_null( $caller ) ) {
-		wfDebug( "$caller: called wfMkdirParents($dir)" );
+		wfDebug( "$caller: called wfMkdirParents($dir)\n" );
 	}
 
 	if( strval( $dir ) === '' || file_exists( $dir ) ) {
