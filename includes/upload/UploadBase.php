@@ -447,7 +447,7 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * Alias for verifyTitlePermissions. The function was originally 'verifyPermissions' 
+	 * Alias for verifyTitlePermissions. The function was originally 'verifyPermissions'
 	 * but that suggests it's checking the user, when it's really checking the title + user combination.
 	 * @param $user User object to verify the permissions against
 	 * @return mixed An array as returned by getUserPermissionsErrors or true
@@ -591,7 +591,7 @@ abstract class UploadBase {
 			if ( $watch ) {
 				$user->addWatch( $this->getLocalFile()->getTitle() );
 			}
-						
+
 			wfRunHooks( 'UploadComplete', array( &$this ) );
 		}
 
@@ -608,7 +608,7 @@ abstract class UploadBase {
 		if ( $this->mTitle !== false ) {
 			return $this->mTitle;
 		}
-		
+
 		/* Assume that if a user specified File:Something.jpg, this is an error
 		 * and that the namespace prefix needs to be stripped of.
 		 */
@@ -623,9 +623,9 @@ abstract class UploadBase {
 		# exclamation mark, so restrict file name to 240 bytes.
 		if ( strlen( $this->mFilteredName ) > 240 ) {
 			$this->mTitleError = self::FILENAME_TOO_LONG;
-			return $this->mTitle = null;			
+			return $this->mTitle = null;
 		}
-		
+
 		/**
 		 * Chop off any directories in the given filename. Then
 		 * filter out illegal characters, and try to make a legible name
@@ -641,7 +641,7 @@ abstract class UploadBase {
 		$this->mFilteredName = $nt->getDBkey();
 
 
-		
+
 		/**
 		 * We'll want to blacklist against *any* 'extension', and use
 		 * only the final one for the whitelist.
@@ -688,7 +688,7 @@ abstract class UploadBase {
 			$this->mTitleError = self::FILETYPE_BADTYPE;
 			return $this->mTitle = null;
 		}
-		
+
 		// Windows may be broken with special characters, see bug XXX
 		if ( wfIsWindows() && !preg_match( '/^[\x0-\x7f]*$/', $nt->getText() ) ) {
 			$this->mTitleError = self::WINDOWS_NONASCII_FILENAME;
@@ -773,7 +773,7 @@ abstract class UploadBase {
 		return $this->stashFile()->getFileKey();
 	}
 
-	/** 
+	/**
 	 * alias for stashFileGetKey, for backwards compatibility
 	 *
 	 * @return String: file key
