@@ -78,7 +78,7 @@ class UpdateMediaWiki extends Maintenance {
 	function execute() {
 		global $wgVersion, $wgTitle, $wgLang, $wgAllowSchemaUpdates;
 
-		if( $wgAllowSchemaUpdates && !$this->hasOption( 'force' ) ) {
+		if( !$wgAllowSchemaUpdates && !$this->hasOption( 'force' ) ) {
 			$this->error( "Do not run update.php on this wiki. If you're seeing this you should\n"
 				. "probably ask for some help in performing your schema updates.\n\n"
 				. "If you know what you are doing, you can continue with --force", true );
