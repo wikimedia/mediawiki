@@ -239,12 +239,12 @@ class ApiEditPage extends ApiBase {
 			$reqArr['wpWatchthis'] = '';
 		}
 
-		$req = new FauxRequest( $reqArr, true );
+		global $wgRequest;
+		$req = new DerivativeRequest( $wgRequest, $reqArr, true );
 		$ep->importFormData( $req );
 
 		// Run hooks
 		// Handle CAPTCHA parameters
-		global $wgRequest;
 		if ( !is_null( $params['captchaid'] ) ) {
 			$wgRequest->setVal( 'wpCaptchaId', $params['captchaid'] );
 		}
