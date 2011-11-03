@@ -38,7 +38,6 @@ class ApiFormatXml extends ApiFormatBase {
 	private $mRootElemName = 'api';
 	public static $namespace = 'http://www.mediawiki.org/xml/api/';
 	private $mDoubleQuote = false;
-	private $mIncludeNamespace = false;
 	private $mXslt = null;
 
 	public function __construct( $main, $format ) {
@@ -60,18 +59,18 @@ class ApiFormatXml extends ApiFormatBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$this->mDoubleQuote = $params['xmldoublequote'];
-		$this->mIncludeNamespace = $params['includexmlnamespace'];
 		$this->mXslt = $params['xslt'];
 
 		$this->printText( '<?xml version="1.0"?>' );
 		if ( !is_null( $this->mXslt ) ) {
 			$this->addXslt();
 		}
-		if ( $this->mIncludeNamespace ) {
-			$data = array( 'xmlns' => self::$namespace ) + $this->getResultData();
-		} else {
-			$data = $this->getResultData();
-		}
+
+		// If the result data already contains an 'xmlns' namespace added
+		// for custom XML output types, it will override the one for the
+		// generic API results.
+		// This allows API output of other XML types like Atom, RSS, RSD.
+		$data = $this->getResultData() + array( 'xmlns' => self::$namespace );
 
 		$this->printText(
 			self::recXmlPrint( $this->mRootElemName,
@@ -209,7 +208,6 @@ class ApiFormatXml extends ApiFormatBase {
 		return array(
 			'xmldoublequote' => false,
 			'xslt' => null,
-			'includexmlnamespace' => false,
 		);
 	}
 
@@ -217,7 +215,6 @@ class ApiFormatXml extends ApiFormatBase {
 		return array(
 			'xmldoublequote' => 'If specified, double quotes all attributes and content',
 			'xslt' => 'If specified, adds <xslt> as stylesheet',
-			'includexmlnamespace' => 'If specified, adds an XML namespace'
 		);
 	}
 
