@@ -24,24 +24,24 @@ class SqlBagOStuff extends BagOStuff {
 
 	/**
 	 * Constructor. Parameters are:
-	 *   - server:   A server info structure in the format required by each 
+	 *   - server:   A server info structure in the format required by each
 	 *               element in $wgDBServers.
 	 *
-	 *   - purgePeriod: The average number of object cache requests in between 
-	 *                  garbage collection operations, where expired entries 
-	 *                  are removed from the database. Or in other words, the 
-	 *                  reciprocal of the probability of purging on any given 
-	 *                  request. If this is set to zero, purging will never be 
+	 *   - purgePeriod: The average number of object cache requests in between
+	 *                  garbage collection operations, where expired entries
+	 *                  are removed from the database. Or in other words, the
+	 *                  reciprocal of the probability of purging on any given
+	 *                  request. If this is set to zero, purging will never be
 	 *                  done.
 	 *
 	 *   - tableName:   The table name to use, default is "objectcache".
 	 *
-	 *   - shards:      The number of tables to use for data storage. If this is 
-	 *                  more than 1, table names will be formed in the style 
-	 *                  objectcacheNNN where NNN is the shard index, between 0 and 
-	 *                  shards-1. The number of digits will be the minimum number 
-	 *                  required to hold the largest shard index. Data will be 
-	 *                  distributed across all tables by key hash. This is for 
+	 *   - shards:      The number of tables to use for data storage. If this is
+	 *                  more than 1, table names will be formed in the style
+	 *                  objectcacheNNN where NNN is the shard index, between 0 and
+	 *                  shards-1. The number of digits will be the minimum number
+	 *                  required to hold the largest shard index. Data will be
+	 *                  distributed across all tables by key hash. This is for
 	 *                  MySQL bugs 61735 and 61736.
 	 *
 	 * @param $params array
@@ -108,7 +108,7 @@ class SqlBagOStuff extends BagOStuff {
 	protected function getTableByShard( $index ) {
 		if ( $this->shards > 1 ) {
 			$decimals = strlen( $this->shards - 1 );
-			return $this->tableName . 
+			return $this->tableName .
 				sprintf( "%0{$decimals}d", $index );
 		} else {
 			return $this->tableName;
@@ -173,8 +173,8 @@ class SqlBagOStuff extends BagOStuff {
 			$db->begin();
 			// (bug 24425) use a replace if the db supports it instead of
 			// delete/insert to avoid clashes with conflicting keynames
-			$db->replace( 
-				$this->getTableByKey( $key ), 
+			$db->replace(
+				$this->getTableByKey( $key ),
 				array( 'keyname' ),
 				array(
 					'keyname' => $key,
@@ -196,9 +196,9 @@ class SqlBagOStuff extends BagOStuff {
 
 		try {
 			$db->begin();
-			$db->delete( 
-				$this->getTableByKey( $key ), 
-				array( 'keyname' => $key ), 
+			$db->delete(
+				$this->getTableByKey( $key ),
+				array( 'keyname' => $key ),
 				__METHOD__ );
 			$db->commit();
 		} catch ( DBQueryError $e ) {
@@ -217,11 +217,11 @@ class SqlBagOStuff extends BagOStuff {
 
 		try {
 			$db->begin();
-			$row = $db->selectRow( 
-				$tableName, 
+			$row = $db->selectRow(
+				$tableName,
 				array( 'value', 'exptime' ),
-				array( 'keyname' => $key ), 
-				__METHOD__, 
+				array( 'keyname' => $key ),
+				__METHOD__,
 				array( 'FOR UPDATE' ) );
 			if ( $row === false ) {
 				// Missing
@@ -245,7 +245,7 @@ class SqlBagOStuff extends BagOStuff {
 					'value' => $db->encodeBlob( $this->serialize( $newValue ) ),
 					'exptime' => $row->exptime
 				), __METHOD__, 'IGNORE' );
-			
+
 			if ( $db->affectedRows() == 0 ) {
 				// Race condition. See bug 28611
 				$newValue = null;
@@ -265,7 +265,7 @@ class SqlBagOStuff extends BagOStuff {
 		$result = array();
 
 		for ( $i = 0; $i < $this->shards; $i++ ) {
-			$res = $db->select( $this->getTableByShard( $i ), 
+			$res = $db->select( $this->getTableByShard( $i ),
 				array( 'keyname' ), false, __METHOD__ );
 			foreach ( $res as $row ) {
 				$result[] = $row->keyname;
@@ -319,8 +319,8 @@ class SqlBagOStuff extends BagOStuff {
 			for ( $i = 0; $i < $this->shards; $i++ ) {
 				$db->begin();
 				$db->delete(
-					$this->getTableByShard( $i ), 
-					array( 'exptime < ' . $db->addQuotes( $dbTimestamp ) ), 
+					$this->getTableByShard( $i ),
+					array( 'exptime < ' . $db->addQuotes( $dbTimestamp ) ),
 					__METHOD__ );
 				$db->commit();
 			}
