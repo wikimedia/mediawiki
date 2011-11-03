@@ -491,7 +491,7 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
  * Returns a regular expression of url protocols
  *
  * @param $includeProtocolRelative bool If false, remove '//' from the returned protocol list.
- *        DO NOT USE this directy, use wfUrlProtocolsWithoutProtRel() instead
+ *        DO NOT USE this directly, use wfUrlProtocolsWithoutProtRel() instead
  * @return String
  */
 function wfUrlProtocols( $includeProtocolRelative = true ) {
