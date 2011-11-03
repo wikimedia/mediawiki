@@ -129,6 +129,8 @@ class Http {
 	 * protocols, because we only want protocols that both cURL
 	 * and php support.
 	 *
+	 * file:// should not be allowed there for security purpose (r67684)
+	 *
 	 * @fixme this is wildly inaccurate and fails to actually check most stuff
 	 *
 	 * @param $uri Mixed: URI to check for validity
