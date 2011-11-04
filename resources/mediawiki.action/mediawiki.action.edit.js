@@ -1,11 +1,11 @@
 (function( $ ) {
 	// currentFocus is used to determine where to insert tags
 	var currentFocused = $( '#wpTextbox1' );
-	
+
 	mw.toolbar = {
 		$toolbar : $( '#toolbar' ),
 		buttons : [],
-		// If you want to add buttons, use 
+		// If you want to add buttons, use
 		// mw.toolbar.addButton( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText );
 		addButton : function() {
 			this.buttons.push( [].slice.call( arguments ) );
@@ -36,7 +36,7 @@
 					'encapsulateSelection', { 'pre': tagOpen, 'peri': sampleText, 'post': tagClose }
 				);
 			}
-		}, 
+		},
 		init : function() {
 			// Legacy
 			// Merge buttons from mwCustomEditButtons
@@ -61,7 +61,7 @@
 
 	//make sure edit summary does not exceed byte limit
 	$( '#wpSummary' ).byteLimit( 250 );
-	
+
 	$( document ).ready( function() {
 		/**
 		 * Restore the edit box scroll state following a preview operation,
@@ -81,10 +81,10 @@
 			}
 		};
 		scrollEditBox();
-		
+
 		// Create button bar
 		mw.toolbar.init();
-		
+
 		$( '#wpSummary, #wpTextbox1' ).focus( function() {
 			currentFocused = $(this);
 		});
