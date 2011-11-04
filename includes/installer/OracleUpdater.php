@@ -44,6 +44,8 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addTable', 'globaltemplatelinks', 'patch-globaltemplatelinks.sql' ),
 			array( 'addTable', 'globalnamespaces', 'patch-globalnamespaces.sql' ),
 			array( 'addTable', 'globalinterwiki', 'patch-globalinterwiki.sql' ),
+			array( 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1_field.sql' ),
+			array( 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1_field.sql' ),
 
 			// till 2.0 i guess
 			array( 'doRebuildDuplicateFunction' ),
