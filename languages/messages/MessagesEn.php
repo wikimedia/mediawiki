@@ -1011,6 +1011,7 @@ Query: $2',
 Please try again in a few minutes.',
 'protectedpagetext'    => 'This page has been protected to prevent editing.',
 'viewsourcetext'       => 'You can view and copy the source of this page:',
+'viewyourtext'         => "You can view and copy the source of '''your edits''' to this page:",
 'protectedinterface'   => 'This page provides interface text for the software, and is protected to prevent abuse.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
@@ -1297,8 +1298,6 @@ Note that you may not use the "e-mail this user" feature unless you have a valid
 Your current IP address is $3, and the block ID is #$5.
 Please include all above details in any queries you make.',
 'blockednoreason'                  => 'no reason given',
-'blockedoriginalsource'            => "The source of '''$1''' is shown below:",
-'blockededitsource'                => "The text of '''your edits''' to '''$1''' is shown below:",
 'whitelistedittitle'               => 'Login required to edit',
 'whitelistedittext'                => 'You have to $1 to edit pages.',
 'confirmedittext'                  => 'You must confirm your e-mail address before editing pages.

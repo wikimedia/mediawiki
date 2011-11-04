@@ -660,6 +660,7 @@ $1 is a filename, I think.',
 
 * $1: the protection type, e.g. "protect" for fully protected pages',
 'viewsourcetext'       => 'The text shown when displaying the source of a page that the user has no permission to edit',
+'viewyourtext'         => 'Same as {{msg-mw|viewsourcetext}} but when showing the text submitted by the user, this happens e.g. when the user was blocked while he is editing the page',
 'protectedinterface'   => 'Message shown if a user without the "editinterface" right tries to edit a page in the MediaWiki namespace.',
 'editinginterface'     => "A message shown when editing pages in the namespace MediaWiki:. In the [http://translatewiki.net/wiki/Main_Page?setlang=en URL], '''change \"setlang=en\" to your own language code.'''",
 'ns-specialprotected'  => 'Error message displayed when trying to edit a page in the Special namespace',

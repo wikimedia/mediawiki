@@ -403,27 +403,6 @@ class EditPage {
 			$this->preview = true;
 		}
 
-		$wgOut->addModules( array( 'mediawiki.action.edit' ) );
-
-		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
-			$wgOut->addModules( 'mediawiki.legacy.preview' );
-		}
-		// Bug #19334: textarea jumps when editing articles in IE8
-		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
-
-		$permErrors = $this->getEditPermissionErrors();
-		if ( $permErrors ) {
-			// Auto-block user's IP if the account was "hard" blocked
-			$wgUser->spreadAnyEditBlock();
-
-			wfDebug( __METHOD__ . ": User can't edit\n" );
-			$content = $this->getContent( null );
-			$content = $content === '' ? null : $content;
-			$this->readOnlyPage( $content, true, $permErrors, 'edit' );
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-		
 		if ( $this->save ) {
 			$this->formtype = 'save';
 		} elseif ( $this->preview ) {
@@ -438,6 +417,26 @@ class EditPage {
 				$this->formtype = 'initial';
 			}
 		}
+
+		$permErrors = $this->getEditPermissionErrors();
+		if ( $permErrors ) {
+			wfDebug( __METHOD__ . ": User can't edit\n" );
+			// Auto-block user's IP if the account was "hard" blocked
+			$wgUser->spreadAnyEditBlock();
+
+			$this->displayPermissionsError( $permErrors );
+
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+
+		$wgOut->addModules( array( 'mediawiki.action.edit' ) );
+
+		if ( $wgUser->getOption( 'uselivepreview', false ) ) {
+			$wgOut->addModules( 'mediawiki.legacy.preview' );
+		}
+		// Bug #19334: textarea jumps when editing articles in IE8
+		$wgOut->addStyle( 'common/IE80Fixes.css', 'screen', 'IE 8' );
 
 		wfProfileIn( __METHOD__."-business-end" );
 
@@ -540,9 +539,68 @@ class EditPage {
 	}
 
 	/**
+	 * Display a permissions error page, like OutputPage::showPermissionsErrorPage(),
+	 * but with the following differences:
+	 * - If redlink=1, the user will be redirect to the page
+	 * - If there is content to display or the error occurs while either saving,
+	 *   previewing or showing the difference, it will be a
+	 *   "View source for ..." page displaying the source code after the error message.
+	 *
+	 * @since 1.19
+	 * @param $permErrors Array of permissions errors, as returned by
+	 *                    Title::getUserPermissionsErrors().
+	 */
+	protected function displayPermissionsError( array $permErrors ) {
+		global $wgRequest, $wgOut;
+
+		if ( $wgRequest->getBool( 'redlink' ) ) {
+			// The edit page was reached via a red link.
+			// Redirect to the article page and let them click the edit tab if
+			// they really want a permission error.
+			$wgOut->redirect( $this->mTitle->getFullUrl() );
+			return;
+		}
+
+		$content = $this->getContent();
+
+		# Use the normal message if there's nothing to display
+		if ( $this->firsttime && $content === '' ) {
+			$action = $this->mTitle->exists() ? 'edit' :
+				( $permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage' );
+			throw new PermissionsError( $action, $permErrors );
+		}
+
+		$wgOut->setPageTitle( wfMessage( 'viewsource' ) );
+		$wgOut->setSubtitle(
+			wfMessage( 'viewsourcefor', Linker::linkKnown( $this->mTitle ) )->text()
+		);
+		$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' ) );
+		$wgOut->addHTML( "<hr />\n" );
+
+		# If the user made changes, preserve them when showing the markup
+		# (This happens when a user is blocked during edit, for instance)
+		if ( !$this->firsttime ) {
+			$content = $this->textbox1;
+			$wgOut->addWikiMsg( 'viewyourtext' );
+		} else {
+			$wgOut->addWikiMsg( 'viewsourcetext' );
+		}
+
+		$this->showTextbox( $content, 'wpTextbox1', array( 'readonly' ) );
+
+		$wgOut->addHTML( Html::rawElement( 'div', array( 'class' => 'templatesUsed' ),
+			Linker::formatTemplates( $this->getTemplates() ) ) );
+
+		if ( $this->mTitle->exists() ) {
+			$wgOut->returnToMain( null, $this->mTitle );
+		}
+	}
+
+	/**
 	 * Show a read-only error
 	 * Parameters are the same as OutputPage:readOnlyPage()
 	 * Redirect to the article page if redlink=1
+	 * @deprecated in 1.19; use displayPermissionsError() instead
 	 */
 	function readOnlyPage( $source = null, $protected = false, $reasons = array(), $action = null ) {
 		global $wgRequest, $wgOut;
@@ -2188,26 +2246,13 @@ HTML
 
 	/**
 	 * Call the stock "user is blocked" page
+	 *
+	 * @deprecated in 1.19; throw an exception directly instead
 	 */
 	function blockedPage() {
-		global $wgOut;
-		$wgOut->blockedPage( false ); # Standard block notice on the top, don't 'return'
+		global $wgUser;
 
-		# If the user made changes, preserve them when showing the markup
-		# (This happens when a user is blocked during edit, for instance)
-		$first = $this->firsttime || ( !$this->save && $this->textbox1 == '' );
-		if ( $first ) {
-			$source = $this->mTitle->exists() ? $this->getContent() : false;
-		} else {
-			$source = $this->textbox1;
-		}
-
-		# Spit out the source or the user's modified version
-		if ( $source !== false ) {
-			$wgOut->addHTML( '<hr />' );
-			$wgOut->addWikiMsg( $first ? 'blockedoriginalsource' : 'blockededitsource', $this->mTitle->getPrefixedText() );
-			$this->showTextbox1( array( 'readonly' ), $source );
-		}
+		throw new UserBlockedError( $wgUser->mBlock );
 	}
 
 	/**
@@ -2216,6 +2261,8 @@ HTML
 	function userNotLoggedInPage() {
 		global $wgOut;
 
+		$wgOut->prepareErrorPage( wfMessage( 'whitelistedittitle' ) );
+
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
 		$loginLink = Linker::linkKnown(
 			$loginTitle,
@@ -2223,13 +2270,18 @@ HTML
 			array(),
 			array( 'returnto' => $this->getContextTitle()->getPrefixedText() )
 		);
-
-		$wgOut->setPageTitle( wfMessage( 'whitelistedittitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
-
 		$wgOut->addHTML( wfMessage( 'whitelistedittext' )->rawParams( $loginLink )->parse() );
 		$wgOut->returnToMain( false, $this->getContextTitle() );
+	}
+
+	/**
+	 * Show an error page saying to the user that he has insufficient permissions
+	 * to create a new page
+	 *
+	 * @deprecated in 1.19; throw an exception directly instead
+	 */
+	function noCreatePermission() {
+		throw new MWException( 'nocreatetitle', 'nocreatetext' );
 	}
 
 	/**
@@ -2239,9 +2291,7 @@ HTML
 	function noSuchSectionPage() {
 		global $wgOut;
 
-		$wgOut->setPageTitle( wfMessage( 'nosuchsectiontitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
+		$wgOut->prepareErrorPage( wfMessage( 'nosuchsectiontitle' ) );
 
 		$res = wfMsgExt( 'nosuchsectiontext', 'parse', $this->section );
 		wfRunHooks( 'EditPageNoSuchSection', array( &$this, &$res ) );
@@ -2259,9 +2309,7 @@ HTML
 	static function spamPage( $match = false ) {
 		global $wgOut, $wgTitle;
 
-		$wgOut->setPageTitle( wfMessage( 'spamprotectiontitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
+		$wgOut->prepareErrorPage( wfMessage( 'spamprotectiontitle' ) );
 
 		$wgOut->addHTML( '<div id="spamprotected">' );
 		$wgOut->addWikiMsg( 'spamprotectiontext' );
@@ -2282,9 +2330,7 @@ HTML
 		global $wgOut;
 		$this->textbox2 = $this->textbox1;
 
-		$wgOut->setPageTitle( wfMessage( 'spamprotectiontitle' ) );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setArticleRelated( false );
+		$wgOut->prepareErrorPage( wfMessage( 'spamprotectiontitle' ) );
 
 		$wgOut->addHTML( '<div id="spamprotected">' );
 		$wgOut->addWikiMsg( 'spamprotectiontext' );
@@ -2841,12 +2887,6 @@ HTML
 		return strtr( $result, array( "&#x0" => "&#x" ) );
 	}
 
-	function noCreatePermission() {
-		global $wgOut;
-		$wgOut->setPageTitle( wfMessage( 'nocreatetitle' ) );
-		$wgOut->addWikiMsg( 'nocreatetext' );
-	}
-
 	/**
 	 * Attempt submission
 	 * @return bool false if output is done, true if the rest of the form should be displayed
@@ -2901,42 +2941,39 @@ HTML
 				$wgOut->redirect( $this->mTitle->getFullURL( $extraQuery ) . $sectionanchor );
 				return false;
 
+			case self::AS_BLANK_ARTICLE:
+				$wgOut->redirect( $this->getContextTitle()->getFullURL() );
+				return false;
+
 			case self::AS_SPAM_ERROR:
 				$this->spamPageWithContent( $resultDetails['spam'] );
 				return false;
 
 			case self::AS_BLOCKED_PAGE_FOR_USER:
-				$this->blockedPage();
-				return false;
+				throw new UserBlockedError( $wgUser->mBlock );
 
 			case self::AS_IMAGE_REDIRECT_ANON:
-				$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
-				return false;
+				throw new ErrorPageError( 'uploadnologin', 'uploadnologintext' );
+
+			case self::AS_IMAGE_REDIRECT_LOGGED:
+				throw new PermissionsError( 'upload' );
 
 			case self::AS_READ_ONLY_PAGE_ANON:
 				$this->userNotLoggedInPage();
 				return false;
 
 			case self::AS_READ_ONLY_PAGE_LOGGED:
+				throw new PermissionsError( 'edit' );
+
 			case self::AS_READ_ONLY_PAGE:
-				$wgOut->readOnlyPage();
-				return false;
+				throw new ReadOnlyError;
 
 			case self::AS_RATE_LIMITED:
-				$wgOut->rateLimited();
-				return false;
+				throw new ThrottledError();
 
 			case self::AS_NO_CREATE_PERMISSION:
-				$this->noCreatePermission();
-				return false;
+				throw new MWException( 'nocreatetitle', 'nocreatetext' );
 
-			case self::AS_BLANK_ARTICLE:
-				$wgOut->redirect( $this->getContextTitle()->getFullURL() );
-				return false;
-
-			case self::AS_IMAGE_REDIRECT_LOGGED:
-				$wgOut->permissionRequired( 'upload' );
-				return false;
 		}
 		return false;
 	}
