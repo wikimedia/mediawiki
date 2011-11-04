@@ -63,6 +63,7 @@ class GIFMetadataExtractorTest extends MediaWikiTestCase {
                                                                                                     
 <?xpacket end='w'?>
 EOF;
+		$xmpNugget = str_replace( "\r", '', $xmpNugget ); // Windows compat
 
 		return array(
 			array( 'nonanimated.gif', array(
