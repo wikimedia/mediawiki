@@ -1250,7 +1250,7 @@ depend on the current page/request; static configuration should be added
 through ResourceLoaderGetConfigVars instead.
 &$vars: variable (or multiple variables) to be added into the output
 	of Skin::makeVariablesScript
-&$out: The OutputPage which called the hook,
+$out: The OutputPage which called the hook,
     can be used to get the real title
 
 'MarkPatrolled': before an edit is marked patrolled
