@@ -86,11 +86,15 @@ production.
   category collations.
 * (bug 31233) New OutputPage::addJsConfigVars() method to make the output page specific
   mw.config map extendable.
+* $wgGroupPermissions now supports per namespace permissions.
 * $wgEnableAutoRotation enables or disables auto-rotation. Leaving it set to
   null will cause MediaWiki to determine if auto-rotation is available.
 
 === New features in 1.18 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.
+* (bug 27860) Minor edit after clicking 'new section' tab
+  Now the "This is a minor edit" checkbox is not available when you
+  create a page or new section.
 * (bug 8130) Query pages should limit to content namespaces, not just main
   namespace.
 * Search suggestions (other than in the Vector skin) will now use the HTML5
@@ -179,10 +183,11 @@ production.
 * (bug 28904) (bug 29773) Update jQuery version from 1.4.4 to 1.6.2 (the latest version)
 * (bug 29441) Expose CapitalLinks config in JS to allow modules to properly
   handle titles on case-sensitive wikis.
-* In MySQL 4.1.9+ with replication enabled, fetch the slave lag from SHOW SLAVE 
-  STATUS instead of SHOW PROCESSLIST. This ensures that lag is reported 
-  correctly in the case where there are no write events occurring. Note that 
-  the DB user now needs to have the REPLICATION CLIENT privilege if you are 
+* (bug 29397) Implement mw.Title module in core.
+* In MySQL 4.1.9+ with replication enabled, fetch the slave lag from SHOW SLAVE
+  STATUS instead of SHOW PROCESSLIST. This ensures that lag is reported
+  correctly in the case where there are no write events occurring. Note that
+  the DB user now needs to have the REPLICATION CLIENT privilege if you are
   using replication.
 * Language codes in $wgDummyLanguageCodes are now excluded on localization
   statistics (maintenance/language/transstat.php)
@@ -201,26 +206,36 @@ production.
 * AjaxCategories: Easily add, edit or delete categories on article pages.
   Suggests possible categories when typing, all saves are done via AJAX.
   Supports editing of multiple categories and then saving them in one batch.
+* $wgAutopromoteOnce was added, allowing for users to be automatically promoted to explicit usergroups.
+  If a group is removed from a user via Special:UserRights, it will not automatically be re-added.
+  Configuration is similar to $wgAutopromote (see DefaultSettings.php)
+* The PerformRetroactiveAutoblock hook was added to allow overriding or complementing
+  retroactive autoblock handling. This runs when blocking a user with the 'autoblock' option.
 * MediaWiki now supports using protocol-relative URLs in links, interwiki
   targets and $wgServer.
 * Introduced $wgVaryOnXFPForAPI which will cause the API to send
   Vary: X-Forwarded-Proto headers.
 * New maintenance script to refresh image metadata (maintenance/refreshImageMetadata.php)
 * (bug 16428) Include permalink in printable version
-* (bug 30940) Add a hook in User:getDefaultOptions.
-   To give extensions a better and more flexible way of providing default	 
-   values for preferences a hook has been introdiced in User:getDefaultOptions().	 
-   Setting preferences in $wgDefaultUserOptions still work fine, but when reading	 
-   them (i.e. with array_keys) to get a list of all preferences, then	 
-   $wgDefaultUserOptions should no longer be used as it will contain those set via	 
-   User:getDefaultOptions().
 * (bug 30722) Add an identity collation that sorts things based on what the
   unicode code point is (aka pre-1.17 behaviour)
+* (bug 30940) Add a hook in User:getDefaultOptions.
+  To give extensions a better and more flexible way of providing default
+  values for preferences a hook has been introdiced in User:getDefaultOptions().
+  Setting preferences in $wgDefaultUserOptions still work fine, but when reading
+  them (i.e. with array_keys) to get a list of all preferences, then
+  $wgDefaultUserOptions should no longer be used as it will contain those set via
+  User:getDefaultOptions().
+* (bug 30497) Add client-nojs and client-js classes on document element
+  to let styles easily hide or show things based on general JS availability
 * (bug 31293) If Special:Userlogin is loaded over HTTPS, display
   MediaWiki:loginend-https instead of MediaWiki:loginend, if it's not empty.
   Same for signupend on the account creation page.
+* (bug 31233) New OutputPage::addJsConfigVars() method to make the output page specific
+  mw.config map extendable.
 
 === Bug fixes in 1.18 ===
+* (bug 27860) Minor edit after clicking 'new section' tab
 * mw.util.getScript has been implemented (like wfScript in GlobalFunctions.php)
 * (bug 23119) WikiError class and subclasses are now marked as deprecated.
 * (bug 10871) Javascript and CSS pages in MediaWiki namespace are no longer
@@ -445,6 +460,8 @@ production.
 * Installer checked for magic_quotes_runtime instead of register_globals.
 * (bug 30131) XCache with variable caching disabled no longer used for variable caching (CACHE_ACCEL)
 * $wgSVGMaxSize is now applied to the smaller of width or height, making very wide pano/timeline/diagram SVGs renderable at saner sizes
+* (bug 30219) The page shown when LocalSettings.php does not exist was broken on
+  Windows servers.
 * (bug 30074) Moving user JS subpages resulted in JS errors because
   #REDIRECT [[Foo]] is invalid JS
 * (bug 30335) Fix for HTMLForms using GET breaking when non-friendly URLs
@@ -456,16 +473,25 @@ production.
 * $wgOverrideSiteFeed no longer double escapes urls.
 * The preprocessor no longer fails with a PHP warning about XML_PARSE_HUGE when
   processing complex pages using newer versions of libxml2.
-* (bug 30192) Thumbnails of archived files are now deleted
 * (bug 30907) Special:Unusedcategories should sort ascendingly.
 * (bug 28545) When using the uca-default collation, sortkey's starting with a
   space (U+20) will sort under an invisible header like in 1.16 rather than a U+6DE
-* (bug 30497) Add client-nojs and client-js classes on document element
-  to let styles easily hide or show things based on general JS availability
+* (bug 30192) Thumbnails of archived files are now deleted
+* (bug 30843) mediawiki.Title should not convert extensions (anything after the
+  last full stop) to lower case)
+* (bug 31213) Exception thrown when trying to move file cross-namespace
 * (bug 18424) Special:Prefixindex and Special:Allpages paging links are
   really small, and somewhat inconsistent with each other.
-* (bug 31213) Exception thrown when trying to move file cross-namespace
+* (bug 30466) Entries in iwlinks table are now cleared when moving a page over
+  redirect
 * (bug 31674) Can't edit watchlist if it contains special pages
+* (bug 32100) Installer complains about Suhosin GET limit even if it is
+  already set above 1024 bytes
+* (bug 32086) Special:PermanentLink now show an error message when no subpage
+  was specified.
+* (bug 31822) Error during upgrade due to output buffer reset in stdout
+* (bug 31913) Special:MostLinkedTemplates had an incorrect GROUP BY clause
+  under Microsoft SQL.
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
@@ -609,7 +635,7 @@ production.
 * (bug 24781) The API will include an XML namespace if the includexmlnamespace
   parameter is set.
 * (bug 29392) Setting the start or end parameter now works with lists blocks,
-  categorymembers, deletedrevs, logevents, protectedtitles, usercontributions 
+  categorymembers, deletedrevs, logevents, protectedtitles, usercontributions
   and watchlist in Postgres
 
 === Languages updated in 1.18 ===
@@ -628,7 +654,7 @@ changes to languages because of Bugzilla reports.
 * Tokipona (tp) (removed) 'tokipona' is still  valid.
 * (bug 17160) Gender specific display text for User namespace.
 * Link trail added for sl and sh.
-* (bug 27633) Add characters to linkTrail for Potuguese (pt and pt-br).
+* (bug 27633) Add characters to linkTrail for Portuguese (pt and pt-br).
 * (bug 27426) Set $namespaceGenderAliases for Arabic (ar).
 * (bug 27385) Set Polish $namespaceGenderAliases.
 * (bug 27681) Set $namespaceGenderAliases for Portuguese (pt and pt-br).
@@ -644,6 +670,7 @@ changes to languages because of Bugzilla reports.
 * Aromanian (rup) (renamed from "rua-rup").
 * Kashmiri (ks) split into Kashmiri (Perso-Arabic) (ks-arab) and Kashmiri
   (Devanagari) (ks-deva). Defaults to ks-arab.
+* (bug 30864) Use bengali numerals for <ol> for Assamese
 * (bug 30817) Restored linktrail for kk (Kazakh)
 * (bug 27398) Add $wgExtraGenderNamespaces for configured gendered namespaces
 * (bug 30846) New LanguageOs class
