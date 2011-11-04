@@ -641,8 +641,6 @@ Blok etüvni muzakere etmek içün $1 qullanıcısına ya da başqa er angi [[{{
 Diqqat etiñiz ki, qayd olunmağan ve e-mail adresiñizni [[Special:Preferences|şahsiy sazlamalarda]] tasdıqlamağan alda, em de blok etilgende sizge mektüp yollamaq yasaq etilgen olsa, idarecige mektüp yollap olamazsıñız.
 IP adresiñiz — $3, blok etüv identifikatorı — #$5. Lütfen, idarecilerge mektüpleriñizde onı bildiriñiz.',
 'blockednoreason'                  => 'sebep bildirilmedi',
-'blockedoriginalsource'            => 'Aşağıda "$1" saifesiniñ metini buluna.',
-'blockededitsource'                => "Aşağıda \"\$1\" saifesindeki '''yapqan deñiştirmeleriñizniñ''' metini buluna.",
 'whitelistedittitle'               => 'Deñiştirmek içün oturım açmalısıñız',
 'whitelistedittext'                => 'Saifeni deñiştirmek içün $1 kereksiñiz.',
 'confirmedittext'                  => 'Saifeni deñiştirmeden evel e-mail adresiñizni tasdıqlamalısıñız. Lütfen, [[Special:Preferences|sazlamalar saifesinde]] e-mail adresiñizni kirsetiñiz ve tasdıqlañız.',

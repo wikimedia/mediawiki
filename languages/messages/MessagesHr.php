@@ -920,8 +920,6 @@ Primijetite da ne možete koristiti opciju "Pošalji mu e-mail" ukoliko niste up
 
 Vaša trenutačna IP adresa je $3, a oznaka bloka #$5. Molimo navedite ovaj broj kod svakog upita vezano za razlog blokiranja.',
 'blockednoreason'                  => 'bez obrazloženja',
-'blockedoriginalsource'            => "Izvorni tekst članka '''$1''' prikazan je ispod:",
-'blockededitsource'                => "Tekst '''Vaše izmjene''' na članku '''$1''' prikazan je ispod:",
 'whitelistedittitle'               => 'Za uređivanje stranice morate se prijaviti',
 'whitelistedittext'                => 'Za uređivanje stranice morate se $1.',
 'confirmedittext'                  => 'Morate potvrditi Vašu e-mail adresu prije nego što Vam bude omogućeno uređivanje. Molim unesite i ovjerite Vašu e-mail adresu u [[Special:Preferences|suradničkim postavkama]].',

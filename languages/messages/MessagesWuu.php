@@ -542,8 +542,6 @@ $2',
 
 侬个IP地址是$3，而该查封ID是 #$5。 请垃拉侬个查询里向注明以上所有资料。",
 'blockednoreason'                  => '弗曾拨原因',
-'blockedoriginalsource'            => "下头是'''$1'''个源码：",
-'blockededitsource'                => "侬对'''$1'''进行'''编辑'''个文字如下:",
 'whitelistedittitle'               => '登录仔再好编辑',
 'whitelistedittext'                => '侬必须$1才能编辑。',
 'confirmedittext'                  => '垃拉编辑此页之前侬必须确认侬个邮箱地址。请通过[[Special:Preferences|个人设置]]设置并验证侬个邮箱地址。',

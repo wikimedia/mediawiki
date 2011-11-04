@@ -182,7 +182,6 @@ Sie können die „E-Mail an diesen Benutzer“-Funktion nicht nutzen, solange k
 
 Ihre aktuelle IP-Adresse ist $3, und die Sperr-ID ist $5.
 Bitte fügen Sie alle Informationen jeder Anfrage hinzu, die Sie stellen.",
-'blockededitsource'                => "Der Quelltext '''Ihrer Änderungen''' an '''$1''':",
 'whitelistedittext'                => 'Sie müssen sich $1, um Seiten bearbeiten zu können.',
 'confirmedittext'                  => 'Sie müssen Ihre E-Mail-Adresse erst bestätigen, bevor Sie Bearbeitungen vornehmen können. Bitte ergänzen und bestätigen Sie Ihre E-Mail in den [[Special:Preferences|Einstellungen]].',
 'nosuchsectiontext'                => 'Sie haben versucht, einen Abschnitt zu bearbeiten, der nicht existiert.

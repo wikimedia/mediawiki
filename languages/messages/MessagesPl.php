@@ -606,6 +606,7 @@ Można zgłosić ten fakt [[Special:ListUsers/sysop|administratorowi]], podając
 'badarticleerror'      => 'Dla tej strony ta operacja nie może być wykonana.',
 'cannotdelete'         => 'Strona lub plik „$1” nie mogą zostać usunięte.
 Możliwe, że zostały już usunięte przez kogoś innego.',
+'cannotdelete-title'   => 'Nie można usunąć strony „$1”.',
 'badtitle'             => 'Niepoprawny tytuł',
 'badtitletext'         => 'Podano niepoprawny tytuł strony. Prawdopodobnie jest pusty lub zawiera znaki, których użycie jest zabronione.',
 'perfcached'           => 'Poniższe dane są kopią z pamięci podręcznej i mogą być nieaktualne.',
@@ -876,8 +877,6 @@ Nie możesz użyć funkcji „Wyślij e‐mail do tego użytkownika”, jeśli b
 Twój obecny adres IP to $3, a numer identyfikacyjny blokady to $5.
 Prosimy o podanie obu tych numerów przy wyjaśnianiu blokady.",
 'blockednoreason'                  => 'nie podano przyczyny',
-'blockedoriginalsource'            => "Źródło '''$1''' zostało pokazane poniżej:",
-'blockededitsource'                => "Tekst '''Twoich edycji''' na '''$1''' został pokazany poniżej:",
 'whitelistedittitle'               => 'Przed edycją musisz się zalogować',
 'whitelistedittext'                => 'Musisz $1, by edytować strony.',
 'confirmedittext'                  => 'Edytowanie jest możliwe dopiero po zweryfikowaniu adresu e‐mail.

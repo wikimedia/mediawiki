@@ -534,7 +534,6 @@ Se tu vuelis tu puedis contatâ $1 o un altri [[{{MediaWiki:Grouppage-sysop}}|am
 Visiti che no tu puedis doprâ la funzion 'Messaç di pueste a chest utent' se no tu âs specificât une direzion di pueste eletroniche valide tes [[Special:Preferences|preferencis]] e se no tu sês stât blocât al ûs di cheste funzion.
 
 Par plasê inclût la to direzion IP atuâl ($3) o il numar dal bloc (ID #$5) in ogni richieste di sclariments.",
-'blockedoriginalsource'            => "Ca sot tu puedis viodi la risultive de pagjine '''$1''':",
 'whitelistedittext'                => 'Tu scugnis $1 par cambiâ lis pagjinis.',
 'confirmedittext'                  => 'Prime di cambiâ lis pagjinis tu scugnis confermâ la to direzion di pueste eletroniche. Par impuestâ e confermâ la direzion, dopre lis [[Special:Preferences|preferencis]].',
 'loginreqtitle'                    => 'Si scugne jentrâ',

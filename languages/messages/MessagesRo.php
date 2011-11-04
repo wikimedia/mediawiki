@@ -917,8 +917,6 @@ Nu veți putea folosi opțiunea de "trimite e-mail" decât dacă aveți înregis
 Aveți adresa IP $3, iar identificatorul dumneavoastră de blocare este $5.
 Vă rugăm să includeți detaliile de mai sus în orice interogări pe care le faceți.',
 'blockednoreason'                  => 'nici un motiv oferit',
-'blockedoriginalsource'            => "Sursa pentru '''$1''' apare mai jos:",
-'blockededitsource'                => "Textul '''modificărilor dumneavoastră''' la  '''$1''' este redat mai jos:",
 'whitelistedittitle'               => 'Este necesară autentificarea pentru a putea modifica',
 'whitelistedittext'                => 'Trebuie să $1 pentru a edita articole.',
 'confirmedittext'                  => 'Trebuie să vă confirmați adresa de e-mail înainte de a edita pagini. Vă rugăm să vă setați și să vă validați adresa de e-mail cu ajutorul [[Special:Preferences|preferințelor utilizatorului]].',

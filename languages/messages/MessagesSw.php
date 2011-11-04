@@ -480,6 +480,7 @@ Tafadhali ripoti hili kwa [[Special:ListUsers/sysop|mkabidhi]], na uache jina la
 'badarticleerror'      => 'Ukurasa huu hauwezi kutendewa kitendo hiki.',
 'cannotdelete'         => 'Haikuweza kufuta kurasa au faili linaloitwa "$1".
 Huenda likawa tayari lishafutwa na mtu mwingine.',
+'cannotdelete-title'   => 'Ukurasa "$1" hauwezi kufutwa',
 'badtitle'             => 'Jina halifai',
 'badtitletext'         => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja au zaidi ambazo hazitumiki katika majina.',
 'perfcached'           => 'Data zifuatazo zinatoka kwenye kache na huenda si ya kisasa.',
@@ -741,8 +742,6 @@ Elewa kwamba huwezi kutumia kipengele cha "umtumie barua pepe mtuaji huyu" bila 
 Anwani yako ya sasa ya IP ni $3, na namba ya kuzuiliwa ni #$5.
 Tafadhali jumlisha maelezo yote ya juu kwenye kila ulizo utakalolifanya.',
 'blockednoreason'                  => 'sababu haikutajwa',
-'blockedoriginalsource'            => "Kodi ya '''$1''' imeonyeshwa hapo chini:",
-'blockededitsource'                => "Maandishi ya '''maharirio yako''' kwa '''$1''' yameonyeshwa chini:",
 'whitelistedittitle'               => 'Kuingia kunahitajika ili uweze kuhariri',
 'whitelistedittext'                => 'Inabidi $1 ili uweze kuhariri kurasa.',
 'confirmedittext'                  => 'Lazima uthibitishe anwani ya barua pepe yako kabla ya kuhariri kurasa.

@@ -639,8 +639,6 @@ Ti na pos betg utilisar la funcziun "Trametter in e-mail a quest utilisader" sen
 Ti\'adressa dad IP actuala è $3, ed la block ID è #$5.
 Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insatgi.',
 'blockednoreason'                  => 'inditgà nagina raschun',
-'blockedoriginalsource'            => "Il code da funtauna da '''$1''' vegn mussà sutvart:",
-'blockededitsource'                => "Il code da funtauna da '''tias modificaziuns''' vid la pagina '''$1''' vegn mussa sutvart:",
 'whitelistedittitle'               => "T'annunzia per modifitgar",
 'whitelistedittext'                => 'Ti stos $1 per pudair modifitgar paginas.',
 'confirmedittext'                  => 'Ti stos confermar tia adressa dad e-mail avant che modifitgar paginas. Inditgescha e conferma per plaschair tia adressa dad e-mail en tias [[Special:Preferences|preferenzas]].',

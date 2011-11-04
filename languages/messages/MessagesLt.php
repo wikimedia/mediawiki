@@ -779,8 +779,6 @@ Jūs negalite naudotis funkcija „Rašyti laišką šiam naudotojui“, jei nes
 Jūsų IP adresas yra $3, blokavimo ID yra $5.
 Prašome nurodyti šiuos duomenis visais atvejais, kai kreipiatės dėl blokavimo.",
 'blockednoreason'                  => 'priežastis nenurodyta',
-'blockedoriginalsource'            => "Žemiau yra rodomas '''$1''' turinys:",
-'blockededitsource'                => "''Jūsų keitimų'' tekstas puslapiui '''$1''' yra rodomas žemiau:",
 'whitelistedittitle'               => 'Norint redaguoti reikia prisijungti',
 'whitelistedittext'                => 'Jūs turite $1, kad redaguotumėte puslapius.',
 'confirmedittext'                  => 'Jums reikia patvirtinti el. pašto adresą, prieš redaguojant puslapius.

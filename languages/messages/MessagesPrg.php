@@ -546,8 +546,6 @@ Tū ni mazzi tērpautun "tenginnais e-mailin tērpautaju" mazīngiskwan, ik tikr
 Twajā bigānta IP adressi ast $3 be blōkisenes ID nummeri ast #$5.
 Madli ebimmais wissans šins malkans en wisēimans prasīsenins ezze blōkisenin.',
 'blockednoreason'                  => 'ni padāi di tikslin',
-'blockedoriginalsource'            => "Appun stesse '''$1''' ast waidīntan zemmais:",
-'blockededitsource'                => "Tekst stēisan '''Twajāi redigīsenei''' en '''$1''' ast waidīntan zemmais:",
 'whitelistedittitle'               => 'Enēisenis ast izkīnintan, kāi redigīlai',
 'whitelistedittext'                => 'Tu turri $1, kāi redigīlai pāusans.',
 'confirmedittext'                  => 'Redigīsna ast mazīngi tēr pa e-mailas padrūktinsnan.

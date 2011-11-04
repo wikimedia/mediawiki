@@ -800,8 +800,6 @@ Bemærk at du ikke kan bruge funktionen "e-mail til denne bruger" medmindre du h
 Din nuværende IP-adresse er $3, og blokerings-id\'et er #$5.
 Angiv venligst alle de ovenstående detaljer ved eventuelle henvendelser.',
 'blockednoreason'                  => 'ingen begrundelse givet',
-'blockedoriginalsource'            => "Kildekoden fra '''$1''' vises her:",
-'blockededitsource'                => "Kildekoden fra '''Dine ændringer''' til '''$1''':",
 'whitelistedittitle'               => 'Log på for at redigere',
 'whitelistedittext'                => 'Du skal $1 for at kunne redigere sider.',
 'confirmedittext'                  => 'Du skal først bekræfte e-mail-adressen, før du kan lave ændringer. Udfyld og bekræft din e-mail-adresse i dine [[Special:Preferences|Indstillinger]].',

@@ -623,8 +623,6 @@ Aap ii sadasya ke 'email this user' feature ke kaam me lae ke baat nai kare sakt
 Aap ke abhi ke IP address $3 hai, aur roka gae ID hai #$5.
 Meharbani kar ke chahe ek nai to duno ke aapan sawaal me rakho.",
 'blockednoreason'                  => 'koi kaaran nai dewa gais hai',
-'blockedoriginalsource'            => "'''$1''' ke kahaan se suruu bhais hai, niche likha hai:",
-'blockededitsource'                => "Aap ke '''$1 ke badlao''' ke akchhar niche likha hai:",
 'whitelistedittitle'               => 'Badle khatir login kare ke jaruri hai',
 'whitelistedittext'                => 'Aap ke panna badle khatir $1 kare ke parri.',
 'confirmedittext'                  => 'Panna ke badle se pahile aap ke aapan e-mail ke confirm kare ke parri.

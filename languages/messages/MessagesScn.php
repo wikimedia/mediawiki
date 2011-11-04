@@ -673,8 +673,6 @@ Nun poi usari la carattirìstica 'manna n'email a st'utenti' siddu nun è spicif
 Lu tò nnirizzu IP attuali è $3, e l'ID dû bloccu è $5.
 Pi favuri nclùdilu nta tutti li dumanni chi fai.",
 'blockednoreason'                  => 'nudda motivazioni ndicata',
-'blockedoriginalsource'            => "Di sèquitu veni ammustratu lu còdici surgenti dâ pàggina '''$1''':",
-'blockededitsource'                => "Di sèquitu vèninu ammustrati li '''canciamenti appurtati''' â pàggina '''$1''':",
 'whitelistedittitle'               => 'Ci voli èssiri riggistrati pi putiri canciari la pàggina.',
 'whitelistedittext'                => "Hai a $1 pi canciari l'artìculi.",
 'confirmedittext'                  => "P'èssiri abbilitati a lu canciamentu dî pàggini è nicissariu cunfirmari lu propiu ndirizzu e-mail. Pi mpustari e cunfirmari lu ndirizzu sirvìrisi dî [[Special:Preferences|prifirenzi]].",

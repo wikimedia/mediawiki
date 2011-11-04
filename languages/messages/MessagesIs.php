@@ -827,8 +827,6 @@ Athugaðu að þú getur ekki notað „Senda þessum notanda tölvupóst“ að
 Núverandi vistfang þitt er $3, og bönnunarnúmerið er #$5.
 Vinsamlegast tilgreindu allt að ofanverðu í fyrirspurnum þínum.",
 'blockednoreason'                  => 'engin ástæða gefin',
-'blockedoriginalsource'            => "Efni '''$1''' er sýnt fyrir neðan:",
-'blockededitsource'                => "Texti '''þinna breytinga''' á '''$1''' eru sýndar að neðan:",
 'whitelistedittitle'               => 'Innskráningar er þörf til að breyta',
 'whitelistedittext'                => 'Þú þarft að $1 til að breyta síðum.',
 'confirmedittext'                  => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',

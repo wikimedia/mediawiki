@@ -896,8 +896,6 @@ Zapamtite da ne možete koristiti opciju "pošalji e-mail ovom korisniku" sve do
 Vaša trenutna IP adresa je $3, a ID blokade je $5.
 Molimo da navedete sve gore navedene detalje u zahtjevu za deblokadu.',
 'blockednoreason'                  => 'razlog nije naveden',
-'blockedoriginalsource'            => "Izvor '''$1''' je prikazan ispod:",
-'blockededitsource'                => "Sadržaj '''vaših izmjena''' na '''$1''' je prikazan ispod:",
 'whitelistedittitle'               => 'Obavezno je prijavljivanje za uređivanje',
 'whitelistedittext'                => 'Da bi ste uređivali stranice, morate se $1.',
 'confirmedittext'                  => 'Morate potvrditi Vašu e-mail adresu prije nego počnete mijenjati stranice.

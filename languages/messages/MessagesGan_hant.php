@@ -555,8 +555,6 @@ $2',
 
 倷嗰封鎖ID係$5。請到查詢嗰時間都要緊標到佢。',
 'blockednoreason'                  => '冇話理由',
-'blockedoriginalsource'            => "底下係'''$1'''嗰原始碼:",
-'blockededitsource'                => "底下係倷對'''$1'''嗰'''編輯'''內容:",
 'whitelistedittitle'               => '登入後才編得正',
 'whitelistedittext'                => '起先倷要$1才編得正箇頁。',
 'confirmedittext'                  => '確認嘞email才能編寫箇頁。麻煩用[[Special:Preferences|參數設置]]設置同確認倷嗰email。',

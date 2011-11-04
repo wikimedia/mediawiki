@@ -732,8 +732,6 @@ Catet yén anjeun moal bisa migunakeun fitur "surélékan ieu pamaké" mun alama
 Alamat IP Anjeun ayeuna nyaéta $3, sarta ID peungpeukan anjeun #$5.
 Mangga sebatkeun éta ID dina pamundut-pamundut anjeun.',
 'blockednoreason'                  => 'taya alesan',
-'blockedoriginalsource'            => "Sumber '''$1''' dipidangkeun di handap ieu:",
-'blockededitsource'                => "Tulisan '''éditan anjeun''' dina '''$1''' dipidangkeun di handap ieu:",
 'whitelistedittitle'               => 'Perlu asup log sangkan bisa ngédit',
 'whitelistedittext'                => 'Anjeun kudu asup $1 sangkan bisa ngédit.',
 'confirmedittext'                  => 'Saméméh ngédit, kompirmasikeun heula alamat surélék anjeun.

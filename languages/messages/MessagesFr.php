@@ -975,8 +975,6 @@ Notez que vous ne pourrez utiliser la fonctionnalité d’envoi de courriel que 
 Votre adresse IP actuelle est $3, et le numéro de blocage est $5.
 Veuillez préciser ces indications dans toutes les requêtes que vous ferez.",
 'blockednoreason'                  => 'aucune raison donnée',
-'blockedoriginalsource'            => "Le code source de  '''$1''' est indiqué ci-dessous :",
-'blockededitsource'                => "Le contenu de '''vos modifications''' apportées à '''$1''' est indiqué ci-dessous :",
 'whitelistedittitle'               => 'Connexion nécessaire pour modifier le contenu',
 'whitelistedittext'                => 'Vous devez être $1 pour avoir la permission de modifier le contenu.',
 'confirmedittext'                  => 'Vous devez confirmer votre adresse de courriel avant de modifier les pages.

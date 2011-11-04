@@ -615,8 +615,6 @@ Sanak indak dapek manggunoan fitur "kirim surel ka pangguno iko" kacuali Sanak a
 Alamat IP Sanak saat ini adolah $3, dan ID pamblokiran adolah #$5.
 Toloang saratokan informasi-informasi iko dalam satiok patanyaan Sanak.',
 'blockednoreason'                  => 'indak ado alasan nan diagiah.',
-'blockedoriginalsource'            => "Isi sumber dari '''$1''' ditunjuakan barikuik iko:",
-'blockededitsource'                => "Teks '''suntiangan Sanak''' tahadap '''$1''' ditunjuakan barikuik iko:",
 'whitelistedittitle'               => 'Paralu masuak log untuak manyuntiang',
 'whitelistedittext'                => 'Sanak harus $1 untuak dapek manyuntiang laman.',
 'confirmedittext'                  => 'Sanak harus mangkonfirmasian dahulu alamaik surel Sanak sabalun manyuntiang laman.

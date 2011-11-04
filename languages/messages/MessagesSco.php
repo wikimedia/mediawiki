@@ -528,8 +528,6 @@ registerit in yer [[Special:Preferences|uiser preferences]] an ye hinna been blo
 
 Yer block ID is $5. Please include this ID in ony argies ye mak.',
 'blockednoreason'                  => 'nae grunds put',
-'blockedoriginalsource'            => "The soorce o '''$1''' is shawn ablo:",
-'blockededitsource'                => "The text o '''your edits''' tae '''$1''' is shawn ablo:",
 'whitelistedittitle'               => 'Login needit tae edit',
 'whitelistedittext'                => 'Ye hae tae $1 tae edit pages.',
 'confirmedittext'                  => 'Ye maun confirm yer e-mail address afore editin pages. Please set an validate yer e-mail address throu yer [[Special:Preferences|uiser settins]].',

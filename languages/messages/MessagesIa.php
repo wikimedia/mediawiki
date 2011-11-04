@@ -310,8 +310,8 @@ $messages = array(
 'help'              => 'Adjuta',
 'search'            => 'Recerca',
 'searchbutton'      => 'Cercar',
-'go'                => 'Ir',
-'searcharticle'     => 'Ir',
+'go'                => 'Va',
+'searcharticle'     => 'Va',
 'history'           => 'Historia del pagina',
 'history_short'     => 'Historia',
 'updatedmarker'     => 'actualisate post mi ultime visita',
@@ -493,6 +493,7 @@ Per favor reporta isto a un [[Special:ListUsers/sysop|administrator]], faciente 
 'badarticleerror'      => 'Iste action non pote esser effectuate super iste pagina.',
 'cannotdelete'         => 'Le pagina o file "$1" non poteva esser delite.
 Es possibile que un altere persona lo ha ja delite.',
+'cannotdelete-title'   => 'Non pote deler le pagina "$1"',
 'badtitle'             => 'Titulo invalide',
 'badtitletext'         => 'Le titulo de pagina requestate es invalide, vacue, o un titulo interlingual o interwiki incorrectemente ligate.
 Es possibile que illo contine un o plure characteres que non pote esser usate in titulos.',
@@ -779,8 +780,6 @@ Nota que tu non pote utilisar le function "inviar e-mail a iste usator" salvo qu
 Tu adresse IP actual es $3, e le ID del blocada es #$5.
 Per favor include tote le detalios supra specificate in omne correspondentia.',
 'blockednoreason'                  => 'nulle motivo specificate',
-'blockedoriginalsource'            => "Le codice-fonte de '''$1''' se monstra infra:",
-'blockededitsource'                => "Le texto de '''tu modificationes''' in '''$1''' se monstra infra:",
 'whitelistedittitle'               => 'Identification requirite pro modificar',
 'whitelistedittext'                => 'Tu debe $1 pro poter modificar paginas.',
 'confirmedittext'                  => 'Tu debe confirmar tu adresse de e-mail pro poter modificar paginas.
@@ -1457,6 +1456,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'action-suppressionlog'       => 'vider iste registro private',
 'action-block'                => 'blocar iste usator de facer modificationes',
 'action-protect'              => 'cambiar le nivellos de protection pro iste pagina',
+'action-rollback'             => 'revocar rapidemente le modificationes del ultime usator qui modificava un particular pagina',
 'action-import'               => 'importar iste pagina ab un altere wiki',
 'action-importupload'         => 'importar iste pagina ex un file incargate',
 'action-patrol'               => 'marcar le modificationes de alteros como patruliate',
@@ -1950,7 +1950,7 @@ executar iste function.',
 # Book sources
 'booksources'               => 'Fontes de libros',
 'booksources-search-legend' => 'Cercar fontes de libros',
-'booksources-go'            => 'Ir',
+'booksources-go'            => 'Va',
 'booksources-text'          => 'Infra es un lista de ligamines a altere sitos que vende libros nove e usate, e pote etiam haber altere informationes super libros que tu cerca:',
 'booksources-invalid-isbn'  => 'Le ISBN date non pare esser valide; verifica que tu non ha facite errores copiante lo del fonte original.',
 
@@ -1976,7 +1976,7 @@ Pro restringer le presentation, selige un typo de registro, le nomine de usator 
 'allnotinnamespace' => 'Tote le paginas (non in le spatio de nomines $1)',
 'allpagesprev'      => 'Previe',
 'allpagesnext'      => 'Sequente',
-'allpagessubmit'    => 'Ir',
+'allpagessubmit'    => 'Va',
 'allpagesprefix'    => 'Monstrar le paginas con prefixo:',
 'allpagesbadtitle'  => 'Le titulo de pagina date es invalide o ha un prefixo interlingual o interwiki.
 Es possibile que illo contine un o plus characteres que non pote esser usate in titulos.',
@@ -2680,7 +2680,7 @@ Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisat
 'allmessages-filter-modified'   => 'Modificate',
 'allmessages-prefix'            => 'Filtrar per prefixo:',
 'allmessages-language'          => 'Lingua:',
-'allmessages-filter-submit'     => 'Ir',
+'allmessages-filter-submit'     => 'Va',
 
 # Thumbnails
 'thumbnail-more'           => 'Aggrandir',
@@ -3500,7 +3500,7 @@ Per favor confirma que tu realmente vole recrear iste pagina.",
 'table_pager_last'         => 'Ultime pagina',
 'table_pager_limit'        => 'Monstrar $1 entratas per pagina',
 'table_pager_limit_label'  => 'Elementos per pagina:',
-'table_pager_limit_submit' => 'Ir',
+'table_pager_limit_submit' => 'Va',
 'table_pager_empty'        => 'Nulle resultato',
 
 # Auto-summaries
@@ -3585,7 +3585,7 @@ Vos deberea haber recipite [{{SERVER}}{{SCRIPTPATH}}/COPYING un exemplar del Lic
 # Special:FilePath
 'filepath'         => 'Cammino del file',
 'filepath-page'    => 'File:',
-'filepath-submit'  => 'Ir',
+'filepath-submit'  => 'Va',
 'filepath-summary' => 'Iste pagina special retorna le cammino complete de un file.
 Le imagines se monstra in plen resolution, le altere typos de file se executa directemente con lor programmas associate.',
 

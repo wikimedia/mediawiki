@@ -887,8 +887,6 @@ Pane tähele, et sa ei saa teisele kasutajale teadet saata, kui sa pole kinnitan
 
 Sinu praegune IP-aadress on $3 ja blokeeringu number #$5. Lisa need andmed kõigile järelpärimistele, mida kavatsed teha.",
 'blockednoreason'                  => 'põhjendust ei ole kirja pandud',
-'blockedoriginalsource'            => "'''$1''' allikas on näidatud allpool:",
-'blockededitsource'                => "Sinu muudatused leheküljele '''$1''':",
 'whitelistedittitle'               => 'Redigeerimiseks tuleb sisse logida',
 'whitelistedittext'                => 'Lehekülgede toimetamiseks pead $1.',
 'confirmedittext'                  => 'Lehekülgi ei saa toimetada enne e-posti aadressi kinnitamist.

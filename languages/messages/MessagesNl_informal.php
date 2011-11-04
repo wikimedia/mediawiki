@@ -157,7 +157,6 @@ Je kunt geen gebruik maken van de functie "Deze gebruiker e-mailen", tenzij je e
 
 Je huidige IP-adres is $3 en het blokkadenummer is #$5.
 Vermeld alle bovenstaande gegevens als je ergens op deze blokkade reageert.',
-'blockededitsource'                => "Hieronder staat de tekst van '''je bewerkingen''' aan '''$1''':",
 'whitelistedittext'                => "Je moet $1 om pagina's te bewerken.",
 'confirmedittext'                  => 'Je moet je e-mailadres bevestigen voor je kunt bewerken.
 Voer je e-mailadres in en bevestig het via [[Special:Preferences|je voorkeuren]].',

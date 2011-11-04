@@ -792,8 +792,6 @@ Merkit mat an titouroù-se war kement goulenn savet ganeoc'h.
 
 \$5 eo ho niverenn stankadenn. Merkit mat an niverenn-se pa rit goulennoù.",
 'blockednoreason'                  => "n'eus bet roet abeg ebet",
-'blockedoriginalsource'            => "Kavout a reot mammenn '''$1''' a-is:",
-'blockededitsource'                => "Kavout a reot testenn ho '''kemmoù''' war '''$1''' a-is :",
 'whitelistedittitle'               => 'Ret eo bezañ kevreet evit gellout skridaozañ',
 'whitelistedittext'                => "Ret eo deoc'h en em $1 evit gallout skridaozañ.",
 'confirmedittext'                  => "Rankout a ri bezañ kadarnaet ho chomlec'h postel a-raok gellout degas kemmoù er pajennoù. Skrivit ha kadarnait ho chomlec'h postel en ho [[Special:Preferences|penndibaboù implijer]] mar plij.",

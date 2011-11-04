@@ -596,8 +596,6 @@ Panjenengan ora bisa nganggo fitur "kirim e-mail panganggo iki" kejaba panjeneng
 
 ID pamblokiran panjenengan iku #$5 lan alamat IP panjenengan iku $3. Tulung sertakna informasi ing dhuwur kabèh iki saben ngajokaké pitakonan panjenengan. Matur nuwun.',
 'blockednoreason'                  => 'ora ana alesan sing diwènèhaké',
-'blockedoriginalsource'            => "Isi sumber '''$1''' dituduhaké ing ngisor iki:",
-'blockededitsource'                => "Tèks '''suntingan panjenengan''' tumrap ing '''$1''' dituduhaké ing ngisor iki:",
 'whitelistedittitle'               => 'Prelu log mlebu kanggo nyunting',
 'whitelistedittext'                => 'Panjenengan kudu $1 supaya bisa nyunting artikel.',
 'confirmedittext'                  => 'Panjenengan kudu ndhedhes alamat e-mail dhisik sadurungé pareng nyunting sawijining kaca. Mangga nglebokaké lan validasi alamat e-mail panjenengan sadurungé nglakoni panyuntingan. Alamat e-mail sawisé bisa diowahi liwat [[Special:Preferences|kaca préférènsi]]',

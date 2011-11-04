@@ -622,8 +622,6 @@ Otkat sil'mnägubale, miše teile ei sa oigeta kirješt [[{{MediaWiki:Grouppage-
 Teiden IP-adres om $3, teiden blokiruindan ID om #$5.
 Olgat hüväd, kirjutagat nened andmused kaikiš kirjeižiš administratorile.",
 'blockednoreason'                  => 'Ei ole kirjutadud ni-mittušt süd.',
-'blockedoriginalsource'            => "'''$1'''-lehtpolen tekst:",
-'blockededitsource'                => "'''Teiden $1-lehtpolen toižetusiden''' tekst:",
 'whitelistedittitle'               => 'Kirjutagatoiš sistemha, miše redaktiruida',
 'whitelistedittext'                => 'Teile pidab $1, miše redaktiruida lehtpolid.',
 'confirmedittext'                  => 'Tarbiž vahvištoitta e-počtan adres, miše redaktiruida lehtpolid.

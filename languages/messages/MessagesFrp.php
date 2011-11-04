@@ -937,8 +937,6 @@ Notâd que vos porréd pas utilisar la fonccionalitât « Lui mandar un mèssâj
 Voutra adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
 Volyéd spècefiar cetes endicacions dens totes les requétes que vos faréd.",
 'blockednoreason'                  => 'gins de rêson balyê',
-'blockedoriginalsource'            => "Lo tèxto sôrsa de '''$1''' est montrâ ce-desot :",
-'blockededitsource'                => "Lo contegnu de '''voutros changements''' aplicâs a '''$1''' est montrâ ce-desot :",
 'whitelistedittitle'               => 'Branchement nècèssèro por changiér lo contegnu',
 'whitelistedittext'                => 'Vos dête étre $1 por avêr la pèrmission de changiér lo contegnu.',
 'confirmedittext'                  => 'Vos dête confirmar voutra adrèce èlèctronica devant que changiér les pâges.

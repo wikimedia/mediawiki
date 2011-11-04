@@ -462,8 +462,6 @@ Li råjhon dnêye est:<br />''$2''<p>Vos ploz contacter $1 oudonbén onk des
 Notez ki vos n' poloz nén eployî l' fonccion «emiler a l' uzeu» a moens ki vos åyîz ene adresse emile valide dins vos [[Special:Preferences|preferinces]].
 
 Voste adresse IP est $3. S' i vs plait racsegnoz ciste adresse IP la dins les dmandes ki vos frîz.",
-'blockedoriginalsource'      => "Li sourdant di '''$1''' est håyné chal pa dzo:",
-'blockededitsource'          => "Li tecse des '''candjmints da vosse''' di '''$1''' est håyné chal pa dzo:",
 'whitelistedittitle'         => "S' elodjî po candjî",
 'whitelistedittext'          => 'I vs fåt $1 po pleur candjî les årtikes.',
 'confirmedittext'            => "I vs fåt acertiner vost emile po pleur candjî les årtikes. Dinez èn emile eyet l' acertiner dins vos [[Special:Preferences|preferinces d' uzeu]].",

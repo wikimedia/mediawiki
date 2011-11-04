@@ -595,8 +595,6 @@ Wan dü wider aw \"{{int:savearticle}}\" klakst, wårt din beårbing suner ouers
 'subject-preview'                  => 'Forkiik foon dåt subjäkt:',
 'blockedtitle'                     => 'Brüker as späred',
 'blockednoreason'                  => 'niinj grün önjjääwen',
-'blockedoriginalsource'            => "Di kwältakst foon '''$1''' wårt heer wised:",
-'blockededitsource'                => "Di takst foon '''din änringe''' bit '''$1'''wårt heer wised:",
 'whitelistedittitle'               => 'Tu t beårben as dåt ferplächted, önjmälde tu weesen.',
 'whitelistedittext'                => 'Dü möist de $1, am side beårbe tu koonen.',
 'confirmedittext'                  => 'Dü möist din E-mail-adräs jarst bestääsie, iir dü beårbinge döörfääre koost. Mååg din årbe radi än bestääsie din E-mail önj da  [[Special:Preferences|önjstalinge]].',

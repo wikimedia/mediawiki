@@ -839,8 +839,6 @@ u vašim [[Special:Preferences|korisničkim podešavanjima]] i ukoliko vam bloka
 IP adresa koja je blokirana je $3, a ID vaše blokade je $5.
 Molimo vas navedite ovaj ID broj prilikom pravljenja bilo kakvih upita.',
 'blockednoreason'                  => 'nije dat razlog',
-'blockedoriginalsource'            => "Izvor '''$1''' je prikazan ispod:",
-'blockededitsource'                => "Tekst '''vaših izmena''' za '''$1''' je prikazan ispod:",
 'whitelistedittitle'               => 'Obavezno je prijavljivanje za uređivanje',
 'whitelistedittext'                => 'Za uređivanje stranice je potrebno da budete $1.',
 'confirmedittext'                  => 'Morate potvrditi svoju e-adresu pre uređivanja stranica.

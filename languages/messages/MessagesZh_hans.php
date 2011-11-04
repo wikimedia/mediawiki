@@ -835,8 +835,6 @@ $2
 
 您可以联系$1或其他的[[{{MediaWiki:Grouppage-sysop}}|管理员]]讨论此次封禁。若您已在[[Special:Preferences|帐号设置]]中配置了一个有效的电子邮件地址，且未被封禁电子邮件功能，则您可通过“发送电子邮件给这位用户”功能来联络相关管理员。您当前的IP地址是$3，此次封禁的ID为#$5。请在您的查询中注明上述所有信息。",
 'blockednoreason'                  => '无给出原因',
-'blockedoriginalsource'            => "以下是'''$1'''的源码：",
-'blockededitsource'                => "你对'''$1'''进行'''编辑'''的文字如下:",
 'whitelistedittitle'               => '登录后才可编辑',
 'whitelistedittext'                => '您必须先$1才可编辑页面。',
 'confirmedittext'                  => '你必须确认你的电子邮件地址才能编辑本页。请通过[[Special:Preferences|用户资料设置]]设置并确认你的电子邮件地址。',

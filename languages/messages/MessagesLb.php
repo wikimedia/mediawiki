@@ -523,6 +523,7 @@ Mellt dëst w.e.g. bei engem [[Special:ListUsers/sysop|Administrateur]] a vergie
 'badarticleerror'      => 'Dës Aktioun kann net op dëser Säit duerchgefouert ginn.',
 'cannotdelete'         => 'D\'Bild oder d\'Säit "$1" konnt net geläscht ginn.
 Et ka sinn datt et scho vun engem Anere geläscht gouf.',
+'cannotdelete-title'   => 'D\'Säit "$1" kann net geläscht ginn',
 'badtitle'             => 'Schlechten Titel',
 'badtitletext'         => 'De gewënschten Titel ass net valabel, eidel, oder een net korrekten Interwiki Link.',
 'perfcached'           => 'Dës Date kommen aus dem Cache a si méiglecherweis net aktuell:',
@@ -774,8 +775,6 @@ Bedenkt datt Dir d\'Fonctioun "Dësem Benotzer eng E-Mail schécken" benotze kë
 Är aktuell IP-Adress ass $3 an d\'Nummer vun Ärer Spär ass $5.
 Gitt dës Donnéeë w.e.g bei allen Ufroen zu dëser Spär un.',
 'blockednoreason'                  => 'Kee Grond uginn',
-'blockedoriginalsource'            => "De Quelltext vun '''$1''' steet hei drënner:",
-'blockededitsource'                => "Den Text vun '''Ären Ännerungen''' op '''$1''' steet hei drënner:",
 'whitelistedittitle'               => "Login noutwännesch fir z'änneren",
 'whitelistedittext'                => 'Dir musst Iech $1, fir Säiten änneren ze kënnen.',
 'confirmedittext'                  => 'Dir musst är E-Mail-Adress confirméieren, ier Dir Ännerunge maache kënnt.
@@ -1427,6 +1426,7 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'action-suppressionlog'       => 'dës privat Lëscht ze kucken',
 'action-block'                => 'dëse Benotzer fir Ännerungen ze spären',
 'action-protect'              => 'de Protectiounsstatus vun dëser Säit änneren',
+'action-rollback'             => "Ännerunge vum läschte Benotzer vun enger spezieller Säit séier z'récksetzen ''(rollback)''",
 'action-import'               => "dës Säit aus enger anerer Wiki z'importéieren",
 'action-importupload'         => "dës Säit duerch d'Eropluede vun engem Fichier importéieren",
 'action-patrol'               => "d'Ännerunge vun Aneren als nogekuckt markéieren",

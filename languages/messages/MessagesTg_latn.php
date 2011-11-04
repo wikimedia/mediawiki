@@ -500,8 +500,6 @@ Tavaççūh kuned, ki az qobilijati 'firistodai poctai elektronī ba in korbar' 
 Nişonai kununiji IP Şumo $3 ast, va şinosai qat'i dastrasiji Şumo #$5 ast.
 Lutfan in jo onro va jo hardui onro dar darxosthoi xud zikr kuned.",
 'blockednoreason'                  => 'dalele muşaxxas naşudaast',
-'blockedoriginalsource'            => "Matni manbai '''$1''' dar zer namoiş doda şudaast:",
-'blockededitsource'                => "Matni '''viroişhoi şumo''' dar '''$1''' dar zer nişon doda şudaast:",
 'whitelistedittitle'               => 'Baroi viroiş vurud bojad kard',
 'whitelistedittext'                => 'Baroi viroişi maqola bojad ba sistem $1 şaved.',
 'confirmedittext'                  => 'Şumo bojad nişonai poctai elektroniatonro peş az viroiş kardani sahifaho, tasdiq kuned. Lutfan in korro tariqi [[Special:Preferences|tarçihoti korbar]] surat dihed.',

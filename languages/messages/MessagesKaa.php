@@ -661,9 +661,6 @@ Siz [[Special:Preferences|akkaunt sazlawların'ızda]] haqıyqıy e-mailin'izdı
 Sizin' ha'zirgi IP adresin'iz: \$3, bloklaw IDı: #\$5.
 Usılardın' birewin yamasa ekewinde ha'r bir sorawın'ızg'a qosın'.",
 'blockednoreason'                  => 'hesh sebep keltirilmegen',
-'blockedoriginalsource'            => "'''$1''' degennin' deregi
-to'mende ko'rsetilgen:",
-'blockededitsource'                => "'''$1''' degennin' '''siz ozgertken''' teksti to'mende ko'rsetilgen:",
 'whitelistedittitle'               => "O'zgertiw ushın sistemag'a kiriwin'iz kerek",
 'whitelistedittext'                => "Betterdi o'zgertiw ushın $1 sha'rt.",
 'confirmedittext'                  => "Betlerge o'zgeris kiritiwin'iz ushın aldın E-pochta adresin'izdi tastıyıqlawın'ız kerek.
