@@ -714,7 +714,7 @@ break. Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed upgrade instructions.
 
-For notes on 1.15.x and older releases, see HISTORY.
+For notes on 1.17.x and older releases, see HISTORY.
 
 == Online documentation ==
 
