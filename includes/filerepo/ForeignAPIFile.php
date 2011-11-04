@@ -33,13 +33,13 @@ class ForeignAPIFile extends File {
 	 * @param $repo ForeignApiRepo
 	 * @return ForeignAPIFile|null
 	 */
-	static function newFromTitle( $title, $repo ) {
+	static function newFromTitle( Title $title, $repo ) {
 		$data = $repo->fetchImageQuery( array(
-                        'titles' => 'File:' . $title->getDBKey(),
-                        'iiprop' => self::getProps(),
-                        'prop' => 'imageinfo',
+			'titles' => 'File:' . $title->getDBKey(),
+			'iiprop' => self::getProps(),
+			'prop'   => 'imageinfo',
 			'iimetadataversion' => MediaHandler::getMetadataVersion()
-			 ) );
+		) );
 
 		$info = $repo->getImageInfo( $data );
 
@@ -49,12 +49,12 @@ class ForeignAPIFile extends File {
 				: -1;
 			if( $lastRedirect >= 0 ) {
 				$newtitle = Title::newFromText( $data['query']['redirects'][$lastRedirect]['to']);
-				$img = new ForeignAPIFile( $newtitle, $repo, $info, true );
+				$img = new self( $newtitle, $repo, $info, true );
 				if( $img ) {
 					$img->redirectedFrom( $title->getDBkey() );
 				}
 			} else {
-				$img = new ForeignAPIFile( $title, $repo, $info, true );
+				$img = new self( $title, $repo, $info, true );
 			}
 			return $img;
 		} else {

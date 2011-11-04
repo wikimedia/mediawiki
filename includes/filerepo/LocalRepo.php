@@ -258,7 +258,7 @@ class LocalRepo extends FSRepo {
 	 *
 	 * @param $title Title of page
 	 */
-	function invalidateImageRedirect( $title ) {
+	function invalidateImageRedirect( Title $title ) {
 		global $wgMemc;
 		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
 		if ( $memcKey ) {

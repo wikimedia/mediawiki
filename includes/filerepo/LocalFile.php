@@ -144,7 +144,7 @@ class LocalFile extends File {
 	 * Do not call this except from inside a repo class.
 	 */
 	function __construct( $title, $repo ) {
-		if ( !is_object( $title ) ) {
+		if ( !is_object( $title ) ) { // LocalFile requires a title object
 			throw new MWException( __CLASS__ . ' constructor given bogus title.' );
 		}
 
