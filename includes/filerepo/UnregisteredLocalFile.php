@@ -46,7 +46,7 @@ class UnregisteredLocalFile extends File {
 
 	/**
 	 * @throws MWException
-	 * @param $title string
+	 * @param $title Title|false
 	 * @param $repo FSRepo
 	 * @param $path string
 	 * @param $mime string
@@ -55,18 +55,19 @@ class UnregisteredLocalFile extends File {
 		if ( !( $title && $repo ) && !$path ) {
 			throw new MWException( __METHOD__.': not enough parameters, must specify title and repo, or a full path' );
 		}
-		if ( $title ) {
-			$this->title = $title;
+		if ( $title instanceof Title ) {
+			$this->title = File::normalizeTitle( $title, 'exception' );
 			$this->name = $repo->getNameFromTitle( $title );
 		} else {
 			$this->name = basename( $path );
-			$this->title = Title::makeTitleSafe( NS_FILE, $this->name );
+			$this->title = File::normalizeTitle( $this->name, 'exception' );
 		}
 		$this->repo = $repo;
 		if ( $path ) {
 			$this->path = $path;
 		} else {
-			$this->path = $repo->getRootDirectory() . '/' . $repo->getHashPath( $this->name ) . $this->name;
+			$this->path = $repo->getRootDirectory() . '/' .
+				$repo->getHashPath( $this->name ) . $this->name;
 		}
 		if ( $mime ) {
 			$this->mime = $mime;
@@ -122,7 +123,8 @@ class UnregisteredLocalFile extends File {
 
 	function getURL() {
 		if ( $this->repo ) {
-			return $this->repo->getZoneUrl( 'public' ) . '/' . $this->repo->getHashPath( $this->name ) . rawurlencode( $this->name );
+			return $this->repo->getZoneUrl( 'public' ) . '/' .
+				$this->repo->getHashPath( $this->name ) . rawurlencode( $this->name );
 		} else {
 			return false;
 		}

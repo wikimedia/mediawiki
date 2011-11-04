@@ -108,22 +108,15 @@ class RepoGroup {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
-		if ( !($title instanceof Title) ) {
-			$title = Title::makeTitleSafe( NS_FILE, $title );
-			if ( !is_object( $title ) ) {
-				return false;
-			}
-		}
-
-		if ( $title->getNamespace() != NS_MEDIA && $title->getNamespace() != NS_FILE ) {
-			throw new MWException( __METHOD__ . ' received an Title object with incorrect namespace' );
+		$title = File::normalizeTitle( $title );
+		if ( !$title ) {
+			return false;
 		}
 
 		# Check the cache
 		if ( empty( $options['ignoreRedirect'] )
 			&& empty( $options['private'] )
-			&& empty( $options['bypassCache'] )
-			&& $title->getNamespace() == NS_FILE )
+			&& empty( $options['bypassCache'] ) )
 		{
 			$useCache = true;
 			$time = isset( $options['time'] ) ? $options['time'] : '';
@@ -201,7 +194,7 @@ class RepoGroup {
 	/**
 	 * Interface for FileRepo::checkRedirect()
 	 */
-	function checkRedirect( $title ) {
+	function checkRedirect( Title $title ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
