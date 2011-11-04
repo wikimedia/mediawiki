@@ -349,8 +349,6 @@ Kapau naʻe kole ia ʻe he tokotaha kehe, pea ʻosi hoʻo manatuʻi ʻo e leatap
 'missingsummary'          => "'''Fakamanatu''': Naʻe ʻikai te ke fakaai ha fakanounou. Kapau te ke toe lomi Haofaki, ʻe haofakiʻi hoʻo fatu taʻefakanounou.",
 'missingcommenttext'      => 'Kātaki tuku pē ʻi lalo ʻa e fakamatala',
 'blockedtitle'            => 'ʻOku taʻofia ʻa e ʻetitá',
-'blockedoriginalsource'   => "ʻOku ʻasi ʻi lalo ʻa e tupunga ʻo e '''$1''':",
-'blockededitsource'       => "ʻOku ʻasi ʻi lalo ʻa e tohi ʻo '''hoʻo ngaahi fatu''' ki he '''$1''':",
 'whitelistedittitle'      => 'ʻOku pau ke kau ki ai ke fatuʻi',
 'whitelistedittext'       => 'ʻOku pau te ke $1 kapau te ke fiefatu ʻa e ngaahi kupu.',
 'confirmedittext'         => 'ʻOku pau te ke fakamoʻoniʻi ho tuʻasila tohila ʻi muʻa hoʻo fatu kupu. Kātaki ʻe fakamoʻoniʻi ia ngāueʻaki hoʻo [[Special:Preferences|faʻiteliha]] fakaʻetita.',

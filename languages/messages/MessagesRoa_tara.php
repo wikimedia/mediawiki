@@ -662,8 +662,6 @@ Vide Bbuene ca tu non ge puè ausà 'a funziona \"manne n'e-mail a stu utende\" 
 L'indirizze IP corrende jè \$3, e 'u codece d'u blocche jè #\$5.
 Pe piacere mitte tutte le dettaglie ca ponne essere utile pe le richieste tue.",
 'blockednoreason'                  => 'nisciune mutive',
-'blockedoriginalsource'            => "'A sorgende de '''$1''' jè mostreta aqquà sotte:",
-'blockededitsource'                => "'U teste de le '''cangiaminde tue''' sus a '''$1''' ìu stè vide aqquà sotte:",
 'whitelistedittitle'               => "Pe fa le cangiaminde t'a collegà",
 'whitelistedittext'                => 'Tu ha $1 pàggene da cangià.',
 'confirmedittext'                  => "Tu a confermà l'indirizze e-mail tue apprime de cangià le pàggene.

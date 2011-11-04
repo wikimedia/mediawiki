@@ -529,8 +529,6 @@ $2',
 
 倷𠮶封锁ID系$5。请到查询𠮶时间都要紧标到佢。',
 'blockednoreason'                  => '冇话理由',
-'blockedoriginalsource'            => "底下系'''$1'''𠮶源代码:",
-'blockededitsource'                => "底下系倷对'''$1'''𠮶'''编辑'''内容:",
 'whitelistedittitle'               => '登入后才编得正',
 'whitelistedittext'                => '起先倷要$1才编得正个页。',
 'confirmedittext'                  => '确认嘞email才能编写个页。麻烦用[[Special:Preferences|参数设置]]设置同确认倷𠮶email。',

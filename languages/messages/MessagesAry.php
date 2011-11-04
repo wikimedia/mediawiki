@@ -656,8 +656,6 @@ ymkn lik ṫṫaṣl b-$1 wlla ċi [[{{MediaWiki:Grouppage-sysop}}|idari]] aĥor
 ĝonwan l-IP ṫaĝk daba howa $3, o-lmoĝrrif d-lblok howa #$5.
 mli ṫkṫb ċi talab ĥaṣṣk ṫĝti fih gaĝ had ṫ-ṫafaṣil lli l-foq.",
 'blockednoreason'                  => 'ta sabab mamaatich',
-'blockedoriginalsource'            => "l-mṣḍṛ dial '''$1''' mbyyn l-ṫḫṫ:",
-'blockededitsource'                => "n-naṣṣ dial '''ṫĝdilaṫk''' f-'''$1''' mbyyn l-ṫḫṫ:",
 'whitelistedittitle'               => 'khassk tdkhl bach thrr',
 'whitelistedittext'                => 'khassk  $1 bach taadl sfahi',
 'confirmedittext'                  => "ĥaṣṣk ṫ'kkd l-ĝonwan dl-email dialk qbl ma ṫĝddl ṣ-ṣfaḫi.

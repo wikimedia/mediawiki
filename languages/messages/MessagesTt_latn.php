@@ -643,8 +643,6 @@ Sez $1 yäki başqa [[{{MediaWiki:Grouppage-sysop}}|idaräçegä]] tıyu buyın�
 Sezneñ IP adresı — $3, tıyu identifikatorı — #$5.
 Xatlarda bu mäğlümatnı kürsätergä onıtmağız.",
 'blockednoreason'                  => 'säbäp kürsätelmägän',
-'blockedoriginalsource'            => "Asta '''$1''' biteneñ tekstı kürsätelgän.",
-'blockededitsource'                => "Asta '''$1''' biteneñ '''sez üzgärtkän''' tekstı kürsätelgän.",
 'whitelistedittitle'               => 'Üzgärtü öçen üz isemegez belän kerergä kiräk',
 'whitelistedittext'                => 'Sez bitlärne üzgärtü öçen $1 tieş.',
 'confirmedittext'                  => 'Bitlärne üzgärtü aldınnan sez elektron poçta adresığıznı dälillärgä tieş.

@@ -547,8 +547,6 @@ Lè mákwá na Ì gágị jí "me ọ\'bànifé nkeá e-mail", mà Í  nwéré e
 IP gi bu $3, na ID nkwàchi bu #$5.
 Biko tinyé cha ihe ńdía na ájújú nkeówulà I gi me.',
 'blockednoreason'                  => 'amaghi ihe omẹrẹ ya maka',
-'blockedoriginalsource'            => "Nkpurụ '''$1''' zịrị na alạ:",
-'blockededitsource'                => "Mkpụrụ edemede nke '''orü gi''' nke '''$1''' zìrì na àlà:",
 'whitelistedittitle'               => 'I kweshiri banyé I chori rüwa nga',
 'whitelistedittext'                => 'Í gi $1 Í rü na ihü.',
 'nosuchsectiontitle'               => 'Aná a hu nkeji',

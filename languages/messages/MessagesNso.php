@@ -434,7 +434,6 @@ O ka se kgone go šumiša thulusu ya 'romela mošomiši molaetša' ka ntle gage 
 [[Special:Preferences|dikgatlhegelo]] gape ge o sa thibelwa go e šomiša.
 IP atrese ya gago ke $3, ge ID ya go thiba ele #$5. Ka kgopelo šumiša ID le IP go dipoledišano ka moka tšeo dilego mabapi le go go thiba.",
 'blockednoreason'                  => 'gago lebaka leo le filwego',
-'blockedoriginalsource'            => "Mothopo wa '''$1''' oa botšhwa tlase:",
 'whitelistedittitle'               => 'O swanela ke go tsena go fetola',
 'whitelistedittext'                => 'O swanela ke go $1 go fetola matlakala.',
 'confirmedittext'                  => 'E-mail e swanetše ke go tiišetšwa pele ge o ka fetola matlakala. Ka kgopelo, tiišetša e-mail atrese ya gago go [[Special:Preferences|dikgatlhego tša mošomiši]].',

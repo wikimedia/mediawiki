@@ -10,6 +10,7 @@
  * @author 334a
  * @author A2raya07
  * @author Basharh
+ * @author Man2fly2002
  * @author Michaelovic
  * @author The Thadman
  */
@@ -227,6 +228,7 @@ $messages = array(
 'searcharticle'     => 'ܙܠ',
 'history'           => 'ܬܫܥܝܬܐ ܕܦܐܬܐ',
 'history_short'     => 'ܬܫܥܝܬܐ',
+'updatedmarker'     => 'ܐܬܚܕܬ ܗܐ ܡܢ ܬܦܩܬܝ ܐܚܪܝܬܐ',
 'printableversion'  => 'ܨܚܚܐ ܡܬܛܒܥܢܐ',
 'permalink'         => 'ܐܣܘܪܐ ܦܝܘܫܐ',
 'print'             => 'ܛܒܘܥ',
@@ -237,6 +239,7 @@ $messages = array(
 'delete'            => 'ܫܘܦ',
 'deletethispage'    => 'ܫܘܦ ܦܐܬܐ ܗܕܐ',
 'undelete_short'    => 'ܠܐ ܫܘܦ {{PLURAL:$1|ܚܕ ܫܘܚܠܦܐ|$1 ܫܘܚܠܦ̈ܐ}}',
+'viewdeleted_short' => 'ܚܙܝ {{PLURAL:$1|ܚܕ ܫܘܚܠܦܐ ܫܝܦܐ|$1 ܫܘܚܠܦ̈ܐ ܫܝܦ̈ܐ}}',
 'protect'           => 'ܢܛܘܪ',
 'protect_change'    => 'ܫܚܠܦ',
 'protectthispage'   => 'ܢܛܘܪ ܗܕܐ ܦܐܬܐ',
@@ -269,6 +272,11 @@ $messages = array(
 'jumpto'            => 'ܫܘܪ ܠ:',
 'jumptonavigation'  => 'ܐܠܦܪܘܬܐ',
 'jumptosearch'      => 'ܒܨܝܐ',
+'view-pool-error'   => 'ܬܘܝܚܐ، ܚܕܡ̈ܐ ܗܘܐ ܓܗ̈ܝܐ ܗܫܐܝܬ
+ܣܓܝ ܡܦܠܚܢ̈ܐ ܩܫܕܘܪܐ ܠܡܛܐ ܠܗܢܐ ܦܐܬܐ
+ܦܝܣܐ ܡܢܟ ܣܟܝ ܩܠܝܠ ܡܢ ܩܕܡ ܕܓܪܒܬ ܠܡܛܝܐ ܠܐܗܐ ܦܐܬܐ ܬܢܝܢܘܬ.
+
+$1',
 'pool-errorunknown' => 'ܦܘܕܐ ܠܐ ܝܕܝܥܐ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -339,6 +347,13 @@ $messages = array(
 'badtitle'            => 'ܟܘܢܝܐ ܠܐ ܛܒܐ',
 'viewsource'          => 'ܚܙܝ ܡܒܘܥܐ',
 'viewsourcefor'       => 'ܕ $1',
+'actionthrottled'     => 'ܠܐ ܘܪܕ ܠܡܥܒܕ ܝܬܝܪ ܡܢ ܐܗܐ ܥܒܕܐ',
+'viewsourcetext'      => 'ܡܨܐ ܐܢܬ ܠܚܙܝܐ ܘܢܣܚܐ ܠܡܒܘܥ̈ܐ ܕܐܗܐ ܦܐܬܐ:',
+'protectedinterface'  => 'ܐܗܐ ܦܐܬܐ ܡܘܬܪܐ ܟܬܝܒܬܐ ܕܦܐܬܐ ܠܚܘܪܙܐ, ܘܐܝܠܗ ܢܛܪܬܐ ܠܡܘܢܥܐ ܚܪܒܐ.',
+'editinginterface'    => "''ܙܘܗܪܐ:''' ܐܢܬ ܥܒܕܬ ܫܚܠܦܬܐ ܒܦܐܬܐ ܡܬܦܠܚܬ ܠܡܘܬܘܪ̈ܐ ܦܐܬܘܬ̈ܐ ܟܬܝܒ̈ܐ ܠܚܘܪܙܐ.
+ܟܠ ܫܘܚܠܦܐ ܒܐܗܐ ܦܐܬܐ ܒܕ ܥܒܕ ܟܪ ܥܠ ܡܚܙܝܬܐ ܦܐܬܐ ܕܡܦܠܚܢܐ ܠܡܦܠܚܢ̈ܐ ܐܚܪ̈ܝܢܐ.
+ܠܬܘܪ̈ܓܡܐ، ܡܦܠܚ ܬܪܡܝܬܐ ܬܘܪܓܡܐ ܕܡܝܕܝܐܘܝܩܝ [http://translatewiki.net/wiki/Main_Page?setlang=ar translatewiki.net].",
+'sqlhidden'           => '(ܒܘܬܬܐ SQL ܛܫܝܐ)',
 'namespaceprotected'  => "ܠܝܬ ܠܟ ܦܣܣܐ ܠܫܚܠܦܬܐ ܕܦܐܬܬ̈ܐ ܒܚܩܠܐ ܕ'''$1'''.",
 
 # Login and logout pages
@@ -373,6 +388,7 @@ $messages = array(
 'userexists'              => 'ܫܡܐ ܕܡܦܠܚܢܐ ܕܐܥܠܬ ܫܩܝܠܐ ܐܝܬܘܗܝ.
 ܫܦܝܪܐܝܬ ܓܒܝ ܫܡܐ ܐܚܪܢܐ.',
 'loginerror'              => 'ܦܘܕܐ ܒܥܠܠܐ',
+'createaccounterror'      => 'ܠܐ ܡܫܟܚ ܠܒܪܝܐ ܚܘܫܒܢܐ: $1',
 'noname'                  => 'ܠܐ ܦܪܫ ܐܢܬ ܫܡܐ ܕܡܦܠܚܢܐ ܬܪܝܨܐ',
 'loginsuccesstitle'       => 'ܥܠܠܐ ܓܡܪ',
 'loginsuccess'            => "'''ܗܫܐ ܥܠܝܠܐ ܐܢܬ ܒ{{SITENAME}} ܒܫܡ \"\$1\".'''",
@@ -430,7 +446,6 @@ $messages = array(
 'summary-preview'                  => 'ܚܝܪܐ ܩܕܡܝܐ ܕܦܣܝܩܬ̈ܐ :',
 'blockedtitle'                     => 'ܡܦܠܚܢܐ ܗܘ ܡܚܪܡܐ',
 'blockednoreason'                  => 'ܠܝܬ ܥܠܬܐ ܝܗܝܒܬܐ',
-'blockedoriginalsource'            => "ܡܒܘܥܐ ܕ'''$1''' ܓܠܝܚܐ ܠܬܚܬ:",
 'nosuchsectiontitle'               => 'ܠܐ ܡܨܐ ܐܫܟܚ ܡܢܬܐ',
 'loginreqlink'                     => 'ܥܘܠ',
 'accmailtitle'                     => 'ܡܠܬܐ ܕܥܠܠܐ ܫܕܪܬ',

@@ -604,8 +604,6 @@ Awu ko milo do mongoguno kakamot 'ponurat-i montok momoguno diti' nung ingaa kin
 Kinoyonon IPnu nopo nga $3, on ID nantaban nopo nga #$5.
 Alansan do potonudon oinsanan kointalangan id sawat montok nunu-nunu ponguhatannu.",
 'blockednoreason'                  => 'ingaa pinatahak sabab',
-'blockedoriginalsource'            => "Tadon do '''$1''' pokitonon id siriba:",
-'blockededitsource'                => "Tik do '''niditannu''' gisom '''$1''' pokitonon id siriba:",
 'whitelistedittitle'               => 'Sumuang log no do mongidit',
 'whitelistedittext'                => 'Mositi do $1 do mongidit bobolikon.',
 'confirmedittext'                  => 'Potontuo no do nokogirotnu no kinoyonon surat-i pogulu mongidit do bobolikon.

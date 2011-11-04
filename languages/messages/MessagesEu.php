@@ -698,8 +698,6 @@ Ohar zaitez ezin duzula "lankide honi e-mail bat bidali" tresna erabili ez baduz
 Orain duzun IP helbidea $3 da, eta blokeoaren zenbakia #$5 da.
 Mesedez, detaile hauek eman itzazu egin nahi duzun edozein kontsulta egiteko garaian.',
 'blockednoreason'                  => 'ez da arrazoirik zehaztu',
-'blockedoriginalsource'            => "Jarraian ikus daiteke '''$1'''(r)en kodea:",
-'blockededitsource'                => "Jarraian ikus daitezke '''$1'''(e)n egin dituzun aldaketak:",
 'whitelistedittitle'               => 'Saioa hastea beharrezkoa da aldaketak egiteko',
 'whitelistedittext'                => '$1 behar duzu orrialdeak aldatu ahal izateko..',
 'confirmedittext'                  => 'Orrialdeetan aldaketak egin aurretik zure e-posta helbidea egiaztatu beharra daukazu. Mesedez, zehaztu eta egiaztatu zure e-posta helbidea [[Special:Preferences|hobespenetan]].',

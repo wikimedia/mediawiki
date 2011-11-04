@@ -979,8 +979,6 @@ U kunt geen gebruik maken van de functie "Deze gebruiker e-mailen", tenzij u een
 Uw huidige IP-adres is $3 en het blokkadenummer is #$5.
 Vermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.',
 'blockednoreason'                  => 'geen reden opgegeven',
-'blockedoriginalsource'            => "Hieronder staat de brontekst van '''$1''':",
-'blockededitsource'                => "Hieronder staat de tekst van '''uw bewerkingen''' aan '''$1''':",
 'whitelistedittitle'               => 'Voor bewerken is aanmelden verplicht',
 'whitelistedittext'                => "U moet $1 om pagina's te bewerken.",
 'confirmedittext'                  => 'U moet uw e-mailadres bevestigen voor u kunt bewerken.

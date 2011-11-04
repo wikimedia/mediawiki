@@ -708,8 +708,6 @@ Pare cuenta que no puede emplegar a función \"Ninviar correu electronico ta ist
 
 A suya adreza IP actual ye \$3, y o identificador de bloqueyo ye #\$5. Por favor incluiga os datos anteriors quan faga qualsiquier consulta.",
 'blockednoreason'                  => "No s'ha dato garra causa",
-'blockedoriginalsource'            => "Contino s'amuestra o codigo fuent de  '''$1''':",
-'blockededitsource'                => "Contino s'amuestra o texto d'as suyas '''edicions''' a '''$1''':",
 'whitelistedittitle'               => 'Cal encetar una sesión ta poder editar.',
 'whitelistedittext'                => 'Ha de $1 ta poder editar pachinas.',
 'confirmedittext'                  => "Ha de confirmar a suya adreza de correu-e antis de poder editar pachinas. Por favor, estableixca y confirme una adreza de correu-e a traviés d'as suyas [[Special:Preferences|preferencias d'usuario]].",

@@ -446,8 +446,6 @@ Ti siña un usa i ramientan 'e-mail i muna'sesetbi,' solo guåha e-mail address 
 Machomma' i ID #$5.
 Pot fabot, na'hålom i ID gi todus i finaisen-mu siha.",
 'blockednoreason'                  => "ti mana'i rason",
-'blockedoriginalsource'            => "Ma'a'annok i code '''$1''' gi papa':",
-'blockededitsource'                => "Ma'a'annok gi papa' i tinige' '''tinilaika-mu''' gi '''$1''':",
 'whitelistedittitle'               => 'Nesesario malogin para tumulaika',
 'whitelistedittext'                => 'Un nesisita ma$1 para tumulaika påhina.',
 'confirmedittext'                  => "Un nesisita un konfotme iyo-mu email åntes di tumulaika påhina.

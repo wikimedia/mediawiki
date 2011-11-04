@@ -640,8 +640,6 @@ Nuk mundeni me shfrytëzue funksionin 'dërgo email këtij përdoruesi' përveç
 Adresa juej aktuale e IP âsht $3, dhe ID e bllokimit âsht #$5.
 Ju lutemi përfshini këto shenime në të gjitha shkresat që i bâni.",
 'blockednoreason'                  => 'nuk âsht dhânë arsye',
-'blockedoriginalsource'            => "Kodi burimor i '''$1''' âsht mâ poshtë:",
-'blockededitsource'                => "Teksti i '''redaktimeve tueja''' të '''$1''' âsht mâ poshtë:",
 'whitelistedittitle'               => 'Lypet kyçje për me mujtë me redaktue',
 'whitelistedittext'                => 'Duheni me u $1 për me redaktue artikuj.',
 'confirmedittext'                  => 'Duheni me vërtetue adresën tuej të emailit para se me redaktue.

@@ -654,8 +654,6 @@ Indi mo magamit ang 'i-email ining manuggamit' samtang wala ka sang matood nga e
 Ang imo adres sang IP karon amo ang $3, kag ang ID sang pagpuggong amo ang #$5.
 Palihog dala sang mga nasulat sa ibabaw sa mga pagpamangkot nga imo ubrahon.",
 'blockednoreason'                  => 'wala sang rason nga ginhatag',
-'blockedoriginalsource'            => "Ang ginhalinan sang '''$1''' ginapakita sa dalom:",
-'blockededitsource'                => "Ang mga letra sang '''imo gin-ilisan''' sa '''$1''' ginapakita sa dalom:",
 'whitelistedittitle'               => 'Kinahanglan Magsulod para maka ilis',
 'whitelistedittext'                => 'Kinahanglan mo ang $1 agod maka-ilis sang mga panid.',
 'confirmedittext'                  => 'Kinahanglan mo nga kumpirmahon ang imo e-mail adres bag-o ka mag-ilis sang mga panid.

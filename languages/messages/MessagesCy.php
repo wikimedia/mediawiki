@@ -472,6 +472,7 @@ A fyddech gystal â gwneud adroddiad ar hwn at [[Special:ListUsers/sysop|weinydd
 'badarticleerror'      => "Mae'n amhosib cyflawni'r weithred hon ar y dudalen hon.",
 'cannotdelete'         => "Mae'n amhosib dileu'r dudalen neu'r ddelwedd \"\$1\".
 Efallai fod rhywun arall eisoes wedi'i dileu.",
+'cannotdelete-title'   => "Ni ellir dileu'r dudalen '£1'",
 'badtitle'             => 'Teitl gwael',
 'badtitletext'         => "Mae'r teitl a ofynnwyd amdano yn annilys, yn wag, neu cysylltu'n anghywir rhwng ieithoedd neu wicïau. Gall fod ynddo un nod neu ragor na ellir eu defnyddio mewn teitlau.",
 'perfcached'           => "Mae'r wybodaeth ganlynol yn gopi cadw; mae'n bosib nad y fersiwn diweddaraf ydyw.",
@@ -724,8 +725,6 @@ Sylwch mai dim ond y rhai sydd wedi gosod cyfeiriad e-bost yn eu [[Special:Prefe
 
 Eich cyfeiriad IP presennol yw $3. Cyfeirnod y bloc yw $5. Nodwch y manylion hyn wrth drafod y bloc.",
 'blockednoreason'                  => 'dim rheswm wedi ei roi',
-'blockedoriginalsource'            => "Dangosir côd '''$1''' isod:",
-'blockededitsource'                => "Dangosir testun '''eich golygiadau''' ar '''$1''' isod:",
 'whitelistedittitle'               => 'Rhaid mewngofnodi cyn golygu',
 'whitelistedittext'                => 'Rhaid $1 i olygu tudalennau.',
 'confirmedittext'                  => "Mae'n rhaid i chi gadarnhau eich cyfeiriad e-bost cyn y gallwch ddechrau golygu tudalennau.

@@ -524,8 +524,6 @@ Du koast de „E-Mail oa diesa Nutzer“-Funksjonn ne nutza, sulange keene gilti
 Denne aktuelle IP-Atresse ies $3, und de Sperr-ID ies $5.
 Bitte fiege olle Informationa jeder Oafroage hinzu, de du stallt.",
 'blockednoreason'                  => 'keene Begründung oagegahn',
-'blockedoriginalsource'            => "Dar Quelltext vu '''$1''' werd hier oagezeigt:",
-'blockededitsource'                => "Dar Quelltext '''denner Änderunga''' oa '''$1''':",
 'whitelistedittitle'               => 'Zum Beoarbeeta ies is erforderlich, oagemeldet zu sei',
 'whitelistedittext'                => 'Du mußt diech $1, im Seyta beoarbeeta zu kinna.',
 'confirmedittext'                  => 'Du mußt denne E-Mail-Atresse erscht bestätiga, bevor du Beoarbeetunga durchfiehrn koast. Bitte ergänze und bestätige Denne E-Mail ei dann [[Special:Preferences|Eenstallunga]].',

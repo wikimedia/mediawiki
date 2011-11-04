@@ -661,8 +661,6 @@ Jo kinne kontakt opnimme mei $1 of in oare [[{{MediaWiki:Grouppage-sysop}}|behea
 Jo kinne gjin gebrûk meitsje fan 'e funksje 'Skriuw meidogger', of jo moatte in jildich e-postadres opjûn hawwe yn jo [[Special:Preferences|foarkarren]] en it gebrûk fan dy funksje moat net útsletten wêze.
 Jo tsjintwurdich e-postadres is $3 en it útsletnûmer is #$5. Neam beide gegevens as jo earne op dizze útsluting reagearje.",
 'blockednoreason'                  => 'gjin reden opjûn',
-'blockedoriginalsource'            => "Hjir ûnder stiet de boarnetekst fan '''$1''':",
-'blockededitsource'                => "Hjir ûnder stiet de tekst fan '''jo bewurkings''' oan '''$1''':",
 'whitelistedittitle'               => 'Foar bewurkjen is oanmelden ferplichte',
 'whitelistedittext'                => 'Jo moatte $1 om siden te bewurkjen.',
 'confirmedittext'                  => "Jo moatte jo e-mailadres befêstichje foar't jo siden feroarje kinne. Fier in e-mailedres yn by jo [[Special:Preferences|ynstellings]] en befêstichje it.",

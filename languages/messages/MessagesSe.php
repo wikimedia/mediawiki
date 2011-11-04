@@ -375,8 +375,6 @@ Du geavaheaddjidovddaldat lea dál anus.
 'summary-preview'          => 'Čoahkkáigeasu ovdalgihtiigeahččan:',
 'subject-preview'          => 'Bajilčállaga ovdalgihtiigeahččan:',
 'blockedtitle'             => 'Geavaheaddji lea cakkastallojuvvon',
-'blockedoriginalsource'    => 'Siiddu ”$1” prográmmagálvu:',
-'blockededitsource'        => 'Du rievdadusat siidui ”$1”:',
 'whitelistedittitle'       => 'Don fertet čálligoahtit sisa ovdalgo sáhtát rievdadit siiddu',
 'whitelistedittext'        => 'Don fertet $1, ovdalgo sáhtát rievdadit siidduid.',
 'confirmedittext'          => 'It sáhte rievdadit siiddu ovdalgo leat sihkarastan iežat e-poastačujuhusa. Sáhtat sihkarastit [[Special:Preferences|ásahussiidduin]].',

@@ -906,8 +906,6 @@ Az 'E-mail küldése ennek a szerkesztőnek' funkciót csak akkor használhatod,
 Jelenlegi IP-címed: $3, a blokkolás azonosítószáma: #$5.
 Kérjük, hogy érdeklődés esetén mindkettőt add meg.",
 'blockednoreason'                  => 'nem adott meg okot',
-'blockedoriginalsource'            => "A(z) '''$1''' lap forráskódja:",
-'blockededitsource'                => "A(z) '''$1''' lapon '''végrehajtott szerkesztésed''' szövege:",
 'whitelistedittitle'               => 'A lap szerkesztéséhez be kell jelentkezned',
 'whitelistedittext'                => 'Lapok szerkesztéséhez $1.',
 'confirmedittext'                  => 'Lapok szerkesztése előtt meg kell erősítened az e-mail címedet. Kérjük, hogy a [[Special:Preferences|szerkesztői beállításaidban]] add meg, majd erősítsd meg az e-mail címedet.',

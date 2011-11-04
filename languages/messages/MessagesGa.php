@@ -627,7 +627,6 @@ Tabhair faoi deara nach féidir leat an gné "cuir ríomhphost chuig an úsáide
 
 Is é $3 do sheoladh IP agus #$5 do ID coisc. Déan tagairt don seoladh seo le gach ceist a chuirfeá.',
 'blockednoreason'                  => 'níl chúis a thugadh',
-'blockedoriginalsource'            => "Tá an foinse '''$1''' le feiceáil a leanas:",
 'whitelistedittitle'               => 'Logáil isteach chun athrú a dhéanamh',
 'whitelistedittext'                => 'Ní mór duit $1 chun ailt a athrú.',
 'nosuchsectiontitle'               => 'Níl a leithéad de mhír ann',

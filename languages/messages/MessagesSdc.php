@@ -586,8 +586,6 @@ Attinzioni chi la funzioni '''Ischribì a l'utenti''' nò è attiba si nò è is
 
 Si vói ciaramiddanne, pa piazeri prizzisa sempri lu nùmaru di lu broccu (ID #$5).",
 'blockednoreason'                  => 'nisciuna mutibazioni indicadda',
-'blockedoriginalsource'            => "Inogghi è musthraddu lu codizi di la pagina '''$1''':",
-'blockededitsource'                => "Inogghi so musthraddi li '''mudìfigghi arriggaddi''' a la pagina '''$1''':",
 'whitelistedittitle'               => 'È nezzessariu intrà pa mudifiggà li pagini',
 'whitelistedittext'                => 'Pa mudìfiggà li pàgini è nezzessàriu $1.',
 'confirmedittext'                  => "Pa assé abiritaddi a la mudìfigga di li pàgini è nezzessàriu cunfèimma lu proprio indirizzu di postha erettrònica. Pa impusthà e cunfèimmà l'indirizzu usà li [[Special:Preferences|prifirenzi]].",

@@ -793,8 +793,6 @@ Recordeu que per a poder usar l'opció «Envia un missatge de correu electrònic
 
 El número d'identificació de la vostra adreça IP és $3, i l'ID del bloqueig és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
 'blockednoreason'                  => "no s'ha donat cap motiu",
-'blockedoriginalsource'            => "La font de '''$1''' es mostra a sota:",
-'blockededitsource'                => "El text de les vostres edicions a '''$1''' es mostra a continuació:",
 'whitelistedittitle'               => 'Cal iniciar una sessió per a poder modificar el contingut',
 'whitelistedittext'                => 'Heu de $1 per modificar pàgines.',
 'confirmedittext'                  => "Heu de confirmar la vostra adreça electrònica abans de poder modificar les pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",

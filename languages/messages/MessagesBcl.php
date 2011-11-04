@@ -569,8 +569,6 @@ Giromdomon tabî na pwede mo sanang gamiton an \"''e''-suratan ining parágamit\
 
 \$5 an pigbagat na ID. Ikaag tabî ining ID sa gabos na paghapot mo.",
 'blockednoreason'            => 'mayong itinaong rason',
-'blockedoriginalsource'      => "An ginikanan kan '''$1''' mahihiling sa ibabâ:",
-'blockededitsource'          => "An teksto kan '''mga hira mo''' sa '''$1''' mahihiling sa babâ:",
 'whitelistedittitle'         => 'Kaipuhan an paglaog tangarig makahirá',
 'whitelistedittext'          => 'Kaipuhan mong $1 tangarig makahirá nin mga páhina.',
 'confirmedittext'            => "Kaipuhan mong kompirmaron an saimong ''e''-surat. Ipwesto tabî asin patunayan an saimong ''e''-surat sa [[Special:Preferences|mga kabôtan kan parágamit]].",

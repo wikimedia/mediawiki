@@ -11120,7 +11120,7 @@ Controleer uw php.ini en zorg dat er een juiste map is ingesteld voor <code>sess
 	'config-page-name' => 'Naam',
 	'config-page-options' => 'Opties',
 	'config-page-install' => 'Installeren',
-	'config-page-complete' => 'Afgerond!',
+	'config-page-complete' => 'Voltooid!',
 	'config-page-restart' => 'Installatie herstarten',
 	'config-page-readme' => 'Lees mij',
 	'config-page-releasenotes' => 'Release notes',

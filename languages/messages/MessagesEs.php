@@ -13,6 +13,7 @@
  * @author Alvaro qc
  * @author Ascánder
  * @author Baiji
+ * @author Bea.miau
  * @author Bengoa
  * @author Better
  * @author BicScope
@@ -959,8 +960,6 @@ No puedes utilizar la función «enviar correo electrónico a este usuario»  a 
 Tu actual dirección IP es $3, y el identificador del bloqueo es #$5.
 Por favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
 'blockednoreason'                  => 'no se ha especificado el motivo',
-'blockedoriginalsource'            => "El código fuente de '''$1''' se muestra a continuación:",
-'blockededitsource'                => "El texto de '''tus ediciones''' a '''$1''' se muestran a continuación:",
 'whitelistedittitle'               => 'Se requiere identificación para editar.',
 'whitelistedittext'                => 'Tienes que $1 para editar artículos.',
 'confirmedittext'                  => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
@@ -1716,6 +1715,7 @@ Mira la [[Special:NewFiles|galería de archivos nuevos]] para una descripción v
 'ignorewarnings'              => 'Ignorar cualquier aviso',
 'minlength1'                  => 'Los nombres de archivo deben tener al menos una letra.',
 'illegalfilename'             => 'El nombre de archivo «$1» contiene caracteres que no están permitidos en títulos de páginas. Por favor, renombra el archivo e intenta volver a subirlo.',
+'filename-toolong'            => 'Los nombres de archivo no pueden tener más de 240 bytes.',
 'badfilename'                 => 'El nombre de la imagen se ha cambiado a «$1».',
 'filetype-mime-mismatch'      => 'La extensión de archivo «.$1» no coincide con el tipo detectado de MIME del archivo ($2).',
 'filetype-badmime'            => 'No se permite subir archivos de tipo MIME «$1».',

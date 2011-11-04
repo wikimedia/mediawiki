@@ -547,6 +547,7 @@ Sila catat URL bagi laman ini dan laporkan perkara ini kepada seorang [[Special:
 'badarticleerror'      => 'Tindakan ini tidak boleh dilaksanakan pada laman ini.',
 'cannotdelete'         => 'Laman atau fail $1 tidak dapat dihapuskan.
 Ia mungkin telah pun dihapuskan oleh orang lain.',
+'cannotdelete-title'   => 'Laman "$1" tidak dapat dihapuskan',
 'badtitle'             => 'Tajuk tidak sah',
 'badtitletext'         => 'Tajuk laman yang diminta tidak sah, kosong, ataupun tajuk antara bahasa atau tajuk antara wiki yang salah dipaut. Ia mungkin mengandungi aksara yang tidak dibenarkan.',
 'perfcached'           => 'Data berikut adalah teragregat dan mungkin bukan yang terkini.',
@@ -798,9 +799,6 @@ Sila ambil perhatian bahawa anda tidak boleh menggunakan ciri "e-melkan pengguna
 
 Alamat IP semasa anda ialah $3, dan ID sekatan ialah #$5. Sila sertakan maklumat-maklumat ini dalam pertanyaan nanti.',
 'blockednoreason'                  => 'tiada sebab diberikan',
-'blockedoriginalsource'            => "Sumber bagi '''$1'''
-ditunjukkan di bawah:",
-'blockededitsource'                => "Teks bagi '''suntingan anda''' terhadap '''$1''' ditunjukkan di bawah:",
 'whitelistedittitle'               => 'Log masuk dahulu untuk menyunting',
 'whitelistedittext'                => 'Anda hendaklah $1 terlebih dahulu untuk menyunting laman.',
 'confirmedittext'                  => 'Anda perlu mengesahkan alamat e-mel anda terlebih dahulu untuk menyunting mana-mana laman. Sila tetapkan dan sahkan alamat e-mel anda melalui [[Special:Preferences|laman keutamaan]].',
@@ -2632,7 +2630,7 @@ Sila lawat [http://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] 
 'djvu_page_error'          => 'Laman DjVu di luar julat',
 'djvu_no_xml'              => 'Gagal mendapatkan data XML bagi fail DjVu',
 'thumbnail_invalid_params' => 'Parameter imej ringkas tidak sah',
-'thumbnail_dest_directory' => 'Direktori destinasi gagal diciptakans',
+'thumbnail_dest_directory' => 'Direktori destinasi gagal diwujudkan',
 'thumbnail_image-type'     => 'Jenis imej tidak disokong',
 'thumbnail_gd-library'     => 'Tatarajah perpustakaan GD tidak lengkap: kehilangan fungsi $1',
 'thumbnail_image-missing'  => 'Fail hilang: $1',

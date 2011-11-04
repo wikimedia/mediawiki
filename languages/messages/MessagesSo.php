@@ -543,8 +543,6 @@ Ma isticmaali kartid 'e-mailka isticmaalahaan' soo diray hadii aad heesato maa h
 Ciwaankaada  IP'ka waa $3, gudagalahaaga la mamnuucay neh waa  #$5.
 fadlan ku soo dar su'aalahaaga waxa kor ku qoran.",
 'blockednoreason'                  => 'wax sabab ah kama bixin',
-'blockedoriginalsource'            => "Xogta '''$1''' hoos aad ka arki kartaa:",
-'blockededitsource'                => "Qoraalkii '''aad waxkaga bedashay''' '''$1''' waxaad ku arkikartaa hoos:",
 'whitelistedittitle'               => 'Waxaa loo baahanyahay gudagal si aad wax uga bedeshid',
 'whitelistedittext'                => 'Waa in aad $1 si aad wax uga bedeshid boggaga.',
 'confirmedittext'                  => 'Waa in aad xaqiijisaa e-mailkaada inta aadan bogaga wax ka bedelin.

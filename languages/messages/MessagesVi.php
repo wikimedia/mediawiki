@@ -908,8 +908,6 @@ Chú ý rằng bạn sẽ không dùng được chức năng “gửi thư cho n
 Địa chỉ IP hiện tại của bạn là $3, mã số cấm là $5.
 Xin hãy ghi kèm tất cả các chi tiết trên vào thư yêu cầu của bạn.",
 'blockednoreason'                  => 'không đưa ra lý do',
-'blockedoriginalsource'            => "Mã nguồn của '''$1''':",
-'blockededitsource'                => "Các '''sửa đổi của bạn''' ở '''$1''':",
 'whitelistedittitle'               => 'Cần đăng nhập để sửa trang',
 'whitelistedittext'                => 'Bạn phải $1 để sửa trang.',
 'confirmedittext'                  => 'Bạn cần phải xác nhận địa chỉ thư điện tử trước khi được sửa đổi trang. Xin hãy đặt và xác nhận địa chỉ thư điện tử của bạn dùng trang [[Special:Preferences|tùy chọn]].',

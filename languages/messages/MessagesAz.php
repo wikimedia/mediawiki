@@ -634,8 +634,6 @@ Müvəqqəti parol: $2',
 'subject-preview'                  => 'Sərlövhə belə olacaq:',
 'blockedtitle'                     => 'İstifadəçi bloklanıb',
 'blockednoreason'                  => 'səbəb göstərilməyib',
-'blockedoriginalsource'            => "'''$1''' mənbəyi aşağıda göstərilib:",
-'blockededitsource'                => "Aşağıda '''$1''' səhifəsində etdiyiniz '''dəyişikliklərin''' mətni göstərilib:",
 'whitelistedittitle'               => 'Redaktə üçün daxil olmalısınız',
 'whitelistedittext'                => 'Dəyişiklik edə bilmək üçün $1.',
 'confirmedittext'                  => 'Siz elektron ünvanınızı səhifədə dəyişiklik etməzdən əvvəl göstərməlisiniz.

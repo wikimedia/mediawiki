@@ -857,8 +857,6 @@ Añğartpa: [[{{#special:Preferences}}|Paýdalanwşılıq baptalımdarıñızdı
 Buğataw nömiriñiz: $5.
 Bul nömirdi ärbir suranımıñızdarğa kiristiriñiz.",
 'blockednoreason'                  => 'eş sebebi keltirilmegen',
-'blockedoriginalsource'            => "'''$1''' degenniñ qaýnar közi tömende körsetiledi:",
-'blockededitsource'                => "'''$1''' degenge jasalğan '''öñdemeleriñizdiñ''' mätini tömende körsetiledi:",
 'whitelistedittitle'               => 'Öñdew üşin kirwiñiz jön.',
 'whitelistedittext'                => 'Betterdi öñdew üşin $1 jön.',
 'confirmedittext'                  => 'Betterdi öñdew üşin aldın ala E-poşta mekenjaýıñızdı quptawıñız jön.

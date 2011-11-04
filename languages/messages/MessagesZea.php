@@ -518,8 +518,6 @@ Je kan hin gebruuk maeken van de functie 'e-mail deêze gebruker', tenzie a je e
 Je blokkaodenummer is #$5.
 Vermeld dat a je erhens over deêze blokkaode wil reaheern.",
 'blockednoreason'            => 'hin reeën opeheven',
-'blockedoriginalsource'      => "De brontekst van '''$1''' staet ieronder:",
-'blockededitsource'          => "D'n tekst van '''joen biedragen''' an '''$1''' staet ieronder:",
 'whitelistedittitle'         => 'Voe bewerken is anmelden verplicht',
 'whitelistedittext'          => "Je mò $1 om pagina's te bewerken.",
 'confirmedittext'            => "Je mò jen e-mailadres bevestihen voe da je kan bewerken.

@@ -468,8 +468,6 @@ Bë zgwësnic sprawã zablokòwaniô mòżesz skòntaktowac sã z $1 abò jińsz
 Boczë, że të ni mòżesz stądka sélac e-mailów, jeżlë nié môsz jesz zaregisterowóné e-mailowé adresë w [[Special:Preferences|nastôwach]].
 Twòjô aktualnô adresa IP to $3, a zablokòwónô adresa ID to #$5.
 Proszëmë pòdac wëższé pòdôłczi przë wszëtczich pëtaniach.",
-'blockedoriginalsource'            => "Zdrój '''$1''' je niżi:",
-'blockededitsource'                => "Tekst '''Twòjëch edicëji''' do '''$1''' je niżi:",
 'whitelistedittitle'               => 'Bë editowac je nót sã wlogòwac',
 'loginreqlink'                     => 'Wlogùjë',
 'loginreqpagetext'                 => '$1 sã, żebë przezérac jinszé starnë.',

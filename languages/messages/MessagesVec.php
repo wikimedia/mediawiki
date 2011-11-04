@@ -700,8 +700,6 @@ Nota che la funzion 'Scrivi a l'utente' no la xe ativa a meno che no te gavi reg
 
 Se prega de specificar el to indirizo IP atuale ($3) e el nùmaro del bloco (ID #$5) in qualsiasi richiesta de ciarimenti.",
 'blockednoreason'                  => 'nissuna motivazion indicà',
-'blockedoriginalsource'            => "El còdese sorgente de '''$1''' el vien mostrà de seguito:",
-'blockededitsource'                => "El testo de le '''to modifiche''' a '''$1''' el xe mostrà qua soto:",
 'whitelistedittitle'               => 'Bisogna èssar registrà par poder canbiar le pagine',
 'whitelistedittext'                => 'Te ghè da $1 par canbiar le pagine.',
 'confirmedittext'                  => "Te ghè da confermar l'indirizo e-mail prima de editar le pàxene. Par piaxer inposta e conferma el to indirizo e--mail tramite le to [[Special:Preferences|preferenze]].",
