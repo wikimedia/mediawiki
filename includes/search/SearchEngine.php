@@ -161,8 +161,6 @@ class SearchEngine {
 			return $titleResult;
 		}
 
-		$context = new RequestContext;
-
 		foreach ( $allSearchTerms as $term ) {
 
 			# Exact match? No need to look further.
@@ -176,9 +174,8 @@ class SearchEngine {
 			}
 
 			# See if it still otherwise has content is some sane sense
-			$context->setTitle( $title );
-			$article = Article::newFromTitle( $title, $context );
-			if ( $article->hasViewableContent() ) {
+			$page = WikiPage::factory( $title );
+			if ( $page->hasViewableContent() ) {
 				return $title;
 			}
 
