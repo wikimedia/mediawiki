@@ -1476,18 +1476,15 @@ abstract class File {
 			# Get size in bytes
 			$info['size'] = filesize( $path );
 
-			wfDebug("XXX $path $ext {$info[file-mime]} {$info[mime]} {$info[major_mime]} {$info[minor_mime]} {$info[media_type]} {$info[size]}\n");
 			# Height, width and metadata
 			$handler = MediaHandler::getHandler( $info['mime'] );
 			if ( $handler ) {
 				$tempImage = (object)array();
 				$info['metadata'] = $handler->getMetadata( $tempImage, $path );
 				$gis = $handler->getImageSize( $tempImage, $path, $info['metadata'] );
-				wfDebug("XXX $path has handler, metadata is {$info[metadata]}\n");
 			} else {
 				$gis = false;
 				$info['metadata'] = '';
-				wfDebug("XXX $path no handler, no metadata\n");
 			}
 			$info['sha1'] = self::sha1Base36( $path );
 
