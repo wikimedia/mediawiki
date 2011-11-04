@@ -74,7 +74,7 @@ class MarkpatrolledAction extends FormlessAction {
 		}
 
 		if ( count( $errors ) ) {
-			throw new PermissionsErrorPage( 'patrol', $errors );
+			throw new PermissionsError( 'patrol', $errors );
 		}
 
 		# Inform the user
