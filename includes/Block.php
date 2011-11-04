@@ -426,9 +426,12 @@ class Block {
 		# Don't collide with expired blocks
 		Block::purgeExpired();
 
+		$row = $this->getDatabaseArray();
+		$row['ipb_id'] = $dbw->nextSequenceValue("ipblocks_ipb_id_seq");
+		
 		$dbw->insert(
 			'ipblocks',
-			$this->getDatabaseArray(),
+			$row,
 			__METHOD__,
 			array( 'IGNORE' )
 		);
