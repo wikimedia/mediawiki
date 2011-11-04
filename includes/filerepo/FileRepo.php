@@ -644,7 +644,7 @@ abstract class FileRepo {
 	 * @param $title Title of image
 	 * @return Bool
 	 */
-	function checkRedirect( $title ) {
+	function checkRedirect( Title $title ) {
 		return false;
 	}
 

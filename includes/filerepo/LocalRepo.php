@@ -137,15 +137,10 @@ class LocalRepo extends FSRepo {
 	 *
 	 * @param $title Title of file
 	 */
-	function checkRedirect( $title ) {
+	function checkRedirect( Title $title ) {
 		global $wgMemc;
 
-		if( is_string( $title ) ) {
-			$title = Title::newFromText( $title );
-		}
-		if( $title instanceof Title && $title->getNamespace() == NS_MEDIA ) {
-			$title = Title::makeTitle( NS_FILE, $title->getText() );
-		}
+		$title = File::normalizeTitle( $title, 'exception' );
 
 		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getDBkey() ) );
 		if ( $memcKey === false ) {

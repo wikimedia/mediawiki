@@ -61,12 +61,12 @@ abstract class File {
 	 */
 
 	/**
-	 * @var LocalRepo
+	 * @var FileRepo
 	 */
 	var $repo;
 
 	/**
-	 * @var Title
+	 * @var Title|false
 	 */
 	var $title;
 
@@ -87,12 +87,42 @@ abstract class File {
 	/**
 	 * Call this constructor from child classes
 	 *
-	 * @param $title
-	 * @param $repo
+	 * @param $title Title|false
+	 * @param $repo FileRepo|false
 	 */
 	function __construct( $title, $repo ) {
+		if ( $title !== false ) { // account for UnregisteredLocalFile et all
+			$title = self::normalizeTitle( $title, 'exception' );
+		}
 		$this->title = $title;
 		$this->repo = $repo;
+	}
+
+	/**
+	 * Given a string or Title object return either a
+	 * valid Title object with namespace NS_FILE or null
+	 * @param $title Title|string
+	 * @param $exception string|false Use 'exception' to throw an error on bad titles
+	 * @return Title|null
+	 */
+	static function normalizeTitle( $title, $exception = false ) {
+		$ret = $title;
+		if ( $ret instanceof Title ) {
+			# Normalize NS_MEDIA -> NS_FILE
+			if ( $ret->getNamespace() == NS_MEDIA ) {
+				$ret = Title::makeTitleSafe( NS_FILE, $ret->getDBkey() );
+			# Sanity check the title namespace
+			} elseif ( $ret->getNamespace() !== NS_FILE ) {
+				$ret = null;
+			}
+		} else {
+			# Convert strings to Title objects
+			$ret = Title::makeTitleSafe( NS_FILE, (string)$ret );
+		}
+		if ( !$ret && $exception !== false ) {
+			throw new MWException( "`$title` is not a valid file title." );
+		}
+		return $ret;
 	}
 
 	function __get( $name ) {

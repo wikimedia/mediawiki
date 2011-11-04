@@ -73,8 +73,8 @@ class ArchivedFile {
 		$this->dataLoaded = false;
 		$this->exists = false;
 
-		if( is_object( $title ) ) {
-			$this->title = $title;
+		if( $title instanceof Title ) {
+			$this->title = File::normalizeTitle( $title, 'exception' );
 			$this->name = $title->getDBkey();
 		}
 
@@ -86,7 +86,7 @@ class ArchivedFile {
 			$this->key = $key;
 		}
 
-		if ( !$id && !$key && !is_object( $title ) ) {
+		if ( !$id && !$key && !( $title instanceof Title ) ) {
 			throw new MWException( "No specifications provided to ArchivedFile constructor." );
 		}
 	}
