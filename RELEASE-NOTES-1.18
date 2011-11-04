@@ -7,8 +7,9 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.18 is an alpha-quality branch and is not recommended for use in
-production.
+This is a beta release of the MediaWiki 1.17 branch. Please test it and let us
+know what you think of it. Beta releases are not recommended for use in
+production. 
 
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
@@ -95,6 +96,8 @@ production.
   create a page or new section.
 * (bug 8130) Query pages should limit to content namespaces, not just main
   namespace.
+* Search suggestions (other than in the Vector skin) will now use the HTML5
+  datalist feature where supported, currently only Firefox 4.
 * Special:Contribs now redirects to Special:Contributions.
 * (bug 6672) Images are now autorotated according to their EXIF orientation.
   This only affects thumbnails; the source remains unrotated.
@@ -212,6 +215,7 @@ production.
 * Introduced $wgVaryOnXFPForAPI which will cause the API to send
   Vary: X-Forwarded-Proto headers.
 * New maintenance script to refresh image metadata (maintenance/refreshImageMetadata.php)
+* (bug 16428) Include permalink in printable version
 * (bug 30722) Add an identity collation that sorts things based on what the
   unicode code point is (aka pre-1.17 behaviour)
 * (bug 30940) Add a hook in User:getDefaultOptions.
@@ -459,10 +463,16 @@ production.
   Windows servers.
 * (bug 30074) Moving user JS subpages resulted in JS errors because
   #REDIRECT [[Foo]] is invalid JS
+* (bug 30335) Fix for HTMLForms using GET breaking when non-friendly URLs
+  are used
+* (bug 30264) Changed installer-generated LocalSettings.php to use require_once()
+ instead require() for included extensions.
 * Tracking categories are no longer shown in footer for special pages
+* (bug 30684) Fix bad escaping in mw.message for inexistent messages (i.e. <key>)
 * $wgOverrideSiteFeed no longer double escapes urls.
 * The preprocessor no longer fails with a PHP warning about XML_PARSE_HUGE when
   processing complex pages using newer versions of libxml2.
+* (bug 30907) Special:Unusedcategories should sort ascendingly.
 * (bug 28545) When using the uca-default collation, sortkey's starting with a
   space (U+20) will sort under an invisible header like in 1.16 rather than a U+6DE
 * (bug 30192) Thumbnails of archived files are now deleted
