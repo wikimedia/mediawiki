@@ -208,6 +208,9 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		return '';
 	}
 
+	/**
+	 * @return Title
+	 */
 	function getTitle() {
 		return SpecialPage::getTitleFor( 'Protectedtitles' );
 	}
@@ -216,6 +219,9 @@ class ProtectedTitlesPager extends AlphabeticPager {
 		return $this->mForm->formatRow( $row );
 	}
 
+	/**
+	 * @return array
+	 */
 	function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds[] = 'pt_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
