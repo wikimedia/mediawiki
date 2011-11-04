@@ -223,7 +223,7 @@ class WebInstaller_Language extends WebInstallerPage {
 
 		$s = $helpHtml;
 
-		$s .= Html::openElement( 'select', array( 'id' => $name, 'name' => $name ) ) . "\n";
+		$s .= Html::openElement( 'select', array( 'id' => $name, 'name' => $name, 'tabindex' => $this->parent->nextTabIndex() ) ) . "\n";
 
 		$languages = Language::getLanguageNames();
 		ksort( $languages );
