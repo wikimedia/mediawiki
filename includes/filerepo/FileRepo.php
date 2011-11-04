@@ -249,7 +249,7 @@ abstract class FileRepo {
 	 * Get the name of an image from its title object
 	 * @param $title Title
 	 */
-	function getNameFromTitle( $title ) {
+	function getNameFromTitle( Title $title ) {
 		if ( $this->initialCapital != MWNamespace::isCapitalized( NS_FILE ) ) {
 			global $wgContLang;
 			$name = $title->getUserCaseDBKey();
