@@ -46,6 +46,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addTable', 'globalinterwiki', 'patch-globalinterwiki.sql' ),
 			array( 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1_field.sql' ),
 			array( 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1_field.sql' ),
+			array( 'doRemoveNotNullEmptyDefaults2' ),
 
 			// till 2.0 i guess
 			array( 'doRebuildDuplicateFunction' ),
@@ -143,6 +144,16 @@ class OracleUpdater extends DatabaseUpdater {
 			return;
 		}
 		$this->applyPatch( 'patch_remove_not_null_empty_defs.sql', false );
+		$this->output( "ok\n" );
+	}
+	protected function doRemoveNotNullEmptyDefaults2() {
+		$this->output( "Removing not null empty constraints ... " );
+		$meta = $this->db->fieldInfo( 'ipblocks' , 'ipb_by_text' );
+		if ( $meta->isNullable() ) {
+			$this->output( "constraints seem to be removed\n" );
+			return;
+		}
+		$this->applyPatch( 'patch_remove_not_null_empty_defs2.sql', false );
 		$this->output( "ok\n" );
 	}
 

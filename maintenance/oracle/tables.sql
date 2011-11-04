@@ -259,7 +259,7 @@ CREATE TABLE &mw_prefix.ipblocks (
   ipb_address           VARCHAR2(255)     NULL,
   ipb_user              NUMBER      DEFAULT 0 NOT  NULL,
   ipb_by                NUMBER      DEFAULT 0 NOT NULL,
-  ipb_by_text           VARCHAR2(255)      NOT NULL,
+  ipb_by_text           VARCHAR2(255)      NULL,
   ipb_reason            VARCHAR2(255)         NOT NULL,
   ipb_timestamp         TIMESTAMP(6) WITH TIME ZONE  NOT NULL,
   ipb_auto              CHAR(1)         DEFAULT '0' NOT NULL,
