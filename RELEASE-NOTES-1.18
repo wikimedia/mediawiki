@@ -7,9 +7,9 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 THIS IS NOT A RELEASE YET
 
-This is a beta release of the MediaWiki 1.17 branch. Please test it and let us
+This is a beta release of the MediaWiki 1.18 branch. Please test it and let us
 know what you think of it. Beta releases are not recommended for use in
-production. 
+production.
 
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
