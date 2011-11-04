@@ -44,10 +44,6 @@ CREATE TABLE &mw_prefix.user_former_groups (
 ALTER TABLE &mw_prefix.user_former_groups ADD CONSTRAINT &mw_prefix.user_former_groups_fk1 FOREIGN KEY (ufg_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX &mw_prefix.user_former_groups_u01 ON &mw_prefix.user_former_groups (ufg_user,ufg_group);
 
-
-CREATE UNIQUE INDEX /*i*/ufg_user_group ON /*_*/user_former_groups (ufg_user,ufg_group);
-
-
 CREATE TABLE &mw_prefix.user_newtalk (
   user_id  NUMBER DEFAULT 0 NOT NULL,
   user_ip  VARCHAR2(40)        NULL,
@@ -108,7 +104,8 @@ CREATE TABLE &mw_prefix.revision (
   rev_minor_edit  CHAR(1)         DEFAULT '0' NOT NULL,
   rev_deleted     CHAR(1)         DEFAULT '0' NOT NULL,
   rev_len         NUMBER          NULL,
-  rev_parent_id   NUMBER      	   DEFAULT NULL
+  rev_parent_id   NUMBER      	   DEFAULT NULL,
+  rev_sha1		  VARCHAR2(32)    NULL
 );
 ALTER TABLE &mw_prefix.revision ADD CONSTRAINT &mw_prefix.revision_pk PRIMARY KEY (rev_id);
 ALTER TABLE &mw_prefix.revision ADD CONSTRAINT &mw_prefix.revision_fk1 FOREIGN KEY (rev_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
@@ -142,7 +139,8 @@ CREATE TABLE &mw_prefix.archive (
   ar_deleted     CHAR(1)      DEFAULT '0' NOT NULL,
   ar_len         NUMBER,
   ar_page_id     NUMBER,
-  ar_parent_id   NUMBER
+  ar_parent_id   NUMBER,
+  ar_sha1		  VARCHAR2(32)    NULL
 );
 ALTER TABLE &mw_prefix.archive ADD CONSTRAINT &mw_prefix.archive_fk1 FOREIGN KEY (ar_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
 CREATE INDEX &mw_prefix.archive_i01 ON &mw_prefix.archive (ar_namespace,ar_title,ar_timestamp);
