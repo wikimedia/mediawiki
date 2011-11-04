@@ -148,7 +148,7 @@ p img {
 ul {
 	line-height: 1.5em;
 	list-style-type: square;
-	margin: .3em 0 0 1.5em;
+	margin: .3em 0 0 1.6em;
 	padding: 0;
 }
 ol {
@@ -170,7 +170,7 @@ dl {
 }
 dd {
 	line-height: 1.5em;
-	margin-left: 2em;
+	margin-left: 1.6em;
 	margin-bottom: .1em;
 }
 
