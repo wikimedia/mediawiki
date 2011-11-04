@@ -36,22 +36,21 @@ class MarkpatrolledAction extends FormlessAction {
 		return '';
 	}
 
-	protected function checkCanExecute( User $user ) {
-		if ( !$user->matchEditToken( $this->getRequest()->getVal( 'token' ), $this->getRequest()->getInt( 'rcid' ) ) ) {
-			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
-		}
-
-		return parent::checkCanExecute( $user );
-	}
-
 	public function onView() {
-		$rc = RecentChange::newFromId( $this->getRequest()->getInt( 'rcid' ) );
+		$request = $this->getRequest();
 
+		$rcId = $request->getInt( 'rcid' );
+		$rc = RecentChange::newFromId( $rcId );
 		if ( is_null( $rc ) ) {
 			throw new ErrorPageError( 'markedaspatrollederror', 'markedaspatrollederrortext' );
 		}
 
-		$errors = $rc->doMarkPatrolled( $this->getUser() );
+		$user = $this->getUser();
+		if ( !$user->matchEditToken( $request->getVal( 'token' ), $rcId ) ) {
+			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
+		}
+
+		$errors = $rc->doMarkPatrolled( $user );
 
 		if ( in_array( array( 'rcpatroldisabled' ), $errors ) ) {
 			throw new ErrorPageError( 'rcpatroldisabled', 'rcpatroldisabledtext' );
