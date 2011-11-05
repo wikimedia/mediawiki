@@ -2895,28 +2895,29 @@ $templates
 			) );
 		}
 
-		$lang = $this->getTitle()->getPageLanguage();
 
 		# Language variants
-		if ( !$wgDisableLangConversion && $wgCanonicalLanguageLinks
-			&& $lang->hasVariants() ) {
+		if ( !$wgDisableLangConversion && $wgCanonicalLanguageLinks ) {
+			$lang = $this->getTitle()->getPageLanguage();
+			if ( $lang->hasVariants() ) {
 
-			$urlvar = $lang->getURLVariant();
+				$urlvar = $lang->getURLVariant();
 
-			if ( !$urlvar ) {
-				$variants = $lang->getVariants();
-				foreach ( $variants as $_v ) {
+				if ( !$urlvar ) {
+					$variants = $lang->getVariants();
+					foreach ( $variants as $_v ) {
+						$tags[] = Html::element( 'link', array(
+							'rel' => 'alternate',
+							'hreflang' => $_v,
+							'href' => $this->getTitle()->getLocalURL( '', $_v ) )
+						);
+					}
+				} else {
 					$tags[] = Html::element( 'link', array(
-						'rel' => 'alternate',
-						'hreflang' => $_v,
-						'href' => $this->getTitle()->getLocalURL( '', $_v ) )
-					);
+						'rel' => 'canonical',
+						'href' => $this->getTitle()->getCanonicalUrl()
+					) );
 				}
-			} else {
-				$tags[] = Html::element( 'link', array(
-					'rel' => 'canonical',
-					'href' => $this->getTitle()->getCanonicalUrl()
-				) );
 			}
 		}
 
@@ -2964,9 +2965,6 @@ $templates
 			# like to promote instead of the RC feed (maybe like a "Recent New Articles"
 			# or "Breaking news" one). For this, we see if $wgOverrideSiteFeed is defined.
 			# If so, use it instead.
-
-			$rctitle = SpecialPage::getTitleFor( 'Recentchanges' );
-
 			if ( $wgOverrideSiteFeed ) {
 				foreach ( $wgOverrideSiteFeed as $type => $feedUrl ) {
 					// Note, this->feedLink escapes the url.
@@ -2976,11 +2974,11 @@ $templates
 						$this->msg( "site-{$type}-feed", $wgSitename )->text()
 					);
 				}
-			} elseif ( $this->getTitle()->getPrefixedText() != $rctitle->getPrefixedText() ) {
+			} elseif ( !$this->getTitle()->isSpecial( 'Recentchanges' ) ) {
 				foreach ( $wgAdvertisedFeedTypes as $format ) {
 					$tags[] = $this->feedLink(
 						$format,
-						$rctitle->getLocalURL( "feed={$format}" ),
+						$this->getTitle()->getLocalURL( "feed={$format}" ),
 						$this->msg( "site-{$format}-feed", $wgSitename )->text() # For grep: 'site-rss-feed', 'site-atom-feed'.
 					);
 				}
