@@ -588,7 +588,6 @@ $wgMessageStructure = array(
 		'blockedtext',
 		'autoblockedtext',
 		'blockednoreason',
-		'whitelistedittitle',
 		'whitelistedittext',
 		'confirmedittext',
 		'nosuchsectiontitle',

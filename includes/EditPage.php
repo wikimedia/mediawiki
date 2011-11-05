@@ -2257,21 +2257,11 @@ HTML
 
 	/**
 	 * Produce the stock "please login to edit pages" page
+	 *
+	 * @deprecated in 1.19; throw an exception directly instead
 	 */
 	function userNotLoggedInPage() {
-		global $wgOut;
-
-		$wgOut->prepareErrorPage( wfMessage( 'whitelistedittitle' ) );
-
-		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
-		$loginLink = Linker::linkKnown(
-			$loginTitle,
-			wfMsgHtml( 'loginreqlink' ),
-			array(),
-			array( 'returnto' => $this->getContextTitle()->getPrefixedText() )
-		);
-		$wgOut->addHTML( wfMessage( 'whitelistedittext' )->rawParams( $loginLink )->parse() );
-		$wgOut->returnToMain( false, $this->getContextTitle() );
+		throw new PermissionsError( 'edit' );
 	}
 
 	/**
@@ -2281,7 +2271,8 @@ HTML
 	 * @deprecated in 1.19; throw an exception directly instead
 	 */
 	function noCreatePermission() {
-		throw new MWException( 'nocreatetitle', 'nocreatetext' );
+		$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
+		throw new PermissionsError( $permission );
 	}
 
 	/**
@@ -2953,15 +2944,10 @@ HTML
 				throw new UserBlockedError( $wgUser->mBlock );
 
 			case self::AS_IMAGE_REDIRECT_ANON:
-				throw new ErrorPageError( 'uploadnologin', 'uploadnologintext' );
-
 			case self::AS_IMAGE_REDIRECT_LOGGED:
 				throw new PermissionsError( 'upload' );
 
 			case self::AS_READ_ONLY_PAGE_ANON:
-				$this->userNotLoggedInPage();
-				return false;
-
 			case self::AS_READ_ONLY_PAGE_LOGGED:
 				throw new PermissionsError( 'edit' );
 
@@ -2972,7 +2958,8 @@ HTML
 				throw new ThrottledError();
 
 			case self::AS_NO_CREATE_PERMISSION:
-				throw new MWException( 'nocreatetitle', 'nocreatetext' );
+				$permission = $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage';
+				throw new PermissionsError( $permission );
 
 		}
 		return false;

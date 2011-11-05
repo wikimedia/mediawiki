@@ -196,11 +196,8 @@ class DifferenceEngine {
 
 		# mOldPage might not be set, see below.
 		if ( !$this->mNewPage->userCanRead() || ( $this->mOldPage && !$this->mOldPage->userCanRead() ) ) {
-			$wgOut->loginToUse();
-			$wgOut->output();
-			$wgOut->disable();
 			wfProfileOut( __METHOD__ );
-			return;
+			throw new PermissionsError( 'read' );
 		}
 
 		# If external diffs are enabled both globally and for the user,

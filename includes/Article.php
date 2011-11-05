@@ -479,11 +479,8 @@ class Article extends Page {
 					# Another whitelist check in case oldid is altering the title
 					if ( !$this->getTitle()->userCanRead() ) {
 						wfDebug( __METHOD__ . ": denied on secondary read check\n" );
-						$wgOut->loginToUse();
-						$wgOut->output();
-						$wgOut->disable();
 						wfProfileOut( __METHOD__ );
-						return;
+						throw new PermissionsError( 'read' );
 					}
 
 					# Are we looking at an old revision

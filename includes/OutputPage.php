@@ -1979,9 +1979,64 @@ class OutputPage extends ContextSource {
 	 * @param $action String: action that was denied or null if unknown
 	 */
 	public function showPermissionsErrorPage( $errors, $action = null ) {
-		$this->prepareErrorPage( $this->msg( 'permissionserrors' ) );
+		global $wgGroupPermissions;
 
-		$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
+		// For some action (read, edit, create and upload), display a "login to do this action"
+		// error if all of the following conditions are met:
+		// 1. the user is not logged in
+		// 2. the only error is insufficient permissions (i.e. no block or something else)
+		// 3. the error can be avoided simply by logging in
+		if ( in_array( $action, array( 'read', 'edit', 'createpage', 'createtalk', 'upload' ) )
+			&& $this->getUser()->isAnon() && count( $errors ) == 1 && isset( $errors[0][0] )
+			&& ( $errors[0][0] == 'badaccess-groups' || $errors[0][0] == 'badaccess-group0' )
+			&& ( ( isset( $wgGroupPermissions['user'][$action] ) && $wgGroupPermissions['user'][$action] )
+			|| ( isset( $wgGroupPermissions['autoconfirmed'][$action] ) && $wgGroupPermissions['autoconfirmed'][$action] ) )
+		) {
+			$displayReturnto = null;
+			$returnto = $this->getTitle();
+			if ( $action == 'edit' ) {
+				$msg = 'whitelistedittext';
+				$displayReturnto = $returnto;
+			} elseif ( $action == 'createpage' || $action == 'createtalk' ) {
+				$msg = 'nocreatetext';
+			} elseif ( $action == 'upload' ) {
+				$msg = 'uploadnologintext';
+			} else { # Read
+				$msg = 'loginreqpagetext';
+				$displayReturnto = Title::newMainPage();
+			}
+
+			$query = array();
+			if ( $returnto ) {
+				$query['returnto'] = $returnto->getPrefixedText();
+				$request = $this->getRequest();
+				if ( !$request->wasPosted() ) {
+					$returntoquery = $request->getValues();
+					unset( $returntoquery['title'] );
+					unset( $returntoquery['returnto'] );
+					unset( $returntoquery['returntoquery'] );
+					$query['returntoquery'] = wfArrayToCGI( $returntoquery );
+				}
+			}
+			$loginLink = Linker::linkKnown(
+				SpecialPage::getTitleFor( 'Userlogin' ),
+				$this->msg( 'loginreqlink' )->escaped(),
+				array(),
+				$query
+			);
+
+			$this->prepareErrorPage( $this->msg( 'loginreqtitle' ) );
+			$this->addHTML( $this->msg( $msg )->rawParams( $loginLink )->parse() );
+
+			# Don't return to a page the user can't read otherwise
+			# we'll end up in a pointless loop
+			if ( $displayReturnto && $displayReturnto->userCanRead() ) {
+				$this->returnToMain( null, $displayReturnto );
+			}
+		} else {
+			$this->prepareErrorPage( $this->msg( 'permissionserrors' ) );
+			$this->addWikiText( $this->formatPermissionsErrorMessage( $errors, $action ) );
+		}
 	}
 
 	/**
@@ -2008,29 +2063,11 @@ class OutputPage extends ContextSource {
 
 	/**
 	 * Produce the stock "please login to use the wiki" page
+	 *
+	 * @deprecated in 1.19; throw the exception directly
 	 */
 	public function loginToUse() {
-		if( $this->getUser()->isLoggedIn() ) {
-			throw new PermissionsError( 'read' );
-		}
-
-		$this->prepareErrorPage( $this->msg( 'loginreqtitle' ), $this->msg( 'errorpagetitle' ) );
-
-		$loginLink = Linker::linkKnown(
-			SpecialPage::getTitleFor( 'Userlogin' ),
-			$this->msg( 'loginreqlink' )->escaped(),
-			array(),
-			array( 'returnto' => $this->getTitle()->getPrefixedText() )
-		);
-		$this->addHTML( $this->msg( 'loginreqpagetext' )->rawParams( $loginLink )->parse() .
-			"\n<!--" . $this->getTitle()->getPrefixedUrl() . '-->' );
-
-		# Don't return to the main page if the user can't read it
-		# otherwise we'll end up in a pointless loop
-		$mainPage = Title::newMainPage();
-		if( $mainPage->userCanRead() ) {
-			$this->returnToMain( null, $mainPage );
-		}
+		throw new PermissionsError( 'read' );
 	}
 
 	/**
