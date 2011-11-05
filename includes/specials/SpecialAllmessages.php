@@ -112,7 +112,7 @@ class AllmessagesTablePager extends TablePager {
 
 		global $wgContLang;
 
-		$this->talk = htmlspecialchars( wfMsg( 'talkpagelinktext' ) );
+		$this->talk = $this->msg( 'talkpagelinktext' )->escaped();
 
 		$this->lang = ( $langObj ? $langObj : $wgContLang );
 		$this->langcode = $this->lang->getCode();
@@ -152,12 +152,12 @@ class AllmessagesTablePager extends TablePager {
 		ksort( $languages );
 
 		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-allmessages-form' ) ) .
-			Xml::fieldset( wfMsg( 'allmessages-filter-legend' ) ) .
+			Xml::fieldset( $this->msg( 'allmessages-filter-legend' )->text() ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
 			Xml::openElement( 'table', array( 'class' => 'mw-allmessages-table' ) ) . "\n" .
 			'<tr>
 				<td class="mw-label">' .
-					Xml::label( wfMsg( 'allmessages-prefix' ), 'mw-allmessages-form-prefix' ) .
+					Xml::label( $this->msg( 'allmessages-prefix' )->text(), 'mw-allmessages-form-prefix' ) .
 				"</td>\n
 				<td class=\"mw-input\">" .
 					Xml::input( 'prefix', 20, str_replace( '_', ' ', $this->displayPrefix ), array( 'id' => 'mw-allmessages-form-prefix' ) ) .
@@ -165,22 +165,22 @@ class AllmessagesTablePager extends TablePager {
 			</tr>
 			<tr>\n
 				<td class='mw-label'>" .
-					wfMsg( 'allmessages-filter' ) .
+					$this->msg( 'allmessages-filter' )->escaped() .
 				"</td>\n
 				<td class='mw-input'>" .
-					Xml::radioLabel( wfMsg( 'allmessages-filter-unmodified' ),
+					Xml::radioLabel( $this->msg( 'allmessages-filter-unmodified' )->text(),
 						'filter',
 						'unmodified',
 						'mw-allmessages-form-filter-unmodified',
 						( $this->filter == 'unmodified' )
 					) .
-					Xml::radioLabel( wfMsg( 'allmessages-filter-all' ),
+					Xml::radioLabel( $this->msg( 'allmessages-filter-all' )->text(),
 						'filter',
 						'all',
 						'mw-allmessages-form-filter-all',
 						( $this->filter == 'all' )
 					) .
-					Xml::radioLabel( wfMsg( 'allmessages-filter-modified' ),
+					Xml::radioLabel( $this->msg( 'allmessages-filter-modified' )->text(),
 						'filter',
 						'modified',
 						'mw-allmessages-form-filter-modified',
@@ -190,7 +190,7 @@ class AllmessagesTablePager extends TablePager {
 			</tr>
 			<tr>\n
 				<td class=\"mw-label\">" .
-					Xml::label( wfMsg( 'allmessages-language' ), 'mw-allmessages-form-lang' ) .
+					Xml::label( $this->msg( 'allmessages-language' )->text(), 'mw-allmessages-form-lang' ) .
 				"</td>\n
 				<td class=\"mw-input\">" .
 					Xml::openElement( 'select', array( 'id' => 'mw-allmessages-form-lang', 'name' => 'lang' ) );
@@ -205,7 +205,7 @@ class AllmessagesTablePager extends TablePager {
 
 			'<tr>
 				<td class="mw-label">' .
-					Xml::label( wfMsg( 'table_pager_limit_label'), 'mw-table_pager_limit_label' ) .
+					Xml::label( $this->msg( 'table_pager_limit_label' )->text(), 'mw-table_pager_limit_label' ) .
 				'</td>
 				<td class="mw-input">' .
 					$this->getLimitSelect() .
@@ -213,7 +213,7 @@ class AllmessagesTablePager extends TablePager {
 			<tr>
 				<td></td>
 				<td>' .
-					Xml::submitButton( wfMsg( 'allmessages-filter-submit' ) ) .
+					Xml::submitButton( $this->msg( 'allmessages-filter-submit' )->text() ) .
 				"</td>\n
 			</tr>" .
 
@@ -328,15 +328,15 @@ class AllmessagesTablePager extends TablePager {
 		return Xml::openElement( 'table', array( 'class' => 'mw-datatable TablePager', 'id' => 'mw-allmessagestable' ) ) . "\n" .
 			"<thead><tr>
 				<th rowspan=\"2\">" .
-					wfMsg( 'allmessagesname' ) . "
+					$this->msg( 'allmessagesname' )->escaped() . "
 				</th>
 				<th>" .
-					wfMsg( 'allmessagesdefault' ) .
+					$this->msg( 'allmessagesdefault' )->escaped() .
 				"</th>
 			</tr>\n
 			<tr>
 				<th>" .
-					wfMsg( 'allmessagescurrent' ) .
+					$this->msg( 'allmessagescurrent' )->escaped() .
 				"</th>
 			</tr></thead><tbody>\n";
 	}
@@ -421,8 +421,8 @@ class AllmessagesTablePager extends TablePager {
 	// This is not actually used, as getStartBody is overridden above
 	function getFieldNames() {
 		return array(
-			'am_title' => wfMsg( 'allmessagesname' ),
-			'am_default' => wfMsg( 'allmessagesdefault' )
+			'am_title' => $this->msg( 'allmessagesname' )->text(),
+			'am_default' => $this->msg( 'allmessagesdefault' )->text()
 		);
 	}
 
