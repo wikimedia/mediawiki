@@ -655,7 +655,7 @@ abstract class FileRepo {
 	 * STUB
 	 * @param $title Title of image
 	 */
-	function invalidateImageRedirect( $title ) {}
+	function invalidateImageRedirect( Title $title ) {}
 
 	/**
 	 * Get an array or iterator of file objects for files that have a given
