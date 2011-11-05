@@ -140,8 +140,6 @@ class SpecialUpload extends SpecialPage {
 	 * Special page entry point
 	 */
 	public function execute( $par ) {
-		global $wgGroupPermissions;
-
 		$this->setHeaders();
 		$this->outputHeader();
 
@@ -154,19 +152,12 @@ class SpecialUpload extends SpecialPage {
 		$user = $this->getUser();
 		$permissionRequired = UploadBase::isAllowed( $user );
 		if( $permissionRequired !== true ) {
-			if( !$user->isLoggedIn() && ( $wgGroupPermissions['user']['upload']
-				|| $wgGroupPermissions['autoconfirmed']['upload'] ) ) {
-				// Custom message if logged-in users without any special rights can upload
-				throw new ErrorPageError( 'uploadnologin', 'uploadnologintext' );
-			} else {
-				throw new PermissionsError( $permissionRequired );
-			}
+			throw new PermissionsError( $permissionRequired );
 		}
 
 		# Check blocks
 		if( $user->isBlocked() ) {
-			$this->getOutput()->blockedPage();
-			return;
+			throw new UserBlockedError( $user->mBlock );
 		}
 
 		# Check whether we actually want to allow changing stuff

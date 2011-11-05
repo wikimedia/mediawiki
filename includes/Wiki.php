@@ -161,7 +161,7 @@ class MediaWiki {
 		// the Read array in order for the user to see it. (We have to check here to
 		// catch special pages etc. We check again in Article::view())
 		} elseif ( !$title->userCanRead() ) {
-			$output->loginToUse();
+			throw new PermissionsError( 'read' );
 		// Interwiki redirects
 		} elseif ( $title->getInterwiki() != '' ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
