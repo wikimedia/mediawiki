@@ -68,17 +68,17 @@ class ApiPurge extends ApiBase {
 				$result[] = $r;
 				continue;
 			}
-			$context = new DerivativeContext( $this->getContext() );
-			$context->setTitle( $title );
-			$article = Article::newFromTitle( $title, $context );
-			$article->doPurge(); // Directly purge and skip the UI part of purge().
+
+			$page = WikiPage::factory( $title );
+			$page->doPurge(); // Directly purge and skip the UI part of purge().
 			$r['purged'] = '';
 
 			if( $forceLinkUpdate ) {
 				if ( !$user->pingLimiter() ) {
 					global $wgParser, $wgEnableParserCache;
-					$popts = new ParserOptions();
-					$p_result = $wgParser->parse( $article->getContent(), $title, $popts );
+
+					$popts = ParserOptions::newFromContext( $this->getContext() );
+					$p_result = $wgParser->parse( $page->getRawText(), $title, $popts );
 
 					# Update the links tables
 					$u = new LinksUpdate( $title, $p_result );
@@ -88,7 +88,7 @@ class ApiPurge extends ApiBase {
 
 					if ( $wgEnableParserCache ) {
 						$pcache = ParserCache::singleton();
-						$pcache->save( $p_result, $article, $popts );
+						$pcache->save( $p_result, $page, $popts );
 					}
 				} else {
 					$this->setWarning( $this->parseMsg( array( 'actionthrottledtext' ) ) );
