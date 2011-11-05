@@ -872,7 +872,6 @@ Du kan kontakte $1 eller ein annan [[{{MediaWiki:Grouppage-sysop}}|administrator
 IP-adressa di er $3, og blokkeringnummeret ditt er #$5.
 Ver venleg og opplyse dette ved eventuelle førespurnader.",
 'blockednoreason'                  => 'inga grunngjeving',
-'whitelistedittitle'               => 'Du lyt logge inn for å gjera endringar',
 'whitelistedittext'                => 'Du lyt $1 for å endre sider.',
 'confirmedittext'                  => 'Du må stadfeste e-postadressa di før du kan endre sidene. Ver venleg og legg inn og stadfest e-postadressa di i [[Special:Preferences|innstillingane dine]].',
 'nosuchsectiontitle'               => 'Kan ikkje finna bolk',

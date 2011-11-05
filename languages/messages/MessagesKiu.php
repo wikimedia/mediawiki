@@ -526,7 +526,6 @@ Tarixê vurnaena na pele de, hurêndia leqeme de numra tuya IPy qeyd bena.",
 'subject-preview'                  => 'Verqaytê mewzuy/serrêze:',
 'blockedtitle'                     => 'Karber kilıt bi',
 'blockednoreason'                  => 'sebeb nêdiyo',
-'whitelistedittitle'               => 'Serba vurnaene gunê cı kuyê',
 'whitelistedittext'                => 'Serba vurnaene $1.',
 'nosuchsectiontitle'               => 'Qısım nêşikiya bıvêniyo',
 'nosuchsectiontext'                => 'To waşt ke jü qısım kuyê, uyo ke çino.

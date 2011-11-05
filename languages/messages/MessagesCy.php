@@ -725,7 +725,6 @@ Sylwch mai dim ond y rhai sydd wedi gosod cyfeiriad e-bost yn eu [[Special:Prefe
 
 Eich cyfeiriad IP presennol yw $3. Cyfeirnod y bloc yw $5. Nodwch y manylion hyn wrth drafod y bloc.",
 'blockednoreason'                  => 'dim rheswm wedi ei roi',
-'whitelistedittitle'               => 'Rhaid mewngofnodi cyn golygu',
 'whitelistedittext'                => 'Rhaid $1 i olygu tudalennau.',
 'confirmedittext'                  => "Mae'n rhaid i chi gadarnhau eich cyfeiriad e-bost cyn y gallwch ddechrau golygu tudalennau.
 Gosodwch eich cyfeiriad e-bost drwy eich [[Special:Preferences|dewisiadau defnyddiwr]] ac yna'i gadarnhau, os gwelwch yn dda.",

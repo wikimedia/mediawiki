@@ -906,7 +906,6 @@ Pozn.: Nemôžete použiť funkciu „{{int:emailuser}}“, ak ste si vo svojich
 Vaša aktuálna IP adresa je $3. ID vášho blokovania je $5.
 Prosím, uveďte tieto podrobnosti v akýchkoľvek otázkach, ktoré sa opýtate.",
 'blockednoreason'                  => 'nebol uvedený dôvod',
-'whitelistedittitle'               => 'Aby ste mohli upravovať stránky, musíte sa prihlásiť',
 'whitelistedittext'                => 'Aby ste mohli upravovať stránky, musíte sa $1',
 'confirmedittext'                  => 'Pred úpravami stránok musíte potvrdiť vašu emailovú adresu. Prosím, nastavte a overte svoju emailovú adresu v [[Special:Preferences|používateľských nastaveniach]].',
 'nosuchsectiontitle'               => 'Sekcia nebola nájdená',

@@ -506,7 +506,6 @@ Es muass sichergstöd seih, daas Cookies aktivierd san. Danoch bittscheh d' Seit
 'summary-preview'                  => 'Vurschau vo da Zåmmfossung:',
 'subject-preview'                  => 'Vurschau vom Bedreff:',
 'blockedtitle'                     => 'Da Benytzer is gsperrt',
-'whitelistedittitle'               => 'Zum Beorwaiten muasst de åmöiden',
 'whitelistedittext'                => "Du muasst de $1, um Saiten beorwaiten z' kenna.",
 'loginreqtitle'                    => "'s braucht a Åmöidung",
 'loginreqlink'                     => 'åmöiden',

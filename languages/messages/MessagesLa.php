@@ -641,7 +641,6 @@ Nota bene te non posse proprietate "Litteras electronicas usori mittere" uti, ni
 
 Locus IP tuus temporarius $3 est et numerus obstructionis tuus est #$5. Quaesumus te eos scripturum si quaestiones ullas roges.',
 'blockednoreason'                  => 'nulla causa data',
-'whitelistedittitle'               => 'Conventum aperiendum ut recenseas',
 'whitelistedittext'                => 'Necesse est tibi $1 priusquam paginas recenseas.',
 'confirmedittext'                  => 'Tua inscriptio electronica est adfirmanda priusquam paginas recenseas. Quaesumus eam selige et adfirma per tuas [[Special:Preferences|praeferentias]].',
 'nosuchsectiontitle'               => 'Haec pars inveniri non potest',

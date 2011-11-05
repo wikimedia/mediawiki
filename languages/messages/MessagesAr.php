@@ -49,6 +49,7 @@
  * @author Zanatos
  * @author ترجمان05
  * @author خالد حسني
+ * @author روخو
  * @author زكريا
  * @author عصام بايزيدي
  * @author عمرو
@@ -806,6 +807,7 @@ $1',
 'badarticleerror'      => 'لا يمكن إجراء هذا الفعل على هذه الصفحة.',
 'cannotdelete'         => 'تعذر حذف الصفحة أو الملف "$1".
 ربما حذفها شحص آخر.',
+'cannotdelete-title'   => 'لا يمكن حذف الصفحة "1$"',
 'badtitle'             => 'عنوان سيء',
 'badtitletext'         => 'عنوان الصفحة المطلوب إما غير صحيح أو فارغ، وربما الوصلة بين اللغات أو بين المشاريع خاطئة.
 ومن الممكن وجود رموز لا تصلح للاستخدام في العناوين.',
@@ -823,6 +825,7 @@ $1',
 من فضلك حاول مرة ثانية خلال عدة دقائق.',
 'protectedpagetext'    => 'هذه الصفحة تمت حمايتها لمنع التعديل.',
 'viewsourcetext'       => 'يمكنك رؤية ونسخ مصدر هذه الصفحة:',
+'viewyourtext'         => "يمكنك رؤية ونسخ مصدر ''' تعديلاتك ''' في هذه الصفحة:",
 'protectedinterface'   => 'هذه الصفحة توفر نص الواجهة للبرنامج، وهي مقفلة لمنع التخريب.',
 'editinginterface'     => "'''تحذير:''' أنت تقوم بتحرير صفحة تستخدم في الواجهة النصية للبرنامج.
 سوف تؤثر التغييرات على هذه الصفحة على مظهر واجهة المستخدم للمستخدمين الآخرين.
@@ -1080,7 +1083,6 @@ $2
 عنوان آيبيك الحالي $3، ورقم المنع #$5.
 من فضلك اذكر كل التفاصيل بالأعلى في أي استعلامات تقوم بها.',
 'blockednoreason'                  => 'لا سبب معطى',
-'whitelistedittitle'               => 'تسجيل الدخول مطلوب للتحرير',
 'whitelistedittext'                => 'يجب عليك $1 لتتمكن من تعديل الصفحات.',
 'confirmedittext'                  => 'يجب عليك تأكيد بريدك الإلكتروني قبل تعديل الصفحات.
 من فضلك اكتب وأكد بريدك الإلكتروني من خلال [[Special:Preferences|تفضيلاتك]].',
@@ -2520,6 +2522,7 @@ $UNWATCHURL
 'unprotectedarticle'          => 'أزال الحماية من "[[$1]]"',
 'movedarticleprotection'      => 'نقل إعدادات الحماية من "[[$2]]" إلى "[[$1]]"',
 'protect-title'               => 'ضبط مستوى الحماية ل"$1"',
+'protect-title-notallowed'    => 'عرض مستوى الحماية ل "$1"',
 'prot_1movedto2'              => '[[$1]] تم نقلها إلى [[$2]]',
 'protect-legend'              => 'تأكيد الحماية',
 'protectcomment'              => 'السبب:',
@@ -4087,16 +4090,25 @@ $1',
 # New logging system
 'logentry-delete-delete'              => '{{GENDER:$2|حذف|حذفت}} $1 صفحة $3',
 'logentry-delete-restore'             => '{{GENDER:$2|استعاد|استعادت}} $1 صفحة $3',
+'logentry-delete-event'               => '$1 {{GENDER:$2|changed}} بإمكانك رؤية {{PLURAL:$5|a log event|$5 log events}} على $3: $4',
+'logentry-delete-event-legacy'        => '$1 {{GENDER:$2|changed}} رؤية أحداث تسجيل الدخول على $3',
+'logentry-delete-revision-legacy'     => '$1 {{GENDER:$2|changed}} رؤية المراجعات على صفحة $3',
+'logentry-suppress-delete'            => '$1 {{GENDER:$2|suppressed}} صفحة $3',
 'revdelete-content-hid'               => 'محتوى مخفي',
 'revdelete-summary-hid'               => 'ملخص التحرير مخفي',
+'revdelete-uname-hid'                 => 'اسم المستخدم مخفي',
 'revdelete-content-unhid'             => 'محتوى غير مخفي',
 'revdelete-summary-unhid'             => 'ملخص التحرير غير مخفي',
+'revdelete-uname-unhid'               => 'اسم المستخدم غير مخفي',
 'revdelete-restricted'                => 'طبق الضوابط لمديري النظام',
 'revdelete-unrestricted'              => 'أزال الضوابط لمديري النظام',
 'logentry-move-move'                  => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى $4',
 'logentry-move-move-noredirect'       => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى $4 دون ترك تحويلة',
 'logentry-move-move_redir'            => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى التحويلة $4',
 'logentry-move-move_redir-noredirect' => '{{GENDER:$2|نقل|نقلت}} $1 صفحة $3 إلى التحويلة $4 دون ترك تحويلة',
+'logentry-newusers-newusers'          => '$1 {{GENDER:$2|created}} حساب أحد المستخدمين',
+'logentry-newusers-create'            => '$1 {{GENDER:$2|created}} حساب أحد المستخدمين',
+'logentry-newusers-create2'           => '$1 {{GENDER:$2|created}} {{GENDER:$4|حساب أحد المستخدمين }} $3',
 'logentry-newusers-autocreate'        => 'حساب  $1  قد  {{GENDER:$2| استحدث}} تلقائياً',
 'newuserlog-byemail'                  => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
 

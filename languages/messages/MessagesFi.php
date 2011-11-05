@@ -906,7 +906,6 @@ Huomaa, ettet voi lähettää sähköpostia {{GRAMMAR:genitive|{{SITENAME}}}} ka
 IP-osoitteesi on $3 ja estotunnus on #$5.
 Liitä kaikki yllä olevat tiedot mahdollisiin kyselyihisi.",
 'blockednoreason'                  => '(syytä ei annettu)',
-'whitelistedittitle'               => 'Sisäänkirjautuminen vaaditaan muokkaamiseen',
 'whitelistedittext'                => 'Sinun täytyy $1, jotta voisit muokata sivuja.',
 'confirmedittext'                  => 'Et voi muokata sivuja, ennen kuin olet varmentanut sähköpostiosoitteesi. Voit tehdä varmennuksen [[Special:Preferences|asetussivulla]].',
 'nosuchsectiontitle'               => 'Pyydettyä osiota ei ole',

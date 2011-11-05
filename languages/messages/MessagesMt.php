@@ -878,7 +878,6 @@ Għandek tkun taf li ma tistax tuża l-faċilità ta' \"ibgħat email lil dan l-
 L-IP kurrenti tiegħek huwa \$3, u l-ID ta' l-imblukkar huwa #\$5.<br />
 Jekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",
 'blockednoreason'                  => 'ma ingħatat l-ebda raġuni',
-'whitelistedittitle'               => "Trid tidħol sabiex tkun tista' timmodifika l-paġna",
 'whitelistedittext'                => "Int trid $1 biex tkun tista' timodifika l-paġni.",
 'confirmedittext'                  => "Jinħtieġ li tikkonferma l-indirizz tal-e-mail tiegħek sabiex tkun tista' timmodifika l-paġni.
 Jekk jogħġbok, issettja u kkonferma l-indirizz tal-e-mail tiegħek mill-[[Special:Preferences|preferenzi tal-utent]].",

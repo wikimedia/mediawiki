@@ -1024,8 +1024,12 @@ $messages['ang'] = array(
 /** Arabic (العربية)
  * @author Meno25
  * @author OsamaK
+ * @author روخو
  */
 $messages['ar'] = array(
+	'config-desc' => 'مثبت لميدياويكي',
+	'config-title' => 'ميدياويكي 1$ التثبيت',
+	'config-information' => 'معلومات',
 	'config-back' => '→ ارجع',
 	'config-continue' => 'استمر ←',
 	'config-page-language' => 'اللغة',

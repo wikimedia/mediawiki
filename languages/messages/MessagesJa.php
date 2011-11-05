@@ -992,7 +992,6 @@ $1または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 現在利用中のIPアドレスは$3 、このブロックIDは&#x23;$5です。
 問い合わせを行う際には、この情報を必ず書いてください。",
 'blockednoreason'                  => '理由が設定されていません',
-'whitelistedittitle'               => '編集にはログインが必要',
 'whitelistedittext'                => 'このページを編集するには$1する必要があります。',
 'confirmedittext'                  => 'ページの編集を始める前にメールアドレスの確認をする必要があります。
 [[Special:Preferences|個人設定]]でメールアドレスを設定し、確認を行ってください。',

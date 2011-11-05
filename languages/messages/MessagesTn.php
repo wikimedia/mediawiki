@@ -103,13 +103,12 @@ O ipuletse akhaonte. O seka wa lebala go fetola tse o di dikgatlhegelo tsa gago 
 'createaccount'      => 'Ipulela tsebe',
 
 # Edit pages
-'summary'            => 'Tshoboko:',
-'minoredit'          => 'Se ke paakanyo e potlana',
-'watchthis'          => 'Lebelela tsebe e',
-'savearticle'        => 'Boloka tsebe',
-'showpreview'        => 'Supa gore go tlaa lebega jang',
-'showdiff'           => 'Supa diphetogo',
-'whitelistedittitle' => 'Ikwadiso e a tlhokafala fa o batla go baakanya sengwe',
+'summary'     => 'Tshoboko:',
+'minoredit'   => 'Se ke paakanyo e potlana',
+'watchthis'   => 'Lebelela tsebe e',
+'savearticle' => 'Boloka tsebe',
+'showpreview' => 'Supa gore go tlaa lebega jang',
+'showdiff'    => 'Supa diphetogo',
 
 # History pages
 'currentrev'          => 'Dipaakanyo tsa sešeng',

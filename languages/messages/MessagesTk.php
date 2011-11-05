@@ -601,7 +601,6 @@ Bellik: [[Special:Preferences|Ulanyjy ileri tutmalaryňyza]] dogry bir e-poçta 
 Häzirki IP adresiňiz $3, blokirleme belgiňiz bolsa #$5.
 Ýokaryda görkezilen ähli jikme-jiklikleri ähli ýüztutmalaryňyza girizmegiňizi haýyş edýäris.',
 'blockednoreason'                  => 'sebäp görkezilmedik',
-'whitelistedittitle'               => 'Redaktirlemek üçin sessiýa açmaly',
 'whitelistedittext'                => 'Sahypa redaktirlemek üçin $1.',
 'confirmedittext'                  => 'Sahypa redaktirlemäp başlamankaňyz e-poçta adresiňizi tassyklamalysyňyz.
 [[Special:Preferences|Ulanyjy ileri tutmalaryňyza]] e-poçta adresiňizi ýazyp tassyklamagyňyzy haýyş edýäris.',

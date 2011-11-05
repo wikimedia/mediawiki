@@ -649,7 +649,6 @@ naserraan ti pinagusar na.
 Ti tatta nga IP addressmo ket $3, ken ti ID ti serra ket #$5.
 Pangaasi ta iraman mo amin dagiti detalye ti amin nga pinagdamag mo.',
 'blockednoreason'                  => 'awan ti naited nga rason',
-'whitelistedittitle'               => 'Masapul nga nakastrekka tapno makabaliwan ka',
 'whitelistedittext'                => 'Masapul nga $1 ka tapno makabaliwan iti pampanid.',
 'confirmedittext'                  => 'Masapul nga pasingkedan ti e-surat mo tapno makabaliw ka kadagit panid.
 Pangngaasim nga ikabil ken ipapudnom ti e-suratmo idiay [[Special:Preferences|kaykayat dagiti agar-aramat ]].',

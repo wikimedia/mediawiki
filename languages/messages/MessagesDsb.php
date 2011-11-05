@@ -747,7 +747,6 @@ Wobmysli, až njamóžoš funkciju "Toś tomu wužywarjeju e-mail pósłaś" wu�
 Twója aktualna IP-adresa jo $3 a ID blokěrowanja jo #$5.
 Zapśimjejśo pšosym wše górjejce pomjenjowane drobnosći do wšych napšašowanjow, kótarež cyniš.',
 'blockednoreason'                  => 'Pśicyna njejo dana',
-'whitelistedittitle'               => 'Za wobźěłanje dejš se pśizjawiś',
 'whitelistedittext'                => 'Musyš se $1, aby mógał boki wobźěłowaś.',
 'confirmedittext'                  => 'Nježli až móžoš źěłaš, musyš swóju e-mailowu adresu wobkšuśiś. Pšosym dodaj a wobkšuś swóju e-mailowu adresu w [[Special:Preferences|nastajenjach]].',
 'nosuchsectiontitle'               => 'Wótrězk njedajo se namakaś',

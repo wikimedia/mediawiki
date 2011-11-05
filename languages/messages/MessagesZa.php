@@ -178,14 +178,13 @@ $messages = array(
 'nologinlink'             => 'Laeb bouxdeiz',
 
 # Edit pages
-'summary'            => 'Saegmangj:',
-'minoredit'          => 'Di-nej gaij noix',
-'watchthis'          => 'Gamyawj yieb neix',
-'savearticle'        => 'Zonzdiuz mae-nej',
-'showpreview'        => 'Okqhaej piu-ngoengx',
-'showdiff'           => 'Okqhaej gaeqgaei',
-'whitelistedittitle' => 'Laezdiuz haeuj aiq naej san-zonz',
-'newarticle'         => '（Moq）',
+'summary'     => 'Saegmangj:',
+'minoredit'   => 'Di-nej gaij noix',
+'watchthis'   => 'Gamyawj yieb neix',
+'savearticle' => 'Zonzdiuz mae-nej',
+'showpreview' => 'Okqhaej piu-ngoengx',
+'showdiff'    => 'Okqhaej gaeqgaei',
+'newarticle'  => '（Moq）',
 
 # Diffs
 'editundo' => 'siu',

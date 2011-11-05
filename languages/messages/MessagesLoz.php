@@ -372,8 +372,6 @@ $1 bolok a. Lyangutukezireason sa ''$2''.
 A bulelezi $1/[[{{MediaWiki:Grouppage-sysop}}|xetewi sesop]] bolok.
 A ni sebilize 'meli sebelu' ka a ni afi adresi di meli kwa zwa [[Special:Preferences|petohoni]] e no sa bolok di sebelize.
 A IP sa $3, e ID di bolok sa #$5. Bulelezi IP e ID kwa bukizisize.",
-'blockedoriginalsource'      => "Olige di '''$1''' sa kamukile:",
-'blockededitsource'          => "Selt di '''zwa hloli ye ng'i''' di '''$1''' sa kamukile:",
 'whitelistedittext'          => "A sa $1 di hloli ye ng'i petulo.",
 'nosuchsectiontitle'         => 'Ni di lyangutukezi',
 'loginreqlink'               => 'menuhile',

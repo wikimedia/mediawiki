@@ -412,7 +412,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'summary-preview'        => 'ਸੰਖੇਪ ਝਲਕ:',
 'subject-preview'        => 'ਵਿਸ਼ਾ/ਹੈੱਡਲਾਈਨ ਝਲਕ:',
 'blockedtitle'           => 'ਯੂਜ਼ਰ ਬਲਾਕ ਕੀਤਾ ਗਿਆ',
-'whitelistedittitle'     => 'ਸੋਧਣ ਲਈ ਲਾਗਇਨ ਕਰਨਾ ਪਵੇਗਾ',
 'whitelistedittext'      => 'ਪੇਜ ਸੋਧਣ ਲਈ ਤੁਹਾਨੂੰ $1 ਕਰਨਾ ਪਵੇਗਾ।',
 'nosuchsectiontitle'     => 'ਇੰਝ ਦਾ ਕੋਈ ਸ਼ੈਕਸ਼ਨ ਨਹੀਂ ਹੈ।',
 'loginreqtitle'          => 'ਲਾਗਇਨ ਚਾਹੀਦਾ ਹੈ',

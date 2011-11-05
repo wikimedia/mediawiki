@@ -501,7 +501,6 @@ Por preventer misusa, solmen un parol-clave amemora va esser inviat per {{PLURAL
 'showdiff'                         => 'Monstrar changes',
 'anoneditwarning'                  => "'''Advertiment:''' Vu ne esser registrat.
 Tui adresse de IP va esser registrat in historico de redactiones de ti págine.",
-'whitelistedittitle'               => 'Exige que vu es identificat por redacter',
 'whitelistedittext'                => 'Vu have que $1 por redacter págines.',
 'loginreqtitle'                    => 'Apertion de session obligatori',
 'accmailtitle'                     => 'Li passa-parol es inviat.',

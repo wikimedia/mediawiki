@@ -747,7 +747,6 @@ Pakitandaang hindi mo maaaring gamitin ang kasangkapang-katangiang "padalhan ng 
 Ang pangkasalukuyang adres mo ng IP ay $3, at ang ID ng pagharang ay #$5.
 Pakisama ang lahat ng mga detalyeng nasa itaas sa anumang pagtatanong na gagawin mo.',
 'blockednoreason'                  => 'walang binigay na dahilan',
-'whitelistedittitle'               => 'Paglagda kailangan para makapagbago',
 'whitelistedittext'                => 'Kailangan mong $1 para makapagbago ng mga pahina.',
 'confirmedittext'                  => 'Kailangang kumpirmahin mo muna ang adres ng iyong e-liham bago makapagbago ng mga pahina.
 Pakihanda at patotohanan ang adres ng e-liham sa pamamagitan ng iyong [[Special:Preferences|kagustuhan ng tagagamit]].',

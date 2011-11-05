@@ -928,7 +928,6 @@ Note que para utilizar a funcionalidade "Contactar utilizador" precisa de ter um
 O seu endereço IP neste momento é $3 e a identificação (ID) do bloqueio é #$5.
 Inclua todos os detalhes acima em quaisquer contactos relacionados com este bloqueio, por favor.',
 'blockednoreason'                  => 'sem motivo especificado',
-'whitelistedittitle'               => 'É necessário autenticar-se para editar páginas',
 'whitelistedittext'                => 'Precisa de $1 para poder editar páginas.',
 'confirmedittext'                  => 'Precisa de confirmar o seu endereço de correio electrónico antes de começar a editar páginas.
 Introduza e valide o endereço através das [[Special:Preferences|preferências do utilizador]], por favor.',

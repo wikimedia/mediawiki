@@ -13,6 +13,7 @@
  * @author Reedy
  * @author Robby
  * @author Urhixidur
+ * @author Zinneke
  * @author לערי ריינהארט
  */
 
@@ -538,6 +539,7 @@ Ufro: $2',
 'actionthrottledtext'  => 'Fir géint de Spam virzegoen, ass dës Aktioun esou programméiert datt Dir se an enger kuerzer Zäit nëmme limitéiert dacks maache kënnt. Dir hutt dës Limite iwwerschratt. Versicht et w.e.g. an e puer Minutten nach eng Kéier.',
 'protectedpagetext'    => 'Dës Säit ass fir Ännerunge gespaart.',
 'viewsourcetext'       => 'Dir kënnt de Quelltext vun dëser Säit kucken a kopéieren:',
+'viewyourtext'         => "Dir kënnt de Quelltext vun '''Ären Ännerungen''' op dëser Säit kucken a kopéieren:",
 'protectedinterface'   => 'Op dëser Säit fannt Dir Text fir de Sprooch-Interface vun der Software an dofir ass si gespaart fir Mëssbrauch ze verhënneren.',
 'editinginterface'     => "'''Opgepasst:''' Dir sidd am Gaang, eng Säit z'änneren, déi do ass, fir Interface-Text fir d'Software ze liwweren. Ännerungen op dëser Säit änneren den Interface-Text, jee no Kontext, op allen oder verschiddene Säiten, déi vun alle Benotzer gesi ginn. Fir d'Iwwersetzungen z'änneren invitéiere mir Iech de [http://translatewiki.net/wiki/Main_Page?setlang=lb Projet translatewiki.net] vun den internationale Messagen ze benotzen.",
 'sqlhidden'            => '(SQL-Offro verstoppt)',
@@ -726,13 +728,13 @@ Temporärt Passwuert: $2',
 # Edit pages
 'summary'                          => 'Resumé:',
 'subject'                          => 'Sujet/Iwwerschrëft:',
-'minoredit'                        => 'Kleng Ännerung',
+'minoredit'                        => 'Dëst ass just eng kleng Ännerung',
 'watchthis'                        => 'Dës Säit iwwerwaachen',
 'savearticle'                      => 'Säit späicheren',
 'preview'                          => 'Kucken ouni ofzespäicheren',
 'showpreview'                      => 'Kucken ouni ofzespäicheren',
 'showlivepreview'                  => 'Live-Kucken ouni ofzespäicheren',
-'showdiff'                         => 'Weis Ännerungen',
+'showdiff'                         => 'Ännerunge weisen',
 'anoneditwarning'                  => 'Dir sidd net ageloggt. Dowéinst gëtt amplaz vun engem Benotzernumm Är IP Adress am Historique vun dëser Säit gespäichert.',
 'anonpreviewwarning'               => "''Dir sidd net ageloggt. Wann Dir ofspäichert gëtt Är IP-Adress an der Lëscht vun de Versioune vun dëser Säit enregistréiert.''",
 'missingsummary'                   => "'''Erënnerung:''' Dir hutt kee Resumé aginn. Wann Dir nachemol op \"Säit ofspäicheren\" klickt, gëtt är Ännerung ouni Resumé ofgespäichert.",
@@ -775,7 +777,6 @@ Bedenkt datt Dir d\'Fonctioun "Dësem Benotzer eng E-Mail schécken" benotze kë
 Är aktuell IP-Adress ass $3 an d\'Nummer vun Ärer Spär ass $5.
 Gitt dës Donnéeë w.e.g bei allen Ufroen zu dëser Spär un.',
 'blockednoreason'                  => 'Kee Grond uginn',
-'whitelistedittitle'               => "Login noutwännesch fir z'änneren",
 'whitelistedittext'                => 'Dir musst Iech $1, fir Säiten änneren ze kënnen.',
 'confirmedittext'                  => 'Dir musst är E-Mail-Adress confirméieren, ier Dir Ännerunge maache kënnt.
 Gitt w.e.g. eng E-Mailadrss a validéiert se op äre [[Special:Preferences|Benotzerastellungen]].',
@@ -1450,14 +1451,14 @@ Si muss manner wéi $1 {{PLURAL:$1|Zeechen|Zeechen}} hunn.',
 'recentchanges-label-unpatrolled'   => 'Dës Ännerung gouf nach net nogekuckt',
 'rcnote'                            => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerungen}} {{PLURAL:$2|vum leschten Dag|vun de leschten '''$2''' Deeg}}, Stand: $4 ëm $5 Auer.",
 'rcnotefrom'                        => "Ugewise ginn d'Ännerunge vum '''$2''' un (maximal '''$1''' Ännerunge gi gewisen).",
-'rclistfrom'                        => 'Weis Ännerunge vu(n) $1 un',
+'rclistfrom'                        => 'Ännerunge vu(n) $1 u weisen',
 'rcshowhideminor'                   => 'Kleng Ännerunge $1',
 'rcshowhidebots'                    => 'Botte $1',
 'rcshowhideliu'                     => 'Ugemellte Benotzer $1',
 'rcshowhideanons'                   => 'Anonym Benotzer $1',
 'rcshowhidepatr'                    => 'iwwerwaacht Ännerunge $1',
 'rcshowhidemine'                    => 'Meng Ännerunge $1',
-'rclinks'                           => 'Weis déi lescht $1 Ännerunge vun de leschten $2 Deeg.<br />$3',
+'rclinks'                           => 'Déi lescht $1 Ännerunge vun de leschten $2 Deeg weisen.<br />$3',
 'diff'                              => 'Ënnerscheed',
 'hist'                              => 'Versiounen',
 'hide'                              => 'verstoppen',
@@ -2057,7 +2058,7 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 'watchlistcontains'    => 'Op ärer Iwwerwaachungslëscht $1 {{PLURAL:$1|steet $1 Säit|stinn $1 Säiten}}.',
 'iteminvalidname'      => "Problem mat dem Objet '$1', ongëltegen Numm ...",
 'wlnote'               => "Hei {{PLURAL:$1|ass déi lescht Ännerung|sinn déi lescht '''$1''' Ännerunge}} vun {{PLURAL:$2|der leschter Stonn|de leschte(n) '''$2''' Stonnen}}.",
-'wlshowlast'           => "Weis d'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg).",
+'wlshowlast'           => "D'Ännerunge vun de leschte(n) $1 Stonnen, $2 Deeg oder $3 (an de leschten 30 Deeg) weisen.",
 'watchlist-options'    => 'Optioune vun der Iwwerwaachungslëscht',
 
 # Displayed when you click the "watch" button and it is in the process of watching

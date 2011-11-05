@@ -513,7 +513,6 @@ Tandanan mung e me maliaring gamitan ing serbisiung "i e-mail me ining talagamit
 Ini ing kekang block ID: $5
 Pakibanggit me iting ID neng atin kang pamangutang.',
 'blockednoreason'                  => 'alang mibieng sangkan',
-'whitelistedittitle'               => 'Kailangang mag-login bang makapag-edit',
 'whitelistedittext'                => 'Kailangan mung $1 bayu ka makapag-edit bulung.',
 'confirmedittext'                  => "Kailangan meng kumpirman ing kekang e-mail address bayo mo a-edit deting bulung.
 Pakisulat me at patutuan ing kekang e-mail address kapamilata'ning [[Special:Preferences|pinili ning talagamit]] (user preferences).",

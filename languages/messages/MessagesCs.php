@@ -967,7 +967,6 @@ Uvědomte si však, že funkci „Poslat e-mail tomuto uživateli“ nemůžete 
 Vaše současná IP adresa je $3, číslo vašeho zablokování je #$5.
 Prosíme, uveďte tyto údaje při komunikaci se správci.",
 'blockednoreason'                  => 'důvod nebyl zadán',
-'whitelistedittitle'               => 'Pro editaci je vyžadováno přihlášení',
 'whitelistedittext'                => 'Pro editaci se musíte $1.',
 'confirmedittext'                  => 'Pro editaci stránek je vyžadováno potvrzení vaší e-mailové adresy. Na stránce [[Special:Preferences|nastavení]] zadejte a nechte potvrdit svou e-mailovou adresu.',
 'nosuchsectiontitle'               => 'Sekce nenalezena',

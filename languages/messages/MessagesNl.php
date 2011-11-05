@@ -711,6 +711,7 @@ Probeer het over een aantal minuten opnieuw.',
 'protectedpagetext'    => 'Deze pagina is beveiligd.
 Bewerken is niet mogelijk.',
 'viewsourcetext'       => 'U kunt de brontekst van deze pagina bekijken en kopiëren:',
+'viewyourtext'         => "U kunt '''uw bewerkingen''' aan de brontekst van deze pagina bekijken en kopiëren:",
 'protectedinterface'   => 'Deze pagina bevat tekst voor berichten van de software en is beveiligd om misbruik te voorkomen.',
 'editinginterface'     => "'''Waarschuwing:''' U bewerkt een pagina die interfacetekst voor de software bevat.
 Bewerkingen op deze pagina beïnvloeden de gebruikersinterface van iedereen.
@@ -979,7 +980,6 @@ U kunt geen gebruik maken van de functie "Deze gebruiker e-mailen", tenzij u een
 Uw huidige IP-adres is $3 en het blokkadenummer is #$5.
 Vermeld alle bovenstaande gegevens als u ergens op deze blokkade reageert.',
 'blockednoreason'                  => 'geen reden opgegeven',
-'whitelistedittitle'               => 'Voor bewerken is aanmelden verplicht',
 'whitelistedittext'                => "U moet $1 om pagina's te bewerken.",
 'confirmedittext'                  => 'U moet uw e-mailadres bevestigen voor u kunt bewerken.
 Voer uw e-mailadres in en bevestig het via [[Special:Preferences|uw voorkeuren]].',

@@ -427,7 +427,6 @@ $messages = array(
 'summary-preview'                  => 'Ивд афыст уыдзæн:',
 'blockedtitle'                     => 'Архайæг хъодыгонд æрцыд',
 'blockednoreason'                  => 'аххос амынд не ’рцыд',
-'whitelistedittitle'               => 'Ацы текст ивынмæ хъуамæ дæхи бацамонай системæйæн',
 'loginreqtitle'                    => 'Хъуамæ дæхи бацамонай',
 'accmailtitle'                     => 'Пароль рарвыст у.',
 'newarticle'                       => '(Ног)',

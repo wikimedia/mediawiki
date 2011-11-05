@@ -867,7 +867,6 @@ Si noti che la funzione 'Scrivi all'utente' non è attiva se non è stato regist
 L'indirizzo IP attuale è $3, il numero ID del blocco è #$5
 Si prega di specificare tutti i dettagli qui inclusi nel compilare qualsiasi richiesta di chiarimenti.",
 'blockednoreason'                  => 'nessuna motivazione indicata',
-'whitelistedittitle'               => 'Accesso necessario per la modifica delle pagine',
 'whitelistedittext'                => 'Per modificare le pagine è necessario $1.',
 'confirmedittext'                  => "Per essere abilitati alla modifica delle pagine è necessario confermare il proprio indirizzo e-mail. Per impostare e confermare l'indirizzo servirsi delle [[Special:Preferences|preferenze]].",
 'nosuchsectiontitle'               => 'Impossibile trovare la sezione',

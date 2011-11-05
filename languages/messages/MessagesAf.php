@@ -823,7 +823,6 @@ Neem kennis dat u slegs die 'e-pos die gebruiker' funksionaliteit kan gebruik as
 U huidige IP-adres is $3 en die blokkadenommer is #$5.
 Vermeld asseblief die bovermelde bloknommer as u die saak rapporteer,",
 'blockednoreason'                  => 'geen rede verskaf nie',
-'whitelistedittitle'               => 'U moet aangeteken wees om te kan redigeer.',
 'whitelistedittext'                => 'U moet $1 om bladsye te wysig.',
 'confirmedittext'                  => 'U moet u e-posadres bevestig voor u bladsye wysig. Verstel en bevestig asseblief u e-posadres by u [[Special:Preferences|voorkeure]].',
 'nosuchsectiontitle'               => 'Kan nie die afdeling vind nie',

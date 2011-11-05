@@ -960,7 +960,6 @@ No puedes utilizar la función «enviar correo electrónico a este usuario»  a 
 Tu actual dirección IP es $3, y el identificador del bloqueo es #$5.
 Por favor incluye todos los datos aquí mostrados en cualquier consulta que hagas.",
 'blockednoreason'                  => 'no se ha especificado el motivo',
-'whitelistedittitle'               => 'Se requiere identificación para editar.',
 'whitelistedittext'                => 'Tienes que $1 para editar artículos.',
 'confirmedittext'                  => 'Debes confirmar tu dirección electrónica antes de editar páginas. Por favor, establece y valida una dirección electrónica a través de tus [[Special:Preferences|preferencias de usuario]].',
 'nosuchsectiontitle'               => 'Sección no encontrada',

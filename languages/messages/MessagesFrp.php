@@ -662,6 +662,7 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'badarticleerror'      => 'Cela accion pôt pas étre fêta sur ceta pâge.',
 'cannotdelete'         => 'Empossiblo de suprimar la pâge ou ben lo fichiér « $1 ».
 La suprèssion at pôt-étre ja étâ fêta per quârqu’un d’ôtro.',
+'cannotdelete-title'   => 'Empossiblo de suprimar la pâge « $1 »',
 'badtitle'             => 'Crouyo titro',
 'badtitletext'         => 'Lo titro de pâge demandâ est fôx, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
 Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
@@ -937,7 +938,6 @@ Notâd que vos porréd pas utilisar la fonccionalitât « Lui mandar un mèssâj
 Voutra adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
 Volyéd spècefiar cetes endicacions dens totes les requétes que vos faréd.",
 'blockednoreason'                  => 'gins de rêson balyê',
-'whitelistedittitle'               => 'Branchement nècèssèro por changiér lo contegnu',
 'whitelistedittext'                => 'Vos dête étre $1 por avêr la pèrmission de changiér lo contegnu.',
 'confirmedittext'                  => 'Vos dête confirmar voutra adrèce èlèctronica devant que changiér les pâges.
 Volyéd buchiér et pués validar voutra adrèce èlèctronica dens voutres [[Special:Preferences|prèferences]].',
@@ -1567,7 +1567,7 @@ Ceta enformacion serat publica.',
 'right-editusercssjs'         => 'Changiér los fichiérs CSS et JS d’ôtros utilisators',
 'right-editusercss'           => 'Changiér los fichiérs CSS d’ôtros utilisators',
 'right-edituserjs'            => 'Changiér los fichiérs JS d’ôtros utilisators',
-'right-rollback'              => 'Rèvocar rêdo los changements u dèrriér contributor d’una pâge spècefica',
+'right-rollback'              => 'Rèvocar rêdo los changements u dèrriér utilisator qu’at changiê una pâge spècefica',
 'right-markbotedits'          => 'Marcar des changements rèvocâs coment èyent étâ fêts per un bot',
 'right-noratelimit'           => 'Pas étre afèctâ per les limites de quota',
 'right-import'                => 'Importar des pâges dês d’ôtros vouiquis',
@@ -1617,6 +1617,7 @@ Ceta enformacion serat publica.',
 'action-suppressionlog'       => 'vêre cél jornal privâ',
 'action-block'                => 'blocar en ècritura cél utilisator',
 'action-protect'              => 'changiér los nivéls de protèccion por cela pâge',
+'action-rollback'             => 'rèvocar rêdo los changements u dèrriér utilisator qu’at changiê una pâge spècefica',
 'action-import'               => 'importar cela pâge dês un ôtro vouiqui',
 'action-importupload'         => 'importar cela pâge dês un fichiér tèlèchargiê',
 'action-patrol'               => 'marcar lo changement ux ôtros coment survelyê',

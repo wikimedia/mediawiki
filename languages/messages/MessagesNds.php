@@ -772,7 +772,6 @@ Wenn du över de Sperr snacken wist, denn mell di bi $1 oder een vun de [[{{Medi
 * Grund för’n Block: $2
 * Wokeen hett blockt: $1",
 'blockednoreason'                  => 'keen Grund angeven',
-'whitelistedittitle'               => 'de Sied to ännern is dat nödig, anmellt to wesen',
 'whitelistedittext'                => 'Du musst di $1, dat du Sieden ännern kannst.',
 'confirmedittext'                  => 'Du musst dien E-Mail-Adress bestätigen, dat du wat ännern kannst. Stell dien E-Mail-Adress in de [[Special:Preferences|{{int:preferences}}]] in un bestätig ehr.',
 'nosuchsectiontitle'               => 'Dissen Afsnitt gifft dat nich',

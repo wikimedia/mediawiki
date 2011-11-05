@@ -556,7 +556,8 @@ Poizvedba: $2',
 'actionthrottledtext'  => 'Kot ukrep proti smetju, je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.
 Prosimo, poskusite znova čez nekaj minut.',
 'protectedpagetext'    => 'Ta stran je bila zaklenjena za preprečitev urejanja.',
-'viewsourcetext'       => 'Lahko si ogledujete in kopirate vsebino te stran:',
+'viewsourcetext'       => 'Lahko si ogledate in kopirate vsebino te strani:',
+'viewyourtext'         => "Lahko si ogledate in kopirate vsebino '''vaših urejanj''' te strani:",
 'protectedinterface'   => 'Prikazana stran vsebuje besedilo vmesnika programja in je zaradi preprečevanja zlorabe zaščitena.',
 'editinginterface'     => "'''Opozorilo:''' Urejate stran, ki vsebuje besedilo ali drug element uporabniškega vmesnika programja.
 Spremembe te strani bodo vplivale na podobo uporabniškega vmesnika.
@@ -821,7 +822,6 @@ Pomnite, da ne morete uporabljati funkcije »{{:MediaWiki:Emailuser}}«, dokler 
 
 Vaš trenutni IP-naslov je $3, ID blokiranja pa #$5. Prosimo, vključite ta ID v vsako zastavljeno vprašanje.",
 'blockednoreason'                  => 'razlog ni podan',
-'whitelistedittitle'               => 'Za urejanje se morate prijaviti',
 'whitelistedittext'                => 'Za urejanje strani se morate $1.',
 'confirmedittext'                  => 'Pred urejanjem strani morate potrditi svoj e-poštni naslov.
 Prosimo, da ga z uporabo [[Special:Preferences|uporabniških nastavitev]] vpišete in potrdite.',

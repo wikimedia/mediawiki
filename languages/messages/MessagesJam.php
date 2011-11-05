@@ -594,7 +594,6 @@ Nuot se yu kyaahn yuuz di "e-miel dis yuuza" fiicha anles yu gat a valid e-miel 
 Yu korant IP ajress a $3, ahn di blak ID a #$5.
 Begyu inkluud aal abov ditiel ina eni kwieri yu mek.',
 'blockednoreason'                  => 'no riizn no gi',
-'whitelistedittitle'               => 'Lagiin rikwaya fi edit',
 'whitelistedittext'                => 'Yu afi $1 fi edit piej',
 'confirmedittext'                  => 'Yu mos kanfoerm yu e-miel ajres bifuo yu edit piej.
 Begyu set ahn validiet yu e-miel ajres chruu yu [[Special:Preferences|yuuza prefransdem]].',
