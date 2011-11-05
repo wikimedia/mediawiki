@@ -641,13 +641,12 @@ class WebInstaller extends Installer {
 		array_shift( $args );
 		$args = array_map( 'htmlspecialchars', $args );
 		$text = wfMsgReal( $msg, $args, false, false, false );
-		$html = htmlspecialchars( $text );
-		$html = $this->parse( $html, true );
+		$html = $this->parse( $text, true );
 
 		return "<div class=\"mw-help-field-container\">\n" .
-			   "<span class=\"mw-help-field-hint\">" . wfMsgHtml( 'config-help' ) . "</span>\n" .
-			   "<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
-			   "</div>\n";
+			"<span class=\"mw-help-field-hint\">" . wfMsgHtml( 'config-help' ) . "</span>\n" .
+			"<span class=\"mw-help-field-data\">" . $html . "</span>\n" .
+			"</div>\n";
 	}
 
 	/**
