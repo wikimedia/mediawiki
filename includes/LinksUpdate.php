@@ -328,7 +328,7 @@ class LinksUpdate {
 	 * @param $insertions
 	 * @param $fromField
 	 */
-	function dumbTableUpdate( $table, $insertions, $fromField ) {
+	private function dumbTableUpdate( $table, $insertions, $fromField ) {
 		$this->mDb->delete( $table, array( $fromField => $this->mId ), __METHOD__ );
 		if ( count( $insertions ) ) {
 			# The link array was constructed without FOR UPDATE, so there may
@@ -392,7 +392,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getLinkInsertions( $existing = array() ) {
+	private function getLinkInsertions( $existing = array() ) {
 		$arr = array();
 		foreach( $this->mLinks as $ns => $dbkeys ) {
 			$diffs = isset( $existing[$ns] )
@@ -414,7 +414,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getTemplateInsertions( $existing = array() ) {
+	private function getTemplateInsertions( $existing = array() ) {
 		$arr = array();
 		foreach( $this->mTemplates as $ns => $dbkeys ) {
 			$diffs = isset( $existing[$ns] ) ? array_diff_key( $dbkeys, $existing[$ns] ) : $dbkeys;
@@ -435,7 +435,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getImageInsertions( $existing = array() ) {
+	private function getImageInsertions( $existing = array() ) {
 		$arr = array();
 		$diffs = array_diff_key( $this->mImages, $existing );
 		foreach( $diffs as $iname => $dummy ) {
@@ -452,7 +452,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getExternalInsertions( $existing = array() ) {
+	private function getExternalInsertions( $existing = array() ) {
 		$arr = array();
 		$diffs = array_diff_key( $this->mExternals, $existing );
 		foreach( $diffs as $url => $dummy ) {
@@ -473,7 +473,7 @@ class LinksUpdate {
 	 *
 	 * @return array
 	 */
-	function getCategoryInsertions( $existing = array() ) {
+	private function getCategoryInsertions( $existing = array() ) {
 		global $wgContLang, $wgCategoryCollation;
 		$diffs = array_diff_assoc( $this->mCategories, $existing );
 		$arr = array();
@@ -516,7 +516,7 @@ class LinksUpdate {
 	 *
 	 * @return array
 	 */
-	function getInterlangInsertions( $existing = array() ) {
+	private function getInterlangInsertions( $existing = array() ) {
 		$diffs = array_diff_assoc( $this->mInterlangs, $existing );
 		$arr = array();
 		foreach( $diffs as $lang => $title ) {
@@ -553,7 +553,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getInterwikiInsertions( $existing = array() ) {
+	private function getInterwikiInsertions( $existing = array() ) {
 		$arr = array();
 		foreach( $this->mInterwikis as $prefix => $dbkeys ) {
 			$diffs = isset( $existing[$prefix] ) ? array_diff_key( $dbkeys, $existing[$prefix] ) : $dbkeys;
@@ -574,7 +574,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getLinkDeletions( $existing ) {
+	private function getLinkDeletions( $existing ) {
 		$del = array();
 		foreach ( $existing as $ns => $dbkeys ) {
 			if ( isset( $this->mLinks[$ns] ) ) {
@@ -592,7 +592,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getTemplateDeletions( $existing ) {
+	private function getTemplateDeletions( $existing ) {
 		$del = array();
 		foreach ( $existing as $ns => $dbkeys ) {
 			if ( isset( $this->mTemplates[$ns] ) ) {
@@ -610,7 +610,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getImageDeletions( $existing ) {
+	private function getImageDeletions( $existing ) {
 		return array_diff_key( $existing, $this->mImages );
 	}
 
@@ -620,7 +620,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getExternalDeletions( $existing ) {
+	private function getExternalDeletions( $existing ) {
 		return array_diff_key( $existing, $this->mExternals );
 	}
 
@@ -630,7 +630,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getCategoryDeletions( $existing ) {
+	private function getCategoryDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mCategories );
 	}
 
@@ -640,7 +640,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getInterlangDeletions( $existing ) {
+	private function getInterlangDeletions( $existing ) {
 		return array_diff_assoc( $existing, $this->mInterlangs );
 	}
 
@@ -659,7 +659,7 @@ class LinksUpdate {
 	 * @param $existing array
 	 * @return array
 	 */
-	function getInterwikiDeletions( $existing ) {
+	private function getInterwikiDeletions( $existing ) {
 		$del = array();
 		foreach ( $existing as $prefix => $dbkeys ) {
 			if ( isset( $this->mInterwikis[$prefix] ) ) {
@@ -676,7 +676,7 @@ class LinksUpdate {
 	 *
 	 * @return array
 	 */
-	function getExistingLinks() {
+	private function getExistingLinks() {
 		$res = $this->mDb->select( 'pagelinks', array( 'pl_namespace', 'pl_title' ),
 			array( 'pl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -694,7 +694,7 @@ class LinksUpdate {
 	 *
 	 * @return array
 	 */
-	function getExistingTemplates() {
+	private function getExistingTemplates() {
 		$res = $this->mDb->select( 'templatelinks', array( 'tl_namespace', 'tl_title' ),
 			array( 'tl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -712,7 +712,7 @@ class LinksUpdate {
 	 *
 	 * @return array
 	 */
-	function getExistingImages() {
+	private function getExistingImages() {
 		$res = $this->mDb->select( 'imagelinks', array( 'il_to' ),
 			array( 'il_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -727,7 +727,7 @@ class LinksUpdate {
 	 *
 	 * @return array
 	 */
-	function getExistingExternals() {
+	private function getExistingExternals() {
 		$res = $this->mDb->select( 'externallinks', array( 'el_to' ),
 			array( 'el_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -742,7 +742,7 @@ class LinksUpdate {
 	 *
 	 * @return array
 	 */
-	function getExistingCategories() {
+	private function getExistingCategories() {
 		$res = $this->mDb->select( 'categorylinks', array( 'cl_to', 'cl_sortkey_prefix' ),
 			array( 'cl_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -758,7 +758,7 @@ class LinksUpdate {
 	 *
 	 * @return array
 	 */
-	function getExistingInterlangs() {
+	private function getExistingInterlangs() {
 		$res = $this->mDb->select( 'langlinks', array( 'll_lang', 'll_title' ),
 			array( 'll_from' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -790,7 +790,7 @@ class LinksUpdate {
 	 *
 	 * @return array
 	 */
-	function getExistingProperties() {
+	private function getExistingProperties() {
 		$res = $this->mDb->select( 'page_props', array( 'pp_propname', 'pp_value' ),
 			array( 'pp_page' => $this->mId ), __METHOD__, $this->mOptions );
 		$arr = array();
@@ -804,7 +804,7 @@ class LinksUpdate {
 	 * Return the title object of the page being updated
 	 * @return Title
 	 */
-	function getTitle() {
+	public function getTitle() {
 		return $this->mTitle;
 	}
 
@@ -820,7 +820,7 @@ class LinksUpdate {
 	 * Invalidate any necessary link lists related to page property changes
 	 * @param $changed
 	 */
-	function invalidateProperties( $changed ) {
+	private function invalidateProperties( $changed ) {
 		global $wgPagePropLinkInvalidations;
 
 		foreach ( $changed as $name => $value ) {
