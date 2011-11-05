@@ -383,7 +383,6 @@ $messages = array(
 'subject-preview'    => 'བརྗོད་གཞི་དང་འགོ་བརྗོད་སྔོན་ལྟ།',
 'blockedtitle'       => 'སྤྱོད་མི་བཀག་ཟིན།',
 'blockednoreason'    => 'རྒྱུ་མཚན་བྱིན་མི་འདུག',
-'whitelistedittitle' => 'ནང་འཛུལ་བཟོ་བཅོས་བྱེད་དགོས།',
 'whitelistedittext'  => 'ཤོག་ངོས་རྩོམ་སྒྲིག་བྱེད་པར་ངེས་པར་དུ་$1བྱ་དགོས།',
 'loginreqtitle'      => 'ནང་འཛུལ་བྱ་དགོས།',
 'loginreqlink'       => 'ནང་འཛུལ་',

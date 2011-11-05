@@ -873,7 +873,6 @@ Notatz que podètz pas utilizar la foncionalitat "Mandar un messatge a aqueste u
 Vòstra adreça IP actuala es $3, e lo numèro de blocatge es $5.
 Precisatz aquestas indicacions dins totas las requèstas que faretz.',
 'blockednoreason'                  => 'Cap de rason balhada',
-'whitelistedittitle'               => 'Connexion necessària per modificar lo contengut',
 'whitelistedittext'                => 'Vos cal èsser $1 per modificar las paginas.',
 'confirmedittext'                  => "Vos cal confirmar vòstra adreça electronica abans de modificar l'enciclopèdia. Picatz e validatz vòstra adreça electronica amb l'ajuda de la pagina [[Special:Preferences|preferéncias]].",
 'nosuchsectiontitle'               => 'Impossible de trobar la seccion',

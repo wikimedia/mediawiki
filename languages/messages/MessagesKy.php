@@ -173,17 +173,16 @@ $messages = array(
 'newpassword' => 'Жаңы сырсөз:',
 
 # Edit pages
-'summary'            => 'Кыска түшүндүрүү:',
-'savearticle'        => 'Баракты сактап кой',
-'showpreview'        => 'Алдын ала көрсөт',
-'showdiff'           => 'Өзгөртүүлөрдү көрсөт',
-'whitelistedittitle' => 'Оңдоо үчүн катоодон өтүү зарыл',
-'accmailtitle'       => 'Сырсөз жөнөтүлдү.',
-'accmailtext'        => '"$1" үчүн сырсөз $2 ге жөнөтүлдү.',
-'newarticle'         => '(Жаңы)',
-'editing'            => 'Оңдоо $1',
-'yourtext'           => 'Текстиңиз',
-'yourdiff'           => 'Айырмалар',
+'summary'      => 'Кыска түшүндүрүү:',
+'savearticle'  => 'Баракты сактап кой',
+'showpreview'  => 'Алдын ала көрсөт',
+'showdiff'     => 'Өзгөртүүлөрдү көрсөт',
+'accmailtitle' => 'Сырсөз жөнөтүлдү.',
+'accmailtext'  => '"$1" үчүн сырсөз $2 ге жөнөтүлдү.',
+'newarticle'   => '(Жаңы)',
+'editing'      => 'Оңдоо $1',
+'yourtext'     => 'Текстиңиз',
+'yourdiff'     => 'Айырмалар',
 
 # History pages
 'next'      => 'кийинки',

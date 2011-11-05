@@ -682,6 +682,7 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'badarticleerror'      => 'Tindakan ini tidak dapat dilaksanakan di halaman ini.',
 'cannotdelete'         => 'Halaman atau berkas "$1" tidak dapat dihapus.
 Mungkin telah dihapus oleh orang lain.',
+'cannotdelete-title'   => 'Tidak dapat menghapus halaman "$1"',
 'badtitle'             => 'Judul tidak sah',
 'badtitletext'         => 'Judul halaman yang diminta tidak sah, kosong, atau judul antarbahasa atau antarwiki yang salah sambung.',
 'perfcached'           => 'Data berikut ini diambil dari singgahan dan mungkin bukan data mutakhir:',
@@ -937,7 +938,6 @@ Anda tidak dapat menggunakan fitur "kirim surel ke pengguna ini" kecuali Anda te
 Alamat IP Anda saat ini adalah $3, dan ID pemblokiran adalah #$5.
 Tolong sertakan informasi-informasi ini dalam setiap pertanyaan Anda.',
 'blockednoreason'                  => 'tidak ada alasan yang diberikan',
-'whitelistedittitle'               => 'Perlu masuk log untuk menyunting',
 'whitelistedittext'                => 'Anda harus $1 untuk dapat menyunting halaman.',
 'confirmedittext'                  => 'Anda harus mengkonfirmasikan dulu alamat surel Anda sebelum menyunting halaman.
 Harap masukkan dan validasikan alamat surel Anda melalui [[Special:Preferences|halaman preferensi pengguna]] Anda.',

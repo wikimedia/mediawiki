@@ -517,7 +517,6 @@ Tamsta negalėt nauduotės fonkcėjė „Rašītė gruomata tam nauduotuojō“,
 Tamstas IP adresos īr $3, bluokavėma ID īr $5.
 Prašuom nuruodītė šėtūs doumenis visūmet, kumet kreipiatės diel bluokavėma.",
 'blockednoreason'                  => 'prīžastis nier nuruodīta',
-'whitelistedittitle'               => 'Nuorėnt redagoutė rēk prisėjongtė',
 'whitelistedittext'                => 'Tamsta torėt $1, kū keistomėt poslapius.',
 'nosuchsectiontitle'               => 'Nier tuokė skīrė',
 'loginreqlink'                     => 'prisėjongtė',

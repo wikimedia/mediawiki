@@ -923,7 +923,6 @@ NB: je kunnen de opsie "n bericht sturen" niet gebruken, behalven a\'j n geldig 
 Joew IP-adres is $3 en joew blokkeernummer is $5.
 Geef disse nummers deur a\'j kontakt mit ene opnemen over de blokkering.',
 'blockednoreason'                  => 'gien reden op-egeven',
-'whitelistedittitle'               => "Um disse pagina te bewarken, mö'j je anmelden",
 'whitelistedittext'                => "Um pagina's te kunnen wiezigen, mö'j $1 ween",
 'confirmedittext'                  => "Je mutten je netpostadres bevestigen veurda'j bewarken kunnen. Vul je adres in en bevestig t via [[Special:Preferences|mien veurkeuren]].",
 'nosuchsectiontitle'               => 'Disse seksie besteet niet',

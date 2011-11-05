@@ -466,7 +466,6 @@ Iɣ tklikkit tiklit yaḍn f tjrrayt « {{int:savearticle}} », aẓṛig rad it
 'summary-preview'                  => 'Tiẓṛi  n tagḍwit:',
 'blockedtitle'                     => 'lmostkhdim ad itbloka',
 'blockednoreason'                  => 'ta yan sabab oritfki',
-'whitelistedittitle'               => 'Illa zwar fllak ad tilit ɣ ifalan bac ad tsbadlt ma trit.',
 'whitelistedittext'                => 'Illa fllak ad tilit ɣ $1 bac adak ittuyskar ad tsbadlt mayllan ɣid',
 'confirmedittext'                  => 'Illa fllak ad talst i tansa nk tbratin urta tsbadalt tisniwin.
 Kcm zwar tft tansan nk tbratin ɣ [[Special:Preferences|Timssusmin n umqdac]].',

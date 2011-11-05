@@ -525,9 +525,23 @@ Tiō-sī kóng, tī chit-má iōng chit ê IP bāng-chí ê lâng bē-sái koh k
 
 # Special:PasswordReset
 'passwordreset'              => 'Têng siat bi̍t-bé',
+'passwordreset-text'         => '完成這个表，就通收著一封提醒你口座詳情的電子批。',
 'passwordreset-legend'       => 'Têng siat bi̍t-bé',
+'passwordreset-disabled'     => '佇這个Wiki已經禁止重設密碼',
+'passwordreset-pretext'      => '{{PLURAL:$1||拍下跤資料內底的一个}}',
 'passwordreset-username'     => 'Lí ê iōng-chiá miâ-chheng:',
+'passwordreset-domain'       => '網域：',
+'passwordreset-capture'      => '敢欲看產生的電子批？',
+'passwordreset-capture-help' => '若你選這个框，電子批（包括臨時的密碼）會予你看著，而且傳送予用者。',
 'passwordreset-email'        => 'Tiān-chú-phoe tē-chí:',
+'passwordreset-emailtitle'   => '佇{{SITENAME}}面頂的的口座詳細',
+'passwordreset-emailtext-ip' => '有人（可能是你，對$1這IP）要求發一个{{SITENAME}}（$4）口座詳情的提示。彼个用戶{{PLURAL:$3|是|是}}佮下跤電子批地址有關係：
+
+$2
+
+{{PLURAL:$3|這个臨時密碼|遮的臨時密碼}}會佇{{PLURAL:$5|一工 |$5工}}內到期。
+你這馬應該登入，而且選擇一个新密碼。若是別人做的要求，抑是你已經記
+起來你的密碼，你閣無想欲改，你會當免管這个信息，而且繼續用你的密碼。',
 'passwordreset-emailelement' => 'Iōng-chiá: $1
 Lîm-sî ê bi̍t-bé: $2',
 'passwordreset-emailsent'    => 'Chit hong thê-chhíⁿ ê  tiān-chú-phoe í-keng kià chhut.',
@@ -604,7 +618,6 @@ Lîm-sî ê bi̍t-bé: $2',
 你這馬的IP地址是$3，被封鎖用者ID是 #$5，
 請佇你的查詢當中，註明面頂所有的資料。",
 'blockednoreason'                  => '無寫理由',
-'whitelistedittitle'               => 'Su-iàu teng-ji̍p chiah ē-sái siu-kái',
 'whitelistedittext'                => 'Lí ài $1 chiah ē-sái siu-kái.',
 'confirmedittext'                  => '佇改這頁進前，你愛確認你的電子批地址，
 請透過[[Special:Preferences|用者設便]]的設定來驗證你的電子批地址。',
@@ -849,16 +862,25 @@ $3共禁止的原因是 ''$2''。",
 'revdel-restore-deleted'      => '刣掉去的修訂本',
 'revdel-restore-visible'      => '看會著的修訂本',
 
+# History merging
+'mergehistory-reason' => '理由：',
+
 # Merge log
-'revertmerge' => '取消合併',
+'mergelog'           => '合併記錄',
+'pagemerge-logentry' => '已經共[[$1]]合併到[[$2]] （修訂本到$3）',
+'revertmerge'        => '取消合併',
+'mergelogpagetext'   => '下跤是最近共一頁的歷史合併到另一个的列表',
 
 # Diffs
-'history-title'           => '改"$1"的歷史',
-'difference'              => '(Bô kâng pán-pún ê cheng-chha)',
-'lineno'                  => 'Tē $1 chōa:',
-'compareselectedversions' => 'Pí-phēng soán-te̍k ê pán-pún',
-'editundo'                => 'chhú-siau',
-'diff-multi'              => '（由{{PLURAL:$2|个用者|$2个用者}}的{{PLURAL:$1|一个中央修訂本|$1个中央修訂本}}無顯示）',
+'history-title'            => '改"$1"的歷史',
+'difference'               => '(Bô kâng pán-pún ê cheng-chha)',
+'difference-multipage'     => '（頁中間的精差）',
+'lineno'                   => 'Tē $1 chōa:',
+'compareselectedversions'  => 'Pí-phēng soán-te̍k ê pán-pún',
+'showhideselectedversions' => '顯示／隱藏 選定的修訂版本',
+'editundo'                 => 'chhú-siau',
+'diff-multi'               => '（由{{PLURAL:$2|个用者|$2个用者}}的{{PLURAL:$1|一个中央修訂本|$1个中央修訂本}}無顯示）',
+'diff-multi-manyusers'     => '（{{PLURAL:$2|个用者|$2个用者}}的{{PLURAL:$1|一个中途修訂本|$1个中途修訂本}}無顯示）',
 
 # Search results
 'searchresults'                    => 'Kiám-sek kiat-kó',

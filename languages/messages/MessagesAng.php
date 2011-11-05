@@ -444,7 +444,6 @@ Scēawa þīne wrītunge eft, oþþe brūc þā cartan þe is hērunder tō [[Sp
 'showdiff'                         => 'Hƿearfas sēon',
 'summary-preview'                  => 'Scortnesse forescēaƿe:',
 'blockednoreason'                  => 'nānu racu ȝiefen',
-'whitelistedittitle'               => 'Inmeldunge behōfed to ādihtenne',
 'whitelistedittext'                => 'Þū scealt $1 to ādihtenne sīdan.',
 'nosuchsectiontitle'               => 'Ne mæȝ dǣl findan',
 'loginreqtitle'                    => 'Inmeldung ābeden',

@@ -793,7 +793,6 @@ Vini re : që nuk mund ta përdorni mundësinë "dërgo porosi elektronike" për
 IP adresa juaj e tanishme është $3 dhe ID e bllokimit është #$5.
 Ju lutemi përfshini këto detaje në të gjitha kërkesat që i bëni.',
 'blockednoreason'                  => 'nuk ka arsye',
-'whitelistedittitle'               => 'Duhet të hyni brënda për të redaktuar',
 'whitelistedittext'                => 'Duhet të $1 për të redaktuar artikuj.',
 'confirmedittext'                  => 'Ju duhet së pari ta vërtetoni e-mail adresen para se të redaktoni. Ju lutem plotësoni dhe vërtetoni e-mailin tuaj  te [[Special:Preferences|parapëlqimet]] e juaja.',
 'nosuchsectiontitle'               => '!Asnjë seksion i tillë nuk ekziston',

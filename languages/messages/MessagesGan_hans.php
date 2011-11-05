@@ -529,7 +529,6 @@ $2',
 
 倷𠮶封锁ID系$5。请到查询𠮶时间都要紧标到佢。',
 'blockednoreason'                  => '冇话理由',
-'whitelistedittitle'               => '登入后才编得正',
 'whitelistedittext'                => '起先倷要$1才编得正个页。',
 'confirmedittext'                  => '确认嘞email才能编写个页。麻烦用[[Special:Preferences|参数设置]]设置同确认倷𠮶email。',
 'nosuchsectiontitle'               => '冇个只段落',

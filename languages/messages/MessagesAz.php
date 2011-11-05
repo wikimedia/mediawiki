@@ -634,7 +634,6 @@ Müvəqqəti parol: $2',
 'subject-preview'                  => 'Sərlövhə belə olacaq:',
 'blockedtitle'                     => 'İstifadəçi bloklanıb',
 'blockednoreason'                  => 'səbəb göstərilməyib',
-'whitelistedittitle'               => 'Redaktə üçün daxil olmalısınız',
 'whitelistedittext'                => 'Dəyişiklik edə bilmək üçün $1.',
 'confirmedittext'                  => 'Siz elektron ünvanınızı səhifədə dəyişiklik etməzdən əvvəl göstərməlisiniz.
 Zəhmət olmasa elektron ünvanınızı [[Special:Preferences|istifadəçi nizamlaması]] səhifənizdə göstərib təsdiq ediniz.',

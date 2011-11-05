@@ -827,7 +827,6 @@ Athugaðu að þú getur ekki notað „Senda þessum notanda tölvupóst“ að
 Núverandi vistfang þitt er $3, og bönnunarnúmerið er #$5.
 Vinsamlegast tilgreindu allt að ofanverðu í fyrirspurnum þínum.",
 'blockednoreason'                  => 'engin ástæða gefin',
-'whitelistedittitle'               => 'Innskráningar er þörf til að breyta',
 'whitelistedittext'                => 'Þú þarft að $1 til að breyta síðum.',
 'confirmedittext'                  => 'Þú verður að staðfesta netfangið þitt áður en þú getur breytt síðum. Vinsamlegast stilltu og staðfestu netfangið þitt í gegnum [[Special:Preferences|stillingarnar]].',
 'nosuchsectiontitle'               => 'Hluti ekki til',
@@ -1717,8 +1716,9 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'special-categories-sort-abc'   => 'raða eftir stafrófinu',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Eyddar breytingar notanda',
-'deletedcontributions-title' => 'Eyddar breytingar notanda',
+'deletedcontributions'             => 'Eyddar breytingar notanda',
+'deletedcontributions-title'       => 'Eyddar breytingar notanda',
+'sp-deletedcontributions-contribs' => 'Framlög',
 
 # Special:LinkSearch
 'linksearch'      => 'Leita að útværum tenglum',
@@ -1730,10 +1730,16 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'listusersfrom'      => 'Sýna notendur sem byrja á:',
 'listusers-submit'   => 'Sýna',
 'listusers-noresult' => 'Enginn notandi fannst.',
+'listusers-blocked'  => '(bannaður)',
 
 # Special:ActiveUsers
+'activeusers'            => 'Virkir notendur',
+'activeusers-intro'      => 'Þetta er listi yfir notendur sem hafa verið virkir {{PLURAL:$1|síðasta|síðustu}} $1 {{PLURAL:$1|dag|daga}}.',
+'activeusers-count'      => '$1 {{PLURAL:$1|breyting|breytingar}} á {{PLURAL:$3|síðastliðnum degi|síðustu $3 dögum}}',
+'activeusers-from'       => 'Sýna notendur sem byrja á:',
 'activeusers-hidebots'   => 'Fela vélmenni',
 'activeusers-hidesysops' => 'Fela möppudýr',
+'activeusers-noresult'   => 'Enginn notandi fannst.',
 
 # Special:Log/newusers
 'newuserlogpage'     => 'Skrá yfir nýja notendur',
@@ -2019,9 +2025,19 @@ Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir 
 'ipusubmit'                   => 'Afbanna',
 'unblocked'                   => '[[User:$1|$1]] hefur verið afbannaður',
 'unblocked-id'                => 'Bann $1 hefur verið fjarlægt',
+'blocklist'                   => 'Bannaðir notendur og vistföng',
 'ipblocklist'                 => 'Bannaðir notendur og vistföng',
 'ipblocklist-legend'          => 'Finna bannaðan notanda',
+'blocklist-userblocks'        => 'Fela notendabönn',
+'blocklist-tempblocks'        => 'Fela tímabundin bönn',
+'blocklist-addressblocks'     => 'Fela einstök bönn vistfanga',
+'blocklist-rangeblocks'       => 'Fela fjöldabönn',
+'blocklist-timestamp'         => 'Tímastimpill',
+'blocklist-expiry'            => 'Rennur út',
+'blocklist-by'                => 'Bannaður af',
+'blocklist-reason'            => 'Ástæða',
 'ipblocklist-submit'          => 'Leita',
+'ipblocklist-otherblocks'     => '{{PLURAL:$1|Annað bann|Önnur bönn}}',
 'infiniteblock'               => 'aldrei',
 'expiringblock'               => 'rennur út  $1 $2',
 'anononlyblock'               => 'bara ónafngreindir',
@@ -2556,6 +2572,8 @@ einn titil í hverri línu.
 'filepath-submit' => 'Áfram',
 
 # Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Leita að afriti',
+'fileduplicatesearch-summary'  => 'Leita að afritum sem hafa sama hakk gildi.',
 'fileduplicatesearch-legend'   => 'Leita að afriti',
 'fileduplicatesearch-filename' => 'Skráarnafn:',
 'fileduplicatesearch-submit'   => 'Leita',

@@ -219,27 +219,26 @@ Mishto si te jas kai {{SITENAME}} thai te paruves tiro lav sigo.',
 'image_sample' => 'Misal.jpg',
 
 # Edit pages
-'summary'            => 'Xarno xalyaripen:',
-'minoredit'          => 'Kadava si ek tikno editisarimos',
-'watchthis'          => 'Dikh kadaya patrin',
-'savearticle'        => 'Uxtav i patrin',
-'showpreview'        => 'Dikh sar avelas i patrin',
-'showlivepreview'    => 'Jivutno angledikhipen',
-'showdiff'           => 'Dikh le paruvimata',
-'whitelistedittitle' => 'Trebul o autentifikaripen kashte editisares',
-'whitelistedittext'  => 'Trebul te [[Special:UserLogin|autentifikisares]] kashte editisares artikolurya.',
-'accmailtitle'       => 'O nakhavipnasko lav bićhaldo.',
-'accmailtext'        => "O nakhavipnasko lav andar '$1' bićhaldo ko $2.",
-'newarticle'         => '(Nevo)',
-'newarticletext'     => 'Avilyan kai ek patrin so na si.
+'summary'           => 'Xarno xalyaripen:',
+'minoredit'         => 'Kadava si ek tikno editisarimos',
+'watchthis'         => 'Dikh kadaya patrin',
+'savearticle'       => 'Uxtav i patrin',
+'showpreview'       => 'Dikh sar avelas i patrin',
+'showlivepreview'   => 'Jivutno angledikhipen',
+'showdiff'          => 'Dikh le paruvimata',
+'whitelistedittext' => 'Trebul te [[Special:UserLogin|autentifikisares]] kashte editisares artikolurya.',
+'accmailtitle'      => 'O nakhavipnasko lav bićhaldo.',
+'accmailtext'       => "O nakhavipnasko lav andar '$1' bićhaldo ko $2.",
+'newarticle'        => '(Nevo)',
+'newarticletext'    => 'Avilyan kai ek patrin so na si.
 Te keres la, shai te shirdes (astares) te lekhaves ando telutno moxton (dikh [[{{MediaWiki:Helppage}}|zhutipnaski patrin]] te janes buteder).
 Kana avilyan kathe doshatar, ja palpale.',
-'noarticletext'      => "Andi '''{{SITENAME}}''' nai ji akana ek lekh kadale anavesa.
+'noarticletext'     => "Andi '''{{SITENAME}}''' nai ji akana ek lekh kadale anavesa.
 * Te shirdes (astares) te keres o lekh, ker klik  '''[{{fullurl:{{FULLPAGENAME}}|action=edit}} kathe]'''.",
-'editing'            => 'Editisaripen $1',
-'yourtext'           => 'Tiro teksto',
-'storedversion'      => 'Akanutni versiya',
-'yourdiff'           => 'Ververimata',
+'editing'           => 'Editisaripen $1',
+'yourtext'          => 'Tiro teksto',
+'storedversion'     => 'Akanutni versiya',
+'yourdiff'          => 'Ververimata',
 
 # History pages
 'previousrevision' => '← Purano paruvipen',

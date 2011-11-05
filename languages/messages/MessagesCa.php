@@ -12,6 +12,7 @@
  * @author Cedric31
  * @author Davidpar
  * @author El libre
+ * @author Gemmaa
  * @author Iradigalesc
  * @author Jordi Roqué
  * @author Juanpabl
@@ -540,6 +541,7 @@ Aviseu-ho llavors a un [[Special:ListUsers/sysop|administrador]], deixant-li cla
 'badarticleerror'      => 'Aquesta operació no es pot dur a terme en aquesta pàgina',
 'cannotdelete'         => "No s'ha pogut esborrar la pàgina o fitxer «$1».
 Potser ja ha estat esborrat per algú altre.",
+'cannotdelete-title'   => 'No es pot suprimir la pàgina " $1 "',
 'badtitle'             => 'El títol no és correcte',
 'badtitletext'         => 'El títol de la pàgina que heu introduït no és correcte, és en blanc o conté un enllaç trencat amb un altre projecte. També podria contenir algun caràcter no acceptat als títols de pàgina.',
 'perfcached'           => 'Tot seguit es mostren les dades que es troben a la memòria cau, i podria no tenir els últims canvis del dia:',
@@ -554,6 +556,7 @@ Consulta: $2',
 'actionthrottledtext'  => "Com a mesura per a prevenir la propaganda indiscriminada (spam), no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d'ací uns minuts.",
 'protectedpagetext'    => 'Aquesta pàgina està protegida per evitar modificacions.',
 'viewsourcetext'       => "Podeu visualitzar i copiar la font d'aquesta pàgina:",
+'viewyourtext'         => "Vostè pot veure i copiar la font de ' ' les modificacions ' ' d'aquesta pàgina:",
 'protectedinterface'   => "Aquesta pàgina conté cadenes de text per a la interfície del programari, i és protegida per a previndre'n abusos.",
 'editinginterface'     => "'''Avís:''' Esteu editant una pàgina que conté cadenes de text per a la interfície d'aquest programari. Tingueu en compte que els canvis que es fan a aquesta pàgina afecten a l'aparença de la interfície d'altres usuaris. Pel que fa a les traduccions, plantegeu-vos utilitzar la [http://translatewiki.net/wiki/Main_Page?setlang=ca translatewiki.net], el projecte de traducció de MediaWiki.",
 'sqlhidden'            => '(consulta SQL oculta)',
@@ -649,6 +652,7 @@ Així, des d'aquesta adreça IP no es poden crear més comptes actualment.",
 'emailconfirmlink'           => 'Confirmeu la vostra adreça electrònica',
 'invalidemailaddress'        => "No es pot acceptar l'adreça electrònica perquè sembla que té un format no vàlid.
 Introduïu una adreça amb un format adequat o bé buideu el camp.",
+'cannotchangeemail'          => 'Adreces de correu electrònic de compte no es pot canviar a aquest wiki.',
 'accountcreated'             => "S'ha creat el compte",
 'accountcreatedtext'         => "S'ha creat el compte d'usuari de $1.",
 'createaccount-title'        => "Creació d'un compte a {{SITENAME}}",
@@ -793,7 +797,6 @@ Recordeu que per a poder usar l'opció «Envia un missatge de correu electrònic
 
 El número d'identificació de la vostra adreça IP és $3, i l'ID del bloqueig és #$5. Si us plau, incloeu aquestes dades en totes les consultes que feu.",
 'blockednoreason'                  => "no s'ha donat cap motiu",
-'whitelistedittitle'               => 'Cal iniciar una sessió per a poder modificar el contingut',
 'whitelistedittext'                => 'Heu de $1 per modificar pàgines.',
 'confirmedittext'                  => "Heu de confirmar la vostra adreça electrònica abans de poder modificar les pàgines. Definiu i valideu la vostra adreça electrònica a través de les vostres [[Special:Preferences|preferències d'usuari]].",
 'nosuchsectiontitle'               => 'No es pot trobar la secció',
@@ -1076,7 +1079,8 @@ Si us plau, verifica els registres.",
 
 # Suppression log
 'suppressionlog'     => 'Registre de supressió',
-'suppressionlogtext' => 'A continuació hi ha una llista de les eliminacions i bloquejos que impliquen un contingut amagat als administradors. Vegeu la [[Special:IPBlockList|llista de bloquejos]] per a consultar la llista de bandejos i bloquejos actualment en curs.',
+'suppressionlogtext' => 'A continuació es mostra una llista de les supressions i blocs que impliquen contingut ocult a administradors.
+Veure la [[Special:BlockList|List]] per a la llista de prohibicions actualment operatives i blocs.',
 
 # History merging
 'mergehistory'                     => 'Fusiona els historials de les pàgines',
@@ -1344,10 +1348,10 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 
 'group-user-member'          => '{{GENDER:$1|usuari|usuària}}',
 'group-autoconfirmed-member' => 'usuari autoconfirmat',
-'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'administrador',
-'group-bureaucrat-member'    => 'buròcrata',
-'group-suppress-member'      => 'oversight',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => "{{GENDER:$1|l'administrador del}}",
+'group-bureaucrat-member'    => '{{GENDER:$1|buròcrata}}',
+'group-suppress-member'      => '{{GENDER:$1|supervisió}}',
 
 'grouppage-user'          => '{{ns:project}}:Usuaris',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuaris autoconfirmats',
@@ -1450,6 +1454,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'action-suppressionlog'       => 'visualitzar aquest registre privat',
 'action-block'                => 'blocar aquest usuari per a què no pugui editar',
 'action-protect'              => "canviar els nivells de protecció d'aquesta pàgina",
+'action-rollback'             => "revertir ràpidament les edicions de l'últim usuari que una pàgina particular",
 'action-import'               => "importar aquesta pàgina des d'un altre wiki",
 'action-importupload'         => "importar aquesta pàgina mitjançant la càrrega des d'un fitxer",
 'action-patrol'               => 'marcar les edicions dels altres com a supervisades',
@@ -1545,6 +1550,7 @@ Vegeu la [[Special:NewFiles|galeria de nous fitxers]] per a una presentació mé
 'ignorewarnings'              => 'Ignora qualsevol avís',
 'minlength1'                  => "Els noms de fitxer han de ser de com a mínim d'una lletra.",
 'illegalfilename'             => 'El nom del fitxer «$1» conté caràcters que no estan permesos en els títols de pàgines. Si us plau, canvieu el nom al fitxer i torneu a carregar-lo.',
+'filename-toolong'            => "Noms d'arxiu no pot ser més de 240 bytes.",
 'badfilename'                 => "El nom de la imatge s'ha canviat a «$1».",
 'filetype-mime-mismatch'      => "L'extensió de fitxer «.$1» no coincideix amb el tipus MIME del fitxer ($2).",
 'filetype-badmime'            => 'No es poden carregar fitxers del tipus MIME «$1».',
@@ -1888,7 +1894,7 @@ Les entrades <del>ratllades</del> s\'han resolt.',
 'listusers-editsonly'     => 'Mostra només usuaris amb edicions',
 'listusers-creationsort'  => 'Ordena per data de creació',
 'usereditcount'           => '$1 {{PLURAL:$1|modificació|modificacions}}',
-'usercreated'             => 'Creat el $1 a $2',
+'usercreated'             => '{{GENDER:$3|Creat}} en  $1  a les$2',
 'newpages'                => 'Pàgines noves',
 'newpages-username'       => "Nom d'usuari:",
 'ancientpages'            => 'Pàgines més antigues',
@@ -1955,7 +1961,7 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'sp-deletedcontributions-contribs' => 'contribucions',
 
 # Special:LinkSearch
-'linksearch'       => 'Enllaços externs',
+'linksearch'       => "Recerca d'enllaços externs",
 'linksearch-pat'   => 'Patró de cerca:',
 'linksearch-ns'    => 'Espai de noms:',
 'linksearch-ok'    => 'Cerca',
@@ -2175,7 +2181,10 @@ Vegeu la [[Special:ProtectedPages|llista de pàgines protegides]] per a la llist
 'unprotectedarticle'          => 'ha desprotegit "[[$1]]"',
 'movedarticleprotection'      => 'ha traslladat els ajustaments de protecció des de «[[$2]]» a «[[$1]]»',
 'protect-title'               => 'Canviant la protecció de «$1»',
+'protect-title-notallowed'    => 'Mostra el nivell de protecció de " $1 "',
 'prot_1movedto2'              => '[[$1]] mogut a [[$2]]',
+'protect-badnamespace-title'  => 'Espai de nom no-protectable',
+'protect-badnamespace-text'   => 'Les pàgines en aquest espai de nom no pot ser protegit.',
 'protect-legend'              => 'Confirmeu la protecció',
 'protectcomment'              => 'Motiu:',
 'protectexpiry'               => "Data d'expiració",
@@ -2558,7 +2567,7 @@ Incorporeu-les manualment, si us plau.",
 
 La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer lloc al trasllat?",
 'delete_and_move_confirm'      => 'Sí, esborra la pàgina',
-'delete_and_move_reason'       => "S'ha eliminat per a permetre el reanomenament",
+'delete_and_move_reason'       => 'Suprimit per donar pas a pas de " [[$1]] "',
 'selfmove'                     => "Els títols d'origen i de destinació coincideixen: no és possible de reanomenar una pàgina a si mateixa.",
 'immobile-source-namespace'    => 'No es poden moure pàgines de l\'espai de noms "$1"',
 'immobile-target-namespace'    => 'No es poden moure pàgines cap a l\'espai de noms "$1"',

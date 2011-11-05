@@ -185,18 +185,17 @@ No lubidá di kambia bo [[Special:Preferences|{{SITENAME}} preferensianan]].',
 'accountcreatedtext'         => 'E kuenta di uzadó pa $1 tabata trahá.',
 
 # Edit pages
-'watchthis'          => 'Observá e página aki',
-'anoneditwarning'    => 'Bo no a outentiká bo mes.
+'watchthis'        => 'Observá e página aki',
+'anoneditwarning'  => 'Bo no a outentiká bo mes.
 Bo por kambia página libremente, pero tene kuenta ku lo nota bo IP adrès den e historia di kambionan hasí na e página aki.',
-'blockedtitle'       => 'Uzadó ta blokiá',
-'whitelistedittitle' => 'Mester outentiká promé pa editá',
-'confirmedittext'    => 'Bo mester konfirmá bo e-mail adrès promé ku bo editá página. Por fabor duna i validá bo e-mail adrès via bo [[Special:Preferences|preferensianan]].',
-'accmailtitle'       => 'Kontraseña mandá.',
-'accmailtext'        => "E kontraseña pa '$1' tabata mandá pa $2.",
-'newarticle'         => '(Nobo)',
-'anontalkpagetext'   => "----''Esaki ta e página di diskushon pa un uzadó anonimo ku no a traha un kuenta ahinda, òf no sa uza e. Ta pa e rason aki nos tin ku uza IP adrès pa identifiká e persona. Diferente uzadó por uza e IP adrès aki. Si bo ta un uzadó anonimo i ta sinti ku komentario irelevante tabata mandá pa bo, por fabor [[Special:UserLogin|registrá un kuenta nobo òf outentiká bo mes]] pa evitá konfushon den futuro.''",
-'yourtext'           => 'Bo teksto',
-'yourdiff'           => 'Diferensianan',
+'blockedtitle'     => 'Uzadó ta blokiá',
+'confirmedittext'  => 'Bo mester konfirmá bo e-mail adrès promé ku bo editá página. Por fabor duna i validá bo e-mail adrès via bo [[Special:Preferences|preferensianan]].',
+'accmailtitle'     => 'Kontraseña mandá.',
+'accmailtext'      => "E kontraseña pa '$1' tabata mandá pa $2.",
+'newarticle'       => '(Nobo)',
+'anontalkpagetext' => "----''Esaki ta e página di diskushon pa un uzadó anonimo ku no a traha un kuenta ahinda, òf no sa uza e. Ta pa e rason aki nos tin ku uza IP adrès pa identifiká e persona. Diferente uzadó por uza e IP adrès aki. Si bo ta un uzadó anonimo i ta sinti ku komentario irelevante tabata mandá pa bo, por fabor [[Special:UserLogin|registrá un kuenta nobo òf outentiká bo mes]] pa evitá konfushon den futuro.''",
+'yourtext'         => 'Bo teksto',
+'yourdiff'         => 'Diferensianan',
 
 # History pages
 'currentrev'          => 'Revishon aktual',

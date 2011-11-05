@@ -462,7 +462,6 @@ Ti pêu contattâ \$1 ou 'n âtro
 Dagghe a mente a che no ti pêu ûsâ o comando \"manda na littia elettronega a sto utente\" se non ti g'hæ 'n indirisso de posta elettronega registroö in te têu [[Special:Preferences|preferense]] e se o no l'è stæto bloccòu ascì.
 
 O têu blòcco ID o l'è \$5. Pe piaxei metti 'sto ID in tûtte e domande che ti fæ.",
-'whitelistedittitle'         => "Bezêugna registrâse pe modificâ 'na pagina.",
 'whitelistedittext'          => 'Pe cangia sta pagina devvi $1.',
 'loginreqtitle'              => "Besêugna registrâse primma de modificâ 'sta paggina.",
 'accmailtitle'               => 'Pòula segretta spedïa',

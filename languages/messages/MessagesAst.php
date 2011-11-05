@@ -690,7 +690,6 @@ Fíxate en que nun pues usar la funcionalidá d\'"unvia-y un corréu a esti usua
 La to direición IP actual ye $3, y el númberu d\'identificación del bloquéu ye $5.
 Por favor, amiesta toos estos detalles nes consultes que faigas.',
 'blockednoreason'                  => 'nun se dio nengún motivu',
-'whitelistedittitle'               => 'Ye necesario tar identificáu pa poder editar',
 'whitelistedittext'                => 'Tienes que $1 pa editar páxines.',
 'confirmedittext'                  => "Has confirmar la to direición de corréu electrónicu enantes d'editar páxines. Por favor, configúrala y valídala nes tos [[Special:Preferences|preferencies d'usuariu]].",
 'nosuchsectiontitle'               => 'Nun se pue alcontrar la seición',

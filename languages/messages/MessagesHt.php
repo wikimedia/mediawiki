@@ -691,7 +691,6 @@ Si toutfwa ou te bay yon bon adrès imèl nan preferans ou yo ( [[Special:Prefer
 
 Adrès IP ou an kounye a se $3. Idantifyan pou blokaj la se $5. Ou dwe mete enfòmasyon sa yo nan demann ou an.',
 'blockednoreason'                  => 'Li pa bay pyès rezon pou aksyon sa',
-'whitelistedittitle'               => 'Ou dwe konekte w pou ou kapab modifye tèks sa',
 'whitelistedittext'                => 'Ou dwe $1 pou ou kapab genyen dwa pou modifye paj sa.',
 'confirmedittext'                  => 'Ou dwe konfime adrès imèl ou an anvan ou kapab fè modifikasyon. Antre epi valide adrès imèl ou an nan paj [[Special:Preferences|preferans]] ou.',
 'nosuchsectiontitle'               => 'Nou pa ka jwenn seksyon sa a',

@@ -929,7 +929,6 @@ Observera att du inte kan använda dig av funktionen "skicka e-post till använd
 Din nuvarande IP-adress är $3, och blockerings-ID är #$5.
 Vänligen ange informationen ovan i alla förfrågningar som du gör i ärendet.',
 'blockednoreason'                  => 'ingen motivering angavs',
-'whitelistedittitle'               => 'Du måste logga in för att redigera',
 'whitelistedittext'                => 'Du måste $1 för att kunna redigera sidor.',
 'confirmedittext'                  => 'Du måste bekräfta din e-postadress innan du kan redigera sidor. Var vänlig ställ in och validera din e-postadress genom dina [[Special:Preferences|användarinställningar]].',
 'nosuchsectiontitle'               => 'Kan inte hitta avsnitt',

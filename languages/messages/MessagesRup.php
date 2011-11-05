@@ -109,14 +109,13 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'gotaccountlink'     => 'Ligats-vã',
 
 # Edit pages
-'summary'            => 'Rezime:',
-'minoredit'          => 'Aistã easte alãxire njicã',
-'watchthis'          => 'Mutrits-u frãndzã aistã',
-'savearticle'        => 'Avigljats-u frãndzã',
-'showpreview'        => 'Spuni u-privideare',
-'showdiff'           => 'Spuni le-alãxirle',
-'whitelistedittitle' => 'Lipseashce s-vã ligats ta s-alãxits',
-'loginreqlink'       => 'Ligats-vã',
+'summary'      => 'Rezime:',
+'minoredit'    => 'Aistã easte alãxire njicã',
+'watchthis'    => 'Mutrits-u frãndzã aistã',
+'savearticle'  => 'Avigljats-u frãndzã',
+'showpreview'  => 'Spuni u-privideare',
+'showdiff'     => 'Spuni le-alãxirle',
+'loginreqlink' => 'Ligats-vã',
 
 # Search results
 'powersearch' => 'Caftã',

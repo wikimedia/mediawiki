@@ -923,7 +923,6 @@ Merk at du ikke kan bruke «E-post til denne brukeren»-funksjonen med mindre du
 Din IP-adresse er $3, og blokkerings-ID-en er #$5.
 Vennligst ta med all denne informasjonen ved henvendelser.",
 'blockednoreason'                  => 'ingen grunn gitt',
-'whitelistedittitle'               => 'Du må logge inn for å redigere',
 'whitelistedittext'                => 'Du må $1 for å redigere artikler.',
 'confirmedittext'                  => 'Du må bekrefte e-postadressen din før du kan redigere sider. Vennligst oppgi og bekreft e-postadressen din via [[Special:Preferences|innstillingene dine]].',
 'nosuchsectiontitle'               => 'Finner ikke avsnittet',

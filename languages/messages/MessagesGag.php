@@ -480,7 +480,6 @@ Herliim girmediniz [[Special:Preferences|seçimner]] bölümünde geçerli bir e
 
 Şindi IP adresiniz $3. Yalvarêrêz bu adresi belirtmää her angı bir sorgu yapar kana.',
 'blockednoreason'                  => 'hiç bir sebep belirtilmedi',
-'whitelistedittitle'               => 'Lääzım açmaa sessiya diişmäk yapmaa deyni',
 'whitelistedittext'                => 'Diişmäk yapmaa için $1.',
 'nosuchsectiontitle'               => 'Bölä bölüm yok',
 'loginreqtitle'                    => 'Lääazım sessiya açmaa',

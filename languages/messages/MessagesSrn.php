@@ -556,7 +556,6 @@ $1 tapu pasi gi yu. Disi na fu sanede ''$2''.
 Yu kan skrifi $1 noso wan tra [[{{MediaWiki:Grouppage-sysop}}|beheerder]] fu taki abra a tapu pasi disi.
 Yu n'o man kebroiki 'e-mail a kebroikiman disi', efu yu no abi wan bun email-nen ini yu [[Special:Preferences|seti]] én pasi tapu fu yu kebroiki en.
 Yu IP now na $3 en a tapu pasi ID na #$5. Gi wan, noso ala tu, ini yu brifi te yu o skrifi fu aksi san psa.",
-'whitelistedittitle'         => 'Yu mu kon fu a kenki',
 'whitelistedittext'          => 'Yu mu $1 fu a kenki fu peprewoysi.',
 'loginreqtitle'              => 'Yu mu kon',
 'loginreqlink'               => 'kon',

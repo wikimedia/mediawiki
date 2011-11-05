@@ -115,14 +115,13 @@ Ua nimo ke hiki e haau tau [[Special:Preferences|manako {{SITENAME}}]].',
 'passwordreset-username' => 'Matahigoa he tagata',
 
 # Edit pages
-'summary'            => 'Fakakatoakatoa:',
-'minoredit'          => 'Ko e fakahakohako fakatote',
-'watchthis'          => 'Onoono e lau e',
-'savearticle'        => 'Taofi e lau',
-'showpreview'        => 'Fakakite e foliga',
-'showdiff'           => 'Fakakite e tau hikihiki',
-'whitelistedittitle' => 'Kua lata ke loko ini ke fakahakohako',
-'loginreqlink'       => 'hu ki loto',
+'summary'      => 'Fakakatoakatoa:',
+'minoredit'    => 'Ko e fakahakohako fakatote',
+'watchthis'    => 'Onoono e lau e',
+'savearticle'  => 'Taofi e lau',
+'showpreview'  => 'Fakakite e foliga',
+'showdiff'     => 'Fakakite e tau hikihiki',
+'loginreqlink' => 'hu ki loto',
 
 # History pages
 'currentrev'          => 'Kitekiteaga mogonei',
