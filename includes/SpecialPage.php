@@ -963,7 +963,7 @@ abstract class SpecialRedirectToSpecial extends RedirectSpecialPage {
 }
 
 /**
- * ListAdmins --> ListUsers/admin
+ * ListAdmins --> ListUsers/sysop
  */
 class SpecialListAdmins extends SpecialRedirectToSpecial {
 	function __construct(){
@@ -972,11 +972,11 @@ class SpecialListAdmins extends SpecialRedirectToSpecial {
 }
 
 /**
- * ListBots --> ListUsers/admin
+ * ListBots --> ListUsers/bot
  */
 class SpecialListBots extends SpecialRedirectToSpecial {
 	function __construct(){
-		parent::__construct( 'Listadmins', 'Listusers', 'bot' );
+		parent::__construct( 'Listbots', 'Listusers', 'bot' );
 	}
 }
 
