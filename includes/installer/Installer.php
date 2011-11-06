@@ -853,7 +853,12 @@ abstract class Installer {
 	 * Environment check for the server hostname.
 	 */
 	protected function envCheckServer() {
-		$server = WebRequest::detectServer();
+		if ( $this->getVar( 'wgServer' ) ) {
+			// wgServer was pre-defined, perhaps by the cli installer
+			$server = $this->getVar( 'wgServer' );
+		} else {
+			$server = WebRequest::detectServer();
+		}
 		$this->showMessage( 'config-using-server', $server );
 		$this->setVar( 'wgServer', $server );
 	}
