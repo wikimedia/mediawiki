@@ -384,6 +384,7 @@ Pe piacere manne 'na comunicazzione a 'n'[[Special:ListUsers/sysop|amministrator
 'badarticleerror'      => "Quest'azione non ge pò essere fatte sus 'a sta pàgene.",
 'cannotdelete'         => '\'A pàgene o \'u file "$1" non ge pò essere scangellate.
 Pò essere ca ggià ha state scangellete da quacche otre.',
+'cannotdelete-title'   => 'Non ge puè scangellà \'a pàgene "$1"',
 'badtitle'             => 'Titele sbagliete',
 'badtitletext'         => "'A pàgene ca è cerchete tène 'nu titele errete, vacande, o jè 'nu collegamende inter-lènghe o inter-uicchi errete.
 Pò essere ca tène une o cchiù carattere ca non ge ponne essere ausete jndr'à le titele.",
@@ -401,6 +402,7 @@ Query: $2",
 Pe piacere prueve cchiù tarde.",
 'protectedpagetext'    => 'Sta pàgene ha state prutette pe no fa fà cangiaminde a uecchje.',
 'viewsourcetext'       => "Tu puè vedè e cupià 'a sorgente de sta pàgene:",
+'viewyourtext'         => "Tu puè vedè e copià 'a sorgende de '''le cangiaminde tune''' a sta pàgene:",
 'protectedinterface'   => "Sta pàgene te dè l'inderfacce de teste pìu software e jè blocchete pe prevenì l'abbuse.",
 'editinginterface'     => "'''Fà attenziò:'''  Tu ste cange 'na pàgene ca jè ausete pe dà 'n'inderfacce de teste p'u software.
 Le cangiaminde de sta pàgene vonne a mettene mane sus a l'inderfacce utende pe l'otre utinde.
@@ -1337,6 +1339,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'action-suppressionlog'       => "vide st'archivije privete",
 'action-block'                => "blocche st'utende pe le cangiaminde",
 'action-protect'              => "cange 'u levèlle de protezzione pe sta pàgene",
+'action-rollback'             => "Annulle velocemende le cangiaminde de l'urteme utende ca ha cangiate 'na pàgena particolare",
 'action-import'               => "'mborte sta pàgene da n'otra Uicchi",
 'action-importupload'         => "'mborte sta pàgene da 'nu carecamende de 'nu file",
 'action-patrol'               => "signe l'otre cangiaminde cumme condrollate",

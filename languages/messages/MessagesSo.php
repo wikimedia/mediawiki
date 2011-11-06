@@ -354,7 +354,7 @@ fadlan waxyar kadib ku soo noqo.',
 'viewsourcetext'       => 'Waad fiirin kartaa waana koobi gareen kartaa xogta boggaan:',
 'cascadeprotected'     => 'Boggaan waxaa laga difaacay in wax laga bedelo, sababtoo ah wuxuu ka midyahay  {{PLURAL:$1|bog, oo ah |bogyaalo ah, waana}}  kuwa laga difaacay "qoraalada kaskadka ah" dooqyada woo u furanyahay:
 $2',
-'namespaceprotected'   => "Ma laguu ogolo in aad wax ka bedesho maqaalada ku jirto '''$1''' meesha magacyada.",
+'namespaceprotected'   => "Ma laguu ogolo in aad wax ka bedesho maqaalada ku jirto '''$1''' qolka magacyada.",
 'ns-specialprotected'  => 'Bogyaasha gaarka ah wax malaga bedeli karo.',
 'titleprotected'       => 'Qoraalkaan aad qortay waxaa difaacay  [[User:$1|$1]] si loo sameynin.
 Sababta neh waxaa waaye "\'\'$2\'\'".',
@@ -497,8 +497,10 @@ Waa in aad gudaha gashaa oo e-mail cusub doorataa hadda. Hadii ee qof kale codsi
 Ereysirka kumeelgaarka ah: $2',
 
 # Special:ChangeEmail
-'changeemail'      => 'Bedel ciwaanka E-mailka',
-'changeemail-none' => '(waxna)',
+'changeemail'          => 'Bedel ciwaanka E-mailka',
+'changeemail-header'   => 'Bedel ciwaanka e-mailka akoonka',
+'changeemail-oldemail' => 'Ciwaanka e-mailka hadda jiro:',
+'changeemail-none'     => '(waxna)',
 
 # Edit page toolbar
 'bold_sample'     => 'Far butac ah',
@@ -721,7 +723,7 @@ sababteeda neh waxaa laga heli kartaa  [{{fullurl:{{#Special:Log}}/delete|page={
 'search-nonefound'                 => 'Wax natiijo oo ka soo baxay ma jirto wixii aad raadisay',
 'powersearch'                      => 'Sidii aad wax uugu raadin laheed',
 'powersearch-legend'               => 'Sidii aad wax uugu raadin laheed',
-'powersearch-ns'                   => 'ka raadi meesha magacyada:',
+'powersearch-ns'                   => 'ka raadi qolka magacyada:',
 'powersearch-redir'                => 'liiska inta la sii toosiyay',
 'powersearch-field'                => 'Raadi',
 'powersearch-togglelabel'          => 'Fiiri',
@@ -774,9 +776,8 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'email'                     => 'E-mail',
 'prefs-help-realname'       => 'Optional: if you choose to provide it this will be used for giving you attribution for your work.',
 'prefs-help-email'          => 'E-mail waa wax aad xor u leedahay. laakiin waa loo baahanyahay hadii aad eraysirka badaleesid, hadii aad ilaawdo eraygaaga sirta ah',
-'prefs-help-email-others'   => 'Waxaa xattaa dooran kartaa in ee dadka kale kugula soo xiriiraan emailka ayaga oo isticmaalaayo linkiga isticmaalahaada ama bogga wadahadalka.
-E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.
-Your e-mail address is not revealed when other users contact you.',
+'prefs-help-email-others'   => 'Waxaa kale oo aad u isticmaali kartaa in ee dadka kale kugula soo xiriiraan e-mail ayaga oo isticmaalaayo linki isticmaalahaada ama bogga wadahadalka.
+E-mailkaada mala sheegaayo markii ee dadka kale kula soo xiriirayaan.',
 'prefs-help-email-required' => 'Waxaa loo baahanyahay e-mail.',
 
 # User rights
@@ -1002,7 +1003,7 @@ Tafaasiishiisa waxee ku qorantahay [$2 bogga tafaasiisha faylka] oo ka arki kart
 'special-categories-sort-count' => 'xisaabi marka aad tirisid',
 
 # Special:LinkSearch
-'linksearch-ns'   => 'Meesha magacyada:',
+'linksearch-ns'   => 'Qolka magacyada:',
 'linksearch-ok'   => 'Raadi',
 'linksearch-line' => '$1 wuxuu ka socdaa $2',
 
@@ -1126,9 +1127,10 @@ Wuxuu ku badalay bedelkii ka danbeeyay oo sameeyay $2.',
 'undelete-search-submit'   => 'Raadi',
 
 # Namespace form on various pages
-'namespace'      => 'Meesha magacyada:',
-'invert'         => 'Dabagedi dalabka',
-'blanknamespace' => '(Bogga hore)',
+'namespace'             => 'Qolka magacyada:',
+'invert'                => 'Dabagedi dalabka',
+'namespace_association' => 'La xiriira qolka magacyada',
+'blanknamespace'        => '(Bogga hore)',
 
 # Contributions
 'contributions'       => 'Isticmaalada wax ku darsaday',
@@ -1141,7 +1143,7 @@ Wuxuu ku badalay bedelkii ka danbeeyay oo sameeyay $2.',
 
 'sp-contributions-newbies'  => 'Itus akoonada cusub kaliya oo wax ku darsaday',
 'sp-contributions-blocklog' => 'mamnuucyada',
-'sp-contributions-uploads'  => 'wixii la soo geliyay',
+'sp-contributions-uploads'  => 'soo geliyay',
 'sp-contributions-logs'     => 'Guda galayaasha',
 'sp-contributions-talk'     => 'Wadahadal',
 'sp-contributions-search'   => 'Raadi si aad wax uugu darsatid',
@@ -1180,6 +1182,7 @@ Wuxuu ku badalay bedelkii ka danbeeyay oo sameeyay $2.',
 'unblocklogentry'          => 'lama mamnuucin $1',
 'block-log-flags-anononly' => "Isticmaalayaasha aanan la'aqoonsanin oo kaliya",
 'block-log-flags-nocreate' => 'sameynta gudagalah lamaogola',
+'block-log-flags-noemail'  => 'mamnuucay e-mail',
 'ipb-needreblock'          => '$1 mar hore aa la mamnuucay. marabtaa in aad wax ka bedesho habka?',
 'blockme'                  => 'I mamnuuc',
 'proxyblocksuccess'        => 'waa la sameeyay.',
@@ -1332,7 +1335,9 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 'table_pager_last'  => 'Bogga ugu danbeeyo',
 
 # Auto-summaries
-'autosumm-new' => 'Bog cusub: $1',
+'autosumm-blank'   => 'Masaxay bogga',
+'autosumm-replace' => 'Wuxuu qoraalka ku badalay "$1"',
+'autosumm-new'     => 'Bog cusub: $1',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Itusi isbedelada jiro',
