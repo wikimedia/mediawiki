@@ -146,8 +146,6 @@ class MediaWiki {
 			$output->setPrintable();
 		}
 
-		$pageView = false; // was an article or special page viewed?
-
 		wfRunHooks( 'BeforeInitialize',
 			array( &$title, null, &$output, &$user, $request, $this ) );
 
@@ -156,14 +154,23 @@ class MediaWiki {
 			$title->isSpecial( 'Badtitle' ) )
 		{
 			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
+			wfProfileOut( __METHOD__ );
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
-		// If the user is not logged in, the Namespace:title of the article must be in
-		// the Read array in order for the user to see it. (We have to check here to
-		// catch special pages etc. We check again in Article::view())
-		} elseif ( !$title->userCanRead() ) {
-			throw new PermissionsError( 'read' );
+		}
+
+		// Check user's permissions to read this page.
+		// We have to check here to catch special pages etc.
+		// We will check again in Article::view().
+		$permErrors = $title->getUserPermissionsErrors( 'read', $user );
+		if ( count( $permErrors ) ) {
+			wfProfileOut( __METHOD__ );
+			throw new PermissionsError( 'read', $permErrors );
+		}
+
+		$pageView = false; // was an article or special page viewed?
+
 		// Interwiki redirects
-		} elseif ( $title->getInterwiki() != '' ) {
+		if ( $title->getInterwiki() != '' ) {
 			$rdfrom = $request->getVal( 'rdfrom' );
 			if ( $rdfrom ) {
 				$url = $title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
