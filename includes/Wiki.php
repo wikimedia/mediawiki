@@ -147,8 +147,10 @@ class MediaWiki {
 			array( &$title, null, &$output, &$user, $request, $this ) );
 
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
-		if ( is_null( $title ) || ( ( $title->getDBkey() == '' ) && ( $title->getInterwiki() == '' ) ) ) {
-			$this->context->title = SpecialPage::getTitleFor( 'Badtitle' );
+		if ( is_null( $title ) || ( $title->getDBkey() == '' && $title->getInterwiki() == '' ) ||
+			$title->isSpecial( 'Badtitle' ) )
+		{
+			$this->context->setTitle( SpecialPage::getTitleFor( 'Badtitle' ) );
 			// Die now before we mess up $wgArticle and the skin stops working
 			throw new ErrorPageError( 'badtitle', 'badtitletext' );
 		// If the user is not logged in, the Namespace:title of the article must be in
