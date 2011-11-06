@@ -69,7 +69,8 @@ abstract class WebInstallerPage {
 		if ( $continue ) {
 			// Fake submit button for enter keypress (bug 26267)
 			$s .= Xml::submitButton( wfMsg( "config-$continue" ),
-				array( 'name' => "enter-$continue", 'style' => 'visibility:hidden;overflow:hidden;width:1px;margin:0' ) ) . "\n";
+				array( 'name' => "enter-$continue", 'style' =>
+					'visibility:hidden;overflow:hidden;width:1px;margin:0' ) ) . "\n";
 		}
 
 		if ( $back ) {
@@ -133,9 +134,11 @@ abstract class WebInstallerPage {
 	 */
 	protected function startLiveBox() {
 		$this->addHTML(
-			'<div id="config-spinner" style="display:none;"><img src="../skins/common/images/ajax-loader.gif" /></div>' .
+			'<div id="config-spinner" style="display:none;">' .
+			'<img src="../skins/common/images/ajax-loader.gif" /></div>' .
 			'<script>jQuery( "#config-spinner" ).show();</script>' .
-			'<div id="config-live-log"><textarea name="LiveLog" rows="10" cols="30" readonly="readonly">'
+			'<div id="config-live-log">' .
+			'<textarea name="LiveLog" rows="10" cols="30" readonly="readonly">'
 		);
 		$this->parent->output->flush();
 	}
@@ -190,7 +193,8 @@ class WebInstaller_Language extends WebInstallerPage {
 		} elseif ( $this->parent->showSessionWarning ) {
 			# The user was knocked back from another page to the start
 			# This probably indicates a session expiry
-			$this->parent->showError( 'config-session-expired', $wgLang->formatTimePeriod( $lifetime ) );
+			$this->parent->showError( 'config-session-expired',
+				$wgLang->formatTimePeriod( $lifetime ) );
 		}
 
 		$this->parent->setSession( 'test', true );
@@ -203,8 +207,10 @@ class WebInstaller_Language extends WebInstallerPage {
 		}
 		$this->startForm();
 		$s = Html::hidden( 'LanguageRequestTime', time() ) .
-			$this->getLanguageSelector( 'UserLang', 'config-your-language', $userLang, $this->parent->getHelpBox( 'config-your-language-help' ) ) .
-			$this->getLanguageSelector( 'ContLang', 'config-wiki-language', $contLang, $this->parent->getHelpBox( 'config-wiki-language-help' ) );
+			$this->getLanguageSelector( 'UserLang', 'config-your-language', $userLang,
+				$this->parent->getHelpBox( 'config-your-language-help' ) ) .
+			$this->getLanguageSelector( 'ContLang', 'config-wiki-language', $contLang,
+				$this->parent->getHelpBox( 'config-wiki-language-help' ) );
 		$this->addHTML( $s );
 		$this->endForm( 'continue', false );
 	}
@@ -223,7 +229,8 @@ class WebInstaller_Language extends WebInstallerPage {
 
 		$s = $helpHtml;
 
-		$s .= Html::openElement( 'select', array( 'id' => $name, 'name' => $name, 'tabindex' => $this->parent->nextTabIndex() ) ) . "\n";
+		$s .= Html::openElement( 'select', array( 'id' => $name, 'name' => $name,
+				'tabindex' => $this->parent->nextTabIndex() ) ) . "\n";
 
 		$languages = Language::getLanguageNames();
 		ksort( $languages );
@@ -340,7 +347,8 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 	 */
 	protected function handleExistingUpgrade( $vars ) {
 		// Check $wgDBtype
-		if ( !isset( $vars['wgDBtype'] ) || !in_array( $vars['wgDBtype'], Installer::getDBTypes() ) ) {
+		if ( !isset( $vars['wgDBtype'] ) ||
+			 !in_array( $vars['wgDBtype'], Installer::getDBTypes() ) ) {
 			return Status::newFatal( 'config-localsettings-connection-error', '' );
 		}
 
@@ -451,7 +459,8 @@ class WebInstaller_DBConnect extends WebInstallerPage {
 				"</li>\n";
 
 			$settings .=
-				Html::openElement( 'div', array( 'id' => 'DB_wrapper_' . $type, 'class' => 'dbWrapper' ) ) .
+				Html::openElement( 'div', array( 'id' => 'DB_wrapper_' . $type,
+						'class' => 'dbWrapper' ) ) .
 				Html::element( 'h3', array(), wfMsg( 'config-header-' . $type ) ) .
 				$installer->getConnectForm() .
 				"</div>\n";
@@ -624,7 +633,8 @@ class WebInstaller_Name extends WebInstallerPage {
 				'label' => 'config-project-namespace',
 				'itemLabelPrefix' => 'config-ns-',
 				'values' => array( 'site-name', 'generic', 'other' ),
-				'commonAttribs' => array( 'class' => 'enableForOther', 'rel' => 'config_wgMetaNamespace' ),
+				'commonAttribs' => array( 'class' => 'enableForOther',
+					'rel' => 'config_wgMetaNamespace' ),
 				'help' => $this->parent->getHelpBox( 'config-project-namespace-help' )
 			) ) .
 			$this->parent->getTextBox( array(
@@ -1180,10 +1190,12 @@ class WebInstaller_Complete extends WebInstallerPage {
 		// Pop up a dialog box, to make it difficult for the user to forget
 		// to download the file
 		$lsUrl = $this->getVar( 'wgServer' ) . $this->parent->getURL( array( 'localsettings' => 1 ) );
-		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) && strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) !== false ) {
+		if ( isset( $_SERVER['HTTP_USER_AGENT'] ) &&
+			 strpos( $_SERVER['HTTP_USER_AGENT'], 'MSIE' ) !== false ) {
 			// JS appears the only method that works consistently with IE7+
-			$this->addHtml( "\n<script type=\"" . $GLOBALS['wgJsMimeType'] . '">jQuery( document ).ready( function() { document.location='
-				. Xml::encodeJsVar( $lsUrl) . "; } );</script>\n" );
+			$this->addHtml( "\n<script type=\"" . $GLOBALS['wgJsMimeType'] .
+				'">jQuery( document ).ready( function() { document.location=' .
+				Xml::encodeJsVar( $lsUrl) . "; } );</script>\n" );
 		} else {
 			$this->parent->request->response()->header( "Refresh: 0;url=$lsUrl" );
 		}
