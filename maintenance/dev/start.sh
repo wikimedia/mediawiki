@@ -8,5 +8,5 @@ PORT=4881
 echo "Starting up MediaWiki at http://localhost:$PORT/"
 echo ""
 
-cd $DEV/../../; # $IP
-$DEV/php/bin/php -S localhost:$PORT
+cd "$DEV/../../"; # $IP
+"$DEV/php/bin/php" -S "localhost:$PORT"
