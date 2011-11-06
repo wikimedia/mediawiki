@@ -806,8 +806,7 @@ class SkinTemplate extends Skin {
 		// parameters
 		$action = $request->getVal( 'action', 'view' );
 
-		$userCanRead = $title->userCanRead();
-		$skname = $this->skinname;
+		$userCanRead = $title->quickUserCan( 'read', $user );
 
 		$preventActiveTabs = false;
 		wfRunHooks( 'SkinTemplatePreventOtherActiveTabs', array( &$this, &$preventActiveTabs ) );
@@ -830,6 +829,8 @@ class SkinTemplate extends Skin {
 				$talkId = "{$subjectId}_talk";
 			}
 
+			$skname = $this->skinname;
+
 			// Adds namespace links
 			$subjectMsg = array( "nstab-$subjectId" );
 			if ( $subjectPage->isMainPage() ) {
@@ -844,160 +845,148 @@ class SkinTemplate extends Skin {
 			);
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 
-			// Adds view view link
-			if ( $title->exists() && $userCanRead ) {
-				$content_navigation['views']['view'] = $this->tabAction(
-					$isTalk ? $talkPage : $subjectPage,
-					array( "$skname-view-view", 'view' ),
-					( $onPage && ($action == 'view' || $action == 'purge' ) ), '', true
-				);
-				$content_navigation['views']['view']['redundant'] = true; // signal to hide this from simple content_actions
-			}
+			if ( $userCanRead ) {
+				// Adds view view link
+				if ( $title->exists() ) {
+					$content_navigation['views']['view'] = $this->tabAction(
+						$isTalk ? $talkPage : $subjectPage,
+						array( "$skname-view-view", 'view' ),
+						( $onPage && ($action == 'view' || $action == 'purge' ) ), '', true
+					);
+					$content_navigation['views']['view']['redundant'] = true; // signal to hide this from simple content_actions
+				}
 
-			wfProfileIn( __METHOD__ . '-edit' );
+				wfProfileIn( __METHOD__ . '-edit' );
 
-			// Checks if user can...
-			if (
-				// read and edit the current page
-				$userCanRead && $title->quickUserCan( 'edit' ) &&
-				(
-					// if it exists
-					$title->exists() ||
-					// or they can create one here
-					$title->quickUserCan( 'create' )
-				)
-			) {
-				// Builds CSS class for talk page links
-				$isTalkClass = $isTalk ? ' istalk' : '';
-				$section = $request->getVal( 'section' );
+				// Checks if user can edit the current page if it exists or create it otherwise
+				if ( $title->quickUserCan( 'edit', $user ) && ( $title->exists() || $title->quickUserCan( 'create', $user ) ) ) {
+					// Builds CSS class for talk page links
+					$isTalkClass = $isTalk ? ' istalk' : '';
+					$section = $request->getVal( 'section' );
 
-				// Determines if we're in edit mode
-				$selected = (
-					$onPage &&
-					( $action == 'edit' || $action == 'submit' ) &&
-					( $section != 'new' )
-				);
-				$msgKey = $title->exists() || ( $title->getNamespace() == NS_MEDIAWIKI && $title->getDefaultMessageText() !== false ) ?
-					"edit" : "create";
-				$content_navigation['views']['edit'] = array(
-					'class' => ( $selected ? 'selected' : '' ) . $isTalkClass,
-					'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->setContext( $this->getContext() )->text(),
-					'href' => $title->getLocalURL( $this->editUrlOptions() ),
-					'primary' => true, // don't collapse this in vector
-				);
-				// Checks if this is a current rev of talk page and we should show a new
-				// section link
-				if ( ( $isTalk && $this->isRevisionCurrent() ) || ( $out->showNewSectionLink() ) ) {
-					// Checks if we should ever show a new section link
-					if ( !$out->forceHideNewSectionLink() ) {
-						// Adds new section link
-						//$content_navigation['actions']['addsection']
-						$content_navigation['views']['addsection'] = array(
-							'class' => $section == 'new' ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->setContext( $this->getContext() )->text(),
-							'href' => $title->getLocalURL( 'action=edit&section=new' )
+					// Determines if we're in edit mode
+					$selected = (
+						$onPage &&
+						( $action == 'edit' || $action == 'submit' ) &&
+						( $section != 'new' )
+					);
+					$msgKey = $title->exists() || ( $title->getNamespace() == NS_MEDIAWIKI && $title->getDefaultMessageText() !== false ) ?
+						"edit" : "create";
+					$content_navigation['views']['edit'] = array(
+						'class' => ( $selected ? 'selected' : '' ) . $isTalkClass,
+						'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->setContext( $this->getContext() )->text(),
+						'href' => $title->getLocalURL( $this->editUrlOptions() ),
+						'primary' => true, // don't collapse this in vector
+					);
+					// Checks if this is a current rev of talk page and we should show a new
+					// section link
+					if ( ( $isTalk && $this->isRevisionCurrent() ) || ( $out->showNewSectionLink() ) ) {
+						// Checks if we should ever show a new section link
+						if ( !$out->forceHideNewSectionLink() ) {
+							// Adds new section link
+							//$content_navigation['actions']['addsection']
+							$content_navigation['views']['addsection'] = array(
+								'class' => $section == 'new' ? 'selected' : false,
+								'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->setContext( $this->getContext() )->text(),
+								'href' => $title->getLocalURL( 'action=edit&section=new' )
+							);
+						}
+					}
+				// Checks if the page has some kind of viewable content
+				} elseif ( $title->hasSourceText() ) {
+					// Adds view source view link
+					$content_navigation['views']['viewsource'] = array(
+						'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
+						'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )->setContext( $this->getContext() )->text(),
+						'href' => $title->getLocalURL( $this->editUrlOptions() ),
+						'primary' => true, // don't collapse this in vector
+					);
+				}
+				wfProfileOut( __METHOD__ . '-edit' );
+
+				wfProfileIn( __METHOD__ . '-live' );
+				// Checks if the page exists
+				if ( $title->exists() ) {
+					// Adds history view link
+					$content_navigation['views']['history'] = array(
+						'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
+						'text' => wfMessageFallback( "$skname-view-history", 'history_short' )->setContext( $this->getContext() )->text(),
+						'href' => $title->getLocalURL( 'action=history' ),
+						'rel' => 'archives',
+					);
+
+					if ( $title->quickUserCan( 'delete', $user ) ) {
+						$content_navigation['actions']['delete'] = array(
+							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
+							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->setContext( $this->getContext() )->text(),
+							'href' => $title->getLocalURL( 'action=delete' )
 						);
 					}
-				}
-			// Checks if the page has some kind of viewable content
-			} elseif ( $title->hasSourceText() && $userCanRead ) {
-				// Adds view source view link
-				$content_navigation['views']['viewsource'] = array(
-					'class' => ( $onPage && $action == 'edit' ) ? 'selected' : false,
-					'text' => wfMessageFallback( "$skname-action-viewsource", 'viewsource' )->setContext( $this->getContext() )->text(),
-					'href' => $title->getLocalURL( $this->editUrlOptions() ),
-					'primary' => true, // don't collapse this in vector
-				);
-			}
-			wfProfileOut( __METHOD__ . '-edit' );
+					if ( $title->quickUserCan( 'move', $user ) ) {
+						$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
+						$content_navigation['actions']['move'] = array(
+							'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : false,
+							'text' => wfMessageFallback( "$skname-action-move", 'move' )->setContext( $this->getContext() )->text(),
+							'href' => $moveTitle->getLocalURL()
+						);
+					}
 
-			wfProfileIn( __METHOD__ . '-live' );
+					$isProtected = $title->isProtected();
+				} else {
+					// article doesn't exist or is deleted
+					if ( $user->isAllowed( 'deletedhistory' ) ) {
+						$n = $title->isDeleted();
+						if( $n ) {
+							$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
+							// If the user can't undelete but can view deleted history show them a "View .. deleted" tab instead
+							$msgKey = $user->isAllowed( 'undelete' ) ? 'undelete' : 'viewdeleted';
+							$content_navigation['actions']['undelete'] = array(
+								'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
+								'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
+									->setContext( $this->getContext() )->numParams( $n )->text(),
+								'href' => $undelTitle->getLocalURL( array( 'target' => $title->getPrefixedDBkey() ) )
+							);
+						}
+					}
 
-			// Checks if the page exists
-			if ( $title->exists() && $userCanRead ) {
-				// Adds history view link
-				$content_navigation['views']['history'] = array(
-					'class' => ( $onPage && $action == 'history' ) ? 'selected' : false,
-					'text' => wfMessageFallback( "$skname-view-history", 'history_short' )->setContext( $this->getContext() )->text(),
-					'href' => $title->getLocalURL( 'action=history' ),
-					'rel' => 'archives',
-				);
-
-				if( $user->isAllowed( 'delete' ) ) {
-					$content_navigation['actions']['delete'] = array(
-						'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-delete", 'delete' )->setContext( $this->getContext() )->text(),
-						'href' => $title->getLocalURL( 'action=delete' )
-					);
-				}
-				if ( $title->quickUserCan( 'move' ) ) {
-					$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
-					$content_navigation['actions']['move'] = array(
-						'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-move", 'move' )->setContext( $this->getContext() )->text(),
-						'href' => $moveTitle->getLocalURL()
-					);
+					$isProtected = $title->getRestrictions( 'create' );
 				}
 
-				if ( $title->getNamespace() !== NS_MEDIAWIKI && $user->isAllowed( 'protect' ) ) {
-					$mode = !$title->isProtected() ? 'protect' : 'unprotect';
+				if ( $title->getNamespace() !== NS_MEDIAWIKI && $title->quickUserCan( 'protect', $user ) ) {
+					$mode = $isProtected ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( "action=$mode" )
 					);
 				}
-			} else {
-				// article doesn't exist or is deleted
-				if ( $user->isAllowed( 'deletedhistory' ) ) {
-					$n = $title->isDeleted();
-					if( $n ) {
-						$undelTitle = SpecialPage::getTitleFor( 'Undelete' );
-						// If the user can't undelete but can view deleted history show them a "View .. deleted" tab instead
-						$msgKey = $user->isAllowed( 'undelete' ) ? 'undelete' : 'viewdeleted';
-						$content_navigation['actions']['undelete'] = array(
-							'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
-							'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
-								->setContext( $this->getContext() )->numParams( $n )->text(),
-							'href' => $undelTitle->getLocalURL( array( 'target' => $title->getPrefixedDBkey() ) )
-						);
-					}
-				}
 
-				if ( $title->getNamespace() !== NS_MEDIAWIKI && $user->isAllowed( 'protect' ) ) {
-					$mode = !$title->getRestrictions( 'create' ) ? 'protect' : 'unprotect';
+				wfProfileOut( __METHOD__ . '-live' );
+
+				// Checks if the user is logged in
+				if ( $this->loggedin ) {
+					/**
+					 * The following actions use messages which, if made particular to
+					 * the any specific skins, would break the Ajax code which makes this
+					 * action happen entirely inline. Skin::makeGlobalVariablesScript
+					 * defines a set of messages in a javascript object - and these
+					 * messages are assumed to be global for all skins. Without making
+					 * a change to that procedure these messages will have to remain as
+					 * the global versions.
+					 */
+					$mode = $title->userIsWatching() ? 'unwatch' : 'watch';
+					$token = WatchAction::getWatchToken( $title, $user, $mode );
 					$content_navigation['actions'][$mode] = array(
-						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
-						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->setContext( $this->getContext() )->text(),
-						'href' => $title->getLocalURL( "action=$mode" )
+						'class' => $onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : false,
+						'text' => $this->msg( $mode )->text(), // uses 'watch' or 'unwatch' message
+						'href' => $title->getLocalURL( array( 'action' => $mode, 'token' => $token ) )
 					);
 				}
-			}
-			wfProfileOut( __METHOD__ . '-live' );
-
-			// Checks if the user is logged in
-			if ( $this->loggedin ) {
-				/**
-				 * The following actions use messages which, if made particular to
-				 * the any specific skins, would break the Ajax code which makes this
-				 * action happen entirely inline. Skin::makeGlobalVariablesScript
-				 * defines a set of messages in a javascript object - and these
-				 * messages are assumed to be global for all skins. Without making
-				 * a change to that procedure these messages will have to remain as
-				 * the global versions.
-				 */
-				$mode = $title->userIsWatching() ? 'unwatch' : 'watch';
-				$token = WatchAction::getWatchToken( $title, $user, $mode );
-				$content_navigation['actions'][$mode] = array(
-					'class' => $onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : false,
-					'text' => $this->msg( $mode )->text(), // uses 'watch' or 'unwatch' message
-					'href' => $title->getLocalURL( array( 'action' => $mode, 'token' => $token ) )
-				);
 			}
 
 			wfRunHooks( 'SkinTemplateNavigation', array( &$this, &$content_navigation ) );
 
-			if ( !$wgDisableLangConversion ) {
+			if ( $userCanRead && !$wgDisableLangConversion ) {
 				$pageLang = $title->getPageLanguage();
 				// Gets list of language variants
 				$variants = $pageLang->getVariants();
