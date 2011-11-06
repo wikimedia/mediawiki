@@ -7,10 +7,10 @@ set -e
 
 PORT=4881
 
-cd $DEV/../../; # $IP
+cd "$DEV/../../"; # $IP
 
-mkdir $DEV/data
-$DEV/php/bin/php maintenance/install.php --server="http://localhost:$PORT" --scriptpath="" --dbtype=sqlite --dbpath=$DEV/data --pass=admin "Trunk Test" $USER
+mkdir "$DEV/data"
+"$DEV/php/bin/php" maintenance/install.php --server="http://localhost:$PORT" --scriptpath="" --dbtype=sqlite --dbpath="$DEV/data" --pass=admin "Trunk Test" "$USER"
 echo ""
 echo "Development wiki created with admin user $USER and password 'admin'."
 echo ""
