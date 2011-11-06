@@ -194,10 +194,14 @@ class DifferenceEngine {
 			return;
 		}
 
-		# mOldPage might not be set, see below.
-		if ( !$this->mNewPage->userCanRead() || ( $this->mOldPage && !$this->mOldPage->userCanRead() ) ) {
+		$permErrors = $this->mNewPage->getUserPermissionsErrors( 'read', $wgUser );
+		if ( $this->mOldPage ) { # mOldPage might not be set, see below.
+			$permErrors = wfMergeErrorArrays( $permErrors,
+				$this->mOldPage->getUserPermissionsErrors( 'read', $wgUser ) );
+		}
+		if ( count( $permErrors ) ) {
 			wfProfileOut( __METHOD__ );
-			throw new PermissionsError( 'read' );
+			throw new PermissionsError( 'read', $permErrors );
 		}
 
 		# If external diffs are enabled both globally and for the user,

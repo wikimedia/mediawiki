@@ -125,6 +125,8 @@ production.
   "create account" when the user cannot create an account
 * (bug 31818) 'usercreated' message now supports GENDER
 * (bug 32022) Our phpunit.php script can now be executed from another directory
+* (bug 26020) Setting $wgEmailConfirmToEdit to true no longer removes diffs
+  from recent changes feeds
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.

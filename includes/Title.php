@@ -1134,6 +1134,26 @@ class Title {
 	}
 
 	/**
+	 * Determines if $user is unable to edit this page because it has been protected
+	 * by $wgNamespaceProtection.
+	 *
+	 * @param $user User object to check permissions
+	 * @return Bool
+	 */
+	public function isNamespaceProtected( User $user ) {
+		global $wgNamespaceProtection;
+
+		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
+			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
+				if ( $right != '' && !$user->isAllowed( $right ) ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Is this a conversion table for the LanguageConverter?
 	 *
 	 * @return Bool
@@ -1169,6 +1189,17 @@ class Title {
 	}
 
 	/**
+	 * Can $wgUser read this page?
+	 *
+	 * @deprecated in 1.19; use userCan(), quickUserCan() or getUserPermissionsErrors() instead
+	 * @return Bool
+	 * @todo fold these checks into userCan()
+	 */
+	public function userCanRead() {
+		return $this->userCan( 'read' );
+	}
+
+	/**
 	 * Can $wgUser perform $action on this page?
 	 * This skips potentially expensive cascading permission checks
 	 * as well as avoids expensive error formatting
@@ -1179,42 +1210,27 @@ class Title {
 	 * May provide false positives, but should never provide a false negative.
 	 *
 	 * @param $action String action that permission needs to be checked for
+	 * @param $user User to check (since 1.19)
 	 * @return Bool
 	 */
-	public function quickUserCan( $action ) {
-		return $this->userCan( $action, false );
-	}
-
-	/**
-	 * Determines if $user is unable to edit this page because it has been protected
-	 * by $wgNamespaceProtection.
-	 *
-	 * @param $user User object to check permissions
-	 * @return Bool
-	 */
-	public function isNamespaceProtected( User $user ) {
-		global $wgNamespaceProtection;
-
-		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
-			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
-				if ( $right != '' && !$user->isAllowed( $right ) ) {
-					return true;
-				}
-			}
-		}
-		return false;
+	public function quickUserCan( $action, $user = null ) {
+		return $this->userCan( $action, $user, false );
 	}
 
 	/**
 	 * Can $wgUser perform $action on this page?
 	 *
 	 * @param $action String action that permission needs to be checked for
+	 * @param $user User to check (since 1.19)
 	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary queries.
 	 * @return Bool
 	 */
-	public function userCan( $action, $doExpensiveQueries = true ) {
-		global $wgUser;
-		return ( $this->getUserPermissionsErrorsInternal( $action, $wgUser, $doExpensiveQueries, true ) === array() );
+	public function userCan( $action, $user = null, $doExpensiveQueries = true ) {
+		if ( !$user instanceof User ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
+		return !count( $this->getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries, true ) );
 	}
 
 	/**
@@ -1300,24 +1316,7 @@ class Title {
 				$errors[] = array( 'cant-move-to-user-page' );
 			}
 		} elseif ( !$user->isAllowed( $action, $ns ) ) {
-			// We avoid expensive display logic for quickUserCan's and such
-			$groups = false;
-			if ( !$short ) {
-				$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
-					User::getGroupsWithPermission( $action, $ns ) );
-			}
-
-			if ( $groups ) {
-				global $wgLang;
-				$return = array(
-					'badaccess-groups',
-					$wgLang->commaList( $groups ),
-					count( $groups )
-				);
-			} else {
-				$return = array( 'badaccess-group0' );
-			}
-			$errors[] = $return;
+			$errors[] = $this->missingPermissionError( $action, $short );
 		}
 
 		return $errors;
@@ -1392,7 +1391,7 @@ class Title {
 	private function checkSpecialsAndNSPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		# Only 'createaccount' and 'execute' can be performed on
 		# special pages, which don't actually exist in the DB.
-		$specialOKActions = array( 'createaccount', 'execute' );
+		$specialOKActions = array( 'createaccount', 'execute', 'read' );
 		if ( NS_SPECIAL == $this->mNamespace && !in_array( $action, $specialOKActions ) ) {
 			$errors[] = array( 'ns-specialprotected' );
 		}
@@ -1456,13 +1455,10 @@ class Title {
 			}
 			if ( $right != '' && !$user->isAllowed( $right, $this->mNamespace ) ) {
 				// Users with 'editprotected' permission can edit protected pages
-				if ( $action == 'edit' && $user->isAllowed( 'editprotected', $this->mNamespace ) ) {
-					// Users with 'editprotected' permission cannot edit protected pages
-					// with cascading option turned on.
-					if ( $this->mCascadeRestriction ) {
-						$errors[] = array( 'protectedpagetext', $right );
-					}
-				} else {
+				// without cascading option turned on.
+				if ( $action != 'edit' || !$user->isAllowed( 'editprotected', $this->mNamespace )
+					|| $this->mCascadeRestriction )
+				{
 					$errors[] = array( 'protectedpagetext', $right );
 				}
 			}
@@ -1570,21 +1566,19 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkUserBlock( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		if( !$doExpensiveQueries ) {
+		// Account creation blocks handled at userlogin.
+		// Unblocking handled in SpecialUnblock
+		if( !$doExpensiveQueries || in_array( $action, array( 'createaccount', 'unblock' ) ) ) {
 			return $errors;
 		}
 
 		global $wgContLang, $wgLang, $wgEmailConfirmToEdit;
 
-		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() && $action != 'createaccount' ) {
+		if ( $wgEmailConfirmToEdit && !$user->isEmailConfirmed() ) {
 			$errors[] = array( 'confirmedittext' );
 		}
 
-		if ( in_array( $action, array( 'read', 'createaccount', 'unblock' ) ) ){
-			// Edit blocks should not affect reading.
-			// Account creation blocks handled at userlogin.
-			// Unblocking handled in SpecialUnblock
-		} elseif( ( $action == 'edit' || $action == 'create' ) && !$user->isBlockedFrom( $this ) ){
+		if ( ( $action == 'edit' || $action == 'create' ) && !$user->isBlockedFrom( $this ) ) {
 			// Don't block the user from editing their own talk page unless they've been
 			// explicitly blocked from that too.
 		} elseif( $user->isBlocked() && $user->mBlock->prevents( $action ) !== false ) {
@@ -1626,6 +1620,128 @@ class Title {
 	}
 
 	/**
+	 * Check that the user is allowed to read this page.
+	 *
+	 * @param $action String the action to check
+	 * @param $user User to check
+	 * @param $errors Array list of current errors
+	 * @param $doExpensiveQueries Boolean whether or not to perform expensive queries
+	 * @param $short Boolean short circuit on first error
+	 *
+	 * @return Array list of errors
+	 */
+	private function checkReadPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
+		static $useShortcut = null;
+
+		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
+		if ( is_null( $useShortcut ) ) {
+			global $wgGroupPermissions, $wgRevokePermissions;
+			$useShortcut = true;
+			if ( empty( $wgGroupPermissions['*']['read'] ) ) {
+				# Not a public wiki, so no shortcut
+				$useShortcut = false;
+			} elseif ( !empty( $wgRevokePermissions ) ) {
+				/**
+				 * Iterate through each group with permissions being revoked (key not included since we don't care
+				 * what the group name is), then check if the read permission is being revoked. If it is, then
+				 * we don't use the shortcut below since the user might not be able to read, even though anon
+				 * reading is allowed.
+				 */
+				foreach ( $wgRevokePermissions as $perms ) {
+					if ( !empty( $perms['read'] ) ) {
+						# We might be removing the read right from the user, so no shortcut
+						$useShortcut = false;
+						break;
+					}
+				}
+			}
+		}
+
+		# Shortcut for public wikis, allows skipping quite a bit of code
+		if ( $useShortcut ) {
+			return $errors;
+		}
+
+		# If the user is allowed to read pages, he is allowed to read all pages
+		if ( $user->isAllowed( 'read', $this->mNamespace ) ) {
+			return $errors;
+		}
+
+		# Always grant access to the login page.
+		# Even anons need to be able to log in.
+		if ( $this->isSpecial( 'Userlogin' ) || $this->isSpecial( 'ChangePassword' ) ) {
+			return $errors;
+		}
+
+		# Time to check the whitelist
+		global $wgWhitelistRead;
+
+		# Only to these checks is there's something to check against
+		if ( is_array( $wgWhitelistRead ) && count( $wgWhitelistRead ) ) {
+			# Check for explicit whitelisting
+			$name = $this->getPrefixedText();
+			$dbName = $this->getPrefixedDBKey();
+
+			// Check with and without underscores
+			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) ) {
+				return $errors;
+			}
+
+			# Old settings might have the title prefixed with
+			# a colon for main-namespace pages
+			if ( $this->getNamespace() == NS_MAIN ) {
+				if ( in_array( ':' . $name, $wgWhitelistRead ) ) {
+					return $errors;
+				}
+			}
+
+			# If it's a special page, ditch the subpage bit and check again
+			if ( $this->isSpecialPage() ) {
+				$name = $this->getDBkey();
+				list( $name, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $name );
+				if ( $name !== false ) {
+					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
+					if ( in_array( $pure, $wgWhitelistRead, true ) ) {
+						return $errors;
+					}
+				}
+			}
+		}
+
+		$errors[] = $this->missingPermissionError( $action, $short );
+		return $errors;
+	}
+
+	/**
+	 * Get a description array when the user doesn't have the right to perform
+	 * $action (i.e. when User::isAllowed() returns false)
+	 *
+	 * @param $action String the action to check
+	 * @param $short Boolean short circuit on first error
+	 * @return Array list of errors
+	 */
+	private function missingPermissionError( $action, $short ) {
+		// We avoid expensive display logic for quickUserCan's and such
+		if ( $short ) {
+			return array( 'badaccess-group0' );
+		}
+
+		$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
+			User::getGroupsWithPermission( $action, $this->mNamespace ) );
+
+		if ( count( $groups ) ) {
+			global $wgLang;
+			return array(
+				'badaccess-groups',
+				$wgLang->commaList( $groups ),
+				count( $groups )
+			);
+		} else {
+			return array( 'badaccess-group0' );
+		}
+	}
+
+	/**
 	 * Can $user perform $action on this page? This is an internal function,
 	 * which checks ONLY that previously checked by userCan (i.e. it leaves out
 	 * checks on wfReadOnly() and blocks)
@@ -1639,20 +1755,28 @@ class Title {
 	protected function getUserPermissionsErrorsInternal( $action, $user, $doExpensiveQueries = true, $short = false ) {
 		wfProfileIn( __METHOD__ );
 
-		$errors = array();
-		$checks = array(
-			'checkQuickPermissions',
-			'checkPermissionHooks',
-			'checkSpecialsAndNSPermissions',
-			'checkCSSandJSPermissions',
-			'checkPageRestrictions',
-			'checkCascadingSourcesRestrictions',
-			'checkActionPermissions',
-			'checkUserBlock'
-		);
+		# Read has special handling
+		if ( $action == 'read' ) {
+			$checks = array(
+				'checkPermissionHooks',
+				'checkReadPermissions',
+			);
+		} else {
+			$checks = array(
+				'checkQuickPermissions',
+				'checkPermissionHooks',
+				'checkSpecialsAndNSPermissions',
+				'checkCSSandJSPermissions',
+				'checkPageRestrictions',
+				'checkCascadingSourcesRestrictions',
+				'checkActionPermissions',
+				'checkUserBlock'
+			);
+		}
 
+		$errors = array();
 		while( count( $checks ) > 0 &&
-			   !( $short && count( $errors ) > 0 ) ) {
+				!( $short && count( $errors ) > 0 ) ) {
 			$method = array_shift( $checks );
 			$errors = $this->$method( $action, $user, $errors, $doExpensiveQueries, $short );
 		}
@@ -1785,102 +1909,6 @@ class Title {
 		$result = true;
 		wfRunHooks( 'TitleIsMovable', array( $this, &$result ) );
 		return $result;
-	}
-
-	/**
-	 * Can $wgUser read this page?
-	 *
-	 * @return Bool
-	 * @todo fold these checks into userCan()
-	 */
-	public function userCanRead() {
-		global $wgUser, $wgGroupPermissions;
-
-		static $useShortcut = null;
-
-		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
-		if ( is_null( $useShortcut ) ) {
-			global $wgRevokePermissions;
-			$useShortcut = true;
-			if ( empty( $wgGroupPermissions['*']['read'] ) ) {
-				# Not a public wiki, so no shortcut
-				$useShortcut = false;
-			} elseif ( !empty( $wgRevokePermissions ) ) {
-				/**
-				 * Iterate through each group with permissions being revoked (key not included since we don't care
-				 * what the group name is), then check if the read permission is being revoked. If it is, then
-				 * we don't use the shortcut below since the user might not be able to read, even though anon
-				 * reading is allowed.
-				 */
-				foreach ( $wgRevokePermissions as $perms ) {
-					if ( !empty( $perms['read'] ) ) {
-						# We might be removing the read right from the user, so no shortcut
-						$useShortcut = false;
-						break;
-					}
-				}
-			}
-		}
-
-		$result = null;
-		wfRunHooks( 'userCan', array( &$this, &$wgUser, 'read', &$result ) );
-		if ( $result !== null ) {
-			return $result;
-		}
-
-		# Shortcut for public wikis, allows skipping quite a bit of code
-		if ( $useShortcut ) {
-			return true;
-		}
-
-		if ( $wgUser->isAllowed( 'read' ) ) {
-			return true;
-		} else {
-			global $wgWhitelistRead;
-
-			# Always grant access to the login page.
-			# Even anons need to be able to log in.
-			if ( $this->isSpecial( 'Userlogin' ) || $this->isSpecial( 'ChangePassword' ) ) {
-				return true;
-			}
-
-			# Bail out if there isn't whitelist
-			if ( !is_array( $wgWhitelistRead ) ) {
-				return false;
-			}
-
-			# Check for explicit whitelisting
-			$name = $this->getPrefixedText();
-			$dbName = $this->getPrefixedDBKey();
-			// Check with and without underscores
-			if ( in_array( $name, $wgWhitelistRead, true ) || in_array( $dbName, $wgWhitelistRead, true ) )
-				return true;
-
-			# Old settings might have the title prefixed with
-			# a colon for main-namespace pages
-			if ( $this->getNamespace() == NS_MAIN ) {
-				if ( in_array( ':' . $name, $wgWhitelistRead ) ) {
-					return true;
-				}
-			}
-
-			# If it's a special page, ditch the subpage bit and check again
-			if ( $this->isSpecialPage() ) {
-				$name = $this->getDBkey();
-				list( $name, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $name );
-				if ( $name === false ) {
-					# Invalid special page, but we show standard login required message
-					return false;
-				}
-
-				$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
-				if ( in_array( $pure, $wgWhitelistRead, true ) ) {
-					return true;
-				}
-			}
-
-		}
-		return false;
 	}
 
 	/**
