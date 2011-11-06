@@ -154,7 +154,7 @@ class LogFormatter {
 
 	/**
 	 * Extract parameters intented for action message from
-	 * array of all parameters. The are three hardcoded
+	 * array of all parameters. There are three hardcoded
 	 * parameters (array zero-indexed, this list not):
 	 *  - 1: user name with premade link
 	 *  - 2: usable for gender magic function
