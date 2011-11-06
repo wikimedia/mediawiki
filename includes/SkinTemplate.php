@@ -805,7 +805,6 @@ class SkinTemplate extends Skin {
 
 		// parameters
 		$action = $request->getVal( 'action', 'view' );
-		$section = $request->getVal( 'section' );
 
 		$userCanRead = $title->userCanRead();
 		$skname = $this->skinname;
@@ -870,6 +869,7 @@ class SkinTemplate extends Skin {
 			) {
 				// Builds CSS class for talk page links
 				$isTalkClass = $isTalk ? ' istalk' : '';
+				$section = $request->getVal( 'section' );
 
 				// Determines if we're in edit mode
 				$selected = (
@@ -996,6 +996,35 @@ class SkinTemplate extends Skin {
 			}
 
 			wfRunHooks( 'SkinTemplateNavigation', array( &$this, &$content_navigation ) );
+
+			if ( !$wgDisableLangConversion ) {
+				$pageLang = $title->getPageLanguage();
+				// Gets list of language variants
+				$variants = $pageLang->getVariants();
+				// Checks that language conversion is enabled and variants exist
+				// And if it is not in the special namespace
+				if( count( $variants ) > 1 ) {
+					// Gets preferred variant (note that user preference is 
+					// only possible for wiki content language variant)
+					$preferred = $pageLang->getPreferredVariant();
+					// Loops over each variant
+					foreach( $variants as $code ) {
+						// Gets variant name from language code
+						$varname = $pageLang->getVariantname( $code );
+						// Checks if the variant is marked as disabled
+						if( $varname == 'disable' ) {
+							// Skips this variant
+							continue;
+						}
+						// Appends variant link
+						$content_navigation['variants'][] = array(
+							'class' => ( $code == $preferred ) ? 'selected' : false,
+							'text' => $varname,
+							'href' => $title->getLocalURL( '', $code )
+						);
+					}
+				}
+			}
 		} else {
 			// If it's not content, it's got to be a special page
 			$content_navigation['namespaces']['special'] = array(
@@ -1007,35 +1036,6 @@ class SkinTemplate extends Skin {
 
 			wfRunHooks( 'SkinTemplateNavigation::SpecialPage',
 				array( &$this, &$content_navigation ) );
-		}
-
-		if ( !$wgDisableLangConversion && !$title->isSpecialPage() ) {
-			$pageLang = $title->getPageLanguage();
-			// Gets list of language variants
-			$variants = $pageLang->getVariants();
-			// Checks that language conversion is enabled and variants exist
-			// And if it is not in the special namespace
-			if( count( $variants ) > 1 ) {
-				// Gets preferred variant (note that user preference is 
-				// only possible for wiki content language variant)
-				$preferred = $pageLang->getPreferredVariant();
-				// Loops over each variant
-				foreach( $variants as $code ) {
-					// Gets variant name from language code
-					$varname = $pageLang->getVariantname( $code );
-					// Checks if the variant is marked as disabled
-					if( $varname == 'disable' ) {
-						// Skips this variant
-						continue;
-					}
-					// Appends variant link
-					$content_navigation['variants'][] = array(
-						'class' => ( $code == $preferred ) ? 'selected' : false,
-						'text' => $varname,
-						'href' => $title->getLocalURL( '', $code )
-					);
-				}
-			}
 		}
 
 		// Equiv to SkinTemplateContentActions
