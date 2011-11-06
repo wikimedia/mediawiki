@@ -8874,6 +8874,23 @@ language=en
 </p>
 !! end
 
+!! test
+Bug 26375: TOC with italics
+!! options
+title=[[Main Page]]
+!! input
+__TOC__
+== ''Lost'' episodes ==
+!! result
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Lost_episodes"><span class="tocnumber">1</span> <span class="toctext"><i>Lost</i> episodes</span></a></li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Lost episodes">edit</a>]</span> <span class="mw-headline" id="Lost_episodes"> <i>Lost</i> episodes </span></h2>
+
+!! end
+
 TODO:
 more images
 more tables

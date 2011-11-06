@@ -4043,9 +4043,9 @@ class Parser {
 			#     link text with suffix
 			$safeHeadline = $this->replaceLinkHoldersText( $safeHeadline );
 
-			# Strip out HTML (other than plain <sup> and <sub>: bug 8393)
+			# Strip out HTML (other than plain <sup> and <sub>: bug 8393, or <i>: bug 26375)
 			$tocline = preg_replace(
-				array( '#<(?!/?(sup|sub)).*?'.'>#', '#<(/?(sup|sub)).*?'.'>#' ),
+				array( '#<(?!/?(sup|sub|i)).*?'.'>#', '#<(/?(sup|sub|i)).*?'.'>#' ),
 				array( '',                          '<$1>' ),
 				$safeHeadline
 			);
