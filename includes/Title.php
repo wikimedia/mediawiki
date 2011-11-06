@@ -996,6 +996,7 @@ class Title {
 
 	/**
 	 * HTML-escaped version of getCanonicalURL()
+	 * @since 1.18
 	 */
 	public function escapeCanonicalURL( $query = '', $variant = false ) {
 		return htmlspecialchars( $this->getCanonicalURL( $query, $variant ) );
@@ -1032,6 +1033,7 @@ class Title {
 	 * @param $query string An optional query string
 	 * @param $variant string Language variant of URL (for sr, zh, ...)
 	 * @return string The URL
+	 * @since 1.18
 	 */
 	public function getCanonicalURL( $query = '', $variant = false ) {
 		$url = wfExpandUrl( $this->getLocalURL( $query, $variant ) . $this->getFragmentForURL(), PROTO_CANONICAL );
