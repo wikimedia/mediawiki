@@ -431,6 +431,7 @@ Consulta: $2',
 Por favor vuelve a tentalo dientro d'unos minutos.",
 'protectedpagetext'    => 'Esta páxina ta candada pa torgar la so edición.',
 'viewsourcetext'       => "Pues ver y copiar el códigu fonte d'esta páxina:",
+'viewyourtext'         => "Pues ver y copiar el códigu fonte de '''les tos ediciones''' d'esta páxina:",
 'protectedinterface'   => "Esta páxina proporciona testu d'interfaz a l'aplicación y ta candada pa evitar el so abusu.",
 'editinginterface'     => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu de la interfaz a l'aplicación.
 Los cambeos nesta páxina afeutarán a l'apariencia de la interfaz pa otros usuarios.
@@ -1682,7 +1683,7 @@ La descripción de la [páxina de descripción del ficheru $2] s'amuesa darréu.
 'filerevert-badversion'     => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
-'filedelete'                  => 'Esborrar $1',
+'filedelete'                  => 'Desaniciar $1',
 'filedelete-legend'           => 'Esborrar archivu',
 'filedelete-intro'            => "Tas a piques d'esborrar el ficheru '''[[Media:$1|$1]]''' xunto con tol so historial.",
 'filedelete-intro-old'        => "Tas esborrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
@@ -2052,7 +2053,7 @@ Más ayuda y sofitu:
 'excontentauthor'        => "el conteníu yera: '$1' (y l'únicu autor yera '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'          => "el conteníu enantes de dexar en blanco yera: '$1'",
 'exblank'                => 'la páxina taba vacia',
-'delete-confirm'         => 'Esborrar "$1"',
+'delete-confirm'         => 'Desaniciar «$1»',
 'delete-legend'          => 'Desaniciar',
 'historywarning'         => "'''Avisu:'''' La páxina que vas desaniciar tien un historial con aproximadamente $1 {{PLURAL:$1|revisión|revisiones}}:",
 'confirmdeletetext'      => "Tas a piques d'esborrar una páxina xunto con tol so historial.

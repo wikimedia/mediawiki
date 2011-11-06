@@ -728,7 +728,7 @@ Temporärt Passwuert: $2',
 # Edit pages
 'summary'                          => 'Resumé:',
 'subject'                          => 'Sujet/Iwwerschrëft:',
-'minoredit'                        => 'Dëst ass just eng kleng Ännerung',
+'minoredit'                        => 'Dëst ass eng kleng Ännerung',
 'watchthis'                        => 'Dës Säit iwwerwaachen',
 'savearticle'                      => 'Säit späicheren',
 'preview'                          => 'Kucken ouni ofzespäicheren',

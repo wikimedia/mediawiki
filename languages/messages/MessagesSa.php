@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Abhirama
  * @author Bharata
  * @author Bhawani Gautam
  * @author Hemant wikikosh1
@@ -792,6 +793,9 @@ You may ignore this message, if this account was created in error.',
 'passwordreset-emailelement' => 'प्रयोक्तृनाम: $1
 अल्पकालिकः कूटशब्दः : $2',
 'passwordreset-emailsent'    => 'एकः स्मारकः विद्युत्सन्देशः प्रेषितोऽस्ति।',
+
+# Special:ChangeEmail
+'changeemail' => 'विद्युन्मानपत्रादेशं परिवर्तयतु',
 
 # Edit page toolbar
 'bold_sample'     => 'स्थूलाक्षरैः युक्तः भागः',

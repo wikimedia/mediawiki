@@ -9357,8 +9357,11 @@ Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhla
 Et Ömrääschne en Minni-Beldsche weed ußjeschalldt.',
 	'config-no-uri' => "'''Fähler:''' Mer kunnte der aktoälle <i lang=\"en\">URI</i> nit erusfenge.
 Et Enreeschte es domet heh aam Engk.",
+	'config-no-cli-uri' => "'''Opjepaß''': <code lang=\"en\">--scriptpath</code> es nit aanjejovve, mer nämme der Schtandatt: <code>\$1</code>.",
 	'config-using-server' => 'Mer nämmen dem ẞööver singe Name: „<nowiki>$1</nowiki>“.',
+	'config-using-uri' => 'Mer nämmen dem ẞööver singe <i lang="en">URL</i>: „<nowiki>$1$2</nowiki>“.',
 	'config-uploads-not-safe' => "'''Opjepaß:''' Uß däm jewöhnlijje Verzeichnes för de huhjelaade Datteie, dat es <code>$1</code>, künnte öhnzwällsche Skrepte un Projramme ußjeföhrt wääde. Och wann MediaWiki de huhjelaade Datteie prööf, dat kein bekannte Risike dren sin, sullt mer doch dat [http://www.mediawiki.org/wiki/Manual:Security#Upload_security Sesherheitsloch] zoh maache, ih dat mer et Dattei Huhlaade zohlöht.",
+	'config-no-cli-uploads-check' => "'''Opjepaß''': <code>\$1</code> es dat Schtandatt-Verzeijschneß för et Datteije-Huhlaade. Beim Opsäze met <abbr lang=\"en\" title=\"Call Level Interface\">CLI</abbr> donn mer ävver nit övverpröhve, dat dat jeschöz es dojääje, dat Skrepte vun doh loufe künne, di mer nit loufe han well.",
 	'config-brokenlibxml' => 'Op Dingem Rääschner loufe Versione vun PHP un <code lang="en">libxml2</code> zosamme, di ävver nit zosamme paßße, un de Daate em MediaWiki un ander Web_Aanwändunge [http://bugs.php.net/bug.php?id=45996 bug kapott maache].
 Jangk op PHP 5.2.9 udder dohnoh un op <code lang="en">libxml2</code> 2.7.3 udder dohnoh.
 Heh jeihd et nit wigger.',
@@ -9372,7 +9375,9 @@ Heh jeiht et nit wigger.',
 
 Wann De ob enem Meetẞööver beß, weet Der Dinge Provaider odder däm sing Dokemäntazjuhn saare, wat De endraare moß.
 
-Wann De ob enem ẞööver onger <i lang="en">Windows</i> am enshtalleere bes un en <i lang="en">MySQL</i>-Daatebangk häs, künnd_et sin, dat „<code lang="en">localhost</code>“ nit douch för der Name vum ẞööver. Wann dad-esu es, versöhg et ens met „<code lang="en">127.0.0.1</code>“ als <i lang="en">IP</i>-Addräß vum eije Rääschner.',
+Wann De ob enem ẞööver onger <i lang="en">Windows</i> am enshtalleere bes un en <i lang="en">MySQL</i>-Daatebangk häs, künnd_et sin, dat „<code lang="en">localhost</code>“ nit douch för der Name vum ẞööver. Wann dad-esu es, versöhg et ens met „<code lang="en">127.0.0.1</code>“ als <i lang="en">IP</i>-Addräß vum eije Rääschner.
+
+Wann De ene <i lang="en">PostgreSQL</i>-ẞööver häs, donn dat Fäld läddesch lohße, öm en Verbendung övver e <i lang="en">Unix socket</i> opzemaache.',
 	'config-db-host-oracle' => 'Dä Daatebangk ier <i lang="en" title="Transparent Network Substrate">TNS</i>:',
 	'config-db-host-oracle-help' => 'Donn ene jöltije [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm „<i lang="en">Local Connect</i>“-Name] aanjävve. De Dattei „<code lang="en">tnsnames.ora</code>“ moß för heh dat Projamm seschbaa un ze Lässe sin.<br />Wann heh de Projamm_Biblijoteeke für de Aanwänderprojramme för de Version 10g udder neuer enjesaz wääde, kam_mer och et [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm „<i lang="en">Easy Connect</i>“] jenumme wääde för der Name ze verjävve.',
 	'config-db-wiki-settings' => 'De Daate vum Wiki',
@@ -9535,8 +9540,9 @@ Dä aanjejovve Zohjang för der Nomaalbedrief moß dröm schunn enjersht sen!',
 * Dat Fomaat es anfällesch för Probleme met de Daate.
 * Et weed vun MediaWiki nit immer passend ongerschtöz.
 
-Wann dat <i lang="en">MySQL</i> -Installation die Speicher-Engine InnoDB unterstützt, wird deren Verwendung eindringlich empfohlen.
-Sofern sie sie nicht unterstützt, sollte eine entsprechende Aktualisierung nunmehr Erwägung gezogen werdenoüp dämm Server',
+Wann Ding <i lang="en">MySQL</i> et schpeischere en <i lang="en">InnoDB</i>-Datteije nit ongerschtöz, wird deren Verwendung eindringlich empfohlen.
+Sofern sie sie nicht unterstützt, sollte eine entsprechende Aktualisierung nunmehr Erwägung gezogen werden op dämm ẞööver.
+',
 	'config-mysql-engine-help' => "'''InnoDB''' es fö jewöhnlesch et beß, weil vill Zohjreffe op eijmohl joot ongershtöz wääde.
 
 '''MyISAM''' es flöcker op Rääschnere met bloß einem Minsch draan, un bei Wikis, di mer bloß lässe un nit schrieeve kann.
