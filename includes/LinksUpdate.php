@@ -310,7 +310,7 @@ class LinksUpdate {
 	 * @param $deleted array associative array of category name => sort key
 	 */
 	function updateCategoryCounts( $added, $deleted ) {
-		$a = new Article($this->mTitle);
+		$a = WikiPage::factory( $this->mTitle );
 		$a->updateCategoryCounts(
 			array_keys( $added ), array_keys( $deleted )
 		);
