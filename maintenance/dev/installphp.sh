@@ -1,19 +1,33 @@
 #!/bin/bash
 
-if [[ "x$BASH_SOURCE" == "x" ]]; then echo '$BASH_SOURCE not set'; exit 1; fi
+if [ "x$BASH_SOURCE" == "x" ]; then echo '$BASH_SOURCE not set'; exit 1; fi
 DEV=$(cd -P "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 set -e # DO NOT USE PIPES unless this is rewritten
 
-if [ -d "$DEV/php" ]; then
+if [ -d "$DEV/php" -a -x "$DEV/php/bin/php" ] || [ -d "$HOME/.mwphp" -a -x "$HOME/.mwphp/bin/php" ]; then
 	echo "PHP is already installed"
-	exit 1
+	exit 0
 fi
 
 TAR=php5.4-latest.tar.gz
 PHPURL="http://snaps.php.net/$TAR"
 
 cd "$DEV"
+
+echo "Preparing to download and install a local copy of PHP 5.4, note that this can take some time to do."
+echo "If you wish to avoid re-doing this for uture dev installations of MediaWiki we suggest installing php in ~/.mwphp"
+echo -n "Install PHP in ~/.mwphp [y/N]: "
+read INSTALLINHOME
+
+case "$INSTALLINHOME" in
+	[Yy] | [Yy][Ee][Ss] )
+		PREFIX="$HOME/.mwphp"
+		;;
+	*)
+		PREFIX="$DEV/php/"
+		;;
+esac
 
 # Some debain-like systems bundle wget but not curl, some other systems
 # like os x bundle curl but not wget... use whatever is available
@@ -35,7 +49,7 @@ tar -xzf "$TAR"
 
 cd php5.4-*/
 
-echo "Configuring and installing php 5.4 in \$IP/maintenance/dev/php/"
-./configure --prefix="$DEV/php/"
+echo "Configuring and installing php 5.4 in $PREFIX"
+./configure --prefix="$PREFIX"
 make
 make install
