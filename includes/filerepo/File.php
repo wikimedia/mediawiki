@@ -1681,10 +1681,3 @@ abstract class File {
 		}
 	}
 }
-/**
- * Aliases for backwards compatibility with 1.6
- */
-define( 'MW_IMG_DELETED_FILE', File::DELETED_FILE );
-define( 'MW_IMG_DELETED_COMMENT', File::DELETED_COMMENT );
-define( 'MW_IMG_DELETED_USER', File::DELETED_USER );
-define( 'MW_IMG_DELETED_RESTRICTED', File::DELETED_RESTRICTED );
