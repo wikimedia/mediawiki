@@ -862,35 +862,32 @@ class SkinTemplate extends Skin {
 				if ( $title->quickUserCan( 'edit', $user ) && ( $title->exists() || $title->quickUserCan( 'create', $user ) ) ) {
 					// Builds CSS class for talk page links
 					$isTalkClass = $isTalk ? ' istalk' : '';
+					// Whether the user is editing the page
+					$isEditing = $onPage && ( $action == 'edit' || $action == 'submit' );
+					// Whether to show the "Add a new section" tab
+					// Checks if this is a current rev of talk page and is not forced to be hidden
+					$showNewSection = !$out->forceHideNewSectionLink()
+						&& ( ( $isTalk && $this->isRevisionCurrent() ) || $out->showNewSectionLink() );
 					$section = $request->getVal( 'section' );
 
-					// Determines if we're in edit mode
-					$selected = (
-						$onPage &&
-						( $action == 'edit' || $action == 'submit' ) &&
-						( $section != 'new' )
-					);
 					$msgKey = $title->exists() || ( $title->getNamespace() == NS_MEDIAWIKI && $title->getDefaultMessageText() !== false ) ?
 						"edit" : "create";
 					$content_navigation['views']['edit'] = array(
-						'class' => ( $selected ? 'selected' : '' ) . $isTalkClass,
+						'class' => ( $isEditing && ( $section !== 'new' || !$showNewSection ) ? 'selected' : '' ) . $isTalkClass,
 						'text' => wfMessageFallback( "$skname-view-$msgKey", $msgKey )->setContext( $this->getContext() )->text(),
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
 						'primary' => true, // don't collapse this in vector
 					);
-					// Checks if this is a current rev of talk page and we should show a new
+					
 					// section link
-					if ( ( $isTalk && $this->isRevisionCurrent() ) || ( $out->showNewSectionLink() ) ) {
-						// Checks if we should ever show a new section link
-						if ( !$out->forceHideNewSectionLink() ) {
-							// Adds new section link
-							//$content_navigation['actions']['addsection']
-							$content_navigation['views']['addsection'] = array(
-								'class' => $section == 'new' ? 'selected' : false,
-								'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->setContext( $this->getContext() )->text(),
-								'href' => $title->getLocalURL( 'action=edit&section=new' )
-							);
-						}
+					if ( $showNewSection ) {
+						// Adds new section link
+						//$content_navigation['actions']['addsection']
+						$content_navigation['views']['addsection'] = array(
+							'class' => ( $isEditing && $section == 'new' ) ? 'selected' : false,
+							'text' => wfMessageFallback( "$skname-action-addsection", 'addsection' )->setContext( $this->getContext() )->text(),
+							'href' => $title->getLocalURL( 'action=edit&section=new' )
+						);
 					}
 				// Checks if the page has some kind of viewable content
 				} elseif ( $title->hasSourceText() ) {
@@ -922,6 +919,7 @@ class SkinTemplate extends Skin {
 							'href' => $title->getLocalURL( 'action=delete' )
 						);
 					}
+
 					if ( $title->quickUserCan( 'move', $user ) ) {
 						$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 						$content_navigation['actions']['move'] = array(
@@ -930,8 +928,6 @@ class SkinTemplate extends Skin {
 							'href' => $moveTitle->getLocalURL()
 						);
 					}
-
-					$isProtected = $title->isProtected();
 				} else {
 					// article doesn't exist or is deleted
 					if ( $user->isAllowed( 'deletedhistory' ) ) {
@@ -948,12 +944,10 @@ class SkinTemplate extends Skin {
 							);
 						}
 					}
-
-					$isProtected = $title->getRestrictions( 'create' );
 				}
 
 				if ( $title->getNamespace() !== NS_MEDIAWIKI && $title->quickUserCan( 'protect', $user ) ) {
-					$mode = $isProtected ? 'unprotect' : 'protect';
+					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = array(
 						'class' => ( $onPage && $action == $mode ) ? 'selected' : false,
 						'text' => wfMessageFallback( "$skname-action-$mode", $mode )->setContext( $this->getContext() )->text(),
