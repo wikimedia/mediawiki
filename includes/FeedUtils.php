@@ -102,7 +102,7 @@ class FeedUtils {
 		$anon = new User();
 		$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
 
-		# Early exist when the page is not an article, on errors and now newid to
+		# Early exist when the page is not an article, on errors and no newid to
 		# compare.
 		if( $title->getNamespace() < 0 || $accErrors || !$newid ) {
 			wfProfileOut( __METHOD__ );
@@ -131,14 +131,7 @@ class FeedUtils {
 
 			if ( $wgFeedDiffCutoff <= 0 || ( strlen( $diffText ) > $wgFeedDiffCutoff ) ) {
 				// Omit large diffs
-				$diffLink = $title->escapeFullUrl(
-					'diff=' . $newid .
-					'&oldid=' . $oldid );
-				$diffText = '<a href="' .
-					$diffLink .
-					'">' .
-					htmlspecialchars( wfMsgForContent( 'showdiff' ) ) .
-					'</a>';
+				$diffText = self::getDiffText( $title, $newid, $oldid);
 			} elseif ( $diffText === false ) {
 				// Error in diff engine, probably a missing revision
 				$diffText = "<p>Can't load revision $newid</p>";
@@ -150,18 +143,44 @@ class FeedUtils {
 			wfProfileOut( __METHOD__."-dodiff" );
 		} else {
 			$rev = Revision::newFromId( $newid );
-			if( is_null( $rev ) ) {
+			if( $wgFeedDiffCutoff <= 0 || is_null( $rev ) ) {
 				$newtext = '';
 			} else {
 				$newtext = $rev->getText();
 			}
-			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' .
-				'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
+			if ( $wgFeedDiffCutoff <= 0 || strlen( $newtext ) > $wgFeedDiffCutoff ) {
+				// Omit large new page diffs, bug 29110
+				$diffText = self::getDiffText( $title, $newid );
+			} else {
+				$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' .
+					'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
+			}
 		}
 		$completeText .= $diffText;
 
 		wfProfileOut( __METHOD__ );
 		return $completeText;
+	}
+
+	/**
+	 * Generates a diff link. Used when the full diff is not wanted for example
+	 * when $wgFeedDiffCutoff is 0.
+	 *
+	 * @param $title Title object: used to generate the diff URL
+	 * @param $newid Integer newid for this diff
+	 * @param $oldid Integer|null oldid for the diff. Null means it is a new article
+	 */
+	protected static function getDiffText( Title $title, $newid, $oldid = null ) {
+		$queryParameters = ($oldid == null)
+			? "diff={$newid}"
+			: "diff={$newid}&oldid={$oldid}" ;
+		$diffLink = $title->escapeFullUrl( $queryParameters );
+
+		$diffText = Html::RawElement( 'a', array( 'href' => $diffLink ),
+			htmlspecialchars( wfMsgForContent( 'showdiff' ) )
+		);
+
+		return $diffText;
 	}
 
 	/**

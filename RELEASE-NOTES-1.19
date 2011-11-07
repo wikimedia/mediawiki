@@ -128,6 +128,7 @@ production.
 * (bug 26020) Setting $wgEmailConfirmToEdit to true no longer removes diffs
   from recent changes feeds
 * (bug 30232) add current time to message wlnote on Special:Watchlist
+* (bug 29110) $wgFeedDiffCutoff did not affect new pages
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
