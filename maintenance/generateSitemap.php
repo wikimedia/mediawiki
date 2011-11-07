@@ -347,11 +347,11 @@ class GenerateSitemap extends Maintenance {
 	 * @return Resource
 	 */
 	function open( $file, $flags ) {
-		$ressource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
-		if( $ressource === false ) {
+		$resource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
+		if( $resource === false ) {
 			wfDebugDieBacktrace( __METHOD__ . " error opening file $file with flags $flags. Check permissions?" );
 		}
-		return $ressource;
+		return $resource;
 	}
 
 	/**
