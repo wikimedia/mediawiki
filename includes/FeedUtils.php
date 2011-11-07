@@ -102,58 +102,63 @@ class FeedUtils {
 		$anon = new User();
 		$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
 
-		if( $title->getNamespace() >= 0 && !$accErrors && $newid ) {
-			if( $oldid ) {
-				wfProfileIn( __METHOD__."-dodiff" );
-
-				#$diffText = $de->getDiff( wfMsg( 'revisionasof',
-				#	$wgLang->timeanddate( $timestamp ),
-				#	$wgLang->date( $timestamp ),
-				#	$wgLang->time( $timestamp ) ),
-				#	wfMsg( 'currentrev' ) );
-
-				// Don't bother generating the diff if we won't be able to show it
-				if ( $wgFeedDiffCutoff > 0 ) {
-					$de = new DifferenceEngine( $title, $oldid, $newid );
-					$diffText = $de->getDiff(
-						wfMsg( 'previousrevision' ), // hack
-						wfMsg( 'revisionasof',
-							$wgLang->timeanddate( $timestamp ),
-							$wgLang->date( $timestamp ),
-							$wgLang->time( $timestamp ) ) );
-				}
-
-				if ( $wgFeedDiffCutoff <= 0 || ( strlen( $diffText ) > $wgFeedDiffCutoff ) ) {
-					// Omit large diffs
-					$diffLink = $title->escapeFullUrl(
-						'diff=' . $newid .
-						'&oldid=' . $oldid );
-					$diffText = '<a href="' .
-						$diffLink .
-						'">' .
-						htmlspecialchars( wfMsgForContent( 'showdiff' ) ) .
-						'</a>';
-				} elseif ( $diffText === false ) {
-					// Error in diff engine, probably a missing revision
-					$diffText = "<p>Can't load revision $newid</p>";
-				} else {
-					// Diff output fine, clean up any illegal UTF-8
-					$diffText = UtfNormal::cleanUp( $diffText );
-					$diffText = self::applyDiffStyle( $diffText );
-				}
-				wfProfileOut( __METHOD__."-dodiff" );
-			} else {
-				$rev = Revision::newFromId( $newid );
-				if( is_null( $rev ) ) {
-					$newtext = '';
-				} else {
-					$newtext = $rev->getText();
-				}
-				$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' .
-					'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
-			}
-			$completeText .= $diffText;
+		# Early exist when the page is not an article, on errors and now newid to
+		# compare.
+		if( $title->getNamespace() < 0 || $accErrors || !$newid ) {
+			wfProfileOut( __METHOD__ );
+			return $completeText;
 		}
+
+		if( $oldid ) {
+			wfProfileIn( __METHOD__."-dodiff" );
+
+			#$diffText = $de->getDiff( wfMsg( 'revisionasof',
+			#	$wgLang->timeanddate( $timestamp ),
+			#	$wgLang->date( $timestamp ),
+			#	$wgLang->time( $timestamp ) ),
+			#	wfMsg( 'currentrev' ) );
+
+			// Don't bother generating the diff if we won't be able to show it
+			if ( $wgFeedDiffCutoff > 0 ) {
+				$de = new DifferenceEngine( $title, $oldid, $newid );
+				$diffText = $de->getDiff(
+					wfMsg( 'previousrevision' ), // hack
+					wfMsg( 'revisionasof',
+					$wgLang->timeanddate( $timestamp ),
+					$wgLang->date( $timestamp ),
+					$wgLang->time( $timestamp ) ) );
+			}
+
+			if ( $wgFeedDiffCutoff <= 0 || ( strlen( $diffText ) > $wgFeedDiffCutoff ) ) {
+				// Omit large diffs
+				$diffLink = $title->escapeFullUrl(
+					'diff=' . $newid .
+					'&oldid=' . $oldid );
+				$diffText = '<a href="' .
+					$diffLink .
+					'">' .
+					htmlspecialchars( wfMsgForContent( 'showdiff' ) ) .
+					'</a>';
+			} elseif ( $diffText === false ) {
+				// Error in diff engine, probably a missing revision
+				$diffText = "<p>Can't load revision $newid</p>";
+			} else {
+				// Diff output fine, clean up any illegal UTF-8
+				$diffText = UtfNormal::cleanUp( $diffText );
+				$diffText = self::applyDiffStyle( $diffText );
+			}
+			wfProfileOut( __METHOD__."-dodiff" );
+		} else {
+			$rev = Revision::newFromId( $newid );
+			if( is_null( $rev ) ) {
+				$newtext = '';
+			} else {
+				$newtext = $rev->getText();
+			}
+			$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' .
+				'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
+		}
+		$completeText .= $diffText;
 
 		wfProfileOut( __METHOD__ );
 		return $completeText;
