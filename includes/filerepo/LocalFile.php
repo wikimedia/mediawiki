@@ -58,6 +58,8 @@ class LocalFile extends File {
 
 	/**#@-*/
 
+	protected $repoClass = 'LocalRepo';
+
 	/**
 	 * Create a LocalFile from a title
 	 * Do not call this except from inside a repo class.
@@ -144,16 +146,15 @@ class LocalFile extends File {
 	 * Do not call this except from inside a repo class.
 	 */
 	function __construct( $title, $repo ) {
-		if ( !is_object( $title ) ) { // LocalFile requires a title object
-			throw new MWException( __CLASS__ . ' constructor given bogus title.' );
-		}
-
 		parent::__construct( $title, $repo );
 
 		$this->metadata = '';
 		$this->historyLine = 0;
 		$this->historyRes = null;
 		$this->dataLoaded = false;
+
+		$this->assertRepoDefined();
+		$this->assertTitleDefined();
 	}
 
 	/**
