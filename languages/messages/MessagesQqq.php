@@ -2622,7 +2622,9 @@ This message was something like "unlock move protection" in the past.',
 {{Identical|Reset}}',
 'undeleteinvert'             => '{{Identical|Invert selection}}',
 'undeletecomment'            => '{{Identical|Reason}}',
+'undelete-search-title'      => 'Page title when showing the search form in Special:Undelete',
 'undelete-search-submit'     => '{{Identical|Search}}',
+'undelete-error'             => 'Page title when a page could not be undeleted',
 'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 * <code>$1</code> is the name of the file being undeleted.
 * <code>$2</code> is the date of the displayed revision.
