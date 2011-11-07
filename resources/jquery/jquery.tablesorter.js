@@ -241,7 +241,7 @@
 				}
 				$thead.append( this );
 			} );
-			$table.prepend( $thead );
+			$table.children('tbody').before( $thead );
 		}
 		if( !$table.get(0).tFoot ) {
 			var $tfoot = $( '<tfoot>' );
