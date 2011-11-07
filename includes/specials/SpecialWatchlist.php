@@ -298,19 +298,13 @@ class SpecialWatchlist extends SpecialPage {
 		/* Start bottom header */
 
 		$wlInfo = '';
-		if( $values['days'] >= 1 ) {
+		if( $values['days'] > 0 ) {
 			$timestamp = wfTimestampNow();
-			$wlInfo = wfMsgExt( 'rcnote', 'parseinline',
-					$lang->formatNum( $numRows ),
-					$lang->formatNum( $values['days'] ),
-					$lang->timeAndDate( $timestamp, true ),
-					$lang->date( $timestamp, true ),
-					$lang->time( $timestamp, true )
-				) . '<br />';
-		} elseif( $values['days'] > 0 ) {
 			$wlInfo = wfMsgExt( 'wlnote', 'parseinline',
 					$lang->formatNum( $numRows ),
-					$lang->formatNum( round( $values['days'] * 24 ) )
+					$lang->formatNum( round( $values['days'] * 24 ) ),
+					$lang->date( $timestamp, true ),
+					$lang->time( $timestamp, true )
 				) . '<br />';
 		}
 
