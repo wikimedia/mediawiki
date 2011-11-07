@@ -2531,7 +2531,10 @@ abstract class DatabaseBase implements DatabaseType {
 			" FROM $srcTable $useIndex ";
 
 		if ( $conds != '*' ) {
-			$sql .= ' WHERE ' . $this->makeList( $conds, LIST_AND );
+			if ( is_array( $conds ) ) {
+				$conds = $this->makeList( $conds, LIST_AND );
+			}
+			$sql .= " WHERE $conds";
 		}
 
 		$sql .= " $tailOpts";
