@@ -581,12 +581,20 @@ class SpecialUndelete extends SpecialPage {
 		parent::__construct( 'Undelete', 'deletedhistory' );
 	}
 
-	function loadRequest() {
+	function loadRequest( $par ) {
 		$request = $this->getRequest();
 		$user = $this->getUser();
 
 		$this->mAction = $request->getVal( 'action' );
-		$this->mTarget = $request->getVal( 'target' );
+		if ( $par !== null && $par !== '' ) {
+			$this->mTarget = $par;
+		} else {
+			$this->mTarget = $request->getVal( 'target' );
+		}
+		$this->mTargetObj = null;
+		if ( $this->mTarget !== null && $this->mTarget !== '' ) {
+			$this->mTargetObj = Title::newFromURL( $this->mTarget );
+		}
 		$this->mSearchPrefix = $request->getText( 'prefix' );
 		$time = $request->getVal( 'timestamp' );
 		$this->mTimestamp = $time ? wfTimestamp( TS_MW, $time ) : '';
@@ -608,6 +616,7 @@ class SpecialUndelete extends SpecialPage {
 		} elseif ( $user->isAllowed( 'deletedtext' ) ) {
 			$this->mAllowed = false; // user cannot restore
 			$this->mCanView = true; // user can view content
+			$this->mRestore = false;
 		} else { // user can only view the list of revisions
 			$this->mAllowed = false;
 			$this->mCanView = false;
@@ -634,19 +643,28 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	function execute( $par ) {
-		$this->setHeaders();
-
 		$user = $this->getUser();
 		if ( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
 
+		$this->setHeaders();
 		$this->outputHeader();
 
-		$this->loadRequest();
+		$this->loadRequest( $par );
 
 		$out = $this->getOutput();
+
+		if ( is_null( $this->mTargetObj ) ) {
+			$out->addWikiMsg( 'undelete-header' );
+	
+			# Not all users can just browse every deleted page from the list
+			if ( $user->isAllowed( 'browsearchive' ) ) {
+				$this->showSearchForm();
+			}
+			return;
+		}
 
 		if ( $this->mAllowed ) {
 			$out->setPageTitle( $this->msg( 'undeletepage' ) );
@@ -654,74 +672,39 @@ class SpecialUndelete extends SpecialPage {
 			$out->setPageTitle( $this->msg( 'viewdeletedpage' ) );
 		}
 
-		if( $par != '' ) {
-			$this->mTarget = $par;
-		}
-		if ( $this->mTarget !== '' ) {
-			$this->mTargetObj = Title::newFromURL( $this->mTarget );
-			$this->getSkin()->setRelevantTitle( $this->mTargetObj );
-		} else {
-			$this->mTargetObj = null;
-		}
+		$this->getSkin()->setRelevantTitle( $this->mTargetObj );
 
-		if( is_null( $this->mTargetObj ) ) {
-			# Not all users can just browse every deleted page from the list
-			if( $user->isAllowed( 'browsearchive' ) ) {
-				$this->showSearchForm();
-
-				# List undeletable articles
-				if( $this->mSearchPrefix ) {
-					$result = PageArchive::listPagesByPrefix( $this->mSearchPrefix );
-					$this->showList( $result );
-				}
-			} else {
-				$out->addWikiMsg( 'undelete-header' );
-			}
-			return;
-		}
-		if( $this->mTimestamp !== '' ) {
-			return $this->showRevision( $this->mTimestamp );
-		}
-		if( $this->mFilename !== null ) {
+		if ( $this->mTimestamp !== '' ) {
+			$this->showRevision( $this->mTimestamp );
+		} elseif ( $this->mFilename !== null ) {
 			$file = new ArchivedFile( $this->mTargetObj, '', $this->mFilename );
 			// Check if user is allowed to see this file
 			if ( !$file->exists() ) {
 				$out->addWikiMsg( 'filedelete-nofile', $this->mFilename );
-				return;
-			} elseif( !$file->userCan( File::DELETED_FILE, $user ) ) {
+			} elseif ( !$file->userCan( File::DELETED_FILE, $user ) ) {
 				if( $file->isDeleted( File::DELETED_RESTRICTED ) ) {
-					$out->permissionRequired( 'suppressrevision' );
+					throw new PermissionsError( 'suppressrevision' );
 				} else {
-					$out->permissionRequired( 'deletedtext' );
+					throw new PermissionsError( 'deletedtext' );
 				}
-				return false;
 			} elseif ( !$user->matchEditToken( $this->mToken, $this->mFilename ) ) {
 				$this->showFileConfirmationForm( $this->mFilename );
-				return false;
 			} else {
-				return $this->showFile( $this->mFilename );
+				$this->showFile( $this->mFilename );
 			}
+		} elseif ( $this->mRestore && $this->mAction == 'submit' ) {
+			$this->undelete();
+		} else {
+			$this->showHistory();
 		}
-		if( $this->mRestore && $this->mAction == 'submit' ) {
-			global $wgUploadMaintenance;
-			if( $wgUploadMaintenance && $this->mTargetObj && $this->mTargetObj->getNamespace() == NS_FILE ) {
-				$out->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n", array( 'filedelete-maintenance' ) );
-				return;
-			}
-			return $this->undelete();
-		}
-		if( $this->mInvert && $this->mAction == 'submit' ) {
-			return $this->showHistory();
-		}
-		return $this->showHistory();
 	}
 
 	function showSearchForm() {
 		global $wgScript;
 
-		$this->getOutput()->addWikiMsg( 'undelete-header' );
-
-		$this->getOutput()->addHTML(
+		$out = $this->getOutput();
+		$out->setPageTitle( $this->msg( 'undelete-search-title' ) );
+		$out->addHTML(
 			Xml::openElement( 'form', array(
 				'method' => 'get',
 				'action' => $wgScript ) ) .
@@ -735,6 +718,12 @@ class SpecialUndelete extends SpecialPage {
 			Xml::closeElement( 'fieldset' ) .
 			Xml::closeElement( 'form' )
 		);
+
+		# List undeletable articles
+		if( $this->mSearchPrefix ) {
+			$result = PageArchive::listPagesByPrefix( $this->mSearchPrefix );
+			$this->showList( $result );
+		}
 	}
 
 	/**
@@ -801,8 +790,6 @@ class SpecialUndelete extends SpecialPage {
 				// and we are allowed to see...
 			}
 		}
-
-		$out->setPageTitle( $this->msg( 'undeletepage' ) );
 
 		if( $this->mDiff ) {
 			$previousRev = $archive->getPreviousRevision( $timestamp );
@@ -1016,9 +1003,6 @@ class SpecialUndelete extends SpecialPage {
 		$out = $this->getOutput();
 		if( $this->mAllowed ) {
 			$out->addModules( 'mediawiki.special.undelete' );
-			$out->setPageTitle( $this->msg( 'undeletepage' ) );
-		} else {
-			$out->setPageTitle( $this->msg( 'viewdeletedpage' ) );
 		}
 		$out->wrapWikiMsg(
 			"<div class='mw-undelete-pagetitle'>\n$1\n</div>\n",
@@ -1369,41 +1353,44 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	function undelete() {
+		global $wgUploadMaintenance;
+
+		if ( $wgUploadMaintenance && $this->mTargetObj->getNamespace() == NS_FILE ) {
+			throw new ErrorPageError( 'undelete-error', 'filedelete-maintenance' );
+		}
+
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError;
 		}
 
-		if( !is_null( $this->mTargetObj ) ) {
-			$archive = new PageArchive( $this->mTargetObj );
-			wfRunHooks( 'UndeleteForm::undelete', array( &$archive, $this->mTargetObj ) );
-			$ok = $archive->undelete(
-				$this->mTargetTimestamp,
-				$this->mComment,
-				$this->mFileVersions,
-				$this->mUnsuppress );
+		$out = $this->getOutput();
+		$archive = new PageArchive( $this->mTargetObj );
+		wfRunHooks( 'UndeleteForm::undelete', array( &$archive, $this->mTargetObj ) );
+		$ok = $archive->undelete(
+			$this->mTargetTimestamp,
+			$this->mComment,
+			$this->mFileVersions,
+			$this->mUnsuppress );
 
-			if( is_array( $ok ) ) {
-				if ( $ok[1] ) { // Undeleted file count
-					wfRunHooks( 'FileUndeleteComplete', array(
-						$this->mTargetObj, $this->mFileVersions,
-						$this->getUser(), $this->mComment ) );
-				}
-
-				$link = Linker::linkKnown( $this->mTargetObj );
-				$this->getOutput()->addHTML( wfMessage( 'undeletedpage' )->rawParams( $link )->parse() );
-			} else {
-				$this->getOutput()->showFatalError( wfMsg( 'cannotundelete' ) );
-				$this->getOutput()->addWikiMsg( 'undeleterevdel' );
+		if( is_array( $ok ) ) {
+			if ( $ok[1] ) { // Undeleted file count
+				wfRunHooks( 'FileUndeleteComplete', array(
+					$this->mTargetObj, $this->mFileVersions,
+					$this->getUser(), $this->mComment ) );
 			}
 
-			// Show file deletion warnings and errors
-			$status = $archive->getFileStatus();
-			if( $status && !$status->isGood() ) {
-				$this->getOutput()->addWikiText( $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) );
-			}
+			$link = Linker::linkKnown( $this->mTargetObj );
+			$out->addHTML( $this->msg( 'undeletedpage' )->rawParams( $link )->parse() );
 		} else {
-			$this->getOutput()->showFatalError( wfMsg( 'cannotundelete' ) );
+			$out->setPageTitle( $this->msg( 'undelete-error' ) );
+			$out->addWikiMsg( 'cannotundelete' );
+			$out->addWikiMsg( 'undeleterevdel' );
 		}
-		return false;
+
+		// Show file deletion warnings and errors
+		$status = $archive->getFileStatus();
+		if( $status && !$status->isGood() ) {
+			$out->addWikiText( $status->getWikiText( 'undelete-error-short', 'undelete-error-long' ) );
+		}
 	}
 }

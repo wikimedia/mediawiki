@@ -2944,6 +2944,7 @@ someone else may have undeleted the page first.',
 
 Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions and restorations.",
 'undelete-header'              => 'See [[Special:Log/delete|the deletion log]] for recently deleted pages.',
+'undelete-search-title'        => 'Search deleted pages',
 'undelete-search-box'          => 'Search deleted pages',
 'undelete-search-prefix'       => 'Show pages starting with:',
 'undelete-search-submit'       => 'Search',
@@ -2953,6 +2954,7 @@ Consult the [[Special:Log/delete|deletion log]] for a record of recent deletions
 'undelete-cleanup-error'       => 'Error deleting unused archive file "$1".',
 'undelete-missing-filearchive' => 'Unable to restore file archive ID $1 because it is not in the database.
 It may have already been undeleted.',
+'undelete-error'               => 'Error undeleting page',
 'undelete-error-short'         => 'Error undeleting file: $1',
 'undelete-error-long'          => 'Errors were encountered while undeleting the file:
 
