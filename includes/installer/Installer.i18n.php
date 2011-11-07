@@ -5193,10 +5193,10 @@ $1
 
 Este programa é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.
 
-Este programa distribúese coa esperanza de que poida ser útil, pero '''sen ningunha garantía'''; nin sequera a garantía implícita de '''comercialización''' ou '''adecuación a unha finalidade específica'''.
+Este programa distribúese coa esperanza de que poida ser útil, pero '''sen garantía ningunha'''; nin sequera a garantía implícita de '''comercialización''' ou '''adecuación a unha finalidade específica'''.
 Olle a licenza pública xeral GNU para obter máis detalles.
 
-Debería recibir <doclink href=Copying>unha copia da licenza pública xeral GNU</doclink> xunto ao programa; se non é así, escriba á Free Software Foundation, Inc., 51 da rúa Franklin, quinto andar, Boston, MA 02110-1301, Estados Unidos ou [http://www.gnu.org/copyleft/gpl.html lea a licenza en liña].",
+Debería recibir <doclink href=Copying>unha copia da licenza pública xeral GNU</doclink> xunto ao programa; se non é así, escriba á Free Software Foundation, Inc., rúa Franklin, número 51, quinto andar, Boston, Massachusetts, 02110-1301, Estados Unidos de América ou [http://www.gnu.org/copyleft/gpl.html lea a licenza en liña].",
 	'config-sidebar' => '* [http://www.mediawiki.org/wiki/MediaWiki/gl Páxina principal de MediaWiki]
 * [http://www.mediawiki.org/wiki/Help:Contents Guía de usuario]
 * [http://www.mediawiki.org/wiki/Manual:Contents Guía de administrador]
@@ -9348,6 +9348,10 @@ Et Enreeschte kunnt doh draan kappott jon!",
 	'config-wincache' => 'Dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> es ennjeresht.',
 	'config-no-cache' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä <code lang="en">[http://eaccelerator.sourceforge.net eAccelerator]</code>, dä <code lang="en">[http://www.php.net/apc APC]</code>, dä <code lang="en">[http://trac.lighttpd.net/xcache/ XCache]</code> un dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> nit fenge.
 Et <i lang="en">object caching</i> es nit müjjelesh un ußjeschalldt.',
+	'config-mod-security' => "'''Opjepaß''': Dinge Webßööver hät <code lang=\"en\">[http://modsecurity.org/ mod_security]</code> enjeschalldt. If misconfigured, it can cause problems for MediaWiki or other software that allows users to post arbitrary content.
+Refer to <code lang=\"en\">[http://modsecurity.org/documentation/ mod_security documentation]</code> udder contact your host's support if you encounter zohfälleje Fähler.
+
+",
 	'config-diff3-bad' => 'Mer han <i lang="en">GNU</i> <code lang="en">diff3</code> nit jefonge.',
 	'config-imagemagick' => 'Mer han <i lang="en">ImageMagick</i> jefonge: <code>$1</code>.
 Et Ömrääschne en Minni-Beldsche weed müjjelesch sin, wann De et Belder Huhlaade zohlöhß.',
@@ -9592,6 +9596,7 @@ De kanns dat Fäld ävver och läddesch lohße.',
 	'config-subscribe' => 'Donn de [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce <i lang="en">e-mail</i>-Leß met de Aanköndijunge vum MediaWiki] abonnere.',
 	'config-subscribe-help' => 'Do kumme bloß winnish Meddeilunge un di jonn övver neu Versiohne vom MediaWiki un weeshtejje Saache vun däm sing Sesherheit.
 Do sullts se abbonneere, un Ding MediWiki_Projramme op der neue Shtand bränge, wann neu Version eruß kumme.',
+	'config-subscribe-noemail' => 'Do has versöhk, der ohne en Addräß för Ding <i lang="en">e-mail<i> aanzejävve, de Aanköndijonge för Aanköndijunge för neue Versione ze abboneere. Jivv en Addräß aan, wann De di Aanköndijonge hann wells.',
 	'config-almost-done' => 'Do bes beinah dorsh!
 Do künnts jez der Räß vun de einzel Enshtellunge övverjonn, un et Wiki tiräktemang fäädesch opsäze.',
 	'config-optional-continue' => 'De wells noch mieh Frore jeshtallt krijje un noch mieh Enshtällunge maache?',
