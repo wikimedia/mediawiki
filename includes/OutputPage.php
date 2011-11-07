@@ -2841,9 +2841,10 @@ $templates
 		}
 
 		# Universal edit button
-		if ( $wgUniversalEditButton ) {
-			if ( $this->isArticleRelated() && $this->getTitle() && $this->getTitle()->quickUserCan( 'edit' )
-				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create' ) ) ) {
+		if ( $wgUniversalEditButton && $this->isArticleRelated() ) {
+			$user = $this->getUser();
+			if ( $this->getTitle()->quickUserCan( 'edit', $user )
+				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create', $user ) ) ) {
 				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
 				$tags[] = Html::element( 'link', array(
