@@ -32,7 +32,7 @@ class UnregisteredLocalFile extends File {
 	 * @return UnregisteredLocalFile
 	 */
 	static function newFromPath( $path, $mime ) {
-		return new UnregisteredLocalFile( false, false, $path, $mime );
+		return new self( false, false, $path, $mime );
 	}
 
 	/**
@@ -41,10 +41,13 @@ class UnregisteredLocalFile extends File {
 	 * @return UnregisteredLocalFile
 	 */
 	static function newFromTitle( $title, $repo ) {
-		return new UnregisteredLocalFile( $title, $repo, false, false );
+		return new self( $title, $repo, false, false );
 	}
 
 	/**
+	 * Create an UnregisteredLocalFile based on a path or a (title,repo) pair.
+	 * A FileRepo object is not required here, unlike most other File classes.
+	 * 
 	 * @throws MWException
 	 * @param $title Title|false
 	 * @param $repo FSRepo
