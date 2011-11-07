@@ -379,6 +379,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		global $wgContLang;
 
 		$fields = array();
+		$count = 0;
 
 		$haveInvalidNamespaces = false;
 		foreach( $this->getWatchlistInfo() as $namespace => $pages ){
@@ -413,7 +414,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$nsText = $ns == NS_MAIN
 					? wfMsgHtml( 'blanknamespace' )
 					: htmlspecialchars( $wgContLang->getFormattedNsText( $ns ) );
-				-$this->toc .= Linker::tocLine( "mw-htmlform-{$data['section']}", $nsText, ++$tocLength, 1 ) . Linker::tocLineEnd();
+				$this->toc .= Linker::tocLine( "mw-htmlform-{$data['section']}", $nsText, ++$tocLength, 1 ) . Linker::tocLineEnd();
 			}
 			$this->toc = Linker::tocList( $this->toc );
 		} else {
