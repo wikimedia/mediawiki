@@ -347,13 +347,20 @@ class GenerateSitemap extends Maintenance {
 	 * @return Resource
 	 */
 	function open( $file, $flags ) {
-		return $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
+		$ressource = $this->compress ? gzopen( $file, $flags ) : fopen( $file, $flags );
+		if( $ressource === false ) {
+			wfDebugDieBacktrace( __METHOD__ . " error opening file $file with flags $flags. Check permissions?" );
+		}
+		return $ressource;
 	}
 
 	/**
 	 * gzwrite() / fwrite() wrapper
 	 */
 	function write( &$handle, $str ) {
+		if( $handle === true || $handle === false ) {
+			wfDebugDieBacktrace( __METHOD__ . " was passed a boolean as a file handle.\n" );
+		}
 		if ( $this->compress )
 			gzwrite( $handle, $str );
 		else
