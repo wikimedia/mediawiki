@@ -46,6 +46,20 @@ $namespaceGenderAliases = array(
         NS_USER_TALK => array( 'male' => 'Diskusija_z_wužiwarjom', 'female' => 'Diskusija_z_wužiwarku' ),
 );
 
+$datePreferences = array(
+	'default',
+	'dmy',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'dmy';
+
+$dateFormats = array(
+	'dmy time' => 'H:i',
+	'dmy date' => 'j. xg Y',
+	'dmy both' => 'j. xg Y, H:i',
+);
+
 $specialPageAliases = array(
 	'Activeusers'               => array( 'Aktiwni_wužiwarjo' ),
 	'Allmessages'               => array( 'MediaWiki-zdźělenki' ),
