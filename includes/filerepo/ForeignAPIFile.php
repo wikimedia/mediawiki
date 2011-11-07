@@ -16,6 +16,8 @@ class ForeignAPIFile extends File {
 
 	private $mExists;
 
+	protected $repoClass = 'ForeignApiRepo';
+
 	/**
 	 * @param $title
 	 * @param $repo ForeignApiRepo
@@ -24,8 +26,11 @@ class ForeignAPIFile extends File {
 	 */
 	function __construct( $title, $repo, $info, $exists = false ) {
 		parent::__construct( $title, $repo );
+
 		$this->mInfo = $info;
 		$this->mExists = $exists;
+
+		$this->assertRepoDefined();
 	}
 
 	/**
