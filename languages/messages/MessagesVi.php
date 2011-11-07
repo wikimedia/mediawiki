@@ -1588,7 +1588,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'recentchanges-label-minor'         => 'Đây là một sửa đổi nhỏ',
 'recentchanges-label-bot'           => 'Sửa đổi này do bot thực hiện',
 'recentchanges-label-unpatrolled'   => 'Sửa đổi này chưa được tuần tra',
-'rcnote'                            => "Dưới đây là {{PLURAL:$1|'''1''' thay đổi|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|ngày qua|'''$2''' ngày qua}}, tính tới $5, $4.",
+'rcnote'                            => "Dưới đây là {{PLURAL:$1|thay đổi '''duy nhất'''|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|ngày qua|'''$2''' ngày qua}}, tính tới $5 lúc $4.",
 'rcnotefrom'                        => "Thay đổi từ '''$2''' (hiển thị tối đa '''$1''' thay đổi).",
 'rclistfrom'                        => 'Hiển thị các thay đổi từ $1.',
 'rcshowhideminor'                   => '$1 sửa đổi nhỏ',
@@ -2204,7 +2204,7 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'watchmethod-list'     => 'Dưới đây hiện danh sách các trang theo dõi.',
 'watchlistcontains'    => 'Danh sách theo dõi của bạn có $1 {{PLURAL:$1|trang|trang}}.',
 'iteminvalidname'      => 'Tên trang “$1” không hợp lệ…',
-'wlnote'               => "Dưới đây là {{PLURAL:$1|sửa đổi cuối cùng|'''$1''' sửa đổi mới nhất}} trong '''$2''' giờ qua.",
+'wlnote'               => "Dưới đây là {{PLURAL:$1|thay đổi '''duy nhất'''|'''$1''' thay đổi gần nhất}} trong {{PLURAL:$2|giờ|'''$2''' giờ}} qua, tính tới $3 lúc $4.",
 'wlshowlast'           => 'Hiển thị $1 giờ $2 ngày gần đây $3',
 'watchlist-options'    => 'Tùy chọn về danh sách theo dõi',
 

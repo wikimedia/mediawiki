@@ -884,7 +884,7 @@ De volgende {{PLURAL:$3|gebruiker is|gebruikers zijn}} gekoppeld aan dit e-maila
 $2
 
 {{PLURAL:$3|Dit tijdelijke wachtwoord vervalt|Deze tijdelijke wachtwoorden vervallen}} over {{PLURAL:$5|een dag|$5 dagen}}.
-Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelfs heeft gedaan, of als u het oorspronkelijke wachtwoord nog kent en het niet wilt wijzigen, negeer dit bericht dan en blijf uw oude wachtwoord gebruiken.',
+Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelf heeft gedaan, of als u het oorspronkelijke wachtwoord nog kent en het niet wilt wijzigen, negeer dit bericht dan en blijf uw oude wachtwoord gebruiken.',
 'passwordreset-emailtext-user'     => 'Gebruiker $1 op de site {{SITENAME}} heeft uw gebruikersgegevens voor {{SITENAME}} ($4) opgevraagd.
 De volgende {{PLURAL:$3|gebruiker is|gebruikers zijn}} gekoppeld aan dit e-mailadres:
 

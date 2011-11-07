@@ -1713,7 +1713,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 'recentchanges-label-bot'         => 'Tooltip for {{msg-mw|boteditletter}}',
 'recentchanges-label-unpatrolled' => 'Tooltip for {{msg-mw|unpatrolledletter}}',
 'rcnote'                          => 'Used on [[Special:RecentChanges]].
-Shoulds looks like the message wlnote used similary but on Special:Recentchanges
+Shoulds looks like the message {{msg-mw|wlnote}} used similary but on [[Special:Watchlist]]
 * $1 is the number of changes shown,
 * $2 is the number of days for which the changes are shown,
 * $3 is a date and time (deprecated),
@@ -2412,13 +2412,6 @@ This is a button text used in [[Special:Emailuser]] when called without a (valid
 'nowatchlist'          => 'Displayed when there is no pages in the watchlist.',
 'watchlistanontext'    => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'watchnologin'         => '{{Identical|Not logged in}}',
-'wlnote' => 'Used on Special:WatchList when days > 0
-Shoulds looks like the message rcnote used similary but on Special:Recentchanges
-* $1 is the number of changes shown,
-* $2 is the number of days for which the changes are shown,
-* $3 is a date alone,
-* $4 is a time alone.
-',
 'addwatch'             => 'Link to a dialog box, displayed at the end of the list of categories at the foot of each page.',
 'addedwatchtext'       => 'Explanation shown when clicking on the {{msg|watch}} tab. See also {{msg|addedwatch}}.',
 'removedwatchtext'     => "After a page has been removed from a user's watchlist by clicking the {{msg|unwatch}} tab at the top of an article, this message appears just below the title of the article. $1 is the title of the article. See also {{msg|removedwatch}} and {{msg|addedwatchtext}}.",
@@ -2432,6 +2425,12 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 {{Identical|Content page}}",
 'watchlist-details'    => 'Message on Special page: My watchlist. This is paired with the message [[Mediawiki:Nowatchlist]] which appears instead of Watchlist-details when $1 is 0.',
 'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
+'wlnote'               => 'Used on [[Special:Watchlist]] when days > 0
+Shoulds looks like the message {{msg-mw|rcnote}} used similary but on [[Special:RecentChanges]]
+* $1 is the number of changes shown,
+* $2 is the number of days for which the changes are shown,
+* $3 is a date alone,
+* $4 is a time alone.',
 'wlshowlast'           => "Appears on [[Special:Watchlist]]. Variable $1 gives a choice of different numbers of hours, $2 gives a choice of different numbers of days and $3 is '{{int:watchlistall2}}' ([[Mediawiki:watchlistall2/{{SUBPAGENAME}}]]). Clicking on your choice changes the list of changes you see (without changing the default in my preferences).",
 'watchlist-options'    => 'Legend of the fieldset of [[Special:Watchlist]]',
 

@@ -528,6 +528,7 @@ Wótpšašanje: $2',
 'actionthrottledtext'  => 'Ako napšawa pśeśiwo spamoju, móžoš toś tu akciju jano někotare raze we wěstym case wuwjasć. Sy toś ten limit dośěgnuł. Pšosym wopytaj za někotare minuty hyšći raz.',
 'protectedpagetext'    => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
 'viewsourcetext'       => 'Žrědłowy tekst togo boka móžoš se woglědaś a kopěrowaś:',
+'viewyourtext'         => "Móžoš se žrědłowy tekst '''swójich změnow''' woglědaś a do toś togo bok kopěrowaś:",
 'protectedinterface'   => 'Toś ten bok wopśimujo tekst za rěcny zwjerch softwary. Jogo wobźěłowanje jo se znjemóžniło, aby se znjewužywanjeju zadorało.',
 'editinginterface'     => "'''Warnowanje:''' Wobźěłujoš bok, kótaryž se wužywa, aby se tekst za pówjerch software MediaWiki k dispoziciji stajił. Změny na toś tom boku buźo wuglědanje wužywarskego pówjercha za drugich wužywarjow wobwliwowaś. Wužywaj pšosym za pśełožki [http://translatewiki.net/wiki/Main_Page?setlang=dsb translatewiki.net], projekt MediaWiki za lokalizacije.",
 'sqlhidden'            => '(Wótpšašanje SQL schowane)',
@@ -655,19 +656,22 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'resetpass-temp-password'   => 'Nachylne gronidło:',
 
 # Special:PasswordReset
-'passwordreset'                   => 'Gronidło slědk stajiś',
-'passwordreset-legend'            => 'Gronidło slědk stajiś',
-'passwordreset-disabled'          => 'Slědkstajenja gronidłow su se znjemóžnili na toś tom wikiju.',
-'passwordreset-pretext'           => '{{PLURAL:$1||Zapódaj dołojce jadne ze slědujucych datowych podaśow}}',
-'passwordreset-username'          => 'Wužywarske mě:',
-'passwordreset-domain'            => 'Domena:',
-'passwordreset-capture'           => 'E-mail se woglědaś?',
-'passwordreset-email'             => 'E-mailowa adresa:',
-'passwordreset-emailtitle'        => 'Kontowe drobnostki na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'passwordreset-emailelement'      => 'Wužywarske mě: $1
+'passwordreset'                    => 'Gronidło slědk stajiś',
+'passwordreset-text'               => 'Wupołni toś ten formular, aby dostał e-mailowe dopomnjeśe k swójim kontowym drobnostkam.',
+'passwordreset-legend'             => 'Gronidło slědk stajiś',
+'passwordreset-disabled'           => 'Slědkstajenja gronidłow su se znjemóžnili na toś tom wikiju.',
+'passwordreset-pretext'            => '{{PLURAL:$1||Zapódaj dołojce jadne ze slědujucych datowych podaśow}}',
+'passwordreset-username'           => 'Wužywarske mě:',
+'passwordreset-domain'             => 'Domena:',
+'passwordreset-capture'            => 'E-mail se woglědaś?',
+'passwordreset-capture-help'       => 'Jolic nakśickujoš toś ten kašćik, e-mail (z nachylnym gronidłom) buźo se pokazaś a wužywarjeju słaś.',
+'passwordreset-email'              => 'E-mailowa adresa:',
+'passwordreset-emailtitle'         => 'Kontowe drobnostki na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
+'passwordreset-emailelement'       => 'Wužywarske mě: $1
 Nachylne gronidło: $2',
-'passwordreset-emailsent'         => 'Dopominańska e-mail jo se pósłała.',
-'passwordreset-emailsent-capture' => 'Dopominańska e-mail jo se pósłała, kótaraž se dołojce pokazujo.',
+'passwordreset-emailsent'          => 'Dopominańska e-mail jo se pósłała.',
+'passwordreset-emailsent-capture'  => 'Dopominańska e-mail jo se pósłała, kótaraž se dołojce pokazujo.',
+'passwordreset-emailerror-capture' => 'Dołojce pokazowana e-mail jo se napóriła, ale jo se njeraźiło ju wužiwarjeju pósłaś: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-mailowu adresu změniś',
@@ -1213,6 +1217,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'yourrealname'                  => 'Realne mě *:',
 'yourlanguage'                  => 'Rěc:',
 'yourvariant'                   => 'Rěcna warianta:',
+'prefs-help-variant'            => 'Twója preferěrowana warianta abo ortografija, w kótarejž maju se wopśimjeśowe boki toś togo wikija zwobrazniś.',
 'yournick'                      => 'Pódpismo:',
 'prefs-help-signature'          => 'Komentary na diskusijnych bokach měli se pśez "<nowiki>~~~~</nowiki>" pódpisaś, kótarež konwertěrujo se do twójeje signatury a casowego kołka.',
 'badsig'                        => 'Signatura njejo dobra; pšosym HTML pśekontrolěrowaś.',
@@ -1600,22 +1605,23 @@ Togodla njedajo se jeje wěstoty pśekontrolěrowaś.',
 'uploadstash-refresh'  => 'Lisćinu datajow aktualizěrowaś',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Pśistup zawobarany',
-'img-auth-nopathinfo'   => 'PATH_INFO felujo.
+'img-auth-accessdenied'     => 'Pśistup zawobarany',
+'img-auth-nopathinfo'       => 'PATH_INFO felujo.
 Twój serwer njejo konfigurěrowany, aby toś te informacije dalej pósrědnił.
 Móžo na CGI bazěrowaś a njamóžo img_auth pódpěraś.
 Glědaj http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Pominana šćažka njejo w konfigurěrowanem nagraśowem zapisu.',
-'img-auth-badtitle'     => 'Njejo móžno z "$1" płaśiwy titel twóriś.',
-'img-auth-nologinnWL'   => 'Njejsy pśizjawjony a "$1" njejo w běłej lisćinje.',
-'img-auth-nofile'       => 'Dataja "$1" njeeksistěrujo.',
-'img-auth-isdir'        => 'Wopytujoš na zapis "$1" pśistup měś.
+'img-auth-notindir'         => 'Pominana šćažka njejo w konfigurěrowanem nagraśowem zapisu.',
+'img-auth-badtitle'         => 'Njejo móžno z "$1" płaśiwy titel twóriś.',
+'img-auth-nologinnWL'       => 'Njejsy pśizjawjony a "$1" njejo w běłej lisćinje.',
+'img-auth-nofile'           => 'Dataja "$1" njeeksistěrujo.',
+'img-auth-isdir'            => 'Wopytujoš na zapis "$1" pśistup měś.
 Jano datajowy pśistup jo dowólony.',
-'img-auth-streaming'    => '"$1" se tšuga.',
-'img-auth-public'       => 'Funkcija img_auth.php jo za wudaśe datajow z priwatnego wikija.
+'img-auth-streaming'        => '"$1" se tšuga.',
+'img-auth-public'           => 'Funkcija img_auth.php jo za wudaśe datajow z priwatnego wikija.
 Toś ten wiki jo ako zjawny wiki konfigurěrowany.
 Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
-'img-auth-noread'       => 'Wužywaŕ njama pśistup, aby cytał "$1".',
+'img-auth-noread'           => 'Wužywaŕ njama pśistup, aby cytał "$1".',
+'img-auth-bad-query-string' => 'URL jo njepłaśiwy napšašowański znamuškowy rjeśazk.',
 
 # HTTP errors
 'http-invalid-url'      => 'Njepłaśiwy URL: $1',
@@ -1678,6 +1684,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 [[Special:WhatLinksHere/$2|Dopołna lisćina]] stoj k dispoziciji.',
 'nolinkstoimage'            => 'Žedne boki njewótkazuju na toś tu dataju.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Dalšne wótkazy]] k toś tej dataji wobglědaś.',
+'linkstoimage-redirect'     => '$1 (datajowe dalejpósrědnjenje) $2',
 'duplicatesoffile'          => '{{PLURAL:$1|Slědujuca dataja jo duplikat|Slědujucej $1 dataji stej duplikata|Slědujuce dataje $1 su duplikaty|Slědujucych $1 datajow jo duplikaty}} toś teje dataje ([[Special:FileDuplicateSearch/$2|dalšne drobnostki]])::',
 'sharedupload'              => 'Toś ta dataja jo z $1 a dajo se pśez druge projekty wužywaś.',
 'sharedupload-desc-there'   => 'Toś ta dataja jo z $1 a dajo se pśez druge projekty wužywaś. Pšosym glědaj [$2 bok datajowego wopisanja] za dalšne informacije.',
@@ -2010,13 +2017,14 @@ Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicu
 'watchmethod-list'     => 'Pśepytanje wobglědowanych bokow za aktualnymi změnami',
 'watchlistcontains'    => 'Twója wobglědowańka wopśimujo $1 {{PLURAL:$1|bok|boka|boki|bokow}}.',
 'iteminvalidname'      => 'Problem ze zapisom „$1“, njepłaśece mě.',
-'wlnote'               => "{{PLURAL:$1|Slědujo slědna změna|slědujotej '''$1''' slědnej změnje|slěduju slědne '''$1''' změny}} {{PLURAL:$2|slědneje góźiny|slědneju '''$2''' góźinowu|slědnych '''$2''' góźinow}}.",
+'wlnote'               => "{{PLURAL:$1|Slědujo slědna změna|slědujotej '''$1''' slědnej změnje|slěduju slědne '''$1''' změny}} {{PLURAL:$2|slědneje góźiny|slědneju '''$2''' góźinowu|slědnych '''$2''' góźinow}}, staw: $3, $4.",
 'wlshowlast'           => 'Pokaž změny slědnych $1 góźinow, $2 dnjow abo $3 (w slědnych 30 dnjach).',
 'watchlist-options'    => 'Opcije wobglědowańki',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Wobglědowaś …',
-'unwatching' => 'Njewobglědowaś …',
+'watching'       => 'Wobglědowaś …',
+'unwatching'     => 'Njewobglědowaś …',
+'watcherrortext' => 'Pśi změnjanju twójich nastajenjow wobglědowańkow za "$1" jo zmólka nastała.',
 
 'enotif_mailer'                => '{{SITENAME}} e-mailowe powěsći',
 'enotif_reset'                 => 'Wšykne boki ako woglědane markěrowaś',
@@ -2960,9 +2968,11 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-usageterms'                  => 'Wužywańske wuměnjenja',
 'exif-originaldocumentid'          => 'Jasny ID spócetnego dokumenta',
 'exif-licenseurl'                  => 'URL za licencu awtorskego pšawa',
+'exif-morepermissionsurl'          => 'Alternatiwne licencne informacije',
 'exif-pngfilecomment'              => 'Komentar PNG-dataje',
 'exif-contentwarning'              => 'Wopśimjeśowe warnowanje',
 'exif-giffilecomment'              => 'Komentar GIF-dataje',
+'exif-intellectualgenre'           => 'Typ medija',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekompriměrowany',
@@ -3136,6 +3146,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 
 'exif-isospeedratings-overflow' => 'Wětša ako 65535',
 
+'exif-iimcategory-ace' => 'wuměłstwo, kultura a rozdrosćenje',
 'exif-iimcategory-clj' => 'Kriminalita a pšawo',
 'exif-iimcategory-fin' => 'Góspodarstwo a pśekupjenja',
 'exif-iimcategory-edu' => 'Kubłanje',
@@ -3234,11 +3245,13 @@ $1',
 'trackbackdeleteok' => 'Trackback jo wuspěšnje wulašowany.',
 
 # Delete conflict
-'deletedwhileediting' => "'''Warnowanje''': Toś ten bok se wulašujo, gaž zachopijoš jen wobźěłaś!",
-'confirmrecreate'     => "Wužywaŕ [[User:$1|$1]] ([[User talk:$1|diskusija]]) jo bok wulašował, nježli až sy zachopił jen wobźěłaś, pśicyna:
+'deletedwhileediting'      => "'''Warnowanje''': Toś ten bok se wulašujo, gaž zachopijoš jen wobźěłaś!",
+'confirmrecreate'          => "Wužywaŕ [[User:$1|$1]] ([[User talk:$1|diskusija]]) jo bok wulašował, nježli až sy zachopił jen wobźěłaś, pśicyna:
 : ''$2''
 Pšosym wobkšuśiś, až napšawdu coš ten bok zasej wutwóriś.",
-'recreate'            => 'Wótnowótki wutwóriś',
+'confirmrecreate-noreason' => 'Wužywaŕ [[User:$1|$1]] ([[User talk:$1|diskusija]]) jo toś ten bok wulašował, nježli až sy zachopił jen wobźěłaś.
+Pšosym wobkšuś, až napšawdu coš toś ten bok zasej napóraś.',
+'recreate'                 => 'Wótnowótki wutwóriś',
 
 # action=purge
 'confirm_purge_button' => 'W pórědku.',

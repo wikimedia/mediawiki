@@ -2153,7 +2153,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'watchmethod-list'     => 'tarkistetaan tarkkailtujen sivujen tuoreimmat muutokset',
 'watchlistcontains'    => 'Tarkkailulistallasi on {{PLURAL:$1|yksi sivu|$1 sivua}}.',
 'iteminvalidname'      => 'Sivun $1 kanssa oli ongelmia! Sivun nimessä on vikaa.',
-'wlnote'               => "Alla on '''$1''' {{PLURAL:$1|muutos|muutosta}} viimeisen {{PLURAL:$2||'''$2'''}} tunnin ajalta.",
+'wlnote'               => "Alla on {{PLURAL:$1|yksi muutos|'''$1''' muutosta}} viimeisen {{PLURAL:$2|tunnin|'''$2''' tunnin}} ajalta $3 kello $4 asti.",
 'wlshowlast'           => 'Näytä viimeiset $1 tuntia tai $2 päivää$3',
 'watchlist-options'    => 'Tarkkailulistan asetukset',
 

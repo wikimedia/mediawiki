@@ -2281,7 +2281,7 @@ in der Übersicht der [[Special:RecentChanges|letzten Änderungen]] in Fettschri
 'watchmethod-list'     => 'Überprüfen der Beobachtungsliste nach letzten Bearbeitungen',
 'watchlistcontains'    => 'Deine Beobachtungsliste enthält $1 {{PLURAL:$1|Seite|Seiten}}.',
 'iteminvalidname'      => 'Problem mit dem Eintrag „$1“, ungültiger Name.',
-'wlnote'               => "Es {{PLURAL:$1|folgt die letzte Änderung|folgen die letzten '''$1''' Änderungen}} der letzten {{PLURAL:$2|Stunde|'''$2''' Stunden}}.",
+'wlnote'               => "Es {{PLURAL:$1|folgt die letzte Änderung|folgen die letzten '''$1''' Änderungen}} der letzten {{PLURAL:$2|Stunde|'''$2''' Stunden}}. Stand: $3, $4 Uhr.",
 'wlshowlast'           => 'Zeige die Änderungen der letzten $1 Stunden, $2 Tage oder $3.',
 'watchlist-options'    => 'Anzeigeoptionen',
 

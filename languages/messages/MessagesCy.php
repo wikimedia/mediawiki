@@ -472,7 +472,7 @@ A fyddech gystal â gwneud adroddiad ar hwn at [[Special:ListUsers/sysop|weinydd
 'badarticleerror'      => "Mae'n amhosib cyflawni'r weithred hon ar y dudalen hon.",
 'cannotdelete'         => "Mae'n amhosib dileu'r dudalen neu'r ddelwedd \"\$1\".
 Efallai fod rhywun arall eisoes wedi'i dileu.",
-'cannotdelete-title'   => "Ni ellir dileu'r dudalen '£1'",
+'cannotdelete-title'   => "Ni ellir dileu'r dudalen '$1'",
 'badtitle'             => 'Teitl gwael',
 'badtitletext'         => "Mae'r teitl a ofynnwyd amdano yn annilys, yn wag, neu cysylltu'n anghywir rhwng ieithoedd neu wicïau. Gall fod ynddo un nod neu ragor na ellir eu defnyddio mewn teitlau.",
 'perfcached'           => "Mae'r wybodaeth ganlynol yn gopi cadw; mae'n bosib nad y fersiwn diweddaraf ydyw.",
