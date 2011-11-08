@@ -517,6 +517,9 @@ See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
 
 Do '''not''' replace SITENAME with a translation of Wikipedia or some encycopedic additions. The message has to be neutral for all projects.",
 'pagetitle-view-mainpage' => '{{optional}}',
+'backlinksubtitle'        => '{{optional}}
+Appears in subtitle
+* $1 is a link to the page (HTML)',
 'retrievedfrom'           => 'Message which appears in the source of every page, but it is hidden. It is shown when printing. $1 is a link back to the current page: {{FULLURL:{{FULLPAGENAME}}}}.',
 'youhavenewmessages'      => 'The blue message appearing when someone edited your user talk page.
 The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGENAME}}|{{int:newmessageslink}}]] |[[MediaWiki:Newmessagesdifflink/{{SUBPAGENAME}}|{{int:newmessagesdifflink}}]]}}"',
@@ -652,9 +655,8 @@ $1 is a filename, I think.',
 'viewsource'           => 'The text displayed in place of the "edit" tab when the user has no permission to edit the page.
 
 {{Identical|View source}}',
-'viewsourcefor'        => 'Subtitle shown when trying to edit a protected page.
-
-{{Identical|For $1}}',
+'viewsource-title'     => 'Page title shown when trying to edit a protected page.
+* $1 is the name of the page',
 'actionthrottled'      => 'This is the title of an error page. Read it in combination with {{msg-mw|actionthrottledtext}}.',
 'protectedpagetext'    => 'This message is displayed when trying to edit a page you can\'t edit because it has been protected.
 
@@ -1768,14 +1770,13 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'newsectionsummary'               => 'Default summary when adding a new section to a page.',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
-'recentchangeslinked-feed'     => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
-'recentchangeslinked-toolbox'  => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
-'recentchangeslinked-title'    => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes as show.',
-'recentchangeslinked-backlink' => '{{optional}}',
-'recentchangeslinked-summary'  => 'Summary of [[Special:RecentChangesLinked]].',
-'recentchangeslinked-page'     => '{{Identical|Page name}}',
-'recentchangeslinked-to'       => 'Checkbox in [[Special:RecentChangesLinked]].',
+'recentchangeslinked'         => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
+'recentchangeslinked-feed'    => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
+'recentchangeslinked-toolbox' => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
+'recentchangeslinked-title'   => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes as show.',
+'recentchangeslinked-summary' => 'Summary of [[Special:RecentChangesLinked]].',
+'recentchangeslinked-page'    => '{{Identical|Page name}}',
+'recentchangeslinked-to'      => 'Checkbox in [[Special:RecentChangesLinked]].',
 
 # Upload
 'upload'                      => 'Display name for link to [[Special:Upload]] for uploading files to the wiki.
@@ -1994,7 +1995,6 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 
 # File reversion
 'filerevert'                => '{{Identical|Revert}}',
-'filerevert-backlink'       => '{{optional}}',
 'filerevert-legend'         => '{{Identical|Revert}}',
 'filerevert-intro'          => 'Message displayed when you try to revert a version of a file.
 * $1 is the name of the media
@@ -2015,7 +2015,6 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 {{Identical|Revert}}',
 
 # File deletion
-'filedelete-backlink'         => '{{optional}}',
 'filedelete-legend'           => '{{Identical|Delete}}',
 'filedelete-intro-old'        => 'Message displayed when you try to delete a version of a file.
 * $1 is the name of the media
@@ -2459,7 +2458,6 @@ Shoulds looks like the message {{msg-mw|rcnote}} used similary but on [[Special:
 'delete-confirm'         => 'The title of the form to delete a page.
 
 $1 = the name of the page',
-'delete-backlink'        => '{{optional}}',
 'delete-legend'          => '{{Identical|Delete}}',
 'historywarning'         => 'Warning when about to delete a page that has history.
 $1 is the <b>approximate</b> number of revisions that the page has, the message should not claim to give an exact count.',
@@ -2527,9 +2525,6 @@ Example:
 'prot_1movedto2'              => 'Message description: [[mw:Manual:Interface/1movedto2]]',
 'protect-badnamespace-title'  => 'Title of error page when trying to access action=protect on a non-protectable namespace (currently this only for the MediaWiki: namespace).',
 'protect-badnamespace-text'   => 'Content of the error page that goes with {{msg-mw|protect-badnamespace-title}}.',
-'protect-backlink'            => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
-
-Shown as subtitle of the protection form. $1 is the title of the page to be (un)protected.',
 'protect-legend'              => 'Legend of the fieldset around the input form of the protection form.',
 'protectcomment'              => '{{Identical|Reason}}',
 'protectexpiry'               => '{{Identical|Expires}}',
@@ -2684,7 +2679,6 @@ Anon version: {{msg-mw|Sp-contributions-blocked-notice-anon}}',
 'whatlinkshere'            => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].',
 'whatlinkshere-title'      => "Title of the special page [[Special:WhatLinksHere]]. This page appears when you click on the 'What links here' button in the toolbox. $1 is the name of the page concerned.",
 'whatlinkshere-page'       => '{{Identical|Page}}',
-'whatlinkshere-backlink'   => '{{optional}}',
 'linkshere'                => "This message is the header line of the [[Special:WhatLinksHere/$1]] page generated by clicking 'What links here' in the sidebar toolbox. It is followed by a navigation bar built using {{msg-mw|Viewprevnext}}.",
 'nolinkshere'              => 'This appears on Whatlinkshere pages which are empty.
 

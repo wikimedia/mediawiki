@@ -570,10 +570,8 @@ class EditPage {
 			throw new PermissionsError( $action, $permErrors );
 		}
 
-		$wgOut->setPageTitle( wfMessage( 'viewsource' ) );
-		$wgOut->setSubtitle(
-			wfMessage( 'viewsourcefor', Linker::linkKnown( $this->mTitle ) )->text()
-		);
+		$wgOut->setPageTitle( wfMessage( 'viewsource-title', $this->getContextTitle()->getPrefixedText() ) );
+		$wgOut->addBacklinkSubtitle( $this->getContextTitle() );
 		$wgOut->addWikiText( $wgOut->formatPermissionsErrorMessage( $permErrors, 'edit' ) );
 		$wgOut->addHTML( "<hr />\n" );
 

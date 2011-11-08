@@ -83,11 +83,10 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		$this->getSkin()->setRelevantTitle( $this->target );
 
-
 		$this->selfTitle = $this->getTitle( $this->target->getPrefixedDBkey() );
 
 		$out->setPageTitle( $this->msg( 'whatlinkshere-title', $this->target->getPrefixedText() ) );
-		$out->setSubtitle( wfMsg( 'whatlinkshere-backlink', Linker::link( $this->target, $this->target->getPrefixedText(), array(), array( 'redirect' => 'no'  ) ) ) );
+		$out->addBacklinkSubtitle( $this->target );
 
 		$this->showIndirectLinks( 0, $this->target, $opts->getValue( 'limit' ),
 			$opts->getValue( 'from' ), $opts->getValue( 'back' ) );

@@ -53,13 +53,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 		$this->outputHeader();
 
-		$sub  = wfMsgExt(
-			'watchlistfor2',
-			array( 'parseinline', 'replaceafter' ),
-			$this->getUser()->getName(),
-			SpecialEditWatchlist::buildTools( null )
-		);
-		$out->setSubtitle( $sub );
+		$out->addSubtitle( $this->msg( 'watchlistfor2', $this->getUser()->getName()
+			)->rawParams( SpecialEditWatchlist::buildTools( null ) ) );
 
 		# B/C: $mode used to be waaay down the parameter list, and the first parameter
 		# was $wgUser

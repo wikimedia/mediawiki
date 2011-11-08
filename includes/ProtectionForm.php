@@ -236,11 +236,8 @@ class ProtectionForm {
 				wfEscapeWikiText( $this->mTitle->getPrefixedText() ) );
 		}
 
-		$titleLink = Linker::link( $this->mTitle );
-		$wgOut->setSubtitle( wfMsg( 'protect-backlink', $titleLink ) );
-
+		$wgOut->addBacklinkSubtitle( $this->mTitle );
 		$wgOut->addHTML( $this->buildForm() );
-
 		$this->showLogExtract( $wgOut );
 	}
 

@@ -235,8 +235,7 @@ class SpecialRecentchangeslinked extends SpecialRecentChanges {
 	function setTopText( FormOptions $opts ) {
 		$target = $this->getTargetTitle();
 		if( $target ) {
-			$this->getOutput()->setSubtitle( wfMsg( 'recentchangeslinked-backlink', Linker::link( $target,
-				$target->getPrefixedText(), array(), array( 'redirect' => 'no'  ) ) ) );
+			$this->getOutput()->addBacklinkSubtitle( $target );
 		}
 	}
 

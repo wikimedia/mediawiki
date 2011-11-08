@@ -101,7 +101,7 @@ class SpecialLockdb extends FormSpecialPage {
 
 	public function onSuccess() {
 		$out = $this->getOutput();
-		$out->setSubtitle( wfMsg( 'lockdbsuccesssub' ) );
+		$out->addSubtitle( $this->msg( 'lockdbsuccesssub' ) );
 		$out->addWikiMsg( 'lockdbsuccesstext' );
 	}
 }

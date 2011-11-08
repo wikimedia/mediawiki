@@ -81,7 +81,7 @@ class SpecialUnlockdb extends FormSpecialPage {
 
 	public function onSuccess() {
 		$out = $this->getOutput();
-		$out->setSubtitle( wfMsg( 'unlockdbsuccesssub' ) );
+		$out->addSubtitle( $this->msg( 'unlockdbsuccesssub' ) );
 		$out->addWikiMsg( 'unlockdbsuccesstext' );
 	}
 }

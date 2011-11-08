@@ -970,8 +970,10 @@ ol:lang(or) li {
 }
 
 #mw-revision-info,
+#mw-revision-info-current,
 #mw-revision-nav {
 	direction: ltr;
+	display: inline;
 }
 
 /* Images */

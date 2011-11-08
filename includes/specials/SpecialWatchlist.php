@@ -69,13 +69,8 @@ class SpecialWatchlist extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$sub = wfMsgExt(
-			'watchlistfor2',
-			array( 'parseinline', 'replaceafter' ),
-			$user->getName(),
-			SpecialEditWatchlist::buildTools( $this->getSkin() )
-		);
-		$output->setSubtitle( $sub );
+		$output->addSubtitle( $this->msg( 'watchlistfor2', $this->getUser()->getName()
+			)->rawParams( SpecialEditWatchlist::buildTools( null ) ) );
 
 		$request = $this->getRequest();
 
