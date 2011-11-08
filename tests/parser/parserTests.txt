@@ -8891,6 +8891,23 @@ __TOC__
 
 !! end
 
+!! article
+MediaWiki:Bug32057
+!! text
+== {{int:headline_sample}} ==
+!! endarticle
+
+!! test
+Bug 32057: Title needed when expanding <h> nodes.
+!! options
+title=[[Main Page]]
+!! input
+{{int:Bug32057}}
+!! result
+<h2><span class="editsection">[<a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: Headline text">edit</a>]</span> <span class="mw-headline" id="Headline_text"> Headline text </span></h2>
+
+!! end
+
 TODO:
 more images
 more tables
