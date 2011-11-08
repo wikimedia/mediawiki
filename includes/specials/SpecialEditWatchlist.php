@@ -410,8 +410,11 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->toc = Linker::tocIndent();
 			$tocLength = 0;
 			foreach( $fields as $key => $data ) {
+
+				# strip out the 'ns-' prefix from the section name:
 				$ns = substr( $data['section'], 2 );
-				$nsText = $ns == NS_MAIN
+
+				$nsText = ($ns == NS_MAIN)
 					? wfMsgHtml( 'blanknamespace' )
 					: htmlspecialchars( $wgContLang->getFormattedNsText( $ns ) );
 				$this->toc .= Linker::tocLine( "mw-htmlform-{$data['section']}", $nsText, ++$tocLength, 1 ) . Linker::tocLineEnd();
