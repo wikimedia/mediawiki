@@ -576,7 +576,6 @@ Wenn dat nich de Fall is, denn hest du villicht en Fehler in de Software funnen.
 Funktschoon: $1<br />
 Query: $2',
 'viewsource'           => 'Dokmentborn ankieken',
-'viewsourcefor'        => 'för $1',
 'actionthrottled'      => 'Akschoon in de Tall begrenzt',
 'actionthrottledtext'  => 'Disse Akschoon kann blot en bestimmte Tall mal in en bestimmte Tiet utföhrt warrn. Du hest disse Grenz nu anreckt. Versöök dat later noch wedder.',
 'protectedpagetext'    => 'Disse Siet is sparrt, dat een se nich ännern kann.',

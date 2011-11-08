@@ -403,7 +403,6 @@ Las datas qua vegnan da preschent betg actualisadas.',
 Funcziun: $1<br />
 Query: $2',
 'viewsource'           => 'Mussar il code da fontauna',
-'viewsourcefor'        => 'per $1',
 'actionthrottled'      => 'Acziun limitada',
 'actionthrottledtext'  => 'Sco mesira cunter spam na pos ti betg exequir questa acziun memia bleras giadas en curt temp. Ti has surpassà questa limita. 
 Emprova danovamain en in per minutas.',

@@ -362,7 +362,6 @@ $1',
 函数：$1<br />
 查询：$2',
 'viewsource'           => '源码',
-'viewsourcefor'        => '$1个源码',
 'actionthrottled'      => '动作已压制',
 'actionthrottledtext'  => '基于反垃圾链接个考量，限制垃拉短时间内多趟重复箇只操作。请过脱几分钟再试试看。',
 'protectedpagetext'    => '箇只页面已经锁定，以防编辑。',

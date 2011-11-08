@@ -678,7 +678,6 @@ Mında taqırıp atında qoldalmaýtın birqatar tañbalar bolwı mümkin.',
 Jete: $1<br />
 Suranım: $2',
 'viewsource'           => 'Qaýnar közin qaraw',
-'viewsourcefor'        => '$1 degen üşin',
 'actionthrottled'      => 'Äreket bäseñdetildi',
 'actionthrottledtext'  => 'Spamğa qarsı küres esebinde, osı äreketti qısqa waqıtta tım köp ret orındawıñız şektelindi, jäne bul şektew şamasınan asıp ketkensiz.
 Birneşe mïnöttan qaýta baýqap köriñiz.',

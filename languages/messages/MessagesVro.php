@@ -402,7 +402,6 @@ võlssi näüdät kiili- vai wikidevaihõlinõ päälkiri.",
 Tallitus: $1<br />
 Perräküsümine: $2',
 'viewsource'           => 'Kaeq lätteteksti',
-'viewsourcefor'        => 'lehele $1',
 'actionthrottled'      => 'Tallitusõ kibõhus piirõt',
 'actionthrottledtext'  => "Taa tallitusõ mitmit kõrdo tegemine om prahipandjidõ peräst ärq keelet. Olõt taad lühkü ao seen pall'o hulga tennüq. Prooviq veidükese ao peräst vahtsõst.",
 'protectedpagetext'    => 'Taa lehekülg om kirotuskaidsõt.',

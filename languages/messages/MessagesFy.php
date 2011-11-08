@@ -485,7 +485,6 @@ Meitsje dêr melding fan by in [[Special:ListUsers/sysop|systeembehearder]] fan 
 Funksje: $1<br />
 Query: $2',
 'viewsource'           => 'Besjoch de boarne',
-'viewsourcefor'        => 'fan $1',
 'actionthrottled'      => 'Hanneling opkeard',
 'actionthrottledtext'  => 'As maatregel tsjin spam is it tal kearen per tiidsienheid beheind dat jo dizze hanneling ferrjochtsje kinne. Jo binne oer de limyt. Besykje it in tal minuten letter wer.',
 'protectedpagetext'    => 'Dizze side is befeilige. Bewurkjen is net mûglik.',

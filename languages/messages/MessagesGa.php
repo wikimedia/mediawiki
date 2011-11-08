@@ -456,7 +456,6 @@ teideal idirtheangach nó idirvicí nasctha go mícheart.",
 Feidhm: $1<br />
 Iarratas: $2',
 'viewsource'           => 'Féach ar fhoinse',
-'viewsourcefor'        => 'le haghaidh $1',
 'actionthrottled'      => 'Gníomh scóigthe',
 'actionthrottledtext'  => 'Mar theicníc frithurscair, ní féidir lear an gníomh seo a dhéanamh barraíocht taobh istigh de thréimhse ghairid ama, agus tá an méid sáraithe agat.
 Bain trial arís as i gcionn cúpla bomaite más é do thoil é.',

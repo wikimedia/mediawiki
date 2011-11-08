@@ -423,7 +423,6 @@ Shenimet këtu nuk do të rifreskohen.',
 Funksioni: $1<br />
 Kërkesa: $2',
 'viewsource'           => 'Shih kodin',
-'viewsourcefor'        => 'e $1',
 'actionthrottled'      => 'Veprimi âsht i kufizuem',
 'actionthrottledtext'  => 'Si masë kunder spamit, jeni të kufizuem me kry këtë veprim shumë herë për nji kohë shumë të shkurtë, dhe e keni tejkalue këtë kufizim.
 Ju lutemi provoni prap mbas disa minutave.',

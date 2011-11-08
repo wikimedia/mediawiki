@@ -362,7 +362,6 @@ Hueli tlein āquin ōquipolo achtopa.',
 'badtitletext'        => 'Zāzanilli ticnequi in ītōca cah ahcualli, ahtlein quipiya nozo ahcualtzonhuiliztli interwiki tōcāhuicpa.
 Hueliz quimpiya tlahtōl tlein ahmo mohuelītih motequitiltia tōcāpan.',
 'viewsource'          => 'Tiquittāz tlahtōlcaquiliztilōni',
-'viewsourcefor'       => '$1 ītechcopa',
 'actionthrottled'     => 'Tlachīhualiztli ōmotzacuili',
 'viewsourcetext'      => 'Tihuelīti tiquitta auh ticcopīna inīn zāzanilli ītlahtōlcaquiliztilōni:',
 'sqlhidden'           => '(Tlatēmoliztli SQL omotlāti)',

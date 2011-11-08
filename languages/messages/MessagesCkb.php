@@ -270,6 +270,7 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|ئەم هاوپۆلە تەنها ئەم پەڕگەی لەخۆ گرتووە.|ئەم‌ {{PLURAL:$1|پەڕگەیە}} کە بەشێکە لە هەموو $2پەڕگەی ئەم هاوپۆلە‌ دەیبینی.}}',
 'category-file-count-limited'    => 'ئەم {{PLURAL:$1|پەڕگە|پەڕگانە}} لەم هاوپۆلەدایە.',
 'listingcontinuesabbrev'         => '(درێژە)',
+'noindex-category'               => 'پەڕە پێرستنەکراوەکان',
 
 'about'         => 'سه‌باره‌ت',
 'article'       => 'بابەت',
@@ -398,6 +399,7 @@ $1',
 تەماشای [[Special:Version|پەڕەی وەشان]] بکە.',
 
 'ok'                      => 'باشه‌',
+'backlinksubtitle'        => '→ $1',
 'retrievedfrom'           => 'وەرگیراو لە «$1»',
 'youhavenewmessages'      => '$1ت ھەیە ($2).',
 'newmessageslink'         => 'پەیامی نوێ',
@@ -500,7 +502,6 @@ $1',
 کردار: $1<br />
 داواکاری: $2',
 'viewsource'           => 'سەرچاوەکەی ببینە',
-'viewsourcefor'        => 'بۆ $1',
 'actionthrottled'      => 'چالاکی پێشی پێ گیرا',
 'actionthrottledtext'  => 'بە مەبەستی پێشگریی لە سپەم، ڕێگە نادرێت تۆ لە ماوەیەکی کورت دا لە سەر یەک ئەمە زۆر جار ئەنجام بدەی، وە ئیستا تۆ لە ڕادە بەدەرت کردووە.
 تکایە پاش چەند خولەک دووبارە تاقی بکەوە.',
@@ -1242,8 +1243,8 @@ $1",
 'group-user-member'          => '{{GENDER:$1|بەکارھێنەر}}',
 'group-autoconfirmed-member' => '{{GENDER:$1|بەکارھێنەری خۆکار پەسەندکراو}}',
 'group-bot-member'           => 'بۆت',
-'group-sysop-member'         => 'بەڕێوەبەر',
-'group-bureaucrat-member'    => 'بورووکرات',
+'group-sysop-member'         => '{{GENDER:$1|بەڕێوبەر}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|بورووکرات}}',
 'group-suppress-member'      => '{{GENDER:$1|چاودێر}}',
 
 'grouppage-user'          => '{{ns:project}}:بەکارھێنەران',
@@ -1595,7 +1596,6 @@ $1',
 
 # File reversion
 'filerevert'                => 'پێچەوانەکردنەوەی $1',
-'filerevert-backlink'       => '→ $1',
 'filerevert-legend'         => 'پێچەوانەکردنەوەی پەڕگە',
 'filerevert-intro'          => "خەریکی پەڕگەی '''[[Media:$1|$1]]''' دەگەڕینیتەوە بۆ [$4 وەشانی $3، $2].",
 'filerevert-comment'        => 'هۆکار:',
@@ -1606,7 +1606,6 @@ $1',
 
 # File deletion
 'filedelete'                  => 'سڕینەوەی $1',
-'filedelete-backlink'         => '→ $1',
 'filedelete-legend'           => 'سڕینەوەی پەڕگە',
 'filedelete-intro'            => "خەریکی پەڕگەی '''[[Media:$1|$1]]''' دەگەڵ هەموو مێژووی دەسڕیتەوە.",
 'filedelete-intro-old'        => "خەریکی وەشانی [$4 $3، $2] لە '''[[Media:$1|$1]]''' دەسڕیتەوە.",
@@ -1741,7 +1740,7 @@ $1',
 'listusers-editsonly'     => 'تەنھا ئەو بەکارھێنەرانە نیشان بدە کە دەستکارییان کردووە',
 'listusers-creationsort'  => 'ڕیز کردن بە پێی ڕێکەوتی دروست کردن',
 'usereditcount'           => '$1 {{PLURAL:$1|دەستکاری|دەستکاری}}',
-'usercreated'             => 'دروست کراو لە $2ی $1',
+'usercreated'             => 'لە $1 کاتژمێر $2 {{GENDER:$3|دروستکراوە}}',
 'newpages'                => 'پەڕە نوێکان',
 'newpages-username'       => 'ناوی بەکارھێنەر:',
 'ancientpages'            => 'کۆنترین پەڕەکان',
@@ -1962,7 +1961,6 @@ $UNWATCHURL
 'exbeforeblank'          => "ناوەڕۆک بەر لە بەتاڵ کردنەوە ئەمە بوو: '$1'",
 'exblank'                => 'پەڕە خاڵی بوو',
 'delete-confirm'         => 'سڕینەوەی «$1»',
-'delete-backlink'        => '→ $1',
 'delete-legend'          => 'بیسڕەوە',
 'historywarning'         => "'''وشیار بە:''' پەڕەیەک کە دەتەوێ بیسڕیتەوە مێژوویەکی ھەیە بە نزیکەی $1 {{PLURAL:$1|پێداچوونەوە|پێداچوونەوە}}وە:",
 'confirmdeletetext'      => 'تۆ خەریکی پەڕەیەک بە ھەموو مێژووەکەیەوە دەسڕیتەو.
@@ -2019,7 +2017,6 @@ $UNWATCHURL
 'movedarticleprotection'      => 'ڕێککارییەکانی پاراستن لە  "[[$2]]" گوازرایەوە بۆ "[[$1]]"',
 'protect-title'               => 'گۆڕینی ئاستی پاراستنی "$1"',
 'prot_1movedto2'              => '[[$1]] گوازراوەتەوە بۆ [[$2]]',
-'protect-backlink'            => '← $1',
 'protect-legend'              => 'پاراستن تەیید بکە',
 'protectcomment'              => 'ھۆکار:',
 'protectexpiry'               => 'ھەتا:',
@@ -2644,7 +2641,8 @@ $1',
 'metadata-help'     => 'ئەم پەڕگە زانیاری زێدەی ھەیە، کە لەوە دەچێت کامێرا یان ھێماگر (scanner) خستبێتیە سەری. ئەگەر پەڕگەکە لە حاڵەتی سەرەتاییەکەیەوە دەستکاری کرابێ، شایەد بڕێ لە بڕگەکان بە تەواوی زانیارەکانی وێنە گۆڕدراوەکە نیشان نەدەن.',
 'metadata-expand'   => 'وردەکارییە درێژکراوەکان پیشان بدە',
 'metadata-collapse' => 'وردەکارییە درێژکراوەکان بشارەوە',
-'metadata-fields'   => 'ئەو کێڵگە EXIFانە لەم پەیامە بە ڕیز کراون، کاتێک خشتەی metadata کۆ کراوەش بێ ھەر نیشان ئەدرێت. کێڵگەکانی تر تا خشتەکە باز نەکرێ، شاراوەن.
+'metadata-fields'   => 'کێڵگەکانی میتاداتای وێنە کە لەم پەیامەدا بەڕیزکراون کاتێک خشتەی میتاداتا کۆکراوەش بێت لە پەڕەی وێنەدا نیشان دەدرێن.
+کێڵگەکانی تر لە حاڵەتی بنەڕەتیدا شاراوەن.
 * make
 * model
 * datetimeoriginal

@@ -559,7 +559,6 @@ Mund të jetë fshirë nga dikush tjetër.',
 Funksioni: $1<br />
 Pyetja: $2',
 'viewsource'           => 'Shikoni tekstin',
-'viewsourcefor'        => 'e $1',
 'actionthrottled'      => 'Veprim i kufizuar',
 'actionthrottledtext'  => 'Për tu ruajtur nga redaktime automatike "spam" të padëshiruara na duhet të kufizojmë veprimet tuaja pasi janë të shumta në një kohë të shkurtër.
 Ju lutem provojeni përsëri pas disa minutash.',

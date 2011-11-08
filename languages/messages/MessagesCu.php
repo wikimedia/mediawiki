@@ -262,9 +262,8 @@ $messages = array(
 'nstab-category'  => 'катигорїꙗ',
 
 # General errors
-'error'         => 'блаꙁна',
-'viewsource'    => 'страницѧ источьнъ обраꙁъ',
-'viewsourcefor' => '$1 дѣлꙗ',
+'error'      => 'блаꙁна',
+'viewsource' => 'страницѧ источьнъ обраꙁъ',
 
 # Login and logout pages
 'yourname'                => 'твоѥ имѧ',

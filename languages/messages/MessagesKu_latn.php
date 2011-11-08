@@ -415,7 +415,6 @@ Dibe ku di sernavê de karakterên nayên bikaranîn hatibin nivîsandin.',
 Fonksiyon: $1<br />
 Pirs: $2',
 'viewsource'           => 'Çavkaniyê bibîne',
-'viewsourcefor'        => 'ji $1 re',
 'actionthrottled'      => 'Hejmara guherandinên hatine hesibandin',
 'actionthrottledtext'  => 'Te ev tişt di demeke gelekî kin de kir. Ji kerema xwe çend xulekan bisekine û carekî din biceribîne.',
 'protectedpagetext'    => 'Ev rûpel ji bo nenivîsandinê hatiye parastin.',

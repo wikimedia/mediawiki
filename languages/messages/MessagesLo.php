@@ -338,7 +338,6 @@ $messages = array(
 'cannotdelete'        => 'ບໍ່ສາມາດລຶບໜ້າ ຫຼື ໄຟລ໌ ໄດ້. (ມັນອາດຈະຖືກລຶບໂດຍໃຜຜູ້ໜຶ່ງແລ້ວ.)',
 'badtitle'            => 'ຫົວຂໍ້ບໍ່ຖືກຕ້ອງ',
 'viewsource'          => 'ເບິ່ງຊອສ໌',
-'viewsourcefor'       => 'ສຳຫຼັບ $1',
 'namespaceprotected'  => "ທ່ານບໍ່ໄດ້ຮັບອະນຸຍາດ ໃຫ້ ດັດແກ້ ໜ້າ ໃນ  '''$1'''.",
 
 # Login and logout pages

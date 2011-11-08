@@ -660,7 +660,6 @@ $1',
 'querypage-no-updates' => '이 문서의 갱신이 현재 비활성화되어 있습니다. 자료가 잠시 갱신되지 않을 것입니다.',
 'wrong_wfQuery_params' => 'wfQuery()에서 잘못된 매개변수 발생<br />함수: $1<br />쿼리: $2',
 'viewsource'           => '내용 보기',
-'viewsourcefor'        => '$1의 문서 내용',
 'actionthrottled'      => '동작 중지',
 'actionthrottledtext'  => '스팸을 막기 위해 짧은 시간 안에 이 작업을 너무 많이 하는 것을 막고 있습니다.
 제한을 넘었으니 몇 분 뒤에 새로 시도하세요.',

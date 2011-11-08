@@ -317,7 +317,6 @@ $messages = array(
 'filenotfound'        => '‘A‘ole hiki ke loa‘a waihona "$1".',
 'badtitle'            => 'Inoa ‘ino',
 'viewsource'          => 'E nānā i ka molekumu',
-'viewsourcefor'       => 'no $1',
 'cascadeprotected'    => 'Ho‘omalu ‘ia kēia ‘ao‘ao mai e ho‘opololei ana, no ka mea, hoʻokomo pū ‘ia ‘oia ma aia {{PLURAL:$1|‘ao‘ao|nā ‘ao‘ao}} i lalo, ho‘omalu ‘ia me ka "e wailele ana" koho:
 $2',
 'ns-specialprotected' => '‘A‘ole hiki ke ho‘opololei i nā ‘ao‘ao kūikawā',

@@ -362,7 +362,6 @@ Prašuom aple šėtā paskelbtė [[Special:ListUsers/sysop|adminėstratoriō]], 
 Funkcėjė: $1<br />
 Ožklausėms: $2',
 'viewsource'           => 'Veizėtė kuoda',
-'viewsourcefor'        => 'poslapiō $1',
 'protectedpagetext'    => 'Šėts poslapis īr ožrakints, saugont anū nū redagavėma.',
 'viewsourcetext'       => 'Tomsta galėt veizietė ėr kopėjoutė poslapė kuoda:',
 'protectedinterface'   => 'Šėtom poslapi īr pruogramėnės ironguos sasajuos teksts katros īr apsauguots, kū neprietelē anū nasogadėntu.',

@@ -667,7 +667,6 @@ Det kan inneholder en eller flere tegn som ikke kan brukes i titler.',
 Funksjon: $1<br />
 Spørring: $2',
 'viewsource'           => 'Vis kildetekst',
-'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Handlingsgrense overskredet',
 'actionthrottledtext'  => 'For å beskytte mot spam, kan du ikke utføre denne handlingen for mange ganger i løpet av et kort tidssrom, og du har overskredet denne grensen. Prøv igjen om noen minutter.',
 'protectedpagetext'    => 'Denne siden har blitt låst for redigeringer.',

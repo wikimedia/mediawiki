@@ -668,7 +668,6 @@ t Kan ween dat n aander t al vortedaon hef.',
 Funksie: $1<br />
 Zeukopdrachte: $2',
 'viewsource'           => 'Brontekste bekieken',
-'viewsourcefor'        => 'veur "$1"',
 'actionthrottled'      => 'Haandeling tegen-ehuilen',
 'actionthrottledtext'  => "As maotregel tegen t plaotsen van ongewunste verwiezingen, is t antal keren da'j disse haandeling in n korte tied uutvoeren kunnen beteund. Je hebben de limiet overschrejen. Probeer t over n antal minuten weer.",
 'protectedpagetext'    => 'Disse pagina is beveiligd um bewarkingen te veurkoemen.',

@@ -523,7 +523,6 @@ Pšosym daj to a pśisłušny URL [[Special:ListUsers/sysop|administratoroju]] k
 Funkcija: $1<br />
 Wótpšašanje: $2',
 'viewsource'           => 'Žrědło se wobglědaś',
-'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Akcije limitowane',
 'actionthrottledtext'  => 'Ako napšawa pśeśiwo spamoju, móžoš toś tu akciju jano někotare raze we wěstym case wuwjasć. Sy toś ten limit dośěgnuł. Pšosym wopytaj za někotare minuty hyšći raz.',
 'protectedpagetext'    => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
@@ -2210,6 +2209,7 @@ W takich padach dejš nejnowše wulašowane wersije markěroanje abo schowanje w
 
 W [[Special:Log/delete|log-lisćinje wulašowanjow]] namakajoš pśeglěd wulašowanych a nawrośonych bokow.",
 'undelete-header'              => 'Gano wulašowane boki wiźiš w [[Special:Log/delete|log-lisćinje wulašowanjow]].',
+'undelete-search-title'        => 'Wulašowane boki pytaś',
 'undelete-search-box'          => 'Wulašowane boki pytaś',
 'undelete-search-prefix'       => 'Pokaž boki, kótarež zachopiju z:',
 'undelete-search-submit'       => 'Pytaś',
@@ -2218,6 +2218,7 @@ W [[Special:Log/delete|log-lisćinje wulašowanjow]] namakajoš pśeglěd wulaš
 'undelete-bad-store-key'       => 'Njejo móžno było, wersiju z casowym kołkom $1 nawrośiś: Dataja južo pśed wulašowanim njejo eksistěrowała.',
 'undelete-cleanup-error'       => 'Zmólka pśi wulašowanju njewužywaneje archiwneje dataje $1.',
 'undelete-missing-filearchive' => 'Njejo móžno, archiwnu dataju ID $1 nawrośiś. Wóna južo w datowej bance njejo. Snaź jo južo raz se nawrośiła.',
+'undelete-error'               => 'Zmólka pśi wulašowanju boka',
 'undelete-error-short'         => 'Zmólka pśi nawrośenju dataje: $1',
 'undelete-error-long'          => 'Zmólki pśi nawrośenju dataje:
 

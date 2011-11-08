@@ -417,7 +417,6 @@ Nangini bisa baisi satu atawa labih hurup nang saharusnya kadada di judul.',
 Pungsi: $1<br />
 Parmintaan: $2',
 'viewsource'           => 'Tiringi asal mulanya',
-'viewsourcefor'        => 'gasan $1',
 'actionthrottled'      => 'Kalakuan dikiripi',
 'actionthrottledtext'  => 'Sawagai sabuah takaran anti-spam, Pian dibabatasi hagan balalaku kababanyakan dalam parhatan handap, wan Pian sudah limpuari batasan ini.
 Muhun cubai pulang dalam babarapa minit.',

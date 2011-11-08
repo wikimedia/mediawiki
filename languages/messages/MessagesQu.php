@@ -629,7 +629,6 @@ P\'anqaqa pipapas qullusqanñachá.',
 Ruray paqtachi: $1<br />
 Tapuna: $2',
 'viewsource'           => 'Pukyu qillqata qhaway',
-'viewsourcefor'        => '$1-paq',
 'actionthrottled'      => "Rurayniykiqa hark'asqam",
 'actionthrottledtext'  => "Spam nisqa millay rurayta hark'anapaq, manam saqillasunkichu kayta nisyu kutikunata rurayta ratulla mit'api. Nisyutam ruraykachanki. Ama hina kaspa, huk minutukunamanta musuqmanta ruraykachay.",
 'protectedpagetext'    => "Kay p'anqaqa llamk'apuymanta amachasqam.",

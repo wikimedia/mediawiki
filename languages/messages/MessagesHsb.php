@@ -520,7 +520,6 @@ Funkcija: $1
 
 Wotprašenje: $2',
 'viewsource'           => 'žórło wobhladać',
-'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Akcije wobmjezowane',
 'actionthrottledtext'  => 'Jako připrawa přećiwo spamej, je častosć wuwjedźenja tuteje akcije w krótkej dobje wobmjezowana a ty sy tutón limit překročił. Prošu spytaj za něšto mjeńšiny hišće raz.',
 'protectedpagetext'    => 'Strona je přećiwo wobdźěłowanju škitana.',
@@ -2032,7 +2031,7 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'watchmethod-list'     => 'Wobkedźbowanki za aktualnymi změnami přepruwować',
 'watchlistcontains'    => 'Maš $1 {{PLURAL:$1|stronu|stronje|strony|stronow}} w swojich wobkedźbowankach.',
 'iteminvalidname'      => 'Problem ze zapiskom „$1“, njepłaćiwe mjeno.',
-'wlnote'               => 'Deleka {{PLURAL:$1|je poslednja|stej poslednjej|su poslednje|su poslednje}} $1 {{PLURAL:$1|změna|změnje|změny|změnow}} za poslednje <b>$2</b> hodź.',
+'wlnote'               => "Deleka {{PLURAL:$1|je '''1''' změna|stej poslednjej '''$1''' změnje|su poslednje '''$1''' změny|je poslednich '''$1''' změnow}} za {{PLURAL:$2|poslednju hodźinu|poslednje '''$2''' hodźinje|poslednje '''$2''' hodźiny|poslednje '''$2''' hodźin}}, staw : $3, $4.",
 'wlshowlast'           => 'Poslednje $1 hodź. - $2 dnjow - $3 pokazać',
 'watchlist-options'    => 'Opcije wobkedźbowankow',
 
@@ -2226,6 +2225,7 @@ W tutym padźe dyrbiš najnowšu wušmórnjenu wersiju znjemóžnić abo pokaza�
 
 Hlej [[Special:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenjow a wobnowjenjow.",
 'undelete-header'              => 'Hlej [[Special:Log/delete|protokol wušmórnjenjow]] za njedawno wušmórnjene strony.',
+'undelete-search-title'        => 'Wušmórnjene strony pytać',
 'undelete-search-box'          => 'Wušmórnjene strony pytać',
 'undelete-search-prefix'       => 'Strony pokazać, kotrež započinaja so z:',
 'undelete-search-submit'       => 'Pytać',
@@ -2234,6 +2234,7 @@ Hlej [[Special:Log/delete|protokol]] za lisćinu aktualnych wušmórnjenjow a wo
 'undelete-bad-store-key'       => 'Datajowa wersija z časowym kołkom $1 njeda so wobnowić: dataja před zničenjom hižo njeeksistowaše.',
 'undelete-cleanup-error'       => 'Zmylk při wušmórnjenju njewužita wersija $1 z archiwa.',
 'undelete-missing-filearchive' => 'Dataja z archiwowym ID $1 njeda so wobnowić, dokelž w datowej bance njeje. Snano bu wona hižo wobnowjena.',
+'undelete-error'               => 'Zmylk při wušmórnjenju strony',
 'undelete-error-short'         => 'Zmylk při wobnowjenju dataje $1',
 'undelete-error-long'          => 'Buchu zmylki při wobnowjenju dataje zwěsćene:
 

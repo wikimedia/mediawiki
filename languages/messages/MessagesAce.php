@@ -410,7 +410,6 @@ Meunyo kön nyoë sababjih, Droëneuh kadang ka neuteumèë saboh bug lam softwa
 'badtitle'           => 'Nan hana sah',
 'badtitletext'       => 'Nan ôn nyang neulakèë hana sah, soh, atawa nan antarabahsa atawa antarawiki nyang salah sambông.',
 'viewsource'         => 'Eu nè',
-'viewsourcefor'      => 'keu $1',
 'viewsourcetext'     => 'Droëneuh  jeuët neu’eu',
 
 # Login and logout pages

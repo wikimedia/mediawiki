@@ -419,7 +419,6 @@ Si priga di cuntattà un'[[Special:ListUsers/sysop|amministhradore]], ippizzific
 funzioni: $1<br />
 Interrogazioni: $2",
 'viewsource'           => 'Vèdi còdizi',
-'viewsourcefor'        => 'pa $1',
 'actionthrottled'      => 'Azioni limitadda',
 'actionthrottledtext'  => "Cumenti rimédiu anti-spam, v'è un lìmiti a l'azioni ch'è pussìbiri eseguì i'nu tempu isthabiriddu, e abà suparaddu. Pògu tèmpu e pói riprubà.",
 'protectedpagetext'    => 'Chistha pàgina è isthadda prutiggidda pa impidinni la mudìfigga.',

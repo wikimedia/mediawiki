@@ -451,7 +451,6 @@ Ba ya pemoükon fa geban votik.',
 Dun: $1<br />
 Beg: $2',
 'viewsource'           => 'Logön fonäti',
-'viewsourcefor'        => 'tefü $1',
 'actionthrottled'      => 'Dun pemiedükon',
 'actionthrottledtext'  => 'Ad tadunön reklamami itjäfidik (el „spam“), dunot at no padälon tu suvo dü brefüp. Ya erivol miedi gretikün. Steifülolös nogna pos minuts anik.',
 'protectedpagetext'    => 'Pad at pejelon ad neletön redakami.',

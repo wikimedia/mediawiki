@@ -348,7 +348,6 @@ Lutfan inro ba [[Special:ListUsers/sysop|mudir]] bo işora kardani nişonai URL 
 Amal: $1<br />
 Pursuçū: $2',
 'viewsource'           => 'Namoişi matni viki',
-'viewsourcefor'        => 'baroi $1',
 'actionthrottled'      => 'Çilavi amali şumo girifta şud',
 'actionthrottledtext'  => 'Ba manzuri çilavgirī az spam, şumo içoza nadored, ki cunin amalero beş az cand bor dar jak muddati zamoni kūtoh ançom bidihed. Lutfan pas az cand daqiqa dubora taloş kuned.',
 'protectedpagetext'    => 'In sahifa baroi çilavgirī az viroiş qufl şudaast.',

@@ -383,7 +383,6 @@ Ang datos nga yari diri indi pagliwaton.',
 Kapuslanan: $1<br />
 Pagpamangkot: $2',
 'viewsource'           => 'Lantawon ang ginhalinan',
-'viewsourcefor'        => 'para sa $1',
 'actionthrottled'      => 'Ang paghulag ginpunggan',
 'actionthrottledtext'  => 'Bilang pagpangontra sa span, ginalimitahan ka sa pagbuhat sang sini nga paghulag sa tuman ka damo nga beses sa malip-ot nga tinion, kag naglapaw ka na sa sini nga patakaran.
 Palihog tilawan mo liwat pagkatapos sang malip-ot nga tinion.',

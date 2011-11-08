@@ -258,10 +258,9 @@ $messages = array(
 'nstab-category'  => 'Grup',
 
 # General errors
-'error'         => 'Birua',
-'badtitle'      => 'Nem bilong pes i no stret',
-'viewsource'    => 'Lukim as tok',
-'viewsourcefor' => 'bilong $1',
+'error'      => 'Birua',
+'badtitle'   => 'Nem bilong pes i no stret',
+'viewsource' => 'Lukim as tok',
 
 # Login and logout pages
 'yourname'            => 'Yusanem:',

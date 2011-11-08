@@ -580,7 +580,6 @@ Mety tsy misy fifandraisana amin'ny zavamisy ankehitriny ny zavamisy ao anatin'i
 Asa : $1<br />
 fangatahana : $2",
 'viewsource'           => 'Hijery fango',
-'viewsourcefor'        => "ho an'ny $1",
 'actionthrottled'      => 'Tao voafetra',
 'actionthrottledtext'  => "Mba hiady amin'ny spam, ny hatetika momba ny fanaovana io otao io dia ferana ho foifoy, ary niaotra io fetra io ianao.
 Andramo indray afaka minitra vitsivitsy.",

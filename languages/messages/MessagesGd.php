@@ -384,7 +384,6 @@ Cha dèid an dàta an-seo ùrachadh aig an àm seo.',
 Foincsean: $1<br />
 Iarrtas: $2',
 'viewsource'           => 'Seall an tùs',
-'viewsourcefor'        => 'airson $1',
 'actionthrottled'      => 'Gnìomh air a mhùchadh',
 'actionthrottledtext'  => "Gus casg a chur air spama, chan urrainn dhut an gnìomh seo a dhèanamh ro thric am broinn ùine ghoirid agus chaidh thu thairis air a' chrìoch seo.
 Feuch ris a-rithist às a dhèidh seo.",
@@ -395,7 +394,11 @@ Feuch ris a-rithist às a dhèidh seo.",
 Ma dh'atharraicheas tu an duilleag seo, bidh buaidh ann air coltas na h-eadar-aghaidh mar a chì càch i.
 Ma tha thu airson Gàidhlig a chur air, saoil an cleachd thu [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], am pròiseact ionadailidh aig MediaWiki?",
 'sqlhidden'            => "(Iarrtas SQL 'ga fhalach)",
+'cascadeprotected'     => 'Chaidh an duilleag seo a dhìon o dheasachadh a chionn \'s gu bheil e am broinn {{PLURAL:$1|na duilleige|nan duilleagan}} a leanas a chaidh an dìon \'s an roghainn "mar eas" air:
+$2',
 'namespaceprotected'   => "Chan eil cead agad duilleagan san namespace '''$1''' a dheasachadh.",
+'customcssprotected'   => "Chan eil cead agad an duilleag CSS seo a dheasachadh a chionn 's gu bheil na roghainnean pearsanta aig cleachdaiche eile innte.",
+'customjsprotected'    => "Chan eil cead agad an duilleag JavaScript seo a dheasachadh a chionn 's gu bheil na roghainnean pearsanta aig cleachdaiche eile innte.",
 'ns-specialprotected'  => 'Chan ghabh duilleagan sònraichte a dheasachadh.',
 'titleprotected'       => 'Chaidh an duilleag seo a dhìon o chruthachadh le [[User:$1|$1]].
 Seo am mìneachadh: "\'\'$2\'\'".',
@@ -406,6 +409,9 @@ Seo am mìneachadh: "\'\'$2\'\'".',
 'virus-unknownscanner' => 'sganair bhìorasan neo-aithnichte:',
 
 # Login and logout pages
+'logouttext'                 => "'''Chaidh do logadh a-mach.'''
+'S urrainn dhut leantainn air adhart a' cleachdadh {{SITENAME}} a chleachdadh gun urra no 's urrainn dhut [[Special:UserLogin|logadh a-steach a-rithist]] mar an dearbh-chleachdaiche no mar chleachdaiche eile.
+Thoir an aire gum bi coltas air cuide dhe na duilleagan mar gum biodh tu air logadh a-steach gus am falamhaich thu tasgadan a' bhrabhsair agad.",
 'welcomecreation'            => '== Fàilte ort, $1! ==
 Chaidh an cunntas agad a chruthachadh.
 Na dìochuimhnich na [[Special:Preferences|roghainnean agad air {{SITENAME}}]] a ghleusadh dhut fhèin.',
@@ -413,19 +419,30 @@ Na dìochuimhnich na [[Special:Preferences|roghainnean agad air {{SITENAME}}]] a
 'yourpassword'               => 'Am facal-faire agad',
 'yourpasswordagain'          => 'Ath-sgrìobh facal-faire',
 'remembermypassword'         => "Cuimhnich gu bheil mi air logadh a-steach air a' choimpiutair seo (suas gu $1 {{PLURAL:$1|latha|làithean}})",
+'securelogin-stick-https'    => 'Glèidh an ceangal ri HTTPS as dèidh logadh a-steach',
+'yourdomainname'             => 'An àrainn-lìn agad:',
+'externaldberror'            => 'Thachair mearachd le dearbhadh an stòir-dhàta air neo chan eil cead agad an cunntas agad air an taobh a-muigh ùrachadh.',
 'login'                      => 'Log a-steach',
 'nav-login-createaccount'    => 'Log a-steach / cruthaich cunntas',
 'loginprompt'                => 'Feumaidh briosgaidean a bhith ceadaichte mus dèan thu logadh a-steach do {{SITENAME}}.',
 'userlogin'                  => 'Log a-steach / cruthaich cunntas',
+'userloginnocreate'          => 'Log a-steach',
 'logout'                     => 'Log a-mach',
 'userlogout'                 => 'Log a-mach',
+'notloggedin'                => 'Chan eil thu air logadh a-steach',
 'nologin'                    => 'Nach eil cunntas agad fhathast? $1.',
 'nologinlink'                => 'Cruthaich cunntas',
 'createaccount'              => 'Cruthaich cunntas ùr',
 'gotaccount'                 => 'A bheil cunntas agad mu thràth? $1.',
 'gotaccountlink'             => 'Log a-steach',
 'userlogin-resetlink'        => "Na dhìochuimhnich thu d' ainm is facal-faire?",
+'createaccountmail'          => 'Le post-d',
+'createaccountreason'        => 'Adhbhar:',
+'badretype'                  => "Chan eil an dà fhacal-faire a chuir thu a-steach a' freagairt ri chèile.",
+'userexists'                 => "Tha an t-ainm-cleachdaiche a chuir thu a-steach 'ga chleachdadh mu thràth.
+Nach tagh thu ainm eile?",
 'loginerror'                 => 'Mearachd log a-steach',
+'createaccounterror'         => 'Cha do ghabh an cunntas a leanas a chruthachadh: $1',
 'noname'                     => 'Cha do thagh thu ainm-cleachdaiche dligheach.',
 'nosuchusershort'            => 'Chan eil cleachdaiche ann leis an ainm "$1".
 Cuir sùil air an litreachadh.',
@@ -775,7 +792,7 @@ Chithear an tuairisgeul a tha aice air [duilleag tuairisgeul an fhaidhle $2] gu 
 'shortpages'              => 'Duilleagan goirid',
 'longpages'               => 'Duilleagan fada',
 'listusers'               => 'Liosta nan cleachdaichean',
-'usercreated'             => 'a chruthaich $1 aig $2',
+'usercreated'             => 'Air a chruthachadh le {{GENDER:$3|}} $1 aig $2',
 'newpages'                => 'Duilleagan ùra',
 'ancientpages'            => 'Duilleagan as sìne',
 'move'                    => 'Gluais',

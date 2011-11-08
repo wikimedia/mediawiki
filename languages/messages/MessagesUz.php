@@ -220,7 +220,6 @@ $messages = array(
 'error'             => 'Xato',
 'badtitle'          => 'Notoʻgʻri sarlavha',
 'viewsource'        => "Ko'rib chiqish",
-'viewsourcefor'     => '$1 uchun',
 'protectedpagetext' => 'Bu sahifa tahrirlashdan saqlanish maqsadida qulflangan.',
 'viewsourcetext'    => "Siz bu sahifaning manbasini ko'rishingiz va uni nusxasini olishingiz mumkin:",
 

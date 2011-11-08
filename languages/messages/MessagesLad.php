@@ -476,7 +476,6 @@ Si puede ser, enfórmaselo a un [[Special:ListUsers/sysop|administrator]], anota
 'badtitletext'        => 'El título de la hoja demandada está vazío, no es valible, o es un link interlingua o interwiki incorrecto.
 Puede ser que contiene uno o más caracteres que no se pueden usar en los títulos.',
 'viewsource'          => 'Ver el codd fuente',
-'viewsourcefor'       => 'para $1',
 
 # Login and logout pages
 'yourname'                => 'Su nombre de usuario',

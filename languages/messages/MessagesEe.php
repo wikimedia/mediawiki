@@ -185,7 +185,6 @@ $messages = array(
 Ɖewomahĩ ame aɖe tutui xoxo.',
 'badtitle'        => 'Tanya gbegblẽ',
 'viewsource'      => 'Kpɔ alesi wowɔe',
-'viewsourcefor'   => '$1 tɔwo',
 
 # Login and logout pages
 'remembermypassword'         => 'Ɖo ŋku nyeƒe dzesi ŋkɔ dzi le mɔ sia dzi (vaseɖe {{PLURAL:$1|ŋkeke|ŋkeke}} $1 megbe)',

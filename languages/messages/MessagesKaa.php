@@ -490,7 +490,6 @@ Bul jerde keltirilgen mag'lıwmatlar o'zgertilmeydi.",
 Funktsiya: $1<br />
 Soraw: $2',
 'viewsource'           => "Deregin ko'riw",
-'viewsourcefor'        => '$1 ushın',
 'actionthrottled'      => "Ha'reket toqtatıldı",
 'actionthrottledtext'  => "Spamg'a qarsı gu'res esabında, bunday ha'reketti qısqa waqıtta dım ko'p ma'rte bejeriwin'iz sheklenedi, ha'mde siz usı limitten o'tip ketkensiz.
 Birneshe minuttan keyin qaytadan ha'reket qılıp ko'rin'.",

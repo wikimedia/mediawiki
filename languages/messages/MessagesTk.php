@@ -397,7 +397,6 @@ Başga biri tarapyndan eýýäm öçürilen bolmagy mümkin.',
 Funksiýa: $1<br />
 Talap: $2',
 'viewsource'           => 'Çeşmäni gör',
-'viewsourcefor'        => '$1 üçin',
 'actionthrottled'      => 'Hereket çäklendirildi',
 'actionthrottledtext'  => 'Anti-spam çäresi hökmünde, bu işi az salymyň içinde köp gezek amala aşyrmagyňyz çäklendirildi, we siz bu çäklendirmeden öte geçdiňiz.
 Ýene birnäçe minutdan gaýtadan synanyşyp görmegiňizi haýyş edýäris.',

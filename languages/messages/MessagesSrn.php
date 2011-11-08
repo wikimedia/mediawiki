@@ -432,7 +432,6 @@ Wan réy fu spesrutu papira de fu feni na [[Special:SpecialPages|{{int:specialpa
 'badtitletext'         => 'A nen fu a papira san ben aksi no bun, leygi, noso abi wan miti go na inter-tongo noso inter-wiki nen san no bun.
 A kan taki a abi wan noso moro karakter san no bun fu kebroiki gi nen.',
 'viewsource'           => 'Luku a source',
-'viewsourcefor'        => 'fu $1',
 'protectedpagetext'    => 'A papira disi sroto gi kenki.',
 'viewsourcetext'       => 'Yu kan luku nanga kopi a source fu a papira disi:',
 'ns-specialprotected'  => 'Spesrutu papira no kan kenki.',

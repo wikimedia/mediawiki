@@ -353,7 +353,6 @@ Mazīngi, kāi pastāi jāu āupausintan pra ainuntan kittan.',
 Funkciōni: $1<br />
 Prasīsenis: $2',
 'viewsource'           => 'Wīdais appun',
-'viewsourcefor'        => 'per $1',
 'actionthrottled'      => 'Dīlasenis stalīntan',
 'protectedpagetext'    => 'Redīgisnas mazīngisku per šin pāusan pastāi izklāutan.',
 'viewsourcetext'       => 'Mazīngi widātun be kōpitun šisse pāusan appun:',

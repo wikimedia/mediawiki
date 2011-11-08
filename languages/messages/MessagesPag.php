@@ -94,7 +94,6 @@ $messages = array(
 'cannotdelete'    => 'Aga nabural so nibagan bolong o file. (Sarag ton abural la na arom.)',
 'badtitle'        => 'Aga sarag ya titulo',
 'viewsource'      => 'Nengnengen so pinanlapuan',
-'viewsourcefor'   => 'para $1',
 'viewsourcetext'  => 'Sarag mon nengnengen san kopyaen so pinanlapuan na ayan bolong:',
 
 # Login and logout pages

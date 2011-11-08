@@ -551,7 +551,6 @@ Potser ja ha estat esborrat per algú altre.",
 Funció: $1<br />
 Consulta: $2',
 'viewsource'           => 'Mostra la font',
-'viewsourcefor'        => 'per a $1',
 'actionthrottled'      => 'Acció limitada',
 'actionthrottledtext'  => "Com a mesura per a prevenir la propaganda indiscriminada (spam), no podeu fer aquesta acció tantes vegades en un període de temps tan curt. Torneu-ho a intentar d'ací uns minuts.",
 'protectedpagetext'    => 'Aquesta pàgina està protegida per evitar modificacions.',
@@ -2072,7 +2071,7 @@ S'hi mostraran els canvis futurs que tinguin lloc en aquesta pàgina i la corres
 'watchmethod-list'     => "s'està comprovant si hi ha edicions recents en les pàgines vigilades",
 'watchlistcontains'    => 'La vostra llista de seguiment conté {{PLURAL:$1|una única pàgina|$1 pàgines}}.',
 'iteminvalidname'      => "Hi ha un problema amb l'element '$1': el nom no és vàlid...",
-'wlnote'               => 'A sota hi ha {{PLURAL:$1|el darrer canvi|els darrers $1 canvis}} en {{PLURAL:$2|la darrera hora|les darreres $2 hores}}.',
+'wlnote'               => "Per sota de  {{PLURAL:$1| és l'últim change|are l'últim ' ' $1 ' ' canvis}} en l'últim  {{PLURAL:$2| hour| ' '$2''' hours}}, as of $3, $4.",
 'wlshowlast'           => '<small>- Mostra les darreres $1 hores, els darrers $2 dies o $3</small>',
 'watchlist-options'    => 'Opcions de la llista de seguiment',
 
@@ -2273,6 +2272,7 @@ al resum a continuació, juntament amb detalls dels usuaris que l'havien editat 
 
 Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esborraments i els restauraments més recents.",
 'undelete-header'              => "Vegeu [[Special:Log/delete|el registre d'eliminació]] per a veure les pàgines eliminades recentment.",
+'undelete-search-title'        => 'Pàgines de cerca suprimit',
 'undelete-search-box'          => 'Cerca pàgines esborrades',
 'undelete-search-prefix'       => 'Mostra pàgines que comencin:',
 'undelete-search-submit'       => 'Cerca',
@@ -2281,6 +2281,7 @@ Consulteu el [[Special:Log/delete|registre d'esborraments]] per a veure els esbo
 'undelete-bad-store-key'       => 'No es pot revertir la revisió de fitxer amb marca horària $1: el fitxer no hi era abans i tot de ser eliminat.',
 'undelete-cleanup-error'       => "S'ha produït un error en eliminar el fitxer d'arxiu sense utilitzar «$1».",
 'undelete-missing-filearchive' => "No s'ha pogut restaurar l'identificador $1 d'arxiu de fitxers perquè no es troba a la base de dades. Podria ser que ja s'hagués revertit l'eliminació.",
+'undelete-error'               => "Pàgina d'error undeleting",
 'undelete-error-short'         => "S'ha produït un error en revertir l'eliminació del fitxer: $1",
 'undelete-error-long'          => "S'han produït errors en revertir la supressió del fitxer:
 

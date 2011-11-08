@@ -543,7 +543,6 @@ Galbūt jį jau kažkas kitas ištrynė.',
 Funkcija: $1<br />
 Užklausa: $2',
 'viewsource'           => 'Žiūrėti kodą',
-'viewsourcefor'        => 'puslapiui $1',
 'actionthrottled'      => 'Veiksmas apribotas',
 'actionthrottledtext'  => 'Kad būtų apsisaugota nuo reklamų, jums neleidžiama daug kartų atlikti šį veiksmą per trumpą laiko tarpą, bet jūs pasiekėte šį limitą. Prašome vėl pamėginti po kelių minučių.',
 'protectedpagetext'    => 'Šis puslapis yra užrakintas, saugant jį nuo redagavimo.',

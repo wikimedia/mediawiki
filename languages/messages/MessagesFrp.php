@@ -674,7 +674,6 @@ Les balyês ce-desot sont pas betâs a jorn.',
 Fonccion : $1<br />
 Requéta : $2',
 'viewsource'           => 'Vêre lo tèxto sôrsa',
-'viewsourcefor'        => 'por $1',
 'actionthrottled'      => 'Accion limitâ',
 'actionthrottledtext'  => 'Por combatre lo spame, la frèquence d’ègzécucion de cela accion est limitâ dens un moment prod côrt, et vos éd dèpassâ ceta limita.
 Volyéd tornar èprovar dens doux-três menutes.',

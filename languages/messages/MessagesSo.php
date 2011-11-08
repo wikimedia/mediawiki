@@ -346,7 +346,6 @@ waxaa laga yaabaa in oo qof kale tirtiray .',
 'badtitletext'         => 'Bogga aad rabtay ciwaankiisa sax ma eheen, waa ebar, ama waa erayo qalad oo la xiriiro isdhaafka-luqadaha ama isdhaafka-ciwaanka wiki.
 Waxaa ku jiri kara xuruufo aanan loo isticmaalikarin cinwaan ahaan.',
 'viewsource'           => 'Itusi xogta',
-'viewsourcefor'        => ' ku socoto $1',
 'actionthrottled'      => 'Shaqada waala ceejiyay',
 'actionthrottledtext'  => 'Hadii aan ahay ka hortaga spamka, laguuma ogolo  shaqadaan badan oo waqti sidaan u yar ku qabatay,waadna ku xad gudubtay halihii laguu oglolaa.
 fadlan waxyar kadib ku soo noqo.',

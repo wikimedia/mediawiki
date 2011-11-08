@@ -315,7 +315,6 @@ Win (anedbal) isekker-itt yenna-d: $1',
 Tawuri: $1<br />
 Query: $2',
 'viewsource'           => 'Ẓer aɣbalu',
-'viewsourcefor'        => 'n $1',
 'protectedpagetext'    => 'Asebter-agi d amsekker.',
 'viewsourcetext'       => 'Tzemreḍ ad twaliḍ u txedmeḍ alsaru n uɣbalu n usebter-agi:',
 'protectedinterface'   => 'Asebter-agi d amsekker axaṭer yettuseqdac i weḍris n software.',

@@ -375,7 +375,6 @@ Data eruliko ejjakugira nga tekyuka.',
 Mukolo: $1<br />
 Ekiragiro ekinoonyeza mu ggwanika lya data: $2',
 'viewsource'           => "Kebera obulambike obw'ennono obw'olupapula luno",
-'viewsourcefor'        => 'obwa $1',
 'actionthrottled'      => 'Ekikolwa kigaanidwa',
 'actionthrottledtext'  => "Okulwanyisa abasindika obubaka kiyaaye, twateekawo ekkomo ery'emirundi omuntu gy'ayinza okukola ekikolwa ekyo.<br />
 Gwe olituuseeko.<br />

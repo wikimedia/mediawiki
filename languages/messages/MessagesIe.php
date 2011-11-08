@@ -412,7 +412,6 @@ It posse contene un o plu carácteres quel ne posse esser usat in titules.',
 Function: $1<br />
 Question: $2',
 'viewsource'           => 'Vider fonte',
-'viewsourcefor'        => 'por $1',
 'viewsourcetext'       => 'Vu posse vider e copiar li contenete de ti págine:',
 
 # Virus scanner

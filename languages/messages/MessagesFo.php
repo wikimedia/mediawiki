@@ -135,6 +135,7 @@ $messages = array(
 'tog-nocache'                 => 'Deaktivera síðu "caching" í brovsaranum',
 'tog-enotifwatchlistpages'    => 'Send mær teldupost, tá ein síða á mínum eftirlitslista er broytt',
 'tog-enotifusertalkpages'     => 'Send mær teldubræv, tá mín brúarasíða er broytt',
+'tog-enotifminoredits'        => 'Send mær eisini teldupost viðvíkjandi smærri broytingum á síðunum',
 'tog-enotifrevealaddr'        => 'Avdúkað mína teldupost adressu í fráboðanar teldupostum',
 'tog-shownumberswatching'     => 'Vís tal av brúkarum sum fylgja við',
 'tog-oldsig'                  => 'Verandi undirskrift:',
@@ -226,6 +227,7 @@ $messages = array(
 'category-subcat-count'         => '{{PLURAL:$2|Hesin bólkur hevur bert henda undirbólk.|Hesin bólkur hevur fylgjandi {{PLURAL:$1|undirbólk|$1 undirbólkar}}, av $2 í alt.}}',
 'category-subcat-count-limited' => 'Hesin bólkur hevur fylgjandi {{PLURAL:$1|undirbólk|$1 undirbólkar}}.',
 'listingcontinuesabbrev'        => 'frh.',
+'broken-file-category'          => 'Síður við brotnum fílu slóðum',
 
 'about'         => 'Um',
 'article'       => 'Innihaldssíða',
@@ -325,6 +327,7 @@ Vinarliga bíða eina løtu, áðrenn tú roynir enn einaferð at fáa atgongd t
 
 $1',
 'pool-timeout'      => 'Støðgur bíða verður eftir lásinum',
+'pool-queuefull'    => 'Køin til "hylin" er full',
 'pool-errorunknown' => 'Ókend villa',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -416,7 +419,6 @@ Møguliga hevur onkur annar longu strikað hana.',
 'perfcached'          => 'Fylgjandi upplýsingar eru "cached" og eru møguliga ikki dagførdir.',
 'perfcachedts'        => 'Fylgjandi dáta er goymt, og var seinast goymt $1.',
 'viewsource'          => 'Vís keldu',
-'viewsourcefor'       => 'fyri $1',
 'protectedpagetext'   => 'Hendan síða er læst fyri at steðga rættingum.',
 'viewsourcetext'      => 'Tú kanst síggja og avrita kelduna til hesa grein:',
 'namespaceprotected'  => 'Tú hevur ikki loyvi til at rætta síður í $1 navnateiginum.',

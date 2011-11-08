@@ -416,7 +416,6 @@ $1',
 函式： $1<br />
 問語： $2',
 'viewsource'           => '覽源',
-'viewsourcefor'        => '$1',
 'actionthrottled'      => '無為',
 'actionthrottledtext'  => '基反垃圾之量，於短時中限欲，爾之上限已過。數分後再試之。',
 'protectedpagetext'    => '該頁被錮無纂也。',

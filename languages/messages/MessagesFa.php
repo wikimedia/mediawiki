@@ -681,6 +681,7 @@ $1',
 به [[Special:Version|این صفحه]] مراجعه کنید.',
 
 'ok'                      => 'تأیید',
+'backlinksubtitle'        => '← $1',
 'retrievedfrom'           => 'برگرفته از «$1»',
 'youhavenewmessages'      => '$1 دارید ($2).',
 'newmessageslink'         => 'پیام‌های جدید',
@@ -792,7 +793,6 @@ $1',
 تابع: $1<br />
 پرس‌وجو: $2',
 'viewsource'           => 'نمایش مبدأ',
-'viewsourcefor'        => 'برای $1',
 'actionthrottled'      => 'جلوی عمل شما گرفته شد',
 'actionthrottledtext'  => 'به منظور جلوگیری از هرزنگاری، شما اجازه ندارید که چنین عملی را بیش از چند بار در یک مدت زمان کوتاه انجام بدهید.
 لطفاً پس از چند دقیقه دوباره تلاش کنید.',
@@ -1785,7 +1785,6 @@ $1",
 'recentchangeslinked-feed'     => 'تغییرات مرتبط',
 'recentchangeslinked-toolbox'  => 'تغییرات مرتبط',
 'recentchangeslinked-title'    => 'تغییرهای مرتبط با $1',
-'recentchangeslinked-backlink' => '→ $1',
 'recentchangeslinked-noresult' => 'در بازهٔ ‌زمانی داده‌شده تغییری در صفحه‌های پیوندداده رخ نداده‌است.',
 'recentchangeslinked-summary'  => "در زیر فهرستی از تغییرات اخیر در صفحه‌های پیوند داده شده به این صفحه (یا اعضای رده مورد نظر) را می‌بینید.
 صفحه‌هایی که در [[Special:Watchlist|فهرست پی‌گیری‌های شما]] باشند به صورت '''ضخیم''' نشان داده می‌شوند.",
@@ -2051,7 +2050,6 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 
 # File reversion
 'filerevert'                => 'واگردانی $1',
-'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => 'واگردانی پرونده',
 'filerevert-intro'          => "شما در حال واگردانی '''[[Media:$1|$1]]''' به [$4 نسخهٔ مورخ $2 ساعت $3] هستید.",
 'filerevert-comment'        => 'دلیل:',
@@ -2062,7 +2060,6 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 
 # File deletion
 'filedelete'                  => 'حذف $1',
-'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'حذف پرونده',
 'filedelete-intro'            => "شما در حال حذف کردن پروندهٔ '''[[Media:$1|$1]]''' به همراه تمام تاریخچه‌اش هستید.",
 'filedelete-intro-old'        => "شما در حال حذف نسخه '''[[Media:$1|$1]]''' مورخ [$4 $2 ساعت $3] هستید.",
@@ -2432,7 +2429,6 @@ $NEWPAGE
 'exbeforeblank'          => 'محتوای صفحه قبل از خالی‌کردن «$1» بود.',
 'exblank'                => 'صفحه خالی بود',
 'delete-confirm'         => 'حذف «$1»',
-'delete-backlink'        => '← $1',
 'delete-legend'          => 'حذف',
 'historywarning'         => "'''هشدار!''' صفحه‌ای که قصد دارید حذف کنید تاریخچه‌ای شامل حدود $1 {{PLURAL:$1|نسخه|نسخه}} دارد:",
 'confirmdeletetext'      => 'شما در حال حذف کردن یک صفحه یا تصویر از پایگاه‌ داده همراه با تمام تاریخچهٔ آن هستید.

@@ -379,7 +379,6 @@ Awu nodi posikapon do popointalang iri data kawawagu.',
 Kopomogunoon: $1<br />
 Pongimuhatan: $2',
 'viewsource'           => 'Intaai wowonod',
-'viewsourcefor'        => 'montok $1',
 'actionthrottled'      => 'Momilos',
 'actionthrottledtext'  => 'Pinapanau lumawan-singkarap, Nantaban ko do mingguli momonsoi miagal dilo id timpu do osikap, om nagampot nu noh gisom diti.
 Umbalan kawagu do katalib poh pipiro minit.',

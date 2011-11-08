@@ -338,7 +338,6 @@ Kasalungsungan yang makapatda ing pamagbayu (update) king bulung a ini. E la miy
 Function: $1<br />
 Query: $2',
 'viewsource'           => 'Lon ya ing pikuanan',
-'viewsourcefor'        => 'para $1',
 'actionthrottled'      => 'Mepigil ing pamangimut',
 'actionthrottledtext'  => 'Metung ya kareng paralan ba yang sabatan ing spam ing pamaglimita king pamanulit king kimut (action) a iti kilub ning makuyad a panaun, at alagpusan mu ne itang angganan.
 Pakisubukan mung pasibayu kaibat ning mapilang minutu.',

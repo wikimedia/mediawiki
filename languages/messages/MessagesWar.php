@@ -362,7 +362,6 @@ Bangin mayda usa o damo nga mga agi nga diri puyde magamit ha mga titulo.',
 'querypage-no-updates' => 'An mga kabag-ohan para hini nga pakli ha yana diri mahihimo.
 An data dini diri mahihimo nga bag-o.',
 'viewsource'           => 'Kitaa an ginkuhaan',
-'viewsourcefor'        => 'para han $1',
 'viewsourcetext'       => 'Puydi ka kinmita ngan kinmopya han gintikangan han pakli:',
 'ns-specialprotected'  => 'Diri maliliwat an mga ispisyal nga pakli.',
 'titleprotected'       => 'Ini nga titulo pinasalipod ha paghimo ni [[User:$1|$1]].

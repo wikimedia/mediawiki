@@ -412,7 +412,6 @@ Per piasè, fa raport a 'n'[[Special:ListUsers/sysop|aministradur]], cun la nota
 'badtitle'            => 'Títul mía bun',
 'badtitletext'        => "El titul de la pagina ciamada a l'è vöj, sbajaa o cun carater minga acetaa, opüra al vegn d'un erur in di ligam intra sit wiki diferent o versión in lenguv diferent de l'istess sit.",
 'viewsource'          => 'Còdas surgent',
-'viewsourcefor'       => 'de $1',
 'protectedpagetext'   => "Cula pagina chi l'è stata blucà per impedinn la mudifica.",
 'viewsourcetext'      => "L'è pussibil vèd e cupià el codes surgent de cula pagina chí:",
 'editinginterface'    => "'''Ocio''': Te see adree a mudifegà una pàgina che la se dröva per generà 'l test de l'interfacia del prugrama. Qualsìa mudìfega fada la cambierà l'interfacia de tüt i druvadur. Se te gh'hee intenzión de fà una tradüzión, per piasì cunsiderà la pussibilità de druvà [http://translatewiki.net/wiki/Main_Page?setlang=lmo translatewiki.net], 'l pruget de lucalizazión de MediaWiki.",

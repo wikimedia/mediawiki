@@ -678,11 +678,11 @@ Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
 'querypage-no-updates' => 'Uppdatering av den här sidan är inte aktiverad. Datan kommer i nuläget inte att uppdateras.',
 'wrong_wfQuery_params' => 'Felaktiga parametrar för wfQuery()<br /> Funktion: $1<br /> Förfrågan: $2',
 'viewsource'           => 'Visa wikitext',
-'viewsourcefor'        => 'för $1',
 'actionthrottled'      => 'Åtgärden stoppades',
 'actionthrottledtext'  => 'Som skydd mot spam, finns det en begränsning av hur många gånger du kan utföra den här åtgärden under en viss tid. Du har överskridit den gränsen. Försök igen om några minuter.',
 'protectedpagetext'    => 'Den här sidan har skrivskyddats för att förhindra redigering.',
 'viewsourcetext'       => 'Du kan se och kopiera denna sidas källtext:',
+'viewyourtext'         => "Du kan se och kopiera källan för '''dina redigeringar''' på denna sida:",
 'protectedinterface'   => 'Denna sida innehåller text för mjukvarans gränssnitt, och är skrivskyddad för att förebygga missbruk.',
 'editinginterface'     => "'''Varning:''' Du redigerar en sida som används till texten i gränssnittet. Ändringar på denna sida kommer att påverka gränssnittets utseende för alla användare.
 För översättningar, använd gärna [http://translatewiki.net/wiki/Main_Page?setlang=sv translatewiki.net], översättningsprojektet för MediaWiki.",
@@ -2229,7 +2229,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'watchmethod-list'     => 'letar efter nyligen gjorda ändringar bland bevakade sidor',
 'watchlistcontains'    => 'Din bevakningslista innehåller $1 {{PLURAL:$1|sida|sidor}}.',
 'iteminvalidname'      => "Problem med sidan '$1', ogiltigt namn...",
-'wlnote'               => "Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste '''$1''' ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste '''$2''' timmarna}}.",
+'wlnote'               => "Nedan finns {{PLURAL:$1|den senaste ändringen|de senaste '''$1''' ändringarna}} under {{PLURAL:$2|den senaste timmen|de senaste '''$2''' timmarna}} från den $3, kl. $4.",
 'wlshowlast'           => 'Visa senaste $1 timmarna $2 dygnen $3',
 'watchlist-options'    => 'Alternativ för bevakningslistan',
 
@@ -2428,6 +2428,7 @@ I sådana fall måste du se till att den senaste raderade versionen inte är ikr
 
 Se [[Special:Log/delete|raderingsloggen]] för en förteckning över de senaste raderingarna och återställningarna.",
 'undelete-header'              => 'Se [[Special:Log/delete|raderingsloggen]] för nyligen raderade sidor.',
+'undelete-search-title'        => 'Sök efter raderade sidor',
 'undelete-search-box'          => 'Sök efter raderade sidor',
 'undelete-search-prefix'       => 'Sidor som börjar med:',
 'undelete-search-submit'       => 'Sök',
@@ -2436,6 +2437,7 @@ Se [[Special:Log/delete|raderingsloggen]] för en förteckning över de senaste 
 'undelete-bad-store-key'       => 'Filversionen med tidsstämpeln $1 kan inte återställas: filen saknades före radering.',
 'undelete-cleanup-error'       => 'Fel vid radering av den oanvända arkivfilen "$1".',
 'undelete-missing-filearchive' => 'Filen med arkiv-ID $1 kunde inte återställas eftersom den inte finns i databasen. Filen kanske redan har återställts.',
+'undelete-error'               => 'Kunde inte återställa sidan',
 'undelete-error-short'         => 'Fel vid filåterställning: $1',
 'undelete-error-long'          => 'Fel inträffade när vid återställning av filen:
 

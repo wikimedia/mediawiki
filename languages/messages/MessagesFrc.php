@@ -312,7 +312,6 @@ L'administrateur qui l'a barrée a donné cette explication: $1",
 Fonction: $1<br />
 Demande: $2',
 'viewsource'           => 'Voir la source',
-'viewsourcefor'        => 'pour $1',
 'protectedpagetext'    => 'Cette page est barrée pour empêcher des changements.',
 'viewsourcetext'       => 'Vous pouvez voir et copier la source de cette page:',
 'protectedinterface'   => "Cette page crée le texte de l'interface pour le software, et est barrée pour empêcher l'abus.",

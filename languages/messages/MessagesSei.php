@@ -304,7 +304,6 @@ Jan pos-coccebj plusöxde 1 jöx 1 characterám jan nepos-coccebj usadas titlen�
 Funccion: $1<br />
 Query: $2',
 'viewsource'           => 'Cohuatlöx sourcenam',
-'viewsourcefor'        => '$1 mii',
 'protectedpagetext'    => 'Jan páhina coccebj lockom neticpatlöx pos-poop.',
 'viewsourcetext'       => 'Mecohuatlöx ö copynom sourcenam zode jan páhina:',
 'protectedinterface'   => "Jan páhina coccebj textuade interface software zo 'de ö coccebj lockom neticpatlöx abusenam.",

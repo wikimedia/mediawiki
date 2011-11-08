@@ -662,7 +662,7 @@ Joku muu on saattanut poistaa sen.',
 'querypage-no-updates' => 'Tämän sivun tietoja ei toistaiseksi päivitetä.',
 'wrong_wfQuery_params' => 'Virheelliset parametrit wfQuery()<br />Funktio: $1<br />Tiedustelu: $2',
 'viewsource'           => 'Lähdekoodi',
-'viewsourcefor'        => 'sivulle $1',
+'viewsource-title'     => 'Lähdekoodi sivulle $1',
 'actionthrottled'      => 'Toiminto nopeusrajoitettu',
 'actionthrottledtext'  => 'Ylläpitosyistä tämän toiminnon suorittamista on rajoitettu. Olet suorittanut tämän toiminnon liian monta kertaa lyhyen ajan sisällä. Yritä myöhemmin uudelleen.',
 'protectedpagetext'    => 'Tämä sivu on suojattu muutoksilta.',
@@ -2341,6 +2341,7 @@ Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valinta
 
 [[Special:Log/delete|Poistolokista]] löydät listan viimeisimmistä poistoista ja palautuksista.",
 'undelete-header'              => '[[Special:Log/delete|Poistolokissa]] on lista viimeisimmistä poistoista.',
+'undelete-search-title'        => 'Etsi poistettuja sivuja',
 'undelete-search-box'          => 'Etsi poistettuja sivuja',
 'undelete-search-prefix'       => 'Näytä sivut, jotka alkavat merkkijonolla:',
 'undelete-search-submit'       => 'Hae',
@@ -2349,6 +2350,7 @@ Voit palauttaa versiota valikoivasti valitsemalla vain niiden versioiden valinta
 'undelete-bad-store-key'       => 'Tiedoston version, jonka aikaleima on $1 palauttaminen epäonnistui, koska tiedostoa ei ollut ennen poistoa.',
 'undelete-cleanup-error'       => 'Käyttämättömän arkistotiedoston $1 poistaminen epäonnistui.',
 'undelete-missing-filearchive' => 'Tiedostoarkiston tunnuksen $1 hakeminen epäonnistui. Tiedosto on saatettu jo palauttaa.',
+'undelete-error'               => 'Sivun palauttaminen epäonnistui',
 'undelete-error-short'         => 'Tiedoston $1 palauttaminen epäonnistui',
 'undelete-error-long'          => 'Tiedoston palauttaminen epäonnistui:
 

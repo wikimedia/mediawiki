@@ -735,7 +735,7 @@ Möglicherweise wurde sie bereits von jemand anderem gelöscht.',
 Funktion: $1<br />
 Abfrage: $2',
 'viewsource'           => 'Quelltext anzeigen',
-'viewsourcefor'        => 'von $1',
+'viewsource-title'     => 'Quelltext von Seite $1 ansehen',
 'actionthrottled'      => 'Aktionsanzahl limitiert',
 'actionthrottledtext'  => 'Im Rahmen einer Anti-Spam-Maßnahme kann diese Aktion in einem kurzen Zeitabstand nur begrenzt oft ausgeführt werden. Diese Grenze hast du überschritten.
 Bitte versuche es in ein paar Minuten erneut.',
@@ -2029,7 +2029,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'statistics-users-active-desc' => 'Benutzer mit Bearbeitungen {{PLURAL:$1|in den letzten 24 Stunden|in den vergangenen $1 Tagen}}',
 'statistics-mostpopular'       => 'Meistbesuchte Seiten',
 
-'disambiguations'      => 'Begriffsklärungsseiten',
+'disambiguations'      => 'Seiten die auf Begriffsklärungsseiten verlinken',
 'disambiguationspage'  => 'Template:Begriffsklärung',
 'disambiguations-text' => 'Die folgenden Seiten verlinken auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verlinken.
 
@@ -2473,7 +2473,8 @@ Der aktuelle Text der gelöschten Seite ist nur Administratoren zugänglich.',
 
 Im [[Special:Log/delete|Lösch-Logbuch]] findest du eine Übersicht der gelöschten und wiederhergestellten Seiten.",
 'undelete-header'              => 'Siehe das [[Special:Log/delete|Lösch-Logbuch]] für kürzlich gelöschte Seiten.',
-'undelete-search-box'          => 'Suche nach gelöschten Seiten',
+'undelete-search-title'        => 'Nach gelöschten Seiten suchen',
+'undelete-search-box'          => 'Nach gelöschten Seiten suchen',
 'undelete-search-prefix'       => 'Suchbegriff (Wortanfang ohne Wildcards):',
 'undelete-search-submit'       => 'Suchen',
 'undelete-no-results'          => 'Es wurde im Archiv keine zum Suchbegriff passende Seite gefunden.',
@@ -2481,6 +2482,7 @@ Im [[Special:Log/delete|Lösch-Logbuch]] findest du eine Übersicht der gelösch
 'undelete-bad-store-key'       => 'Die Dateiversion mit dem Zeitstempel $1 konnte nicht wiederhergestellt werden: Die Datei war bereits vor dem Löschen nicht mehr vorhanden.',
 'undelete-cleanup-error'       => 'Fehler beim Löschen der unbenutzten Archiv-Version $1.',
 'undelete-missing-filearchive' => 'Die Datei mit der Archiv-ID $1 kann nicht wiederhergestellt werden, da sie nicht in der Datenbank vorhanden ist. Möglicherweise wurde sie bereits wiederhergestellt.',
+'undelete-error'               => 'Es beim Wiederherstellen der Seite ein Fehler aufgetreten.',
 'undelete-error-short'         => 'Fehler beim Wiederherstellen der Datei $1',
 'undelete-error-long'          => 'Es wurden Fehler beim Wiederherstellen einer Datei festgestellt:
 

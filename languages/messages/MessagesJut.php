@@ -303,7 +303,6 @@ MySQL æ returnerede fejl "$3: $4".',
 Funksje: $1<br />
 Førespørgsel: $2',
 'viewsource'           => 'Ves æ kelde',
-'viewsourcefor'        => 'før $1',
 'viewsourcetext'       => "Du ken dog se og åfskreve'n keldekode til æ side:",
 
 # Login and logout pages

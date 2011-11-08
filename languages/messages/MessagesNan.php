@@ -384,7 +384,6 @@ Chia ê chu-liāu bē-tàng sui tiông-sin chéng-lí.',
 Hâm-sò͘: $1<br />
 Cha-sûn: $2',
 'viewsource'           => 'Khoàⁿ goân-sú lōe-iông',
-'viewsourcefor'        => '$1 ê',
 'actionthrottled'      => 'Tōng-chok hông tóng leh.',
 'actionthrottledtext'  => 'Ūi-tio̍h thê-hông lah-sap ê chhú-tì,  lí ū hông hān-chè tī té sî-kan lāi chò siuⁿ chē pái chit ê tōng-chok,  taⁿ lí í-keng chhiau-koè hān-chè.
 Chhiáⁿ tī kúi hun-cheng hāu chiah koh chhì.',

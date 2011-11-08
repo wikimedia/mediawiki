@@ -158,7 +158,6 @@ $messages = array(
 'badtitletext'   => 'Isem n Tasna itexised war icni ca, ixwa, niɣ  isem n ajar-tutlayt niɣ ajar-wiki war icni ca.
 teqqad ad yilli days ca n usekkil war itwagg deg isem .',
 'viewsource'     => 'Ẓṛ aghbalu',
-'viewsourcefor'  => 'i $1',
 'viewsourcetext' => 'Tzemred a tẓerd u atsneɣled aɣbal n Tasna ya :',
 
 # Login and logout pages

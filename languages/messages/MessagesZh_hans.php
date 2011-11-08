@@ -611,7 +611,6 @@ $1',
 函数：$1<br />
 查询：$2',
 'viewsource'           => '查看源代码',
-'viewsourcefor'        => '$1的源代码',
 'actionthrottled'      => '操作被限制',
 'actionthrottledtext'  => '基于反垃圾链接的考量，您被限制在短时间内多次重复该操作，但您已超过此上限。请在数分钟后再尝试。',
 'protectedpagetext'    => '该页面已被保护以防止编辑。',

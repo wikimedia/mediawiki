@@ -594,7 +594,6 @@ $1',
 函數： $1<br />
 查詢： $2',
 'viewsource'           => '睇吓原始碼',
-'viewsourcefor'        => '$1嘅原始碼',
 'actionthrottled'      => '動作已壓制',
 'actionthrottledtext'  => '基於反垃圾嘢嘅考量，你而家響呢段短時間之內限制咗去做呢一個動作，而你已經超過咗個上限。請響幾分鐘之後再試過。',
 'protectedpagetext'    => '呢一頁已經保護咗唔畀改。',

@@ -399,7 +399,6 @@ MySQL va « $3 : $4 » rokla al dimstakser.',
 Fliok : $1<br />
 Erura : $2',
 'viewsource'           => 'Wira va klitakrent',
-'viewsourcefor'        => 'tori $1',
 'actionthrottled'      => 'Tulokaliana tegira',
 'actionthrottledtext'  => 'Wetce sabega kev staksavamolavara, rin ta bata skura gemeltamon slikviele zo kimar voxe va bata kimara al kaikayal. Vay artimon lwil !',
 'protectedpagetext'    => 'Batu bu betaradjison zo nendar.',

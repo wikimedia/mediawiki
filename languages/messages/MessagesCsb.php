@@ -351,7 +351,6 @@ Mòże to zgłoszëc [[Special:ListUsers/sysop|sprôwnikòwi]], pòdając adres�
 'badtitle'           => 'Òchëbny titel',
 'badtitletext'       => 'Pòdóny titel starnë je òchëbny. Gwësno są w nim znaczi, chtërnëch brëkòwanié je zakôzané abò je pùsti.',
 'viewsource'         => 'Zdrojowi tekst',
-'viewsourcefor'      => 'dlô $1',
 'editinginterface'   => "'''ÒSTRZÉGA:''' Editëjesz starnã, jakô zamëkô w se tekst interfejsu softwôrë. Wszëtczé zmianë tu zrobioné bãdze widzec na interfejse jinszëch brëkòwników.
 Przemëszlë dolmaczënié na [http://translatewiki.net/wiki/Main_Page?setlang=csb translatewiki.net], ekstra ùdbie lokalizacëji softwôrë MediaWiki.",
 
@@ -754,15 +753,14 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 'rc-enhanced-hide'               => 'Zatacë detale',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Zmianë w dolënkòwónëch',
-'recentchangeslinked-feed'     => 'Zmianë w dolënkòwónëch',
-'recentchangeslinked-toolbox'  => 'Zmianë w dolënkòwónëch',
-'recentchangeslinked-title'    => 'Zjinaczi w lënkòwónëch z "$1"',
-'recentchangeslinked-backlink' => '← $1',
-'recentchangeslinked-summary'  => "Niżi nachôdô sã lësta slédnëch zjinaków na lënkòwónëch starnach z pòdóny starnë (abò we wszëtczich starnach przënôleżącëch do pòdóny kategòrëji).
+'recentchangeslinked'         => 'Zmianë w dolënkòwónëch',
+'recentchangeslinked-feed'    => 'Zmianë w dolënkòwónëch',
+'recentchangeslinked-toolbox' => 'Zmianë w dolënkòwónëch',
+'recentchangeslinked-title'   => 'Zjinaczi w lënkòwónëch z "$1"',
+'recentchangeslinked-summary' => "Niżi nachôdô sã lësta slédnëch zjinaków na lënkòwónëch starnach z pòdóny starnë (abò we wszëtczich starnach przënôleżącëch do pòdóny kategòrëji).
 Starnë z [[Special:Watchlist|lëstë ùzérónëch artiklów]] są '''pògrëbioné'''.",
-'recentchangeslinked-page'     => 'Miono starnë:',
-'recentchangeslinked-to'       => 'Wëskrzëni zjinaczi nié na lënkòwónëch starnach, blós na starnach lënkùjącëch do pòdóny starnë',
+'recentchangeslinked-page'    => 'Miono starnë:',
+'recentchangeslinked-to'      => 'Wëskrzëni zjinaczi nié na lënkòwónëch starnach, blós na starnach lënkùjącëch do pòdóny starnë',
 
 # Upload
 'upload'              => 'Wladënk lopka',

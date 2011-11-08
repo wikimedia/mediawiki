@@ -486,7 +486,6 @@ V\'arringrazziamu si signaliati zoccu succidìu a nu [[Special:ListUsers/sysop|a
 Funzioni: $1<br />
 Query: $2',
 'viewsource'           => 'Talìa la fonti',
-'viewsourcefor'        => 'di $1',
 'actionthrottled'      => 'Azzioni ritardata',
 'actionthrottledtext'  => "Comu misura di sicurezza contru lu spam, l'esecuzioni di alcuni azzionu è limitata a nu nùmmuru massimu di voti ni nu determinatu piriudu du tempu, limiti ca ni stu casu fu supiratu. Si prega di ripruvari tra qualchi minutu.",
 'protectedpagetext'    => 'Sta pàggina fu bluccata pi privèniri li canciamenti.',

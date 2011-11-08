@@ -134,8 +134,7 @@ $messages = array(
 'nstab-category' => 'категориа',
 
 # General errors
-'viewsource'    => 'баганаере',
-'viewsourcefor' => 'пентру $1',
+'viewsource' => 'баганаере',
 
 # Login and logout pages
 'yourname'                => 'Ном дутилизатору:',

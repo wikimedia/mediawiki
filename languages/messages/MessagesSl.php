@@ -551,7 +551,6 @@ Morda vsebuje enega ali več nepodprtih znakov.',
 Funkcija: $1<br />
 Poizvedba: $2',
 'viewsource'           => 'Izvorno besedilo',
-'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Dejanje zaustavljeno',
 'actionthrottledtext'  => 'Kot ukrep proti smetju, je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.
 Prosimo, poskusite znova čez nekaj minut.',
@@ -2138,7 +2137,7 @@ Morebitne spremembe te strani in pripadajoče pogovorne strani bodo navedene tuk
 'watchmethod-list'     => 'med spremljanimi stranmi iščem nedavna urejanja',
 'watchlistcontains'    => 'Spremljate $1 {{PLURAL:$1|stran|strani}}.',
 'iteminvalidname'      => 'Težava z izbiro »$1«, neveljavno ime ...',
-'wlnote'               => "{{PLURAL:$1|Navedena je zadnja|Navedeni sta zadnji|Navedene so zadnje|Navedenih je zadnjih}} '''$1''' {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb}} v {{PLURAL:$2|zadnji '''$2''' uri|zadnjih '''$2''' urah}}.",
+'wlnote'               => "{{PLURAL:$1|Navedena je zadnja|Navedeni sta zadnji|Navedene so zadnje|Navedenih je zadnjih}} '''$1''' {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb}} v {{PLURAL:$2|zadnji '''$2''' uri|zadnjih '''$2''' urah}}, od $3, $4.",
 'wlshowlast'           => 'Prikaži zadnjih $1 ur; $2 dni; $3;',
 'watchlist-options'    => 'Možnosti spiska nadzorov',
 
@@ -2346,6 +2345,7 @@ morda je stran obnovil že kdo drug.',
 
 Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]].",
 'undelete-header'              => 'Glej [[Special:Log/delete|dnevnik brisanja]] za nedavno izbrisane strani.',
+'undelete-search-title'        => 'Iskanje izbrisanih strani',
 'undelete-search-box'          => 'Išči izbrisane strani',
 'undelete-search-prefix'       => 'Prikaži strani, ki se začnejo na:',
 'undelete-search-submit'       => 'Iskanje',
@@ -2355,6 +2355,7 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 'undelete-cleanup-error'       => 'Napaka pri brisanju neuporabljene arhivske datoteke »$1«.',
 'undelete-missing-filearchive' => 'Ne morem obnoviti datoteke arhiva ID $1, ker ga ni v zbirki podatkov.
 Morda je bil že obnovljen.',
+'undelete-error'               => 'Napaka pri obnovi strani',
 'undelete-error-short'         => 'Napaka pri obnavljanju datoteke: $1',
 'undelete-error-long'          => 'Pri obnavljanju datoteke je prišlo do napak:
 

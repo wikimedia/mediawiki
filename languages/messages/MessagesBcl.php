@@ -405,7 +405,6 @@ Ini an eksplikasyon kan tagamató na nagkandado kaini: $1',
 Acción: $1<br />
 Hapót: $2',
 'viewsource'           => 'Hilingón an ginikanan',
-'viewsourcefor'        => 'para sa $1',
 'protectedpagetext'    => 'An pahinang ini pigsará tangarig pogolon an paghirá.',
 'viewsourcetext'       => 'Pwede mong hilingón asin arógon an ginikanan kan pahinang ini:',
 'protectedinterface'   => 'An pahinang ini nagtatao nin interface para sa software, asin sarado tangarig mapondo an pag-abuso.',

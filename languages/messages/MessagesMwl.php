@@ -360,7 +360,6 @@ Por fabor, diç esto a un [[Special:ListUsers/sysop|admenistrador]], dezindo la 
 'badtitletext'         => 'La páigina que pediste ye ambálida, bazia, ó ua lhigaçon mal feita dun títalo antre-lhéngua ó antre-biqui.
 Puode tener un ó mais carateres que nun puoden ser outelizados an títalos.',
 'viewsource'           => 'Ber código',
-'viewsourcefor'        => 'pa $1',
 'actionthrottled'      => 'Acion lhemitada',
 'viewsourcetext'       => 'Tu puodes ber i copiar l código desta páigina:',
 

@@ -407,7 +407,6 @@ O nwèríkí nwé édé ótù ma nke ozor nke ékwéghị na íshí ihü.',
 Orürü: $1<br />
 Ájújú: $2',
 'viewsource'           => 'Zi mkpurụ',
-'viewsourcefor'        => 'màkà $1',
 'actionthrottled'      => 'Mmèmé a puziélé',
 'protectedpagetext'    => 'Ihüá cedolụ maka orürü ạ gáa bá.',
 'viewsourcetext'       => 'Í nwèríkí lé na Í jé mkpurụ ihüá:',

@@ -618,7 +618,6 @@ Potrebbe essere stato già cancellato da qualcun altro.',
 Funzione: $1<br />
 Query: $2',
 'viewsource'           => 'Visualizza sorgente',
-'viewsourcefor'        => 'di $1',
 'actionthrottled'      => 'Azione ritardata',
 'actionthrottledtext'  => "Come misura di sicurezza contro lo spam, l'esecuzione di alcune azioni è limitata a un numero massimo di volte in un determinato periodo di tempo, limite che in questo caso è stato superato. Si prega di riprovare tra qualche minuto.",
 'protectedpagetext'    => 'Questa pagina è stata protetta per impedirne la modifica.',

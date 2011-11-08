@@ -506,7 +506,6 @@ I dati che ghè qua drento no i xe azornà.",
 Funsion: $1<br />
 Query: $2',
 'viewsource'           => 'Varda el testo',
-'viewsourcefor'        => 'de $1',
 'actionthrottled'      => 'Asion ritardà',
 'actionthrottledtext'  => "Come misura de sicuresa contro e o spam, l'esecusion de alcune asion e a xè limità a on numaro masimo de volte en on determinà periodo de tenpo, limite che en questo caso xè sta superà. Se prega de riprovare tra qualche minuto.",
 'protectedpagetext'    => 'Sta pagina la xe stà proteta de modo che nissuni possa canbiarla.',

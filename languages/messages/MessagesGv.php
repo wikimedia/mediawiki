@@ -311,7 +311,6 @@ Cur coontey jeh da [[Special:ListUsers/sysop|reireyder]], as gow notey jeh\'n UR
 'badtitle'            => 'Drogh-ennym',
 'badtitletext'        => "Va marranys ayn bentyn rish ennym ny duillag v'ou shirrey. Foddee dy row eh follym ny gyn vree, ny kianglt dy moal myr kiangley eddyr-wiki. Foddee dy vel cowraghyn 'syn ennym nagh nod oo jannoo ymmyd jeu ayns enmyn.",
 'viewsource'          => 'Jeeagh er bun',
-'viewsourcefor'       => 'dy $1',
 'actionthrottled'     => 'Obbyr er ny phlooghey',
 'actionthrottledtext' => "Myr saase noi-spam, cha nod oo jannoo yn obbyr shoh rouyr keayrtyn ayns tammylt beg, as t'ou er roshtyn yn earroo smoo.  Jean eab noa dy gerrid, my saillt.",
 'protectedpagetext'   => "Ta'n duillag shoh fo ghlass, as cha nod oo eshyn y reaghey.",

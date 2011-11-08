@@ -405,7 +405,6 @@ Fielicht is ju al fon uurswál läsked wuuden.',
 Funktion: $1<br />
 Oufroage: $2',
 'viewsource'           => 'Wältext betrachtje',
-'viewsourcefor'        => 'foar $1',
 'actionthrottled'      => 'Aktionsantaal limitierd',
 'actionthrottledtext'  => 'Ju Uutfierenge fon disse Aktion tou oafte in ne kuute Tiedoustand is limitierd. Du hääst dit Limit juust ieuwen beloanged. Fersäik et in eenige Minuten fon näien.',
 'protectedpagetext'    => 'Disse Siede is foar dät Beoarbaidjen speerd.',

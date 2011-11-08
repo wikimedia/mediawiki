@@ -407,7 +407,6 @@ Par to varat ziņot [[Special:ListUsers/sysop|kādam administratoram]], norādot
 Funkcija: $1<br />
 Vaicājums: $2',
 'viewsource'           => 'Aplūkot kodu',
-'viewsourcefor'        => 'Lapa: $1',
 'actionthrottled'      => 'Darbība netika atļauta',
 'protectedpagetext'    => 'Šī lapa ir aizsargāta lai novērstu tās izmainīšanu.',
 'viewsourcetext'       => 'Tu vari apskatīties un nokopēt šīs lapas vikitekstu:',

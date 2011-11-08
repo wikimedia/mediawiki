@@ -645,7 +645,6 @@ Možno ju už zmazal nieto iný.',
 Funkcia: $1<br />
 Požiadavka: $2',
 'viewsource'           => 'Zobraziť zdroj',
-'viewsourcefor'        => '$1',
 'actionthrottled'      => 'Činnosť bola spomalená',
 'actionthrottledtext'  => 'Ako opatrenie proti spamu je počet vykonaní tejto činnosti za určitý čas obmedzený. Tento limit ste prekročili. Prosím, skúste to znova o niekoľko minút.',
 'protectedpagetext'    => 'Táto stránka bola zamknutá aby sa zamedzilo úpravám.',

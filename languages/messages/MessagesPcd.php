@@ -303,7 +303,6 @@ Si s'n'est poin ch'cas-lo, pététe éq ch'est un bogue din ch'businkillache. <b
 'badtitle'             => 'Méchant tite',
 'badtitletext'         => "Ch'tite del pache écmindée n'est poin valabe, est vide, ou bin ch'est un tite inter-langue ou inter-proujé aveuc des méchands loïens. Pététe qu'il y o un ou des caractére(s) éq i feut poin mette din chés tites.",
 'viewsource'           => "Vir l'source",
-'viewsourcefor'        => 'pou $1',
 'protectedpagetext'    => "L'pache-lo ale o té garantie pou impétcher chés canjemints.",
 'sqlhidden'            => "(l'édminde SQL est muchée)",
 'ns-specialprotected'  => "Ches paches éspéchiales, is n'peute poin éte éditées.",
