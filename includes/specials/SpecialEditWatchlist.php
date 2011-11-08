@@ -411,7 +411,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$tocLength = 0;
 			foreach( $fields as $key => $data ) {
 
-				# strip out the 'ns-' prefix from the section name:
+				# strip out the 'ns' prefix from the section name:
 				$ns = substr( $data['section'], 2 );
 
 				$nsText = ($ns == NS_MAIN)
