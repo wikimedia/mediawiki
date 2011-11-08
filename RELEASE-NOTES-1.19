@@ -126,6 +126,7 @@ production.
   from recent changes feeds
 * (bug 30232) add current time to message wlnote on Special:Watchlist
 * (bug 29110) $wgFeedDiffCutoff did not affect new pages
+* (bug 20148) Better title for [[Special:Disambiguations]] page
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
