@@ -53,7 +53,6 @@ production.
 * Hook added to check for exempt from account creation throttle
 * (bug 30344) Add configuration variable for setting custom priorities when
   generating sitemaps
-* (bug 16428) Include permalink in printable version
 * (bug 96170) Add array support for space-separated list attributes (like
   'class') in the Html helper class.
 * (bug 26470) Add checkered background image on hover on files pages.
@@ -102,12 +101,10 @@ production.
 * Show --batch-size option in help of maintenance scripts that support it
 * (bug 4381) Magic quotes cleaning was not comprehensive, key strings were not
   unescaped
-* (bug 30684) Fix bad escaping in mw.message for inexistent messages (i.e. <key>)
 * (bug 23057) Importers no longer can 'edit' or 'create' a fully-protected page by
   importing a new revision into it
 * Allow moving the associated talk pages of subpages even if the base page
   has no subpage.
-* (bug 30907) Special:Unusedcategories should sort ascendingly.
 * Per page edit-notices now work in namespaces without subpages enabled.
 * (bug 30245) Use the correct way to construct a log page title
 * (bug 31081) $wgEnotifUseJobQ caused many unnecessary jobs to be queued
