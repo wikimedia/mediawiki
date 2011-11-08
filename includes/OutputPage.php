@@ -67,7 +67,7 @@ class OutputPage extends ContextSource {
 	 * Contains the page subtitle. Special pages usually have some links here.
 	 * Don't confuse with site subtitle added by skins.
 	 */
-	var $mSubtitle = '';
+	private $mSubtitle = array();
 
 	var $mRedirect = '';
 	var $mStatusCode;
@@ -820,19 +820,54 @@ class OutputPage extends ContextSource {
 	/**
 	 * Replace the subtile with $str
 	 *
-	 * @param $str String: new value of the subtitle
+	 * @param $str String|Message: new value of the subtitle
 	 */
 	public function setSubtitle( $str ) {
-		$this->mSubtitle = /*$this->parse(*/ $str /*)*/; // @bug 2514
+		$this->clearSubtitle();
+		$this->addSubtitle( $str );
 	}
 
 	/**
 	 * Add $str to the subtitle
 	 *
-	 * @param $str String to add to the subtitle
+	 * @deprecated in 1.19; use addSubtitle() instead
+	 * @param $str String|Message to add to the subtitle
 	 */
 	public function appendSubtitle( $str ) {
-		$this->mSubtitle .= /*$this->parse(*/ $str /*)*/; // @bug 2514
+		$this->addSubtitle( $str );
+	}
+
+	/**
+	 * Add $str to the subtitle
+	 *
+	 * @param $str String|Message to add to the subtitle
+	 */
+	public function addSubtitle( $str ) {
+		if ( $str instanceof Message ) {
+			$this->mSubtitle[] = $str->setContext( $this->getContext() )->parse();
+		} else {
+			$this->mSubtitle[] = $str;
+		}
+	}
+
+	/**
+	 * Add a subtitle containing a backlink to a page
+	 *
+	 * @param $title Title to link to
+	 */
+	public function addBacklinkSubtitle( Title $title ) {
+		$query = array();
+		if ( $title->isRedirect() ) {
+			$query['redirect'] = 'no';
+		}
+		$this->addSubtitle( $this->msg( 'backlinksubtitle' )->rawParams( Linker::link( $title, null, array(), $query ) ) );
+	}
+
+	/**
+	 * Clear the subtitles
+	 */
+	public function clearSubtitle() {
+		$this->mSubtitle = array();
 	}
 
 	/**
@@ -841,7 +876,7 @@ class OutputPage extends ContextSource {
 	 * @return String
 	 */
 	public function getSubtitle() {
-		return $this->mSubtitle;
+		return implode( "<br />\n\t\t\t\t", $this->mSubtitle );
 	}
 
 	/**
@@ -1947,6 +1982,7 @@ class OutputPage extends ContextSource {
 		$this->setArticleRelated( false );
 		$this->enableClientCache( false );
 		$this->mRedirect = '';
+		$this->clearSubtitle();
 		$this->clearHTML();
 	}
 
@@ -2140,10 +2176,8 @@ class OutputPage extends ContextSource {
 		if ( !empty( $reasons ) ) {
 			// Permissions error
 			if( $source ) {
-				$this->setPageTitle( $this->msg( 'viewsource' ) );
-				$this->setSubtitle(
-					$this->msg( 'viewsourcefor', Linker::linkKnown( $this->getTitle() ) )->text()
-				);
+				$this->setPageTitle( $this->msg( 'viewsource-title', $this->getTitle()->getPrefixedText() ) );
+				$this->addBacklinkSubtitle( $this->getTitle() );
 			} else {
 				$this->setPageTitle( $this->msg( 'badaccess' ) );
 			}
