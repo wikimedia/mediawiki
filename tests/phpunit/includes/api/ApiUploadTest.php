@@ -241,7 +241,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$exception = false;
 		try {
 			list( $result, , ) = $this->doApiRequestWithToken( $params, $session,
-				self::$users['uploader']->user );
+				self::$users['uploader']->user ); // FIXME: leaks a temporary file
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
@@ -324,7 +324,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$exception = false;
 		try {
 			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
-				self::$users['uploader']->user );
+				self::$users['uploader']->user ); // FIXME: leaks a temporary file
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
@@ -382,7 +382,7 @@ class ApiUploadTest extends ApiTestCaseUpload {
 		$exception = false;
 		try {
 			list( $result, $request, $session ) = $this->doApiRequestWithToken( $params, $session,
-				self::$users['uploader']->user );
+				self::$users['uploader']->user ); // FIXME: leaks a temporary file
 		} catch ( UsageException $e ) {
 			$exception = true;
 		}
