@@ -625,7 +625,7 @@ class Language {
 	 * @return array
 	 */
 	function getExtraUserToggles() {
-		return self::$dataCache->getItem( $this->mCode, 'extraUserToggles' );
+		return (array)self::$dataCache->getItem( $this->mCode, 'extraUserToggles' );
 	}
 
 	/**
