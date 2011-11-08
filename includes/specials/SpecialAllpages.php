@@ -80,9 +80,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 		);
 		$out->addModuleStyles( 'mediawiki.special' );
 
-		if( isset($par) ) {
+		if( $par !== null ) {
 			$this->showChunk( $namespace, $par, $to );
-		} elseif( isset($from) && !isset($to) ) {
+		} elseif( $from !== null && $to == null ) {
 			$this->showChunk( $namespace, $from, $to );
 		} else {
 			$this->showToplevel( $namespace, $from, $to );
@@ -104,11 +104,11 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$out .= Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) );
 		$out .= Html::hidden( 'title', $t->getPrefixedText() );
 		$out .= Xml::openElement( 'fieldset' );
-		$out .= Xml::element( 'legend', null, wfMsg( 'allpages' ) );
+		$out .= Xml::element( 'legend', null, $this->msg( 'allpages' )->text() );
 		$out .= Xml::openElement( 'table', array( 'id' => 'nsselect', 'class' => 'allpages' ) );
 		$out .= "<tr>
 	<td class='mw-label'>" .
-			Xml::label( wfMsg( 'allpagesfrom' ), 'nsfrom' ) .
+			Xml::label( $this->msg( 'allpagesfrom' )->text(), 'nsfrom' ) .
 			"	</td>
 	<td class='mw-input'>" .
 			Xml::input( 'from', 30, str_replace('_',' ',$from), array( 'id' => 'nsfrom' ) ) .
@@ -116,7 +116,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 </tr>
 <tr>
 	<td class='mw-label'>" .
-			Xml::label( wfMsg( 'allpagesto' ), 'nsto' ) .
+			Xml::label( $this->msg( 'allpagesto' )->text(), 'nsto' ) .
 			"	</td>
 			<td class='mw-input'>" .
 			Xml::input( 'to', 30, str_replace('_',' ',$to), array( 'id' => 'nsto' ) ) .
@@ -124,11 +124,11 @@ class SpecialAllpages extends IncludableSpecialPage {
 </tr>
 <tr>
 	<td class='mw-label'>" .
-			Xml::label( wfMsg( 'namespace' ), 'namespace' ) .
+			Xml::label( $this->msg( 'namespace' )->text(), 'namespace' ) .
 			"	</td>
 			<td class='mw-input'>" .
 			Xml::namespaceSelector( $namespace, null ) . ' ' .
-			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) .
+			Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) .
 			"	</td>
 </tr>";
 		$out .= Xml::closeElement( 'table' );
@@ -249,7 +249,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 								$nsForm .
 							'</td>
 							<td class="mw-allpages-nav">' .
-								Linker::link( $this->getTitle(), wfMsgHtml ( 'allpages' ),
+								Linker::link( $this->getTitle(), $this->msg( 'allpages' )->escaped(),
 									array(), array(), 'known' ) .
 							"</td>
 						</tr>" .
@@ -280,10 +280,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$special = $this->getTitle();
 		$link = $special->escapeLocalUrl( $queryparams . 'from=' . urlencode($inpoint) . '&to=' . urlencode($outpoint) );
 
-		$out = wfMsgHtml( 'alphaindexline',
+		$out = $this->msg( 'alphaindexline' )->rawParams(
 			"<a href=\"$link\">$inpointf</a></td><td>",
 			"</td><td><a href=\"$link\">$outpointf</a>"
-		);
+		)->escaped();
 		return '<tr><td class="mw-allpages-alphaindexline">' . $out . '</td></tr>';
 	}
 
@@ -302,10 +302,10 @@ class SpecialAllpages extends IncludableSpecialPage {
 		$n = 0;
 
 		if ( !$fromList || !$toList ) {
-			$out = wfMsgExt( 'allpagesbadtitle', 'parse' );
+			$out = $this->msg( 'allpagesbadtitle' )->parseAsBlock();
 		} elseif ( !in_array( $namespace, array_keys( $namespaces ) ) ) {
 			// Show errormessage and reset to NS_MAIN
-			$out = wfMsgExt( 'allpages-bad-ns', array( 'parseinline' ), $namespace );
+			$out = $this->msg( 'allpages-bad-ns', $namespace )->parse();
 			$namespace = NS_MAIN;
 		} else {
 			list( $namespace, $fromKey, $from ) = $fromList;
@@ -410,7 +410,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 								$nsForm .
 							'</td>
 							<td class="mw-allpages-nav">' .
-								Linker::link( $self, wfMsgHtml ( 'allpages' ) );
+								Linker::link( $self, $this->msg( 'allpages' )->escaped() );
 
 			# Do we put a previous link ?
 			if( isset( $prevTitle ) &&  $pt = $prevTitle->getText() ) {
@@ -421,7 +421,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 				$prevLink = Linker::linkKnown(
 					$self,
-					wfMessage( 'prevpage', $pt )->escaped(),
+					$this->msg( 'prevpage', $pt )->escaped(),
 					array(),
 					$query
 				);
@@ -438,7 +438,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 				$nextLink = Linker::linkKnown(
 					$self,
-					wfMessage( 'nextpage', $t->getText() )->escaped(),
+					$this->msg( 'nextpage', $t->getText() )->escaped(),
 					array(),
 					$query
 				);
