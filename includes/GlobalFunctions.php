@@ -1637,7 +1637,7 @@ function wfClientAcceptsGzip( $force = false ) {
 					$result = false;
 					return $result;
 				}
-				wfDebug( " accepts gzip\n" );
+				wfDebug( "wfClientAcceptsGzip: client accepts gzip.\n" );
 				$result = true;
 			}
 		}
