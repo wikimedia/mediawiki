@@ -889,6 +889,7 @@ See [[Special:Version|version page]].',
 'ok'                           => 'OK',
 'pagetitle'                    => '$1 - {{SITENAME}}', # only translate this message to other languages if you have to change it
 'pagetitle-view-mainpage'      => '{{SITENAME}}', # only translate this message to other languages if you have to change it
+'backlinksubtitle'             => '← $1', # only translate this message to other languages if you have to change it
 'retrievedfrom'                => 'Retrieved from "$1"',
 'youhavenewmessages'           => 'You have $1 ($2).',
 'newmessageslink'              => 'new messages',
@@ -1005,7 +1006,7 @@ Data here will not presently be refreshed.',
 Function: $1<br />
 Query: $2',
 'viewsource'           => 'View source',
-'viewsourcefor'        => 'for $1',
+'viewsource-title'     => 'View source for $1',
 'actionthrottled'      => 'Action throttled',
 'actionthrottledtext'  => 'As an anti-spam measure, you are limited from performing this action too many times in a short space of time, and you have exceeded this limit.
 Please try again in a few minutes.',
@@ -2071,7 +2072,6 @@ Your e-mail address is not revealed when other users contact you.',
 'recentchangeslinked-feed'     => 'Related changes',
 'recentchangeslinked-toolbox'  => 'Related changes',
 'recentchangeslinked-title'    => 'Changes related to "$1"',
-'recentchangeslinked-backlink' => '← $1', # only translate this message to other languages if you have to change it
 'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',
 'recentchangeslinked-summary'  => "This is a list of changes made recently to pages linked from a specified page (or to members of a specified category).
 Pages on [[Special:Watchlist|your watchlist]] are '''bold'''.",
@@ -2356,7 +2356,6 @@ The description on its [$2 file description page] there is shown below.',
 
 # File reversion
 'filerevert'                => 'Revert $1',
-'filerevert-backlink'       => '← $1', # only translate this message to other languages if you have to change it
 'filerevert-legend'         => 'Revert file',
 'filerevert-intro'          => "You are about to revert the file '''[[Media:$1|$1]]''' to the [$4 version as of $3, $2].",
 'filerevert-comment'        => 'Reason:',
@@ -2367,7 +2366,6 @@ The description on its [$2 file description page] there is shown below.',
 
 # File deletion
 'filedelete'                  => 'Delete $1',
-'filedelete-backlink'         => '← $1', # only translate this message to other languages if you have to change it
 'filedelete-legend'           => 'Delete file',
 'filedelete-intro'            => "You are about to delete the file '''[[Media:$1|$1]]''' along with all of its history.",
 'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
@@ -2789,7 +2787,6 @@ Feedback and further assistance:
 'exbeforeblank'          => 'content before blanking was: "$1"',
 'exblank'                => 'page was empty',
 'delete-confirm'         => 'Delete "$1"',
-'delete-backlink'        => '← $1', # only translate this message to other languages if you have to change it
 'delete-legend'          => 'Delete',
 'historywarning'         => "'''Warning:''' The page you are about to delete has a history with approximately $1 {{PLURAL:$1|revision|revisions}}:",
 'confirmdeletetext'      => 'You are about to delete a page along with all of its history.
@@ -2852,7 +2849,6 @@ See the [[Special:ProtectedPages|protected pages list]] for the list of currentl
 'prot_1movedto2'              => '[[$1]] moved to [[$2]]',
 'protect-badnamespace-title'  => 'Non-protectable namespace',
 'protect-badnamespace-text'   => 'Pages in this namespace cannot be protected.',
-'protect-backlink'            => '← $1', # only translate this message to other languages if you have to change it
 'protect-legend'              => 'Confirm protection',
 'protectcomment'              => 'Reason:',
 'protectexpiry'               => 'Expires:',
@@ -3006,7 +3002,6 @@ The latest block log entry is provided below for reference:',
 'whatlinkshere-title'      => 'Pages that link to "$1"',
 'whatlinkshere-summary'    => '', # do not translate or duplicate this message to other languages
 'whatlinkshere-page'       => 'Page:',
-'whatlinkshere-backlink'   => '← $1', # only translate this message to other languages if you have to change it
 'linkshere'                => "The following pages link to '''[[:$1]]''':",
 'nolinkshere'              => "No pages link to '''[[:$1]]'''.",
 'nolinkshere-ns'           => "No pages link to '''[[:$1]]''' in the chosen namespace.",

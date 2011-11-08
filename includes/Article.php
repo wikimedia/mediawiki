@@ -434,7 +434,7 @@ class Article extends Page {
 			wfIncrStats( 'pcache_miss_stub' );
 		}
 
-		$wasRedirected = $this->showRedirectedFromHeader();
+		$this->showRedirectedFromHeader();
 		$this->showNamespaceHeader();
 
 		# Iterate through the possible ways of constructing the output text.
@@ -524,8 +524,7 @@ class Article extends Page {
 						if ( $rt ) {
 							wfDebug( __METHOD__ . ": showing redirect=no page\n" );
 							# Viewing a redirect page (e.g. with parameter redirect=no)
-							# Don't append the subtitle if this was an old revision
-							$wgOut->addHTML( $this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() ) );
+							$wgOut->addHTML( $this->viewRedirect( $rt ) );
 							# Parse just to get categories, displaytitle, etc.
 							$this->mParserOutput = $wgParser->parse( $text, $this->getTitle(), $parserOptions );
 							$wgOut->addParserOutputNoText( $this->mParserOutput );
@@ -772,16 +771,14 @@ class Article extends Page {
 			// This is an internally redirected page view.
 			// We'll need a backlink to the source page for navigation.
 			if ( wfRunHooks( 'ArticleViewRedirect', array( &$this ) ) ) {
-				$redir = Linker::link(
+				$redir = Linker::linkKnown(
 					$this->mRedirectedFrom,
 					null,
 					array(),
-					array( 'redirect' => 'no' ),
-					array( 'known', 'noclasses' )
+					array( 'redirect' => 'no' )
 				);
 
-				$s = wfMsgExt( 'redirectedfrom', array( 'parseinline', 'replaceafter' ), $redir );
-				$wgOut->setSubtitle( $s );
+				$wgOut->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
 
 				// Set the fragment if one was specified in the redirect
 				if ( strval( $this->getTitle()->getFragment() ) != '' ) {
@@ -801,8 +798,7 @@ class Article extends Page {
 			// If it was reported from a trusted site, supply a backlink.
 			if ( $wgRedirectSources && preg_match( $wgRedirectSources, $rdfrom ) ) {
 				$redir = Linker::makeExternalLink( $rdfrom, $rdfrom );
-				$s = wfMsgExt( 'redirectedfrom', array( 'parseinline', 'replaceafter' ), $redir );
-				$wgOut->setSubtitle( $s );
+				$wgOut->addSubtitle( wfMessage( 'redirectedfrom' )->rawParams( $redir ) );
 
 				return true;
 			}
@@ -1416,8 +1412,7 @@ class Article extends Page {
 		wfDebug( "Article::confirmDelete\n" );
 
 		$wgOut->setPageTitle( wfMessage( 'delete-confirm', $this->getTitle()->getPrefixedText() ) );
-		$deleteBackLink = Linker::linkKnown( $this->getTitle() );
-		$wgOut->setSubtitle( wfMsgHtml( 'delete-backlink', $deleteBackLink ) );
+		$wgOut->addBacklinkSubtitle( $this->getTitle() );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
 
@@ -1583,6 +1578,17 @@ class Article extends Page {
 		$tddate = $wgLang->date( $timestamp, true );
 		$tdtime = $wgLang->time( $timestamp, true );
 
+		# Show user links if allowed to see them. If hidden, then show them only if requested...
+		$userlinks = Linker::revUserTools( $revision, !$unhide );
+
+		$infomsg = $current && !wfMessage( 'revision-info-current' )->isDisabled()
+			? 'revision-info-current'
+			: 'revision-info';
+
+		$wgOut->addSubtitle( "<div id=\"mw-{$infomsg}\">" . wfMessage( $infomsg,
+			$td )->rawParams( $userlinks )->params( $revision->getID(), $tddate,
+			$tdtime, $revision->getUser() )->parse() . "</div>" );
+
 		$lnk = $current
 			? wfMsgHtml( 'currentrevisionlink' )
 			: Linker::link(
@@ -1672,29 +1678,9 @@ class Article extends Page {
 			$cdel .= ' ';
 		}
 
-		# Show user links if allowed to see them. If hidden, then show them only if requested...
-		$userlinks = Linker::revUserTools( $revision, !$unhide );
-
-		$infomsg = $current && !wfMessage( 'revision-info-current' )->isDisabled()
-			? 'revision-info-current'
-			: 'revision-info';
-
-		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" .
-			wfMsgExt(
-				$infomsg,
-				array( 'parseinline', 'replaceafter' ),
-				$td,
-				$userlinks,
-				$revision->getID(),
-				$tddate,
-				$tdtime,
-				$revision->getUser()
-			) .
-			"</div>\n" .
-			"\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
-			$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
-
-		$wgOut->setSubtitle( $r );
+		$wgOut->addSubtitle( "<div id=\"mw-revision-nav\">" . $cdel .
+			wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
+			$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>" );
 	}
 
 	/* Caching functions */

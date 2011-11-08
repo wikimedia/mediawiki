@@ -195,7 +195,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$token = htmlspecialchars( $user->editToken() );
 
 		if ( !empty($err) ) {
-			$out->setSubtitle( wfMsg( 'formerror' ) );
+			$out->addSubtitle( $this->msg( 'formerror' ) );
 			if( $err[0] == 'hookaborted' ) {
 				$hookErr = $err[1];
 				$errMsg = "<p><strong class=\"error\">$hookErr</strong></p>\n";

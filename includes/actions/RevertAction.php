@@ -132,9 +132,7 @@ class RevertFileAction extends FormAction {
 	}
 	
 	protected function getDescription() {
-		return wfMsg(
-			'filerevert-backlink',
-			Linker::linkKnown( $this->getTitle() )
-		);
+		$this->getOutput()->addBacklinkSubtitle( $this->getTitle() );
+		return '';
 	}
 }

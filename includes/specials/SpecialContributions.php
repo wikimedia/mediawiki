@@ -83,14 +83,14 @@ class SpecialContributions extends SpecialPage {
 
 		if( $this->opts['contribs'] != 'newbie' ) {
 			$target = $nt->getText();
-			$out->setSubtitle( $this->contributionsSub( $nt, $id ) );
+			$out->addSubtitle( $this->contributionsSub( $nt, $id ) );
 			$out->setHTMLTitle( $this->msg( 'pagetitle', wfMsgExt( 'contributions-title', array( 'parsemag' ), $target ) ) );
 			$userObj = User::newFromName( $target, false );
 			if ( is_object( $userObj ) ) {
 				$this->getSkin()->setRelevantUser( $userObj );
 			}
 		} else {
-			$out->setSubtitle( wfMsgHtml( 'sp-contributions-newbies-sub') );
+			$out->addSubtitle( $this->msg( 'sp-contributions-newbies-sub') );
 			$out->setHTMLTitle( $this->msg( 'pagetitle', wfMsg( 'sp-contributions-newbies-title' ) ) );
 		}
 
@@ -252,10 +252,11 @@ class SpecialContributions extends SpecialPage {
 		// languages that want to put the "for" bit right after $user but before
 		// $links.  If 'contribsub' is around, use it for reverse compatibility,
 		// otherwise use 'contribsub2'.
-		if( wfEmptyMsg( 'contribsub' ) ) {
-			return wfMsgHtml( 'contribsub2', $user, $links );
+		$oldMsg = $this->msg( 'contribsub' );
+		if ( $oldMsg->exists() ) {
+			return $oldMsg->rawParams( "$user ($links)" );
 		} else {
-			return wfMsgHtml( 'contribsub', "$user ($links)" );
+			return $this->msg( 'contribsub2' )->rawParams( $user, $links );
 		}
 	}
 

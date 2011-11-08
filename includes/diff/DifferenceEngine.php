@@ -264,7 +264,7 @@ CONTROL;
 		# is the first version of that article. In that case, V' does not exist.
 		if ( $this->mOldRev === false ) {
 			$wgOut->setPageTitle( $this->mNewPage->getPrefixedText() );
-			$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
+			$wgOut->addSubtitle( wfMessage( 'difference' ) );
 			$samePage = true;
 			$oldHeader = '';
 		} else {
@@ -277,11 +277,11 @@ CONTROL;
 
 			if ( $this->mNewPage->equals( $this->mOldPage ) ) {
 				$wgOut->setPageTitle( $this->mNewPage->getPrefixedText() );
-				$wgOut->setSubtitle( wfMsgExt( 'difference', array( 'parseinline' ) ) );
+				$wgOut->addSubtitle( wfMessage( 'difference' ) );
 				$samePage = true;
 			} else {
 				$wgOut->setPageTitle( $this->mOldPage->getPrefixedText() . ', ' . $this->mNewPage->getPrefixedText() );
-				$wgOut->setSubtitle( wfMsgExt( 'difference-multipage', array( 'parseinline' ) ) );
+				$wgOut->addSubtitle( wfMessage( 'difference-multipage' ) );
 				$samePage = false;
 			}
 

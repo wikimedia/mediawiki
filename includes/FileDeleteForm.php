@@ -285,10 +285,7 @@ class FileDeleteForm {
 		global $wgOut;
 		$wgOut->setPageTitle( wfMessage( 'filedelete', $this->title->getText() ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setSubtitle( wfMsg(
-			'filedelete-backlink',
-			Linker::linkKnown( $this->title )
-		) );
+		$wgOut->addBacklinkSubtitle( $this->title );
 	}
 
 	/**
