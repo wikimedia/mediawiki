@@ -583,7 +583,6 @@ neispravno povezan međujezički ili interviki naslov. Možda sadrži jedan ili 
 Funkcija: $1<br />
 Pretraga: $2',
 'viewsource'           => 'pogledaj kod',
-'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Akcija je usporena',
 'actionthrottledtext'  => 'U cilju borbe protiv spama, niste u mogućnosti da učinite to više puta u kratkom vremenu, a upravo ste prešli to ograničenje. Pokušajte ponovo za par minuta.',
 'protectedpagetext'    => 'Ova stranica je zaključana kako se ne bi vršile izmene na njoj.',

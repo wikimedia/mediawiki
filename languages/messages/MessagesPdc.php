@@ -267,7 +267,6 @@ Des Blatt iss verleicht glescht adder gezoge warre.
 Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld des an en [[Special:ListUsers/sysop|Verwalter]] unn gebb die URL dezu aa.',
 'missingarticle-rev'  => '(Version: $1)',
 'missingarticle-diff' => '(Unnerschidd zwische Versione: $1, $2)',
-'viewsourcefor'       => 'fer $1',
 'ns-specialprotected' => 'Besunnere Bledder sinn net zum Ennere.',
 
 # Virus scanner

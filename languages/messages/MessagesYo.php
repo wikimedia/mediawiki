@@ -421,7 +421,6 @@ Oníṣe mìíràn le ti paárẹ́.',
 Ìlò: $1<br />
 Ìtọrọ: $2',
 'viewsource'           => 'Wo àmìọ̀rọ̀',
-'viewsourcefor'        => 'fún $1',
 'actionthrottled'      => 'Ìgbése bíntín',
 'actionthrottledtext'  => 'Láti dènà spam, ìgbése yìí kò ní ṣe é ṣe lọ́nà iye púpọ̀ láàrin àsìkò bíntín, ẹ̀yin sì ti kọjá iye náà.
 Ẹjọ̀wọ́ ẹ gbíyànjú síi ní ìsẹ́jú díẹ̀.',

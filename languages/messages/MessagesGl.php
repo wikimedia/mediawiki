@@ -585,7 +585,6 @@ Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
 Función: $1<br />
 Dúbida: $2',
 'viewsource'           => 'Ver o código fonte',
-'viewsourcefor'        => 'de "$1"',
 'actionthrottled'      => 'Acción limitada',
 'actionthrottledtext'  => "Como unha medida de loita contra o ''spam'', limítase a realización desta acción a un número determinado de veces nun curto espazo de tempo, e vostede superou este límite.
 Inténteo de novo nuns minutos.",
@@ -2171,7 +2170,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'watchmethod-list'     => 'comprobando as páxinas vixiadas na procura de edicións recentes',
 'watchlistcontains'    => 'A súa lista de vixilancia ten $1 {{PLURAL:$1|páxina|páxinas}}.',
 'iteminvalidname'      => 'Hai un problema co elemento "$1", nome non válido...',
-'wlnote'               => "A continuación {{PLURAL:$1|está a última modificación|están as últimas '''$1''' modificacións}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}}.",
+'wlnote'               => "A continuación {{PLURAL:$1|está a última modificación|están as últimas '''$1''' modificacións}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}} ata o $3 ás $4.",
 'wlshowlast'           => 'Mostrar as últimas $1 horas, os últimos $2 días ou $3',
 'watchlist-options'    => 'Opcións de vixilancia',
 
@@ -2378,7 +2377,8 @@ O texto destas revisións eliminadas só está á disposición dos administrador
 
 Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas recentes no rexistro de páxinas eliminadas e restauradas.",
 'undelete-header'              => 'Vexa [[Special:Log/delete|no rexistro de borrados]] as páxinas eliminadas recentemente.',
-'undelete-search-box'          => 'Buscar páxinas borradas',
+'undelete-search-title'        => 'Procurar páxinas borradas',
+'undelete-search-box'          => 'Procurar páxinas borradas',
 'undelete-search-prefix'       => 'Mostrar as páxinas que comecen por:',
 'undelete-search-submit'       => 'Procurar',
 'undelete-no-results'          => 'Non se atoparon páxinas coincidentes no arquivo de eliminacións.',
@@ -2386,6 +2386,7 @@ Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas rece
 'undelete-bad-store-key'       => 'Non se pode desfacer o borrado da revisión do ficheiro datada en $1: o ficheiro faltaba antes de proceder a borralo.',
 'undelete-cleanup-error'       => 'Erro ao eliminar o ficheiro do arquivo sen usar "$1".',
 'undelete-missing-filearchive' => 'Non foi posíbel restaurar o ID do arquivo do ficheiro $1 porque non figura na base de datos. Pode que xa se desfixese a eliminación con anterioridade.',
+'undelete-error'               => 'Erro ao restaurar a páxina',
 'undelete-error-short'         => 'Erro ao desfacer a eliminación do ficheiro: $1',
 'undelete-error-long'          => 'Atopáronse erros ao desfacer a eliminación do ficheiro:
 

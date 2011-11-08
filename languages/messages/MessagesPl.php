@@ -616,7 +616,6 @@ Możliwe, że zostały już usunięte przez kogoś innego.',
 Funkcja: $1<br />
 Zapytanie: $2',
 'viewsource'           => 'Tekst źródłowy',
-'viewsourcefor'        => 'dla $1',
 'actionthrottled'      => 'Akcja wstrzymana',
 'actionthrottledtext'  => 'Mechanizm obrony przed spamem ogranicza liczbę wykonań tej czynności w jednostce czasu. Usiłowałeś przekroczyć to ograniczenie. Spróbuj jeszcze raz za kilka minut.',
 'protectedpagetext'    => 'Wyłączono możliwość edycji tej strony.',

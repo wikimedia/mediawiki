@@ -672,7 +672,6 @@ Moguće je da ju je netko drugi već obrisao.',
 Funkcija: $1<br />
 Upit: $2',
 'viewsource'           => 'Vidi izvornik',
-'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Uređivanje je usporeno',
 'actionthrottledtext'  => 'Kao anti-spam mjeru, ograničeni ste u broju ovih radnji u određenom vremenu, i trenutačno ste dosegli to ograničenje. Pokušajte opet za koju minutu.',
 'protectedpagetext'    => 'Ova stranica je zaključana da bi se onemogućile izmjene.',

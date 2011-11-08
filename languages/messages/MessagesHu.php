@@ -669,7 +669,6 @@ Talán már valaki más törölte.',
 Függvény: $1<br />
 Lekérdezés: $2',
 'viewsource'           => 'Lapforrás',
-'viewsourcefor'        => '$1 változata',
 'actionthrottled'      => 'Művelet megszakítva',
 'actionthrottledtext'  => 'A spamek elleni védekezés miatt nem végezheted el a műveletet túl sokszor egy adott időn belül, és te átlépted a megengedett határt. Próbálkozz újra néhány perc múlva.',
 'protectedpagetext'    => 'Ez egy védett lap, nem szerkeszthető.',

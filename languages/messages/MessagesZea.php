@@ -353,7 +353,6 @@ De beheêrder ei de volhende reeën opeheven: $1',
 Functie: $1<br />
 Zoekopdracht: $2',
 'viewsource'           => 'brontekst bekieken',
-'viewsourcefor'        => 'vò $1',
 'actionthrottled'      => 'Handelienge tehenehouwen',
 'actionthrottledtext'  => "As maetrehel tehen spam is 't antal keern per tiedseêneid da je deêze handelienge kan verrichen beperkt.
 De limiet is overschreeën.

@@ -251,7 +251,6 @@ Ko e pule, naʻe lokaʻi ia, ʻoku pehē: $1',
 Lakanga: $1<br />
 Eke: $2",
 'viewsource'           => 'Vakai ki he tupunga',
-'viewsourcefor'        => 'ki he $1',
 'protectedinterface'   => 'Ko e peesi ʻeni ʻoku fakaai ia ʻa e potutohi maʻa e founga fakakomipiuta, ʻoku maluʻi ia ʻo taʻofi leakovi.',
 'editinginterface'     => "'''Fakatokanga''' ʻOku ke fatu ʻi he peesi ʻoku ne ngāueʻaki ki he potutohi ʻo e founga fakakomipiuta. Ko ia ʻene ʻasi mai maʻa e kau ʻetita kotoa ʻe hūkitonu ai ʻa e ngaahi liliu ʻo e pēsí.",
 'sqlhidden'            => '(ʻOku toi ʻa e fehuʻi SQL)',

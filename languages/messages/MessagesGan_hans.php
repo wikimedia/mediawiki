@@ -379,7 +379,6 @@ MySQL回到错误“$3: $4”。',
 函数： $1<br />
 查询： $2',
 'viewsource'           => '源代码',
-'viewsourcefor'        => '$1 𠮶源代码',
 'protectedpagetext'    => '个页锁到嘞，改伓正。',
 'viewsourcetext'       => '倷可以眵吖或复制个页𠮶源代码：',
 'protectedinterface'   => '个页给正嘞软件𠮶界面文本，佢拖锁到怕人乱扤。',

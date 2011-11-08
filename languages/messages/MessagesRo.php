@@ -669,7 +669,6 @@ Poate conține unul sau mai multe caractere ce nu poate fi folosit în titluri.'
 Funcția: $1<br />
 Interogarea: $2',
 'viewsource'           => 'Sursă pagină',
-'viewsourcefor'        => 'pentru $1',
 'actionthrottled'      => 'Acțiune limitată',
 'actionthrottledtext'  => 'Ca o măsură anti-spam, aveți permisiuni limitate în a efectua această acțiune de prea multe ori într-o perioadă scurtă de timp, iar dv. tocmai ați depășit această limită.
 Vă rugăm să încercați din nou în câteva minute.',
@@ -1638,7 +1637,6 @@ $3',
 'recentchangeslinked-feed'     => 'Modificări corelate',
 'recentchangeslinked-toolbox'  => 'Modificări corelate',
 'recentchangeslinked-title'    => 'Modificări legate de „$1”',
-'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Nici o schimbare la paginile legate în perioada dată.',
 'recentchangeslinked-summary'  => "Aceasta este o listă a schimbărilor efectuate recent asupra paginilor cu legături de la o anumită pagină (sau asupra membrilor unei anumite categorii).
 Paginile pe care le [[Special:Watchlist|urmăriți]] apar în '''aldine'''.",
@@ -2226,7 +2224,7 @@ Modificările viitoare efectuate asupra acestei pagini dar și asupra paginii de
 'watchmethod-list'     => 'căutarea paginilor urmărite pentru schimbări recente',
 'watchlistcontains'    => 'Lista de pagini urmărite conține $1 {{PLURAL:$1|element|elemente|de elemente}}.',
 'iteminvalidname'      => "E o problemă cu elementul '$1', numele este invalid...",
-'wlnote'               => "Mai jos se află {{PLURAL:$1|ultima schimbare|ultimele $1 schimbări|ultimele $1 de schimbări}} din {{PLURAL:$2|ultima oră|ultimele '''$2''' ore|ultimele '''$2''' de ore}}.",
+'wlnote'               => "Mai jos se află {{PLURAL:$1|ultima schimbare|ultimele $1 schimbări|ultimele $1 de schimbări}} din {{PLURAL:$2|ultima oră|ultimele '''$2''' ore|ultimele '''$2''' de ore}}, așa cum era situația la $3, $4.",
 'wlshowlast'           => 'Arată ultimele $1 ore $2 zile $3',
 'watchlist-options'    => 'Opțiuni listă de pagini urmărite',
 

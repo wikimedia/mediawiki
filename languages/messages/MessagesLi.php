@@ -523,7 +523,6 @@ Mesjiens haet emes angers det al gedaon.',
 Funksie: $1<br />
 Query: $2',
 'viewsource'           => 'Bekiek brónteks',
-'viewsourcefor'        => 'van $1',
 'actionthrottled'      => 'Hanjeling taengegehauwe',
 'actionthrottledtext'  => "Es maotregel taege spam is 't aantal keer per tiedseinheid dets te dees hanjeling kèns verrichte beperk. De höbs de limiet euversjreje. Perbeer 't euver 'n aantal minute obbenuuj.",
 'protectedpagetext'    => 'Dees pagina is beveilig. Bewirke is neet meugelik.',

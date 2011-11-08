@@ -470,7 +470,6 @@ Fortasse usor alius iam deleverat.',
 Functio: $1<br />
 Inquisitio: $2',
 'viewsource'           => 'Fontem inspicere',
-'viewsourcefor'        => 'pro $1',
 'actionthrottled'      => 'Actio strangulata',
 'protectedpagetext'    => 'Haec pagina protecta est, ut emendationes prohibeantur.',
 'viewsourcetext'       => 'Fontem videas et exscribeas:',
@@ -1278,7 +1277,7 @@ Contenta [$2 paginae descriptionis fasciculi] subter monstrantur.',
 'statistics-users-active-desc' => 'Usores qui {{PLURAL:$1|proxima die|proximis $1 diebus}} actionem perfecerunt',
 'statistics-mostpopular'       => 'Paginae plurimum visae',
 
-'disambiguations'      => 'Paginae disambiguationis',
+'disambiguations'      => 'Paginae quae ad paginas discretivas nectunt',
 'disambiguationspage'  => 'Template:Discretiva',
 'disambiguations-text' => "Paginae subter ad '''paginam discretivam''' nectunt.
 Eae ad aptas paginas magis nectendae sunt.<br />
@@ -1480,7 +1479,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'watchmethod-list'   => 'paginas custoditas quaerens pro recensitis recentibus',
 'watchlistcontains'  => 'Index paginarum custoditarum tuus $1 {{PLURAL:$1|paginam|paginas}} habet.',
 'iteminvalidname'    => "Aerumna cum pagina '$1', nomen non est rectum...",
-'wlnote'             => "Subter {{PLURAL:$1|est mutatio proxima|sunt '''$1''' mutationes proximae}} in {{PLURAL:$2|proxima hora|proximis '''$2''' horis}}.",
+'wlnote'             => "Subter {{PLURAL:$1|est mutatio proxima|sunt '''$1''' mutationes proximae}} in {{PLURAL:$2|proxima hora|proximis '''$2''' horis}} ex $4, $3.",
 'wlshowlast'         => 'Monstrare proximas $1 horas $2 dies $3',
 'watchlist-options'  => 'Indicis paginarum custoditarum praeferentiae',
 

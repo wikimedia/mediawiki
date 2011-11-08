@@ -379,7 +379,6 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 Function: $1<br />
 Query: $2',
 'viewsource'           => 'Source dekho',
-'viewsourcefor'        => '$1 khatir',
 'actionthrottled'      => 'Kaam ke band kar dewa gais hai',
 'actionthrottledtext'  => 'Spam ke virod me, aap ke ii kaam thora deri me bahut time kare ke rukawat hai, aur aap time limit ke exceed kar diya hai.
 Kuch deri be baad fir se kosis karna.',

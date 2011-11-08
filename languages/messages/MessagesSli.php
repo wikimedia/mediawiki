@@ -339,7 +339,6 @@ Meeglicherweise wurde se bereits vu jemand anders entfernt.',
 Funksjonn: $1<br />
 Abfroage: $2',
 'viewsource'           => 'Quelltext oasahn',
-'viewsourcefor'        => 'fier $1',
 'actionthrottled'      => 'Aksjonszoahl limmetiert',
 'actionthrottledtext'  => 'Du host diese Aksjonn zu uffte innerholb annes korza Zeitraums ausgeführt. Bitte woarte a poar Minuta und probiere is doann erneut.',
 'protectedpagetext'    => 'Diese Seyte ies fier doas Beorbeeta gesperrt.',

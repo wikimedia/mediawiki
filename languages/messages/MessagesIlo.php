@@ -382,12 +382,12 @@ Mabalin nga addaan iti maysa wenno ad-adu pay a karakter a saan a mabalin nga us
 Function: $1<br />
 Query: $2',
 'viewsource'           => 'Kitaen ti taudan',
-'viewsourcefor'        => 'para iti $1',
 'actionthrottled'      => 'Napabenteg ti aramid',
 'actionthrottledtext'  => 'Para ti pagkontra ti spam, nalimitado ka ti pinagaramid ti adu unay iti daytoy nga aksion iti nasiket nga oras, ken nalippasamon ti limitado.
 Pangngaasi ta ipadas mo manen no madamdama.',
 'protectedpagetext'    => 'Narikpan daytoy a panid tapno maliklikan ti panangbaliw',
 'viewsourcetext'       => 'Mabalinmo a kitaen ken kopyaen ti taudan daytoy a panid:',
+'viewyourtext'         => "Mabalin mo a makita ken makopya ti taudan dagiti '''binalbaliwam''' ditoy a panid:",
 'protectedinterface'   => 'Daytoy nga panid ket mangited ti teksto nga interface para iti software, ken nasaluadan tapno agpasardeng ti pinagabuso.',
 'editinginterface'     => "'''Ballaag:''' Balbaliwam ti maysa a panid a maar-aramat a mangted iti teksto ti interface para iti software.
 Dagiti panangbalbaliw iti daytoy a panid ket apektaranna ti langa ti agaramat a interface ti sabsabali nga agar-aramat.
@@ -1928,7 +1928,7 @@ Mailistanto ditoy dagiti pannkabalbaliw daytoy a panid iti masakbayan agraman ti
 'watchmethod-list'     => 'kitkitaen dagiti bambantayan nga panid kadagiti kinaudi nga baliwan',
 'watchlistcontains'    => 'Addaan ti listaan ti bambantayam iti $1 {{PLURAL:$1|a panid|a pampanid}}.',
 'iteminvalidname'      => "Parikut iti item '$1', saan a mabalin a nagan...",
-'wlnote'               => "Adda iti baba {{PLURAL:$1|ti kaudian a pannakabaliw|dagiti kaudian '''$1''' a pannakabaliw}} iti naudi a {{PLURAL:$2|oras|'''$2''' oras}}.",
+'wlnote'               => "Adda iti baba {{PLURAL:$1|ti kaudian a pannakabaliw|dagiti kaudian '''$1''' a pannakabaliw}} iti naudi a {{PLURAL:$2|oras|'''$2''' oras}}, sipud idi $3, $4.",
 'wlshowlast'           => 'Ipakita dagiti naudi a $1 nga or-oras $2 nga al-aldaw $3',
 'watchlist-options'    => 'Dagiti pagpilian ti listaan nga bambantayan',
 

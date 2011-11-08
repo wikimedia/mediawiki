@@ -574,7 +574,6 @@ Podaci koji se ovdje nalaze neće biti biti ažurirani.',
 Funkcija: $1<br />
 Pretraga: $2',
 'viewsource'           => 'Pogledaj kod',
-'viewsourcefor'        => 'za $1',
 'actionthrottled'      => 'Akcija je usporena',
 'actionthrottledtext'  => 'Kao anti-spam mjera, ograničene su vam izmjene u određenom vremenu, i trenutačno ste dostigli to ograničenje. Pokušajte ponovo poslije nekoliko minuta.',
 'protectedpagetext'    => 'Ova stranica je zaključana da bi se spriječilo uređivanje.',

@@ -172,7 +172,6 @@ $messages = array(
 'internalerror_info'  => 'Éro internal: $1',
 'badtitle'            => 'Judul dek essa',
 'viewsource'          => 'Ita sumber',
-'viewsourcefor'       => 'polé $1',
 
 # Virus scanner
 'virus-unknownscanner' => "Antivirus dé' riisseŋ:",
@@ -309,12 +308,8 @@ $messages = array(
 'filehist-dimensions' => 'Dimensi',
 'imagelinks'          => 'Liŋke',
 
-# File reversion
-'filerevert-backlink' => '← $1',
-
 # File deletion
 'filedelete'             => 'Mapeddé $1',
-'filedelete-backlink'    => '← $1',
 'filedelete-legend'      => 'Mapeddé berkas',
 'filedelete-intro'       => "Iko purani mapeddé '''[[Media:$1|$1]]'''.",
 'filedelete-submit'      => 'Peddé',
@@ -382,10 +377,9 @@ Apak ida ronnak mappedde halamang édé ri daftar jagaan, klik \"Mangedda jaga\"
 'sp-contributions-talk' => 'Bicara',
 
 # What links here
-'whatlinkshere'          => 'Pranala ri leppa iyéwé',
-'whatlinkshere-page'     => 'Leppa:',
-'whatlinkshere-backlink' => '← $1',
-'whatlinkshere-links'    => '← liŋke',
+'whatlinkshere'       => 'Pranala ri leppa iyéwé',
+'whatlinkshere-page'  => 'Leppa:',
+'whatlinkshere-links' => '← liŋke',
 
 # Block/unblock
 'ipblocklist-submit' => 'Sappa',

@@ -143,9 +143,8 @@ $messages = array(
 'nstab-category'  => 'Категория',
 
 # General errors
-'error'         => 'Жаңылыш',
-'viewsource'    => 'Байкоо',
-'viewsourcefor' => '$1 үчүн',
+'error'      => 'Жаңылыш',
+'viewsource' => 'Байкоо',
 
 # Login and logout pages
 'welcomecreation'         => '== Кош келиңиз, $1! ==

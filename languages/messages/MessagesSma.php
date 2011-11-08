@@ -198,7 +198,6 @@ $messages = array(
 'badtitle'           => 'Gååre nomme',
 'badtitletext'       => 'Dïhte bielietiitele lea nov sån ijje luhpede, bielie lea gåaroes, jallh lea bielie gåarhmede lïenghke gåajkoe.',
 'viewsource'         => 'Vuesehte tjaalege',
-'viewsourcefor'      => 'ihke $1',
 'viewsourcetext'     => 'Dov dorje vuesehte jih kåpieerae gaaltjie dejstie dïhte bielie:',
 
 # Login and logout pages

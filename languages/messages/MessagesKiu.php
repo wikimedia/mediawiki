@@ -386,7 +386,6 @@ Daey ita nıka newe nêbenê.',
 Fonksiyon: $1<br />
 Pers: $2',
 'viewsource'           => 'Çımey bıvêne',
-'viewsourcefor'        => 'serba $1i',
 'actionthrottled'      => 'Faeliyet xenekıt',
 'actionthrottledtext'  => "Berqestiya tedbirê ''anti-spam''i ra vırastena ni faeliyeti rê sıma zafê rey zemano senık de  sindor viarna ra.
 Kerem kerê, deqêna oncia bıcerrebnê.",
@@ -911,14 +910,13 @@ Sıma ke ney bıgurenê, karê sıma de no namdarêni dano.',
 'rc-enhanced-hide'                => 'Tefsilatu bınımne',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Ney sero vurnaene',
-'recentchangeslinked-toolbox'  => 'Ney sero vurnaene',
-'recentchangeslinked-title'    => 'Heqa "$1"i de vurnais',
-'recentchangeslinked-backlink' => '← $1',
-'recentchangeslinked-summary'  => "Lista cêrêne, pela bêlikerdiye rê (ya ki karberunê kategoriya bêlikerdiye rê) pelunê girêdaoğu de lista de vurnaisê peyênuna.
+'recentchangeslinked'         => 'Ney sero vurnaene',
+'recentchangeslinked-toolbox' => 'Ney sero vurnaene',
+'recentchangeslinked-title'   => 'Heqa "$1"i de vurnais',
+'recentchangeslinked-summary' => "Lista cêrêne, pela bêlikerdiye rê (ya ki karberunê kategoriya bêlikerdiye rê) pelunê girêdaoğu de lista de vurnaisê peyênuna.
 [[Special:Watchlist|Lista sımawa şêrkedişi de]] peli be nusto '''qolınd''' bêli kerdê.",
-'recentchangeslinked-page'     => 'Namê pele:',
-'recentchangeslinked-to'       => 'Hurêndia pela ke yena daene, vurnaisunê pelunê ke dae ra girêdaiyê, inu bıasne',
+'recentchangeslinked-page'    => 'Namê pele:',
+'recentchangeslinked-to'      => 'Hurêndia pela ke yena daene, vurnaisunê pelunê ke dae ra girêdaiyê, inu bıasne',
 
 # Upload
 'upload'                     => 'Dosya bar ke',
@@ -1178,7 +1176,6 @@ Tı şikina sewiya sevekiyaena na pele bıvurnê, hema yê nae sevekiyaena qedem
 'whatlinkshere'            => 'Çı itay rê gırê beno',
 'whatlinkshere-title'      => 'Pelê ke be "$1"i bestninê pa',
 'whatlinkshere-page'       => 'Pele:',
-'whatlinkshere-backlink'   => '← $1',
 'linkshere'                => "Ni pelgi '''[[:$1]]'''i asnenê:",
 'nolinkshere'              => "Pelgê ke '''[[:$1]]'''i asnenê çinê.",
 'isredirect'               => 'pela ciheti',

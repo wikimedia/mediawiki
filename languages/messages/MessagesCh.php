@@ -294,7 +294,6 @@ Pot fabot ripotta este para un [[Special:ListUsers/sysop|administrator]], ya un 
 'unexpected'           => 'Ti ma\'antisipa i guinaha: "$1"="$2".',
 'badtitle'             => 'Båba na titulo',
 'viewsource'           => 'Atan i code',
-'viewsourcefor'        => 'para $1',
 'viewsourcetext'       => "Siña un li'e' yan kopia i code ni påhina:",
 'namespaceprotected'   => "Ti nahong nibet-mu petmisu tumulaika i påhina siha ni mafa'na'an '''$1'''.",
 'ns-specialprotected'  => 'Ti siña un tulaika i manespesiat na påhina.',

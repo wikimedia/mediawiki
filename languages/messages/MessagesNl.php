@@ -703,7 +703,7 @@ Gegevens op deze pagina worden niet ververst.',
 Functie: $1<br />
 Zoekopdracht: $2',
 'viewsource'           => 'Brontekst bekijken',
-'viewsourcefor'        => 'van $1',
+'viewsource-title'     => 'Bron bekijken van $1',
 'actionthrottled'      => 'Handeling tegengehouden',
 'actionthrottledtext'  => 'Als maatregel tegen spam is het aantal keren per tijdseenheid dat u deze handeling kunt verrichten beperkt.
 De limiet is overschreden.
@@ -891,7 +891,7 @@ De volgende {{PLURAL:$3|gebruiker is|gebruikers zijn}} gekoppeld aan dit e-maila
 $2
 
 {{PLURAL:$3|Dit tijdelijke wachtwoord vervalt|Deze tijdelijke wachtwoorden vervallen}} over {{PLURAL:$5|een dag|$5 dagen}}.
-Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelfs heeft gedaan, of als u het oorspronkelijke wachtwoord nog kent en het niet wilt wijzigen, negeer dit bericht dan en blijf uw oude wachtwoord gebruiken.',
+Meld u aan en wijzig het wachtwoord nu. Als u dit verzoek niet zelf heeft gedaan, of als u het oorspronkelijke wachtwoord nog kent en het niet wilt wijzigen, negeer dit bericht dan en blijf uw oude wachtwoord gebruiken.',
 'passwordreset-emailelement'       => 'Gebruikersnaam: $1
 Tijdelijk wachtwoord: $2',
 'passwordreset-emailsent'          => 'Er is per e-mail een herinnering verzonden.',
@@ -2068,7 +2068,7 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'statistics-users-active-desc' => 'Gebruikers die in de afgelopen {{PLURAL:$1|dag|$1 dagen}} een handeling hebben uitgevoerd',
 'statistics-mostpopular'       => "Meest bekeken pagina's",
 
-'disambiguations'      => "Doorverwijspagina's",
+'disambiguations'      => "Pagina's die verwijzen naar doorverwijspagina's",
 'disambiguationspage'  => 'Template:Doorverwijspagina',
 'disambiguations-text' => "Hieronder staan pagina's die verwijzen naar een '''doorverwijspagina'''.
 Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.
@@ -2323,7 +2323,7 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'watchmethod-list'     => "controleer pagina's op volglijst op wijzigingen",
 'watchlistcontains'    => "Er {{PLURAL:$1|staat 1 pagina|staan $1 pagina's}} op uw volglijst.",
 'iteminvalidname'      => "Probleem met object '$1', ongeldige naam…",
-'wlnote'               => 'Hieronder {{PLURAL:$1|staat de laaste wijziging|staan de laatste $1 wijzigingen}} in {{PLURAL:$2|het laatste uur|de laatste $2 uur}}.',
+'wlnote'               => 'Hieronder {{PLURAL:$1|staat de laaste wijziging|staan de laatste $1 wijzigingen}} in {{PLURAL:$2|het laatste uur|de laatste $2 uur}} per $3 om $4.',
 'wlshowlast'           => 'Laatste $1 uur, $2 dagen bekijken ($3)',
 'watchlist-options'    => 'Opties voor volglijst',
 
@@ -2530,6 +2530,7 @@ Misschien heeft een andere gebruiker de pagina al teruggeplaatst.',
 
 In het [[Special:Log/delete|verwijderingslogboek]] staan recente verwijderingen en herstelhandelingen.",
 'undelete-header'              => "Zie het [[Special:Log/delete|verwijderingslogboek]] voor recent verwijderde pagina's.",
+'undelete-search-title'        => "Verwijderde pagina's zoeken",
 'undelete-search-box'          => "Verwijderde pagina's doorzoeken",
 'undelete-search-prefix'       => "Pagina's bekijken die beginnen met:",
 'undelete-search-submit'       => 'Zoeken',
@@ -2539,6 +2540,7 @@ In het [[Special:Log/delete|verwijderingslogboek]] staan recente verwijderingen 
 'undelete-cleanup-error'       => 'Fout bij het herstellen van ongebruikt archiefbestand "$1".',
 'undelete-missing-filearchive' => 'Het lukt niet om ID $1 terug te plaatsen, omdat deze niet in de database te vinden is.
 Misschien is deze versie al teruggeplaatst.',
+'undelete-error'               => 'Er is een fout opgetreden tijdens het verwijderen van de pagina',
 'undelete-error-short'         => 'Fout bij het herstellen van bestand: $1',
 'undelete-error-long'          => 'Er zijn fouten opgetreden bij het herstellen van het bestand:
 

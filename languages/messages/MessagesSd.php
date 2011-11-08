@@ -381,7 +381,6 @@ $messages = array(
 'unexpected'          => 'غير متوقع قدر: "$1"="$2".',
 'badtitle'            => 'غيردرست عنوان',
 'viewsource'          => 'ڪوڊ ڏسو',
-'viewsourcefor'       => 'براءِ $1',
 'protectedpagetext'   => 'هيءُ صفحو ترميمن کان تحفظيل آهي.',
 'viewsourcetext'      => 'توهان هن صفحي جو ڪوڊ ڏسي ۽ نقل ڪري سگھو ٿا:',
 'namespaceprotected'  => "توهان کي نانءُ پولار '''$1''' جا صفحا سنوارڻ جا اختيار ناهن.",

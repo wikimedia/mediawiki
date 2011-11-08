@@ -404,7 +404,6 @@ Segnalilu par plasê a un [[Special:ListUsers/sysop|administrator]], notant la U
 'badtitletext'       => 'Il titul de pagjine che tu âs inserît nol è valit, al è vuelit, o al veve un erôr tal colegament tra wiki diviersis o tra versions in altris lenghis.
 Al podarès vê dentri caratars che no podin jessi doprâts tai titui.',
 'viewsource'         => 'Cjale risultive',
-'viewsourcefor'      => 'di $1',
 'viewsourcetext'     => 'Tu puedis viodi e copiâ la risultive di cheste pagjine:',
 
 # Login and logout pages

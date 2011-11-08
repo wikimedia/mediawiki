@@ -715,7 +715,6 @@ Možná už byl(a) smazán(a) někým jiným.',
 Funkce: $1<br />
 Dotaz: $2',
 'viewsource'           => 'Zobrazit zdroj',
-'viewsourcefor'        => 'stránky $1',
 'actionthrottled'      => 'Akce byla pozastavena',
 'actionthrottledtext'  => 'Vzhledem k protispamovým opatřením nemůžete požadovanou akci provádět příliš častokrát v krátké době. Zkuste to znovu za několik minut.',
 'protectedpagetext'    => 'Tato stránka byla zamčena, takže ji nelze editovat.',

@@ -549,7 +549,6 @@ Den kan være blevet slettet af en anden.',
 Funktion: $1<br />
 Forespørgsel: $2',
 'viewsource'           => 'Vis kildetekst',
-'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Begrænsning af handling',
 'actionthrottledtext'  => 'For at modvirke spam, er det ikke muligt at udføre denne handling mange gange på kort tid. Du har overskredet grænsen, hvorfor handlingen er blevet afbrudt. Vær venlig at forsøge igen om et par minutter.',
 'protectedpagetext'    => 'Denne side er skrivebeskyttet.',

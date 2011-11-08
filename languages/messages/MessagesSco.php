@@ -352,7 +352,6 @@ Please lat an [[Special:ListUsers/sysop|administrator]] ken aboot this, makin no
 Exerce: $1<br />
 Aks: $2',
 'viewsource'           => 'View soorce',
-'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Action devalit',
 'actionthrottledtext'  => 'As an anti-spam meisur, ye ar limitit frae daein this action ower mony times in a ower short tid, an ye hae exceedit this limit. Please try again in a wee.',
 'protectedpagetext'    => "Sairy, this page haes been '''lockit''' tae hinder vandalism.",

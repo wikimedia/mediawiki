@@ -503,7 +503,6 @@ Yon lòt moun te gendwa efase l anvan ou.',
 Fonksyon : $1<br />
 Demann : $2',
 'viewsource'           => 'Wè kòd paj la',
-'viewsourcefor'        => 'pou $1',
 'actionthrottled'      => 'Aksyon sa limite',
 'actionthrottledtext'  => 'Nan batay kont pouryèl, aksyon sa ou tapral fè limite nan kantite itilizasyon l pandan yon tan ki kout. Li sanble ou depase kantite sa. Eseye ankò nan kèk minit.',
 'protectedpagetext'    => 'Paj sa pwoteje pou anpeche tout modifikasyon nou ta kapab fè sou li. Gade paj diskisyon sou li pito.',

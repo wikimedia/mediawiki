@@ -379,7 +379,6 @@ Dieta ya no go rifresh fi nou.',
 Fongshan: $1<br />
 Kwieri: $2',
 'viewsource'           => 'Vyuu Suos',
-'viewsourcefor'        => 'fi $1',
 'actionthrottled'      => 'Akshan chratl',
 'actionthrottledtext'  => 'Az anti-spam meja, yu limit frahn pofaam dis akshan tomoch taim ina shaat spies a taim, ahn yu exiid di limit.
 Begyu chrai agen ina fyuu minit.',

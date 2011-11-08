@@ -383,7 +383,6 @@ Beno ke, tede yew ya zi zêdê işareti estê ke sernaman de nêxebetiyenê.',
 Fonksiyon: $1<br />
 Perse: $2',
 'viewsource'           => 'Çımey bıvêne',
-'viewsourcefor'        => 'Seba / qandê $1',
 'actionthrottled'      => 'Fealiyet xeneqna',
 'actionthrottledtext'  => 'Riyê tedbirê anti-spami ra,  wextê do kılmek de şıma nê fealiyeti nêşkenê zaf zêde bıkerê, şıma ki no hedi viyarna ra.
 Çend deqey ra tepeya reyna bıcerrebnên.',

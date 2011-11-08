@@ -396,7 +396,6 @@ Le date ca stonne aqquà jndre non ge sonde aggiornete.",
 Function: $1<br />
 Query: $2",
 'viewsource'           => "Vide 'u sorgende",
-'viewsourcefor'        => 'pe $1',
 'actionthrottled'      => 'Azione inderrotte',
 'actionthrottledtext'  => "Cumme 'na mesure andi-spam, tu è state limitete da fà st'azione troppe vote jndr'à 'nu timbe piccinne e tu è subranete stu limite.
 Pe piacere prueve cchiù tarde.",
@@ -1391,7 +1390,6 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'recentchangeslinked-feed'     => 'Cangiaminde culleghete',
 'recentchangeslinked-toolbox'  => 'Cangiaminde culleghete',
 'recentchangeslinked-title'    => 'Cangiaminde culleghete a "$1"',
-'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => "Non g'onne state fatte cangiaminde sus 'a sta pàgene jndr'à 'u periede selezionete.",
 'recentchangeslinked-summary'  => "Queste jè 'a liste de le cangiaminde fatte de recende a le pàggene culleghete da ' na pàgene specifiche (o a le membre de 'na specifiche categorije).
 Pàggene sus 'a [[Special:Watchlist|le Pàggene condrollete]] sonde in '''grascette'''.",
@@ -1652,7 +1650,6 @@ Pe piacere vide 'a [$2 pàgene de descrizione d'u file] pe maggiore 'mbormaziune
 
 # File reversion
 'filerevert'                => "'Nvirte $1",
-'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => "'Nvirte 'u file",
 'filerevert-intro'          => "Tu ste converte 'u file '''[[Media:$1|$1]]''' jndr'à [$4 versione cumme $3, $2].",
 'filerevert-comment'        => 'Mutive:',
@@ -1663,7 +1660,6 @@ Pe piacere vide 'a [$2 pàgene de descrizione d'u file] pe maggiore 'mbormaziune
 
 # File deletion
 'filedelete'                  => 'Scangille $1',
-'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => "Scangille 'u file",
 'filedelete-intro'            => "Tu ste scangille stu file '''[[Media:$1|$1]]''' cu tutte 'a storia soje apprisse.",
 'filedelete-intro-old'        => "Tu stè scangille 'a versiona de '''[[Media:$1|$1]]''' cumme de [$4 $3, $2].",
@@ -2039,7 +2035,6 @@ Segnalaziune e otre assistenze:
 'exbeforeblank'          => "'u condenute apprime d'a pulizie ere: '$1'",
 'exblank'                => "'a vosce ere vacande",
 'delete-confirm'         => 'Scangille "$1"',
-'delete-backlink'        => '← $1',
 'delete-legend'          => 'Scangille',
 'historywarning'         => "'''Vide Bbuene:''' 'a pàgene ca ste scangille tène 'na storie de cangiaminde cu cchiù o mene $1 {{PLURAL:$1|revisione|revisiune}}:",
 'confirmdeletetext'      => "Vide Bbuene, vide ca ste scangille 'na pàgene ca tène pure nu sbuenne de cangiaminde.
@@ -2102,7 +2097,6 @@ Vide 'a [[Special:ProtectedPages|liste de le pàggene prutette]] pa liste de le 
 'prot_1movedto2'              => "[[$1]] spustete jndr'à [[$2]]",
 'protect-badnamespace-title'  => 'Namespace none proteggibbele',
 'protect-badnamespace-text'   => "Le pàggene jndr'à stu namespace non ge ponne essere prutette.",
-'protect-backlink'            => '← $1',
 'protect-legend'              => "Conferme 'a protezione",
 'protectcomment'              => 'Mutive:',
 'protectexpiry'               => 'More:',
@@ -2250,7 +2244,6 @@ L'urteme archivije de le bloccaminde se iacche aqquà sotte pe referimende:",
 'whatlinkshere'            => 'Appondene aqquà',
 'whatlinkshere-title'      => 'Pàggene ca appondene a "$1"',
 'whatlinkshere-page'       => 'Pàgene:',
-'whatlinkshere-backlink'   => '← $1',
 'linkshere'                => "Le pàggene ca avènene appondene a '''[[:$1]]''':",
 'nolinkshere'              => "Nisciuna pàgene apponde a '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Nisciuna pàgene apponde a '''[[:$1]]''' jndr'à 'u namespace scacchiete.",

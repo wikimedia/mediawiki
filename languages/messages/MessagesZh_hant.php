@@ -570,7 +570,6 @@ $1',
 函數：$1<br />
 查詢：$2',
 'viewsource'           => '查看原始碼',
-'viewsourcefor'        => '$1的原始碼',
 'actionthrottled'      => '動作已壓制',
 'actionthrottledtext'  => '基於反垃圾的考量，您現在於這段短時間之中限制去作這一個動作，而您已經超過這個上限。請在數分鐘後再嘗試。',
 'protectedpagetext'    => '該頁面已被保護以防止編輯。',

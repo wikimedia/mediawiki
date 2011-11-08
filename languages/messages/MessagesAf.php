@@ -575,7 +575,6 @@ Iemand anders het dit moontlik reeds geskrap.',
 Funksie: $1<br />
 Navraag: $2',
 'viewsource'           => 'Bekyk bronteks',
-'viewsourcefor'        => 'vir $1',
 'actionthrottled'      => 'Outo-rem op aksie uitgevoer',
 'actionthrottledtext'  => "As 'n teen-strooi aksie, word u beperk om hierdie aksie te veel keer in 'n kort tyd uit te voer, en u het hierdie limiet oorskry.
 Probeer asseblief weer oor 'n paar minute.",

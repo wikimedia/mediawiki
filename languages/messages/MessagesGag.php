@@ -372,7 +372,6 @@ Yalvarêrız benneyiniz URL - i hem raport ediniz bunu bir [[Special:ListUsers/s
 'badtitle'           => 'Yannış yazı adı',
 'badtitletext'       => 'Girilen sayfa adı beki yannış beki de boş, yaki geçersiz neçin ki diller arası baalantı yaki vikiler arası baalantı içerer. Var nicä içindä olsun bir yaki taa çok nışan angıları yasak başlıklarda kullanılsın.',
 'viewsource'         => 'Geliniri gör',
-'viewsourcefor'      => '$1 için',
 'protectedpagetext'  => 'Bu sayfa diiştirmämää deyni kilitlendi.',
 'viewsourcetext'     => 'Var nicä görmää hem kopiya etmää bu yapraa gelinirini:',
 

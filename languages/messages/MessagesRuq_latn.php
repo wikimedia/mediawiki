@@ -134,8 +134,7 @@ $messages = array(
 'nstab-category' => 'kategoria',
 
 # General errors
-'viewsource'    => 'Baganaere',
-'viewsourcefor' => 'pentru $1',
+'viewsource' => 'Baganaere',
 
 # Login and logout pages
 'yourname'                => "Nom d'utilizatoru:",

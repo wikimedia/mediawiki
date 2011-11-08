@@ -327,7 +327,6 @@ $messages = array(
 'filenotfound'        => 'Nag aljem cavos an restren "$1".',
 'badtitle'            => 'Titel drog',
 'viewsource'          => 'Gweles an bednfenten',
-'viewsourcefor'       => 'rag $1',
 
 # Login and logout pages
 'welcomecreation'         => '== Dynnargh, $1! ==

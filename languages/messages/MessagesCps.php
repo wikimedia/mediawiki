@@ -358,7 +358,6 @@ Pwede nga naga-unod mini sang isa ukon madamo pa nga mga karakter nga indi pwede
 'querypage-no-updates' => '',
 'wrong_wfQuery_params' => '',
 'viewsource'           => 'Lantawon ang ginhalinan',
-'viewsourcefor'        => 'para sa $1',
 'actionthrottled'      => 'Ginpunggan ang ulubrahon',
 'actionthrottledtext'  => '',
 'protectedpagetext'    => 'Ginkandaduhan ang mini nga pahina para indi ma-islan.',

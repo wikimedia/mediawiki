@@ -381,7 +381,6 @@ Eli tak ńy je, możno śe trefił feler we softwaru MediaWiki. Kej ja, pedz uo 
 Funkcyjo: $1<br />
 Zapytańy: $2',
 'viewsource'           => 'Zdrzůdłowy tekst',
-'viewsourcefor'        => 'lo $1',
 'actionthrottled'      => 'Akcyjo wstřimano',
 'actionthrottledtext'  => 'Mechańizm uobrůny před spamym uograńičo ličba wykonań tyj čynnośći we jednostce času. Průbowoužeś go uocygańić. Proša, sprůbuj na nowo za pora minut.',
 'protectedpagetext'    => 'Ta zajta je zawarto před sprowjańym.',

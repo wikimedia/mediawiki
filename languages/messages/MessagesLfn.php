@@ -271,7 +271,6 @@ $messages = array(
 'badtitle'            => 'Titulo es mal',
 'badtitletext'        => 'La titulo de la paje tu ia desira ia es nonlegal, es vacua, o es un titulo intervici o interlingual no liada coreta. Es posable ce es un o plu simboles ce no pote es usada en titulos.',
 'viewsource'          => 'Vide la orijin',
-'viewsourcefor'       => 'per $1',
 'viewsourcetext'      => 'Tu pote vide e copia la orijin de esta paje:',
 
 # Login and logout pages

@@ -409,7 +409,6 @@ Peul desse ch'a l'é già stàit ëscancelà da cheidun d'àutr.",
 Funsion: $1<br />
 Arcesta: $2',
 'viewsource'           => 'Vardé la sorgiss',
-'viewsourcefor'        => 'ëd $1',
 'actionthrottled'      => 'Assion frenà',
 'actionthrottledtext'  => "Për evité che gent ò màchine an carìo dla rumenta, st'assion-sì as peul nen fesse tròp ëd soèns, e chiel/chila a l'ha arpetula tròpe vire. Ch'a sia gentil, ch'a preuva torna antra dontre minute.",
 'protectedpagetext'    => "Sta pàgina-sì a l'è stàita blocà për evité che a-j faso dle modìfiche.",

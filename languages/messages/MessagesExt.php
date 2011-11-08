@@ -355,7 +355,6 @@ Pol favol, contauta con un [[Special:ListUsers/sysop|çajoril]], mentandu la URL
 'querypage-no-updates' => "Las atualiçacionis desta páhina s'alcuentran atualmenti desativás. Los datus nu sedrán atualizaus a cortu praçu.",
 'wrong_wfQuery_params' => 'Parametrus a wfQuery()<br /> Hunción: $1<br /> Pregunta: $2 encorretus',
 'viewsource'           => 'Vel coigu huenti',
-'viewsourcefor'        => 'pa $1',
 'actionthrottled'      => 'Ación ilimitá',
 'actionthrottledtext'  => 'Cumu miia pa prevenil el spam, solu pueis hazel esta ación un limitau númeru e vezis nun cortu praçu e tiempu, i as pasau esti límiti. Pol favol, enténtalu otra vezi endrentu angunus minutus.',
 'protectedpagetext'    => "Esta página s'alcuentra atarugá a nuevas eicionis.",

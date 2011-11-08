@@ -654,7 +654,6 @@ Benlèu la supression ja es estada efectuada per qualqu’un mai.',
 Foncion : $1<br />
 Requèsta : $2',
 'viewsource'           => 'Vejatz lo tèxte font',
-'viewsourcefor'        => 'per $1',
 'actionthrottled'      => 'Accion limitada',
 'actionthrottledtext'  => "Per luchar contra lo spam, l’utilizacion d'aquesta accion es limitada a un cèrt nombre de còps dins una sosta pro corta. S'avèra qu'avètz depassat aqueste limit. Ensajatz tornamai dins qualques minutas.",
 'protectedpagetext'    => 'Aquesta pagina es estada protegida per empachar sa modificacion.',

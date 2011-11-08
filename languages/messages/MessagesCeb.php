@@ -415,7 +415,6 @@ Dili karon dayon ma-refresh ang data dinhi.',
 Function: $1<br />
 Query: $2',
 'viewsource'           => 'Tan-awa ang ginikanan',
-'viewsourcefor'        => 'para kang $1',
 'actionthrottled'      => 'Na-throttle ang lihok',
 'actionthrottledtext'  => "Isip anti-spam, gilimitahan ka sa sinagunson nga paghimo niining lihok sa mubong panahon lang, ikaw misobra na sa maong limit.
 Palihog sulayi'g usab sa pipila ka minutos.",

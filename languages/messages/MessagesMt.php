@@ -635,7 +635,6 @@ Jista\' jkun li diġà ġie mħassar minn xi ħaddieħor.',
 Funżjoni: $1<br />
 Rikjesta: $2',
 'viewsource'           => 'Ara s-sors',
-'viewsourcefor'        => 'għal $1',
 'actionthrottled'      => 'Azzjoni miżmuma',
 'actionthrottledtext'  => "Bħala miżura għal kontra l-ispam, inti limitat li tagħmel din l-azzjoni għal ħafna drabi f'spazju ta' ħin żgħir, u inti qbiżt dan il-limitu.
 Jekk jogħġbok erġa' prova fi ftit minuti oħra.",

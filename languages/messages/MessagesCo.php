@@ -158,7 +158,6 @@ $messages = array(
 # General errors
 'error'         => 'Errore',
 'internalerror' => 'Errore internu',
-'viewsourcefor' => 'di $1',
 
 # Login and logout pages
 'yourname'                   => 'Nome di utilizatore:',

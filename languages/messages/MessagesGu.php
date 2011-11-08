@@ -513,7 +513,6 @@ $1',
 Function: $1<br />
 Query: $2',
 'viewsource'           => 'સ્ત્રોત જુઓ',
-'viewsourcefor'        => '$1ને માટે',
 'actionthrottled'      => 'અકાળે અટાકાવી દીધેલી ક્રિયા',
 'actionthrottledtext'  => 'સ્પામ નિયંત્રણ તકેદારી રૂપે આ ક્રિયા અમુક મર્યાદામાં જ કરી શકો છો, અને તમે તે મર્યાદા વટાવી દીધી છે. કૃપા કરી થોડાક સમય પછી ફરી પ્રયત્ન કરો.',
 'protectedpagetext'    => 'ફેરફારો થતાં રોકવા માટે આ પાનું સુરક્ષિત કરવામાં આવ્યું છે.',
@@ -1721,7 +1720,6 @@ $1',
 
 # File reversion
 'filerevert'                => '$1 હતું તેવું કરો',
-'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => 'ફાઇલ હતી તેવી કરો',
 'filerevert-intro'          => "તમે '''[[Media:$1|$1]]''' ફાઇલ હતી તેવી મૂળ સ્થિતિ[$3, $2 વખતે હતું તેવું વર્ઝન $4]માં  લઇ જઇ રહ્યા છો.",
 'filerevert-comment'        => 'કારણ:',
@@ -1732,7 +1730,6 @@ $1',
 
 # File deletion
 'filedelete'                  => '$1ને ભૂસી નાંખો.',
-'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'ફાઇલ ભુસી નાખો.',
 'filedelete-intro'            => "તમે '''[[Media:$1|$1]]'' ફાઇલ અને તેની સાથે સંલગ્ન ઇતિહાસ ભુંસી રહ્યા છો.",
 'filedelete-intro-old'        => "તમે '''[[Media:$1|$1]]'''નું આ [$4 $3, $2] વર્ઝન ભુસી રહ્યા છો.",

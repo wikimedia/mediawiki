@@ -673,7 +673,6 @@ Başka bir kullanıcı tarafından silinmiş olabilir.',
 Fonksiyon: $1<br />
 Sorgu: $2',
 'viewsource'           => 'Kaynağı gör',
-'viewsourcefor'        => '$1 için',
 'actionthrottled'      => 'Eylem kısılmışdır',
 'actionthrottledtext'  => 'Anti-spam önlemleri nedeniyle, bir eylemi kısa bir zaman aralığında çok defa yapmanız kısıtlandı, ve siz sınırı aşmış bulunmaktasınız.
 Lütfen birkaç dakika sonra yeniden deneyin.',

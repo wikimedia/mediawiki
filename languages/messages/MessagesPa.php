@@ -294,7 +294,6 @@ A list of valid special pages can be found at [[Special:SpecialPages]].',
 'internalerror_info' => 'ਅੰਦਰੂਨੀ ਗਲਤੀ: $1',
 'badtitle'           => 'ਗਲਤ ਟਾਇਟਲ',
 'viewsource'         => 'ਸਰੋਤ ਵੇਖੋ',
-'viewsourcefor'      => '$1 ਲਈ',
 
 # Login and logout pages
 'logouttext'                 => "'''ਹੁਣ ਤੁਸੀਂ ਲਾਗਆਉਟ ਹੋ ਗਏ ਹੋ।'''

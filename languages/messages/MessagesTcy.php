@@ -303,7 +303,6 @@ $messages = array(
 'unexpected'           => 'ಅನಿರೀಕ್ಷಿತ ಮೌಲ್ಯ: "$1"="$2".',
 'formerror'            => 'ದೋಷ: ಅರ್ಜಿನ್ ಕಡಪುಡಿಯೆರ್ ಆಯಿಜಿ',
 'viewsource'           => 'ಮೂಲ ಬರಹೊನು ತೂಲೆ',
-'viewsourcefor'        => '$1 ಪುಟೊಗು',
 
 # Login and logout pages
 'yourname'                => 'ಸದಸ್ಯೆರ್ನ ಪುದರ್:',

@@ -385,7 +385,6 @@ Méglicherweis iss schoh vohram åndern gléschd worn.',
 Funkzión: $1<br />
 Obfrog: $2',
 'viewsource'           => 'an Quötext åschauh',
-'viewsourcefor'        => 'fyr $1',
 'actionthrottled'      => 'Akziónszoi limitird',
 'actionthrottledtext'  => 'Im Råmen voh ner Anti-Spam-Moossnåm kå dé Akzión do in am kurzen Zeidobstånd netter begrenzd ausgfyrd wern. Dé Grenzen host ywerschritten.
 Bittscheh vasuachs in a por Minunten nuamoi.',

@@ -374,7 +374,6 @@ Pe favô ti peu segnalâ quello che l'é sucesso a in [[Special:ListUsers/sysop|
 'badtitle'           => "O tìtolo o no l'è corretto.",
 'badtitletext'       => "O tittolo da paggina çercâa o l'è vêuo, sballiòu o con caratteri no accettæ, oppûre o deriva da 'n errô inti collegamenti tra scîti Wiki diversci o verscioîn in léngue diversce do mæximo scîto.",
 'viewsource'         => 'Veddi a fonte',
-'viewsourcefor'      => 'de $1',
 'protectedpagetext'  => "'Sta paggina a l'è stæta protezûa pe impedîghe a modiffica.",
 'viewsourcetext'     => "O l'è poscibbile vedde e copiâ o còddice sorgente de 'sta paggina:",
 

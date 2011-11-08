@@ -387,7 +387,6 @@ Dåt as flicht ål straagen foon huum ouders.',
 Funksjoon: $1<br />
 Ouffrååch: $2',
 'viewsource'           => 'Kwältäkst önjkiike',
-'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Aksjoonstål limitiird',
 'actionthrottledtext'  => 'Dü hääst jüdeer aksjoon tu oofding bane en kort tidrüm ütfjard. Wees sü gödj än täiw en påår minuute än fersäk dåt et dan foon naien.',
 'protectedpagetext'    => 'Jüdeer sid as for dåt beårben späred.',

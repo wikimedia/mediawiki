@@ -226,7 +226,6 @@ Ezalí listɛ́ ya nkásá gudi bizalí  na [[Special:SpecialPages|{{int:special
 'perfcached'         => 'Bipeseli byangó bizalí o mobómbisi-lombángu mpé bikokí kozala ya lɛlɔ́ tɛ̂.',
 'perfcachedts'       => 'Bipeseli byangó bizalí o mobómbisi-lombángu mpé bikokí kozala ya lɛlɔ́ tɛ̂. Bizalí bya $1.',
 'viewsource'         => 'Komɔ́nisa mosólo',
-'viewsourcefor'      => 'na $1',
 
 # Login and logout pages
 'yourname'                => 'Nkómbó ya mosáleli:',

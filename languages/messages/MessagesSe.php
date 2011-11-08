@@ -263,7 +263,6 @@ $messages = array(
 'perfcachedts'         => 'Čuovvovaš data lea buktojuvvon gaskabottosašmuittus ja dat lea maŋimusta beaiváduvvon $1.',
 'querypage-no-updates' => 'Dán siiddu dieđut eai beaiváduvvo.',
 'viewsource'           => 'Geahča gáldu',
-'viewsourcefor'        => 'siidui $1',
 'protectedpagetext'    => 'Dát siidu lea suodjaluvvon rievdadusain.',
 'viewsourcetext'       => 'Sáhtát geahčat ja kopieret dán siiddu gáldokoda:',
 'sqlhidden'            => '(SQL-jierahallan lea čihkojuvvon)',

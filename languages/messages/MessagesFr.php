@@ -725,7 +725,6 @@ La suppression a peut-être déjà été effectuée par quelqu’un d’autre.',
 Fonction : $1<br />
 Requête : $2',
 'viewsource'           => 'Voir le texte source',
-'viewsourcefor'        => 'pour $1',
 'actionthrottled'      => 'Action limitée',
 'actionthrottledtext'  => 'Pour lutter contre les pourriels, l’utilisation de cette action est limitée à un certain nombre de fois dans un laps de temps assez court. Il s’avère que vous avez dépassé cette limite.
 Essayez à nouveau dans quelques minutes.',
@@ -2268,7 +2267,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchmethod-list'     => 'vérification des pages suivies pour y trouver des modifications récentes',
 'watchlistcontains'    => 'Votre liste de suivi référence $1 page{{PLURAL:$1||s}}.',
 'iteminvalidname'      => 'Problème avec l’élément « $1 » : le nom est invalide.',
-'wlnote'               => "Ci-dessous {{PLURAL:$1|figure la dernière modification effectuée|figurent les '''$1''' dernières modifications effectuées}} durant {{PLURAL:$2|la dernière heure|les '''$2''' dernières heures}}.",
+'wlnote'               => "Ci-dessous {{PLURAL:$1|figure la dernière modification effectuée|figurent les '''$1''' dernières modifications effectuées}} durant {{PLURAL:$2|la dernière heure|les '''$2''' dernières heures}}, depuis $3, $4.",
 'wlshowlast'           => 'Montrer les dernières $1 heures, les derniers $2 jours ou bien $3',
 'watchlist-options'    => 'Options de la liste de suivi',
 
@@ -2476,6 +2475,7 @@ un autre utilisateur a probablement déjà restauré la page.',
 
 Consultez le [[Special:Log/delete|journal des suppressions]] pour obtenir la liste des récentes suppressions et restaurations.",
 'undelete-header'              => 'Consultez le [[Special:Log/delete|journal des suppressions]] pour lister les pages récemment supprimées.',
+'undelete-search-title'        => 'Rechercher les pages supprimées',
 'undelete-search-box'          => 'Rechercher des pages supprimées',
 'undelete-search-prefix'       => 'Montrer les pages commençant par :',
 'undelete-search-submit'       => 'Rechercher',
@@ -2485,6 +2485,7 @@ Consultez le [[Special:Log/delete|journal des suppressions]] pour obtenir la lis
 'undelete-cleanup-error'       => 'Erreur lors de la suppression du fichier d’archive inutilisé « $1 ».',
 'undelete-missing-filearchive' => 'Impossible de restaurer le fichier d’archive avec l’identifiant $1 parce qu’il n’est pas dans la base de données.
 Il a peut-être déjà été restauré.',
+'undelete-error'               => "Page d'erreur d'annulation",
 'undelete-error-short'         => 'Erreur lors de la restauration du fichier : $1',
 'undelete-error-long'          => 'Des erreurs ont été rencontrées lors de la restauration du fichier :
 

@@ -313,7 +313,6 @@ Chhiáng ki-liu̍k hâ URL thi-chí, pin hiong [[Special:ListUsers/sysop|Kón-l�
 Chhṳ-su: $1<br />
 Chhà-khon: $2',
 'viewsource'           => 'Ngièn-sṳ́-tóng',
-'viewsourcefor'        => '$1 ke ngièn-sṳ́-tóng',
 'actionthrottled'      => 'Thung-tsok yí-kîn ap-tsṳ',
 'protectedpagetext'    => 'Pún-chông yí-kîn pûn fûng-só put yún-chún phiên-cho.',
 'viewsourcetext'       => 'Ngì khó-yî chhà-khon pin fuk-chṳ pún vùn-chông ke kîn-ngièn.',

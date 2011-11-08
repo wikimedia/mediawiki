@@ -243,7 +243,6 @@ Dit tjemm jeweenlich soo, wan een oola nich jelaschda Link jebruckt worde es.
 Wan daut nich soo es, dan es doa vleicht een Fehla enne Software.
 Bitte schriew eene Notiz aun [[Special:ListUsers/sysop|administrator]], en lot dem dee URL weete.',
 'badtitle'        => 'Schlajchta Titel',
-'viewsourcefor'   => 'fer $1',
 
 # Login and logout pages
 'yourname'                => 'Bruckanome:',
@@ -354,7 +353,6 @@ Bitte nemm eenen aundren.',
 'recentchangeslinked-feed'     => 'Endarunge aun velinkte Siede',
 'recentchangeslinked-toolbox'  => 'Endarunge aun velinkte Siede',
 'recentchangeslinked-title'    => 'Endarunge aun Siede, woone von "$1" velinkt send',
-'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Em utjesochten Tietrum es aun dee velinkte Siede nuscht aundasch jemoakt worde.',
 'recentchangeslinked-summary'  => "Dit es eene List mette latzte Endarunge aune velinkte Siede (ooda bie Kategorien von Mettjlieda von dise Kategorie). Dee Siede opp diene [[Special:Watchlist|your watchlist]] woare '''fat''' jewese.",
 'recentchangeslinked-page'     => 'Siednome:',
@@ -454,17 +452,16 @@ Bitte nemm eenen aundren.',
 'sp-contributions-talk' => 'Beredsied',
 
 # What links here
-'whatlinkshere'          => 'Links opp dise Sied',
-'whatlinkshere-title'    => 'Siede, woone opp "$1" eenen Link habe',
-'whatlinkshere-page'     => 'Sied:',
-'whatlinkshere-backlink' => '← $1',
-'linkshere'              => "Dee neachste Siede habe eenen Link opp '''[[:$1]]''':",
-'nolinkshere'            => "Tjeene Sied haft eenen Link opp '''[[:$1]]'''.",
-'nolinkshere-ns'         => "Tjeene Siede habe eenen Link opp '''[[:$1]]''' em utjesochten Nomesrum.",
-'isredirect'             => 'Wiedaleid-Sied',
-'istemplate'             => 'Vealoag-Enbinje (Inklusioon)',
-'isimage'                => 'Dotei-Link',
-'whatlinkshere-links'    => '← Links',
+'whatlinkshere'       => 'Links opp dise Sied',
+'whatlinkshere-title' => 'Siede, woone opp "$1" eenen Link habe',
+'whatlinkshere-page'  => 'Sied:',
+'linkshere'           => "Dee neachste Siede habe eenen Link opp '''[[:$1]]''':",
+'nolinkshere'         => "Tjeene Sied haft eenen Link opp '''[[:$1]]'''.",
+'nolinkshere-ns'      => "Tjeene Siede habe eenen Link opp '''[[:$1]]''' em utjesochten Nomesrum.",
+'isredirect'          => 'Wiedaleid-Sied',
+'istemplate'          => 'Vealoag-Enbinje (Inklusioon)',
+'isimage'             => 'Dotei-Link',
+'whatlinkshere-links' => '← Links',
 
 # Block/unblock
 'ipboptions'       => '2 Stunde:2 hours,1 Dach:1 day,3 Doag:3 days,1 Wäakj:1 week,2 Wäakje:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joa:1 year,one Enj:infinite',

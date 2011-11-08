@@ -492,7 +492,6 @@ Por favor, comunique-lo a un [[Special:ListUsers/sysop|almenistrador]] indicando
 Función: $1<br />
 Consulta: $2',
 'viewsource'           => 'Veyer o codigo fuent',
-'viewsourcefor'        => 'ta $1',
 'actionthrottled'      => 'acción afogata',
 'actionthrottledtext'  => 'Como mesura contra lo "spam", bi ha un limite en o numero de vegadas que puede fer ista acción en un curto espacio de tiempo, y ha brincato d\'ixe limite. Aguarde bells menutos y prebe de fer-lo de nuevas.',
 'protectedpagetext'    => 'Ista pachina ha estato protechita ta aprevenir a suya edición.',

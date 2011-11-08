@@ -162,7 +162,6 @@ Bo por haña un lista di tur [[Special:SpecialPages|{{int:specialpages}}]].',
 'badtitle'      => 'Título inválido',
 'badtitletext'  => 'E título di e página ku bo a pidi tabata inválido, bashí, òf un link pa un inter-idioma òf inter-wiki inkorekto.',
 'viewsource'    => 'Wak fuente',
-'viewsourcefor' => 'di $1',
 
 # Login and logout pages
 'welcomecreation'            => '== Bon bini, $1! ==

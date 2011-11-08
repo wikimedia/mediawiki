@@ -268,7 +268,6 @@ $messages = array(
 Fung'ksyun: $1<br />
 Query: $2",
 'viewsource'           => "Kamukile ng'i",
-'viewsourcefor'        => 'di $1',
 'viewsourcetext'       => 'A sa kamukile wiki-selt di bye petulo:',
 'sqlhidden'            => '(SQL query sa cwankekile)',
 

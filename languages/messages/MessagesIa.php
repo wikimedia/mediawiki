@@ -504,7 +504,7 @@ Es possibile que illo contine un o plure characteres que non pote esser usate in
 Function: $1<br />
 Consulta: $2',
 'viewsource'           => 'Vider codice-fonte',
-'viewsourcefor'        => 'de $1',
+'viewsource-title'     => 'Le texto fonte de $1',
 'actionthrottled'      => 'Action limitate',
 'actionthrottledtext'  => 'Como mesura anti-spam, tu es limitate de executar iste action troppo de vices durante un curte periodo de tempore, e tu ha excedite iste limite.
 Per favor reprova post alcun minutas.',
@@ -1855,7 +1855,7 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 'statistics-users-active-desc' => 'Usatores qui ha facite un action durante le {{PLURAL:$1|die|$1 dies}} passate',
 'statistics-mostpopular'       => 'Le paginas plus visitate',
 
-'disambiguations'      => 'Paginas de disambiguation',
+'disambiguations'      => 'Paginas con ligamines a paginas de disambiguation',
 'disambiguationspage'  => 'Template:Disambiguation',
 'disambiguations-text' => "Le sequente paginas ha ligamines a un '''pagina de disambiguation'''.
 Istes deberea esser reimplaciate con ligamines al topicos appropriate.<br />
@@ -2111,7 +2111,7 @@ render lo plus facile de deteger.",
 'watchmethod-list'     => 'cerca modificationes recente in paginas sub observation',
 'watchlistcontains'    => 'Tu observatorio contine $1 {{PLURAL:$1|pagina|paginas}}.',
 'iteminvalidname'      => "Problema con entrata '$1', nomine invalide...",
-'wlnote'               => "Infra es le ultime {{PLURAL:$1|modification|'''$1''' modificationes}} durante le ultime {{PLURAL:$2|hora|'''$2''' horas}}.",
+'wlnote'               => "Ecce le ultime {{PLURAL:$1|modification|'''$1''' modificationes}} durante le ultime {{PLURAL:$2|hora|'''$2''' horas}}, a partir del $3 a $4.",
 'wlshowlast'           => 'Revelar ultime $1 horas $2 dies $3',
 'watchlist-options'    => 'Optiones del observatorio',
 
@@ -2324,6 +2324,7 @@ es possibile que un altere persona ha ja restaurate le pagina.',
 
 Consulta le [[Special:Log/delete|registro de deletiones]] pro un lista de deletiones e restaurationes recente.",
 'undelete-header'              => 'Vide [[Special:Log/delete|le registro de deletiones]] pro un lista de paginas recentemente delite.',
+'undelete-search-title'        => 'Cercar in paginas delite',
 'undelete-search-box'          => 'Cercar paginas delite',
 'undelete-search-prefix'       => 'Monstrar paginas que comencia con:',
 'undelete-search-submit'       => 'Cercar',
@@ -2333,6 +2334,7 @@ Consulta le [[Special:Log/delete|registro de deletiones]] pro un lista de deleti
 'undelete-cleanup-error'       => 'Error durante le deletion del file de archivo non usate "$1".',
 'undelete-missing-filearchive' => 'Impossibile restaurar le file con ID de archvo $1 proque illo non es presente in le base de datos.
 Es possibile que illo ha ja essite restaurate.',
+'undelete-error'               => 'Error durante le restauration del pagina',
 'undelete-error-short'         => 'Error durante le restauration del file: $1',
 'undelete-error-long'          => 'Se incontrava errores durante le restauration del file:
 

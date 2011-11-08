@@ -501,7 +501,6 @@ Ang mga dato dito ay hindi pa masasariwa sa kasalukuyan.',
 Tungkulin: $1<br />
 Tanong: $2',
 'viewsource'           => 'Tingnan ang pinagmulan',
-'viewsourcefor'        => 'para sa $1',
 'actionthrottled'      => 'Hinadlangan ang gawain',
 'actionthrottledtext'  => "Bilang paraang panglaban sa ''spam'', pinigalan kang magawa ang galaw na ito nang maraming ulit sa loob ng maikling panahon, at lumabis ka na sa limitasyong ito.
 Pakisubok na lang ulit pagkaraan ng kaunting mga minuto.",
@@ -1709,7 +1708,6 @@ Ang paglalarawang nasa ibabaw ng [$2 pahina ng paglalarawan ng talaksan] nito do
 
 # File reversion
 'filerevert'                => 'Ibalik sa dati ang $1',
-'filerevert-backlink'       => '← $1',
 'filerevert-legend'         => 'Ibalik ang talaksan',
 'filerevert-intro'          => '<span class="plainlinks">Ibinabalik mo sa dati ang \'\'\'[[Media:$1|$1]]\'\'\' patungo sa [$4 bersyon noong $3, $2].</span>',
 'filerevert-comment'        => 'Dahilan:',
@@ -1720,7 +1718,6 @@ Ang paglalarawang nasa ibabaw ng [$2 pahina ng paglalarawan ng talaksan] nito do
 
 # File deletion
 'filedelete'                  => 'Burahin ang $1',
-'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'Burahin ang talaksan',
 'filedelete-intro'            => "Buburahin mo na ang talaksang '''[[Media:$1|$1]]''' na kasama ang lahat ng kasaysayan nito.",
 'filedelete-intro-old'        => '<span class="plainlinks">Binubura mo ang bersyon ng \'\'\'[[Media:$1|$1]]\'\'\' mula noong [$4 $3, $2].</span>',
@@ -2137,7 +2134,6 @@ Tingnan ang [[Special:ProtectedPages|talaan ng nakasanggalang na mga pahina]] pa
 'movedarticleprotection'      => 'inilipat ang pagtatakdang pampanananggalang mula sa "[[$2]]" patungong "[[$1]]"',
 'protect-title'               => 'Palitan ang antas ng panananggalang para sa "$1"',
 'prot_1movedto2'              => 'Inilipat ang [[$1]] patungo sa [[$2]]',
-'protect-backlink'            => '← $1',
 'protect-legend'              => 'Pagtibayin/tiyakin ang panananggalang',
 'protectcomment'              => 'Dahilan:',
 'protectexpiry'               => 'Magtatapos sa:',

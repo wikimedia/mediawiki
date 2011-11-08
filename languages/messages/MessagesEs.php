@@ -697,7 +697,6 @@ Puede que contenga uno o más caracteres que no se pueden usar en los títulos.'
 Función: $1<br />
 Consulta: $2',
 'viewsource'           => 'Ver fuente',
-'viewsourcefor'        => 'para $1',
 'actionthrottled'      => 'Acción bloqueada',
 'actionthrottledtext'  => "Como medida contra el ''spam'', la acción que estás realizando está limitada a un número determinado de veces en un periodo corto de tiempo, y has excedido ese límite. Por favor inténtalo de nuevo en unos minutos.",
 'protectedpagetext'    => 'Esta página ha sido protegida para evitar su edición.',

@@ -334,7 +334,6 @@ $messages = array(
 Æндæр исчи йæ аппæрста мыййаг.',
 'badtitle'             => 'Æнæмбæлон сæргонд',
 'viewsource'           => 'Код кæсын',
-'viewsourcefor'        => 'Фарс «$1»',
 'protectedpagetext'    => 'Ацы фарс у ивынæй æхгæд.',
 'viewsourcetext'       => 'Ацы фарсы код фенæн æмæ халдих кæнæн ис:',
 'ns-specialprotected'  => 'Сæрмагонд фæрстæ ({{ns:special}}) баивæн нæй.',

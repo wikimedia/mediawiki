@@ -425,7 +425,6 @@ Estos datos nun se refrescarán nestos momentos.",
 Función: $1<br />
 Consulta: $2',
 'viewsource'           => 'Ver códigu fonte',
-'viewsourcefor'        => 'pa $1',
 'actionthrottled'      => 'Aición llendada',
 'actionthrottledtext'  => "Como midida anti-spam, nun se pue repetir esta aición munches vegaes en pocu tiempu, y trespasasti esi llímite.
 Por favor vuelve a tentalo dientro d'unos minutos.",

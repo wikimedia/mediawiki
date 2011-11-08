@@ -645,7 +645,6 @@ See võib sisaldada ühte või enamat märki, mida ei saa pealkirjades kasutada.
 Funktsioon: $1<br />
 Päring: $2',
 'viewsource'           => 'Vaata lähteteksti',
-'viewsourcefor'        => '$1',
 'actionthrottled'      => 'Toiming nurjus',
 'actionthrottledtext'  => 'Rämpsmuudatuste vastase meetmena pole sul lühikse aja jooksul seda toimingut liiga palju kordi lubatud sooritada. Sa oled lühikse aja jooskul seda toimingut liiga palju kordi sooritanud.
 Palun proovi mõne minuti pärast uuesti.',
@@ -1595,7 +1594,6 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'recentchangeslinked-feed'     => 'Seotud muudatused',
 'recentchangeslinked-toolbox'  => 'Seotud muudatused',
 'recentchangeslinked-title'    => 'Leheküljega "$1" seotud muudatused',
-'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Antud ajavahemiku jooksul ei ole lingitud lehekülgedel muudatusi tehtud.',
 'recentchangeslinked-summary'  => "Siin on loetletud määratud leheküljelt viidatud (või määratud kategooria) lehekülgedel tehtud viimased muudatused.
 Sinu [[Special:Watchlist|jälgimisloendi]] leheküljed on  '''rasvaselt''' esile toodud.",
@@ -2180,7 +2178,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule \"
 'watchmethod-list'     => 'jälgitavate lehekülgede viimased muudatused',
 'watchlistcontains'    => 'Sinu jälgimisloendis on $1 {{PLURAL:$1|lehekülg|lehekülge}}.',
 'iteminvalidname'      => "Probleem üksusega '$1'. Selle nimes on viga.",
-'wlnote'               => "Allpool on {{PLURAL:$1|viimane muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|tunni|'''$2''' tunni}} jooksul.",
+'wlnote'               => "Allpool on {{PLURAL:$1|viimane muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|tunni|'''$2''' tunni}} jooksul seisuga $3, $4.",
 'wlshowlast'           => 'Näita viimast $1 tundi $2 päeva. $3',
 'watchlist-options'    => 'Jälgimisloendi võimalused',
 
@@ -2290,7 +2288,10 @@ Mine tagasi eelmisele leheküljele ja taaslaadi see, seejärel proovi uuesti.',
 'unprotectedarticle'          => 'eemaldas lehekülje "[[$1]]" kaitse',
 'movedarticleprotection'      => 'teisaldas kaitsesätted läheküljelt "[[$2]]" leheküljele "[[$1]]"',
 'protect-title'               => 'Lehekülje "$1" kaitsemäära muutmine',
+'protect-title-notallowed'    => 'Lehekülje "$1" kaitsemäära vaatamine',
 'prot_1movedto2'              => 'Lehekülg "[[$1]]" teisaldatud pealkirja "[[$2]]" alla',
+'protect-badnamespace-title'  => 'Kaitstamatu nimeruum',
+'protect-badnamespace-text'   => 'Selles nimeruumis olevaid lehekülgi ei saa kaitsta.',
 'protect-legend'              => 'Kaitse kinnitamine',
 'protectcomment'              => 'Põhjus:',
 'protectexpiry'               => 'Aegub:',
@@ -2380,6 +2381,7 @@ Link võib olla kõlbmatu või redaktsioon võib olla taastatud või arhiivist e
 
 [[Special:Log/delete|Kustutamise logist]] võib leida loendi viimastest kustutamistest ja taastamistest.",
 'undelete-header'              => 'Hiljuti kustutatud leheküljed leiad [[Special:Log/delete|kustutamislogist]].',
+'undelete-search-title'        => 'Kustutatud lehekülgede otsimine',
 'undelete-search-box'          => 'Otsi kustutatud lehekülgi',
 'undelete-search-prefix'       => 'Näita lehekülgi, mille pealkiri algab nii:',
 'undelete-search-submit'       => 'Otsi',
@@ -2389,6 +2391,7 @@ Link võib olla kõlbmatu või redaktsioon võib olla taastatud või arhiivist e
 'undelete-cleanup-error'       => 'Kasutamata arhiivifaili "$1" kustutamine ebaõnnestus.',
 'undelete-missing-filearchive' => 'Failiarhiivi tunnusega $1 ei saa taastada, sest seda pole andmebaasis.
 Võimalik, et see on juba taastatud.',
+'undelete-error'               => 'Tõrge lehekülje taastamisel',
 'undelete-error-short'         => 'Faili $1 taastamine ebaõnnestus',
 'undelete-error-long'          => 'Faili taastamine ebaõnnestus:
 

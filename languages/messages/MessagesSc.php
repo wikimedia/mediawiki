@@ -381,7 +381,6 @@ Podet èsser stadu burradu dae calicunu àteru.',
 'badtitle'            => 'Tìtulu malu',
 'badtitletext'        => "Su tìtulu de sa pàgina ch'as pediu est bùidu, isballiau, o iscritu in is cullegamentus inter-wiki in manera non currègia o cun caràteres no amìtius.",
 'viewsource'          => 'Càstia mitza',
-'viewsourcefor'       => 'pro $1',
 'actionthrottled'     => 'Atzione rimandada',
 'sqlhidden'           => '(Consulta SQL cuada)',
 'namespaceprotected'  => "Non tenes su permissu de acontzare is pàginas in su nùmene-lugu '''$1'''.",
@@ -826,15 +825,14 @@ Prova a seberare ''totu:'' pro chircare in totu su cuntènnidu (inclùdidas pàg
 'rc-enhanced-hide'               => 'Cua particulares',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Mudàntzias ligadas',
-'recentchangeslinked-feed'     => 'Mudàntzias ligadas',
-'recentchangeslinked-toolbox'  => 'Mudàntzias ligadas',
-'recentchangeslinked-title'    => 'Mudàntzias ligadas a "$1"',
-'recentchangeslinked-backlink' => '← $1',
-'recentchangeslinked-summary'  => "Custa est una lista de is mudàntzias fatas dae pagu a is pàginas ligadas a cussa spetzificada.
+'recentchangeslinked'         => 'Mudàntzias ligadas',
+'recentchangeslinked-feed'    => 'Mudàntzias ligadas',
+'recentchangeslinked-toolbox' => 'Mudàntzias ligadas',
+'recentchangeslinked-title'   => 'Mudàntzias ligadas a "$1"',
+'recentchangeslinked-summary' => "Custa est una lista de is mudàntzias fatas dae pagu a is pàginas ligadas a cussa spetzificada.
 Is pàginas de sa [[Special:Watchlist|watchlist tua]] sunt in '''grassu'''.",
-'recentchangeslinked-page'     => 'Nùmene pàgina:',
-'recentchangeslinked-to'       => 'Ammustra feti mudàntzias a pàginas ligadas a cussa spetzificada',
+'recentchangeslinked-page'    => 'Nùmene pàgina:',
+'recentchangeslinked-to'      => 'Ammustra feti mudàntzias a pàginas ligadas a cussa spetzificada',
 
 # Upload
 'upload'              => 'Càrriga file',
@@ -911,12 +909,10 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentada prus b
 'shared-repo-from'          => 'dae $1',
 
 # File reversion
-'filerevert-backlink' => '← $1',
-'filerevert-comment'  => 'Motivu:',
+'filerevert-comment' => 'Motivu:',
 
 # File deletion
 'filedelete'                  => 'Cantzella $1',
-'filedelete-backlink'         => '← $1',
 'filedelete-legend'           => 'Cantzella su file',
 'filedelete-submit'           => 'Cantzella',
 'filedelete-success'          => "Su file '''$1''' est istadu fuliau.",
@@ -1086,7 +1082,6 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'excontentauthor'       => "su cuntènnidu fiat: '$1' (e s'ùnicu contribudori fiat '[[Special:Contributions/$2|$2]]')",
 'exblank'               => 'sa pàgina fiat bùida',
 'delete-confirm'        => 'Fùlia "$1"',
-'delete-backlink'       => '← $1',
 'delete-legend'         => 'Fuliare',
 'confirmdeletetext'     => "Ses acanta de burrare una pàgina cun totu su stòria sua.
 Pro praxere, cunfirma ca est intentzione tua fàgher custu, ca connosches is cosseguèntzias de s'atzione tua, a ca custa est cunforma a is [[{{MediaWiki:Policy-url}}|lìnias polìticas]].",
@@ -1113,7 +1108,6 @@ s'ùrtimu contribuidore est s'ùnicu autore de custa pàgina.",
 'protectlogpage'              => 'Amparaduras',
 'protectedarticle'            => 'at amparau "[[$1]]"',
 'modifiedarticleprotection'   => 'at cambiau su livellu de amparadura pro "[[$1]]"',
-'protect-backlink'            => '← $1',
 'protectcomment'              => 'Motivu:',
 'protectexpiry'               => 'Iscadèntzia:',
 'protect_expiry_invalid'      => "S'iscadèntzia est imbàlida.",
@@ -1195,7 +1189,6 @@ Chi est istada creada una pàgina cun su matessi tìtulu, is revisiones recupera
 'whatlinkshere'            => 'Pàginas chi ligant a custa',
 'whatlinkshere-title'      => 'Pàginas chi ligant a "$1"',
 'whatlinkshere-page'       => 'Pàgina:',
-'whatlinkshere-backlink'   => '← $1',
 'linkshere'                => "Sas pàginas chi sighint ligant a '''[[:$1]]''':",
 'nolinkshere'              => "Peruna pàgina ligat a '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Peruna pàgina ligat a '''[[:$1]]''' in su nùmene-logu seberadu.",
