@@ -404,7 +404,7 @@ class ApiMain extends ApiBase {
 	}
 
 	protected function sendCacheHeaders() {
-		global $wgUseXVO, $wgOut, $wgVaryOnXFP;
+		global $wgUseXVO, $wgVaryOnXFP;
 		$response = $this->getRequest()->response();
 
 		if ( $this->mCacheMode == 'private' ) {
@@ -416,11 +416,12 @@ class ApiMain extends ApiBase {
 			$xfp = $wgVaryOnXFP ? ', X-Forwarded-Proto' : '';
 			$response->header( 'Vary: Accept-Encoding, Cookie' . $xfp );
 			if ( $wgUseXVO ) {
+				$out = $this->getOutput();
 				if ( $wgVaryOnXFP ) {
-					$wgOut->addVaryHeader( 'X-Forwarded-Proto' );
+					$out->addVaryHeader( 'X-Forwarded-Proto' );
 				}
-				$response->header( $wgOut->getXVO() );
-				if ( $wgOut->haveCacheVaryCookies() ) {
+				$response->header( $out->getXVO() );
+				if ( $out->haveCacheVaryCookies() ) {
 					// Logged in, mark this request private
 					$response->header( 'Cache-Control: private' );
 					return;
