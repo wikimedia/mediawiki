@@ -494,22 +494,15 @@ class MediaWiki {
 				// Continue...
 			case 'edit':
 				if ( wfRunHooks( 'CustomEditor', array( $article, $user ) ) ) {
-					$internal = $request->getVal( 'internaledit' );
-					$external = $request->getVal( 'externaledit' );
-					$section = $request->getVal( 'section' );
-					$oldid = $request->getVal( 'oldid' );
-					if ( !$wgUseExternalEditor || $act == 'submit' || $internal ||
-					   $section || $oldid ||
-					   ( !$user->getOption( 'externaleditor' ) && !$external ) )
+					if ( ExternalEdit::useExternalEngine( $this->context, 'edit' )
+						&& $act == 'edit' && !$request->getVal( 'section' )
+						&& !$request->getVal( 'oldid' ) )
 					{
+						$extedit = new ExternalEdit( $this->context );
+						$extedit->execute();
+					} else {
 						$editor = new EditPage( $article );
-						$editor->submit();
-					} elseif ( $wgUseExternalEditor
-						&& ( $external || $user->getOption( 'externaleditor' ) ) )
-					{
-						$mode = $request->getVal( 'mode' );
-						$extedit = new ExternalEdit( $article->getTitle(), $mode );
-						$extedit->edit();
+						$editor->edit();
 					}
 				}
 				break;

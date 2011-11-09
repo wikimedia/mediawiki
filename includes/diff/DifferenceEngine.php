@@ -204,39 +204,27 @@ class DifferenceEngine {
 			throw new PermissionsError( 'read', $permErrors );
 		}
 
+		/// @todo Make RequestContext::getMain() go away when we have a context available
+		$context = RequestContext::getMain();
+
 		# If external diffs are enabled both globally and for the user,
 		# we'll use the application/x-external-editor interface to call
 		# an external diff tool like kompare, kdiff3, etc.
-		if ( $wgUseExternalEditor && $wgUser->getOption( 'externaldiff' ) ) {
-			global $wgCanonicalServer, $wgScript, $wgLang;
-			$wgOut->disable();
-			header ( "Content-type: application/x-external-editor; charset=UTF-8" );
-			# This should be mOldPage, but it may not be set, see below.
-			$url1 = $this->mNewPage->getCanonicalURL( array(
-				'action' => 'raw',
-				'oldid' => $this->mOldid
-			) );
-			$url2 = $this->mNewPage->getCanonicalURL( array(
-				'action' => 'raw',
-				'oldid' => $this->mNewid
-			) );
-			$special = $wgLang->getNsText( NS_SPECIAL );
-			$control = <<<CONTROL
-			[Process]
-			Type=Diff text
-			Engine=MediaWiki
-			Script={$wgCanonicalServer}{$wgScript}
-			Special namespace={$special}
+		if ( ExternalEdit::useExternalEngine( $context, 'diff' ) ) {
+			$urls = array(
+				'File' => array( 'Extension' => 'wiki', 'URL' =>
+					# This should be mOldPage, but it may not be set, see below.
+					$this->mNewPage->getCanonicalURL( array(
+						'action' => 'raw', 'oldid' => $this->mOldid ) )
+				),
+				'File2' => array( 'Extension' => 'wiki', 'URL' =>
+					$this->mNewPage->getCanonicalURL( array(
+						'action' => 'raw', 'oldid' => $this->mNewid ) )
+				),
+			);
 
-			[File]
-			Extension=wiki
-			URL=$url1
-
-			[File 2]
-			Extension=wiki
-			URL=$url2
-CONTROL;
-			echo( $control );
+			$externalEditor = new ExternalEdit( $context, $urls );
+			$externalEditor->execute();
 
 			wfProfileOut( __METHOD__ );
 			return;
