@@ -493,6 +493,7 @@ production.
   under Microsoft SQL.
 * (bug 29912) Unit tests break if parsertest tables are still present
 * (bug 31990) justify paragraphs pref adds extra space to category listing
+* (bug 20148) Better title for [[Special:Disambiguations]] page
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
