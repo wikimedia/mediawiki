@@ -18,6 +18,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	protected $successMessage;
 
+	protected $toc;
+
 	public function __construct(){
 		parent::__construct( 'EditWatchlist' );
 	}
@@ -86,6 +88,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				if( $form->show() ){
 					$out->addHTML( $this->successMessage );
 					$out->returnToMain();
+				} elseif ( $this->toc !== false ) {
+					$out->prependHTML( $this->toc );
 				}
 				break;
 		}
@@ -391,6 +395,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		global $wgContLang;
 
 		$fields = array();
+		$count = 0;
 
 		$haveInvalidNamespaces = false;
 		foreach( $this->getWatchlistInfo() as $namespace => $pages ){
@@ -398,10 +403,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$haveInvalidNamespaces = true;
 				continue;
 			}
-		
-			$namespace == NS_MAIN
-				? wfMsgHtml( 'blanknamespace' )
-				: htmlspecialchars( $wgContLang->getFormattedNsText( $namespace ) );
 
 			$fields['TitlesNs'.$namespace] = array(
 				'class' => 'EditWatchlistCheckboxSeriesField',
@@ -413,6 +414,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$title = Title::makeTitleSafe( $namespace, $dbkey );
 				$text = $this->buildRemoveLine( $title, $redirect );
 				$fields['TitlesNs'.$namespace]['options'][$text] = $title->getEscapedText();
+				$count++;
 			}
 		}
 		if ( $haveInvalidNamespaces ) {
@@ -420,7 +422,22 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			$this->getContext()->getUser()->cleanupWatchlist();
 		}
 
-		$form = new EditWatchlistNormalHTMLForm( $fields );
+		if ( count( $fields ) > 1 && $count > 30 ) {
+			$this->toc = Linker::tocIndent();
+			$tocLength = 0;
+			foreach( $fields as $key => $data ) {
+				$ns = substr( $data['section'], 2 );
+				$nsText = $ns == NS_MAIN
+					? wfMsgHtml( 'blanknamespace' )
+					: htmlspecialchars( $wgContLang->getFormattedNsText( $ns ) );
+				$this->toc .= Linker::tocLine( "mw-htmlform-{$data['section']}", $nsText, ++$tocLength, 1 ) . Linker::tocLineEnd();
+			}
+			$this->toc = Linker::tocList( $this->toc );
+		} else {
+			$this->toc = false;
+		}
+
+		$form = new EditWatchlistNormalHTMLForm( $fields, $this->getContext() );
 		$form->setTitle( $this->getTitle() );
 		$form->setSubmitText( wfMessage( 'watchlistedit-normal-submit' )->text() );
 		$form->setWrapperLegend( wfMessage( 'watchlistedit-normal-legend' )->text() );
