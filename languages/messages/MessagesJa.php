@@ -2146,7 +2146,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'listusers-editsonly'     => '投稿記録のある利用者のみを表示',
 'listusers-creationsort'  => '作成日順に整列',
 'usereditcount'           => '$1回の編集',
-'usercreated'             => '$1$2に作成',
+'usercreated'             => '$1$2に{{GENDER:$3|作成}}',
 'newpages'                => '新しいページ',
 'newpages-username'       => '利用者名：',
 'ancientpages'            => '最古のページ',

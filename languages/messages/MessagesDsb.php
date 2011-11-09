@@ -523,6 +523,7 @@ Pšosym daj to a pśisłušny URL [[Special:ListUsers/sysop|administratoroju]] k
 Funkcija: $1<br />
 Wótpšašanje: $2',
 'viewsource'           => 'Žrědło se wobglědaś',
+'viewsource-title'     => 'Žrědłowy tekst za $1 se woglědaś',
 'actionthrottled'      => 'Akcije limitowane',
 'actionthrottledtext'  => 'Ako napšawa pśeśiwo spamoju, móžoš toś tu akciju jano někotare raze we wěstym case wuwjasć. Sy toś ten limit dośěgnuł. Pšosym wopytaj za někotare minuty hyšći raz.',
 'protectedpagetext'    => 'Wobźěłanje toś togo boka jo se znjemóžniło.',
@@ -1769,7 +1770,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'statistics-users-active-desc' => 'Wužywarje, kótarež su {{PLURAL:$1|cora|w slědnyma $1 dnjoma|w slědnych $1 dnjach|w slědnych $1 dnjach}} aktiwne byli',
 'statistics-mostpopular'       => 'Nejwěcej woglědane boki',
 
-'disambiguations'      => 'Rozjasnjenja zapśimjeśow',
+'disambiguations'      => 'Boki, kótarež wótkazuju na boki wěcejzmysłowosći',
 'disambiguationspage'  => 'Template:Rozjasnjenje zapśimjeśow',
 'disambiguations-text' => 'Slědujuce boki wótkazuju na bok za rozjasnjenje zapśimjeśow.
 Wótkazujśo lubjej na pótrjefjony bok.<br />
@@ -2959,6 +2960,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-iimversion'                  => 'IIM-wersija',
 'exif-iimcategory'                 => 'Kategorija',
 'exif-iimsupplementalcategory'     => 'Pśidatne kategorije',
+'exif-datetimeexpires'             => 'Njewužywaś pó',
 'exif-identifier'                  => 'Identifikator',
 'exif-serialnumber'                => 'Serijowy numer kamery',
 'exif-cameraownername'             => 'Wobsejźaŕ kamery',

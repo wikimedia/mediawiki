@@ -856,13 +856,68 @@ $3共禁止的原因是 ''$2''。",
 'revdelete-hide-comment'      => '隱藏編輯概要',
 'revdelete-hide-user'         => '隱藏編輯者的名稱抑 IP 地址',
 'revdelete-hide-restricted'   => '對系統管理員佮其他人攏掩崁資料',
+'revdelete-radio-same'        => '（毋共改）',
+'revdelete-radio-set'         => '是',
+'revdelete-radio-unset'       => '毋是',
+'revdelete-suppress'          => '對系統管理員佮其他人攏掩崁資料',
 'revdelete-unsuppress'        => '共恢復的修訂本徙掉限制',
+'revdelete-log'               => '理由：',
+'revdelete-submit'            => '對所選的{{PLURAL:$1|修訂本}}來施實',
+'revdelete-success'           => "'''改修訂本是毋是通予人看，已經改好矣'''",
+'revdelete-failure'           => "'''改修訂本是毋是通予人看的動作無成功'''
+$1",
+'logdelete-success'           => "'''事件的可見性質已經成功設定'''",
+'logdelete-failure'           => "'''事件的可見性質無法度設定：'''
+$1",
 'revdel-restore'              => '改敢看會著',
 'revdel-restore-deleted'      => '刣掉去的修訂本',
 'revdel-restore-visible'      => '看會著的修訂本',
+'pagehist'                    => '頁的歷史',
+'deletedhist'                 => '已經刣掉的歷史',
+'revdelete-hide-current'      => '當咧隱藏佇$1 $2的項目錯誤：這是這馬的修訂本，袂使隱藏。',
+'revdelete-show-no-access'    => '當咧顯示佇$1 $2的項目錯誤：這个項目已經標示做"有限制"，
+你袂當處理。',
+'revdelete-modify-no-access'  => "當欲改$1 $2項目的錯誤：這个項目已經標示做''有限制''，
+你袂當處理。",
+'revdelete-modify-missing'    => '當咧改項目編號 $1錯誤：伊對資料庫當中消失！',
+'revdelete-no-change'         => "'''提醒'''：佇$1 $2的項目已經有人請求可見性質的設定。",
+'revdelete-concurrent-change' => '錯誤佇欲改$1 $2的項目：當你欲改伊的設定時，已經有另外的人共改過。
+請檢查記錄。',
+'revdelete-only-restricted'   => '錯誤佇欲隱藏$1 $2的項目時發生：你袂當一方面選擇一項另外的可見性質，閣不准管理員看彼項目。',
+'revdelete-reason-dropdown'   => '*捷用的刣掉理由
+** 侵犯版權
+** 不適合的個人資料
+** 可能是誹謗資料',
+'revdelete-otherreason'       => '其他／另外的理由：',
+'revdelete-reasonotherlist'   => '其他理由',
+'revdelete-edit-reasonlist'   => '編輯刣掉的理由',
+'revdelete-offender'          => '修訂本的編輯者：',
+
+# Suppression log
+'suppressionlog' => '隱藏記錄',
 
 # History merging
-'mergehistory-reason' => '理由：',
+'mergehistory'                     => '合併兩个頁的修改歷史:',
+'mergehistory-header'              => '這頁通予你合併一个頁的歷史到另外一个新的頁。
+會當予這改變更通接紲歷史頁。',
+'mergehistory-box'                 => '合併兩个頁的修訂本:',
+'mergehistory-from'                => '來源頁：',
+'mergehistory-into'                => '目標頁：',
+'mergehistory-list'                => '可以合併的編輯歷史',
+'mergehistory-merge'               => '下跤[[:$1]]的修訂本會使合併到[[:$2]]。用彼个選項鈕仔去合併只有佇指定時間進前所創建的修訂本。愛注意的是若使用導航連結就會重設這一欄。',
+'mergehistory-go'                  => '顯示通合併的編輯',
+'mergehistory-submit'              => '合併修訂本',
+'mergehistory-empty'               => '無修訂本通合併',
+'mergehistory-success'             => '[[:$1]]的{{PLURAL:$3|篇|篇}}修訂本已經成功合併到[[:$2]]。',
+'mergehistory-fail'                => '無法度進行歷史的合併，請重新檢查彼頁佮時間參數。',
+'mergehistory-no-source'           => '無$1這个來源頁',
+'mergehistory-no-destination'      => '無$1這个目標頁',
+'mergehistory-invalid-source'      => '來源頁愛有一个有效的標題',
+'mergehistory-invalid-destination' => '目標頁愛有一个有效的標題',
+'mergehistory-autocomment'         => '已經合併[[:$1]]到[[:$2]]',
+'mergehistory-comment'             => '已經合併[[:$1]]到[[:$2]]: $3',
+'mergehistory-same-destination'    => '來源頁佮目標頁袂使相仝',
+'mergehistory-reason'              => '理由：',
 
 # Merge log
 'mergelog'           => '合併記錄',
@@ -1596,5 +1651,9 @@ Nā-chún *m̄-sī* lí, chhiáⁿ mài tòe liân-kiat khì.  Chit tiuⁿ phoe 
 
 # Special:Tags
 'tag-filter' => '[[Special:Tags|標籤]]過濾器:',
+
+# New logging system
+'revdelete-restricted'   => '已經共限制用佇管裡員',
+'revdelete-unrestricted' => '徙走對管裡員的限制',
 
 );

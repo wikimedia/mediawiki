@@ -585,6 +585,7 @@ Pode conter un ou máis caracteres dos que non se poden empregar nos títulos.',
 Función: $1<br />
 Dúbida: $2',
 'viewsource'           => 'Ver o código fonte',
+'viewsource-title'     => 'Ver o código fonte de "$1"',
 'actionthrottled'      => 'Acción limitada',
 'actionthrottledtext'  => "Como unha medida de loita contra o ''spam'', limítase a realización desta acción a un número determinado de veces nun curto espazo de tempo, e vostede superou este límite.
 Inténteo de novo nuns minutos.",
@@ -1921,7 +1922,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'statistics-users-active-desc' => 'Usuarios que teñen levado a cabo unha acción {{PLURAL:$1|no último día|nos últimos $1 días}}',
 'statistics-mostpopular'       => 'Páxinas máis vistas',
 
-'disambiguations'      => 'Páxinas de homónimos',
+'disambiguations'      => 'Páxinas que ligan con páxinas de homónimos',
 'disambiguationspage'  => 'Template:Homónimos',
 'disambiguations-text' => "As seguintes páxinas ligan cunha '''páxina de homónimos'''.
 No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />

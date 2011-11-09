@@ -551,6 +551,7 @@ Morda vsebuje enega ali več nepodprtih znakov.',
 Funkcija: $1<br />
 Poizvedba: $2',
 'viewsource'           => 'Izvorno besedilo',
+'viewsource-title'     => 'Ogled vira $1',
 'actionthrottled'      => 'Dejanje zaustavljeno',
 'actionthrottledtext'  => 'Kot ukrep proti smetju, je število izvajanj tega dejanja v časovnem obdobju omejeno, in vi ste ta limit presegli.
 Prosimo, poskusite znova čez nekaj minut.',
@@ -1887,7 +1888,7 @@ Preden jih izbrišete, preverite še druge povezave nanje.',
 'statistics-users-active-desc' => 'Uporabniki, ki so izvedli dejanje v {{PLURAL:$1|zadnjem dnevu|zadnjih $1 dneh}}',
 'statistics-mostpopular'       => 'Strani z največ ogledi',
 
-'disambiguations'      => 'Razločitvene strani',
+'disambiguations'      => 'Strani s povezavami na razločitvene strani',
 'disambiguationspage'  => 'Template:Razločitev',
 'disambiguations-text' => "Naslednje strani se povezujejo na '''razločitvene strani'''.
 Namesto tega bi se naj povezovale na primerno temo.<br />

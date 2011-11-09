@@ -1049,7 +1049,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 
 # User preference: e-mail validation using jQuery
 'email-address-validity-valid'   => 'E-pasta adrese šķiet derīga',
-'email-address-validity-invalid' => 'Ievadi derīgu e-pasta adresi',
+'email-address-validity-invalid' => 'Ievadiet derīgu e-pasta adresi',
 
 # User rights
 'userrights'                  => 'Lietotāju tiesību pārvaldība',
