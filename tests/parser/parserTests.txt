@@ -8713,6 +8713,34 @@ Text&apos;s been normalized?
 </p>
 !! end
 
+!! article
+Mediawiki:loop1
+!! text
+{{Identical|A}}
+!! endarticle
+
+!! article
+Mediawiki:loop2
+!! text
+{{Identical|B}}
+!! endarticle
+
+!! article
+Template:Identical
+!! text
+{{int:loop1}}
+{{int:loop2}}
+!! endarticle
+
+!! test
+Bug 31098 Template which includes system messages which includes the template
+!! options
+disabled
+!! input
+{{Identical}}
+!! result
+...
+!! end
 
 !! test
 Bug31490 Turkish: ucfirst 'blah'
@@ -8769,34 +8797,6 @@ language=en
 </p>
 !! end
 
-!! article
-Mediawiki:loop1
-!! text
-{{Identical|A}}
-!! endarticle
-
-!! article
-Mediawiki:loop2
-!! text
-{{Identical|B}}
-!! endarticle
-
-!! article
-Template:Identical
-!! text
-{{int:loop1}}
-{{int:loop2}}
-!! endarticle
-
-!! test
-Bug 31098 Template which includes system messages which includes the template
-!! options
-disabled
-!! input
-{{Identical}}
-!! result
-...
-!! end
 
 TODO:
 more images
