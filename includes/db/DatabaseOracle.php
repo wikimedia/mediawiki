@@ -745,7 +745,7 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseOracle::duplicateTableStructure' ) {
-		$temporary = $temporary ? 'TRUE' : 'FALSE';
+		$temporary = 'FALSE'; //$temporary ? 'TRUE' : 'FALSE';
 
 		$newName = strtoupper( $newName );
 		$oldName = strtoupper( $oldName );
@@ -768,9 +768,9 @@ class DatabaseOracle extends DatabaseBase {
 
 		// dirty code ... i know
 		$endArray = array();
-		$endArray[] = $prefix.'MWUSER';
-		$endArray[] = $prefix.'PAGE';
-		$endArray[] = $prefix.'IMAGE';
+		$endArray[] = strtoupper($prefix.'MWUSER');
+		$endArray[] = strtoupper($prefix.'PAGE');
+		$endArray[] = strtoupper($prefix.'IMAGE');
 		$fixedOrderTabs = $endArray;
 		while (($row = $result->fetchRow()) !== false) {
 			if (!in_array($row['table_name'], $fixedOrderTabs))

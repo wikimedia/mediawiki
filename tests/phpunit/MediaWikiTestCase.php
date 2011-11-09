@@ -125,6 +125,22 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->db->insert( 'user', array(
 				'user_id' 		=> 0,
 				'user_name'   	=> 'Anonymous' ) );
+
+			# Insert 0 page to prevent FK violations
+			# Blank page
+			$this->db->insert( 'page', array(
+				'page_id' => 0,
+				'page_namespace' => 0,
+				'page_title' => ' ',
+				'page_restrictions' => NULL,
+				'page_counter' => 0,
+				'page_is_redirect' => 0,
+				'page_is_new' => 0,
+				'page_random' => 0,
+				'page_touched' => $this->db->timestamp(),
+				'page_latest' => 0,
+				'page_len' => 0 ) );
+
 		}
 	}
 
@@ -134,8 +150,28 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	private function resetDB() {
 		if( $this->db ) {
 			foreach( $this->listTables() as $tbl ) {
-				if( $tbl == 'interwiki' || $tbl == 'user' ) continue;
-				$this->db->delete( $tbl, '*', __METHOD__ );
+				if( $tbl == 'interwiki' || $tbl == 'user' || $tbl == 'MWUSER' ) continue;
+				if ( $this->db->getType() == 'oracle' ) 
+					$this->db->query( 'TRUNCATE TABLE '.$this->db->tableName($tbl), __METHOD__ );
+				else
+					$this->db->delete( $tbl, '*', __METHOD__ );
+			}
+
+			if ( $this->db->getType() == 'oracle' ) {
+				# Insert 0 page to prevent FK violations
+				# Blank page
+				$this->db->insert( 'page', array(
+					'page_id' => 0,
+					'page_namespace' => 0,
+					'page_title' => ' ',
+					'page_restrictions' => NULL,
+					'page_counter' => 0,
+					'page_is_redirect' => 0,
+					'page_is_new' => 0,
+					'page_random' => 0,
+					'page_touched' => $this->db->timestamp(),
+					'page_latest' => 0,
+					'page_len' => 0 ) );
 			}
 		}
 	}
