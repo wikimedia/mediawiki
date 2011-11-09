@@ -222,9 +222,7 @@ class Hooks {
 
 			/* String return is an error; false return means stop processing. */
 			if ( is_string( $retval ) ) {
-				global $wgOut;
-				$wgOut->showFatalError( $retval );
-				return false;
+				throw new FatalError( $retval );
 			} elseif( $retval === null ) {
 				if ( $closure ) {
 					$prettyFunc = "$event closure";
