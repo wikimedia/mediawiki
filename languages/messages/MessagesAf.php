@@ -565,6 +565,7 @@ Indien dit nie die geval is nie, het u moontlik 'n fout in die sagteware ontdek.
 'badarticleerror'      => 'Die aksie kon nie op hierdie bladsy uitgevoer word nie.',
 'cannotdelete'         => 'Die bladsy of lêer "$1" kon nie skrap word nie.
 Iemand anders het dit moontlik reeds geskrap.',
+'cannotdelete-title'   => 'Bladsy "$1" kan nie verwyder word nie',
 'badtitle'             => 'Ongeldige titel',
 'badtitletext'         => "Die bladsytitel waarvoor gevra is, is ongeldig, leeg, of
 'n verkeerd geskakelde tussen-taal of tussen-wiki titel.",
@@ -575,6 +576,7 @@ Iemand anders het dit moontlik reeds geskrap.',
 Funksie: $1<br />
 Navraag: $2',
 'viewsource'           => 'Bekyk bronteks',
+'viewsource-title'     => 'Wys bron van $1',
 'actionthrottled'      => 'Outo-rem op aksie uitgevoer',
 'actionthrottledtext'  => "As 'n teen-strooi aksie, word u beperk om hierdie aksie te veel keer in 'n kort tyd uit te voer, en u het hierdie limiet oorskry.
 Probeer asseblief weer oor 'n paar minute.",

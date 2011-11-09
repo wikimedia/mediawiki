@@ -725,6 +725,7 @@ La suppression a peut-être déjà été effectuée par quelqu’un d’autre.',
 Fonction : $1<br />
 Requête : $2',
 'viewsource'           => 'Voir le texte source',
+'viewsource-title'     => 'Voir la source de $1',
 'actionthrottled'      => 'Action limitée',
 'actionthrottledtext'  => 'Pour lutter contre les pourriels, l’utilisation de cette action est limitée à un certain nombre de fois dans un laps de temps assez court. Il s’avère que vous avez dépassé cette limite.
 Essayez à nouveau dans quelques minutes.',
@@ -2018,7 +2019,7 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 'statistics-users-active-desc' => 'Utilisateurs ayant fait au moins une action durant {{PLURAL:$1|le dernier jours|les $1 derniers jours}}',
 'statistics-mostpopular'       => 'Pages les plus consultées',
 
-'disambiguations'      => 'Pages d’homonymie',
+'disambiguations'      => 'Pages ayant des liens vers des pages d’homonymie',
 'disambiguationspage'  => 'Template:Homonymie',
 'disambiguations-text' => "Les pages suivantes comportent un lien vers une '''page d’homonymie'''.
 Ces liens ambigus devraient plutôt pointer vers le bon article.<br />

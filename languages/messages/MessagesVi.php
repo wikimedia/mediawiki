@@ -657,7 +657,7 @@ Xin hãy báo nó cho một [[Special:ListUsers/sysop|bảo quản viên]], tron
 Hàm: $1<br />
 Truy vấn: $2',
 'viewsource'           => 'Xem mã nguồn',
-'viewsourcefor'        => 'đối với $1',
+'viewsource-title'     => 'Xem mã nguồn của $1',
 'actionthrottled'      => 'Thao tác bị giới hạn',
 'actionthrottledtext'  => 'Để nhằm tránh spam, bạn không thể thực hiện thao tác này quá nhiều lần trong một thời gian ngắn.  Xin hãy chờ vài phút trước khi thực hiện lại.',
 'protectedpagetext'    => 'Trang này đã bị khóa không cho sửa đổi.',
@@ -1500,7 +1500,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'right-deleterevision'        => 'Xóa và phục hồi phiên bản nào đó của trang',
 'right-deletedhistory'        => 'Xem phần lịch sử đã xóa, mà không xem nội dung đi kèm',
 'right-deletedtext'           => 'Xem văn bản đã xóa và các thay đổi giữa phiên bản đã xóa',
-'right-browsearchive'         => 'Tìm những trang đã xóa',
+'right-browsearchive'         => 'Tìm kiếm trang đã bị xóa',
 'right-undelete'              => 'Phục hồi trang',
 'right-suppressrevision'      => 'Xem lại và phục hồi phiên bản mà Sysop không thấy',
 'right-suppressionlog'        => 'Xem nhật trình riêng tư',
@@ -1560,7 +1560,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'action-delete'               => 'xóa trang này',
 'action-deleterevision'       => 'xóa phiên bản này',
 'action-deletedhistory'       => 'xem các phiên bản đã bị xóa của trang này',
-'action-browsearchive'        => 'tìm trong các trang đã bị xóa',
+'action-browsearchive'        => 'tìm kiếm trang đã bị xóa',
 'action-undelete'             => 'phục hồi trang này',
 'action-suppressrevision'     => 'duyệt và phục hồi phiên bản bị giấu này',
 'action-suppressionlog'       => 'xem nhật trình ẩn giấu này',
@@ -1957,7 +1957,7 @@ Hãy nhớ kiểm tra các liên kết khác đến bản mẫu trước khi xó
 'statistics-users-active-desc' => 'Những thành viên đã hoạt động trong {{PLURAL:$1|ngày|$1 ngày}} qua',
 'statistics-mostpopular'       => 'Các trang được xem nhiều nhất',
 
-'disambiguations'      => 'Trang định hướng',
+'disambiguations'      => 'Trang liên kết đến trang định hướng',
 'disambiguationspage'  => 'Template:disambig',
 'disambiguations-text' => "Các trang này có liên kết đến một '''trang định hướng'''. Nên sửa các liên kết này để chỉ đến một trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những bản mẫu được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
@@ -2408,6 +2408,7 @@ một người nào khác đã phục hồi trang này rồi.',
 
 Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:Log/delete|nhật trình xóa]].",
 'undelete-header'              => 'Xem các trang bị xóa gần đây tại [[Special:Log/delete|nhật trình xóa]].',
+'undelete-search-title'        => 'Tìm kiếm trang đã bị xóa',
 'undelete-search-box'          => 'Tìm kiếm trang đã bị xóa',
 'undelete-search-prefix'       => 'Hiển thị trang có tiền tố:',
 'undelete-search-submit'       => 'Tìm kiếm',
@@ -2416,6 +2417,7 @@ Xem nhật trình xóa và phục hồi các trang gần đây tại [[Special:L
 'undelete-bad-store-key'       => 'Không thể phục hồi phiên bản tập tin tại thời điểm $1: tập tin không tồn tại trước khi xóa.',
 'undelete-cleanup-error'       => 'Có lỗi khi xóa các tập tin lưu trữ “$1” không được sử dụng.',
 'undelete-missing-filearchive' => 'Không thể phục hồi bộ tập tin có định danh $1 vì nó không nằm ở cơ sở dữ liệu. Có thể nó được phục hồi rồi.',
+'undelete-error'               => 'Lỗi khi phục hồi trang',
 'undelete-error-short'         => 'Có lỗi khi phục hồi tập tin: $1',
 'undelete-error-long'          => 'Xuất hiện lỗi khi phục hồi tập tin:
 

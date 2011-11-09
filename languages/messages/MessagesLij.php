@@ -138,7 +138,9 @@ $messages = array(
 'tog-editondblclick'          => 'Modifica e paggine co-o dópio clic (serve Javascrpt)',
 'tog-editsection'             => 'Modifica e seçión co-o colegamento [modifica]',
 'tog-editsectiononrightclick' => 'Modifica e seçión co-o clic destro in sciô tìtolo (serve Javascipt)',
+'tog-showtoc'                 => "Fanni védde l'indiçe pe-e pàgine con ciù de 3 seçioìn",
 'tog-rememberpassword'        => "Arregorda a mæ paròlla d'ordine (a-o màscimo pe $1 {{PLURAL:$1|day|days}})",
+'tog-watchcreations'          => 'Azónzi e pàgine a-i oservæ speciâli',
 'tog-previewontop'            => "Veddi l'anteprimma de d'äto a-o spaçio pe cangiâ",
 'tog-previewonfirst'          => "Veddi l'anteprimma a-o primmo cangiamento",
 'tog-enotifwatchlistpages'    => "Fammelo savéi via e-mail quande 'na paggina inta mæ lista in osservassion a va cangiaa.",
@@ -272,8 +274,8 @@ $messages = array(
 'protect'           => 'Proteze',
 'protect_change'    => 'cangiâ',
 'protectthispage'   => "Proteze 'sta paggina.",
-'unprotect'         => 'Sbloccâ',
-'unprotectthispage' => "Levâghe a protession a 'sta paggina",
+'unprotect'         => 'Càngia proteçión',
+'unprotectthispage' => 'Càngia a proteçión de sta paggina',
 'newpage'           => 'Nêuva pàgina',
 'talkpage'          => 'Paggina de discûxon',
 'talkpagelinktext'  => 'Ciæti',
@@ -378,9 +380,9 @@ Pe favô ti peu segnalâ quello che l'é sucesso a in [[Special:ListUsers/sysop|
 'viewsourcetext'     => "O l'è poscibbile vedde e copiâ o còddice sorgente de 'sta paggina:",
 
 # Login and logout pages
-'welcomecreation'            => "== Benvegnùo, $1! ==
+'welcomecreation'            => "== Benvegnûo, $1! ==
 
-O to account o l'è stæto creoö. Non te ascordà de cangiâ e toe preferençe de{{SITENAME}}.",
+O teu account o l'è stæto creòu bén. No te ascordâ de cangiâ e teu {{SITENAME}}.[[Special:Preferences|preferençe de {{SITENAME}}]].",
 'yourname'                   => 'Nomme',
 'yourpassword'               => 'Pòula segretta:',
 'yourpasswordagain'          => 'Scrivi tórna a pòula segrétta:',
@@ -388,11 +390,11 @@ O to account o l'è stæto creoö. Non te ascordà de cangiâ e toe preferençe 
 'yourdomainname'             => 'Indirisso do scito:',
 'login'                      => 'Intra',
 'nav-login-createaccount'    => 'Intra / Registrate',
-'loginprompt'                => "Ti deivi avéi e lesche (''cookies'') abilitæ into têu navigatô pe intrâ in {{SITENAME}}.",
+'loginprompt'                => 'Ti devi avéi i cookie abilitæ into teu navigatô pe intrâ in {{SITENAME}}.',
 'userlogin'                  => 'Intra / Registrate',
 'logout'                     => 'Sciorti',
 'userlogout'                 => 'Sciorti',
-'nologin'                    => "No ti g'æ ancon l'aceizo? '''$1'''.",
+'nologin'                    => "No ti gh'æ ancon l'aceizo? '''$1'''.",
 'nologinlink'                => "Creâ 'n account",
 'createaccount'              => "Crea 'n nêuvo account",
 'gotaccount'                 => "Ti ghe l'æ za 'n conto d'aceizo? '''$1'''.",
@@ -435,7 +437,7 @@ Pe abilitâ l'invîo de messaggi e-mail pe quest'accesso, o se deive seguî l'is
 'resetpass'           => 'Reverti a pòula segretta',
 'resetpass_header'    => 'Reverti a pòula segretta',
 'retypenew'           => "Ripette a nêuva paròlla d'ordine:",
-'resetpass_forbidden' => "E paròlle d'ordine no se pêuan cangiâ in {{SITENAME}}",
+'resetpass_forbidden' => "No l'é poscìbile cangiâ e paròlle segrétte",
 
 # Edit page toolbar
 'bold_sample'     => 'Grascetto',

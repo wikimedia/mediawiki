@@ -534,6 +534,7 @@ Et ka sinn datt et scho vun engem Anere geläscht gouf.',
 Funktioun: $1<br />
 Ufro: $2',
 'viewsource'           => 'Quelltext kucken',
+'viewsource-title'     => 'Quelltext vun der Säit $1 weisen',
 'actionthrottled'      => 'Dës Aktioun gouf gebremst',
 'actionthrottledtext'  => 'Fir géint de Spam virzegoen, ass dës Aktioun esou programméiert datt Dir se an enger kuerzer Zäit nëmme limitéiert dacks maache kënnt. Dir hutt dës Limite iwwerschratt. Versicht et w.e.g. an e puer Minutten nach eng Kéier.',
 'protectedpagetext'    => 'Dës Säit ass fir Ännerunge gespaart.',
@@ -1806,7 +1807,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
 'statistics-users-active-desc' => 'Benotzer déi während {{PLURAL:$1|dem leschten Dag|de leschten $1 Deeg}} eppes gemaach hunn',
 'statistics-mostpopular'       => 'Am meeschte gekuckte Säiten',
 
-'disambiguations'      => 'Homonymie Säiten',
+'disambiguations'      => 'Säiten déi op Homonymie-Säite linken',
 'disambiguationspage'  => 'Template:Homonymie',
 'disambiguations-text' => 'Dës Säite si mat enger Homonymie-Säit verlinkt.
 Sie sollten am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />

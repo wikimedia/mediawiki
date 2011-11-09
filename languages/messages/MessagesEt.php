@@ -1925,7 +1925,7 @@ Sisesta kujul tüüp/alamtüüp, näiteks <tt>image/jpeg</tt>.',
 'statistics-users-active-desc' => 'Kasutajad, kes on viimase {{PLURAL:$1|päeva|$1 päeva}} jooksul tegutsenud',
 'statistics-mostpopular'       => 'Enim vaadatud leheküljed',
 
-'disambiguations'      => 'Täpsustusleheküljed',
+'disambiguations'      => 'Leheküljed, mis lingivad täpsustuslehekülgedele',
 'disambiguationspage'  => 'Template:Täpsustuslehekülg',
 'disambiguations-text' => "Loetletud leheküljed viitavad '''täpsustusleheküljele'''.
 Selle asemel peaks nad olema lingitud sobivasse artiklisse.

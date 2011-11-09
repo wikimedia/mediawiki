@@ -660,6 +660,7 @@ $1',
 'querypage-no-updates' => '이 문서의 갱신이 현재 비활성화되어 있습니다. 자료가 잠시 갱신되지 않을 것입니다.',
 'wrong_wfQuery_params' => 'wfQuery()에서 잘못된 매개변수 발생<br />함수: $1<br />쿼리: $2',
 'viewsource'           => '내용 보기',
+'viewsource-title'     => '$1 문서 내용 보기',
 'actionthrottled'      => '동작 중지',
 'actionthrottledtext'  => '스팸을 막기 위해 짧은 시간 안에 이 작업을 너무 많이 하는 것을 막고 있습니다.
 제한을 넘었으니 몇 분 뒤에 새로 시도하세요.',
@@ -1374,6 +1375,8 @@ $1",
 'prefs-registration'            => '등록 일시:',
 'yourrealname'                  => '실명:',
 'yourlanguage'                  => '언어:',
+'yourvariant'                   => '언어 변종:',
+'prefs-help-variant'            => '위키 내용을 표시할 때 사용할 언어 변종이나 철자 체계를 선택해주세요.',
 'yournick'                      => '서명:',
 'prefs-help-signature'          => '토론 문서에 글을 남기실 때는 서명을 해 주세요. “<nowiki>~~~~</nowiki>”를 입력하시면 서명과 시간이 자동으로 입력됩니다.',
 'badsig'                        => '서명이 잘못되었습니다. HTML 태그를 확인해주세요.',
@@ -1548,6 +1551,7 @@ $1",
 'action-suppressionlog'       => '비공개 로그를 볼',
 'action-block'                => '이 사용자를 편집하지 못하도록 차단',
 'action-protect'              => '이 문서의 보호 설정을 변경하기',
+'action-rollback'             => '특정 문서를 마지막으로 편집한 사용자의 모든 편집을 간편하게 되돌리기',
 'action-import'               => '다른 위키에서 이 문서를 가져오기',
 'action-importupload'         => '파일 올리기를 통해 문서를 가져올',
 'action-patrol'               => '다른 사용자의 편집을 검토된 것으로 표시하기',
@@ -1936,7 +1940,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-users-active-desc' => '최근 $1일 동안 활동한 사용자',
 'statistics-mostpopular'       => '가장 많이 읽힌 문서',
 
-'disambiguations'      => '동음이의 문서 목록',
+'disambiguations'      => '동음이의 문서를 가리키는 문서 목록',
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => "다음의 문서들은 '''동음이의 문서'''를 가리키고 있습니다.
 그 링크를 다른 적절한 문서로 연결해 주어야 합니다.<br />
@@ -2076,7 +2080,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'sp-deletedcontributions-contribs' => '기여',
 
 # Special:LinkSearch
-'linksearch'       => '웹 링크 검색',
+'linksearch'       => '외부 링크 검색',
 'linksearch-pat'   => '검색 패턴:',
 'linksearch-ns'    => '이름공간:',
 'linksearch-ok'    => '검색',
@@ -2185,7 +2189,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'watchmethod-list'     => '최근 편집을 확인하고자 주시된 문서 확인',
 'watchlistcontains'    => '문서 $1개를 주시하고 있습니다.',
 'iteminvalidname'      => '"$1" 항목에 문제가 발생했습니다. 이름이 잘못되었습니다...',
-'wlnote'               => "다음은 최근 '''$2'''시간 동안 바뀐 문서 '''$1'''개 입니다.",
+'wlnote'               => "다음은 최근 '''$2'''시간 동안 바뀐 문서 '''$1'''개 입니다. ($3 $4 기준)",
 'wlshowlast'           => '최근 $1 시간 $2 일 또는 $3 동안에 바뀐 문서',
 'watchlist-options'    => '주시문서 목록 설정',
 
@@ -2383,6 +2387,7 @@ $UNWATCHURL
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제/복구 기록을 볼 수 있습니다.",
 'undelete-header'              => '최근에 삭제한 문서에 대한 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
+'undelete-search-title'        => '삭제된 문서 찾기',
 'undelete-search-box'          => '삭제된 문서 찾기',
 'undelete-search-prefix'       => '다음으로 시작하는 문서 보기:',
 'undelete-search-submit'       => '찾기',
@@ -2392,6 +2397,7 @@ $UNWATCHURL
 'undelete-cleanup-error'       => '사용되지 않는 보존된 파일 "$1"을 삭제하는 데 오류가 발생했습니다.',
 'undelete-missing-filearchive' => '데이터베이스에 존재하지 않기 때문에 파일 보존 ID가 $1인 파일을 복구할 수 없습니다.
 이미 복구되었을 수 있습니다.',
+'undelete-error'               => '문서 복구 중 오류',
 'undelete-error-short'         => '파일 복구 오류: $1',
 'undelete-error-long'          => '파일을 복구하는 중 오류 발생:
 

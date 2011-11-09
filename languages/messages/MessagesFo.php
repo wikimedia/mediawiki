@@ -431,13 +431,7 @@ Givin orsøk er "\'\'$2\'\'".',
 # Login and logout pages
 'logouttext'                 => "'''Tú hevur nú ritað út.'''
 Tú kanst halda fram at brúka {{SITENAME}} sum dulnevndur, ella kanst tú [[Special:UserLogin|logga á aftur]] sum sami ella sum annar brúkari. 
-Legg til merkis, at summar síður framvegis vera vístar, sum um tú enn vart loggaður á, til tú hevur reinsa tín brovsara fyri \"cache\".
-
-
-Tú kanst halda áfram at nýta {{SITENAME}} dulnevnt.
-Ella kanst tú rita inn aftur sum sami ella annar brúkari.
-Legg til merkis at summar síður kunnu framhaldandi síggja út
-sum tú hevur ritað inn til goymslan í sneytara tínum er ruddað.",
+Legg til merkis, at summar síður framvegis vera vístar, sum um tú enn vart loggaður á, til tú hevur reinsa tín brovsara fyri \"cache\".",
 'welcomecreation'            => '== Vælkomin, $1! ==
 
 Tín konta er nú stovnað.
@@ -647,7 +641,7 @@ Tann seinasta innritanin er víst niðanfyri sum ávísing:",
 'nextn'                 => 'næstu {{PLURAL:$1|$1}}',
 'prevn-title'           => 'Gomul $1 {{PLURAL:$1|úrslit|úrslit}}',
 'nextn-title'           => 'Næstu $1 {{PLURAL:$1|úrslit|úrslit}}',
-'shown-title'           => 'Vís$1  {{PLURAL:$1|úrslit|úrslit}} á hvørjari síðu',
+'shown-title'           => 'Vís $1 {{PLURAL:$1|úrslit|úrslit}} á hvørjari síðu',
 'viewprevnext'          => 'Vís ($1 {{int:pipe-separator}} $2) ($3).',
 'searchmenu-legend'     => 'Leiti møguleikar',
 'searchmenu-exists'     => "'''Tað er longu ein síða sum eitur \"[[:\$1]]\" á hesi wiki.'''",
@@ -948,21 +942,7 @@ Víðaristilling verður nú gjørd til [[$2]].',
 'ancientpages'            => 'Elstu síður',
 'move'                    => 'Flyt',
 'movethispage'            => 'Flyt hesa síðuna',
-'unusedimagestext'        => '
-
-
-
-
-
-
-
-
-
-
-
-
-
-Fylgjandi fílur eru til, men eru ikki lagdar inn á nakra síðu.
+'unusedimagestext'        => 'Fylgjandi fílur eru til, men eru ikki lagdar inn á nakra síðu.
 Vinarliga legg merki til, at vevsíður kunnu slóða til eina fílu við beinleiðis URL, og tí kann hon enn síggjast her, hóast at hon er í regluligari nýtslu.',
 'notargettitle'           => 'Onki mál',
 

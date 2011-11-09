@@ -1086,8 +1086,7 @@ $1",
 
 # Suppression log
 'suppressionlog'     => '監督日誌',
-'suppressionlogtext' => '以下是刪除以及由操作員牽涉到內容封鎖的清單。
-參看[[Special:IPBlockList|IP封鎖名單]]去參看現時進行中的禁止以及封鎖之名單。',
+'suppressionlogtext' => '該列表列出對管理員隱藏的刪除與封禁。另參見[[Special:BlockList|IP封鎖名單]]以查詢當前的封禁列表。',
 
 # History merging
 'mergehistory'                     => '合併頁面歷史',
@@ -1836,7 +1835,7 @@ Template:消歧义
 Template:消除歧义
 Template:消歧義
 Template:消除歧義',
-'disambiguations-text' => '以下的頁面都有到<b>消含糊頁</b>的連結，但它們應該是連到適當的標題。<br />一個頁面會被視為消含糊頁如果它是連自[[MediaWiki:Disambiguationspage]]。',
+'disambiguations-text' => "以下的頁面都有到'''消歧義頁'''的鏈接，但它們應該鏈接到適當的頁面。<br />一個頁面如果使用了[[MediaWiki:Disambiguationspage]]內的模板，則會被視為消歧義頁。",
 
 'doubleredirects'                   => '雙重重定向頁面',
 'doubleredirectstext'               => '這一頁列出所有重定向頁面重定向到另一個重定向頁的頁面。每一行都包含到第一和第二個重定向頁面的連結，以及第二個重定向頁面的目標，通常顯示的都會是"真正"的目標頁面，也就是第一個重定向頁面應該指向的頁面。
@@ -2081,7 +2080,7 @@ Template:消除歧義',
 'watchmethod-list'     => '檢查最近編輯的被監視頁面',
 'watchlistcontains'    => '您的監視列表包含$1個頁面。',
 'iteminvalidname'      => "頁面 '$1' 錯誤，無效命名...",
-'wlnote'               => '以下是最近<b>$2</b>小時內的最後$1次修改。',
+'wlnote'               => "截至$3 $4，以下是最近'''$2'''小時內的最後'''$1'''次修改。",
 'wlshowlast'           => '顯示最近$1小時；$2天；$3的修改。',
 'watchlist-options'    => '監視列表選項',
 

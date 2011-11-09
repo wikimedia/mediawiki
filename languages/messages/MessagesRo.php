@@ -669,6 +669,7 @@ Poate conține unul sau mai multe caractere ce nu poate fi folosit în titluri.'
 Funcția: $1<br />
 Interogarea: $2',
 'viewsource'           => 'Sursă pagină',
+'viewsource-title'     => 'Vizualizare sursă pentru $1',
 'actionthrottled'      => 'Acțiune limitată',
 'actionthrottledtext'  => 'Ca o măsură anti-spam, aveți permisiuni limitate în a efectua această acțiune de prea multe ori într-o perioadă scurtă de timp, iar dv. tocmai ați depășit această limită.
 Vă rugăm să încercați din nou în câteva minute.',
@@ -1975,7 +1976,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'statistics-users-active-desc' => 'Utilizatori care au efectuat o acțiune în {{PLURAL:$1|ultima zi|ultimele $1 zile}}',
 'statistics-mostpopular'       => 'Paginile cele mai vizualizate',
 
-'disambiguations'      => 'Pagini de dezambiguizare',
+'disambiguations'      => 'Pagini care trimit către pagini de dezambiguizare',
 'disambiguationspage'  => 'Template:Dezambiguizare',
 'disambiguations-text' => "Paginile următoare conțin legături către o '''pagină de dezambiguizare'''.
 În locul acesteia ar trebui să conțină legături către un articol.<br />
@@ -2424,6 +2425,7 @@ S-ar putea ca această legătură să fie greșită, sau revizia a fost restaura
 
 Consultați [[Special:Log/delete|jurnalul ștergerilor]] pentru a vedea toate ștergerile și recuperările recente.",
 'undelete-header'              => 'Vezi [[Special:Log/delete|logul de ștergere]] pentru paginile șterse recent.',
+'undelete-search-title'        => 'Căutare pagini șterse',
 'undelete-search-box'          => 'Caută pagini șterse',
 'undelete-search-prefix'       => 'Arată paginile care încep cu:',
 'undelete-search-submit'       => 'Caută',
@@ -2433,6 +2435,7 @@ Consultați [[Special:Log/delete|jurnalul ștergerilor]] pentru a vedea toate ș
 'undelete-cleanup-error'       => 'Eroare la ștergerea arhivei nefolosite „$1”.',
 'undelete-missing-filearchive' => 'Nu poate fi restaurată arhiva fișierul cu ID-ul $1 pentru că nu există în baza de date.
 S-ar putea ca ea să fi fost deja restaurată.',
+'undelete-error'               => 'Eroare la recuperarea paginii',
 'undelete-error-short'         => 'Eroare la restaurarea fișierului: $1',
 'undelete-error-long'          => 'S-au găsit erori la ștergerea fișierului:
 

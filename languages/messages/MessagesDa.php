@@ -549,6 +549,7 @@ Den kan være blevet slettet af en anden.',
 Funktion: $1<br />
 Forespørgsel: $2',
 'viewsource'           => 'Vis kildetekst',
+'viewsource-title'     => 'Se kildekoden til $1',
 'actionthrottled'      => 'Begrænsning af handling',
 'actionthrottledtext'  => 'For at modvirke spam, er det ikke muligt at udføre denne handling mange gange på kort tid. Du har overskredet grænsen, hvorfor handlingen er blevet afbrudt. Vær venlig at forsøge igen om et par minutter.',
 'protectedpagetext'    => 'Denne side er skrivebeskyttet.',
@@ -1823,7 +1824,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'statistics-users-active-desc' => 'Brugere som har udført handlinger i {{PLURAL:$1|det sidste døgn|de sidste $1 dage}}',
 'statistics-mostpopular'       => 'Mest besøgte sider',
 
-'disambiguations'      => 'Sider med flertydige titler',
+'disambiguations'      => 'Sider, der henviser til flertydige titler',
 'disambiguationspage'  => 'Template:Flertydig',
 'disambiguations-text' => 'De følgende sider henviser til en flertydig titel. De bør henvise direkte til det passende emne i stedet. En side behandles som en side med en flertydig titel hvis den bruger en skabelon som er henvist til fra [[MediaWiki:Disambiguationspage]].',
 
@@ -2268,6 +2269,7 @@ Teksten i de slettede versioner er kun tilgængelig for administratorer.',
 
 I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt slettede og gendannede sider.",
 'undelete-header'              => 'Se [[Special:Log/delete|slette-loggen]] for nyligt slettede og gendannede sider.',
+'undelete-search-title'        => 'Søg i slettede sider',
 'undelete-search-box'          => 'Søg efter slettede sider',
 'undelete-search-prefix'       => 'Vis sider som starter med:',
 'undelete-search-submit'       => 'Søg',
@@ -2276,6 +2278,7 @@ I [[Special:Log/delete|slette-loggen]] findes en oversigt over de nyligt sletted
 'undelete-bad-store-key'       => 'Kan ikke gendanne filen med tidsstempel $1: file fandtes ikke da den blev slettet',
 'undelete-cleanup-error'       => 'Fejl under sletning af ubrugt arkiveret version "$1".',
 'undelete-missing-filearchive' => 'Kunne ikke genskabe arkiveret fil med ID $1 fordi den ikke findes i databasen. Måske er den allerede gendannet.',
+'undelete-error'               => 'Fejl under gendannelse af siden',
 'undelete-error-short'         => 'Fejl under gendannelsen af fil: $1',
 'undelete-error-long'          => 'Der opstod en fejl under gendannelsen af filen:
 
