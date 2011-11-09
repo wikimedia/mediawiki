@@ -799,6 +799,7 @@ class DatabaseMysql extends DatabaseBase {
 	protected function getDefaultSchemaVars() {
 		$vars = parent::getDefaultSchemaVars();
 		$vars['wgDBTableOptions'] = str_replace( 'TYPE', 'ENGINE', $GLOBALS['wgDBTableOptions'] );
+		$vars['wgDBTableOptions'] = str_replace( 'CHARSET=mysql4', 'CHARSET=binary', $GLOBALS['wgDBTableOptions'] );
 		return $vars;
 	}
 
