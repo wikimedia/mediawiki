@@ -13,7 +13,7 @@
 		insertButton : function( imageFile, speedTip, tagOpen, tagClose, sampleText, imageId, selectText ) {
 			var image = $('<img>', {
 				width  : 23,
-				height : 23,
+				height : 22,
 				src    : imageFile,
 				alt    : speedTip,
 				title  : speedTip,

@@ -1,15 +1,10 @@
 ( function( $ ) {
 
 	/* Client profile classes for <html> */
+	/* Allows for easy hiding/showing of JS or no-JS-specific UI elements */
 
-	var prof = $.client.profile();
 	$( 'html' )
-		.addClass(
-			'client-' + prof.name
-			+ ' client-' + prof.name + '-' + prof.versionBase
-			+ ' client-' + prof.layout
-			+ ' client-' + prof.platform
-			+ ' client-js' )
+		.addClass('client-js' )
 		.removeClass( 'client-nojs' );
 
 } )( jQuery );
