@@ -393,9 +393,9 @@ test( 'bug 32047 - caption must be before thead', function() {
 		'<tr class="sortbottom"><td>TFOOT</td></tr>' +
 		'</table>'
 		);
-	console.log( $table.html() );
+	//console.log( $table.html() );
 	$table.tablesorter();
-	console.log( $table.html() );
+	//console.log( $table.html() );
 	var expected =
 		'<caption>CAPTION</caption>'+
 		'<thead>' +
