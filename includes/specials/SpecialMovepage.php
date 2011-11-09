@@ -195,7 +195,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$token = htmlspecialchars( $user->editToken() );
 
 		if ( !empty($err) ) {
-			$out->addSubtitle( $this->msg( 'formerror' ) );
+			$out->setSubtitle( wfMsg( 'formerror' ) );
 			if( $err[0] == 'hookaborted' ) {
 				$hookErr = $err[1];
 				$errMsg = "<p><strong class=\"error\">$hookErr</strong></p>\n";
@@ -239,7 +239,7 @@ class MovePageForm extends UnlistedSpecialPage {
 					Xml::label( wfMsg( 'newtitle' ), 'wpNewTitle' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpNewTitle', 40, $wgContLang->recodeForEdit( $newTitle->getPrefixedText() ), array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
+					Xml::input( 'wpNewTitle', 60, $wgContLang->recodeForEdit( $newTitle->getPrefixedText() ), array( 'type' => 'text', 'id' => 'wpNewTitle' ) ) .
 					Html::hidden( 'wpOldTitle', $this->oldTitle->getPrefixedText() ) .
 				"</td>
 			</tr>
