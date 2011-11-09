@@ -10,7 +10,7 @@ CREATE OR REPLACE PROCEDURE duplicate_table(p_tabname   IN VARCHAR2,
 BEGIN
   BEGIN
     EXECUTE IMMEDIATE 'DROP TABLE ' || p_newprefix || p_tabname ||
-                      ' CASCADE CONSTRAINTS';
+                      ' CASCADE CONSTRAINTS PURGE';
   EXCEPTION
     WHEN e_table_not_exist THEN
       NULL;
@@ -20,8 +20,9 @@ BEGIN
   END IF;
   IF (l_temporary) THEN
     EXECUTE IMMEDIATE 'CREATE GLOBAL TEMPORARY TABLE ' || p_newprefix ||
-                      p_tabname || ' AS SELECT * FROM ' || p_oldprefix ||
-                      p_tabname || ' WHERE ROWNUM = 0';
+                      p_tabname ||
+                      ' ON COMMIT PRESERVE ROWS AS SELECT * FROM ' ||
+                      p_oldprefix || p_tabname || ' WHERE ROWNUM = 0';
   ELSE
     EXECUTE IMMEDIATE 'CREATE TABLE ' || p_newprefix || p_tabname ||
                       ' AS SELECT * FROM ' || p_oldprefix || p_tabname ||
@@ -68,7 +69,8 @@ BEGIN
                  FROM user_constraints uc
                 WHERE table_name = p_oldprefix || p_tabname
                   AND constraint_type = 'R') LOOP
-      IF nvl(length(l_temp_ei_sql), 0) > 0 THEN
+      IF nvl(length(l_temp_ei_sql), 0) > 0 AND
+         INSTR(l_temp_ei_sql, 'PRIMARY KEY') = 0 THEN
         EXECUTE IMMEDIATE l_temp_ei_sql;
       END IF;
     END LOOP;
@@ -142,5 +144,6 @@ BEGIN
     END IF;
   END LOOP;
 END;
+
 /*$mw$*/
 
