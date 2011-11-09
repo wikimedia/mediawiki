@@ -1,13 +1,5 @@
 <?php
 class ExifBitmapTest extends MediaWikiTestCase {
-
-	public function testIsOldBroken() {
-		global $wgShowEXIF;
-		$this->showExif = $wgShowEXIF;
-		$wgShowEXIF = true;
-		$this->handler = new ExifBitmapHandler;
-	}
-
 	public function tearDown() {
 		global $wgShowEXIF;
 		$wgShowEXIF = $this->showExif;
