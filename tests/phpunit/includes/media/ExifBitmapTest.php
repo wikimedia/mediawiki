@@ -1,5 +1,16 @@
 <?php
 class ExifBitmapTest extends MediaWikiTestCase {
+
+	public function setUp() {
+		global $wgShowEXIF;
+		$this->showExif = $wgShowEXIF;
+		$wgShowEXIF = true;
+		$this->handler = new ExifBitmapHandler;
+		if ( !wfDl( 'exif' ) ) {
+			$this->markTestSkipped( "This test needs the exif extension." );
+		}
+	}
+
 	public function tearDown() {
 		global $wgShowEXIF;
 		$wgShowEXIF = $this->showExif;
