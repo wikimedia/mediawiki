@@ -477,14 +477,55 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 
 	$defaultProtoWithoutSlashes = substr( $defaultProto, 0, -2 );
 
-	if( substr( $url, 0, 2 ) == '//' ) {
+	if ( substr( $url, 0, 2 ) == '//' ) {
 		return $defaultProtoWithoutSlashes . $url;
-	} elseif( substr( $url, 0, 1 ) == '/' ) {
+	} elseif ( substr( $url, 0, 1 ) == '/' ) {
 		// If $serverUrl is protocol-relative, prepend $defaultProtoWithoutSlashes, otherwise leave it alone
 		return ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $serverUrl . $url;
 	} else {
 		return $url;
 	}
+}
+
+/**
+ * Remove all dot-segments in the provided URL path.  For example,
+ * '/a/./b/../c/' becomes '/a/c/'.  For details on the algorithm, please see
+ * RFC3986 section 5.2.4.
+ *
+ * @todo Need to integrate this into wfExpandUrl (bug 32168)
+ *
+ * @param $urlPath String URL path, potentially containing dot-segments
+ * @return string URL path with all dot-segments removed
+ */
+function wfRemoveDotSegments( $urlPath ) {
+	$output = '';
+
+	while ( $urlPath ) {
+		$matches = null;
+		if ( preg_match('%^\.\.?/%', $urlPath, $matches) ) {
+			# Step A
+			$urlPath = substr( $urlPath, strlen( $matches[0] ) );
+		} elseif ( preg_match( '%^/\.(/|$)%', $urlPath, $matches ) ) {
+			# Step B
+			$start = strlen( $matches[0] );
+			$urlPath = '/' . substr( $urlPath, $start );
+		} elseif ( preg_match( '%^/\.\.(/|$)%', $urlPath, $matches ) ) {
+			# Step C
+			$start = strlen( $matches[0] );
+			$urlPath = '/' . substr( $urlPath, $start );
+			$output = preg_replace('%(^|/)[^/]*$%', '', $output);
+		} elseif ( preg_match( '%^\.\.?$%', $urlPath, $matches ) ) {
+			# Step D
+			$urlPath = substr( $urlPath, strlen( $matches[0] ) );
+		} else {
+			# Step E
+			preg_match( '%^/?[^/]*%', $urlPath, $matches );
+			$urlPath = substr( $urlPath, strlen( $matches[0] ) );
+			$output .= $matches[0];
+		}
+	}
+
+	return $output;
 }
 
 /**
