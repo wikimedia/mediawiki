@@ -175,7 +175,7 @@ class DifferenceEngine {
 	}
 
 	function showDiffPage( $diffOnly = false ) {
-		global $wgUser, $wgOut, $wgRequest, $wgUseExternalEditor;
+		global $wgUser, $wgOut, $wgRequest;
 		wfProfileIn( __METHOD__ );
 
 		# Allow frames except in certain special cases
