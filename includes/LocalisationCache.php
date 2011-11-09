@@ -215,7 +215,7 @@ class LocalisationCache {
 	 * need to fetch all of the subitems from the cache individually.
 	 * @param $code
 	 * @param $key
-	 * @return string
+	 * @return mixed
 	 */
 	public function getItem( $code, $key ) {
 		if ( !isset( $this->loadedItems[$code][$key] ) ) {
@@ -1137,7 +1137,7 @@ class LocalisationCache_BulkLoad extends LocalisationCache {
 	/**
 	 * @param $code
 	 * @param $key
-	 * @return string
+	 * @return mixed
 	 */
 	public function getItem( $code, $key ) {
 		unset( $this->mruLangs[$code] );
