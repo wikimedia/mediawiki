@@ -857,8 +857,6 @@ abstract class Installer {
 
 		$this->setVar( 'IP', $IP );
 
-		}
-
 		$uri = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
 		$this->setVar( 'wgScriptPath', $uri );
 	}
