@@ -9,10 +9,17 @@
 if ( !isset( $wgVersion ) ) {
 	$wgVersion = 'VERSION';
 }
-$script = $_SERVER['SCRIPT_NAME'];
-$path = pathinfo( $script, PATHINFO_DIRNAME ) . '/';
-$path = str_replace( '//', '/', $path );
-$ext = pathinfo( $script, PATHINFO_EXTENSION );
+
+$matches = array();
+$ext = 'php';
+$path = '/';
+foreach( array_filter( explode( '/', $_SERVER['PHP_SELF'] ) ) as $part ) {
+	if( !preg_match( '/\.(php5?)$/', $part, $matches ) ) {
+		$path .= "$part/";
+	} else {
+		$ext = $matches[1] == 'php5' ? 'php5' : 'php';
+	}
+}
 
 # Check to see if the installer is running
 if ( !function_exists( 'session_name' ) ) {

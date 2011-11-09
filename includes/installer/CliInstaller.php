@@ -13,6 +13,7 @@
  * @since 1.17
  */
 class CliInstaller extends Installer {
+	private $specifiedScriptPath = false;
 
 	private $optionMap = array(
 		'dbtype' => 'wgDBtype',
@@ -44,6 +45,10 @@ class CliInstaller extends Installer {
 		global $wgContLang;
 
 		parent::__construct();
+
+		if ( isset( $option['scriptpath'] ) ) {
+			$this->specifiedScriptPath = true;
+		}
 
 		foreach ( $this->optionMap as $opt => $global ) {
 			if ( isset( $option[$opt] ) ) {
@@ -169,5 +174,17 @@ class CliInstaller extends Installer {
 			echo "\n";
 			exit;
 		}
+	}
+
+	public function envCheckPath( ) {
+		if ( !$this->specifiedScriptPath ) {
+			$this->showMessage( 'config-no-cli-uri', $this->getVar("wgScriptPath") );
+		}
+		return parent::envCheckPath();
+	}
+
+	public function dirIsExecutable( $dir, $url ) {
+		$this->showMessage( 'config-no-cli-uploads-check', $dir );
+		return false;
 	}
 }

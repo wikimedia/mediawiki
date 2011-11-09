@@ -857,19 +857,6 @@ abstract class Installer {
 
 		$this->setVar( 'IP', $IP );
 
-		// PHP_SELF isn't available sometimes, such as when PHP is CGI but
-		// cgi.fix_pathinfo is disabled. In that case, fall back to SCRIPT_NAME
-		// to get the path to the current script... hopefully it's reliable. SIGH
-		if ( !empty( $_SERVER['PHP_SELF'] ) ) {
-			$path = $_SERVER['PHP_SELF'];
-		} elseif ( !empty( $_SERVER['SCRIPT_NAME'] ) ) {
-			$path = $_SERVER['SCRIPT_NAME'];
-		} elseif ( $this->getVar( 'wgScriptPath' ) ) {
-			// Some kind soul has set it for us already (e.g. debconf)
-			return true;
-		} else {
-			$this->showError( 'config-no-uri' );
-			return false;
 		}
 
 		$uri = preg_replace( '{^(.*)/(mw-)?config.*$}', '$1', $path );
