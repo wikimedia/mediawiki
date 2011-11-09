@@ -491,6 +491,7 @@ production.
 * (bug 31822) Error during upgrade due to output buffer reset in stdout
 * (bug 31913) Special:MostLinkedTemplates had an incorrect GROUP BY clause
   under Microsoft SQL.
+* (bug 29912) Unit tests break if parsertest tables are still present
 * (bug 31990) justify paragraphs pref adds extra space to category listing
 
 === API changes in 1.18 ===

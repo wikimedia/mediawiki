@@ -117,7 +117,6 @@ production.
    suppressed
 * (bug 31921) Magic words REVISIONDAY, REVISIONMONTH and REVISIONYEAR now give
   current values on preview
-* (bug 29912) Unit tests break if parsertest tables are still present
 * (bug 19186) Special:UserLogin's title on Special:SpecialPages now says
   "create account" when the user cannot create an account
 * (bug 31818) 'usercreated' message now supports GENDER
