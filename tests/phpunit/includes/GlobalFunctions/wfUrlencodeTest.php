@@ -35,6 +35,7 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 			: null
 		;
 		$_SERVER['SERVER_SOFTWARE'] = $server;
+		wfUrlencode( null );
 
 		// do the requested test
 		$this->assertEquals(
@@ -49,6 +50,7 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 		} else {
 			$_SERVER['SERVER_SOFTWARE'] = $old;
 		}
+		wfUrlencode( null );
 	}
 
 	/**
@@ -59,14 +61,6 @@ class wfUrlencodeTest extends MediaWikiTestCase {
 		if( is_string( $expectations ) ) {
 			return $expectations;
 		} elseif( is_array( $expectations ) ) {
-
-			/**
-			 * FIXME FIXME FIXME FIXME
-			 * wfUrlencode use a static variable so we can not just
-			 * change the $GLOBALS server name :(
-			 */
-			$this->markTestSkipped( 'FIXME: wfUrlencode() use a static, thus changing $GLOBALS[SERVER_SOFTWARE] is useless' );
-
 			if( !array_key_exists( $server, $expectations ) ) {
 				throw new MWException( __METHOD__ . " expectation does not have any value for server name $server. Check the provider array.\n" );
 			} else {
