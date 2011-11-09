@@ -27,7 +27,7 @@ interface Preprocessor {
 	 * Create a new custom frame for programmatic use of parameter replacement as used in some extensions
 	 *
 	 * @param $args array
-	 * 
+	 *
 	 * @return PPFrame
 	 */
 	function newCustomFrame( $args );
@@ -44,7 +44,7 @@ interface Preprocessor {
 	 *
 	 * @param $text
 	 * @param $flags
-	 * 
+	 *
 	 * @return PPNode
 	 */
 	function preprocessToObj( $text, $flags = 0 );
@@ -138,6 +138,13 @@ interface PPFrame {
 	 * Return true if the frame is a template frame
 	 */
 	function isTemplate();
+
+	/**
+	 * Get a title of frame
+	 *
+	 * @return Title
+	 */
+	function getTitle();
 }
 
 /**

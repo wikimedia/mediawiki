@@ -1008,7 +1008,6 @@ class PPFrame_HipHop implements PPFrame {
 	 */
 	var $depth;
 
-
 	/**
 	 * Construct a new preprocessor frame.
 	 * @param $preprocessor Preprocessor: the parent preprocessor
@@ -1425,6 +1424,15 @@ class PPFrame_HipHop implements PPFrame {
 	 */
 	function isTemplate() {
 		return false;
+	}
+
+	/**
+	 * Get a title of frame
+	 *
+	 * @return Title
+	 */
+	function getTitle() {
+		return $this->title;
 	}
 }
 

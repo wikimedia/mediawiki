@@ -1268,6 +1268,15 @@ class PPFrame_Hash implements PPFrame {
 	function isTemplate() {
 		return false;
 	}
+
+	/**
+	 * Get a title of frame
+	 *
+	 * @return Title
+	 */
+	function getTitle() {
+		return $this->title;
+	}
 }
 
 /**
