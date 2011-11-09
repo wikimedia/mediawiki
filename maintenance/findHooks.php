@@ -107,6 +107,29 @@ class FindHooks extends Maintenance {
 	 */
 	private function getHooksFromDoc( $doc ) {
 		if ( $this->hasOption( 'online' ) ) {
+			return $this->getHooksFromOnlineDoc( );
+		} else {
+			return $this->getHooksFromLocalDoc( $doc );
+		}
+	}
+
+	/**
+	 * Get hooks from a local file (for example docs/hooks.txt)
+	 * @param $doc string: filename to look in
+	 * @return array of documented hooks
+	 */
+	private function getHooksFromLocalDoc( $doc ) {
+			$m = array();
+			$content = file_get_contents( $doc );
+			preg_match_all( "/\n'(.*?)'/", $content, $m );
+			return array_unique( $m[1] );
+	}
+
+	/**
+	 * Get hooks from www.mediawiki.org using the API
+	 * @return array of documented hooks
+	 */
+	private function getHooksFromOnlineDoc( ) {
 			// All hooks
 			$allhookdata = Http::get( 'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:MediaWiki_hooks&cmlimit=500&format=php' );
 			$allhookdata = unserialize( $allhookdata );
@@ -130,12 +153,6 @@ class FindHooks extends Maintenance {
 				}
 			}
 			return array_diff( $allhooks, $removed );
-		} else {
-			$m = array();
-			$content = file_get_contents( $doc );
-			preg_match_all( "/\n'(.*?)'/", $content, $m );
-			return array_unique( $m[1] );
-		}
 	}
 
 	/**
