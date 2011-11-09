@@ -11,6 +11,13 @@ This is a beta release of the MediaWiki 1.18 branch. Please test it and let us
 know what you think of it. Beta releases are not recommended for use in
 production.
 
+=== Changes since 1.18 beta 1 ===
+* (bug 31913) Special:MostLinkedTemplates had an incorrect GROUP BY clause
+  under Microsoft SQL.
+* (bug 29912) Unit tests break if parsertest tables are still present
+* (bug 31990) justify paragraphs pref adds extra space to category listing
+* (bug 20148) Better title for [[Special:Disambiguations]] page
+
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
   WantedPages::getQueryInfo. This may break older extensions.
@@ -91,6 +98,10 @@ production.
 
 === New features in 1.18 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.
+* BREAKING CHANGE: Article class heirarchy split into WikiPage (backend)
+  and Article (frontend) hierarchies. Several hooks now pass a WikiPage object instead
+  of an Article object. These hooks all use an $article paramater as documented in hooks.txt.
+  Extensions should be updated to account for this, though most won't require any changes.
 * (bug 27860) Minor edit after clicking 'new section' tab
   Now the "This is a minor edit" checkbox is not available when you
   create a page or new section.
@@ -489,11 +500,6 @@ production.
 * (bug 32086) Special:PermanentLink now show an error message when no subpage
   was specified.
 * (bug 31822) Error during upgrade due to output buffer reset in stdout
-* (bug 31913) Special:MostLinkedTemplates had an incorrect GROUP BY clause
-  under Microsoft SQL.
-* (bug 29912) Unit tests break if parsertest tables are still present
-* (bug 31990) justify paragraphs pref adds extra space to category listing
-* (bug 20148) Better title for [[Special:Disambiguations]] page
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
