@@ -398,7 +398,7 @@ class PageArchive {
 		$dbw = wfGetDB( DB_MASTER );
 
 		# Does this page already exist? We'll have to update it...
-		$article = new Article( $this->title );
+		$article = WikiPage::factory( $this->title );
 		# Load latest data for the current page (bug 31179)
 		$article->loadPageData( 'fromdbmaster' );
 		$oldcountable = $article->isCountable();
