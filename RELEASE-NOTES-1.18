@@ -9,7 +9,14 @@ THIS IS NOT A RELEASE YET
 
 This is a beta release of the MediaWiki 1.18 branch. Please test it and let us
 know what you think of it. Beta releases are not recommended for use in
-production. 
+production.
+
+=== Changes since 1.18 beta 1 ===
+* (bug 31913) Special:MostLinkedTemplates had an incorrect GROUP BY clause
+  under Microsoft SQL.
+* (bug 29912) Unit tests break if parsertest tables are still present
+* (bug 31990) justify paragraphs pref adds extra space to category listing
+* (bug 20148) Better title for [[Special:Disambiguations]] page
 
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
@@ -493,11 +500,6 @@ production.
 * (bug 32086) Special:PermanentLink now show an error message when no subpage
   was specified.
 * (bug 31822) Error during upgrade due to output buffer reset in stdout
-* (bug 31913) Special:MostLinkedTemplates had an incorrect GROUP BY clause
-  under Microsoft SQL.
-* (bug 31990) justify paragraphs pref adds extra space to category listing
-* (bug 29912) Unit tests break if parsertest tables are still present
-* (bug 20148) Better title for [[Special:Disambiguations]] page
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
