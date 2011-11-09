@@ -1596,7 +1596,7 @@ class OutputPage extends ContextSource {
 				$this->mVaryHeader[$header] = $option;
 			}
 		}
-		$this->mVaryHeader[$header] = array_unique( $this->mVaryHeader[$header] );
+		$this->mVaryHeader[$header] = array_unique( (array)$this->mVaryHeader[$header] );
 	}
 
 	/**

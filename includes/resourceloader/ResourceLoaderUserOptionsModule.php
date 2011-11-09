@@ -93,7 +93,11 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 			$rules = array();
 			if ( $options['underline'] < 2 ) {
 				$rules[] = "a { text-decoration: " . 
-					( $options['underline'] ? 'underline !important' : 'none' ) . "; }";
+					( $options['underline'] ? 'underline' : 'none' ) . "; }";
+			} else {
+				# The scripts of these languages are very hard to read with underlines
+				$rules[] = 'a:lang(ar), a:lang(ckb), a:lang(fa),a:lang(kk-arab), ' .
+				'a:lang(mzn), a:lang(ps), a:lang(ur) { text-decoration: none; }';
 			}
 			if ( $options['highlightbroken'] ) {
 				$rules[] = "a.new, #quickbar a.new { color: #ba0000; }\n";
