@@ -18,60 +18,101 @@
  * and save the modified data back to the server.
  *
  */
-class ExternalEdit {
-	/**
-	 * Title to perform the edit on
-	 * @var Title
-	 */
-	private $title;
+class ExternalEdit extends ContextSource {
 
 	/**
-	 * Mode of editing
-	 * @var String
+	 * Array of URLs to link to
+	 * @var Array
 	 */
-	private $mode;
+	private $urls;
 
 	/**
 	 * Constructor
-	 * @param $title Title object we're performing the edit on
+	 * @param $context IContextSource context to use
 	 * @param $mode String What mode we're using. Only 'file' has any effect
 	 */
-	public function __construct( $title, $mode ) {
-		$this->title = $title;
-		$this->mode = $mode;
+	public function __construct( IContextSource $context, array $urls = array() ) {
+		$this->setContext( $context );
+		$this->urls = $urls;
+	}
+
+	/**
+	 * Check whether external edit or diff should be used.
+	 *
+	 * @param $context IContextSource context to use
+	 * @param $type String can be either 'edit' or 'diff'
+	 * @return Bool
+	 */
+	public static function useExternalEngine( IContextSource $context, $type ) {
+		global $wgUseExternalEditor;
+
+		if ( !$wgUseExternalEditor ) {
+			return false;
+		}
+
+		$pref = $type == 'diff' ? 'externaldiff' : 'externaleditor';
+		$request = $context->getRequest();
+
+		return !$request->getVal( 'internaledit' ) &&
+			( $context->getUser()->getOption( $pref ) || $request->getVal( 'externaledit' ) );
 	}
 
 	/**
 	 * Output the information for the external editor
 	 */
-	public function edit() {
-		global $wgOut, $wgScript, $wgScriptPath, $wgCanonicalServer, $wgLang;
-		$wgOut->disable();
-		header( 'Content-type: application/x-external-editor; charset=utf-8' );
-		header( 'Cache-control: no-cache' );
+	public function execute() {
+		global $wgContLang, $wgScript, $wgScriptPath, $wgCanonicalServer;
+
+		$this->getOutput()->disable();
+
+		$response = $this->getRequest()->response();
+		$response->header( 'Content-type: application/x-external-editor; charset=utf-8' );
+		$response->header( 'Cache-control: no-cache' );
+
+		$special = $wgContLang->getNsText( NS_SPECIAL );
 
 		# $type can be "Edit text", "Edit file" or "Diff text" at the moment
 		# See the protocol specifications at [[m:Help:External editors/Tech]] for
 		# details.
-		if( $this->mode == "file" ) {
-			$type = "Edit file";
-			$image = wfLocalFile( $this->title );
-			$url = $image->getCanonicalURL();
-			$extension = $image->getExtension();
+		if ( count( $this->urls ) ) {
+			$urls = $this->urls;
+			$type = "Diff text";
 		} else {
-			$type = "Edit text";
-			$url = $this->title->getCanonicalURL(
-				array( 'action' => 'edit', 'internaledit' => 'true' ) );
-			# *.wiki file extension is used by some editors for syntax
-			# highlighting, so we follow that convention
-			$extension = "wiki";
+			if ( $this->getRequest()->getVal( 'mode' ) == 'file' ) {
+				$type = "Edit file";
+				$image = wfLocalFile( $this->title );
+				$urls = array( 'File' => array(
+					'Extension' => $image->getExtension(),
+					'URL' => $image->getCanonicalURL()
+				) );
+			} else {
+				$type = "Edit text";
+				# *.wiki file extension is used by some editors for syntax
+				# highlighting, so we follow that convention
+				$urls = array( 'File' => array(
+					'Extension' => 'wiki',
+					'URL' => $this->getTitle()->getCanonicalURL(
+						array( 'action' => 'edit', 'internaledit' => 'true' ) )
+				) );
+			}
 		}
-		$special = $wgLang->getNsText( NS_SPECIAL );
+
+		$files = '';
+		foreach( $urls as $key => $vars ) {
+			$files .= "\n[$key]\n";
+			foreach( $vars as $varname => $varval ) {
+				$files .= "$varname=$varval\n";
+			}
+		}
+
+		$url = $this->getTitle()->getFullURL(
+			$this->getRequest()->appendQueryValue( 'internaledit', 1, true ) );
+
 		$control = <<<CONTROL
-; You're seeing this file because you're using Mediawiki's External Editor
-; feature. This is probably because you selected use external editor
-; in your preferences. To edit normally, either disable that preference
-; or go to the URL $url .
+; You're seeing this file because you're using Mediawiki's External Editor feature.
+; This is probably because you selected use external editor in your preferences.
+; To edit normally, either disable that preference or go to the URL:
+; $url
 ; See http://www.mediawiki.org/wiki/Manual:External_editors for details.
 [Process]
 Type=$type
@@ -80,10 +121,7 @@ Script={$wgCanonicalServer}{$wgScript}
 Server={$wgCanonicalServer}
 Path={$wgScriptPath}
 Special namespace=$special
-
-[File]
-Extension=$extension
-URL=$url
+$files
 CONTROL;
 		echo $control;
 	}
