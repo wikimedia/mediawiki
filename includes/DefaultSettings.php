@@ -8,10 +8,10 @@
  * To customize your installation, edit "LocalSettings.php". If you make
  * changes here, they will be lost on next upgrade of MediaWiki!
  *
- * Note that since all these string interpolations are expanded
- * before LocalSettings is included, if you localize something
- * like $wgScriptPath, you must also localize everything that
- * depends on it.
+ * In this file, variables whose default values depend on other
+ * variables are set to false. The actual default value of these variables
+ * will only be set in Setup.php, taking into account any custom settings
+ * performed in LocalSettings.php.
  *
  * Documentation is in the source and on:
  * http://www.mediawiki.org/wiki/Manual:Configuration_settings
@@ -113,7 +113,7 @@ $wgScriptExtension  = '.php';
 /**
  * The URL path to index.php.
  *
- * Defaults to "{$wgScriptPath}/index{$wgScriptExtension}".
+ * Will default to "{$wgScriptPath}/index{$wgScriptExtension}" in Setup.php
  */
 $wgScript           = false;
 
@@ -121,7 +121,7 @@ $wgScript           = false;
  * The URL path to redirect.php. This is a script that is used by the Nostalgia
  * skin.
  *
- * Defaults to "{$wgScriptPath}/redirect{$wgScriptExtension}".
+ * Will default to "{$wgScriptPath}/redirect{$wgScriptExtension}" in Setup.php
  */
 $wgRedirectScript   = false;
 
@@ -140,7 +140,6 @@ $wgLoadScript           = false;
  *
  * These various web and file path variables are set to their defaults
  * in Setup.php if they are not explicitly set from LocalSettings.php.
- * If you do override them, be sure to set them all!
  *
  * These will relatively rarely need to be set manually, unless you are
  * splitting style sheets or images outside the main document root.
@@ -155,7 +154,7 @@ $wgLoadScript           = false;
  */
 
 /**
- * The URL path of the skins directory. Defaults to "{$wgScriptPath}/skins"
+ * The URL path of the skins directory. Will default to "{$wgScriptPath}/skins" in Setup.php
  */
 $wgStylePath   = false;
 $wgStyleSheetPath = &$wgStylePath;
@@ -174,7 +173,7 @@ $wgLocalStylePath   = false;
 $wgExtensionAssetsPath = false;
 
 /**
- * Filesystem stylesheets directory. Defaults to "{$IP}/skins"
+ * Filesystem stylesheets directory. Will default to "{$IP}/skins" in Setup.php
  */
 $wgStyleDirectory = false;
 
@@ -182,13 +181,13 @@ $wgStyleDirectory = false;
  * The URL path for primary article page views. This path should contain $1,
  * which is replaced by the article title.
  *
- * Defaults to "{$wgScript}/$1" or "{$wgScript}?title=$1", depending on
- * $wgUsePathInfo.
+ * Will default to "{$wgScript}/$1" or "{$wgScript}?title=$1" in Setup.php,
+ * depending on $wgUsePathInfo.
  */
 $wgArticlePath      = false;
 
 /**
- * The URL path for the images directory. Defaults to "{$wgScriptPath}/images"
+ * The URL path for the images directory. Will default to "{$IP}/images" in Setup.php
  */
 $wgUploadPath       = false;
 
@@ -204,7 +203,7 @@ $wgUploadDirectory	= false;
 
 /**
  * The URL path of the wiki logo. The logo size should be 135x135 pixels.
- * Defaults to "{$wgStylePath}/common/images/wiki.png".
+ * Will default to "{$wgStylePath}/common/images/wiki.png" in Setup.php
  */
 $wgLogo				= false;
 
@@ -223,7 +222,7 @@ $wgAppleTouchIcon   = false;
  * The local filesystem path to a temporary directory. This is not required to
  * be web accessible.
  *
- * Defaults to "{$wgUploadDirectory}/tmp".
+ * Will default to "{$wgUploadDirectory}/tmp" in Setup.php
  */
 $wgTmpDirectory     = false;
 
@@ -1663,7 +1662,7 @@ $wgUseFileCache = false;
 
 /**
  * Directory where the cached page will be saved.
- * Defaults to "{$wgUploadDirectory}/cache".
+ * Will default to "{$wgUploadDirectory}/cache" in Setup.php
  */
 $wgFileCacheDirectory = false;
 
@@ -4414,7 +4413,7 @@ $wgReadOnly             = null;
  * Its contents will be shown to users as part of the read-only warning
  * message.
  *
- * Defaults to "{$wgUploadDirectory}/lock_yBgMBwiR".
+ * Will default to "{$wgUploadDirectory}/lock_yBgMBwiR" in Setup.php
  */
 $wgReadOnlyFile         = false;
 
