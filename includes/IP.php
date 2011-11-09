@@ -691,10 +691,13 @@ class IP {
 	 * @param $range String: IP address to normalize
 	 * @return string
 	 */
-	public static function sanitizeRange( $range ){
+	public static function sanitizeRange( $range ) {
 		list( /*...*/, $bits ) = self::parseCIDR( $range );
 		list( $start, /*...*/ ) = self::parseRange( $range );
 		$start = self::formatHex( $start );
+		if ( $bits === false ) {
+			return $start; // wasn't actually a range
+		}
 		return "$start/$bits";
 	}
 }
