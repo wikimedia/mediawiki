@@ -856,7 +856,7 @@ class DatabaseOracle extends DatabaseBase {
 	/**
 	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
 	 */
-	function tableExists( $table ) {
+	function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
 		$table = $this->addQuotes( strtoupper( $this->removeIdentifierQuotes( $table ) ) );
 		$owner = $this->addQuotes( strtoupper( $this->mDBname ) );
@@ -1316,9 +1316,9 @@ class DatabaseOracle extends DatabaseBase {
 	public function getSearchEngine() {
 		return 'SearchOracle';
 	}
-	
+
 	public function getInfinity() {
 		return '31-12-2030 12:00:00.000000';
 	}
-	
+
 } // end DatabaseOracle class

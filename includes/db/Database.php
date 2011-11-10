@@ -1528,13 +1528,14 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Query whether a given table exists
 	 *
 	 * @param $table string
+	 * @param $fname string
 	 *
 	 * @return bool
 	 */
-	function tableExists( $table ) {
+	function tableExists( $table, $fname = __METHOD__ ) {
 		$table = $this->tableName( $table );
 		$old = $this->ignoreErrors( true );
-		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", __METHOD__ );
+		$res = $this->query( "SELECT 1 FROM $table LIMIT 1", $fname );
 		$this->ignoreErrors( $old );
 
 		return (bool)$res;
@@ -3311,7 +3312,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * @since 1.18
 	 */
 	public function dropTable( $tableName, $fName = 'DatabaseBase::dropTable' ) {
-		if( !$this->tableExists( $tableName ) ) {
+		if( !$this->tableExists( $tableName, $fName ) ) {
 			return false;
 		}
 		$sql = "DROP TABLE " . $this->tableName( $tableName );

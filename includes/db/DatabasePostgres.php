@@ -771,7 +771,7 @@ class DatabasePostgres extends DatabaseBase {
 	 * For backward compatibility, this function checks both tables and
 	 * views.
 	 */
-	function tableExists( $table, $schema = false ) {
+	function tableExists( $table, $fname = __METHOD__, $schema = false ) {
 		return $this->relationExists( $table, array( 'r', 'v' ), $schema );
 	}
 
