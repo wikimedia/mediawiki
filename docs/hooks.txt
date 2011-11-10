@@ -2029,6 +2029,10 @@ your own hashing method
 	hashing method
 &$hash: If the hook returns false, this String will be used as the hash
 
+'UserDisplayName': Called in User::getDisplayName()
+$user: The user object to fetch the display name for
+&$displayName: The display name. Will be null. Set to a name to override default name.
+
 'UserEffectiveGroups': Called in User::getEffectiveGroups()
 $user: User to get groups for
 &$groups: Current effective groups

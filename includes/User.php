@@ -199,7 +199,7 @@ class User {
 	 */
 	var $mNewtalk, $mDatePreference, $mBlockedby, $mHash, $mRights,
 		$mBlockreason, $mEffectiveGroups, $mImplicitGroups, $mFormerGroups, $mBlockedGlobally,
-		$mLocked, $mHideName, $mOptions;
+		$mLocked, $mHideName, $mOptions, $mDisplayName;
 
 	/**
 	 * @var WebRequest
@@ -1191,6 +1191,7 @@ class User {
 		$this->mEffectiveGroups = null;
 		$this->mImplicitGroups = null;
 		$this->mOptions = null;
+		$this->mDisplayName = null;
 
 		if ( $reloadFrom ) {
 			$this->mLoadedItems = array();
@@ -2133,6 +2134,32 @@ class User {
 	public function setRealName( $str ) {
 		$this->load();
 		$this->mRealName = $str;
+	}
+
+	/**
+	 * Return the name of this user we should used to display in the user interface
+	 * @return String The user's display name
+	 */
+	public function getDisplayName() {
+		global $wgRealNameInInterface;
+		if ( is_null( $this->mDisplayName ) ) {
+			$displayName = null;
+			
+			// Allow hooks to set a display name
+			wfRunHooks( 'UserDisplayName', array( $this, &$displayName ) );
+
+			if ( is_null( $displayName ) && $wgRealNameInInterface && $this->getRealName() ) {
+				// If $wgRealNameInInterface is true use the real name as the display name if it's set
+				$displayName = $this->getRealName();
+			}
+			
+			if ( is_null( $displayName ) ) {
+				$displayName = $this->getName();
+			}
+
+			$this->mDisplayName = $displayName;
+		}
+		return $this->mDisplayName;
 	}
 
 	/**
