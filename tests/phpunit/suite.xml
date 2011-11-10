@@ -20,6 +20,9 @@
 		<testsuite name="skins">
 			<directory>skins</directory>
 		</testsuite>
+		<testsuite name="structure">
+			<file>structureTest.php</file>
+		</testsuite>
 		<testsuite name="uploadfromurl">
 			<file>suites/UploadFromUrlTestSuite.php</file>
 		</testsuite>
