@@ -391,7 +391,7 @@ Pangngaasi ta ipadas mo manen no madamdama.',
 'protectedinterface'   => 'Daytoy nga panid ket mangited ti teksto nga interface para iti software, ken nasaluadan tapno agpasardeng ti pinagabuso.',
 'editinginterface'     => "'''Ballaag:''' Balbaliwam ti maysa a panid a maar-aramat a mangted iti teksto ti interface para iti software.
 Dagiti panangbalbaliw iti daytoy a panid ket apektaranna ti langa ti agaramat a interface ti sabsabali nga agar-aramat.
-Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [http://translatewiki.net/wiki/Main_Page?setlang=ilo translatewiki.net], ti MediaWiki projecto nga agpabaliw ti pagsasao.",
+Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [//translatewiki.net/wiki/Main_Page?setlang=ilo translatewiki.net], ti MediaWiki projecto nga agpabaliw ti pagsasao.",
 'sqlhidden'            => '(nakalemmeng ti binirok nga SQL )',
 'cascadeprotected'     => 'Daytoy nga panid ket nasualadan ti pinagbaliw, ngamin ket nairaman kadagiti sumaganad nga {{PLURAL:$1|panid, nga|dagiti panid, nga}} nasaluadan iti na-ipabalin a pagpilian nga "cascading"  :
 $2',
@@ -2464,7 +2464,7 @@ Pangngaasi ta agpili ka ti sabali a nagan.',
 'allmessagesdefault'            => 'Naisigud nga teksto ti mensahe',
 'allmessagescurrent'            => 'Agdama nga teksto ti mensahe',
 'allmessagestext'               => 'Daytoy ti listaan dagiti mensahe ti sistema nga addaan idiay MediaWiki namespace.
-Pangngaasi ta bisitaeen ti [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ken [http://translatewiki.net translatewiki.net] no kayatmo ti mangted
+Pangngaasi ta bisitaeen ti [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ken [//translatewiki.net translatewiki.net] no kayatmo ti mangted
 kadagiti pinagpatarus ti MediaWiki.',
 'allmessagesnotsupportedDB'     => "Saan nga mausar daytoy nga panid ngamin ta ti '''\$wgUseDatabaseMessages''' ket naideppen.",
 'allmessages-filter-legend'     => 'Sagat',

@@ -465,7 +465,7 @@ $1',
 'protectedpagetext'    => 'Бу саифени кимсе денъиштирмесин деп о блок этильди.',
 'viewsourcetext'       => 'Саифенинъ кодуны козьден кечирип копиялай билесинъиз:',
 'protectedinterface'   => 'Бу саифеде система интерфейсининъ метини булунгъаны ичюн мында хата чыкъмасын деп денъишиклик япмакъ ясакъ.',
-'editinginterface'     => "'''Тенби''': MediaWiki система беянатылы бир саифени денъиштирмектесинъиз. Бу саифедеки денъишикликлер къулланыджы интерфейс корюнишини дигер къулланыджылар ичюн де денъиштиреджек. Лютфен, терджимелер ичюн [http://translatewiki.net/wiki/Main_Page?setlang=crh translatewiki.net] сайтыны (MediaWiki ресмий локализация лейхасы) къулланынъыз.",
+'editinginterface'     => "'''Тенби''': MediaWiki система беянатылы бир саифени денъиштирмектесинъиз. Бу саифедеки денъишикликлер къулланыджы интерфейс корюнишини дигер къулланыджылар ичюн де денъиштиреджек. Лютфен, терджимелер ичюн [//translatewiki.net/wiki/Main_Page?setlang=crh translatewiki.net] сайтыны (MediaWiki ресмий локализация лейхасы) къулланынъыз.",
 'sqlhidden'            => '(SQL истинтагъы сакълы)',
 'cascadeprotected'     => 'Бу саифени денъиштирип оламазсынъыз, чюнки каскад къорчалав алтында булунгъан {{PLURAL:$1|саифеге|саифелерге}} менсюптир:
 $2',
@@ -1704,7 +1704,7 @@ $UNWATCHURL
 'allmessagesdefault' => 'Оригиналь метин',
 'allmessagescurrent' => 'Шимди къулланылгъан метин',
 'allmessagestext'    => 'Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.
-MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net translatewiki.net] саифелерине зиярет этинъиз.',
+MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [//translatewiki.net translatewiki.net] саифелерине зиярет этинъиз.',
 
 # Thumbnails
 'thumbnail-more'           => 'Буют',

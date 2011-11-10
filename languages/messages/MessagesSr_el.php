@@ -590,7 +590,7 @@ Pretraga: $2',
 'protectedinterface'   => 'Ova stranica pruža tekst interfejsa za softver i zaključana je kako bi se sprečila zloupotreba.',
 'editinginterface'     => "'''Upozorenje:''' Uređujete stranu koja se koristi da pruži tekst za interfejs ovog softvera.
 Izmene na ovoj strani će uticati na prikaz izgleda korisničkog interfejsa za sve korisnike.
-Za prevode, posetite [http://translatewiki.net/wiki/Main_Page?setlang=sr_ec translatewiki.net], projekat lokalizacije MedijaViki softvera.",
+Za prevode, posetite [//translatewiki.net/wiki/Main_Page?setlang=sr_ec translatewiki.net], projekat lokalizacije MedijaViki softvera.",
 'sqlhidden'            => '(SQL pretraga sakrivena)',
 'cascadeprotected'     => 'Ova stranica je zaključana i njeno uređivanje je onemogućeno jer je uključena u sadržaj {{PLURAL:$1|sledeće stranice|sledećih stranica}}, koji je zaštićen sa opcijom „prenosive“ zaštite:
 $2',
@@ -2677,7 +2677,7 @@ U drugom slučaju, možete koristiti i vezu, na primer [[{{#Special:Export}}/{{M
 'allmessagesdefault'            => 'Standardni tekst',
 'allmessagescurrent'            => 'Trenutni tekst',
 'allmessagestext'               => 'Ovo je spisak sistemskih poruka koje su u MedijaViki imenskom prostoru.
-Posetite [http://translatewiki.net translatewiki.net] ukoliko želite da pomognete u lokalizaciji.',
+Posetite [//translatewiki.net translatewiki.net] ukoliko želite da pomognete u lokalizaciji.',
 'allmessagesnotsupportedDB'     => "Ova stranica ne može biti upotrebljena zato što je '''\$wgUseDatabaseMessages''' isključen.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filtriraj po stanju prilagođenosti:',

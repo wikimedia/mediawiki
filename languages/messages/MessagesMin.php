@@ -382,7 +382,7 @@ Mungkin alah dihapuih jo urang lain.',
 'viewsourcetext'       => 'Sanak dapek malihek atau manyalin sumber laman iko:',
 'protectedinterface'   => 'Laman iko barisi teks antarmuko untuak digunoan oleh parangkaik lunak dan alah dikunci untuak manghindari kasalahan.',
 'editinginterface'     => "'''Paringatan:''' Sanak manyuntiang suatu laman nan digunoan untuak manyediakan teks antarmuko untuak parangkaik lunak situs iko. Parubahan teks iko akan mampangaruhi tampilan pado antarmuko pangguno untuak pangguno lain.
-Untuak tarjamahan, harap gunokan [http://translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek palokalan MediaWiki.",
+Untuak tarjamahan, harap gunokan [//translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek palokalan MediaWiki.",
 'sqlhidden'            => '(Pamintaan SQL disuruakkan)',
 'cascadeprotected'     => 'Laman iko alah dilindungi dari panyuntiangan karano disartokan di {{PLURAL:$1|laman|laman-laman}} barikuik nan alah dilindungi jo opsi "runtun":
 $2',

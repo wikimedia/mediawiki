@@ -361,7 +361,7 @@ Pol favol, contauta con un [[Special:ListUsers/sysop|çajoril]], mentandu la URL
 'viewsourcetext'       => 'Pueis vel i copial el cóigu huenti desta páhina:',
 'protectedinterface'   => "Esta páhina proporciona el testu la entrihazi el software, razón pola que s'alcuentra atarugá.",
 'editinginterface'     => "'''Cudiau:''' Estás eitandu una página que propolciona el testu la entrijazi el software. Los chambus hechus aquina afeutarán a la entrijazi d'otrus ussuárius.
-Pa traucil, consiera gastal [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], el proyeutu de traución de MediaWiki.",
+Pa traucil, consiera gastal [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], el proyeutu de traución de MediaWiki.",
 'sqlhidden'            => '(Consurta SQL açonchá)',
 'cascadeprotected'     => 'Esta páhina s\'alcuentra protehia ebiu a que horma parti e {{PLURAL:$1|la siguienti páhina|las siguientis páhinas}}, qu\'están protehias cola oción "proteción en cascá" ativá:
 $2',
@@ -1806,7 +1806,7 @@ Ya desisti la páhina "[[:$1]]". Te petaria esborrala pa premitil el treslau?',
 'allmessagesdefault'        => 'Testu pol defeutu',
 'allmessagescurrent'        => 'Testu atual',
 'allmessagestext'           => 'Esta es una lista e mensahis del sistema disponibris nel espaciu e nombris MediaWiki:
-Pol favol, vesita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [http://translatewiki.net translatewiki.net] si quieis colabutal.',
+Pol favol, vesita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [//translatewiki.net translatewiki.net] si quieis colabutal.',
 'allmessagesnotsupportedDB' => "Nu se puei gastal esta páhina polque '''\$wgUseDatabaseMessages''' está desativau.",
 
 # Thumbnails

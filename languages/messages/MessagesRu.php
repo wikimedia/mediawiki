@@ -664,7 +664,7 @@ $1',
 'protectedinterface'   => 'Эта страница содержит интерфейсное сообщение программного обеспечения. Во избежание вандализма её изменение запрещено.',
 'editinginterface'     => "'''Внимание.''' Вы редактируете страницу, содержащую текст интерфейса программного обеспечения.
 Её изменение повлияет на внешний вид интерфейса для других пользователей.
-Для переводов лучше использовать [http://translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net], проект по локализации MediaWiki.",
+Для переводов лучше использовать [//translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net], проект по локализации MediaWiki.",
 'sqlhidden'            => '(SQL запрос скрыт)',
 'cascadeprotected'     => 'Страница защищена от изменений, поскольку она включена в {{PLURAL:$1|следующую страницу, для которой|следующие страницы, для которых}} включена каскадная защита:
 $2',
@@ -2763,7 +2763,7 @@ $1',
 'allmessagesdefault'            => 'Текст по умолчанию',
 'allmessagescurrent'            => 'Текущий текст',
 'allmessagestext'               => 'Это список системных сообщений, доступных в пространстве имён «MediaWiki».
-Если вы хотите внести вклад в общую локализацию MediaWiki, пожалуйста, посетите страницу [//www.mediawiki.org/wiki/Localisation описания локализации] и проект [http://translatewiki.net translatewiki.net].',
+Если вы хотите внести вклад в общую локализацию MediaWiki, пожалуйста, посетите страницу [//www.mediawiki.org/wiki/Localisation описания локализации] и проект [//translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB'     => "Эта страница недоступна, так как отключена опция '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фильтр',
 'allmessages-filter'            => 'Фильтр по статусу изменения:',

@@ -1587,7 +1587,7 @@ $1',
 'allmessagesdefault'        => '默认文字',
 'allmessagescurrent'        => '眼前𠮶文字',
 'allmessagestext'           => '个首列到全部制定得正𠮶系统界面。
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系统界面功能'''关卟嘞（'''\$wgUseDatabaseMessages'''）。",
 
 # Thumbnails

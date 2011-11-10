@@ -608,7 +608,7 @@ $1',
 'viewsourcetext'       => 'Можете да разгледате и да копирате кодa на страницата:',
 'protectedinterface'   => 'Тази страница съдържа текст, нужен за работата на системата. Тя е защитена против редактиране, за да се предотвратят възможни злоупотреби.',
 'editinginterface'     => "'''Внимание:''' Редактирате страница, която се използва за интерфейса на софтуера. Промяната й ще повлияе на външния вид на уикито.
-За превеждане обмислете използването на [http://translatewiki.net/wiki/Main_Page?setlang=bg translatewiki.net], проектът за локализиране на MediaWiki.",
+За превеждане обмислете използването на [//translatewiki.net/wiki/Main_Page?setlang=bg translatewiki.net], проектът за локализиране на MediaWiki.",
 'sqlhidden'            => '(Заявка на SQL — скрита)',
 'cascadeprotected'     => 'Тази страница е защитена против редактиране, защото е включена в {{PLURAL:$1|следната страница, която от своя страна има|следните страници, които от своя страна имат}} каскадна защита:
 $2',
@@ -2624,7 +2624,7 @@ $1',
 'allmessagesdefault'            => 'Текст по подразбиране',
 'allmessagescurrent'            => 'Текущ текст',
 'allmessagestext'               => 'Тази страница съдържа списък на системните съобщения от именното пространство „МедияУики“.
-Посетете [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] и [http://translatewiki.net translatewiki.net], ако желаете да допринесете за общата локализация на софтуера МедияУики.',
+Посетете [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] и [//translatewiki.net translatewiki.net], ако желаете да допринесете за общата локализация на софтуера МедияУики.',
 'allmessagesnotsupportedDB'     => "Тази страница не може да бъде използвана, тъй като е изключена възможността '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Филтър',
 'allmessages-filter'            => 'Филтриране по ниво на персонализация:',

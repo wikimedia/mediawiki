@@ -422,7 +422,7 @@ MySQL قايتۇرغان خاتالىقى"$3: $4"',
 
 بۇ بەت ئۆزگەرتىلسە باشقا ئىشلەتكۈچىلەرنىڭ كۆرۈنۈش ئۇسلۇبىغا تەسىر كۆرسىتىدۇ.
 
-مەسىلەن ئەگەر تەرجىمە قىلسىڭىز [http://translatewiki.net/wiki/Main_Page?setlang=ug translatewiki.net] ئۇنداقتا MediaWiki يەرلىكلەشتۈرۈش پىلانىنى ئىشلىتىشنى ئويلىشىڭ.",
+مەسىلەن ئەگەر تەرجىمە قىلسىڭىز [//translatewiki.net/wiki/Main_Page?setlang=ug translatewiki.net] ئۇنداقتا MediaWiki يەرلىكلەشتۈرۈش پىلانىنى ئىشلىتىشنى ئويلىشىڭ.",
 'sqlhidden'            => '(SQL سۈرۈشتۈرۈش يوشۇرۇلدى)',
 'cascadeprotected'     => 'بۇ بەت قوغدالغان چۈنكى تۆۋەندىكى {{PLURAL:$1|بىر|بىر قانچە}} بەت مەزكۇر بەتنى ئۆز ئىچىگە ئېلىش بىلەن بىللە "زەنجىرسىمان قوغداش" قوزغىتىلغان.
 
@@ -2539,7 +2539,7 @@ $1',
 'allmessagesdefault'            => 'كۆڭۈلدىكى ئۇچۇر تېكستى',
 'allmessagescurrent'            => 'نۆۋەتتىكى ئۇچۇر تېكستى',
 'allmessagestext'               => 'بۇ جايدا تەڭشىگىلى بولىدىغان ھەممە سىستېما كۆرۈنۈش ئۇچۇرلىرى كۆرسىتىلدى.
-ئەگەر ھەقىقىي يەرلەشتۈرۈلگەن MediaWiki غا تۆھپە قوشماقچى بولسىڭىز[//www.mediawiki.org/wiki/Localisation MediaWiki يەرلىكلەشتۈرۈش] ۋە [http://translatewiki.net translatewiki.net] نى زىيارەت قىلىڭ.',
+ئەگەر ھەقىقىي يەرلەشتۈرۈلگەن MediaWiki غا تۆھپە قوشماقچى بولسىڭىز[//www.mediawiki.org/wiki/Localisation MediaWiki يەرلىكلەشتۈرۈش] ۋە [//translatewiki.net translatewiki.net] نى زىيارەت قىلىڭ.',
 'allmessagesnotsupportedDB'     => "بۇ بەتنى ئىشلەتكىلى بولمايدۇ، سەۋەبى '''\$wgUseDatabaseMessages''' چەكلەنگەن.",
 'allmessages-filter-legend'     => 'سۈزگۈچ',
 'allmessages-filter'            => 'ئىختىيارىچە سۈزگۈچ ھالىتى:',

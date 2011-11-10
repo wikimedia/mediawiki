@@ -635,7 +635,7 @@ Tapuna: $2',
 'viewsourcetext'       => "Kay p'anqatam qhawayta iskaychaytapas atinki:",
 'protectedinterface'   => "Kay p'anqapiqa wakichintinpa uyapuranpaq qillqam.
 Wandalismu nisqamanta amachasqam kachkan.",
-'editinginterface'     => "'''Paqtataq:''' Uyapura p'anqatam llamk'apuchkanki. Hukchaptiykiqa, chay uyapurap rikch'ayninqa hukyanqa huk ruraqkunapaqpas. Uyapurata t'ikrayta munaspaykiqa, [http://translatewiki.net/wiki/Main_Page?setlang=qu translatewiki.net] nisqa MediaWiki t'ikrana ruraykamay llika tiyaypi ruranaykimanta hamut'ariy.",
+'editinginterface'     => "'''Paqtataq:''' Uyapura p'anqatam llamk'apuchkanki. Hukchaptiykiqa, chay uyapurap rikch'ayninqa hukyanqa huk ruraqkunapaqpas. Uyapurata t'ikrayta munaspaykiqa, [//translatewiki.net/wiki/Main_Page?setlang=qu translatewiki.net] nisqa MediaWiki t'ikrana ruraykamay llika tiyaypi ruranaykimanta hamut'ariy.",
 'sqlhidden'            => '(SQL tapunaqa pakasqam)',
 'cascadeprotected'     => "Kay p'anqaqa amachasqam kachkan, ''phaqcha'' nisqa kamachiwan amachasqa kay {{PLURAL:$1|p'anqapi|p'anqakunapi}} ch'aqtasqa kaspanmi:
 $2",
@@ -2595,7 +2595,7 @@ Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{#Special:E
 'allmessagesdefault'            => 'Ñawpaq qillqa',
 'allmessagescurrent'            => 'Kunan kachkaq qillqa',
 'allmessagestext'               => "Kayqa MediaWiki suti k'itipi llamk'achinalla willaykunayuq sutisuyum.
-Ama hina kaspa, [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] nisqata, [http://translatewiki.net translatewiki.net] nisqatapas watukuy, MediaWiki nisqata t'ikraywan yanapayta munaspaykiqa.",
+Ama hina kaspa, [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] nisqata, [//translatewiki.net translatewiki.net] nisqatapas watukuy, MediaWiki nisqata t'ikraywan yanapayta munaspaykiqa.",
 'allmessagesnotsupportedDB'     => "Kay p'anqaqa manam llamk'achinallachu, '''\$wgUseDatabaseMessages''' nisqaman ama nisqa kaptinmi.",
 'allmessages-filter-legend'     => "Ch'illchina",
 'allmessages-filter'            => "Ch'illchina, allinchasqa kachkaykama:",

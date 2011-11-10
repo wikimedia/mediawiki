@@ -351,7 +351,7 @@ $1',
 'protectedinterface'  => 'ܐܗܐ ܦܐܬܐ ܡܘܬܪܐ ܟܬܝܒܬܐ ܕܦܐܬܐ ܠܚܘܪܙܐ, ܘܐܝܠܗ ܢܛܪܬܐ ܠܡܘܢܥܐ ܚܪܒܐ.',
 'editinginterface'    => "''ܙܘܗܪܐ:''' ܐܢܬ ܥܒܕܬ ܫܚܠܦܬܐ ܒܦܐܬܐ ܡܬܦܠܚܬ ܠܡܘܬܘܪ̈ܐ ܦܐܬܘܬ̈ܐ ܟܬܝܒ̈ܐ ܠܚܘܪܙܐ.
 ܟܠ ܫܘܚܠܦܐ ܒܐܗܐ ܦܐܬܐ ܒܕ ܥܒܕ ܟܪ ܥܠ ܡܚܙܝܬܐ ܦܐܬܐ ܕܡܦܠܚܢܐ ܠܡܦܠܚܢ̈ܐ ܐܚܪ̈ܝܢܐ.
-ܠܬܘܪ̈ܓܡܐ، ܡܦܠܚ ܬܪܡܝܬܐ ܬܘܪܓܡܐ ܕܡܝܕܝܐܘܝܩܝ [http://translatewiki.net/wiki/Main_Page?setlang=ar translatewiki.net].",
+ܠܬܘܪ̈ܓܡܐ، ܡܦܠܚ ܬܪܡܝܬܐ ܬܘܪܓܡܐ ܕܡܝܕܝܐܘܝܩܝ [//translatewiki.net/wiki/Main_Page?setlang=ar translatewiki.net].",
 'sqlhidden'           => '(ܒܘܬܬܐ SQL ܛܫܝܐ)',
 'namespaceprotected'  => "ܠܝܬ ܠܟ ܦܣܣܐ ܠܫܚܠܦܬܐ ܕܦܐܬܬ̈ܐ ܒܚܩܠܐ ܕ'''$1'''.",
 

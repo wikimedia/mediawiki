@@ -591,7 +591,7 @@ Spurn: $2',
 'protectedinterface'   => 'Þessi síða útvegar textann sem birtist í viðmóti hugbúnaðarins, og er læst til að koma í veg fyrir misnotkun.',
 'editinginterface'     => "'''Aðvörun:''' Þú ert að breyta síðu sem hefur að geyma texta fyrir notendaumhverfi hugbúnaðarins.
 Breytingar á þessari síðu munu hafa áhrif á notendaumhverfi annarra notenda.
-Fyrir þýðingar, gjörðu svo vel að nota [http://translatewiki.net/wiki/Main_Page?setlang=is translatewiki.net], staðfæringverkefni MediaWiki.",
+Fyrir þýðingar, gjörðu svo vel að nota [//translatewiki.net/wiki/Main_Page?setlang=is translatewiki.net], staðfæringverkefni MediaWiki.",
 'sqlhidden'            => '(SQL-fyrirspurn falin)',
 'cascadeprotected'     => 'Þessi síða hefur verið vernduð fyrir breytingum, vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er vernduð|síðum, sem eru verndaðar}} með „keðjuverndun“:
 $2',
@@ -1332,6 +1332,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'right-delete'                => 'Eyða síðum',
 'right-bigdelete'             => 'Eyða síðum með stórum breytingaskrám',
 'right-deleterevision'        => 'Eyða og endurvekja sérstaka breytignar á síðum',
+'right-deletedhistory'        => 'Skoða eyddar færslur úr breytingarskrá, án efnis þeirra',
 'right-deletedtext'           => 'Sjá eyddan texta og breytingar á milli eyddra útgáfna',
 'right-browsearchive'         => 'Leita í eyddum síðum',
 'right-undelete'              => 'Endurvekja eydda síðu',
@@ -1340,6 +1341,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'right-block'                 => 'Banna öðrum notendum að gera breytingar',
 'right-blockemail'            => 'Banna notanda að senda tölvupóst',
 'right-hideuser'              => 'Banna notandanafn, og þannig fela það frá almenningi',
+'right-ipblock-exempt'        => 'Hunsa bönn vistfanga, sjálfvirk bönn og fjöldabönn',
 'right-proxyunbannable'       => 'Sneiða hjá sjálfvirkum proxy-bönnum',
 'right-unblockself'           => 'Afbanna sjálfan sig',
 'right-protect'               => 'Breyta verndunarstigi og breyta vernduðum síðum',
@@ -1380,6 +1382,7 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'action-movefile'             => 'færa þessa skrá',
 'action-upload'               => 'hlaða inn þessari skrá',
 'action-reupload'             => 'yfirrita þessa skrá',
+'action-reupload-shared'      => 'Hunsa þessa skrá á sameiginlega myndasafninu',
 'action-upload_by_url'        => 'hlaða inn þessari skrá frá vefslóð',
 'action-delete'               => 'eyða þessari síðu',
 'action-deleterevision'       => 'eyða þessari breytingu',
@@ -1390,7 +1393,9 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 'action-suppressionlog'       => 'Skoða þessa einrænu aðgerðarskrá',
 'action-block'                => 'Banna notandanum að gera breytingar',
 'action-protect'              => 'breyta verndunarstigum fyrir þessa síðu',
+'action-rollback'             => 'Taka snögglega aftur breytingar síðasta notanda sem breytti ákveðinni síðu',
 'action-import'               => 'Flytja inn þessa skrá frá öðrum wiki',
+'action-patrol'               => 'Merkja breytingar annara sem yfirfarnar',
 'action-autopatrol'           => 'Merkja eigin breytingu sem yfirfarna',
 'action-unwatchedpages'       => 'Skoða lista yfir óvaktaðar síður',
 'action-mergehistory'         => 'Sameina breytingarskrá þessarar síðu',
@@ -1447,6 +1452,7 @@ Síður á [[Special:Watchlist|vaktlistanum þínum]] eru '''feitletraðar'''.",
 'upload'                      => 'Hlaða inn skrá',
 'uploadbtn'                   => 'Hlaða inn skrá',
 'reuploaddesc'                => 'Aftur á innhlaðningarformið.',
+'upload-tryagain'             => 'Sendu breytta myndlýsingu',
 'uploadnologin'               => 'Óinnskráð(ur)',
 'uploadnologintext'           => 'Þú verður að vera [[Special:UserLogin|skráð(ur) inn]]
 til að hlaða inn skrám.',
@@ -1492,6 +1498,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'file-too-large'              => 'Skráin sem þú valdir er of stór.',
 'filename-tooshort'           => 'Skráarnafnið er of stutt',
 'filetype-banned'             => 'Þessi skráarending er bönnuð.',
+'verification-error'          => 'Þessi skrá stóðst ekki sannprófun.',
 'illegal-filename'            => 'Þetta skráarnafn er ekki leyft.',
 'overwrite'                   => 'Óheimilt er að skrifa yfir skrá sem er þegar til.',
 'unknown-error'               => 'Óþekkt villa kom upp.',
@@ -1534,9 +1541,14 @@ Ef þú villt hlaða inn skránni þinni engu að síður, farðu þá til baka 
 'overwroteimage'              => 'hlóð inn nýrri útgáfu af "[[$1]]"',
 'uploaddisabled'              => 'Lokað er fyrir að hlaða inn myndum.',
 'copyuploaddisabled'          => 'Lokað er fyrir að hlaða inn myndum frá vefslóð.',
+'uploadfromurl-queued'        => 'Upphlaðið þitt hefur verið sett í biðröð.',
 'uploaddisabledtext'          => 'Lokað er fyrir að hlaða inn skrám.',
+'php-uploaddisabledtext'      => 'Skráar upphlöð eru óvirk í PHP.
+Vinsamlegast athugaðu stillinguna í file_uploads.',
 'uploadscripted'              => 'Þetta skjal inniheldur (X)HTML eða forskriftu sem gæti valdið villum í vöfrum.',
 'uploadvirus'                 => 'Skráin inniheldur veiru! Nánari upplýsingar: $1',
+'uploadjava'                  => 'Þessi skrá er ZIP skrá sem inniheldur Java .class skráarsnið.
+Upphlöðun Java skráa er óheimil, því þær hunsa öryggis hömlur.',
 'upload-source'               => 'Upprunaleg skrá',
 'sourcefilename'              => 'Upprunalegt skráarnafn:',
 'sourceurl'                   => 'Uppruni:',
@@ -1560,6 +1572,14 @@ Vinsamlegast hafðu samband við [[Special:ListUsers/sysop|möppudýr]].',
 'upload-unknown-size'    => 'Óþekkt stærð',
 'upload-http-error'      => 'HTTP villa kom upp við upphal skráarinnar: $1',
 
+# ZipDirectoryReader
+'zip-file-open-error' => 'Mistök við opnun skráarinnar fyrir ZIP athuganir.',
+'zip-wrong-format'    => 'Skráin var ekki ZIP skrá.',
+'zip-bad'             => 'Þessi ZIP skrá er skemmd eða ólesanleg.
+Ekki var hægt að athuga öryggi skráarinnar almennilega.',
+'zip-unsupported'     => 'Þessi skrá er ZIP skrá sem notar möguleika sem eru ekki studdir af MediaWiki.
+Ekki er hægt að athuga öryggi skráarinnar almennilega.',
+
 # Special:UploadStash
 'uploadstash'          => 'Óútgefnar skrár',
 'uploadstash-summary'  => 'Þessi síða gefur aðgang að þeim skrám sem hafa verið hlaðið inn (eða eru í biðröð eftir því að vera hlaðið inn) en hafa ekki verið útgefnar. Þessar skrár eru eingöngu sýnilegar þeim notanda sem hlóð þeim inn.',
@@ -1571,12 +1591,18 @@ Reyndu aftur.',
 'uploadstash-refresh'  => 'Endurhlaða listann',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Aðgangur óheimill',
-'img-auth-streaming'    => 'Streymi "$1".',
+'img-auth-accessdenied'     => 'Aðgangur óheimill',
+'img-auth-nofile'           => 'Skráin "$1" er ekki til.',
+'img-auth-streaming'        => 'Streymi "$1".',
+'img-auth-noread'           => 'Notandinn hefur ekki rétt til að lesa "$1"',
+'img-auth-bad-query-string' => 'Vefslóðin hefur ógildan fyrirspurnar streng.',
 
 # HTTP errors
 'http-invalid-url'      => 'Vitlaust veffang: $1',
+'http-request-error'    => 'HTTP beiðni mistókst vegna óþekktrar villu.',
+'http-curl-error'       => 'Villa við að sækja vefslóð: $1',
 'http-host-unreachable' => 'Gat ekki náð í vefslóðina',
+'http-bad-status'       => 'Mistök við HTTP beiðnina: $1 $2',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'Gat ekki náð í slóðina',
@@ -1715,7 +1741,7 @@ Leitarstrengurinn á að vera á þessu formi: efnistag/myndasnið, t.d. <tt>ima
 'statistics-users-active-desc' => 'Notendur sem hafa framkvæmt aðgerð {{PLURAL:$1|síðastliðin dag|síðastliðna $1 daga}}',
 'statistics-mostpopular'       => 'Mest skoðuðu síður',
 
-'disambiguations'      => 'Tenglar í aðgreiningarsíður',
+'disambiguations'      => 'Síður sem tengja á aðgreiningarsíður',
 'disambiguationspage'  => 'Template:Aðgreining',
 'disambiguations-text' => "Þessar síður innihalda tengla á svokallaðar „'''aðgreiningarsíður'''“.
 Laga ætti tenglanna og láta þá vísa á rétta síðu.<br />
@@ -2106,6 +2132,7 @@ Núverandi staða síðunnar er '''$1''':",
 'viewdeletedpage'            => 'Skoða eyddar síður',
 'undeletepagetext'           => 'Eftirfarandi {{PLURAL:$1|síðu hefur verið eytt en hún er þó enn í gagnagrunninum og getur verið endurvakin|$1 síðum hefur verið eytt en eru þó enn í gagnagrunninum og geta verið endurvaknar}}.
 Gagnagrunnurinn kann að vera tæmdur reglulega.',
+'undelete-fieldset-title'    => 'Endurvekja breytingar',
 'undeleteextrahelp'          => "Til þess að endurvekja alla breytingarskrá síðunnar, skildu öll box eftir óhökuð og ýttu á '''''{{int:undeletebtn}}'''''.
 Til þess að framkvæma ákveðna endurvakningu, ýttu á þau box sem standa hliðiná þeim útgáfum sem á að endurvekja og ýttu á '''''{{int:undeletebtn}}'''''.",
 'undeleterevisions'          => '$1 {{PLURAL:$1|breyting|breytingar}}',
@@ -2317,7 +2344,12 @@ Vistfangið var bannað sem hluti af fjöldabanninu $2, sem er hægt að afbanna
 'ip_range_toolarge'               => 'Fjöldabönn stærri en /$1 eru óheimil.',
 'blockme'                         => 'Banna mig',
 'proxyblocker-disabled'           => 'Þessi virkni er óvirk.',
+'proxyblockreason'                => 'Vistfangið þitt hefur verið bannað því það er opið vefsel.
+Vinsamlegast hafðu samband við internetþjónustuaðilann þinn eða netstjóra félagsins og láttu þá vita af þessu alvarlegu öryggisvandamáli.',
 'proxyblocksuccess'               => 'Búinn.',
+'sorbsreason'                     => 'Vistfangið þitt er á lista yfir opin vefsel í DNSBL sem er í notkun á {{SITENAME}}.',
+'sorbs_create_account_reason'     => 'Vistfangið þitt er á lista yfir opin vefsel í DNSBL sem er notað af {{SITENAME}}.
+Þú getur ekki stofnað aðgang.',
 'cant-block-while-blocked'        => 'Þú getur ekki bannað aðra notendur á meðan þú ert í banni.',
 'cant-see-hidden-user'            => 'Notandinn sem þú ert að reyna að banna hefur þegar verið bannaður og falinn.
 Þar sem þú hefur ekki þau réttindi að fela notendur, þá getur þú ekki séð eða breytt banni notandans.',
@@ -2444,7 +2476,7 @@ Vinsamlegast veldu annað nafn.',
 'allmessagesdefault'            => 'Sjálfgefinn texti',
 'allmessagescurrent'            => 'Núverandi texti',
 'allmessagestext'               => 'Þetta er listi yfir kerfismeldingar í Melding-nafnrýminu.
-Gjörðu svo vel og heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [http://translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
+Gjörðu svo vel og heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [//translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
 'allmessagesnotsupportedDB'     => "Það er ekki hægt að nota '''{{ns:special}}:Allmessages''' því '''\$wgUseDatabaseMessages''' hefur verið gerð óvirk.",
 'allmessages-filter-legend'     => 'Sía',
 'allmessages-filter'            => 'Sía með breytingarstöðu:',
@@ -2476,6 +2508,8 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'import-interwiki-namespace' => 'Ákvörðunarnafnrými:',
 'import-upload-filename'     => 'Skráarnafn:',
 'import-comment'             => 'Athugasemdir:',
+'importtext'                 => 'Vinsamlegast fluttu út skránna frá upprunalegum wiki með því að nota [[Special:Export|Flytja út síður]].
+Vistaðu skránna á tölvunni þinni og hladdu henni inn hér.',
 'importstart'                => 'Flyt inn síður...',
 'import-revision-count'      => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'importnopages'              => 'Engar síður til innflutnings.',
@@ -2485,6 +2519,7 @@ Allir innflutningar eru skráð í [[Special:Log/import|innflutningsskránna]].'
 'importbadinterwiki'         => 'Villa í tungumálatengli',
 'importnotext'               => 'Tómt eða enginn texti',
 'importsuccess'              => 'Innflutningi lokið!',
+'importhistoryconflict'      => 'Breytingarskrá þessarar síðu er þegar til (gæti hafa verið flutt inn áður)',
 'importnofile'               => 'Engri skrá var hlaðið inn.',
 'importuploaderrorsize'      => 'Upphlöðun skráarinnar mistókst.
 Skráin er stærri en hámarsstærð síðna segir til um.',
@@ -2495,10 +2530,11 @@ Tímabundin mappa fannst ekki.',
 'import-parse-failure'       => 'Þáttunarvilla við innflutning XML skjals',
 'import-noarticle'           => 'Engin síða til innflutnings!',
 'import-nonewrevisions'      => 'Allar breytingar voru fluttar inn.',
-'xml-error-string'           => 'XML þáttunarvilla í línu $, dálki $3 ($ bæt): $5',
+'xml-error-string'           => '$1 í línu $2, dálki $3 ($4 bæt): $5',
 'import-upload'              => 'Hlaða inn XML-gögnum',
 'import-token-mismatch'      => 'Týnd setu gögn.
 Vinsamlegast reyndu aftur.',
+'import-invalid-interwiki'   => 'Get ekki flutt inn frá þessum wiki.',
 'import-error-edit'          => 'Síðan "$1" var ekki flutt inn því þú hefur ekki réttindi til að breyta henni.',
 'import-error-create'        => 'Síðan "$1" var ekki flutt inn því þú hefur ekki réttindi til að stofna hana.',
 
@@ -2745,6 +2781,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-subsectime'                  => 'DagsetningTími sekúndubrot',
 'exif-exposuretime'                => 'Lýsingartími',
 'exif-exposuretime-format'         => '$1 sekúnda ($2)',
+'exif-exposureprogram'             => 'Ljósastilling',
 'exif-isospeedratings'             => 'ISO filmuhraði',
 'exif-flash'                       => 'Leifturljós',
 'exif-focallength'                 => 'Brennivídd',
@@ -2768,6 +2805,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-gpsspeed'                    => 'Móttökuhraði GPS',
 'exif-gpsdestlatitude'             => 'Breiddargráða',
 'exif-gpsdestlongitude'            => 'Lengdargráða',
+'exif-gpsdestdistance'             => 'Fjarlægð á áfangastað',
 'exif-gpsdatestamp'                => 'GPS dagsetning',
 'exif-keywords'                    => 'Lykilorð',
 'exif-worldregioncreated'          => 'Heimsálfa sem myndin var tekin í',
@@ -2783,6 +2821,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-citydest'                    => 'Borg sýnd',
 'exif-sublocationdest'             => 'Hverfi borgar sýnt',
 'exif-objectname'                  => 'Stuttur titill',
+'exif-specialinstructions'         => 'Sérstakar leiðbeiningar',
 'exif-headline'                    => 'Fyrirsögn',
 'exif-source'                      => 'Uppruni',
 'exif-urgency'                     => 'Nauðsyn',
@@ -2805,11 +2844,22 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 
 'exif-unknowndate' => 'Óþekkt dagsetning',
 
+'exif-orientation-3' => 'Snýr 180°',
+'exif-orientation-6' => 'Snýr 90° rangsælis',
+'exif-orientation-8' => 'Snýr 90° réttsælis',
+
 'exif-componentsconfiguration-0' => 'er ekki til',
 
 'exif-exposureprogram-0' => 'Ekki skilgreint',
+'exif-exposureprogram-1' => 'Sjálfvirkt',
+'exif-exposureprogram-3' => 'Forgangur ljósops',
+'exif-exposureprogram-4' => 'Forgangur lokara',
+'exif-exposureprogram-7' => 'Andlitsmynda stilling (fyrir nærmyndir með bakrunninn í þoku)',
+'exif-exposureprogram-8' => 'Landslags stilling (fyrir landslagsmyndir með skarpan bakrunn)',
 
 'exif-subjectdistance-value' => '$1 metrar',
+
+'exif-meteringmode-0' => 'Óþekkt',
 
 'exif-lightsource-1'   => 'Dagsbirta',
 'exif-lightsource-2'   => 'Flúrljós',
@@ -2820,8 +2870,10 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-lightsource-255' => 'Önnur ljósuppspretta',
 
 # Flash modes
-'exif-flash-fired-0' => 'Leifturljósið var slökkt',
-'exif-flash-fired-1' => 'Leifturljósið kviknaði',
+'exif-flash-fired-0'    => 'Leifturljósið var slökkt',
+'exif-flash-fired-1'    => 'Leifturljósið kviknaði',
+'exif-flash-mode-3'     => 'sjálfvirkt',
+'exif-flash-function-1' => 'Ekkert leifturljós',
 
 'exif-focalplaneresolutionunit-2' => 'tommur',
 

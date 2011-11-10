@@ -389,7 +389,7 @@ Perse: $2',
 'protectedpagetext'    => 'No pel qey nêvuriyayiş hao (nao) pawyeno.',
 'viewsourcetext'       => 'To şikinay çımey na pele bıvêne u kopya kerê:',
 'protectedinterface'   => 'No pel qey software nuştey hezır keno u ın semed ra şuxulyayişê no pel qedexe biyo.',
-'editinginterface'     => "'''DİQET:''' Şıma pelê software vurneni.[http://translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net] bıxebıtne, proceyê MediaWiki bigere diqet.",
+'editinginterface'     => "'''DİQET:''' Şıma pelê software vurneni.[//translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net] bıxebıtne, proceyê MediaWiki bigere diqet.",
 'sqlhidden'            => '(SQL pers kerdışê nımıte)',
 'cascadeprotected'     => 'No pel de vurnayiş qedexe biyo, çunke şıma tuşa "kademeyın" aqtif kerdo u no {{PLURAL:$1|pelo|pelo}} pawıteyo de xebıtyeno:
 $2',
@@ -2292,7 +2292,7 @@ ma vaci: qey pelê "[[{{MediaWiki:Mainpage}}]]i " [[{{#Special:Export}}/{{MediaW
 'allmessagesdefault'            => 'nuşteyo orjinal',
 'allmessagescurrent'            => 'nuşte yo ke şuxuliyeno',
 'allmessagestext'               => 'na liste, listeya mesajê cayê nameyê wikimedya yo.
-eke şıma qayili paşt bıdi mahalli kerdışê wikimedyayi, kerem kerê pelê [//www.mediawiki.org/wiki/Localisation mahalli kerdışê wikimedyayi] u [http://translatewiki.net translatewiki.net] ziyaret bıkerê.',
+eke şıma qayili paşt bıdi mahalli kerdışê wikimedyayi, kerem kerê pelê [//www.mediawiki.org/wiki/Localisation mahalli kerdışê wikimedyayi] u [//translatewiki.net translatewiki.net] ziyaret bıkerê.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' qefelnaye yo u ey ra '''{{ns:special}}:Allmessages''' karkerdışi re akerde niyo.",
 'allmessages-filter-legend'     => 'Filitre',
 'allmessages-filter'            => 'goreyê xususi kerdışi re filtre bıker',

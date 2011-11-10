@@ -445,7 +445,7 @@ Ecind: $2',
 'protectedinterface'   => 'Necil lehtpolel om programman interfeistedotuz. Se om luklostadud, miše kaita se vandalizmaspäi.',
 'editinginterface'     => "'''Homaikat:''' Tö ladit redaktiruida lehtpol't, kudambal om programman interfeistekst.
 Mugoi tegend toižetab interfeisan irdnägu toižiden kävutajiden täht.
-Kändmižen täht om paremb kävutada [http://translatewiki.net/wiki/Main_Page?setlang=vep translatewiki.net] - MediaWikin lokalizacijan projekt.",
+Kändmižen täht om paremb kävutada [//translatewiki.net/wiki/Main_Page?setlang=vep translatewiki.net] - MediaWikin lokalizacijan projekt.",
 'sqlhidden'            => '(SQL-küzelend om peittud)',
 'namespaceprotected'   => "Teil ei ole oiktust redaktiruida lehtpolid '''$1'''-nimiavaruses.",
 'ns-specialprotected'  => 'Ei sa redaktiruida specialižid lehtpolid.',

@@ -801,7 +801,7 @@ $1',
 'protectedinterface'   => 'این صفحه ارائه‌دهندهٔ متنی برای واسط کاربر این نرم‌افزار است و به منظور پیشگیری از خرابکاری قفل شده‌است.',
 'editinginterface'     => "'''هشدار:''' شما صفحه‌ای را ویرایش می‌کنید که شامل  متنی است که در واسط کاربر این نرم‌افزار به کار رفته‌است.
 تغییر این صفحه منجر به تغییر ظاهر واسط کاربر این نرم‌افزار برای دیگر کاربران خواهد شد.
-برای ترجمه، لطفاً از [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، پروژهٔ ترجمهٔ مدیاویکی، استفاده کنید.",
+برای ترجمه، لطفاً از [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، پروژهٔ ترجمهٔ مدیاویکی، استفاده کنید.",
 'sqlhidden'            => '(دستور اس‌کیوال پنهان شده)',
 'cascadeprotected'     => 'این صفحه در مقابل ویرایش محافظت شده‌است برای اینکه در {{PLURAL:$1|صفحهٔ|صفحه‌های}} محافظت‌شدهٔ زیر که گزینهٔ «آبشاری» در {{PLURAL:$1|آن|آنها}} انتخاب شده‌است، قرار گرفته‌است:
 $2',
@@ -2924,7 +2924,7 @@ $1',
 'allmessagesdefault'            => 'متن پیش‌فرض پیغام',
 'allmessagescurrent'            => 'متن کنونی پیغام',
 'allmessagestext'               => 'این فهرستی از پیغام‌های سامانه‌ای موجود در فضای نام مدیاویکی است.
-چنان‌چه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [//www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [http://translatewiki.net translatewiki.net] را ببینید.',
+چنان‌چه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [//www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [//translatewiki.net translatewiki.net] را ببینید.',
 'allmessagesnotsupportedDB'     => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''&lrm;\$wgUseDatabaseMessages''' خاموش شده است.",
 'allmessages-filter-legend'     => 'پالایه',
 'allmessages-filter'            => 'پالودن بر اساس وضعیت شخصی‌سازی:',

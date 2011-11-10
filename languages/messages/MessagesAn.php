@@ -497,7 +497,7 @@ Consulta: $2',
 'protectedpagetext'    => 'Ista pachina ha estato protechita ta aprevenir a suya edición.',
 'viewsourcetext'       => "Puede veyer y copiar o codigo fuent d'ista pachina:",
 'protectedinterface'   => "Ista pachina furne o texto d'a interfaz ta o software. Ye protechita ta privar o vandalismo. Si creye que bi ha bella error, contacte con un administrador.",
-'editinginterface'     => "'''Pare cuenta:''' Ye editando una pachina emplegata ta furnir o texto d'a interfaz de {{SITENAME}}. Os cambeos en ista pachina tendrán efecto en l'aparencia d'a interfaz ta os atros usuarios. Ta fer traduccions d'a interfaz, puede considerar fer servir [http://translatewiki.net/wiki/Main_Page?setlang=an translatewiki.net], o prochecto de localización de MediaWiki.",
+'editinginterface'     => "'''Pare cuenta:''' Ye editando una pachina emplegata ta furnir o texto d'a interfaz de {{SITENAME}}. Os cambeos en ista pachina tendrán efecto en l'aparencia d'a interfaz ta os atros usuarios. Ta fer traduccions d'a interfaz, puede considerar fer servir [//translatewiki.net/wiki/Main_Page?setlang=an translatewiki.net], o prochecto de localización de MediaWiki.",
 'sqlhidden'            => '(Consulta SQL amagata)',
 'cascadeprotected'     => 'Ista pachina ye protechita y no se puede editar porque ye incluyita en {{PLURAL:$1|a siguient pachina|as siguients pachinas}}, que son protechitas con a opción de "cascada": $2',
 'namespaceprotected'   => "No tiene premiso ta editar as pachinas d'o espacio de nombres '''$1'''.",
@@ -1543,7 +1543,7 @@ $1',
 'img-auth-nopathinfo'   => 'Falta PATH_INFO.
 O suyo servidor no ye configurau ta pasar ista información.
 Puet que siga basau en CGI y no siga compatible con img_auth.
-Se veiga http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Se veiga //www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'A rota solicitada no ye en o directorio de cargas configurau',
 'img-auth-badtitle'     => 'No s\'ha puesto construyir un títol valito dende "$1".',
 'img-auth-nologinnWL'   => 'No ha encetau sesión y "$1" no ye en a lista blanca.',
@@ -2422,7 +2422,7 @@ En iste zaguer caso tamién puede usar un vinclo, por eixemplo [[{{#Special:Expo
 'allmessagesdefault'            => 'texto por defecto',
 'allmessagescurrent'            => 'texto actual',
 'allmessagestext'               => "Ista ye una lista de totz os mensaches disponibles en o espacio de nombres MediaWiki.
-Vesite por favor [//www.mediawiki.org/wiki/Localisation a pachina sobre localización de MediaWiki] y  [http://translatewiki.net translatewiki.net] si deseya contrebuyir t'a localización cheneral de MediaWiki.",
+Vesite por favor [//www.mediawiki.org/wiki/Localisation a pachina sobre localización de MediaWiki] y  [//translatewiki.net translatewiki.net] si deseya contrebuyir t'a localización cheneral de MediaWiki.",
 'allmessagesnotsupportedDB'     => 'Ista pachina no ye disponible porque wgUseDatabaseMessages ye desactivato.',
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar por estau de personalización:',

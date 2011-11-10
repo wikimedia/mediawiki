@@ -1203,7 +1203,7 @@ Grein við navninum "[[:$1]]" finst longu. Ynskir tú at strika hana til tess at
 'allmessagesdefault'        => 'Enskur tekstur',
 'allmessagescurrent'        => 'Verandi tekstur',
 'allmessagestext'           => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.
-Vinarliga vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [http://translatewiki.net translatewiki.net] um tú ynskir at geva títt íkast til ta generisku MediaWiki lokalisatiónina.',
+Vinarliga vitja [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [//translatewiki.net translatewiki.net] um tú ynskir at geva títt íkast til ta generisku MediaWiki lokalisatiónina.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' er ikki stuðlað orsakað av at '''\$wgUseDatabaseMessages''' er sløkt.",
 'allmessages-filter-legend' => 'Filtur',
 'allmessages-language'      => 'Mál:',

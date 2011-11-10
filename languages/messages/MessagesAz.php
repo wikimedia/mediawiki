@@ -454,7 +454,7 @@ Sorğu: $2',
 'protectedinterface'   => 'Bu səhifədə proqram təminatı üçün sistem məlumatları var və sui-istifadənin qarşısını almaq üçün mühafizə olunmalıdır.',
 'editinginterface'     => "'''Diqqət!''' Siz proqram təminatı interfeysinin mətn olan səhifəsini redaktə edirsiniz.
 Onun dəyişdirilməsi digər istifadəçilərin interfeysinin xarici görünüşünə təsir göstərir.
-Tərcümə üçün daha yaxşı olar ki, MediaWiki-nin lokallaşması üçün olan [http://translatewiki.net/wiki/Main_Page?setlang=az translatewiki.net]  layihəsindən istifadə edəsiniz.",
+Tərcümə üçün daha yaxşı olar ki, MediaWiki-nin lokallaşması üçün olan [//translatewiki.net/wiki/Main_Page?setlang=az translatewiki.net]  layihəsindən istifadə edəsiniz.",
 'sqlhidden'            => '(SQL gizli sorğu)',
 'cascadeprotected'     => 'Səhifə mühafizə olunub, çünki o kaskad mühafizə olunan {{PLURAL:$1|növbəti səhifəyə|növbəti səhifələrə}} qoşulub:
 $2',
@@ -2130,7 +2130,7 @@ Zəhmət olmasa başqa ad seçin.',
 'allmessagesname'               => 'Ad',
 'allmessagesdefault'            => 'İlkin mətn',
 'allmessagescurrent'            => 'İndiki mətn',
-'allmessagestext'               => 'Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsinizsə, lütfən [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] və [http://translatewiki.net translatewiki.net]-ə baş çəkin.',
+'allmessagestext'               => 'Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsinizsə, lütfən [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] və [//translatewiki.net translatewiki.net]-ə baş çəkin.',
 'allmessages-filter-legend'     => 'Filtr',
 'allmessages-filter-unmodified' => 'Dəyişdirilməmiş',
 'allmessages-filter-all'        => 'Hamısı',

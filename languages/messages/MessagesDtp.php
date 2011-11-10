@@ -387,7 +387,7 @@ Umbalan kawagu do katalib poh pipiro minit.',
 'protectedinterface'   => 'Bolikon diti kiharo sinuratan pongurasan montok posusuang-suangon, om notingoligan do momiara mantad pomirumbakan.',
 'editinginterface'     => "'''Panansarahan :''' Mongidit ko diti bolikon di gunoon do poposodia diri sinuratan montok posuang-suangon.
 Sinuratan id bolikon diti kopogoit do pongitanan  kourasan momoguno  montok momomoguno wokon.
-Montok pangawaliwboros, pomusarahai no do mongoguno [http://translatewiki.net/wiki/Main_Page?setlang=dtp translatewiki.net], purujik popodusun ModiaWiki.",
+Montok pangawaliwboros, pomusarahai no do mongoguno [//translatewiki.net/wiki/Main_Page?setlang=dtp translatewiki.net], purujik popodusun ModiaWiki.",
 'sqlhidden'            => '(Pongimuhatan SQL poinlisok)',
 'cascadeprotected'     => 'Notingoligan bolikon diti mantad do pingiditan tu nokosuang  id bolikon, {{PLURAL:$1 | do | it}} pinilian tingolig  "kasading" poinsikit:
 $2',

@@ -387,7 +387,7 @@ Kuch deri be baad fir se kosis karna.',
 'protectedinterface'   => 'Ii panna software ke interface text dewe hai, aur iske barbaadi se roke ke khatir band kar dewa gais hai.',
 'editinginterface'     => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hae.
 Ii panna me badlao ke asar duusra sadasya ke interface ke bhi hoi.
-Translation khatir [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
+Translation khatir [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
 'sqlhidden'            => '(SQL query lukawal hai)',
 'cascadeprotected'     => 'Ii panna ke badlao se bachawa gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit hae "cascading" option turned on ke saathe me rakkhaa gais hai:
 $2',
@@ -2435,7 +2435,7 @@ Duusra case me aap ek link ke bhi use kare saktaa hai, jaise ki [[{{#Special:Exp
 'allmessagesdefault'            => 'Default text',
 'allmessagescurrent'            => 'Abhi ke text',
 'allmessagestext'               => 'Ii ek system sandes ke suchi hai jon ki MediaWiki namespace me pawa jaae sake hai.
-Agar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani kar ke [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] aur [http://translatewiki.net translatewiki.net]  pe jao.',
+Agar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani kar ke [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] aur [//translatewiki.net translatewiki.net]  pe jao.',
 'allmessagesnotsupportedDB'     => "Ii panna ke kaam me nai lawa jaae sake hai kahe ki '''\$wgUseDatabaseMessages''' ke band kar dewa gais hai.",
 'allmessages-filter-legend'     => 'Chaalo',
 'allmessages-filter'            => 'Customisation state se chhaano',

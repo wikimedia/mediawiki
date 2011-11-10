@@ -386,7 +386,7 @@ $messages = array(
 'protectedpagetext'    => 'اس صفحے دے اتے تبدیلی کرن نوں روکیا گیا اے۔',
 'viewsourcetext'       => 'تسی اس صفحے دی لکھائی نوں ویکھ تے نقل کر سکدے او:',
 'protectedinterface'   => 'اے صفحے سافٹویئر نوں ورتن دی تھاں دیندا اے تے ایدے غلط ورتن نوں روکن واسطے اینوں بچایا ہویا اے۔',
-'editinginterface'     => "'''خبردار:''' تسیں اک ایسا صفہ بدل رۓ او جیہڑا مکھی صفے دے سوفٹویر نوں لکھت دیندا اے۔ ایس صفے ج تبدیلی ورتنن والیاں دے مکھی صفے دے وکھالے نوں بدل دے گی۔ بولی وٹاندرے لئی، مہربانی کرکے میڈیاوکی بولی ویونت [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] ول ویکھو۔",
+'editinginterface'     => "'''خبردار:''' تسیں اک ایسا صفہ بدل رۓ او جیہڑا مکھی صفے دے سوفٹویر نوں لکھت دیندا اے۔ ایس صفے ج تبدیلی ورتنن والیاں دے مکھی صفے دے وکھالے نوں بدل دے گی۔ بولی وٹاندرے لئی، مہربانی کرکے میڈیاوکی بولی ویونت [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] ول ویکھو۔",
 'sqlhidden'            => '(SQL کھوج چھپائی ہوئي اے)',
 'cascadeprotected'     => 'ایس صفے نوں تبدیلی توں بچایا گیا اے، کیوں جے ایہ تھلے دتے گۓ {{انیک:$1|صفے|صفے}} چ ہیگا اے تے اینوں کیسکیڈنگ چنوتی نال بچایا گیا اے: $2',
 'namespaceprotected'   => "'''$1''' ناں دے صفحے تسی نئیں لکھ سکدے۔",
@@ -2471,7 +2471,7 @@ $1',
 'allmessagesdefault'            => 'ڈیفالٹ لکھائی',
 'allmessagescurrent'            => 'موجودہ لکھائی',
 'allmessagestext'               => 'ایہ لسٹ اے پربندھ سنیعیاں دی  جیہڑے میڈیاوکی دی ناں تھاں تے ہیگے نیں۔
-مہربانی کرکے [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] تے [http://translatewiki.net translatewiki.net] تے جاؤ۔
+مہربانی کرکے [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] تے [//translatewiki.net translatewiki.net] تے جاؤ۔
 اگر تسیں میڈیا وکی دے بولی وٹاندرے چ کم کرنا چاندے او۔',
 'allmessagesnotsupportedDB'     => "اے صفہ نئیں ورتیا جاسکدا کیوں جے '''\$wgUseDatabaseMessages''' روک دتا گیا اے۔",
 'allmessages-filter-legend'     => 'فلٹر',

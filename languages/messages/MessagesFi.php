@@ -671,7 +671,7 @@ Joku muu on saattanut poistaa sen.',
 'protectedinterface'   => 'Tämä sivu sisältää ohjelmiston käyttöliittymätekstiä ja on suojattu häiriköinnin estämiseksi.',
 'editinginterface'     => "'''Varoitus.''' Muokkaat sivua, joka sisältää ohjelmiston käyttöliittymätekstiä.
 Muutokset tähän sivuun vaikuttavat muiden käyttäjien käyttöliittymän ulkoasuun.
-Viestien kääntäminen tulisi tehdä [http://translatewiki.net/wiki/Main_Page?setlang=fi translatewiki.netissä] – MediaWikin kotoistusprojektissa.",
+Viestien kääntäminen tulisi tehdä [//translatewiki.net/wiki/Main_Page?setlang=fi translatewiki.netissä] – MediaWikin kotoistusprojektissa.",
 'sqlhidden'            => '(SQL-kysely piilotettu)',
 'cascadeprotected'     => 'Tämä sivu on suojattu muokkauksilta, koska se on sisällytetty alla {{PLURAL:$1|olevaan laajennetusti suojattuun sivuun|oleviin laajennetusti suojattuihin sivuihin}}:
 $2',
@@ -2664,7 +2664,7 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'allmessagesdefault'            => 'Oletusarvo',
 'allmessagescurrent'            => 'Nykyinen arvo',
 'allmessagestext'               => 'Tämä on luettelo järjestelmäviesteistä, jotka ovat saatavilla MediaWiki-nimiavaruudessa.
-Jos haluat muokata MediaWikin yleistä kotoistusta, käy [//www.mediawiki.org/wiki/Localisation MediaWikin kotoistussivuilla] ja sivustolla [http://translatewiki.net translatewiki.net].',
+Jos haluat muokata MediaWikin yleistä kotoistusta, käy [//www.mediawiki.org/wiki/Localisation MediaWikin kotoistussivuilla] ja sivustolla [//translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB'     => 'Tämä sivu ei ole käytössä, koska <tt>$wgUseDatabaseMessages</tt>-asetus on pois päältä.',
 'allmessages-filter-legend'     => 'Suodata',
 'allmessages-filter'            => 'Suodata muutosten perusteella',

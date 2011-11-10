@@ -514,7 +514,7 @@ Per favor reprova post alcun minutas.',
 'protectedinterface'   => 'Iste pagina contine texto pro le interfacie del software, e es protegite pro impedir le abuso.',
 'editinginterface'     => "'''Attention:''' Le texto de iste pagina face parte del interfacie pro le software.
 Omne modification a iste pagina cambiara le apparentia del interfacie pro altere usatores.
-Pro traductiones, per favor considera usar [http://translatewiki.net/wiki/Main_Page?setlang=ia translatewiki.net], le projecto pro localisar MediaWiki.",
+Pro traductiones, per favor considera usar [//translatewiki.net/wiki/Main_Page?setlang=ia translatewiki.net], le projecto pro localisar MediaWiki.",
 'sqlhidden'            => '(Consulta SQL non monstrate)',
 'cascadeprotected'     => 'Iste pagina ha essite protegite contra modificationes, proque illo es includite in le sequente {{PLURAL:$1|pagina, le qual|paginas, le quales}} es protegite usante le option "cascada":
 $2',
@@ -1684,10 +1684,10 @@ Un verification correcte de su securitate es impossibile.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accesso refusate',
-'img-auth-nopathinfo'       => 'PATH_INFO mancante.
+'img-auth-nopathinfo'       => 'PATH_INFO manca.
 Le servitor non ha essite configurate pro passar iste information.
 Illo pote esser basate super CGI e non pote supportar img_auth.
-Vide http://www.mediawiki.org/wiki/Manual:Image_Authorization .',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Vide: Autorisation de imagines.]',
 'img-auth-notindir'         => 'Le cammino requestate non es in le directorio de incargamentos configurate.',
 'img-auth-badtitle'         => 'Impossibile construer un titulo valide ex "$1".',
 'img-auth-nologinnWL'       => 'Tu non ha aperite un session e "$1" non es in le lista blanc.',
@@ -2673,7 +2673,7 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 'allmessagesdefault'            => 'Texto predefinite',
 'allmessagescurrent'            => 'Texto actual',
 'allmessagestext'               => 'Isto es un lista de messages de systema disponibile in le spatio de nomines MediaWiki.
-Per favor visita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
+Per favor visita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [//translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
 'allmessagesnotsupportedDB'     => "Iste pagina non pote esser usate proque '''\$wgUseDatabaseMessages''' ha essite disactivate.",
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar per stato de personalisation:',

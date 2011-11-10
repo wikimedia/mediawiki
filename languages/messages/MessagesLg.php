@@ -1216,7 +1216,7 @@ Yogera nange gwe olina okugyegattira ku eyo esangidwawo.'''",
 'allmessagescurrent'            => 'Ebiriwo kakano',
 'allmessagestext'               => "Luno lwe lukalala olw'obubaka obwa sisitemu obw'omu kkuŋŋaanizo erya MediaWiki.
 
-Ob'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ne [http://translatewiki.net translatewiki.net].",
+Ob'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ne [//translatewiki.net translatewiki.net].",
 'allmessages-filter-legend'     => 'Ensunsula',
 'allmessages-filter'            => 'Londamu:',
 'allmessages-filter-unmodified' => 'Ebitannakyusibwamu',
