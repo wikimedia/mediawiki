@@ -887,7 +887,7 @@ class SpecialUndelete extends SpecialPage {
 	 * @return String: HTML
 	 */
 	function showDiff( $previousRev, $currentRev ) {
-		$diffEngine = new DifferenceEngine( $previousRev->getTitle() );
+		$diffEngine = new DifferenceEngine( $this->getContext() );
 		$diffEngine->showDiffStyle();
 		$this->getOutput()->addHTML(
 			"<div>" .

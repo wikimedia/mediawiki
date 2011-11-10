@@ -111,7 +111,7 @@ class SpecialComparePages extends SpecialPage {
 		$rev2 = self::revOrTitle( $data['Revision2'], $data['Page2'] );
 
 		if( $rev1 && $rev2 ) {
-			$de = new DifferenceEngine( null,
+			$de = new DifferenceEngine( $this->getContext(),
 				$rev1,
 				$rev2,
 				null, // rcid
