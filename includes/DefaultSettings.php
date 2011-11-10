@@ -2244,6 +2244,12 @@ $wgXhtmlNamespaces = array();
 $wgShowIPinHeader	= true;
 
 /**
+ * Use a user's real name inside the user interface for display instead of the username
+ * (experimental)
+ */
+$wgRealNameInInterface = true;
+
+/**
  * Site notice shown at the top of each page
  *
  * MediaWiki:Sitenotice page, which will override this. You can also

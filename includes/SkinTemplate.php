@@ -175,6 +175,7 @@ class SkinTemplate extends Skin {
 		$this->thisquery = wfArrayToCGI( $query );
 		$this->loggedin = $user->isLoggedIn();
 		$this->username = $user->getName();
+		$this->userdisplayname = $user->getDisplayName();
 
 		if ( $user->isLoggedIn() || $this->showIPinHeader() ) {
 			$this->userpageUrlDetails = self::makeUrlDetails( $this->userpage );
@@ -305,6 +306,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'capitalizeallnouns', $this->getLang()->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
 		$tpl->set( 'showjumplinks', $user->getOption( 'showjumplinks' ) );
 		$tpl->set( 'username', $user->isAnon() ? null : $this->username );
+		$tpl->set( 'userdisplayname', $user->isAnon() ? null : $this->userdisplayname );
 		$tpl->setRef( 'userpage', $this->userpage );
 		$tpl->setRef( 'userpageurl', $this->userpageUrlDetails['href'] );
 		$tpl->set( 'userlang', $userlang );
@@ -558,7 +560,7 @@ class SkinTemplate extends Skin {
 		$returnto = wfArrayToCGI( $a );
 		if( $this->loggedin ) {
 			$personal_urls['userpage'] = array(
-				'text' => $this->username,
+				'text' => $this->userdisplayname,
 				'href' => &$this->userpageUrlDetails['href'],
 				'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
 				'active' => ( $this->userpageUrlDetails['href'] == $pageurl )
@@ -653,7 +655,7 @@ class SkinTemplate extends Skin {
 			if( $this->showIPinHeader() ) {
 				$href = &$this->userpageUrlDetails['href'];
 				$personal_urls['anonuserpage'] = array(
-					'text' => $this->username,
+					'text' => $this->userdisplayname,
 					'href' => $href,
 					'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
 					'active' => ( $pageurl == $href )
