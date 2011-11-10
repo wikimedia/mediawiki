@@ -229,6 +229,7 @@ class UploadStash {
 		$dbw = $this->repo->getMasterDb();
 
 		$this->fileMetadata[$key] = array(
+			'us_id' => $dbw->nextSequenceValue( 'uploadstash_us_id_seq' ),
 			'us_user' => $this->userId,
 			'us_key' => $key,
 			'us_orig_path' => $path,

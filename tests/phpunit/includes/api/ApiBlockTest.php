@@ -55,7 +55,7 @@ class ApiBlockTest extends ApiTestCase {
 
 		$this->assertEquals( 'UTApiBlockee', (string)$block->getTarget() );
 		$this->assertEquals( 'Some reason', $block->mReason );
-		$this->assertEquals( 'infinity', $block->mExpiry );
+		$this->assertEquals( $this->db->getInfinity(), $block->mExpiry );
 
 	}
 
