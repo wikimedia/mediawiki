@@ -273,6 +273,7 @@ CREATE INDEX /*i*/page_len ON /*_*/page (page_len);
 -- to the text storage backend.
 --
 CREATE TABLE /*_*/revision (
+  -- Unique ID to identify each revision
   rev_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,
 
   -- Key to page_id. This should _never_ be invalid.
@@ -296,14 +297,14 @@ CREATE TABLE /*_*/revision (
   -- Text username or IP address of the editor.
   rev_user_text varchar(255) binary NOT NULL default '',
 
-  -- Timestamp
+  -- Timestamp of when revision was created
   rev_timestamp binary(14) NOT NULL default '',
 
   -- Records whether the user marked the 'minor edit' checkbox.
   -- Many automated edits are marked as minor.
   rev_minor_edit tinyint unsigned NOT NULL default 0,
 
-  -- Not yet used; reserved for future changes to the deletion system.
+  -- Restrictions on who can access this revision
   rev_deleted tinyint unsigned NOT NULL default 0,
 
   -- Length of this revision in bytes
