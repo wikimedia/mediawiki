@@ -6,10 +6,11 @@
 class wfRemoveDotSegments extends MediaWikiTestCase {
 	/** @dataProvider providePaths */
 	public function testWfRemoveDotSegments( $inputPath, $outputPath ) {
-		$actualPath = wfRemoveDotSegments( $inputPath );
-		$message = "Testing $inputPath expands to $outputPath";
-		echo $message . "\n";
-		$this->assertEquals( $outputPath, $actualPath, $message );
+		$this->assertEquals(
+			$outputPath,
+			wfRemoveDotSegments( $inputPath ),
+			"Testing $inputPath expands to $outputPath"
+		);
 	}
 
 	/**
