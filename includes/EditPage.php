@@ -2060,7 +2060,7 @@ HTML
 		if ( wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
 
-			$de = new DifferenceEngine( $this->mTitle );
+			$de = new DifferenceEngine( $this->mArticle->getContext() );
 			$de->setText( $this->textbox2, $this->textbox1 );
 			$de->showDiff( wfMsgExt( 'yourtext', 'parseinline' ), wfMsg( 'storedversion' ) );
 
@@ -2329,7 +2329,7 @@ HTML
 		$wgOut->addHTML( '</div>' );
 
 		$wgOut->wrapWikiMsg( '<h2>$1</h2>', "yourdiff" );
-		$de = new DifferenceEngine( $this->mTitle );
+		$de = new DifferenceEngine( $this->mArticle->getContext() );
 		$de->setText( $this->getContent(), $this->textbox2 );
 		$de->showDiff( wfMsg( "storedversion" ), wfMsgExt( 'yourtext', 'parseinline' ) );
 
@@ -2737,7 +2737,7 @@ HTML
 		$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
 		$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
 		if ( $oldtext !== false  || $newtext != '' ) {
-			$de = new DifferenceEngine( $this->mTitle );
+			$de = new DifferenceEngine( $this->mArticle->getContext() );
 			$de->setText( $oldtext, $newtext );
 			$difftext = $de->getDiff( $oldtitle, $newtitle );
 			$de->showDiffStyle();

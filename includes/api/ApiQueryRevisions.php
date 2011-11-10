@@ -493,11 +493,13 @@ class ApiQueryRevisions extends ApiQueryBase {
 			static $n = 0; // Number of uncached diffs we've had
 			if ( $n < $wgAPIMaxUncachedDiffs ) {
 				$vals['diff'] = array();
+				$context = new DerivativeContext( $this->getContext() );
+				$context->setTitle( $title );
 				if ( !is_null( $this->difftotext ) ) {
-					$engine = new DifferenceEngine( $title );
+					$engine = new DifferenceEngine( $context );
 					$engine->setText( $text, $this->difftotext );
 				} else {
-					$engine = new DifferenceEngine( $title, $revision->getID(), $this->diffto );
+					$engine = new DifferenceEngine( $context, $revision->getID(), $this->diffto );
 					$vals['diff']['from'] = $engine->getOldid();
 					$vals['diff']['to'] = $engine->getNewid();
 				}
