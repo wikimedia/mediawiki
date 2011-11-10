@@ -787,7 +787,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return bool|ResultWrapper
 	 */
 	public function dropTable( $tableName, $fName = 'DatabaseMysql::dropTable' ) {
-		if( !$this->tableExists( $tableName ) ) {
+		if( !$this->tableExists( $tableName, $fName ) ) {
 			return false;
 		}
 		return $this->query( "DROP TABLE IF EXISTS " . $this->tableName( $tableName ), $fName );

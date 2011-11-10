@@ -243,7 +243,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doInterwikiUpdate() {
 		global $IP;
 
-		if ( $this->db->tableExists( "interwiki" ) ) {
+		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
 			$this->output( "...already have interwiki table\n" );
 			return;
 		}
@@ -315,7 +315,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	function doSchemaRestructuring() {
-		if ( $this->db->tableExists( 'page' ) ) {
+		if ( $this->db->tableExists( 'page', __METHOD__ ) ) {
 			$this->output( "...page table already exists.\n" );
 			return;
 		}
@@ -506,7 +506,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doPagelinksUpdate() {
-		if ( $this->db->tableExists( 'pagelinks' ) ) {
+		if ( $this->db->tableExists( 'pagelinks', __METHOD__ ) ) {
 			$this->output( "...already have pagelinks table.\n" );
 			return;
 		}
@@ -555,7 +555,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doUserGroupsUpdate() {
-		if ( $this->db->tableExists( 'user_groups' ) ) {
+		if ( $this->db->tableExists( 'user_groups', __METHOD__ ) ) {
 			$info = $this->db->fieldInfo( 'user_groups', 'ug_group' );
 			if ( $info->type() == 'int' ) {
 				$oldug = $this->db->tableName( 'user_groups' );
@@ -582,7 +582,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->applyPatch( 'patch-user_groups.sql' );
 		$this->output( "ok\n" );
 
-		if ( !$this->db->tableExists( 'user_rights' ) ) {
+		if ( !$this->db->tableExists( 'user_rights', __METHOD__ ) ) {
 			if ( $this->db->fieldExists( 'user', 'user_rights' ) ) {
 				$this->output( "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion..." );
 				$this->db->applyPatch( 'patch-user_rights.sql' );
@@ -651,7 +651,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doTemplatelinksUpdate() {
-		if ( $this->db->tableExists( 'templatelinks' ) ) {
+		if ( $this->db->tableExists( 'templatelinks', __METHOD__ ) ) {
 			$this->output( "...templatelinks table already exists\n" );
 			return;
 		}
@@ -709,7 +709,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * -- Andrew Garrett, January 2007.
 	 */
 	protected function doRestrictionsUpdate() {
-		if ( $this->db->tableExists( 'page_restrictions' ) ) {
+		if ( $this->db->tableExists( 'page_restrictions', __METHOD__ ) ) {
 			$this->output( "...page_restrictions table already exists.\n" );
 			return;
 		}
@@ -760,7 +760,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doMaybeProfilingMemoryUpdate() {
-		if ( !$this->db->tableExists( 'profiling' ) ) {
+		if ( !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
 			// Simply ignore
 		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory' ) ) {
 			$this->output( "...profiling table has pf_memory field.\n" );

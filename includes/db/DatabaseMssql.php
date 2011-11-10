@@ -631,7 +631,7 @@ class DatabaseMssql extends DatabaseBase {
 		return $version;
 	}
 
-	function tableExists ( $table, $schema = false ) {
+	function tableExists ( $table, , $fname = __METHOD__, $schema = false ) {
 		$res = sqlsrv_query( $this->mConn, "SELECT * FROM information_schema.tables
 			WHERE table_type='BASE TABLE' AND table_name = '$table'" );
 		if ( $res === false ) {

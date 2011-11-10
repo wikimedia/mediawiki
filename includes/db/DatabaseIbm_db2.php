@@ -492,7 +492,7 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	 * Queries whether a given table exists
 	 * @return boolean
 	 */
-	public function tableExists( $table ) {
+	public function tableExists( $table, $fname = __METHOD__ ) {
 		$schema = $this->mSchema;
 
 		$sql = "SELECT COUNT( * ) FROM SYSIBM.SYSTABLES ST WHERE ST.NAME = '" .

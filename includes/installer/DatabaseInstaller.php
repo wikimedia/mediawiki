@@ -148,7 +148,7 @@ abstract class DatabaseInstaller {
 		}
 		$this->db->selectDB( $this->getVar( 'wgDBname' ) );
 
-		if( $this->db->tableExists( 'user' ) ) {
+		if( $this->db->tableExists( 'user', __METHOD__ ) ) {
 			$status->warning( 'config-install-tables-exist' );
 			$this->enableLB();
 			return $status;
@@ -466,7 +466,7 @@ abstract class DatabaseInstaller {
 		if ( !$this->db->selectDB( $this->getVar( 'wgDBname' ) ) ) {
 			return false;
 		}
-		return $this->db->tableExists( 'cur' ) || $this->db->tableExists( 'revision' );
+		return $this->db->tableExists( 'cur', __METHOD__ ) || $this->db->tableExists( 'revision', __METHOD__ );
 	}
 
 	/**

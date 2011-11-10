@@ -315,7 +315,7 @@ abstract class DatabaseUpdater {
 	 * @return boolean
 	 */
 	protected function canUseNewUpdatelog() {
-		return $this->db->tableExists( 'updatelog' ) &&
+		return $this->db->tableExists( 'updatelog', __METHOD__ ) &&
 			$this->db->fieldExists( 'updatelog', 'ul_value' );
 	}
 
@@ -399,7 +399,7 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
 	protected function addTable( $name, $patch, $fullpath = false ) {
-		if ( $this->db->tableExists( $name ) ) {
+		if ( $this->db->tableExists( $name, __METHOD__ ) ) {
 			$this->output( "...$name table already exists.\n" );
 		} else {
 			$this->output( "Creating $name table..." );
@@ -416,7 +416,7 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
 	protected function addField( $table, $field, $patch, $fullpath = false ) {
-		if ( !$this->db->tableExists( $table ) ) {
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping new field patch\n" );
 		} elseif ( $this->db->fieldExists( $table, $field ) ) {
 			$this->output( "...have $field field in $table table.\n" );
@@ -486,7 +486,7 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath bool
 	 */
 	protected function dropTable( $table, $patch, $fullpath = false ) {
-		if ( $this->db->tableExists( $table ) ) {
+		if ( $this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "Dropping table $table... " );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "ok\n" );
@@ -505,7 +505,7 @@ abstract class DatabaseUpdater {
 	 */
 	public function modifyField( $table, $field, $patch, $fullpath = false ) {
 		$updateKey = "$table-$field-$patch";
-		if ( !$this->db->tableExists( $table ) ) {
+		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping modify field patch\n" );
 		} elseif ( !$this->db->fieldExists( $table, $field ) ) {
 			$this->output( "...$field field does not exist in $table table, skipping modify field patch\n" );
