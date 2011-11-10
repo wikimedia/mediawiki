@@ -81,8 +81,8 @@ class Block {
 		$this->mAuto = $auto;
 		$this->isHardblock( !$anonOnly );
 		$this->prevents( 'createaccount', $createAccount );
-		if ( $expiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
-			$this->mExpiry = $expiry;
+		if ( $expiry == 'infinity' || $expiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
+			$this->mExpiry = 'infinity';
 		} else {
 			$this->mExpiry = wfTimestamp( TS_MW, $expiry );
 		}
@@ -362,8 +362,9 @@ class Block {
 		$this->mId = $row->ipb_id;
 
 		// I wish I didn't have to do this
-		if ( $row->ipb_expiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
-			$this->mExpiry = $row->ipb_expiry;
+		$db = wfGetDB( DB_SLAVE );
+		if ( $row->ipb_expiry == $db->getInfinity() ) {
+			$this->mExpiry = 'infinity';
 		} else {
 			$this->mExpiry = wfTimestamp( TS_MW, $row->ipb_expiry );
 		}
@@ -652,7 +653,7 @@ class Block {
 		$autoblock->mHideName = $this->mHideName;
 		$autoblock->prevents( 'editownusertalk', $this->prevents( 'editownusertalk' ) );
 
-		if ( $this->mExpiry == wfGetDB( DB_SLAVE )->getInfinity() ) {
+		if ( $this->mExpiry == 'infinity' ) {
 			# Original block was indefinite, start an autoblock now
 			$autoblock->mExpiry = Block::getAutoblockExpiry( $timestamp );
 		} else {
