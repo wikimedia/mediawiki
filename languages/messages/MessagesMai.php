@@ -393,7 +393,7 @@ $1',
 'protectedinterface'   => 'ई पन्ना तंत्रांश लेल मध्यस्थ पाठक व्यवस्था करैत अछि, आ अपशब्द रोकबाक ब्योंत करैत अछि।',
 'editinginterface'     => "'''चेतौनी''' अहाँ एकटा एहेन पन्नाक सम्पादन कऽ रहल छी जे तंत्रांशक मध्यस्थ पन्नाकेँ पाठ देबा लेल प्रयोग भऽ रहल अछि।
 ऐ पन्नामे परिवर्तन दोसर प्रयोक्ता लेल प्रयोक्ता मध्यस्थक रूपमे परिवर्तन करत।
-अनुवाद लेल [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] जाउ, मीडियाविकी स्थानीयकरण परियोजनापर।",
+अनुवाद लेल [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] जाउ, मीडियाविकी स्थानीयकरण परियोजनापर।",
 'sqlhidden'            => '(नुकाएल एस.क्यू.एल. अभ्यर्थना)',
 'cascadeprotected'     => 'ऐ पन्नाक सम्पादन सम्भव नै अछि, कारण ई ऐ मे सम्मिलित अछि, {{PLURAL:$1|पन्ना, जे अछि|पन्ना, से सभ अछि}} सुरक्षित अछि "तराउपड़ी" विकल्प खोललाक बाद:
 $2',
@@ -2473,7 +2473,7 @@ $1 एकर प्रतिबन्धक कारण अछि : "$2"',
 'allmessagesdefault'            => 'पूर्वनिर्धारित संदेश पाठ',
 'allmessagescurrent'            => 'अखुनका संदेश पाठ',
 'allmessagestext'               => 'ई मीडियाविकी नामस्थानमे उपलब्ध संस्थागत संदेशक सूची छी।
-कृपा कऽ देखू [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] आ [http://translatewiki.net translatewiki.net] जँ अहाँ मीडियाविकीक स्थानिकीकरणक मूलक अनुवादमे योगदान करए चाहै छी।',
+कृपा कऽ देखू [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] आ [//translatewiki.net translatewiki.net] जँ अहाँ मीडियाविकीक स्थानिकीकरणक मूलक अनुवादमे योगदान करए चाहै छी।',
 'allmessagesnotsupportedDB'     => "ई पन्ना प्रयोगमे नै आनल जा सकैए कारण '''\$wgUseDatabaseMessages''' अशक्त कएल अछि।",
 'allmessages-filter-legend'     => 'चलनी',
 'allmessages-filter'            => 'अपन हिसाबे अनुकूलित कऽ छाँटू:',

@@ -423,7 +423,7 @@ Palihog sulayi'g usab sa pipila ka minutos.",
 'protectedinterface'   => 'Ang kining panid mohatag og interface text para sa software, ug naka-lock aron mapugngan ang pag-abuso.',
 'editinginterface'     => "'''Pahibalo:''' Imo nang usbon ang panid nga gigamit sa paghatag og interface text para sa software.
 Ang mga pag-usab niining panid moapekto sa appearance sa user interface nga alang sa ubang gumagamit.
-Para sa mga paghubad, palihog ikonsider ang paggamit sa [http://translatewiki.net/wiki/Main_Page?setlang=ceb translatewiki.net], ang MediaWiki localisation project.",
+Para sa mga paghubad, palihog ikonsider ang paggamit sa [//translatewiki.net/wiki/Main_Page?setlang=ceb translatewiki.net], ang MediaWiki localisation project.",
 'sqlhidden'            => '(nakatagong SQL query)',
 'cascadeprotected'     => 'Ang kining panid giprotektahan sa pag-usab tungod kay nahiapil kini sa mosunod nga {{PLURAL:$1|panid, nga|mga panid, nga}} giprotektahan pinaagi sa pag-turn on gamit ang "cascading" nga opsyon:
 $2',

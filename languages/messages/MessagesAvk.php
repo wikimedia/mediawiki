@@ -404,7 +404,7 @@ Erura : $2',
 'protectedpagetext'    => 'Batu bu betaradjison zo nendar.',
 'viewsourcetext'       => 'Va buklita rowil nume roksudal :',
 'protectedinterface'   => 'Batu bu va walasikikrent ke talpeyot dafur nume ta djira va favejera zo ixatcar.',
-'editinginterface'     => "'''Obral !''' Rin va bu favenu koe talpeyotwalasiki betal. Betara va batu bu va laviuca ke favesikafi walasiki dolge ar favesik vanolatar. Kalavason, va [http://translatewiki.net/wiki/Main_Page?setlang=avk translatewiki.net], va MediaWiki abdumimaks va tulizukara, vay favel.",
+'editinginterface'     => "'''Obral !''' Rin va bu favenu koe talpeyotwalasiki betal. Betara va batu bu va laviuca ke favesikafi walasiki dolge ar favesik vanolatar. Kalavason, va [//translatewiki.net/wiki/Main_Page?setlang=avk translatewiki.net], va MediaWiki abdumimaks va tulizukara, vay favel.",
 'sqlhidden'            => '(SQL kucilara palsena)',
 'cascadeprotected'     => 'Batu bu icde betara zo nendar, kire va vlevefu {{PLURAL:$1|bu|bu}} pasur, danu kan tegisa "stoyakorafa" rotisaca zo nendad : $2',
 'namespaceprotected'   => "Va bu koe '''$1''' yoltxo me robetal !",
@@ -1725,7 +1725,7 @@ bu ika int me zo rotarrundar.',
 'allmessagescurrent'        => 'Noelaf krent',
 'allmessagestext'           => 'Batcoba tir vexala dem bolkstakseem koe MediaWiki yoltxo.
 
-Va [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] is [http://translatewiki.net translatewiki.net] vay woral ede va tulizukara va Mediawiki co-rowebel.',
+Va [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] is [//translatewiki.net translatewiki.net] vay woral ede va tulizukara va Mediawiki co-rowebel.',
 'allmessagesnotsupportedDB' => "Batu bu me zo rofaver kire '''\$wgUseDatabaseMessages''' mea tir tegis.",
 
 # Thumbnails

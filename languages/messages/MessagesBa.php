@@ -414,7 +414,7 @@ $1',
 'protectedinterface'   => 'Был биттә программа арайөҙө белдереүҙәре бар. Вандализмға ҡаршы көрәш сәбәпле, был битте үҙгәртеү тыйыла.',
 'editinginterface'     => "'''Иғтибар.''' Һеҙ программаның арайөҙ тексты булған битте мөхәррирләйһегеҙ.
 Уны үҙгәртеү, башҡа ҡулланыусыларҙын арайөҙ күренешен үҙгәртәсәктер.
-Тәржемә өсөн [http://translatewiki.net/wiki/Main_Page?setlang=ba translatewiki.net] адресын, MediaWiki-ны локалләштереү проектын ҡулланыу яҡшыраҡ буласаҡтыр.",
+Тәржемә өсөн [//translatewiki.net/wiki/Main_Page?setlang=ba translatewiki.net] адресын, MediaWiki-ны локалләштереү проектын ҡулланыу яҡшыраҡ буласаҡтыр.",
 'sqlhidden'            => '(SQL-һорау йәшерелгән)',
 'cascadeprotected'     => 'Был бит үҙгәртеүҙәрҙән һаҡланған, сөнки ул эҙмә-эҙлекле һаҡлау ҡуйылған {{PLURAL:$1|биткә|биттәргә}} керә:
 $2',
@@ -2402,7 +2402,7 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 'allmessagesdefault'            => 'Ғәҙәттәге яҙма',
 'allmessagescurrent'            => 'Хәҙерге яҙма',
 'allmessagestext'               => 'Түбәндә MediaWiki исемдәр арауығында ҡулланылған система хәбәрҙәре исемлеге килтерелгән.
-Әгәр MediaWiki программаһын дөйөм локалләштереү эшенә үҙ өлөшөгөҙҙө керетергә теләһәгеҙ, [//www.mediawiki.org/wiki/Localisation MediaWiki программаһын локалләштереү] битен һәм [http://translatewiki.net translatewiki.net] проектын ҡарап сығығыҙ.',
+Әгәр MediaWiki программаһын дөйөм локалләштереү эшенә үҙ өлөшөгөҙҙө керетергә теләһәгеҙ, [//www.mediawiki.org/wiki/Localisation MediaWiki программаһын локалләштереү] битен һәм [//translatewiki.net translatewiki.net] проектын ҡарап сығығыҙ.',
 'allmessagesnotsupportedDB'     => "Был бит ҡулланыла алмай, сөнки '''\$wgUseDatabaseMessages''' мөмкинлеге һүндерелгән.",
 'allmessages-filter-legend'     => 'Һайлау',
 'allmessages-filter'            => 'Үҙгәртеү торошо буйынса һайлау:',

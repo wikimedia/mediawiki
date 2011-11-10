@@ -391,7 +391,7 @@ Palihog tilawan mo liwat pagkatapos sang malip-ot nga tinion.',
 'protectedinterface'   => 'Ang ini nga panid nagahatag sang mga teksto sang interface para sa software, kag ginapangapinan agod indi maabuso.',
 'editinginterface'     => "'''Pahibalo:''' Naga-ilis ka sang panid nga ginagamit sa paghatag sang mga teksto sang interface para sa software.
 Ang mga pagbag-o sang sini nga panid maga-apekto sa hitsura sang interface sang panid sang manug-gamit sang iban.
-Para sa mga paglubad/pagbadbad, palihog kilalanon ang paggamit sang [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyekto sang MediaWiki para sa localisasyon.",
+Para sa mga paglubad/pagbadbad, palihog kilalanon ang paggamit sang [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyekto sang MediaWiki para sa localisasyon.",
 'sqlhidden'            => '(Nakatago ang pagpamangkot sang SQL)',
 'cascadeprotected'     => 'Ang ini nga panid ginpangapinan agod nga indi ma-ilisan, bangud nga ini nadal sa masunod nga {{PLURAL:$1|panid, nga|mga panid, nga}} ginapangapinan sang naga-"kaskad" nga pililian nga naga-andar:
 $2',

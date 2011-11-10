@@ -1314,7 +1314,7 @@ Voluntez selektar altra nomo.',
 'allmessages'          => 'Omna sistemo-mesaji',
 'allmessagesname'      => 'Nomo',
 'allmessagestext'      => 'Ico esas listo di omna sistemo-mesaji disponebla en la MediaWiki nomaro.
-Voluntez vizitar [//www.mediawiki.org/wiki/Localisation MediaWiki Lokizado] e [http://translatewiki.net translatewiki.net] se vu volus kontributar ad generala MediaWiki lokizado.',
+Voluntez vizitar [//www.mediawiki.org/wiki/Localisation MediaWiki Lokizado] e [//translatewiki.net translatewiki.net] se vu volus kontributar ad generala MediaWiki lokizado.',
 'allmessages-language' => 'Linguo:',
 
 # Thumbnails

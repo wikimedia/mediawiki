@@ -403,7 +403,7 @@ Talap: $2',
 'protectedpagetext'    => 'Bu sahypa redaktirlenmezligi üçin gulp astynda dur.',
 'viewsourcetext'       => 'Bu sahypanyň çeşmesini görüp hem-de göçürip bilersiňiz:',
 'protectedinterface'   => 'Bu sahypa programma üçin interfeýs tekstini üpjün edýär. Bet niýetli hüjümlerden goramak maksady bilen gulp astyna alnandyr.',
-'editinginterface'     => "'''Duýduryş:''' Programma üçin interfeýs tekstini üpjün etmekte ulanylýan bir sahypany redaktirleýärsiňiz. Bu sahypada ediljek üýtgeşmeler beýleki ulanyjylar üçin ulanyjy interfeýsiniň daşky görnüşini üýtgedýändir. Terjimeler üçin, MediaWikiniň lokalizasiýa taslamasy bolan [http://translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net]i ulanmaklygyňyzy haýyş edýäris.",
+'editinginterface'     => "'''Duýduryş:''' Programma üçin interfeýs tekstini üpjün etmekte ulanylýan bir sahypany redaktirleýärsiňiz. Bu sahypada ediljek üýtgeşmeler beýleki ulanyjylar üçin ulanyjy interfeýsiniň daşky görnüşini üýtgedýändir. Terjimeler üçin, MediaWikiniň lokalizasiýa taslamasy bolan [//translatewiki.net/wiki/Main_Page?setlang=tr translatewiki.net]i ulanmaklygyňyzy haýyş edýäris.",
 'sqlhidden'            => '(SQL gizlin talap)',
 'cascadeprotected'     => 'Bu sahypa redaktirlenmekden goralýar, sebäbi ol "kaskadly" opsiýasy işledilip gorag astyna alnan {{PLURAL:$1|sahypada|sahypada}} ulanylýar:
 $2',
@@ -2359,7 +2359,7 @@ Ikinji ýagdaýy saýlap alan halatyňyzda, ýörite bir çykgyt hem ulanyp bile
 'allmessagesdefault'            => 'Gaýybana habarlaşyk teksti',
 'allmessagescurrent'            => 'Häzirki habarlaşyk teksti',
 'allmessagestext'               => 'Bu sanaw MediaWiki at giňişliginde bar bolan ulgam habarlaşyklarynyň sanawydyr.
-Umumy MediaWiki lokalizasiýasyna goşan goşmak isleýän bolsaňyz, [//www.mediawiki.org/wiki/Localisation MediaWiki lokalizasiýasy] we [http://translatewiki.net translatewiki.net] sahypalaryna baryp görmegiňizi haýyş edýäris.',
+Umumy MediaWiki lokalizasiýasyna goşan goşmak isleýän bolsaňyz, [//www.mediawiki.org/wiki/Localisation MediaWiki lokalizasiýasy] we [//translatewiki.net translatewiki.net] sahypalaryna baryp görmegiňizi haýyş edýäris.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' ýapykdygy zerarly bu sahypany ulanyp bolmaýar.",
 'allmessages-filter-legend'     => 'Filtr',
 'allmessages-filter'            => 'Üýtgediş statusy boýunça filtr:',

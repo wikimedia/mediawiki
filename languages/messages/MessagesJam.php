@@ -387,7 +387,7 @@ Begyu chrai agen ina fyuu minit.',
 'protectedinterface'   => 'Dis piej provaid intafies tex fi di saafwier, ahn iprotek fi privent abyuus.',
 'editinginterface'     => "'''Waanin:''' Yu de edit page we yuuz fi provaid intafies tex fi di saafwier.
 Chienj tu dis piej wi afek di apierans a di yuuza intafies fi ada yuuzadem.
-Fi chranslieshan, begyu kansida fi yuuz [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], di MediaWiki luokalaizieshan projek.",
+Fi chranslieshan, begyu kansida fi yuuz [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], di MediaWiki luokalaizieshan projek.",
 'sqlhidden'            => '(SQL kwieri aidwe)',
 'cascadeprotected'     => 'Dis piej protek frahn edit, bikaa i\'inkluud ina di falarin {{PLURAL:$1|piej, ush|piejdem, ush}} protek wid di "kiaskiedn" apshan ton aan:
 $2',

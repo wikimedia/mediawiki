@@ -510,7 +510,7 @@ $1',
 'protectedinterface'   => 'ئەم پەڕە دەقی ڕوواڵەتی نەرمامێرەکە نیشان دەدات و بۆ پەرگری لە خراپکاریی پارێزراوە.',
 'editinginterface'     => "'''ئاگاداری:''' تۆ خەریکی دەستکاریی پەڕەیەکی کە بۆ دابینکردنی دەقی ڕوواڵەتی نەرمامێر بە کار دەھێنرێت.
 گۆڕانکاری لە ئەم پەڕە کاریگەر دەبێت لە سەر ڕواڵەتی پەڕەکانی بەکارھێنەرانی دیکە.
-بۆ وەرگێڕان تکایە [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، پرۆژەی ناوچەیی‌کردنی میدیاویکی بەکار بێنە.",
+بۆ وەرگێڕان تکایە [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، پرۆژەی ناوچەیی‌کردنی میدیاویکی بەکار بێنە.",
 'sqlhidden'            => '(داواکاریی SQL شاراوەیە)',
 'cascadeprotected'     => 'ئەم لاپەڕە پارێزراوە لە دەستکاریی، چونکا خراوەتە سەر ڕیزی ئەم {{PLURAL:$1|لاپەڕانه‌، کە}} که‌ به‌ هه‌ڵکردنی بژارده‌ی داڕژان هه‌ڵکراوه‌:
 $2',
@@ -2400,7 +2400,7 @@ $1',
 'allmessagesdefault'            => 'دەقی بنەڕەتی',
 'allmessagescurrent'            => 'دەقی ھەنووکە',
 'allmessagestext'               => 'ئەمە لیستێکە لە پەیامەکانی بەردەست لە بۆشایی‌ناوی میدیاویکی.
-تکایە سەردانی [//www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [http://translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
+تکایە سەردانی [//www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [//translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
 'allmessagesnotsupportedDB'     => "ئەم لاپەڕە ناتوانی بەکاربێت لەبەر ئەوەی '''\$wgUseDatabaseMessages''' لەکار خستراوە.",
 'allmessages-filter-legend'     => 'پاڵێو',
 'allmessages-filter-unmodified' => 'چاکسازی نەکراو',

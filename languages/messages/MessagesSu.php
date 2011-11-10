@@ -498,7 +498,7 @@ Sigana geus dihapus ku nu séjén.',
 'protectedinterface'   => 'Kaca ieu eusina teks antarmuka pikeun dipaké ku pakakas beyé sarta geus dikunci pikeun ngahindar ti kasalahan.',
 'editinginterface'     => "'''Awas:''' Anjeun keur ngédit kaca nu dipaké pikeun nyadiakeun téks antarmuka pikeun sopwérna.
 Parobahan kana ieu kaca bakal mangaruhan pidangan antarmuka pikeun pamaké séjén.
-Pikeun alihbasa, mangga sumping ka [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyék lokalisasi MediaWiki.",
+Pikeun alihbasa, mangga sumping ka [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyék lokalisasi MediaWiki.",
 'sqlhidden'            => '(Pamenta SQL disumputkeun)',
 'cascadeprotected'     => 'Kaca ieu geus dikonci ti éditan alatan disartakeun di {{PLURAL:$1|kaca|kaca-kaca}} katut anu geus dikonci kalawan pilihan "runtun": $2',
 'namespaceprotected'   => "Anjeun teu ngabogaan hak pikeun ngédit kaca di ngaranspasi '''$1'''.",

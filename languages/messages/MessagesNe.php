@@ -432,7 +432,7 @@ $1',
 'protectedinterface'   => 'यो पृष्ठले सफ्टवेयरको लागि अन्तरमोहडा पाठ प्रदान गर्दछ , र यसलाई दुरुपयोग हुनबाट बचाउन ताल्चा मारिएको छ।',
 'editinginterface'     => "'''चेतावनी:''' तपाईं यस्तो पृष्ठलाई सम्पादन गर्नुहुँदैछ, जसले सफ्टवेयरको लागि अन्तरमोहोड़ा (interface) पाठ प्रदान गर्दछ।
 यसको परिवर्तनले अरु प्रयोगकर्ताको अन्तरमोहोड़ाको प्रदर्शनमा प्रभाव पार्छ।
-मीडियाविकिको स्थानीयकरण परियोजना निम्ति अनुवाद गर्न कृपया यहाँ जानुहोस् [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]",
+मीडियाविकिको स्थानीयकरण परियोजना निम्ति अनुवाद गर्न कृपया यहाँ जानुहोस् [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]",
 'sqlhidden'            => '(SQL क्वेरी लुकाएको)',
 'cascadeprotected'     => 'यो पृष्ठ सम्पादन गर्नबाट सुरक्षित गरिएकोछ किनभनें   {{PLURAL:$1|पृष्ठ |पृष्ठहरु}}मा  सुरक्षित गर्नुका साथै प्रपात ("cascading") विकल्प खुल्ला राखिएकोछ:
 $2',
@@ -2360,7 +2360,7 @@ $1को बन्देजको कारण : "$2" हो',
 'allmessagesdefault'            => 'डिफल्ट सन्देश पाठ',
 'allmessagescurrent'            => 'वर्तमान सन्देश पाठ',
 'allmessagestext'               => 'यो मीडियाविकि नेमस्पेसमा पाइने सिस्टम सन्देशहरूको सूची हो।
-यदि तपाईं व्यापक मीडिया विकि स्थानीयकरणमा योगदान गर्न चाहनुहुन्छ भनें कृपया [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation]मा र [http://translatewiki.net translatewiki.net]मा जानुहोस्।',
+यदि तपाईं व्यापक मीडिया विकि स्थानीयकरणमा योगदान गर्न चाहनुहुन्छ भनें कृपया [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation]मा र [//translatewiki.net translatewiki.net]मा जानुहोस्।',
 'allmessages-filter-legend'     => 'फिल्टर',
 'allmessages-filter-unmodified' => 'असंशोधित',
 'allmessages-filter-all'        => 'सबै',

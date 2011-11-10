@@ -627,7 +627,7 @@ $1',
 'protectedinterface'   => 'Гэтая старонка ўтрымлівае інтэрфэйснае паведамленьне праграмнага забесьпячэньня, і яе зьмена забаронена.',
 'editinginterface'     => "'''Увага:''' Вы рэдагуеце старонку, якая ўтрымлівае сыстэмнае паведамленьне MediaWiki.
 Яе зьмена паўплывае на вонкавы выгляд інтэрфэйсу іншых удзельнікаў.
-Калі ласка, выкарыстоўвайце [http://translatewiki.net/wiki/Main_Page?setlang=be-tarask translatewiki.net] — праект для лякалізацыі MediaWiki.",
+Калі ласка, выкарыстоўвайце [//translatewiki.net/wiki/Main_Page?setlang=be-tarask translatewiki.net] — праект для лякалізацыі MediaWiki.",
 'sqlhidden'            => '(SQL-запыт схаваны)',
 'cascadeprotected'     => 'Гэтая старонка абароненая ад рэдагаваньня, таму што яна ўключаная ў {{PLURAL:$1|наступную старонку, якая была абароненая|наступныя старонкі, якія былі абароненыя}} з актывізаванай опцыяй «каскаднай абароны»:
 $2',
@@ -2703,7 +2703,7 @@ $1',
 'allmessagesdefault'            => 'Тэкст па змоўчаньні',
 'allmessagescurrent'            => 'Цяперашні тэкст',
 'allmessagestext'               => 'Сьпіс усіх сыстэмных паведамленьняў, якія існуюць у прасторы назваў MediaWiki.
-Калі ласка, наведайце [//www.mediawiki.org/wiki/Localisation старонку пра лякалізацыю MediaWiki] і [http://translatewiki.net translatewiki.net], калі Вы жадаеце ўдзельнічаць у перакладзе MediaWiki.',
+Калі ласка, наведайце [//www.mediawiki.org/wiki/Localisation старонку пра лякалізацыю MediaWiki] і [//translatewiki.net translatewiki.net], калі Вы жадаеце ўдзельнічаць у перакладзе MediaWiki.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:AllMessages''' не падтрымліваецца, таму што адключанае '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фільтар',
 'allmessages-filter'            => 'Фільтар па стане зьменаў:',

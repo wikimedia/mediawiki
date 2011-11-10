@@ -726,7 +726,7 @@ URLを間違って打ったか、不正なリンクを辿った可能性があ�
 'protectedinterface'   => 'このページはソフトウェアのインターフェースに使用されるテキストが保存されており、いたずらなどの防止のために保護されています。',
 'editinginterface'     => "'''警告：'''ソフトウェアのインターフェースに使用されているテキストを編集しています。
 このページの変更はすべての利用者のユーザーインタフェースに影響します。
-翻訳をする場合、MediaWikiの地域化プロジェクト[http://translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net]の利用を検討してください。",
+翻訳をする場合、MediaWikiの地域化プロジェクト[//translatewiki.net/wiki/Main_Page?setlang=ja translatewiki.net]の利用を検討してください。",
 'sqlhidden'            => '（SQLクエリ非表示）',
 'cascadeprotected'     => 'このページは、「カスケード保護」が指定された状態で保護されている以下の{{PLURAL:$1|ページ}}で読み込まれているため、編集できないように保護されています。
 $2',
@@ -2549,7 +2549,7 @@ $1',
 'namespace'                     => '名前空間：',
 'invert'                        => '選択したものを除く',
 'tooltip-invert'                => '選択した名前空間（および、チェックされている場合、関連づけられた名前空間）のページの変更を非表示にするには、このチェックボックスをオンにします。',
-'namespace_association'         => '関連する名前空間',
+'namespace_association'         => '対応付けられた名前空間',
 'tooltip-namespace_association' => '選択した名前空間に関連付けられている、議論ページまたは対象の名前空間も含めるには、このボックスをチェック',
 'blanknamespace'                => '（標準）',
 
@@ -2872,7 +2872,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'allmessagesdefault'            => '既定のメッセージ文',
 'allmessagescurrent'            => '現在のメッセージ文',
 'allmessagestext'               => 'これはMediaWiki名前空間で利用可能なシステムメッセージの一覧です。
-一般的なMediaWikiの地域化に貢献したい場合は、[//www.mediawiki.org/wiki/Localisation MediaWikiの地域化]や[http://translatewiki.net?setlang=ja translatewiki.net]を訪れてみてください。',
+一般的なMediaWikiの地域化に貢献したい場合は、[//www.mediawiki.org/wiki/Localisation MediaWikiの地域化]や[//translatewiki.net?setlang=ja translatewiki.net]を訪れてみてください。',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages'''が無効なので、このページを使うことはできません。",
 'allmessages-filter-legend'     => '絞り込み',
 'allmessages-filter'            => '変更状態により絞り込む：',

@@ -237,7 +237,7 @@ $messages = array(
 'cannotdelete'        => '無法刪除選定的頁面或圖片（它可能已經被其他人刪除了）。',
 'actionthrottledtext' => '系統因為反垃圾編輯的考量，禁止如此頻繁地修改資料，請數分鐘後再嘗試。',
 'viewsourcetext'      => '你可以檢視並複製本頁面的原始碼。',
-'editinginterface'    => "'''警告：''' 您正在編輯的頁面是正用在軟體上的介面文字。改變此頁將影響其他用戶的介面外觀。如要翻譯，請考慮使用 [http://translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]，一個用來為MediaWiki軟體本地化的計畫。",
+'editinginterface'    => "'''警告：''' 您正在編輯的頁面是正用在軟體上的介面文字。改變此頁將影響其他用戶的介面外觀。如要翻譯，請考慮使用 [//translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]，一個用來為MediaWiki軟體本地化的計畫。",
 'ns-specialprotected' => '在{{ns:special}}名字空間中的頁面是不可以編輯的。',
 
 # Login and logout pages

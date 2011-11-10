@@ -1644,7 +1644,7 @@ Dar holati oxir şumo metavoned pajvandero istifoda bared, namuna. [[{{#Special:
 'allmessagesdefault'        => 'Matni qarordodī',
 'allmessagescurrent'        => 'Matni kununī',
 'allmessagestext'           => 'In fehristi pajomhoi sistemaviji dastras dar fazoi nomi MediaWiki meboşad.
-Agar majli hissaguzorī kardanro ba mahallikunoniji MediaWiki dored, pas lutan sahifahoi [//www.mediawiki.org/wiki/Localisation Mahallikunoniji MediaWiki] va [http://translatewiki.net translatewiki.net] nigared.',
+Agar majli hissaguzorī kardanro ba mahallikunoniji MediaWiki dored, pas lutan sahifahoi [//www.mediawiki.org/wiki/Localisation Mahallikunoniji MediaWiki] va [//translatewiki.net translatewiki.net] nigared.',
 'allmessagesnotsupportedDB' => "Az in sahifa nametavon istifoda burd, cun '''\$wgUseDatabaseMessages''' ƣajrifa'ol gardonida şudaast.",
 'allmessages-filter-legend' => 'Filtr',
 'allmessages-filter-all'    => 'Hama',

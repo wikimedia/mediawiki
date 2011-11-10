@@ -582,8 +582,9 @@ Navraag: $2',
 Probeer asseblief weer oor 'n paar minute.",
 'protectedpagetext'    => 'Hierdie bladsy is beskerm om redigering te verhoed.',
 'viewsourcetext'       => 'U mag die bronteks van hierdie bladsy lees en kopieer:',
+'viewyourtext'         => "U kan '''u wysigings''' aan die bronteks van hierdie bladsy bekyk en kopieer:",
 'protectedinterface'   => 'Hierdie bladsy verskaf teks vir die koppelvlak van die sagteware, en is beskerm om misbruik te voorkom.',
-'editinginterface'     => "'''Waarskuwing:''' U is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, oorweeg om eerder [http://translatewiki.net/wiki/Main_Page?setlang=af translatewiki.net] (die vertalingsprojek vir MediaWiki) te gebruik.",
+'editinginterface'     => "'''Waarskuwing:''' U is besig om 'n bladsy te redigeer wat koppelvlakinligting aan die programmatuur voorsien. Wysigings aan hierdie bladsy sal die voorkoms van die gebruikerskoppelvlak vir ander gebruikers beïnvloed. Vir vertalings, oorweeg om eerder [//translatewiki.net/wiki/Main_Page?setlang=af translatewiki.net] (die vertalingsprojek vir MediaWiki) te gebruik.",
 'sqlhidden'            => '(SQL navraag versteek)',
 'cascadeprotected'     => 'Hierdie bladsy is beskerm teen redigering omdat dit ingesluit is in die volgende {{PLURAL:$1|bladsy|bladsye}} wat beskerm is met die "kaskade" opsie aangeskakel: $2',
 'namespaceprotected'   => "U het nie toestemming om bladsye in die '''$1'''-naamruimte te wysig nie.",
@@ -1308,6 +1309,7 @@ Die aksie kan nie ongedaan gemaak word nie.',
 'prefs-registration'            => 'Registrasiedatum:',
 'yourrealname'                  => 'Regte naam:',
 'yourlanguage'                  => 'Taal:',
+'yourvariant'                   => 'Taalvariant vir inhoud:',
 'yournick'                      => 'Bynaam (vir handtekening)',
 'prefs-help-signature'          => 'Kommentaar op besprekingsbladsye moet met "<nowiki>~~~~</nowiki>" onderteken word.
 Die tildes word in u handtekening omgeskakel en die datum en tyd word insluit.',
@@ -1710,7 +1712,7 @@ Dit kan nie behoorlik vir sekuriteit nagegaan word nie.",
 'img-auth-nopathinfo'       => 'PATH_INFO word vermis.
 U bediener is nie ingestel om hierdie inligting deur te stuur nie.
 Miskien gebruik dit CGI, waartydens img_auth nie ondersteun word nie.
-Sien http://www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
+Sien //www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
 'img-auth-notindir'         => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
 'img-auth-badtitle'         => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
 'img-auth-nologinnWL'       => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
@@ -2331,6 +2333,7 @@ U mag moontlik 'n foutiewe skakel hê, of die weergawe is reeds herstel of uit d
 
 Konsulteer die [[Special:Log/delete|verwyderingslogboek]] vir 'n rekord van onlangse verwyderings en terugplasings.",
 'undelete-header'              => 'Sien die [[Special:Log/delete|skraplogboek]] vir onlangs verwyderde bladsye.',
+'undelete-search-title'        => 'Soek verwyderde bladsye',
 'undelete-search-box'          => 'Soek verwyderde bladsye',
 'undelete-search-prefix'       => 'Wys bladsye wat begin met:',
 'undelete-search-submit'       => 'Soek',
@@ -2340,6 +2343,7 @@ Konsulteer die [[Special:Log/delete|verwyderingslogboek]] vir 'n rekord van onla
 'undelete-cleanup-error'       => 'Fout met die herstel van die ongebruikte argieflêer "$1".',
 'undelete-missing-filearchive' => 'Nie in staat om ID $1 terug te plaas nie omdat dit nie in die databasis is nie.
 Miskien is dit reeds teruggeplaas.',
+'undelete-error'               => "'n Fout het voorgekom met die verwydering van die bladsy",
 'undelete-error-short'         => 'Fout met herstel van lêer: $1',
 'undelete-error-long'          => 'Foute het voorgekom tydens die herstel van die lêer:
 
@@ -2669,7 +2673,7 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:E
 'allmessagesdefault'            => 'Verstekteks',
 'allmessagescurrent'            => 'Huidige teks',
 'allmessagestext'               => "Hier is 'n lys boodskappe wat in die ''MediaWiki''-naamspasie beskikbaar is.
-Gaan na [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [http://translatewiki.net translatewiki.net] as u wil help om MediaWiki te vertaal.",
+Gaan na [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [//translatewiki.net translatewiki.net] as u wil help om MediaWiki te vertaal.",
 'allmessagesnotsupportedDB'     => "Daar is geen ondersteuning vir '''{{ns:special}}:Allmessages''' omdat '''\$wgUseDatabaseMessages''' uitgeskakel is.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filtreer op staat van verandering:',
@@ -2733,6 +2737,8 @@ Die lêer is slegs gedeeltelik opgelaai.',
 'import-upload'              => 'Laai XML-data op',
 'import-token-mismatch'      => 'Sessiegegewens is verloor. Probeer asseblief weer.',
 'import-invalid-interwiki'   => 'Kan nie vanaf die gespesifiseerde importeer nie.',
+'import-error-edit'          => 'Die bladsy "$1" is nie geïmporteer nie omdat u nie die regte het om dit te wysig nie.',
+'import-error-create'        => 'Die bladsy "$1" is nie geïmporteer nie omdat u nie die regte het om dit te skep nie.',
 
 # Import log
 'importlogpage'                    => 'Invoer logboek',
@@ -3512,6 +3518,9 @@ U kan ook die [[Special:EditWatchlist|standaard opdaterigskerm gebruik]].',
 'watchlisttools-edit' => 'Bekyk en wysig dophoulys',
 'watchlisttools-raw'  => 'Wysig bronkode',
 
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|bespreek]])',
+
 # Core parser functions
 'unknown_extension_tag' => 'Onbekende etiket "$1"',
 'duplicate-defaultsort' => 'Waarskuwing: Die standaardsortering "$2" kry voorrang voor die sortering "$1".',
@@ -3647,8 +3656,20 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'sqlite-no-fts'  => 'Weergawe $1 sonder ondersteuning vir vol-teks soektogte ("full-text search")',
 
 # New logging system
-'revdelete-restricted'   => 'beperkings is aan administrateurs opgelê',
-'revdelete-unrestricted' => 'beperkings vir administrateurs is opgehef',
-'newuserlog-byemail'     => 'wagwoord is per e-pos versend',
+'logentry-delete-delete'              => '$1 {{GENDER:$2|het}} die bladsy $3 verwyder',
+'logentry-delete-restore'             => '$1 {{GENDER:$2|het}} die bladsy $3 teruggeplaas',
+'revdelete-restricted'                => 'beperkings is aan administrateurs opgelê',
+'revdelete-unrestricted'              => 'beperkings vir administrateurs is opgehef',
+'logentry-move-move'                  => '$1 het bladsy $3 na $4 {{GENDER:$2|geskuif}}',
+'logentry-move-move-noredirect'       => "$1 het bladsy $3 na $4 {{GENDER:$2|geskuif}} sonder om 'n aanstuur agter te laat",
+'logentry-move-move_redir'            => "$1 het bladsy $3 na $4 oor 'n aanstuur {{GENDER:$2|geskuif}}",
+'logentry-move-move_redir-noredirect' => "$1 het bladsy $3 na $4 oor 'n bestaande aanstuur {{GENDER:$2|geskuif}} sonder om 'n aanstuur agter te laat",
+'logentry-patrol-patrol'              => '$1 {{GENDER:$2|het}} weergawe $4 van bladsy $3 as gekontroleerd gemerk',
+'logentry-patrol-patrol-auto'         => '$1 {{GENDER:$2|het}} weergawe $4 van bladsy $3 outomaties as gekontroleerd gemerk',
+'logentry-newusers-newusers'          => "$1 {{GENDER:$2|het}} 'n gebruiker geskep",
+'logentry-newusers-create'            => "$1 {{GENDER:$2|het}} 'n gebruiker geskep",
+'logentry-newusers-create2'           => "$1 {{GENDER:$2|het}} 'n {{GENDER:$4|gebruiker}} $3 geskep",
+'logentry-newusers-autocreate'        => 'Die gebruiker $1 is outomaties {{GENDER:$2|geskep}}',
+'newuserlog-byemail'                  => 'wagwoord is per e-pos versend',
 
 );
