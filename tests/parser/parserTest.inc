@@ -435,10 +435,10 @@ class ParserTest {
 		}
 
 		$opts = $this->parseOptions( $opts );
-		$this->setupGlobals( $opts, $config );
+		$context = $this->setupGlobals( $opts, $config );
 
-		$user = new User();
-		$options = ParserOptions::newFromUser( $user );
+		$user = $context->getUser();
+		$options = ParserOptions::newFromContext( $context );
 
 		if ( isset( $opts['title'] ) ) {
 			$titleText = $opts['title'];
@@ -482,10 +482,9 @@ class ParserTest {
 			if ( isset( $opts['ill'] ) ) {
 				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
 			} elseif ( isset( $opts['cat'] ) ) {
-				global $wgOut;
-
-				$wgOut->addCategoryLinks( $output->getCategories() );
-				$cats = $wgOut->getCategoryLinks();
+				$outputPage = $context->getOutput();
+				$outputPage->addCategoryLinks( $output->getCategories() );
+				$cats = $outputPage->getCategoryLinks();
 
 				if ( isset( $cats['normal'] ) ) {
 					$out = $this->tidy( implode( ' ', $cats['normal'] ) );
@@ -704,6 +703,8 @@ class ParserTest {
 		$wgHooks['ParserGetVariableValueTs'][] = 'ParserTest::getFakeTimestamp';
 
 		MagicWord::clearCache();
+
+		return $context;
 	}
 
 	/**
