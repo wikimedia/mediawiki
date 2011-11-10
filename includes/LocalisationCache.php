@@ -710,6 +710,28 @@ class LocalisationCache {
 			$this->loadedItems[$code][$key] = true;
 		}
 
+		# Write data to the persistant store
+		$this->saveLangInStore( $code, $data );
+
+		wfProfileOut( __METHOD__ );
+	}
+
+	/**
+	 * Helper for recache() this is not mean to be called outside of recache()
+	 * When the localisation store is null (LCStore_Null), method does nothing.
+	 *
+	 * @param $code String: language code to save data for
+	 * @param $data Array: language data forged by recache()
+	 */
+	protected function saveLangInStore( $code, $data ) {
+		wfProfileIn( __METHOD__ );
+
+		if( $this->store instanceof LCStore_Null ) {
+			# No point in saving data to /dev/null
+			wfProfileOut( __METHOD__ );
+			return;
+		}
+	
 		# Save to the persistent cache
 		$this->store->startWrite( $code );
 		foreach ( $allData as $key => $value ) {
@@ -724,11 +746,7 @@ class LocalisationCache {
 		$this->store->finishWrite();
 
 		# Clear out the MessageBlobStore
-		# HACK: If using a null (i.e. disabled) storage backend, we
-		# can't write to the MessageBlobStore either
-		if ( !$this->store instanceof LCStore_Null ) {
-			MessageBlobStore::clear();
-		}
+		MessageBlobStore::clear();
 
 		wfProfileOut( __METHOD__ );
 	}
