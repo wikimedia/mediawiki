@@ -185,7 +185,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		} elseif ( !empty( $options['custom-title-link'] ) ) {
 			$title = $options['custom-title-link'];
 			$linkAttribs = array(
-				'href' => $title->getLinkUrl(),
+				'href' => $title->getLinkURL(),
 				'title' => empty( $options['title'] ) ? $title->getFullText() : $options['title']
 			);
 		} elseif ( !empty( $options['desc-link'] ) ) {

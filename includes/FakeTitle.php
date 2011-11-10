@@ -31,7 +31,7 @@ class FakeTitle extends Title {
 	function getPrefixedURL() { $this->error(); }
 	function getFullURL( $query = '', $variant = false ) { $this->error(); }
 	function getLocalURL( $query = '', $variant = false ) { $this->error(); }
-	function getLinkUrl( $query = array(), $variant = false ) { $this->error(); }
+	function getLinkURL( $query = array(), $variant = false ) { $this->error(); }
 	function escapeLocalURL( $query = '' ) { $this->error(); }
 	function escapeFullURL( $query = '' ) { $this->error(); }
 	function getInternalURL( $query = '', $variant = false ) { $this->error(); }

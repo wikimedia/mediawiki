@@ -959,7 +959,7 @@ class Title {
 	 *   for anonymous users).
 	 * @return String the URL
 	 */
-	public function getLinkUrl( $query = array(), $variant = false ) {
+	public function getLinkURL( $query = array(), $variant = false ) {
 		wfProfileIn( __METHOD__ );
 		if ( $this->isExternal() ) {
 			$ret = $this->getFullURL( $query );
