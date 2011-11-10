@@ -266,9 +266,9 @@ $messages = array(
 'tog-oldsig'                  => 'Преглед на съществуващия подпис:',
 'tog-fancysig'                => 'Без превръщане на подписа в препратка към потребителската страница',
 'tog-externaleditor'          => 'Използване на външен редактор по подразбиране (само за експерти, необходими са специални настройки на компютъра.
-[http://www.mediawiki.org/wiki/Manual:External_editors Повече информация.])',
+[//www.mediawiki.org/wiki/Manual:External_editors Повече информация.])',
 'tog-externaldiff'            => 'Използване на външна програма за разлики по подразбиране (само за експерти, необходими са специални настройки на компютъра.
-[http://www.mediawiki.org/wiki/Manual:External_editors Повече информация.])',
+[//www.mediawiki.org/wiki/Manual:External_editors Повече информация.])',
 'tog-showjumplinks'           => 'Показване на препратки за достъпност от типа „Към…“',
 'tog-uselivepreview'          => 'Използване на бърз предварителен преглед (изисква Джаваскрипт; експериментално)',
 'tog-forceeditsummary'        => 'Предупреждаване при празно поле за резюме на редакцията',
@@ -2624,7 +2624,7 @@ $1',
 'allmessagesdefault'            => 'Текст по подразбиране',
 'allmessagescurrent'            => 'Текущ текст',
 'allmessagestext'               => 'Тази страница съдържа списък на системните съобщения от именното пространство „МедияУики“.
-Посетете [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] и [http://translatewiki.net translatewiki.net], ако желаете да допринесете за общата локализация на софтуера МедияУики.',
+Посетете [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] и [http://translatewiki.net translatewiki.net], ако желаете да допринесете за общата локализация на софтуера МедияУики.',
 'allmessagesnotsupportedDB'     => "Тази страница не може да бъде използвана, тъй като е изключена възможността '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Филтър',
 'allmessages-filter'            => 'Филтриране по ниво на персонализация:',
@@ -3237,7 +3237,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Редактиране на файла чрез външно приложение',
-'edit-externally-help' => '(За повече информация прегледайте [http://www.mediawiki.org/wiki/Manual:External_editors указанията за настройките]).',
+'edit-externally-help' => '(За повече информация прегледайте [//www.mediawiki.org/wiki/Manual:External_editors указанията за настройките]).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'всички',
@@ -3412,7 +3412,7 @@ $1',
 'version-hook-subscribedby'     => 'Ползвана от',
 'version-version'               => '(Версия $1)',
 'version-license'               => 'Лиценз',
-'version-poweredby-credits'     => "Това уики се задвиждва от '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Това уики се задвиждва от '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'други',
 'version-license-info'          => 'MediaWiki е свободен софтуер, можете да го разпространявате и/или променяте съгласно условията на GNU General Public License, както е публикуван от Free Software Foundation, версия 2 на лиценза или (по ваше усмотрение) която и да е следваща версия.
 

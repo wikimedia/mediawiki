@@ -1206,7 +1206,7 @@ Wuxuu ku badalay bedelkii ka danbeeyay oo sameeyay $2.',
 'allmessagesdefault'        => "Qoraalka la'isku ogyahay",
 'allmessagescurrent'        => 'Qoraalka hada qoran',
 'allmessagestext'           => 'Liiskan waxaa ku qoran dhamaan fariimaha lagahelikaro xarun magaceedka MediaWiki.
-Fadlan booqo [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] hadii aad rabto in aad wax ku darsatid MediaWiki si aad gabi ahaanbo afkaaga ugu fasirtid.',
+Fadlan booqo [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] hadii aad rabto in aad wax ku darsatid MediaWiki si aad gabi ahaanbo afkaaga ugu fasirtid.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' la'ma isticmaalikaro, '''\$wgUseDatabaseMessages''' oo dansan daraadeed.",
 'allmessages-language'      => 'Luqad:',
 'allmessages-filter-submit' => 'Soco',
@@ -1317,7 +1317,7 @@ Hadii faylka wax laga badalay sida oo markiisa hore ahaa, waxaa laga yaabaa in e
 
 # External editor support
 'edit-externally'      => 'wax ka bedel faylkaan adiga oo isticmaalaya brogram dheeraad ah',
-'edit-externally-help' => '(Ka fiiri wax war ah oo kale  [http://www.mediawiki.org/wiki/Manual:External_editors sidii oo wax ugu habeysmi lahaa] )',
+'edit-externally-help' => '(Ka fiiri wax war ah oo kale  [//www.mediawiki.org/wiki/Manual:External_editors sidii oo wax ugu habeysmi lahaa] )',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'dhamaan',

@@ -69,8 +69,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Сирэйи кэтээн көрөр дьон ахсаанын көрдөр',
 'tog-oldsig'                  => 'Баар илии баттааһын:',
 'tog-fancysig'                => 'Бэйэ илии баттааһына (ыйынньыга суох)',
-'tog-externaleditor'          => 'Атын этиллибэтэҕинэ тас эрэдээктэри туһан (билэр дьоҥҥо аналлаах, сиһилии [http://www.mediawiki.org/wiki/Manual:External_editors манна] көр)',
-'tog-externaldiff'            => 'Атын этиллибэтэҕинэ барыллары тэҥниир тас программаны туһан (билэр дьоҥҥо аналлаах, сиһилии [http://www.mediawiki.org/wiki/Manual:External_editors манна] көр)',
+'tog-externaleditor'          => 'Атын этиллибэтэҕинэ тас эрэдээктэри туһан (билэр дьоҥҥо аналлаах, сиһилии [//www.mediawiki.org/wiki/Manual:External_editors манна] көр)',
+'tog-externaldiff'            => 'Атын этиллибэтэҕинэ барыллары тэҥниир тас программаны туһан (билэр дьоҥҥо аналлаах, сиһилии [//www.mediawiki.org/wiki/Manual:External_editors манна] көр)',
 'tog-showjumplinks'           => '"Манна бар" ыйынньыктары көрдөр',
 'tog-uselivepreview'          => 'Тутатына хайдах буоларын көрүү (JavaScript, тургутуу быһыытынан)',
 'tog-forceeditsummary'        => 'Тугу уларыппытым туһунан суруйбатахпына сэрэт',
@@ -2500,7 +2500,7 @@ $1',
 'allmessagesdefault'            => 'Туспа этиллибэтэҕинэ суруллар тиэкис',
 'allmessagescurrent'            => 'Билиҥҥи тиэкис',
 'allmessagestext'               => 'Манна MediaWiki биллэриилэрин испииһэгэ көстөр.
-Эн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] уонна манна [http://translatewiki.net translatewiki.net] киир.',
+Эн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] уонна манна [http://translatewiki.net translatewiki.net] киир.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' туттуллар кыаҕа суох, тоҕо диэтэххэ '''\$wgUseDatabaseMessages''' араарыллыбыт.",
 'allmessages-filter-legend'     => 'Сиидэ',
 'allmessages-filter'            => 'Уларытыы көрүҥүнэн наардыыр сиидэ:',
@@ -3184,7 +3184,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Бу билэни таһынааҕы бырагыраамма көмөтүнэн уларытарга',
-'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [http://www.mediawiki.org/wiki/Manual:External_editors туруоруулар туһунан].',
+'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [//www.mediawiki.org/wiki/Manual:External_editors туруоруулар туһунан].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бары',
@@ -3375,7 +3375,7 @@ $1',
 'version-hook-subscribedby'     => 'Суруттарыыта:',
 'version-version'               => '(Торум $1)',
 'version-license'               => 'Лиссиэнзийэ',
-'version-poweredby-credits'     => "Бу биики бу движокка олоҕурар '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Бу биики бу движокка олоҕурар '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'атыттар',
 'version-license-info'          => 'MediaWiki көҥүл тарҕанар бырагырааммаларга киирэр, кинини көмпүүтэр аһаҕас бырагырааммаларын пуондатын GNU General Public License усулуобуйатынан көҥүл тарҕатаргыт уонна/эбэтэр уларытаргыт көҥүллэнэр; иккис эбэтэр онтон хойукку ханнык баҕарар барылыттан саҕалаан.
 

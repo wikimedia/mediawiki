@@ -2603,7 +2603,7 @@ Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{#Special:E
 'allmessagesdefault'            => 'Messatge per defaut',
 'allmessagescurrent'            => 'Messatge actual',
 'allmessagestext'               => 'Aquò es la lista de totes los messatges disponibles dins l’espaci MediaWiki.
-Visitatz la [http://www.mediawiki.org/wiki/Localisation Localizacion MediaWiki] e [http://translatewiki.net translatewiki.net] se desiratz contribuir a la localizacion MediaWiki generica.',
+Visitatz la [//www.mediawiki.org/wiki/Localisation Localizacion MediaWiki] e [http://translatewiki.net translatewiki.net] se desiratz contribuir a la localizacion MediaWiki generica.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' es pas disponible perque '''\$wgUseDatabaseMessages''' es desactivat.",
 'allmessages-filter-legend'     => 'Filtre',
 'allmessages-filter'            => 'Filtrar per estat de modificacion :',
@@ -3166,7 +3166,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 
 # External editor support
 'edit-externally'      => 'Modificar aqueste fichièr en utilizant una aplicacion extèrna',
-'edit-externally-help' => "(Consultatz [http://www.mediawiki.org/wiki/Manual:External_editors/oc las instruccions d'installacion] per mai d’entresenhas)",
+'edit-externally-help' => "(Consultatz [//www.mediawiki.org/wiki/Manual:External_editors/oc las instruccions d'installacion] per mai d’entresenhas)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tot',

@@ -42,8 +42,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Ndaganga obungi bw'abagoberera olupapula",
 'tog-oldsig'                  => 'Omukono gwo kakano:',
 'tog-fancysig'                => 'Omukono gubemu obubonero bwa ki-wiki (naye nga tegufuuka nyunzi)',
-'tog-externaleditor'          => 'Wandikisanga puloguramu eri ku kompyuta yo (kyetaagisa bumanyirivu bungi, kubanga wetaaga okutegeka kompyuta yo mu ngeri ezitali za bulijjo. [http://www.mediawiki.org/wiki/Manual:External_editors Okutangaaza okusingawo.])',
-'tog-externaldiff'            => "Kozesanga puloguramu ey'oku kompyuta yo okukebera njawulo wakati w'ebiwandike (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo. [http://www.mediawiki.org/wiki/Manual:External_editors Okutangaaza okusingawo.])",
+'tog-externaleditor'          => 'Wandikisanga puloguramu eri ku kompyuta yo (kyetaagisa bumanyirivu bungi, kubanga wetaaga okutegeka kompyuta yo mu ngeri ezitali za bulijjo. [//www.mediawiki.org/wiki/Manual:External_editors Okutangaaza okusingawo.])',
+'tog-externaldiff'            => "Kozesanga puloguramu ey'oku kompyuta yo okukebera njawulo wakati w'ebiwandike (kyetaagisa bumanyirivu bungi, wetaaga ntegeka ezitali za bulijjo ku kompyuta yo. [//www.mediawiki.org/wiki/Manual:External_editors Okutangaaza okusingawo.])",
 'tog-showjumplinks'           => 'Wabeerewo enyunzi eza "Genda ku"',
 'tog-uselivepreview'          => 'Enkyukakyuka ze nkoze zirabikirewo nga tekyetaagisiza kumala kunyiga ppeesa (kyetaagisa JavaScript)(Kikyagezesebwa)',
 'tog-forceeditsummary'        => 'Ŋambaako bwe mba ŋenda okuleka nga sinnyonyodde bye nkyusizza',
@@ -1216,7 +1216,7 @@ Yogera nange gwe olina okugyegattira ku eyo esangidwawo.'''",
 'allmessagescurrent'            => 'Ebiriwo kakano',
 'allmessagestext'               => "Luno lwe lukalala olw'obubaka obwa sisitemu obw'omu kkuŋŋaanizo erya MediaWiki.
 
-Ob'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ne [http://translatewiki.net translatewiki.net].",
+Ob'oyagala okuyamba ku kuvvuunula eby'omu MediaWiki yonna, kebera ku [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ne [http://translatewiki.net translatewiki.net].",
 'allmessages-filter-legend'     => 'Ensunsula',
 'allmessages-filter'            => 'Londamu:',
 'allmessages-filter-unmodified' => 'Ebitannakyusibwamu',
@@ -1335,7 +1335,7 @@ Ebirala biyinza butalabika okujjako ng'okiragidde.
 
 # External editor support
 'edit-externally'      => 'Fayiro eno gikolereko mu pulogulamu endala',
-'edit-externally-help' => '[http://www.mediawiki.org/wiki/Manual:External_editors Nyiga wano] okuyiga ebisingawo ku kukozesa pulogulamu endala okukola enkyukakyuka.',
+'edit-externally-help' => '[//www.mediawiki.org/wiki/Manual:External_editors Nyiga wano] okuyiga ebisingawo ku kukozesa pulogulamu endala okukola enkyukakyuka.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Zonna',

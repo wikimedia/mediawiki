@@ -72,8 +72,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Вказати кілько хоснователїв придало сторінку до свого списку слїдованых',
 'tog-oldsig'                  => 'Екзістуючій підпис:',
 'tog-fancysig'                => 'Хосновати про підпис вікітекст (без автоматічного одказу)',
-'tog-externaleditor'          => 'Імпліцітно хосновати екстерный едітор (лем про скусеных, выжадує шпеціалне наштелёваня компютера; [http://www.mediawiki.org/wiki/Manual:External_editors далшы інформації])',
-'tog-externaldiff'            => 'Імпліцітно хосновати проґрам про порівнаваня (лем про скусеных, выжадує шпеціалне наштелёваня компютера; [http://www.mediawiki.org/wiki/Manual:External_editors далшы інформації])',
+'tog-externaleditor'          => 'Імпліцітно хосновати екстерный едітор (лем про скусеных, выжадує шпеціалне наштелёваня компютера; [//www.mediawiki.org/wiki/Manual:External_editors далшы інформації])',
+'tog-externaldiff'            => 'Імпліцітно хосновати проґрам про порівнаваня (лем про скусеных, выжадує шпеціалне наштелёваня компютера; [//www.mediawiki.org/wiki/Manual:External_editors далшы інформації])',
 'tog-showjumplinks'           => 'Актівізовати помічны одказы "перейти дo"',
 'tog-uselivepreview'          => 'Хосновати швыдкый нагляд (JavaScript, експеріментално)',
 'tog-forceeditsummary'        => 'Упозорнити ня, кідь не є выповнене згорнутя едітованя',
@@ -2452,7 +2452,7 @@ $1',
 'allmessagesdefault'            => 'Штандартный текст',
 'allmessagescurrent'            => 'Актуалный текст',
 'allmessagestext'               => 'Тото є список вшыткых повідомлїнь доступных в просторї назв «MediaWiki».
-Кідь хочете приспівати ку локалізації софтверу MediaWiki, навщівте [http://www.mediawiki.org/wiki/Localisation локалізачну сторінку на mediawiki.org] і [http://translatewiki.net сервер server translatewiki.net].',
+Кідь хочете приспівати ку локалізації софтверу MediaWiki, навщівте [//www.mediawiki.org/wiki/Localisation локалізачну сторінку на mediawiki.org] і [http://translatewiki.net сервер server translatewiki.net].',
 'allmessagesnotsupportedDB'     => '{{ns:special}}:AllMessages не є підпороване, бо wgUseDatabaseMessages є выпнуте.',
 'allmessages-filter-legend'     => 'Філтер',
 'allmessages-filter'            => 'Філтер подля ставу:',
@@ -3117,7 +3117,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Едітовати тот файл хоснувчі екстерну аплікацію',
-'edit-externally-help' => '(Вецей інформації найдете в [http://www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлїня].)',
+'edit-externally-help' => '(Вецей інформації найдете в [//www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлїня].)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вшыткы',
@@ -3302,7 +3302,7 @@ $1',
 'version-hook-subscribedby'     => 'Підписаный на',
 'version-version'               => '(Верзія $1)',
 'version-license'               => 'Ліценція',
-'version-poweredby-credits'     => "Тота вікі біжыть на '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
+'version-poweredby-credits'     => "Тота вікі біжыть на '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'іншы',
 'version-license-info'          => 'MediaWiki є слободный софтвер; можете го шырити або управляти подля условій GNU General Public License, выдаваной Free Software Foundation; будь верзія 2 той ліценції або (подля вашого уважіня) будьяка пізнїша верзія.
 

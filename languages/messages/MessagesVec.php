@@ -2404,7 +2404,7 @@ Nel secondo caso te poli anca doparar un colegamento, par esenpio [[{{#Special:E
 'allmessagesdefault'            => 'Testo predefinìo',
 'allmessagescurrent'            => 'Testo come che el xe desso',
 'allmessagestext'               => "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.
-Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
+Par piaser visita [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtra par stato de personalixassion:',
@@ -2923,7 +2923,7 @@ I colegamenti dopo, su la stessa riga, i xe considerai come ecession (cioè, pag
 
 # External editor support
 'edit-externally'      => 'Modifega sto file usando on programa foresto',
-'edit-externally-help' => '(Par saverghene de pì consultare łe [http://www.mediawiki.org/wiki/Manual:External_editors istrusion])',
+'edit-externally-help' => '(Par saverghene de pì consultare łe [//www.mediawiki.org/wiki/Manual:External_editors istrusion])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tute',
@@ -3082,7 +3082,7 @@ Nota che te pol anca [[Special:EditWatchlist|modificar la lista con l'interfacia
 'version-hook-subscribedby'     => 'Sotoscrizioni',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Licensa',
-'version-poweredby-credits'     => "Sta wiki la va con '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Sta wiki la va con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'altri',
 'version-license-info'          => "MediaWiki xe un software lìbaro; te pol redistribuirlo e/o modificarlo secondo i termini de la Licensa Publica Zeneral GNU publicà da la Free Software Foundation; secondo la version 2 de la Licensa, o (a scelta tua) una qualunque altra version sucessiva.
 

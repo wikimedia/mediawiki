@@ -1171,7 +1171,7 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 
 # External editor support
 'edit-externally'      => 'Eiditar este fexeiro outelizando ua aplicaçon sterna',
-'edit-externally-help' => '(Bei las [http://www.mediawiki.org/wiki/Manual:External_editors anstruçones de anstalaçon] pa mais anformaçon).',
+'edit-externally-help' => '(Bei las [//www.mediawiki.org/wiki/Manual:External_editors anstruçones de anstalaçon] pa mais anformaçon).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todas',

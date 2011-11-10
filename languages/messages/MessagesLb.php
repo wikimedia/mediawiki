@@ -197,8 +197,8 @@ $messages = array(
 'tog-shownumberswatching'     => "D'Zuel vun de Benotzer déi dës Säit iwwerwaache weisen",
 'tog-oldsig'                  => 'Aktuell Ënnerschrëft:',
 'tog-fancysig'                => 'Ënnerschrëft als Wiki-Text behandelen (Ouni automatesche Link)',
-'tog-externaleditor'          => 'Externen Editeur als Standard benotzen (Nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn. [http://www.mediawiki.org/wiki/Manual:External_editors Méi Informatiounen.])',
-'tog-externaldiff'            => 'En Externen Diff-Programm als Standard benotzen (nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn. [http://www.mediawiki.org/wiki/Manual:External_editors Méi Informatiounen])',
+'tog-externaleditor'          => 'Externen Editeur als Standard benotzen (Nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn. [//www.mediawiki.org/wiki/Manual:External_editors Méi Informatiounen.])',
+'tog-externaldiff'            => 'En Externen Diff-Programm als Standard benotzen (nëmme fir Experten, et musse speziell Astellungen op ärem Computer gemaach ginn. [//www.mediawiki.org/wiki/Manual:External_editors Méi Informatiounen])',
 'tog-showjumplinks'           => 'Aktivéiere vun de "Sprang op"-Linken',
 'tog-uselivepreview'          => 'Live-Preview benotzen (JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Warnen, wa beim Späicheren de Resumé feelt',
@@ -2594,7 +2594,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'allmessagesdefault'            => 'Standardtext',
 'allmessagescurrent'            => 'Aktuellen Text',
 'allmessagestext'               => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
-Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] an [http://translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
+Besicht w.e.g. [//www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] an [http://translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
 'allmessagesnotsupportedDB'     => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter nom ugepassten Zoustand:',
@@ -3271,7 +3271,7 @@ Déi aner sinn am Standard verstoppt.
 
 # External editor support
 'edit-externally'      => 'Dëse Fichier mat engem externe Programm veränneren',
-'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[http://www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
+'edit-externally-help' => "(Fir gewuer ze gi wéi dat genee geet liest d'[//www.mediawiki.org/wiki/Manual:External_editors Installatiounsinstruktiounen].)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',
@@ -3450,7 +3450,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 'version-hook-subscribedby'     => 'Opruff vum',
 'version-version'               => '(Versioun $1)',
 'version-license'               => 'Lizenz',
-'version-poweredby-credits'     => "Dës Wiki fonctionnéiert mat '''[http://www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Dës Wiki fonctionnéiert mat '''[//www.mediawiki.org/ MediaWiki]''', Copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'anerer',
 'version-license-info'          => "MediaWiki ass fräi Software; Dir kënnt se weiderginn an/oder s'änneren ënnert de Bedingungen vun der GNU-General Public License esou wéi se vun der Free Softare Foundation publizéiert ass; entweder ënner der Versioun 2 vun der Lizenz, oder (no Ärem Choix) enger spéiderer Versioun.
 

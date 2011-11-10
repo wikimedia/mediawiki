@@ -380,8 +380,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'ページをウォッチしている利用者数を表示する',
 'tog-oldsig'                  => '既存の署名：',
 'tog-fancysig'                => '署名をウィキ文として扱う（自動でリンクしない）',
-'tog-externaleditor'          => '既定で編集に外部アプリケーションを使う（上級者向け、コンピューターに特殊な設定が必要。[http://www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
-'tog-externaldiff'            => '差分表示に外部アプリケーションを使う（上級者向け、コンピューターに特殊な設定が必要。[http://www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
+'tog-externaleditor'          => '既定で編集に外部アプリケーションを使う（上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
+'tog-externaldiff'            => '差分表示に外部アプリケーションを使う（上級者向け、コンピューターに特殊な設定が必要。[//www.mediawiki.org/wiki/Manual:External_editors 詳細]）',
 'tog-showjumplinks'           => '利用しやすさ向上のための「{{int:jumpto}}」リンクを有効にする',
 'tog-uselivepreview'          => 'ライブプレビューを使用する（JavaScriptが必要）（試験中の機能）',
 'tog-forceeditsummary'        => '要約欄が空欄の場合に警告する',
@@ -2872,7 +2872,7 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 'allmessagesdefault'            => '既定のメッセージ文',
 'allmessagescurrent'            => '現在のメッセージ文',
 'allmessagestext'               => 'これはMediaWiki名前空間で利用可能なシステムメッセージの一覧です。
-一般的なMediaWikiの地域化に貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWikiの地域化]や[http://translatewiki.net?setlang=ja translatewiki.net]を訪れてみてください。',
+一般的なMediaWikiの地域化に貢献したい場合は、[//www.mediawiki.org/wiki/Localisation MediaWikiの地域化]や[http://translatewiki.net?setlang=ja translatewiki.net]を訪れてみてください。',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages'''が無効なので、このページを使うことはできません。",
 'allmessages-filter-legend'     => '絞り込み',
 'allmessages-filter'            => '変更状態により絞り込む：',
@@ -3595,7 +3595,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '外部アプリケーションを使ってこのファイルを編集する',
-'edit-externally-help' => '（詳しい情報は[http://www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください）',
+'edit-externally-help' => '（詳しい情報は[//www.mediawiki.org/wiki/Manual:External_editors 設定手順]をご覧ください）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'すべて',
@@ -3857,7 +3857,7 @@ $1',
 'version-hook-subscribedby'     => '使用個所',
 'version-version'               => '（バージョン$1）',
 'version-license'               => 'ライセンス',
-'version-poweredby-credits'     => "このウィキは、'''[http://www.mediawiki.org/ MediaWiki]'''(copyright © 2001-$1 $2)で動作しています。",
+'version-poweredby-credits'     => "このウィキは、'''[//www.mediawiki.org/ MediaWiki]'''(copyright © 2001-$1 $2)で動作しています。",
 'version-poweredby-others'      => 'その他',
 'version-license-info'          => 'MediaWikiはフリーソフトウェアです。あなたは、フリーソフトウェア財団の発行するGNU一般公衆利用許諾書 (GNU General Public License)（バージョン2、またはそれ以降のライセンス）の規約にもとづき、このライブラリの再配布や改変をすることができます。
 

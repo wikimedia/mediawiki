@@ -2022,7 +2022,7 @@ Ni mazīngi praskajjintun pāusan en din subban.',
 'allmessagesdefault'            => 'Auprestamins teksts',
 'allmessagescurrent'            => 'Bigānts teksts',
 'allmessagestext'               => 'Sta ast listi wisēisan waīstin preiēiminan en MediaWikis tītelin plattibin.
-Madli kāimalukeis [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] be [http://translatewiki.net translatewiki.net] ik tu kwaitēi delīkan īmtun en MediaWikis prōgraminin tulkausnai.',
+Madli kāimalukeis [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] be [http://translatewiki.net translatewiki.net] ik tu kwaitēi delīkan īmtun en MediaWikis prōgraminin tulkausnai.',
 'allmessagesnotsupportedDB'     => "Šī pāusan ni mazzi būtwei tērpautan, beggi wariābli '''\$wgUseDatabaseMessages''' ast izklaūtan.",
 'allmessages-filter-legend'     => 'Filtrīs',
 'allmessages-filter'            => 'Filtrīs pa būsenin:',
@@ -2504,7 +2504,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 
 # External editor support
 'edit-externally'      => 'Redigīs šin pāusan tērpawintei izwinandan prōgraman',
-'edit-externally-help' => '(Skaitāis [http://www.mediawiki.org/wiki/Manual:External_editors instrukciōnins], kāi gaūlai tūls infōrmaciōnins).',
+'edit-externally-help' => '(Skaitāis [//www.mediawiki.org/wiki/Manual:External_editors instrukciōnins], kāi gaūlai tūls infōrmaciōnins).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wisāi',

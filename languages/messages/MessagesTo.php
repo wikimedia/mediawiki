@@ -1159,7 +1159,7 @@ Pea hoko ai pē hoʻo lava tānaki ha ʻuhinga ʻi he fakanounou',
 
 # External editor support
 'edit-externally'      => 'Fatuʻi ʻa e failé ni ngāueʻaki mo e polokalama ʻi tuʻa',
-'edit-externally-help' => 'Vakai ki he [http://www.mediawiki.org/wiki/Manual:External_editors fakahinohino ki he fokotuʻu] maʻa toe fakamatala.',
+'edit-externally-help' => 'Vakai ki he [//www.mediawiki.org/wiki/Manual:External_editors fakahinohino ki he fokotuʻu] maʻa toe fakamatala.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kātoa',

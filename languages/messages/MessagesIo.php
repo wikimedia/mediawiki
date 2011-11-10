@@ -137,7 +137,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Montrez mea e-posto adreso en notifiko e-posti',
 'tog-shownumberswatching'     => 'Montrez nombro di surveyanta uzanti',
 'tog-fancysig'                => 'Traktez signaturo kom wikikodo (sen automata ligilo)',
-'tog-externaleditor'          => 'Uzez extera redaktanto nespecigite (nur por experti, bezonas specala moderi ye vua komputoro .[http://www.mediawiki.org/wiki/Manual:External_editors Plusa informo.])',
+'tog-externaleditor'          => 'Uzez extera redaktanto nespecigite (nur por experti, bezonas specala moderi ye vua komputoro .[//www.mediawiki.org/wiki/Manual:External_editors Plusa informo.])',
 'tog-forceeditsummary'        => 'Notifikez me kande skribanta vakua redakto-rezumo',
 'tog-watchlisthideown'        => 'Celez mea redaktaji de la surveyaji',
 'tog-watchlisthidebots'       => 'Celez redaktaji da roboti de la surveyaji',
@@ -1314,7 +1314,7 @@ Voluntez selektar altra nomo.',
 'allmessages'          => 'Omna sistemo-mesaji',
 'allmessagesname'      => 'Nomo',
 'allmessagestext'      => 'Ico esas listo di omna sistemo-mesaji disponebla en la MediaWiki nomaro.
-Voluntez vizitar [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokizado] e [http://translatewiki.net translatewiki.net] se vu volus kontributar ad generala MediaWiki lokizado.',
+Voluntez vizitar [//www.mediawiki.org/wiki/Localisation MediaWiki Lokizado] e [http://translatewiki.net translatewiki.net] se vu volus kontributar ad generala MediaWiki lokizado.',
 'allmessages-language' => 'Linguo:',
 
 # Thumbnails

@@ -141,8 +141,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'লক্ষ্য কৰি থকা সদস্য সমূহৰ সংখ্যা দেখুৱাওক',
 'tog-oldsig'                  => 'বৰ্তমানৰ স্বাক্ষৰ:',
 'tog-fancysig'                => 'স্বাক্ষৰ ৱিকিটেক্সট হিচাপে ব্যৱহাৰ কৰক (স্বয়ংক্ৰিয় সংযোগ অবিহনে)',
-'tog-externaleditor'          => 'ডিফ’ল্ট ভাবে বাহ্যিক সম্পাদন-সঁজুলি ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [http://www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
-'tog-externaldiff'            => 'ডিফ’ল্ট ভাবে বাহ্যিক তফাৎ (diff) ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [http://www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
+'tog-externaleditor'          => 'ডিফ’ল্ট ভাবে বাহ্যিক সম্পাদন-সঁজুলি ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [//www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
+'tog-externaldiff'            => 'ডিফ’ল্ট ভাবে বাহ্যিক তফাৎ (diff) ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [//www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
 'tog-showjumplinks'           => '"জঁপিয়াই যাওক" সংযোগ সক্ৰিয় কৰক',
 'tog-uselivepreview'          => 'সম্পাদনাৰ লগে লগে খচৰা দেখুৱাওক (JavaScript) (পৰীক্ষামূলক)',
 'tog-forceeditsummary'        => 'সম্পাদনাৰ সাৰাংশ নিদিলে মোক জনাব',
@@ -2594,7 +2594,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'allmessagesdefault'            => "ডিফ'ল্ট বাৰ্তা পাঠ্য",
 'allmessagescurrent'            => 'বৰ্তমানৰ বাৰ্তাৰ পাঠ',
 'allmessagestext'               => 'মিডিয়াৱিকি নামস্থানত থকা প্ৰণালী বাৰ্তাসমূহৰ তালিকা ইয়াত দিয়া হৈছে ।
-যদি আপুনি মিডিয়াৱিকিৰ স্থানীয়কৰণত আগ্ৰহী, তেন্তে অনুগ্ৰহ কৰি [http://www.mediawiki.org/wiki/Localisation মিডিয়াৱিকি স্থানীয়কৰণ] আৰু [http://translatewiki.net translatewiki.net] চাওক ।',
+যদি আপুনি মিডিয়াৱিকিৰ স্থানীয়কৰণত আগ্ৰহী, তেন্তে অনুগ্ৰহ কৰি [//www.mediawiki.org/wiki/Localisation মিডিয়াৱিকি স্থানীয়কৰণ] আৰু [http://translatewiki.net translatewiki.net] চাওক ।',
 'allmessagesnotsupportedDB'     => "এই পৃষ্ঠা ব্যৱহাৰ কৰিব নোৱাৰি কাৰণ '''\$wgUseDatabaseMessages''' নিষ্ক্ৰিয় কৰা হৈছে ।",
 'allmessages-filter-legend'     => 'ছেকনী',
 'allmessages-filter-unmodified' => 'অপৰিৱৰ্তিত',
@@ -3000,7 +3000,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 
 # External editor support
 'edit-externally'      => 'বাহিৰা আহিলা ব্যৱহাৰ কৰি এই ফাইলটো সম্পাদনা কৰক ।',
-'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [http://www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাওক ।',
+'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [//www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাওক ।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'সকলো',
@@ -3173,7 +3173,7 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'version-hook-name'             => 'হুক নাম',
 'version-version'               => '(সংস্কৰণ $1)',
 'version-license'               => 'অনুজ্ঞাপত্ৰ',
-'version-poweredby-credits'     => "এই ৱিকি '''[http://www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
+'version-poweredby-credits'     => "এই ৱিকি '''[//www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
 'version-poweredby-others'      => 'অন্য',
 'version-software'              => 'ইনষ্টল কৰা ছফ্টৱেৰ',
 'version-software-product'      => 'সামগ্ৰী',

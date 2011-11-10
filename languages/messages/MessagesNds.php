@@ -244,8 +244,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Wies de Tall vun Brukers, de op disse Siet oppasst',
 'tog-oldsig'                  => 'Vörschau von de Ünnerschrift, de nu gellt:',
 'tog-fancysig'                => 'Signatur as Wikitext behanneln (ahn automaatsch Lenk)',
-'tog-externaleditor'          => 'Extern Editor as Standard bruken (Blots för Lüüd, de sik dormit utkennt. Dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht. [http://www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatschonen hierto.])',
-'tog-externaldiff'            => 'Extern Warktüüch to’n Wiesen vun Ünnerscheden as Standard bruken (Blots för Lüüd, de sik dormit utkennt. Dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht. [http://www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatschonen hierto.])',
+'tog-externaleditor'          => 'Extern Editor as Standard bruken (Blots för Lüüd, de sik dormit utkennt. Dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht. [//www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatschonen hierto.])',
+'tog-externaldiff'            => 'Extern Warktüüch to’n Wiesen vun Ünnerscheden as Standard bruken (Blots för Lüüd, de sik dormit utkennt. Dor mutt noch mehr op dien Reekner instellt warrn, dat dat geiht. [//www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatschonen hierto.])',
 'tog-showjumplinks'           => '„Wesseln-na“-Lenken tolaten',
 'tog-uselivepreview'          => 'Live-Vörschau bruken (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Segg mi bescheid, wenn ik keen Tosamenfaten geven heff, wat ik allens ännert heff',
@@ -2847,7 +2847,7 @@ Wiedere warrt standardmatig nich anwiest:
 
 # External editor support
 'edit-externally'      => 'Änner disse Datei mit en extern Programm',
-'edit-externally-help' => '(Lees de [http://www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wullt)',
+'edit-externally-help' => '(Lees de [//www.mediawiki.org/wiki/Manual:External_editors Installatschoonshelp] wenn du dor mehr to weten wullt)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',
@@ -2990,7 +2990,7 @@ Du kannst ok de [[Special:EditWatchlist|normale Sied to’n Ännern]] bruken.',
 'version-hook-subscribedby'     => 'Opropen vun',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Lizenz',
-'version-poweredby-credits'     => "Dit Wiki bruukt '''[http://www.mediawiki.org/ MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-credits'     => "Dit Wiki bruukt '''[//www.mediawiki.org/ MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'annere',
 'version-software'              => 'Installeerte Software',
 'version-software-product'      => 'Produkt',

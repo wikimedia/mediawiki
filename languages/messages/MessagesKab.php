@@ -1199,7 +1199,7 @@ Anda tebɣiḍ tesmimeḍ "[[:$1]]" yella yagi. tebɣiḍ ad temḥuḍ iwakken 
 'allmessagesdefault'        => 'Aḍris ameslugen',
 'allmessagescurrent'        => 'Aḍris n tura',
 'allmessagestext'           => 'Wagi d umuɣ n izen n system i yellan deg yisem n taɣult.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ut yezmir ara ad yettuseqdac axaṭer '''\$wgUseDatabaseMessages''' yettwakkes.",
 
 # Thumbnails
@@ -1355,7 +1355,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 
 # External editor support
 'edit-externally'      => 'Beddel afaylu-yagi s usnas aberrani.',
-'edit-externally-help' => 'Ẓer [http://www.mediawiki.org/wiki/Manual:External_editors taknut] iwakken ad tessneḍ kter.',
+'edit-externally-help' => 'Ẓer [//www.mediawiki.org/wiki/Manual:External_editors taknut] iwakken ad tessneḍ kter.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'akk',

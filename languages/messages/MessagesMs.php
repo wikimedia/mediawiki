@@ -221,8 +221,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Tunjukkan bilangan pemantau',
 'tog-oldsig'                  => 'Tanda tangan yang sedia ada:',
 'tog-fancysig'                => 'Anggap tandatangan sebagai teks wiki (tanpa pautan automatik)',
-'tog-externaleditor'          => 'Utamakan penyunting luar (hanya untuk pakar, perlu tetapan khas pada komputer anda. [http://www.mediawiki.org/wiki/Manual:External_editors Maklumat lanjut.])',
-'tog-externaldiff'            => 'Utamakan pembeza luar (hanya untuk pakar, perlu tetapan khas pada komputer anda. [http://www.mediawiki.org/wiki/Manual:External_editors Maklumat lanjut.])',
+'tog-externaleditor'          => 'Utamakan penyunting luar (hanya untuk pakar, perlu tetapan khas pada komputer anda. [//www.mediawiki.org/wiki/Manual:External_editors Maklumat lanjut.])',
+'tog-externaldiff'            => 'Utamakan pembeza luar (hanya untuk pakar, perlu tetapan khas pada komputer anda. [//www.mediawiki.org/wiki/Manual:External_editors Maklumat lanjut.])',
 'tog-showjumplinks'           => 'Bolehkan pautan ketercapaian "lompat ke"',
 'tog-uselivepreview'          => 'Gunakan pratonton langsung (JavaScript) (masih dalam uji kaji)',
 'tog-forceeditsummary'        => 'Tanya saya jika ringkasan suntingan kosong',
@@ -2630,7 +2630,7 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{#Spe
 'allmessagesdefault'            => 'Teks mesej asal',
 'allmessagescurrent'            => 'Teks semasa',
 'allmessagestext'               => 'Ini ialah senarai pesanan sistem yang terdapat dalam ruang nama MediaWiki.
-Sila lawat [http://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [http://translatewiki.net translatewiki.net] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.',
+Sila lawat [//www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [http://translatewiki.net translatewiki.net] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' tidak boleh digunakan kerana '''\$wgUseDatabaseMessages''' dipadamkan.",
 'allmessages-filter-legend'     => 'Penapisan',
 'allmessages-filter'            => 'Tapis berdasarkan keadaan penempahan:',
@@ -3320,7 +3320,7 @@ Ruangan lain akan disembunyikan secara sediakala.
 
 # External editor support
 'edit-externally'      => 'Sunting fail ini menggunakan perisian luar',
-'edit-externally-help' => '(Lihat [http://www.mediawiki.org/wiki/Manual:External_editors arahan pemasangan] untuk maklumat lanjut)',
+'edit-externally-help' => '(Lihat [//www.mediawiki.org/wiki/Manual:External_editors arahan pemasangan] untuk maklumat lanjut)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'semua',
@@ -3518,7 +3518,7 @@ Anda juga boleh [[Special:EditWatchlist|menggunakan penyunting piawai]].',
 'version-hook-subscribedby'     => 'Dilanggan oleh',
 'version-version'               => '(Versi $1)',
 'version-license'               => 'Lesen',
-'version-poweredby-credits'     => "Wiki ini dikuasakan oleh '''[http://www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
+'version-poweredby-credits'     => "Wiki ini dikuasakan oleh '''[//www.mediawiki.org/ MediaWiki]''', hak cipta © 2001-$1 $2.",
 'version-poweredby-others'      => 'penyumbang-penyumbang lain',
 'version-license-info'          => 'MediaWiki adalah perisian bebas; anda boleh mengedarkannya semula dan/atau mengubah suainya di bawah terma-terma Lesen Awam GNU sebagai mana yang telah diterbitkan oleh Yayasan Perisian Bebas, sama ada versi 2 bagi Lesen tersebut, atau (berdasarkan pilihan anda) mana-mana versi selepasnya.
 

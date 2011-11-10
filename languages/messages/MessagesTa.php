@@ -2093,7 +2093,7 @@ $1',
 'allmessagesdefault'            => 'இயல்பிருப்பு உரை',
 'allmessagescurrent'            => 'தற்போதைய உரை',
 'allmessagestext'               => 'இது மீடியாவிக்கி பெயர்வெளியிலுள்ள எல்லா முறைமை தகவல்களினதும் பட்டியலாகும்.
-மொழிபெயர்ப்பில் உதவ விரும்பின் அருள்கூர்ந்து [http://translatewiki.net பீட்டாவிக்கி], [http://www.mediawiki.org/wiki/Localisation மீடியாவிக்கி மொழியாக்க]  தளங்களுக்குச் செல்லவும்.',
+மொழிபெயர்ப்பில் உதவ விரும்பின் அருள்கூர்ந்து [http://translatewiki.net பீட்டாவிக்கி], [//www.mediawiki.org/wiki/Localisation மீடியாவிக்கி மொழியாக்க]  தளங்களுக்குச் செல்லவும்.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' முடக்கப்பட்டுள்ளப் படியால் இப்பக்கததை பயன்படுத்த முடியாது.",
 'allmessages-filter-legend'     => 'வடிகட்டி',
 'allmessages-filter-unmodified' => 'மாற்றம் செய்யப்படாதது',
@@ -2554,7 +2554,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'இக்கோப்பை வெளி மென்பொருள் கொண்டு தொகுக்க',
-'edit-externally-help' => 'மேலும் தகவல்களுக்கு [http://www.mediawiki.org/wiki/Manual:External_editors அமைப்பு அறிவுறுத்தல்கள்] பக்கத்தைப் பார்க்கவும்.',
+'edit-externally-help' => 'மேலும் தகவல்களுக்கு [//www.mediawiki.org/wiki/Manual:External_editors அமைப்பு அறிவுறுத்தல்கள்] பக்கத்தைப் பார்க்கவும்.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'அனைத்து',

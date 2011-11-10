@@ -282,8 +282,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Паказваць колькасьць назіральнікаў',
 'tog-oldsig'                  => 'Цяперашні подпіс:',
 'tog-fancysig'                => 'Апрацоўваць подпіс як вікі-тэкст (без аўтаматычнай спасылкі)',
-'tog-externaleditor'          => 'Выкарыстоўваць вонкавы рэдактар па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [http://www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
-'tog-externaldiff'            => 'Выкарыстоўваць вонкавую праграму параўнаньня вэрсіяў па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [http://www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
+'tog-externaleditor'          => 'Выкарыстоўваць вонкавы рэдактар па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
+'tog-externaldiff'            => 'Выкарыстоўваць вонкавую праграму параўнаньня вэрсіяў па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
 'tog-showjumplinks'           => 'Актываваць дапаможныя спасылкі «перайсьці да»',
 'tog-uselivepreview'          => 'Выкарыстоўваць хуткі папярэдні прагляд (патрабуе JavaScript) (экспэрымэнтальна)',
 'tog-forceeditsummary'        => 'Папярэджваць пра адсутнасьць кароткага апісаньня зьменаў',
@@ -2703,7 +2703,7 @@ $1',
 'allmessagesdefault'            => 'Тэкст па змоўчаньні',
 'allmessagescurrent'            => 'Цяперашні тэкст',
 'allmessagestext'               => 'Сьпіс усіх сыстэмных паведамленьняў, якія існуюць у прасторы назваў MediaWiki.
-Калі ласка, наведайце [http://www.mediawiki.org/wiki/Localisation старонку пра лякалізацыю MediaWiki] і [http://translatewiki.net translatewiki.net], калі Вы жадаеце ўдзельнічаць у перакладзе MediaWiki.',
+Калі ласка, наведайце [//www.mediawiki.org/wiki/Localisation старонку пра лякалізацыю MediaWiki] і [http://translatewiki.net translatewiki.net], калі Вы жадаеце ўдзельнічаць у перакладзе MediaWiki.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:AllMessages''' не падтрымліваецца, таму што адключанае '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фільтар',
 'allmessages-filter'            => 'Фільтар па стане зьменаў:',
@@ -3385,7 +3385,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Рэдагаваць гэты файл з выкарыстаньнем вонкавай праграмы',
-'edit-externally-help' => '(Глядзіце падрабязнасьці ў [http://www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску))',
+'edit-externally-help' => '(Глядзіце падрабязнасьці ў [//www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску))',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'усё',
@@ -3575,7 +3575,7 @@ $1',
 'version-hook-subscribedby'     => 'Падпісаны на',
 'version-version'               => '(Вэрсія $1)',
 'version-license'               => 'Ліцэнзія',
-'version-poweredby-credits'     => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'іншыя',
 'version-license-info'          => 'MediaWiki зьяўляецца вольным праграмным забесьпячэньнем, якое Вы можаце распаўсюджваць і/ці зьмяняць на ўмовах ліцэнзіі GNU General Public License вэрсіі 2 ці болей позьняй, апублікаванай Фундацыяй вольнага праграмнага забесьпячэньня (Free Software Foundation).
 

@@ -2134,7 +2134,7 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'allmessagesdefault'            => 'Vödem rigädik',
 'allmessagescurrent'            => 'Vödem nuik',
 'allmessagestext'               => 'Is binon lised sitanunas valik lonöföl in nemaspad: Sitanuns.
-Gebolös [http://www.mediawiki.org/wiki/Localisation Topükami ela MediaWiki] ed el [http://translatewiki.net translatewiki.net] if vilol keblünön topükame valemik ela MediaWiki.',
+Gebolös [//www.mediawiki.org/wiki/Localisation Topükami ela MediaWiki] ed el [http://translatewiki.net translatewiki.net] if vilol keblünön topükame valemik ela MediaWiki.',
 'allmessagesnotsupportedDB'     => "Pad at no kanon pagebön bi el '''\$wgUseDatabaseMessages''' penemögükon.",
 'allmessages-filter-legend'     => 'Sul',
 'allmessages-filter-unmodified' => 'Penevotüköl',
@@ -2613,7 +2613,7 @@ Nünabinets votik poklänedons.
 
 # External editor support
 'edit-externally'      => 'Votükön ragivi at me nünömaprogram plödik',
-'edit-externally-help' => '(Reidolös eli [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] [in Linglänapük] ad tuvön nünis pluik)',
+'edit-externally-help' => '(Reidolös eli [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] [in Linglänapük] ad tuvön nünis pluik)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'valikis',

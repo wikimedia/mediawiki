@@ -362,7 +362,7 @@ $3',
 
 # External editor support
 'edit-externally'      => "''external application''ígíí choinishʼįįhgo díí eʼelyaaígíí łahgo áshłééh nisin.",
-'edit-externally-help' => '([http://www.mediawiki.org/wiki/Manual:External_editors anáʼálwoʼ] (Bilagáanakʼehjí))',
+'edit-externally-help' => '([//www.mediawiki.org/wiki/Manual:External_editors anáʼálwoʼ] (Bilagáanakʼehjí))',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tʼáá ałtso',

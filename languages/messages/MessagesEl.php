@@ -379,8 +379,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Εμφάνιση του αριθμού των συνδεδεμένων χρηστών',
 'tog-oldsig'                  => 'Προεπισκόπηση της υπάρχουσας υπογραφής:',
 'tog-fancysig'                => 'Μεταχείριση υπογραφής ως κείμενο wiki (χωρίς έναν αυτόματο σύνδεσμο)',
-'tog-externaleditor'          => 'Χρήση εξωτερικού επεξεργαστή από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [http://www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
-'tog-externaldiff'            => 'Χρήση εξωτερικού diff από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [http://www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
+'tog-externaleditor'          => 'Χρήση εξωτερικού επεξεργαστή από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [//www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
+'tog-externaldiff'            => 'Χρήση εξωτερικού diff από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [//www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
 'tog-showjumplinks'           => 'Ενεργοποίησε τους συνδέσμους προσβασιμότητας του τύπου "μετάβαση σε"',
 'tog-uselivepreview'          => 'Χρησιμοποίησε άμεση προεπισκόπηση (JavaScript) (Πειραματικό)',
 'tog-forceeditsummary'        => 'Ειδοποίησέ με όταν εισάγω μια κενή σύνοψη επεξεργασίας',
@@ -2755,7 +2755,7 @@ $1',
 'allmessagesdefault'            => 'Προκαθορισμένο κείμενο',
 'allmessagescurrent'            => 'Παρόν κείμενο',
 'allmessagestext'               => 'Αυτή είναι μια λίστα με όλα τα μηνύματα συστήματος που βρίσκονται στην περιοχή MediaWiki.
-Παρακαλούμε επισκεφθείτε τα [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] και [http://translatewiki.net translatewiki.net] αν επιθυμείτε να συνεισφέρετε σε μια γενική μετάφραση του MediaWiki.',
+Παρακαλούμε επισκεφθείτε τα [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] και [http://translatewiki.net translatewiki.net] αν επιθυμείτε να συνεισφέρετε σε μια γενική μετάφραση του MediaWiki.',
 'allmessagesnotsupportedDB'     => "Αυτή η σελίδα δεν υποστηρίζεται επειδή το ''wgUseDatabaseMessages'' είναι απενεργοποιημένο.",
 'allmessages-filter-legend'     => 'Φίλτρο',
 'allmessages-filter'            => 'Ταξινόμηση βάσει της δήλωσης προσαρμογής:',
@@ -3443,7 +3443,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Επεξεργαστείτε το συγκεκριμένο αρχείο χρησιμοποιώντας μια από τις εξωτερικές εφαρμογές.',
-'edit-externally-help' => 'Για περισσότερες πληροφορίες δείτε τις [http://www.mediawiki.org/wiki/Manual:External_editors οδηγίες εγκατάστασης].',
+'edit-externally-help' => 'Για περισσότερες πληροφορίες δείτε τις [//www.mediawiki.org/wiki/Manual:External_editors οδηγίες εγκατάστασης].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'όλες',
@@ -3625,7 +3625,7 @@ $1',
 'version-hook-subscribedby'     => 'Υπογεγραμμένο από',
 'version-version'               => '(Έκδοση $1)',
 'version-license'               => 'Άδεια χρήσης',
-'version-poweredby-credits'     => "Αυτό το βίκι τροφοδοτείται από '''[http://www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
+'version-poweredby-credits'     => "Αυτό το βίκι τροφοδοτείται από '''[//www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
 'version-poweredby-others'      => 'άλλοι',
 'version-license-info'          => "To Το MediaWiki είναι ελεύθερο λογισμικό. Μπορείτε να το αναδιανέμετε ή / και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή εκδόθηκε από το Free Software Foundation.Είτε η δεύτερη έκδοση της άδειας, είτε (κατ' επιλογή σας) οποιδήποτε επόμενη έκδοση.
 Ο

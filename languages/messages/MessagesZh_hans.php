@@ -282,8 +282,8 @@ $messages = array(
 'tog-shownumberswatching'     => '显示监视用户数',
 'tog-oldsig'                  => '当前签名：',
 'tog-fancysig'                => '将签名以wiki文本对待（不产生自动链接）',
-'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
-'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
+'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
+'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-showjumplinks'           => '启用“跳转到”访问链接',
 'tog-uselivepreview'          => '使用实时预览（需要Javascript）（试验中）',
 'tog-forceeditsummary'        => '未输入编辑摘要时提醒我',
@@ -2601,7 +2601,7 @@ $1被封禁的理由是：“$2”',
 'allmessagesdefault'            => '默认消息文本',
 'allmessagescurrent'            => '当前消息文本',
 'allmessagestext'               => '此处列出了MediaWiki名字空间下的所有有效系统消息。
-如果想为MediaWiki的本地化贡献翻译，请访问[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]和[http://translatewiki.net translatewiki.net]。',
+如果想为MediaWiki的本地化贡献翻译，请访问[//www.mediawiki.org/wiki/Localisation MediaWiki本地化]和[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB'     => "此页面无法使用，因为'''\$wgUseDatabaseMessages'''已被设置关闭。",
 'allmessages-filter-legend'     => '过滤',
 'allmessages-filter'            => '以自定状况过滤：',
@@ -3320,7 +3320,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部程序编辑此文件',
-'edit-externally-help' => '（请参见[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
+'edit-externally-help' => '（请参见[//www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',
@@ -3510,7 +3510,7 @@ $1',
 'version-hook-subscribedby'     => '署名',
 'version-version'               => '（版本$1）',
 'version-license'               => '授权协议',
-'version-poweredby-credits'     => "本Wiki由'''[http://www.mediawiki.org/ MediaWiki]'''驱动，版权所有 © 2001-$1 $2。",
+'version-poweredby-credits'     => "本Wiki由'''[//www.mediawiki.org/ MediaWiki]'''驱动，版权所有 © 2001-$1 $2。",
 'version-poweredby-others'      => '其他',
 'version-license-info'          => 'MediaWiki为自由软件；您可依据自由软件基金会所发表的GNU通用公共授权条款规定，就本程序再为发布与／或修改；无论您依据的是本授权的第二版或（您自行选择的）任一日后发行的版本。
 

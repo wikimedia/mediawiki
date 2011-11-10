@@ -317,8 +317,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Показывать число участников, включивших страницу в свой список наблюдения',
 'tog-oldsig'                  => 'Cуществующая подписьь:',
 'tog-fancysig'                => 'Собственная вики-разметка подписи (без автоматической ссылки)',
-'tog-externaleditor'          => 'Использовать по умолчанию внешний редактор (только для специалистов, необходима особая настройка компьютера; [http://www.mediawiki.org/wiki/Manual:External_editors подробнее])',
-'tog-externaldiff'            => 'Использовать по умолчанию внешнюю программу сравнения (только для специалистов, необходима особая настройка компьютера; [http://www.mediawiki.org/wiki/Manual:External_editors подробнее])',
+'tog-externaleditor'          => 'Использовать по умолчанию внешний редактор (только для специалистов, необходима особая настройка компьютера; [//www.mediawiki.org/wiki/Manual:External_editors подробнее])',
+'tog-externaldiff'            => 'Использовать по умолчанию внешнюю программу сравнения (только для специалистов, необходима особая настройка компьютера; [//www.mediawiki.org/wiki/Manual:External_editors подробнее])',
 'tog-showjumplinks'           => 'Включить вспомогательные ссылки «перейти к»',
 'tog-uselivepreview'          => 'Использовать быстрый предварительный просмотр (JavaScript, экспериментально)',
 'tog-forceeditsummary'        => 'Предупреждать, когда не заполнено поле описания правки',
@@ -2763,7 +2763,7 @@ $1',
 'allmessagesdefault'            => 'Текст по умолчанию',
 'allmessagescurrent'            => 'Текущий текст',
 'allmessagestext'               => 'Это список системных сообщений, доступных в пространстве имён «MediaWiki».
-Если вы хотите внести вклад в общую локализацию MediaWiki, пожалуйста, посетите страницу [http://www.mediawiki.org/wiki/Localisation описания локализации] и проект [http://translatewiki.net translatewiki.net].',
+Если вы хотите внести вклад в общую локализацию MediaWiki, пожалуйста, посетите страницу [//www.mediawiki.org/wiki/Localisation описания локализации] и проект [http://translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB'     => "Эта страница недоступна, так как отключена опция '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фильтр',
 'allmessages-filter'            => 'Фильтр по статусу изменения:',
@@ -3475,7 +3475,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Редактировать этот файл, используя внешнюю программу',
-'edit-externally-help' => '(подробнее см. в [http://www.mediawiki.org/wiki/Manual:External_editors руководстве по установке])',
+'edit-externally-help' => '(подробнее см. в [//www.mediawiki.org/wiki/Manual:External_editors руководстве по установке])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'все',
@@ -3720,7 +3720,7 @@ $1',
 'version-hook-subscribedby'     => 'Подписан на',
 'version-version'               => '(Версия $1)',
 'version-license'               => 'Лицензия',
-'version-poweredby-credits'     => "Эта вики работает на движке '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Эта вики работает на движке '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'другие',
 'version-license-info'          => 'MediaWiki является свободным программным обеспечением, которое вы можете распространять и/или изменять в соответствии с условиями лицензии GNU General Public License, опубликованной фондом свободного программного обеспечения; второй версии, либо любой более поздней версии.
 

@@ -308,8 +308,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Zobraziť počet používateľov sledujúcich stránku',
 'tog-oldsig'                  => 'Súčasný podpis:',
 'tog-fancysig'                => 'Považovať podpisy za wikitext (bez automatických odkazov)',
-'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [http://www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
-'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [http://www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
+'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [//www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
+'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača. [//www.mediawiki.org/wiki/Manual:External_editors Ďalšie informácie.])',
 'tog-showjumplinks'           => 'Používať odkazy „skočiť na“ pre lepšiu dostupnosť',
 'tog-uselivepreview'          => 'Používať živý náhľad (JavaScript) (experimentálna funkcia)',
 'tog-forceeditsummary'        => 'Upozoriť ma, keď nevyplním zhrnutie úprav',
@@ -2737,7 +2737,7 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[{{#Special:Export}}/{{M
 'allmessagesdefault'            => 'štandardný text',
 'allmessagescurrent'            => 'aktuálny text',
 'allmessagestext'               => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.
-Prosím, navštívte [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net translatewiki.net] ak chcete prispieť k všeobecnej lokalizácii MediaWiki.',
+Prosím, navštívte [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net translatewiki.net] ak chcete prispieť k všeobecnej lokalizácii MediaWiki.',
 'allmessagesnotsupportedDB'     => "Túto stránku nemožno použiť, pretože '''\$wgUseDatabaseMessages''' je vypnuté.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter podľa stavu prispôsobenia:',
@@ -3439,7 +3439,7 @@ Ostatné budú predvolene skryté.
 
 # External editor support
 'edit-externally'      => 'Upraviť tento súbor pomocou externého programu',
-'edit-externally-help' => '(Viac informácií poskytnú inštrukcie pre nastavenie [http://www.mediawiki.org/wiki/Manual:External_editors externého editora])',
+'edit-externally-help' => '(Viac informácií poskytnú inštrukcie pre nastavenie [//www.mediawiki.org/wiki/Manual:External_editors externého editora])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'všetky',
@@ -3639,7 +3639,7 @@ Tiež môžete [[Special:EditWatchlist|použiť štandardný editor]].',
 'version-hook-subscribedby'     => 'Pripojené',
 'version-version'               => '(Verzia $1)',
 'version-license'               => 'Licencia',
-'version-poweredby-credits'     => "Táto wiki beží na '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Táto wiki beží na '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'ďalší',
 'version-license-info'          => 'MediaWiki je slobodný softvér; môžete ho šíriť a / alebo modifikovať podľa podmienok GNU General Public License, ktorú vydala Free Software Foundation; a to buď verzie 2 tejto licencie alebo (podľa vášho uváženia) ktorejkoľvek neskoršej verzie. 
 

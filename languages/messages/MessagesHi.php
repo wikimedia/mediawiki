@@ -102,8 +102,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'ध्यान रखने वाले प्रयोक्ताओं की संख्या दिखाएं',
 'tog-oldsig'                  => 'वर्तमान हस्ताक्ष्रर की झलक:',
 'tog-fancysig'                => 'हस्ताक्षर का विकिपाठ के समान उपयोग करें (बिना स्वचालित कड़ी के)',
-'tog-externaleditor'          => 'डिफ़ॉल्ट रूप से बाह्य सम्पादक का उपयोग करें (केवल विशेषज्ञों के लिए, इसके लिए संगणक पर विशेष जमाव चाहिए होंगे। [http://www.mediawiki.org/wiki/Manual:External_editors अधिक जानकारी।])',
-'tog-externaldiff'            => 'डिफ़ॉल्ट रूप से बाह्य अन्तर का उपयोग करें (केवल विशेषज्ञों के लिए, इसके लिए संगणक पर विशेष जमाव चाहिए होंगे। [http://www.mediawiki.org/wiki/Manual:External_editors अधिक जानकारी।])',
+'tog-externaleditor'          => 'डिफ़ॉल्ट रूप से बाह्य सम्पादक का उपयोग करें (केवल विशेषज्ञों के लिए, इसके लिए संगणक पर विशेष जमाव चाहिए होंगे। [//www.mediawiki.org/wiki/Manual:External_editors अधिक जानकारी।])',
+'tog-externaldiff'            => 'डिफ़ॉल्ट रूप से बाह्य अन्तर का उपयोग करें (केवल विशेषज्ञों के लिए, इसके लिए संगणक पर विशेष जमाव चाहिए होंगे। [//www.mediawiki.org/wiki/Manual:External_editors अधिक जानकारी।])',
 'tog-showjumplinks'           => '"की ओर जाएं" कड़ियाँ उपलब्ध कराएं',
 'tog-uselivepreview'          => 'सजीवन झलक का उपयोग करें (जावास्क्रिप्ट चाहिए) (प्रयोगक्षम)',
 'tog-forceeditsummary'        => 'यदि बदलाव सारांश ना दिया गया हो तो मुझे सूचित करें',
@@ -2465,7 +2465,7 @@ $1 को बाध्य करने का कारण है: "$2"',
 'allmessagesname'               => 'नाम',
 'allmessagesdefault'            => 'डिफॉल्ट पाठ',
 'allmessagescurrent'            => 'वर्तमान पाठ',
-'allmessagestext'               => 'ये मीडियाविकि नामस्थान में उपलब्ध प्रणाली संदेशों की एक सूची है। यदि आप सामान्य मीडियाविकि क्षेत्रीयकरण में योगदान देना चाहें तो कृपया [http://www.mediawiki.org/wiki/Localisation मीडियाविकि क्षेत्रीयकरण] व [http://translatewiki.net translatewiki.net] को देखें।',
+'allmessagestext'               => 'ये मीडियाविकि नामस्थान में उपलब्ध प्रणाली संदेशों की एक सूची है। यदि आप सामान्य मीडियाविकि क्षेत्रीयकरण में योगदान देना चाहें तो कृपया [//www.mediawiki.org/wiki/Localisation मीडियाविकि क्षेत्रीयकरण] व [http://translatewiki.net translatewiki.net] को देखें।',
 'allmessagesnotsupportedDB'     => "इस पन्ने का इस्तेमाल नहीं कर सकते क्योंकी '''\$wgUseDatabaseMessages''' बंद हैं।",
 'allmessages-filter-legend'     => 'छानें',
 'allmessages-filter'            => 'अनुकूलन स्थिति के आधार पर छानें:',
@@ -2982,7 +2982,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'बाहरी प्रणाली का उपयोग करते हुए इस सञ्चिका को सम्पादित करें ।',
-'edit-externally-help' => '(और जानकारी के लिए [http://www.mediawiki.org/wiki/Manual:External_editors जमाव निर्देश] देखें)',
+'edit-externally-help' => '(और जानकारी के लिए [//www.mediawiki.org/wiki/Manual:External_editors जमाव निर्देश] देखें)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सभी',

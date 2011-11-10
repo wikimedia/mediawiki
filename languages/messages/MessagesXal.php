@@ -84,8 +84,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Тер халх шинҗлдг демнчнрин то үзүлх',
 'tog-oldsig'                  => 'Бәәдг тәвсн һарна хәләвр:',
 'tog-fancysig'                => 'Эврән тәвсн һарна бики темдлһн (авто заалһта уга)',
-'tog-externaleditor'          => 'Һаза чикллгч олзлх (һанцхн эрдмчнрт, тана тоолцврт шишлң көг кергтә. [http://www.mediawiki.org/wiki/Manual:External_editors Дәкәд өггцн.])',
-'tog-externaldiff'            => 'Һаза йилһән үзүлдг програм олзлх (һанцхн эрдмчнрт, тана тоолцврт шишлң көг кергтә [http://www.mediawiki.org/wiki/Manual:External_editors Дәкәд өггцн.])',
+'tog-externaleditor'          => 'Һаза чикллгч олзлх (һанцхн эрдмчнрт, тана тоолцврт шишлң көг кергтә. [//www.mediawiki.org/wiki/Manual:External_editors Дәкәд өггцн.])',
+'tog-externaldiff'            => 'Һаза йилһән үзүлдг програм олзлх (һанцхн эрдмчнрт, тана тоолцврт шишлң көг кергтә [//www.mediawiki.org/wiki/Manual:External_editors Дәкәд өггцн.])',
 'tog-showjumplinks'           => 'Туслмҗ заалһуд «-д/-т һарх» йовулх',
 'tog-uselivepreview'          => 'Шамдһа хәләвр олзлх (JavaScript кергтә, амслһн)',
 'tog-forceeditsummary'        => 'Учр-утх хоосн бәәхлә медүлх',
@@ -1193,7 +1193,7 @@ $2 шидрә һарһлһна төлә хәләтн.',
 
 # External editor support
 'edit-externally'      => 'Эн боомгиг һаза заклһар чиклх',
-'edit-externally-help' => '([http://www.mediawiki.org/wiki/Manual:External_editors Тәвллһнә заалт]  икәр өггцнә төлә хәләтн)',
+'edit-externally-help' => '([//www.mediawiki.org/wiki/Manual:External_editors Тәвллһнә заалт]  икәр өггцнә төлә хәләтн)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'цуг',

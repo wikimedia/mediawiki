@@ -50,9 +50,9 @@ $messages = array(
 'tog-shownumberswatching'     => 'ویکھن آلے لوکاں دی گنتی وکھاؤ۔',
 'tog-oldsig'                  => 'ہن والے دسخط:',
 'tog-fancysig'                => 'دستخط نوں وکی ٹیکسڈ ونگوں؎ ورتو(without an automatic link)',
-'tog-externaleditor'          => 'ہمیشہ بارلا لکھن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [http://www.mediawiki.org/wiki/Manual:External_editors مزید معلومات.])',
+'tog-externaleditor'          => 'ہمیشہ بارلا لکھن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [//www.mediawiki.org/wiki/Manual:External_editors مزید معلومات.])',
 'tog-externaldiff'            => '
-ہمیشہ بارلا تبدیلی کرن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [http://www.mediawiki.org/wiki/Manual:External_editors مزید معلومات۔])',
+ہمیشہ بارلا تبدیلی کرن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [//www.mediawiki.org/wiki/Manual:External_editors مزید معلومات۔])',
 'tog-showjumplinks'           => '"ایدر چلو" نوں رلن والے جوڑان نال جوڑو',
 'tog-uselivepreview'          => 'لائیو پریویو ورتو',
 'tog-forceeditsummary'        => 'مینون اوسے ویلے دسو جدوں خالی سمری تے آؤ۔',
@@ -2471,7 +2471,7 @@ $1',
 'allmessagesdefault'            => 'ڈیفالٹ لکھائی',
 'allmessagescurrent'            => 'موجودہ لکھائی',
 'allmessagestext'               => 'ایہ لسٹ اے پربندھ سنیعیاں دی  جیہڑے میڈیاوکی دی ناں تھاں تے ہیگے نیں۔
-مہربانی کرکے [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] تے [http://translatewiki.net translatewiki.net] تے جاؤ۔
+مہربانی کرکے [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] تے [http://translatewiki.net translatewiki.net] تے جاؤ۔
 اگر تسیں میڈیا وکی دے بولی وٹاندرے چ کم کرنا چاندے او۔',
 'allmessagesnotsupportedDB'     => "اے صفہ نئیں ورتیا جاسکدا کیوں جے '''\$wgUseDatabaseMessages''' روک دتا گیا اے۔",
 'allmessages-filter-legend'     => 'فلٹر',
@@ -3141,7 +3141,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'بارلا سافٹ ویئر استعال کردے ہوۓ اے فائل لکھو',
-'edit-externally-help' => 'زیادہ معلومات آسطے اے [http://www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
+'edit-externally-help' => 'زیادہ معلومات آسطے اے [//www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'سارے',
@@ -3332,7 +3332,7 @@ $1',
 'version-hook-subscribedby'     => 'جینے لئی',
 'version-version'               => '(ورین $1)',
 'version-license'               => 'لائیسنس',
-'version-poweredby-credits'     => "ایس وکی نوں '''[http://www.mediawiki.org/ میڈیاوکی]''', copyright © 2001-$1 $2. چلاندا اے۔",
+'version-poweredby-credits'     => "ایس وکی نوں '''[//www.mediawiki.org/ میڈیاوکی]''', copyright © 2001-$1 $2. چلاندا اے۔",
 'version-poweredby-others'      => 'دوجے',
 'version-license-info'          => 'میڈیاوکی اک مفت سوفٹویر اے؛ تسیں اینوں ونڈ سکدے اوہ تے گنو جنرل پبلک لسنس دیاں شرطاں تے جیہڑیاں فری سوفٹویر فاؤنڈیشن نے چھاپیاں نیں ایدے چ تبدیلی کرسکدے اوہ لسنس دے ورین 2 نال، یا اپنی مرضی نال کسے وی ہور ورین فیر بنن والے ورین نوں۔
 

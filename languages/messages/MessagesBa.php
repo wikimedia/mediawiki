@@ -2402,7 +2402,7 @@ $1 ҡатнашыусыһын бикләү сәбәбе: "$2"',
 'allmessagesdefault'            => 'Ғәҙәттәге яҙма',
 'allmessagescurrent'            => 'Хәҙерге яҙма',
 'allmessagestext'               => 'Түбәндә MediaWiki исемдәр арауығында ҡулланылған система хәбәрҙәре исемлеге килтерелгән.
-Әгәр MediaWiki программаһын дөйөм локалләштереү эшенә үҙ өлөшөгөҙҙө керетергә теләһәгеҙ, [http://www.mediawiki.org/wiki/Localisation MediaWiki программаһын локалләштереү] битен һәм [http://translatewiki.net translatewiki.net] проектын ҡарап сығығыҙ.',
+Әгәр MediaWiki программаһын дөйөм локалләштереү эшенә үҙ өлөшөгөҙҙө керетергә теләһәгеҙ, [//www.mediawiki.org/wiki/Localisation MediaWiki программаһын локалләштереү] битен һәм [http://translatewiki.net translatewiki.net] проектын ҡарап сығығыҙ.',
 'allmessagesnotsupportedDB'     => "Был бит ҡулланыла алмай, сөнки '''\$wgUseDatabaseMessages''' мөмкинлеге һүндерелгән.",
 'allmessages-filter-legend'     => 'Һайлау',
 'allmessages-filter'            => 'Үҙгәртеү торошо буйынса һайлау:',
@@ -2929,7 +2929,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Был файлды тышҡы программа ҡулланып мөхәррирләргә',
-'edit-externally-help' => '(Тулыраҡ мәғлүмәт өсөн металағы [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] (инглизсә) битен ҡарағыҙ)',
+'edit-externally-help' => '(Тулыраҡ мәғлүмәт өсөн металағы [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] (инглизсә) битен ҡарағыҙ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бөтә',
@@ -3112,7 +3112,7 @@ $1',
 'version-hook-subscribedby'     => 'Яҙҙырылған',
 'version-version'               => '($1 өлгөһө)',
 'version-license'               => 'Рөхсәтнамә',
-'version-poweredby-credits'     => "Был вики проект '''[http://www.mediawiki.org/ MediaWiki]''' нигеҙендә эшләй, copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Был вики проект '''[//www.mediawiki.org/ MediaWiki]''' нигеҙендә эшләй, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'башҡалар',
 'version-license-info'          => 'MediaWiki — ирекле программа, һеҙ уны Ирекле программалар фонды тарафынан баҫтырылған GNU General Public License рөхсәтнамәһенә ярашлы тарата һәм/йәки үҙгәртә алаһығыҙ (рөхсәтнамәнең йә исенсе өлгөһө, йә унан һуңғы өлгөләре).
 

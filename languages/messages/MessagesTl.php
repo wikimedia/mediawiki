@@ -162,8 +162,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Ipakita ang bilang ng mga nagbabantay na tagagamit',
 'tog-oldsig'                  => 'Paunang tingin ng kasalukuyang lagda:',
 'tog-fancysig'                => 'Ituring ang lagda bilang teksto ng wiki (walang automatikong pagkawing)',
-'tog-externaleditor'          => 'Gumamit ng nakatakdang panlabas na pampatnugot ayon sa likas na pagkakatakda (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [http://www.mediawiki.org/wiki/Manual:External_editors Marami pang kabatiran.])',
-'tog-externaldiff'            => 'Gumamit ng likas na nakatakdang panlabas na pagkakaiba (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [http://www.mediawiki.org/wiki/Manual:External_editors Mas marami pang kabatiran.])',
+'tog-externaleditor'          => 'Gumamit ng nakatakdang panlabas na pampatnugot ayon sa likas na pagkakatakda (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [//www.mediawiki.org/wiki/Manual:External_editors Marami pang kabatiran.])',
+'tog-externaldiff'            => 'Gumamit ng likas na nakatakdang panlabas na pagkakaiba (para sa mga dalubhasa lamang, kailangan ng natatanging mga pagtatakda sa iyong kompyuter. [//www.mediawiki.org/wiki/Manual:External_editors Mas marami pang kabatiran.])',
 'tog-showjumplinks'           => 'Payagan ang mga "tumalon sa" na kawing pampagamit',
 'tog-uselivepreview'          => 'Gamitin ang buhay na paunang tingin (JavaScript) (Eksperimental)',
 'tog-forceeditsummary'        => 'Pagsabihan ako kapag nagpapasok ng walang-lamang buod ng pagbabago',
@@ -2553,7 +2553,7 @@ Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{#Special:Export}}/{{Media
 'allmessagesdefault'            => 'Tinakdang teksto',
 'allmessagescurrent'            => 'Kasalukuyang teksto',
 'allmessagestext'               => 'Isa itong talaan ng mga mensahe ng sistema na makukuha mula sa espasyo ng pangalang MediaWiki.
-Pakidalaw ang [http://www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [http://translatewiki.net translatewiki.net] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
+Pakidalaw ang [//www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [http://translatewiki.net translatewiki.net] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
 'allmessagesnotsupportedDB'     => "Hindi magagamit ang '''{{ns:special}}:AllMessages''' dahil hindi gumagana ang '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Salain',
 'allmessages-filter'            => 'Salain ayon sa katayuan ng pagbabagay:',
@@ -3462,7 +3462,7 @@ Maaari mo ring [[Special:EditWatchlist|gamitin ang pangkaraniwang pampatnugot]].
 'version-hook-subscribedby'     => 'Sinuskribi ng/ni/nina',
 'version-version'               => '(Bersyon $1)',
 'version-license'               => 'Lisensiya',
-'version-poweredby-credits'     => "Ang wiking ito ay pinapatakbo ng '''[http://www.mediawiki.org/ MediaWiki]''', karapatang-ari © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ang wiking ito ay pinapatakbo ng '''[//www.mediawiki.org/ MediaWiki]''', karapatang-ari © 2001-$1 $2.",
 'version-poweredby-others'      => 'iba pa',
 'version-license-info'          => 'Ang MediaWiki ay isang malayang sopwer; maaari mo itong ipamahagi at/o baguhin ito sa ilalim ng mga patakaran ng Pangkalahatang Pangmadlang Lisensiyang GNU ayon sa pagkakalathala ng Pundasyon ng Malayang Sopwer; na maaaring bersyong 2 ng Lisensiya, o (kung nais mo) anumang susunod na bersyon.
 Ang MediaWiki ay ipinamamahagi na umaasang magiging gamitin, subaliut WALANG ANUMANG KATIYAKAN; ni walang pahiwatig ng PAGIGING MABENTA o KAANGKUPAN PARA ISANG TIYAK NA LAYUNIN.  Tingnan ang Pangkalahatang Pangmadlang Lisensiyang GNU para sa mas marami pang mga detalye.

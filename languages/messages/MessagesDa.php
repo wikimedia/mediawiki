@@ -214,8 +214,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Vis antal brugere, der overvåger',
 'tog-oldsig'                  => 'Nuværende signatur:',
 'tog-fancysig'                => 'Behandl signatur som wikitekst uden automatisk henvisning',
-'tog-externaleditor'          => 'Brug ekstern editor automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [http://www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
-'tog-externaldiff'            => 'Brug ekstern forskelsvisning automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [http://www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
+'tog-externaleditor'          => 'Brug ekstern editor automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [//www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
+'tog-externaldiff'            => 'Brug ekstern forskelsvisning automatisk (kun for rutinerede brugere, da det kræver særlige indstillinger på din computer. [//www.mediawiki.org/wiki/Manual:External_editors Flere oplysninger.])',
 'tog-showjumplinks'           => 'Vis tilgængeligheds-henvisninger',
 'tog-uselivepreview'          => 'Brug automatisk forhåndsvisning (JavaScript) (eksperimentel)',
 'tog-forceeditsummary'        => 'Advar mig hvis jeg ikke udfylder beskrivelsesfeltet',
@@ -2589,7 +2589,7 @@ Hvis du kun vil have den seneste version, kan du også bruge en henvisning, for 
 'allmessagesdefault'            => 'Standardtekst',
 'allmessagescurrent'            => 'Nuværende tekst',
 'allmessagestext'               => 'Dette er en liste med alle systembeskeder i MediaWiki-navnerummet.
-Besøg venligst [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisering] hvis du ønsker at bidrage til den generelle lokalisering (oversættelse og andre lokale tilpasninger) af MediaWiki.',
+Besøg venligst [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisering] hvis du ønsker at bidrage til den generelle lokalisering (oversættelse og andre lokale tilpasninger) af MediaWiki.',
 'allmessagesnotsupportedDB'     => '{{ns:special}}:AllMessages ikke understøttet fordi wgUseDatabaseMessages er slået fra.',
 'allmessages-filter-legend'     => 'Filtrér',
 'allmessages-filter'            => 'Filtrér efter tilpasningsstatus:',
@@ -3273,7 +3273,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 
 # External editor support
 'edit-externally'      => 'Rediger denne fil med en ekstern editor',
-'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information)',
+'edit-externally-help' => '(Se [//www.mediawiki.org/wiki/Manual:External_editors setup instruktionerne] for mere information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',
@@ -3457,7 +3457,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'version-hook-subscribedby'     => 'Brugt af',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Licens',
-'version-poweredby-credits'     => "Denne wiki er drevet af'''[http://www.mediawiki.org/ MediaWiki ]''', copyright © 2001 - $1 $2.",
+'version-poweredby-credits'     => "Denne wiki er drevet af'''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001 - $1 $2.",
 'version-poweredby-others'      => 'andre',
 'version-license-info'          => 'MediaWiki er gratis software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. 
 

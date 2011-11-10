@@ -380,8 +380,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'הצגת מספר המשתמשים העוקבים אחרי הדף',
 'tog-oldsig'                  => 'החתימה הקיימת:',
 'tog-fancysig'                => 'פירוש החתימה כקוד ויקי (ללא קישור אוטומטי)',
-'tog-externaleditor'          => 'שימוש בעורך חיצוני כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [http://www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
-'tog-externaldiff'            => 'שימוש בתוכנת השוואת הגרסאות החיצונית כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [http://www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
+'tog-externaleditor'          => 'שימוש בעורך חיצוני כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [//www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
+'tog-externaldiff'            => 'שימוש בתוכנת השוואת הגרסאות החיצונית כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [//www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
 'tog-showjumplinks'           => 'הצגת קישורי נגישות מסוג "קפוץ אל"',
 'tog-uselivepreview'          => 'שימוש בתצוגה מקדימה מהירה (דרוש JavaScript) (ניסיוני)',
 'tog-forceeditsummary'        => 'הצגת אזהרה כשאני מכניס תקציר עריכה ריק',
@@ -3544,7 +3544,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'עריכת קובץ זה באמצעות יישום חיצוני',
-'edit-externally-help' => '(ראו את [http://www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף)',
+'edit-externally-help' => '(ראו את [//www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'הכול',
@@ -3792,7 +3792,7 @@ $1',
 'version-hook-subscribedby'     => 'הפונקציה הרושמת',
 'version-version'               => '(גרסה $1)',
 'version-license'               => 'רישיון',
-'version-poweredby-credits'     => "אתר הוויקי הזה מופעל על ידי '''[http://www.mediawiki.org/ מדיה־ויקי]''', © 2001–$1 $2.",
+'version-poweredby-credits'     => "אתר הוויקי הזה מופעל על ידי '''[//www.mediawiki.org/ מדיה־ויקי]''', © 2001–$1 $2.",
 'version-poweredby-others'      => 'אחרים',
 'version-license-info'          => "מדיה־ויקי היא תוכנה חופשית; באפשרותכם להפיץ אותה מחדש ו/או לשנות אותה לפי תנאי הרישיון הציבורי הכללי של גנו המפורסם על ידי המוסד לתוכנה חופשית: גרסה 2 של רישיון זה, או (לפי בחירתכם) כל גרסה מאוחרת יותר.
 

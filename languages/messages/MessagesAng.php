@@ -1206,7 +1206,7 @@ Bidde cēos ōðerne naman.',
 'exif-gpsdirection-t' => 'Sōþ rihtung',
 
 # External editor support
-'edit-externally-help' => '(Þā [http://www.mediawiki.org/wiki/Manual:External_editors ȝearƿunga tyhtas] sēon for mā cȳþþe)',
+'edit-externally-help' => '(Þā [//www.mediawiki.org/wiki/Manual:External_editors ȝearƿunga tyhtas] sēon for mā cȳþþe)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'eall',

@@ -45,8 +45,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Pokitono ginumu do momomoguno minongintong',
 'tog-oldsig'                  => 'Poduluon kokikitanai do sain pinosuang',
 'tog-fancysig'                => 'Pokitono sain sobaagi do tikwiki (ingaa oporian toput )',
-'tog-externaleditor'          => 'Pomoguno pongigidit poinlabus sobaagi do pongoiso (montok di angasampin nopo, mongoguno do nuludan pointantu id kompiutonu. [http://www.mediawiki.org/wiki/Manual:External_editors Lobi pomoilaan.])',
-'tog-externaldiff'            => 'Pomoguno pongigidit poinlabus sobaagi do pongoiso (montok di angasampin nopo, mongoguno do nuludan pointantu id kompiutonu. [http://www.mediawiki.org/wiki/Manual:External_editors Lobi pomoilaan.])',
+'tog-externaleditor'          => 'Pomoguno pongigidit poinlabus sobaagi do pongoiso (montok di angasampin nopo, mongoguno do nuludan pointantu id kompiutonu. [//www.mediawiki.org/wiki/Manual:External_editors Lobi pomoilaan.])',
+'tog-externaldiff'            => 'Pomoguno pongigidit poinlabus sobaagi do pongoiso (montok di angasampin nopo, mongoguno do nuludan pointantu id kompiutonu. [//www.mediawiki.org/wiki/Manual:External_editors Lobi pomoilaan.])',
 'tog-showjumplinks'           => 'Pasagao "tumopik hilo" noputan awayaan',
 'tog-uselivepreview'          => 'Momoguno pongingintong poimpasi (momoguno JawaSikrip) (pogumbalan)',
 'tog-forceeditsummary'        => 'Posoroho oku no nung awu nosuangan kutak koinibaan niditan',
@@ -1373,7 +1373,7 @@ Iri suai sinandad do poinlisok.
 
 # External editor support
 'edit-externally'      => 'Idito pail diti momoguno do kangkaraja pongi-ngidit poinlabus',
-'edit-externally-help' => '(Intaai [http://www.mediawiki.org/wiki/Manual:External_editors karalan-ralanon papasang] do lobi gumu kointalangan)',
+'edit-externally-help' => '(Intaai [//www.mediawiki.org/wiki/Manual:External_editors karalan-ralanon papasang] do lobi gumu kointalangan)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'oinsanan',

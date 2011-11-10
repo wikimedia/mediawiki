@@ -360,8 +360,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Mostrar el número de usuarios que la vigilan',
 'tog-oldsig'                  => 'Firma actual:',
 'tog-fancysig'                => 'Tratar firma como wikitexto (sin un enlace automático)',
-'tog-externaleditor'          => 'Utilizar editor externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
-'tog-externaldiff'            => 'Utilizar diff externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
+'tog-externaleditor'          => 'Utilizar editor externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
+'tog-externaldiff'            => 'Utilizar diff externo por defecto (sólo para expertos pues necesitas ajustes especiales en tu ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-showjumplinks'           => 'Habilitar enlaces de accesibilidad «saltar a»',
 'tog-uselivepreview'          => 'Usar live preview (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Alertar al grabar sin resumen de edición.',
@@ -2769,7 +2769,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Expo
 'allmessagesdefault'            => 'Texto predeterminado',
 'allmessagescurrent'            => 'Texto actual',
 'allmessagestext'               => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:
-Por favor visita [http://www.mediawiki.org/wiki/Localisation Localización MediaWiki] y [http://translatewiki.net translatewiki.net] si deseas contribuir con la localización genérica MediaWiki.',
+Por favor visita [//www.mediawiki.org/wiki/Localisation Localización MediaWiki] y [http://translatewiki.net translatewiki.net] si deseas contribuir con la localización genérica MediaWiki.',
 'allmessagesnotsupportedDB'     => "Esta página no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
@@ -3476,7 +3476,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 
 # External editor support
 'edit-externally'      => 'Editar este archivo usando una aplicación externa',
-'edit-externally-help' => '(Lee las [http://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] -en inglés- para más información)',
+'edit-externally-help' => '(Lee las [//www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración] -en inglés- para más información)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todos',
@@ -3659,7 +3659,7 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'version-hook-subscribedby'     => 'Suscrito por',
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Licencia',
-'version-poweredby-credits'     => "Este wiki funciona gracias a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Este wiki funciona gracias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'otros',
 'version-license-info'          => 'MediaWiki es software libre; puedes redistribuírlo y/o modificarlo bajo los términos de la Licencia General Pública GNU publicada por la Fundación del Software Libre; ya sea la versión 2 de la licencia, o (a tu elección) cualquier versión posterior.
 

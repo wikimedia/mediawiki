@@ -66,7 +66,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Bonagatša email atrese go temošo tša poso',
 'tog-shownumberswatching'     => 'Laetša palo bašomiši bao ba tlhapetšego',
 'tog-fancysig'                => 'Tsaeno ya gose fihliwe',
-'tog-externaleditor'          => 'Šomiša sengwadi sa kantle (bašumiši bao banalego botsibi fela.  [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaleditor'          => 'Šomiša sengwadi sa kantle (bašumiši bao banalego botsibi fela.  [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-forceeditsummary'        => 'Ntaetše ge kesa tsenye mongwalo go kakaretšo ya dithetogo',
 'tog-watchlisthideown'        => 'Fihla diphetogo tšeo di direlego ke nna go lenano la ditlhapetšo.',
 'tog-watchlisthideminor'      => 'Fihla diphetogo tše nyenyane tšeo di direlego ke nna go lenano la ditlhapetšo',
@@ -1227,7 +1227,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 
 # External editor support
 'edit-externally'      => 'Fetola faele ye o šumiša thulusi ya ka ntle',
-'edit-externally-help' => '(Lebelela [http://www.mediawiki.org/wiki/Manual:External_editors Taelo ya go thoma] go humana sedi)',
+'edit-externally-help' => '(Lebelela [//www.mediawiki.org/wiki/Manual:External_editors Taelo ya go thoma] go humana sedi)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ka moka',

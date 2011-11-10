@@ -1087,7 +1087,7 @@ Ada wandem wi aid bai difaalt.
 
 # External editor support
 'edit-externally'      => 'Yuuz extoernal aplikieshan fi edit dis fail',
-'edit-externally-help' => '(Si di [http://www.mediawiki.org/wiki/Manual:External_editors setop inschrokshan] fi muo infamieshan)',
+'edit-externally-help' => '(Si di [//www.mediawiki.org/wiki/Manual:External_editors setop inschrokshan] fi muo infamieshan)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aal',

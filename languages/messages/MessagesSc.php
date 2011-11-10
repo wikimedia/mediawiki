@@ -1476,7 +1476,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # External editor support
 'edit-externally'      => 'Acontza custu file usendi unu programma de foras',
-'edit-externally-help' => '(Pro àteras informatziones càstia is [http://www.mediawiki.org/wiki/Manual:External_editors istrutziones])',
+'edit-externally-help' => '(Pro àteras informatziones càstia is [//www.mediawiki.org/wiki/Manual:External_editors istrutziones])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totu',

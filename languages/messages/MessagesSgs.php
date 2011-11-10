@@ -1787,7 +1787,7 @@ Vėsas kėtas nūoruodas tuo patiuo eilotie īr laikomas ėšėmtim, tas rēšk 
 
 # External editor support
 'edit-externally'      => 'Atdarītė ėšuoriniam redaktuorio',
-'edit-externally-help' => 'Nuoriedamė gautė daugiau infuormacėjės, veiziekėt [http://www.mediawiki.org/wiki/Manual:External_editors kruovėma instrokcėjės].',
+'edit-externally-help' => 'Nuoriedamė gautė daugiau infuormacėjės, veiziekėt [//www.mediawiki.org/wiki/Manual:External_editors kruovėma instrokcėjės].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'vėsos',

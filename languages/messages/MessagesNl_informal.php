@@ -537,7 +537,7 @@ In het laatste geval kun je ook een verwijzing gebruiken, bijvoorbeeld [[{{#Spec
 
 # Namespace 8 related
 'allmessagestext' => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte.
-Ga naar [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [http://translatewiki.net translatewiki.net] als je wilt bijdragen aan de algemene vertaling voor MediaWiki.',
+Ga naar [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [http://translatewiki.net translatewiki.net] als je wilt bijdragen aan de algemene vertaling voor MediaWiki.',
 
 # Special:Import
 'importtext' => 'Gebruik de [[Special:Export|exportfunctie]] in de wiki waar de informatie vandaan komt, sla de uitvoer op je eigen systeem op, en voeg die daarna hier toe.',

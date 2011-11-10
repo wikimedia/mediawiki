@@ -206,8 +206,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Diskouez an niver a lennerien',
 'tog-oldsig'                  => 'Ar sinadur zo evit poent :',
 'tog-fancysig'                => 'Ober gant ar sinadur evel pa vefe wikitestenn (hep liamm emgefre)',
-'tog-externaleditor'          => "Ober gant ur skridaozer diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se. [http://www.mediawiki.org/wiki/Manual:External_editors Titouroù all.])",
-'tog-externaldiff'            => "Ober gant ur c'heñverier diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se. [http://www.mediawiki.org/wiki/Manual:External_editors Titouroù all.])",
+'tog-externaleditor'          => "Ober gant ur skridaozer diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se. [//www.mediawiki.org/wiki/Manual:External_editors Titouroù all.])",
+'tog-externaldiff'            => "Ober gant ur c'heñverier diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se. [//www.mediawiki.org/wiki/Manual:External_editors Titouroù all.])",
 'tog-showjumplinks'           => 'Gweredekaat al liammoù moned "lammat da"',
 'tog-uselivepreview'          => 'Implijout Rakwelet prim (JavaScript) (taol-arnod)',
 'tog-forceeditsummary'        => 'Kemenn din pa ne skrivan netra er stern diverrañ',
@@ -2621,7 +2621,7 @@ Mard eo se e c'hallit ivez implijout ul liamm a seurt gant [[{{#Special:Export}}
 'allmessagesdefault'            => 'Testenn dre ziouer',
 'allmessagescurrent'            => 'Testenn zo bremañ',
 'allmessagestext'               => "Setu roll ar c'hemennadennoù reizhiad a c'haller kaout en esaouennoù anv MediaWiki.
-Kit da welet [http://www.mediawiki.org/wiki/Localisation Lec'heladur MediaWiki] ha [http://translatewiki.net translatewiki.net] mar fell deoc'h kemer perzh e lec'heladur boutin MediaWiki.",
+Kit da welet [//www.mediawiki.org/wiki/Localisation Lec'heladur MediaWiki] ha [http://translatewiki.net translatewiki.net] mar fell deoc'h kemer perzh e lec'heladur boutin MediaWiki.",
 'allmessagesnotsupportedDB'     => "N'haller ket kaout {{ns:special}}:AllMessages rak diweredekaet eo bet wgUseDatabaseMessages.",
 'allmessages-filter-legend'     => 'Sil',
 'allmessages-filter'            => "Silañ dre stad ar c'hemmoù",
@@ -3325,7 +3325,7 @@ Kuzhet e vo ar re all dre ziouer.
 
 # External editor support
 'edit-externally'      => 'Kemmañ ar restr-mañ dre un arload diavaez',
-'edit-externally-help' => "(Gwelet [http://www.mediawiki.org/wiki/Manual:External_editors erbedadennoù staliañ an aozer diavaez] a-benn gouzout hiroc'h).",
+'edit-externally-help' => "(Gwelet [//www.mediawiki.org/wiki/Manual:External_editors erbedadennoù staliañ an aozer diavaez] a-benn gouzout hiroc'h).",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'pep tra',
@@ -3535,7 +3535,7 @@ Gallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].',
 'version-hook-subscribedby'     => 'Termenet gant',
 'version-version'               => '(Stumm $1)',
 'version-license'               => 'Aotre-implijout',
-'version-poweredby-credits'     => "Mont a ra ar wiki-mañ en-dro a-drugarez da '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Mont a ra ar wiki-mañ en-dro a-drugarez da '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 're all',
 'version-license-info'          => "Ur meziant frank eo MediaWiki; gallout a rit skignañ anezhañ ha/pe kemmañ anezhañ dindan termenoù ar GNU Aotre-implijout Foran Hollek evel m'emañ embannet gant Diazezadur ar Meziantoù Frank; pe diouzh stumm 2 an aotre-implijout, pe (evel mar karit) ne vern pe stumm nevesoc'h.
 

@@ -186,8 +186,8 @@ $messages = array(
 'tog-shownumberswatching'     => "'t Aantal gebroekers tuine die dees pagina volg",
 'tog-oldsig'                  => 'Bestaonde ongerteikening:',
 'tog-fancysig'                => 'Es wikiteks behanjele (zonder autematische verwiezing)',
-'tog-externaleditor'          => "Sjtanderd 'ne externe teksbewirker gebroeke (inkel veur experts, speciaal instellinge zien nudig. [http://www.mediawiki.org/wiki/Manual:External_editors Mie infermasie])",
-'tog-externaldiff'            => "Sjtanderd 'n extern vergeliekingsprogramma gebroeke (inkel veur experts, speciaal instellinge zien nudig [http://www.mediawiki.org/wiki/Manual:External_editors Mie infermasie])",
+'tog-externaleditor'          => "Sjtanderd 'ne externe teksbewirker gebroeke (inkel veur experts, speciaal instellinge zien nudig. [//www.mediawiki.org/wiki/Manual:External_editors Mie infermasie])",
+'tog-externaldiff'            => "Sjtanderd 'n extern vergeliekingsprogramma gebroeke (inkel veur experts, speciaal instellinge zien nudig [//www.mediawiki.org/wiki/Manual:External_editors Mie infermasie])",
 'tog-showjumplinks'           => '"gank nao"-toegankelikheidslinks mäögelik make',
 'tog-uselivepreview'          => '"live veurbesjouwing" gebroeke (vereis JavaScript - experimenteel)',
 'tog-forceeditsummary'        => "'n Melding gaeve bie 'n laeg samevatting",
@@ -2565,7 +2565,7 @@ In 't letste geval kèns te ouch 'ne link gebroeken, bieveurbild [[{{#Special:Ex
 'allmessagesdefault'            => 'Obligaten teks',
 'allmessagescurrent'            => 'Hujige teks',
 'allmessagestext'               => "Dit is 'n lies van alle systeemberichte besjikbaar in de MediaWiki-naamruumde.
-Bezeuk [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [http://translatewiki.net translatewiki.net] es doe wils biedrage aon lokalisatie.",
+Bezeuk [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [http://translatewiki.net translatewiki.net] es doe wils biedrage aon lokalisatie.",
 'allmessagesnotsupportedDB'     => "Deze pagina kan neet gebroek waere omdet '''\$wgUseDatabaseMessages''' oet steit.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter óp aangepas:',
@@ -3234,7 +3234,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 
 # External editor support
 'edit-externally'      => "Bewirk dit bestand mit 'n extern toepassing",
-'edit-externally-help' => '(zuug de [http://www.mediawiki.org/wiki/Manual:External_editors setupinsjtructies] veur mie informatie)',
+'edit-externally-help' => '(zuug de [//www.mediawiki.org/wiki/Manual:External_editors setupinsjtructies] veur mie informatie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'al',
@@ -3422,7 +3422,7 @@ De kèns ouch [[Special:EditWatchlist|'t sjtanderd bewirkingssjirm gebroeke]].",
 'version-hook-subscribedby'     => 'Geabonneerd door',
 'version-version'               => '(Versie $1)',
 'version-license'               => 'Licentie',
-'version-poweredby-credits'     => "Deze wiki weurt aangedreve door '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Deze wiki weurt aangedreve door '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'anger',
 'version-license-info'          => "MediaWiki is vrieje sofware; de kins MediaWiki verspreien en/of aanpassen onger de veurwaerde van de GNU General Public License wie gepubliceerd door de Free Software Foundation; ofwaal versie 2 van de Licentie, of - nao diene wönsj - innig later versie.
 

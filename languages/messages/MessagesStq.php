@@ -74,9 +74,9 @@ $messages = array(
 'tog-oldsig'                  => 'Foarbekiek fon ju aktuälle Signatuur:',
 'tog-fancysig'                => 'Unnerskrift as Wikitext behonnelje (sunner automatiske Ferlinkenge)',
 'tog-externaleditor'          => 'Externen Editor as Standoard benutsje (bloot foar Experte, der mouten spezielle Ienstaalengen ap dän oaine Computer moaked wäide.
-[http://www.mediawiki.org/wiki/Manual:External_editors Moor Information hiertou.])',
+[//www.mediawiki.org/wiki/Manual:External_editors Moor Information hiertou.])',
 'tog-externaldiff'            => 'Extern Diff-Program as Standoard benutsje (bloot foar Experte, der mouten spezielle Ienstaalengen ap dän oaine Computer moaked wäide.
- [http://www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatione hiertou.])',
+ [//www.mediawiki.org/wiki/Manual:External_editors Wiedere Informatione hiertou.])',
 'tog-showjumplinks'           => '"Wikselje tou"-Links muugelk moakje',
 'tog-uselivepreview'          => 'Live-Foarbekiek nutsje (JavaScript) (experimentell)',
 'tog-forceeditsummary'        => 'Woarskauje, wan bie dät Spiekerjen ju Touhoopefoatenge failt',
@@ -2374,7 +2374,7 @@ Alternativ is die Export uk mäd de Syntax [[{{#Special:Export}}/{{MediaWiki:Mai
 'allmessagesdefault'            => 'Standardtext',
 'allmessagescurrent'            => 'Dissen Text',
 'allmessagestext'               => 'Dit is ne Lieste fon aal System-Ättergjuchte do in dän MediaWiki-Noomenruum tou Ferföigenge stounde.
-Besäik jädden [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net translatewiki.net], wan du mee-oarbaidje wolt an ju MediaWiki-Sortierenge.',
+Besäik jädden [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net translatewiki.net], wan du mee-oarbaidje wolt an ju MediaWiki-Sortierenge.',
 'allmessagesnotsupportedDB'     => 'Disse Spezioalsiede stoant nit tou Ferföigenge, deer ju uur dän Parameter <tt>$wgUseDatabaseMessages</tt> deaktivierd wuude.',
 'allmessages-filter-legend'     => 'Sieuwe',
 'allmessages-filter'            => 'Sieuwe foar anpaaseden Toustand:',
@@ -2896,7 +2896,7 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 
 # External editor support
 'edit-externally'      => 'Disse Doatäi mäd n extern Program beoarbaidje',
-'edit-externally-help' => '(Sjuch do [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanwiesengen] foar wiedere Informatione)',
+'edit-externally-help' => '(Sjuch do [//www.mediawiki.org/wiki/Manual:External_editors Installationsanwiesengen] foar wiedere Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'aal',
@@ -3077,7 +3077,7 @@ Du koast dien Beooboachtengslieste uk in dät [[Special:EditWatchlist/raw|Lieste
 'version-hook-subscribedby'     => 'Aproup fon',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Lizenz',
-'version-poweredby-credits'     => "Disse Website nutset '''[http://www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
+'version-poweredby-credits'     => "Disse Website nutset '''[//www.mediawiki.org/wiki/MediaWiki/de MediaWiki]''', Copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'uur',
 'version-license-info'          => "MediaWiki is fräie Software, dät hat dät ju ätter do Bedingengen fon ju truch de Free Software Foundation fereepenlikede ''GNU General Public License'', fääreferdeeld un/ of modifizierd wäide kon. Deerbie kon ju version 2, of ätter oainen Uurdeel, älke näiere Version fon ju Lizenz ferwoand wäide.
 

@@ -802,7 +802,7 @@ $2',
 
 # External editor support
 'edit-externally'      => 'اصلاح ای صفحه با استفاده زه یه ویرایشگر خارجی',
-'edit-externally-help' => ' سی اطلاعات بیشتر [http://www.mediawiki.org/wiki/Manual:External_editors راهنمایی‌های تنظیمات] اصلاح کننده خارجی را بوینین.',
+'edit-externally-help' => ' سی اطلاعات بیشتر [//www.mediawiki.org/wiki/Manual:External_editors راهنمایی‌های تنظیمات] اصلاح کننده خارجی را بوینین.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه',

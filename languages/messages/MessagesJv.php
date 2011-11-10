@@ -77,9 +77,9 @@ $messages = array(
 'tog-oldsig'                  => 'Tapak asma sing ana:',
 'tog-fancysig'                => 'Anggepen tapak asta minangka teks wiki (tanpa pranala otomatis)',
 'tog-externaleditor'          => 'Pigunakaken program pangolah tembung jawi (namung tumrap ahli, perlu pangaturan mligi ing komputer panjenengan. 
-[http://www.mediawiki.org/wiki/Manual:External_editors Informasi sajangkepipun].)',
+[//www.mediawiki.org/wiki/Manual:External_editors Informasi sajangkepipun].)',
 'tog-externaldiff'            => 'Pigunakaken diff eksternal sacara bektan (namung tumrap para ahli, perlu pangaturan mligi ing komputer panjenengan.
-[http://www.mediawiki.org/wiki/Manual:External_editors Informasi sajangkepipun].)',
+[//www.mediawiki.org/wiki/Manual:External_editors Informasi sajangkepipun].)',
 'tog-showjumplinks'           => 'Aktifna pranala pambiyantu "langsung menyang"',
 'tog-uselivepreview'          => 'Nganggoa pratayang langsung (JavaScript) (eksperimental)',
 'tog-forceeditsummary'        => 'Élingna aku menawa kothak ringkesan suntingan isih kosong',
@@ -2185,7 +2185,7 @@ Yèn panjenengan namun péngin ngimpor vèrsi pungkasan, panjenengan uga bisa ng
 'allmessagesdefault'            => 'Tèks baku',
 'allmessagescurrent'            => 'Tèks saiki',
 'allmessagestext'               => 'Iki dhaptar kabèh pesen saka sistem sing ana ing bilik jeneng MediaWiki.
-Mangga pirsani [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] lan [http://translatewiki.net translatewiki.net] yèn panjenengan arep kontribusi ing lokalisasi generik MediaWiki.',
+Mangga pirsani [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] lan [http://translatewiki.net translatewiki.net] yèn panjenengan arep kontribusi ing lokalisasi generik MediaWiki.',
 'allmessagesnotsupportedDB'     => "Kaca iki ora bisa dienggo amerga '''\$wgUseDatabaseMessages''' dipatèni.",
 'allmessages-filter-legend'     => 'Penyaring',
 'allmessages-filter'            => 'Saring nganggo kahanan kustomisasi:',
@@ -2681,7 +2681,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 
 # External editor support
 'edit-externally'      => 'Sunting berkas iki mawa aplikasi jaba',
-'edit-externally-help' => '(Deleng [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré)',
+'edit-externally-help' => '(Deleng [//www.mediawiki.org/wiki/Manual:External_editors instruksi pangaturan] kanggo informasi sabanjuré)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kabèh',

@@ -158,8 +158,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que cosiran un articlo",
 'tog-oldsig'                  => "Vista previa d'a sinyadura:",
 'tog-fancysig'                => 'Tratar as sinyaduras como wikitexto (sin de vinclo automatico)',
-'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
-'tog-externaldiff'            => 'Fer servir o visualizador de diferencias externo por defecto (nomás ta expertos, cal que faiga achustes especials en o suyo ordenador.  [http://www.mediawiki.org/wiki/Manual:External_editors Mas información.])',
+'tog-externaleditor'          => "Fer servir l'editor externo por defecto (nomás ta espiertos, cal que faiga achustes especials en o suyo ordenador.  [//www.mediawiki.org/wiki/Manual:External_editors Mas información.])",
+'tog-externaldiff'            => 'Fer servir o visualizador de diferencias externo por defecto (nomás ta expertos, cal que faiga achustes especials en o suyo ordenador.  [//www.mediawiki.org/wiki/Manual:External_editors Mas información.])',
 'tog-showjumplinks'           => 'Activar vinclos d\'accesibilidat "blincar enta"',
 'tog-uselivepreview'          => 'Activar previsualización automatica (cal JavaScript) (Esperimental)',
 'tog-forceeditsummary'        => 'Avisar-me quan o campo de resumen siga buedo.',
@@ -2422,7 +2422,7 @@ En iste zaguer caso tamién puede usar un vinclo, por eixemplo [[{{#Special:Expo
 'allmessagesdefault'            => 'texto por defecto',
 'allmessagescurrent'            => 'texto actual',
 'allmessagestext'               => "Ista ye una lista de totz os mensaches disponibles en o espacio de nombres MediaWiki.
-Vesite por favor [http://www.mediawiki.org/wiki/Localisation a pachina sobre localización de MediaWiki] y  [http://translatewiki.net translatewiki.net] si deseya contrebuyir t'a localización cheneral de MediaWiki.",
+Vesite por favor [//www.mediawiki.org/wiki/Localisation a pachina sobre localización de MediaWiki] y  [http://translatewiki.net translatewiki.net] si deseya contrebuyir t'a localización cheneral de MediaWiki.",
 'allmessagesnotsupportedDB'     => 'Ista pachina no ye disponible porque wgUseDatabaseMessages ye desactivato.',
 'allmessages-filter-legend'     => 'Filtro',
 'allmessages-filter'            => 'Filtrar por estau de personalización:',
@@ -2939,7 +2939,7 @@ Os campos de metadatos d'a imachen que amaneixen en iste mensache s'amostrarán 
 
 # External editor support
 'edit-externally'      => 'Editar iste fichero fendo servir una aplicación externa',
-'edit-externally-help' => '(Ta más información, leiga as [http://www.mediawiki.org/wiki/Manual:External_editors instruccions de configuración])',
+'edit-externally-help' => '(Ta más información, leiga as [//www.mediawiki.org/wiki/Manual:External_editors instruccions de configuración])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'totz',
@@ -3095,7 +3095,7 @@ Tamién puede fer servir o [[Special:EditWatchlist|editor estándar]].",
 'version-hook-subscribedby'     => 'Suscrito por',
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Licencia',
-'version-poweredby-credits'     => "Iste wiki funciona gracias a '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Iste wiki funciona gracias a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'atros',
 'version-license-info'          => "MediaWiki ye software libre, puet redistribuyir-lo y/u modificar-lo baixo os terminos d'a Licencia Publica Cheneral GNU publicada por a Free Software Foundation, ya siga d'a suya versión 2 u (a la suya esleción) qualsiquier versión posterior. 
 

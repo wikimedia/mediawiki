@@ -335,8 +335,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'A lapot figyelő szerkesztők számának megjelenítése',
 'tog-oldsig'                  => 'A jelenlegi aláírás:',
 'tog-fancysig'                => 'Az aláírás wikiszöveg (nem lesz automatikusan hivatkozásba rakva)',
-'tog-externaleditor'          => 'Külső szerkesztőprogram használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [http://www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
-'tog-externaldiff'            => 'Külső diff program használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [http://www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
+'tog-externaleditor'          => 'Külső szerkesztőprogram használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [//www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
+'tog-externaldiff'            => 'Külső diff program használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [//www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
 'tog-showjumplinks'           => 'Helyezzen el hivatkozást („Ugrás”) a beépített eszköztárra',
 'tog-uselivepreview'          => 'Élő előnézet használata (JavaScript-alapú, kísérleti)',
 'tog-forceeditsummary'        => 'Figyelmeztessen, ha nem adok meg szerkesztési összefoglalót',
@@ -2732,7 +2732,7 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{#Sp
 'allmessagesdefault'            => 'Alapértelmezett szöveg',
 'allmessagescurrent'            => 'Jelenlegi szöveg',
 'allmessagestext'               => 'Ezen a lapon a MediaWiki-névtérben elérhető rendszerüzenetek listája látható.
-Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [http://translatewiki.net translatewiki.net] oldalra.',
+Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [http://translatewiki.net translatewiki.net] oldalra.',
 'allmessagesnotsupportedDB'     => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
 'allmessages-filter-legend'     => 'Elemek szűrése',
 'allmessages-filter'            => 'Módosítás állapota:',
@@ -3393,7 +3393,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 
 # External editor support
 'edit-externally'      => 'A fájl szerkesztése külső alkalmazással',
-'edit-externally-help' => '(Lásd a [http://www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
+'edit-externally-help' => '(Lásd a [//www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'bármikor',
@@ -3582,7 +3582,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-hook-subscribedby'     => 'Használja',
 'version-version'               => '(verzió: $1)',
 'version-license'               => 'Licenc',
-'version-poweredby-credits'     => "Ez a wiki '''[http://www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ez a wiki '''[//www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'mások',
 'version-license-info'          => 'A MediaWiki szabad szoftver, terjeszthető és / vagy módosítható a GNU General Public License alatt, amit a Free Software Foundation közzétett; vagy a 2-es verziójú licenc, vagy (az Ön választása alapján) bármely későbbi verzió szerint. 
 

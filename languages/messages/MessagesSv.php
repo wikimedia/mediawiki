@@ -341,9 +341,9 @@ $messages = array(
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
 'tog-oldsig'                  => 'Nuvarande signatur:',
 'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
-'tog-externaleditor'          => 'Använd extern editor som standard (endast för avancerade användare, speciella inställningar på din dator krävs. [http://www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
+'tog-externaleditor'          => 'Använd extern editor som standard (endast för avancerade användare, speciella inställningar på din dator krävs. [//www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
 'tog-externaldiff'            => 'Använd externt diff-verktyg som förval (endast för avancerade användare, kräver speciella inställningar i din dator.
-[http://www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
+[//www.mediawiki.org/wiki/Manual:External_editors Mer information.])',
 'tog-showjumplinks'           => 'Aktivera "hoppa till"-tillgänglighetslänkar',
 'tog-uselivepreview'          => 'Använd direktuppdaterad förhandsgranskning (Javascript, på försöksstadiet)',
 'tog-forceeditsummary'        => 'Påminn mig om jag inte fyller i en redigeringskommentar',
@@ -2767,7 +2767,7 @@ I det senare fallet kan du även använda en länk, exempel [[{{#Special:Export}
 'allmessagesdefault'            => 'Standardtext',
 'allmessagescurrent'            => 'Nuvarande text',
 'allmessagestext'               => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki.
-Besök [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller [http://translatewiki.net translatewiki.net] om du vill bidra till översättningen av MediaWiki.',
+Besök [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller [http://translatewiki.net translatewiki.net] om du vill bidra till översättningen av MediaWiki.',
 'allmessagesnotsupportedDB'     => "Den här sidan kan inte användas eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
 'allmessages-filter-legend'     => 'Filtrera',
 'allmessages-filter'            => 'Filtrera efter anpassningsgrad:',
@@ -3472,7 +3472,7 @@ Andra kommer att gömmas som standard
 
 # External editor support
 'edit-externally'      => 'Redigera denna fil med hjälp av extern programvara',
-'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors installationsinstruktionerna] för mer information)',
+'edit-externally-help' => '(Se [//www.mediawiki.org/wiki/Manual:External_editors installationsinstruktionerna] för mer information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alla',
@@ -3666,7 +3666,7 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 'version-hook-subscribedby'     => 'Används av',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Licens',
-'version-poweredby-credits'     => "Den här wikin drivs av '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Den här wikin drivs av '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'andra',
 'version-license-info'          => 'MediaWiki är fri programvara; du kan distribuera det och/eller modifiera det under villkoren i GNU General Public License, publicerad av Free Software Foundation; antingen version 2 av licensen, eller (om du önskar) någon senare version. 
 

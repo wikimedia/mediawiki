@@ -1887,7 +1887,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ಬಾಹ್ಯ ತಂತ್ರಾಂಶವನ್ನು ಉಪಯೋಗಿಸಿ ಇದನ್ನು ಸಂಪಾದಿಸಿ',
-'edit-externally-help' => '(ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ [http://www.mediawiki.org/wiki/Manual:External_editors ಸ್ಥಾಪನೆಯ ನಿರ್ದೇಶಗಳನ್ನು] ನೋಡಿ)',
+'edit-externally-help' => '(ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ [//www.mediawiki.org/wiki/Manual:External_editors ಸ್ಥಾಪನೆಯ ನಿರ್ದೇಶಗಳನ್ನು] ನೋಡಿ)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ಎಲ್ಲಾ',

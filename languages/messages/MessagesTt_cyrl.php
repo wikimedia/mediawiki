@@ -237,8 +237,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Битне күзәтү исемлекләренә өстәгән кулланучылар санын күрсәтелсен',
 'tog-oldsig'                  => 'Хәзерге имза:',
 'tog-fancysig'                => 'Имзаның шәхси вики-билгеләмәсе (автоматик сылтамасыз)',
-'tog-externaleditor'          => 'Тышкы редактор куллану (бары тик белгечләргә генә һәм санак махсус көйләнгән булу зарур; [http://www.mediawiki.org/wiki/Manual:External_editors тулырак...])',
-'tog-externaldiff'            => 'Тышкы версия чагыштыру программасын куллану (бары тик белгечләр өчен һшм санак махсус көйләнгән булу зарур; [http://www.mediawiki.org/wiki/Manual:External_editors тулырак...])',
+'tog-externaleditor'          => 'Тышкы редактор куллану (бары тик белгечләргә генә һәм санак махсус көйләнгән булу зарур; [//www.mediawiki.org/wiki/Manual:External_editors тулырак...])',
+'tog-externaldiff'            => 'Тышкы версия чагыштыру программасын куллану (бары тик белгечләр өчен һшм санак махсус көйләнгән булу зарур; [//www.mediawiki.org/wiki/Manual:External_editors тулырак...])',
 'tog-showjumplinks'           => '«Күчү» ярдәмче сылтамалары ялгансын',
 'tog-uselivepreview'          => 'Тиз карап алу кулланылсын (JavaScript, эксперименталь)',
 'tog-forceeditsummary'        => 'Үзгәртүләрне тасвирлау юлы тутырылмаган булса, кисәтү',
@@ -1980,7 +1980,7 @@ $1',
 'allmessagesname'               => 'Исем',
 'allmessagesdefault'            => 'Баштан ук куелган текс',
 'allmessagestext'               => 'Бу исемлек MediaWiki исемнәр мәйданында булган система хәбәрләренең исемлеге.
-Гомуми MediaWiki локализациясендә катнашырга теләсәгез, зинһар [http://www.mediawiki.org/wiki/Localisation MediaWiki Локализациясе] һәм [http://translatewiki.net translatewiki.net] сәхифәләрне кулланыгыз.',
+Гомуми MediaWiki локализациясендә катнашырга теләсәгез, зинһар [//www.mediawiki.org/wiki/Localisation MediaWiki Локализациясе] һәм [http://translatewiki.net translatewiki.net] сәхифәләрне кулланыгыз.',
 'allmessages-filter-legend'     => 'Фильтр',
 'allmessages-filter-unmodified' => 'Үзгәртелмәгән',
 'allmessages-filter-all'        => 'Барысы',
@@ -2308,7 +2308,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Бу файлны тышкы кушымтаны кулланып үзгәртү',
-'edit-externally-help' => '(тулырак мәгълүмат өчен [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] битен карагыз)',
+'edit-externally-help' => '(тулырак мәгълүмат өчен [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] битен карагыз)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'барлык',

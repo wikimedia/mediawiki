@@ -45,8 +45,8 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'ЗӀы хоамаш тӀа са фоштмоттиг хьахьокха',
 'tog-shownumberswatching'     => 'Ший теркама дагарченгахь оагӀув чулаьца бола дакъалаьцархой таьрах хьахьокха',
 'tog-fancysig'                => 'Ший кулга яздара вики-хоамбаккхам (ший лоӀаме Ӏинка йоацаш)',
-'tog-externaleditor'          => 'Арена гӀалатнийсдарца болх бе (ший болх ховш болачара мара мегаш дац, хьамлоархара ший-тайпара оттам эша; [http://www.mediawiki.org/wiki/Manual:External_editors хьажа эша])',
-'tog-externaldiff'            => 'Арена бӀасакхосса болхоагӀувца болх бе (ший болх ховш болачара мара мегаш дац, хьамлоархара ший-тайпара оттам эша; [http://www.mediawiki.org/wiki/Manual:External_editors хьажа эша])',
+'tog-externaleditor'          => 'Арена гӀалатнийсдарца болх бе (ший болх ховш болачара мара мегаш дац, хьамлоархара ший-тайпара оттам эша; [//www.mediawiki.org/wiki/Manual:External_editors хьажа эша])',
+'tog-externaldiff'            => 'Арена бӀасакхосса болхоагӀувца болх бе (ший болх ховш болачара мара мегаш дац, хьамлоархара ший-тайпара оттам эша; [//www.mediawiki.org/wiki/Manual:External_editors хьажа эша])',
 'tog-showjumplinks'           => '"Дехьадала" яха новкъостала Ӏинк хьахьокха',
 'tog-uselivepreview'          => 'Сиха бӀарахьажар (JavaScript) (Экспериментально)',
 'tog-forceeditsummary'        => 'Хоам бе, хувцамий лоацам белгал даь деци',
@@ -1080,7 +1080,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'Йола болхоагIувца паьла гIалатахь мукъаяккха',
-'edit-externally-help' => '(ма даррачунга хьажа [http://www.mediawiki.org/wiki/Manual:External_editors хьаоттама кулгалхо])',
+'edit-externally-help' => '(ма даррачунга хьажа [//www.mediawiki.org/wiki/Manual:External_editors хьаоттама кулгалхо])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'деррига',

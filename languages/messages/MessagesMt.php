@@ -300,8 +300,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Uri n-numru ta' utenti li qegħdin isegwu din il-paġna",
 'tog-oldsig'                  => 'Firma attwali:',
 'tog-fancysig'                => 'Interpreta l-firma bħala test tal-wiki (mingħajr ħolqa awtomatika)',
-'tog-externaleditor'          => 'Uża awtomatikament editur estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [http://www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
-'tog-externaldiff'            => 'Uża awtomatikament diff estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [http://www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
+'tog-externaleditor'          => 'Uża awtomatikament editur estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [//www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
+'tog-externaldiff'            => 'Uża awtomatikament diff estern (għal utenti esperti biss, hemm bżonn preferenzi speċjali fuq il-komputer tiegħek. [//www.mediawiki.org/wiki/Manual:External_editors Iktar informazzjoni.])',
 'tog-showjumplinks'           => 'Attiva l-ħoloq aċċessibbli "aqbeż għal"',
 'tog-uselivepreview'          => "Attiva l-funzjoni ''Live preview'' (bżonn tal-JavaScript; sperimentali)",
 'tog-forceeditsummary'        => 'Nebbaħni meta ndaħħal taqsira tal-modifika vojta',
@@ -3366,7 +3366,7 @@ Oħrajn jiġu moħbija kif inhu definit oriġinarjament.
 
 # External editor support
 'edit-externally'      => "Immodifika dan il-fajl b'użu ta' applikazzjoni esterna",
-'edit-externally-help' => '(Għal aktar informazzjoni ara l-[http://www.mediawiki.org/wiki/Manual:External_editors istruzzjonijiet])',
+'edit-externally-help' => '(Għal aktar informazzjoni ara l-[//www.mediawiki.org/wiki/Manual:External_editors istruzzjonijiet])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kollha',
@@ -3572,7 +3572,7 @@ Inti tista' wkoll tuża' l-[[Special:EditWatchlist|editur bl-interfaċċa standa
 'version-hook-subscribedby'     => 'Reġistrat minn',
 'version-version'               => '(Verżjoni $1)',
 'version-license'               => 'Liċenzja',
-'version-poweredby-credits'     => "Din il-wiki hija operata minn '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Din il-wiki hija operata minn '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'oħrajn',
 'version-license-info'          => "MediaWiki huwa softwer b'xejn; inti tista' tqassmu mill-ġdid u/jew timmodifikah taħt it-termini tal-GNU General Public License, kif ippubblikata mill-Free Software Foundation; jew it-2 verżjoni tal-Liċenzja, jew (skont l-għażla tiegħek) kwalunkwe verżjoni suċċessiva.
 

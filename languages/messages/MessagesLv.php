@@ -2209,7 +2209,7 @@ Pirmajā gadījumā var arī lietot šādu metodi, piem., [[{{#Special:Export}}/
 'allmessagesdefault'            => 'Sākotnējais teksts',
 'allmessagescurrent'            => 'Pašreizējais teksts',
 'allmessagestext'               => "Šajā lapā ir visu \"'''MediaWiki:'''\" lapās atrodamo sistēmas paziņojumu uzskaitījums.
-Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net translatewiki.net].",
+Šos paziņojumus var izmainīt tikai admini. Izmainot tos šeit, tie tiks izmainīti tikai šajā mediawiki instalācijā. Lai tos izmainītu visām pārējām, apskatieties [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] un [http://translatewiki.net translatewiki.net].",
 'allmessagesnotsupportedDB'     => "Šī lapa nedarbojas, tāpēc, ka '''wgUseDatabaseMessages''' nedarbojas.",
 'allmessages-filter-legend'     => 'Filtrs',
 'allmessages-filter'            => 'Filtrēt pēc izmainīšanas statusa:',
@@ -2710,7 +2710,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 
 # External editor support
 'edit-externally'      => 'Izmainīt šo failu ar ārēju programmu',
-'edit-externally-help' => '(Skat. [http://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, lai iegūtu vairāk informācijas).',
+'edit-externally-help' => '(Skat. [//www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, lai iegūtu vairāk informācijas).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'visas',
@@ -2852,7 +2852,7 @@ Var arī lietot [[Special:EditWatchlist|standarta izmainīšanas lapu]].',
 'version-hook-name'         => 'Aizķeres nosaukums',
 'version-version'           => '(Versija $1)',
 'version-license'           => 'Licence',
-'version-poweredby-credits' => "Šis viki darbojas ar '''[http://www.mediawiki.org/ MediaWiki]''' programmatūru, autortiesības © 2001-$1 $2.",
+'version-poweredby-credits' => "Šis viki darbojas ar '''[//www.mediawiki.org/ MediaWiki]''' programmatūru, autortiesības © 2001-$1 $2.",
 'version-poweredby-others'  => 'citi',
 'version-software'          => 'Instalētā programmatūra',
 'version-software-product'  => 'Produkts',

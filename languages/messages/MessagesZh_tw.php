@@ -917,7 +917,7 @@ Variants for Chinese language
 'exif-lightsource-15' => '白色螢光 （WW 3200    3700K）',
 
 # External editor support
-'edit-externally-help' => '請參見[http://www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊。',
+'edit-externally-help' => '請參見[//www.mediawiki.org/wiki/Manual:External_editors 設定步驟]了解詳細資訊。',
 
 # E-mail address confirmation
 'confirmemail'            => '確認電子郵件地址',

@@ -47,8 +47,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Amarê karberanê seyrkerdoğan bımocne',
 'tog-oldsig'                  => 'Verqaytê imza mewcude:',
 'tog-fancysig'                => 'İmza rê mameley wikimeqaley bıke (bê gıreyo otomatik)',
-'tog-externaleditor'          => 'Editorê teberi standard bıxebetne (tenya seba ekspertano, komputerê şıma de eyarê xısusiy lazımê. [http://www.mediawiki.org/wiki/Manual:External_editors Melumato vêşêr.])',
-'tog-externaldiff'            => 'Têverşanayışan pê programê teberi vıraze (tenya seba ekspertano, komputerê şıma de eyarê xısusiy lazımê. [http://www.mediawiki.org/wiki/Manual:External_editors Melumato vêşêr.])',
+'tog-externaleditor'          => 'Editorê teberi standard bıxebetne (tenya seba ekspertano, komputerê şıma de eyarê xısusiy lazımê. [//www.mediawiki.org/wiki/Manual:External_editors Melumato vêşêr.])',
+'tog-externaldiff'            => 'Têverşanayışan pê programê teberi vıraze (tenya seba ekspertano, komputerê şıma de eyarê xısusiy lazımê. [//www.mediawiki.org/wiki/Manual:External_editors Melumato vêşêr.])',
 'tog-showjumplinks'           => 'Gırey "şo"y feal ke',
 'tog-uselivepreview'          => 'Verqayto cınde bıxebetne (JavaScript lazımo) (hewna cerrebnayış dero)',
 'tog-forceeditsummary'        => 'Mı ke xulasa kerde cı vira, hay be mı ser de',
@@ -2292,7 +2292,7 @@ ma vaci: qey pelê "[[{{MediaWiki:Mainpage}}]]i " [[{{#Special:Export}}/{{MediaW
 'allmessagesdefault'            => 'nuşteyo orjinal',
 'allmessagescurrent'            => 'nuşte yo ke şuxuliyeno',
 'allmessagestext'               => 'na liste, listeya mesajê cayê nameyê wikimedya yo.
-eke şıma qayili paşt bıdi mahalli kerdışê wikimedyayi, kerem kerê pelê [http://www.mediawiki.org/wiki/Localisation mahalli kerdışê wikimedyayi] u [http://translatewiki.net translatewiki.net] ziyaret bıkerê.',
+eke şıma qayili paşt bıdi mahalli kerdışê wikimedyayi, kerem kerê pelê [//www.mediawiki.org/wiki/Localisation mahalli kerdışê wikimedyayi] u [http://translatewiki.net translatewiki.net] ziyaret bıkerê.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' qefelnaye yo u ey ra '''{{ns:special}}:Allmessages''' karkerdışi re akerde niyo.",
 'allmessages-filter-legend'     => 'Filitre',
 'allmessages-filter'            => 'goreyê xususi kerdışi re filtre bıker',
@@ -2807,7 +2807,7 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 
 # External editor support
 'edit-externally'      => 'Ena dosya bıvurne pe yew programê harici',
-'edit-externally-help' => '(Qe informasyonê zafyer ena bevinin [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
+'edit-externally-help' => '(Qe informasyonê zafyer ena bevinin [//www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'pêro',

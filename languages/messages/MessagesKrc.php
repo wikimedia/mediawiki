@@ -67,8 +67,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Бетни, кёзде тургъан тизмелерине къошханланы санын кёргюз',
 'tog-oldsig'                  => 'Болгъан къол салыугъа ал къарау:',
 'tog-fancysig'                => 'Энчи вики-тексти къол салыуну (автомат джибериусюз)',
-'tog-externaleditor'          => 'Тынгылау бла тыш редакторну хайырландырыу (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [http://www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
-'tog-externaldiff'            => 'Версияланы тенглешдириучу тыш программа хайырландырыу  (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [http://www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
+'tog-externaleditor'          => 'Тынгылау бла тыш редакторну хайырландырыу (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [//www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
+'tog-externaldiff'            => 'Версияланы тенглешдириучу тыш программа хайырландырыу  (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [//www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
 'tog-showjumplinks'           => '«Бар» болушлукъ джибериуню джандыр',
 'tog-uselivepreview'          => 'Терк ал къарауну хайырландыр (JavaScript, экспериментал халда)',
 'tog-forceeditsummary'        => 'Тюрлендириуню ачыкълау тизгини бош къалса, билдир',
@@ -2354,7 +2354,7 @@ $1',
 'allmessagesdefault'            => 'Оригинал текст',
 'allmessagescurrent'            => 'Хайырлана тургъан текст',
 'allmessagestext'               => 'Бу список MediaWiki ат аламында бар болгъан система билдириулени списогуду.
-MediaWiki локализациясына юлюш къошаргъа излей эсегиз, [http://www.mediawiki.org/wiki/Localisation MediaWiki локализация] бла [http://translatewiki.net translatewiki.net] сайтлагъа киригиз.',
+MediaWiki локализациясына юлюш къошаргъа излей эсегиз, [//www.mediawiki.org/wiki/Localisation MediaWiki локализация] бла [http://translatewiki.net translatewiki.net] сайтлагъа киригиз.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' джабыкъ болгъаны ючюн '''{{ns:special}}:Allmessages''' хайырланыугъа ачыкъ тюлдю.",
 'allmessages-filter-legend'     => 'Фильтр',
 'allmessages-filter'            => 'Тюрлендириуюне кёре фильтрлендир:',
@@ -2886,7 +2886,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Бу файлны тыш программа бла тюрлендиригиз',
-'edit-externally-help' => '(толу информациягъа мында къарагъыз: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
+'edit-externally-help' => '(толу информациягъа мында къарагъыз: [//www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бютеу',
@@ -3113,7 +3113,7 @@ $1',
 'version-hook-subscribedby'     => 'Абонент болгъан',
 'version-version'               => '(Версия $1)',
 'version-license'               => 'Лицензия',
-'version-poweredby-credits'     => "Бу вики '''[http://www.mediawiki.org/ MediaWiki]''' программа бла ишлейди, copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Бу вики '''[//www.mediawiki.org/ MediaWiki]''' программа бла ишлейди, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'башхала',
 'version-license-info'          => 'MediaWiki эркин программа джазыуду, сиз аны GNU General Public License лицензияны (эркин программа джазыуланы фонду чыгъаргъан; экинчи версиясы неда андан кеч къайсысы да) шартларына кёре джаяргъа эмда/неда тюрлендирирге боллукъсуз.
 

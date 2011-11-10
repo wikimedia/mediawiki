@@ -45,8 +45,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Ipakita ti bilang dagiti agbambantay nga agar-aramat',
 'tog-oldsig'                  => 'Daytoy ti pirmam:',
 'tog-fancysig'                => 'Usaren ti wikitext nga agpirma (nga awan ti automatiko nga panagsilpo)',
-'tog-externaleditor'          => 'Isigud ti agusar iti ruar nga pagibaliwan (para dagiti experto laeng, masapul ti naiduma nga pinakaikabil idiay komputer mo. [http://www.mediawiki.org/wiki/Manual:External_editors Adu pay nga informasion.])',
-'tog-externaldiff'            => 'Isigud ti agusar iti ruar nga  sabali (para dagiti experto laeng, masapul ti naiduma nga pinakaikabil idiay komputer mo. [http://www.mediawiki.org/wiki/Manual:External_editors Adu pay nga informasion.])',
+'tog-externaleditor'          => 'Isigud ti agusar iti ruar nga pagibaliwan (para dagiti experto laeng, masapul ti naiduma nga pinakaikabil idiay komputer mo. [//www.mediawiki.org/wiki/Manual:External_editors Adu pay nga informasion.])',
+'tog-externaldiff'            => 'Isigud ti agusar iti ruar nga  sabali (para dagiti experto laeng, masapul ti naiduma nga pinakaikabil idiay komputer mo. [//www.mediawiki.org/wiki/Manual:External_editors Adu pay nga informasion.])',
 'tog-showjumplinks'           => 'Ipagbalin mo ti "mapan iti"  nga agpalaka ti papan kadagiti panagsilpo',
 'tog-uselivepreview'          => 'Usaren ti pagpadas tattan (masapul ti JavaScript) (experimento laeng)',
 'tog-forceeditsummary'        => 'Pakaammuannak no sumrek ti blanko nga pakabuklan ti baliw',
@@ -2464,7 +2464,7 @@ Pangngaasi ta agpili ka ti sabali a nagan.',
 'allmessagesdefault'            => 'Naisigud nga teksto ti mensahe',
 'allmessagescurrent'            => 'Agdama nga teksto ti mensahe',
 'allmessagestext'               => 'Daytoy ti listaan dagiti mensahe ti sistema nga addaan idiay MediaWiki namespace.
-Pangngaasi ta bisitaeen ti [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ken [http://translatewiki.net translatewiki.net] no kayatmo ti mangted
+Pangngaasi ta bisitaeen ti [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ken [http://translatewiki.net translatewiki.net] no kayatmo ti mangted
 kadagiti pinagpatarus ti MediaWiki.',
 'allmessagesnotsupportedDB'     => "Saan nga mausar daytoy nga panid ngamin ta ti '''\$wgUseDatabaseMessages''' ket naideppen.",
 'allmessages-filter-legend'     => 'Sagat',
@@ -3041,7 +3041,7 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 
 # External editor support
 'edit-externally'      => 'Baliwan daytoy a papeles babaen ti akinruar nga aplikasion',
-'edit-externally-help' => '(Kitaen ti [http://www.mediawiki.org/wiki/Manual:External_editors instruksion iti panangikabil] para iti ad-adu pay nga informasion).',
+'edit-externally-help' => '(Kitaen ti [//www.mediawiki.org/wiki/Manual:External_editors instruksion iti panangikabil] para iti ad-adu pay nga informasion).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'am-amin',
@@ -3236,7 +3236,7 @@ Mabalin mo met a [[Special:EditWatchlist|usaren ti dati a pinagbaliw]].',
 'version-hook-subscribedby'     => 'Sinubskriber ni',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Lisensia',
-'version-poweredby-credits'     => "Daytoy nga wiki ket pinaandar ti '''[http://www.mediawiki.org/ MediaWiki]''', karbengan a kopya © 2001-$1 $2.",
+'version-poweredby-credits'     => "Daytoy nga wiki ket pinaandar ti '''[//www.mediawiki.org/ MediaWiki]''', karbengan a kopya © 2001-$1 $2.",
 'version-poweredby-others'      => 'dadduma pay',
 'version-software'              => 'Naikabil a software',
 'version-software-product'      => 'Produkto',
