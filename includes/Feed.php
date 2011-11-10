@@ -69,15 +69,6 @@ class FeedItem {
 	}
 
 	/**
-	 * Get the last touched timestamp
-	 *
-	 * @return String last-touched timestamp
-	 */
-	public function getLastMod() {
-		return $this->Title->getTouched();
-	}
-
-	/**
 	 * Encode $string so that it can be safely embedded in a XML document
 	 *
 	 * @param $string String: string to encode
@@ -118,16 +109,6 @@ class FeedItem {
 	 */
 	public function getTitle() {
 		return $this->xmlEncode( $this->Title );
-	}
-
-	/**
-	 * Get the DB prefixed title
-	 *
-	 * @return String the prefixed title, with underscores and
-	 *  any interwiki and namespace prefixes
-	 */
-	public function getDBPrefixedTitle() {
-		return $this->Title->getPrefixedDBKey();
 	}
 
 	/**
