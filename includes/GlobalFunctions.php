@@ -503,22 +503,23 @@ function wfRemoveDotSegments( $urlPath ) {
 	while ( $urlPath ) {
 		$matches = null;
 		if ( preg_match('%^\.\.?/%', $urlPath, $matches) ) {
-			# Step A
+			# Step A, remove leading "../" or "./"
 			$urlPath = substr( $urlPath, strlen( $matches[0] ) );
 		} elseif ( preg_match( '%^/\.(/|$)%', $urlPath, $matches ) ) {
-			# Step B
+			# Step B, replace leading "/.$" or "/./" with "/"
 			$start = strlen( $matches[0] );
 			$urlPath = '/' . substr( $urlPath, $start );
 		} elseif ( preg_match( '%^/\.\.(/|$)%', $urlPath, $matches ) ) {
-			# Step C
+			# Step C, replace leading "/..$" or "/../" with "/" and
+			# remove last path component in output
 			$start = strlen( $matches[0] );
 			$urlPath = '/' . substr( $urlPath, $start );
 			$output = preg_replace('%(^|/)[^/]*$%', '', $output);
 		} elseif ( preg_match( '%^\.\.?$%', $urlPath, $matches ) ) {
-			# Step D
-			$urlPath = substr( $urlPath, strlen( $matches[0] ) );
+			# Step D, remove "^..$" or "^.$"
+			$urlPath = '';
 		} else {
-			# Step E
+			# Step E, move leading path segment to output
 			preg_match( '%^/?[^/]*%', $urlPath, $matches );
 			$urlPath = substr( $urlPath, strlen( $matches[0] ) );
 			$output .= $matches[0];
