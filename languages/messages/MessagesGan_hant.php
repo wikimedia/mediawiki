@@ -86,7 +86,7 @@ $messages = array(
 'tog-oldsig'                  => '現有嗰簽名：',
 'tog-fancysig'                => '搦簽名以維基字對待（冇自動連結）',
 'tog-externaleditor'          => '默認用外部編輯器（專家用嗰功能，要到倷嗰電腦上頭特別嗰設置一下）',
-'tog-externaldiff'            => '默認用外部差異比較器（專家用嗰功能，要到汝嗰電腦上頭特別嗰設置下。[http://www.mediawiki.org/wiki/Manual:External_editors 別嗰信息]）',
+'tog-externaldiff'            => '默認用外部差異比較器（專家用嗰功能，要到汝嗰電腦上頭特別嗰設置下。[//www.mediawiki.org/wiki/Manual:External_editors 別嗰信息]）',
 'tog-showjumplinks'           => '啟用“跳到”訪問連結',
 'tog-uselivepreview'          => '使用即時預覽（JavaScript）（實驗中）',
 'tog-forceeditsummary'        => '冇改動注解時要同我話',
@@ -1667,7 +1667,7 @@ $1',
 'allmessagesdefault'        => '默認文字',
 'allmessagescurrent'        => '眼前嗰文字',
 'allmessagestext'           => '箇首列到全部制定得正嗰系統界面。
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系統界面功能'''關卟嘞（'''\$wgUseDatabaseMessages'''）。",
 
 # Thumbnails
@@ -2136,7 +2136,7 @@ $1',
 
 # External editor support
 'edit-externally'      => '用外部程式來編輯箇隻檔案',
-'edit-externally-help' => '請參看[http://www.mediawiki.org/wiki/Manual:External_editors 設置步驟]瞭解別嗰內容。',
+'edit-externally-help' => '請參看[//www.mediawiki.org/wiki/Manual:External_editors 設置步驟]瞭解別嗰內容。',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

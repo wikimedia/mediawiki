@@ -881,7 +881,7 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'exif-urgency-high'   => 'Aas ($1)',
 
 # External editor support
-'edit-externally-help' => "(Haree [http://www.mediawiki.org/wiki/Manual:External_editors iha ne'e] ba informasaun barak liu)",
+'edit-externally-help' => "(Haree [//www.mediawiki.org/wiki/Manual:External_editors iha ne'e] ba informasaun barak liu)",
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'hotu',

@@ -1225,7 +1225,7 @@ L'ingansi sucescivi, in scia mæxima riga, van conscideræ comme eceçioìn (pag
 
 # External editor support
 'edit-externally'      => "Càngia st'archivio con 'na applicaçión esterna",
-'edit-externally-help' => 'Pe avéi ciù informaçioìn amia e [http://www.mediawiki.org/wiki/Manual:External_editors istruçioìn] (in ingléize)',
+'edit-externally-help' => 'Pe avéi ciù informaçioìn amia e [//www.mediawiki.org/wiki/Manual:External_editors istruçioìn] (in ingléize)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'Tùtti',

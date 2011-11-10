@@ -2444,7 +2444,7 @@ Vinsamlegast veldu annað nafn.',
 'allmessagesdefault'            => 'Sjálfgefinn texti',
 'allmessagescurrent'            => 'Núverandi texti',
 'allmessagestext'               => 'Þetta er listi yfir kerfismeldingar í Melding-nafnrýminu.
-Gjörðu svo vel og heimsæktu [http://www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [http://translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
+Gjörðu svo vel og heimsæktu [//www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [http://translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
 'allmessagesnotsupportedDB'     => "Það er ekki hægt að nota '''{{ns:special}}:Allmessages''' því '''\$wgUseDatabaseMessages''' hefur verið gerð óvirk.",
 'allmessages-filter-legend'     => 'Sía',
 'allmessages-filter'            => 'Sía með breytingarstöðu:',
@@ -2913,7 +2913,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 
 # External editor support
 'edit-externally'      => 'Breyta þessari skrá með utanaðkomandi hugbúnaði',
-'edit-externally-help' => '(Sjá [http://www.mediawiki.org/wiki/Manual:External_editors leiðbeiningar] fyrir meiri upplýsingar)',
+'edit-externally-help' => '(Sjá [//www.mediawiki.org/wiki/Manual:External_editors leiðbeiningar] fyrir meiri upplýsingar)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'allt',
@@ -3084,7 +3084,7 @@ einn titil í hverri línu.
 'version-parser-extensiontags' => 'Þáttuð smáforrita tög',
 'version-version'              => '(Útgáfa $1)',
 'version-license'              => 'Leyfi',
-'version-poweredby-credits'    => "Þessi wiki er knúin af '''[http://www.mediawiki.org/ MediaWiki]''', höfundaréttur © 2001-$1 $2.",
+'version-poweredby-credits'    => "Þessi wiki er knúin af '''[//www.mediawiki.org/ MediaWiki]''', höfundaréttur © 2001-$1 $2.",
 'version-poweredby-others'     => 'aðrir',
 'version-software'             => 'Uppsettur hugbúnaður',
 'version-software-product'     => 'Vara',

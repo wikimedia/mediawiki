@@ -158,8 +158,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Témbongkeun jumlah nu ngawaskeun',
 'tog-oldsig'                  => 'Paraf nu geus aya:',
 'tog-fancysig'                => 'Témbongkeun paraf salaku wikitext (tanpa tumbu otomatis)',
-'tog-externaleditor'          => 'Paké éditor éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff'            => 'Paké diff éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [http://www.mediawiki.org/wiki/Manual:External_editors Émbaran lengkep.])',
+'tog-externaleditor'          => 'Paké éditor éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => 'Paké diff éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [//www.mediawiki.org/wiki/Manual:External_editors Émbaran lengkep.])',
 'tog-showjumplinks'           => 'Aktifkeun tumbu panyambung "luncat ka"',
 'tog-uselivepreview'          => 'Paké pramidang saharita (JavaScript) (ujicoba)',
 'tog-forceeditsummary'        => 'Mun kotak ringkesan éditan masih kosong, béjaan!',
@@ -2746,7 +2746,7 @@ Nu séjénna bakal disumputkeun sakumaha asalna.
 
 # External editor support
 'edit-externally'      => 'Édit koropak ieu migunakeun aplikasi éksternal',
-'edit-externally-help' => 'Baca [http://www.mediawiki.org/wiki/Manual:External_editors pituduh ngatur] pikeun émbaran leuwih jéntré.',
+'edit-externally-help' => 'Baca [//www.mediawiki.org/wiki/Manual:External_editors pituduh ngatur] pikeun émbaran leuwih jéntré.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sadaya',

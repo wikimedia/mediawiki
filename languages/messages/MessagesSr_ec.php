@@ -3762,7 +3762,7 @@ $8',
 
 # External editor support
 'edit-externally'      => 'Измени ову датотеку користећи спољашњи програм',
-'edit-externally-help' => '(Погледајте [http://www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација)',
+'edit-externally-help' => '(Погледајте [//www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'све',
@@ -4032,7 +4032,7 @@ $1',
 'version-version'               => '(издање $1)',
 'version-svn-revision'          => '(изм. $2)',
 'version-license'               => 'Лиценца',
-'version-poweredby-credits'     => "Овај вики покреће '''[http://www.mediawiki.org/ Медијавики]''', ауторска права © 2001-$1 $2.",
+'version-poweredby-credits'     => "Овај вики покреће '''[//www.mediawiki.org/ Медијавики]''', ауторска права © 2001-$1 $2.",
 'version-poweredby-others'      => 'остали',
 'version-license-info'          => 'Медијавики је слободан софтвер; можете га расподељивати и мењати под условима ГНУ-ове опште јавне лиценце (ОЈЛ) коју је објавила Задужбина за слободан софтвер, било да је у питању друго или новије издање лиценце.
 

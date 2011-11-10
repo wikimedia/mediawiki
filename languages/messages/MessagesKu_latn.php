@@ -2010,7 +2010,7 @@ if (wgUserLanguage == "ku-arab")
 'exif-iimcategory-wea' => 'Hewa',
 
 # External editor support
-'edit-externally-help' => '(Ji bo agahîyên zav [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] li vir binêre)',
+'edit-externally-help' => '(Ji bo agahîyên zav [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] li vir binêre)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'hemû',

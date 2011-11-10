@@ -2591,7 +2591,7 @@ $1',
 'allmessagesdefault'            => 'النص الاوتوماتيكي',
 'allmessagescurrent'            => 'النص دلوقتى',
 'allmessagestext'               => 'دى لستة برسايل النظام المتوفرة فى نطاق ميدياويكي.
-لو سمحت تزور[http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت عايز تساهم فى ترجمة ميدياويكى الاصلية.',
+لو سمحت تزور[//www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت عايز تساهم فى ترجمة ميدياويكى الاصلية.',
 'allmessagesnotsupportedDB'     => "الصفحة دى مش يمكن حد يستعملها علشان'''\$wgUseDatabaseMessages''' متعطل.",
 'allmessages-filter-legend'     => 'فيلتر',
 'allmessages-filter'            => 'فلتره بحالة التهيئه:',
@@ -3152,7 +3152,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'استعمل تطبيق من بره علشان تعدل الملف دا',
-'edit-externally-help' => '(بص على [http://www.mediawiki.org/wiki/Manual:External_editors  تعليمات الاعداد] علشان معلومات اكتر.)',
+'edit-externally-help' => '(بص على [//www.mediawiki.org/wiki/Manual:External_editors  تعليمات الاعداد] علشان معلومات اكتر.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'الكل',

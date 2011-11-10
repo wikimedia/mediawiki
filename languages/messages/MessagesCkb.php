@@ -174,8 +174,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'ژمارەی بەکارھێنەرە چاودێڕەکان نیشان بدە',
 'tog-oldsig'                  => 'واژۆی ئێستا:',
 'tog-fancysig'                => 'وەک ویکی‌دەق لەگەڵ واژۆ مامەڵەبکە (بێ بەستەرێکی خۆکار)',
-'tog-externaleditor'          => 'دەستکاریکەری دەرەکی بەکاربێنە لە حاڵەتی دیفاڵتدا (تەنھا بۆ شارەزایان، ڕێکخستنی تایبەتی پێویستە لە سەر کۆمپیوتەرەکەت [http://www.mediawiki.org/wiki/Manual:External_editors زانیاریی زۆرتر.])',
-'tog-externaldiff'            => 'لە پرۆگرامێکی دەرەکی بۆ بینینی جیاوازیەکان کەڵک وەرگرە لە دیفاڵتدا (تەنها بۆ شارەزایان، ڕێکخستنی تایبەتی پێویستە لە سەر کۆمپیوتەرەکەت. [http://www.mediawiki.org/wiki/Manual:External_editors زانیاریی زۆرتر.])',
+'tog-externaleditor'          => 'دەستکاریکەری دەرەکی بەکاربێنە لە حاڵەتی دیفاڵتدا (تەنھا بۆ شارەزایان، ڕێکخستنی تایبەتی پێویستە لە سەر کۆمپیوتەرەکەت [//www.mediawiki.org/wiki/Manual:External_editors زانیاریی زۆرتر.])',
+'tog-externaldiff'            => 'لە پرۆگرامێکی دەرەکی بۆ بینینی جیاوازیەکان کەڵک وەرگرە لە دیفاڵتدا (تەنها بۆ شارەزایان، ڕێکخستنی تایبەتی پێویستە لە سەر کۆمپیوتەرەکەت. [//www.mediawiki.org/wiki/Manual:External_editors زانیاریی زۆرتر.])',
 'tog-showjumplinks'           => 'ڕێگە بدە بۆ بەستەرەکانی «{{int:jumpto}}»',
 'tog-uselivepreview'          => 'لە پێشبینینی زیندوو کەڵک وەرگرە (جاڤاسکریپت پێویستە) (تاقیکاری‌)',
 'tog-forceeditsummary'        => 'ئەگەر پوختەی دەستکاریم نەنووسی پێم بڵێ',
@@ -2400,7 +2400,7 @@ $1',
 'allmessagesdefault'            => 'دەقی بنەڕەتی',
 'allmessagescurrent'            => 'دەقی ھەنووکە',
 'allmessagestext'               => 'ئەمە لیستێکە لە پەیامەکانی بەردەست لە بۆشایی‌ناوی میدیاویکی.
-تکایە سەردانی [http://www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [http://translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
+تکایە سەردانی [//www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [http://translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
 'allmessagesnotsupportedDB'     => "ئەم لاپەڕە ناتوانی بەکاربێت لەبەر ئەوەی '''\$wgUseDatabaseMessages''' لەکار خستراوە.",
 'allmessages-filter-legend'     => 'پاڵێو',
 'allmessages-filter-unmodified' => 'چاکسازی نەکراو',
@@ -2790,7 +2790,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'دەستکاریی ئەم پەڕەیە بکە بە بەکارھێنانی پڕۆگرامێکی دەرەکی',
-'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [http://www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
+'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [//www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ھەموو',

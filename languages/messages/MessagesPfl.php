@@ -726,7 +726,7 @@ Annere Metadate sinn standardmäßig versteckelt.
 
 # External editor support
 'edit-externally'      => 'Die Datei bearwaide mit ener externe Aawendung',
-'edit-externally-help' => '(Guck uff [http://www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fer meh Informatione)',
+'edit-externally-help' => '(Guck uff [//www.mediawiki.org/wiki/Manual:External_editors Installationsaawisige] fer meh Informatione)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alle',

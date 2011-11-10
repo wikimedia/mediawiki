@@ -1098,7 +1098,7 @@ $3',
 
 # External editor support
 'edit-externally'      => 'Ивын ацы файл æддаг программæйæ',
-'edit-externally-help' => '(Кæс [http://www.mediawiki.org/wiki/Manual:External_editors сывæрыны уагæвæрдтæ] фылдæр базонынæн)',
+'edit-externally-help' => '(Кæс [//www.mediawiki.org/wiki/Manual:External_editors сывæрыны уагæвæрдтæ] фылдæр базонынæн)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'иууылдæр',

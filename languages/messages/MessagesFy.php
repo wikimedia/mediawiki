@@ -2034,7 +2034,7 @@ De doelside "[[:$1]]" is der al. Moat dy wiske wurde om plak te meitsjen foar it
 'allmessagesdefault' => 'Standerttekst',
 'allmessagescurrent' => 'Tekst yn de nijste ferzje',
 'allmessagestext'    => 'Dit is in list fan alle systeemberjochten beskikber yn de MediaWiki-nammeromte.
-Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [http://translatewiki.net translatewiki.net].',
+Sjoch: [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [http://translatewiki.net translatewiki.net].',
 
 # Thumbnails
 'thumbnail-more'           => 'Fergrutsje',
@@ -2244,7 +2244,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 
 # External editor support
 'edit-externally'      => 'Wizigje dizze triem mei in ekstern programma',
-'edit-externally-help' => 'Sjoch de [http://www.mediawiki.org/wiki/Manual:External_editors ynstel-hantlieding] foar mear ynformaasje.',
+'edit-externally-help' => 'Sjoch de [//www.mediawiki.org/wiki/Manual:External_editors ynstel-hantlieding] foar mear ynformaasje.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',

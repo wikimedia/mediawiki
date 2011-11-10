@@ -868,7 +868,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'И файл патан программа куьмекдалди дуьзар хъувун',
-'edit-externally-help' => '(Алава малумат патал [http://www.mediawiki.org/wiki/Manual:External_editors эцигунин регьбервилиз] килига)',
+'edit-externally-help' => '(Алава малумат патал [//www.mediawiki.org/wiki/Manual:External_editors эцигунин регьбервилиз] килига)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вири',

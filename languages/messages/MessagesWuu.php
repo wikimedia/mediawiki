@@ -1538,7 +1538,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部应用程序来编辑该只文件',
-'edit-externally-help' => '（请参见[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
+'edit-externally-help' => '（请参见[//www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

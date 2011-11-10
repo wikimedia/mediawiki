@@ -331,8 +331,8 @@ $messages = array(
 'tog-shownumberswatching'     => 't Antal gebrukers bekieken die disse pagina volgt',
 'tog-oldsig'                  => 'Bestaonde haandtekening:',
 'tog-fancysig'                => 'Ondertekening zien as wikitekste (zonder automatiese verwiezing)',
-'tog-externaleditor'          => 'Standard n externe tekstbewarker gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
-'tog-externaldiff'            => 'Standard n extern vergeliekingsprogramma gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [http://www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
+'tog-externaleditor'          => 'Standard n externe tekstbewarker gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
+'tog-externaldiff'            => 'Standard n extern vergeliekingsprogramma gebruken (allinnig veur gevorderden - veur disse funksie bin spesiale instellingen neudig. [//www.mediawiki.org/wiki/Manual:External_editors Meer informasie]).',
 'tog-showjumplinks'           => '"Gao naor"-verwiezingen toelaoten',
 'tog-uselivepreview'          => 'Gebruuk "rechtstreeks naokieken" (mö\'j JavaScript veur hebben - experimenteel)',
 'tog-forceeditsummary'        => 'Geef n melding bie n lege samenvatting',
@@ -2731,7 +2731,7 @@ A'j dat leste doon willen dan ku'j oek n verwiezing gebruken, bieveurbeeld [[{{#
 'allmessagesdefault'            => 'Standardtekste',
 'allmessagescurrent'            => 'De leste versie',
 'allmessagestext'               => "Hieronder steet n lieste mit alle systeemteksten in de MediaWiki-naamruumte.
-Kiek oek effen bie [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [http://translatewiki.net translatewiki.net] a'j biedragen willen an de algemene vertaling veur MediaWiki.",
+Kiek oek effen bie [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [http://translatewiki.net translatewiki.net] a'j biedragen willen an de algemene vertaling veur MediaWiki.",
 'allmessagesnotsupportedDB'     => "Disse pagina kan niet gebruukt wörden umdat '''\$wgUseDatabaseMessages''' uuteschakeld is.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filtreer op wiezigingen:',
@@ -3411,7 +3411,7 @@ Aandere velden wörden verbörgen.
 
 # External editor support
 'edit-externally'      => 'Wiezig dit bestaand mit n extern programma',
-'edit-externally-help' => '(Zie de [http://www.mediawiki.org/wiki/Manual:External_editors installasie-instruksies] veur meer informasie)',
+'edit-externally-help' => '(Zie de [//www.mediawiki.org/wiki/Manual:External_editors installasie-instruksies] veur meer informasie)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'alles',
@@ -3595,7 +3595,7 @@ Je kunnen oek [[Special:EditWatchlist|t standardbewarkingsscharm gebruken]].",
 'version-hook-subscribedby'     => 'In-eschreven deur',
 'version-version'               => '(Versie $1)',
 'version-license'               => 'Lisensie',
-'version-poweredby-credits'     => "Disse wiki wörden an-estuurd deur '''[http://www.mediawiki.org/ MediaWiki]''', auteursrecht © 2001-$1 $2.",
+'version-poweredby-credits'     => "Disse wiki wörden an-estuurd deur '''[//www.mediawiki.org/ MediaWiki]''', auteursrecht © 2001-$1 $2.",
 'version-poweredby-others'      => 'aanderen',
 'version-license-info'          => 'MediaWiki is vrieje programmatuur; je kunnen MediaWiki verspreien en/of anpassen onder de veurweerden van de GNU General Public License zo as epubliceerd deur de Free Software Foundation; of versie 2 van de Lisensie, of - naor eigen wuns - n laotere versie.
 

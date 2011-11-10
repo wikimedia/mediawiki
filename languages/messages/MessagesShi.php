@@ -1224,7 +1224,7 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 
 # External editor support
 'edit-externally'      => 'Bddl asdaw ad s wasnas abrrani',
-'edit-externally-help' => '(Ẓṛ [http://www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] bac ad taf uggar n inɣmisn)',
+'edit-externally-help' => '(Ẓṛ [//www.mediawiki.org/wiki/Manual:External_editors/fr les instructions d’installation] bac ad taf uggar n inɣmisn)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kraygat (kullu)',

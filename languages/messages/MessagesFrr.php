@@ -50,8 +50,8 @@ $messages = array(
 'tog-oldsig'                  => 'Aktuel signatuur:',
 'tog-fancysig'                => 'Signatuur behoonle ås wikitäkst',
 'tog-externaleditor'          => 'Gewöönlik äksterne ediitor for färsjoonsunerschiise brüke (bloot for ekspärte, deer mönje spetsjäle önjstalinge aw di äine kompjuuter fornümen wårde
-[http://www.mediawiki.org/wiki/Manual:External_editors Mör informatsjoone.])',
-'tog-externaldiff'            => 'Gewöönlik äkstern program for färsjoonsunerschiise brüke (bloot for ekspärte, deer mönje spetsjäle önjstalinge aw di äine kompjuuter fornümen wårde[http://www.mediawiki.org/wiki/Manual:External_editors Mör informatsjoone.])',
+[//www.mediawiki.org/wiki/Manual:External_editors Mör informatsjoone.])',
+'tog-externaldiff'            => 'Gewöönlik äkstern program for färsjoonsunerschiise brüke (bloot for ekspärte, deer mönje spetsjäle önjstalinge aw di äine kompjuuter fornümen wårde[//www.mediawiki.org/wiki/Manual:External_editors Mör informatsjoone.])',
 'tog-showjumplinks'           => '"Schafte tu"-ferbininge aktiwiire',
 'tog-uselivepreview'          => 'Live-forbekiik ferwiinje (brükt JavaScript) (äksperimentäl)',
 'tog-forceeditsummary'        => 'Woorschoue, wan bai dåt spiikern jü tuhuupefooting breecht',
@@ -1443,7 +1443,7 @@ Deeraw föliende sidelinke önj dåtseelwi ra definiire ütnååme, önj di kont
 
 # External editor support
 'edit-externally'      => 'Jüdeer dåtäi ma en äkstärn prugram beårbe',
-'edit-externally-help' => '(Sii da [http://www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen] for widere Informasjoon)',
+'edit-externally-help' => '(Sii da [//www.mediawiki.org/wiki/Manual:External_editors Installationsanweisungen] for widere Informasjoon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'åle',

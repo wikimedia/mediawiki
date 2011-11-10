@@ -1587,7 +1587,7 @@ $1',
 'allmessagesdefault'        => '默认文字',
 'allmessagescurrent'        => '眼前𠮶文字',
 'allmessagestext'           => '个首列到全部制定得正𠮶系统界面。
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系统界面功能'''关卟嘞（'''\$wgUseDatabaseMessages'''）。",
 
 # Thumbnails
@@ -2055,7 +2055,7 @@ $1',
 
 # External editor support
 'edit-externally'      => '用外部程式来编辑个只档案',
-'edit-externally-help' => '请参看[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解别𠮶内容。',
+'edit-externally-help' => '请参看[//www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解别𠮶内容。',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

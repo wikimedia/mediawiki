@@ -237,8 +237,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Гайта декъашхойн терахь, агlо латийна болу шай тергаме могlам юкъа',
 'tog-oldsig'                  => 'Хьалххьажар долучу куьгтаlорна:',
 'tog-fancysig'                => 'Шен вики-къастаман куьгтаlдар (ша шех хьажориг йоцуш)',
-'tog-externaleditor'          => 'Лелайан арахьара рéдаккхар (гlулкхдириг леррина нисйина хила йеза, [http://www.mediawiki.org/wiki/Manual:External_editors кхин дlа.])',
-'tog-externaldiff'            => 'Лелабан арахьара диллагlарам башхо тарйо гlирс (гlулкхдириг леррина нисйина хила йеза, [http://www.mediawiki.org/wiki/Manual:External_editors кхин дlа.])',
+'tog-externaleditor'          => 'Лелайан арахьара рéдаккхар (гlулкхдириг леррина нисйина хила йеза, [//www.mediawiki.org/wiki/Manual:External_editors кхин дlа.])',
+'tog-externaldiff'            => 'Лелабан арахьара диллагlарам башхо тарйо гlирс (гlулкхдириг леррина нисйина хила йеза, [//www.mediawiki.org/wiki/Manual:External_editors кхин дlа.])',
 'tog-showjumplinks'           => 'Латайе гlодарна хьажоригаш «дехьа вала оцу»',
 'tog-uselivepreview'          => 'Лелайа чехка хьалха хьажа (JavaScript, муха ю хьажарна)',
 'tog-forceeditsummary'        => 'Дага даийта, нагахь нисйарх лаьцна чохь язъйина язахь',
@@ -1427,7 +1427,7 @@ PICT # тайп тайпан
 
 # External editor support
 'edit-externally'      => 'Рéдаккха хlокху хlуман, арахьара диллагlарам лелош',
-'edit-externally-help' => '(мадарра хьажа. оцу [http://www.mediawiki.org/wiki/Manual:External_editors куьйгалийца дlахlотторе])',
+'edit-externally-help' => '(мадарра хьажа. оцу [//www.mediawiki.org/wiki/Manual:External_editors куьйгалийца дlахlотторе])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'массо',

@@ -329,8 +329,8 @@ $messages = array(
 'tog-shownumberswatching'     => '주시 사용자 수 보기',
 'tog-oldsig'                  => '사용 중인 서명:',
 'tog-fancysig'                => '서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)',
-'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 정보 보기])',
-'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 설명 보기])',
+'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [//www.mediawiki.org/wiki/Manual:External_editors 자세한 정보 보기])',
+'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [//www.mediawiki.org/wiki/Manual:External_editors 자세한 설명 보기])',
 'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
 'tog-uselivepreview'          => '실시간 미리 보기 사용하기 (자바스크립트 사용, 시험 중)',
 'tog-forceeditsummary'        => '편집 요약을 쓰지 않았을 때 알려주기',
@@ -2723,7 +2723,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'allmessagesname'               => '이름',
 'allmessagesdefault'            => '기본 내용',
 'allmessagescurrent'            => '현재 내용',
-'allmessagestext'               => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net translatewiki.net]에 참가해주세요.',
+'allmessagestext'               => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으면 [//www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net translatewiki.net]에 참가해주세요.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 이 문서는 쓸 수 없습니다.",
 'allmessages-filter-legend'     => '필터',
 'allmessages-filter'            => '수정 상태로 거르기:',
@@ -3311,7 +3311,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',
-'edit-externally-help' => '(자세한 정보는 [http://www.mediawiki.org/wiki/Manual:External_editors 설치 방법]을 참고하십시오)',
+'edit-externally-help' => '(자세한 정보는 [//www.mediawiki.org/wiki/Manual:External_editors 설치 방법]을 참고하십시오)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '모든 기간',
@@ -3493,7 +3493,7 @@ $1',
 'version-hook-subscribedby'     => '훅이 사용된 위치',
 'version-version'               => '(버전 $1)',
 'version-license'               => '라이센스',
-'version-poweredby-credits'     => "이 위키는 '''[http://www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "이 위키는 '''[//www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others'      => '그 외 다른 개발자',
 'version-license-info'          => '미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 

@@ -329,8 +329,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'पहारा दिलेले सदस्य दाखवा',
 'tog-oldsig'                  => 'सध्याचे सहीची झलक:',
 'tog-fancysig'                => 'सही विकिसंज्ञा म्हणून वापरा (आपोआप दुव्याशिवाय)',
-'tog-externaleditor'          => 'कायम बाह्य संपादक वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते) ([http://www.mediawiki.org/wiki/Manual:External_editors अधिक माहिती])',
-'tog-externaldiff'            => 'इतिहास पानावर निवडलेल्या आवृत्त्यांमधील बदल दाखविण्यासाठी बाह्य प्रणाली वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते) ([http://www.mediawiki.org/wiki/Manual:External_editors अधिक माहिती])',
+'tog-externaleditor'          => 'कायम बाह्य संपादक वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते) ([//www.mediawiki.org/wiki/Manual:External_editors अधिक माहिती])',
+'tog-externaldiff'            => 'इतिहास पानावर निवडलेल्या आवृत्त्यांमधील बदल दाखविण्यासाठी बाह्य प्रणाली वापरा (फक्त प्रशिक्षित सदस्यांसाठीच, संगणकावर विशेष प्रणाली लागते) ([//www.mediawiki.org/wiki/Manual:External_editors अधिक माहिती])',
 'tog-showjumplinks'           => '"कडे जा" सुगम दुवे, उपलब्ध करा.',
 'tog-uselivepreview'          => 'संपादन करता करताच झलक दाखवा (जावास्क्रीप्ट)(प्रयोगक्षम)',
 'tog-forceeditsummary'        => 'जर ’बदलांचा आढावा’ दिला नसेल तर मला सूचित करा',
@@ -3105,7 +3105,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'बाहेरील संगणक प्रणाली वापरून ही संचिका संपादा.',
-'edit-externally-help' => 'अधिक माहितीसाठी स्थापन करण्याच्या सूचना [http://www.mediawiki.org/wiki/Manual:External_editors] येथे पहा.',
+'edit-externally-help' => 'अधिक माहितीसाठी स्थापन करण्याच्या सूचना [//www.mediawiki.org/wiki/Manual:External_editors] येथे पहा.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सर्व',
@@ -3247,7 +3247,7 @@ $1',
 'version-hook-subscribedby'     => 'वर्गणीदार',
 'version-version'               => '(आवृत्ती $1)',
 'version-license'               => 'परवाना',
-'version-poweredby-credits'     => "हा विकी '''[http://www.mediawiki.org/ मीडियाविकी]'''द्वारे संचालित आहे, प्रताधिकारित © २००१-$1 $2.",
+'version-poweredby-credits'     => "हा विकी '''[//www.mediawiki.org/ मीडियाविकी]'''द्वारे संचालित आहे, प्रताधिकारित © २००१-$1 $2.",
 'version-poweredby-others'      => 'इतर',
 'version-software'              => 'स्थापित संगणक प्रणाली (Installed software)',
 'version-software-product'      => 'उत्पादन',

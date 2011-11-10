@@ -48,8 +48,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Tujuakkan jumlah pamantau',
 'tog-oldsig'                  => 'Pratayang tando tangan:',
 'tog-fancysig'                => 'Palakuan tando tangan sabagai teks wiki (tanpa suatu tautan otomatis)',
-'tog-externaleditor'          => 'Gunokan editor eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [http://www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
-'tog-externaldiff'            => 'Gunokan diff eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [http://www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
+'tog-externaleditor'          => 'Gunokan editor eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [//www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
+'tog-externaldiff'            => 'Gunokan diff eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [//www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
 'tog-showjumplinks'           => 'Aktifkan tautan pambantu "langsuang ka"',
 'tog-uselivepreview'          => 'Gunokan pratayang langsuang (JavaScript) (eksperimental)',
 'tog-forceeditsummary'        => 'Ingekkan awak bilo kotak ringkasan suntiangan masih kosoang',
@@ -1227,7 +1227,7 @@ Nan lainnyo akan tasuruak sacaro default.
 
 # External editor support
 'edit-externally'      => 'Suntiang berkas ko dengan aplikasi lua',
-'edit-externally-help' => '(Lihek [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuak maklumat lanjutnyo)',
+'edit-externally-help' => '(Lihek [//www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuak maklumat lanjutnyo)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'semua',

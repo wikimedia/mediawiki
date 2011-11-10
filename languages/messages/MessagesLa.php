@@ -186,8 +186,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Numerum usorum custodientium monstrare',
 'tog-oldsig'                  => 'Subscriptio ad tempus adhibita:',
 'tog-fancysig'                => 'Subscriptio vicitext (sine nexu automatico)',
-'tog-externaleditor'          => 'Utere editore externo semper (pro peritus solo, requirat speciales optiones in calculone. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff'            => 'Utere editore dissimilitudine externa semper (pro peritus solo, requirat speciales optiones in calculone. [http://www.mediawiki.org/wiki/Manial:External_editors More information.])',
+'tog-externaleditor'          => 'Utere editore externo semper (pro peritus solo, requirat speciales optiones in calculone. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => 'Utere editore dissimilitudine externa semper (pro peritus solo, requirat speciales optiones in calculone. [//www.mediawiki.org/wiki/Manial:External_editors More information.])',
 'tog-showjumplinks'           => 'Sinere nexus ostendi forma "salire ad" monstrata',
 'tog-uselivepreview'          => 'Praevisum viventem adhibere (JavaScript)',
 'tog-forceeditsummary'        => 'Si recensionem non summatim descripsero, me roga si continuare velim',
@@ -2200,7 +2200,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 
 # External editor support
 'edit-externally'      => 'Hunc fasciculum in programmate externali recensere',
-'edit-externally-help' => '(Vide et [http://www.mediawiki.org/wiki/Manual:External_editors paginas adiutorias] programmatis externalis)',
+'edit-externally-help' => '(Vide et [//www.mediawiki.org/wiki/Manual:External_editors paginas adiutorias] programmatis externalis)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'omnes',

@@ -77,8 +77,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'চাকুরার সংখ্যাহান দেহাদে',
 'tog-oldsig'                  => 'আগেত্তর আসে স্বাক্ষররহান:',
 'tog-fancysig'                => 'স্বাক্ষরহানরে উইকিটেক্সট বুলিয়া নিংকর (নিজেত্ত লিঙ্ক নেইকরিয়া)',
-'tog-externaleditor'          => 'অকরাতই বারেদের সম্পাদক ব্যবহার কর (হুদ্দা দক্ষ ব্যবহারকারীরকা, কম্পিউটারর মা বিশেষ সেটিংস দরকার। [http://www.mediawiki.org/wiki/Manual:External_editors বিস্তারিত পৌ।])',
-'tog-externaldiff'            => 'অকরাতই বারেদের সম্পাদক ব্যবহার কর (হুদ্দা দক্ষ ব্যবহারকারীরকা, কম্পিউটারর মা বিশেষ সেটিংস দরকার। [http://www.mediawiki.org/wiki/Manual:External_editors বিস্তারিত পৌ।])',
+'tog-externaleditor'          => 'অকরাতই বারেদের সম্পাদক ব্যবহার কর (হুদ্দা দক্ষ ব্যবহারকারীরকা, কম্পিউটারর মা বিশেষ সেটিংস দরকার। [//www.mediawiki.org/wiki/Manual:External_editors বিস্তারিত পৌ।])',
+'tog-externaldiff'            => 'অকরাতই বারেদের সম্পাদক ব্যবহার কর (হুদ্দা দক্ষ ব্যবহারকারীরকা, কম্পিউটারর মা বিশেষ সেটিংস দরকার। [//www.mediawiki.org/wiki/Manual:External_editors বিস্তারিত পৌ।])',
 'tog-showjumplinks'           => '"চঙদে" বুলতারা মিলাপর য়্যাথাঙদে',
 'tog-uselivepreview'          => 'লগে লগে মিল্লেঙ আহান দেহাদে (জাভাস্ক্রিপ্ট) (লইনাসে)',
 'tog-forceeditsummary'        => 'খালি পতা সারমর্ম হমিলে মরে হারপুৱাদে',
@@ -1459,7 +1459,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'allmessagesname'               => 'নাং',
 'allmessagescurrent'            => 'হাদি এহানর ৱাহি',
 'allmessagestext'               => 'তলে মিডিয়াউইকির নাঙরথাকে পানা একরের সিস্টেম পৌহানির তালিকাহান দেনা ইল।
-কৃপা করিয়া [http://www.mediawiki.org/wiki/Localisation মিডিয়াউইকি অনুবাদর হেইচা পাতাত] বারো [http://translatewiki.net translatewiki.net] মিডিয়াউইকি অনুবাদ করানির কা যানা পারর।',
+কৃপা করিয়া [//www.mediawiki.org/wiki/Localisation মিডিয়াউইকি অনুবাদর হেইচা পাতাত] বারো [http://translatewiki.net translatewiki.net] মিডিয়াউইকি অনুবাদ করানির কা যানা পারর।',
 'allmessages-filter-legend'     => 'সাক',
 'allmessages-filter-unmodified' => 'নাসিলথাইতে',
 'allmessages-filter-all'        => 'হাব্বি',
@@ -1595,7 +1595,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 
 # External editor support
 'edit-externally'      => 'এর ফাইল এগ পতানির কা বারেদের এপ্লিকেশন আতা',
-'edit-externally-help' => 'আরাকউ হারপানির কা [http://www.mediawiki.org/wiki/Manual:External_editors সেটাপর নির্দেশহানি] চা।',
+'edit-externally-help' => 'আরাকউ হারপানির কা [//www.mediawiki.org/wiki/Manual:External_editors সেটাপর নির্দেশহানি] চা।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'হাব্বি',

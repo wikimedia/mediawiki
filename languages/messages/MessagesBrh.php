@@ -626,7 +626,7 @@ Dáná bumpad e unning kesa',
 'metadata-collapse' => 'Vaddíko hál e đakka',
 
 # External editor support
-'edit-externally-help' => '(Pen cáindárí kin [http://www.mediawiki.org/wiki/Manual:External_editors joŕ kanning ná sarsoj] e ur)',
+'edit-externally-help' => '(Pen cáindárí kin [//www.mediawiki.org/wiki/Manual:External_editors joŕ kanning ná sarsoj] e ur)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ģuŧŧ',

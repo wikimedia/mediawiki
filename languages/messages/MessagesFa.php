@@ -449,8 +449,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'شمار کاربران پی‌گیری‌کننده نمایش یابد',
 'tog-oldsig'                  => 'امضای کنونی:',
 'tog-fancysig'                => 'امضا به صورت ویکی‌متن در نظر گرفته شود (بدون درج خودکار پیوند)',
-'tog-externaleditor'          => 'استفاده از ویرایشگر خارجی به‌طور پیش‌فرض (فقط برای کاربران پیشرفته. نیازمند تنظیمات ویژه در رایانهٔ‌تان است. [http://www.mediawiki.org/wiki/Manual:External_editors اطلاعات بیشتر].)',
-'tog-externaldiff'            => 'استفاده از تفاوت‌گیر (diff) خارجی به‌طور پیش‌فرض (فقط برای کاربران پیشرفته. نیازمند تنظیمات ویژه در رایانهٔ‌تان است. [http://www.mediawiki.org/wiki/Manual:External_editors اطلاعات بیشتر].)',
+'tog-externaleditor'          => 'استفاده از ویرایشگر خارجی به‌طور پیش‌فرض (فقط برای کاربران پیشرفته. نیازمند تنظیمات ویژه در رایانهٔ‌تان است. [//www.mediawiki.org/wiki/Manual:External_editors اطلاعات بیشتر].)',
+'tog-externaldiff'            => 'استفاده از تفاوت‌گیر (diff) خارجی به‌طور پیش‌فرض (فقط برای کاربران پیشرفته. نیازمند تنظیمات ویژه در رایانهٔ‌تان است. [//www.mediawiki.org/wiki/Manual:External_editors اطلاعات بیشتر].)',
 'tog-showjumplinks'           => 'پیوندهای دسترسی‌پذیری «پرش به» فعال باشد',
 'tog-uselivepreview'          => 'استفاده از پیش‌نمایش زنده (نیازمند جاوااسکریپت) (آزمایشی)',
 'tog-forceeditsummary'        => 'هنگامی که خلاصهٔ ویرایش ننوشته‌ام به من اطلاع داده شود',
@@ -2924,7 +2924,7 @@ $1',
 'allmessagesdefault'            => 'متن پیش‌فرض پیغام',
 'allmessagescurrent'            => 'متن کنونی پیغام',
 'allmessagestext'               => 'این فهرستی از پیغام‌های سامانه‌ای موجود در فضای نام مدیاویکی است.
-چنان‌چه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [http://www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [http://translatewiki.net translatewiki.net] را ببینید.',
+چنان‌چه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [//www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [http://translatewiki.net translatewiki.net] را ببینید.',
 'allmessagesnotsupportedDB'     => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''&lrm;\$wgUseDatabaseMessages''' خاموش شده است.",
 'allmessages-filter-legend'     => 'پالایه',
 'allmessages-filter'            => 'پالودن بر اساس وضعیت شخصی‌سازی:',
@@ -3607,7 +3607,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ویرایش این پرونده با استفاده از ویرایشگر خارجی',
-'edit-externally-help' => '(برای اطلاعات بیشتر [http://www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
+'edit-externally-help' => '(برای اطلاعات بیشتر [//www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه',
@@ -3856,7 +3856,7 @@ $1',
 'version-version'               => '(نسخه $1)',
 'version-svn-revision'          => '(&رلم;r$2)',
 'version-license'               => 'اجازه‌نامه',
-'version-poweredby-credits'     => "این ویکی توسط '''[http://www.mediawiki.org/ مدیاویکی]''' پشتیبانی می‌شود، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
+'version-poweredby-credits'     => "این ویکی توسط '''[//www.mediawiki.org/ مدیاویکی]''' پشتیبانی می‌شود، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
 'version-poweredby-others'      => 'دیگران',
 'version-license-info'          => 'مدیاویکی یک نرم‌افزار رایگان است؛ که شما می‌توانید آن را تحت گنو ال‌جی‌پی‌ال که توسط بنیاد نرم‌افزارهای رایگان منتشر شده‌است، باز نشر کنید؛ یا نسخهٔ ۲ از این محوز، یا (بنا به اختیار) نسخه‌های بعدی.
 

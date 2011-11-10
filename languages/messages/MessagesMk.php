@@ -347,8 +347,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Прикажи го бројот на корисници кои набљудуваат',
 'tog-oldsig'                  => 'Постоечки потпис:',
 'tog-fancysig'                => 'Третирај го потписот како викитекст (без автоматска врска)',
-'tog-externaleditor'          => 'По основно користи надворешен уредувач (само за експерти, потребно е посебно нагодување на сметачот. [http://www.mediawiki.org/wiki/Manual:External_editors Повеќе информации.])',
-'tog-externaldiff'            => 'По основно користи надворешен програм за споредување верзии (само за стручњаци, потребно е специјално нагодување на сметачот. [http://www.mediawiki.org/wiki/Manual:External_editors Повеќе информации.])',
+'tog-externaleditor'          => 'По основно користи надворешен уредувач (само за експерти, потребно е посебно нагодување на сметачот. [//www.mediawiki.org/wiki/Manual:External_editors Повеќе информации.])',
+'tog-externaldiff'            => 'По основно користи надворешен програм за споредување верзии (само за стручњаци, потребно е специјално нагодување на сметачот. [//www.mediawiki.org/wiki/Manual:External_editors Повеќе информации.])',
 'tog-showjumplinks'           => 'Овозможи врски на пристапност „скокни на“',
 'tog-uselivepreview'          => 'Користи преглед во живо (JavaScript) (Експериментално)',
 'tog-forceeditsummary'        => 'Извести ме кога нема опис на промените',
@@ -2835,7 +2835,7 @@ $1',
 'allmessagesdefault'            => 'Текст по основно',
 'allmessagescurrent'            => 'Сегашен текст',
 'allmessagestext'               => 'Ова е список на системските пораки расположиви за именскиот простор „МедијаВики“.
-Одете на [http://www.mediawiki.org/wiki/Localisation Локализација на МедијаВики] и [http://translatewiki.net translatewiki.net] ако сакате да придонесете кон општата локализација на МедијаВики.',
+Одете на [//www.mediawiki.org/wiki/Localisation Локализација на МедијаВики] и [http://translatewiki.net translatewiki.net] ако сакате да придонесете кон општата локализација на МедијаВики.',
 'allmessagesnotsupportedDB'     => "Оваа страница не може да се користи бидејќи '''\$wgUseDatabaseMessages''' е исклучено.",
 'allmessages-filter-legend'     => 'Филтер',
 'allmessages-filter'            => 'Филтрирај по состојба на прилагодувањето:',
@@ -3619,7 +3619,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => 'Уреди ја податотеката со надворешен програм',
-'edit-externally-help' => '(Видете [http://www.mediawiki.org/wiki/Manual:External_editors повеќе напатствија] за нагодувањето).',
+'edit-externally-help' => '(Видете [//www.mediawiki.org/wiki/Manual:External_editors повеќе напатствија] за нагодувањето).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'сите',
@@ -3886,7 +3886,7 @@ $1',
 'version-version'               => '(Верзија $1)',
 'version-svn-revision'          => '(рев. $2)',
 'version-license'               => 'Лиценца',
-'version-poweredby-credits'     => "Ова вики работи на '''[http://www.mediawiki.org/ МедијаВики]''', авторски права © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ова вики работи на '''[//www.mediawiki.org/ МедијаВики]''', авторски права © 2001-$1 $2.",
 'version-poweredby-others'      => 'други',
 'version-license-info'          => 'МедијаВики е слободна програмска опрема; можете да ја редистрибуирате и/или менувате под условите на ГНУ-овата општа јавна лиценца на Фондацијата за слободна програмска опрема; или верзија 2 на Лиценцата, или некоја понова верзија (по ваш избор).
 

@@ -1600,7 +1600,7 @@ Tjerat kanë me mbetë të mshefuna.
 
 # External editor support
 'edit-externally'      => 'Ndryshoni kët figurë/skedë me një mjet të jashtëm',
-'edit-externally-help' => '(Shih [http://www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për mâ shumë informata)',
+'edit-externally-help' => '(Shih [//www.mediawiki.org/wiki/Manual:External_editors udhëzimet e instalimit] për mâ shumë informata)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'krejt',

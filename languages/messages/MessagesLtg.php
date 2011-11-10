@@ -874,7 +874,7 @@ Puorejī lauki, piec nūklusiejuma, byus nūglobuoti.
 
 # External editor support
 'edit-externally'      => 'Izmaineit itū failu ar uoreju programu',
-'edit-externally-help' => '(Verīs [http://www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, kab dabuotu vaira informacejis).',
+'edit-externally-help' => '(Verīs [//www.mediawiki.org/wiki/Manual:External_editors instrukcijas] Mediawiki.org, kab dabuotu vaira informacejis).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'vysys',

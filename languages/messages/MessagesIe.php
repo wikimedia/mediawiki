@@ -162,8 +162,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Monstrar li númere de usatores vigilant',
 'tog-oldsig'                  => 'Prevision de signature in existentie:',
 'tog-fancysig'                => 'Tractar signature quam textu wiki (sin un catenun auto-crate)',
-'tog-externaleditor'          => 'Usar redactor extern per contumacie (solmen por usatores expert, besona de colocationes special in tui computator. [http://www.mediawiki.org/wiki/Manual:External_editors Plu information.])',
-'tog-externaldiff'            => 'Usar diferentie extern per contumacie (solmen por usatores expert, besona de colocationes special in tui computator. [http://www.mediawiki.org/wiki/Manual:External_editors Plu information.])',
+'tog-externaleditor'          => 'Usar redactor extern per contumacie (solmen por usatores expert, besona de colocationes special in tui computator. [//www.mediawiki.org/wiki/Manual:External_editors Plu information.])',
+'tog-externaldiff'            => 'Usar diferentie extern per contumacie (solmen por usatores expert, besona de colocationes special in tui computator. [//www.mediawiki.org/wiki/Manual:External_editors Plu information.])',
 'tog-showjumplinks'           => 'Permisser catenunes de accessebilitá "saltar a"',
 'tog-uselivepreview'          => 'Usar prevision in vivi (exige JavaScript) (experimental)',
 'tog-forceeditsummary'        => 'Suggester me quande intrar un redaction che summarium in blanc',
@@ -1256,7 +1256,7 @@ Altri va esser ocultat per contumacie.
 
 # External editor support
 'edit-externally'      => 'Redacter ti file usant un aplication extern',
-'edit-externally-help' => '(Vider li [http://www.mediawiki.org/wiki/Manual:External_editors instructiones de installation] por plu information)',
+'edit-externally-help' => '(Vider li [//www.mediawiki.org/wiki/Manual:External_editors instructiones de installation] por plu information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'omni',

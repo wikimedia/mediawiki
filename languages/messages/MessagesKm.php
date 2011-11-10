@@ -292,8 +292,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'បង្ហាញ​ចំនួនអ្នកប្រើប្រាស់​ដែលតាមដាន​ទំព័រនេះ',
 'tog-oldsig'                  => 'ហត្ថលេខាមានហើយ៖',
 'tog-fancysig'                => 'ចុះហត្ថលេខា​ជា​អត្ថបទវិគី​ (ដោយ​គ្មានតំណភ្ជាប់​ស្វ័យប្រវត្តិ)',
-'tog-externaleditor'          => 'ប្រើប្រាស់​ឧបករណ៍​កែប្រែខាងក្រៅ​តាមលំនាំដើម (សម្រាប់តែអ្នកមានជំនាញប៉ុណ្ណោះនិងត្រូវការការកំណត់ពិសេសៗនៅលើកុំព្យូទ័ររបស់អ្នក។ [http://www.mediawiki.org/wiki/Manual:External_editors ព័ត៌មានបន្ថែម]។)',
-'tog-externaldiff'            => 'ប្រើប្រាស់​ឧបករណ៍​ប្រៀបធៀបខាងក្រៅ​តាមលំនាំដើម (សម្រាប់តែអ្នកមានជំនាញប៉ុណ្ណោះនិងត្រូវការការកំណត់ពិសេសៗនៅលើកុំព្យូទ័ររបស់អ្នក។ [http://www.mediawiki.org/wiki/Manual:External_editors ព័ត៌មានបន្ថែម]។)',
+'tog-externaleditor'          => 'ប្រើប្រាស់​ឧបករណ៍​កែប្រែខាងក្រៅ​តាមលំនាំដើម (សម្រាប់តែអ្នកមានជំនាញប៉ុណ្ណោះនិងត្រូវការការកំណត់ពិសេសៗនៅលើកុំព្យូទ័ររបស់អ្នក។ [//www.mediawiki.org/wiki/Manual:External_editors ព័ត៌មានបន្ថែម]។)',
+'tog-externaldiff'            => 'ប្រើប្រាស់​ឧបករណ៍​ប្រៀបធៀបខាងក្រៅ​តាមលំនាំដើម (សម្រាប់តែអ្នកមានជំនាញប៉ុណ្ណោះនិងត្រូវការការកំណត់ពិសេសៗនៅលើកុំព្យូទ័ររបស់អ្នក។ [//www.mediawiki.org/wiki/Manual:External_editors ព័ត៌មានបន្ថែម]។)',
 'tog-showjumplinks'           => 'ប្រើតំណភ្ជាប់ "លោតទៅ"',
 'tog-uselivepreview'          => 'ប្រើប្រាស់​ការមើលមុនរហ័ស​ (តម្រូវអោយមាន JavaScript) (ស្ថិតក្រោមការពិសោធន៍នៅឡើយ)',
 'tog-forceeditsummary'        => 'សូមរំលឹកខ្ញុំ​កាលបើខ្ញុំទុកប្រអប់ចំណារពន្យល់ឱ្យនៅទំនេរ',
@@ -3159,7 +3159,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'កែប្រែ​ឯកសារ​នេះដោយប្រើប្រាស់​កម្មវិធី​ខាងក្រៅ',
-'edit-externally-help' => '(សូមមើល[http://www.mediawiki.org/wiki/Manual:External_editors ការណែនាំ​អំពី​ការ​ប្រើប្រាស់​]សម្រាប់​​ព័ត៌មាន​បន្ថែម)',
+'edit-externally-help' => '(សូមមើល[//www.mediawiki.org/wiki/Manual:External_editors ការណែនាំ​អំពី​ការ​ប្រើប្រាស់​]សម្រាប់​​ព័ត៌មាន​បន្ថែម)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ទាំងអស់',
@@ -3326,7 +3326,7 @@ $1',
 'version-hook-subscribedby'   => 'បានជាវ ជាប្រចាំ ដោយ',
 'version-version'             => '(កំណែ $1)',
 'version-license'             => 'អាជ្ញាប័ណ្ណ',
-'version-poweredby-credits'   => "វិគីនេះឧបត្ថម្ភដោយ '''[http://www.mediawiki.org/ មេឌាវិគី]''', រក្សាសិទ្ធ © ២០០១-$1 $2។",
+'version-poweredby-credits'   => "វិគីនេះឧបត្ថម្ភដោយ '''[//www.mediawiki.org/ មេឌាវិគី]''', រក្សាសិទ្ធ © ២០០១-$1 $2។",
 'version-poweredby-others'    => 'អ្នកដទៃទៀត',
 'version-software'            => 'ផ្នែកទន់​ដែល​បានដំឡើង',
 'version-software-product'    => 'ផលិតផល',

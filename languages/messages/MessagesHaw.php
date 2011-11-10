@@ -824,7 +824,7 @@ Hiki iā ʻoe ke ʻikena i kāna molekumu.',
 'ilsubmit' => 'Huli',
 
 # External editor support
-'edit-externally-help' => '(E ʻike i nā [http://www.mediawiki.org/wiki/Manual:External_editors aʻo palapala no ka hoʻokuene ʻana])',
+'edit-externally-help' => '(E ʻike i nā [//www.mediawiki.org/wiki/Manual:External_editors aʻo palapala no ka hoʻokuene ʻana])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'apau',

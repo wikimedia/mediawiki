@@ -562,7 +562,7 @@ $messages = array(
 
 # External editor support
 'edit-externally'      => 'Едитязэ ачест фишиер фолосинд о апликацие екстернэ',
-'edit-externally-help' => '(Везь [http://www.mediawiki.org/wiki/Manual:External_editors инструкциунь де инсталаре] пентру май мулте информаций)',
+'edit-externally-help' => '(Везь [//www.mediawiki.org/wiki/Manual:External_editors инструкциунь де инсталаре] пентру май мулте информаций)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'тоате',

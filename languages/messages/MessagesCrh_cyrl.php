@@ -1704,7 +1704,7 @@ $UNWATCHURL
 'allmessagesdefault' => 'Оригиналь метин',
 'allmessagescurrent' => 'Шимди къулланылгъан метин',
 'allmessagestext'    => 'Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.
-MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net translatewiki.net] саифелерине зиярет этинъиз.',
+MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net translatewiki.net] саифелерине зиярет этинъиз.',
 
 # Thumbnails
 'thumbnail-more'           => 'Буют',
@@ -1946,7 +1946,7 @@ MediaWiki интерфейсининъ чешит тиллерге терджи�
 
 # External editor support
 'edit-externally'      => 'Файл узеринде компьютеринъизде булунгъан программалар иле денъишикликлер япынъыз',
-'edit-externally-help' => '(Даа зияде малюмат ичюн [http://www.mediawiki.org/wiki/Manual:External_editors бу саифеге] (Инглиздже) бакъып оласынъыз.)',
+'edit-externally-help' => '(Даа зияде малюмат ичюн [//www.mediawiki.org/wiki/Manual:External_editors бу саифеге] (Инглиздже) бакъып оласынъыз.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'эписини',

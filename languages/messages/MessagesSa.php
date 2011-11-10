@@ -305,7 +305,7 @@ $messages = array(
 'tog-shownumberswatching'     => 'निरीक्षमाणानां योजकानां संख्या दर्श्यताम्',
 'tog-oldsig'                  => 'विद्यमानं हस्ताङ्कनम्:',
 'tog-fancysig'                => 'हस्ताक्षराणि विकिपाठवत् सन्तु (स्वचालित-संबंधनेभ्यः रहितानि)।',
-'tog-externaleditor'          => 'Use external editor by default (for experts only, needs special settings on your computer. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaleditor'          => 'Use external editor by default (for experts only, needs special settings on your computer. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-externaldiff'            => 'अकथिते (बाइ डिफाल्ट् इति), बाह्य अंतरक्रमादेशं प्रयोजयतु (केवलेभ्यः निपुणेभ्यः, भवतः संगणके विशेषाः न्यासाः आवश्यकाः)।',
 'tog-showjumplinks'           => '"इत्येतत् प्रति कूर्दयतु" इति संबंधनानि समर्थयतु।',
 'tog-uselivepreview'          => 'संपादनेन सहैव प्राग्दृश्यं दर्शयतु (जावालिपिः अपेक्ष्यते) (प्रयोगात्मकम्)।',
@@ -1594,7 +1594,7 @@ You may ignore this message, if this account was created in error.',
 
 # External editor support
 'edit-externally'      => 'बाह्यां प्रणालीम् उपयुज्य इयं सञ्चिका सम्पाद्यताम् ।',
-'edit-externally-help' => '(अधिकासूचनार्थं [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] इत्येतत् दृश्यताम्)',
+'edit-externally-help' => '(अधिकासूचनार्थं [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] इत्येतत् दृश्यताम्)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सर्वाणि',

@@ -2036,7 +2036,7 @@ Možeš tyž užyć linku, np.[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] do 
 'allmessagesdefault'        => 'Tekst důmyślny',
 'allmessagescurrent'        => 'Tekst uobecny',
 'allmessagestext'           => 'Uoto lista wšyjstkych kůmůńikatůw systymowych dostympnych w přestřyńi mjan MedjaWiki.
-Uodwjydź [http://www.mediawiki.org/wiki/Localisation Tuůmačyńy MediaWiki] a tyž [http://translatewiki.net translatewiki.net] kejbyś chćou učestńičyć w tuůmačyńu uoprůgramowańo MediaWiki.',
+Uodwjydź [//www.mediawiki.org/wiki/Localisation Tuůmačyńy MediaWiki] a tyž [http://translatewiki.net translatewiki.net] kejbyś chćou učestńičyć w tuůmačyńu uoprůgramowańo MediaWiki.',
 'allmessagesnotsupportedDB' => "Ta zajta ńy može być užyta, bez tůž co zmjynna '''\$wgUseDatabaseMessages''' je wůuůnčůno.",
 
 # Thumbnails
@@ -2521,7 +2521,7 @@ Eli plik był modyfikowany, dane mogům w tajli ńy być we zgodźe ze parametr�
 
 # External editor support
 'edit-externally'      => 'Sprowjej tyn plik bez eksterno aplikacyjo',
-'edit-externally-help' => '(Zobocz [http://www.mediawiki.org/wiki/Manual:External_editors instrukcyje sztalowańo eksternych edytorůw], kaj je uo tym wjyncy naszkryflůne)',
+'edit-externally-help' => '(Zobocz [//www.mediawiki.org/wiki/Manual:External_editors instrukcyje sztalowańo eksternych edytorůw], kaj je uo tym wjyncy naszkryflůne)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'do kupy',
