@@ -92,8 +92,22 @@
 			expect( uri.getQueryString() ).toEqual( 'q=uri' );
 		} );
 
-		describe( "should handle multiple value query args", function() {
-			var uri = new mw.Uri( 'http://www.sample.com/dir/?m=foo&m=bar&n=1' );
+		describe( "should handle multiple value query args (overrideKeys on)", function() {
+			var uri = new mw.Uri( 'http://www.sample.com/dir/?m=foo&m=bar&n=1', { overrideKeys: true } );
+			it ( "should parse with multiple values", function() {
+				expect( uri.query.m ).toEqual( 'bar' );
+				expect( uri.query.n ).toEqual( '1' );
+			} );
+			it ( "should accept multiple values", function() {
+				uri.query.n = [ "x", "y", "z" ];
+				expect( uri.toString() ).toContain( 'm=bar' );
+				expect( uri.toString() ).toContain( 'n=x&n=y&n=z' );
+				expect( uri.toString().length ).toEqual( 'http://www.sample.com/dir/?m=bar&n=x&n=y&n=z'.length );
+			} );
+		} );
+
+		describe( "should handle multiple value query args (overrideKeys off)", function() {
+			var uri = new mw.Uri( 'http://www.sample.com/dir/?m=foo&m=bar&n=1', { overrideKeys: false } );
 			it ( "should parse with multiple values", function() {
 				expect( uri.query.m.length ).toEqual( 2 );
 				expect( uri.query.m[0] ).toEqual( 'foo' );

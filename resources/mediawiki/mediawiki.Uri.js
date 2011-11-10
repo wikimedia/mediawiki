@@ -89,7 +89,7 @@
 		'host',      // www.test.com
 		'port',      // 81
 		'path',      // /dir/dir.2/index.htm
-		'query',     // q1=0&&test1&test2=value (will become { q1: 0, test1: '', test2: 'value' } )
+		'query',     // q1=0&&test1&test2=value (will become { q1: '0', test1: '', test2: 'value' } )
 		'fragment'   // top
 	];
 
@@ -103,14 +103,23 @@
 		/**
 		 * Constructs URI object. Throws error if arguments are illegal/impossible, or otherwise don't parse.
 		 * @constructor
-		 * @param {!Object|String} URI string, or an Object with appropriate properties (especially another URI object to clone). Object must have non-blank 'protocol', 'host', and 'path' properties.
-		 * @param {Boolean} strict mode (when parsing a string)
+		 * @param {Object|String} URI string, or an Object with appropriate properties (especially another URI object to clone).
+		 * Object must have non-blank 'protocol', 'host', and 'path' properties.
+		 * @param {Object|Boolean} Object with options, or (backwards compatibility) a boolean for strictMode
+		 * - strictMode {Boolean} Trigger strict mode parsing of the url. Default: false
+		 * - overrideKeys {Boolean} Wether to let duplicate query parameters override eachother (true) or automagically
+		 *   convert to an array (false, default).
 		 */
-		function Uri( uri, strictMode ) {
-			strictMode = !!strictMode;
+		function Uri( uri, options ) {
+			options = typeof options === 'object' ? options : { strictMode: !!options };
+			options = $.extend( {
+				strictMode: false,
+				overrideKeys: false
+			}, options );
+
 			if ( uri !== undefined && uri !== null || uri !== '' ) {
 				if ( typeof uri === 'string' ) {
-					this._parse( uri, strictMode );
+					this._parse( uri, options );
 				} else if ( typeof uri === 'object' ) {
 					var _this = this;
 					$.each( properties, function( i, property ) {
@@ -159,11 +168,11 @@
 			/**
 			 * Parse a string and set our properties accordingly.
 			 * @param {String} URI
-			 * @param {Boolean} strictness
+			 * @param {Object} options
 			 * @return {Boolean} success
 			 */
-			_parse: function( str, strictMode ) {
-				var matches = parser[ strictMode ? 'strict' : 'loose' ].exec( str );
+			_parse: function( str, options ) {
+				var matches = parser[ options.strictMode ? 'strict' : 'loose' ].exec( str );
 				var uri = this;
 				$.each( properties, function( i, property ) {
 					uri[ property ] = matches[ i+1 ];
@@ -179,13 +188,22 @@
 						if ( $1 ) {
 							var k = Uri.decode( $1 );
 							var v = ( $2 === '' || $2 === undefined ) ? null : Uri.decode( $3 );
-							if ( typeof q[ k ] === 'string' ) {
-								q[ k ] = [ q[ k ] ];
-							}
-							if ( typeof q[ k ] === 'object' ) {
-								q[ k ].push( v );
-							} else {
+
+							// If overrideKeys, always (re)set top level value.
+							// If not overrideKeys but this key wasn't set before, then we set it as well.
+							if ( options.overrideKeys || q[ k ] === undefined ) {
 								q[ k ] = v;
+
+							// Use arrays if overrideKeys is false and key was already seen before
+							} else {
+								// Once before, still a string, turn into an array
+								if ( typeof q[ k ] === 'string' ) {
+									q[ k ] = [ q[ k ] ];
+								}
+								// Add to the array
+								if ( $.isArray( q[ k ] ) ) {
+									q[ k ].push( v );
+								}
 							}
 						}
 					} );
