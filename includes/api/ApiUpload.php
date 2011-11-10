@@ -222,9 +222,10 @@ class ApiUpload extends ApiBase {
 		$request = $this->getMain()->getRequest();
 
 		// chunk or one and only one of the following parameters is needed
-		if(!$this->mParams['chunk'])
+		if( !$this->mParams['chunk'] ) {
 			$this->requireOnlyOneParameter( $this->mParams,
-					'filekey', 'file', 'url', 'statuskey' );
+				'filekey', 'file', 'url', 'statuskey' );
+		}
 
 		if ( $this->mParams['statuskey'] ) {
 			$this->checkAsyncDownloadEnabled();
