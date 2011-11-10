@@ -93,9 +93,10 @@ if ( $maintenance->getDbType() === Maintenance::DB_ADMIN &&
 {
 	require( MWInit::interpretedPath( 'AdminSettings.php' ) );
 }
-$maintenance->finalSetup();
 // Some last includes
 require_once( MWInit::compiledPath( 'includes/Setup.php' ) );
+
+$maintenance->finalSetup();
 
 // Much much faster startup than creating a title object
 $wgTitle = null;
