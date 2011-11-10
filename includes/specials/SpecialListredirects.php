@@ -90,7 +90,7 @@ class ListredirectsPage extends QueryPage {
 			);
 		} else {
 			$title = Title::makeTitle( $row->namespace, $row->title );
-			$article = new Article( $title );
+			$article = WikiPage::factory( $title );
 			return $article->getRedirectTarget();
 		}
 	}
