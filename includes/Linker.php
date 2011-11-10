@@ -254,7 +254,7 @@ class Linker {
 			$query['action'] = 'edit';
 			$query['redlink'] = '1';
 		}
-		$ret = $target->getLinkUrl( $query );
+		$ret = $target->getLinkURL( $query );
 		wfProfileOut( __METHOD__ );
 		return $ret;
 	}
