@@ -121,8 +121,8 @@ class DbTestPreviewer extends TestRecorder  {
 	function start() {
 		parent::start();
 
-		if ( ! $this->db->tableExists( 'testrun' )
-			or ! $this->db->tableExists( 'testitem' ) )
+		if ( ! $this->db->tableExists( 'testrun', __METHOD__ )
+			|| ! $this->db->tableExists( 'testitem', __METHOD__ ) )
 		{
 			print "WARNING> `testrun` table not found in database.\n";
 			$this->prevRun = false;
@@ -305,7 +305,7 @@ class DbTestRecorder extends DbTestPreviewer  {
 		$this->db->begin();
 
 		if ( ! $this->db->tableExists( 'testrun' )
-			or ! $this->db->tableExists( 'testitem' ) )
+			|| ! $this->db->tableExists( 'testitem' ) )
 		{
 			print "WARNING> `testrun` table not found in database. Trying to create table.\n";
 			$this->db->sourceFile( $this->db->patchPath( 'patch-testrun.sql' ) );
