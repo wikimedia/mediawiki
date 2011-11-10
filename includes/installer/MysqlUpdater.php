@@ -583,7 +583,7 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "ok\n" );
 
 		if ( !$this->db->tableExists( 'user_rights', __METHOD__ ) ) {
-			if ( $this->db->fieldExists( 'user', 'user_rights' ) ) {
+			if ( $this->db->fieldExists( 'user', 'user_rights', __METHOD__ ) ) {
 				$this->output( "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion..." );
 				$this->db->applyPatch( 'patch-user_rights.sql' );
 				$this->output( "ok\n" );
@@ -762,7 +762,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	protected function doMaybeProfilingMemoryUpdate() {
 		if ( !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
 			// Simply ignore
-		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory' ) ) {
+		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
 			$this->output( "...profiling table has pf_memory field.\n" );
 		} else {
 			$this->output( "Adding pf_memory field to table profiling..." );
@@ -793,7 +793,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function renameEuWikiId() {
-		if ( $this->db->fieldExists( 'external_user', 'eu_local_id' ) ) {
+		if ( $this->db->fieldExists( 'external_user', 'eu_local_id', __METHOD__ ) ) {
 			$this->output( "...eu_wiki_id already renamed to eu_local_id.\n" );
 			return;
 		}

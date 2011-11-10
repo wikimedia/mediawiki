@@ -316,7 +316,7 @@ abstract class DatabaseUpdater {
 	 */
 	protected function canUseNewUpdatelog() {
 		return $this->db->tableExists( 'updatelog', __METHOD__ ) &&
-			$this->db->fieldExists( 'updatelog', 'ul_value' );
+			$this->db->fieldExists( 'updatelog', 'ul_value', __METHOD__ );
 	}
 
 	/**
@@ -418,7 +418,7 @@ abstract class DatabaseUpdater {
 	protected function addField( $table, $field, $patch, $fullpath = false ) {
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping new field patch\n" );
-		} elseif ( $this->db->fieldExists( $table, $field ) ) {
+		} elseif ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "...have $field field in $table table.\n" );
 		} else {
 			$this->output( "Adding $field field to table $table..." );
@@ -435,7 +435,7 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
 	protected function addIndex( $table, $index, $patch, $fullpath = false ) {
-		if ( $this->db->indexExists( $table, $index ) ) {
+		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "...$index key already set on $table table.\n" );
 		} else {
 			$this->output( "Adding $index key to table $table... " );
@@ -453,7 +453,7 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean Whether to treat $patch path as a relative or not
 	 */
 	protected function dropField( $table, $field, $patch, $fullpath = false ) {
-		if ( $this->db->fieldExists( $table, $field ) ) {
+		if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "Table $table contains $field field. Dropping... " );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "ok\n" );
@@ -471,7 +471,7 @@ abstract class DatabaseUpdater {
 	 * @param $fullpath Boolean: Whether to treat $patch path as a relative or not
 	 */
 	protected function dropIndex( $table, $index, $patch, $fullpath = false ) {
-		if ( $this->db->indexExists( $table, $index ) ) {
+		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "Dropping $index key from table $table... " );
 			$this->applyPatch( $patch, $fullpath );
 			$this->output( "ok\n" );
@@ -507,7 +507,7 @@ abstract class DatabaseUpdater {
 		$updateKey = "$table-$field-$patch";
 		if ( !$this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "...$table table does not exist, skipping modify field patch\n" );
-		} elseif ( !$this->db->fieldExists( $table, $field ) ) {
+		} elseif ( !$this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "...$field field does not exist in $table table, skipping modify field patch\n" );
 		} elseif( $this->updateRowExists( $updateKey ) ) {
 			$this->output( "...$field in table $table already modified by patch $patch\n" );
