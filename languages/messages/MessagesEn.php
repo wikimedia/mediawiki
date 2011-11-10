@@ -1016,7 +1016,7 @@ Please try again in a few minutes.',
 'protectedinterface'   => 'This page provides interface text for the software, and is protected to prevent abuse.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
-For translations, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL query hidden)',
 'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
 $2',
@@ -3292,7 +3292,7 @@ In the latter case you can also use a link, for example [[{{#Special:Export}}/{{
 'allmessagesdefault'            => 'Default message text',
 'allmessagescurrent'            => 'Current message text',
 'allmessagestext'               => 'This is a list of system messages available in the MediaWiki namespace.
-Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB'     => "This page cannot be used because '''\$wgUseDatabaseMessages''' has been disabled.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter by customisation state:',
