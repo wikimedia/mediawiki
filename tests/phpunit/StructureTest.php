@@ -1,10 +1,10 @@
 <?php
 /**
  * The tests here verify the structure of the code.  This is for outright bugs,
- * not just style issues. 
+ * not just style issues.
  */
 
-class structureTest extends MediaWikiTestCase {
+class StructureTest extends MediaWikiTestCase {
 	/**
 	 * Verify all files that appear to be tests have file names ending in
 	 * Test.  If the file names do not end in Test, they will not be run.
