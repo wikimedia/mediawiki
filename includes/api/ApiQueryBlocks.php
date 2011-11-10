@@ -130,8 +130,8 @@ class ApiQueryBlocks extends ApiQueryBase {
 			$this->addWhereIf( 'ipb_user != 0', isset( $show['account'] ) );
 			$this->addWhereIf( 'ipb_user != 0 OR ipb_range_end > ipb_range_start', isset( $show['!ip'] ) );
 			$this->addWhereIf( 'ipb_user = 0 AND ipb_range_end = ipb_range_start', isset( $show['ip'] ) );
-			$this->addWhereIf( 'ipb_expiry =  '.$db->addQuotes($db->getInfinity(), isset( $show['!temp'] ) );
-			$this->addWhereIf( 'ipb_expiry != '.$db->addQuotes($db->getInfinity(), isset( $show['temp'] ) );
+			$this->addWhereIf( 'ipb_expiry =  '.$db->addQuotes($db->getInfinity()), isset( $show['!temp'] ) );
+			$this->addWhereIf( 'ipb_expiry != '.$db->addQuotes($db->getInfinity()), isset( $show['temp'] ) );
 			$this->addWhereIf( "ipb_range_end = ipb_range_start", isset( $show['!range'] ) );
 			$this->addWhereIf( "ipb_range_end > ipb_range_start", isset( $show['range'] ) );
 		}
