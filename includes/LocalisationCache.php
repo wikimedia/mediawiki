@@ -731,10 +731,10 @@ class LocalisationCache {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-	
+
 		# Save to the persistent cache
 		$this->store->startWrite( $code );
-		foreach ( $allData as $key => $value ) {
+		foreach ( $data as $key => $value ) {
 			if ( in_array( $key, self::$splitKeys ) ) {
 				foreach ( $value as $subkey => $subvalue ) {
 					$this->store->set( "$key:$subkey", $subvalue );
