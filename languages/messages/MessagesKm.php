@@ -2062,7 +2062,7 @@ $1',
 # Special:LinkSearch
 'linksearch'      => 'ស្វែងរកតំណភ្ជាប់ខាង​ក្រៅ​',
 'linksearch-pat'  => 'ស្វែងរកគំរូ៖',
-'linksearch-ns'   => 'ប្រភេទ៖',
+'linksearch-ns'   => 'លំហឈ្មោះ៖',
 'linksearch-ok'   => 'ស្វែងរក',
 'linksearch-text' => 'កូដពិសេសដូចជា "*.wikipedia.org" អាចប្រើបាន។<br />
 ប្រូតូខូលប្រើបាន៖ <tt>$1</tt>',

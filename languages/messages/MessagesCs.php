@@ -715,6 +715,7 @@ Možná už byl(a) smazán(a) někým jiným.',
 Funkce: $1<br />
 Dotaz: $2',
 'viewsource'           => 'Zobrazit zdroj',
+'viewsource-title'     => 'Zobrazení zdroje stránky $1',
 'actionthrottled'      => 'Akce byla pozastavena',
 'actionthrottledtext'  => 'Vzhledem k protispamovým opatřením nemůžete požadovanou akci provádět příliš častokrát v krátké době. Zkuste to znovu za několik minut.',
 'protectedpagetext'    => 'Tato stránka byla zamčena, takže ji nelze editovat.',
@@ -1832,9 +1833,9 @@ Nelze náležitě zkontrolovat jeho bezpečnost.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Přístup odepřen',
 'img-auth-nopathinfo'       => 'Chybí PATH_INFO.
-Váš server není nastaven tak, aby poskytoval tuto informaci.
+Váš server není nastaven tak, aby tuto informaci poskytoval.
 Možná funguje pomocí CGI a img_auth na něm nemůže fungovat.
-Vizte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Vizte [//www.mediawiki.org/wiki/Manual:Image_Authorization Manual:Image Authorization].',
 'img-auth-notindir'         => 'Požadovaná cesta nespadá pod nakonfigurovaný adresář s načtenými soubory.',
 'img-auth-badtitle'         => 'Z „$1“ nelze vytvořit platný název stránky.',
 'img-auth-nologinnWL'       => 'Nejste přihlášen(a) a „$1“ není na bílé listině.',
@@ -2245,7 +2246,7 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'watchmethod-list'     => 'hledají se nejnovější editace sledovaných stránek',
 'watchlistcontains'    => 'Na svém seznamu sledovaných stránek máte $1 {{PLURAL:$1|položku|položky|položek}}.',
 'iteminvalidname'      => 'Problém s položkou „$1“, neplatný název…',
-'wlnote'               => 'Níže je {{PLURAL:$1|poslední změna|poslední $1 změny|posledních $1 změn}} za {{PLURAL:$2|poslední|poslední|posledních}} <b>$2</b> {{PLURAL:$2|hodinu|hodiny|hodin}}.',
+'wlnote'               => "Níže {{PLURAL:$1|je poslední změna|jsou poslední '''$1''' změny|je posledních '''$1''' změn}} za {{PLURAL:$2|poslední hodinu|poslední '''$2''' hodiny|posledních '''$2''' hodin}} do $4, $3.",
 'wlshowlast'           => 'Ukázat posledních $1 hodin $2 dnů $3',
 'watchlist-options'    => 'Možnosti sledovaných stránek',
 
@@ -2439,6 +2440,7 @@ Pro částečné obnovení zaškrtněte čtverečky u obnovovaných revizí a kl
 
 Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|knize smazaných stránek]].",
 'undelete-header'              => 'Vizte nedávno smazané stránky v [[Special:Log/delete|knize smazaných stránek]].',
+'undelete-search-title'        => 'Hledání smazaných stránek',
 'undelete-search-box'          => 'Hledání smazaných stránek',
 'undelete-search-prefix'       => 'Zobraz stránky začínající na:',
 'undelete-search-submit'       => 'Hledat',
@@ -2447,6 +2449,7 @@ Záznam o posledních mazáních a obnoveních najdete v [[Special:Log/delete|kn
 'undelete-bad-store-key'       => 'Nelze obnovit verzi souboru s časovou značkou $1: soubor před smazáním chyběl.',
 'undelete-cleanup-error'       => 'Chyba při mazání nepoužívaného archivního souboru „$1“.',
 'undelete-missing-filearchive' => 'Nepodařilo se obnovit soubor archivu s identifikací $1 , protože není v databázi. Možná již byl obnoven.',
+'undelete-error'               => 'Chyba při obnovování stránky',
 'undelete-error-short'         => 'Chyba při obnovování souboru: $1',
 'undelete-error-long'          => 'Vyskytla se chyba při obnovování souboru:
 

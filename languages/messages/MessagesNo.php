@@ -657,6 +657,7 @@ Vennligst rapporter dette til en [[Special:ListUsers/sysop|administrator]], oppg
 'formerror'            => 'Feil: klarte ikke å sende skjema',
 'badarticleerror'      => 'Handlingen kan ikke utføres på denne siden.',
 'cannotdelete'         => 'Kunne ikke slette filen «$1». Den kan ha blitt slettet av noen andre.',
+'cannotdelete-title'   => 'Kan ikke slette siden «$1»',
 'badtitle'             => 'Ugyldig tittel',
 'badtitletext'         => 'Den ønskede tittelen var ugyldig, tom eller feilaktig lenket fra en annen wiki.
 Det kan inneholder en eller flere tegn som ikke kan brukes i titler.',
@@ -667,10 +668,12 @@ Det kan inneholder en eller flere tegn som ikke kan brukes i titler.',
 Funksjon: $1<br />
 Spørring: $2',
 'viewsource'           => 'Vis kildetekst',
+'viewsource-title'     => 'Vis kilden til $1',
 'actionthrottled'      => 'Handlingsgrense overskredet',
 'actionthrottledtext'  => 'For å beskytte mot spam, kan du ikke utføre denne handlingen for mange ganger i løpet av et kort tidssrom, og du har overskredet denne grensen. Prøv igjen om noen minutter.',
 'protectedpagetext'    => 'Denne siden har blitt låst for redigeringer.',
 'viewsourcetext'       => 'Du kan se og kopiere kilden til denne siden:',
+'viewyourtext'         => "Du kan se og kopiere kilden til '''dine endringer''' på denne siden:",
 'protectedinterface'   => 'Denne siden viser brukergrensesnittet for programvaren, og er låst for å hindre misbruk.',
 'editinginterface'     => "'''Advarsel:''' Du redigerer en side som brukes i grensesnittet for programvaren. Endringer på denne siden vil påvirke hvordan grensesnittet vil se ut. For oversettelser er det best om du bruker [//translatewiki.net/wiki/Main_Page?setlang=no translatewiki.net], prosjektet for oversettelse av MediaWiki.",
 'sqlhidden'            => '(SQL-spørring skjult)',
@@ -1576,6 +1579,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'action-suppressionlog'       => 'se denne private loggen',
 'action-block'                => 'blokkere denne brukeren fra å redigere',
 'action-protect'              => 'endre denne sidens beskyttelsesnivåer',
+'action-rollback'             => 'tilbakestill raskt endringene til den siste brukeren som redigerte en bestemt side',
 'action-import'               => 'importere denne siden fra en annen wiki',
 'action-importupload'         => 'importere denne siden fra en opplastet fil',
 'action-patrol'               => 'merke andre brukeres redigeringer som patruljert',
@@ -1794,10 +1798,10 @@ Den kan ikke sikkerhetskontrolleres.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Ingen tilgang',
-'img-auth-nopathinfo'       => 'PATH_INFO mangler.
+'img-auth-nopathinfo'       => 'Manglende PATH_INFO.
 Tjeneren din er ikke satt opp til å gi denne informasjonen.
 Den er kanskje CGI-basert og støtter ikke img_auth.
-Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Se bildeautorisasjon.]',
 'img-auth-notindir'         => 'Den ønskede stien finnes ikke i den oppsatte opplastingsmappa.',
 'img-auth-badtitle'         => 'Kunne ikke lage en gyldig tittel ut fra «$1».',
 'img-auth-nologinnWL'       => 'Du er ikke logget inn, og «$1» er ikke på hvitelista.',
@@ -1960,7 +1964,7 @@ Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 'statistics-users-active-desc' => 'Brukere som har utført handlinger {{PLURAL:$1|det siste døgnet|de siste $1 dagene}}',
 'statistics-mostpopular'       => 'Mest viste sider',
 
-'disambiguations'      => 'Artikler med flertydige titler',
+'disambiguations'      => 'Sider som lenker til artikler med flertydige titler',
 'disambiguationspage'  => 'Template:Peker',
 'disambiguations-text' => "Følgende sider lenker til en '''pekerside'''.
 De burde i stedet lenke til en passende innholdsside.<br />
@@ -2100,7 +2104,7 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'sp-deletedcontributions-contribs' => 'bidrag',
 
 # Special:LinkSearch
-'linksearch'       => 'Eksterne lenker',
+'linksearch'       => 'Søk i eksterne lenker',
 'linksearch-pat'   => 'Søkemønster:',
 'linksearch-ns'    => 'Navnerom:',
 'linksearch-ok'    => 'Søk',
@@ -2208,7 +2212,7 @@ Fremtidige endringer til denne siden og den tilhørende diskusjonssiden blir lis
 'watchmethod-list'     => 'sjekker siste endringer for sider i overvåkningslisten',
 'watchlistcontains'    => 'Overvåkningslisten inneholder $1 {{PLURAL:$1|side|sider}}.',
 'iteminvalidname'      => 'Problem med «$1», ugyldig navn&nbsp;…',
-'wlnote'               => "Nedenfor er {{PLURAL:$1|den siste endringen|de siste $1 endringene}} {{PLURAL:$2|den siste timen|de siste '''$2''' timene}}.",
+'wlnote'               => "Nedenfor er {{PLURAL:$1|den siste endringen|de siste '''$1''' endringene}} {{PLURAL:$2|den siste timen|de siste '''$2''' timene}}, fra den $3, kl. $4",
 'wlshowlast'           => 'Vis siste $1 timer $2 dager $3',
 'watchlist-options'    => 'Alternativ for overvåkningslisten',
 
@@ -2316,7 +2320,10 @@ Se [[Special:ProtectedPages|listen over beskyttede sider]] for listen over gjeld
 'unprotectedarticle'          => 'fjernet beskyttelse av «[[$1]]»',
 'movedarticleprotection'      => 'flyttet beskyttelsesinnstillinger fra «[[$2]]» til «[[$1]]»',
 'protect-title'               => 'Låser «$1»',
+'protect-title-notallowed'    => 'Vis beskyttelsesnivået til «$1»',
 'prot_1movedto2'              => '[[$1]] flyttet til [[$2]]',
+'protect-badnamespace-title'  => 'Navnerom som ikke kan beskyttes',
+'protect-badnamespace-text'   => 'Sider i dette navnerommet kan ikke beskyttes.',
 'protect-legend'              => 'Bekreft låsing',
 'protectcomment'              => 'Årsak:',
 'protectexpiry'               => 'Utløper:',
@@ -2400,6 +2407,7 @@ Dersom en ny side ved samme navn har blitt oprettet etter slettingen, vil de gje
 
 Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger og gjenopprettelser.",
 'undelete-header'              => 'Se [[Special:Log/delete|slettingsloggen]] for nylig slettede sider.',
+'undelete-search-title'        => 'Søk i slettede sider',
 'undelete-search-box'          => 'Søk i slettede sider',
 'undelete-search-prefix'       => 'Vis sider som starter med:',
 'undelete-search-submit'       => 'Søk',
@@ -2408,6 +2416,7 @@ Sjekk [[Special:Log/delete|slettingsloggen]] for en liste over nylige slettinger
 'undelete-bad-store-key'       => 'Kan ikke gjenopprette filrevisjon med tidstrykk $1: fil manglet før sletting',
 'undelete-cleanup-error'       => 'Feil i sletting av ubrukt arkivfil «$1».',
 'undelete-missing-filearchive' => 'Klarte ikke å gjenopprette filarkivet med ID $1 fordi det ikke er i databasen. Det kan ha blitt gjenopprettet tidligere.',
+'undelete-error'               => 'Feil under gjenoppretting av siden',
 'undelete-error-short'         => 'Feil under filgjenoppretting: $1',
 'undelete-error-long'          => 'Feil oppsto under filgjenoppretting:
 

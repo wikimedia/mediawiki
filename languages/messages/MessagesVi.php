@@ -1791,7 +1791,7 @@ Không thể kiểm tra nó về bảo mật.',
 'img-auth-nopathinfo'       => 'Thiếu PATH_INFO.
 Máy chủ của bạn không được thiết lập để truyền thông tin này.
 Có thể do nó dựa trên CGI và không hỗ trợ img_auth.
-Xem http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Xem [//www.mediawiki.org/wiki/Manual:Image_Authorization hướng dẫn điều khiển truy cập hình ảnh].',
 'img-auth-notindir'         => 'Đường dẫn yêu cầu không nằm trong thư mục cấu hình tải lên.',
 'img-auth-badtitle'         => 'Không thể tạo tựa đề hợp lệ từ “$1”.',
 'img-auth-nologinnWL'       => 'Bạn chưa đăng nhập và “$1” không nằm trong danh sách trắng.',

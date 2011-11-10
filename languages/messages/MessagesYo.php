@@ -410,6 +410,7 @@ Tí kì bá ṣe bẹ́ẹ̀, ó lè jẹ́ pé ẹ ti rí àsìṣe nínú atò
 'badarticleerror'      => 'Ìgbéṣẹ̀ yìí kò ṣe é ṣe lórí ojúewé yìí.',
 'cannotdelete'         => 'Ojúewé tàbí fáìlì "$1" kò ṣe é parẹ́.
 Oníṣe mìíràn le ti paárẹ́.',
+'cannotdelete-title'   => 'Kò le pa ojúewè "$1" rẹ́',
 'badtitle'             => 'Àkọ́lé búrurú',
 'badtitletext'         => 'Àkọlé ojúewé tí ẹ bèrè fún kò ní ìbáramu, jẹ́ òfo, tàbí áṣìṣe wà nínú ìjápọ̀ àkọlé láàrin èdè tàbí láàrin wiki.
 Ó ṣe é ṣe kó jẹ́pé ó ní ìkan tàbí ọ̀pọ̀ àmi-lẹ́tà tí kò ṣe é lò nínú àkọlé.',
@@ -421,6 +422,7 @@ Oníṣe mìíràn le ti paárẹ́.',
 Ìlò: $1<br />
 Ìtọrọ: $2',
 'viewsource'           => 'Wo àmìọ̀rọ̀',
+'viewsource-title'     => 'Ẹ wo ìsun fún $1',
 'actionthrottled'      => 'Ìgbése bíntín',
 'actionthrottledtext'  => 'Láti dènà spam, ìgbése yìí kò ní ṣe é ṣe lọ́nà iye púpọ̀ láàrin àsìkò bíntín, ẹ̀yin sì ti kọjá iye náà.
 Ẹjọ̀wọ́ ẹ gbíyànjú síi ní ìsẹ́jú díẹ̀.',

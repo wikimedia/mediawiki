@@ -1673,7 +1673,7 @@ Ia tidak dapat diperiksa dengan betul demi keselamatan.',
 'img-auth-nopathinfo'       => 'Tiada PATH_INFO.
 Pelayan anda tidak ditetapkan untuk menyampaikan maklumat ini.
 Ia barangkali berdasarkan CGI dan tidak boleh menyokong img_auth.
-Lihat http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Lihat keizinan imej.]',
 'img-auth-notindir'         => 'Laluan yang diminta tiada dalam direktori muat naik yang telah dikonfigurasikan.',
 'img-auth-badtitle'         => 'Tajuk yang sah tidak dapat dibina daripada "$1".',
 'img-auth-nologinnWL'       => 'Anda belum log masuk dan "$1" tiada dalam senarai putih.',

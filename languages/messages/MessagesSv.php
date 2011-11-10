@@ -678,6 +678,7 @@ Den kan innehålla ett eller flera tecken som inte får användas i sidtitlar.',
 'querypage-no-updates' => 'Uppdatering av den här sidan är inte aktiverad. Datan kommer i nuläget inte att uppdateras.',
 'wrong_wfQuery_params' => 'Felaktiga parametrar för wfQuery()<br /> Funktion: $1<br /> Förfrågan: $2',
 'viewsource'           => 'Visa wikitext',
+'viewsource-title'     => 'Visa källkod för $1',
 'actionthrottled'      => 'Åtgärden stoppades',
 'actionthrottledtext'  => 'Som skydd mot spam, finns det en begränsning av hur många gånger du kan utföra den här åtgärden under en viss tid. Du har överskridit den gränsen. Försök igen om några minuter.',
 'protectedpagetext'    => 'Den här sidan har skrivskyddats för att förhindra redigering.',
@@ -1814,10 +1815,10 @@ Den kan inte säkerhetskontrolleras ordentligt.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Åtkomst nekad',
-'img-auth-nopathinfo'       => 'Saknad PATH_INFO.
+'img-auth-nopathinfo'       => 'PATH_INFO saknas.
 Din server är inte inställd för att ge denna information.
 Den kan vara CGI-baserad och stöttar inte img_auth.
-Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Se bildbehörighet.]',
 'img-auth-notindir'         => 'Den önskade sökvägen finns inte i den inställda uppladdningskatalogen.',
 'img-auth-badtitle'         => 'Kan inte skapa en giltig titel från "$1"',
 'img-auth-nologinnWL'       => 'Du är inte inloggad och "$1" finns inte i vitlistan.',

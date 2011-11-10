@@ -1719,7 +1719,7 @@ Ni mogoče ustrezno preveriti njene varnosti.',
 'img-auth-nopathinfo'       => 'Manjka PATH_INFO.
 Vaš strežnik ne poda te informacije.
 Morda temelji na CGI in ne more podpirati img_auth.
-Oglejte si http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Oglejte si slikovno avtorizacijo.]',
 'img-auth-notindir'         => 'Zahtevana pot ni v konfigurirani mapi za nalaganje.',
 'img-auth-badtitle'         => 'Ni mogoče sestaviti veljavnega naslova iz »$1«.',
 'img-auth-nologinnWL'       => 'Niste prijavljeni in »$1« ni na seznamu dovoljenih datotek.',
