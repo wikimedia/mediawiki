@@ -11,6 +11,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $db;
 	protected $oldTablePrefix;
 	protected $useTemporaryTables = true;
+	protected $reuseDB = false;
 	private static $dbSetup = false;
 
 	/**
@@ -41,8 +42,10 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
 
 		if( $this->needsDB() ) {
-
 			global $wgDBprefix;
+			
+			$this->useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
+			$this->reuseDB = $this->getCliArg('reuse-db');
 
 			$this->db = wfGetDB( DB_MASTER );
 
@@ -82,6 +85,30 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	function addDBData() {}
 
 	private function addCoreDBData() {
+		if ( $this->db->getType() == 'oracle' ) {
+
+			# Insert 0 user to prevent FK violations
+			# Anonymous user
+			$this->db->insert( 'user', array(
+				'user_id' 		=> 0,
+				'user_name'   	=> 'Anonymous' ), __METHOD__, array( 'IGNORE' ) );
+
+			# Insert 0 page to prevent FK violations
+			# Blank page
+			$this->db->insert( 'page', array(
+				'page_id' => 0,
+				'page_namespace' => 0,
+				'page_title' => ' ',
+				'page_restrictions' => NULL,
+				'page_counter' => 0,
+				'page_is_redirect' => 0,
+				'page_is_new' => 0,
+				'page_random' => 0,
+				'page_touched' => $this->db->timestamp(),
+				'page_latest' => 0,
+				'page_len' => 0 ), __METHOD__, array( 'IGNORE' ) );
+
+		}
 
 		User::resetIdByNameCache();
 
@@ -115,32 +142,17 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 
 		$dbClone = new CloneDatabase( $this->db, $this->listTables(), $this->dbPrefix() );
 		$dbClone->useTemporaryTables( $this->useTemporaryTables );
-		$dbClone->cloneTableStructure();
+
+		if ( ( $this->db->getType() == 'oracle' || !$this->useTemporaryTables ) && $this->reuseDB ) {
+			CloneDatabase::changePrefix( $this->dbPrefix() );
+			$this->resetDB();
+			return;
+		} else {
+			$dbClone->cloneTableStructure();
+		}
 
 		if ( $this->db->getType() == 'oracle' ) {
 			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
-
-			# Insert 0 user to prevent FK violations
-			# Anonymous user
-			$this->db->insert( 'user', array(
-				'user_id' 		=> 0,
-				'user_name'   	=> 'Anonymous' ) );
-
-			# Insert 0 page to prevent FK violations
-			# Blank page
-			$this->db->insert( 'page', array(
-				'page_id' => 0,
-				'page_namespace' => 0,
-				'page_title' => ' ',
-				'page_restrictions' => NULL,
-				'page_counter' => 0,
-				'page_is_redirect' => 0,
-				'page_is_new' => 0,
-				'page_random' => 0,
-				'page_touched' => $this->db->timestamp(),
-				'page_latest' => 0,
-				'page_len' => 0 ) );
-
 		}
 	}
 
@@ -149,35 +161,29 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	 */
 	private function resetDB() {
 		if( $this->db ) {
-			foreach( $this->listTables() as $tbl ) {
-				if( $tbl == 'interwiki' || $tbl == 'user' || $tbl == 'MWUSER' ) continue;
-				if ( $this->db->getType() == 'oracle' ) 
-					$this->db->query( 'TRUNCATE TABLE '.$this->db->tableName($tbl), __METHOD__ );
-				else
-					$this->db->delete( $tbl, '*', __METHOD__ );
-			}
-
-			if ( $this->db->getType() == 'oracle' ) {
-				# Insert 0 page to prevent FK violations
-				# Blank page
-				$this->db->insert( 'page', array(
-					'page_id' => 0,
-					'page_namespace' => 0,
-					'page_title' => ' ',
-					'page_restrictions' => NULL,
-					'page_counter' => 0,
-					'page_is_redirect' => 0,
-					'page_is_new' => 0,
-					'page_random' => 0,
-					'page_touched' => $this->db->timestamp(),
-					'page_latest' => 0,
-					'page_len' => 0 ) );
+			if ( $this->db->getType() == 'oracle' )  {
+				if ( $this->useTemporaryTables ) {
+					wfGetLB()->closeAll();
+					$this->db = wfGetDB( DB_MASTER );
+				} else {
+					foreach( $this->listTables() as $tbl ) {
+						if( $tbl == 'interwiki') continue;
+						$this->db->query( 'TRUNCATE TABLE '.$this->db->tableName($tbl), __METHOD__ );
+					}
+				}
+			} else {
+				foreach( $this->listTables() as $tbl ) {
+					if( $tbl == 'interwiki' || $tbl == 'user' ) continue;
+						$this->db->delete( $tbl, '*', __METHOD__ );
+				}
 			}
 		}
 	}
 
 	protected function destroyDB() {
-		if ( $this->useTemporaryTables || is_null( $this->db ) ) {
+		if ( is_null( $this->db ) || 
+			( $this->useTemporaryTables && $this->db->getType() != 'oracle' ) ||
+			( $this->reuseDB ) ) {
 			# Don't need to do anything
 			return;
 		}
