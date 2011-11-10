@@ -10981,6 +10981,7 @@ Bagaimanapun, MediaWiki memerlukan PHP $2 ke atas.',
 	'config-email-settings' => 'Tetapan e-mel',
 	'config-install-step-done' => 'siap',
 	'config-install-step-failed' => 'gagal',
+	'config-help' => 'bantuan',
 	'mainpagetext' => "'''MediaWiki telah berjaya dipasang.'''",
 	'mainpagedocfooter' => 'Sila rujuk [http://meta.wikimedia.org/wiki/Help:Contents Panduan Penggunaan] untuk maklumat mengenai penggunaan perisian wiki ini.
 

@@ -1898,7 +1898,7 @@ De veiligheid kan niet worden gecontroleerd.',
 'img-auth-nopathinfo'       => 'PATH_INFO mist.
 Uw server is niet ingesteld om deze informatie door te geven.
 Misschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.
-Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization voor meer informatie.',
+Zie [//www.mediawiki.org/wiki/Manual:Image_Authorization rechten voor afbeeldingen] voor meer informatie.',
 'img-auth-notindir'         => 'Het opgevraagde pad is niet de ingestelde uploadmap.',
 'img-auth-badtitle'         => 'Het was niet mogelijk een geldige paginanaam te maken van "$1".',
 'img-auth-nologinnWL'       => 'U bent niet aangemeld en "$1" staat niet op de witte lijst.',

@@ -677,7 +677,9 @@ Vă rugăm să încercați din nou în câteva minute.',
 'viewsourcetext'       => 'Se poate vizualiza și copia conținutul acestei pagini:',
 'viewyourtext'         => "Se poate vizualiza și copia conținutul '''modificărilor dumneavoastră''' efectuate asupra acestei pagini:",
 'protectedinterface'   => 'Această pagină asigură textul interfeței pentru software și este protejată pentru a preveni abuzurile.',
-'editinginterface'     => "'''Avertizare''': Editezi o pagină care este folosită pentru a furniza textul interfeței pentru software. Modificările aduse acestei pagini vor afecta aspectul interfeței utilizatorului pentru alți utilizatori. Pentru traduceri, considerați utilizarea [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proiectul MediaWiki de localizare.",
+'editinginterface'     => "'''Avertizare''': Modificați o pagină care este folosită pentru a furniza textul interfeței software.
+Modificările aduse acestei pagini vor afecta aspectul interfeței pentru alți utilizatori.
+Pentru traduceri, considerați utilizarea [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proiectul MediaWiki de localizare.",
 'sqlhidden'            => '(interogare SQL ascunsă)',
 'cascadeprotected'     => 'Această pagină a fost protejată la scriere deoarece este inclusă în {{PLURAL:$1|următoarea pagină|următoarele pagini}}, care {{PLURAL:$1|este protejată|sunt protejate}} în cascadă:
 $2',
@@ -1797,7 +1799,7 @@ Nu poate fi verificat în mod corespunzător în vederea securității.',
 'img-auth-nopathinfo'       => 'PATH_INFO lipsește.
 Serverul dumneavoastră nu a fost setat pentru a trece aceste informații.
 S-ar putea să fie bazat pe CGI și să nu suporte img_auth.
-Vedeți http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Vedeți autorizarea imaginilor.]',
 'img-auth-notindir'         => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
 'img-auth-badtitle'         => 'Nu s-a putut construi un titlu valid din "$1".',
 'img-auth-nologinnWL'       => 'Nu sunteți autentificat și "$1" nu este pe lista albă.',

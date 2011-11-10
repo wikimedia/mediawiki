@@ -2126,7 +2126,7 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 'watchmethod-list'     => 'controllo degli osservati speciali per modifiche recenti',
 'watchlistcontains'    => 'La lista degli osservati speciali contiene {{PLURAL:$1|una pagina|$1 pagine}}.',
 'iteminvalidname'      => "Problemi con la pagina '$1', nome non valido...",
-'wlnote'               => "Di seguito {{PLURAL:$1|è elencata la modifica più recente apportata|sono elencate le '''$1''' modifiche più recenti apportate}} {{PLURAL:$2|nella scorsa ora|nelle scorse '''$2''' ore}}.",
+'wlnote'               => "Di seguito {{PLURAL:$1|è elencata la modifica più recente apportata|sono elencate le '''$1''' modifiche più recenti apportate}} {{PLURAL:$2|nella scorsa ora|nelle scorse '''$2''' ore}}; i dati sono aggiornati alle $4 del $3.",
 'wlshowlast'           => 'Mostra le ultime $1 ore $2 giorni $3',
 'watchlist-options'    => 'Opzioni osservati speciali',
 

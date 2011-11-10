@@ -843,7 +843,7 @@ $3(e)k emandako arrazoia: ''$2''",
 'viewpagelogs'           => 'Orrialde honen erregistroak ikusi',
 'nohistory'              => 'Orrialde honek ez dauka aldaketa historiarik.',
 'currentrev'             => 'Oraingo berrikuspena',
-'currentrev-asof'        => '$1 datarekin, hauxe da uneko bertsioa:',
+'currentrev-asof'        => 'Hauxe da oraingo bertsioa, $1 data duena',
 'revisionasof'           => '$1(e)ko berrikuspena',
 'revision-info'          => '$2(r)en berrikusketa, ordua: $1',
 'previousrevision'       => '←Berrikuspen zaharragoa',
@@ -3243,8 +3243,8 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'htmlform-selectorother-other' => 'Beste bat',
 
 # New logging system
-'revdelete-restricted'   => 'administratzaileei ezarritako mugak',
-'revdelete-unrestricted' => 'Administratzaileentzako mugak kendu dira',
+'revdelete-restricted'   => 'administratzaileentzako mugak ezarri dira',
+'revdelete-unrestricted' => 'administratzaileentzako mugak kendu dira',
 'newuserlog-byemail'     => 'pasahitza e-postaz bidali da',
 
 );

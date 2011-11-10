@@ -1177,7 +1177,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 # File description page
 'file-anchor-link'       => 'Tóng-àn',
 'filehist'               => 'Tóng-àn ê le̍k-sú',
-'filehist-help'          => '揤日期／時間通看彼時陣的檔案',
+'filehist-help'          => '揤日期／時間就通看彼時陣的檔案',
 'filehist-revert'        => '回轉',
 'filehist-current'       => 'hiān-chāi',
 'filehist-datetime'      => 'Ji̍t-kî/ Sî-kan',
@@ -1189,8 +1189,8 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'imagelinks'             => 'Ēng tio̍h ê  tóng-àn',
 'linkstoimage'           => 'Ē-bīn ê {{PLURAL:$1|ia̍h liân kàu|$1 ia̍h liân kàu}}  chit ê tóng-àn:',
 'nolinkstoimage'         => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
-'sharedupload-desc-here' => '這檔案對$1遐來的，伊可能嘛用佇別的事工，
-伊的說明[$2 檔案說明頁]貼佇下跤。',
+'sharedupload-desc-here' => '這个檔案是對$1遐來的，伊可能嘛用佇別的事工，
+伊[$2 檔案說明頁]的說明佇下跤。',
 
 # MIME search
 'mimesearch' => 'MIME chhiau-chhoē',

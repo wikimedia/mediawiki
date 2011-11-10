@@ -1543,7 +1543,7 @@ $1',
 'img-auth-nopathinfo'   => 'Falta PATH_INFO.
 O suyo servidor no ye configurau ta pasar ista información.
 Puet que siga basau en CGI y no siga compatible con img_auth.
-Se veiga //www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Se veiga http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'A rota solicitada no ye en o directorio de cargas configurau',
 'img-auth-badtitle'     => 'No s\'ha puesto construyir un títol valito dende "$1".',
 'img-auth-nologinnWL'   => 'No ha encetau sesión y "$1" no ye en a lista blanca.',

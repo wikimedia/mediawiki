@@ -1058,8 +1058,10 @@ Sjáðu til þess að þessi breyting sameini breytingarskrárnar samfellt.',
 'mergehistory-list'   => 'Breytingarskrá sem hægt er að sameina',
 
 # Merge log
-'mergelog'    => 'Sameina skrá',
-'revertmerge' => 'Taka aftur sameiningu',
+'mergelog'           => 'Sameiningar skrá',
+'pagemerge-logentry' => 'sameinaði [[$1]] við [[$2]] (útgáfur frá $3)',
+'revertmerge'        => 'Taka aftur sameiningu',
+'mergelogpagetext'   => 'Þetta er skrá yfir síðustu sameiningar einnar síðu við aðra.',
 
 # Diffs
 'history-title'            => 'Breytingaskrá fyrir "$1"',
@@ -2540,7 +2542,7 @@ Vinsamlegast reyndu aftur.',
 
 # Import log
 'importlogpage'                    => 'Innflutningsskrá',
-'importlogpagetext'                => 'Innflutningar möppdýra á síðum ásamt breytingarskránni frá öðrum wiki.',
+'importlogpagetext'                => 'Hér er listi yfir innflutninga möppdýra á síðum ásamt breytingarskránni frá öðrum wiki.',
 'import-logentry-upload'           => 'flutti inn [[$1]] með innflutningi',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|breyting|breytingar}}',
 'import-logentry-interwiki'        => 'flutti inn $1',
@@ -2675,11 +2677,11 @@ Vinsamlegast reyndu aftur.',
 
 # Patrol log
 'patrol-log-page'      => 'Yfirferðarskrá',
-'patrol-log-header'    => 'Þetta er skrá yfir yfirfarna breytingar.',
+'patrol-log-header'    => 'Þetta er skrá yfir yfirfarnar breytingar.',
 'log-show-hide-patrol' => '$1 Listi yfir vaktaðar síður',
 
 # Image deletion
-'deletedrevision'                 => 'Eydd gömul útgáfu $1',
+'deletedrevision'                 => 'Eyddi gamla útgáfu $1',
 'filedeleteerror-short'           => 'Villa við eyðingu: $1',
 'filedeleteerror-long'            => 'Það kom upp villa við eyðingu skráarinnar: $1',
 'filedelete-missing'              => 'Skránni „$1“ er ekki hægt að eyða vegna þess að hún er ekki til.',

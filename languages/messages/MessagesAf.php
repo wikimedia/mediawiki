@@ -1712,7 +1712,7 @@ Dit kan nie behoorlik vir sekuriteit nagegaan word nie.",
 'img-auth-nopathinfo'       => 'PATH_INFO word vermis.
 U bediener is nie ingestel om hierdie inligting deur te stuur nie.
 Miskien gebruik dit CGI, waartydens img_auth nie ondersteun word nie.
-Sien //www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
+Sien http://www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
 'img-auth-notindir'         => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
 'img-auth-badtitle'         => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
 'img-auth-nologinnWL'       => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
