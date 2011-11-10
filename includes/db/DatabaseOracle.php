@@ -746,7 +746,7 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseOracle::duplicateTableStructure' ) {
-		$temporary = 'FALSE'; //$temporary ? 'TRUE' : 'FALSE';
+		$temporary = $temporary ? 'TRUE' : 'FALSE';
 
 		$newName = strtoupper( $newName );
 		$oldName = strtoupper( $oldName );
