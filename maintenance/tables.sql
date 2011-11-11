@@ -265,7 +265,7 @@ CREATE TABLE /*_*/page (
 CREATE UNIQUE INDEX /*i*/name_title ON /*_*/page (page_namespace,page_title);
 CREATE INDEX /*i*/page_random ON /*_*/page (page_random);
 CREATE INDEX /*i*/page_len ON /*_*/page (page_len);
-CREATE INDEX /*i*/page_len_redirect_namespace ON /*_*/page (page_len, page_is_redirect, page_namespace);
+CREATE INDEX /*i*/page_redirect_namespace_len ON /*_*/page (page_is_redirect, page_namespace, page_len);
 
 --
 -- Every edit of a page creates also a revision row.
