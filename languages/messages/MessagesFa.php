@@ -445,8 +445,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'شمار کاربران پی‌گیری‌کننده نمایش یابد',
 'tog-oldsig'                  => 'امضای کنونی:',
 'tog-fancysig'                => 'امضا به صورت ویکی‌متن در نظر گرفته شود (بدون درج خودکار پیوند)',
-'tog-externaleditor'          => 'استفاده از ویرایشگر خارجی به‌طور پیش‌فرض (فقط برای کاربران پیشرفته. نیازمند تنظیمات ویژه در رایانهٔ‌تان است. [http://www.mediawiki.org/wiki/Manual:External_editors اطلاعات بیشتر].)',
-'tog-externaldiff'            => 'استفاده از تفاوت‌گیر (diff) خارجی به‌طور پیش‌فرض (فقط برای کاربران پیشرفته. نیازمند تنظیمات ویژه در رایانهٔ‌تان است. [http://www.mediawiki.org/wiki/Manual:External_editors اطلاعات بیشتر].)',
+'tog-externaleditor'          => 'استفاده از ویرایشگر خارجی به‌طور پیش‌فرض (فقط برای کاربران پیشرفته. نیازمند تنظیمات ویژه در رایانهٔ‌تان است. [//www.mediawiki.org/wiki/Manual:External_editors اطلاعات بیشتر].)',
+'tog-externaldiff'            => 'استفاده از تفاوت‌گیر (diff) خارجی به‌طور پیش‌فرض (فقط برای کاربران پیشرفته. نیازمند تنظیمات ویژه در رایانهٔ‌تان است. [//www.mediawiki.org/wiki/Manual:External_editors اطلاعات بیشتر].)',
 'tog-showjumplinks'           => 'پیوندهای دسترسی‌پذیری «پرش به» فعال باشد',
 'tog-uselivepreview'          => 'استفاده از پیش‌نمایش زنده (نیازمند جاوااسکریپت) (آزمایشی)',
 'tog-forceeditsummary'        => 'هنگامی که خلاصهٔ ویرایش ننوشته‌ام به من اطلاع داده شود',
@@ -797,7 +797,7 @@ $1',
 'protectedinterface'   => 'این صفحه ارائه‌دهندهٔ متنی برای واسط کاربر این نرم‌افزار است و به منظور پیشگیری از خرابکاری قفل شده‌است.',
 'editinginterface'     => "'''هشدار:''' شما صفحه‌ای را ویرایش می‌کنید که شامل  متنی است که در واسط کاربر این نرم‌افزار به کار رفته‌است.
 تغییر این صفحه منجر به تغییر ظاهر واسط کاربر این نرم‌افزار برای دیگر کاربران خواهد شد.
-برای ترجمه، لطفاً از [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، پروژهٔ ترجمهٔ مدیاویکی، استفاده کنید.",
+برای ترجمه، لطفاً از [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، پروژهٔ ترجمهٔ مدیاویکی، استفاده کنید.",
 'sqlhidden'            => '(دستور اس‌کیوال پنهان شده)',
 'cascadeprotected'     => 'این صفحه در مقابل ویرایش محافظت شده‌است برای اینکه در {{PLURAL:$1|صفحهٔ|صفحه‌های}} محافظت‌شدهٔ زیر که گزینهٔ «آبشاری» در {{PLURAL:$1|آن|آنها}} انتخاب شده‌است، قرار گرفته‌است:
 $2',
@@ -950,7 +950,7 @@ $2',
 'passwordreset-domain'         => 'دامنه:',
 'passwordreset-email'          => 'نشانی پست الکترونیک:',
 'passwordreset-emailtitle'     => 'جزئیات حساب در {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'یک فرد (احتمالاً شما، از نشانی آی‌پی $1) درخواست یادآور جزئیات حساب شما را برای وبگاه {{SITENAME}} ($4) درخواست کرده است. {{PLURAL:$3|حساب|حساب‌های}} کاربری زیر با این رایانشانی مرتبط هستند:
+'passwordreset-emailtext-ip'   => 'یک فرد (احتمالاً شما، از نشانی آی‌پی $1) درخواست یادآور جزئیات حساب شما را برای تارنمای {{SITENAME}} ($4) درخواست کرده است. {{PLURAL:$3|حساب|حساب‌های}} کاربری زیر با این رایانشانی مرتبط هستند:
 
 $2
 
@@ -1539,7 +1539,7 @@ $1",
 'prefs-custom-css'              => 'سی‌اس‌اس شخصی',
 'prefs-custom-js'               => 'جاوااسکریپت شخصی',
 'prefs-common-css-js'           => 'سی‌اس‌اس/جاوااسکریپت مشترک برای تمام پوسته‌ها:',
-'prefs-reset-intro'             => 'شما می‌توانید از این صفحه برای بازگرداندن تنظیمات خود به پیش‌فرض وب‌گاه استفاده کنید.
+'prefs-reset-intro'             => 'شما می‌توانید از این صفحه برای بازگرداندن تنظیمات خود به پیش‌فرض تارنما استفاده کنید.
 این کار بازگشت‌ناپذیر است.',
 'prefs-emailconfirm-label'      => 'تأیید پست الکترونیکی:',
 'prefs-textboxsize'             => 'اندازهٔ جعبهٔ ویرایش',
@@ -1977,10 +1977,10 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'دسترسی به نشانی اینترنتی ممکن نشد',
 'upload-curl-error6-text'  => 'نشانی اینترنتی داده شده قابل دسترسی نیست.
-لطفاً درستی آن و اینکه وب‌گاه برقرار است را بررسی کنید.',
+لطفاً درستی آن و اینکه تارنما برقرار است را بررسی کنید.',
 'upload-curl-error28'      => 'مهلت بارگذاری به سر رسید',
-'upload-curl-error28-text' => 'این وب‌گاه بیش از اندازه در پاسخ تعلل کرد.
-لطفاً بررسی کنید که آیا وب‌گاه فعال و برخط است یا نه، سپس لختی درنگ کنید و دوباره تلاش نمایید.
+'upload-curl-error28-text' => 'این تارنما بیش از اندازه در پاسخ تعلل کرد.
+لطفاً بررسی کنید که آیا تارنما فعال و برخط است یا نه، سپس لختی درنگ کنید و دوباره تلاش نمایید.
 شاید بد نباشد که در زمان خلوت‌تری دوباره تلاش کنید.',
 
 'license'            => 'اجازه‌نامه:',
@@ -2928,7 +2928,7 @@ $1',
 'allmessagesdefault'            => 'متن پیش‌فرض پیغام',
 'allmessagescurrent'            => 'متن کنونی پیغام',
 'allmessagestext'               => 'این فهرستی از پیغام‌های سامانه‌ای موجود در فضای نام مدیاویکی است.
-چنان‌چه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [http://www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [http://translatewiki.net translatewiki.net] را ببینید.',
+چنان‌چه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [//www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و [//translatewiki.net translatewiki.net] را ببینید.',
 'allmessagesnotsupportedDB'     => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''&lrm;\$wgUseDatabaseMessages''' خاموش شده است.",
 'allmessages-filter-legend'     => 'پالایه',
 'allmessages-filter'            => 'پالودن بر اساس وضعیت شخصی‌سازی:',
@@ -3609,7 +3609,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ویرایش این پرونده با استفاده از ویرایشگر خارجی',
-'edit-externally-help' => '(برای اطلاعات بیشتر [http://www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
+'edit-externally-help' => '(برای اطلاعات بیشتر [//www.mediawiki.org/wiki/Manual:External_editors دستورالعمل تنظیم] را ببینید)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'همه',
@@ -3858,13 +3858,13 @@ $1',
 'version-version'               => '(نسخه $1)',
 'version-svn-revision'          => '(&رلم;r$2)',
 'version-license'               => 'اجازه‌نامه',
-'version-poweredby-credits'     => "این ویکی توسط '''[http://www.mediawiki.org/ مدیاویکی]''' پشتیبانی می‌شود، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
+'version-poweredby-credits'     => "این ویکی توسط '''[//www.mediawiki.org/ مدیاویکی]''' پشتیبانی می‌شود، کلیهٔ حقوق محفوظ است © 2001-$1 $2.",
 'version-poweredby-others'      => 'دیگران',
 'version-license-info'          => 'مدیاویکی یک نرم‌افزار رایگان است؛ که شما می‌توانید آن را تحت گنو ال‌جی‌پی‌ال که توسط بنیاد نرم‌افزارهای رایگان منتشر شده‌است، باز نشر کنید؛ یا نسخهٔ ۲ از این محوز، یا (بنا به اختیار) نسخه‌های بعدی.
 
 مدیاویکی منتشر شده‌است به امید اینکه مفید واقع شود، بدون هیچ گونه ضمانتی»؛ بدون ضمانت ضمنی که تجاری یا برای یک کار خاصی مناسب باشد. برای اطلاعات بیشتر مجوز گنو جی‌پی‌ال را مشاهده کنید.
 
-شما می‌بایست یک [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] را همراه این برنامه دریافت کرده باشید؛ اگر نه، بنویسید برای شرکت بنیاد نرم‌افزارهای رایگان، 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA یا آن را [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html به صورت بر خط بخوانید].',
+شما می‌بایست یک [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] را همراه این برنامه دریافت کرده باشید؛ اگر نه، بنویسید برای شرکت بنیاد نرم‌افزارهای رایگان، 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA یا آن را [//www.gnu.org/licenses/old-licenses/gpl-2.0.html به صورت بر خط بخوانید].',
 'version-software'              => 'نسخهٔ نصب‌شده',
 'version-software-product'      => 'محصول',
 'version-software-version'      => 'نسخه',
@@ -3944,7 +3944,7 @@ $1',
 # Database error messages
 'dberr-header'      => 'این ویکی یک ایراد دارد',
 'dberr-problems'    => 'شرمنده!
-این وب‌گاه از مشکلات فنی رنج می‌برد.',
+این تارنما از مشکلات فنی رنج می‌برد.',
 'dberr-again'       => 'چند دقیقه صبر کند و دوباره صفحه را بارگیری کنید.',
 'dberr-info'        => '(امکان برقراری ارتباط با کارساز پایگاه داده وجود ندارد: $1)',
 'dberr-usegoogle'   => 'شما در این مدت می‌توانید با استفاده از گوگل جستجو کنید.',

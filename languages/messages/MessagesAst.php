@@ -87,8 +87,8 @@ $messages = array(
 'tog-shownumberswatching'     => "Amosar el númberu d'usuarios que la tán vixilando",
 'tog-oldsig'                  => 'Firma esistente:',
 'tog-fancysig'                => 'Usar la firma como "testu wiki" (ensin enllaz automáticu)',
-'tog-externaleditor'          => 'Usar un editor esternu de mou predeterminao (namái pa espertos, necesita configuraciones especiales nel to ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
-'tog-externaldiff'            => 'Usar un diff esternu de mou predetermináu (namái pa espertos, necesita configuraciones especiales nel to ordenador. [http://www.mediawiki.org/wiki/Manual:External_editors Más información.])',
+'tog-externaleditor'          => 'Usar un editor esternu de mou predeterminao (namái pa espertos, necesita configuraciones especiales nel to ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
+'tog-externaldiff'            => 'Usar un diff esternu de mou predetermináu (namái pa espertos, necesita configuraciones especiales nel to ordenador. [//www.mediawiki.org/wiki/Manual:External_editors Más información.])',
 'tog-showjumplinks'           => 'Activar los enllaces d\'accesibilidá "saltar a"',
 'tog-uselivepreview'          => 'Usar vista previa en direutu (JavaScript) (en pruebes)',
 'tog-forceeditsummary'        => "Avisame cuando grabe col resume d'edición en blanco",
@@ -433,7 +433,7 @@ Por favor vuelve a tentalo dientro d'unos minutos.",
 'protectedinterface'   => "Esta páxina proporciona testu d'interfaz a l'aplicación y ta candada pa evitar el so abusu.",
 'editinginterface'     => "'''Avisu:''' Tas editando una páxina que s'usa pa proporcionar el testu de la interfaz a l'aplicación.
 Los cambeos nesta páxina afeutarán a l'apariencia de la interfaz pa otros usuarios.
-Si quies facer traducciones, por favor usa [http://translatewiki.net/wiki/Main_Page?setlang=ast translatewiki.net], el proyeutu de traducción de MediaWiki.",
+Si quies facer traducciones, por favor usa [//translatewiki.net/wiki/Main_Page?setlang=ast translatewiki.net], el proyeutu de traducción de MediaWiki.",
 'sqlhidden'            => '(consulta SQL escondida)',
 'cascadeprotected'     => 'Esta páxina ta protexida d\'ediciones porque ta enxerta {{PLURAL:$1|na siguiente páxina|nes siguientes páxines}}, que {{PLURAL:$1|ta protexida|tán protexíes}} cola opción "en cascada":
 $2',
@@ -1275,7 +1275,7 @@ Esta información sedrá pública.",
 'right-deleterevision'        => 'Eliminar y restaurar revisiones específiques de les páxines',
 'right-deletedhistory'        => 'Ver entraes eliminaes del historial ensin testu asociáu',
 'right-deletedtext'           => 'Ver el testu desaniciáu y los cambeos ente versiones desaniciaes',
-'right-browsearchive'         => 'Buscar páxines esborraes',
+'right-browsearchive'         => 'Buscar páxines desaniciaes',
 'right-undelete'              => 'Restaurar una páxina',
 'right-suppressrevision'      => 'Revisar y restaurar revisiones ocultes a los alministradores',
 'right-suppressionlog'        => 'Ver rexistros privaos',
@@ -1334,7 +1334,7 @@ Esta información sedrá pública.",
 'action-delete'               => 'eliminar esta páxina',
 'action-deleterevision'       => 'eliminar esta revisión',
 'action-deletedhistory'       => "ver l'historial elimináu d'esta páxina",
-'action-browsearchive'        => 'buscar páxines esborraes',
+'action-browsearchive'        => 'buscar páxines desaniciaes',
 'action-undelete'             => 'restaurar esta páxina',
 'action-suppressrevision'     => 'revisar y restaurar esta revisión oculta',
 'action-suppressionlog'       => 'ver esti rexistru priváu',
@@ -1672,7 +1672,7 @@ La descripción de la [páxina de descripción del ficheru $2] s'amuesa darréu.
 'filerevert-badversion'     => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
-'filedelete'                  => 'Esborrar $1',
+'filedelete'                  => 'Desaniciar $1',
 'filedelete-legend'           => 'Esborrar archivu',
 'filedelete-intro'            => "Tas a piques d'esborrar el ficheru '''[[Media:$1|$1]]''' xunto con tol so historial.",
 'filedelete-intro-old'        => "Tas esborrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
@@ -1737,7 +1737,7 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 'statistics-users-active-desc' => 'Usuarios que realizaron una aición {{PLURAL:$1|nel caberu día|nos caberos $1 díes}}',
 'statistics-mostpopular'       => 'Páxines más vistes',
 
-'disambiguations'      => 'Páxines de dixebra',
+'disambiguations'      => "Páxines qu'enllacen con páxines de dixebra",
 'disambiguationspage'  => 'Template:dixebra',
 'disambiguations-text' => "Les siguientes páxines enllacien a una '''páxina de dixebra'''. En cuenta d'ello habríen enllaciar al artículu apropiáu.<br />Una páxina considérase de dixebra si usa una plantía que tea enllaciada dende [[MediaWiki:Disambiguationspage]]",
 
@@ -1875,7 +1875,7 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'sp-deletedcontributions-contribs' => 'contribuciones',
 
 # Special:LinkSearch
-'linksearch'       => 'Enllaces esternos',
+'linksearch'       => "Gueta d'enllaces esternos",
 'linksearch-pat'   => 'Patrón de busca:',
 'linksearch-ns'    => 'Espaciu de nomes:',
 'linksearch-ok'    => 'Guetar',
@@ -2046,7 +2046,7 @@ Más ayuda y sofitu:
 'excontentauthor'        => "el conteníu yera: '$1' (y l'únicu autor yera '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'          => "el conteníu enantes de dexar en blanco yera: '$1'",
 'exblank'                => 'la páxina taba vacia',
-'delete-confirm'         => 'Esborrar "$1"',
+'delete-confirm'         => 'Desaniciar «$1»',
 'delete-legend'          => 'Desaniciar',
 'historywarning'         => "'''Avisu:'''' La páxina que vas desaniciar tien un historial con aproximadamente $1 {{PLURAL:$1|revisión|revisiones}}:",
 'confirmdeletetext'      => "Tas a piques d'esborrar una páxina xunto con tol so historial.
@@ -2194,7 +2194,7 @@ revisión fuera restaurada o eliminada del archivu.",
 
 Consulta'l [[Special:Log/delete|rexistru d'esborraos]] pa ver los esborraos y restauraciones de recién.",
 'undelete-header'              => "Mira nel [[Special:Log/delete|rexistru d'esborraos]] les páxines esborraes recién.",
-'undelete-search-box'          => 'Buscar páxines esborraes',
+'undelete-search-box'          => 'Buscar páxines desaniciaes',
 'undelete-search-prefix'       => "Amosar páxines qu'empecipien por:",
 'undelete-search-submit'       => 'Guetar',
 'undelete-no-results'          => "Nun s'atoparon páxines afechisques a la busca nel archivu d'esborraos.",
@@ -2537,7 +2537,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki
 'allmessagesdefault'            => 'Testu por defeutu',
 'allmessagescurrent'            => 'Testu actual',
 'allmessagestext'               => 'Esta ye una llista de los mensaxes de sistema disponibles nel espaciu de nomes de MediaWiki.
-Por favor visita [http://www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [http://translatewiki.net translatewiki.net] si quies contribuyer a la llocalización xenérica de MediaWiki.',
+Por favor visita [//www.mediawiki.org/wiki/Localisation Llocalización de MediaWiki] y [//translatewiki.net translatewiki.net] si quies contribuyer a la llocalización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB'     => "Nun pue usase '''{{ns:special}}:Allmessages''' porque '''\$wgUseDatabaseMessages''' ta deshabilitáu.",
 'allmessages-filter-legend'     => 'Peñerar',
 'allmessages-filter'            => 'Peñerar por estáu de personalización:',
@@ -3241,7 +3241,7 @@ Los demás tarán anubríos de mou predetermináu.
 
 # External editor support
 'edit-externally'      => 'Editar esti ficheru usando una aplicación esterna',
-'edit-externally-help' => '(Pa más información echa un güeyu a les [http://www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración])',
+'edit-externally-help' => '(Pa más información echa un güeyu a les [//www.mediawiki.org/wiki/Manual:External_editors instrucciones de configuración])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'too',
@@ -3434,13 +3434,13 @@ Tamién pues [[Special:EditWatchlist|usar l'editor estándar]].",
 'version-hook-subscribedby'     => 'Suscritu por',
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Llicencia',
-'version-poweredby-credits'     => "Esta wiki funciona con '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Esta wiki funciona con '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'otros',
 'version-license-info'          => "MediaWiki ye software llibre; pues redistribuilu y/o camudalu baxo los términos de la Llicencia Pública Xeneral GNU tal como ta asoleyada pola Free Software Foundation; o la versión 2 de la Llicencia, o (como prefieras) cualesquier versión posterior.
 
 MediaWiki se distribúi col envís de que seya afayadiza, pero ENSIN GARANTÍA DALA; ensin siquiera garantía implícita de COMERCIALIDÁ o ADAUTACIÓN A UN DETERMINÁU PROPÓSITU. Llee la Llicencia Pública Xeneral GNU pa más detalles.
 
-Tendríes d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llicencia Pública Xeneral GNU] xunto con esti programa; sinón, escribi a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lleela en llinia].",
+Tendríes d'haber recibío [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Llicencia Pública Xeneral GNU] xunto con esti programa; sinón, escribi a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lleela en llinia].",
 'version-software'              => 'Software instaláu',
 'version-software-product'      => 'Productu',
 'version-software-version'      => 'Versión',

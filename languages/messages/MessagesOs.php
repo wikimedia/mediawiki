@@ -660,7 +660,7 @@ $messages = array(
 'rclistfrom'                      => 'Равдисын ивдтытæ амæй фæстæ: $1',
 'rcshowhideminor'                 => '$1 чысыл ивдтытæ',
 'rcshowhidebots'                  => '$1 роботты куыст',
-'rcshowhideliu'                   => '$1 ырбахизгæ архайджыты',
+'rcshowhideliu'                   => '$1, йæхи чи бацамыдта, уыцы архайджыты',
 'rcshowhideanons'                 => '$1 æнæном архайджыты',
 'rcshowhidemine'                  => '$1 мæ ивдтытæ',
 'rclinks'                         => 'Фæстаг $1 ивдтытæ (афæстаг $2 боны дæргъы чи ’рцыдысты) равдис;
@@ -1109,7 +1109,7 @@ $3',
 
 # External editor support
 'edit-externally'      => 'Ивын ацы файл æддаг программæйæ',
-'edit-externally-help' => '(Кæс [http://www.mediawiki.org/wiki/Manual:External_editors сывæрыны уагæвæрдтæ] фылдæр базонынæн)',
+'edit-externally-help' => '(Кæс [//www.mediawiki.org/wiki/Manual:External_editors сывæрыны уагæвæрдтæ] фылдæр базонынæн)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'иууылдæр',

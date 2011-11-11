@@ -26,7 +26,7 @@ $messages = array(
 'tog-hideminor'               => 'چھوٹیاں تبدیلیاں چھپاؤ',
 'tog-hidepatrolled'           => 'ویکھیاں تبدیلیاں لکاؤ',
 'tog-newpageshidepatrolled'   => 'نویاں صفیاں توں ویکھیاں تبدیلیاں لکاؤ',
-'tog-extendwatchlist'         => 'نظر تھلے رکھے صفحے نوں ودھاو, تاکہ اوہ تبدیلیاں جیڑیاں کم دے قابل نیں ویکھیاں جا سکن',
+'tog-extendwatchlist'         => 'نظر تھلے رکھے صفحے نوں ودھاو, تاں جے اوہ تبدیلیاں جیڑیاں کم دے قابل نیں ویکھیاں جا سکن',
 'tog-usenewrc'                => 'تھوڑا خر پہلے کیتیاں گیاں تبدیلیاں ورتو',
 'tog-numberheadings'          => 'آپ نمبر دین والیاں سرخیاں',
 'tog-showtoolbar'             => 'ایڈٹ ٹولبار وکھاؤ',
@@ -50,9 +50,9 @@ $messages = array(
 'tog-shownumberswatching'     => 'ویکھن آلے لوکاں دی گنتی وکھاؤ۔',
 'tog-oldsig'                  => 'ہن والے دسخط:',
 'tog-fancysig'                => 'دستخط نوں وکی ٹیکسڈ ونگوں؎ ورتو(without an automatic link)',
-'tog-externaleditor'          => 'ہمیشہ بارلا لکھن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [http://www.mediawiki.org/wiki/Manual:External_editors مزید معلومات.])',
+'tog-externaleditor'          => 'ہمیشہ بارلا لکھن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [//www.mediawiki.org/wiki/Manual:External_editors مزید معلومات.])',
 'tog-externaldiff'            => '
-ہمیشہ بارلا تبدیلی کرن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [http://www.mediawiki.org/wiki/Manual:External_editors مزید معلومات۔])',
+ہمیشہ بارلا تبدیلی کرن والا ورتو (ماہر لوکاں واسطے، اس واسطے تواڑے کمپیوٹر تے خاص تبدیلیاں چائیدیاں نیں۔ [//www.mediawiki.org/wiki/Manual:External_editors مزید معلومات۔])',
 'tog-showjumplinks'           => '"ایدر چلو" نوں رلن والے جوڑان نال جوڑو',
 'tog-uselivepreview'          => 'لائیو پریویو ورتو',
 'tog-forceeditsummary'        => 'مینون اوسے ویلے دسو جدوں خالی سمری تے آؤ۔',
@@ -387,7 +387,7 @@ $messages = array(
 'protectedpagetext'    => 'اس صفحے دے اتے تبدیلی کرن نوں روکیا گیا اے۔',
 'viewsourcetext'       => 'تسی اس صفحے دی لکھائی نوں ویکھ تے نقل کر سکدے او:',
 'protectedinterface'   => 'اے صفحے سافٹویئر نوں ورتن دی تھاں دیندا اے تے ایدے غلط ورتن نوں روکن واسطے اینوں بچایا ہویا اے۔',
-'editinginterface'     => "'''خبردار:''' تسیں اک ایسا صفہ بدل رۓ او جیہڑا مکھی صفے دے سوفٹویر نوں لکھت دیندا اے۔ ایس صفے ج تبدیلی ورتنن والیاں دے مکھی صفے دے وکھالے نوں بدل دے گی۔ بولی وٹاندرے لئی، مہربانی کرکے میڈیاوکی بولی ویونت [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] ول ویکھو۔",
+'editinginterface'     => "'''خبردار:''' تسیں اک ایسا صفہ بدل رۓ او جیہڑا مکھی صفے دے سوفٹویر نوں لکھت دیندا اے۔ ایس صفے ج تبدیلی ورتنن والیاں دے مکھی صفے دے وکھالے نوں بدل دے گی۔ بولی وٹاندرے لئی، مہربانی کرکے میڈیاوکی بولی ویونت [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net] ول ویکھو۔",
 'sqlhidden'            => '(SQL کھوج چھپائی ہوئي اے)',
 'cascadeprotected'     => 'ایس صفے نوں تبدیلی توں بچایا گیا اے، کیوں جے ایہ تھلے دتے گۓ {{انیک:$1|صفے|صفے}} چ ہیگا اے تے اینوں کیسکیڈنگ چنوتی نال بچایا گیا اے: $2',
 'namespaceprotected'   => "'''$1''' ناں دے صفحے تسی نئیں لکھ سکدے۔",
@@ -713,8 +713,8 @@ Custom .css تے .js pages use a lowercase title, e.g. {{ns:user}}:Foo/vector.cs
 'titleprotectedwarning'            => "'''خبردار: ایہ صفہ بچایا گیا اے[[خاص:ٹولی لسٹ حق|خاص حق]] دے بنان دی لوڑ اے.'''
 تھلے نیڑے دی لاگ لکھت دتی گ‏ی اے اتے پتے ل‏ی:",
 'templatesused'                    => 'اس صفحے تے  ورتے گۓ {{PLURAL:$1|سانچے|سانچہ}}:',
-'templatesusedpreview'             => 'اس کچے کم تے ورتے گئے {{PLURAL:$1|سانچے|سانچہ}} :',
-'templatesusedsection'             => 'اس ٹوٹے چ استعمال کیتے گۓ سچے:',
+'templatesusedpreview'             => 'اس کچے کم تے ورتے گئے {{انیک:$1|سانچے|سانچہ}} :',
+'templatesusedsection'             => '{{انیک:$1|سچہ|سچے}} ایس ٹوٹے چ ورتے گۓ:',
 'template-protected'               => '(بچایا گیا)',
 'template-semiprotected'           => '(کج بچایا ہویا)',
 'hiddencategories'                 => 'اے صفحہ {{PLURAL:$1|1 چھپی گٹھ|$1 چپھی گٹھیاں}} دا رکن اے:',
@@ -1600,7 +1600,7 @@ $1",
 # File deletion
 'filedelete'                  => '$1 مٹاؤ',
 'filedelete-legend'           => 'فائل مٹاؤ',
-'filedelete-intro'            => "تسی '''[[Media:$1|$1]]''' مٹا رۓ او۔",
+'filedelete-intro'            => "تسی '''[[میڈیا:$1|$1]]''' مٹا رۓ او۔",
 'filedelete-intro-old'        => "تسیں '''[[Media:$1|$1]]''' دا ورین مٹا رۓ او [$4 $3, $2] توں۔",
 'filedelete-comment'          => 'وجہ:',
 'filedelete-submit'           => 'مٹاؤ',
@@ -1805,7 +1805,7 @@ $1",
 'sp-deletedcontributions-contribs' => ' کم',
 
 # Special:LinkSearch
-'linksearch'       => 'باہر دے جوڑ',
+'linksearch'       => 'باہر دے جوڑ دی کھوج',
 'linksearch-pat'   => 'کھوج راہ:',
 'linksearch-ns'    => 'ناں دی جگہ:',
 'linksearch-ok'    => 'کھوج',
@@ -1979,7 +1979,7 @@ $UNWATCHURL
 'exblank'                => 'صفحہ خالی سی',
 'delete-confirm'         => '"$1" مٹاؤ',
 'delete-legend'          => 'مٹاؤ',
-'historywarning'         => 'خوشیار: او صفحہ جس نوں تسی مٹانے لگے او دا ریکارڈ موجود اے۔',
+'historywarning'         => 'ہوشیار: او صفحہ جس نوں تسی مٹانے لگے او دی $1 {{انیک:$1|ریوین|ریویناں}}: دا ریکارڈ موجود اے۔',
 'confirmdeletetext'      => 'تسی اک صفحہ اسدی تاریخ دے نال مٹان لگے او۔
 کیا تسی اے ای کرنا چاہندے او کیا تسی اس دے نتیجے نوں جاندے او کہ تسی اے کم [[{{MediaWiki:Policy-url}}|پالیسی]] دے مطابق کر رہے او۔',
 'actioncomplete'         => 'کم ہوگیا',
@@ -2464,7 +2464,7 @@ $1',
 'allmessagesdefault'            => 'ڈیفالٹ لکھائی',
 'allmessagescurrent'            => 'موجودہ لکھائی',
 'allmessagestext'               => 'ایہ لسٹ اے پربندھ سنیعیاں دی  جیہڑے میڈیاوکی دی ناں تھاں تے ہیگے نیں۔
-مہربانی کرکے [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] تے [http://translatewiki.net translatewiki.net] تے جاؤ۔
+مہربانی کرکے [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] تے [//translatewiki.net translatewiki.net] تے جاؤ۔
 اگر تسیں میڈیا وکی دے بولی وٹاندرے چ کم کرنا چاندے او۔',
 'allmessagesnotsupportedDB'     => "اے صفہ نئیں ورتیا جاسکدا کیوں جے '''\$wgUseDatabaseMessages''' روک دتا گیا اے۔",
 'allmessages-filter-legend'     => 'فلٹر',
@@ -3126,7 +3126,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'بارلا سافٹ ویئر استعال کردے ہوۓ اے فائل لکھو',
-'edit-externally-help' => 'زیادہ معلومات آسطے اے [http://www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
+'edit-externally-help' => 'زیادہ معلومات آسطے اے [//www.mediawiki.org/wiki/Manual:External_editors] ویکھو۔',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'سارے',
@@ -3314,14 +3314,14 @@ $1',
 'version-hook-subscribedby'     => 'جینے لئی',
 'version-version'               => '(ورین $1)',
 'version-license'               => 'لائیسنس',
-'version-poweredby-credits'     => "ایس وکی نوں '''[http://www.mediawiki.org/ میڈیاوکی]''', copyright © 2001-$1 $2. چلاندا اے۔",
+'version-poweredby-credits'     => "ایس وکی نوں '''[//www.mediawiki.org/ میڈیاوکی]''', copyright © 2001-$1 $2. چلاندا اے۔",
 'version-poweredby-others'      => 'دوجے',
 'version-license-info'          => 'میڈیاوکی اک مفت سوفٹویر اے؛ تسیں اینوں ونڈ سکدے اوہ تے گنو جنرل پبلک لسنس دیاں شرطاں تے جیہڑیاں فری سوفٹویر فاؤنڈیشن نے چھاپیاں نیں ایدے چ تبدیلی کرسکدے اوہ لسنس دے ورین 2 نال، یا اپنی مرضی نال کسے وی ہور ورین فیر بنن والے ورین نوں۔
 
 میڈیاوکی ایس آس نال ونڈیا گیا اے جے ایہ فیدا دیوے گا پر ایدی کوئی وارنٹی نئیں ؛ کسے خاص کم لئی ٹھیک ہون دی وارنٹی توں وی بنا۔ گنو جنرل پبلک لسنس ویکھو ہور گلاں لئی۔
 
 تسیں ایس پروکرام نال لے چکے اوہ [{{سرور}}{{سکرپٹراہ}}/جنرل پبلک لسنس دی کاپی] ایس کم نال ؛ اگر نئیں تے  چٹھی لکھو 
-the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online]',
+the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online]',
 'version-software'              => 'سافٹوئر چڑھ گیا۔',
 'version-software-product'      => 'پراڈکٹ',
 'version-software-version'      => 'ورژن',

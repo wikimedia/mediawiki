@@ -280,8 +280,8 @@ $messages = array(
 'tog-shownumberswatching'     => '显示监视用户数',
 'tog-oldsig'                  => '当前签名：',
 'tog-fancysig'                => '将签名以wiki文本对待（不产生自动链接）',
-'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
-'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置。[http://www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
+'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
+'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置。[//www.mediawiki.org/wiki/Manual:External_editors 更多信息。]）',
 'tog-showjumplinks'           => '启用“跳转到”访问链接',
 'tog-uselivepreview'          => '使用实时预览（需要Javascript）（试验中）',
 'tog-forceeditsummary'        => '未输入编辑摘要时提醒我',
@@ -615,7 +615,7 @@ $1',
 'protectedpagetext'    => '该页面已被保护以防止编辑。',
 'viewsourcetext'       => '您可以查看并复制此页面的源代码：',
 'protectedinterface'   => '该页提供了软件的界面文本，它已被保护以防止随意的修改。',
-'editinginterface'     => "'''警告：''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。如要翻译，请考虑使用[http://translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用来为MediaWiki软件本地化的计划。",
+'editinginterface'     => "'''警告：''' 您正在编辑的页面是用于提供软件的界面文本。改变此页将影响其他用户的界面外观。如要翻译，请考虑使用[//translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用来为MediaWiki软件本地化的计划。",
 'sqlhidden'            => '（SQL查询已隐藏）',
 'cascadeprotected'     => '此页面已被保护，因为这个页面被以下已标注“联锁保护”的{{PLURAL:$1|一个|多个}}被保护页面包含：
 $2',
@@ -998,28 +998,18 @@ $3的理由是''$2''",
 'rev-deleted-user-contribs'   => '[用户名或IP地址已移除 - 从贡献中隐藏编辑]',
 'rev-deleted-text-permission' => "该页面修订已被'''删除'''。
 在[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 删除日志]中可以找到详细的信息。",
-'rev-deleted-text-unhide'     => "该页面修订已经被'''删除'''。
-在[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 删除日志]中可以找到详细的信息。
-作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
-'rev-suppressed-text-unhide'  => "该页面修订已经被'''废止'''。
-在[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 废止日志]中可以找到详细的信息。
-作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
-'rev-deleted-text-view'       => "该页面修订已经被'''删除'''。作为管理员，您可以查看它；
-在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到详细的信息。",
-'rev-suppressed-text-view'    => "该页面修订已经被'''废止'''。作为管理员，您可以查看它；
-在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 废止日志]中可以找到详细的信息。",
+'rev-deleted-text-unhide'     => "该修订版本已经被'''删除'''。在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到详细的信息。作为管理员，如果您想继续的话，您可以仍然[$1 查看该修订版本]。",
+'rev-suppressed-text-unhide'  => "该页面修订已经被'''监督隐藏'''。在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 监督日志]中可以找到详细的信息。如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
+'rev-deleted-text-view'       => "该页面修订已经被'''删除'''。您可以查看它。在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到详细的信息。",
+'rev-suppressed-text-view'    => "该页面修订已经被'''监督隐藏'''。您可以查看它。在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 监督日志]中可以找到详细的信息。",
 'rev-deleted-no-diff'         => "因为其中一次修订已被'''删除'''，您不可以查看这个差异。
 在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到更多的信息。",
 'rev-suppressed-no-diff'      => "该页面的其中一次修订已经被'''删除'''，你不可以查看这次的修订。",
-'rev-deleted-unhide-diff'     => "该页面的其中一次修订已经被'''删除'''。
-在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到更多的信息。
-作为管理员，如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
+'rev-deleted-unhide-diff'     => "该差异对比其中的一个修订版本已经被'''删除'''。在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中可以找到更多的信息。如果您想继续的话，您仍然可以[$1 查看这次修订]。",
 'rev-suppressed-unhide-diff'  => "该页面的其中一次修订已经被'''监督隐藏'''。
 在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 监督日志]中可以找到更多的资料。如果您想继续的话，您可以仍然[$1 去查看这次修订]。",
-'rev-deleted-diff-view'       => "差异中的一次修订已被'''删除'''。
-作为管理员，您可以查看此差异。详细信息可在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。",
-'rev-suppressed-diff-view'    => "差异中的一次修订已被'''废止'''。
-作为管理员，您可以查看此差异。详细信息可在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 废止日志]中找到。",
+'rev-deleted-diff-view'       => "差异对比中的一次修订已被'''删除'''。您可以对比此差异。详细信息可在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 删除日志]中找到。",
+'rev-suppressed-diff-view'    => "差异对比中的一次修订已被'''监督隐藏'''。您可以对比此差异。详细信息可在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 监督日志]中找到。",
 'rev-delundel'                => '显示/隐藏',
 'rev-showdeleted'             => '显示',
 'revisiondelete'              => '删除/恢复删除修订',
@@ -1094,8 +1084,7 @@ $1",
 
 # Suppression log
 'suppressionlog'     => '监督日志',
-'suppressionlogtext' => '以下是删除以及由操作员牵涉到内容封锁的列表。
-参看[[Special:IPBlockList|IP封锁名单]]去参看现时进行中的禁止以及封锁之名单。',
+'suppressionlogtext' => '该列表列出对管理员隐藏的删除与封禁。另参见[[Special:BlockList|IP封锁名单]]以查询当前的封禁列表。',
 
 # History merging
 'mergehistory'                     => '合并页面历史',
@@ -1414,7 +1403,7 @@ $1",
 'right-editusercssjs'         => '编辑其他用户的CSS和JavaScript文件',
 'right-editusercss'           => '编辑其他用户的CSS文件',
 'right-edituserjs'            => '编辑其他用户的JavaScript文件',
-'right-rollback'              => '快速回退上一位用户对特定页面的编辑',
+'right-rollback'              => '快速回退最后对特定页面作出的编辑的用户的所有编辑',
 'right-markbotedits'          => '标示复原编辑作机械人编辑',
 'right-noratelimit'           => '没有使用频率限制',
 'right-import'                => '由其它wiki中导入页面',
@@ -1825,9 +1814,9 @@ $1',
 'statistics-users-active-desc' => '在前$1天中操作过的用户',
 'statistics-mostpopular'       => '浏览最多的页面',
 
-'disambiguations'      => '消歧义页',
+'disambiguations'      => '链接到消歧义页的页面',
 'disambiguationspage'  => 'Template:消歧义',
-'disambiguations-text' => '以下的页面都有到<b>消歧义页</b>的链接, 但它们应该是链到适当的标题。<br />一个页面会被视为消歧义页如果它是链自[[MediaWiki:Disambiguationspage]]。',
+'disambiguations-text' => "以下的页面都有到'''消歧义页'''的链接，但它们应该链接到适当的页面。<br />一个页面如果使用了[[MediaWiki:Disambiguationspage]]内的模板，则会被视为消歧义页。",
 
 'doubleredirects'                   => '双重重定向页',
 'doubleredirectstext'               => '此页列出了所有重定向到另一重定向页面的页面。每一行都包含有到第一和第二个重定向页面的链接，以及第二个重定向页面的目标——通常就是“真正的”目标页面，亦即是第一个重定向页面应该指向的页面。<del>已划去</del>的为已经解决的项目。',
@@ -1962,7 +1951,7 @@ $1',
 'sp-deletedcontributions-contribs' => '贡献',
 
 # Special:LinkSearch
-'linksearch'       => '外部链接',
+'linksearch'       => '外部链接搜索',
 'linksearch-pat'   => '搜索网址：',
 'linksearch-ns'    => '名字空间：',
 'linksearch-ok'    => '搜索',
@@ -2385,9 +2374,9 @@ $1',
 'unblockiptext'                   => '使用下列表单来恢复之前被封禁的IP地址或用户名的写权限。',
 'ipusubmit'                       => '解除此封禁',
 'unblocked'                       => '[[User:$1|$1]]已经被解封',
-'unblocked-range'                 => '$1 已畅通',
+'unblocked-range'                 => '$1已被解封',
 'unblocked-id'                    => '封禁$1已被解除',
-'blocklist'                       => '被阻止的用户',
+'blocklist'                       => '被封禁用户',
 'ipblocklist'                     => '被封禁用户',
 'ipblocklist-legend'              => '查找已封禁用户',
 'blocklist-userblocks'            => '隐藏帐户封禁',
@@ -2438,7 +2427,7 @@ $1被封禁的理由是：“$2”',
 'ipb_already_blocked'             => '“$1”已被封禁',
 'ipb-needreblock'                 => '$1已被封禁。您是否想更改封禁设置？',
 'ipb-otherblocks-header'          => '其他{{PLURAL:$1|封禁|封禁}}',
-'unblock-hideuser'                => '您无法取消阻止该用户，因为他们的用户名已被隐藏。',
+'unblock-hideuser'                => '您无法取消封禁该用户，因为他们的用户名已被隐藏。',
 'ipb_cant_unblock'                => '错误：找不到封禁ID$1。可能已经解除封禁。',
 'ipb_blocked_as_range'            => '错误：IP地址$1未被直接封禁，故无法解除封禁。然而，它位于IP地址段$2的封禁范围内，后者可被解除封禁。',
 'ip_range_invalid'                => '无效的IP地址段。',
@@ -2524,7 +2513,7 @@ $1被封禁的理由是：“$2”',
 'pagemovedsub'                 => '移动成功',
 'movepage-moved'               => "'''“$1”已移动到“$2”'''",
 'movepage-moved-redirect'      => '重定向已创建。',
-'movepage-moved-noredirect'    => '重定向的创建已阻止。',
+'movepage-moved-noredirect'    => '重定向的创建已被禁用。',
 'articleexists'                => '该名称的页面已存在，或者您使用的名称无效。请另选一名。',
 'cantmove-titleprotected'      => '您无法将页面移动到该位置，因为新标题已被保护以防止创建。',
 'talkexists'                   => "'''页面本身移动成功，但由于新标题下已有讨论页存在，故讨论页无法移动。请手工合并这两个页面。'''",
@@ -2600,7 +2589,7 @@ $1被封禁的理由是：“$2”',
 'allmessagesdefault'            => '默认消息文本',
 'allmessagescurrent'            => '当前消息文本',
 'allmessagestext'               => '此处列出了MediaWiki名字空间下的所有有效系统消息。
-如果想为MediaWiki的本地化贡献翻译，请访问[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]和[http://translatewiki.net translatewiki.net]。',
+如果想为MediaWiki的本地化贡献翻译，请访问[//www.mediawiki.org/wiki/Localisation MediaWiki本地化]和[//translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB'     => "此页面无法使用，因为'''\$wgUseDatabaseMessages'''已被设置关闭。",
 'allmessages-filter-legend'     => '过滤',
 'allmessages-filter'            => '以自定状况过滤：',
@@ -3313,7 +3302,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部程序编辑此文件',
-'edit-externally-help' => '（请参见[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
+'edit-externally-help' => '（请参见[//www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',
@@ -3500,13 +3489,13 @@ $1',
 'version-hook-subscribedby'     => '署名',
 'version-version'               => '（版本$1）',
 'version-license'               => '授权协议',
-'version-poweredby-credits'     => "本Wiki由'''[http://www.mediawiki.org/ MediaWiki]'''驱动，版权所有 © 2001-$1 $2。",
+'version-poweredby-credits'     => "本Wiki由'''[//www.mediawiki.org/ MediaWiki]'''驱动，版权所有 © 2001-$1 $2。",
 'version-poweredby-others'      => '其他',
 'version-license-info'          => 'MediaWiki为自由软件；您可依据自由软件基金会所发表的GNU通用公共授权条款规定，就本程序再为发布与／或修改；无论您依据的是本授权的第二版或（您自行选择的）任一日后发行的版本。
 
 MediaWiki是基于使用目的而加以发布，然而不负任何担保责任；亦无对适售性或特定目的适用性所为的默示性担保。详情请参照GNU通用公共授权。
 
-您应已收到附随于本程序的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授权的副本]；如果没有，请写信至自由软件基金会：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 在线阅读]。',
+您应已收到附随于本程序的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授权的副本]；如果没有，请写信至自由软件基金会：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[//www.gnu.org/licenses/old-licenses/gpl-2.0.html 在线阅读]。',
 'version-software'              => '已安装的软件',
 'version-software-product'      => '产品',
 'version-software-version'      => '版本',

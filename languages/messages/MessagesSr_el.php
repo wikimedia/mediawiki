@@ -591,7 +591,7 @@ Pretraga: $2',
 'protectedinterface'   => 'Ova stranica pruža tekst interfejsa za softver i zaključana je kako bi se sprečila zloupotreba.',
 'editinginterface'     => "'''Upozorenje:''' Uređujete stranu koja se koristi da pruži tekst za interfejs ovog softvera.
 Izmene na ovoj strani će uticati na prikaz izgleda korisničkog interfejsa za sve korisnike.
-Za prevode, posetite [http://translatewiki.net/wiki/Main_Page?setlang=sr_ec translatewiki.net], projekat lokalizacije MedijaViki softvera.",
+Za prevode, posetite [//translatewiki.net/wiki/Main_Page?setlang=sr_ec translatewiki.net], projekat lokalizacije MedijaViki softvera.",
 'sqlhidden'            => '(SQL pretraga sakrivena)',
 'cascadeprotected'     => 'Ova stranica je zaključana i njeno uređivanje je onemogućeno jer je uključena u sadržaj {{PLURAL:$1|sledeće stranice|sledećih stranica}}, koji je zaštićen sa opcijom „prenosive“ zaštite:
 $2',
@@ -1694,7 +1694,7 @@ Ona se ne može ispravno proveriti u vezi sa sigurnošću.',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš server nije podešen da prosleđuje ovakve podatke.
 Možda je zasnovan na CGI-ju koji ne podržava img_auth.
-Pogledajte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Pogledajte [//www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sr-el odobravanje slika.]',
 'img-auth-notindir'         => 'Zahtevana putanja nije u podešenoj fascikli za slanje.',
 'img-auth-badtitle'         => 'Stvaranje ispravnog naslova za „$1“ nije uspelo.',
 'img-auth-nologinnWL'       => 'Niste prijavljeni i „$1“ nije na spisku dozvoljenih.',
@@ -1858,7 +1858,7 @@ Ne zaboravite da proverite ostale poveznice ka šablonima pre nego što ih obri�
 'statistics-users-active-desc' => 'Korisnici koji su izvršili makar jednu akciju tokom {{PLURAL:$1|zadnjeg dana|$1 zadnjih dana}}',
 'statistics-mostpopular'       => 'Najposećenije stranice',
 
-'disambiguations'      => 'Stranice za višeznačne odrednice',
+'disambiguations'      => 'Stranice do višeznačnih odrednica',
 'disambiguationspage'  => '{{ns:template}}:Višeznačna odrednica',
 'disambiguations-text' => "Sledeće stranice imaju veze ka '''višeznačnim odrednicama'''. Potrebno je da upućuju na odgovarajući članak.
 
@@ -1999,7 +1999,7 @@ Takođe pogledajte [[Special:WantedCategories|tražene kategorije]].',
 'sp-deletedcontributions-contribs' => 'doprinosi',
 
 # Special:LinkSearch
-'linksearch'       => 'Veb linkovi',
+'linksearch'       => 'Pretraga spoljnih veza',
 'linksearch-pat'   => 'Obrazac pretrage:',
 'linksearch-ns'    => 'Imenski prostor:',
 'linksearch-ok'    => 'Pretraga',
@@ -2673,7 +2673,7 @@ U drugom slučaju, možete koristiti i vezu, na primer [[{{#Special:Export}}/{{M
 'allmessagesdefault'            => 'Standardni tekst',
 'allmessagescurrent'            => 'Trenutni tekst',
 'allmessagestext'               => 'Ovo je spisak sistemskih poruka koje su u MedijaViki imenskom prostoru.
-Posetite [http://translatewiki.net translatewiki.net] ukoliko želite da pomognete u lokalizaciji.',
+Posetite [//translatewiki.net translatewiki.net] ukoliko želite da pomognete u lokalizaciji.',
 'allmessagesnotsupportedDB'     => "Ova stranica ne može biti upotrebljena zato što je '''\$wgUseDatabaseMessages''' isključen.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filtriraj po stanju prilagođenosti:',
@@ -3341,7 +3341,7 @@ Sve druge veze u istoj liniji se smatraju izuzecima tj. članci u kojima se slik
 
 # External editor support
 'edit-externally'      => 'Izmenite ovaj fajl koristeći spoljašnju aplikaciju',
-'edit-externally-help' => '(Pogledajte [http://www.mediawiki.org/wiki/Manual:External_editors uputstvo za podešavanje] za više informacija)',
+'edit-externally-help' => '(Pogledajte [//www.mediawiki.org/wiki/Manual:External_editors uputstvo za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sve',
@@ -3521,13 +3521,13 @@ Takođe, možete [[Special:EditWatchlist|koristiti standardan uređivač spiska]
 'version-hook-subscribedby'     => 'prijavljeni',
 'version-version'               => '(Verzija $1)',
 'version-license'               => 'Licenca',
-'version-poweredby-credits'     => "Ovaj viki pokreće '''[http://www.mediawiki.org/ Medijaviki]''', autorska prava © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ovaj viki pokreće '''[//www.mediawiki.org/ Medijaviki]''', autorska prava © 2001-$1 $2.",
 'version-poweredby-others'      => 'ostali',
 'version-license-info'          => 'Medijaviki je slobodan softver; možete ga raspodeljivati i menjati pod uslovima GNU-ove opšte javne licence (OJL) koju je objavila Zadužbina za slobodan softver, bilo da je u pitanju drugo ili novije izdanje licence.
 
 Medijaviki se raspodeljuje u nadi da će biti koristan, ali BEZ IKAKVE GARANCIJE; čak i bez implicitne garancije o PRODAJI ili POGODNOSTI ZA ODREĐENE NAMENE. Pogledajte GNU-ovu opštu javnu licencu za više detalja.
 
-Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove opšte javne licence] zajedno s ovim programom. Ako niste, pišite Zadužbini za slobodan softver, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA ili [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte na mreži].',
+Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove opšte javne licence] zajedno s ovim programom. Ako niste, pišite Zadužbini za slobodan softver, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA ili [//www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte na mreži].',
 'version-software'              => 'Instaliran softver',
 'version-software-product'      => 'Proizvod',
 'version-software-version'      => 'Verzija',

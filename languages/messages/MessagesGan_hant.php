@@ -86,7 +86,7 @@ $messages = array(
 'tog-oldsig'                  => '現有嗰簽名：',
 'tog-fancysig'                => '搦簽名以維基字對待（冇自動連結）',
 'tog-externaleditor'          => '默認用外部編輯器（專家用嗰功能，要到倷嗰電腦上頭特別嗰設置一下）',
-'tog-externaldiff'            => '默認用外部差異比較器（專家用嗰功能，要到汝嗰電腦上頭特別嗰設置下。[http://www.mediawiki.org/wiki/Manual:External_editors 別嗰信息]）',
+'tog-externaldiff'            => '默認用外部差異比較器（專家用嗰功能，要到汝嗰電腦上頭特別嗰設置下。[//www.mediawiki.org/wiki/Manual:External_editors 別嗰信息]）',
 'tog-showjumplinks'           => '啟用“跳到”訪問連結',
 'tog-uselivepreview'          => '使用即時預覽（JavaScript）（實驗中）',
 'tog-forceeditsummary'        => '冇改動注解時要同我話',
@@ -775,7 +775,7 @@ $2',
 'shown-title'                      => '每頁顯示$1隻{{PLURAL:$1|結果}}',
 'viewprevnext'                     => '望吖（$1 {{int:pipe-separator}} $2） （$3）',
 'searchmenu-exists'                => "'''箇隻wiki已有一隻叫「[[:$1]]」嗰頁。'''",
-'searchmenu-new'                   => "'''嘚箇隻wiki上建立「[[:$1]]」頁！''",
+'searchmenu-new'                   => "'''嘚箇隻wiki上建立「[[:$1]]」頁！'''",
 'searchhelp-url'                   => 'Help:説明',
 'searchprofile-articles'           => '內容頁',
 'searchprofile-project'            => '幫助同得計劃頁',
@@ -1358,7 +1358,7 @@ $NEWPAGE
 'delete-legend'         => '刪卟去',
 'historywarning'        => "'''警告''': 倷要刪卟嗰頁面含到$1到{{PLURAL:$1|修訂|修訂}}嗰歷史",
 'confirmdeletetext'     => '仰上倷就要永久刪卟資料庫嗰一隻頁面或圖像同佢嗰歷史。請確定倷要噉做，哈要曉得佢嗰後果，更加伓能違反[[{{MediaWiki:Policy-url}}]]。',
-'actioncomplete'        => '扤正嘞',
+'actioncomplete'        => '舞正哩',
 'actionfailed'          => '操作冇舞正',
 'deletedtext'           => '"$1"刪卟嘞。最晏嗰刪除記錄請望$2。',
 'deletedarticle'        => '"[[$1]]"刪卟嘞',
@@ -1680,7 +1680,7 @@ $1',
 'allmessagesdefault'        => '默認文字',
 'allmessagescurrent'        => '眼前嗰文字',
 'allmessagestext'           => '箇首列到全部制定得正嗰系統界面。
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系統界面功能'''關卟嘞（'''\$wgUseDatabaseMessages'''）。",
 
 # Thumbnails
@@ -1762,7 +1762,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-currentevents'         => '提供目前嗰事嗰背景',
 'tooltip-n-recentchanges'         => '列出箇隻網站該朝子嗰改動',
 'tooltip-n-randompage'            => '隨機載進一隻頁面',
-'tooltip-n-help'                  => '求人幫',
+'tooltip-n-help'                  => '尋人幫',
 'tooltip-t-whatlinkshere'         => '列出全部同箇頁連到嗰頁面',
 'tooltip-t-recentchangeslinked'   => '從箇頁連出嗰全部頁面嗰改動',
 'tooltip-feed-rss'                => '箇頁嗰RSS訂閱',
@@ -2151,7 +2151,7 @@ $1',
 
 # External editor support
 'edit-externally'      => '用外部程式來編輯箇隻檔案',
-'edit-externally-help' => '請參看[http://www.mediawiki.org/wiki/Manual:External_editors 設置步驟]瞭解別嗰內容。',
+'edit-externally-help' => '請參看[//www.mediawiki.org/wiki/Manual:External_editors 設置步驟]瞭解別嗰內容。',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

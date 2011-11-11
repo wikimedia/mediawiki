@@ -72,8 +72,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Вказати кілько хоснователїв придало сторінку до свого списку слїдованых',
 'tog-oldsig'                  => 'Екзістуючій підпис:',
 'tog-fancysig'                => 'Хосновати про підпис вікітекст (без автоматічного одказу)',
-'tog-externaleditor'          => 'Імпліцітно хосновати екстерный едітор (лем про скусеных, выжадує шпеціалне наштелёваня компютера; [http://www.mediawiki.org/wiki/Manual:External_editors далшы інформації])',
-'tog-externaldiff'            => 'Імпліцітно хосновати проґрам про порівнаваня (лем про скусеных, выжадує шпеціалне наштелёваня компютера; [http://www.mediawiki.org/wiki/Manual:External_editors далшы інформації])',
+'tog-externaleditor'          => 'Імпліцітно хосновати екстерный едітор (лем про скусеных, выжадує шпеціалне наштелёваня компютера; [//www.mediawiki.org/wiki/Manual:External_editors далшы інформації])',
+'tog-externaldiff'            => 'Імпліцітно хосновати проґрам про порівнаваня (лем про скусеных, выжадує шпеціалне наштелёваня компютера; [//www.mediawiki.org/wiki/Manual:External_editors далшы інформації])',
 'tog-showjumplinks'           => 'Актівізовати помічны одказы "перейти дo"',
 'tog-uselivepreview'          => 'Хосновати швыдкый нагляд (JavaScript, експеріментално)',
 'tog-forceeditsummary'        => 'Упозорнити ня, кідь не є выповнене згорнутя едітованя',
@@ -413,7 +413,7 @@ $1',
 'protectedpagetext'    => 'Тота сторінка была замкнута, также ся не дасть едітовати',
 'viewsourcetext'       => 'Можете видїти і копіровати код той сторінкы:',
 'protectedinterface'   => 'Тота сторінка є частинов інтрефейсу проґрамового забезпечіня і єй можуть едітовати лем адміністраторы проєкту.',
-'editinginterface'     => "'''Увага:''' Едітуєте сторінку,котра є частинов текстового інтерфейсу. Зміны той сторінкы выкличуть зміну інтерфейсу про іншых хоснователїв. Про переклад увідомлїня хоснуйте [http://translatewiki.net/wiki/Main_Page?setlang=uk translatewiki.net] — проєкт, што ся занимає локалізаціёв MediaWiki.",
+'editinginterface'     => "'''Увага:''' Едітуєте сторінку,котра є частинов текстового інтерфейсу. Зміны той сторінкы выкличуть зміну інтерфейсу про іншых хоснователїв. Про переклад увідомлїня хоснуйте [//translatewiki.net/wiki/Main_Page?setlang=uk translatewiki.net] — проєкт, што ся занимає локалізаціёв MediaWiki.",
 'sqlhidden'            => '(SQL запрос скрытый)',
 'cascadeprotected'     => 'Сторінка є замнкута, бо є вложена до  {{PLURAL:$1|наслїдуючой сторінкы замкнуты|наслїдуючіх сторінок замнкнутых|наслїдуючіх сторінок замнкнутых}} каскадовым замком:
 $2',
@@ -1128,6 +1128,7 @@ $1",
 'prefs-registration'            => 'Час реґістрації:',
 'yourrealname'                  => 'Скуточне мено:',
 'yourlanguage'                  => 'Язык:',
+'yourvariant'                   => 'Варіант языка обсягу:',
 'yournick'                      => 'Підпис:',
 'prefs-help-signature'          => 'Коментарї на діскузіях бы ся мали підписовати помочов „<nowiki>~~~~</nowiki>“, што ся змінить на ваш підпис і актуалный час.',
 'badsig'                        => 'Неправилний підпис.
@@ -1572,7 +1573,7 @@ $1',
 'filehist-filesize'         => 'Розмір файлу',
 'filehist-comment'          => 'Коментарь',
 'filehist-missing'          => 'Файл хыбіть',
-'imagelinks'                => 'Одказы на файл',
+'imagelinks'                => 'Выужытя файлу',
 'linkstoimage'              => '{{PLURAL:$1|Далша сторінка ся одказує|Далшы сторінкы ся одказують}} на тот файл:',
 'linkstoimage-more'         => 'На тот файл {{PLURAL:$1|одказує веце сторінок|одказує веце як $1 сторінок|одказує веце як $1 сторінок}}.
 Наслїдуючій список зображує лем {{PLURAL:$1|тоту першу|першы $1|першых $1}}.
@@ -1806,7 +1807,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'приспевкы',
 
 # Special:LinkSearch
-'linksearch'       => 'Екстерны одказы',
+'linksearch'       => 'Гляданя екстерных одказів',
 'linksearch-pat'   => 'Шаблона про ґлядяня:',
 'linksearch-ns'    => 'Простор назв:',
 'linksearch-ok'    => 'Глядати',
@@ -2447,7 +2448,7 @@ $1',
 'allmessagesdefault'            => 'Штандартный текст',
 'allmessagescurrent'            => 'Актуалный текст',
 'allmessagestext'               => 'Тото є список вшыткых повідомлїнь доступных в просторї назв «MediaWiki».
-Кідь хочете приспівати ку локалізації софтверу MediaWiki, навщівте [http://www.mediawiki.org/wiki/Localisation локалізачну сторінку на mediawiki.org] і [http://translatewiki.net сервер server translatewiki.net].',
+Кідь хочете приспівати ку локалізації софтверу MediaWiki, навщівте [//www.mediawiki.org/wiki/Localisation локалізачну сторінку на mediawiki.org] і [//translatewiki.net сервер server translatewiki.net].',
 'allmessagesnotsupportedDB'     => '{{ns:special}}:AllMessages не є підпороване, бо wgUseDatabaseMessages є выпнуте.',
 'allmessages-filter-legend'     => 'Філтер',
 'allmessages-filter'            => 'Філтер подля ставу:',
@@ -3106,7 +3107,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Едітовати тот файл хоснувчі екстерну аплікацію',
-'edit-externally-help' => '(Вецей інформації найдете в [http://www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлїня].)',
+'edit-externally-help' => '(Вецей інформації найдете в [//www.mediawiki.org/wiki/Manual:External_editors інштрукції про наставлїня].)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'вшыткы',
@@ -3288,13 +3289,13 @@ $1',
 'version-hook-subscribedby'     => 'Підписаный на',
 'version-version'               => '(Верзія $1)',
 'version-license'               => 'Ліценція',
-'version-poweredby-credits'     => "Тота вікі біжыть на '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
+'version-poweredby-credits'     => "Тота вікі біжыть на '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001–$1 $2.",
 'version-poweredby-others'      => 'іншы',
 'version-license-info'          => 'MediaWiki є слободный софтвер; можете го шырити або управляти подля условій GNU General Public License, выдаваной Free Software Foundation; будь верзія 2 той ліценції або (подля вашого уважіня) будьяка пізнїша верзія.
 
 MediaWiki є дістрібуована в надїї, же буде хосновна, але БЕЗ БУДЬЯКОЙ ЗАРУКЫ; не давають ся ани зарукы ПРОДАЙНОСТИ або ВАЛУШНОСТИ ПРО СТАНОВЛЕНЫЙ ЦІЛЬ. Детайлы ся дочітате в текстї  GNU General Public License.
 
-[{{SERVER}}{{SCRIPTPATH}}/COPYING Kopii GNU General Public License] сьте мали обтримати вєдно з тым проґрамом, кідь нїт, напиште на  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA або [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html сі єй прочітайте онлайн].',
+[{{SERVER}}{{SCRIPTPATH}}/COPYING Kopii GNU General Public License] сьте мали обтримати вєдно з тым проґрамом, кідь нїт, напиште на  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA або [//www.gnu.org/licenses/old-licenses/gpl-2.0.html сі єй прочітайте онлайн].',
 'version-software'              => 'Іншталованый софтвер',
 'version-software-product'      => 'Продукт',
 'version-software-version'      => 'Верзія',

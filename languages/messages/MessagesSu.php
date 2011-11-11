@@ -158,8 +158,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Témbongkeun jumlah nu ngawaskeun',
 'tog-oldsig'                  => 'Paraf nu geus aya:',
 'tog-fancysig'                => 'Témbongkeun paraf salaku wikitext (tanpa tumbu otomatis)',
-'tog-externaleditor'          => 'Paké éditor éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff'            => 'Paké diff éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [http://www.mediawiki.org/wiki/Manual:External_editors Émbaran lengkep.])',
+'tog-externaleditor'          => 'Paké éditor éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => 'Paké diff éxternal dumasar asalna (ukur pikeun nu ahli, perlu sétingan husus dina komputer anjeun. [//www.mediawiki.org/wiki/Manual:External_editors Émbaran lengkep.])',
 'tog-showjumplinks'           => 'Aktifkeun tumbu panyambung "luncat ka"',
 'tog-uselivepreview'          => 'Paké pramidang saharita (JavaScript) (ujicoba)',
 'tog-forceeditsummary'        => 'Mun kotak ringkesan éditan masih kosong, béjaan!',
@@ -499,7 +499,7 @@ Sigana geus dihapus ku nu séjén.',
 'protectedinterface'   => 'Kaca ieu eusina teks antarmuka pikeun dipaké ku pakakas beyé sarta geus dikunci pikeun ngahindar ti kasalahan.',
 'editinginterface'     => "'''Awas:''' Anjeun keur ngédit kaca nu dipaké pikeun nyadiakeun téks antarmuka pikeun sopwérna.
 Parobahan kana ieu kaca bakal mangaruhan pidangan antarmuka pikeun pamaké séjén.
-Pikeun alihbasa, mangga sumping ka [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyék lokalisasi MediaWiki.",
+Pikeun alihbasa, mangga sumping ka [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proyék lokalisasi MediaWiki.",
 'sqlhidden'            => '(Pamenta SQL disumputkeun)',
 'cascadeprotected'     => 'Kaca ieu geus dikonci ti éditan alatan disartakeun di {{PLURAL:$1|kaca|kaca-kaca}} katut anu geus dikonci kalawan pilihan "runtun": $2',
 'namespaceprotected'   => "Anjeun teu ngabogaan hak pikeun ngédit kaca di ngaranspasi '''$1'''.",
@@ -2758,7 +2758,7 @@ Nu séjénna bakal disumputkeun sakumaha asalna.
 
 # External editor support
 'edit-externally'      => 'Édit koropak ieu migunakeun aplikasi éksternal',
-'edit-externally-help' => 'Baca [http://www.mediawiki.org/wiki/Manual:External_editors pituduh ngatur] pikeun émbaran leuwih jéntré.',
+'edit-externally-help' => 'Baca [//www.mediawiki.org/wiki/Manual:External_editors pituduh ngatur] pikeun émbaran leuwih jéntré.',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'sadaya',

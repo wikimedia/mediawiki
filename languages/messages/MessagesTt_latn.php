@@ -463,7 +463,7 @@ Soraw: $2',
 'protectedpagetext'    => 'Bu bit üzgärtü öçen yabıq.',
 'viewsourcetext'       => 'Sez bu bitneñ başlanğıç tekstın qarıy häm küçerä alasız:',
 'protectedinterface'   => 'Bu bittä programma interfeysı xäbärläre bar. Vandalizmğa qarşı köräş säbäple, bu bitne üzgärtü tıyıla.',
-'editinginterface'     => "'''İğtibar:''' Sez MediaWiki sistemasınıñ interfeys biten üzgärtäsez. Bu başqa qullanuçılarğa da tä'sir itäçäk. Tärcemä öçen [http://translatewiki.net/wiki/Main_Page?setlang=tt-latn translatewiki.net] lokalizatsiäläw proyektın qullanığız.",
+'editinginterface'     => "'''İğtibar:''' Sez MediaWiki sistemasınıñ interfeys biten üzgärtäsez. Bu başqa qullanuçılarğa da tä'sir itäçäk. Tärcemä öçen [//translatewiki.net/wiki/Main_Page?setlang=tt-latn translatewiki.net] lokalizatsiäläw proyektın qullanığız.",
 'sqlhidden'            => '(SQL-soraw yäşerelgän)',
 'cascadeprotected'     => 'Bu bit üzgärtülärdän saqlanğan, çönki ul kaskadlı saqlaw qabul itelgän {{PLURAL:$1|bitkä|bitlärgä}} östälgän:
 $2',
@@ -1822,7 +1822,7 @@ Zinhar başqa isem saylağız.',
 'allmessagesdefault'            => 'Töpcay yazma',
 'allmessagescurrent'            => 'Eligi yazma',
 'allmessagestext'               => 'Bu isemlek MediaWiki isemnär mäydanında bulğan sistema xäbärläreneñ isemlege.
-Ğomumi MediaWiki lokalizatsiäsendä qatnaşırğa teläsägez, zinhar [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokalizatsiäse] häm [http://translatewiki.net translatewiki.net] säxifälärne qullanığız.',
+Ğomumi MediaWiki lokalizatsiäsendä qatnaşırğa teläsägez, zinhar [//www.mediawiki.org/wiki/Localisation MediaWiki Lokalizatsiäse] häm [//translatewiki.net translatewiki.net] säxifälärne qullanığız.',
 'allmessages-filter-legend'     => 'Filtr',
 'allmessages-filter-unmodified' => 'Üzgärtelmägän',
 'allmessages-filter-all'        => 'Barısı',
@@ -2115,7 +2115,7 @@ Yulnıñ berençe sıltaması quyma öçen tıyılğan räsemgä sıltama bulır
 
 # External editor support
 'edit-externally'      => 'Bu faylnı tışqı quşımtanı qullanıp üzgärtü',
-'edit-externally-help' => '(tulıraq mäğlümat öçen [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] biten qarağız)',
+'edit-externally-help' => '(tulıraq mäğlümat öçen [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] biten qarağız)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'barlıq',

@@ -174,8 +174,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'ژمارەی بەکارھێنەرە چاودێڕەکان نیشان بدە',
 'tog-oldsig'                  => 'واژۆی ئێستا:',
 'tog-fancysig'                => 'وەک ویکی‌دەق لەگەڵ واژۆ مامەڵەبکە (بێ بەستەرێکی خۆکار)',
-'tog-externaleditor'          => 'دەستکاریکەری دەرەکی بەکاربێنە لە حاڵەتی دیفاڵتدا (تەنھا بۆ شارەزایان، ڕێکخستنی تایبەتی پێویستە لە سەر کۆمپیوتەرەکەت [http://www.mediawiki.org/wiki/Manual:External_editors زانیاریی زۆرتر.])',
-'tog-externaldiff'            => 'لە پرۆگرامێکی دەرەکی بۆ بینینی جیاوازیەکان کەڵک وەرگرە لە دیفاڵتدا (تەنها بۆ شارەزایان، ڕێکخستنی تایبەتی پێویستە لە سەر کۆمپیوتەرەکەت. [http://www.mediawiki.org/wiki/Manual:External_editors زانیاریی زۆرتر.])',
+'tog-externaleditor'          => 'دەستکاریکەری دەرەکی بەکاربێنە لە حاڵەتی دیفاڵتدا (تەنھا بۆ شارەزایان، ڕێکخستنی تایبەتی پێویستە لە سەر کۆمپیوتەرەکەت [//www.mediawiki.org/wiki/Manual:External_editors زانیاریی زۆرتر.])',
+'tog-externaldiff'            => 'لە پرۆگرامێکی دەرەکی بۆ بینینی جیاوازیەکان کەڵک وەرگرە لە دیفاڵتدا (تەنها بۆ شارەزایان، ڕێکخستنی تایبەتی پێویستە لە سەر کۆمپیوتەرەکەت. [//www.mediawiki.org/wiki/Manual:External_editors زانیاریی زۆرتر.])',
 'tog-showjumplinks'           => 'ڕێگە بدە بۆ بەستەرەکانی «{{int:jumpto}}»',
 'tog-uselivepreview'          => 'لە پێشبینینی زیندوو کەڵک وەرگرە (جاڤاسکریپت پێویستە) (تاقیکاری‌)',
 'tog-forceeditsummary'        => 'ئەگەر پوختەی دەستکاریم نەنووسی پێم بڵێ',
@@ -270,6 +270,7 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|ئەم هاوپۆلە تەنها ئەم پەڕگەی لەخۆ گرتووە.|ئەم‌ {{PLURAL:$1|پەڕگەیە}} کە بەشێکە لە هەموو $2پەڕگەی ئەم هاوپۆلە‌ دەیبینی.}}',
 'category-file-count-limited'    => 'ئەم {{PLURAL:$1|پەڕگە|پەڕگانە}} لەم هاوپۆلەدایە.',
 'listingcontinuesabbrev'         => '(درێژە)',
+'noindex-category'               => 'پەڕە پێرستنەکراوەکان',
 
 'about'         => 'سه‌باره‌ت',
 'article'       => 'بابەت',
@@ -509,7 +510,7 @@ $1',
 'protectedinterface'   => 'ئەم پەڕە دەقی ڕوواڵەتی نەرمامێرەکە نیشان دەدات و بۆ پەرگری لە خراپکاریی پارێزراوە.',
 'editinginterface'     => "'''ئاگاداری:''' تۆ خەریکی دەستکاریی پەڕەیەکی کە بۆ دابینکردنی دەقی ڕوواڵەتی نەرمامێر بە کار دەھێنرێت.
 گۆڕانکاری لە ئەم پەڕە کاریگەر دەبێت لە سەر ڕواڵەتی پەڕەکانی بەکارھێنەرانی دیکە.
-بۆ وەرگێڕان تکایە [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، پرۆژەی ناوچەیی‌کردنی میدیاویکی بەکار بێنە.",
+بۆ وەرگێڕان تکایە [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net]، پرۆژەی ناوچەیی‌کردنی میدیاویکی بەکار بێنە.",
 'sqlhidden'            => '(داواکاریی SQL شاراوەیە)',
 'cascadeprotected'     => 'ئەم لاپەڕە پارێزراوە لە دەستکاریی، چونکا خراوەتە سەر ڕیزی ئەم {{PLURAL:$1|لاپەڕانه‌، کە}} که‌ به‌ هه‌ڵکردنی بژارده‌ی داڕژان هه‌ڵکراوه‌:
 $2',
@@ -2427,7 +2428,7 @@ $1',
 'allmessagesdefault'            => 'دەقی بنەڕەتی',
 'allmessagescurrent'            => 'دەقی ھەنووکە',
 'allmessagestext'               => 'ئەمە لیستێکە لە پەیامەکانی بەردەست لە بۆشایی‌ناوی میدیاویکی.
-تکایە سەردانی [http://www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [http://translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
+تکایە سەردانی [//www.mediawiki.org/wiki/Localisation ناوچەیی‌کردنی میدیاویکی] و [//translatewiki.net translatewiki.net] بکە ئەگەر دەتەوێ لە ناوچەیی‌کردنی میدیاویکی بە گشتی بەشداری بکەیت.',
 'allmessagesnotsupportedDB'     => "ئەم لاپەڕە ناتوانی بەکاربێت لەبەر ئەوەی '''\$wgUseDatabaseMessages''' لەکار خستراوە.",
 'allmessages-filter-legend'     => 'پاڵێو',
 'allmessages-filter-unmodified' => 'چاکسازی نەکراو',
@@ -2670,7 +2671,8 @@ $1',
 'metadata-help'     => 'ئەم پەڕگە زانیاری زێدەی ھەیە، کە لەوە دەچێت کامێرا یان ھێماگر (scanner) خستبێتیە سەری. ئەگەر پەڕگەکە لە حاڵەتی سەرەتاییەکەیەوە دەستکاری کرابێ، شایەد بڕێ لە بڕگەکان بە تەواوی زانیارەکانی وێنە گۆڕدراوەکە نیشان نەدەن.',
 'metadata-expand'   => 'وردەکارییە درێژکراوەکان پیشان بدە',
 'metadata-collapse' => 'وردەکارییە درێژکراوەکان بشارەوە',
-'metadata-fields'   => 'ئەو کێڵگە EXIFانە لەم پەیامە بە ڕیز کراون، کاتێک خشتەی metadata کۆ کراوەش بێ ھەر نیشان ئەدرێت. کێڵگەکانی تر تا خشتەکە باز نەکرێ، شاراوەن.
+'metadata-fields'   => 'کێڵگەکانی میتاداتای وێنە کە لەم پەیامەدا بەڕیزکراون کاتێک خشتەی میتاداتا کۆکراوەش بێت لە پەڕەی وێنەدا نیشان دەدرێن.
+کێڵگەکانی تر لە حاڵەتی بنەڕەتیدا شاراوەن.
 * make
 * model
 * datetimeoriginal
@@ -2818,7 +2820,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'دەستکاریی ئەم پەڕەیە بکە بە بەکارھێنانی پڕۆگرامێکی دەرەکی',
-'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [http://www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
+'edit-externally-help' => '(بۆ زانیاریی زیاتر سەیری [//www.mediawiki.org/wiki/Manual:External_editors  ڕێنماییەکانی دامەزراندن] بکە)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ھەموو',

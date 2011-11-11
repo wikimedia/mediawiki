@@ -212,8 +212,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'แสดงจำนวนผู้ใช้ที่เฝ้าดูหน้านี้',
 'tog-oldsig'                  => 'แสดงผลลายเซ็นเดิม:',
 'tog-fancysig'                => 'ใช้คำสั่งวิกิที่ปรากฏในลายเซ็นนี้ (ไม่มีการสร้างลิงก์อัตโนมัติ)',
-'tog-externaleditor'          => 'ใช้โปรแกรมแก้ไขภายนอกโดยปริยาย (สำหรับผู้เชี่ยวชาญเท่านั้น ต้องการการตั้งค่าพิเศษบนคอมพิวเตอร์ของคุณ [http://www.mediawiki.org/wiki/Manual:External_editors ข้อมูลเพิ่มเติม])',
-'tog-externaldiff'            => 'ใช้โปรแกรมเปรียบเทียบภายนอกโดยปริยาย (สำหรับผู้เชี่ยวชาญเท่านั้น ต้องการการตั้งค่าพิเศษบนคอมพิวเตอร์ของคุณ [http://www.mediawiki.org/wiki/Manual:External_editors ข้อมูลเพิ่มเติม])',
+'tog-externaleditor'          => 'ใช้โปรแกรมแก้ไขภายนอกโดยปริยาย (สำหรับผู้เชี่ยวชาญเท่านั้น ต้องการการตั้งค่าพิเศษบนคอมพิวเตอร์ของคุณ [//www.mediawiki.org/wiki/Manual:External_editors ข้อมูลเพิ่มเติม])',
+'tog-externaldiff'            => 'ใช้โปรแกรมเปรียบเทียบภายนอกโดยปริยาย (สำหรับผู้เชี่ยวชาญเท่านั้น ต้องการการตั้งค่าพิเศษบนคอมพิวเตอร์ของคุณ [//www.mediawiki.org/wiki/Manual:External_editors ข้อมูลเพิ่มเติม])',
 'tog-showjumplinks'           => 'เปิดใช้งาน "กระโดด" อัตโนมัติไปตามลิงก์',
 'tog-uselivepreview'          => 'แสดงตัวอย่างการแก้ไขแบบทันที (จาวาสคริปต์) (ทดลอง)',
 'tog-forceeditsummary'        => 'เตือนเมื่อช่องสรุปการแก้ไขว่าง',
@@ -548,7 +548,7 @@ $1',
 'protectedpagetext'    => 'หน้านี้ถูกล็อกป้องกันการแก้ไข',
 'viewsourcetext'       => 'โค้ดหน้านี้สามารถดูและนำไปคัดลอกได้:',
 'protectedinterface'   => 'หน้านี้เป็นข้อความที่ใช้แสดงบนหน้าตาหรือส่วนติดต่อผู้ใช้ของซอฟต์แวร์ ถูกล็อกห้ามแก้ไขเพื่อป้องกันการก่อกวน',
-'editinginterface'     => "'''คำเตือน:''' คุณกำลังแก้ไขข้อความที่ใช้แสดงบนหน้าตาหรือส่วนติดต่อผู้ใช้ของซอฟต์แวร์  การแก้ไขหน้านี้จะมีผลต่อการแสดงข้อความบนส่วนติดต่อผู้ใช้ของทุกคน  ถ้าคุณต้องการแปลหน้านี้ ให้ลองใช้บริการของ [http://translatewiki.net/wiki/Main_Page?setlang=th translatewiki.net] ซึ่งเป็นโครงการสำหรับแปลซอฟต์แวร์มีเดียวิกิ",
+'editinginterface'     => "'''คำเตือน:''' คุณกำลังแก้ไขข้อความที่ใช้แสดงบนหน้าตาหรือส่วนติดต่อผู้ใช้ของซอฟต์แวร์  การแก้ไขหน้านี้จะมีผลต่อการแสดงข้อความบนส่วนติดต่อผู้ใช้ของทุกคน  ถ้าคุณต้องการแปลหน้านี้ ให้ลองใช้บริการของ [//translatewiki.net/wiki/Main_Page?setlang=th translatewiki.net] ซึ่งเป็นโครงการสำหรับแปลซอฟต์แวร์มีเดียวิกิ",
 'sqlhidden'            => '(คำสั่ง SQL ซ่อนอยู่)',
 'cascadeprotected'     => 'หน้านี้ได้รับการป้องกันจากการแก้ไข เนื่องจากหน้านี้ถูกใช้เป็นส่วนหนึ่งใน{{PLURAL:$1|หน้า $2 ซึ่งได้รับการป้องกันแบบ "ทบทุกลำดับขั้น"|หน้าซึ่งได้รับการป้องกันแบบ "ทบทุกลำดับขั้น" ดังต่อไปนี้: $2}}',
 'namespaceprotected'   => "คุณไม่มีสิทธิในการแก้ไขหน้าในเนมสเปซ '''$1'''",
@@ -2491,7 +2491,7 @@ $1',
 'allmessagesdefault'            => 'ข้อความตั้งต้น',
 'allmessagescurrent'            => 'ข้อความปัจจุบัน',
 'allmessagestext'               => 'รายการข้อความของระบบ อยู่ในเนมสเปซมีเดียวิกิ
-กรุณาไปที่ [http://www.mediawiki.org/wiki/Localisation มีเดียวิกิ] และ [http://translatewiki.new translatewiki.net] ถ้าคุณยังอยากที่จะแปลข้อความของระบบมีเดียวิกิ',
+กรุณาไปที่ [//www.mediawiki.org/wiki/Localisation มีเดียวิกิ] และ [//translatewiki.new translatewiki.net] ถ้าคุณยังอยากที่จะแปลข้อความของระบบมีเดียวิกิ',
 'allmessagesnotsupportedDB'     => "หน้านี้ไม่สามารถใช้งานได้เนื่องจาก '''\$wgUseDatabaseMessages''' ถูกระงับการใช้งาน",
 'allmessages-filter-legend'     => 'กรอง',
 'allmessages-filter'            => 'กรองตามสถานะที่เลือก:',
@@ -3018,7 +3018,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'แก้ไขไฟล์นี้โดยใช้ซอฟต์แวร์ตัวอื่น',
-'edit-externally-help' => '(ดูเพิ่ม [http://www.mediawiki.org/wiki/Manual:External_editors วิธีการตั้งค่า] สำหรับข้อมูลเพิ่มเติม)',
+'edit-externally-help' => '(ดูเพิ่ม [//www.mediawiki.org/wiki/Manual:External_editors วิธีการตั้งค่า] สำหรับข้อมูลเพิ่มเติม)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ทั้งหมด',
@@ -3196,13 +3196,13 @@ $1',
 'version-hook-subscribedby'     => 'สนับสนุนโดย',
 'version-version'               => '(รุ่น $1)',
 'version-license'               => 'สัญญาอนุญาต',
-'version-poweredby-credits'     => "วิกินี้จัดทำโดย '''[http://www.mediawiki.org/ MediaWiki]''', สงวนลิขสิทธิ์ © 2001-$1 โดย $2.",
+'version-poweredby-credits'     => "วิกินี้จัดทำโดย '''[//www.mediawiki.org/ MediaWiki]''', สงวนลิขสิทธิ์ © 2001-$1 โดย $2.",
 'version-poweredby-others'      => 'ผู้อื่น',
 'version-license-info'          => 'มีเดียวิกิเป็นซอฟต์แวร์เสรี คุณสามารถแจกจ่ายต่อ และ/หรือ แก้ไขโปรแกรมได้ภายใต้เงื่อนไขของ GNU General Public License ที่เผยแพร่โดยมูลนิธิซอฟต์แวร์เสรี ในรุ่นที่ 2 ของใบอนุญาตหรือรุ่นอื่นใด (ตามที่คุณเลือก)
 
 มีเดียวิกิมีการแจกจ่ายโดยหวังว่าจะเป็นประโยชน์ แต่ไม่มีการรับประกันใดๆ ทั้งสิ้น ไม่มีแม้การรับประกันโดยนัยเพื่อการค้า หรือความเหมาะสมสำหรับวัตถุประสงค์เฉพาะ ดู GNU General Public License เพื่อดูรายละเอียดเพิ่มเติม 
 
-คุณควรจะได้รับ [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] พร้อมกับโปรแกรมนี้ หากไม่พบ กรุณาเขียนจดหมายถึง Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA หรือ [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html อ่านออนไลน์]',
+คุณควรจะได้รับ [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] พร้อมกับโปรแกรมนี้ หากไม่พบ กรุณาเขียนจดหมายถึง Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA หรือ [//www.gnu.org/licenses/old-licenses/gpl-2.0.html อ่านออนไลน์]',
 'version-software'              => 'ซอฟต์แวร์ที่ติดตั้ง',
 'version-software-product'      => 'ชื่อ',
 'version-software-version'      => 'รุ่น',

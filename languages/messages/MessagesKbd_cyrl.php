@@ -387,7 +387,7 @@ $1',
 'protectedinterface'   => 'Мы напэкӀуэцӀым интерфейс тхылъ хэтщ, программэтыныгъэм еуэ. Хьэуэйн имыӀэн щхьэкӀэ, и гъэтэрэзыныр теубыдауэ щытщ.',
 'editinginterface'     => "'''Гу лъытэ:''' Бгъэтэрэз напэкӀуэцӀым интерфэйс тхылъ хэтщ, программэтыгъэм еуэ.
 И зэхъуэкӀыгъуэм интерфэйсым и сурэтым хэуэну адрей цӀыхухэтхэм щхьэкӀэ.
-ЗэдзэкӀыным шъхьэкӀэ къэбгъэсэбэпыну нэхъыфӀыр [http://translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net], MediaWiki-м и локализациэм и проэктщ.",
+ЗэдзэкӀыным шъхьэкӀэ къэбгъэсэбэпыну нэхъыфӀыр [//translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net], MediaWiki-м и локализациэм и проэктщ.",
 'sqlhidden'            => '(SQL щӀэупщӀэгъуэр гъэлъэгъуакъым)',
 'cascadeprotected'     => 'ЗэхъуэкӀыныгъэм щыхъумауэ щыт напэкӀуэцӀыр, хэгъэхьауэ щыт {{PLURAL:$1|яужкӀэ напэкӀуэцӀ итым| яужкӀэ напэкӀуэцӀ итхэм}} каскад хъумэныгъэм:
 $2',
@@ -1297,7 +1297,7 @@ $1",
 
 # External editor support
 'edit-externally'      => 'Файлыр гъэтэрэзын, нэгъуэщӀ программэ и сэбэпкӀэ',
-'edit-externally-help' => '(нэхъыбу еплъ [http://www.mediawiki.org/wiki/Manual:External_editors илъхьэным и тепсэлъыхьыгъуэ])',
+'edit-externally-help' => '(нэхъыбу еплъ [//www.mediawiki.org/wiki/Manual:External_editors илъхьэным и тепсэлъыхьыгъуэ])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'псори',

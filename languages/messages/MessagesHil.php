@@ -46,8 +46,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Ipakita ang numero sang mga nagalantaw nga manug-gamit',
 'tog-oldsig'                  => 'Nagapabilin nga pirma:',
 'tog-fancysig'                => 'Tratoha ang pirma bilang wikitext (wala sang tabid nga dayon)',
-'tog-externaleditor'          => 'Gamiton dayon ang pang-guha nga manug-ilis (para sa mga sagad lamang, nagakinahanglan sang espesyal nga pagkay-o sa imo computer. [http://www.mediawiki.org/wiki/Manual:External_editors Mas madamo pa nga impormasyon.])',
-'tog-externaldiff'            => 'Gamiton dayon ang pang-guha nga diff (para sa mga sagad lamang, nagakinahanglan sang espesyal nga pagkay-o sa imo computer. [http://www.mediawiki.org/wiki/Manual:External_editors Mas madamo pa nga impormasyon.])',
+'tog-externaleditor'          => 'Gamiton dayon ang pang-guha nga manug-ilis (para sa mga sagad lamang, nagakinahanglan sang espesyal nga pagkay-o sa imo computer. [//www.mediawiki.org/wiki/Manual:External_editors Mas madamo pa nga impormasyon.])',
+'tog-externaldiff'            => 'Gamiton dayon ang pang-guha nga diff (para sa mga sagad lamang, nagakinahanglan sang espesyal nga pagkay-o sa imo computer. [//www.mediawiki.org/wiki/Manual:External_editors Mas madamo pa nga impormasyon.])',
 'tog-showjumplinks'           => 'Sugtan ang "maglumpat sa" nga mga tabid sang paalagyan',
 'tog-uselivepreview'          => 'Gamiton ang preview nga live (nagakinahanglan sang JavaScript) (experimentohanon)',
 'tog-forceeditsummary'        => 'Sugidi ako kon magasulod ako sa blanko nga kabilogan sang pag-ilis',
@@ -392,7 +392,7 @@ Palihog tilawan mo liwat pagkatapos sang malip-ot nga tinion.',
 'protectedinterface'   => 'Ang ini nga panid nagahatag sang mga teksto sang interface para sa software, kag ginapangapinan agod indi maabuso.',
 'editinginterface'     => "'''Pahibalo:''' Naga-ilis ka sang panid nga ginagamit sa paghatag sang mga teksto sang interface para sa software.
 Ang mga pagbag-o sang sini nga panid maga-apekto sa hitsura sang interface sang panid sang manug-gamit sang iban.
-Para sa mga paglubad/pagbadbad, palihog kilalanon ang paggamit sang [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyekto sang MediaWiki para sa localisasyon.",
+Para sa mga paglubad/pagbadbad, palihog kilalanon ang paggamit sang [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], ang proyekto sang MediaWiki para sa localisasyon.",
 'sqlhidden'            => '(Nakatago ang pagpamangkot sang SQL)',
 'cascadeprotected'     => 'Ang ini nga panid ginpangapinan agod nga indi ma-ilisan, bangud nga ini nadal sa masunod nga {{PLURAL:$1|panid, nga|mga panid, nga}} ginapangapinan sang naga-"kaskad" nga pililian nga naga-andar:
 $2',
@@ -1574,7 +1574,7 @@ Ang iban ay pagataguon sang default.
 
 # External editor support
 'edit-externally'      => 'Islan ini nga file gamit ang eksternal nga aplikasyon',
-'edit-externally-help' => '(Lantawa ang [http://www.mediawiki.org/wiki/Manual:External_editors tudlo sa pag panugod] para sa mga dugang nga impormasyon)',
+'edit-externally-help' => '(Lantawa ang [//www.mediawiki.org/wiki/Manual:External_editors tudlo sa pag panugod] para sa mga dugang nga impormasyon)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tanan',

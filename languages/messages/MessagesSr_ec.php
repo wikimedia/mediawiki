@@ -781,7 +781,7 @@ $1',
 'protectedinterface'   => 'Ова страница је заштићена јер садржи текст корисничког сучеља програма.',
 'editinginterface'     => "'''Упозорење:''' уређујете страницу која се користи за приказивање текста сучеља.
 Измене на овој страници ће утицати на све кориснике.
-Посетите [http://translatewiki.net/wiki/Main_Page?setlang=sr_ec Транслејтвики], пројекат намењен за превођење Медијавикија.",
+Посетите [//translatewiki.net/wiki/Main_Page?setlang=sr_ec Транслејтвики], пројекат намењен за превођење Медијавикија.",
 'sqlhidden'            => '(SQL упит је сакривен)',
 'cascadeprotected'     => 'Ова страница је закључана јер садржи {{PLURAL:$1|следећу страницу која је заштићена|следеће странице које су заштићене}} „преносивом“ заштитом:
 $2',
@@ -1944,7 +1944,7 @@ $1',
 'img-auth-nopathinfo'       => 'Недостаје PATH_INFO.
 Ваш сервер није подешен да прослеђује овакве податке.
 Можда је заснован на CGI-ју који не подржава img_auth.
-Погледајте http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Погледајте [//www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sr-ec одобравање слика.]',
 'img-auth-notindir'         => 'Захтевана путања није у подешеној фасцикли за слање.',
 'img-auth-badtitle'         => 'Не могу да створим исправан наслов за „$1“.',
 'img-auth-nologinnWL'       => 'Нисте пријављени и „$1“ није на списку дозвољених.',
@@ -2116,7 +2116,7 @@ $1',
 'statistics-users-active-desc' => 'Корисници који су извршили бар једну радњу {{PLURAL:$1|претходни дан|у последња $1 дана|у последњих $1 дана}}',
 'statistics-mostpopular'       => 'Најпосећеније странице',
 
-'disambiguations'      => 'Странице за вишезначне одреднице',
+'disambiguations'      => 'Странице до вишезначних одредница',
 'disambiguationspage'  => 'Template:Вишезначна одредница',
 'disambiguations-text' => "Следеће странице су повезане с '''вишезначном одредницом'''.
 Оне би требало бити упућене ка одговарајућем чланку.
@@ -2259,7 +2259,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'прилози',
 
 # Special:LinkSearch
-'linksearch'       => 'Спољне везе',
+'linksearch'       => 'Претрага спољних веза',
 'linksearch-pat'   => 'Образац претраге:',
 'linksearch-ns'    => 'Именски простор:',
 'linksearch-ok'    => 'Претражи',
@@ -2941,7 +2941,7 @@ $1',
 'allmessagesdefault'            => 'Стандардни текст',
 'allmessagescurrent'            => 'Текст поруке',
 'allmessagestext'               => 'Ово је списак системских порука доступних у именском простору Медијавикија.
-Посетите [http://translatewiki.net TranslateWiki] уколико желите да помогнете у превођењу.',
+Посетите [//translatewiki.net TranslateWiki] уколико желите да помогнете у превођењу.',
 'allmessagesnotsupportedDB'     => "Ова страница не може бити употребљена зато што је '''\$wgUseDatabaseMessages''' искључен.",
 'allmessages-filter-legend'     => 'Филтер',
 'allmessages-filter'            => 'Филтрирај по стању:',
@@ -3746,7 +3746,7 @@ $8',
 
 # External editor support
 'edit-externally'      => 'Измени ову датотеку користећи спољашњи програм',
-'edit-externally-help' => '(Погледајте [http://www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација)',
+'edit-externally-help' => '(Погледајте [//www.mediawiki.org/wiki/Manual:External_editors упутство за подешавање] за више информација)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'све',
@@ -4015,13 +4015,13 @@ $1',
 'version-version'               => '(издање $1)',
 'version-svn-revision'          => '(изм. $2)',
 'version-license'               => 'Лиценца',
-'version-poweredby-credits'     => "Овај вики покреће '''[http://www.mediawiki.org/ Медијавики]''', ауторска права © 2001-$1 $2.",
+'version-poweredby-credits'     => "Овај вики покреће '''[//www.mediawiki.org/ Медијавики]''', ауторска права © 2001-$1 $2.",
 'version-poweredby-others'      => 'остали',
 'version-license-info'          => 'Медијавики је слободан софтвер; можете га расподељивати и мењати под условима ГНУ-ове опште јавне лиценце (ОЈЛ) коју је објавила Задужбина за слободан софтвер, било да је у питању друго или новије издање лиценце.
 
 Медијавики се расподељује у нади да ће бити користан, али БЕЗ ИКАКВЕ ГАРАНЦИЈЕ; чак и без имплицитне гаранције о ПРОДАЈИ или ПОГОДНОСТИ ЗА ОДРЕЂЕНЕ НАМЕНЕ. Погледајте ГНУ-ову општу јавну лиценцу за више детаља.
 
-Требало би да сте примили [{{SERVER}}{{SCRIPTPATH}}/COPYING примерак ГНУ-ове опште јавне лиценце] заједно с овим програмом. Ако нисте, пишите Задужбини за слободан софтвер, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA или [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитајте на мрежи].',
+Требало би да сте примили [{{SERVER}}{{SCRIPTPATH}}/COPYING примерак ГНУ-ове опште јавне лиценце] заједно с овим програмом. Ако нисте, пишите Задужбини за слободан софтвер, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA или [//www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитајте на мрежи].',
 'version-software'              => 'Инсталиран софтвер',
 'version-software-product'      => 'Производ',
 'version-software-version'      => 'Издање',

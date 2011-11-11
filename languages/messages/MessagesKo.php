@@ -299,7 +299,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => '링크 걸기:',
+'tog-underline'               => '링크에 밑줄 표시하기:',
 'tog-highlightbroken'         => '없는 문서로 연결된 링크를 <a href="" class="new">이렇게</a> 보이기 (선택하지 않으면 이렇게<a href="" class="internal">?</a> 보임)',
 'tog-justify'                 => '문단 정렬하기',
 'tog-hideminor'               => '사소한 편집을 최근 바뀜에서 숨기기',
@@ -329,8 +329,8 @@ $messages = array(
 'tog-shownumberswatching'     => '주시 사용자 수 보기',
 'tog-oldsig'                  => '사용 중인 서명:',
 'tog-fancysig'                => '서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)',
-'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 정보 보기])',
-'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [http://www.mediawiki.org/wiki/Manual:External_editors 자세한 설명 보기])',
+'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [//www.mediawiki.org/wiki/Manual:External_editors 자세한 정보 보기])',
+'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요, [//www.mediawiki.org/wiki/Manual:External_editors 자세한 설명 보기])',
 'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
 'tog-uselivepreview'          => '실시간 미리 보기 사용하기 (자바스크립트 사용, 시험 중)',
 'tog-forceeditsummary'        => '편집 요약을 쓰지 않았을 때 알려주기',
@@ -666,7 +666,7 @@ $1',
 'protectedpagetext'    => '이 문서는 편집할 수 없도록 보호되어 있습니다.',
 'viewsourcetext'       => '문서의 원본을 보거나 복사할 수 있습니다:',
 'protectedinterface'   => '이 문서는 소프트웨어 인터페이스에 쓰이는 문서로, 잠겨 있습니다.',
-'editinginterface'     => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다. 이것은 모든 사용자에게 영향을 끼칩니다. 번역되지 않은 메시지를 번역하려는 경우에는, [http://translatewiki.net/wiki/Main_Page?setlang=ko translatewiki.net]에 참여하면 메시지 번역을 미디어위키에 직접 반영할 수 있습니다.",
+'editinginterface'     => "'''경고''': 소프트웨어에서 사용하는 메시지 문서를 고치고 있습니다. 이것은 모든 사용자에게 영향을 끼칩니다. 번역되지 않은 메시지를 번역하려는 경우에는, [//translatewiki.net/wiki/Main_Page?setlang=ko translatewiki.net]에 참여하면 메시지 번역을 미디어위키에 직접 반영할 수 있습니다.",
 'sqlhidden'            => '(SQL 쿼리 숨겨짐)',
 'cascadeprotected'     => '이 문서는 연쇄보호가 걸린 {{PLURAL:$1|문서}}에 포함되어 있어 함께 보호됩니다. 연쇄 보호된 문서:
 $2',
@@ -1279,12 +1279,13 @@ $1",
 'searchdisabled'                   => '{{SITENAME}} 검색 기능이 비활성화되어 있습니다. 기능이 작동하지 않는 동안에는 구글(Google)을 이용해 검색할 수 있습니다. 검색 엔진의 내용은 최근 것이 아닐 수 있다는 점을 주의해주세요.',
 
 # Quickbar
-'qbsettings'               => '빨리가기 맞춤',
-'qbsettings-none'          => '없음',
-'qbsettings-fixedleft'     => '왼쪽 고정',
-'qbsettings-fixedright'    => '오른쪽 고정',
-'qbsettings-floatingleft'  => '왼쪽 유동',
-'qbsettings-floatingright' => '오른쪽 유동',
+'qbsettings'                => '빨리가기 맞춤',
+'qbsettings-none'           => '없음',
+'qbsettings-fixedleft'      => '왼쪽 고정',
+'qbsettings-fixedright'     => '오른쪽 고정',
+'qbsettings-floatingleft'   => '왼쪽 유동',
+'qbsettings-floatingright'  => '오른쪽 유동',
+'qbsettings-directionality' => '사용자 언어의 문자 입력 방향에 맞추어 고정',
 
 # Preferences page
 'preferences'                   => '사용자 환경 설정',
@@ -1367,6 +1368,7 @@ $1",
 'prefs-registration'            => '등록 일시:',
 'yourrealname'                  => '실명:',
 'yourlanguage'                  => '언어:',
+'yourvariant'                   => '언어 변종:',
 'yournick'                      => '서명:',
 'prefs-help-signature'          => '토론 문서에 글을 남기실 때는 서명을 해 주세요. “<nowiki>~~~~</nowiki>”를 입력하시면 서명과 시간이 자동으로 입력됩니다.',
 'badsig'                        => '서명이 잘못되었습니다. HTML 태그를 확인해주세요.',
@@ -1759,10 +1761,10 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => '접근 거부됨',
-'img-auth-nopathinfo'       => 'PATH_INFO 가 빠졌습니다.
-서버에 이 정보가 설정되어 있지 않습니다.
-CGI 기반이거나 img_auth 를 지원하지 않을 수 있습니다.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
+'img-auth-nopathinfo'       => 'PATH_INFO 값을 알 수 없습니다.
+서버가 이 정보를 받을 수 있도록 설정되어 있지 않습니다.
+이러한 경우는 서버가 CGI 기반이고 img_auth를 지원하지 않을 때 나타날 수 있습니다.
+[//www.mediawiki.org/wiki/Manual:Image_Authorization 그림 권한에 대해 자세히 알아보려면 여기를 클릭하세요.]',
 'img-auth-notindir'         => '요청한 경로가 설정한 업로드 디렉토리에 없습니다.',
 'img-auth-badtitle'         => '"$1"에서 바른 제목을 만들 수 없습니다.',
 'img-auth-nologinnWL'       => '당신은 로그인하지 않았으며 "$1" 파일은 화이트리스트에 존재하지 않습니다.',
@@ -1927,7 +1929,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-users-active-desc' => '최근 $1일 동안 활동한 사용자',
 'statistics-mostpopular'       => '가장 많이 읽힌 문서',
 
-'disambiguations'      => '동음이의 문서 목록',
+'disambiguations'      => '동음이의 문서를 가리키는 문서 목록',
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => "다음의 문서들은 '''동음이의 문서'''를 가리키고 있습니다.
 그 링크를 다른 적절한 문서로 연결해 주어야 합니다.<br />
@@ -2067,7 +2069,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'sp-deletedcontributions-contribs' => '기여',
 
 # Special:LinkSearch
-'linksearch'       => '웹 링크 검색',
+'linksearch'       => '외부 링크 검색',
 'linksearch-pat'   => '검색 패턴:',
 'linksearch-ns'    => '이름공간:',
 'linksearch-ok'    => '검색',
@@ -2394,11 +2396,12 @@ $1',
 'undelete-show-file-submit'    => '예',
 
 # Namespace form on various pages
-'namespace'             => '이름공간:',
-'invert'                => '선택 반전',
-'tooltip-invert'        => '선택한 이름공간에 있는 문서의 바뀜을 숨기려면 이 상자에 체크해주세요.',
-'namespace_association' => '관련된 이름공간',
-'blanknamespace'        => '(일반)',
+'namespace'                     => '이름공간:',
+'invert'                        => '선택 반전',
+'tooltip-invert'                => '선택한 이름공간에 있는 문서의 바뀜을 숨기려면 이 상자에 체크해주세요.',
+'namespace_association'         => '관련된 이름공간',
+'tooltip-namespace_association' => '선택한 이름공간과 관련된 토론/본문 이름공간을 같이 선택합니다.',
+'blanknamespace'                => '(일반)',
 
 # Contributions
 'contributions'       => '사용자 기여',
@@ -2712,7 +2715,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'allmessagesname'               => '이름',
 'allmessagesdefault'            => '기본 내용',
 'allmessagescurrent'            => '현재 내용',
-'allmessagestext'               => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net translatewiki.net]에 참가해주세요.',
+'allmessagestext'               => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으면 [//www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [//translatewiki.net translatewiki.net]에 참가해주세요.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 이 문서는 쓸 수 없습니다.",
 'allmessages-filter-legend'     => '필터',
 'allmessages-filter'            => '수정 상태로 거르기:',
@@ -3131,7 +3134,11 @@ Variants for Chinese language
 'exif-keywords'                    => '핵심단어(키워드)',
 'exif-worldregioncreated'          => '이 사진이 찍힌 지역에 대한 정보',
 'exif-countrycreated'              => '이 사진이 찍힌 국가와 이 사진에 묘사된 것을 기입하십시오.',
-'exif-countrycodecreated'          => '이 사진이 찍힌 나라의 ISO코드를 입력하십시오.',
+'exif-countrycodecreated'          => '사진을 촬영한 곳의 국가 ISO 코드',
+'exif-provinceorstatecreated'      => '사진을 촬영한 지역(주/도 단위)',
+'exif-citycreated'                 => '사진을 촬영한 지역(시/군 단위)',
+'exif-sublocationcreated'          => '사진을 촬영한 곳의 세부 지역',
+'exif-worldregiondest'             => '사진의 대륙/지역',
 'exif-objectname'                  => '짧은 제목',
 'exif-languagecode'                => '언어',
 'exif-lens'                        => '사용된 렌즈',
@@ -3296,7 +3303,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',
-'edit-externally-help' => '(자세한 정보는 [http://www.mediawiki.org/wiki/Manual:External_editors 설치 방법]을 참고하십시오)',
+'edit-externally-help' => '(자세한 정보는 [//www.mediawiki.org/wiki/Manual:External_editors 설치 방법]을 참고하십시오)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '모든 기간',
@@ -3386,6 +3393,12 @@ $1',
 'confirm-purge-top'    => '문서의 캐시를 지울까요?',
 'confirm-purge-bottom' => '문서를 새로고침하는 것은 캐시를 갱신하고 가장 최근의 버전이 나타나게 할 것입니다.',
 
+# action=watch/unwatch
+'confirm-watch-button'   => '확인',
+'confirm-watch-top'      => '이 문서를 주시문서 목록에 추가할까요?',
+'confirm-unwatch-button' => '확인',
+'confirm-unwatch-top'    => '이 문서를 주시문서 목록에서 뺄까요?',
+
 # Multipage image navigation
 'imgmultipageprev' => '← 이전 페이지',
 'imgmultipagenext' => '다음 페이지 →',
@@ -3469,13 +3482,13 @@ $1',
 'version-hook-subscribedby'     => '훅이 사용된 위치',
 'version-version'               => '(버전 $1)',
 'version-license'               => '라이센스',
-'version-poweredby-credits'     => "이 위키는 '''[http://www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "이 위키는 '''[//www.mediawiki.org/ MediaWiki]'''를 기반으로 작동합니다. Copyright © 2001-$1 $2.",
 'version-poweredby-others'      => '그 외 다른 개발자',
 'version-license-info'          => '미디어위키는 자유 소프트웨어입니다. 당신은 자유 소프트웨어 재단이 발표한 GNU 일반 공중 사용 허가서 버전 2나 그 이후 버전에 따라 이 파일을 재배포하거나 수정할 수 있습니다.
 
 미디어위키가 유용하게 사용될 수 있기를 바라지만 상용으로 사용되거나 특정 목적에 맞을 것이라는 것을 보증하지 않습니다. 자세한 내용은 GNU 일반 공중 사용 허가서 전문을 참고하십시오.
 
-당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다; 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인]으로 읽어보시기 바랍니다.',
+당신은 이 프로그램을 통해 [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU 일반 공중 사용 허가서 전문]을 받았습니다; 그렇지 않다면, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA로 편지를 보내주시거나 [//www.gnu.org/licenses/old-licenses/gpl-2.0.html 온라인]으로 읽어보시기 바랍니다.',
 'version-software'              => '설치된 프로그램',
 'version-software-product'      => '제품',
 'version-software-version'      => '버전',

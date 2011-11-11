@@ -379,8 +379,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Εμφάνιση του αριθμού των συνδεδεμένων χρηστών',
 'tog-oldsig'                  => 'Προεπισκόπηση της υπάρχουσας υπογραφής:',
 'tog-fancysig'                => 'Μεταχείριση υπογραφής ως κείμενο wiki (χωρίς έναν αυτόματο σύνδεσμο)',
-'tog-externaleditor'          => 'Χρήση εξωτερικού επεξεργαστή από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [http://www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
-'tog-externaldiff'            => 'Χρήση εξωτερικού diff από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [http://www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
+'tog-externaleditor'          => 'Χρήση εξωτερικού επεξεργαστή από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [//www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
+'tog-externaldiff'            => 'Χρήση εξωτερικού diff από προεπιλογή (για προχωρημένους μόνο, χρειάζεται ειδικές ρυθμίσεις του υπολογιστή σας. [//www.mediawiki.org/wiki/Manual:External_editors Περισσότερες πληροφορίες.])',
 'tog-showjumplinks'           => 'Ενεργοποίησε τους συνδέσμους προσβασιμότητας του τύπου "μετάβαση σε"',
 'tog-uselivepreview'          => 'Χρησιμοποίησε άμεση προεπισκόπηση (JavaScript) (Πειραματικό)',
 'tog-forceeditsummary'        => 'Ειδοποίησέ με όταν εισάγω μια κενή σύνοψη επεξεργασίας',
@@ -719,7 +719,7 @@ $1',
 'protectedpagetext'    => 'Αυτή η σελίδα έχει κλειδωθεί για αποτροπή επεξεργασίας της.',
 'viewsourcetext'       => 'Μπορείτε να δείτε και να αντιγράψετε τον κώδικα αυτής της σελίδας:',
 'protectedinterface'   => 'Αυτή η σελίδα παρέχει κείμενο διεπαφής για το λογισμικό, και έχει κλειδωθεί για πρόληψη τυχόν βανδαλισμού.',
-'editinginterface'     => "'''Προσοχή:''' Επεξεργάζεστε μια σελίδα η οποία χρησιμοποιείται για να παρέχει κείμενο διεπαφής για το λογισμικό. Αλλαγές σε αυτή τη σελίδα θα επηρεάσουν την εμφάνιση της διεπαφής χρήστη για τους άλλους χρήστες. Εάν θέλετε να διορθώσετε τη μετάφραση, μπορείτε να χρησιμοποιήσετε το [http://translatewiki.net/wiki/Main_Page?setlang=el translatewiki.net], που ασχολείται με τις μεταφράσεις των μηνυμάτων MediaWiki.",
+'editinginterface'     => "'''Προσοχή:''' Επεξεργάζεστε μια σελίδα η οποία χρησιμοποιείται για να παρέχει κείμενο διεπαφής για το λογισμικό. Αλλαγές σε αυτή τη σελίδα θα επηρεάσουν την εμφάνιση της διεπαφής χρήστη για τους άλλους χρήστες. Εάν θέλετε να διορθώσετε τη μετάφραση, μπορείτε να χρησιμοποιήσετε το [//translatewiki.net/wiki/Main_Page?setlang=el translatewiki.net], που ασχολείται με τις μεταφράσεις των μηνυμάτων MediaWiki.",
 'sqlhidden'            => '(το αίτημα SQL δεν εμφανίζεται)',
 'cascadeprotected'     => 'Αυτή η σελίδα έχει προστατευθεί από επεξεργασία, επειδή περιλαμβάνεται στις ακόλουθες {{PLURAL:$1|σελίδα|σελίδες}}, που είναι προστατευμένες με την ενεργοποιημένη "διαδοχική" προστασία στο:
 $2',
@@ -2764,7 +2764,7 @@ $1',
 'allmessagesdefault'            => 'Προκαθορισμένο κείμενο',
 'allmessagescurrent'            => 'Παρόν κείμενο',
 'allmessagestext'               => 'Αυτή είναι μια λίστα με όλα τα μηνύματα συστήματος που βρίσκονται στην περιοχή MediaWiki.
-Παρακαλούμε επισκεφθείτε τα [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] και [http://translatewiki.net translatewiki.net] αν επιθυμείτε να συνεισφέρετε σε μια γενική μετάφραση του MediaWiki.',
+Παρακαλούμε επισκεφθείτε τα [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] και [//translatewiki.net translatewiki.net] αν επιθυμείτε να συνεισφέρετε σε μια γενική μετάφραση του MediaWiki.',
 'allmessagesnotsupportedDB'     => "Αυτή η σελίδα δεν υποστηρίζεται επειδή το ''wgUseDatabaseMessages'' είναι απενεργοποιημένο.",
 'allmessages-filter-legend'     => 'Φίλτρο',
 'allmessages-filter'            => 'Ταξινόμηση βάσει της δήλωσης προσαρμογής:',
@@ -3455,7 +3455,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Επεξεργαστείτε το συγκεκριμένο αρχείο χρησιμοποιώντας μια από τις εξωτερικές εφαρμογές.',
-'edit-externally-help' => 'Για περισσότερες πληροφορίες δείτε τις [http://www.mediawiki.org/wiki/Manual:External_editors οδηγίες εγκατάστασης].',
+'edit-externally-help' => 'Για περισσότερες πληροφορίες δείτε τις [//www.mediawiki.org/wiki/Manual:External_editors οδηγίες εγκατάστασης].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'όλες',
@@ -3637,13 +3637,13 @@ $1',
 'version-hook-subscribedby'     => 'Υπογεγραμμένο από',
 'version-version'               => '(Έκδοση $1)',
 'version-license'               => 'Άδεια χρήσης',
-'version-poweredby-credits'     => "Αυτό το βίκι τροφοδοτείται από '''[http://www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
+'version-poweredby-credits'     => "Αυτό το βίκι τροφοδοτείται από '''[//www.mediawiki.org/ MediaWiki]''', πνευματική ιδιοκτησία © 2001-$1 $2.",
 'version-poweredby-others'      => 'άλλοι',
 'version-license-info'          => "To Το MediaWiki είναι ελεύθερο λογισμικό. Μπορείτε να το αναδιανέμετε ή / και να το τροποποιήσετε υπό τους όρους της GNU General Public License όπως αυτή εκδόθηκε από το Free Software Foundation.Είτε η δεύτερη έκδοση της άδειας, είτε (κατ' επιλογή σας) οποιδήποτε επόμενη έκδοση.
 Ο
 Το MediaWiki διανέμεται με την ελπίδα ότι θα είναι χρήσιμο, αλλά ΧΩΡΙΣ ΚΑΜΙΑ ΕΓΓΥΗΣΗ.Ούτε καν την σιωπηρή εγγύση της  ΕΜΠΟΡΕΥΣΙΜΟΤΗΤΑΣ ή της ΚΑΤΑΛΛΗΛΟΤΗΤΑΣ ΓΙΑ ΕΝΑ PARTICULAR ΣΚΟΠΟ.Όπως δείτε την GNU General Public License για περισσότερες λεπτομέρειες.
 
- Θα πρέπει να έχετε λάβει [((SERVER)) ((SCRIPTPATH)) / COPYING ένα αντίγραφο της GNU General Public License] μαζί με αυτό το πρόγραμμα.Αν όχι, γράψτε προς το Free Software Foundation, Inc, 51 Franklin Street, πέμπτο όροφο , Boston, MA 02110-1301, USA ή [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html διαβάστε το online].",
+ Θα πρέπει να έχετε λάβει [((SERVER)) ((SCRIPTPATH)) / COPYING ένα αντίγραφο της GNU General Public License] μαζί με αυτό το πρόγραμμα.Αν όχι, γράψτε προς το Free Software Foundation, Inc, 51 Franklin Street, πέμπτο όροφο , Boston, MA 02110-1301, USA ή [//www.gnu.org/licenses/old-licenses/gpl-2.0.html διαβάστε το online].",
 'version-software'              => 'Εγκατεστημένο λογισμικό',
 'version-software-product'      => 'Προϊόν',
 'version-software-version'      => 'Έκδοση',

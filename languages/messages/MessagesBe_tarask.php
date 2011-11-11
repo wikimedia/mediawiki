@@ -281,8 +281,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Паказваць колькасьць назіральнікаў',
 'tog-oldsig'                  => 'Цяперашні подпіс:',
 'tog-fancysig'                => 'Апрацоўваць подпіс як вікі-тэкст (без аўтаматычнай спасылкі)',
-'tog-externaleditor'          => 'Выкарыстоўваць вонкавы рэдактар па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [http://www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
-'tog-externaldiff'            => 'Выкарыстоўваць вонкавую праграму параўнаньня вэрсіяў па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [http://www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
+'tog-externaleditor'          => 'Выкарыстоўваць вонкавы рэдактар па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
+'tog-externaldiff'            => 'Выкарыстоўваць вонкавую праграму параўнаньня вэрсіяў па змоўчваньні (толькі для адмыслоўцаў, патрэбуе спэцыяльных наладак на вашым кампутары. [//www.mediawiki.org/wiki/Manual:External_editors Падрабязнасьці.])',
 'tog-showjumplinks'           => 'Актываваць дапаможныя спасылкі «перайсьці да»',
 'tog-uselivepreview'          => 'Выкарыстоўваць хуткі папярэдні прагляд (патрабуе JavaScript) (экспэрымэнтальна)',
 'tog-forceeditsummary'        => 'Папярэджваць пра адсутнасьць кароткага апісаньня зьменаў',
@@ -624,7 +624,7 @@ $1',
 'protectedinterface'   => 'Гэтая старонка ўтрымлівае інтэрфэйснае паведамленьне праграмнага забесьпячэньня, і яе зьмена забаронена.',
 'editinginterface'     => "'''Увага:''' Вы рэдагуеце старонку, якая ўтрымлівае сыстэмнае паведамленьне MediaWiki.
 Яе зьмена паўплывае на вонкавы выгляд інтэрфэйсу іншых удзельнікаў.
-Калі ласка, выкарыстоўвайце [http://translatewiki.net/wiki/Main_Page?setlang=be-tarask translatewiki.net] — праект для лякалізацыі MediaWiki.",
+Калі ласка, выкарыстоўвайце [//translatewiki.net/wiki/Main_Page?setlang=be-tarask translatewiki.net] — праект для лякалізацыі MediaWiki.",
 'sqlhidden'            => '(SQL-запыт схаваны)',
 'cascadeprotected'     => 'Гэтая старонка абароненая ад рэдагаваньня, таму што яна ўключаная ў {{PLURAL:$1|наступную старонку, якая была абароненая|наступныя старонкі, якія былі абароненыя}} з актывізаванай опцыяй «каскаднай абароны»:
 $2',
@@ -1733,7 +1733,7 @@ $1',
 'img-auth-nopathinfo'       => 'Адсутнічае PATH_INFO.
 Ваш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.
 Яна можа быць заснавана на CGI і ня можа падтрымліваць img_auth.
-Глядзіце http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[http://www.mediawiki.org/wiki/Manual:Image_Authorization Глядзіце інфармацыю пра аўтарызацыю выявы.]',
 'img-auth-notindir'         => 'Неабходнага шляху няма ў дырэкторыі загрузкі, пазначанай у канфігурацыі.',
 'img-auth-badtitle'         => 'Немагчыма стварыць слушную назву з «$1».',
 'img-auth-nologinnWL'       => 'Вы не ўвайшлі ў сыстэму, а «$1» не знаходзіцца ў белым сьпісе.',
@@ -1901,7 +1901,7 @@ $1',
 'statistics-users-active-desc' => 'Удзельнікі, якія выканалі нейкае дзеяньне цягам {{PLURAL:$1|апошняга $1 дня|апошніх $1 дзён|апошніх $1 дзён}}',
 'statistics-mostpopular'       => 'Найпапулярнейшыя старонкі',
 
-'disambiguations'      => 'Старонкі-неадназначнасьці',
+'disambiguations'      => 'Старонкі, якія спасылаюцца на старонкі-неадназначнасьці',
 'disambiguationspage'  => 'Template:Неадназначнасьць',
 'disambiguations-text' => "Наступныя старонкі спасылаюцца на '''старонкі-неадназначнасьці'''.
 Замест гэтага, яны павінны спасылацца на пэўныя старонкі.<br />
@@ -2040,7 +2040,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'унёсак',
 
 # Special:LinkSearch
-'linksearch'       => 'Вонкавыя спасылкі',
+'linksearch'       => 'Пошук вонкавых спасылках',
 'linksearch-pat'   => 'Узор для пошуку:',
 'linksearch-ns'    => 'Прастора назваў:',
 'linksearch-ok'    => 'Шукаць',
@@ -2693,7 +2693,7 @@ $1',
 'allmessagesdefault'            => 'Тэкст па змоўчаньні',
 'allmessagescurrent'            => 'Цяперашні тэкст',
 'allmessagestext'               => 'Сьпіс усіх сыстэмных паведамленьняў, якія існуюць у прасторы назваў MediaWiki.
-Калі ласка, наведайце [http://www.mediawiki.org/wiki/Localisation старонку пра лякалізацыю MediaWiki] і [http://translatewiki.net translatewiki.net], калі Вы жадаеце ўдзельнічаць у перакладзе MediaWiki.',
+Калі ласка, наведайце [//www.mediawiki.org/wiki/Localisation старонку пра лякалізацыю MediaWiki] і [//translatewiki.net translatewiki.net], калі Вы жадаеце ўдзельнічаць у перакладзе MediaWiki.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:AllMessages''' не падтрымліваецца, таму што адключанае '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фільтар',
 'allmessages-filter'            => 'Фільтар па стане зьменаў:',
@@ -3371,7 +3371,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Рэдагаваць гэты файл з выкарыстаньнем вонкавай праграмы',
-'edit-externally-help' => '(Глядзіце падрабязнасьці ў [http://www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску))',
+'edit-externally-help' => '(Глядзіце падрабязнасьці ў [//www.mediawiki.org/wiki/Manual:External_editors інструкцыі па наладцы] (па-ангельску))',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'усё',
@@ -3558,13 +3558,13 @@ $1',
 'version-hook-subscribedby'     => 'Падпісаны на',
 'version-version'               => '(Вэрсія $1)',
 'version-license'               => 'Ліцэнзія',
-'version-poweredby-credits'     => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "{{SITENAME}} працуе на праграмным забесьпячэньні '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'іншыя',
 'version-license-info'          => 'MediaWiki зьяўляецца вольным праграмным забесьпячэньнем, якое Вы можаце распаўсюджваць і/ці зьмяняць на ўмовах ліцэнзіі GNU General Public License вэрсіі 2 ці болей позьняй, апублікаванай Фундацыяй вольнага праграмнага забесьпячэньня (Free Software Foundation).
 
 MediaWiki распаўсюджваецца з надзеяй, што будзе карысным, але БЕЗ АНІЯКІХ ГАРАНТЫЯЎ, нават без меркаваных гарантыяў КАМЭРЦЫЙНАЙ КАШТОЎНАСЬЦІ ці ПРЫДАТНАСЬЦІ ДА ПЭЎНАЙ МЭТЫ. Глядзіце ліцэнзію GNU General Public License для болей падрабязных зьвестак.
 
-Вы мусілі атрымаць [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разам з гэтым праграмным забесьпячэньнем. Калі не, напішыце Free Software Foundation, Inc. па адрасе 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, альбо прачытайце [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html он-лайн копію ліцэнзіі].',
+Вы мусілі атрымаць [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разам з гэтым праграмным забесьпячэньнем. Калі не, напішыце Free Software Foundation, Inc. па адрасе 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, альбо прачытайце [//www.gnu.org/licenses/old-licenses/gpl-2.0.html он-лайн копію ліцэнзіі].',
 'version-software'              => 'Усталяванае праграмнае забесьпячэньне',
 'version-software-product'      => 'Прадукт',
 'version-software-version'      => 'Вэрсія',

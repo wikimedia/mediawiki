@@ -117,8 +117,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Ozutada niiden kävutajiden lugu, kudambad oma mülütanuded lehtpolen ičeze kaclendnimikirjutesihe',
 'tog-oldsig'                  => 'Olijan allekirjutesen ezikacund:',
 'tog-fancysig'                => 'Ičeze allekirjutesen wiki-znamišt (avtomatižeta kosketuseta)',
-'tog-externaleditor'          => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter; [http://www.mediawiki.org/wiki/Manual:External_editors Enamb informacijad.])',
-'tog-externaldiff'            => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter; [http://www.mediawiki.org/wiki/Manual:External_editors Enamb informacijad.])',
+'tog-externaleditor'          => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter; [//www.mediawiki.org/wiki/Manual:External_editors Enamb informacijad.])',
+'tog-externaldiff'            => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter; [//www.mediawiki.org/wiki/Manual:External_editors Enamb informacijad.])',
 'tog-showjumplinks'           => 'Ližata "hüpähtada..."-abukosketused',
 'tog-uselivepreview'          => 'Kävutada hered ezikacund (JavaScript) (Eksperimentaline)',
 'tog-forceeditsummary'        => 'Varutada, kunz toižetusen ümbrikirjutandan pöud ei ole täuttud',
@@ -446,7 +446,7 @@ Ecind: $2',
 'protectedinterface'   => 'Necil lehtpolel om programman interfeistedotuz. Se om luklostadud, miše kaita se vandalizmaspäi.',
 'editinginterface'     => "'''Homaikat:''' Tö ladit redaktiruida lehtpol't, kudambal om programman interfeistekst.
 Mugoi tegend toižetab interfeisan irdnägu toižiden kävutajiden täht.
-Kändmižen täht om paremb kävutada [http://translatewiki.net/wiki/Main_Page?setlang=vep translatewiki.net] - MediaWikin lokalizacijan projekt.",
+Kändmižen täht om paremb kävutada [//translatewiki.net/wiki/Main_Page?setlang=vep translatewiki.net] - MediaWikin lokalizacijan projekt.",
 'sqlhidden'            => '(SQL-küzelend om peittud)',
 'namespaceprotected'   => "Teil ei ole oiktust redaktiruida lehtpolid '''$1'''-nimiavaruses.",
 'ns-specialprotected'  => 'Ei sa redaktiruida specialižid lehtpolid.',
@@ -2623,7 +2623,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 
 # External editor support
 'edit-externally'      => 'Redaktiruida nece fail irdprogrammal',
-'edit-externally-help' => '(Kc. [http://www.mediawiki.org/wiki/Manual:External_editors seižutamižinstrukcijoid])',
+'edit-externally-help' => '(Kc. [//www.mediawiki.org/wiki/Manual:External_editors seižutamižinstrukcijoid])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kaik',

@@ -317,8 +317,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Показывать число участников, включивших страницу в свой список наблюдения',
 'tog-oldsig'                  => 'Cуществующая подписьь:',
 'tog-fancysig'                => 'Собственная вики-разметка подписи (без автоматической ссылки)',
-'tog-externaleditor'          => 'Использовать по умолчанию внешний редактор (только для специалистов, необходима особая настройка компьютера; [http://www.mediawiki.org/wiki/Manual:External_editors подробнее])',
-'tog-externaldiff'            => 'Использовать по умолчанию внешнюю программу сравнения (только для специалистов, необходима особая настройка компьютера; [http://www.mediawiki.org/wiki/Manual:External_editors подробнее])',
+'tog-externaleditor'          => 'Использовать по умолчанию внешний редактор (только для специалистов, необходима особая настройка компьютера; [//www.mediawiki.org/wiki/Manual:External_editors подробнее])',
+'tog-externaldiff'            => 'Использовать по умолчанию внешнюю программу сравнения (только для специалистов, необходима особая настройка компьютера; [//www.mediawiki.org/wiki/Manual:External_editors подробнее])',
 'tog-showjumplinks'           => 'Включить вспомогательные ссылки «перейти к»',
 'tog-uselivepreview'          => 'Использовать быстрый предварительный просмотр (JavaScript, экспериментально)',
 'tog-forceeditsummary'        => 'Предупреждать, когда не заполнено поле описания правки',
@@ -662,7 +662,7 @@ $1',
 'protectedinterface'   => 'Эта страница содержит интерфейсное сообщение программного обеспечения. Во избежание вандализма её изменение запрещено.',
 'editinginterface'     => "'''Внимание.''' Вы редактируете страницу, содержащую текст интерфейса программного обеспечения.
 Её изменение повлияет на внешний вид интерфейса для других пользователей.
-Для переводов лучше использовать [http://translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net], проект по локализации MediaWiki.",
+Для переводов лучше использовать [//translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net], проект по локализации MediaWiki.",
 'sqlhidden'            => '(SQL запрос скрыт)',
 'cascadeprotected'     => 'Страница защищена от изменений, поскольку она включена в {{PLURAL:$1|следующую страницу, для которой|следующие страницы, для которых}} включена каскадная защита:
 $2',
@@ -1793,7 +1793,7 @@ $1',
 'img-auth-nopathinfo'       => 'Отсутствует PATH_INFO.
 Ваш сервер не настроен, для передачи этих сведений.
 Возможно, он работает на основе CGI и не поддерживает img_auth.
-См. http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+См. [//www.mediawiki.org/wiki/Manual:Image_Authorization Разграничение доступа к изображениям]',
 'img-auth-notindir'         => 'Запрашиваемый путь не относится к настроенной папке загрузок.',
 'img-auth-badtitle'         => 'Невозможно построить правильный заголовок из «$1».',
 'img-auth-nologinnWL'       => 'Вы не вошли в систему, а «$1» не входит в белый список.',
@@ -1958,7 +1958,7 @@ $1',
 'statistics-users-active-desc' => 'Участники, совершившие какое-либо действие за {{PLURAL:$1|последний $1 день|последние $1 дня|последние $1 дней}}',
 'statistics-mostpopular'       => 'Наиболее часто просматриваемые страницы',
 
-'disambiguations'      => 'Страницы со ссылками на многозначные термины',
+'disambiguations'      => 'Страницы, ссылающиеся на страницы разрешения неоднозначности',
 'disambiguationspage'  => 'Template:Неоднозначность',
 'disambiguations-text' => "Следующие страницы ссылаются на '''многозначные страницы'''.
 Вместо этого они, вероятно, должны указывать на соответствующую конкретную статью.<br />
@@ -2099,7 +2099,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'вклад',
 
 # Special:LinkSearch
-'linksearch'       => 'Внешние ссылки',
+'linksearch'       => 'Поиск внешних ссылок',
 'linksearch-pat'   => 'Шаблон для поиска:',
 'linksearch-ns'    => 'Пространство имён:',
 'linksearch-ok'    => 'Найти',
@@ -2754,7 +2754,7 @@ $1',
 'allmessagesdefault'            => 'Текст по умолчанию',
 'allmessagescurrent'            => 'Текущий текст',
 'allmessagestext'               => 'Это список системных сообщений, доступных в пространстве имён «MediaWiki».
-Если вы хотите внести вклад в общую локализацию MediaWiki, пожалуйста, посетите страницу [http://www.mediawiki.org/wiki/Localisation описания локализации] и проект [http://translatewiki.net translatewiki.net].',
+Если вы хотите внести вклад в общую локализацию MediaWiki, пожалуйста, посетите страницу [//www.mediawiki.org/wiki/Localisation описания локализации] и проект [//translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB'     => "Эта страница недоступна, так как отключена опция '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фильтр',
 'allmessages-filter'            => 'Фильтр по статусу изменения:',
@@ -3461,7 +3461,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Редактировать этот файл, используя внешнюю программу',
-'edit-externally-help' => '(подробнее см. в [http://www.mediawiki.org/wiki/Manual:External_editors руководстве по установке])',
+'edit-externally-help' => '(подробнее см. в [//www.mediawiki.org/wiki/Manual:External_editors руководстве по установке])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'все',
@@ -3703,13 +3703,13 @@ $1',
 'version-hook-subscribedby'     => 'Подписан на',
 'version-version'               => '(Версия $1)',
 'version-license'               => 'Лицензия',
-'version-poweredby-credits'     => "Эта вики работает на движке '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Эта вики работает на движке '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'другие',
 'version-license-info'          => 'MediaWiki является свободным программным обеспечением, которое вы можете распространять и/или изменять в соответствии с условиями лицензии GNU General Public License, опубликованной фондом свободного программного обеспечения; второй версии, либо любой более поздней версии.
 
 MediaWiki распространяется в надежде, что она будет полезной, но БЕЗ КАКИХ-ЛИБО ГАРАНТИЙ, даже без подразумеваемых гарантий КОММЕРЧЕСКОЙ ЦЕННОСТИ или ПРИГОДНОСТИ ДЛЯ ОПРЕДЕЛЕННОЙ ЦЕЛИ. См. лицензию GNU General Public License для более подробной информации.
 
-Вы должны были получить [{{SERVER}}{{SCRIPTPATH}}/COPYING копию GNU General Public License] вместе с этой программой, если нет, то напишите Free Software Foundation, Inc., по адресу: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA или [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочтите её онлайн].',
+Вы должны были получить [{{SERVER}}{{SCRIPTPATH}}/COPYING копию GNU General Public License] вместе с этой программой, если нет, то напишите Free Software Foundation, Inc., по адресу: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA или [//www.gnu.org/licenses/old-licenses/gpl-2.0.html прочтите её онлайн].',
 'version-software'              => 'Установленное программное обеспечение',
 'version-software-product'      => 'Продукт',
 'version-software-version'      => 'Версия',

@@ -358,7 +358,7 @@ $messages = array(
 'tog-editsection'             => 'עריכת פסקאות באמצעות קישורי [עריכה]',
 'tog-editsectiononrightclick' => 'עריכת פסקאות על ידי לחיצה ימנית על כותרות הפסקאות (דרוש JavaScript)',
 'tog-showtoc'                 => 'הצגת תוכן עניינים (עבור דפים עם יותר מ־3 כותרות)',
-'tog-rememberpassword'        => 'זכירת הכניסה שלי בדפדפן זה (למשך עד {{PLURAL:$1|יום אחד|$1 ימים|יומיים}})',
+'tog-rememberpassword'        => 'שמירת הכניסה שלי בדפדפן זה (ל{{PLURAL:$1|יום אחד|־$1 ימים|יומיים}} לכל היותר)',
 'tog-watchcreations'          => 'מעקב אחרי דפים שיצרתי',
 'tog-watchdefault'            => 'מעקב אחרי דפים שערכתי',
 'tog-watchmoves'              => 'מעקב אחרי דפים שהעברתי',
@@ -374,8 +374,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'הצגת מספר המשתמשים העוקבים אחרי הדף',
 'tog-oldsig'                  => 'החתימה הקיימת:',
 'tog-fancysig'                => 'פירוש החתימה כקוד ויקי (ללא קישור אוטומטי)',
-'tog-externaleditor'          => 'שימוש בעורך חיצוני כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [http://www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
-'tog-externaldiff'            => 'שימוש בתוכנת השוואת הגרסאות החיצונית כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [http://www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
+'tog-externaleditor'          => 'שימוש בעורך חיצוני כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [//www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
+'tog-externaldiff'            => 'שימוש בתוכנת השוואת הגרסאות החיצונית כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב. [//www.mediawiki.org/wiki/Manual:External_editors למידע נוסף.])',
 'tog-showjumplinks'           => 'הצגת קישורי נגישות מסוג "קפוץ אל"',
 'tog-uselivepreview'          => 'שימוש בתצוגה מקדימה מהירה (דרוש JavaScript) (ניסיוני)',
 'tog-forceeditsummary'        => 'הצגת אזהרה כשאני מכניס תקציר עריכה ריק',
@@ -746,7 +746,7 @@ $2',
 'yourname'                   => 'שם משתמש:',
 'yourpassword'               => 'סיסמה:',
 'yourpasswordagain'          => 'הקש סיסמה שנית:',
-'remembermypassword'         => 'זכירת הכניסה שלי בדפדפן הזה (ל{{PLURAL:$1|יום אחד|־$1 ימים|יומיים}} לכל היותר)',
+'remembermypassword'         => 'שמירת הכניסה שלי בדפדפן הזה (ל{{PLURAL:$1|יום אחד|־$1 ימים|יומיים}} לכל היותר)',
 'securelogin-stick-https'    => 'המשך שימוש ב־HTTPS אחרי הכניסה',
 'yourdomainname'             => 'המתחם שלך:',
 'externaldberror'            => 'הייתה שגיאה בבסיס הנתונים של ההזדהות, או שאינכם רשאים לעדכן את חשבונכם החיצוני.',
@@ -1463,8 +1463,8 @@ $1",
 היא חייבת לא להיות ארוכה מ{{PLURAL:$1|תו אחד|־$1 תווים}}.',
 'yourgender'                    => 'מגדר:',
 'gender-unknown'                => 'לא גלוי',
-'gender-male'                   => 'זכר',
-'gender-female'                 => 'נקבה',
+'gender-male'                   => 'משתמש',
+'gender-female'                 => 'משתמשת',
 'prefs-help-gender'             => 'אופציונאלי: מידע זה יאפשר לתוכנה להתייחס אליכם באופן נכון מבחינה מגדרית. מידע זה יהיה ציבורי.',
 'email'                         => 'דוא"ל',
 'prefs-help-realname'           => 'השם האמיתי הוא אופציונאלי.
@@ -1858,7 +1858,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO חסר.
 השרת אינו מוגדר להעברת מידע זה.
 ייתכן שהוא מבוסס על CGI ולכן אינו יכול לתמוך ב־img_auth.
-ראו http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[http://www.mediawiki.org/wiki/Manual:Image_Authorization ראו דף עזרה על אישור תמונות].',
 'img-auth-notindir'         => 'הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.',
 'img-auth-badtitle'         => 'לא ניתן ליצור כותרת תקינה מתוך "$1".',
 'img-auth-nologinnWL'       => 'אינכם מחוברים לחשבון והדף "$1" אינו ברשימה המותרת.',
@@ -2026,7 +2026,7 @@ $1',
 'statistics-users-active-desc' => 'משתמשים שביצעו פעולה כלשהי ב{{PLURAL:$1|יום האחרון|־$1 הימים האחרונים}}',
 'statistics-mostpopular'       => 'הדפים הנצפים ביותר',
 
-'disambiguations'      => 'דפי פירושונים',
+'disambiguations'      => 'דפים שמקשרים לדפי פירושונים',
 'disambiguationspage'  => 'Template:פירושונים',
 'disambiguations-text' => "הדפים הבאים מקשרים ל'''דפי פירושונים'''.
 עליהם לקשר לדף הנושא הרלוונטי במקום זאת.<br />
@@ -3529,7 +3529,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'עריכת קובץ זה באמצעות יישום חיצוני',
-'edit-externally-help' => '(ראו את [http://www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף)',
+'edit-externally-help' => '(ראו את [//www.mediawiki.org/wiki/Manual:External_editors הוראות ההתקנה] למידע נוסף)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'הכול',
@@ -3774,13 +3774,13 @@ $1',
 'version-hook-subscribedby'     => 'הפונקציה הרושמת',
 'version-version'               => '(גרסה $1)',
 'version-license'               => 'רישיון',
-'version-poweredby-credits'     => "אתר הוויקי הזה מופעל על ידי '''[http://www.mediawiki.org/ מדיה־ויקי]''', © 2001–$1 $2.",
+'version-poweredby-credits'     => "אתר הוויקי הזה מופעל על ידי '''[//www.mediawiki.org/ מדיה־ויקי]''', © 2001–$1 $2.",
 'version-poweredby-others'      => 'אחרים',
 'version-license-info'          => "מדיה־ויקי היא תוכנה חופשית; באפשרותכם להפיץ אותה מחדש ו/או לשנות אותה לפי תנאי הרישיון הציבורי הכללי של גנו המפורסם על ידי המוסד לתוכנה חופשית: גרסה 2 של רישיון זה, או (לפי בחירתכם) כל גרסה מאוחרת יותר.
 
 מדיה־ויקי מופצת בתקווה שהיא תהיה שימושית, אך '''ללא כל הבטחה לאחריות'''; אפילו לא אחריות משתמעת של '''יכולת להיסחר''' או '''התאמה לרישיון מסוים'''. ראו את הרישיון הציבורי הכללי של גנו לפרטים נוספים.
 
-הייתם צריכים לקבל [{{SERVER}}{{SCRIPTPATH}}/COPYING העתק של הרישיון הציבורי הכללי של גנו] יחד עם תוכנה זו; אם לא, כתבו למוסד לתוכנה חופשית: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA או [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html קראו אותו ברשת].",
+הייתם צריכים לקבל [{{SERVER}}{{SCRIPTPATH}}/COPYING העתק של הרישיון הציבורי הכללי של גנו] יחד עם תוכנה זו; אם לא, כתבו למוסד לתוכנה חופשית: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA או [//www.gnu.org/licenses/old-licenses/gpl-2.0.html קראו אותו ברשת].",
 'version-software'              => 'תוכנות מותקנות',
 'version-software-product'      => 'תוכנה',
 'version-software-version'      => 'גרסה',

@@ -170,8 +170,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'მაკონტროლებელ მომხმარებელთა რიცხვის ჩვენება',
 'tog-oldsig'                  => 'არსებული ხელმოწერა:',
 'tog-fancysig'                => 'საკუთარი ვიკიფორმატიანი ხელმოწერა (ავტომატური ბმულის გარეშე)',
-'tog-externaleditor'          => 'გამოიყენეთ გარე რედაქტორი სტანდარტული ფორმით (მხოლოდ ექსპერტებისთვის, მოითხოვს სპეციალურ კონფიგურაციას თქვენს კომპიუტერში. [http://www.mediawiki.org/wiki/Manual:External_editors ვრცლად.])',
-'tog-externaldiff'            => 'გამოიყენეთ გარე განსხვავება სტანდარტული ფორმით (მხოლოდ ექსპერტთათვის, მოითხოვს სპეციალურ კონფიგურაციას თქვენს კომპიუტერში. [http://www.mediawiki.org/wiki/Manual:External_editors ვრცლად.])',
+'tog-externaleditor'          => 'გამოიყენეთ გარე რედაქტორი სტანდარტული ფორმით (მხოლოდ ექსპერტებისთვის, მოითხოვს სპეციალურ კონფიგურაციას თქვენს კომპიუტერში. [//www.mediawiki.org/wiki/Manual:External_editors ვრცლად.])',
+'tog-externaldiff'            => 'გამოიყენეთ გარე განსხვავება სტანდარტული ფორმით (მხოლოდ ექსპერტთათვის, მოითხოვს სპეციალურ კონფიგურაციას თქვენს კომპიუტერში. [//www.mediawiki.org/wiki/Manual:External_editors ვრცლად.])',
 'tog-showjumplinks'           => 'დამხმარე ბმულების „გადასვლა-კენ“ ჩართვა',
 'tog-uselivepreview'          => 'გამოიყენეთ ახალი წინასწარი გადახედვა (ჯავასკრიპტი)  (ექსპერიმენტული)',
 'tog-forceeditsummary'        => 'გამაფრთხილე ცარიელი რედაქტირების რეზიუმეს შემთხვევაში',
@@ -513,7 +513,7 @@ $1',
 'protectedpagetext'    => 'ეს გვერდი დაბლოკილია რედაქტირებისთვის.',
 'viewsourcetext'       => 'თქვენ შეგიძლიათ ნახოთ ამ გვერდის საწყისი ფაილი და მისი ასლი შექმნათ:',
 'protectedinterface'   => 'ეს გვერდი პროგრამის ინტერფეისის ნაწილია და დაცულია ვანდალიზმის აღკვეთის მიზნით.',
-'editinginterface'     => "'''ყურადღება:''' თქვენ რედაქტორობთ გვერდს, რომელიც პროგრამის ინტერფეისის ტექსტს შეიცავს. ამ გვერდზე განხორციელებული რედაქტირება გამოიწვევს სხვა მომხმარებელთა სამუშაო ინტერფეისის შეცვლასაც. თარგმანისათვის უმჯობესია გამოიყენოთ [http://translatewiki.net/wiki/Main_Page?setlang=ka translatewiki.net], მედიავიკის ლოკალიზაციის პროექტი.",
+'editinginterface'     => "'''ყურადღება:''' თქვენ რედაქტორობთ გვერდს, რომელიც პროგრამის ინტერფეისის ტექსტს შეიცავს. ამ გვერდზე განხორციელებული რედაქტირება გამოიწვევს სხვა მომხმარებელთა სამუშაო ინტერფეისის შეცვლასაც. თარგმანისათვის უმჯობესია გამოიყენოთ [//translatewiki.net/wiki/Main_Page?setlang=ka translatewiki.net], მედიავიკის ლოკალიზაციის პროექტი.",
 'sqlhidden'            => '(SQL მოთხოვნა გაუქმებულია)',
 'cascadeprotected'     => 'ეს გვერდი რედაქტირებისგან დაცულია, რადგან იგი ჩართულია შემდეგ {{PLURAL:$1|გვერდში, რომლის |გვერდებში, რომელთა}} დასაცავადაც ჩართულია პარამეტრი "იერარქიული":
 $2',
@@ -2542,7 +2542,7 @@ $1',
 'allmessagesdefault'            => 'სტანდარტული ტექსტი',
 'allmessagescurrent'            => 'მიმდინარე ტექსტი',
 'allmessagestext'               => 'ეს არის სისემურ შეტყობინებათა სია «MediaWiki» სახელთა სივრცეში.
-გთხოვთ ეწვიოთ  [http://www.mediawiki.org/wiki/Localisation ლოკალიზაციის აღმწერ] გვერდს [http://translatewiki.net translatewiki.net] პროექტს, თუ გსურთ MediaWiki ლოკალიზაციაში წვლილის შეტანა.',
+გთხოვთ ეწვიოთ  [//www.mediawiki.org/wiki/Localisation ლოკალიზაციის აღმწერ] გვერდს [//translatewiki.net translatewiki.net] პროექტს, თუ გსურთ MediaWiki ლოკალიზაციაში წვლილის შეტანა.',
 'allmessagesnotsupportedDB'     => '{{ns:special}}:AllMessages-ის უზრუნველყოფა არ ხდება, ვინაიდან wgUseDatabaseMessages გამორთულია.',
 'allmessages-filter-legend'     => 'ფილტრი',
 'allmessages-filter'            => 'ფილტრი ცვლილებების სტატუსით:',
@@ -3167,7 +3167,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'ამ ფაილის რედაქტირებისას გამოიყენეთ გარე პროგრამა',
-'edit-externally-help' => '(დაწვრილებითი ინფორმაციისთვის იხილეთ [http://www.mediawiki.org/wiki/Manual:External_editors ჩადგმის ინსტრუქციები])',
+'edit-externally-help' => '(დაწვრილებითი ინფორმაციისთვის იხილეთ [//www.mediawiki.org/wiki/Manual:External_editors ჩადგმის ინსტრუქციები])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ყველა',
@@ -3365,13 +3365,13 @@ $1',
 'version-hook-subscribedby'     => 'ჩაწერილია',
 'version-version'               => '(ვერსია $1)',
 'version-license'               => 'ლიცენზია',
-'version-poweredby-credits'     => "ეს ვიკი მუშაობს '''[http://www.mediawiki.org/ MediaWiki]'''-ს ძრავზე, copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "ეს ვიკი მუშაობს '''[//www.mediawiki.org/ MediaWiki]'''-ს ძრავზე, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'სხვები',
 'version-license-info'          => 'MediaWiki არის თავისუფალი პროგრამული უზრუნველყოფა; შეგიძლიათ მისი გავრცელება ან/და მოდიფიცირება GNU General Public License ლიცენზიის პირობების შესაბამისად. როგორც გამოქვეყნებულია თავისუფალი პროგრამული უზრუნველყოფის ფონდის მიერ; ან ლიცენზიის მეორე ვერსიაში, ან (თქვენი აზრით) უფრო ახალში.
 
 MediaWiki ვრცელდება იმ იმედით, რომ ის სასარგებლო იქნება, მაგრამ გარანტიის გარეშე; კომერციული ღირებულების ნაგულისხმევი გარანტიის გარეშეც კი ან რაიმე მიზნისთვის სარგებლის მისაღებად. მეტი დეტალური ინფორმაციისთვის, იხილეთ GNU General Public License.
 
-ამ პროგრამასთან ერთად თქვენ უნდა მიგეღოთ [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License ლიცენზიის ასლი]; თუ არ მიგიღიათ, მისწერეთ თავისუფალი პროგრამული უზრუნველყოფის ფონდს, Free Software Foundation, Inc., ფრანკლინის ქუჩა 51, მეხუთე სართული, ბოსტონი, MA 02110-1301, აშშ, ან [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html წაიკითხეთ იგი ინტერნეტში].',
+ამ პროგრამასთან ერთად თქვენ უნდა მიგეღოთ [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License ლიცენზიის ასლი]; თუ არ მიგიღიათ, მისწერეთ თავისუფალი პროგრამული უზრუნველყოფის ფონდს, Free Software Foundation, Inc., ფრანკლინის ქუჩა 51, მეხუთე სართული, ბოსტონი, MA 02110-1301, აშშ, ან [//www.gnu.org/licenses/old-licenses/gpl-2.0.html წაიკითხეთ იგი ინტერნეტში].',
 'version-software'              => 'დაინსტალირებული პროგრამული უზრუნველყოფა',
 'version-software-product'      => 'პროდუქტი',
 'version-software-version'      => 'ვერსია',

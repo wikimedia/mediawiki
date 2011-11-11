@@ -306,7 +306,7 @@ $linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Hivatkozások aláhúzása:',
-'tog-highlightbroken'         => 'A nem létező lapokat <a href="" class="new">így</a> jelölje. (Alternatíva: így<a href="" class="internal">?</a>)',
+'tog-highlightbroken'         => 'A nem létező lapokra való hivatkozásokat <a href="" class="new">így</a> jelölje. (Alternatíva: így<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Sorkizárt fejezetek',
 'tog-hideminor'               => 'Apró változtatások elrejtése a friss változtatások lapon',
 'tog-hidepatrolled'           => 'Az ellenőrzött szerkesztések elrejtése a friss változtatások lapon',
@@ -319,24 +319,24 @@ $messages = array(
 'tog-editsection'             => '[szerkesztés] linkek az egyes szakaszok szerkesztéséhez',
 'tog-editsectiononrightclick' => 'Szakaszok szerkesztése a szakaszcímre való jobb kattintással (JavaScript-alapú)',
 'tog-showtoc'                 => 'Tartalomjegyzék megjelenítése a három fejezetnél többel rendelkező cikkeknél',
-'tog-rememberpassword'        => 'Emlékezzen rám ezzel a böngészővel (legfeljebb $1 napig)',
+'tog-rememberpassword'        => 'Emlékezzen rám ezzel a böngészővel (legfeljebb {{PLURAL:$1|egy|$1}} napig)',
 'tog-watchcreations'          => 'Az általam létrehozott lapok felvétele a figyelőlistára',
 'tog-watchdefault'            => 'Az általam szerkesztett lapok felvétele a figyelőlistára',
 'tog-watchmoves'              => 'Az általam átnevezett lapok felvétele a figyelőlistára',
 'tog-watchdeletion'           => 'Az általam törölt lapok felvétele a figyelőlistára',
-'tog-minordefault'            => 'Alapértelmezésben minden szerkesztésemet jelölje aprónak',
+'tog-minordefault'            => 'Alapértelmezetten minden szerkesztésemet jelölje aprónak',
 'tog-previewontop'            => 'Előnézet megjelenítése a szerkesztőablak előtt',
 'tog-previewonfirst'          => 'Előnézet első szerkesztésnél',
 'tog-nocache'                 => 'A lapok gyorstárazásának letiltása a böngészőben',
-'tog-enotifwatchlistpages'    => 'Értesítés küldése e-mailben, ha egy általam figyelt lap megváltozik',
-'tog-enotifusertalkpages'     => 'Értesítés e-mailben, ha megváltozik a vitalapom',
-'tog-enotifminoredits'        => 'Értesítés e-mailben a lapok apró változtatásairól',
-'tog-enotifrevealaddr'        => 'Jelenítse meg az e-mail címemet a figyelmeztető e-mailekben',
-'tog-shownumberswatching'     => 'Az oldalt figyelő szerkesztők számának mutatása',
+'tog-enotifwatchlistpages'    => 'Kapjak értesítést e-mailben, ha egy általam figyelt lap megváltozik',
+'tog-enotifusertalkpages'     => 'Kapjak értesítést e-mailben, ha megváltozik a vitalapom',
+'tog-enotifminoredits'        => 'Kapjak értesítést e-mailben a lapok apró változtatásairól',
+'tog-enotifrevealaddr'        => 'Jelenjen meg az e-mail címem a figyelmeztető e-mailekben',
+'tog-shownumberswatching'     => 'A lapot figyelő szerkesztők számának megjelenítése',
 'tog-oldsig'                  => 'A jelenlegi aláírás:',
 'tog-fancysig'                => 'Az aláírás wikiszöveg (nem lesz automatikusan hivatkozásba rakva)',
-'tog-externaleditor'          => 'Külső szerkesztőprogram használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [http://www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
-'tog-externaldiff'            => 'Külső diff program használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [http://www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
+'tog-externaleditor'          => 'Külső szerkesztőprogram használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [//www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
+'tog-externaldiff'            => 'Külső diff program használata (Csak haladók számára, speciális beállításokra van szükség a számítógépen. [//www.mediawiki.org/wiki/Manual:External_editors További információ angolul.])',
 'tog-showjumplinks'           => 'Helyezzen el hivatkozást („Ugrás”) a beépített eszköztárra',
 'tog-uselivepreview'          => 'Élő előnézet használata (JavaScript-alapú, kísérleti)',
 'tog-forceeditsummary'        => 'Figyelmeztessen, ha nem adok meg szerkesztési összefoglalót',
@@ -344,17 +344,17 @@ $messages = array(
 'tog-watchlisthidebots'       => 'Robotok szerkesztéseinek elrejtése',
 'tog-watchlisthideminor'      => 'Apró változtatások elrejtése',
 'tog-watchlisthideliu'        => 'Bejelentkezett szerkesztők módosításainak elrejtése a figyelőlistáról',
-'tog-watchlisthideanons'      => 'Névtelen szerkesztések elrejtése a figyelőlistáról',
-'tog-watchlisthidepatrolled'  => 'Az ellenőrzött szerkesztések elrejtése a figyelőlistán',
-'tog-nolangconversion'        => 'A változók átalakításának letiltása',
+'tog-watchlisthideanons'      => 'Névtelen szerkesztések elrejtése',
+'tog-watchlisthidepatrolled'  => 'Az ellenőrzött szerkesztések elrejtése',
+'tog-nolangconversion'        => 'Nyelvvariánsok közötti átalakítás letiltása',
 'tog-ccmeonemails'            => 'A másoknak küldött e-mailjeimről kapjak én is másolatot',
 'tog-diffonly'                => 'Ne mutassa a lap tartalmát lapváltozatok közötti eltérések megtekintésekor',
 'tog-showhiddencats'          => 'Rejtett kategóriák megjelenítése',
-'tog-norollbackdiff'          => 'Ne jelenjenek meg az eltérések a visszaállítás után',
+'tog-norollbackdiff'          => 'Ne jelenjenek meg az eltérések visszaállítás után',
 
-'underline-always'  => 'Mindig',
-'underline-never'   => 'Soha',
-'underline-default' => 'A böngésző alapértelmezése szerint',
+'underline-always'  => 'mindig',
+'underline-never'   => 'soha',
+'underline-default' => 'a böngésző alapértelmezése szerint',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'A szerkesztőterület betűtípusa:',
@@ -376,7 +376,7 @@ $messages = array(
 'tue'           => 'kedd',
 'wed'           => 'sze',
 'thu'           => 'csü',
-'fri'           => 'péntek',
+'fri'           => 'pé',
 'sat'           => 'szo',
 'january'       => 'január',
 'february'      => 'február',
@@ -420,15 +420,15 @@ $messages = array(
 'category_header'                => 'A(z) „$1” kategóriába tartozó lapok',
 'subcategories'                  => 'Alkategóriák',
 'category-media-header'          => 'A(z) „$1” kategóriába tartozó médiafájlok',
-'category-empty'                 => "''Ebben a kategóriában pillanatnyilag egyetlen lap, médiafájl vagy alkategória sem szerepel.''",
+'category-empty'                 => "''Ebben a kategóriában pillanatnyilag egyetlen lap vagy médiafájl sem szerepel.''",
 'hidden-categories'              => '{{PLURAL:$1|Rejtett kategória|Rejtett kategóriák}}',
 'hidden-category-category'       => 'Rejtett kategóriák',
 'category-subcat-count'          => "''{{PLURAL:$2|Ennek a kategóriának csak egyetlen alkategóriája van.|Ez a kategória az alábbi {{PLURAL:$1|alkategóriával|$1 alkategóriával}} rendelkezik (összesen $2 alkategóriája van).}}''",
 'category-subcat-count-limited'  => 'Ebben a kategóriában {{PLURAL:$1|egy|$1}} alkategória található.',
-'category-article-count'         => '{{PLURAL:$2|Csak a következő lap található ebben a kategóriában.|Az összesen $2 lapból a következő $1-t listázza ez a kategóriaoldal, a többi a további oldalakon található.}}',
-'category-article-count-limited' => 'Ebben a kategóriában a következő {{PLURAL:$1|lap|$1 lap}} található.',
+'category-article-count'         => '{{PLURAL:$2|Csak a következő lap található ebben a kategóriában:|Az összesen $2 lapból a következő $1-t listázza ez a kategóriaoldal, a többi a további oldalakon található.}}',
+'category-article-count-limited' => 'Ebben a kategóriában a következő {{PLURAL:$1|lap|$1 lap}} található:',
 'category-file-count'            => '{{PLURAL:$2|Csak a következő fájl található ebben a kategóriában.|Az összesen $2 fájlból a következő $1-t listázza ez a kategórialap, a többi a további oldalakon található.}}',
-'category-file-count-limited'    => '{{PLURAL:$1|Egy|$1}} fájl található ebben a kategóriában.',
+'category-file-count-limited'    => 'Ebben a kategóriában {{PLURAL:$1|egy|$1}} fájl található.',
 'listingcontinuesabbrev'         => 'folyt.',
 'index-category'                 => 'Indexelt lapok',
 'noindex-category'               => 'Nem indexelt lapok',
@@ -441,7 +441,7 @@ $messages = array(
 'moredotdotdot' => 'Tovább…',
 'mypage'        => 'Lapom',
 'mytalk'        => 'Vitalapom',
-'anontalk'      => 'az IP-címhez tartozó vitalap',
+'anontalk'      => 'Az IP-címhez tartozó vitalap',
 'navigation'    => 'Navigáció',
 'and'           => '&#32;és',
 
@@ -502,7 +502,7 @@ $messages = array(
 'unprotect'         => 'Védelem módosítása',
 'unprotectthispage' => 'A lap védelmének módosítása',
 'newpage'           => 'Új lap',
-'talkpage'          => 'Megbeszélés a lappal kapcsolatban',
+'talkpage'          => 'A lappal kapcsolatos megbeszélés',
 'talkpagelinktext'  => 'vitalap',
 'specialpage'       => 'Speciális lap',
 'personaltools'     => 'Személyes eszközök',
@@ -528,12 +528,12 @@ $messages = array(
 'jumpto'            => 'Ugrás:',
 'jumptonavigation'  => 'navigáció',
 'jumptosearch'      => 'keresés',
-'view-pool-error'   => 'Sajnáljuk, de a szerverek jelenleg túl vannak terhelve.
-Túl sok felhasználó próbálta megtekinteni ezt az oldalt.
-Kérlek, várj egy kicsit, mielőtt újrapróbálkoznál a lap megtekintésével.
+'view-pool-error'   => 'Sajnos a szerverek jelen pillanatban túl vannak terhelve, mert
+túl sok felhasználó próbálta megtekinteni ezt az oldalt.
+Kérjük, várj egy kicsit, mielőtt újrapróbálkoznál a lap megtekintésével!
 
 $1',
-'pool-timeout'      => 'Letelt a várakozási idő a zároláshoz',
+'pool-timeout'      => 'Letelt a zárolás feloldására szánt várakozási idő',
 'pool-queuefull'    => 'A pool sor megtelt',
 'pool-errorunknown' => 'Ismeretlen hiba',
 
@@ -546,7 +546,7 @@ $1',
 'currentevents-url'    => 'Project:Friss események',
 'disclaimers'          => 'Jogi nyilatkozat',
 'disclaimerpage'       => 'Project:Jogi nyilatkozat',
-'edithelp'             => 'Szerkesztési súgó',
+'edithelp'             => 'Szerkesztési segítség',
 'edithelppage'         => 'Help:Szerkesztés',
 'helppage'             => 'Help:Tartalom',
 'mainpage'             => 'Kezdőlap',
@@ -562,7 +562,8 @@ $1',
 'badaccess-groups' => 'Ezt a tevékenységet csak a(z) $1 {{PLURAL:$2|csoportba|csoportok valamelyikébe}} tartozó felhasználó végezheti el.',
 
 'versionrequired'     => 'A MediaWiki $1-s verziója szükséges',
-'versionrequiredtext' => 'A lap használatához a MediaWiki $1-s verziójára van szükség. Lásd a [[Special:Version|verzió]] lapot.',
+'versionrequiredtext' => 'A lap használatához a MediaWiki $1-s verziójára van szükség.
+További információkat a [[Special:Version|verzióinformációs lapon]] találhatsz.',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'A lap eredeti címe: „$1”',
@@ -674,7 +675,7 @@ Lekérdezés: $2',
 'protectedpagetext'    => 'Ez egy védett lap, nem szerkeszthető.',
 'viewsourcetext'       => 'Megtekintheted és másolhatod a lap forrását:',
 'protectedinterface'   => 'Ez a lap a szoftver felületéhez szolgáltat szöveget, és a visszaélések elkerülése miatt le van zárva.',
-'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéthez tarzozik. A lap megváltoztatása hatással lesz más szerkesztők számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [http://translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
+'editinginterface'     => "'''Vigyázat:''' egy olyan lapot szerkesztesz, ami a MediaWiki szoftver felületéthez tarzozik. A lap megváltoztatása hatással lesz más szerkesztők számára is. Fordításra inkább használd a MediaWiki fordítására indított kezdeményezést, a [//translatewiki.net/wiki/Main_Page?setlang=hu translatewiki.net-et].",
 'sqlhidden'            => '(rejtett SQL lekérdezés)',
 'cascadeprotected'     => 'Ez a lap szerkesztés elleni védelemmel lett ellátva, mert a következő {{PLURAL:$1|lapon|lapokon}} be van kapcsolva a „kaszkádolt” védelem:
 $2',
@@ -1843,7 +1844,7 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'filehist-filesize'         => 'Fájlméret',
 'filehist-comment'          => 'Megjegyzés',
 'filehist-missing'          => 'A fájl hiányzik',
-'imagelinks'                => 'Fájlhivatkozások',
+'imagelinks'                => 'Fájlhasználat',
 'linkstoimage'              => 'Az alábbi {{PLURAL:$1|lap hivatkozik|lapok hivatkoznak}} erre a fájlra:',
 'linkstoimage-more'         => 'Több, mint {{PLURAL:$1|egy|$1}} oldal hivatkozik erre a fájlra.
 A következő lista csak az {{PLURAL:$1|első linket|első $1 linket}} tartalmazza.
@@ -2080,7 +2081,7 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'sp-deletedcontributions-contribs' => 'közreműködései',
 
 # Special:LinkSearch
-'linksearch'       => 'Külső hivatkozások',
+'linksearch'       => 'Külső hivatkozások keresése',
 'linksearch-pat'   => 'Keresett minta:',
 'linksearch-ns'    => 'Névtér:',
 'linksearch-ok'    => 'keresés',
@@ -2734,7 +2735,7 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{#Sp
 'allmessagesdefault'            => 'Alapértelmezett szöveg',
 'allmessagescurrent'            => 'Jelenlegi szöveg',
 'allmessagestext'               => 'Ezen a lapon a MediaWiki-névtérben elérhető rendszerüzenetek listája látható.
-Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [http://translatewiki.net translatewiki.net] oldalra.',
+Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [//translatewiki.net translatewiki.net] oldalra.',
 'allmessagesnotsupportedDB'     => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
 'allmessages-filter-legend'     => 'Elemek szűrése',
 'allmessages-filter'            => 'Módosítás állapota:',
@@ -3198,9 +3199,9 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 'exif-orientation-3' => 'Elforgatott 180°',
 'exif-orientation-4' => 'Függőlegesen tükrözött',
 'exif-orientation-5' => 'Elforgatott 90° ÓE és függőlegesen tükrözött',
-'exif-orientation-6' => 'Elforgatott 90° ÓSZ',
+'exif-orientation-6' => 'Elforgatott 90° ÓE',
 'exif-orientation-7' => 'Elforgatott 90° ÓSZ és függőlegesen tükrözött',
-'exif-orientation-8' => 'Elforgatott 90° ÓE',
+'exif-orientation-8' => 'Elforgatott 90° ÓSZ',
 
 'exif-planarconfiguration-1' => 'Egyben',
 'exif-planarconfiguration-2' => 'sík formátum',
@@ -3391,7 +3392,7 @@ míg a többi elem a táblázat összecsukása után alapértelmezett esetben re
 
 # External editor support
 'edit-externally'      => 'A fájl szerkesztése külső alkalmazással',
-'edit-externally-help' => '(Lásd a [http://www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
+'edit-externally-help' => '(Lásd a [//www.mediawiki.org/wiki/Manual:External_editors használati utasítást] (angolul) a beállításához.)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'bármikor',
@@ -3580,13 +3581,13 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 'version-hook-subscribedby'     => 'Használja',
 'version-version'               => '(verzió: $1)',
 'version-license'               => 'Licenc',
-'version-poweredby-credits'     => "Ez a wiki '''[http://www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ez a wiki '''[//www.mediawiki.org/ MediaWiki]''' szoftverrel működik, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'mások',
 'version-license-info'          => 'A MediaWiki szabad szoftver, terjeszthető és / vagy módosítható a GNU General Public License alatt, amit a Free Software Foundation közzétett; vagy a 2-es verziójú licenc, vagy (az Ön választása alapján) bármely későbbi verzió szerint. 
 
 A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉLKÜL, anélkül, hogy PIACKÉPES vagy HASZNÁLHATÓ LENNE EGY ADOTT CÉLRA. Lásd a GNU General Public License-t a további részletekért. 
 
-Önnek kapnia kellett [{{SERVER}}{{SCRIPTPATH}}/COPYING egy példányt a GNU General Public License-ből] ezzel a programmal együtt, ha nem, írjon a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA címre vagy [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html olvassa el online].',
+Önnek kapnia kellett [{{SERVER}}{{SCRIPTPATH}}/COPYING egy példányt a GNU General Public License-ből] ezzel a programmal együtt, ha nem, írjon a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA címre vagy [//www.gnu.org/licenses/old-licenses/gpl-2.0.html olvassa el online].',
 'version-software'              => 'Telepített szoftverek',
 'version-software-product'      => 'Termék',
 'version-software-version'      => 'Verzió',

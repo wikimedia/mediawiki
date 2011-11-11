@@ -48,8 +48,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Tujuakkan jumlah pamantau',
 'tog-oldsig'                  => 'Pratayang tando tangan:',
 'tog-fancysig'                => 'Palakuan tando tangan sabagai teks wiki (tanpa suatu tautan otomatis)',
-'tog-externaleditor'          => 'Gunokan editor eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [http://www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
-'tog-externaldiff'            => 'Gunokan diff eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [http://www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
+'tog-externaleditor'          => 'Gunokan editor eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [//www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
+'tog-externaldiff'            => 'Gunokan diff eksternal sacaro bawaan (untuak nan ahli sajo, kabutuahan pangaturan khusus pado komputer Sanak [//www.mediawiki.org/wiki/Manual:External_editors Informasi labiah lanjuik.].)',
 'tog-showjumplinks'           => 'Aktifkan tautan pambantu "langsuang ka"',
 'tog-uselivepreview'          => 'Gunokan pratayang langsuang (JavaScript) (eksperimental)',
 'tog-forceeditsummary'        => 'Ingekkan awak bilo kotak ringkasan suntiangan masih kosoang',
@@ -383,7 +383,7 @@ Mungkin alah dihapuih jo urang lain.',
 'viewsourcetext'       => 'Sanak dapek malihek atau manyalin sumber laman iko:',
 'protectedinterface'   => 'Laman iko barisi teks antarmuko untuak digunoan oleh parangkaik lunak dan alah dikunci untuak manghindari kasalahan.',
 'editinginterface'     => "'''Paringatan:''' Sanak manyuntiang suatu laman nan digunoan untuak manyediakan teks antarmuko untuak parangkaik lunak situs iko. Parubahan teks iko akan mampangaruhi tampilan pado antarmuko pangguno untuak pangguno lain.
-Untuak tarjamahan, harap gunokan [http://translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek palokalan MediaWiki.",
+Untuak tarjamahan, harap gunokan [//translatewiki.net/wiki/Main_Page?setlang=id translatewiki.net], proyek palokalan MediaWiki.",
 'sqlhidden'            => '(Pamintaan SQL disuruakkan)',
 'cascadeprotected'     => 'Laman iko alah dilindungi dari panyuntiangan karano disartokan di {{PLURAL:$1|laman|laman-laman}} barikuik nan alah dilindungi jo opsi "runtun":
 $2',
@@ -1244,7 +1244,7 @@ Nan lainnyo akan tasuruak sacaro default.
 
 # External editor support
 'edit-externally'      => 'Suntiang berkas ko dengan aplikasi lua',
-'edit-externally-help' => '(Lihek [http://www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuak maklumat lanjutnyo)',
+'edit-externally-help' => '(Lihek [//www.mediawiki.org/wiki/Manual:External_editors instruksi pengaturan] untuak maklumat lanjutnyo)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'semua',

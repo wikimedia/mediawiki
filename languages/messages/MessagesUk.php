@@ -279,8 +279,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Показувати кількість користувачів, які додали сторінку до свого списку спостереження',
 'tog-oldsig'                  => 'Існуючий підпис:',
 'tog-fancysig'                => 'Власна вікі-розмітка підпису (без автоматичного посилання)',
-'tog-externaleditor'          => "Використовувати зовнішній редактор за умовчанням (тільки для досвідчених користувачів, вимагає спеціальних налаштувань вашого комп'ютера [http://www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
-'tog-externaldiff'            => "Використовувати зовнішню програму порівняння версій за умовчанням (тільки для експертів, вимагає спеціальних налаштувань вашого комп'ютера. [http://www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
+'tog-externaleditor'          => "Використовувати зовнішній редактор за умовчанням (тільки для досвідчених користувачів, вимагає спеціальних налаштувань вашого комп'ютера [//www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
+'tog-externaldiff'            => "Використовувати зовнішню програму порівняння версій за умовчанням (тільки для експертів, вимагає спеціальних налаштувань вашого комп'ютера. [//www.mediawiki.org/wiki/Manual:External_editors Детальніше.])",
 'tog-showjumplinks'           => 'Активізувати допоміжні посилання «перейти до»',
 'tog-uselivepreview'          => 'Використовувати швидкий попередній перегляд (JavaScript, експериментально)',
 'tog-forceeditsummary'        => 'Попереджати, коли не зазначений короткий опис редагування',
@@ -629,7 +629,7 @@ $1',
 'protectedpagetext'    => 'Ця сторінка закрита для редагування.',
 'viewsourcetext'       => 'Ви можете переглянути та скопіювати початковий текст цієї сторінки:',
 'protectedinterface'   => 'Ця сторінка є частиною інтерфейсу програмного забезпечення і її можуть редагувати лише адміністратори проекту.',
-'editinginterface'     => "'''Увага:''' Ви редагуєте сторінку, що є частиною текстового інтерфейсу. Зміни цієї сторінки викличуть зміну інтерфейсу для інших користувачів. Для перекладу повідомлення використовуйте [http://translatewiki.net/wiki/Main_Page?setlang=uk translatewiki.net] — проект, що займається локалізацією MediaWiki.",
+'editinginterface'     => "'''Увага:''' Ви редагуєте сторінку, що є частиною текстового інтерфейсу. Зміни цієї сторінки викличуть зміну інтерфейсу для інших користувачів. Для перекладу повідомлення використовуйте [//translatewiki.net/wiki/Main_Page?setlang=uk translatewiki.net] — проект, що займається локалізацією MediaWiki.",
 'sqlhidden'            => '(SQL запит приховано)',
 'cascadeprotected'     => 'Сторінка захищена від змін, оскільки її включено до {{PLURAL:$1|сторінки, для якої|наступних сторінок, для яких}} установлено каскадний захист: $2',
 'namespaceprotected'   => 'У вас нема дозволу редагувати сторінки в просторі назв «$1».',
@@ -2731,7 +2731,7 @@ IP-адреси, що блокуються автоматично тут не в
 'allmessagesdefault'            => 'Стандартний текст',
 'allmessagescurrent'            => 'Поточний текст',
 'allmessagestext'               => 'Це список усіх системних повідомлень, які доступні в просторі назв «MediaWiki».
-Будь ласка, відвідайте [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] і [http://translatewiki.net translatewiki.net], якщо ви хочете зробити внесок до спільної локалізації MediaWiki.',
+Будь ласка, відвідайте [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] і [//translatewiki.net translatewiki.net], якщо ви хочете зробити внесок до спільної локалізації MediaWiki.',
 'allmessagesnotsupportedDB'     => "Ця сторінка не може використовуватися, оскільки вимкнена опція '''\$wgUseDatabaseMessages'''.",
 'allmessages-filter-legend'     => 'Фільтр',
 'allmessages-filter'            => 'Фільтр за внесеними змінами:',
@@ -3548,7 +3548,7 @@ $8',
 
 # External editor support
 'edit-externally'      => 'Редагувати цей файл, використовуючи зовнішню програму',
-'edit-externally-help' => '(Подробиці див. на сторінці [http://www.mediawiki.org/wiki/Manual:External_editors Інструкції з установки зовнішніх редакторів])',
+'edit-externally-help' => '(Подробиці див. на сторінці [//www.mediawiki.org/wiki/Manual:External_editors Інструкції з установки зовнішніх редакторів])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'всі',
@@ -3815,13 +3815,13 @@ $1',
 'version-version'               => '(Версія $1)',
 'version-svn-revision'          => '(r$2)',
 'version-license'               => 'Ліцензія',
-'version-poweredby-credits'     => "Ця Вікі працює на системі управління вмістом '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Ця Вікі працює на системі управління вмістом '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'інші',
 'version-license-info'          => 'MediaWiki є вільним програмним забезпеченням, ви можете розповсюджувати та/або модифікувати його відповідно до умов GNU General Public License, яка опублікованя фондом вільного програмного забезпечення; або версії 2 Ліцензії, або (на Ваш розсуд) будь-якої наступної версії. 
 
 MediaWiki поширюється в надії, що вона буде корисною, але БЕЗ БУДЬ-ЯКИХ ГАРАНТІЙ, навіть без неявної гарантії КОМЕРЦІЙНОЇ ПРИДАТНОСТІ чи ПРИДАТНОСТІ ДЛЯ ПЕВНОЇ МЕТИ. Дивіться GNU General Public License для більш докладної інформації. 
 
-Ви повинні були отримати [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разом з цією програмою, якщо немає, напишіть у Free Software Foundation, Inc 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, США або [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитайте її онлайн].',
+Ви повинні були отримати [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разом з цією програмою, якщо немає, напишіть у Free Software Foundation, Inc 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, США або [//www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитайте її онлайн].',
 'version-software'              => 'Установлене програмне забезпечення',
 'version-software-product'      => 'Продукт',
 'version-software-version'      => 'Версія',

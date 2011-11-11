@@ -328,8 +328,8 @@ pe titlul secțiunii (JavaScript)',
 'tog-shownumberswatching'     => 'Arată numărul utilizatorilor care urmăresc',
 'tog-oldsig'                  => 'Semnătură actuală:',
 'tog-fancysig'                => 'Tratează semnătura ca wikitext (fără o legătură automată)',
-'tog-externaleditor'          => 'Utilizează, în mod implicit, un editor extern (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [http://www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
-'tog-externaldiff'            => 'Utilizează, în mod implicit, un program extern pentru diferențele între versiuni (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [http://www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
+'tog-externaleditor'          => 'Utilizează, în mod implicit, un editor extern (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [//www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
+'tog-externaldiff'            => 'Utilizează, în mod implicit, un program extern pentru diferențele între versiuni (Doar pentru experți; necesită setări speciale pe calculatorul dumneavoastră. [//www.mediawiki.org/wiki/Manual:External_editors Mai multe informații.])',
 'tog-showjumplinks'           => 'Activează legăturile de accesibilitate „sari la”',
 'tog-uselivepreview'          => 'Folosește previzualizarea în timp real (JavaScript) (experimental)',
 'tog-forceeditsummary'        => 'Avertizează-mă când uit să descriu modificările',
@@ -675,7 +675,9 @@ Vă rugăm să încercați din nou în câteva minute.',
 'protectedpagetext'    => 'Această pagină este protejată împotriva modificărilor.',
 'viewsourcetext'       => 'Se poate vizualiza și copia conținutul acestei pagini:',
 'protectedinterface'   => 'Această pagină asigură textul interfeței pentru software și este protejată pentru a preveni abuzurile.',
-'editinginterface'     => "'''Avertizare''': Editezi o pagină care este folosită pentru a furniza textul interfeței pentru software. Modificările aduse acestei pagini vor afecta aspectul interfeței utilizatorului pentru alți utilizatori. Pentru traduceri, considerați utilizarea [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proiectul MediaWiki de localizare.",
+'editinginterface'     => "'''Avertizare''': Modificați o pagină care este folosită pentru a furniza textul interfeței software.
+Modificările aduse acestei pagini vor afecta aspectul interfeței pentru alți utilizatori.
+Pentru traduceri, considerați utilizarea [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], proiectul MediaWiki de localizare.",
 'sqlhidden'            => '(interogare SQL ascunsă)',
 'cascadeprotected'     => 'Această pagină a fost protejată la scriere deoarece este inclusă în {{PLURAL:$1|următoarea pagină|următoarele pagini}}, care {{PLURAL:$1|este protejată|sunt protejate}} în cascadă:
 $2',
@@ -1525,7 +1527,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-editusercssjs'         => 'Modifică fișierele CSS și JS ale altor utilizatori',
 'right-editusercss'           => 'Modifică fișierele CSS ale altor utilizatori',
 'right-edituserjs'            => 'Modifică fișierele JS ale altor utilizatori',
-'right-rollback'              => 'Revocarea rapidă a editărilor ultimului utilizator care a modificat o pagină particulară',
+'right-rollback'              => 'Revocarea rapidă a modificărilor ultimului utilizator care a modificat o pagină particulară',
 'right-markbotedits'          => 'Marchează revenirea ca modificare efectuată de robot',
 'right-noratelimit'           => 'Neafectat de limitele raportului',
 'right-import'                => 'Importă pagini de la alte wiki',
@@ -1787,7 +1789,7 @@ Nu poate fi verificat în mod corespunzător în vederea securității.',
 'img-auth-nopathinfo'       => 'PATH_INFO lipsește.
 Serverul dumneavoastră nu a fost setat pentru a trece aceste informații.
 S-ar putea să fie bazat pe CGI și să nu suporte img_auth.
-Vedeți http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Vedeți autorizarea imaginilor.]',
 'img-auth-notindir'         => 'Adresa cerută nu este în directorul pentru încărcări configurat.',
 'img-auth-badtitle'         => 'Nu s-a putut construi un titlu valid din "$1".',
 'img-auth-nologinnWL'       => 'Nu sunteți autentificat și "$1" nu este pe lista albă.',
@@ -1966,7 +1968,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 'statistics-users-active-desc' => 'Utilizatori care au efectuat o acțiune în {{PLURAL:$1|ultima zi|ultimele $1 zile}}',
 'statistics-mostpopular'       => 'Paginile cele mai vizualizate',
 
-'disambiguations'      => 'Pagini de dezambiguizare',
+'disambiguations'      => 'Pagini care trimit către pagini de dezambiguizare',
 'disambiguationspage'  => 'Template:Dezambiguizare',
 'disambiguations-text' => "Paginile următoare conțin legături către o '''pagină de dezambiguizare'''.
 În locul acesteia ar trebui să conțină legături către un articol.<br />
@@ -2106,11 +2108,11 @@ Vedeți și [[Special:WantedCategories|categoriile dorite]].',
 'sp-deletedcontributions-contribs' => 'contribuții',
 
 # Special:LinkSearch
-'linksearch'       => 'Legături externe',
-'linksearch-pat'   => 'Model de căutare:',
+'linksearch'       => 'Căutare legături externe',
+'linksearch-pat'   => 'De căutat:',
 'linksearch-ns'    => 'Spațiu de nume:',
 'linksearch-ok'    => 'Caută',
-'linksearch-text'  => 'Pot fi folosite metacaractere precum "*.wikipedia.org".<br />
+'linksearch-text'  => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.<br />
 Protocoale suportate: <tt>$1</tt>',
 'linksearch-line'  => '$1 este legat de $2',
 'linksearch-error' => 'Metacaracterele pot să apară doar la începutul hostname-ului.',
@@ -2765,7 +2767,7 @@ Pentru a exporta, introduceți titlurile în căsuța de mai jos, unul pe linie,
 'allmessagesdefault'            => 'Textul standard',
 'allmessagescurrent'            => 'Textul curent',
 'allmessagestext'               => 'Aceasta este lista completă a mesajelor disponibile în domeniul MediaWiki.
-Vă rugăm să vizitați [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] și [http://translatewiki.net translatewiki.net] dacă vreți să contribuiți la localizarea programului MediaWiki generic.',
+Vă rugăm să vizitați [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] și [//translatewiki.net translatewiki.net] dacă vreți să contribuiți la localizarea programului MediaWiki generic.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' nu poate fi folosit deoarece '''\$wgUseDatabaseMessages''' este închisă.",
 'allmessages-filter-legend'     => 'Filtru',
 'allmessages-filter'            => 'Filtru după statutul de modificare:',
@@ -3454,7 +3456,7 @@ Altele vor fi ascunse implicit.
 
 # External editor support
 'edit-externally'      => 'Editează acest fișier folosind o aplicație externă.',
-'edit-externally-help' => '(Vedeți [http://www.mediawiki.org/wiki/Manual:External_editors instrucțiuni de instalare] pentru mai multe informații)',
+'edit-externally-help' => '(Vedeți [//www.mediawiki.org/wiki/Manual:External_editors instrucțiuni de instalare] pentru mai multe informații)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'toate',
@@ -3634,13 +3636,13 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 'version-hook-subscribedby'     => 'Subscris de',
 'version-version'               => '(Versiune $1)',
 'version-license'               => 'Licență',
-'version-poweredby-credits'     => "Acest wiki este dezvoltat de '''[http://www.mediawiki.org/ MediaWiki]''', drepturi de autor © 2001-$1 $2.",
+'version-poweredby-credits'     => "Acest wiki este dezvoltat de '''[//www.mediawiki.org/ MediaWiki]''', drepturi de autor © 2001-$1 $2.",
 'version-poweredby-others'      => 'alții',
 'version-license-info'          => 'MediaWiki este un software liber pe care îl puteți redistribui și/sau modifica sub termenii Licenței Publice Generale GNU publicată de Free Software Foundation – fie a doua versiune a acesteia, fie, la alegerea dumneavoastră, orice altă versiune ulterioară. 
 
 MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GARANȚIE, nici măcar cea implicită de COMERCIALIZARE sau de ADAPTARE PENTRU UN UN SCOP ANUME. Vedeți Licența Publică Generală GNU pentru mai multe detalii. 
 
-În cazul în care nu ați primit [{{SERVER}}{{SCRIPTPATH}}/COPYING o copie a  Licenței Publice Generale GNU] împreună cu acest program, scrieți la Free Software Foundation, Inc, 51, Strada Franklin, etajul cinci, Boston, MA 02110-1301, Statele Unite ale Americii sau [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html citiți-o online].',
+În cazul în care nu ați primit [{{SERVER}}{{SCRIPTPATH}}/COPYING o copie a  Licenței Publice Generale GNU] împreună cu acest program, scrieți la Free Software Foundation, Inc, 51, Strada Franklin, etajul cinci, Boston, MA 02110-1301, Statele Unite ale Americii sau [//www.gnu.org/licenses/old-licenses/gpl-2.0.html citiți-o online].',
 'version-software'              => 'Software instalat',
 'version-software-product'      => 'Produs',
 'version-software-version'      => 'Versiune',

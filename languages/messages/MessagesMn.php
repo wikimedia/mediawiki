@@ -406,7 +406,7 @@ $1',
 'protectedinterface'   => 'Энэ хуудас программын харагдах байдалд ашиглагддаг текстийг агуулдаг тул түгжигдсэн байна.',
 'editinginterface'     => "'''Анхаар''': Та программын харагдах байдалд ашиглагддаг текстийг агуулсан хуудсыг засварлах гэж байна.
 Энэ хуудсанд өөрчлөлт оруулснаар бусад хэрэглэгчдийн программын харагдах байдалд нөлөөлөх болно.
-Орчуулга хийх гэж байгаа бол МедиаВикигийн орчуулгын төсөл болох, [http://translatewiki.net/wiki/Main_Page?setlang=mn Бетавики]-г хэрэглэхийг санал болгож байна.",
+Орчуулга хийх гэж байгаа бол МедиаВикигийн орчуулгын төсөл болох, [//translatewiki.net/wiki/Main_Page?setlang=mn Бетавики]-г хэрэглэхийг санал болгож байна.",
 'sqlhidden'            => '（SQL илэрц харагдахгүй байна）',
 'cascadeprotected'     => 'Энэ хуудас нь давхар хамгаалалттай дараах {{PLURAL:$1|хуудсанд|хуудсуудад}} орсон тул засварлагдахаас хамгаалагдсан байна:
 $2',
@@ -2364,7 +2364,7 @@ $1',
 'allmessagesdefault'            => 'Анхны',
 'allmessagescurrent'            => 'Одоогийн',
 'allmessagestext'               => 'Энэ бол МедиаВики дахь системийн мэдэгдлүүдийн жагсаалт юм.
-МедиаВикиг орчуулах тухай мэдээллийг [http://www.mediawiki.org/wiki/Localisation МедиаВикигийн орчуулга], мөн [http://translatewiki.net translatewiki.net]-с авна уу.',
+МедиаВикиг орчуулах тухай мэдээллийг [//www.mediawiki.org/wiki/Localisation МедиаВикигийн орчуулга], мөн [//translatewiki.net translatewiki.net]-с авна уу.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' нь унтарсан байгаа тул '''Special:Allmessages'''-г хэрэглэж болохгүй.",
 'allmessages-filter-legend'     => 'Шүүлтүүр',
 'allmessages-filter'            => 'Өөрийн болгосон байдлаар нь шүүх:',
@@ -2854,7 +2854,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Гадны программыг ашиглан энэ файлыг засварлах',
-'edit-externally-help' => '(Нэмэлт мэдээллийг [http://www.mediawiki.org/wiki/Manual:External_editors тохируулгын зааврын] хуудаснаас харна уу)',
+'edit-externally-help' => '(Нэмэлт мэдээллийг [//www.mediawiki.org/wiki/Manual:External_editors тохируулгын зааврын] хуудаснаас харна уу)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бүгдийг',
@@ -3015,7 +3015,7 @@ $1',
 'version-hook-subscribedby'     => 'Захиалсан:',
 'version-version'               => '(Хувилбар $1)',
 'version-license'               => 'Лиценз',
-'version-poweredby-credits'     => "Энэхүү викиг '''[http://www.mediawiki.org/ MediaWiki]''' програмаар ажиллуулдаг, зохиогчийн эрх © 2001-$1 $2.",
+'version-poweredby-credits'     => "Энэхүү викиг '''[//www.mediawiki.org/ MediaWiki]''' програмаар ажиллуулдаг, зохиогчийн эрх © 2001-$1 $2.",
 'version-poweredby-others'      => 'бусад',
 'version-software'              => 'Суулгасан программ',
 'version-software-product'      => 'Бүтээгдэхүүн',

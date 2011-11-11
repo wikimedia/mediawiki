@@ -394,7 +394,7 @@ Bittscheh vasuachs in a por Minunten nuamoi.',
 'protectedinterface'   => "Dé Seiten do enthoit Text fyr d' Benutzerówerflächen voh da Software und is gschytzd, um an Missbrauch vurzbeing.",
 'editinginterface'     => "'''Ówocht:''' Dé Seiten do enthoit voh da MediaWiki-Software gnutzden Text. 
 Änderrungen auf derer Seiten wirken sé auf d' Benutzerówerflächen aus.
-Ziag bittscheh im Foi voh Ywersétzungen in Betrocht, dé bei [http://translatewiki.net/wiki/Main_Page?setlang=de translatewiki.net], da Lókaalisiarungsblottform fyr MediaWiki, durchzfyrn.",
+Ziag bittscheh im Foi voh Ywersétzungen in Betrocht, dé bei [//translatewiki.net/wiki/Main_Page?setlang=de translatewiki.net], da Lókaalisiarungsblottform fyr MediaWiki, durchzfyrn.",
 'sqlhidden'            => '(SQL-Obfrog vastéckt)',
 'cascadeprotected'     => "Dé Seiten is zua da Beorweitung gsperrd worn. Sie is in d' {{PLURAL:$1|fóigande Seiten|fóiganden Seiten}} eihbunden, dé mid da Kaskaadensperrópzión gschytzd {{PLURAL:$1|is|san}}:
 $2",
@@ -1306,7 +1306,7 @@ Bitte nehmans an andern Nam.',
 'allmessagesdefault'        => 'Standardtext',
 'allmessagescurrent'        => 'Aktuella Text',
 'allmessagestext'           => 'Des is a Listen vo de MediaWiki-Systemtextt.
-Bsuach bittschee de Saiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisiarung] und [http://translatewiki.net translatewiki.net], wånn du de ån da Lokalisiarung vo MediaWiki betailing mechadst.',
+Bsuach bittschee de Saiten [//www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisiarung] und [//translatewiki.net translatewiki.net], wånn du de ån da Lokalisiarung vo MediaWiki betailing mechadst.',
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' is im Moment net möglich, wei de Datenbank offline is.",
 
 # Thumbnails
@@ -1445,7 +1445,7 @@ Weiderne wern standardmässig néd åzoagt.
 
 # External editor support
 'edit-externally'      => 'Dé Daatei mid am externen Prógramm beorweiden',
-'edit-externally-help' => '(Schaug unter [http://www.mediawiki.org/wiki/Manual:External_editors Installaziónsåweisungen] fyr weiderne Informaziónen)',
+'edit-externally-help' => '(Schaug unter [//www.mediawiki.org/wiki/Manual:External_editors Installaziónsåweisungen] fyr weiderne Informaziónen)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'olle',

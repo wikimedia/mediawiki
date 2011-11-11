@@ -96,8 +96,8 @@ $messages = array(
 'tog-shownumberswatching'     => '放哨有',
 'tog-oldsig'                  => '覽原署名：',
 'tog-fancysig'                => '署以本碼待之（免自連）',
-'tog-externaleditor'          => '它器修文（高人用，需設之。[http://www.mediawiki.org/wiki/Manual:External_editors 閱。]）',
-'tog-externaldiff'            => '它器修異（高人用，需設之。[http://www.mediawiki.org/wiki/Manual:External_editors 閱。]）',
+'tog-externaleditor'          => '它器修文（高人用，需設之。[//www.mediawiki.org/wiki/Manual:External_editors 閱。]）',
+'tog-externaldiff'            => '它器修異（高人用，需設之。[//www.mediawiki.org/wiki/Manual:External_editors 閱。]）',
 'tog-showjumplinks'           => '鏈往字',
 'tog-uselivepreview'          => '即覽嚐鮮（JavaScript）',
 'tog-forceeditsummary'        => '漏概醒之',
@@ -422,7 +422,7 @@ $1',
 'protectedpagetext'    => '該頁被錮無纂也。',
 'viewsourcetext'       => '爾可視及複之本頁之原始碼。',
 'protectedinterface'   => '此頁司版，錮之以遠濫。',
-'editinginterface'     => "'''警示：'''此頁司版，一髮牽身，惠慎之。如譯之，可慮[http://translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]也，為MediaWiki軟件本地化之計劃也。",
+'editinginterface'     => "'''警示：'''此頁司版，一髮牽身，惠慎之。如譯之，可慮[//translatewiki.net/wiki/Main_Page?setlang=zh-hant translatewiki.net]也，為MediaWiki軟件本地化之計劃也。",
 'sqlhidden'            => '（SQL隱然）',
 'cascadeprotected'     => '此頁"迭緘"矣。$1頁牽連如下：
 $2',
@@ -2200,7 +2200,7 @@ $1',
 'allmessagesdefault'            => '慣話文',
 'allmessagescurrent'            => '今話文',
 'allmessagestext'               => '此列MediaWiki官話。
-如貢正宗MediaWiki本地化，[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]與[http://translatewiki.net translatewiki.net]閱之。',
+如貢正宗MediaWiki本地化，[//www.mediawiki.org/wiki/Localisation MediaWiki本地化]與[//translatewiki.net translatewiki.net]閱之。',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages'''閉庫，'''無纂也。",
 'allmessages-filter-legend'     => '濾',
 'allmessages-filter'            => '以易濾：',
@@ -2528,7 +2528,7 @@ $1',
 
 # External editor support
 'edit-externally'      => '以外部程式修此文',
-'edit-externally-help' => '（請閱[http://www.mediawiki.org/wiki/Manual:External_editors 安裝指引]以知詳情）',
+'edit-externally-help' => '（請閱[//www.mediawiki.org/wiki/Manual:External_editors 安裝指引]以知詳情）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全',
@@ -2688,13 +2688,13 @@ $1',
 'version-hook-subscribedby'     => '用於',
 'version-version'               => '（版 $1）',
 'version-license'               => '牌',
-'version-poweredby-credits'     => "此 Wiki 以 '''[http://www.mediawiki.org/ MediaWiki]''' 之驅，權 © 2001-$1 $2。",
+'version-poweredby-credits'     => "此 Wiki 以 '''[//www.mediawiki.org/ MediaWiki]''' 之驅，權 © 2001-$1 $2。",
 'version-poweredby-others'      => '其他',
 'version-license-info'          => 'MediaWiki乃自由軟件；爾依自由軟件基金會之GNU通用公共授權之款，就此本程序再發佈及／或修；依之二版（自選之）或後之。
 
 MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU通用公共授權之詳。
 
-爾乃收附本程序之[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授權副本]；如無者，致函至自由軟件基金會：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 閱之]。',
+爾乃收附本程序之[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授權副本]；如無者，致函至自由軟件基金會：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[//www.gnu.org/licenses/old-licenses/gpl-2.0.html 閱之]。',
 'version-software'              => '裝件',
 'version-software-product'      => '品',
 'version-software-version'      => '版',

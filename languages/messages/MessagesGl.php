@@ -247,8 +247,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Mostrar o número de usuarios que están a vixiar',
 'tog-oldsig'                  => 'Sinatura actual:',
 'tog-fancysig'                => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
-'tog-externaleditor'          => 'Usar un editor externo por omisión (só para expertos, precisa duns parámetros especiais no seu computador. [http://www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
-'tog-externaldiff'            => 'Usar as diferenzas externas por omisión (só para expertos, precisa duns parámetros especiais no seu computador [http://www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
+'tog-externaleditor'          => 'Usar un editor externo por omisión (só para expertos, precisa duns parámetros especiais no seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
+'tog-externaldiff'            => 'Usar as diferenzas externas por omisión (só para expertos, precisa duns parámetros especiais no seu computador. [//www.mediawiki.org/wiki/Manual:External_editors Máis información.])',
 'tog-showjumplinks'           => 'Permitir as ligazóns de accesibilidade "ir a"',
 'tog-uselivepreview'          => 'Usar a vista previa en tempo real (cómpre JavaScript) (experimental)',
 'tog-forceeditsummary'        => 'Avisádeme cando o campo resumo estea baleiro',
@@ -277,20 +277,20 @@ $messages = array(
 'editfont-serif'     => 'Tipo de letra serif',
 
 # Dates
-'sunday'        => 'Domingo',
-'monday'        => 'Luns',
-'tuesday'       => 'Martes',
-'wednesday'     => 'Mércores',
-'thursday'      => 'Xoves',
-'friday'        => 'Venres',
-'saturday'      => 'Sábado',
-'sun'           => 'Dom',
-'mon'           => 'Lun',
-'tue'           => 'Mar',
-'wed'           => 'Mér',
-'thu'           => 'Xov',
-'fri'           => 'Ven',
-'sat'           => 'Sáb',
+'sunday'        => 'domingo',
+'monday'        => 'luns',
+'tuesday'       => 'martes',
+'wednesday'     => 'mércores',
+'thursday'      => 'xoves',
+'friday'        => 'venres',
+'saturday'      => 'sábado',
+'sun'           => 'dom',
+'mon'           => 'lun',
+'tue'           => 'mar',
+'wed'           => 'mér',
+'thu'           => 'xov',
+'fri'           => 'ven',
+'sat'           => 'sáb',
 'january'       => 'xaneiro',
 'february'      => 'febreiro',
 'march'         => 'marzo',
@@ -303,30 +303,30 @@ $messages = array(
 'october'       => 'outubro',
 'november'      => 'novembro',
 'december'      => 'decembro',
-'january-gen'   => 'Xaneiro',
-'february-gen'  => 'Febreiro',
-'march-gen'     => 'Marzo',
-'april-gen'     => 'Abril',
-'may-gen'       => 'Maio',
-'june-gen'      => 'Xuño',
-'july-gen'      => 'Xullo',
-'august-gen'    => 'Agosto',
-'september-gen' => 'Setembro',
-'october-gen'   => 'Outubro',
-'november-gen'  => 'Novembro',
-'december-gen'  => 'Decembro',
-'jan'           => 'Xan',
-'feb'           => 'Feb',
-'mar'           => 'Mar',
-'apr'           => 'Abr',
-'may'           => 'Mai',
-'jun'           => 'Xuñ',
-'jul'           => 'Xul',
-'aug'           => 'Ago',
-'sep'           => 'Set',
-'oct'           => 'Out',
-'nov'           => 'Nov',
-'dec'           => 'Dec',
+'january-gen'   => 'xaneiro',
+'february-gen'  => 'febreiro',
+'march-gen'     => 'marzo',
+'april-gen'     => 'abril',
+'may-gen'       => 'maio',
+'june-gen'      => 'xuño',
+'july-gen'      => 'xullo',
+'august-gen'    => 'agosto',
+'september-gen' => 'setembro',
+'october-gen'   => 'outubro',
+'november-gen'  => 'novembro',
+'december-gen'  => 'decembro',
+'jan'           => 'xan',
+'feb'           => 'feb',
+'mar'           => 'mar',
+'apr'           => 'abr',
+'may'           => 'maio',
+'jun'           => 'xuñ',
+'jul'           => 'xul',
+'aug'           => 'ago',
+'sep'           => 'set',
+'oct'           => 'out',
+'nov'           => 'nov',
+'dec'           => 'dec',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Categoría|Categorías}}',
@@ -568,10 +568,10 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'filedeleteerror'      => 'Non se deu borrado o ficheiro "$1".',
 'directorycreateerror' => 'Non se puido crear o directorio "$1".',
 'filenotfound'         => 'Non se deu atopado o ficheiro "$1".',
-'fileexistserror'      => 'Resultou imposíbel escribir no ficheiro "$1": O ficheiro xa existe',
+'fileexistserror'      => 'Resultou imposíbel escribir no ficheiro "$1": O ficheiro xa existe.',
 'unexpected'           => 'Valor inesperado: "$1"="$2".',
-'formerror'            => 'Erro: Non se pode enviar o formulario',
-'badarticleerror'      => 'Non pode efectuarse esta acción nesta páxina.',
+'formerror'            => 'Erro: Non se pode enviar o formulario.',
+'badarticleerror'      => 'Non pode efectuarse esa acción nesta páxina.',
 'cannotdelete'         => 'Non se puido borrar a páxina ou imaxe "$1".
 Se cadra, xa a borrou alguén.',
 'badtitle'             => 'Título incorrecto',
@@ -593,7 +593,7 @@ Inténteo de novo nuns minutos.",
 'protectedinterface'   => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.',
 'editinginterface'     => "'''Aviso:''' está editando unha páxina usada para fornecer o texto da interface do software.
 Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios.
-Para traducións, considere usar [http://translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
+Para traducións, considere usar [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
 'sqlhidden'            => '(Procura SQL agochada)',
 'cascadeprotected'     => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
 $2',
@@ -876,8 +876,8 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 * '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema en ''Ctrl-F5''
 * '''Konqueror:''' prema en ''Recargar'' ou prema en ''F5''
 * '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''",
-'usercssyoucanpreview'             => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
-'userjsyoucanpreview'              => "'''Nota:''' use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
+'usercssyoucanpreview'             => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo CSS antes de gardalo.",
+'userjsyoucanpreview'              => "'''Nota:''' Use o botón \"{{int:showpreview}}\" para verificar o novo JS antes de gardalo.",
 'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
 '''Este aínda non foi gardado!'''",
 'userjspreview'                    => "'''Lembre que só está probando/previsualizando o seu JavaScript de usuario.'''
@@ -886,7 +886,7 @@ Velaquí está a última entrada do rexistro de bloqueos, por se quere consultal
 '''Este aínda non foi gardado!'''",
 'sitejspreview'                    => "'''Lembre que só está vendo a vista previa deste código JavaScript.'''
 '''Este aínda non foi gardado!'''",
-'userinvalidcssjstitle'            => "'''Aviso:''' non hai ningún tema chamado \"\$1\".
+'userinvalidcssjstitle'            => "'''Aviso:''' Non hai ningún tema chamado \"\$1\".
 Lembre que as páxinas .css e .js personalizadas utilizan un título en minúsculas, como por exemplo {{ns:user}}:Foo/vector.css no canto de {{ns:user}}:Foo/Vector.css.",
 'updated'                          => '(Actualizado)',
 'note'                             => "'''Nota:'''",
@@ -1465,7 +1465,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-editusercssjs'         => 'Editar os ficheiros CSS e JS doutros usuarios',
 'right-editusercss'           => 'Editar os ficheiros CSS doutros usuarios',
 'right-edituserjs'            => 'Editar os ficheiros JS doutros usuarios',
-'right-rollback'              => 'Reversión rápida da edición dun usuario dunha páxina particular',
+'right-rollback'              => 'Reverter rapidamente as edicións do último usuario que editou unha páxina en particular',
 'right-markbotedits'          => 'Marcar as edicións desfeitas como edicións dun bot',
 'right-noratelimit'           => 'Non lle afectan os límites de frecuencia',
 'right-import'                => 'Importar páxinas doutros wikis',
@@ -1742,8 +1742,8 @@ Non pode superar adecuadamente as comprobacións de seguridade.',
 'img-auth-accessdenied'     => 'Acceso rexeitado',
 'img-auth-nopathinfo'       => 'Falta a PATH_INFO.
 O seu servidor non está configurado para pasar esta información.
-Pode ser que estea baseado en CGI e non puidese soportar img_auth.
-Olle http://www.mediawiki.org/wiki/Manual:Image_Authorization para obter máis información.',
+Pode ser que estea baseado en CGI e non soporte img_auth.
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Olle a autorización de imaxes para obter máis información.]',
 'img-auth-notindir'         => 'A ruta solicitada non está no directorio de carga configurado.',
 'img-auth-badtitle'         => 'Non é posible construír un título válido a partir de "$1".',
 'img-auth-nologinnWL'       => 'Non accedeu ao sistema e "$1" non está na lista de branca.',
@@ -1911,7 +1911,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'statistics-users-active-desc' => 'Usuarios que teñen levado a cabo unha acción {{PLURAL:$1|no último día|nos últimos $1 días}}',
 'statistics-mostpopular'       => 'Páxinas máis vistas',
 
-'disambiguations'      => 'Páxinas de homónimos',
+'disambiguations'      => 'Páxinas que ligan con páxinas de homónimos',
 'disambiguationspage'  => 'Template:Homónimos',
 'disambiguations-text' => "As seguintes páxinas ligan cunha '''páxina de homónimos'''.
 No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
@@ -2051,7 +2051,7 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'sp-deletedcontributions-contribs' => 'contribucións',
 
 # Special:LinkSearch
-'linksearch'       => 'Ligazóns externas',
+'linksearch'       => 'Procura de ligazóns externas',
 'linksearch-pat'   => 'Patrón de procura:',
 'linksearch-ns'    => 'Espazo de nomes:',
 'linksearch-ok'    => 'Procurar',
@@ -2297,7 +2297,7 @@ Velaquí a configuración actual da páxina '''$1''':",
 'protect-cascadeon'           => 'Esta páxina está protexida neste momento porque está incluída {{PLURAL:$1|na seguinte páxina, que foi protexida|nas seguintes páxinas, que foron protexidas}} coa opción protección en serie activada.
 Pode mudar o nivel de protección da páxina pero iso non afectará á protección en serie.',
 'protect-default'             => 'Permitir a todos os usuarios',
-'protect-fallback'            => 'Require permisos de "$1"',
+'protect-fallback'            => 'Cómpre ter permisos de "$1"',
 'protect-level-autoconfirmed' => 'Bloquear os usuarios novos e anónimos',
 'protect-level-sysop'         => 'Só os administradores',
 'protect-summary-cascade'     => 'protección en serie',
@@ -2370,7 +2370,7 @@ O texto destas revisións eliminadas só está á disposición dos administrador
 
 Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas recentes no rexistro de páxinas eliminadas e restauradas.",
 'undelete-header'              => 'Vexa [[Special:Log/delete|no rexistro de borrados]] as páxinas eliminadas recentemente.',
-'undelete-search-box'          => 'Buscar páxinas borradas',
+'undelete-search-box'          => 'Procurar páxinas borradas',
 'undelete-search-prefix'       => 'Mostrar as páxinas que comecen por:',
 'undelete-search-submit'       => 'Procurar',
 'undelete-no-results'          => 'Non se atoparon páxinas coincidentes no arquivo de eliminacións.',
@@ -2706,7 +2706,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'allmessagesdefault'            => 'Texto predeterminado',
 'allmessagescurrent'            => 'Texto actual',
 'allmessagestext'               => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
-Por favor, visite a [http://www.mediawiki.org/wiki/Localisation localización MediaWiki] e [http://translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
+Por favor, visite a [//www.mediawiki.org/wiki/Localisation localización MediaWiki] e [//translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
 'allmessages-filter-legend'     => 'Filtrar',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
@@ -2894,11 +2894,11 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
 
 # Spam protection
-'spamprotectiontitle' => "Filtro de protección de ''spam''",
-'spamprotectiontext'  => "A páxina que quixo gardar foi bloqueada polo filtro ''antispam''.
-Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está na lista negra.",
-'spamprotectionmatch' => "O seguinte texto foi o que activou o noso filtro de ''spam'': $1",
-'spambot_username'    => "MediaWiki limpeza de ''spam''",
+'spamprotectiontitle' => 'Filtro de protección de spam',
+'spamprotectiontext'  => 'A páxina que quixo gardar foi bloqueada polo filtro antispam.
+Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está na lista negra.',
+'spamprotectionmatch' => 'O seguinte texto foi o que activou o noso filtro de spam: $1',
+'spambot_username'    => 'Limpeza de spam de MediaWiki',
 'spam_reverting'      => 'Revertida á última edición sen ligazóns a $1',
 'spam_blanking'       => 'Limpáronse todas as revisións con ligazóns a "$1"',
 
@@ -3415,7 +3415,7 @@ Os demais agocharanse por omisión.
 
 # External editor support
 'edit-externally'      => 'Editar este ficheiro cunha aplicación externa',
-'edit-externally-help' => '(Vexa as seguintes [http://www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para obter máis información)',
+'edit-externally-help' => '(Vexa as seguintes [//www.mediawiki.org/wiki/Manual:External_editors instrucións] <small>(en inglés)</small> para obter máis información)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'todo',
@@ -3611,13 +3611,13 @@ Tamén pode [[Special:EditWatchlist|empregar o editor normal]].',
 'version-hook-subscribedby'     => 'Subscrito por',
 'version-version'               => '(Versión $1)',
 'version-license'               => 'Licenza',
-'version-poweredby-credits'     => "Este wiki está desenvolvido por '''[http://www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autor © 2001-$1 $2.",
+'version-poweredby-credits'     => "Este wiki está desenvolvido por '''[//www.mediawiki.org/wiki/MediaWiki/gl MediaWiki]''', dereitos de autor © 2001-$1 $2.",
 'version-poweredby-others'      => 'outros',
 'version-license-info'          => 'MediaWiki é software libre; pode redistribuílo e/ou modificalo segundo os termos da licenza pública xeral GNU publicada pola Free Software Foundation; versión 2 ou (na súa escolla) calquera outra posterior.
 
-MediaWiki distribúese coa esperanza de que poida ser útil, pero SEN NINGUNHA GARANTÍA; nin sequera a garantía implícita de COMERCIALIZACIÓN ou ADECUACIÓN A UNHA FINALIDADE ESPECÍFICA. Olle a licenza pública xeral GNU para obter máis detalles.
+MediaWiki distribúese coa esperanza de que poida ser útil, pero SEN GARANTÍA NINGUNHA; nin sequera a garantía implícita de COMERCIALIZACIÓN ou ADECUACIÓN A UNHA FINALIDADE ESPECÍFICA. Olle a licenza pública xeral GNU para obter máis detalles.
 
-Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza pública xeral GNU] xunto ao programa; se non é así, escriba á Free Software Foundation, Inc., 51 da rúa Franklin, quinto andar, Boston, MA 02110-1301, Estados Unidos ou [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lea a licenza en liña].',
+Debería recibir [{{SERVER}}{{SCRIPTPATH}}/COPYING unha copia da licenza pública xeral GNU] xunto ao programa; se non é así, escriba á Free Software Foundation, Inc., rúa Franklin, número 51, quinto andar, Boston, Massachusetts, 02110-1301, Estados Unidos de América ou [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lea a licenza en liña].',
 'version-software'              => 'Software instalado',
 'version-software-product'      => 'Produto',
 'version-software-version'      => 'Versión',

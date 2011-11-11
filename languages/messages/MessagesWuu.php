@@ -368,7 +368,7 @@ $1',
 'protectedpagetext'    => '箇只页面已经锁定，以防编辑。',
 'viewsourcetext'       => '侬可以查看搭仔复制箇只页面个源码：',
 'protectedinterface'   => '箇只页面提供软件个界面文本。为著防止滥用咾已经锁定。',
-'editinginterface'     => "'''警告：''' 侬垃许编辑个页面是用于提供软件个界面文本。改变此页会得影响其他用户个界面外观。假使要翻译，请考虑使用 [http://translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用得来为MediaWiki软件本地化个计划。",
+'editinginterface'     => "'''警告：''' 侬垃许编辑个页面是用于提供软件个界面文本。改变此页会得影响其他用户个界面外观。假使要翻译，请考虑使用 [//translatewiki.net/wiki/Main_Page?setlang=zh-hans translatewiki.net]，一个用得来为MediaWiki软件本地化个计划。",
 'sqlhidden'            => '（SQL查询已隐藏）',
 'cascadeprotected'     => '箇只页面拨保护拉许，因为箇只页面拨下底已经标注“联锁保护”个{{PLURAL:$1|一只|多只}}被保护页面包含：
 $2',
@@ -1561,7 +1561,7 @@ Variants for Chinese language
 
 # External editor support
 'edit-externally'      => '用外部应用程序来编辑该只文件',
-'edit-externally-help' => '（请参见[http://www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
+'edit-externally-help' => '（请参见[//www.mediawiki.org/wiki/Manual:External_editors 设置步骤]了解详细信息）',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => '全部',

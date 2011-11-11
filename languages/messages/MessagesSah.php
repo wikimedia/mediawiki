@@ -69,8 +69,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Сирэйи кэтээн көрөр дьон ахсаанын көрдөр',
 'tog-oldsig'                  => 'Баар илии баттааһын:',
 'tog-fancysig'                => 'Бэйэ илии баттааһына (ыйынньыга суох)',
-'tog-externaleditor'          => 'Атын этиллибэтэҕинэ тас эрэдээктэри туһан (билэр дьоҥҥо аналлаах, сиһилии [http://www.mediawiki.org/wiki/Manual:External_editors манна] көр)',
-'tog-externaldiff'            => 'Атын этиллибэтэҕинэ барыллары тэҥниир тас программаны туһан (билэр дьоҥҥо аналлаах, сиһилии [http://www.mediawiki.org/wiki/Manual:External_editors манна] көр)',
+'tog-externaleditor'          => 'Атын этиллибэтэҕинэ тас эрэдээктэри туһан (билэр дьоҥҥо аналлаах, сиһилии [//www.mediawiki.org/wiki/Manual:External_editors манна] көр)',
+'tog-externaldiff'            => 'Атын этиллибэтэҕинэ барыллары тэҥниир тас программаны туһан (билэр дьоҥҥо аналлаах, сиһилии [//www.mediawiki.org/wiki/Manual:External_editors манна] көр)',
 'tog-showjumplinks'           => '"Манна бар" ыйынньыктары көрдөр',
 'tog-uselivepreview'          => 'Тутатына хайдах буоларын көрүү (JavaScript, тургутуу быһыытынан)',
 'tog-forceeditsummary'        => 'Тугу уларыппытым туһунан суруйбатахпына сэрэт',
@@ -407,7 +407,7 @@ $1',
 'protectedpagetext'    => 'Бу сирэй уларытыллыбат.',
 'viewsourcetext'       => 'Эн бу сирэй төрдүн көрүөххүн уонна төгүллүөххүн сөп:',
 'protectedinterface'   => 'Бу сирэй бырагыраамма холбуурун хааччыйар, онон моһуогурууттан халытан хатанан турар',
-'editinginterface'     => "'''Болҕой:''' Быраҕыраамма тас көстүүтүн (интерфейсын) хааччыйар тиэкиһи уларытаары гынан эрэҕин. Бу сирэйи уларыттаххына атын кыттааччылар көрөллөрүгэр бырагыраамма көстүүтэ уларыйыа. Тылбаастыыр буоллаххына Медиавики бырайыактарын сахалыы тылбааһын [http://translatewiki.net/wiki/Main_Page?setlang=sah translatewiki.net] туһан.",
+'editinginterface'     => "'''Болҕой:''' Быраҕыраамма тас көстүүтүн (интерфейсын) хааччыйар тиэкиһи уларытаары гынан эрэҕин. Бу сирэйи уларыттаххына атын кыттааччылар көрөллөрүгэр бырагыраамма көстүүтэ уларыйыа. Тылбаастыыр буоллаххына Медиавики бырайыактарын сахалыы тылбааһын [//translatewiki.net/wiki/Main_Page?setlang=sah translatewiki.net] туһан.",
 'sqlhidden'            => '(SQL ыйытык кистэммит)',
 'cascadeprotected'     => 'Бу сирэй уларыйар кыаҕа суох, тоҕо диэтэххэ уларыйара бобуллубут (каскаднай көмүскэл холбоммут) {{PLURAL:$1|сирэй бөлөҕөр|сирэйдэр бөлөхтөрүгэр}} киирэр:
 $2',
@@ -1843,7 +1843,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'киллэриитэ (суруйуута)',
 
 # Special:LinkSearch
-'linksearch'       => 'Тас сигэлэр',
+'linksearch'       => 'Тас сигэлэри көрдөөһүн',
 'linksearch-pat'   => 'Көрдөөһүн халыыба:',
 'linksearch-ns'    => 'Аат хочото (namespace):',
 'linksearch-ok'    => 'Бул',
@@ -2497,7 +2497,7 @@ $1',
 'allmessagesdefault'            => 'Туспа этиллибэтэҕинэ суруллар тиэкис',
 'allmessagescurrent'            => 'Билиҥҥи тиэкис',
 'allmessagestext'               => 'Манна MediaWiki биллэриилэрин испииһэгэ көстөр.
-Эн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] уонна манна [http://translatewiki.net translatewiki.net] киир.',
+Эн MediaWiki движогун тылбаастыырга көмөлөһүөххүн баҕарар буоллаххына манна [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] уонна манна [//translatewiki.net translatewiki.net] киир.',
 'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' туттуллар кыаҕа суох, тоҕо диэтэххэ '''\$wgUseDatabaseMessages''' араарыллыбыт.",
 'allmessages-filter-legend'     => 'Сиидэ',
 'allmessages-filter'            => 'Уларытыы көрүҥүнэн наардыыр сиидэ:',
@@ -3177,7 +3177,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Бу билэни таһынааҕы бырагыраамма көмөтүнэн уларытарга',
-'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [http://www.mediawiki.org/wiki/Manual:External_editors туруоруулар туһунан].',
+'edit-externally-help' => 'Сиһилии бу ыйынньыгынан баран көр: [//www.mediawiki.org/wiki/Manual:External_editors туруоруулар туһунан].',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бары',
@@ -3365,13 +3365,13 @@ $1',
 'version-hook-subscribedby'     => 'Суруттарыыта:',
 'version-version'               => '(Торум $1)',
 'version-license'               => 'Лиссиэнзийэ',
-'version-poweredby-credits'     => "Бу биики бу движокка олоҕурар '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Бу биики бу движокка олоҕурар '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'атыттар',
 'version-license-info'          => 'MediaWiki көҥүл тарҕанар бырагырааммаларга киирэр, кинини көмпүүтэр аһаҕас бырагырааммаларын пуондатын GNU General Public License усулуобуйатынан көҥүл тарҕатаргыт уонна/эбэтэр уларытаргыт көҥүллэнэр; иккис эбэтэр онтон хойукку ханнык баҕарар барылыттан саҕалаан.
 
 MediaWiki туһалаах буоллун диэн тарҕатыллар, ол эрээри АТЫЫЛАНАР СЫАННАҺА эбэтэр ХАННЫК ЭРЭ ЧОПЧУ СОРУККА СӨП ТҮБЭҺИИТЭ бигэргэтиллибэт (гарантията суох). Сиһилии GNU General Public License усулуобуйатын көрүҥ.
 
-[{{SERVER}}{{SCRIPTPATH}}/COPYING  GNU General Public License копиятын] бу бырагыраамманы кытта ылыахтаах этигит, ол сатамматах буоллаҕына Free Software Foundation, Inc. тэрилтэҕэ сурукта суруйуҥ, бу аадырыска: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA эбэтэр [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html саайка киирэн ааҕыҥ].',
+[{{SERVER}}{{SCRIPTPATH}}/COPYING  GNU General Public License копиятын] бу бырагыраамманы кытта ылыахтаах этигит, ол сатамматах буоллаҕына Free Software Foundation, Inc. тэрилтэҕэ сурукта суруйуҥ, бу аадырыска: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA эбэтэр [//www.gnu.org/licenses/old-licenses/gpl-2.0.html саайка киирэн ааҕыҥ].',
 'version-software'              => 'Туруоруллубут бырагырааммалар',
 'version-software-product'      => 'Бородуукта',
 'version-software-version'      => 'Барыл (торум)',

@@ -138,8 +138,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'লক্ষ্য কৰি থকা সদস্য সমূহৰ সংখ্যা দেখুৱাওক',
 'tog-oldsig'                  => 'বৰ্তমানৰ স্বাক্ষৰ:',
 'tog-fancysig'                => 'স্বাক্ষৰ ৱিকিটেক্সট হিচাপে ব্যৱহাৰ কৰক (স্বয়ংক্ৰিয় সংযোগ অবিহনে)',
-'tog-externaleditor'          => 'ডিফ’ল্ট ভাবে বাহ্যিক সম্পাদন-সঁজুলি ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [http://www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
-'tog-externaldiff'            => 'ডিফ’ল্ট ভাবে বাহ্যিক তফাৎ (diff) ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [http://www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
+'tog-externaleditor'          => 'ডিফ’ল্ট ভাবে বাহ্যিক সম্পাদন-সঁজুলি ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [//www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
+'tog-externaldiff'            => 'ডিফ’ল্ট ভাবে বাহ্যিক তফাৎ (diff) ব্যৱহাৰ কৰক (দক্ষ্য জনৰ বাবেহে, আপোনাৰ কম্পিউটাৰত বিশেষ ব্যৱস্থা থাকিব লাগিব । [//www.mediawiki.org/wiki/Manual:External_editors সবিশেষ ।])',
 'tog-showjumplinks'           => '"জঁপিয়াই যাওক" সংযোগ সক্ৰিয় কৰক',
 'tog-uselivepreview'          => 'সম্পাদনাৰ লগে লগে খচৰা দেখুৱাওক (JavaScript) (পৰীক্ষামূলক)',
 'tog-forceeditsummary'        => 'সম্পাদনাৰ সাৰাংশ নিদিলে মোক জনাব',
@@ -162,7 +162,7 @@ $messages = array(
 'editfont-style'     => 'সম্পাদনাৰ ফন্ট ষ্টাইল',
 'editfont-default'   => "ব্ৰাউজাৰ ডিফ'ল্ট",
 'editfont-monospace' => 'মনোস্পেচ ফন্ট',
-'editfont-sansserif' => 'চেৰিফ-বিহীন ফন্ট',
+'editfont-sansserif' => 'চেন্‌চেৰিফ ফন্ট',
 'editfont-serif'     => 'চেৰিফ ফন্ট',
 
 # Dates
@@ -224,7 +224,7 @@ $messages = array(
 'category-media-header'          => '"$1" শ্ৰেণীৰ মিডিয়া',
 'category-empty'                 => "''এই শ্ৰেণীত বৰ্তমান কোনো পৃষ্ঠা বা মিডিয়া ফাইল নাই ।''",
 'hidden-categories'              => '{{PLURAL:$1|নিহিত শ্ৰেণী|নিহিত শ্ৰেণীসমূহ}}',
-'hidden-category-category'       => 'নিহিত শ্ৰেণী সমূহ',
+'hidden-category-category'       => 'অদৃশ্য শ্ৰেণী সমূহ',
 'category-subcat-count'          => '{{PLURAL:$2|এই শ্ৰেণীত নিম্নলিখিত উপশ্ৰেণীসমূহ আছে । মুঠ $2টা উপশ্ৰেণীৰ ভিতৰত এই শ্ৰেণীত নিম্নলিখিত {{PLURAL:$1|এটা উপশ্ৰেণী|$1 টা উপশ্ৰেণী}} আছে, }}',
 'category-subcat-count-limited'  => 'এই শ্ৰেণীত নিম্নলিখিত {{PLURAL:$1|টা উপশ্ৰেণী আছে|$1টা উপশ্ৰেণী আছে}}।',
 'category-article-count'         => '{{PLURAL:$2|এই শ্ৰেণীটোত কেৱল তলত দিয়া পৃষ্ঠাহে আছে । মুঠ $2 খনৰ ভিতৰত এই শ্ৰেণীটোত তলৰ {{PLURAL:$1|এখন পৃষ্ঠা আছে|$1 খন পৃষ্ঠা আছে}}।}}',
@@ -249,14 +249,14 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'বিচৰা হওক',
-'qbbrowse'       => 'বিচৰণ',
+'qbbrowse'       => 'ব্রাওজ',
 'qbedit'         => 'সম্পাদনা',
 'qbpageoptions'  => 'এই পৃষ্ঠা',
 'qbpageinfo'     => 'প্ৰসংগ',
 'qbmyoptions'    => 'মোৰ পৃষ্ঠাসমূহ',
 'qbspecialpages' => 'বিশেষ পৃষ্ঠাসমূহ',
-'faq'            => 'প্ৰায়ে উঠা প্ৰশ্ন',
-'faqpage'        => 'Project:প্ৰায়ে উঠা প্ৰশ্ন',
+'faq'            => 'সততে উঠা প্ৰশ্ন (FAQ)',
+'faqpage'        => 'Project:সততে উঠা প্ৰশ্ন',
 
 # Vector skin
 'vector-action-addsection'       => 'বিষয় যোগ',
@@ -478,7 +478,7 @@ $1',
 'protectedpagetext'    => 'এই পৃষ্ঠাটোৰ সম্পাদনা ৰোধ কৰিবলৈ সুৰক্ষিত কৰা হৈছে।',
 'viewsourcetext'       => 'আপুনি এই পৃষ্ঠাটোৰ উত্‍স চাব আৰু নকল কৰিব পাৰে',
 'protectedinterface'   => 'এই পৃষ্ঠাই ৱিকি ছফ্টৱেৰৰ ইণ্টাৰফে’চ বাৰ্তা প্ৰদান কৰে, আৰু ইয়াক সুৰক্ষিত কৰি ৰখা হৈছে ।',
-'editinginterface'     => "'''সাৱধানবাণী:''' আপুনি যিখন পৃষ্ঠা সম্পাদনা কৰিছে সেইখন ৱিকি ছফ্টৱেৰৰ ইণ্টাৰফে’চ বাৰ্তা দিবলৈ ব্যৱহাৰ হয় । এই পৃষ্ঠাৰ সাল-সলনিয়ে আন ব্যৱহাৰকাৰীৰ বাবে ইণ্টাৰফে’চত প্ৰভাৱ পেলাব । অনুবাদৰ বাবে অনুগ্ৰহ কৰি মিডিয়াৱিকি স্থানীয়কৰণ প্ৰকল্প [http://translatewiki.net/wiki/Main_Page?setlang=bn translatewiki.net] ব্যৱহাৰ কৰক ।",
+'editinginterface'     => "'''সাৱধানবাণী:''' আপুনি যিখন পৃষ্ঠা সম্পাদনা কৰিছে সেইখন ৱিকি ছফ্টৱেৰৰ ইণ্টাৰফে’চ বাৰ্তা দিবলৈ ব্যৱহাৰ হয় । এই পৃষ্ঠাৰ সাল-সলনিয়ে আন ব্যৱহাৰকাৰীৰ বাবে ইণ্টাৰফে’চত প্ৰভাৱ পেলাব । অনুবাদৰ বাবে অনুগ্ৰহ কৰি মিডিয়াৱিকি স্থানীয়কৰণ প্ৰকল্প [//translatewiki.net/wiki/Main_Page?setlang=bn translatewiki.net] ব্যৱহাৰ কৰক ।",
 'sqlhidden'            => '(নিহিত SQL query)',
 'cascadeprotected'     => 'এই পৃষ্ঠাখন সম্পাদনাৰ পৰা সুৰক্ষিত কাৰণ এই {{PLURAL:$1|পৃষ্ঠা, যিখন|পৃষ্ঠা, যিবোৰ}} "প্ৰপাতাকাৰ" (cascading) বিকল্পৰ সহযোগত সুৰক্ষিত কৰা হৈছে: 
 $2',
@@ -1924,7 +1924,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'sp-deletedcontributions-contribs' => 'বৰঙণিসমূহ',
 
 # Special:LinkSearch
-'linksearch'       => 'বহিঃ-সংযোগ',
+'linksearch'       => 'বহিঃসংযোগ অনুসন্ধান',
 'linksearch-pat'   => 'অনুসন্ধান আৰ্হি:',
 'linksearch-ns'    => 'নামস্থান:',
 'linksearch-ok'    => 'অনুসন্ধান',
@@ -2591,7 +2591,7 @@ $1ৰ অৱৰোধৰ কাৰণ: "$2"',
 'allmessagesdefault'            => "ডিফ'ল্ট বাৰ্তা পাঠ্য",
 'allmessagescurrent'            => 'বৰ্তমানৰ বাৰ্তাৰ পাঠ',
 'allmessagestext'               => 'মিডিয়াৱিকি নামস্থানত থকা প্ৰণালী বাৰ্তাসমূহৰ তালিকা ইয়াত দিয়া হৈছে ।
-যদি আপুনি মিডিয়াৱিকিৰ স্থানীয়কৰণত আগ্ৰহী, তেন্তে অনুগ্ৰহ কৰি [http://www.mediawiki.org/wiki/Localisation মিডিয়াৱিকি স্থানীয়কৰণ] আৰু [http://translatewiki.net translatewiki.net] চাওক ।',
+যদি আপুনি মিডিয়াৱিকিৰ স্থানীয়কৰণত আগ্ৰহী, তেন্তে অনুগ্ৰহ কৰি [//www.mediawiki.org/wiki/Localisation মিডিয়াৱিকি স্থানীয়কৰণ] আৰু [//translatewiki.net translatewiki.net] চাওক ।',
 'allmessagesnotsupportedDB'     => "এই পৃষ্ঠা ব্যৱহাৰ কৰিব নোৱাৰি কাৰণ '''\$wgUseDatabaseMessages''' নিষ্ক্ৰিয় কৰা হৈছে ।",
 'allmessages-filter-legend'     => 'ছেকনী',
 'allmessages-filter-unmodified' => 'অপৰিৱৰ্তিত',
@@ -2988,7 +2988,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 
 # External editor support
 'edit-externally'      => 'বাহিৰা আহিলা ব্যৱহাৰ কৰি এই ফাইলটো সম্পাদনা কৰক ।',
-'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [http://www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাওক ।',
+'edit-externally-help' => 'অধিক তথ্যৰ কাৰণে [//www.mediawiki.org/wiki/Manual:External_editors প্ৰস্তুত কৰা নিৰ্দেশনা] চাওক ।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'সকলো',
@@ -3144,6 +3144,7 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'অজ্ঞাত এক্সটেনচন টেগ "$1"',
+'duplicate-defaultsort' => '\'\'\'সাবধান!\'\'\' পূৰ্বনিৰ্ধাৰিত ক্ৰমসূচক "$2"-এ আগৰ ক্রমসূচক "$1"-অক বিস্থাপিত কৰিছে।',
 
 # Special:Version
 'version'                       => 'সংস্কৰণ',
@@ -3160,7 +3161,7 @@ You can also [[Special:EditWatchlist/raw|edit the raw list]].',
 'version-hook-name'             => 'হুক নাম',
 'version-version'               => '(সংস্কৰণ $1)',
 'version-license'               => 'অনুজ্ঞাপত্ৰ',
-'version-poweredby-credits'     => "এই ৱিকি '''[http://www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
+'version-poweredby-credits'     => "এই ৱিকি '''[//www.mediawiki.org/ মিডিয়াৱিকিৰ]''' দ্বাৰা প্ৰচলিত , কপিৰাইট © ২০০১-$1 $2.",
 'version-poweredby-others'      => 'অন্য',
 'version-software'              => 'ইনষ্টল কৰা ছফ্টৱেৰ',
 'version-software-product'      => 'সামগ্ৰী',

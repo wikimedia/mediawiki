@@ -99,8 +99,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Паказваць колькасць назіральнікаў',
 'tog-oldsig'                  => 'Папярэдні прагляд існуючага подпісу:',
 'tog-fancysig'                => 'Апрацоўваць подпіс як вікі-тэкст (без аўтаматычнай спасылкі)',
-'tog-externaleditor'          => "Карыстацца вонкавай праграмай для праўкі (edit); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары; [http://www.mediawiki.org/wiki/Manual:External_editors гл. падрабязна.]",
-'tog-externaldiff'            => "Карыстацца вонкавай праграмай для параўнання (diff); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары; [http://www.mediawiki.org/wiki/Manual:External_editors гл. падрабязна.]",
+'tog-externaleditor'          => "Карыстацца вонкавай праграмай для праўкі (edit); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары; [//www.mediawiki.org/wiki/Manual:External_editors гл. падрабязна.]",
+'tog-externaldiff'            => "Карыстацца вонкавай праграмай для параўнання (diff); рэкамендуецца толькі для спецыялістаў, бо патрабуе адмысловых настаўленняў на камп'ютары; [//www.mediawiki.org/wiki/Manual:External_editors гл. падрабязна.]",
 'tog-showjumplinks'           => 'Дазволіць дапаможныя спасылкі "jump to"',
 'tog-uselivepreview'          => 'Жывы перадпаказ (Яваскрыпт, эксперыментальн.)',
 'tog-forceeditsummary'        => 'Папярэджваць пра пустое поле тлумачэння праўкі',
@@ -443,7 +443,7 @@ $1',
 'protectedinterface'   => 'Старонка ахоўваецца, таму што ўваходзіць у склад інтэрфейсу гэтай праграмы.',
 'editinginterface'     => "'''Увага:''' Вы правіце старонку, якая ўтрымлівае тэкст карыстальніцкага інтэрфейсу.
 Яе змяненне паўплывае на вонкавы выгляд праграмы для ўсіх удзельнікаў.
-Праект лакалізацыі MediaWiki: [http://translatewiki.net/wiki/Main_Page?setlang=be translatewiki.net].",
+Праект лакалізацыі MediaWiki: [//translatewiki.net/wiki/Main_Page?setlang=be translatewiki.net].",
 'sqlhidden'            => '(зварот SQL не паказаны)',
 'cascadeprotected'     => 'Старонка знаходзіцца пад аховай ад правак, таму што яна ўлучана ў наступн{{PLURAL:$1|ую старонку|ыя старонкі}}, якія ахоўваюцца з магчымасцю "каскаднага распаўсюджвання" аховы:
 $2',
@@ -2842,7 +2842,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Правіць файл у вонкавай праграме',
-'edit-externally-help' => '(Гл. падрабязней [http://www.mediawiki.org/wiki/Manual:External_editors пра настаўлянне старонніх праграм-рэдактараў])',
+'edit-externally-help' => '(Гл. падрабязней [//www.mediawiki.org/wiki/Manual:External_editors пра настаўлянне старонніх праграм-рэдактараў])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'усе',
@@ -2997,13 +2997,13 @@ $1',
 'version-hook-subscribedby'     => 'Сюды падпісаныя',
 'version-version'               => '(Версія $1)',
 'version-license'               => 'Ліцэнзія',
-'version-poweredby-credits'     => "Пляцоўка працуе на '''[http://www.mediawiki.org/ MediaWiki]''', капірайт © 2001-$1 $2.",
+'version-poweredby-credits'     => "Пляцоўка працуе на '''[//www.mediawiki.org/ MediaWiki]''', капірайт © 2001-$1 $2.",
 'version-poweredby-others'      => 'іншыя',
 'version-license-info'          => "MediaWiki з'яўляецца свабодным праграмным забеспячэннем. Такім чынам, вы можаце паўторна распаўсюджваць прадукт і(або) змяняць яго на ўмовах пагаднення GNU General Public License у тым выглядзе, у якім яно публікуецца фондам Free Software Foundation; сілу мае версія (выпуск) 2 гэтага пагаднення або, на ваш выбар, навейшая версія (выпуск) пагаднення.
 
 MediaWiki распаўсюджваецца, спадзеючыся на прыдатнасць прадукта, але БЕЗ ЯКІХ-НЕБУДЗЬ ГАРАНТЫЙ, у тым ліку, без імплікаваных гарантый СПАЖЫВЕЦКАЙ ВАРТАСЦІ або ПРЫДАТНАСЦІ ДЛЯ ЯКОЙ-НЕБУДЗЬ МЭТЫ. Больш падрабязна гл. пагадненне GNU General Public License.
 
-Разам з гэтым праграмным забеспячэннем вы павінны былі атрымаць [{{SERVER}}{{SCRIPTPATH}}/COPYING копію пагаднення GNU General Public License]. Калі гэта не так, паведамце аб гэтым у фонд Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA або [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html атрымайце яе з Інтэрнэту].",
+Разам з гэтым праграмным забеспячэннем вы павінны былі атрымаць [{{SERVER}}{{SCRIPTPATH}}/COPYING копію пагаднення GNU General Public License]. Калі гэта не так, паведамце аб гэтым у фонд Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA або [//www.gnu.org/licenses/old-licenses/gpl-2.0.html атрымайце яе з Інтэрнэту].",
 'version-software'              => 'Устаноўленыя праграмныя прадукты',
 'version-software-product'      => 'Прадукт',
 'version-software-version'      => 'Версія',

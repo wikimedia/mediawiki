@@ -66,7 +66,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Bonagatša email atrese go temošo tša poso',
 'tog-shownumberswatching'     => 'Laetša palo bašomiši bao ba tlhapetšego',
 'tog-fancysig'                => 'Tsaeno ya gose fihliwe',
-'tog-externaleditor'          => 'Šomiša sengwadi sa kantle (bašumiši bao banalego botsibi fela.  [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaleditor'          => 'Šomiša sengwadi sa kantle (bašumiši bao banalego botsibi fela.  [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-forceeditsummary'        => 'Ntaetše ge kesa tsenye mongwalo go kakaretšo ya dithetogo',
 'tog-watchlisthideown'        => 'Fihla diphetogo tšeo di direlego ke nna go lenano la ditlhapetšo.',
 'tog-watchlisthideminor'      => 'Fihla diphetogo tše nyenyane tšeo di direlego ke nna go lenano la ditlhapetšo',
@@ -156,7 +156,7 @@ $messages = array(
 'qbedit'         => 'Fetola',
 'qbpageoptions'  => 'Letlakala le',
 'qbmyoptions'    => 'Matlakala a ka',
-'qbspecialpages' => 'Matlakala a itšego',
+'qbspecialpages' => 'Matlakala a kgethegilego',
 'faq'            => '"FAQ"',
 
 # Vector skin
@@ -278,7 +278,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Letlakala',
 'nstab-user'      => 'Letlakala la mošomiši',
-'nstab-special'   => 'Letlakala le itšeng',
+'nstab-special'   => 'Letlakala le le kgethegilego',
 'nstab-project'   => 'Letlakala la tirotherwa',
 'nstab-image'     => 'Faele',
 'nstab-mediawiki' => 'Molaetša',
@@ -1148,12 +1148,12 @@ Ka kgopelo, kgetha leina le lengwe.',
 'tooltip-t-contributions'         => 'Lebelela lenano la diabe tša mošomiši yo',
 'tooltip-t-emailuser'             => 'Romela molaetša go mošomiši yo',
 'tooltip-t-upload'                => 'Lokela senepe goba difaele',
-'tooltip-t-specialpages'          => 'Lenano la matlakala kamoka a itšeng',
+'tooltip-t-specialpages'          => 'Lenano la matlakala kamoka a kgethegilego',
 'tooltip-t-print'                 => 'Seemo sa letlakala le seo se ka gatišwago',
 'tooltip-t-permalink'             => 'Hlomaganyo go poeletšo ye ya letlakala',
 'tooltip-ca-nstab-main'           => 'Nyakoretša boteng bja letlakala',
 'tooltip-ca-nstab-user'           => 'Lebelela letlakala la mošomiši',
-'tooltip-ca-nstab-special'        => 'Letlakala le le "special", gago kgonege go le fetola',
+'tooltip-ca-nstab-special'        => 'Letlakala le le kgethegile, gago kgonege go le fetola',
 'tooltip-ca-nstab-project'        => 'Lebelela letlakala la tirotherwa',
 'tooltip-ca-nstab-image'          => 'Lebelela  letlakala',
 'tooltip-ca-nstab-template'       => "Lebelela ''template''",
@@ -1243,7 +1243,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 
 # External editor support
 'edit-externally'      => 'Fetola faele ye o šumiša thulusi ya ka ntle',
-'edit-externally-help' => '(Lebelela [http://www.mediawiki.org/wiki/Manual:External_editors Taelo ya go thoma] go humana sedi)',
+'edit-externally-help' => '(Lebelela [//www.mediawiki.org/wiki/Manual:External_editors Taelo ya go thoma] go humana sedi)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'ka moka',
@@ -1286,7 +1286,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 'fileduplicatesearch-submit' => 'Fetleka',
 
 # Special:SpecialPages
-'specialpages' => 'Matlakala a itšeng',
+'specialpages' => 'Matlakala a kgethegilego',
 
 # External image whitelist
 'external_image_whitelist' => ' #Tlogela letlakale ka mokgwa wo<pre>

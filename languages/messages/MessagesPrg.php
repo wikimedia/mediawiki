@@ -360,7 +360,7 @@ Prasīsenis: $2',
 'protectedinterface'   => 'Šin pāusan turri ēn sen prōgraminin interfācas tekstan, stesse paggan tenesses redigīsnas mazīngisku pastāi blōkitan.',
 'editinginterface'     => "'''Ēmpirssergīsenis:''' Tu redigīja pāusan, kawīdan turri en sen prōgraminin interfācas tekstan.
 Kitawīdinsnas en šismu pāusan wīrts kitawīdinušas interfācas pawīdan per kittans tērpautajans.
-Per tulkausnans, madli endirēis tērpautun [http://translatewiki.net/wiki/Main_Page?setlang=prg translatewiki.net], - MediaWiki tulkausnan prōjaktan.",
+Per tulkausnans, madli endirēis tērpautun [//translatewiki.net/wiki/Main_Page?setlang=prg translatewiki.net], - MediaWiki tulkausnan prōjaktan.",
 'sqlhidden'            => '(SQL prasīsenis kliptintan)',
 'cascadeprotected'     => 'Šin pāusan ast pakūnstan ezze redigīsnan, beggi ast ebīmtan en {{PLURAL:$1|ripīntsmu pāusan, kawīdan|ripīntimans pāusans, kawīdai}} turri mazīngiskwan "pakūnsnas weldīsnan" enklaūtan:
 $2',
@@ -2047,7 +2047,7 @@ Ni mazīngi praskajjintun pāusan en din subban.',
 'allmessagesdefault'            => 'Auprestamins teksts',
 'allmessagescurrent'            => 'Bigānts teksts',
 'allmessagestext'               => 'Sta ast listi wisēisan waīstin preiēiminan en MediaWikis tītelin plattibin.
-Madli kāimalukeis [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] be [http://translatewiki.net translatewiki.net] ik tu kwaitēi delīkan īmtun en MediaWikis prōgraminin tulkausnai.',
+Madli kāimalukeis [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] be [//translatewiki.net translatewiki.net] ik tu kwaitēi delīkan īmtun en MediaWikis prōgraminin tulkausnai.',
 'allmessagesnotsupportedDB'     => "Šī pāusan ni mazzi būtwei tērpautan, beggi wariābli '''\$wgUseDatabaseMessages''' ast izklaūtan.",
 'allmessages-filter-legend'     => 'Filtrīs',
 'allmessages-filter'            => 'Filtrīs pa būsenin:',
@@ -2532,7 +2532,7 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 
 # External editor support
 'edit-externally'      => 'Redigīs šin pāusan tērpawintei izwinandan prōgraman',
-'edit-externally-help' => '(Skaitāis [http://www.mediawiki.org/wiki/Manual:External_editors instrukciōnins], kāi gaūlai tūls infōrmaciōnins).',
+'edit-externally-help' => '(Skaitāis [//www.mediawiki.org/wiki/Manual:External_editors instrukciōnins], kāi gaūlai tūls infōrmaciōnins).',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'wisāi',

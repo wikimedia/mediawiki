@@ -67,8 +67,8 @@ $messages = array(
 'tog-shownumberswatching'     => 'Бетни, кёзде тургъан тизмелерине къошханланы санын кёргюз',
 'tog-oldsig'                  => 'Болгъан къол салыугъа ал къарау:',
 'tog-fancysig'                => 'Энчи вики-тексти къол салыуну (автомат джибериусюз)',
-'tog-externaleditor'          => 'Тынгылау бла тыш редакторну хайырландырыу (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [http://www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
-'tog-externaldiff'            => 'Версияланы тенглешдириучу тыш программа хайырландырыу  (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [http://www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
+'tog-externaleditor'          => 'Тынгылау бла тыш редакторну хайырландырыу (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [//www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
+'tog-externaldiff'            => 'Версияланы тенглешдириучу тыш программа хайырландырыу  (къуру усталагъа, компьютерни энчи джарашдырылыуу керекди; [//www.mediawiki.org/wiki/Manual:External_editors толуракъ])',
 'tog-showjumplinks'           => '«Бар» болушлукъ джибериуню джандыр',
 'tog-uselivepreview'          => 'Терк ал къарауну хайырландыр (JavaScript, экспериментал халда)',
 'tog-forceeditsummary'        => 'Тюрлендириуню ачыкълау тизгини бош къалса, билдир',
@@ -404,7 +404,7 @@ $1',
 'protectedpagetext'    => 'Бу бет тюрлендириуге джабылыбды.',
 'viewsourcetext'       => 'Сиз бу бетни башланнган текстине къараргъа эм аны копия этерге боллукъсуз:',
 'protectedinterface'   => 'Бу бетде программаны интерфейс билдириую барды. Вандализмге къаршчы кюрешиу себебли, бу бетни тюрлендириу джабылыбды.',
-'editinginterface'     => "'''Эс бёлюгюз:'''  Сиз MediaWiki системаны интерфейс бетин тюрлендире турасыз. Бу башха къошулуучулагъ да тиерик затды. Кёчюрюр ючюн [http://translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net] локализация этиу проектни хайырландырыгъыз.",
+'editinginterface'     => "'''Эс бёлюгюз:'''  Сиз MediaWiki системаны интерфейс бетин тюрлендире турасыз. Бу башха къошулуучулагъ да тиерик затды. Кёчюрюр ючюн [//translatewiki.net/wiki/Main_Page?setlang=ru translatewiki.net] локализация этиу проектни хайырландырыгъыз.",
 'sqlhidden'            => '(SQL соруу джашырылыбды)',
 'cascadeprotected'     => 'Бу бет тюрлениуледен джакъланыбды, ол каскадлы джакълау къабыл этилиннген  {{PLURAL:$1|бетге|бетлеге}} киргени ючюндю:
 $2',
@@ -2385,7 +2385,7 @@ $1',
 'allmessagesdefault'            => 'Оригинал текст',
 'allmessagescurrent'            => 'Хайырлана тургъан текст',
 'allmessagestext'               => 'Бу список MediaWiki ат аламында бар болгъан система билдириулени списогуду.
-MediaWiki локализациясына юлюш къошаргъа излей эсегиз, [http://www.mediawiki.org/wiki/Localisation MediaWiki локализация] бла [http://translatewiki.net translatewiki.net] сайтлагъа киригиз.',
+MediaWiki локализациясына юлюш къошаргъа излей эсегиз, [//www.mediawiki.org/wiki/Localisation MediaWiki локализация] бла [//translatewiki.net translatewiki.net] сайтлагъа киригиз.',
 'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' джабыкъ болгъаны ючюн '''{{ns:special}}:Allmessages''' хайырланыугъа ачыкъ тюлдю.",
 'allmessages-filter-legend'     => 'Фильтр',
 'allmessages-filter'            => 'Тюрлендириуюне кёре фильтрлендир:',
@@ -2920,7 +2920,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Бу файлны тыш программа бла тюрлендиригиз',
-'edit-externally-help' => '(толу информациягъа мында къарагъыз: [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
+'edit-externally-help' => '(толу информациягъа мында къарагъыз: [//www.mediawiki.org/wiki/Manual:External_editors setup instructions])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'бютеу',
@@ -3147,13 +3147,13 @@ $1',
 'version-hook-subscribedby'     => 'Абонент болгъан',
 'version-version'               => '(Версия $1)',
 'version-license'               => 'Лицензия',
-'version-poweredby-credits'     => "Бу вики '''[http://www.mediawiki.org/ MediaWiki]''' программа бла ишлейди, copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "Бу вики '''[//www.mediawiki.org/ MediaWiki]''' программа бла ишлейди, copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'башхала',
 'version-license-info'          => 'MediaWiki эркин программа джазыуду, сиз аны GNU General Public License лицензияны (эркин программа джазыуланы фонду чыгъаргъан; экинчи версиясы неда андан кеч къайсысы да) шартларына кёре джаяргъа эмда/неда тюрлендирирге боллукъсуз.
 
 MediaWiki хайырлы боллукъду деген умут бла джайылады, алай а БИР ТЮРЛЮ БИР ГАРАНТИЯСЫЗДЫ, КОММЕРЦИЯЛЫКЪ неда ЭНЧИ БИР НЮЗЮРГЕ ДЖАРАРЫКЪ гаратияласыз огъунады. Толуракъ билгиле кёрюр ючюн GNU General Public License лицензиягъа къарагъыз.
 
-Бу программа бла бирге  [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License лицензияны копиясы] болургъа керекди, джокъ эсе Free Software Foundation, Inc. комапиягъа джазыгъыз (адреси: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA) неда [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html лицензияны онлайн окъугъуз].',
+Бу программа бла бирге  [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License лицензияны копиясы] болургъа керекди, джокъ эсе Free Software Foundation, Inc. комапиягъа джазыгъыз (адреси: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA) неда [//www.gnu.org/licenses/old-licenses/gpl-2.0.html лицензияны онлайн окъугъуз].',
 'version-software'              => 'Салыннган программа баджарыу',
 'version-software-product'      => 'Продукт',
 'version-software-version'      => 'Версия',

@@ -285,7 +285,7 @@ $messages = array(
 'tog-editsection'             => 'Ցույց տալ [խմբագրել] հղումը ամեն բաժնի համար',
 'tog-editsectiononrightclick' => 'Խմբագրել բաժինները վերնագրի աջ մատնահարմամբ (JavaScript)',
 'tog-showtoc'                 => 'Ցույց տալ բովանդակությունը (3  կամ ավել վերնագրեր ունեցող էջերի համար)',
-'tog-rememberpassword'        => 'Հիշել իմ մասնակցի հաշիվը այս համակարգչում (for a maximum of $1 {{PLURAL:$1|day|days}})',
+'tog-rememberpassword'        => 'Հիշել իմ մուտքագրված տվյալներն այս համակարգչում ($1 {{PLURAL:$1|օրից}} ոչ ավել ժամկետով)',
 'tog-watchcreations'          => 'Ավելացնել իմ ստեղծած էջերը հսկացանկին',
 'tog-watchdefault'            => 'Ավելացնել իմ խմբագրած էջերը հսկացանկին',
 'tog-watchmoves'              => 'Ավելացնել իմ տեղափոխած էջերը հսկացանկին',
@@ -451,6 +451,7 @@ $messages = array(
 'printableversion'  => 'Տպելու տարբերակ',
 'permalink'         => 'Մշտական հղում',
 'print'             => 'Տպել',
+'view'              => 'Դիտել',
 'edit'              => 'Խմբագրել',
 'create'            => 'Ստեղծել',
 'editthispage'      => 'Խմբագրել այս էջը',
@@ -458,11 +459,12 @@ $messages = array(
 'delete'            => 'Ջնջել',
 'deletethispage'    => 'Ջնջել այս էջը',
 'undelete_short'    => 'Վերականգնել {{PLURAL:$1|մեկ խմբագրում|$1 խմբագրում}}',
+'viewdeleted_short' => 'Դիտել {{PLURAL:$1|ջնջված խմբագրում}}',
 'protect'           => 'Պաշտպանել',
 'protect_change'    => 'փոխել',
 'protectthispage'   => 'Պաշտպանել այս էջը',
-'unprotect'         => 'Հանել պաշտպանումից',
-'unprotectthispage' => 'Հանել այս էջը պաշտպանումից',
+'unprotect'         => 'Փոխել պաշտպանումը',
+'unprotectthispage' => 'Փոխել այս էջի պաշտպանումը',
 'newpage'           => 'Նոր էջ',
 'talkpage'          => 'Քննարկել այս էջը',
 'talkpagelinktext'  => 'Քննարկում',
@@ -633,7 +635,7 @@ $1',
 'viewsourcetext'       => 'Դուք կարող եք դիտել և պատճենել այս էջի ելատեքստը.',
 'protectedinterface'   => 'Այս էջը պարունակում է ծրագրային ապահովման ինտերֆեյսի ուզերձ և կողպված է չարաշահումների կանխարգելման նպատակով։.',
 'editinginterface'     => "'''Զգուշացում.''' Դուք խմբագրում եք ծրագրային ապահովման ինտերֆեյսի տեքստ պարունակող էջ։ Այս էջի փոփոխությունը կանդրադառնա այլ մասնակիցներին տեսանելի ինտերֆեյսի տեսքի վրա։
-Թարգմանությունների համար նախընտրելի է օգտագործել [http://translatewiki.net/wiki/Main_Page?setlang=hy translatewiki.net]՝ MediaWiki ծրագրի տեղայնացման նախագիծը։",
+Թարգմանությունների համար նախընտրելի է օգտագործել [//translatewiki.net/wiki/Main_Page?setlang=hy translatewiki.net]՝ MediaWiki ծրագրի տեղայնացման նախագիծը։",
 'sqlhidden'            => '(SQL հայցումը թաքցված է)',
 'cascadeprotected'     => 'Այս էջը պաշտպանված է խմբագրումից, քանի որ ընդգրկված է հետևյալ {{PLURAL:$1|էջի|էջերի}} տեքստում, {{PLURAL:$1|որը|որոնք}} պաշտպանվել {{PLURAL:$1|է|են}} կասկադային հնարավորությամբ.
 $2',
@@ -2032,7 +2034,7 @@ $1',
 'allmessagesdefault'        => 'Լռությամբ տեքստ',
 'allmessagescurrent'        => 'Ընթացիկ տեքստ',
 'allmessagestext'           => 'Ստորև բերված է «MediaWiki» անվանատարածքի բոլոր համակարգային ուղերձների ցանկը։
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Այս էջը չի գործում, քանի որ '''\$wgUseDatabaseMessages''' հատկանիշը անջատված է։",
 
 # Thumbnails
@@ -2272,7 +2274,7 @@ $1',
 
 # External editor support
 'edit-externally'      => 'Խմբագրել այս նիշքը արտաքին խմբագրիչով',
-'edit-externally-help' => '(Մանրամասնությունների համար տես [http://www.mediawiki.org/wiki/Manual:External_editors տեղակայման հրահանգները])',
+'edit-externally-help' => '(Մանրամասնությունների համար տես [//www.mediawiki.org/wiki/Manual:External_editors տեղակայման հրահանգները])',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'բոլոր',
