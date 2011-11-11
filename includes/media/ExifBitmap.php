@@ -134,12 +134,17 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * @return array
 	 */
 	function getImageSize( $image, $path ) {
+		global $wgEnableAutoRotation;
 		$gis = parent::getImageSize( $image, $path );
 		
 		// Don't just call $image->getMetadata(); File::getPropsFromPath() calls us with a bogus object.
 		// This may mean we read EXIF data twice on initial upload.
-		$meta = $this->getMetadata( $image, $path );
-		$rotation = $this->getRotationForExif( $meta );
+		if ( $wgEnableAutoRotation ) {
+			$meta = $this->getMetadata( $image, $path );
+			$rotation = $this->getRotationForExif( $meta );
+		} else {
+			$rotation = 0;
+		}
 
 		if ($rotation == 90 || $rotation == 270) {
 			$width = $gis[0];
