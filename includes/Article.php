@@ -1000,6 +1000,142 @@ class Article extends Page {
 	}
 
 	/**
+	 * Generate the navigation links when browsing through an article revisions
+	 * It shows the information as:
+	 *   Revision as of \<date\>; view current revision
+	 *   \<- Previous version | Next Version -\>
+	 *
+	 * @param $oldid String: revision ID of this article revision
+	 */
+	public function setOldSubtitle( $oldid = 0 ) {
+		global $wgLang, $wgOut, $wgUser, $wgRequest;
+
+		if ( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
+			return;
+		}
+
+		$unhide = $wgRequest->getInt( 'unhide' ) == 1;
+
+		# Cascade unhide param in links for easy deletion browsing
+		$extraParams = array();
+		if ( $wgRequest->getVal( 'unhide' ) ) {
+			$extraParams['unhide'] = 1;
+		}
+
+		$revision = Revision::newFromId( $oldid );
+		$timestamp = $revision->getTimestamp();
+
+		$current = ( $oldid == $this->mPage->getLatest() );
+		$td = $wgLang->timeanddate( $timestamp, true );
+		$tddate = $wgLang->date( $timestamp, true );
+		$tdtime = $wgLang->time( $timestamp, true );
+
+		# Show user links if allowed to see them. If hidden, then show them only if requested...
+		$userlinks = Linker::revUserTools( $revision, !$unhide );
+
+		$infomsg = $current && !wfMessage( 'revision-info-current' )->isDisabled()
+			? 'revision-info-current'
+			: 'revision-info';
+
+		$wgOut->addSubtitle( "<div id=\"mw-{$infomsg}\">" . wfMessage( $infomsg,
+			$td )->rawParams( $userlinks )->params( $revision->getID(), $tddate,
+			$tdtime, $revision->getUser() )->parse() . "</div>" );
+
+		$lnk = $current
+			? wfMsgHtml( 'currentrevisionlink' )
+			: Linker::link(
+				$this->getTitle(),
+				wfMsgHtml( 'currentrevisionlink' ),
+				array(),
+				$extraParams,
+				array( 'known', 'noclasses' )
+			);
+		$curdiff = $current
+			? wfMsgHtml( 'diff' )
+			: Linker::link(
+				$this->getTitle(),
+				wfMsgHtml( 'diff' ),
+				array(),
+				array(
+					'diff' => 'cur',
+					'oldid' => $oldid
+				) + $extraParams,
+				array( 'known', 'noclasses' )
+			);
+		$prev = $this->getTitle()->getPreviousRevisionID( $oldid ) ;
+		$prevlink = $prev
+			? Linker::link(
+				$this->getTitle(),
+				wfMsgHtml( 'previousrevision' ),
+				array(),
+				array(
+					'direction' => 'prev',
+					'oldid' => $oldid
+				) + $extraParams,
+				array( 'known', 'noclasses' )
+			)
+			: wfMsgHtml( 'previousrevision' );
+		$prevdiff = $prev
+			? Linker::link(
+				$this->getTitle(),
+				wfMsgHtml( 'diff' ),
+				array(),
+				array(
+					'diff' => 'prev',
+					'oldid' => $oldid
+				) + $extraParams,
+				array( 'known', 'noclasses' )
+			)
+			: wfMsgHtml( 'diff' );
+		$nextlink = $current
+			? wfMsgHtml( 'nextrevision' )
+			: Linker::link(
+				$this->getTitle(),
+				wfMsgHtml( 'nextrevision' ),
+				array(),
+				array(
+					'direction' => 'next',
+					'oldid' => $oldid
+				) + $extraParams,
+				array( 'known', 'noclasses' )
+			);
+		$nextdiff = $current
+			? wfMsgHtml( 'diff' )
+			: Linker::link(
+				$this->getTitle(),
+				wfMsgHtml( 'diff' ),
+				array(),
+				array(
+					'diff' => 'next',
+					'oldid' => $oldid
+				) + $extraParams,
+				array( 'known', 'noclasses' )
+			);
+
+		$cdel = '';
+
+		// User can delete revisions or view deleted revisions...
+		$canHide = $wgUser->isAllowed( 'deleterevision' );
+		if ( $canHide || ( $revision->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) ) {
+			if ( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
+				$cdel = Linker::revDeleteLinkDisabled( $canHide ); // rev was hidden from Sysops
+			} else {
+				$query = array(
+					'type'   => 'revision',
+					'target' => $this->getTitle()->getPrefixedDbkey(),
+					'ids'    => $oldid
+				);
+				$cdel = Linker::revDeleteLink( $query, $revision->isDeleted( File::DELETED_RESTRICTED ), $canHide );
+			}
+			$cdel .= ' ';
+		}
+
+		$wgOut->addSubtitle( "<div id=\"mw-revision-nav\">" . $cdel .
+			wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
+			$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>" );
+	}
+
+	/**
 	 * Execute the uncached parse for action=view
 	 * @return bool
 	 */
@@ -1154,78 +1290,13 @@ class Article extends Page {
 	}
 
 	/**
-	 * Removes trackback record for current article from trackbacks table
-	 * @deprecated since 1.18
-	 */
-	public function deletetrackback() {
-		return Action::factory( 'deletetrackback', $this )->show();
-	}
-
-	/**
 	 * Handle action=render
 	 */
-
 	public function render() {
 		global $wgOut;
 
 		$wgOut->setArticleBodyOnly( true );
 		$this->view();
-	}
-
-	/**
-	 * Handle action=purge
-	 */
-	public function purge() {
-		return Action::factory( 'purge', $this )->show();
-	}
-
-	/**
-	 * Mark this particular edit/page as patrolled
-	 * @deprecated since 1.18
-	 */
-	public function markpatrolled() {
-		Action::factory( 'markpatrolled', $this )->show();
-	}
-
-	/**
-	 * User-interface handler for the "watch" action.
-	 * Requires Request to pass a token as of 1.18.
-	 * @deprecated since 1.18
-	 */
-	public function watch() {
-		Action::factory( 'watch', $this )->show();
-	}
-
-	/**
-	 * Add this page to $wgUser's watchlist
-	 *
-	 * This is safe to be called multiple times
-	 *
-	 * @return bool true on successful watch operation
-	 * @deprecated since 1.18
-	 */
-	public function doWatch() {
-		global $wgUser;
-		return WatchAction::doWatch( $this->getTitle(), $wgUser );
-	}
-
-	/**
-	 * User interface handler for the "unwatch" action.
-	 * Requires Request to pass a token as of 1.18.
-	 * @deprecated since 1.18
-	 */
-	public function unwatch() {
-		Action::factory( 'unwatch', $this )->show();
-	}
-
-	/**
-	 * Stop watching a page
-	 * @return bool true on successful unwatch
-	 * @deprecated since 1.18
-	 */
-	public function doUnwatch() {
-		global $wgUser;
-		return WatchAction::doUnwatch( $this->getTitle(), $wgUser );
 	}
 
 	/**
@@ -1241,53 +1312,6 @@ class Article extends Page {
 	 */
 	public function unprotect() {
 		$this->protect();
-	}
-
-	/**
-	 * Info about this page
-	 * Called for ?action=info when $wgAllowPageInfo is on.
-	 */
-	public function info() {
-		Action::factory( 'info', $this )->show();
-	}
-
-	/**
-	 * Overriden by ImagePage class, only present here to avoid a fatal error
-	 * Called for ?action=revert
-	 */
-	public function revert() {
-		Action::factory( 'revert', $this )->show();
-	}
-
-	/**
-	 * User interface for rollback operations
-	 */
-	public function rollback() {
-		Action::factory( 'rollback', $this )->show();
-	}
-
-	/**
-	 * Output a redirect back to the article.
-	 * This is typically used after an edit.
-	 *
-	 * @deprecated in 1.18; call $wgOut->redirect() directly
-	 * @param $noRedir Boolean: add redirect=no
-	 * @param $sectionAnchor String: section to redirect to, including "#"
-	 * @param $extraQuery String: extra query params
-	 */
-	public function doRedirect( $noRedir = false, $sectionAnchor = '', $extraQuery = '' ) {
-		wfDeprecated( __METHOD__ );
-		global $wgOut;
-
-		if ( $noRedir ) {
-			$query = 'redirect=no';
-			if ( $extraQuery )
-				$query .= "&$extraQuery";
-		} else {
-			$query = $extraQuery;
-		}
-
-		$wgOut->redirect( $this->getTitle()->getFullURL( $query ) . $sectionAnchor );
 	}
 
 	/**
@@ -1547,142 +1571,6 @@ class Article extends Page {
 		}
 	}
 
-	/**
-	 * Generate the navigation links when browsing through an article revisions
-	 * It shows the information as:
-	 *   Revision as of \<date\>; view current revision
-	 *   \<- Previous version | Next Version -\>
-	 *
-	 * @param $oldid String: revision ID of this article revision
-	 */
-	public function setOldSubtitle( $oldid = 0 ) {
-		global $wgLang, $wgOut, $wgUser, $wgRequest;
-
-		if ( !wfRunHooks( 'DisplayOldSubtitle', array( &$this, &$oldid ) ) ) {
-			return;
-		}
-
-		$unhide = $wgRequest->getInt( 'unhide' ) == 1;
-
-		# Cascade unhide param in links for easy deletion browsing
-		$extraParams = array();
-		if ( $wgRequest->getVal( 'unhide' ) ) {
-			$extraParams['unhide'] = 1;
-		}
-
-		$revision = Revision::newFromId( $oldid );
-		$timestamp = $revision->getTimestamp();
-
-		$current = ( $oldid == $this->mPage->getLatest() );
-		$td = $wgLang->timeanddate( $timestamp, true );
-		$tddate = $wgLang->date( $timestamp, true );
-		$tdtime = $wgLang->time( $timestamp, true );
-
-		# Show user links if allowed to see them. If hidden, then show them only if requested...
-		$userlinks = Linker::revUserTools( $revision, !$unhide );
-
-		$infomsg = $current && !wfMessage( 'revision-info-current' )->isDisabled()
-			? 'revision-info-current'
-			: 'revision-info';
-
-		$wgOut->addSubtitle( "<div id=\"mw-{$infomsg}\">" . wfMessage( $infomsg,
-			$td )->rawParams( $userlinks )->params( $revision->getID(), $tddate,
-			$tdtime, $revision->getUser() )->parse() . "</div>" );
-
-		$lnk = $current
-			? wfMsgHtml( 'currentrevisionlink' )
-			: Linker::link(
-				$this->getTitle(),
-				wfMsgHtml( 'currentrevisionlink' ),
-				array(),
-				$extraParams,
-				array( 'known', 'noclasses' )
-			);
-		$curdiff = $current
-			? wfMsgHtml( 'diff' )
-			: Linker::link(
-				$this->getTitle(),
-				wfMsgHtml( 'diff' ),
-				array(),
-				array(
-					'diff' => 'cur',
-					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
-			);
-		$prev = $this->getTitle()->getPreviousRevisionID( $oldid ) ;
-		$prevlink = $prev
-			? Linker::link(
-				$this->getTitle(),
-				wfMsgHtml( 'previousrevision' ),
-				array(),
-				array(
-					'direction' => 'prev',
-					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
-			)
-			: wfMsgHtml( 'previousrevision' );
-		$prevdiff = $prev
-			? Linker::link(
-				$this->getTitle(),
-				wfMsgHtml( 'diff' ),
-				array(),
-				array(
-					'diff' => 'prev',
-					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
-			)
-			: wfMsgHtml( 'diff' );
-		$nextlink = $current
-			? wfMsgHtml( 'nextrevision' )
-			: Linker::link(
-				$this->getTitle(),
-				wfMsgHtml( 'nextrevision' ),
-				array(),
-				array(
-					'direction' => 'next',
-					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
-			);
-		$nextdiff = $current
-			? wfMsgHtml( 'diff' )
-			: Linker::link(
-				$this->getTitle(),
-				wfMsgHtml( 'diff' ),
-				array(),
-				array(
-					'diff' => 'next',
-					'oldid' => $oldid
-				) + $extraParams,
-				array( 'known', 'noclasses' )
-			);
-
-		$cdel = '';
-
-		// User can delete revisions or view deleted revisions...
-		$canHide = $wgUser->isAllowed( 'deleterevision' );
-		if ( $canHide || ( $revision->getVisibility() && $wgUser->isAllowed( 'deletedhistory' ) ) ) {
-			if ( !$revision->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$cdel = Linker::revDeleteLinkDisabled( $canHide ); // rev was hidden from Sysops
-			} else {
-				$query = array(
-					'type'   => 'revision',
-					'target' => $this->getTitle()->getPrefixedDbkey(),
-					'ids'    => $oldid
-				);
-				$cdel = Linker::revDeleteLink( $query, $revision->isDeleted( File::DELETED_RESTRICTED ), $canHide );
-			}
-			$cdel .= ' ';
-		}
-
-		$wgOut->addSubtitle( "<div id=\"mw-revision-nav\">" . $cdel .
-			wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
-			$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>" );
-	}
-
 	/* Caching functions */
 
 	/**
@@ -1895,6 +1783,119 @@ class Article extends Page {
 			wfDebug( __METHOD__ . " called and \$mContext is null. Return RequestContext::getMain(); for sanity\n" );
 			return RequestContext::getMain();
 		}
+	}
+
+	/**
+	 * Removes trackback record for current article from trackbacks table
+	 * @deprecated since 1.18
+	 */
+	public function deletetrackback() {
+		return Action::factory( 'deletetrackback', $this )->show();
+	}
+
+	/**
+	 * Info about this page
+	 * @deprecated since 1.19
+	 */
+	public function info() {
+		Action::factory( 'info', $this )->show();
+	}
+
+	/**
+	 * Mark this particular edit/page as patrolled
+	 * @deprecated since 1.18
+	 */
+	public function markpatrolled() {
+		Action::factory( 'markpatrolled', $this )->show();
+	}
+
+	/**
+	 * Handle action=purge
+	 * @deprecated since 1.19
+	 */
+	public function purge() {
+		return Action::factory( 'purge', $this )->show();
+	}
+
+	/**
+	 * Handle action=revert
+	 * @deprecated since 1.19
+	 */
+	public function revert() {
+		Action::factory( 'revert', $this )->show();
+	}
+
+	/**
+	 * Handle action=rollback
+	 * @deprecated since 1.19
+	 */
+	public function rollback() {
+		Action::factory( 'rollback', $this )->show();
+	}
+
+	/**
+	 * User-interface handler for the "watch" action.
+	 * Requires Request to pass a token as of 1.18.
+	 * @deprecated since 1.18
+	 */
+	public function watch() {
+		Action::factory( 'watch', $this )->show();
+	}
+
+	/**
+	 * Add this page to $wgUser's watchlist
+	 *
+	 * This is safe to be called multiple times
+	 *
+	 * @return bool true on successful watch operation
+	 * @deprecated since 1.18
+	 */
+	public function doWatch() {
+		global $wgUser;
+		return WatchAction::doWatch( $this->getTitle(), $wgUser );
+	}
+
+	/**
+	 * User interface handler for the "unwatch" action.
+	 * Requires Request to pass a token as of 1.18.
+	 * @deprecated since 1.18
+	 */
+	public function unwatch() {
+		Action::factory( 'unwatch', $this )->show();
+	}
+
+	/**
+	 * Stop watching a page
+	 * @return bool true on successful unwatch
+	 * @deprecated since 1.18
+	 */
+	public function doUnwatch() {
+		global $wgUser;
+		return WatchAction::doUnwatch( $this->getTitle(), $wgUser );
+	}
+
+	/**
+	 * Output a redirect back to the article.
+	 * This is typically used after an edit.
+	 *
+	 * @deprecated in 1.18; call $wgOut->redirect() directly
+	 * @param $noRedir Boolean: add redirect=no
+	 * @param $sectionAnchor String: section to redirect to, including "#"
+	 * @param $extraQuery String: extra query params
+	 */
+	public function doRedirect( $noRedir = false, $sectionAnchor = '', $extraQuery = '' ) {
+		wfDeprecated( __METHOD__ );
+		global $wgOut;
+
+		if ( $noRedir ) {
+			$query = 'redirect=no';
+			if ( $extraQuery )
+				$query .= "&$extraQuery";
+		} else {
+			$query = $extraQuery;
+		}
+
+		$wgOut->redirect( $this->getTitle()->getFullURL( $query ) . $sectionAnchor );
 	}
 
 	/**
