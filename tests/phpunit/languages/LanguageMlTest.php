@@ -26,5 +26,7 @@ class LanguageMlTest extends MediaWikiTestCase {
 		$this->assertEquals( '12,345.56', $this->lang->formatNum( '12345.56' ) );
 		$this->assertEquals( '12,34,56,79,81,23,45,678', $this->lang->formatNum( '12345679812345678' ) );
 		$this->assertEquals( '.12345', $this->lang->formatNum( '.12345' ) );
+		$this->assertEquals( '-12,00,000', $this->lang->formatNum( '-1200000' ) );
+		$this->assertEquals( '-98', $this->lang->formatNum( '-98' ) );
 	}
 }
