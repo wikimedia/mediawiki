@@ -78,6 +78,7 @@ production.
 * Added hook BitmapHandlerCheckImageArea
 * (experimental) $wgRealNameInInterface can be enabled to display a user's
   real name in some parts of the interface instead of a username.
+* (bug 30062) Add $wgDBprefix option to cli installer
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if
