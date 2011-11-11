@@ -570,10 +570,11 @@ abstract class DatabaseUpdater {
 			"Populating log_user_text field, printing progress markers. For large\n" .
 			"databases, you may want to hit Ctrl-C and do this manually with\n" .
 			"maintenance/populateLogUsertext.php.\n" );
+
+			$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
+			$task->execute();
+			$this->insertUpdateRow( 'populate log_usertext' );
 		}
-		$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
-		$task->execute();
-		$this->insertUpdateRow( 'populate log_usertext' );
 	}
 
 	protected function doLogSearchPopulation() {
@@ -582,10 +583,11 @@ abstract class DatabaseUpdater {
 				"Populating log_search table, printing progress markers. For large\n" .
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/populateLogSearch.php.\n" );
+
+			$task = $this->maintenance->runChild( 'PopulateLogSearch' );
+			$task->execute();
+			$this->insertUpdateRow( 'populate log_search' );
 		}
-		$task = $this->maintenance->runChild( 'PopulateLogSearch' );
-		$task->execute();
-		$this->insertUpdateRow( 'populate log_search' );
 	}
 
 	protected function doUpdateTranscacheField() {
