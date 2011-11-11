@@ -573,6 +573,7 @@ abstract class DatabaseUpdater {
 		}
 		$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
 		$task->execute();
+		$this->insertUpdateRow( 'populate log_usertext' );
 	}
 
 	protected function doLogSearchPopulation() {
@@ -584,6 +585,7 @@ abstract class DatabaseUpdater {
 		}
 		$task = $this->maintenance->runChild( 'PopulateLogSearch' );
 		$task->execute();
+		$this->insertUpdateRow( 'populate log_search' );
 	}
 
 	protected function doUpdateTranscacheField() {
