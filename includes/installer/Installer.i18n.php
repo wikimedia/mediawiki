@@ -75,10 +75,10 @@ This program is distributed in the hope that it will be useful, but '''without a
 See the GNU General Public License for more details.
 
 You should have received <doclink href=Copying>a copy of the GNU General Public License</doclink> along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. or [http://www.gnu.org/copyleft/gpl.html read it online].",
-	'config-sidebar'                  => "* [http://www.mediawiki.org MediaWiki home]
-* [http://www.mediawiki.org/wiki/Help:Contents User's Guide]
-* [http://www.mediawiki.org/wiki/Manual:Contents Administrator's Guide]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ]
+	'config-sidebar'                  => "* [//www.mediawiki.org MediaWiki home]
+* [//www.mediawiki.org/wiki/Help:Contents User's Guide]
+* [//www.mediawiki.org/wiki/Manual:Contents Administrator's Guide]
+* [//www.mediawiki.org/wiki/Manual:FAQ FAQ]
 ----
 * <doclink href=Readme>Read me</doclink>
 * <doclink href=ReleaseNotes>Release notes</doclink>
@@ -94,16 +94,16 @@ However, MediaWiki requires PHP $2 or higher.',
 	'config-unicode-using-utf8'       => 'Using Brion Vibber\'s utf8_normalize.so for Unicode normalization.',
 	'config-unicode-using-intl'       => 'Using the [http://pecl.php.net/intl intl PECL extension] for Unicode normalization.',
 	'config-unicode-pure-php-warning' => "'''Warning''': The [http://pecl.php.net/intl intl PECL extension] is not available to handle Unicode normalization, falling back to slow pure-PHP implementation.
-If you run a high-traffic site, you should read a little on [http://www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
+If you run a high-traffic site, you should read a little on [//www.mediawiki.org/wiki/Unicode_normalization_considerations Unicode normalization].",
 	'config-unicode-update-warning'   => "'''Warning''': The installed version of the Unicode normalization wrapper uses an older version of [http://site.icu-project.org/ the ICU project's] library.
-You should [http://www.mediawiki.org/wiki/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
+You should [//www.mediawiki.org/wiki/Unicode_normalization_considerations upgrade] if you are at all concerned about using Unicode.",
 	'config-no-db'                    => 'Could not find a suitable database driver! You need to install a database driver for PHP.
 The following database types are supported: $1.
 
 If you are on shared hosting, ask your hosting provider to install a suitable database driver.
 If you compiled PHP yourself, reconfigure it with a database client enabled, for example using <code>./configure --with-mysql</code>.
 If you installed PHP from a Debian or Ubuntu package, then you also need install the php5-mysql module.',
-	'config-no-fts3'                  => "'''Warning''': SQLite is compiled without the [http://sqlite.org/fts3.html FTS3 module], search features will be unavailable on this backend.",
+	'config-no-fts3'                  => "'''Warning''': SQLite is compiled without the [//sqlite.org/fts3.html FTS3 module], search features will be unavailable on this backend.",
 	'config-register-globals'         => "'''Warning: PHP's <code>[http://php.net/register_globals register_globals]</code> option is enabled.'''
 '''Disable it if you can.'''
 MediaWiki will work, but your server is exposed to potential security vulnerabilities.",
@@ -153,11 +153,11 @@ Installation aborted.",
 	'config-using-server'             => 'Using server name "<nowiki>$1</nowiki>".',
 	'config-using-uri'                => 'Using server URL "<nowiki>$1$2</nowiki>".',
 	'config-uploads-not-safe'         => "'''Warning:''' Your default directory for uploads <code>$1</code> is vulnerable to arbitrary scripts execution.
-Although MediaWiki checks all uploaded files for security threats, it is highly recommended to [http://www.mediawiki.org/wiki/Manual:Security#Upload_security close this security vulnerability] before enabling uploads.",
+Although MediaWiki checks all uploaded files for security threats, it is highly recommended to [//www.mediawiki.org/wiki/Manual:Security#Upload_security close this security vulnerability] before enabling uploads.",
 	'config-no-cli-uploads-check'     => "'''Warning:''' Your default directory for uploads (<code>$1</code>) is not checked for vulnerability
 to arbitrary script execution during the CLI install.",
 	'config-brokenlibxml'             => 'Your system has a combination of PHP and libxml2 versions which is buggy and can cause hidden data corruption in MediaWiki and other web applications.
-Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later ([http://bugs.php.net/bug.php?id=45996 bug filed with PHP]).
+Upgrade to PHP 5.2.9 or later and libxml2 2.7.3 or later ([//bugs.php.net/bug.php?id=45996 bug filed with PHP]).
 Installation aborted.',
 	'config-using531'                 => 'MediaWiki cannot be used with PHP $1 due to a bug involving reference parameters to <code>__call()</code>.
 Upgrade to PHP 5.3.2 or higher, or downgrade to PHP 5.3.0 to resolve this.
@@ -215,7 +215,7 @@ This field is usually left empty.',
 In '''binary mode''', MediaWiki stores UTF-8 text to the database in binary fields.
 This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters.
 In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately,
-but it will not let you store characters above the [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+but it will not let you store characters above the [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 	'config-mysql-old'                => 'MySQL $1 or later is required, you have $2.',
 	'config-db-port'                  => 'Database port:',
 	'config-db-schema'                => 'Schema for MediaWiki',
@@ -345,7 +345,7 @@ MyISAM databases tend to get corrupted more often than InnoDB databases.",
 	'config-mysql-charset-help'       => "In '''binary mode''', MediaWiki stores UTF-8 text to the database in binary fields.
 This is more efficient than MySQL's UTF-8 mode, and allows you to use the full range of Unicode characters.
 
-In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [http://en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+In '''UTF-8 mode''', MySQL will know what character set your data is in, and can present and convert it appropriately, but it will not let you store characters above the [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 
 	'config-ibm_db2-low-db-pagesize'  => "Your DB2 database has a default tablespace with an insufficient pagesize. The pagesize has to be '''32K''' or greater.",
 
@@ -407,7 +407,7 @@ A wiki with '''{{int:config-profile-no-anon}}''' provides extra accountability, 
 The '''{{int:config-profile-fishbowl}}''' scenario allows approved users to edit, but the public can view the pages, including history.
 A '''{{int:config-profile-private}}''' only allows approved users to view pages, with the same group allowed to edit.
 
-More complex user rights configurations are available after installation, see the [http://www.mediawiki.org/wiki/Manual:User_rights relevant manual entry].",
+More complex user rights configurations are available after installation, see the [//www.mediawiki.org/wiki/Manual:User_rights relevant manual entry].",
 	'config-license'                  => 'Copyright and license:',
 	'config-license-none'             => 'No license footer',
 	'config-license-cc-by-sa'         => 'Creative Commons Attribution Share Alike',
@@ -447,7 +447,7 @@ Many mail servers require at least the domain name part to be valid.',
 	'config-upload-settings'          => 'Images and file uploads',
 	'config-upload-enable'            => 'Enable file uploads',
 	'config-upload-help'              => "File uploads potentially expose your server to security risks.
-For more information, read the [http://www.mediawiki.org/wiki/Manual:Security security section] in the manual.
+For more information, read the [//www.mediawiki.org/wiki/Manual:Security security section] in the manual.
 
 To enable file uploads, change the mode on the <code>images</code> subdirectory under MediaWiki's root directory so that the web server can write to it.
 Then enable this option.",
@@ -460,7 +460,7 @@ Upload an image of the appropriate size, and enter the URL here.
 
 If you do not want a logo, leave this box blank.",
 	'config-instantcommons'           => 'Enable Instant Commons',
-	'config-instantcommons-help'      => '[http://www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis to use images, sounds and other media found on the [http://commons.wikimedia.org/ Wikimedia Commons] site.
+	'config-instantcommons-help'      => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis to use images, sounds and other media found on the [//commons.wikimedia.org/ Wikimedia Commons] site.
 In order to do this, MediaWiki requires access to the Internet.
 
 For more information on this feature, including instructions on how to set it up for wikis other than the Wikimedia Commons, consult [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual].',
