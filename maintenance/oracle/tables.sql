@@ -79,6 +79,7 @@ ALTER TABLE &mw_prefix.page ADD CONSTRAINT &mw_prefix.page_pk PRIMARY KEY (page_
 CREATE UNIQUE INDEX &mw_prefix.page_u01 ON &mw_prefix.page (page_namespace,page_title);
 CREATE INDEX &mw_prefix.page_i01 ON &mw_prefix.page (page_random);
 CREATE INDEX &mw_prefix.page_i02 ON &mw_prefix.page (page_len);
+CREATE INDEX &mw_prefix.page_i03 ON &mw_prefix.page (page_is_redirect, page_namespace, page_len);
 
 -- Create a dummy page to satisfy fk contraints especially with revisions
 INSERT INTO &mw_prefix.page
