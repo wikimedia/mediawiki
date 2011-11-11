@@ -551,11 +551,11 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
 	'config-download-localsettings' => 'Download LocalSettings.php',
 	'config-help' => 'help',
 	'mainpagetext'      => "'''MediaWiki has been successfully installed.'''",
-	'mainpagedocfooter' => "Consult the [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
+	'mainpagedocfooter' => "Consult the [//meta.wikimedia.org/wiki/Help:Contents User's Guide] for information on using the wiki software.
 
 == Getting started ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
-* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 );
 
