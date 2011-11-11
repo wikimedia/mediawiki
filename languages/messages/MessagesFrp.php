@@ -3834,7 +3834,7 @@ Vos pouede asse-ben utilisar l’[[Special:EditWatchlist|èditor normal]].',
 
 MediaWiki est distribuâ dens l’èsperance que serat utila, mas SEN GINS DE GARANTIA ; sen mémo la garantia emplicita de COMÈRCIALISACION ou ben d’ADAPTACION A UN USÂJO PARTICULIÉR. Vêde la Licence publica g·ènèrala GNU por més de dètalys.
 
-Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la Licence publica g·ènèrala GNU] avouéc ceti programo ; ôtrament, ècrîde a la « Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA » ou ben [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liéséd-la en legne].',
+Vos devriâd avêr reçu un [{{SERVER}}{{SCRIPTPATH}}/COPYING ègzemplèro de la Licence publica g·ènèrala GNU] avouéc ceti programo ; ôtrament, ècrîde a la « Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA » ou ben [//www.gnu.org/licenses/old-licenses/gpl-2.0.html liéséd-la en legne].',
 'version-software'              => 'Programeries enstalâs',
 'version-software-product'      => 'Marchandie',
 'version-software-version'      => 'Vèrsion',

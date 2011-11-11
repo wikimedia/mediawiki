@@ -3673,7 +3673,7 @@ Du kan också [[Special:EditWatchlist|använda standardeditorn]].',
 
 MediaWiki distribueras i hopp om att det ska vara användbart, men UTAN NÅGON GARANTI, även utan underförstådd garanti om SÄLJBARHET eller LÄMPLIGHET FÖR ETT VISST SYFTE. Se GNU General Public License för fler detaljer. 
 
-Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Public License] tillsammans med detta program; om inte, skriv till Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA eller [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html läs den online].',
+Du bör ha fått [{{SERVER}}{{SCRIPTPATH}}/COPYING en kopia av GNU General Public License] tillsammans med detta program; om inte, skriv till Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA eller [//www.gnu.org/licenses/old-licenses/gpl-2.0.html läs den online].',
 'version-software'              => 'Installerad programvara',
 'version-software-product'      => 'Produkt',
 'version-software-version'      => 'Version',

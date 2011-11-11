@@ -3478,7 +3478,7 @@ Ju gjithashtu mund [[Special:EditWatchlist|të përdorni redaktuesin standart]].
 
 MediaWiki është shpërndarë me shpresën se do të jetë i dobishëm, por PA ASNJË GARANCI; as garancinë e shprehur të SHITJES apo PËRDORIMIT PËR NJË QËLLIM TË CAKTUAR. Shikoni GNU General Public License  për më shumë detaje.
 
-Ju duhet të keni marrë [{{SERVER}}{{SCRIPTPATH}}/COPYING një kopje të GNU General Public License] së bashku me këtë program; nëse jo, shkruani tek Free Software Foundation, Inc., 51 Rruga Franklin, Kati i pestë, Boston, MA 02110-1301, ShBA ose [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lexojeni atë online].',
+Ju duhet të keni marrë [{{SERVER}}{{SCRIPTPATH}}/COPYING një kopje të GNU General Public License] së bashku me këtë program; nëse jo, shkruani tek Free Software Foundation, Inc., 51 Rruga Franklin, Kati i pestë, Boston, MA 02110-1301, ShBA ose [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lexojeni atë online].',
 'version-software'              => 'Softuerët e instaluar',
 'version-software-product'      => 'Produkti',
 'version-software-version'      => 'Versioni',

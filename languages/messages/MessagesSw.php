@@ -2928,7 +2928,7 @@ Pia unaweza [[Special:EditWatchlist|kutumia kihariri cha kawaida]].',
 
 MediaWiki inatolewa kwa matumaini ya kwamba ni ya manufaa, lakini BILA JUKUMU; hata bila jukumu linalojitokeza la KUWA TAYARI KUUZIKA KIBIASHARA au KUFAA KWA KUSUDIO FULANI. Tazama leseni ya GNU General Public License kuona maelezo mengine.
 
-Huwa unapokea [{{SERVER}}{{SCRIPTPATH}}/COPYING nakala ya GNU General Public License] pamoja na programu hii; la sivyo, andika kuomba nakala kwa Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA au [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html uisome mkondoni].',
+Huwa unapokea [{{SERVER}}{{SCRIPTPATH}}/COPYING nakala ya GNU General Public License] pamoja na programu hii; la sivyo, andika kuomba nakala kwa Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA au [//www.gnu.org/licenses/old-licenses/gpl-2.0.html uisome mkondoni].',
 'version-software'          => 'Bidhaa pepe iliyosakinishwa',
 'version-software-product'  => 'Bidhaa',
 'version-software-version'  => 'Toleo',

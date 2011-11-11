@@ -583,10 +583,12 @@ neispravno povezan međujezički ili interviki naslov. Možda sadrži jedan ili 
 Funkcija: $1<br />
 Pretraga: $2',
 'viewsource'           => 'pogledaj kod',
+'viewsource-title'     => 'Prikaz izvora stranice $1',
 'actionthrottled'      => 'Akcija je usporena',
 'actionthrottledtext'  => 'U cilju borbe protiv spama, niste u mogućnosti da učinite to više puta u kratkom vremenu, a upravo ste prešli to ograničenje. Pokušajte ponovo za par minuta.',
 'protectedpagetext'    => 'Ova stranica je zaključana kako se ne bi vršile izmene na njoj.',
 'viewsourcetext'       => 'Možete da pregledate i kopirate sadržaj ove stranice:',
+'viewyourtext'         => "Možete da pogledate i umnožite izvor '''vaših izmena''' na ovoj stranici:",
 'protectedinterface'   => 'Ova stranica pruža tekst interfejsa za softver i zaključana je kako bi se sprečila zloupotreba.',
 'editinginterface'     => "'''Upozorenje:''' Uređujete stranu koja se koristi da pruži tekst za interfejs ovog softvera.
 Izmene na ovoj strani će uticati na prikaz izgleda korisničkog interfejsa za sve korisnike.
@@ -1702,7 +1704,7 @@ Ona se ne može ispravno proveriti u vezi sa sigurnošću.',
 'img-auth-nopathinfo'       => 'Nedostaje PATH_INFO.
 Vaš server nije podešen da prosleđuje ovakve podatke.
 Možda je zasnovan na CGI-ju koji ne podržava img_auth.
-Pogledajte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Pogledajte [//www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sr-el odobravanje slika.]',
 'img-auth-notindir'         => 'Zahtevana putanja nije u podešenoj fascikli za slanje.',
 'img-auth-badtitle'         => 'Stvaranje ispravnog naslova za „$1“ nije uspelo.',
 'img-auth-nologinnWL'       => 'Niste prijavljeni i „$1“ nije na spisku dozvoljenih.',
@@ -1866,7 +1868,7 @@ Ne zaboravite da proverite ostale poveznice ka šablonima pre nego što ih obri�
 'statistics-users-active-desc' => 'Korisnici koji su izvršili makar jednu akciju tokom {{PLURAL:$1|zadnjeg dana|$1 zadnjih dana}}',
 'statistics-mostpopular'       => 'Najposećenije stranice',
 
-'disambiguations'      => 'Stranice za višeznačne odrednice',
+'disambiguations'      => 'Stranice do višeznačnih odrednica',
 'disambiguationspage'  => '{{ns:template}}:Višeznačna odrednica',
 'disambiguations-text' => "Sledeće stranice imaju veze ka '''višeznačnim odrednicama'''. Potrebno je da upućuju na odgovarajući članak.
 
@@ -2119,7 +2121,7 @@ Ukoliko budete želeli da uklonite stranicu sa spiska nadgledanja, kliknite opet
 'watchmethod-list'     => 'proveravam ima li skorašnjih izmena u nadgledanim stranicama',
 'watchlistcontains'    => 'Vaš spisak nadgledanja sadrži $1 {{PLURAL:$1|stranicu|stranice|stranica}}.',
 'iteminvalidname'      => "Problem sa stavkom '$1', neispravno ime...",
-'wlnote'               => "Ispod {{PLURAL:$1|je poslednja izmena|su poslednje '''$1''' izmene|je poslednjih '''$1''' izmena}} načinjenih {{PLURAL:$2|prethodni sat|u poslednja '''$2''' sata|u poslednjih '''$2''' sati}}.",
+'wlnote'               => "Ispod {{PLURAL:$1|je poslednja izmena|su poslednje '''$1''' izmene|je poslednjih '''$1''' izmena}} u {{PLURAL:$2|prethodnom satu|prethodna '''$2''' sata|prethodnih '''$2''' sati}}, zaključno sa $3, $4.",
 'wlshowlast'           => 'Prikaži poslednjih $1 sati $2 dana $3',
 'watchlist-options'    => 'Podešavanja spiska nadgledanja',
 
@@ -2326,6 +2328,7 @@ U ovakvim slučajevima morate skinuti oznaku sa ili ponovo prikazati najnoviju o
 
 Pogledajte [[Special:Log/delete|istoriju brisanja]] za zapise o skorašnjim brisanjima i vraćanjima.",
 'undelete-header'              => 'Vidi [[Special:Log/delete|istoriju brisanja]] za nedavno obrisane stranice.',
+'undelete-search-title'        => 'Pretraga obrisanih stranica',
 'undelete-search-box'          => 'Pretraži obrisane stranice',
 'undelete-search-prefix'       => 'Prikaži stranice koje počinju sa:',
 'undelete-search-submit'       => 'Pretraga',
@@ -2335,6 +2338,7 @@ Pogledajte [[Special:Log/delete|istoriju brisanja]] za zapise o skorašnjim bris
 'undelete-cleanup-error'       => 'Greška prilikom brisanja nekorišćenog fajla iz arhive "$1".',
 'undelete-missing-filearchive' => 'Nije moguće vratiti arhivu fajlova ID $1 zato što nije u bazi.
 Možda je već bila vraćena.',
+'undelete-error'               => 'Došlo je do greške pri vraćanju obrisane stranice',
 'undelete-error-short'         => 'Greška pri vraćanju fajla: $1',
 'undelete-error-long'          => 'Desila se greška pri vraćanju fajla:
 
@@ -3540,7 +3544,7 @@ Takođe, možete [[Special:EditWatchlist|koristiti standardan uređivač spiska]
 
 Medijaviki se raspodeljuje u nadi da će biti koristan, ali BEZ IKAKVE GARANCIJE; čak i bez implicitne garancije o PRODAJI ili POGODNOSTI ZA ODREĐENE NAMENE. Pogledajte GNU-ovu opštu javnu licencu za više detalja.
 
-Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove opšte javne licence] zajedno s ovim programom. Ako niste, pišite Zadužbini za slobodan softver, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA ili [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte na mreži].',
+Trebalo bi da ste primili [{{SERVER}}{{SCRIPTPATH}}/COPYING primerak GNU-ove opšte javne licence] zajedno s ovim programom. Ako niste, pišite Zadužbini za slobodan softver, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA ili [//www.gnu.org/licenses/old-licenses/gpl-2.0.html pročitajte na mreži].',
 'version-software'              => 'Instaliran softver',
 'version-software-product'      => 'Proizvod',
 'version-software-version'      => 'Verzija',

@@ -1626,7 +1626,7 @@ Tohodla njeda so jeje wěstota porjadnje přepruwować.',
 'img-auth-nopathinfo'       => 'PATH_INFO faluje.
 Twój serwer njeje za to konfigurował, zo by tute informacije dale posrědkował.
 By móhł na CGI bazować a ani njemóže img_auth podpěrać.
-Hlej http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Hlej [//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization].',
 'img-auth-notindir'         => 'Požadana šćežka w konfigurowanym nahraćowym zapisu njeje.',
 'img-auth-badtitle'         => 'Njeje móžno z "$1" płaćiwy titul tworić.',
 'img-auth-nologinnWL'       => 'Njejsy přizjewjeny a "$1" w běłej lisćinje njeje.',
@@ -3416,7 +3416,7 @@ Móžeš tež [[Special:EditWatchlist|standardnu wobdźěłowansku stronu]] wuž
 
 MediaWiki so w nadźiji rozdźěla, zo budźe wužitny, ale BJEZ GARANTIJU: samo bjez wobsahowaneje garantije PŘEDAWAJOMNOSĆE abo PŘIHÓDNOSĆE ZA WĚSTY ZAMĚR. Hlej GNU general Public License za dalše podrobnosće.
 
-Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public License] hromadźe z tutym programom dóstanu měć: jeli nic, napisaj do załožby Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA abo [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html přečitaj ju online].',
+Ty měł [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licency GNU General Public License] hromadźe z tutym programom dóstanu měć: jeli nic, napisaj do załožby Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA abo [//www.gnu.org/licenses/old-licenses/gpl-2.0.html přečitaj ju online].',
 'version-software'              => 'Instalowana software',
 'version-software-product'      => 'Produkt',
 'version-software-version'      => 'Wersija',

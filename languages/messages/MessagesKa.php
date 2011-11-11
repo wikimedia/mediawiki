@@ -3365,7 +3365,7 @@ $1',
 
 MediaWiki ვრცელდება იმ იმედით, რომ ის სასარგებლო იქნება, მაგრამ გარანტიის გარეშე; კომერციული ღირებულების ნაგულისხმევი გარანტიის გარეშეც კი ან რაიმე მიზნისთვის სარგებლის მისაღებად. მეტი დეტალური ინფორმაციისთვის, იხილეთ GNU General Public License.
 
-ამ პროგრამასთან ერთად თქვენ უნდა მიგეღოთ [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License ლიცენზიის ასლი]; თუ არ მიგიღიათ, მისწერეთ თავისუფალი პროგრამული უზრუნველყოფის ფონდს, Free Software Foundation, Inc., ფრანკლინის ქუჩა 51, მეხუთე სართული, ბოსტონი, MA 02110-1301, აშშ, ან [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html წაიკითხეთ იგი ინტერნეტში].',
+ამ პროგრამასთან ერთად თქვენ უნდა მიგეღოთ [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License ლიცენზიის ასლი]; თუ არ მიგიღიათ, მისწერეთ თავისუფალი პროგრამული უზრუნველყოფის ფონდს, Free Software Foundation, Inc., ფრანკლინის ქუჩა 51, მეხუთე სართული, ბოსტონი, MA 02110-1301, აშშ, ან [//www.gnu.org/licenses/old-licenses/gpl-2.0.html წაიკითხეთ იგი ინტერნეტში].',
 'version-software'              => 'დაინსტალირებული პროგრამული უზრუნველყოფა',
 'version-software-product'      => 'პროდუქტი',
 'version-software-version'      => 'ვერსია',

@@ -3083,7 +3083,7 @@ Du koast dien Beooboachtengslieste uk in dät [[Special:EditWatchlist/raw|Lieste
 
 MediaWiki wäd ferdeeld in ju Hoopenge, dät et nutselk weese skäl, man SUNNER EENIGE GARANTIE un sogoar sunner ju implizierde Garantie fon ne MÄÄRKEDGÄNGEGAID of OAINENGE FOAR N BESTIMDEN TSWÄK. Hiertou sunt wiedere Waiwiesengen in ju ''GNU General Public License'' äntheelden.
 
-Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''] skuul touhoope mäd dissen Program ferdeeld wuuden weese. Insofier dät nit dän Fal waas, kon ne Kopie bie ju Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, skriftlek anfoarderd of ap do hiere Website [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html online leesen] wäide.",
+Ne [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie fon ju ''GNU General Public License''] skuul touhoope mäd dissen Program ferdeeld wuuden weese. Insofier dät nit dän Fal waas, kon ne Kopie bie ju Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, skriftlek anfoarderd of ap do hiere Website [//www.gnu.org/licenses/old-licenses/gpl-2.0.html online leesen] wäide.",
 'version-software'              => 'Installierde Software',
 'version-software-product'      => 'Produkt',
 'version-software-version'      => 'Version',

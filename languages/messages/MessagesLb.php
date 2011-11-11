@@ -3456,7 +3456,7 @@ Dir kënnt och [[Special:EditWatchlist|de Standard Editeur benotzen]].",
 
 MediaWiki gëtt verdeelt an der Hoffnung datt se nëtzlech ass, awer OUNI IERGENDENG GARANTIE; ouni eng implizit Garantie vu Commercialisatioun oder Eegnung fir e bestëmmte Gebrauch. Kuckt d'GPU Geral Public License fir méi Informatiounen.
 
-Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public License] mat dësem Programm kritt hunn; wann net da schreift der Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA oder [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liest se online].",
+Dir misst eng [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie vun der GNU General Public License] mat dësem Programm kritt hunn; wann net da schreift der Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA oder [//www.gnu.org/licenses/old-licenses/gpl-2.0.html liest se online].",
 'version-software'              => 'Installéiert Software',
 'version-software-product'      => 'Produkt',
 'version-software-version'      => 'Versioun',

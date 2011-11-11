@@ -3428,7 +3428,7 @@ De kèns ouch [[Special:EditWatchlist|'t sjtanderd bewirkingssjirm gebroeke]].",
 
 MediaWiki weurd verspreid in de haop det 't nuttig is, mer ZONGER INNIG GARANTIE; zonger zelfs de implicitiete garantie van VERKOUPBAARHEID of GESJIKHEID VEUR INNIG DOEL IN 'T BIEZÖNJER. Zuuch de GNU General Public License veur mier informatie.
 
-Same mit dit programma heurs se 'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te höbben ontvange; zo neet, sjrief den nao de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html laes de licentie online].",
+Same mit dit programma heurs se 'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te höbben ontvange; zo neet, sjrief den nao de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [//www.gnu.org/licenses/old-licenses/gpl-2.0.html laes de licentie online].",
 'version-software'              => 'Geïnstallieërde sofwaer',
 'version-software-product'      => 'Perduk',
 'version-software-version'      => 'Versie',

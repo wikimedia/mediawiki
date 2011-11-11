@@ -3601,7 +3601,7 @@ Ayrıca [[Special:EditWatchlist|standart düzenleme sayfasını]] da kullanabili
 
 MediaWiki yazılımı faydalı olacağı ümidiyle dağıtılmaktadır; ancak kastedilen SATILABİLİRLİK veya BELİRLİ BİR AMACA UYGUNLUK garantisi hariç HİÇBİR GARANTİSİ YOKTUR. Daha fazla ayrıntı için GNU Genel Kamu Lisansı'na bakınız.
 
-Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansının bir kopyasını] da edinmiş olmalısınız; eğer edinmediyseniz, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresine yazın veya [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lisansı çevrim içi olarak okuyun].",
+Bu programla birlikte [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU Genel Kamu Lisansının bir kopyasını] da edinmiş olmalısınız; eğer edinmediyseniz, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA adresine yazın veya [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lisansı çevrim içi olarak okuyun].",
 'version-software'              => 'Yüklü yazılım',
 'version-software-product'      => 'Ürün',
 'version-software-version'      => 'Versiyon',

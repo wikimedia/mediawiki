@@ -3479,7 +3479,7 @@ Jūs taip pat galite [[Special:EditWatchlist|naudoti standartinį redaktorių]].
 
 MediaWiki yra platinama su viltimi, kad ji bus naudinga, bet BE JOKIOS GARANTIJOS; be jokios numanomos PARDAVIMO arba TINKAMUMO TAM TIKRAM TIKSLUI garantijos. Daugiau informacijos galite sužinoti GNU General Public License. 
 
-Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License kopiją] kartu su šia programa, jei ne, rašykite Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, JAV arba [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html perskaitykite ją internete].',
+Jūs turėjote gauti [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License kopiją] kartu su šia programa, jei ne, rašykite Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, JAV arba [//www.gnu.org/licenses/old-licenses/gpl-2.0.html perskaitykite ją internete].',
 'version-software'              => 'Įdiegta programinė įranga',
 'version-software-product'      => 'Produktas',
 'version-software-version'      => 'Versija',

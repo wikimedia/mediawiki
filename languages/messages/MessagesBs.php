@@ -3703,7 +3703,7 @@ Također možete [[Special:EditWatchlist|koristiti standardni uređivač]].',
 
 Mediawiki se distriburia u nadi da će biti korisna, ali BEZ IKAKVIH GARANCIJA, čak i bez ikakvih posrednih garancija o KOMERCIJALNOSTI ili DOSTUPNOSTI ZA ODREĐENU SVRHU. Pogledajte GNU opću javnu licencu za više detalja.
 
-Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] zajedno s ovim programom, ako niste, pišite Fondaciji Slobodnog Softvera na adresu  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ili je pročitajte [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html online].',
+Trebali biste dobiti [{{SERVER}}{{SCRIPTPATH}}/KOPIJU GNU opće javne licence] zajedno s ovim programom, ako niste, pišite Fondaciji Slobodnog Softvera na adresu  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA ili je pročitajte [//www.gnu.org/licenses/old-licenses/gpl-2.0.html online].',
 'version-software'              => 'Instalirani softver',
 'version-software-product'      => 'Proizvod',
 'version-software-version'      => 'Verzija',

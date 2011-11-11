@@ -482,6 +482,7 @@ Efallai fod rhywun arall eisoes wedi'i dileu.",
 Ffwythiant: $1<br />
 Gofyniad: $2',
 'viewsource'           => 'Dangos côd y dudalen',
+'viewsource-title'     => 'Gweld cod y dudalen $1',
 'actionthrottled'      => 'Tagwyd y weithred',
 'actionthrottledtext'  => "Mae camau gwrth-sbam y wici yn cyfyngu ar ba mor aml y gall defnyddwyr ailwneud y weithred hon mewn byr amser, ac rydych chi wedi croesi'r terfyn.
 Ceisiwch eto ymhen rhai munudau.",
@@ -1594,7 +1595,7 @@ Ni all gael ei wirio'n ddigonol er sicrhau diogelwch.",
 'img-auth-nopathinfo'       => "PATH_INFO yn eisiau.
 Nid yw'ch gweinydd wedi ei osod i fedru pasio'r wybodaeth hon.
 Efallai ei fod wedi ei seilio ar CGI, ac heb fod yn gallu cynnal img_auth.
-Gweler http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Gweler y cyngor ar awdurdodi lluniau.]",
 'img-auth-notindir'         => "Nid yw'r llwybr y gwneuthpwyd cais amdano yn y cyfeiriadur uwchlwytho ffurfweddedig.",
 'img-auth-badtitle'         => 'Ddim yn gallu gwneud teitl dilys o "$1".',
 'img-auth-nologinnWL'       => 'Nid ydych wedi mewngofnodi ac nid yw "$1" ar y rhestr wen.',
@@ -2224,6 +2225,7 @@ Ceir cofnod o'r tudalennau a ddilëwyd neu a adferwyd yn ddiweddar ar y [[Specia
 'undelete-cleanup-error'       => 'Bu gwall wrth ddileu\'r ffeil archif na ddefnyddiwyd "$1".',
 'undelete-missing-filearchive' => "Nid oes modd adfer archif y ffeil â'r ID $1 oherwydd nad ydyw yn y gronfa ddata.
 Efallai ei bod eisoes wedi'i hadfer.",
+'undelete-error'               => 'Gwall wrth adfer tudalen',
 'undelete-error-short'         => 'Gwall wrth adfer y ffeil: $1',
 'undelete-error-long'          => 'Cafwyd gwallau wrth adfer y ffeil:
 
@@ -3414,7 +3416,7 @@ Gallwch hefyd [[Special:EditWatchlist|ddefnyddio\'r rhestr arferol]].',
 
 Cyhoeddir MediaWiki yn y gobaith y bydd o ddefnydd, ond HEB UNRHYW WARANT; heb hyd yn oed gwarant ymhlyg o FARCHNADWYEDD nag o FOD YN ADDAS AT RYW BWRPAS ARBENNIG. Gweler y GNU General Public License am fanylion pellach.
 
-Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Public License] gyda'r rhaglen hon; os nad ydych, ysgrifennwch at Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, neu [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html gallwch ei ddarllen ar y we].",
+Dylech fod wedi derbyn [{{SERVER}}{{SCRIPTPATH}}/COPYING gopi o GNU General Public License] gyda'r rhaglen hon; os nad ydych, ysgrifennwch at Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, neu [//www.gnu.org/licenses/old-licenses/gpl-2.0.html gallwch ei ddarllen ar y we].",
 'version-software'              => 'Meddalwedd gosodedig',
 'version-software-product'      => 'Cynnyrch',
 'version-software-version'      => 'Fersiwn',

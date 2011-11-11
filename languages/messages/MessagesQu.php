@@ -3434,7 +3434,7 @@ Sapsilla ñawpaq qhawariyta tukuykachay.',
 
 MediaWikitaqa mast'ariyku runakunata yanapanapaqmi, ichataq MANAM FIYAKUYTA ATIYKUCHU; manapas ch'aqtasqa RURANALLA FIYAKUYTACHU manapas ima SAPAQ TUKUYNINPAQCHU. GNU General Public License nisqa saqillayta qhaway aswan yuyaykunapaq.
 
-[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License nisqa saqillaymanta iskaychasqata] chaskiykiman kay wakichinawan; manaqa, kayman qillqamuwayku: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA icha [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html internet llikapi ñawiriy].",
+[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License nisqa saqillaymanta iskaychasqata] chaskiykiman kay wakichinawan; manaqa, kayman qillqamuwayku: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA icha [//www.gnu.org/licenses/old-licenses/gpl-2.0.html internet llikapi ñawiriy].",
 'version-software'              => "Tiyachisqa llamp'u kaq",
 'version-software-product'      => 'Ruruchisqa',
 'version-software-version'      => 'Musuqchasqa',

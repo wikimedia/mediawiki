@@ -3339,7 +3339,7 @@ $1',
 میڈیاوکی ایس آس نال ونڈیا گیا اے جے ایہ فیدا دیوے گا پر ایدی کوئی وارنٹی نئیں ؛ کسے خاص کم لئی ٹھیک ہون دی وارنٹی توں وی بنا۔ گنو جنرل پبلک لسنس ویکھو ہور گلاں لئی۔
 
 تسیں ایس پروکرام نال لے چکے اوہ [{{سرور}}{{سکرپٹراہ}}/جنرل پبلک لسنس دی کاپی] ایس کم نال ؛ اگر نئیں تے  چٹھی لکھو 
-the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online]',
+the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online]',
 'version-software'              => 'سافٹوئر چڑھ گیا۔',
 'version-software-product'      => 'پراڈکٹ',
 'version-software-version'      => 'ورژن',

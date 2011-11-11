@@ -3403,7 +3403,7 @@ Tu puè pure [[Special:EditWatchlist|ausà 'u cangiatore standàrd]].",
 
 Mediauicchi jè destribbuite cu 'a speranze ca jè utile, ma SENZE NISCIUNA GARANZIE; senze nemmanghe 'a garanzie imblicite de COMMERCIABBELETÀ o IDONIETÀ PE 'NU SCOPE PARTICOLARE. Vatte a vide 'a GNU (Licenze Pubbleche Generale) pe cchiù 'mbormaziune.
 
-Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenze Pubbleche Generale)] 'nzieme a stu programme, ce none, scrive a 'a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, USA o [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html liggele sus a Indernette].",
+Avisse avè ricevute [{{SERVER}}{{SCRIPTPATH}}/COPYING 'na copie d'a GNU (Licenze Pubbleche Generale)] 'nzieme a stu programme, ce none, scrive a 'a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor , Boston, MA 02110-1301, USA o [//www.gnu.org/licenses/old-licenses/gpl-2.0.html liggele sus a Indernette].",
 'version-software'              => 'Softuer installete',
 'version-software-product'      => 'Prodotte',
 'version-software-version'      => 'Versione',

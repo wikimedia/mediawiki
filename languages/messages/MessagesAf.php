@@ -1588,6 +1588,7 @@ Om die lêer in 'n artikel te gebruik, plaas 'n skakel in een van die volgende f
 'ignorewarnings'              => 'Ignoreer enige waarskuwings',
 'minlength1'                  => 'Prentname moet ten minste een letter lank wees.',
 'illegalfilename'             => 'Die lêernaam "$1" bevat karakters wat nie toegelaat word in bladsytitels nie. Verander asseblief die naam en probeer die lêer weer laai.',
+'filename-toolong'            => 'Lêername mag nie langer as 240 grepe wees nie.',
 'badfilename'                 => 'Prentnaam is verander na "$1".',
 'filetype-mime-mismatch'      => 'Lêer-uitbreiding ".$1" stem nie met die MIME-tipe van die lêer ($2) ooreen nie.',
 'filetype-badmime'            => 'Lêers met MIME-tipe "$1" word nie toegelaat nie.',
@@ -1712,7 +1713,7 @@ Dit kan nie behoorlik vir sekuriteit nagegaan word nie.",
 'img-auth-nopathinfo'       => 'PATH_INFO word vermis.
 U bediener is nie ingestel om hierdie inligting deur te stuur nie.
 Miskien gebruik dit CGI, waartydens img_auth nie ondersteun word nie.
-Sien http://www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Sien regte vir beelde] vir meer inligting.',
 'img-auth-notindir'         => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
 'img-auth-badtitle'         => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
 'img-auth-nologinnWL'       => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
@@ -1879,7 +1880,7 @@ Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
 'statistics-users-active-desc' => "Gebruikers wat in die afgelope {{PLURAL:$1|dag|$1 dae}} 'n handeling uitgevoer het",
 'statistics-mostpopular'       => 'Mees bekykte bladsye',
 
-'disambiguations'      => 'Bladsye wat onduidelikhede opklaar',
+'disambiguations'      => 'Bladsye wat na dubbelsinnigheidsbladsye skakel',
 'disambiguationspage'  => 'Template:Dubbelsinnig',
 'disambiguations-text' => "Die volgende bladsye skakel na '''dubbelsinnigheidsbladsye'''.
 Die bladsye moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />
@@ -2244,7 +2245,10 @@ Sien die [[Special:ProtectedPages|lys van beveiligde bladsye]] vir alle bladsye 
 'unprotectedarticle'          => 'het beskerming van [[$1]] verwyder',
 'movedarticleprotection'      => 'het beskermings-instellings vanaf "[[$2]]" na "[[$1]]" geskuif',
 'protect-title'               => 'Beskerm "$1"',
+'protect-title-notallowed'    => 'Wys berkermingsvlak vir "$1"',
 'prot_1movedto2'              => 'het [[$1]] geskuif na [[$2]]',
+'protect-badnamespace-title'  => 'Nie-beskermde naamruimte',
+'protect-badnamespace-text'   => 'Bladsye in hierdie naamruimte kan nie beskerm word nie.',
 'protect-legend'              => 'Bevestig beskerming',
 'protectcomment'              => 'Rede:',
 'protectexpiry'               => 'Verval:',
@@ -3549,7 +3553,7 @@ U kan ook die [[Special:EditWatchlist|standaard opdaterigskerm gebruik]].',
 
 MediaWiki word versprei met die hoop dat dit nuttig sal wees, maar SONDER ENIGE WAARBORGE, selfs sonder geïmpliseerde waarborg van VERHANDELBAARHEID of GESKIKTHEID VIR \'N SPESIFIEKE DOEL. Verwys na die "GNU Algemene Publieke Lisensie" vir meer besonderhede.
 
-Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van die "GNU Algemene Publieke Lisensie"] ontvang het, indien nie, skryf aan die "Free Software Foundation, Inc", 51 Franklin-straat, Vyfde Vloer, Boston, MA 02110-1301, Verenigde State van Amerika of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lees dit hier aanlyn].',
+Saam met die program moes u \'n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van van die "GNU Algemene Publieke Lisensie"] ontvang het, indien nie, skryf aan die "Free Software Foundation, Inc", 51 Franklin-straat, Vyfde Vloer, Boston, MA 02110-1301, Verenigde State van Amerika of [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lees dit hier aanlyn].',
 'version-software'              => 'Geïnstalleerde sagteware',
 'version-software-product'      => 'Produk',
 'version-software-version'      => 'Weergawe',
@@ -3658,6 +3662,12 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 # New logging system
 'logentry-delete-delete'              => '$1 {{GENDER:$2|het}} die bladsy $3 verwyder',
 'logentry-delete-restore'             => '$1 {{GENDER:$2|het}} die bladsy $3 teruggeplaas',
+'revdelete-content-hid'               => 'inhoud versteek',
+'revdelete-summary-hid'               => 'wysigingsopsomming versteek',
+'revdelete-uname-hid'                 => 'gebruikersnaam versteek',
+'revdelete-content-unhid'             => 'inhoud sigbaar gemaak',
+'revdelete-summary-unhid'             => 'wysigingsopsomming sigbaar gemaak',
+'revdelete-uname-unhid'               => 'gebruikersnaam sigbaar gemaak',
 'revdelete-restricted'                => 'beperkings is aan administrateurs opgelê',
 'revdelete-unrestricted'              => 'beperkings vir administrateurs is opgehef',
 'logentry-move-move'                  => '$1 het bladsy $3 na $4 {{GENDER:$2|geskuif}}',

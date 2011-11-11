@@ -3719,7 +3719,7 @@ Seznam editovaných stránek můžete také [[Special:EditWatchlist|editovat ve 
 
 MediaWiki je distribuována v naději, že bude užitečná, avšak BEZ JAKÉKOLI ZÁRUKY; neposkytují se ani odvozené záruky PRODEJNOSTI anebo VHODNOSTI PRO URČITÝ ÚČEL. Podrobnosti se dočtete v textu GNU General Public License.
 
-[{{SERVER}}{{SCRIPTPATH}}/COPYING Kopii GNU General Public License] jste měli obdržet spolu s tímto programem, pokud ne, napište na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA nebo [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html si ji přečtěte online].',
+[{{SERVER}}{{SCRIPTPATH}}/COPYING Kopii GNU General Public License] jste měli obdržet spolu s tímto programem, pokud ne, napište na Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA nebo [//www.gnu.org/licenses/old-licenses/gpl-2.0.html si ji přečtěte online].',
 'version-software'              => 'Nainstalovaný software',
 'version-software-product'      => 'Název',
 'version-software-version'      => 'Verze',

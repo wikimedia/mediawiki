@@ -542,6 +542,7 @@ Marteze e o bet diverket gant unan bennak all dija.',
 Arc'hwel : $1<br />
 Goulenn : $2",
 'viewsource'           => 'Sellet ouzh tarzh an destenn',
+'viewsource-title'     => 'Gwelet an tarzh evit $1',
 'actionthrottled'      => 'Ober daleet',
 'actionthrottledtext'  => "A-benn dizarbenn ar strob, n'haller ket implijout an ober-mañ re alies en ur frapad amzer lakaet, hag aet oc'h dreist ar muzul. Klaskit en-dro a-benn un nebeut munutennoù.",
 'protectedpagetext'    => "Prennet eo bet ar bajenn-mañ. N'haller ket degas kemmoù enni.",
@@ -1670,8 +1671,8 @@ N'hall ket bezañ gwiriet ervat evit ar surentez.",
 'img-auth-accessdenied'     => "Moned nac'het",
 'img-auth-nopathinfo'       => "Mankout a ra ar PATH_INFO.
 N'eo ket kefluniet ho servijer evit reiñ an titour-mañ.
-Marteze eo diazezet war CGI-based ha n'hall ket skorañ img_auth.
-Gwelet http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+Marteze eo diazezet war CGI ha n'hall ket skorañ img_auth.
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Gwelet aotre ar skeudenn.]",
 'img-auth-notindir'         => "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
 'img-auth-badtitle'         => 'Dibosupl krouiñ un titl reizh adalek "$1".',
 'img-auth-nologinnWL'       => 'N\'oc\'h ket kevreet ha n\'emañ ket "$1" war ar roll gwenn',
@@ -1834,7 +1835,7 @@ Diskouezet eo deskrivadur he [$2 fajenn zeskrivañ] amañ dindan.',
 'statistics-users-active-desc' => "Implijerien o deus degaset da nebeutañ ur c'hemm {{PLURAL:$1|an deiz paseet|e-kerzh an $1 deiz diwezhañ}}",
 'statistics-mostpopular'       => 'Pajennoù muiañ sellet',
 
-'disambiguations'      => 'Pajennoù disheñvelout',
+'disambiguations'      => 'Pajennoù enno liammoù war-zu pajennoù disheñvelout',
 'disambiguationspage'  => 'Template:Disheñvelout',
 'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn disheñvelout'''.
 Padal e tlefent kas war-eeun d'an danvez anezho.<br />
@@ -3541,7 +3542,7 @@ Gallout a rit [[Special:EditWatchlist|implijout an aozer boutin ivez]].',
 
 Ingalet eo MediaWiki gant ar spi e vo talvoudus met n'eus TAMM GWARANT EBET; hep zoken gwarant empleg ar VARC'HADUSTED pe an AZASTER OUZH UR PAL BENNAK. Gwelet ar GNU Aotre-Implijout Foran Hollek evit muioc'h a ditouroù.
 
-Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar GNU Aotre-implijout Foran Hollek] a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
+Sañset oc'h bezañ resevet [{{SERVER}}{{SCRIPTPATH}}/COPYING un eilskrid eus ar GNU Aotre-implijout Foran Hollek] a-gevret gant ar programm-mañ; ma n'hoc'h eus ket, skrivit da Diazezadur ar Meziantoù Frank/Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, SUA pe [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lennit anezhañ enlinenn].",
 'version-software'              => 'Meziant staliet',
 'version-software-product'      => 'Produ',
 'version-software-version'      => 'Stumm',

@@ -3601,7 +3601,7 @@ Je kunnen oek [[Special:EditWatchlist|t standardbewarkingsscharm gebruken]].",
 
 MediaWiki wörden verspreid in de hoop dat t nuttig is, mer ZONDER ENIGE GARANSIE; zonder zelfs de daoronder begrepen garansie van VERKOOPBAORHEID of GESCHIKTHEID VEUR ENIG DOEL IN T BIEZUNDER. Zie de GNU General Public License veur meer informasie.
 
-Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te hebben ekregen; as dat niet zo is, schrief dan naor de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html lees de lisensie op t internet].',
+Samen mit dit programma heur je n [{{SERVER}}{{SCRIPTPATH}}/COPYING kopie van de GNU General Public License] te hebben ekregen; as dat niet zo is, schrief dan naor de Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA of [//www.gnu.org/licenses/old-licenses/gpl-2.0.html lees de lisensie op t internet].',
 'version-software'              => 'Programmatuur die installeerd is',
 'version-software-product'      => 'Produkt',
 'version-software-version'      => 'Versie',

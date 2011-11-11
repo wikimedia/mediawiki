@@ -3407,7 +3407,7 @@ As peul ëdcò [[Special:EditWatchlist|dovré l'editor sòlit]].",
 
 MediaWiki a l'é distribuì ant la speransa che a sia ùtil, ma SENSA GNUN-A GARANSÌA; sensa gnanca la garansìa implìcita ëd COMERSIABILITA' o d'ADATAMENT A UN BUT PARTICOLAR. Ch'a lesa la Licensa General Pùblica GNU per pi 'd detaj.
 
-A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa Pùblica General GNU] ansema a sto programa-sì; dësnò, ch'a scriva a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html ch'a la lesa an linia].",
+A dovrìa avèj arseivù [{{SERVER}}{{SCRIPTPATH}}/COPYING na còpia dla Licensa Pùblica General GNU] ansema a sto programa-sì; dësnò, ch'a scriva a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA o [//www.gnu.org/licenses/old-licenses/gpl-2.0.html ch'a la lesa an linia].",
 'version-software'              => 'Programa anstalà',
 'version-software-product'      => 'Prodot',
 'version-software-version'      => 'Version',

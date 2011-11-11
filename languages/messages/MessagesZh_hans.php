@@ -3516,7 +3516,7 @@ $1',
 
 MediaWiki是基于使用目的而加以发布，然而不负任何担保责任；亦无对适售性或特定目的适用性所为的默示性担保。详情请参照GNU通用公共授权。
 
-您应已收到附随于本程序的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授权的副本]；如果没有，请写信至自由软件基金会：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 在线阅读]。',
+您应已收到附随于本程序的[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授权的副本]；如果没有，请写信至自由软件基金会：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[//www.gnu.org/licenses/old-licenses/gpl-2.0.html 在线阅读]。',
 'version-software'              => '已安装的软件',
 'version-software-product'      => '产品',
 'version-software-version'      => '版本',

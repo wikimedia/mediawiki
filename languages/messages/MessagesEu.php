@@ -1754,7 +1754,7 @@ Mesedez, kontuan izan beste webgune batzutatik URL zuzena erabiliz lotura izan d
 'booksources-search-legend' => 'Liburuen bilaketa',
 'booksources-go'            => 'Joan',
 'booksources-text'          => 'Jarraian liburu berri eta erabiliak saltzen dituzten guneetarako loturen zerrenda bat ikus dezakezu, bilatzen ari zaren liburu horientzako informazio gehigarria aurkitzeko lagungarria izan daitekeena:',
-'booksources-invalid-isbn'  => 'Emandako ISBNa ez dirudi baliagarria denik; ikusi ea akatsik egin duzun jatorrizko iturritik kopiatzerakoan.',
+'booksources-invalid-isbn'  => 'Badirudi emandako ISBNa ez dela baliagarria; egiazta ezazu ea akatsik egin duzun jatorrizko iturritik kopiatzean.',
 
 # Special:Log
 'specialloguserlabel'  => 'Lankidea:',

@@ -3094,7 +3094,7 @@ Ti pos era utilisar [[Special:EditWatchlist|la pagina da standard]].',
 
 MediaWiki vegn distribuì en la speranza che questa software saja utila, dentant SENZA MINTGA GARANZIA; era senza garanzia implizita da NEGOZIABILITAD u ADDATAZIUN PER IN INTENT SPECIAL. Guarda la GNU General Public License per ulteriurs detagls. 
 
-Ti duessas avair retschavì [{{SERVER}}{{SCRIPTPATH}}/COPYING ina copia da la GNU General Public License] cun quest program; sche na betg, scriva a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA u [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html la legia online].",
+Ti duessas avair retschavì [{{SERVER}}{{SCRIPTPATH}}/COPYING ina copia da la GNU General Public License] cun quest program; sche na betg, scriva a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA u [//www.gnu.org/licenses/old-licenses/gpl-2.0.html la legia online].",
 'version-software'              => 'Software installada',
 'version-software-product'      => 'Product',
 'version-software-version'      => 'Versiun',

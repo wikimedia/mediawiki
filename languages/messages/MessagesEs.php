@@ -3665,7 +3665,7 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 
 MediaWiki es distribuído con la esperanza de que será útil, pero SIN NINGUNA GARANTÍA; ni siquiera con la garantía implícita de COMERCIALIZACIÓN ó ADAPTACIÓN A UN PROPÓSITO PARTICULAR. Véase la Licencia Pública General GNU para mayores detalles.
 
-Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública General GNU] junto a este programa; si no es así, escríbale a la Fundación del Software Libre, Inc., Calle Franklin 51, Quinto Piso, Boston, MA 02110-1301, EE.UU. ó [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html léela en línea].',
+Has recibido [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia de la Licencia Pública General GNU] junto a este programa; si no es así, escríbale a la Fundación del Software Libre, Inc., Calle Franklin 51, Quinto Piso, Boston, MA 02110-1301, EE.UU. ó [//www.gnu.org/licenses/old-licenses/gpl-2.0.html léela en línea].',
 'version-software'              => 'Software instalado',
 'version-software-product'      => 'Producto',
 'version-software-version'      => 'Versión',

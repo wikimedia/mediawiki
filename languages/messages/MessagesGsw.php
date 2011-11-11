@@ -3378,7 +3378,7 @@ Du chasch au d [[Special:EditWatchlist|Standard-Bearbeitigssyte]] bruuche.',
 
 Des Programm wird in dr Hoffnig verteilt, ass es nitzli isch, aber OHNI JEDI GARANTI un sogar ohni di impliziert Garanti vun ere MÄRTGÄNGIGKEIT oder EIGNIG FIR E BSTIMMTE ZWÄCK. Doderzue git meh Hiiwys in dr GNU General Public-Lizänz.
 
-E [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopi vu dr GNU General Public-Lizänz] sott zämme mit däm Programm verteilt wore syy. Wänn des nit eso isch, cha ne Kopi bi dr Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftli aagforderet oder [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html online gläse] wäre.',
+E [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopi vu dr GNU General Public-Lizänz] sott zämme mit däm Programm verteilt wore syy. Wänn des nit eso isch, cha ne Kopi bi dr Free Software Foundation Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, schriftli aagforderet oder [//www.gnu.org/licenses/old-licenses/gpl-2.0.html online gläse] wäre.',
 'version-software'              => 'Installierti Software',
 'version-software-product'      => 'Produkt',
 'version-software-version'      => 'Version',

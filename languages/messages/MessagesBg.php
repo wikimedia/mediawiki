@@ -3418,7 +3418,7 @@ $1',
 
 MediaWiki се разпространява с надеждата, че ще бъде полезен, но БЕЗ НИКАКВИ ГАРАНЦИИ, без дори косвена гаранция за ПРОДАВАЕМОСТ или ПРИГОДНОСТ ЗА КОНКРЕТНА УПОТРЕБА. Вижте GNU General Public License за повече подробности.
 
-Трябва да сте получили [{{SERVER}}{{SCRIPTPATH}}/COPYING копие на GNU General Public License] заедно с тази програма. Ако не сте, пишете на Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA или го [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочетете в мрежата].',
+Трябва да сте получили [{{SERVER}}{{SCRIPTPATH}}/COPYING копие на GNU General Public License] заедно с тази програма. Ако не сте, пишете на Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA или го [//www.gnu.org/licenses/old-licenses/gpl-2.0.html прочетете в мрежата].',
 'version-software'              => 'Инсталиран софтуер',
 'version-software-product'      => 'Продукт',
 'version-software-version'      => 'Версия',

@@ -1360,10 +1360,11 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-passwordreset'         => 'E-maile za slědkstajanje gronidłow se woglědaś',
 
 # User rights log
-'rightslog'      => 'Protokol wužywarskich pšawow',
-'rightslogtext'  => 'To jo protokol wužywarskich pšawow.',
-'rightslogentry' => 'Pśisłušnosć ku kupce jo se za „$1“ změniła wót „$2“ na „$3“.',
-'rightsnone'     => '(nic)',
+'rightslog'                  => 'Protokol wužywarskich pšawow',
+'rightslogtext'              => 'To jo protokol wužywarskich pšawow.',
+'rightslogentry'             => 'Pśisłušnosć ku kupce jo se za „$1“ změniła wót „$2“ na „$3“.',
+'rightslogentry-autopromote' => 'jo se awtomatiski wót $2 do $3 změnił',
+'rightsnone'                 => '(nic)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'toś ten bok cytaś',
@@ -1390,6 +1391,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'action-suppressionlog'       => 'toś ten priwatny protokol zwobrazniś',
 'action-block'                => 'Toś tomu wužiwarjeju wobźěłowanje zawoboraś',
 'action-protect'              => 'Šćitowe stopnje za toś ten bok změniś',
+'action-rollback'             => 'změny slědnego wužywarja, kótaryž jo wobźěłał wěsty bok, malsnje slědk stajiś',
 'action-import'               => 'toś ten bok z drugego wikija importěrowaś',
 'action-importupload'         => 'toś ten bok z datajowego nagraśa importěrowaś',
 'action-patrol'               => 'změny drugich wužywarjow ako doglědowane markěrowaś',
@@ -1609,7 +1611,7 @@ Togodla njedajo se jeje wěstoty pśekontrolěrowaś.',
 'img-auth-nopathinfo'       => 'PATH_INFO felujo.
 Twój serwer njejo konfigurěrowany, aby toś te informacije dalej pósrědnił.
 Móžo na CGI bazěrowaś a njamóžo img_auth pódpěraś.
-Glědaj http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Glědaj [//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization].',
 'img-auth-notindir'         => 'Pominana šćažka njejo w konfigurěrowanem nagraśowem zapisu.',
 'img-auth-badtitle'         => 'Njejo móžno z "$1" płaśiwy titel twóriś.',
 'img-auth-nologinnWL'       => 'Njejsy pśizjawjony a "$1" njejo w běłej lisćinje.',
@@ -2228,10 +2230,12 @@ $1',
 'undelete-show-file-submit'    => 'Jo',
 
 # Namespace form on various pages
-'namespace'             => 'Mjenjowy rum:',
-'invert'                => 'Wuběr wobrośiś',
-'namespace_association' => 'Nawězany mjenjowy rum',
-'blanknamespace'        => '(Nastawki)',
+'namespace'                     => 'Mjenjowy rum:',
+'invert'                        => 'Wuběr wobrośiś',
+'tooltip-invert'                => 'Klikni na toś ten kašćik, aby změny na bokach we wubranem mjenjowem rumje schował (a, jolic wubrany, w zwězanem mjenjowem rumje)',
+'namespace_association'         => 'Nawězany mjenjowy rum',
+'tooltip-namespace_association' => 'Klikni na toś ten kašćik, aby zapśimjeł diskusijny mjenowy rum abo temowy mjenjowy rum, kótaryž jo z wubranym mjenjowym rumom zwězany',
+'blanknamespace'                => '(Nastawki)',
 
 # Contributions
 'contributions'       => 'Wužywarske pśinoski',
@@ -2952,6 +2956,8 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-sublocationdest'             => 'Wobcerk pokazanego města',
 'exif-objectname'                  => 'Krotki titel',
 'exif-specialinstructions'         => 'Wósebne instrukcije',
+'exif-headline'                    => 'Nadpismo',
+'exif-credit'                      => 'Spomnjenje/Póbitowaŕ',
 'exif-source'                      => 'Žrědło',
 'exif-urgency'                     => 'Nuznosć',
 'exif-contact'                     => 'Kontaktowe informacije',
@@ -2973,6 +2979,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-licenseurl'                  => 'URL za licencu awtorskego pšawa',
 'exif-morepermissionsurl'          => 'Alternatiwne licencne informacije',
 'exif-pngfilecomment'              => 'Komentar PNG-dataje',
+'exif-disclaimer'                  => 'Wuzamknjenje rukowanja',
 'exif-contentwarning'              => 'Wopśimjeśowe warnowanje',
 'exif-giffilecomment'              => 'Komentar GIF-dataje',
 'exif-intellectualgenre'           => 'Typ medija',
@@ -3141,6 +3148,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-dc-contributor' => 'Sobuźěłaśerje',
 'exif-dc-date'        => 'Pódaśa datuma',
 'exif-dc-publisher'   => 'Wudawaŕ',
+'exif-dc-relation'    => 'Pśiswójźbne medije',
 'exif-dc-rights'      => 'Pšawa',
 'exif-dc-source'      => 'Medijowe žrědło',
 'exif-dc-type'        => 'Medijowy typ',
@@ -3151,6 +3159,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 
 'exif-iimcategory-ace' => 'wuměłstwo, kultura a rozdrosćenje',
 'exif-iimcategory-clj' => 'Kriminalita a pšawo',
+'exif-iimcategory-dis' => 'Katastrofy a znjeglucenja',
 'exif-iimcategory-fin' => 'Góspodarstwo a pśekupjenja',
 'exif-iimcategory-edu' => 'Kubłanje',
 'exif-iimcategory-evn' => 'Wobswět',
@@ -3370,7 +3379,7 @@ Móžoš teke [[Special:EditWatchlist|standardny wobźěłowański bok wužywaś
 
 MediaWiki rozdźěla se w naźeji, až buźo wužitny, ale BŹEZ GARANTIJE: samo bźez wopśimjoneje garantije PŚEDAWAJOBNOSĆI abo PŚIGÓDNOSĆI ZA WĚSTY ZAMĚR. Glědaj GNU general Public License za dalšne drobnostki.
 
-Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public License] gromaźe z toś tym programom dostanu měś: jolic nic, napiš do załožby Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA abo [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html pśecytaj ju online].',
+Ty by dejał [{{SERVER}}{{SCRIPTPATH}}/COPYING kopiju licence GNU General Public License] gromaźe z toś tym programom dostanu měś: jolic nic, napiš do załožby Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA abo [//www.gnu.org/licenses/old-licenses/gpl-2.0.html pśecytaj ju online].',
 'version-software'              => 'Instalěrowana software',
 'version-software-product'      => 'Produkt',
 'version-software-version'      => 'Wersija',

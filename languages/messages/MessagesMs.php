@@ -3524,7 +3524,7 @@ Anda juga boleh [[Special:EditWatchlist|menggunakan penyunting piawai]].',
 
 MediaWiki diedarkan dengan harapan bahawa ia berguna, tetapi TANPA SEBARANG WARANTI; hatta waranti yang tersirat bagi KEBOLEHDAGANGAN mahupun KESESUAIAN UNTUK TUJUAN TERTENTU. Sila lihat Lesen Awam GNU untuk butiran lanjut.
 
-Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi Lesen Awam GNU] bersama-sama dengan atur cara ini; jika tidak, tulis ke Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA atau [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html baca dalam talian].',
+Anda patut telah menerima [{{SERVER}}{{SCRIPTPATH}}/COPYING sebuah salinan bagi Lesen Awam GNU] bersama-sama dengan atur cara ini; jika tidak, tulis ke Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA atau [//www.gnu.org/licenses/old-licenses/gpl-2.0.html baca dalam talian].',
 'version-software'              => 'Perisian yang dipasang',
 'version-software-product'      => 'Produk',
 'version-software-version'      => 'Versi',

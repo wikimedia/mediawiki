@@ -3588,7 +3588,7 @@ minden egyes sor egy figyelt lap címe. Ha kész vagy, kattints a lista alatt ta
 
 A MediaWikit abban a reményben terjesztjük, hogy hasznos lesz, de GARANCIA NÉLKÜL, anélkül, hogy PIACKÉPES vagy HASZNÁLHATÓ LENNE EGY ADOTT CÉLRA. Lásd a GNU General Public License-t a további részletekért. 
 
-Önnek kapnia kellett [{{SERVER}}{{SCRIPTPATH}}/COPYING egy példányt a GNU General Public License-ből] ezzel a programmal együtt, ha nem, írjon a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA címre vagy [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html olvassa el online].',
+Önnek kapnia kellett [{{SERVER}}{{SCRIPTPATH}}/COPYING egy példányt a GNU General Public License-ből] ezzel a programmal együtt, ha nem, írjon a Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA címre vagy [//www.gnu.org/licenses/old-licenses/gpl-2.0.html olvassa el online].',
 'version-software'              => 'Telepített szoftverek',
 'version-software-product'      => 'Termék',
 'version-software-version'      => 'Verzió',

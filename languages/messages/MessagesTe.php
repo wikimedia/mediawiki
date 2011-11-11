@@ -3317,7 +3317,7 @@ $1',
 
 మీడియావికీ ప్రజోపయోగ ఆకాంక్షతో పంపిణీ చేయబడుతుంది, కానీ ఎటువంటి వారంటీ లేకుండా; కనీసం ఏదైనా ప్రత్యేక ఉద్దేశానికి సరిపడుతుందని గానీ లేదా వస్తుత్వం యొక్క అంతర్నిహిత వారంటీ లేకుండా. మరిన్ని వివరాలకు గ్నూ జనరల్ పబ్లిక్ లైసెన్సుని చూడండి.
 
-ఈ ఉపకరణంతో పాటు మీకు [{{SERVER}}{{SCRIPTPATH}}/COPYING గ్నూ జనరల్ పబ్లిక్ లైసెన్సు  యొక్క ఒక కాపీ] అందివుండాలి; లేకపోతే, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA అన్న చిరునామాకి వ్రాయండి లేదా [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html జాలం లోనే చదవండి].',
+ఈ ఉపకరణంతో పాటు మీకు [{{SERVER}}{{SCRIPTPATH}}/COPYING గ్నూ జనరల్ పబ్లిక్ లైసెన్సు  యొక్క ఒక కాపీ] అందివుండాలి; లేకపోతే, Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA అన్న చిరునామాకి వ్రాయండి లేదా [//www.gnu.org/licenses/old-licenses/gpl-2.0.html జాలం లోనే చదవండి].',
 'version-software'              => 'ప్రవేశపెట్టిన సాఫ్టువేర్లు',
 'version-software-product'      => 'ప్రోడక్టు',
 'version-software-version'      => 'వెర్షను',

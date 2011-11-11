@@ -2667,7 +2667,7 @@ $1',
 
 MediaWiki乃為用之發，無擔之責也；亦無售目之默擔也。參GNU通用公共授權之詳。
 
-爾乃收附本程序之[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授權副本]；如無者，致函至自由軟件基金會：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 閱之]。',
+爾乃收附本程序之[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU通用公共授權副本]；如無者，致函至自由軟件基金會：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[//www.gnu.org/licenses/old-licenses/gpl-2.0.html 閱之]。',
 'version-software'              => '裝件',
 'version-software-product'      => '品',
 'version-software-version'      => '版',

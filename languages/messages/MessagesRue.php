@@ -3308,7 +3308,7 @@ $1',
 
 MediaWiki є дістрібуована в надїї, же буде хосновна, але БЕЗ БУДЬЯКОЙ ЗАРУКЫ; не давають ся ани зарукы ПРОДАЙНОСТИ або ВАЛУШНОСТИ ПРО СТАНОВЛЕНЫЙ ЦІЛЬ. Детайлы ся дочітате в текстї  GNU General Public License.
 
-[{{SERVER}}{{SCRIPTPATH}}/COPYING Kopii GNU General Public License] сьте мали обтримати вєдно з тым проґрамом, кідь нїт, напиште на  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA або [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html сі єй прочітайте онлайн].',
+[{{SERVER}}{{SCRIPTPATH}}/COPYING Kopii GNU General Public License] сьте мали обтримати вєдно з тым проґрамом, кідь нїт, напиште на  Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA або [//www.gnu.org/licenses/old-licenses/gpl-2.0.html сі єй прочітайте онлайн].',
 'version-software'              => 'Іншталованый софтвер',
 'version-software-product'      => 'Продукт',
 'version-software-version'      => 'Верзія',

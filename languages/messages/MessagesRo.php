@@ -3659,7 +3659,7 @@ Puteți folosi în schimb [[Special:EditWatchlist|editorul standard]].',
 
 MediaWiki este distribuit în speranța că va fi folositor, dar FĂRĂ VREO GARANȚIE, nici măcar cea implicită de COMERCIALIZARE sau de ADAPTARE PENTRU UN UN SCOP ANUME. Vedeți Licența Publică Generală GNU pentru mai multe detalii. 
 
-În cazul în care nu ați primit [{{SERVER}}{{SCRIPTPATH}}/COPYING o copie a  Licenței Publice Generale GNU] împreună cu acest program, scrieți la Free Software Foundation, Inc, 51, Strada Franklin, etajul cinci, Boston, MA 02110-1301, Statele Unite ale Americii sau [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html citiți-o online].',
+În cazul în care nu ați primit [{{SERVER}}{{SCRIPTPATH}}/COPYING o copie a  Licenței Publice Generale GNU] împreună cu acest program, scrieți la Free Software Foundation, Inc, 51, Strada Franklin, etajul cinci, Boston, MA 02110-1301, Statele Unite ale Americii sau [//www.gnu.org/licenses/old-licenses/gpl-2.0.html citiți-o online].',
 'version-software'              => 'Software instalat',
 'version-software-product'      => 'Produs',
 'version-software-version'      => 'Versiune',

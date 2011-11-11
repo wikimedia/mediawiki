@@ -3175,7 +3175,7 @@ $1',
 
 มีเดียวิกิมีการแจกจ่ายโดยหวังว่าจะเป็นประโยชน์ แต่ไม่มีการรับประกันใดๆ ทั้งสิ้น ไม่มีแม้การรับประกันโดยนัยเพื่อการค้า หรือความเหมาะสมสำหรับวัตถุประสงค์เฉพาะ ดู GNU General Public License เพื่อดูรายละเอียดเพิ่มเติม 
 
-คุณควรจะได้รับ [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] พร้อมกับโปรแกรมนี้ หากไม่พบ กรุณาเขียนจดหมายถึง Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA หรือ [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html อ่านออนไลน์]',
+คุณควรจะได้รับ [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] พร้อมกับโปรแกรมนี้ หากไม่พบ กรุณาเขียนจดหมายถึง Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA หรือ [//www.gnu.org/licenses/old-licenses/gpl-2.0.html อ่านออนไลน์]',
 'version-software'              => 'ซอฟต์แวร์ที่ติดตั้ง',
 'version-software-product'      => 'ชื่อ',
 'version-software-version'      => 'รุ่น',
