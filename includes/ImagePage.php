@@ -332,8 +332,8 @@ class ImagePage extends Article {
 						rawParams( $this->makeSizeLink( $params, $width, $height ) )->
 						parse() . ' ' .
 						Html::rawElement( 'span', array( 'class' => 'mw-filepage-other-resolutions' ),
-							wfMessage( 'show-big-image-other' )->
-							rawParams( $wgLang->pipeList( $otherSizes ), count( $otherSizes ) )->parse()
+							wfMessage( 'show-big-image-other' )->rawParams( $wgLang->pipeList( $otherSizes ) )->
+							params( count( $otherSizes ) )->parse()
 						);
 				} elseif ( $width == 0 && $height == 0 ){
 					# Some sort of audio file that doesn't have dimensions
