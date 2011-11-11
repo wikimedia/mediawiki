@@ -755,10 +755,11 @@ class MysqlUpdater extends DatabaseUpdater {
 				"Populating rev_parent_id fields, printing progress markers. For large\n" .
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
 				"maintenance/populateParentId.php.\n" );
+
+			$task = $this->maintenance->runChild( 'PopulateParentId' );
+			$task->execute();
+			$this->insertUpdateRow( 'populate rev_parent_id' );
 		}
-		$task = $this->maintenance->runChild( 'PopulateParentId' );
-		$task->execute();
-		$this->insertUpdateRow( 'populate rev_parent_id' );
 	}
 
 	protected function doMaybeProfilingMemoryUpdate() {
