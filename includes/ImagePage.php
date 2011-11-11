@@ -335,6 +335,10 @@ class ImagePage extends Article {
 							wfMessage( 'show-big-image-other' )->
 							rawParams( $wgLang->pipeList( $otherSizes ), count( $otherSizes ) )->parse()
 						);
+				} elseif ( $width == 0 && $height == 0 ){
+					# Some sort of audio file that doesn't have dimensions
+					# Don't output a no hi res message for such a file
+					$msgsmall = '';
 				} else {
 					# Image is small enough to show full size on image page
 					$msgsmall = wfMessage( 'file-nohires' )->parse();

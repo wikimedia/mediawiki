@@ -129,6 +129,8 @@ production.
 * (bug 30232) add current time to message wlnote on Special:Watchlist
 * (bug 29110) $wgFeedDiffCutoff did not affect new pages
 * (bug 32168) Add wfRemoveDotSegments for use in wfExpandUrl
+* (bug 32358) Do not display "No higher resolution available" for dimensionless
+  files (like audio files)
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
