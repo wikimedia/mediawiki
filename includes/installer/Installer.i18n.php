@@ -132,11 +132,11 @@ MediaWiki requires UTF-8 support to function correctly.",
 	'config-memory-bad'               => "'''Warning:''' PHP's <code>memory_limit</code> is $1.
 This is probably too low.
 The installation may fail!",
-	'config-xcache'                   => '[http://trac.lighttpd.net/xcache/ XCache] is installed',
+	'config-xcache'                   => '[http://xcache.lighttpd.net/ XCache] is installed',
 	'config-apc'                      => '[http://www.php.net/apc APC] is installed',
 	'config-eaccel'                   => '[http://eaccelerator.sourceforge.net/ eAccelerator] is installed',
 	'config-wincache'                 => '[http://www.iis.net/download/WinCacheForPhp WinCache] is installed',
-	'config-no-cache'                 => "'''Warning:''' Could not find [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache'                 => "'''Warning:''' Could not find [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] or [http://www.iis.net/download/WinCacheForPhp WinCache].
 Object caching is not enabled.",
 	'config-mod-security'             => "'''Warning''': your web server has [http://modsecurity.org/ mod_security] enabled. If misconfigured, it can cause problems for MediaWiki or other software that allows users to post arbitrary content.
 Refer to [http://modsecurity.org/documentation/ mod_security documentation] or contact your host's support if you encounter random errors.",
@@ -835,7 +835,7 @@ U kan nie MediaWiki installeer nie.</span>',
 	'config-memory-bad' => "'''Waarskuwing:''' PHP se <code>memory_limit</code> is $1.
 Dit is waarskynlik te laag.
 Die installasie mag moontlik faal!",
-	'config-xcache' => '[Http://trac.lighttpd.net/xcache/ XCache] is geïnstalleer',
+	'config-xcache' => '[Http://xcache.lighttpd.net/ XCache] is geïnstalleer',
 	'config-apc' => '[Http://www.php.net/apc APC] is geïnstalleer',
 	'config-eaccel' => '[Http://eaccelerator.sourceforge.net/ eAccelerator] is geïnstalleer',
 	'config-wincache' => '[Http://www.iis.net/download/WinCacheForPhp WinCache] is geïnstalleer',
@@ -1339,11 +1339,11 @@ MediaWiki патрабуе падтрымкі UTF-8 для слушнай пра
 	'config-memory-bad' => "'''Папярэджаньне:''' памер PHP <code>memory_limit</code> складае $1.
 Верагодна, гэта вельмі мала.
 Усталяваньне можа быць няўдалым!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] усталяваны',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] усталяваны',
 	'config-apc' => '[http://www.php.net/apc APC] усталяваны',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] усталяваны',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] усталяваны',
-	'config-no-cache' => "'''Папярэджаньне:''' немагчыма знайсьці [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] ці [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Папярэджаньне:''' немагчыма знайсьці [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] ці [http://www.iis.net/download/WinCacheForPhp WinCache].
 Аб’ектнае кэшаваньне ня ўключанае.",
 	'config-mod-security' => "'''Папярэджаньне''': на Вашым ўэб-сэрверы ўключаны [http://modsecurity.org/ mod_security]. У выпадку няслушнай наладцы, ён можа стаць прычынай праблемаў для MediaWiki ці іншага праграмнага забесьпячэньня, якое дазваляе ўдзельнікам дасылаць на сэрвэр любы зьмест.
 Глядзіце [http://modsecurity.org/documentation/ дакумэнтацыю mod_security] ці зьвярніцеся ў падтрымку Вашага хосту, калі ў Вас узьнікаюць выпадковыя праблемы.",
@@ -1883,11 +1883,11 @@ $1
 	'config-memory-bad' => "'''Предупреждение:''' <code>memory_limit</code> на PHP е $1.
 Стойността вероятно е твърде ниска.
 Възможно е инсталацията да се провали!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] е инсталиран',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] е инсталиран',
 	'config-apc' => '[http://www.php.net/apc APC] е инсталиран',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] е инсталиран',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] е инсталиран',
-	'config-no-cache' => "'''Предупреждение:''' Не бяха открити [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC] [http://trac.lighttpd.net/xcache/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Предупреждение:''' Не бяха открити [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC] [http://xcache.lighttpd.net/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
 Обектното кеширане не е включено.",
 	'config-diff3-bad' => 'GNU diff3 не беше намерен.',
 	'config-imagemagick' => 'Открит е ImageMagick: <code>$1</code>.
@@ -2547,11 +2547,11 @@ Ezhomm en deus MediaWiki eus UTF-8 evit mont plaen en-dro.",
 	'config-memory-bad' => "'''Diwallit :''' Da $1 emañ arventenn <code>memory_limit</code> PHP.
 Re izel eo moarvat.
 Marteze e c'hwito ar staliadenn !",
-	'config-xcache' => 'Staliet eo [http://trac.lighttpd.net/xcache/ XCache]',
+	'config-xcache' => 'Staliet eo [http://xcache.lighttpd.net/ XCache]',
 	'config-apc' => 'Staliet eo [http://www.php.net/apc APC]',
 	'config-eaccel' => 'Staliet eo [http://eaccelerator.sourceforge.net/ eAccelerator]',
 	'config-wincache' => 'Staliet eo [http://www.iis.net/download/WinCacheForPhp WinCache]',
-	'config-no-cache' => "'''Diwallit:''' N'eus ket bet gallet kavout [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] pe [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Diwallit:''' N'eus ket bet gallet kavout [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] pe [http://www.iis.net/download/WinCacheForPhp WinCache].
 N'eo ket gweredekaet ar c'hrubuilhañ traezoù.",
 	'config-diff3-bad' => "N'eo ket bet kavet GNU diff3.",
 	'config-imagemagick' => "ImageMagick kavet : <code>$1</code>.
@@ -2865,7 +2865,7 @@ Slijedeće vrste baza podataka su podržane: $1.
 Ako se na dijeljenom serveru, tražite od vašeg pružaoca usluga da instalira pogodan driver za bazu podataka.
 Ako se sami kompajlirali PHP, podesite ga sa omogućenim klijentom baze podataka, koristeći naprimjer <code>./configure --with-mysql</code>.
 Ako ste instalirali PHP iz Debian ili Ubuntu paketa, možda morate instalirati i modul php5-mysql.',
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] je instaliran',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] je instaliran',
 	'config-apc' => '[http://www.php.net/apc APC] je instaliran',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] je instaliran',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] je instaliran',
@@ -3172,11 +3172,11 @@ MediaWiki benötigt die UTF-8-Unterstützung, um fehlerfrei lauffähig zu sein."
 	'config-memory-bad' => "'''Warnung:''' Der PHP-Parameter <code>memory_limit</code> beträgt $1.
 Dieser Wert ist wahrscheinlich zu niedrig.
 Der Installationsvorgang könnte daher scheitern!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] ist installiert',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] ist installiert',
 	'config-apc' => '[http://www.php.net/apc APC] ist installiert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] ist installiert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] ist installiert',
-	'config-no-cache' => "'''Warnung:''' [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] konnten nicht gefunden werden.
+	'config-no-cache' => "'''Warnung:''' [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] konnten nicht gefunden werden.
 Das Objektcaching ist daher nicht aktiviert.",
 	'config-mod-security' => "'''Warnung:''' Auf dem Webserver wurde [http://modsecurity.org/ ModSecurity] aktiviert. Sofern falsch konfiguriert, kann dies zu Problemen mit MediaWiki sowie anderer Software auf dem Server führen und es Benutzern ermöglichen beliebige Inhalte im Wiki einzustellen.
 Für weitere Informationen empfehlen wir die [http://modsecurity.org/documentation/ Dokumentation zu ModSecurity] oder den Kontakt zum Hoster, sofern Fehler auftreten.",
@@ -3781,11 +3781,11 @@ MediaWiki necesita que las funciones de expresiones regulares compatibles con Pe
 	'config-memory-bad' => "'''Advertencia:''' El parámetro <code>memory_limit</code> de PHP es $1.
 Probablemente este valor es demasiado bajo.
 ¡La instalación podrá fallar!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] está instalado',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] está instalado',
 	'config-apc' => '[http://www.php.net/apc APC] está instalado',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] está instalado',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] está instalado',
-	'config-no-cache' => "'''Advertencia:''' No pudo encontrarse [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Advertencia:''' No pudo encontrarse [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
 El caché de objetos no está habilitado.",
 	'config-diff3-bad' => 'GNU diff3 no se encuentra.',
 	'config-imagemagick' => 'ImageMagick encontrado: <code>$1</code>.
@@ -4034,7 +4034,7 @@ $messages['eu'] = array(
 * [http://www.mediawiki.org/wiki/Manual:Contents Administratzaileentzako Gida]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MEG]',
 	'config-env-php' => 'PHP $1 instalatuta dago.',
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] instalatuta dago',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] instalatuta dago',
 	'config-apc' => '[http://www.php.net/apc APC] instalatuta dago',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] instalatuta dago',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] instalatuta dago',
@@ -4217,7 +4217,7 @@ MediaWiki vaatii toimiakseen Perl-yhteensopivat säännölliset lausekkeet.',
 	'config-memory-bad' => "'''Varoitus:''' PHP:n <code>memory_limit</code> on $1.
 Tämä on luultavasti liian alhainen.
 Asennus saattaa epäonnistua!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] on asennettu',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] on asennettu',
 	'config-apc' => '[http://www.php.net/apc APC] on asennettu.',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] on asennettu',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] on asennettu',
@@ -4458,11 +4458,11 @@ MédiaWiki nécessite la gestion d’UTF-8 pour fonctionner correctement.",
 	'config-memory-bad' => "'''Attention :''' Le paramètre <code>memory_limit</code> de PHP est à $1.
 Cette valeur est probablement trop faible.
 Il est possible que l’installation échoue !",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] est installé',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] est installé',
 	'config-apc' => '[http://www.php.net/apc APC] est installé',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] est installé',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] est installé',
-	'config-no-cache' => "'''Attention :''' Impossible de trouver [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] ou [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Attention :''' Impossible de trouver [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] ou [http://www.iis.net/download/WinCacheForPhp WinCache].
 La mise en cache d'objets n'est pas activée.",
 	'config-mod-security' => "'''Attention''': Votre serveur web a [http://modsecurity.org/ mod_security] activé. S&il est mal configuré, cela peut poser des problèmes à MediaWiki ou à d'autres applications qui permettent aux utilisateurs de publier un contenu quelconque.
 Reportez-vous à [http://modsecurity.org/documentation/ la documentation de mod_security] ou contactez le support de votre hébergeur si vous rencontrez des erreurs aléatoires.",
@@ -4913,7 +4913,7 @@ $messages['frp'] = array(
 	'config-env-php-toolow' => 'PHP $1 est enstalâ.
 Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-memory-raised' => 'Lo paramètre <code>memory_limit</code> de PHP ére a $1, portâ a $2.',
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] est enstalâ',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] est enstalâ',
 	'config-apc' => '[http://www.php.net/apc APC] est enstalâ',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] est enstalâ',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] est enstalâ',
@@ -5254,11 +5254,11 @@ MediaWiki necesita soporte UTF-8 para funcionar correctamente.",
 	'config-memory-bad' => "'''Atención:''' O parámetro <code>memory_limit</code> do PHP é $1.
 Probablemente é un valor baixo de máis.
 A instalación pode fallar!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] está instalado',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] está instalado',
 	'config-apc' => '[http://www.php.net/apc APC] está instalado',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] está instalado',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] está instalado',
-	'config-no-cache' => "'''Atención:''' Non se puido atopar [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] ou [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Atención:''' Non se puido atopar [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] ou [http://www.iis.net/download/WinCacheForPhp WinCache].
 A caché de obxectos está desactivada.",
 	'config-mod-security' => "'''Atención:''' O seu servidor web ten o [http://modsecurity.org/ mod_security] activado. Se estivese mal configurado, pode causar problemas a MediaWiki ou calquera outro software que permita aos usuarios publicar contidos arbitrarios.
 Olle a [http://modsecurity.org/documentation/ documentación do mod_security] ou póñase en contacto co soporte do seu servidor se atopa erros aleatorios.",
@@ -5786,11 +5786,11 @@ MediaWiki brucht d UTF-8-Unterstitzi zum fählerfrej lauffähig syy.",
 	'config-memory-bad' => "'''Warnig:''' Dr PHP-Parameter <code>memory_limit</code> lyt bi $1.
 Dää Wärt isch wahrschyns z nider.
 Dr Inschtallationsvorgang chennt wäge däm fählschlaa!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] isch inschtalliert',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] isch inschtalliert',
 	'config-apc' => '[http://www.php.net/apc APC] isch inschtalliert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] isch inschtalliert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] isch inschtalliert',
-	'config-no-cache' => "'''Warnig:''' [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] hän nit chenne gfunde wäre.
+	'config-no-cache' => "'''Warnig:''' [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] oder [http://www.iis.net/download/WinCacheForPhp WinCache] hän nit chenne gfunde wäre.
 S Objäktcaching isch wäge däm nit aktiviert.",
 	'config-diff3-bad' => 'GNU diff3 isch nit gfunde wore.',
 	'config-imagemagick' => 'ImageMagick isch gfunde wore: <code>$1</code>.
@@ -5959,11 +5959,11 @@ $1
 	'config-memory-bad' => "'''אזהרה:''' ערך האפשרות <code>memory_limit</code> של PHP הוא $1.
 זה כנראה נמוך מדי.
 ההתקנה עשויה להיכשל!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] מותקן',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] מותקן',
 	'config-apc' => '[http://www.php.net/apc APC] מותקן',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] מותקן',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] מותקן',
-	'config-no-cache' => "'''אזהרה:''' אחת מהתוכנות הבאות לא נמצאה: [http://eaccelerator.sourceforge.net eAccelerator]&rlm;, [http://www.php.net/apc APC]&rlm;, [http://trac.lighttpd.net/xcache/ XCache] או [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''אזהרה:''' אחת מהתוכנות הבאות לא נמצאה: [http://eaccelerator.sourceforge.net eAccelerator]&rlm;, [http://www.php.net/apc APC]&rlm;, [http://xcache.lighttpd.net/ XCache] או [http://www.iis.net/download/WinCacheForPhp WinCache].
 מטמון עצמים לא מופעל.",
 	'config-mod-security' => "'''אזהרה''': בשרת הווב שלכם מופעל [http://modsecurity.org/ mod_security]. אם הוא לא מוגדר טוב, זה יכול לגרום לבעיות במדיה־ויקי ובתכנה אחרת שמאפשרת למשתמשים לשלוח תוכן שרירותי.
 קראו את [http://modsecurity.org/documentation/ התיעוד של mod_security] או צרו קשר עם אנשי התמיכה של שירותי האירוח שלכם אם אתם נתקלים בשגיאות אקראיות.",
@@ -6514,7 +6514,7 @@ Jeli wužiwaš Mandrake, instaluj paket php-xml.',
 	'config-memory-bad' => "'''Warnowanje:''' PHP-parameter <code>memory_limit</code> ma hódnotu $1,
 To je najskerje přeniske.
 Instalacija móhła so njeporadźić!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] je instalowany',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] je instalowany',
 	'config-apc' => '[http://www.php.net/apc APC] je instalowany',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] je instalowany',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] je instalowany',
@@ -6883,11 +6883,11 @@ A MediaWikinek UTF-8-támogatásra van szüksége a helyes működéshez.",
 	'config-memory-raised' => 'A PHP <code>memory_limit</code> beállításának értéke: $1. Meg lett növelve a következő értékre: $2.',
 	'config-memory-bad' => "'''Figyelmeztetés:''' A PHP <code>memory_limit</code> beállításának értéke $1.
 Ez az érték valószínűleg túl kevés, a telepítés sikertelen lehet.",
-	'config-xcache' => 'Az [http://trac.lighttpd.net/xcache/ XCache] telepítve van',
+	'config-xcache' => 'Az [http://xcache.lighttpd.net/ XCache] telepítve van',
 	'config-apc' => 'Az [http://www.php.net/apc APC] telepítve van',
 	'config-eaccel' => 'Az [http://eaccelerator.sourceforge.net/ eAccelerator] telepítve van',
 	'config-wincache' => 'A [http://www.iis.net/download/WinCacheForPhp WinCache] telepítve van',
-	'config-no-cache' => "'''Figyelmeztetés:''' Nem található [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] és [http://www.iis.net/download/WinCacheForPhp WinCache] sem.
+	'config-no-cache' => "'''Figyelmeztetés:''' Nem található [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] és [http://www.iis.net/download/WinCacheForPhp WinCache] sem.
 Objektum-gyorsítótárazás nem lesz engedélyezve.",
 	'config-diff3-bad' => 'GNU diff3 nem található.',
 	'config-imagemagick' => 'Az ImageMagick megtalálható a rendszeren: <code>$1</code>.
@@ -7421,11 +7421,11 @@ MediaWiki require supporto de UTF-8 pro functionar correctemente.",
 	'config-memory-bad' => "'''Aviso:''' Le <code>memory_limit</code> de PHP es $1.
 Isto es probabilemente troppo basse.
 Le installation pote faller!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] es installate',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] es installate',
 	'config-apc' => '[http://www.php.net/apc APC] es installate',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] es installate',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] es installate',
-	'config-no-cache' => "'''Aviso:''' Non poteva trovar [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Aviso:''' Non poteva trovar [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
 Le cache de objectos non es activate.",
 	'config-mod-security' => "'''Attention''': [http://modsecurity.org/ mod_security] es active in tu servitor web. Si mal configurate, isto pote causar problemas pro MediaWiki o altere software que permitte al usatores de publicar contento arbitrari.
 Consulta le [http://modsecurity.org/documentation/ documentation de mod_security] o contacta le servicio de adjuta de tu host si tu incontra estranie errores.",
@@ -7970,11 +7970,11 @@ MediaWiki memerlukan dukungan UTF-8 untuk berfungsi dengan benar.",
 	'config-memory-bad' => "'''Peringatan:''' <code>memory_limit</code> PHP adalah $1.
 Ini terlalu rendah.
 Instalasi terancam gagal!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] telah diinstal',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] telah diinstal',
 	'config-apc' => '[http://www.php.net/apc APC] telah diinstal',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] telah diinstal',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] telah diinstal',
-	'config-no-cache' => "'''Peringatan:''' Tidak dapat menemukan [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache], atau [http://www.iis.net/download/WinCacheForPhp WinCache]. Pinggahan obyek tidak dinonaktifkan.",
+	'config-no-cache' => "'''Peringatan:''' Tidak dapat menemukan [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache], atau [http://www.iis.net/download/WinCacheForPhp WinCache]. Pinggahan obyek tidak dinonaktifkan.",
 	'config-diff3-bad' => 'GNU diff3 tidak ditemukan.',
 	'config-imagemagick' => 'ImageMagick ditemukan: <code>$1</code> .
 Pembuatan gambar mini akan diaktifkan jika Anda mengaktifkan pengunggahan.',
@@ -8477,7 +8477,7 @@ Non è possibile installare MediaWiki.",
 	'config-env-php' => 'PHP $1 è installato.',
 	'config-env-php-toolow' => 'PHP $1 è installato.
 Tuttavia, MediaWiki richiede PHP $2 o superiore.',
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] è installato',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] è installato',
 	'config-apc' => '[http://www.php.net/apc APC] è installato',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] è installato',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] è installato',
@@ -8660,11 +8660,11 @@ MediaWikiにはUTF-8サポートの関数が必要です。",
 	'config-memory-bad' => "'''警告：'''PHPの<code>memory_limit</code>は$1です。
 これは、非常に遅い可能性があります。
 インストールが失敗するかもしれません！",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache]がインストール済み',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache]がインストール済み',
 	'config-apc' => '[http://www.php.net/apc APC]がインストール済み',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator]がインストール済み',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache]がインストール済み',
-	'config-no-cache' => "'''警告：'''[http://eaccelerator.sourceforge.net eAccelerator]、[http://www.php.net/apc APC]、[http://trac.lighttpd.net/xcache/ XCache]あるいは[http://www.iis.net/download/WinCacheForPhp WinCache]のいずれも見つかりませんでした。
+	'config-no-cache' => "'''警告：'''[http://eaccelerator.sourceforge.net eAccelerator]、[http://www.php.net/apc APC]、[http://xcache.lighttpd.net/ XCache]あるいは[http://www.iis.net/download/WinCacheForPhp WinCache]のいずれも見つかりませんでした。
 オブジェクトのキャッシュは有効化されません。",
 	'config-diff3-bad' => 'GNU diff3が見つかりません。',
 	'config-imagemagick' => 'ImageMagickが見つかりました：<code>$1</code>。
@@ -9342,11 +9342,11 @@ MediaWiki bruch dä UTF-8-Krohm ävver, öm ohne Fähler loufe ze künne.",
 	'config-memory-bad' => "'''Opjepaß:''' Dem PHP singe Parameeter <code lang=\"en\">memory_limit</code> es \$1.
 Dat es wall ze winnisch.
 Et Enreeschte kunnt doh draan kappott jon!",
-	'config-xcache' => 'Dä <code lang="en">[http://trac.lighttpd.net/xcache/ XCache]</code> es ennjeresht.',
+	'config-xcache' => 'Dä <code lang="en">[http://xcache.lighttpd.net/ XCache]</code> es ennjeresht.',
 	'config-apc' => 'Dä <code lang="en">[http://www.php.net/apc APC]</code> es ennjeresht.',
 	'config-eaccel' => 'Dä <code lang="en">[http://eaccelerator.sourceforge.net/ eAccelerator]</code> es ennjeresht.',
 	'config-wincache' => 'Dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> es ennjeresht.',
-	'config-no-cache' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä <code lang="en">[http://eaccelerator.sourceforge.net eAccelerator]</code>, dä <code lang="en">[http://www.php.net/apc APC]</code>, dä <code lang="en">[http://trac.lighttpd.net/xcache/ XCache]</code> un dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> nit fenge.
+	'config-no-cache' => '\'\'\'Opjepaß:\'\'\' Mer kunnte dä <code lang="en">[http://eaccelerator.sourceforge.net eAccelerator]</code>, dä <code lang="en">[http://www.php.net/apc APC]</code>, dä <code lang="en">[http://xcache.lighttpd.net/ XCache]</code> un dä <code lang="en">[http://www.iis.net/download/WinCacheForPhp WinCache]</code> nit fenge.
 Et <i lang="en">object caching</i> es nit müjjelesh un ußjeschalldt.',
 	'config-mod-security' => "'''Opjepaß''': Dinge Webßööver hät <code lang=\"en\">[http://modsecurity.org/ mod_security]</code> enjeschalldt. If misconfigured, it can cause problems for MediaWiki or other software that allows users to post arbitrary content.
 Refer to <code lang=\"en\">[http://modsecurity.org/documentation/ mod_security documentation]</code> udder contact your host's support if you encounter zohfälleje Fähler.
@@ -9857,7 +9857,7 @@ Dës Datebank-Type ginn ënnerstëtzt: $1.
 Wann Dir op engem gesharte Server sidd, da frot Ären Hosting-Provider fir de passenden Datebank-Driver z'installéieren.
 Wann Dir PHP selwer compiléiert hutt, da reconfiguréiert en mat dem ageschalten Datebank-Client, zum Beispill an deem Dir <code>./configure --with-mysql</code> benotzt.
 Wann Dir PHP vun engem Debian oder Ubuntu Package aus installéiert hutt, da musst Dir och den php5-mysql Modul installéieren.",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] ass installéiert',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] ass installéiert',
 	'config-apc' => '[http://www.php.net/apc APC] ass installéiert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] ass installéiert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] ass installéiert',
@@ -10331,11 +10331,11 @@ $1
 	'config-memory-bad' => "'''Предупредување:''' <code>memory_limit</code> за PHP изнесува $1.
 Ова е веројатно премалку.
 Инсталацијата може да не успее!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] е инсталиран',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] е инсталиран',
 	'config-apc' => '[http://www.php.net/apc APC] е инсталиран',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] е инсталиран',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] е инсталиран',
-	'config-no-cache' => "'''Предупредување:''' Не можев да го најдам [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Предупредување:''' Не можев да го најдам [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
 Кеширањето на објекти не е овозможено.",
 	'config-mod-security' => "'''Предупредување''': на вашиот опслужувач има овозможено [http://modsecurity.org/ mod_security]. Ако не е поставено како што треба, ова може да предизвика проблеми кај МедијаВики и други програми што им овозможуваат на корисниците да објавуваат произволни содржини.
 Погледнете ја [http://modsecurity.org/documentation/ mod_security документацијата] или обратете се кај домаќинот ако наидете на случајни грешки.",
@@ -11217,7 +11217,7 @@ MediaWiki heeft ondersteuning voor UTF-8 nodig om correct te kunnen werken.",
 	'config-memory-bad' => "'''Waarschuwing:''' PHP's <code>memory_limit</code> is $1.
 Dit is waarschijnlijk te laag.
 De installatie kan mislukken!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] is op dit moment geïnstalleerd',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] is op dit moment geïnstalleerd',
 	'config-apc' => '[http://www.php.net/apc APC] is op dit moment geïnstalleerd',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] is op dit moment  geïnstalleerd',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] is op dit moment geïnstalleerd',
@@ -11659,7 +11659,7 @@ $messages['nn'] = array(
 	'config-memory-bad' => "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.
 Dette er sannsynlegvis for lågt.
 Installasjonen kan mislukkast!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] er innstallert',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] er innstallert',
 	'config-apc' => '[http://www.php.net/apc APC] er innstallert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] er innstallert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] er installert',
@@ -11822,11 +11822,11 @@ MediaWiki krever UTF-8-støtte for å fungere riktig.",
 	'config-memory-bad' => "'''Advarsel:''' PHPs <code>memory_limit</code> er $1.
 Dette er sannsynligvis for lavt.
 Installasjonen kan mislykkes!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] er innstallert',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] er innstallert',
 	'config-apc' => '[http://www.php.net/apc APC] er innstallert',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] er innstallert',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] er installert',
-	'config-no-cache' => "'''Advarsel:''' Kunne ikke finne [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] eller [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Advarsel:''' Kunne ikke finne [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] eller [http://www.iis.net/download/WinCacheForPhp WinCache].
 Objekthurtiglagring er ikke aktivert.",
 	'config-mod-security' => "'''Advarsel''': Din web-tjener har [http://modsecurity.org/ mod_security] påslått. Hvis denne er feilinnstilt, kan det gi problemer for MediaWiki eller annen programvare som tillater brukere å poste vilkårlig innhold.
 Sjekk [http://modsecurity.org/documentation/ mod_security-dokumentasjonen] eller ta kontakt med din nettleverandør hvis du opplever tilfeldige feil.",
@@ -12326,11 +12326,11 @@ MediaWiki wymaga wsparcia dla UTF‐8 do prawidłowego działania.",
 	'config-memory-bad' => "'''Uwaga:''' PHP <code>memory_limit</code> jest ustawione na $1.
 To jest prawdopodobnie zbyt mało.
 Instalacja może się nie udać!",
-	'config-xcache' => '[Http://trac.lighttpd.net/xcache/ XCache] jest zainstalowany',
+	'config-xcache' => '[Http://xcache.lighttpd.net/ XCache] jest zainstalowany',
 	'config-apc' => '[Http://www.php.net/apc APC] jest zainstalowany',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] jest zainstalowany',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] jest zainstalowany',
-	'config-no-cache' => "'''Uwaga:''' Nie można odnaleźć [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Uwaga:''' Nie można odnaleźć [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] lub [http://www.iis.net/download/WinCacheForPhp WinCache].
 Buforowanie obiektów nie będzie możliwe.",
 	'config-diff3-bad' => 'Nie znaleziono GNU diff3.',
 	'config-imagemagick' => 'Odnaleziono ImageMagick <code>$1</code>.
@@ -12685,11 +12685,11 @@ MediaWiki a l'ha da manca dle funsion d'espression regolar Perl-compatìbij për
 	'config-memory-bad' => "'''Avis:''' <code>memory_limit</code> ëd PHP a l'é $1.
 Sossì a l'é probabilment tròp bass.
 L'instalassion a peul falì!",
-	'config-xcache' => "[http://trac.lighttpd.net/xcache/ XCache] a l'é instalà",
+	'config-xcache' => "[http://xcache.lighttpd.net/ XCache] a l'é instalà",
 	'config-apc' => "[http://www.php.net/apc APC] a l'é instalà",
 	'config-eaccel' => "[http://eaccelerator.sourceforge.net/ eAccelerator] a l'é instalà",
 	'config-wincache' => "[http://www.iis.net/download/WinCacheForPhp WinCache]  a l'é instalà",
-	'config-no-cache' => "'''Avis:''' As treuva pa [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache]. Ël buté d'oget an memòria local a l'é pa abilità.",
+	'config-no-cache' => "'''Avis:''' As treuva pa [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache]. Ël buté d'oget an memòria local a l'é pa abilità.",
 	'config-diff3-bad' => 'GNU diff3 pa trovà.',
 	'config-imagemagick' => "Trovà ImageMagick: <code>$1</code>.
 La miniaturisassion ëd figure a sarà abilità s'it abìlite le carie.",
@@ -13204,11 +13204,11 @@ O MediaWiki necessita do suporte UTF-8 para funcionar correctamente.",
 	'config-memory-bad' => "'''Aviso:''' A configuração <code>memory_limit</code> do PHP é $1.
 Isto é provavelmente demasiado baixo.
 A instalação poderá falhar!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] instalada',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] instalada',
 	'config-apc' => '[http://www.php.net/apc APC] instalada',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] instalado',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] instalada',
-	'config-no-cache' => "'''Aviso:''' Não foram encontrados [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] nem [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Aviso:''' Não foram encontrados [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] nem [http://www.iis.net/download/WinCacheForPhp WinCache].
 A cache de objectos não será activada.",
 	'config-diff3-bad' => 'O GNU diff3 não foi encontrado.',
 	'config-imagemagick' => 'Foi encontrado o ImageMagick: <code>$1</code>.
@@ -13932,11 +13932,11 @@ MediaWiki требует поддержки UTF-8 для корректной р
 	'config-memory-bad' => "'''Внимание:''' размер PHP <code>memory_limit</code> составляет $1.
 Вероятно, этого слишком мало.
 Установка может потерпеть неудачу!",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] установлен',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] установлен',
 	'config-apc' => '[http://www.php.net/apc APC] установлен',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] установлен',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] установлен',
-	'config-no-cache' => "'''Внимание:''' Не найдены [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Внимание:''' Не найдены [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] или [http://www.iis.net/download/WinCacheForPhp WinCache].
 Кэширование объектов будет отключено.",
 	'config-mod-security' => "'''Внимание''': на вашем веб-сервере включен [http://modsecurity.org/ mod_security]. При неправильной настройке он может вызывать проблемы для MediaWiki или другого ПО, позволяющего пользователям отправлять на сервер произвольный текст.
 Обратитесь к [http://modsecurity.org/documentation/ документации mod_security] или в поддержку вашего хостера, если при работе возникают непонятные ошибки.",
@@ -14545,7 +14545,7 @@ Vendar pa MediaWiki zahteva PHP $2 ali višji.',
 	'config-unicode-using-utf8' => 'Uporaba utf8_normalize.so Briona Vibberja za normalizacijo unikoda.',
 	'config-unicode-using-intl' => 'Uporaba [http://pecl.php.net/intl razširitve PECL intl] za normalizacijo unikoda.',
 	'config-memory-raised' => 'PHP-jev <code>memory_limit</code> je $1, dvignjen na $2.',
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] je nameščen',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] je nameščen',
 	'config-apc' => '[http://www.php.net/apc APC] je nameščen',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] je nameščen',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] je nameščen',
@@ -14842,7 +14842,7 @@ Du kan inte installera MediaWiki.',
 	'config-env-php' => 'PHP $1 är installerad.',
 	'config-env-php-toolow' => 'PHP $1 är installerad.
 MediaWiki kräver PHP $2 eller högre.',
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] är installerad',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] är installerad',
 	'config-apc' => '[http://www.php.net/apc APC] är installerad',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] är installerad',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] är installerad',
@@ -15144,11 +15144,11 @@ Kung iniluklok mo ang PHP mula sa isang pakete ng Debian o Ubuntu, kung gayon ka
 	'config-memory-bad' => "'''Babala:''' Ang <code>hangganan_ng_alaala</code> ng PHP ay $1.
 Ito ay maaaring napakababa.
 Maaaring mabigo ang pagluluklok!",
-	'config-xcache' => 'Ininstala na ang [http://trac.lighttpd.net/xcache/ XCache]',
+	'config-xcache' => 'Ininstala na ang [http://xcache.lighttpd.net/ XCache]',
 	'config-apc' => 'Ininstala na ang [http://www.php.net/apc APC]',
 	'config-eaccel' => 'Ininstala na ang [http://eaccelerator.sourceforge.net/ eAccelerator]',
 	'config-wincache' => 'Ininstala na ang [http://www.iis.net/download/WinCacheForPhp WinCache]',
-	'config-no-cache' => "'''Babala:''' Hindi mahanap ang [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://trac.lighttpd.net/xcache/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
+	'config-no-cache' => "'''Babala:''' Hindi mahanap ang [http://eaccelerator.sourceforge.net eAccelerator], [http://www.php.net/apc APC], [http://xcache.lighttpd.net/ XCache] o [http://www.iis.net/download/WinCacheForPhp WinCache].
 Hindi pinapagana ang pagbabaon ng mga bagay.",
 	'config-diff3-bad' => 'Hindi natagpuan ang GNU diff3.',
 	'config-imagemagick' => 'Natagpuan ang ImageMagick: <code>$1</code>.
@@ -15464,7 +15464,7 @@ $messages['uk'] = array(
 Якщо ви користуєтесь віртуальним хостингом, попросіть вашого хостинг-провайдера інсталювати відповідний драйвер бази даних.
 Якщо ви скомпілювали PHP самостійно, переналаштуйте його з включенням клієнта бази даних, наприклад за допомогою <code>./configure --with-mysql</code>.
 Якщо установлено PHP з пакетів Debian або Ubuntu, тоді ви також повинні встановити php5-mysql модуль.',
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache] встановлено',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] встановлено',
 	'config-apc' => '[http://www.php.net/apc APC] встановлено',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator] встановлено',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] встановлено',
@@ -15791,11 +15791,11 @@ $1',
 	'config-pcre-no-utf8' => "'''致命错误'''：PHP的PCRE模块在编译时可能没有包含PCRE_UTF8支持。MediaWiki需要UTF-8支持才能正常工作。",
 	'config-memory-raised' => 'PHP的内存使用上限<code>memory_limit</code>为$1，自动提升到$2。',
 	'config-memory-bad' => "'''警告：'''PHP的内存使用上限<code>memory_limit</code>为$1。该设定可能过低，并导致安装失败！",
-	'config-xcache' => '[http://trac.lighttpd.net/xcache/ XCache]已安装',
+	'config-xcache' => '[http://xcache.lighttpd.net/ XCache]已安装',
 	'config-apc' => '[http://www.php.net/apc APC]已安装',
 	'config-eaccel' => '[http://eaccelerator.sourceforge.net/ eAccelerator]已安装',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache]已安装',
-	'config-no-cache' => "'''警告：'''找不到[http://eaccelerator.sourceforge.net eAccelerator]、[http://www.php.net/apc APC]、[http://trac.lighttpd.net/xcache/ XCache]或[http://www.iis.net/download/WinCacheForPhp WinCache]，无法启用对象缓存。
+	'config-no-cache' => "'''警告：'''找不到[http://eaccelerator.sourceforge.net eAccelerator]、[http://www.php.net/apc APC]、[http://xcache.lighttpd.net/ XCache]或[http://www.iis.net/download/WinCacheForPhp WinCache]，无法启用对象缓存。
 Object caching is not enabled.",
 	'config-diff3-bad' => '找不到GNU diff3。',
 	'config-imagemagick' => '已找到ImageMagick：<code>$1</code>。如果你启用了上传功能，缩略图功能也将被启用。',
