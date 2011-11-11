@@ -172,10 +172,10 @@ class RepoGroup {
 			if ( !is_array( $item ) ) {
 				$item = array( 'title' => $item );
 			}
-			if ( !( $item['title'] instanceof Title ) )
-				$item['title'] = Title::makeTitleSafe( NS_FILE, $item['title'] );
-			if ( $item['title'] )
+			$item['title'] = File::normalizeTitle( $item['title'] );
+			if ( $item['title'] ) {
 				$items[$item['title']->getDBkey()] = $item;
+			}
 		}
 
 		$images = $this->localRepo->findFiles( $items );

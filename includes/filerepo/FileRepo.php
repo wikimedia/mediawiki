@@ -71,14 +71,12 @@ abstract class FileRepo {
 	 *              current file. Repositories not supporting version control
 	 *              should return false if this parameter is set.
 	 *
-	 * @return File
+	 * @return File|null A File, or null if passed an invalid Title
 	 */
 	function newFile( $title, $time = false ) {
-		if ( !( $title instanceof Title ) ) {
-			$title = Title::makeTitleSafe( NS_FILE, $title );
-			if ( !is_object( $title ) ) {
-				return null;
-			}
+		$title = File::normalizeTitle( $title );
+		if ( !$title ) {
+			return null;
 		}
 		if ( $time ) {
 			if ( $this->oldFileFactory ) {
@@ -111,13 +109,11 @@ abstract class FileRepo {
 	 * @return File|false
 	 */
 	function findFile( $title, $options = array() ) {
-		$time = isset( $options['time'] ) ? $options['time'] : false;
-		if ( !($title instanceof Title) ) {
-			$title = Title::makeTitleSafe( NS_FILE, $title );
-			if ( !is_object( $title ) ) {
-				return false;
-			}
+		$title = File::normalizeTitle( $title );
+		if ( !$title ) {
+			return false;
 		}
+		$time = isset( $options['time'] ) ? $options['time'] : false;
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFile( $title );
 		if ( !$img ) {
