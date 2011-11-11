@@ -3279,7 +3279,7 @@ $1',
 
 MediaWiki是基於使用目的而加以發佈，但係就唔會負上任何嘅責任；亦都唔會對適售性或都係特定目的適用性嘅默示性擔保。詳情請目睇GNU General Public License。
 
-你應該已經收到跟往呢個程式嘅[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License嘅副本]；如果冇嘅話，請寫信到至Free Software Foundation, Inc.：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html 上網睇]。',
+你應該已經收到跟往呢個程式嘅[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License嘅副本]；如果冇嘅話，請寫信到至Free Software Foundation, Inc.：51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA，或[//www.gnu.org/licenses/old-licenses/gpl-2.0.html 上網睇]。',
 'version-software'              => '裝咗嘅軟件',
 'version-software-product'      => '產品',
 'version-software-version'      => '版本',

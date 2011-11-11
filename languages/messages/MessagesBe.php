@@ -2979,7 +2979,7 @@ $1',
 
 MediaWiki распаўсюджваецца, спадзеючыся на прыдатнасць прадукта, але БЕЗ ЯКІХ-НЕБУДЗЬ ГАРАНТЫЙ, у тым ліку, без імплікаваных гарантый СПАЖЫВЕЦКАЙ ВАРТАСЦІ або ПРЫДАТНАСЦІ ДЛЯ ЯКОЙ-НЕБУДЗЬ МЭТЫ. Больш падрабязна гл. пагадненне GNU General Public License.
 
-Разам з гэтым праграмным забеспячэннем вы павінны былі атрымаць [{{SERVER}}{{SCRIPTPATH}}/COPYING копію пагаднення GNU General Public License]. Калі гэта не так, паведамце аб гэтым у фонд Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA або [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html атрымайце яе з Інтэрнэту].",
+Разам з гэтым праграмным забеспячэннем вы павінны былі атрымаць [{{SERVER}}{{SCRIPTPATH}}/COPYING копію пагаднення GNU General Public License]. Калі гэта не так, паведамце аб гэтым у фонд Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA або [//www.gnu.org/licenses/old-licenses/gpl-2.0.html атрымайце яе з Інтэрнэту].",
 'version-software'              => 'Устаноўленыя праграмныя прадукты',
 'version-software-product'      => 'Прадукт',
 'version-software-version'      => 'Версія',

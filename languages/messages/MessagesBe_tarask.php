@@ -1744,8 +1744,8 @@ $1',
 'img-auth-accessdenied'     => 'Доступ забаронены',
 'img-auth-nopathinfo'       => 'Адсутнічае PATH_INFO.
 Ваш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.
-Яна можа быць заснавана на CGI і ня можа падтрымліваць img_auth.
-Глядзіце http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Яна можа быць заснаваная на CGI і ня можа падтрымліваць img_auth.
+[http://www.mediawiki.org/wiki/Manual:Image_Authorization Глядзіце інфармацыю пра аўтарызацыю выявы.]',
 'img-auth-notindir'         => 'Неабходнага шляху няма ў дырэкторыі загрузкі, пазначанай у канфігурацыі.',
 'img-auth-badtitle'         => 'Немагчыма стварыць слушную назву з «$1».',
 'img-auth-nologinnWL'       => 'Вы не ўвайшлі ў сыстэму, а «$1» не знаходзіцца ў белым сьпісе.',
@@ -3581,7 +3581,7 @@ $1',
 
 MediaWiki распаўсюджваецца з надзеяй, што будзе карысным, але БЕЗ АНІЯКІХ ГАРАНТЫЯЎ, нават без меркаваных гарантыяў КАМЭРЦЫЙНАЙ КАШТОЎНАСЬЦІ ці ПРЫДАТНАСЬЦІ ДА ПЭЎНАЙ МЭТЫ. Глядзіце ліцэнзію GNU General Public License для болей падрабязных зьвестак.
 
-Вы мусілі атрымаць [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разам з гэтым праграмным забесьпячэньнем. Калі не, напішыце Free Software Foundation, Inc. па адрасе 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, альбо прачытайце [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html он-лайн копію ліцэнзіі].',
+Вы мусілі атрымаць [{{SERVER}}{{SCRIPTPATH}}/COPYING копію GNU General Public License] разам з гэтым праграмным забесьпячэньнем. Калі не, напішыце Free Software Foundation, Inc. па адрасе 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA, альбо прачытайце [//www.gnu.org/licenses/old-licenses/gpl-2.0.html он-лайн копію ліцэнзіі].',
 'version-software'              => 'Усталяванае праграмнае забесьпячэньне',
 'version-software-product'      => 'Прадукт',
 'version-software-version'      => 'Вэрсія',

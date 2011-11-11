@@ -3578,7 +3578,7 @@ Inti tista' wkoll tuża' l-[[Special:EditWatchlist|editur bl-interfaċċa standa
 
 MediaWiki hi distribwita bl-iskop li din tkun utli, imma MINGĦAJR EBDA GARANZIJA; mingħajr lanqas il-garanzija impliċita ta' NEGOZJABILITÀ jew ta' ADEGWATEZZA GĦAL SKOP PARTIKULARI. Ara l-GNU General Public License għal aktar dettalji.
 
-Flimkien ma' dan il-programm suppost kellek tirċievi [{{SERVER}}{{SCRIPTPATH}}/COPYING kopja tal-GNU General Public License]; jekk le, ikteb lil Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA jew [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html aqraha fuq l-internet].",
+Flimkien ma' dan il-programm suppost kellek tirċievi [{{SERVER}}{{SCRIPTPATH}}/COPYING kopja tal-GNU General Public License]; jekk le, ikteb lil Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA jew [//www.gnu.org/licenses/old-licenses/gpl-2.0.html aqraha fuq l-internet].",
 'version-software'              => 'Softwer installat',
 'version-software-product'      => 'Prodott',
 'version-software-version'      => 'Verżjoni',

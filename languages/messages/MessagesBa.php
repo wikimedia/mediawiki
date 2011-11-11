@@ -3118,7 +3118,7 @@ $1',
 
 MediaWiki файҙалы булыр, тигән өмөттә, ләкин БЕР НИДӘЙ ҘӘ ЯУАПЛЫЛЫҠ ЙӨКЛӘМӘҺЕҘ, хатта фараз ителгән ҺАТЫУ ӨСӨН ЯРАҠЛЫЛЫҠ йәки БИЛДӘЛӘНГӘН МАҠСАТ ӨСӨН ЯРАҠЛЫТЫҠ тураһында яуаплылыҡ йөкләмәһеҙ таратыла. Ентекле мәғлүмәт алыр өсөн, GNU General Public License рөхсәтнамәһе тураһында уҡығыҙ.
 
-Был программа менән ҡуша һеҙ [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License рөхсәтнамәһенең күсермәһен] алырға тейеш инегеҙ, әгәр юҡ икән, Ирекле программалар фондына 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA адресы буйынса яҙығыҙ, йәки рөхсәтнамәнең [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html онлайн өлгөһөн] уҡығыҙ.',
+Был программа менән ҡуша һеҙ [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License рөхсәтнамәһенең күсермәһен] алырға тейеш инегеҙ, әгәр юҡ икән, Ирекле программалар фондына 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA адресы буйынса яҙығыҙ, йәки рөхсәтнамәнең [//www.gnu.org/licenses/old-licenses/gpl-2.0.html онлайн өлгөһөн] уҡығыҙ.',
 'version-software'              => 'Ҡуйылған программалар',
 'version-software-product'      => 'Продукт',
 'version-software-version'      => 'Өлгөһө',

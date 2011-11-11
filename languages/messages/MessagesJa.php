@@ -2072,7 +2072,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'statistics-users-active-desc' => '過去$1{{PLURAL:$1|日間}}に何らかの操作を行った利用者',
 'statistics-mostpopular'       => '最も閲覧されているページ',
 
-'disambiguations'      => '曖昧さ回避ページ',
+'disambiguations'      => '曖昧さ回避ページにリンクしているページ',
 'disambiguationspage'  => 'Template:曖昧回避',
 'disambiguations-text' => "以下のページは'''曖昧さ回避ページ'''へリンクしています。
 これらのページは、より適した主題のページへリンクされるべきです。<br />
@@ -2214,7 +2214,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'sp-deletedcontributions-contribs' => '投稿記録',
 
 # Special:LinkSearch
-'linksearch'       => '外部リンク',
+'linksearch'       => '外部リンクの検索',
 'linksearch-pat'   => '検索パターン：',
 'linksearch-ns'    => '名前空間：',
 'linksearch-ok'    => '検索',
@@ -2323,7 +2323,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'watchmethod-list'     => '最近の編集内のウォッチしているページを確認中',
 'watchlistcontains'    => 'ウォッチリストには、$1ページが登録されています。',
 'iteminvalidname'      => '項目「$1」は問題があります、名前が不正です・・・',
-'wlnote'               => "以下は最近'''$2'''時間における、最も新しい'''$1'''編集です。",
+'wlnote'               => "$3$4時点で、最近'''$2'''時間に行われた最も新しい'''$1'''編集は以下のとおりです。",
 'wlshowlast'           => '次の期間で表示：$1時間、$2日間、$3',
 'watchlist-options'    => 'ウォッチリストのオプション',
 
@@ -3863,7 +3863,7 @@ $1',
 
 MediaWikiは、有用であることを期待して配布されていますが、商用あるいは特定の目的に適するかどうかも含めて、暗黙的にも、一切保証されません。詳しくは、GNU一般公衆利用許諾書をご覧下さい。
 
-あなたはこのプログラムと共に、[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU一般公衆利用許諾契約書の複製]を受け取ったはずです。もし受け取っていなければ、フリーソフトウェア財団(the Free Software Foundation, Inc., 59Temple Place, Suite 330, Boston, MA 02111-1307 USA)まで請求するか、[http://www.gnu.org/licenses/old-licenses/gpl-2.0.html オンラインで閲覧]してください。',
+あなたはこのプログラムと共に、[{{SERVER}}{{SCRIPTPATH}}/COPYING GNU一般公衆利用許諾契約書の複製]を受け取ったはずです。もし受け取っていなければ、フリーソフトウェア財団(the Free Software Foundation, Inc., 59Temple Place, Suite 330, Boston, MA 02111-1307 USA)まで請求するか、[//www.gnu.org/licenses/old-licenses/gpl-2.0.html オンラインで閲覧]してください。',
 'version-software'              => 'インストール済みソフトウェア',
 'version-software-product'      => '製品',
 'version-software-version'      => 'バージョン',

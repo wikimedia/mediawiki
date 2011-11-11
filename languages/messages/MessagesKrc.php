@@ -3119,7 +3119,7 @@ $1',
 
 MediaWiki хайырлы боллукъду деген умут бла джайылады, алай а БИР ТЮРЛЮ БИР ГАРАНТИЯСЫЗДЫ, КОММЕРЦИЯЛЫКЪ неда ЭНЧИ БИР НЮЗЮРГЕ ДЖАРАРЫКЪ гаратияласыз огъунады. Толуракъ билгиле кёрюр ючюн GNU General Public License лицензиягъа къарагъыз.
 
-Бу программа бла бирге  [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License лицензияны копиясы] болургъа керекди, джокъ эсе Free Software Foundation, Inc. комапиягъа джазыгъыз (адреси: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA) неда [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html лицензияны онлайн окъугъуз].',
+Бу программа бла бирге  [{{SERVER}}{{SCRIPTPATH}}/COPYING GNU General Public License лицензияны копиясы] болургъа керекди, джокъ эсе Free Software Foundation, Inc. комапиягъа джазыгъыз (адреси: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA) неда [//www.gnu.org/licenses/old-licenses/gpl-2.0.html лицензияны онлайн окъугъуз].',
 'version-software'              => 'Салыннган программа баджарыу',
 'version-software-product'      => 'Продукт',
 'version-software-version'      => 'Версия',

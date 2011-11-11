@@ -720,6 +720,7 @@ $1',
 פונקציה: $1<br />
 שאילתה: $2',
 'viewsource'           => 'הצגת מקור',
+'viewsource-title'     => 'הצגת המקור של $1',
 'actionthrottled'      => 'הפעולה הוגבלה',
 'actionthrottledtext'  => 'כאמצעי נגד ספאם, אינכם מורשים לבצע פעולה זו פעמים רבות מדי בזמן קצר. אנא נסו שוב בעוד מספר דקות.',
 'protectedpagetext'    => 'דף זה מוגן ולא ניתן לערוך אותו.',
@@ -1874,7 +1875,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO חסר.
 השרת אינו מוגדר להעברת מידע זה.
 ייתכן שהוא מבוסס על CGI ולכן אינו יכול לתמוך ב־img_auth.
-ראו http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[http://www.mediawiki.org/wiki/Manual:Image_Authorization ראו דף עזרה על אישור תמונות].',
 'img-auth-notindir'         => 'הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.',
 'img-auth-badtitle'         => 'לא ניתן ליצור כותרת תקינה מתוך "$1".',
 'img-auth-nologinnWL'       => 'אינכם מחוברים לחשבון והדף "$1" אינו ברשימה המותרת.',
@@ -2040,7 +2041,7 @@ $1',
 'statistics-users-active-desc' => 'משתמשים שביצעו פעולה כלשהי ב{{PLURAL:$1|יום האחרון|־$1 הימים האחרונים}}',
 'statistics-mostpopular'       => 'הדפים הנצפים ביותר',
 
-'disambiguations'      => 'דפי פירושונים',
+'disambiguations'      => 'דפים שמקשרים לדפי פירושונים',
 'disambiguationspage'  => 'Template:פירושונים',
 'disambiguations-text' => "הדפים הבאים מקשרים ל'''דפי פירושונים'''.
 עליהם לקשר לדף הנושא הרלוונטי במקום זאת.<br />
@@ -3798,7 +3799,7 @@ $1',
 
 מדיה־ויקי מופצת בתקווה שהיא תהיה שימושית, אך '''ללא כל הבטחה לאחריות'''; אפילו לא אחריות משתמעת של '''יכולת להיסחר''' או '''התאמה לרישיון מסוים'''. ראו את הרישיון הציבורי הכללי של גנו לפרטים נוספים.
 
-הייתם צריכים לקבל [{{SERVER}}{{SCRIPTPATH}}/COPYING העתק של הרישיון הציבורי הכללי של גנו] יחד עם תוכנה זו; אם לא, כתבו למוסד לתוכנה חופשית: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA או [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html קראו אותו ברשת].",
+הייתם צריכים לקבל [{{SERVER}}{{SCRIPTPATH}}/COPYING העתק של הרישיון הציבורי הכללי של גנו] יחד עם תוכנה זו; אם לא, כתבו למוסד לתוכנה חופשית: Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA או [//www.gnu.org/licenses/old-licenses/gpl-2.0.html קראו אותו ברשת].",
 'version-software'              => 'תוכנות מותקנות',
 'version-software-product'      => 'תוכנה',
 'version-software-version'      => 'גרסה',

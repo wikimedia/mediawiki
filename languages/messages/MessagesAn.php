@@ -3101,7 +3101,7 @@ Tamién puede fer servir o [[Special:EditWatchlist|editor estándar]].",
 
 MediaWiki se distribuye con l'asperanza d'estar d'utilidat, pero SIN GARRA GUARANCIA; nian a guarancia implicita de COMERCIALIZACIÓN u ADEQUACIÓN TA UNA FINALIDAT DETERMINADA. En trobará más detalles en a Licencia Publica General GNU.
 
-Con iste programa ha d'haber recibiu [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia d'a Licencia Publica Cheneral GNU]; si no ye asinas, endrece-se a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA u bien [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html la leiga en linia].",
+Con iste programa ha d'haber recibiu [{{SERVER}}{{SCRIPTPATH}}/COPYING una copia d'a Licencia Publica Cheneral GNU]; si no ye asinas, endrece-se a la Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA u bien [//www.gnu.org/licenses/old-licenses/gpl-2.0.html la leiga en linia].",
 'version-software'              => 'Software instalato',
 'version-software-product'      => 'Producto',
 'version-software-version'      => 'Versión',

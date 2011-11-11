@@ -1954,7 +1954,7 @@ $1',
 'img-auth-nopathinfo'       => 'Недостаје PATH_INFO.
 Ваш сервер није подешен да прослеђује овакве податке.
 Можда је заснован на CGI-ју који не подржава img_auth.
-Погледајте http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Погледајте [//www.mediawiki.org/wiki/Manual:Image_Authorization?uselang=sr-ec одобравање слика.]',
 'img-auth-notindir'         => 'Захтевана путања није у подешеној фасцикли за слање.',
 'img-auth-badtitle'         => 'Не могу да створим исправан наслов за „$1“.',
 'img-auth-nologinnWL'       => 'Нисте пријављени и „$1“ није на списку дозвољених.',
@@ -4038,7 +4038,7 @@ $1',
 
 Медијавики се расподељује у нади да ће бити користан, али БЕЗ ИКАКВЕ ГАРАНЦИЈЕ; чак и без имплицитне гаранције о ПРОДАЈИ или ПОГОДНОСТИ ЗА ОДРЕЂЕНЕ НАМЕНЕ. Погледајте ГНУ-ову општу јавну лиценцу за више детаља.
 
-Требало би да сте примили [{{SERVER}}{{SCRIPTPATH}}/COPYING примерак ГНУ-ове опште јавне лиценце] заједно с овим програмом. Ако нисте, пишите Задужбини за слободан софтвер, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA или [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитајте на мрежи].',
+Требало би да сте примили [{{SERVER}}{{SCRIPTPATH}}/COPYING примерак ГНУ-ове опште јавне лиценце] заједно с овим програмом. Ако нисте, пишите Задужбини за слободан софтвер, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301, USA или [//www.gnu.org/licenses/old-licenses/gpl-2.0.html прочитајте на мрежи].',
 'version-software'              => 'Инсталиран софтвер',
 'version-software-product'      => 'Производ',
 'version-software-version'      => 'Издање',

@@ -3038,10 +3038,17 @@ $messages['cy'] = array(
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Rhestr postio datganiadau MediaWiki]',
 );
 
-/** Danish (Dansk) */
+/** Danish (Dansk)
+ * @author Peter Alberti
+ */
 $messages['da'] = array(
 	'mainpagetext' => "'''MediaWiki er nu installeret.'''",
-	'mainpagedocfooter' => 'Se vores engelsksprogede [//meta.wikimedia.org/wiki/MediaWiki_localisation dokumentation om tilpasning af brugergrænsefladen] og [//meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide brugervejledningen] for oplysninger om opsætning og anvendelse.',
+	'mainpagedocfooter' => 'Se [//meta.wikimedia.org/wiki/Help:Contents brugervejledningen] for oplysninger om brugen af wikiprogrammellet.
+
+== At komme i gang ==
+* [//www.mediawiki.org/wiki/Manual:Configuration_settings Listen over opsætningsmuligheder]
+* [//www.mediawiki.org/wiki/Manual:FAQ MediaWiki ofte stillede spørgsmål]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Postliste angående udgivelser af MediaWiki]',
 );
 
 /** German (Deutsch)
@@ -5204,7 +5211,7 @@ Debería recibir <doclink href=Copying>unha copia da licenza pública xeral GNU<
 * <doclink href=Readme>Léame</doclink>
 * <doclink href=ReleaseNotes>Notas de lanzamento</doclink>
 * <doclink href=Copying>Copia</doclink>
-* <doclink href=UpgradeDoc>Actualización</doclink>',
+* <doclink href=UpgradeDoc>Actualizacións</doclink>',
 	'config-env-good' => 'Rematou a comprobación da contorna.
 Pode instalar MediaWiki.',
 	'config-env-bad' => 'Rematou a comprobación da contorna.

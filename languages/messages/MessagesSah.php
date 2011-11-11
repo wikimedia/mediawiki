@@ -3381,7 +3381,7 @@ $1',
 
 MediaWiki туһалаах буоллун диэн тарҕатыллар, ол эрээри АТЫЫЛАНАР СЫАННАҺА эбэтэр ХАННЫК ЭРЭ ЧОПЧУ СОРУККА СӨП ТҮБЭҺИИТЭ бигэргэтиллибэт (гарантията суох). Сиһилии GNU General Public License усулуобуйатын көрүҥ.
 
-[{{SERVER}}{{SCRIPTPATH}}/COPYING  GNU General Public License копиятын] бу бырагыраамманы кытта ылыахтаах этигит, ол сатамматах буоллаҕына Free Software Foundation, Inc. тэрилтэҕэ сурукта суруйуҥ, бу аадырыска: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA эбэтэр [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html саайка киирэн ааҕыҥ].',
+[{{SERVER}}{{SCRIPTPATH}}/COPYING  GNU General Public License копиятын] бу бырагыраамманы кытта ылыахтаах этигит, ол сатамматах буоллаҕына Free Software Foundation, Inc. тэрилтэҕэ сурукта суруйуҥ, бу аадырыска: 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA эбэтэр [//www.gnu.org/licenses/old-licenses/gpl-2.0.html саайка киирэн ааҕыҥ].',
 'version-software'              => 'Туруоруллубут бырагырааммалар',
 'version-software-product'      => 'Бородуукта',
 'version-software-version'      => 'Барыл (торум)',
