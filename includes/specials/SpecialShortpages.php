@@ -33,14 +33,6 @@ class ShortPagesPage extends QueryPage {
 		parent::__construct( $name );
 	}
 
-	// inexpensive?
-	/**
-	 * This query is indexed as of 1.5
-	 */
-	function isExpensive() {
-		return true;
-	}
-
 	function isSyndicated() {
 		return false;
 	}
@@ -51,9 +43,9 @@ class ShortPagesPage extends QueryPage {
 			'fields' => array ( 'page_namespace AS namespace',
 					'page_title AS title',
 					'page_len AS value' ),
-			'conds' => array ( 'page_namespace' => MWNamespace::getContentNamespaces(),
+			'conds' => array ( 'page_namespace' => NS_MAIN,
 					'page_is_redirect' => 0 ),
-			'options' => array ( 'USE INDEX' => 'page_len' )
+			'options' => array ( 'USE INDEX' => 'page_redirect_namespaces_len' )
 		);
 	}
 
