@@ -3258,7 +3258,7 @@ function wfFindFile( $title, $options = array() ) {
  * Returns a valid placeholder object if the file does not exist.
  *
  * @param $title Title or String
- * @return File, or null if passed an invalid Title
+ * @return File|null A File, or null if passed an invalid Title
  */
 function wfLocalFile( $title ) {
 	return RepoGroup::singleton()->getLocalRepo()->newFile( $title );

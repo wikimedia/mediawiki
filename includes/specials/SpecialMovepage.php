@@ -376,9 +376,11 @@ class MovePageForm extends UnlistedSpecialPage {
 			$reason = wfMessage( 'delete_and_move_reason', $ot )->inContentLanguage()->text();
 
 			// Delete an associated image if there is
-			$file = wfLocalFile( $nt );
-			if( $file->exists() ) {
-				$file->delete( $reason, false );
+			if ( $nt->getNamespace() == NS_FILE ) {
+				$file = wfLocalFile( $nt );
+				if ( $file->exists() ) {
+					$file->delete( $reason, false );
+				}
 			}
 
 			$error = ''; // passed by ref
