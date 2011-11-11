@@ -645,8 +645,8 @@ XHTML id names.
 'tog-shownumberswatching'     => 'Show the number of watching users',
 'tog-oldsig'                  => 'Existing signature:',
 'tog-fancysig'                => 'Treat signature as wikitext (without an automatic link)',
-'tog-externaleditor'          => 'Use external editor by default (for experts only, needs special settings on your computer. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
-'tog-externaldiff'            => 'Use external diff by default (for experts only, needs special settings on your computer. [http://www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaleditor'          => 'Use external editor by default (for experts only, needs special settings on your computer. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
+'tog-externaldiff'            => 'Use external diff by default (for experts only, needs special settings on your computer. [//www.mediawiki.org/wiki/Manual:External_editors More information.])',
 'tog-showjumplinks'           => 'Enable "jump to" accessibility links',
 'tog-uselivepreview'          => 'Use live preview (requires JavaScript) (experimental)',
 'tog-forceeditsummary'        => 'Prompt me when entering a blank edit summary',
@@ -1010,7 +1010,7 @@ Please try again in a few minutes.',
 'protectedinterface'   => 'This page provides interface text for the software, and is protected to prevent abuse.',
 'editinginterface'     => "'''Warning:''' You are editing a page which is used to provide interface text for the software.
 Changes to this page will affect the appearance of the user interface for other users.
-For translations, please consider using [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
+For translations, please consider using [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 'sqlhidden'            => '(SQL query hidden)',
 'cascadeprotected'     => 'This page has been protected from editing, because it is included in the following {{PLURAL:$1|page, which is|pages, which are}} protected with the "cascading" option turned on:
 $2',
@@ -1713,7 +1713,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'searchdisabled'                   => '{{SITENAME}} search is disabled.
 You can search via Google in the meantime.
 Note that their indexes of {{SITENAME}} content may be out of date.',
-'googlesearch'                     => '<form method="get" action="http://www.google.com/search" id="googlesearch">
+'googlesearch'                     => '<form method="get" action="//www.google.com/search" id="googlesearch">
 	<input type="hidden" name="domains" value="{{SERVER}}" />
 	<input type="hidden" name="num" value="50" />
 	<input type="hidden" name="ie" value="$2" />
@@ -2245,7 +2245,7 @@ It cannot be properly checked for security.',
 'img-auth-nopathinfo'       => 'Missing PATH_INFO.
 Your server is not set up to pass this information.
 It may be CGI-based and cannot support img_auth.
-See http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization See image authorization.]',
 'img-auth-notindir'         => 'Requested path is not in the configured upload directory.',
 'img-auth-badtitle'         => 'Unable to construct a valid title from "$1".',
 'img-auth-nologinnWL'       => 'You are not logged in and "$1" is not in the whitelist.',
@@ -2556,8 +2556,8 @@ Please note that other web sites may link to a file with a direct URL, and so ma
 'booksources-invalid-isbn'  => 'The given ISBN does not appear to be valid; check for errors copying from the original source.',
 
 # Magic words
-'rfcurl'    => 'http://tools.ietf.org/html/rfc$1', # do not translate or duplicate this message to other languages
-'pubmedurl' => 'http://www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract', # do not translate or duplicate this message to other languages
+'rfcurl'    => '//tools.ietf.org/html/rfc$1', # do not translate or duplicate this message to other languages
+'pubmedurl' => '//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract', # do not translate or duplicate this message to other languages
 
 # Special:Log
 'specialloguserlabel'  => 'User:',
@@ -3286,7 +3286,7 @@ In the latter case you can also use a link, for example [[{{#Special:Export}}/{{
 'allmessagesdefault'            => 'Default message text',
 'allmessagescurrent'            => 'Current message text',
 'allmessagestext'               => 'This is a list of system messages available in the MediaWiki namespace.
-Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
+Please visit [//www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [//translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB'     => "This page cannot be used because '''\$wgUseDatabaseMessages''' has been disabled.",
 'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter by customisation state:',
@@ -4172,7 +4172,7 @@ $8', # only translate this message to other languages if you have to change it
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',
-'edit-externally-help' => '(See the [http://www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
+'edit-externally-help' => '(See the [//www.mediawiki.org/wiki/Manual:External_editors setup instructions] for more information)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'all',
@@ -4476,13 +4476,13 @@ You can also [[Special:EditWatchlist|use the standard editor]].',
 'version-version'               => '(Version $1)',
 'version-svn-revision'          => '(r$2)', # only translate this message to other languages if you have to change it
 'version-license'               => 'License',
-'version-poweredby-credits'     => "This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
+'version-poweredby-credits'     => "This wiki is powered by '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'others',
 'version-license-info'          => 'MediaWiki is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
 
 MediaWiki is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].',
+You should have received [{{SERVER}}{{SCRIPTPATH}}/COPYING a copy of the GNU General Public License] along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or [//www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].',
 'version-software'              => 'Installed software',
 'version-software-product'      => 'Product',
 'version-software-version'      => 'Version',
