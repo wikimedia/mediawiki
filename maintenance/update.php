@@ -88,7 +88,7 @@ class UpdateMediaWiki extends Maintenance {
 		$wgTitle = Title::newFromText( "MediaWiki database updater" );
 
 		$this->output( "MediaWiki {$wgVersion} Updater\n\n" );
-		
+
 		wfWaitForSlaves( 5 ); // let's not kill databases, shall we? ;) --tor
 
 		if ( !$this->hasOption( 'skip-compat-checks' ) ) {
@@ -121,8 +121,12 @@ class UpdateMediaWiki extends Maintenance {
 		$updater->doUpdates( $updates );
 
 		foreach( $updater->getPostDatabaseUpdateMaintenance() as $maint ) {
+			if ( $updater->updateRowExists( $maint ) ) {
+				continue;
+			}
 			$child = $this->runChild( $maint );
 			$child->execute();
+			$updater->insertUpdateRow( $maint );
 		}
 
 		$this->output( "\nDone.\n" );
