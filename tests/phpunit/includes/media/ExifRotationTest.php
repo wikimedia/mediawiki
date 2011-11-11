@@ -11,7 +11,7 @@ class ExifRotationTest extends MediaWikiTestCase {
 		$this->handler = new BitmapHandler();
 		$this->repo = new FSRepo(array(
 			'name' => 'temp',
-			'directory' => wfTempDir() . '/exif-test-' . time(),
+			'directory' => wfTempDir() . '/exif-test-' . time() . '-' . mt_rand(),
 			'url' => 'http://localhost/thumbtest'
 		));
 		if ( !wfDl( 'exif' ) ) {
