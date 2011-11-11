@@ -51,6 +51,7 @@ class CommandLineInstaller extends Maintenance {
 		$this->addOption( 'dbport', 'The database port; only for PostgreSQL (5432)', false, true );
 		$this->addOption( 'dbname', 'The database name (my_wiki)', false, true );
 		$this->addOption( 'dbpath', 'The path for the SQLite DB (/var/data)', false, true );
+		$this->addOption( 'dbprefix', 'Optional database table name prefix', false, true );
 		$this->addOption( 'installdbuser', 'The user to use for installing (root)', false, true );
 		$this->addOption( 'installdbpass', 'The pasword for the DB user to install as.', false, true );
 		$this->addOption( 'dbuser', 'The user to use for normal operations (wikiuser)', false, true );
