@@ -39,33 +39,33 @@ class FeedItem {
 	/**
 	 * @var Title
 	 */
-	var $Title = 'Wiki';
-	var $Description = '';
-	var $Url = '';
-	var $Date = '';
-	var $Author = '';
-	var $UniqueId = '';
-	var $RSSIsPermalink;
+	var $title;
+	var $description;
+	var $url;
+	var $date;
+	var $author;
+	var $uniqueId;
+	var $comments;
+	var $rssIsPermalink = false;
 
 	/**
 	 * Constructor
 	 *
-	 * @param $Title String|Title Item's title
-	 * @param $Description String
-	 * @param $Url String: URL uniquely designating the item.
-	 * @param $Date String: Item's date
-	 * @param $Author String: Author's user name
-	 * @param $Comments String
+	 * @param $title String|Title Item's title
+	 * @param $description String
+	 * @param $url String: URL uniquely designating the item.
+	 * @param $date String: Item's date
+	 * @param $author String: Author's user name
+	 * @param $comments String
 	 */
-	function __construct( $Title, $Description, $Url, $Date = '', $Author = '', $Comments = '' ) {
-		$this->Title = $Title;
-		$this->Description = $Description;
-		$this->Url = $Url;
-		$this->UniqueId = $Url;
-		$this->RSSIsPermalink = false;
-		$this->Date = $Date;
-		$this->Author = $Author;
-		$this->Comments = $Comments;
+	function __construct( $title, $description, $url, $date = '', $author = '', $comments = '' ) {
+		$this->title = $title;
+		$this->description = $description;
+		$this->url = $url;
+		$this->uniqueId = $url;
+		$this->date = $date;
+		$this->author = $author;
+		$this->comments = $comments;
 	}
 
 	/**
@@ -86,8 +86,8 @@ class FeedItem {
 	 * @return String
 	 */
 	public function getUniqueId() {
-		if ( $this->UniqueId ) {
-			return $this->xmlEncode( $this->UniqueId );
+		if ( $this->uniqueId ) {
+			return $this->xmlEncode( $this->uniqueId );
 		}
 	}
 
@@ -95,11 +95,11 @@ class FeedItem {
 	 * set the unique id of an item
 	 *
 	 * @param $uniqueId String: unique id for the item
-	 * @param $RSSisPermalink Boolean: set to true if the guid (unique id) is a permalink (RSS feeds only)
+	 * @param $rssIsPermalink Boolean: set to true if the guid (unique id) is a permalink (RSS feeds only)
 	 */
-	public function setUniqueId($uniqueId, $RSSisPermalink = false) {
-		$this->UniqueId = $uniqueId;
-		$this->RSSIsPermalink = $RSSisPermalink;
+	public function setUniqueId( $uniqueId, $rssIsPermalink = false ) {
+		$this->uniqueId = $uniqueId;
+		$this->rssIsPermalink = $rssIsPermalink;
 	}
 
 	/**
@@ -108,7 +108,7 @@ class FeedItem {
 	 * @return String
 	 */
 	public function getTitle() {
-		return $this->xmlEncode( $this->Title );
+		return $this->xmlEncode( $this->title );
 	}
 
 	/**
@@ -117,7 +117,7 @@ class FeedItem {
 	 * @return String
 	 */
 	public function getUrl() {
-		return $this->xmlEncode( $this->Url );
+		return $this->xmlEncode( $this->url );
 	}
 
 	/**
@@ -126,7 +126,7 @@ class FeedItem {
 	 * @return String
 	 */
 	public function getDescription() {
-		return $this->xmlEncode( $this->Description );
+		return $this->xmlEncode( $this->description );
 	}
 
 	/**
@@ -145,7 +145,7 @@ class FeedItem {
 	 * @return String
 	 */
 	public function getDate() {
-		return $this->Date;
+		return $this->date;
 	}
 
 	/**
@@ -154,7 +154,7 @@ class FeedItem {
 	 * @return String
 	 */
 	public function getAuthor() {
-		return $this->xmlEncode( $this->Author );
+		return $this->xmlEncode( $this->author );
 	}
 
 	/**
@@ -163,7 +163,7 @@ class FeedItem {
 	 * @return String
 	 */
 	public function getComments() {
-		return $this->xmlEncode( $this->Comments );
+		return $this->xmlEncode( $this->comments );
 	}
 
 	/**
