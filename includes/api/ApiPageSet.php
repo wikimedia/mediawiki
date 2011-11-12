@@ -645,8 +645,8 @@ class ApiPageSet extends ApiQueryBase {
 			// We found pages that aren't in the redirect table
 			// Add them
 			foreach ( $this->mPendingRedirectIDs as $id => $title ) {
-				$article = new Article( $title );
-				$rt = $article->insertRedirect();
+				$page = WikiPage::factory( $title );
+				$rt = $page->insertRedirect();
 				if ( !$rt ) {
 					// What the hell. Let's just ignore this
 					continue;
