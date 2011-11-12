@@ -61,7 +61,7 @@ class AncientPagesPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgContLang;
 
-		$d = $this->getLang()->timeanddate( wfTimestamp( TS_MW, $result->value ), true );
+		$d = $this->getLang()->userTimeAndDate( $result->value, $this->getUser() );
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		$link = Linker::linkKnown(
 			$title,
