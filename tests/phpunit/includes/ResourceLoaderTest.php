@@ -1,6 +1,6 @@
 <?php
 
-class ResourceLoaderTest extends PHPUnit_Framework_TestCase {
+class ResourceLoaderTest extends MediaWikiTestCase {
 
 	protected static $resourceLoaderRegisterModulesHook;
 
