@@ -190,6 +190,14 @@ abstract class DatabaseUpdater {
 	public function addExtensionField( $tableName, $columnName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'addField', $tableName, $columnName, $sqlPath, true );
 	}
+	
+	/**
+	 * Add a maintenance script to be run after the database updates are complete
+	 * @param $class string Name of a Maintenance subclass
+	 */
+	public function addPostDatabaseUpdateMaintenance( $class ) {
+		$this->postDatabaseUpdateMaintenance[] = $class;
+	}
 
 	/**
 	 * Get the list of extension-defined updates
