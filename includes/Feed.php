@@ -306,7 +306,7 @@ class RSSFeed extends ChannelFeed {
 		<item>
 			<title><?php print $item->getTitle() ?></title>
 			<link><?php print wfExpandUrl( $item->getUrl(), PROTO_CURRENT ) ?></link>
-			<guid<?php if( !$item->RSSIsPermalink ) print ' isPermaLink="false"' ?>><?php print $item->getUniqueId() ?></guid>
+			<guid<?php if( !$item->rssIsPermalink ) print ' isPermaLink="false"' ?>><?php print $item->getUniqueId() ?></guid>
 			<description><?php print $item->getDescription() ?></description>
 			<?php if( $item->getDate() ) { ?><pubDate><?php print $this->formatTime( $item->getDate() ) ?></pubDate><?php } ?>
 			<?php if( $item->getAuthor() ) { ?><dc:creator><?php print $item->getAuthor() ?></dc:creator><?php }?>
