@@ -12,6 +12,7 @@
  * @author Dineshjk
  * @author Dsvyas
  * @author Haritosh
+ * @author Rangilo Gujarati
  * @author RaviC
  * @author Sushant savla
  * @author לערי ריינהארט
@@ -628,6 +629,7 @@ Please log in again after you receive it.
 'emailconfirmlink'           => 'તમારા ઇ-મેઇલ સરનામાની પુષ્ટિ કરો',
 'invalidemailaddress'        => 'આ ઈ-મેલ અયોગ્ય માળખું ધરાવ્હે છે  માટે સ્વીકારી શકાશે નહીં
 કૃપયા યોગ્ય માળખામાં ઇ-મેલ લખો',
+'cannotchangeemail'          => 'એકાઉન્ટ ઈ મેલ એડ્રસ આ વીકી પર નહિ બદલી શકાય.',
 'accountcreated'             => 'ખાતું ખોલવામાં આવ્યું છે',
 'accountcreatedtext'         => '$1 માટે સભ્ય ખાતુ બનાવ્યું.',
 'createaccount-title'        => '{{SITENAME}} માટે ખાતુ બનાવ્યું',
@@ -639,11 +641,13 @@ Please log in again after you receive it.
 'usernamehasherror'          => 'સભ્યનામમાં ગડબડિયા ચિહ્નો ન હોઈ શકે',
 'login-throttled'            => 'તમે હાલમાં જ ઘણા પ્રવેશ પ્રયત્નો કર્યા.
 કૃપા કરી ફરી પ્રયાસ પહેલાં થોડી રાહ જુઓ.',
+'login-abort-generic'        => 'તમારું પ્રવેશ નિષ્ફળ થયું - છોડી દેવાયું',
 'loginlanguagelabel'         => 'ભાષા: $1',
 'suspicious-userlogout'      => 'લોગ આઉટ કરવાની તમારી વિનંતિ પૂરી ન કરી શકાઇ. એમ લાગે છે કે તેને તૃટિ પામેલ બ્રાઉઝર કે પ્રોક્સી દ્વારા મોકલાઈ હતી.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'PHPની મેલ() કામગીરીમાં અજ્ઞાત ત્રુટિ',
+'user-mail-no-addy'      => 'ઈ મેલ એડ્રસ વગર ઈ મેલ મોકલવા પ્રયત્ન કરેલ.',
 
 # Change password dialog
 'resetpass'                 => 'ગુપ્તસંજ્ઞા બદલો',
@@ -665,6 +669,7 @@ Please log in again after you receive it.
 'resetpass-temp-password'   => 'કામચલાવ ગુપ્તસંજ્ઞા:',
 
 # Special:PasswordReset
+'passwordreset'          => 'પાસવર્ડ રીસેટ કરો',
 'passwordreset-legend'   => 'પાસવર્ડ રીસેટ કરો',
 'passwordreset-disabled' => 'આ વિકી પર પાસવર્ડ રીસેટ કરવા પર પ્રતિબંધ છે.',
 'passwordreset-username' => 'સભ્ય નામ:',

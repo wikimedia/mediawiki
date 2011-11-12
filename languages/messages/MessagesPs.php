@@ -1414,7 +1414,7 @@ $1',
 'listusers-editsonly'     => 'يوازې هغه کارنان چې سمونونه يې کړي ښکاره کول',
 'listusers-creationsort'  => 'د جوړېدو د نېټې له مخې اوډل',
 'usereditcount'           => '{{PLURAL:$1|سمون|سمونونه}}',
-'usercreated'             => 'په $1 نېټه په $2 بجو جوړ شو',
+'usercreated'             => 'په $1 نېټه په $2 بجو {{GENDER:$3|جوړ شو}}',
 'newpages'                => 'نوي مخونه',
 'newpages-username'       => 'کارن-نوم:',
 'ancientpages'            => 'تر ټولو زاړه مخونه',
@@ -1470,7 +1470,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'ونډې',
 
 # Special:LinkSearch
-'linksearch'      => 'باندنۍ تړنې',
+'linksearch'      => 'د باندنيو تړنو پلټنه',
 'linksearch-pat'  => 'د پلټنې مخبېلګه:',
 'linksearch-ns'   => 'نوم-تشيال:',
 'linksearch-ok'   => 'پلټل',
@@ -1995,6 +1995,7 @@ $UNWATCHURL  نه ليدنه وکړۍ
 'others'           => 'نور',
 'siteusers'        => 'د {{SITENAME}} {{PLURAL:$2|کارن|کارنان}} $1',
 'anonusers'        => 'د {{SITENAME}} {{PLURAL:$2|ورکنومی کارن|ورکنومي کارنان}} $1',
+'creditspage'      => 'د دې مخ کرېډټونه',
 
 # Info page
 'pageinfo-title'            => 'د "$1" مالومات',

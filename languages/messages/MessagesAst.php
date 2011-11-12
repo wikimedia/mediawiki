@@ -1580,10 +1580,10 @@ Nun se pue comprobar la seguridá de mou afayadizu.",
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accesu denegáu',
-'img-auth-nopathinfo'       => 'Falta PATH_INFO.
+'img-auth-nopathinfo'       => "Falta PATH_INFO.
 El sirvidor nun ta configuráu pa pasar esta información.
 Pue tar basáu en CGI y nun tener sofitu pa img_auth.
-Visita http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Ver autorización d'imaxes.]",
 'img-auth-notindir'         => 'El camín solicitáu nun ta nel direutoriu de xubíes configuráu.',
 'img-auth-badtitle'         => 'Nun se pue construir un títulu validu dende "$1".',
 'img-auth-nologinnWL'       => 'Nun tas coneutáu y "$1" nun ta na llista blanca.',

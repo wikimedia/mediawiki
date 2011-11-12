@@ -583,6 +583,7 @@ Muss De repareere.',
 De Funktion es: „<code>$1</code>“<br />
 De Aanfroch es: „<code>$2</code>“<br />',
 'viewsource'           => 'Wikitex aanluure',
+'viewsource-title'     => 'Der Wikitäx vun dä Sigg „$1“ belooere.',
 'actionthrottled'      => "Dat ka'mer nit esu öff maache",
 'actionthrottledtext'  => 'Dat darf mer nor en jeweße Zahl Mole hengerenander maache. Do bes jrad aan de Jrenz jekumme. Kannze jo en e paar Menutte widder probeere.',
 'protectedpagetext'    => 'Die Sigg es jeschöz, un mer kann se nit ändere.',
@@ -1861,7 +1862,7 @@ Se kann nit aanjemäße jeprööf wääde, of se sescher es.',
 'img-auth-accessdenied'     => 'Keine Zohjang',
 'img-auth-nopathinfo'       => 'De <code lang="en">PATH_INFO</code> fäählt.
 Dä Webßööver es nit doför ennjerescht, di Ennfommazjuhn wigger ze jävve.
-Hä künnd_op <code lang="en">CGI</code> opjebout sin, un dröm <code lang="en">img_auth</code> nit ongshtöze künne. Loor onger http://www.mediawiki.org/wiki/Manual:Image_Authorization noh, wat domet es.',
+Hä künnd_op <code lang="en">CGI</code> opjebout sin, un dröm <code lang="en">img_auth</code> nit ongshtöze künne. Loor em [http://www.mediawiki.org/wiki/Manual:Image_Authorization Handbooch] noh, wat domet es.',
 'img-auth-notindir'         => 'Dä aanjefroochte Pat is nit em enjeschtallte Verzeischneß för et Huhlaade.',
 'img-auth-badtitle'         => 'Uß „$1“ lööt sesch keine jöltijje Tittel maache.',
 'img-auth-nologinnWL'       => 'Do bes nit ennjelogg, un „$1“ es nit op dä Leß met de zohjelohße Datteiname.',
@@ -2036,7 +2037,7 @@ All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
 'statistics-users-active-desc' => 'Metmaacher, die {{PLURAL:$1|hück un jesterre|en de läzte $1 Dääsh|hück}} jät jemaat han.',
 'statistics-mostpopular'       => 'De miets affjeroofe Sigge',
 
-'disambiguations'      => '„(Wat es dat?)“-Sigge',
+'disambiguations'      => 'Sigge met Lengks dren op „(Wat ėß dat?)“-Sigge',
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => 'En de Sigge hee noh sin Links dren, di op en „(Watt ėßß datt?)“-Sigg jonn.
 Esu en Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
@@ -2318,7 +2319,7 @@ dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'watchmethod-list'     => 'Ben de Oppassliss am pröfe, noh de letzte Änderung',
 'watchlistcontains'    => 'En dä Oppassliss {{PLURAL:$1|es ein Sigg|sinner <strong>$1</strong> Sigge|sinner <strong>kein</strong> Sigge}}.',
 'iteminvalidname'      => 'Dä Endrach „$1“ hät ene kapodde Name.',
-'wlnote'               => '{{PLURAL:$1|Hee es de letzte Änderung us|Hee sin de letzte <strong>$1</strong> Änderunge us|Mer han kein Äbderunge en}} de letzte {{PLURAL:$2|Stund|<strong>$2</strong> Stunde|<strong>noll</strong> Stunde}}.',
+'wlnote'               => '{{PLURAL:$1|Hee es de letzte Änderung us|Hee sin de letzte <strong>$1</strong> Änderunge us|Mer han kein Äbderunge en}} de letzte {{PLURAL:$2|Stund|<strong>$2</strong> Stunde|<strong>noll</strong> Stunde}} zigg em $3 öm $4 Uhr.',
 'wlshowlast'           => 'Zeich de letzte | $1 | Stunde | $2 | Dage | $3 | aan, dun',
 'watchlist-options'    => 'Eijeschaffte fun de Oppassless',
 
@@ -2517,6 +2518,7 @@ Versione för die neu Sigg enjerich. Die neu Sigg weed nit ersetz.',
 Luur Der et [[Special:Log/delete|Logboch met de fottjeschmesse Sigge]] aan, do häs De de Neuste fottjeschmesse
 un widder herjehollte Sigge.',
 'undelete-header'              => 'Loor Der [[Special:Log/delete|{{LCFIRST:{{int:deletionlog}}}}]] aan, doh fengks De de och neulesch fottjeschmesse Sigge.',
+'undelete-search-title'        => 'Noh fottjeschmesse Sigge söke',
 'undelete-search-box'          => 'Noh fottjeschmesse Sigge söke',
 'undelete-search-prefix'       => 'Zeisch Sigge, di aanfange met:',
 'undelete-search-submit'       => 'Söhke',
@@ -2525,6 +2527,7 @@ un widder herjehollte Sigge.',
 'undelete-bad-store-key'       => 'Dä Dattei ier Version fun dä Zick $1 kunnte mer nit zeröck holle: Di Datei wohr ald beim Fottschmieße ja nimmieh do.',
 'undelete-cleanup-error'       => 'Fähler beim Fottschmieße vun de Archiv-Version „$1“, die nit jebruch wood.',
 'undelete-missing-filearchive' => 'De Datei met dä Archiv-Nommer $1 künne mer nit zerök holle. Di ham_mer nit in de Datebangk. Künnt sinn, di es ald zeröckjehollt.',
+'undelete-error'               => 'Ene Fähler es opjetrodde beim Zerökholle',
 'undelete-error-short'         => 'Fähler beim Zerökholle fun de Datei $1',
 'undelete-error-long'          => 'Mer wollte en Datei widder zeröckholle, ävver dobei sin_er Fääler opjefalle:
 

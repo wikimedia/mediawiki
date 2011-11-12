@@ -523,6 +523,7 @@ Mesjiens haet emes angers det al gedaon.',
 Funksie: $1<br />
 Query: $2',
 'viewsource'           => 'Bekiek brónteks',
+'viewsource-title'     => 'Bekiek brón van $1',
 'actionthrottled'      => 'Hanjeling taengegehauwe',
 'actionthrottledtext'  => "Es maotregel taege spam is 't aantal keer per tiedseinheid dets te dees hanjeling kèns verrichte beperk. De höbs de limiet euversjreje. Perbeer 't euver 'n aantal minute obbenuuj.",
 'protectedpagetext'    => 'Dees pagina is beveilig. Bewirke is neet meugelik.',
@@ -1633,7 +1634,7 @@ De veiligheid kin neet waere gekónterleerdj.",
 'img-auth-nopathinfo'       => 'PATH_INFO óntbrèk.
 Diene server is neet ingesteld om dees informatie door te gaeve.
 Misjien gebroek deze CGI, en dan wört img_auth neet ongersteund.
-Zuuch http://www.mediawiki.org/wiki/Manual:Image_Authorization veur mee informatie.',
+Zuuch [//www.mediawiki.org/wiki/Manual:Image_Authorization aafbeildingsrechte] veur mee informatie.',
 'img-auth-notindir'         => "'t Ópgevraogdje paad is neet de ingestelde uploadmap.",
 'img-auth-badtitle'         => 'Kèn geine geldige paginanaam make van "$1".',
 'img-auth-nologinnWL'       => 'Doe bös neet aangemeld en "$1" steit neet op de witte lies.',
@@ -1796,7 +1797,7 @@ De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 'statistics-users-active-desc' => "Gebroekers die in de aafgeloupe {{PLURAL:$1|daag|$1 daag}} 'ne hanjeling höbbe oetgevoerd",
 'statistics-mostpopular'       => "Meisbekeke pazjena's",
 
-'disambiguations'      => "Verdudelikingspazjena's",
+'disambiguations'      => "Links nao verdudelikingspazjena's",
 'disambiguationspage'  => 'Template:Verdudeliking',
 'disambiguations-text' => "Hiej onger staon pagina's die verwieze nao 'ne '''redirect'''.
 Deze heure waarsjienlik direct nao 't zjuste ongerwerp te verwiezen.<br />
@@ -2046,7 +2047,7 @@ Toekomstige verangeringe aan dees pagina en de biebehurende euverlèkpagina weur
 'watchmethod-list'     => "controlere van gevolgde pazjena's veur recènte verangeringe",
 'watchlistcontains'    => "Dien volglies bevat $1 {{PLURAL:$1|pazjena|pazjena's}}.",
 'iteminvalidname'      => "Probleem mit object '$1', ongeljige naam...",
-'wlnote'               => "Hieonger {{PLURAL:$1|steit de lètste verangering|staon de lètste $1 verangeringe}} van {{PLURAL:$2|'t lètse oer|de lètste <b>$2</b> oer}}.",
+'wlnote'               => "Hieónger {{PLURAL:$1|steit de lètste verangering|staon de lètste $1 verangeringe}} van {{PLURAL:$2|'t lètste oer|de lètste <b>$2</b> oer}} óp $3 óm $4.",
 'wlshowlast'           => 'Tuin lètste $1 ore $2 daag $3',
 'watchlist-options'    => 'Opties veur volglies',
 
@@ -2238,6 +2239,7 @@ Es d'r 'ne nuuj pagina mit dezelfde naam is aangemaak sins de pagina is eweggesj
 
 In 't [[Special:Log/delete|logbook verwiederde pazjena's]] staon recènte verwiederinge en herstelhanjelinge.",
 'undelete-header'              => "Zuug [[Special:Log/delete|'t logbook verwiederde pazjena's]] veur recènt verwiederde pazjena's.",
+'undelete-search-title'        => "Doorzeuk verwiederde pazjena's",
 'undelete-search-box'          => "Doorzeuk verwiederde pazjena's",
 'undelete-search-prefix'       => "Tuin pagina's die beginne mit:",
 'undelete-search-submit'       => 'Zeuk',
@@ -2246,6 +2248,7 @@ In 't [[Special:Log/delete|logbook verwiederde pazjena's]] staon recènte verwie
 'undelete-bad-store-key'       => "Bestandsversie van tiedstip $1 kos neet hersteld waere: 't bestand miste al veurdet 't waerde verwiederd.",
 'undelete-cleanup-error'       => 'Fout bie \'t herstelle van ongebroek archiefbestand "$1".',
 'undelete-missing-filearchive' => "'t Luk neet om ID $1 trök te plaatse omdet 't neet in de database is. Mesjien is 't al trökgeplaats.",
+'undelete-error'               => "d'r Is 'n fout bie 't wösje vanne pagina",
 'undelete-error-short'         => "Fout bie 't herstelle van bestand: $1",
 'undelete-error-long'          => "d'r Zeen foute opgetraeje bie 't herstelle van 't bestand:
 

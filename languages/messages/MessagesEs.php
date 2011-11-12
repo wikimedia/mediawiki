@@ -687,6 +687,7 @@ Por favor, avisa a un [[Special:ListUsers/sysop|administrador]], tomando nota de
 'badarticleerror'      => 'Esta acción no se puede llevar a cabo en esta página.',
 'cannotdelete'         => 'La página o archivo «$1» no se pudo borrar.
 Puede que ya haya sido borrado por alguien más.',
+'cannotdelete-title'   => 'No se pudede borrar la página «$1»',
 'badtitle'             => 'Título incorrecto',
 'badtitletext'         => 'El título de la página solicitada está vacío, no es válido, o es un enlace interidioma o interwiki incorrecto.
 Puede que contenga uno o más caracteres que no se pueden usar en los títulos.',
@@ -697,10 +698,12 @@ Puede que contenga uno o más caracteres que no se pueden usar en los títulos.'
 Función: $1<br />
 Consulta: $2',
 'viewsource'           => 'Ver fuente',
+'viewsource-title'     => 'Ver el código fuente de «$1»',
 'actionthrottled'      => 'Acción bloqueada',
 'actionthrottledtext'  => "Como medida contra el ''spam'', la acción que estás realizando está limitada a un número determinado de veces en un periodo corto de tiempo, y has excedido ese límite. Por favor inténtalo de nuevo en unos minutos.",
 'protectedpagetext'    => 'Esta página ha sido protegida para evitar su edición.',
 'viewsourcetext'       => 'Puedes ver y copiar el código fuente de esta página:',
+'viewyourtext'         => "Puedes ver y copiar el código de '''tus ediciones''' a esta página:",
 'protectedinterface'   => 'Esta página provee texto del interfaz del software, y está protegida para evitar vandalismos.',
 'editinginterface'     => "'''Aviso:''' Estás editando una página usada para proporcionar texto de interfaz para el software. Los cambios en esta página afectarán a la apariencia de la interfaz para los demás usuarios. Para traducciones, por favor considera usar [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], el proyecto de regionalización de MediaWiki.",
 'sqlhidden'            => '(Consulta SQL oculta)',
@@ -1511,12 +1514,12 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'group-suppress'      => 'Supresores de ediciones',
 'group-all'           => '(todos)',
 
-'group-user-member'          => 'usuario',
-'group-autoconfirmed-member' => 'usuario autoconfirmado',
+'group-user-member'          => '{{GENDER:$1|usuario|usuaria}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|usuario autoconfirmado|usuaria autoconfirmada}}',
 'group-bot-member'           => 'bot',
-'group-sysop-member'         => 'administrador',
+'group-sysop-member'         => '{{GENDER:$1|administrador|administradora}}',
 'group-bureaucrat-member'    => 'burócrata',
-'group-suppress-member'      => 'supresor de ediciones',
+'group-suppress-member'      => '{{GENDER:$1|supresor|supresora}} de ediciones',
 
 'grouppage-user'          => '{{ns:project}}:Usuarios',
 'grouppage-autoconfirmed' => '{{ns:project}}:Usuarios autoconfirmados',
@@ -1619,6 +1622,7 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'action-suppressionlog'       => 'ver este registro privado',
 'action-block'                => 'bloquear a este usuario para que no edite',
 'action-protect'              => 'cambiar los niveles de protección para esta página',
+'action-rollback'             => 'revertir rápidamente las ediciones del último usuario que modificó una página en particular',
 'action-import'               => 'importar esta página desde otro wiki',
 'action-importupload'         => 'importar esta página mediante la carga de un archivo',
 'action-patrol'               => 'marcar ediciones de otros como patrulladas',
@@ -1824,9 +1828,9 @@ No puede comprobarse adecuadamente su seguridad.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acceso denegado',
 'img-auth-nopathinfo'       => 'Falta PATH_INFO.
-Tu servidor no está configurado para pasar esta información.
-Puede que este basado en CGI y no sea compatible con img_auth.
-Véase http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Tu servidor no está configurado para proporcionar esta información.
+Puede que esté basado en CGI y no sea compatible con img_auth.
+Véase [//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization.]',
 'img-auth-notindir'         => 'Ruta solicitad no esá en el directorio de cargas configurado',
 'img-auth-badtitle'         => 'Incapaz de construir un título válido de «$1».',
 'img-auth-nologinnWL'       => 'No has iniciado sesión y «$1» no está en la lista blanca.',
@@ -1992,7 +1996,7 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 'statistics-users-active-desc' => 'Usuarios que han ejecutado una acción en {{PLURAL:$1|el último día|los últimos $1 días}}',
 'statistics-mostpopular'       => 'Páginas más vistas',
 
-'disambiguations'      => 'Páginas de desambiguación',
+'disambiguations'      => 'Páginas que enlazan con páginas de desambiguación',
 'disambiguationspage'  => 'Template:Desambiguación',
 'disambiguations-text' => "Las siguientes páginas enlazan con una '''página de desambiguación'''.
 En lugar de ello deberían enlazar con  el tema apropiado.<br />
@@ -2065,7 +2069,7 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 'listusers-editsonly'     => 'Muestra sólo usuarios con ediciones',
 'listusers-creationsort'  => 'Ordenado por fecha de creación',
 'usereditcount'           => '$1 {{PLURAL:$1|edición|ediciones}}',
-'usercreated'             => 'Creado el $1 en $2',
+'usercreated'             => '{{GENDER:$3|Creado|Creada}} el $1, $2',
 'newpages'                => 'Páginas nuevas',
 'newpages-username'       => 'Nombre de usuario',
 'ancientpages'            => 'Artículos más antiguos',
@@ -2240,7 +2244,7 @@ La dirección electrónica que indicaste en [[Special:Preferences|tus preferenci
 'watchmethod-list'     => 'revisando las páginas vigiladas en busca de cambios recientes',
 'watchlistcontains'    => 'Tu lista de seguimiento posee $1 {{PLURAL:$1|página|páginas}}.',
 'iteminvalidname'      => "Problema con el artículo '$1', nombre inválido...",
-'wlnote'               => "A continuación {{PLURAL:$1|se muestra el último cambio|se muestran los últimos '''$1''' cambios}} en {{PLURAL:$2|la última hora|las últimas '''$2''' horas}}.",
+'wlnote'               => "A continuación {{PLURAL:$1|se muestra el último cambio|se muestran los últimos '''$1''' cambios}} en {{PLURAL:$2|la última hora|las últimas '''$2''' horas}} a fecha de $4 $3.",
 'wlshowlast'           => 'Ver los cambios de las últimas $1 horas, $2 días  $3',
 'watchlist-options'    => 'Opciones de la lista de seguimiento',
 
@@ -2350,7 +2354,10 @@ Véase [[Special:ProtectedPages|la lista de páginas protegidas]] para ver las p
 'unprotectedarticle'          => 'desprotegió «[[$1]]»',
 'movedarticleprotection'      => 'cambiadas protecciones de «[[$2]]» a «[[$1]]»',
 'protect-title'               => 'Cambiando el nivel de protección de «$1»',
+'protect-title-notallowed'    => 'Ver el nivel de protección de «$1»',
 'prot_1movedto2'              => 'heredando la protección al trasladar [[$1]] a [[$2]]',
+'protect-badnamespace-title'  => 'Espacio de nombres no protegible',
+'protect-badnamespace-text'   => 'Las páginas de este espacio de nombres no pueden ser protegidas',
 'protect-legend'              => 'Confirmar protección',
 'protectcomment'              => 'Motivo:',
 'protectexpiry'               => 'Caducidad:',
@@ -2436,6 +2443,7 @@ alguien más puede haber deshecho el borrado antes.',
 
 Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de los últimos borrados y restauraciones.",
 'undelete-header'              => 'En el [[Special:Log/delete|registro de borrados]] se listan las páginas eliminadas.',
+'undelete-search-title'        => 'Buscar páginas borradas',
 'undelete-search-box'          => 'Buscar páginas borradas',
 'undelete-search-prefix'       => 'Mostrar páginas que empiecen por:',
 'undelete-search-submit'       => 'Buscar',
@@ -2445,6 +2453,7 @@ Consulta el [[Special:Log/delete|registro de borrados]] para ver una lista de lo
 'undelete-cleanup-error'       => 'Error al borrar el archivo no utilizado "$1".',
 'undelete-missing-filearchive' => 'No se ha podido restaurar el archivo de ID $1 debido a que no está en la base de datos.
 Puede que ya haya sido restaurado.',
+'undelete-error'               => 'Error restaurando la página',
 'undelete-error-short'         => 'Error restaurando archivo: $1',
 'undelete-error-long'          => 'Se encontraron errores mientras se restauraba el archivo:
 
@@ -2721,7 +2730,7 @@ Por favor, elige otro nombre.',
 
 La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al traslado?',
 'delete_and_move_confirm'      => 'Sí, borrar la página',
-'delete_and_move_reason'       => 'Borrada para permitir el traslado',
+'delete_and_move_reason'       => 'Borrada para trasladar [[$1]]',
 'selfmove'                     => 'Los títulos de origen y destino son los mismos;
 no se puede trasladar una página sobre sí misma.',
 'immobile-source-namespace'    => 'No se pueden trasladar páginas en el espacio de nombres «$1»',
@@ -3636,6 +3645,9 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'watchlisttools-view' => 'Ver cambios',
 'watchlisttools-edit' => 'Ver y editar tu lista de seguimiento',
 'watchlisttools-raw'  => 'Editar lista de seguimiento en crudo',
+
+# Signatures
+'signature' => '[[{{ns:User}}:$1|$1]] ([[{{ns:User_talk}}:$1|discusión]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta desconocida «$1»',
