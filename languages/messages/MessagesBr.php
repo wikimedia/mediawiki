@@ -2936,7 +2936,7 @@ Kuzhet e vo ar re all dre ziouer.
 * gpsaltitude",
 
 # EXIF tags
-'exif-imagewidth'                  => 'Led',
+'exif-imagewidth'                  => 'Ledander',
 'exif-imagelength'                 => 'Hed',
 'exif-bitspersample'               => 'Niv. a vitoù dre barzhioù',
 'exif-compression'                 => 'Seurt gwaskadur',

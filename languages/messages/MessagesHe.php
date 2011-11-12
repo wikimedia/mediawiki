@@ -1875,7 +1875,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO חסר.
 השרת אינו מוגדר להעברת מידע זה.
 ייתכן שהוא מבוסס על CGI ולכן אינו יכול לתמוך ב־img_auth.
-[http://www.mediawiki.org/wiki/Manual:Image_Authorization ראו דף עזרה על אישור תמונות].',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization ראו דף עזרה על אישור תמונות].',
 'img-auth-notindir'         => 'הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.',
 'img-auth-badtitle'         => 'לא ניתן ליצור כותרת תקינה מתוך "$1".',
 'img-auth-nologinnWL'       => 'אינכם מחוברים לחשבון והדף "$1" אינו ברשימה המותרת.',

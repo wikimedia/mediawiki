@@ -449,9 +449,9 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'group-sysop' => 'Verwalter',
 'group-all'   => '(all)',
 
-'group-user-member'  => 'Yuuser',
-'group-bot-member'   => 'Waddefresser',
-'group-sysop-member' => 'Verwalter',
+'group-user-member'  => '{{GENDER:$1|Yuuser}}',
+'group-bot-member'   => '{{GENDER:$1|Waddefresser}}',
+'group-sysop-member' => '{{GENDER:$1|Verwalter}}',
 
 'grouppage-user'  => '{{ns:project}}:Yuuser',
 'grouppage-bot'   => '{{ns:project}}:Waddefresser',
@@ -524,6 +524,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # Special:ListFiles
 'imgfile'         => 'Feil',
 'listfiles'       => 'Lischt vun Feils',
+'listfiles_date'  => 'Datum',
 'listfiles_name'  => 'Naame',
 'listfiles_user'  => 'Yuuser',
 'listfiles_size'  => 'Grees',
@@ -541,7 +542,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'filehist-dimensions' => 'Grees',
 'filehist-filesize'   => 'Grees vum Feil',
 'filehist-comment'    => 'Aamaericking',
-'imagelinks'          => 'Gleecher fer es Feil',
+'imagelinks'          => 'Yuus vun dem Feil',
 'shared-repo-from'    => 'vun $1',
 
 # File reversion
@@ -626,7 +627,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'categories' => 'Abdeelinge',
 
 # Special:LinkSearch
-'linksearch'    => 'Gewebbgleecher',
+'linksearch'    => 'Gewebbgleecher uffgucke',
 'linksearch-ns' => 'Blatznaame:',
 'linksearch-ok' => 'Uffgucke',
 
@@ -652,7 +653,8 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 
 # E-mail user
 'emailuser'       => 'E-Poschd fer den Yuuser',
-'defemailsubject' => '{{SITENAME}}-E-Poschde',
+'defemailsubject' => '{{SITENAME}} - E-Poschde vun Yuuser „$1“',
+'emailusername'   => 'Yuuser-Naame:',
 'emailfrom'       => 'Vun:',
 'emailto'         => 'Fer:',
 'emailsend'       => 'Schicke',
@@ -661,6 +663,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # Watchlist
 'watchlist'         => 'Mei Watsch-Lischt',
 'mywatchlist'       => 'Mei Watsch-Lischt',
+'watchlistfor2'     => 'Vun $1 $2',
 'watch'             => 'watsche',
 'watchthispage'     => 'watsch des Blatt',
 'unwatch'           => 'Nimmi watsche',
@@ -692,6 +695,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'delete-edit-reasonlist' => "Grind fer's Lesche ennere",
 
 # Protect
+'prot_1movedto2'            => 'hot „[[$1]]“ nooch „[[$2]]“ gezoge',
 'protectcomment'            => 'Grund:',
 'protect-default'           => 'All Yuuser',
 'protect-level-sysop'       => 'Nur Verwalter',
@@ -739,12 +743,13 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'whatlinkshere'            => 'Was doher zeigt',
 'whatlinkshere-page'       => 'Blatt:',
 'isredirect'               => 'Weiderleidingsblatt',
-'isimage'                  => 'Feilgleecher',
+'isimage'                  => 'Gleecher fer Feil',
 'whatlinkshere-prev'       => '{{PLURAL:$1|letscht|letscht $1}}',
 'whatlinkshere-next'       => '{{PLURAL:$1|neegschter|neegschte $1}}',
 'whatlinkshere-links'      => '← Gleecher',
 'whatlinkshere-hideredirs' => 'Weiderleidinge $1',
 'whatlinkshere-hidelinks'  => 'Gleecher $1',
+'whatlinkshere-hideimages' => 'Feil Gleecher $1',
 
 # Block/unblock
 'ipadressorusername' => 'IP-Adress odder Yuusernaame:',
@@ -757,6 +762,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'infiniteblock'      => 'fer immer',
 'blocklink'          => 'Aabinne',
 'contribslink'       => 'Ardickele',
+'proxyblocksuccess'  => 'Geduh.',
 
 # Move page
 'move-page'               => '„$1“ ziehe',
