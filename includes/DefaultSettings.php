@@ -3374,6 +3374,13 @@ $wgEmailConfirmToEdit = false;
 
 /**
  * Permission keys given to users in each group.
+ * This is an array where the keys are all groups and each value is either:
+ *    a) An array of the format (right => boolean)
+ *    b) An array of the format (right => namespace => boolean)
+ *
+ * The second format is used to support per-namespace permissions.
+ * Note that this feature does not fully work for all permission types.
+ *
  * All users are implicitly in the '*' group including anonymous visitors;
  * logged-in users are all implicitly in the 'user' group. These will be
  * combined with the permissions of all groups that a given user is listed
@@ -3384,14 +3391,10 @@ $wgEmailConfirmToEdit = false;
  * unable to perform certain essential tasks or access new functionality
  * when new permissions are introduced and default grants established.
  *
- * If set to an array instead of a boolean, it is assumed that the array is in
- * NS => bool form in order to support per-namespace permissions. Note that
- * this feature does not fully work for all permission types.
- *
  * Functionality to make pages inaccessible has not been extensively tested
  * for security. Use at your own risk!
  *
- * This replaces wgWhitelistAccount and wgWhitelistEdit
+ * This replaces $wgWhitelistAccount and $wgWhitelistEdit
  */
 $wgGroupPermissions = array();
 
