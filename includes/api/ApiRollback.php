@@ -53,10 +53,10 @@ class ApiRollback extends ApiBase {
 
 		// User and title already validated in call to getTokenSalt from Main
 		$titleObj = $this->getRbTitle();
-		$articleObj = new Article( $titleObj );
+		$pageObj = WikiPage::factory( $titleObj );
 		$summary = ( isset( $params['summary'] ) ? $params['summary'] : '' );
 		$details = array();
-		$retval = $articleObj->doRollback( $this->getRbUser(), $summary, $params['token'], $params['markbot'], $details );
+		$retval = $pageObj->doRollback( $this->getRbUser(), $summary, $params['token'], $params['markbot'], $details, $this->getUser() );
 
 		if ( $retval ) {
 			// We don't care about multiple errors, just report one of them
