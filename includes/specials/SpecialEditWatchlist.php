@@ -232,8 +232,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 
 	/**
 	 * Get a list of titles on a user's watchlist, excluding talk pages,
-	 * and return as a two-dimensional array with namespace, title and
-	 * redirect status
+	 * and return as a two-dimensional array with namespace and title.
 	 *
 	 * @return array
 	 */
@@ -253,7 +252,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		foreach ( $res as $row ) {
 			$lb->add( $row->wl_namespace, $row->wl_title );
 			if ( !MWNamespace::isTalk( $row->wl_namespace ) ) {
-				$titles[$row->wl_namespace][$row->wl_title] = false;
+				$titles[$row->wl_namespace][$row->wl_title] = 1;
 			}
 		}
 
