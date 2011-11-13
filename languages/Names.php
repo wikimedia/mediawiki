@@ -293,7 +293,7 @@
 	# 'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
 	'ruq-latn' => 'Vlăheşte',	# Megleno-Romanian (Latin script)
 	'rw' => 'Kinyarwanda',	# Kinyarwanda, should possibly be Kinyarwandi
-	'sa' => 'संस्कृत',	# Sanskrit
+	'sa' => 'संस्कृतम्',	# Sanskrit
 	'sah' => 'Саха тыла', # Sakha
 	'sc' => 'Sardu',		# Sardinian
 	'scn' => 'Sicilianu',	# Sicilian
