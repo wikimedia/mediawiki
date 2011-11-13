@@ -411,7 +411,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$nsText = ($ns == NS_MAIN)
 					? wfMsgHtml( 'blanknamespace' )
 					: htmlspecialchars( $wgContLang->getFormattedNsText( $ns ) );
-				$this->toc .= Linker::tocLine( "mw-htmlform-{$data['section']}", $nsText, ++$tocLength, 1 ) . Linker::tocLineEnd();
+				$this->toc .= Linker::tocLine( "mw-htmlform-{$data['section']}", $nsText,
+					$this->getLang()->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
 			}
 			$this->toc = Linker::tocList( $this->toc );
 		} else {
