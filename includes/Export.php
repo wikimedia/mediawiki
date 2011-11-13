@@ -482,7 +482,7 @@ class XmlDumpWriter {
 		if ( $row->page_is_redirect ) {
 			$page = WikiPage::factory( $title );
 			$redirect = $page->getRedirectTarget();
-			$redirect instanceOf Title && $redirect->isValidRedirectTarget() {
+			if ( $redirect instanceOf Title && $redirect->isValidRedirectTarget() ) {
 				$out .= '    ' . Xml::element( 'redirect', array( 'title' => $redirect->getPrefixedText() ) ) . "\n";
 			}
 		}
