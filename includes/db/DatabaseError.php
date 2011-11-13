@@ -176,7 +176,7 @@ class DBConnectionError extends DBError {
 		}
 
 		# We can't, cough and die in the usual fashion
-		return parent::reportHTML();
+		parent::reportHTML();
 	}
 
 	/**
@@ -198,7 +198,7 @@ class DBConnectionError extends DBError {
 <div style="margin: 1.5em">$usegoogle<br />
 <small>$outofdate</small></div>
 <!-- SiteSearch Google -->
-<form method="get" action="http://www.google.com/search" id="googlesearch">
+<form method="get" action="//www.google.com/search" id="googlesearch">
 	<input type="hidden" name="domains" value="$server" />
 	<input type="hidden" name="num" value="50" />
 	<input type="hidden" name="ie" value="UTF-8" />
@@ -223,7 +223,7 @@ EOT;
 		global $wgTitle, $wgOut, $wgRequest;
 
 		if ( $wgOut->isDisabled() ) {
-			return; // Done already?
+			return ''; // Done already?
 		}
 
 		if ( $wgTitle ) { // use $wgTitle if we managed to set it
@@ -255,7 +255,7 @@ class DBQueryError extends DBError {
 	public $error, $errno, $sql, $fname;
 
 	function __construct( DatabaseBase &$db, $error, $errno, $sql, $fname ) {
-		$message = "A database error has occurred.  Did you forget to run maintenance/update.php after upgrading?  See: http://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
+		$message = "A database error has occurred.  Did you forget to run maintenance/update.php after upgrading?  See: //www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
 		  "Query: $sql\n" .
 		  "Function: $fname\n" .
 		  "Error: $errno $error\n";
