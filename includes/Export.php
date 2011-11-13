@@ -476,14 +476,14 @@ class XmlDumpWriter {
 	function openPage( $row ) {
 		$out = "  <page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$out .= '    ' . Xml::elementClean( 'title', array(), strval( $title->getPrefixedText() ) ) . "\n";
+		$out .= '    ' . Xml::elementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
 		$out .= '    ' . Xml::element( 'ns', array(), strval( $row->page_namespace) ) . "\n";
 		$out .= '    ' . Xml::element( 'id', array(), strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
 			$page = WikiPage::factory( $title );
 			$redirect = $page->getRedirectTarget();
-			if ( $redirect !== null ) {
-				$out .= '    ' . Xml::element( 'redirect', array( 'title' => strval( $redirect ) ) ) . "\n";
+			$redirect instanceOf Title && $redirect->isValidRedirectTarget() {
+				$out .= '    ' . Xml::element( 'redirect', array( 'title' => $redirect->getPrefixedText() ) ) . "\n";
 			}
 		}
 		if ( $row->page_restrictions != '' ) {
