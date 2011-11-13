@@ -57,7 +57,8 @@ class SpecialBlock extends SpecialPage {
 
 	public function execute( $par ) {
 		# Permission check
-		if( !$this->userCanExecute( $this->getUser() ) ) {
+		$user = $this->getUser();
+		if( !$this->userCanExecute( $user ) ) {
 			$this->displayRestrictionError();
 			return;
 		}
@@ -82,7 +83,7 @@ class SpecialBlock extends SpecialPage {
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
 
 		# bug 15810: blocked admins should have limited access here
-		$status = self::checkUnblockSelf( $this->target );
+		$status = self::checkUnblockSelf( $this->target, $user );
 		if ( $status !== true ) {
 			throw new ErrorPageError( 'badaccess', $status );
 		}
@@ -99,7 +100,7 @@ class SpecialBlock extends SpecialPage {
 
 		$form = new HTMLForm( $fields, $this->getContext() );
 		$form->setWrapperLegend( wfMsg( 'blockip-legend' ) );
-		$form->setSubmitCallback( array( __CLASS__, 'processForm' ) );
+		$form->setSubmitCallback( array( __CLASS__, 'processUIForm' ) );
 
 		$t = $this->alreadyBlocked
 			? wfMsg( 'ipb-change-block' )
@@ -492,7 +493,7 @@ class SpecialBlock extends SpecialPage {
 	 * @param $alldata Array
 	 * @return Message
 	 */
-	public static function validateTargetField( $value, $alldata = null ) {
+	public static function validateTargetField( $value, $alldata, $form ) {
 		global $wgBlockCIDRLimit;
 
 		list( $target, $type ) = self::getTargetAndType( $value );
@@ -500,13 +501,13 @@ class SpecialBlock extends SpecialPage {
 		if( $type == Block::TYPE_USER ){
 			# TODO: why do we not have a User->exists() method?
 			if( !$target->getId() ){
-				return wfMessage( 'nosuchusershort',
+				return $form->msg( 'nosuchusershort',
 					wfEscapeWikiText( $target->getName() ) );
 			}
 
-			$status = self::checkUnblockSelf( $target );
+			$status = self::checkUnblockSelf( $target, $form->getUser() );
 			if ( $status !== true ) {
-				return wfMessage( 'badaccess', $status );
+				return $form->msg( 'badaccess', $status );
 			}
 
 		} elseif( $type == Block::TYPE_RANGE ){
@@ -516,30 +517,37 @@ class SpecialBlock extends SpecialPage {
 				|| ( IP::isIPv6( $ip ) && $wgBlockCIDRLimit['IPv6'] == 128 ) )
 			{
 				# Range block effectively disabled
-				return wfMessage( 'range_block_disabled' );
+				return $form->msg( 'range_block_disabled' );
 			}
 
 			if( ( IP::isIPv4( $ip ) && $range > 32 )
 				|| ( IP::isIPv6( $ip ) && $range > 128 ) )
 			{
 				# Dodgy range
-				return wfMessage( 'ip_range_invalid' );
+				return $form->msg( 'ip_range_invalid' );
 			}
 
 			if( IP::isIPv4( $ip ) && $range < $wgBlockCIDRLimit['IPv4'] ) {
-				return wfMessage( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] );
+				return $form->msg( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv4'] );
 			}
 
 			if( IP::isIPv6( $ip ) && $range < $wgBlockCIDRLimit['IPv6'] ) {
-				return wfMessage( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
+				return $form->msg( 'ip_range_toolarge', $wgBlockCIDRLimit['IPv6'] );
 			}
 		} elseif( $type == Block::TYPE_IP ){
 			# All is well
 		} else {
-			return wfMessage( 'badipaddress' );
+			return $form->msg( 'badipaddress' );
 		}
 
 		return true;
+	}
+
+	/**
+	 * Submit callback for an HTMLForm object, will simply pass
+	 */
+	public static function processUIForm( array $data, HTMLForm $form ) {
+		return self::processForm( $data, $form->getContext() );
 	}
 
 	/**
@@ -547,8 +555,10 @@ class SpecialBlock extends SpecialPage {
 	 * @param  $data Array
 	 * @return Bool|String
 	 */
-	public static function processForm( array $data ){
-		global $wgUser, $wgBlockAllowsUTEdit;
+	public static function processForm( array $data, IContextSource $context ){
+		global $wgBlockAllowsUTEdit;
+
+		$performer = $context->getUser();
 
 		// Handled by field validator callback
 		// self::validateTargetField( $data['Target'] );
@@ -566,7 +576,7 @@ class SpecialBlock extends SpecialPage {
 			# Give admins a heads-up before they go and block themselves.  Much messier
 			# to do this for IPs, but it's pretty unlikely they'd ever get the 'block'
 			# permission anyway, although the code does allow for it
-			if( $target === $wgUser->getName() &&
+			if( $target === $performer->getName() &&
 				( $data['PreviousTarget'] !== $data['Target'] || !$data['Confirm'] ) )
 			{
 				return array( 'ipb-blockingself' );
@@ -598,7 +608,7 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		if( $data['HideUser'] ) {
-			if( !$wgUser->isAllowed('hideuser') ){
+			if( !$performer->isAllowed('hideuser') ){
 				# this codepath is unreachable except by a malicious user spoofing forms,
 				# or by race conditions (user has oversight and sysop, loads block form,
 				# and is de-oversighted before submission); so need to fail completely
@@ -624,7 +634,7 @@ class SpecialBlock extends SpecialPage {
 		# Create block object.
 		$block = new Block();
 		$block->setTarget( $target );
-		$block->setBlocker( $wgUser );
+		$block->setBlocker( $performer );
 		$block->mReason = $data['Reason'][0];
 		$block->mExpiry = self::parseExpiryInput( $data['Expiry'] );
 		$block->prevents( 'createaccount', $data['CreateAccount'] );
@@ -634,7 +644,7 @@ class SpecialBlock extends SpecialPage {
 		$block->isAutoblocking( $data['AutoBlock'] );
 		$block->mHideName = $data['HideUser'];
 
-		if( !wfRunHooks( 'BlockIp', array( &$block, &$wgUser ) ) ) {
+		if( !wfRunHooks( 'BlockIp', array( &$block, &$performer ) ) ) {
 			return array( 'hookaborted' );
 		}
 
@@ -658,7 +668,7 @@ class SpecialBlock extends SpecialPage {
 
 				# If the name was hidden and the blocking user cannot hide
 				# names, then don't allow any block changes...
-				if( $currentBlock->mHideName && !$wgUser->isAllowed( 'hideuser' ) ) {
+				if( $currentBlock->mHideName && !$performer->isAllowed( 'hideuser' ) ) {
 					return array( 'cant-see-hidden-user' );
 				}
 
@@ -680,7 +690,7 @@ class SpecialBlock extends SpecialPage {
 			$logaction = 'block';
 		}
 
-		wfRunHooks( 'BlockIpComplete', array( $block, $wgUser ) );
+		wfRunHooks( 'BlockIpComplete', array( $block, $performer ) );
 
 		# Set *_deleted fields if requested
 		if( $data['HideUser'] ) {
@@ -689,7 +699,7 @@ class SpecialBlock extends SpecialPage {
 
 		# Can't watch a rangeblock
 		if( $type != Block::TYPE_RANGE && $data['Watch'] ) {
-			$wgUser->addWatch( Title::makeTitle( NS_USER, $target ) );
+			$performer->addWatch( Title::makeTitle( NS_USER, $target ) );
 		}
 
 		# Block constructor sanitizes certain block options on insert
@@ -791,24 +801,23 @@ class SpecialBlock extends SpecialPage {
 	 * others, and probably shouldn't be able to unblock themselves
 	 * either.
 	 * @param $user User|Int|String
+	 * @param $performer User user doing the request
 	 * @return Bool|String true or error message key
 	 */
-	public static function checkUnblockSelf( $user ) {
-		global $wgUser;
-
+	public static function checkUnblockSelf( $user, User $performer ) {
 		if ( is_int( $user ) ) {
 			$user = User::newFromId( $user );
 		} elseif ( is_string( $user ) ) {
 			$user = User::newFromName( $user );
 		}
 
-		if( $wgUser->isBlocked() ){
-			if( $user instanceof User && $user->getId() == $wgUser->getId() ) {
+		if( $performer->isBlocked() ){
+			if( $user instanceof User && $user->getId() == $performer->getId() ) {
 				# User is trying to unblock themselves
-				if ( $wgUser->isAllowed( 'unblockself' ) ) {
+				if ( $performer->isAllowed( 'unblockself' ) ) {
 					return true;
 				# User blocked themselves and is now trying to reverse it
-				} elseif ( $wgUser->blockedBy() === $wgUser->getName() ) {
+				} elseif ( $performer->blockedBy() === $performer->getName() ) {
 					return true;
 				} else {
 					return 'ipbnounblockself';

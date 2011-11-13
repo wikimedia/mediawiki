@@ -891,7 +891,7 @@ abstract class HTMLFormField {
 		}
 
 		if ( isset( $this->mValidationCallback ) ) {
-			return call_user_func( $this->mValidationCallback, $value, $alldata );
+			return call_user_func( $this->mValidationCallback, $value, $alldata, $this->mParent );
 		}
 
 		return true;
@@ -899,7 +899,7 @@ abstract class HTMLFormField {
 
 	function filter( $value, $alldata ) {
 		if ( isset( $this->mFilterCallback ) ) {
-			$value = call_user_func( $this->mFilterCallback, $value, $alldata );
+			$value = call_user_func( $this->mFilterCallback, $value, $alldata, $this->mParent );
 		}
 
 		return $value;

@@ -66,7 +66,7 @@ class ApiUnblock extends ApiBase {
 		}
 		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
-			$status = SpecialBlock::checkUnblockSelf( $params['user'] );
+			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
 				$this->dieUsageMsg( $status );
 			}
@@ -77,7 +77,7 @@ class ApiUnblock extends ApiBase {
 			'Reason' => is_null( $params['reason'] ) ? '' : $params['reason']
 		);
 		$block = Block::newFromTarget( $data['Target'] );
-		$retval = SpecialUnblock::processUnblock( $data );
+		$retval = SpecialUnblock::processUnblock( $data, $this->getContext() );
 		if ( $retval !== true ) {
 			$this->dieUsageMsg( $retval[0] );
 		}

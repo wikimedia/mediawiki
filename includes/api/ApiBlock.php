@@ -62,7 +62,7 @@ class ApiBlock extends ApiBase {
 		}
 		# bug 15810: blocked admins should have limited access here
 		if ( $user->isBlocked() ) {
-			$status = SpecialBlock::checkUnblockSelf( $params['user'] );
+			$status = SpecialBlock::checkUnblockSelf( $params['user'], $user );
 			if ( $status !== true ) {
 				$this->dieUsageMsg( array( $status ) );
 			}
@@ -93,7 +93,7 @@ class ApiBlock extends ApiBase {
 			'Confirm' => true,
 		);
 
-		$retval = SpecialBlock::processForm( $data );
+		$retval = SpecialBlock::processForm( $data, $this->getContext() );
 		if ( $retval !== true ) {
 			// We don't care about multiple errors, just report one of them
 			$this->dieUsageMsg( $retval );
