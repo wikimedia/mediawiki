@@ -1,4 +1,3 @@
-<?php
 /**
   * These determine things like interwikis, language selectors, and so on.
   * Safe to change without running scripts on the respective sites.
@@ -290,7 +289,7 @@
 	# 'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
 	'ruq-latn' => 'Vlăheşte',	# Megleno-Romanian (Latin script)
 	'rw' => 'Kinyarwanda',	# Kinyarwanda, should possibly be Kinyarwandi
-	'sa' => 'संस्कृत',	# Sanskrit
+	'sa' => 'संस्कृतम्',	# Sanskrit
 	'sah' => 'Саха тыла', # Sakha
 	'sc' => 'Sardu',		# Sardinian
 	'scn' => 'Sicilianu',	# Sicilian
