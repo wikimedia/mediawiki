@@ -789,31 +789,33 @@ class EditPage {
 	 */
 	protected function getPreloadedText( $preload ) {
 		global $wgUser, $wgParser;
+
 		if ( !empty( $this->mPreloadText ) ) {
 			return $this->mPreloadText;
-		} elseif ( $preload !== '' ) {
-			$title = Title::newFromText( $preload );
-			# Check for existence to avoid getting MediaWiki:Noarticletext
-			if ( isset( $title ) && $title->exists() && $title->userCanRead() ) {
-				$article = new Article( $title );
-
-				if ( $article->isRedirect() ) {
-					$title = Title::newFromRedirectRecurse( $article->getContent() );
-					# Redirects to missing titles are displayed, to hidden pages are followed
-					# Copying observed behaviour from ?action=view
-					if ( $title->exists() ) {
-						if ($title->userCanRead() ) {
-							$article = new Article( $title );
-						} else {
-							return "";
-						}
-					}
-				}
-				$parserOptions = ParserOptions::newFromUser( $wgUser );
-				return $wgParser->getPreloadText( $article->getContent(), $title, $parserOptions );
-			}
 		}
-		return '';
+		
+		if ( $preload === '' ) {
+			return '';
+		}
+
+		$title = Title::newFromText( $preload );
+		# Check for existence to avoid getting MediaWiki:Noarticletext
+		if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
+			return '';
+		}
+
+		$page = WikiPage::factory( $title );
+		if ( $page->isRedirect() ) {
+			$title = $page->getRedirectTarget();
+			# Same as before
+			if ( $title === null || !$title->exists() || !$title->userCan( 'read' ) ) {
+				return '';
+			}
+			$page = WikiPage::factory( $title );
+		}
+
+		$parserOptions = ParserOptions::newFromUser( $wgUser );
+		return $wgParser->getPreloadText( $page->getRawText(), $title, $parserOptions );
 	}
 
 	/**
