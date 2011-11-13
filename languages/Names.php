@@ -1,3 +1,4 @@
+<?php
 /**
   * These determine things like interwikis, language selectors, and so on.
   * Safe to change without running scripts on the respective sites.
@@ -175,6 +176,9 @@
 	'ko' => '한국어',	# Korean
 	'ko-kp' => '한국어 (조선)',	# Korean (DPRK)
 	'koi' => 'Перем Коми', # Komi-Permyak
+	'kok' => 'कोंकणी', 
+	'kok-ml' => 'കൊങ്കണി', 
+	'kok-kn' => 'ಕೊಂಕಣಿ',
 	'kr' => 'Kanuri',		# Kanuri, Central
 	'krc' => 'Къарачай-Малкъар', # Karachay-Balkar
 	'kri' => 'Krio', # Krio
@@ -289,7 +293,7 @@
 	# 'ruq-grek' => 'Βλαεστε',	# Megleno-Romanian (Greek script)
 	'ruq-latn' => 'Vlăheşte',	# Megleno-Romanian (Latin script)
 	'rw' => 'Kinyarwanda',	# Kinyarwanda, should possibly be Kinyarwandi
-	'sa' => 'संस्कृतम्',	# Sanskrit
+	'sa' => 'संस्कृत',	# Sanskrit
 	'sah' => 'Саха тыла', # Sakha
 	'sc' => 'Sardu',		# Sardinian
 	'scn' => 'Sicilianu',	# Sicilian
