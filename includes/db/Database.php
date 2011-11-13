@@ -2258,6 +2258,10 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Returns an appropriately quoted sequence value for inserting a new row.
 	 * MySQL has autoincrement fields, so this is just NULL. But the PostgreSQL
 	 * subclass will return an integer, and save the value for insertId()
+	 *
+	 * Any implementation of this function should *not* involve reusing
+	 * sequence numbers created for rolled-back transactions.
+	 * See http://bugs.mysql.com/bug.php?id=30767 for details.
 	 */
 	function nextSequenceValue( $seqName ) {
 		return null;
