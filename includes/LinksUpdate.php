@@ -456,11 +456,13 @@ class LinksUpdate {
 		$arr = array();
 		$diffs = array_diff_key( $this->mExternals, $existing );
 		foreach( $diffs as $url => $dummy ) {
-			$arr[] = array(
-				'el_from'   => $this->mId,
-				'el_to'     => $url,
-				'el_index'  => wfMakeUrlIndex( $url ),
-			);
+			foreach( wfMakeUrlIndexes( $url ) as $index ) {
+				$arr[] = array(
+					'el_from'   => $this->mId,
+					'el_to'     => $url,
+					'el_index'  => $index,
+				);
+			}
 		}
 		return $arr;
 	}
