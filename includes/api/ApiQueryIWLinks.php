@@ -79,20 +79,27 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			);
 		}
 
+		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		if ( isset( $params['prefix'] ) ) {
 			$this->addWhereFld( 'iwl_prefix', $params['prefix'] );
 			if ( isset( $params['title'] ) ) {
 				$this->addWhereFld( 'iwl_title', $params['title'] );
-				$this->addOption( 'ORDER BY', 'iwl_from' );
+				$this->addOption( 'ORDER BY', 'iwl_from' . $dir );
 			} else {
-				$this->addOption( 'ORDER BY', 'iwl_title, iwl_from' );
+				$this->addOption( 'ORDER BY', array(
+						'iwl_title' . $dir,
+						'iwl_from' . $dir
+				));
 			}
 		} else {
 			// Don't order by iwl_from if it's constant in the WHERE clause
 			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-				$this->addOption( 'ORDER BY', 'iwl_prefix' );
+				$this->addOption( 'ORDER BY', 'iwl_prefix' . $dir );
 			} else {
-				$this->addOption( 'ORDER BY', 'iwl_from, iwl_prefix' );
+				$this->addOption( 'ORDER BY', array (
+						'iwl_from' . $dir,
+						'iwl_prefix' . $dir
+				));
 			}
 		}
 
@@ -142,6 +149,13 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			'continue' => null,
 			'prefix' => null,
 			'title' => null,
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				)
+			),
 		);
 	}
 
@@ -152,6 +166,7 @@ class ApiQueryIWLinks extends ApiQueryBase {
 			'continue' => 'When more results are available, use this to continue',
 			'prefix' => 'Prefix for the interwiki',
 			'title' => "Interwiki link to search for. Must be used with {$this->getModulePrefix()}prefix",
+			'dir' => 'The direction in which to list',
 		);
 	}
 

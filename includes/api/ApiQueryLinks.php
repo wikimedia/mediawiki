@@ -48,6 +48,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->prefix = 'pl';
 				$this->description = 'link';
 				$this->titlesParam = 'titles';
+				$this->titlesParamDescription = 'Only list links to these titles. Useful for checking whether a certain page links to a certain title.';
 				$this->helpUrl = 'http://www.mediawiki.org/wiki/API:Properties#links_.2F_pl';
 				break;
 			case self::TEMPLATES:
@@ -55,6 +56,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 				$this->prefix = 'tl';
 				$this->description = 'template';
 				$this->titlesParam = 'templates';
+				$this->titlesParamDescription = 'Only list these templates. Useful for checking whether a certain page uses a certain template.';
 				$this->helpUrl = 'http://www.mediawiki.org/wiki/API:Properties#templates_.2F_tl';
 				break;
 			default:
@@ -131,6 +133,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			);
 		}
 
+		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Here's some MySQL craziness going on: if you use WHERE foo='bar'
 		// and later ORDER BY foo MySQL doesn't notice the ORDER BY is pointless
 		// but instead goes and filesorts, because the index for foo was used
@@ -138,15 +141,15 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		// clause from the ORDER BY clause
 		$order = array();
 		if ( count( $this->getPageSet()->getGoodTitles() ) != 1 ) {
-			$order[] = "{$this->prefix}_from";
+			$order[] = $this->prefix . '_from' . $dir;
 		}
 		if ( count( $params['namespace'] ) != 1 ) {
-			$order[] = "{$this->prefix}_namespace";
+			$order[] = $this->prefix . '_namespace' . $dir;
 		}
 
-		$order[] = "{$this->prefix}_title";
-		$this->addOption( 'ORDER BY', implode( ', ', $order ) );
-		$this->addOption( 'USE INDEX', "{$this->prefix}_from" );
+		$order[] = $this->prefix . "_title" . $dir;
+		$this->addOption( 'ORDER BY', $order );
+		$this->addOption( 'USE INDEX', $this->prefix . '_from' );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
 		$res = $this->select( __METHOD__ );
@@ -207,22 +210,25 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 			$this->titlesParam => array(
 				ApiBase::PARAM_ISMULTI => true,
 			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				)
+			),
 		);
 	}
 
 	public function getParamDescription() {
 		$desc = $this->description;
-		$arr = array(
+		return array(
 			'namespace' => "Show {$desc}s in this namespace(s) only",
 			'limit' => "How many {$desc}s to return",
 			'continue' => 'When more results are available, use this to continue',
+			$this->titlesParam => $this->titlesParamDescription,
+			'dir' => 'The direction in which to list',
 		);
-		if ( $this->getModuleName() == self::LINKS ) {
-			$arr[$this->titlesParam] = 'Only list links to these titles. Useful for checking whether a certain page links to a certain title.';
-		} elseif ( $this->getModuleName() == self::TEMPLATES ) {
-			$arr[$this->titlesParam] = 'Only list these templates. Useful for checking whether a certain page uses a certain template.';
-		}
-		return $arr;
 	}
 
 	public function getDescription() {

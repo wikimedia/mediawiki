@@ -214,11 +214,10 @@ abstract class ApiQueryBase extends ApiBase {
 
 		if ( $sort ) {
 			$order = $field . ( $isDirNewer ? '' : ' DESC' );
-			if ( !isset( $this->options['ORDER BY'] ) ) {
-				$this->addOption( 'ORDER BY', $order );
-			} else {
-				$this->addOption( 'ORDER BY', $this->options['ORDER BY'] . ', ' . $order );
-			}
+			// Append ORDER BY
+			$optionOrderBy = isset( $this->options['ORDER BY'] ) ? (array)$this->options['ORDER BY'] : array();
+			$optionOrderBy[] = $order;
+			$this->addOption( 'ORDER BY', $optionOrderBy );
 		}
 	}
 
