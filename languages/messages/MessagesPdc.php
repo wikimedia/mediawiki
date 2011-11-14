@@ -124,6 +124,7 @@ $messages = array(
 'category_header'                => 'Bledder in Abdeeling „$1“',
 'subcategories'                  => 'Unnerabdeeling',
 'category-media-header'          => 'Media in Abdeeling „$1“',
+'category-empty'                 => "''Die Abdeeling hot zu daere Zeit kene Bledder oder Feils.''",
 'category-article-count-limited' => '{{PLURAL:$1|Sell Blatt iss|Selle $1 Bledder sin}} in daer Abdeeling drin:',
 'category-file-count-limited'    => '{{PLURAL:$1|Sell Feil iss|Selle $1 Feils sin}} in daer Abdeeling drin:',
 'listingcontinuesabbrev'         => '(weider)',
@@ -150,7 +151,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-delete'  => 'Lösche',
+'vector-action-delete'  => 'Lesche',
 'vector-action-move'    => 'Ziehe',
 'vector-action-protect' => 'Schitze',
 'vector-view-create'    => 'Schtaerte',
@@ -172,11 +173,12 @@ $messages = array(
 'printableversion' => 'Version zum Drucke',
 'permalink'        => 'Permanent Gleecher',
 'print'            => 'Drucke',
+'view'             => 'Aagucke',
 'edit'             => 'Ennere/Tscheensche',
 'create'           => 'Schtaerte',
 'editthispage'     => 'Des Blatt ennere',
 'create-this-page' => 'Blatt schtaerte',
-'delete'           => 'Lösche',
+'delete'           => 'Lesche',
 'deletethispage'   => 'Des Blatt lösche',
 'protect'          => 'Schitze',
 'protect_change'   => 'tscheensche',
@@ -191,6 +193,7 @@ $messages = array(
 'views'            => 'Aasichte',
 'toolbox'          => 'Gscharr',
 'userpage'         => 'Yuuserblatt zeige',
+'projectpage'      => 'Projekt-Blatt aagucke',
 'imagepage'        => 'Feils zeige',
 'templatepage'     => 'Moddle zeige',
 'categorypage'     => 'Abeelingsblatt zeige',
@@ -238,6 +241,8 @@ Guck aa [[Special:Version|Versionsblatt]]',
 'toc'                     => 'Lischt vum Inhalt',
 'showtoc'                 => 'Zeige',
 'hidetoc'                 => 'Verschwinne losse',
+'collapsible-collapse'    => 'Zuklappe',
+'collapsible-expand'      => 'Uffklappe',
 'viewdeleted'             => '$1 zeige?',
 'feedlinks'               => 'Feed:',
 'site-rss-feed'           => 'RSS-Feed fer $1',
@@ -247,15 +252,16 @@ Guck aa [[Special:Version|Versionsblatt]]',
 'red-link-title'          => '$1 (Blatt gebt es net)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Blatt',
-'nstab-user'     => 'Yuuser-Blatt',
-'nstab-media'    => 'Media-Blatt',
-'nstab-special'  => 'Besunneres Blatt',
-'nstab-project'  => 'Project-Blatt',
-'nstab-image'    => 'Feil',
-'nstab-template' => 'Moddel',
-'nstab-help'     => 'Hilf',
-'nstab-category' => 'Abdeeling',
+'nstab-main'      => 'Blatt',
+'nstab-user'      => 'Yuuser-Blatt',
+'nstab-media'     => 'Media-Blatt',
+'nstab-special'   => 'Besunneres Blatt',
+'nstab-project'   => 'Project-Blatt',
+'nstab-image'     => 'Feil',
+'nstab-mediawiki' => 'Melding vum System',
+'nstab-template'  => 'Moddel',
+'nstab-help'      => 'Hilf',
+'nstab-category'  => 'Abdeeling',
 
 # General errors
 'error'               => 'Mischteek',
@@ -298,7 +304,14 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'resetpass-submit-loggedin' => 'Paesswatt ennere',
 
 # Special:PasswordReset
-'passwordreset-username' => 'Yuuser-Naame:',
+'passwordreset'              => 'Paesswatt zerricksetze',
+'passwordreset-legend'       => 'Paesswatt zerricksetze',
+'passwordreset-username'     => 'Yuuser-Naame:',
+'passwordreset-emailelement' => 'Yuusernaame: $1
+Paesswatt fer nau: $2',
+
+# Special:ChangeEmail
+'changeemail-none' => '(ken)',
 
 # Edit page toolbar
 'bold_sample'     => 'Wadde fett gmarrickt',
@@ -464,7 +477,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'right-movefile' => 'Feils ziehe',
 'right-upload'   => 'Feils ufflaade',
 'right-writeapi' => 'Yuus vun write API',
-'right-delete'   => 'Bledder lösche',
+'right-delete'   => 'Bledder lesche',
 
 # User rights log
 'rightsnone' => '(ken)',
@@ -552,7 +565,7 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 # File deletion
 'filedelete'                  => 'Lösche „$1“',
 'filedelete-comment'          => 'Grund:',
-'filedelete-submit'           => 'Lösche',
+'filedelete-submit'           => 'Lesche',
 'filedelete-nofile'           => "'''„$1“''' gebt es net.",
 'filedelete-otherreason'      => 'Annere Grind dezu:',
 'filedelete-reason-otherlist' => 'Annerer Gund',
@@ -590,6 +603,8 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'nbytes'            => '$1 {{PLURAL:$1|Byte|Bytes}}',
 'ncategories'       => '$1 {{PLURAL:$1|Abdeeling|Abdeelinge}}',
 'nlinks'            => '{{PLURAL:$1|1 Gleecher|$1 Gleecher}}',
+'nimagelinks'       => 'Gyuust uff $1 {{PLURAL:$1|Blatt|Bledder}}',
+'ntransclusions'    => 'gyuust uff $1 {{PLURAL:$1|Blatt|Bledder}}',
 'shortpages'        => 'Glee Bledder',
 'longpages'         => 'Grosse Bledder',
 'listusers'         => 'Lischt vun Yuuser',
@@ -682,10 +697,10 @@ Wenns des net iss, hoscht verleicht en Fehler in de Daadebank gfunne. Bitte meld
 'changed'                      => 'gennert',
 
 # Delete
-'deletepage'             => 'Blatt lösche',
+'deletepage'             => 'Blatt lesche',
 'exblank'                => 'Blatt war leer',
-'delete-confirm'         => 'Lösche vun „$1“',
-'delete-legend'          => 'Lösche',
+'delete-confirm'         => 'Lesche vun „$1“',
+'delete-legend'          => 'Lesche',
 'deletedtext'            => '"$1" iss gelescht warre.
 Guck $2 fer e Lischt vun de letscht Leschunge.',
 'dellogpage'             => 'Lischt vun gelöschte Bledder',
@@ -717,6 +732,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'restriction-upload' => 'Ufflaade',
 
 # Undelete
+'undeleteviewlink'          => 'aagucke',
 'undeletecomment'           => 'Grund:',
 'undelete-search-submit'    => 'Guck uff',
 'undelete-show-file-submit' => 'Ya',
@@ -752,12 +768,19 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'whatlinkshere-hideimages' => 'Feil Gleecher $1',
 
 # Block/unblock
+'block'              => 'Yuuser aabinne',
+'blockip'            => 'Yuuser aabinne',
+'blockip-title'      => 'Yuuser aabinne',
+'blockip-legend'     => 'Yuuser aabinne',
 'ipadressorusername' => 'IP-Adress odder Yuusernaame:',
 'ipbreason'          => 'Grund:',
 'ipbreasonotherlist' => 'Annerer Grund',
+'ipbsubmit'          => 'Daen Yuuser aabinne',
 'ipbother'           => 'Annere Zeit (englisch):',
 'ipboptions'         => '2 Schtund:2 hours,1 Daag:1 day,3 Daag:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Monate:6 months,1 Yaar:1 year,Fer immer:infinite',
 'ipbotheroption'     => 'Anneres',
+'ipbotherreason'     => 'Annerer Grund:',
+'blocklist-reason'   => 'Grund',
 'ipblocklist-submit' => 'Guck uff',
 'infiniteblock'      => 'fer immer',
 'blocklink'          => 'Aabinne',
@@ -795,7 +818,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 
 # Special:Import
 'import-upload-filename' => 'Feilnaame:',
-'import-comment'         => 'Anmaerricking:',
+'import-comment'         => 'Aamaerricking:',
 'import-revision-count'  => '– {{PLURAL:$1|1 Version|$1 Versione}}',
 
 # Import log
@@ -846,6 +869,12 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'others'    => 'annere',
 'siteusers' => '{{SITENAME}}-{{PLURAL:$2|Yuuser|Yuuser}} $1',
 
+# Info page
+'pageinfo-header-edits'     => 'Enneringe',
+'pageinfo-header-watchlist' => 'Watsch-Lischt',
+'pageinfo-subjectpage'      => 'Blatt',
+'pageinfo-talkpage'         => 'Gschwetz-Blatt',
+
 # Browsing diffs
 'nextdiff' => 'Zum neegschte Versionsunnerschidd →',
 
@@ -858,14 +887,23 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'noimages'     => 'Keene Feils gfunne.',
 'ilsubmit'     => 'Guck uff',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds' => '{{PLURAL:$1|$1 Sekund|$1 Sekunde}}',
+'minutes' => '{{PLURAL:$1|$1 Minudd|$1 Minudde}}',
+'hours'   => '{{PLURAL:$1|ee Schtund|$1 Schtunde}}',
+'days'    => '{{PLURAL:$1|een Daag|$1 Daag}}',
+'ago'     => 'vor $1',
+
 # Metadata
 'metadata' => 'Metadaade',
 
 # EXIF tags
-'exif-imagelength' => 'Leng',
-'exif-software'    => 'Geyuust Software',
-'exif-usercomment' => 'Anmaerrickinge vun Yuuser',
-'exif-gpsaltitude' => 'Heech',
+'exif-imagelength'  => 'Leng',
+'exif-software'     => 'Geyuust Software',
+'exif-usercomment'  => 'Anmaerrickinge vun Yuuser',
+'exif-gpsaltitude'  => 'Heech',
+'exif-writer'       => 'Schreiwer',
+'exif-languagecode' => 'Schprooch',
 
 'exif-subjectdistance-value' => '$1 Meter',
 
@@ -887,6 +925,10 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 
 # action=purge
 'confirm_purge_button' => 'OK',
+
+# action=watch/unwatch
+'confirm-watch-button'   => 'OK',
+'confirm-unwatch-button' => 'OK',
 
 # Separators for various lists, etc.
 'ellipsis' => '…',
@@ -932,7 +974,8 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'filepath-submit' => 'Geh',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Uffgucke',
+'fileduplicatesearch-filename' => 'Feilnaame:',
+'fileduplicatesearch-submit'   => 'Uffgucke',
 
 # Special:SpecialPages
 'specialpages'                 => 'Besunnere Bledder',

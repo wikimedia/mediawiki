@@ -635,6 +635,7 @@ Sellisel juhul tuleks teavitada [[Special:ListUsers/sysop|administraatorit]], ed
 'badarticleerror'      => 'Seda toimingut ei saa sellel leheküljel sooritada.',
 'cannotdelete'         => 'Lehekülge või faili "$1" ei saa kustutada.
 Võimalik, et keegi on selle juba kustutanud.',
+'cannotdelete-title'   => 'Lehekülge "$1" ei saa kustutada',
 'badtitle'             => 'Vigane pealkiri',
 'badtitletext'         => 'Soovitud lehekülje pealkiri oli vigane, tühi või teisest keeleversioonist või vikist valesti lingitud.
 See võib sisaldada ühte või enamat märki, mida ei saa pealkirjades kasutada.',
@@ -1757,10 +1758,10 @@ Selle turvalisust ei saa kontrollida.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Juurdepääs keelatud',
-'img-auth-nopathinfo'       => "PATH_INFO puudub.
-Sinu veebiserver ei ole seadistatud seda teavet edastama.
-See võib olla CGI-põhine ning ei toeta img_auth'i.
-Vaata http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+'img-auth-nopathinfo'       => 'PATH_INFO puudub.
+Sinu server pole seadistatud seda teavet edastama.
+See võib olla CGI-põhine ja ei toeta img_auth-i.
+Vaata lehekülge "[//www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization]".',
 'img-auth-notindir'         => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
 'img-auth-badtitle'         => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
 'img-auth-nologinnWL'       => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',

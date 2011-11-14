@@ -149,6 +149,16 @@ $messages = array(
 'faq'            => 'ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
 'faqpage'        => 'Project:ಸಾಮಾನ್ಯವಾದ್ ಕೇನುನ ಪ್ರಶ್ನೆಲು',
 
+# Vector skin
+'vector-action-delete'  => 'ದೆತ್ತ್ ಪಾಡ್ಲೆ',
+'vector-action-protect' => 'ಸ೦ರಕ್ಷಿಸಾಲೆ',
+'vector-view-create'    => ' ಸುರು ಮಲ್ಪುಲೆ',
+'vector-view-edit'      => 'ಸಂಪಾದನೆ ಮಲ್ಪುಲೆ',
+'vector-view-history'   => 'ಇತಿಹಾಸೊನು ತೂಲೆ',
+'vector-view-view'      => 'ಓದ್ಲೇ',
+'actions'               => 'ಕ್ರಿಯೆಕ್ಕುಲು',
+'namespaces'            => 'ಪುದರ್ ದ ವರ್ಗೊಲು',
+
 'errorpagetitle'    => 'ದೋಷ',
 'returnto'          => '$1 ಗ್ ಪಿರ ಪೋಲೆ.',
 'tagline'           => '{{SITENAME}} ರ್ದ್',
@@ -307,12 +317,14 @@ $messages = array(
 # Login and logout pages
 'yourname'                => 'ಸದಸ್ಯೆರ್ನ ಪುದರ್:',
 'yourpassword'            => 'ಪಾಸ್-ವರ್ಡ್:',
+'yourpasswordagain'       => 'ಪಾಸ್ವರ್ಡ್ ಪಿರ ಟೈಪ್ ಮಲ್ಪುಲೆ',
 'remembermypassword'      => 'ಈ ಕಂಪ್ಯೂಟರ್’ಡ್ ಎನ್ನ ಪ್ರವೇಶ ಪದೊನು ನೆನಪು ದೀಲ',
 'login'                   => 'ಲಾಗ್ ಇನ್',
 'nav-login-createaccount' => 'ಲಾಗ್-ಇನ್ / ಅಕೌಂಟ್ ಸೃಷ್ಟಿ ಮಲ್ಪುಲೆ',
 'userlogin'               => 'ಲಾಗ್-ಇನ್ / ಅಕೌಂಟ್ ಸೃಷ್ಟಿ ಮಲ್ಪುಲೆ',
 'logout'                  => 'ಲಾಗ್ ಔಟ್',
 'userlogout'              => 'ಲಾಗ್ ಔಟ್',
+'createaccount'           => 'ಪೊಸ ಅಕ್ಕೌಂಟ್ ಸುರು ಮಲ್ಪುಲೆ',
 'mailmypassword'          => 'ಪೊಸ ಪಾಸ್-ವರ್ಡ್’ನ್ ಇ-ಮೇಲ್ ಮಲ್ಪುಲೆ',
 
 # Edit page toolbar
@@ -380,9 +392,11 @@ $messages = array(
 'revisionasof'           => '$1 ದಿನೊತ ಆವೃತ್ತಿ',
 'previousrevision'       => '←ದುಂಬುದ ಆವೃತ್ತಿ',
 'nextrevision'           => 'ಪೊಸ ಮರು-ಆವೃತ್ತಿ',
+'currentrevisionlink'    => 'ಇತ್ತೆದ ಆವೃತ್ತಿ',
 'cur'                    => 'ಸದ್ಯದ',
 'last'                   => 'ಕಡೆತ',
 'history-fieldset-title' => 'ಇತಿಹಾಸಡ್ ನಾಡ್ಲೆ',
+'history-show-deleted'   => 'ದೆತ್ತ್ ಪಾಡಿನ',
 'histfirst'              => 'ಬಾರಿ ದುಂಬುದ',
 'histlast'               => 'ಇಂಚಿಪ್ಪದ',
 
@@ -401,34 +415,44 @@ $messages = array(
 'editundo'                => 'ದುಂಬುದಲೆಕ',
 
 # Search results
-'searchresults'             => 'ನಾಡಟದ ಫಲಿತಾಂಶೊಲು',
-'searchresults-title'       => '"$1" ಕ್ ನಾಡಟದ ಫಲಿತಾಂಶೊಲು',
-'searchresulttext'          => '{{SITENAME}} ಡ್ ನಾಡಟ ಮಲ್ಪುನ ಬಗ್ಗೆ ಜಾಸ್ತಿ ಮಾಹಿತಿಗ್ [[{{MediaWiki:Helppage}}|{{int:help}}]] ನ್ ತೂಲೆ.',
-'searchsubtitle'            => 'ಈರ್ \'\'\'[[:$1]]\'\'\' ನ್ ನಾಡಿಯರ್ ([[Special:Prefixindex/$1|"$1" ರ್ದ್ ಶುರುವಾಪುನ ಪೂರ ಪುಟೊಲು]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" ಗ್ ಲಿಂಕ್ ಕೊರ್ಪುನ ಪೂರ ಪುಟೊಲು]])',
-'searchsubtitleinvalid'     => "'''$1''' ನ್ ಈರ್ ನಾಡಿಯರ್.",
-'notitlematches'            => 'ವಾ ಪುಟೊತ ಶಿರ್ಷಿಕೆಲಾ ಹೊಂದಿಕೆ ಆವೊಂದಿಜ್ಜಿ',
-'notextmatches'             => 'ವಾ ಪುಟೊತ ಪಠ್ಯೊಡುಲಾ ಹೋಲಿಕೆ ಇಜ್ಜಿ',
-'prevn'                     => 'ದುಂಬುದ {{PLURAL:$1|$1}}',
-'nextn'                     => 'ಬೊಕ್ಕದ {{PLURAL:$1|$1}}',
-'viewprevnext'              => 'ತೂಲೆ ($1 {{int:pipe-separator}} $2) ($3)',
-'searchhelp-url'            => 'Help:ಪರಿವಿಡಿ',
-'search-result-size'        => '$1 ({{PLURAL:$2|೧ ಪದ|$2 ಪದೊಲು}})',
-'search-redirect'           => '(ಪುನರ್ನಿರ್ದೇಶನ $1)',
-'search-section'            => '(ವಿಭಾಗ $1)',
-'search-suggest'            => 'ಇಂದೆನ್ ನಾಡೊಂದುಲ್ಲರೆ: $1',
-'search-interwiki-caption'  => 'ಬಳಗದ ಇತರ ಯೋಜನೆಲು',
-'search-interwiki-default'  => '$1 ಫಲಿತಾಂಶೊಲು:',
-'search-interwiki-more'     => '(ಮಸ್ತ್)',
-'search-mwsuggest-enabled'  => 'ಸಲಹೆದೊಟ್ಟಿಗೆ',
-'search-mwsuggest-disabled' => 'ಓವು ಸಲಹೆಲಾ ಇಜ್ಜಿ',
-'powersearch'               => 'ನಾಡ್’ಲೆ',
-'powersearch-legend'        => 'ಅಡ್ವಾನ್ಸ್’ಡ್ ಸರ್ಚ್',
-'powersearch-ns'            => 'ನೇಮ್-ಸ್ಪೇಸ್’ಲೆಡ್ ನಾಡ್ಲೆ',
-'powersearch-field'         => 'ನಾಡ್ಲೆ:',
+'searchresults'                    => 'ನಾಡಟದ ಫಲಿತಾಂಶೊಲು',
+'searchresults-title'              => '"$1" ಕ್ ನಾಡಟದ ಫಲಿತಾಂಶೊಲು',
+'searchresulttext'                 => '{{SITENAME}} ಡ್ ನಾಡಟ ಮಲ್ಪುನ ಬಗ್ಗೆ ಜಾಸ್ತಿ ಮಾಹಿತಿಗ್ [[{{MediaWiki:Helppage}}|{{int:help}}]] ನ್ ತೂಲೆ.',
+'searchsubtitle'                   => 'ಈರ್ \'\'\'[[:$1]]\'\'\' ನ್ ನಾಡಿಯರ್ ([[Special:Prefixindex/$1|"$1" ರ್ದ್ ಶುರುವಾಪುನ ಪೂರ ಪುಟೊಲು]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" ಗ್ ಲಿಂಕ್ ಕೊರ್ಪುನ ಪೂರ ಪುಟೊಲು]])',
+'searchsubtitleinvalid'            => "'''$1''' ನ್ ಈರ್ ನಾಡಿಯರ್.",
+'notitlematches'                   => 'ವಾ ಪುಟೊತ ಶಿರ್ಷಿಕೆಲಾ ಹೊಂದಿಕೆ ಆವೊಂದಿಜ್ಜಿ',
+'notextmatches'                    => 'ವಾ ಪುಟೊತ ಪಠ್ಯೊಡುಲಾ ಹೋಲಿಕೆ ಇಜ್ಜಿ',
+'prevn'                            => 'ದುಂಬುದ {{PLURAL:$1|$1}}',
+'nextn'                            => 'ಬೊಕ್ಕದ {{PLURAL:$1|$1}}',
+'viewprevnext'                     => 'ತೂಲೆ ($1 {{int:pipe-separator}} $2) ($3)',
+'searchhelp-url'                   => 'Help:ಪರಿವಿಡಿ',
+'searchprofile-articles'           => 'ಲೇಖನ ಪುಟೊ',
+'searchprofile-images'             => 'ಬಹುಮಾಧ್ಯಮ',
+'searchprofile-everything'         => 'ಪ್ರತಿಯೊಂಜಿ',
+'searchprofile-advanced'           => 'ಪರಿಣತ',
+'searchprofile-articles-tooltip'   => '$1 ಟ್ ನಾಡ್ಲೆ',
+'searchprofile-images-tooltip'     => 'ಫೈಲ್ ನಾಡ್ಲೆ',
+'searchprofile-everything-tooltip' => 'ಮಾತಾ ಪುಟಕ್ಕುಲೆಡ್ ನಾಡ್ಲೆ (ಪಾತೆರದ ಪುತಲ ಸೇರ್ದ್)',
+'search-result-size'               => '$1 ({{PLURAL:$2|೧ ಪದ|$2 ಪದೊಲು}})',
+'search-redirect'                  => '(ಪುನರ್ನಿರ್ದೇಶನ $1)',
+'search-section'                   => '(ವಿಭಾಗ $1)',
+'search-suggest'                   => 'ಇಂದೆನ್ ನಾಡೊಂದುಲ್ಲರೆ: $1',
+'search-interwiki-caption'         => 'ಬಳಗದ ಇತರ ಯೋಜನೆಲು',
+'search-interwiki-default'         => '$1 ಫಲಿತಾಂಶೊಲು:',
+'search-interwiki-more'            => '(ಮಸ್ತ್)',
+'search-mwsuggest-enabled'         => 'ಸಲಹೆದೊಟ್ಟಿಗೆ',
+'search-mwsuggest-disabled'        => 'ಓವು ಸಲಹೆಲಾ ಇಜ್ಜಿ',
+'searchrelated'                    => 'ಸ೦ಬ೦ಧ ಇತ್ತಿನ',
+'searchall'                        => 'ಮಾತಾ',
+'powersearch'                      => 'ನಾಡ್’ಲೆ',
+'powersearch-legend'               => 'ಅಡ್ವಾನ್ಸ್’ಡ್ ಸರ್ಚ್',
+'powersearch-ns'                   => 'ನೇಮ್-ಸ್ಪೇಸ್’ಲೆಡ್ ನಾಡ್ಲೆ',
+'powersearch-field'                => 'ನಾಡ್ಲೆ:',
 
 # Preferences page
 'preferences'   => 'ಪ್ರಾಶಸ್ತ್ಯೊಲು',
 'mypreferences' => 'ಎನ್ನ ಪ್ರಾಶಸ್ತ್ಯಲು',
+'youremail'     => 'ಇ-ಅಂಚೆ',
 
 # Groups
 'group-sysop' => 'ನಿರ್ವಾಹಕೆರ್',
@@ -446,6 +470,8 @@ $messages = array(
 'recentchanges'                  => 'ಇಂಚಿಪದ ಬದಲಾವಣೆಲು',
 'recentchanges-legend'           => 'ಇಂಚಿಪದ ಬದಲಾವಣೆಲು ಆಯ್ಕೆಲು',
 'recentchanges-feed-description' => 'ಈ ಫೀಡ್’ಡ್ ವಿಕಿಕ್ ಇಂಚಿಪ್ಪ ಆತಿನಂಚಿನ ಬದಲಾವಣೆಲೆನ್ ಟ್ರ್ಯಾಕ್ ಮಲ್ಪುಲೆ.',
+'recentchanges-label-newpage'    => 'ಇರ್ನ ಈ ಬದಲಾವಣೆ ಪೊಸ ಪುಟೊನು ಸುರು ಮಲ್ಪುಂಡು',
+'recentchanges-label-minor'      => 'ಉಂದು ಎಲ್ಯ ಬದಲಾವಣೆ',
 'rcnote'                         => "$4, $5 ಮುಟ್ಟ ದುಂಬುದ {{PLURAL:$2|ದಿನೊಟು|'''$2''' ದಿನೊಲೆಡ್}} ಮಲ್ತ್’ದಿನ {{PLURAL:$1|'''1''' ಬದಲಾವಣೆ|'''$1''' ಬದಲಾವಣೆಲು}} ತಿರ್ತುಂಡು.",
 'rclistfrom'                     => '$1 ರ್ದ್ ಶುರುವಾತಿನ ಪೊಸ ಬದಲಾವಣೆಲೆನ್ ತೊಜ್ಪಾವು',
 'rcshowhideminor'                => '$1 ಎಲ್ಯೆಲ್ಯ ಬದಲಾವಣೆಲು',
@@ -478,7 +504,10 @@ $messages = array(
 # Upload
 'upload'        => 'ಫೈಲ್ ಅಪ್ಲೋಡ್',
 'uploadlogpage' => 'ಅಪ್ಲೋಡ್ ದಾಖಲೆ',
+'filedesc'      => 'ಸಾರಾಂಶ',
 'uploadedimage' => '"[[$1]]" ಅಪ್ಲೋಡ್ ಆಂಡ್',
+
+'license-header' => 'ಲೈಸೆನ್ಸಿಂಗ್',
 
 # File description page
 'file-anchor-link'    => 'ಫೈಲ್',
@@ -501,6 +530,8 @@ $messages = array(
 
 # Statistics
 'statistics' => 'ಅಂಕಿ ಅಂಶೊಲು',
+
+'disambiguationspage' => 'ದ್ವಂದ್ವ ನಿವಾರಣೆ',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|ಬೈಟ್|ಬೈಟ್‍ಲು}}',
@@ -562,7 +593,8 @@ $messages = array(
 'modifiedarticleprotection' => '"[[$1]]" ಪುಟೊತ ಸಂರಕ್ಷಣೆ ಮಟ್ಟ ಬದಲಾಂಡ್',
 
 # Undelete
-'undeletelink' => 'ದುಂಬುದ ಆವೃತ್ತಿಗ್ ಪೋಲೆ',
+'undeletelink'     => 'ದುಂಬುದ ಆವೃತ್ತಿಗ್ ಪೋಲೆ',
+'undeleteviewlink' => 'ತೂಲೆ',
 
 # Namespace form on various pages
 'namespace'      => 'ನೇಮ್-ಸ್ಪೇಸ್:',
@@ -580,6 +612,7 @@ $messages = array(
 
 'sp-contributions-newbies'  => 'ಪೊಸ ಖಾತೆಲೆದ ಕಾಣಿಕೆಲೆನ್ ಮಾತ್ರ ತೊಜ್ಪಾವು',
 'sp-contributions-blocklog' => 'ತಡೆಪತ್ತುನ ದಾಖಲೆ',
+'sp-contributions-logs'     => 'ದಾಖಲೆಲು',
 'sp-contributions-talk'     => 'ಪಾತೆರ',
 'sp-contributions-search'   => 'ಕಾಣಿಕೆಲೆನ್ ನಾಡ್ಲೆ',
 'sp-contributions-username' => 'ಐ.ಪಿ ವಿಳಾಸ ಅತ್ತ್’ನ್ಡ ಬಳಕೆದ ಪುದರ್:',
@@ -648,7 +681,9 @@ $messages = array(
 'tooltip-search'                  => '{{SITENAME}}ನ್ ನಾಡ್’ಲೆ',
 'tooltip-search-go'               => 'ಉಂದುವೇ ಪುದರ್ದ ಪುಟ ಇತ್ತ್’ನ್ಡ ಅಡೆ ಪೋಲ',
 'tooltip-search-fulltext'         => 'ಈ ಪಠ್ಯ ಉಪ್ಪುನಂಚಿನ ಪುಟೊಲೆನ್ ನಾಡ್’ಲ',
+'tooltip-p-logo'                  => 'ಮುಖ್ಯ ಪುಟೊನು ತೂಲೆ',
 'tooltip-n-mainpage'              => 'ಮುಖ್ಯ ಪುಟೊನು ತೂಲೆ',
+'tooltip-n-mainpage-description'  => 'ಮುಖ್ಯ ಪುಟೊನು ತೂಲೆ',
 'tooltip-n-portal'                => 'ಪ್ರೊಜೆಕ್ಟ್’ದ ಬಗ್ಗೆ, ಈರ್ ದಾದ ಮಲ್ಪೊಲಿ, ಓಲು ಇಂದೆತ ಬಗ್ಗೆ ತೆರಿಯೊನೊಲಿ',
 'tooltip-n-currentevents'         => 'ಪ್ರಸಕ್ತ ಘಟನೆಲ್ದ ಬಗ್ಗೆ ಹಿನ್ನೆಲೆ ಮಾಹಿತಿ ತೆರಿಯೊನ್ಲೆ',
 'tooltip-n-recentchanges'         => 'ವಿಕಿಡ್ ದುಂಬುದ ಒಂತೆ ಸಮಯಡ್ ಆತಿನಂಚಿನ ಬದಲಾವಣೆಲ್ದ ಪಟ್ಟಿ',

@@ -2322,6 +2322,7 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] jo se blokěrował.<br />
 Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
 'ipb-blockingself'                => 'Coš samogo blokěrowaś! Coš to napšawdu cyniś?',
+'ipb-confirmhideuser'             => 'Coš rowno wužywarja z nastajenim "wužywarja schowaś" blokěrowaś. To k tomu dowjeźo, až mě wužywarja pódłocyjo se we wšych lisćinach a protokolowych zapiskach. Coš to napšawdu cyniś?',
 'ipb-edit-dropdown'               => 'Pśicyny blokěrowanja wobźěłaś',
 'ipb-unblock-addr'                => '$1 dopušćiś',
 'ipb-unblock'                     => 'Wužywarske mě abo IP-adresu dopušćiś',
@@ -2959,7 +2960,10 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-headline'                    => 'Nadpismo',
 'exif-credit'                      => 'Spomnjenje/Póbitowaŕ',
 'exif-source'                      => 'Žrědło',
+'exif-editstatus'                  => 'Wobzěłowański status wobraza',
 'exif-urgency'                     => 'Nuznosć',
+'exif-locationdest'                => 'Zwobraznjone městno',
+'exif-locationdestcode'            => 'Code zwobraznjonego městna',
 'exif-contact'                     => 'Kontaktowe informacije',
 'exif-writer'                      => 'Pisaŕ',
 'exif-languagecode'                => 'Rěc',
@@ -2968,10 +2972,14 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-iimsupplementalcategory'     => 'Pśidatne kategorije',
 'exif-datetimeexpires'             => 'Njewužywaś pó',
 'exif-identifier'                  => 'Identifikator',
+'exif-lens'                        => 'Wužyty objektiw',
 'exif-serialnumber'                => 'Serijowy numer kamery',
 'exif-cameraownername'             => 'Wobsejźaŕ kamery',
 'exif-label'                       => 'Pomjenjenje',
 'exif-datetimemetadata'            => 'Datum, gaž metadaty su se slědny raz změnili',
+'exif-nickname'                    => 'Nałožne mě wobraza',
+'exif-rating'                      => 'Pógódnośenje (z 5)',
+'exif-rightscertificate'           => 'Certifikat zastojanja pšawow',
 'exif-copyrighted'                 => 'Status awtorskego pšawa',
 'exif-copyrightowner'              => 'Wobsejźaŕ awtorskego pšawa',
 'exif-usageterms'                  => 'Wužywańske wuměnjenja',
@@ -2983,9 +2991,16 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-contentwarning'              => 'Wopśimjeśowe warnowanje',
 'exif-giffilecomment'              => 'Komentar GIF-dataje',
 'exif-intellectualgenre'           => 'Typ medija',
+'exif-event'                       => 'Zwobraznjone tšojenje',
+'exif-personinimage'               => 'Zwobraznjona wósoba',
+'exif-originalimageheight'         => 'Wusokosć wobraza pśed pśirězowanim',
+'exif-originalimagewidth'          => 'Šyrokosć wobraza pśed pśirězowanim',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekompriměrowany',
+
+'exif-copyrighted-true'  => 'Pśez awtorske pšawo šćitany',
+'exif-copyrighted-false' => 'Zjawnosći pśistupny',
 
 'exif-unknowndate' => 'Njeznaty datum',
 
@@ -3002,6 +3017,8 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-planarconfiguration-2' => 'płony format',
 
 'exif-xyresolution-i' => '$1 dpi (dypkow na col)',
+
+'exif-colorspace-65535' => 'Njekalibrěrowany',
 
 'exif-componentsconfiguration-0' => 'njeeksistěrujo',
 
@@ -3144,6 +3161,9 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wopšawdny směr',
 'exif-gpsdirection-m' => 'Magnetiski směr',
+
+'exif-ycbcrpositioning-1' => 'Centrěrowany',
+'exif-ycbcrpositioning-2' => 'Susedny',
 
 'exif-dc-contributor' => 'Sobuźěłaśerje',
 'exif-dc-date'        => 'Pódaśa datuma',

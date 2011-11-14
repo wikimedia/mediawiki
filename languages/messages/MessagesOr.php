@@ -1286,7 +1286,7 @@ HTML ଟାଗ ପରଖିନିଅନ୍ତୁ ।',
 
 # User preference: e-mail validation using jQuery
 'email-address-validity-valid'   => 'ଇ-ମେଲ ଠିକଣା ବୈଧ ଭଳି ଲାଗୁଅଛି',
-'email-address-validity-invalid' => 'ଏକ ବୈଧ ଇ-ମେଲ ଠିକଣା ଦିଅନ୍ତୁ',
+'email-address-validity-invalid' => 'ଏକ ସଠିକ ଇ-ମେଲ ଠିକଣା ଦିଅନ୍ତୁ',
 
 # User rights
 'userrights'                   => 'ସଭ୍ୟ ଅଧିକାର ପରିଚାଳନା',
