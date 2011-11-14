@@ -85,7 +85,7 @@
 		// Create button bar
 		mw.toolbar.init();
 
-		$( '#wpSummary, #wpTextbox1' ).focus( function() {
+		$( 'textarea, input:text' ).focus( function() {
 			currentFocused = $(this);
 		});
 
