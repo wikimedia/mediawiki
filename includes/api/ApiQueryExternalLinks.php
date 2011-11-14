@@ -69,6 +69,11 @@ class ApiQueryExternalLinks extends ApiQueryBase {
 			$this->addOption( 'ORDER BY', 'el_from' );
 		}
 
+		// If we're querying all protocols, use DISTINCT to avoid repeating protocol-relative links twice
+		if ( $protocol === null ) {
+			$this->addOption( 'DISTINCT' );
+		}
+
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$offset = isset( $params['offset'] ) ? $params['offset'] : 0;
 		if ( $offset ) {

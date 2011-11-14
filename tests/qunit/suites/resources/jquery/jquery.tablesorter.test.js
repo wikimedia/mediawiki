@@ -368,6 +368,27 @@ tableTest(
 	}
 );
 
+/** FIXME: the diff output is not very readeable. */
+test( 'bug 32047 - caption must be before thead', function() {
+	var $table;
+	$table = $(
+		'<table class="sortable">' +
+		'<caption>CAPTION</caption>' +
+		'<tr><th>THEAD</th></tr>' +
+		'<tr><td>A</td></tr>' +
+		'<tr><td>B</td></tr>' +
+		'<tr class="sortbottom"><td>TFOOT</td></tr>' +
+		'</table>'
+		);
+	$table.tablesorter();
+
+	equals(
+		$table.children( ).get( 0 ).nodeName,
+		'CAPTION',
+		'First element after <thead> must be <caption> (bug 32047)'
+	);
+});
+
 test( 'data-sort-value attribute, when available, should override sorting position', function() {
 	var $table, data;
 
