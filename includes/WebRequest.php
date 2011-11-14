@@ -1179,7 +1179,7 @@ class FauxRequest extends WebRequest {
 	 * @param $data Array of *non*-urlencoded key => value pairs, the
 	 *   fake GET/POST values
 	 * @param $wasPosted Bool: whether to treat the data as POST
-	 * @param $session Mixed: session array or null. If null, $_SESSION will be used
+	 * @param $session Mixed: session array or null
 	 */
 	public function __construct( $data, $wasPosted = false, $session = null ) {
 		if( is_array( $data ) ) {
@@ -1188,11 +1188,8 @@ class FauxRequest extends WebRequest {
 			throw new MWException( "FauxRequest() got bogus data" );
 		}
 		$this->wasPosted = $wasPosted;
-		if( $session ) {
+		if( $session )
 			$this->session = $session;
-		} else {
-			$this->session = $_SESSION;
-		}
 	}
 
 	/**
