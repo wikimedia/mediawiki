@@ -186,7 +186,7 @@ class Article extends Page {
 
 			return $text;
 		} else {
-			$this->loadContent();
+			$this->fetchContent();
 			wfProfileOut( __METHOD__ );
 
 			return $this->mContent;
@@ -215,27 +215,37 @@ class Article extends Page {
 
 		$this->mRedirectUrl = false;
 
-		$oldid = $wgRequest->getVal( 'oldid' );
+		$oldid = $wgRequest->getIntOrNull( 'oldid' );
 
-		if ( isset( $oldid ) ) {
-			$oldid = intval( $oldid );
-			if ( $wgRequest->getVal( 'direction' ) == 'next' ) {
-				$nextid = $this->getTitle()->getNextRevisionID( $oldid );
-				if ( $nextid ) {
-					$oldid = $nextid;
-				} else {
-					$this->mRedirectUrl = $this->getTitle()->getFullURL( 'redirect=no' );
-				}
-			} elseif ( $wgRequest->getVal( 'direction' ) == 'prev' ) {
-				$previd = $this->getTitle()->getPreviousRevisionID( $oldid );
-				if ( $previd ) {
-					$oldid = $previd;
+		if ( $oldid === null ) {
+			return 0;
+		}
+
+		if ( $oldid !== 0 ) {
+			# Load the given revision and check whether the page is another one.
+			# In that case, update this instance to reflect the change.
+			$this->mRevision = Revision::newFromId( $oldid );
+			if ( $this->mRevision !== null ) {
+				// Revision title doesn't match the page title given?
+				if ( $this->mPage->getID() != $this->mRevision->getPage() ) {
+					$function = array( get_class( $this->mPage ), 'newFromID' );
+					$this->mPage = call_user_func( $function, $revision->getPage() );
 				}
 			}
 		}
 
-		if ( !$oldid ) {
-			$oldid = 0;
+		if ( $wgRequest->getVal( 'direction' ) == 'next' ) {
+			$nextid = $this->getTitle()->getNextRevisionID( $oldid );
+			if ( $nextid ) {
+				$oldid = $nextid;
+			} else {
+				$this->mRedirectUrl = $this->getTitle()->getFullURL( 'redirect=no' );
+			}
+		} elseif ( $wgRequest->getVal( 'direction' ) == 'prev' ) {
+			$previd = $this->getTitle()->getPreviousRevisionID( $oldid );
+			if ( $previd ) {
+				$oldid = $previd;
+			}
 		}
 
 		return $oldid;
@@ -243,30 +253,29 @@ class Article extends Page {
 
 	/**
 	 * Load the revision (including text) into this object
+	 *
+	 * @deprecated in 1.19; use fetchContent()
 	 */
 	function loadContent() {
-		if ( $this->mContentLoaded ) {
-			return;
-		}
-
-		wfProfileIn( __METHOD__ );
-
-		$this->fetchContent( $this->getOldID() );
-
-		wfProfileOut( __METHOD__ );
+		$this->fetchContent();
 	}
 
 	/**
 	 * Get text of an article from database
 	 * Does *NOT* follow redirects.
 	 *
-	 * @param $oldid Int: 0 for whatever the latest revision is
 	 * @return mixed string containing article contents, or false if null
 	 */
-	function fetchContent( $oldid = 0 ) {
+	function fetchContent() {
 		if ( $this->mContentLoaded ) {
 			return $this->mContent;
 		}
+
+		wfProfileIn( __METHOD__ );
+
+		$this->mContentLoaded = true;
+
+		$oldid = $this->getOldID();
 
 		# Pre-fill content with error message so that if something
 		# fails we'll have something telling us what we intended.
@@ -275,17 +284,11 @@ class Article extends Page {
 		$this->mContent = wfMsgNoTrans( 'missing-article', $t, $d ) ;
 
 		if ( $oldid ) {
-			$revision = Revision::newFromId( $oldid );
-			if ( !$revision ) {
-				wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
-				return false;
-			}
-			// Revision title doesn't match the page title given?
-			if ( $this->mPage->getID() != $revision->getPage() ) {
-				$function = array( get_class( $this->mPage ), 'newFromID' );
-				$this->mPage = call_user_func( $function, $revision->getPage() );
-				if ( !$this->mPage->getId() ) {
-					wfDebug( __METHOD__ . " failed to get page data linked to revision id $oldid\n" );
+			# $this->mRevision might already be fetched by getOldIDFromRequest()
+			if ( !$this->mRevision ) {
+				$this->mRevision = Revision::newFromId( $oldid );
+				if ( !$this->mRevision ) {
+					wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
 					return false;
 				}
 			}
@@ -295,8 +298,8 @@ class Article extends Page {
 				return false;
 			}
 
-			$revision = $this->mPage->getRevision();
-			if ( !$revision ) {
+			$this->mRevision = $this->mPage->getRevision();
+			if ( !$this->mRevision ) {
 				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " . $this->mPage->getLatest() . "\n" );
 				return false;
 			}
@@ -304,13 +307,12 @@ class Article extends Page {
 
 		// @todo FIXME: Horrible, horrible! This content-loading interface just plain sucks.
 		// We should instead work with the Revision object when we need it...
-		$this->mContent   = $revision->getText( Revision::FOR_THIS_USER ); // Loads if user is allowed
-
-		$this->mRevIdFetched = $revision->getId();
-		$this->mContentLoaded = true;
-		$this->mRevision =& $revision;
+		$this->mContent = $this->mRevision->getText( Revision::FOR_THIS_USER ); // Loads if user is allowed
+		$this->mRevIdFetched = $this->mRevision->getId();
 
 		wfRunHooks( 'ArticleAfterFetchContent', array( &$this, &$this->mContent ) );
+
+		wfProfileOut( __METHOD__ );
 
 		return $this->mContent;
 	}
@@ -361,9 +363,20 @@ class Article extends Page {
 		wfProfileIn( __METHOD__ );
 
 		# Get variables from query string
+		# As side effect this will load the revision and update the title
+		# in a revision ID is passed in the request, so this should remain
+		# the first call of this method even if $oldid is used way below.
 		$oldid = $this->getOldID();
 
-		# getOldID may want us to redirect somewhere else
+		# Another whitelist check in case getOldID() is altering the title
+		$permErrors = $this->getTitle()->getUserPermissionsErrors( 'read', $wgUser );
+		if ( count( $permErrors ) ) {
+			wfDebug( __METHOD__ . ": denied on secondary read check\n" );
+			wfProfileOut( __METHOD__ );
+			throw new PermissionsError( 'read', $permErrors );
+		}
+
+		# getOldID() may as well want us to redirect somewhere else
 		if ( $this->mRedirectUrl ) {
 			$wgOut->redirect( $this->mRedirectUrl );
 			wfDebug( __METHOD__ . ": redirecting due to oldid\n" );
@@ -371,9 +384,6 @@ class Article extends Page {
 
 			return;
 		}
-
-		# Set page title (may be overridden by DISPLAYTITLE)
-		$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
 
 		# If we got diff in the query, we want to see a diff page instead of the article.
 		if ( $wgRequest->getCheck( 'diff' ) ) {
@@ -383,6 +393,9 @@ class Article extends Page {
 
 			return;
 		}
+
+		# Set page title (may be overridden by DISPLAYTITLE)
+		$wgOut->setPageTitle( $this->getTitle()->getPrefixedText() );
 
 		$wgOut->setArticleFlag( true );
 		# Allow frames by default
@@ -395,7 +408,7 @@ class Article extends Page {
 		if ( $wgOut->isPrintable() ) {
 			$parserOptions->setIsPrintable( true );
 			$parserOptions->setEditSection( false );
-		} elseif ( $wgUseETag && !$this->getTitle()->quickUserCan( 'edit' ) ) {
+		} elseif ( !$this->getTitle()->quickUserCan( 'edit' ) ) {
 			$parserOptions->setEditSection( false );
 		}
 
@@ -423,12 +436,8 @@ class Article extends Page {
 			}
 		}
 
-		if ( !$wgUseETag && !$this->getTitle()->quickUserCan( 'edit' ) ) {
-			$parserOptions->setEditSection( false );
-		}
-
 		# Should the parser cache be used?
-		$useParserCache = $this->useParserCache( $oldid );
+		$useParserCache = $this->mPage->isParserCacheUsed( $wgUser, $oldid );
 		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $wgUser->getStubThreshold() ) {
 			wfIncrStats( 'pcache_miss_stub' );
@@ -449,12 +458,25 @@ class Article extends Page {
 					wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ) );
 					break;
 				case 2:
+					# Early abort if the page doesn't exist
+					if ( !$this->mPage->exists() ) {
+						wfDebug( __METHOD__ . ": showing missing article\n" );
+						$this->showMissingArticle();
+						wfProfileOut( __METHOD__ );
+						return;
+					}
+
 					# Try the parser cache
 					if ( $useParserCache ) {
 						$this->mParserOutput = $parserCache->get( $this, $parserOptions );
 
 						if ( $this->mParserOutput !== false ) {
-							wfDebug( __METHOD__ . ": showing parser cache contents\n" );
+							if ( $oldid ) {
+								wfDebug( __METHOD__ . ": showing parser cache contents for current rev permalink\n" );
+								$this->setOldSubtitle( $oldid );
+							} else {
+								wfDebug( __METHOD__ . ": showing parser cache contents\n" );
+							}
 							$wgOut->addParserOutput( $this->mParserOutput );
 							# Ensure that UI elements requiring revision ID have
 							# the correct version information.
@@ -468,42 +490,17 @@ class Article extends Page {
 					}
 					break;
 				case 3:
-					$text = $this->getContent();
-					if ( $text === false || $this->mPage->getID() == 0 ) {
-						wfDebug( __METHOD__ . ": showing missing article\n" );
-						$this->showMissingArticle();
-						wfProfileOut( __METHOD__ );
-						return;
-					}
-
-					# Another whitelist check in case oldid is altering the title
-					$permErrors = $this->getTitle()->getUserPermissionsErrors( 'read', $wgUser );
-					if ( count( $permErrors ) ) {
-						wfDebug( __METHOD__ . ": denied on secondary read check\n" );
-						wfProfileOut( __METHOD__ );
-						throw new PermissionsError( 'read', $permErrors );
-					}
+					# This will set $this->mRevision if needed
+					$this->fetchContent();
 
 					# Are we looking at an old revision
-					if ( $oldid && !is_null( $this->mRevision ) ) {
+					if ( $oldid && $this->mRevision ) {
 						$this->setOldSubtitle( $oldid );
 
 						if ( !$this->showDeletedRevisionHeader() ) {
 							wfDebug( __METHOD__ . ": cannot view deleted revision\n" );
 							wfProfileOut( __METHOD__ );
 							return;
-						}
-
-						# If this "old" version is the current, then try the parser cache...
-						if ( $oldid === $this->mPage->getLatest() && $this->useParserCache( false ) ) {
-							$this->mParserOutput = $parserCache->get( $this, $parserOptions );
-							if ( $this->mParserOutput ) {
-								wfDebug( __METHOD__ . ": showing parser cache for current rev permalink\n" );
-								$wgOut->addParserOutput( $this->mParserOutput );
-								$wgOut->setRevisionId( $this->mPage->getLatest() );
-								$outputDone = true;
-								break;
-							}
 						}
 					}
 
@@ -520,6 +517,7 @@ class Article extends Page {
 						# Allow extensions do their own custom view for certain pages
 						$outputDone = true;
 					} else {
+						$text = $this->getContent();
 						$rt = Title::newFromRedirectArray( $text );
 						if ( $rt ) {
 							wfDebug( __METHOD__ . ": showing redirect=no page\n" );

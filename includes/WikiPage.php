@@ -718,7 +718,7 @@ class WikiPage extends Page {
 		return $wgEnableParserCache
 			&& $user->getStubThreshold() == 0
 			&& $this->exists()
-			&& empty( $oldid )
+			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
 			&& $this->mTitle->isWikitextPage();
 	}
 
