@@ -2428,7 +2428,7 @@ $wgFooterIcons = array(
 	"poweredby" => array(
 		"mediawiki" => array(
 			"src" => null, // Defaults to "$wgStylePath/common/images/poweredby_mediawiki_88x31.png"
-			"url" => "http://www.mediawiki.org/",
+			"url" => "//www.mediawiki.org/",
 			"alt" => "Powered by MediaWiki",
 		)
 	),
