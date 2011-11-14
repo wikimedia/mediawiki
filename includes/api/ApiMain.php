@@ -132,7 +132,7 @@ class ApiMain extends ApiBase {
 	private $mPrinter;
 
 	private $mModules, $mModuleNames, $mFormats, $mFormatNames;
-	private $mResult, $mAction, $mShowVersions, $mEnableWrite/*, $mRequest*/;
+	private $mResult, $mAction, $mShowVersions, $mEnableWrite;
 	private $mInternalMode, $mSquidMaxage, $mModule;
 
 	private $mCacheMode = 'private';
