@@ -176,9 +176,6 @@
 	'ko' => '한국어',	# Korean
 	'ko-kp' => '한국어 (조선)',	# Korean (DPRK)
 	'koi' => 'Перем Коми', # Komi-Permyak
-	'kok' => 'कोंकणी', 
-	'kok-ml' => 'കൊങ്കണി', 
-	'kok-kn' => 'ಕೊಂಕಣಿ',
 	'kr' => 'Kanuri',		# Kanuri, Central
 	'krc' => 'Къарачай-Малкъар', # Karachay-Balkar
 	'kri' => 'Krio', # Krio
