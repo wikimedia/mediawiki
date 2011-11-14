@@ -530,7 +530,7 @@ class DifferenceEngine extends ContextSource {
 
 				$parserOutput = false;
 				if ( $useParserCache ) {
-					$parserOutput = ParserCache::singleton()->get( $wikiPage, $out->parserOptions() );
+					$parserOutput = ParserCache::singleton()->get( $wikiPage, $parserOptions );
 				}
 
 				if( $parserOutput ) {
