@@ -43,7 +43,8 @@ abstract class DatabaseUpdater {
 		'DeleteDefaultMessages',
 		'PopulateRevisionLength',
 		'PopulateRevisionSha1',
-		'PopulateImageSha1'
+		'PopulateImageSha1',
+		'FixExtLinksProtocolRelative',
 	);
 
 	/**

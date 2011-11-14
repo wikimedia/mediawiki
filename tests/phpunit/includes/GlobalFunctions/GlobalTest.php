@@ -831,42 +831,42 @@ class GlobalTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @dataProvider provideMakeUrlIndex()
+	 * @dataProvider provideMakeUrlIndexes()
 	 */
-	function testMakeUrlIndex( $url, $expected ) {
-		$index = wfMakeUrlIndex( $url );
-		$this->assertEquals( $expected, $index, "wfMakeUrlIndex(\"$url\")" );
+	function testMakeUrlIndexes( $url, $expected ) {
+		$index = wfMakeUrlIndexes( $url );
+		$this->assertEquals( $expected, $index, "wfMakeUrlIndexes(\"$url\")" );
 	}
 
-	function provideMakeUrlIndex() {
+	function provideMakeUrlIndexes() {
 		return array(
 			array(
 				// just a regular :)
 				'https://bugzilla.wikimedia.org/show_bug.cgi?id=28627',
-				'https://org.wikimedia.bugzilla./show_bug.cgi?id=28627'
+				array( 'https://org.wikimedia.bugzilla./show_bug.cgi?id=28627' )
 			),
 			array(
 				// mailtos are handled special
 				// is this really right though? that final . probably belongs earlier?
 				'mailto:wiki@wikimedia.org',
-				'mailto:org.wikimedia@wiki.',
+				array( 'mailto:org.wikimedia@wiki.' )
 			),
 
 			// file URL cases per bug 28627...
 			array(
 				// three slashes: local filesystem path Unix-style
 				'file:///whatever/you/like.txt',
-				'file://./whatever/you/like.txt'
+				array( 'file://./whatever/you/like.txt' )
 			),
 			array(
 				// three slashes: local filesystem path Windows-style
 				'file:///c:/whatever/you/like.txt',
-				'file://./c:/whatever/you/like.txt'
+				array( 'file://./c:/whatever/you/like.txt' )
 			),
 			array(
 				// two slashes: UNC filesystem path Windows-style
 				'file://intranet/whatever/you/like.txt',
-				'file://intranet./whatever/you/like.txt'
+				array( 'file://intranet./whatever/you/like.txt' )
 			),
 			// Multiple-slash cases that can sorta work on Mozilla
 			// if you hack it just right are kinda pathological,
@@ -875,6 +875,15 @@ class GlobalTest extends MediaWikiTestCase {
 			//
 			// Those will survive the algorithm but with results that
 			// are less consistent.
+
+			// protocol-relative URL cases per bug 29854...
+			array(
+				'//bugzilla.wikimedia.org/show_bug.cgi?id=28627',
+				array(
+					'http://org.wikimedia.bugzilla./show_bug.cgi?id=28627',
+					'https://org.wikimedia.bugzilla./show_bug.cgi?id=28627'
+				)
+			),
 		);
 	}
 	

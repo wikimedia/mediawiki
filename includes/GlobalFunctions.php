@@ -647,12 +647,12 @@ function wfParseUrl( $url ) {
 }
 
 /**
- * Make a URL index, appropriate for the el_index field of externallinks.
+ * Make URL indexes, appropriate for the el_index field of externallinks.
  *
  * @param $url String
- * @return String
+ * @return array
  */
-function wfMakeUrlIndex( $url ) {
+function wfMakeUrlIndexes( $url ) {
 	$bits = wfParseUrl( $url );
 
 	// Reverse the labels in the hostname, convert to lower case
@@ -692,7 +692,12 @@ function wfMakeUrlIndex( $url ) {
 	if ( isset( $bits['fragment'] ) ) {
 		$index .= '#' . $bits['fragment'];
 	}
-	return $index;
+
+	if ( $prot == '' ) {
+		return array( "http:$index", "https:$index" );
+	} else {
+		return array( $index );
+	}
 }
 
 /**
