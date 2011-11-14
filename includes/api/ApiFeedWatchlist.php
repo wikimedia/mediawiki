@@ -70,6 +70,9 @@ class ApiFeedWatchlist extends ApiBase {
 			if( !isset( $wgFeedClasses[ $params['feedformat'] ] ) ) {
 				$this->dieUsage( 'Invalid subscription feed type', 'feed-invalid' );
 			}
+			if ( !is_null( $params['wlexcludeuser'] ) ) {
+				$fauxReqArr['wlexcludeuser'] = $params['wlexcludeuser'];
+			}
 
 			// limit to the number of hours going from now back
 			$endTime = wfTimestamp( TS_MW, time() - intval( $params['hours'] * 60 * 60 ) );
@@ -194,6 +197,9 @@ class ApiFeedWatchlist extends ApiBase {
 			'wltoken' => array(
 				ApiBase::PARAM_TYPE => 'string'
 			),
+			'wlexcludeuser' => array(
+				ApiBase::PARAM_TYPE => 'user'
+			),
 			'linktodiffs' => false,
 		);
 	}
@@ -203,9 +209,10 @@ class ApiFeedWatchlist extends ApiBase {
 			'feedformat' => 'The format of the feed',
 			'hours'      => 'List pages modified within this many hours from now',
 			'allrev'     => 'Include multiple revisions of the same page within given timeframe',
-			'wlowner'    => "The user whose watchlist you want (must be accompanied by {$this->getModulePrefix()}token if it's not you)",
+			'wlowner'    => "The user whose watchlist you want (must be accompanied by {$this->getModulePrefix()}wltoken if it's not you)",
 			'wltoken'    => 'Security token that requested user set in their preferences',
-			'linktodiffs' => 'Link to change differences instead of article pages'
+			'wlexcludeuser' => 'A user whose edits should not be shown in the watchlist',
+			'linktodiffs' => 'Link to change differences instead of article pages',
 		);
 	}
 

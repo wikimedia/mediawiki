@@ -149,6 +149,7 @@ production.
 * (bug 30591) Add support to only return keys in ApiAllMessages.
 * The API now respects $wgShowHostnames and won't share the hostname in
   severedby if it's set to false
+* wlexcludeuser parameter added to ApiFeedWatchlist
 
 === Languages updated in 1.19 ===
 
