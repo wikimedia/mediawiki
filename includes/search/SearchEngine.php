@@ -148,7 +148,7 @@ class SearchEngine {
 	 * Really find the title match.
 	 */
 	private static function getNearMatchInternal( $searchterm ) {
-		global $wgContLang;
+		global $wgContLang, $wgEnableSearchContributorsByIP;
 
 		$allSearchTerms = array( $searchterm );
 
@@ -215,10 +215,13 @@ class SearchEngine {
 
 		$title = Title::newFromText( $searchterm );
 
+
 		# Entering an IP address goes to the contributions page
-		if ( ( $title->getNamespace() == NS_USER && User::isIP( $title->getText() ) )
-			|| User::isIP( trim( $searchterm ) ) ) {
-			return SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() );
+		if ( $wgEnableSearchContributorsByIP ) {
+			if ( ( $title->getNamespace() == NS_USER && User::isIP( $title->getText() ) )
+				|| User::isIP( trim( $searchterm ) ) ) {
+				return SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() );
+			}
 		}
 
 
