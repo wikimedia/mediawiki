@@ -229,7 +229,7 @@ class Article extends Page {
 				// Revision title doesn't match the page title given?
 				if ( $this->mPage->getID() != $this->mRevision->getPage() ) {
 					$function = array( get_class( $this->mPage ), 'newFromID' );
-					$this->mPage = call_user_func( $function, $revision->getPage() );
+					$this->mPage = call_user_func( $function, $this->mRevision->getPage() );
 				}
 			}
 		}
