@@ -74,20 +74,27 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			);
 		}
 
+	    $dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 	    if ( isset( $params['lang'] ) ) {
 			$this->addWhereFld( 'll_lang', $params['lang'] );
 			if ( isset( $params['title'] ) ) {
 				$this->addWhereFld( 'll_title', $params['title'] );
-				$this->addOption( 'ORDER BY', 'll_from' );
+				$this->addOption( 'ORDER BY', 'll_from' . $dir );
 			} else {
-				$this->addOption( 'ORDER BY', 'll_title, ll_from' );
+				$this->addOption( 'ORDER BY', array(
+							'll_title' . $dir,
+							'll_from' . $dir
+				));
 			}
 		} else {
 			// Don't order by ll_from if it's constant in the WHERE clause
 			if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-				$this->addOption( 'ORDER BY', 'll_lang' );
+				$this->addOption( 'ORDER BY', 'll_lang' . $dir );
 			} else {
-				$this->addOption( 'ORDER BY', 'll_from, ll_lang' );
+				$this->addOption( 'ORDER BY', array(
+							'll_from' . $dir,
+							'll_lang' . $dir
+				));
 			}
 		}
 
@@ -135,6 +142,13 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'url' => false,
 			'lang' => null,
 			'title' => null,
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				)
+			),
 		);
 	}
 
@@ -145,6 +159,7 @@ class ApiQueryLangLinks extends ApiQueryBase {
 			'url' => 'Whether to get the full URL',
 			'lang' => 'Language code',
 			'title' => "Link to search for. Must be used with {$this->getModulePrefix()}lang",
+			'dir' => 'The direction in which to list',
 		);
 	}
 

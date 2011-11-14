@@ -79,11 +79,15 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			);
 		}
 
+		$dir = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by il_from if it's constant in the WHERE clause
 		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
-			$this->addOption( 'ORDER BY', 'il_to' );
+			$this->addOption( 'ORDER BY', 'il_to' . $dir );
 		} else {
-			$this->addOption( 'ORDER BY', 'il_from, il_to' );
+			$this->addOption( 'ORDER BY', array(
+						'il_from' . $dir,
+						'il_to' . $dir
+			));
 		}
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 
@@ -154,7 +158,14 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			'continue' => null,
 			'images' => array(
 				ApiBase::PARAM_ISMULTI => true,
-			)
+			),
+			'dir' => array(
+				ApiBase::PARAM_DFLT => 'ascending',
+				ApiBase::PARAM_TYPE => array(
+					'ascending',
+					'descending'
+				)
+			),
 		);
 	}
 
@@ -163,6 +174,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			'limit' => 'How many images to return',
 			'continue' => 'When more results are available, use this to continue',
 			'images' => 'Only list these images. Useful for checking whether a certain page has a certain Image.',
+			'dir' => 'The direction in which to list',
 		);
 	}
 
