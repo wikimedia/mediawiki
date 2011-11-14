@@ -1263,3 +1263,71 @@ class FakeMaintenance extends Maintenance {
 		return;
 	}
 }
+
+/**
+ * Class for scripts that perform database maintenance and want to log the
+ * update in `updatelog` so we can later skip it
+ */
+abstract class LoggedUpdateMaintenance extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->addOption( 'force', 'Run the update even if it was completed already' );
+		$this->setBatchSize( 200 );
+	}
+
+	public function execute() {
+		$db = $this->getDB( DB_MASTER );
+		$key = $this->getUpdateKey();
+
+		if ( !$this->hasOption( 'force' ) &&
+			$db->selectRow( 'updatelog', '1', array( 'ul_key' => $key ), __METHOD__ ) )
+		{
+			$this->output( "..." . $this->updateSkippedMessage() . "\n" );
+			return true;
+		}
+
+		if ( !$this->doDBUpdates() ) {
+			return false;
+		}
+
+		if (
+			$db->insert( 'updatelog', array( 'ul_key' => $key ), __METHOD__, 'IGNORE' ) )
+		{
+			return true;
+		} else {
+			$this->output( $this->updatelogFailedMessage() . "\n" );
+			return false;
+		}
+	}
+
+	/**
+	 * Message to show that the update was done already and was just skipped
+	 * @return String
+	 */
+	protected function updateSkippedMessage() {
+		$key = $this->getUpdateKey();
+		return "Update '{$key}' already logged as completed.";
+	}
+
+	/**
+	 * Message to show the the update log was unable to log the completion of this update
+	 * @return String
+	 */
+	protected function updatelogFailedMessage() {
+		$key = $this->getUpdateKey();
+		return "Unable to log update '{$key}' as completed.";
+	}
+
+	/**
+	 * Do the actual work. All child classes will need to implement this.
+	 * Return true to log the update as done or false (usually on failure).
+	 * @return Bool
+	 */
+	abstract protected function doDBUpdates();
+
+	/**
+	 * Get the update key name to go in the update log table
+	 * @return String
+	 */
+	abstract protected function getUpdateKey();
+}
