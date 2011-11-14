@@ -2,6 +2,26 @@
  * These plugins provide extra functionality for interaction with textareas.
  */
 ( function( $ ) {
+
+if (document.selection && document.selection.createRange) {
+	// On IE, patch the focus() method to restore the windows' scroll position
+	// (bug 32241)
+	$.fn.extend({
+		focus : (function ( _focus ) {
+			return function () {
+				if ( arguments.length == 0 ) {
+					var $w = $( window );
+					var state = {top: $w.scrollTop(), left: $w.scrollLeft()};
+					var result = _focus.apply( this, arguments );
+					window.scrollTo( state.top, state.left );
+					return result;
+				}
+				return _focus.apply( this, arguments );
+			};
+		})( $.fn.focus )
+	});
+}
+
 $.fn.textSelection = function( command, options ) {
 
 /**
@@ -34,7 +54,7 @@ getSelection: function() {
 	if ( $(e).is( ':hidden' ) ) {
 		// Do nothing
 	} else if ( document.selection && document.selection.createRange ) {
-		e.focus();
+		$(e).focus();
 		var range = document.selection.createRange();
 		retval = range.text;
 	} else if ( e.selectionStart || e.selectionStart == '0' ) {
@@ -215,12 +235,12 @@ encapsulateSelection: function( options ) {
  getCaretPosition: function( options ) {
 	function getCaret( e ) {
 		var caretPos = 0, endPos = 0;
-		if ( $.browser.msie ) {
+		if ( document.selection && document.selection.createRange ) {
 			// IE doesn't properly report non-selected caret position through
 			// the selection ranges when textarea isn't focused. This can
 			// lead to saving a bogus empty selection, which then screws up
 			// whatever we do later (bug 31847).
-			e.focus();
+			$(e).focus();
 
 			// IE Support
 			var preFinished = false;
