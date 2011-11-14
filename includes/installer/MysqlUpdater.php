@@ -758,7 +758,6 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			$task = $this->maintenance->runChild( 'PopulateParentId' );
 			$task->execute();
-			$this->insertUpdateRow( 'populate rev_parent_id' );
 		}
 	}
 

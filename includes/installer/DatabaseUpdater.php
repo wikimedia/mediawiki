@@ -191,7 +191,7 @@ abstract class DatabaseUpdater {
 	public function addExtensionField( $tableName, $columnName, $sqlPath ) {
 		$this->extensionUpdates[] = array( 'addField', $tableName, $columnName, $sqlPath, true );
 	}
-	
+
 	/**
 	 * Add a maintenance script to be run after the database updates are complete
 	 * @param $class string Name of a Maintenance subclass
@@ -558,6 +558,9 @@ abstract class DatabaseUpdater {
 
 	# Common updater functions
 
+	/**
+	 * Sets the number of active users in the site_stats table
+	 */
 	protected function doActiveUsersInit() {
 		$activeUsers = $this->db->selectField( 'site_stats', 'ss_active_users', false, __METHOD__ );
 		if ( $activeUsers == -1 ) {
@@ -573,6 +576,9 @@ abstract class DatabaseUpdater {
 		$this->output( "...ss_active_users user count set...\n" );
 	}
 
+	/**
+	 * Populates the log_user_text field in the logging table
+	 */
 	protected function doLogUsertextPopulation() {
 		if ( !$this->updateRowExists( 'populate log_usertext' ) ) {
 			$this->output(
@@ -582,10 +588,12 @@ abstract class DatabaseUpdater {
 
 			$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
 			$task->execute();
-			$this->insertUpdateRow( 'populate log_usertext' );
 		}
 	}
 
+	/**
+	 * Migrate log params to new table and index for searching
+	 */
 	protected function doLogSearchPopulation() {
 		if ( !$this->updateRowExists( 'populate log_search' ) ) {
 			$this->output(
@@ -595,10 +603,12 @@ abstract class DatabaseUpdater {
 
 			$task = $this->maintenance->runChild( 'PopulateLogSearch' );
 			$task->execute();
-			$this->insertUpdateRow( 'populate log_search' );
 		}
 	}
 
+	/**
+	 * Updates the timestamps in the transcache table
+	 */
 	protected function doUpdateTranscacheField() {
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {
 			$this->output( "...transcache tc_time already converted.\n" );
@@ -610,6 +620,9 @@ abstract class DatabaseUpdater {
 		$this->output( "ok\n" );
 	}
 
+	/**
+	 * Update CategoryLinks collation
+	 */
 	protected function doCollationUpdate() {
 		global $wgCategoryCollation;
 		if ( $this->db->selectField(
@@ -626,6 +639,9 @@ abstract class DatabaseUpdater {
 		$task->execute();
 	}
 
+	/**
+	 * Migrates user options from the user table blob to user_properties
+	 */
 	protected function doMigrateUserOptions() {
 		$cl = $this->maintenance->runChild( 'ConvertUserOptions', 'convertUserOptions.php' );
 		$this->output( "Migrating remaining user_options... " );
@@ -633,6 +649,9 @@ abstract class DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
+	/**
+	 * Rebuilds the localisation cache
+	 */
 	protected function doRebuildLocalisationCache() {
 		/**
 		 * @var $cl RebuildLocalisationCache
