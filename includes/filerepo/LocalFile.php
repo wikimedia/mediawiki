@@ -1051,8 +1051,7 @@ class LocalFile extends File {
 		}
 
 		$descTitle = $this->getTitle();
-		$article = new ImagePage( $descTitle );
-		$article->setFile( $this );
+		$wikiPage = WikiPage::factory( $descTitle );
 
 		# Add the log entry
 		$log = new LogPage( 'upload' );
@@ -1071,8 +1070,8 @@ class LocalFile extends File {
 			if (!is_null($nullRevision)) {
 				$nullRevision->insertOn( $dbw );
 
-				wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $user ) );
-				$article->updateRevisionOn( $dbw, $nullRevision );
+				wfRunHooks( 'NewRevisionFromEditComplete', array( $wikiPage, $nullRevision, $latest, $user ) );
+				$wikiPage->updateRevisionOn( $dbw, $nullRevision );
 			}
 			# Invalidate the cache for the description page
 			$descTitle->invalidateCache();
@@ -1081,7 +1080,7 @@ class LocalFile extends File {
 			# New file; create the description page.
 			# There's already a log entry, so don't make a second RC entry
 			# Squid and file cache for the description page are purged by doEdit.
-			$article->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC );
+			$wikiPage->doEdit( $pageText, $comment, EDIT_NEW | EDIT_SUPPRESS_RC );
 		}
 
 		# Commit the transaction now, in case something goes wrong later
