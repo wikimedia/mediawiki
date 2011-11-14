@@ -81,6 +81,8 @@ production.
 * (bug 30062) Add $wgDBprefix option to cli installer
 * getUserPermissionsErrors and getUserPermissionsErrorsExpensive hooks are now
   also called when checking for 'read' permission
+* Introduce $wgEnableSearchContributorsByIP which controls whether searching
+  for an IP address redirects to the contributions list for that IP
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if

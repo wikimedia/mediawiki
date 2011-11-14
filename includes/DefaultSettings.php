@@ -4330,6 +4330,13 @@ $wgSitemapNamespaces = false;
  */
 $wgSitemapNamespacesPriorities = false;
 
+/**
+ * Search IP
+ * Treat IP searches as a contributor search for those
+ * with permissions to do so.
+ */
+$wgEnableSearchContributorsByIP = true;
+
 /** @} */ # end of search settings
 
 /************************************************************************//**
