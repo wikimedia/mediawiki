@@ -1411,20 +1411,20 @@ abstract class BaseTemplate extends QuickTemplate {
 		wfProfileIn( __METHOD__ );
 
 		$toolbox = array();
-		if ( $this->data['nav_urls']['whatlinkshere'] ) {
+		if ( isset( $this->data['nav_urls']['whatlinkshere'] ) && $this->data['nav_urls']['whatlinkshere'] ) {
 			$toolbox['whatlinkshere'] = $this->data['nav_urls']['whatlinkshere'];
 			$toolbox['whatlinkshere']['id'] = 't-whatlinkshere';
 		}
-		if ( $this->data['nav_urls']['recentchangeslinked'] ) {
+		if ( isset( $this->data['nav_urls']['recentchangeslinked'] ) && $this->data['nav_urls']['recentchangeslinked'] ) {
 			$toolbox['recentchangeslinked'] = $this->data['nav_urls']['recentchangeslinked'];
 			$toolbox['recentchangeslinked']['msg'] = 'recentchangeslinked-toolbox';
 			$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
 		}
-		if ( $this->data['nav_urls']['trackbacklink'] ) {
+		if ( isset( $this->data['nav_urls']['trackbacklink'] ) && $this->data['nav_urls']['trackbacklink'] ) {
 			$toolbox['trackbacklink'] = $this->data['nav_urls']['trackbacklink'];
 			$toolbox['trackbacklink']['id'] = 't-trackbacklink';
 		}
-		if ( $this->data['feeds'] ) {
+		if ( isset( $this->data['feeds'] ) && $this->data['feeds'] ) {
 			$toolbox['feeds']['id'] = 'feedlinks';
 			$toolbox['feeds']['links'] = array();
 			foreach ( $this->data['feeds'] as $key => $feed ) {
@@ -1436,17 +1436,17 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 		}
 		foreach ( array( 'contributions', 'log', 'blockip', 'emailuser', 'upload', 'specialpages' ) as $special ) {
-			if ( $this->data['nav_urls'][$special] ) {
+			if ( isset( $this->data['nav_urls'][$special] ) && $this->data['nav_urls'][$special] ) {
 				$toolbox[$special] = $this->data['nav_urls'][$special];
 				$toolbox[$special]['id'] = "t-$special";
 			}
 		}
-		if ( $this->data['nav_urls']['print'] ) {
+		if ( isset( $this->data['nav_urls']['print'] ) && $this->data['nav_urls']['print'] ) {
 			$toolbox['print'] = $this->data['nav_urls']['print'];
 			$toolbox['print']['rel'] = 'alternate';
 			$toolbox['print']['msg'] = 'printableversion';
 		}
-		if( $this->data['nav_urls']['permalink'] ) {
+		if ( isset( $this->data['nav_urls']['permalink'] ) && $this->data['nav_urls']['permalink'] ) {
 			$toolbox['permalink'] = $this->data['nav_urls']['permalink'];
 			if( $toolbox['permalink']['href'] === '' ) {
 				unset( $toolbox['permalink']['href'] );
