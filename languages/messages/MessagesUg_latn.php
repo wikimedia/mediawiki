@@ -38,8 +38,10 @@ $messages = array(
 'navigation' => 'Körüsh',
 
 # Cologne Blue skin
-'qbedit' => 'Uzgartish',
+'qbedit'         => 'Uzgartish',
+'qbspecialpages' => 'Alahida tor batleri',
 
+'help'             => 'Yardem',
 'search'           => 'Izdash',
 'searchbutton'     => 'Izdash',
 'go'               => 'Kuchush',
@@ -150,6 +152,9 @@ $messages = array(
 'nextpage'       => 'Kéyinki bet ($1)',
 'prevpage'       => 'Aldinqi bet ($1)',
 'allpagessubmit' => 'Kuchush',
+
+# Special:LinkSearch
+'linksearch-ok' => 'Izdash',
 
 # Watchlist
 'watchlist'     => 'Men kharawatkhan tor betleri',

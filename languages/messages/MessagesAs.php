@@ -2878,6 +2878,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 'exif-pixelxdimension'     => 'ছবিৰ উচ্চতা',
 'exif-usercomment'         => 'সদস্যৰ মন্তব্য',
 'exif-relatedsoundfile'    => 'সংশ্লিষ্ট শ্ৰব্য ফাইল',
+'exif-datetimedigitized'   => 'ডিজিটেলকৰণৰ তাৰিখ আৰু সময়',
 'exif-exposuretime'        => "এক্সপ'জাৰ সময়",
 'exif-exposuretime-format' => '$1 ছেকেণ্ড ($2)',
 'exif-fnumber'             => 'F সংখ্যা',
