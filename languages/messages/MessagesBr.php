@@ -1634,7 +1634,7 @@ PICT # misc.
 'upload-failure-msg'          => "Ur gudenn 'zo bet e-pad ho kargadenn adalek [$2] :
 
 $1",
-'upload-warning-subj'         => "Kemmen diwall e-pad ar c'hargañ",
+'upload-warning-subj'         => 'Kemenn diwall en ur ezporzhiañ',
 'upload-warning-msg'          => "Ur gudenn zo bet e-kerzh hoc'h ezporzhiadur eus [$2]. Gallout a c'heller distreiñ d'ar [[Special:Upload/stash/$1|furmskrid ezporzhiañ]] evit renkañ ar gudenn.",
 
 'upload-proto-error'        => 'Protokol direizh',

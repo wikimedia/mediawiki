@@ -807,7 +807,7 @@ $1',
 'badarticleerror'      => 'لا يمكن إجراء هذا الفعل على هذه الصفحة.',
 'cannotdelete'         => 'تعذر حذف الصفحة أو الملف "$1".
 ربما حذفها شحص آخر.',
-'cannotdelete-title'   => 'لا يمكن حذف الصفحة "1$"',
+'cannotdelete-title'   => 'لا يمكن حذف الصفحة "$1"',
 'badtitle'             => 'عنوان سيء',
 'badtitletext'         => 'عنوان الصفحة المطلوب إما غير صحيح أو فارغ، وربما الوصلة بين اللغات أو بين المشاريع خاطئة.
 ومن الممكن وجود رموز لا تصلح للاستخدام في العناوين.',
@@ -819,6 +819,7 @@ $1',
 الدالة: $1<br />
 الاستعلام: $2',
 'viewsource'           => 'اعرض المصدر',
+'viewsource-title'     => 'إظهار مصدر $1',
 'actionthrottled'      => 'لا يمكن عمل المزيد من هذا الفعل',
 'actionthrottledtext'  => 'كإجراء ضد السبام، أنت ممنوع من إجراء هذا الفعل عدد كبير من المرات في فترة زمنية قصيرة، ولقد تجاوزت هذا الحد.
 من فضلك حاول مرة ثانية خلال عدة دقائق.',
@@ -2158,7 +2159,7 @@ $1',
 'statistics-users-active-desc' => 'المستخدمون الذين قاموا بفعل في آخر {{PLURAL:$1|يوم|$1 يوم}}',
 'statistics-mostpopular'       => 'أكثر الصفحات مشاهدة',
 
-'disambiguations'      => 'صفحات التوضيح',
+'disambiguations'      => 'الصفحات التي ترتبط بصفحات توضيح',
 'disambiguationspage'  => 'Template:توضيح',
 'disambiguations-text' => "الصفحات التالية تصل إلى '''صفحة توضيح'''.
 ينبغي في المقابل أن تصل إلى الصفحة الملائمة. <br />
@@ -2231,7 +2232,7 @@ $1',
 'listusers-editsonly'     => 'اعرض المستخدمين الذين قاموا بتعديلات فقط',
 'listusers-creationsort'  => 'رتب حسب تاريخ الإنشاء',
 'usereditcount'           => '$1 {{PLURAL:$1|تعديل|تعديل}}',
-'usercreated'             => 'تم إنشاؤه في $1 الساعة $2',
+'usercreated'             => '{{GENDER:$3|أنشأه|أنشأته}} في $1 الساعة $2',
 'newpages'                => 'صفحات جديدة',
 'newpages-username'       => 'اسم المستخدم:',
 'ancientpages'            => 'أقدم الصفحات',
@@ -2300,7 +2301,7 @@ $1',
 'sp-deletedcontributions-contribs' => 'مساهمات',
 
 # Special:LinkSearch
-'linksearch'       => 'وصلات خارجية',
+'linksearch'       => 'بحث في الوصلات الخارجية',
 'linksearch-pat'   => 'نمط البحث:',
 'linksearch-ns'    => 'النطاق:',
 'linksearch-ok'    => 'ابحث',
@@ -2614,6 +2615,7 @@ $UNWATCHURL
 
 راجع [[Special:Log/delete|سجل الحدف]] لمعاينة عمليات الحذف والاسترجاعات الحديثة.",
 'undelete-header'              => 'انظر الصفحات المحذوفة حديثا في [[Special:Log/delete|سجل الحذف]].',
+'undelete-search-title'        => 'البحث في الصفحات المحذوفة',
 'undelete-search-box'          => 'ابحث في الصفحات المحذوفة',
 'undelete-search-prefix'       => 'عرض الصفحات التي تبدأ بـ:',
 'undelete-search-submit'       => 'ابحث',

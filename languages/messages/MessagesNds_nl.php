@@ -668,6 +668,7 @@ t Kan ween dat n aander t al vortedaon hef.',
 Funksie: $1<br />
 Zeukopdrachte: $2',
 'viewsource'           => 'Brontekste bekieken',
+'viewsource-title'     => 'Bron bekieken van $1',
 'actionthrottled'      => 'Haandeling tegen-ehuilen',
 'actionthrottledtext'  => "As maotregel tegen t plaotsen van ongewunste verwiezingen, is t antal keren da'j disse haandeling in n korte tied uutvoeren kunnen beteund. Je hebben de limiet overschrejen. Probeer t over n antal minuten weer.",
 'protectedpagetext'    => 'Disse pagina is beveiligd um bewarkingen te veurkoemen.',
@@ -1784,10 +1785,10 @@ De veiligheid kan niet ekontroleerd wörden.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Toegang eweigerd',
-'img-auth-nopathinfo'       => 'PATH_INFO onbreek.
+'img-auth-nopathinfo'       => 'PATH_INFO ontbrik.
 Joew server is niet in-esteld um disse informasie deur te geven.
-Misschien gebruuk disse CGI, en dan wörden img_auth niet ondersteund.
-Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization veur meer informasie',
+Misschien gebruukt disse CGI, en dan wörden img_auth niet ondersteund.
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Zie aofbeeldingsauthorisasie.]',
 'img-auth-notindir'         => 't Op-evreugen pad is niet de in-estelde bestaandinlaodmap',
 'img-auth-badtitle'         => 'Kon gien geldige paginanaam maken van "$1".',
 'img-auth-nologinnWL'       => 'Je bin niet an-emeld en "$1" steet niet op de witte lieste.',
@@ -1949,7 +1950,7 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 'statistics-users-active-desc' => 'Gebrukers die de veurbieje {{PLURAL:$1|dag|$1 dagen}} n haandeling uutevoerd hebben',
 'statistics-mostpopular'       => "Meestbekeken pagina's",
 
-'disambiguations'      => "Deurverwiespagina's",
+'disambiguations'      => "Pagina's die verwiezen naor deurverwiespagina's",
 'disambiguationspage'  => 'Template:Dv',
 'disambiguations-text' => "De onderstaonde pagina's verwiezen naor n '''deurverwiespagina'''. Disse verwiezingen mutten eigenliks rechtstreeks verwiezen naor t juuste onderwarp.
 
@@ -2202,7 +2203,7 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'watchmethod-list'     => 'Kik joew nao volglieste veur de leste wiezigingen',
 'watchlistcontains'    => "Der {{PLURAL:$1|steet 1 pagina|staon $1 pagina's}} op joew volglieste.",
 'iteminvalidname'      => "Verkeerde naam '$1'",
-'wlnote'               => 'Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|t aofeleupen ure|de leste $2 uren}}.',
+'wlnote'               => 'Hieronder {{PLURAL:$1|steet de leste wieziging|staon de leste $1 wiezigingen}} in {{PLURAL:$2|t aofeleupen ure|de leste $2 uren}} vanaof $3 um $4.',
 'wlshowlast'           => 'Laot de aofeleupen $1 ure $2 dagen $3 zien',
 'watchlist-options'    => 'Opsies veur de volglieste',
 
@@ -2400,6 +2401,7 @@ In dat geval mö'j de leste versie as zichtbaor instellen.",
 
 Bekiek t [[Special:Log/delete|vortdologboek]] veur n overzichte van pagina's die kortens vortedaon en weerummeplaotst bin.",
 'undelete-header'              => 'Zie t [[Special:Log/delete|vortdologboek ]] veur spul dat krek vortedaon is.',
+'undelete-search-title'        => "Vortedaone pagina's zeuken",
 'undelete-search-box'          => "Deurzeuk vortedaone pagina's",
 'undelete-search-prefix'       => "Bekiek pagina's vanaof:",
 'undelete-search-submit'       => 'Zeuk',
@@ -2409,6 +2411,7 @@ Bekiek t [[Special:Log/delete|vortdologboek]] veur n overzichte van pagina's die
 'undelete-cleanup-error'       => 'Fout bie t herstellen van t ongebruukten archiefbestaand "$1".',
 'undelete-missing-filearchive' => 't Lokten niet um ID $1 weerumme te plaotsen umdat t niet in de databanke is.
 Misschien is t al weerummeplaotst.',
+'undelete-error'               => 'Der is wat fout egaon bie t vortdoon van de pagina',
 'undelete-error-short'         => 'Fout bie t herstellen van t bestaand: $1',
 'undelete-error-long'          => 'Fouten bie t herstellen van t bestaand:
 

@@ -614,7 +614,7 @@ Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 	'config-no-cli-uri' => 'Parameters:
 * $1 is the default value for scriptpath.',
 	'config-no-cli-uploads-check' => 'CLI = Call Level Interface',
-	'config-suhosin-max-value-length' => 'Message shown when PHP parameter suhosin.get.max_value_length is between 0 and 1023 (that max value is hard set in MediaWiki software',
+	'config-suhosin-max-value-length' => 'Message shown when PHP parameter suhosin.get.max_value_length is between 0 and 1023 (that max value is hard set in MediaWiki software)',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
 	'config-db-account-lock' => "It might be easier to translate ''normal operation'' as \"also after the installation process\"",
@@ -3207,7 +3207,7 @@ PHP muss auf Version 5.2.9 oder später sowie libxml2 auf die Version 2.7.3 oder
 	'config-using531' => 'MediaWiki kann nicht zusammen mit PHP $1 verwendet werden. Grund hierfür ist ein Fehler im Zusammenhang mit den Verweisparametern zu <code>__call()</code>.
 PHP muss auf Version 5.3.2 oder höher oder 5.3.0 oder niedriger aktualisiert werden, um das Problem zu beheben.
 Die Installation wurde abgebrochen.',
-	'config-suhosin-max-value-length' => 'Suhosin ist installiert, was die Länge des GET-Parameters auf $1 Bytes beschränkt. Der ResouceLoader von MediaWiki wird zwar unter diesen Bedingungen funktionieren, allerdings nur mit verminderter Leistungsfähigkeit. Sofern möglich sollte der Parameter suhosin.get.max_value_length in der Datei php.ini auf 1024 oder höher festgelegt werden. Gleichzeitig muß der Parameter $wgResourceLoaderMaxQueryLength in der Datei LocalSettings.php auf den selben Wert eingestellt werden.',
+	'config-suhosin-max-value-length' => 'Suhosin ist installiert und beschränkt die Länge des GET-Parameters auf $1 Bytes. Der ResouceLoader von MediaWiki wird zwar unter diesen Bedingungen funktionieren, allerdings nur mit verminderter Leistungsfähigkeit. Sofern möglich sollte der Parameter <code>suhosin.get.max_value_length</code> in der Datei php.ini auf 1024 oder höher festgelegt werden. Gleichzeitig muss der Parameter <code>$wgResourceLoaderMaxQueryLength</code> in der Datei LocalSettings.php auf den selben Wert eingestellt werden.',
 	'config-db-type' => 'Datenbanksystem:',
 	'config-db-host' => 'Datenbankserver:',
 	'config-db-host-help' => 'Sofern sich die Datenbank auf einem anderen Server befindet, ist hier der Servername oder die entsprechende IP-Adresse anzugeben.
@@ -3583,7 +3583,7 @@ Sofern dies nicht der Fall war, oder das Herunterladen unterbrochen wurde, kann 
 
 $3
 
-'''Hinweis:''' Sofern das Herunterladen der Konfigurationsdatei nicht jetzt durchgeführt wird, wird sie zu einem späteren Zeitpunkt nach Beenden des Installationsprogramms, nicht mehr zur Verfügung stehen.
+'''Hinweis:''' Die Konfigurationsdatei sollte jetzt unbedingt heruntergeladen werden. Sie wird nach Beenden des Installationsprogramms, nicht mehr zur Verfügung stehen.
 
 Sobald alles erledigt wurde, kann auf das '''[$2 Wiki zugegriffen werden]'''. Wir wünschen viel Spaß mit dem Wiki.",
 	'config-download-localsettings' => 'LocalSettings.php herunterladen',
@@ -4291,6 +4291,7 @@ Voit [$1 aloittaa wikin käytön].',
 	'config-admin-password-confirm' => 'Salasana uudelleen',
 	'config-admin-name-blank' => 'Anna ylläpitäjän käyttäjänimi.',
 	'config-admin-email' => 'Sähköpostiosoite',
+	'config-admin-error-bademail' => 'Annoit virheellisen sähköpostiosoitteen.',
 	'config-almost-done' => 'Olet jo lähes valmis!
 Voit ohittaa jäljellä olevat määritykset ja asentaa wikin juuri nyt.',
 	'config-profile-wiki' => 'Perinteinen wiki',
@@ -12197,6 +12198,11 @@ $messages['pcd'] = array(
  * @author Xqt
  */
 $messages['pdc'] = array(
+	'config-continue' => 'Weider →',
+	'config-page-language' => 'Schprooch',
+	'config-admin-password' => 'Paesswatt:',
+	'config-install-step-done' => 'geduh',
+	'config-help' => 'Hilf',
 	'mainpagedocfooter' => "Hilf fer's Yuuse unn Konfiguriere vun de Wiki-Software kansch finne im [//meta.wikimedia.org/wiki/Help:Contents Handbuch fer Yuuser].
 
 == Hilf zum Schtaerte ==
@@ -13028,7 +13034,7 @@ $messages['pnt'] = array(
  */
 $messages['prg'] = array(
 	'mainpagetext' => "'''MediaWiki's instalaciōni izpalla.'''",
-	'mainpagedocfooter' => 'Wīdais [//meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] kāi gaūlai informaciōnei ezze wiki prōgramijas tērpausnan.
+	'mainpagedocfooter' => 'Wīdais [//meta.wikimedia.org/wiki/Help:Contents przewodnik użytkownika] kāi gaūlai infōrmaciōnei ezze wiki prōgramijas tērpausnan.
 
 == En pagaūseņu ==
 * [//www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]

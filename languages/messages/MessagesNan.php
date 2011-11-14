@@ -1114,6 +1114,7 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'prefs-advancedrc'              => '進一步的選項',
 'prefs-advancedrendering'       => '進一步的選項',
 'prefs-advancedsearchoptions'   => '進一步的選項',
+'prefs-advancedwatchlist'       => '進一步的選項',
 'prefs-displayrc'               => '顯示的選項',
 'prefs-displaysearchoptions'    => '顯示的選項',
 'prefs-displaywatchlist'        => '顯示的選項',
@@ -1126,11 +1127,56 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 # User rights
 'userrights'                   => '用者的權限管理',
 'userrights-lookup-user'       => '管理用者的陣營',
+'userrights-user-editname'     => '輸入一个用者名稱：',
+'editusergroup'                => '設定用者的陣營',
 'saveusergroups'               => '保存用者的陣營',
 'userrights-groupsmember'      => '成員：',
 'userrights-groupsmember-auto' => '自本的成員：',
+'userrights-groups-help'       => '你會動改用者所屬的陣營：
+* 頭前有勾起來的代表用者屬彼陣營
+* 頭前無勾起來的代表用者無屬彼陣營
+* 有 * 的項目，表示你會當加袂當減倒轉來，抑是會當減袂當加倒轉來',
+'userrights-reason'            => '理由：',
+'userrights-no-interwiki'      => '你無權去設定其它wiki上的用者權利。',
+'userrights-nodatabase'        => '無$1資料庫抑是非本地的',
+'userrights-nologin'           => '你愛管理員的口座[[Special:UserLogin|登入]]了後，才會當指定用者權利。',
+'userrights-notallowed'        => '你口座的無授權你會當加添用者權利',
+'userrights-changeable-col'    => '你會當改的陣營',
+'userrights-unchangeable-col'  => '你袂當改的陣營',
 
-'grouppage-sysop' => '{{ns:project}}:Hêng-chèng jîn-oân',
+# Groups
+'group'               => '陣營：',
+'group-user'          => '用者：',
+'group-autoconfirmed' => '自動確認的用者',
+'group-bot'           => '機器人',
+'group-sysop'         => '管理員',
+'group-bureaucrat'    => '行政人員',
+'group-suppress'      => '監督',
+'group-all'           => '（全部）',
+
+'grouppage-user'          => '{{ns:project}}:用者',
+'grouppage-autoconfirmed' => '{{ns:project}}:自動確認的用者',
+'grouppage-bot'           => '{{ns:project}}:機器人',
+'grouppage-sysop'         => '{{ns:project}}:Hêng-chèng jîn-oân',
+'grouppage-bureaucrat'    => '{{ns:project}}:行政人員',
+'grouppage-suppress'      => '{{ns:project}}:監督',
+
+# Rights
+'right-read'               => '看頁',
+'right-edit'               => '改頁',
+'right-createpage'         => '開新頁（無包括討論頁）',
+'right-createtalk'         => '開新討論頁',
+'right-createaccount'      => '開新用者口座',
+'right-minoredit'          => '標示做小編輯',
+'right-move'               => '徙頁',
+'right-move-subpages'      => '徙頁，連伊的次頁',
+'right-move-rootuserpages' => '徙用者root的頁',
+'right-movefile'           => '徙檔案',
+'right-suppressredirect'   => '徙頁的時陣，無共原本的頁改做轉向頁',
+'right-upload'             => '上載檔案',
+'right-reupload'           => '取代原本的檔案',
+'right-reupload-own'       => '取代別人上載的原本檔案',
+'right-reupload-shared'    => '莫用共用媒體檔案庫上的檔案',
 
 # User rights log
 'rightslogtext' => 'Chit-ê log lia̍t-chhut kái-piàn iōng-chiá koân-lī ê tōng-chok.',

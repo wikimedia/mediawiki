@@ -66,6 +66,7 @@
  * @author Translationista
  * @author Urhixidur
  * @author VegaDark
+ * @author Vivaelcelta
  * @author Wilfredor
  * @author XalD
  * @author לערי ריינהארט
@@ -1155,18 +1156,18 @@ Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 'rev-deleted-text-permission' => "Esta revisión de la página ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-deleted-text-unhide'     => "Esta revisión de la página ha sido '''borrada'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
+Puede haber más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
 Como administrador todavía puedes [$1 ver esta revisión] si así lo deseas.",
 'rev-suppressed-text-unhide'  => "Esta revisión de la página ha sido '''suprimida'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
+Puede haber más detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
 Como administrador podrá seguir [$1 viendo esta revisión] si desea continuar.",
 'rev-deleted-text-view'       => "Esta revisión de la página ha sido '''borrada'''.
-Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-suppressed-text-view'    => "Esta revisión de la página ha sido '''suprimida'''.
-Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
-'rev-deleted-no-diff'         => "No puede visualizarse este cambio debido a que las revisiones han sido '''borradas'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
-'rev-suppressed-no-diff'      => "No puedes ver este diff porque una de las revisiones ha sido '''borrada'''.",
+Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
+'rev-deleted-no-diff'         => "No puedes ver esta diferencia porque una de las revisiones ha sido '''borrada'''.
+Puedes encontrar más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+'rev-suppressed-no-diff'      => "No puedes ver esta diferencia porque una de las revisiones ha sido '''borrada'''.",
 'rev-deleted-unhide-diff'     => "Una de las revisiones de este cambio ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
 Como administrador podrá seguir [$1 viendo este cambio] si así lo deseas.",
@@ -1194,10 +1195,10 @@ Como administrador todavía puede ver el contenido; puede que existan más detal
 'revdelete-text'              => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-confirm'           => 'Por favor confirma que deseas realizar la operación, que entiendes las consecuencias y que estás ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
-'revdelete-suppress-text'     => "Supresión debería '''solamente''' ser usado para los siguientes casos:
-* Información potencialmente difamatoria o libelo grave.
+'revdelete-suppress-text'     => "La eliminación '''solamente''' debería usarse en los siguientes casos:
+* Información potencialmente difamatoria
 * Información personal inapropiada
-*: ''domicilios y números de teléfono, números de afiliación a la seguridad social, etc.''",
+* domicilios y números de teléfono, números de seguridad social, etc.",
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
 'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
