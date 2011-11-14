@@ -390,10 +390,10 @@ class ImportReporter extends ContextSource {
 			$nullRevision = Revision::newNullRevision( $dbw, $title->getArticleId(), $comment, true );
 			if (!is_null($nullRevision)) {
 				$nullRevision->insertOn( $dbw );
-				$article = new Article( $title );
+				$page = WikiPage::factory( $title );
 				# Update page record
-				$article->updateRevisionOn( $dbw, $nullRevision );
-				wfRunHooks( 'NewRevisionFromEditComplete', array( $article, $nullRevision, $latest, $this->getUser() ) );
+				$page->updateRevisionOn( $dbw, $nullRevision );
+				wfRunHooks( 'NewRevisionFromEditComplete', array( $page, $nullRevision, $latest, $this->getUser() ) );
 			}
 		} else {
 			$this->getOutput()->addHTML( "<li>" . Linker::linkKnown( $title ) . " " .
