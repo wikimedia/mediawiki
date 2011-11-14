@@ -497,15 +497,8 @@ class DifferenceEngine extends ContextSource {
 		<h2 class='diff-currentversion-title'>{$revHeader}</h2>\n" );
 		# Page content may be handled by a hooked call instead...
 		if ( wfRunHooks( 'ArticleContentOnDiff', array( $this, $out ) ) ) {
-			# Use the current version parser cache if applicable
-			$pCache = true;
-			if ( !$this->mNewRev->isCurrent() ) {
-				$oldEditSectionSetting = $out->parserOptions()->setEditSection( false );
-				$pCache = false;
-			}
-
 			$this->loadNewText();
-			$out->setRevisionId( $this->mNewRev->getId() );
+			$out->setRevisionId( $this->mNewid );
 			$out->setArticleFlag( true );
 
 			if ( $this->mNewPage->isCssJsSubpage() || $this->mNewPage->isCssOrJsPage() ) {
@@ -520,20 +513,31 @@ class DifferenceEngine extends ContextSource {
 					$out->addHTML( htmlspecialchars( $this->mNewtext ) );
 					$out->addHTML( "\n</pre>\n" );
 				}
-			} elseif ( $pCache ) {
-				$wikipage = WikiPage::factory( $this->mNewPage );
-				$pOutput = ParserCache::singleton()->get( $wikipage, $out->parserOptions() );
-				if( $pOutput ) {
-					$out->addParserOutput( $pOutput );
+			} elseif ( !wfRunHooks( 'ArticleViewCustom', array( $this->mNewtext, $this->mNewPage, $out ) ) ) {
+				// Handled by extension
+			} else {
+				# Use the current version parser cache if applicable
+				$wikiPage = WikiPage::factory( $this->mNewPage );
+				$useParserCache = $wikiPage->isParserCacheUsed( $this->getUser(), $this->mNewid );
+
+				$parserOptions = ParserOptions::newFromContext( $this->getContext() );
+				$parserOptions->enableLimitReport();
+				$parserOptions->setTidy( true );
+
+				if ( !$this->mNewRev->isCurrent() ) {
+					$parserOptions->setEditSection( false );
+				}
+
+				$parserOutput = false;
+				if ( $useParserCache ) {
+					$parserOutput = ParserCache::singleton()->get( $wikiPage, $out->parserOptions() );
+				}
+
+				if( $parserOutput ) {
+					$out->addParserOutput( $parserOutput );
 				} else {
 					$out->addWikiTextTidy( $this->mNewtext );
 				}
-			} else {
-				$out->addWikiTextTidy( $this->mNewtext );
-			}
-
-			if ( !$this->mNewRev->isCurrent() ) {
-				$out->parserOptions()->setEditSection( $oldEditSectionSetting );
 			}
 		}
 		# Add redundant patrol link on bottom...
