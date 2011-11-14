@@ -70,7 +70,7 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 					)
 				), __METHOD__, array( 'IGNORE' )
 			);
-			$db->delete( 'externallinks', array( 'el_index' => $row->el_index ), __METHOD__ );
+			$db->delete( 'externallinks', array( 'el_index' => $row->el_index, 'el_from' => $row->el_from, 'el_to' => $row->el_to ), __METHOD__ );
 		}
 		$this->output( "Done, $count rows updated.\n" );
 		return true;
