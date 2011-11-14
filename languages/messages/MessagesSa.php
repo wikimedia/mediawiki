@@ -1,5 +1,5 @@
 <?php
-/** Sanskrit (संस्कृत)
+/** Sanskrit (संस्कृतम्)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -356,7 +356,7 @@ $messages = array(
 'july'          => 'जूलय्',
 'august'        => 'ओगस्ट्',
 'september'     => 'सप्तम्बर्',
-'october'       => 'अक्टोबर्',
+'october'       => 'अष्टोबर्',
 'november'      => 'नवम्बर्',
 'december'      => 'दशम्बर्',
 'january-gen'   => 'जनुवरि',
@@ -621,7 +621,7 @@ $1',
 'filerenameerror'      => '$1 इति संचिकायाः $2 इति पुनर्नामकरणं कर्तुं नाशक्नोत्।',
 'filedeleteerror'      => '$1 इति सञ्चिकाम् अपाकर्तुं नाशक्नोत्।',
 'directorycreateerror' => '$1 इति निर्देशिकां स्रष्टुं न अपारयत्',
-'filenotfound'         => '"$1" इति संचिका न लब्धा।',
+'filenotfound'         => '"$1" इति सञ्चिका न लब्धा।',
 'fileexistserror'      => '$1 इति संचिकायां लिखितुम् अशक्तोऽस्ति। संचिका वर्तते  एव।',
 'unexpected'           => 'अप्रतीक्षितमूल्यम् : "$1"="$2"।',
 'formerror'            => 'त्रुटिः : प्रारूपं समर्पयितुं न अपारयत्',
@@ -1236,6 +1236,8 @@ You may ignore this message, if this account was created in error.',
 'linkstoimage'              => '{{PLURAL:$1|अधोलिखितं पृष्ठं| अधोलिखितानि $1 पृष्ठाणि}} इदं संचिकां प्रति संबंधनं {{PLURAL:$1|करोति| कुर्वन्ति}}।',
 'nolinkstoimage'            => 'एतद चित्रात् न पृष्ठा सम्बद्धं करोन्ति।',
 'sharedupload'              => 'इयं संचिका $1 इत्यस्मादस्ति, एषा खलु अन्येष्वपि प्रकल्पेषु प्रयोक्तुं शक्यते।',
+'sharedupload-desc-here'    => 'एषा सञ्चिका $1 इत्यतः उद्धृता अन्यासु योजनासु उपयोगार्हा ।
+अस्याः सञ्चिकायाः  [$2 सञ्चिकाविवरणपृष्ठम्]] इत्यत्र उपलभ्यमानं विवरणम् अधोलिखितं यथा ।',
 'uploadnewversion-linktext' => 'अस्य पृष्ठस्य नूतनाम् आवृत्तिं उद्भारयतु',
 
 # File reversion
