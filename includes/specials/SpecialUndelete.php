@@ -643,11 +643,8 @@ class SpecialUndelete extends SpecialPage {
 	}
 
 	function execute( $par ) {
+		$this->checkPermissions();
 		$user = $this->getUser();
-		if ( !$this->userCanExecute( $user ) ) {
-			$this->displayRestrictionError();
-			return;
-		}
 
 		$this->setHeaders();
 		$this->outputHeader();

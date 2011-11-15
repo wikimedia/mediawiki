@@ -78,9 +78,7 @@ class SpecialImport extends SpecialPage {
 			throw new PermissionsError( 'import', $errors );
 		}
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		$request = $this->getRequest();
 		if ( $request->wasPosted() && $request->getVal( 'action' ) == 'submit' ) {

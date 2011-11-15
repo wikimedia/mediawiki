@@ -42,9 +42,7 @@ class SpecialPreferences extends SpecialPage {
 			$out->showErrorPage( 'prefsnologin', 'prefsnologintext', array( $this->getTitle()->getPrefixedDBkey() ) );
 			return;
 		}
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		if ( $par == 'reset' ) {
 			$this->showResetForm();

@@ -46,9 +46,7 @@ class EmailConfirmation extends UnlistedSpecialPage {
 	function execute( $code ) {
 		$this->setHeaders();
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		if( empty( $code ) ) {
 			if( $this->getUser()->isLoggedIn() ) {

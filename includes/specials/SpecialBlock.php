@@ -56,17 +56,8 @@ class SpecialBlock extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		# Permission check
-		$user = $this->getUser();
-		if( !$this->userCanExecute( $user ) ) {
-			$this->displayRestrictionError();
-			return;
-		}
-
-		# Can't block when the database is locked
-		if( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkPermissions();
+		$this->checkReadOnly();
 
 		# Extract variables from the request.  Try not to get into a situation where we
 		# need to extract *every* variable from the form just for processing here, but
