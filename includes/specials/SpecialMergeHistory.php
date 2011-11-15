@@ -81,15 +81,8 @@ class SpecialMergeHistory extends SpecialPage {
 	}
 
 	public function execute( $par ) {
-		$user = $this->getUser();
-		if( !$this->userCanExecute( $user ) ) {
-			$this->displayRestrictionError();
-			return;
-		}
-
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkPermissions();
+		$this->checkReadOnly();
 
 		$this->loadRequestParams();
 

@@ -105,9 +105,7 @@ class UserrightsPage extends SpecialPage {
 			throw new PermissionsError( null, array( array( $msg ) ) );
 		}
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		$this->setHeaders();
 		$this->outputHeader();

@@ -47,9 +47,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			return;
 		}
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkPermissions();
 
 		$this->outputHeader();
 

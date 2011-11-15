@@ -45,10 +45,7 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @return Boolean: success
 	 */
 	public function execute( $subPage ) {
-		if ( !$this->userCanExecute( $this->getUser() ) ) {
-			$this->displayRestrictionError();
-			return false;
-		}
+		$this->checkPermissions();
 
 		if ( $subPage === null || $subPage === '' ) {
 			return $this->showUploads();

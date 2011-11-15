@@ -161,9 +161,7 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		# Check whether we actually want to allow changing stuff
-		if( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		$this->loadRequest();
 

@@ -41,9 +41,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 */
 	function execute( $par ) {
 		global $wgAuth;
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		$request = $this->getRequest();
 		$this->mPassword = $request->getVal( 'wpPassword' );

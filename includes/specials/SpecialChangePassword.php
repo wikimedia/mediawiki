@@ -37,9 +37,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 	function execute( $par ) {
 		global $wgAuth;
 
-		if ( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkReadOnly();
 
 		$request = $this->getRequest();
 		$this->mUserName = trim( $request->getVal( 'wpName' ) );

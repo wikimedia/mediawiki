@@ -35,16 +35,8 @@ class SpecialUnblock extends SpecialPage {
 	}
 
 	public function execute( $par ){
-		# Check permissions
-		if( !$this->userCanExecute( $this->getUser() ) ) {
-			$this->displayRestrictionError();
-			return;
-		}
-
-		# Check for database lock
-		if( wfReadOnly() ) {
-			throw new ReadOnlyError;
-		}
+		$this->checkPermissions();
+		$this->checkReadOnly();
 
 		list( $this->target, $this->type ) = SpecialBlock::getTargetAndType( $par, $this->getRequest() );
 		$this->block = Block::newFromTarget( $this->target );
