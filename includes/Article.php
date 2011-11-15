@@ -289,18 +289,21 @@ class Article extends Page {
 				$this->mRevision = Revision::newFromId( $oldid );
 				if ( !$this->mRevision ) {
 					wfDebug( __METHOD__ . " failed to retrieve specified revision, id $oldid\n" );
+					wfProfileOut( __METHOD__ );
 					return false;
 				}
 			}
 		} else {
 			if ( !$this->mPage->getLatest() ) {
 				wfDebug( __METHOD__ . " failed to find page data for title " . $this->getTitle()->getPrefixedText() . "\n" );
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 
 			$this->mRevision = $this->mPage->getRevision();
 			if ( !$this->mRevision ) {
 				wfDebug( __METHOD__ . " failed to retrieve current page, rev_id " . $this->mPage->getLatest() . "\n" );
+				wfProfileOut( __METHOD__ );
 				return false;
 			}
 		}
