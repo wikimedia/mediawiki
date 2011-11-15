@@ -37,6 +37,19 @@ function rangeForElementIE( e ) {
 	}
 }
 
+/**
+ * Helper function for IE for activating the textarea. Called only in the
+ * IE-specific code paths below; makes use of IE-specific non-standard
+ * function setActive() if possible to avoid screen flicker.
+ */
+function activateElementOnIE( element ) {
+	if ( element.setActive ) {
+		element.setActive(); // bug 32241: doesn't scroll
+	} else {
+		$( element ).focus(); // may scroll (but we patched it above)
+	}
+}
+
 var fn = {
 /**
  * Get the contents of the textarea
@@ -54,7 +67,7 @@ getSelection: function() {
 	if ( $(e).is( ':hidden' ) ) {
 		// Do nothing
 	} else if ( document.selection && document.selection.createRange ) {
-		$(e).focus();
+		activateElementOnIE( e );
 		var range = document.selection.createRange();
 		retval = range.text;
 	} else if ( e.selectionStart || e.selectionStart == '0' ) {
@@ -171,7 +184,7 @@ encapsulateSelection: function( options ) {
 			}
 		} else if ( document.selection && document.selection.createRange ) {
 			// IE
-			$(this).focus();
+			activateElementOnIE( this );
 			if ( context ) {
 				context.fn.restoreCursorAndScrollTop();
 			}
@@ -240,7 +253,7 @@ encapsulateSelection: function( options ) {
 			// the selection ranges when textarea isn't focused. This can
 			// lead to saving a bogus empty selection, which then screws up
 			// whatever we do later (bug 31847).
-			$(e).focus();
+			activateElementOnIE( e );
 
 			// IE Support
 			var preFinished = false;
