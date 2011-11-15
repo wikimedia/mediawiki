@@ -2725,7 +2725,7 @@ class Language {
 			$sign = "";
 			if ( intval( $_ ) < 0 ) {
 				// For negative numbers apply the algorithm like positive number and add sign.
-				$sign =   $_[0];
+				$sign =  "-";
 				$_ = substr( $_,1 );
 			}
 			$numberpart = array();
