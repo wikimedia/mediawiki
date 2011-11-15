@@ -27,7 +27,7 @@
  *
  * @ingroup SpecialPage
  */
-class SpecialBlock extends SpecialPage {
+class SpecialBlock extends FormSpecialPage {
 	/** The maximum number of edits a user can have and still be hidden
 	 * TODO: config setting? */
 	const HIDEUSER_CONTRIBLIMIT = 1000;
@@ -55,10 +55,28 @@ class SpecialBlock extends SpecialPage {
 		parent::__construct( 'Block', 'block' );
 	}
 
-	public function execute( $par ) {
-		$this->checkPermissions();
-		$this->checkReadOnly();
+	/**
+	 * Checks that the user can unblock themselves if they are trying to do so
+	 *
+	 * @param User $user
+	 * @throws ErrorPageError
+	 */
+	protected function checkExecutePermissions( User $user ) {
+		 parent::checkExecutePermissions( $user );
 
+		# bug 15810: blocked admins should have limited access here
+		$status = self::checkUnblockSelf( $this->target, $user );
+		if ( $status !== true ) {
+			throw new ErrorPageError( 'badaccess', $status );
+		}
+	}
+
+	/**
+	 * Handle some magic here
+	 *
+	 * @param $par String
+	 */
+	protected function setParameter( $par ) {
 		# Extract variables from the request.  Try not to get into a situation where we
 		# need to extract *every* variable from the form just for processing here, but
 		# there are legitimate uses for some variables
@@ -72,39 +90,31 @@ class SpecialBlock extends SpecialPage {
 
 		list( $this->previousTarget, /*...*/ ) = Block::parseTarget( $request->getVal( 'wpPreviousTarget' ) );
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
+	}
 
-		# bug 15810: blocked admins should have limited access here
-		$status = self::checkUnblockSelf( $this->target, $user );
-		if ( $status !== true ) {
-			throw new ErrorPageError( 'badaccess', $status );
-		}
-
-		$this->setHeaders();
-		$this->outputHeader();
-
-		$out = $this->getOutput();
-		$out->setPageTitle( $this->msg( 'blockip-title' ) );
-		$out->addModules( array( 'mediawiki.special', 'mediawiki.special.block' ) );
-
-		$fields = $this->getFormFields();
-		$this->maybeAlterFormDefaults( $fields );
-
-		$form = new HTMLForm( $fields, $this->getContext() );
-		$form->setWrapperLegend( wfMsg( 'blockip-legend' ) );
+	/**
+	 * Customizes the HTMLForm a bit
+	 *
+	 * @param $form HTMLForm
+	 */
+	protected function alterForm( HTMLForm $form ) {
+		$form->setWrapperLegendMsg( 'blockip-legend' );
+		$form->setHeaderText( '' );
 		$form->setSubmitCallback( array( __CLASS__, 'processUIForm' ) );
 
-		$t = $this->alreadyBlocked
-			? wfMsg( 'ipb-change-block' )
-			: wfMsg( 'ipbsubmit' );
-		$form->setSubmitText( $t );
+		$msg = $this->alreadyBlocked ? 'ipb-change-block' : 'ipbsubmit';
+		$form->setSubmitTextMsg( $msg );
 
-		$this->doPreText( $form );
-		$this->doHeadertext( $form );
-		$this->doPostText( $form );
-
-		if( $form->show() ){
-			$out->setPageTitle( $this->msg( 'blockipsuccesssub' ) );
-			$out->addWikiMsg( 'blockipsuccesstext',  $this->target );
+		# Don't need to do anything if the form has been posted
+		if( !$this->getRequest()->wasPosted() && $this->preErrors ){
+			$s = HTMLForm::formatErrors( $this->preErrors );
+			if( $s ){
+				$form->addHeaderText( Html::rawElement(
+						'div',
+						array( 'class' => 'error' ),
+						$s
+					) );
+			}
 		}
 	}
 
@@ -205,13 +215,15 @@ class SpecialBlock extends SpecialPage {
 			'label-message' => 'ipb-confirm',
 		);
 
+		$this->maybeAlterFormDefaults( $a );
+
 		return $a;
 	}
 
 	/**
 	 * If the user has already been blocked with similar settings, load that block
 	 * and change the defaults for the form fields to match the existing settings.
-	 * @param &$fields Array HTMLForm descriptor array
+	 * @param $fields Array HTMLForm descriptor array
 	 * @return Bool whether fields were altered (that is, whether the target is
 	 *     already blocked)
 	 */
@@ -285,11 +297,10 @@ class SpecialBlock extends SpecialPage {
 
 	/**
 	 * Add header elements like block log entries, etc.
-	 * @param  $form HTMLForm
 	 * @return void
 	 */
-	protected function doPreText( HTMLForm &$form ){
-		$form->addPreText( wfMsgExt( 'blockiptext', 'parse' ) );
+	protected function preText(){
+		$text = $this->msg( 'blockiptext' )->parse();
 
 		$otherBlockMessages = array();
 		if( $this->target !== null ) {
@@ -315,36 +326,18 @@ class SpecialBlock extends SpecialPage {
 					$list
 				) . "\n";
 
-				$form->addPreText( $s );
+				$text .= $s;
 			}
 		}
-	}
 
-	/**
-	 * Add header text inside the form, just underneath where the errors would go
-	 * @param $form HTMLForm
-	 * @return void
-	 */
-	protected function doHeaderText( HTMLForm &$form ){
-		# Don't need to do anything if the form has been posted
-		if( !$this->getRequest()->wasPosted() && $this->preErrors ){
-			$s = HTMLForm::formatErrors( $this->preErrors );
-			if( $s ){
-				$form->addHeaderText( Html::rawElement(
-					'div',
-					array( 'class' => 'error' ),
-					$s
-				) );
-			}
-		}
+		return $text;
 	}
 
 	/**
 	 * Add footer elements to the form
-	 * @param  $form HTMLForm
 	 * @return void
 	 */
-	protected function doPostText( HTMLForm &$form ){
+	protected function postText(){
 		# Link to the user's contributions, if applicable
 		if( $this->target instanceof User ){
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );
@@ -382,11 +375,11 @@ class SpecialBlock extends SpecialPage {
 			);
 		}
 
-		$form->addPostText( Html::rawElement(
+		$text =  Html::rawElement(
 			'p',
 			array( 'class' => 'mw-ipb-conveniencelinks' ),
 			$this->getLang()->pipeList( $links )
-		) );
+		);
 
 		if( $this->target instanceof User ){
 			# Get relevant extracts from the block and suppression logs, if possible
@@ -404,7 +397,7 @@ class SpecialBlock extends SpecialPage {
 					'showIfEmpty' => false
 				)
 			);
-			$form->addPostText( $out );
+			$text .= $out;
 
 			# Add suppression block entries if allowed
 			if( $user->isAllowed( 'suppressionlog' ) ) {
@@ -421,9 +414,11 @@ class SpecialBlock extends SpecialPage {
 					)
 				);
 
-				$form->addPostText( $out );
+				$text .= $out;
 			}
 		}
+
+		return $text;
 	}
 
 	/**
@@ -482,6 +477,7 @@ class SpecialBlock extends SpecialPage {
 	 * @since 1.18
 	 * @param $value String
 	 * @param $alldata Array
+	 * @param $form HTMLForm
 	 * @return Message
 	 */
 	public static function validateTargetField( $value, $alldata, $form ) {
@@ -536,6 +532,9 @@ class SpecialBlock extends SpecialPage {
 
 	/**
 	 * Submit callback for an HTMLForm object, will simply pass
+	 * @param $data array
+	 * @param $form HTMLForm
+	 * @return Bool|String
 	 */
 	public static function processUIForm( array $data, HTMLForm $form ) {
 		return self::processForm( $data, $form->getContext() );
@@ -544,6 +543,7 @@ class SpecialBlock extends SpecialPage {
 	/**
 	 * Given the form data, actually implement a block
 	 * @param  $data Array
+	 * @param  $context IContextSource
 	 * @return Bool|String
 	 */
 	public static function processForm( array $data, IContextSource $context ){
@@ -866,6 +866,26 @@ class SpecialBlock extends SpecialPage {
 		}
 
 		return implode( ',', $flags );
+	}
+
+	/**
+	 * Process the form on POST submission.
+	 * @param  $data Array
+	 * @return Bool|Array true for success, false for didn't-try, array of errors on failure
+	 */
+	public function onSubmit( array $data ) {
+		// This isn't used since we need that HTMLForm that's passed in the
+		// second parameter. See alterForm for the real function
+	}
+
+	/**
+	 * Do something exciting on successful processing of the form, most likely to show a
+	 * confirmation message
+	 */
+	public function onSuccess() {
+		$out = $this->getOutput();
+		$out->setPageTitle( $this->msg( 'blockipsuccesssub' ) );
+		$out->addWikiMsg( 'blockipsuccesstext',  $this->target );
 	}
 }
 
