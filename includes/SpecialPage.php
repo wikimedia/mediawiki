@@ -511,6 +511,17 @@ class SpecialPage {
 	}
 
 	/**
+	 * Checks if userCanExecute, and if not throws a PermissionsError
+	 *
+	 * @since 1.19
+	 */
+	public function checkPermissions() {
+		if ( !$this->userCanExecute( $this->getUser() ) ) {
+			$this->displayRestrictionError();
+		}
+	}
+
+	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
 	 */
 	function setHeaders() {
@@ -530,18 +541,15 @@ class SpecialPage {
 	 */
 	function execute( $par ) {
 		$this->setHeaders();
+		$this->checkPermissions();
 
-		if ( $this->userCanExecute( $this->getUser() ) ) {
-			$func = $this->mFunction;
-			// only load file if the function does not exist
-			if( !is_callable($func) && $this->mFile ) {
-				require_once( $this->mFile );
-			}
-			$this->outputHeader();
-			call_user_func( $func, $par, $this );
-		} else {
-			$this->displayRestrictionError();
+		$func = $this->mFunction;
+		// only load file if the function does not exist
+		if( !is_callable($func) && $this->mFile ) {
+			require_once( $this->mFile );
 		}
+		$this->outputHeader();
+		call_user_func( $func, $par, $this );
 	}
 
 	/**
