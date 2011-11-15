@@ -522,6 +522,18 @@ class SpecialPage {
 	}
 
 	/**
+	 * If the wiki is currently in readonly mode, throws a ReadOnlyError
+	 *
+	 * @since 1.19
+	 * @throws ReadOnlyError
+	 */
+	public function checkReadOnly() {
+		if ( wfReadOnly() ) {
+			throw new ReadOnlyError;
+		}
+	}
+
+	/**
 	 * Sets headers - this should be called from the execute() method of all derived classes!
 	 */
 	function setHeaders() {
@@ -816,13 +828,11 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * @throws ErrorPageError
 	 */
 	protected function checkExecutePermissions( User $user ) {
-		if ( $this->requiresWrite() && wfReadOnly() ) {
-			throw new ReadOnlyError();
+		if ( $this->requiresWrite() ) {
+			$this->checkReadOnly();
 		}
 
-		if ( !$this->userCanExecute( $this->getUser() ) ) {
-			throw new PermissionsError( $this->getRestriction() );
-		}
+		$this->checkPermissions();
 
 		if ( $this->requiresUnblock() && $user->isBlocked() ) {
 			$block = $user->mBlock;
