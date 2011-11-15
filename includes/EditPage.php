@@ -2091,13 +2091,16 @@ HTML
 	 * save and then make a comparison.
 	 */
 	function showDiff() {
+		global $wgUser, $wgContLang, $wgParser;
+
 		$oldtext = $this->mArticle->fetchContent();
 		$newtext = $this->mArticle->replaceSection(
 			$this->section, $this->textbox1, $this->summary, $this->edittime );
 
 		wfRunHooks( 'EditPageGetDiffText', array( $this, &$newtext ) );
 
-		$newtext = $this->mArticle->preSaveTransform( $newtext );
+		$popts = ParserOptions::newFromUserAndLang( $wgUser, $wgContLang );
+		$newtext = $wgParser->preSaveTransform( $newtext, $this->mTitle, $wgUser, $popts );
 		$oldtitle = wfMsgExt( 'currentrev', array( 'parseinline' ) );
 		$newtitle = wfMsgExt( 'yourtext', array( 'parseinline' ) );
 		if ( $oldtext !== false  || $newtext != '' ) {
@@ -2296,9 +2299,24 @@ HTML
 	 * @return string
 	 */
 	function getPreviewText() {
-		global $wgOut, $wgUser, $wgParser;
+		global $wgOut, $wgUser, $wgParser, $wgRawHtml;
 
 		wfProfileIn( __METHOD__ );
+
+		if ( $wgRawHtml && !$this->mTokenOk ) {
+			// Could be an offsite preview attempt. This is very unsafe if
+			// HTML is enabled, as it could be an attack.
+			$parsedNote = '';
+			if ( $this->textbox1 !== '' ) {
+				// Do not put big scary notice, if previewing the empty
+				// string, which happens when you initially edit
+				// a category page, due to automatic preview-on-open.
+				$parsedNote = $wgOut->parse( "<div class='previewnote'>" .
+					wfMsg( 'session_fail_preview_html' ) . "</div>", true, /* interface */true );
+			}
+			wfProfileOut( __METHOD__ );
+			return $parsedNote;
+		}
 
 		if ( $this->mTriedSave && !$this->mTokenOk ) {
 			if ( $this->mTokenOkExceptSuffix ) {
@@ -2314,24 +2332,9 @@ HTML
 
 		$parserOptions = ParserOptions::newFromUser( $wgUser );
 		$parserOptions->setEditSection( false );
+		$parserOptions->setTidy( true );
 		$parserOptions->setIsPreview( true );
 		$parserOptions->setIsSectionPreview( !is_null($this->section) && $this->section !== '' );
-
-		global $wgRawHtml;
-		if ( $wgRawHtml && !$this->mTokenOk ) {
-			// Could be an offsite preview attempt. This is very unsafe if
-			// HTML is enabled, as it could be an attack.
-			$parsedNote = '';
-			if ( $this->textbox1 !== '' ) {
-				// Do not put big scary notice, if previewing the empty
-				// string, which happens when you initially edit
-				// a category page, due to automatic preview-on-open.
-				$parsedNote = $wgOut->parse( "<div class='previewnote'>" .
-					wfMsg( 'session_fail_preview_html' ) . "</div>", true, /* interface */true );
-			}
-			wfProfileOut( __METHOD__ );
-			return $parsedNote;
-		}
 
 		# don't parse non-wikitext pages, show message about preview
 		# XXX: stupid php bug won't let us use $this->getContextTitle()->isCssJsSubpage() here -- This note has been there since r3530. Sure the bug was fixed time ago?
@@ -2359,7 +2362,6 @@ HTML
 				}
 			}
 
-			$parserOptions->setTidy( true );
 			$parserOutput = $wgParser->parse( $previewtext, $this->mTitle, $parserOptions );
 			$previewHTML = $parserOutput->mText;
 			$previewHTML .= "<pre class=\"$class\" dir=\"ltr\">\n" . htmlspecialchars( $this->textbox1 ) . "\n</pre>\n";
@@ -2378,10 +2380,10 @@ HTML
 
 				wfRunHooks( 'EditPageGetPreviewText', array( $this, &$toparse ) );
 
-				$parserOptions->setTidy( true );
 				$parserOptions->enableLimitReport();
-				$parserOutput = $wgParser->parse( $this->mArticle->preSaveTransform( $toparse ),
-					$this->mTitle, $parserOptions );
+
+				$toparse = $wgParser->preSaveTransform( $toparse, $this->mTitle, $wgUser, $parserOptions );
+				$parserOutput = $wgParser->parse( $toparse, $this->mTitle, $parserOptions );
 
 				$previewHTML = $parserOutput->getText();
 				$this->mParserOutput = $parserOutput;
