@@ -101,7 +101,10 @@ production.
 * BREAKING CHANGE: Article class heirarchy split into WikiPage (backend)
   and Article (frontend) hierarchies. Several hooks now pass a WikiPage object instead
   of an Article object. These hooks all use an $article paramater as documented in hooks.txt.
-  Extensions should be updated to account for this, though most won't require any changes.
+  Extensions must be updated to account for this, though most won't require any changes.
+  Callers using $article->fetchContent() or $article->getContent(), that only want the
+  current version article text, should use $article->getText() instead. If the Article class
+  functions are required, an article object can be created using Article::newFromWikiPage().
 * (bug 27860) Minor edit after clicking 'new section' tab
   Now the "This is a minor edit" checkbox is not available when you
   create a page or new section.
