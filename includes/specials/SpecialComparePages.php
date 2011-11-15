@@ -106,12 +106,12 @@ class SpecialComparePages extends SpecialPage {
 		$form->trySubmit();
 	}
 
-	public static function showDiff( $data ){
+	public static function showDiff( $data, HTMLForm $form ){
 		$rev1 = self::revOrTitle( $data['Revision1'], $data['Page1'] );
 		$rev2 = self::revOrTitle( $data['Revision2'], $data['Page2'] );
 
 		if( $rev1 && $rev2 ) {
-			$de = new DifferenceEngine( $this->getContext(),
+			$de = new DifferenceEngine( $form->getContext(),
 				$rev1,
 				$rev2,
 				null, // rcid
