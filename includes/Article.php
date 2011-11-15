@@ -127,6 +127,19 @@ class Article extends Page {
 	}
 
 	/**
+	 * Create an Article object of the appropriate class for the given page.
+	 *
+	 * @param $page WikiPage
+	 * @param $context IContextSource
+	 * @return Article object
+	 */
+	public static function newFromWikiPage( WikiPage $page, IContextSource $context ) {
+		$article = self::newFromTitle( $page->getTitle(), $context );
+		$article->mPage = $page; // override to keep process cached vars
+		return $article;
+	}
+
+	/**
 	 * Tell the page view functions that this view was redirected
 	 * from another page on the wiki.
 	 * @param $from Title object.
