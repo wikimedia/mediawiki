@@ -444,8 +444,11 @@ function wfAppendQuery( $url, $query ) {
  * like "subdir/foo.html", etc.
  *
  * @param $url String: either fully-qualified or a local path + query
- * @param $defaultProto Mixed: one of the PROTO_* constants. Determines the protocol to use if $url or $wgServer is protocol-relative
- * @return string Fully-qualified URL
+ * @param $defaultProto Mixed: one of the PROTO_* constants. Determines the
+ *                             protocol to use if $url or $wgServer is
+ *                             protocol-relative
+ * @return string Fully-qualified URL, current-path-relative URL or false if
+ *                no valid URL can be constructed
  */
 function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	global $wgServer, $wgCanonicalServer, $wgInternalServer;
@@ -478,13 +481,26 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 	$defaultProtoWithoutSlashes = substr( $defaultProto, 0, -2 );
 
 	if ( substr( $url, 0, 2 ) == '//' ) {
-		return $defaultProtoWithoutSlashes . $url;
+		$url = $defaultProtoWithoutSlashes . $url;
 	} elseif ( substr( $url, 0, 1 ) == '/' ) {
 		// If $serverUrl is protocol-relative, prepend $defaultProtoWithoutSlashes, otherwise leave it alone
-		return ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $serverUrl . $url;
-	} else {
-		return $url;
+		$url = ( $serverHasProto ? '' : $defaultProtoWithoutSlashes ) . $serverUrl . $url;
 	}
+
+	$bits = wfParseUrl( $url );
+	if ( $bits && isset( $bits['path'] ) ) {
+		$bits['path'] = wfRemoveDotSegments( $bits['path'] );
+		return wfAssembleUrl( $bits );
+	} elseif ( $bits ) {
+		# No path to expand
+		return $url;
+	} elseif ( substr( $url, 0, 1 ) != '/' ) {
+		# URL is a relative path
+		return wfRemoveDotSegments( $url );
+	}
+
+	# Expanded URL is not valid.
+	return false;
 }
 
 /**
@@ -502,18 +518,18 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 function wfAssembleUrl( $urlParts ) {
 	$result = '';
 
-	if ( array_key_exists( 'delimiter', $urlParts ) ) {
-		if ( array_key_exists( 'scheme', $urlParts ) ) {
+	if ( isset( $urlParts['delimiter'] ) ) {
+		if ( isset( $urlParts['scheme'] ) ) {
 			$result .= $urlParts['scheme'];
 		}
 
 		$result .= $urlParts['delimiter'];
 	}
 
-	if ( array_key_exists( 'host', $urlParts ) ) {
-		if ( array_key_exists( 'user', $urlParts ) ) {
+	if ( isset( $urlParts['host'] ) ) {
+		if ( isset( $urlParts['user'] ) ) {
 			$result .= $urlParts['user'];
-			if ( array_key_exists( 'pass', $urlParts ) ) {
+			if ( isset( $urlParts['pass'] ) ) {
 				$result .= ':' . $urlParts['pass'];
 			}
 			$result .= '@';
@@ -521,20 +537,20 @@ function wfAssembleUrl( $urlParts ) {
 
 		$result .= $urlParts['host'];
 
-		if ( array_key_exists( 'port', $urlParts ) ) {
+		if ( isset( $urlParts['port'] ) ) {
 			$result .= ':' . $urlParts['port'];
 		}
 	}
 
-	if ( array_key_exists( 'path', $urlParts ) ) {
+	if ( isset( $urlParts['path'] ) ) {
 		$result .= $urlParts['path'];
 	}
 
-	if ( array_key_exists( 'query', $urlParts ) ) {
+	if ( isset( $urlParts['query'] ) ) {
 		$result .= '?' . $urlParts['query'];
 	}
 
-	if ( array_key_exists( 'fragment', $urlParts ) ) {
+	if ( isset( $urlParts['fragment'] ) ) {
 		$result .= '#' . $urlParts['fragment'];
 	}
 

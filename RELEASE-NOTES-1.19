@@ -136,6 +136,7 @@ production.
 * (bug 32358) Do not display "No higher resolution available" for dimensionless
   files (like audio files)
 * (bug 32168) Add wfAssembleUrl for use in wfExpandUrl
+* (bug 32168) fixed - wfExpandUrl expands dot segments now
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
