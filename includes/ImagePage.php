@@ -789,19 +789,15 @@ EOT
 	 */
 	public function delete() {
 		global $wgUploadMaintenance;
-		if ( $wgUploadMaintenance && $this->getTitle() && $this->getTitle()->getNamespace() == NS_FILE ) {
-			global $wgOut;
-			$wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n", array( 'filedelete-maintenance' ) );
-			return;
-		}
 
-		$this->loadFile();
-		if ( !$this->mPage->getFile()->exists() || !$this->mPage->getFile()->isLocal() || $this->mPage->getFile()->getRedirected() ) {
+		$file = $this->mPage->getFile();
+		if ( !$file->exists() || !$file->isLocal() || $file->getRedirected() ) {
 			// Standard article deletion
 			parent::delete();
 			return;
 		}
-		$deleter = new FileDeleteForm( $this->mPage->getFile() );
+
+		$deleter = new FileDeleteForm( $file );
 		$deleter->execute();
 	}
 
