@@ -828,15 +828,15 @@ abstract class FormSpecialPage extends SpecialPage {
 	 * @throws ErrorPageError
 	 */
 	protected function checkExecutePermissions( User $user ) {
-		if ( $this->requiresWrite() ) {
-			$this->checkReadOnly();
-		}
-
 		$this->checkPermissions();
 
 		if ( $this->requiresUnblock() && $user->isBlocked() ) {
 			$block = $user->mBlock;
 			throw new UserBlockedError( $block );
+		}
+
+		if ( $this->requiresWrite() ) {
+			$this->checkReadOnly();
 		}
 
 		return true;
