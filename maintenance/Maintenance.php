@@ -385,7 +385,7 @@ abstract class Maintenance {
 		$this->atLineStart = false;
 		if ( $channel === null ) {
 			// For unchanneled messages, output trailing newline immediately
-			if( $handle ) {
+			if( $cli ) {
 				fwrite( STDOUT, "\n" );
 			} else {
 				print "\n";
