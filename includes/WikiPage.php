@@ -1977,7 +1977,7 @@ class WikiPage extends Page {
 		$edit = (object)array();
 		$edit->revid = $revid;
 		$edit->newText = $text;
-		$edit->pst = $this->preSaveTransform( $text, $user, $popts );
+		$edit->pst = $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
 		$edit->popts = $this->makeParserOptions( 'canonical' );
 		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
 		$edit->oldText = $this->getRawText();
@@ -2131,6 +2131,7 @@ class WikiPage extends Page {
 	 * This function is called right before saving the wikitext,
 	 * so we can do things like signatures and links-in-context.
 	 *
+	 * @deprecated in 1.19; use Parser::preSaveTransform() instead
 	 * @param $text String article contents
 	 * @param $user User object: user doing the edit
 	 * @param $popts ParserOptions object: parser options, default options for
@@ -2140,6 +2141,9 @@ class WikiPage extends Page {
 	 */
 	public function preSaveTransform( $text, User $user = null, ParserOptions $popts = null ) {
 		global $wgParser, $wgUser;
+
+		wfDeprecated( __METHOD__ );
+
 		$user = is_null( $user ) ? $wgUser : $user;
 
 		if ( $popts === null ) {
