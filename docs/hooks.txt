@@ -874,7 +874,7 @@ $user: User the list is being fetched for
 $file: reference to the deleted file
 $oldimage: in case of the deletion of an old image, the name of the old file
 $article: in case all revisions of the file are deleted a reference to the
-	article associated with the file.
+	WikiFilePage associated with the file.
 $user: user who performed the deletion
 $reason: reason
 

@@ -39,7 +39,7 @@ class FileDeleteForm {
 	 * pending authentication, confirmation, etc.
 	 */
 	public function execute() {
-		global $wgOut, $wgRequest, $wgUser;
+		global $wgOut, $wgRequest, $wgUser, $wgUploadMaintenance;
 
 		$permissionErrors = $this->title->getUserPermissionsErrors( 'delete', $wgUser );
 		if ( count( $permissionErrors ) ) {
@@ -48,6 +48,10 @@ class FileDeleteForm {
 
 		if ( wfReadOnly() ) {
 			throw new ReadOnlyError;
+		}
+
+		if ( $wgUploadMaintenance ) {
+			throw new ErrorPageError( 'filedelete-maintenance-title', 'filedelete-maintenance' );
 		}
 
 		$this->setHeaders();
@@ -81,7 +85,7 @@ class FileDeleteForm {
 				$reason = $deleteReasonList;
 			}
 
-			$status = self::doDelete( $this->title, $this->file, $this->oldimage, $reason, $suppress );
+			$status = self::doDelete( $this->title, $this->file, $this->oldimage, $reason, $suppress, $wgUser );
 
 			if( !$status->isGood() ) {
 				$wgOut->addHTML( '<h2>' . $this->prepareMessage( 'filedeleteerror-short' ) . "</h2>\n" );
@@ -95,6 +99,12 @@ class FileDeleteForm {
 				// Return to the main page if we just deleted all versions of the
 				// file, otherwise go back to the description page
 				$wgOut->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
+
+				if ( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
+					WatchAction::doWatch( $title, $wgUser );
+				} elseif ( $this->title->userIsWatching() ) {
+					WatchAction::doUnwatch( $title, $wgUser );
+				}
 			}
 			return;
 		}
@@ -111,13 +121,16 @@ class FileDeleteForm {
 	 * @param $oldimage String: archive name
 	 * @param $reason String: reason of the deletion
 	 * @param $suppress Boolean: whether to mark all deleted versions as restricted
+	 * @param $user User object performing the request
 	 */
-	public static function doDelete( &$title, &$file, &$oldimage, $reason, $suppress ) {
-		global $wgUser;
-		$article = null;
-		$status = Status::newFatal( 'error' );
+	public static function doDelete( &$title, &$file, &$oldimage, $reason, $suppress, User $user = null ) {
+		if ( $user === null ) {
+			global $wgUser;
+			$user = $wgUser;
+		}
 
 		if( $oldimage ) {
+			$page = null;
 			$status = $file->deleteOld( $oldimage, $reason, $suppress );
 			if( $status->ok ) {
 				// Need to do a log item
@@ -129,18 +142,14 @@ class FileDeleteForm {
 				$log->addEntry( 'delete', $title, $logComment );
 			}
 		} else {
+			$status = Status::newFatal( 'error' );
 			$id = $title->getArticleID( Title::GAID_FOR_UPDATE );
-			$article = new Article( $title );
+			$page = WikiPage::factory( $title );
 			$dbw = wfGetDB( DB_MASTER );
 			try {
 				// delete the associated article first
-				if( $article->doDeleteArticle( $reason, $suppress, $id, false ) ) {
-					global $wgRequest;
-					if ( $wgRequest->getCheck( 'wpWatch' ) && $wgUser->isLoggedIn() ) {
-						WatchAction::doWatch( $title, $wgUser );
-					} elseif ( $title->userIsWatching() ) {
-						WatchAction::doUnwatch( $title, $wgUser );
-					}
+				$error = '';
+				if ( $page->doDeleteArticle( $reason, $suppress, $id, false, $error, $user ) ) {
 					$status = $file->delete( $reason, $suppress );
 					if( $status->ok ) {
 						$dbw->commit();
@@ -154,8 +163,10 @@ class FileDeleteForm {
 				throw $e;
 			}
 		}
-		if( $status->isGood() )
-			wfRunHooks('FileDeleteComplete', array( &$file, &$oldimage, &$article, &$wgUser, &$reason));
+
+		if ( $status->isGood() ) {
+			wfRunHooks( 'FileDeleteComplete', array( &$file, &$oldimage, &$page, &$user, &$reason ) );
+		}
 
 		return $status;
 	}

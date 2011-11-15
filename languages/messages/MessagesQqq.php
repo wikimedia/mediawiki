@@ -2015,30 +2015,32 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 {{Identical|Revert}}',
 
 # File deletion
-'filedelete-legend'           => '{{Identical|Delete}}',
-'filedelete-intro-old'        => 'Message displayed when you try to delete a version of a file.
+'filedelete-legend'            => '{{Identical|Delete}}',
+'filedelete-intro-old'         => 'Message displayed when you try to delete a version of a file.
 * $1 is the name of the media
 * $2 is a date
 * $3 is a hour
 * $4 is a URL and must follow square bracket: [$4',
-'filedelete-comment'          => '{{Identical|Reason}}',
-'filedelete-submit'           => 'Delete button when deleting a file for admins
+'filedelete-comment'           => '{{Identical|Reason}}',
+'filedelete-submit'            => 'Delete button when deleting a file for admins
 
 {{Identical|Delete}}',
-'filedelete-success-old'      => 'Message displayed when you succeed in deleting a version of a file.
+'filedelete-success-old'       => 'Message displayed when you succeed in deleting a version of a file.
 * $1 is the name of the media
 * $2 is a date
 * $3 is a hour',
-'filedelete-otherreason'      => 'Message used when deleting a file. This is the description field for "Other/additional reason" for deletion.
+'filedelete-otherreason'       => 'Message used when deleting a file. This is the description field for "Other/additional reason" for deletion.
 
 {{Identical|Other/additional reason}}',
-'filedelete-reason-otherlist' => 'Message used as default in the dropdown menu in the form for deleting a file. Keeping this message selected assumes that a reason for deletion is specified in the field below.
+'filedelete-reason-otherlist'  => 'Message used as default in the dropdown menu in the form for deleting a file. Keeping this message selected assumes that a reason for deletion is specified in the field below.
 
 {{Identical|Other reason}}',
-'filedelete-reason-dropdown'  => 'Predefined reasons for deleting a file that can be selected in a drop down list. Entries prefixed with one asterisk ("*") are group headers and cannot be selected. Entries prefixed with two asterisks can be selected as reason for deletion.',
-'filedelete-edit-reasonlist'  => 'Shown beneath the file deletion form on the right side. It is a link to [[MediaWiki:Filedelete-reason-dropdown]].
+'filedelete-reason-dropdown'   => 'Predefined reasons for deleting a file that can be selected in a drop down list. Entries prefixed with one asterisk ("*") are group headers and cannot be selected. Entries prefixed with two asterisks can be selected as reason for deletion.',
+'filedelete-edit-reasonlist'   => 'Shown beneath the file deletion form on the right side. It is a link to [[MediaWiki:Filedelete-reason-dropdown]].
 
 {{Identical|Edit delete reasons}}',
+'filedelete-maintenance'       => 'Content of the error page when $wgUploadMaintenance is set to true.',
+'filedelete-maintenance-title' => 'Title of the error page when $wgUploadMaintenance is set to true.',
 
 # MIME search
 'mimesearch'         => 'Title of [[Special:MIMESearch]].',
