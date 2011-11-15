@@ -488,6 +488,60 @@ function wfExpandUrl( $url, $defaultProto = PROTO_CURRENT ) {
 }
 
 /**
+ * This function will reassemble a URL parsed with wfParseURL.  This is useful
+ * if you need to edit part of a URL and put it back together.
+ *
+ * This is the basic structure used (brackets contain keys for $urlParts):
+ * [scheme][delimiter][user]:[pass]@[host]:[port][path]?[query]#[fragment]
+ *
+ * @todo Need to integrate this into wfExpandUrl (bug 32168)
+ *
+ * @param $urlParts Array URL parts, as output from wfParseUrl
+ * @return string URL assembled from its component parts
+ */
+function wfAssembleUrl( $urlParts ) {
+	$result = '';
+
+	if ( array_key_exists( 'delimiter', $urlParts ) ) {
+		if ( array_key_exists( 'scheme', $urlParts ) ) {
+			$result .= $urlParts['scheme'];
+		}
+
+		$result .= $urlParts['delimiter'];
+	}
+
+	if ( array_key_exists( 'host', $urlParts ) ) {
+		if ( array_key_exists( 'user', $urlParts ) ) {
+			$result .= $urlParts['user'];
+			if ( array_key_exists( 'pass', $urlParts ) ) {
+				$result .= ':' . $urlParts['pass'];
+			}
+			$result .= '@';
+		}
+
+		$result .= $urlParts['host'];
+
+		if ( array_key_exists( 'port', $urlParts ) ) {
+			$result .= ':' . $urlParts['port'];
+		}
+	}
+
+	if ( array_key_exists( 'path', $urlParts ) ) {
+		$result .= $urlParts['path'];
+	}
+
+	if ( array_key_exists( 'query', $urlParts ) ) {
+		$result .= '?' . $urlParts['query'];
+	}
+
+	if ( array_key_exists( 'fragment', $urlParts ) ) {
+		$result .= '#' . $urlParts['fragment'];
+	}
+
+	return $result;
+}
+
+/**
  * Remove all dot-segments in the provided URL path.  For example,
  * '/a/./b/../c/' becomes '/a/c/'.  For details on the algorithm, please see
  * RFC3986 section 5.2.4.
