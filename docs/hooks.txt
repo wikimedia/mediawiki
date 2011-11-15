@@ -1191,7 +1191,7 @@ $join_conds: JOIN conditions
 
 'LocalFilePurgeThumbnails': called before thumbnails for a local file a purged
 $file: the File object
-$type: either "current" or "archive"
+$archiveName: name of an old file version or false if it's the current one
 
 'LocalisationCacheRecache': Called when loading the localisation data into cache
 $cache: The LocalisationCache object
