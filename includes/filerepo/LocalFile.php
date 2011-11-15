@@ -687,7 +687,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Delete cached transformed files for archived files
+	 * Delete cached transformed files for an archived version only.
 	 * @param $archiveName string name of the archived file
 	 */
 	function purgeOldThumbnails( $archiveName ) {
@@ -707,7 +707,7 @@ class LocalFile extends File {
 		wfRestoreWarnings();
 
 		// Purge any custom thumbnail caches
-		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, 'archive' ) );
+		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, $archiveName ) );
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
@@ -732,7 +732,7 @@ class LocalFile extends File {
 		$this->purgeThumbList( $dir, $files );
 
 		// Purge any custom thumbnail caches
-		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, 'current' ) );
+		wfRunHooks( 'LocalFilePurgeThumbnails', array( $this, false ) );
 
 		// Purge the squid
 		if ( $wgUseSquid ) {
