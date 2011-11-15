@@ -3,11 +3,7 @@
  * Special handling for category pages
  */
 class WikiCategoryPage extends WikiPage {
-	
-	public function __construct( Title $title ) {
-		$this->mTitle = $title;
-	}
-	
+
 	/**
 	 * Don't return a 404 for categories in use.
 	 * In use defined as: either the actual page exists
