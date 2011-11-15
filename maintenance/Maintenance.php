@@ -303,10 +303,11 @@ abstract class Maintenance {
 		}
 		if ( $channel === null ) {
 			$this->cleanupChanneled();
-
-			$f = fopen( 'php://stdout', 'w' );
-			fwrite( $f, $out );
-			fclose( $f );
+			if( php_sapi_name() == 'cli' ) {
+				fwrite( STDOUT, $out );
+			} else {
+				print( $out );
+			}
 		}
 		else {
 			$out = preg_replace( '/\n\z/', '', $out );
@@ -325,9 +326,7 @@ abstract class Maintenance {
 		if ( php_sapi_name() == 'cli' ) {
 			fwrite( STDERR, $err . "\n" );
 		} else {
-			$f = fopen( 'php://stderr', 'w' );
-			fwrite( $f, $err . "\n" );
-			fclose( $f );
+			print $err;
 		}
 		$die = intval( $die );
 		if ( $die > 0 ) {
@@ -343,9 +342,11 @@ abstract class Maintenance {
 	 */
 	public function cleanupChanneled() {
 		if ( !$this->atLineStart ) {
-			$handle = fopen( 'php://stdout', 'w' );
-			fwrite( $handle, "\n" );
-			fclose( $handle );
+			if( php_sapi_name() == 'cli' ) {
+				fwrite( STDOUT, "\n" );
+			} else {
+				print "\n";
+			}
 			$this->atLineStart = true;
 		}
 	}
@@ -364,25 +365,34 @@ abstract class Maintenance {
 			return;
 		}
 
-		$handle = fopen( 'php://stdout', 'w' );
+		$cli = php_sapi_name() == 'cli';
 
 		// End the current line if necessary
 		if ( !$this->atLineStart && $channel !== $this->lastChannel ) {
-			fwrite( $handle, "\n" );
+			if( $cli ) {
+				fwrite( STDOUT, "\n" );
+			} else {
+				print "\n";
+			}
 		}
 
-		fwrite( $handle, $msg );
+		if( $cli ) {
+			fwrite( STDOUT, $msg );
+		} else {
+			print $msg;
+		}
 
 		$this->atLineStart = false;
 		if ( $channel === null ) {
 			// For unchanneled messages, output trailing newline immediately
-			fwrite( $handle, "\n" );
+			if( $handle ) {
+				fwrite( STDOUT, "\n" );
+			} else {
+				print "\n";
+			}
 			$this->atLineStart = true;
 		}
 		$this->lastChannel = $channel;
-
-		// Cleanup handle
-		fclose( $handle );
 	}
 
 	/**
