@@ -39,6 +39,14 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		return 'img_sha1 column of image table already populated.';
 	}
 
+	public function execute() {
+		if ( $this->getOption( 'file' ) ) {
+			$this->doDBUpdates(); // skip update log checks/saves
+		} else {
+			parent::execute();
+		}
+	}
+
 	public function doDBUpdates() {
 		$method = $this->getOption( 'method', 'normal' );
 		$file = $this->getOption( 'file' );
@@ -46,10 +54,10 @@ class PopulateImageSha1 extends LoggedUpdateMaintenance {
 		$t = -microtime( true );
 		$dbw = wfGetDB( DB_MASTER );
 		if ( $file ) {
-			$res = $dbw->selectRow(
+			$res = $dbw->select(
 				'image',
 				array( 'img_name' ),
-				array( 'img_name' => $dbw->addQuotes( $file ) ),
+				array( 'img_name' => $file ),
 				__METHOD__
 			);
 			if ( !$res ) {
