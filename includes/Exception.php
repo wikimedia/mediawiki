@@ -181,6 +181,7 @@ class MWException extends Exception {
 
 			$wgOut->output();
 		} else {
+			header( "Content-Type: text/html; charset=utf-8" );
 			$hookResult = $this->runHooks( get_class( $this ) . "Raw" );
 			if ( $hookResult ) {
 				die( $hookResult );
