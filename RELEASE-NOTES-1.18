@@ -102,7 +102,7 @@ production.
 * $wgEnableDublinCoreRdf and $wgEnableCreativeCommonsRdf no longer work in core,
   and the functionality has been moved to the relevant extensions. See
   http://www.mediawiki.org/wiki/Extension:DublinCoreRdf and
-  http://www.mediawiki.org/wiki/Extension:CreativeCoreRdf as appropriate.
+  http://www.mediawiki.org/wiki/Extension:CreativeCommonsRdf as appropriate.
 * (bug 21107) Split error "customcssjsprotected" into separate messages for JS and CSS
 * Removed $wgCheckCopyrightUpload from DefaultSettings, since the relevant feature
   was removed in about 1.5.
