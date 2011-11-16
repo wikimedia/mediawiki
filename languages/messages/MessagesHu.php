@@ -661,6 +661,7 @@ Jelezd ezt egy [[Special:ListUsers/sysop|adminiszttrátornak]] az URL megadásá
 'badarticleerror'      => 'Ez a tevékenység nem végezhető el ezen a lapon.',
 'cannotdelete'         => 'A(z) $1 lapot vagy fájlt nem lehet törölni.
 Talán már valaki más törölte.',
+'cannotdelete-title'   => 'Nem lehet törölni a(z) „$1” lapot',
 'badtitle'             => 'Hibás cím',
 'badtitletext'         => 'A kért oldal címe érvénytelen, üres, vagy rosszul hivatkozott nyelvközi vagy wikiközi cím volt. Olyan karaktereket is tartalmazhatott, melyek a címekben nem használhatóak.',
 'perfcached'           => "Az alábbi adatok gyorsítótárból (''cache''-ből) származnak, és ezért lehetséges, hogy nem a legfrissebb változatot mutatják:",
@@ -670,6 +671,7 @@ Talán már valaki más törölte.',
 Függvény: $1<br />
 Lekérdezés: $2',
 'viewsource'           => 'Lapforrás',
+'viewsource-title'     => '$1 forrásának megtekintése',
 'actionthrottled'      => 'Művelet megszakítva',
 'actionthrottledtext'  => 'A spamek elleni védekezés miatt nem végezheted el a műveletet túl sokszor egy adott időn belül, és te átlépted a megengedett határt. Próbálkozz újra néhány perc múlva.',
 'protectedpagetext'    => 'Ez egy védett lap, nem szerkeszthető.',
@@ -812,20 +814,21 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'resetpass-temp-password'   => 'Ideiglenes jelszó:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Jelszó beállítása',
-'passwordreset-text'         => 'Az alábbi űrlap kitöltése után egy értesítő e-mailt kapsz a fiók adataival.',
-'passwordreset-legend'       => 'Új jelszó kérése',
-'passwordreset-disabled'     => 'Új jelszó kérése nem engedélyezett ezen a wikin.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Írd be az alábbi adatok egyikét}}',
-'passwordreset-username'     => 'Felhasználónév:',
-'passwordreset-domain'       => 'Tartomány:',
-'passwordreset-capture'      => 'Meg szeretnéd nézni az elkészült üzenetet?',
-'passwordreset-capture-help' => 'Ha kipipálod a dobozt, amellett, hogy kiküldődik az üzenet a felhasználónak, megjelenik számodra (az ideiglenes jelszavakkal együtt)',
-'passwordreset-email'        => 'E-mail cím:',
-'passwordreset-emailtitle'   => 'A(z) {{SITENAME}}-fiók adatai',
-'passwordreset-emailelement' => 'Felhaználónév: $1
+'passwordreset'                   => 'Jelszó beállítása',
+'passwordreset-text'              => 'Az alábbi űrlap kitöltése után egy értesítő e-mailt kapsz a fiók adataival.',
+'passwordreset-legend'            => 'Új jelszó kérése',
+'passwordreset-disabled'          => 'Új jelszó kérése nem engedélyezett ezen a wikin.',
+'passwordreset-pretext'           => '{{PLURAL:$1||Írd be az alábbi adatok egyikét}}',
+'passwordreset-username'          => 'Felhasználónév:',
+'passwordreset-domain'            => 'Tartomány:',
+'passwordreset-capture'           => 'Meg szeretnéd nézni az elkészült üzenetet?',
+'passwordreset-capture-help'      => 'Ha kipipálod a dobozt, amellett, hogy kiküldődik az üzenet a felhasználónak, megjelenik számodra (az ideiglenes jelszavakkal együtt)',
+'passwordreset-email'             => 'E-mail cím:',
+'passwordreset-emailtitle'        => 'A(z) {{SITENAME}}-fiók adatai',
+'passwordreset-emailelement'      => 'Felhaználónév: $1
 Ideiglenes jelszó: $2',
-'passwordreset-emailsent'    => 'Emlékeztető e-mail elküldve.',
+'passwordreset-emailsent'         => 'Emlékeztető e-mail elküldve.',
+'passwordreset-emailsent-capture' => 'Az alább látható emlékeztető e-mail elküldve.',
 
 # Special:ChangeEmail
 'changeemail'          => 'E-mail cím megváltoztatása',
@@ -1188,7 +1191,7 @@ Ellenőrizd a naplókat.',
 
 # Suppression log
 'suppressionlog'     => 'Adatvédelmibiztos-napló',
-'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:IPBlockList|blokkolt IP-címek listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
+'suppressionlogtext' => 'Lenn látható az adminisztrátorok elől legutóbb elrejtett törlések és blokkok listája. Lásd a [[Special:BlockList|blokkolt IP-címek listája]] lapot a jelenleg érvényben lévő kitiltásokhoz és blokkokhoz.',
 
 # History merging
 'mergehistory'                     => 'Laptörténetek egyesítése',
@@ -1426,7 +1429,7 @@ A műveletet nem lehet visszavonni.',
 'userrights-lookup-user'       => 'Szerkesztőcsoportok beállítása',
 'userrights-user-editname'     => 'Add meg a szerkesztő nevét:',
 'editusergroup'                => 'Szerkesztőcsoportok módosítása',
-'editinguser'                  => "'''[[User:$1|$1]]''' jogainak megváltoztatása ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
+'editinguser'                  => "'''[[User:$1|$1]]''' szerkesztő jogainak megváltoztatása $2",
 'userrights-editusergroup'     => 'Szerkesztőcsoportok módosítása',
 'saveusergroups'               => 'Szerkesztőcsoportok mentése',
 'userrights-groupsmember'      => 'Csoporttag:',
@@ -1526,7 +1529,7 @@ A műveletet nem lehet visszavonni.',
 'right-siteadmin'             => 'adatbázis lezárása, felnyitása',
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
 'right-sendemail'             => 'e-mail küldése más felhasználóknak',
-'right-passwordreset'         => 'Szerkesztő jelszavának alaphelyzetbe állítása ([[Special:PasswordReset|speciális lap]])',
+'right-passwordreset'         => 'Jelszó visszaállítási emailek megtekintése',
 
 # User rights log
 'rightslog'      => 'Szerkesztői jogosultságok naplója',
@@ -1782,7 +1785,7 @@ Nem lehet megfelelően ellenőrizni a biztonságosságát.',
 'img-auth-nopathinfo'       => 'Hiányzó PATH_INFO.
 A szerver nincs beállítva, hogy továbbítsa ezt az információt.
 Lehet, hogy CGI-alapú, és nem támogatja az img_auth-ot.
-Lásd a http://www.mediawiki.org/wiki/Manual:Image_Authorization lapot.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Lásd kép hitelesítési lapot.]',
 'img-auth-notindir'         => 'A kért elérési út nincs a beállított feltöltési könyvtárban.',
 'img-auth-badtitle'         => 'Nem sikerült érvényes címet készíteni a(z) „$1” szövegből.',
 'img-auth-nologinnWL'       => 'Nem vagy bejelentkezve, és a(z) „$1” nincs az engedélyezési listán.',
@@ -1819,8 +1822,7 @@ Ez a wiki publikus, így a biztonság miatt az img_auth.php ki van kapcsolva.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ezen a speciális lapon látható az összes feltöltött fájl.
-A legutóbb feltöltött fájlok vannak a lista elején.
-Az oszlopok címeire kattintva változtathatod meg a rendezést.',
+Amennyiben a szerkesztő szűrést állított be, úgy csak azok a fájlok jelennek meg, amikor a szerkesztő töltötte fel a legfrissebb verziót.',
 'listfiles_search_for'  => 'Keresés fájl nevére:',
 'imgfile'               => 'fájl',
 'listfiles'             => 'Fájllista',
@@ -1880,23 +1882,24 @@ A [$2 fájl ottani leírólapjának] másolata alább látható.',
 'filerevert-badversion'     => 'A megadott időbélyegzésű fájlnak nincs helyi változata.',
 
 # File deletion
-'filedelete'                  => '$1 törlése',
-'filedelete-legend'           => 'Fájl törlése',
-'filedelete-intro'            => "Törölni készülsz a(z) '''[[Media:$1|$1]]''' médiafájlt, a teljes fájltörténetével együtt.",
-'filedelete-intro-old'        => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: [$4 $3, $2] változatát törlöd.</span>',
-'filedelete-comment'          => 'Ok:',
-'filedelete-submit'           => 'Törlés',
-'filedelete-success'          => "A(z) '''$1''' médiafájlt törölted.",
-'filedelete-success-old'      => "A(z) '''[[Media:$1|$1]]''' $3, $2-kori változata sikeresen törölve lett.",
-'filedelete-nofile'           => "'''$1''' nem létezik.",
-'filedelete-nofile-old'       => "A(z) '''$1''' fájlnak nincs a megadott tulajdonságokkal rendelkező archivált változata.",
-'filedelete-otherreason'      => 'Más/további ok:',
-'filedelete-reason-otherlist' => 'Más ok',
-'filedelete-reason-dropdown'  => '*Általános törlési okok
+'filedelete'                   => '$1 törlése',
+'filedelete-legend'            => 'Fájl törlése',
+'filedelete-intro'             => "Törölni készülsz a(z) '''[[Media:$1|$1]]''' médiafájlt, a teljes fájltörténetével együtt.",
+'filedelete-intro-old'         => '<span class="plainlinks">A(z) \'\'\'[[Media:$1|$1]]\'\'\' fájl, dátum: [$4 $3, $2] változatát törlöd.</span>',
+'filedelete-comment'           => 'Ok:',
+'filedelete-submit'            => 'Törlés',
+'filedelete-success'           => "A(z) '''$1''' médiafájlt törölted.",
+'filedelete-success-old'       => "A(z) '''[[Media:$1|$1]]''' $3, $2-kori változata sikeresen törölve lett.",
+'filedelete-nofile'            => "'''$1''' nem létezik.",
+'filedelete-nofile-old'        => "A(z) '''$1''' fájlnak nincs a megadott tulajdonságokkal rendelkező archivált változata.",
+'filedelete-otherreason'       => 'Más/további ok:',
+'filedelete-reason-otherlist'  => 'Más ok',
+'filedelete-reason-dropdown'   => '*Általános törlési okok
 ** Szerzői jog megsértése
 ** Duplikátum',
-'filedelete-edit-reasonlist'  => 'Törlési okok szerkesztése',
-'filedelete-maintenance'      => 'A fájlok törlése és helyreállítása ideiglenesen le van tiltva karbantartás miatt.',
+'filedelete-edit-reasonlist'   => 'Törlési okok szerkesztése',
+'filedelete-maintenance'       => 'A fájlok törlése és helyreállítása ideiglenesen le van tiltva karbantartás miatt.',
+'filedelete-maintenance-title' => 'Nem lehet törölni a fájlt',
 
 # MIME search
 'mimesearch'         => 'Keresés MIME-típus alapján',
@@ -1945,7 +1948,7 @@ Ellenőrizd a meglévő hivatkozásokat, mielőtt törölnéd őket.',
 'statistics-users-active-desc' => 'Szerkesztők, akik csináltak valamit az elmúlt {{PLURAL:$1|egy|$1}} napban',
 'statistics-mostpopular'       => 'Legtöbbször megtekintett lapok',
 
-'disambiguations'      => 'Egyértelműsítő lapok',
+'disambiguations'      => 'Egyértelműsítő lapokra mutató lapok',
 'disambiguationspage'  => 'Template:Egyért',
 'disambiguations-text' => "A következő oldalak '''egyértelműsítő lapra''' mutató hivatkozást tartalmaznak.
 A megfelelő szócikkre kellene mutatniuk inkább.<br />
@@ -2195,7 +2198,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'watchmethod-list'     => 'a legfrissebb szerkesztésekben található figyelt lapok',
 'watchlistcontains'    => 'A figyelőlistádon {{PLURAL:$1|egy|$1}} lap szerepel.',
 'iteminvalidname'      => "Probléma a '$1' elemmel: érvénytelen név...",
-'wlnote'               => "Az utolsó '''{{PLURAL:$2|egy|$2}}''' óra '''{{PLURAL:$1|egy|$1}}''' változtatása látható az alábbiakban.",
+'wlnote'               => "Alább az utolsó '''{{PLURAL:$2|egy|$2}}''' óra '''{{PLURAL:$1|egy|$1}}''' változtatása látható. A lap generálásának ideje $3, $4.",
 'wlshowlast'           => 'Az elmúlt $1 órában | $2 napon | $3 történt változtatások legyenek láthatóak',
 'watchlist-options'    => 'A figyelőlista beállításai',
 
@@ -2232,6 +2235,9 @@ Amíg nem keresed fel az oldalt, addig nem érkeznek újabb értesítések az ol
              Baráti üdvözlettel: a(z) {{SITENAME}} értesítő rendszere
 
 --
+Az e-mail értesítéseid módosításához keresd fel a 
+{{canonicalurl:{{#special:Preferences}}}} címet
+
 A figyelőlistád módosításához keresd fel a
 {{canonicalurl:{{#special:EditWatchlist}}}} címet
 
@@ -2303,6 +2309,8 @@ A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg 
 'movedarticleprotection'      => 'áthelyezte „[[$2]]” védelmi beállításait „[[$1]]” cím alá',
 'protect-title'               => '„$1” levédése',
 'prot_1movedto2'              => '[[$1]] lapot átneveztem [[$2]] névre',
+'protect-badnamespace-title'  => 'Nem védhető névtér',
+'protect-badnamespace-text'   => 'Ebben a névtérben az oldalak nem védhetők.',
 'protect-legend'              => 'Levédés megerősítése',
 'protectcomment'              => 'Ok:',
 'protectexpiry'               => 'Időtartam',
@@ -2395,6 +2403,7 @@ változatot visszaállították vagy eltávolították az archívumból.',
 
 Lásd a [[Special:Log/delete|törlési naplót]] a legutóbbi törlések és helyreállítások listájához.",
 'undelete-header'              => 'A legutoljára törölt lapokat lásd a [[Special:Log/delete|törlési naplóban]].',
+'undelete-search-title'        => 'Törölt lapok keresése',
 'undelete-search-box'          => 'Törölt lapok keresése',
 'undelete-search-prefix'       => 'A megadott szavakkal kezdődő oldalak megjelenítése:',
 'undelete-search-submit'       => 'Keresés',
@@ -2403,6 +2412,7 @@ Lásd a [[Special:Log/delete|törlési naplót]] a legutóbbi törlések és hel
 'undelete-bad-store-key'       => 'Nem állítható helyre a(z) $1 időbélyeggel ellátott változat: a fájl már hiányzott törlés előtt.',
 'undelete-cleanup-error'       => 'Hiba történt a nem használt „$1” archivált fájl törlésekor.',
 'undelete-missing-filearchive' => 'Nem állítható helyre a(z) $1 azonosítószámú fájlarchívum, mert nincs az adatbázisban. Lehet, hogy már korábban helyreállították.',
+'undelete-error'               => 'Hiba a lap helyreállítása során',
 'undelete-error-short'         => 'Hiba történt a fájl helyreállítása során: $1',
 'undelete-error-long'          => 'Hiba történt a fájl helyreállítása során:
 
@@ -3616,8 +3626,7 @@ A képek teljes méretben jelennek meg, más fájltípusok közvetlenül a hozz�
 'specialpages'                   => 'Speciális lapok',
 'specialpages-note'              => '----
 * Mindenki számára elérhető speciális lapok.
-* <span class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</span>
-* <span class="mw-specialpagecached">Csak gyorsítótárazott adatokat tartalmazó speciális lapok.</span>',
+* <span class="mw-specialpagerestricted">Korlátozott hozzáférésű speciális lapok.</span>',
 'specialpages-group-maintenance' => 'Állapotjelentések',
 'specialpages-group-other'       => 'További speciális lapok',
 'specialpages-group-login'       => 'Bejelentkezés / fiók létrehozása',

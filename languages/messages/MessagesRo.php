@@ -1399,7 +1399,7 @@ Aici se află o combinație generată întâmplător pe care o puteți folosi: $
 'prefs-reset-intro'             => 'Poți folosi această pagină pentru a reseta preferințele la valorile implicite.
 Acțiunea nu este reversibilă.',
 'prefs-emailconfirm-label'      => 'Confirmare e-mail:',
-'prefs-textboxsize'             => 'Mărimea căsuței de modificare',
+'prefs-textboxsize'             => 'Mărime căsuță de modificare',
 'youremail'                     => 'Adresa de e-mail:',
 'username'                      => 'Nume de utilizator:',
 'uid'                           => 'ID utilizator:',
@@ -1901,23 +1901,24 @@ Descrierea de mai jos poate fi consultată la [$2 pagina de descriere a fișieru
 'filerevert-badversion'     => 'Nu există o versiune mai veche a fișierului care să corespundă cu data introdusă.',
 
 # File deletion
-'filedelete'                  => 'Șterge $1',
-'filedelete-legend'           => 'Șterge fișierul',
-'filedelete-intro'            => "Sunteți pe cale să ștergeți fișierul '''[[Media:$1|$1]]''' cu tot istoricul acestuia.",
-'filedelete-intro-old'        => "Ştergi versiunea fișierului '''[[Media:$1|$1]]''' din [$4 $3, $2].",
-'filedelete-comment'          => 'Motiv:',
-'filedelete-submit'           => 'Șterge',
-'filedelete-success'          => "'''$1''' a fost șters.",
-'filedelete-success-old'      => "Versiunea fișierului '''[[Media:$1|$1]]''' din $2 $3 a fost ștearsă.",
-'filedelete-nofile'           => "'''$1''' nu există.",
-'filedelete-nofile-old'       => "Nu există nicio versiune arhivată a '''$1''' cu atributele specificate.",
-'filedelete-otherreason'      => 'Motiv diferit/adițional:',
-'filedelete-reason-otherlist' => 'Alt motiv',
-'filedelete-reason-dropdown'  => '*Motive uzuale
+'filedelete'                   => 'Șterge $1',
+'filedelete-legend'            => 'Șterge fișierul',
+'filedelete-intro'             => "Sunteți pe cale să ștergeți fișierul '''[[Media:$1|$1]]''' cu tot istoricul acestuia.",
+'filedelete-intro-old'         => "Ştergi versiunea fișierului '''[[Media:$1|$1]]''' din [$4 $3, $2].",
+'filedelete-comment'           => 'Motiv:',
+'filedelete-submit'            => 'Șterge',
+'filedelete-success'           => "'''$1''' a fost șters.",
+'filedelete-success-old'       => "Versiunea fișierului '''[[Media:$1|$1]]''' din $2 $3 a fost ștearsă.",
+'filedelete-nofile'            => "'''$1''' nu există.",
+'filedelete-nofile-old'        => "Nu există nicio versiune arhivată a '''$1''' cu atributele specificate.",
+'filedelete-otherreason'       => 'Motiv diferit/adițional:',
+'filedelete-reason-otherlist'  => 'Alt motiv',
+'filedelete-reason-dropdown'   => '*Motive uzuale
 ** Încălcare drepturi de autor
 ** Fișier duplicat',
-'filedelete-edit-reasonlist'  => 'Modifică motivele ștergerii',
-'filedelete-maintenance'      => 'Ştergerea sau restaurarea fișierelor este temporar dezactivată pe timpul lucrărilor de mentenanță.',
+'filedelete-edit-reasonlist'   => 'Modifică motivele ștergerii',
+'filedelete-maintenance'       => 'Ştergerea sau restaurarea fișierelor este temporar dezactivată pe timpul lucrărilor de mentenanță.',
+'filedelete-maintenance-title' => 'Fișierul nu a putut fi șters',
 
 # MIME search
 'mimesearch'         => 'Căutare MIME',

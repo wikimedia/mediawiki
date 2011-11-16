@@ -1683,23 +1683,24 @@ La descripción de la [páxina de descripción del ficheru $2] s'amuesa darréu.
 'filerevert-badversion'     => "Nun hai nenguna versión llocal previa d'esti archivu cola fecha conseñada.",
 
 # File deletion
-'filedelete'                  => 'Desaniciar $1',
-'filedelete-legend'           => 'Esborrar archivu',
-'filedelete-intro'            => "Tas a piques d'esborrar el ficheru '''[[Media:$1|$1]]''' xunto con tol so historial.",
-'filedelete-intro-old'        => "Tas esborrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
-'filedelete-comment'          => 'Motivu:',
-'filedelete-submit'           => 'Desaniciar',
-'filedelete-success'          => "'''$1''' se desanició.",
-'filedelete-success-old'      => "Eliminóse la versión de '''[[Media:$1|$1]]''' del $2 a les $3.",
-'filedelete-nofile'           => "'''$1''' nun esiste.",
-'filedelete-nofile-old'       => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
-'filedelete-otherreason'      => 'Motivu distintu/adicional:',
-'filedelete-reason-otherlist' => 'Otru motivu',
-'filedelete-reason-dropdown'  => "*Motivos comunes d'esborráu
+'filedelete'                   => 'Desaniciar $1',
+'filedelete-legend'            => 'Esborrar archivu',
+'filedelete-intro'             => "Tas a piques d'esborrar el ficheru '''[[Media:$1|$1]]''' xunto con tol so historial.",
+'filedelete-intro-old'         => "Tas esborrando la versión de '''[[Media:$1|$1]]''' del [$4 $3 a les $2].",
+'filedelete-comment'           => 'Motivu:',
+'filedelete-submit'            => 'Desaniciar',
+'filedelete-success'           => "'''$1''' se desanició.",
+'filedelete-success-old'       => "Eliminóse la versión de '''[[Media:$1|$1]]''' del $2 a les $3.",
+'filedelete-nofile'            => "'''$1''' nun esiste.",
+'filedelete-nofile-old'        => "Nun hai nenguna versión archivada de  '''$1''' colos atributos especificaos.",
+'filedelete-otherreason'       => 'Motivu distintu/adicional:',
+'filedelete-reason-otherlist'  => 'Otru motivu',
+'filedelete-reason-dropdown'   => "*Motivos comunes d'esborráu
 ** Violación de Copyright
 ** Archivu duplicáu",
-'filedelete-edit-reasonlist'  => "Editar los motivos d'esborráu",
-'filedelete-maintenance'      => 'El desaniciu y restauración de ficheros ta desactivao temporalmente mientres ta en mantenimientu.',
+'filedelete-edit-reasonlist'   => "Editar los motivos d'esborráu",
+'filedelete-maintenance'       => 'El desaniciu y restauración de ficheros ta desactivao temporalmente mientres ta en mantenimientu.',
+'filedelete-maintenance-title' => 'Nun se pue desaniciar el ficheru',
 
 # MIME search
 'mimesearch'         => 'Busca MIME',

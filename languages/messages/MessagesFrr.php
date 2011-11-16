@@ -378,6 +378,7 @@ Wan dåt ai di fål as, hääst dü eewäntuäl en fäägel önj e software fün
 'badarticleerror'      => 'Jüdeer aksjoon koon ai aw jüdeer sid mååged wårde.',
 'cannotdelete'         => 'Jü sid unti dootäi "$1" köö ai straagen wårde.
 Dåt as flicht ål straagen foon huum ouders.',
+'cannotdelete-title'   => 'Sidj „$1“ koon ei stregen wurd.',
 'badtitle'             => 'Ferkiirde tiitel',
 'badtitletext'         => 'Di tiitel foon jü anfrååged sid as üngülti, lääsi unti n üngültigen spräklink foon en ouder wiki.',
 'perfcached'           => 'Da füliende doote ståme üt di cache än san möölikerwise ai aktuäl.',
@@ -754,30 +755,29 @@ Grün foon jü späre: ''$2''",
 'rev-deleted-user-contribs'   => '[Benjüternoome unti IP-adräs wächhååld - beårbing üt baidråge ferstäägen]',
 'rev-deleted-text-permission' => "Judeer Färsjoon wörd '''straagen'''.
 Näre önjgoowen tu di strikforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].",
-'rev-deleted-text-unhide'     => "Jüdeer färsjoon wörd '''straagen'''.
+'rev-deleted-text-unhide'     => "Jüdeer färsjoon as '''straagen''' wörden.
 Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].
-Ås en administraator koost dü  nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
-'rev-suppressed-text-unhide'  => "Jüdeer färsjoon wörd '''unerdrükt'''.
+Dü koost nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
+'rev-suppressed-text-unhide'  => "Jüdeer färsjoon as '''unerdrükt''' wörden.
 Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} strik-logbök].
-Ås en administraator koost dü  nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
-'rev-deleted-text-view'       => "Jüdeer Färsjoon wörd '''straagen'''.
-Ås administraator koost dü da wider önjkiike.
-Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].",
-'rev-suppressed-text-view'    => "Jüdeer färsjoon wörd '''unerdruked'''.
-Administratoore koone da önjkiike; ainkelthäide stönje önj dåt [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unerdrukings-logbök].",
+Dü koost nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
+'rev-deleted-text-view'       => "Jüdeer Färsjoon as '''straagen''' wörden.
+Dü koost da wider önjkiike. Näre önjgoowen tu di sleekforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].",
+'rev-suppressed-text-view'    => "Jüdeer färsjoon as '''unerdrükd''' wörden.
+Dü koost da önjkiike. Ainkelthäide stönje önj dåt [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unerdrukings-logbök].",
 'rev-deleted-no-diff'         => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''straagen'''. Näre önjgoowen tu di strikforgung ås uk en begrüning fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].",
 'rev-suppressed-no-diff'      => "Dü koost jüdeer ferschääl ai bekiike, dan iinj foon da änringe wörd '''straagen'''.",
-'rev-deleted-unhide-diff'     => "Iinj foon da änringe doon jüdeer ferschääl wörd '''straagen'''.
+'rev-deleted-unhide-diff'     => "Iinj foon da änringe doon jüdeer ferschääl as '''straagen''' wörden.
 Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].
-Ås en administraator koost dü nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
-'rev-suppressed-unhide-diff'  => "Iinj foon da färsjoone foon dåtdeer ferschääl wörd '''unerdruked'''.
+Dü koost nuch [$1 jüdeer färsjoon bekiike], wan dü wider gunge mååst.",
+'rev-suppressed-unhide-diff'  => "Iinj foon da färsjoone foon dåtdeer ferschääl wörd '''unerdrükd'''.
 Ainkelthäide fant huum önj dåt [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} unerdruk-logbök].
-Ås en administraator koost dü  nuch [$1 dåtdeer ferschääl bekiike], wan dü wider gunge mååst.",
+Dü koost nuch [$1 dåtdeer ferschääl bekiike], wan dü wider gunge mååst.",
 'rev-deleted-diff-view'       => "En Färsjoon foon dåtdeer färsjoonsferschääl wörd '''straagen'''.
-Ås administraator koost dü dåt färsjoonsferschääl siinj.
+Dü koost dåt färsjoonsferschääl siinj.
 Näre önjgoowen fant huum önj dåt [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} strik-logbök].",
-'rev-suppressed-diff-view'    => "Iinj foon da färsjoone foon dåtdeer färsjoonsferschääl wörd '''unerdruked'''.
-Administratoore koone dåtheer färsjoonsferschääl siinj; ainkelthäide stönje önj dåt [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unerdrukings-logbök].",
+'rev-suppressed-diff-view'    => "Iinj foon da färsjoone foon dåtdeer färsjoonsferschääl wörd '''unerdrükd'''.
+Dü koost dåtheer färsjoonsferschääl siinj. Ainkelthäide stönje önj dåt [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unerdrukings-logbök].",
 'rev-delundel'                => 'wis/fersteeg',
 'rev-showdeleted'             => 'wise',
 'revisiondelete'              => 'Färsjoone strike/wider mååge',
@@ -962,7 +962,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'youremail'                   => 'E-mail:',
 'username'                    => 'Brükernoome:',
 'yourrealname'                => 'Rocht nööm:',
-'yourlanguage'                => 'Spräke: $1',
+'yourlanguage'                => 'Spräke:',
 'yournick'                    => 'Nai signatuur:',
 'email'                       => 'E-mail',
 'prefs-help-email'            => 'Dü säärst din e-mail-adres ei uundu, oober do könst dü uk nian mädialangen fu, wan dü ans din paaswurd ferjiden heest.',
@@ -1106,7 +1106,7 @@ Det beskriiwang faan't [$2 beskriiwangssidj] woort oner uunwiset.",
 'nlinks'            => '$1 {{PLURAL:$1|link|links}}',
 'nmembers'          => '{{PLURAL:$1|1 önjdraag|$1 önjdraage}}',
 'prefixindex'       => 'Åle side (ma prefiks)',
-'usercreated'       => 'Maaget di $1 am a klook $2',
+'usercreated'       => '{{GENDER:$3|Maaget}} di $1 am a klook $2',
 'newpages'          => 'Naie side',
 'newpages-username' => 'Brükernoome:',
 'move'              => 'Ferschüwe',
@@ -1140,7 +1140,7 @@ Det beskriiwang faan't [$2 beskriiwangssidj] woort oner uunwiset.",
 'categories' => 'Kategoriin',
 
 # Special:LinkSearch
-'linksearch'      => 'Weblink-säkj',
+'linksearch'      => "Sjük efter ferwisangen uun't näät",
 'linksearch-ns'   => 'Noomerüm:',
 'linksearch-ok'   => 'Säk',
 'linksearch-line' => '$2 ferwiset üüb $1',
@@ -1360,7 +1360,7 @@ Hål di '''naie''' tiitel uner '''muul''' önjdreege, deeruner jü ambenååming
 'tooltip-ca-viewsource'           => 'Jüdeer sid wårt uner ferbading hülen. Di kwältäkst koon önjkiiked wårde.',
 'tooltip-ca-history'              => 'Iire färsjoone foon jüdeer sid',
 'tooltip-ca-protect'              => 'Jüdeer sid schütse',
-'tooltip-ca-unprotect'            => 'Sääkering aphääwe',
+'tooltip-ca-unprotect'            => 'Seekerang feranere',
 'tooltip-ca-delete'               => 'Jüdeer sid tunintemååge',
 'tooltip-ca-move'                 => 'Jüdeer sid ferschüwe',
 'tooltip-ca-watch'                => 'Jüdeer sid tu jü persöönlike eefterkiiksid baitufäige',

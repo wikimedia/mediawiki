@@ -1891,23 +1891,24 @@ Lời miêu tả tại [$2 trang mô tả tập tin] tại đấy được hiể
 'filerevert-badversion'     => 'Không tồn tại phiên bản trước đó của tập tin tại thời điểm trên.',
 
 # File deletion
-'filedelete'                  => 'Xóa $1',
-'filedelete-legend'           => 'Xóa tập tin',
-'filedelete-intro'            => "Bạn sắp xóa tập tin '''[[Media:$1|$1]]''' cùng với tất cả lịch sử của nó.",
-'filedelete-intro-old'        => "Bạn đang xóa phiên bản của '''[[Media:$1|$1]]''' vào lúc [$4 $3, $2].",
-'filedelete-comment'          => 'Lý do:',
-'filedelete-submit'           => 'Xóa',
-'filedelete-success'          => "'''$1''' đã bị xóa.",
-'filedelete-success-old'      => "Phiên bản của '''[[Media:$1|$1]]''' vào lúc $3, $2 đã bị xóa.",
-'filedelete-nofile'           => "'''$1''' không tồn tại.",
-'filedelete-nofile-old'       => "Không có phiên bản lưu trữ của '''$1''' với các thuộc tính này.",
-'filedelete-otherreason'      => 'Lý do bổ sung:',
-'filedelete-reason-otherlist' => 'Lý do khác',
-'filedelete-reason-dropdown'  => '*Những lý do xóa thường gặp
+'filedelete'                   => 'Xóa $1',
+'filedelete-legend'            => 'Xóa tập tin',
+'filedelete-intro'             => "Bạn sắp xóa tập tin '''[[Media:$1|$1]]''' cùng với tất cả lịch sử của nó.",
+'filedelete-intro-old'         => "Bạn đang xóa phiên bản của '''[[Media:$1|$1]]''' vào lúc [$4 $3, $2].",
+'filedelete-comment'           => 'Lý do:',
+'filedelete-submit'            => 'Xóa',
+'filedelete-success'           => "'''$1''' đã bị xóa.",
+'filedelete-success-old'       => "Phiên bản của '''[[Media:$1|$1]]''' vào lúc $3, $2 đã bị xóa.",
+'filedelete-nofile'            => "'''$1''' không tồn tại.",
+'filedelete-nofile-old'        => "Không có phiên bản lưu trữ của '''$1''' với các thuộc tính này.",
+'filedelete-otherreason'       => 'Lý do bổ sung:',
+'filedelete-reason-otherlist'  => 'Lý do khác',
+'filedelete-reason-dropdown'   => '*Những lý do xóa thường gặp
 ** Vi phạm bản quyền
 ** Tập tin trùng lắp',
-'filedelete-edit-reasonlist'  => 'Sửa lý do xóa',
-'filedelete-maintenance'      => 'Tác vụ xóa và phục hồi tập tin đã bị tắt tạm thời trong khi bảo trì.',
+'filedelete-edit-reasonlist'   => 'Sửa lý do xóa',
+'filedelete-maintenance'       => 'Tác vụ xóa và phục hồi tập tin đã bị tắt tạm thời trong khi bảo trì.',
+'filedelete-maintenance-title' => 'Không thể xóa tập tin',
 
 # MIME search
 'mimesearch'         => 'Tìm kiếm theo định dạng',

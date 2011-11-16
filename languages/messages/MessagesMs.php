@@ -1772,24 +1772,25 @@ Penerangan pada [$2 laman penerangan failnya] di sana ditunjukkan di bawah.',
 'filerevert-badversion'     => 'Tiada versi tempatan bagi fail ini dengan cap waktu yang dinyatakan.',
 
 # File deletion
-'filedelete'                  => 'Hapuskan $1',
-'filedelete-legend'           => 'Hapuskan fail',
-'filedelete-intro'            => "Anda sudah hendak menghapuskan fail '''[[Media:$1|$1]]''' berserta semua sejarahnya.",
-'filedelete-intro-old'        => '<span class="plainlinks">Anda sedang menghapuskan versi \'\'\'[[Media:$1|$1]]\'\'\' pada [$4 $3, $2].</span>',
-'filedelete-comment'          => 'Sebab:',
-'filedelete-submit'           => 'Hapuskan',
-'filedelete-success'          => "'''$1''' telah dihapuskan.",
-'filedelete-success-old'      => "Versi '''[[Media:$1|$1]]''' pada $3, $2 telah dihapuskan.",
-'filedelete-nofile'           => "'''$1''' tidak wujud.",
-'filedelete-nofile-old'       => "Tiada versi arkib bagi '''$1''' dengan sifat-sifat yang dinyatakan.",
-'filedelete-otherreason'      => 'Sebab lain/tambahan:',
-'filedelete-reason-otherlist' => 'Sebab lain',
-'filedelete-reason-dropdown'  => '
+'filedelete'                   => 'Hapuskan $1',
+'filedelete-legend'            => 'Hapuskan fail',
+'filedelete-intro'             => "Anda sudah hendak menghapuskan fail '''[[Media:$1|$1]]''' berserta semua sejarahnya.",
+'filedelete-intro-old'         => '<span class="plainlinks">Anda sedang menghapuskan versi \'\'\'[[Media:$1|$1]]\'\'\' pada [$4 $3, $2].</span>',
+'filedelete-comment'           => 'Sebab:',
+'filedelete-submit'            => 'Hapuskan',
+'filedelete-success'           => "'''$1''' telah dihapuskan.",
+'filedelete-success-old'       => "Versi '''[[Media:$1|$1]]''' pada $3, $2 telah dihapuskan.",
+'filedelete-nofile'            => "'''$1''' tidak wujud.",
+'filedelete-nofile-old'        => "Tiada versi arkib bagi '''$1''' dengan sifat-sifat yang dinyatakan.",
+'filedelete-otherreason'       => 'Sebab lain/tambahan:',
+'filedelete-reason-otherlist'  => 'Sebab lain',
+'filedelete-reason-dropdown'   => '
 *Sebab-sebab lazim
 ** Melanggar hak cipta
 ** Fail berulang',
-'filedelete-edit-reasonlist'  => 'Ubah sebab-sebab hapus',
-'filedelete-maintenance'      => 'Ciri penghapusan dan pemulihan fail telah dilumpuhkan buat sementara sepanjang proses penyenggaraan.',
+'filedelete-edit-reasonlist'   => 'Ubah sebab-sebab hapus',
+'filedelete-maintenance'       => 'Ciri penghapusan dan pemulihan fail telah dilumpuhkan buat sementara sepanjang proses penyenggaraan.',
+'filedelete-maintenance-title' => 'Fail tidak boleh dihapuskan',
 
 # MIME search
 'mimesearch'         => 'Carian MIME',

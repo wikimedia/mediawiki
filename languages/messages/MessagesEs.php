@@ -1168,16 +1168,16 @@ Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:
 'rev-deleted-no-diff'         => "No puedes ver esta diferencia porque una de las revisiones ha sido '''borrada'''.
 Puedes encontrar más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-suppressed-no-diff'      => "No puedes ver esta diferencia porque una de las revisiones ha sido '''borrada'''.",
-'rev-deleted-unhide-diff'     => "Una de las revisiones de este cambio ha sido '''borrada'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
-Como administrador podrá seguir [$1 viendo este cambio] si así lo deseas.",
-'rev-suppressed-unhide-diff'  => "Una de las revisiones de este diff ha sido '''suprimida'''.
+'rev-deleted-unhide-diff'     => "Una de las revisiones de esta diferencia ha sido '''borrada'''.
+Puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
+Aún puede [$1 ver este cambio] si así lo desea.",
+'rev-suppressed-unhide-diff'  => "Una de las revisiones de esta diferencia ha sido '''suprimida'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
-Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
-'rev-deleted-diff-view'       => "Una de las revisiones de este diff ha sido '''borrada'''.
-Como administrador puede ver el contenido; puede que existan más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
-'rev-suppressed-diff-view'    => "Una de las revisiones de este diff ha sido '''suprimida'''.
-Como administrador todavía puede ver el contenido; puede que existan más detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
+Aún puede [$1 ver esta diferencia] si desea así lo desea.",
+'rev-deleted-diff-view'       => "Una de las revisiones de esta diferencia ha sido '''borrada'''.
+Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+'rev-suppressed-diff-view'    => "Una de las revisiones de esta diferencia ha sido '''suprimida'''.
+Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
 'rev-delundel'                => 'mostrar/ocultar',
 'rev-showdeleted'             => 'mostrar',
 'revisiondelete'              => 'Borrar/restaurar revisiones',
@@ -1245,8 +1245,8 @@ No tiene acceso a él.',
 
 # Suppression log
 'suppressionlog'     => 'Registro de supresiones',
-'suppressionlogtext' => 'Debajo está una lista de borrados y bloqueos relacionados con contenido oculto a los administradores.
-Mire [[Special:IPBlockList|la lista de bloqueos activos]] para ver una lista de bloqueos actualmente operativos.',
+'suppressionlogtext' => 'Debajo hay una lista con los borrados y bloqueos recientes, que incluyen contenido oculto de los administradores.
+Mire la [[Special:BlockList|lista de bloqueos activos]] para ver una lista de prohibiciones actualmente operativas.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páginas',
@@ -1589,7 +1589,7 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'right-siteadmin'             => 'Bloquear y desbloquear la base de datos',
 'right-override-export-depth' => 'Exporta páginas incluyendo aquellas enlazadas hasta una profundidad de 5',
 'right-sendemail'             => 'Enviar un correo electrónico a otros usuarios',
-'right-passwordreset'         => 'Reestablecer contraseña de un usuario ([[Special:PasswordReset|página especial]])',
+'right-passwordreset'         => 'Ver os correos electrónicos de restablecimiento de contraseñas',
 
 # User rights log
 'rightslog'                  => 'Cambios de perfil de usuario',
@@ -1932,23 +1932,24 @@ La descripción en su [$2 página de descripción del archivo] está mostrada de
 'filerevert-badversion'     => 'No existe version local previa de este archivo con esa marca de tiempo.',
 
 # File deletion
-'filedelete'                  => 'Borrar $1',
-'filedelete-legend'           => 'Borrar archivo',
-'filedelete-intro'            => "Estás borrando el archivo '''[[Media:$1|$1]]''' así como todo su historial.",
-'filedelete-intro-old'        => "Estás borrando la versión de '''[[Media:$1|$1]]''' del [$4 $2 a las $3].",
-'filedelete-comment'          => 'Motivo:',
-'filedelete-submit'           => 'Eliminar',
-'filedelete-success'          => "'''$1''' ha sido borrado.",
-'filedelete-success-old'      => "La version de '''[[Media:$1|$1]]''' del $2 a las $3 ha sido borrada.",
-'filedelete-nofile'           => "'''$1''' no existe.",
-'filedelete-nofile-old'       => "No existe una versión guardada de '''$1''' con los atributos especificados.",
-'filedelete-otherreason'      => 'Otra razón:',
-'filedelete-reason-otherlist' => 'Otra razón',
-'filedelete-reason-dropdown'  => '*Razones de borrado habituales
+'filedelete'                   => 'Borrar $1',
+'filedelete-legend'            => 'Borrar archivo',
+'filedelete-intro'             => "Estás borrando el archivo '''[[Media:$1|$1]]''' así como todo su historial.",
+'filedelete-intro-old'         => "Estás borrando la versión de '''[[Media:$1|$1]]''' del [$4 $2 a las $3].",
+'filedelete-comment'           => 'Motivo:',
+'filedelete-submit'            => 'Eliminar',
+'filedelete-success'           => "'''$1''' ha sido borrado.",
+'filedelete-success-old'       => "La version de '''[[Media:$1|$1]]''' del $2 a las $3 ha sido borrada.",
+'filedelete-nofile'            => "'''$1''' no existe.",
+'filedelete-nofile-old'        => "No existe una versión guardada de '''$1''' con los atributos especificados.",
+'filedelete-otherreason'       => 'Otra razón:',
+'filedelete-reason-otherlist'  => 'Otra razón',
+'filedelete-reason-dropdown'   => '*Razones de borrado habituales
 ** Violación de copyright
 ** Archivo duplicado',
-'filedelete-edit-reasonlist'  => 'Edita los motivos del borrado',
-'filedelete-maintenance'      => 'Borrado y restauración de archivos temporalmente deshabilitados durante el mantenimiento.',
+'filedelete-edit-reasonlist'   => 'Edita los motivos del borrado',
+'filedelete-maintenance'       => 'Borrado y restauración de archivos temporalmente deshabilitados durante el mantenimiento.',
+'filedelete-maintenance-title' => 'No se puede eliminar el archivo',
 
 # MIME search
 'mimesearch'         => 'Búsqueda MIME',
@@ -2919,7 +2920,7 @@ Puedes ver su código fuente',
 'tooltip-rollback'                => '«Revertir» revierte todas las ediciones del último usuario con un solo clic.',
 'tooltip-undo'                    => '«Deshacer» revierte la edición seleccionada y abre la página de edición en el modo de previsualización.
 Permite añadir una razón al resumen de edición.',
-'tooltip-preferences-save'        => 'Guardar preferencias',
+'tooltip-preferences-save'        => 'Guardar las preferencias',
 'tooltip-summary'                 => 'Introduce un breve resumen',
 
 # Stylesheets
@@ -3231,6 +3232,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-source'                      => 'Fuente',
 'exif-editstatus'                  => 'Estado editorial de la imagen',
 'exif-urgency'                     => 'Urgencia',
+'exif-fixtureidentifier'           => 'Nome del elemento habitual',
 'exif-locationdest'                => 'Ubicación mostrada',
 'exif-locationdestcode'            => 'Código de la ubicación mostrada',
 'exif-objectcycle'                 => 'Hora del día para la cual está destinado este archivo',
@@ -3447,6 +3449,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpsdirection-m' => 'Dirección magnética',
 
 'exif-ycbcrpositioning-1' => 'Centrado',
+'exif-ycbcrpositioning-2' => 'Co-localizados',
 
 'exif-dc-contributor' => 'Colaboradores',
 'exif-dc-coverage'    => 'Ámbito espacial o temporal del medio',
@@ -3648,7 +3651,7 @@ También puedes [[Special:EditWatchlist|usar el editor estándar]].',
 'watchlisttools-raw'  => 'Editar lista de seguimiento en crudo',
 
 # Signatures
-'signature' => '[[{{ns:User}}:$1|$1]] ([[{{ns:User_talk}}:$1|discusión]])',
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|discusión]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'Etiqueta desconocida «$1»',
