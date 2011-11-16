@@ -137,6 +137,7 @@ production.
   files (like audio files)
 * (bug 32168) Add wfAssembleUrl for use in wfExpandUrl
 * (bug 32168) fixed - wfExpandUrl expands dot segments now
+* (bug 31535) Upload comments now truncated properly, and don't have brackets
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
