@@ -459,25 +459,27 @@ $wgAutoloadLocalClasses = array(
 	'ExternalUser_vB' => 'includes/extauth/vB.php',
 
 	# includes/filerepo
-	'ArchivedFile' => 'includes/filerepo/ArchivedFile.php',
-	'File' => 'includes/filerepo/File.php',
 	'FileRepo' => 'includes/filerepo/FileRepo.php',
 	'FileRepoStatus' => 'includes/filerepo/FileRepoStatus.php',
-	'ForeignAPIFile' => 'includes/filerepo/ForeignAPIFile.php',
 	'ForeignAPIRepo' => 'includes/filerepo/ForeignAPIRepo.php',
-	'ForeignDBFile' => 'includes/filerepo/ForeignDBFile.php',
 	'ForeignDBRepo' => 'includes/filerepo/ForeignDBRepo.php',
 	'ForeignDBViaLBRepo' => 'includes/filerepo/ForeignDBViaLBRepo.php',
 	'FSRepo' => 'includes/filerepo/FSRepo.php',
-	'LocalFile' => 'includes/filerepo/LocalFile.php',
-	'LocalFileDeleteBatch' => 'includes/filerepo/LocalFile.php',
-	'LocalFileMoveBatch' => 'includes/filerepo/LocalFile.php',
-	'LocalFileRestoreBatch' => 'includes/filerepo/LocalFile.php',
 	'LocalRepo' => 'includes/filerepo/LocalRepo.php',
 	'NullRepo' => 'includes/filerepo/NullRepo.php',
-	'OldLocalFile' => 'includes/filerepo/OldLocalFile.php',
 	'RepoGroup' => 'includes/filerepo/RepoGroup.php',
-	'UnregisteredLocalFile' => 'includes/filerepo/UnregisteredLocalFile.php',
+	
+	# includes/filerepo/file
+	'ArchivedFile' => 'includes/filerepo/file/ArchivedFile.php',
+	'File' => 'includes/filerepo/file/File.php',
+	'ForeignAPIFile' => 'includes/filerepo/file/ForeignAPIFile.php',
+	'ForeignDBFile' => 'includes/filerepo/file/ForeignDBFile.php',
+	'LocalFile' => 'includes/filerepo/file/LocalFile.php',
+	'LocalFileDeleteBatch' => 'includes/filerepo/file/LocalFile.php',
+	'LocalFileMoveBatch' => 'includes/filerepo/file/LocalFile.php',
+	'LocalFileRestoreBatch' => 'includes/filerepo/file/LocalFile.php',
+	'OldLocalFile' => 'includes/filerepo/file/OldLocalFile.php',
+	'UnregisteredLocalFile' => 'includes/filerepo/file/UnregisteredLocalFile.php',
 
 	# includes/installer
 	'CliInstaller' => 'includes/installer/CliInstaller.php',
