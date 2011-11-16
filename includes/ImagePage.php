@@ -1058,7 +1058,7 @@ class ImageHistoryList {
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 			$row .= '<td><span class="history-deleted">' . wfMsgHtml( 'rev-deleted-comment' ) . '</span></td>';
 		} else {
-			$row .= '<td dir="' . $wgContLang->getDir() . '">' . Linker::commentBlock( $description, $this->title ) . '</td>';
+			$row .= '<td dir="' . $wgContLang->getDir() . '">' . Linker::formatComment( $description, $this->title ) . '</td>';
 		}
 
 		$rowClass = null;

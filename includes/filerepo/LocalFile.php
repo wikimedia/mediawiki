@@ -893,6 +893,11 @@ class LocalFile extends File {
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	function upload( $srcPath, $comment, $pageText, $flags = 0, $props = false, $timestamp = false, $user = null ) {
+		global $wgContLang;
+		// truncate nicely or the DB will do it for us
+		// non-nicely (dangling multi-byte chars, non-truncated
+		// version in cache).
+		$comment = $wgContLang->truncate( $comment, 255 );
 		$this->lock();
 		$status = $this->publish( $srcPath, $flags );
 
