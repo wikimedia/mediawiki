@@ -25,11 +25,6 @@
  * @defgroup API API
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	// Eclipse helper - will be ignored in production
-	require_once( 'ApiBase.php' );
-}
-
 /**
  * This is the main API class, used for both external and internal processing.
  * When executed, it will create the requested formatter object,
