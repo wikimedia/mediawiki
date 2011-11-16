@@ -33,6 +33,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'renameSequence', 'rc_rc_id_seq',        'recentchanges_rc_id_seq'     ),
 			array( 'renameSequence', 'log_log_id_seq',      'logging_log_id_seq'          ),
 			array( 'renameSequence', 'pr_id_val',           'page_restrictions_pr_id_seq' ),
+			array( 'renameSequence', 'us_id_seq',           'uploadstash_us_id_seq' ),
 
 			# new tables
 			array( 'addTable', 'category',          'patch-category.sql' ),

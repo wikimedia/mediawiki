@@ -360,11 +360,11 @@ CREATE INDEX fa_dupe      ON filearchive (fa_storage_group, fa_storage_key);
 CREATE INDEX fa_notime    ON filearchive (fa_deleted_timestamp);
 CREATE INDEX fa_nouser    ON filearchive (fa_deleted_user);
 
-CREATE SEQUENCE us_id_seq;
+CREATE SEQUENCE uploadstash_us_id_seq;
 CREATE TYPE media_type AS ENUM ('UNKNOWN','BITMAP','DRAWING','AUDIO','VIDEO','MULTIMEDIA','OFFICE','TEXT','EXECUTABLE','ARCHIVE');
 
 CREATE TABLE uploadstash (
-  us_id           INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('us_id_seq'),
+  us_id           INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('uploadstash_us_id_seq'),
   us_user         INTEGER,
   us_key          TEXT,
   us_orig_path    TEXT,
