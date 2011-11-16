@@ -988,7 +988,7 @@ class ImageHistoryList {
 					array(
 						'action' => 'revert',
 						'oldimage' => $img,
-						'wpEditToken' => $wgUser->editToken( $img )
+						'wpEditToken' => $wgUser->getEditToken( $img )
 					),
 					array( 'known', 'noclasses' )
 				);
@@ -1016,7 +1016,7 @@ class ImageHistoryList {
 					array(
 						'target' => $this->title->getPrefixedText(),
 						'file' => $img,
-						'token' => $wgUser->editToken( $img )
+						'token' => $wgUser->getEditToken( $img )
 					),
 					array( 'known', 'noclasses' )
 				);

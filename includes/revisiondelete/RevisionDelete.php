@@ -584,7 +584,7 @@ class RevDel_FileItem extends RevDel_Item {
 					array(
 						'target' => $this->list->title->getPrefixedText(),
 						'file'   => $this->file->getArchiveName(),
-						'token'  => $this->list->getUser()->editToken(
+						'token'  => $this->list->getUser()->getEditToken(
 							$this->file->getArchiveName() )
 					)
 				);
@@ -733,7 +733,7 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 				array(
 					'target' => $this->list->title->getPrefixedText(),
 					'file' => $key,
-					'token' => $this->list->getUser()->editToken( $key )
+					'token' => $this->list->getUser()->getEditToken( $key )
 				)
 			);
 		}

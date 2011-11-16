@@ -873,7 +873,7 @@ class Article extends Page {
 			return;
 		}
 
-		$token = $wgUser->editToken( $rcid );
+		$token = $wgUser->getEditToken( $rcid );
 		$wgOut->preventClickjacking();
 
 		$wgOut->addHTML(
@@ -1287,7 +1287,7 @@ class Article extends Page {
 
 			if ( $this->getContext()->getUser()->isAllowed( 'trackback' ) ) {
 				$delurl = $this->getTitle()->getFullURL( "action=deletetrackback&tbid=" .
-					$o->tb_id . "&token=" . urlencode( $this->getContext()->getUser()->editToken() ) );
+					$o->tb_id . "&token=" . urlencode( $this->getContext()->getUser()->getEditToken() ) );
 				$rmvtxt = wfMsg( 'trackbackremove', htmlspecialchars( $delurl ) );
 			}
 
@@ -1524,7 +1524,7 @@ class Article extends Page {
 			</tr>" .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'fieldset' ) .
-			Html::hidden( 'wpEditToken', $user->editToken( array( 'delete', $this->getTitle()->getPrefixedText() ) ) ) .
+			Html::hidden( 'wpEditToken', $user->getEditToken( array( 'delete', $this->getTitle()->getPrefixedText() ) ) ) .
 			Xml::closeElement( 'form' );
 
 			if ( $user->isAllowed( 'editinterface' ) ) {

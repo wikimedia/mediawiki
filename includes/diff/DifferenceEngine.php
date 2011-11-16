@@ -435,7 +435,7 @@ class DifferenceEngine extends ContextSource {
 				// Build the link
 				if ( $rcid ) {
 					$this->getOutput()->preventClickjacking();
-					$token = $this->getUser()->editToken( $rcid );
+					$token = $this->getUser()->getEditToken( $rcid );
 					$this->mMarkPatrolledLink = ' <span class="patrollink">[' . Linker::linkKnown(
 						$this->mNewPage,
 						$this->msg( 'markaspatrolleddiff' )->escaped(),

@@ -235,7 +235,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$misc .= Html::hidden( 'destID', $this->mDestObj->getArticleID() );
 		$misc .= Html::hidden( 'target', $this->mTarget );
 		$misc .= Html::hidden( 'dest', $this->mDest );
-		$misc .= Html::hidden( 'wpEditToken', $this->getUser()->editToken() );
+		$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
 		$misc .= Xml::closeElement( 'form' );
 		$out->addHTML( $misc );
 

@@ -862,7 +862,7 @@ class SpecialUndelete extends SpecialPage {
 			Xml::element( 'input', array(
 				'type' => 'hidden',
 				'name' => 'wpEditToken',
-				'value' => $user->editToken() ) ) .
+				'value' => $user->getEditToken() ) ) .
 			Xml::element( 'input', array(
 				'type' => 'submit',
 				'name' => 'preview',
@@ -968,7 +968,7 @@ class SpecialUndelete extends SpecialPage {
 				'action' => $this->getTitle()->getLocalURL(
 					'target=' . urlencode( $this->mTarget ) .
 					'&file=' . urlencode( $key ) .
-					'&token=' . urlencode( $this->getUser()->editToken( $key ) ) )
+					'&token=' . urlencode( $this->getUser()->getEditToken( $key ) ) )
 				)
 			) .
 			Xml::submitButton( wfMsg( 'undelete-show-file-submit' ) ) .
@@ -1143,7 +1143,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mAllowed ) {
 			# Slip in the hidden controls here
 			$misc  = Html::hidden( 'target', $this->mTarget );
-			$misc .= Html::hidden( 'wpEditToken', $this->getUser()->editToken() );
+			$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
 			$misc .= Xml::closeElement( 'form' );
 			$out->addHTML( $misc );
 		}
@@ -1301,7 +1301,7 @@ class SpecialUndelete extends SpecialPage {
 				array(
 					'target' => $this->mTargetObj->getPrefixedText(),
 					'file' => $key,
-					'token' => $this->getUser()->editToken( $key )
+					'token' => $this->getUser()->getEditToken( $key )
 				)
 			);
 			if( $file->isDeleted( File::DELETED_FILE ) ) {

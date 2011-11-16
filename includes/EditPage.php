@@ -1955,7 +1955,7 @@ HTML
 		 * include the constant suffix to prevent editing from
 		 * broken text-mangling proxies.
 		 */
-		$wgOut->addHTML( "\n" . Html::hidden( "wpEditToken", $wgUser->editToken() ) . "\n" );
+		$wgOut->addHTML( "\n" . Html::hidden( "wpEditToken", $wgUser->getEditToken() ) . "\n" );
 	}
 
 	/**

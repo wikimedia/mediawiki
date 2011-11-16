@@ -294,7 +294,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'action' => $this->getTitle()->getLocalUrl(
 						'target=' . urlencode( $oimage->getName() ) .
 						'&file=' . urlencode( $archiveName ) .
-						'&token=' . urlencode( $this->getUser()->editToken( $archiveName ) ) )
+						'&token=' . urlencode( $this->getUser()->getEditToken( $archiveName ) ) )
 					)
 				) .
 				Xml::submitButton( wfMsg( 'revdelete-show-file-submit' ) ) .
@@ -404,7 +404,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'</td>' .
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
-				Html::hidden( 'wpEditToken', $this->getUser()->editToken() ) .
+				Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
 				Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
 				Html::hidden( 'type', $this->typeName ) .
 				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
