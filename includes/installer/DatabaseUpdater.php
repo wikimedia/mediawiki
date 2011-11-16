@@ -237,6 +237,7 @@ abstract class DatabaseUpdater {
 
 		if( isset( $what['purge'] ) ) {
 			$this->purgeCache();
+			$this->rebuildLocalisationCache();
 		}
 		if ( isset( $what['stats'] ) ) {
 			$this->checkStats();
@@ -652,7 +653,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * Rebuilds the localisation cache
 	 */
-	protected function doRebuildLocalisationCache() {
+	protected function rebuildLocalisationCache() {
 		/**
 		 * @var $cl RebuildLocalisationCache
 		 */
