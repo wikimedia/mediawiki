@@ -815,6 +815,7 @@ class WikiPage extends Page {
 		wfProfileIn( __METHOD__ );
 
 		$text = $revision->getText();
+		$len = strlen( $text );
 		$rt = Title::newFromRedirectRecurse( $text );
 
 		$conditions = array( 'page_id' => $this->getId() );
@@ -831,7 +832,7 @@ class WikiPage extends Page {
 				'page_touched'     => $dbw->timestamp( $now ),
 				'page_is_new'      => ( $lastRevision === 0 ) ? 1 : 0,
 				'page_is_redirect' => $rt !== null ? 1 : 0,
-				'page_len'         => strlen( $text ),
+				'page_len'         => $len,
 			),
 			$conditions,
 			__METHOD__ );
@@ -839,7 +840,12 @@ class WikiPage extends Page {
 		$result = $dbw->affectedRows() != 0;
 		if ( $result ) {
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
+			$this->setLastEdit( $revision );
 			$this->setCachedLastEditTime( $now );
+			$this->mLatest = $revision->getId();
+			$this->mIsRedirect = (bool)$rt;
+			# Update the LinkCache.
+			LinkCache::singleton()->addGoodLinkObj( $this->getId(), $this->mTitle, $len, $this->mIsRedirect, $this->mLatest );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -1094,6 +1100,8 @@ class WikiPage extends Page {
 
 		$oldtext = $this->getRawText(); // current revision
 		$oldsize = strlen( $oldtext );
+		$oldid = $this->getLatest();
+		$oldIsRedirect = $this->isRedirect();
 		$oldcountable = $this->isCountable();
 
 		# Provide autosummaries if one is not provided and autosummaries are enabled.
@@ -1123,7 +1131,7 @@ class WikiPage extends Page {
 				'comment'    => $summary,
 				'minor_edit' => $isminor,
 				'text'       => $text,
-				'parent_id'  => $this->mLatest,
+				'parent_id'  => $oldid,
 				'user'       => $user->getId(),
 				'user_text'  => $user->getName(),
 				'timestamp'  => $now
@@ -1151,7 +1159,7 @@ class WikiPage extends Page {
 				# edit conflicts reliably, either by $ok here, or by $article->getTimestamp()
 				# before this function is called. A previous function used a separate query, this
 				# creates a window where concurrent edits can cause an ignored edit conflict.
-				$ok = $this->updateRevisionOn( $dbw, $revision, $this->mLatest );
+				$ok = $this->updateRevisionOn( $dbw, $revision, $oldid, $oldIsRedirect );
 
 				if ( !$ok ) {
 					/* Belated edit conflict! Run away!! */
@@ -1174,7 +1182,7 @@ class WikiPage extends Page {
 							$this->mTitle->getUserPermissionsErrors( 'autopatrol', $user ) );
 						# Add RC row to the DB
 						$rc = RecentChange::notifyEdit( $now, $this->mTitle, $isminor, $user, $summary,
-							$this->mLatest, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
+							$oldid, $this->getTimestamp(), $bot, '', $oldsize, $newsize,
 							$revisionId, $patrolled
 						);
 
@@ -1240,11 +1248,6 @@ class WikiPage extends Page {
 				'timestamp'  => $now
 			) );
 			$revisionId = $revision->insertOn( $dbw );
-
-			$this->mTitle->resetArticleID( $newid );
-			# Update the LinkCache. Resetting the Title ArticleID means it will rely on having that already cached
-			# @todo FIXME?
-			LinkCache::singleton()->addGoodLinkObj( $newid, $this->mTitle, strlen( $text ), (bool)Title::newFromRedirect( $text ), $revisionId );
 
 			# Update the page record with revision data
 			$this->updateRevisionOn( $dbw, $revision, 0 );
