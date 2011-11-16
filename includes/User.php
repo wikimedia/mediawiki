@@ -3199,7 +3199,7 @@ class User {
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return String The new edit token
 	 */
-	public function editToken( $salt = '', $request = null ) {  
+	public function editToken( $salt = '', $request = null ) {
 		return $this->getEditToken( $salt, $request );
 	}
 	
