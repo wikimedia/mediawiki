@@ -1,8 +1,8 @@
-CREATE SEQUENCE us_id_seq;
+CREATE SEQUENCE uploadstash_us_id_seq;
 CREATE TYPE media_type AS ENUM ('UNKNOWN','BITMAP','DRAWING','AUDIO','VIDEO','MULTIMEDIA','OFFICE','TEXT','EXECUTABLE','ARCHIVE');
 
 CREATE TABLE uploadstash (
-  us_id           INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('us_id_seq'),
+  us_id           INTEGER PRIMARY KEY NOT NULL DEFAULT nextval('uploadstash_us_id_seq'),
   us_user         INTEGER,
   us_key		  TEXT,
   us_orig_path    TEXT,
