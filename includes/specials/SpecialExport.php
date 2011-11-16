@@ -216,6 +216,15 @@ class SpecialExport extends SpecialPage {
 			$request->wasPosted() ? $request->getCheck( 'wpDownload' ) : true
 		) . '<br />';
 
+		if ( $wgExportAllowListContributors ) {
+			$form .= Xml::checkLabel(
+				wfMsg( 'exportlistauthors' ),
+				'listauthors',
+				'listauthors',
+				$request->wasPosted() ? $request->getCheck( 'listauthors' ) : false
+			) . '<br />';
+		}
+
 		$form .= Xml::submitButton( wfMsg( 'export-submit' ), Linker::tooltipAndAccesskeyAttribs( 'export' ) );
 		$form .= Xml::closeElement( 'form' );
 
