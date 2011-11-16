@@ -788,8 +788,6 @@ EOT
 	 * Delete the file, or an earlier version of it
 	 */
 	public function delete() {
-		global $wgUploadMaintenance;
-
 		$file = $this->mPage->getFile();
 		if ( !$file->exists() || !$file->isLocal() || $file->getRedirected() ) {
 			// Standard article deletion
