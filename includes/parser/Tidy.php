@@ -11,7 +11,7 @@
  * we may create a real postprocessor or something that will replace this.
  * It's called wrapper because for now it basically takes over MWTidy::tidy's task
  * of wrapping the text in a xhtml block
- * 
+ *
  * This re-uses some of the parser's UNIQ tricks, though some of it is private so it's
  * duplicated. Perhaps we should create an abstract marker hiding class.
  */
@@ -40,7 +40,7 @@ class MWTidyWrapper {
 		$this->mUniqPrefix = "\x7fUNIQ" .
 			dechex( mt_rand( 0, 0x7fffffff ) ) . dechex( mt_rand( 0, 0x7fffffff ) );
 		$this->mMarkerIndex = 0;
-	
+
 		$wrappedtext = preg_replace_callback( ParserOutput::EDITSECTION_REGEX,
 			array( &$this, 'replaceEditSectionLinksCallback' ), $text );
 
@@ -126,7 +126,7 @@ class MWTidy {
 	 */
 	public static function checkErrors( $text, &$errorStr = null ) {
 		global $wgTidyInternal;
-		
+
 		$retval = 0;
 		if( $wgTidyInternal ) {
 			$errorStr = self::execInternalTidy( $text, true, $retval );
@@ -166,7 +166,7 @@ class MWTidy {
 				2 => array( 'file', wfGetNull(), 'a' )
 			);
 		}
-		
+
 		$readpipe = $stderr ? 2 : 1;
 		$pipes = array();
 
@@ -217,7 +217,7 @@ class MWTidy {
 		if ( !MWInit::classExists( 'tidy' ) ) {
 			wfWarn( "Unable to load internal tidy class." );
 			$retval = -1;
-			
+
 			wfProfileOut( __METHOD__ );
 			return null;
 		}
@@ -245,7 +245,7 @@ class MWTidy {
 						"\n-->";
 				}
 			}
-	
+
 			wfProfileOut( __METHOD__ );
 			return $cleansource;
 		}

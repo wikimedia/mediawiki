@@ -766,7 +766,6 @@ class ParserTest {
 		}
 
 		$temporary = $this->useTemporaryTables || $dbType == 'postgres';
-		$tables = $this->listTables();
 		$prefix = $dbType != 'oracle' ? 'parsertest_' : 'pt_';
 
 		$this->dbClone = new CloneDatabase( $this->db, $this->listTables(), $prefix );

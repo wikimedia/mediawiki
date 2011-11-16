@@ -23,6 +23,9 @@
 require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class PruneFileCache extends Maintenance {
+
+	protected $minSurviveTimestamp;
+
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Build file cache for content pages";
