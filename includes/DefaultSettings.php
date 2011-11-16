@@ -4331,9 +4331,9 @@ $wgSitemapNamespaces = false;
 $wgSitemapNamespacesPriorities = false;
 
 /**
- * Search IP
- * Treat IP searches as a contributor search for those
- * with permissions to do so.
+ * If true, searches for IP addresses will be redirected to that IP's
+ * contributions page. E.g. searching for "1.2.3.4" will redirect to
+ * [[Special:Contributions/1.2.3.4]]
  */
 $wgEnableSearchContributorsByIP = true;
 
