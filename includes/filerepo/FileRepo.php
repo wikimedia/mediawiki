@@ -457,7 +457,7 @@ abstract class FileRepo {
 	 *
 	 * @param $srcPath String: the source path or URL
 	 * @param $dstRel String: the destination relative path
-	 * @param $archiveRel String: rhe relative path where the existing file is to
+	 * @param $archiveRel String: the relative path where the existing file is to
 	 *        be archived, if there is one. Relative to the public zone root.
 	 * @param $flags Integer: bitfield, may be FileRepo::DELETE_SOURCE to indicate
 	 *        that the source file should be deleted if possible
