@@ -1056,7 +1056,8 @@ class LocalFile extends File {
 		}
 
 		$descTitle = $this->getTitle();
-		$wikiPage = WikiPage::factory( $descTitle );
+		$wikiPage = new WikiFilePage( $descTitle );
+		$wikiPage->setFile( $this );
 
 		# Add the log entry
 		$log = new LogPage( 'upload' );
