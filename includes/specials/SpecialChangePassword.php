@@ -143,7 +143,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 					'method' => 'post',
 					'action' => $this->getTitle()->getLocalUrl(),
 					'id' => 'mw-resetpass-form' ) ) . "\n" .
-			Html::hidden( 'token', $user->editToken() ) . "\n" .
+			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 			Html::hidden( 'wpName', $this->mUserName ) . "\n" .
 			Html::hidden( 'wpDomain', $this->mDomain ) . "\n" .
 			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .

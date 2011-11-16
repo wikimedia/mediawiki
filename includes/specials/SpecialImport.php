@@ -210,7 +210,7 @@ class SpecialImport extends SpecialPage {
 					"</td>
 				</tr>" .
 				Xml::closeElement( 'table' ).
-				Html::hidden( 'editToken', $user->editToken() ) .
+				Html::hidden( 'editToken', $user->getEditToken() ) .
 				Xml::closeElement( 'form' ) .
 				Xml::closeElement( 'fieldset' )
 			);
@@ -240,7 +240,7 @@ class SpecialImport extends SpecialPage {
 				wfMsgExt( 'import-interwiki-text', array( 'parse' ) ) .
 				Html::hidden( 'action', 'submit' ) .
 				Html::hidden( 'source', 'interwiki' ) .
-				Html::hidden( 'editToken', $user->editToken() ) .
+				Html::hidden( 'editToken', $user->getEditToken() ) .
 				Xml::openElement( 'table', array( 'id' => 'mw-import-table' ) ) .
 				"<tr>
 					<td class='mw-label'>" .

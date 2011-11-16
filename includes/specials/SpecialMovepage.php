@@ -189,7 +189,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$out->addWikiMsg( 'movepagetalktext' );
 		}
 
-		$token = htmlspecialchars( $user->editToken() );
+		$token = htmlspecialchars( $user->getEditToken() );
 
 		if ( !empty($err) ) {
 			$out->addSubtitle( $this->msg( 'formerror' ) );

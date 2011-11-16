@@ -493,7 +493,7 @@ class HTMLForm extends ContextSource {
 
 		$html = '';
 		if( $this->getMethod() == 'post' ){
-			$html .= Html::hidden( 'wpEditToken', $this->getUser()->editToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
+			$html .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken(), array( 'id' => 'wpEditToken' ) ) . "\n";
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 

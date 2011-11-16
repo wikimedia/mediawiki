@@ -123,7 +123,7 @@ class WatchAction extends FormAction {
 
 		// This token stronger salted and not compatible with ApiWatch
 		// It's title/action specific because index.php is GET and API is POST
-		return $user->editToken( $salt );
+		return $user->getEditToken( $salt );
 	}
 
 	/**
