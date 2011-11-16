@@ -7,16 +7,34 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 THIS IS NOT A RELEASE YET
 
-This is a beta release of the MediaWiki 1.18 branch. Please test it and let us
+This is a release candidate of the MediaWiki 1.18 branch. Please test it and let us
 know what you think of it. Beta releases are not recommended for use in
 production.
 
 === Changes since 1.18 beta 1 ===
+* (bug 31886) Wrong titles redirecting to Special:Badtitle in the 1.18 deployment.
+* (bug 32051) Fix description for wlprop=sizes.
 * (bug 31913) Special:MostLinkedTemplates had an incorrect GROUP BY clause
   under Microsoft SQL.
-* (bug 29912) Unit tests break if parsertest tables are still present
-* (bug 31990) justify paragraphs pref adds extra space to category listing
-* (bug 20148) Better title for [[Special:Disambiguations]] page
+* (bug 32100) installer complains about suhosin GET limit.
+* (bug 31933) fix 1.18 regression in Monobook sidebar: huge spacing between portlets
+  on IE 7 and IE 8/9 in compatibility view.
+* (bug 32126) Fix 1.18 regression in watchlist editor when items already removed
+  from watchlist.
+* (bug 32183) remove the client-* classes added from user-agent-sniffing onto
+  the <html> element.
+* (bug 29912) Unit tests break if parsertest tables are still present.
+* (bug 31694) During installation, tabbing order (cursor focus) goes to logo
+  instead of 'continue'.
+* (bug 29102) Upgrade fails "Unknown character set: 'mysql4".
+* (bug 31990) justify paragraphs pref adds extra space to category listing.
+* (bug 20148) Better title for [[Special:Disambiguations]] page.
+* (bug 31502) TOC is missing on Special:EditWatchlist.
+* (bug 32256) API list=search stops at first invalid result.
+* (bug 32047) jquery.tablesorter.js: thead is before caption.
+* (bug 29854) Store protocol-relative links twice in the externallinks table,
+  one with http: in el_index and once with https.
+* (bug 31822) Error during upgrade due to output buffer reset in stdout.
 
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
@@ -499,7 +517,6 @@ production.
   already set above 1024 bytes
 * (bug 32086) Special:PermanentLink now show an error message when no subpage
   was specified.
-* (bug 31822) Error during upgrade due to output buffer reset in stdout
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
