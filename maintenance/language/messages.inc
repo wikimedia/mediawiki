@@ -2241,6 +2241,7 @@ $wgMessageStructure = array(
 		'exporttext',
 		'exportcuronly',
 		'exportnohistory',
+		'exportlistauthors',
 		'export-submit',
 		'export-addcattext',
 		'export-addcat',
