@@ -1803,23 +1803,24 @@ Opis na [$2 stranici datoteke] je prikazan ispod.',
 'filerevert-badversion'     => 'Ne postoji prethodna lokalna verzija fajla sa unesenim vremenom.',
 
 # File deletion
-'filedelete'                  => 'Obriši $1',
-'filedelete-legend'           => 'Obriši fajl',
-'filedelete-intro'            => "Na putu ste da obrišete fajl '''[[Media:$1|$1]]''' zajedno sa njegovom istorijom.",
-'filedelete-intro-old'        => "Brišete verziju fajla '''[[Media:$1|$1]]''' od [$4 $3, $2].",
-'filedelete-comment'          => 'Razlog:',
-'filedelete-submit'           => 'Obriši',
-'filedelete-success'          => "'''$1''' je obrisan.",
-'filedelete-success-old'      => "Verzija fajla '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
-'filedelete-nofile'           => "'''$1''' ne postoji.",
-'filedelete-nofile-old'       => "Ne postoji skladištena verzija fajla '''$1''' sa datim osobinama.",
-'filedelete-otherreason'      => 'Drugi/dodatni razlog:',
-'filedelete-reason-otherlist' => 'Drugi razlog',
-'filedelete-reason-dropdown'  => '*Najčešći razlozi brisanja
+'filedelete'                   => 'Obriši $1',
+'filedelete-legend'            => 'Obriši fajl',
+'filedelete-intro'             => "Na putu ste da obrišete fajl '''[[Media:$1|$1]]''' zajedno sa njegovom istorijom.",
+'filedelete-intro-old'         => "Brišete verziju fajla '''[[Media:$1|$1]]''' od [$4 $3, $2].",
+'filedelete-comment'           => 'Razlog:',
+'filedelete-submit'            => 'Obriši',
+'filedelete-success'           => "'''$1''' je obrisan.",
+'filedelete-success-old'       => "Verzija fajla '''[[Media:$1|$1]]''' od $3, $2 je obrisana.",
+'filedelete-nofile'            => "'''$1''' ne postoji.",
+'filedelete-nofile-old'        => "Ne postoji skladištena verzija fajla '''$1''' sa datim osobinama.",
+'filedelete-otherreason'       => 'Drugi/dodatni razlog:',
+'filedelete-reason-otherlist'  => 'Drugi razlog',
+'filedelete-reason-dropdown'   => '*Najčešći razlozi brisanja
 ** Kršenje autorskih prava
 ** Duplikat',
-'filedelete-edit-reasonlist'  => 'Uredi razloge za brisanje',
-'filedelete-maintenance'      => 'Brisanje i vraćanje fajlova je temporalno onemogućeno zbog održavanja.',
+'filedelete-edit-reasonlist'   => 'Uredi razloge za brisanje',
+'filedelete-maintenance'       => 'Brisanje i vraćanje fajlova je temporalno onemogućeno zbog održavanja.',
+'filedelete-maintenance-title' => 'Ne mogu da obrišem datoteku',
 
 # MIME search
 'mimesearch'         => 'MIME pretraga',
@@ -2666,6 +2667,7 @@ U drugom slučaju, možete koristiti i vezu, na primer [[{{#Special:Export}}/{{M
 'exportcuronly'     => 'Uključi samo trenutnu reviziju, ne celu istoriju',
 'exportnohistory'   => "----
 '''Napomena:''' izvoženje pune istorije strana preko ovog formulara je onemogućeno zbog serverskih razloga.",
+'exportlistauthors' => 'Uključi celokupan spisak doprinosilaca za svaku stranicu',
 'export-submit'     => 'Izvoz',
 'export-addcattext' => 'Dodaj stranice iz kategorije:',
 'export-addcat'     => 'Dodaj',

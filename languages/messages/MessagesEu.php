@@ -956,9 +956,9 @@ Ezin duzu atzitu.',
 'revdelete-concurrent-change' => 'Errorea, $1 $2 data duen elementua aldatzean: badirudi haren egoera aldatu duela nor edo nork, zu aldatzen saiatzen ari zinela.
 Begira itzazu erregistroak.',
 'revdelete-reason-dropdown'   => '*Ezabatzeko ohiko arrazoiak
-**Copyright urraketa
+**Egile eskubideen urraketa
 **Informazio pertsonal desegokia
-**Ahalezko informazio iraingarria',
+**Iraingarria izan daitekeen informazioa',
 'revdelete-otherreason'       => 'Bestelako arrazoia:',
 'revdelete-reasonotherlist'   => 'Beste arrazoi bat',
 'revdelete-edit-reasonlist'   => 'Ezabaketa arrazoiak aldatu',

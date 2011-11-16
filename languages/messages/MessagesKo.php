@@ -1874,23 +1874,24 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filerevert-badversion'     => '주어진 타임스탬프를 가진 파일의 로컬 버전이 없습니다.',
 
 # File deletion
-'filedelete'                  => '$1 삭제하기',
-'filedelete-legend'           => '파일 삭제하기',
-'filedelete-intro'            => "'''[[Media:$1|$1]]''' 파일과 모든 역사를 삭제합니다.",
-'filedelete-intro-old'        => "'''[[Media:$1|$1]]''' 파일의 [$4 $2 $3] 버전을 삭제합니다.",
-'filedelete-comment'          => '이유:',
-'filedelete-submit'           => '삭제',
-'filedelete-success'          => "'''$1''' 파일을 삭제했습니다.",
-'filedelete-success-old'      => "'''[[Media:$1|$1]]''' 파일의 $2 $3 버전을 삭제했습니다.",
-'filedelete-nofile'           => "'''$1''' 파일이 존재하지 않습니다.",
-'filedelete-nofile-old'       => "해당 조건에 맞는 과거 '''$1''' 파일이 존재하지 않습니다.",
-'filedelete-otherreason'      => '다른 이유/추가적인 이유:',
-'filedelete-reason-otherlist' => '다른 이유',
-'filedelete-reason-dropdown'  => '*일반적인 삭제 이유
+'filedelete'                   => '$1 삭제하기',
+'filedelete-legend'            => '파일 삭제하기',
+'filedelete-intro'             => "'''[[Media:$1|$1]]''' 파일과 모든 역사를 삭제합니다.",
+'filedelete-intro-old'         => "'''[[Media:$1|$1]]''' 파일의 [$4 $2 $3] 버전을 삭제합니다.",
+'filedelete-comment'           => '이유:',
+'filedelete-submit'            => '삭제',
+'filedelete-success'           => "'''$1''' 파일을 삭제했습니다.",
+'filedelete-success-old'       => "'''[[Media:$1|$1]]''' 파일의 $2 $3 버전을 삭제했습니다.",
+'filedelete-nofile'            => "'''$1''' 파일이 존재하지 않습니다.",
+'filedelete-nofile-old'        => "해당 조건에 맞는 과거 '''$1''' 파일이 존재하지 않습니다.",
+'filedelete-otherreason'       => '다른 이유/추가적인 이유:',
+'filedelete-reason-otherlist'  => '다른 이유',
+'filedelete-reason-dropdown'   => '*일반적인 삭제 이유
 ** 저작권 침해
 ** 중복된 파일',
-'filedelete-edit-reasonlist'  => '삭제 이유 편집',
-'filedelete-maintenance'      => '점검 중에는 임시적으로 삭제와 복구를 할 수 없습니다.',
+'filedelete-edit-reasonlist'   => '삭제 이유 편집',
+'filedelete-maintenance'       => '점검 중에는 임시적으로 삭제와 복구를 할 수 없습니다.',
+'filedelete-maintenance-title' => '파일을 삭제할 수 없습니다',
 
 # MIME search
 'mimesearch'         => 'MIME 검색',
@@ -3171,9 +3172,12 @@ Variants for Chinese language
 'exif-locationdestcode'            => '장소의 위치 코드(ISO, XSP 등)',
 'exif-objectcycle'                 => '미디어 파일이 의도하는 시간대',
 'exif-languagecode'                => '언어',
+'exif-iimversion'                  => 'IIM 버전',
+'exif-iimcategory'                 => '분류',
 'exif-lens'                        => '사용된 렌즈',
 'exif-serialnumber'                => '카메라 일련 번호',
 'exif-cameraownername'             => '카메라 소유자',
+'exif-label'                       => '라벨',
 'exif-copyrighted'                 => '저작권 정보',
 'exif-copyrightowner'              => '저작권자',
 'exif-pngfilecomment'              => 'PNG 파일 주석',
@@ -3314,6 +3318,10 @@ Variants for Chinese language
 'exif-gpslongitude-e' => '동경',
 'exif-gpslongitude-w' => '서경',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '해발 $1미터',
+'exif-gpsaltitude-below-sealevel' => '해저 $1미터',
+
 'exif-gpsstatus-a' => '측정 중',
 'exif-gpsstatus-v' => '인터랙티브 측정',
 
@@ -3340,9 +3348,30 @@ Variants for Chinese language
 
 'exif-dc-type' => '미디어 종류',
 
+'exif-isospeedratings-overflow' => '65535 이상',
+
+'exif-iimcategory-ace' => '예술, 문화, 엔터테인먼트',
+'exif-iimcategory-clj' => '범죄와 법률',
+'exif-iimcategory-dis' => '재난 및 사고',
+'exif-iimcategory-fin' => '경제 및 비즈니스',
 'exif-iimcategory-edu' => '교육',
 'exif-iimcategory-evn' => '환경',
+'exif-iimcategory-hth' => '건강',
+'exif-iimcategory-hum' => '인간의 흥미',
+'exif-iimcategory-lab' => '노동',
+'exif-iimcategory-lif' => '생활 방식과 레저',
+'exif-iimcategory-pol' => '정치',
+'exif-iimcategory-rel' => '종교 및 신념',
 'exif-iimcategory-sci' => '과학 기술',
+'exif-iimcategory-soi' => '사회적 문제',
+'exif-iimcategory-spo' => '스포츠',
+'exif-iimcategory-war' => '전쟁, 분쟁과 사회 불안',
+'exif-iimcategory-wea' => '날씨',
+
+'exif-urgency-normal' => '보통 ($1)',
+'exif-urgency-low'    => '낮음 ($1)',
+'exif-urgency-high'   => '높음 ($1)',
+'exif-urgency-other'  => '사용자 정의 ($1)',
 
 # External editor support
 'edit-externally'      => '이 파일을 외부 프로그램을 사용해서 편집하기',

@@ -1966,24 +1966,25 @@ Dat sellve shteiht hee dronger.',
 'filerevert-badversion'     => 'Mer han kei Version fun dä Datei för dä aanjejovve Zickpunk.',
 
 # File deletion
-'filedelete'                  => 'Schmieß „$1“ fott',
-'filedelete-legend'           => 'Schmieß de Datei fott',
-'filedelete-intro'            => "Do beß di Datei '''„[[Media:$1|$1]]“''' am Fottschmieße, un och all ier vörrije Versione, der Text övver se, un all de Änderunge draan.",
-'filedelete-intro-old'        => '<span class="plainlinks">Do schmiiß de Version [$4 fum $2 öm $3 Uhr] fun dä Datei „[[Media:$1|$1]]“ fott.</span>',
-'filedelete-comment'          => 'Aanlaß odder Jrund:',
-'filedelete-submit'           => 'Fottschmieße',
-'filedelete-success'          => "'''„$1“''' es fottjeschmeße.",
-'filedelete-success-old'      => "Fun dä Datei '''„[[Media:$1|$1]]“''' es jäz di Version fum $2 öm $3 Uhr fottjeschmeße woode.",
-'filedelete-nofile'           => "„$1“''' jidd_et nit.",
-'filedelete-nofile-old'       => "Fun '''„$1“''' ham_mer kein arschiveete Version met dä Eijeschaffte.",
-'filedelete-otherreason'      => 'Ander Jrund oder Zosätzlich:',
-'filedelete-reason-otherlist' => 'Ne andere Jrund',
-'filedelete-reason-dropdown'  => '* Alljemein Jrönd
+'filedelete'                   => 'Schmieß „$1“ fott',
+'filedelete-legend'            => 'Schmieß de Datei fott',
+'filedelete-intro'             => "Do beß di Datei '''„[[Media:$1|$1]]“''' am Fottschmieße, un och all ier vörrije Versione, der Text övver se, un all de Änderunge draan.",
+'filedelete-intro-old'         => '<span class="plainlinks">Do schmiiß de Version [$4 fum $2 öm $3 Uhr] fun dä Datei „[[Media:$1|$1]]“ fott.</span>',
+'filedelete-comment'           => 'Aanlaß odder Jrund:',
+'filedelete-submit'            => 'Fottschmieße',
+'filedelete-success'           => "'''„$1“''' es fottjeschmeße.",
+'filedelete-success-old'       => "Fun dä Datei '''„[[Media:$1|$1]]“''' es jäz di Version fum $2 öm $3 Uhr fottjeschmeße woode.",
+'filedelete-nofile'            => "„$1“''' jidd_et nit.",
+'filedelete-nofile-old'        => "Fun '''„$1“''' ham_mer kein arschiveete Version met dä Eijeschaffte.",
+'filedelete-otherreason'       => 'Ander Jrund oder Zosätzlich:',
+'filedelete-reason-otherlist'  => 'Ne andere Jrund',
+'filedelete-reason-dropdown'   => '* Alljemein Jrönd
 ** Wä dat Denge huhjelade hät, wollt et esu
 ** Wohr jäje et Urhävverrääsch
 ** Dubbelt',
-'filedelete-edit-reasonlist'  => 'De Jrönde för et Fottschmieße beärbeide',
-'filedelete-maintenance'      => 'Datteie Fottschmiiße un widder zerök Holle jeiht jez jrad nit, mer hann Waadong.',
+'filedelete-edit-reasonlist'   => 'De Jrönde för et Fottschmieße beärbeide',
+'filedelete-maintenance'       => 'Datteie Fottschmiiße un widder zerök Holle jeiht jez jrad nit, mer hann Waadong.',
+'filedelete-maintenance-title' => 'Di Dattei künne mer nit fottschmiiße',
 
 # MIME search
 'mimesearch'         => 'Dateie üvver dänne ehre <span lang="en">MIME</span>-Typ söke',

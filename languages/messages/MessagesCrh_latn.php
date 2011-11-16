@@ -361,7 +361,7 @@ $1',
 'retrievedfrom'           => 'Menba – "$1"',
 'youhavenewmessages'      => 'Yañı $1 bar ($2).',
 'newmessageslink'         => 'beyanatıñız',
-'newmessagesdifflink'     => 'muzakere saifeñizniñ soñki deñişikligi',
+'newmessagesdifflink'     => 'muzakere saifeñizniñ soñki deñişkeni',
 'youhavenewmessagesmulti' => '$1 saifesinde yañı beyanatıñız bar.',
 'editsection'             => 'deñiştir',
 'editold'                 => 'deñiştir',
@@ -374,7 +374,7 @@ $1',
 'hidetoc'                 => 'gizle',
 'thisisdeleted'           => '$1 körmege ya da keri ketirmege isteysiñizmi?',
 'viewdeleted'             => '$1 kör?',
-'restorelink'             => 'yoq etilgen {{PLURAL:$1|1|$1}} deñişikligi',
+'restorelink'             => 'yoq etilgen {{PLURAL:$1|1|$1}} deñişmesi',
 'feedlinks'               => 'Bu şekilde:',
 'feed-invalid'            => 'Abune kanalınıñ çeşiti yañlıştır.',
 'feed-unavailable'        => 'Sindikatsiya lentaları qullanılıp оlamay.',
@@ -448,6 +448,7 @@ Lütfen, URL yazıp bundan [[Special:ListUsers/sysop|idarecige]] haber beriñiz.
 'formerror'            => 'Hata: formanıñ malümatını yollamaqnıñ iç çaresi yoq',
 'badarticleerror'      => 'Siz yapmağa istegen işlev bu saifede yapılıp оlamay.',
 'cannotdelete'         => '"$1" saife ya da faylı yoq etilip olamadı. Başqa bir qullanıcı tarafından yoq etilgen ola bile.',
+'cannotdelete-title'   => '"$1" saifesini yoq etmege olmaz',
 'badtitle'             => 'Ruhsetsiz serleva',
 'badtitletext'         => 'İstenilgen saife adı doğru degil, o boştır, yahut tillerara bağlantı ya da vikilerara bağlantı doğru yazılmağan. İhtimalı bar ki, saife adında yasaqlanğan işaretler bar.',
 'perfcached'           => 'Malümatlar daa evelceden azırlanğan ola bilir. Bu sebepten eskirgen ola bilir!',
@@ -457,12 +458,13 @@ Lütfen, URL yazıp bundan [[Special:ListUsers/sysop|idarecige]] haber beriñiz.
 Funktsiya: $1<br />
 Soratma: $2',
 'viewsource'           => 'menba kodunı köster',
+'viewsource-title'     => '$1 saifesiniñ menba kodu',
 'actionthrottled'      => 'Areket toqtaldı',
 'actionthrottledtext'  => 'Spamğa qarşı küreş sebebinden bu areketni az vaqıt içinde çoq kere tekrarlap olamaysıñız. Mümkün olğan qarardan ziyade areket yaptıñız. Bir qaç daqqadan soñ tekrarlap baqıñız.',
 'protectedpagetext'    => 'Bu saifeni kimse deñiştirmesin dep o blok etildi.',
 'viewsourcetext'       => 'Saifeniñ kodunı közden keçirip kopiyalay bilesiñiz:',
-'protectedinterface'   => 'Bu saifede sistema interfeysiniñ metini bulunğanı içün mında hata çıqmasın dep deñişiklik yapmaq yasaq.',
-'editinginterface'     => "'''Tenbi''': MediaWiki sistema beyanatılı bir saifeni deñiştirmektesiñiz. Bu saifedeki deñişiklikler qullanıcı interfeys körünişini diger qullanıcılar içün de deñiştirecek. Lütfen, tercimeler içün [//translatewiki.net/wiki/Main_Page?setlang=crh translatewiki.net] saytını (MediaWiki resmiy lokalizatsiya leyhası) qullanıñız.",
+'protectedinterface'   => 'Bu saifede sistema interfeysiniñ metni bar. Onıñ içün mında bir hata çıqmasın dep onı deñiştirmek yasaq.',
+'editinginterface'     => "'''Tenbi''': İçinde MediaWiki sistemasınıñ beyanatı olğan bir saifeni deñiştireyatasız. Bu saifedeki deñişmeler qullanıcı interfeysiniñ körünişini diger qullanıcılar içün de deñiştirecek. Lütfen, tercimeler içün [//translatewiki.net/wiki/Main_Page?setlang=crh translatewiki.net] saytını (MediaWiki resmiy lokalizatsiya leyhası) qullanıñız.",
 'sqlhidden'            => '(SQL istintağı saqlı)',
 'cascadeprotected'     => 'Bu saifeni deñiştirip olamazsıñız, çünki kaskad qorçalav altında bulunğan {{PLURAL:$1|saifege|saifelerge}} mensüptir:
 $2',
@@ -503,11 +505,12 @@ Bu saytnıñ [[Special:Preferences|sazlamalarını]] şahsıñızğa köre deñi
 'createaccount'              => 'Yañı esap aç',
 'gotaccount'                 => "Daa evel esap açqan ediñizmi? '''$1'''.",
 'gotaccountlink'             => 'Oturım açıñız',
+'userlogin-resetlink'        => 'Kiriş malümatını unuttıñızmı?',
 'createaccountmail'          => 'e-mail vastasınen',
 'createaccountreason'        => 'Sebep:',
 'badretype'                  => 'Kirsetken parolleriñiz aynı degil.',
 'userexists'                 => 'Kirsetken qullanıcı adıñız endi qullanıla.
-Başqa bir qullanıcı adı saylañız.',
+Lütfen, başqa bir qullanıcı adı saylañız.',
 'loginerror'                 => 'Oturım açma hatası',
 'createaccounterror'         => 'Esap yaratılıp olamay: $1',
 'nocookiesnew'               => 'Qullanıcı esabı açılğan, faqat tanıtılmağan. {{SITENAME}} qullanıcılarnı tanıtmaq içün "cookies"ni qullana. Sizde bu funktsiya qapalı vaziyettedir. "Cookies" funktsiyasını işletip tekrar yañı adıñız ve paroliñiznen tırışıp baqınız.',
@@ -526,6 +529,7 @@ Doğru yazğanıñıznı teşkeriñiz ya da [[Special:UserLogin/signup|yañı qu
 Lütfen, tekrar etiñiz.',
 'passwordtooshort'           => 'Paroliñizde eñ az {{PLURAL:$1|1|$1}} işaret olmalı.',
 'password-name-match'        => 'Paroliñiz qullanıcı adıñızdan farqlı olmalı.',
+'password-login-forbidden'   => 'Bu qullanıcı adı ve parolni qullanmaq yasaqtır.',
 'mailmypassword'             => 'Yañı parol yiber',
 'passwordremindertitle'      => '{{grammar:genitive|{{SITENAME}}}} qullanıcınıñ parol hatırlatuvı',
 'passwordremindertext'       => 'Birev (belki de bu sizsiñiz, $1 IP adresinden) {{SITENAME}} saytı içün ($4) yañı qullanıcı parolini istedi.
@@ -663,11 +667,11 @@ Eger siz anonim qullanıcı olsañız ve sizge kelgen beyanatlarnı yañlıştan
 'userpage-userdoesnotexist-view'   => '"$1" adlı qullanıcı esabı yoq.',
 'blocked-notice-logextract'        => 'Bu qullanıcı şimdi blok etilgen.
 Blok etüv jurnalınıñ soñki yazısı aşağıda kösterilgen:',
-'clearyourcache'                   => "'''İhtar:''' Sazlamalarıñıznı saqlağandan soñ deñişikliklerni körmek içün brauzeriñizniñ keşini temizlemek kereksiñiz.
-'''Mozilla / Firefox / Safari:''' ''Shift'' basılı ekende saifeni yañıdan yüklep ya da ''Ctrl-Shift-R'' yapıp (Mac içün ''Command-R'');
-'''Konqueror:''' saifeni yañıdan yükle dögmesine ya da F5 basıp;
-'''Opera:''' ''Tools → Preferences'' menüsinde keşni temizlep;
-'''Internet Explorer:''' ''Ctrl'' basılı ekende saifeni yañıdan yüklep ya da ''Ctrl-F5'' basıp.",
+'clearyourcache'                   => "'''İhtar:''' Belki sazlamalarıñıznı saqlağandan soñ deñişmelerni körmek içün brauzeriñizniñ keşini temizlemek kerek olursıñız.
+'''Mozilla / Firefox / Safari:''' ''Shift'' basıp saifeni yañıdan yüklemek ya da ''Ctrl-Shift-R'' basmaq (Mac içün ''Command-R'');
+'''Konqueror:''' saifeni yañıdan yükle dögmesine ya da F5 basımaq;
+'''Opera:''' ''Tools → Preferences'' menüsinde keşni temizlemek;
+'''Internet Explorer:''' ''Ctrl'' basıp saifeni yañıdan yüklemek ya da ''Ctrl-F5'' basmaq.",
 'usercssyoucanpreview'             => "'''Tevsiye:''' Yañı CSS faylını teşkermek içün saifeni saqlamazdan evel \"{{int:showpreview}}\" dögmesine basıñız.",
 'userjsyoucanpreview'              => "'''Tevsiye:''' Yañı JavaScript-iñizni teşkermek içün saifeni saqlamazdan evel \"{{int:showpreview}}\" dögmesine basıñız.",
 'usercsspreview'                   => "'''Unutmañız, bu tek baqıp çıquv - qullanıcı CSS faylıñız alâ daa saqlanmadı!'''",
@@ -738,7 +742,7 @@ Saifeniñ yoq etilüv ve avuştırıluv qaydları mında berilgen:",
 'moveddeleted-notice'              => 'Bu saife yoq etilgen.
 Saifeniñ yoq etilüv ve avuştırıluv qaydları aşağıda berilgen.',
 'log-fulllog'                      => 'Jurnalnı tolusınca köster',
-'edit-hook-aborted'                => 'Deñişiklik çengel protsedurasınen toqtatıldı.
+'edit-hook-aborted'                => 'Deñişme çengel protsedurasınen toqtatıldı.
 İç bir izaat berilmedi.',
 'edit-gone-missing'                => 'Saife yañartılıp olamay.
 Ola bile ki, o yoq etilgendir.',

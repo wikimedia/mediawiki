@@ -1723,23 +1723,24 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'filerevert-badversion'     => 'W zapodatym času žana wersija dataje njeje.',
 
 # File deletion
-'filedelete'                  => '„$1“ wušmórnyć',
-'filedelete-legend'           => 'Wušmórnju dataju',
-'filedelete-intro'            => "Šmórnješ dataju '''[[Media:$1|$1]]''' zhromadnje z jeje cyłymi stawiznami.",
-'filedelete-intro-old'        => "Wušmórnješ wersiju '''[[Media:$1|$1]]''' wot [$4 wot $2, $3 hodź].",
-'filedelete-comment'          => 'Přičina:',
-'filedelete-submit'           => 'Wušmórnyć',
-'filedelete-success'          => "Strona '''„$1“''' bu wušmórnjena.",
-'filedelete-success-old'      => "Wersija '''[[Media:$1|$1]]''' wot $2, $3 hodź. bu zničena.",
-'filedelete-nofile'           => "'''„$1“''' njeeksistuje.",
-'filedelete-nofile-old'       => "Njeje žana archiwowana wersija '''$1''' z podatymi atributami.",
-'filedelete-otherreason'      => 'Druha/přidatna přičina:',
-'filedelete-reason-otherlist' => 'Druha přičina',
-'filedelete-reason-dropdown'  => '*Powšitkowne přičina za wušmórnjenja
+'filedelete'                   => '„$1“ wušmórnyć',
+'filedelete-legend'            => 'Wušmórnju dataju',
+'filedelete-intro'             => "Šmórnješ dataju '''[[Media:$1|$1]]''' zhromadnje z jeje cyłymi stawiznami.",
+'filedelete-intro-old'         => "Wušmórnješ wersiju '''[[Media:$1|$1]]''' wot [$4 wot $2, $3 hodź].",
+'filedelete-comment'           => 'Přičina:',
+'filedelete-submit'            => 'Wušmórnyć',
+'filedelete-success'           => "Strona '''„$1“''' bu wušmórnjena.",
+'filedelete-success-old'       => "Wersija '''[[Media:$1|$1]]''' wot $2, $3 hodź. bu zničena.",
+'filedelete-nofile'            => "'''„$1“''' njeeksistuje.",
+'filedelete-nofile-old'        => "Njeje žana archiwowana wersija '''$1''' z podatymi atributami.",
+'filedelete-otherreason'       => 'Druha/přidatna přičina:',
+'filedelete-reason-otherlist'  => 'Druha přičina',
+'filedelete-reason-dropdown'   => '*Powšitkowne přičina za wušmórnjenja
 ** Zranjenje awtorksich prawow
 ** Dwójna dataja',
-'filedelete-edit-reasonlist'  => 'Přičiny za wušmórnjenje wobdźěłać',
-'filedelete-maintenance'      => 'Wušmórnjenje a wobnowjenje datajow stej wothladowanja dla nachilu znjemóžnjenej.',
+'filedelete-edit-reasonlist'   => 'Přičiny za wušmórnjenje wobdźěłać',
+'filedelete-maintenance'       => 'Wušmórnjenje a wobnowjenje datajow stej wothladowanja dla nachilu znjemóžnjenej.',
+'filedelete-maintenance-title' => 'Dataja njeda so zhašeć',
 
 # MIME search
 'mimesearch'         => 'Pytanje za typom MIME',
@@ -2967,7 +2968,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-source'                      => 'Žórło',
 'exif-editstatus'                  => 'Wobdźěłowanski status wobraza',
 'exif-urgency'                     => 'Nuznosć',
-'exif-fixtureidentifier'           => 'Objektowe mjeno',
+'exif-fixtureidentifier'           => 'Mjeno kolumny',
 'exif-locationdest'                => 'Zwobraznjene městno',
 'exif-locationdestcode'            => 'Kod za zwobraznjene městno',
 'exif-objectcycle'                 => 'Čas dnja, za kotryž medij je mysleny',

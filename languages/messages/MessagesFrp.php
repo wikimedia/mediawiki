@@ -674,11 +674,13 @@ Les balyês ce-desot sont pas betâs a jorn.',
 Fonccion : $1<br />
 Requéta : $2',
 'viewsource'           => 'Vêre lo tèxto sôrsa',
+'viewsource-title'     => 'Vêre la sôrsa de $1',
 'actionthrottled'      => 'Accion limitâ',
 'actionthrottledtext'  => 'Por combatre lo spame, la frèquence d’ègzécucion de cela accion est limitâ dens un moment prod côrt, et vos éd dèpassâ ceta limita.
 Volyéd tornar èprovar dens doux-três menutes.',
 'protectedpagetext'    => 'Ceta pâge at étâ protègiê por empachiér son changement.',
 'viewsourcetext'       => 'Vos pouede vêre et copiyér lo tèxto sôrsa de la pâge :',
+'viewyourtext'         => "Vos pouede vêre et copiyér lo contegnu de '''voutros changements''' a ceta pâge :",
 'protectedinterface'   => 'Ceta pâge fât de tèxto d’entèrface por la programeria et est protègiê por èvitar los abus.',
 'editinginterface'     => "'''Atencion :''' vos éte aprés changiér una pâge utilisâ por fâre lo tèxto d’entèrface por la programeria.
 Los changements sè cognetront, d’aprés lo contèxto, sur totes ou ben quârques pâges visibles per los ôtros utilisators.
@@ -1851,9 +1853,9 @@ Pôt pas étre controlâ tot drêt por la sècuritât.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accès refusâ',
 'img-auth-nopathinfo'       => 'PATH_INFO manquent.
-Voutron sèrvor est pas dèfeni por passar ceta enformacion.
+Voutron sèrvor est pas dèfeni por passar cela enformacion.
 Fonccione pôt-étre en CGI et pués recognêt pas img_auth.
-Vêde http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Vêde los drêts d’émâge.]',
 'img-auth-notindir'         => 'Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.',
 'img-auth-badtitle'         => 'Empossiblo de construire un titro valido dês « $1 ».',
 'img-auth-nologinnWL'       => 'Vos éte pas branchiê et pués « $1 » est pas dens la lista blanche.',
@@ -1956,23 +1958,24 @@ La dèscripcion de sa [$2 pâge de dèscripcion] est montrâ ce-desot.',
 'filerevert-badversion'     => 'Y at gins de vèrsion ples vielye du fichiér avouéc la dâta balyê.',
 
 # File deletion
-'filedelete'                  => 'Suprimar $1',
-'filedelete-legend'           => 'Suprimar lo fichiér',
-'filedelete-intro'            => "Vos éte prèst a suprimar '''[[Media:$1|$1]]''' et pués tot son historico.",
-'filedelete-intro-old'        => "Vos éte aprés suprimar la vèrsion de '''[[Media:$1|$1]]''' du [$4 $2 a $3].",
-'filedelete-comment'          => 'Rêson :',
-'filedelete-submit'           => 'Suprimar',
-'filedelete-success'          => "'''$1''' at étâ suprimâ.",
-'filedelete-success-old'      => "La vèrsion de '''[[Media:$1|$1]]''' du $2 a $3 at étâ suprimâ.",
-'filedelete-nofile'           => "'''$1''' ègziste pas.",
-'filedelete-nofile-old'       => "Ègziste gins de vèrsion arch·ivâ de '''$1''' avouéc los atributs spècefiâs.",
-'filedelete-otherreason'      => 'Ôtra rêson / rêson de ples :',
-'filedelete-reason-otherlist' => 'Ôtra rêson',
-'filedelete-reason-dropdown'  => '* Rêsons de suprèssion les ples corentes
+'filedelete'                   => 'Suprimar $1',
+'filedelete-legend'            => 'Suprimar lo fichiér',
+'filedelete-intro'             => "Vos éte prèst a suprimar '''[[Media:$1|$1]]''' et pués tot son historico.",
+'filedelete-intro-old'         => "Vos éte aprés suprimar la vèrsion de '''[[Media:$1|$1]]''' du [$4 $2 a $3].",
+'filedelete-comment'           => 'Rêson :',
+'filedelete-submit'            => 'Suprimar',
+'filedelete-success'           => "'''$1''' at étâ suprimâ.",
+'filedelete-success-old'       => "La vèrsion de '''[[Media:$1|$1]]''' du $2 a $3 at étâ suprimâ.",
+'filedelete-nofile'            => "'''$1''' ègziste pas.",
+'filedelete-nofile-old'        => "Ègziste gins de vèrsion arch·ivâ de '''$1''' avouéc los atributs spècefiâs.",
+'filedelete-otherreason'       => 'Ôtra rêson / rêson de ples :',
+'filedelete-reason-otherlist'  => 'Ôtra rêson',
+'filedelete-reason-dropdown'   => '* Rêsons de suprèssion les ples corentes
 ** Violacion du drêt d’ôtor
 ** Fichiér en doblo',
-'filedelete-edit-reasonlist'  => 'Changiér les rêsons de suprèssion',
-'filedelete-maintenance'      => 'La suprèssion et la rèstoracion de fichiérs est dèsactivâ temporèrament pendent la mantegnence.',
+'filedelete-edit-reasonlist'   => 'Changiér les rêsons de suprèssion',
+'filedelete-maintenance'       => 'La suprèssion et la rèstoracion de fichiérs est dèsactivâ temporèrament pendent la mantegnence.',
+'filedelete-maintenance-title' => 'Empossiblo de suprimar lo fichiér',
 
 # MIME search
 'mimesearch'         => 'Rechèrche per tipo de contegnu MIME',
@@ -2022,7 +2025,7 @@ Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos deva
 'statistics-users-active-desc' => 'Utilisators qu’ont fêt u muens una accion pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}',
 'statistics-mostpopular'       => 'Pâges les ples vues',
 
-'disambiguations'      => 'Pâges d’homonimia',
+'disambiguations'      => 'Pâges qu’ont des lims de vers des pâges d’homonimia',
 'disambiguationspage'  => 'Template:Homonimia',
 'disambiguations-text' => "Cetes pâges ont un lim de vers una '''pâge d’homonimia'''.
 Devriant pletout pouentar vers una pâge que vat avouéc.<br />
@@ -2275,7 +2278,7 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 'watchmethod-list'     => 'contrôlo de les pâges siuvues por y trovar des novéls changements',
 'watchlistcontains'    => 'Voutra lista de survelyence contint $1 pâge{{PLURAL:$1||s}}.',
 'iteminvalidname'      => 'Problèmo avouéc l’èlèment « $1 » : lo nom est envalido.',
-'wlnote'               => "Vê-que {{PLURAL:$1|lo dèrriér changement fêt|los '''$1''' dèrriérs changements fêts}} pendent {{PLURAL:$2|l’hora passâ|les '''$2''' hores passâs}}.",
+'wlnote'               => "Vê-que {{PLURAL:$1|lo dèrriér changement fêt|los '''$1''' dèrriérs changements fêts}} pendent {{PLURAL:$2|l’hora passâ|les '''$2''' hores passâs}}, dês $3, $4.",
 'wlshowlast'           => 'Fâre vêre les $1 hores passâs, los $2 jorns passâs ou ben $3 ;',
 'watchlist-options'    => 'Chouèx de la lista de survelyence',
 
@@ -2486,6 +2489,7 @@ un ôtro utilisator at probâblament ja refêt la pâge.',
 
 Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les novèles suprèssions et de les novèles rèstoracions.",
 'undelete-header'              => 'Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de les pâges suprimâs dèrriérement.',
+'undelete-search-title'        => 'Rechèrchiér des pâges suprimâs',
 'undelete-search-box'          => 'Rechèrchiér des pâges suprimâs',
 'undelete-search-prefix'       => 'Montrar les pâges que començont per :',
 'undelete-search-submit'       => 'Rechèrchiér',
@@ -2495,6 +2499,7 @@ Vêde lo [[Special:Log/delete|jornal de les suprèssions]] por vêre la lista de
 'undelete-cleanup-error'       => 'Èrror pendent la suprèssion du fichiér de les arch·ives inutilisâ « $1 ».',
 'undelete-missing-filearchive' => 'Empossiblo de refâre lo fichiér de les arch·ives avouéc lo numerô $1 perce qu’il est pas dens la bâsa de balyês.
 Il at pôt-étre ja étâ refêt.',
+'undelete-error'               => 'Èrror pendent la rèstoracion de la pâge',
 'undelete-error-short'         => 'Èrror pendent la rèstoracion du fichiér : $1',
 'undelete-error-long'          => 'Des èrrors ont étâ rencontrâs pendent la rèstoracion du fichiér :
 

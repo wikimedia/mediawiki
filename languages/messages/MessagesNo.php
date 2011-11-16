@@ -616,7 +616,7 @@ Det kan også være en bug i {{SITENAME}}.',
 
 # General errors
 'error'                => 'Feil',
-'databaseerror'        => 'databasefeil',
+'databaseerror'        => 'Databasefeil',
 'dberrortext'          => 'Det har oppstått en syntaksfeil i en databaseforespørsel.
 Dette kan tyde på en feil i programvaren.
 Forrige databaseforespørsel var:

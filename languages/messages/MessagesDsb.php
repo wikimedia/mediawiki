@@ -1708,23 +1708,24 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 'filerevert-badversion'     => 'Za pódany cas njeeksistěrujo žedna wersija dataje.',
 
 # File deletion
-'filedelete'                  => 'Wulašowaś $1',
-'filedelete-legend'           => 'Wulašowaś dataje',
-'filedelete-intro'            => "Lašujoš dataju '''[[Media:$1|$1]]''' gromaźe z jeje cełymi stawiznami.",
-'filedelete-intro-old'        => "Wulašujoš [$4 wersiju wót $2, $3 góź.] dataje '''„[[Media:$1|$1]]“'''.",
-'filedelete-comment'          => 'Pśicyna:',
-'filedelete-submit'           => 'Wulašowaś',
-'filedelete-success'          => "'''$1''' jo se wulašował.",
-'filedelete-success-old'      => "Wersija wót $2, $3 góź. dataje '''[[Media:$1|$1]]''' jo se wulašowała.",
-'filedelete-nofile'           => "'''$1''' njeekistěrujo.",
-'filedelete-nofile-old'       => "Njejo archiwowana wersija '''$1''' z pódanymi atributami.",
-'filedelete-otherreason'      => 'Druga/pśidatna pśicyna:',
-'filedelete-reason-otherlist' => 'Druga pśicyna',
-'filedelete-reason-dropdown'  => '*Powšykne pśicyny za lašowanja
+'filedelete'                   => 'Wulašowaś $1',
+'filedelete-legend'            => 'Wulašowaś dataje',
+'filedelete-intro'             => "Lašujoš dataju '''[[Media:$1|$1]]''' gromaźe z jeje cełymi stawiznami.",
+'filedelete-intro-old'         => "Wulašujoš [$4 wersiju wót $2, $3 góź.] dataje '''„[[Media:$1|$1]]“'''.",
+'filedelete-comment'           => 'Pśicyna:',
+'filedelete-submit'            => 'Wulašowaś',
+'filedelete-success'           => "'''$1''' jo se wulašował.",
+'filedelete-success-old'       => "Wersija wót $2, $3 góź. dataje '''[[Media:$1|$1]]''' jo se wulašowała.",
+'filedelete-nofile'            => "'''$1''' njeekistěrujo.",
+'filedelete-nofile-old'        => "Njejo archiwowana wersija '''$1''' z pódanymi atributami.",
+'filedelete-otherreason'       => 'Druga/pśidatna pśicyna:',
+'filedelete-reason-otherlist'  => 'Druga pśicyna',
+'filedelete-reason-dropdown'   => '*Powšykne pśicyny za lašowanja
 ** Pśekśiwjenje stworiśelskego pšawa
 ** Dwójna dataja',
-'filedelete-edit-reasonlist'  => 'Pśicyny za lašowanje wobźěłaś',
-'filedelete-maintenance'      => 'Wulašowanje a wótnowjenje datajow stej wótwardowanja dla nachylu znjemóžnjonej.',
+'filedelete-edit-reasonlist'   => 'Pśicyny za lašowanje wobźěłaś',
+'filedelete-maintenance'       => 'Wulašowanje a wótnowjenje datajow stej wótwardowanja dla nachylu znjemóžnjonej.',
+'filedelete-maintenance-title' => 'Dataja njedajo se lašowaś',
 
 # MIME search
 'mimesearch'         => 'MIME-typ pytaś',
@@ -2962,8 +2963,10 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-source'                      => 'Žrědło',
 'exif-editstatus'                  => 'Wobzěłowański status wobraza',
 'exif-urgency'                     => 'Nuznosć',
+'exif-fixtureidentifier'           => 'Mě kolumny',
 'exif-locationdest'                => 'Zwobraznjone městno',
 'exif-locationdestcode'            => 'Code zwobraznjonego městna',
+'exif-objectcycle'                 => 'Cas dnja, za kótaryž medium jo myslony',
 'exif-contact'                     => 'Kontaktowe informacije',
 'exif-writer'                      => 'Pisaŕ',
 'exif-languagecode'                => 'Rěc',
@@ -2971,6 +2974,8 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-iimcategory'                 => 'Kategorija',
 'exif-iimsupplementalcategory'     => 'Pśidatne kategorije',
 'exif-datetimeexpires'             => 'Njewužywaś pó',
+'exif-datetimereleased'            => 'Wózjawjony dnja',
+'exif-originaltransmissionref'     => 'Code městna, wót kótaregož jo se foto pśenjasło',
 'exif-identifier'                  => 'Identifikator',
 'exif-lens'                        => 'Wužyty objektiw',
 'exif-serialnumber'                => 'Serijowy numer kamery',
@@ -2983,21 +2988,30 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-copyrighted'                 => 'Status awtorskego pšawa',
 'exif-copyrightowner'              => 'Wobsejźaŕ awtorskego pšawa',
 'exif-usageterms'                  => 'Wužywańske wuměnjenja',
+'exif-webstatement'                => 'Online-deklaracija wó awtorskem pšawje',
 'exif-originaldocumentid'          => 'Jasny ID spócetnego dokumenta',
 'exif-licenseurl'                  => 'URL za licencu awtorskego pšawa',
 'exif-morepermissionsurl'          => 'Alternatiwne licencne informacije',
+'exif-attributionurl'              => 'Pśi zasejwužywanju toś togo źěła, wótkaž pšosym na:',
+'exif-preferredattributionname'    => 'Pśi zasejwužywanju toś togo źěła, naspomnjej pšosym',
 'exif-pngfilecomment'              => 'Komentar PNG-dataje',
 'exif-disclaimer'                  => 'Wuzamknjenje rukowanja',
 'exif-contentwarning'              => 'Wopśimjeśowe warnowanje',
 'exif-giffilecomment'              => 'Komentar GIF-dataje',
 'exif-intellectualgenre'           => 'Typ medija',
+'exif-subjectnewscode'             => 'Temowy code',
+'exif-scenecode'                   => 'IPTC-code naglěda',
 'exif-event'                       => 'Zwobraznjone tšojenje',
+'exif-organisationinimage'         => 'Zwobraznjona organizacija',
 'exif-personinimage'               => 'Zwobraznjona wósoba',
 'exif-originalimageheight'         => 'Wusokosć wobraza pśed pśirězowanim',
 'exif-originalimagewidth'          => 'Šyrokosć wobraza pśed pśirězowanim',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekompriměrowany',
+'exif-compression-2' => 'CCITT kupka 3 jadnodimensionalne modificěrowane koděrowanje Huffman běgoweje dłujkosći',
+'exif-compression-3' => 'CCITT kupka 3 faksowe koděrowanje',
+'exif-compression-4' => 'CCITT kupka 4 faksowe koděrowanje',
 
 'exif-copyrighted-true'  => 'Pśez awtorske pšawo šćitany',
 'exif-copyrighted-false' => 'Zjawnosći pśistupny',
@@ -3083,6 +3097,8 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-sensingmethod-7' => 'Tśilinearny sensor',
 'exif-sensingmethod-8' => 'Sekwencielny barwowy linearny sensor',
 
+'exif-filesource-3' => 'Digitalna stojańskowobrazowa kamera',
+
 'exif-scenetype-1' => 'Direktnje fotografěrowany wobraz',
 
 'exif-customrendered-0' => 'Normalne wobźěłanje',
@@ -3153,6 +3169,9 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 
 'exif-gpsdop-excellent' => 'Wuběrny ($1)',
 'exif-gpsdop-good'      => 'Dobry ($1)',
+'exif-gpsdop-moderate'  => 'Wósrědny ($1)',
+'exif-gpsdop-fair'      => 'Akceptabelny ($1)',
+'exif-gpsdop-poor'      => 'Špatny ($1)',
 
 'exif-objectcycle-a' => 'Jano zajtša',
 'exif-objectcycle-p' => 'Jano wjacor',
@@ -3166,6 +3185,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-ycbcrpositioning-2' => 'Susedny',
 
 'exif-dc-contributor' => 'Sobuźěłaśerje',
+'exif-dc-coverage'    => 'Městny abo casny wobłuk mediuma',
 'exif-dc-date'        => 'Pódaśa datuma',
 'exif-dc-publisher'   => 'Wudawaŕ',
 'exif-dc-relation'    => 'Pśiswójźbne medije',

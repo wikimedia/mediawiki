@@ -1934,23 +1934,24 @@ Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s 
 'filerevert-badversion'     => 'Není dostupná předchozí verze tohoto souboru s odpovídající časovou značkou.',
 
 # File deletion
-'filedelete'                  => 'Smazání souboru $1',
-'filedelete-legend'           => 'Smazat soubor',
-'filedelete-intro'            => "Chystáte se smazat soubor '''[[Media:$1|$1]]''' i s celou historií.",
-'filedelete-intro-old'        => "Chystáte se smazat verzi souboru '''[[Media:$1|$1]]''' z [$4 $3 $2].",
-'filedelete-comment'          => 'Důvod:',
-'filedelete-submit'           => 'Smazat',
-'filedelete-success'          => "Soubor '''$1''' byl smazán.",
-'filedelete-success-old'      => "Verze souboru '''[[Media:$1|$1]]''' z $3 $2 byla smazána.",
-'filedelete-nofile'           => "Soubor '''$1''' neexistuje.",
-'filedelete-nofile-old'       => "Neexistuje archivní verze souboru '''$1''' s udávanými atributy.",
-'filedelete-otherreason'      => 'Jiný/další důvod:',
-'filedelete-reason-otherlist' => 'Jiný důvod',
-'filedelete-reason-dropdown'  => '*Obvyklé důvody smazání
+'filedelete'                   => 'Smazání souboru $1',
+'filedelete-legend'            => 'Smazat soubor',
+'filedelete-intro'             => "Chystáte se smazat soubor '''[[Media:$1|$1]]''' i s celou historií.",
+'filedelete-intro-old'         => "Chystáte se smazat verzi souboru '''[[Media:$1|$1]]''' z [$4 $3 $2].",
+'filedelete-comment'           => 'Důvod:',
+'filedelete-submit'            => 'Smazat',
+'filedelete-success'           => "Soubor '''$1''' byl smazán.",
+'filedelete-success-old'       => "Verze souboru '''[[Media:$1|$1]]''' z $3 $2 byla smazána.",
+'filedelete-nofile'            => "Soubor '''$1''' neexistuje.",
+'filedelete-nofile-old'        => "Neexistuje archivní verze souboru '''$1''' s udávanými atributy.",
+'filedelete-otherreason'       => 'Jiný/další důvod:',
+'filedelete-reason-otherlist'  => 'Jiný důvod',
+'filedelete-reason-dropdown'   => '*Obvyklé důvody smazání
 ** Porušení autorských práv
 ** Nadbytečná kopie',
-'filedelete-edit-reasonlist'  => 'Editovat důvody smazání',
-'filedelete-maintenance'      => 'Mazání a obnovování souborů je kvůli údržbě dočasně vypnuto.',
+'filedelete-edit-reasonlist'   => 'Editovat důvody smazání',
+'filedelete-maintenance'       => 'Mazání a obnovování souborů je kvůli údržbě dočasně vypnuto.',
+'filedelete-maintenance-title' => 'Soubor nelze smazat',
 
 # MIME search
 'mimesearch'         => 'Hledání podle MIME typu',
