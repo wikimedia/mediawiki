@@ -475,7 +475,6 @@ class LoginForm extends SpecialPage {
 		$this->load();
 
 		if ( $this->mUsername == '' ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, self::NO_NAME ) );
 			return self::NO_NAME;
 		}
 
@@ -487,24 +486,20 @@ class LoginForm extends SpecialPage {
 		// If the user doesn't have a login token yet, set one.
 		if ( !self::getLoginToken() ) {
 			self::setLoginToken();
-			wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, self::NEED_TOKEN ) );
 			return self::NEED_TOKEN;
 		}
 		// If the user didn't pass a login token, tell them we need one
 		if ( !$this->mToken ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, self::NEED_TOKEN ) );
 			return self::NEED_TOKEN;
 		}
 
 		$throttleCount = self::incLoginThrottle( $this->mUsername );
 		if ( $throttleCount === true ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, self::THROTTLED ) );
 			return self::THROTTLED;
 		}
 
 		// Validate the login token
 		if ( $this->mToken !== self::getLoginToken() ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, self::WRONG_TOKEN ) );
 			return self::WRONG_TOKEN;
 		}
 
@@ -525,7 +520,6 @@ class LoginForm extends SpecialPage {
 		# user choose a different wiki name.
 		$u = User::newFromName( $this->mUsername );
 		if( !( $u instanceof User ) || !User::isUsableName( $u->getName() ) ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, self::ILLEGAL ) );
 			return self::ILLEGAL;
 		}
 
@@ -533,7 +527,6 @@ class LoginForm extends SpecialPage {
 		if ( 0 == $u->getID() ) {
 			$status = $this->attemptAutoCreate( $u );
 			if ( $status !== self::SUCCESS ) {
-				wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $status ) );
 				return $status;
 			} else {
 				$isAutoCreated = true;
@@ -554,7 +547,6 @@ class LoginForm extends SpecialPage {
 		// Give general extensions, such as a captcha, a chance to abort logins
 		$abort = self::ABORTED;
 		if( !wfRunHooks( 'AbortLogin', array( $u, $this->mPassword, &$abort, &$this->mAbortLoginErrorMsg ) ) ) {
-			wfRunHooks( 'LoginAuthenticateAudit', array( $u, $this->mPassword, $abort ) );
 			return $abort;
 		}
 
