@@ -43,7 +43,7 @@ using the page title and cl_sortkey_prefix.  If everything's collation is
 up-to-date, it will do nothing.
 TEXT;
 
-		$this->addOption( 'force', 'Run on all rows, even if the collation is ' . 
+		$this->addOption( 'force', 'Run on all rows, even if the collation is ' .
 			'supposed to be up-to-date.' );
 		$this->addOption( 'previous-collation', 'Set the previous value of ' .
 			'$wgCategoryCollation here to speed up this script, especially if your ' .
@@ -111,7 +111,7 @@ TEXT;
 					# This is an old-style row, so the sortkey needs to be
 					# converted.
 					if ( $row->cl_sortkey == $title->getText()
-					|| $row->cl_sortkey == $title->getPrefixedText() ) {
+						|| $row->cl_sortkey == $title->getPrefixedText() ) {
 						$prefix = '';
 					} else {
 						# Custom sortkey, use it as a prefix
@@ -148,14 +148,14 @@ TEXT;
 			if ( $force && $row ) {
 				$encFrom = $dbw->addQuotes( $row->cl_from );
 				$encTo = $dbw->addQuotes( $row->cl_to );
-				$batchConds = array( 
+				$batchConds = array(
 					"(cl_from = $encFrom AND cl_to > $encTo) " .
 					" OR cl_from > $encFrom" );
 			}
 
 			$count += $res->numRows();
 			$this->output( "$count done.\n" );
-			
+
 			if ( ++$batchCount % self::SYNC_INTERVAL == 0 ) {
 				$this->output( "Waiting for slaves ... " );
 				wfWaitForSlaves();

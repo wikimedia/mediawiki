@@ -677,9 +677,10 @@ class LogEventsList {
 				 $logBody .
 				 $loglist->endLogEventsList();
 		} else {
-			if ( $showIfEmpty )
+			if ( $showIfEmpty ) {
 				$s = Html::rawElement( 'div', array( 'class' => 'mw-warning-logempty' ),
 					wfMsgExt( 'logempty', array( 'parseinline' ) ) );
+			}
 		}
 		if( $pager->getNumRows() > $pager->mLimit ) { # Show "Full log" link
 			$urlParam = array();
@@ -706,7 +707,7 @@ class LogEventsList {
 			$s .= '</div>';
 		}
 
-		if ( $wrap!='' ) { // Wrap message in html
+		if ( $wrap != '' ) { // Wrap message in html
 			$s = str_replace( '$1', $s, $wrap );
 		}
 
@@ -992,7 +993,11 @@ class LogPager extends ReverseChronologicalPager {
 		return $info;
 	}
 
-	// Checks if $this->mConds has $field matched to a *single* value
+	/**
+	 * Checks if $this->mConds has $field matched to a *single* value
+	 * @param $field
+	 * @return bool
+	 */
 	protected function hasEqualsClause( $field ) {
 		return (
 			array_key_exists( $field, $this->mConds ) &&
