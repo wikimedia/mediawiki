@@ -24,11 +24,6 @@
  * @file
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	// Eclipse helper - will be ignored in production
-	require_once( "ApiBase.php" );
-}
-
 /**
  * API module that functions as a shortcut to the wikitext preprocessor. Expands
  * any templates in a provided string, and returns the result of this expansion

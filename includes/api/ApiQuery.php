@@ -24,11 +24,6 @@
  * @file
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	// Eclipse helper - will be ignored in production
-	require_once( 'ApiBase.php' );
-}
-
 /**
  * This is the main query class. It behaves similar to ApiMain: based on the
  * parameters given, it will create a list of titles to work on (an ApiPageSet

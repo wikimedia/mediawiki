@@ -24,11 +24,6 @@
  * @file
  */
 
-if ( !defined( 'MEDIAWIKI' ) ) {
-	// Eclipse helper - will be ignored in production
-	require_once( 'ApiQueryBase.php' );
-}
-
 /**
  * A query action to enumerate revisions of a given page, or show top revisions of multiple pages.
  * Various pieces of information may be shown - flags, comments, and the actual wiki markup of the rev.
