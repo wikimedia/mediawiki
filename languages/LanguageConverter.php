@@ -322,6 +322,10 @@ class LanguageConverter {
 			}
 		}
 
+		if( $this->guessVariant( $text, $toVariant ) ) {
+			return $text;
+		}
+
 		/* we convert everything except:
 		   1. HTML markups (anything between < and >)
 		   2. HTML entities
@@ -571,7 +575,7 @@ class LanguageConverter {
 	 */
 	public function convertTo( $text, $variant ) {
 		global $wgDisableLangConversion;
-		if ( $wgDisableLangConversion ) {
+		if ( $wgDisableLangConversion || $this->guessVariant( $text, $variant ) ) {
 			return $text;
 		}
 		return $this->recursiveConvertTopLevel( $text, $variant );
@@ -770,6 +774,20 @@ class LanguageConverter {
 	public function getExtraHashOptions() {
 		$variant = $this->getPreferredVariant();
 		return '!' . $variant;
+	}
+
+	/**
+	 * Guess if a text is written in a variant. This should be implemented in subclasses.
+	 *
+	 * @param string	$text the text to be checked
+	 * @param string	$variant language code of the variant to be checked for
+	 * @return bool	true if $text appears to be written in $variant, false if not
+	 *
+	 * @author Nikola Smolenski <smolensk@eunet.rs>
+	 * @since 1.19
+	 */
+	public function guessVariant($text, $variant) {
+		return false;
 	}
 
 	/**

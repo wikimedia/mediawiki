@@ -166,6 +166,7 @@ changes to languages because of Bugzilla reports.
 * (bug 30217) Make pt-br a fallback of pt.
 * (bug 31193) Set fallback language of Assamese from Bengali to English.
 * Update date format for dsb and hsb: month names need the genitive.
+* (bug 28643) Serbian variant conversion improvements (Nikola Smolenski)
 
 === Other changes in 1.19 ===
 * jquery.mwPrototypes module was renamed to jquery.mwExtension.
