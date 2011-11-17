@@ -613,7 +613,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
 			'numberingroup' => 'Lists the number of users in user groups',
-			'inlanguagecode ' => 'Language code for localised language names (best effort, use CLDR extension)',
+			'inlanguagecode' => 'Language code for localised language names (best effort, use CLDR extension)',
 		);
 	}
 
