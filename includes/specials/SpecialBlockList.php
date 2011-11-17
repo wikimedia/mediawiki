@@ -244,7 +244,7 @@ class BlockListPager extends TablePager {
 
 		switch( $name ) {
 			case 'ipb_timestamp':
-				$formatted = $this->getLang()->timeanddate( $value, /* User preference timezone */ true );
+				$formatted = $wgLang->timeanddate( $value, /* User preference timezone */ true );
 				break;
 
 			case 'ipb_target':
@@ -270,8 +270,8 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_expiry':
-				$formatted = $this->getLang()->formatExpiry( $value, /* User preference timezone */ true );
-				if( $this->getUser()->isAllowed( 'block' ) ){
+				$formatted = $wgLang->formatExpiry( $value, /* User preference timezone */ true );
+				if( $wgUser->isAllowed( 'block' ) ){
 					if( $row->ipb_auto ){
 						$links[] = $sk->linkKnown(
 							SpecialPage::getTitleFor( 'Unblock' ),
