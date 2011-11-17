@@ -2100,7 +2100,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'linksearch-pat'   => 'Mẫu liên kết:',
 'linksearch-ns'    => 'Không gian tên:',
 'linksearch-ok'    => 'Tìm kiếm',
-'linksearch-text'  => "Có thể sử dụng ký tự đại diện (''wildcard'') ở đầu tiên, ví dụ “*.wikipedia.org”.<br />Hiện hỗ trợ các giao thức: <tt>$1</tt>",
+'linksearch-text'  => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <tt>$1</tt>; vui lòng không đưa giao thức vào truy vấn.",
 'linksearch-line'  => '$1 được liên kết từ $2',
 'linksearch-error' => "Chỉ được sử dụng ký tự đại diện (''wildcard'') vào đầu tên miền (''hostname'').",
 
@@ -2730,6 +2730,7 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'exportcuronly'     => 'Chỉ xuất phiên bản hiện hành, không xuất tất cả lịch sử trang',
 'exportnohistory'   => "----
 '''Chú ý:''' Chức năng xuất lịch sử trang đầy đủ bằng mẫu này bị tắt do vấn đề hiệu suất.",
+'exportlistauthors' => 'Bao gồm danh sách người đóng góp đầy đủ cho mỗi trang',
 'export-submit'     => 'Xuất',
 'export-addcattext' => 'Thêm trang từ thể loại:',
 'export-addcat'     => 'Thêm',

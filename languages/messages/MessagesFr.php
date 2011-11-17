@@ -2165,8 +2165,9 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'linksearch-pat'   => 'Expression recherchée :',
 'linksearch-ns'    => 'Espace de noms :',
 'linksearch-ok'    => 'Rechercher',
-'linksearch-text'  => 'Des caractères « jokers » peuvent être utilisés, par exemple <code>*.wikipedia.org</code>.<br />
-Protocoles reconnus : <tt>$1</tt>.',
+'linksearch-text'  => 'Des caractères jokers comme "*.wikipedia.org" peuvent être utilisés.
+Ils nécessitent au moins un domaine de niveau supérieur, par exemple "*.org".<br />
+Protocoles reconnus : <tt>$1</tt> (n\'ajoutez aucun de ceux-ci dans votre recherche).',
 'linksearch-line'  => '$1 est lié depuis $2',
 'linksearch-error' => 'Les caractères jokers ne peuvent être utilisés qu’au début du nom de domaine de l’hôte.',
 
@@ -2795,6 +2796,7 @@ Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Exp
 'exportcuronly'     => 'Exporter uniquement la version courante, sans l’historique complet',
 'exportnohistory'   => "----
 '''Note :''' l’exportation de l’historique complet des pages à l’aide de ce formulaire a été désactivée pour des raisons de performance.",
+'exportlistauthors' => 'Inclure une liste complète des contributeurs pour chaque page',
 'export-submit'     => 'Exporter',
 'export-addcattext' => 'Ajouter les pages de la catégorie :',
 'export-addcat'     => 'Ajouter',

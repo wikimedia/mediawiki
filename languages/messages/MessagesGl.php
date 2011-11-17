@@ -2067,8 +2067,9 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-pat'   => 'Patrón de procura:',
 'linksearch-ns'    => 'Espazo de nomes:',
 'linksearch-ok'    => 'Procurar',
-'linksearch-text'  => 'Pódense usar caracteres comodín como "*.wikipedia.org".<br />
-Protocolos soportados: <tt>$1</tt>',
+'linksearch-text'  => 'Pódense usar caracteres comodín como "*.wikipedia.org".
+Cómpre, polo menos, un dominio de nivel superior, por exemplo "*.org".<br />
+Protocolos soportados: <tt>$1</tt> (non engada ningún destes na súa procura).',
 'linksearch-line'  => '$1 está ligado desde a páxina "$2"',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 
@@ -2701,6 +2702,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'exportcuronly'     => 'Incluír só a revisión actual, non o historial completo',
 'exportnohistory'   => "----
 '''Aviso:''' Foi desactivada a exportación do historial completo das páxinas mediante este formulario debido a razóns relacionadas co rendemento do servidor.",
+'exportlistauthors' => 'Incluír unha lista completa dos colaboradores de cada páxina',
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Engadir as páxinas da categoría:',
 'export-addcat'     => 'Engadir',
@@ -2717,7 +2719,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'allmessagescurrent'            => 'Texto actual',
 'allmessagestext'               => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
 Por favor, visite a [//www.mediawiki.org/wiki/Localisation localización MediaWiki] e [//translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
-'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
+'allmessagesnotsupportedDB'     => "Esta páxina non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
 'allmessages-filter-legend'     => 'Filtrar',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
 'allmessages-filter-unmodified' => 'Inalteradas',
@@ -2850,7 +2852,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-watch'                   => 'Engadir esta páxina á súa lista de vixilancia',
 'tooltip-recreate'                => 'Recrear a páxina a pesar de que foi borrada',
 'tooltip-upload'                  => 'Iniciar o envío',
-'tooltip-rollback'                => '"Reverter" desfai, cun só clic, a(s) edición(s) feita(s) nesta páxina polo último colaborador.',
+'tooltip-rollback'                => '"Reverter" desfai, cun único clic, a(s) edición(s) feita(s) nesta páxina polo último colaborador.',
 'tooltip-undo'                    => '"Desfacer" reverte esta edición e abre o formulario de edición nun modo previo. Permite engadir un motivo no resumo de edición.',
 'tooltip-preferences-save'        => 'Gardar as preferencias',
 'tooltip-summary'                 => 'Escriba un breve resumo',
@@ -2969,7 +2971,7 @@ $1',
 'nextdiff'     => 'Edición máis nova →',
 
 # Media information
-'mediawarning'           => "'''Aviso:''' este tipo de ficheiro pode conter código malicioso.
+'mediawarning'           => "'''Aviso:''' Este tipo de ficheiro pode conter código malicioso.
 O seu sistema pode quedar comprometido se o executa.",
 'imagemaxsize'           => "Límite de tamaño das imaxes:<br />''(nas páxinas de descrición de ficheiros)''",
 'thumbsize'              => 'Tamaño da miniatura:',

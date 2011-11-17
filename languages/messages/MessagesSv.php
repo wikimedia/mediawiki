@@ -2450,7 +2450,7 @@ $1',
 'namespace'                     => 'Namnrymd:',
 'invert'                        => 'Uteslut vald namnrymd',
 'tooltip-invert'                => 'Markera denna ruta för att dölja ändringar på sidor inom det valda namnrymden (och tillhörande namnrymden om det är markerat)',
-'namespace_association'         => 'Associerade namnutrymmen',
+'namespace_association'         => 'Associerad namnrymd',
 'tooltip-namespace_association' => 'Markera denna ruta för att även inkludera diskussions- eller ämnesnamnrymden som är associerad med den valda namnrymden',
 'blanknamespace'                => '(Huvudnamnrymden)',
 

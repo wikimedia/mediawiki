@@ -2034,8 +2034,9 @@ Glej tudi [[Special:WantedCategories|želene kategorije]].',
 'linksearch-pat'   => 'Iskalni vzorec:',
 'linksearch-ns'    => 'Imenski prostor:',
 'linksearch-ok'    => 'Išči',
-'linksearch-text'  => 'Jokerje, kot je »*.wikipedia.org«, se lahko uporablja.<br />
-Podprti protokoli: <tt>$1</tt>',
+'linksearch-text'  => 'Nadomestne znake, kot je »*.wikipedia.org«, lahko uporabljate.
+Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
+Podprti protokoli: <tt>$1</tt> (teh ne dodajte v svoje iskanje).',
 'linksearch-line'  => '$1 povezano iz $2',
 'linksearch-error' => 'Jokerji se lahko pojavijo le na začetku gostiteljskega imena.',
 

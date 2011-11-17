@@ -2735,6 +2735,7 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{Me
 'exportcuronly'     => 'Incluir apenas a revisão atual, não o histórico inteiro',
 'exportnohistory'   => "----
 '''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desativada devido a questões de performance.",
+'exportlistauthors' => 'Incluir uma lista completa dos colaboradores de cada página',
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Adicionar à listagem páginas da categoria:',
 'export-addcat'     => 'Adicionar',

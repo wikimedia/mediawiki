@@ -1976,23 +1976,24 @@ $1',
 'filerevert-badversion'     => 'אין גרסה מקומית קודמת של הקובץ שהועלתה בתאריך המבוקש.',
 
 # File deletion
-'filedelete'                  => 'מחיקת $1',
-'filedelete-legend'           => 'מחיקת קובץ',
-'filedelete-intro'            => "אתם עומדים למחוק את הקובץ '''[[Media:$1|$1]]''' יחד עם כל ההיסטוריה שלו.",
-'filedelete-intro-old'        => "אתם מוחקים את הגרסה של '''[[Media:$1|$1]]''' מ־[$4 $3, $2].",
-'filedelete-comment'          => 'סיבה:',
-'filedelete-submit'           => 'מחיקה',
-'filedelete-success'          => "'''$1''' נמחק.",
-'filedelete-success-old'      => "הגרסה של '''[[Media:$1|$1]]''' מ־$3, $2 נמחקה.",
-'filedelete-nofile'           => "'''$1''' אינו קיים.",
-'filedelete-nofile-old'       => "אין גרסה ישנה של '''$1''' עם התכונות המבוקשות.",
-'filedelete-otherreason'      => 'סיבה נוספת/אחרת:',
-'filedelete-reason-otherlist' => 'סיבה אחרת',
-'filedelete-reason-dropdown'  => '* סיבות מחיקה נפוצות
+'filedelete'                   => 'מחיקת $1',
+'filedelete-legend'            => 'מחיקת קובץ',
+'filedelete-intro'             => "אתם עומדים למחוק את הקובץ '''[[Media:$1|$1]]''' יחד עם כל ההיסטוריה שלו.",
+'filedelete-intro-old'         => "אתם מוחקים את הגרסה של '''[[Media:$1|$1]]''' מ־[$4 $3, $2].",
+'filedelete-comment'           => 'סיבה:',
+'filedelete-submit'            => 'מחיקה',
+'filedelete-success'           => "'''$1''' נמחק.",
+'filedelete-success-old'       => "הגרסה של '''[[Media:$1|$1]]''' מ־$3, $2 נמחקה.",
+'filedelete-nofile'            => "'''$1''' אינו קיים.",
+'filedelete-nofile-old'        => "אין גרסה ישנה של '''$1''' עם התכונות המבוקשות.",
+'filedelete-otherreason'       => 'סיבה נוספת/אחרת:',
+'filedelete-reason-otherlist'  => 'סיבה אחרת',
+'filedelete-reason-dropdown'   => '* סיבות מחיקה נפוצות
 ** הפרת זכויות יוצרים
 ** קובץ כפול',
-'filedelete-edit-reasonlist'  => 'עריכת סיבות המחיקה',
-'filedelete-maintenance'      => 'אפשרות המחיקה והשחזור של קבצים מבוטלת זמנית עקב פעולת תחזוקה.',
+'filedelete-edit-reasonlist'   => 'עריכת סיבות המחיקה',
+'filedelete-maintenance'       => 'אפשרות המחיקה והשחזור של קבצים מבוטלת זמנית עקב פעולת תחזוקה.',
+'filedelete-maintenance-title' => 'לא ניתן למחוק את הקובץ',
 
 # MIME search
 'mimesearch'         => 'חיפוש MIME',
@@ -2186,8 +2187,9 @@ $1',
 'linksearch-pat'   => 'תבנית קישור לחיפוש:',
 'linksearch-ns'    => 'מרחב שם:',
 'linksearch-ok'    => 'חיפוש',
-'linksearch-text'  => 'ניתן להשתמש בתווים כלליים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.<br />
-פרוטוקולים נתמכים: <tt dir="ltr">$1</tt>',
+'linksearch-text'  => 'ניתן להשתמש בתווים כלליים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.
+נדרשת לפחות סיומת אינטרנט (TLD), למשל <span dir="ltr">"*.org"</span>.<br />
+פרוטוקולים נתמכים: <tt dir="ltr">$1</tt> (אין להוסיף אותם בחיפוש).',
 'linksearch-line'  => '$1 מקושר מהדף $2',
 'linksearch-error' => 'תווים כלליים יכולים להופיע רק בתחילת שם השרת.',
 
@@ -2814,6 +2816,7 @@ $1',
 'exportcuronly'     => 'לכלול רק את הגרסה הנוכחית, ללא כל ההיסטוריה',
 'exportnohistory'   => "----
 '''הערה:''' ייצוא ההיסטוריה המלאה של דפים דרך טופס זה הופסקה עקב בעיות ביצועים.",
+'exportlistauthors' => 'הכללת רשימה מלאה של התורמים לכל הדף',
 'export-submit'     => 'ייצוא',
 'export-addcattext' => 'הוספת דפים מהקטגוריה:',
 'export-addcat'     => 'הוספה',

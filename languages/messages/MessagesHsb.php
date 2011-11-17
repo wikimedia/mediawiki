@@ -1928,7 +1928,9 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'linksearch-pat'   => 'Pytanski muster:',
 'linksearch-ns'    => 'Mjenowy rum:',
 'linksearch-ok'    => 'Pytać',
-'linksearch-text'  => 'Zastupniske znamjenja kaž "*.wikipedia.org" smědźa so wužiwać.<br />Podpěrowane protokole: <tt>$1</tt>',
+'linksearch-text'  => 'Zastupniske znamješka kaž "*.wikipedia.org" móža so wužiwać.
+Znajmjeńša hłowna domena je trěbna, na přikład "*.org".<br />
+Podpěrowane protokole: <tt>$1</tt> (prošu njepodaj je w swojim pytanje).',
 'linksearch-line'  => '$1 je z $2 wotkazany.',
 'linksearch-error' => 'Zastupniske znamjenja dadźa so jenož na spočatku URL wužiwać.',
 
@@ -2533,6 +2535,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'exportcuronly'     => 'Jenož aktualnu wersiju zapřijeć, nic dospołne stawizny',
 'exportnohistory'   => '----
 <b>Kedźbu:</b> Eksport cyłych stawiznow přez tutón formular bu z přičin wukonitosće serwera znjemóžnjeny.',
+'exportlistauthors' => 'Za kóždu stronu lisćinu wobdźěłarjow zapřijeć',
 'export-submit'     => 'Eksportować',
 'export-addcattext' => 'Strony z kategorije dodawać:',
 'export-addcat'     => 'Dodawać',

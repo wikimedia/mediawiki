@@ -1697,23 +1697,24 @@ Dangosir isod y disgrifiad sydd ar [$2 dudalen ddisgrifio'r ffeil] yno.",
 'filerevert-badversion'     => "Nid oes fersiwn lleol cynt o'r ffeil hwn gyda'r amsernod a nodwyd.",
 
 # File deletion
-'filedelete'                  => 'Dileu $1',
-'filedelete-legend'           => "Dileu'r ffeil",
-'filedelete-intro'            => "Rydych ar fin dileu'r ffeil '''[[Media:$1|$1]]''' ynghyd â'i holl hanes.",
-'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
-'filedelete-comment'          => 'Rheswm:',
-'filedelete-submit'           => 'Dilëir',
-'filedelete-success'          => "Mae '''$1''' wedi cael ei dileu.",
-'filedelete-success-old'      => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
-'filedelete-nofile'           => "Ni chafwyd '''$1'''.",
-'filedelete-nofile-old'       => "Nid oes fersiwn o '''$1''' gyda'r priodoleddau a enwir yn yr archif.",
-'filedelete-otherreason'      => 'Rheswm arall/ychwanegol:',
-'filedelete-reason-otherlist' => 'Rheswm arall',
-'filedelete-reason-dropdown'  => '*Rhesymau cyffredin dros ddileu
+'filedelete'                   => 'Dileu $1',
+'filedelete-legend'            => "Dileu'r ffeil",
+'filedelete-intro'             => "Rydych ar fin dileu'r ffeil '''[[Media:$1|$1]]''' ynghyd â'i holl hanes.",
+'filedelete-intro-old'         => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
+'filedelete-comment'           => 'Rheswm:',
+'filedelete-submit'            => 'Dilëir',
+'filedelete-success'           => "Mae '''$1''' wedi cael ei dileu.",
+'filedelete-success-old'       => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
+'filedelete-nofile'            => "Ni chafwyd '''$1'''.",
+'filedelete-nofile-old'        => "Nid oes fersiwn o '''$1''' gyda'r priodoleddau a enwir yn yr archif.",
+'filedelete-otherreason'       => 'Rheswm arall/ychwanegol:',
+'filedelete-reason-otherlist'  => 'Rheswm arall',
+'filedelete-reason-dropdown'   => '*Rhesymau cyffredin dros ddileu
 ** Yn torri hawlfraint
 ** Dwy ffeil yn union debyg',
-'filedelete-edit-reasonlist'  => 'Golygu rhestr y rhesymau dros ddileu',
-'filedelete-maintenance'      => "Mae'r gallu i ddileu ffeiliau a'u hadfer wedi ei anallogi tra bod gwaith cynnal wrthi.",
+'filedelete-edit-reasonlist'   => 'Golygu rhestr y rhesymau dros ddileu',
+'filedelete-maintenance'       => "Mae'r gallu i ddileu ffeiliau a'u hadfer wedi ei anallogi tra bod gwaith cynnal wrthi.",
+'filedelete-maintenance-title' => "Ni ellir dileu'r ffeil",
 
 # MIME search
 'mimesearch'         => 'Chwiliad MIME',
@@ -1906,8 +1907,9 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'linksearch-pat'   => 'Patrwm chwilio:',
 'linksearch-ns'    => 'Parth:',
 'linksearch-ok'    => 'Chwilio',
-'linksearch-text'  => 'Gellir defnyddio cardiau gwyllt megis "*.wikipedia.org".<br />
-Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
+'linksearch-text'  => 'Gellir defnyddio cardiau gwyllt megis "*.wikipedia.org".
+Mae angen parth lefel-uchaf o leiaf, er enghraifft "*.org".<br />
+Protocoliau sy\'n cael eu cynnal: <tt>$1</tt> (peidiwch ag ychwanegu\'r rhain wrth ysgrifennu\'r ymholiad).',
 'linksearch-line'  => 'Mae cysylltiad i gael i $1 oddi wrth $2',
 'linksearch-error' => "Dim ond ar ddechrau enw'r gwesteiwr y gallwch osod cardiau gwyllt.",
 
@@ -2539,6 +2541,7 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{#Special:Export}}/{
 'exportcuronly'     => 'Cynnwys y diwygiad diweddaraf yn unig, nid yr hanes llawn',
 'exportnohistory'   => "----
 '''Sylwer:''' er mwyn peidio â gor-lwytho'r gweinydd, analluogwyd allforio hanes llawn y tudalennau.",
+'exportlistauthors' => "Cynnwys rhestr gyflawn o'r cyfranwyr i bob tudalen",
 'export-submit'     => 'Allforier',
 'export-addcattext' => "Ychwanegu tudalennau i'w hallforio o'r categori:",
 'export-addcat'     => 'Ychwaneger',

@@ -3364,10 +3364,10 @@ Das Wiki kann nun [$1 genutzt werden].',
 	'config-unknown-collation' => "'''Warnung:''' Die Datenbank nutzt eine unbekannte Kollation.",
 	'config-db-web-account' => 'Datenbankkonto für den Webzugriff',
 	'config-db-web-help' => 'Bitte Benutzernamen und Passwort auswählen, die der Webserver während des Normalbetriebes dazu verwenden soll, eine Verbindung zum Datenbankserver herzustellen.',
-	'config-db-web-account-same' => 'Dasselbe Konto wie während des Installationsvorgangs verwenden',
+	'config-db-web-account-same' => 'Dasselbe Datenbankkonto wie während des Installationsvorgangs verwenden',
 	'config-db-web-create' => 'Sofern nicht bereits vorhanden, muss nun das Konto erstellt werden',
-	'config-db-web-no-create-privs' => 'Das angegebene und für den Installationsvorgang vorgesehene Konto verfügt nicht über ausreichend Berechtigungen, um ein Konto zu erstellen.
-Das hier angegebene Konto muss bereits vorhanden sein.',
+	'config-db-web-no-create-privs' => 'Das angegebene und für den Installationsvorgang vorgesehene Datenbankkonto verfügt nicht über ausreichend Berechtigungen, um ein weiteres Datenbankkonto zu erstellen.
+Das hier angegebene Datenbankkonto muss daher bereits vorhanden sein.',
 	'config-mysql-engine' => 'Speicher-Engine:',
 	'config-mysql-innodb' => 'InnoDB',
 	'config-mysql-myisam' => 'MyISAM',
@@ -3499,25 +3499,25 @@ Bitte ein Logo in entsprechender Größe hochladen und die zugehörige URL an di
 Sofern kein Logo benötigt wird, kann dieses Datenfeld leer bleiben.',
 	'config-instantcommons' => '„InstantCommons“ aktivieren',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons InstantCommons] ist eine Funktion, die es Wikis ermöglicht, Bild-, Klang- und andere Mediendateien zu nutzen, die auf der Website [//commons.wikimedia.org/ Wikimedia Commons] verfügbar sind.
-Um diese Funktion zu nutzen, muss MediaWiki eine Verbindung ins Internet herstellen können.
+Um diese Funktion nutzen zu können, muss das Wiki über eine Verbindung zum Internet verfügen.
 
-Weitere Informationen zu dieser Funktion, einschließlich der Anleitung, wie andere Wikis als Wikimedia Commons eingerichtet werden können, gibt es im [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbuch].',
+Weitere Informationen zu dieser Funktion, einschließlich der Anleitung, wie hierfür andere Wikis als Wikimedia Commons eingerichtet werden können, gibt es im [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbuch].',
 	'config-cc-error' => 'Der Creativ-Commons-Lizenzassistent konnte keine Lizenz ermitteln.
 Die Lizenz ist daher jetzt manuell einzugeben.',
 	'config-cc-again' => 'Erneut auswählen …',
 	'config-cc-not-chosen' => 'Die gewünschte Creative-Commons-Lizenz auswählen und dann auf „weiter“ klicken.',
 	'config-advanced-settings' => 'Erweiterte Konfiguration',
 	'config-cache-options' => 'Einstellungen für die Zwischenspeicherung von Objekten:',
-	'config-cache-help' => 'Objektcaching wird dazu genutzt die Geschwindigkeit von MediaWiki zu verbessern, indem häufig genutzte Daten zwischengespeichert werden.
-Mittelgroße bis große Wikis werden sehr ermutigt dies zu nutzen, aber auch für kleine Wikis ergeben sich erkennbare Vorteile.',
-	'config-cache-none' => 'Kein Objektcaching (es wird keine Funktion entfernt, allerdings kann die Geschwindigkeit größerer Wikis beeinflusst werden)',
+	'config-cache-help' => 'Das Objektcaching wird dazu genutzt die Geschwindigkeit von MediaWiki zu verbessern, indem häufig genutzte Daten zwischengespeichert werden.
+Es wird sehr empfohlen es für mittelgroße bis große Wikis zu nutzen, aber auch für kleine Wikis ergeben sich erkennbare Geschwindigkeitsverbesserungen.',
+	'config-cache-none' => 'Kein Objektcaching (es wird keine Funktion entfernt, allerdings kann dies die Geschwindigkeit größerer Wikis negativ beeinflussen)',
 	'config-cache-accel' => 'Objektcaching von PHP (APC, eAccelerator, XCache or WinCache)',
 	'config-cache-memcached' => 'Memchached Cacheserver nutzen (erfordert einen zusätzliche Installationsvorgang mitsamt Konfiguration)',
 	'config-memcached-servers' => 'Memcached Cacheserver',
 	'config-memcached-help' => 'Liste der für Memcached nutzbaren IP-Adressen.
 Es sollte eine je Zeile mitsamt des vorgesehenen Ports angegeben werden. Beispiele:
-127.0.0.1:11211
-192.168.1.25:1234',
+127.0.0.1:11211 oder
+192.168.1.25:1234 usw.',
 	'config-memcache-needservers' => 'Memcached wurde als Cacheserver ausgewählt. Dabei wurde allerdings kein Server angegeben.',
 	'config-memcache-badip' => 'Es wurde für Memcached eine ungültige IP-Adresse angegeben: $1',
 	'config-memcache-noport' => 'Es wurde kein Port zur Nutzung durch den Memcached Cacheserver angegeben: $1
@@ -3533,7 +3533,7 @@ Es muss daher mit den nächsten Seite weitergemacht werden.",
 Sofern Änderungen vorgenommen werden sollen, kann man auf „← Zurück“ klicken.',
 	'config-install-step-done' => 'erledigt',
 	'config-install-step-failed' => 'gescheitert',
-	'config-install-extensions' => 'Einschließlich Erweiterungen',
+	'config-install-extensions' => 'Softwareerweiterungen',
 	'config-install-database' => 'Datenbank wird eingerichtet',
 	'config-install-schema' => 'Datenschema wird erstellt',
 	'config-install-pg-schema-not-exist' => 'Das PostgesSQL-Datenschema ist nicht vorhanden',

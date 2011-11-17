@@ -1698,7 +1698,7 @@ Los archivos subidos quedarán registrados además en el [[Special:Log/upload|re
 
 Para incluir un archivo en una página, usa un enlace como los mostrados a continuación:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar el fichero en tamaño completo
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 pixeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 píxeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para enlazar directamente al fichero sin mostrarlo.",
 'upload-permitted'            => 'Tipos de archivo permitidos: $1.',
 'upload-preferred'            => 'Tipos de archivo preferidos: $1.',
@@ -2142,8 +2142,9 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'linksearch-pat'   => 'Patrón de búsqueda:',
 'linksearch-ns'    => 'Espacio de nombre:',
 'linksearch-ok'    => 'Buscar',
-'linksearch-text'  => 'Se pueden usar comodines como  «*.wikipedia.org».<br />
-Protocolos soportados: <tt>$1</tt>',
+'linksearch-text'  => 'Se pueden usar caracteres comodín como "*.wikipedia.org".
+Es necesario, por lo menos, un dominio de nivel, por ejemplo "*.org".<br />
+Protocolos soportados: <tt>$1</tt> (no añada ninguno de estos en su búsqueda).',
 'linksearch-line'  => '$1 enlazado desde $2',
 'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
 
@@ -2765,6 +2766,7 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Expo
 'exportcuronly'     => 'Incluye sólo la revisión actual, no el historial de revisiones al completo.',
 'exportnohistory'   => "----
 '''Nota:''' Exportar el historial completo de páginas a través de este formulario ha sido deshabilitado debido a problemas de rendimiento del servidor.",
+'exportlistauthors' => 'Incluir una lista completa de colaboradores para cada página',
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Añadir páginas desde la categoría:',
 'export-addcat'     => 'Añadir',

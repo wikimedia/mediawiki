@@ -1789,23 +1789,24 @@ Le description de su [$2 pagina de description] ibi es monstrate in basso.',
 'filerevert-badversion'     => 'Non existe un version local anterior de iste file con le data e hora providite.',
 
 # File deletion
-'filedelete'                  => 'Deler $1',
-'filedelete-legend'           => 'Deler file',
-'filedelete-intro'            => "Tu es super le puncto de deler le file '''[[Media:$1|$1]]''' con tote su historia.",
-'filedelete-intro-old'        => "Tu va deler le version de '''[[Media:$1|$1]]''' del [$4 $3 a $2].",
-'filedelete-comment'          => 'Motivo:',
-'filedelete-submit'           => 'Deler',
-'filedelete-success'          => "'''$1''' ha essite delite.",
-'filedelete-success-old'      => "Le version de '''[[Media:$1|$1]]''' del $3 a $2 ha essite delite.",
-'filedelete-nofile'           => "'''$1''' non existe.",
-'filedelete-nofile-old'       => "Non existe un version archivate de '''$1''' con le attributos specificate.",
-'filedelete-otherreason'      => 'Motivo altere/additional:',
-'filedelete-reason-otherlist' => 'Altere motivo',
-'filedelete-reason-dropdown'  => '*Motivos habitual pro deletion
+'filedelete'                   => 'Deler $1',
+'filedelete-legend'            => 'Deler file',
+'filedelete-intro'             => "Tu es super le puncto de deler le file '''[[Media:$1|$1]]''' con tote su historia.",
+'filedelete-intro-old'         => "Tu va deler le version de '''[[Media:$1|$1]]''' del [$4 $3 a $2].",
+'filedelete-comment'           => 'Motivo:',
+'filedelete-submit'            => 'Deler',
+'filedelete-success'           => "'''$1''' ha essite delite.",
+'filedelete-success-old'       => "Le version de '''[[Media:$1|$1]]''' del $3 a $2 ha essite delite.",
+'filedelete-nofile'            => "'''$1''' non existe.",
+'filedelete-nofile-old'        => "Non existe un version archivate de '''$1''' con le attributos specificate.",
+'filedelete-otherreason'       => 'Motivo altere/additional:',
+'filedelete-reason-otherlist'  => 'Altere motivo',
+'filedelete-reason-dropdown'   => '*Motivos habitual pro deletion
 ** Violation de copyright
 ** File duplicate',
-'filedelete-edit-reasonlist'  => 'Modificar motivos pro deletion',
-'filedelete-maintenance'      => 'Deletion e restauration de files temporarimente disactivate durante mantenentia.',
+'filedelete-edit-reasonlist'   => 'Modificar motivos pro deletion',
+'filedelete-maintenance'       => 'Deletion e restauration de files temporarimente disactivate durante mantenentia.',
+'filedelete-maintenance-title' => 'Non pote deler file',
 
 # MIME search
 'mimesearch'         => 'Recerca de typo MIME',
@@ -2001,8 +2002,9 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'linksearch-pat'   => 'Patrono a cercar:',
 'linksearch-ns'    => 'Spatio de nomines:',
 'linksearch-ok'    => 'Cercar',
-'linksearch-text'  => 'Es possibile usar metacharacteres como in "*.wikipedia.org".<br />
-Protocollos supportate: <tt>$1</tt>',
+'linksearch-text'  => 'Es possibile usar metacharacteres como in "*.wikipedia.org".
+Necessita al minus un dominio de nivello superior, per exemplo "*.org".<br />
+Protocollos supportate: <tt>$1</tt> (non include alcun de istes in tu recerca).',
 'linksearch-line'  => '$1 ligate ab $2',
 'linksearch-error' => 'Le metacharacteres pote apparer solmente al initio del nomine de host.',
 
@@ -2658,6 +2660,7 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 'exportcuronly'     => 'Includer solmente le version actual, non le historia complete',
 'exportnohistory'   => "----
 '''Nota:''' Le exportation del historia de paginas complete per medio de iste formulario ha essite disactivate pro motivos concernente le prestationes del servitor.",
+'exportlistauthors' => 'Includer un lista complete de contributores pro cata pagina',
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Adder paginas del categoria:',
 'export-addcat'     => 'Adder',
