@@ -159,7 +159,7 @@ Parser Cache:
 		$hash: hash of user options applied to the page, see ParserOptions::optionsHash()
 	ex: wikidb:pcache:idhash:1-0!1!0!!en!2
 	stores: ParserOutput object
-	modified by: Article::editUpdates() or Article::getOutputFromWikitext()
+	modified by: WikiPage::doEditUpdates() or PoolWorkArticleView::doWork()
 	expiry: $wgParserCacheExpireTime or less if it contains short lived functions
 
 	key: $wgDBname:pcache:idoptions:$pageid
