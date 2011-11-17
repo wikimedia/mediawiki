@@ -2622,7 +2622,7 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'linksearch-ns'    => 'Namespace:',
 'linksearch-ok'    => 'Search',
 'linksearch-text'  => 'Wildcards such as "*.wikipedia.org" may be used.
-Needs at least a top level domain, for example *.org.<br />
+Needs at least a top-level domain, for example "*.org".<br />
 Supported protocols: <tt>$1</tt> (do not add any of these in your search).',
 'linksearch-line'  => '$1 is linked from $2',
 'linksearch-error' => 'Wildcards may appear only at the start of the hostname.',
