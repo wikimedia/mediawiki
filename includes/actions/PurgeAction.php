@@ -52,8 +52,7 @@ class PurgeAction extends FormAction {
 	}
 
 	public function onSubmit( $data ) {
-		$this->page->doPurge();
-		return true;
+		return $this->page->doPurge();
 	}
 
 	/**
@@ -71,8 +70,9 @@ class PurgeAction extends FormAction {
 				$this->getRequest()->getQueryValues(),
 				array( 'title' => null, 'action' => null )
 			) );
-			$this->onSubmit( array() );
-			$this->onSuccess();
+			if( $this->onSubmit( array() ) ) {
+				$this->onSuccess();
+			}
 		} else {
 			$this->redirectParams = $this->getRequest()->getVal( 'redirectparams', '' );
 			$form = $this->getForm();

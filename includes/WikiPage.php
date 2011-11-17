@@ -755,6 +755,7 @@ class WikiPage extends Page {
 
 			MessageCache::singleton()->replace( $this->mTitle->getDBkey(), $text );
 		}
+		return true;
 	}
 
 	/**
