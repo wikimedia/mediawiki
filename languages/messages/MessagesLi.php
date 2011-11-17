@@ -1733,23 +1733,24 @@ De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 'filerevert-badversion'     => "d'r is geine vörge lokale versie van dit bestand mit 't opgegaeve tiejdstip.",
 
 # File deletion
-'filedelete'                  => 'Wis $1',
-'filedelete-legend'           => 'Wis bestand',
-'filedelete-intro'            => "Doe bös '''[[Media:$1|$1]]''' aan 't wisse, mit al ieëder versies.",
-'filedelete-intro-old'        => "Doe bös de versie van '''[[Media:$1|$1]]''' van [$4 $3, $2] aan 't wisse.",
-'filedelete-comment'          => 'Reeje:',
-'filedelete-submit'           => 'Wisse',
-'filedelete-success'          => "'''$1''' is gewis.",
-'filedelete-success-old'      => "De versie vae '''[[Media:$1|$1]]''' ven $3, $2 is gewis.</span>",
-'filedelete-nofile'           => "'''$1''' besteit neet.",
-'filedelete-nofile-old'       => "d'r is geine versie van '''$1''' in 't archief met de aangegaeve eigensjappe.",
-'filedelete-otherreason'      => 'Angere/additionele ree:',
-'filedelete-reason-otherlist' => 'Angere ree',
-'filedelete-reason-dropdown'  => '*Väölveurkómmende ree veur wisse
+'filedelete'                   => 'Wis $1',
+'filedelete-legend'            => 'Wis bestand',
+'filedelete-intro'             => "Doe bös '''[[Media:$1|$1]]''' aan 't wisse, mit al ieëder versies.",
+'filedelete-intro-old'         => "Doe bös de versie van '''[[Media:$1|$1]]''' van [$4 $3, $2] aan 't wisse.",
+'filedelete-comment'           => 'Reeje:',
+'filedelete-submit'            => 'Wisse',
+'filedelete-success'           => "'''$1''' is gewis.",
+'filedelete-success-old'       => "De versie vae '''[[Media:$1|$1]]''' ven $3, $2 is gewis.</span>",
+'filedelete-nofile'            => "'''$1''' besteit neet.",
+'filedelete-nofile-old'        => "d'r is geine versie van '''$1''' in 't archief met de aangegaeve eigensjappe.",
+'filedelete-otherreason'       => 'Angere/additionele ree:',
+'filedelete-reason-otherlist'  => 'Angere ree',
+'filedelete-reason-dropdown'   => '*Väölveurkómmende ree veur wisse
 ** Auteursrechsjenjing
 ** Duplicaatbestandj',
-'filedelete-edit-reasonlist'  => 'Reeje veur verwiedering bewèrke',
-'filedelete-maintenance'      => 'Verwiedere en trökplaatse is tiedelik neet meugelik waeges ongerhaadswerkzaamhede.',
+'filedelete-edit-reasonlist'   => 'Reeje veur verwiedering bewèrke',
+'filedelete-maintenance'       => 'Verwiedere en trökplaatse is tiedelik neet meugelik waeges ongerhaadswerkzaamhede.',
+'filedelete-maintenance-title' => 'Kin bestandj neet wösje',
 
 # MIME search
 'mimesearch'         => 'Zeuk op MIME-type',
@@ -1943,7 +1944,9 @@ Zuuch ouch [[Special:WantedCategories|neet-bestaondje categorieë mit verwiezing
 'linksearch-pat'   => 'Zeukpatroon:',
 'linksearch-ns'    => 'Naamruumde:',
 'linksearch-ok'    => 'Zeuk',
-'linksearch-text'  => 'Wildcards wie "*.wikipedia.org" of "*.org" zeen toegestaon.<br />Supported protocols: <tt>$1</tt>',
+'linksearch-text'  => 'Wildcards wie "*.wikipedia.org" of "*.org" zeen toegestaon.
+Haet mèndestes e toepleveldomein, wie beveurbeildj "*.org".<br />
+Óngerstäönendje protocolle: <tt>$1</tt> (veug dees neet tou in dien zeukópdrach).',
 'linksearch-line'  => '$1 gelink vanaaf $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 
@@ -2553,6 +2556,7 @@ In 't letste geval kèns te ouch 'ne link gebroeken, bieveurbild [[{{#Special:Ex
 'exportcuronly'     => 'Allein de letste versie, neet de volledige gesjiedenis',
 'exportnohistory'   => "----
 '''Let op:''' 't exportere van de ganse gesjiedenis is oetgezat waeges prestatieree.",
+'exportlistauthors' => "Nöm 'n vól auteurslies op veur eder paasj",
 'export-submit'     => 'Exportere',
 'export-addcattext' => "Voeg pagina's toe van categorie:",
 'export-addcat'     => 'Toevoege',

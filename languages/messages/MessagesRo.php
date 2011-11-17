@@ -2123,8 +2123,9 @@ Vedeți și [[Special:WantedCategories|categoriile dorite]].',
 'linksearch-pat'   => 'De căutat:',
 'linksearch-ns'    => 'Spațiu de nume:',
 'linksearch-ok'    => 'Caută',
-'linksearch-text'  => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.<br />
-Protocoale suportate: <tt>$1</tt>',
+'linksearch-text'  => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.
+Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
+Protocoale suportate: <tt>$1</tt> (nu adăugați niciunul dintre acestea în câmpul de căutare).',
 'linksearch-line'  => '$1 este legat de $2',
 'linksearch-error' => 'Metacaracterele pot să apară doar la începutul hostname-ului.',
 
