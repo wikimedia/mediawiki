@@ -516,9 +516,8 @@ class DifferenceEngine extends ContextSource {
 			} elseif ( !wfRunHooks( 'ArticleViewCustom', array( $this->mNewtext, $this->mNewPage, $out ) ) ) {
 				// Handled by extension
 			} else {
-				# Use the current version parser cache if applicable
+				// Normal page
 				$wikiPage = WikiPage::factory( $this->mNewPage );
-				$useParserCache = $wikiPage->isParserCacheUsed( $this->getUser(), $this->mNewid );
 
 				$parserOptions = ParserOptions::newFromContext( $this->getContext() );
 				$parserOptions->enableLimitReport();
@@ -528,15 +527,11 @@ class DifferenceEngine extends ContextSource {
 					$parserOptions->setEditSection( false );
 				}
 
-				$parserOutput = false;
-				if ( $useParserCache ) {
-					$parserOutput = ParserCache::singleton()->get( $wikiPage, $parserOptions );
-				}
+				$parserOutput = $wikiPage->getParserOutput( $parserOptions, $this->mNewid );
 
+				# WikiPage::getParserOutput() should not return false, but just in case
 				if( $parserOutput ) {
 					$out->addParserOutput( $parserOutput );
-				} else {
-					$out->addWikiTextTidy( $this->mNewtext );
 				}
 			}
 		}

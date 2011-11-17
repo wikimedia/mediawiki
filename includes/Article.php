@@ -453,7 +453,7 @@ class Article extends Page {
 		}
 
 		# Should the parser cache be used?
-		$useParserCache = $this->mPage->isParserCacheUsed( $wgUser, $oldid );
+		$useParserCache = $this->mPage->isParserCacheUsed( $parserOptions, $oldid );
 		wfDebug( 'Article::view using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
 		if ( $wgUser->getStubThreshold() ) {
 			wfIncrStats( 'pcache_miss_stub' );
@@ -550,16 +550,34 @@ class Article extends Page {
 					# Run the parse, protected by a pool counter
 					wfDebug( __METHOD__ . ": doing uncached parse\n" );
 
-					$key = $parserCache->getKey( $this, $parserOptions );
-					$poolArticleView = new PoolWorkArticleView( $this, $key, $useParserCache, $parserOptions );
+					$poolArticleView = new PoolWorkArticleView( $this, $parserOptions,
+						$this->getRevIdFetched(), $useParserCache, $this->getContent() );
 
 					if ( !$poolArticleView->execute() ) {
+						$error = $poolArticleView->getError();
+						if ( $error ) {
+							$wgOut->clearHTML(); // for release() errors
+							$wgOut->enableClientCache( false );
+							$wgOut->setRobotPolicy( 'noindex,nofollow' );
+
+							$errortext = $error->getWikiText( false, 'view-pool-error' );
+							$wgOut->addWikiText( '<div class="errorbox">' . $errortext . '</div>' );
+						}
 						# Connection or timeout error
 						wfProfileOut( __METHOD__ );
 						return;
-					} else {
-						$outputDone = true;
 					}
+
+					$this->mParserOutput = $poolArticleView->getParserOutput();
+					$wgOut->addParserOutput( $this->mParserOutput );
+
+					# Don't cache a dirty ParserOutput object
+					if ( $poolArticleView->getIsDirty() ) {
+						$wgOut->setSquidMaxage( 0 );
+						$wgOut->addHTML( "<!-- parser cache is expired, sending anyway due to pool overload-->\n" );
+					}
+
+					$outputDone = true;
 					break;
 				# Should be unreachable, but just in case...
 				default:
@@ -1150,67 +1168,6 @@ class Article extends Page {
 	}
 
 	/**
-	 * Execute the uncached parse for action=view
-	 * @return bool
-	 */
-	public function doViewParse() {
-		global $wgOut;
-
-		$oldid = $this->getOldID();
-		$parserOptions = $this->getParserOptions();
-
-		# Render printable version, use printable version cache
-		$parserOptions->setIsPrintable( $wgOut->isPrintable() );
-
-		# Don't show section-edit links on old revisions... this way lies madness.
-		if ( !$this->isCurrent() || $wgOut->isPrintable() || !$this->getTitle()->quickUserCan( 'edit' ) ) {
-			$parserOptions->setEditSection( false );
-		}
-
-		$useParserCache = $this->useParserCache( $oldid );
-		$this->outputWikiText( $this->getContent(), $useParserCache, $parserOptions );
-
-		return true;
-	}
-
-	/**
-	 * Try to fetch an expired entry from the parser cache. If it is present,
-	 * output it and return true. If it is not present, output nothing and
-	 * return false. This is used as a callback function for
-	 * PoolCounter::executeProtected().
-	 *
-	 * @return boolean
-	 */
-	public function tryDirtyCache() {
-		global $wgOut;
-		$parserCache = ParserCache::singleton();
-		$options = $this->getParserOptions();
-
-		if ( $wgOut->isPrintable() ) {
-			$options->setIsPrintable( true );
-			$options->setEditSection( false );
-		}
-
-		$output = $parserCache->getDirty( $this, $options );
-
-		if ( $output ) {
-			wfDebug( __METHOD__ . ": sending dirty output\n" );
-			wfDebugLog( 'dirty', "dirty output " . $parserCache->getKey( $this, $options ) . "\n" );
-			$wgOut->setSquidMaxage( 0 );
-			$this->mParserOutput = $output;
-			$wgOut->addParserOutput( $output );
-			$wgOut->addHTML( "<!-- parser cache is expired, sending anyway due to pool overload-->\n" );
-
-			return true;
-		} else {
-			wfDebugLog( 'dirty', "dirty missing\n" );
-			wfDebug( __METHOD__ . ": no dirty cache\n" );
-
-			return false;
-		}
-	}
-
-	/**
 	 * View redirect
 	 *
 	 * @param $target Title|Array of destination(s) to redirect
@@ -1642,25 +1599,6 @@ class Article extends Page {
 	/**#@-*/
 
 	/**
-	 * Add the primary page-view wikitext to the output buffer
-	 * Saves the text into the parser cache if possible.
-	 * Updates templatelinks if it is out of date.
-	 *
-	 * @param $text String
-	 * @param $cache Boolean
-	 * @param $parserOptions mixed ParserOptions object, or boolean false
-	 */
-	public function outputWikiText( $text, $cache = true, $parserOptions = false ) {
-		global $wgOut;
-
-		$this->mParserOutput = $this->getOutputFromWikitext( $text, $cache, $parserOptions );
-
-		$this->doCascadeProtectionUpdates( $this->mParserOutput );
-
-		$wgOut->addParserOutput( $this->mParserOutput );
-	}
-
-	/**
 	 * Lightweight method to get the parser output for a page, checking the parser cache
 	 * and so on. Doesn't consider most of the stuff that WikiPage::view is forced to
 	 * consider, so it's not appropriate to use there.
@@ -1672,93 +1610,12 @@ class Article extends Page {
 	 * @return ParserOutput or false if the given revsion ID is not found
 	 */
 	public function getParserOutput( $oldid = null, User $user = null ) {
-		global $wgEnableParserCache, $wgUser;
+		global $wgUser;
+
 		$user = is_null( $user ) ? $wgUser : $user;
+		$parserOptions = $this->mPage->makeParserOptions( $user );
 
-		wfProfileIn( __METHOD__ );
-		// Should the parser cache be used?
-		$useParserCache = $wgEnableParserCache &&
-			$user->getStubThreshold() == 0 &&
-			$this->mPage->exists() &&
-			$oldid === null;
-
-		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
-
-		if ( $user->getStubThreshold() ) {
-			wfIncrStats( 'pcache_miss_stub' );
-		}
-
-		if ( $useParserCache ) {
-			$options = $this->mPage->makeParserOptions( $user );
-			$parserOutput = ParserCache::singleton()->get( $this, $options );
-			if ( $parserOutput !== false ) {
-				wfProfileOut( __METHOD__ );
-				return $parserOutput;
-			}
-		}
-
-		// Cache miss; parse and output it.
-		if ( $oldid === null ) {
-			$text = $this->mPage->getRawText();
-		} else {
-			$rev = Revision::newFromTitle( $this->getTitle(), $oldid );
-			if ( $rev === null ) {
-				wfProfileOut( __METHOD__ );
-				return false;
-			}
-			$text = $rev->getText();
-		}
-
-		$output = $this->getOutputFromWikitext( $text, $useParserCache );
-		wfProfileOut( __METHOD__ );
-		return $output;
-	}
-
-	/**
-	 * This does all the heavy lifting for outputWikitext, except it returns the parser
-	 * output instead of sending it straight to $wgOut. Makes things nice and simple for,
-	 * say, embedding thread pages within a discussion system (LiquidThreads)
-	 *
-	 * @param $text string
-	 * @param $cache boolean
-	 * @param $parserOptions parsing options, defaults to false
-	 * @return ParserOutput
-	 */
-	public function getOutputFromWikitext( $text, $cache = true, $parserOptions = false ) {
-		global $wgParser, $wgEnableParserCache, $wgUseFileCache;
-
-		if ( !$parserOptions ) {
-			$parserOptions = $this->getParserOptions();
-		}
-
-		$time = - wfTime();
-		$this->mParserOutput = $wgParser->parse( $text, $this->getTitle(),
-			$parserOptions, true, true, $this->getRevIdFetched() );
-		$time += wfTime();
-
-		# Timing hack
-		if ( $time > 3 ) {
-			wfDebugLog( 'slow-parse', sprintf( "%-5.2f %s", $time,
-				$this->getTitle()->getPrefixedDBkey() ) );
-		}
-
-		if ( $wgEnableParserCache && $cache && $this->mParserOutput->isCacheable() ) {
-			$parserCache = ParserCache::singleton();
-			$parserCache->save( $this->mParserOutput, $this, $parserOptions );
-		}
-
-		// Make sure file cache is not used on uncacheable content.
-		// Output that has magic words in it can still use the parser cache
-		// (if enabled), though it will generally expire sooner.
-		if ( !$this->mParserOutput->isCacheable() || $this->mParserOutput->containsOldMagic() ) {
-			$wgUseFileCache = false;
-		}
-
-		if ( $this->isCurrent() ) {
-			$this->mPage->doCascadeProtectionUpdates( $this->mParserOutput );
-		}
-
-		return $this->mParserOutput;
+		return $this->mPage->getParserOutput( $parserOptions, $oldid );
 	}
 
 	/**
@@ -2062,69 +1919,4 @@ class Article extends Page {
 		return WikiPage::getAutosummary( $oldtext, $newtext, $flags );
 	}
 	// ******
-}
-
-class PoolWorkArticleView extends PoolCounterWork {
-
-	/**
-	 * @var Article
-	 */
-	private $mArticle;
-
-	function __construct( $article, $key, $useParserCache, $parserOptions ) {
-		parent::__construct( 'ArticleView', $key );
-		$this->mArticle = $article;
-		$this->cacheable = $useParserCache;
-		$this->parserOptions = $parserOptions;
-	}
-
-	/**
-	 * @return bool
-	 */
-	function doWork() {
-		return $this->mArticle->doViewParse();
-	}
-
-	/**
-	 * @return bool
-	 */
-	function getCachedWork() {
-		global $wgOut;
-
-		$parserCache = ParserCache::singleton();
-		$this->mArticle->mParserOutput = $parserCache->get( $this->mArticle, $this->parserOptions );
-
-		if ( $this->mArticle->mParserOutput !== false ) {
-			wfDebug( __METHOD__ . ": showing contents parsed by someone else\n" );
-			$wgOut->addParserOutput( $this->mArticle->mParserOutput );
-			# Ensure that UI elements requiring revision ID have
-			# the correct version information.
-			$wgOut->setRevisionId( $this->mArticle->getLatest() );
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * @return bool
-	 */
-	function fallback() {
-		return $this->mArticle->tryDirtyCache();
-	}
-
-	/**
-	 * @param $status Status
-	 */
-	function error( $status ) {
-		global $wgOut;
-
-		$wgOut->clearHTML(); // for release() errors
-		$wgOut->enableClientCache( false );
-		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-
-		$errortext = $status->getWikiText( false, 'view-pool-error' );
-		$wgOut->addWikiText( '<div class="errorbox">' . $errortext . '</div>' );
-
-		return false;
-	}
 }

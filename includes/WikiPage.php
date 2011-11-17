@@ -708,18 +708,59 @@ class WikiPage extends Page {
 	/**
 	 * Should the parser cache be used?
 	 *
-	 * @param $user User The relevant user
+	 * @param $parserOptions ParserOptions to check
 	 * @param $oldid int
 	 * @return boolean
 	 */
-	public function isParserCacheUsed( User $user, $oldid ) {
+	public function isParserCacheUsed( ParserOptions $parserOptions, $oldid ) {
 		global $wgEnableParserCache;
 
 		return $wgEnableParserCache
-			&& $user->getStubThreshold() == 0
+			&& $parserOptions->getStubThreshold() == 0
 			&& $this->exists()
 			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
 			&& $this->mTitle->isWikitextPage();
+	}
+
+	/**
+	 * Get a ParserOutput for the given ParserOptions and revision ID.
+	 * The the parser cache will be used if possible.
+	 *
+	 * @since 1.19
+	 * @param $parserOptions ParserOptions to use for the parse operation
+	 * @param $oldid Revision ID to get the text from, passing null or 0 will
+	 *               get the current revision (default value)
+	 * @return ParserOutput or false if the revision was not found
+	 */
+	public function getParserOutput( ParserOptions $parserOptions, $oldid = null ) {
+		global $wgParser;
+
+		wfProfileIn( __METHOD__ );
+
+		$useParserCache = $this->isParserCacheUsed( $parserOptions, $oldid );
+		wfDebug( __METHOD__ . ': using parser cache: ' . ( $useParserCache ? 'yes' : 'no' ) . "\n" );
+		if ( $parserOptions->getStubThreshold() ) {
+			wfIncrStats( 'pcache_miss_stub' );
+		}
+
+		if ( $useParserCache ) {
+			$parserOutput = ParserCache::singleton()->get( $this, $parserOptions );
+			if ( $parserOutput !== false ) {
+				wfProfileOut( __METHOD__ );
+				return $parserOutput;
+			}
+		}
+
+		if ( $oldid === null || $oldid === 0 ) {
+			$oldid = $this->getLatest();
+		}
+
+		$pool = new PoolWorkArticleView( $this, $parserOptions, $oldid, $useParserCache );
+		$pool->execute();
+
+		wfProfileOut( __METHOD__ );
+
+		return $pool->getParserOutput();
 	}
 
 	/**
@@ -2671,6 +2712,183 @@ class WikiPage extends Page {
 	 */
 	public function useParserCache( $oldid ) {
 		global $wgUser;
-		return $this->isParserCacheUsed( $wgUser, $oldid );
+		return $this->isParserCacheUsed( ParserOptions::newFromUser( $wgUser ), $oldid );
+	}
+}
+
+class PoolWorkArticleView extends PoolCounterWork {
+
+	/**
+	 * @var Page
+	 */
+	private $page;
+
+	/**
+	 * @var string
+	 */
+	private $cacheKey;
+
+	/**
+	 * @var integer
+	 */
+	private $revid;
+
+	/**
+	 * @var ParserOptions
+	 */
+	private $parserOptions;
+
+	/**
+	 * @var string|null
+	 */
+	private $text;
+
+	/**
+	 * @var ParserOutput|false
+	 */
+	private $parserOutput = false;
+
+	/**
+	 * @var bool
+	 */
+	private $isDirty = false;
+
+	/**
+	 * @var Status|false
+	 */
+	private $error = false;
+
+	/**
+	 * Constructor
+	 *
+	 * @param $page Page
+	 * @param $revid Integer: ID of the revision being parsed
+	 * @param $useParserCache Boolean: whether to use the parser cache
+	 * @param $parserOptions parserOptions to use for the parse operation
+	 * @param $text String: text to parse or null to load it
+	 */
+	function __construct( Page $page, ParserOptions $parserOptions, $revid, $useParserCache, $text = null ) {
+		$this->page = $page;
+		$this->revid = $revid;
+		$this->cacheable = $useParserCache;
+		$this->parserOptions = $parserOptions;
+		$this->text = $text;
+		$this->cacheKey = ParserCache::singleton()->getKey( $page, $parserOptions );
+		parent::__construct( 'ArticleView', $this->cacheKey . ':revid:' . $revid );
+	}
+
+	/**
+	 * Get the ParserOutput from this object, or false in case of failure
+	 *
+	 * @return ParserOutput
+	 */
+	public function getParserOutput() {
+		return $this->parserOutput;
+	}
+
+	/**
+	 * Get whether the ParserOutput is a dirty one (i.e. expired)
+	 *
+	 * @return bool
+	 */
+	public function getIsDirty() {
+		return $this->isDirty();
+	}
+
+	/**
+	 * Get a Status object in case of error or false otherwise
+	 *
+	 * @return Status|false
+	 */
+	public function getError() {
+		return $this->error;
+	}
+
+	/**
+	 * @return bool
+	 */
+	function doWork() {
+		global $wgParser, $wgUseFileCache;
+
+		$isCurrent = $this->revid === $this->page->getLatest();
+
+		if ( $this->text !== null ) {
+			$text = $this->text;
+		} elseif ( $isCurrent ) {
+			$text = $this->page->getRawText();
+		} else {
+			$rev = Revision::newFromTitle( $this->page->getTitle(), $this->revid );
+			if ( $rev === null ) {
+				return false;
+			}
+			$text = $rev->getText();
+		}
+
+		$time = - wfTime();
+		$this->parserOutput = $wgParser->parse( $text, $this->page->getTitle(),
+			$this->parserOptions, true, true, $this->revid );
+		$time += wfTime();
+
+		# Timing hack
+		if ( $time > 3 ) {
+			wfDebugLog( 'slow-parse', sprintf( "%-5.2f %s", $time,
+				$this->page->getTitle()->getPrefixedDBkey() ) );
+		}
+
+		if ( $this->cacheable && $this->parserOutput->isCacheable() ) {
+			ParserCache::singleton()->save( $this->parserOutput, $this->page, $this->parserOptions );
+		}
+
+		// Make sure file cache is not used on uncacheable content.
+		// Output that has magic words in it can still use the parser cache
+		// (if enabled), though it will generally expire sooner.
+		if ( !$this->parserOutput->isCacheable() || $this->parserOutput->containsOldMagic() ) {
+			$wgUseFileCache = false;
+		}
+
+		if ( $isCurrent ) {
+			$this->page->doCascadeProtectionUpdates( $this->parserOutput );
+		}
+	}
+
+	/**
+	 * @return bool
+	 */
+	function getCachedWork() {
+		$this->parserOutput = ParserCache::singleton()->get( $this->page, $this->parserOptions );
+
+		if ( $this->parserOutput === false ) {
+			wfDebug( __METHOD__ . ": parser cache miss\n" );
+			return false;
+		} else {
+			wfDebug( __METHOD__ . ": parser cache hit\n" );
+			return true;
+		}
+	}
+
+	/**
+	 * @return bool
+	 */
+	function fallback() {
+		$this->parserOutput = ParserCache::singleton()->getDirty( $this->page, $this->parserOptions );
+
+		if ( $this->parserOutput === false ) {
+			wfDebugLog( 'dirty', "dirty missing\n" );
+			wfDebug( __METHOD__ . ": no dirty cache\n" );
+			return false;
+		} else {
+			wfDebug( __METHOD__ . ": sending dirty output\n" );
+			wfDebugLog( 'dirty', "dirty output {$this->cacheKey}\n" );
+			$this->isDirty = true;
+			return true;
+		}
+	}
+
+	/**
+	 * @param $status Status
+	 */
+	function error( $status ) {
+		$this->error = $status;
+		return false;
 	}
 }
