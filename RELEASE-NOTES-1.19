@@ -11,6 +11,9 @@ MediaWiki 1.19 is an alpha-quality branch and is not recommended for use in
 production.
 
 === Configuration changes in 1.19 ===
+* Changed LoginAuthenticateAudit hook so that it may be called before a
+  valid user is available.  In those cases, an anonymouse user object
+  will be supplied
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
 * (bug 27132) movefile right granted by default to registered users.
 * Default cookie lifetime ($wgCookieExpiration) is increased to 180 days.
