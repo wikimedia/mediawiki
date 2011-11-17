@@ -270,7 +270,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		}
 
 		$params = $this->extractRequestParams();
-		$langCode = isset( $params['inlanguagecode '] ) ? $params['inlanguagecode '] : '';
+		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
 
 		if( $langCode ) {
 			$langNames = Language::getTranslatedLanguageNames( $langCode );
@@ -476,7 +476,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendLanguages( $property ) {
 		$params = $this->extractRequestParams();
-		$langCode = isset( $params['inlanguagecode '] ) ? $params['inlanguagecode '] : '';
+		$langCode = isset( $params['inlanguagecode'] ) ? $params['inlanguagecode'] : '';
 
 		if( $langCode ) {
 			$langNames = Language::getTranslatedLanguageNames( $langCode );
@@ -583,7 +583,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			),
 			'showalldb' => false,
 			'numberingroup' => false,
-			'inlanguagecode ' => null,
+			'inlanguagecode' => null,
 		);
 	}
 
