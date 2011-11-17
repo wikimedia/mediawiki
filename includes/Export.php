@@ -618,7 +618,13 @@ class XmlDumpWriter {
 			$out .= "        " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
 			$out .= "        " . Xml::element( 'id', null, strval( $id ) ) . "\n";
 		} else {
-			$out .= "        " . Xml::elementClean( 'ip', null, strval( $text ) ) . "\n";
+			if ( IP::isValid( $text ) ) {
+				$out .= "        " . Xml::elementClean( 'ip', null, strval( $text ) ) . "\n";
+			}
+			else {
+				$out .= "        " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
+				$out .= "        " . Xml::element( 'id', null, strval( $id ) ) . "\n";
+			}
 		}
 		$out .= "      </contributor>\n";
 		return $out;
