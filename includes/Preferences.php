@@ -1160,19 +1160,20 @@ class Preferences {
 	}
 
 	/**
-	 * @param $signature
-	 * @param $alldata
+	 * @param $signature string
+	 * @param $alldata array
+	 * @param $form HTMLForm
 	 * @return bool|string
 	 */
-	static function validateSignature( $signature, $alldata ) {
+	static function validateSignature( $signature, $alldata, $form ) {
 		global $wgParser, $wgMaxSigChars;
 		if ( mb_strlen( $signature ) > $wgMaxSigChars ) {
 			return Xml::element( 'span', array( 'class' => 'error' ),
-				wfMessage( 'badsiglength' )->numParams( $wgMaxSigChars )->text() );
+				$form->msg( 'badsiglength' )->numParams( $wgMaxSigChars )->text() );
 		} elseif ( isset( $alldata['fancysig'] ) &&
 				$alldata['fancysig'] &&
 				false === $wgParser->validateSig( $signature ) ) {
-			return Xml::element( 'span', array( 'class' => 'error' ), wfMsg( 'badsig' ) );
+			return Xml::element( 'span', array( 'class' => 'error' ), $form->msg( 'badsig' )->text() );
 		} else {
 			return true;
 		}
@@ -1181,9 +1182,10 @@ class Preferences {
 	/**
 	 * @param $signature string
 	 * @param $alldata array
+	 * @param $form HTMLForm
 	 * @return string
 	 */
-	static function cleanSignature( $signature, $alldata ) {
+	static function cleanSignature( $signature, $alldata, $form ) {
 		global $wgParser;
 		if ( isset( $alldata['fancysig'] ) && $alldata['fancysig'] ) {
 			$signature = $wgParser->cleanSig( $signature );
@@ -1193,23 +1195,6 @@ class Preferences {
 		}
 
 		return $signature;
-	}
-
-	/**
-	 * @param $email
-	 * @param $alldata
-	 * @return bool|String
-	 */
-	static function validateEmail( $email, $alldata ) {
-		if ( $email && !Sanitizer::validateEmail( $email ) ) {
-			return wfMsgExt( 'invalidemailaddress', 'parseinline' );
-		}
-
-		global $wgEmailConfirmToEdit;
-		if ( $wgEmailConfirmToEdit && !$email ) {
-			return wfMsgExt( 'noemailtitle', 'parseinline' );
-		}
-		return true;
 	}
 
 	/**
@@ -1229,7 +1214,7 @@ class Preferences {
 
 		$htmlForm->setModifiedUser( $user );
 		$htmlForm->setId( 'mw-prefs-form' );
-		$htmlForm->setSubmitText( wfMsg( 'saveprefs' ) );
+		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
 		# Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefsubmit' );
@@ -1532,7 +1517,7 @@ class PreferencesForm extends HTMLForm {
 
 		$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
 
-		$html .= "\n" . Linker::link( $t, wfMsgHtml( 'restoreprefs' ) );
+		$html .= "\n" . Linker::link( $t, $this->msg( 'restoreprefs' )->escaped() );
 
 		$html = Xml::tags( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
 
