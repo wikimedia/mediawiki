@@ -67,7 +67,7 @@ class ApiParse extends ApiBase {
 			$wgLang = Language::factory( $params['uselang'] );
 		}
 
-		$popts = new ParserOptions();
+		$popts = ParserOptions::newFromContext( $this->getContext() );
 		$popts->setTidy( true );
 		$popts->enableLimitReport( !$params['disablepp'] );
 
@@ -93,15 +93,11 @@ class ApiParse extends ApiBase {
 
 				// If for some reason the "oldid" is actually the current revision, it may be cached
 				if ( $titleObj->getLatestRevID() === intval( $oldid ) )  {
-					$articleObj = new Article( $titleObj, 0 );
-
 					// May get from/save to parser cache
-					$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid,
+					$p_result = $this->getParsedSectionOrText( $titleObj, $popts, $pageid,
 						 isset( $prop['wikitext'] ) ) ;
 				} else { // This is an old revision, so get the text differently
-					$this->text = $rev->getText( Revision::FOR_THIS_USER );
-
-					$wgTitle = $titleObj;
+					$this->text = $rev->getText( Revision::FOR_THIS_USER, $this->getUser() );
 
 					if ( $this->section !== false ) {
 						$this->text = $this->getSectionText( $this->text, 'r' . $rev->getId() );
@@ -152,13 +148,12 @@ class ApiParse extends ApiBase {
 				}
 				$wgTitle = $titleObj;
 
-				$articleObj = new Article( $titleObj, 0 );
 				if ( isset( $prop['revid'] ) ) {
-					$oldid = $articleObj->getRevIdFetched();
+					$oldid = $titleObj->getLatestRevID();
 				}
 
 				// Potentially cached
-				$p_result = $this->getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageid,
+				$p_result = $this->getParsedSectionOrText( $titleObj, $popts, $pageid,
 					 isset( $prop['wikitext'] ) ) ;
 			}
 		} else { // Not $oldid, $pageid, $page. Hence based on $text
@@ -308,18 +303,19 @@ class ApiParse extends ApiBase {
 	}
 
 	/**
-	 * @param $articleObj Article
 	 * @param $titleObj Title
 	 * @param $popts ParserOptions
 	 * @param $pageId Int
 	 * @param $getWikitext Bool
 	 * @return ParserOutput
 	 */
-	private function getParsedSectionOrText( $articleObj, $titleObj, $popts, $pageId = null, $getWikitext = false ) {
-		if ( $this->section !== false ) {
-			global $wgParser;
+	private function getParsedSectionOrText( $titleObj, $popts, $pageId = null, $getWikitext = false ) {
+		global $wgParser;
 
-			$this->text = $this->getSectionText( $articleObj->getRawText(), !is_null( $pageId )
+		$page = WikiPage::factory( $titleObj );
+
+		if ( $this->section !== false ) {
+			$this->text = $this->getSectionText( $page->getRawText(), !is_null( $pageId )
 					? 'page id ' . $pageId : $titleObj->getText() );
 
 			// Not cached (save or load)
@@ -327,12 +323,9 @@ class ApiParse extends ApiBase {
 		} else {
 			// Try the parser cache first
 			// getParserOutput will save to Parser cache if able
-			$pout = $articleObj->getParserOutput();
+			$pout = $page->getParserOutput( $popts );
 			if ( $getWikitext ) {
-				$rev = Revision::newFromTitle( $titleObj );
-				if ( $rev ) {
-					$this->text = $rev->getText();
-				}
+				$this->text = $page->getRawText();
 			}
 			return $pout;
 		}
