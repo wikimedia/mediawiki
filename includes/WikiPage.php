@@ -2792,7 +2792,7 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @return bool
 	 */
 	public function getIsDirty() {
-		return $this->isDirty();
+		return $this->isDirty;
 	}
 
 	/**
@@ -2849,6 +2849,8 @@ class PoolWorkArticleView extends PoolCounterWork {
 		if ( $isCurrent ) {
 			$this->page->doCascadeProtectionUpdates( $this->parserOutput );
 		}
+
+		return true;
 	}
 
 	/**
