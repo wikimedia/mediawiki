@@ -2113,8 +2113,9 @@ Veja também [[Special:WantedCategories|categorias pedidas]].',
 'linksearch-pat'   => 'Procurar padrão:',
 'linksearch-ns'    => 'Espaço nominal:',
 'linksearch-ok'    => 'Pesquisar',
-'linksearch-text'  => 'É possível utilizar "caracteres mágicos" como em "*.wikipedia.org".<br />
-Protocolos suportados: <tt>$1</tt>',
+'linksearch-text'  => 'É possível usar caracteres curinga, como "*.wikipedia.org".
+É necessário, pelo menos, um domínio de nível superior, por exemplo "*.org".<br />
+Protocolos suportados: <tt>$1</tt> (não adicionado nenhum desses em sua pesquisa).',
 'linksearch-line'  => '$1 está lincado a partir de $2',
 'linksearch-error' => "\"Caracteres mágicos\" (''wildcards'') só podem ser suados no início do endereço.",
 
