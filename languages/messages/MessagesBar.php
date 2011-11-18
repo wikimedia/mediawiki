@@ -584,6 +584,9 @@ Zua deiner Informazión fóigts Lésch- und Vaschiawungs-Logbiaché mid da Begry
 'post-expand-template-argument-warning'   => "'''Ówocht:''' Dé Seiten enthoit minderstens oah Argument in ner Vurlog, dés expandird z' gróss is. Dé Argumentt wern ignorird.",
 'post-expand-template-argument-category'  => 'Seiten, dé ignorirde Vurlongargumentt enthoiden',
 
+# "Undo" feature
+'undo-summary' => 'Änderrung $1 voh [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussión]]) ryckgängig gmocht.',
+
 # Account creation failure
 'cantcreateaccounttitle' => 'Benutzerkonto kå ned erstöd wern',
 
@@ -599,9 +602,11 @@ Zua deiner Informazión fóigts Lésch- und Vaschiawungs-Logbiaché mid da Begry
 'cur'                    => 'Aktuö',
 'next'                   => 'Naxte',
 'last'                   => 'Vurherige',
-'histlegend'             => 'Zum Ozoagn vo Änderungen einfach de zwoa Versionen auswähln und auf de Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
-* (Aktuell) = Untaschied zur aktuellen Version, (Vorherige) = Untaschied zur vorherigen Version
-* Uhrzeit/Datum = Version zu dera Zeit, Benutzername/IP-Adresse vom Bearbeiter, K = Kloane Änderung',
+'page_first'             => 'Auhfaung',
+'page_last'              => 'End',
+'histlegend'             => "Zur da Auhzoag voh dé Änderrungen oahfoch dé z' vagleichenden Versiónen auswön und d' Schoitflächen „{{int:compareselectedversions}}“ drucken.<br />
+* ({{int:cur}}) = Unterschiad zua da aktuön Versión, ({{int:last}}) = Unterschiad zua da vurhering Versión
+* Uarzeid/Daatum = Versión zua derer Zeid, Benutzernaum/IP-Adress vom Beorweiter, {{int:minoreditletter}} = Kloane Änderrung",
 'history-fieldset-title' => 'Suach in da Versiónsgschicht',
 'history-show-deleted'   => 'netter gléschde Versiónen',
 'histfirst'              => 'Öderste',
@@ -731,12 +736,12 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'group-suppress'   => 'Oversighter',
 'group-all'        => '(olle)',
 
-'group-user-member'          => 'Benutzer',
-'group-autoconfirmed-member' => 'Autómaatisch bstätigter Benutzer',
+'group-user-member'          => '{{GENDER:$1|Benutzer|Benutzerrin}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|Autómaatisch bstätigter Benutzer|Autómaatisch bstätigter Benutzerrin}}',
 'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administraator',
-'group-bureaucrat-member'    => 'Byrokraat',
-'group-suppress-member'      => 'Oversighter',
+'group-sysop-member'         => '{{GENDER:$1|Administraator|Administraatorin}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|Byrókraat|Byrókraatin}}',
+'group-suppress-member'      => '{{GENDER:$1|Oversighter|Oversighterrin}}',
 
 'grouppage-user'          => '{{ns:project}}:Benutzer',
 'grouppage-autoconfirmed' => '{{ns:project}}:Autómaatisch bstätigte Benutzer',
@@ -771,7 +776,7 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 'rcnote'                            => "Untn {{PLURAL:$1|is de letzte Ändarung|san de letztn '''$1''' Ändarungen}} {{PLURAL:$2|vum letztn|vu de letztn '''$2'''}} Tåg aufglist. Stãnd vum $4 um $5.",
 'rcnotefrom'                        => "Åzoagt wern d' Änderrungen seid  '''$2''' (max. '''$1''' Eihtrég).",
 'rclistfrom'                        => 'Netter Änderrungen seid $1 åzoang.',
-'rcshowhideminor'                   => 'kloane Ändarungen $1',
+'rcshowhideminor'                   => 'kloane Änderrungen $1',
 'rcshowhidebots'                    => 'Bots $1',
 'rcshowhideliu'                     => 'Ågmödte Benutzer $1',
 'rcshowhideanons'                   => 'Anónyme Benutzer $1',
@@ -937,7 +942,7 @@ Links aus Namensräume wern da net aufglistet.',
 'uncategorizedtemplates'  => 'Néd kategorisirde Vurlong',
 'unusedcategories'        => 'Néd bnutzde Kategorien',
 'unusedimages'            => 'Néd bnutzde Daatein',
-'popularpages'            => 'Dé bliabersten Seiten',
+'popularpages'            => 'Dé bliabtersten Seiten',
 'wantedcategories'        => 'Bnutzde, ower néd åglégte Kategorien',
 'wantedpages'             => 'Gwynschde Seiten',
 'wantedpages-badtitle'    => 'Ungütiger Titel im Ergeewnis: $1',
@@ -953,6 +958,10 @@ Links aus Namensräume wern da net aufglistet.',
 'shortpages'              => 'Kurze Seiten',
 'longpages'               => 'Långe Seiten',
 'deadendpages'            => 'Néd valinkende Seiten',
+'deadendpagestext'        => 'Dé fóigénden Seiten vaweisen néd auf aundre Seiten voh {{SITENAME}}.',
+'protectedpages'          => 'Gschytzde Seiten',
+'protectedpages-indef'    => 'Netter néd bschränkde gschytzde Seiten zoang',
+'protectedpages-cascade'  => 'Netter Seiten mid Kaskadenschutz',
 'usercreated'             => 'Erstöd am $1 um $2 Ur',
 'newpages'                => 'Neiche Seiten',
 'newpages-username'       => 'Benutzernåm:',
@@ -1014,6 +1023,7 @@ Links aus Namensräume wern da net aufglistet.',
 # E-mail user
 'mailnologin'   => 'Du bist néd auhgmödt',
 'emailuser'     => 'E-Póst an dén Benutzer',
+'emailpage'     => 'E-Mail aun Benutzer',
 'noemailtitle'  => 'Koah E-Mail-Adress',
 'emailfrom'     => 'Vo',
 'emailsend'     => 'Senden',
@@ -1081,23 +1091,28 @@ Um d\' Seiten voh deiner Beówochtungslisten ower z\' doah, bsuachst $UNWATCHURL
 Ryckmödungen und a weidre Hüf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'            => 'Seiten leschen',
-'confirm'               => 'Bstäting',
-'excontent'             => "Oider Inhoid: '$1'",
-'exblank'               => "D' Seiten is laar gween",
-'historywarning'        => "'''Ochtung:''' De Saiten, de du leschen mechst, hod a Versionsgschicht mid epper $1 {{PLURAL:$1|Version|Versionen}}:",
-'confirmdeletetext'     => 'Sie san dabei, a Seitn oda a Datei und alle zughörigen ältern Versionen
+'deletepage'             => 'Seiten leschen',
+'confirm'                => 'Bstäting',
+'excontent'              => "Oider Inhoid: '$1'",
+'exblank'                => "D' Seiten is laar gween",
+'historywarning'         => "'''Ochtung:''' De Saiten, de du leschen mechst, hod a Versionsgschicht mid epper $1 {{PLURAL:$1|Version|Versionen}}:",
+'confirmdeletetext'      => 'Sie san dabei, a Seitn oda a Datei und alle zughörigen ältern Versionen
 zum löschen. Bitte bestätigen Sie da dazu, dass Sie des wirklich tuan wolln, dass Sie de Konsequenzen verstengan
 und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] handeln.',
-'actioncomplete'        => 'Akzión beéndt',
-'actionfailed'          => 'Akzión föögschlong',
-'deletedtext'           => '„$1“ is glöscht worn. Im $2 findn Sie a Listn vo de letzten Löschungen.',
-'dellogpage'            => 'Lésch-Logbiache',
-'deletionlog'           => 'Lösch-Logbuach',
-'reverted'              => 'Auf a oide Version zruckgesetzt',
-'deletecomment'         => 'Grund:',
-'deleteotherreason'     => 'Ånderner/ergänzender Grund:',
-'deletereasonotherlist' => 'Åndrer Grund:',
+'actioncomplete'         => 'Akzión beéndt',
+'actionfailed'           => 'Akzión föögschlong',
+'deletedtext'            => '„$1“ is glöscht worn. Im $2 findn Sie a Listn vo de letzten Löschungen.',
+'dellogpage'             => 'Lésch-Logbiache',
+'deletionlog'            => 'Lösch-Logbuach',
+'reverted'               => 'Auf a oide Version zruckgesetzt',
+'deletecomment'          => 'Grund:',
+'deleteotherreason'      => 'Ånderner/ergänzender Grund:',
+'deletereasonotherlist'  => 'Åndrer Grund:',
+'deletereason-dropdown'  => '* Oigmoane Léschgrynd
+** Wunsch vom Autór
+** Urhéwerrechtsvalétzung
+** Vandalismus',
+'delete-edit-reasonlist' => 'Léschgrynd beorwaten',
 
 # Rollback
 'rollbacklink' => 'Zrucksétzen',
@@ -1124,11 +1139,13 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 'protect-expiring'            => 'bis zum $2 um $3 Uhr (UTC)',
 'protect-cascade'             => 'Kaskadiarade Sperr – ålle Voalång, de in dea Seitn eibundn han, wean emfåis gspead.',
 'protect-cantedit'            => "Du kãnnst de Spea vu dea Seitn ned ändan, weu'st dafia ned de passnde Berechtigung håst.",
+'protect-expiry-options'      => '1 Stund:1 hour,1 Dog:1 day,1 Wóch:1 week,2 Wócher:2 weeks,1 Mónad:1 month,3 Mónadt:3 months,6 Mónadt:6 months,1 Jor:1 year, Unbschränkt:infinite',
 'restriction-type'            => 'Schutzstaatus:',
 'restriction-level'           => 'Schutzheechen:',
 'minimum-size'                => 'Mindestgress',
 
 # Restrictions (nouns)
+'restriction-edit' => 'Werkeln',
 'restriction-move' => 'vaschiam',
 
 # Undelete

@@ -1891,7 +1891,9 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'linksearch-pat'   => 'Patrón de busca:',
 'linksearch-ns'    => 'Espaciu de nomes:',
 'linksearch-ok'    => 'Guetar',
-'linksearch-text'  => 'Puen usase comodinos como "*.wikipedia.org".<br />Protocolos almitíos: <tt>$1</tt>',
+'linksearch-text'  => 'Se puen usar comodinos como "*.wikipedia.org".
+Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
+Protocolos almitíos: <tt>$1</tt> (nun amiestes dengún d\'estos na to gueta).',
 'linksearch-line'  => '$1 enllaciáu dende $2',
 'linksearch-error' => 'Los comodinos namái puen apaecer al entamu del nome del güéspede.',
 
@@ -2532,6 +2534,7 @@ Por último, tamién pues usar un enllaz: p.e. [[{{#Special:Export}}/{{MediaWiki
 'exportcuronly'     => 'Amestar namái la revisión actual, non tol historial',
 'exportnohistory'   => "----
 '''Nota:''' Desactivóse la esportación del historial completu de páxines al traviés d'esti formulariu por motivos de rendimientu.",
+'exportlistauthors' => 'Incluir una llista completa de collaboradores pa cada páxina',
 'export-submit'     => 'Esportar',
 'export-addcattext' => 'Añader páxines dende la categoría:',
 'export-addcat'     => 'Amestar',

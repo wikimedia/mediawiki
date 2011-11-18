@@ -1610,6 +1610,7 @@ $1",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'צוטריט אָפגעזאָגט',
+'img-auth-badtitle'     => 'קען נישט שאפֿן א גילטיקן טיטל פֿון "$1"',
 'img-auth-nologinnWL'   => 'איר זענט נישט ארײַנלאגירט און "$1" איז נישט אין דער ווײַסער ליסטע.',
 'img-auth-nofile'       => 'טעקע "$1" עקזיסטירט נישט.',
 'img-auth-isdir'        => 'איר פֿארזיכט צוצוטרעטן אן ארכיוו "$1".
@@ -1694,21 +1695,22 @@ $1",
 'filerevert-success'        => "'''[[Media:$1|$1]]''' צוריקגשטעלט צו דער [$4 ווערסיע פֿון $3, $2].",
 
 # File deletion
-'filedelete'                  => 'מעק אויס $1',
-'filedelete-legend'           => 'מעק אויס טעקע',
-'filedelete-intro'            => "איר האַלט בײַ אויסמעקן די טעקע '''[[Media:$1|$1]]''' צוזאַמען מיט גאָר איר היסטאריע.",
-'filedelete-intro-old'        => "איר מעקט אויס די ווערסיע פֿון  '''[[Media:$1|$1]]''' פֿון [$4 $3, $2].",
-'filedelete-comment'          => 'אורזאַך:',
-'filedelete-submit'           => 'אויסמעקן',
-'filedelete-success'          => "'''$1''' איז געווען אויסגעמעקט.",
-'filedelete-success-old'      => "די ווערסיע פֿון '''[[Media:$1|$1]]''' פֿון $3, $2 איז געווארן אויסגעמעקט.",
-'filedelete-nofile'           => "'''$1''' עקזיסטירט נישט.",
-'filedelete-otherreason'      => 'אנדער/נאך א סיבה:',
-'filedelete-reason-otherlist' => 'אַנדער אורזאַך',
-'filedelete-reason-dropdown'  => '*אַלגעמיינע אויסמעקן סיבות
+'filedelete'                   => 'מעק אויס $1',
+'filedelete-legend'            => 'מעק אויס טעקע',
+'filedelete-intro'             => "איר האַלט בײַ אויסמעקן די טעקע '''[[Media:$1|$1]]''' צוזאַמען מיט גאָר איר היסטאריע.",
+'filedelete-intro-old'         => "איר מעקט אויס די ווערסיע פֿון  '''[[Media:$1|$1]]''' פֿון [$4 $3, $2].",
+'filedelete-comment'           => 'אורזאַך:',
+'filedelete-submit'            => 'אויסמעקן',
+'filedelete-success'           => "'''$1''' איז געווען אויסגעמעקט.",
+'filedelete-success-old'       => "די ווערסיע פֿון '''[[Media:$1|$1]]''' פֿון $3, $2 איז געווארן אויסגעמעקט.",
+'filedelete-nofile'            => "'''$1''' עקזיסטירט נישט.",
+'filedelete-otherreason'       => 'אנדער/נאך א סיבה:',
+'filedelete-reason-otherlist'  => 'אַנדער אורזאַך',
+'filedelete-reason-dropdown'   => '*אַלגעמיינע אויסמעקן סיבות
 ** קאפירעכט פֿאַרלעצונג
 ** דופליקאַט',
-'filedelete-edit-reasonlist'  => 'רעדאַקטירן אויסמעקן סיבות',
+'filedelete-edit-reasonlist'   => 'רעדאַקטירן אויסמעקן סיבות',
+'filedelete-maintenance-title' => 'מען קען נישט אויסמעקן די טעקע',
 
 # MIME search
 'mimesearch' => 'זוך MIME',
@@ -2197,6 +2199,7 @@ $UNWATCHURL
 
 זעט דעם [[Special:Log/delete| אויסמעקן לאג]] פֿאר א ליסטע פון די לעצטע אויסגעמעקטע און צוריקגעשטעלטע בלעטער.",
 'undelete-header'            => 'זעט [[Special:Log/delete|דעם אויסמעקונג זשורנאַל]] פֿאַר בלעטער וואָס זענען לעצטנס געווארן אויסגעמעקט recently deleted pages.',
+'undelete-search-title'      => 'זוכן אויסגעמעקטע בלעטער',
 'undelete-search-box'        => 'זוכן אויסגעמעקטע בלעטער',
 'undelete-search-prefix'     => 'ווײַז בלעטער וואס הייבן אן מיט:',
 'undelete-search-submit'     => 'זוכן',

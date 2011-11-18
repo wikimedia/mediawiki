@@ -30,6 +30,7 @@
  * @author Sunil Mohan
  * @author Taxman
  * @author Vibhijain
+ * @author Wikiconference
  * @author לערי ריינהארט
  * @author आलोक
  * @author रोहित रावत
@@ -583,6 +584,9 @@ $2',
 'passwordreset-legend'   => 'कूटशब्द रीसेट करें',
 'passwordreset-username' => 'सदस्यनाम:',
 'passwordreset-email'    => 'ई-मेल पता:',
+
+# Special:ChangeEmail
+'changeemail-cancel' => 'रद्द करें',
 
 # Edit page toolbar
 'bold_sample'     => 'मोटा पाठ',
