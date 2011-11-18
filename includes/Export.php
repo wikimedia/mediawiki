@@ -614,17 +614,11 @@ class XmlDumpWriter {
 
 	function writeContributor( $id, $text ) {
 		$out = "      <contributor>\n";
-		if ( $id ) {
+		if ( $id || !IP::isValid( $text ) ) {
 			$out .= "        " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
 			$out .= "        " . Xml::element( 'id', null, strval( $id ) ) . "\n";
 		} else {
-			if ( IP::isValid( $text ) ) {
-				$out .= "        " . Xml::elementClean( 'ip', null, strval( $text ) ) . "\n";
-			}
-			else {
-				$out .= "        " . Xml::elementClean( 'username', null, strval( $text ) ) . "\n";
-				$out .= "        " . Xml::element( 'id', null, strval( $id ) ) . "\n";
-			}
+			$out .= "        " . Xml::elementClean( 'ip', null, strval( $text ) ) . "\n";
 		}
 		$out .= "      </contributor>\n";
 		return $out;
