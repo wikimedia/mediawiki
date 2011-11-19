@@ -1020,7 +1020,8 @@ class SpecialSearch extends SpecialPage {
 	}
 
 	protected function shortDialog( $term ) {
-		$out = Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
+		$out = Html::hidden( 'title', $this->getTitle()->getPrefixedText() );
+		$out .= Html::hidden( 'profile', $this->profile ) . "\n";
 		// Term box
 		$out .= Html::input( 'search', $term, 'search', array(
 			'id' => $this->profile === 'advanced' ? 'powerSearchText' : 'searchText',

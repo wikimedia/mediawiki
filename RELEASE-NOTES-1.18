@@ -11,6 +11,9 @@ This is a release candidate of the MediaWiki 1.18 branch. Please test it and let
 know what you think of it. Beta releases are not recommended for use in
 production.
 
+=== Changes since 1.18 RC1 ===
+* (bug 32228) regression in Special:Search which did not conserve profile on new search
+
 === Changes since 1.18 beta 1 ===
 * (bug 31886) Wrong titles redirecting to Special:Badtitle in the 1.18 deployment.
 * (bug 32051) Fix description for wlprop=sizes.
