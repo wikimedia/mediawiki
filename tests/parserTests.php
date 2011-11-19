@@ -24,8 +24,8 @@
  * @ingroup Testing
  */
 
-$options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled' );
-$optionsWithArgs = array( 'regex', 'seed', 'setversion' );
+$otions = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record', 'run-disabled' );
+$optionsWithArgs = array( 'regex', 'filter', 'seed', 'setversion' );
 
 require_once( dirname( __FILE__ ) . '/../maintenance/commandLine.inc' );
 
@@ -41,6 +41,7 @@ Options:
   --color[=yes|no] Override terminal detection and force color output on or off
                    use wgCommandLineDarkBg = true; if your term is dark
   --regex          Only run tests whose descriptions which match given regex
+  --filter         Alias for --regex
   --file=<testfile> Run test cases from a custom file instead of parserTests.txt
   --record         Record tests in database
   --compare        Compare with recorded results, without updating the database.

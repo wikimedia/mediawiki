@@ -105,6 +105,9 @@ class ParserTest {
 
 		$this->showOutput = isset( $options['show-output'] );
 
+		if ( isset( $options['filter'] ) ) {
+			$options['regex'] = $options['filter'];
+		}
 
 		if ( isset( $options['regex'] ) ) {
 			if ( isset( $options['record'] ) ) {
