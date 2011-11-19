@@ -219,43 +219,38 @@ class ResourceLoader {
 		wfProfileIn( __METHOD__ );
 
 		// Allow multiple modules to be registered in one call
-		if ( is_array( $name ) ) {
-			foreach ( $name as $key => $value ) {
-				$this->register( $key, $value );
-			}
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		// Disallow duplicate registrations
-		if ( isset( $this->moduleInfos[$name] ) ) {
-			// A module has already been registered by this name
-			throw new MWException(
-				'ResourceLoader duplicate registration error. ' .
-				'Another module has already been registered as ' . $name
-			);
-		}
-
-		// Check $name for illegal characters
-		if ( preg_match( '/[|,!]/', $name ) ) {
-			throw new MWException( "ResourceLoader module name '$name' is invalid. Names may not contain pipes (|), commas (,) or exclamation marks (!)" );
-		}
-
-		// Attach module
-		if ( is_object( $info ) ) {
-			// Old calling convention
-			// Validate the input
-			if ( !( $info instanceof ResourceLoaderModule ) ) {
-				throw new MWException( 'ResourceLoader invalid module error. ' .
-					'Instances of ResourceLoaderModule expected.' );
+		$registrations = is_array( $name ) ? $name : array( $name => $info );
+		foreach ( $registrations as $name => $info ) {
+			// Disallow duplicate registrations
+			if ( isset( $this->moduleInfos[$name] ) ) {
+				// A module has already been registered by this name
+				throw new MWException(
+					'ResourceLoader duplicate registration error. ' .
+					'Another module has already been registered as ' . $name
+				);
 			}
 
-			$this->moduleInfos[$name] = array( 'object' => $info );
-			$info->setName( $name );
-			$this->modules[$name] = $info;
-		} else {
-			// New calling convention
-			$this->moduleInfos[$name] = $info;
+			// Check $name for illegal characters
+			if ( preg_match( '/[|,!]/', $name ) ) {
+				throw new MWException( "ResourceLoader module name '$name' is invalid. Names may not contain pipes (|), commas (,) or exclamation marks (!)" );
+			}
+
+			// Attach module
+			if ( is_object( $info ) ) {
+				// Old calling convention
+				// Validate the input
+				if ( !( $info instanceof ResourceLoaderModule ) ) {
+					throw new MWException( 'ResourceLoader invalid module error. ' .
+						'Instances of ResourceLoaderModule expected.' );
+				}
+
+				$this->moduleInfos[$name] = array( 'object' => $info );
+				$info->setName( $name );
+				$this->modules[$name] = $info;
+			} else {
+				// New calling convention
+				$this->moduleInfos[$name] = $info;
+			}
 		}
 
 		wfProfileOut( __METHOD__ );
