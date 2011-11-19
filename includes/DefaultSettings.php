@@ -2345,13 +2345,6 @@ $wgUseSiteJs = true;
 $wgUseSiteCss = true;
 
 /**
- * Set to false to disable application of access keys and tooltips,
- * eg to avoid keyboard conflicts with system keys or as a low-level
- * optimization.
- */
-$wgEnableTooltipsAndAccesskeys = true;
-
-/**
  * Break out of framesets. This can be used to prevent clickjacking attacks,
  * or to prevent external sites from framing your site with ads.
  */

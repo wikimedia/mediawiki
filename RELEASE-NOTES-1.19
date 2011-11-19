@@ -23,6 +23,7 @@ production.
 * Introduced $wgQueryPageDefaultLimit (defaults to 50) for the number of
   items to show by default on query pages (special pages such as Whatlinkshere).
 * (bug 32470) Increase the length of ug_group
+* (bug 32239) Removed wgEnableTooltipsAndAccesskeys
 
 === New features in 1.19 ===
 * (bug 19838) Possibility to get all interwiki prefixes if the interwiki
