@@ -483,6 +483,18 @@ class ChangesList extends ContextSource {
 	public function insertExtra( &$s, &$rc, &$classes ) {
 		## Empty, used for subclassers to add anything special.
 	}
+
+	protected function showAsUnpatrolled( RecentChange $rc ) {
+		$unpatrolled = false;
+		if ( !$rc->mAttribs['rc_patrolled'] ) {
+			if ( $this->getUser()->useRCPatrol() ) {
+				$unpatrolled = true;
+			} elseif ( $this->getUser()->useNPPatrol() && $rc->mAttribs['rc_new'] ) {
+				$unpatrolled = true;
+			}
+		}
+		return $unpatrolled;
+	}
 }
 
 
@@ -498,8 +510,9 @@ class OldChangesList extends ChangesList {
 	public function recentChangesLine( &$rc, $watched = false, $linenumber = null ) {
 		global $wgRCShowChangedSize;
 		wfProfileIn( __METHOD__ );
+
 		# Should patrol-related stuff be shown?
-		$unpatrolled = $this->getUser()->useRCPatrol() && !$rc->mAttribs['rc_patrolled'];
+		$unpatrolled = $this->showAsUnpatrolled( $rc );
 
 		$dateheader = ''; // $s now contains only <li>...</li>, for hooks' convenience.
 		$this->insertDateHeader( $dateheader, $rc->mAttribs['rc_timestamp'] );
@@ -633,11 +646,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 
 		# Should patrol-related stuff be shown?
-		if( $this->getUser()->useRCPatrol() ) {
-			$rc->unpatrolled = !$rc->mAttribs['rc_patrolled'];
-		} else {
-			$rc->unpatrolled = false;
-		}
+		$rc->unpatrolled = $this->showAsUnpatrolled( $rc );
 
 		$showdifflinks = true;
 		# Make article link
