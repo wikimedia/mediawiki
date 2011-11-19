@@ -297,7 +297,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$lang = $this->getLang();
 		$dm = $lang->getDirMark();
 
-		$title = Title::newFromID( $result->rc_cur_id );
+		$title = Title::newFromRow( $result );
 		$spanTime = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),
 			$lang->timeanddate( $result->rc_timestamp, true )
 		);
@@ -508,7 +508,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$fields = array(
 			'rc_namespace', 'rc_title', 'rc_cur_id', 'rc_user', 'rc_user_text',
 			'rc_comment', 'rc_timestamp', 'rc_patrolled','rc_id', 'rc_deleted',
-			'page_len AS length', 'page_latest AS rev_id', 'ts_tags', 'rc_this_oldid'
+			'page_len AS length', 'page_latest AS rev_id', 'ts_tags', 'rc_this_oldid',
+			'page_namespace', 'page_title'
 		);
 		$join_conds = array( 'page' => array( 'INNER JOIN', 'page_id=rc_cur_id' ) );
 
