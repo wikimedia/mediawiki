@@ -146,6 +146,7 @@ production.
 * (bug 32450) Scripts pages in MediaWiki: namespace parse [[Category:#]] links
 * (bug 32086) Special:PermanentLink now show an error message when no subpage
   was specified.
+* (bug 30368) Special:Newpages now shows the new page name for moved pages
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
