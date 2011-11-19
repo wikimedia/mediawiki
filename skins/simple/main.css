@@ -354,6 +354,13 @@ a.new,
 li.new {
 	text-decoration: line-through;
 }
+/**
++ * Overrides text justification (user preference)
++ * See bug 31990
++ */
+#catlinks {
+	text-align: center;
+}
 .catlinks {
 	text-align: center;
 	width: 80%;

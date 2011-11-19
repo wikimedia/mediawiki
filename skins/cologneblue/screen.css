@@ -103,10 +103,16 @@ td#top-syslinks {
 td.top-linkcollection {
 	text-align: right;
 }
+/**
+ * Overrides text justification (user preference)
+ * See bug 31990
+ */
+td.top-linkcollection #catlinks {
+	text-align: right;
+}
 td.top-subheader {
 	vertical-align: top;
 }
-
 td.bottom {
 	font-family: Verdana, Arial, sans-serif;
 	font-size: 10pt;
