@@ -297,7 +297,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$lang = $this->getLang();
 		$dm = $lang->getDirMark();
 
-		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
+		$title = Title::newFromID( $result->rc_cur_id );
 		$spanTime = Html::element( 'span', array( 'class' => 'mw-newpages-time' ),
 			$lang->timeanddate( $result->rc_timestamp, true )
 		);
