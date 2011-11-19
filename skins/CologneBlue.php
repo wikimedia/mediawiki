@@ -73,7 +73,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 
 		$s .= '</td><td class="top" id="top-syslinks" width="100%">';
 		$s .= $this->sysLinks();
-		$s .= '</td></tr><tr><td class="top-linkcollection">';
+		$s .= '</td></tr><tr><td class="top-subheader">';
 
 		$s .= '<font size="-1"><span id="sitesub">';
 		$s .= htmlspecialchars( wfMsg( 'sitesubtitle' ) ) . '</span></font>';
