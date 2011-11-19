@@ -120,10 +120,3 @@ img.thumbborder {
 	margin: .5em;
 	float: left;
 }
-
-#userlogin {
-	min-width: 20em;
-	max-width: 90%;
-	width: 40em;
-}
-
