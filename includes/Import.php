@@ -1246,14 +1246,14 @@ class WikiRevision {
 		$linkCache = LinkCache::singleton();
 		$linkCache->clear();
 
-		$article = new Article( $this->title );
-		$pageId = $article->getId();
-		if( $pageId == 0 ) {
+		$page = WikiPage::factory( $this->title );
+		if( !$page->exists() ) {
 			# must create the page...
-			$pageId = $article->insertOn( $dbw );
+			$pageId = $page->insertOn( $dbw );
 			$created = true;
 			$oldcountable = null;
 		} else {
+			$pageId = $page->getId();
 			$created = false;
 
 			$prior = $dbw->selectField( 'revision', '1',
@@ -1269,7 +1269,7 @@ class WikiRevision {
 					$this->title->getPrefixedText() . "]], timestamp " . $this->timestamp . "\n" );
 				return false;
 			}
-			$oldcountable = $article->isCountable();
+			$oldcountable = $page->isCountable();
 		}
 
 		# @todo FIXME: Use original rev_id optionally (better for backups)
@@ -1284,11 +1284,11 @@ class WikiRevision {
 			'minor_edit' => $this->minor,
 			) );
 		$revision->insertOn( $dbw );
-		$changed = $article->updateIfNewerOn( $dbw, $revision );
+		$changed = $page->updateIfNewerOn( $dbw, $revision );
 
 		if ( $changed !== false && !$this->mNoUpdates ) {
 			wfDebug( __METHOD__ . ": running updates\n" );
-			$article->doEditUpdates( $revision, $userObj, array( 'created' => $created, 'oldcountable' => $oldcountable ) );
+			$page->doEditUpdates( $revision, $userObj, array( 'created' => $created, 'oldcountable' => $oldcountable ) );
 		}
 
 		return true;
