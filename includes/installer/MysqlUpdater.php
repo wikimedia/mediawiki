@@ -203,6 +203,7 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @param $patchFile String: path to the patch to correct the field
 	 */
 	protected function checkBin( $table, $field, $patchFile ) {
+		$this->output( "Fixing $field encoding on $table table... " );
 		$tableName = $this->db->tableName( $table );
 		$res = $this->db->query( "SELECT $field FROM $tableName LIMIT 0", __METHOD__ );
 		$flags = explode( ' ', mysql_field_flags( $res->result, 0 ) );
@@ -210,7 +211,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		if ( in_array( 'binary', $flags ) ) {
 			$this->output( "...$table table has correct $field encoding.\n" );
 		} else {
-			$this->output( "Fixing $field encoding on $table table... " );
 			$this->applyPatch( $patchFile );
 			$this->output( "done.\n" );
 		}
@@ -225,16 +225,17 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @return Boolean
 	 */
 	protected function indexHasField( $table, $index, $field ) {
+		$this->output( "Checking whether the $index index on the $table table has the $field field..." );
 		$info = $this->db->indexInfo( $table, $index, __METHOD__ );
 		if ( $info ) {
 			foreach ( $info as $row ) {
 				if ( $row->Column_name == $field ) {
-					$this->output( "...index $index on table $table includes field $field\n" );
+					$this->output( "...index $index on table $table includes field $field.\n" );
 					return true;
 				}
 			}
 		}
-		$this->output( "...index $index on table $table has no field $field; adding\n" );
+		$this->output( "...index $index on table $table has no field $field; added.\n" );
 		return false;
 	}
 
@@ -243,15 +244,14 @@ class MysqlUpdater extends DatabaseUpdater {
 	 */
 	protected function doInterwikiUpdate() {
 		global $IP;
-
+		$this->output( 'Creating interwiki table...' );
 		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
 			$this->output( "...already have interwiki table\n" );
 			return;
 		}
 
-		$this->output( 'Creating interwiki table...' );
 		$this->applyPatch( 'patch-interwiki.sql' );
-		$this->output( "ok\n" );
+		$this->output( "done.\n" );
 		$this->output( 'Adding default interwiki definitions...' );
 		$this->applyPatch( "$IP/maintenance/interwiki.sql", true );
 		$this->output( "done.\n" );
@@ -261,16 +261,16 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * Check that proper indexes are in place
 	 */
 	protected function doIndexUpdate() {
+		$this->output( "Updating indexes to 20031107..." );
 		$meta = $this->db->fieldInfo( 'recentchanges', 'rc_timestamp' );
 		if ( $meta === false ) {
 			throw new MWException( 'Missing rc_timestamp field of recentchanges table. Should not happen.' );
 		}
 		if ( $meta->isMultipleKey() ) {
-			$this->output( "...indexes seem up to 20031107 standards\n" );
+			$this->output( "...indexes seem up to 20031107 standards.\n" );
 			return;
 		}
 
-		$this->output( "Updating indexes to 20031107..." );
 		$this->applyPatch( 'patch-indexes.sql', true );
 		$this->output( "done.\n" );
 	}
@@ -281,14 +281,14 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doFixAncientImagelinks() {
+		$this->output( "Fixing ancient broken imagelinks table..." );
 		$info = $this->db->fieldInfo( 'imagelinks', 'il_from' );
 		if ( !$info || $info->type() !== 'string' ) {
 			$this->output( "...il_from OK\n" );
 			return;
 		}
 
-		$this->output( "Fixing ancient broken imagelinks table.\n" );
-		$this->output( "NOTE: you will have to run maintenance/refreshLinks.php after this.\n" );
+		$this->output( "\nNOTE: you will have to run maintenance/refreshLinks.php after this..." );
 		$this->applyPatch( 'patch-fix-il_from.sql' );
 		$this->output( "done.\n" );
 	}
@@ -297,14 +297,14 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * Check if we need to add talk page rows to the watchlist
 	 */
 	function doWatchlistUpdate() {
+		$this->output( "Adding missing watchlist talk page rows... " );
 		$talk = $this->db->selectField( 'watchlist', 'count(*)', 'wl_namespace & 1', __METHOD__ );
 		$nontalk = $this->db->selectField( 'watchlist', 'count(*)', 'NOT (wl_namespace & 1)', __METHOD__ );
 		if ( $talk == $nontalk ) {
-			$this->output( "...watchlist talk page rows already present\n" );
+			$this->output( "watchlist talk page rows already present.\n" );
 			return;
 		}
 
-		$this->output( "Adding missing watchlist talk page rows... " );
 		$this->db->insertSelect( 'watchlist', 'watchlist',
 			array(
 				'wl_user' => 'wl_user',
@@ -507,12 +507,12 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doPagelinksUpdate() {
+		$this->output( "Converting links and brokenlinks tables to pagelinks... " );
 		if ( $this->db->tableExists( 'pagelinks', __METHOD__ ) ) {
 			$this->output( "...already have pagelinks table.\n" );
 			return;
 		}
 
-		$this->output( "Converting links and brokenlinks tables to pagelinks... " );
 		$this->applyPatch( 'patch-pagelinks.sql' );
 		$this->output( "done.\n" );
 
@@ -541,16 +541,16 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doUserUniqueUpdate() {
+		$this->output( "Adding unique index on user_name... " );
 		$duper = new UserDupes( $this->db, array( $this, 'output' ) );
 		if ( $duper->hasUniqueIndex() ) {
-			$this->output( "...already have unique user_name index.\n" );
+			$this->output( "already had unique user_name index.\n" );
 			return;
 		}
 
 		if ( !$duper->clearDupes() ) {
 			$this->output( "WARNING: This next step will probably fail due to unfixed duplicates...\n" );
 		}
-		$this->output( "Adding unique index on user_name... " );
 		$this->applyPatch( 'patch-user_nameindex.sql' );
 		$this->output( "done.\n" );
 	}
@@ -581,13 +581,13 @@ class MysqlUpdater extends DatabaseUpdater {
 
 		$this->output( "Adding user_groups table... " );
 		$this->applyPatch( 'patch-user_groups.sql' );
-		$this->output( "ok\n" );
+		$this->output( "ok.\n" );
 
 		if ( !$this->db->tableExists( 'user_rights', __METHOD__ ) ) {
 			if ( $this->db->fieldExists( 'user', 'user_rights', __METHOD__ ) ) {
 				$this->output( "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion..." );
-				$this->db->applyPatch( 'patch-user_rights.sql' );
-				$this->output( "ok\n" );
+				$this->applyPatch( 'patch-user_rights.sql' );
+				$this->output( "ok.\n" );
 			} else {
 				$this->output( "*** WARNING: couldn't locate user_rights table or field for upgrade.\n" );
 				$this->output( "*** You may need to manually configure some sysops by manipulating\n" );
@@ -623,13 +623,13 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * and update old broken items.
 	 */
 	protected function doWatchlistNull() {
+		$this->output( "Making wl_notificationtimestamp nullable... " );
 		$info = $this->db->fieldInfo( 'watchlist', 'wl_notificationtimestamp' );
 		if ( $info->isNullable() ) {
-			$this->output( "...wl_notificationtimestamp is already nullable.\n" );
+			$this->output( "wl_notificationtimestamp is already nullable.\n" );
 			return;
 		}
 
-		$this->output( "Making wl_notificationtimestamp nullable... " );
 		$this->applyPatch( 'patch-watchlist-null.sql' );
 		$this->output( "done.\n" );
 	}
@@ -640,26 +640,27 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * @see bug 3946
 	 */
 	protected function doPageRandomUpdate() {
+		$this->output( 'Set page_random to a random value...' );
 		$page = $this->db->tableName( 'page' );
 		$this->db->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", __METHOD__ );
 		$rows = $this->db->affectedRows();
 
 		if( $rows ) {
-			$this->output( "Set page_random to a random value on $rows rows where it was set to 0\n" );
+			$this->output( " set on $rows rows where it was 0.\n" );
 		} else {
-			$this->output( "...no page_random rows needed to be set\n" );
+			$this->output( "not needed.\n" );
 		}
 	}
 
 	protected function doTemplatelinksUpdate() {
+		$this->output( "Creating templatelinks table...\n" );
 		if ( $this->db->tableExists( 'templatelinks', __METHOD__ ) ) {
-			$this->output( "...templatelinks table already exists\n" );
+			$this->output( "templatelinks table already exists.\n" );
 			return;
 		}
 
-		$this->output( "Creating templatelinks table...\n" );
 		$this->applyPatch( 'patch-templatelinks.sql' );
-		$this->output( "Populating...\n" );
+		$this->output( "Populating templatelinks...\n" );
 		if ( wfGetLB()->getServerCount() > 1 ) {
 			// Slow, replication-friendly update
 			$res = $this->db->select( 'pagelinks', array( 'pl_from', 'pl_namespace', 'pl_title' ),
@@ -695,12 +696,15 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doBacklinkingIndicesUpdate() {
+		$this->output( 'Updating backlinking indexes...' );
 		if ( !$this->indexHasField( 'pagelinks', 'pl_namespace', 'pl_from' ) ||
 			!$this->indexHasField( 'templatelinks', 'tl_namespace', 'tl_from' ) ||
 			!$this->indexHasField( 'imagelinks', 'il_to', 'il_from' ) )
 		{
 			$this->applyPatch( 'patch-backlinkindexes.sql' );
-			$this->output( "...backlinking indices updated\n" );
+			$this->output( "done\n" );
+		} else {
+			$this->output( "already done.\n" );
 		}
 	}
 
@@ -710,43 +714,47 @@ class MysqlUpdater extends DatabaseUpdater {
 	 * -- Andrew Garrett, January 2007.
 	 */
 	protected function doRestrictionsUpdate() {
+		$this->output( "Creating page_restrictions table..." );
 		if ( $this->db->tableExists( 'page_restrictions', __METHOD__ ) ) {
 			$this->output( "...page_restrictions table already exists.\n" );
 			return;
 		}
 
-		$this->output( "Creating page_restrictions table..." );
 		$this->applyPatch( 'patch-page_restrictions.sql' );
 		$this->applyPatch( 'patch-page_restrictions_sortkey.sql' );
 		$this->output( "done.\n" );
 
-		$this->output( "Migrating old restrictions to new table...\n" );
+		$this->output( "Migrating old restrictions to new table..." );
 		$task = $this->maintenance->runChild( 'UpdateRestrictions' );
 		$task->execute();
+		$this->output( "done.\n" );
 	}
 
 	protected function doCategorylinksIndicesUpdate() {
+		$this->output( 'Updating categorylinks indexes...' );
 		if ( !$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_from' ) ) {
 			$this->applyPatch( 'patch-categorylinksindex.sql' );
-			$this->output( "...categorylinks indices updated\n" );
+			$this->output( "done.\n" );
+		} else {
+			$this->output( "already done.\n" );
 		}
 	}
 
 	protected function doCategoryPopulation() {
+		$this->output(
+			"Populating category table, printing progress markers. " .
+			"For large databases, you\n" .
+			"may want to hit Ctrl-C and do this manually with maintenance/\n" .
+			"populateCategory.php..."
+		);
 		if ( $this->updateRowExists( 'populate category' ) ) {
 			$this->output( "...category table already populated.\n" );
 			return;
 		}
 
-		$this->output(
-			"Populating category table, printing progress markers. " .
-			"For large databases, you\n" .
-			"may want to hit Ctrl-C and do this manually with maintenance/\n" .
-			"populateCategory.php.\n"
-		);
 		$task = $this->maintenance->runChild( 'PopulateCategory' );
 		$task->execute();
-		$this->output( "Done populating category table.\n" );
+		$this->output( "done.\n" );
 	}
 
 	protected function doPopulateParentId() {
@@ -754,20 +762,21 @@ class MysqlUpdater extends DatabaseUpdater {
 			$this->output(
 				"Populating rev_parent_id fields, printing progress markers. For large\n" .
 				"databases, you may want to hit Ctrl-C and do this manually with\n" .
-				"maintenance/populateParentId.php.\n" );
+				"maintenance/populateParentId.php..." );
 
 			$task = $this->maintenance->runChild( 'PopulateParentId' );
 			$task->execute();
+			$this->output( "done.\n" );
 		}
 	}
 
 	protected function doMaybeProfilingMemoryUpdate() {
+		$this->output( "Adding pf_memory field to table profiling..." );
 		if ( !$this->db->tableExists( 'profiling', __METHOD__ ) ) {
 			// Simply ignore
 		} elseif ( $this->db->fieldExists( 'profiling', 'pf_memory', __METHOD__ ) ) {
 			$this->output( "...profiling table has pf_memory field.\n" );
 		} else {
-			$this->output( "Adding pf_memory field to table profiling..." );
 			$this->applyPatch( 'patch-profiling-memory.sql' );
 			$this->output( "done.\n" );
 		}
@@ -783,57 +792,57 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doUniquePlTlIl() {
+		$this->output( "Making pl_namespace, tl_namespace and il_to indices UNIQUE... " );
 		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace' );
 		if ( is_array( $info ) && !$info[0]->Non_unique ) {
 			$this->output( "...pl_namespace, tl_namespace, il_to indices are already UNIQUE.\n" );
 			return;
 		}
 
-		$this->output( "Making pl_namespace, tl_namespace and il_to indices UNIQUE... " );
 		$this->applyPatch( 'patch-pl-tl-il-unique.sql' );
 		$this->output( "done.\n" );
 	}
 
 	protected function renameEuWikiId() {
+		$this->output( "Renaming eu_wiki_id -> eu_local_id... " );
 		if ( $this->db->fieldExists( 'external_user', 'eu_local_id', __METHOD__ ) ) {
 			$this->output( "...eu_wiki_id already renamed to eu_local_id.\n" );
 			return;
 		}
 
-		$this->output( "Renaming eu_wiki_id -> eu_local_id... " );
 		$this->applyPatch( 'patch-eu_local_id.sql' );
 		$this->output( "done.\n" );
 	}
 
 	protected function doUpdateMimeMinorField() {
+		$this->output( "Altering all *_mime_minor fields to 100 bytes in size ... " );
 		if ( $this->updateRowExists( 'mime_minor_length' ) ) {
 			$this->output( "...*_mime_minor fields are already long enough.\n" );
 			return;
 		}
 
-		$this->output( "Altering all *_mime_minor fields to 100 bytes in size ... " );
 		$this->applyPatch( 'patch-mime_minor_length.sql' );
 		$this->output( "done.\n" );
 	}
 
 	protected function doClFieldsUpdate() {
+		$this->output( 'Updating categorylinks (again)...' );
 		if ( $this->updateRowExists( 'cl_fields_update' ) ) {
 			$this->output( "...categorylinks up-to-date.\n" );
 			return;
 		}
 
-		$this->output( 'Updating categorylinks (again)...' );
 		$this->applyPatch( 'patch-categorylinks-better-collation2.sql' );
 		$this->output( "done.\n" );
 	}
 
 	protected function doLangLinksLengthUpdate() {
+		$this->output( 'Updating length of ll_lang in langlinks...' );
 		$langlinks = $this->db->tableName( 'langlinks' );
 		$res = $this->db->query( "SHOW COLUMNS FROM $langlinks LIKE 'll_lang'" );
 		$row = $this->db->fetchObject( $res );
 
 		if ( $row && $row->Type == "varbinary(10)" ) {
-			$this->output( 'Updating length of ll_lang in langlinks...' );
 			$this->applyPatch( 'patch-langlinks-ll_lang-20.sql' );
 			$this->output( "done.\n" );
 		} else {
@@ -842,13 +851,13 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	protected function doUserNewTalkTimestampNotNull() {
+		$this->output( "Making user_last_timestamp nullable... " );
 		$info = $this->db->fieldInfo( 'user_newtalk', 'user_last_timestamp' );
 		if ( $info->isNullable() ) {
 			$this->output( "...user_last_timestamp is already nullable.\n" );
 			return;
 		}
 
-		$this->output( "Making user_last_timestamp nullable... " );
 		$this->applyPatch( 'patch-user-newtalk-timestamp-null.sql' );
 		$this->output( "done.\n" );
 	}
