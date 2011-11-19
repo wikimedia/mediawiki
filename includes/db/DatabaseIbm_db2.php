@@ -984,7 +984,11 @@ class DatabaseIbm_db2 extends DatabaseBase {
 	public function update( $table, $values, $conds, $fname = 'DatabaseIbm_db2::update',
 		$options = array() )
 	{
-		$table = $this->tableName( $table );
+		if ( is_array( $table ) ) {
+			$table =  implode( ',', array_map( array( $this, 'tableName' ), $table ) );
+		} else {
+			$table = $this->tableName( $table );
+		}
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET "
 			. $this->makeList( $values, LIST_SET_PREPARED );

@@ -1197,7 +1197,11 @@ class DatabaseOracle extends DatabaseBase {
 	function update( $table, $values, $conds, $fname = 'DatabaseOracle::update', $options = array() ) {
 		global $wgContLang;
 
-		$table = $this->tableName( $table );
+		if ( is_array( $table ) ) {
+			$table =  implode( ',', array_map( array( $this, 'tableName' ), $table ) );
+		} else {
+			$table = $this->tableName( $table );
+		}
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET ";
 
