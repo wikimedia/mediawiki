@@ -54,7 +54,7 @@ class ApiExpandTemplates extends ApiBase {
 
 		// Parse text
 		global $wgParser;
-		$options = new ParserOptions();
+		$options = ParserOptions::newFromContext( $this->getContext() );
 
 		if ( $params['includecomments'] ) {
 			$options->setRemoveComments( false );
