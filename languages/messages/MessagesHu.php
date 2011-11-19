@@ -825,6 +825,11 @@ Lehet, hogy már sikeresen megváltoztattad a jelszavad, vagy pedig időközben 
 'passwordreset-capture-help'      => 'Ha kipipálod a dobozt, amellett, hogy kiküldődik az üzenet a felhasználónak, megjelenik számodra (az ideiglenes jelszavakkal együtt)',
 'passwordreset-email'             => 'E-mail cím:',
 'passwordreset-emailtitle'        => 'A(z) {{SITENAME}}-fiók adatai',
+'passwordreset-emailtext-ip'      => 'Valaki (vélhetően Te, a $1 IP-címrő)l emlékeztetők kért a {{SITENAME}} ($4) oldalon felvett fiókokról. A következő felhasználói {{PLURAL:$3|fiók van|fiókok vannak}} hozzárendelve ehhez az e-mail címhez:
+
+$2
+
+{{PLURAL:$3|Ez az ideiglenes jelszó|Ezek az ideiglenes jelszavak}} $5 nap múlva {{PLURAL:$3|jár|járnak}} le. Jelentkezz be, és cseréld le a jelszavadat. Ha valaki más kérte az emlékeztetőt, vagy eszedbe jutott a régi jelszó, és nem akarod lecserélni a jelszavadat, hagyd figyelmen kívül ezt az üzenetet, és használd a régi jelszavadat.',
 'passwordreset-emailelement'      => 'Felhaználónév: $1
 Ideiglenes jelszó: $2',
 'passwordreset-emailsent'         => 'Emlékeztető e-mail elküldve.',
@@ -1106,26 +1111,25 @@ További információkat a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAM
 További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a tartalmát], ha szeretnéd.",
 'rev-suppressed-text-unhide'  => "A lap ezen változatát '''elrejtették'''.
-További részleteket az [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} elrejtési naplóban] találhatsz.
+További részleteket az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplóban] találhatsz.
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a tartalmát], ha szeretnéd.",
 'rev-deleted-text-view'       => "A lap ezen változatát '''törölték'''.
-Adminisztrátorként megnézheted; további részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+Te megnézheted. További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-suppressed-text-view'    => "A lap ezen változatát '''elrejtették'''.
-Mivel adminisztrátor vagy, még mindig megtekintheted.
-További részleteket az [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} elrejtési naplóban] találhatsz.",
+Te megtekintheted. További részleteket az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplóban] találhatsz.",
 'rev-deleted-no-diff'         => "Nem nézheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
 További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-suppressed-no-diff'      => "Nem nézheted meg ezt a változtatást, mert az egyik változatot '''törölték'''.",
 'rev-deleted-unhide-diff'     => "A változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
 További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
-Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
+Te még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
 'rev-suppressed-unhide-diff'  => "A változatok közötti eltéréshez kiválasztott változatok egyike '''el lett rejtve'''.
 Részleteket az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplójában találhatsz].
-Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
+Te még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
 'rev-deleted-diff-view'       => "A változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
-Mivel adminisztrátor vagy, még mindig megtekintheted a változatok közötti eltérést; további részleteket pedig a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+Te még mindig megtekintheted a változatok közötti eltérést. További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-suppressed-diff-view'    => "A változatok közötti eltéréshez kiválasztott változatok egyike '''el lett rejtve'''.
-Mivel adminisztrátor vagy, még mindig megtekintheted a változatok közötti eltérést; további részleteket pedig az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplójában találhatsz].",
+Te még mindig megtekintheted a változatok közötti eltérést. További részleteket az [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} elrejtési naplójában találhatsz].",
 'rev-delundel'                => 'megjelenítés/elrejtés',
 'rev-showdeleted'             => 'megjelenítés',
 'revisiondelete'              => 'Változatok törlése vagy helyreállítása',
@@ -1532,10 +1536,11 @@ A műveletet nem lehet visszavonni.',
 'right-passwordreset'         => 'Jelszó visszaállítási emailek megtekintése',
 
 # User rights log
-'rightslog'      => 'Szerkesztői jogosultságok naplója',
-'rightslogtext'  => 'Ez a rendszernapló a felhasználó jogosultságok változásait mutatja.',
-'rightslogentry' => 'megváltoztatta $1 szerkesztő felhasználó jogait (régi: $2; új: $3)',
-'rightsnone'     => '(semmi)',
+'rightslog'                  => 'Szerkesztői jogosultságok naplója',
+'rightslogtext'              => 'Ez a rendszernapló a felhasználó jogosultságok változásait mutatja.',
+'rightslogentry'             => 'megváltoztatta $1 szerkesztő felhasználó jogait (régi: $2; új: $3)',
+'rightslogentry-autopromote' => 'automatikusan $2 helyett $3 jogokat kapott',
+'rightsnone'                 => '(semmi)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'                 => 'lap olvasása',
@@ -2093,8 +2098,8 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'linksearch-pat'   => 'Keresett minta:',
 'linksearch-ns'    => 'Névtér:',
 'linksearch-ok'    => 'keresés',
-'linksearch-text'  => 'Helyettesítő karaktereket is lehet használni, például "*.wikipedia.org".<br />
-Támogatott protokollok: <tt>$1</tt>',
+'linksearch-text'  => 'Helyettesítő karaktereket is lehet használni, például "*.wikipedia.org". Legalább egy felső szintű tartománynak lennie kell, például "*.org"<br />
+Támogatott protokollok: <tt>$1</tt> (ezeket ne írd be a keresésbe).',
 'linksearch-line'  => '$1 hivatkozva innen: $2',
 'linksearch-error' => 'Helyettesítő karakterek csak a cím elején szerepelhetnek.',
 
@@ -2883,18 +2888,19 @@ Mentsd el a számítógépedre, majd töltsd fel ide.',
 # Stylesheets
 'common.css'   => '/* Közös CSS az összes felületnek */',
 'monobook.css' => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
-'vector.css'   => '/******************************************************************************************\\
-*                   Ezek a stílusok csak a Vector felületre vonatkoznak                    *
-*    A nem kifejezetten Vector-specifikus stílusokat a [[MediaWiki:Common.css]]-be írd!    *
-\\******************************************************************************************/',
+'vector.css'   => '/* A Vector felületet használó szerkesztők számára betöltendő JavaScriptek */',
 
 # Scripts
-'common.js'   => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
-'monobook.js' => '/* A Monobook felületet használó szerkesztők számára betöltendő JavaScriptek */',
-'vector.js'   => '/******************************************************************************************\\
-*                   Ezek a szkriptek csak a Vector skin alatt futnak le.                   *
-*    A nem kifejezetten Vector-specifikus szkripteket a [[MediaWiki:Common.js]]-be írd!    *
-\\******************************************************************************************/',
+'common.js'      => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
+'standard.js'    => '/* A Klasszikus felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'nostalgia.js'   => '/* A Nosztalgia felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'cologneblue.js' => '/* A Kölni kék felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'monobook.js'    => '/* A Monobook felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'myskin.js'      => '/* A MySkin felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'chick.js'       => '/* A Chick felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'simple.js'      => '/* Az Egyszerű felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'modern.js'      => '/* A Modern felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'vector.js'      => '/* A Vector felületet használó szerkesztők számára betöltendő JavaScriptek */',
 
 # Metadata
 'notacceptable' => 'A wiki kiszolgálója nem tudja olyan formátumban biztosítani az adatokat, amit a kliens olvasni tud.',

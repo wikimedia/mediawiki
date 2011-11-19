@@ -624,7 +624,7 @@ Viimeinen tietokantakysely, jota yritettiin, oli:
 Se tehtiin funktiosta ”<tt>$2</tt>”.
 Tietokanta palautti virheen ”<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. Tietokanta palautti virheen ”$3: $4”.',
-'laggedslavemode'      => 'Varoitus: Sivu ei välttämättä sisällä viimeisimpiä muutoksia.',
+'laggedslavemode'      => "'''Varoitus:''' Sivu ei välttämättä sisällä viimeisimpiä muutoksia.",
 'readonly'             => 'Tietokanta on lukittu',
 'enterlockreason'      => 'Anna lukituksen syy sekä sen arvioitu poistamisaika',
 'readonlytext'         => 'Tietokanta on tällä hetkellä lukittu. Uusia sivuja ei voi luoda eikä muitakaan muutoksia tehdä. Syynä ovat todennäköisimmin rutiininomaiset tietokannan ylläpitotoimet.
@@ -669,7 +669,7 @@ Joku muu on saattanut poistaa sen.',
 'viewsourcetext'       => 'Voit tarkastella ja kopioida tämän sivun lähdekoodia:',
 'viewyourtext'         => "Voit tarkastella ja kopioida lähdekoodin '''tekemistäsi muutoksista''' tähän sivuun:",
 'protectedinterface'   => 'Tämä sivu sisältää ohjelmiston käyttöliittymätekstiä ja on suojattu häiriköinnin estämiseksi.',
-'editinginterface'     => "'''Varoitus.''' Muokkaat sivua, joka sisältää ohjelmiston käyttöliittymätekstiä.
+'editinginterface'     => "'''Varoitus:''' Muokkaat sivua, joka sisältää ohjelmiston käyttöliittymätekstiä.
 Muutokset tähän sivuun vaikuttavat muiden käyttäjien käyttöliittymän ulkoasuun.
 Viestien kääntäminen tulisi tehdä [//translatewiki.net/wiki/Main_Page?setlang=fi translatewiki.netissä] – MediaWikin kotoistusprojektissa.",
 'sqlhidden'            => '(SQL-kysely piilotettu)',
@@ -1021,11 +1021,11 @@ Se on jo olemassa.',
 'expensive-parserfunction-warning'        => 'Tällä sivulla on liian monta hitaiden laajennusfunktioiden kutsua.
 Kutsuja pitäisi olla alle $2 {{PLURAL:$2|kappale|kappaletta}}, mutta nyt niitä on $1 {{PLURAL:$1|kappale|kappaletta}}.',
 'expensive-parserfunction-category'       => 'Liiaksi hitaita jäsentimen laajennusfunktioita käyttävät sivut',
-'post-expand-template-inclusion-warning'  => 'Varoitus: Sisällytettyjen mallineiden koko on liian suuri.
-Joitakin mallineita ei ole sisällytetty.',
+'post-expand-template-inclusion-warning'  => "'''Varoitus:''' Sisällytettyjen mallineiden koko on liian suuri.
+Joitakin mallineita ei ole sisällytetty.",
 'post-expand-template-inclusion-category' => 'Mallineiden sisällytyksen kokorajan ylittävät sivut',
-'post-expand-template-argument-warning'   => 'Varoitus: Tällä sivulla on ainakin yksi mallineen muuttuja, jonka sisällytetty koko on liian suuri.
-Nämä muuttujat on jätetty käsittelemättä.',
+'post-expand-template-argument-warning'   => "'''Varoitus:''' Tällä sivulla on ainakin yksi mallineen muuttuja, jonka sisällytetty koko on liian suuri.
+Nämä muuttujat on jätetty käsittelemättä.",
 'post-expand-template-argument-category'  => 'Käsittelemättömiä mallinemuuttujia sisältävät sivut',
 'parser-template-loop-warning'            => 'Mallinesilmukka havaittu: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Mallineen rekursioraja ylittyi ($1)',
@@ -2730,9 +2730,9 @@ Tallenna tiedot koneellesi ja tuo ne tällä sivulla.',
 # Import log
 'importlogpage'                    => 'Tuontiloki',
 'importlogpagetext'                => 'Loki toisista wikeistä tuoduista sivuista.',
-'import-logentry-upload'           => 'toi sivun ”[[$1]]” lähettämällä tiedoston',
+'import-logentry-upload'           => 'toi sivun [[$1]] lähettämällä tiedoston',
 'import-logentry-upload-detail'    => '{{PLURAL:$1|yksi versio|$1 versiota}}',
-'import-logentry-interwiki'        => 'toi toisesta wikistä sivun ”$1”',
+'import-logentry-interwiki'        => 'toi toisesta wikistä sivun $1',
 'import-logentry-interwiki-detail' => '{{PLURAL:$1|yksi versio|$1 versiota}} wikistä $2',
 
 # Tooltip help for the actions
@@ -3370,7 +3370,8 @@ Kaikki muut linkit ovat poikkeuksia eli toisin sanoen sivuja, joissa tiedostoa s
 Postitusohjelma palautti: $1',
 'confirmemail_invalid'      => 'Varmennuskoodi ei kelpaa. Koodi on voinut vanhentua.',
 'confirmemail_needlogin'    => 'Sinun täytyy $1, jotta voisit varmistaa sähköpostiosoitteesi.',
-'confirmemail_success'      => 'Sähköpostiosoitteesi on nyt varmennettu. Voit kirjautua sisään.',
+'confirmemail_success'      => 'Sähköpostiosoitteesi on nyt varmennettu.
+Voit [[Special:UserLogin|kirjautua sisään]].',
 'confirmemail_loggedin'     => 'Sähköpostiosoitteesi on nyt varmennettu.',
 'confirmemail_error'        => 'Jokin epäonnistui varmennuksen tallentamisessa.',
 'confirmemail_subject'      => '{{GRAMMAR:genitive|{{SITENAME}}}} sähköpostiosoitteen varmennus',
@@ -3517,7 +3518,7 @@ Voit myös muokata listaa [[Special:EditWatchlist|tavalliseen tapaan]].',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tuntematon laajennuskoodi ”$1”.',
-'duplicate-defaultsort' => 'Varoitus: Oletuslajitteluavain ”$2” korvaa aiemman oletuslajitteluavaimen ”$1”.',
+'duplicate-defaultsort' => "'''Varoitus:''' Oletuslajitteluavain ”$2” korvaa aiemman oletuslajitteluavaimen ”$1”.",
 
 # Special:Version
 'version'                       => 'Versio',

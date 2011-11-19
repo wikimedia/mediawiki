@@ -1758,24 +1758,25 @@ Indholdet på dens [$2 filbeskrivelsesside] er vist herunder.',
 'filerevert-badversion'     => 'Der findes ingen lokal udgave af denne fil med det opgivne tidsstempel.',
 
 # File deletion
-'filedelete'                  => 'Slet $1',
-'filedelete-legend'           => 'Slet fil',
-'filedelete-intro'            => "Du er ved at slette filen '''[[Media:$1|$1]]''' sammen med hele dens historik.",
-'filedelete-intro-old'        => '<span class="plainlinks">Du er ved at slette en tidligere version af \'\'\'[[Media:$1|$1]]\'\'\' fra [$4 $2, $3].</span>',
-'filedelete-comment'          => 'Begrundelse:',
-'filedelete-submit'           => 'Slet',
-'filedelete-success'          => "'''$1''' er blevet slettet.",
-'filedelete-success-old'      => "Versionen af '''[[Media:$1|$1]]''' fra $2 $3 er blevet slettet.",
-'filedelete-nofile'           => "'''$1''' findes ikke.",
-'filedelete-nofile-old'       => "Det er ingen version af '''$1''' med de anførte attributter.",
-'filedelete-otherreason'      => 'Anden/uddybende begrundelse:',
-'filedelete-reason-otherlist' => 'Anden begrundelse',
-'filedelete-reason-dropdown'  => '*Hyppige sletningsbegrundelser
+'filedelete'                   => 'Slet $1',
+'filedelete-legend'            => 'Slet fil',
+'filedelete-intro'             => "Du er ved at slette filen '''[[Media:$1|$1]]''' sammen med hele dens historik.",
+'filedelete-intro-old'         => '<span class="plainlinks">Du er ved at slette en tidligere version af \'\'\'[[Media:$1|$1]]\'\'\' fra [$4 $2, $3].</span>',
+'filedelete-comment'           => 'Begrundelse:',
+'filedelete-submit'            => 'Slet',
+'filedelete-success'           => "'''$1''' er blevet slettet.",
+'filedelete-success-old'       => "Versionen af '''[[Media:$1|$1]]''' fra $2 $3 er blevet slettet.",
+'filedelete-nofile'            => "'''$1''' findes ikke.",
+'filedelete-nofile-old'        => "Det er ingen version af '''$1''' med de anførte attributter.",
+'filedelete-otherreason'       => 'Anden/uddybende begrundelse:',
+'filedelete-reason-otherlist'  => 'Anden begrundelse',
+'filedelete-reason-dropdown'   => '*Hyppige sletningsbegrundelser
 ** Ophavsretskrænkelse
 ** Dubletfil
 ** Filen er ubrugt',
-'filedelete-edit-reasonlist'  => 'Rediger sletningsårsager',
-'filedelete-maintenance'      => 'Sletning og gendannelse af filer er midlertidigt forhindret på grund af vedligeholdelse.',
+'filedelete-edit-reasonlist'   => 'Rediger sletningsårsager',
+'filedelete-maintenance'       => 'Sletning og gendannelse af filer er midlertidigt forhindret på grund af vedligeholdelse.',
+'filedelete-maintenance-title' => 'Kan ikke slette fil',
 
 # MIME search
 'mimesearch'         => 'Søge efter MIME-type',
@@ -1966,7 +1967,9 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-pat'   => 'Søg efter links til:',
 'linksearch-ns'    => 'Navnerum:',
 'linksearch-ok'    => 'Søg',
-'linksearch-text'  => 'Wildcards som "*.wikipedia.org" kan benyttes.<br />Understøttede protokoller: <tt>$1</tt>',
+'linksearch-text'  => 'Wildcards som "*.wikipedia.org" kan benyttes.
+Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
+Understøttede protokoller: <tt>$1</tt> (tilføj ikke protokollerne til din søgning).',
 'linksearch-line'  => '$2 linker til $1',
 'linksearch-error' => 'Wildcards må kun benyttes i starten af hostnavnet.',
 
@@ -2574,6 +2577,7 @@ For at eksportere sider skal du skrive sidetitlerne i tekstboksen herunder med �
 Hvis du kun vil have den seneste version, kan du også bruge en henvisning, for eksempel [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] for siden "[[{{MediaWiki:Mainpage}}]]".',
 'exportcuronly'     => 'Eksportér kun den nuværende version, ikke hele historikken',
 'exportnohistory'   => "---- '''Bemærk:''' Eksporten af en komplet versionshistorik er pga. ydelsesårsager pt. ikke mulig.",
+'exportlistauthors' => 'Inkluder en komplet liste over bidragyderne til hver side',
 'export-submit'     => 'Eksporter',
 'export-addcattext' => 'Tilføj sider fra kategori:',
 'export-addcat'     => 'Tilføj',

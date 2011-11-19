@@ -1861,23 +1861,24 @@ Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esime
 'filerevert-badversion'     => 'Failist ei ole kohalikku versiooni tagatud ajamarkeeringuga.',
 
 # File deletion
-'filedelete'                  => 'Kustuta $1',
-'filedelete-legend'           => 'Faili kustutamine',
-'filedelete-intro'            => "Oled kustutamas faili '''[[Media:$1|$1]]''' ja kogu selle ajalugu.",
-'filedelete-intro-old'        => "Sa kustutad faili '''[[Media:$1|$1]]''' seisuga [$4 $3, $2] kasutusel olnud versiooni.",
-'filedelete-comment'          => 'Põhjus:',
-'filedelete-submit'           => 'Kustuta',
-'filedelete-success'          => "'''$1''' on kustutatud.",
-'filedelete-success-old'      => "Faili '''[[Media:$1|$1]]''' seisuga $3, $2 kasutusel olnud versioon on kustutatud.",
-'filedelete-nofile'           => "Faili '''$1''' ei ole.",
-'filedelete-nofile-old'       => "Failist '''$1''' ei ole soovitud versiooni.",
-'filedelete-otherreason'      => 'Muu või täiendav põhjus:',
-'filedelete-reason-otherlist' => 'Muu põhjus',
-'filedelete-reason-dropdown'  => '*Harilikud kustutamise põhjused
+'filedelete'                   => 'Kustuta $1',
+'filedelete-legend'            => 'Faili kustutamine',
+'filedelete-intro'             => "Oled kustutamas faili '''[[Media:$1|$1]]''' ja kogu selle ajalugu.",
+'filedelete-intro-old'         => "Sa kustutad faili '''[[Media:$1|$1]]''' seisuga [$4 $3, $2] kasutusel olnud versiooni.",
+'filedelete-comment'           => 'Põhjus:',
+'filedelete-submit'            => 'Kustuta',
+'filedelete-success'           => "'''$1''' on kustutatud.",
+'filedelete-success-old'       => "Faili '''[[Media:$1|$1]]''' seisuga $3, $2 kasutusel olnud versioon on kustutatud.",
+'filedelete-nofile'            => "Faili '''$1''' ei ole.",
+'filedelete-nofile-old'        => "Failist '''$1''' ei ole soovitud versiooni.",
+'filedelete-otherreason'       => 'Muu või täiendav põhjus:',
+'filedelete-reason-otherlist'  => 'Muu põhjus',
+'filedelete-reason-dropdown'   => '*Harilikud kustutamise põhjused
 ** Autoriõiguste rikkumine
 ** Duplikaat',
-'filedelete-edit-reasonlist'  => 'Redigeeri kustutamise põhjuseid',
-'filedelete-maintenance'      => 'Failide kustutamine ja taastamine on hoolduse ajaks keelatud.',
+'filedelete-edit-reasonlist'   => 'Redigeeri kustutamise põhjuseid',
+'filedelete-maintenance'       => 'Failide kustutamine ja taastamine on hoolduse ajaks keelatud.',
+'filedelete-maintenance-title' => 'Faili ei saa kustutada',
 
 # MIME search
 'mimesearch'         => 'MIME otsing',
@@ -2072,8 +2073,8 @@ Vaata ka [[Special:WantedCategories|puuduvaid kategooriaid]].',
 'linksearch-ns'    => 'Nimeruum:',
 'linksearch-ok'    => 'Otsi',
 'linksearch-text'  => 'Metamärgina võib kasutada tärni, näiteks "*.wikipedia.org".
-
-Toetatud protokollid: <tt>$1</tt>',
+Otsingus peab olema vähemalt tipptaseme domeen, näiteks "*.org".<br />
+Toetatud protokollid: <tt>$1</tt> (otsingus ära neid kasuta).',
 'linksearch-line'  => '$1 on lingitud leheküljelt $2',
 'linksearch-error' => 'Metamärk võib olla ainult internetiaadressi alguses.',
 

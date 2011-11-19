@@ -3581,7 +3581,11 @@ Variants for Chinese language
 'exif-gpsdirection-m' => '磁方位',
 
 'exif-dc-contributor' => '貢献者',
+'exif-dc-coverage'    => 'メディアの空間的または時間的範囲',
 'exif-dc-date'        => '日付',
+'exif-dc-publisher'   => '公開者',
+'exif-dc-relation'    => '関連メディア',
+'exif-dc-rights'      => '権利',
 'exif-dc-source'      => 'ソースメディア',
 'exif-dc-type'        => 'メディアの種類',
 
