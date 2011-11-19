@@ -31,7 +31,7 @@ INSERT INTO &mw_prefix.mwuser
 
 CREATE TABLE &mw_prefix.user_groups (
   ug_user   NUMBER      DEFAULT 0 NOT NULL,
-  ug_group  VARCHAR2(16)     NOT NULL
+  ug_group  VARCHAR2(32)     NOT NULL
 );
 ALTER TABLE &mw_prefix.user_groups ADD CONSTRAINT &mw_prefix.user_groups_fk1 FOREIGN KEY (ug_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 CREATE UNIQUE INDEX &mw_prefix.user_groups_u01 ON &mw_prefix.user_groups (ug_user,ug_group);
@@ -518,7 +518,7 @@ CREATE TABLE &mw_prefix.trackbacks (
   tb_title  VARCHAR2(255)     NOT NULL,
   tb_url    VARCHAR2(255)     NOT NULL,
   tb_ex     CLOB,
-  tb_name   VARCHAR2(255) 
+  tb_name   VARCHAR2(255)
 );
 ALTER TABLE &mw_prefix.trackbacks ADD CONSTRAINT &mw_prefix.trackbacks_pk PRIMARY KEY (tb_id);
 ALTER TABLE &mw_prefix.trackbacks ADD CONSTRAINT &mw_prefix.trackbacks_fk1 FOREIGN KEY (tb_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
@@ -677,33 +677,7 @@ CREATE TABLE &mw_prefix.config (
   cf_value blob NOT NULL
 );
 ALTER TABLE &mw_prefix.config ADD CONSTRAINT &mw_prefix.config_pk PRIMARY KEY (cf_name);
--- leaving index out for now ... 
-
-CREATE TABLE &mw_prefix.globaltemplatelinks (
-	gtl_from_wiki 				VARCHAR2(64) NOT NULL,
-	gtl_from_page					NUMBER NOT NULL,
-	gtl_from_namespace		NUMBER NOT NULL,
-	gtl_from_title				VARCHAR2(255) NOT NULL,
-	gtl_to_prefix					VARCHAR2(32) NOT NULL,
-	gtl_to_namespace			NUMBER NOT NULL,
-	gtl_to_namespacetext	VARCHAR2(255) NOT NULL,
-	gtl_to_title					VARCHAR2(255) NOT NULL
-);
-CREATE UNIQUE INDEX &mw_prefix.globaltemplatelinks_u01 ON &mw_prefix.globaltemplatelinks (gtl_to_prefix, gtl_to_namespace, gtl_to_title, gtl_from_wiki, gtl_from_page);
-CREATE UNIQUE INDEX &mw_prefix.globaltemplatelinks_u02 ON &mw_prefix.globaltemplatelinks (gtl_from_wiki, gtl_from_page, gtl_to_prefix, gtl_to_namespace, gtl_to_title);
-
-CREATE TABLE &mw_prefix.globalnamespaces (
-	gn_wiki						VARCHAR2(64) NOT NULL,
-	gn_namespace			NUMBER NOT NULL,
-	gn_namespacetext	VARCHAR2(255) NOT NULL
-);
-CREATE UNIQUE INDEX &mw_prefix.globalnamespaces_u01 ON &mw_prefix.globalnamespaces (gn_wiki, gn_namespace, gn_namespacetext);
-
-CREATE TABLE &mw_prefix.globalinterwiki (
-	giw_wikiid VARCHAR2(64) NOT NULL,
-	giw_prefix VARCHAR2(32) NOT NULL
-);
-CREATE UNIQUE INDEX &mw_prefix.globalinterwiki_u01 ON &mw_prefix.globalinterwiki (giw_wikiid, giw_prefix);
+-- leaving index out for now ...
 
 -- do not prefix this table as it breaks parserTests
 CREATE TABLE wiki_field_info_full (
@@ -713,9 +687,9 @@ data_default VARCHAR2(4000),
 data_length NUMBER NOT NULL,
 data_type VARCHAR2(106),
 not_null CHAR(1) NOT NULL,
-prim NUMBER(1), 
+prim NUMBER(1),
 uniq NUMBER(1),
-nonuniq NUMBER(1) 
+nonuniq NUMBER(1)
 );
 ALTER TABLE wiki_field_info_full ADD CONSTRAINT wiki_field_info_full_pk PRIMARY KEY (table_name, column_name);
 
