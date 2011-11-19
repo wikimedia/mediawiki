@@ -38,7 +38,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 	function sortDescending() { return false; }
 
 	function getPageHeader() {
-		return wfMsgExt( 'brokenredirectstext', array( 'parse' ) );
+		return $this->msg( 'brokenredirectstext' )->parseAsBlock();
 	}
 
 	function getQueryInfo() {
@@ -103,7 +103,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 		$links = array();
 		$links[] = Linker::linkKnown(
 			$fromObj,
-			wfMsgHtml( 'brokenredirects-edit' ),
+			$this->msg( 'brokenredirects-edit' )->escaped(),
 			array(),
 			array( 'action' => 'edit' )
 		);
@@ -116,18 +116,18 @@ class BrokenRedirectsPage extends PageQueryPage {
 		);
 		$arr = $this->getLang()->getArrow();
 
-		$out = $from . wfMsg( 'word-separator' );
+		$out = $from . $this->msg( 'word-separator' )->escaped();
 
 		if( $this->getUser()->isAllowed( 'delete' ) ) {
 			$links[] = Linker::linkKnown(
 				$fromObj,
-				wfMsgHtml( 'brokenredirects-delete' ),
+				$this->msg( 'brokenredirects-delete' )->escaped(),
 				array(),
 				array( 'action' => 'delete' )
 			);
 		}
 
-		$out .= wfMsg( 'parentheses', $this->getLang()->pipeList( $links ) );
+		$out .= $this->msg( 'parentheses' )->rawParams( $this->getLang()->pipeList( $links ) )->escaped();
 		$out .= " {$arr} {$to}";
 		return $out;
 	}
