@@ -2573,8 +2573,8 @@ Please note that other web sites may link to a file with a direct URL, and so ma
 'pubmedurl' => '//www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract', # do not translate or duplicate this message to other languages
 
 # Special:Log
-'specialloguserlabel'  => 'User:',
-'speciallogtitlelabel' => 'Title:',
+'specialloguserlabel'  => 'Performer:',
+'speciallogtitlelabel' => 'Target (title or user):',
 'log'                  => 'Logs',
 'all-logs-page'        => 'All public logs',
 'alllogstext'          => 'Combined display of all available logs of {{SITENAME}}.
