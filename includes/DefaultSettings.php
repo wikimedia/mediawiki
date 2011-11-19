@@ -1876,19 +1876,19 @@ $wgExtraLanguageNames = array();
  * and excludes them when running the transstat.php script.
  */
 $wgDummyLanguageCodes = array(
-	'als',		# => 'gsw'
-	'bat-smg',	# => 'sgs'
-	'be-x-old',	# => 'be-tarask'
-	'bh',		# => 'bho'
-	'fiu-vro',	# => 'vro'
-	'nb',		# => 'no'
-	'qqq',		# Used for message documentation.
-	'qqx',		# Used for viewing message keys.
-	'roa-rup',	# => 'rup'
-	'simple',	# => 'en'
-	'zh-classical',	# => 'lzh'
-	'zh-min-nan',	# => 'nan'
-	'zh-yue',	# => 'yue'
+	'als' => 'gsw',
+	'bat-smg' => 'sgs',
+	'be-x-old' => 'be-tarask',
+	'bh' => 'bho',
+	'fiu-vro' => 'vro',
+	'nb' => 'no',
+	'qqq' => 'qqq', # Used for message documentation.
+	'qqx' => 'qqx', # Used for viewing message keys.
+	'roa-rup' => 'rup',
+	'simple' => 'en',
+	'zh-classical' => 'lzh',
+	'zh-min-nan' => 'nan',
+	'zh-yue' => 'yue',
 );
 
 /**
