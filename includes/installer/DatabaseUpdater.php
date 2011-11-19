@@ -666,18 +666,4 @@ abstract class DatabaseUpdater {
 		$cl->execute();
 		$this->output( "Rebuilding localisation cache done.\n" );
 	}
-
-	/**
-	 * Increases the length of the user_group field
-	 */
-	protected function doIncreaseUserGroupLength() {
-		$this->output( 'Increasing the length of the user_group...' );
-		if ( $this->updateRowExists( 'user_groups_length' ) ) {
-			$this->output( "...user_groups field is already long enough.\n" );
-			return;
-		}
-		$this->applyPatch( 'patch-ug_group-length-increase.sql' );
-		$this->insertUpdateRow( 'user_groups_length' );
-		$this->output( "done.\n" );
-	}
 }
