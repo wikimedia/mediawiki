@@ -103,6 +103,9 @@ td#top-syslinks {
 td.top-linkcollection {
 	text-align: right;
 }
+td.top-subheader {
+	vertical-align: top;
+}
 
 td.bottom {
 	font-family: Verdana, Arial, sans-serif;
