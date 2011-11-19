@@ -358,7 +358,10 @@ class LocalisationCache {
 		$deps = $this->store->get( $code, 'deps' );
 		$keys = $this->store->get( $code, 'list', 'messages' );
 		$preload = $this->store->get( $code, 'preload' );
-		$this->store->close( $code );
+		if( $this->store instanceof LCStore_CDB ) {
+			// Dont leave open filehandler behind after being called
+			$this->store->close( $code );
+		}
 		// Different keys may expire separately, at least in LCStore_Accel
 		if ( $deps === null || $keys === null || $preload === null ) {
 			wfDebug( __METHOD__."($code): cache missing, need to make one\n" );
