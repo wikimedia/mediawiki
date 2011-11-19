@@ -18,4 +18,4 @@ echo "Starting up MediaWiki at http://localhost:$PORT/"
 echo ""
 
 cd "$DEV/../../"; # $IP
-"$PHP" -S "localhost:$PORT"
+"$PHP" -S "localhost:$PORT" "$DEV/router.php"
