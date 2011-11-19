@@ -100,6 +100,8 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['namespace'] = '';
 		}
 
+		$this->opts['nsInvert'] = (bool) $request->getVal( 'nsInvert' );
+
 		$this->opts['tagfilter'] = (string) $request->getVal( 'tagfilter' );
 
 		// Allows reverts to have the bot flag in recent changes. It is just here to
@@ -167,6 +169,7 @@ class SpecialContributions extends SpecialPage {
 				'month' => $this->opts['month'],
 				'deletedOnly' => $this->opts['deletedOnly'],
 				'topOnly' => $this->opts['topOnly'],
+				'nsInvert' => $this->opts['nsInvert'],
 			) );
 			if( !$pager->getNumRows() ) {
 				$out->addWikiMsg( 'nocontribs', $target );
@@ -354,6 +357,10 @@ class SpecialContributions extends SpecialPage {
 			$this->opts['namespace'] = '';
 		}
 
+		if( !isset( $this->opts['nsInvert'] ) ) {
+			$this->opts['nsInvert'] = '';
+		}
+
 		if( !isset( $this->opts['contribs'] ) ) {
 			$this->opts['contribs'] = 'user';
 		}
@@ -381,7 +388,7 @@ class SpecialContributions extends SpecialPage {
 		$f = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'class' => 'mw-contributions-form' ) );
 
 		# Add hidden params for tracking except for parameters in $skipParameters
-		$skipParameters = array( 'namespace', 'deletedOnly', 'target', 'contribs', 'year', 'month', 'topOnly' );
+		$skipParameters = array( 'namespace', 'nsInvert', 'deletedOnly', 'target', 'contribs', 'year', 'month', 'topOnly' );
 		foreach ( $this->opts as $name => $value ) {
 			if( in_array( $name, $skipParameters ) ) {
 				continue;
@@ -404,6 +411,7 @@ class SpecialContributions extends SpecialPage {
 				Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
 				Xml::namespaceSelector( $this->opts['namespace'], '' )
 			) .
+			Xml::checkLabel( wfMsg('invert'), 'nsInvert', 'nsInvert', $this->opts['nsInvert'] ) . '&nbsp;' .
 			Xml::checkLabel( wfMsg( 'history-show-deleted' ),
 				'deletedOnly', 'mw-show-deleted-only', $this->opts['deletedOnly'] ) . '<br />' .
 			Xml::tags( 'p', null, Xml::checkLabel( wfMsg( 'sp-contributions-toponly' ),
@@ -446,6 +454,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$this->contribs = isset( $options['contribs'] ) ? $options['contribs'] : 'users';
 		$this->namespace = isset( $options['namespace'] ) ? $options['namespace'] : '';
 		$this->tagFilter = isset( $options['tagfilter'] ) ? $options['tagfilter'] : false;
+		$this->nsInvert = isset( $options['nsInvert'] ) ? $options['nsInvert'] : false;
 
 		$this->deletedOnly = !empty( $options['deletedOnly'] );
 		$this->topOnly = !empty( $options['topOnly'] );
@@ -468,6 +477,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$user = $this->getUser();
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
+
 		// Paranoia: avoid brute force searches (bug 17342)
 		if( !$user->isAllowed( 'deletedhistory' ) ) {
 			$conds[] = $this->mDb->bitAnd('rev_deleted',Revision::DELETED_USER) . ' = 0';
@@ -539,7 +549,11 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function getNamespaceCond() {
 		if( $this->namespace !== '' ) {
-			return array( 'page_namespace' => (int)$this->namespace );
+			if ( $this->nsInvert ) {
+				return array( 'page_namespace != ' . (int)$this->namespace );
+			} else {
+				return array( 'page_namespace' => (int)$this->namespace );
+			}
 		} else {
 			return array();
 		}
