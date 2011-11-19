@@ -142,6 +142,8 @@ production.
 * (bug 32168) fixed - wfExpandUrl expands dot segments now
 * (bug 31535) Upload comments now truncated properly, and don't have brackets
 * (bug 32450) Scripts pages in MediaWiki: namespace parse [[Category:#]] links 
+* (bug 32086) Special:PermanentLink now show an error message when no subpage
+  was specified.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
