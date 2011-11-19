@@ -234,9 +234,8 @@ class WebInstaller_Language extends WebInstallerPage {
 
 		$languages = Language::getLanguageNames();
 		ksort( $languages );
-		$dummies = array_flip( $wgDummyLanguageCodes );
 		foreach ( $languages as $code => $lang ) {
-			if ( isset( $dummies[$code] ) ) continue;
+			if ( isset( $wgDummyLanguageCodes[$code] ) ) continue;
 			$s .= "\n" . Xml::option( "$code - $lang", $code, $code == $selectedCode );
 		}
 		$s .= "\n</select>\n";
