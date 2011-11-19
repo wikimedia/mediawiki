@@ -518,8 +518,6 @@ production.
 * (bug 31674) Can't edit watchlist if it contains special pages.
 * (bug 32100) Installer complains about Suhosin GET limit even if it is
   already set above 1024 bytes.
-* (bug 32086) Special:PermanentLink now show an error message when no subpage
-  was specified.
 
 === API changes in 1.18 ===
 * BREAKING CHANGE: action=watch now requires POST and token.
