@@ -222,7 +222,7 @@ abstract class DatabaseUpdater {
 	 * @param $what Array: what updates to perform
 	 */
 	public function doUpdates( $what = array( 'core', 'extensions', 'purge', 'stats' ) ) {
-		global $wgVersion;
+		global $wgLocalisationCacheConf, $wgVersion;
 
 		$what = array_flip( $what );
 		if ( isset( $what['core'] ) ) {
@@ -235,9 +235,12 @@ abstract class DatabaseUpdater {
 
 		$this->setAppliedUpdates( $wgVersion, $this->updates );
 
-		if( isset( $what['purge'] ) ) {
+		if ( isset( $what['purge'] ) ) {
 			$this->purgeCache();
-			$this->rebuildLocalisationCache();
+
+			if ( $wgLocalisationCacheConf['manualRecache'] ) {
+				$this->rebuildLocalisationCache();
+			}
 		}
 		if ( isset( $what['stats'] ) ) {
 			$this->checkStats();
