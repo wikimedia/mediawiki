@@ -1343,9 +1343,9 @@ Tölvupóstfang þitt er ekki gefið upp þegar aðrir notendur hafa samband vi�
 # Rights
 'right-read'                  => 'Lesa síður',
 'right-edit'                  => 'Breyta síðum',
-'right-createpage'            => 'Gera síður (sem eru ekki spjallsíður)',
-'right-createtalk'            => 'Gera spjallsíður',
-'right-createaccount'         => 'Gera nýja notandaaðganga',
+'right-createpage'            => 'Skapa síður (sem eru ekki spjallsíður)',
+'right-createtalk'            => 'Skapa spjallsíður',
+'right-createaccount'         => 'Stofna nýja notandaaðganga',
 'right-minoredit'             => 'Merkja sem minniháttarbreytingar',
 'right-move'                  => 'Færa síður',
 'right-move-subpages'         => 'Færa síður með undirsíðum þeirra',
@@ -1768,7 +1768,7 @@ Leitarstrengurinn á að vera á þessu formi: efnistag/myndasnið, t.d. <tt>ima
 
 # Unused templates
 'unusedtemplates'     => 'Ónotuð snið',
-'unusedtemplatestext' => 'Þetta er listi yfir allar síður í {{ns:sniða}} nafnrýminu sem ekki eru notaðar í neinum öðrum síðum. Munið að gá að öðrum tenglum í sniðin áður en þeim er eytt.',
+'unusedtemplatestext' => 'Þetta er listi yfir allar síður í {{ns:snið}} nafnrýminu sem ekki eru notaðar í neinum öðrum síðum. Munið að gá að öðrum tenglum í sniðin áður en þeim er eytt.',
 'unusedtemplateswlh'  => 'aðrir tenglar',
 
 # Random page

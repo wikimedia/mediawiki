@@ -3870,7 +3870,8 @@ $1 is maxaperture in APEX units (APEX aperture units = 2log<sub>2</sub>(f-number
 'exif-iimcategory-clj' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-dis' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-fin' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
-'exif-iimcategory-edu' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
+'exif-iimcategory-edu' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}.
+{{Identical|Education}}',
 'exif-iimcategory-evn' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-hth' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
 'exif-iimcategory-hum' => 'Displayed as part of the iimcategory field if the 3 letter code is recognized, or as part {{msg-mw|exif-subjectnewscode-value}}',
