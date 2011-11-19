@@ -47,6 +47,7 @@ class OracleUpdater extends DatabaseUpdater {
 			array( 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1_field.sql' ),
 			array( 'doRemoveNotNullEmptyDefaults2' ),
 			array( 'addIndex', 'page', 'i03', 'patch-page_redirect_namespace_len.sql' ),
+			array( 'doIncreaseUserGroupLength' ),
 
 			// till 2.0 i guess
 			array( 'doRebuildDuplicateFunction' ),
