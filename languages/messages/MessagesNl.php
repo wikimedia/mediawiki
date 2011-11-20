@@ -703,7 +703,7 @@ Gegevens op deze pagina worden niet ververst.',
 Functie: $1<br />
 Zoekopdracht: $2',
 'viewsource'           => 'Brontekst bekijken',
-'viewsource-title'     => 'Bron bekijken van $1',
+'viewsource-title'     => 'Brontekst bekijken van $1',
 'actionthrottled'      => 'Handeling tegengehouden',
 'actionthrottledtext'  => 'Als maatregel tegen spam is het aantal keren per tijdseenheid dat u deze handeling kunt verrichten beperkt.
 De limiet is overschreden.
@@ -844,7 +844,7 @@ Wacht even voordat u het opnieuw probeert.',
 
 # E-mail sending
 'php-mail-error-unknown' => 'Er is een onbekende fout opgetreden in de mail()-functie van PHP',
-'user-mail-no-addy'      => 'Geprobeerd een e-mail te verzenden zonder een e-mailadres',
+'user-mail-no-addy'      => 'Geprobeerd een e-mail te verzenden zonder een e-mailadres.',
 
 # Change password dialog
 'resetpass'                 => 'Wachtwoord wijzigen',
@@ -878,7 +878,7 @@ Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aan
 'passwordreset-capture-help'       => 'Als u dit vakje aanvinkt, wordt de e-mail (met het tijdelijke wachtwoord) naar de gebruiker verzonden en ook aan u weergegeven.',
 'passwordreset-email'              => 'E-mailadres:',
 'passwordreset-emailtitle'         => 'Gebruikersgegevens op {{SITENAME}}',
-'passwordreset-emailtext-ip'       => 'Iemand, waarschijnlijk u, vanaf het IP-adres $1, heeft uw gebruikersgegevens voor {{SITENAME}} ($4) opgevraagd.
+'passwordreset-emailtext-ip'       => 'Iemand, waarschijnlijk u, heeft vanaf het IP-adres $1 uw gebruikersgegevens voor {{SITENAME}} ($4) opgevraagd.
 De volgende {{PLURAL:$3|gebruiker is|gebruikers zijn}} gekoppeld aan dit e-mailadres:
 
 $2
@@ -943,13 +943,13 @@ Tijdelijk wachtwoord: $2',
 Uw IP-adres wordt opgeslagen als u wijzigingen op deze pagina maakt.",
 'anonpreviewwarning'               => "''U bent niet aangemeld.''
 ''Door uw bewerking op te slaan wordt uw IP-adres opgeslagen in de paginageschiedenis.''",
-'missingsummary'                   => "'''Herinnering:''' u hebt geen samenvatting opgegeven voor uw bewerking.
-Als u nogmaals op ''Pagina opslaan'' klikt wordt de bewerking zonder samenvatting opgeslagen.",
+'missingsummary'                   => "'''Herinnering:''' u hebt geen bewerkingssamenvatting opgegeven.
+Als u nogmaals op \"{{int:savearticle}}\" klikt wordt de bewerking zonder samenvatting opgeslagen.",
 'missingcommenttext'               => 'Plaats uw opmerking hieronder.',
 'missingcommentheader'             => "'''Let op:''' U hebt geen onderwerp/kop voor deze opmerking opgegeven.
 Als u opnieuw op \"{{int:savearticle}}\" klikt, wordt uw wijziging zonder een onderwerp/kop opgeslagen.",
-'summary-preview'                  => 'Samenvatting nakijken:',
-'subject-preview'                  => 'Nakijken onderwerp/kop:',
+'summary-preview'                  => 'Bewerkingssamenvatting nakijken:',
+'subject-preview'                  => 'Onderwerp/kop nakijken:',
 'blockedtitle'                     => 'Gebruiker is geblokkeerd',
 'blockedtext'                      => '\'\'\'Uw gebruiker of IP-adres is geblokkeerd.\'\'\'
 
@@ -1008,7 +1008,7 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} de logboeken doorzoeken]</span>.',
 'userpage-userdoesnotexist'        => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "<nowiki>$1</nowiki>").
-Controleer of u deze pagina wel wilt aanmaken/bewerken.',
+Controleer of u deze pagina wel wilt aanmaken of bewerken.',
 'userpage-userdoesnotexist-view'   => 'De gebruiker "$1" is niet geregistreerd.',
 'blocked-notice-logextract'        => 'Deze gebruiker is op het moment geblokkeerd.
 De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',

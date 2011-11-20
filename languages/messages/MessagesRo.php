@@ -343,7 +343,7 @@ pe titlul secțiunii (JavaScript)',
 'tog-ccmeonemails'            => 'Doresc să primesc o copie a mesajelor e-mail pe care le trimit',
 'tog-diffonly'                => 'Nu arăta conținutul paginii sub dif',
 'tog-showhiddencats'          => 'Arată categoriile ascunse',
-'tog-noconvertlink'           => 'Dezactivați conversia titlurilor',
+'tog-noconvertlink'           => 'Dezactivează conversia titlurilor',
 'tog-norollbackdiff'          => 'Nu arăta diferența după efectuarea unei reveniri',
 
 'underline-always'  => 'Întotdeauna',
@@ -3264,6 +3264,7 @@ Altele vor fi ascunse implicit.
 'exif-compression-2' => 'CCITT Grupa 3 Lungimea codificării Huffman modificată de dimensiune 1',
 'exif-compression-3' => 'CCITT Grupa 3 codificare fax',
 'exif-compression-4' => 'CCITT Grupa 4 codificare fax',
+'exif-compression-6' => 'JPEG (vechi)',
 
 'exif-copyrighted-true'  => 'Sub incidența drepturilor de autor',
 'exif-copyrighted-false' => 'Domeniu public',

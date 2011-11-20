@@ -663,6 +663,7 @@ Ako to nije slučaj, možda se radi o softverskoj grešci. Molimo da u tom sluč
 'badarticleerror'      => 'Ovu radnju nije moguće izvesti s tom stranicom.',
 'cannotdelete'         => 'Ne može se obrisati stranica ili datoteka "$1".
 Moguće je da ju je netko drugi već obrisao.',
+'cannotdelete-title'   => 'Brisanje stranice "$1" nije moguće',
 'badtitle'             => 'Loš naslov',
 'badtitletext'         => 'Navedeni naslov stranice nepravilan ili loše formirana interwiki poveznica.',
 'perfcached'           => 'Sljedeći podaci su iz međuspremnika i možda nisu najsvježiji:',
@@ -3516,6 +3517,20 @@ Također možete koristiti [[Special:EditWatchlist|standardni editor]].',
 'watchlisttools-view' => 'Pregled promjena praćenih stranica',
 'watchlisttools-edit' => 'Pregled i uređivanje praćenih stranica',
 'watchlisttools-raw'  => 'Uređivanje praćenih stranica u okviru za uređivanje',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'muhàrem',
+'hijri-calendar-m2'  => 'sàfer',
+'hijri-calendar-m3'  => 'rebiulèvel',
+'hijri-calendar-m4'  => 'rebiuláhir',
+'hijri-calendar-m5'  => 'džumadelula',
+'hijri-calendar-m6'  => 'džumadelahire',
+'hijri-calendar-m7'  => 'rèdžeb',
+'hijri-calendar-m8'  => 'šàbān',
+'hijri-calendar-m9'  => 'ramàzān',
+'hijri-calendar-m10' => 'šèvāl',
+'hijri-calendar-m11' => 'zulkáde',
+'hijri-calendar-m12' => 'zulhidže',
 
 # Core parser functions
 'unknown_extension_tag' => "Nepoznat ''tag'' ekstenzije \"\$1\"",
