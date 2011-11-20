@@ -167,6 +167,8 @@ production.
 * The API now respects $wgShowHostnames and won't share the hostname in
   severedby if it's set to false
 * wlexcludeuser parameter added to ApiFeedWatchlist
+* (bug 7304) Links on redirect pages no longer cause the redirect page to show
+  up as a redirect to the linked page on Special:Whatlinkshere
 
 === Languages updated in 1.19 ===
 
