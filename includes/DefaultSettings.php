@@ -557,6 +557,13 @@ $wgCheckFileExtensions = true;
  */
 $wgStrictFileExtensions = true;
 
+/**
+ * Setting this to true will disable the upload system's checks for HTML/JavaScript.
+ * THIS IS VERY DANGEROUS on a publicly editable site, so USE wgGroupPermissions
+ * TO RESTRICT UPLOADING to only those that you trust
+ */
+$wgDisableUploadScriptChecks = false;
+
 /** Warn if uploaded files are larger than this (in bytes), or false to disable*/
 $wgUploadSizeWarning = false;
 
@@ -2960,7 +2967,7 @@ $wgTidyInternal = extension_loaded( 'tidy' );
 $wgDebugTidy = false;
 
 /** Allow raw, unchecked HTML in <html>...</html> sections.
- * THIS IS VERY DANGEROUS on a publically editable site, so USE wgGroupPermissions
+ * THIS IS VERY DANGEROUS on a publicly editable site, so USE wgGroupPermissions
  * TO RESTRICT EDITING to only those that you trust
  */
 $wgRawHtml = false;
