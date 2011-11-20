@@ -357,7 +357,7 @@ abstract class UploadBase {
 	 * @return mixed true of the file is verified, array otherwise.
 	 */
 	protected function verifyFile() {
-		global $wgAllowJavaUploads;
+		global $wgAllowJavaUploads, $wgDisableUploadScriptChecks;
 		# get the title, even though we are doing nothing with it, because
 		# we need to populate mFinalExtension
 		$this->getTitle();
@@ -372,12 +372,14 @@ abstract class UploadBase {
 		}
 
 		# check for htmlish code and javascript
-		if( self::detectScript( $this->mTempPath, $mime, $this->mFinalExtension ) ) {
-			return array( 'uploadscripted' );
-		}
-		if( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
-			if( $this->detectScriptInSvg( $this->mTempPath ) ) {
+		if ( !$wgDisableUploadScriptChecks ) {
+			if( self::detectScript( $this->mTempPath, $mime, $this->mFinalExtension ) ) {
 				return array( 'uploadscripted' );
+			}
+			if( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
+				if( $this->detectScriptInSvg( $this->mTempPath ) ) {
+					return array( 'uploadscripted' );
+				}
 			}
 		}
 
