@@ -29,6 +29,8 @@ class Http {
 	 *    - followRedirects     Whether to follow redirects (defaults to false).
 	 *		                    Note: this should only be used when the target URL is trusted,
 	 *		                    to avoid attacks on intranet services accessible by HTTP.
+	 *    - userAgent           A user agent, if you want to override the default
+	 *                          MediaWiki/$wgVersion
 	 * @return Mixed: (bool)false on failure or a string on success
 	 */
 	public static function request( $method, $url, $options = array() ) {
@@ -40,6 +42,9 @@ class Http {
 		}
 
 		$req = MWHttpRequest::factory( $url, $options );
+		if( isset( $options['userAgent'] ) ) {
+			$req->setUserAgent( $options['userAgent'] );
+		}
 		$status = $req->execute();
 
 		if ( $status->isOK() ) {
