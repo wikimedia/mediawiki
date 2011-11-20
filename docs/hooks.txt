@@ -387,7 +387,7 @@ $tokenFunctions: array(action => callback)
 'ApiRsdServiceApis': Add or remove APIs from the RSD services list.
 Each service should have its own entry in the $apis array and have a
 unique name, passed as key for the array that represents the service data.
-In this data array, the key-value-pair identified by the apiLink key is 
+In this data array, the key-value-pair identified by the apiLink key is
 required.
 &$apis: array of services
 
@@ -613,15 +613,15 @@ $title: title of the template
 &$parser: Parser object
 &$ig: ImageGallery object
 
-'BeforeWelcomeCreation': before the welcomecreation message is displayed to a newly created user 
+'BeforeWelcomeCreation': before the welcomecreation message is displayed to a newly created user
 &$welcome_creation_msg: MediaWiki message name to display on the welcome screen to a newly created user account
-&$injected_html: Any HTML to inject after the "logged in" message of a newly created user account 
+&$injected_html: Any HTML to inject after the "logged in" message of a newly created user account
 
-'BitmapHandlerTransform': before a file is transformed, gives extension the 
+'BitmapHandlerTransform': before a file is transformed, gives extension the
 possibility to transform it themselves
-$handler: BitmapHandler 
+$handler: BitmapHandler
 $image: File
-&$scalerParams: Array with scaler parameters 
+&$scalerParams: Array with scaler parameters
 &$mto: null, set to a MediaTransformOutput
 
 'BitmapHandlerCheckImageArea': by BitmapHandler::normaliseParams, after all normalizations have been performed, except for the $wgMaxImageArea check
@@ -647,7 +647,7 @@ $output: OutputPage object in use
 
 'CanonicalNamespaces': For extensions adding their own namespaces or altering the defaults
 &$namespaces: Array of namespace numbers with corresponding canonical names
- 
+
 'CategoryPageView': before viewing a categorypage in CategoryPage::view
 $catpage: CategoryPage instance
 
@@ -753,7 +753,7 @@ $editpage_Obj: the current EditPage object
 
 'EditPage::importFormData': allow extensions to read additional data
 posted in the form
-$editpage: EditPage instance 
+$editpage: EditPage instance
 $request: Webrequest
 return value is ignored (should always return true)
 
@@ -959,7 +959,7 @@ $title: Title object of page
 	that need to have versioned metadata should add an element to the end of
 	the version array of the form 'handler_name=version'. Most media handlers
 	won't need to do this unless they broke backwards compatibility with a
-	previous version of the media handler metadata output. 
+	previous version of the media handler metadata output.
 &$version: Array of version strings
 
 'GetPreferences': modify user preferences
@@ -1000,7 +1000,7 @@ $result: User permissions error to add. If none, return true.
 $imagePage: ImagePage object ($this)
 $output: $wgOut
 
-'ImagePageAfterImageLinks': called after the image links section on an image 
+'ImagePageAfterImageLinks': called after the image links section on an image
 	page is built
 $imagePage: ImagePage object ($this)
 &$html: HTML for the hook to add
@@ -1066,7 +1066,7 @@ $article: Article object
 'InterwikiLoadPrefix': When resolving if a given prefix is an interwiki or not.
 Return true without providing an interwiki to continue interwiki search.
 $prefix: interwiki prefix we are looking for.
-&$iwData: output array describing the interwiki with keys iw_url, iw_local, 
+&$iwData: output array describing the interwiki with keys iw_url, iw_local,
   iw_trans and optionally iw_api and iw_wikiid.
 
 'InternalParseBeforeLinks': during Parser's internalParse method before links
@@ -1101,12 +1101,12 @@ $password: The password entered by the user
 $user: User the password is being validated for
 
 'LanguageGetNamespaces': Provide custom ordering for namespaces or
-remove namespaces. Do not use this hook to add namespaces. Use 
+remove namespaces. Do not use this hook to add namespaces. Use
 CanonicalNamespaces for that.
 &$namespaces: Array of namespaces indexed by their numbers
 
-'LanguageGetMagic': DEPRECATED, use $magicWords in a file listed in 
-$wgExtensionMessagesFiles instead. 
+'LanguageGetMagic': DEPRECATED, use $magicWords in a file listed in
+$wgExtensionMessagesFiles instead.
 Use this to define synonyms of magic words depending of the language
 $magicExtensions: associative array of magic words synonyms
 $lang: laguage code (string)
@@ -1239,7 +1239,7 @@ $time: timestamp of the log entry (added in 1.12)
 $refreshLinks: RefreshLinks object
 
 'MagicWordMagicWords': When defining new magic word.
-DEPRECATED: use $magicWords in a file listed in 
+DEPRECATED: use $magicWords in a file listed in
 $wgExtensionMessagesFiles instead.
 $magicWords: array of strings
 
@@ -1296,8 +1296,8 @@ $db: The database object to be queried.
 'MonoBookTemplateToolboxEnd': Called by Monobook skin after toolbox links have
 been rendered (useful for adding more)
 Note: this is only run for the Monobook skin. This hook is deprecated and
-may be removed in the future. To add items to the toolbox you should use 
-the SkinTemplateToolboxEnd hook instead, which works for all 
+may be removed in the future. To add items to the toolbox you should use
+the SkinTemplateToolboxEnd hook instead, which works for all
 "SkinTemplate"-type skins.
 $tools: array of tools
 
@@ -1542,8 +1542,8 @@ page/request state must be added through MakeGlobalVariablesScript instead.
 
 'ResourceLoaderGetStartupModules': Run once the startup module is being generated. This allows you
 to add modules to the startup module. This hook should be used sparingly since any module added here
-will be loaded on all pages. This hook is useful if you want to make code available to module loader 
-scripts. 
+will be loaded on all pages. This hook is useful if you want to make code available to module loader
+scripts.
 
 'ResourceLoaderRegisterModules': Right before modules information is required, such as when responding to a resource
 loader request or generating HTML output.
@@ -1577,7 +1577,7 @@ $term : Search term string
 &$title : Current Title object that is being returned (null if none found).
 
 'SearchEngineReplacePrefixesComplete': Run after SearchEngine::replacePrefixes().
-$searchEngine : The SearchEngine object. Users of this hooks will be interested 
+$searchEngine : The SearchEngine object. Users of this hooks will be interested
 in the $searchEngine->namespaces array.
 $query : Original query.
 &$parsed : Resultant query with the prefixes stripped.
@@ -1635,7 +1635,7 @@ $title: displayed page title
 $type: 'normal' or 'history' for old/diff views
 &$msg: overridable message; usually 'copyright' or 'history_copyright'. This message must be in HTML format, not wikitext!
 &$link: overridable HTML link to be passed into the message as $1
-&$forContent: overridable flag if copyright footer is shown in content language. 
+&$forContent: overridable flag if copyright footer is shown in content language.
 
 'SkinGetPoweredBy'
 &$text: additional 'powered by' icons in HTML.
@@ -1758,9 +1758,9 @@ $data: array of data submitted by the user
 'SpecialRandomGetRandomTitle': called during the execution of Special:Random,
 use this to change some selection criteria or substitute a different title
 &$randstr: The random number from wfRandom()
-&$isRedir: Boolean, whether to select a redirect or non-redirect 
+&$isRedir: Boolean, whether to select a redirect or non-redirect
 &$namespaces: An array of namespace indexes to get the title from
-&$extra: An array of extra SQL statements 
+&$extra: An array of extra SQL statements
 &$title: If the hook returns false, a Title object to use instead of the
 result from the normal query
 
@@ -1828,10 +1828,10 @@ no matches
 $term: string of search term
 
 'SpecialStatsAddExtra': add extra statistic at the end of Special:Statistics
-&$extraStats: Array to save the new stats 
+&$extraStats: Array to save the new stats
               ( $extraStats['<name of statistic>'] => <value>; )
 
-'SpecialUploadComplete': Called after successfully uploading a file from 
+'SpecialUploadComplete': Called after successfully uploading a file from
 Special:Upload
 $form: The SpecialUpload object
 
@@ -1938,7 +1938,7 @@ $form: UploadForm object
 Lets you poke at member variables like $mUploadDescription before the
 file is saved.
 Do not use this hook to break upload processing. This will return the user to
-a blank form with no error message; use UploadVerification and 
+a blank form with no error message; use UploadVerification and
 UploadVerifyFile instead
 
 'UploadCreateFromRequest': when UploadBase::createFromRequest has been called
@@ -1948,19 +1948,19 @@ $type: (string) the requested upload type
 'UploadComplete': when Upload completes an upload
 &$upload: an UploadBase child instance
 
-'UploadFormInitDescriptor': after the descriptor for the upload form as been 
+'UploadFormInitDescriptor': after the descriptor for the upload form as been
 	assembled
 $descriptor: (array) the HTMLForm descriptor
 
-'UploadFormSourceDescriptors': after the standard source inputs have been 
+'UploadFormSourceDescriptors': after the standard source inputs have been
 added to the descriptor
 $descriptor: (array) the HTMLForm descriptor
 
-'UploadVerification': additional chances to reject an uploaded file. Consider 
+'UploadVerification': additional chances to reject an uploaded file. Consider
                       using UploadVerifyFile instead.
 string $saveName: destination file name
 string $tempName: filesystem path to the temporary file for checks
-string &$error: output: message key for message to show if upload canceled 
+string &$error: output: message key for message to show if upload canceled
 	by returning false. May also be an array, where the first element
 	is the message key and the remaining elements are used as parameters to
 	the message.
@@ -1968,7 +1968,7 @@ string &$error: output: message key for message to show if upload canceled
 'UploadVerifyFile': extra file verification, based on mime type, etc. Preferred
                     in most cases over UploadVerification.
 object $upload: an instance of UploadBase, with all info about the upload
-string $mime: the uploaded file's mime type, as detected by MediaWiki. Handlers 
+string $mime: the uploaded file's mime type, as detected by MediaWiki. Handlers
 	will typically only apply for specific mime types.
 object &$error: output: true if the file is valid. Otherwise, an indexed array
 	representing the problem with the file, where the first element
@@ -2047,7 +2047,7 @@ right before returning the options to the caller. WARNING: this hook is
 called for every call to User::getDefaultOptions(), which means it's
 potentially called dozens or hundreds of times. You may want to cache
 the results of non-trivial operations in your hook function for this reason.
-&$defaultOptions: Array of preference keys and their default values. 
+&$defaultOptions: Array of preference keys and their default values.
 
 'UserGetEmail': called when getting an user email address
 $user: User object
@@ -2160,6 +2160,11 @@ of email authentification
 $user: User object
 &$timestamp: new timestamp, change this to override local email
 authentification timestamp
+
+'UserToolLinksEdit': Called when generating a list user tool links
+$userId: User id of the current user
+$userText: User name of the current user
+&$items: Array of user tool links
 
 'WantedPages::getQueryInfo': called in WantedPagesPage::getQueryInfo(), can be
 used to alter the SQL query which gets the list of wanted pages
