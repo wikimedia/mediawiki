@@ -370,13 +370,13 @@ class SpecialMergeHistory extends SpecialPage {
 			}
 			$mwRedir = MagicWord::get( 'redirect' );
 			$redirectText = $mwRedir->getSynonym( 0 ) . ' [[' . $destTitle->getPrefixedText() . "]]\n";
-			$redirectArticle = new Article( $targetTitle );
+			$redirectPage = WikiPage::factory( $targetTitle );
 			$redirectRevision = new Revision( array(
 				'page'    => $this->mTargetID,
 				'comment' => $comment,
 				'text'    => $redirectText ) );
 			$redirectRevision->insertOn( $dbw );
-			$redirectArticle->updateRevisionOn( $dbw, $redirectRevision );
+			$redirectPage->updateRevisionOn( $dbw, $redirectRevision );
 
 			# Now, we record the link from the redirect to the new title.
 			# It should have no other outgoing links...
