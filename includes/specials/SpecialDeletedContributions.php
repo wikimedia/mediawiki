@@ -287,15 +287,16 @@ class DeletedContributionsPage extends SpecialPage {
 		$options['limit'] = $request->getInt( 'limit', $wgQueryPageDefaultLimit );
 		$options['target'] = $target;
 
-		$nt = Title::makeTitleSafe( NS_USER, $target );
-		if ( !$nt ) {
+		$userObj = User::newFromName( $target );
+		if ( !$userObj ) {
 			$out->addHTML( $this->getForm( '' ) );
 			return;
 		}
-		$id = User::idFromName( $nt->getText() );
+		$nt = $userObj->getUserPage();
+		$id = $userObj->getID();
 
-		$target = $nt->getText();
-		$out->addSubtitle( $this->getSubTitle( $nt, $id ) );
+		$target = $userObj->getName();
+		$out->addSubtitle( $this->getSubTitle( $userObj ) );
 
 		if ( ( $ns = $request->getVal( 'namespace', null ) ) !== null && $ns !== '' ) {
 			$options['namespace'] = intval( $ns );
@@ -336,18 +337,18 @@ class DeletedContributionsPage extends SpecialPage {
 
 	/**
 	 * Generates the subheading with links
-	 * @param $nt Title object for the target
-	 * @param $id Integer: User ID for the target
+	 * @param $userObj User object for the target
 	 * @return String: appropriately-escaped HTML to be output literally
 	 * @todo FIXME: Almost the same as contributionsSub in SpecialContributions.php. Could be combined.
 	 */
-	function getSubTitle( $nt, $id ) {
-		if ( $id === null ) {
-			$user = htmlspecialchars( $nt->getText() );
+	function getSubTitle( $userObj ) {
+		if ( $userObj->isAnon() ) {
+			$user = htmlspecialchars( $userObj->getName() );
 		} else {
-			$user = Linker::link( $nt, htmlspecialchars( $nt->getText() ) );
+			$user = Linker::link( $userObj->getPage(), htmlspecialchars( $userObj->getText() ) );
 		}
-		$userObj = User::newFromName( $nt->getText(), /* check for username validity not needed */ false );
+		$nt = $userObj->getUserPage();
+		$id = $userObj->getID();
 		$talk = $nt->getTalkPage();
 		if( $talk ) {
 			# Talk page link

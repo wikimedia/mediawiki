@@ -74,21 +74,19 @@ class SpecialContributions extends SpecialPage {
 		$this->opts['target'] = $target;
 		$this->opts['topOnly'] = $request->getBool( 'topOnly' );
 
-		$nt = Title::makeTitleSafe( NS_USER, $target );
-		if( !$nt ) {
+		$userObj = User::newFromName( $target, false );
+		if( !$userObj ) {
 			$out->addHTML( $this->getForm() );
 			return;
 		}
-		$id = User::idFromName( $nt->getText() );
+		$nt = $userObj->getUserPage();
+		$id = $userObj->getID();
 
 		if( $this->opts['contribs'] != 'newbie' ) {
 			$target = $nt->getText();
-			$out->addSubtitle( $this->contributionsSub( $nt, $id ) );
+			$out->addSubtitle( $this->contributionsSub( $userObj ) );
 			$out->setHTMLTitle( $this->msg( 'pagetitle', wfMsgExt( 'contributions-title', array( 'parsemag' ), $target ) ) );
-			$userObj = User::newFromName( $target, false );
-			if ( is_object( $userObj ) ) {
-				$this->getSkin()->setRelevantUser( $userObj );
-			}
+			$this->getSkin()->setRelevantUser( $userObj );
 		} else {
 			$out->addSubtitle( $this->msg( 'sp-contributions-newbies-sub') );
 			$out->setHTMLTitle( $this->msg( 'pagetitle', wfMsg( 'sp-contributions-newbies-title' ) ) );
@@ -193,8 +191,7 @@ class SpecialContributions extends SpecialPage {
 				if ( IP::isIPAddress( $target ) ) {
 					$message = 'sp-contributions-footer-anon';
 				} else {
-					$userObj = User::newFromName( $target );
-					if ( !$userObj || $userObj->isAnon() ) {
+					if ( $userObj->isAnon() ) {
 						// No message for non-existing users
 						return;
 					}
@@ -211,19 +208,18 @@ class SpecialContributions extends SpecialPage {
 
 	/**
 	 * Generates the subheading with links
-	 * @param $nt Title object for the target
-	 * @param $id Integer: User ID for the target
+	 * @param $userObj User object for the target
 	 * @return String: appropriately-escaped HTML to be output literally
 	 * @todo FIXME: Almost the same as getSubTitle in SpecialDeletedContributions.php. Could be combined.
 	 */
-	protected function contributionsSub( $nt, $id ) {
-		if ( $id === null ) {
-			$user = htmlspecialchars( $nt->getText() );
+	protected function contributionsSub( $userObj ) {
+		if ( $userObj->isAnon() ) {
+			$user = htmlspecialchars( $userObj->getName() );
 		} else {
-			$user = Linker::link( $nt, htmlspecialchars( $nt->getText() ) );
+			$user = Linker::link( $userObj->getUserPage(), htmlspecialchars( $userObj->getName() ) );
 		}
-		$userObj = User::newFromName( $nt->getText(), /* check for username validity not needed */ false );
-		$talk = $nt->getTalkPage();
+		$nt = $userObj->getUserPage();
+		$talk = $userObj->getTalkPage();
 		if( $talk ) {
 			$tools = self::getUserLinks( $nt, $talk, $userObj, $this->getUser() );
 			$links = $this->getLang()->pipeList( $tools );
@@ -243,7 +239,7 @@ class SpecialContributions extends SpecialPage {
 							$userObj->isAnon() ?
 								'sp-contributions-blocked-notice-anon' :
 								'sp-contributions-blocked-notice',
-							$nt->getText() # Support GENDER in 'sp-contributions-blocked-notice'
+							$userObj->getName() # Support GENDER in 'sp-contributions-blocked-notice'
 						),
 						'offset' => '' # don't use WebRequest parameter offset
 					)
