@@ -4278,7 +4278,7 @@ class Title {
 	/**
 	 * Get a backlink cache object
 	 *
-	 * @return object BacklinkCache
+	 * @return BacklinkCache
 	 */
 	function getBacklinkCache() {
 		if ( is_null( $this->mBacklinkCache ) ) {

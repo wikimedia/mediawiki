@@ -314,8 +314,7 @@ abstract class Maintenance {
 			} else {
 				print( $out );
 			}
-		}
-		else {
+		} else {
 			$out = preg_replace( '/\n\z/', '', $out );
 			$this->outputChanneled( $out, $channel );
 		}
