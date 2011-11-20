@@ -969,6 +969,8 @@ class Linker {
 			$items[] = self::emailLink( $userId, $userText );
 		}
 
+		wfRunHooks( 'UserToolLinksEdit', array( $userId, $userText, &$items ) );
+
 		if ( $items ) {
 			return ' <span class="mw-usertoollinks">(' . $wgLang->pipeList( $items ) . ')</span>';
 		} else {
