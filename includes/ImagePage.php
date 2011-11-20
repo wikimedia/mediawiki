@@ -421,7 +421,7 @@ class ImagePage extends Article {
 						wfMsgExt( 'imgmultigoto', array( 'parseinline', 'replaceafter' ), $select ) .
 						Xml::submitButton( wfMsg( 'imgmultigo' ) ) .
 						Xml::closeElement( 'form' ) .
-						"<hr />$thumb1\n$thumb2<br clear=\"all\" /></div></td></tr></table>"
+						"<hr />$thumb1\n$thumb2<br style=\"clear: both\" /></div></td></tr></table>"
 					);
 				}
 			} else {
