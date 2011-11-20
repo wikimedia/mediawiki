@@ -946,7 +946,7 @@ udder en dä zopaß <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{
 'userpage-userdoesnotexist-view'   => 'Ene Metmaacher mem Naame „$1“ hät sesch noch nih aanjemeldt',
 'blocked-notice-logextract'        => '{{GENDER:$1|Dä Metmaacher|Dat|Dä Metmaacher|Die Metmaacheren|Et}} es jraad jesperrt.
 Heh kütt der neuste Enndraach drövver uss_em Logbooch övver et Metmaacher_Sperre:',
-'clearyourcache'                   => '<br clear="all" style="clear:both">
+'clearyourcache'                   => '<br style="clear: both" />
 \'\'\'Opjepass:\'\'\'
 Noh em Speichere künnd et sin, datt De Dingem Brauser singe Cache Speicher
 övverlisste muss, ih datt De de Änderunge och ze sinn kreß.
