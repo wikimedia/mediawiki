@@ -9,6 +9,7 @@
  *
  * @author Akansha
  * @author Aksi great
+ * @author Alolitas
  * @author Bhawani Gautam
  * @author Bhawani Gautam Rhk
  * @author Charu
@@ -267,8 +268,8 @@ $messages = array(
 'protect'           => 'सुरक्षित करें',
 'protect_change'    => 'बदलें',
 'protectthispage'   => 'इस पृष्ठ को सुरक्षित करें',
-'unprotect'         => 'असुरक्षित करें',
-'unprotectthispage' => 'इस पृष्ठ को असुरक्षित करें',
+'unprotect'         => 'असुरक्षित',
+'unprotectthispage' => 'इस पृष्ठ को सुरक्षित करै',
 'newpage'           => 'नया पृष्ठ',
 'talkpage'          => 'इस पृष्ठ के बारे में बात करें',
 'talkpagelinktext'  => 'वार्ता',

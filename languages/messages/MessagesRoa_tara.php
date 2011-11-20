@@ -396,6 +396,7 @@ Le date ca stonne aqquà jndre non ge sonde aggiornete.",
 Function: $1<br />
 Query: $2",
 'viewsource'           => "Vide 'u sorgende",
+'viewsource-title'     => "Vide 'a sorgende pe $1",
 'actionthrottled'      => 'Azione inderrotte',
 'actionthrottledtext'  => "Cumme 'na mesure andi-spam, tu è state limitete da fà st'azione troppe vote jndr'à 'nu timbe piccinne e tu è subranete stu limite.
 Pe piacere prueve cchiù tarde.",
@@ -1555,9 +1556,9 @@ Non g'è possibbele verificà pa securezze.",
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accesse negate',
 'img-auth-nopathinfo'       => "No se iacchie PATH_INFO.
-'U server tue non g'è 'mbostate o non ge passe st'mbormazione.
+'U server tune non g'è 'mbostate o non ge passe st'mbormazione.
 Pò essere ca jè basate sus a 'u CGI e non ge pò supportà img_auth.
-Vide http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Vide autorizzazzione de le immaggine.]",
 'img-auth-notindir'         => "'U percorse richieste non ge stè jndr'à cartelle de carecamende configurate",
 'img-auth-badtitle'         => 'Non ge se pò costruì \'nu titele valide da "$1".',
 'img-auth-nologinnWL'       => 'Tu non ge sì collegate e "$1" non ge stè jndr\'à lista vianghe.',
@@ -1659,23 +1660,24 @@ Pe piacere vide 'a [$2 pàgene de descrizione d'u file] pe maggiore 'mbormaziune
 'filerevert-badversion'     => "Non ge stè 'na versiona locale precedende de stu file cu l'orarie richieste.",
 
 # File deletion
-'filedelete'                  => 'Scangille $1',
-'filedelete-legend'           => "Scangille 'u file",
-'filedelete-intro'            => "Tu ste scangille stu file '''[[Media:$1|$1]]''' cu tutte 'a storia soje apprisse.",
-'filedelete-intro-old'        => "Tu stè scangille 'a versiona de '''[[Media:$1|$1]]''' cumme de [$4 $3, $2].",
-'filedelete-comment'          => 'Mutive:',
-'filedelete-submit'           => 'Scangille',
-'filedelete-success'          => "'''$1''' ha state scangellete.",
-'filedelete-success-old'      => "'A versione de '''[[Media:$1|$1]]''' de le $3 d'u $2 ha state scangellete.",
-'filedelete-nofile'           => "'''$1''' non g'esiste.",
-'filedelete-nofile-old'       => "Non ge stè 'na versiona archiviate de '''$1''' cu le specifiche attrebbute.",
-'filedelete-otherreason'      => 'Otre/addizionale mutive:',
-'filedelete-reason-otherlist' => 'Otre mutive',
-'filedelete-reason-dropdown'  => "*Mutive comune pe le scangellaminde
+'filedelete'                   => 'Scangille $1',
+'filedelete-legend'            => "Scangille 'u file",
+'filedelete-intro'             => "Tu ste scangille stu file '''[[Media:$1|$1]]''' cu tutte 'a storia soje apprisse.",
+'filedelete-intro-old'         => "Tu stè scangille 'a versiona de '''[[Media:$1|$1]]''' cumme de [$4 $3, $2].",
+'filedelete-comment'           => 'Mutive:',
+'filedelete-submit'            => 'Scangille',
+'filedelete-success'           => "'''$1''' ha state scangellete.",
+'filedelete-success-old'       => "'A versione de '''[[Media:$1|$1]]''' de le $3 d'u $2 ha state scangellete.",
+'filedelete-nofile'            => "'''$1''' non g'esiste.",
+'filedelete-nofile-old'        => "Non ge stè 'na versiona archiviate de '''$1''' cu le specifiche attrebbute.",
+'filedelete-otherreason'       => 'Otre/addizionale mutive:',
+'filedelete-reason-otherlist'  => 'Otre mutive',
+'filedelete-reason-dropdown'   => "*Mutive comune pe le scangellaminde
 ** Violazione d'u Copyright
 ** File duplichete",
-'filedelete-edit-reasonlist'  => "Cange le mutive d'a scangellazione",
-'filedelete-maintenance'      => "Scangellaminde e repristinaminde de le file jè temboraneamende disabbilitate duranne 'a manutenzione.",
+'filedelete-edit-reasonlist'   => "Cange le mutive d'a scangellazione",
+'filedelete-maintenance'       => "Scangellaminde e repristinaminde de le file jè temboraneamende disabbilitate duranne 'a manutenzione.",
+'filedelete-maintenance-title' => "Non ge se pò scangellà 'u file",
 
 # MIME search
 'mimesearch'         => "Ricerca jndr'à 'u MIME",
@@ -1725,7 +1727,7 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'statistics-users-active-desc' => "Sonde l'utinde ca onne fatte quacchecose jndr'à l'urteme {{PLURAL:$1|giurne|$1 giurne}}",
 'statistics-mostpopular'       => 'Pàggene cchiù visitete',
 
-'disambiguations'      => 'Pàggene de disambiguazione',
+'disambiguations'      => 'Pàggene collegate a le pàggene de disambiguazione',
 'disambiguationspage'  => 'Template:disambigue',
 'disambiguations-text' => "Le pàggene seguende appondene a 'na '''pàgene de disambiguazione'''.
 'Nvece avessere appondà a 'a temateca appropriate.<br />
@@ -1873,7 +1875,8 @@ Vide pure [[Special:WantedCategories|Categorije cercate]].",
 'linksearch-ns'    => 'Neimspeise:',
 'linksearch-ok'    => 'Cirche',
 'linksearch-text'  => 'Le wildcard cumme a "*.wikipedia.org" ponne essere ausate.<br />
-Protocolle supportate: <tt>$1</tt>',
+Onne abbesogne almede de \'nu dominie de levèlle ierte, pe esembie "*.org". <br />
+Protocolle supportate: <tt>$1</tt> (no sce aggiungenne nisciune de chiste jndr\'à recerca toje).',
 'linksearch-line'  => '$1 jè pundete da $2',
 'linksearch-error' => "Le wildcard ponne essere ausate sulamende a l'inzie de l'hostname.",
 
@@ -1977,7 +1980,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'watchmethod-list'     => 'stoche a condrolle le pàggene condrollete pe le urteme cangiaminde',
 'watchlistcontains'    => "'A liste de le pàggene condrollete toje condene $1 {{PLURAL:$1|pàgene|pàggene}}.",
 'iteminvalidname'      => "Probbleme cu 'a vosce '$1', nome invalide...",
-'wlnote'               => "Aqquà sotte {{PLURAL:$1|ste l'urteme cangiamende|stonne l'urteme '''$1''' cangiaminde}} jndr'à {{PLURAL:$2|l'urtema ore|l'urteme '''$2''' ore}}.",
+'wlnote'               => "Aqquà sotte {{PLURAL:$1|ste l'urteme cangiamende|stonne l'urteme '''$1''' cangiaminde}} jndr'à {{PLURAL:$2|l'urtema ore|l'urteme '''$2''' ore}}, jndr'à $3, $4.",
 'wlshowlast'           => "Vide l'urteme $1 ore $2 sciurne $3",
 'watchlist-options'    => "Opzione d'a liste de le pàggene condrollete",
 
@@ -2188,6 +2191,7 @@ quaccheotre pò essere ca ha repristinate 'a pàgene apprime.",
 
 Ligge l'[[Special:Log/delete|archivije de le scangellaminde]] pe 'nu report de le urteme scangellaminde e repristinaminde.",
 'undelete-header'              => "Vide [[Special:Log/delete|l'archivije de le scangellaminde]] pe l'urteme pàggene scangellete.",
+'undelete-search-title'        => 'Cirche le pàggene scangellate',
 'undelete-search-box'          => 'Cirche le pàggene scangellete',
 'undelete-search-prefix'       => 'Fà vedè le pàggene ca accumenzene cu:',
 'undelete-search-submit'       => 'Cirche',
@@ -2198,6 +2202,7 @@ Non ge pozze repristinà 'a revisione d'u file cu orarie $1: 'u file ha state pe
 'undelete-cleanup-error'       => 'Errore scangellanne \'n\'archivije de file non ausate "$1".',
 'undelete-missing-filearchive' => "Non ge pozze repristinà 'u file archiviate cu ID $1 purcè non ge stè jndr'à 'u database.
 Pò essere ca già ha state scangellate.",
+'undelete-error'               => 'Errore pàgene none scangellate',
 'undelete-error-short'         => 'Errore file non recuperate: $1',
 'undelete-error-long'          => "Errore ca s'onne acchiate quanne amme pruvate a reprisitinà 'u file:
 
@@ -2519,6 +2524,7 @@ Cumme urteme case, tu puè pure ausà 'nu collegamende, pe esembie [[{{#Special:
 'exportcuronly'     => "'Nglude sulamende 'a revisiona corrende, non totte 'a storie",
 'exportnohistory'   => "----
 '''Vide Bbuène:''' L'esportazione da storia comblete de le pàggene, ausanne sta maschere, ha state disabbilitate pe mutive de prestaziune.",
+'exportlistauthors' => "'Nglude 'n'elenghe comblete de condrebbutore pe ogne pàgene",
 'export-submit'     => 'Esporte',
 'export-addcattext' => "Aggiunge le pàggene da 'a categorije:",
 'export-addcat'     => 'Aggiunge',

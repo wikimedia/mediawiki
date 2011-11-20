@@ -8,6 +8,7 @@
  * @file
  *
  * @author Chris H
+ * @author Istabani
  * @author Meno25
  * @author O.bangash
  * @author Rachitrali
@@ -195,7 +196,7 @@ $messages = array(
 'vector-action-unprotect'  => 'تحفظ میں تبدیلی',
 'vector-view-create'       => 'تخلیق',
 'vector-view-edit'         => 'ترمیم',
-'vector-view-history'      => 'تاریخچہ',
+'vector-view-history'      => 'تاریخ',
 'vector-view-view'         => 'پڑھیں',
 'vector-view-viewsource'   => 'مسودہ',
 'actions'                  => 'ایکشنز',
