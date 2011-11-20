@@ -346,7 +346,7 @@ class SearchEngine {
 		// get search everything preference, that can be set to be read for logged-in users
 		$searcheverything = false;
 		if ( ( $wgSearchEverythingOnlyLoggedIn && $user->isLoggedIn() )
-		    || !$wgSearchEverythingOnlyLoggedIn )
+			|| !$wgSearchEverythingOnlyLoggedIn )
 			$searcheverything = $user->getOption( 'searcheverything' );
 
 		// searcheverything overrides other options
@@ -1098,7 +1098,7 @@ class SearchHighlighter {
 		} else {
 			// if begin of the article contains the whole phrase, show only that !!
 			if ( array_key_exists( $first, $snippets ) && preg_match( $pat1, $snippets[$first] )
-			    && $offsets[$first] < $contextchars * 2 ) {
+				&& $offsets[$first] < $contextchars * 2 ) {
 				$snippets = array ( $first => $snippets[$first] );
 			}
 
@@ -1119,10 +1119,10 @@ class SearchHighlighter {
 				// add more lines
 				$add = $index + 1;
 				while ( $len < $targetchars - 20
-				       && array_key_exists( $add, $all )
-				       && !array_key_exists( $add, $snippets ) ) {
-				    $offsets[$add] = 0;
-				    $tt = "\n" . $this->extract( $all[$add], 0, $targetchars - $len, $offsets[$add] );
+					   && array_key_exists( $add, $all )
+					   && !array_key_exists( $add, $snippets ) ) {
+					$offsets[$add] = 0;
+					$tt = "\n" . $this->extract( $all[$add], 0, $targetchars - $len, $offsets[$add] );
 					$extended[$add] = $tt;
 					$len += strlen( $tt );
 					$add++;
@@ -1152,7 +1152,7 @@ class SearchHighlighter {
 			if ( ! isset( $processed[$term] ) ) {
 				$pat3 = "/$patPre(" . $term . ")$patPost/ui"; // highlight word
 				$extract = preg_replace( $pat3,
-			  		"\\1<span class='searchmatch'>\\2</span>\\3", $extract );
+					"\\1<span class='searchmatch'>\\2</span>\\3", $extract );
 				$processed[$term] = true;
 			}
 		}
@@ -1187,8 +1187,9 @@ class SearchHighlighter {
 		global $wgContLang;
 		if ( strlen( $matches[0] ) > 1 ) {
 			return '[' . $wgContLang->lc( $matches[0] ) . $wgContLang->uc( $matches[0] ) . ']';
-		} else
+		} else {
 			return $matches[0];
+		}
 	}
 
 	/**
@@ -1342,61 +1343,61 @@ class SearchHighlighter {
 	}
 
 	/**
-     * Simple & fast snippet extraction, but gives completely unrelevant
-     * snippets
-     *
-     * @param $text String
-     * @param $terms Array
-     * @param $contextlines Integer
-     * @param $contextchars Integer
-     * @return String
-     */
-    public function highlightSimple( $text, $terms, $contextlines, $contextchars ) {
-        global $wgContLang;
-        $fname = __METHOD__;
+	 * Simple & fast snippet extraction, but gives completely unrelevant
+	 * snippets
+	 *
+	 * @param $text String
+	 * @param $terms Array
+	 * @param $contextlines Integer
+	 * @param $contextchars Integer
+	 * @return String
+	 */
+	public function highlightSimple( $text, $terms, $contextlines, $contextchars ) {
+		global $wgContLang;
+		$fname = __METHOD__;
 
-        $lines = explode( "\n", $text );
+		$lines = explode( "\n", $text );
 
-        $terms = implode( '|', $terms );
-        $max = intval( $contextchars ) + 1;
-        $pat1 = "/(.*)($terms)(.{0,$max})/i";
+		$terms = implode( '|', $terms );
+		$max = intval( $contextchars ) + 1;
+		$pat1 = "/(.*)($terms)(.{0,$max})/i";
 
-        $lineno = 0;
+		$lineno = 0;
 
-        $extract = "";
-        wfProfileIn( "$fname-extract" );
-        foreach ( $lines as $line ) {
-            if ( 0 == $contextlines ) {
-                break;
-            }
-            ++$lineno;
-            $m = array();
-            if ( ! preg_match( $pat1, $line, $m ) ) {
-                continue;
-            }
-            --$contextlines;
-            // truncate function changes ... to relevant i18n message.
-            $pre = $wgContLang->truncate( $m[1], - $contextchars, '...', false );
+		$extract = "";
+		wfProfileIn( "$fname-extract" );
+		foreach ( $lines as $line ) {
+			if ( 0 == $contextlines ) {
+				break;
+			}
+			++$lineno;
+			$m = array();
+			if ( ! preg_match( $pat1, $line, $m ) ) {
+				continue;
+			}
+			--$contextlines;
+			// truncate function changes ... to relevant i18n message.
+			$pre = $wgContLang->truncate( $m[1], - $contextchars, '...', false );
 
-            if ( count( $m ) < 3 ) {
-                $post = '';
-            } else {
-                $post = $wgContLang->truncate( $m[3], $contextchars, '...', false );
-            }
+			if ( count( $m ) < 3 ) {
+				$post = '';
+			} else {
+				$post = $wgContLang->truncate( $m[3], $contextchars, '...', false );
+			}
 
-            $found = $m[2];
+			$found = $m[2];
 
-            $line = htmlspecialchars( $pre . $found . $post );
-            $pat2 = '/(' . $terms . ")/i";
-            $line = preg_replace( $pat2,
-              "<span class='searchmatch'>\\1</span>", $line );
+			$line = htmlspecialchars( $pre . $found . $post );
+			$pat2 = '/(' . $terms . ")/i";
+			$line = preg_replace( $pat2,
+			  "<span class='searchmatch'>\\1</span>", $line );
 
-            $extract .= "${line}\n";
-        }
-        wfProfileOut( "$fname-extract" );
+			$extract .= "${line}\n";
+		}
+		wfProfileOut( "$fname-extract" );
 
-        return $extract;
-    }
+		return $extract;
+	}
 
 }
 
