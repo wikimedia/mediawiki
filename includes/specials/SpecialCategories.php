@@ -42,7 +42,7 @@ class SpecialCategories extends SpecialPage {
 
 		$this->getOutput()->addHTML(
 			Html::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) .
-			wfMsgExt( 'categoriespagetext', array( 'parse' ), $cap->getNumRows() ) .
+			$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
 			$cap->getStartForm( $from ) .
 			$cap->getNavigationBar() .
 			'<ul>' . $cap->getBody() . '</ul>' .
@@ -114,10 +114,8 @@ class CategoryPager extends AlphabeticPager {
 	function formatRow($result) {
 		$title = Title::makeTitle( NS_CATEGORY, $result->cat_title );
 		$titleText = Linker::link( $title, htmlspecialchars( $title->getText() ) );
-		$lang = $this->getLang();
-		$count = wfMsgExt( 'nmembers', array( 'parsemag', 'escape' ),
-				$lang->formatNum( $result->cat_pages ) );
-		return Xml::tags('li', null, $lang->specialList( $titleText, $count ) ) . "\n";
+		$count = $this->msg( 'nmembers' )->numParams( $result->cat_pages )->escaped();
+		return Xml::tags( 'li', null, $this->getLang()->specialList( $titleText, $count ) ) . "\n";
 	}
 
 	public function getStartForm( $from ) {
@@ -126,10 +124,10 @@ class CategoryPager extends AlphabeticPager {
 		return
 			Xml::tags( 'form', array( 'method' => 'get', 'action' => $wgScript ),
 				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-				Xml::fieldset( wfMsg( 'categories' ),
-					Xml::inputLabel( wfMsg( 'categoriesfrom' ),
+				Xml::fieldset( $this->msg( 'categories' )->text(),
+					Xml::inputLabel( $this->msg( 'categoriesfrom' )->text(),
 						'from', 'from', 20, $from ) .
 					' ' .
-					Xml::submitButton( wfMsg( 'allpagessubmit' ) ) ) );
+					Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) ) );
 	}
 }
