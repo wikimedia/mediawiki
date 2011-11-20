@@ -16,6 +16,11 @@
 class PostgresUpdater extends DatabaseUpdater {
 
 	/**
+	 * @var DatabasePostgres
+	 */
+	protected $db;
+
+	/**
 	 * @todo FIXME: Postgres should use sequential updates like Mysql, Sqlite
 	 * and everybody else. It never got refactored like it should've.
 	 */
@@ -390,6 +395,10 @@ END;
 	}
 
 	protected function renameSequence( $old, $new ) {
+		if ( $this->db->sequenceExists( $new ) ) {
+			$this->output( "WARNING sequence $new already exists\n" );
+			return;
+		}
 		if ( $this->db->sequenceExists( $old ) ) {
 			$this->output( "Renaming sequence $old to $new\n" );
 			$this->db->query( "ALTER SEQUENCE $old RENAME TO $new" );
