@@ -102,7 +102,7 @@ class SpecialLog extends SpecialPage {
 		if( in_array( $opts->getValue( 'type' ), $this->typeOnUser ) ) {
 			# ok we have a type of log which expect a user title.
 			$target = Title::newFromText( $opts->getValue( 'page' ) );
-			if( $target->getNamespace() === NS_MAIN ) {
+			if( $target && $target->getNamespace() === NS_MAIN ) {
 				# User forgot to add 'User:', we are adding it for him
 				$opts->setValue( 'page',
 					Title::makeTitleSafe( NS_USER, $opts->getValue( 'page' ) )
