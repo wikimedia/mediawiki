@@ -152,7 +152,14 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		} else {
 			$this->clearWatchlist();
 			$this->getUser()->invalidateCache();
-			$this->successMessage .= wfMessage(
+
+			if( count( $current ) > 0 ){
+				$this->successMessage = wfMessage( 'watchlistedit-raw-done' )->parse();
+			} else {
+				return false;
+			}
+
+			$this->successMessage .= ' ' . wfMessage(
 				'watchlistedit-raw-removed',
 				$this->getLang()->formatNum( count( $current ) )
 			);
