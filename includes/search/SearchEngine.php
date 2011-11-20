@@ -1203,22 +1203,27 @@ class SearchHighlighter {
 	 * @return String
 	 */
 	function extract( $text, $start, $end, &$posStart = null, &$posEnd = null ) {
-		if ( $start != 0 )
+		if ( $start != 0 ) {
 			$start = $this->position( $text, $start, 1 );
-		if ( $end >= strlen( $text ) )
+		}
+		if ( $end >= strlen( $text ) ) {
 			$end = strlen( $text );
-		else
+		} else {
 			$end = $this->position( $text, $end );
+		}
 
-		if ( !is_null( $posStart ) )
+		if ( !is_null( $posStart ) ) {
 			$posStart = $start;
-		if ( !is_null( $posEnd ) )
+		}
+		if ( !is_null( $posEnd ) ) {
 			$posEnd = $end;
+		}
 
-		if ( $end > $start )
+		if ( $end > $start )  {
 			return substr( $text, $start, $end - $start );
-		else
+		} else {
 			return '';
+		}
 	}
 
 	/**
