@@ -160,6 +160,9 @@ class ReassignEdits extends Maintenance {
 			$user->setName( $username );
 		} else {
 			$user = User::newFromName( $username );
+			if ( !$user ) {
+				$this->error( "Invalid username", true );
+			}
 		}
 		$user->load();
 		return $user;

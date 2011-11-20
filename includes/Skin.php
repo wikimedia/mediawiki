@@ -269,7 +269,7 @@ abstract class Skin extends ContextSource {
 				$this->mRelevantUser = User::newFromName( $rootUser, false );
 			} else {
 				$user = User::newFromName( $rootUser, false );
-				if ( $user->isLoggedIn() ) {
+				if ( $user && $user->isLoggedIn() ) {
 					$this->mRelevantUser = $user;
 				}
 			}

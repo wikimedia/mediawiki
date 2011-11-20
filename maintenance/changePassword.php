@@ -43,7 +43,7 @@ class ChangePassword extends Maintenance {
 		} else {
 			$this->error( "A \"user\" or \"userid\" must be set to change the password for" , true );
 		}
-		if ( !$user->getId() ) {
+		if ( !$user || !$user->getId() ) {
 			$this->error( "No such user: " . $this->getOption( 'user' ), true );
 		}
 		try {

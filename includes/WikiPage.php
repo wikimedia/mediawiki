@@ -2322,7 +2322,9 @@ class WikiPage extends Page {
 		# User talk pages
 		if ( $title->getNamespace() == NS_USER_TALK ) {
 			$user = User::newFromName( $title->getText(), false );
-			$user->setNewtalk( false );
+			if ( $user ) {
+				$user->setNewtalk( false );
+			}
 		}
 
 		# Image redirects

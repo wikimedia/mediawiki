@@ -45,6 +45,7 @@ class SpecialBlockme extends UnlistedSpecialPage {
 		}
 
 		$user = User::newFromName( wfMsgForContent( 'proxyblocker' ) );
+		# FIXME: newFromName could return false on a badly configured wiki.
 		if ( !$user->isLoggedIn() ) {
 			$user->addToDatabase();
 		}
