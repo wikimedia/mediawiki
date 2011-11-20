@@ -13,6 +13,7 @@ production.
 
 === Changes since 1.18 RC1 ===
 * (bug 32228) regression in Special:Search which did not conserve profile on new search
+* (bug 32460) Categories were improperly aligned in Simple and CologneBlue
 
 === Changes since 1.18 beta 1 ===
 * (bug 31886) Wrong titles redirecting to Special:Badtitle in the 1.18 deployment.
