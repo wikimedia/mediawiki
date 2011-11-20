@@ -63,6 +63,9 @@ class DeleteBatch extends Maintenance {
 			$this->error( "Unable to read file, exiting", true );
 		}
 		$wgUser = User::newFromName( $user );
+		if ( !$wgUser ) {
+			$this->error( "Invalid username", true );
+		}
 		$dbw = wfGetDB( DB_MASTER );
 
 		# Handle each entry

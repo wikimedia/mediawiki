@@ -47,6 +47,10 @@ class Protect extends Maintenance {
 		}
 
 		$wgUser = User::newFromName( $userName );
+		if ( !$wgUser ) {
+			$this->error( "Invalid username", true );
+		}
+		
 		$restrictions = array( 'edit' => $protection, 'move' => $protection );
 
 		$t = Title::newFromText( $this->getArg() );

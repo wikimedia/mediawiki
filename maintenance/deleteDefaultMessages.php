@@ -56,6 +56,9 @@ class DeleteDefaultMessages extends Maintenance {
 		# in order to hide it in RecentChanges.
 		global $wgUser;
 		$wgUser = User::newFromName( $user );
+		if ( !$wgUser ) {
+			$this->error( "Invalid username", true );
+		}
 		$wgUser->addGroup( 'bot' );
 
 		# Handle deletion

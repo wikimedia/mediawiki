@@ -1475,7 +1475,7 @@ class EditPage {
 			$username = $parts[0];
 			$user = User::newFromName( $username, false /* allow IP users*/ );
 			$ip = User::isIP( $username );
-			if ( !$user->isLoggedIn() && !$ip ) { # User does not exist
+			if ( !($user && $user->isLoggedIn()) && !$ip ) { # User does not exist
 				$wgOut->wrapWikiMsg( "<div class=\"mw-userpage-userdoesnotexist error\">\n$1\n</div>",
 					array( 'userpage-userdoesnotexist', wfEscapeWikiText( $username ) ) );
 			} elseif ( $user->isBlocked() ) { # Show log extract if the user is currently blocked

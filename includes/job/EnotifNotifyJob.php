@@ -24,6 +24,7 @@ class EnotifNotifyJob extends Job {
 			$editor = User::newFromId( $this->params['editorID'] );
 		// B/C, only the name might be given.
 		} else {
+			# FIXME: newFromName could return false on a badly configured wiki.
 			$editor = User::newFromName( $this->params['editor'], false );
 		}
 		$enotif->actuallyNotifyOnPageChange(

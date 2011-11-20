@@ -44,6 +44,9 @@ class Undelete extends Maintenance {
 			$this->error( "Invalid title", true );
 		}
 		$wgUser = User::newFromName( $user );
+		if ( !$wgUser ) {
+			$this->error( "Invalid username", true );
+		}
 		$archive = new PageArchive( $title );
 		$this->output( "Undeleting " . $title->getPrefixedDBkey() . '...' );
 		$archive->undelete( array(), $reason );

@@ -36,6 +36,9 @@ class CleanupSpam extends Maintenance {
 
 		$username = wfMsg( 'spambot_username' );
 		$wgUser = User::newFromName( $username );
+		if ( !$wgUser ) {
+			$this->error( "Invalid username", true );
+		}
 		// Create the user if necessary
 		if ( !$wgUser->getId() ) {
 			$wgUser->addToDatabase();
