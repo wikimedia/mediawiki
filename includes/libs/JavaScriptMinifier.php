@@ -484,22 +484,33 @@ class JavaScriptMinifier {
 					$end++;
 				}
 			} elseif(
+				$ch === '0'
+				&& ($pos + 1 < $length) && ($s[$pos + 1] === 'x' || $s[$pos + 1] === 'X' )
+			) {
+				// Hex numeric literal
+				$end++; // x or X
+				$end += strspn( $s, '0123456789ABCDEF', $end );
+				// @fixme if no hex digits, parse error
+			} elseif(
 				ctype_digit( $ch )
 				|| ( $ch === '.' && $pos + 1 < $length && ctype_digit( $s[$pos + 1] ) )
 			) {
-				// Numeric literal. Search for the end of it, but don't care about [+-]exponent
-				// at the end, as the results of "numeric [+-] numeric" and "numeric" are
-				// identical to our state machine.
-				$end += strspn( $s, '0123456789ABCDEFabcdefXx.', $end );
-				while( $s[$end - 1] === '.' ) {
-					// Special case: When a numeric ends with a dot, we have to check the 
-					// literal for proper syntax
-					$decimal = strspn( $s, '0123456789', $pos, $end - $pos - 1 );
-					if( $decimal === $end - $pos - 1 ) {
-						break;
-					} else {
-						$end--;
-					}
+				$end += strspn( $s, '0123456789', $end );
+				$decimal = strspn( $s, '.', $end );
+				if ($decimal) {
+					$end += $decimal;
+					$end += strspn( $s, '0123456789', $end );
+					// @fixme If no decimal digits after the . we cannot be followed
+					// by an identifier, and should throw a parse error
+				}
+				$exponent = strspn( $s, 'eE', $end );
+				if( $exponent ) {
+					$end += $exponent;;
+					// + sign is optional; - sign is required.
+					$end += strspn( $s, '-+', $end );
+					$end += strspn( $s, '0123456789', $end );
+					// @fixme if no decimal digits after the e/+/- we should
+					// throw a parse error
 				}
 			} elseif( isset( $opChars[$ch] ) ) {
 				// Punctuation character. Search for the longest matching operator.
