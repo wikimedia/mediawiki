@@ -153,6 +153,9 @@ class Preprocessor_Hash implements Preprocessor {
 			$ignoredElements = array( 'includeonly' );
 			$xmlishElements[] = 'includeonly';
 		}
+		// `dws' stands for "discard white spaces". `<dws>' and all the whitespaces afer it are
+		// discarded.
+		$xmlishElements[] = 'dws';
 		$xmlishRegex = implode( '|', array_merge( $xmlishElements, $ignoredTags ) );
 
 		// Use "A" modifier (anchored) instead of "^", because ^ doesn't work with an offset
@@ -350,6 +353,17 @@ class Preprocessor_Hash implements Preprocessor {
 				}
 
 				$tagStartPos = $i;
+
+				// Handle tag dws.
+				if ( $name == 'dws' ) {
+					$i = $tagEndPos + 1;
+					if ( preg_match( '/\s*/', $text, $matches, 0, $i ) ) {
+						$i += strlen( $matches[0] );
+					}
+					$accum->addNodeWithText( 'ignore', substr( $text, $tagStartPos, $i - $tagStartPos ) );
+					continue;
+				}
+
 				if ( $text[$tagEndPos-1] == '/' ) {
 					// Short end tag
 					$attrEnd = $tagEndPos - 1;
