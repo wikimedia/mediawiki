@@ -606,6 +606,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->mInvert = $request->getCheck( 'invert' ) && $posted;
 		$this->mPreview = $request->getCheck( 'preview' ) && $posted;
 		$this->mDiff = $request->getCheck( 'diff' );
+		$this->mDiffOnly = $request->getBool( 'diffonly', $this->getUser()->getOption( 'diffonly' ) );
 		$this->mComment = $request->getText( 'wpComment' );
 		$this->mUnsuppress = $request->getVal( 'wpUnsuppress' ) && $user->isAllowed( 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
@@ -792,7 +793,7 @@ class SpecialUndelete extends SpecialPage {
 			$previousRev = $archive->getPreviousRevision( $timestamp );
 			if( $previousRev ) {
 				$this->showDiff( $previousRev, $rev );
-				if( $user->getOption( 'diffonly' ) ) {
+				if( $this->mDiffOnly ) {
 					return;
 				} else {
 					$out->addHTML( '<hr />' );
