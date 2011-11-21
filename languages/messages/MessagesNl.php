@@ -2172,8 +2172,8 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
 
 # Special:Log
-'specialloguserlabel'  => 'Gebruiker:',
-'speciallogtitlelabel' => 'Paginanaam:',
+'specialloguserlabel'  => 'Uitvoerende gebruiker:',
+'speciallogtitlelabel' => 'Doel (paginanaam of gebruiker):',
 'log'                  => 'Logboeken',
 'all-logs-page'        => 'Alle openbare logboeken',
 'alllogstext'          => 'Dit is het gecombineerde logboek van {{SITENAME}}.

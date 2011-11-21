@@ -1922,8 +1922,8 @@ Læg mærke til at andre hjemmesider kan henvise til filen med et direkte URL, o
 'booksources-invalid-isbn'  => 'Det angivne ISBN-nummer ser forkert ud. Tjek med kilden om det er skrevet korrekt.',
 
 # Special:Log
-'specialloguserlabel'  => 'Bruger:',
-'speciallogtitlelabel' => 'Titel:',
+'specialloguserlabel'  => 'Udført af:',
+'speciallogtitlelabel' => 'Mål (titel eller bruger):',
 'log'                  => 'Loglister',
 'all-logs-page'        => 'Alle offentlige logger',
 'alllogstext'          => 'Samlet visning af alle loggene på {{SITENAME}}.

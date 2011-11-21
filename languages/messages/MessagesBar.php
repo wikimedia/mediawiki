@@ -1018,24 +1018,44 @@ Links aus Namensräume wern da net aufglistet.',
 'newuserlogpage' => 'Neiåmödungs-Logbiaché',
 
 # Special:ListGroupRights
-'listgrouprights-members' => '(Mitgliaderlisten)',
+'listgrouprights'                   => 'Benutzergruppmrechtt',
+'listgrouprights-summary'           => 'Dés do is a Listen voh dé in dém Wiki definierden Benutzergruppm und da dodamid vabundernen Rechtt.
+Zuasätzlige Informaziónen ywer dé oahzelnen Rechtt kennan [[{{MediaWiki:Listgrouprights-helppage}}|do]] gfunden wern.',
+'listgrouprights-key'               => '* <span class="listgrouprights-granted">Gwärds Recht</span>
+* <span class="listgrouprights-revoked">Entzóngs Recht</span>',
+'listgrouprights-group'             => 'Gruppm',
+'listgrouprights-rights'            => 'Rechte',
+'listgrouprights-helppage'          => 'Help:Gruppmrechte',
+'listgrouprights-members'           => '(Mitgliaderlisten)',
+'listgrouprights-addgroup'          => 'Benutzer zua {{PLURAL:$2|derer Gruppm|dé Gruppm}} dazuadoah: $1',
+'listgrouprights-removegroup'       => 'Benutzer aus {{PLURAL:$2|derer Gruppm|dé Gruppm}} entferner: $1',
+'listgrouprights-addgroup-all'      => 'Benutzer zua olle Gruppm dazuadoah',
+'listgrouprights-removegroup-all'   => 'Benutzer aus olle Gruppm éntferner',
+'listgrouprights-addgroup-self'     => "'s oagerne Benutzerkóntó zua {{PLURAL:$2|derer Gruppm|dé Gruppm}} dazuadoah: $1",
+'listgrouprights-removegroup-self'  => "'s oagerne Benutzerkóntó aus {{PLURAL:$2|derer Gruppm|dé Gruppm}} entferner: $1",
+'listgrouprights-addgroup-self-all' => 'Kauh olle Gruppm zum oagern Kóntó dazuadoah',
 
 # E-mail user
-'mailnologin'   => 'Du bist néd auhgmödt',
-'emailuser'     => 'E-Póst an dén Benutzer',
-'emailpage'     => 'E-Mail aun Benutzer',
-'noemailtitle'  => 'Koah E-Mail-Adress',
-'emailfrom'     => 'Vo',
-'emailsend'     => 'Senden',
-'emailccme'     => 'Schick a Kopii vo da E-Mail an mi söiwer',
-'emailsenttext' => 'Dai E-Mäil is vaschickt worn.',
+'mailnologin'    => 'Du bist néd auhgmödt',
+'emailuser'      => 'E-Póst an dén Benutzer',
+'emailpage'      => 'E-Mail aun Benutzer',
+'noemailtitle'   => 'Koah E-Mail-Adress',
+'emailfrom'      => 'Voh:',
+'emailto'        => 'Aun:',
+'emailsubject'   => 'Bedreff:',
+'emailmessage'   => 'Noochricht:',
+'emailsend'      => 'Senden',
+'emailccme'      => 'Schick a Kopii vo da E-Mail an mi söiwer',
+'emailccsubject' => 'a Kópie voh deiner Noochricht an $1: $2',
+'emailsent'      => 'E-Mail is vaschickt worn',
+'emailsenttext'  => 'Dai E-Mäil is vaschickt worn.',
 
 # Watchlist
 'watchlist'         => 'Beówochtungslisten',
 'mywatchlist'       => 'Beówochtungslisten',
 'watchlistfor2'     => 'Voh $1 $2',
-'watchlistanontext' => 'Sie miaßn si $1, um Eanane Beobachtungslistn zum seng oda Einträge auf ihr zum bearbatn.',
-'watchnologin'      => 'Sie san net ogmeidt',
+'watchlistanontext' => "Du muasst dé $1, um deih Beówchtungslisten z' seeng óder Eihträg borweiten z' kenner.",
+'watchnologin'      => 'Du bist néd auhgmödt',
 'addedwatchtext'    => 'De Seitn „[[:$1]]“ is zua deina [[Special:Watchlist|Beobachtungslistn]] dazuado worn.
 Änderunga an dera Seitn und vo da Diskussionsseitn wern da glistet und
 in da Übasicht vo de [[Special:RecentChanges|letztn Änderungen]] in Fettschrift ozoagt.

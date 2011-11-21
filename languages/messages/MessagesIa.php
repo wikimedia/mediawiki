@@ -1956,8 +1956,8 @@ executar iste function.',
 'booksources-invalid-isbn'  => 'Le ISBN date non pare esser valide; verifica que tu non ha facite errores copiante lo del fonte original.',
 
 # Special:Log
-'specialloguserlabel'  => 'Usator:',
-'speciallogtitlelabel' => 'Titulo:',
+'specialloguserlabel'  => 'Executor:',
+'speciallogtitlelabel' => 'Objectivo (titulo o usator):',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Tote le registros public',
 'alllogstext'          => 'Presentation combinate de tote le registros disponibile de {{SITENAME}}.

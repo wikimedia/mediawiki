@@ -2040,8 +2040,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'booksources-invalid-isbn'  => '입력한 ISBN이 잘못된 것으로 보입니다; 원본과 대조해 보십시오.',
 
 # Special:Log
-'specialloguserlabel'  => '이름:',
-'speciallogtitlelabel' => '제목:',
+'specialloguserlabel'  => '작업 수행자:',
+'speciallogtitlelabel' => '대상 (제목 또는 사용자):',
 'log'                  => '기록 목록',
 'all-logs-page'        => '모든 공개 기록',
 'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다.
@@ -2712,6 +2712,7 @@ $1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'exportcuronly'     => '현재 버전만 포함하고, 전체 역사는 포함하지 않음',
 'exportnohistory'   => "----
 '''주의:''' 전체 문서 역사를 내보내는 기능은 성능 문제로 인해 비활성되어 있습니다.",
+'exportlistauthors' => '각각 문서마다 모든 기여자의 목록을 포함',
 'export-submit'     => '내보내기',
 'export-addcattext' => '분류에 있는 문서 추가:',
 'export-addcat'     => '추가',
@@ -3172,19 +3173,27 @@ Variants for Chinese language
 'exif-locationdest'                => '장소',
 'exif-locationdestcode'            => '장소의 위치 코드(ISO, XSP 등)',
 'exif-objectcycle'                 => '미디어 파일이 의도하는 시간대',
+'exif-contact'                     => '연락처 정보',
 'exif-languagecode'                => '언어',
 'exif-iimversion'                  => 'IIM 버전',
 'exif-iimcategory'                 => '분류',
+'exif-iimsupplementalcategory'     => '보조 분류',
+'exif-datetimeexpires'             => '이 시각 이후 사용 금지',
+'exif-datetimereleased'            => '발표된 날짜',
 'exif-lens'                        => '사용된 렌즈',
 'exif-serialnumber'                => '카메라 일련 번호',
 'exif-cameraownername'             => '카메라 소유자',
 'exif-label'                       => '라벨',
 'exif-copyrighted'                 => '저작권 정보',
 'exif-copyrightowner'              => '저작권자',
+'exif-usageterms'                  => '이용 조건',
+'exif-licenseurl'                  => '저작권 라이선스의 URL',
+'exif-morepermissionsurl'          => '다른 라이선스 정보',
 'exif-pngfilecomment'              => 'PNG 파일 주석',
 'exif-disclaimer'                  => '면책 조항',
 'exif-giffilecomment'              => 'GIF 파일 주석',
 'exif-intellectualgenre'           => '컨텐츠 정보',
+'exif-scenecode'                   => 'IPTC 장면 코드',
 
 # EXIF attributes
 'exif-compression-1' => '압축되지 않음',
@@ -3271,6 +3280,8 @@ Variants for Chinese language
 'exif-sensingmethod-7' => '3선 센서',
 'exif-sensingmethod-8' => '순차적 색 공간 선형 센서',
 
+'exif-filesource-3' => '디지털 스틸 카메라',
+
 'exif-scenetype-1' => '직접 촬영된 이미지',
 
 'exif-customrendered-0' => '일반',
@@ -3347,7 +3358,10 @@ Variants for Chinese language
 'exif-gpsdirection-t' => '실제 방위',
 'exif-gpsdirection-m' => '자기 방위',
 
-'exif-dc-type' => '미디어 종류',
+'exif-dc-date'      => '날짜',
+'exif-dc-publisher' => '출판사',
+'exif-dc-relation'  => '관련된 미디어',
+'exif-dc-type'      => '미디어 종류',
 
 'exif-isospeedratings-overflow' => '65535 이상',
 
@@ -3676,6 +3690,7 @@ $1',
 'logentry-delete-revision'            => '$1 사용자가 $3 문서의 {{PLURAL:$5}}개 편집의 설정을 {{GENDER:$2|변경}}하였습니다: $4',
 'logentry-delete-event-legacy'        => '$1 사용자가 $3 문서 기록의 표시 설정을 {{GENDER:$2|변경}}하였습니다.',
 'logentry-delete-revision-legacy'     => '$1 사용자가 $3 문서 편집의 표시 설정을 {{GENDER:$2|변경}}하였습니다.',
+'logentry-suppress-delete'            => '$1 사용자가 $3 문서를 {{GENDER:$2|숨겼}}습니다.',
 'revdelete-content-hid'               => '내용 숨겨짐',
 'revdelete-summary-hid'               => '편집 요약 숨겨짐',
 'revdelete-uname-hid'                 => '계정 이름 숨겨짐',

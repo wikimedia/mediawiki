@@ -2142,8 +2142,8 @@ $1',
 'booksources-invalid-isbn'  => 'המסת"ב שניתן כנראה אינו תקין; אנא בדקו אם ביצעתם טעויות בהעתקה מהמידע המקורי.',
 
 # Special:Log
-'specialloguserlabel'  => 'משתמש:',
-'speciallogtitlelabel' => 'כותרת:',
+'specialloguserlabel'  => 'בוצעו על ידי המשתמש:',
+'speciallogtitlelabel' => 'יעד (כותרת או משתמש):',
 'log'                  => 'יומנים',
 'all-logs-page'        => 'כל היומנים הציבוריים',
 'alllogstext'          => 'תצוגה משולבת של כל סוגי היומנים הזמינים ב{{grammar:תחילית|{{SITENAME}}}}.

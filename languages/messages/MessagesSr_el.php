@@ -1969,8 +1969,8 @@ na kome bi se izvela ova funkcija.',
 'booksources-invalid-isbn'  => 'Naveden ISBN ne izgleda ispravno; proverite da nije došlo do greške prilikom kopiranja iz originalnog izvora.',
 
 # Special:Log
-'specialloguserlabel'  => 'Korisnik:',
-'speciallogtitlelabel' => 'Naslov:',
+'specialloguserlabel'  => 'Izvršilac:',
+'speciallogtitlelabel' => 'Cilj (naslov ili korisnik):',
 'log'                  => 'Protokoli',
 'all-logs-page'        => 'Sve javne istorije',
 'alllogstext'          => 'Kombinovani prikaz svih dostupnih istorija za {{SITENAME}}.

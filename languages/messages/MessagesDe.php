@@ -2130,8 +2130,8 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 Bitte prüfe, ob sie korrekt von der Quelle übertragen wurde.',
 
 # Special:Log
-'specialloguserlabel'  => 'Benutzer:',
-'speciallogtitlelabel' => 'Titel:',
+'specialloguserlabel'  => 'Ausführender Benutzer:',
+'speciallogtitlelabel' => 'Ziel (Titel oder Benutzer):',
 'log'                  => 'Logbücher',
 'all-logs-page'        => 'Alle öffentlichen Logbücher',
 'alllogstext'          => 'Dies ist die kombinierte Anzeige aller in {{SITENAME}} geführten Logbücher.
