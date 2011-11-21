@@ -354,7 +354,7 @@ class ImportReporter extends ContextSource {
 
 		$this->mPageCount++;
 
-		$localCount = $this->getLang()->formatNum( $successCount );
+		$localCount = $this->getLanguage()->formatNum( $successCount );
 		$contentCount = $wgContLang->formatNum( $successCount );
 
 		if( $successCount > 0 ) {
@@ -403,7 +403,7 @@ class ImportReporter extends ContextSource {
 		$out = $this->getOutput();
 		if ( $this->mLogItemCount > 0 ) {
 			$msg = wfMsgExt( 'imported-log-entries', 'parseinline',
-						$this->getLang()->formatNum( $this->mLogItemCount ) );
+						$this->getLanguage()->formatNum( $this->mLogItemCount ) );
 			$out->addHTML( Xml::tags( 'li', null, $msg ) );
 		} elseif( $this->mPageCount == 0 && $this->mLogItemCount == 0 ) {
 			$out->addHTML( "</ul>\n" );

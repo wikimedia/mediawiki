@@ -66,11 +66,11 @@ class StandardTemplate extends LegacyTemplate {
 
 		wfProfileOut( __METHOD__ . '-1' );
 		wfProfileIn( __METHOD__ . '-2' );
-		$l = $this->getSkin()->getLang()->alignStart();
+		$l = $this->getSkin()->getLanguage()->alignStart();
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
 		$s .= $this->bottomLinks();
-		$s .= "\n<br />" . $this->getSkin()->getLang()->pipeList( array(
+		$s .= "\n<br />" . $this->getSkin()->getLanguage()->pipeList( array(
 			$this->getSkin()->mainPageLink(),
 			$this->getSkin()->aboutLink(),
 			Linker::specialLink( 'Recentchanges' ),

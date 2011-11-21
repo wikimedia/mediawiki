@@ -126,7 +126,7 @@ class AllmessagesTablePager extends TablePager {
 			$this->custom = ($request->getVal( 'filter' ) == 'unmodified');
 		}
 
-		$prefix = $this->getLang()->ucfirst( $request->getVal( 'prefix', '' ) );
+		$prefix = $this->getLanguage()->ucfirst( $request->getVal( 'prefix', '' ) );
 		$prefix = $prefix != '' ? Title::makeTitleSafe( NS_MEDIAWIKI, $request->getVal( 'prefix', null ) ) : null;
 		if( $prefix !== null ){
 			$this->displayPrefix = $prefix->getDBkey();
@@ -350,11 +350,11 @@ class AllmessagesTablePager extends TablePager {
 				$talk  = Title::makeTitle( NS_MEDIAWIKI_TALK, $value . $this->suffix );
 
 				if( $this->mCurrentRow->am_customised ){
-					$title = Linker::linkKnown( $title, $this->getLang()->lcfirst( $value ) );
+					$title = Linker::linkKnown( $title, $this->getLanguage()->lcfirst( $value ) );
 				} else {
 					$title = Linker::link(
 						$title,
-						$this->getLang()->lcfirst( $value ),
+						$this->getLanguage()->lcfirst( $value ),
 						array(),
 						array(),
 						array( 'broken' )
@@ -403,7 +403,7 @@ class AllmessagesTablePager extends TablePager {
 			$arr['class'] = 'allmessages-customised';
 		}
 		if( !$isSecond ){
-			$arr['id'] = Sanitizer::escapeId( 'msg_' . $this->getLang()->lcfirst( $row->am_title ) );
+			$arr['id'] = Sanitizer::escapeId( 'msg_' . $this->getLanguage()->lcfirst( $row->am_title ) );
 		}
 		return $arr;
 	}

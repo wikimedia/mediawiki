@@ -842,7 +842,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return String HTML fragment
 	 */
 	private function getRevisionHeader( Revision $rev, $complete = '' ) {
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 		$user = $this->getUser();
 		$revtimestamp = $rev->getTimestamp();
 		$timestamp = $lang->userTimeAndDate( $revtimestamp, $user );

@@ -140,15 +140,15 @@ class SpecialStatistics extends SpecialPage {
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'Allpages' ),
 						wfMsgExt( 'statistics-articles', array( 'parseinline' ) ) ),
-						$this->getLang()->formatNum( $this->good ),
+						$this->getLanguage()->formatNum( $this->good ),
 						array( 'class' => 'mw-statistics-articles' ) ) .
 				$this->formatRow( wfMsgExt( 'statistics-pages', array( 'parseinline' ) ),
-						$this->getLang()->formatNum( $this->total ),
+						$this->getLanguage()->formatNum( $this->total ),
 						array( 'class' => 'mw-statistics-pages' ),
 						'statistics-pages-desc' ) .
 				$this->formatRow( Linker::linkKnown( SpecialPage::getTitleFor( 'Listfiles' ),
 						wfMsgExt( 'statistics-files', array( 'parseinline' ) ) ),
-						$this->getLang()->formatNum( $this->images ),
+						$this->getLanguage()->formatNum( $this->images ),
 						array( 'class' => 'mw-statistics-files' ) );
 	}
 	private function getEditStats() {
@@ -156,10 +156,10 @@ class SpecialStatistics extends SpecialPage {
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-edits', array( 'parseinline' ) ) ) .
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( wfMsgExt( 'statistics-edits', array( 'parseinline' ) ),
-						$this->getLang()->formatNum( $this->edits ),
+						$this->getLanguage()->formatNum( $this->edits ),
 						array( 'class' => 'mw-statistics-edits' ) ) .
 				$this->formatRow( wfMsgExt( 'statistics-edits-average', array( 'parseinline' ) ),
-						$this->getLang()->formatNum( sprintf( '%.2f', $this->total ? $this->edits / $this->total : 0 ) ),
+						$this->getLanguage()->formatNum( sprintf( '%.2f', $this->total ? $this->edits / $this->total : 0 ) ),
 						array( 'class' => 'mw-statistics-edits-average' ) );
 	}
 
@@ -169,17 +169,17 @@ class SpecialStatistics extends SpecialPage {
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-users', array( 'parseinline' ) ) ) .
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( wfMsgExt( 'statistics-users', array( 'parseinline' ) ),
-						$this->getLang()->formatNum( $this->users ),
+						$this->getLanguage()->formatNum( $this->users ),
 						array( 'class' => 'mw-statistics-users' ) ) .
 				$this->formatRow( wfMsgExt( 'statistics-users-active', array( 'parseinline' ) ) . ' ' .
 							Linker::linkKnown(
 								SpecialPage::getTitleFor( 'Activeusers' ),
 								wfMsgHtml( 'listgrouprights-members' )
 							),
-						$this->getLang()->formatNum( $this->activeUsers ),
+						$this->getLanguage()->formatNum( $this->activeUsers ),
 						array( 'class' => 'mw-statistics-users-active' ),
 						'statistics-users-active-desc',
-						$this->getLang()->formatNum( $wgActiveUserDays ) );
+						$this->getLanguage()->formatNum( $wgActiveUserDays ) );
 	}
 
 	private function getGroupStats() {
@@ -221,7 +221,7 @@ class SpecialStatistics extends SpecialPage {
 				$classZero = ' statistics-group-zero';
 			}
 			$text .= $this->formatRow( $grouppage . ' ' . $grouplink,
-				$this->getLang()->formatNum( $countUsers ),
+				$this->getLanguage()->formatNum( $countUsers ),
 				array( 'class' => 'statistics-group-' . Sanitizer::escapeClass( $group ) . $classZero )  );
 		}
 		return $text;
@@ -232,10 +232,10 @@ class SpecialStatistics extends SpecialPage {
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-views', array( 'parseinline' ) ) ) .
 			Xml::closeElement( 'tr' ) .
 				$this->formatRow( wfMsgExt( 'statistics-views-total', array( 'parseinline' ) ),
-					$this->getLang()->formatNum( $this->views ),
+					$this->getLanguage()->formatNum( $this->views ),
 						array ( 'class' => 'mw-statistics-views-total' ), 'statistics-views-total-desc' ) .
 				$this->formatRow( wfMsgExt( 'statistics-views-peredit', array( 'parseinline' ) ),
-					$this->getLang()->formatNum( sprintf( '%.2f', $this->edits ?
+					$this->getLanguage()->formatNum( sprintf( '%.2f', $this->edits ?
 						$this->views / $this->edits : 0 ) ),
 						array ( 'class' => 'mw-statistics-views-peredit' ) );
 	}
@@ -268,7 +268,7 @@ class SpecialStatistics extends SpecialPage {
 					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 					if( $title instanceof Title ) {
 						$text .= $this->formatRow( Linker::link( $title ),
-								$this->getLang()->formatNum( $row->page_counter ) );
+								$this->getLanguage()->formatNum( $row->page_counter ) );
 
 					}
 				}
@@ -289,7 +289,7 @@ class SpecialStatistics extends SpecialPage {
 			$name = htmlspecialchars( $name );
 			$number = htmlspecialchars( $number );
 
-			$return .= $this->formatRow( $name, $this->getLang()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
+			$return .= $this->formatRow( $name, $this->getLanguage()->formatNum( $number ), array( 'class' => 'mw-statistics-hook' ) );
 		}
 
 		return $return;

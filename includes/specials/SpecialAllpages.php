@@ -425,7 +425,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					array(),
 					$query
 				);
-				$out2 = $this->getLang()->pipeList( array( $out2, $prevLink ) );
+				$out2 = $this->getLanguage()->pipeList( array( $out2, $prevLink ) );
 			}
 
 			if( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
@@ -442,7 +442,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 					array(),
 					$query
 				);
-				$out2 = $this->getLang()->pipeList( array( $out2, $nextLink ) );
+				$out2 = $this->getLanguage()->pipeList( array( $out2, $nextLink ) );
 			}
 			$out2 .= "</td></tr></table>";
 		}
@@ -457,7 +457,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			$output->addHTML(
 				Html::element( 'hr' ) .
 				Html::rawElement( 'div', array( 'class' => 'mw-allpages-nav' ),
-					$this->getLang()->pipeList( $links )
+					$this->getLanguage()->pipeList( $links )
 				) );
 		}
 

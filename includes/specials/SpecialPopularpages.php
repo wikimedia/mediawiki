@@ -62,6 +62,6 @@ class PopularPagesPage extends QueryPage {
 			htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) )
 		);
 		$nv = $this->msg( 'nviews' )->numParams( $result->value )->escaped();
-		return $this->getLang()->specialList( $link, $nv );
+		return $this->getLanguage()->specialList( $link, $nv );
 	}
 }

@@ -235,7 +235,7 @@ class ChangesList extends ContextSource {
 
 	public function insertDateHeader( &$s, $rc_timestamp ) {
 		# Make date header if necessary
-		$date = $this->getLang()->date( $rc_timestamp, true, true );
+		$date = $this->getLanguage()->date( $rc_timestamp, true, true );
 		if( $date != $this->lastdate ) {
 			if( $this->lastdate != '' ) {
 				$s .= "</ul>\n";
@@ -326,7 +326,7 @@ class ChangesList extends ContextSource {
 			$articlelink = "<strong class=\"mw-watched\">{$articlelink}</strong>";
 		}
 		# RTL/LTR marker
-		$articlelink .= $this->getLang()->getDirMark();
+		$articlelink .= $this->getLanguage()->getDirMark();
 
 		wfRunHooks( 'ChangesListInsertArticleLink',
 			array(&$this, &$articlelink, &$s, &$rc, $unpatrolled, $watched) );
@@ -341,7 +341,7 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertTimestamp( &$s, $rc ) {
 		$s .= $this->message['semicolon-separator'] .
-			$this->getLang()->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
+			$this->getLanguage()->time( $rc->mAttribs['rc_timestamp'], true, true ) . ' . . ';
 	}
 
 	/** Insert links to user page, user talk page and eventually a blocking link
@@ -352,7 +352,7 @@ class ChangesList extends ContextSource {
 		if( $this->isDeleted( $rc, Revision::DELETED_USER ) ) {
 			$s .= ' <span class="history-deleted">' . wfMsgHtml( 'rev-deleted-user' ) . '</span>';
 		} else {
-			$s .= $this->getLang()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
+			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 			$s .= Linker::userToolLinks( $rc->mAttribs['rc_user'], $rc->mAttribs['rc_user_text'] );
 		}
 	}
@@ -364,7 +364,7 @@ class ChangesList extends ContextSource {
 	public function insertLogEntry( $rc ) {
 		$formatter = LogFormatter::newFromRow( $rc->mAttribs );
 		$formatter->setShowUserToolLinks( true );
-		$mark = $this->getLang()->getDirMark();
+		$mark = $this->getLanguage()->getDirMark();
 		return $formatter->getActionText() . " $mark" . $formatter->getComment();
 	}
 
@@ -399,7 +399,7 @@ class ChangesList extends ContextSource {
 		if( $count > 0 ) {
 			if( !isset( $cache[$count] ) ) {
 				$cache[$count] = wfMsgExt( 'number_of_watching_users_RCview',
-					array('parsemag', 'escape' ), $this->getLang()->formatNum( $count ) );
+					array('parsemag', 'escape' ), $this->getLanguage()->formatNum( $count ) );
 			}
 			return $cache[$count];
 		} else {
@@ -572,7 +572,7 @@ class OldChangesList extends ChangesList {
 			# User tool links
 			$this->insertUserRelatedLinks( $s, $rc );
 			# LTR/RTL direction mark
-			$s .= $this->getLang()->getDirMark();
+			$s .= $this->getLanguage()->getDirMark();
 			$s .= $this->insertComment( $rc );
 		}
 
@@ -586,7 +586,7 @@ class OldChangesList extends ChangesList {
 		# How many users watch this page
 		if( $rc->numberofWatchingusers > 0 ) {
 			$s .= ' ' . wfMsgExt( 'number_of_watching_users_RCview',
-				array( 'parsemag', 'escape' ), $this->getLang()->formatNum( $rc->numberofWatchingusers ) );
+				array( 'parsemag', 'escape' ), $this->getLanguage()->formatNum( $rc->numberofWatchingusers ) );
 		}
 
 		if( $this->watchlist ) {
@@ -635,7 +635,7 @@ class EnhancedChangesList extends ChangesList {
 		$curIdEq = array( 'curid' => $rc->mAttribs['rc_cur_id'] );
 
 		# If it's a new day, add the headline and flush the cache
-		$date = $this->getLang()->date( $rc->mAttribs['rc_timestamp'], true );
+		$date = $this->getLanguage()->date( $rc->mAttribs['rc_timestamp'], true );
 		$ret = '';
 		if( $date != $this->lastdate ) {
 			# Process current cache
@@ -689,7 +689,7 @@ class EnhancedChangesList extends ChangesList {
 			$showdifflinks = false;
 		}
 
-		$time = $this->getLang()->time( $rc->mAttribs['rc_timestamp'], true, true );
+		$time = $this->getLanguage()->time( $rc->mAttribs['rc_timestamp'], true, true );
 		$rc->watched = $watched;
 		$rc->link = $clink;
 		$rc->timestamp = $time;
@@ -838,9 +838,9 @@ class EnhancedChangesList extends ChangesList {
 		$users = array();
 		foreach( $userlinks as $userlink => $count) {
 			$text = $userlink;
-			$text .= $this->getLang()->getDirMark();
+			$text .= $this->getLanguage()->getDirMark();
 			if( $count > 1 ) {
-				$text .= ' (' . $this->getLang()->formatNum( $count ) . '×)';
+				$text .= ' (' . $this->getLanguage()->formatNum( $count ) . '×)';
 			}
 			array_push( $users, $text );
 		}
@@ -880,14 +880,14 @@ class EnhancedChangesList extends ChangesList {
 			$this->insertArticleLink( $r, $block[0], $block[0]->unpatrolled, $block[0]->watched );
 		}
 
-		$r .= $this->getLang()->getDirMark();
+		$r .= $this->getLanguage()->getDirMark();
 
 		$queryParams['curid'] = $curId;
 		# Changes message
 		$n = count($block);
 		static $nchanges = array();
 		if ( !isset( $nchanges[$n] ) ) {
-			$nchanges[$n] = wfMsgExt( 'nchanges', array( 'parsemag', 'escape' ), $this->getLang()->formatNum( $n ) );
+			$nchanges[$n] = wfMsgExt( 'nchanges', array( 'parsemag', 'escape' ), $this->getLanguage()->formatNum( $n ) );
 		}
 		# Total change link
 		$r .= ' ';

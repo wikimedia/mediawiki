@@ -97,7 +97,7 @@ class SpecialProtectedpages extends SpecialPage {
 		}
 
 		$stxt = '';
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 
 		$expiry = $lang->formatExpiry( $row->pr_expiry, TS_MW );
 		if( $expiry != $infinity ) {

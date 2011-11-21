@@ -222,7 +222,7 @@ class SpecialContributions extends SpecialPage {
 		$talk = $userObj->getTalkPage();
 		if( $talk ) {
 			$tools = self::getUserLinks( $nt, $talk, $userObj, $this->getUser() );
-			$links = $this->getLang()->pipeList( $tools );
+			$links = $this->getLanguage()->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
 			if ( $userObj->isBlocked() ) {
@@ -674,8 +674,8 @@ class ContribsPager extends ReverseChronologicalPager {
 			$chardiff = ' ';
 		}
 
-		$comment = $this->getLang()->getDirMark() . Linker::revComment( $rev, false, true );
-		$date = $this->getLang()->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
+		$comment = $this->getLanguage()->getDirMark() . Linker::revComment( $rev, false, true );
+		$date = $this->getLanguage()->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
 		if( $rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$d = Linker::linkKnown(
 				$page,

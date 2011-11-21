@@ -125,7 +125,7 @@ class SpecialChangePassword extends UnlistedSpecialPage {
 				'<td></td>' .
 				'<td class="mw-input">' .
 					Xml::checkLabel(
-						wfMsgExt( 'remembermypassword', 'parsemag', $this->getLang()->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
+						wfMsgExt( 'remembermypassword', 'parsemag', $this->getLanguage()->formatNum( ceil( $wgCookieExpiration / ( 3600 * 24 ) ) ) ),
 						'wpRemember', 'wpRemember',
 						$this->getRequest()->getCheck( 'wpRemember' ) ) .
 				'</td>' .

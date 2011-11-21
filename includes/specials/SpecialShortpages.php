@@ -78,7 +78,7 @@ class ShortPagesPage extends QueryPage {
 	}
 
 	function formatResult( $skin, $result ) {
-		$dm = $this->getLang()->getDirMark();
+		$dm = $this->getLanguage()->getDirMark();
 
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		if ( !$title ) {

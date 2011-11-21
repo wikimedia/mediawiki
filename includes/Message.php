@@ -211,7 +211,7 @@ class Message {
 	 * @return Message: $this
 	 */
 	public function setContext( IContextSource $context ) {
-		$this->inLanguage( $context->getLang() );
+		$this->inLanguage( $context->getLanguage() );
 		$this->title( $context->getTitle() );
 
 		return $this;

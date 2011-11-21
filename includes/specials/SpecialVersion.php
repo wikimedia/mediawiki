@@ -362,7 +362,7 @@ class SpecialVersion extends SpecialPage {
 		if( $a['name'] === $b['name'] ) {
 			return 0;
 		} else {
-			return $this->getLang()->lc( $a['name'] ) > $this->getLang()->lc( $b['name'] )
+			return $this->getLanguage()->lc( $a['name'] ) > $this->getLanguage()->lc( $b['name'] )
 				? 1
 				: -1;
 		}
@@ -546,7 +546,7 @@ class SpecialVersion extends SpecialPage {
 			if ( $sort ) {
 				sort( $list );
 			}
-			return $this->getLang()->listToText( array_map( array( __CLASS__, 'arrayToString' ), $list ) );
+			return $this->getLanguage()->listToText( array_map( array( __CLASS__, 'arrayToString' ), $list ) );
 		}
 	}
 

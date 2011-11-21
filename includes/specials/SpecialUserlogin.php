@@ -1232,7 +1232,7 @@ class LoginForm extends SpecialPage {
 				}
 			}
 			return count( $links ) > 0 ? $this->msg( 'loginlanguagelabel' )->rawParams(
-				$this->getLang()->pipeList( $links ) )->escaped() : '';
+				$this->getLanguage()->pipeList( $links ) )->escaped() : '';
 		} else {
 			return '';
 		}

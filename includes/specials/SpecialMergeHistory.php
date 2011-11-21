@@ -253,7 +253,7 @@ class SpecialMergeHistory extends SpecialPage {
 
 		$pageLink = Linker::linkKnown(
 			$rev->getTitle(),
-			htmlspecialchars( $this->getLang()->timeanddate( $ts ) ),
+			htmlspecialchars( $this->getLanguage()->timeanddate( $ts ) ),
 			array(),
 			array( 'oldid' => $rev->getId() )
 		);

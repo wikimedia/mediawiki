@@ -240,7 +240,7 @@ class SpecialWatchlist extends SpecialPage {
 			$output->showLagWarning( $lag );
 		}
 
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 
 		# Create output form
 		$form  = Xml::fieldset( wfMsg( 'watchlist-options' ), false, array( 'id' => 'mw-watchlist-options' ) );
@@ -419,7 +419,7 @@ class SpecialWatchlist extends SpecialPage {
 
 		return Linker::linkKnown(
 			$this->getTitle(),
-			$this->getLang()->formatNum( $h ),
+			$this->getLanguage()->formatNum( $h ),
 			array(),
 			$options
 		);
@@ -427,7 +427,7 @@ class SpecialWatchlist extends SpecialPage {
 
 	protected function daysLink( $d, $options = array() ) {
 		$options['days'] = $d;
-		$message = ( $d ? $this->getLang()->formatNum( $d ) : wfMsgHtml( 'watchlistall2' ) );
+		$message = ( $d ? $this->getLanguage()->formatNum( $d ) : wfMsgHtml( 'watchlistall2' ) );
 
 		return Linker::linkKnown(
 			$this->getTitle(),
@@ -455,8 +455,8 @@ class SpecialWatchlist extends SpecialPage {
 		}
 		return wfMsgExt('wlshowlast',
 			array('parseinline', 'replaceafter'),
-			$this->getLang()->pipeList( $hours ),
-			$this->getLang()->pipeList( $days ),
+			$this->getLanguage()->pipeList( $hours ),
+			$this->getLanguage()->pipeList( $days ),
 			$this->daysLink( 0, $options ) );
 	}
 

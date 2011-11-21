@@ -2244,7 +2244,7 @@ $templates
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
 			$wrap = Html::rawElement( 'div', array( 'class' => "mw-{$message}" ), "\n$1\n" );
-			$this->wrapWikiMsg( "$wrap\n", array( $message, $this->getLang()->formatNum( $lag ) ) );
+			$this->wrapWikiMsg( "$wrap\n", array( $message, $this->getLanguage()->formatNum( $lag ) ) );
 		}
 	}
 
@@ -2328,14 +2328,14 @@ $templates
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		global $wgContLang, $wgUseTrackbacks;
-		$userdir = $this->getLang()->getDir();
+		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
 
 		if ( $sk->commonPrintStylesheet() ) {
 			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
 		}
 
-		$ret = Html::htmlHeader( array( 'lang' => $this->getLang()->getCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
+		$ret = Html::htmlHeader( array( 'lang' => $this->getLanguage()->getCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() ) );
@@ -2370,7 +2370,7 @@ $templates
 		# Classes for LTR/RTL directionality support
 		$bodyAttrs['class'] = "mediawiki $userdir sitedir-$sitedir";
 
-		if ( $this->getLang()->capitalizeAllNouns() ) {
+		if ( $this->getLanguage()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
 			$bodyAttrs['class'] .= ' capitalize-all-nouns';
 		}
@@ -2504,7 +2504,7 @@ $templates
 			// correct timestamp and emptiness data
 			$query = ResourceLoader::makeLoaderQuery(
 				array(), // modules; not determined yet
-				$this->getLang()->getCode(),
+				$this->getLanguage()->getCode(),
 				$this->getSkin()->getSkinName(),
 				$user,
 				null, // version; not determined yet
@@ -2560,7 +2560,7 @@ $templates
 
 			$url = ResourceLoader::makeLoaderURL(
 				array_keys( $modules ),
-				$this->getLang()->getCode(),
+				$this->getLanguage()->getCode(),
 				$this->getSkin()->getSkinName(),
 				$user,
 				$version,
@@ -3070,7 +3070,7 @@ $templates
 	 * @param $flip String: Set to 'flip' to flip the CSS if needed
 	 */
 	public function addInlineStyle( $style_css, $flip = 'noflip' ) {
-		if( $flip === 'flip' && $this->getLang()->isRTL() ) {
+		if( $flip === 'flip' && $this->getLanguage()->isRTL() ) {
 			# If wanted, and the interface is right-to-left, flip the CSS
 			$style_css = CSSJanus::transform( $style_css, true, false );
 		}
@@ -3189,7 +3189,7 @@ $templates
 	 */
 	protected function styleLink( $style, $options ) {
 		if( isset( $options['dir'] ) ) {
-			if( $this->getLang()->getDir() != $options['dir'] ) {
+			if( $this->getLanguage()->getDir() != $options['dir'] ) {
 				return '';
 			}
 		}

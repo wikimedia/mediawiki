@@ -569,11 +569,11 @@ class SpecialUpload extends SpecialPage {
 			case UploadBase::FILETYPE_BADTYPE:
 				$msg = wfMessage( 'filetype-banned-type' );
 				if ( isset( $details['blacklistedExt'] ) ) {
-					$msg->params( $this->getLang()->commaList( $details['blacklistedExt'] ) );
+					$msg->params( $this->getLanguage()->commaList( $details['blacklistedExt'] ) );
 				} else {
 					$msg->params( $details['finalExt'] );
 				}
-				$msg->params( $this->getLang()->commaList( $wgFileExtensions ),
+				$msg->params( $this->getLanguage()->commaList( $wgFileExtensions ),
 					count( $wgFileExtensions ) );
 
 				// Add PLURAL support for the first parameter. This results
@@ -844,7 +844,7 @@ class UploadForm extends HTMLForm {
 			'radio' => &$radio,
 			'help' => wfMsgExt( 'upload-maxfilesize',
 					array( 'parseinline', 'escapenoentities' ),
-					$this->getContext()->getLang()->formatSize( $this->mMaxUploadSize['file'] )
+					$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['file'] )
 				) . ' ' . wfMsgHtml( 'upload_source_file' ),
 			'checked' => $selectedSourceType == 'file',
 		);
@@ -859,7 +859,7 @@ class UploadForm extends HTMLForm {
 				'radio' => &$radio,
 				'help' => wfMsgExt( 'upload-maxfilesize',
 						array( 'parseinline', 'escapenoentities' ),
-						$this->getContext()->getLang()->formatSize( $this->mMaxUploadSize['url'] )
+						$this->getContext()->getLanguage()->formatSize( $this->mMaxUploadSize['url'] )
 					) . ' ' . wfMsgHtml( 'upload_source_url' ),
 				'checked' => $selectedSourceType == 'url',
 			);
@@ -891,16 +891,16 @@ class UploadForm extends HTMLForm {
 				# Everything not permitted is banned
 				$extensionsList =
 					'<div id="mw-upload-permitted">' .
-					wfMsgExt( 'upload-permitted', 'parse', $this->getContext()->getLang()->commaList( $wgFileExtensions ) ) .
+					wfMsgExt( 'upload-permitted', 'parse', $this->getContext()->getLanguage()->commaList( $wgFileExtensions ) ) .
 					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
 				$extensionsList =
 					'<div id="mw-upload-preferred">' .
-					wfMsgExt( 'upload-preferred', 'parse', $this->getContext()->getLang()->commaList( $wgFileExtensions ) ) .
+					wfMsgExt( 'upload-preferred', 'parse', $this->getContext()->getLanguage()->commaList( $wgFileExtensions ) ) .
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
-					wfMsgExt( 'upload-prohibited', 'parse', $this->getContext()->getLang()->commaList( $wgFileBlacklist ) ) .
+					wfMsgExt( 'upload-prohibited', 'parse', $this->getContext()->getLanguage()->commaList( $wgFileBlacklist ) ) .
 					"</div>\n";
 			}
 		} else {

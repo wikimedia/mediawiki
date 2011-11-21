@@ -96,10 +96,20 @@ abstract class ContextSource implements IContextSource {
 	/**
 	 * Get the Language object
 	 *
+	 * @deprecated 1.19 Use getLanguage instead
 	 * @return Language
 	 */
 	public function getLang() {
-		return $this->getContext()->getLang();
+		return $this->getLanguage();
+	}
+
+	/**
+	 * Get the Language object
+	 *
+	 * @return Language
+	 */
+	public function getLanguage() {
+		return $this->getContext()->getLanguage();
 	}
 
 	/**

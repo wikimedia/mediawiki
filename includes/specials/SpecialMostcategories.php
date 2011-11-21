@@ -62,6 +62,6 @@ class MostcategoriesPage extends QueryPage {
 
 		$count = $this->msg( 'ncategories' )->numParams( $result->value )->escaped();
 		$link = Linker::link( $title );
-		return $this->getLang()->specialList( $link, $count );
+		return $this->getLanguage()->specialList( $link, $count );
 	}
 }

@@ -252,7 +252,7 @@ class BlockListPager extends TablePager {
 
 		switch( $name ) {
 			case 'ipb_timestamp':
-				$formatted = $this->getLang()->timeanddate( $value, /* User preference timezone */ true );
+				$formatted = $this->getLanguage()->timeanddate( $value, /* User preference timezone */ true );
 				break;
 
 			case 'ipb_target':
@@ -278,7 +278,7 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_expiry':
-				$formatted = $this->getLang()->formatExpiry( $value, /* User preference timezone */ true );
+				$formatted = $this->getLanguage()->formatExpiry( $value, /* User preference timezone */ true );
 				if( $this->getUser()->isAllowed( 'block' ) ){
 					if( $row->ipb_auto ){
 						$links[] = Linker::linkKnown(
@@ -300,7 +300,7 @@ class BlockListPager extends TablePager {
 					$formatted .= ' ' . Html::rawElement(
 						'span',
 						array( 'class' => 'mw-blocklist-actions' ),
-						wfMsg( 'parentheses', $this->getLang()->pipeList( $links ) )
+						wfMsg( 'parentheses', $this->getLanguage()->pipeList( $links ) )
 					);
 				}
 				break;
@@ -338,7 +338,7 @@ class BlockListPager extends TablePager {
 					$properties[] = $msg['blocklist-nousertalk'];
 				}
 
-				$formatted = $this->getLang()->commaList( $properties );
+				$formatted = $this->getLanguage()->commaList( $properties );
 				break;
 
 			default:

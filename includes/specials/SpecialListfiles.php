@@ -198,7 +198,7 @@ class ImageListPager extends TablePager {
 				$thumb = $file->transform( array( 'width' => 180, 'height' => 360 ) );
 				return $thumb->toHtml( array( 'desc-link' => true ) );
 			case 'img_timestamp':
-				return htmlspecialchars( $this->getLang()->timeanddate( $value, true ) );
+				return htmlspecialchars( $this->getLanguage()->timeanddate( $value, true ) );
 			case 'img_name':
 				static $imgfile = null;
 				if ( $imgfile === null ) $imgfile = wfMsg( 'imgfile' );
@@ -226,7 +226,7 @@ class ImageListPager extends TablePager {
 				}
 				return $link;
 			case 'img_size':
-				return htmlspecialchars( $this->getLang()->formatSize( $value ) );
+				return htmlspecialchars( $this->getLanguage()->formatSize( $value ) );
 			case 'img_description':
 				return Linker::commentBlock( $value );
 			case 'count':

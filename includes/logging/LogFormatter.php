@@ -274,7 +274,7 @@ class LogFormatter {
 	 */
 	protected function msg( $key ) {
 		return wfMessage( $key )
-			->inLanguage( $this->context->getLang() )
+			->inLanguage( $this->context->getLanguage() )
 			->title( $this->context->getTitle() );
 	}
 
@@ -395,13 +395,13 @@ class DeleteLogFormatter extends LogFormatter {
 				foreach ( $extra as $v ) {
 					$changes[] = $this->msg( $v )->plain();
 				}
-				$changeText =  $this->context->getLang()->listToText( $changes );
+				$changeText =  $this->context->getLanguage()->listToText( $changes );
 
 
 				$newParams = array_slice( $params, 0, 3 );
 				$newParams[3] = $changeText;
 				$count = count( explode( ',', $params[$paramStart] ) );
-				$newParams[4] = $this->context->getLang()->formatNum( $count );
+				$newParams[4] = $this->context->getLanguage()->formatNum( $count );
 				return $this->parsedParametersDeleteLog = $newParams;
 			} else {
 				return $this->parsedParametersDeleteLog = array_slice( $params, 0, 3 );
@@ -442,7 +442,7 @@ class PatrolLogFormatter extends LogFormatter {
 
 		$target = $this->entry->getTarget();
 		$oldid = $params[3];
-		$revision = $this->context->getLang()->formatNum( $oldid, true );
+		$revision = $this->context->getLanguage()->formatNum( $oldid, true );
 
 		if ( $this->plaintext ) {
 			$revlink = $revision;

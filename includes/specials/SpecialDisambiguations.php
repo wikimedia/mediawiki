@@ -128,7 +128,7 @@ class DisambiguationsPage extends PageQueryPage {
 		$from = Linker::link( $title );
 		$edit = Linker::link( $title, wfMsgExt( 'parentheses', array( 'escape' ), wfMsg( 'editlink' ) ) ,
 			array(), array( 'redirect' => 'no', 'action' => 'edit' ) );
-		$arr  = $this->getLang()->getArrow();
+		$arr  = $this->getLanguage()->getArrow();
 		$to   = Linker::link( $dp );
 
 		return "$from $edit $arr $to";

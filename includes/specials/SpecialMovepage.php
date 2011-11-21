@@ -304,7 +304,7 @@ class MovePageForm extends UnlistedSpecialPage {
 							? 'move-subpages'
 							: 'move-talk-subpages' ),
 						array( 'parseinline' ),
-						$this->getLang()->formatNum( $wgMaximumMovedPages ),
+						$this->getLanguage()->formatNum( $wgMaximumMovedPages ),
 						# $2 to allow use of PLURAL in message.
 						$wgMaximumMovedPages
 					)
@@ -366,7 +366,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			# Disallow deletions of big articles
 			$bigHistory = $page->isBigDeletion();
 			if( $bigHistory && count( $nt->getUserPermissionsErrors( 'bigdelete', $user ) ) ) {
-				$this->showForm( array( 'delete-toobig', $this->getLang()->formatNum( $wgDeleteRevisionsLimit ) ) );
+				$this->showForm( array( 'delete-toobig', $this->getLanguage()->formatNum( $wgDeleteRevisionsLimit ) ) );
 				return;
 			}
 
@@ -553,7 +553,7 @@ class MovePageForm extends UnlistedSpecialPage {
 					$extraOutput []= wfMsgHtml( 'movepage-page-moved', $oldLink, $newLink );
 					++$count;
 					if( $count >= $wgMaximumMovedPages ) {
-						$extraOutput []= wfMsgExt( 'movepage-max-pages', array( 'parsemag', 'escape' ), $this->getLang()->formatNum( $wgMaximumMovedPages ) );
+						$extraOutput []= wfMsgExt( 'movepage-max-pages', array( 'parsemag', 'escape' ), $this->getLanguage()->formatNum( $wgMaximumMovedPages ) );
 						break;
 					}
 				} else {
@@ -608,7 +608,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			return;
 		}
 
-		$out->addWikiMsg( 'movesubpagetext', $this->getLang()->formatNum( $count ) );
+		$out->addWikiMsg( 'movesubpagetext', $this->getLanguage()->formatNum( $count ) );
 		$out->addHTML( "<ul>\n" );
 
 		foreach( $subpages as $subpage ) {

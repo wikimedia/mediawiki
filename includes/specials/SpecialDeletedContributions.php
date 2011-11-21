@@ -95,7 +95,7 @@ class DeletedContribsPager extends IndexPager {
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 		$fmtLimit = $lang->formatNum( $this->mLimit );
 		$linkTexts = array(
 			'prev' => wfMsgExt( 'pager-newer-n', array( 'escape', 'parsemag' ), $fmtLimit ),
@@ -182,7 +182,7 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		$comment = Linker::revComment( $rev );
-		$date = htmlspecialchars( $this->getLang()->timeanddate( $rev->getTimestamp(), true ) );
+		$date = htmlspecialchars( $this->getLanguage()->timeanddate( $rev->getTimestamp(), true ) );
 
 		if( !$user->isAllowed( 'undelete' ) || !$rev->userCan( Revision::DELETED_TEXT, $user ) ) {
 			$link = $date; // unusable link
@@ -217,7 +217,7 @@ class DeletedContribsPager extends IndexPager {
 		$tools = Html::rawElement(
 			'span',
 			array( 'class' => 'mw-deletedcontribs-tools' ),
-			wfMsg( 'parentheses', $this->getLang()->pipeList( array( $last, $dellog, $reviewlink ) ) )
+			wfMsg( 'parentheses', $this->getLanguage()->pipeList( array( $last, $dellog, $reviewlink ) ) )
 		);
 
 		$ret = "{$del}{$link} {$tools} . . {$mflag} {$pagelink} {$comment}";
@@ -412,7 +412,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 
-			$links = $this->getLang()->pipeList( $tools );
+			$links = $this->getLanguage()->pipeList( $tools );
 
 			// Show a note if the user is blocked and display the last block log entry.
 			if ( $userObj->isBlocked() ) {

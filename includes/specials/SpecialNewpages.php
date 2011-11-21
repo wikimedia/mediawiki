@@ -111,7 +111,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 				$this->opts->setValue( 'username', $m[1] );
 			}
 			if ( preg_match( '/^namespace=(.*)$/', $bit, $m ) ) {
-				$ns = $this->getLang()->getNsIndex( $m[1] );
+				$ns = $this->getLanguage()->getNsIndex( $m[1] );
 				if( $ns !== false ) {
 					$this->opts->setValue( 'namespace',  $ns );
 				}
@@ -200,7 +200,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$links[$key] = wfMsgHtml( $msg, $link );
 		}
 
-		return $this->getLang()->pipeList( $links );
+		return $this->getLanguage()->pipeList( $links );
 	}
 
 	protected function form() {
@@ -294,7 +294,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$classes = array();
 
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 		$dm = $lang->getDirMark();
 
 		$title = Title::newFromRow( $result );

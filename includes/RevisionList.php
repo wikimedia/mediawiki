@@ -2,15 +2,11 @@
 /**
  * List for revision table items for a single page
  */
-abstract class RevisionListBase {
+abstract class RevisionListBase extends ContextSource {
 	/**
 	 * @var Title
 	 */
 	var $title;
-	/**
-	 * @var IContextSource
-	 */
-	var $context;
 
 	var $ids, $res, $current;
 
@@ -20,7 +16,7 @@ abstract class RevisionListBase {
 	 * @param $title Title
 	 */
 	function __construct( IContextSource $context, Title $title ) {
-		$this->context = $context;
+		$this->setContext( $context );
 		$this->title = $title;
 	}
 
@@ -104,24 +100,6 @@ abstract class RevisionListBase {
 	 * @param $row stdclass
 	 */
 	abstract public function newItem( $row );
-
-	/**
-	 * Get the language of the user doing the action
-	 *
-	 * @return Language object
-	 */
-	public function getLang() {
-		return $this->context->getLang();
-	}
-
-	/**
-	 * Get the user doing the action
-	 *
-	 * @return User object
-	 */
-	public function getUser() {
-		return $this->context->getUser();
-	}
 }
 
 /**
@@ -187,16 +165,16 @@ abstract class RevisionItemBase {
 	 * Get the date, formatted in user's languae
 	 */
 	public function formatDate() {
-		return $this->list->context->getLang()->userDate( $this->getTimestamp(),
-			$this->list->context->getUser() );
+		return $this->list->getLanguage()->userDate( $this->getTimestamp(),
+			$this->list->getUser() );
 	}
 
 	/**
 	 * Get the time, formatted in user's languae
 	 */
 	public function formatTime() {
-		return $this->list->context->getLang()->userTime( $this->getTimestamp(),
-			$this->list->context->getUser() );
+		return $this->list->getLanguage()->userTime( $this->getTimestamp(),
+			$this->list->getUser() );
 	}
 
 	/**
@@ -316,7 +294,7 @@ class RevisionItem extends RevisionItemBase {
 	 * Overridden by RevDel_ArchiveItem.
 	 */
 	protected function getRevisionLink() {
-		$date = $this->list->getLang()->timeanddate( $this->revision->getTimestamp(), true );
+		$date = $this->list->getLanguage()->timeanddate( $this->revision->getTimestamp(), true );
 		if ( $this->isDeleted() && !$this->canViewContent() ) {
 			return $date;
 		}

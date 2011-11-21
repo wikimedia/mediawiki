@@ -108,7 +108,7 @@ class CategoryViewer extends ContextSource {
 			$r = wfMsgExt( 'category-empty', array( 'parse' ) );
 		}
 
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 		$langAttribs = array( 'lang' => $lang->getCode(), 'dir' => $lang->getDir() );
 		# put a div around the headings which are in the user language
 		$r = Html::openElement( 'div', $langAttribs ) . $r . '</div>';

@@ -83,6 +83,6 @@ class UnwatchedpagesPage extends QueryPage {
 			array( 'action' => 'watch', 'token' => $token )
 		);
 
-		return $this->getLang()->specialList( $plink, $wlink );
+		return $this->getLanguage()->specialList( $plink, $wlink );
 	}
 }

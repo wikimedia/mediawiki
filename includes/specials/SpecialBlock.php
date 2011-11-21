@@ -377,7 +377,7 @@ class SpecialBlock extends FormSpecialPage {
 		$text =  Html::rawElement(
 			'p',
 			array( 'class' => 'mw-ipb-conveniencelinks' ),
-			$this->getLang()->pipeList( $links )
+			$this->getLanguage()->pipeList( $links )
 		);
 
 		if( $this->target instanceof User ){

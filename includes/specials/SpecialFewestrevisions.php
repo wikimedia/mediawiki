@@ -90,6 +90,6 @@ class FewestrevisionsPage extends QueryPage {
 			array( 'action' => 'history' )
 		) . $redirect;
 
-		return $this->getLang()->specialList( $plink, $nlink );
+		return $this->getLanguage()->specialList( $plink, $nlink );
 	}
 }
