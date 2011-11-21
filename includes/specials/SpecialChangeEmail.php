@@ -41,27 +41,22 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 */
 	function execute( $par ) {
 		global $wgAuth;
-		$this->checkReadOnly();
 
-		$request = $this->getRequest();
-		$this->mPassword = $request->getVal( 'wpPassword' );
-		$this->mNewEmail = $request->getVal( 'wpNewEmail' );
+		$this->checkReadOnly();
 
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$out = $this->getOutput();
-		$out->disallowUserJs();
-
-		$user = $this->getUser();
-
 		if ( !$wgAuth->allowPropChange( 'emailaddress' ) ) {
-			$this->error( wfMsgExt( 'cannotchangeemail', 'parseinline' ) );
+			$this->error( 'cannotchangeemail' );
 			return;
 		}
 
+		$user = $this->getUser();
+		$request = $this->getRequest();
+
 		if ( !$request->wasPosted() && !$user->isLoggedIn() ) {
-			$this->error( wfMsg( 'changeemail-no-info' ) );
+			$this->error( 'changeemail-no-info' );
 			return;
 		}
 
@@ -69,6 +64,12 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			$this->doReturnTo();
 			return;
 		}
+
+		$out = $this->getOutput();
+		$out->disallowUserJs();
+
+		$this->mPassword = $request->getVal( 'wpPassword' );
+		$this->mNewEmail = $request->getVal( 'wpNewEmail' );
 
 		if ( $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'token' ) ) )
@@ -101,7 +102,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	}
 
 	protected function error( $msg ) {
-		$this->getOutput()->addHTML( Xml::element('p', array( 'class' => 'error' ), $msg ) );
+		$this->getOutput()->wrapWikiMsg( "<p class='error'>\n$1\n</p>", $msg );
 	}
 
 	protected function showForm() {
@@ -109,10 +110,10 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 
 		$oldEmailText = $user->getEmail()
 			? $user->getEmail()
-			: wfMsg( 'changeemail-none' );
+			: $this->msg( 'changeemail-none' )->text();
 
 		$this->getOutput()->addHTML(
-			Xml::fieldset( wfMsg( 'changeemail-header' ) ) .
+			Xml::fieldset( $this->msg( 'changeemail-header' )->text() ) .
 			Xml::openElement( 'form',
 				array(
 					'method' => 'post',
@@ -120,7 +121,7 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 					'id' => 'mw-changeemail-form' ) ) . "\n" .
 			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 			Html::hidden( 'returnto', $this->getRequest()->getVal( 'returnto' ) ) . "\n" .
-			wfMsgExt( 'changeemail-text', array( 'parse' ) ) . "\n" .
+			$this->msg( 'changeemail-text' )->parseAsBlock() . "\n" .
 			Xml::openElement( 'table', array( 'id' => 'mw-changeemail-table' ) ) . "\n" .
 			$this->pretty( array(
 				array( 'wpName', 'username', 'text', $user->getName() ),
@@ -131,8 +132,8 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			"<tr>\n" .
 				"<td></td>\n" .
 				'<td class="mw-input">' .
-					Xml::submitButton( wfMsg( 'changeemail-submit' ) ) .
-					Xml::submitButton( wfMsg( 'changeemail-cancel' ), array( 'name' => 'wpCancel' ) ) .
+					Xml::submitButton( $this->msg( 'changeemail-submit' )->text() ) .
+					Xml::submitButton( $this->msg( 'changeemail-cancel' )->text(), array( 'name' => 'wpCancel' ) ) .
 				"</td>\n" .
 			"</tr>\n" .
 			Xml::closeElement( 'table' ) .
@@ -157,9 +158,9 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 			$out .= "<tr>\n";
 			$out .= "\t<td class='mw-label'>";
 			if ( $type != 'text' ) {
-				$out .= Xml::label( wfMsg( $label ), $name );
+				$out .= Xml::label( $this->msg( $label )->text(), $name );
 			} else {
-				$out .=  wfMsgHtml( $label );
+				$out .=  $this->msg( $label )->escaped();
 			}
 			$out .= "</td>\n";
 			$out .= "\t<td class='mw-input'>";
@@ -175,18 +176,18 @@ class SpecialChangeEmail extends UnlistedSpecialPage {
 	 */
 	protected function attemptChange( User $user, $pass, $newaddr ) {
 		if ( $newaddr != '' && !Sanitizer::validateEmail( $newaddr ) ) {
-			$this->error( wfMsgExt( 'invalidemailaddress', 'parseinline' ) );
+			$this->error( 'invalidemailaddress' );
 			return false;
 		}
 
 		$throttleCount = LoginForm::incLoginThrottle( $user->getName() );
 		if ( $throttleCount === true ) {
-			$this->error( wfMsgHtml( 'login-throttled' ) );
+			$this->error( 'login-throttled' );
 			return false;
 		}
 
 		if ( !$user->checkTemporaryPassword( $pass ) && !$user->checkPassword( $pass ) ) {
-			$this->error( wfMsgHtml( 'wrongpassword' ) );
+			$this->error( 'wrongpassword' );
 			return false;
 		}
 
