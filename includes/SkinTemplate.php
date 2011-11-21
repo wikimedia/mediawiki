@@ -296,14 +296,14 @@ class SkinTemplate extends Skin {
 
 		$contentlang = $wgContLang->getCode();
 		$contentdir  = $wgContLang->getDir();
-		$userlang = $this->getLang()->getCode();
-		$userdir  = $this->getLang()->getDir();
+		$userlang = $this->getLanguage()->getCode();
+		$userdir  = $this->getLanguage()->getDir();
 
 		$tpl->set( 'lang', $userlang );
 		$tpl->set( 'dir', $userdir );
-		$tpl->set( 'rtl', $this->getLang()->isRTL() );
+		$tpl->set( 'rtl', $this->getLanguage()->isRTL() );
 
-		$tpl->set( 'capitalizeallnouns', $this->getLang()->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
+		$tpl->set( 'capitalizeallnouns', $this->getLanguage()->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
 		$tpl->set( 'showjumplinks', $user->getOption( 'showjumplinks' ) );
 		$tpl->set( 'username', $user->isAnon() ? null : $this->username );
 		$tpl->set( 'userdisplayname', $user->isAnon() ? null : $this->userdisplayname );

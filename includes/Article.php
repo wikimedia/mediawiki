@@ -666,8 +666,8 @@ class Article extends Page {
 	protected function showCssOrJsPage() {
 		global $wgOut;
 
-		$dir = $this->getContext()->getLang()->getDir();
-		$lang = $this->getContext()->getLang()->getCode();
+		$dir = $this->getContext()->getLanguage()->getDir();
+		$lang = $this->getContext()->getLanguage()->getCode();
 
 		$wgOut->wrapWikiMsg( "<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
 			'clearyourcache' );

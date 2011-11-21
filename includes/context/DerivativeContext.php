@@ -173,15 +173,23 @@ class DerivativeContext extends ContextSource {
 	}
 
 	/**
+	 * @deprecated 1.19 Use getLanguage instead
+	 * @return Language
+	 */
+	public function getLang() {
+		$this->getLanguage();
+	}
+
+	/**
 	 * Get the Language object
 	 *
 	 * @return Language
 	 */
-	public function getLang() {
+	public function getLanguage() {
 		if ( !is_null( $this->lang ) ) {
 			return $this->lang;
 		} else {
-			return $this->getContext()->getLang();
+			return $this->getContext()->getLanguage();
 		}
 	}
 

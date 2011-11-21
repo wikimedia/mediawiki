@@ -169,7 +169,7 @@ class SpecialListGroupRights extends SpecialPage {
 			}
 		}
 		sort( $r );
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 		if( $add === true ){
 			$r[] = wfMsgExt( 'listgrouprights-addgroup-all', array( 'escape' ) );
 		} elseif( is_array( $add ) && count( $add ) ) {

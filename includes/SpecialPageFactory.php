@@ -503,7 +503,7 @@ class SpecialPageFactory {
 		$wgOut = $context->getOutput();
 		$wgRequest = $context->getRequest();
 		$wgUser = $context->getUser();
-		$wgLang = $context->getLang();
+		$wgLang = $context->getLanguage();
 
 		// The useful part
 		$ret = self::executePath( $title, $context, true );

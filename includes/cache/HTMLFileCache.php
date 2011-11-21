@@ -83,7 +83,7 @@ class HTMLFileCache extends FileCacheBase {
 		$user = $context->getUser();
 		// Check for non-standard user language; this covers uselang,
 		// and extensions for auto-detecting user language.
-		$ulang = $context->getLang()->getCode();
+		$ulang = $context->getLanguage()->getCode();
 		$clang = $wgContLang->getCode();
 		// Check that there are no other sources of variation
 		return !$wgShowIPinHeader && !$user->getId() && !$user->getNewtalk() && $ulang == $clang;

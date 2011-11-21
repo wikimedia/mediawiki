@@ -121,7 +121,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 
 		$linkC = Linker::linkKnown( $titleC );
 
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 		$arr = $lang->getArrow() . $lang->getDirMark();
 
 		return( "{$linkA} {$edit} {$arr} {$linkB} {$arr} {$linkC}" );

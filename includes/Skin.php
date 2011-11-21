@@ -739,7 +739,7 @@ abstract class Skin extends ContextSource {
 		$msgObj = $this->msg( $msg )->rawParams( $link );
 		if ( $forContent ) {
 			$msg = $msgObj->inContentLanguage()->text();
-			if ( $this->getLang()->getCode() !== $wgContLang->getCode() ) {
+			if ( $this->getLanguage()->getCode() !== $wgContLang->getCode() ) {
 				$msg = Html::rawElement( 'span', array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ), $msg );
 			}
 			return $msg;
@@ -801,8 +801,8 @@ abstract class Skin extends ContextSource {
 		}
 
 		if ( $timestamp ) {
-			$d = $this->getLang()->userDate( $timestamp, $this->getUser() );
-			$t = $this->getLang()->userTime( $timestamp, $this->getUser() );
+			$d = $this->getLanguage()->userDate( $timestamp, $this->getUser() );
+			$t = $this->getLanguage()->userTime( $timestamp, $this->getUser() );
 			$s = ' ' . $this->msg( 'lastmodifiedat', $d, $t )->text();
 		} else {
 			$s = '';
@@ -1061,7 +1061,7 @@ abstract class Skin extends ContextSource {
 		global $parserMemc, $wgEnableSidebarCache, $wgSidebarCacheExpiry;
 		wfProfileIn( __METHOD__ );
 
-		$key = wfMemcKey( 'sidebar', $this->getLang()->getCode() );
+		$key = wfMemcKey( 'sidebar', $this->getLanguage()->getCode() );
 
 		if ( $wgEnableSidebarCache ) {
 			$cachedsidebar = $parserMemc->get( $key );

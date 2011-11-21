@@ -88,7 +88,7 @@ class CreditsAction extends FormlessAction {
 
 		$timestamp = $article->getTimestamp();
 		if ( $timestamp ) {
-			$lang = $this->getLang();
+			$lang = $this->getLanguage();
 			$d = $lang->date( $article->getTimestamp(), true );
 			$t = $lang->time( $article->getTimestamp(), true );
 		} else {
@@ -143,7 +143,7 @@ class CreditsAction extends FormlessAction {
 			}
 		}
 
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 
 		if ( count( $real_names ) ) {
 			$real = $lang->listToText( $real_names );

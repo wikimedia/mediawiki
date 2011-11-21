@@ -115,7 +115,7 @@ class NewFilesPager extends ReverseChronologicalPager {
 		$this->gallery->add(
 			$title,
 			"$ul<br />\n<i>"
-				. htmlspecialchars( $this->getLang()->timeanddate( $row->img_timestamp, true ) )
+				. htmlspecialchars( $this->getLanguage()->timeanddate( $row->img_timestamp, true ) )
 				. "</i><br />\n"
 		);
 	}

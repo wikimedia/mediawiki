@@ -23,7 +23,7 @@
  *
  * @file
  */
-abstract class Action {
+abstract class Action extends ContextSource {
 
 	/**
 	 * Page on which we're performing the action
@@ -93,81 +93,6 @@ abstract class Action {
 	 */
 	public final static function exists( $name ) {
 		return self::getClass( $name, array() ) !== null;
-	}
-
-	/**
-	 * Get the IContextSource in use here
-	 * @return IContextSource
-	 */
-	public final function getContext() {
-		if ( $this->context instanceof IContextSource ) {
-			return $this->context;
-		}
-		return $this->page->getContext();
-	}
-
-	/**
-	 * Get the WebRequest being used for this instance
-	 *
-	 * @return WebRequest
-	 */
-	public final function getRequest() {
-		return $this->getContext()->getRequest();
-	}
-
-	/**
-	 * Get the OutputPage being used for this instance
-	 *
-	 * @return OutputPage
-	 */
-	public final function getOutput() {
-		return $this->getContext()->getOutput();
-	}
-
-	/**
-	 * Shortcut to get the User being used for this instance
-	 *
-	 * @return User
-	 */
-	public final function getUser() {
-		return $this->getContext()->getUser();
-	}
-
-	/**
-	 * Shortcut to get the Skin being used for this instance
-	 *
-	 * @return Skin
-	 */
-	public final function getSkin() {
-		return $this->getContext()->getSkin();
-	}
-
-	/**
-	 * Shortcut to get the user Language being used for this instance
-	 *
-	 * @return Skin
-	 */
-	public final function getLang() {
-		return $this->getContext()->getLang();
-	}
-
-	/**
-	 * Shortcut to get the Title object from the page
-	 * @return Title
-	 */
-	public final function getTitle() {
-		return $this->page->getTitle();
-	}
-
-	/**
-	 * Get a Message object with context set
-	 * Parameters are the same as wfMessage()
-	 *
-	 * @return Message object
-	 */
-	public final function msg() {
-		$params = func_get_args();
-		return call_user_func_array( array( $this->getContext(), 'msg' ), $params );
 	}
 
 	/**

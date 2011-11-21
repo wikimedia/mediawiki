@@ -421,12 +421,12 @@ class UserrightsPage extends SpecialPage {
 		$count = count( $list );
 		if( $count > 0 ) {
 			$grouplist = wfMessage( 'userrights-groupsmember', $count)->parse();
-			$grouplist = '<p>' . $grouplist  . ' ' . $this->getLang()->listToText( $list ) . "</p>\n";
+			$grouplist = '<p>' . $grouplist  . ' ' . $this->getLanguage()->listToText( $list ) . "</p>\n";
 		}
 		$count = count( $autolist );
 		if( $count > 0 ) {
 			$autogrouplistintro = wfMessage( 'userrights-groupsmember-auto', $count)->parse();
-			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $this->getLang()->listToText( $autolist ) . "</p>\n";
+			$grouplist .= '<p>' . $autogrouplistintro  . ' ' . $this->getLanguage()->listToText( $autolist ) . "</p>\n";
 		}
 
 		$userToolLinks = Linker::userToolLinks(

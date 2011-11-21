@@ -98,7 +98,7 @@ class MostlinkedTemplatesPage extends QueryPage {
 	public function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( $result->namespace, $result->title );
 
-		return $this->getLang()->specialList(
+		return $this->getLanguage()->specialList(
 			Linker::link( $title ),
 			$this->makeWlhLink( $title, $result )
 		);

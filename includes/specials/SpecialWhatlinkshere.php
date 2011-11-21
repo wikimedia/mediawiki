@@ -278,7 +278,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 	}
 
 	protected function listItem( $row, $nt, $notClose = false ) {
-		$dirmark = $this->getLang()->getDirMark();
+		$dirmark = $this->getLanguage()->getDirMark();
 
 		# local message cache
 		static $msgcache = null;
@@ -371,7 +371,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 		}
 
 		$limitLinks = array();
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 		foreach ( $this->limits as $limit ) {
 			$prettyLimit = htmlspecialchars( $lang->formatNum( $limit ) );
 			$overrides = array( 'limit' => $limit );
@@ -451,6 +451,6 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$overrides = array( $type => !$chosen );
 			$links[] =  wfMsgHtml( "whatlinkshere-{$type}", $this->makeSelfLink( $msg, array_merge( $changed, $overrides ) ) );
 		}
-		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), $this->getLang()->pipeList( $links ) );
+		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), $this->getLanguage()->pipeList( $links ) );
 	}
 }

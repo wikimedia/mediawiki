@@ -470,7 +470,7 @@ abstract class QueryPage extends SpecialPage {
 				$ts = $this->getCachedTimestamp();
 
 				if ( $ts ) {
-					$lang = $this->getLang();
+					$lang = $this->getLanguage();
 					$updated = $lang->timeanddate( $ts, true, true );
 					$updateddate = $lang->date( $ts, true, true );
 					$updatedtime = $lang->time( $ts, true, true );
@@ -505,7 +505,7 @@ abstract class QueryPage extends SpecialPage {
 				$out->addHTML( $this->msg( 'showingresults' )->numParams(
 					$this->numRows, $this->offset + 1 )->parseAsBlock() );
 				# Disable the "next" link when we reach the end
-				$paging = $this->getLang()->viewPrevNext( $this->getTitle( $par ), $this->offset,
+				$paging = $this->getLanguage()->viewPrevNext( $this->getTitle( $par ), $this->offset,
 					$this->limit, $this->linkParameters(), ( $this->numRows < $this->limit ) );
 				$out->addHTML( '<p>' . $paging . '</p>' );
 			} else {
@@ -777,7 +777,7 @@ abstract class WantedQueryPage extends QueryPage {
 					array( 'broken' )
 				);
 			}
-			return $this->getLang()->specialList( $pageLink, $this->makeWlhLink( $title, $result ) );
+			return $this->getLanguage()->specialList( $pageLink, $this->makeWlhLink( $title, $result ) );
 		} else {
 			return $this->msg( 'wantedpages-badtitle', $result->title )->escaped();
 		}

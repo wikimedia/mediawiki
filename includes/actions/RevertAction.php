@@ -95,7 +95,7 @@ class RevertFileAction extends FormAction {
 				'vertical-label' => true,
 				'raw' => true,
 				'default' => wfMsgExt( 'filerevert-intro', 'parse', $this->getTitle()->getText(),
-					$this->getLang()->date( $timestamp, true ), $this->getLang()->time( $timestamp, true ),
+					$this->getLanguage()->date( $timestamp, true ), $this->getLanguage()->time( $timestamp, true ),
 					wfExpandUrl( $this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
 						PROTO_CURRENT
 				) )
@@ -119,8 +119,8 @@ class RevertFileAction extends FormAction {
 	public function onSuccess() {
 		$timestamp = $this->oldFile->getTimestamp();
 		$this->getOutput()->addHTML( wfMsgExt( 'filerevert-success', 'parse', $this->getTitle()->getText(),
-			$this->getLang()->date( $timestamp, true ),
-			$this->getLang()->time( $timestamp, true ),
+			$this->getLanguage()->date( $timestamp, true ),
+			$this->getLanguage()->time( $timestamp, true ),
 			wfExpandUrl( $this->page->getFile()->getArchiveUrl( $this->getRequest()->getText( 'oldimage' ) ),
 				PROTO_CURRENT
 		) ) );

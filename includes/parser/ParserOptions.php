@@ -232,7 +232,7 @@ class ParserOptions {
 	 * @return ParserOptions object
 	 */
 	public static function newFromContext( IContextSource $context ) {
-		return new ParserOptions( $context->getUser(), $context->getLang() );
+		return new ParserOptions( $context->getUser(), $context->getLanguage() );
 	}
 
 	/** Get user options */

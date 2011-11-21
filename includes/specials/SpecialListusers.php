@@ -131,7 +131,7 @@ class UsersPager extends AlphabeticPager {
 		$userPage = Title::makeTitle( NS_USER, $row->user_name );
 		$name = Linker::link( $userPage, htmlspecialchars( $userPage->getText() ) );
 
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 
 		$groups_list = self::getGroups( $row->user_id );
 		if( count( $groups_list ) > 0 ) {

@@ -73,7 +73,7 @@ class UnusedtemplatesPage extends QueryPage {
 			array(),
 			array( 'target' => $title->getPrefixedText() )
 		);
-		return $this->getLang()->specialList( $pageLink, $wlhLink );
+		return $this->getLanguage()->specialList( $pageLink, $wlhLink );
 	}
 
 	function getPageHeader() {

@@ -245,7 +245,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				}
 			}
 			# Logs themselves don't have histories or archived revisions
-			$this->getOutput()->addSubtitle( $this->getLang()->pipeList( $links ) );
+			$this->getOutput()->addSubtitle( $this->getLanguage()->pipeList( $links ) );
 		}
 	}
 
@@ -286,8 +286,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if ( !$this->getUser()->matchEditToken( $this->token, $archiveName ) ) {
 			$this->getOutput()->addWikiMsg( 'revdelete-show-file-confirm',
 				$this->targetObj->getText(),
-				$this->getLang()->date( $oimage->getTimestamp() ),
-				$this->getLang()->time( $oimage->getTimestamp() ) );
+				$this->getLanguage()->date( $oimage->getTimestamp() ),
+				$this->getLanguage()->time( $oimage->getTimestamp() ) );
 			$this->getOutput()->addHTML(
 				Xml::openElement( 'form', array(
 					'method' => 'POST',
@@ -335,7 +335,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$UserAllowed = true;
 
 		if ( $this->typeName == 'logging' ) {
-			$this->getOutput()->addWikiMsg( 'logdelete-selected', $this->getLang()->formatNum( count($this->ids) ) );
+			$this->getOutput()->addWikiMsg( 'logdelete-selected', $this->getLanguage()->formatNum( count($this->ids) ) );
 		} else {
 			$this->getOutput()->addWikiMsg( 'revdelete-selected',
 				$this->targetObj->getPrefixedText(), count( $this->ids ) );

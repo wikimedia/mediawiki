@@ -114,7 +114,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 			array(),
 			array( 'broken' )
 		);
-		$arr = $this->getLang()->getArrow();
+		$arr = $this->getLanguage()->getArrow();
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
@@ -127,7 +127,7 @@ class BrokenRedirectsPage extends PageQueryPage {
 			);
 		}
 
-		$out .= $this->msg( 'parentheses' )->rawParams( $this->getLang()->pipeList( $links ) )->escaped();
+		$out .= $this->msg( 'parentheses' )->rawParams( $this->getLanguage()->pipeList( $links ) )->escaped();
 		$out .= " {$arr} {$to}";
 		return $out;
 	}

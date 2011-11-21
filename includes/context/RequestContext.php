@@ -180,11 +180,19 @@ class RequestContext implements IContextSource {
 	}
 
 	/**
+	 * @deprecated 1.19 Use getLanguage instead
+	 * @return Language
+	 */
+	public function getLang() {
+		return $this->getLanguage();
+	}
+
+	/**
 	 * Get the Language object
 	 *
 	 * @return Language
 	 */
-	public function getLang() {
+	public function getLanguage() {
 		if ( $this->lang === null ) {
 			global $wgLanguageCode, $wgContLang;
 			$code = $this->getRequest()->getVal(

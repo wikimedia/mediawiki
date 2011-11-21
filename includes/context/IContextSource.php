@@ -59,9 +59,17 @@ interface IContextSource {
 	/**
 	 * Get the Language object
 	 *
+	 * @deprecated 1.19 Use getLanguage instead
 	 * @return Language
 	 */
 	public function getLang();
+
+	/**
+	 * Get the Language object
+	 *
+	 * @return Language
+	 */
+	public function getLanguage();
 
 	/**
 	 * Get the Skin object

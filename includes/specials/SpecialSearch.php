@@ -344,7 +344,7 @@ class SpecialSearch extends SpecialPage {
 		if( $num || $this->offset ) {
 			// Show the create link ahead
 			$this->showCreateLink( $t );
-			$prevnext = $this->getLang()->viewPrevNext( $this->getTitle(), $this->offset, $this->limit,
+			$prevnext = $this->getLanguage()->viewPrevNext( $this->getTitle(), $this->offset, $this->limit,
 				$this->powerSearchOptions() + array( 'search' => $term ),
 				max( $titleMatchesNum, $textMatchesNum ) < $this->limit
 			);
@@ -600,7 +600,7 @@ class SpecialSearch extends SpecialPage {
 		// format text extract
 		$extract = "<div class='searchresult'>".$result->getTextSnippet($terms)."</div>";
 
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 
 		// format score
 		if( is_null( $result->getScore() ) ) {
@@ -1001,7 +1001,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$profiles = $this->getSearchProfiles();
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 
 		// Outputs XML for Search Types
 		$out .= Xml::openElement( 'div', array( 'class' => 'search-types' ) );

@@ -82,7 +82,7 @@ class LinkSearchPage extends QueryPage {
 			$protocol = '';
 		}
 
-		$out->addWikiMsg( 'linksearch-text', '<nowiki>' . $this->getLang()->commaList( $wgUrlProtocols ) . '</nowiki>' );
+		$out->addWikiMsg( 'linksearch-text', '<nowiki>' . $this->getLanguage()->commaList( $wgUrlProtocols ) . '</nowiki>' );
 		$s = Xml::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $GLOBALS['wgScript'] ) ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
 			'<fieldset>' .

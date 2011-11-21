@@ -133,9 +133,9 @@ class FileDuplicateSearchPage extends QueryPage {
 					$out->addHTML( '<div id="mw-fileduplicatesearch-icon">' .
 						$thumb->toHtml( array( 'desc-link' => false ) ) . '<br />' .
 						wfMsgExt( 'fileduplicatesearch-info', array( 'parse' ),
-							$this->getLang()->formatNum( $img->getWidth() ),
-							$this->getLang()->formatNum( $img->getHeight() ),
-							$this->getLang()->formatSize( $img->getSize() ),
+							$this->getLanguage()->formatNum( $img->getWidth() ),
+							$this->getLanguage()->formatNum( $img->getHeight() ),
+							$this->getLanguage()->formatSize( $img->getSize() ),
 							$img->getMimeType()
 						) .
 						'</div>' );
@@ -155,7 +155,7 @@ class FileDuplicateSearchPage extends QueryPage {
 				$out->wrapWikiMsg(
 					"<p class='mw-fileduplicatesearch-result-n'>\n$1\n</p>",
 					array( 'fileduplicatesearch-result-n', wfEscapeWikiText( $this->filename ),
-						$this->getLang()->formatNum( $numRows - 1 ) )
+						$this->getLanguage()->formatNum( $numRows - 1 ) )
 				);
 			}
 
@@ -181,7 +181,7 @@ class FileDuplicateSearchPage extends QueryPage {
 
 		$userText = $result->getUser( 'text' );
 		$user = Linker::link( Title::makeTitle( NS_USER, $userText ), $userText );
-		$time = $this->getLang()->timeanddate( $result->getTimestamp() );
+		$time = $this->getLanguage()->timeanddate( $result->getTimestamp() );
 
 		return "$plink . . $user . . $time";
 	}

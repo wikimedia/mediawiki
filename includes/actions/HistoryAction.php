@@ -560,7 +560,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$s .= " $del ";
 		}
 
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 		$dirmark = $lang->getDirMark();
 
 		$s .= " $link";
@@ -646,7 +646,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return String
 	 */
 	function revLink( $rev ) {
-		$date = $this->getLang()->userTimeAndDate( $rev->getTimestamp(), $this->getUser() );
+		$date = $this->getLanguage()->userTimeAndDate( $rev->getTimestamp(), $this->getUser() );
 		$date = htmlspecialchars( $date );
 		if ( $rev->userCan( Revision::DELETED_TEXT, $this->getUser() ) ) {
 			$link = Linker::linkKnown(

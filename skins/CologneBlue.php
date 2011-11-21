@@ -112,7 +112,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 		$s .= '<td class="bottom">';
 
 		$s .= $this->bottomLinks();
-		$s .= $this->getSkin()->getLang()->pipeList( array(
+		$s .= $this->getSkin()->getLanguage()->pipeList( array(
 			"\n<br />" . Linker::link(
 				Title::newMainPage(),
 				null,
@@ -189,7 +189,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 			);
 		}
 
-		return $this->getSkin()->getLang()->pipeList( $s );
+		return $this->getSkin()->getLanguage()->pipeList( $s );
 	}
 
 	/**

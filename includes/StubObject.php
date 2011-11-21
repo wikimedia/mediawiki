@@ -156,6 +156,6 @@ class StubUserLang extends StubObject {
 	 * @return Language
 	 */
 	function _newObject() {
-		return RequestContext::getMain()->getLang();
+		return RequestContext::getMain()->getLanguage();
 	}
 }

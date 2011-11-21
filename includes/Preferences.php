@@ -171,7 +171,7 @@ class Preferences {
 		asort( $userGroups );
 		asort( $userMembers );
 
-		$lang = $context->getLang();
+		$lang = $context->getLanguage();
 
 		$defaultPreferences['usergroups'] = array(
 			'type' => 'info',
@@ -485,7 +485,7 @@ class Preferences {
 			$defaultPreferences['commoncssjs'] = array(
 				'type' => 'info',
 				'raw' => true,
-				'default' => $context->getLang()->pipeList( $linkTools ),
+				'default' => $context->getLanguage()->pipeList( $linkTools ),
 				'label-message' => 'prefs-common-css-js',
 				'section' => 'rendering/skin',
 			);
@@ -493,7 +493,7 @@ class Preferences {
 
 		$selectedSkin = $user->getOption( 'skin' );
 		if ( in_array( $selectedSkin, array( 'cologneblue', 'standard' ) ) ) {
-			$settings = array_flip( $context->getLang()->getQuickbarSettings() );
+			$settings = array_flip( $context->getLanguage()->getQuickbarSettings() );
 
 			$defaultPreferences['quickbar'] = array(
 				'type' => 'radio',
@@ -545,7 +545,7 @@ class Preferences {
 
 		// Info
 		$now = wfTimestampNow();
-		$lang = $context->getLang();
+		$lang = $context->getLanguage();
 		$nowlocal = Xml::element( 'span', array( 'id' => 'wpLocalTime' ),
 			$lang->time( $now, true ) );
 		$nowserver = $lang->time( $now, false ) .
@@ -1082,7 +1082,7 @@ class Preferences {
 				$linkTools[] = Linker::link( $jsPage, $context->msg( 'prefs-custom-js' )->escaped() );
 			}
 
-			$display = $sn . ' ' . $context->msg( 'parentheses', $context->getLang()->pipeList( $linkTools ) )->text();
+			$display = $sn . ' ' . $context->msg( 'parentheses', $context->getLanguage()->pipeList( $linkTools ) )->text();
 			$ret[$display] = $skinkey;
 		}
 
@@ -1094,7 +1094,7 @@ class Preferences {
 	 * @return array
 	 */
 	static function getDateOptions( IContextSource $context ) {
-		$dateopts = $context->getLang()->getDatePreferences();
+		$dateopts = $context->getLanguage()->getDatePreferences();
 
 		$ret = array();
 
@@ -1115,7 +1115,7 @@ class Preferences {
 				if ( $key == 'default' ) {
 					$formatted = $context->msg( 'datedefault' )->escaped();
 				} else {
-					$formatted = htmlspecialchars( $context->getLang()->timeanddate( $epoch, false, $key ) );
+					$formatted = htmlspecialchars( $context->getLanguage()->timeanddate( $epoch, false, $key ) );
 				}
 				$ret[$formatted] = $key;
 			}

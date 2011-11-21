@@ -119,7 +119,7 @@ class ActiveUsersPager extends UsersPager {
 		$ulinks = Linker::userLink( $row->user_id, $userName );
 		$ulinks .= Linker::userToolLinks( $row->user_id, $userName );
 
-		$lang = $this->getLang();
+		$lang = $this->getLanguage();
 
 		$list = array();
 		foreach( self::getGroups( $row->user_id ) as $group ) {
@@ -190,7 +190,7 @@ class SpecialActiveUsers extends SpecialPage {
 
 		$out = $this->getOutput();
 		$out->wrapWikiMsg( "<div class='mw-activeusers-intro'>\n$1\n</div>",
-			array( 'activeusers-intro', $this->getLang()->formatNum( $wgActiveUserDays ) ) );
+			array( 'activeusers-intro', $this->getLanguage()->formatNum( $wgActiveUserDays ) ) );
 
 		$up = new ActiveUsersPager( $this->getContext() );
 
