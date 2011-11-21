@@ -2040,8 +2040,8 @@ Inne witryny mogą odwoływać się do tych plików, używając bezpośrednich a
 'booksources-invalid-isbn'  => 'Podany numer ISBN został rozpoznany jako nieprawidłowy. Sprawdź czy podany numer zgadza się z numerem zaczerpniętym ze źródła.',
 
 # Special:Log
-'specialloguserlabel'  => 'Użytkownik',
-'speciallogtitlelabel' => 'Tytuł',
+'specialloguserlabel'  => 'Kto',
+'speciallogtitlelabel' => 'Co (tytuł lub użytkownik)',
 'log'                  => 'Rejestr operacji',
 'all-logs-page'        => 'Wszystkie publiczne operacje',
 'alllogstext'          => 'Wspólny rejestr wszystkich typów operacji dla {{GRAMMAR:D.lp|{{SITENAME}}}}.
@@ -2085,7 +2085,8 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'linksearch-pat'   => 'Wzorzec wyszukiwania',
 'linksearch-ns'    => 'Przestrzeń nazw',
 'linksearch-ok'    => 'Szukaj',
-'linksearch-text'  => 'Można użyć symbolu wieloznacznego „*”. Dla przykładu „*.wikipedia.org” spowoduje wyszukanie wszystkich linków prowadzących do domeny „wikipedia.org” i jej poddomen. Wymaga podania co najmniej domeny najwyższego poziomy np. „*.org”.<br />
+'linksearch-text'  => 'Można użyć symboli wieloznacznych jak „*.wikipedia.org”.
+Wymaga podania co najmniej domeny najwyższego poziomu np. „*.org”.<br />
 Obsługiwane protokoły: <tt>$1</tt> (nie podawaj ich podczas wyszukiwania).',
 'linksearch-line'  => '$1 link na stronie $2',
 'linksearch-error' => 'Symbolu wieloznacznego można użyć wyłącznie na początku nazwy hosta.',

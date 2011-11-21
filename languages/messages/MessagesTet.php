@@ -448,11 +448,11 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'group-suppress'   => "Oversight-na'in sira",
 'group-all'        => '(hotu)',
 
-'group-user-member'       => "Uza-na'in",
+'group-user-member'       => "{{GENDER:$1|Uza-na'in}}",
 'group-bot-member'        => 'Bot',
-'group-sysop-member'      => 'Administradór',
-'group-bureaucrat-member' => 'Burokrata',
-'group-suppress-member'   => "Oversight-na'in",
+'group-sysop-member'      => '{{GENDER:$1|Administradór|Administradóra}}',
+'group-bureaucrat-member' => '{{GENDER:$1|Burokrata}}',
+'group-suppress-member'   => "{{GENDER:$1|Oversight-na'in}}",
 
 'grouppage-user'       => "{{ns:project}}:Uza-na'in sira",
 'grouppage-bot'        => '{{ns:project}}:Bot sira',
@@ -580,8 +580,8 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'booksources-go' => 'Bá',
 
 # Special:Log
-'specialloguserlabel'  => "Uza-na'in:",
-'speciallogtitlelabel' => 'Títulu:',
+'specialloguserlabel'  => "Uza-na'in ne'ebé halo:",
+'speciallogtitlelabel' => "Objetivu (títulu ka uza-na'in):",
 
 # Special:AllPages
 'allpages'          => 'Pájina hotu',

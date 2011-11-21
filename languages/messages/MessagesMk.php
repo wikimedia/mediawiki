@@ -2132,8 +2132,8 @@ $1',
 'booksources-invalid-isbn'  => 'Наведениот ISBN се чини неправилен. Проверете да не настанала некоја грешка при копирањето од изворот.',
 
 # Special:Log
-'specialloguserlabel'  => 'Корисник:',
-'speciallogtitlelabel' => 'Наслов:',
+'specialloguserlabel'  => 'Изведувач:',
+'speciallogtitlelabel' => 'Цел (наслов или корисник):',
 'log'                  => 'Дневници',
 'all-logs-page'        => 'Сите јавни дневници',
 'alllogstext'          => 'Комбиниран приказ на сите расположиви дневници на {{SITENAME}}.

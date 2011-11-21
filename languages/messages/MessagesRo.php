@@ -2078,8 +2078,8 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 'booksources-invalid-isbn'  => 'Codul ISBN oferit nu este valid; verificați dacă a fost copiat corect de la sursa originală.',
 
 # Special:Log
-'specialloguserlabel'  => 'Utilizator:',
-'speciallogtitlelabel' => 'Titlu:',
+'specialloguserlabel'  => 'Executant:',
+'speciallogtitlelabel' => 'Destinație (titlu sau utilizator):',
 'log'                  => 'Jurnale',
 'all-logs-page'        => 'Toate jurnalele publice',
 'alllogstext'          => 'Afișare combinată a tuturor jurnalelor {{SITENAME}}.
@@ -2762,6 +2762,7 @@ Pentru a exporta, introduceți titlurile în căsuța de mai jos, unul pe linie,
 În al doilea caz puteți folosi o legătură, de exemplu [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] pentru pagina „[[{{MediaWiki:Mainpage}}]]”.',
 'exportcuronly'     => 'Include numai versiunea curentă, nu și toată istoria',
 'exportnohistory'   => "---- '''Notă:''' exportarea versiunii complete a paginilor prin acest formular a fost scoasă din uz din motive de performanță.",
+'exportlistauthors' => 'Include o listă completă a contribuitorilor pentru fiecare pagină',
 'export-submit'     => 'Exportă',
 'export-addcattext' => 'Adaugă pagini din categoria:',
 'export-addcat'     => 'Adaugă',

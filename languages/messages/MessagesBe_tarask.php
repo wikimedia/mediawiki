@@ -2012,8 +2012,8 @@ $1',
 'booksources-invalid-isbn'  => 'Пададзены няслушны ISBN; праверце, магчыма ўзьніклі памылкі пры пераносе нумару з арыгінальнай крыніцы.',
 
 # Special:Log
-'specialloguserlabel'  => 'Удзельнік/удзельніца:',
-'speciallogtitlelabel' => 'Назва:',
+'specialloguserlabel'  => 'Выканаўца:',
+'speciallogtitlelabel' => 'Мэта (назва ці удзельнік):',
 'log'                  => 'Журналы падзеяў',
 'all-logs-page'        => 'Усе публічныя журналы падзеяў',
 'alllogstext'          => 'Сумесны паказ усіх журналаў падзеяў {{GRAMMAR:родны|{{SITENAME}}}}.

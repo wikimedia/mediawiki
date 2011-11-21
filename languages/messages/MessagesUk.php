@@ -33,6 +33,7 @@
  * @author Urhixidur
  * @author VolodymyrF
  * @author Yuriy Apostol
+ * @author Дар'я Козлова
  * @author Тест
  */
 
@@ -2019,7 +2020,7 @@ $1',
 'listusers-editsonly'     => 'Показати лише користувачів, які зробили принаймні одне редагування',
 'listusers-creationsort'  => 'Сортувати за датою створення',
 'usereditcount'           => '$1 {{PLURAL:$1|редагування|редагування|редагувань}}',
-'usercreated'             => 'Створений $1 о $2',
+'usercreated'             => '{ {GENDER:$3|Створено}} $1 о $2',
 'newpages'                => 'Нові сторінки',
 'newpages-username'       => "Ім'я користувача:",
 'ancientpages'            => 'Сторінки, які найдовше не редагувалися',

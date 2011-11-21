@@ -1935,8 +1935,8 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'booksources-invalid-isbn'  => 'ISBN yang dinyatakan tidak sah. Sila semak sekali lagi.',
 
 # Special:Log
-'specialloguserlabel'  => 'Pengguna:',
-'speciallogtitlelabel' => 'Tajuk:',
+'specialloguserlabel'  => 'Pelaku:',
+'speciallogtitlelabel' => 'Sasaran (tajuk atau pengguna):',
 'log'                  => 'Log',
 'all-logs-page'        => 'Semua log awam',
 'alllogstext'          => 'Yang berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}. Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna (peka huruf besar), atau nama laman yang terjejas (juga peka huruf besar).',

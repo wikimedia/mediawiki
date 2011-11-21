@@ -1508,7 +1508,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'group-all'           => '(jeede)',
 
 'group-user-member'          => '{{GENDER:$1|Metmaacher|Metmaacherin|Metmaacher|Metmaacherin|Metmaacher}}',
-'group-autoconfirmed-member' => 'Beshtääteshte {{GENDER:$1|Metmaacher|Metmaacherin|Metmaacher|Metmaacherin|Metmaacher}}',
+'group-autoconfirmed-member' => 'automattesch beshtääteshte {{GENDER:$1|Metmaacher|Metmaacherėn|Metmaacher|Metmaacherėn|Metmaacher}}',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Wiki-Köbes',
 'group-bureaucrat-member'    => '{{GENDER:$1|Bürrokrad|Bürrokraatėn|Bürrokrad|Bürrokraatėn|Bürrokrad}}',
@@ -2153,8 +2153,8 @@ wadd_Er am Sööke sidt.',
 'booksources-invalid-isbn'  => 'De ISBNummer schingk verkeeht ze sin. Loohr ens donoh, woh se häe kütt.',
 
 # Special:Log
-'specialloguserlabel'  => 'Metmaacher:',
-'speciallogtitlelabel' => 'Siggename:',
+'specialloguserlabel'  => 'Dä Metmaacher, dä et jedonn hät:',
+'speciallogtitlelabel' => 'Betroffe wohr: (dä Tittel vun ener Sigg udder enem Metmaacher singe Name)',
 'log'                  => 'Logböcher ehr Opzeichnunge (all)',
 'all-logs-page'        => 'All de öffentlich Logböcher',
 'alllogstext'          => "Dat hee es en jesamte Liss us all dä Logböcher {{GRAMMAR:en|{{SITENAME}}}}.
@@ -2203,9 +2203,9 @@ eins vun all däm op eimol.',
 'linksearch-ok'    => 'Söhke',
 'linksearch-text'  => 'Di {{int:nstab-special}} heh mäd_et müjjelesch noh Sigge ze söke, woh beshtemmpte Links op Websigge dren enthallde sin.
 
-Beim Söke künnd_Er Shternshe aanjevve för e Shtöckshe fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit, zem Beishpöll esu: <tt>http://*.example.com</tt>
+Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit,  zem Beishpöll esu: <tt>http://*.example.com</tt> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <tt>http://*.org</tt> 
 
-De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>',
+De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>es',
 'linksearch-line'  => '„$2“ hät ene Link op $1',
 'linksearch-error' => 'Shternshe kam_mer nor aam Aanfang fum Domain-Name bruche.',
 
@@ -2855,6 +2855,7 @@ En däm Fall künns De, för en einzelne Sigg, och ene tirekte Link bruche, zom 
 'exportnohistory'   => '----
 <strong>Opjepass:</strong> de janze Versione Exporteere es heh em Wiki avjeschalt. Schad, ävver et wör en
 zo jroße Lass för dä ẞööver.',
+'exportlistauthors' => 'Donn en kumpläte Lėß met dä Schriiver för en Sigg dobei',
 'export-submit'     => 'Loss_Jonn!',
 'export-addcattext' => 'Sigge dobei donn us dä Saachjrupp:',
 'export-addcat'     => 'Dobei donn',
