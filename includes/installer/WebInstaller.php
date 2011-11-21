@@ -12,7 +12,8 @@
  * @ingroup Deployment
  * @since 1.17
  */
-class WebInstaller extends Installer {
+class
+WebInstaller extends Installer {
 
 	/**
 	 * @var WebInstallerOutput
@@ -472,7 +473,6 @@ class WebInstaller extends Installer {
 			$this->setVar( '_UserLang', $wgLanguageCode );
 		} else {
 			$wgLanguageCode = $this->getVar( 'wgLanguageCode' );
-			$wgLang = Language::factory( $this->getVar( '_UserLang' ) );
 			$wgContLang = Language::factory( $wgLanguageCode );
 		}
 	}

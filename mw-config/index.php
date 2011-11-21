@@ -34,10 +34,10 @@ function wfInstallerMain() {
 		$session = array();
 	}
 
-	if ( isset( $session['settings']['_UserLang'] ) ) {
+	if ( !is_null( $wgRequest->getVal( 'uselang' ) ) ) {
+		$langCode = $wgRequest->getVal( 'uselang' );
+	} elseif ( isset( $session['settings']['_UserLang'] ) ) {
 		$langCode = $session['settings']['_UserLang'];
-	} elseif ( !is_null( $wgRequest->getVal( 'UserLang' ) ) ) {
-		$langCode = $wgRequest->getVal( 'UserLang' );
 	} else {
 		$langCode = 'en';
 	}
