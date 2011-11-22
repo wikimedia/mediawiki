@@ -86,13 +86,13 @@
 					// Only add it if there is a TOC and there is no toggle added already
 					if ( $tocContainer.size() && $tocTitle.size() && !$tocToggleLink.size() ) {
 						var	hideTocCookie = $.cookie( 'mw_hidetoc' );
-							$tocToggleLink = $( '<a href="#" class="internal" id="togglelink">' )
+							$tocToggleLink = $( '<a href="#" class="internal" id="togglelink"></a>' )
 								.text( mw.msg( 'hidetoc' ) )
 								.click( function(e){
 									e.preventDefault();
 									util.toggleToc( $(this) );
 							} );
-						$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle">' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
+						$tocTitle.append( $tocToggleLink.wrap( '<span class="toctoggle"></span>' ).parent().prepend( '&nbsp;[' ).append( ']&nbsp;' ) );
 
 						if ( hideTocCookie == '1' ) {
 							// Cookie says user want toc hidden

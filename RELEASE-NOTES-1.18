@@ -15,6 +15,7 @@ production.
 * (bug 32228) regression in Special:Search which did not conserve profile on new search
 * (bug 32460) Categories were improperly aligned in Simple and CologneBlue
 * (bug 32412) TOC links on [[Special:EditWatchlist]] points to the fieldsets
+* (bug 32582) Fix TOC show/hide link regression on IE 8
 
 === Changes since 1.18 beta 1 ===
 * (bug 31886) Wrong titles redirecting to Special:Badtitle in the 1.18 deployment.
