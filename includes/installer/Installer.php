@@ -205,7 +205,6 @@ abstract class Installer {
 	protected $objectCaches = array(
 		'xcache' => 'xcache_get',
 		'apc' => 'apc_fetch',
-		'eaccel' => 'eaccelerator_get',
 		'wincache' => 'wincache_ucache_get'
 	);
 
