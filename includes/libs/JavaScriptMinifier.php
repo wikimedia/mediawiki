@@ -498,19 +498,17 @@ class JavaScriptMinifier {
 				ctype_digit( $ch )
 				|| ( $ch === '.' && $pos + 1 < $length && ctype_digit( $s[$pos + 1] ) )
 			) {
-				$end += strspn( $s, '0123456789', $end );
+				$end += strspn( $s, '0123456789', $end, 1 );
 				$decimal = strspn( $s, '.', $end );
 				if ($decimal) {
-					if ( $decimal > 2 ) {
-						return self::parseError($s, $end, 'The number has too many decimal points' );
-					}
-					$end += strspn( $s, '0123456789', $end + 1 ) + $decimal;
+					// If there are multiple decimal points, we only deal with the first one.
+					// A following identifier is illegitimate after a raw . but a . and a property? Legit.
+					// @fixme elsewhere in the code, if we find an identifier right after this - throw a parse error
+					$end++;
+					$end += strspn( $s, '0123456789', $end );
 				}
-				$exponent = strspn( $s, 'eE', $end );
+				$exponent = strspn( $s, 'eE', $end, 1 );
 				if( $exponent ) {
-					if ( $exponent > 1 ) {
-						return self::parseError($s, $end, 'Number with several E' );
-					}
 					$end++;
 					
 					// + sign is optional; - sign is required.

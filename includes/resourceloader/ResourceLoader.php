@@ -29,7 +29,7 @@
 class ResourceLoader {
 
 	/* Protected Static Members */
-	protected static $filterCacheVersion = 5;
+	protected static $filterCacheVersion = 6;
 	protected static $requiredSourceProperties = array( 'loadScript' );
 
 	/** Array: List of module name/ResourceLoaderModule object pairs */
