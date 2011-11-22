@@ -35,6 +35,7 @@ production.
 * (bug 29854) Store protocol-relative links twice in the externallinks table,
   one with http: in el_index and once with https.
 * (bug 31822) Error during upgrade due to output buffer reset in stdout.
+* (bug 32412) TOC links on [[Special:EditWatchlist]] points to the fieldsets
 
 === Configuration changes in 1.18 ===
 * The WantedPages::getSQL hook has been removed and replaced with
