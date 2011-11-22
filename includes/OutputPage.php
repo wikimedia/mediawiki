@@ -2335,7 +2335,7 @@ $templates
 			$this->addModuleStyles( 'mediawiki.legacy.wikiprintable' );
 		}
 
-		$ret = Html::htmlHeader( array( 'lang' => $this->getLanguage()->getCode(), 'dir' => $userdir ) );
+		$ret = Html::htmlHeader( array( 'lang' => $this->getLanguage()->getCode(), 'dir' => $userdir, 'class' => 'client-nojs' ) );
 
 		if ( $this->getHTMLTitle() == '' ) {
 			$this->setHTMLTitle( $this->msg( 'pagetitle', $this->getPageTitle() ) );
@@ -2368,7 +2368,7 @@ $templates
 		$bodyAttrs = array();
 
 		# Classes for LTR/RTL directionality support
-		$bodyAttrs['class'] = "mediawiki $userdir sitedir-$sitedir client-nojs";
+		$bodyAttrs['class'] = "mediawiki $userdir sitedir-$sitedir";
 
 		if ( $this->getLanguage()->capitalizeAllNouns() ) {
 			# A <body> class is probably not the best way to do this . . .
