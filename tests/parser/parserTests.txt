@@ -1435,6 +1435,29 @@ Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitec
 !! end
 
 
+!! test
+Indented table markup mixed with indented pre content (proposed in bug 6200)
+!! input
+ <table>
+ <tr>
+ <td>
+ pre
+ </td>
+ </tr>
+ </table>
+!! result
+ <table>
+ <tr>
+ <td>
+<pre>pre
+</pre>
+ </td>
+ </tr>
+ </table>
+
+!! end
+
+
 ###
 ### Internal links
 ###
