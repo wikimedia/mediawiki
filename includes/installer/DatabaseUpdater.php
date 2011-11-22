@@ -453,7 +453,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->output( "Adding $index key to table $table... " );
 			$this->applyPatch( $patch, $fullpath );
-			$this->output( "ok\n" );
+			$this->output( "done.\n" );
 		}
 	}
 
@@ -469,7 +469,7 @@ abstract class DatabaseUpdater {
 		if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "Table $table contains $field field. Dropping... " );
 			$this->applyPatch( $patch, $fullpath );
-			$this->output( "ok\n" );
+			$this->output( "done.\n" );
 		} else {
 			$this->output( "...$table table does not contain $field field.\n" );
 		}
@@ -487,7 +487,7 @@ abstract class DatabaseUpdater {
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "Dropping $index key from table $table... " );
 			$this->applyPatch( $patch, $fullpath );
-			$this->output( "ok\n" );
+			$this->output( "done.\n" );
 		} else {
 			$this->output( "...$index key doesn't exist.\n" );
 		}
@@ -502,7 +502,7 @@ abstract class DatabaseUpdater {
 		if ( $this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "Dropping table $table... " );
 			$this->applyPatch( $patch, $fullpath );
-			$this->output( "ok\n" );
+			$this->output( "done.\n" );
 		} else {
 			$this->output( "...$table doesn't exist.\n" );
 		}
@@ -528,7 +528,7 @@ abstract class DatabaseUpdater {
 			$this->output( "Modifying $field field of table $table..." );
 			$this->applyPatch( $patch, $fullpath );
 			$this->insertUpdateRow( $updateKey );
-			$this->output( "ok\n" );
+			$this->output( "done.\n" );
 		}
 	}
 
