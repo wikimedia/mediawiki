@@ -563,11 +563,11 @@ class MysqlUpdater extends DatabaseUpdater {
 				$newug = $this->db->tableName( 'user_groups_bogus' );
 				$this->output( "user_groups table exists but is in bogus intermediate format. Renaming to $newug... " );
 				$this->db->query( "ALTER TABLE $oldug RENAME TO $newug", __METHOD__ );
-				$this->output( "ok\n" );
+				$this->output( "done.\n" );
 
 				$this->output( "Re-adding fresh user_groups table... " );
 				$this->applyPatch( 'patch-user_groups.sql' );
-				$this->output( "ok\n" );
+				$this->output( "done.\n" );
 
 				$this->output( "***\n" );
 				$this->output( "*** WARNING: You will need to manually fix up user permissions in the user_groups\n" );
@@ -587,7 +587,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			if ( $this->db->fieldExists( 'user', 'user_rights', __METHOD__ ) ) {
 				$this->output( "Upgrading from a 1.3 or older database? Breaking out user_rights for conversion..." );
 				$this->db->applyPatch( 'patch-user_rights.sql' );
-				$this->output( done.\n" );
+				$this->output( "done.\n" );
 			} else {
 				$this->output( "*** WARNING: couldn't locate user_rights table or field for upgrade.\n" );
 				$this->output( "*** You may need to manually configure some sysops by manipulating\n" );
