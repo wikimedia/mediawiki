@@ -559,10 +559,6 @@ class EditWatchlistNormalHTMLForm extends HTMLForm {
 			? wfMsgHtml( 'blanknamespace' )
 			: htmlspecialchars( $this->getContext()->getLanguage()->getFormattedNsText( $namespace ) );
 	}
-
-	public function getBody() {
-		return $this->displaySection( $this->mFieldTree, '', 'mw-htmlform-' );
-	}
 }
 
 class EditWatchlistCheckboxSeriesField extends HTMLMultiSelectField {
