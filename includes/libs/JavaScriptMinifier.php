@@ -511,6 +511,7 @@ class JavaScriptMinifier {
 					if ( $exponent > 1 ) {
 						return self::parseError($s, $end, 'Number with several E' );
 					}
+					$end++;
 					
 					// + sign is optional; - sign is required.
 					$end += strspn( $s, '-+', $end );
@@ -518,7 +519,7 @@ class JavaScriptMinifier {
 					if ( !$len ) {
 						return self::parseError($s, $pos, 'No decimal digits after e, how many zeroes should be added?' );
 					}
-					$end += $len + 1;
+					$end += $len;
 				}
 			} elseif( isset( $opChars[$ch] ) ) {
 				// Punctuation character. Search for the longest matching operator.
