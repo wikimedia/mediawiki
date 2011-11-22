@@ -323,6 +323,7 @@ class LanguageConverter {
 		}
 
 		if( $this->guessVariant( $text, $toVariant ) ) {
+			wfProfileOut( __METHOD__ );
 			return $text;
 		}
 
