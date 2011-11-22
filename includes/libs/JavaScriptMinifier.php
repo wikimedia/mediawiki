@@ -489,8 +489,11 @@ class JavaScriptMinifier {
 			) {
 				// Hex numeric literal
 				$end++; // x or X
-				$end += strspn( $s, '0123456789ABCDEFabcdef', $end );
-				// @fixme if no hex digits, parse error
+				$len = strspn( $s, '0123456789ABCDEFabcdef', $end );
+				if ( !$len ) {
+					return self::parseError($s, $pos, 'Expected a hexadecimal number but found ' . substr( $s, $pos, 5 ) . '...' );
+				}
+				$end += $len;
 			} elseif(
 				ctype_digit( $ch )
 				|| ( $ch === '.' && $pos + 1 < $length && ctype_digit( $s[$pos + 1] ) )
@@ -498,19 +501,28 @@ class JavaScriptMinifier {
 				$end += strspn( $s, '0123456789', $end );
 				$decimal = strspn( $s, '.', $end );
 				if ($decimal) {
-					$end += $decimal;
-					$end += strspn( $s, '0123456789', $end );
-					// @fixme If no decimal digits after the . we cannot be followed
-					// by an identifier, and should throw a parse error
+					if ( $decimal > 1 ) {
+						return self::parseError($s, $end, 'The number has several decimal points' );
+					}
+					$len = strspn( $s, '0123456789', $end );
+					if ( !$len ) {
+						return self::parseError($s, $pos, 'No numbers after decimal point' );
+					}
+					$end += $len + 1;
 				}
 				$exponent = strspn( $s, 'eE', $end );
 				if( $exponent ) {
-					$end += $exponent;
+					if ( $exponent > 1 ) {
+						return self::parseError($s, $end, 'Number with several E' );
+					}
+					
 					// + sign is optional; - sign is required.
 					$end += strspn( $s, '-+', $end );
-					$end += strspn( $s, '0123456789', $end );
-					// @fixme if no decimal digits after the e/+/- we should
-					// throw a parse error
+					$len = strspn( $s, '0123456789', $end );
+					if ( !$len ) {
+						return self::parseError($s, $pos, 'No decimal digits after e, how many zeroes should be added?' );
+					}
+					$end += $len + 1;
 				}
 			} elseif( isset( $opChars[$ch] ) ) {
 				// Punctuation character. Search for the longest matching operator.
@@ -586,5 +598,10 @@ class JavaScriptMinifier {
 			}
 		}
 		return $out;
+	}
+	
+	static function parseError($fullJavascript, $position, $errorMsg) {
+		// TODO: Handle the error: trigger_error, throw exception, return false...
+		return false;
 	}
 }
