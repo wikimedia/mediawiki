@@ -842,7 +842,7 @@ interface LCStore {
 
 /**
  * LCStore implementation which uses PHP accelerator to store data.
- * This will work if one of XCache, eAccelerator, or APC cacher is configured.
+ * This will work if one of XCache, WinCache or APC cacher is configured.
  * (See ObjectCache.php)
  */
 class LCStore_Accel implements LCStore {
