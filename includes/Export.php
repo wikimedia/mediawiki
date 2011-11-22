@@ -476,14 +476,14 @@ class XmlDumpWriter {
 	function openPage( $row ) {
 		$out = "  <page>\n";
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-		$out .= '    ' . Xml::elementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
+		$out .= '    ' . Xml::elementClean( 'title', array(), self::canonicalTitle( $title ) ) . "\n";
 		$out .= '    ' . Xml::element( 'ns', array(), strval( $row->page_namespace) ) . "\n";
 		$out .= '    ' . Xml::element( 'id', array(), strval( $row->page_id ) ) . "\n";
 		if ( $row->page_is_redirect ) {
 			$page = WikiPage::factory( $title );
 			$redirect = $page->getRedirectTarget();
 			if ( $redirect instanceOf Title && $redirect->isValidRedirectTarget() ) {
-				$out .= '    ' . Xml::element( 'redirect', array( 'title' => $redirect->getPrefixedText() ) ) . "\n";
+				$out .= '    ' . Xml::element( 'redirect', array( 'title' => self::canonicalTitle( $redirect ) ) ) . "\n";
 			}
 		}
 		if ( $row->page_restrictions != '' ) {
@@ -595,7 +595,7 @@ class XmlDumpWriter {
 			$out .= "      " . Xml::element( 'text', array( 'deleted' => 'deleted' ) ) . "\n";
 		} else {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
-			$out .= "      " . Xml::elementClean( 'logtitle', null, $title->getPrefixedText() ) . "\n";
+			$out .= "      " . Xml::elementClean( 'logtitle', null, self::canonicalTitle( $title ) ) . "\n";
 			$out .= "      " . Xml::elementClean( 'params',
 				array( 'xml:space' => 'preserve' ),
 				strval( $row->log_params ) ) . "\n";
@@ -677,6 +677,29 @@ class XmlDumpWriter {
 			"    </upload>\n";
 	}
 
+	/**
+	 * Return prefixed text form of title, but using the content language's
+	 * canonical namespace. This skips any special-casing such as gendered
+	 * user namespaces -- which while useful, are not yet listed in the
+	 * XML <siteinfo> data so are unsafe in export.
+	 * 
+	 * @param Title $title
+	 * @return string
+	 */
+	public static function canonicalTitle( Title $title ) {
+		if ( $title->getInterwiki() ) {
+			return $title->getPrefixedText();
+		}
+
+		global $wgContLang;
+		$prefix = $wgContLang->getNsText( $title->getNamespace() );
+
+		if ($prefix !== '') {
+			$prefix .= ':';
+		}
+
+		return $prefix . $title->getText();
+	}
 }
 
 
