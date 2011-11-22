@@ -84,6 +84,13 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			// And also per spec unicode char escape values should work in identifiers,
 			// as long as it's a valid char. In future it might get normalized.
 			array( "var Ka\\u015dSkatolVal = {}", 'var Ka\\u015dSkatolVal={}'),
+
+			/* Some structures that might look invalid at first sight */
+			array( "var a = 5.;", "var a=5.;" ),
+			array( "5.0.toString();", "5.0.toString();" ),
+			array( "5..toString();", "5..toString();" ),
+			array( "5...toString();", false ),
+			array( "5.\n.toString();", '5..toString();' ),
 		);
 	}
 

@@ -501,8 +501,8 @@ class JavaScriptMinifier {
 				$end += strspn( $s, '0123456789', $end );
 				$decimal = strspn( $s, '.', $end );
 				if ($decimal) {
-					if ( $decimal > 1 ) {
-						return self::parseError($s, $end, 'The number has several decimal points' );
+					if ( $decimal > 2 ) {
+						return self::parseError($s, $end, 'The number has too many decimal points' );
 					}
 					$end += strspn( $s, '0123456789', $end ) + 1;
 				}
