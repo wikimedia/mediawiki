@@ -416,7 +416,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 				$nsText = ($ns == NS_MAIN)
 					? wfMsgHtml( 'blanknamespace' )
 					: htmlspecialchars( $wgContLang->getFormattedNsText( $ns ) );
-				$this->toc .= Linker::tocLine( "mw-htmlform-{$data['section']}", $nsText,
+				$this->toc .= Linker::tocLine( "editwatchlist-{$data['section']}", $nsText,
 					$this->getLanguage()->formatNum( ++$tocLength ), 1 ) . Linker::tocLineEnd();
 			}
 			$this->toc = Linker::tocList( $this->toc );
@@ -558,6 +558,9 @@ class EditWatchlistNormalHTMLForm extends HTMLForm {
 		return $namespace == NS_MAIN
 			? wfMsgHtml( 'blanknamespace' )
 			: htmlspecialchars( $this->getContext()->getLanguage()->getFormattedNsText( $namespace ) );
+	}
+	public function getBody() {
+		return $this->displaySection( $this->mFieldTree, '', 'editwatchlist-' );
 	}
 }
 
