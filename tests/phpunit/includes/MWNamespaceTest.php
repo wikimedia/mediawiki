@@ -39,25 +39,29 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	/**
 	 * Please make sure to change testIsTalk() if you change the assertions below
 	 */
-	public function testIsMain() {
+	public function testIsSubject() {
 		// Special namespaces
-		$this->assertTrue( MWNamespace::isMain( NS_MEDIA   ) );
-		$this->assertTrue( MWNamespace::isMain( NS_SPECIAL ) );
+		$this->assertTrue( MWNamespace::isSubject( NS_MEDIA   ) );
+		$this->assertTrue( MWNamespace::isSubject( NS_SPECIAL ) );
 
 		// Subject pages
-		$this->assertTrue( MWNamespace::isMain( NS_MAIN   ) );
-		$this->assertTrue( MWNamespace::isMain( NS_USER   ) );
-		$this->assertTrue( MWNamespace::isMain( 100 ) );  # user defined
+		$this->assertTrue( MWNamespace::isSubject( NS_MAIN   ) );
+		$this->assertTrue( MWNamespace::isSubject( NS_USER   ) );
+		$this->assertTrue( MWNamespace::isSubject( 100 ) );  # user defined
 
 		// Talk pages
-		$this->assertFalse( MWNamespace::isMain( NS_TALK      ) );
-		$this->assertFalse( MWNamespace::isMain( NS_USER_TALK ) );
-		$this->assertFalse( MWNamespace::isMain( 101          ) ); # user defined
+		$this->assertFalse( MWNamespace::isSubject( NS_TALK      ) );
+		$this->assertFalse( MWNamespace::isSubject( NS_USER_TALK ) );
+		$this->assertFalse( MWNamespace::isSubject( 101          ) ); # user defined
+
+		// Back compat
+		$this->assertTrue( MWNamespace::isMain( NS_MAIN ) == MWNamespace::isSubject( NS_MAIN ) );
+		$this->assertTrue( MWNamespace::isMain( NS_USER_TALK ) == MWNamespace::isSubject( NS_USER_TALK ) );
 	}
 
 	/**
-	 * Reverse of testIsMain().
-	 * Please update testIsMain() if you change assertions below
+	 * Reverse of testIsSubject().
+	 * Please update testIsSubject() if you change assertions below
 	 */
 	public function testIsTalk() {
 		// Special namespaces
@@ -76,12 +80,26 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 */
+	public function testGetSubject() {
+		// Special namespaces are their own subjects
+		$this->assertEquals( NS_MEDIA, MWNamespace::getSubject( NS_MEDIA ) );
+		$this->assertEquals( NS_SPECIAL, MWNamespace::getSubject( NS_SPECIAL ) );
+
+		$this->assertEquals( NS_MAIN, MWNamespace::getSubject( NS_TALK ) );
+		$this->assertEquals( NS_USER, MWNamespace::getSubject( NS_USER_TALK ) );
+	}
+
+	/**
 	 * Regular getTalk() calls
 	 * Namespaces without a talk page (NS_MEDIA, NS_SPECIAL) are tested in
 	 * the function testGetTalkExceptions()
 	 */
 	public function testGetTalk() {
 		$this->assertEquals( NS_TALK, MWNamespace::getTalk( NS_MAIN ) );
+		$this->assertEquals( NS_TALK, MWNamespace::getTalk( NS_TALK ) );
+		$this->assertEquals( NS_USER_TALK, MWNamespace::getTalk( NS_USER ) );
+		$this->assertEquals( NS_USER_TALK, MWNamespace::getTalk( NS_USER_TALK ) );
 	}
 
 	/**
@@ -108,7 +126,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * the function testGetAssociatedExceptions()
 	 */
 	public function testGetAssociated() {
-		$this->assertEquals( NS_TALK,  MWNamespace::getAssociated( NS_MAIN ) );
+		$this->assertEquals( NS_TALK, MWNamespace::getAssociated( NS_MAIN ) );
 		$this->assertEquals( NS_MAIN, MWNamespace::getAssociated( NS_TALK ) );
 
 	}
@@ -131,17 +149,6 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 */
-	public function testGetSubject() {
-		// Special namespaces are their own subjects
-		$this->assertEquals( NS_MEDIA, MWNamespace::getSubject( NS_MEDIA ) );
-		$this->assertEquals( NS_SPECIAL, MWNamespace::getSubject( NS_SPECIAL ) );
-
-		$this->assertEquals( NS_MAIN, MWNamespace::getSubject( NS_TALK ) );
-		$this->assertEquals( NS_USER, MWNamespace::getSubject( NS_USER_TALK ) );
-	}
-
-	/**
 	 * @todo Implement testExists().
 	 */
 /*
@@ -152,6 +159,40 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		);
 	}
 */
+
+	/**
+	 * Test MWNamespace::equals
+	 * Note if we add a namespace registration system with keys like 'MAIN'
+	 * we should add tests here for equivilance on things like 'MAIN' == 0
+	 * and 'MAIN' == NS_MAIN.
+	 */
+	public function testEquals() {
+		$this->assertTrue( MWNamespace::equals( NS_MAIN, NS_MAIN ) );
+		$this->assertTrue( MWNamespace::equals( NS_MAIN, 0 ) ); // In case we make NS_MAIN 'MAIN'
+		$this->assertTrue( MWNamespace::equals( NS_USER, NS_USER ) );
+		$this->assertTrue( MWNamespace::equals( NS_USER, 2 ) );
+		$this->assertTrue( MWNamespace::equals( NS_USER_TALK, NS_USER_TALK ) );
+		$this->assertTrue( MWNamespace::equals( NS_SPECIAL, NS_SPECIAL ) );
+		$this->assertFalse( MWNamespace::equals( NS_MAIN, NS_TALK ) );
+		$this->assertFalse( MWNamespace::equals( NS_USER, NS_USER_TALK ) );
+		$this->assertFalse( MWNamespace::equals( NS_PROJECT, NS_TEMPLATE ) );
+	}
+
+	/**
+	 * Test MWNamespace::subjectEquals
+	 */
+	public function testSubjectEquals() {
+		$this->assertTrue( MWNamespace::subjectEquals( NS_MAIN, NS_MAIN ) );
+		$this->assertTrue( MWNamespace::subjectEquals( NS_MAIN, 0 ) ); // In case we make NS_MAIN 'MAIN'
+		$this->assertTrue( MWNamespace::subjectEquals( NS_USER, NS_USER ) );
+		$this->assertTrue( MWNamespace::subjectEquals( NS_USER, 2 ) );
+		$this->assertTrue( MWNamespace::subjectEquals( NS_USER_TALK, NS_USER_TALK ) );
+		$this->assertTrue( MWNamespace::subjectEquals( NS_SPECIAL, NS_SPECIAL ) );
+		$this->assertTrue( MWNamespace::subjectEquals( NS_MAIN, NS_TALK ) );
+		$this->assertTrue( MWNamespace::subjectEquals( NS_USER, NS_USER_TALK ) );
+		$this->assertFalse( MWNamespace::subjectEquals( NS_PROJECT, NS_TEMPLATE ) );
+	}
+
 	/**
 	 * @todo Implement testGetCanonicalNamespaces().
 	 */
