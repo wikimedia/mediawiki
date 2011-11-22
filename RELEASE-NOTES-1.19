@@ -153,6 +153,7 @@ production.
   was specified.
 * (bug 30368) Special:Newpages now shows the new page name for moved pages
 * (bug 1697) The way to search blocked usernames in block log should be clearer
+* (bug 32412) TOC links on [[Special:EditWatchlist]] now points to the fieldset 
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
