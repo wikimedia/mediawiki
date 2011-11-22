@@ -1068,6 +1068,9 @@ WebInstaller extends Installer {
 		return Html::rawElement( 'div', array( 'class' => 'config-download-link' ), $anchor );
 	}
 
+	/**
+	 * @return bool
+	 */
 	public function envCheckPath( ) {
 		// PHP_SELF isn't available sometimes, such as when PHP is CGI but
 		// cgi.fix_pathinfo is disabled. In that case, fall back to SCRIPT_NAME
@@ -1085,9 +1088,6 @@ WebInstaller extends Installer {
 			$this->showError( 'config-no-uri' );
 			return false;
 		}
-
-
 		return parent::envCheckPath();
 	}
-
 }
