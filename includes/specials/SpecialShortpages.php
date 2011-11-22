@@ -45,7 +45,7 @@ class ShortPagesPage extends QueryPage {
 					'page_len AS value' ),
 			'conds' => array ( 'page_namespace' => NS_MAIN,
 					'page_is_redirect' => 0 ),
-			'options' => array ( 'USE INDEX' => 'page_redirect_namespaces_len' )
+			'options' => array ( 'USE INDEX' => 'page_redirect_namespace_len' )
 		);
 	}
 
