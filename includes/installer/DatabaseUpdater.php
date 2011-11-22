@@ -453,7 +453,7 @@ abstract class DatabaseUpdater {
 		} else {
 			$this->output( "Adding $index key to table $table... " );
 			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->output( "ok\n" );
 		}
 	}
 
@@ -469,7 +469,7 @@ abstract class DatabaseUpdater {
 		if ( $this->db->fieldExists( $table, $field, __METHOD__ ) ) {
 			$this->output( "Table $table contains $field field. Dropping... " );
 			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->output( "ok\n" );
 		} else {
 			$this->output( "...$table table does not contain $field field.\n" );
 		}
@@ -487,7 +487,7 @@ abstract class DatabaseUpdater {
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "Dropping $index key from table $table... " );
 			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->output( "ok\n" );
 		} else {
 			$this->output( "...$index key doesn't exist.\n" );
 		}
@@ -502,7 +502,7 @@ abstract class DatabaseUpdater {
 		if ( $this->db->tableExists( $table, __METHOD__ ) ) {
 			$this->output( "Dropping table $table... " );
 			$this->applyPatch( $patch, $fullpath );
-			$this->output( "done.\n" );
+			$this->output( "ok\n" );
 		} else {
 			$this->output( "...$table doesn't exist.\n" );
 		}
@@ -528,7 +528,7 @@ abstract class DatabaseUpdater {
 			$this->output( "Modifying $field field of table $table..." );
 			$this->applyPatch( $patch, $fullpath );
 			$this->insertUpdateRow( $updateKey );
-			$this->output( "done.\n" );
+			$this->output( "ok\n" );
 		}
 	}
 
@@ -588,7 +588,7 @@ abstract class DatabaseUpdater {
 			$this->output(
 			"Populating log_user_text field, printing progress markers. For large\n" .
 			"databases, you may want to hit Ctrl-C and do this manually with\n" .
-			"maintenance/populateLogUsertext.php..." );
+			"maintenance/populateLogUsertext.php.\n" );
 
 			$task = $this->maintenance->runChild( 'PopulateLogUsertext' );
 			$task->execute();
@@ -616,12 +616,12 @@ abstract class DatabaseUpdater {
 	 * Updates the timestamps in the transcache table
 	 */
 	protected function doUpdateTranscacheField() {
-		$this->output( "Converting tc_time from UNIX epoch to MediaWiki timestamp... " );
 		if ( $this->updateRowExists( 'convert transcache field' ) ) {
 			$this->output( "...transcache tc_time already converted.\n" );
 			return;
 		}
 
+		$this->output( "Converting tc_time from UNIX epoch to MediaWiki timestamp... " );
 		$this->applyPatch( 'patch-tc-timestamp.sql' );
 		$this->output( "done.\n" );
 	}
@@ -630,7 +630,6 @@ abstract class DatabaseUpdater {
 	 * Update CategoryLinks collation
 	 */
 	protected function doCollationUpdate() {
-		$this->output( "Updating category collations..." );
 		global $wgCategoryCollation;
 		if ( $this->db->selectField(
 			'categorylinks',
@@ -642,6 +641,7 @@ abstract class DatabaseUpdater {
 			return;
 		}
 
+		$this->output( "Updating category collations..." );
 		$task = $this->maintenance->runChild( 'UpdateCollation' );
 		$task->execute();
 		$this->output( "...done.\n" );
