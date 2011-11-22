@@ -296,11 +296,13 @@ abstract class Installer {
 	 * The parameters are like parameters to wfMsg().
 	 * The messages will be in wikitext format, which will be converted to an
 	 * output format such as HTML or text before being sent to the user.
+	 * @param $msg
 	 */
 	public abstract function showMessage( $msg /*, ... */ );
 
 	/**
 	 * Same as showMessage(), but for displaying errors
+	 * @param $msg
 	 */
 	public abstract function showError( $msg /*, ... */ );
 
@@ -621,6 +623,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for DB types.
+	 * @return bool
 	 */
 	protected function envCheckDB() {
 		global $wgLang;
@@ -865,6 +868,7 @@ abstract class Installer {
 
 	/**
 	 * Environment check for setting $IP and $wgScriptPath.
+	 * @return bool
 	 */
 	protected function envCheckPath() {
 		global $IP;
@@ -890,6 +894,7 @@ abstract class Installer {
 
 	/**
 	 * TODO: document
+	 * @return bool
 	 */
 	protected function envCheckShellLocale() {
 		$os = php_uname( 's' );
@@ -1475,6 +1480,9 @@ abstract class Installer {
 		return $status;
 	}
 
+	/**
+	 * @param $s Status
+	 */
 	private function subscribeToMediaWikiAnnounce( Status $s ) {
 		$params = array(
 			'email'    => $this->getVar( '_AdminEmail' ),
