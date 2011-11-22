@@ -615,6 +615,26 @@ disabled
 </dl>
 !! end
 
+!! test
+Definition and unordered list using wiki syntax nested in unordered list using html tags.
+!! input
+<ul><li>
+; term : description 
+* unordered
+</li>
+</ul>
+!! result
+<ul><li>
+<dl><dt> term&#160;</dt><dd> description 
+</dd></dl>
+<ul><li> unordered
+</li></ul>
+</li>
+</ul>
+
+!! end
+
+
 ###
 ### External links
 ###
