@@ -58,9 +58,18 @@ class MWNamespace {
 	 *
 	 * @param $index Int: namespace index
 	 * @return bool
+	 * @since 1.19
+	 */
+	public static function isSubject( $index ) {
+		return !self::isTalk( $index );
+	}
+
+	/**
+	 * @see self::isSubject
+	 * @deprecated Please use the more consistently named isSubject (since 1.19)
 	 */
 	public static function isMain( $index ) {
-		return !self::isTalk( $index );
+		return self::isSubject( $index );
 	}
 
 	/**
@@ -131,10 +140,44 @@ class MWNamespace {
 	 * @param $index
 	 * 
 	 * @return bool
+	 * @since 1.19
 	 */
 	public static function exists( $index ) {
 		$nslist = self::getCanonicalNamespaces();
 		return isset( $nslist[$index] );
+	}
+
+	/**
+	 * Returns whether the specified namespaces are the same namespace
+	 *
+	 * @note It's possible that in the future we may start using something
+	 * other than just namespace indexes. Under that circumstance making use
+	 * of this function rather than directly doing comparison will make
+	 * sure that code will not potentially break.
+	 *
+	 * @param $ns1 The first namespace index
+	 * @param $ns2 The second namespae index
+	 *
+	 * @return bool
+	 * @since 1.19
+	 */
+	public static function equals( $ns1, $ns2 ) {
+		return $ns1 == $ns2;
+	}
+
+	/**
+	 * Returns whether the specified namespaces share the same subject.
+	 * eg: NS_USER and NS_USER wil return true, as well
+	 *     NS_USER and NS_USER_TALK will return true.
+	 *
+	 * @param $ns1 The first namespace index
+	 * @param $ns2 The second namespae index
+	 *
+	 * @return bool
+	 * @since 1.19
+	 */
+	public static function subjectEquals( $ns1, $ns2 ) {
+		return self::getSubject( $ns1 ) == self::getSubject( $ns2 );
 	}
 
 	/**
