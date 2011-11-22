@@ -489,7 +489,7 @@ class JavaScriptMinifier {
 			) {
 				// Hex numeric literal
 				$end++; // x or X
-				$end += strspn( $s, '0123456789ABCDEF', $end );
+				$end += strspn( $s, '0123456789ABCDEFabcdef', $end );
 				// @fixme if no hex digits, parse error
 			} elseif(
 				ctype_digit( $ch )
@@ -505,7 +505,7 @@ class JavaScriptMinifier {
 				}
 				$exponent = strspn( $s, 'eE', $end );
 				if( $exponent ) {
-					$end += $exponent;;
+					$end += $exponent;
 					// + sign is optional; - sign is required.
 					$end += strspn( $s, '-+', $end );
 					$end += strspn( $s, '0123456789', $end );
