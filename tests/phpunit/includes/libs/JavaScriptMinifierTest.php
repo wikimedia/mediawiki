@@ -121,7 +121,7 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 		$suffix = ',shortVarName=0;';
 
 		$input = $prefix . $num . $suffix;
-		$expected = $prefix . $num . "\n" . $suffix;
+		$expected = $prefix . "\n" . $num . $suffix;
 
 		$minified = JavaScriptMinifier::minify( $input );
 
