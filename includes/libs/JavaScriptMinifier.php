@@ -504,11 +504,7 @@ class JavaScriptMinifier {
 					if ( $decimal > 1 ) {
 						return self::parseError($s, $end, 'The number has several decimal points' );
 					}
-					$len = strspn( $s, '0123456789', $end );
-					if ( !$len ) {
-						return self::parseError($s, $pos, 'No numbers after decimal point' );
-					}
-					$end += $len + 1;
+					$end += strspn( $s, '0123456789', $end ) + 1;
 				}
 				$exponent = strspn( $s, 'eE', $end );
 				if( $exponent ) {
