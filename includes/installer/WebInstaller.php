@@ -12,8 +12,7 @@
  * @ingroup Deployment
  * @since 1.17
  */
-class
-WebInstaller extends Installer {
+class WebInstaller extends Installer {
 
 	/**
 	 * @var WebInstallerOutput
