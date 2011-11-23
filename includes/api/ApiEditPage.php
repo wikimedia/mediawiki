@@ -239,13 +239,6 @@ class ApiEditPage extends ApiBase {
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
 
-		if ( isset( $params['captchaid'] ) && !is_null( $params['captchaid'] ) ) {
-			$wgRequest->setVal( 'wpCaptchaId', $params['captchaid'] );
-		}
-		if ( isset( $params['captchaword'] ) && !is_null( $params['captchaword'] ) ) {
-			$wgRequest->setVal( 'wpCaptchaWord', $params['captchaword'] );
-		}
-
 		// Run hooks
 		// Handle APIEditBeforeSave parameters
 		$r = array();
