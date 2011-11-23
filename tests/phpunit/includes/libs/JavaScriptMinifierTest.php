@@ -89,14 +89,8 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 			array( "var a = 5.;", "var a=5.;" ),
 			array( "5.0.toString();", "5.0.toString();" ),
 			array( "5..toString();", "5..toString();" ),
+			array( "5...toString();", false ),
 			array( "5.\n.toString();", '5..toString();' ),
-
-			/* Some structures that are invalid, that we may not detect */
-			//array( "5...toString();", false ), // can't detect this yet, though JSParser will throw error
-			array( '5e1', '5e1' ),
-			array( "5e", false ), // no exponent (end)
-			array( "5eee1", false ), // no exponent (multiple e)
-			array( "5e++", false ), // no exponent (other symbol)
 		);
 	}
 
@@ -107,7 +101,10 @@ class JavaScriptMinifierTest extends MediaWikiTestCase {
 		$minified = JavaScriptMinifier::minify( $code );
 
 		// JSMin+'s parser will throw an exception if output is not valid JS.
+		// suppression of warnings needed for stupid crap
+		wfSuppressWarnings();
 		$parser = new JSParser();
+		wfRestoreWarnings();
 		$parser->parse( $minified, 'minify-test.js', 1 );
 
 		$this->assertEquals( $expectedOutput, $minified, "Minified output should be in the form expected." );
