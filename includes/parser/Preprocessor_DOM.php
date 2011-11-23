@@ -211,9 +211,6 @@ class Preprocessor_DOM implements Preprocessor {
 			$ignoredElements = array( 'includeonly' );
 			$xmlishElements[] = 'includeonly';
 		}
-		// `dws' stands for "discard white spaces". `<dws>' and all the whitespaces afer it are
-		// discarded.
-		$xmlishElements[] = 'dws';
 		$xmlishRegex = implode( '|', array_merge( $xmlishElements, $ignoredTags ) );
 
 		// Use "A" modifier (anchored) instead of "^", because ^ doesn't work with an offset
@@ -409,20 +406,6 @@ class Preprocessor_DOM implements Preprocessor {
 				}
 
 				$tagStartPos = $i;
-
-				// Handle tag `dws'.
-				if ( $name == 'dws' ) {
-					$i = $tagEndPos + 1;
-					if ( preg_match( '/\s*/', $text, $matches, 0, $i ) ) {
-						$i += strlen( $matches[0] );
-					}
-					$accum .=
-						'<ignore>' .
-							htmlspecialchars( substr( $text, $tagStartPos, $i - $tagStartPos ) ) .
-						'</ignore>';
-					continue;
-				}
-
 				if ( $text[$tagEndPos-1] == '/' ) {
 					$attrEnd = $tagEndPos - 1;
 					$inner = null;
