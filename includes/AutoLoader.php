@@ -255,7 +255,6 @@ $wgAutoloadLocalClasses = array(
 
 	# includes/actions
 	'CreditsAction' => 'includes/actions/CreditsAction.php',
-	'DeletetrackbackAction' => 'includes/actions/DeletetrackbackAction.php',
 	'HistoryAction' => 'includes/actions/HistoryAction.php',
 	'HistoryPage' => 'includes/actions/HistoryAction.php',
 	'HistoryPager' => 'includes/actions/HistoryAction.php',

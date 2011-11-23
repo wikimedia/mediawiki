@@ -139,7 +139,7 @@ class SkinTemplate extends Skin {
 		global $wgDisableCounters, $wgSitename, $wgLogo, $wgHideInterlanguageLinks;
 		global $wgMaxCredits, $wgShowCreditsIfMax;
 		global $wgPageShowWatchingUsers;
-		global $wgUseTrackbacks, $wgUseSiteJs, $wgDebugComments;
+		global $wgUseSiteJs, $wgDebugComments;
 		global $wgArticlePath, $wgScriptPath, $wgServer;
 
 		wfProfileIn( __METHOD__ );
@@ -215,13 +215,6 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'html5version', $wgHtml5Version );
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
 			$tpl->set( 'csslinks', $out->buildCssLinks() );
-
-			if( $wgUseTrackbacks && $out->isArticleRelated() ) {
-				$tpl->set( 'trackbackhtml', $out->getTitle()->trackbackRDF() );
-			} else {
-				$tpl->set( 'trackbackhtml', null );
-			}
-
 			$tpl->set( 'pageclass', $this->getPageClasses( $this->getTitle() ) );
 			$tpl->set( 'skinnameclass', ( 'skin-' . Sanitizer::escapeClass( $this->getSkinName() ) ) );
 		}
@@ -1120,7 +1113,6 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	protected function buildNavUrls() {
-		global $wgUseTrackbacks;
 		global $wgUploadNavigationUrl;
 
 		wfProfileIn( __METHOD__ );
@@ -1143,7 +1135,6 @@ class SkinTemplate extends Skin {
 		$nav_urls['permalink'] = false;
 		$nav_urls['whatlinkshere'] = false;
 		$nav_urls['recentchangeslinked'] = false;
-		$nav_urls['trackbacklink'] = false;
 		$nav_urls['contributions'] = false;
 		$nav_urls['log'] = false;
 		$nav_urls['blockip'] = false;
@@ -1181,11 +1172,6 @@ class SkinTemplate extends Skin {
 			if ( $this->getTitle()->getArticleId() ) {
 				$nav_urls['recentchangeslinked'] = array(
 					'href' => SpecialPage::getTitleFor( 'Recentchangeslinked', $this->thispage )->getLocalUrl()
-				);
-			}
-			if ( $wgUseTrackbacks ) {
-				$nav_urls['trackbacklink'] = array(
-					'href' => $out->getTitle()->trackbackURL()
 				);
 			}
 		}
@@ -1419,10 +1405,6 @@ abstract class BaseTemplate extends QuickTemplate {
 			$toolbox['recentchangeslinked'] = $this->data['nav_urls']['recentchangeslinked'];
 			$toolbox['recentchangeslinked']['msg'] = 'recentchangeslinked-toolbox';
 			$toolbox['recentchangeslinked']['id'] = 't-recentchangeslinked';
-		}
-		if ( isset( $this->data['nav_urls']['trackbacklink'] ) && $this->data['nav_urls']['trackbacklink'] ) {
-			$toolbox['trackbacklink'] = $this->data['nav_urls']['trackbacklink'];
-			$toolbox['trackbacklink']['id'] = 't-trackbacklink';
 		}
 		if ( isset( $this->data['feeds'] ) && $this->data['feeds'] ) {
 			$toolbox['feeds']['id'] = 'feedlinks';

@@ -1247,17 +1247,6 @@ CREATE UNIQUE INDEX /*i*/ls_field_val ON /*_*/log_search (ls_field,ls_value,ls_l
 CREATE INDEX /*i*/ls_log_id ON /*_*/log_search (ls_log_id);
 
 
-CREATE TABLE /*_*/trackbacks (
-  tb_id int PRIMARY KEY AUTO_INCREMENT,
-  tb_page int REFERENCES /*_*/page(page_id) ON DELETE CASCADE,
-  tb_title varchar(255) NOT NULL,
-  tb_url blob NOT NULL,
-  tb_ex text,
-  tb_name varchar(255)
-) /*$wgDBTableOptions*/;
-CREATE INDEX /*i*/tb_page ON /*_*/trackbacks (tb_page);
-
-
 -- Jobs performed by parallel apache threads or a command-line daemon
 CREATE TABLE /*_*/job (
   job_id int unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT,

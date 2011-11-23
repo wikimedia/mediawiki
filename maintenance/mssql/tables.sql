@@ -642,16 +642,6 @@ CREATE UNIQUE INDEX /*$wgDBprefix*/ls_field_val ON /*$wgDBprefix*/log_search (ls
 CREATE INDEX /*$wgDBprefix*/ls_log_id ON /*$wgDBprefix*/log_search (ls_log_id);
 
 
-CREATE TABLE /*$wgDBprefix*/trackbacks (
-   tb_id    INT  PRIMARY KEY,
-   tb_page  INT REFERENCES /*$wgDBprefix*/page(page_id) ON DELETE CASCADE,
-   tb_title NVARCHAR(255)  NOT NULL,
-   tb_url   NVARCHAR(255)  NOT NULL,
-   tb_ex    NVARCHAR(MAX),
-   tb_name  NVARCHAR(255),
-);
-CREATE INDEX /*$wgDBprefix*/trackbacks_page ON /*$wgDBprefix*/trackbacks(tb_page);
-
 -- Jobs performed by parallel apache threads or a command-line daemon
 CREATE TABLE /*$wgDBprefix*/job (
    job_id INT NOT NULL  PRIMARY KEY,

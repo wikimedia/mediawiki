@@ -16,7 +16,6 @@ DROP SEQUENCE IF EXISTS page_restrictions_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS ipblocks_ipb_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS recentchanges_rc_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS logging_log_id_seq CASCADE;
-DROP SEQUENCE IF EXISTS trackbacks_tb_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS job_job_id_seq CASCADE;
 DROP SEQUENCE IF EXISTS category_cat_id_seq CASCADE;
 DROP FUNCTION IF EXISTS page_deleted() CASCADE;
@@ -511,17 +510,6 @@ CREATE TABLE log_search (
   PRIMARY KEY (ls_field,ls_value,ls_log_id)
 );
 CREATE INDEX ls_log_id ON log_search (ls_log_id);
-
-CREATE SEQUENCE trackbacks_tb_id_seq;
-CREATE TABLE trackbacks (
-  tb_id     INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('trackbacks_tb_id_seq'),
-  tb_page   INTEGER            REFERENCES page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  tb_title  TEXT     NOT NULL,
-  tb_url    TEXT     NOT NULL,
-  tb_ex     TEXT,
-  tb_name   TEXT
-);
-CREATE INDEX trackback_page ON trackbacks (tb_page);
 
 
 CREATE SEQUENCE job_job_id_seq;

@@ -511,18 +511,6 @@ CREATE TABLE &mw_prefix.log_search (
 ALTER TABLE &mw_prefix.log_search ADD CONSTRAINT log_search_pk PRIMARY KEY (ls_field,ls_value,ls_log_id);
 CREATE INDEX &mw_prefix.log_search_i01 ON &mw_prefix.log_search (ls_log_id);
 
-CREATE SEQUENCE trackbacks_tb_id_seq;
-CREATE TABLE &mw_prefix.trackbacks (
-  tb_id     NUMBER   NOT NULL,
-  tb_page   NUMBER,
-  tb_title  VARCHAR2(255)     NOT NULL,
-  tb_url    VARCHAR2(255)     NOT NULL,
-  tb_ex     CLOB,
-  tb_name   VARCHAR2(255)
-);
-ALTER TABLE &mw_prefix.trackbacks ADD CONSTRAINT &mw_prefix.trackbacks_pk PRIMARY KEY (tb_id);
-ALTER TABLE &mw_prefix.trackbacks ADD CONSTRAINT &mw_prefix.trackbacks_fk1 FOREIGN KEY (tb_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
-CREATE INDEX &mw_prefix.trackbacks_i01 ON &mw_prefix.trackbacks (tb_page);
 
 CREATE SEQUENCE job_job_id_seq;
 CREATE TABLE &mw_prefix.job (

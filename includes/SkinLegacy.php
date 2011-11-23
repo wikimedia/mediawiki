@@ -284,7 +284,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function bottomLinks() {
-		global $wgOut, $wgUser, $wgUseTrackbacks;
+		global $wgOut, $wgUser;
 		$sep = wfMsgExt( 'pipe-separator', 'escapenoentities' ) . "\n";
 
 		$s = '';
@@ -299,10 +299,6 @@ class LegacyTemplate extends BaseTemplate {
 			$element[] = $this->historyLink();
 			$element[] = $this->whatLinksHere();
 			$element[] = $this->watchPageLinksLink();
-
-			if ( $wgUseTrackbacks ) {
-				$element[] = $this->trackbackLink();
-			}
 
 			$title = $this->getSkin()->getTitle();
 
@@ -707,11 +703,6 @@ class LegacyTemplate extends BaseTemplate {
 				wfMsgHtml( 'recentchangeslinked-toolbox' )
 			);
 		}
-	}
-
-	function trackbackLink() {
-		return '<a href="' . $this->getSkin()->getTitle()->trackbackURL() . '">'
-			. wfMsg( 'trackbacklink' ) . '</a>';
 	}
 
 	function talkLink() {

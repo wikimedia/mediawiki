@@ -857,7 +857,7 @@ class Article extends Page {
 	 * Show the footer section of an ordinary page view
 	 */
 	public function showViewFooter() {
-		global $wgOut, $wgUseTrackbacks;
+		global $wgOut;
 
 		# check if we're displaying a [[User talk:x.x.x.x]] anonymous talk page
 		if ( $this->getTitle()->getNamespace() == NS_USER_TALK && IP::isValid( $this->getTitle()->getText() ) ) {
@@ -867,11 +867,6 @@ class Article extends Page {
 		# If we have been passed an &rcid= parameter, we want to give the user a
 		# chance to mark this new article as patrolled.
 		$this->showPatrolFooter();
-
-		# Trackbacks
-		if ( $wgUseTrackbacks ) {
-			$this->addTrackbacks();
-		}
 
 		wfRunHooks( 'ArticleViewFooter', array( $this ) );
 
@@ -1218,46 +1213,6 @@ class Article extends Page {
 		return '<div class="redirectMsg">' .
 			Html::element( 'img', array( 'src' => $imageUrl, 'alt' => '#REDIRECT' ) ) .
 			'<span class="redirectText">' . $link . '</span></div>';
-	}
-
-	/**
-	 * Builds trackback links for article display if $wgUseTrackbacks is set to true
-	 */
-	public function addTrackbacks() {
-		global $wgOut;
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$tbs = $dbr->select( 'trackbacks',
-			array( 'tb_id', 'tb_title', 'tb_url', 'tb_ex', 'tb_name' ),
-			array( 'tb_page' => $this->mPage->getID() )
-		);
-
-		if ( !$dbr->numRows( $tbs ) ) {
-			return;
-		}
-
-		$wgOut->preventClickjacking();
-
-		$tbtext = "";
-		foreach ( $tbs as $o ) {
-			$rmvtxt = "";
-
-			if ( $this->getContext()->getUser()->isAllowed( 'trackback' ) ) {
-				$delurl = $this->getTitle()->getFullURL( "action=deletetrackback&tbid=" .
-					$o->tb_id . "&token=" . urlencode( $this->getContext()->getUser()->getEditToken() ) );
-				$rmvtxt = wfMsg( 'trackbackremove', htmlspecialchars( $delurl ) );
-			}
-
-			$tbtext .= "\n";
-			$tbtext .= wfMsgNoTrans( strlen( $o->tb_ex ) ? 'trackbackexcerpt' : 'trackback',
-					$o->tb_title,
-					$o->tb_url,
-					$o->tb_ex,
-					$o->tb_name,
-					$rmvtxt );
-		}
-
-		$wgOut->wrapWikiMsg( "<div id='mw_trackbacks'>\n$1\n</div>\n", array( 'trackbackbox', $tbtext ) );
 	}
 
 	/**
@@ -1654,14 +1609,6 @@ class Article extends Page {
 			wfDebug( __METHOD__ . " called and \$mContext is null. Return RequestContext::getMain(); for sanity\n" );
 			return RequestContext::getMain();
 		}
-	}
-
-	/**
-	 * Removes trackback record for current article from trackbacks table
-	 * @deprecated since 1.18
-	 */
-	public function deletetrackback() {
-		return Action::factory( 'deletetrackback', $this )->show();
 	}
 
 	/**

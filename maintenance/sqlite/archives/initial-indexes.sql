@@ -406,7 +406,6 @@ CREATE INDEX /*i*/type_time ON /*_*/logging (log_type, log_timestamp);
 CREATE INDEX /*i*/user_time ON /*_*/logging (log_user, log_timestamp);
 CREATE INDEX /*i*/page_time ON /*_*/logging (log_namespace, log_title, log_timestamp);
 CREATE INDEX /*i*/times ON /*_*/logging (log_timestamp);
-CREATE INDEX /*i*/tb_page ON /*_*/trackbacks (tb_page);
 CREATE INDEX /*i*/job_cmd_namespace_title ON /*_*/job (job_cmd, job_namespace, job_title);
 CREATE INDEX /*i*/rd_ns_title ON /*_*/redirect (rd_namespace,rd_title,rd_from);
 CREATE INDEX /*i*/qcc_type ON /*_*/querycachetwo (qcc_type,qcc_value);

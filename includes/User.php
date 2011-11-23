@@ -148,7 +148,6 @@ class User {
 		'suppressionlog',
 		'suppressredirect',
 		'suppressrevision',
-		'trackback',
 		'unblockself',
 		'undelete',
 		'unwatchedpages',

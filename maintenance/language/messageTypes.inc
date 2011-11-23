@@ -393,8 +393,6 @@ $wgOptionalMessages = array(
 	'diff-with-additional',
 	'pagetitle-view-mainpage',
 	'backlinksubtitle',
-	'trackback',
-	'trackbackexcerpt',
 	'prefs-registration-date-time',
 	'prefs-memberingroups-type',
 	'shared-repo-name-wikimediacommons',

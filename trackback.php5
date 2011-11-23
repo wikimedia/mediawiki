@@ -1,1 +1,0 @@
-<?php require './trackback.php';

@@ -216,7 +216,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			array( 'changeFkeyDeferrable', 'revision',         'rev_page',        'page (page_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'revision',         'rev_user',        'mwuser(user_id) ON DELETE RESTRICT' ),
 			array( 'changeFkeyDeferrable', 'templatelinks',    'tl_from',         'page(page_id) ON DELETE CASCADE' ),
-			array( 'changeFkeyDeferrable', 'trackbacks',       'tb_page',         'page(page_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'user_groups',      'ug_user',         'mwuser(user_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'user_newtalk',     'user_id',         'mwuser(user_id) ON DELETE CASCADE' ),
 			array( 'changeFkeyDeferrable', 'user_properties',  'up_user',         'mwuser(user_id) ON DELETE CASCADE' ),
