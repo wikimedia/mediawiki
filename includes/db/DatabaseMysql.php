@@ -602,9 +602,17 @@ class DatabaseMysql extends DatabaseBase {
 		return false;
 	}
 
-	public function setTimeout( $timeout ) {
-		$this->query( "SET net_read_timeout=$timeout" );
-		$this->query( "SET net_write_timeout=$timeout" );
+	public function setSessionOptions( array $options ) {
+		if ( isset( $options['connTimeout'] ) ) {
+			$timeout = (int)$options['connTimeout'];
+			$this->query( "SET net_read_timeout=$timeout" );
+			$this->query( "SET net_write_timeout=$timeout" );
+		}
+		if ( isset( $options['lockTimeout'] ) ) {
+			$timeout = (int)$options['lockTimeout'];
+			$this->query( "SET table_lock_wait_timeout=$timeout" ); // table level
+			$this->query( "SET innodb_lock_wait_timeout=$timeout" ); // row level
+		}
 	}
 
 	public function lock( $lockName, $method, $timeout = 5 ) {
