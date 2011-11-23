@@ -112,8 +112,6 @@ class FakeTitle extends Title {
 	function touchLinks() { $this->error(); }
 	function getTouched( $db = null ) { $this->error(); }
 	function getNotificationTimestamp( $user = null ) { $this->error(); }
-	function trackbackURL() { $this->error(); }
-	function trackbackRDF() { $this->error(); }
 	function getNamespaceKey( $prepend = 'nstab-' ) { $this->error(); }
 	function isSpecialPage() { $this->error(); }
 	function isSpecial( $name ) { $this->error(); }

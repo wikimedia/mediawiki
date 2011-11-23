@@ -108,7 +108,6 @@ Wiki configuration for testing:
   $wgGroupPermissions['*']['reupload-shared'] = true;
   $wgGroupPermissions['*']['rollback']        = true;
   $wgGroupPermissions['*']['siteadmin']       = true;
-  $wgGroupPermissions['*']['trackback']       = true;
   $wgGroupPermissions['*']['unwatchedpages']  = true;
   $wgGroupPermissions['*']['upload']          = true;
   $wgGroupPermissions['*']['userrights']      = true;
@@ -121,7 +120,6 @@ Wiki configuration for testing:
   error_reporting (E_ALL);    // At a later date could be increased to E_ALL | E_STRICT
   $wgBlockOpenProxies = true; // Some block pages require this to be true in order to test.
   $wgEnableUploads = true;    // enable uploads.
-  //$wgUseTrackbacks = true;  // enable trackbacks; However this breaks the viewPageTest, so currently disabled.
   $wgDBerrorLog = "/root/mediawiki-db-error-log.txt";  // log DB errors, replace with suitable path.
   $wgShowSQLErrors = true;    // Show SQL errors (instead of saying the query was hidden).
   $wgShowExceptionDetails = true;  // want backtraces.
@@ -1819,32 +1817,6 @@ class thumbTest extends pageTest {
 	}
 }
 
-
-/**
- ** a test for trackback.php
- */
-class trackbackTest extends pageTest {
-	function __construct() {
-		$this->pagePath = "trackback.php";
-
-		$this->params = array (
-				"url"       => wikiFuzz::makeFuzz( 2 ),
-				"blog_name" => wikiFuzz::chooseInput( array( "80", wikiFuzz::randnum( 6000, -200 ), wikiFuzz::makeFuzz( 2 ) ) ),
-				"article"   => wikiFuzz::chooseInput( array( "Main Page", wikiFuzz::makeFuzz( 2 ) ) ),
-				"title"     => wikiFuzz::chooseInput( array( "Main Page", wikiFuzz::makeFuzz( 2 ) ) ),
-				"excerpt"   => wikiFuzz::makeFuzz( 2 ),
-				);
-
-		// sometimes we don't want to specify certain parameters.
-		if ( wikiFuzz::randnum( 3 ) == 0 ) unset( $this->params["title"] );
-		if ( wikiFuzz::randnum( 3 ) == 0 ) unset( $this->params["excerpt"] );
-
-		// page does not produce HTML.
-		$this->tidyValidate = false;
-	}
-}
-
-
 /**
  ** a test for profileinfo.php
  */
@@ -2188,7 +2160,7 @@ class GeSHi_Test extends pageTest {
 /**
  ** selects a page test to run.
  * @param $count
- * @return \api|\confirmEmail|\contributionsTest|\editPageTest|\imagelistTest|\imagepageTest|\ipblocklistTest|\listusersTest|\mimeSearchTest|\newImagesTest|\pageDeletion|\pageHistoryTest|\pageProtectionForm|\prefixindexTest|\profileInfo|\recentchangesTest|\redirectTest|\searchTest|\specialAllmessagesTest|\specialAllpagesTest|\specialBlockip|\specialBlockmeTest|\specialBooksourcesTest|\specialCategoryTree|\specialChemicalsourcesTest|\specialCitePageTest|\specialExportTest|\specialFilepathPageTest|\specialImportPageTest|\specialLinksearch|\specialLockdbPageTest|\specialLogTest|\specialMovePage|\specialNewpagesPageTest|\specialRenameuserPageTest|\specialRevisionDeletePageTest|\specialUndeletePageTest|\specialUnlockdbPageTest|\specialUserrights|\successfulUserLoginTest|\thumbTest|\trackbackTest|\userLoginTest|\viewPageTest|\watchlistTest
+ * @return \api|\confirmEmail|\contributionsTest|\editPageTest|\imagelistTest|\imagepageTest|\ipblocklistTest|\listusersTest|\mimeSearchTest|\newImagesTest|\pageDeletion|\pageHistoryTest|\pageProtectionForm|\prefixindexTest|\profileInfo|\recentchangesTest|\redirectTest|\searchTest|\specialAllmessagesTest|\specialAllpagesTest|\specialBlockip|\specialBlockmeTest|\specialBooksourcesTest|\specialCategoryTree|\specialChemicalsourcesTest|\specialCitePageTest|\specialExportTest|\specialFilepathPageTest|\specialImportPageTest|\specialLinksearch|\specialLockdbPageTest|\specialLogTest|\specialMovePage|\specialNewpagesPageTest|\specialRenameuserPageTest|\specialRevisionDeletePageTest|\specialUndeletePageTest|\specialUnlockdbPageTest|\specialUserrights|\successfulUserLoginTest|\thumbTest|\userLoginTest|\viewPageTest|\watchlistTest
  */
 function selectPageTest( $count ) {
 
@@ -2237,7 +2209,6 @@ function selectPageTest( $count ) {
 		case 33: return new specialRevisionDeletePageTest();
 		case 34: return new specialImportPageTest();
 		case 35: return new thumbTest();
-		case 36: return new trackbackTest();
 		case 37: return new profileInfo();
 		case 38: return new specialCitePageTest();
 		case 39: return new specialFilepathPageTest();

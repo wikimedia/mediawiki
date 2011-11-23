@@ -3434,10 +3434,7 @@ class Title {
 			$dbw->delete( 'page', array( 'page_id' => $newid ), __METHOD__ );
 			if ( !$dbw->cascadingDeletes() ) {
 				$dbw->delete( 'revision', array( 'rev_page' => $newid ), __METHOD__ );
-				global $wgUseTrackbacks;
-				if ( $wgUseTrackbacks ) {
-					$dbw->delete( 'trackbacks', array( 'tb_page' => $newid ), __METHOD__ );
-				}
+
 				$dbw->delete( 'pagelinks', array( 'pl_from' => $newid ), __METHOD__ );
 				$dbw->delete( 'imagelinks', array( 'il_from' => $newid ), __METHOD__ );
 				$dbw->delete( 'categorylinks', array( 'cl_from' => $newid ), __METHOD__ );
@@ -4144,46 +4141,6 @@ class Title {
 			__METHOD__
 		);
 		return $this->mNotificationTimestamp[$uid];
-	}
-
-	/**
-	 * Get the trackback URL for this page
-	 *
-	 * @return String Trackback URL
-	 */
-	public function trackbackURL() {
-		global $wgScriptPath, $wgServer, $wgScriptExtension;
-
-		return "$wgServer$wgScriptPath/trackback$wgScriptExtension?article="
-			. htmlspecialchars( urlencode( $this->getPrefixedDBkey() ) );
-	}
-
-	/**
-	 * Get the trackback RDF for this page
-	 *
-	 * @return String Trackback RDF
-	 */
-	public function trackbackRDF() {
-		$url = htmlspecialchars( $this->getFullURL() );
-		$title = htmlspecialchars( $this->getText() );
-		$tburl = $this->trackbackURL();
-
-		// Autodiscovery RDF is placed in comments so HTML validator
-		// won't barf. This is a rather icky workaround, but seems
-		// frequently used by this kind of RDF thingy.
-		//
-		// Spec: http://www.sixapart.com/pronet/docs/trackback_spec
-		return "<!--
-<rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\"
-		 xmlns:dc=\"http://purl.org/dc/elements/1.1/\"
-		 xmlns:trackback=\"http://madskills.com/public/xml/rss/module/trackback/\">
-<rdf:Description
-   rdf:about=\"$url\"
-   dc:identifier=\"$url\"
-   dc:title=\"$title\"
-   trackback:ping=\"$tburl\" />
-</rdf:RDF>
--->";
 	}
 
 	/**

@@ -35,7 +35,6 @@ ALTER TABLE &mw_prefix.recentchanges ADD CONSTRAINT &mw_prefix.recentchanges_fk1
 ALTER TABLE &mw_prefix.recentchanges ADD CONSTRAINT &mw_prefix.recentchanges_fk2 FOREIGN KEY (rc_cur_id) REFERENCES &mw_prefix.page(page_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE &mw_prefix.watchlist ADD CONSTRAINT &mw_prefix.watchlist_fk1 FOREIGN KEY (wl_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE &mw_prefix.logging ADD CONSTRAINT &mw_prefix.logging_fk1 FOREIGN KEY (log_user) REFERENCES &mw_prefix.mwuser(user_id) ON DELETE SET NULL DEFERRABLE INITIALLY DEFERRED;
-ALTER TABLE &mw_prefix.trackbacks ADD CONSTRAINT &mw_prefix.trackbacks_fk1 FOREIGN KEY (tb_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE &mw_prefix.redirect ADD CONSTRAINT &mw_prefix.redirect_fk1 FOREIGN KEY (rd_from) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 ALTER TABLE &mw_prefix.page_restrictions ADD CONSTRAINT &mw_prefix.page_restrictions_fk1 FOREIGN KEY (pr_page) REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED;
 

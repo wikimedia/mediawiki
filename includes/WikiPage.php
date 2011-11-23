@@ -1651,7 +1651,7 @@ class WikiPage extends Page {
 	public function doDeleteArticle(
 		$reason, $suppress = false, $id = 0, $commit = true, &$error = '', User $user = null
 	) {
-		global $wgUseTrackbacks, $wgUser;
+		global $wgUser;
 		$user = is_null( $user ) ? $wgUser : $user;
 
 		wfDebug( __METHOD__ . "\n" );
@@ -1743,10 +1743,6 @@ class WikiPage extends Page {
 		# If using cascading deletes, we can skip some explicit deletes
 		if ( !$dbw->cascadingDeletes() ) {
 			$dbw->delete( 'revision', array( 'rev_page' => $id ), __METHOD__ );
-
-			if ( $wgUseTrackbacks ) {
-				$dbw->delete( 'trackbacks', array( 'tb_page' => $id ), __METHOD__ );
-			}
 
 			# Delete outgoing links
 			$dbw->delete( 'pagelinks', array( 'pl_from' => $id ), __METHOD__ );

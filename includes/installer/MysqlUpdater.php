@@ -66,7 +66,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			array( 'addTable', 'user_newtalk',                      'patch-usernewtalk2.sql' ),
 			array( 'addTable', 'transcache',                        'patch-transcache.sql' ),
 			array( 'addField', 'interwiki',     'iw_trans',         'patch-interwiki-trans.sql' ),
-			array( 'addTable', 'trackbacks',                        'patch-trackbacks.sql' ),
 
 			// 1.6
 			array( 'doWatchlistNull' ),

@@ -3472,7 +3472,6 @@ $wgGroupPermissions['sysop']['movefile']         = true;
 $wgGroupPermissions['sysop']['unblockself']      = true;
 $wgGroupPermissions['sysop']['suppressredirect'] = true;
 #$wgGroupPermissions['sysop']['mergehistory']     = true;
-#$wgGroupPermissions['sysop']['trackback']        = true;
 
 // Permission to change users' group assignments
 $wgGroupPermissions['bureaucrat']['userrights']  = true;
@@ -4123,14 +4122,6 @@ $wgAggregateStatsID = false;
  * Does not work if pages are cached (for example with squid).
  */
 $wgDisableCounters = false;
-
-/**
- * Support blog-style "trackbacks" for articles.  See
- * http://www.sixapart.com/pronet/docs/trackback_spec for details.
- *
- * If enabling this, you also need to grant the 'trackback' right to a group
- */
-$wgUseTrackbacks = false;
 
 /**
  * Parser test suite files to be run by parserTests.php when no specific
@@ -5250,7 +5241,6 @@ $wgMaxRedirectLinksRetrieved = 500;
  */
 $wgActions = array(
 	'credits' => true,
-	'deletetrackback' => true,
 	'history' => true,
 	'info' => true,
 	'markpatrolled' => true,

@@ -2327,7 +2327,7 @@ $templates
 	 * @return String: The doctype, opening <html>, and head element.
 	 */
 	public function headElement( Skin $sk, $includeStyle = true ) {
-		global $wgContLang, $wgUseTrackbacks;
+		global $wgContLang;
 		$userdir = $this->getLanguage()->getDir();
 		$sitedir = $wgContLang->getDir();
 
@@ -2355,10 +2355,6 @@ $templates
 			$this->getHeadScripts(),
 			$this->getHeadItems()
 		) );
-
-		if ( $wgUseTrackbacks && $this->isArticleRelated() ) {
-			$ret .= $this->getTitle()->trackbackRDF();
-		}
 
 		$closeHead = Html::closeElement( 'head' );
 		if ( $closeHead ) {
