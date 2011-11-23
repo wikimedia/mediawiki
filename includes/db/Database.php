@@ -2650,6 +2650,16 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Determines if the last failure was due to a lock timeout
+	 * STUB
+	 *
+	 * @return bool
+	 */
+	function wasLockTimeout() {
+		return false;
+	}
+
+	/**
 	 * Determines if the last query error was something that should be dealt
 	 * with by pinging the connection and reissuing the query.
 	 * STUB

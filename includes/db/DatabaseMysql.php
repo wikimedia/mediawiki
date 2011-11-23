@@ -707,6 +707,15 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
+	 * Determines if the last failure was due to a lock timeout
+	 *
+	 * @return bool
+	 */
+	function wasLockTimeout() {
+		return $this->lastErrno() == 1205;
+	}
+
+	/**
 	 * Determines if the last query error was something that should be dealt
 	 * with by pinging the connection and reissuing the query
 	 *
