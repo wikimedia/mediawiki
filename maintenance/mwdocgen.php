@@ -221,6 +221,7 @@ Commands:
     --maintenance   Process only files in maintenance/ dir
     --skins         Process only files in skins/ dir
     --file <file>   Process only the given file
+    --no-extensions Process everything but extensions directorys
 
 If no command is given, you will be prompted.
 
