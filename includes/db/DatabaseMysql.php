@@ -114,22 +114,19 @@ class DatabaseMysql extends DatabaseBase {
 		}
 
 		if ( $success ) {
-			$version = $this->getServerVersion();
-			if ( version_compare( $version, '4.1' ) >= 0 ) {
-				// Tell the server we're communicating with it in UTF-8.
-				// This may engage various charset conversions.
-				global $wgDBmysql5;
-				if( $wgDBmysql5 ) {
-					$this->query( 'SET NAMES utf8', __METHOD__ );
-				} else {
-					$this->query( 'SET NAMES binary', __METHOD__ );
-				}
-				// Set SQL mode, default is turning them all off, can be overridden or skipped with null
-				global $wgSQLMode;
-				if ( is_string( $wgSQLMode ) ) {
-					$mode = $this->addQuotes( $wgSQLMode );
-					$this->query( "SET sql_mode = $mode", __METHOD__ );
-				}
+			// Tell the server we're communicating with it in UTF-8.
+			// This may engage various charset conversions.
+			global $wgDBmysql5;
+			if( $wgDBmysql5 ) {
+				$this->query( 'SET NAMES utf8', __METHOD__ );
+			} else {
+				$this->query( 'SET NAMES binary', __METHOD__ );
+			}
+			// Set SQL mode, default is turning them all off, can be overridden or skipped with null
+			global $wgSQLMode;
+			if ( is_string( $wgSQLMode ) ) {
+				$mode = $this->addQuotes( $wgSQLMode );
+				$this->query( "SET sql_mode = $mode", __METHOD__ );
 			}
 
 			// Turn off strict mode if it is on
@@ -424,9 +421,7 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Returns slave lag.
 	 *
-	 * On MySQL 4.1.9 and later, this will do a SHOW SLAVE STATUS. On earlier
-	 * versions of MySQL, it uses SHOW PROCESSLIST, which requires the PROCESS
-	 * privilege.
+	 * On MySQL 4.1.9 and later, this will do a SHOW SLAVE STATUS
 	 *
 	 * @return int
 	 */
@@ -436,11 +431,7 @@ class DatabaseMysql extends DatabaseBase {
 			return $this->mFakeSlaveLag;
 		}
 
-		if ( version_compare( $this->getServerVersion(), '4.1.9', '>=' ) ) {
-			return $this->getLagFromSlaveStatus();
-		} else {
-			return $this->getLagFromProcesslist();
-		}
+		return $this->getLagFromSlaveStatus();
 	}
 
 	/**
@@ -463,6 +454,8 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
+	 * @deprecated in 1.19, use getLagFromSlaveStatus
+	 *
 	 * @return bool|int
 	 */
 	function getLagFromProcesslist() {
@@ -732,29 +725,9 @@ class DatabaseMysql extends DatabaseBase {
 
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseMysql::duplicateTableStructure' ) {
 		$tmp = $temporary ? 'TEMPORARY ' : '';
-		if ( strcmp( $this->getServerVersion(), '4.1' ) < 0 ) {
-			# Hack for MySQL versions < 4.1, which don't support
-			# "CREATE TABLE ... LIKE". Note that
-			# "CREATE TEMPORARY TABLE ... SELECT * FROM ... LIMIT 0"
-			# would not create the indexes we need....
-			#
-			# Note that we don't bother changing around the prefixes here be-
-			# cause we know we're using MySQL anyway.
-
-			$res = $this->query( 'SHOW CREATE TABLE ' . $this->addIdentifierQuotes( $oldName ) );
-			$row = $this->fetchRow( $res );
-			$oldQuery = $row[1];
-			$query = preg_replace( '/CREATE TABLE `(.*?)`/',
-				"CREATE $tmp TABLE " . $this->addIdentifierQuotes( $newName ), $oldQuery );
-			if ($oldQuery === $query) {
-				# Couldn't do replacement
-				throw new MWException( "could not create temporary table $newName" );
-			}
-		} else {
-			$newName = $this->addIdentifierQuotes( $newName );
-			$oldName = $this->addIdentifierQuotes( $oldName );
-			$query = "CREATE $tmp TABLE $newName (LIKE $oldName)";
-		}
+		$newName = $this->addIdentifierQuotes( $newName );
+		$oldName = $this->addIdentifierQuotes( $oldName );
+		$query = "CREATE $tmp TABLE $newName (LIKE $oldName)";
 		$this->query( $query, $fname );
 	}
 
