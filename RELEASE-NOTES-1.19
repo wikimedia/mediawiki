@@ -155,6 +155,7 @@ production.
 * (bug 1697) The way to search blocked usernames in block log should be clearer
 * (bug 29747) eAccelerator shared memory caching has been removed since it is
   now disabled by default and is buggy. APC, XCache and WinCache are not affected.
+* Installer now refuses to install if php was not compiled with Ctype support
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.

@@ -132,6 +132,7 @@ MediaWiki requires UTF-8 support to function correctly.",
 	'config-memory-bad'               => "'''Warning:''' PHP's <code>memory_limit</code> is $1.
 This is probably too low.
 The installation may fail!",
+	'config-ctype'                    => "'''Fatal''': PHP must be compiled with support for the [http://www.php.net/manual/en/ctype.installation.php Ctype extension].",
 	'config-xcache'                   => '[http://xcache.lighttpd.net/ XCache] is installed',
 	'config-apc'                      => '[http://www.php.net/apc APC] is installed',
 	'config-wincache'                 => '[http://www.iis.net/download/WinCacheForPhp WinCache] is installed',
@@ -603,6 +604,7 @@ Parameters:
 * $2 is the value to which <code>memory_limit</code> was raised.',
 	'config-memory-bad' => 'Parameters:
 * $1 is the configured <code>memory_limit</code>.',
+	'config-ctype' => 'Message if support for [http://www.php.net/manual/en/ctype.installation.php Ctype] is missing from PHP',
 	'config-xcache' => 'Message indicates if this program is available',
 	'config-apc' => 'Message indicates if this program is available',
 	'config-wincache' => 'Message indicates if this program is available',
