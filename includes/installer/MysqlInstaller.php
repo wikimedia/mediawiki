@@ -213,21 +213,12 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return array
 	 */
 	public function getEngines() {
-		$engines = array( 'InnoDB', 'MyISAM' );
 		$status = $this->getConnection();
-		if ( !$status->isOK() ) {
-			return $engines;
-		}
+
 		/**
 		 * @var $conn DatabaseBase
 		 */
 		$conn = $status->value;
-
-		$version = $conn->getServerVersion();
-		if ( version_compare( $version, "4.1.2", "<" ) ) {
-			// No SHOW ENGINES in this version
-			return $engines;
-		}
 
 		$engines = array();
 		$res = $conn->query( 'SHOW ENGINES', __METHOD__ );
@@ -246,16 +237,7 @@ class MysqlInstaller extends DatabaseInstaller {
 	 * @return array
 	 */
 	public function getCharsets() {
-		$status = $this->getConnection();
-		$mysql5 = array( 'binary', 'utf8' );
-		$mysql4 = array( 'mysql4' );
-		if ( !$status->isOK() ) {
-			return $mysql5;
-		}
-		if ( version_compare( $status->value->getServerVersion(), '4.1.0', '>=' ) ) {
-			return $mysql5;
-		}
-		return $mysql4;
+		return array( 'binary', 'utf8' );
 	}
 
 	/**
