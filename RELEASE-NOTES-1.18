@@ -117,7 +117,7 @@ production.
 
 === New features in 1.18 ===
 * BREAKING CHANGE: action=watch / action=unwatch now requires a token.
-* BREAKING CHANGE: Article class heirarchy split into WikiPage (backend).
+* BREAKING CHANGE: Article class hierarchy split into WikiPage (backend).
   and Article (frontend) hierarchies. Several hooks now pass a WikiPage object instead
   of an Article object. These hooks all use an $article paramater as documented in hooks.txt.
   Extensions should be updated to account for this, though most won't require any changes.
