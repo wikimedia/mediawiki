@@ -1315,9 +1315,6 @@ $wgDBAvgStatusPoll = 2000;
 
 /** Set to true if using InnoDB tables */
 $wgDBtransactions	= false;
-/** Set to true for compatibility with extensions that might be checking.
- * MySQL 3.23.x is no longer supported. */
-$wgDBmysql4			= true;
 
 /**
  * Set to true to engage MySQL 4.1/5.0 charset-related features;
