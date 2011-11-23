@@ -107,6 +107,7 @@ abstract class Installer {
 		'envCheckUploadsDirectory',
 		'envCheckLibicu',
 		'envCheckSuhosinMaxValueLength',
+		'envCheckCtype',
 	);
 
 	/**
@@ -1067,6 +1068,13 @@ abstract class Installer {
 			if( $needsUpdate ) {
 				$this->showMessage( 'config-unicode-update-warning' );
 			}
+		}
+	}
+
+	protected function envCheckCtype() {
+		if ( !function_exists( 'ctype_digit' ) ) {
+			$this->showError( 'config-ctype' );
+			return false;
 		}
 	}
 
