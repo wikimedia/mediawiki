@@ -266,6 +266,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$list = array_flip( $db->listTables() );
 		$excluded = array(
 			'math', // moved out of core in 1.18
+			'trackbacks',
 			'searchindex',
 			'searchindex_content',
 			'searchindex_segments',
