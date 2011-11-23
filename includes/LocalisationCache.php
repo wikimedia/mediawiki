@@ -163,12 +163,7 @@ class LocalisationCache {
 					$storeClass = 'LCStore_Accel';
 					break;
 				case 'detect':
-					try {
-						$c = wfGetCache( CACHE_ACCEL );
-						$storeClass = 'LCStore_Accel';
-					} catch( Exception $c ) {
-						$storeClass = $wgCacheDirectory ? 'LCStore_CDB' : 'LCStore_DB';
-					}
+					$storeClass = $wgCacheDirectory ? 'LCStore_CDB' : 'LCStore_DB';
 					break;
 				default:
 					throw new MWException(
