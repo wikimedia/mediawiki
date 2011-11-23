@@ -13,17 +13,17 @@ production.
 === Configuration changes in 1.19 ===
 * Changed LoginAuthenticateAudit hook so that it may be called before a
   valid user is available.  In those cases, an anonymouse user object
-  will be supplied
+  will be supplied.
 * Removed SkinTemplateSetupPageCss hook; use BeforePageDisplay instead.
 * (bug 27132) movefile right granted by default to registered users.
 * Default cookie lifetime ($wgCookieExpiration) is increased to 180 days.
-* (bug 31204) Removed old user.user_options
+* (bug 31204) Removed old user.user_options.
 * $wgMaxImageArea now applies to jpeg files if they are not scaled with
   ImageMagick.
 * Introduced $wgQueryPageDefaultLimit (defaults to 50) for the number of
   items to show by default on query pages (special pages such as Whatlinkshere).
-* (bug 32470) Increase the length of ug_group
-* (bug 32239) Removed wgEnableTooltipsAndAccesskeys
+* (bug 32470) Increase the length of ug_group.
+* (bug 32239) Removed wgEnableTooltipsAndAccesskeys.
 
 === New features in 1.19 ===
 * (bug 19838) Possibility to get all interwiki prefixes if the interwiki
@@ -40,7 +40,7 @@ production.
 * Installer now issues a warning if mod_security is present.
 * (bug 29455) Add support for a filter callback function in jQuery byteLimit
   plugin.
-* Extensions can now participate in the extraction of titles from url paths
+* Extensions can now participate in the extraction of titles from url paths.
 * Added two new GetLocalURL hooks to better serve extensions working on a
   limited type of titles.
 * Added a --no-updates flag to importDump.php that skips updating the links
@@ -53,23 +53,23 @@ production.
   NAMESPACE) now depend on the page content language instead of the site
   language. In theory this sets the right magic words in system messages,
   although they are not used there.
-* (bug 30451) Add page_props to RefreshLinks::deleteLinksFromNonexistent
-* (bug 30450) Clear page_props table on page deletion
-* Hook added to check for exempt from account creation throttle
+* (bug 30451) Add page_props to RefreshLinks::deleteLinksFromNonexistent.
+* (bug 30450) Clear page_props table on page deletion.
+* Hook added to check for exempt from account creation throttle.
 * (bug 30344) Add configuration variable for setting custom priorities when
-  generating sitemaps
+  generating sitemaps.
 * (bug 96170) Add array support for space-separated list attributes (like
   'class') in the Html helper class.
 * (bug 26470) Add checkered background image on hover on files pages.
 * (bug 30774) mediawiki.html: Add support for numbers and booleans in the
   attribute values and element contents.
-* Conversion script between Tifinagh and Latin for the Tachelhit language
+* Conversion script between Tifinagh and Latin for the Tachelhit language.
 * (bug 16755) Add options 'noreplace' and 'noerror' to {{DEFAULTSORT:...}}
   to stop it from replace an already existing default sort, and suppress error.
 * (bug 18578) Rewrote revision delete related messages to allow better
-  localisation
+  localisation.
 * (bug 30364) LanguageConverter now depends on the page content language
-  instead of the wiki content language
+  instead of the wiki content language.
 * Jump links will now be usable in css-capable browsers instead of only
   in outdated text browsers.
 * New common*.css files usable by skins instead of having to copy piles
@@ -79,23 +79,23 @@ production.
 * (bug 31297) Add support for namespaces in Special:RecentChanges subpage filter
   syntax.
 * The default user signature now contains a talk link in addition to the user link.
-* (bug 25306) Add link of old page title to MediaWiki:Delete_and_move_reason
-* Added hook BitmapHandlerCheckImageArea
+* (bug 25306) Add link of old page title to MediaWiki:Delete_and_move_reason.
+* Added hook BitmapHandlerCheckImageArea.
 * (experimental) $wgRealNameInInterface can be enabled to display a user's
   real name in some parts of the interface instead of a username.
-* (bug 30062) Add $wgDBprefix option to cli installer
+* (bug 30062) Add $wgDBprefix option to cli installer.
 * getUserPermissionsErrors and getUserPermissionsErrorsExpensive hooks are now
-  also called when checking for 'read' permission
+  also called when checking for 'read' permission.
 * Introduce $wgEnableSearchContributorsByIP which controls whether searching
-  for an IP address redirects to the contributions list for that IP
-* (bug 8859) Database::update should take array of tables too
-* (bug 19698) Inverse selection for Special:Contributions
-* (bug 24037) Add byte length of revision to Special:Contributions
+  for an IP address redirects to the contributions list for that IP.
+* (bug 8859) Database::update should take array of tables too.
+* (bug 19698) Inverse selection for Special:Contributions.
+* (bug 24037) Add byte length of revision to Special:Contributions.
 * (bug 1672) Added $wgDisableUploadScriptChecks to allow uploading of files
   containing HTML or JS. DISABLING THESE CHECKS IS VERY DANGEROUS.
 
 === Bug fixes in 1.19 ===
-* $wgUploadNavigationUrl should be used for file redlinks if
+* $wgUploadNavigationUrl should be used for file redlinks if.
   $wgUploadMissingFileUrl is not set. The first was used for this
   until the second was introduced in 1.17.
 * (bug 25355) Parser generates edit section links for special pages.
@@ -107,55 +107,55 @@ production.
 * (bug 30264) Changed installer-generated LocalSettings.php to use
   require_once() instead require() for included extensions.
 * Do not convert text in the user interface language to another script.
-* (bug 26283) Previewing user JS/CSS pages didn't load other user JS/CSS pages
+* (bug 26283) Previewing user JS/CSS pages didn't load other user JS/CSS pages.
 * (bug 11374) Improved diff readability for colorblind people.
 * (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
   warnings/notices to be thrown.
 * (bug 30335) Fix for HTMLForms using GET breaking when non-friendly URLs are
-  used
+  used.
 * (bug 28649) Avoiding half truncated multi-byte unicode characters when
   truncating log comments.
 * Show --batch-size option in help of maintenance scripts that support it
 * (bug 4381) Magic quotes cleaning was not comprehensive, key strings were not
-  unescaped
+  unescaped.
 * (bug 23057) Importers no longer can 'edit' or 'create' a fully-protected page by
-  importing a new revision into it
+  importing a new revision into it.
 * Allow moving the associated talk pages of subpages even if the base page
   has no subpage.
 * Per page edit-notices now work in namespaces without subpages enabled.
-* (bug 30245) Use the correct way to construct a log page title
-* (bug 31081) $wgEnotifUseJobQ caused many unnecessary jobs to be queued
+* (bug 30245) Use the correct way to construct a log page title.
+* (bug 31081) $wgEnotifUseJobQ caused many unnecessary jobs to be queued.
 * (bug 30202) File names are now restricted on upload to 240 bytes, because of
-  restrictions on some of the database fields.
+  restrictions on some of the database fields..
 * Timezones are now recognised in user preferences when offset is different
-  due to DST
-* (bug 31692) "summary" parameter now also work when undoing revisions
+  due to DST.
+* (bug 31692) "summary" parameter now also work when undoing revisions.
 * (bug 18823) "move succeeded" text displayed bluelinks even when redirect was
-   suppressed
+   suppressed.
 * (bug 31921) Magic words REVISIONDAY, REVISIONMONTH and REVISIONYEAR now give
-  current values on preview
+  current values on preview.
 * (bug 19186) Special:UserLogin's title on Special:SpecialPages now says
-  "create account" when the user cannot create an account
-* (bug 31818) 'usercreated' message now supports GENDER
-* (bug 32022) Our phpunit.php script can now be executed from another directory
+  "create account" when the user cannot create an account.
+* (bug 31818) 'usercreated' message now supports GENDER.
+* (bug 32022) Our phpunit.php script can now be executed from another directory.
 * (bug 26020) Setting $wgEmailConfirmToEdit to true no longer removes diffs
-  from recent changes feeds
-* (bug 30232) add current time to message wlnote on Special:Watchlist
-* (bug 29110) $wgFeedDiffCutoff did not affect new pages
-* (bug 32168) Add wfRemoveDotSegments for use in wfExpandUrl
+  from recent changes feeds.
+* (bug 30232) add current time to message wlnote on Special:Watchlist.
+* (bug 29110) $wgFeedDiffCutoff did not affect new pages.
+* (bug 32168) Add wfRemoveDotSegments for use in wfExpandUrl.
 * (bug 32358) Do not display "No higher resolution available" for dimensionless
-  files (like audio files)
-* (bug 32168) Add wfAssembleUrl for use in wfExpandUrl
-* (bug 32168) fixed - wfExpandUrl expands dot segments now
-* (bug 31535) Upload comments now truncated properly, and don't have brackets
-* (bug 32450) Scripts pages in MediaWiki: namespace parse [[Category:#]] links
+  files (like audio files).
+* (bug 32168) Add wfAssembleUrl for use in wfExpandUrl.
+* (bug 32168) fixed - wfExpandUrl expands dot segments now.
+* (bug 31535) Upload comments now truncated properly, and don't have brackets.
+* (bug 32450) Scripts pages in MediaWiki: namespace parse [[Category:#]] links.
 * (bug 32086) Special:PermanentLink now show an error message when no subpage
   was specified.
-* (bug 30368) Special:Newpages now shows the new page name for moved pages
-* (bug 1697) The way to search blocked usernames in block log should be clearer
+* (bug 30368) Special:Newpages now shows the new page name for moved pages.
+* (bug 1697) The way to search blocked usernames in block log should be clearer.
 * (bug 29747) eAccelerator shared memory caching has been removed since it is
   now disabled by default and is buggy. APC, XCache and WinCache are not affected.
-* Installer now refuses to install if php was not compiled with Ctype support
+* Installer now refuses to install if php was not compiled with Ctype support.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
@@ -171,10 +171,10 @@ production.
   address blocks for list=blocks.
 * (bug 30591) Add support to only return keys in ApiAllMessages.
 * The API now respects $wgShowHostnames and won't share the hostname in
-  severedby if it's set to false
-* wlexcludeuser parameter added to ApiFeedWatchlist
+  severedby if it's set to false.
+* wlexcludeuser parameter added to ApiFeedWatchlist.
 * (bug 7304) Links on redirect pages no longer cause the redirect page to show
-  up as a redirect to the linked page on Special:Whatlinkshere
+  up as a redirect to the linked page on Special:Whatlinkshere.
 
 === Languages updated in 1.19 ===
 
@@ -187,7 +187,7 @@ changes to languages because of Bugzilla reports.
 * (bug 30217) Make pt-br a fallback of pt.
 * (bug 31193) Set fallback language of Assamese from Bengali to English.
 * Update date format for dsb and hsb: month names need the genitive.
-* (bug 28643) Serbian variant conversion improvements (Nikola Smolenski)
+* (bug 28643) Serbian variant conversion improvements (Nikola Smolenski).
 
 === Other changes in 1.19 ===
 * jquery.mwPrototypes module was renamed to jquery.mwExtension.
@@ -234,7 +234,7 @@ break. Don't forget to always back up your database before upgrading!
 
 See the file UPGRADE for more detailed upgrade instructions.
 
-For notes on 1.17.x and older releases, see HISTORY.
+For notes on 1.18.x and older releases, see HISTORY.
 
 == Online documentation ==
 
