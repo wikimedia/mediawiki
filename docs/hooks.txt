@@ -2161,10 +2161,10 @@ $user: User object
 &$timestamp: new timestamp, change this to override local email
 authentification timestamp
 
-'UserToolLinksEdit': Called when generating a list user tool links
+'UserToolLinksEdit': Called when generating a list of user tool links, eg "Foobar (Talk | Contribs | Block)"
 $userId: User id of the current user
 $userText: User name of the current user
-&$items: Array of user tool links
+&$items: Array of user tool links as HTML fragments
 
 'WantedPages::getQueryInfo': called in WantedPagesPage::getQueryInfo(), can be
 used to alter the SQL query which gets the list of wanted pages
