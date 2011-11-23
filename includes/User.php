@@ -393,7 +393,7 @@ class User {
 	 * If the code is invalid or has expired, returns NULL.
 	 *
 	 * @param $code String Confirmation code
-	 * @return User
+	 * @return User object, or null
 	 */
 	public static function newFromConfirmationCode( $code ) {
 		$dbr = wfGetDB( DB_SLAVE );
@@ -414,7 +414,7 @@ class User {
 	 *
 	 * @param $request WebRequest object to use; $wgRequest will be used if
 	 *        ommited.
-	 * @return User
+	 * @return User object
 	 */
 	public static function newFromSession( WebRequest $request = null ) {
 		$user = new User;
