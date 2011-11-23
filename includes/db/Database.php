@@ -2994,14 +2994,28 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * Override database's default connection timeout.  May be useful for very
-	 * long batch queries such as full-wiki dumps, where a single query reads
-	 * out over hours or days.  May or may not be necessary for non-MySQL
-	 * databases.  For most purposes, leaving it as a no-op should be fine.
+	 * Override database's default connection timeout
 	 *
 	 * @param $timeout Integer in seconds
+	 * @return void
+	 * @deprecated since 1.19; use setSessionOptions()
 	 */
-	public function setTimeout( $timeout ) {}
+	public function setTimeout( $timeout ) {
+		$this->setSessionOptions( array( 'connTimeout' => $timeout ) );
+	}
+
+	/**
+	 * Override database's default behavior. $options include:
+	 *     'connTimeout' : Set the connection timeout value in seconds.
+	 *                     May be useful for very long batch queries such as
+	 *                     full-wiki dumps, where a single query reads out over
+	 *                     hours or days.
+	 *     'lockTimeout' : Set the lock wait timeout value in seconds.
+	 *
+	 * @param $options Array
+	 * @return void
+	 */
+	public function setSessionOptions( array $options ) {}
 
 	/**
 	 * Read and execute SQL commands from a file.
