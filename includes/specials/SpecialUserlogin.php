@@ -744,7 +744,7 @@ class LoginForm extends SpecialPage {
 					$code = $request->getVal( 'uselang', $user->getOption( 'language' ) );
 					$userLang = Language::factory( $code );
 					$wgLang = $userLang;
-					$this->getContext()->setLang( $userLang );
+					$this->getContext()->setLanguage( $userLang );
 					return $this->successfulLogin();
 				} else {
 					return $this->cookieRedirectCheck( 'login' );
