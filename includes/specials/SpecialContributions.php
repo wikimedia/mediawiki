@@ -712,12 +712,6 @@ class ContribsPager extends ReverseChronologicalPager {
 			$mflag = '';
 		}
 
-		if ( !is_null( $rev->getSize() ) && !$rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$mSize = $this->getSkin()->formatRevisionSize( $rev->getSize() );
-		} else {
-			$mSize = '';
-		}
-
 		// Don't show useless link to people who cannot hide revisions
 		$canHide = $user->isAllowed( 'deleterevision' );
 		if( $canHide || ($rev->getVisibility() && $user->isAllowed('deletedhistory')) ) {
@@ -738,7 +732,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		$diffHistLinks = '(' . $difftext . $this->messages['pipe-separator'] . $histlink . ')';
-		$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} {$link}{$userlink} {$mSize} {$comment} {$topmarktext}";
+		$ret = "{$del}{$d} {$diffHistLinks}{$chardiff}{$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
 
 		# Denote if username is redacted for this edit
 		if( $rev->isDeleted( Revision::DELETED_USER ) ) {
