@@ -55,9 +55,10 @@ class LinkSearchPage extends QueryPage {
 		$target = $request->getVal( 'target', $par );
 		$namespace = $request->getIntorNull( 'namespace', null );
 
-		$protocols_list[] = '';
 		foreach( $wgUrlProtocols as $prot ) {
-			$protocols_list[] = $prot;
+			if ( $prot !== '//' ) {
+				$protocols_list[] = $prot;
+			}
 		}
 
 		$target2 = $target;
@@ -76,13 +77,13 @@ class LinkSearchPage extends QueryPage {
 			// default
 			$protocol = 'http://';
 		}
-		if ( !in_array( $protocol, $protocols_list ) ) {
+		if ( $protocol != '' && !in_array( $protocol, $protocols_list ) ) {
 			// unsupported protocol, show original search request
 			$target2 = $target;
 			$protocol = '';
 		}
 
-		$out->addWikiMsg( 'linksearch-text', '<nowiki>' . $this->getLanguage()->commaList( $wgUrlProtocols ) . '</nowiki>' );
+		$out->addWikiMsg( 'linksearch-text', '<nowiki>' . $this->getLanguage()->commaList( $protocols_list ) . '</nowiki>' );
 		$s = Xml::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $GLOBALS['wgScript'] ) ) .
 			Html::hidden( 'title', $this->getTitle()->getPrefixedDbKey() ) .
 			'<fieldset>' .
