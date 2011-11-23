@@ -176,6 +176,8 @@ production.
 * wlexcludeuser parameter added to ApiFeedWatchlist.
 * (bug 7304) Links on redirect pages no longer cause the redirect page to show
   up as a redirect to the linked page on Special:Whatlinkshere.
+* (bug 32609) API: Move captchaid/captchaword of action=edit from core
+  to Captcha extension(s)
 
 === Languages updated in 1.19 ===
 
