@@ -3010,7 +3010,6 @@ abstract class DatabaseBase implements DatabaseType {
 	 *                     May be useful for very long batch queries such as
 	 *                     full-wiki dumps, where a single query reads out over
 	 *                     hours or days.
-	 *     'lockTimeout' : Set the lock wait timeout value in seconds.
 	 *
 	 * @param $options Array
 	 * @return void
