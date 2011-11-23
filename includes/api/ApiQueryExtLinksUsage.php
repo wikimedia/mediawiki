@@ -177,7 +177,9 @@ class ApiQueryExtLinksUsage extends ApiQueryGeneratorBase {
 		global $wgUrlProtocols;
 		$protocols = array( '' );
 		foreach ( $wgUrlProtocols as $p ) {
-			$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
+			if ( $p !== '//' ) {
+				$protocols[] = substr( $p, 0, strpos( $p, ':' ) );
+			}
 		}
 		return $protocols;
 	}
