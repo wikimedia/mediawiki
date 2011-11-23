@@ -529,9 +529,6 @@ Dikh ando $2 ek patrinipen le palutne butyange khosle.',
 'watchlistall2' => 'savore',
 'namespacesall' => 'savore',
 
-# Trackbacks
-'trackbacklink' => 'Vurma',
-
 # Delete conflict
 'deletedwhileediting' => 'Dikh: Kadaya patrin sas khosli de kana shirdyas (astardyas) te editisares la!',
 

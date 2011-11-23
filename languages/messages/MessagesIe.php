@@ -1263,13 +1263,6 @@ Altri va esser ocultat per contumacie.
 'namespacesall' => 'omni',
 'monthsall'     => 'omni',
 
-# Trackbacks
-'trackbackbox'      => 'Tracies de dorse por ti págine:<br /> $1',
-'trackbackexcerpt'  => '; $4 $5: [$2 $1]: <nowiki>$3</nowiki>',
-'trackbackremove'   => '([$1 Deleter])',
-'trackbacklink'     => 'Tracie de dorse',
-'trackbackdeleteok' => 'Li tracie de dorse esset deletet che successe',
-
 # Multipage image navigation
 'imgmultigo' => 'Ear!',
 

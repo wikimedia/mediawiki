@@ -1157,7 +1157,6 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'right-autopatrol'            => 'Bewurkings wurde automatysk as kontrolearre markearre',
 'right-patrolmarks'           => 'Kontroletekens yn resinte feroarings besjen',
 'right-unwatchedpages'        => "In list mei siden besjen dy't net op in folchlist steane",
-'right-trackback'             => 'In trackback opjaan',
 'right-mergehistory'          => 'De skiednis fan siden gearfoegje',
 'right-userrights'            => 'Alle meidoggerrjochten bywurkje',
 'right-userrights-interwiki'  => "Wizigje meidoggerrjochten fan meidoggers yn oare wiki's",
@@ -1200,7 +1199,6 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'action-patrol'               => 'bewurkings fan oaren as kontrolearre beskôgje',
 'action-autopatrol'           => 'eigen bewurkings as kontrolearre markearje litte',
 'action-unwatchedpages'       => "de list mei siden dy't net op in folchlist steane besjen",
-'action-trackback'            => 'in trackback opjaan',
 'action-mergehistory'         => 'de skiednis fan dizze side gearfoegje',
 'action-userrights'           => 'alle brûkersrjochten bewurkje',
 'action-userrights-interwiki' => "brûkersrjochten fan brûkers fan oare wiki's bewurkje",
@@ -2279,9 +2277,6 @@ Dizze befêstigingskoade ferrint dan op $4.',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL-adres is te lang]',
-
-# Trackbacks
-'trackbackremove' => '([$1 Wiskje])',
 
 # Delete conflict
 'confirmrecreate' => "Sûnt jo begûn binne dizze side te bewurkjen, hat meidogger [[User:$1|$1]] ([[User talk:$1|oerlis]]) de side wiske. De reden dy't derfoar jûn waard wie:

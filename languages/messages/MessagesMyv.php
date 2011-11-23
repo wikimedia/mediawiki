@@ -2051,10 +2051,6 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL пек кувака]',
 
-# Trackbacks
-'trackbackremove' => '([$1 Нардамс])',
-'trackbacklink'   => 'Мекев потамо эскельксэнь-эскельксэнь',
-
 # Delete conflict
 'recreate' => 'Шкак-тейть одов',
 

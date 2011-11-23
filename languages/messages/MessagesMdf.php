@@ -1130,7 +1130,6 @@ $3 макссь туфталсь - ''$2''",
 'right-autopatrol'           => 'Эсь петнематнень кармафтомс тяштевомс патрулияфокс',
 'right-patrolmarks'          => 'Няфтемс мекольце полафнематнень патрулияфокс тяштефнень ёткса',
 'right-unwatchedpages'       => 'Ваномс аф мельгеваномаса лопатнень лувомать',
-'right-trackback'            => 'Кемокстамс меки кеворемать нолдамац',
 'right-mergehistory'         => 'Шоворьфтемс историянь лопатне',
 'right-userrights'           => 'Петнемс сембе тиихнень видексснон',
 'right-userrights-interwiki' => 'Петнемс тиихнень видекснон иля викить лопасонза',
@@ -1172,7 +1171,6 @@ $3 макссь туфталсь - ''$2''",
 'action-patrol'               => 'тяштемс илятнень петнемасна патрулияфокс',
 'action-autopatrol'           => 'тяштть тонь петнемацень патрулияфокс',
 'action-unwatchedpages'       => 'няфтемс мельгеваномафтома лопатнень лувомаснон',
-'action-trackback'            => 'нолдамс меки кеворема',
 'action-mergehistory'         => 'шоворемс тя лопать историянц',
 'action-userrights'           => 'петнемс сембе тиихнень видексснон',
 'action-userrights-interwiki' => 'петнемс тиихнень иля викистонь тиинь видексснон',
@@ -2622,13 +2620,6 @@ $5
 'scarytranscludedisabled' => '[Interwiki transcluding лоткаф]',
 'scarytranscludefailed'   => '[Шаблон латцема $1-нди изь лисев]',
 'scarytranscludetoolong'  => '[URL вельф кувака]',
-
-# Trackbacks
-'trackbackbox'      => 'Тя лопанди меки кеворемат:<br />
-$1',
-'trackbackremove'   => '([$1 Нардафкс])',
-'trackbacklink'     => 'Меки кеворема',
-'trackbackdeleteok' => 'Меки кеворемать нардамась мольсь лац.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Инголе кардама''': Тя лопась нардафоль ёт тон кармать петнеманза!",

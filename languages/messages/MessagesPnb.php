@@ -1247,7 +1247,6 @@ $1",
 'right-autopatrol'            => 'اپنیاں تبدیلیاں تے اپنے آپ گشت دا نشان لگ جاوے۔',
 'right-patrolmarks'           => 'ہن ہوئیاں تبدیلیاں تے گشت نشان ویکھو',
 'right-unwatchedpages'        => 'بنا اکھ تھلے رکھیاں صفیاں دی لسٹ ویکھو',
-'right-trackback'             => 'اک ٹریکبیک دسو',
 'right-mergehistory'          => 'صفیاں دا رکارڈ رلاؤ',
 'right-userrights'            => 'تمام ورتن آلیاں دے حق رلکھو',
 'right-userrights-interwiki'  => 'ورتن والے دے تبدیلی دے حقاں نوں دوجے وکی تے ورتو۔',
@@ -1293,7 +1292,6 @@ $1",
 'action-patrol'               => 'دوجے دیاں تبدیلیاں تے گشت دا نشاں لاؤ',
 'action-autopatrol'           => 'کیا تساں تبدیلی دے نشاں تے گشت دا نشان لایا',
 'action-unwatchedpages'       => 'بنا اکھ تھلے رکھیاں صفیاں دی لسٹ ویکھو',
-'action-trackback'            => 'اک ٹریکبیک دسو',
 'action-mergehistory'         => 'ایس صفے دا رکارڈ رلاؤ',
 'action-userrights'           => 'ورتن ح‌ق چ تبدیلی کرو',
 'action-userrights-interwiki' => 'ورتن حقاں نوں دوجے وکیاں تے تبدیل کرو۔',
@@ -3215,13 +3213,6 @@ $5
 'scarytranscludedisabled' => 'انٹروکی رلانا روک دتا گیا۔',
 'scarytranscludefailed'   => '[ٹمپلیٹ $1 لئی لے کے آنا ناکام]',
 'scarytranscludetoolong'  => '[URL چوکھی لمبی اے]',
-
-# Trackbacks
-'trackbackbox'      => 'ایس صفے لئی پچھے:<br />
-$1',
-'trackbackremove'   => '([$1 مٹاؤ])',
-'trackbacklink'     => 'پچھلا راہ لبنا',
-'trackbackdeleteok' => 'پچھلا راہ مٹا دتا گیا',
 
 # Delete conflict
 'deletedwhileediting'      => "'''خبردار''': تھواڈے لکھن مکرون اے صفہ مٹا دتا گیا!",

@@ -1436,7 +1436,6 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'right-autopatrol'            => 'Manamarika ny fanovany efa nomarihana',
 'right-patrolmarks'           => "Mijery ny mariky ny fanamarihana any amin'ny fanovana farany",
 'right-unwatchedpages'        => 'Mijery ny lisitry ny pejy tsy arahina',
-'right-trackback'             => 'Manampy trackback',
 'right-mergehistory'          => 'Manatsonika ny tantaram-pejy',
 'right-userrights'            => "Manova ny fahefan'ny mpikambana",
 'right-userrights-interwiki'  => "Manova ny fahefan'ny mpikambana any amin'ny wiki hafa",
@@ -1480,7 +1479,6 @@ Tsy haseho ny adiresy imailakao rehefa manoratra any aminao ny mpikambana hafa."
 'action-patrol'               => 'marihana ho hita ity version ity',
 'action-autopatrol'           => 'manana ny fanovanao voamarina',
 'action-unwatchedpages'       => 'hijery ny lisitry ny pejy tsy arahina',
-'action-trackback'            => 'mandefa trackback',
 'action-mergehistory'         => 'Manatambatra ny tantaram-pejy',
 'action-userrights'           => "hanova ny fahefan'ny mpikambana rehetra",
 'action-userrights-interwiki' => "hanova ny fahefan'ny mpikambana any amin'ny wiki hafa",
@@ -2952,13 +2950,6 @@ Io fango fanamarinana io dia miasa hatramin\'ny $4.',
 'scarytranscludedisabled' => '[Najanona ny atipetraka (transclusion) interwiki]',
 'scarytranscludefailed'   => "[Ny voaaka soa aman-tsara ilay endrika ho an'i $1]",
 'scarytranscludetoolong'  => '[Lava loatra ny URL]',
-
-# Trackbacks
-'trackbackbox'      => "Tirakibaky mankany amin'ity pejy ity :<br />
-$1",
-'trackbackremove'   => '([$1 esorina])',
-'trackbacklink'     => 'Tirakibaky',
-'trackbackdeleteok' => 'Voafafa soa aman-tsara ilay trackback.',
 
 # Delete conflict
 'deletedwhileediting' => 'Fampitandremana: Nisy namafa ity pejy ity raha mbola teo am-panovana azy ianao!',

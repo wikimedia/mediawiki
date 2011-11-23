@@ -1321,7 +1321,6 @@ $3 келтірілген себебі: ''$2''",
 'right-autopatrol'           => 'Өз өңдемелерін зерттелді деп өздіктік белгілеу',
 'right-patrolmarks'          => 'Жуықтағы өзгерістердегі зерттеу белгілерін көру',
 'right-unwatchedpages'       => 'Бақыланылмаған бет тізімін көру',
-'right-trackback'            => 'Аңыстауды жөнелту',
 'right-mergehistory'         => 'Беттердің тарихын қосып беру',
 'right-userrights'           => 'Қатысушылардың барлық құқықтарын өңдеу',
 'right-userrights-interwiki' => 'Басқа үикилердегі қатысушылардың құқықтарын өңдеу',
@@ -2770,13 +2769,6 @@ $5
 'scarytranscludedisabled' => '[Уики-аралық кірікбеттер өшірілген]',
 'scarytranscludefailed'   => '[$1 үшін үлгі келтіруі сәтсіз бітті; ғафу етіңіз]',
 'scarytranscludetoolong'  => '[URL тым ұзын; ғафу етіңіз]',
-
-# Trackbacks
-'trackbackbox'      => 'Бұл беттің аңыстаулары:<br />
-$1',
-'trackbackremove'   => '([$1 Жою])',
-'trackbacklink'     => 'Аңыстау',
-'trackbackdeleteok' => 'Аңыстау сәтті жойылды.',
 
 # Delete conflict
 'deletedwhileediting' => 'Құлақтандыру: Бұл бетті өңдеуіңізді бастағанда, осы бет жойылды!',

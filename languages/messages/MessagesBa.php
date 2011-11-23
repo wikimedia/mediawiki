@@ -1229,7 +1229,6 @@ $1",
 'right-autopatrol'            => 'Үҙгәртеүҙәр үҙҙәренән-үҙҙәре тикшерелгән тип билдәләнә',
 'right-patrolmarks'           => 'Һуңғы үҙгәртеүҙәрҙә тикшереү билдәләрен ҡарау',
 'right-unwatchedpages'        => 'Күҙәтелмәгән биттәр исемлеген ҡарау',
-'right-trackback'             => 'Trackback ебәреү',
 'right-mergehistory'          => 'Биттәр тарихын берләштереү',
 'right-userrights'            => 'Барлыҡ ҡатнашыусыларҙың хоҡуҡтарын үҙгәртеү',
 'right-userrights-interwiki'  => 'Ҡатнашыусыларҙың башҡа Вики-сайттарҙағы хоҡуҡтарын үҙгәртеү',
@@ -1273,7 +1272,6 @@ $1",
 'action-patrol'               => 'Башҡаларҙың үҙгәртеүҙәрен тикшерелгән тип билдәләү',
 'action-autopatrol'           => 'Үҙ үҙгәртеүҙәрен тикшерелгән тип билдәләү',
 'action-unwatchedpages'       => 'Күҙәтелмәгән биттәр исемлеген ҡарау',
-'action-trackback'            => 'Trackback ебәреү',
 'action-mergehistory'         => 'Был биттең тарихын берләштереү',
 'action-userrights'           => 'Ҡатнашыусының барлыҡ хоҡуҡтарын үҙгәртеү',
 'action-userrights-interwiki' => 'Ҡатнашыусыларҙың башҡа Викиларҙағы хоҡуҡтарын үҙгәртеү',
@@ -3008,13 +3006,6 @@ $5
 'scarytranscludedisabled' => '[Интервики индереү мөмкинлеге һүндерелгән]',
 'scarytranscludefailed'   => '[$1 ҡалыбына мөрәжәғәт итеү хатаһы]',
 'scarytranscludetoolong'  => '[URL адрес бигерәк оҙон]',
-
-# Trackbacks
-'trackbackbox'      => 'Был мәҡәлә өсөн Trackback:<br />
-$1',
-'trackbackremove'   => '([$1 Юйырға])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback уңышлы юйылды.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Иғтибар''': Был бит һеҙ мөхәррирләй башлар алдынан юйылған ине!",

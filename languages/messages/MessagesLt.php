@@ -1398,7 +1398,6 @@ teisės",
 'right-autopatrol'            => 'Keitimai automatiškai pažymimi kaip patikrinti',
 'right-patrolmarks'           => 'Atžymų apie patikrą peržiūra naujausiuose keitimuose',
 'right-unwatchedpages'        => 'Žiūrėti nestebimų puslapių sąrašą',
-'right-trackback'             => 'Siųsti „Trackback“ nuorodą',
 'right-mergehistory'          => 'Sulieti puslapių istorijas',
 'right-userrights'            => 'Redaguoti visų naudotojų teises',
 'right-userrights-interwiki'  => 'Keisti naudotojų teises kitose wiki svetainėse',
@@ -1443,7 +1442,6 @@ teisės",
 'action-patrol'               => 'pažymėti kitų keitimus kaip patikrintus',
 'action-autopatrol'           => 'savo keitimų pažymėjimas patikrintais',
 'action-unwatchedpages'       => 'žiūrėti nestebimų puslapių sąrašą',
-'action-trackback'            => 'priimti trackback nuorodą',
 'action-mergehistory'         => 'sulieti šio puslapio istoriją',
 'action-userrights'           => 'keisti visų naudotojų teises',
 'action-userrights-interwiki' => 'keisti naudotojų teises kitose wiki svetainėse',
@@ -3358,13 +3356,6 @@ $5
 'scarytranscludedisabled' => '[Tarpprojektinis įterpimas yra išjungtas]',
 'scarytranscludefailed'   => '[Šablono gavimas iš $1 nepavyko]',
 'scarytranscludetoolong'  => '[URL per ilgas]',
-
-# Trackbacks
-'trackbackbox'      => 'Šio puslapio „Trackback“ nuorodos:<br />
-$1',
-'trackbackremove'   => '([$1 Trinti])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback buvo sėkmingai ištrintas.',
 
 # Delete conflict
 'deletedwhileediting'      => 'Dėmesio: Šis puslapis ištrintas po to, kai pradėjote redaguoti!',

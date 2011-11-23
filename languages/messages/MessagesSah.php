@@ -1286,7 +1286,6 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'right-autopatrol'            => 'Уларытыылар ботуруулламмыт курдук аптамаатынан бэлиэтэнэллэр',
 'right-patrolmarks'           => 'Кэнники уларытыыларга бэрэбиэркэлэммиттэрин туһунан бэлиэлэри көрүү',
 'right-unwatchedpages'        => 'Кэтэммэт сирэйдэр тиһиктэрин көрүү',
-'right-trackback'             => 'Trackback ыытыы',
 'right-mergehistory'          => 'Сирэйдэр историяларын холбооһун',
 'right-userrights'            => 'Кытааччылар бырааптарын барытын уларытыы',
 'right-userrights-interwiki'  => 'Атын биики-саайтарга кыттааччылар бырааптарын уларытыы',
@@ -1333,7 +1332,6 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 'action-patrol'               => 'атыттар көннөрүүлэрин ботуруулламмыт курдук бэлиэтээ',
 'action-autopatrol'           => 'бэйэ көннөрүүтүн ботуруулламмыт курдук бэлиэтээһин',
 'action-unwatchedpages'       => 'ким да кэтээбэт сирэйдэрин тиһиктэрин көрүү',
-'action-trackback'            => 'trackback ыытыы',
 'action-mergehistory'         => 'бу сирэй историятын холбооһун',
 'action-userrights'           => 'кыттар бары бырааптарын уларытыы',
 'action-userrights-interwiki' => 'атын биикигэ кыттыы бырааптарын уларытыы',
@@ -3260,13 +3258,6 @@ $5
 'scarytranscludedisabled' => '[Interwiki transcluding араҕыста]',
 'scarytranscludefailed'   => '[$1 халыыбы туһанар табыллыбата]',
 'scarytranscludetoolong'  => '[URL наһаа уһун]',
-
-# Trackbacks
-'trackbackbox'      => 'Бу ыстатыйа Trackback`а:<br />
-$1',
-'trackbackremove'   => '([$1 сотуу])',
-'trackbacklink'     => 'Урукку суола',
-'trackbackdeleteok' => 'trackback сотулунна.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Болҕой''': Сирэйи көннөрө олордоххуна ким эрэ сотон кэбистэ!",

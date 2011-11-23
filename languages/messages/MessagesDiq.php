@@ -1177,7 +1177,6 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'right-autopatrol'            => 'Vurnayîşanê xo otomatik nîşan bike ke patrol biyê',
 'right-patrolmarks'           => 'Vurnayîşanê peniyî nîşan patrol biyê bivîne',
 'right-unwatchedpages'        => 'Yew listeyê pelanê seyrnibiye bivîne',
-'right-trackback'             => 'yew trackback bide',
 'right-mergehistory'          => 'Tarixê pelanê yew bike',
 'right-userrights'            => 'Heqanê karberi pêro bıvurne',
 'right-userrights-interwiki'  => 'Heqqa karberanê ke ho wîkîyo binî de ey bivurne',
@@ -1221,7 +1220,6 @@ Kaberê bini ke şıma de kewti irtıbat, adresa e-postey şıma eşkera nêbena
 'action-patrol'               => 'vurnayîşê karberanê binî nişan bike patrol biye',
 'action-autopatrol'           => 'vurnayîşê xoye nişan bike ke belli biyo patrol biye',
 'action-unwatchedpages'       => 'listeyê pelanê seyirnibiya bivîne',
-'action-trackback'            => 'yew trackback bide',
 'action-mergehistory'         => 'tarixê ena pele yew bike',
 'action-userrights'           => 'heqqa karberanê hemî bivurne',
 'action-userrights-interwiki' => 'heqqa karberanê ke wikiyê binî de hemî bivurne',
@@ -2872,13 +2870,6 @@ kodê tesdiqi heta ıney tarixi $4 meqbul o.',
 'scarytranscludedisabled' => '[Transcludê înterwîkîyî nihebityeno]',
 'scarytranscludefailed'   => '[Qe $1 fetch kerdişî nihebitiyeno]',
 'scarytranscludetoolong'  => '[Ena URL zaf dergo]',
-
-# Trackbacks
-'trackbackbox'      => 'Ser ena pel trackbackî :<br />
-$1',
-'trackbackremove'   => '([$1 biwedarne])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback wedariyeyo.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Teme''': Ena pele  verniyê ti de eseteriyaya!",

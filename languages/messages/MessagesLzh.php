@@ -1145,7 +1145,6 @@ $1",
 'right-autopatrol'            => '將己纂自示為已巡查',
 'right-patrolmarks'           => '察近巡查記之易',
 'right-unwatchedpages'        => '看未哨之頁',
-'right-trackback'             => '交一trackback',
 'right-mergehistory'          => '併頁之史',
 'right-userrights'            => '纂簿權',
 'right-userrights-interwiki'  => '纂另wiki他簿之權',
@@ -1187,7 +1186,6 @@ $1",
 'action-patrol'               => '示他纂為巡',
 'action-autopatrol'           => '示己纂為巡',
 'action-unwatchedpages'       => '查無哨',
-'action-trackback'            => '交trackback',
 'action-mergehistory'         => '併此頁之史',
 'action-userrights'           => '纂全權',
 'action-userrights-interwiki' => '纂他wiki上之權',
@@ -2550,13 +2548,6 @@ $5
 'scarytranscludedisabled' => '[蓋跨共筆之轉碼者，莫之能用也]',
 'scarytranscludefailed'   => '[$1模不得]',
 'scarytranscludetoolong'  => '[網址過長]',
-
-# Trackbacks
-'trackbackbox'      => '此文之引:<br />
-$1',
-'trackbackremove'   => '（[$1刪]）',
-'trackbacklink'     => '迴響',
-'trackbackdeleteok' => 'Trackback 刪矣。',
 
 # Delete conflict
 'deletedwhileediting' => '警：纂中見刪。',

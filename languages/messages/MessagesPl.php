@@ -1503,7 +1503,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-autopatrol'            => 'Własne edycje automatycznie oznaczane jako „sprawdzone”',
 'right-patrolmarks'           => 'Podgląd znaczników patrolowania ostatnich zmian – oznaczania jako „sprawdzone”',
 'right-unwatchedpages'        => 'Podgląd listy stron nieobserwowanych',
-'right-trackback'             => 'Wysyłanie trackback',
 'right-mergehistory'          => 'Łączenie historii edycji stron',
 'right-userrights'            => 'Edycja uprawnień wszystkich użytkowników',
 'right-userrights-interwiki'  => 'Edycja uprawnień użytkowników innych witryn wiki',
@@ -1550,7 +1549,6 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'action-patrol'               => 'oznaczenia cudzej edycji jako „sprawdzonej”',
 'action-autopatrol'           => 'oznaczenia własnej edycji jako „sprawdzonej”',
 'action-unwatchedpages'       => 'podglądu listy nieobserwowanych stron',
-'action-trackback'            => 'wysyłania trackbacka',
 'action-mergehistory'         => 'łączenia historii edycji tej strony',
 'action-userrights'           => 'edytowania uprawnień wszystkich użytkowników',
 'action-userrights-interwiki' => 'edytowania uprawnień użytkowników na innych witrynach wiki',
@@ -3533,13 +3531,6 @@ Kod zawarty w linku straci ważność $4.',
 'scarytranscludedisabled' => '[Transkluzja przez interwiki jest wyłączona]',
 'scarytranscludefailed'   => '[Pobranie szablonu dla $1 nie powiodło się]',
 'scarytranscludetoolong'  => '[zbyt długi adres URL]',
-
-# Trackbacks
-'trackbackbox'      => 'Komunikaty TrackBack dla tej strony:<br />
-$1',
-'trackbackremove'   => '([$1 Usuń])',
-'trackbacklink'     => 'TrackBack',
-'trackbackdeleteok' => 'TrackBack został usunięty.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Uwaga!''' Ta strona została usunięta po tym, jak rozpoczął{{GENDER:|eś|aś|eś(‐aś)}} jej edycję!",

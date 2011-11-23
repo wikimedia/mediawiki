@@ -1364,7 +1364,6 @@ $1",
 'right-autopatrol'            => 'এজনৰ সম্পাদনা পৰীক্ষিত বুলি স্বয়ংক্ৰিয়ভাৱে চিহ্নিত কৰক',
 'right-patrolmarks'           => 'শেহতীয়া সালসলনিৰ পৰীক্ষিত চিহ্ন চাওক',
 'right-unwatchedpages'        => 'নিৰীক্ষণ নকৰা পৃষ্ঠাসমূহৰ তালিকা চাওক',
-'right-trackback'             => 'এটা ট্ৰেকবেক দাখিল কৰক',
 'right-mergehistory'          => 'পৃষ্ঠাসমূহৰ ইতিহাস একত্ৰিত কৰক',
 'right-userrights'            => 'সকলো সদস্য অধিকাৰ সম্পাদনা কৰক',
 'right-userrights-interwiki'  => 'আন ৱিকিৰ সদস্যৰ অধিকাৰসমূহ সম্পাদনা কৰক',
@@ -1410,7 +1409,6 @@ $1",
 'action-patrol'               => 'আনৰ সম্পাদনা পৰীক্ষিত বুলি চিহ্নিত কৰক',
 'action-autopatrol'           => 'আপোনাৰ সম্পাদনা পৰীক্ষিত বুলি চিহ্নিত কৰক',
 'action-unwatchedpages'       => 'নিৰীক্ষণ নকৰা পৃষ্ঠাসমূহৰ তালিকা চাওক',
-'action-trackback'            => 'এটা ট্ৰেকবেক দাখিল কৰক',
 'action-mergehistory'         => 'এই পৃষ্ঠাখনৰ ইতিহাস একত্ৰিত কৰক',
 'action-userrights'           => 'সকলো সদস্য অধিকাৰ সম্পাদনা কৰক',
 'action-userrights-interwiki' => 'আন ৱিকিৰ সদস্যৰ অধিকাৰসমূহ সম্পাদনা কৰক',
@@ -3093,11 +3091,6 @@ $5
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL অত্যাধিক দীঘল]',
-
-# Trackbacks
-'trackbackremove'   => '([$1 বিলোপ])',
-'trackbacklink'     => 'ট্ৰেকবেক',
-'trackbackdeleteok' => 'ট্ৰেকবেকটো সফলতাৰে বিলোপ কৰা হৈছে ।',
 
 # Delete conflict
 'deletedwhileediting'      => "'''সতৰ্কবাণী''': আপুনি সম্পাদনা আৰম্ভ কৰাৰ পিছত পৃষ্ঠাখন বিলোপ কৰা হৈছে !",

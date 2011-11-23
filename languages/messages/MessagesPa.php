@@ -1093,10 +1093,6 @@ to upload files.',
 # Scary transclusion
 'scarytranscludetoolong' => '[ਅਫਸੋਸ ਹੈ ਕਿ URL ਬਹੁਤ ਲੰਮਾ ਹੈ]',
 
-# Trackbacks
-'trackbackremove' => '([$1 ਹਟਾਓ])',
-'trackbacklink'   => 'ਟਰੈਕਬੈਕ',
-
 # Delete conflict
 'recreate' => 'ਮੁੜ-ਬਣਾਓ',
 

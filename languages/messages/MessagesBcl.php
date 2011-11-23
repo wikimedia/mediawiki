@@ -1875,13 +1875,6 @@ Kun *bakô* ka ini, dai sunodón an takod. Mapaso sa $4 inning koda nin kompirma
 'scarytranscludefailed'   => '[Nabigô an pagkua kan templato para sa $1; despensa]',
 'scarytranscludetoolong'  => '[halabaon an URL; despensa]',
 
-# Trackbacks
-'trackbackbox'      => 'Mga trackback sa pahinang ini:<br />
-$1',
-'trackbackremove'   => '([$1 Parâon])',
-'trackbacklink'     => 'Solsogan',
-'trackbackdeleteok' => 'Pigparâ na an solsogan.',
-
 # Delete conflict
 'deletedwhileediting' => 'Patanid: Pigparâ na an pahinang ini antes na nagpoon kan maghirá!',
 'confirmrecreate'     => "Si [[User:$1|$1]] ([[User talk:$1|olay]]) pigparâ ining páhina pagkatapos mong magpoon kan paghira ta:

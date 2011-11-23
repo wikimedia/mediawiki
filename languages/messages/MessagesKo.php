@@ -1510,7 +1510,6 @@ $1",
 'right-autopatrol'            => '자신의 편집을 자동으로 검토',
 'right-patrolmarks'           => '최근 바뀜에서 검토 표시를 보기',
 'right-unwatchedpages'        => '주시되지 않는 문서 목록 보기',
-'right-trackback'             => '트랙백 보내기',
 'right-mergehistory'          => '문서의 역사를 합침',
 'right-userrights'            => '모든 사용자의 권한 조정',
 'right-userrights-interwiki'  => '다른 위키의 사용자 권한을 조정',
@@ -1557,7 +1556,6 @@ $1",
 'action-patrol'               => '다른 사용자의 편집을 검토된 것으로 표시하기',
 'action-autopatrol'           => '자신의 편집을 검토된 것으로 표시할',
 'action-unwatchedpages'       => '주시되지 않는 문서 목록 보기',
-'action-trackback'            => '트랙백 보내기',
 'action-mergehistory'         => '이 문서의 역사 합치기',
 'action-userrights'           => '모든 사용자의 권한을 조정',
 'action-userrights-interwiki' => '다른 위키의 사용자 권한을 조정',
@@ -3459,13 +3457,6 @@ $5
 'scarytranscludedisabled' => '[인터위키가 비활성되어 있습니다]',
 'scarytranscludefailed'   => '[$1 틀을 불러오는 데에 실패했습니다]',
 'scarytranscludetoolong'  => '[URL이 너무 깁니다]',
-
-# Trackbacks
-'trackbackbox'      => '이 문서에 달린 트랙백:<br />
-$1',
-'trackbackremove'   => '([$1 삭제])',
-'trackbacklink'     => '트랙백',
-'trackbackdeleteok' => '트랙백을 삭제했습니다.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''주의''': 당신이 이 문서를 편집하던 중에 이 문서가 삭제되었습니다.",

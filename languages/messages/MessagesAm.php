@@ -908,7 +908,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'right-import'           => 'ከሌላ ዊኪ ገጾችን ለማስገባት',
 'right-patrol'           => 'የሰው ለውጦች የተሣለፉ ሆነው ለማመልከት',
 'right-autopatrol'       => 'የራሱ ለውጦች በቀጥታ የተሣለፉ ሆነው መመልከት',
-'right-trackback'        => 'trackback ለማቅረብ',
 'right-mergehistory'     => 'የገጾች እትሞችን ታሪክ ለመዋሐድ',
 'right-userrights'       => 'ያባላት ሁሉ መብቶች ለማስተካከል',
 
@@ -940,7 +939,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'action-import'           => 'ይህን ገጽ ከሌላ ዊኪ ለማስገባት',
 'action-patrol'           => 'የሰው ለውጦች የተሣለፉ ሆነው ለማመልከት',
 'action-autopatrol'       => 'የራስዎ ለውጥ የተሣለፈ ሆኖ መመልከት',
-'action-trackback'        => 'trackback ለማቅረብ',
 'action-mergehistory'     => 'የዚሁን ገጽ ዕትሞች ታሪክ ለማዋሐድ',
 'action-userrights'       => 'ያባላት ሁሉ መብቶች ለማስተካከል',
 
@@ -2151,9 +2149,6 @@ $3
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL ከመጠን በላይ የረዘመ ነው]',
-
-# Trackbacks
-'trackbackremove' => '([$1 ማጥፋት])',
 
 # Delete conflict
 'deletedwhileediting' => "'''ማስጠንቀቂያ'''፦ መዘጋጀት ከጀመሩ በኋላ ገጹ ጠፍቷል!",

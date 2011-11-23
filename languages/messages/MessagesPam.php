@@ -925,7 +925,6 @@ Nung ibie me, magamit ya bang kilalanan ing kekang ambag.',
 'right-autopatrol'           => 'Tambing lang tatakan antimong babanten (patrolled) deng me-edit',
 'right-patrolmarks'          => 'Lon la reng bayung miyalilan kareng tatak pamagbante (patrol marks)',
 'right-unwatchedpages'       => 'Lumawe kang tala da reng bulung a e babanten',
-'right-trackback'            => 'Mamie kang trackback',
 'right-mergehistory'         => 'Pisanib la reng amlat (history) da reng bulung',
 'right-userrights'           => 'I-edit la ngan deng katulirang talagamit (user rights)',
 'right-userrights-interwiki' => 'I-edit la reng katulirang talagamit (user rights) da reng talagamit kareng aliwang karinan a wiki',
@@ -2235,9 +2234,6 @@ Mayari/mapasu ya ining confirmation code keng $4.',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[Masiadu yang makaba ing URL; pasensia na ka]',
-
-# Trackbacks
-'trackbackremove' => '([$1 Buran])',
 
 # Delete conflict
 'deletedwhileediting' => 'Kapiadian: Mebura ya ing bulung ini kaibat mung migumpisang mag-edit!',

@@ -2300,9 +2300,6 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 # Scary transclusion
 'scarytranscludetoolong' => '[URL ti gùn jù]',
 
-# Trackbacks
-'trackbackremove' => '([Ìparẹ́ $1])',
-
 # action=purge
 'confirm_purge_button' => 'OK',
 

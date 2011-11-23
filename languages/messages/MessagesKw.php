@@ -1033,9 +1033,6 @@ Whi a ell gweles hy fednfenten.',
 'namespacesall' => 'oll',
 'monthsall'     => 'oll',
 
-# Trackbacks
-'trackbackremove' => '([$1 Dilea])',
-
 # Multipage image navigation
 'imgmultipageprev' => '← folen kens',
 'imgmultipagenext' => 'folen nessa →',

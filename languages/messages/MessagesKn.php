@@ -1935,9 +1935,6 @@ $5
 # Scary transclusion
 'scarytranscludetoolong' => '[URL ತುಂಬ ಉದ್ದವಾಗಿದೆ]',
 
-# Trackbacks
-'trackbackremove' => '([$1 ಅಳಿಸು])',
-
 # Delete conflict
 'deletedwhileediting' => "'''ಸೂಚನೆ''': ನೀವು ಸಂಪಾದನೆ ಪ್ರಾರಂಭಿಸಿದ ನಂತರ ಈ ಪುಟವನ್ನು ಅಳಿಸಲಾಗಿದೆ!",
 'confirmrecreate'     => "ಸದಸ್ಯ [[User:$1|$1]] ([[User talk:$1|ಚರ್ಚೆ]]) ನೀವು ಸಂಪಾದನೆ ಶುರು ಮಾಡಿದ ಮೇಲೆ ಕೆಳಗಿನ ಕಾರಣ ನೀಡಿ ಈ ಪುಟವನ್ನು ಅಳಿಸಿದ್ದಾರೆ:

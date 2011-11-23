@@ -1270,7 +1270,6 @@ $1",
 'right-autopatrol'            => 'Автоматічне означованя едітовань як перевіреных',
 'right-patrolmarks'           => 'Зобразованя патролёваных сторінок в Послїднїх змінах',
 'right-unwatchedpages'        => 'Зображіня списку неслїдованых сторінок',
-'right-trackback'             => 'Засыланя Trackback',
 'right-mergehistory'          => 'Злучованя історії сторінок',
 'right-userrights'            => 'Зміна вшыткых прав остатнім хоснователям',
 'right-userrights-interwiki'  => 'Зміна прав хоснователям на іншых вікі',
@@ -1316,7 +1315,6 @@ $1",
 'action-patrol'               => 'позначіти чуджі едітованя як перевірены',
 'action-autopatrol'           => 'означіти властных едітовань як патролованы',
 'action-unwatchedpages'       => 'зображіня списку неслїдованых сторінок',
-'action-trackback'            => 'послати Trackback',
 'action-mergehistory'         => 'Злучіти історію той сторінкы',
 'action-userrights'           => 'Зміна прав вшыткым хоснователям',
 'action-userrights-interwiki' => 'зміна прав хоснователїв на іншых вікі',
@@ -3190,13 +3188,6 @@ $5
 'scarytranscludedisabled' => '[Вкладаня шаблон міджі вікі є выпнуте]',
 'scarytranscludefailed'   => '[Не подарило ся начітати шаблону про $1]',
 'scarytranscludetoolong'  => '[URL дуже довгый]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackback ку тій сторінцї:<br />
-$1',
-'trackbackremove'   => '([$1 Змазати])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback быв успішно змазаный.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Увага:''' почас вашой едітації была тота сторінка змазана!",

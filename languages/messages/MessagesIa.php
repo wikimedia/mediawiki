@@ -1415,7 +1415,6 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-autopatrol'            => 'Marcar automaticamente le proprie modificationes como patruliate',
 'right-patrolmarks'           => 'Vider marcas de patrulia in le modificationes recente',
 'right-unwatchedpages'        => 'Vider un lista de paginas non observate',
-'right-trackback'             => 'Submitter un retroligamine',
 'right-mergehistory'          => 'Fusionar le historia de paginas',
 'right-userrights'            => 'Modificar tote le derectos de usator',
 'right-userrights-interwiki'  => 'Modificar le derectos de usatores in altere wikis',
@@ -1462,7 +1461,6 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'action-patrol'               => 'marcar le modificationes de alteros como patruliate',
 'action-autopatrol'           => 'haber tu modification marcate como patruliate',
 'action-unwatchedpages'       => 'vider le lista de paginas non observate',
-'action-trackback'            => 'submitter un trackback',
 'action-mergehistory'         => 'fusionar le historia de iste pagina',
 'action-userrights'           => 'modificar tote le derectos de usator',
 'action-userrights-interwiki' => 'modificar le derectos de usatores in altere wikis',
@@ -3463,13 +3461,6 @@ Iste codice de confirmation expirara a $4.',
 'scarytranscludedisabled' => '[Le transclusion interwiki es disactivate]',
 'scarytranscludefailed'   => '[Falleva de obtener le patrono pro $1]',
 'scarytranscludetoolong'  => '[URL es troppo longe]',
-
-# Trackbacks
-'trackbackbox'      => 'Retroligamines a iste pagina:<br />
-$1',
-'trackbackremove'   => '([$1 Deler])',
-'trackbacklink'     => 'Retroligamine',
-'trackbackdeleteok' => 'Le retroligamine ha essite delite con successo.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Attention:''' Iste pagina esseva delite post que tu comenciava a modificar lo!",

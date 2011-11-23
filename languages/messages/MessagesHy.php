@@ -2298,13 +2298,6 @@ $3
 'scarytranscludefailed'   => '[Ցավոք՝ $1 կաղապարի կանչը ձախողվեց]',
 'scarytranscludetoolong'  => '[Ցավոք՝ URL-հասցեն չափից երկար է]',
 
-# Trackbacks
-'trackbackbox'      => 'Այս էջի Trackback-ները.<br />
-$1',
-'trackbackremove'   => '([$1 ջնջել])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback-ը հաջողությամբ հեռացվեց։',
-
 # Delete conflict
 'deletedwhileediting' => 'Զգուշացում. ձեր խմբագրման ընթացքում այս էջը ջնջվել է։',
 'confirmrecreate'     => "[[User:$1|$1]] ([[User talk:$1|քննարկում]]) մասնակիցը ջնջել է այս էջը ձեր խմաբգրումը սկսելուց հետո՝ հետևյալ պատճառով.

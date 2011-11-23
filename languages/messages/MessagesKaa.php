@@ -1018,7 +1018,6 @@ Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda)
 'right-import'               => 'Basqa wikilerden betlerdi import qılıw',
 'right-importupload'         => 'Fayldi aploud qılıw arqalı betlerdi import qılıw',
 'right-unwatchedpages'       => "Baqlanbag'an betler dizimin qaraw",
-'right-trackback'            => 'Trackbackti jiberiw',
 'right-mergehistory'         => "Betlerdin' tariyxın birlestiriw",
 'right-userrights'           => "Paydalanıwshılardın' barlıq huquqların o'zgertiw",
 'right-userrights-interwiki' => "Basqa wikilerdegi paydalanıwshının' huquqların o'zgertiw",
@@ -1058,7 +1057,6 @@ Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda)
 'action-import'               => 'bul betti basqa wikiden import qılıw',
 'action-importupload'         => 'bul betti fayl aploudı arqalı aploud qılıw',
 'action-unwatchedpages'       => "baqlanbaytug'ın betlerdin' dizimin ko'riw",
-'action-trackback'            => '"trackback"tı jiberiw',
 'action-mergehistory'         => "bul bettin' tariyxın birlestiriw",
 'action-userrights'           => "paydalanıwshılardın barlıq huquqların o'zgertiw",
 'action-userrights-interwiki' => "basqa wikilerdegi paydalanıwshılar huquqların o'zgertiw",
@@ -1891,9 +1889,6 @@ e-pochta adresin'izdin' tastıyıqlawın o'shirsen'iz boladı:
 $5
 
 Bul tastıyıqlaw kodının' pitetug'ın waqtı: $4.",
-
-# Trackbacks
-'trackbackremove' => "([$1 O'shir])",
 
 # Delete conflict
 'recreate' => 'Qaytadan jaratıw',

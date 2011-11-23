@@ -1413,9 +1413,6 @@ Niman tihuelīti [[Special:UserLogin|timocalaqui]] auh ticpactiāz huiquitica.',
 # Scary transclusion
 'scarytranscludetoolong' => '[In URL achi huel huēiyac ca]',
 
-# Trackbacks
-'trackbackremove' => '([$1 Ticpolōz])',
-
 # Delete conflict
 'recreate' => 'Ticchīhuāz occeppa',
 

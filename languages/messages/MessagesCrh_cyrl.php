@@ -1999,13 +1999,6 @@ $5
 'scarytranscludefailed'   => '[$1 шаблонына иришилип оламады]',
 'scarytranscludetoolong'  => '[URL адреси чокъ узун]',
 
-# Trackbacks
-'trackbackbox'      => 'Бу саифе ичюн trackback:<br />
-$1',
-'trackbackremove'   => '([$1 ёкъ эт])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback мувафакъиетнен ёкъ этильди.',
-
 # Delete conflict
 'deletedwhileediting' => "'''Тенби''': Бу саифе сиз денъишиклик япмагъа башлагъандан сонъ ёкъ этильди!",
 'confirmrecreate'     => "Сиз бу саифени денъиштирген вакъытта [[User:$1|$1]] ([[User talk:$1|музакере]]) къулланыджысы оны ёкъ эткендир, себеби:

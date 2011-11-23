@@ -1574,7 +1574,6 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'right-autopatrol'            => 'De eije Änderunge automattesch als „Nohjeloohrt“ makeere',
 'right-patrolmarks'           => 'De „noch nit Nohjeloohrt“ Zeiche en de „{{int:recentchanges}}“ jezeich krijje',
 'right-unwatchedpages'        => 'De Liss med Sigge beloore, die ein keine Oppasliss dren sin',
-'right-trackback'             => 'Trackback övvermedelle',
 'right-mergehistory'          => 'Ahle Versione vun ongerscheedlijje Sigge zosammedonn',
 'right-userrights'            => 'Metmaacher ier Rääschte ändere',
 'right-userrights-interwiki'  => 'Metmaacher ier Rääschte in ander Wikis ändere',
@@ -1621,7 +1620,6 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'action-patrol'               => 'anderlüx Änderunge als „nohjeloort“ ze makeere',
 'action-autopatrol'           => 'Ding eije Änderunge sälver als „nohjeloort“ ze makeere',
 'action-unwatchedpages'       => 'de Leß met de Sigg en kei Oppassleß aanzeloore',
-'action-trackback'            => 'e <i lang="en">trackback</i> enzedraare',
 'action-mergehistory'         => 'hee dä Sigg ier Verjangeheit un Versijon met ene andere zosamme ze lääje',
 'action-userrights'           => 'alle Metmaacher ier Rääschte ze ändere',
 'action-userrights-interwiki' => 'dä Metmaacher fun ander Wikis ier Rääschte ze ändere',
@@ -3689,13 +3687,6 @@ Domet deiß De tirek sare, dat De di Adress nit bestätije wells.',
 'scarytranscludedisabled' => '[Et Enbinge per Interwiki es avjeschalt]',
 'scarytranscludefailed'   => '[De Schablon „$1“ enzebinge hät nit jeflupp]',
 'scarytranscludetoolong'  => '[Schad, de URL es ze lang]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackbacks för heh di Sigg:<br />
-$1',
-'trackbackremove'   => '([$1 Fottschmieße])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback es fottjeschmesse.',
 
 # Delete conflict
 'deletedwhileediting'      => '<strong>Opjepass:</strong> De Sigg wood fottjeschmesse, nohdäm Do ald aanjefange häs, dran ze Ändere.

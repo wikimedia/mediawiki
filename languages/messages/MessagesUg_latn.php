@@ -214,9 +214,6 @@ $messages = array(
 # Special:NewFiles
 'ilsubmit' => 'Izdash',
 
-# Trackbacks
-'trackbackremove' => '([$1 Yukhutush])',
-
 # action=purge
 'confirm_purge_button' => 'Maqul',
 

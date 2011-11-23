@@ -1364,7 +1364,6 @@ $1",
 'right-autopatrol'            => 'ตั้งให้การแก้ไขของตนเองว่าตรวจสอบแล้วโดยอัตโนมัติ',
 'right-patrolmarks'           => 'ดูการเปลี่ยนแปลงล่าสุดของการทำเครื่องหมายตรวจสอบ',
 'right-unwatchedpages'        => 'ดูรายชื่อของหน้าที่ไม่ถูกเฝ้าดูโดยผู้ใช้ใด ๆ',
-'right-trackback'             => 'ส่งการติดตามกลับ',
 'right-mergehistory'          => 'รวมประวัติการแก้ไขหน้า',
 'right-userrights'            => 'แก้ไขสิทธิผู้ใช้ทั้งหมด',
 'right-userrights-interwiki'  => 'แก้ไขสิทธิของผู้ใช้อื่นบนวิกิอื่น',
@@ -1409,7 +1408,6 @@ $1",
 'action-patrol'               => 'ทำเครื่องหมายการแก้ไขของผู้ใช้อื่นว่าตรวจแล้ว',
 'action-autopatrol'           => 'ทำเครื่องหมายการแก้ไขของคุณว่าตรวจแล้ว',
 'action-unwatchedpages'       => 'ดูรายการของหน้าที่ไม่มีผู้เฝ้าดู',
-'action-trackback'            => 'ส่งการติดตามกลับ',
 'action-mergehistory'         => 'ประสานประวัติของหน้านี้',
 'action-userrights'           => 'แก้ไขสิทธิผู้ใช้ทั้งหมด',
 'action-userrights-interwiki' => 'แก้ไขสิทธิผู้ใช้สำหรับวิกินี้',
@@ -3116,13 +3114,6 @@ $5
 'scarytranscludedisabled' => '[ส่งค่าของอินเตอร์วิกิถูกระงับ]',
 'scarytranscludefailed'   => '[ไม่สามารถดึงแม่แบบมาได้สำหรับ $1]',
 'scarytranscludetoolong'  => '[ที่อยู่เว็บไซต์ยาวเกินไป]',
-
-# Trackbacks
-'trackbackbox'      => 'ตามรอยหน้านี้:<br />
-$1',
-'trackbackremove'   => '([$1 ลบ])',
-'trackbacklink'     => 'ตามรอย',
-'trackbackdeleteok' => 'รอยที่เก็บไว้ถูกลบ',
 
 # Delete conflict
 'deletedwhileediting'      => "'''คำเตือน''': หน้านี้ถูกลบไปแล้วในขณะที่คุณกำลังแก้ไข!",

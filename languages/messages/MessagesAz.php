@@ -1156,7 +1156,6 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'right-autopatrol'           => 'Dəyişikliklər avtomatik patrullanmış kimi işarələnir',
 'right-patrolmarks'          => 'Bütün patrullanmış son dəyişikliklərə bax',
 'right-unwatchedpages'       => 'Müşahidə olunmayan səhifələrin siyahısına baxış',
-'right-trackback'            => 'Trackback göndər',
 'right-mergehistory'         => 'Səhifələrin tarixini birləşdirmək',
 'right-userrights'           => 'Bütün istifadəçi hüquqlarının redaktə edilməsi',
 'right-userrights-interwiki' => 'Digər vikilərdəki istifadəçilərin istifadəçi hüquqlarını dəyişdir',
@@ -1198,7 +1197,6 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'action-patrol'               => 'Digərlərinin dəyişikliklərini patrullanmış olaraq işarələ',
 'action-autopatrol'           => 'öz redaktələrinizi patrullanmış olarq işarələmək',
 'action-unwatchedpages'       => 'müşahidə olunmayan səhifələrin siyahısına baxış',
-'action-trackback'            => 'Trackback göndər',
 'action-mergehistory'         => 'Bu səhifənin tarixini birləşdirmək',
 'action-userrights'           => 'Bütün istifadəçi hüquqlarını redaktə et',
 'action-userrights-interwiki' => 'Digər vikilərdəki istifadəçilərin istifadəçi hüquqlarını dəyişdir',
@@ -2764,13 +2762,6 @@ Variants for Chinese language
 # Scary transclusion
 'scarytranscludedisabled' => '[«Interwiki transcluding»dən çıxılmışdır]',
 'scarytranscludetoolong'  => '[URL uzundur]',
-
-# Trackbacks
-'trackbackbox'      => 'Bu səhifə üçün geri izləmələr:<br />
-$1',
-'trackbackremove'   => '([$1 Sil])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Geri izləmə uğurla silindi.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Diqqət!''' Bu səhifə siz redaktə etməyə başladıqdan sonra silinmişdir!",

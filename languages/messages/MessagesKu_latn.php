@@ -2035,9 +2035,6 @@ Lê eger ev *ne* tu bû, li lînkê netikîne. Ev e-nameya di rojê $4 da netê 
 'scarytranscludefailed'  => '[Anîna şablona $1 biserneket; biborîne]',
 'scarytranscludetoolong' => '[URL zêde dirêj e; bibore]',
 
-# Trackbacks
-'trackbackremove' => '([$1 jêbibe])',
-
 # Delete conflict
 'deletedwhileediting' => 'Hîşyar: Piştî te guherandinê xwe dest pê kir ev rûpela hate jêbirin!',
 'confirmrecreate'     => "Bikarhêner [[User:$1|$1]] ([[User talk:$1|nîqaş]]) vê rûpelê jêbir, piştî te destpêkir bi guherandinê. Sedemê jêbirinê ev bû:

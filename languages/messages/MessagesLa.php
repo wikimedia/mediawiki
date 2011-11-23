@@ -1029,7 +1029,6 @@ Si vis id dare, opera tua tibi ascribentur.',
 'right-import'               => 'Paginas ex vicis aliis importare',
 'right-importupload'         => 'Paginas ex fasciculo imponendo importare',
 'right-unwatchedpages'       => 'Indicem paginarum non custoditarum inspicere',
-'right-trackback'            => 'Praebere retronexum',
 'right-mergehistory'         => 'Historias paginarum confundere',
 'right-userrights'           => 'Omnes potestates usorum recensere',
 'right-userrights-interwiki' => 'Potestates usorum aliis in vicis recensere',
@@ -1065,7 +1064,6 @@ Si vis id dare, opera tua tibi ascribentur.',
 'action-import'               => 'paginam ex vico alio importare',
 'action-importupload'         => 'paginam ex fasciculo imponendo importare',
 'action-unwatchedpages'       => 'indicem paginarum non custoditarum inspicere',
-'action-trackback'            => 'praebere retronexum',
 'action-mergehistory'         => 'historiam huius paginae confundere',
 'action-userrights'           => 'omnes potestates usorum recensere',
 'action-userrights-interwiki' => 'potestates usorum aliis in vicis recensere',
@@ -2239,10 +2237,6 @@ $5
 Hic codex adfirmationis exibit $4.',
 'confirmemail_invalidated' => 'Adfirmatio inscriptionis electronicae abrogata est',
 'invalidateemail'          => 'Adfimationem inscriptionis electronicae abrogare',
-
-# Trackbacks
-'trackbackremove' => '([$1 Delere])',
-'trackbacklink'   => 'Retronexus',
 
 # Delete conflict
 'deletedwhileediting' => "'''Monitio:''' Haec pagina deleta est postquam inceperis eam recensere!",

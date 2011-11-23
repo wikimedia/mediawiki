@@ -1501,7 +1501,6 @@ $1",
 'right-autopatrol'            => 'កត់សម្គាល់ដោយស្វ័យប្រវត្តិនូវកំណែប្រែរបស់ខ្ញុំថាជាកំនែប្រែបានល្បាត',
 'right-patrolmarks'           => 'មើក​កំណត់​សម្គាល់​ល្បាត​ដែល​ផ្លាស់​ប្តូរ​ថ្មី​ៗ​',
 'right-unwatchedpages'        => 'បង្ហាញបញ្ជីទំព័រនានាដែលមិនត្រូវបានមើល',
-'right-trackback'             => 'ដាក់ស្នើការ​តាម​ដាន​',
 'right-mergehistory'          => 'ច្របាច់ប្រវត្តិរបស់ទំព័រនានាបញ្ចូលគ្នា',
 'right-userrights'            => 'កែប្រែរាល់សិទ្ធិនៃអ្នកប្រើប្រាស់',
 'right-userrights-interwiki'  => 'កែប្រែសិទ្ធិអ្នកប្រើប្រាស់នៅលើវិគីផ្សេងៗទៀត',
@@ -1547,7 +1546,6 @@ $1",
 'action-patrol'               => 'ចំណាំកំណែប្រែរបស់អ្នកដទៃថាបានល្បាត',
 'action-autopatrol'           => 'ផ្ដល់សិទ្ធិឱ្យគេចំណាំកំណែរបស់អ្នកថាបានល្បាត',
 'action-unwatchedpages'       => 'មើលបញ្ជីនៃទំព័រមិនតាមដាន',
-'action-trackback'            => 'ដាក់​ស្មើ​ការ​តាមដាម',
 'action-mergehistory'         => 'ច្របាច់បញ្ចូលប្រវត្តិរបស់ទំព័រនេះ',
 'action-userrights'           => 'កែប្រែសិទ្ធិរបស់អ្នកប្រើប្រាស់ទាំងអស់',
 'action-userrights-interwiki' => 'កែប្រែសិទ្ធិនានារបស់អ្នកប្រើប្រាស់នៅលើវិគីដទៃ',
@@ -3253,13 +3251,6 @@ $5
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL វែងជ្រុល]',
-
-# Trackbacks
-'trackbackbox'      => 'តាមដាន​ត្រឡប់​វិញ​ (Trackback) សម្រាប់​ទំព័រ​នេះ៖<br />
-$1',
-'trackbackremove'   => '([$1 លុបចេញ])',
-'trackbacklink'     => 'តាមដាន​ត្រឡប់​វិញ​ (Trackback)',
-'trackbackdeleteok' => 'តាមដាន​ត្រឡប់​វិញ​ (Trackback)ត្រូវ​បាន​លុប​ដោយ​ជោគជ័យ​។​',
 
 # Delete conflict
 'deletedwhileediting'      => "'''ប្រយ័ត្ន''' ៖ ទំព័រនេះបានត្រូវលុបចោល បន្ទាប់ពីអ្នកបានចាប់ផ្តើមកែប្រែ!",

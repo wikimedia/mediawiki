@@ -1360,7 +1360,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-autopatrol'            => 'Změny awtomatisce jako dohladowane markěrować dać',
 'right-patrolmarks'           => 'Kontrolowe marki w najnowšich změnach wobhladać',
 'right-unwatchedpages'        => 'Lisćinu njewobkedźbowanych stronow wobhladać',
-'right-trackback'             => 'Trackback pósłać',
 'right-mergehistory'          => 'Stawizny stronow zjednoćić',
 'right-userrights'            => 'Wužiwarske prawa wobdźěłać',
 'right-userrights-interwiki'  => 'Wužiwarske prawa wužiwarjow druhich wikijow wobdźěłać',
@@ -1407,7 +1406,6 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'action-patrol'               => 'Změny druhich wužiwarjiw jako dohladowane markować',
 'action-autopatrol'           => 'twoju změnu jako dohladowanu markować dać',
 'action-unwatchedpages'       => 'lisćinu njewobkedźbowanych stronow zwobraznić',
-'action-trackback'            => 'Trackback pósłać',
 'action-mergehistory'         => 'stawizny tuteje strony zjednoćić',
 'action-userrights'           => 'wšě wužiwarske prawa wobdźěłać',
 'action-userrights-interwiki' => 'Wužiwarske prawa wužiwarjow w druhich wikijach wobdźěłać',
@@ -3295,13 +3293,6 @@ Tutón wobkrućenski kod spadnje $4.',
 'scarytranscludedisabled' => '[Zapřijeće mjezyrěčnych wotkazow je znjemóžnjene]',
 'scarytranscludefailed'   => '[Zapřijimanje předłohi za $1 je so njeporadźiło]',
 'scarytranscludetoolong'  => '[URL je předołhi]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackbacks za tutón nastawk:<br />
-$1',
-'trackbackremove'   => '([$1 wušmórnyć])',
-'trackbacklink'     => 'Wróćosćěhowanje',
-'trackbackdeleteok' => 'Trackback bu wuspěšnje wušmórnjeny.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Kedźbu''': Tuta strona bu wušmórnjena, po tym zo sy započał ju wobdźěłać!",

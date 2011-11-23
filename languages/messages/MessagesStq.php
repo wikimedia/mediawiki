@@ -1205,7 +1205,6 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'right-autopatrol'            => 'Markier oaine Beoarbaidengen automatisk as kontrollierd',
 'right-patrolmarks'           => 'Ankiekjen fon do Kontrolmarkierengen in do lääste Annerengen',
 'right-unwatchedpages'        => 'Bekiekje ju Lieste fon nit beooboachtede Sieden',
-'right-trackback'             => 'Trackback fermiddelje',
 'right-mergehistory'          => 'Versionsgeskichten fon Sieden touhoopeföigje',
 'right-userrights'            => 'Benutsergjuchte beoarbaidje',
 'right-userrights-interwiki'  => 'Benutsergjuchte in uur Wikis beoarbaidje',
@@ -1250,7 +1249,6 @@ Ju duur maximoal $1 {{PLURAL:$1|Teeken|Teekene}} loang weese.',
 'action-patrol'               => 'do Beoarbaidengen fon uur Benutsere tou kontrollierjen',
 'action-autopatrol'           => 'oaine Beoarbaidengen as kontrollierd tou markierjen',
 'action-unwatchedpages'       => 'ju Lieste fon uunbeoboachtede Sieden tou bekiekjen',
-'action-trackback'            => 'n Trackback tou uurdreegen',
 'action-mergehistory'         => 'do Versionegeskichten fon Sieden fereenigje',
 'action-userrights'           => 'Benutsergjuchte tou annerjen',
 'action-userrights-interwiki' => 'do Gjuchte fon Benutsere in uur Wikis annerje',
@@ -2972,13 +2970,6 @@ Disse Bestäätigengskode is gultich bit $4',
 'scarytranscludedisabled' => '[Interwiki-Ienbiendenge is deaktivierd]',
 'scarytranscludefailed'   => '[Foarloagenienbiendenge foar $1 is misglukked]',
 'scarytranscludetoolong'  => '[URL is tou loang]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackbacks foar disse Siede:<br />
-$1',
-'trackbackremove'   => '([$1 läskje])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback wuude mäd Ärfoulch läsked.',
 
 # Delete conflict
 'deletedwhileediting'      => 'Oachtenge: Disse Siede wuude al läsked, ätter dät du anfangd hiedest, hier tou beoarbaidjen!

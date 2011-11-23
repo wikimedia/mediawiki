@@ -1232,10 +1232,6 @@ Wiyyaḍ raggis ḥbun s ɣiklli sttin kkan gantn.
 'monthsall'     => 'kullu',
 'limitall'      => 'Kullu',
 
-# Trackbacks
-'trackbackremove' => '([$1 mhi])',
-'trackbacklink'   => 'Trackback',
-
 # Delete conflict
 'recreate' => 'awd skr',
 

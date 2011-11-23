@@ -899,9 +899,6 @@ $messages = array(
 'namespacesall' => 'არძა',
 'monthsall'     => 'არძა',
 
-# Trackbacks
-'trackbacklink' => 'Trackback',
-
 # Watchlist editing tools
 'watchlisttools-view' => 'მერცხილ თირაფეფიშ ძირაფა',
 'watchlisttools-edit' => 'ოკონტროლებელ ხასილეფიშ ძირაფა დო რედაქტირაფა',

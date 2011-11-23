@@ -1358,7 +1358,6 @@ $1",
 'right-autopatrol'            => 'შესწორებები ავტომატურად აღინიშნება როგორც პატრულირებადი',
 'right-patrolmarks'           => 'პატრულირების ინფორმაცის ხილვა ბოლო ცვლილებებში',
 'right-unwatchedpages'        => 'არაკონტროლირებადი გვერდების სიის ხილვა',
-'right-trackback'             => 'Trackback-ის გაგზავნა',
 'right-mergehistory'          => 'გააერთიანეთ გვერდების ისტორია',
 'right-userrights'            => 'ყველა მომხმარებლის უფლებების შეცვლა',
 'right-userrights-interwiki'  => 'შეასწორეთ მომხმარებელთა უფლებები სხვა ვიკიზე',
@@ -1402,7 +1401,6 @@ $1",
 'action-patrol'               => 'სხვა მომხმარებლის შესწორების მონიშვნა შემოწმებულად',
 'action-autopatrol'           => 'თქვენი ცვლილების მონიშვნა პატრულირებადით',
 'action-unwatchedpages'       => 'იმ გვერდების ხილვა, რომლებიც არავის კონტროლში არ არის შესული',
-'action-trackback'            => 'trackback-ის გაგზავნა',
 'action-mergehistory'         => 'ამ გვერდის ისტორიის შერწყმა',
 'action-userrights'           => 'მომხმარებელთა უფლებების ცვლილება',
 'action-userrights-interwiki' => 'მომხმარებლების უფლებების შეცვლა სხვა ვიკიებში',
@@ -3248,13 +3246,6 @@ $5
 'scarytranscludedisabled' => '[«Interwiki transcluding» გათიშულია]',
 'scarytranscludefailed'   => '[$1-თან დაკავშირების შეცდომა]',
 'scarytranscludetoolong'  => '[URL ძალიან გრძელია]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackbacks ამ სტატიისთვის:<br />
-$1',
-'trackbackremove'   => '([$1 წაშალე])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback წარმატებულად წაიშალა',
 
 # Delete conflict
 'deletedwhileediting'      => "'''ყურადღება''': ეს გვერდი წაიშალა მას შემდეგ, რაც თქვენ მისი რედაქტირება დაიწყეთ!",

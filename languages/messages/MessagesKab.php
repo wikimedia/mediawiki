@@ -1400,13 +1400,6 @@ ad yemmut ass $4.',
 'scarytranscludefailed'   => '[Ur yezmir ara a d-yawi talɣa n $1; suref-aɣ]',
 'scarytranscludetoolong'  => '[URL d aɣezfan bezzaf; suref-aɣ]',
 
-# Trackbacks
-'trackbackbox'      => 'Izdayen n zdeffir n umagrad-agi:<br />
-$1',
-'trackbackremove'   => '([$1 Mḥu])',
-'trackbacklink'     => 'Azday n zdeffir',
-'trackbackdeleteok' => 'Azday n zdeffir yettumḥa.',
-
 # Delete conflict
 'deletedwhileediting' => 'Aɣtal: Asebter-agi yettumḥa qbel ad tebdiḍ a t-tbeddleḍ!',
 'confirmrecreate'     => "Amseqdac [[User:$1|$1]] ([[User talk:$1|Meslay]]) yemḥu asebter-agi beɛd ad tebdiḍ abeddel axaṭer:

@@ -1311,7 +1311,6 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'right-autopatrol'           => 'ٴوز وڭدەمەلەرىن زەرتتەلدى دەپ وزدىكتىك بەلگىلەۋ',
 'right-patrolmarks'          => 'جۋىقتاعى وزگەرىستەردەگى زەرتتەۋ بەلگىلەرىن كورۋ',
 'right-unwatchedpages'       => 'باقىلانىلماعان بەت ٴتىزىمىن كورۋ',
-'right-trackback'            => 'اڭىستاۋدى جونەلتۋ',
 'right-mergehistory'         => 'بەتتەردىڭ تارىيحىن قوسىپ بەرۋ',
 'right-userrights'           => 'قاتىسۋشىلاردىڭ بارلىق قۇقىقتارىن وڭدەۋ',
 'right-userrights-interwiki' => 'باسقا ۇىيكىيلەردەگى قاتىسۋشىلاردىڭ قۇقىقتارىن وڭدەۋ',
@@ -2728,13 +2727,6 @@ $5
 'scarytranscludedisabled' => '[ۋىيكىي-ارالىق كىرىكبەتتەر وشىرىلگەن]',
 'scarytranscludefailed'   => '[$1 ٴۇشىن ۇلگى كەلتىرۋى ٴساتسىز ٴبىتتى; عافۋ ەتىڭىز]',
 'scarytranscludetoolong'  => '[URL تىم ۇزىن; عافۋ ەتىڭىز]',
-
-# Trackbacks
-'trackbackbox'      => 'بۇل بەتتىڭ اڭىستاۋلارى:<br />
-$1',
-'trackbackremove'   => '([$1 جويۋ])',
-'trackbacklink'     => 'اڭىستاۋ',
-'trackbackdeleteok' => 'اڭىستاۋ ٴساتتى جويىلدى.',
 
 # Delete conflict
 'deletedwhileediting' => 'قۇلاقتاندىرۋ: بۇل بەتتى وڭدەۋىڭىزدى باستاعاندا, وسى بەت جويىلدى!',

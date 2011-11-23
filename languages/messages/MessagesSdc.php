@@ -1960,13 +1960,6 @@ Chistu còdizi di cunfèimma ischadrà automatiggamenti a li \$4.",
 'scarytranscludefailed'   => '[Errori: Impussìbiri uttinì lu mudellu $1]',
 'scarytranscludetoolong'  => "[L'URL è troppu longu]",
 
-# Trackbacks
-'trackbackbox'      => 'Infuimmazioni di tracciamentu pa chistha pàgina:<br />
-$1',
-'trackbackremove'   => '([$1 Elimina])',
-'trackbacklink'     => 'Tracciamentu',
-'trackbackdeleteok' => 'Infuimmazioni di tracciamentu eliminaddi.',
-
 # Delete conflict
 'deletedwhileediting' => "Attinzioni: Chistha pàgina è isthadda canzilladda daboi ch'ài ischuminzaddu a mudìfiggarla!",
 'confirmrecreate'     => "L'utenti [[User:$1|$1]] ([[User talk:$1|dischussioni]]) à canzilladdu chistha pàgina daboi ch'ài ischuminzaddu a mudìfiggarla, pa lu sighenti mutibu: ''$2''

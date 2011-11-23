@@ -1613,13 +1613,6 @@ Kó-yèn ngì *mò-yû* thì-chhut liá-ke chhiáng-khiù,  chhiáng put-yeu ti�
 'scarytranscludefailed'   => '[Tui-put-hí, mù-pán $1 thu̍k-chhí sṳt-phai]',
 'scarytranscludetoolong'  => '[Tui-put-hí; URL thi-tiám thai-chhòng]',
 
-# Trackbacks
-'trackbackbox'      => 'Chhṳ́ vùn-chông ke yîn-yung:<br />
-$1',
-'trackbackremove'   => '（[$1 Chhù-me̍t]）',
-'trackbacklink'     => 'Fì-hióng',
-'trackbackdeleteok' => 'Trackback chhù-hi sṳ̀n-kûng.',
-
 # Delete conflict
 'deletedwhileediting' => 'Kín-ko: Chhṳ́-hong chhai ngì khôi-sṳ́ phiên-cho chṳ̂-heu yí-kîn pûn Chhù-thet!',
 'confirmrecreate'     => "Chhai ngì phiên-chho liá-ke thiàu-muk heu, yung-fu [[User:$1|$1]]（[[User talk:$1|tui-fa]]） yî ha-lie̍t ngièn-yîn chhù-thet liá-ke vùn-chông:

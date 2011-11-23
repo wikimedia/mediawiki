@@ -1279,7 +1279,6 @@ Eger bunı jetistirwdi tañdasañız, bul tüzetwiñizdiñ awtorlığın anıqta
 'right-autopatrol'           => 'Öz öñdemelerin zertteldi dep özdiktik belgilew',
 'right-patrolmarks'          => 'Jwıqtağı özgeristerdegi zerttew belgilerin körw',
 'right-unwatchedpages'       => 'Baqılanılmağan bet tizimin körw',
-'right-trackback'            => 'Añıstawdı jöneltw',
 'right-mergehistory'         => 'Betterdiñ tarïxın qosıp berw',
 'right-userrights'           => 'Qatıswşılardıñ barlıq quqıqtarın öñdew',
 'right-userrights-interwiki' => 'Basqa üïkïlerdegi qatıswşılardıñ quqıqtarın öñdew',
@@ -2696,13 +2695,6 @@ Quptaw kodı merzimi bitetin kezi: $4.',
 'scarytranscludedisabled' => '[Wïkï-aralıq kirikbetter öşirilgen]',
 'scarytranscludefailed'   => '[$1 üşin ülgi keltirwi sätsiz bitti; ğafw etiñiz]',
 'scarytranscludetoolong'  => '[URL tım uzın; ğafw etiñiz]',
-
-# Trackbacks
-'trackbackbox'      => 'Bul bettiñ añıstawları:<br />
-$1',
-'trackbackremove'   => '([$1 Joyw])',
-'trackbacklink'     => 'Añıstaw',
-'trackbackdeleteok' => 'Añıstaw sätti joýıldı.',
 
 # Delete conflict
 'deletedwhileediting' => 'Qulaqtandırw: Bul betti öñdewiñizdi bastağanda, osı bet joýıldı!',

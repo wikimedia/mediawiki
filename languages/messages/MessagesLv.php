@@ -1143,7 +1143,6 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'right-autopatrol'           => 'Iespēja, ka ikviens paša veiktais labojums tiek automātiski atzīmēts kā pārbaudīts',
 'right-patrolmarks'          => 'Apskatīt pēdējo izmaiņu lapu pārbaužu atzīmes',
 'right-unwatchedpages'       => 'Apskatīt neuzraudzīto lapu sarakstu',
-'right-trackback'            => 'Iesniegt atsaučpaziņošanu',
 'right-mergehistory'         => 'Apvienot lapu vēsturi',
 'right-userrights'           => 'Mainīt visu lietotāju tiesības',
 'right-userrights-interwiki' => 'Mainīt lietotāju tiesības citās Vikipēdijās',
@@ -1184,7 +1183,6 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'action-patrol'               => 'atzīmēt citu labojumus kā pārbaudītus',
 'action-autopatrol'           => 'iespēja savus labojumus atzīmēt kā pārbaudītus',
 'action-unwatchedpages'       => 'apskatīt neuzraudzīto lapu sarakstu',
-'action-trackback'            => 'iesniegt atsaučpaziņošanu',
 'action-mergehistory'         => 'apvienot šīs lapas vēsturi',
 'action-userrights'           => 'mainīt visu lietotāju tiesības',
 'action-userrights-interwiki' => 'mainīt lietotāju tiesības citās Vikipēdijās',
@@ -2759,9 +2757,6 @@ Si apstiprinajuma koda deriguma termins ir $4.',
 'scarytranscludedisabled' => '[Starpviki saišu iekļaušana ir atspējota.]',
 'scarytranscludefailed'   => '[Neizdevās ienest veidni $1.]',
 'scarytranscludetoolong'  => '[URL adrese ir pārāk gara.]',
-
-# Trackbacks
-'trackbackremove' => '([$1 Dzēst])',
 
 # Delete conflict
 'deletedwhileediting' => "'''Brīdinājums:''' Šī lapa tika izdzēsta, pēc tam, kad tu to sāki izmainīt!",

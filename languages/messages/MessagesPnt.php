@@ -1372,9 +1372,6 @@ $messages = array(
 'namespacesall' => 'ούλαι',
 'monthsall'     => 'ούλαι',
 
-# Trackbacks
-'trackbackremove' => '([$1 Σβήσον])',
-
 # Delete conflict
 'recreate' => 'Ποίσον αξάν',
 

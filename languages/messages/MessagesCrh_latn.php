@@ -1995,13 +1995,6 @@ Bu tasdıq kodu $4 tarihına qadar qullanılıp olacaq.',
 'scarytranscludefailed'   => '[$1 şablonına irişilip olamadı]',
 'scarytranscludetoolong'  => '[URL adresi çoq uzun]',
 
-# Trackbacks
-'trackbackbox'      => 'Bu saife içün trackback:<br />
-$1',
-'trackbackremove'   => '([$1 yoq et])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback muvafaqiyetnen yoq etildi.',
-
 # Delete conflict
 'deletedwhileediting' => "'''Tenbi''': Bu saife siz deñişiklik yapmağa başlağandan soñ yoq etildi!",
 'confirmrecreate'     => "Siz bu saifeni deñiştirgen vaqıtta [[User:$1|$1]] ([[User talk:$1|muzakere]]) qullanıcısı onı yoq etkendir, sebebi:

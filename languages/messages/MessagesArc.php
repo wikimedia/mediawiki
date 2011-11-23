@@ -1430,9 +1430,6 @@ $1',
 'confirmemail_invalidated' => 'ܚܘܬܬܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ ܒܛܠ',
 'invalidateemail'          => 'ܒܛܘܠ ܚܘܬܬܐ ܕܒܝܠܕܪܐ ܐܠܩܛܪܘܢܝܐ',
 
-# Trackbacks
-'trackbackremove' => '([$1 ܫܘܦ])',
-
 # Delete conflict
 'recreate' => 'ܒܪܝ ܙܒܢܬܐ ܐܚܪܬܐ',
 

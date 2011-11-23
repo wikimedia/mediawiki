@@ -1462,7 +1462,6 @@ $1",
 'right-autopatrol'            => 'خلى التعديلات  بتاعتى متعلم عليها كأنها متراجعة أوتوماتيكي',
 'right-patrolmarks'           => 'عرض علامات المراجعة فى اخر التعديلات',
 'right-unwatchedpages'        => 'بين لستة الصفحات اللى مش متراقبة',
-'right-trackback'             => 'تنفيذ تراكباك',
 'right-mergehistory'          => 'ادمج تاريخ الصفحات',
 'right-userrights'            => 'تعديل كل الحقوق بتاعة اليوزر',
 'right-userrights-interwiki'  => 'تعديل صلاحيات اليوزر لليوزرز فى مواقع الويكى التانيه',
@@ -1507,7 +1506,6 @@ $1",
 'action-patrol'               => 'التعليم على تعديلات الآخرين كمراجعة',
 'action-autopatrol'           => 'جعل تعديلك معلم عليه كمراجع',
 'action-unwatchedpages'       => 'رؤية لستة الصفحات اللى مش متراقبة',
-'action-trackback'            => 'تنفيذ تراكباك',
 'action-mergehistory'         => 'دمج تاريخ هذه الصفحة',
 'action-userrights'           => 'تعديل كل صلاحيات اليوزر',
 'action-userrights-interwiki' => 'تعديل صلاحيات اليوزر لليوزرز فى الويكيات التانية',
@@ -3205,13 +3203,6 @@ $5
 'scarytranscludedisabled' => '[التضمين  فى الإنترويكى متعطل]',
 'scarytranscludefailed'   => '[التدوير على القالب فشل ل$1]',
 'scarytranscludetoolong'  => '[عنوان طويل جدا]',
-
-# Trackbacks
-'trackbackbox'      => 'التراكباك بتاع الصفحة دي:<br />
-$1',
-'trackbackremove'   => '([$1 امسح])',
-'trackbacklink'     => 'تراكباك',
-'trackbackdeleteok' => 'التراكباك اتمسح بنجاح.',
 
 # Delete conflict
 'deletedwhileediting' => "'''تحذير''':  الصفحة دى اتمسحت بعد ما بدأت أنت  فى تحريرها!",
