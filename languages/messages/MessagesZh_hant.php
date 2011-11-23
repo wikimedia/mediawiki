@@ -1419,7 +1419,6 @@ $1",
 'right-autopatrol'            => '將自己的編輯自動標示為已巡查的',
 'right-patrolmarks'           => '檢視最近巡查標記更改',
 'right-unwatchedpages'        => '檢視未監視之頁面',
-'right-trackback'             => '遞交一個trackback',
 'right-mergehistory'          => '合併頁面歷史',
 'right-userrights'            => '編輯所有用戶的權限',
 'right-userrights-interwiki'  => '編輯在其它wiki上的用戶權限',
@@ -1465,7 +1464,6 @@ $1",
 'action-patrol'               => '標示其它的編輯為已巡查的',
 'action-autopatrol'           => '將您的編輯標示為已巡查的',
 'action-unwatchedpages'       => '檢視未被人監視的頁面',
-'action-trackback'            => '遞交一個trackback',
 'action-mergehistory'         => '合併這個頁面的歷史',
 'action-userrights'           => '編輯所有的權限',
 'action-userrights-interwiki' => '編輯在其它wiki上用戶的權限',
@@ -3402,13 +3400,6 @@ $5
 'scarytranscludedisabled' => '[跨wiki轉換代碼不可用]',
 'scarytranscludefailed'   => '[模板$1讀取失敗]',
 'scarytranscludetoolong'  => '[URL 地址太長]',
-
-# Trackbacks
-'trackbackbox'      => '此頁面的引用:<br />
-$1',
-'trackbackremove'   => '（[$1刪除]）',
-'trackbacklink'     => '迴響',
-'trackbackdeleteok' => 'Trackback 刪除成功。',
 
 # Delete conflict
 'deletedwhileediting'      => '警告: 此頁在您開始編輯之後已經被刪除﹗',

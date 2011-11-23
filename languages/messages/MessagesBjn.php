@@ -1274,7 +1274,6 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'right-autopatrol'            => "Babakan ampun surang utumatis ditandai sawagai ta'awasi",
 'right-patrolmarks'           => 'Tiringi tanda parubahan tahanyar',
 'right-unwatchedpages'        => 'Tiringi sabuah daptar tutungkaran nang kada diitihi',
-'right-trackback'             => 'Mangirimakan sabuah panjajakan balik',
 'right-mergehistory'          => 'Gabungakan halam matan tutungkaran',
 'right-userrights'            => 'Babak sabarataan hak pamuruk',
 'right-userrights-interwiki'  => 'Babak hahak pamuruk matan papamuruk wiwiki balain',
@@ -1319,7 +1318,6 @@ Amun Pian mamilih manyadiakan ini, ini akan dipuruk gasan paminanduan kulihan ga
 'action-patrol'               => "tandai babakan nang lain sawagai ta'awasi",
 'action-autopatrol'           => "Tandai babakan Pian sawagai ta'awasi",
 'action-unwatchedpages'       => 'tiringi daptar tutungkaran nang kada diitihi',
-'action-trackback'            => 'kirim sabuah jajakbulik',
 'action-mergehistory'         => 'gabungakan halam matan tungkaran ngini',
 'action-userrights'           => 'babak sabarataan hak pamuruk',
 'action-userrights-interwiki' => 'babak hak pamuruk matan papamuruk dalam wiwiki lain',
@@ -3052,9 +3050,6 @@ Tautan-tautan abis tu pada baris sama dipartimbangkan sabagai pangacualian, nang
 # E-mail address confirmation
 'confirmemail'         => 'Yakinakan alamat suril',
 'confirmemail_noemail' => 'Pian kada baisi sabuah alamat suril nang sah dalam [[Special:Preferences|kakatujuan pamuruk]] Pian.',
-
-# Trackbacks
-'trackbackremove' => '([$1 Hapus])',
 
 # Delete conflict
 'recreate' => 'Ulah pulang',

@@ -1212,7 +1212,6 @@ $1",
 'right-autopatrol'            => 'اتوماتیکی اصلاحات یکیء چه وتی نشان کن په داب نظارت بوتگین',
 'right-patrolmarks'           => 'به گند نوکین تغییرات نشان نظارتی',
 'right-unwatchedpages'        => 'به گند په داب یکیک لیست نچارتگین صفحات',
-'right-trackback'             => 'یک رندگری دیم دی',
 'right-mergehistory'          => 'چن وبند کن تاریح صفحاتء',
 'right-userrights'            => 'اصلاح کل حقوق کاربری',
 'right-userrights-interwiki'  => 'اصلاح حقوق کابرانی کابران دگه ویکی انء',
@@ -1255,7 +1254,6 @@ $1",
 'action-patrol'               => 'نشان کتن اصلاح دگران په داب چارگ بیتگین',
 'action-autopatrol'           => 'نشان کتن وتی اصلاح په داب چارگ بوتگین',
 'action-unwatchedpages'       => 'چارگ لیست نچارتگین صفحات',
-'action-trackback'            => 'ثبت یک بازتر',
 'action-mergehistory'         => 'هورکتن تاریح ای صفحه',
 'action-userrights'           => 'اصلاح کل حقوق کاربر',
 'action-userrights-interwiki' => 'اصلاح حقوق کاربری کاربران ته دگه ویکیء',
@@ -2897,13 +2895,6 @@ $5
 'scarytranscludedisabled' => '[جاه په جاهی بین ویکی غیر فعالنت]',
 'scarytranscludefailed'   => '[تمپلت آرگ پروش وارت په $1]',
 'scarytranscludetoolong'  => '[URL باز مزننت]',
-
-# Trackbacks
-'trackbackbox'      => 'گرند گروگان ای صفحه:<br />
-$1',
-'trackbackremove'   => '([$1 حذف])',
-'trackbacklink'     => 'رند گر',
-'trackbackdeleteok' => 'رند گر گون موفقیت حذف بوت.',
 
 # Delete conflict
 'deletedwhileediting' => "'''هوژاری''': ای صفحه حذف بوتت رند چه شمی اصلاح کتن شروه بیگ!",

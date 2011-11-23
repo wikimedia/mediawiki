@@ -1423,7 +1423,6 @@ $1",
 'right-autopatrol'            => '将自己的编辑自动标示为已巡查的',
 'right-patrolmarks'           => '查看最近巡查标记更改',
 'right-unwatchedpages'        => '查看未监视页面列表',
-'right-trackback'             => '提交trackback',
 'right-mergehistory'          => '合并页面历史',
 'right-userrights'            => '编辑所有用户的权限',
 'right-userrights-interwiki'  => '编辑在其它wiki上的用户权限',
@@ -1470,7 +1469,6 @@ $1",
 'action-patrol'               => '标示其它的编辑为已巡查的',
 'action-autopatrol'           => '将您的编辑标示为已巡查的',
 'action-unwatchedpages'       => '查看未监视页面列表',
-'action-trackback'            => '提交trackback',
 'action-mergehistory'         => '合并这个页面的历史',
 'action-userrights'           => '编辑所有的权限',
 'action-userrights-interwiki' => '编辑在其它wiki上用户的权限',
@@ -3392,13 +3390,6 @@ $5
 'scarytranscludedisabled' => '[跨网站的编码转换不可用]',
 'scarytranscludefailed'   => '[提取$1失败]',
 'scarytranscludetoolong'  => '[URL过长]',
-
-# Trackbacks
-'trackbackbox'      => '此页面的引用：<br />
-$1',
-'trackbackremove'   => '（[$1删除]）',
-'trackbacklink'     => '引用',
-'trackbackdeleteok' => '该引用已被成功删除。',
 
 # Delete conflict
 'deletedwhileediting'      => "'''警告'''：此页在您开始编辑之后已经被删除！",

@@ -1676,7 +1676,6 @@ $1",
 'right-autopatrol'            => 'самоозначавање измена као прегледане',
 'right-patrolmarks'           => 'прегледање ознака за патролирање унутар скорашњих измена',
 'right-unwatchedpages'        => 'прегледање списка ненадгледаних страница',
-'right-trackback'             => 'слање извештаја',
 'right-mergehistory'          => 'спајање историја страница',
 'right-userrights'            => 'уређивање свих корисничких права',
 'right-userrights-interwiki'  => 'уређивање корисничких права на другим викијима',
@@ -1723,7 +1722,6 @@ $1",
 'action-patrol'               => 'означавање туђих измена прегледаним',
 'action-autopatrol'           => 'самоозначавање измена прегледаним',
 'action-unwatchedpages'       => 'прегледање списка ненадгледаних страница',
-'action-trackback'            => 'слање извештаја',
 'action-mergehistory'         => 'спајање историје ове странице',
 'action-userrights'           => 'уређивање свих корисничких права',
 'action-userrights-interwiki' => 'уређивање корисничких права на другим викијима',
@@ -3839,15 +3837,6 @@ $5
 'scarytranscludedisabled' => '[Интервики укључивање је онемогућено]',
 'scarytranscludefailed'   => '[Добављање шаблона за $1 није успело]',
 'scarytranscludetoolong'  => '[URL адреса је предугачка]',
-
-# Trackbacks
-'trackbackbox'      => 'Повратне тачке за ову страницу:<br />
-$1',
-'trackback'         => '; $4 $5: [$2 $1]',
-'trackbackexcerpt'  => '; $4 $5: [$2 $1]: <nowiki>$3</nowiki>',
-'trackbackremove'   => '([$1 брисање])',
-'trackbacklink'     => 'Повратне тачке',
-'trackbackdeleteok' => 'Повратна тачка је успешно обрисана.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Упозорење''': ова страница је обрисана након што сте почели с уређивањем!",

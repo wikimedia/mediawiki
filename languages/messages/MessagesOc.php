@@ -1469,7 +1469,6 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'right-autopatrol'            => 'Aver sos cambiaments marcats automaticament coma verificats',
 'right-patrolmarks'           => 'Utilizar las foncionalitats de la patrolha dels darrièrs cambiaments',
 'right-unwatchedpages'        => 'Veire la tièra de las paginas pas seguidas',
-'right-trackback'             => 'Apondre de retroligams',
 'right-mergehistory'          => 'Fusionar los istorics de las paginas',
 'right-userrights'            => "Modificar totes los dreches d'un utilizaire",
 'right-userrights-interwiki'  => "Modificar los dreches d'utilizaires que son sus un autre wiki",
@@ -1514,7 +1513,6 @@ Tanben podètz causir de permetre a d’autres de vos contactar per vòstra pagi
 'action-patrol'               => 'marcar la modificacion dels autres coma patrolhada',
 'action-autopatrol'           => 'aver vòstra modificacion marcada coma patrolhada',
 'action-unwatchedpages'       => 'veire la lista de las paginas pas susvelhadas',
-'action-trackback'            => 'sometre un retroligam',
 'action-mergehistory'         => "fusionar l’istoric d'aquesta pagina",
 'action-userrights'           => 'modificar totes los dreches d’utilizaire',
 'action-userrights-interwiki' => 'modificar los dreches d’utilizaire e los sus d’autres wikis',
@@ -3229,13 +3227,6 @@ Aqueste còde de confirmacion expirarà lo $4.",
 'scarytranscludedisabled' => '[La transclusion interwiki es desactivada]',
 'scarytranscludefailed'   => '[La recuperacion de modèl a pas capitat per $1]',
 'scarytranscludetoolong'  => '[L’URL es tròp longa]',
-
-# Trackbacks
-'trackbackbox'      => 'Retroligams cap a aquesta pagina :<br />
-$1',
-'trackbackremove'   => '([$1 Suprimir])',
-'trackbacklink'     => 'Retroligam',
-'trackbackdeleteok' => 'Lo retroligam es estat suprimit amb succès.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Atencion''' : aquesta pagina es estada suprimida aprèp qu'avètz començat de la modificar !",

@@ -1144,7 +1144,6 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'right-autopatrol'           => 'Znamoita ičeze toižetusid avtomatižikš kut patruliruidud',
 'right-patrolmarks'          => 'Nähta patruliruindvirgad veresiš redakcijoiš',
 'right-unwatchedpages'       => 'Lugeda kacelmatomiden lehtpoliden nimikirjutest',
-'right-trackback'            => 'Oigeta trackback',
 'right-mergehistory'         => 'Ühtenzoitta lehtpoliden istorijad',
 'right-userrights'           => 'Redaktiruida kaikiden kävutajiden oiktused',
 'right-userrights-interwiki' => 'Toižetada toižiden wiki-saitoiden kävutajiden oiktused',
@@ -1186,7 +1185,6 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'action-patrol'               => 'znamoita toižiden kävutajiden toižetused kut patruliruidud',
 'action-autopatrol'           => 'znamoita ičeze toižetused kut patruliruidud',
 'action-unwatchedpages'       => 'lugeda kacelmatomiden lehtpoliden nimikirjutez',
-'action-trackback'            => 'oigeta trackback',
 'action-mergehistory'         => 'sidoda necen lehtpolen toižetusen istorii mihe-se',
 'action-userrights'           => 'redaktiruida kaik kävutajan oiktused',
 'action-userrights-interwiki' => 'redaktiruida kävutajiden oiktused toižiš wikiš',
@@ -2628,15 +2626,6 @@ Necen vahvištoitandkodan kävutamižen lopstrok om $4.',
 'scarytranscludedisabled' => '[Interwiki:n täutmine ei ole kävutamas]',
 'scarytranscludefailed'   => '[Sidomine $1-šablonha om keskustadud petusen tagut]',
 'scarytranscludetoolong'  => "[URL om pit'kähk]",
-
-# Trackbacks
-'trackbackbox'      => 'Trackback:ad necen lehtpolen täht:<br />
-$1',
-'trackback'         => '; $4 $5: [$2 $1]',
-'trackbackexcerpt'  => '; $4 $5: [$2 $1]: <nowiki>$3</nowiki>',
-'trackbackremove'   => '([$1 Čuta poiš])',
-'trackbacklink'     => 'Trekbek',
-'trackbackdeleteok' => 'Trekbek om čutud poiš.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Homaikat''': Nece lehtpol' čutihe poiš jälges sidä, konz tö olit toižetaškanuded necidä lehtpol't!",

@@ -2129,9 +2129,6 @@ Rachaidh an cód deimhnithe seo as feidhm ag $4.',
 'scarytranscludefailed'   => '[Theip leis an iarradh teimpléid do $1]',
 'scarytranscludetoolong'  => '[Tá an URL ró-fhada]',
 
-# Trackbacks
-'trackbackremove' => '([$1 Scrios])',
-
 # Delete conflict
 'deletedwhileediting' => "'''Aire''': scriosadh an leathanach seo nuair a bhí tu ag athrú é!",
 'recreate'            => 'Athchruthaigh',

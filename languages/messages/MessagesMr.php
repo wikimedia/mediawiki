@@ -1462,7 +1462,6 @@ $1",
 'right-autopatrol'           => 'संपादने आपोआप तपासलेली (patrolled) म्हणून जतन करा',
 'right-patrolmarks'          => 'अलीकडील बदलांमधील तपासल्याच्या खूणा पहा',
 'right-unwatchedpages'       => 'न पाहिलेल्या पानांची यादी पहा',
-'right-trackback'            => 'एक विपरित पथ पाठवा',
 'right-mergehistory'         => 'पानांचा इतिहास एकत्रित करा',
 'right-userrights'           => 'सर्व सदस्यांचे अधिकार संपादा',
 'right-userrights-interwiki' => 'इतर विकिंवर सदस्य अधिकार बदला',
@@ -1503,7 +1502,6 @@ $1",
 'action-importupload'         => 'चढविलेल्या संचिकेतून पान आयात करा',
 'action-patrol'               => 'इतरांची संपादने तपासलेली म्हणून जतन करा',
 'action-unwatchedpages'       => 'न पाहिलेल्या पानांची यादी पहा',
-'action-trackback'            => 'एक विपरित पथ पाठवा',
 'action-mergehistory'         => 'पानाचा इतिहास विलीन करा',
 'action-userrights'           => 'सर्व सदस्यांचे अधिकार संपादित करा',
 'action-userrights-interwiki' => 'इतर विकिंवरच्या सदस्यांचे अधिकार संपादित करा',
@@ -3150,13 +3148,6 @@ $5
 'scarytranscludedisabled' => '[आंतरविकि आंतरन्यास अनुपलब्ध केले आहे]',
 'scarytranscludefailed'   => '[क्षमस्व;$1करिताची साचा ओढी फसली]',
 'scarytranscludetoolong'  => '[आंतरजालपत्ता खूप लांब आहे]',
-
-# Trackbacks
-'trackbackbox'      => 'या पानाकरिता मागेवळून पहा:<br />
-$1',
-'trackbackremove'   => '([$1 वगळा])',
-'trackbacklink'     => 'पाठीमाग(पाठलाग)',
-'trackbackdeleteok' => 'पाठलाग यशस्वीपणे वगळला.',
 
 # Delete conflict
 'deletedwhileediting'      => '”’सूचना:”’ तुम्ही संपादन सुरू केल्यानंतर हे पान वगळले गेले आहे.',

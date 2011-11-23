@@ -1331,7 +1331,6 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'right-autopatrol'            => 'Egene Ännern automaatsch as nakeken marken',
 'right-patrolmarks'           => 'Nakeken-Teken in de Ne’esten Ännern ankieken',
 'right-unwatchedpages'        => 'List mit Sieden, de op kene Oppasslist staht, ankieken',
-'right-trackback'             => 'Trackback övermiddeln',
 'right-mergehistory'          => 'Versionsgeschichten tohoopföhren',
 'right-userrights'            => 'Brukerrechten ännern',
 'right-userrights-interwiki'  => 'Brukerrechten op annere Wikis ännern',
@@ -1374,7 +1373,6 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 'action-patrol'               => 'anner Brukers jemehr Ännern as nakeken to marken',
 'action-autopatrol'           => 'egen Ännern as nakeken to marken',
 'action-unwatchedpages'       => 'de List mit Sieden, de op kene Oppasslist staht, antokieken',
-'action-trackback'            => 'en Trackback to överdragen',
 'action-mergehistory'         => 'de Versionengeschichten vun disse Sied tohooptoföhren',
 'action-userrights'           => 'all Brukerrechten to ännern',
 'action-userrights-interwiki' => 'de Rechten vun Brukers op annere Wikis to ännern',
@@ -2890,13 +2888,6 @@ Wenn du dat nich sülvst wesen büst, denn folg den Lenk nich. De Bestätigungsk
 'scarytranscludedisabled' => '[Dat Inbinnen vun Interwikis is nich aktiv]',
 'scarytranscludefailed'   => '[Vörlaag halen för $1 hett nich klappt]',
 'scarytranscludetoolong'  => '[URL is to lang]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackbacks för disse Sied:<br />
-$1',
-'trackbackremove'   => '([$1 wegsmieten])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback mit Spood wegsmeten.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Wohrschau''': Disse Siet is wegsmeten worrn, wieldes du ehr graad ännert hest!",

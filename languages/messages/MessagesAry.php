@@ -1188,7 +1188,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'right-autopatrol'            => 'alm taadilat lmostakhdim morajaa tilqaiya',
 'right-patrolmarks'           => 'chof alamat lmorajaa f ahdat tghyirat',
 'right-unwatchedpages'        => 'chof sfahi li mamraqbinch',
-'right-trackback'             => 'dir trackback',
 'right-mergehistory'          => 'dmj tarikh sfahi',
 'right-userrights'            => 'taadil kol  salahiyat lmostkhdimin',
 'right-userrights-interwiki'  => 'taadil salahiyat lmostkhdim lmostkhdimin f lwikiyat lkhrin',
@@ -1232,7 +1231,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'action-patrol'               => 'alm ala taadilat lkhrin kamorajaa',
 'action-autopatrol'           => 'alm taadil dualk kamorajaa',
 'action-unwatchedpages'       => 'chof lista dyal sfahi li mamraqbach',
-'action-trackback'            => 'dir trackback',
 'action-mergehistory'         => 'dmj tarikh had sfha',
 'action-userrights'           => 'taadil kol  salahiyat lmostkhdimin',
 'action-userrights-interwiki' => 'taadil salahiyat lmostkhdimin f lwikiyat lkhrin',
@@ -2553,13 +2551,6 @@ daba ymkn lik [[Special:UserLogin|ṫdĥol]] o-ṫsṫmṫĝ bl-wiki.",
 'scarytranscludedisabled' => '[tadmin dyal interwiki moattal]',
 'scarytranscludefailed'   => '[lbaht 3la lqalb fchl l $1]',
 'scarytranscludetoolong'  => '[URL twil bzzaf]',
-
-# Trackbacks
-'trackbackbox'      => 'ṃoṫaḅaĝaṫ dial had ṣfḫa:<br />
-$1',
-'trackbackremove'   => '([$1 Suprimi])',
-'trackbacklink'     => 'lmotabaaa',
-'trackbackdeleteok' => 'lmotabaa tmshat',
 
 # Delete conflict
 'deletedwhileediting' => "'''attansyo''': had sfha tmshat bad ma bditi taadil dyalha",

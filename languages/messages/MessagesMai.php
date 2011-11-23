@@ -1254,7 +1254,6 @@ $3 द्वारा देल कारण अछि ''$2''",
 'right-autopatrol'            => 'अपन सम्पादनकेँ स्वचालित रूपेँ संचालित देखाउ',
 'right-patrolmarks'           => 'हालक परिवर्तनमे संचालन चेन्ह देखू',
 'right-unwatchedpages'        => 'बिना संचालित पन्ना सभक सूचीकेँ देखू',
-'right-trackback'             => 'प्रतिक्रिया दिअ',
 'right-mergehistory'          => 'पन्नाक इतिहास सभकेँ मिज्झर करू',
 'right-userrights'            => 'सभटा प्रयोक्ता अधिकारकेँ सम्पादित करू',
 'right-userrights-interwiki'  => 'दोसर विकीपर प्रयोक्ताक प्रयोक्ता अधिकारक सम्पादन करू',
@@ -1299,7 +1298,6 @@ $3 द्वारा देल कारण अछि ''$2''",
 'action-patrol'               => 'दोसराक सम्पादनकेँ संचालित देखाउ',
 'action-autopatrol'           => 'अपन सम्पादनकेँ संचालित देखाउ',
 'action-unwatchedpages'       => 'बिना संचालित पन्ना सभक सूचीकेँ देखू',
-'action-trackback'            => 'प्रतिक्रिया दिअ',
 'action-mergehistory'         => 'पन्नाक इतिहासकेँ मिज्झर करू',
 'action-userrights'           => 'सभटा प्रयोक्ता अधिकारकेँ सम्पादित करू',
 'action-userrights-interwiki' => 'दोसर विकीपर प्रयोक्ताक प्रयोक्ता अधिकारक सम्पादन करू',
@@ -3217,13 +3215,6 @@ $5
 'scarytranscludedisabled' => '[अन्तरविकी समावेश अशक्त कएल गेल अछि]',
 'scarytranscludefailed'   => '[नमूना आनब विफल भेल $1 लेल]',
 'scarytranscludetoolong'  => 'यूआरएल बड़ पैग अछि',
-
-# Trackbacks
-'trackbackbox'      => 'अहि पृष्ठक लेल :<br />
-$1',
-'trackbackremove'   => '([$1 हटाऊ])',
-'trackbacklink'     => 'ट्रैकबैक',
-'trackbackdeleteok' => 'ट्रैकबैक के सफलता पूर्वक मिटा देल गेल',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Warning''': अहां जखन सें संपादन शुरू केने छी, ओकर बाद से ई पृष्ठ के मिटा देल गेल अछि.",

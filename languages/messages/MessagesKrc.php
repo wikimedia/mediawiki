@@ -1195,7 +1195,6 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'right-autopatrol'            => 'Тюрлениуле автоматик осмакъланнган кибик белгиленедиле',
 'right-patrolmarks'           => 'Ахыр тюрлениулени осмакъланыуларыны белгилерине къара',
 'right-unwatchedpages'        => 'Къаралмагъан бетлени списогуна къара',
-'right-trackback'             => 'Trackback-ны ашырыу',
 'right-mergehistory'          => 'Бетлени тарихлерини бирлешдир',
 'right-userrights'            => 'Бютеу къошулуучуланы хакъларыны тюрлендириу',
 'right-userrights-interwiki'  => 'Башха викиледеги къошулуучуларыны хакъларын тюрлендир',
@@ -1239,7 +1238,6 @@ $1 {{PLURAL:$1|символдан|символладан}} кеб болургъ
 'action-patrol'               => 'башхаланы тюрлендириулерин патруль этилиннгенлеча белгилеу',
 'action-autopatrol'           => 'кесими тюрлендириулерими патруль этилиннгенлеча белгилеу',
 'action-unwatchedpages'       => 'киши кёзюнде тутмагъан бетлени тизмесине къарау',
-'action-trackback'            => 'trackback ашырыу',
 'action-mergehistory'         => 'бу бетлени тарихлерин бирлешдириу',
 'action-userrights'           => 'къошулуучуну бютеу хакъларын тюрлендириу',
 'action-userrights-interwiki' => 'къошулуучуланы башха викиледе хакъларын тюрлендириу',
@@ -2948,13 +2946,6 @@ $5
 'scarytranscludedisabled' => '[«Interwiki transcluding» джукъланыбды]',
 'scarytranscludefailed'   => '[$1 ючюн шаблон алымы тындырылмады]',
 'scarytranscludetoolong'  => '[URL асыры узунду]',
-
-# Trackbacks
-'trackbackbox'      => 'Бу бет ючюн trackback :<br />
-$1',
-'trackbackremove'   => '([$1 кетер])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback кетерилди',
 
 # Delete conflict
 'deletedwhileediting' => "'''Эсериу''': Бу бет сиз тюрлендириб башлагъандан сора кетерилгенди!",

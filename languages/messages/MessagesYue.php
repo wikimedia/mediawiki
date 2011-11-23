@@ -1394,7 +1394,6 @@ $1",
 'right-autopatrol'            => '將自己嘅編輯自動標示做已巡查嘅',
 'right-patrolmarks'           => '去睇最近巡查標記更改',
 'right-unwatchedpages'        => '去睇未監視嘅版',
-'right-trackback'             => '遞交一個trackback',
 'right-mergehistory'          => '合併版歷史',
 'right-userrights'            => '編輯全部用戶嘅權限',
 'right-userrights-interwiki'  => '編輯響其它wiki嘅用戶權限',
@@ -1438,7 +1437,6 @@ $1",
 'action-patrol'               => '標示其它嘅編輯做已巡查嘅',
 'action-autopatrol'           => '將你嘅編輯標示做已巡查嘅',
 'action-unwatchedpages'       => '睇未畀人監視嘅版',
-'action-trackback'            => '遞交一個trackback',
 'action-mergehistory'         => '合併呢版嘅歷史',
 'action-userrights'           => '編輯全部嘅權限',
 'action-userrights-interwiki' => '編輯響其它wiki用戶嘅權限',
@@ -3168,13 +3166,6 @@ $5
 'scarytranscludedisabled' => '[跨 wiki 滲漏正停用]',
 'scarytranscludefailed'   => '[$1嘅頡取模動作失敗]',
 'scarytranscludetoolong'  => '[URL 太長]',
-
-# Trackbacks
-'trackbackbox'      => '呢一版嘅過去追蹤：<br />
-$1',
-'trackbackremove'   => '([$1 刪除])',
-'trackbacklink'     => '過去追蹤',
-'trackbackdeleteok' => '過去追蹤已經成功噉樣刪除。',
 
 # Delete conflict
 'deletedwhileediting' => '警告：你寫緊文嗰陣，有用戶洗咗呢版！',

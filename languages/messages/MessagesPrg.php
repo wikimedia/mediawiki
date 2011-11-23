@@ -1041,7 +1041,6 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'right-autopatrol'            => 'Swajāi redigīsenei autōmatiskai ebzentlitan per izbandātans',
 'right-patrolmarks'           => 'Wīdais izbandāsnas zentlitajans stēisan panzdauman kitawīdinsnan',
 'right-unwatchedpages'        => 'Wīdais listin stēisan ninadirītan pāusan',
-'right-trackback'             => 'Tenginnais "trackback"',
 'right-mergehistory'          => 'Senlajjais istōrijans stēisan pāusan',
 'right-userrights'            => 'Redigīs enwarīnsenins wisēisan tērpautajan',
 'right-userrights-interwiki'  => 'Redigīs enwarīnsenins stēisan tērpautajan en kitēimans wiki',
@@ -1085,7 +1084,6 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'action-patrol'               => 'ebzentlitun kitēisan redigīsenin per izbandātan',
 'action-autopatrol'           => 'ebzentlitun swajjan redigīsenin per izbandātan',
 'action-unwatchedpages'       => 'widātun listin stēisan ninadirītan pāusan',
-'action-trackback'            => 'tengīntun "traceback"',
 'action-mergehistory'         => 'Senlajjais šisse pāusas istōrijan',
 'action-userrights'           => 'redigītun enwarīnsenins wisēisan tērpautajan',
 'action-userrights-interwiki' => 'redigītun enwarīnsnans stēisan tērpautajan en kitēimans wiki',
@@ -2544,13 +2542,6 @@ Tu mazzi jāu [[Special:UserLogin|enēitwei]] be tuldītun si sen wiki.',
 'scarytranscludedisabled' => '[Interwiki entensisnā ast izklaūtan]',
 'scarytranscludefailed'   => '[Šablōnis augausnā iz $1 ni izpalla]',
 'scarytranscludetoolong'  => '[per ilgā URL adressi]',
-
-# Trackbacks
-'trackbackbox'      => 'Šisse pāusas "traceback" pawakīsenei:<br />
-$1',
-'trackbackremove'   => '([$1 Āupausinais])',
-'trackbacklink'     => 'Entensīsenis',
-'trackbackdeleteok' => 'Trackback pastāi āupausintan.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Ēmpirssergīsenis''': Šin pāusan pastāi āupausintan panzdau tū pagaūwa redigītun!",

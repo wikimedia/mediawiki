@@ -2174,13 +2174,6 @@ $3
 'scarytranscludefailed'   => '[對伓住，提取$1失敗]',
 'scarytranscludetoolong'  => '[對伓住，URL 太長]',
 
-# Trackbacks
-'trackbackbox'      => '箇篇文章嗰引用:<br />
-$1',
-'trackbackremove'   => '（[$1刪除]）',
-'trackbacklink'     => '引用',
-'trackbackdeleteok' => '成功刪卟箇隻引用。',
-
 # Delete conflict
 'deletedwhileediting' => '警告: 倷編輯嗰時間有人刪卟嘞箇頁！',
 'confirmrecreate'     => "倷編輯嗰時間，用戶[[User:$1|$1]]（[[User talk:$1|對話]]）因為下底原因刪卟嘞箇頁:

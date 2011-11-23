@@ -1606,7 +1606,6 @@ $1",
 'right-autopatrol'            => 'סימון אוטומטי של עריכות של המשתמש כבדוקות',
 'right-patrolmarks'           => 'צפייה בסימוני עריכות בדוקות בשינויים האחרונים',
 'right-unwatchedpages'        => 'הצגת רשימה של דפים שאינם במעקב',
-'right-trackback'             => 'שליחת טרקבק',
 'right-mergehistory'          => 'מיזוג היסטוריות של דפים',
 'right-userrights'            => 'עריכת כל הרשאות המשתמש',
 'right-userrights-interwiki'  => 'עריכת הרשאות המשתמש של משתמשים באתרי ויקי אחרים',
@@ -1653,7 +1652,6 @@ $1",
 'action-patrol'               => 'לסמן עריכות של אחרים כבדוקות',
 'action-autopatrol'           => 'לסמן את עריכותיכם כבדוקות',
 'action-unwatchedpages'       => 'לצפות ברשימת הדפים שאינם במעקב',
-'action-trackback'            => 'לשלוח טרקבק',
 'action-mergehistory'         => 'למזג את ההיסטוריה של דף זה',
 'action-userrights'           => 'לערוך את כל הרשאות המשתמש',
 'action-userrights-interwiki' => 'לערוך את ההרשאות של משתמשים באתרי ויקי אחרים',
@@ -3618,13 +3616,6 @@ $5
 'scarytranscludedisabled' => '[הכללת דפים בין אתרים מבוטלת]',
 'scarytranscludefailed'   => '[הכללת התבנית נכשלה בגלל $1]',
 'scarytranscludetoolong'  => '[כתובת ה־URL ארוכה מדי]',
-
-# Trackbacks
-'trackbackbox'      => 'טרקבקים לדף זה:<br />
-$1',
-'trackbackremove'   => '([$1 מחיקה])',
-'trackbacklink'     => 'טרקבק',
-'trackbackdeleteok' => 'הטרקבק נמחק בהצלחה.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''אזהרה''': דף זה נמחק לאחר שהתחלתם לערוך!",

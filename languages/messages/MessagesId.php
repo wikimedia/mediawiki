@@ -1549,7 +1549,6 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'right-autopatrol'            => 'Menyunting dengan status suntingan secara otomatis ditandai terpantau',
 'right-patrolmarks'           => 'Melihat penandaan patroli perubahan terbaru',
 'right-unwatchedpages'        => 'Melihat daftar halaman-halaman yang tidak dipantau',
-'right-trackback'             => 'Mengirimkan sebuah penjejakan balik',
 'right-mergehistory'          => 'Menggabungkan versi terdahulu halaman-halaman',
 'right-userrights'            => 'Menyunting seluruh hak pengguna',
 'right-userrights-interwiki'  => 'Menyunting hak para pengguna di wiki lain',
@@ -1595,7 +1594,6 @@ Jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan 
 'action-patrol'               => 'menandai suntingan pengguna lain sebagai terpatroli',
 'action-autopatrol'           => 'menandai suntingan Anda sendiri sebagai terpatroli',
 'action-unwatchedpages'       => 'melihat daftar halaman yang tidak dipantau',
-'action-trackback'            => 'mengirimkan penjejak balik',
 'action-mergehistory'         => 'menggabungkan revisi-revisi terdahulu halaman ini',
 'action-userrights'           => 'menyunting semua hak pengguna',
 'action-userrights-interwiki' => 'menyunting hak akses dari pengguna di wiki lain',
@@ -3493,13 +3491,6 @@ Kode konfirmasi ini akan kedaluwarsa pada $4.',
 'scarytranscludedisabled' => '[Transklusi interwiki dimatikan]',
 'scarytranscludefailed'   => '[Pengambilan templat $1 gagal]',
 'scarytranscludetoolong'  => '[URL terlalu panjang]',
-
-# Trackbacks
-'trackbackbox'      => 'Lacak balik untuk halaman ini:<br />
-$1',
-'trackbackremove'   => '([$1 Hapus])',
-'trackbacklink'     => 'Lacak balik',
-'trackbackdeleteok' => 'Pelacakan balik berhasil dihapus.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Peringatan''': Halaman ini telah dihapus setelah Anda mulai melakukan penyuntingan!",

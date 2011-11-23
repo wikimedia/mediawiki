@@ -1508,7 +1508,6 @@ $1",
 'right-autopatrol'            => 'Автоматичне позначення редагувань патрульованими',
 'right-patrolmarks'           => 'Перегляд патрульованих сторінок у нових редагуваннях',
 'right-unwatchedpages'        => 'Перегляд списку сторінок, за якими ніхто не спостерігає',
-'right-trackback'             => 'Надсилання Trackback',
 'right-mergehistory'          => "Об'єднання історій редагувань сторінок",
 'right-userrights'            => 'Зміна всіх прав користувачів',
 'right-userrights-interwiki'  => 'Зміна прав користувачів у інших вікі',
@@ -1554,7 +1553,6 @@ $1",
 'action-patrol'               => 'позначення чужих редагувань патрульованими',
 'action-autopatrol'           => 'позначення власних редагувань патрульованими',
 'action-unwatchedpages'       => 'перегляд списку сторінок, за якими ніхто не спостерігає',
-'action-trackback'            => 'надсилання trackback',
 'action-mergehistory'         => 'приєднання історії змін цієї сторінки',
 'action-userrights'           => 'зміну всіх прав користувача',
 'action-userrights-interwiki' => 'зміну прав користувачів у інших вікі',
@@ -3626,15 +3624,6 @@ $5
 'scarytranscludedisabled' => '[«Interwiki transcluding» вимкнено]',
 'scarytranscludefailed'   => '[Помилка звертання до шаблону $1]',
 'scarytranscludetoolong'  => '[URL дуже довгий]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackback для цієї статті:<br />
-$1',
-'trackback'         => '; $4 $5: [$2 $1]',
-'trackbackexcerpt'  => '; $4 $5: [$2 $1]: <nowiki>$3</nowiki>',
-'trackbackremove'   => '([$1 вилучити])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback вилучено.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Увага:''' ця сторінка була вилучена після того, як ви розпочали редагування!",

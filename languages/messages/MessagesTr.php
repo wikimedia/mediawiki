@@ -1525,7 +1525,6 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'right-autopatrol'            => 'Kişinin kendi değişikliklerinin otomatikman denetlendi olarak işaretlenmiş olması',
 'right-patrolmarks'           => 'Son değişiklikler gözleme işaretlerini gör',
 'right-unwatchedpages'        => 'İzlenmeyen sayfaların bir listesini gör',
-'right-trackback'             => 'Bir geri izleme gönder',
 'right-mergehistory'          => 'Sayfalarının tarihlerini birleştir',
 'right-userrights'            => 'Tüm kullanıcı haklarını değiştirmek',
 'right-userrights-interwiki'  => 'Diğer vikilerdeki kullanıcıların kullanıcı haklarını değiştir',
@@ -1571,7 +1570,6 @@ Diğer kullanıcılar sizinle bu yolla iletişime geçtiğinde e-posta adresiniz
 'action-patrol'               => 'diğerlerinin değişikliğini gözlenmiş olarak işaretlemeye',
 'action-autopatrol'           => 'değişikliğinizi gözlenmiş olarak işaretlemeye',
 'action-unwatchedpages'       => 'izlenmeyen sayfalar listesini görmeye',
-'action-trackback'            => 'bir geri izleme göndermeye',
 'action-mergehistory'         => 'bu sayfanın geçmişini birleştirmeye',
 'action-userrights'           => 'tüm kullanıcıların haklarını değiştirmeye',
 'action-userrights-interwiki' => 'diğer vikilerde kullanıcıların, kullanıcı haklarını değiştirmeye',
@@ -3477,13 +3475,6 @@ Bu onay kodu $4 tarihine kadar geçerlidir.',
 'scarytranscludedisabled' => '[Vikilerarası çapraz ekleme devre dışı]',
 'scarytranscludefailed'   => '[$1 için şablon alımı başarısız oldu]',
 'scarytranscludetoolong'  => '[URL çok uzun]',
-
-# Trackbacks
-'trackbackbox'      => 'Bu sayfa için geri izlemeler:<br />
-$1',
-'trackbackremove'   => '([$1 Sil])',
-'trackbacklink'     => 'Geri izleme',
-'trackbackdeleteok' => 'Geri izleme başarıyla silindi.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Uyarı''': Bu sayfa siz değişiklik yapmaya başladıktan sonra silinmiş!",

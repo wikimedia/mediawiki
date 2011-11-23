@@ -926,7 +926,6 @@ Gotir le $1 {{PLURAL:$1|staa|staa}}.',
 'right-patrol'               => 'Tcalara va fieyen betaks',
 'right-patrolmarks'          => 'Rupera va noeltafa fieratcala',
 'right-unwatchedpages'       => 'Wira va medisukeyenu bu',
-'right-trackback'            => 'Erura va suzdara',
 'right-mergehistory'         => 'Jera va buizvot',
 'right-userrights'           => 'Betara va favesikrokeem',
 'right-userrights-interwiki' => "Betara va favesikrokeem koe aro 'wiki' xo",
@@ -2150,11 +2149,6 @@ This confirmation code will expire at $4.',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL tir abrotcarsaf]',
-
-# Trackbacks
-'trackbackremove'   => '([$1 Sulara])',
-'trackbacklink'     => 'Sledasiki',
-'trackbackdeleteok' => 'Sledasiki tir sulanhayani.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Obral''' : Batu bu zo sulayar vielu toz betayal !",

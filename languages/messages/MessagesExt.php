@@ -2279,12 +2279,6 @@ El coigu de confirmación caucará a las $4.',
 'scarytranscludefailed'   => '[Marru al cargal la prantilla pa $1]',
 'scarytranscludetoolong'  => '[La URL es mu larga]',
 
-# Trackbacks
-'trackbackbox'      => 'Trackbacks pa esti artículu:<br />
-$1',
-'trackbackremove'   => '([$1 Esborral])',
-'trackbackdeleteok' => "El trackback s'á esborrau corretamenti.",
-
 # Delete conflict
 'deletedwhileediting' => 'Avisu: esta página á siu esborrá endispués de tu encetal a eitala!',
 'confirmrecreate'     => "El usuáriu [[User:$1|$1]] ([[User talk:$1|caraba]]) á esborrau esta páhina aluspués de que prencipiaras a eitala, pola siguienti razón:

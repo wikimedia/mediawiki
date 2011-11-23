@@ -1562,10 +1562,6 @@ Nke ozor gí zonari na áká onwe ha.
 'monthsall'     => 'nke níle',
 'limitall'      => 'nke níle',
 
-# Trackbacks
-'trackbackremove' => '([$1 Kàcha])',
-'trackbacklink'   => 'Nlá-nà-àzú',
-
 # Delete conflict
 'recreate' => 'Ké ya ohúrù',
 

@@ -1409,7 +1409,6 @@ $1",
 'right-autopatrol'           => 'אייגענע באַאַרבעטונגען אויטאמאַטיש מאַרקירט ווי קאנטראלירט',
 'right-patrolmarks'          => 'באַקוקן לעצטע ענדערונגען פּאַטראָל מאַרקירונגען',
 'right-unwatchedpages'       => 'באַקוקן די ליסטע פֿון נישט אויפֿגעפאַסטע בלעטער',
-'right-trackback'            => 'אַרײַנגעבן א טרעקבעק',
 'right-mergehistory'         => 'צונויפֿגיסן די היסטאריע פֿון בלעטער',
 'right-userrights'           => 'רעדאַקטירן אלע באַניצער רעכטן',
 'right-userrights-interwiki' => 'רעדאַקטירן באַניצער רעכטן פֿון באַניצער אויף אנדערע וויקיס',
@@ -1452,7 +1451,6 @@ $1",
 'action-patrol'               => "אנצייכענען אנדערס' רעדאקטירונגן אלס נאכגעקוקט",
 'action-autopatrol'           => 'אנצוצייכענען אייערע רעדאקטירונגן אלס איבערגעקוקטע',
 'action-unwatchedpages'       => 'זען די ליסטע פון נישט אויפֿגעפאַסטע בלעטער',
-'action-trackback'            => 'אַרײַנגעבן א טרעקבעק',
 'action-mergehistory'         => 'צונויפֿגיסן די היסטאריע פֿון דעם בלאַט',
 'action-userrights'           => 'רעדאַקטירן אלע באַניצער רעכטן',
 'action-userrights-interwiki' => 'רעדאַקטירן רעכטן פון באַניצער אויף אַנדערע וויקיס',
@@ -3047,9 +3045,6 @@ $5
 # Scary transclusion
 'scarytranscludedisabled' => '[אינטערוויקי אריבערשליסן איז אַנולירט]',
 'scarytranscludetoolong'  => '[URL צו לאנג]',
-
-# Trackbacks
-'trackbackremove' => '([$1 אויסמעקן])',
 
 # Delete conflict
 'deletedwhileediting' => 'ווארענונג: דער בלאט איז געווארן אויסגעמעקט נאכדעם וואס איר האט אנגעהויבן רעדאקטירן!',

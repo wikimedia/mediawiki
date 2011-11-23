@@ -1629,7 +1629,6 @@ HTMLタグを見直してください。',
 'right-autopatrol'            => '自分の編集を自動的に巡回済みにする',
 'right-patrolmarks'           => '最近の更新で巡回済み印の閲覧',
 'right-unwatchedpages'        => 'ウォッチされていないページ一覧の閲覧',
-'right-trackback'             => 'トラックバックの投稿',
 'right-mergehistory'          => 'ページ履歴の統合',
 'right-userrights'            => '全利用者権限の編集',
 'right-userrights-interwiki'  => '他のウィキの利用者の利用者権限の編集',
@@ -1676,7 +1675,6 @@ HTMLタグを見直してください。',
 'action-patrol'               => '他の利用者の編集を巡回済みにする',
 'action-autopatrol'           => '自身の編集を巡回済みにする',
 'action-unwatchedpages'       => 'ウォッチされていないページ一覧の表示',
-'action-trackback'            => 'トラックバックの投稿',
 'action-mergehistory'         => 'このページの履歴統合',
 'action-userrights'           => '全利用者権限の変更',
 'action-userrights-interwiki' => '他のウィキ上の利用者の利用者権限変更',
@@ -3714,13 +3712,6 @@ $5
 'scarytranscludedisabled' => '[ウィキ間の参照読み込みは無効になっています]',
 'scarytranscludefailed'   => '[$1に対してテンプレートの取得に失敗しました]',
 'scarytranscludetoolong'  => '[URLが長すぎます]',
-
-# Trackbacks
-'trackbackbox'      => 'このページへのトラックバック：<br />
-$1',
-'trackbackremove'   => '（[$1 削除]）',
-'trackbacklink'     => 'トラックバック',
-'trackbackdeleteok' => 'トラックバックは正常に削除されました。',
 
 # Delete conflict
 'deletedwhileediting'      => "'''警告：'''このページが、編集開始後に削除されました！",

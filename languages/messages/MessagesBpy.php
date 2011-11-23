@@ -978,7 +978,6 @@ $2',
 'action-delete'             => 'পাতা এহান পুস',
 'action-browsearchive'      => 'পুসিসি পাতা বিসারা',
 'action-block'              => 'পতাকুরা এগরে পতানি নাদি',
-'action-trackback'          => 'আলথক ট্রাক সাবমিট কর',
 'action-mergehistory'       => 'পাতা এহানর ইতাহাসহান সুপকরিক',
 
 # Recent changes

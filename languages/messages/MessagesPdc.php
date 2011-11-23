@@ -920,9 +920,6 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 # Scary transclusion
 'scarytranscludetoolong' => '[URL iss zu lang]',
 
-# Trackbacks
-'trackbackremove' => '([$1 lösche])',
-
 # action=purge
 'confirm_purge_button' => 'OK',
 

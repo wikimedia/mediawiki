@@ -786,9 +786,6 @@ Yu inap lukim as tok bilong em',
 # Scary transclusion
 'scarytranscludetoolong' => '[URL i longpela tumas]',
 
-# Trackbacks
-'trackbackremove' => '([$1 Rausim])',
-
 # action=purge
 'confirm_purge_button' => 'OK',
 

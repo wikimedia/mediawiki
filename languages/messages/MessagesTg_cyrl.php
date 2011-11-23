@@ -1008,7 +1008,6 @@ $1',
 'right-autopatrol'           => 'Аломат задани вироишҳо бо таври худкор ба унвони гаштхӯрда',
 'right-patrolmarks'          => 'Мушоҳидаи тағйироти охирини аломатгашта',
 'right-unwatchedpages'       => 'Мушоҳидаи саҳифаҳое, ки пайгири намешаванд',
-'right-trackback'            => 'Сабти як бозтоб',
 'right-mergehistory'         => 'Идғоми таърихи саҳифаҳо',
 'right-userrights'           => 'Вироиши ҳамаи ихтиёроти корбарон',
 'right-userrights-interwiki' => 'Вироиши ихтиёроти корбарии корбарони дигар викиҳо',
@@ -2384,13 +2383,6 @@ $5
 'scarytranscludedisabled' => '[Ғунҷоиши байнивикиёна фаъол нест]',
 'scarytranscludefailed'   => '[Фарохонии шаблон барои $1 муяссар нашуд]',
 'scarytranscludetoolong'  => '[URL-Нишонаи интернетии мавриди назар беш аз андоза дароз буд; бубахшед]',
-
-# Trackbacks
-'trackbackbox'      => 'Бозтоби ин саҳифа дар вебнавиштҳо:<br />
-$1',
-'trackbackremove'   => '([$1 Ҳазф])',
-'trackbacklink'     => 'Бозтоб',
-'trackbackdeleteok' => 'Бозтоби саҳифа бо муваффақият ҳазф шуд.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Огоҳӣ''': Ин саҳифа баъди ба вироиш шурӯъ кардани шумо ҳазф шуда буд!",

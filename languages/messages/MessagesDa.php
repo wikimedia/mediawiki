@@ -1411,7 +1411,6 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'right-autopatrol'            => 'Egne redigeringer vises automatisk som patruljerede',
 'right-patrolmarks'           => 'Se de seneste patruljeringer',
 'right-unwatchedpages'        => 'Se en liste over uovervågede sider',
-'right-trackback'             => 'Tilføje trackback',
 'right-mergehistory'          => 'Sammenflette sidehistorik',
 'right-userrights'            => 'Ændre alle brugerrettigheder',
 'right-userrights-interwiki'  => 'Ændre brugerrettigheder på andre wikier',
@@ -1458,7 +1457,6 @@ Hvis du vælger at oplyse dit navn, vil det blive brugt til at tilskrive dig dit
 'action-patrol'               => 'patruljere andres redigeringer',
 'action-autopatrol'           => 'patruljere din redigering',
 'action-unwatchedpages'       => 'se listen over uovervågede sider',
-'action-trackback'            => 'tilføj et trackback',
 'action-mergehistory'         => 'flette denne sides historik',
 'action-userrights'           => 'ændre alle brugerrettigheder',
 'action-userrights-interwiki' => 'ændre brugerrettigheder for brugere på andre wikier',
@@ -3346,13 +3344,6 @@ Denne bekræftelseskode vil udløbe den $4.',
 'scarytranscludedisabled' => '[Interwiki-tilkobling er deaktiveret]',
 'scarytranscludefailed'   => '[Hentning af skabelon for $1 mislykkedes]',
 'scarytranscludetoolong'  => "[URL'en er for lang]",
-
-# Trackbacks
-'trackbackbox'      => 'Trackbacks for denne side:<br />
-$1',
-'trackbackremove'   => '([$1 slet])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback blev slettet.',
 
 # Delete conflict
 'deletedwhileediting'      => 'Bemærk: Det blev forsøgt at slette denne side, efter at du var begyndt, at ændre den!

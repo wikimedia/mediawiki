@@ -3272,13 +3272,6 @@ $5
 'scarytranscludefailed'  => '[Gat ekki sótt snið fyrir $1]',
 'scarytranscludetoolong' => '[vefslóðin er of löng]',
 
-# Trackbacks
-'trackbackbox'      => 'Varanlegir tenglar fyrir þessa grein:<br />
-$1',
-'trackbackremove'   => '([$1 eydd])',
-'trackbacklink'     => 'Varanlegur tengill',
-'trackbackdeleteok' => 'Varanlega tenglinum var eytt.',
-
 # Delete conflict
 'deletedwhileediting'      => "'''Viðvörun''': Þessari síðu var eytt eftir að þú fórst að breyta henni!",
 'confirmrecreate'          => "Notandi [[User:$1|$1]] ([[User talk:$1|spjall]]) eyddi þessari síðu eftir að þú fórst að breyta henni út af:

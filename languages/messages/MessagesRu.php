@@ -1540,7 +1540,6 @@ $1",
 'right-autopatrol'            => 'правки автоматически отмечаются как патрулированные',
 'right-patrolmarks'           => 'просмотр отметок о патрулировании в свежих правках',
 'right-unwatchedpages'        => 'просмотр списка ненаблюдаемых страниц',
-'right-trackback'             => 'отправка Trackback',
 'right-mergehistory'          => 'объединение историй страниц',
 'right-userrights'            => 'изменение прав всех участников',
 'right-userrights-interwiki'  => 'изменение прав участников на других вики-сайтах',
@@ -1587,7 +1586,6 @@ $1",
 'action-patrol'               => 'отметка чужих правок как отпатрулированных',
 'action-autopatrol'           => 'отметка своих правок как отпатрулированных',
 'action-unwatchedpages'       => 'просмотр список страниц, за которыми никто не наблюдает',
-'action-trackback'            => 'отправка trackback',
 'action-mergehistory'         => 'присоединение истории изменений этой страницы',
 'action-userrights'           => 'изменение всех прав участника',
 'action-userrights-interwiki' => 'изменение прав участников в других вики',
@@ -3561,13 +3559,6 @@ $5
 'scarytranscludedisabled' => '[«Interwiki transcluding» отключён]',
 'scarytranscludefailed'   => '[Ошибка обращения к шаблону $1]',
 'scarytranscludetoolong'  => '[Слишком длинный URL]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackback для этой статьи:<br />
-$1',
-'trackbackremove'   => '([$1 удалить])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback был удалён.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Внимание'''. Эта страница была удалена после того, как вы начали её править!",

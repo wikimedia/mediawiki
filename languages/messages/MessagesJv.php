@@ -1149,7 +1149,6 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 'right-autopatrol'            => 'Gawé supaya suntingan-suntingan ditandhani minangka wis dipatroli',
 'right-patrolmarks'           => 'Ndeleng tandha-tandha patroli owah-owahan anyar',
 'right-unwatchedpages'        => 'Tuduhna daftar kaca-kaca sing ora diawasi',
-'right-trackback'             => 'Kirimna trackback',
 'right-mergehistory'          => 'Gabungna sajarah kaca-kaca',
 'right-userrights'            => 'Sunting kabèh hak-hak panganggo',
 'right-userrights-interwiki'  => 'Sunting hak-hak para panganggo ing situs-situs wiki liya',
@@ -1193,7 +1192,6 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 'action-patrol'               => 'nandhani suntingan panganggo liya minangka wis kapriksa',
 'action-autopatrol'           => 'nandhani suntingan panjenengan dhéwé minangka wis kapriksa',
 'action-unwatchedpages'       => 'pirsani dhaftar kaca-kaca sing ora kaawasi',
-'action-trackback'            => 'kirim panjejak balik',
 'action-mergehistory'         => 'nggabungaké sajarah kaca iki',
 'action-userrights'           => 'ngowahi kabèh hak panganggo',
 'action-userrights-interwiki' => 'ngowahi hak aksès saka panganggo ing wiki liya',
@@ -2728,13 +2726,6 @@ Konfirmasi iki bakal kadaluwarsa ing $4.',
 'scarytranscludedisabled' => '[Transklusi cithakan interwiki dipatèni]',
 'scarytranscludefailed'   => '[Olèhé njupuk cithakan $1 gagal]',
 'scarytranscludetoolong'  => '[URL-é kedawan]',
-
-# Trackbacks
-'trackbackbox'      => 'Ngrunut balik kanggo kaca iki:<br />
-$1',
-'trackbackremove'   => '([$1 Busak])',
-'trackbacklink'     => 'Lacak balik',
-'trackbackdeleteok' => 'Pelacakan balik bisa dibusak.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Pènget''': Kaca iki wis kabusak sawisé panjenengan miwiti nyunting!",

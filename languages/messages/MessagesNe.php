@@ -1286,7 +1286,6 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'right-autopatrol'            => 'आफ्नो सम्पादनहरु पट्रोल(गस्ती) गरिएको रुपमा सम्पादन गर्ने',
 'right-patrolmarks'           => 'हालका सम्पादन पट्रोल(गस्ती) चिनो लगाउने',
 'right-unwatchedpages'        => 'निगरानी नगरिएका पृष्ठहरुको सूचीहेर्ने',
-'right-trackback'             => 'ट्र्याकब्याक बुझाउने',
 'right-mergehistory'          => 'पृष्ठका इतिहासहरु बुझाउने',
 'right-userrights'            => 'प्रयोगकर्ताका अधिकारहरु सम्पादन गर्ने',
 'right-userrights-interwiki'  => 'अरु विकिहरुमा प्रयोगकर्ताहरुको अधिकार सम्पादन गर्ने',
@@ -1331,7 +1330,6 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'action-patrol'               => 'अरुको सम्पादनलाई निगरानीको चिन्ह लगाउने',
 'action-autopatrol'           => 'तपाईंको सम्पादनलाई गश्त रुपमा दाग दिनुहोस्',
 'action-unwatchedpages'       => 'अवलोकन नगरिएका  पृष्ठहरुको सूची हेर्ने',
-'action-trackback'            => 'ट्र्याकब्याक (trackback) बुझाउने',
 'action-mergehistory'         => 'यस पृष्ठको इतिहासलाई मिसाउने',
 'action-userrights'           => 'सबै प्रयोगकर्ताका अधिकारहरु सम्पादन गर्ने',
 'action-userrights-interwiki' => 'अरु विकिका प्रयोगकर्ताहरुको प्रयोगकर्ता अधिकारलाई सम्पादन गर्ने',
@@ -3072,15 +3070,6 @@ $5
 'scarytranscludedisabled' => '[अन्तरविकि दस्तावेज अन्तरकरण निस्क्रिय]',
 'scarytranscludefailed'   => '[ $1को लागि टेम्प्लेट ल्याउन असफल]',
 'scarytranscludetoolong'  => '[URL अति लामो छ ]',
-
-# Trackbacks
-'trackbackbox'      => 'यस पृष्ठको लागि ट्र्याकब्याक:<br />
-$1',
-'trackback'         => '; $4 $5: [$2 $1]',
-'trackbackexcerpt'  => '; $4 $5: [$2 $1]: <nowiki>$3</nowiki>',
-'trackbackremove'   => '([$1 मेट्नुहोस्])',
-'trackbacklink'     => 'ट्र्याक ब्याक',
-'trackbackdeleteok' => 'ट्राकब्याक सफलतापूर्वक हटाइयो।',
 
 # Delete conflict
 'deletedwhileediting'      => "'''चेतावनी''': तपाईंले सम्पादन सुरु गरेपछि यो पृष्ठ मेटिएकोछ!",

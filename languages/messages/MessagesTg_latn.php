@@ -876,7 +876,6 @@ On bojad kamtar az $1 {{PLURAL:$1|alomat|alomatho}} boşad.',
 'right-autopatrol'           => 'Alomat zadani viroişho bo tavri xudkor ba unvoni gaştxūrda',
 'right-patrolmarks'          => 'Muşohidai taƣjiroti oxirini alomatgaşta',
 'right-unwatchedpages'       => 'Muşohidai sahifahoe, ki pajgiri nameşavand',
-'right-trackback'            => 'Sabti jak boztob',
 'right-mergehistory'         => "Idƣomi ta'rixi sahifaho",
 'right-userrights'           => 'Viroişi hamai ixtijoroti korbaron',
 'right-userrights-interwiki' => 'Viroişi ixtijoroti korbariji korbaroni digar vikiho',
@@ -2173,13 +2172,6 @@ In kodi ta\'jid dar $4 ba pojon xohad rasid.',
 # Scary transclusion
 'scarytranscludedisabled' => "[Ƣunçoişi bajnivikijona fa'ol nest]",
 'scarytranscludefailed'   => '[Faroxoniji şablon baroi $1 mujassar naşud]',
-
-# Trackbacks
-'trackbackbox'      => 'Boztobi in sahifa dar vebnaviştho:<br />
-$1',
-'trackbackremove'   => '([$1 Hazf])',
-'trackbacklink'     => 'Boztob',
-'trackbackdeleteok' => 'Boztobi sahifa bo muvaffaqijat hazf şud.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Ogohī''': In sahifa ba'di ba viroiş şurū' kardani şumo hazf şuda bud!",

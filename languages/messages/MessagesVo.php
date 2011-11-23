@@ -1135,7 +1135,6 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'right-autopatrol'           => 'Zepön itjäfidiko redakamis okik',
 'right-patrolmarks'          => 'Logön zepamals in lised votükamas nulik',
 'right-unwatchedpages'       => 'Logön lisedi padas nepagalädöl',
-'right-trackback'            => 'Sedön gevegi',
 'right-mergehistory'         => 'Kobükön padajenotemis',
 'right-userrights'           => 'Redakön gebanagitätis valik',
 'right-userrights-interwiki' => 'Redakön gebanagitätis gebanas vükas votik',
@@ -1178,7 +1177,6 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 'action-patrol'               => 'Zepön redakami votikanas',
 'action-autopatrol'           => 'zepön redakami olik',
 'action-unwatchedpages'       => 'Logön lisedi padas no pagalädölas',
-'action-trackback'            => 'sedön gevegi',
 'action-mergehistory'         => 'balön jenotemi pada at',
 'action-userrights'           => 'redakön gebanagitätis valik',
 'action-userrights-interwiki' => 'redakön gebanagitätis gebanas vükas votik',
@@ -2657,13 +2655,6 @@ Fümedakot at operon lonöfi okik ün $4.',
 # Scary transclusion
 'scarytranscludefailed'  => '[Tuv samafomota no eplopön kodü $1]',
 'scarytranscludetoolong' => '[el URL binon tu lunik]',
-
-# Trackbacks
-'trackbackbox'      => 'Gevegs padi at teföls:<br />
-$1',
-'trackbackremove'   => '([$1 Moükön])',
-'trackbacklink'     => 'Geveg',
-'trackbackdeleteok' => 'Geveg pemoükon benosekiko.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Nuned''': Pad at pemoükon posä äprimol ad redakön oni!",

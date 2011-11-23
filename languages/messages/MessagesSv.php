@@ -1552,7 +1552,6 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'right-autopatrol'            => 'Får automatiskt sina ändringar markerade som patrullerade',
 'right-patrolmarks'           => 'Se markeringar av opatrullerade ändringar i senaste ändringarna',
 'right-unwatchedpages'        => 'Se listan över obevakade sidor',
-'right-trackback'             => 'Lägga till trackback',
 'right-mergehistory'          => 'Sammanfoga sidhistoriker',
 'right-userrights'            => 'Ändra alla användarrättigheter',
 'right-userrights-interwiki'  => 'Ändra rättigheter för användare på andra wikier',
@@ -1599,7 +1598,6 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'action-patrol'               => 'märka annans redigering som patrullerad',
 'action-autopatrol'           => 'få din redigering märkt som patrullerad',
 'action-unwatchedpages'       => 'se listan över obevakade sidor',
-'action-trackback'            => 'lägga in en trackback',
 'action-mergehistory'         => 'slå ihop historiken för denna sida',
 'action-userrights'           => 'ändra alla användarrättigheter',
 'action-userrights-interwiki' => 'ändra rättigheter för användare på andra wikier',
@@ -3549,13 +3547,6 @@ Denna bekräftelsekod kommer att sluta fungera efter $4.',
 'scarytranscludedisabled' => '[Interwiki-inklusion är inte aktiverad]',
 'scarytranscludefailed'   => '[Hämtning av mall för $1 misslyckades]',
 'scarytranscludetoolong'  => '[För lång URL]',
-
-# Trackbacks
-'trackbackbox'      => 'Till denna sida finns följande trackback:<br />
-$1',
-'trackbackremove'   => '([$1 Ta bort])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback har tagits bort.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Varning''': Denna sida raderades efter att du började redigera!",

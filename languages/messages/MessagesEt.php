@@ -1505,7 +1505,6 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-autopatrol'            => 'Teha vaikimisi kontrollituks märgitud muudatusi',
 'right-patrolmarks'           => 'Vaadata viimaste muudatuste kontrollimise märkeid',
 'right-unwatchedpages'        => 'Vaadata jälgimata lehekülgede nimekirja',
-'right-trackback'             => "Lähetada ''trackback''",
 'right-mergehistory'          => 'Ühendada lehekülgede ajalood',
 'right-userrights'            => 'Muuta kõiki kasutajaõigusi',
 'right-userrights-interwiki'  => 'Muuta teiste vikide kasutajate õigusi',
@@ -1550,7 +1549,6 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'action-patrol'               => 'teiste muudatusi kontrollituks märkida',
 'action-autopatrol'           => 'oma muudatusi kontrollituks märkida',
 'action-unwatchedpages'       => 'jälgimata lehekülgede loendit vaadata',
-'action-trackback'            => "''trackbacki'' lähetada",
 'action-mergehistory'         => 'selle lehekülje ajalugu liita',
 'action-userrights'           => 'kõiki kasutajaõigusi muuta',
 'action-userrights-interwiki' => 'teiste vikide kasutajate õigusi muuta',
@@ -3437,9 +3435,6 @@ Selle kinnituskoodi aegumistähtaeg on $4.',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL on liiga pikk]',
-
-# Trackbacks
-'trackbackremove' => '([$1 Kustuta])',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Hoiatus''': Sel ajal, kui sina lehekülge redigeerisid, kustutas keegi selle ära!",

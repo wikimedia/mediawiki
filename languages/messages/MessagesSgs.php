@@ -1820,9 +1820,6 @@ $5
 Patvirtėnėma kods bengs galiuotė $4.',
 'invalidateemail'        => 'El. pašta patvirtėnėma atšaukėms',
 
-# Trackbacks
-'trackbackremove' => '([$1 Trintė])',
-
 # Delete conflict
 'deletedwhileediting' => 'Diemesė: Šėts poslapis ėštrints po šėta, kumet pradiejot redagoutė!',
 'recreate'            => 'Atkortė',

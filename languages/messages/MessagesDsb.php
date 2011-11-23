@@ -1362,7 +1362,6 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-autopatrol'            => 'Swójske změny awtomatiski ako doglědowane markěrowane',
 'right-patrolmarks'           => 'Kontrolne wobznamjenja w aktualnych změnach',
 'right-unwatchedpages'        => 'Lisćinu njewobglědowanych bokow woglědaś',
-'right-trackback'             => 'Trackback wótpósłaś',
 'right-mergehistory'          => 'Stawizny wersijow bokow zjadnośiś',
 'right-userrights'            => 'Wšykne wužywarske pšawa wobźěłaś',
 'right-userrights-interwiki'  => 'Wužywarske pšawa w drugich wikijach wobźěłaś',
@@ -1409,7 +1408,6 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'action-patrol'               => 'změny drugich wužywarjow ako doglědowane markěrowaś',
 'action-autopatrol'           => 'twóju změnu ako doglědowanu markěrowaś daś',
 'action-unwatchedpages'       => 'lisćinu njewobglědowanych bokow zwobrazniś',
-'action-trackback'            => 'trackback pósłaś',
 'action-mergehistory'         => 'Stawizny toś togo boka zjadnośiś',
 'action-userrights'           => 'wše wužywarske pšawa wobźěłaś',
 'action-userrights-interwiki' => 'wužywarske pšawa wužywarjow w drugich wikijach wobźěłaś',
@@ -3302,13 +3300,6 @@ Toś ten wobkšuśeński kod płaśi až do $4.',
 'scarytranscludedisabled' => '[Pśidawanje interwiki jo deaktiwěrowane]',
 'scarytranscludefailed'   => '[Zapśěgnjenje pśedłogi za $1 njejo se raźiło]',
 'scarytranscludetoolong'  => '[URL jo pśedłujki]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackbacki za toś ten bok:<br />
-$1',
-'trackbackremove'   => '([$1 wulašowaś])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Trackback jo wuspěšnje wulašowany.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Warnowanje''': Toś ten bok se wulašujo, gaž zachopijoš jen wobźěłaś!",

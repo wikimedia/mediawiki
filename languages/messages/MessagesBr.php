@@ -1407,7 +1407,6 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'right-autopatrol'            => 'Merkañ e gemmoù evel gwiriekaet, ent emgefre',
 'right-patrolmarks'           => 'Gwelet kemmoù diwezhañ ar merkoù patrouilhañ',
 'right-unwatchedpages'        => "Gwelet roll ar pajennoù n'int ket evezhiet",
-'right-trackback'             => "Ouzhpennañ ur c'hilliamm",
 'right-mergehistory'          => 'Unvaniñ istor ar pajennoù',
 'right-userrights'            => 'Kemmañ holl wirioù un implijer',
 'right-userrights-interwiki'  => 'Kemmañ ar gwirioù implijer zo war ur wiki all',
@@ -1454,7 +1453,6 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'action-patrol'               => 'merkañ kemmoù ar re all evel gwiriet',
 'action-autopatrol'           => 'bezañ merket ho tegasadennoù evel gwiriet',
 'action-unwatchedpages'       => "gwelet roll ar pajennoù n'int ket evezhiet",
-'action-trackback'            => "zegas ur c'hilliamm",
 'action-mergehistory'         => 'kendeuziñ istor ar bajenn-mañ',
 'action-userrights'           => 'Kemmañ an holl wirioù implijer',
 'action-userrights-interwiki' => 'Kemmañ gwirioù an implijerien war wikioù all',
@@ -3403,13 +3401,6 @@ Mont a raio ar c'hod-mañ d'e dermen d'ar \$4.",
 'scarytranscludedisabled' => '[Diweredekaet eo an treuzkludañ etrewiki]',
 'scarytranscludefailed'   => "[N'eus ket bet gallet tapout ar patrom evit $1]",
 'scarytranscludetoolong'  => '[URL re hir]',
-
-# Trackbacks
-'trackbackbox'      => 'Liamm war-gil betek al liamm-mañ :<br />
-$1',
-'trackbackremove'   => '([$1 Diverkañ])',
-'trackbacklink'     => 'Liamm war-gil',
-'trackbackdeleteok' => 'Diverket mat eo bet al liamm war-gil.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Diwallit''' : Diverket eo bet ar bajenn-mañ bremañ ha krog e oac'h da zegas kemmoù enni!",

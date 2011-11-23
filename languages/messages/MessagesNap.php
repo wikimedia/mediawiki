@@ -472,9 +472,6 @@ Also see [[Special:WantedCategories|wanted categories]].",
 'confirmemail_needlogin' => "Abbesognate $1 pe cunfirmà 'o nnerizzo 'e e-mail d''o vuosto.",
 'confirmemail_loggedin'  => "'O nnerizzo 'e e-mail è vàleto",
 
-# Trackbacks
-'trackbackremove' => '([$1 Scarta])',
-
 # Delete conflict
 'deletedwhileediting' => 'Attenziòne: quaccherùno have scancellàto chesta pàggena prìmma ca tu accuminciàste â scrìvere!',
 

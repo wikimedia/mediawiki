@@ -1353,7 +1353,6 @@ $1",
 'right-autopatrol'            => 'తానే చేసిన మార్పులను నిఘాలో ఉన్నట్లుగా ఆటోమాటిగా గుర్తించు',
 'right-patrolmarks'           => 'ఇటీవలి మార్పుల నిఘా గుర్తింపులను చూడు',
 'right-unwatchedpages'        => 'వీక్షణలో లేని పేజీల జాబితాను చూడు',
-'right-trackback'             => 'ట్రాక్‌బ్యాక్‌ను సమర్పించు',
 'right-mergehistory'          => 'పేజీల యొక్క చరిత్రలని విలీనం చేయగలగడం',
 'right-userrights'            => 'వాడుకరులందరి హక్కులను మార్చు',
 'right-userrights-interwiki'  => 'ఇతర వికీల్లోని వాడుకరుల హక్కులను మార్చు',
@@ -1397,7 +1396,6 @@ $1",
 'action-patrol'               => 'ఇతరుల మార్పులను పర్యవేక్షించినవిగా గుర్తించే',
 'action-autopatrol'           => 'మీ మార్పులను పర్యవేక్షించినవిగా గుర్తించే',
 'action-unwatchedpages'       => 'వీక్షణలో లేని పేజీల జాబితాని చూసే',
-'action-trackback'            => 'ట్రాకుబ్యాకుని దాఖలుచేసే',
 'action-mergehistory'         => 'ఈ పేజీ యొక్క చరిత్రని విలీనం చేసే',
 'action-userrights'           => 'అందరు వాడుకరుల హక్కులను మార్చే',
 'action-userrights-interwiki' => 'ఇతర వికీలలో వాడుకరుల యొక్క హక్కులను మార్చే',
@@ -3217,13 +3215,6 @@ $5
 'scarytranscludedisabled' => '[ఇతరవికీల మూసలను ఇక్కడ వాడటాన్ని అనుమతించటం లేదు]',
 'scarytranscludefailed'   => '[$1 కొరకు మూసను తీసుకురావటం విఫలమైంది]',
 'scarytranscludetoolong'  => '[URL మరీ పొడుగ్గా ఉంది]',
-
-# Trackbacks
-'trackbackbox'      => 'ఈ పేజీకి ట్రాక్&zwnj;బాకులు:<br />
-$1',
-'trackbackremove'   => '([$1 తొలగించు])',
-'trackbacklink'     => 'ట్రాక్&zwnj;బాక్',
-'trackbackdeleteok' => 'ట్రాక్‌బాక్&zwnj;ని విజయవంతంగా తొలగించాం.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''హెచ్చరిక''': మీరు మార్పులు చేయటం మొదలుపెట్టాక ఈ పేజీ తొలగించబడింది!",

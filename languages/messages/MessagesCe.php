@@ -1435,9 +1435,6 @@ PICT # тайп тайпан
 'monthsall'     => 'массо',
 'limitall'      => 'массо',
 
-# Trackbacks
-'trackbackremove' => '([$1 дlадайá])',
-
 # Delete conflict
 'confirmrecreate' => "Декъашхо [[User:$1|$1]] ([[User talk:$1|дийцаре]]) хlара агlо дlадайина, хьо иза нисда вола велча, дlадайарна бахьан:
 : ''$2''

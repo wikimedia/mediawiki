@@ -958,7 +958,6 @@ Stelle secher, doaß de Versionsgeschichte a'r Seyte historisch korrekt ies.",
 'right-autopatrol'           => 'Eegene Beoarbeetunga automatisch ols kontrolliert markieren',
 'right-patrolmarks'          => 'Kontrollmarkierungen enn letzta Änderunga sahn',
 'right-unwatchedpages'       => 'Liste dar unbeobachteten Seyta oasahn',
-'right-trackback'            => 'Trackback iebermitteln',
 'right-mergehistory'         => 'Versionsgeschichten vu Seyta vereinen',
 'right-userrights'           => 'Nutzerrechte beoarbeeta',
 'right-userrights-interwiki' => 'Nutzerrechte ei andern Wikis beoarbeeta',
@@ -999,7 +998,6 @@ Stelle secher, doaß de Versionsgeschichte a'r Seyte historisch korrekt ies.",
 'action-patrol'               => 'de Beoarbeetunga andere Nutzer zu kontrollieren',
 'action-autopatrol'           => 'eegene Beoarbeetunga ols kontrolliert zu markieren',
 'action-unwatchedpages'       => 'de Liste dar unbeobachteten Seyta einzusahn',
-'action-trackback'            => "an'n Trackback zu iebertraga",
 'action-mergehistory'         => 'de Versionengeschichta vu Seyta zu vereinen',
 'action-userrights'           => 'Nutzerrechte zu ändern',
 'action-userrights-interwiki' => 'de Rechte vu Nutzern ei andern Wikis zu ändern',
@@ -2231,12 +2229,6 @@ Dieser Bestätigungscode ies giltig bis $6, $7 Seeger.',
 'scarytranscludedisabled' => '[Interwiki-Einbindung ies deaktiviert]',
 'scarytranscludefailed'   => '[Vorloageneinbindung fier $1 ies gescheitert]',
 'scarytranscludetoolong'  => '[URL ies zu lang]',
-
-# Trackbacks
-'trackbackbox'      => 'Trackbacks fier diese Seyte:<br />
-$1',
-'trackbackremove'   => '([$1 läscha])',
-'trackbackdeleteok' => 'Trackback wurde erfolgreich geläscht.',
 
 # Delete conflict
 'deletedwhileediting' => 'Ochtiche: Diese Seyte wurde geläscht, nachdem du oagefanga host se zu beoarbeeta!

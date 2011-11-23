@@ -1544,7 +1544,6 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'right-autopatrol'            => 'Modificările proprii marcate ca patrulate',
 'right-patrolmarks'           => 'Vizualizează pagini recent patrulate',
 'right-unwatchedpages'        => 'Vizualizezaă listă de pagini neurmărite',
-'right-trackback'             => 'Trimite un urmăritor',
 'right-mergehistory'          => 'Unește istoricele paginilor',
 'right-userrights'            => 'Modifică toate permisiunile de utilizator',
 'right-userrights-interwiki'  => 'Modifică permisiunile de utilizator pentru utilizatorii de pe alte wiki',
@@ -1591,7 +1590,6 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'action-patrol'               => 'marcați modificările celorlalți ca patrulate',
 'action-autopatrol'           => 'marcați modificarea drept patrulată',
 'action-unwatchedpages'       => 'vizualizați lista de pagini neurmărite',
-'action-trackback'            => 'aplicați un trackback',
 'action-mergehistory'         => 'uniți istoricul acestei pagini',
 'action-userrights'           => 'modificați toate permisiunile utilizatorilor',
 'action-userrights-interwiki' => 'modificați permisiunile utilizatorilor de pe alte wiki',
@@ -3544,13 +3542,6 @@ Acest cod de confirmare va expira la $4.',
 'scarytranscludedisabled' => '[Transcluderea interwiki este dezactivată]',
 'scarytranscludefailed'   => '[Șiretlicul formatului a dat greș pentru $1]',
 'scarytranscludetoolong'  => '[URL-ul este prea lung]',
-
-# Trackbacks
-'trackbackbox'      => 'Urmăritori la acest articol:<br />
-$1',
-'trackbackremove'   => '([$1 Șterge])',
-'trackbacklink'     => 'Urmăritor',
-'trackbackdeleteok' => 'Urmăritorul a fost șters cu succes.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Atenție''': Această pagină a fost ștearsă după ce ați început s-o modificați!",

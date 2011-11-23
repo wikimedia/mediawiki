@@ -2788,13 +2788,6 @@ Sandi konfirmasi ieu bakal kadaluwarsa dina $4.',
 'scarytranscludefailed'   => '[Gagal nyokot citakan $1]',
 'scarytranscludetoolong'  => '[URLna panjang teuing]',
 
-# Trackbacks
-'trackbackbox'      => 'Lacak balik keur artikel ieu:<br />
-$1',
-'trackbackremove'   => '([$1 Hapus])',
-'trackbacklink'     => 'Ngalacak balik',
-'trackbackdeleteok' => 'Ngalacak balik, hasil dihapus!.',
-
 # Delete conflict
 'deletedwhileediting' => "'''Awas''': ieu kaca geus dihapus nalika anjeun mitembeyan ngédit!",
 'confirmrecreate'     => "Pamaké [[User:$1|$1]] ([[User talk:$1|ngobrol]]) geus ngahapus artikel ieu nalika anjeun ngédit kalawan alesan:

@@ -1312,7 +1312,6 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'right-autopatrol'            => 'ئۆزەم تەھرىرلىگەنگە ئاپتوماتىك چارلاش بەلگىسى قوي',
 'right-patrolmarks'           => 'يېقىنقى نازارەت بەلگىسىنىڭ ئۆزگۈرۈشىنى كۆرسەت',
 'right-unwatchedpages'        => 'كۆزىتىلمىگەن بەت تىزىملىكىنى كۆرسەت',
-'right-trackback'             => 'trackback تاپشۇر',
 'right-mergehistory'          => 'بەت تارىخىنى بىرلەشتۈر',
 'right-userrights'            => 'ھەممە ئىشلەتكۈچىنىڭ ھوقۇقىنى تەھرىرلە',
 'right-userrights-interwiki'  => 'باشقا wiki دىكى ئىشلەتكۈچى ھوقۇقىنى تەھرىرلە',
@@ -1357,7 +1356,6 @@ HTML بەلگىسىنى تەكشۈرۈڭ.',
 'action-patrol'               => 'باشقا تەھرىرگە چارلاش بەلگىسى قوي',
 'action-autopatrol'           => 'ئۆزەمنىڭ تەھرىرىگە چارلاش بەلگىسى قوي',
 'action-unwatchedpages'       => 'كۆزىتىلمىگەن بەت تىزىملىكىنى كۆرسەت',
-'action-trackback'            => 'trackback تاپشۇر',
 'action-mergehistory'         => 'بۇ بەتنىڭ تارىخىنى بىرلەشتۈر',
 'action-userrights'           => 'ھەممە ئىشلەتكۈچىنىڭ ھوقۇقىنى تەھرىرلە',
 'action-userrights-interwiki' => 'باشقا wiki دىكى ئىشلەتكۈچى ھوقۇقىنى تەھرىرلە',
@@ -3282,13 +3280,6 @@ $5
 'scarytranscludedisabled' => '[بېكەت ئاتلىغان كود ئايلاندۇرۇش چەكلەنگەن]',
 'scarytranscludefailed'   => '[$1 نىڭ قېلىپىنى ئېلىش مەغلۇپ بولدى]',
 'scarytranscludetoolong'  => '[URL بەك ئۇزۇن]',
-
-# Trackbacks
-'trackbackbox'      => 'بۇ بەتنىڭ نەقىلى: <br />
-$1',
-'trackbackremove'   => '([$1 ئۆچۈر])',
-'trackbacklink'     => 'نەقىل',
-'trackbackdeleteok' => 'بۇ نەقىل مۇۋەپپەقىيەتلىك ئۆچۈرۈلدى.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''ئاگاھلاندۇرۇش''': بۇ بەت تەھرىرلەشكە باشلىغاندىن كېيىن ئۆچۈرۈلگەن!",

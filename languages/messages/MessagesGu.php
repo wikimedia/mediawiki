@@ -1377,7 +1377,6 @@ HTML નાકું ચકાસો',
 'right-autopatrol'            => 'પોતાના ફેરફારોને નીરીક્ષિત અંકિત કરો',
 'right-patrolmarks'           => 'તાજા ફેરફારો અને ચોકીયાત નોંધ જુઓ',
 'right-unwatchedpages'        => 'ન જોવાતા પાનાની યાદી જુઓ',
-'right-trackback'             => 'ટ્રેકબેક જમા કરો',
 'right-mergehistory'          => 'પાનાનો ઇતિહાસ વિલિન કરો',
 'right-userrights'            => 'બધા સભ્યોના હક્કોમાં ફેરફાર કરો',
 'right-userrights-interwiki'  => 'અન્ય વિકિ પરના સભ્યોના હક્કો સંપાદિત કરો.',
@@ -1421,7 +1420,6 @@ HTML નાકું ચકાસો',
 'action-patrol'               => 'અન્યો ના ફેરફારો નીરીક્ષીત અંકિત કરો',
 'action-autopatrol'           => 'તમે તમારા ફેરફારો નીરીક્ષિત અંકિત કરો',
 'action-unwatchedpages'       => 'ન જોવાતા પાનાની યાદી જુઓ',
-'action-trackback'            => 'ટ્રેકબેક જમા કરો',
 'action-mergehistory'         => 'પાનાનો ઇતિહાસ વિલિન કરો',
 'action-userrights'           => 'બધા સભ્યોના હક્કોમાં ફેરફાર કરો',
 'action-userrights-interwiki' => 'અન્ય વિકિ પરના સભ્યોના હક્કો સંપાદિત કરો.',
@@ -3173,13 +3171,6 @@ $5
 'scarytranscludedisabled' => 'આંતરવિકિ આંશિક સંદર્ભીકરણ નિષ્ક્રીય',
 'scarytranscludefailed'   => '[$1 માટે ઢાંચો ખેંચી લાવવામાં અસફળ ]',
 'scarytranscludetoolong'  => '[URL ઘણો લાંબો છે]',
-
-# Trackbacks
-'trackbackbox'      => 'આ પાનાના ટ્રેક બેક:<br />
-$1',
-'trackbackremove'   => '([$1 ભૂંસો])',
-'trackbacklink'     => 'ટ્રેકબેક',
-'trackbackdeleteok' => 'ટ્રેકબેક સફળતા પૂર્વક હટાવાયા.',
 
 # Delete conflict
 'deletedwhileediting' => "'''ચેતવણી''': તમે ફેરફાર  કર્યા પછી આ પાનું હટાવી દેવાયું !",

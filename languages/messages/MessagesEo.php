@@ -1541,7 +1541,6 @@ Jen hazarde generita valoro por via uzo: $1',
 'right-autopatrol'            => 'Fari redaktojn aŭtomate markitajn kiel patrolitajn',
 'right-patrolmarks'           => 'Rigardi patrolmarkojn de lastaj ŝanĝoj',
 'right-unwatchedpages'        => 'Vidi la liston de nepriatentitaj paĝoj',
-'right-trackback'             => 'Enigi retrovojon',
 'right-mergehistory'          => 'Kunfandigi la historiojn de paĝoj',
 'right-userrights'            => 'Redakti ĉiujn uzanto-rajtojn',
 'right-userrights-interwiki'  => 'Redakti la rajtojn de uzantoj en aliaj vikioj',
@@ -1587,7 +1586,6 @@ Jen hazarde generita valoro por via uzo: $1',
 'action-patrol'               => 'marki redakton de alia persono kiel patrolitan',
 'action-autopatrol'           => 'fari vian redakton markitan kiel patrolitan',
 'action-unwatchedpages'       => 'vidi la liston de neatentitaj paĝoj',
-'action-trackback'            => 'aldoni retrovojon',
 'action-mergehistory'         => 'kunigi la historion de ĉi tiu paĝo',
 'action-userrights'           => 'redakti ĉiujn rajtojn de uzantoj',
 'action-userrights-interwiki' => 'redakti uzulrajtojn de uzantoj en aliaj vikioj',
@@ -3483,13 +3481,6 @@ $5
 'scarytranscludedisabled' => '[Intervikia transinkluzivado estas malebligita.]',
 'scarytranscludefailed'   => '[Akiro de ŝablono $1 malsukcesis.]',
 'scarytranscludetoolong'  => '[URL-o estas tro longa]',
-
-# Trackbacks
-'trackbackbox'      => 'Respuradoj por ĉi tiu paĝo:<br />
-$1',
-'trackbackremove'   => '([$1 Forigi])',
-'trackbacklink'     => 'Postspurado',
-'trackbackdeleteok' => 'La postspurado estis sukcese forigita.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Averto''': Ĉi tiu paĝo estis forigita post vi ekredaktis!",

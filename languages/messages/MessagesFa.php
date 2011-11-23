@@ -1693,7 +1693,6 @@ $1",
 'right-autopatrol'            => 'گشن زدن خودکار به ویرایش‌های خودش',
 'right-patrolmarks'           => 'مشاهدهٔ برچسب گشت تغییرات اخیر',
 'right-unwatchedpages'        => 'مشاهدهٔ فهرست صفحه‌هایی که پیگیری نمی‌شوند',
-'right-trackback'             => 'ثبت یک بازتاب',
 'right-mergehistory'          => 'ادغام تاریخچهٔ صفحه‌ها',
 'right-userrights'            => 'ویرایش تمام اختیارات کاربرها',
 'right-userrights-interwiki'  => 'ویرایش اختیارات کاربرهای ویکی‌های دیگر',
@@ -1739,7 +1738,6 @@ $1",
 'action-patrol'               => 'گشت زدن ویرایش دیگران',
 'action-autopatrol'           => 'گشت زدن ویرایش خودتان',
 'action-unwatchedpages'       => 'مشاهدهٔ صفحه‌های پی‌گیری نشده',
-'action-trackback'            => 'ثبت یک بازتاب',
 'action-mergehistory'         => 'ادغام تاریخچهٔ این صفحه',
 'action-userrights'           => 'ویرایش همهٔ اختیارات کاربری',
 'action-userrights-interwiki' => 'ویرایش اختیارات کاربری کاربران یک ویکی دیگر',
@@ -3678,13 +3676,6 @@ $5
 'scarytranscludedisabled' => '[تراگنجانش بین‌ویکیانه فعال نیست]',
 'scarytranscludefailed'   => '[فراخوانی الگو برای $1 میسر نشد]',
 'scarytranscludetoolong'  => '[نشانی اینترنتی مورد نظر (URL) بیش از اندازه بلند بود]',
-
-# Trackbacks
-'trackbackbox'      => 'بازتاب این صفحه در وب‌نوشت‌ها:<br />
-$1',
-'trackbackremove'   => '([$1 حذف])',
-'trackbacklink'     => 'بازتاب',
-'trackbackdeleteok' => 'بازتاب صفحه با موفقیت حذف شد.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''هشدار''': این صفحه پس از اینکه شما آغاز به ویرایش آن کرده‌اید، حذف شده است!",

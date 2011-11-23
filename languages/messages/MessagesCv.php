@@ -1144,9 +1144,6 @@ Also see [[Special:WantedCategories|wanted categories]].',
 'scarytranscludefailed'  => '[Шел те, $1 шаблонпа усă кураймарăмăр]',
 'scarytranscludetoolong' => '[Питĕ шел, URL ытла вăрăм]',
 
-# Trackbacks
-'trackbackremove' => '([$1 кăларса пăрах])',
-
 # Delete conflict
 'deletedwhileediting' => 'Асăрхăр: эсир тӳрлетнĕ вăхăтра ку страницăна кăларса парахнă!',
 'recreate'            => 'Çĕнĕрен пуçла',

@@ -1257,7 +1257,6 @@ $1",
 'right-autopatrol'            => 'Значыць уласныя праўкі як ухваленыя',
 'right-patrolmarks'           => 'Бачыць меткі ўхвалення нядаўніх змяненняў',
 'right-unwatchedpages'        => 'Чытаць спіс неназіраных старонак',
-'right-trackback'             => 'Падаваць трэк-бэк',
 'right-mergehistory'          => "Аб'ядноўваць гісторыі старонак",
 'right-userrights'            => 'Правіць усе дазволы ўдзельнікаў',
 'right-userrights-interwiki'  => 'Правіць дазволы ўдзельнікаў на іншых вікі',
@@ -1302,7 +1301,6 @@ $1",
 'action-patrol'               => 'значыць праўкі іншых як ухваленыя',
 'action-autopatrol'           => 'атрымліваць знак ухваленасці на свае праўкі',
 'action-unwatchedpages'       => 'бачыць спіс неназіраных старонак',
-'action-trackback'            => 'падаваць трэк-бэк',
 'action-mergehistory'         => "аб'ядноўваць гісторыю гэтай старонкі",
 'action-userrights'           => 'мяняць усе дазволы ўдзельніка',
 'action-userrights-interwiki' => 'мяняць дазволы ўдзельнікаў на іншых вікі',
@@ -2873,13 +2871,6 @@ $5
 'scarytranscludedisabled' => '[Устаўлянне з іншых вікі не дазволена]',
 'scarytranscludefailed'   => '[Не ўдалося атрымаць шаблон для $1]',
 'scarytranscludetoolong'  => '[Занадта доўгі URL]',
-
-# Trackbacks
-'trackbackbox'      => 'Трэк-бэкі для гэтай старонкі:<br />
-$1',
-'trackbackremove'   => '([$1 Сцерці])',
-'trackbacklink'     => 'Трэк-бэк',
-'trackbackdeleteok' => 'Трэк-бэк быў паспяхова сцёрты.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Увага''': гэтая старонка была сцёрта пасля таго, як вы пачалі з ёй працаваць!",

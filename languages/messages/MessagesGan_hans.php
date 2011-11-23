@@ -2093,13 +2093,6 @@ $3
 'scarytranscludefailed'   => '[对伓住，提取$1失败]',
 'scarytranscludetoolong'  => '[对伓住，URL 太长]',
 
-# Trackbacks
-'trackbackbox'      => '个篇文章𠮶引用:<br />
-$1',
-'trackbackremove'   => '（[$1删除]）',
-'trackbacklink'     => '引用',
-'trackbackdeleteok' => '成功删卟个只引用。',
-
 # Delete conflict
 'deletedwhileediting' => '警告: 倷编辑𠮶时间有人删卟嘞个页！',
 'confirmrecreate'     => "倷编辑𠮶时间，用户[[User:$1|$1]]（[[User talk:$1|对话]]）因为下底原因删卟嘞个页:

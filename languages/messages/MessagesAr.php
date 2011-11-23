@@ -1717,7 +1717,6 @@ $1",
 'right-autopatrol'            => 'علم تعديلات المستخدم مراجعة تلقائيا',
 'right-patrolmarks'           => 'رؤية علامات المراجعة في أحدث التغييرات',
 'right-unwatchedpages'        => 'رؤية قائمة بالصفحات غير المراقبة',
-'right-trackback'             => 'تنفيذ تراكباك',
 'right-mergehistory'          => 'دمج تاريخ الصفحات',
 'right-userrights'            => 'تعديل كل صلاحيات المستخدمين',
 'right-userrights-interwiki'  => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
@@ -1763,7 +1762,6 @@ $1",
 'action-patrol'               => 'التعليم على تعديلات الآخرين كمراجعة',
 'action-autopatrol'           => 'جعل تعديلك معلم عليه كمراجع',
 'action-unwatchedpages'       => 'رؤية قائمة الصفحات غير المراقبة',
-'action-trackback'            => 'تنفيذ تراكباك',
 'action-mergehistory'         => 'دمج تاريخ هذه الصفحة',
 'action-userrights'           => 'تعديل كل صلاحيات المستخدم',
 'action-userrights-interwiki' => 'تعديل صلاحيات المستخدم للمستخدمين في الويكيات الأخرى',
@@ -3790,13 +3788,6 @@ $5
 'scarytranscludedisabled' => '[التضمين بالإنترويكي معطل]',
 'scarytranscludefailed'   => '[البحث عن القالب فشل ل$1]',
 'scarytranscludetoolong'  => '[المسار طويل للغاية]',
-
-# Trackbacks
-'trackbackbox'      => 'المتابعات لهذه الصفحة:<br />
-$1',
-'trackbackremove'   => '([$1 حذف])',
-'trackbacklink'     => 'متابعة',
-'trackbackdeleteok' => 'المتابعة تم حذفها بنجاح.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''تحذير''': هذه الصفحة تم حذفها بعد أن بدأت أنت بتعديلها!",

@@ -182,9 +182,6 @@ Usakanganwe kuchinga [[Special:Preferences|mapreferences ako {{SITENAME}}]].',
 'tooltip-ca-move'        => 'Chichinura kupeji iri',
 'tooltip-p-logo'         => 'Peji Rekutanga',
 
-# Trackbacks
-'trackbackremove' => '([$1 Delete])',
-
 # Table pager
 'table_pager_limit_submit' => 'Enda',
 

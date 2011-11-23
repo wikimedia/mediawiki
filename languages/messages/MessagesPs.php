@@ -2261,9 +2261,6 @@ $5
 # Scary transclusion
 'scarytranscludetoolong' => '[URL مو ډېر اوږد دی]',
 
-# Trackbacks
-'trackbackremove' => '([$1 ړنګول])',
-
 # Delete conflict
 'recreate' => 'بياجوړول',
 

@@ -1268,7 +1268,6 @@ Ti e-surat addressmo ket saan nga maipakita kadagit agar-aramat nga agkontak ken
 'right-autopatrol'            => 'Dagiti binaliwam ket mamarkaan nga na-automatik a napatrolan',
 'right-patrolmarks'           => 'Kitaen dagiti kinaudian nga baliwan nga  napatrol a marka',
 'right-unwatchedpages'        => 'Kitaen ti listaan dagiti saan a mabambantayan a pampanid',
-'right-trackback'             => 'Mangted iti trackback',
 'right-mergehistory'          => 'Pagtitiponen ti pakasaritaan dagiti pampanid',
 'right-userrights'            => 'Baliwan amin a karbengan ti agar-aramat',
 'right-userrights-interwiki'  => 'Baliwan dagiti karbengan ti agar-aramat kadagiti agar-aramat iti sabsabali a wiki',
@@ -1315,7 +1314,6 @@ Ti e-surat addressmo ket saan nga maipakita kadagit agar-aramat nga agkontak ken
 'action-patrol'               => 'Markaan a kas napatrolan dagiti pabaliw ti dadduma',
 'action-autopatrol'           => 'markaam dagiti napatrol mo nga baliwan',
 'action-unwatchedpages'       => 'kitaen ti listaan dagiti saan nga nabambantayan nga panid',
-'action-trackback'            => 'mangted iti trackback',
 'action-mergehistory'         => 'Pagtitiponen ti pakasaritaan daytoy nga panid',
 'action-userrights'           => 'baliwan amin a karbengan ti agar-aramat',
 'action-userrights-interwiki' => 'baliwan dagiti karbengan ti agar-aramat iti agar-aramat kadagiti sabsabali a wiki',
@@ -3131,13 +3129,6 @@ Daytoy nga kodigo nga pasingkedan ket agtapos iti $4.',
 'scarytranscludedisabled' => '[Naiddep ti Interwiki transcluding]',
 'scarytranscludefailed'   => '[Napaay ti pinagala ti templeta ti $1]',
 'scarytranscludetoolong'  => '[Atiddog unay ti URL]',
-
-# Trackbacks
-'trackbackbox'      => 'Dagiti trackbacks iti daytoy a panid:<br />
-$1',
-'trackbackremove'   => '([$1 Ikkaten])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'Sibaballigi a naikkat ti trackback.',
 
 # Delete conflict
 'deletedwhileediting'      => "'''Warning''': Naikkaten daytoy a panid kalpasan a rinugiam nga agbaliw!",
