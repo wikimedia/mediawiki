@@ -609,6 +609,7 @@ Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]
 'badarticleerror'      => 'Operazione non consentita per questa pagina.',
 'cannotdelete'         => 'Non è stato possibile cancellare il file "$1".
 Potrebbe essere stato già cancellato da qualcun altro.',
+'cannotdelete-title'   => 'Impossibile eliminare la pagina "$1"',
 'badtitle'             => 'Titolo non corretto',
 'badtitletext'         => 'Il titolo della pagina richiesta è vuoto, errato o con caratteri non ammessi oppure deriva da un errore nei collegamenti tra siti wiki diversi o versioni in lingue diverse dello stesso sito.',
 'perfcached'           => "I dati che seguono sono estratti da una copia ''cache'' del database, non aggiornati in tempo reale.",
@@ -1811,23 +1812,24 @@ Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizion
 'filerevert-badversion'     => 'Non esistono versioni locali precedenti del file con il timestamp richiesto.',
 
 # File deletion
-'filedelete'                  => 'Cancella $1',
-'filedelete-legend'           => 'Cancella il file',
-'filedelete-intro'            => "Stai per cancellare il file '''[[Media:$1|$1]]''' con tutta la sua cronologia.",
-'filedelete-intro-old'        => "Stai cancellando la versione di '''[[Media:$1|$1]]''' del [$4 $2, $3].",
-'filedelete-comment'          => 'Motivo:',
-'filedelete-submit'           => 'Cancella',
-'filedelete-success'          => "Il file '''$1''' è stato cancellato.",
-'filedelete-success-old'      => "La versione del file '''[[Media:$1|$1]]''' del $2, $3  è stata cancellata.",
-'filedelete-nofile'           => "Non esiste un file '''$1'''.",
-'filedelete-nofile-old'       => "In archivio non ci sono versioni di '''$1''' con le caratteristiche indicate",
-'filedelete-otherreason'      => 'Altra motivazione o motivazione aggiuntiva:',
-'filedelete-reason-otherlist' => 'Altra motivazione',
-'filedelete-reason-dropdown'  => '*Motivazioni più comuni per la cancellazione
+'filedelete'                   => 'Cancella $1',
+'filedelete-legend'            => 'Cancella il file',
+'filedelete-intro'             => "Stai per cancellare il file '''[[Media:$1|$1]]''' con tutta la sua cronologia.",
+'filedelete-intro-old'         => "Stai cancellando la versione di '''[[Media:$1|$1]]''' del [$4 $2, $3].",
+'filedelete-comment'           => 'Motivo:',
+'filedelete-submit'            => 'Cancella',
+'filedelete-success'           => "Il file '''$1''' è stato cancellato.",
+'filedelete-success-old'       => "La versione del file '''[[Media:$1|$1]]''' del $2, $3  è stata cancellata.",
+'filedelete-nofile'            => "Non esiste un file '''$1'''.",
+'filedelete-nofile-old'        => "In archivio non ci sono versioni di '''$1''' con le caratteristiche indicate",
+'filedelete-otherreason'       => 'Altra motivazione o motivazione aggiuntiva:',
+'filedelete-reason-otherlist'  => 'Altra motivazione',
+'filedelete-reason-dropdown'   => '*Motivazioni più comuni per la cancellazione
 ** Violazione di copyright
 ** File duplicato',
-'filedelete-edit-reasonlist'  => 'Modifica le motivazioni per la cancellazione',
-'filedelete-maintenance'      => 'Cancellazione e recupero di file temporaneamente disattivati durante la manutenzione.',
+'filedelete-edit-reasonlist'   => 'Modifica le motivazioni per la cancellazione',
+'filedelete-maintenance'       => 'Cancellazione e recupero di file temporaneamente disattivati durante la manutenzione.',
+'filedelete-maintenance-title' => 'Impossibile eliminare il file',
 
 # MIME search
 'mimesearch'         => 'Ricerca in base al tipo MIME',

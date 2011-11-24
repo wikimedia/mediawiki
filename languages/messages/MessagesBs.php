@@ -3664,6 +3664,7 @@ Također možete [[Special:EditWatchlist|koristiti standardni uređivač]].',
 'hebrew-calendar-m12-gen' => 'Elul',
 
 # Signatures
+'signature'    => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|razgovor]])',
 'timezone-utc' => 'KSV',
 
 # Core parser functions

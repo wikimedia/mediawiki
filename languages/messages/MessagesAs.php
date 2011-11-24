@@ -11,6 +11,7 @@
  * @author Gahori
  * @author Gitartha.bordoloi
  * @author Jaminianurag
+ * @author Nilamdyuti
  * @author Priyankoo
  * @author Psneog
  * @author Rajuonline
@@ -2021,7 +2022,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization চাওক।",
 'mywatchlist'          => 'মোৰ লক্ষ্য-তালিকা',
 'watchlistfor2'        => '$1 ৰ কাৰণে($2)',
 'nowatchlist'          => 'আপোনাৰ নিৰীক্ষণ তালিকাত কোনো আইটেম নাই ।',
-'watchlistanontext'    => 'অপোনাৰ লক্ষ্য তালিকা চাবলৈ বা সম্পাদনা কৰিবলৈ অনুগ্ৰহ কৰি $1 ।',
+'watchlistanontext'    => 'আপোনাৰ লক্ষ্য তালিকাত থকা বস্তুবোৰ চাবলৈ বা সম্পাদনা কৰিবলৈ অনুগ্ৰহ কৰি $1 কৰক।',
 'watchnologin'         => 'প্ৰৱেশ কৰা নাই',
 'watchnologintext'     => 'নিৰীক্ষণ তালিকা পৰিৱৰ্তন কৰিবলৈ আপুনি আগতে [[Special:UserLogin|লগ-ইন]] কৰিব লাগিব ।',
 'addwatch'             => 'লক্ষ্য-তালিকাত অন্তৰ্ভুক্ত কৰক',

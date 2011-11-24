@@ -2053,8 +2053,8 @@ Xin lưu ý là các trang Web bên ngoài có thể liên kết đến một t�
 'booksources-invalid-isbn'  => 'ISBN mà bạn cung cấp dường như không đúng; xin hãy kiểm tra lại xem có lỗi gì khi sao chép từ nội dung gốc hay không.',
 
 # Special:Log
-'specialloguserlabel'  => 'Thành viên:',
-'speciallogtitlelabel' => 'Tên trang:',
+'specialloguserlabel'  => 'Người thực hiện:',
+'speciallogtitlelabel' => 'Mục tiêu (tiêu đề hoặc người dùng):',
 'log'                  => 'Nhật trình',
 'all-logs-page'        => 'Tất cả các nhật trình công khai',
 'alllogstext'          => 'Hiển thị tất cả các nhật trình đang có của {{SITENAME}} chung với nhau.

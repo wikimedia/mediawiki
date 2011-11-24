@@ -1810,8 +1810,8 @@ $1',
 'booksources-invalid-isbn'  => 'ISBN, арааһа, сыыһалаах. Нүөмэр көһөрөргө алҕас тахсыбатаҕын хат көр эрэ.',
 
 # Special:Log
-'specialloguserlabel'  => 'Кыттааччы:',
-'speciallogtitlelabel' => 'Баһа:',
+'specialloguserlabel'  => 'Толорооччу:',
+'speciallogtitlelabel' => 'Сорук (тиэкис эбэтэр киһи аата)',
 'log'                  => 'Сурунааллар',
 'all-logs-page'        => 'Көстөр сурунааллар барыта',
 'alllogstext'          => '{{SITENAME}} сурунаалларын уопсай испииһэгэ.
