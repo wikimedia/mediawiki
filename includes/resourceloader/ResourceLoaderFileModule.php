@@ -441,6 +441,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		if ( empty( $scripts ) ) {
 			return '';
 		}
+		global $wgResourceLoaderValidateStaticJS;
 		$js = '';
 		foreach ( array_unique( $scripts ) as $fileName ) {
 			$localPath = $this->getLocalPath( $fileName );
