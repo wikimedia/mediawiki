@@ -698,6 +698,16 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
+	 * Determines how long the server has been up
+	 *
+	 * @return int
+	 */
+	function getServerUptime() {
+		$vars = $this->getMysqlStatus( 'Uptime' );
+		return (int)$vars['Uptime'];
+	}
+
+	/**
 	 * Determines if the last failure was due to a deadlock
 	 *
 	 * @return bool
