@@ -1615,23 +1615,24 @@ Ti deskripsiyon na  idiay [$2 deskripsiyon a panid ti papeles ] ket naipakita di
 'filerevert-badversion'     => 'Awan ti napalubos a lokal version daytoy a papeles nga adda naikkan dayta nga oras ken petsa.',
 
 # File deletion
-'filedelete'                  => 'Ikkaten ti $1',
-'filedelete-legend'           => 'ikkaten ti papeles',
-'filedelete-intro'            => "Makarugi ka agikkat ti '''[[Media:$1|$1]]''' ken dagiti amin nga pa pakasaritaan na.",
-'filedelete-intro-old'        => "Ikikatem ti version daytoy '''[[Media:$1|$1]]''' nangrugi idi [$4 $3, $2].",
-'filedelete-comment'          => 'Rason:',
-'filedelete-submit'           => 'Ikkaten',
-'filedelete-success'          => "Naikkaten ti '''$1'''.",
-'filedelete-success-old'      => "Ti version iti '''[[Media:$1|$1]]''' nakarugi idi $3, $2 ket naikkaten.",
-'filedelete-nofile'           => "awan ti '''$1''' .",
-'filedelete-nofile-old'       => "Awan ti nailebbeng a version ti '''$1''' nga addaan ti naited nga kakitkita na.",
-'filedelete-otherreason'      => 'Sabali/nayon a rason:',
-'filedelete-reason-otherlist' => 'Sabali a rason',
-'filedelete-reason-dropdown'  => '*Kadawyan a rasrason ti pannakaikkat
+'filedelete'                   => 'Ikkaten ti $1',
+'filedelete-legend'            => 'ikkaten ti papeles',
+'filedelete-intro'             => "Makarugi ka agikkat ti '''[[Media:$1|$1]]''' ken dagiti amin nga pa pakasaritaan na.",
+'filedelete-intro-old'         => "Ikikatem ti version daytoy '''[[Media:$1|$1]]''' nangrugi idi [$4 $3, $2].",
+'filedelete-comment'           => 'Rason:',
+'filedelete-submit'            => 'Ikkaten',
+'filedelete-success'           => "Naikkaten ti '''$1'''.",
+'filedelete-success-old'       => "Ti version iti '''[[Media:$1|$1]]''' nakarugi idi $3, $2 ket naikkaten.",
+'filedelete-nofile'            => "awan ti '''$1''' .",
+'filedelete-nofile-old'        => "Awan ti nailebbeng a version ti '''$1''' nga addaan ti naited nga kakitkita na.",
+'filedelete-otherreason'       => 'Sabali/nayon a rason:',
+'filedelete-reason-otherlist'  => 'Sabali a rason',
+'filedelete-reason-dropdown'   => '*Kadawyan a rasrason ti pannakaikkat
 ** Panagsalungasing iti kaberngan ti pagkopya
 ** Nadoble a papeles',
-'filedelete-edit-reasonlist'  => 'Baliwan ti rason ti pinaikkat',
-'filedelete-maintenance'      => 'Temporario nga naiddep ti pinagikkat ken pinagisubli dagiti papeles iti damdama a pinagsimpa.',
+'filedelete-edit-reasonlist'   => 'Baliwan ti rason ti pinaikkat',
+'filedelete-maintenance'       => 'Temporario nga naiddep ti pinagikkat ken pinagisubli dagiti papeles iti damdama a pinagsimpa.',
+'filedelete-maintenance-title' => 'Saan nga maikkat daytoy a papeles',
 
 # MIME search
 'mimesearch'         => 'Pagbirok ti MIME',
@@ -1780,8 +1781,8 @@ Pangngaasi a laglagipen nga dagiti sabali nga web site ket makapanilpo ti papele
 'booksources-invalid-isbn'  => 'Ti naited nga ISBN ket kasla saan a napudno; kitaen dagiti biddut ti pinagkopya kadagiti nagappuanna a taudan.',
 
 # Special:Log
-'specialloguserlabel'  => 'Agar-aramat:',
-'speciallogtitlelabel' => 'Titulo:',
+'specialloguserlabel'  => 'Ti nagaramid:',
+'speciallogtitlelabel' => 'Puntaan (titulo wenno agus-usar) :',
 'log'                  => 'Dagiti listaan',
 'all-logs-page'        => 'Dagiti listaan nga publiko',
 'alllogstext'          => 'Naipagtipon a pinagpakita kadagiti amin nga adda alistaan ti {{SITENAME}}.
@@ -1825,8 +1826,9 @@ Kitaen met ti [[Special:WantedCategories|dagiti makidkiddaw nga kategoria]].',
 'linksearch-pat'  => 'Kita ti pinagbirok:',
 'linksearch-ns'   => 'Namespace:',
 'linksearch-ok'   => 'Biroken',
-'linksearch-text' => 'Ti wildcard a kas "*.wikipedia.org" ket mabalin nga usaren.<br />
-Nasuportaran a protokol: <tt>$1</tt>',
+'linksearch-text' => 'Ti wildcard a kas "*.wikipedia.org" ket mabalin nga usaren.
+Masapul ti kangatuan a domain, a kaspagarigan "*.org".<br />
+Nasuportaran a protokol: <tt>$1</tt> (saan mo nga inayun dagitoy iti pinagbirok mo) .',
 'linksearch-line' => '$1 ket nakasilpo idiay $2',
 
 # Special:ListUsers
@@ -2866,20 +2868,30 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 'exif-headline'                    => 'Paulo',
 'exif-credit'                      => 'Pammadayaw/Nangted',
 'exif-source'                      => 'Taudan',
+'exif-locationdest'                => 'Lugar a naibaga',
+'exif-locationdestcode'            => 'Kodigo ti lugar a naibaga',
 'exif-writer'                      => 'Mannurat',
 'exif-languagecode'                => 'Pagsasao',
 'exif-iimversion'                  => 'Version ti IIM',
 'exif-iimcategory'                 => 'Kategoria',
+'exif-iimsupplementalcategory'     => 'Dagiti sabali pay a kategoria',
 'exif-datetimeexpires'             => 'Saan nga usaren ti kallabes nga',
 'exif-datetimereleased'            => 'Nakairuar idi',
 'exif-cameraownername'             => 'Akinkukua ti kamera',
 'exif-copyrighted'                 => 'Kasasaad ti karbengan-panagipablaak',
 'exif-copyrightowner'              => 'Akinkukua ti kaberngan ti kopya',
 'exif-licenseurl'                  => 'URL iti ti karbengan ti kopya a lisensia',
+'exif-attributionurl'              => 'No usaren manen daytoy nga obra, pangngaasi ta isilpo idiay',
+'exif-preferredattributionname'    => 'No usaren manen daytoy nga obra, pangngaasi ta padayawen ni',
 'exif-pngfilecomment'              => 'Komento ti PNG a papeles',
 'exif-contentwarning'              => 'Ballaag ti nagyan',
 'exif-giffilecomment'              => 'Komento ti GIF a papeles',
 'exif-subjectnewscode'             => 'Kodigo ti sujeto',
+'exif-event'                       => 'Paspasamak a naibaga',
+'exif-organisationinimage'         => 'Kaurnusan a naibaga',
+'exif-personinimage'               => 'Ti tao a naibaga',
+'exif-originalimageheight'         => 'Kangato ti imahen sakbay nga naputed',
+'exif-originalimagewidth'          => 'Kalawa ti imahen sakbay nga naputed',
 
 # EXIF attributes
 'exif-compression-1' => 'Uncompressed',
@@ -3038,7 +3050,11 @@ Dagiti dadduma ket mailemmeng a kinasigud.
 
 'exif-isospeedratings-overflow' => 'Dakdakkel ngem 65535',
 
+'exif-iimcategory-edu' => 'Edukasyon',
 'exif-iimcategory-hth' => 'Salun-at',
+'exif-iimcategory-lab' => 'Trabaho',
+'exif-iimcategory-pol' => 'Dagiti politiko',
+'exif-iimcategory-rel' => 'Relihion ken pammati',
 'exif-iimcategory-spo' => 'Ay-ayam',
 'exif-iimcategory-wea' => 'Panawen',
 

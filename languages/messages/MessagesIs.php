@@ -2931,6 +2931,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-focalplaneresolutionunit'    => 'Eining upplausnar brennidepils flatar',
 'exif-subjectlocation'             => 'Staðsetning viðfangsefnis',
 'exif-exposureindex'               => 'Vísistala lýsingar',
+'exif-sensingmethod'               => 'Skynjun',
 'exif-filesource'                  => 'Uppruni skráar',
 'exif-scenetype'                   => 'Myndefni',
 'exif-customrendered'              => 'Sérstök myndvinnsla',

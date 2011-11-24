@@ -669,33 +669,34 @@ Behin-behineko pasahitza: $2',
 'summary-preview'                  => 'Laburpenaren aurreikuspena:',
 'subject-preview'                  => 'Gaia/Izenburuaren aurreikuspena:',
 'blockedtitle'                     => 'Erabiltzailea blokeatuta dago',
-'blockedtext'                      => "'''Zure lankide izena edo IP helbidea blokeaturik dago'''
-Blokeoa $1(e)k egin zuen.
-Emandako arrazoia ''$2'' da.
+'blockedtext'                      => "'''Zure erabiltzaile izena edo IP helbidea blokeaturik dago.'''
+
+$1 administratzaileak ezarri du blokeoa.
+Emandako arrazoia hau da: ''$2''.
 
 * Blokeoaren hasiera: $8
 * Blokeoaren bukaera: $6
-* Blokeoaren intentzioa: $7
+* Blokeatua: $7
 
-$1 edo beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batekin kontakta dezakezu blokeaoren inguruan eztabaidatzeko.
-Ezin duzu 'lanki honi e-posta bidali' tresna bidali ez baduzu zuren [[Special:Preferences|hobespenetan]] baliozko e-mail helbide bat jarri edo tresna erabiltzea ere ukatu badizute.
+Blokeoari buruz eztabaidatzeko, jo ezazu $1 administratzailearengana edo beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batengana.
+«Bidali mezu elektronikoa lankide honi» tresna erabili ahal izateko, ezinbestekoa da zure [[Special:Preferences|hobespenetan]] baliozkoa den helbide elektroniko bat emanda izatea, eta tresna hori erabiltzeko aukera zuri blokeatu ez izana.
+Orain duzun IP helbidea $3 da, eta blokeoaren zenbakia #$5 da.
+Eman itzazu datu hauek guztiak, blokeoari buruzko edozein eskaera egitean.",
+'autoblockedtext'                  => "Zure IP helbidea automatikoki blokeaturik dago, $1 administratzaileak blokeatutako beste wikilari batek erabili zuelako. Emandako arrazoia hau da:
 
-Orain duzun IP helbidea $3 da eta zure blokeo zenbakia #$5 da.
-Mesedez, datu guzti hauek idatzi egiten duzun edozein galderarako.",
-'autoblockedtext'                  => 'Zure IP helbidea automatikoki blokeaturik dago, $1(e)k blokeatu zuen beste erabiltzaile batek erabili zuelako. Emandako arrazoia honakoa da:
-
-:\'\'$2\'\'
+:''$2''
 
 * Blokeoaren hasiera: $8
 * Blokeoaren bukaera: $6
-* Blokeo saiakera: $7
+* Blokeatua: $7
 
-$1 edo beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] bat kontakta dezakezu blokeoaren inguruan hitz egiteko.
+Blokeoari buruz eztabaidatzeko, jo ezazu $1 administratzailearengana edo beste [[{{MediaWiki:Grouppage-sysop}}|administratzaile]] batengana.
 
-Ohar zaitez ezin duzula "lankide honi e-mail bat bidali" tresna erabili ez baduzu zuren [[Special:Preferences|hobespenetan]] baliagarria den e-mail helbide bat eman eta gainera tresna hau erabiltzeko aukera ez badizute murriztu.
+«Bidali mezu elektronikoa lankide honi» tresna erabili ahal izateko, ezinbestekoa da zure [[Special:Preferences|hobespenetan]] baliozkoa den helbide elektroniko bat emanda izatea, eta tresna hori erabiltzeko aukera zuri blokeatu ez izana.
 
 Orain duzun IP helbidea $3 da, eta blokeoaren zenbakia #$5 da.
-Mesedez, detaile hauek eman itzazu egin nahi duzun edozein kontsulta egiteko garaian.',
+
+Eman itzazu datu hauek guztiak, blokeoari buruzko edozein eskaera egitean.",
 'blockednoreason'                  => 'ez da arrazoirik zehaztu',
 'whitelistedittext'                => '$1 behar duzu orrialdeak aldatu ahal izateko..',
 'confirmedittext'                  => 'Orrialdeetan aldaketak egin aurretik zure e-posta helbidea egiaztatu beharra daukazu. Mesedez, zehaztu eta egiaztatu zure e-posta helbidea [[Special:Preferences|hobespenetan]].',
@@ -1989,8 +1990,9 @@ beste norbaitek editatu du edo jada desegin du.
 
  Azken aldaketa [[User:$3|$3]](e)k ([[User talk:$3|Eztabaida]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) egin du.',
 'editcomment'      => "Aldaketaren laburpena: \"''\$1''\".",
-'revertpage'       => '$2ren aldaketak ezabatu dira, $1ren azken bertsiora itzuliz.',
-'rollback-success' => '$1(r)en aldaketak desegin dira, $2(r)en azken bertsiora itzuliz.',
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|talk]]) wikilariaren aldaketak deseginda, edukia [[User:$1|$1]] wikilariaren azken bertsiora itzuli da.',
+'rollback-success' => '$1 wikilariaren aldaketak deseginda,
+edukia $2 wikilariaren azken bertsiora itzuli da.',
 
 # Edit tokens
 'sessionfailure-title' => 'Saio-akatsa',
@@ -2287,17 +2289,18 @@ Hala ere, $2-(r)en parte denez, blokeoa kendu daiteke.',
 'move-page'                    => '$1 mugitu',
 'move-page-legend'             => 'Orrialdea mugitu',
 'movepagetext'                 => "Beheko formularioa erabiliz orrialde baten izena aldatuko da, historia osoa izen berrira mugituz.
-Izenburu zaharra izenburu berrira doan berbiderapena bilakatuko da.
-Jatorrizko izenburura doazen berbiderapenak automatikoki egunera ditzakezu.
-Ezetz aukeratzen baduzu, berbiderapen [[Special:DoubleRedirects|bikoitz]] edo [[Special:BrokenRedirects|apurtuak]] egiazta itzazu.
+Izenburu zaharra izenburu berrira daraman birbideratze bilakatuko da.
+Jatorrizko izenburura doazen birbideratzeak automatikoki egunera ditzakezu.
+Ezetz aukeratzen baduzu, egiazta itzazu birbideratze [[Special:DoubleRedirects|bikoitz]] edo [[Special:BrokenRedirects|apurtuak]].
 Loturak modu zuzenean mantentzea zure erantzukizuna da.
 
-Konturatu zaitez orrialdea '''ez''' dela mugituko izenburu berria duen orrialde bat badago jadanik, ez bada aldaketa-historiarik gabeko orrialde huts edo berbiderapen bat.
+Konturatu zaitez orrialdea '''ez''' dela mugituko izenburu berria duen orrialde bat badago jadanik, ez bada aldaketa-historiarik gabeko orrialde huts edo birbideratze bat.
 Horrek esan nahi du hanka sartzekotan orrialde baten jatorrizko izenburua berreskuratu daitekeela, baina ezin dela jada existitzen den orrialde baten gainean idatzi.
 
 '''Oharra!'''
-Honakoa aldaketa drastiko eta ustekabekoa izan daiteke orrialde oso ezagunetan;
-mesedez honen ondorioak ulertzen dituzula ziurta ezazu jarraitu baino lehen.",
+
+Aldaketa hau drastikoa eta ustekabekoa izan daiteke orrialde oso ezagunetan;
+mesedez, egiazta ezazu honen ondorioak ulertzen dituzula, jarraitu baino lehen.",
 'movepagetalktext'             => "Dagokion eztabaida orrialdea berarekin batera mugitu da, honako kasu hauetan '''ezik:'''
 * Hutsik ez dagoen eztabaida orrialde bat existitzen bada izen berrian.
 * Beheko koadroa hautatzen ez baduzu.

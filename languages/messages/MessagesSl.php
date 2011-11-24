@@ -585,8 +585,8 @@ Morda bodo nekatere strani še naprej prikazane, kot da ste prijavljeni, dokler 
 'welcomecreation'            => '== Dobrodošli, $1! ==
 Ustvarili ste račun.
 Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rodilnik|{{SITENAME}}}}]].',
-'yourname'                   => 'Uporabniško ime',
-'yourpassword'               => 'Geslo',
+'yourname'                   => 'Uporabniško ime:',
+'yourpassword'               => 'Geslo:',
 'yourpasswordagain'          => 'Ponovno vpišite geslo',
 'remembermypassword'         => 'Zapomni si me na tem računalniku (za največ $1 {{PLURAL:$1|dan|dneva|dni}})',
 'securelogin-stick-https'    => 'Po prijavi ostani povezan preko HTTPS',

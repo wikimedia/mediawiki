@@ -1131,7 +1131,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 そのページは、すでに存在しています。',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => "'''警告：'''このページでの、高負荷な構文解析関数の呼び出し回数が多過ぎます。
+'expensive-parserfunction-warning'        => "'''警告：'''このページでの、高負荷なパーサー関数の呼び出し回数が多過ぎます。
 
 呼び出しは{{PLURAL:$2|$2}}回以下である必要があります（現在は{{PLURAL:$1|$1}}回）。",
 'expensive-parserfunction-category'       => '高負荷な構文解析関数の呼び出しが多過ぎるページ',
@@ -1199,27 +1199,27 @@ $3による理由は以下の通りです：''$2''",
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-deleted-text-unhide'     => "この版は'''削除されています'''。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。
-管理者は、このまま[$1 この版を見る]ことができます。",
+このまま[$1 この版を見る]ことができます。",
 'rev-suppressed-text-unhide'  => "この版は'''秘匿されています'''。
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。
-管理者は、このまま[$1 この版を見る]ことができます。",
+このまま[$1 この版を見る]ことができます。",
 'rev-deleted-text-view'       => "この版は'''削除されています'''。
-管理者は、内容を見ることができます。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
+内容を見ることができます。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-suppressed-text-view'    => "この版は'''秘匿されています'''。
-管理者は、内容を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
+内容を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
 'rev-deleted-no-diff'         => "どちらかの版が'''削除されているため'''、差分表示できません。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-suppressed-no-diff'      => "指定された差分は'''削除された'''版を含んでいるため表示出来ません。",
 'rev-deleted-unhide-diff'     => "この差分の一方の版は'''削除されています'''。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。
-管理者は、このまま[$1 この差分を見る]ことができます。",
+このまま[$1 この差分を見る]ことができます。",
 'rev-suppressed-unhide-diff'  => "この差分の一方の版は'''秘匿されています'''。
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。
-管理者は、このまま[$1 この差分を見る]ことができます。",
+このまま[$1 この差分を見る]ことができます。",
 'rev-deleted-diff-view'       => "この差分の一方の版は'''削除されています'''。
-管理者は、この差分を見ることができます。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
+この差分を見ることができます。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-suppressed-diff-view'    => "この差分の一方の版は'''秘匿されています'''。
-管理者は、この差分を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
+この差分を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
 'rev-delundel'                => '表示/非表示',
 'rev-showdeleted'             => '表示',
 'revisiondelete'              => '版の削除と復帰',
@@ -1527,8 +1527,8 @@ HTMLタグを見直してください。',
 'prefs-diffs'                   => '差分',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => '有効なようです',
-'email-address-validity-invalid' => '有効なアドレスが必要です!',
+'email-address-validity-valid'   => '電子メールアドレスは有効なようです',
+'email-address-validity-invalid' => '有効な電子メールアドレスを入力してください',
 
 # User rights
 'userrights'                   => '利用者権限の管理',
@@ -1547,8 +1547,8 @@ HTMLタグを見直してください。',
 'userrights-reason'            => '理由：',
 'userrights-no-interwiki'      => '他ウィキ上における利用者権限の編集権限はありません。',
 'userrights-nodatabase'        => 'データベース$1は存在しないか、ローカル上にありません。',
-'userrights-nologin'           => '利用者権限が割り当てられている管理者権限アカウントで[[Special:UserLogin|ログイン]]する必要があります。',
-'userrights-notallowed'        => 'あなたのアカウントには利用者権限を追加又は削除する権限はありません。',
+'userrights-nologin'           => '利用者権限を付与するには、管理者アカウントで[[Special:UserLogin|ログイン]]する必要があります。',
+'userrights-notallowed'        => 'あなたのアカウントには利用者権限を追加または除去する権限がありません。',
 'userrights-changeable-col'    => '変更可能なグループ',
 'userrights-unchangeable-col'  => '変更できないグループ',
 
@@ -1707,7 +1707,7 @@ HTMLタグを見直してください。',
 'minoreditletter'                   => '細',
 'newpageletter'                     => '新',
 'boteditletter'                     => 'ボ',
-'unpatrolledletter'                 => '！',
+'unpatrolledletter'                 => '!',
 'number_of_watching_users_pageview' => '[$1人の利用者がウォッチしています]',
 'rc_categories'                     => 'カテゴリを制限（"|"区切り）',
 'rc_categories_any'                 => 'すべて',
@@ -2175,8 +2175,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'booksources-invalid-isbn'  => '指定されたISBN番号は有効ではないようです。参照している情報源から写し間違えていませんか。',
 
 # Special:Log
-'specialloguserlabel'  => '利用者名：',
-'speciallogtitlelabel' => 'ページ名：',
+'specialloguserlabel'  => '実行者:',
+'speciallogtitlelabel' => '対象（ページまたは利用者）:',
 'log'                  => '記録',
 'all-logs-page'        => 'すべての公開記録',
 'alllogstext'          => '{{SITENAME}}の取得可能な記録がまとめて表示されています。
@@ -3200,44 +3200,44 @@ Variants for Chinese language
 'variantname-zh-cn'   => '中国簡体',
 'variantname-zh-tw'   => '台湾正体',
 'variantname-zh-hk'   => '香港正体',
-'variantname-zh-mo'   => '中国(マカオ)',
+'variantname-zh-mo'   => 'マカオ',
 'variantname-zh-sg'   => 'シンガポール簡体',
-'variantname-zh-my'   => '中国(マレーシア)',
+'variantname-zh-my'   => 'マレーシア',
 'variantname-zh'      => '中文',
 
 # Variants for Gan language
-'variantname-gan-hans' => 'ガガウズ(hans)',
-'variantname-gan-hant' => 'ガガウズ(hant)',
-'variantname-gan'      => 'ガガウズ',
+'variantname-gan-hans' => 'hans',
+'variantname-gan-hant' => 'hant',
+'variantname-gan'      => 'ガガウズ語',
 
 # Variants for Serbian language
-'variantname-sr-ec' => 'セルビア(キリル)',
-'variantname-sr-el' => 'セルビア(ラテン)',
-'variantname-sr'    => 'セルビア',
+'variantname-sr-ec' => 'セルビア語 (キリル文字)',
+'variantname-sr-el' => 'セルビア語 (ラテン文字)',
+'variantname-sr'    => 'セルビア語',
 
 # Variants for Kazakh language
-'variantname-kk-kz'   => 'カザフ(カザフスタン)',
-'variantname-kk-tr'   => 'カザフ(トルコ)',
-'variantname-kk-cn'   => 'カザフ(中国)',
-'variantname-kk-cyrl' => 'カザフ(キリル)',
-'variantname-kk-latn' => 'カザフ(ラテン)',
-'variantname-kk-arab' => 'カザフ(アラブ)',
-'variantname-kk'      => 'カザフ',
+'variantname-kk-kz'   => 'カザフ語 (カザフスタン)',
+'variantname-kk-tr'   => 'カザフ語 (トルコ)',
+'variantname-kk-cn'   => 'カザフ語 (中国)',
+'variantname-kk-cyrl' => 'カザフ語 (キリル文字)',
+'variantname-kk-latn' => 'カザフ語 (ラテン文字)',
+'variantname-kk-arab' => 'カザフ語 (アラビア文字)',
+'variantname-kk'      => 'カザフ語',
 
 # Variants for Kurdish language
-'variantname-ku-arab' => 'クルド(アラブ)',
-'variantname-ku-latn' => 'クルド(ラテン)',
-'variantname-ku'      => 'クルド',
+'variantname-ku-arab' => 'クルド語 (アラビア文字)',
+'variantname-ku-latn' => 'クルド語 (ラテン文字)',
+'variantname-ku'      => 'クルド語',
 
 # Variants for Tajiki language
-'variantname-tg-cyrl' => 'タジク(キリル)',
-'variantname-tg-latn' => 'タジク(ラテン)',
-'variantname-tg'      => 'タジク',
+'variantname-tg-cyrl' => 'タジク語 (キリル文字)',
+'variantname-tg-latn' => 'タジク語 (ラテン文字)',
+'variantname-tg'      => 'タジク語',
 
 # Variants for Inuktitut language
-'variantname-ike-cans' => 'イヌイット(カナダ先住民文字)',
-'variantname-ike-latn' => 'イヌイット(ラテン)',
-'variantname-iu'       => 'イヌクティトゥト',
+'variantname-ike-cans' => 'イヌクティトゥット語 (カナダ先住民文字)',
+'variantname-ike-latn' => 'イヌクティトゥット語 (ラテン文字)',
+'variantname-iu'       => 'イヌクティトゥット語',
 
 # Metadata
 'metadata'          => 'メタデータ',
@@ -3424,17 +3424,24 @@ Variants for Chinese language
 'exif-originaldocumentid'          => '元文書の一意な識別子',
 'exif-licenseurl'                  => '著作権ライセンスの URL',
 'exif-morepermissionsurl'          => '代替ライセンス情報',
+'exif-attributionurl'              => 'この作品を再利用する際に、次のURLにリンクしてください',
+'exif-preferredattributionname'    => 'この作品を再利用する際に、次の帰属表示を使ってください',
 'exif-pngfilecomment'              => 'PNGファイルのコメント',
 'exif-disclaimer'                  => '免責事項',
 'exif-contentwarning'              => 'コンテンツに関する警告',
 'exif-giffilecomment'              => 'GIFファイルのコメント',
+'exif-intellectualgenre'           => '項目の種類',
+'exif-subjectnewscode'             => '主題コード',
 'exif-scenecode'                   => 'IPTC シーンコード',
+'exif-event'                       => '映っている事象',
+'exif-organisationinimage'         => '映っている組織',
+'exif-personinimage'               => '映っている人物',
 'exif-originalimageheight'         => 'トリミングされる前の画像の高さ',
 'exif-originalimagewidth'          => 'トリミングされる前の画像の幅',
 
 # EXIF attributes
-'exif-compression-1' => '非圧縮',
-'exif-compression-6' => 'JPEG圧縮(旧式)',
+'exif-compression-1' => '無圧縮',
+'exif-compression-6' => 'JPEG (旧式)',
 
 'exif-copyrighted-true'  => '著作権あり',
 'exif-copyrighted-false' => 'パブリック・ドメイン',
@@ -3568,6 +3575,10 @@ Variants for Chinese language
 'exif-gpslongitude-e' => '東経',
 'exif-gpslongitude-w' => '西経',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '海抜 $1 {{PLURAL:$1|メートル}}',
+'exif-gpsaltitude-below-sealevel' => '海抜マイナス $1 {{PLURAL:$1|メートル}}',
+
 'exif-gpsstatus-a' => '測位中',
 'exif-gpsstatus-v' => '未測位',
 
@@ -3583,6 +3594,12 @@ Variants for Chinese language
 'exif-gpsdestdistance-k' => 'キロメートル',
 'exif-gpsdestdistance-m' => 'マイル',
 'exif-gpsdestdistance-n' => '海里',
+
+'exif-gpsdop-excellent' => '優秀 ($1)',
+'exif-gpsdop-good'      => '良好 ($1)',
+'exif-gpsdop-moderate'  => '適度 ($1)',
+'exif-gpsdop-fair'      => '中程度 ($1)',
+'exif-gpsdop-poor'      => '劣悪 ($1)',
 
 'exif-objectcycle-a' => '午前中のみ',
 'exif-objectcycle-p' => '午後のみ',
@@ -3883,7 +3900,7 @@ $5
 'version-hooks'                 => 'フック',
 'version-extension-functions'   => '拡張機能関数',
 'version-parser-extensiontags'  => '構文解析拡張機能タグ',
-'version-parser-function-hooks' => '構文解析関数フック',
+'version-parser-function-hooks' => 'パーサー関数フック',
 'version-hook-name'             => 'フック名',
 'version-hook-subscribedby'     => '使用個所',
 'version-version'               => '（バージョン$1）',
@@ -4001,14 +4018,35 @@ MediaWikiは、有用であることを期待して配布されていますが�
 'sqlite-no-fts'  => '$1（全文検索なし）',
 
 # New logging system
-'revdelete-content-hid'   => '本文の不可視化',
-'revdelete-summary-hid'   => '編集要約の不可視化',
-'revdelete-uname-hid'     => '利用者名の不可視化',
-'revdelete-content-unhid' => '本文の可視化',
-'revdelete-summary-unhid' => '編集要約の可視化',
-'revdelete-uname-unhid'   => '利用者名の可視化',
-'revdelete-restricted'    => '管理者に対する制限を適用',
-'revdelete-unrestricted'  => '管理者に対する制限を除去しました',
-'newuserlog-byemail'      => 'パスワードを電子メールで送信しました',
+'logentry-delete-delete'              => '$1 がページ「$3」を{{GENDER:$2|削除しました}}',
+'logentry-delete-restore'             => '$1 がページ「$3」を{{GENDER:$2|復帰しました}}',
+'logentry-delete-event'               => '$1 が$3で{{PLURAL:$5|記録項目|$5件の記録項目}}の閲覧レベルを{{GENDER:$2|変更しました}}: $4',
+'logentry-delete-revision'            => '$1 がページ「$3」で{{PLURAL:$5|版|$5個の版}}の閲覧レベルを{{GENDER:$2|変更しました}}: $4',
+'logentry-delete-event-legacy'        => '$1 が$3で記録項目の閲覧レベルを{{GENDER:$2|変更しました}}',
+'logentry-delete-revision-legacy'     => '$1 がページ「$3」の版の閲覧レベルを{{GENDER:$2|変更しました}}',
+'logentry-suppress-delete'            => '$1 がページ「$3」を{{GENDER:$2|隠蔽しました}}',
+'logentry-suppress-event'             => '$1 が$3で{{PLURAL:$5|記録項目|$5件の記録項目}}の閲覧レベルを見えない形で{{GENDER:$2|変更しました}}: $4',
+'logentry-suppress-revision'          => '$1 がページ「$3」で{{PLURAL:$5|版|$5個の版}}の閲覧レベルを見えない形で{{GENDER:$2|変更しました}}: $4',
+'logentry-suppress-event-legacy'      => '$1 が$3で記録項目の閲覧レベルを見えない形で{{GENDER:$2|変更しました}}',
+'logentry-suppress-revision-legacy'   => '$1 がページ「$3」の版の閲覧レベルを見えない形で{{GENDER:$2|変更しました}}',
+'revdelete-content-hid'               => '本文の不可視化',
+'revdelete-summary-hid'               => '編集要約の不可視化',
+'revdelete-uname-hid'                 => '利用者名の不可視化',
+'revdelete-content-unhid'             => '本文の可視化',
+'revdelete-summary-unhid'             => '編集要約の可視化',
+'revdelete-uname-unhid'               => '利用者名の可視化',
+'revdelete-restricted'                => '管理者に対する制限の適用',
+'revdelete-unrestricted'              => '管理者に対する制限の除去',
+'logentry-move-move'                  => '$1 がページ「$3」を「$4」へと{{GENDER:$2|移動しました}}',
+'logentry-move-move-noredirect'       => '$1 がページ「$3」を「$4」へと、リダイレクトを残さずに{{GENDER:$2|移動しました}}',
+'logentry-move-move_redir'            => '$1 がページ「$3」をリダイレクトの「$4」へと{{GENDER:$2|移動しました}}',
+'logentry-move-move_redir-noredirect' => '$1 がページ「$3」をリダイレクトの「$4」へと、リダイレクトを残さずに{{GENDER:$2|移動しました}}',
+'logentry-patrol-patrol'              => '$1 がページ「$3」の版 $4をパトロール済みと{{GENDER:$2|しました}}',
+'logentry-patrol-patrol-auto'         => '$1 がページ「$3」の版 $4を自動的にパトロール済みと{{GENDER:$2|しました}}',
+'logentry-newusers-newusers'          => '$1 が利用者アカウントを{{GENDER:$2|作成しました}}',
+'logentry-newusers-create'            => '$1 が利用者アカウントを{{GENDER:$2|作成しました}}',
+'logentry-newusers-create2'           => '$1 が{{GENDER:$4|利用者アカウント}}「$3」を{{GENDER:$2|作成しました}}',
+'logentry-newusers-autocreate'        => 'アカウント「$1」が自動的に{{GENDER:$2|作成されました}}',
+'newuserlog-byemail'                  => 'パスワードを電子メールで送信しました',
 
 );
