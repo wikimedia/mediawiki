@@ -55,6 +55,7 @@ class LinkSearchPage extends QueryPage {
 		$target = $request->getVal( 'target', $par );
 		$namespace = $request->getIntorNull( 'namespace', null );
 
+		$protocols_list = array();
 		foreach( $wgUrlProtocols as $prot ) {
 			if ( $prot !== '//' ) {
 				$protocols_list[] = $prot;
