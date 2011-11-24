@@ -37,7 +37,12 @@ $.fn.localize = function( options ) {
 		return mw.msg.apply( mw, args );
 	};
 	return $(this)
-		.find( 'html\\:msg' )
+		// Ok, so here's the story on this selector.
+		// In IE 6/7, searching for 'msg' turns up the 'html:msg', but searching for 'html:msg' does not.
+		// In later IE and other browsers, searching for 'html:msg' turns up the 'html:msg', but searching for 'msg' does not.
+		// So searching for both 'msg' and 'html:msg' seems to get the job done.
+		// This feels pretty icky, though.
+		.find( 'msg,html\\:msg' )
 			.each( function() {
 				var $el = $(this);
 				$el
