@@ -62,6 +62,8 @@ Selected changes since MediaWiki 1.16 that may be of interest:
 * (bug 26486) ResourceLoader modules with paths to nonexistent files cause PHP
   warnings/notices to be thrown
 * (bug 30907) Special:Unusedcategories should sort ascendingly.
+* (bug 30219) The page shown when LocalSettings.php does not exist was broken on
+  Windows servers.
 
 === Changes since 1.17.0rc1 ===
 
