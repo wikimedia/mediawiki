@@ -2640,6 +2640,16 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Determines how long the server has been up
+	 * STUB
+	 *
+	 * @return int
+	 */
+	function getServerUptime() {
+		return 0;
+	}
+
+	/**
 	 * Determines if the last failure was due to a deadlock
 	 * STUB
 	 *
