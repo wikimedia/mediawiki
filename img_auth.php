@@ -36,7 +36,8 @@ wfProfileIn( 'img_auth.php' );
 
 # Set action base paths so that WebRequest::getPathInfo()
 # recognizes the "X" as the 'title' in ../image_auth/X urls.
-$wgActionPaths[] = $_SERVER['SCRIPT_NAME'];
+$wgArticlePath = false; # Don't let a "/*" article path clober our action path
+$wgActionPaths = array( "$wgUploadPath/" );
 
 wfImageAuthMain();
 wfLogProfilingData();
@@ -55,7 +56,11 @@ function wfImageAuthMain() {
 
 	// Get the requested file path (source file or thumbnail)
 	$matches = WebRequest::getPathInfo();
-	$path = $matches['title']; // path with leading '/'
+	$path = $matches['title'];
+	if ( $path && $path[0] !== '/' ) {
+		// Make sure $path has a leading /
+		$path = "/" . $path;
+	}
 
 	// Check for bug 28235: QUERY_STRING overriding the correct extension
 	$whitelist = array();
