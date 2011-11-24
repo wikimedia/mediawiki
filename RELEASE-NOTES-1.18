@@ -4,14 +4,33 @@ Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.18 ==
+2011-11-24
 
-THIS IS NOT A RELEASE YET
+This is the first stable release of the MediaWiki 1.18 branch.
 
-This is a release candidate of the MediaWiki 1.18 branch. Please test it and let us
-know what you think of it. Beta releases are not recommended for use in
-production.
+=== Summary of selected changes in 1.18 ===
 
-=== Changes since 1.18 RC1 ===
+Selected changes since MediaWiki 1.17 that may be of interest:
+
+* Some of the more commonly used MediaWiki extensions are now included in the
+  release tarball. These extensions are ConfirmEdit, Gadgets, Nuke, ParserFunctions,
+  Renameuser, Vector and WikiEditor.
+
+* Gender support has been improved, meaning user pages can display the correct gender
+  variant of "User" can now be used.
+
+* MediaWiki can now detect the camera orientation of an image from the Exif metadata, and
+  can rotate the image thumbnail appropriately. Metadata support has been generally
+  improved, and can now extract IPTC and XMP metadata.
+
+* Improved directionality support in 1.18 means that MediaWiki is better to use for
+  RTL users.
+
+* MediaWiki now supports protocol - relative URLs in links, interwiki targets and $wgServer
+
+* Math support has been removed from core
+
+=== Changes since 1.18.0rc1 ===
 * (bug 32228) regression in Special:Search which did not conserve profile on new search
 * (bug 32460) Categories were improperly aligned in Simple and CologneBlue
 * (bug 32412) TOC links on [[Special:EditWatchlist]] points to the fieldsets
