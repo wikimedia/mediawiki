@@ -343,7 +343,7 @@ pe titlul secțiunii (JavaScript)',
 'tog-ccmeonemails'            => 'Doresc să primesc o copie a mesajelor e-mail pe care le trimit',
 'tog-diffonly'                => 'Nu arăta conținutul paginii sub dif',
 'tog-showhiddencats'          => 'Arată categoriile ascunse',
-'tog-noconvertlink'           => 'Dezactivați conversia titlurilor',
+'tog-noconvertlink'           => 'Dezactivează conversia titlurilor',
 'tog-norollbackdiff'          => 'Nu arăta diferența după efectuarea unei reveniri',
 
 'underline-always'  => 'Întotdeauna',
@@ -1392,7 +1392,7 @@ Aici se află o combinație generată întâmplător pe care o puteți folosi: $
 'prefs-reset-intro'             => 'Poți folosi această pagină pentru a reseta preferințele la valorile implicite.
 Acțiunea nu este reversibilă.',
 'prefs-emailconfirm-label'      => 'Confirmare e-mail:',
-'prefs-textboxsize'             => 'Mărimea căsuței de modificare',
+'prefs-textboxsize'             => 'Mărime căsuță de modificare',
 'youremail'                     => 'Adresa de e-mail:',
 'username'                      => 'Nume de utilizator:',
 'uid'                           => 'ID utilizator:',
@@ -2067,8 +2067,8 @@ Vă rugăm să aveți în vedere faptul că alte saituri web pot avea o legătur
 'booksources-invalid-isbn'  => 'Codul ISBN oferit nu este valid; verificați dacă a fost copiat corect de la sursa originală.',
 
 # Special:Log
-'specialloguserlabel'  => 'Utilizator:',
-'speciallogtitlelabel' => 'Titlu:',
+'specialloguserlabel'  => 'Executant:',
+'speciallogtitlelabel' => 'Destinație (titlu sau utilizator):',
 'log'                  => 'Jurnale',
 'all-logs-page'        => 'Toate jurnalele publice',
 'alllogstext'          => 'Afișare combinată a tuturor jurnalelor {{SITENAME}}.
@@ -2112,8 +2112,9 @@ Vedeți și [[Special:WantedCategories|categoriile dorite]].',
 'linksearch-pat'   => 'De căutat:',
 'linksearch-ns'    => 'Spațiu de nume:',
 'linksearch-ok'    => 'Caută',
-'linksearch-text'  => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.<br />
-Protocoale suportate: <tt>$1</tt>',
+'linksearch-text'  => 'Pot fi folosite metacaractere precum „*.wikipedia.org”.
+Necesită cel puțin un domeniu de nivel superior, cum ar fi „*.org”.<br />
+Protocoale suportate: <tt>$1</tt> (nu adăugați niciunul dintre acestea în câmpul de căutare).',
 'linksearch-line'  => '$1 este legat de $2',
 'linksearch-error' => 'Metacaracterele pot să apară doar la începutul hostname-ului.',
 
@@ -3034,6 +3035,10 @@ Executându-l, sistemul dvs. poate fi compromis.",
 'bydate'                => 'după dată',
 'sp-newimages-showfrom' => 'Arată imaginile noi începând cu $1, ora $2',
 
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'hours-abbrev' => 'o',
+'days-abbrev'  => 'z',
+
 # Bad image list
 'bad_image_list' => 'Formatul este următorul:
 
@@ -3248,6 +3253,7 @@ Altele vor fi ascunse implicit.
 'exif-compression-2' => 'CCITT Grupa 3 Lungimea codificării Huffman modificată de dimensiune 1',
 'exif-compression-3' => 'CCITT Grupa 3 codificare fax',
 'exif-compression-4' => 'CCITT Grupa 4 codificare fax',
+'exif-compression-6' => 'JPEG (vechi)',
 
 'exif-copyrighted-true'  => 'Sub incidența drepturilor de autor',
 'exif-copyrighted-false' => 'Domeniu public',

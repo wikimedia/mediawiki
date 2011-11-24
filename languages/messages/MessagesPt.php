@@ -31,6 +31,7 @@
  * @author Minh Nguyen
  * @author Nuno Tavares
  * @author Paulo Juntas
+ * @author Pedroca cerebral
  * @author Rafael Vargas
  * @author Rei-artur
  * @author Remember the dot
@@ -1371,7 +1372,7 @@ Note, no entanto, que a indexação da {{SITENAME}} neste motor de busca pode es
 'prefs-edit-boxsize'            => 'Dimensões da janela de edição.',
 'rows'                          => 'Linhas:',
 'columns'                       => 'Colunas:',
-'searchresultshead'             => 'Pesquisa',
+'searchresultshead'             => 'Pesquisar',
 'resultsperpage'                => 'Resultados por página:',
 'stub-threshold'                => 'Links para páginas curtas terão <a href="#" class="stub">este formato</a> se elas ocuparem menos de (bytes):',
 'stub-threshold-disabled'       => 'Desactivado',

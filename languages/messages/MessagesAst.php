@@ -1164,7 +1164,7 @@ Esto nun se pue desfacer.',
 'prefs-memberingroups'          => 'Miembru {{PLURAL:$1|del grupu|de los grupos}}:',
 'prefs-registration'            => 'Hora del rexistru:',
 'yourrealname'                  => 'Nome real:',
-'yourlanguage'                  => 'Idioma de los menús:',
+'yourlanguage'                  => 'Llingua:',
 'yourvariant'                   => 'Variante llingüística del conteníu:',
 'yournick'                      => 'Firma:',
 'prefs-help-signature'          => 'Los comentarios nes páxines d\'alderique habría que roblales con "<nowiki>~~~~</nowiki>" que se convertirán na to robla y una marca de tiempu.',
@@ -1569,10 +1569,10 @@ Nun se pue comprobar la seguridá de mou afayadizu.",
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accesu denegáu',
-'img-auth-nopathinfo'       => 'Falta PATH_INFO.
+'img-auth-nopathinfo'       => "Falta PATH_INFO.
 El sirvidor nun ta configuráu pa pasar esta información.
 Pue tar basáu en CGI y nun tener sofitu pa img_auth.
-Visita http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Ver autorización d'imaxes.]",
 'img-auth-notindir'         => 'El camín solicitáu nun ta nel direutoriu de xubíes configuráu.',
 'img-auth-badtitle'         => 'Nun se pue construir un títulu validu dende "$1".',
 'img-auth-nologinnWL'       => 'Nun tas coneutáu y "$1" nun ta na llista blanca.',
@@ -1834,8 +1834,8 @@ Date cuenta de qu'otros sitios web puen enllazar a un ficheru con una URL direut
 'booksources-invalid-isbn'  => 'El códigu ISBN que puxisti nun paez que valga; mira que te vien copiáu de la fonte orixinal.',
 
 # Special:Log
-'specialloguserlabel'  => 'Usuariu:',
-'speciallogtitlelabel' => 'Títulu:',
+'specialloguserlabel'  => 'Pol usuariu:',
+'speciallogtitlelabel' => 'Col títulu:',
 'log'                  => 'Rexistros',
 'all-logs-page'        => 'Tolos rexistros públicos',
 'alllogstext'          => "Visualización combinada de tolos rexistros disponibles de {{SITENAME}}.
@@ -1879,7 +1879,9 @@ Ver tamién les [[Special:WantedCategories|categoríes más buscaes]].",
 'linksearch-pat'   => 'Patrón de busca:',
 'linksearch-ns'    => 'Espaciu de nomes:',
 'linksearch-ok'    => 'Guetar',
-'linksearch-text'  => 'Puen usase comodinos como "*.wikipedia.org".<br />Protocolos almitíos: <tt>$1</tt>',
+'linksearch-text'  => 'Se puen usar comodinos como "*.wikipedia.org".
+Necesita polo menos un dominiu de primer nivel, como "*.org".<br />
+Protocolos almitíos: <tt>$1</tt> (nun amiestes dengún d\'estos na to gueta).',
 'linksearch-line'  => '$1 enllaciáu dende $2',
 'linksearch-error' => 'Los comodinos namái puen apaecer al entamu del nome del güéspede.',
 

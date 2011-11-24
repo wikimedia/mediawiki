@@ -511,7 +511,7 @@ $messages = array(
 
 # Cologne Blue skin
 'qbfind'         => 'Finden',
-'qbbrowse'       => 'Blättern',
+'qbbrowse'       => 'Durchsuchen',
 'qbedit'         => 'Bearbeiten',
 'qbpageoptions'  => 'Seitenoptionen',
 'qbpageinfo'     => 'Seitendaten',
@@ -604,7 +604,7 @@ $1',
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Über {{SITENAME}}',
 'aboutpage'            => 'Project:Über',
-'copyright'            => 'Inhalt ist verfügbar unter der $1.',
+'copyright'            => 'Inhalt ist verfügbar unter der Lizenz $1.',
 'copyrightpage'        => '{{ns:project}}:Urheberrechte',
 'currentevents'        => 'Aktuelle Ereignisse',
 'currentevents-url'    => 'Project:Aktuelle Ereignisse',
@@ -1602,7 +1602,7 @@ Dies kann nicht mehr rückgängig gemacht werden.',
 'rightslog'                  => 'Rechte-Logbuch',
 'rightslogtext'              => 'Dies ist das Logbuch der Änderungen der Benutzerrechte.',
 'rightslogentry'             => 'änderte die Benutzerrechte für „$1“ von „$2“ auf „$3“',
-'rightslogentry-autopromote' => 'die Zuordnung zur Benutzergruppe wurde automatisch von „$2“ in „$3“ geändert',
+'rightslogentry-autopromote' => 'wurde automatisch von „$2“ nach „$3“ zugeordnet',
 'rightsnone'                 => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -2037,7 +2037,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'brokenredirects-edit'   => 'bearbeiten',
 'brokenredirects-delete' => 'löschen',
 
-'withoutinterwiki'         => 'Seiten ohne Links zu anderen Sprachen',
+'withoutinterwiki'         => 'Nicht zu anderen Sprachen verlinkende Seiten',
 'withoutinterwiki-summary' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen.',
 'withoutinterwiki-legend'  => 'Präfix',
 'withoutinterwiki-submit'  => 'Zeige',
@@ -2066,9 +2066,9 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'wantedcategories'        => 'Gewünschte Kategorien',
 'wantedpages'             => 'Gewünschte Seiten',
 'wantedpages-badtitle'    => 'Ungültiger Titel im Ergebnis: $1',
-'wantedfiles'             => 'Fehlende Dateien',
-'wantedtemplates'         => 'Fehlende Vorlagen',
-'mostlinked'              => 'Häufig verlinkte Seiten',
+'wantedfiles'             => 'Gewünschte Dateien',
+'wantedtemplates'         => 'Gewünschte Vorlagen',
+'mostlinked'              => 'Meistverlinkte Seiten',
 'mostlinkedcategories'    => 'Meistbenutzte Kategorien',
 'mostlinkedtemplates'     => 'Meistbenutzte Vorlagen',
 'mostcategories'          => 'Seiten mit den meisten Kategorien',
@@ -2084,7 +2084,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'protectedpages-cascade'  => 'Nur Seiten mit Kaskadenschutz',
 'protectedpagestext'      => 'Diese Spezialseite zeigt alle vor dem Verschieben oder Bearbeiten geschützten Seiten.',
 'protectedpagesempty'     => 'Aktuell sind keine Seiten mit diesen Parametern geschützt.',
-'protectedtitles'         => 'Geschützte Titel',
+'protectedtitles'         => 'Geschützte Seitennamen',
 'protectedtitlestext'     => 'Die folgenden Titel wurden zur Neuerstellung gesperrt.',
 'protectedtitlesempty'    => 'Zurzeit sind mit den angegebenen Parametern keine Seiten zur Neuerstellung gesperrt.',
 'listusers'               => 'Benutzerverzeichnis',
@@ -2117,8 +2117,8 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 Bitte prüfe, ob sie korrekt von der Quelle übertragen wurde.',
 
 # Special:Log
-'specialloguserlabel'  => 'Benutzer:',
-'speciallogtitlelabel' => 'Titel:',
+'specialloguserlabel'  => 'Ausführender Benutzer:',
+'speciallogtitlelabel' => 'Ziel (Titel oder Benutzer):',
 'log'                  => 'Logbücher',
 'all-logs-page'        => 'Alle öffentlichen Logbücher',
 'alllogstext'          => 'Dies ist die kombinierte Anzeige aller in {{SITENAME}} geführten Logbücher.
@@ -2162,7 +2162,7 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'linksearch-pat'   => 'Suchmuster:',
 'linksearch-ns'    => 'Namensraum:',
 'linksearch-ok'    => 'Suchen',
-'linksearch-text'  => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Wildcards wie beispielsweise <tt>*.example.com</tt> benutzt werden.<br />Unterstützte Protokolle: <tt>$1</tt>',
+'linksearch-text'  => 'Diese Spezialseite ermöglicht die Suche nach Seiten, in denen bestimmte Weblinks enthalten sind. Dabei können Platzhalter wie beispielsweise <tt>*.beispiel.de</tt> benutzt werden. Es muss mindestens eine Top-Level-Domain, z. B. „*.org“. angegeben werden. <br />Unterstützte Protokolle: <tt>$1</tt> (Diese bitte nicht bei der Suchanfrage angeben.)',
 'linksearch-line'  => '$1 ist verlinkt von $2',
 'linksearch-error' => 'Wildcards können nur am Anfang der URL verwendet werden.',
 
@@ -2749,7 +2749,8 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 Die Seite „[[:$1]]“ existiert bereits. Möchtest du diese löschen, um die Seite verschieben zu können?',
 'delete_and_move_confirm'      => 'Ja, Seite löschen',
 'delete_and_move_reason'       => 'gelöscht, um Platz für Verschiebung zu machen',
-'selfmove'                     => 'Ursprungs- und Zielname sind gleich; eine Seite kann nicht auf sich selbst verschoben werden.',
+'selfmove'                     => 'Ursprungs- und Zielname sind gleich.
+Eine Seite kann nicht auf sich selbst verschoben werden.',
 'immobile-source-namespace'    => 'Seiten des „$1“-Namensraums können nicht verschoben werden',
 'immobile-target-namespace'    => 'Seiten können nicht in den „$1“-Namensraum verschoben werden',
 'immobile-target-namespace-iw' => 'Interwiki-Link ist kein gültiges Ziel für Seitenverschiebungen.',
@@ -3673,7 +3674,7 @@ Du kannst auch die [[Special:EditWatchlist|Standardseite]] zum Bearbeiten benutz
 # Watchlist editing tools
 'watchlisttools-view' => 'Beobachtungsliste: Änderungen',
 'watchlisttools-edit' => 'normal bearbeiten',
-'watchlisttools-raw'  => 'Listenformat bearbeiten (Import/Export)',
+'watchlisttools-raw'  => 'im Listenformat bearbeiten (Import/Export)',
 
 # Hijri month names
 'hijri-calendar-m3'  => 'Rabiʿ al-auwal',

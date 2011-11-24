@@ -1708,7 +1708,7 @@ Dit kan nie behoorlik vir sekuriteit nagegaan word nie.",
 'img-auth-nopathinfo'       => 'PATH_INFO word vermis.
 U bediener is nie ingestel om hierdie inligting deur te stuur nie.
 Miskien gebruik dit CGI, waartydens img_auth nie ondersteun word nie.
-Sien http://www.mediawiki.org/wiki/Manual:Image_Authorization vir meer inligting.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Sien regte vir beelde] vir meer inligting.',
 'img-auth-notindir'         => 'Die aangevraagde pad is nie die ingestelde oplaaigids nie.',
 'img-auth-badtitle'         => 'Dit was nie moontlik om \'n geldige bladsynaam van "$1" te maak nie.',
 'img-auth-nologinnWL'       => 'U is nie aangeteken en "$1" is nie op die witlys nie.',
@@ -1875,7 +1875,7 @@ Die beskrywing op die [$2 lêer se inligtingsblad] word hieronder weergegee.',
 'statistics-users-active-desc' => "Gebruikers wat in die afgelope {{PLURAL:$1|dag|$1 dae}} 'n handeling uitgevoer het",
 'statistics-mostpopular'       => 'Mees bekykte bladsye',
 
-'disambiguations'      => 'Bladsye wat onduidelikhede opklaar',
+'disambiguations'      => 'Bladsye wat na dubbelsinnigheidsbladsye skakel',
 'disambiguationspage'  => 'Template:Dubbelsinnig',
 'disambiguations-text' => "Die volgende bladsye skakel na '''dubbelsinnigheidsbladsye'''.
 Die bladsye moet gewysig word om eerder direk na die regte onderwerpe te skakel.<br />

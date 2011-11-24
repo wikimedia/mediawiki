@@ -583,8 +583,8 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'booksources-go' => 'Bá',
 
 # Special:Log
-'specialloguserlabel'  => "Uza-na'in:",
-'speciallogtitlelabel' => 'Títulu:',
+'specialloguserlabel'  => "Uza-na'in ne'ebé halo:",
+'speciallogtitlelabel' => "Objetivu (títulu ka uza-na'in):",
 
 # Special:AllPages
 'allpages'          => 'Pájina hotu',

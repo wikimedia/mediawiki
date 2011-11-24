@@ -1858,8 +1858,8 @@ Prošu wobkedźbuj, zo druhe websydła móža na dataju z direktnym URL wotkazow
 'booksources-invalid-isbn'  => 'Podate ISBN-čisło njezda so płaćiwe być; přepruwuj za zmylkami, z tym zo z orginialneho žórła kopěruješ.',
 
 # Special:Log
-'specialloguserlabel'  => 'Wužiwar:',
-'speciallogtitlelabel' => 'Strona:',
+'specialloguserlabel'  => 'Wukonjer:',
+'speciallogtitlelabel' => 'Cil (titul abo wužiwar):',
 'log'                  => 'Protokole',
 'all-logs-page'        => 'Wšě zjawne protokole',
 'alllogstext'          => 'Kombinowane zwobraznjenje wšěch k dispozicij stejacych protokolow w {{GRAMMAR:lokatiw|{{SITENAME}}}}. Móžeš napohlad wobmjezować, wuběrajo typ protokola, wužiwarske mjeno (dźiwajo na wulkopisanje) abo potrjechu stronu (tež dźiwajo na wulkopisanje).',
@@ -1902,7 +1902,9 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'linksearch-pat'   => 'Pytanski muster:',
 'linksearch-ns'    => 'Mjenowy rum:',
 'linksearch-ok'    => 'Pytać',
-'linksearch-text'  => 'Zastupniske znamjenja kaž "*.wikipedia.org" smědźa so wužiwać.<br />Podpěrowane protokole: <tt>$1</tt>',
+'linksearch-text'  => 'Zastupniske znamješka kaž "*.wikipedia.org" móža so wužiwać.
+Znajmjeńša hłowna domena je trěbna, na přikład "*.org".<br />
+Podpěrowane protokole: <tt>$1</tt> (prošu njepodaj je w swojim pytanje).',
 'linksearch-line'  => '$1 je z $2 wotkazany.',
 'linksearch-error' => 'Zastupniske znamjenja dadźa so jenož na spočatku URL wužiwać.',
 
@@ -2938,7 +2940,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'exif-source'                      => 'Žórło',
 'exif-editstatus'                  => 'Wobdźěłowanski status wobraza',
 'exif-urgency'                     => 'Nuznosć',
-'exif-fixtureidentifier'           => 'Objektowe mjeno',
+'exif-fixtureidentifier'           => 'Mjeno kolumny',
 'exif-locationdest'                => 'Zwobraznjene městno',
 'exif-locationdestcode'            => 'Kod za zwobraznjene městno',
 'exif-objectcycle'                 => 'Čas dnja, za kotryž medij je mysleny',

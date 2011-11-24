@@ -1534,7 +1534,7 @@ $1',
 'statistics-users-active-desc' => 'Àwọn oníṣe tí wọ́n ti ṣe ìgbéṣe kan ní {{PLURAL:$1|ọjọ́ kan|ọjọ́ $1}} sẹ́yìn',
 'statistics-mostpopular'       => 'Àwọn ojúewé tí wọ́n jẹ́ wíwò jùlọ',
 
-'disambiguations'     => 'Àwọn ojúewé ìpínsọ́tọ̀',
+'disambiguations'     => 'Àwọn ojúewé tó jápọ̀ mọ́ àwọn ojúewé ìṣeojútùú',
 'disambiguationspage' => 'Template:ojútùú',
 
 'doubleredirects'            => 'Àwọn àtúnjúwe ẹ̀mẹjì',
@@ -1637,7 +1637,7 @@ Bákannáà ẹ wo [[Special:WantedCategories|àwọn ẹ̀ka wíwá]].',
 'sp-deletedcontributions-contribs' => 'àwọn àfikún',
 
 # Special:LinkSearch
-'linksearch'      => "Àwọn ìjápọ̀ s'íta",
+'linksearch'      => 'Àwáàrí àwọn àjápọ̀ òde',
 'linksearch-ns'   => 'Orúkọàyè:',
 'linksearch-ok'   => 'Ṣàwárí',
 'linksearch-line' => '$1 jẹ́ jíjápọ̀ láti $2',

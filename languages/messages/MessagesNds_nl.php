@@ -1774,10 +1774,10 @@ De veiligheid kan niet ekontroleerd wörden.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Toegang eweigerd',
-'img-auth-nopathinfo'       => 'PATH_INFO onbreek.
+'img-auth-nopathinfo'       => 'PATH_INFO ontbrik.
 Joew server is niet in-esteld um disse informasie deur te geven.
-Misschien gebruuk disse CGI, en dan wörden img_auth niet ondersteund.
-Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization veur meer informasie',
+Misschien gebruukt disse CGI, en dan wörden img_auth niet ondersteund.
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Zie aofbeeldingsauthorisasie.]',
 'img-auth-notindir'         => 't Op-evreugen pad is niet de in-estelde bestaandinlaodmap',
 'img-auth-badtitle'         => 'Kon gien geldige paginanaam maken van "$1".',
 'img-auth-nologinnWL'       => 'Je bin niet an-emeld en "$1" steet niet op de witte lieste.',
@@ -1939,7 +1939,7 @@ Vergeet niet de verwiezingen nao te kieken veurda\'j de mal vortdoon.',
 'statistics-users-active-desc' => 'Gebrukers die de veurbieje {{PLURAL:$1|dag|$1 dagen}} n haandeling uutevoerd hebben',
 'statistics-mostpopular'       => "Meestbekeken pagina's",
 
-'disambiguations'      => "Deurverwiespagina's",
+'disambiguations'      => "Pagina's die verwiezen naor deurverwiespagina's",
 'disambiguationspage'  => 'Template:Dv',
 'disambiguations-text' => "De onderstaonde pagina's verwiezen naor n '''deurverwiespagina'''. Disse verwiezingen mutten eigenliks rechtstreeks verwiezen naor t juuste onderwarp.
 

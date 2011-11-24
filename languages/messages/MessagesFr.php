@@ -756,7 +756,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'yourname'                   => 'Nom d’utilisateur :',
 'yourpassword'               => 'Mot de passe :',
 'yourpasswordagain'          => 'Confirmez le mot de passe :',
-'remembermypassword'         => 'Me reconnecter automatiquement aux prochaines visites (au maximum $1 {{PLURAL:$1|jour|jours}})',
+'remembermypassword'         => 'Me reconnecter automatiquement aux prochaines visites avec ce navigateur (au maximum $1 {{PLURAL:$1|jour|jours}})',
 'securelogin-stick-https'    => 'Rester connecté en HTTPS après la connexion',
 'yourdomainname'             => 'Votre domaine',
 'externaldberror'            => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
@@ -1836,10 +1836,10 @@ Il ne peut pas être correctement vérifé pour la sécurité.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accès refusé',
-'img-auth-nopathinfo'       => 'PATH_INFO manquant.
+'img-auth-nopathinfo'       => "PATH_INFO manquant.
 Votre serveur n’est pas paramétré pour passer cette information.
 Il fonctionne peut-être en CGI et ne supporte pas img_auth.
-Consultez http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Voyez les droits d'image.]",
 'img-auth-notindir'         => "Le chemin demandé n’est pas le répertoire d'import configuré.",
 'img-auth-badtitle'         => 'Impossible de construire un titre valide à partir de « $1 ».',
 'img-auth-nologinnWL'       => 'Vous n’êtes pas connecté et « $1 » n’est pas dans la liste blanche.',
@@ -2105,8 +2105,8 @@ Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier
 'booksources-invalid-isbn'  => 'L’ISBN donné ne semble pas être correct ; vérifiez si vous avez fait une erreur en copiant la source originale.',
 
 # Special:Log
-'specialloguserlabel'  => 'Utilisateur :',
-'speciallogtitlelabel' => 'Titre :',
+'specialloguserlabel'  => 'Artiste:',
+'speciallogtitlelabel' => 'Cible (titre ou utilisateur):',
 'log'                  => 'Journaux d’opérations',
 'all-logs-page'        => 'Tous les journaux publics',
 'alllogstext'          => 'Affichage combiné de tous les journaux disponibles sur {{SITENAME}}.<br />
@@ -2150,8 +2150,9 @@ Voyez aussi [[Special:WantedCategories|les catégories demandées]].',
 'linksearch-pat'   => 'Expression recherchée :',
 'linksearch-ns'    => 'Espace de noms :',
 'linksearch-ok'    => 'Rechercher',
-'linksearch-text'  => 'Des caractères « jokers » peuvent être utilisés, par exemple <code>*.wikipedia.org</code>.<br />
-Protocoles reconnus : <tt>$1</tt>.',
+'linksearch-text'  => 'Des caractères jokers comme "*.wikipedia.org" peuvent être utilisés.
+Ils nécessitent au moins un domaine de niveau supérieur, par exemple "*.org".<br />
+Protocoles reconnus : <tt>$1</tt> (n\'ajoutez aucun de ceux-ci dans votre recherche).',
 'linksearch-line'  => '$1 est lié depuis $2',
 'linksearch-error' => 'Les caractères jokers ne peuvent être utilisés qu’au début du nom de domaine de l’hôte.',
 

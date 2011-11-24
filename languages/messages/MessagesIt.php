@@ -1705,7 +1705,7 @@ Non può essere adeguatamente controllato per la sicurezza.',
 'img-auth-nopathinfo'       => 'PATH_INFO mancante.
 Il server non è impostato per passare questa informazione.
 Potrebbe essere basato su CGI e non può supportare img_auth.
-Consultare http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Consultare la documentazione.]',
 'img-auth-notindir'         => 'Il percorso richiesto non si trova nella directory di upload configurata.',
 'img-auth-badtitle'         => 'Impossibile costruire un titolo valido da "$1".',
 'img-auth-nologinnWL'       => 'Non si è effettuato l\'accesso e "$1" non è nella whitelist.',
@@ -1967,8 +1967,8 @@ Potrebbero essere presenti immagini che sono usate da altri siti con un collegam
 'booksources-invalid-isbn'  => "L'ISBN inserito sembra non essere valido; verificare che non siano stati commessi errori nel copiarlo dalla fonte originale.",
 
 # Special:Log
-'specialloguserlabel'  => 'Utente:',
-'speciallogtitlelabel' => 'Titolo:',
+'specialloguserlabel'  => 'Azione effettuata da:',
+'speciallogtitlelabel' => 'Azione effettuata su:',
 'log'                  => 'Log',
 'all-logs-page'        => 'Tutti i registri pubblici',
 'alllogstext'          => "Presentazione unificata di tutti i registri di {{SITENAME}}.

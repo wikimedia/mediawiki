@@ -1623,7 +1623,7 @@ De veiligheid kin neet waere gekónterleerdj.",
 'img-auth-nopathinfo'       => 'PATH_INFO óntbrèk.
 Diene server is neet ingesteld om dees informatie door te gaeve.
 Misjien gebroek deze CGI, en dan wört img_auth neet ongersteund.
-Zuuch http://www.mediawiki.org/wiki/Manual:Image_Authorization veur mee informatie.',
+Zuuch [//www.mediawiki.org/wiki/Manual:Image_Authorization aafbeildingsrechte] veur mee informatie.',
 'img-auth-notindir'         => "'t Ópgevraogdje paad is neet de ingestelde uploadmap.",
 'img-auth-badtitle'         => 'Kèn geine geldige paginanaam make van "$1".',
 'img-auth-nologinnWL'       => 'Doe bös neet aangemeld en "$1" steit neet op de witte lies.',
@@ -1786,7 +1786,7 @@ De [$2 pagina mit de besjtandjsbesjrieving] wurt hiejónger weergegaeve.',
 'statistics-users-active-desc' => "Gebroekers die in de aafgeloupe {{PLURAL:$1|daag|$1 daag}} 'ne hanjeling höbbe oetgevoerd",
 'statistics-mostpopular'       => "Meisbekeke pazjena's",
 
-'disambiguations'      => "Verdudelikingspazjena's",
+'disambiguations'      => "Links nao verdudelikingspazjena's",
 'disambiguationspage'  => 'Template:Verdudeliking',
 'disambiguations-text' => "Hiej onger staon pagina's die verwieze nao 'ne '''redirect'''.
 Deze heure waarsjienlik direct nao 't zjuste ongerwerp te verwiezen.<br />
@@ -1888,8 +1888,8 @@ E bestandj kèn hie dös verkieërdj ópgenómme zeen.",
 Controleer of se wellich n fout höbs gemaak bie de inveur.',
 
 # Special:Log
-'specialloguserlabel'  => 'Gebroeker:',
-'speciallogtitlelabel' => 'Titel:',
+'specialloguserlabel'  => 'Oetveurder:',
+'speciallogtitlelabel' => 'Doel (pagina of gebroeker):',
 'log'                  => 'Logbeuk',
 'all-logs-page'        => 'Alle aopenbaar logbeuk',
 'alllogstext'          => "Dit is 't gecombineerd logbook ven {{SITENAME}}. De kins ouch 'n bepaald logbook keze, of filtere op gebroekersnaam of  pazjena, beide huidlettergeveulig.",
@@ -1932,7 +1932,9 @@ Zuuch ouch [[Special:WantedCategories|neet-bestaondje categorieë mit verwiezing
 'linksearch-pat'   => 'Zeukpatroon:',
 'linksearch-ns'    => 'Naamruumde:',
 'linksearch-ok'    => 'Zeuk',
-'linksearch-text'  => 'Wildcards wie "*.wikipedia.org" of "*.org" zeen toegestaon.<br />Supported protocols: <tt>$1</tt>',
+'linksearch-text'  => 'Wildcards wie "*.wikipedia.org" of "*.org" zeen toegestaon.
+Haet mèndestes e toepleveldomein, wie beveurbeildj "*.org".<br />
+Óngerstäönendje protocolle: <tt>$1</tt> (veug dees neet tou in dien zeukópdrach).',
 'linksearch-line'  => '$1 gelink vanaaf $2',
 'linksearch-error' => 'Wildcards zijn alleen toegestaan aan het begin van een hostnaam.',
 

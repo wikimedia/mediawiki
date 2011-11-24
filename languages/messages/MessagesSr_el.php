@@ -1958,8 +1958,8 @@ na kome bi se izvela ova funkcija.',
 'booksources-invalid-isbn'  => 'Naveden ISBN ne izgleda ispravno; proverite da nije došlo do greške prilikom kopiranja iz originalnog izvora.',
 
 # Special:Log
-'specialloguserlabel'  => 'Korisnik:',
-'speciallogtitlelabel' => 'Naslov:',
+'specialloguserlabel'  => 'Izvršilac:',
+'speciallogtitlelabel' => 'Cilj (naslov ili korisnik):',
 'log'                  => 'Protokoli',
 'all-logs-page'        => 'Sve javne istorije',
 'alllogstext'          => 'Kombinovani prikaz svih dostupnih istorija za {{SITENAME}}.
@@ -2003,8 +2003,9 @@ Takođe pogledajte [[Special:WantedCategories|tražene kategorije]].',
 'linksearch-pat'   => 'Obrazac pretrage:',
 'linksearch-ns'    => 'Imenski prostor:',
 'linksearch-ok'    => 'Pretraga',
-'linksearch-text'  => 'Džokeri poput „*.wikipedia.org“ mogu biti korišćeni.<br />
-Podržani protokoli: <tt>$1</tt>',
+'linksearch-text'  => 'Mogu se koristiti džokeri poput „*.wikipedia.org“.<br />
+Potreban je najviši domen, kao „*.org“.<br />
+Podržani protokoli: <tt>$1</tt> (ne stavljajte u pretragu)',
 'linksearch-line'  => 'stranica $1 je povezana sa stranice $2',
 'linksearch-error' => 'Džokeri se mogu pojaviti samo na početku imena hosta.',
 

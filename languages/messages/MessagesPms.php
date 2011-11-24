@@ -1538,7 +1538,7 @@ A peul pa esse controlà da bin për la sicurëssa.",
 'img-auth-nopathinfo'       => "PATH_INFO mancant.
 Sò servent a l'é nen ampostà për passé costa anformassion.
 Peul desse ch'a sia basà an sij CGI e a peul pa mantnì img_auth.
-Ch'a bèica http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+[http://www.mediawiki.org/wiki/Manual:Image_Authorization. Ch'a bèica l'autorisassion dla figura.]",
 'img-auth-notindir'         => "Ël senté ciamà a l'é pa ant ël dossié configurà për carié.",
 'img-auth-badtitle'         => 'As peul pa fesse un tìtol bon për "$1".',
 'img-auth-nologinnWL'       => 'A l\'é pa intrà ant ël sistema e "$1" a l\'é pa ant la lista bianca.',
@@ -1703,7 +1703,7 @@ Ch'as visa ëd controlé che në stamp a-j serva nen a dj'àutri stamp anans che
 'statistics-users-active-desc' => "Utent che a l'han fàit n'assion ant {{PLURAL:$1|l'ùltim di|j'ùltim $1 di}}",
 'statistics-mostpopular'       => "Pàgine ch'a 'ncontro dë pì",
 
-'disambiguations'      => "Pàgine për la gestion dj'omonimìe",
+'disambiguations'      => "Pàgine ch'a men-o vers dle pàgine d'omonimìe",
 'disambiguationspage'  => "Template:Gestion dj'omonimìe",
 'disambiguations-text' => "Ste pàgine-sì a men-o a na '''pàgina ëd gestion dj'omònim''', mach che a dovrìo ëmné bele drit a n'artìcol.<br />
 Na pàgina as trata coma \"pàgina ëd gestion dj'omònim\" se a deuvra në stamp dont l'anliura as treuva ant ël [[MediaWiki:Disambiguationspage]]",
@@ -1847,7 +1847,9 @@ Ch'a bèica ëdcò [[Special:WantedCategories|le categorìe domandà]].",
 'linksearch-pat'   => "Schema d'arsërca:",
 'linksearch-ns'    => 'Spassi nominal:',
 'linksearch-ok'    => 'Sërché',
-'linksearch-text'  => 'As peulo dovresse dij ciapatut coma "*.wikipedia.org".<br />Protocòj ch\'as peulo dovresse: <tt>$1</tt>',
+'linksearch-text'  => 'As peulo dovresse dij ciapatut com "*.wikipedia.org".
+A-i é dabzògn almanch d\'un domini a livel pi àut, për esempi "*.org".<br />
+Protocòj ch\'as peulo dovresse: <tt>$1</tt> (ch\'a gionta gnun ëd costi an soa arserca).',
 'linksearch-line'  => "$1 a l'ha n'anliura ch'a-j riva dzora da $2",
 'linksearch-error' => 'Ij ciapatut as peulo butesse mach an prinsipi dël nòm dël sërvent.',
 
@@ -2150,14 +2152,14 @@ l'avìa travajaje ansima anans che a la scancelèisso.
 'undeletecomment'              => 'Rason:',
 'undeletedarticle'             => 'Pijaita andré "$1"',
 'undeletedrevisions'           => '{{PLURAL:$1|Na revision pijàita|$1 revision pijàite}} andré',
-'undeletedrevisions-files'     => "{{PLURAL:$1|Na|$1}} revision e {{PLURAL:$2|n'|$2&nbsp;}}archivi pijait andré",
-'undeletedfiles'               => "{{PLURAL:$1|N'|$1&nbsp;}}archivi pijait andaré",
-'cannotundelete'               => "Disdëscancelament falì; a peul esse che i fusse antra doi a felo ant l'istess temp e l'àutr a sia riva prima.",
-'undeletedpage'                => "'''$1 a l'é stait pijait andaré'''
+'undeletedrevisions-files'     => "{{PLURAL:$1|Na|$1}} revision e {{PLURAL:$2|n'|$2&nbsp;}}archivi pijàit andré",
+'undeletedfiles'               => "{{PLURAL:$1|N'|$1&nbsp;}}archivi pijàit andaré",
+'cannotundelete'               => "Riprìstin falì; a peul esse che i fusse antra doi a felo ant l'istess temp e l'àutr a sia riva prima.",
+'undeletedpage'                => "'''$1 a l'é stàit pijait andaré'''
 
-Che as varda ël [[Special:Log/delete|Registr djë scancelament]] për ës-ciairé j'ùltim scancelament e disdëscancelament.",
+Che as varda ël [[Special:Log/delete|Registr djë scancelament]] për ës-ciairé j'ùltim scancelament e arcuperassion.",
 'undelete-header'              => "Ch'a varda [[Special:Log/delete|ël registr djë scancelament]] për ës-ciairé j'ùltim dëscancelament.",
-'undelete-search-box'          => 'Arsërca ant le pàgine scancelà',
+'undelete-search-box'          => 'Arserché dle pàgine scancelà',
 'undelete-search-prefix'       => "Smon le pàgine ch'as anandio për:",
 'undelete-search-submit'       => 'Sërca',
 'undelete-no-results'          => "A-i é pa gnun-a pàgina parej ant l'archivi djë scancelassion.",

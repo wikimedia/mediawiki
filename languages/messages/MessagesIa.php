@@ -1944,8 +1944,8 @@ executar iste function.',
 'booksources-invalid-isbn'  => 'Le ISBN date non pare esser valide; verifica que tu non ha facite errores copiante lo del fonte original.',
 
 # Special:Log
-'specialloguserlabel'  => 'Usator:',
-'speciallogtitlelabel' => 'Titulo:',
+'specialloguserlabel'  => 'Executor:',
+'speciallogtitlelabel' => 'Objectivo (titulo o usator):',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Tote le registros public',
 'alllogstext'          => 'Presentation combinate de tote le registros disponibile de {{SITENAME}}.
@@ -1990,8 +1990,9 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'linksearch-pat'   => 'Patrono a cercar:',
 'linksearch-ns'    => 'Spatio de nomines:',
 'linksearch-ok'    => 'Cercar',
-'linksearch-text'  => 'Es possibile usar metacharacteres como in "*.wikipedia.org".<br />
-Protocollos supportate: <tt>$1</tt>',
+'linksearch-text'  => 'Es possibile usar metacharacteres como in "*.wikipedia.org".
+Necessita al minus un dominio de nivello superior, per exemplo "*.org".<br />
+Protocollos supportate: <tt>$1</tt> (non include alcun de istes in tu recerca).',
 'linksearch-line'  => '$1 ligate ab $2',
 'linksearch-error' => 'Le metacharacteres pote apparer solmente al initio del nomine de host.',
 

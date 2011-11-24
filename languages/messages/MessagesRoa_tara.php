@@ -1546,9 +1546,9 @@ Non g'è possibbele verificà pa securezze.",
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accesse negate',
 'img-auth-nopathinfo'       => "No se iacchie PATH_INFO.
-'U server tue non g'è 'mbostate o non ge passe st'mbormazione.
+'U server tune non g'è 'mbostate o non ge passe st'mbormazione.
 Pò essere ca jè basate sus a 'u CGI e non ge pò supportà img_auth.
-Vide http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Vide autorizzazzione de le immaggine.]",
 'img-auth-notindir'         => "'U percorse richieste non ge stè jndr'à cartelle de carecamende configurate",
 'img-auth-badtitle'         => 'Non ge se pò costruì \'nu titele valide da "$1".',
 'img-auth-nologinnWL'       => 'Tu non ge sì collegate e "$1" non ge stè jndr\'à lista vianghe.',
@@ -1718,7 +1718,7 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 'statistics-users-active-desc' => "Sonde l'utinde ca onne fatte quacchecose jndr'à l'urteme {{PLURAL:$1|giurne|$1 giurne}}",
 'statistics-mostpopular'       => 'Pàggene cchiù visitete',
 
-'disambiguations'      => 'Pàggene de disambiguazione',
+'disambiguations'      => 'Pàggene collegate a le pàggene de disambiguazione',
 'disambiguationspage'  => 'Template:disambigue',
 'disambiguations-text' => "Le pàggene seguende appondene a 'na '''pàgene de disambiguazione'''.
 'Nvece avessere appondà a 'a temateca appropriate.<br />
@@ -1866,7 +1866,8 @@ Vide pure [[Special:WantedCategories|Categorije cercate]].",
 'linksearch-ns'    => 'Neimspeise:',
 'linksearch-ok'    => 'Cirche',
 'linksearch-text'  => 'Le wildcard cumme a "*.wikipedia.org" ponne essere ausate.<br />
-Protocolle supportate: <tt>$1</tt>',
+Onne abbesogne almede de \'nu dominie de levèlle ierte, pe esembie "*.org". <br />
+Protocolle supportate: <tt>$1</tt> (no sce aggiungenne nisciune de chiste jndr\'à recerca toje).',
 'linksearch-line'  => '$1 jè pundete da $2',
 'linksearch-error' => "Le wildcard ponne essere ausate sulamende a l'inzie de l'hostname.",
 

@@ -12,6 +12,7 @@
  * @author Dineshjk
  * @author Dsvyas
  * @author Haritosh
+ * @author Rangilo Gujarati
  * @author RaviC
  * @author Sushant savla
  * @author לערי ריינהארט
@@ -638,6 +639,7 @@ Please log in again after you receive it.
 'usernamehasherror'          => 'સભ્યનામમાં ગડબડિયા ચિહ્નો ન હોઈ શકે',
 'login-throttled'            => 'તમે હાલમાં જ ઘણા પ્રવેશ પ્રયત્નો કર્યા.
 કૃપા કરી ફરી પ્રયાસ પહેલાં થોડી રાહ જુઓ.',
+'login-abort-generic'        => 'તમારું પ્રવેશ નિષ્ફળ થયું - છોડી દેવાયું',
 'loginlanguagelabel'         => 'ભાષા: $1',
 'suspicious-userlogout'      => 'લોગ આઉટ કરવાની તમારી વિનંતિ પૂરી ન કરી શકાઇ. એમ લાગે છે કે તેને તૃટિ પામેલ બ્રાઉઝર કે પ્રોક્સી દ્વારા મોકલાઈ હતી.',
 
@@ -664,6 +666,7 @@ Please log in again after you receive it.
 'resetpass-temp-password'   => 'કામચલાવ ગુપ્તસંજ્ઞા:',
 
 # Special:PasswordReset
+'passwordreset'          => 'પાસવર્ડ રીસેટ કરો',
 'passwordreset-legend'   => 'પાસવર્ડ રીસેટ કરો',
 'passwordreset-disabled' => 'આ વિકી પર પાસવર્ડ રીસેટ કરવા પર પ્રતિબંધ છે.',
 'passwordreset-username' => 'સભ્ય નામ:',

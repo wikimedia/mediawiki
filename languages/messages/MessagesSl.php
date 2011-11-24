@@ -583,8 +583,8 @@ Morda bodo nekatere strani še naprej prikazane, kot da ste prijavljeni, dokler 
 'welcomecreation'            => '== Dobrodošli, $1! ==
 Ustvarili ste račun.
 Ne pozabite si prilagoditi vaših [[Special:Preferences|nastavitev {{GRAMMAR:rodilnik|{{SITENAME}}}}]].',
-'yourname'                   => 'Uporabniško ime',
-'yourpassword'               => 'Geslo',
+'yourname'                   => 'Uporabniško ime:',
+'yourpassword'               => 'Geslo:',
 'yourpasswordagain'          => 'Ponovno vpišite geslo',
 'remembermypassword'         => 'Zapomni si me na tem računalniku (za največ $1 {{PLURAL:$1|dan|dneva|dni}})',
 'securelogin-stick-https'    => 'Po prijavi ostani povezan preko HTTPS',
@@ -1977,8 +1977,8 @@ Prosimo, upoštevajte, da se lahko druge spletne strani povezujejo na datoteko z
 'booksources-invalid-isbn'  => 'Za dani ISBN se ne zdi, da je veljaven; preverite za morebitne napake pri kopiranju iz prvotnega vira.',
 
 # Special:Log
-'specialloguserlabel'  => 'Uporabnik:',
-'speciallogtitlelabel' => 'Naslov:',
+'specialloguserlabel'  => 'Izvajalec:',
+'speciallogtitlelabel' => 'Cilj (naslov ali uporabnik):',
 'log'                  => 'Dnevniki',
 'all-logs-page'        => 'Vsi javni dnevniki',
 'alllogstext'          => 'Združeno so prikazani dnevniki sprememb uporabniških pravic, preimenovanj uporabnikov, nalaganja predstavnostnih datotek, prestavljanja in zaščite strani, brisanja, registracij uporabnikov, sprememb položaja botov ter blokiranja in deblokiranja uporabnikov na strani {{SITENAME}}. Pogled lahko zožite z izbiro dnevnika, uporabniškega imena ali strani. Vedite, da polje »Uporabnik« razlikuje med malimi in velikimi črkami.',
@@ -2022,8 +2022,9 @@ Glej tudi [[Special:WantedCategories|želene kategorije]].',
 'linksearch-pat'   => 'Iskalni vzorec:',
 'linksearch-ns'    => 'Imenski prostor:',
 'linksearch-ok'    => 'Išči',
-'linksearch-text'  => 'Jokerje, kot je »*.wikipedia.org«, se lahko uporablja.<br />
-Podprti protokoli: <tt>$1</tt>',
+'linksearch-text'  => 'Nadomestne znake, kot je »*.wikipedia.org«, lahko uporabljate.
+Zahtevana je vsaj najvišja domena, na primer »*.org«.<br />
+Podprti protokoli: <tt>$1</tt> (teh ne dodajte v svoje iskanje).',
 'linksearch-line'  => '$1 povezano iz $2',
 'linksearch-error' => 'Jokerji se lahko pojavijo le na začetku gostiteljskega imena.',
 

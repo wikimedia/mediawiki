@@ -1613,15 +1613,14 @@ Sinu [[Special:Watchlist|jälgimisloendi]] leheküljed on  '''rasvaselt''' esile
 'upload-recreate-warning'     => "'''Hoiatus: Sellise nimega fail on kustutatud või teisaldatud.'''
 
 Selle lehe kustutamis- ja teisaldamislogi on kuvatud siin:",
-'uploadtext'                  => "Järgnevat vormi võid kasutada failide üleslaadimiseks.
-
-Et näha või leida eelnevalt üles laaditud faile vaata [[Special:FileList|failide nimekirja]].
+'uploadtext'                  => "Kasuta allpool olevat vormi failide üleslaadimiseks.
+Et näha või leida eelnevalt üles laaditud faile vaata [[Special:FileList|failide loendit]].
 Üleslaadimiste ajalugu saab uurida [[Special:Log/upload|üleslaadimislogist]], kustutamiste ajalugu [[Special:Log/delete|kustutamislogist]].
 
-Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.jpg]]</nowiki></tt>''' algupäraste mõõtmetega pildi lisamiseks
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.png|200px|thumb|left|kirjeldus]]</nowiki></tt>''' raamiga pisipildi lisamiseks lehekülje vasakusse serva; ''kirjeldus'' kuvatakse pildiallkirjana
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fail.ogg]]</nowiki></tt>''' helifaililingi lisamiseks",
+Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.jpg]]</nowiki></tt>''', et lisada täissuuruses pilt.
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Fail.png|200px|thumb|left|kirjeldus]]</nowiki></tt>''', et lisada lehekülje vasakusse serva raamiga 200 piksli laiune pisipilt koos pildiallkirjaga (''kirjeldus'').
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fail.ogg]]</nowiki></tt>''', et linkida otse failile ilma seda kuvamata.",
 'upload-permitted'            => 'Lubatud failitüübid: $1.',
 'upload-preferred'            => 'Eelistatud failitüübid: $1.',
 'upload-prohibited'           => 'Keelatud failitüübid: $1.',
@@ -1756,10 +1755,10 @@ Selle turvalisust ei saa kontrollida.',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Juurdepääs keelatud',
-'img-auth-nopathinfo'       => "PATH_INFO puudub.
-Sinu veebiserver ei ole seadistatud seda teavet edastama.
-See võib olla CGI-põhine ning ei toeta img_auth'i.
-Vaata http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+'img-auth-nopathinfo'       => 'PATH_INFO puudub.
+Sinu server pole seadistatud seda teavet edastama.
+See võib olla CGI-põhine ja ei toeta img_auth-i.
+Vaata lehekülge "[//www.mediawiki.org/wiki/Manual:Image_Authorization Image Authorization]".',
 'img-auth-notindir'         => 'Soovitud salvestuskoht pole üleslaadimiskataloogi all.',
 'img-auth-badtitle'         => 'Väljendist "$1" ei saa sobivat pealkirja moodustada.',
 'img-auth-nologinnWL'       => 'Sa pole sisselogitud ja "$1" pole valges nimekirjas.',
@@ -2023,8 +2022,8 @@ Pane tähele, et teised võrgukohad võivad viidata failile otselingiga ja seega
 'booksources-invalid-isbn'  => 'Antud ISBN-number ei ole korrektne; kontrolli algallikast kopeerides vigu.',
 
 # Special:Log
-'specialloguserlabel'  => 'Kasutaja:',
-'speciallogtitlelabel' => 'Pealkiri:',
+'specialloguserlabel'  => 'Täitja:',
+'speciallogtitlelabel' => 'Objekt (pealkiri või kasutaja):',
 'log'                  => 'Logid',
 'all-logs-page'        => 'Kõik avalikud logid',
 'alllogstext'          => 'See on {{GRAMMAR:genitive|{{SITENAME}}}} kõigi olemasolevate logide ühendkuva.
@@ -2070,8 +2069,8 @@ Vaata ka [[Special:WantedCategories|puuduvaid kategooriaid]].',
 'linksearch-ns'    => 'Nimeruum:',
 'linksearch-ok'    => 'Otsi',
 'linksearch-text'  => 'Metamärgina võib kasutada tärni, näiteks "*.wikipedia.org".
-
-Toetatud protokollid: <tt>$1</tt>',
+Otsingus peab olema vähemalt tipptaseme domeen, näiteks "*.org".<br />
+Toetatud protokollid: <tt>$1</tt> (otsingus ära neid kasuta).',
 'linksearch-line'  => '$1 on lingitud leheküljelt $2',
 'linksearch-error' => 'Metamärk võib olla ainult internetiaadressi alguses.',
 

@@ -1115,7 +1115,7 @@ IPアドレスは複数の利用者の間で共有されていることがあり
 そのページは、すでに存在しています。',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => "'''警告：'''このページでの、高負荷な構文解析関数の呼び出し回数が多過ぎます。
+'expensive-parserfunction-warning'        => "'''警告：'''このページでの、高負荷なパーサー関数の呼び出し回数が多過ぎます。
 
 呼び出しは{{PLURAL:$2|$2}}回以下である必要があります（現在は{{PLURAL:$1|$1}}回）。",
 'expensive-parserfunction-category'       => '高負荷な構文解析関数の呼び出しが多過ぎるページ',
@@ -1183,27 +1183,27 @@ $3による理由は以下の通りです：''$2''",
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-deleted-text-unhide'     => "この版は'''削除されています'''。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。
-管理者は、このまま[$1 この版を見る]ことができます。",
+このまま[$1 この版を見る]ことができます。",
 'rev-suppressed-text-unhide'  => "この版は'''秘匿されています'''。
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。
-管理者は、このまま[$1 この版を見る]ことができます。",
+このまま[$1 この版を見る]ことができます。",
 'rev-deleted-text-view'       => "この版は'''削除されています'''。
-管理者は、内容を見ることができます。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
+内容を見ることができます。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-suppressed-text-view'    => "この版は'''秘匿されています'''。
-管理者は、内容を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
+内容を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
 'rev-deleted-no-diff'         => "どちらかの版が'''削除されているため'''、差分表示できません。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-suppressed-no-diff'      => "指定された差分は'''削除された'''版を含んでいるため表示出来ません。",
 'rev-deleted-unhide-diff'     => "この差分の一方の版は'''削除されています'''。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。
-管理者は、このまま[$1 この差分を見る]ことができます。",
+このまま[$1 この差分を見る]ことができます。",
 'rev-suppressed-unhide-diff'  => "この差分の一方の版は'''秘匿されています'''。
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。
-管理者は、このまま[$1 この差分を見る]ことができます。",
+このまま[$1 この差分を見る]ことができます。",
 'rev-deleted-diff-view'       => "この差分の一方の版は'''削除されています'''。
-管理者は、この差分を見ることができます。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
+この差分を見ることができます。[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
 'rev-suppressed-diff-view'    => "この差分の一方の版は'''秘匿されています'''。
-管理者は、この差分を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
+この差分を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
 'rev-delundel'                => '表示/非表示',
 'rev-showdeleted'             => '表示',
 'revisiondelete'              => '版の削除と復帰',
@@ -1255,8 +1255,8 @@ $1",
 'revdelete-content'           => '本文',
 'revdelete-summary'           => '編集内容の要約',
 'revdelete-uname'             => '利用者名',
-'revdelete-restricted'        => '管理者に対する制限を適用',
-'revdelete-unrestricted'      => '管理者に対する制限を除去しました',
+'revdelete-restricted'        => '管理者に対する制限の適用',
+'revdelete-unrestricted'      => '管理者に対する制限の除去',
 'revdelete-hid'               => '$1を隠しました',
 'revdelete-unhid'             => '$1の版指定削除を解除しました',
 'revdelete-log-message'       => '$2版に対して$1',
@@ -1519,8 +1519,8 @@ HTMLタグを見直してください。',
 'prefs-diffs'                   => '差分',
 
 # User preference: e-mail validation using jQuery
-'email-address-validity-valid'   => '有効なようです',
-'email-address-validity-invalid' => '有効なアドレスが必要です!',
+'email-address-validity-valid'   => '電子メールアドレスは有効なようです',
+'email-address-validity-invalid' => '有効な電子メールアドレスを入力してください',
 
 # User rights
 'userrights'                   => '利用者権限の管理',
@@ -1539,8 +1539,8 @@ HTMLタグを見直してください。',
 'userrights-reason'            => '理由：',
 'userrights-no-interwiki'      => '他ウィキ上における利用者権限の編集権限はありません。',
 'userrights-nodatabase'        => 'データベース$1は存在しないか、ローカル上にありません。',
-'userrights-nologin'           => '利用者権限が割り当てられている管理者権限アカウントで[[Special:UserLogin|ログイン]]する必要があります。',
-'userrights-notallowed'        => 'あなたのアカウントには利用者権限を追加又は削除する権限はありません。',
+'userrights-nologin'           => '利用者権限を付与するには、管理者アカウントで[[Special:UserLogin|ログイン]]する必要があります。',
+'userrights-notallowed'        => 'あなたのアカウントには利用者権限を追加または除去する権限がありません。',
 'userrights-changeable-col'    => '変更可能なグループ',
 'userrights-unchangeable-col'  => '変更できないグループ',
 
@@ -1682,7 +1682,7 @@ HTMLタグを見直してください。',
 'recentchanges-label-minor'         => 'これは細部の編集です',
 'recentchanges-label-bot'           => 'この編集はボットによって行われました',
 'recentchanges-label-unpatrolled'   => 'この編集はまだ巡回されていません',
-'rcnote'                            => "以下は、$4$5までの{{PLURAL:$2|1日|直前'''$2'''日間}}になされた'''$1'''件の変更です。",
+'rcnote'                            => "$4 $5までの{{PLURAL:$2|'''1'''日|'''$2'''日間}}になされた'''$1'''件の変更は以下のとおりです。",
 'rcnotefrom'                        => "以下は、'''$2'''以降の更新です（最大'''$1'''件）。",
 'rclistfrom'                        => '$1以降の更新を表示する',
 'rcshowhideminor'                   => '細部の編集を$1',
@@ -1699,7 +1699,7 @@ HTMLタグを見直してください。',
 'minoreditletter'                   => '細',
 'newpageletter'                     => '新',
 'boteditletter'                     => 'ボ',
-'unpatrolledletter'                 => '！',
+'unpatrolledletter'                 => '!',
 'number_of_watching_users_pageview' => '[$1人の利用者がウォッチしています]',
 'rc_categories'                     => 'カテゴリを制限（"|"区切り）',
 'rc_categories_any'                 => 'すべて',
@@ -1893,10 +1893,10 @@ $1',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'アクセスが拒否されました',
-'img-auth-nopathinfo'       => 'PATH_INFOが見つかりません。
+'img-auth-nopathinfo'       => 'PATH_INFO が見つかりません。
 サーバーが、この情報を渡すように構成されていません。
-CGIベースで、img_authに対応できない可能性もあります。
-http://www.mediawiki.org/wiki/Manual:Image_Authorization を参照してください。',
+CGI ベースであるため、img_auth に対応できない可能性もあります。
+[//www.mediawiki.org/wiki/Manual:Image_Authorization 画像の認可を参照してください。]',
 'img-auth-notindir'         => '要求されたパスは、設定済みのアップロード用ディレクトリーの中にありません。',
 'img-auth-badtitle'         => '「$1」からは有効なページ名を構築できません。',
 'img-auth-nologinnWL'       => 'ログインしておらず、さらに「$1」はホワイトリストに入っていません。',
@@ -2065,7 +2065,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'statistics-users-active-desc' => '過去$1{{PLURAL:$1|日間}}に何らかの操作を行った利用者',
 'statistics-mostpopular'       => '最も閲覧されているページ',
 
-'disambiguations'      => '曖昧さ回避ページ',
+'disambiguations'      => '曖昧さ回避ページにリンクしているページ',
 'disambiguationspage'  => 'Template:曖昧回避',
 'disambiguations-text' => "以下のページは'''曖昧さ回避ページ'''へリンクしています。
 これらのページは、より適した主題のページへリンクされるべきです。<br />
@@ -2165,8 +2165,8 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'booksources-invalid-isbn'  => '指定されたISBN番号は有効ではないようです。参照している情報源から写し間違えていませんか。',
 
 # Special:Log
-'specialloguserlabel'  => '利用者名：',
-'speciallogtitlelabel' => 'ページ名：',
+'specialloguserlabel'  => '実行者:',
+'speciallogtitlelabel' => '対象（ページまたは利用者）:',
 'log'                  => '記録',
 'all-logs-page'        => 'すべての公開記録',
 'alllogstext'          => '{{SITENAME}}の取得可能な記録がまとめて表示されています。
@@ -2207,12 +2207,13 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'sp-deletedcontributions-contribs' => '投稿記録',
 
 # Special:LinkSearch
-'linksearch'       => '外部リンク',
+'linksearch'       => '外部リンクの検索',
 'linksearch-pat'   => '検索パターン：',
 'linksearch-ns'    => '名前空間：',
 'linksearch-ok'    => '検索',
-'linksearch-text'  => '"*.wikipedia.org" のようにワイルドカードを使うことができます。<br />
-対応プロトコル：<tt>$1</tt>',
+'linksearch-text'  => '"*.wikipedia.org" のようにワイルドカードを使うことができます。
+少なくとも、"*.org" のようなトップレベルドメインが必要です。<br />
+対応プロトコル: <tt>$1</tt> (これらを検索に含めないでください)。',
 'linksearch-line'  => '$1 が $2 からリンクされています',
 'linksearch-error' => 'ワイルドカードはホスト名の先頭でのみ使用できます。',
 
@@ -3186,44 +3187,44 @@ Variants for Chinese language
 'variantname-zh-cn'   => '中国簡体',
 'variantname-zh-tw'   => '台湾正体',
 'variantname-zh-hk'   => '香港正体',
-'variantname-zh-mo'   => '中国(マカオ)',
+'variantname-zh-mo'   => 'マカオ',
 'variantname-zh-sg'   => 'シンガポール簡体',
-'variantname-zh-my'   => '中国(マレーシア)',
+'variantname-zh-my'   => 'マレーシア',
 'variantname-zh'      => '中文',
 
 # Variants for Gan language
-'variantname-gan-hans' => 'ガガウズ(hans)',
-'variantname-gan-hant' => 'ガガウズ(hant)',
-'variantname-gan'      => 'ガガウズ',
+'variantname-gan-hans' => 'hans',
+'variantname-gan-hant' => 'hant',
+'variantname-gan'      => 'ガガウズ語',
 
 # Variants for Serbian language
-'variantname-sr-ec' => 'セルビア(キリル)',
-'variantname-sr-el' => 'セルビア(ラテン)',
-'variantname-sr'    => 'セルビア',
+'variantname-sr-ec' => 'セルビア語 (キリル文字)',
+'variantname-sr-el' => 'セルビア語 (ラテン文字)',
+'variantname-sr'    => 'セルビア語',
 
 # Variants for Kazakh language
-'variantname-kk-kz'   => 'カザフ(カザフスタン)',
-'variantname-kk-tr'   => 'カザフ(トルコ)',
-'variantname-kk-cn'   => 'カザフ(中国)',
-'variantname-kk-cyrl' => 'カザフ(キリル)',
-'variantname-kk-latn' => 'カザフ(ラテン)',
-'variantname-kk-arab' => 'カザフ(アラブ)',
-'variantname-kk'      => 'カザフ',
+'variantname-kk-kz'   => 'カザフ語 (カザフスタン)',
+'variantname-kk-tr'   => 'カザフ語 (トルコ)',
+'variantname-kk-cn'   => 'カザフ語 (中国)',
+'variantname-kk-cyrl' => 'カザフ語 (キリル文字)',
+'variantname-kk-latn' => 'カザフ語 (ラテン文字)',
+'variantname-kk-arab' => 'カザフ語 (アラビア文字)',
+'variantname-kk'      => 'カザフ語',
 
 # Variants for Kurdish language
-'variantname-ku-arab' => 'クルド(アラブ)',
-'variantname-ku-latn' => 'クルド(ラテン)',
-'variantname-ku'      => 'クルド',
+'variantname-ku-arab' => 'クルド語 (アラビア文字)',
+'variantname-ku-latn' => 'クルド語 (ラテン文字)',
+'variantname-ku'      => 'クルド語',
 
 # Variants for Tajiki language
-'variantname-tg-cyrl' => 'タジク(キリル)',
-'variantname-tg-latn' => 'タジク(ラテン)',
-'variantname-tg'      => 'タジク',
+'variantname-tg-cyrl' => 'タジク語 (キリル文字)',
+'variantname-tg-latn' => 'タジク語 (ラテン文字)',
+'variantname-tg'      => 'タジク語',
 
 # Variants for Inuktitut language
-'variantname-ike-cans' => 'イヌイット(カナダ先住民文字)',
-'variantname-ike-latn' => 'イヌイット(ラテン)',
-'variantname-iu'       => 'イヌクティトゥト',
+'variantname-ike-cans' => 'イヌクティトゥット語 (カナダ先住民文字)',
+'variantname-ike-latn' => 'イヌクティトゥット語 (ラテン文字)',
+'variantname-iu'       => 'イヌクティトゥット語',
 
 # Metadata
 'metadata'          => 'メタデータ',
@@ -3377,9 +3378,13 @@ Variants for Chinese language
 'exif-objectname'                  => '短いタイトル',
 'exif-specialinstructions'         => '取扱いに関する特記事項',
 'exif-headline'                    => '見出し',
+'exif-credit'                      => '帰属/提供者',
 'exif-source'                      => 'ソース',
+'exif-editstatus'                  => '画像の編集上の状態',
 'exif-urgency'                     => '緊急',
 'exif-fixtureidentifier'           => 'フィクスチャ名',
+'exif-locationdest'                => '映っている場所',
+'exif-locationdestcode'            => '映っている場所のコード',
 'exif-objectcycle'                 => 'このメディアファイルによって意図されている時間帯',
 'exif-contact'                     => '連絡先情報',
 'exif-writer'                      => '記入者',
@@ -3387,27 +3392,45 @@ Variants for Chinese language
 'exif-iimversion'                  => 'IIM バージョン',
 'exif-iimcategory'                 => 'カテゴリー',
 'exif-iimsupplementalcategory'     => '補足カテゴリー',
+'exif-datetimeexpires'             => '使用期限',
+'exif-datetimereleased'            => '初公開日',
+'exif-originaltransmissionref'     => '原転送位置コード',
+'exif-identifier'                  => '識別子',
 'exif-lens'                        => '使用レンズ',
 'exif-serialnumber'                => 'カメラのシリアル番号',
 'exif-cameraownername'             => 'カメラの所有者',
 'exif-label'                       => 'ラベル',
+'exif-datetimemetadata'            => 'メタデータの最終更新日',
 'exif-nickname'                    => '画像の非公式名',
 'exif-rating'                      => '評価（5点満点）',
+'exif-rightscertificate'           => '権利管理証明書',
 'exif-copyrighted'                 => '著作権情報',
 'exif-copyrightowner'              => '著作権者',
 'exif-usageterms'                  => '使用条件',
+'exif-webstatement'                => 'オンライン上の著作権文',
+'exif-originaldocumentid'          => '元文書の一意な識別子',
+'exif-licenseurl'                  => '著作権ライセンスの URL',
+'exif-morepermissionsurl'          => '代替ライセンス情報',
+'exif-attributionurl'              => 'この作品を再利用する際に、次のURLにリンクしてください',
+'exif-preferredattributionname'    => 'この作品を再利用する際に、次の帰属表示を使ってください',
 'exif-pngfilecomment'              => 'PNGファイルのコメント',
 'exif-disclaimer'                  => '免責事項',
 'exif-contentwarning'              => 'コンテンツに関する警告',
 'exif-giffilecomment'              => 'GIFファイルのコメント',
+'exif-intellectualgenre'           => '項目の種類',
+'exif-subjectnewscode'             => '主題コード',
 'exif-scenecode'                   => 'IPTC シーンコード',
+'exif-event'                       => '映っている事象',
+'exif-organisationinimage'         => '映っている組織',
+'exif-personinimage'               => '映っている人物',
 'exif-originalimageheight'         => 'トリミングされる前の画像の高さ',
 'exif-originalimagewidth'          => 'トリミングされる前の画像の幅',
 
 # EXIF attributes
-'exif-compression-1' => '非圧縮',
-'exif-compression-6' => 'JPEG圧縮(旧式)',
+'exif-compression-1' => '無圧縮',
+'exif-compression-6' => 'JPEG (旧式)',
 
+'exif-copyrighted-true'  => '著作権あり',
 'exif-copyrighted-false' => 'パブリック・ドメイン',
 
 'exif-unknowndate' => '不明な日付',
@@ -3539,6 +3562,10 @@ Variants for Chinese language
 'exif-gpslongitude-e' => '東経',
 'exif-gpslongitude-w' => '西経',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-above-sealevel' => '海抜 $1 {{PLURAL:$1|メートル}}',
+'exif-gpsaltitude-below-sealevel' => '海抜マイナス $1 {{PLURAL:$1|メートル}}',
+
 'exif-gpsstatus-a' => '測位中',
 'exif-gpsstatus-v' => '未測位',
 
@@ -3555,6 +3582,12 @@ Variants for Chinese language
 'exif-gpsdestdistance-m' => 'マイル',
 'exif-gpsdestdistance-n' => '海里',
 
+'exif-gpsdop-excellent' => '優秀 ($1)',
+'exif-gpsdop-good'      => '良好 ($1)',
+'exif-gpsdop-moderate'  => '適度 ($1)',
+'exif-gpsdop-fair'      => '中程度 ($1)',
+'exif-gpsdop-poor'      => '劣悪 ($1)',
+
 'exif-objectcycle-a' => '午前中のみ',
 'exif-objectcycle-p' => '午後のみ',
 'exif-objectcycle-b' => '午後と午前の両方',
@@ -3563,9 +3596,14 @@ Variants for Chinese language
 'exif-gpsdirection-t' => '真方位',
 'exif-gpsdirection-m' => '磁方位',
 
-'exif-dc-date'   => '日付',
-'exif-dc-source' => 'ソースメディア',
-'exif-dc-type'   => 'メディアの種類',
+'exif-dc-contributor' => '貢献者',
+'exif-dc-coverage'    => 'メディアの空間的または時間的範囲',
+'exif-dc-date'        => '日付',
+'exif-dc-publisher'   => '公開者',
+'exif-dc-relation'    => '関連メディア',
+'exif-dc-rights'      => '権利',
+'exif-dc-source'      => 'ソースメディア',
+'exif-dc-type'        => 'メディアの種類',
 
 'exif-rating-rejected' => '却下',
 
@@ -3588,6 +3626,11 @@ Variants for Chinese language
 'exif-iimcategory-spo' => 'スポーツ',
 'exif-iimcategory-war' => '戦争、紛争、動乱',
 'exif-iimcategory-wea' => '天気',
+
+'exif-urgency-normal' => '通常 ($1)',
+'exif-urgency-low'    => '低い ($1)',
+'exif-urgency-high'   => '高い ($1)',
+'exif-urgency-other'  => '利用者定義の優先度 ($1)',
 
 # External editor support
 'edit-externally'      => '外部アプリケーションを使ってこのファイルを編集する',
@@ -3848,7 +3891,7 @@ $1',
 'version-hooks'                 => 'フック',
 'version-extension-functions'   => '拡張機能関数',
 'version-parser-extensiontags'  => '構文解析拡張機能タグ',
-'version-parser-function-hooks' => '構文解析関数フック',
+'version-parser-function-hooks' => 'パーサー関数フック',
 'version-hook-name'             => 'フック名',
 'version-hook-subscribedby'     => '使用個所',
 'version-version'               => '（バージョン$1）',

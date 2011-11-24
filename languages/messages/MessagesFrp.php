@@ -1842,9 +1842,9 @@ Pôt pas étre controlâ tot drêt por la sècuritât.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accès refusâ',
 'img-auth-nopathinfo'       => 'PATH_INFO manquent.
-Voutron sèrvor est pas dèfeni por passar ceta enformacion.
+Voutron sèrvor est pas dèfeni por passar cela enformacion.
 Fonccione pôt-étre en CGI et pués recognêt pas img_auth.
-Vêde http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Vêde los drêts d’émâge.]',
 'img-auth-notindir'         => 'Lo chemin demandâ est pas lo rèpèrtouèro de tèlèchargement configurâ.',
 'img-auth-badtitle'         => 'Empossiblo de construire un titro valido dês « $1 ».',
 'img-auth-nologinnWL'       => 'Vos éte pas branchiê et pués « $1 » est pas dens la lista blanche.',
@@ -2013,7 +2013,7 @@ Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos deva
 'statistics-users-active-desc' => 'Utilisators qu’ont fêt u muens una accion pendent {{PLURAL:$1|lo jorn passâ|los $1 jorns passâs}}',
 'statistics-mostpopular'       => 'Pâges les ples vues',
 
-'disambiguations'      => 'Pâges d’homonimia',
+'disambiguations'      => 'Pâges qu’ont des lims de vers des pâges d’homonimia',
 'disambiguationspage'  => 'Template:Homonimia',
 'disambiguations-text' => "Cetes pâges ont un lim de vers una '''pâge d’homonimia'''.
 Devriant pletout pouentar vers una pâge que vat avouéc.<br />

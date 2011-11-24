@@ -652,18 +652,30 @@ Sy snaź swójo gronidło južo wuspěšnje změnił abo nowe nachylne gronidło
 'resetpass-temp-password'   => 'Nachylne gronidło:',
 
 # Special:PasswordReset
-'passwordreset'              => 'Gronidło slědk stajiś',
-'passwordreset-text'         => 'Wupołni toś ten formular, aby dostał e-mailowe dopomnjeśe k swójim kontowym drobnostkam.',
-'passwordreset-legend'       => 'Gronidło slědk stajiś',
-'passwordreset-disabled'     => 'Slědkstajenja gronidłow su se znjemóžnili na toś tom wikiju.',
-'passwordreset-pretext'      => '{{PLURAL:$1||Zapódaj dołojce jadne ze slědujucych datowych podaśow}}',
-'passwordreset-username'     => 'Wužywarske mě:',
-'passwordreset-domain'       => 'Domena:',
-'passwordreset-email'        => 'E-mailowa adresa:',
-'passwordreset-emailtitle'   => 'Kontowe drobnostki na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
-'passwordreset-emailelement' => 'Wužywarske mě: $1
+'passwordreset'                => 'Gronidło slědk stajiś',
+'passwordreset-text'           => 'Wupołni toś ten formular, aby dostał e-mailowe dopomnjeśe k swójim kontowym drobnostkam.',
+'passwordreset-legend'         => 'Gronidło slědk stajiś',
+'passwordreset-disabled'       => 'Slědkstajenja gronidłow su se znjemóžnili na toś tom wikiju.',
+'passwordreset-pretext'        => '{{PLURAL:$1||Zapódaj dołojce jadne ze slědujucych datowych podaśow}}',
+'passwordreset-username'       => 'Wužywarske mě:',
+'passwordreset-domain'         => 'Domena:',
+'passwordreset-email'          => 'E-mailowa adresa:',
+'passwordreset-emailtitle'     => 'Kontowe drobnostki na {{GRAMMAR:lokatiw|{{SITENAME}}}}',
+'passwordreset-emailtext-ip'   => 'Něchten (nejskerjej ty, z IP-adresu $1) jo dopomnjeśe na twóje kontowe drobnostki za {{SITENAME}} pominał ($4).  {{PLURAL:$3|Slědujuce wužywarske konto jo|Slědujucej wužywarskej konśe stej|Slědujuce wužywarske konta su|Slědujuce wužywarske konta su}} z toś tej e-mailoweju adresu {{PLURAL:$3|zwězane|zwězanej|zwězane|zwězane}}:
+
+$2
+
+{{PLURAL:$3|Toś to nachylne gronidło spadnjo|Toś tej nachylnej gronidle spadnjotej|Toś te nachylne gronidła spadnu|Toś te nachylne gronidła spadnu}} za {{PLURAL:$5|jaden źeń|$5 dnja|$5 dny|$5 dnjow}}.
+Ty by měł se něnto pśizjawiś a nowe gronidło wustajiś. Jolic něchten drugi jo toś to napšašowanje pósłał, abo jolic sy se zasej na spócetne gronidło spomnjeł a wěcej njocoš jo změniś, móžoš toś to zdźělenje ignorěrowaś a swójo stare gronidło dalej wužywaś.',
+'passwordreset-emailtext-user' => 'Wužywaŕ $1 jo dopomnjeśe na twóje kontowe drobnostki za {{SITENAME}} pominał ($4).  {{PLURAL:$3|Slědujuce wužywarske konto jo|Slědujucej wužywarskej konśe stej|Slědujuce wužywarske konta su|Slědlujuce wužywarske konta su}} z toś tej e-mailoweju adresu {{PLURAL:$3|zwězane|zwězanej|zwězane|zwězane}}:
+
+$2
+
+{{PLURAL:$3|Toś to nachylne gronidło spadnjo|Toś tej nachylnej gronidle spadnjotej|Toś te nachylne gronidła spadnu|Toś te nachylne gronidła spadnu}} za {{PLURAL:$5|jaden źeń|$5 dnja|$5 dny|$5 dnjow}}.
+Ty by měł se něnto pśizjawiś a nowe gronidło wustajiś. Jolic něchten drugi jo toś to napšašowanje pósłał, abo jolic sy se zasej na spócetne gronidło spomnjeł a wěcej njocoš jo změniś, móžoš toś to zdźělenje ignorěrowaś a swójo stare gronidło dalej wužywaś.',
+'passwordreset-emailelement'   => 'Wužywarske mě: $1
 Nachylne gronidło: $2',
-'passwordreset-emailsent'    => 'Dopominańska e-mail jo se pósłała.',
+'passwordreset-emailsent'      => 'Dopominańska e-mail jo se pósłała.',
 
 # Edit page toolbar
 'bold_sample'     => 'Tucny tekst',
@@ -1860,8 +1872,8 @@ Pšosym glědaj na to, až druge websedła móžu k drugej dataji z direktnym UR
 'booksources-invalid-isbn'  => 'Pódane ISBN-cysło njezda se płaśiwe byś; pséglědaj za zmólkami, z tym až kopěrujoš z originalnego žrědła.',
 
 # Special:Log
-'specialloguserlabel'  => 'Wužywaŕ:',
-'speciallogtitlelabel' => 'Nadpismo:',
+'specialloguserlabel'  => 'Wuwjeźaŕ:',
+'speciallogtitlelabel' => 'Cel (titel abo wužywaŕ):',
 'log'                  => 'Protokole',
 'all-logs-page'        => 'Wšykne zjawne protokole',
 'alllogstext'          => 'To jo kombiněrowane zwobraznjenje wšyknych we {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji stojecych protokolow. Móžoš naglěd pśez wubraśe protokolowego typa, wužywarskego mjenja (pód źiwanim wjelikopisanja) abo pótrjefjonego boka (teke pód źiwanim wjelikopisanja) wobgranicowaś.',
@@ -1904,8 +1916,9 @@ Glědaj teke [[Special:WantedCategories|póžedane kategorije]].',
 'linksearch-pat'   => 'Pytański muster:',
 'linksearch-ns'    => 'Mjenjowy rum:',
 'linksearch-ok'    => 'Pytaś',
-'linksearch-text'  => 'Jo móžno zastupne znamješka kaž "*.wikipedia.org" wužywaś.<br />
-Pódpěrane protokole: <tt>$1</tt>',
+'linksearch-text'  => 'Jo móžno zastupne znamuška kaž "*.wikipedia.org" wužywaś. 
+Jo nanejmjenjej głowna domena trěbna, na pśikład "*.org"<br />
+Pódpěrane protokole: <tt>$1</tt> (pšosym njepódaj je w swójom pytanju).',
 'linksearch-line'  => '$1 wótkazany z $2',
 'linksearch-error' => 'Zasupne znamješko daju se jano na zachopjeńku URL wužywaś.',
 
@@ -2312,6 +2325,7 @@ Nejnowšy zapisk protokola blokěrowanjow pódawa se dołojce ako referenca:',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] jo se blokěrował.<br />
 Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
 'ipb-blockingself'                => 'Coš samogo blokěrowaś! Coš to napšawdu cyniś?',
+'ipb-confirmhideuser'             => 'Coš rowno wužywarja z nastajenim "wužywarja schowaś" blokěrowaś. To k tomu dowjeźo, až mě wužywarja pódłocyjo se we wšych lisćinach a protokolowych zapiskach. Coš to napšawdu cyniś?',
 'ipb-edit-dropdown'               => 'Pśicyny blokěrowanja wobźěłaś',
 'ipb-unblock-addr'                => '$1 dopušćiś',
 'ipb-unblock'                     => 'Wužywarske mě abo IP-adresu dopušćiś',
@@ -2944,7 +2958,12 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-headline'                    => 'Nadpismo',
 'exif-credit'                      => 'Spomnjenje/Póbitowaŕ',
 'exif-source'                      => 'Žrědło',
+'exif-editstatus'                  => 'Wobzěłowański status wobraza',
 'exif-urgency'                     => 'Nuznosć',
+'exif-fixtureidentifier'           => 'Mě kolumny',
+'exif-locationdest'                => 'Zwobraznjone městno',
+'exif-locationdestcode'            => 'Code zwobraznjonego městna',
+'exif-objectcycle'                 => 'Cas dnja, za kótaryž medium jo myslony',
 'exif-contact'                     => 'Kontaktowe informacije',
 'exif-writer'                      => 'Pisaŕ',
 'exif-languagecode'                => 'Rěc',
@@ -2952,25 +2971,47 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-iimcategory'                 => 'Kategorija',
 'exif-iimsupplementalcategory'     => 'Pśidatne kategorije',
 'exif-datetimeexpires'             => 'Njewužywaś pó',
+'exif-datetimereleased'            => 'Wózjawjony dnja',
+'exif-originaltransmissionref'     => 'Code městna, wót kótaregož jo se foto pśenjasło',
 'exif-identifier'                  => 'Identifikator',
+'exif-lens'                        => 'Wužyty objektiw',
 'exif-serialnumber'                => 'Serijowy numer kamery',
 'exif-cameraownername'             => 'Wobsejźaŕ kamery',
 'exif-label'                       => 'Pomjenjenje',
 'exif-datetimemetadata'            => 'Datum, gaž metadaty su se slědny raz změnili',
+'exif-nickname'                    => 'Nałožne mě wobraza',
+'exif-rating'                      => 'Pógódnośenje (z 5)',
+'exif-rightscertificate'           => 'Certifikat zastojanja pšawow',
 'exif-copyrighted'                 => 'Status awtorskego pšawa',
 'exif-copyrightowner'              => 'Wobsejźaŕ awtorskego pšawa',
 'exif-usageterms'                  => 'Wužywańske wuměnjenja',
+'exif-webstatement'                => 'Online-deklaracija wó awtorskem pšawje',
 'exif-originaldocumentid'          => 'Jasny ID spócetnego dokumenta',
 'exif-licenseurl'                  => 'URL za licencu awtorskego pšawa',
 'exif-morepermissionsurl'          => 'Alternatiwne licencne informacije',
+'exif-attributionurl'              => 'Pśi zasejwužywanju toś togo źěła, wótkaž pšosym na:',
+'exif-preferredattributionname'    => 'Pśi zasejwužywanju toś togo źěła, naspomnjej pšosym',
 'exif-pngfilecomment'              => 'Komentar PNG-dataje',
 'exif-disclaimer'                  => 'Wuzamknjenje rukowanja',
 'exif-contentwarning'              => 'Wopśimjeśowe warnowanje',
 'exif-giffilecomment'              => 'Komentar GIF-dataje',
 'exif-intellectualgenre'           => 'Typ medija',
+'exif-subjectnewscode'             => 'Temowy code',
+'exif-scenecode'                   => 'IPTC-code naglěda',
+'exif-event'                       => 'Zwobraznjone tšojenje',
+'exif-organisationinimage'         => 'Zwobraznjona organizacija',
+'exif-personinimage'               => 'Zwobraznjona wósoba',
+'exif-originalimageheight'         => 'Wusokosć wobraza pśed pśirězowanim',
+'exif-originalimagewidth'          => 'Šyrokosć wobraza pśed pśirězowanim',
 
 # EXIF attributes
 'exif-compression-1' => 'Njekompriměrowany',
+'exif-compression-2' => 'CCITT kupka 3 jadnodimensionalne modificěrowane koděrowanje Huffman běgoweje dłujkosći',
+'exif-compression-3' => 'CCITT kupka 3 faksowe koděrowanje',
+'exif-compression-4' => 'CCITT kupka 4 faksowe koděrowanje',
+
+'exif-copyrighted-true'  => 'Pśez awtorske pšawo šćitany',
+'exif-copyrighted-false' => 'Zjawnosći pśistupny',
 
 'exif-unknowndate' => 'Njeznaty datum',
 
@@ -2987,6 +3028,8 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-planarconfiguration-2' => 'płony format',
 
 'exif-xyresolution-i' => '$1 dpi (dypkow na col)',
+
+'exif-colorspace-65535' => 'Njekalibrěrowany',
 
 'exif-componentsconfiguration-0' => 'njeeksistěrujo',
 
@@ -3050,6 +3093,8 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-sensingmethod-5' => 'Sekwencielny barwowy sensor ruma',
 'exif-sensingmethod-7' => 'Tśilinearny sensor',
 'exif-sensingmethod-8' => 'Sekwencielny barwowy linearny sensor',
+
+'exif-filesource-3' => 'Digitalna stojańskowobrazowa kamera',
 
 'exif-scenetype-1' => 'Direktnje fotografěrowany wobraz',
 
@@ -3121,6 +3166,9 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 
 'exif-gpsdop-excellent' => 'Wuběrny ($1)',
 'exif-gpsdop-good'      => 'Dobry ($1)',
+'exif-gpsdop-moderate'  => 'Wósrědny ($1)',
+'exif-gpsdop-fair'      => 'Akceptabelny ($1)',
+'exif-gpsdop-poor'      => 'Špatny ($1)',
 
 'exif-objectcycle-a' => 'Jano zajtša',
 'exif-objectcycle-p' => 'Jano wjacor',
@@ -3130,7 +3178,11 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'exif-gpsdirection-t' => 'Wopšawdny směr',
 'exif-gpsdirection-m' => 'Magnetiski směr',
 
+'exif-ycbcrpositioning-1' => 'Centrěrowany',
+'exif-ycbcrpositioning-2' => 'Susedny',
+
 'exif-dc-contributor' => 'Sobuźěłaśerje',
+'exif-dc-coverage'    => 'Městny abo casny wobłuk mediuma',
 'exif-dc-date'        => 'Pódaśa datuma',
 'exif-dc-publisher'   => 'Wudawaŕ',
 'exif-dc-relation'    => 'Pśiswójźbne medije',

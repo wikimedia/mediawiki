@@ -1925,8 +1925,8 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'booksources-invalid-isbn'  => 'ISBN yang dinyatakan tidak sah. Sila semak sekali lagi.',
 
 # Special:Log
-'specialloguserlabel'  => 'Pengguna:',
-'speciallogtitlelabel' => 'Tajuk:',
+'specialloguserlabel'  => 'Pelaku:',
+'speciallogtitlelabel' => 'Sasaran (tajuk atau pengguna):',
 'log'                  => 'Log',
 'all-logs-page'        => 'Semua log awam',
 'alllogstext'          => 'Yang berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}. Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna (peka huruf besar), atau nama laman yang terjejas (juga peka huruf besar).',
@@ -1970,7 +1970,8 @@ Lihat juga [[Special:WantedCategories|kategori yang dikehendaki]].',
 'linksearch-ns'    => 'Ruang nama:',
 'linksearch-ok'    => 'Cari',
 'linksearch-text'  => 'Kad bebas seperti "*.wikipedia.org" dibenarkan.<br />
-Protokol yang disokong: <tt>$1</tt>',
+Memerlukan sekurang-kurangnya satu domain peringkat tinggi, cth. "*.org".<br />
+Protokol yang disokong: <tt>$1</tt> (jangan bubuh sebarang protokol ini dalam carian anda)',
 'linksearch-line'  => '$1 dipaut dari $2',
 'linksearch-error' => 'Kad bebas hanya boleh digunakan pada permulaan nama hos.',
 

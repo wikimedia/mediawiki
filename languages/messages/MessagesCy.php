@@ -1895,8 +1895,9 @@ Gweler hefyd [[Special:WantedCategories|categorïau sydd eu hangen]].",
 'linksearch-pat'   => 'Patrwm chwilio:',
 'linksearch-ns'    => 'Parth:',
 'linksearch-ok'    => 'Chwilio',
-'linksearch-text'  => 'Gellir defnyddio cardiau gwyllt megis "*.wikipedia.org".<br />
-Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
+'linksearch-text'  => 'Gellir defnyddio cardiau gwyllt megis "*.wikipedia.org".
+Mae angen parth lefel-uchaf o leiaf, er enghraifft "*.org".<br />
+Protocoliau sy\'n cael eu cynnal: <tt>$1</tt> (peidiwch ag ychwanegu\'r rhain wrth ysgrifennu\'r ymholiad).',
 'linksearch-line'  => 'Mae cysylltiad i gael i $1 oddi wrth $2',
 'linksearch-error' => "Dim ond ar ddechrau enw'r gwesteiwr y gallwch osod cardiau gwyllt.",
 

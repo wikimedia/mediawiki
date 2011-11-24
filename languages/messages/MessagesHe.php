@@ -1858,7 +1858,7 @@ $1',
 'img-auth-nopathinfo'       => 'PATH_INFO חסר.
 השרת אינו מוגדר להעברת מידע זה.
 ייתכן שהוא מבוסס על CGI ולכן אינו יכול לתמוך ב־img_auth.
-[http://www.mediawiki.org/wiki/Manual:Image_Authorization ראו דף עזרה על אישור תמונות].',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization ראו דף עזרה על אישור תמונות].',
 'img-auth-notindir'         => 'הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.',
 'img-auth-badtitle'         => 'לא ניתן ליצור כותרת תקינה מתוך "$1".',
 'img-auth-nologinnWL'       => 'אינכם מחוברים לחשבון והדף "$1" אינו ברשימה המותרת.',
@@ -2126,8 +2126,8 @@ $1',
 'booksources-invalid-isbn'  => 'המסת"ב שניתן כנראה אינו תקין; אנא בדקו אם ביצעתם טעויות בהעתקה מהמידע המקורי.',
 
 # Special:Log
-'specialloguserlabel'  => 'משתמש:',
-'speciallogtitlelabel' => 'כותרת:',
+'specialloguserlabel'  => 'בוצעו על ידי המשתמש:',
+'speciallogtitlelabel' => 'יעד (כותרת או משתמש):',
 'log'                  => 'יומנים',
 'all-logs-page'        => 'כל היומנים הציבוריים',
 'alllogstext'          => 'תצוגה משולבת של כל סוגי היומנים הזמינים ב{{grammar:תחילית|{{SITENAME}}}}.
@@ -2171,8 +2171,9 @@ $1',
 'linksearch-pat'   => 'תבנית קישור לחיפוש:',
 'linksearch-ns'    => 'מרחב שם:',
 'linksearch-ok'    => 'חיפוש',
-'linksearch-text'  => 'ניתן להשתמש בתווים כלליים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.<br />
-פרוטוקולים נתמכים: <tt dir="ltr">$1</tt>',
+'linksearch-text'  => 'ניתן להשתמש בתווים כלליים, לדוגמה <span dir="ltr">"*.wikipedia.org"</span>.
+נדרשת לפחות סיומת אינטרנט (TLD), למשל <span dir="ltr">"*.org"</span>.<br />
+פרוטוקולים נתמכים: <tt dir="ltr">$1</tt> (אין להוסיף אותם בחיפוש).',
 'linksearch-line'  => '$1 מקושר מהדף $2',
 'linksearch-error' => 'תווים כלליים יכולים להופיע רק בתחילת שם השרת.',
 

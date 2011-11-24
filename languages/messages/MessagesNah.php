@@ -915,7 +915,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'statistics-files'         => 'Tlahcuilōlli ōmoquetz',
 'statistics-views-peredit' => 'Tlahpololiztli ic tlapatlaliztli',
 
-'disambiguations' => 'Ōmetōcāitl zāzaniltin',
+'disambiguations' => 'Āmatl tlein motzonhuiliah īca tlahtōlmelāhuacātlāliztli āmatl',
 
 'doubleredirects' => 'Ōntetl tlacuepaliztli',
 
@@ -999,7 +999,7 @@ Nò mà mỏta in tlèn [[Special:WantedCategories|ìpan kineki tlaìxmatkàtlà
 'special-categories-sort-abc'   => 'tlahtōlcopa',
 
 # Special:LinkSearch
-'linksearch'    => 'Calān tzonhuiliztli',
+'linksearch'    => 'Calān tzonhuiliztli tlatemoliztli',
 'linksearch-ns' => 'Tōcātzin:',
 'linksearch-ok' => 'Tictēmōz',
 

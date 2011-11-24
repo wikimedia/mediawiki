@@ -1243,7 +1243,7 @@ Dëst kann net réckgängeg gemaach ginn.",
 'prefs-memberingroups'          => 'Member vun {{PLURAL:$1|der Benotzergrupp|de Benotzergruppen}}:',
 'prefs-registration'            => 'Zäitpunkt vum Opmaache vum Benotzerkont:',
 'yourrealname'                  => 'Richtegen Numm:',
-'yourlanguage'                  => 'Sprooch vun der Benotzeruewerfläch:',
+'yourlanguage'                  => 'Sprooch:',
 'yourvariant'                   => 'Sproochvariant fir den Inhalt:',
 'yournick'                      => 'Ënnerschrëft:',
 'prefs-help-signature'          => 'Bemierkungen op Diskussiounssäite solle mat "<nowiki>~~~~</nowiki>" ënnerschriwwe ginn. Dëst gëtt dann an Är Ënnerschrëft an en Zäitstempel ëmgewandelt.',
@@ -1629,7 +1629,7 @@ E kann net op d'Sécherheet nogekuckt ginn.",
 'img-auth-nopathinfo'       => 'PATH_INFO feelt.
 Äre Server ass net agestallt fir déi Informatioun weiderzeginn.
 Et kann u CGI leien an datt imag_auth net ënnerstëtzt gëtt.
-Kuckt http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Kuckt Autorisatioun vum Bild.]',
 'img-auth-notindir'         => 'De gefrote Pad ass net am Upload-Repertoire agestallt.',
 'img-auth-badtitle'         => 'Aus "$1" ka kee valabelen Titel gemaach ginn.',
 'img-auth-nologinnWL'       => 'Dir sidd net ageloggt a(n) "$1" ass net op der Wäisser Lëscht.',
@@ -1895,8 +1895,8 @@ Denkt w.e.g. drunn datt aner Internetsäiten dëse Fichier mat enger direkter UR
 'booksources-invalid-isbn'  => "D'ISBN-Nummer déi Dir uginn hutt schéngt net gëlteg ze sinn. Kuckt w.e.g. no ob beim Kopéiere kee Feeler geschitt ass.",
 
 # Special:Log
-'specialloguserlabel'  => 'Benotzer:',
-'speciallogtitlelabel' => 'Titel:',
+'specialloguserlabel'  => 'Aktive Benotzer:',
+'speciallogtitlelabel' => 'Zil (Titel oder Benotzer):',
 'log'                  => 'Logbicher',
 'all-logs-page'        => 'All ëffentlech Logbicher',
 'alllogstext'          => "Dëst ass eng kombinéiert Lëscht vu Logbicher op {{SITENAME}}.
@@ -1940,7 +1940,8 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'linksearch-pat'   => 'Sich-Critère:',
 'linksearch-ns'    => 'Nummraum:',
 'linksearch-ok'    => 'Sichen',
-'linksearch-text'  => 'Sougennante "Wildcards" wéi zum Beispill <tt>*.example.com</tt> kënne benotzt ginn.<br />
+'linksearch-text'  => 'Sougennante "Wildcards" wéi zum Beispill <tt>*.example.com</tt> kënne benotzt ginn.
+Et muss mindestens en Top-Level-Domaine ugi ginn, wéi z. Bsp. ".org".<br />
 Ënnerstëtzte Protekoller: <tt>$1</tt>',
 'linksearch-line'  => '$1 verlinkt vun $2',
 'linksearch-error' => 'Wildcards (*,?) kënnen nëmmen am Ufank vum Host-Numm benotzt ginn.',
@@ -2272,6 +2273,7 @@ $1',
 # Namespace form on various pages
 'namespace'                     => 'Nummraum:',
 'invert'                        => 'Auswiel ëmdréinen',
+'tooltip-invert'                => 'Klickt dës Këscht fir Ännerungen am erausgesichten Nummraum (an den associéierten Nummraim wa se markéiert sinn) ze verstoppen.',
 'namespace_association'         => 'Associéierten Nummraum',
 'tooltip-namespace_association' => 'Dës Këscht uklicke fir den Diskussiouns oder den associéierten Nummraum mat dem erausgesichten Nummraum matanzebezéien',
 'blanknamespace'                => '(Haapt)',
@@ -3374,7 +3376,7 @@ $1",
 'autosumm-new'     => "Säit ugeluecht mat: '$1'",
 
 # Live preview
-'livepreview-loading' => 'Lueden …',
+'livepreview-loading' => 'Lueden…',
 'livepreview-ready'   => 'Lueden … Fäerdeg!',
 'livepreview-failed'  => "Live-Preview huet net fonctionéiert! Benotzt w.e.g. d'Fonctioun ''Kucken ouni ofzespäicheren''.",
 'livepreview-error'   => "Verbindung net méiglech: $1 „$2“.

@@ -65,6 +65,7 @@
  * @author Translationista
  * @author Urhixidur
  * @author VegaDark
+ * @author Vivaelcelta
  * @author Wilfredor
  * @author XalD
  * @author לערי ריינהארט
@@ -1138,28 +1139,28 @@ Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 'rev-deleted-text-permission' => "Esta revisión de la página ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-deleted-text-unhide'     => "Esta revisión de la página ha sido '''borrada'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
+Puede haber más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
 Como administrador todavía puedes [$1 ver esta revisión] si así lo deseas.",
 'rev-suppressed-text-unhide'  => "Esta revisión de la página ha sido '''suprimida'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
+Puede haber más detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
 Como administrador podrá seguir [$1 viendo esta revisión] si desea continuar.",
 'rev-deleted-text-view'       => "Esta revisión de la página ha sido '''borrada'''.
-Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
 'rev-suppressed-text-view'    => "Esta revisión de la página ha sido '''suprimida'''.
-Como administrador puedes verla; puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
-'rev-deleted-no-diff'         => "No puede visualizarse este cambio debido a que las revisiones han sido '''borradas'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
-'rev-suppressed-no-diff'      => "No puedes ver este diff porque una de las revisiones ha sido '''borrada'''.",
-'rev-deleted-unhide-diff'     => "Una de las revisiones de este cambio ha sido '''borrada'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
-Como administrador podrá seguir [$1 viendo este cambio] si así lo deseas.",
-'rev-suppressed-unhide-diff'  => "Una de las revisiones de este diff ha sido '''suprimida'''.
+Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
+'rev-deleted-no-diff'         => "No puedes ver esta diferencia porque una de las revisiones ha sido '''borrada'''.
+Puedes encontrar más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+'rev-suppressed-no-diff'      => "No puedes ver esta diferencia porque una de las revisiones ha sido '''borrada'''.",
+'rev-deleted-unhide-diff'     => "Una de las revisiones de esta diferencia ha sido '''borrada'''.
+Puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].
+Aún puede [$1 ver este cambio] si así lo desea.",
+'rev-suppressed-unhide-diff'  => "Una de las revisiones de esta diferencia ha sido '''suprimida'''.
 Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
-Como administrador podrá seguir [$1 viendo este cambio] si desea proceder.",
-'rev-deleted-diff-view'       => "Una de las revisiones de este diff ha sido '''borrada'''.
-Como administrador puede ver el contenido; puede que existan más detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
-'rev-suppressed-diff-view'    => "Una de las revisiones de este diff ha sido '''suprimida'''.
-Como administrador todavía puede ver el contenido; puede que existan más detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
+Aún puede [$1 ver esta diferencia] si desea así lo desea.",
+'rev-deleted-diff-view'       => "Una de las revisiones de esta diferencia ha sido '''borrada'''.
+Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de borrados].",
+'rev-suppressed-diff-view'    => "Una de las revisiones de esta diferencia ha sido '''suprimida'''.
+Aún tiene la posibilidad de verla; puede ampliar los detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
 'rev-delundel'                => 'mostrar/ocultar',
 'rev-showdeleted'             => 'mostrar',
 'revisiondelete'              => 'Borrar/restaurar revisiones',
@@ -1177,10 +1178,10 @@ Como administrador todavía puede ver el contenido; puede que existan más detal
 'revdelete-text'              => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.",
 'revdelete-confirm'           => 'Por favor confirma que deseas realizar la operación, que entiendes las consecuencias y que estás ejecutando dicha acción acorde con [[{{MediaWiki:Policy-url}}|las políticas]].',
-'revdelete-suppress-text'     => "Supresión debería '''solamente''' ser usado para los siguientes casos:
-* Información potencialmente difamatoria o libelo grave.
+'revdelete-suppress-text'     => "La eliminación '''solamente''' debería usarse en los siguientes casos:
+* Información potencialmente difamatoria
 * Información personal inapropiada
-*: ''domicilios y números de teléfono, números de afiliación a la seguridad social, etc.''",
+* domicilios y números de teléfono, números de seguridad social, etc.",
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
 'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
@@ -1238,8 +1239,8 @@ No tiene acceso a él.',
 
 # Suppression log
 'suppressionlog'     => 'Registro de supresiones',
-'suppressionlogtext' => 'Debajo está una lista de borrados y bloqueos relacionados con contenido oculto a los administradores.
-Mire [[Special:IPBlockList|la lista de bloqueos activos]] para ver una lista de bloqueos actualmente operativos.',
+'suppressionlogtext' => 'Debajo hay una lista con los borrados y bloqueos recientes, que incluyen contenido oculto de los administradores.
+Mire la [[Special:BlockList|lista de bloqueos activos]] para ver una lista de prohibiciones actualmente operativas.',
 
 # History merging
 'mergehistory'                     => 'Fusionar historiales de páginas',
@@ -1686,7 +1687,7 @@ Los archivos subidos quedarán registrados además en el [[Special:Log/upload|re
 
 Para incluir un archivo en una página, usa un enlace como los mostrados a continuación:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>''' para usar el fichero en tamaño completo
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 pixeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|texto descriptivo]]</nowiki></tt>''' para una versión de 200 píxeles de ancho en una caja en el margen izquierdo con 'texto descriptivo' como descripción
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' para enlazar directamente al fichero sin mostrarlo.",
 'upload-permitted'            => 'Tipos de archivo permitidos: $1.',
 'upload-preferred'            => 'Tipos de archivo preferidos: $1.',
@@ -1816,9 +1817,9 @@ No puede comprobarse adecuadamente su seguridad.',
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acceso denegado',
 'img-auth-nopathinfo'       => 'Falta PATH_INFO.
-Tu servidor no está configurado para pasar esta información.
-Puede que este basado en CGI y no sea compatible con img_auth.
-Véase http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+Tu servidor no está configurado para proporcionar esta información.
+Puede que esté basado en CGI y no sea compatible con img_auth.
+Véase [//www.mediawiki.org/wiki/Manual:Image_Authorization image authorization.]',
 'img-auth-notindir'         => 'Ruta solicitad no esá en el directorio de cargas configurado',
 'img-auth-badtitle'         => 'Incapaz de construir un título válido de «$1».',
 'img-auth-nologinnWL'       => 'No has iniciado sesión y «$1» no está en la lista blanca.',
@@ -1984,7 +1985,7 @@ Entrada: contenttype/subtype, p. ej. <tt>image/jpeg</tt>.',
 'statistics-users-active-desc' => 'Usuarios que han ejecutado una acción en {{PLURAL:$1|el último día|los últimos $1 días}}',
 'statistics-mostpopular'       => 'Páginas más vistas',
 
-'disambiguations'      => 'Páginas de desambiguación',
+'disambiguations'      => 'Páginas que enlazan con páginas de desambiguación',
 'disambiguationspage'  => 'Template:Desambiguación',
 'disambiguations-text' => "Las siguientes páginas enlazan con una '''página de desambiguación'''.
 En lugar de ello deberían enlazar con  el tema apropiado.<br />
@@ -2128,8 +2129,9 @@ Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'linksearch-pat'   => 'Patrón de búsqueda:',
 'linksearch-ns'    => 'Espacio de nombre:',
 'linksearch-ok'    => 'Buscar',
-'linksearch-text'  => 'Se pueden usar comodines como  «*.wikipedia.org».<br />
-Protocolos soportados: <tt>$1</tt>',
+'linksearch-text'  => 'Se pueden usar caracteres comodín como "*.wikipedia.org".
+Es necesario, por lo menos, un dominio de nivel, por ejemplo "*.org".<br />
+Protocolos soportados: <tt>$1</tt> (no añada ninguno de estos en su búsqueda).',
 'linksearch-line'  => '$1 enlazado desde $2',
 'linksearch-error' => 'Los comodines sólo pueden aparecer al principio del nombre de sitio.',
 
@@ -2906,7 +2908,7 @@ Puedes ver su código fuente',
 'tooltip-rollback'                => '«Revertir» revierte todas las ediciones del último usuario con un solo clic.',
 'tooltip-undo'                    => '«Deshacer» revierte la edición seleccionada y abre la página de edición en el modo de previsualización.
 Permite añadir una razón al resumen de edición.',
-'tooltip-preferences-save'        => 'Guardar preferencias',
+'tooltip-preferences-save'        => 'Guardar las preferencias',
 'tooltip-summary'                 => 'Introduce un breve resumen',
 
 # Stylesheets
@@ -3216,6 +3218,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-source'                      => 'Fuente',
 'exif-editstatus'                  => 'Estado editorial de la imagen',
 'exif-urgency'                     => 'Urgencia',
+'exif-fixtureidentifier'           => 'Nome del elemento habitual',
 'exif-locationdest'                => 'Ubicación mostrada',
 'exif-locationdestcode'            => 'Código de la ubicación mostrada',
 'exif-objectcycle'                 => 'Hora del día para la cual está destinado este archivo',
@@ -3432,6 +3435,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'exif-gpsdirection-m' => 'Dirección magnética',
 
 'exif-ycbcrpositioning-1' => 'Centrado',
+'exif-ycbcrpositioning-2' => 'Co-localizados',
 
 'exif-dc-contributor' => 'Colaboradores',
 'exif-dc-coverage'    => 'Ámbito espacial o temporal del medio',

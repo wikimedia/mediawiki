@@ -544,20 +544,20 @@ A última consulta á base de datos foi:
 "$1"
 desde a función "$2".
 A base de datos devolveu o erro "$3: $4"',
-'laggedslavemode'      => "'''Aviso:''' a páxina pode non conter as actualizacións recentes.",
+'laggedslavemode'      => "'''Aviso:''' A páxina pode non conter as actualizacións recentes.",
 'readonly'             => 'Base de datos fechada',
 'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
 'readonlytext'         => 'Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento, tras as que volverá á normalidade.
 
 O administrador que a pechou deu esta explicación: $1',
-'missing-article'      => 'A base de datos non atopa o texto da páxina chamada "$1" $2, que debera ter atopado.
+'missing-article'      => 'A base de datos non atopou o texto da páxina chamada "$1" $2, que debera ter atopado.
 
-Normalmente, isto é causado por seguir unha ligazón cara a unha diferenza vella ou a unha páxina que foi borrada.
+Normalmente, isto está causado por seguir unha ligazón cara a unha diferenza vella ou a unha páxina que foi borrada.
 
-Se este non é o caso, pode ter atopado un erro no software.
+Se este non é o caso, poida que atopase un erro no software.
 Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando nota do enderezo URL.',
 'missingarticle-rev'   => '(nº de revisión: $1)',
-'missingarticle-diff'  => '(Dif: $1, $2)',
+'missingarticle-diff'  => '(dif: $1, $2)',
 'readonly_lag'         => 'A base de datos bloqueouse automaticamente mentres os servidores levan a cabo a sincronización co servidor principal',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
@@ -591,9 +591,9 @@ Inténteo de novo nuns minutos.",
 'protectedpagetext'    => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext'       => 'Pode ver e copiar o código fonte desta páxina:',
 'protectedinterface'   => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.',
-'editinginterface'     => "'''Aviso:''' está editando unha páxina usada para fornecer o texto da interface do software.
+'editinginterface'     => "'''Aviso:''' Está editando unha páxina usada para fornecer o texto da interface do software.
 Os cambios nesta páxina afectarán á aparencia da interface para os outros usuarios.
-Para traducións, considere usar [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
+Para realizar traducións, considere usar [//translatewiki.net/wiki/Main_Page?setlang=gl translatewiki.net], o proxecto de localización de MediaWiki.",
 'sqlhidden'            => '(Procura SQL agochada)',
 'cascadeprotected'     => 'Esta páxina foi protexida fronte á edición debido a que está incluída {{PLURAL:$1|na seguinte páxina protexida, que ten|nas seguintes páxinas protexidas, que teñen}} a "protección en serie" activada:
 $2',
@@ -613,7 +613,7 @@ A razón dada foi ''$2''.",
 'logouttext'                 => "'''Agora está fóra do sistema.'''
 
 Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode [[Special:UserLogin|acceder de novo]] co mesmo nome de usuario ou con outro.
-Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar a ser amosadas como se aínda estivese dentro do sistema.",
+Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar aparecendo como se aínda estivese dentro do sistema.",
 'welcomecreation'            => '== Reciba a nosa benvida, $1! ==
 A súa conta foi creada correctamente.
 Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
@@ -805,7 +805,7 @@ O seu enderezo IP quedará rexistrado no historial de revisións desta páxina."
 'missingsummary'                   => "'''Aviso:''' Esqueceu incluír o texto do campo resumo.
 Se preme en \"{{int:savearticle}}\" a súa edición gardarase sen ningunha descrición da edición.",
 'missingcommenttext'               => 'Por favor, escriba un comentario a continuación.',
-'missingcommentheader'             => "'''Aviso:''' non escribiu ningún texto no asunto/título deste comentario.
+'missingcommentheader'             => "'''Aviso:''' Non escribiu ningún texto no asunto/título deste comentario.
 Se preme sobre \"{{int:savearticle}}\", a súa edición gardarase sen el.",
 'summary-preview'                  => 'Vista previa do resumo:',
 'subject-preview'                  => 'Vista previa do asunto/título:',
@@ -891,7 +891,7 @@ Lembre que as páxinas .css e .js personalizadas utilizan un título en minúscu
 'updated'                          => '(Actualizado)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Lembre que esta é só unha vista previa e que aínda non gardou os seus cambios!'''",
-'previewconflict'                  => 'Esta vista previa amosa o texto na área superior tal e como aparecerá se escolle gardar.',
+'previewconflict'                  => 'Esta vista previa mostra o texto na área superior tal e como aparecerá se escolle gardar.',
 'session_fail_preview'             => "'''O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
 Por favor, inténteo de novo.
 Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver entrar.'''",
@@ -927,7 +927,7 @@ Ao mesmo tempo, prométanos que o que escribiu é da súa autoría ou que está 
 'copyrightwarning2'                => "Por favor, decátese de que todas as súas contribucións a {{SITENAME}} poden ser editadas, alteradas ou eliminadas por outras persoas. Se non quere que os seus escritos sexan editados sen piedade, non os publique aquí.<br />
 Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría ou copiado dunha fonte de dominio público ou recurso público semellante (vexa $1 para detalles).
 '''NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!'''",
-'longpageerror'                    => "'''Erro: o texto que pretende gardar ocupa $1 kilobytes, e existe un límite dun máximo de $2 kilobytes.'''
+'longpageerror'                    => "'''Erro: O texto que pretende gardar ocupa $1 kilobytes, e existe un límite dun máximo de $2 kilobytes.'''
 Polo tanto, non se pode gardar.",
 'readonlywarning'                  => "'''Atención: A base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.'''
 Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.
@@ -988,8 +988,8 @@ Estes argumentos foron omitidos.",
 'language-converter-depth-warning'        => 'Excedeuse o límite de profundidade do convertedor de lingua ($1)',
 
 # "Undo" feature
-'undo-success' => 'A edición pode ser desfeita.
-Por favor, comprobe a comparación que aparece a continuación para confirmar que isto é o que desexa facer, despois, garde os cambios para desfacer a edición.',
+'undo-success' => 'A edición pódese desfacer.
+Comprobe a comparación que aparece a continuación para confirmar que isto é o que desexa facer; despois, garde os cambios para desfacer a edición.',
 'undo-failure' => 'Non se pode desfacer a edición debido a un conflito con algunha das edicións intermedias.',
 'undo-norev'   => 'A edición non se pode desfacer porque non existe ou foi eliminada.',
 'undo-summary' => 'Desfíxose a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]])',
@@ -1119,17 +1119,17 @@ $1",
 'revdelete-unhid'             => 'descubriu $1',
 'revdelete-log-message'       => '$1 {{PLURAL:$2|dunha revisión|de $2 revisións}}',
 'logdelete-log-message'       => '$1 {{PLURAL:$2|dun evento|de $2 eventos}}',
-'revdelete-hide-current'      => 'Produciuse un erro ao agochar o elemento con data de $1 ás $2: esta é a revisión actual.
-Non pode ser agochado.',
-'revdelete-show-no-access'    => 'Produciuse un erro ao mostrar o elemento con data de $1 ás $2: este elemento marcouse como "restrinxido".
+'revdelete-hide-current'      => 'Produciuse un erro ao agochar o elemento con data do $1 ás $2: Esta é a revisión actual.
+Non se pode agochar.',
+'revdelete-show-no-access'    => 'Produciuse un erro ao mostrar o elemento con data do $1 ás $2: Este elemento marcouse como "restrinxido".
 Non ten acceso a el.',
-'revdelete-modify-no-access'  => 'Produciuse un erro ao modificar o elemento con data de $1 ás $2: este elemento marcouse como "restrinxido".
+'revdelete-modify-no-access'  => 'Produciuse un erro ao modificar o elemento con data do $1 ás $2: Este elemento marcouse como "restrinxido".
 Non ten acceso a el.',
-'revdelete-modify-missing'    => 'Produciuse un erro ao modificar o elemento con ID $1: falta na base de datos!',
-'revdelete-no-change'         => "'''Aviso:''' o elemento con data de $1 ás $2 xa ten solicitado as configuracións de visibilidade.",
-'revdelete-concurrent-change' => 'Produciuse un erro ao modificar o elemento con data de $1 ás $2: o seu estado parece ter sido cambiado por alguén mentres intentaba modificalo.
-Por favor, comprobe o rexistros.',
-'revdelete-only-restricted'   => 'Erro ao agochar o elemento con data de $1 ás $2: non pode eliminar elementos da vista dos administradores sen tamén seleccionar algunha das outras opcións de visibilidade.',
+'revdelete-modify-missing'    => 'Produciuse un erro ao modificar o elemento con ID $1: Falta na base de datos!',
+'revdelete-no-change'         => "'''Aviso:''' O elemento con data do $1 ás $2 xa ten as configuracións de visibilidade solicitadas.",
+'revdelete-concurrent-change' => 'Produciuse un erro ao modificar o elemento con data do $1 ás $2: Semella que alguén modificou o seu estado mentres intentaba modificalo.
+Por favor, comprobe os rexistros.',
+'revdelete-only-restricted'   => 'Erro ao agochar o elemento con data do $1 ás $2: Non pode eliminar elementos da vista dos administradores sen tamén seleccionar algunha das outras opcións de visibilidade.',
 'revdelete-reason-dropdown'   => '* Motivos frecuentes para borrar
 ** Violación dos dereitos de autor
 ** Información persoal inapropiada',
@@ -1152,25 +1152,25 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'mergehistory-into'                => 'Páxina de destino:',
 'mergehistory-list'                => 'Historial de edicións fusionábeis',
 'mergehistory-merge'               => 'As revisións seguintes de [[:$1]] pódense fusionar con [[:$2]]. Use a columna de botóns de selección para fusionar só as revisións creadasen e antes da hora indicada. Teña en conta que se usa as ligazóns de navegación a columna limparase.',
-'mergehistory-go'                  => 'Amosar edicións fusionábeis',
-'mergehistory-submit'              => 'Fusionar revisións',
+'mergehistory-go'                  => 'Mostrar as edicións que se poden fusionar',
+'mergehistory-submit'              => 'Fusionar as revisións',
 'mergehistory-empty'               => 'Non hai revisións que se poidan fusionar.',
 'mergehistory-success'             => '{{PLURAL:$3|Unha revisión|$3 revisións}} de [[:$1]] {{PLURAL:$3|fusionouse|fusionáronse}} sen problemas en [[:$2]].',
 'mergehistory-fail'                => 'Non se puido fusionar o historial; comprobe outra vez os parámetros de páxina e hora.',
-'mergehistory-no-source'           => 'Non existe a páxina de orixe $1.',
-'mergehistory-no-destination'      => 'Non existe a páxina de destino $1.',
+'mergehistory-no-source'           => 'Non existe a páxina de orixe "$1".',
+'mergehistory-no-destination'      => 'Non existe a páxina de destino "$1".',
 'mergehistory-invalid-source'      => 'A páxina de orixe ten que ter un título válido.',
 'mergehistory-invalid-destination' => 'A páxina de destino ten que ter un título válido.',
-'mergehistory-autocomment'         => '[[:$1]] fusionouse en [[:$2]]',
-'mergehistory-comment'             => '[[:$1]] fusionouse en [[:$2]]: $3',
+'mergehistory-autocomment'         => '"[[:$1]]" fusionouse en "[[:$2]]"',
+'mergehistory-comment'             => '"[[:$1]]" fusionouse en "[[:$2]]": $3',
 'mergehistory-same-destination'    => 'A orixe das páxinas e o seu destino non poden ser os mesmos',
 'mergehistory-reason'              => 'Motivo:',
 
 # Merge log
 'mergelog'           => 'Rexistro de fusións',
-'pagemerge-logentry' => 'fusionouse [[$1]] con [[$2]] (revisións até $3)',
+'pagemerge-logentry' => 'fusionou "[[$1]]" con "[[$2]]" (revisións até o $3)',
 'revertmerge'        => 'Desfacer a fusión',
-'mergelogpagetext'   => 'Embaixo hai unha lista coas fusións máis recentes do historial dunha páxina co doutra.',
+'mergelogpagetext'   => 'A continuación hai unha lista coas fusións máis recentes do historial dunha páxina co doutra.',
 
 # Diffs
 'history-title'            => 'Historial de revisións de "$1"',
@@ -1189,7 +1189,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'searchresulttext'                 => 'Para máis información sobre como realizar procuras en {{SITENAME}}, vexa [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'                   => 'A súa busca de "\'\'\'[[:$1]]\'\'\'" ([[Special:Prefixindex/$1|todas as páxinas que comezan por "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|todas as páxinas que ligan con "$1"]])',
 'searchsubtitleinvalid'            => "A súa busca de \"'''\$1'''\"",
-'toomanymatches'                   => 'Demasiadas coincidencias foron devoltas, por favor tente unha consulta diferente',
+'toomanymatches'                   => 'Devolvéronse demasiadas coincidencias; inténteo cunha consulta diferente',
 'titlematches'                     => 'O título do artigo coincide',
 'notitlematches'                   => 'Non coincide ningún título de páxina',
 'textmatches'                      => 'O texto da páxina coincide',
@@ -1234,8 +1234,8 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'showingresults'                   => "{{PLURAL:$1|Móstrase '''1''' resultado|Móstranse '''$1''' resultados}}, comezando polo número '''$2'''.",
 'showingresultsnum'                => "A continuación {{PLURAL:$3|móstrase '''1''' resultado|móstranse '''$3''' resultados}}, comezando polo número '''$2'''.",
 'showingresultsheader'             => "{{PLURAL:\$5|Resultado '''\$1''' de '''\$3'''|Resultados do '''\$1''' ao '''\$2''', dun total de '''\$3''',}} para \"'''\$4'''\"",
-'nonefound'                        => "'''Nota:''' só algúns espazos de nomes son procurados por omisión.
-Probe a fixar a súa petición con ''all:'' para procurar en todo o contido (incluíndo páxinas de conversa, modelos, etc.) ou use como prefixo o espazo de nomes desexado.",
+'nonefound'                        => "'''Nota:''' Por defecto, só algúns espazos de nomes se utilizan para as procuras.
+Probe a fixar a súa petición con ''all:'' para procurar en todo o contido (incluíndo páxinas de conversa, modelos etc.) ou use como prefixo o espazo de nomes desexado.",
 'search-nonefound'                 => 'Non se atopou ningún resultado que coincidise coa procura.',
 'powersearch'                      => 'Procurar',
 'powersearch-legend'               => 'Busca avanzada',
@@ -1275,9 +1275,9 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-personal'                => 'Información do usuario',
 'prefs-rc'                      => 'Cambios recentes',
 'prefs-watchlist'               => 'Lista de vixilancia',
-'prefs-watchlist-days'          => 'Días para amosar na lista de vixilancia:',
+'prefs-watchlist-days'          => 'Número de días que mostrar na lista de vixilancia:',
 'prefs-watchlist-days-max'      => 'Máximo 7 días',
-'prefs-watchlist-edits'         => 'Número de edicións para mostrar na lista de vixilancia completa:',
+'prefs-watchlist-edits'         => 'Número máximo de edicións que mostrar na lista de vixilancia completa:',
 'prefs-watchlist-edits-max'     => 'Número máximo: 1000',
 'prefs-watchlist-token'         => 'Pase para a lista de vixilancia:',
 'prefs-misc'                    => 'Preferencias varias',
@@ -1580,7 +1580,7 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'upload_directory_missing'    => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
 'uploaderror'                 => 'Erro ao cargar',
-'upload-recreate-warning'     => "'''Atención: borrouse ou trasladouse un ficheiro con ese nome.'''
+'upload-recreate-warning'     => "'''Atención: Borrouse ou trasladouse un ficheiro con ese nome.'''
 
 Velaquí están o rexistro de borrados e mais o de traslados desta páxina, por se quere consultalos:",
 'uploadtext'                  => "Use o formulario de embaixo para cargar ficheiros.
@@ -1595,8 +1595,8 @@ Para incluír un ficheiro nunha páxina, use unha ligazón do seguinte xeito:
 'upload-prohibited'           => 'Tipos de arquivos prohibidos: $1.',
 'uploadlog'                   => 'rexistro de cargas',
 'uploadlogpage'               => 'Rexistro de cargas',
-'uploadlogpagetext'           => 'Embaixo hai unha lista cos ficheiros subidos máis recentemente.
-Vexa a [[Special:NewFiles|galería de imaxes novas]] para unha visión máis xeral.',
+'uploadlogpagetext'           => 'A continuación está a lista cos últimos ficheiros cargados no servidor.
+Vexa a [[Special:NewFiles|galería de imaxes novas]] para ollar unha visión máis xeral.',
 'filename'                    => 'Nome do ficheiro',
 'filedesc'                    => 'Resumo',
 'fileuploadsummary'           => 'Descrición:',
@@ -1856,7 +1856,7 @@ A descrición da [$2 páxina de descrición do ficheiro] móstrase a continuaci�
 'filedelete-nofile'           => "\"'''\$1'''\" non existe.",
 'filedelete-nofile-old'       => "Non existe unha versión arquivada de \"'''\$1'''\" cos atributos especificados.",
 'filedelete-otherreason'      => 'Outro motivo:',
-'filedelete-reason-otherlist' => 'Outra razón',
+'filedelete-reason-otherlist' => 'Outro motivo',
 'filedelete-reason-dropdown'  => '*Motivos frecuentes para borrar
 ** Violación dos dereitos de autor
 ** Ficheiro duplicado',
@@ -1981,7 +1981,7 @@ As entradas <del>riscadas</del> xa foron resoltas.',
 'protectedtitlestext'     => 'Os seguintes títulos están protexidos da creación',
 'protectedtitlesempty'    => 'Actualmente non están protexidos títulos con eses parámetros.',
 'listusers'               => 'Lista de usuarios',
-'listusers-editsonly'     => 'Amosar só os usuarios con edicións',
+'listusers-editsonly'     => 'Mostrar só os usuarios con edicións',
 'listusers-creationsort'  => 'Ordenar por data de creación',
 'usereditcount'           => '$1 {{PLURAL:$1|edición|edicións}}',
 'usercreated'             => '{{GENDER:$3|Creado|Creada}} o $1 ás $2',
@@ -2010,8 +2010,8 @@ Por favor, teña en conta que outras páxinas web poden ligar cara a un ficheiro
 'booksources-invalid-isbn'  => 'O ISBN inserido parece non ser válido; comprobe que non haxa erros ao copialo da fonte orixinal.',
 
 # Special:Log
-'specialloguserlabel'  => 'Usuario:',
-'speciallogtitlelabel' => 'Título:',
+'specialloguserlabel'  => 'Executante:',
+'speciallogtitlelabel' => 'Obxectivo (título ou usuario):',
 'log'                  => 'Rexistros',
 'all-logs-page'        => 'Todos os rexistros públicos',
 'alllogstext'          => 'Vista combinada de todos os rexistros dipoñibles en {{SITENAME}}.
@@ -2039,7 +2039,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 # Special:Categories
 'categories'                    => 'Categorías',
 'categoriespagetext'            => '{{PLURAL:$1|A seguinte categoría contén|As seguintes categorías conteñen}} páxinas ou contidos multimedia.
-Aquí non se amosan as [[Special:UnusedCategories|categorías sen uso]].
+Aquí non se mostran as [[Special:UnusedCategories|categorías sen uso]].
 Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'categoriesfrom'                => 'Mostrar as categorías que comecen por:',
 'special-categories-sort-count' => 'ordenar por número',
@@ -2055,8 +2055,9 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-pat'   => 'Patrón de procura:',
 'linksearch-ns'    => 'Espazo de nomes:',
 'linksearch-ok'    => 'Procurar',
-'linksearch-text'  => 'Pódense usar caracteres comodín como "*.wikipedia.org".<br />
-Protocolos soportados: <tt>$1</tt>',
+'linksearch-text'  => 'Pódense usar caracteres comodín como "*.wikipedia.org".
+Cómpre, polo menos, un dominio de nivel superior, por exemplo "*.org".<br />
+Protocolos soportados: <tt>$1</tt> (non engada ningún destes na súa procura).',
 'linksearch-line'  => '$1 está ligado desde a páxina "$2"',
 'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 
@@ -2156,7 +2157,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'unwatchthispage'      => 'Deixar de vixiar',
 'notanarticle'         => 'Non é unha páxina de contido',
 'notvisiblerev'        => 'A revisión foi borrada',
-'watchnochange'        => 'Ningún dos elementos baixo vixilancia foi editado no período de tempo amosado.',
+'watchnochange'        => 'Ningún dos elementos baixo vixilancia foi editado no período de tempo indicado.',
 'watchlist-details'    => 'Hai {{PLURAL:$1|unha páxina|$1 páxinas}} na súa lista de vixilancia, sen contar as de conversa.',
 'wlheader-enotif'      => '* Está dispoñible a notificación por correo electrónico.',
 'wlheader-showupdated' => "* As páxinas que cambiaron desde a súa última visita móstranse en '''negra'''",
@@ -2224,7 +2225,7 @@ Axuda:
 'exblank'                => 'a páxina estaba baleira',
 'delete-confirm'         => 'Borrar "$1"',
 'delete-legend'          => 'Borrar',
-'historywarning'         => "'''Atención:''' a páxina que está a piques de borrar ten un historial con aproximadamente $1 {{PLURAL:$1|revisión|revisións}}:",
+'historywarning'         => "'''Atención:''' A páxina que está a piques de borrar ten un historial con aproximadamente $1 {{PLURAL:$1|revisión|revisións}}:",
 'confirmdeletetext'      => 'Está a piques de borrar de xeito permanente unha páxina ou imaxe con todo o seu historial na base de datos.
 Por favor, confirme que é realmente a súa intención, que comprende as consecuencias e que está obrando de acordo coas regras [[{{MediaWiki:Policy-url}}|da política e normas]].',
 'actioncomplete'         => 'A acción foi completada',
@@ -2707,7 +2708,7 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'allmessagescurrent'            => 'Texto actual',
 'allmessagestext'               => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
 Por favor, visite a [//www.mediawiki.org/wiki/Localisation localización MediaWiki] e [//translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
-'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
+'allmessagesnotsupportedDB'     => "Esta páxina non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
 'allmessages-filter-legend'     => 'Filtrar',
 'allmessages-filter'            => 'Filtrar por estado de personalización:',
 'allmessages-filter-unmodified' => 'Inalteradas',
@@ -2838,7 +2839,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'tooltip-watch'                   => 'Engadir esta páxina á súa lista de vixilancia',
 'tooltip-recreate'                => 'Recrear a páxina a pesar de que foi borrada',
 'tooltip-upload'                  => 'Iniciar o envío',
-'tooltip-rollback'                => '"Reverter" desfai, cun só clic, a(s) edición(s) feita(s) nesta páxina polo último colaborador.',
+'tooltip-rollback'                => '"Reverter" desfai, cun único clic, a(s) edición(s) feita(s) nesta páxina polo último colaborador.',
 'tooltip-undo'                    => '"Desfacer" reverte esta edición e abre o formulario de edición nun modo previo. Permite engadir un motivo no resumo de edición.',
 'tooltip-preferences-save'        => 'Gardar as preferencias',
 'tooltip-summary'                 => 'Escriba un breve resumo',
@@ -2960,7 +2961,7 @@ $1',
 'nextdiff'     => 'Edición máis nova →',
 
 # Media information
-'mediawarning'           => "'''Aviso:''' este tipo de ficheiro pode conter código malicioso.
+'mediawarning'           => "'''Aviso:''' Este tipo de ficheiro pode conter código malicioso.
 O seu sistema pode quedar comprometido se o executa.",
 'imagemaxsize'           => "Límite de tamaño das imaxes:<br />''(nas páxinas de descrición de ficheiros)''",
 'thumbsize'              => 'Tamaño da miniatura:',

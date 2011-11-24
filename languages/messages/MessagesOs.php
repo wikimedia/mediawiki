@@ -162,6 +162,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(дарддæргонд)',
 'index-category'                 => 'Индексгонд фæрстæ',
 'noindex-category'               => 'Нæиндексгонд фæрстæ',
+'broken-file-category'           => 'Файлтæм саст æрвитæнтæ кæм ис, ахæм фæрстæ',
 
 'about'         => 'Афыст',
 'article'       => 'Статья',

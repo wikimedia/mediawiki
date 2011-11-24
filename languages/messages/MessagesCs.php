@@ -2084,8 +2084,8 @@ Uvědomte si, že jiné webové stránky mohou na soubor odkazovat pomocí pří
 'booksources-invalid-isbn'  => 'Zadané ISBN se zdá být neplatné. Zkontrolujte jej s originálním zdrojem.',
 
 # Special:Log
-'specialloguserlabel'  => 'Uživatel:',
-'speciallogtitlelabel' => 'Název:',
+'specialloguserlabel'  => 'Původce:',
+'speciallogtitlelabel' => 'Cíl (název nebo uživatel):',
 'log'                  => 'Protokolovací záznamy',
 'all-logs-page'        => 'Všechny veřejné záznamy',
 'alllogstext'          => 'Společné zobrazení všech dostupných protokolovacích záznamů pro {{grammar:4sg|{{SITENAME}}}}.
@@ -2129,8 +2129,9 @@ Podívejte se také na [[Special:WantedCategories|žádané kategorie]].',
 'linksearch-pat'   => 'Vyhledávací vzor:',
 'linksearch-ns'    => 'Jmenný prostor:',
 'linksearch-ok'    => 'Hledat',
-'linksearch-text'  => 'Lze používat zástupné znaky, např. „*.wikipedia.org“.<br />
-Podporované protokoly: <tt>$1</tt>',
+'linksearch-text'  => 'Lze používat zástupné znaky, např. „*.wikipedia.org“.
+Povinná je přinejmenším doména nejvyššího řádu, např. „*.org“.<br />
+Podporované protokoly: <tt>$1</tt> (nepřidávejte je do hledání).',
 'linksearch-line'  => '$2 odkazuje na $1',
 'linksearch-error' => 'Zástupné znaky lze použít jen na začátku doménového jména.',
 

@@ -1645,10 +1645,10 @@ No s'hi ha pogut comprovar la seguretat.",
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accés denegat',
-'img-auth-nopathinfo'       => 'Falta PATH_INFO.
-El vostre servidor no està configurat per a tractar aquesta informació.
-Pot estar basat en CGI i no soportar img_auth.
-Vegeu http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-nopathinfo'       => "Falta PATH_INFO.
+El servidor no està configurat per passar aquesta informació.
+Això pot ser basat en CGI i no és compatible amb img_auth.
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Vegeu l'auturització de la imatge.]",
 'img-auth-notindir'         => "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
 'img-auth-badtitle'         => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
 'img-auth-nologinnWL'       => 'No has iniciat sessió i "$1" no està a la llista blanca.',
@@ -1811,7 +1811,7 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 'statistics-users-active-desc' => "Usuaris que han dut a terme alguna acció en {{PLURAL:$1|l'últim dia|els últims $1 dies}}",
 'statistics-mostpopular'       => 'Pàgines més visualitzades',
 
-'disambiguations'      => 'Pàgines de desambiguació',
+'disambiguations'      => 'Pàgines amb enllaços a pàgines de desambiguació',
 'disambiguationspage'  => 'Template:Desambiguació',
 'disambiguations-text' => "Les següents pàgines enllacen a una '''pàgina de desambiguació'''.
 Per això, caldria que enllacessin al tema apropiat.<br />
@@ -1955,7 +1955,9 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'linksearch-pat'   => 'Patró de cerca:',
 'linksearch-ns'    => 'Espai de noms:',
 'linksearch-ok'    => 'Cerca',
-'linksearch-text'  => 'Es poden fer servir caràcters comodí com «*.wikipedia.org».<br />Protocols admesos: <tt>$1</tt>',
+'linksearch-text'  => 'Comodins com "*. wikipedia.org" es pot utilitzar.
+Necessita com a mínim un domini de primer nivell, per exemple "*.org".<br />
+Dóna suport a protocols: <tt> $1 </tt> (no afegir algun d\'aquests en la seva recerca).',
 'linksearch-line'  => '$1 enllaçat a $2',
 'linksearch-error' => "Els caràcters comodí només poden aparèixer a l'inici de l'url.",
 

@@ -1648,7 +1648,7 @@ Den kan ikke kontrolleres rigtigt for sikkerhed.',
 'img-auth-nopathinfo'       => 'PATH_INFO mangler.
 Din server er ikke sat op til at give denne information.
 Den bruger måske CGI og understøtter ikke img_auth.
-Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Se billedeautorisation].',
 'img-auth-notindir'         => 'Den ønskede sti er ikke i det opsatte oplægningskatalog.',
 'img-auth-badtitle'         => 'Kan ikke lave en gyldig titel ud fra "$1".',
 'img-auth-nologinnWL'       => 'Du er ikke logget ind, og "$1" er ikke på hvidlisten.',
@@ -1785,7 +1785,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'unusedtemplateswlh'  => 'andre henvisninger',
 
 # Random page
-'randompage'         => 'Tilfældig artikel',
+'randompage'         => 'Tilfældig side',
 'randompage-nopages' => 'Der er ingen sider i {{PLURAL:$2|navnerummet|disse navnerum:}} $1.',
 
 # Random redirect
@@ -1910,8 +1910,8 @@ Læg mærke til at andre hjemmesider kan henvise til filen med et direkte URL, o
 'booksources-invalid-isbn'  => 'Det angivne ISBN-nummer ser forkert ud. Tjek med kilden om det er skrevet korrekt.',
 
 # Special:Log
-'specialloguserlabel'  => 'Bruger:',
-'speciallogtitlelabel' => 'Titel:',
+'specialloguserlabel'  => 'Udført af:',
+'speciallogtitlelabel' => 'Mål (titel eller bruger):',
 'log'                  => 'Loglister',
 'all-logs-page'        => 'Alle offentlige logger',
 'alllogstext'          => 'Samlet visning af alle loggene på {{SITENAME}}.
@@ -1955,7 +1955,9 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-pat'   => 'Søg efter links til:',
 'linksearch-ns'    => 'Navnerum:',
 'linksearch-ok'    => 'Søg',
-'linksearch-text'  => 'Wildcards som "*.wikipedia.org" kan benyttes.<br />Understøttede protokoller: <tt>$1</tt>',
+'linksearch-text'  => 'Wildcards som "*.wikipedia.org" kan benyttes.
+Der skal som minimum angives et topniveau-domæne som f. eks. "*.org".<br />
+Understøttede protokoller: <tt>$1</tt> (tilføj ikke protokollerne til din søgning).',
 'linksearch-line'  => '$2 linker til $1',
 'linksearch-error' => 'Wildcards må kun benyttes i starten af hostnavnet.',
 
@@ -2580,7 +2582,7 @@ Hvis du kun vil have den seneste version, kan du også bruge en henvisning, for 
 'allmessagesdefault'            => 'Standardtekst',
 'allmessagescurrent'            => 'Nuværende tekst',
 'allmessagestext'               => 'Dette er en liste med alle systembeskeder i MediaWiki-navnerummet.
-Besøg venligst [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisering] hvis du ønsker at bidrage til den generelle lokalisering (oversættelse og andre lokale tilpasninger) af MediaWiki.',
+Besøg venligst [//www.mediawiki.org/wiki/Localisation MediaWiki-lokalisering] og [//translatewiki.net translatewiki.net] hvis du ønsker at bidrage til den generelle lokalisering (oversættelse og andre lokale tilpasninger) af MediaWiki.',
 'allmessagesnotsupportedDB'     => '{{ns:special}}:AllMessages ikke understøttet fordi wgUseDatabaseMessages er slået fra.',
 'allmessages-filter-legend'     => 'Filtrér',
 'allmessages-filter'            => 'Filtrér efter tilpasningsstatus:',
@@ -2682,7 +2684,7 @@ Du kan se på kildeteksten.',
 'tooltip-n-portal'                => 'Om projektet, hvad du kan gøre, hvor tingene findes',
 'tooltip-n-currentevents'         => 'Find baggrundsinformation om aktuelle begivenheder',
 'tooltip-n-recentchanges'         => 'Listen over de seneste ændringer i wikien.',
-'tooltip-n-randompage'            => 'Gå til en tilfældig artikel',
+'tooltip-n-randompage'            => 'Gå til en tilfældig side',
 'tooltip-n-help'                  => 'Hvordan gør jeg ...',
 'tooltip-t-whatlinkshere'         => 'Liste med alle sider som henviser hertil',
 'tooltip-t-recentchangeslinked'   => 'Seneste ændringer i sider som denne side henviser til',
@@ -3441,7 +3443,7 @@ Du kan også [[Special:EditWatchlist|bruge standard editoren]].',
 'version-hook-subscribedby'     => 'Brugt af',
 'version-version'               => '(Version $1)',
 'version-license'               => 'Licens',
-'version-poweredby-credits'     => "Denne wiki er drevet af'''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001 - $1 $2.",
+'version-poweredby-credits'     => "Denne wiki er drevet af '''[//www.mediawiki.org/ MediaWiki ]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'andre',
 'version-license-info'          => 'MediaWiki er gratis software; du kan redistribuere det og/eller ændre det under betingelserne i GNU General Public License som offentliggjort af Free Software Foundation; enten version 2 af licensen eller (efter eget valg) enhver senere version. 
 

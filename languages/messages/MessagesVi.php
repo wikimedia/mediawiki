@@ -2043,8 +2043,8 @@ Xin lưu ý là các trang Web bên ngoài có thể liên kết đến một t�
 'booksources-invalid-isbn'  => 'ISBN mà bạn cung cấp dường như không đúng; xin hãy kiểm tra lại xem có lỗi gì khi sao chép từ nội dung gốc hay không.',
 
 # Special:Log
-'specialloguserlabel'  => 'Thành viên:',
-'speciallogtitlelabel' => 'Tên trang:',
+'specialloguserlabel'  => 'Người thực hiện:',
+'speciallogtitlelabel' => 'Mục tiêu (tiêu đề hoặc người dùng):',
 'log'                  => 'Nhật trình',
 'all-logs-page'        => 'Tất cả các nhật trình công khai',
 'alllogstext'          => 'Hiển thị tất cả các nhật trình đang có của {{SITENAME}} chung với nhau.
@@ -2088,7 +2088,7 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'linksearch-pat'   => 'Mẫu liên kết:',
 'linksearch-ns'    => 'Không gian tên:',
 'linksearch-ok'    => 'Tìm kiếm',
-'linksearch-text'  => "Có thể sử dụng ký tự đại diện (''wildcard'') ở đầu tiên, ví dụ “*.wikipedia.org”.<br />Hiện hỗ trợ các giao thức: <tt>$1</tt>",
+'linksearch-text'  => "Bạn có thể sử dụng ký tự đại diện (''wildcard''), ví dụ “*.wikipedia.org”; ít nhất phải có tên miền cấp cao nhất, thí dụ “*.org”.<br />Các giao thức này được hỗ trợ: <tt>$1</tt>; vui lòng không đưa giao thức vào truy vấn.",
 'linksearch-line'  => '$1 được liên kết từ $2',
 'linksearch-error' => "Chỉ được sử dụng ký tự đại diện (''wildcard'') vào đầu tên miền (''hostname'').",
 

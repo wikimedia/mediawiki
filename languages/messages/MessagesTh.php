@@ -589,6 +589,7 @@ $1',
 'createaccount'              => 'สร้างบัญชีผู้ใช้',
 'gotaccount'                 => "มีบัญชีผู้ใช้แล้วหรือไม่ '''$1'''",
 'gotaccountlink'             => 'ล็อกอิน',
+'userlogin-resetlink'        => 'ลืมรายละเอียดล็อกอินของคุณ?',
 'createaccountmail'          => 'ผ่านทางอีเมล',
 'createaccountreason'        => 'เหตุผล:',
 'badretype'                  => 'รหัสผ่านที่ใส่ไม่ถูกต้อง',
@@ -672,8 +673,14 @@ $1',
 'resetpass-temp-password'   => 'รหัสผ่านชั่วคราว:',
 
 # Special:PasswordReset
-'passwordreset'          => 'ล้างรหัสผ่าน',
-'passwordreset-username' => 'ชื่อผู้ใช้:',
+'passwordreset'              => 'ล้างรหัสผ่าน',
+'passwordreset-legend'       => 'เปลี่ยนรหัสผ่าน',
+'passwordreset-disabled'     => 'การเปลี่ยนรหัสผ่านไม่สามารถทำได้ในวิกินี้',
+'passwordreset-username'     => 'ชื่อผู้ใช้:',
+'passwordreset-email'        => 'ที่อยู่อีเมล:',
+'passwordreset-emailtitle'   => 'รายละเอียดบัญชีบน {{SITENAME}}',
+'passwordreset-emailelement' => 'ชื่อผู้ใช้: $1
+รหัสผ่านชั่วคราว: $2',
 
 # Edit page toolbar
 'bold_sample'     => 'ทำตัวหนา',
@@ -1512,6 +1519,7 @@ $1",
 'large-file'                  => 'ไฟล์ไม่ควรมีขนาดใหญ่กว่า $1 ไฟล์นี้มีขนาด $2',
 'largefileserver'             => 'ไฟล์นี้มีขนาดใหญ่กว่าค่าที่อนุญาตให้ใช้ได้',
 'emptyfile'                   => 'ไฟล์ที่อัปโหลดมาเหมือนไฟล์ว่าง อาจเกิดจากปัญหาพิมพ์ชื่อไฟล์ผิด กรุณาตรวจสอบไฟล์อีกครั้ง และแน่ใจว่าต้องการที่จะอัปโหลดไฟล์นี้',
+'windows-nonascii-filename'   => 'วิกินี้ไม่รองรับชื่อไฟล์ที่มีตัวอักษรพิเศษ',
 'fileexists'                  => "มีไฟล์ชื่อนี้อยู่แล้ว กรุณาตรวจสอบ '''<tt>[[:$1]]</tt>''' หากคุณไม่แน่ใจว่าต้องการเปลี่ยนแปลงไฟล์นี้หรือไม่ [[$1|thumb]]",
 'filepageexists'              => "หน้าคำอธิบายสำหรับไฟล์นี้ได้ถูกสร้างไว้แล้วที่ '''<tt>[[:$1]]</tt>''' แต่ไฟล์ชื่อนี้ไม่มีอยู่ในปัจจุบัน
 สาระสำคัญที่คุณบันทึกจะไม่ปรากฏบนหน้าคำอธิบาย
@@ -2206,9 +2214,10 @@ $1',
 'undelete-show-file-submit'    => 'ใช่',
 
 # Namespace form on various pages
-'namespace'      => 'เนมสเปซ:',
-'invert'         => 'ทั้งหมดที่ไม่ได้เลือก',
-'blanknamespace' => '(หลัก)',
+'namespace'             => 'เนมสเปซ:',
+'invert'                => 'ทั้งหมดที่ไม่ได้เลือก',
+'namespace_association' => 'เนมสเปซที่เกี่ยวข้อง',
+'blanknamespace'        => '(หลัก)',
 
 # Contributions
 'contributions'       => 'เรื่องที่เขียนโดยผู้ใช้นี้',
@@ -2258,6 +2267,8 @@ $1',
 'whatlinkshere-filters'    => 'ตัวกรอง',
 
 # Block/unblock
+'block'                           => 'บล็อกผู้ใช้',
+'unblock'                         => 'ปลดบล็อกผู้ใช้',
 'blockip'                         => 'บล็อกผู้ใช้',
 'blockip-title'                   => 'ระงับผู้ใช้',
 'blockip-legend'                  => 'บล็อกผู้ใช้',
@@ -2286,6 +2297,7 @@ $1',
 'ipbhidename'                     => 'ซ่อนผู้้ใช้จากบันทึกการบล็อก และรายการผู้ที่ถูกบล็อก',
 'ipbwatchuser'                    => 'เฝ้าดูหน้าผู้ใช้และหน้าคุยกับผู้ใช้ของผู้ใช้รายนี้',
 'ipb-change-block'                => 'บล็อกผู้ใช้อีกครั้งด้วยการตั้งค่าเหล่านี้',
+'ipb-confirm'                     => 'ยืนยันการบล็อก',
 'badipaddress'                    => 'หมายเลขไอพีไม่ถูกต้อง',
 'blockipsuccesssub'               => 'บล็อกเรียบร้อย',
 'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] ถูกบล็อก
@@ -2299,7 +2311,9 @@ $1',
 'unblockiptext'                   => 'ใช้แบบฟอร์มด้านล่างสำหรับบล็อกหรือเลิกบล็อกหมายเลขไอพี หรือผู้ใช้',
 'ipusubmit'                       => 'ยกเลิกการบล็อกนี้',
 'unblocked'                       => '[[User:$1|$1]] ถูกบล็อก',
+'unblocked-range'                 => '$1 ถูกปลดบล็อกแล้ว',
 'unblocked-id'                    => 'เลิกบล็อก $1',
+'blocklist'                       => 'ผู้ใช้ที่ถูกบล็อก',
 'ipblocklist'                     => 'หมายเลขไอพีและผู้ใช้ที่ถูกบล็อก',
 'ipblocklist-legend'              => 'ค้นหาผู้ใช้ที่ถูกระงับการใช้งาน',
 'ipblocklist-submit'              => 'สืบค้น',
@@ -2659,6 +2673,18 @@ $1',
 'spam_reverting'      => 'ย้อนกลับไปรุ่นก่อนหน้าที่ไม่มีลิงก์ไปยังเว็บ $1',
 'spam_blanking'       => 'รุ่นการปรับปรุงทุกรุ่นประกอบไปด้วยลิงก์ไปยังเว็บ $1 (ทำหน้าว่าง)',
 
+# Info page
+'pageinfo-title'            => 'ข้อมูลสำหรับ "$1"',
+'pageinfo-header-edits'     => 'การแก้ไข',
+'pageinfo-header-watchlist' => 'รายการเฝ้าดู',
+'pageinfo-header-views'     => 'การเข้าดู',
+'pageinfo-subjectpage'      => 'หน้า',
+'pageinfo-talkpage'         => 'หน้าพูดคุย',
+'pageinfo-watchers'         => 'จำนวนผู้เข้าดู',
+'pageinfo-edits'            => 'จำนวนการแก้ไข',
+'pageinfo-views'            => 'จำนวนการเข้าดู',
+'pageinfo-viewsperedit'     => 'จำนวนการเข้าดูต่อการแก้ไข',
+
 # Skin names
 'skinname-standard'    => 'คลาสสิก',
 'skinname-nostalgia'   => 'นอสตัลเจีย',
@@ -2711,9 +2737,11 @@ $1',
 'widthheightpage'      => '{{PLURAL:$3|หน้า|หน้า}} $1×$2, $3',
 'file-info'            => 'ขนาดไฟล์: $1, ชนิดไมม์: $2',
 'file-info-size'       => '$1 × $2 พิกเซล, ขนาดไฟล์: $3, ชนิดไมม์: $4',
+'file-info-size-pages' => '$1 × $2 พิกเซล, ขนาดไฟล์: $3, ประเภท MIME: $4, $5 {{PLURAL:$5|หน้า|หน้า}}',
 'file-nohires'         => '<small>ไม่มีภาพความละเอียดสูงกว่านี้</small>',
 'svg-long-desc'        => 'ไฟล์ SVG, $1 × $2 พิกเซล พอเป็นพิธี, ขนาดไฟล์: $3',
 'show-big-image'       => 'ความละเอียดสูงสุด',
+'show-big-image-size'  => '$1 × $2 พิกเซล',
 'file-info-gif-looped' => 'วนซ้ำ',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|เฟรม|เฟรม}}',
 'file-info-png-looped' => 'วนซ้ำ',
@@ -2872,6 +2900,8 @@ $1',
 'exif-gpsdatestamp'                => 'วันที่จีพีเอส',
 'exif-gpsdifferential'             => 'การปรับแค่ข้อแตกต่างจีพีเอส',
 'exif-objectname'                  => 'ชื่อเรื่องสั้น',
+'exif-languagecode'                => 'ภาษา',
+'exif-iimcategory'                 => 'หมวดหมู่',
 
 # EXIF attributes
 'exif-compression-1' => 'ไม่ได้บีบอัด',
@@ -3012,6 +3042,10 @@ $1',
 'exif-gpsspeed-m' => 'ไมล์ต่อชั่วโมง',
 'exif-gpsspeed-n' => 'นอตส์',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'กิโลเมตร',
+'exif-gpsdestdistance-m' => 'ไมล์',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ทิศทางจริง',
 'exif-gpsdirection-m' => 'ทิศทางแม่เหล็ก',
@@ -3097,11 +3131,12 @@ $1',
 'trackbackdeleteok' => 'รอยที่เก็บไว้ถูกลบ',
 
 # Delete conflict
-'deletedwhileediting' => "'''คำเตือน''': หน้านี้ถูกลบไปแล้วในขณะที่คุณกำลังแก้ไข!",
-'confirmrecreate'     => "ผู้ใช้ [[User:$1|$1]] ([[User talk:$1|พูดคุย]]) ได้ลบหน้านี้ในช่วงที่คุณกำลังแก้ไข ด้วยเหตุผลว่า:
+'deletedwhileediting'      => "'''คำเตือน''': หน้านี้ถูกลบไปแล้วในขณะที่คุณกำลังแก้ไข!",
+'confirmrecreate'          => "ผู้ใช้ [[User:$1|$1]] ([[User talk:$1|พูดคุย]]) ได้ลบหน้านี้ในช่วงที่คุณกำลังแก้ไข ด้วยเหตุผลว่า:
 : ''$2''
 กรุณายืนยันว่าต้องการสร้างหน้านี้ขึ้นมาใหม่",
-'recreate'            => 'สร้างใหม่',
+'confirmrecreate-noreason' => 'ผู้ใช้ [[ผู้ใช้:$1|$1]] ([[พูดคุยกับผู้ใช้:$1|พูดคุย]]) ลบหน้านี้หลังคุณเริ่มแก้ไข โปรดยืนยันว่าคุณต้องการสร้างหน้านี้ใหม่จริง ๆ',
+'recreate'                 => 'สร้างใหม่',
 
 # action=purge
 'confirm_purge_button' => 'ตกลง',

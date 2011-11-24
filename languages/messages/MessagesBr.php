@@ -1623,7 +1623,7 @@ PICT # misc.
 'upload-failure-msg'          => "Ur gudenn 'zo bet e-pad ho kargadenn adalek [$2] :
 
 $1",
-'upload-warning-subj'         => "Kemmen diwall e-pad ar c'hargañ",
+'upload-warning-subj'         => 'Kemenn diwall en ur ezporzhiañ',
 'upload-warning-msg'          => "Ur gudenn zo bet e-kerzh hoc'h ezporzhiadur eus [$2]. Gallout a c'heller distreiñ d'ar [[Special:Upload/stash/$1|furmskrid ezporzhiañ]] evit renkañ ar gudenn.",
 
 'upload-proto-error'        => 'Protokol direizh',
@@ -1660,8 +1660,8 @@ N'hall ket bezañ gwiriet ervat evit ar surentez.",
 'img-auth-accessdenied'     => "Moned nac'het",
 'img-auth-nopathinfo'       => "Mankout a ra ar PATH_INFO.
 N'eo ket kefluniet ho servijer evit reiñ an titour-mañ.
-Marteze eo diazezet war CGI-based ha n'hall ket skorañ img_auth.
-Gwelet http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+Marteze eo diazezet war CGI ha n'hall ket skorañ img_auth.
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Gwelet aotre ar skeudenn.]",
 'img-auth-notindir'         => "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
 'img-auth-badtitle'         => 'Dibosupl krouiñ un titl reizh adalek "$1".',
 'img-auth-nologinnWL'       => 'N\'oc\'h ket kevreet ha n\'emañ ket "$1" war ar roll gwenn',
@@ -1824,7 +1824,7 @@ Diskouezet eo deskrivadur he [$2 fajenn zeskrivañ] amañ dindan.',
 'statistics-users-active-desc' => "Implijerien o deus degaset da nebeutañ ur c'hemm {{PLURAL:$1|an deiz paseet|e-kerzh an $1 deiz diwezhañ}}",
 'statistics-mostpopular'       => 'Pajennoù muiañ sellet',
 
-'disambiguations'      => 'Pajennoù disheñvelout',
+'disambiguations'      => 'Pajennoù enno liammoù war-zu pajennoù disheñvelout',
 'disambiguationspage'  => 'Template:Disheñvelout',
 'disambiguations-text' => "Liammet eo ar pajennoù da-heul ouzh ur '''bajenn disheñvelout'''.
 Padal e tlefent kas war-eeun d'an danvez anezho.<br />
@@ -2921,7 +2921,7 @@ Kuzhet e vo ar re all dre ziouer.
 * gpsaltitude",
 
 # EXIF tags
-'exif-imagewidth'                  => 'Led',
+'exif-imagewidth'                  => 'Ledander',
 'exif-imagelength'                 => 'Hed',
 'exif-bitspersample'               => 'Niv. a vitoù dre barzhioù',
 'exif-compression'                 => 'Seurt gwaskadur',

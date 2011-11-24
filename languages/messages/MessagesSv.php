@@ -2069,8 +2069,8 @@ Lägg märke till att andra webbplatser kan länka till en fil med en direkt URL
 'booksources-invalid-isbn'  => 'Det angivna ISBN-numret verkar inte vara giltigt. Kontrollera källan för eventuella fel.',
 
 # Special:Log
-'specialloguserlabel'  => 'Användare:',
-'speciallogtitlelabel' => 'Titel:',
+'specialloguserlabel'  => 'Utförare:',
+'speciallogtitlelabel' => 'Mål (titel eller användare):',
 'log'                  => 'Loggar',
 'all-logs-page'        => 'Alla publika loggar',
 'alllogstext'          => 'Kombinerad visning av alla tillgängliga loggar för {{SITENAME}}.
@@ -2114,8 +2114,9 @@ Se även [[Special:WantedCategories|önskade kategorier]].',
 'linksearch-pat'   => 'Sökmönster:',
 'linksearch-ns'    => 'Namnrymd:',
 'linksearch-ok'    => 'Sök',
-'linksearch-text'  => 'Jokertecken (wildcards) som t ex "*.wikipedia.org" kan användas.<br />
-Stödda protokoll: <tt>$1</tt>',
+'linksearch-text'  => 'Jokertecken (wildcards) som t.ex. "*.wikipedia.org" kan användas.
+Det krävs åtminstone en toppnivå-domän, t.ex. "*.org".<br />
+Protokoll som stöds: <tt>$1</tt> (lägg inte till något av dessa i din sökning).',
 'linksearch-line'  => '$1 länkas från $2',
 'linksearch-error' => 'Jokertecken kan bara användas i början av domännamnet.',
 
@@ -2440,7 +2441,7 @@ $1',
 'namespace'                     => 'Namnrymd:',
 'invert'                        => 'Uteslut vald namnrymd',
 'tooltip-invert'                => 'Markera denna ruta för att dölja ändringar på sidor inom det valda namnrymden (och tillhörande namnrymden om det är markerat)',
-'namespace_association'         => 'Associerade namnutrymmen',
+'namespace_association'         => 'Associerad namnrymd',
 'tooltip-namespace_association' => 'Markera denna ruta för att även inkludera diskussions- eller ämnesnamnrymden som är associerad med den valda namnrymden',
 'blanknamespace'                => '(Huvudnamnrymden)',
 

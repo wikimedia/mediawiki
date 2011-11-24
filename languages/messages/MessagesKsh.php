@@ -923,7 +923,7 @@ udder en dä zopaß <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{
 'userpage-userdoesnotexist-view'   => 'Ene Metmaacher mem Naame „$1“ hät sesch noch nih aanjemeldt',
 'blocked-notice-logextract'        => '{{GENDER:$1|Dä Metmaacher|Dat|Dä Metmaacher|Die Metmaacheren|Et}} es jraad jesperrt.
 Heh kütt der neuste Enndraach drövver uss_em Logbooch övver et Metmaacher_Sperre:',
-'clearyourcache'                   => '<br clear="all" style="clear:both">
+'clearyourcache'                   => '<br style="clear: both" />
 \'\'\'Opjepass:\'\'\'
 Noh em Speichere künnd et sin, datt De Dingem Brauser singe Cache Speicher
 övverlisste muss, ih datt De de Änderunge och ze sinn kreß.
@@ -1845,7 +1845,7 @@ Se kann nit aanjemäße jeprööf wääde, of se sescher es.',
 'img-auth-accessdenied'     => 'Keine Zohjang',
 'img-auth-nopathinfo'       => 'De <code lang="en">PATH_INFO</code> fäählt.
 Dä Webßööver es nit doför ennjerescht, di Ennfommazjuhn wigger ze jävve.
-Hä künnd_op <code lang="en">CGI</code> opjebout sin, un dröm <code lang="en">img_auth</code> nit ongshtöze künne. Loor onger http://www.mediawiki.org/wiki/Manual:Image_Authorization noh, wat domet es.',
+Hä künnd_op <code lang="en">CGI</code> opjebout sin, un dröm <code lang="en">img_auth</code> nit ongshtöze künne. Loor em [http://www.mediawiki.org/wiki/Manual:Image_Authorization Handbooch] noh, wat domet es.',
 'img-auth-notindir'         => 'Dä aanjefroochte Pat is nit em enjeschtallte Verzeischneß för et Huhlaade.',
 'img-auth-badtitle'         => 'Uß „$1“ lööt sesch keine jöltijje Tittel maache.',
 'img-auth-nologinnWL'       => 'Do bes nit ennjelogg, un „$1“ es nit op dä Leß met de zohjelohße Datteiname.',
@@ -1936,7 +1936,7 @@ Dat sellve shteiht hee dronger.',
 'uploadnewversion-linktext' => 'Dun en neu Version vun dä Datei huhlade',
 'shared-repo-from'          => 'uß $1',
 'shared-repo'               => 'ene jemeinsame Beshtand',
-'filepage.css'              => '/* Das folgende CSS wird auf Dateibeschreibungsseiten, auch auf fremden Client-Wikis, geladen. */',
+'filepage.css'              => '/* Heh dat CSS küdd op Sigge övver Dateije, och di vun ander Wikis jehollt woode sin. */',
 
 # File reversion
 'filerevert'                => '„$1“ zerök holle',
@@ -2022,7 +2022,7 @@ All de Sigge em Wiki, och Klaafsigge, Ömleitunge, un esu jet',
 'statistics-users-active-desc' => 'Metmaacher, die {{PLURAL:$1|hück un jesterre|en de läzte $1 Dääsh|hück}} jät jemaat han.',
 'statistics-mostpopular'       => 'De miets affjeroofe Sigge',
 
-'disambiguations'      => '„(Wat es dat?)“-Sigge',
+'disambiguations'      => 'Sigge met Lengks dren op „(Wat ėß dat?)“-Sigge',
 'disambiguationspage'  => 'Template:Disambig',
 'disambiguations-text' => 'En de Sigge hee noh sin Links dren, di op en „(Watt ėßß datt?)“-Sigg jonn.
 Esu en Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
@@ -2137,8 +2137,8 @@ wadd_Er am Sööke sidt.',
 'booksources-invalid-isbn'  => 'De ISBNummer schingk verkeeht ze sin. Loohr ens donoh, woh se häe kütt.',
 
 # Special:Log
-'specialloguserlabel'  => 'Metmaacher:',
-'speciallogtitlelabel' => 'Siggename:',
+'specialloguserlabel'  => 'Dä Metmaacher, dä et jedonn hät:',
+'speciallogtitlelabel' => 'Betroffe wohr: (dä Tittel vun ener Sigg udder enem Metmaacher singe Name)',
 'log'                  => 'Logböcher ehr Opzeichnunge (all)',
 'all-logs-page'        => 'All de öffentlich Logböcher',
 'alllogstext'          => "Dat hee es en jesamte Liss us all dä Logböcher {{GRAMMAR:en|{{SITENAME}}}}.
@@ -2187,9 +2187,9 @@ eins vun all däm op eimol.',
 'linksearch-ok'    => 'Söhke',
 'linksearch-text'  => 'Di {{int:nstab-special}} heh mäd_et müjjelesch noh Sigge ze söke, woh beshtemmpte Links op Websigge dren enthallde sin.
 
-Beim Söke künnd_Er Shternshe aanjevve för e Shtöckshe fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit, zem Beishpöll esu: <tt>http://*.example.com</tt>
+Beim Söke künnd_Er Schtäänsche aanjevve för e Schtöcksche fun ennem Name, wo mer nit jenou weiß, wi et heiß udder wat me nit kenne deit,  zem Beishpöll esu: <tt>http://*.example.com</tt> un ene bövverschte Name för en Domain moß aanjejovve sin, zem Beishpöll esu: <tt>http://*.org</tt> 
 
-De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>',
+De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>es',
 'linksearch-line'  => '„$2“ hät ene Link op $1',
 'linksearch-error' => 'Shternshe kam_mer nor aam Aanfang fum Domain-Name bruche.',
 
@@ -3019,7 +3019,7 @@ Esu kam_mer noch en Aanmerkung en „{{int:summary}}“ maache.',
 'group-bureaucrat.css'    => '/* Dat CSS heh aan dä Stell krijje nur de Bürrokraate jescheck */',
 
 # Scripts
-'common.js'              => '/* Jedes JavaScrip hee kütt für jede Metmaacher in jede Sigg erinn */',
+'common.js'              => '/* Jedes JavaScrip hee kütt för jede Metmaacher in jede Sigg erinn */',
 'standard.js'            => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Klassesch" jescheck */',
 'nostalgia.js'           => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Nostaljesch" jescheck */',
 'cologneblue.js'         => '/* De JavaSkrippte fun hee krijje alle Sigge met de Ovverflääsch "Kölsch Blou" jescheck */',
@@ -3237,6 +3237,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-lightsource'                 => 'Leechquell',
 'exif-flash'                       => 'Bletz',
 'exif-focallength'                 => 'De Brennwigde fun de Lenß',
+'exif-focallength-format'          => '$1&nbsp;mm',
 'exif-subjectarea'                 => 'Em Motiv singe Bereich',
 'exif-flashenergy'                 => 'Dem Bletz sing Ennäjii',
 'exif-focalplanexresolution'       => 'De Kammera ierem Sensor sing räächs-links-Oplösung',
@@ -3357,11 +3358,17 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-originalimagewidth'          => 'De Breede vum Beld, ih dat es zohjeschnedde wood, en Pixelle',
 
 # EXIF attributes
-'exif-compression-1' => 'Oohne Kompressjuhn',
-'exif-compression-2' => 'Noh de <i lang="en">CCITT</i> ier Jrop 3 kodeet mem eindimänsjonalle aanjepaßte Verfahre noh_m <i lang="en">Huffman</i> singe „Läng vum Rötsch“',
-'exif-compression-3' => 'Noh de <i lang="en">CCITT</i> ier Jrop 3 als Fax kodeet',
-'exif-compression-4' => 'Noh de <i lang="en">CCITT</i> ier Jrop 4 als Fax kodeet',
-'exif-compression-6' => '<i lang="en">JPEG</i>',
+'exif-compression-1'     => 'Oohne Kompressjuhn',
+'exif-compression-2'     => 'Noh de <i lang="en">CCITT</i> ier Jrop 3 kodeet mem eindimänsjonalle aanjepaßte Verfahre noh_m <i lang="en">Huffman</i> singe „Läng vum Rötsch“',
+'exif-compression-3'     => 'Noh de <i lang="en">CCITT</i> ier Jrop 3 als Fax kodeet',
+'exif-compression-4'     => 'Noh de <i lang="en">CCITT</i> ier Jrop 4 als Fax kodeet',
+'exif-compression-5'     => '<i lang="en">LZW</i>',
+'exif-compression-6'     => '<i lang="en">JPEG</i> (ahl)',
+'exif-compression-7'     => '<i lang="en">JPEG</i>',
+'exif-compression-8'     => '<i lang="en">Deflate (Adobe)</i>',
+'exif-compression-32773' => '<i lang="en">PackBits (Macintosh RLE)</i>',
+'exif-compression-32946' => '<i lang="en">Deflate (PKZIP)</i>',
+'exif-compression-34712' => '<i lang="en">JPEG</i>2000',
 
 'exif-copyrighted-true'  => 'Häd_en Urhävverrääsch',
 'exif-copyrighted-false' => 'Es en de Allmende (jemeinfrei, <i lang="en">public domain</i>)',
@@ -3808,6 +3815,7 @@ Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlöße
 'version-variables'             => 'Variable',
 'version-antispam'              => 'SPAM verhendere',
 'version-skins'                 => 'Ovverflääsche',
+'version-api'                   => '<i lang="en">API</i>',
 'version-other'                 => 'Söns',
 'version-mediahandlers'         => 'Medije-Handler',
 'version-hooks'                 => 'Schnettstelle oder Hooke',
