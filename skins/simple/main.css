@@ -351,9 +351,9 @@ li.new {
 	text-decoration: line-through;
 }
 /**
-+ * Overrides text justification (user preference)
-+ * See bug 31990
-+ */
+ * Overrides text justification (user preference)
+ * See bug 31990
+ */
 #catlinks {
 	text-align: center;
 }
