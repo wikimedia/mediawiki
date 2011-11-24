@@ -191,6 +191,8 @@ changes to languages because of Bugzilla reports.
 * (bug 31193) Set fallback language of Assamese from Bengali to English.
 * Update date format for dsb and hsb: month names need the genitive.
 * (bug 28643) Serbian variant conversion improvements (Nikola Smolenski).
+* (bug 29405, bug 30809) Lower diacritics are invisible in titles in Indic
+  languages Assamese, Bengali, Hindi, Malyalam and Odiya.
 
 === Other changes in 1.19 ===
 * jquery.mwPrototypes module was renamed to jquery.mwExtension.

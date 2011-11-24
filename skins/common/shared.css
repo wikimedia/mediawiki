@@ -797,20 +797,38 @@ div.gallerytext {
 
 /* Language specific height correction for titles. Ref Bug 29405 and Bug 30809 */
 /* Languages like hi or ml require slightly more vertical space to show diacritics properly */
+h1:lang(as),
+h1:lang(bn),
 h1:lang(hi),
-h1:lang(ml) {
+h1:lang(ml),
+h1:lang(or) {
 	line-height: 1.5em;
 }
+h2:lang(as),
+h2:lang(bn),
 h2:lang(hi),
 h2:lang(ml),
+h2:lang(or),
+h3:lang(as),
+h3:lang(bn),
 h3:lang(hi),
 h3:lang(ml),
+h3:lang(or),
+h4:lang(as),
+h4:lang(bn),
 h4:lang(hi),
 h4:lang(ml),
+h4:lang(or),
+h5:lang(as),
+h5:lang(bn),
 h5:lang(hi),
 h5:lang(ml),
+h5:lang(or),
+h6:lang(as),
+h6:lang(bn),
 h6:lang(hi),
-h6:lang(ml) {
+h6:lang(ml),
+h6:lang(or) {
 	line-height: 1.2em;
 }
 
