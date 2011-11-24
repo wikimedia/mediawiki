@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 if ( isset( $_SERVER["SCRIPT_FILENAME"] ) ) {
 	$file = $_SERVER["SCRIPT_FILENAME"];
 	if ( !is_readable( $file ) ) {
@@ -7,9 +10,13 @@ if ( isset( $_SERVER["SCRIPT_FILENAME"] ) ) {
 		return false;
 	}
 	$ext = pathinfo( $file, PATHINFO_EXTENSION );
-	if ( $ext == 'php' ) {
-		# Let it execute php files
-		return false;
+	if ( $ext == 'php' || $ext == 'php5' ) {
+		# Execute php files
+		# We use require and return true here because when you return false
+		# the php webserver will discard post data and things like login
+		# will not function in the dev environment.
+		require $file;
+		return true;
 	}
 	$mime = false;
 	$lines = explode( "\n", file_get_contents( "includes/mime.types" ) );
