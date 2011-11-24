@@ -187,7 +187,7 @@ $wgStyleDirectory = false;
 $wgArticlePath      = false;
 
 /**
- * The URL path for the images directory. Will default to "{$IP}/images" in Setup.php
+ * The URL path for the images directory. Will default to "{$wgScriptPath}/images" in Setup.php
  */
 $wgUploadPath       = false;
 
