@@ -94,12 +94,13 @@ function wfImageAuthMain() {
 		return;
 	}
 
-	// Extract the file name and chop off the size specifier
+	// Extract the file name and chop off the size specifier.
 	// (e.g. 120px-Foo.png => Foo.png or page2-120px-Foo.png => Foo.png).
-	// This only applies to thumbnails, and all thumbnails have a -px specifier.
+	// This only applies to thumbnails, and all thumbnails should
+	// be under a folder that has the source file name.
 	$name = wfBaseName( $path );
-	if ( preg_match( '!(?:[^-]*-)*?\d+px-(.*)!i', $name, $m ) ) {
-		$name = $m[1]; // this file is a thumbnail
+	if ( strpos( $path, '/thumb/' ) === 0 ) {
+		$name = wfBaseName( dirname( $path ) ); // this file is a thumbnail
 	}
 
 	$title = Title::makeTitleSafe( NS_FILE, $name );
@@ -116,7 +117,7 @@ function wfImageAuthMain() {
 	
 	// Check user authorization for this title
 	// UserCanRead Checks Whitelist too
-	if( !$title->userCanRead() ) {
+	if ( !$title->userCanRead() ) {
 		wfForbidden( 'img-auth-accessdenied', 'img-auth-noread', $name );
 		return;
 	}
