@@ -411,7 +411,7 @@ class AllmessagesTablePager extends TablePager {
 	function getCellAttrs( $field, $value ){
 		if( $this->mCurrentRow->am_customised && $field == 'am_title' ){
 			return array( 'rowspan' => '2', 'class' => $field );
-		} else if( $field == 'am_title' ) {
+		} elseif( $field == 'am_title' ) {
 			return array( 'class' => $field );
 		} else {
 			return array( 'lang' => $this->langcode, 'dir' => $this->lang->getDir(), 'class' => $field );

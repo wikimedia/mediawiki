@@ -168,7 +168,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 				}
 				// Modules with a group but no foreign source pass four arguments (name, timestamp, dependencies, group)
 				// to mw.loader.register()
-				else if ( $module->getSource() === 'local' ) {
+				elseif ( $module->getSource() === 'local' ) {
 					$registrations[] = array(
 						$name, $mtime,  $module->getDependencies(), $module->getGroup() );
 				}

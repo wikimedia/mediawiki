@@ -50,7 +50,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 		$error = $this->canChangePassword( $user );
 		if ( is_string( $error ) ) {
 			throw new ErrorPageError( 'internalerror', $error );
-		} else if ( !$error ) {
+		} elseif ( !$error ) {
 			throw new ErrorPageError( 'internalerror', 'resetpass_forbidden' );
 		}
 
@@ -280,7 +280,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 
 			$this->getOutput()->addHTML( Html::rawElement( 'pre', array(), $this->email->escaped() ) );
 		}
-		
+
 		$this->getOutput()->addWikiMsg( 'passwordreset-emailsent' );
 		$this->getOutput()->returnToMain();
 	}
