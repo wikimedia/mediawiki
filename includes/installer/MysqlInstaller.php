@@ -32,7 +32,7 @@ class MysqlInstaller extends DatabaseInstaller {
 
 	public $supportedEngines = array( 'InnoDB', 'MyISAM' );
 
-	public $minimumVersion = '5.0.0';
+	public $minimumVersion = '5.0.2';
 
 	public $webUserPrivs = array(
 		'DELETE',
@@ -254,11 +254,6 @@ class MysqlInstaller extends DatabaseInstaller {
 		 * @var $conn DatabaseBase
 		 */
 		$conn = $status->value;
-
-		// Check version, need INFORMATION_SCHEMA and CREATE USER
-		if ( version_compare( $conn->getServerVersion(), '5.0.2', '<' ) ) {
-			return false;
-		}
 
 		// Get current account name
 		$currentName = $conn->selectField( '', 'CURRENT_USER()', '', __METHOD__ );
@@ -631,7 +626,7 @@ class MysqlInstaller extends DatabaseInstaller {
 # MySQL table options to use during installation or update
 \$wgDBTableOptions   = \"{$tblOpts}\";
 
-# Experimental charset support for MySQL 4.1/5.0.
+# Experimental charset support for MySQL 5.0.
 \$wgDBmysql5 = {$dbmysql5};";
 	}
 }

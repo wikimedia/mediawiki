@@ -421,7 +421,7 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Returns slave lag.
 	 *
-	 * On MySQL 4.1.9 and later, this will do a SHOW SLAVE STATUS
+	 * This will do a SHOW SLAVE STATUS
 	 *
 	 * @return int
 	 */
