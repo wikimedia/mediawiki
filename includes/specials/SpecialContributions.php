@@ -407,7 +407,7 @@ class SpecialContributions extends SpecialPage {
 				Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
 				Xml::namespaceSelector( $this->opts['namespace'], '' )
 			) .
-			Xml::checkLabel( wfMsg('invert'), 'nsInvert', 'nsInvert', $this->opts['nsInvert'] ) . '&nbsp;' .
+			Xml::checkLabel( wfMsg('invert'), 'nsInvert', 'nsInvert', $this->opts['nsInvert'] ) . '&#160;' .
 			Xml::checkLabel( wfMsg( 'history-show-deleted' ),
 				'deletedOnly', 'mw-show-deleted-only', $this->opts['deletedOnly'] ) . '<br />' .
 			Xml::tags( 'p', null, Xml::checkLabel( wfMsg( 'sp-contributions-toponly' ),
