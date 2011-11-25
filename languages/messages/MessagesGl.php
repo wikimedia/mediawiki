@@ -9,6 +9,7 @@
  *
  * @author Alma
  * @author Gallaecio
+ * @author Gustronico
  * @author Lameiro
  * @author Prevert
  * @author Toliño
@@ -2789,7 +2790,7 @@ Gárdeo no seu disco duro e cárgueo aquí.',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisións}} de $2',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'A súa páxina de {{GENDER:{{BASEPAGENAME}}|usuario|usuaria}}',
+'tooltip-pt-userpage'             => 'A súa páxina de {{GENDER:|usuario|usuaria}}',
 'tooltip-pt-anonuserpage'         => 'A páxina de usuario do enderezo IP desde o que está a editar',
 'tooltip-pt-mytalk'               => 'A súa páxina de conversa',
 'tooltip-pt-anontalk'             => 'Conversa acerca de edicións feitas desde este enderezo IP',

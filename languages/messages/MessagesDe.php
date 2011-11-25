@@ -3763,7 +3763,7 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'specialpages-group-media'       => 'Medien',
 'specialpages-group-users'       => 'Benutzer und Rechte',
 'specialpages-group-highuse'     => 'Häufig benutzte Seiten',
-'specialpages-group-pages'       => 'Listen von Seiten',
+'specialpages-group-pages'       => 'Seitenlisten',
 'specialpages-group-pagetools'   => 'Seitenwerkzeuge',
 'specialpages-group-wiki'        => 'Systemdaten und Werkzeuge',
 'specialpages-group-redirects'   => 'Weiterleitende Spezialseiten',

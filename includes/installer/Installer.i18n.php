@@ -3058,9 +3058,27 @@ MediaWiki ale vyžaduje PHP $2 nebo vyšší.',
 	'config-unicode-using-intl' => 'Pro normalizaci Unicode se používá [http://pecl.php.net/intl PECL rozšíření intl].',
 	'config-unicode-pure-php-warning' => "'''Upozornění''': Není dostupné [http://pecl.php.net/intl PECL rozšíření intl] pro normalizaci Unicode, bude se využívat pomalá implementace v čistém PHP.
 Pokud provozujete wiki s velkým provozem, měli byste si přečíst něco o [//www.mediawiki.org/wiki/Unicode_normalization_considerations normalizaci Unicode].",
+	'config-no-db' => 'Nepodařilo se nalézt vhodný databázový ovladač! Musíte do PHP nainstalovat databázový ovladač.
+Jsou podporovány následující typy databází: $1.
+
+Pokud jste na sdíleném hostingu, požádejte svého poskytovale o instalaci vhodného databázového ovladače.
+Pokud jste si PHP přeložili sami, překonfigurujte ho se zapnutým databázovým klientem, například pomocí <code>./configure --with-mysql</code>.
+Pokud jste PHP nainstalovali z balíčku Debian či Ubuntu, potřebujete nainstalovat také modul php5-mysql.',
 	'config-register-globals' => "'''Upozornění: Je zapnuta PHP volba <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Pokud můžete, vypněte ji.'''
 MediaWiki bude fungovat, ale váš server je vystaven potenciálním bezpečnostním hrozbám.",
+	'config-magic-quotes-runtime' => "'''Kritická chyba: Je zapnuto [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-runtime magic_quotes_runtime]!'''
+Toto nastavení nepředvídatelně poškozuje vstupní data.
+MediaWiki nelze nainstalovat ani používat, dokud není toto nastavení vypnuto.",
+	'config-magic-quotes-sybase' => "'''Kritická chyba: Je zapnuto [http://www.php.net/manual/en/ref.info.php#ini.magic-quotes-sybase magic_quotes_sybase]!'''
+Toto nastavení nepředvídatelně poškozuje vstupní data.
+MediaWiki nelze nainstalovat ani používat, dokud není toto nastavení vypnuto.",
+	'config-mbstring' => "'''Kritická chyba: Je zapnuto [http://www.php.net/manual/en/ref.mbstring.php#mbstring.overload mbstring.func_overload]!'''
+Toto nastavení způsobuje chyby a může nepředvídatelně poškozovat vstupní data.
+MediaWiki nelze nainstalovat ani používat, dokud není toto nastavení vypnuto.",
+	'config-ze1' => "'''Kritická chyba: Je zapnut [http://www.php.net/manual/en/ini.core.php zend.ze1_compatibility_mode]!'''
+Toto nastavení způsobuje s MediaWiki příšerné chyby.
+MediaWiki nelze nainstalovat ani používat, dokud není toto nastavení vypnuto.",
 	'config-safe-mode' => "'''Upozornění:''' Je aktivní [http://www.php.net/features.safe-mode bezpečný režim] PHP.
 Může způsobovat potíže, zejména při použití načítání souborů a podpory <code>math</code>.",
 	'config-xml-bad' => 'Chybí XML modul pro PHP.
@@ -3068,10 +3086,13 @@ MediaWiki potřebuje funkce v tomto modulu a v této konfiguraci nebude fungovat
 Pokud běžíte na Mandrake, nainstalujte balíček php-xml.',
 	'config-pcre' => 'Zdá se, že modul s podporou PCRE chybí.
 MediaWiki ke své činnosti potřebuje funkce pro Perl-kompatibilní regulární výrazy.',
+	'config-pcre-no-utf8' => "'''Kritická chyba''': PHP modul PCRE byl zřejmě přeložen bez podpory PCRE_UTF8.
+MediaWiki vyžaduje ke správné funkci podporu UTF-8.",
 	'config-memory-raised' => '<code>memory_limit</code> v PHP byl nastaven na $1, zvýšen na $2.',
 	'config-memory-bad' => "'''Upozornění:''' <code>memory_limit</code> je v PHP nastaven na $1.
 To je pravděpodobně příliš málo.
 Instalace může selhat!",
+	'config-ctype' => "'''Kritická chyba''': PHP musí být přeloženo s podporou pro [http://www.php.net/manual/en/ctype.installation.php rozšíření Ctype].",
 	'config-xcache' => 'Je nainstalována [http://xcache.lighttpd.net/ XCache]',
 	'config-apc' => 'Je nainstalováno [http://www.php.net/apc APC]',
 	'config-wincache' => 'Je nainstalována [http://www.iis.net/download/WinCacheForPhp WinCache]',
@@ -3122,6 +3143,8 @@ Nepoužívejte mezery.
 Toto pole se zpravidla ponechává prázdné.',
 	'config-db-port' => 'Databázový port:',
 	'config-db-schema' => 'Schéma pro MediaWiki:',
+	'config-db-schema-help' => 'Toto schéma zpravidla stačí.
+Měňte ho, jen pokud víte, že je to potřeba.',
 	'config-sqlite-dir' => 'Adresář pro data SQLite:',
 	'config-sqlite-dir-help' => "SQLite ukládá veškerá data v jediném souboru.
 
@@ -3153,6 +3176,7 @@ Pokud v nabídce níže nevidíte databázový systém, který chcete použít, 
 	'config-header-sqlite' => 'Nastavení SQLite',
 	'config-header-oracle' => 'Nastavení Oracle',
 	'config-header-ibm_db2' => 'Nastavení IBM DB2',
+	'config-postgres-old' => 'Je vyžadován PostgreSQL $1 nebo novější, vy máte $2.',
 	'config-sqlite-name-help' => 'Zvolte jméno, které označuje vaši wiki.
 Nepoužívejte mezery a spojovníky.
 Použije se jako název souboru s daty SQLite.',
@@ -3194,6 +3218,10 @@ V '''režimu UTF-8''' bude MySQL znát znakovou sadu vašich dat a může je př
 	'config-project-namespace-help' => "Po vzoru Wikipedie udržuje mnoho wiki stránky se svými pravidly odděleně od stránek s vlastním obsahem, v „'''jmenném prostoru projektu'''“.
 Názvy všech stránek v tomto jmenném prostoru začínají jistým prefixem, který zde můžete nastavit.
 Zvykem je odvozovat tento prefix z názvu wiki, ale nesmí obsahovat jisté interpunkční znaky jako „#“ nebo „:“.",
+	'config-ns-invalid' => 'Uvedený jmenný prostor „<nowiki>$1</nowiki>“ je neplatný.
+Zadejte jiný jmenný prostor projektu.',
+	'config-ns-conflict' => 'Uvedený jmenný prostor „<nowiki>$1</nowiki>“ koliduje se standardním jmenným prostorem MediaWiki.
+Zadejte jiný jmenný prostor projektu.',
 	'config-admin-box' => 'Správcovský účet',
 	'config-admin-name' => 'Vaše jméno:',
 	'config-admin-password' => 'Heslo:',
@@ -3208,9 +3236,12 @@ Zadejte jiné uživatelské jméno.',
 	'config-admin-password-mismatch' => 'Uvedená hesla se neshodují.',
 	'config-admin-email' => 'E-mailová adresa:',
 	'config-admin-email-help' => 'Zde zadejte e-mailovou adresu, která vám umožní přijímat e-maily od ostatních uživatelů wiki, získat nové heslo a přijímat notifikace o změnách sledovaných stránek. Tohle pole můžete nechat prázdné.',
+	'config-admin-error-bademail' => 'Zadali jste neplatnou e-mailovou adresu.',
 	'config-subscribe' => 'Přihlásit se k odběru [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce e-mailové konference pro oznamování nových verzí].',
 	'config-subscribe-help' => 'Tohle je e-mailová konference s nízkým provozem, na které se oznamují nové verze, včetně důležitých bezpečnostních oznámení.
 Měli byste se do ní přihlásit a při vydání nových verzí aktualizovat svou instalaci MediaWiki.',
+	'config-subscribe-noemail' => 'Pokusili jste se přihlásit k odběru e-mailové konference pro oznamování nových verzí, aniž byste poskytli e-mailovou adresu.
+Pokud se chcete přihlásit k odběru, zadejte e-mailovou adresu.',
 	'config-almost-done' => 'Už jsme skoro hotovi!
 Zbývající konfiguraci už můžete přeskočit a nainstalovat wiki hned teď.',
 	'config-optional-continue' => 'Ptejte se mě dál.',
@@ -3301,13 +3332,30 @@ Středním až velkým serverům se jeho zapnutí důrazně doporučuje, i menš
 Uveďte jednu na řádek spolu s portem. Například:
  127.0.0.1:11211
  192.168.1.25:1234',
+	'config-memcache-badport' => 'Čísla portů pro Memcached by měla být mezi $1 a $2.',
 	'config-extensions' => 'Rozšíření',
 	'config-extensions-help' => 'Výše uvedená rozšíření byla nalezena ve vašem adresáři <code>./extensions</code>.
 
 Mohou vyžadovat dodatečnou konfiguraci, ale teď je můžete povolit.',
 	'config-install-begin' => 'Stisknutím „{{int:config-continue}}“ spustíte instalaci MediaWiki.
 Pokud ještě chcete udělat nějaké změny, stiskněte tlačítko zpět.',
+	'config-install-step-done' => 'hotovo',
 	'config-install-step-failed' => 'selhaly',
+	'config-install-extensions' => 'Vkládají se rozšíření',
+	'config-install-database' => 'Připravuje se databáze',
+	'config-install-schema' => 'Vytváří se schéma',
+	'config-install-pg-plpgsql' => 'Kontroluje se jazyk PL/pgSQL',
+	'config-pg-no-plpgsql' => 'Musíte do databáze $1 nainstalovat jazyk PL/pgSQL',
+	'config-install-user' => 'Vytváří se databázový uživatel',
+	'config-install-user-alreadyexists' => 'Uživatel „$1“ už existuje',
+	'config-install-user-create-failed' => 'Vytváření uživatele „$1“ selhalo: $2',
+	'config-install-user-grant-failed' => 'Uživateli „$1“ se nepodařilo přidělit oprávnění: $2',
+	'config-install-user-missing' => 'Zadaný uživatel „$1“ neexistuje.',
+	'config-install-user-missing-create' => 'Zadaný uživatel „$1“ neexistuje.
+Pokud ho chcete založit, zaškrtněte možnost „založit účet“ níže.',
+	'config-install-tables' => 'Vytvářejí se tabulky',
+	'config-install-tables-exist' => "'''Upozornění''': Vypadá to, že tabulky MediaWiki již existují.
+Přeskakuje se jejich zakládání.",
 	'config-help' => 'nápověda',
 	'mainpagetext' => "'''MediaWiki byla úspěšně nainstalována.'''",
 	'mainpagedocfooter' => '[//meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
@@ -5568,6 +5616,7 @@ MediaWiki necesita soporte UTF-8 para funcionar correctamente.",
 	'config-memory-bad' => "'''Atención:''' O parámetro <code>memory_limit</code> do PHP é $1.
 Probablemente é un valor baixo de máis.
 A instalación pode fallar!",
+	'config-ctype' => "'''Fatal:''' O PHP debe compilarse co soporte para a [http://www.php.net/manual/en/ctype.installation.php extensión Ctype].",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] está instalado',
 	'config-apc' => '[http://www.php.net/apc APC] está instalado',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] está instalado',
