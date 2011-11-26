@@ -1859,8 +1859,8 @@ Sylwch y gall gwefannau eraill gysylltu â ffeil drwy URL uniongyrchol. Gan hynn
 'booksources-invalid-isbn'  => "Ymddengys nad yw'r rhif ISBN hwn yn ddilys; efallai y cafwyd gwall wrth drosglwyddo'r rhif.",
 
 # Special:Log
-'specialloguserlabel'  => 'Defnyddiwr:',
-'speciallogtitlelabel' => 'Teitl:',
+'specialloguserlabel'  => 'Gwneuthurwr:',
+'speciallogtitlelabel' => 'Gwrthrych (teitl neu ddefnyddiwr):',
 'log'                  => 'Logiau',
 'all-logs-page'        => 'Pob lòg cyhoeddus',
 'alllogstext'          => "Mae pob cofnod yn holl logiau {{SITENAME}} wedi cael eu rhestru yma.

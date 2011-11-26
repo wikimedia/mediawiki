@@ -741,7 +741,7 @@ Adjon meg egy másik felhasználónevet.',
 	'config-instantcommons-help' => 'Az [//www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [//commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.
 A használatához a MediaWikinek internethozzáférésre van szüksége.
 
-A funkcióról és hogy hogyan állítható be más wikik esetén [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhat további információkat.',
+A funkcióról és hogy hogyan állítható be más wikik esetén [//mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhat további információkat.',
 	'config-install-done' => "'''Gratulálunk!'''
 Sikeresen telepítette a MediaWikit.
 
@@ -1665,7 +1665,7 @@ chmod a+w $3</pre>',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] — магчымасьць, якая дазваляе вікі выкарыстоўваць выявы, гукі і іншыя мэдыя, якія знаходзяцца на сайце [//commons.wikimedia.org/ Wikimedia Commons].
 Каб гэта зрабіць, MediaWiki патрабуе доступу да Інтэрнэту.
 
-Каб даведацца болей пра гэтую магчымасьць, уключаючы інструкцыю пра тое, як яе ўстанавіць ў любой вікі, акрамя Wikimedia Commons, глядзіце [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos дакумэнтацыю].',
+Каб даведацца болей пра гэтую магчымасьць, уключаючы інструкцыю пра тое, як яе ўстанавіць ў любой вікі, акрамя Wikimedia Commons, глядзіце [//mediawiki.org/wiki/Manual:$wgForeignFileRepos дакумэнтацыю].',
 	'config-cc-error' => 'Выбар ліцэнзіі Creative Commons ня даў вынікаў.
 Увядзіце назву ліцэнзіі ўручную.',
 	'config-cc-again' => 'Выберыце яшчэ раз…',
@@ -2186,7 +2186,7 @@ chmod a+w $3</pre>',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] е функционалност, която позволява на уикитата да използват картинки, звуци и друга медиа от сайта на Уикимедия [//commons.wikimedia.org/ Общомедия].
 За да е възможно това, МедияУики изисква достъп до Интернет.
 
-Повече информация за тази функционалност, както и инструкции за настройване за други уикита, различни от Общомедия, е налична в [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos наръчника].',
+Повече информация за тази функционалност, както и инструкции за настройване за други уикита, различни от Общомедия, е налична в [//mediawiki.org/wiki/Manual:$wgForeignFileRepos наръчника].',
 	'config-cc-error' => 'Избирането на лиценз на Криейтив Комънс не даде резултат.
 Необходимо е името на лиценза да бъде въведено ръчно.',
 	'config-cc-again' => 'Повторно избиране...',
@@ -3319,7 +3319,7 @@ Pokud logo nechcete, ponechte toto pole prázdné.',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] je funkce, která umožňuje wiki používat obrázky, zvuky a další mediální soubory ze serveru [//commons.wikimedia.org/wiki/Hlavn%C3%AD_strana Wikimedia Commons].
 Aby to bylo možné, potřebuje mít MediaWiki přístup k internetu.
 
-Více informací o této funkci, včetně instrukcí, jak ji nastavit pro jiné wiki než Wikimedia Commons, najdete v [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos příručce].',
+Více informací o této funkci, včetně instrukcí, jak ji nastavit pro jiné wiki než Wikimedia Commons, najdete v [//mediawiki.org/wiki/Manual:$wgForeignFileRepos příručce].',
 	'config-advanced-settings' => 'Pokročilá konfigurace',
 	'config-cache-options' => 'Nastavení cachování objektů:',
 	'config-cache-help' => 'Cachování objektů se používá pro vylepšení rychlosti MediaWiki tím, že se cachují často používaná data.
@@ -3857,7 +3857,7 @@ Sofern kein Logo benötigt wird, kann dieses Datenfeld leer bleiben.',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons InstantCommons] ist eine Funktion, die es Wikis ermöglicht, Bild-, Klang- und andere Mediendateien zu nutzen, die auf der Website [//commons.wikimedia.org/ Wikimedia Commons] verfügbar sind.
 Um diese Funktion nutzen zu können, muss das Wiki über eine Verbindung zum Internet verfügen.
 
-Weitere Informationen zu dieser Funktion, einschließlich der Anleitung, wie hierfür andere Wikis als Wikimedia Commons eingerichtet werden können, gibt es im [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbuch].',
+Weitere Informationen zu dieser Funktion, einschließlich der Anleitung, wie hierfür andere Wikis als Wikimedia Commons eingerichtet werden können, gibt es im [//mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbuch].',
 	'config-cc-error' => 'Der Creativ-Commons-Lizenzassistent konnte keine Lizenz ermitteln.
 Die Lizenz ist daher jetzt manuell einzugeben.',
 	'config-cc-again' => 'Erneut auswählen …',
@@ -5139,7 +5139,7 @@ Si vous ne voulez pas d'un logo, laissez cette case vide.",
 	'config-instantcommons-help' => "[//www.mediawiki.org/wiki/InstantCommons InstantCommons] est un service qui permet d'utiliser les images, les sons et les autres médias disponibles sur le site [//commons.wikimedia.org/ Wikimedia Commons].
 Pour se faire, il faut que MediaWiki accède à Internet.
 
-Pour plus d'informations sur ce service, y compris les instructions sur la façon de le configurer pour d'autres wikis que Wikimedia Commons, consultez le [http://mediawiki.org/wiki/Manual:\$wgForeignFileRepos manuel] (en anglais).",
+Pour plus d'informations sur ce service, y compris les instructions sur la façon de le configurer pour d'autres wikis que Wikimedia Commons, consultez le [//mediawiki.org/wiki/Manual:\$wgForeignFileRepos manuel] (en anglais).",
 	'config-cc-error' => "Le sélection d'une licence ''Creative Commons'' n'a donné aucun résultat.
 Entrez le nom de la licence manuellement.",
 	'config-cc-again' => 'Choisissez à nouveau...',
@@ -5941,7 +5941,7 @@ Se non quere un logo, deixe esta caixa en branco.',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons InstantCommons] é unha característica que permite aos wikis usar imaxes, sons e outros ficheiros multimedia atopados no sitio da [//commons.wikimedia.org/wiki/Portada_galega Wikimedia Commons].
 Para facer isto, MediaWiki necesita acceso á internet.
 
-Para obter máis información sobre esta característica, incluíndo as instrucións sobre como configuralo para outros wikis que non sexan a Wikimedia Commons, consulte [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos o manual].',
+Para obter máis información sobre esta característica, incluíndo as instrucións sobre como configuralo para outros wikis que non sexan a Wikimedia Commons, consulte [//mediawiki.org/wiki/Manual:$wgForeignFileRepos o manual].',
 	'config-cc-error' => 'A escolla da licenza Creative Commons non deu resultados.
 Escriba o nome da licenza manualmente.',
 	'config-cc-again' => 'Escolla outra vez...',
@@ -6640,7 +6640,7 @@ chmod a+w $3</pre></div>',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] היא תכונה שמאפשרת לאתרי ויקי להשתמש בתמונות, בצלילים ובמדיה אחרת שנמצאת באתר [//commons.wikimedia.org/ ויקישיתוף] (Wikimedia Commons).
 כדי לעשות את זה, מדיה־ויקי צריך לגשת לאינטרנט.
 
-למידע נוסף על התכונה הזאת, כולל הוראות איך להפעיל את זה לאתרי ויקי שאינם ויקישיתוף, ר׳ [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos את ספר ההדרכה].',
+למידע נוסף על התכונה הזאת, כולל הוראות איך להפעיל את זה לאתרי ויקי שאינם ויקישיתוף, ר׳ [//mediawiki.org/wiki/Manual:$wgForeignFileRepos את ספר ההדרכה].',
 	'config-cc-error' => 'בורר רישיונות קריאייטיב קומונז לא החזיר שום תוצאה.
 הקלידו את שם הרישיון ידנית.',
 	'config-cc-again' => 'נא לבחור שוב...',
@@ -7552,7 +7552,7 @@ Ha nem szeretnél logót használni, egyszerűen hagyd üresen a mezőt.',
 	'config-instantcommons-help' => 'Az [//www.mediawiki.org/wiki/InstantCommons Instant Commons] lehetővé teszi, hogy a wikin használhassák a [//commons.wikimedia.org/ Wikimedia Commons] oldalon található képeket, hangokat és más médiafájlokat.
 A használatához a MediaWikinek internethozzáférésre van szüksége.
 
-A funkcióról és hogy hogyan állítható be más wikik esetén [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhatsz további információkat.',
+A funkcióról és hogy hogyan állítható be más wikik esetén [//mediawiki.org/wiki/Manual:$wgForeignFileRepos a kézikönyvben] találhatsz további információkat.',
 	'config-cc-error' => 'A Creative Commons-licencválasztó nem tért vissza eredménnyel.
 Add meg kézzel a licencet.',
 	'config-cc-again' => 'Válassz újra…',
@@ -8105,7 +8105,7 @@ Si tu non vole un logotypo, lassa iste quadro vacue.',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] es un function que permitte a wikis de usar imagines, sonos e altere multimedia trovate in le sito [//commons.wikimedia.org/ Wikimedia Commons].
 Pro poter facer isto, MediaWiki require accesso a Internet.
 
-Pro plus information super iste function, includente instructiones super como configurar lo pro wikis altere que Wikimedia Commons, consulta [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos le manual].',
+Pro plus information super iste function, includente instructiones super como configurar lo pro wikis altere que Wikimedia Commons, consulta [//mediawiki.org/wiki/Manual:$wgForeignFileRepos le manual].',
 	'config-cc-error' => 'Le selector de licentia Creative Commons non dava un resultato.
 Entra le nomine del licentia manualmente.',
 	'config-cc-again' => 'Selige de novo…',
@@ -8632,7 +8632,7 @@ Jika Anda tidak ingin menyertakan logo, biarkan kotak ini kosong.',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] adalah fitur yang memungkinkan wiki untuk menggunakan gambar, suara, dan media lain dari [//commons.wikimedia.org/ Wikimedia Commons].
 Untuk melakukannya, MediaWiki memerlukan akses ke Internet.
 
-Untuk informasi lebih lanjut tentang fitur ini, termasuk petunjuk tentang cara untuk mengatur untuk wiki selain Wikimedia Commons, baca [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos manual].',
+Untuk informasi lebih lanjut tentang fitur ini, termasuk petunjuk tentang cara untuk mengatur untuk wiki selain Wikimedia Commons, baca [//mediawiki.org/wiki/Manual:$wgForeignFileRepos manual].',
 	'config-cc-error' => 'Pemilih lisensi Creative Commons tidak memberikan hasil.
 Masukkan nama lisensi secara manual.',
 	'config-cc-again' => 'Pilih lagi...',
@@ -9307,7 +9307,7 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons InstantCommons]は、[//commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトで見つかった画像や音声、その他のメディアをウィキ上で利用することができるようになる機能です。
 これを有効化するには、MediaWikiはインターネットに接続できなければなりません。
 
-ウィキメディアコモンズ以外のウィキを同じように設定する方法など、この機能に関する詳細な情報は、[http://mediawiki.org/wiki/Manual:$wgForeignFileRepos マニュアル]をご覧ください。',
+ウィキメディアコモンズ以外のウィキを同じように設定する方法など、この機能に関する詳細な情報は、[//mediawiki.org/wiki/Manual:$wgForeignFileRepos マニュアル]をご覧ください。',
 	'config-cc-error' => 'クリエイティブ・コモンズ・ライセンスの選択器から結果が得られませんでした。
 ライセンスの名前を手動で入力してください。',
 	'config-cc-again' => 'もう一度選択してください...',
@@ -10027,7 +10027,7 @@ Wells De kei Logo han, draach heh nix en.',
 	'config-instantcommons' => 'Donn <i lang="en">InstantCommons</i> zohlohße.',
 	'config-instantcommons-help' => '<i lang="en">[//www.mediawiki.org/wiki/InstantCommons InstantCommons]</i> es en Eijeschaff, di et för Wikis müjjelesch määt, Belder, Tondatteie un ander Meedijedatteie enzebenge, di op dä Webßait vun de <i lang="en">[//commons.wikimedia.org/ Wikimedia Commons]</i> ongerjebraat sin. Öm dat noze ze künne, moß dä ẞööver vum MediaWiki en Verbendung nohm Internet opnämme künne.
 
-Mieh Aanjaabe doh drövver un en Aanleidung, wi mer och ander Wikis ußer de <i lang="en">Wikimedia Commons</i> doför enreeschte kann, fengk mer em [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbooch].',
+Mieh Aanjaabe doh drövver un en Aanleidung, wi mer och ander Wikis ußer de <i lang="en">Wikimedia Commons</i> doför enreeschte kann, fengk mer em [//mediawiki.org/wiki/Manual:$wgForeignFileRepos Handbooch].',
 	'config-cc-error' => 'Et Ußsöhke övver de <i lang="en">Creative Commons</i> iehr Projramm zum Lizänzbeshtemme hät nix jebraat.
 Donn de Lizänz sellver beshtemme.',
 	'config-cc-again' => 'Noch ens neu ußsöhke&nbsp;…',
@@ -11010,7 +11010,7 @@ chmod a+w $3</pre>',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] е функција која им овозможува на викијата да користат слики, звучни записи и други мултимедијални содржини од [//commons.wikimedia.org/ Заедничката Ризница].
 За да може ова да работи, МедијаВики бара пристап до интернет.
 
-За повеќе информации за оваа функција и напатствија за нејзино поставување на вики (сите други освен Ризницата), коносултирајте го [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos прирачникот].',
+За повеќе информации за оваа функција и напатствија за нејзино поставување на вики (сите други освен Ризницата), коносултирајте го [//mediawiki.org/wiki/Manual:$wgForeignFileRepos прирачникот].',
 	'config-cc-error' => 'Изборникот на Creative Commons лиценца не даде резултати.
 Внесете го името на лиценцата рачно.',
 	'config-cc-again' => 'Одберете повторно...',
@@ -11900,7 +11900,7 @@ Als u geen logo wilt gebruiken, kunt u dit veld leeg laten.',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] is functie die het mogelijk maakt om afbeeldingen, geluidsbestanden en andere mediabestanden te gebruiken van de website [//commons.wikimedia.org/ Wikimedia Commons].
 Hiervoor heeft MediaWiki toegang nodig tot Internet.
 
-Meer informatie over deze functie en hoe deze in te stellen voor andere wiki\'s dan Wikimedia Commons is te vinden in de [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos handleiding].',
+Meer informatie over deze functie en hoe deze in te stellen voor andere wiki\'s dan Wikimedia Commons is te vinden in de [//mediawiki.org/wiki/Manual:$wgForeignFileRepos handleiding].',
 	'config-cc-error' => 'De licentiekiezer van Creative Commons heeft geen resultaat opgeleverd.
 Voer de licentie handmatig in.',
 	'config-cc-again' => 'Opnieuw kiezen...',
@@ -12474,7 +12474,7 @@ Hvis du ikke ønsker en logo, la denne boksen være tom.',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] er en funksjon som gjør det mulig for wikier å bruke bilder, lyder og andre media funnet på nettstedet [//commons.wikimedia.org/ Wikimedia Commons].
 For å gjøre dette krever MediaWiki tilgang til internett.
 
-For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos manualen].',
+For mer informasjon om denne funksjonen, inklusive instruksjoner om hvordan man setter opp dette for andre wikier enn Wikimedia Commons, konsulter [//mediawiki.org/wiki/Manual:$wgForeignFileRepos manualen].',
 	'config-cc-again' => 'Velg igjen...',
 	'config-cc-not-chosen' => 'Velg hvilken Creative Commons-lisens du ønsker og klikk «fortsett».',
 	'config-advanced-settings' => 'Avansert konfigurasjon',
@@ -13307,7 +13307,7 @@ S'a veul gnun-e marche, ch'a lassa ës camp bianch.",
 	'config-instantcommons-help' => "[//www.mediawiki.org/wiki/InstantCommons Instant Commons] a l'é na funsion ch'a përmët a le wiki ëd dovré dle figure, dij son e d'àutri mojen trovà an sël sit [//commons.wikimedia.org/ Wikimedia Commons].
 Për dovré sossì, MediaWiki a l'ha da manca dl'acess a la ragnà.
 
-Për pi d'anformassion su sta funsion, comprèise j'istrussion ëd com ampostela për wiki diferente da Wikimedia Commons, ch'a consulta [http://mediawiki.org/wiki/Manual:\$wgForeignFileRepos ël manual].",
+Për pi d'anformassion su sta funsion, comprèise j'istrussion ëd com ampostela për wiki diferente da Wikimedia Commons, ch'a consulta [//mediawiki.org/wiki/Manual:\$wgForeignFileRepos ël manual].",
 	'config-cc-error' => "La selession ëd la licensa Creative Commons a l'ha dàit gnun arzultà.
 Ch'a anserissa ël nòm dla licensa a man.",
 	'config-cc-again' => 'Torna cheuje...',
@@ -13882,7 +13882,7 @@ Se não pretende usar um logótipo, deixe este campo em branco.',
 	'config-instantcommons-help' => 'O [//www.mediawiki.org/wiki/InstantCommons Instant Commons] é uma funcionalidade que permite que as wikis usem imagens, áudio e outros ficheiros multimédia disponíveis no site [//commons.wikimedia.org/ Wikimedia Commons].
 Para poder usá-los, o MediaWiki necessita de acesso à internet.
 
-Para mais informações sobre esta funcionalidade, incluindo instruções sobre como configurá-la para usar outras wikis em vez da Wikimedia Commons, consulte o [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos Manual Técnico].',
+Para mais informações sobre esta funcionalidade, incluindo instruções sobre como configurá-la para usar outras wikis em vez da Wikimedia Commons, consulte o [//mediawiki.org/wiki/Manual:$wgForeignFileRepos Manual Técnico].',
 	'config-cc-error' => 'O auxiliar de escolha de licenças da Creative Commons não produziu resultados.
 Introduza o nome da licença manualmente.',
 	'config-cc-again' => 'Escolha outra vez...',
@@ -14607,7 +14607,7 @@ GFDL может быть использована, но она сложна дл
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] — это функция, позволяющая использовать изображения, звуки и другие медиафайлы с Викисклада ([//commons.wikimedia.org/ Wikimedia Commons]).
 Для работы этой функции MediaWiki необходим доступ к Интернету.
 
-Дополнительную информацию об Instant Commons, в том числе указания о том, как её настроить для других вики, отличных от Викисклада, можно найти в [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos руководстве].',
+Дополнительную информацию об Instant Commons, в том числе указания о том, как её настроить для других вики, отличных от Викисклада, можно найти в [//mediawiki.org/wiki/Manual:$wgForeignFileRepos руководстве].',
 	'config-cc-error' => 'Механизм выбора лицензии Creative Commons не вернул результата.
 Введите название лицензии вручную.',
 	'config-cc-again' => 'Выберите ещё раз…',
@@ -16416,7 +16416,7 @@ GNU自由文档许可证是维基百科曾经使用过的许可证，并迄今�
 	'config-instantcommons' => '启用即时共享资源',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons 即时共享资源]可以让wiki使用来自[//commons.wikimedia.org/ 维基共享资源]网站的图像、音频和其他媒体文件。要启用该功能，MediaWiki必须能够访问互联网。
 
-有关此功能的详细信息，包括如何将其他wiki网站设为具有类似共享功能的方法，请参考[http://mediawiki.org/wiki/Manual:$wgForeignFileRepos 手册]。',
+有关此功能的详细信息，包括如何将其他wiki网站设为具有类似共享功能的方法，请参考[//mediawiki.org/wiki/Manual:$wgForeignFileRepos 手册]。',
 	'config-cc-error' => '知识共享许可证挑选器无法找到结果，请手动输入许可证的名称。',
 	'config-cc-again' => '重新挑选……',
 	'config-cc-not-chosen' => '选择您希望使用的知识共享许可证，并点击“继续”。',

@@ -8,12 +8,15 @@
  * @file
  *
  * @author Ashwath Mattur <ashwatham@gmail.com> http://en.wikipedia.org/wiki/User:Ashwatham
+ * @author Dipin
  * @author HPN
  * @author Hari Prasad Nadig <hpnadig@gmail.com> http://en.wikipedia.org/wiki/User:Hpnadig
+ * @author Ktkaushik
  * @author M G Harish
  * @author Mana
  * @author NamwikiTL
  * @author Nayvik
+ * @author Nk rahul14
  * @author Omshivaprakash
  * @author Shankar
  * @author Shushruth
@@ -85,10 +88,11 @@ $messages = array(
 'tog-enotifminoredits'        => 'ಚಿಕ್ಕ-ಪುಟ್ಟ ಬದಲಾವಣೆಗಳಾದಾಗಲೂ ಇ-ಅಂಚೆ ಕಳುಹಿಸು',
 'tog-enotifrevealaddr'        => 'ಪ್ರಕಟಣೆ ಇ-ಅಂಚೆಗಳಲ್ಲಿ ನನ್ನ ಇ-ಅಂಚೆ ವಿಳಾಸ ತೋರು',
 'tog-shownumberswatching'     => 'ಪುಟವನ್ನು ವೀಕ್ಷಿಸುತ್ತಿರುವ ಸದಸ್ಯರ ಸಂಖ್ಯೆಯನ್ನು ತೋರಿಸು',
-'tog-oldsig'                  => 'ಪ್ರಸ್ತಕ ಸಹಿಯ ಮುನ್ನೋಟ:',
+'tog-oldsig'                  => 'ಪ್ರಸ್ತತ ಹಸ್ತ',
 'tog-fancysig'                => 'ಸರಳ ಸಹಿಗಳು (ಕೊಂಡಿ ಇಲ್ಲದಿರುವಂತೆ)',
 'tog-externaleditor'          => 'ಬಾಹ್ಯ ಸಂಪಾದನೆ ಸಲಕರಣೆಯನ್ನು ಯಾವಾಗಲೂ ಉಪಯೋಗಿಸು (ಅನುಭವ ಹೊಂದಿರುವ ಬಳಕೆದಾರರಿಗೆ ಮಾತ್ರ, ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿ ವಿಶೇಷ ಬದಲಾವಣೆಗಳು ಬೇಕಾಗುತ್ತದೆ)',
 'tog-externaldiff'            => 'ಬಾಹ್ಯ ಅಂತರದರ್ಶಕವನ್ನು ಯಾವಗಲೂ ಉಪಯೋಗಿಸು (ಅನುಭವ ಹೊಂದಿರುವ ಬಳಕೆದಾರರಿಗೆ ಮಾತ್ರ, ನಿಮ್ಮ ಗಣಕಯಂತ್ರದಲ್ಲಿ ವಿಶೇಷ ಬದಲಾವಣೆಗಳು ಬೇಕಾಗುತ್ತದೆ)',
+'tog-showjumplinks'           => 'ಶಕ್ತಗೊಳಿಸಲು "ನೆಗೆ ಇಲ್ಲಿಗೆ" ಲಭ್ಯಕೆ ಕೊಡ',
 'tog-uselivepreview'          => 'ನೇರ ಮುನ್ನೋಟವನ್ನು ಉಪಯೋಗಿಸು (JavaScript) (ಪ್ರಾಯೋಗಿಕ)',
 'tog-forceeditsummary'        => 'ಸಂಪಾದನೆ ಸಾರಾಂಶವನ್ನು ಖಾಲಿ ಬಿಟ್ಟಲ್ಲಿ ನೆನಪಿಸು',
 'tog-watchlisthideown'        => 'ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಲ್ಲಿ ನನ್ನ ಸಂಪಾದನೆಗಳನ್ನು ತೋರಿಸಬೇಡ',
@@ -96,15 +100,20 @@ $messages = array(
 'tog-watchlisthideminor'      => 'ಚಿಕ್ಕ ಬದಲಾವಣೆಗಳನ್ನು ವೀಕ್ಷಣಾ ಪಟ್ಟಿಯಿಂದ ಅಡಗಿಸು',
 'tog-watchlisthideliu'        => 'ಲಾಗ್ ಇನ್ ಆಗಿರುವ ಸದಸ್ಯರ ಸಂಪಾದನೆಗಳನ್ನು ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಅಡಗಿಸು',
 'tog-watchlisthideanons'      => 'ಅನಾಮಧೇಯ ಬಳಕೆದಾರರ ಸಂಪಾದನೆಗಳನ್ನು ವೀಕ್ಷಣಾಪಟ್ಟಿಯಲ್ಲಿ ಅಡಗಿಸು',
+'tog-watchlisthidepatrolled'  => 'ವೀಕ್ಷಣಾ ಪತ್ತಿಯಲ್ಲಿ ಹಸ್ತುಕದರ್ ಬದಲಾವಣೆಗಳನ್ನು ಅದಗಿಸು',
 'tog-ccmeonemails'            => 'ಇತರರಿಗೆ ನಾನು ಕಳುಹಿಸುವ ಇ-ಅಂಚೆಯ ಪ್ರತಿಯನ್ನು ನನಗೂ ಕಳುಹಿಸು',
 'tog-diffonly'                => 'ವ್ಯತ್ಯಾಸಗಳ ಕೆಳಗಿರುವ ಪುಟದ ವಿವರಗಳನ್ನು ತೋರಿಸಬೇಡ',
 'tog-showhiddencats'          => 'ಅಡಗಿಸಲ್ಪಟ್ಟ ವರ್ಗಗಳನ್ನು ತೋರಿಸು',
+'tog-norollbackdiff'          => 'ತೊಡೆದುಹಾಕಿದ ನಂತರ ವ್ಯತ್ಯಸವನ್ನು ಬಿದು',
 
 'underline-always'  => 'ಯಾವಾಗಲೂ',
 'underline-never'   => 'ಎಂದಿಗೂ ಇಲ್ಲ',
 'underline-default' => 'ಬ್ರೌಸರ್‍ನ ಯಥಾಸ್ಥಿತಿ',
 
 # Font style option in Special:Preferences
+'editfont-style'     => 'ಬದಲಾಣೆಯ ಜಾಗಾದ ಬರಿಯುವ ಶೈಲ',
+'editfont-default'   => 'ಬ್ರೌಸರದ ಯಥಾಸ್ಥಿತಿ',
+'editfont-monospace' => 'ಒಂದುಸ್ಥಳದ ಮುದ್ರಲಿಪಿ',
 'editfont-sansserif' => 'ಸಾನ್ಸ್-ಸೆರಿಫ಼್ ಮುದ್ರಲಿಪಿ',
 'editfont-serif'     => 'ಸೆರಿಫ಼್ ಮುದ್ರಲಿಪಿ',
 
@@ -175,6 +184,9 @@ $messages = array(
 'category-file-count'            => '{{PLURAL:$2|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ ಫೈಲು ಇದೆ.|ಈ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಫೈಲನ್ನು|$1 ಫೈಲುಗಳನ್ನು}} ಸೇರಿಸಿ, ಒಟ್ಟು $2 ಇವೆ.}}',
 'category-file-count-limited'    => 'ಪ್ರಸಕ್ತ ವರ್ಗದಲ್ಲಿ ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಫೈಲು ಇದೆ|$1 ಫೈಲುಗಳು ಇವೆ}}.',
 'listingcontinuesabbrev'         => 'ಮುಂದು.',
+'index-category'                 => 'ಸೂಚಿನಾಮದ ಪುತಗಳು',
+'noindex-category'               => 'ಅಸುಚಿನಾಮದ ಪುತಗಳು',
+'broken-file-category'           => 'ಪುತಗಲ್ಲಿ ಮುರುದಿರುವ ಕಡತ ಕೊಂಡಿಗಳು',
 
 'about'         => 'ನಮ್ಮ ಬಗ್ಗೆ',
 'article'       => 'ಲೇಖನ ಪುಟ',
@@ -199,18 +211,20 @@ $messages = array(
 'faqpage'        => 'Project:ಸಾಮಾನ್ಯವಾಗಿ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು',
 
 # Vector skin
-'vector-action-addsection' => 'ವಿಷಯ ಸೇರಿಸಿ',
-'vector-action-delete'     => 'ಅಳಿಸು',
-'vector-action-move'       => 'ಸ್ಥಳಾಂತರಿಸಿ',
-'vector-action-protect'    => 'ಸಂರಕ್ಷಿಸು',
-'vector-action-unprotect'  => 'ಸಂರಕ್ಷಣೆಯನ್ನು ತೆಗೆ',
-'vector-view-create'       => 'ಸೃಷ್ಟಿಸು',
-'vector-view-edit'         => 'ಸಂಪಾದಿಸಿ',
-'vector-view-history'      => 'ಇತಿಹಾಸವನ್ನು ನೋಡಿ',
-'vector-view-view'         => 'ಓದು',
-'vector-view-viewsource'   => 'ಆಕರ ವೀಕ್ಷಿಸು',
-'actions'                  => 'ಕ್ರಿಯೆಗಳು',
-'namespaces'               => 'ನಾಮವರ್ಗಗಳು',
+'vector-action-addsection'       => 'ವಿಷಯ ಸೇರಿಸಿ',
+'vector-action-delete'           => 'ಅಳಿಸು',
+'vector-action-move'             => 'ಸ್ಥಳಾಂತರಿಸಿ',
+'vector-action-protect'          => 'ಸಂರಕ್ಷಿಸು',
+'vector-action-unprotect'        => 'ರಕ್ಷಣೆಯನ್ನು ಬದಲಾವಣೆ',
+'vector-simplesearch-preference' => 'ವರ್ಧಿಸಿದ ಹುಡುಕು ಸಲಹೆಗಳನ್ನು (ಕೇವಲ ವೆಕ್ಟರ್ ಚರ್ಮ) ಸಕ್ರಿಯಗೊಳಿಸಿ',
+'vector-view-create'             => 'ಸೃಷ್ಟಿಸು',
+'vector-view-edit'               => 'ಸಂಪಾದಿಸಿ',
+'vector-view-history'            => 'ಇತಿಹಾಸವನ್ನು ನೋಡಿ',
+'vector-view-view'               => 'ಓದು',
+'vector-view-viewsource'         => 'ಆಕರ ವೀಕ್ಷಿಸು',
+'actions'                        => 'ಕ್ರಿಯೆಗಳು',
+'namespaces'                     => 'ನಾಮವರ್ಗಗಳು',
+'variants'                       => 'ಹಲವು',
 
 'errorpagetitle'    => 'ದೋಷ',
 'returnto'          => '$1 ಗೆ ಹಿಂತಿರುಗಿ.',
@@ -226,6 +240,7 @@ $messages = array(
 'printableversion'  => 'ಪ್ರಿಂಟ್ ಆವೃತ್ತಿ',
 'permalink'         => 'ಸ್ಥಿರ ಸಂಪರ್ಕ',
 'print'             => 'ಮುದ್ರಿಸು',
+'view'              => 'ನೋಟ',
 'edit'              => 'ಸಂಪಾದಿಸಿ',
 'create'            => 'ಸೃಷ್ಟಿಸು',
 'editthispage'      => 'ಈ ಪುಟವನ್ನು ಬದಲಾಯಿಸಿ',
@@ -233,11 +248,12 @@ $messages = array(
 'delete'            => 'ಅಳಿಸಿ',
 'deletethispage'    => 'ಈ ಪುಟವನ್ನು ಅಳಿಸಿ',
 'undelete_short'    => '{{PLURAL:$1|ಒಂದು ಸಂಪಾದನೆಯ|$1 ಸಂಪಾದನೆಗಳ}} ಅಳಿಸುವಿಕೆಯನ್ನು ತೊಡೆದುಹಾಕು',
+'viewdeleted_short' => 'ನೋಟ {{PLURAL:$1|೧ ಅಳಿಸಲ್ಪಟ್ಟ ಸಂಪಾದನೆ|$1 ಅಳಿಸಲ್ಪಟ್ಟ ಸಂಪಾದನೆಗಳು}}',
 'protect'           => 'ಸಂರಕ್ಷಿಸು',
 'protect_change'    => 'ಬದಲಾಯಿಸಿ',
 'protectthispage'   => 'ಈ ಪುಟವನ್ನು ಸಂರಕ್ಷಿಸಿ',
-'unprotect'         => 'ಸಂರಕ್ಷಣೆ ತೆಗೆ',
-'unprotectthispage' => 'ಈ ಪುಟದ ಸಂರಕ್ಷಣೆಯನ್ನು ತಗೆಯಿರಿ',
+'unprotect'         => 'ರಕ್ಷಣೆಯನ್ನು ಬದಲಾವಣೆ',
+'unprotectthispage' => 'ಈ ಪುಟದ ರಕ್ಷಣೆಯನ್ನು ಬದಲಾಯಿಸಲು',
 'newpage'           => 'ಹೊಸ ಪುಟ',
 'talkpage'          => 'ಈ ಪುಟದ ಬಗ್ಗೆ ಚರ್ಚೆ ಮಾಡಿ',
 'talkpagelinktext'  => 'ಚರ್ಚೆ',
@@ -265,6 +281,9 @@ $messages = array(
 'jumpto'            => 'ಇಲ್ಲಿಗೆ ಹೋಗು:',
 'jumptonavigation'  => 'ಸಂಚರಣೆ',
 'jumptosearch'      => 'ಹುಡುಕು',
+'view-pool-error'   => '$1',
+'pool-timeout'      => 'ಕಾಲಾವಕಾಶ ಲಾಕ್ ಕಾಯುವುದು',
+'pool-queuefull'    => 'ಪ್ರಕ್ರಿಯೆಯನ್ನು ವಿಶೇಷ ಕ್ಯು ಪೂರ್ಣ',
 'pool-errorunknown' => 'ಅಪರಿಚಿತ ದೋಷ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -309,6 +328,8 @@ $messages = array(
 'toc'                     => 'ಪರಿವಿಡಿ',
 'showtoc'                 => 'ತೋರಿಸು',
 'hidetoc'                 => 'ಅಡಗಿಸು',
+'collapsible-collapse'    => 'ಕುಸಿತ',
+'collapsible-expand'      => 'ವಿಸ್ತರಿಸಲು',
 'thisisdeleted'           => '$1 ಅನ್ನು ನೋಡಬೇಕೆ ಅಥವ ಹಿಂದಿನಂತಾಗಿಸಬೇಕೆ?',
 'viewdeleted'             => '$1 ಅನ್ನು ನೋಡಬೇಕೆ?',
 'restorelink'             => '{{PLURAL:$1|೧ ಅಳಿಸಲ್ಪಟ್ಟ ಸಂಪಾದನೆ|$1 ಅಳಿಸಲ್ಪಟ್ಟ ಸಂಪಾದನೆಗಳು}}',
@@ -344,12 +365,12 @@ $messages = array(
 # General errors
 'error'                => 'ದೋಷ',
 'databaseerror'        => 'ಡೇಟಬೇಸ್ ದೋಷ',
-'dberrortext'          => 'ಡೇಟಾಬೇಸ್ ಕೋರಿಕೆಯ ರಚನೆಯಲ್ಲಿ ದೋಷವೊಂದು ಉಂಟಾಗಿದೆ.
-ಇದು ತಂತ್ರಾಂಶದಲ್ಲಿನ ದೋಶದಿಂದ ಆಗಿರಬಹುದು.
-ಕೊನೆಯದಾಗಿ ಪ್ರಯತ್ನಿಸಲಾದ ಡೇಟಾಬೇಸ್ ಕೋರಿಕೆಯು:
+'dberrortext'          => '!!FUZZY!ಒಂದು ಡೇಟಾಬೇಸ್ ನಿಮ್ಮಪ್ರಶ್ನೆಗೆ ಸಿಂಟಾಕ್ಸ್ ತಪ್ಪು ಸಂಭವಿಸಿದೆ
+ಈ ಸಾಫ್ಟ್ವೇರ್ ಒಂದು ದೋಷವನ್ನು ನಿವಾರಿಸಲಾಗಿದೆ ಸೂಚಿಸಬಹುದು.
+ಕೊನೆಯ ಪ್ರಯತ್ನ ಡೇಟಾಬೇಸ್ ನಿಮ್ಮಪ್ರಶ್ನೆಗೆ ಮಾಡಲಾಯಿತು:
 <blockquote><tt>$1</tt></blockquote>
-ಉಂಟಾಗಿದ್ದು "<tt>$2</tt>" function ಒಳಗಿಂದ.
-MySQL ಹಿಂದಿರುಗಿಸಿದ ದೋಷ "<tt>$3: $4</tt>".',
+ಕ್ರಿಯೆ ಒಳಗಿನಿಂದಲೇ "<tt>$2</tt>" 
+ಡೇಟಾಬೇಸ್ ದೋಷವನ್ನು ತಿಳಿಸಿದೆ"<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'ಡೇಟಾಬೇಸ್ ಪ್ರಶ್ನೆಯ ವಿನ್ಯಾಸದಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ.
 ಕೊನೆಯದಾಗಿ ಪ್ರಯತ್ನಿಸಲಾದ ಡೇಟಾಬೇಸ್ ಪ್ರಶ್ನೆಯು:
 "$1"
@@ -648,11 +669,14 @@ $2',
 ಅದು ಆಗಲೆ ಅಸ್ಥಿತ್ವದಲ್ಲಿದೆ.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'  => 'ಎಚ್ಚರಿಕೆ: ಈ ಪುಟದಲ್ಲಿ ಬಹುತೇಕ ದುಬಾರಿ parser function ಕರೆಗಳಿವೆ.
+'expensive-parserfunction-warning'        => 'ಎಚ್ಚರಿಕೆ: ಈ ಪುಟದಲ್ಲಿ ಬಹುತೇಕ ದುಬಾರಿ parser function ಕರೆಗಳಿವೆ.
 
 ಈಗ {{PLURAL:$1|$1 ಕರೆ|$1 ಕರೆಗಳು}} ಇದ್ದು, $2 {{PLURAL:$2|ಕರೆಗಿಂತ|ಕರೆಗಳಿಗಿಂತ}} ಕಡಿಮೆ ಇರಬೇಕು.',
-'expensive-parserfunction-category' => 'ಬಹುತೇಕ ದುಬಾರಿ parser function ಕರೆಗಳಿರುವ ಪುಟಗಳು',
-'parser-template-loop-warning'      => 'ಟೆಂಪ್ಲೇಟು ಆವರ್ತನೆ ಪತ್ತೆಯಾಗಿದೆ: [[$1]]',
+'expensive-parserfunction-category'       => 'ಬಹುತೇಕ ದುಬಾರಿ parser function ಕರೆಗಳಿರುವ ಪುಟಗಳು',
+'post-expand-template-inclusion-warning'  => "' ' 'ಎಚ್ಚರಿಕೆ:' ' ' ಪುಟದಲ್ಲಿ ಹಕುವ ಛಿತ್ರ ಥೊದಥು. 
+ಕೆಲವು ಟೆಂಪ್ಲೇಟುಗಳು ಹಕಲಗುದಿಲ್ಲ.",
+'post-expand-template-inclusion-category' => 'ಪುಟದಲ್ಲಿ  ಚಿತ್ರ  ಹಗಲ ಯೆರಿದೆ',
+'parser-template-loop-warning'            => 'ಟೆಂಪ್ಲೇಟು ಆವರ್ತನೆ ಪತ್ತೆಯಾಗಿದೆ: [[$1]]',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ಖಾತೆಯನ್ನು ಸೃಷ್ಟಿಸಲಾಗುತ್ತಿಲ್ಲ',
@@ -764,53 +788,58 @@ $2',
 'diff-multi'               => '(ಮಧ್ಯದಲ್ಲಿ ಆಗಿರುವ {{PLURAL:$1|೧ ಬದಲಾವಣೆಯನ್ನು|$1 ಬದಲಾವಣೆಗಳನ್ನು}} ತೋರಿಸಲಾಗಿಲ್ಲ.)',
 
 # Search results
-'searchresults'                  => 'ಶೋಧನೆಯ ಫಲಿತಾಂಶಗಳು',
-'searchresults-title'            => '"$1" ಅನ್ನು ಹುಡುಕಿದ ಫಲಿತಾಂಶಗಳು',
-'searchresulttext'               => '{{SITENAME}} ಅಲ್ಲಿ ಹುಡುಕಾಟ ನಡೆಸುವ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ [[{{MediaWiki:Helppage}}|{{int:help}}]] ಅನ್ನು ನೋಡಿ.',
-'searchsubtitle'                 => 'ನೀವು \'\'\'[[:$1]]\'\'\' ಅನ್ನು ಹುಡುಕಿದಿರಿ ([[Special:Prefixindex/$1|"$1" ಇಂದ ಪ್ರಾರಂಭವಾಗುವ ಎಲ್ಲಾ ಪುಟಗಳು]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" ಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಎಲ್ಲಾ ಪುಟಗಳು]])',
-'searchsubtitleinvalid'          => "'''$1''' ಅನ್ನು ಹುಡುಕಿದಿರಿ",
-'toomanymatches'                 => 'ತುಂಬಾ ಫಲಿತಾಂಶಗಳು ದೊರೆತಿವೆ, ದಯವಿಟ್ಟು ಬೇರೆ ಪದಪುಂಜವನ್ನು ಪ್ರಯತ್ನಿಸಿ',
-'titlematches'                   => 'ಹೊಂದಿಕೆಯಿರುವ ಪುಟ ಶೀರ್ಷಿಕೆಗಳು',
-'notitlematches'                 => 'ಯಾವ ಪುಟ ಶೀರ್ಷಿಕೆಗಳೂ ಹೊಂದಿಕೆ ತೋರಲಿಲ್ಲ',
-'textmatches'                    => 'ಪುಟದ ಪಠ್ಯದಲ್ಲಿನ ಹೋಲಿಕೆಗಳು',
-'notextmatches'                  => 'ಯಾವ ಪುಟದ ಪಠ್ಯದಲ್ಲೂ ಹೋಲಿಕೆಗಳಿಲ್ಲ',
-'prevn'                          => 'ಹಿಂದಿನ {{PLURAL:$1|$1}}',
-'nextn'                          => 'ಮುಂದಿನ {{PLURAL:$1|$1}}',
-'shown-title'                    => 'ಪ್ರತಿ ಪುಟದಲ್ಲಿಯೂ $1 {{PLURAL:$1|result|results}} ತೋರಿಸು',
-'viewprevnext'                   => 'ವೀಕ್ಷಿಸು ($1 {{int:pipe-separator}} $2) ($3)',
-'searchmenu-new'                 => "'''''[[:$1]]'' ಪುಟವನ್ನು ಈ ವಿಕಿಯಲ್ಲಿ ಸೃಷ್ಟಿಸಿ!'''",
-'searchhelp-url'                 => 'Help:ಪರಿವಿಡಿ',
-'searchprofile-project'          => 'ಸಹಾಯ ಮತ್ತು ಯೋಜನೆ ಪುಟಗಳು',
-'searchprofile-images'           => 'ಬಹುಮಾಧ್ಯಮ',
-'searchprofile-everything'       => 'ಪ್ರತಿಯೊಂದು',
-'searchprofile-advanced'         => 'ಪರಿಣತ',
-'searchprofile-articles-tooltip' => '$1 ನಲ್ಲಿ ಹುಡುಕಿ',
-'search-result-size'             => '$1 ({{PLURAL:$2|೧ ಪದ|$2 ಪದಗಳು}})',
-'search-result-score'            => 'ಸಂಬದ್ಧತೆ: $1%',
-'search-redirect'                => '(ಪುನರ್ನಿರ್ದೇಶನ $1)',
-'search-section'                 => '(ವಿಭಾಗ $1)',
-'search-suggest'                 => 'ನೀವು ಇದನ್ನು ಹುಡುಕುತ್ತಿರುವಿರೆ: $1',
-'search-interwiki-caption'       => 'ಬಳಗದ ಇತರ ಯೋಜನೆಗಳು',
-'search-interwiki-default'       => '$1 ಫಲಿತಾಂಶಗಳು:',
-'search-interwiki-more'          => '(ಹೆಚ್ಚು)',
-'search-mwsuggest-enabled'       => 'ಸಲಹೆಗಳೊಂದಿಗೆ',
-'search-mwsuggest-disabled'      => 'ಯಾವುದೇ ಸಲಹೆಗಳಿಲ್ಲ',
-'search-relatedarticle'          => 'ಸಂಬಂಧಿತ',
-'mwsuggest-disable'              => 'AJAX ಸಲಹೆಗಳನ್ನು ತೋರದಿರು',
-'searchrelated'                  => 'ಸಂಬಂಧಿತ',
-'searchall'                      => 'ಎಲ್ಲಾ',
-'showingresults'                 => "ಕೆಳಗೆ #'''$2''' ಇಂದ ಶುರುವಾದ {{PLURAL:$1|'''೧''' ಫಲಿತಾಂಶದ|'''$1''' ಫಲಿತಾಂಶಗಳ}}ವರೆಗೂ ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
-'showingresultsnum'              => "ಕೆಳಗೆ #'''$2''' ಇಂದ ಶುರುವಾಗಿ {{PLURAL:$3|'''೧''' ಫಲಿತಾಂಶವನ್ನು|'''$3''' ಫಲಿತಾಂಶಗಳನ್ನು}} ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
-'nonefound'                      => "'''ಸೂಚನೆ''': ಕೆಲವೊಂದು ನೇಮ್ ಸ್ಪೇಸ್ ಗಳನ್ನು ಮಾತ್ರ ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ ಹುಡುಕಲಾಗುತ್ತದೆ.
+'searchresults'                    => 'ಶೋಧನೆಯ ಫಲಿತಾಂಶಗಳು',
+'searchresults-title'              => '"$1" ಅನ್ನು ಹುಡುಕಿದ ಫಲಿತಾಂಶಗಳು',
+'searchresulttext'                 => '{{SITENAME}} ಅಲ್ಲಿ ಹುಡುಕಾಟ ನಡೆಸುವ ಬಗ್ಗೆ ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗೆ [[{{MediaWiki:Helppage}}|{{int:help}}]] ಅನ್ನು ನೋಡಿ.',
+'searchsubtitle'                   => 'ನೀವು \'\'\'[[:$1]]\'\'\' ಅನ್ನು ಹುಡುಕಿದಿರಿ ([[Special:Prefixindex/$1|"$1" ಇಂದ ಪ್ರಾರಂಭವಾಗುವ ಎಲ್ಲಾ ಪುಟಗಳು]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" ಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಎಲ್ಲಾ ಪುಟಗಳು]])',
+'searchsubtitleinvalid'            => "'''$1''' ಅನ್ನು ಹುಡುಕಿದಿರಿ",
+'toomanymatches'                   => 'ತುಂಬಾ ಫಲಿತಾಂಶಗಳು ದೊರೆತಿವೆ, ದಯವಿಟ್ಟು ಬೇರೆ ಪದಪುಂಜವನ್ನು ಪ್ರಯತ್ನಿಸಿ',
+'titlematches'                     => 'ಹೊಂದಿಕೆಯಿರುವ ಪುಟ ಶೀರ್ಷಿಕೆಗಳು',
+'notitlematches'                   => 'ಯಾವ ಪುಟ ಶೀರ್ಷಿಕೆಗಳೂ ಹೊಂದಿಕೆ ತೋರಲಿಲ್ಲ',
+'textmatches'                      => 'ಪುಟದ ಪಠ್ಯದಲ್ಲಿನ ಹೋಲಿಕೆಗಳು',
+'notextmatches'                    => 'ಯಾವ ಪುಟದ ಪಠ್ಯದಲ್ಲೂ ಹೋಲಿಕೆಗಳಿಲ್ಲ',
+'prevn'                            => 'ಹಿಂದಿನ {{PLURAL:$1|$1}}',
+'nextn'                            => 'ಮುಂದಿನ {{PLURAL:$1|$1}}',
+'shown-title'                      => 'ಪ್ರತಿ ಪುಟದಲ್ಲಿಯೂ $1 {{PLURAL:$1|result|results}} ತೋರಿಸು',
+'viewprevnext'                     => 'ವೀಕ್ಷಿಸು ($1 {{int:pipe-separator}} $2) ($3)',
+'searchmenu-new'                   => "'''''[[:$1]]'' ಪುಟವನ್ನು ಈ ವಿಕಿಯಲ್ಲಿ ಸೃಷ್ಟಿಸಿ!'''",
+'searchhelp-url'                   => 'Help:ಪರಿವಿಡಿ',
+'searchprofile-project'            => 'ಸಹಾಯ ಮತ್ತು ಯೋಜನೆ ಪುಟಗಳು',
+'searchprofile-images'             => 'ಬಹುಮಾಧ್ಯಮ',
+'searchprofile-everything'         => 'ಪ್ರತಿಯೊಂದು',
+'searchprofile-advanced'           => 'ಪರಿಣತ',
+'searchprofile-articles-tooltip'   => '$1 ನಲ್ಲಿ ಹುಡುಕಿ',
+'searchprofile-project-tooltip'    => '$1 ನಲ್ಲಿ ಹುಡುಕಿ',
+'searchprofile-images-tooltip'     => 'ಹುದುಕಿ  ಹಲೆಯನು',
+'searchprofile-everything-tooltip' => 'ಹುದುಕಿ ಯಲ ಸುಮನು (ಇಥಿಯದಿ ಮಾಥು ಹಲೆ)',
+'searchprofile-advanced-tooltip'   => 'ಹುಧುಕಿ ನಮ ಜಾಗ ಹೆಸರುಸ್ತಲ್ಲ',
+'search-result-size'               => '$1 ({{PLURAL:$2|೧ ಪದ|$2 ಪದಗಳು}})',
+'search-result-score'              => 'ಸಂಬದ್ಧತೆ: $1%',
+'search-redirect'                  => '(ಪುನರ್ನಿರ್ದೇಶನ $1)',
+'search-section'                   => '(ವಿಭಾಗ $1)',
+'search-suggest'                   => 'ನೀವು ಇದನ್ನು ಹುಡುಕುತ್ತಿರುವಿರೆ: $1',
+'search-interwiki-caption'         => 'ಬಳಗದ ಇತರ ಯೋಜನೆಗಳು',
+'search-interwiki-default'         => '$1 ಫಲಿತಾಂಶಗಳು:',
+'search-interwiki-more'            => '(ಹೆಚ್ಚು)',
+'search-mwsuggest-enabled'         => 'ಸಲಹೆಗಳೊಂದಿಗೆ',
+'search-mwsuggest-disabled'        => 'ಯಾವುದೇ ಸಲಹೆಗಳಿಲ್ಲ',
+'search-relatedarticle'            => 'ಸಂಬಂಧಿತ',
+'mwsuggest-disable'                => 'AJAX ಸಲಹೆಗಳನ್ನು ತೋರದಿರು',
+'searchrelated'                    => 'ಸಂಬಂಧಿತ',
+'searchall'                        => 'ಎಲ್ಲಾ',
+'showingresults'                   => "ಕೆಳಗೆ #'''$2''' ಇಂದ ಶುರುವಾದ {{PLURAL:$1|'''೧''' ಫಲಿತಾಂಶದ|'''$1''' ಫಲಿತಾಂಶಗಳ}}ವರೆಗೂ ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
+'showingresultsnum'                => "ಕೆಳಗೆ #'''$2''' ಇಂದ ಶುರುವಾಗಿ {{PLURAL:$3|'''೧''' ಫಲಿತಾಂಶವನ್ನು|'''$3''' ಫಲಿತಾಂಶಗಳನ್ನು}} ತೋರಿಸಲಾಗುತ್ತಿದೆ.",
+'nonefound'                        => "'''ಸೂಚನೆ''': ಕೆಲವೊಂದು ನೇಮ್ ಸ್ಪೇಸ್ ಗಳನ್ನು ಮಾತ್ರ ಪೂರ್ವನಿಯೋಜಿತವಾಗಿ ಹುಡುಕಲಾಗುತ್ತದೆ.
 ನಿಮ್ಮ ಹುಡುಕುಪದದ ಹಿಂದೆ ''all:'' ಬಳಸಿ, ವಿಷಯವನ್ನು ಹುಡುಕಿ (ಚರ್ಚೆ, ಟೆಂಪ್ಲೇಟು, ಇತ್ಯಾದಿ ಪುಟಗಳನ್ನೊಳಗೊಂಡು), ಅಥವಾ ನಿಮಗೆ ಇಷ್ಟ ಬಂದ ನೇಮ್ ಸ್ಪೇಸ್ ಅನ್ನು ಪೂರ್ವಪ್ರತ್ಯಯವನ್ನಾಗಿ ಬಳಸಿ.",
-'powersearch'                    => 'ಹುಡುಕಿ',
-'powersearch-legend'             => 'ಮುಂದುವರೆದ ಹುಡುಕಾಟ',
-'powersearch-ns'                 => 'ಈ ಪುಟ ಪ್ರಬೇಧಗಳಲ್ಲಿ ಹುಡುಕು:',
-'powersearch-redir'              => 'ಪುನರ್ನಿರ್ದೇಶನಗಳ ಪಟ್ಟಿ',
-'powersearch-field'              => 'ಇದನ್ನು ಹುಡುಕು',
-'powersearch-toggleall'          => 'ಎಲ್ಲಾ',
-'search-external'                => 'ಬಾಹ್ಯ ಹುಡುಕಾಟ',
-'searchdisabled'                 => '{{SITENAME}} ಹುಡುಕಾಟ ಸದ್ಯಕ್ಕೆ ಸ್ಥಗಿತವಾಗಿದೆ.
+'search-nonefound'                 => 'ಉಥರ ಇಲ್ಲ, ಈ ಪ್ರಶನಖೇ.',
+'powersearch'                      => 'ಹುಡುಕಿ',
+'powersearch-legend'               => 'ಮುಂದುವರೆದ ಹುಡುಕಾಟ',
+'powersearch-ns'                   => 'ಈ ಪುಟ ಪ್ರಬೇಧಗಳಲ್ಲಿ ಹುಡುಕು:',
+'powersearch-redir'                => 'ಪುನರ್ನಿರ್ದೇಶನಗಳ ಪಟ್ಟಿ',
+'powersearch-field'                => 'ಇದನ್ನು ಹುಡುಕು',
+'powersearch-toggleall'            => 'ಎಲ್ಲಾ',
+'search-external'                  => 'ಬಾಹ್ಯ ಹುಡುಕಾಟ',
+'searchdisabled'                   => '{{SITENAME}} ಹುಡುಕಾಟ ಸದ್ಯಕ್ಕೆ ಸ್ಥಗಿತವಾಗಿದೆ.
 ಈ ವೇಳೆಯಲ್ಲಿ ನೀವು ಗೂಗಲ್ ಉಪಯೋಗಿಸಿ ಹುಡುಕಾಟ ನಡೆಸಬಹುದು.
 ಗಮನಿಸಿ: ಅವರ {{SITENAME}} ಮಾಹಿತಿಯು ಪ್ರಸಕ್ತವಾಗಿಲ್ಲದಿರಬಹುದು.',
 
@@ -1134,6 +1163,8 @@ $2',
 'linkstoimage'              => 'ಈ ಕೆಳಗಿನ {{PLURAL:$1|ಪುಟವು|$1 ಪುಟಗಳು}} ಈ ಚಿತ್ರಕ್ಕೆ ಸಂಪರ್ಕ {{PLURAL:$1|ಹೊಂದಿದೆ|ಹೊಂದಿವೆ}}:',
 'nolinkstoimage'            => 'ಈ ಫೈಲಿಗೆ ಯಾವ ಪುಟವೂ ಸಂಪರ್ಕ ಹೊಂದಿಲ್ಲ.',
 'sharedupload'              => 'ಈ ಫೈಲು $1 ಇಂದ. ಇದು ಇತರ ಯೋಜನೆಗಳಲ್ಲಿ ಉಪಯೋಗದಲ್ಲಿರಬಹುದು.',
+'sharedupload-desc-here'    => 'ಈಧು ಬನ್ದಿರುವುಧು $1 ಮಥು ಹಲವು ಯೋಜನೆ  ಯಲ್ಲಿ ಉಪಯೊಗ ವಗುಥದೆ. 
+ಕೊಟುರುವ   ವಿವರನೆ [$2 ಕತಥೆ ವಿವರನೆ ಪುಟಾ] ಕೆಲ್ಲಕೆ ನೊಡೀ.',
 'uploadnewversion-linktext' => 'ಈ ಫೈಲಿನ ಹೊಸ ಆವೃತ್ತಿಯನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
 
 # File reversion
@@ -1733,6 +1764,7 @@ $2',
 'tooltip-rollback'                => 'ಕೊನೆ ಸಂಪಾದಕರ ಎಲ್ಲಾ ಸಂಪಾದನೆಗಳನ್ನು ಅಳಿಸುಹಾಕುತ್ತದೆ',
 'tooltip-undo'                    => '"ವಜಾ ಮಾಡಿ" ಈ ಸಂಪಾದನೆಯನ್ನು ನಿಷ್ಕ್ರಿಯ ಗೊಳಿಸಿ ಸಂಪಾದನಾ ಪುಟವನ್ನು ಮುನ್ನೋಟದೊಂದಿಗೆ ತೆರೆಯುತ್ತದೆ.
 ಇಲ್ಲಿ ಸಾರಾಂಶದಲ್ಲಿ ಕಾರಣವನ್ನು ಸೇರಿಸುವ ಅನುಮತಿ ಇದೆ.',
+'tooltip-summary'                 => 'ಸನ್ನ ಒಪ್ಪಿಗೆ ಇಲ್ಲಿ ಹಕಿ',
 
 # Attribution
 'anonymous'     => '{{SITENAME}} ತಾಣದ ಅನಾಮಧೇಯ {{PLURAL:$1|ಬಳಕೆದಾರ|ಬಳಕೆದಾರರು}}',
@@ -2033,7 +2065,8 @@ $5
 'blankpage' => 'ಖಾಲಿ ಪುಟ',
 
 # Special:Tags
-'tags-edit' => 'ಸಂಪಾದಿಸಿ',
+'tag-filter' => '[[special : Tags | ದಿನ]]  ಶುಧಕರಿ:',
+'tags-edit'  => 'ಸಂಪಾದಿಸಿ',
 
 # Special:ComparePages
 'comparepages'   => 'ಪುಟಗಳನ್ನು ಹೋಲಿಸು',

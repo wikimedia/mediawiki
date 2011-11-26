@@ -1826,8 +1826,8 @@ Pe piacere note ca otre site de Indernette ponne appondà a 'nu file cu 'na URL 
 'booksources-invalid-isbn'  => "L'ISBN ca è mise non ge pare ca ète corrette; verifiche ce è commesse quacche errore quanne ste cupiave quidde origginale.",
 
 # Special:Log
-'specialloguserlabel'  => 'Utende:',
-'speciallogtitlelabel' => 'Titele:',
+'specialloguserlabel'  => "'Mblemendatore:",
+'speciallogtitlelabel' => 'Destinazione (titole o utende):',
 'log'                  => 'Archivije',
 'all-logs-page'        => "Tutte l'archivije pubbleche",
 'alllogstext'          => "Visualizzazione combinate de tutte le archivije disponibbele sus a {{SITENAME}}.

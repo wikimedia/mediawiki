@@ -9,6 +9,7 @@
  *
  * @author AS Alam
  * @author Aalam
+ * @author Anjalikaushal
  * @author Gman124
  * @author Sukh
  * @author Ævar Arnfjörð Bjarmason
@@ -52,22 +53,28 @@ $digitGroupingPattern = "##,##,###";
 
 $messages = array(
 # User preference toggles
-'tog-underline'            => 'ਅੰਡਰ-ਲਾਈਨ ਲਿੰਕ:',
-'tog-numberheadings'       => 'ਆਟੋ-ਨੰਬਰ ਹੈਡਿੰਗ',
-'tog-showtoolbar'          => 'ਐਡਿਟ ਟੂਲਬਾਰ ਵੇਖੋ (JavaScript)',
-'tog-showtoc'              => 'ਟੇਬਲ ਆਫ਼ ਕੰਨਟੈੱਟ ਵੇਖਾਓ (for pages with more than 3 headings)',
-'tog-rememberpassword'     => 'ਇਸ ਬਰਾਊਜ਼ਰ ਉੱਤੇ ਮੇਰਾ ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ ($1 {{PLURAL:$1|ਦਿਨ|ਦਿਨਾਂ}} ਲਈ ਵੱਧ ਤੋਂ ਵੱਧ)',
-'tog-watchcreations'       => 'ਮੇਰੇ ਵਲੋਂ ਬਣਾਏ ਗਏ ਨਵੇਂ ਸਫ਼ੇ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
-'tog-watchdefault'         => 'ਜੋ ਸਫ਼ੇ ਮੈਂ ਸੋਧਦਾ ਹਾਂ, ਓਹ ਪੇਜ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
-'tog-watchmoves'           => 'ਮੇਰੇ ਵਲੋਂ ਭੇਜੇ ਕਿਤੇ ਸਫ਼ੇ ਨੂੰ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
-'tog-watchdeletion'        => 'ਮੇਰੇ ਵਲੋਂ ਹਟਾਏ ਗਏ ਸਫ਼ੇ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
-'tog-previewontop'         => 'ਐਡਿਟ ਬਕਸੇ ਤੋਂ ਪਹਿਲਾਂ ਝਲਕ ਵੇਖਾਓ',
-'tog-previewonfirst'       => 'ਪਹਿਲੇ ਐਡਿਟ ਉੱਤੇ ਝਲਕ ਵੇਖਾਓ',
-'tog-nocache'              => 'ਬਰਾਊਜ਼ਰ ਸਫ਼ਾ ਕੈਸ਼ ਕਰਨਾ ਬੰਦ ਕਰੋ',
-'tog-enotifwatchlistpages' => 'ਜਦੋਂ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਸਫ਼ਾ ਬਦਲਿਆ ਜਾਵੇ ਤਾਂ ਮੈਨੂੰ ਈਮੇਲ ਭੇਜੋ',
-'tog-watchlisthideown'     => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਮੇਰੀਆਂ ਸੋਧਾਂ ਹਟਾਓ',
-'tog-watchlisthidebots'    => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਰੋਬਾਟ ਦਿਆਂ ਸੋਧਾਂ ਹਟਾਓ',
-'tog-watchlisthideminor'   => 'ਛੋਟੇ ਸੋਧ ਵਾਚ-ਲਿਸਟ ਤੋਂ ਓਹਲੇ ਰੱਖੋ',
+'tog-underline'             => 'ਅੰਡਰ-ਲਾਈਨ ਲਿੰਕ:',
+'tog-justify'               => 'ਪੈਰਾ ਸਹੀ ਕਰੇ .',
+'tog-hideminor'             => 'ਮੌਨਜੁਦਾ ਬਦਲਾਬ ਮੈ ਸੈ ਨੀਕੈ ਬਦਲਾਬ ਕੌ ਛੁਪਾ ਕਰ ਰਖੇ.',
+'tog-hidepatrolled'         => 'ਮੌਨਜੁਦਾ ਬਦਲਾਬ ਮੈ ਸੈ ਸਹੀਤਕ ਬਦਲਾਬ ਕੌ ਛੁਪਾ ਕਰ ਰਖੇ.',
+'tog-newpageshidepatrolled' => 'ਨਵੀ ਸੁਚੀ ਮੈ ਸੈ ਗਸ਼ਤ ਪਰਚੇ ਕੌ ਛੁਪਾਏ.',
+'tog-extendwatchlist'       => 'ਸਾਰੀ ਨਵੀ ਤਬਦੀਲੀਆ ਹੀ ਨਹੀ ,ਪੂਰਾਣੀ ਤਬਦੀਲੀਆ ਨੂੰ ਵੀ ਨਵੀ ਸੂਚੀ ਵਿਚ ਵਧਾ ਕੈ ਸ਼ਾਮੀਲ ਕਰੌ.',
+'tog-usenewrc'              => 'ਸੁਦਾਰ ਕੀਤੇ ਹੌਂਂਞੇ ਰੂਚੀ ਦੀ  ਵਰਤੌ ਕਰੌ (ਜਰੂਰਤ ਹੈ ਜਾਵਾ ਸਕ੍ਰਿਪ੍ਟ ਕੀ)',
+'tog-numberheadings'        => 'ਆਟੋ-ਨੰਬਰ ਹੈਡਿੰਗ',
+'tog-showtoolbar'           => 'ਐਡਿਟ ਟੂਲਬਾਰ ਵੇਖੋ (JavaScript)',
+'tog-showtoc'               => 'ਟੇਬਲ ਆਫ਼ ਕੰਨਟੈੱਟ ਵੇਖਾਓ (for pages with more than 3 headings)',
+'tog-rememberpassword'      => 'ਇਸ ਬਰਾਊਜ਼ਰ ਉੱਤੇ ਮੇਰਾ ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ ($1 {{PLURAL:$1|ਦਿਨ|ਦਿਨਾਂ}} ਲਈ ਵੱਧ ਤੋਂ ਵੱਧ)',
+'tog-watchcreations'        => 'ਮੇਰੇ ਵਲੋਂ ਬਣਾਏ ਗਏ ਨਵੇਂ ਸਫ਼ੇ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-watchdefault'          => 'ਜੋ ਸਫ਼ੇ ਮੈਂ ਸੋਧਦਾ ਹਾਂ, ਓਹ ਪੇਜ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-watchmoves'            => 'ਮੇਰੇ ਵਲੋਂ ਭੇਜੇ ਕਿਤੇ ਸਫ਼ੇ ਨੂੰ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-watchdeletion'         => 'ਮੇਰੇ ਵਲੋਂ ਹਟਾਏ ਗਏ ਸਫ਼ੇ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚ ਪਾਓ',
+'tog-previewontop'          => 'ਐਡਿਟ ਬਕਸੇ ਤੋਂ ਪਹਿਲਾਂ ਝਲਕ ਵੇਖਾਓ',
+'tog-previewonfirst'        => 'ਪਹਿਲੇ ਐਡਿਟ ਉੱਤੇ ਝਲਕ ਵੇਖਾਓ',
+'tog-nocache'               => 'ਬਰਾਊਜ਼ਰ ਸਫ਼ਾ ਕੈਸ਼ ਕਰਨਾ ਬੰਦ ਕਰੋ',
+'tog-enotifwatchlistpages'  => 'ਜਦੋਂ ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਸਫ਼ਾ ਬਦਲਿਆ ਜਾਵੇ ਤਾਂ ਮੈਨੂੰ ਈਮੇਲ ਭੇਜੋ',
+'tog-watchlisthideown'      => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਮੇਰੀਆਂ ਸੋਧਾਂ ਹਟਾਓ',
+'tog-watchlisthidebots'     => 'ਮੇਰੀ ਵਾਚ-ਲਿਸਟ ਵਿੱਚੋਂ ਰੋਬਾਟ ਦਿਆਂ ਸੋਧਾਂ ਹਟਾਓ',
+'tog-watchlisthideminor'    => 'ਛੋਟੇ ਸੋਧ ਵਾਚ-ਲਿਸਟ ਤੋਂ ਓਹਲੇ ਰੱਖੋ',
 
 'underline-always'  => 'ਹਮੇਸ਼ਾਂ',
 'underline-never'   => 'ਕਦੇ ਨਹੀਂ',

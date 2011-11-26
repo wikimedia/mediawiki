@@ -1741,7 +1741,7 @@ Sitä ei voida tarkistaa tietoturvan varalta kunnolla.',
 'img-auth-nopathinfo'       => 'PATH_INFO puuttuu.
 Palvelintasi ei ole asetettu välittämään tätä tietoa.
 Se saattaa olla CGI-pohjainen eikä voi tukea img_authia.
-Katso http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+[//www.mediawiki.org/wiki/Manual:Image_Authorization Katso lisätietoja].',
 'img-auth-notindir'         => 'Pyydetty polku ei ole asetuksissa tiedostojen tallennushakemistona.',
 'img-auth-badtitle'         => '”$1” ei kelpaa oikean otsikon muodostamiseen.',
 'img-auth-nologinnWL'       => 'Et ole kirjautunut sisään ja tiedosto ”$1” ei ole sallittujen tiedostojen luettelossa.',

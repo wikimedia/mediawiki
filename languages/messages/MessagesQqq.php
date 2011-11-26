@@ -38,6 +38,7 @@
  * @author Fryed-peach
  * @author Garas
  * @author GerardM
+ * @author Gustronico
  * @author Hamilton Abreu
  * @author Helix84
  * @author Holek
@@ -52,6 +53,7 @@
  * @author Klenje
  * @author Klutzy
  * @author Krinkle
+ * @author Ktkaushik
  * @author Kwj2772
  * @author Leinad
  * @author Lejonel
@@ -112,6 +114,7 @@
  * @author Waldir
  * @author Whym
  * @author Yekrats
+ * @author Ynwala
  * @author Yuriy Apostol
  * @author Yyy
  * @author Žekřil71pl
@@ -335,33 +338,34 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
 
 # Vector skin
-'vector-action-addsection' => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector',
-'vector-action-delete'     => 'Used in the Vector skin, as the name of a tab at the top of the page. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+'vector-action-addsection'       => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector',
+'vector-action-delete'           => 'Used in the Vector skin, as the name of a tab at the top of the page. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
 
 {{Identical|Delete}}',
-'vector-action-move'       => 'Used in the Vector skin, on the tabs at the top of the page. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector
+'vector-action-move'             => 'Used in the Vector skin, on the tabs at the top of the page. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector
 
 {{Identical|Move}}',
-'vector-action-protect'    => 'Tab at top of page, in vector skin
+'vector-action-protect'          => 'Tab at top of page, in vector skin
 
 {{Identical|Protect}}',
-'vector-action-undelete'   => 'Tab at top of page, in vector skin.
+'vector-action-undelete'         => 'Tab at top of page, in vector skin.
 {{Identical|Undelete}}',
-'vector-action-unprotect'  => 'Tab at top of page, in vector skin.
+'vector-action-unprotect'        => 'Tab at top of page, in vector skin.
 
 {{Identical|Unprotect}}',
-'vector-view-create'       => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Foo?useskin=vector
+'vector-simplesearch-preference' => 'ವರ್ಧಿಸಿದ ಹುಡುಕು ಸಲಹೆಗಳನ್ನು (ಕೇವಲ ವೆಕ್ಟರ್ ಚರ್ಮ) ಸಕ್ರಿಯಗೊಳಿಸಿ',
+'vector-view-create'             => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Foo?useskin=vector
 {{Identical|Create}}',
-'vector-view-edit'         => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+'vector-view-edit'               => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
 {{Identical|Edit}}',
-'vector-view-history'      => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+'vector-view-history'            => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
 {{Identical|View history}}',
-'vector-view-view'         => 'Tab label in the Vector skin (verb). See for example http://translatewiki.net/w/i.php?title=Main_Page&useskin=vector',
-'vector-view-viewsource'   => 'Tab label in the Vector skin.
+'vector-view-view'               => 'Tab label in the Vector skin (verb). See for example http://translatewiki.net/w/i.php?title=Main_Page&useskin=vector',
+'vector-view-viewsource'         => 'Tab label in the Vector skin.
 {{Identical|View source}}',
-'actions'                  => '{{Identical|Action}}',
-'namespaces'               => '{{Identical|Namespace}}',
-'variants'                 => 'Used by the Vector skin.',
+'actions'                        => '{{Identical|Action}}',
+'namespaces'                     => '{{Identical|Namespace}}',
+'variants'                       => 'Used by the Vector skin.',
 
 'errorpagetitle'    => 'Message shown in browser title bar when encountering error operation.
 
@@ -2209,8 +2213,8 @@ The title is {{msg-mw|nopagetitle}}.',
 'booksources-invalid-isbn'  => 'This message is displayed after an invalid ISBN is entered on Special:Booksources.',
 
 # Special:Log
-'specialloguserlabel'  => "Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions ''performed'' by the specified user.",
-'speciallogtitlelabel' => 'Used in [[Special:Log]].',
+'specialloguserlabel'  => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered for entries describing actions \'\'performed\'\' by the specified user.  "Carried out" and "done" are possible alternatives for "performed".',
+'speciallogtitlelabel' => 'Used in [[Special:Log]] as a label for an input field with which the log can be filtered.  This filter selects for pages or users on which a log action was performed.',
 'log'                  => 'Name of special page displayed in [[Special:SpecialPages]]',
 'all-logs-page'        => 'Title of [[Special:Log]].',
 'alllogstext'          => 'Header of [[Special:Log]]',
@@ -2984,7 +2988,7 @@ See also:
 * $1 is the name of the imported file',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'             => 'This text appears in the tool-tip when you hover the mouse over your the tab with you User name on it',
+'tooltip-pt-userpage'             => 'Tooltip shown when hovering the mouse over the link to your own User page in the upper-side personal toolbox.',
 'tooltip-pt-mytalk'               => 'Tooltip shown when hovering over the "my talk" link in your personal toolbox (upper right side).',
 'tooltip-pt-preferences'          => 'Tooltip shown when hovering over the "my preferences" ([[MediaWiki:Mypreferences]]) link in your personal toolbox (upper right side).
 
@@ -3634,7 +3638,7 @@ This can come from IPTC-iim 2:25 keyword field, or XMP's dc:subject field.",
 'exif-provinceorstatecreated'      => 'Province, state, territory, or other secondary political division (bigger than a city, smaller then a country) where that the picture was taken in.  Note this is where it was taken, not what province/state is depicted in the picture.',
 'exif-citycreated'                 => 'City that the picture was taken in.  Note this is where it was taken, not what city is depicted in the picture. This is generally only used if different from the city depicted in photo.',
 'exif-sublocationcreated'          => 'Sub-location of the city that the picture was taken in. This might be a street, a part of town, etc.  Note this is where it was taken, not what sub-location is depicted in the picture.',
-'exif-worldregiondest'             => 'World region shown. This generally means the continent, but could have the value of world as well.',
+'exif-worldregiondest'             => 'जगाचा भाग दाखवला आहे',
 'exif-countrydest'                 => 'Country shown. See also {{msg-mw|exif-countrycreated}}.',
 'exif-countrycodedest'             => 'ISO Code for country shown',
 'exif-provinceorstatedest'         => 'Province, state, territory, or other secondary political division shown.',
@@ -3672,8 +3676,8 @@ This is taken from IPTC-iim 2:135 and XMP's dc:language.
 'exif-iimcategory'                 => 'Primary Category of image (or other media). Technically supposed to be limited to 3 characters, however that is not always followed. Some common 3 letter category abbreviations are expanded by mediawiki. Similar to {{msg-mw|exif-keywords}}.
 {{identical|Category}}',
 'exif-iimsupplementalcategory'     => 'Supplemental categories. Like {{msg-mw|exif-iimcategory}} but for categories beyond the main one.',
-'exif-datetimeexpires'             => 'Date after which not to use the image (media). This is often used in news situations were certain things (like forecasts) should not be used after a specified date.',
-'exif-datetimereleased'            => 'Earliest date the image (media) can be used. See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
+'exif-datetimeexpires'             => '(निर्देशित दिनांका) नंतर वापर करू नये',
+'exif-datetimereleased'            => ' या वेळी/दिवशी प्रसृत (प्रसारण )केले/मुक्त केले',
 'exif-originaltransmissionref'     => 'This is basically a job id. This could help an individual keep track of for what reason the image was created. See Job Id on page 19 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
 'exif-identifier'                  => 'A formal identifier for the image. Often this is a URL.',
 'exif-lens'                        => 'Description of lens used. This is taken from aux:Lens XMP property. See http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',
