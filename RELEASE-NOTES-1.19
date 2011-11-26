@@ -159,6 +159,8 @@ production.
   now disabled by default and is buggy. APC, XCache and WinCache are not affected.
 * Installer now refuses to install if php was not compiled with Ctype support.
 * (bug 29475) Remove "trackback" feature entirely from core
+* (bug 32665) Special:BlockList prefills the username in the input field if
+  using the Special:BlockList\username URL
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
