@@ -18,7 +18,7 @@ image/x-rgb	[BITMAP]
 image/x-portable-pixmap		[BITMAP]
 image/x-portable-graymap image/x-portable-greymap	[BITMAP]
 image/x-bmp image/x-ms-bmp image/bmp application/x-bmp application/bmp	[BITMAP]
-image/x-photoshop image/psd image/x-psd image/photoshop	[BITMAP]
+image/x-photoshop image/psd image/x-psd image/photoshop	image/vnd.adobe.photoshop	[BITMAP]
 image/vnd.djvu image/x.djvu image/x-djvu [BITMAP]
 image/webp	[BITMAP]
 
