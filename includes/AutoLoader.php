@@ -743,6 +743,7 @@ $wgAutoloadLocalClasses = array(
 	'EmailInvalidation' => 'includes/specials/SpecialConfirmemail.php',
 	'FewestrevisionsPage' => 'includes/specials/SpecialFewestrevisions.php',
 	'FileDuplicateSearchPage' => 'includes/specials/SpecialFileDuplicateSearch.php',
+	'HTMLBlockedUsersItemSelect' => 'includes/specials/SpecialBlockList.php',
 	'ImportReporter' => 'includes/specials/SpecialImport.php',
 	'IPBlockForm' => 'includes/specials/SpecialBlock.php',
 	'LinkSearchPage' => 'includes/specials/SpecialLinkSearch.php',
