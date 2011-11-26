@@ -68,6 +68,7 @@ class SpecialBlockList extends SpecialPage {
 				'label-message' => 'ipadressorusername',
 				'tabindex' => '1',
 				'size' => '45',
+				'default' => $this->target,
 			),
 			'Options' => array(
 				'type' => 'multiselect',
