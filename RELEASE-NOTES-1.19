@@ -95,6 +95,8 @@ production.
   containing HTML or JS. DISABLING THESE CHECKS IS VERY DANGEROUS.
 * New path mappings can be added using the WebRequestPathInfoRouter hook
   and adding paths to the PathRouter.
+* (bug 32666) Special:ActiveUsers now allows a subpage to be used as the
+  username (eg. Special:ActiveUsers/Username)
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
