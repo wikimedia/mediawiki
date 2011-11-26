@@ -1189,6 +1189,29 @@ URL-encoding in URL functions (multiple parameters)
 </p>
 !! end
 
+!! test
+Brackets in urls
+!! input
+http://example.com/index.php?foozoid%5B%5D=bar
+
+http://example.com/index.php?foozoid&#x5B;&#x5D;=bar
+!! result
+<p><a rel="nofollow" class="external free" href="http://example.com/index.php?foozoid%5B%5D=bar">http://example.com/index.php?foozoid%5B%5D=bar</a>
+</p><p><a rel="nofollow" class="external free" href="http://example.com/index.php?foozoid%5B%5D=bar">http://example.com/index.php?foozoid%5B%5D=bar</a>
+</p>
+!! end
+
+!! test
+IPv6 urls (bug 21261)
+!! options
+disabled
+!! input
+http://[2404:130:0:1000::187:2]/index.php
+!! result
+<p><a rel="nofollow" class="external free" href="http://[2404:130:0:1000::187:2]/index.php">http://2404:130:0:1000::187:2/index.php</a>
+</p>
+!! end
+
 ###
 ### Quotes
 ###
