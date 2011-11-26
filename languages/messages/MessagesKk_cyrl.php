@@ -514,6 +514,7 @@ $messages = array(
 'vector-view-viewsource'   => 'Қайнар көзін қарау',
 'actions'                  => 'Әрекеттер',
 'namespaces'               => 'Есім аялары',
+'variants'                 => 'Нұсқалар',
 
 'errorpagetitle'    => 'Қателік',
 'returnto'          => '$1 дегенге қайта келу.',
@@ -529,6 +530,7 @@ $messages = array(
 'printableversion'  => 'Басып шығару үшін',
 'permalink'         => 'Тұрақты сілтеме',
 'print'             => 'Басып шығару',
+'view'              => 'Қарау',
 'edit'              => 'Өңдеу',
 'create'            => 'Бастау',
 'editthispage'      => 'Бетті өңдеу',
@@ -539,8 +541,8 @@ $messages = array(
 'protect'           => 'Қорғау',
 'protect_change'    => 'өзгерту',
 'protectthispage'   => 'Бетті қорғау',
-'unprotect'         => 'Қорғамау',
-'unprotectthispage' => 'Бетті қорғамау',
+'unprotect'         => 'Қорғауын өзгерту',
+'unprotectthispage' => 'Бұл беттің қорғауын өзгерту',
 'newpage'           => 'Жаңа бет',
 'talkpage'          => 'Бетті талқылау',
 'talkpagelinktext'  => 'Талқылауы',
@@ -568,6 +570,7 @@ $messages = array(
 'jumpto'            => 'Мында өту:',
 'jumptonavigation'  => 'шарлау',
 'jumptosearch'      => 'іздеу',
+'pool-errorunknown' => 'Белгісіз қате',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} туралы',

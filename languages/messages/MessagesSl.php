@@ -1457,7 +1457,7 @@ Podatek bo javno prikazan.',
 # User rights log
 'rightslog'                  => 'Dnevnik uporabniških pravic',
 'rightslogtext'              => 'Prikazan je dnevnik sprememb uporabniških pravic.',
-'rightslogentry'             => '- sprememba pravic uporabnika $1 iz $2 v $3',
+'rightslogentry'             => 'je spremenil(-a) pravice uporabnika $1 iz $2 v $3',
 'rightslogentry-autopromote' => 'je bil(-a) samodejno povišan(-a) z $2 na $3',
 'rightsnone'                 => '(nobeno)',
 
