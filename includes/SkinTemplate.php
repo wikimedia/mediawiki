@@ -873,7 +873,7 @@ class SkinTemplate extends Skin {
 						'href' => $title->getLocalURL( $this->editUrlOptions() ),
 						'primary' => true, // don't collapse this in vector
 					);
-					
+
 					// section link
 					if ( $showNewSection ) {
 						// Adds new section link
@@ -982,7 +982,7 @@ class SkinTemplate extends Skin {
 				// Checks that language conversion is enabled and variants exist
 				// And if it is not in the special namespace
 				if( count( $variants ) > 1 ) {
-					// Gets preferred variant (note that user preference is 
+					// Gets preferred variant (note that user preference is
 					// only possible for wiki content language variant)
 					$preferred = $pageLang->getPreferredVariant();
 					// Loops over each variant
@@ -1452,6 +1452,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * This is in reality the same list as already stored in personal_urls
 	 * however it is reformatted so that you can just pass the individual items
 	 * to makeListItem instead of hardcoding the element creation boilerplate.
+	 * @return array
 	 */
 	function getPersonalTools() {
 		$personal_tools = array();
@@ -1485,7 +1486,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( !isset( $sidebar['LANGUAGES'] ) ) {
 			$sidebar['LANGUAGES'] = true;
 		}
-		
+
 		if ( !isset( $options['search'] ) || $options['search'] !== true ) {
 			unset( $sidebar['SEARCH'] );
 		}
@@ -1495,7 +1496,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $options['languages'] ) && $options['languages'] === false ) {
 			unset( $sidebar['LANGUAGES'] );
 		}
-		
+
 		$boxes = array();
 		foreach ( $sidebar as $boxName => $content ) {
 			if ( $content === false ) {
@@ -1529,7 +1530,7 @@ abstract class BaseTemplate extends QuickTemplate {
 						'generated' => false,
 						'content'   => $this->data['language_urls'],
 					);
-				} 
+				}
 				break;
 			default:
 				$msgObj = $this->getMsg( $boxName );
@@ -1542,7 +1543,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				break;
 			}
 		}
-		
+
 		// HACK: Compatibility with extensions still using SkinTemplateToolboxEnd
 		$hookContents = null;
 		if ( isset( $boxes['TOOLBOX'] ) ) {
@@ -1557,7 +1558,7 @@ abstract class BaseTemplate extends QuickTemplate {
 			}
 		}
 		// END hack
-		
+
 		if ( isset( $options['htmlOnly'] ) && $options['htmlOnly'] === true ) {
 			foreach ( $boxes as $boxName => $box ) {
 				if ( is_array( $box['content'] ) ) {
@@ -1567,7 +1568,7 @@ abstract class BaseTemplate extends QuickTemplate {
 					}
 					// HACK, shove the toolbox end onto the toolbox if we're rendering itself
 					if ( $hookContents ) {
-						$content .= "\n	$hookContents"; 
+						$content .= "\n	$hookContents";
 					}
 					// END hack
 					$content .= "\n</ul>\n";
@@ -1597,7 +1598,7 @@ abstract class BaseTemplate extends QuickTemplate {
 				// END hack
 			}
 		}
-		
+
 		return $boxes;
 	}
 
