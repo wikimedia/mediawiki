@@ -886,7 +886,11 @@ class LoginForm extends SpecialPage {
 
 		wfRunHooks( 'UserLoginComplete', array( &$currentUser, &$injected_html ) );
 
-		//let any extensions change what message is shown
+		/**
+		 * Let any extensions change what message is shown.
+		 * @see https://www.mediawiki.org/wiki/Manual:Hooks/BeforeWelcomeCreation
+		 * @since 1.18
+		 */
 		wfRunHooks( 'BeforeWelcomeCreation', array( &$welcome_creation_msg, &$injected_html ) );
 
 		$this->displaySuccessfulLogin( $welcome_creation_msg, $injected_html );
