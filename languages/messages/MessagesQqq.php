@@ -1804,6 +1804,7 @@ Text displayed when uploading a file using [[Special:Upload]].",
 'filetype-mime-mismatch'      => 'Upload error. Parameters:
 * $1 is the extension of the uploaded file
 * $2 is the MIME type of the uploaded file',
+'filename-toolong'            => 'Error message when uploading a file with a filename longer than the hardcoded limit of 240 bytes. This limit will never change and is hardcoded in the message',
 'filetype-bad-ie-mime'        => '$1 will contain a mime type like <tt>image/jpeg</tt> or <tt>application/zip</tt>',
 'filetype-unwanted-type'      => "* $1 is the extension of the file which cannot be uploaded
 * $2 is the list of file extensions that can be uploaded (Example: ''png, gif, jpg, jpeg, ogg, pdf, svg.'')
