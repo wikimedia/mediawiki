@@ -2072,6 +2072,7 @@ $user: User object
 'UserGetRights': Called in User::getRights()
 $user: User to get rights for
 &$rights: Current rights
+$namespace: Namespace to get permissions for; if null all namespaces
 
 'UserIsBlockedFrom': Check if a user is blocked from a specific page (for specific block
 	exemptions).
