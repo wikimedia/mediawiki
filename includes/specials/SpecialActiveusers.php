@@ -42,13 +42,18 @@ class ActiveUsersPager extends UsersPager {
 	 */
 	protected $groups;
 
-	function __construct( IContextSource $context = null, $group = null ) {
+	/**
+	 * @param $context IContextSource
+	 * @param $group null Unused
+	 * @param $par string Parameter passed to the page
+	 */
+	function __construct( IContextSource $context = null, $group = null, $par = null ) {
 		global $wgActiveUserDays;
 
 		parent::__construct( $context );
 
 		$this->RCMaxAge = $wgActiveUserDays;
-		$un = $this->getRequest()->getText( 'username' );
+		$un = $this->getRequest()->getText( 'username', $par );
 		$this->requestedUser = '';
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
@@ -192,7 +197,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$out->wrapWikiMsg( "<div class='mw-activeusers-intro'>\n$1\n</div>",
 			array( 'activeusers-intro', $this->getLanguage()->formatNum( $wgActiveUserDays ) ) );
 
-		$up = new ActiveUsersPager( $this->getContext() );
+		$up = new ActiveUsersPager( $this->getContext(), null, $par );
 
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
