@@ -219,6 +219,9 @@ class PathRouter {
 					$data['$'.$n] = $matchValue;
 				}
 			}
+			if ( isset( $pattern->key ) ) {
+				$data['$key'] = $pattern->key;
+			}
 
 			foreach ( $pattern->params as $paramName => $paramData ) {
 				$value = null;
