@@ -217,7 +217,7 @@ In '''UTF-8 mode''', MySQL will know what character set your data is in, and can
 but it will not let you store characters above the [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
 	'config-mysql-old'                => 'MySQL $1 or later is required, you have $2.',
 	'config-db-port'                  => 'Database port:',
-	'config-db-schema'                => 'Schema for MediaWiki',
+	'config-db-schema'                => 'Schema for MediaWiki:',
 	'config-db-schema-help'           => 'This schema will usually be fine.
 Only change it if you know you need to.',
 	'config-pg-test-error'            => "Cannot connect to database '''$1''': $2",
