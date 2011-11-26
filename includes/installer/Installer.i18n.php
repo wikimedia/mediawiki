@@ -462,7 +462,7 @@ If you do not want a logo, leave this box blank.",
 	'config-instantcommons-help'      => '[//www.mediawiki.org/wiki/InstantCommons Instant Commons] is a feature that allows wikis to use images, sounds and other media found on the [//commons.wikimedia.org/ Wikimedia Commons] site.
 In order to do this, MediaWiki requires access to the Internet.
 
-For more information on this feature, including instructions on how to set it up for wikis other than the Wikimedia Commons, consult [http://mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual].',
+For more information on this feature, including instructions on how to set it up for wikis other than the Wikimedia Commons, consult [//mediawiki.org/wiki/Manual:$wgForeignFileRepos the manual].',
 	'config-cc-error'                 => 'The Creative Commons license chooser gave no result.
 Enter the license name manually.',
 	'config-cc-again'                 => 'Pick again...',
