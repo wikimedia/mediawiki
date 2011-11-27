@@ -127,7 +127,7 @@ class SpecialVersion extends SpecialPage {
 		// be loaded here, so feel free to use wfMsg*() in the 'name'. Raw HTML or wikimarkup
 		// can be used.
 		$software = array();
-		$software['[http://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
+		$software['[//www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
 		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . php_sapi_name() . ")";
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerInfo();
 
