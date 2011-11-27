@@ -49,6 +49,7 @@ class SpecialBlockList extends SpecialPage {
 		$request = $this->getRequest();
 		$par = $request->getVal( 'ip', $par );
 		$this->target = trim( $request->getVal( 'wpTarget', $par ) );
+		$request->setVal( 'wpTarget', $this->target );
 
 		$this->options = $request->getArray( 'wpOptions', array() );
 
