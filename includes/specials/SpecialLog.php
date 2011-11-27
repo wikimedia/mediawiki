@@ -144,7 +144,7 @@ class SpecialLog extends SpecialPage {
 		}
 
 		# Show form options
-		$loglist->showOptions( $pager->getType(), $pager->getPerformer(), $pager->getPage(), $pager->getPattern(),
+		$loglist->showOptions( $pager->getType(), $opts->getValue( 'user' ), $pager->getPage(), $pager->getPattern(),
 			$pager->getYear(), $pager->getMonth(), $pager->getFilterParams(), $opts->getValue( 'tagfilter' ) );
 
 		# Insert list
