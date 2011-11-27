@@ -329,9 +329,9 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'numberofwatchingusers', false );
 		if ( $out->isArticle() && $this->getTitle()->exists() ) {
 			if ( $this->isRevisionCurrent() ) {
-				$article = new Article( $this->getTitle(), 0 );
+				$page = WikiPage::factory( $this->getTitle() );
 				if ( !$wgDisableCounters ) {
-					$viewcount = $article->getCount();
+					$viewcount = $page->getCount();
 					if ( $viewcount ) {
 						$tpl->set( 'viewcount', $this->msg( 'viewcount' )->numParams( $viewcount )->parse() );
 					}
@@ -351,9 +351,9 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( $wgMaxCredits != 0 ) {
-					$tpl->set( 'credits', Action::factory( 'credits', $article )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
+					$tpl->set( 'credits', Action::factory( 'credits', $page, $this->getContext() )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
 				} else {
-					$tpl->set( 'lastmod', $this->lastModified( $article ) );
+					$tpl->set( 'lastmod', $this->lastModified( $page ) );
 				}
 			}
 			$tpl->set( 'copyright', $this->getCopyright() );
