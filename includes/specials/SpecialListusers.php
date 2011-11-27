@@ -44,19 +44,19 @@ class UsersPager extends AlphabeticPager {
 		$symsForAll = array( '*', 'user' );
 		if ( $parms[0] != '' && ( in_array( $par, User::getAllGroups() ) || in_array( $par, $symsForAll ) ) ) {
 			$this->requestedGroup = $par;
-			$un = $request->getText( 'username' );
+			$un = $request->getText( 'wpUsername' );
 		} elseif ( count( $parms ) == 2 ) {
 			$this->requestedGroup = $parms[0];
 			$un = $parms[1];
 		} else {
-			$this->requestedGroup = $request->getVal( 'group' );
-			$un = ( $par != '' ) ? $par : $request->getText( 'username' );
+			$this->requestedGroup = $request->getVal( 'wpGroup' );
+			$un = ( $par != '' ) ? $par : $request->getText( 'wpUsername' );
 		}
 		if ( in_array( $this->requestedGroup, $symsForAll ) ) {
 			$this->requestedGroup = '';
 		}
-		$this->editsOnly = $request->getBool( 'editsOnly' );
-		$this->creationSort = $request->getBool( 'creationSort' );
+		$this->editsOnly = $request->getBool( 'wpEditsOnly' );
+		$this->creationSort = $request->getBool( 'wpCreationSort' );
 
 		$this->requestedUser = '';
 		if ( $un != '' ) {
@@ -182,41 +182,43 @@ class UsersPager extends AlphabeticPager {
 		return parent::getBody();
 	}
 
-	function getPageHeader( ) {
-		global $wgScript;
-		$self = $this->getTitle();
+	protected function getHTMLFormFields() {
+		$f = array(
+			'Username' => array(
+				'type' => 'text',
+				'label-message' => 'listusersfrom',
+				'size' => 30,
+			),
+			'Group' => array(
+				'type' => 'select',
+				'label-message' => 'group',
+				'options' => array(
+					$this->msg( 'group-all' )->escaped() => '',
+				),
+			),
+			'EditsOnly' => array(
+				'type' => 'check',
+				'label-message' => 'listusers-editsonly',
+			),
+			'CreationSort' => array(
+				'type' => 'check',
+				'label-message' => 'listusers-creationsort',
+			),
+		);
 
-		# Form tag
-		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listusers-form' ) ) .
-			Xml::fieldset( wfMsg( 'listusers' ) ) .
-			Html::hidden( 'title', $self->getPrefixedDbKey() );
+		foreach( $this->getAllGroups() as $group => $groupText ) {
+			$f['Group']['options'][$groupText] = $group;
+		}
 
-		# Username field
-		$out .= Xml::label( wfMsg( 'listusersfrom' ), 'offset' ) . ' ' .
-			Xml::input( 'username', 20, $this->requestedUser, array( 'id' => 'offset' ) ) . ' ';
+		return $f;
+	}
 
-		# Group drop-down list
-		$out .= Xml::label( wfMsg( 'group' ), 'group' ) . ' ' .
-			Xml::openElement('select',  array( 'name' => 'group', 'id' => 'group' ) ) .
-			Xml::option( wfMsg( 'group-all' ), '' );
-		foreach( $this->getAllGroups() as $group => $groupText )
-			$out .= Xml::option( $groupText, $group, $group == $this->requestedGroup );
-		$out .= Xml::closeElement( 'select' ) . '<br />';
-		$out .= Xml::checkLabel( wfMsg('listusers-editsonly'), 'editsOnly', 'editsOnly', $this->editsOnly );
-		$out .= '&#160;';
-		$out .= Xml::checkLabel( wfMsg('listusers-creationsort'), 'creationSort', 'creationSort', $this->creationSort );
-		$out .= '<br />';
+	protected function getHTMLFormSubmit() {
+		return 'allpagessubmit';
+	}
 
-		wfRunHooks( 'SpecialListusersHeaderForm', array( $this, &$out ) );
-
-		# Submit button and form bottom
-		$out .= Html::hidden( 'limit', $this->mLimit );
-		$out .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
-		wfRunHooks( 'SpecialListusersHeader', array( $this, &$out ) );
-		$out .= Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
-
-		return $out;
+	protected function getHTMLFormLegend() {
+		return 'listusers';
 	}
 
 	/**
@@ -295,7 +297,7 @@ class SpecialListUsers extends SpecialPage {
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
 
-		$s = $up->getPageHeader();
+		$s = $up->buildHTMLForm();
 		if( $usersbody ) {
 			$s .= $up->getNavigationBar();
 			$s .= Html::rawElement( 'ul', array(), $usersbody );

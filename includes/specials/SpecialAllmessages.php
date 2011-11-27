@@ -62,18 +62,18 @@ class SpecialAllmessages extends SpecialPage {
 
 		$out->addModuleStyles( 'mediawiki.special' );
 
-		$this->filter = $request->getVal( 'filter', 'all' );
-		$this->prefix = $request->getVal( 'prefix', '' );
+		$this->filter = $request->getVal( 'wpFilter', 'all' );
+		$this->prefix = $request->getVal( 'wpPrefix', '' );
 
 		$this->table = new AllmessagesTablePager(
 			$this,
 			array(),
-			wfGetLangObj( $request->getVal( 'lang', $par ) )
+			wfGetLangObj( $request->getVal( 'wpLanguage', $par ) )
 		);
 
 		$this->langcode = $this->table->lang->getCode();
 
-		$out->addHTML( $this->table->buildForm() .
+		$out->addHTML( $this->table->buildHTMLForm() .
 			$this->table->getNavigationBar() .
 			$this->table->getBody() .
 			$this->table->getNavigationBar() );
@@ -120,14 +120,14 @@ class AllmessagesTablePager extends TablePager {
 
 		$request = $this->getRequest();
 
-		if( $request->getVal( 'filter', 'all' ) === 'all' ){
+		if( $request->getVal( 'wpFilter', 'all' ) === 'all' ){
 			$this->custom = null; // So won't match in either case
 		} else {
-			$this->custom = ($request->getVal( 'filter' ) == 'unmodified');
+			$this->custom = ($request->getVal( 'wpFilter' ) == 'unmodified');
 		}
 
-		$prefix = $this->getLanguage()->ucfirst( $request->getVal( 'prefix', '' ) );
-		$prefix = $prefix != '' ? Title::makeTitleSafe( NS_MEDIAWIKI, $request->getVal( 'prefix', null ) ) : null;
+		$prefix = $this->getLanguage()->ucfirst( $request->getVal( 'wpPrefix', '' ) );
+		$prefix = $prefix != '' ? Title::makeTitleSafe( NS_MEDIAWIKI, $request->getVal( 'wpPrefix', null ) ) : null;
 		if( $prefix !== null ){
 			$this->displayPrefix = $prefix->getDBkey();
 			$this->prefix = '/^' . preg_quote( $this->displayPrefix ) . '/i';
@@ -145,83 +145,48 @@ class AllmessagesTablePager extends TablePager {
 		}
 	}
 
-	function buildForm() {
-		global $wgScript;
+	protected function getHTMLFormFields() {
+		$f = array(
+			'Prefix' => array(
+				'type' => 'text',
+				'label-message' => 'allmessages-prefix',
+				'size' => 20,
+			),
+			'Filter' => array(
+				'type' => 'radio',
+				'label-message' => 'allmessages-filter',
+				'options' => array(
+					$this->msg( 'allmessages-filter-unmodified' )->text() => 'unmodified',
+					$this->msg( 'allmessages-filter-all' )->text() => 'all',
+					$this->msg( 'allmessages-filter-modified' )->text() => 'modified',
+				),
+				'flatlist' => true,
+			),
+			'Language' => array(
+				'type' => 'select',
+				'label-message' => 'allmessages-language',
+				'options' => array(), // This is filled in below
+				'default' => $this->langcode,
+			),
+			'Limit' => $this->getHTMLFormLimitSelect(),
+		);
 
 		$languages = Language::getLanguageNames( false );
 		ksort( $languages );
 
-		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-allmessages-form' ) ) .
-			Xml::fieldset( $this->msg( 'allmessages-filter-legend' )->text() ) .
-			Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-			Xml::openElement( 'table', array( 'class' => 'mw-allmessages-table' ) ) . "\n" .
-			'<tr>
-				<td class="mw-label">' .
-					Xml::label( $this->msg( 'allmessages-prefix' )->text(), 'mw-allmessages-form-prefix' ) .
-				"</td>\n
-				<td class=\"mw-input\">" .
-					Xml::input( 'prefix', 20, str_replace( '_', ' ', $this->displayPrefix ), array( 'id' => 'mw-allmessages-form-prefix' ) ) .
-				"</td>\n
-			</tr>
-			<tr>\n
-				<td class='mw-label'>" .
-					$this->msg( 'allmessages-filter' )->escaped() .
-				"</td>\n
-				<td class='mw-input'>" .
-					Xml::radioLabel( $this->msg( 'allmessages-filter-unmodified' )->text(),
-						'filter',
-						'unmodified',
-						'mw-allmessages-form-filter-unmodified',
-						( $this->filter == 'unmodified' )
-					) .
-					Xml::radioLabel( $this->msg( 'allmessages-filter-all' )->text(),
-						'filter',
-						'all',
-						'mw-allmessages-form-filter-all',
-						( $this->filter == 'all' )
-					) .
-					Xml::radioLabel( $this->msg( 'allmessages-filter-modified' )->text(),
-						'filter',
-						'modified',
-						'mw-allmessages-form-filter-modified',
-					( $this->filter == 'modified' )
-				) .
-				"</td>\n
-			</tr>
-			<tr>\n
-				<td class=\"mw-label\">" .
-					Xml::label( $this->msg( 'allmessages-language' )->text(), 'mw-allmessages-form-lang' ) .
-				"</td>\n
-				<td class=\"mw-input\">" .
-					Xml::openElement( 'select', array( 'id' => 'mw-allmessages-form-lang', 'name' => 'lang' ) );
-
-		foreach( $languages as $lang => $name ) {
-			$selected = $lang == $this->langcode;
-			$out .= Xml::option( $lang . ' - ' . $name, $lang, $selected ) . "\n";
+		foreach( $languages as $code => $name ) {
+			$f['Language']['options'][ "$code - $name" ] = $code;
 		}
-		$out .= Xml::closeElement( 'select' ) .
-				"</td>\n
-			</tr>" .
 
-			'<tr>
-				<td class="mw-label">' .
-					Xml::label( $this->msg( 'table_pager_limit_label' )->text(), 'mw-table_pager_limit_label' ) .
-				'</td>
-				<td class="mw-input">' .
-					$this->getLimitSelect() .
-				'</td>
-			<tr>
-				<td></td>
-				<td>' .
-					Xml::submitButton( $this->msg( 'allmessages-filter-submit' )->text() ) .
-				"</td>\n
-			</tr>" .
+		return $f;
+	}
 
-			Xml::closeElement( 'table' ) .
-			$this->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang', 'limit' ) ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' );
-		return $out;
+	protected function getHTMLFormLegend() {
+		return 'allmessages-filter-legend';
+	}
+
+	protected function getHTMLFormSubmit() {
+		return 'allmessages-filter-submit';
 	}
 
 	function getAllMessages( $descending ) {
