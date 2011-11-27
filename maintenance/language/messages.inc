@@ -1190,6 +1190,7 @@ $wgMessageStructure = array(
 		'action-userrights',
 		'action-userrights-interwiki',
 		'action-siteadmin',
+		'action-sendemail',
 	),
 	'recentchanges' => array(
 		'nchanges',
