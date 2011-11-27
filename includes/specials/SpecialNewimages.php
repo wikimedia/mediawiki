@@ -49,6 +49,11 @@ class SpecialNewFiles extends IncludableSpecialPage {
  */
 class NewFilesPager extends ReverseChronologicalPager {
 
+	/**
+	 * @var ImageGallery
+	 */
+	var $gallery;
+
 	function __construct( IContextSource $context, $par = null ) {
 		$this->like = $context->getRequest()->getText( 'like' );
 		$this->showbots = $context->getRequest()->getBool( 'showbots' , 0 );
