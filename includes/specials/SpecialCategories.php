@@ -35,7 +35,7 @@ class SpecialCategories extends SpecialPage {
 		$this->outputHeader();
 		$this->getOutput()->allowClickjacking();
 
-		$from = $this->getRequest()->getText( 'from', $par );
+		$from = $this->getRequest()->getText( 'wpFrom', $par );
 
 		$cap = new CategoryPager( $this->getContext(), $from );
 		$cap->doQuery();
@@ -43,7 +43,7 @@ class SpecialCategories extends SpecialPage {
 		$this->getOutput()->addHTML(
 			Html::openElement( 'div', array( 'class' => 'mw-spcontent' ) ) .
 			$this->msg( 'categoriespagetext', $cap->getNumRows() )->parseAsBlock() .
-			$cap->getStartForm( $from ) .
+			$cap->buildHTMLForm() .
 			$cap->getNavigationBar() .
 			'<ul>' . $cap->getBody() . '</ul>' .
 			$cap->getNavigationBar() .
@@ -118,16 +118,21 @@ class CategoryPager extends AlphabeticPager {
 		return Xml::tags( 'li', null, $this->getLanguage()->specialList( $titleText, $count ) ) . "\n";
 	}
 
-	public function getStartForm( $from ) {
-		global $wgScript;
+	protected function getHTMLFormFields() {
+		return array(
+			'From' => array(
+				'type' => 'text',
+				'label-message' => 'categoriesfrom',
+				'size' => '20',
+			),
+		);
+	}
 
-		return
-			Xml::tags( 'form', array( 'method' => 'get', 'action' => $wgScript ),
-				Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) .
-				Xml::fieldset( $this->msg( 'categories' )->text(),
-					Xml::inputLabel( $this->msg( 'categoriesfrom' )->text(),
-						'from', 'from', 20, $from ) .
-					' ' .
-					Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) ) );
+	protected function getHTMLFormLegend() {
+		return 'categories';
+	}
+
+	protected function getHTMLFormSubmit() {
+		return 'allpagessubmit';
 	}
 }
