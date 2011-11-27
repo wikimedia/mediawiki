@@ -470,6 +470,7 @@ class HTMLBlockedUsersItemSelect extends HTMLSelectField {
 
 		if ( !in_array( $value, $this->mParams['options'] ) ) {
 			$this->mParams['options'][ $this->mParent->getLanguage()->formatNum( $value ) ] = intval($value);
+			asort( $this->mParams['options'] );
 		}
 
 		return true;
