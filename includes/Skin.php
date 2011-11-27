@@ -790,14 +790,14 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Get the timestamp of the latest revision, formatted in user language
 	 *
-	 * @param $article Article object. Used if we're working with the current revision
+	 * @param $page WikiPage object. Used if we're working with the current revision
 	 * @return String
 	 */
-	protected function lastModified( $article ) {
+	protected function lastModified( $page ) {
 		if ( !$this->isRevisionCurrent() ) {
 			$timestamp = Revision::getTimestampFromId( $this->getTitle(), $this->getRevisionId() );
 		} else {
-			$timestamp = $article->getTimestamp();
+			$timestamp = $page->getTimestamp();
 		}
 
 		if ( $timestamp ) {
