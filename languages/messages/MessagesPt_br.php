@@ -1592,6 +1592,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'action-userrights'           => 'editar todos os privilégios de usuário',
 'action-userrights-interwiki' => 'editar privilégios de usuários de outras wikis',
 'action-siteadmin'            => 'bloquear ou desbloquear o banco de dados',
+'action-sendemail'            => 'Enviar e-mail',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
@@ -2066,8 +2067,8 @@ Por favor note que outros websites podem apontar para um arquivo através de um 
 'booksources-invalid-isbn'  => 'O número ISBN fornecido não parece ser válido; verifique se houve erros ao copiar da fonte original.',
 
 # Special:Log
-'specialloguserlabel'  => 'Usuário:',
-'speciallogtitlelabel' => 'Título:',
+'specialloguserlabel'  => 'Executor:',
+'speciallogtitlelabel' => 'Destino (título ou usuário):',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Todos os registros públicos',
 'alllogstext'          => 'Exibição combinada de todos registros disponíveis para o {{SITENAME}}.

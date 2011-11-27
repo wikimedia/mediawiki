@@ -639,23 +639,34 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'userrights-reason'        => 'Fa:',
 
 # Groups
-'group'            => 'Possan:',
-'group-user'       => 'Ymmydeyryn',
-'group-bot'        => 'Botyn',
-'group-sysop'      => 'Reireyderyn',
-'group-bureaucrat' => 'Oikreilleyderyn',
-'group-suppress'   => 'Meehastidyn',
-'group-all'        => '(yn clane)',
+'group'               => 'Possan:',
+'group-user'          => 'Ymmydeyryn',
+'group-autoconfirmed' => 'Ymmydeyryn er nyn shickyraghey gyn thort',
+'group-bot'           => 'Botyn',
+'group-sysop'         => 'Reireyderyn',
+'group-bureaucrat'    => 'Oikreilleyderyn',
+'group-suppress'      => 'Oaseiryn',
+'group-all'           => '(yn clane)',
 
 'group-user-member'       => 'Ymmydeyr',
 'group-bot-member'        => 'Robot',
 'group-sysop-member'      => 'Reireyder',
 'group-bureaucrat-member' => 'Oikreilleyder',
-'group-suppress-member'   => 'Meehastid',
+'group-suppress-member'   => 'Oaseir',
 
 'grouppage-user'  => '{{ns:project}}:Ymmydeyryn',
 'grouppage-bot'   => '{{ns:project}}:Robotyn',
 'grouppage-sysop' => '{{ns:project}}:Reireyderyn',
+
+# Rights
+'right-read'       => 'Duillag y lhaih',
+'right-edit'       => 'Duillag y reaghey',
+'right-createpage' => 'Duillag y chroo (nagh vel ny ghuillag resoonaght)',
+'right-createtalk' => 'Duillag resoonaght y chroo',
+'right-move'       => 'Duillag y scughey',
+'right-movefile'   => 'Coadan y scughey',
+'right-upload'     => 'Laadey neese coadanyn',
+'right-delete'     => 'Duillag y scryssey',
 
 # User rights log
 'rightslog'  => 'Lioar chooishyn kiartyn ymmydeyr',
@@ -671,6 +682,7 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'recentchangestext'              => "Shirr ny caghlaaghyn s'noa da'n wiki er y duillag shoh.",
 'recentchanges-feed-description' => "Shirr ny caghlaaghyn jeianagh er y wiki 'sy scoltey shoh.",
 'recentchanges-label-newpage'    => 'Ren y reaghey shoh croo duillag noa',
+'recentchanges-label-minor'      => "She myn-arraghey t'ayn",
 'recentchanges-label-bot'        => 'Ren bot y reaghey shoh',
 'rcnote'                         => "Ny ta heese, she {{PLURAL:$1|ny '''$1''' caghlaa|yn '''$1''' chaghlaa|ny '''$1''' chaghlaa|ny '''$1''' caghlaaghyn}} s'jerree ayns {{PLURAL:$2|ny '''$2''' laa|yn '''$2''' laa|ny '''$2''' laa|ny '''$2''' laaghyn}} s'jerree, kiart ec $4, $5.",
 'rcnotefrom'                     => "Shoh heese ny caghlaaghyn veih '''$2''' (gys '''$1''' taishbynit).",
@@ -689,6 +701,7 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 'minoreditletter'                => 'm',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'r',
+'rc_categories_any'              => 'Ronney erbee',
 'rc-enhanced-expand'             => 'Taishbyn sonreeaghtyn (ta JavaScript er shirrey)',
 'rc-enhanced-hide'               => 'Follee sonreeaghtyn',
 
@@ -851,7 +864,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'movethispage'            => 'Yn duillag shoh y scughey',
 'pager-newer-n'           => "{{PLURAL:$1|1 ny s'noa|$1 ny s'noa}}",
 'pager-older-n'           => '{{PLURAL:$1|1 ny shinney|$1 ny shinney}}',
-'suppress'                => 'Meehastid',
+'suppress'                => 'Oaseirys',
 
 # Book sources
 'booksources'               => 'Bun-gheillyn lioar',

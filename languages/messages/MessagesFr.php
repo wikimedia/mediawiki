@@ -67,6 +67,7 @@
  * @author Verdy p
  * @author Wyz
  * @author Yumeki
+ * @author Zebulon84
  * @author Zetud
  * @author Горан Анђелковић
  * @author לערי ריינהארט
@@ -457,15 +458,15 @@ $messages = array(
 'october-gen'   => 'octobre',
 'november-gen'  => 'novembre',
 'december-gen'  => 'décembre',
-'jan'           => 'jan',
-'feb'           => 'fév',
-'mar'           => 'mar',
+'jan'           => 'janv',
+'feb'           => 'févr',
+'mar'           => 'mars',
 'apr'           => 'avr',
 'may'           => 'mai',
-'jun'           => 'jun',
-'jul'           => 'jul',
-'aug'           => 'aoû',
-'sep'           => 'sep',
+'jun'           => 'juin',
+'jul'           => 'juil',
+'aug'           => 'août',
+'sep'           => 'sept',
 'oct'           => 'oct',
 'nov'           => 'nov',
 'dec'           => 'déc',
@@ -1637,6 +1638,7 @@ Elle ne doit pas dépasser $1 caractère{{PLURAL:$1||s}}.',
 'action-userrights'           => 'modifier tous les droits d’utilisateur',
 'action-userrights-interwiki' => 'modifier les droits des utilisateurs sur d’autres wikis',
 'action-siteadmin'            => 'verrouiller ou déverrouiller la base de données',
+'action-sendemail'            => 'envoyer des courriels',
 
 # Recent changes
 'nchanges'                          => '$1 modification{{PLURAL:$1||s}}',
@@ -2119,7 +2121,7 @@ Veuillez noter que d’autres sites peuvent avoir un lien direct vers un fichier
 'booksources-invalid-isbn'  => 'L’ISBN donné ne semble pas être correct ; vérifiez si vous avez fait une erreur en copiant la source originale.',
 
 # Special:Log
-'specialloguserlabel'  => 'Artiste:',
+'specialloguserlabel'  => 'Auteur :',
 'speciallogtitlelabel' => 'Cible (titre ou utilisateur):',
 'log'                  => 'Journaux d’opérations',
 'all-logs-page'        => 'Tous les journaux publics',

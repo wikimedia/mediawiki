@@ -1602,6 +1602,7 @@ Om du väljer att ange ditt riktiga namn, kommer det att användas för att till
 'action-userrights'           => 'ändra alla användarrättigheter',
 'action-userrights-interwiki' => 'ändra rättigheter för användare på andra wikier',
 'action-siteadmin'            => 'låsa eller låsa upp databasen',
+'action-sendemail'            => 'skicka e-post',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|ändring|ändringar}}',

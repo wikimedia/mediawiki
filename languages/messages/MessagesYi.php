@@ -1852,8 +1852,8 @@ $1",
 'booksources-invalid-isbn'  => 'דאָס געגעבענע ISBN זעט נישט אויס צו זיין גילטיק; קאנטראלירט פֿאַר גרײַזן בײַם קאפּירן פון דעם ערשטיקן מקור.',
 
 # Special:Log
-'specialloguserlabel'  => 'באַניצער:',
-'speciallogtitlelabel' => 'טיטל:',
+'specialloguserlabel'  => 'אויספֿירער:',
+'speciallogtitlelabel' => 'ציל (טיטל אדער באניצער):',
 'log'                  => 'לאגביכער',
 'all-logs-page'        => 'אלע פובליקע לאגביכער',
 'alllogstext'          => 'קאמבינירטער אויסשטעל פון אלע לאגביכער פון {{SITENAME}} בנמצא.
