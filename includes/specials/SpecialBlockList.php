@@ -43,7 +43,6 @@ class SpecialBlockList extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$out = $this->getOutput();
-		$lang = $this->getLanguage();
 		$out->setPageTitle( $this->msg( 'ipblocklist' ) );
 		$out->addModuleStyles( 'mediawiki.special' );
 
@@ -62,46 +61,6 @@ class SpecialBlockList extends SpecialPage {
 			return;
 		}
 
-		# Just show the block list
-		$fields = array(
-			'Target' => array(
-				'type' => 'text',
-				'label-message' => 'ipadressorusername',
-				'tabindex' => '1',
-				'size' => '45',
-				'default' => $this->target,
-			),
-			'Options' => array(
-				'type' => 'multiselect',
-				'options' => array(
-					wfMsg( 'blocklist-userblocks' ) => 'userblocks',
-					wfMsg( 'blocklist-tempblocks' ) => 'tempblocks',
-					wfMsg( 'blocklist-addressblocks' ) => 'addressblocks',
-					wfMsg( 'blocklist-rangeblocks' ) => 'rangeblocks',
-				),
-				'flatlist' => true,
-			),
-			'Limit' => array(
-				'class' => 'HTMLBlockedUsersItemSelect',
-				'label-message' => 'table_pager_limit_label',
-				'options' => array(
-					$lang->formatNum( 20 ) => 20,
-					$lang->formatNum( 50 ) => 50,
-					$lang->formatNum( 100 ) => 100,
-					$lang->formatNum( 250 ) => 250,
-					$lang->formatNum( 500 ) => 500,
-				),
-				'name' => 'limit',
-				'default' => 50,
-			),
-		);
-		$form = new HTMLForm( $fields, $this->getContext() );
-		$form->setMethod( 'get' );
-		$form->setWrapperLegend( wfMsg( 'ipblocklist-legend' ) );
-		$form->setSubmitText( wfMsg( 'ipblocklist-submit' ) );
-		$form->prepareForm();
-
-		$form->displayForm( '' );
 		$this->showList();
 	}
 
@@ -176,6 +135,7 @@ class SpecialBlockList extends SpecialPage {
 		}
 
 		$pager = new BlockListPager( $this, $conds );
+		$out->addHTML( $pager->buildHTMLForm() );
 		if ( $pager->getNumRows() ) {
 			$out->addHTML(
 				$pager->getNavigationBar() .
@@ -399,6 +359,37 @@ class BlockListPager extends TablePager {
 		return $info;
 	}
 
+	protected function getHTMLFormFields() {
+		return array(
+			'Target' => array(
+				'type' => 'text',
+				'label-message' => 'ipadressorusername',
+				'tabindex' => '1',
+				'size' => '45',
+				//'default' => $this->target,
+			),
+			'Options' => array(
+				'type' => 'multiselect',
+				'options' => array(
+					wfMsg( 'blocklist-userblocks' ) => 'userblocks',
+					wfMsg( 'blocklist-tempblocks' ) => 'tempblocks',
+					wfMsg( 'blocklist-addressblocks' ) => 'addressblocks',
+					wfMsg( 'blocklist-rangeblocks' ) => 'rangeblocks',
+				),
+				'flatlist' => true,
+			),
+			'Limit' => $this->getHTMLFormLimitSelect(),
+		);
+	}
+
+	protected function getHTMLFormSubmit() {
+		return 'ipblocklist-submit';
+	}
+
+	protected function getHTMLFormLegend() {
+		return 'ipblocklist-legend';
+	}
+
 	public function getTableClass(){
 		return 'TablePager mw-blocklist';
 	}
@@ -447,33 +438,4 @@ class BlockListPager extends TablePager {
 		$lb->execute();
 		wfProfileOut( __METHOD__ );
 	}
-}
-
-/**
- * Items per page dropdown. Essentially a crap workaround for bug 32603.
- *
- * @todo Do not release 1.19 with this.
- */
-class HTMLBlockedUsersItemSelect extends HTMLSelectField {
-	/**
-	 * Basically don't do any validation. If it's a number that's fine. Also,
-	 * add it to the list if it's not there already
-	 *
-	 * @param $value
-	 * @param $alldata
-	 * @return bool
-	 */
-	function validate( $value, $alldata ) {
-		if ( $value == '' ) {
-			return true;
-		}
-
-		if ( !in_array( $value, $this->mParams['options'] ) ) {
-			$this->mParams['options'][ $this->mParent->getLanguage()->formatNum( $value ) ] = intval($value);
-			asort( $this->mParams['options'] );
-		}
-
-		return true;
-	}
-
 }

@@ -35,8 +35,8 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$userName = $par;
 			$search = '';
 		} else {
-			$userName = $this->getRequest()->getText( 'user', $par );
-			$search = $this->getRequest()->getText( 'ilsearch', '' );
+			$userName = $this->getRequest()->getText( 'wpUsername', $par );
+			$search = $this->getRequest()->getText( 'wpSearch', '' );
 		}
 
 		$pager = new ImageListPager( $this->getContext(), $userName, $search, $this->including() );
@@ -44,7 +44,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		if ( $this->including() ) {
 			$html = $pager->getBody();
 		} else {
-			$form = $pager->getForm();
+			$form = $pager->buildHTMLForm();
 			$body = $pager->getBody();
 			$nav = $pager->getNavigationBar();
 			$html = "$form<br />\n$body<br />\n$nav";
@@ -234,30 +234,35 @@ class ImageListPager extends TablePager {
 		}
 	}
 
-	function getForm() {
-		global $wgScript, $wgMiserMode;
-		$inputForm = array();
-		$inputForm['table_pager_limit_label'] = $this->getLimitSelect();
+	protected function getHTMLFormFields() {
+		global $wgMiserMode;
+		$f = array(
+			'Limit' => $this->getHTMLFormLimitSelect(),
+		);
+
 		if ( !$wgMiserMode ) {
-			$inputForm['listfiles_search_for'] = Html::input( 'ilsearch', $this->mSearch, 'text',
-				array(
-					'size' 		=> '40',
-					'maxlength' => '255',
-					'id' 		=> 'mw-ilsearch',
-			) );
+			$f['Search'] = array(
+				'type' => 'text',
+				'label-message' => 'listfiles_search_for',
+				'maxlength' => 255,
+			);
 		}
-		$inputForm['username'] = Html::input( 'user', $this->mUserName, 'text', array(
-			'size' 		=> '40',
-			'maxlength' => '255',
-			'id' 		=> 'mw-listfiles-user',
-		) );
-		return Html::openElement( 'form',
-				array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-listfiles-form' ) ) .
-			Xml::fieldset( wfMsg( 'listfiles' ) ) .
-			Xml::buildForm( $inputForm, 'table_pager_limit_submit' ) .
-			$this->getHiddenFields( array( 'limit', 'ilsearch', 'user' ) ) .
-			Html::closeElement( 'fieldset' ) .
-			Html::closeElement( 'form' ) . "\n";
+
+		$f['Username'] = array(
+			'type' => 'text',
+			'label-message' => 'username',
+			'maxlength' => 255,
+		);
+
+		return $f;
+	}
+
+	protected function getHTMLFormLegend() {
+		return 'listfiles';
+	}
+
+	protected function getHTMLFormSubmit() {
+		return 'table_pager_limit_submit';
 	}
 
 	function getTableClass() {

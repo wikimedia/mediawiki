@@ -845,6 +845,15 @@ class HTMLForm extends ContextSource {
 	public function getLegend( $key ) {
 		return wfMsg( "{$this->mMessagePrefix}-$key" );
 	}
+
+	/**
+	 * Returns an array of fields in the form
+	 *
+	 * @return HTMLFormField[]
+	 */
+	public function getFlatFields() {
+		return $this->mFlatFields;
+	}
 }
 
 /**
@@ -1069,6 +1078,15 @@ abstract class HTMLFormField {
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Returns the HTML name of the Field
+	 *
+	 * @return string
+	 */
+	public function getName() {
+		return $this->mName;
 	}
 
 	function getLabel() {
