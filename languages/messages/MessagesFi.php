@@ -1552,6 +1552,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'action-userrights'           => 'muokata kaikkia käyttöoikeuksia',
 'action-userrights-interwiki' => 'muokata muiden wikien käyttäjien käyttöoikeuksia',
 'action-siteadmin'            => 'lukita tai avata tietokantaa',
+'action-sendemail'            => 'lähettää sähköpostia',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|muutos|muutosta}}',

@@ -1656,6 +1656,7 @@ $1",
 'action-userrights'           => 'לערוך את כל הרשאות המשתמש',
 'action-userrights-interwiki' => 'לערוך את ההרשאות של משתמשים באתרי ויקי אחרים',
 'action-siteadmin'            => 'לנעול או לבטל את נעילת בסיס הנתונים',
+'action-sendemail'            => 'לשלוח דואר אלקטרוני',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|שינוי אחד|$1 שינויים}}',

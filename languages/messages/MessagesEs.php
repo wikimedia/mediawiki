@@ -55,6 +55,7 @@
  * @author Pertile
  * @author Piolinfax
  * @author Platonides
+ * @author PoLuX124
  * @author Remember the dot
  * @author Richard Wolf VI
  * @author Sanbec
@@ -1868,7 +1869,7 @@ Para óptima seguridad, img_auth.php está desactivado.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Esta página especial muestra todos los archivos subidos.
-Cuando es filytrado por el usuario, sólo los archivos cargados por el usuario se muestran en su versión más reciente.',
+Cuando es filtrado por el usuario, sólo los archivos cargados por el usuario se muestran en su versión más reciente.',
 'listfiles_search_for'  => 'Buscar por nombre de imagen:',
 'imgfile'               => 'archivo',
 'listfiles'             => 'Lista de archivos',

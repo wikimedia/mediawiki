@@ -2888,19 +2888,21 @@ Clicking '''''{{int:undeletereset}}''''' will clear the comment field and all ch
 <br />જો માધ્યમને તેના મુળ રૂપમાંથી ફેરફાર કરવામાં આવશે તો શક્ય છે કે અમુક માહિતિ પુરેપુરી હાલમાં છે તેવી રીતે ના જળવાઇ રહે.',
 'metadata-expand'   => 'વિસ્તૃત કરેલી વિગતો બતાવો',
 'metadata-collapse' => 'વિસ્તૃત કરેલી વિગતો છુપાવો',
-'metadata-fields'   => '*બ્અન્અવ્ઑ
-*મ્ઑદ્ઍલ્
-*સ્અચ્હ્ઑત્ઇમ્ઍઅન્ઍત્અર્ઇક્હ્
-*ઍક્ષપ્ઑસ્ઉર્ઍત્ઇમ્ઍ
-*ફ्ન્ઉમ્બ્ઍર્
-*ઇસ્ઑસ્પ્ઈદ્ર્અત્ઇન્ગ્સ્
-*ફોચ્અલ્લ્લ્ઍન્ગ્ત્હ્
-*ક્અલ્અક્અર્
-*ચ્ઑપ્ય્ર્ઇગ્હ્ત્
-*ઇમ્અગ્ઍદ્ઍસ્ચ્ર્ઇપ્ત્ઇઑન્
-*ગ્પ્સ્લ્અત્ઇત્ઉદ્ઍ
-*ગ્પ્સ્લ્ઑન્ગ્ઇત્ઉદ્ઍ
-*ગ્પ્સ્અલ્ત્ઇત્ઉદ્ઍ',
+'metadata-fields'   => 'આ સંદેશામાં સુચવેલી EXIF મૅટડેટા માહિતિ ચિત્રના પાનાનિ દ્રશ્ય આવૃત્તિમાં ઉમેરવામાં આવશે (જ્યારે મૅટડેટાનો કોઠો વિલિન થઇ જતો હશે ત્યારે).
+>અન્ય આપોઆપ જ છુપાઇ જશે.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-imagewidth'                  => 'પહોળાઈ',

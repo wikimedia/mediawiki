@@ -1625,7 +1625,7 @@ Al peñerar por usuariu, s'amuesa namái la cabera versión de los ficheros que 
 'imgfile'               => 'archivu',
 'listfiles'             => "Llista d'imáxenes",
 'listfiles_thumb'       => 'Miniatura',
-'listfiles_date'        => 'Fecha',
+'listfiles_date'        => 'Data',
 'listfiles_name'        => 'Nome',
 'listfiles_user'        => 'Usuariu',
 'listfiles_size'        => 'Tamañu',
@@ -1844,8 +1844,8 @@ Date cuenta de qu'otros sitios web puen enllazar a un ficheru con una URL direut
 'booksources-invalid-isbn'  => 'El códigu ISBN que puxisti nun paez que valga; mira que te vien copiáu de la fonte orixinal.',
 
 # Special:Log
-'specialloguserlabel'  => 'Usuariu:',
-'speciallogtitlelabel' => 'Títulu:',
+'specialloguserlabel'  => 'Pol usuariu:',
+'speciallogtitlelabel' => 'Col títulu:',
 'log'                  => 'Rexistros',
 'all-logs-page'        => 'Tolos rexistros públicos',
 'alllogstext'          => "Visualización combinada de tolos rexistros disponibles de {{SITENAME}}.

@@ -1560,6 +1560,7 @@ $1",
 'action-userrights'           => '모든 사용자의 권한을 조정',
 'action-userrights-interwiki' => '다른 위키의 사용자 권한을 조정',
 'action-siteadmin'            => '데이터베이스를 잠그거나 잠금 해제하기',
+'action-sendemail'            => '이메일을 보낼',
 
 # Recent changes
 'nchanges'                          => '$1개 바뀜',
@@ -3682,6 +3683,10 @@ $5
 'logentry-delete-event-legacy'        => '$1 사용자가 $3 문서 기록의 표시 설정을 {{GENDER:$2|변경}}하였습니다.',
 'logentry-delete-revision-legacy'     => '$1 사용자가 $3 문서 편집의 표시 설정을 {{GENDER:$2|변경}}하였습니다.',
 'logentry-suppress-delete'            => '$1 사용자가 $3 문서를 {{GENDER:$2|숨겼}}습니다.',
+'logentry-suppress-event'             => '$1 사용자가 비공개적으로 $3의 {{PLURAL:$5|$5개의 기록}}에 대해 표시 설정을 {{GENDER:$2|바꾸었습니다}}: $4',
+'logentry-suppress-revision'          => '$1 사용자가 비공개적으로 $3 문서의 {{PLURAL:$5|$5개의 판}}에 대해 표시 설정을 {{GENDER:$2|바꾸었습니다}}: $4',
+'logentry-suppress-event-legacy'      => '$1 사용자가 비공개적으로 $3의 항목에 대한 표시 설정을 {{GENDER:$2|바꾸었습니다}}.',
+'logentry-suppress-revision-legacy'   => '$1 사용자가 비공개적으로 $3 문서의 특정 판에 대한 표시 설정을 {{GENDER:$2|바꾸었습니다}}.',
 'revdelete-content-hid'               => '내용 숨겨짐',
 'revdelete-summary-hid'               => '편집 요약 숨겨짐',
 'revdelete-uname-hid'                 => '계정 이름 숨겨짐',

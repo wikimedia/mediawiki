@@ -550,6 +550,7 @@ Möölikerwise heest dü din pååsuurd ål ma erfolch änred heest unti en nai 
 Tidwis paasuurd: $2',
 
 # Special:ChangeEmail
+'changeemail-no-info'  => 'Dü möist önjmälded weese am ju sid diräkt tu tu gripen.',
 'changeemail-oldemail' => 'Aktuel e-mail adres',
 'changeemail-newemail' => 'Nei e-mail adres',
 'changeemail-none'     => '(niin)',
@@ -634,6 +635,10 @@ For informasjoon füliet di leeste üttooch üt dåt benjüterspär-logbök:',
 'usercsspreview'                   => "'''Påås aw dåt dü bloot din brüker CSS forbekiikest.'''
 '''Dåt as nuch ai spiikerd!'''",
 'userjspreview'                    => "'''Påås aw dåt dü bloot din brüker JavaScript präiwest/forbekiikest.'''
+'''Dåt as nuch ai spiikerd!'''",
+'sitecsspreview'                   => "'''Påås aw dåt dü jüdeer CSS bloot forbekiikest.'''
+'''Dåt as nuch ai spiikerd!'''",
+'sitejspreview'                    => "'''Påås aw dåt dü jüdeer JavaScript code bloot forbekiikest.'''
 '''Dåt as nuch ai spiikerd!'''",
 'userinvalidcssjstitle'            => "''Woorschauing:''' Skin \"\$1\"jeeft dåt ai. Betånk, dåt brükerspetsiifische .css- än .js-side ma en latj bökstääw önjfånge mönje, ålsü biispelswise ''{{ns:user}}:Münsterkjarl/vector.css'' önj stää foon ''{{ns:user}}:Münsterkjarl/Vector.css''.",
 'updated'                          => '(Änred)',
@@ -935,6 +940,7 @@ Stal sääker, dåt jü färsjoonshistoori foon en sid histoorisch koräkt as.',
 'prefsnologin'                => 'Ai önjmälded',
 'changepassword'              => 'Pååsuurd änre',
 'skin-preview'                => 'Forlök',
+'datedefault'                 => 'Foor-önjstaling',
 'prefs-personal'              => 'Brüker dooten',
 'prefs-rc'                    => 'Leeste änringe',
 'prefs-watchlist-days-max'    => 'Ai lunger as 7 deege',
