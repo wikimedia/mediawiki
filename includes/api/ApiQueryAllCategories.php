@@ -199,7 +199,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Allcategories';
+		return 'https://www.mediawiki.org/wiki/API:Allcategories';
 	}
 
 	public function getVersion() {

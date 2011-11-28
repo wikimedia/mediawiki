@@ -193,7 +193,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Properties#images_.2F_im';
+		return 'https://www.mediawiki.org/wiki/API:Properties#images_.2F_im';
 	}
 
 	public function getVersion() {

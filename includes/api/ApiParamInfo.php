@@ -280,7 +280,7 @@ class ApiParamInfo extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Parameter_information';
+		return 'https://www.mediawiki.org/wiki/API:Parameter_information';
 	}
 
 	public function getVersion() {

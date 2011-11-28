@@ -223,7 +223,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Alllinks';
+		return 'https://www.mediawiki.org/wiki/API:Alllinks';
 	}
 
 	public function getVersion() {

@@ -139,7 +139,7 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Purge';
+		return 'https://www.mediawiki.org/wiki/API:Purge';
 	}
 
 	public function getVersion() {
