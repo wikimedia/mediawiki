@@ -863,8 +863,10 @@ abstract class File {
 	 * Purge shared caches such as thumbnails and DB data caching
 	 * STUB
 	 * Overridden by LocalFile
+	 * @param $options Array Options, which include:
+	 *     'forRefresh' : The purging is only to refresh thumbnails
 	 */
-	function purgeCache() {}
+	function purgeCache( $options = array() ) {}
 
 	/**
 	 * Purge the file description page, but don't go after

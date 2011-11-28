@@ -675,12 +675,12 @@ class LocalFile extends File {
 	/**
 	 * Delete all previously generated thumbnails, refresh metadata in memcached and purge the squid
 	 */
-	function purgeCache() {
+	function purgeCache( $options = array() ) {
 		// Refresh metadata cache
 		$this->purgeMetadataCache();
 
 		// Delete thumbnails
-		$this->purgeThumbnails();
+		$this->purgeThumbnails( $options );
 
 		// Purge squid cache for this file
 		SquidUpdate::purge( array( $this->getURL() ) );
@@ -723,11 +723,18 @@ class LocalFile extends File {
 	/**
 	 * Delete cached transformed files for the current version only.
 	 */
-	function purgeThumbnails() {
+	function purgeThumbnails( $options ) {
 		global $wgUseSquid;
 
 		// Delete thumbnails
 		$files = $this->getThumbnails();
+		
+		// Give media handler a chance to filter the purge list
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			$handler->filterThumbnailPurgeList( $files, $options );
+		}
+		
 		$dir = array_shift( $files );
 		$this->purgeThumbList( $dir, $files );
 

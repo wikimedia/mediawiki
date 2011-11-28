@@ -214,8 +214,11 @@ class ForeignAPIFile extends File {
 		return $files;
 	}
 
-	function purgeCache() {
-		$this->purgeThumbnails();
+	/**
+	 * @see File::purgeCache()
+	 */
+	function purgeCache( $options = array() ) {
+		$this->purgeThumbnails( $options );
 		$this->purgeDescriptionPage();
 	}
 
@@ -226,11 +229,17 @@ class ForeignAPIFile extends File {
 		$wgMemc->delete( $key );
 	}
 
-	function purgeThumbnails() {
+	function purgeThumbnails( $options = array() ) {
 		global $wgMemc;
 		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
 		$wgMemc->delete( $key );
 		$files = $this->getThumbnails();
+		// Give media handler a chance to filter the purge list
+		$handler = $this->getHandler();
+		if ( $handler ) {
+			$handler->filterThumbnailPurgeList( $files, $options );
+		}
+		
 		$dir = $this->getThumbPath( $this->getName() );
 		foreach ( $files as $file ) {
 			unlink( $dir . $file );
