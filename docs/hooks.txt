@@ -319,12 +319,16 @@ $text : the new text of the article (has yet to be saved)
 &$resultArr : data in this array will be added to the API result
 
 'APIGetAllowedParams': use this hook to modify a module's parameters.
-&$module: Module object
+&$module: ApiBase Module object
 &$params: Array of parameters
+
+'APIGetDescription': use this hook to modify a module's description
+&$module: ApiBase Module object
+&$desc: Array of descriptions
 
 'APIGetParamDescription': use this hook to modify a module's parameter
 descriptions.
-&$module: Module object
+&$module: ApiBase Module object
 &$desc: Array of parameter descriptions
 
 'APIQueryAfterExecute': after calling the execute() method of an

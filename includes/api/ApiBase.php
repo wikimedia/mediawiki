@@ -235,7 +235,7 @@ abstract class ApiBase extends ContextSource {
 	public function makeHelpMsg() {
 		static $lnPrfx = "\n  ";
 
-		$msg = $this->getDescription();
+		$msg = $this->getFinalDescription();
 
 		if ( $msg !== false ) {
 
@@ -510,6 +510,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Get final list of parameters, after hooks have had a chance to
 	 * tweak it as needed.
+	 *
 	 * @return array or false
 	 */
 	public function getFinalParams() {
@@ -519,13 +520,26 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Get final description, after hooks have had a chance to tweak it as
+	 * Get final parameter descriptions, after hooks have had a chance to tweak it as
 	 * needed.
+	 *
 	 * @return array
 	 */
 	public function getFinalParamDescription() {
 		$desc = $this->getParamDescription();
 		wfRunHooks( 'APIGetParamDescription', array( &$this, &$desc ) );
+		return $desc;
+	}
+
+	/**
+	 * Get final module description, after hooks have had a chance to tweak it as
+	 * needed.
+	 *
+	 * @return array
+	 */
+	public function getFinalDescription() {
+		$desc = $this->getDescription();
+		wfRunHooks( 'ApiGetDescription', array( &$this, &$desc ) );
 		return $desc;
 	}
 
