@@ -93,49 +93,40 @@ class WebRequest {
 					// Abort to keep from breaking...
 					return $matches;
 				}
-				
-				$router = new PathRouter;
-
 				// Raw PATH_INFO style
-				$router->add( "$wgScript/$1" );
+				$matches = self::extractTitle( $path, "$wgScript/$1" );
 
-				if( isset( $_SERVER['SCRIPT_NAME'] )
+				if( !$matches
+					&& isset( $_SERVER['SCRIPT_NAME'] )
 					&& preg_match( '/\.php5?/', $_SERVER['SCRIPT_NAME'] ) )
 				{
 					# Check for SCRIPT_NAME, we handle index.php explicitly
 					# But we do have some other .php files such as img_auth.php
 					# Don't let root article paths clober the parsing for them
-					$router->add( $_SERVER['SCRIPT_NAME'] . "/$1" );
+					$matches = self::extractTitle( $path, $_SERVER['SCRIPT_NAME'] . "/$1" );
 				}
 
 				global $wgArticlePath;
-				if( $wgArticlePath ) {
-					$router->add( $wgArticlePath );
+				if( !$matches && $wgArticlePath ) {
+					$matches = self::extractTitle( $path, $wgArticlePath );
 				}
 
 				global $wgActionPaths;
-				if( $wgActionPaths ) {
-					$router->add( $wgActionPaths, array( 'action' => '$key' ) );
+				if( !$matches && $wgActionPaths ) {
+					$matches = self::extractTitle( $path, $wgActionPaths, 'action' );
 				}
 
 				global $wgVariantArticlePath, $wgContLang;
-				if( $wgVariantArticlePath ) {
-					/*$variantPaths = array();
+				if( !$matches && $wgVariantArticlePath ) {
+					$variantPaths = array();
 					foreach( $wgContLang->getVariants() as $variant ) {
 						$variantPaths[$variant] =
 							str_replace( '$2', $variant, $wgVariantArticlePath );
 					}
-					$router->add( $variantPaths, array( 'parameter' => 'variant' ) );*/
-					// Maybe actually this?
-					$router->add( $wgVariantArticlePath,
-						array( 'variant' => '$2'),
-						array( '$2' => $wgContLang->getVariants() )
-					);
+					$matches = self::extractTitle( $path, $variantPaths, 'variant' );
 				}
 
-				wfRunHooks( 'WebRequestPathInfoRouter', array( $router ) );
-
-				$matches = $router->parse( $path );
+				wfRunHooks( 'WebRequestGetPathInfoRequestURI', array( $path, &$matches ) );
 			}
 		} elseif ( isset( $_SERVER['ORIG_PATH_INFO'] ) && $_SERVER['ORIG_PATH_INFO'] != '' ) {
 			// Mangled PATH_INFO
