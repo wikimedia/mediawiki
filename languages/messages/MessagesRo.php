@@ -1594,6 +1594,7 @@ Dacă decideți furnizarea sa, acesta va fi folosit pentru a vă atribui munca.'
 'action-userrights'           => 'modificați toate permisiunile utilizatorilor',
 'action-userrights-interwiki' => 'modificați permisiunile utilizatorilor de pe alte wiki',
 'action-siteadmin'            => 'blocați sau deblocați baza de date',
+'action-sendemail'            => 'trimite e-mailuri',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modificare|modificări|de modificări}}',

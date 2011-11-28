@@ -1358,6 +1358,7 @@ Esta información sedrá pública.",
 'action-userrights'           => "editar tolos drechos d'usuariu",
 'action-userrights-interwiki' => "editar los drechos d'usuariu d'usuarios d'otres wikis",
 'action-siteadmin'            => 'candar o descandar la base de datos',
+'action-sendemail'            => 'unviar correos',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|un cambéu|$1 cambeos}}',

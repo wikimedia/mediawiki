@@ -24,6 +24,7 @@
  * @author Mohanpurkar
  * @author Mvkulkarni23
  * @author Prabodh1987
+ * @author Rdeshmuk
  * @author Sankalpdravid
  * @author Shreewiki
  * @author Shreyas19
@@ -1561,6 +1562,7 @@ $1",
 'action-userrights'           => 'सर्व सदस्यांचे अधिकार संपादित करा',
 'action-userrights-interwiki' => 'इतर विकिंवरच्या सदस्यांचे अधिकार संपादित करा',
 'action-siteadmin'            => 'माहितीसाठ्याला कुलुप लावा अथवा काढा',
+'action-sendemail'            => 'विपत्रे (ई-मेल्स) पाठवा.',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|बदल|बदल}}',
@@ -1759,6 +1761,9 @@ $1',
 'img-auth-isdir'            => 'तुम्ही $1 निदेशक वापरण्याचा प्रयत्न करत आहात.
 फक्त संचिका वापरण्याची परवानगी आहे.',
 'img-auth-streaming'        => 'स्ट्रीमिंग "$1".',
+'img-auth-public'           => 'img_auth.php हे  वैयक्तिक विकीमधून  माहिती प्रदान करण्याचे कार्य करते.
+हा विकि सार्वजनिक विकि म्हणून सब्चित करण्यात आला आ.े.
+उचित सुरक्षा के लिए img_auth.php को निष्कृय किया हुआ है।',
 'img-auth-noread'           => 'तुम्हाला "$1" वाचण्याची परवानगी नाही',
 'img-auth-bad-query-string' => 'या दुव्यामध्ये (URL) अवैध query string आहे.',
 

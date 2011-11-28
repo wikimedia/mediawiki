@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author AVRS
  * @author Ahonc
  * @author Aleksandrit
  * @author Alessandro
@@ -949,7 +950,7 @@ $2
 'userpage-userdoesnotexist-view'   => 'Не зарегистрировано учётной записи участника «$1».',
 'blocked-notice-logextract'        => 'Этот участник в данный момент заблокирован.
 Ниже приведена последняя запись из журнала блокировок:',
-'clearyourcache'                   => "'''Замечание.''' Возможно, вам придётся очистите кеш своего браузера, чтобы увидеть изменения.
+'clearyourcache'                   => "'''Замечание.''' Возможно, после сохранения вам придётся очистить кеш своего браузера, чтобы увидеть изменения.
 * '''Firefox / Safari.''' Удерживая клавишу ''Shift'' нажмите на панели инструментов ''Обновить'', или нажмите ''Ctrl-F5'' или ''Ctrl-R'' (''Command-R'' на Mac)
 * '''Google Chrome.''' Нажмите ''Ctrl-Shift-R'' (''Command-Shift-R'' на Mac)
 * '''Internet Explorer.''' Удерживая ''Ctrl'' нажмите ''Обновить'', или нажмите ''Ctrl-F5''
@@ -1590,6 +1591,7 @@ $1",
 'action-userrights'           => 'изменение всех прав участника',
 'action-userrights-interwiki' => 'изменение прав участников в других вики',
 'action-siteadmin'            => 'блокировка и разблокировка базы данных',
+'action-sendemail'            => 'отправка электронных писем',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|изменение|изменения|изменений}}',

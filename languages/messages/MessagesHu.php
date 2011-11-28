@@ -1585,6 +1585,7 @@ A műveletet nem lehet visszavonni.',
 'action-userrights'           => 'összes szerkesztő jogainak módosítása',
 'action-userrights-interwiki' => 'más wikik szerkesztői jogainak módosítása',
 'action-siteadmin'            => 'adatbázis lezárása vagy felnyitása',
+'action-sendemail'            => 'e-mailek küldése',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|egy|$1}} változtatás',

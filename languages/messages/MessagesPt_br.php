@@ -1592,7 +1592,7 @@ Caso decida fornecê-lo, este será utilizado para dar-lhe crédito pelo seu tra
 'action-userrights'           => 'editar todos os privilégios de usuário',
 'action-userrights-interwiki' => 'editar privilégios de usuários de outras wikis',
 'action-siteadmin'            => 'bloquear ou desbloquear o banco de dados',
-'action-sendemail'            => 'Enviar e-mail',
+'action-sendemail'            => 'enviar e-mail',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|alteração|alterações}}',
