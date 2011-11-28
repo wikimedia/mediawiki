@@ -222,7 +222,7 @@ DB2 and Microsoft SQL Server.
 
 The supported versions are:
 
-* MySQL 4.0 or later
+* MySQL 5.0.2 or later
 * PostgreSQL 8.3 or later
 * SQLite 3
 * Oracle 9.0.1 or later
