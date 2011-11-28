@@ -2788,7 +2788,7 @@ class Language {
 	 * @param $l Array
 	 * @return string
 	 */
-	function listToText( $l ) {
+	function listToText( array $l ) {
 		$s = '';
 		$m = count( $l ) - 1;
 		if ( $m == 1 ) {
@@ -2813,13 +2813,13 @@ class Language {
 	 * @param $list array of strings to put in a comma list
 	 * @return string
 	 */
-	function commaList( $list ) {
-		return implode(
-			$list,
+	function commaList( array $list ) {
+		return implode(			
 			wfMsgExt(
 				'comma-separator',
 				array( 'parsemag', 'escapenoentities', 'language' => $this )
-			)
+			),
+			$list
 		);
 	}
 
@@ -2829,13 +2829,13 @@ class Language {
 	 * @param $list array of strings to put in a semicolon list
 	 * @return string
 	 */
-	function semicolonList( $list ) {
-		return implode(
-			$list,
+	function semicolonList( array $list ) {
+		return implode(			
 			wfMsgExt(
 				'semicolon-separator',
 				array( 'parsemag', 'escapenoentities', 'language' => $this )
-			)
+			),
+			$list
 		);
 	}
 
@@ -2844,13 +2844,13 @@ class Language {
 	 * @param $list array of strings to put in a pipe list
 	 * @return string
 	 */
-	function pipeList( $list ) {
-		return implode(
-			$list,
+	function pipeList( array $list ) {
+		return implode(			
 			wfMsgExt(
 				'pipe-separator',
 				array( 'escapenoentities', 'language' => $this )
-			)
+			),
+			$list
 		);
 	}
 
