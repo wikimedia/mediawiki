@@ -287,8 +287,7 @@ class BitmapHandler extends ImageHandler {
 			$quality = "-quality 95"; // zlib 9, adaptive filtering
 
 		} elseif ( $params['mimeType'] == 'image/gif' ) {
-			if ( $this->getImageArea( $image, $params['srcWidth'],
-					$params['srcHeight'] ) > $wgMaxAnimatedGifArea ) {
+			if ( $this->getImageArea( $image ) > $wgMaxAnimatedGifArea ) {
 				// Extract initial frame only; we're so big it'll
 				// be a total drag. :P
 				$scene = 0;
@@ -376,8 +375,7 @@ class BitmapHandler extends ImageHandler {
 			} elseif( $params['mimeType'] == 'image/png' ) {
 				$im->setCompressionQuality( 95 );
 			} elseif ( $params['mimeType'] == 'image/gif' ) {
-				if ( $this->getImageArea( $image, $params['srcWidth'],
-						$params['srcHeight'] ) > $wgMaxAnimatedGifArea ) {
+				if ( $this->getImageArea( $image ) > $wgMaxAnimatedGifArea ) {
 					// Extract initial frame only; we're so big it'll
 					// be a total drag. :P
 					$im->setImageScene( 0 );
