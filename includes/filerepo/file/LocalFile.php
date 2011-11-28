@@ -723,7 +723,7 @@ class LocalFile extends File {
 	/**
 	 * Delete cached transformed files for the current version only.
 	 */
-	function purgeThumbnails( $options ) {
+	function purgeThumbnails( $options = array() ) {
 		global $wgUseSquid;
 
 		// Delete thumbnails
