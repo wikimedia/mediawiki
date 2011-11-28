@@ -231,7 +231,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Protectedtitles';
+		return 'https://www.mediawiki.org/wiki/API:Protectedtitles';
 	}
 
 	public function getVersion() {

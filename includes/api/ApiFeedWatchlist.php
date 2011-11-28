@@ -222,7 +222,7 @@ class ApiFeedWatchlist extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Watchlist_feed';
+		return 'https://www.mediawiki.org/wiki/API:Watchlist_feed';
 	}
 
 	public function getVersion() {

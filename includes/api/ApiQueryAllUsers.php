@@ -369,7 +369,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Allusers';
+		return 'https://www.mediawiki.org/wiki/API:Allusers';
 	}
 
 	public function getVersion() {
