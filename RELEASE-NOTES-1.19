@@ -183,8 +183,10 @@ production.
 * (bug 7304) Links on redirect pages no longer cause the redirect page to show
   up as a redirect to the linked page on Special:Whatlinkshere.
 * (bug 32609) API: Move captchaid/captchaword of action=edit from core
-  to Captcha extension(s)
+  to Captcha extension(s).
 * Added 'ApiGetDescription' hook.
+* (bug 32688) Paraminfo for parameter "generator" of the query module shows too
+  many types
 
 === Languages updated in 1.19 ===
 
