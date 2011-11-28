@@ -81,6 +81,9 @@ if ( !function_exists( 'istainted' ) ) {
 
 /**
  * Like array_diff( $a, $b ) except that it works with two-dimensional arrays.
+ * @param $a array
+ * @param $b array
+ * @return array
  */
 function wfArrayDiff2( $a, $b ) {
 	return array_udiff( $a, $b, 'wfArrayDiff2_cmp' );
