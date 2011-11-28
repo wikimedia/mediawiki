@@ -2029,7 +2029,13 @@ class OutputPage extends ContextSource {
 			|| ( isset( $wgGroupPermissions['autoconfirmed'][$action] ) && $wgGroupPermissions['autoconfirmed'][$action] ) )
 		) {
 			$displayReturnto = null;
-			$returnto = $this->getTitle();
+
+			# Due to bug 32276, if a user does not have read permissions, 
+			# $this->getTitle() will just give Special:Badtitle, which is 
+			# not especially useful as a returnto parameter. Use the title 
+			# from the request instead, if there was one.
+			$request = $this->getRequest();
+			$returnto = Title::newFromURL( $request->getVal( 'title', '' ) );
 			if ( $action == 'edit' ) {
 				$msg = 'whitelistedittext';
 				$displayReturnto = $returnto;
@@ -2043,9 +2049,10 @@ class OutputPage extends ContextSource {
 			}
 
 			$query = array();
+
 			if ( $returnto ) {
 				$query['returnto'] = $returnto->getPrefixedText();
-				$request = $this->getRequest();
+
 				if ( !$request->wasPosted() ) {
 					$returntoquery = $request->getValues();
 					unset( $returntoquery['title'] );
