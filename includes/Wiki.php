@@ -128,7 +128,7 @@ class MediaWiki {
 	 * @return void
 	 */
 	private function performRequest() {
-		global $wgServer, $wgUsePathInfo;
+		global $wgServer, $wgUsePathInfo, $wgTitle;
 
 		wfProfileIn( __METHOD__ );
 
@@ -145,7 +145,6 @@ class MediaWiki {
 
 		wfRunHooks( 'BeforeInitialize',
 			array( &$title, null, &$output, &$user, $request, $this ) );
-
 		// Invalid titles. Bug 21776: The interwikis must redirect even if the page name is empty.
 		if ( is_null( $title ) || ( $title->getDBkey() == '' && $title->getInterwiki() == '' ) ||
 			$title->isSpecial( 'Badtitle' ) )
@@ -157,6 +156,16 @@ class MediaWiki {
 		// the Read array in order for the user to see it. (We have to check here to
 		// catch special pages etc. We check again in Article::view())
 		} elseif ( !$title->userCanRead() ) {
+			// Bug 32276: allowing the skin to generate output with $wgTitle 
+			// set to the input title would allow anonymous users to 
+			// determine whether a page exists, potentially leaking private data. In fact, the 
+			// curid and oldid request  parameters would allow page titles to be enumerated even 
+			// when they are not guessable. So we reset the title to Special:Badtitle before the 
+			// permissions error is displayed.
+			$badtitle = SpecialPage::getTitleFor( 'Badtitle' );
+			$output->setTitle( $badtitle );
+			$wgTitle = $badtitle;
+
 			$output->loginToUse();
 		// Interwiki redirects
 		} elseif ( $title->getInterwiki() != '' ) {
