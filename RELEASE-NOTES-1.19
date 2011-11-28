@@ -97,6 +97,7 @@ production.
   and adding paths to the PathRouter.
 * (bug 32666) Special:ActiveUsers now allows a subpage to be used as the
   username (eg. Special:ActiveUsers/Username)
+* New JavaScript variable wgPageContentLanguage
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
@@ -163,6 +164,9 @@ production.
 * (bug 29475) Remove "trackback" feature entirely from core
 * (bug 32665) Special:BlockList prefills the username in the input field if
   using the Special:BlockList\username URL
+* (bug 27721) Make JavaScript variables wgSeparatorTransformTable and
+  wgDigitTransformTable depend on page content language so the sort script
+  sorts correctly more often
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
