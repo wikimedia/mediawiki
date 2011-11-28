@@ -81,12 +81,15 @@ $messages = array(
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|Trokiñ}}',
 'category_header'        => 'Wülngiñ trokiñ "$1"',
+'subcategories'          => 'Minche trokiñ',
+'category-media-header'  => 'Fill dungu (adentun, dungun, fidew) "$1" trokiñ mew',
 'category-empty'         => "''Tüfachi trokiñ fewla nielay wülngiñ kam fill dungu no rume.''",
 'hidden-categories'      => '{{PLURAL:$1|Ellkalelu trokiñ wülgiñ}}',
 'category-subcat-count'  => '{{PLURAL:$2|Tüfachi trokiñ niey kiñe minchetrokiñ müten.|Tüfachi trokiñ niey {{PLURAL:$1 minchetrokiñ}}, $2 mew.}}',
 'category-article-count' => '{{PLURAL:$2|Tüfachi trokiñ niey tüfachi wülngiñ.|Tüfachi {{PLURAL:$1wülngiñ}} tüfachi trokiñ mew, kom $2 mew.}}',
 'category-file-count'    => '{{PLURAL:$2|Tüfachi trokiñ niey tüfachi wülngiñ müten.|Tüfachi {{PLURAL:$1 eltukawün}} müley tüfachi trokiñ mew, kom $2 mew.}}',
 'listingcontinuesabbrev' => 'ramt.',
+'noindex-category'       => 'Wülngiñ mülenolu wif mew',
 
 'about'         => 'Ñi dungu',
 'newwindow'     => '(Nülay we konkintuwe mew)',
@@ -107,17 +110,18 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-delete'   => 'Ñamümün',
-'vector-action-move'     => 'Wiñamün',
-'vector-action-protect'  => 'Kuñiwtun',
-'vector-view-create'     => 'Zewmape',
-'vector-view-edit'       => 'Pepikan',
-'vector-view-history'    => 'Pegelpe rupañmael',
-'vector-view-view'       => 'Chillkatun',
-'vector-view-viewsource' => 'Kimam chew küpan chi wirin',
-'actions'                => 'Femün',
-'namespaces'             => 'Üytun ñi wellin',
-'variants'               => 'Kaleyelu',
+'vector-action-addsection' => 'Püñamtun dungu',
+'vector-action-delete'     => 'Ñamümün',
+'vector-action-move'       => 'Wiñamün',
+'vector-action-protect'    => 'Kuñiwtun',
+'vector-view-create'       => 'Zewmape',
+'vector-view-edit'         => 'Pepikan',
+'vector-view-history'      => 'Pegelpe rupañmael',
+'vector-view-view'         => 'Chillkatun',
+'vector-view-viewsource'   => 'Kimam chew küpan chi wirin',
+'actions'                  => 'Femün',
+'namespaces'               => 'Üytun ñi wellin',
+'variants'                 => 'Kaleyelu',
 
 'errorpagetitle'   => 'Welulkan',
 'returnto'         => 'Amutun $1 püle.',
@@ -153,9 +157,9 @@ $messages = array(
 'userpage'         => 'Adkintun kellufe ñi wülngiñ',
 'projectpage'      => 'Adkintun zeumanzugu wülngiñ',
 'imagepage'        => 'Adkintun ad wülngiñ',
-'mediawikipage'    => 'adkintun página de mensaje',
+'mediawikipage'    => 'Adkintun werkün wülngiñ',
 'templatepage'     => 'Adkintun adtükupeyüm wülngiñ',
-'viewhelppage'     => 'adkintun página de ayuda',
+'viewhelppage'     => 'Adkintun kellu wülngiñ',
 'categorypage'     => 'Adkintun trokiñ wülngiñ',
 'viewtalkpage'     => 'Pen ti nütramkawe',
 'otherlanguages'   => 'Kake dungun',
@@ -223,14 +227,18 @@ Femnuale, welulkafuy feychi küzauwe. Feypimi tüfachi dungu kiñe [[Special:Lis
 'filedeleteerror' => 'Pepiñamümüngelay "$1".',
 'filenotfound'    => 'Pepipelafuy "$1".',
 'badtitle'        => 'Nornongey ta üy',
+'badtitletext'    => 'Tüfachi wülngiñ ñi üy kümelay, welliley kam niey weda lasun nülkükawlelu kake dungun kam kake wiki wülngiñ ñi üy.
+Nieafuy falinochi wirin püñamtuam wülngiñ ñi üy.',
 'viewsource'      => 'Kimam chew küpan chi wirin',
 
 # Login and logout pages
 'yourname'                => 'Tami üy',
 'yourpassword'            => 'Tami kondungu',
 'yourpasswordagain'       => 'Rüf feypinge nülawe:',
+'remembermypassword'      => 'Amulen tañi nülküwküleael tüfa mew (alürumechi $1 {{PLURAL:$1 antü}})',
 'login'                   => 'Konvn',
 'nav-login-createaccount' => 'Cijkantvkuwvn/Konvn',
+'loginprompt'             => 'Müley "Cookies" ñi püneleael wirintukuwam {{SITENAME}} mew.',
 'userlogin'               => 'Cijkantvkuwvn/Konvn',
 'logout'                  => 'Tripan',
 'userlogout'              => 'Tripan',
@@ -275,6 +283,9 @@ Femnuale, welulkafuy feychi küzauwe. Feypimi tüfachi dungu kiñe [[Special:Lis
 Tami chew küpan (IP) chillkatugeay wülngiñ ñi wirin kuyfidungu.",
 'loginreqlink'               => 'Koni',
 'newarticle'                 => '(We)',
+'newarticletext'             => 'Ngelay wirin tüfachi wülngiñ mew. 
+Pepillituam tüfachi wülngiñ, wirintuaymi nagpüle (pen [[{{MediaWiki:Helppage}}|kellu wülngiñ]] nieael doy kimdungu).
+Welule tami küpan, wiñotunge rupachi wülngiñ.',
 'noarticletext'              => 'Iney no rume wirilay tüfachi wülngiñ mew. Eymi [[Special:Search/{{PAGENAME}}|pepikintuymi tüfachi üy]] kake wülngiñ mew,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} kintuymi koneltuyelelu wirintukun],
 kam [{{fullurl:{{FULLPAGENAME}}|action=edit}} kümeelaymi tüfachi wülngiñ]</span>.',
@@ -287,13 +298,20 @@ Eltukawlelay feychi kalekünun!",
 'editingsection'             => 'Wirin $1 (Dungu)',
 'editingcomment'             => 'Wirin $1 (we dungu)',
 'yourtext'                   => 'Tami wirin',
+'templatesused'              => '{{PLURAL:$1 adtükupeyüm}} pünelelu tüfa mew:',
 'template-protected'         => '(Ngünaytun)',
+'template-semiprotected'     => '(ella kuñiutungey)',
+'hiddencategories'           => 'Tüfachi wülngiñ koneltuy {{PLURAL:$1 ellkan trokiñ}}:',
 
 # Parser/template warnings
 'post-expand-template-inclusion-warning'  => "'''Ngüneltun:''' Adtükupeyüm rume al'üy. Kiñeke aztükupeyüm nentutungeay.",
 'post-expand-template-inclusion-category' => 'Tüfachi wülngiñ rume niey adtükupeyüm',
+'post-expand-template-argument-warning'   => "'''Ngüneltun:''' Tüfa mew, kiñe adtükupeyüm ta rume al'un ñi chumtengen.
+Rulpakünuy feychi kangelkülelu dungu.",
+'post-expand-template-argument-category'  => 'Wülngiñ nielu ayikenon adtükupeyüm',
 
 # History pages
+'viewpagelogs'           => 'Pen tüfachi wülngiñ ñi wirintukun',
 'currentrev-asof'        => 'Rupalu malün $1 mew',
 'revisionasof'           => 'Malün $1 mew',
 'previousrevision'       => '← Rupachi malün',
@@ -302,7 +320,9 @@ Eltukawlelay feychi kalekünun!",
 'cur'                    => 'fewla',
 'last'                   => 'rupa',
 'page_first'             => 'wünen',
+'histlegend'             => 'Kalelu wirin ñi dullin: dullintunge trürümüam malün. Trañmange "kon" Tekla kam miñche foton minche mew.',
 'history-fieldset-title' => 'Kintun pünon mew',
+'history-show-deleted'   => 'Liftungepelu malün müten',
 'histfirst'              => 'Wüne',
 'histlast'               => 'Doy we',
 'historyempty'           => '(welli)',
@@ -328,8 +348,11 @@ Eltukawlelay feychi kalekünun!",
 'revertmerge' => 'Wüñoeltun nülkün',
 
 # Diffs
-'lineno'   => 'Wirin $1:',
-'editundo' => 'wüñoeltun',
+'history-title'           => 'Kuyfi malün "$1" mew',
+'difference'              => '(Trürümün epu malün engu)',
+'lineno'                  => 'Wirin $1:',
+'compareselectedversions' => 'Trürümün dullinngelu malün',
+'editundo'                => 'wüñoeltun',
 
 # Search results
 'searchresults'                    => 'Tripalu chi kintun mew',
@@ -345,7 +368,7 @@ Eltukawlelay feychi kalekünun!",
 'searchhelp-url'                   => 'Help:Trokiñdungu',
 'searchprofile-articles'           => 'Trokiñdungu wülngiñ',
 'searchprofile-project'            => 'Kellu wülngiñ ka zeumanzugu wülngiñ',
-'searchprofile-images'             => 'Fill dungu',
+'searchprofile-images'             => 'Fill dungu (adentun, dungun, fidew)',
 'searchprofile-everything'         => 'Kom',
 'searchprofile-advanced'           => 'Doy amul',
 'searchprofile-articles-tooltip'   => 'kintu $1 mew',
@@ -447,13 +470,14 @@ Eltukawlelay feychi kalekünun!",
 'rc-enhanced-hide'                  => 'Ellkan doy dungu',
 
 # Recent changes linked
-'recentchangeslinked'         => 'Koneltuyelelu kalekünulu wirin',
-'recentchangeslinked-toolbox' => 'Koneltuyelelu kalekünulu wirin',
-'recentchangeslinked-title'   => 'Koneltuyelelu kalekünun tuwküleyelu "$1"',
-'recentchangeslinked-summary' => "Tüfachi wif niey pu wülngiñ kalekünulu ka nülkükawlelu kiñe feypingechi wülngiñ (kam nülkükawlelu feypingechi trokiñ).
+'recentchangeslinked'          => 'Koneltuyelelu kalekünulu wirin',
+'recentchangeslinked-toolbox'  => 'Koneltuyelelu kalekünulu wirin',
+'recentchangeslinked-title'    => 'Koneltuyelelu kalekünun tuwküleyelu "$1"',
+'recentchangeslinked-noresult' => 'Nülkükawlelu wülngiñ kalekünulay.',
+'recentchangeslinked-summary'  => "Tüfachi wif niey pu wülngiñ kalekünulu ka nülkükawlelu kiñe feypingechi wülngiñ (kam nülkükawlelu feypingechi trokiñ).
 [[Special:Watchlist|Tami llaytun wif]] ñi pu wülngiñ '''kurükünuley'''.",
-'recentchangeslinked-page'    => 'Pakina ñi üy:',
-'recentchangeslinked-to'      => 'Adkintun weke kalekünun pengelafulu feypilel wülngiñ.',
+'recentchangeslinked-page'     => 'Pakina ñi üy:',
+'recentchangeslinked-to'       => 'Adkintun weke kalekünun pengelafulu feypilel wülngiñ.',
 
 # Upload
 'upload'          => 'Püramün eltukawün',
@@ -488,6 +512,7 @@ Eltukawlelay feychi kalekünun!",
 'filehist-comment'       => 'Ngütramkawün',
 'imagelinks'             => 'Eltukawün ñi pünelelu',
 'linkstoimage'           => 'Tüfachi {{PLURAL:$1|wülngiñ nülkükawley|$1 wülngiñ nülkükawleyngün}} tüfachi eltukawün:',
+'nolinkstoimage'         => 'Kiñe wülngiñ no rume nülkükawlelay tüfachi eltukawün',
 'sharedupload-desc-here' => 'Tüfachi eltukawün küpay $1 mew. Pepipünengey kake deumandungu.
 Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 
@@ -527,8 +552,11 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 'newpages-username' => 'Kellufe ñi üy',
 'move'              => 'Wiñamün',
 'movethispage'      => 'Nengümün tüfachi pakina',
+'pager-newer-n'     => '{{PLURAL: Kangelu $1}}',
+'pager-older-n'     => '{{PLURAL: Rupachi $1}}',
 
 # Book sources
+'booksources'    => 'Lifüru ñi chew küpan',
 'booksources-go' => 'Amun',
 
 # Special:Log
@@ -547,10 +575,14 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 'categories' => 'Trokiñ',
 
 # Special:LinkSearch
-'linksearch-ok' => 'Kintun',
+'linksearch-ok'   => 'Kintun',
+'linksearch-line' => '$1 nülkükawlelu $2 mew',
 
 # Special:ListUsers
 'listusers-submit' => 'Pengelün',
+
+# Special:Log/newusers
+'newuserlogpage' => 'We kellufe ñi wirintukun',
 
 # Special:ListGroupRights
 'listgrouprights-members' => '(koneltulu kellufe ñi wif)',
@@ -587,6 +619,9 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 'exblank'               => 'pakina wellingey',
 'delete-confirm'        => 'Ñamümüngelu "$1"',
 'delete-legend'         => 'Ñamümün',
+'actioncomplete'        => 'Wechuley chi femün',
+'actionfailed'          => 'Wedalkay chi femün.',
+'dellogpage'            => 'Liftungepelu wülngiñ ñi wirintukun',
 'deletereasonotherlist' => 'Kake dungu',
 
 # Rollback
@@ -688,10 +723,12 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 
 # Namespace 8 related
 'allmessagesname'      => 'Üy',
+'allmessagesdefault'   => 'Wirin wüne dullin reke',
 'allmessages-language' => 'Cezugun:',
 
 # Thumbnails
-'thumbnail-more' => 'Rume fütra',
+'thumbnail-more'  => 'Rume fütra',
+'thumbnail_error' => 'Welulkan deumayam pichi pegel adentun: $1',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Tami pakina',
@@ -706,6 +743,7 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 'tooltip-ca-addsection'           => 'Llitun we trokiñ',
 'tooltip-ca-viewsource'           => 'kuñiwtungey tüfachi wülngiñ. KImaymi chew küpan chi wirin',
 'tooltip-ca-history'              => 'Tüfachi wülngiñ ñi rupachi malün',
+'tooltip-ca-protect'              => 'Kuñiwtun tüfachi wülngiñ',
 'tooltip-ca-delete'               => 'Ñamümün tüfachi pakina',
 'tooltip-ca-move'                 => 'Nengümün tüfachi pakina',
 'tooltip-ca-watch'                => 'Püñamtun tüfachi wülngiñ tami llaytun wif mew',
@@ -737,10 +775,11 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 'tooltip-ca-nstab-template'       => 'Adkintun feychi adtükupeyüm',
 'tooltip-ca-nstab-help'           => 'Pen kellupakina',
 'tooltip-ca-nstab-category'       => 'Adkintun trokiñ wülgiñ',
+'tooltip-minoredit'               => 'Üytukun kiñe pichi wirin reke',
 'tooltip-save'                    => 'Eltukawün tami kalekünun',
 'tooltip-preview'                 => 'Wüne pen tüfa petu eltukawam!',
 'tooltip-diff'                    => 'Adkintun tami kalekünun feychi wirin mew',
-'tooltip-compareselectedversions' => 'Pengelün tüfachi epu dullinngelu malün ka tañi engu kalekünun',
+'tooltip-compareselectedversions' => 'Trürümün epu dullinngelu malün ta tüfachi wülngiñ',
 'tooltip-watch'                   => 'Püñamtun tüfachi wülngiñ tami llaytun wif mew',
 'tooltip-rollback'                => '"Wüñoeltun " ta wüñoeltun wirin dewmalu rupalu kellufe tüfachi wülngiñ mew, kiñe pütaf müten.',
 'tooltip-undo'                    => '"wüñoeltun" tüfachi wirin ka nülan wirin ñi wülngiñ wüne pen petu eltukawam. Pepi püñamtuymi kiñe rakiduam pichi txokiñünzugu mew.',
@@ -757,6 +796,8 @@ Fey ñi chumngen mülelu ($2 fey ñi chumngen wülngiñ) pengeli tüfa mew.',
 
 # Media information
 'file-info-size' => '$1 × $2 adentun piküsel, eltukawün ñi tunte ngen: $3, MIME ñi chumngen: $4',
+'file-nohires'   => 'Pepiduamngefalay chum pengeam.',
+'svg-long-desc'  => 'SVG eltukawe, pingey $1 × $2 adentun piküsel, eltukawün ñi tunte ngen: $3',
 'show-big-image' => 'Rüf chum pengeam',
 
 # Special:NewFiles
@@ -773,8 +814,23 @@ Feychi wünen lasun wif mew müleay ñi nülkükawael weda eltukawün.
 Chem lason rume rupalu feychi wif mew ta feyke. Famngechireke, wülngiñ püneley feychi eltukawün.',
 
 # Metadata
-'metadata'      => 'Doy dungu',
-'metadata-help' => 'Tüfachi eltukawün niey doy dungu, tañi inantukulu feychi Diqital kamara kam eskaner. Kalekünule ñi rüf chumkülen, kiñeke chemkün ñami.',
+'metadata'        => 'Doy dungu',
+'metadata-help'   => 'Tüfachi eltukawün niey doy dungu, tañi inantukulu feychi Diqital kamara kam eskaner. Kalekünule ñi rüf chumkülen, kiñeke chemkün ñami.',
+'metadata-fields' => 'Tüfachi adnentun ñi doy dungu tukungeay feychi adentun ñi wülngiñ, nülanmeu feychi trafla. 
+Ka dungu ellkangeay wünedullin reke.
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength
+* artist
+* copyright
+* imagedescription
+* gpslatitude
+* gpslongitude
+* gpsaltitude',
 
 # EXIF tags
 'exif-artist'              => 'Che llitun mew',
@@ -794,6 +850,10 @@ Chem lason rume rupalu feychi wif mew ta feyke. Famngechireke, wülngiñ pünele
 'exif-sharpness-2' => 'Yafü',
 
 'exif-subjectdistancerange-0' => 'Kimnoelchi',
+
+# External editor support
+'edit-externally'      => 'Kümeelün tüfachi eltukawün wekun küdauwe mew',
+'edit-externally-help' => '(Pen feychi [//www.mediawiki.org/wiki/Manual:External_editors adtukünun chumngechi pünengeael]  doy dungungeam)',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'kom',

@@ -564,6 +564,7 @@ When that has been done, you can '''[$2 enter your wiki]'''.",
  * @author EugeneZelenko
  * @author Kghbln
  * @author McDutchie
+ * @author Mormegil
  * @author Nike
  * @author Platonides
  * @author Purodha
@@ -613,7 +614,7 @@ Parameters:
 Add dir="ltr" to the <nowiki><code></nowiki> for right-to-left languages.',
 	'config-no-cli-uri' => 'Parameters:
 * $1 is the default value for scriptpath.',
-	'config-no-cli-uploads-check' => 'CLI = Call Level Interface',
+	'config-no-cli-uploads-check' => 'CLI = [[w:Command-line interface|command-line interface]] (i.e. the installer runs as a command-line script, not using HTML interface via an internet browser)',
 	'config-suhosin-max-value-length' => 'Message shown when PHP parameter suhosin.get.max_value_length is between 0 and 1023 (that max value is hard set in MediaWiki software)',
 	'config-db-host-oracle' => 'TNS = [[:wikipedia:Transparent Network Substrate|Transparent Network Substrate]] (<== wikipedia link)',
 	'config-db-wiki-settings' => 'This is more acurate: "Enter identifying or distinguishing data for this wiki" since a MySQL database can host tables of several wikis.',
@@ -2994,16 +2995,27 @@ $messages['cs'] = array(
 	'config-information' => 'Informace',
 	'config-localsettings-upgrade' => 'Byl nalezen soubor <code>LocalSettings.php</code>.
 Pokud chcete stávající instalaci aktualizovat, zadejte hodnotu <code>$wgUpgradeKey</code>, kterou naleznete v souboru LocalSettings.php, do následujícího rámečku.',
+	'config-localsettings-cli-upgrade' => 'Byl detekován soubor <code>LocalSettings.php</code>
+Pro aktualizaci spusťte místo instalace skript <code>update.php</code>.',
 	'config-localsettings-key' => 'Klíč pro aktualizaci:',
 	'config-localsettings-badkey' => 'Zadaný klíč je nesprávný.',
 	'config-upgrade-key-missing' => 'Byla detekována existující instalace MediaWiki.
 Pokud ji chcete aktualizovat, přidejte následující řádku na konec souboru LocalSettings.php:
 
 $1',
+	'config-localsettings-incomplete' => 'Existující soubor LocalSettings.php vypadá neúplný.
+Není nastavena proměnná $1.
+Upravte soubor LocalSettings.php tak, aby tuto proměnnou obsahoval, a klikněte na „Pokračovat“.',
 	'config-localsettings-connection-error' => 'Při připojování k databázi s využitím nastavení uvedených v LocalSettings.php nebo AdminSettings.php došlo k chybě. Opravte tato nastavení a zkuste to znovu.
 
 $1',
 	'config-session-error' => 'Nepodařilo se inicializovat relaci: $1',
+	'config-session-expired' => 'Platnost dat vašeho sezení patrně vypršela.
+Sezení má nastavenu životnost $1.
+Prodloužit ji můžete nastavením <code>session.gc_maxlifetime</code> v php.ini.
+Spusťte instalační proces od začátku.',
+	'config-no-session' => 'Data vašeho sezení se ztratila!
+Zkontrolujte svůj soubor php.ini a ujistěte se, že <code>session.save_path</code> je nastaveno na odpovídající adresář.',
 	'config-your-language' => 'Váš jazyk:',
 	'config-your-language-help' => 'Zvolte jazyk, který se má použít v průběhu instalace.',
 	'config-wiki-language' => 'Jazyk wiki:',
@@ -3055,15 +3067,19 @@ MediaWiki nelze nainstalovat.',
 	'config-env-php' => 'Je nainstalováno PHP $1.',
 	'config-env-php-toolow' => 'Je nainstalováno PHP $1.
 MediaWiki ale vyžaduje PHP $2 nebo vyšší.',
+	'config-unicode-using-utf8' => 'Pro normalizaci Unicode se používá utf8_normalize.so Briona Vibbera.',
 	'config-unicode-using-intl' => 'Pro normalizaci Unicode se používá [http://pecl.php.net/intl PECL rozšíření intl].',
 	'config-unicode-pure-php-warning' => "'''Upozornění''': Není dostupné [http://pecl.php.net/intl PECL rozšíření intl] pro normalizaci Unicode, bude se využívat pomalá implementace v čistém PHP.
 Pokud provozujete wiki s velkým provozem, měli byste si přečíst něco o [//www.mediawiki.org/wiki/Unicode_normalization_considerations normalizaci Unicode].",
+	'config-unicode-update-warning' => "'''Upozornění''': Nainstalovaná verze vrstvy pro normalizaci Unicode používá starší verzi knihovny [http://site.icu-project.org/ projektu ICU].
+Pokud vám aspoň trochu záleží na používání Unicode, měli byste [//www.mediawiki.org/wiki/Unicode_normalization_considerations ji aktualizovat].",
 	'config-no-db' => 'Nepodařilo se nalézt vhodný databázový ovladač! Musíte do PHP nainstalovat databázový ovladač.
 Jsou podporovány následující typy databází: $1.
 
 Pokud jste na sdíleném hostingu, požádejte svého poskytovale o instalaci vhodného databázového ovladače.
 Pokud jste si PHP přeložili sami, překonfigurujte ho se zapnutým databázovým klientem, například pomocí <code>./configure --with-mysql</code>.
 Pokud jste PHP nainstalovali z balíčku Debian či Ubuntu, potřebujete nainstalovat také modul php5-mysql.',
+	'config-no-fts3' => "'''Upozornění''': SQLite bylo přeloženo bez [//sqlite.org/fts3.html modulu FTS3], funkce pro vyhledávání zde nebudou dostupné.",
 	'config-register-globals' => "'''Upozornění: Je zapnuta PHP volba <code>[http://php.net/register_globals register_globals]</code>.'''
 '''Pokud můžete, vypněte ji.'''
 MediaWiki bude fungovat, ale váš server je vystaven potenciálním bezpečnostním hrozbám.",
@@ -3107,10 +3123,17 @@ Pokud povolíte načítání souborů, bude zapnuto vytváření náhledů.',
 Pokud povolíte načítání souborů, bude zapnuto vytváření náhledů.',
 	'config-no-scaling' => 'Nebyla nalezena knihovna GD ani ImageMagick.
 Vytváření náhledů bude vypnuto.',
+	'config-no-uri' => "'''Chyba:''' Nepodařilo se určit aktuální URI.
+Instalace přerušena.",
+	'config-no-cli-uri' => "'''Upozornění''': Nebylo uvedeno --scriptpath, používá se implicitní hodnota: <code>$1</code>.",
 	'config-using-server' => 'Použito jméno serveru „<nowiki>$1</nowiki>“.',
 	'config-using-uri' => 'Použito URL serveru „<nowiki>$1$2</nowiki>“.',
 	'config-uploads-not-safe' => "'''Upozornění:''' Váš implicitní adresář pro načítání souborů <code>$1</code> umožňuje provádění libovolných skriptů.
 Přestože MediaWiki všechny načítané soubory kontroluje proti bezpečnostním hrozbám, je důrazně doporučeno [//www.mediawiki.org/wiki/Manual:Security#Upload_security tuto bezpečnostní díru zacelit] před povolením načítání souborů.",
+	'config-no-cli-uploads-check' => "'''Upozornění:''' Váš implicitní adresář pro načítané soubory (<code>$1</code>) se při instalaci z příkazového řádku nekontroluje na bezpečnostní hrozbu provádění libovolných skriptů.",
+	'config-brokenlibxml' => 'Váš systém obsahuje kombinaci verzí PHP a libxml2, která je chybná a může v MediaWiki a dalších webových aplikacích způsobovat skryté poškozování dat.
+Aktualizujte na PHP 5.2.9 nebo novější a libxml2 2.7.3 nebo novější ([//bugs.php.net/bug.php?id=45996 chyba evidovaná u PHP]).
+Instalace přerušena.',
 	'config-using531' => 'MediaWiki nelze používat na PHP $1 kvůli chybě při předávání parametrů odkazem do <code>__call()</code>.
 Pro vyřešení upgradujte na PHP 5.3.2 nebo vyšší nebo downgradujte na PHP 5.3.0.
 Instalace přerušena.',
@@ -3356,6 +3379,7 @@ Pokud ho chcete založit, zaškrtněte možnost „založit účet“ níže.',
 	'config-install-tables' => 'Vytvářejí se tabulky',
 	'config-install-tables-exist' => "'''Upozornění''': Vypadá to, že tabulky MediaWiki již existují.
 Přeskakuje se jejich zakládání.",
+	'config-install-tables-failed' => "'''Chyba''': Vytvoření tabulek selhalo s následující chybou: $1",
 	'config-help' => 'nápověda',
 	'mainpagetext' => "'''MediaWiki byla úspěšně nainstalována.'''",
 	'mainpagedocfooter' => '[//meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
@@ -3557,7 +3581,7 @@ Der Installationsvorgang wurde daher abgebrochen.",
 	'config-using-uri' => 'Verwende Server-URL „<nowiki>$1$2</nowiki>“.',
 	'config-uploads-not-safe' => "'''Warnung:''' Das Standardverzeichnis für hochgeladene Dateien <code>$1</code> ist für die willkürliche Ausführung von Skripten anfällig.
 Obwohl MediaWiki die hochgeladenen Dateien auf Sicherheitsrisiken überprüft, wird dennoch dringend empfohlen diese [//www.mediawiki.org/wiki/Manual:Security#Upload_security Sicherheitslücke] zu schließen, bevor das Hochladen von Dateien aktiviert wird.",
-	'config-no-cli-uploads-check' => "'''Warnung''': Das Standardverzeichnis für hochgeladene Dateien (<code>$1</code>) wird nicht auf Sicherheitsanfälligkeiten bezüglich willkürlicher Skriptausführungen während der Installation des ''Call Level Interface'' (CLI) geprüft.",
+	'config-no-cli-uploads-check' => "'''Warnung''': Das Standardverzeichnis für hochgeladene Dateien (<code>$1</code>) wird, während der Installation über die Kommandozeile, nicht auf Sicherheitsanfälligkeiten hinsichtlich willkürlicher Skriptausführungen geprüft.",
 	'config-brokenlibxml' => 'Das System nutzt eine Kombination aus PHP- und libxml2-Versionen, die fehleranfällig ist und versteckte Datenfehler bei MediaWiki und anderen Webanwendungen verursachen kann.
 PHP muss auf Version 5.2.9 oder später sowie libxml2 auf die Version 2.7.3 oder später aktualisiert werden, um das Problem zu lösen. Installationsabbruch ([//bugs.php.net/bug.php?id=45996 siehe hierzu die Fehlermeldung bei PHP]).',
 	'config-using531' => 'MediaWiki kann nicht zusammen mit PHP $1 verwendet werden. Grund hierfür ist ein Fehler im Zusammenhang mit den Verweisparametern zu <code>__call()</code>.
@@ -5349,7 +5373,7 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-license-cc-by' => 'Creative Commons patèrnitât',
 	'config-license-cc-by-nc-sa' => 'Creative Commons patèrnitât pas comèrciâla - partâjo a l’identico',
 	'config-license-cc-0' => 'Creative Commons Zero (domêno publico)',
-	'config-license-gfdl' => 'Licence de documentacion abada GNU 1.3 ou ben ples novèla',
+	'config-license-gfdl' => 'Licence de documentacion libra GNU 1.3 ou ben ples novèla',
 	'config-license-pd' => 'Domêno publico',
 	'config-license-cc-choose' => 'Chouèsir una licence Creative Commons pèrsonalisâ',
 	'config-email-settings' => 'Paramètres de mèssageria èlèctronica',
@@ -9568,6 +9592,7 @@ $messages['krc'] = array(
 );
 
 /** Colognian (Ripoarisch)
+ * @author Mormegil
  * @author Purodha
  */
 $messages['ksh'] = array(
@@ -13437,6 +13462,7 @@ $messages['ps'] = array(
 /** Portuguese (Português)
  * @author Crazymadlover
  * @author Hamilton Abreu
+ * @author Mormegil
  * @author Platonides
  * @author SandroHc
  * @author Waldir

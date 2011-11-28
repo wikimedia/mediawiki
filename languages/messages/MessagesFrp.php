@@ -709,8 +709,8 @@ Notâd que quârques pâges pôvont étre adés montrâs coment se vos érâd to
 Voutron compto utilisator at étâ fêt.
 Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus {{SITENAME}}]].',
 'yourname'                   => 'Voutron nom d’utilisator :',
-'yourpassword'               => 'Mot de pâssa :',
-'yourpasswordagain'          => 'Confirmâd lo mot de pâssa :',
+'yourpassword'               => 'Contresegno :',
+'yourpasswordagain'          => 'Confirmâd lo contresegno :',
 'remembermypassword'         => 'Sè rapelar de mon branchement sur ceti navigator (por $1 jorn{{PLURAL:$1||s}} u més)',
 'securelogin-stick-https'    => 'Réstar branchiê en HTTPS aprés lo branchement',
 'yourdomainname'             => 'Voutron domêno :',
@@ -731,14 +731,14 @@ Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus 
 'userlogin-resetlink'        => 'Vos éd oubliâ voutros dètalys de branchement ?',
 'createaccountmail'          => 'per mèssageria èlèctronica',
 'createaccountreason'        => 'Rêson :',
-'badretype'                  => 'Los mots de pâssa que vos éd buchiês sont pas pariérs.',
+'badretype'                  => 'Los contresegnos que vos éd buchiês sont pas pariérs.',
 'userexists'                 => 'Lo nom d’utilisator buchiê est ja utilisâ.
 Nen volyéd chouèsir un ôtro.',
 'loginerror'                 => 'Èrror de branchement',
 'createaccounterror'         => 'Empossiblo de fâre lo compto : $1',
-'nocookiesnew'               => "Lo compto utilisator at étâ fêt, mas vos éte pas branchiê.
+'nocookiesnew'               => "Lo compto usanciér at étâ fêt, mas vos éte pas branchiê.
 {{SITENAME}} utilise des tèmouens (''cookies'') por lo branchement mas vos los éd dèsactivâs.
-Los volyéd activar et pués vos tornar branchiér avouéc lo mémo nom et lo mémo mot de pâssa.",
+Los volyéd activar et pués vos tornar branchiér avouéc lo mémo nom et lo mémo contresegno.",
 'nocookieslogin'             => "{{SITENAME}} utilise des tèmouens (''cookies'') por lo branchement mas vos los éd dèsactivâs.
 Los volyéd activar et pués vos tornar branchiér.",
 'nocookiesfornew'            => "Lo compto utilisator at pas étâ fêt, perce que nos ens pas possu confirmar sa sôrsa.
@@ -753,32 +753,32 @@ Controlâd l’ortografia, ou ben [[Special:UserLogin/signup|féte un compto nov
 Volyéd controlar l’ortografia.',
 'nouserspecified'            => 'Vos dête buchiér un nom d’utilisator.',
 'login-userblocked'          => 'Ceti utilisator est blocâ. Branchement pas ôtorisâ.',
-'wrongpassword'              => 'Lo mot de pâssa est fôx.
+'wrongpassword'              => 'Lo contresegno est fôx.
 Volyéd tornar èprovar.',
-'wrongpasswordempty'         => 'Vos éd pas buchiê de mot de pâssa.
+'wrongpasswordempty'         => 'Vos éd pas buchiê de contresegno.
 Volyéd tornar èprovar.',
-'passwordtooshort'           => 'Voutron mot de pâssa dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
-'password-name-match'        => 'Voutron mot de pâssa dêt étre difèrent de voutron nom d’utilisator.',
+'passwordtooshort'           => 'Voutron contresegno dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
+'password-name-match'        => 'Voutron contresegno dêt étre difèrent de voutron nom d’usanciér.',
 'password-login-forbidden'   => 'L’usâjo de cél nom d’utilisator et de cél mot de pâssa at étâ dèfendu.',
-'mailmypassword'             => 'Recêvre un mot de pâssa novél per mèssageria èlèctronica',
-'passwordremindertitle'      => 'Mot de pâssa temporèro novél por {{SITENAME}}',
-'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un mot de pâssa
-novél por {{SITENAME}} ($4). Un mot de pâssa temporèro at étâ fêt por
-l’utilisator « $2 » et est « $3 ». S’o ére voutra entencion, vos vos devréd
-branchiér et pués chouèsir un mot de pâssa novél.
-Voutron mot de pâssa temporèro èxpirerat dens $5 jorn{{PLURAL:$5||s}}.
+'mailmypassword'             => 'Recêvre un contresegno novél per mèssageria èlèctronica',
+'passwordremindertitle'      => 'Contresegno temporèro novél por {{SITENAME}}',
+'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un contresegno
+novél por {{SITENAME}} ($4). Un contresegno temporèro at étâ fêt por
+l’usanciér « $2 » et est « $3 ». S’o ére voutra entencion, vos vos devréd
+branchiér et pués chouèsir un contresegno novél.
+Voutron contresegno temporèro èxpirerat dens $5 jorn{{PLURAL:$5||s}}.
 
 Se cela demanda vint pas de vos, ou ben se vos vos rapelâd ora
-de voutron mot de pâssa et que vos souhètâd pas més nen changiér, vos
-pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely mot de pâssa.',
+de voutron contresegno et que vos souhètâd pas més nen changiér, vos
+pouede ignorar ceti mèssâjo et continuar a utilisar voutron viely contresegno.',
 'noemail'                    => 'Niona adrèce èlèctronica at étâ encartâ por l’utilisator « $1 ».',
 'noemailcreate'              => 'Vos dête balyér una adrèce èlèctronica valida',
-'passwordsent'               => 'Un mot de pâssa novél at étâ mandâ a l’adrèce èlèctronica a l’utilisator « $1 ».
+'passwordsent'               => 'Un contresegno novél at étâ mandâ a l’adrèce èlèctronica a l’usanciér « $1 ».
 Vos volyéd tornar branchiér aprés l’avêr reçu.',
-'blocked-mailpassword'       => 'Voutra adrèce IP est blocâ en ècritura, la fonccion de rapèl du mot de pâssa est vêr dèsactivâ por èvitar los abus.',
+'blocked-mailpassword'       => 'Voutra adrèce IP est blocâ en ècritura, la fonccion de rapèl du contresegno est vêr dèsactivâ por èvitar los abus.',
 'eauthentsent'               => 'Un mèssâjo de confirmacion at étâ mandâ a l’adrèce endicâ.
 Devant qu’un ôtro mèssâjo seye mandâ a ceti compto, vos devréd siuvre les enstruccions du mèssâjo et confirmar que lo compto est franc lo voutro.',
-'throttled-mailpassword'     => 'Un mèssâjo de rapèl de voutron mot de pâssa at ja étâ mandâ pendent {{PLURAL:$1|l’hora passâ|les $1 hores passâs}}.
+'throttled-mailpassword'     => 'Un mèssâjo de rapèl de voutron contresegno at ja étâ mandâ pendent {{PLURAL:$1|l’hora passâ|les $1 hores passâs}}.
 Por èvitar los abus, solament yon mèssâjo de rapèl serat mandâ per {{PLURAL:$1|hora|entèrvalo de $1 hores}}.',
 'mailerror'                  => 'Èrror pendent l’èxpèdicion du mèssâjo : $1',
 'acct_creation_throttle_hit' => 'Quârqu’un qu’utilise voutra adrèce IP at fêt {{PLURAL:$1|yon compto|$1 comptos}} pendent les 24 hores passâs, cen qu’est la limita ôtorisâ dens ceti temps.
@@ -794,8 +794,8 @@ Volyéd buchiér una adrèce bien formatâ ou ben lèssiér cél champ vouedo.',
 'accountcreated'             => 'Compto fêt.',
 'accountcreatedtext'         => 'Lo compto utilisator por $1 at étâ fêt.',
 'createaccount-title'        => 'Crèacion d’un compto por {{SITENAME}}',
-'createaccount-text'         => 'Quârqu’un at fêt un compto por voutra adrèce èlèctronica dessus {{SITENAME}} ($4) avouéc lo titro « $2 » et lo mot de pâssa « $3 ».
-Vos vos devriâd branchiér et pués changiér dês ora voutron mot de pâssa.
+'createaccount-text'         => 'Quârqu’un at fêt un compto por voutra adrèce èlèctronica dessus {{SITENAME}} ($4) avouéc lo titro « $2 » et lo contresegno « $3 ».
+Vos vos devriâd branchiér et pués changiér dês ora voutron contresegno.
 
 Ignorâd ceti mèssâjo se cél compto at étâ fêt per èrror.',
 'usernamehasherror'          => 'Lo nom d’utilisator pôt pas contegnir des caractèros de chaplâjo',
@@ -810,23 +810,24 @@ Volyéd atendre devant que tornar èprovar.',
 'user-mail-no-addy'      => 'Tâchiê de mandar un mèssâjo sen adrèce èlèctronica',
 
 # Change password dialog
-'resetpass'                 => 'Changiér lo mot de pâssa',
-'resetpass_announce'        => 'Vos vos éte branchiê avouéc un mot de pâssa temporèro mandâ per mèssageria èlèctronica.
-Por chavonar lo branchement, vos dête buchiér un mot de pâssa novél ique :',
+'resetpass'                 => 'Changiér lo contresegno',
+'resetpass_announce'        => 'Vos vos éte branchiê avouéc un contresegno temporèro mandâ per mèssageria èlèctronica.
+Por chavonar lo branchement, vos dête buchiér un contresegno novél ique :',
 'resetpass_text'            => '<!-- Apondéd lo tèxto ique -->',
-'resetpass_header'          => 'Changiér lo mot de pâssa du compto',
-'oldpassword'               => 'Viely mot de pâssa :',
-'newpassword'               => 'Mot de pâssa novél :',
-'retypenew'                 => 'Confirmar lo mot de pâssa novél :',
-'resetpass_submit'          => 'Changiér lo mot de pâssa et sè branchiér',
-'resetpass_success'         => 'Voutron mot de pâssa at étâ changiê avouéc reusséta ! Branchement en cors...',
-'resetpass_forbidden'       => 'Los mots de pâssa pôvont pas étre changiês.',
+'resetpass_header'          => 'Changiér lo contresegno du compto',
+'oldpassword'               => 'Viely contresegno :',
+'newpassword'               => 'Contresegno novél :',
+'retypenew'                 => 'Confirmar lo contresegno novél :',
+'resetpass_submit'          => 'Changiér lo contresegno et sè branchiér',
+'resetpass_success'         => 'Voutron contresegno at étâ changiê avouéc reusséta !
+Branchement en cors...',
+'resetpass_forbidden'       => 'Los contresegnos pôvont pas étre changiês.',
 'resetpass-no-info'         => 'Vos dête étre branchiê por avêr accès a cela pâge.',
-'resetpass-submit-loggedin' => 'Changiér lo mot de pâssa',
+'resetpass-submit-loggedin' => 'Changiér lo contresegno',
 'resetpass-submit-cancel'   => 'Anular',
-'resetpass-wrong-oldpass'   => 'Mot de pâssa d’ora ou ben temporèro envalido.
-Vos éd pôt-étre ja changiê voutron mot de pâssa avouéc reusséta ou ben demandâ un mot de pâssa temporèro novél.',
-'resetpass-temp-password'   => 'Mot de pâssa temporèro :',
+'resetpass-wrong-oldpass'   => 'Contresegno temporèro ou ben d’ora fôx.
+Vos éd pôt-étre ja changiê voutron contresegno avouéc reusséta ou ben demandâ un contresegno temporèro novél.',
+'resetpass-temp-password'   => 'Contresegno temporèro :',
 
 # Special:PasswordReset
 'passwordreset'                    => 'Remisa a zérô du mot de pâssa',
@@ -948,10 +949,10 @@ El at pôt-étre étâ dèplaciê ou ben suprimâ dês que vos éd liesu cela p�
 'loginreqtitle'                    => 'Branchement nècèssèro',
 'loginreqlink'                     => 'branchiér',
 'loginreqpagetext'                 => 'Vos vos dête $1 por vêre les ôtres pâges.',
-'accmailtitle'                     => 'Mot de pâssa mandâ.',
-'accmailtext'                      => "Un mot de pâssa fêt per hasârd por [[User talk:$1|$1]] at étâ mandâ a $2.
+'accmailtitle'                     => 'Contresegno mandâ.',
+'accmailtext'                      => "Un contresegno fêt per hasârd por [[User talk:$1|$1]] at étâ mandâ a $2.
 
-Lo mot de pâssa por cél compto novél pôt étre changiê sur la pâge de ''[[Special:ChangePassword|changement de mot de pâssa]]'' aprés s’étre branchiê.",
+Lo contresegno por cél compto novél pôt étre changiê sur la pâge de ''[[Special:ChangePassword|changement de contresegno]]'' aprés s’étre branchiê.",
 'newarticle'                       => '(Novél)',
 'newarticletext'                   => "Vos éd siuvu un lim de vers una pâge qu’ègziste p’oncor.
 Por fâre cela pâge, buchiéd voutron tèxto dens la bouèta ce-desot (vêde la [[{{MediaWiki:Helppage}}|pâge d’éde]] por més d’enformacions).
@@ -1027,11 +1028,11 @@ Se vos la sôvâd, tôs los changements fêts dês ceta vèrsion seront pèrdues
 'yourdiff'                         => 'Difèrences',
 'copyrightwarning'                 => "Volyéd notar que totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys).
 Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion et pués rebalyês a volontât, adonc los volyéd pas sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada.
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa libra.
 '''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
-'copyrightwarning2'                => "Volyéd notar que totes les contribucions a {{SITENAME}} pôvont étre changiês ou ben suprimâs per d’ôtros utilisators.
+'copyrightwarning2'                => "Volyéd notar que totes les contribucions a {{SITENAME}} pôvont étre changiês ou ben enlevâs per d’ôtros usanciérs.
 Se vos voléd pas que voutros ècrits seyont changiês sen gins de rèstriccion, adonc los volyéd pas sometre ique.<br />
-Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada (vêde $1 por més de dètalys).
+Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa libra (vêde $1 por més de dètalys).
 '''Utilisâd gins d’ôvra desot drêt d’ôtor sen pèrmission èxprèssa !'''",
 'longpageerror'                    => "'''ÈRROR : lo tèxto que vos éd somês fât $1 Kio, cen que dèpâsse la limita fixâ a $2 Kio.'''
 Lo tèxto pôt pas étre sôvâ.",
@@ -1363,7 +1364,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-edits'                   => 'Nombro de changements :',
 'prefsnologin'                  => 'Pas branchiê',
 'prefsnologintext'              => 'Vos dête étre <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} branchiê]</span> por changiér voutres prèferences utilisator.',
-'changepassword'                => 'Changement du mot de pâssa',
+'changepassword'                => 'Changiér lo contresegno',
 'prefs-skin'                    => 'Habelyâjo',
 'skin-preview'                  => 'Prèvisualisar',
 'datedefault'                   => 'Gins de prèference',
@@ -1379,7 +1380,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-watchlist-edits-max'     => 'Nombro lo ples grant : 1000',
 'prefs-watchlist-token'         => 'Jeton por la lista de survelyence :',
 'prefs-misc'                    => 'Prèferences de totes sôrtes',
-'prefs-resetpass'               => 'Changiér lo mot de pâssa',
+'prefs-resetpass'               => 'Changiér lo contresegno',
 'prefs-changeemail'             => 'Changiér l’adrèce èlèctronica',
 'prefs-setemail'                => 'Configurar l’adrèce èlèctronica',
 'prefs-email'                   => 'Chouèx de mèssageria èlèctronica',
@@ -1456,7 +1457,7 @@ Dêt pas dèpassar $1 caractèro{{PLURAL:$1||s}}.',
 Ceta enformacion serat publica.',
 'email'                         => 'Mèssageria èlèctronica',
 'prefs-help-realname'           => 'U chouèx : se vos lo spècefiâd, serat utilisâ por vos atribuar voutres contribucions.',
-'prefs-help-email'              => 'L’adrèce èlèctronica est u chouèx, mas el est nècèssèra por tornar inicialisar voutron mot de pâssa, se vos vegnéd a l’oubliar.',
+'prefs-help-email'              => 'L’adrèce èlèctronica est u chouèx, mas el est nècèssèra por tornar inicialisar voutron contresegno, se vos vegnéd a l’oubliar.',
 'prefs-help-email-others'       => 'Vos porriâd asse-ben chouèsir de lèssiér los ôtros sè veriér vers vos sur voutra pâge utilisator ou ben de discussion sen que seye nècèssèro de dèvouèlar voutra identitât.',
 'prefs-help-email-required'     => 'Una adrèce èlèctronica est nècèssèra.',
 'prefs-info'                    => 'Enformacions de bâsa',
@@ -3825,7 +3826,7 @@ Vos pouede asse-ben utilisar l’[[Special:EditWatchlist|èditor normal]].',
 'version-license'               => 'Licence',
 'version-poweredby-credits'     => "Ceti vouiqui fonccione grâce a '''[//www.mediawiki.org/ MediaWiki]''', copyright © 2001-$1 $2.",
 'version-poweredby-others'      => 'ôtros',
-'version-license-info'          => 'MediaWiki est una programeria abada ; vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence publica g·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
+'version-license-info'          => 'MediaWiki est una programeria libra ; vos la pouede tornar distribuar et / ou changiér d’aprés los tèrmos de la Licence publica g·ènèrala GNU coment publeyê per la Free Software Foundation ; seye la vèrsion 2 de la Licence, ou ben (a voutron chouèx) tota novèla vèrsion.
 
 MediaWiki est distribuâ dens l’èsperance que serat utila, mas SEN GINS DE GARANTIA ; sen mémo la garantia emplicita de COMÈRCIALISACION ou ben d’ADAPTACION A UN USÂJO PARTICULIÉR. Vêde la Licence publica g·ènèrala GNU por més de dètalys.
 
@@ -3965,6 +3966,6 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'logentry-newusers-create'            => '$1 at fêt{{GENDER:$2||a}} un compto utilisator',
 'logentry-newusers-create2'           => '$1 at fêt{{GENDER:$2||a}} {{GENDER:$4|un compto utilisator}} $3',
 'logentry-newusers-autocreate'        => 'Lo compto $1 at étâ {{GENDER:$2|fêt}} ôtomaticament',
-'newuserlog-byemail'                  => 'mot de pâssa mandâ per mèssageria èlèctronica',
+'newuserlog-byemail'                  => 'contresegno mandâ per mèssageria èlèctronica',
 
 );

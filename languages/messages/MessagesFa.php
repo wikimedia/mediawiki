@@ -760,10 +760,10 @@ $1',
 مدیری که آن را قفل کرده است این توضیح را ارائه کرده: $1',
 'missing-article'      => 'پایگاه داده متن صفحه‌ای به نام «$1» $2 را که باید می‌یافت، نیافت.
 
-این مشکل معمولاً بر اثر ادامه دادن پیوندهای تاریخ‌گذشتهٔ تفاوت یا تاریخچهٔ صفحه‌هایی رخ می‌دهد که حذف شده‌اند.
+این مشکل معمولاً به علت ادامه‌دادن پیوندهای تاریخ‌گذشتهٔ تفاوت یا تاریخچهٔ صفحه‌هایی رخ می‌دهد که حذف شده‌اند.
 
-اگر مورد شما این نیست، ممکن است اشکالی در نرم‌افزار پیدا کرده باشید.
-لطفاً این مسئله را، با ذکر URL، به یکی از مدیران گزارش کنید.',
+اگر فکر می‌کنید مشکل چیز دیگری‌است ممکن است اشکالی در نرم‌افزار پیدا کرده باشید.
+لطفاً این موضوع را با ذکر URL به یکی از مدیران گزارش دهید.',
 'missingarticle-rev'   => '(نسخهٔ شماره: $1)',
 'missingarticle-diff'  => '(تفاوت: $1، $2)',
 'readonly_lag'         => 'پایگاه داده به طور خودکار قفل شده‌است تا نسخه‌های پشتیبان با نسخهٔ اصلی هماهنگ شوند',
@@ -782,6 +782,7 @@ $1',
 'badarticleerror'      => 'نمی‌توان این عمل را بر این صفحه انجام داد.',
 'cannotdelete'         => 'امکان حذف صفحه یا تصویر «$1» وجود ندارد.
 ممکن است قبلاً فرد دیگری آن را حذف کرده باشد.',
+'cannotdelete-title'   => 'نمی تواند این " $1 " صفحه را حذف کند.',
 'badtitle'             => 'عنوان بد',
 'badtitletext'         => 'عنوان درخواستی نامعتبر، خالی، یا عنوانی بین زبانی یا بین‌ویکی‌ای با پیوند نادرست بود.
 ممکن است حاوی یک یا چند نویسه باشد که در عنوان‌ها نمی‌توانند استفاده شوند.',
@@ -793,11 +794,13 @@ $1',
 تابع: $1<br />
 پرس‌وجو: $2',
 'viewsource'           => 'نمایش مبدأ',
+'viewsource-title'     => 'مشاهده منبع برای $1',
 'actionthrottled'      => 'جلوی عمل شما گرفته شد',
 'actionthrottledtext'  => 'به منظور جلوگیری از هرزنگاری، شما اجازه ندارید که چنین عملی را بیش از چند بار در یک مدت زمان کوتاه انجام بدهید.
 لطفاً پس از چند دقیقه دوباره تلاش کنید.',
 'protectedpagetext'    => 'این صفحه برای جلوگیری از ویرایش قفل شده‌است.',
 'viewsourcetext'       => 'می‌توانید متن مبدأ این صفحه را مشاهده کنید یا از آن نسخه بردارید:',
+'viewyourtext'         => "شما می‌توانید کد مبدأ '''ویرایشهایتان''' در این صفحه را ببینید و کپی کنید:",
 'protectedinterface'   => 'این صفحه ارائه‌دهندهٔ متنی برای واسط کاربر این نرم‌افزار است و به منظور پیشگیری از خرابکاری قفل شده‌است.',
 'editinginterface'     => "'''هشدار:''' شما صفحه‌ای را ویرایش می‌کنید که شامل  متنی است که در واسط کاربر این نرم‌افزار به کار رفته‌است.
 تغییر این صفحه منجر به تغییر ظاهر واسط کاربر این نرم‌افزار برای دیگر کاربران خواهد شد.
@@ -907,6 +910,7 @@ $2',
 'emailconfirmlink'           => 'نشانی پست الکترونیکی خود را تأیید کنید',
 'invalidemailaddress'        => 'نشانی واردشدهٔ پست الکترونیک قابل‌قبول نیست، چرا که دارای ساختار نامعتبری است.
 لطفاً نشانی‌ای با ساختار صحیح وارد کنید و یا بخش مربوط را خالی بگذارید.',
+'cannotchangeemail'          => 'نشانی‌های رایانامه در این ویکی قابل تغییر نیست.',
 'accountcreated'             => 'حساب ایجاد شد',
 'accountcreatedtext'         => 'حساب کاربری $1 ایجاد شده‌است.',
 'createaccount-title'        => 'ایجاد حساب کاربری در {{SITENAME}}',
@@ -985,11 +989,11 @@ $2
 
 # Edit page toolbar
 'bold_sample'     => 'متن ضخیم',
-'bold_tip'        => 'متن ضخیم',
+'bold_tip'        => 'متن پررنگ',
 'italic_sample'   => 'متن مورب',
 'italic_tip'      => 'متن مورب',
 'link_sample'     => 'عنوان پیوند',
-'link_tip'        => 'پیوند داخلی',
+'link_tip'        => 'پیوند درونی',
 'extlink_sample'  => 'http://www.example.com عنوان پیوند',
 'extlink_tip'     => 'پیوند به بیرون (پیشوند http://‎ را فراموش نکنید)',
 'headline_sample' => 'متن عنوان',
@@ -1083,9 +1087,9 @@ $2
 شما می‌توانید [[Special:Search/{{PAGENAME}}|عنوان این صفحه را در صفحه‌های دیگر جستجو کنید]]،
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} سیاهه‌های مرتبط را جستجو کنید]،
 یا [{{fullurl:{{FULLPAGENAME}}|action=edit}} این صفحه را ویرایش کنید]</span>.',
-'noarticletext-nopermission'       => 'در حال حاضر این صفحه متنی ندارد.
-شما می‌توانید در دیگر صفحه‌ها [[Special:Search/{{PAGENAME}}|دنبال عنوان این صفحه بگردید]]،
-یا <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} سیاهه‌های مرتبط را جستجو کنید]</span>.',
+'noarticletext-nopermission'       => 'این صفحه هم‌اکنون متنی ندارد.
+شما می‌توانید در دیگر صفحه‌ها [[Special:Search/{{PAGENAME}}|این عنوان را جستجو کنید]]،
+یا <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} سیاهه‌های مرتبط را بگردید]</span>.',
 'userpage-userdoesnotexist'        => 'حساب کاربر «<nowiki>$1</nowiki>» ثبت نشده است.
 اطمینان حاصلی کنید که می‌خواهید این صفحه را ایجاد یا ویرایش کنید.',
 'userpage-userdoesnotexist-view'   => 'حساب کاربری «$1» ثبت نشده‌است.',
@@ -1327,7 +1331,7 @@ $1",
 'logdelete-failure'           => "'''پیدایی سیاهه‌ها قابل تنظیم نیست:'''
 $1",
 'revdel-restore'              => 'تغییر پیدایی',
-'revdel-restore-deleted'      => 'نسخه‌های حذف شده',
+'revdel-restore-deleted'      => 'نسخه‌های حذف‌شده',
 'revdel-restore-visible'      => 'نسخه‌های پیدا',
 'pagehist'                    => 'تاریخچهٔ صفحه',
 'deletedhist'                 => 'تاریخچهٔ حذف شده',
@@ -1699,6 +1703,7 @@ $1",
 'right-siteadmin'             => 'قفل کردن و باز کردن پایگاه داده',
 'right-override-export-depth' => 'برون‌ریزی صفحه‌ها شامل صفحه‌های پیوند شده تا عمق ۵',
 'right-sendemail'             => 'ارسال نامه الکترونیکی به دیگر کاربران',
+'right-passwordreset'         => 'مشاهده رمز عبور تنظیم مجدد پست‌الکترونیک',
 
 # User rights log
 'rightslog'                  => 'سیاههٔ اختیارات کاربر',
@@ -1742,6 +1747,7 @@ $1",
 'action-userrights'           => 'ویرایش همهٔ اختیارات کاربری',
 'action-userrights-interwiki' => 'ویرایش اختیارات کاربری کاربران یک ویکی دیگر',
 'action-siteadmin'            => 'قفل کردن و باز کردن پایگاه داده',
+'action-sendemail'            => 'ارسال ایمیل',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|تغییر|تغییر}}',
@@ -1784,8 +1790,8 @@ $1",
 'recentchangeslinked-toolbox'  => 'تغییرات مرتبط',
 'recentchangeslinked-title'    => 'تغییرهای مرتبط با $1',
 'recentchangeslinked-noresult' => 'در بازهٔ ‌زمانی داده‌شده تغییری در صفحه‌های پیوندداده رخ نداده‌است.',
-'recentchangeslinked-summary'  => "در زیر فهرستی از تغییرات اخیر در صفحه‌های پیوند داده شده به این صفحه (یا اعضای رده مورد نظر) را می‌بینید.
-صفحه‌هایی که در [[Special:Watchlist|فهرست پی‌گیری‌های شما]] باشند به صورت '''ضخیم''' نشان داده می‌شوند.",
+'recentchangeslinked-summary'  => "در زیر فهرستی از تغییرات اخیر صفحه‌های پیوند داده شده به این صفحه (یا اعضای رده مورد نظر) را می‌بینید.
+صفحه‌هایی که در [[Special:Watchlist|فهرست پی‌گیری‌هایتان]] باشند به صورت '''پررنگ''' نشان داده می‌شوند.",
 'recentchangeslinked-page'     => 'نام صفحه:',
 'recentchangeslinked-to'       => 'تغییرات صفحه‌های که به صفحه مورد نظر پیوند‌ دارند را نمایش بده',
 
@@ -1952,9 +1958,9 @@ $1',
 # img_auth script messages
 'img-auth-accessdenied'     => 'منع دسترسی',
 'img-auth-nopathinfo'       => 'PATH_INFO موجود نیست.
-سرور شما برای رد کردن این مقدار تنظیم نشده‌است.
-ممکن است کارساز مبتنی بر سی‌جی‌آی باشد و از img_auth پشتیبانی نکند.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
+سرور شما برای ردکردن این مقدار تنظیم نشده‌است.
+ممکن است مبتنی بر سی‌جی‌آی باشد و از img_auth پشتیبانی نکند.
+[http://www.mediawiki.org/wiki/Manual:Image_Authorization اینجا] را ببینید.',
 'img-auth-notindir'         => 'مسیر درخواست شده در شاخهٔ بارگذاری تنظیم‌شده قرار ندارد.',
 'img-auth-badtitle'         => 'امکان ایجاد یک عنوان مجاز از «$1» وجود ندارد.',
 'img-auth-nologinnWL'       => 'شما به سامانه وارد نشده‌اید و «$1» در فهرست سفید قرار ندارد.',
@@ -2025,7 +2031,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'filehist-filesize'                 => 'اندازهٔ پرونده',
 'filehist-comment'                  => 'توضیح',
 'filehist-missing'                  => 'پروندهٔ ناموجود',
-'imagelinks'                        => 'استفاده پرونده',
+'imagelinks'                        => 'به‌کاررفتن پرونده',
 'linkstoimage'                      => '{{PLURAL:$1|صفحهٔ|صفحه‌های}} زیر به این تصویر پیوند {{PLURAL:$1|دارد|دارند}}:',
 'linkstoimage-more'                 => 'بیش از $1 صفحه به این پرونده پیوند {{PLURAL:$1|دارد|دارند}}.
 فهرست زیر تنها {{PLURAL:$1|اولین پیوند|اولین $1 پیوند}} به این صفحه را نشان می‌دهد.
@@ -2057,23 +2063,24 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'filerevert-badversion'     => 'نسخهٔ قدیمی‌تری از این پرونده وجود نداشت.',
 
 # File deletion
-'filedelete'                  => 'حذف $1',
-'filedelete-legend'           => 'حذف پرونده',
-'filedelete-intro'            => "شما در حال حذف کردن پروندهٔ '''[[Media:$1|$1]]''' به همراه تمام تاریخچه‌اش هستید.",
-'filedelete-intro-old'        => "شما در حال حذف نسخه '''[[Media:$1|$1]]''' مورخ [$4 $2 ساعت $3] هستید.",
-'filedelete-comment'          => 'دلیل:',
-'filedelete-submit'           => 'حذف',
-'filedelete-success'          => "'''$1''' حذف شد.",
-'filedelete-success-old'      => "نسخهٔ '''[[Media:$1|$1]]''' مورخ $2 ساعت $3 حذف شد.",
-'filedelete-nofile'           => "'''$1''' وجود ندارد.",
-'filedelete-nofile-old'       => "نسخهٔ بایگانی‌شده‌ای از '''$1''' با مشخصات داده شده، وجود ندارد.",
-'filedelete-otherreason'      => 'دلیل دیگر/اضافی:',
-'filedelete-reason-otherlist' => 'دلیل دیگر',
-'filedelete-reason-dropdown'  => '*دلایل متداول حذف
+'filedelete'                   => 'حذف $1',
+'filedelete-legend'            => 'حذف پرونده',
+'filedelete-intro'             => "شما در حال حذف کردن پروندهٔ '''[[Media:$1|$1]]''' به همراه تمام تاریخچه‌اش هستید.",
+'filedelete-intro-old'         => "شما در حال حذف نسخه '''[[Media:$1|$1]]''' مورخ [$4 $2 ساعت $3] هستید.",
+'filedelete-comment'           => 'دلیل:',
+'filedelete-submit'            => 'حذف',
+'filedelete-success'           => "'''$1''' حذف شد.",
+'filedelete-success-old'       => "نسخهٔ '''[[Media:$1|$1]]''' مورخ $2 ساعت $3 حذف شد.",
+'filedelete-nofile'            => "'''$1''' وجود ندارد.",
+'filedelete-nofile-old'        => "نسخهٔ بایگانی‌شده‌ای از '''$1''' با مشخصات داده شده، وجود ندارد.",
+'filedelete-otherreason'       => 'دلیل دیگر/اضافی:',
+'filedelete-reason-otherlist'  => 'دلیل دیگر',
+'filedelete-reason-dropdown'   => '*دلایل متداول حذف
 ** نقض حق تکثیر
 ** پروندهٔ تکراری',
-'filedelete-edit-reasonlist'  => 'ویرایش دلایل حذف',
-'filedelete-maintenance'      => 'حذف و احیای پرونده‌ها در مدت نگهداری به طور موقت غیرفعال است.',
+'filedelete-edit-reasonlist'   => 'ویرایش دلایل حذف',
+'filedelete-maintenance'       => 'حذف و احیای پرونده‌ها در مدت نگهداری به طور موقت غیرفعال است.',
+'filedelete-maintenance-title' => 'نمی‌تواند پرونده را حذف کند',
 
 # MIME search
 'mimesearch'         => 'جستجوی بر اساس MIME',
@@ -2123,7 +2130,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'statistics-users-active-desc' => 'کاربرانی که در {{PLURAL:$1|روز|$1 روز}} قبل فعالیتی انجام داده‌اند',
 'statistics-mostpopular'       => 'صفحه‌هایی که بیشترین تعداد بازدیدکننده را داشته‌اند',
 
-'disambiguations'      => 'صفحه‌های ابهام‌زدایی',
+'disambiguations'      => 'صفحات مرتبط با صفحات ابهام‌زدایی',
 'disambiguationspage'  => 'Template:ابهام‌زدایی',
 'disambiguations-text' => "صفحه‌های زیر پیوندی به یک '''صفحهٔ ابهام‌زدایی''' هستند.
 این صفحه‌ها باید در عوض به موضوعات مرتبط پیوند داده شوند.<br />
@@ -2196,7 +2203,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'listusers-editsonly'     => 'فقط کاربرانی که ویرایش دارند را نشان بده',
 'listusers-creationsort'  => 'مرتب کردن بر اساس تاریخ ایجاد',
 'usereditcount'           => '$1 {{PLURAL:$1|ویرایش|ویرایش}}',
-'usercreated'             => 'ایجاد شده در $1 ساعت $2',
+'usercreated'             => '{{GENDER:$3|ایجادشده}}  در تاریخ $1  در ساعت $2',
 'newpages'                => 'صفحه‌های تازه',
 'newpages-username'       => 'نام کاربری:',
 'ancientpages'            => 'قدیمی‌ترین صفحه‌ها',
@@ -2223,8 +2230,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'booksources-invalid-isbn'  => 'شابک داده شده مجاز به نظر نمی‌رسد؛ از جهت اشکالات هنگام کپی کردن از منبع اصلی بررسی کنید.',
 
 # Special:Log
-'specialloguserlabel'  => 'کاربر:',
-'speciallogtitlelabel' => 'عنوان:',
+'specialloguserlabel'  => 'مجری:',
+'speciallogtitlelabel' => 'هدف (عنوان یا کاربر):',
 'log'                  => 'سیاهه‌ها',
 'all-logs-page'        => 'تمام سیاهه‌های عمومی',
 'alllogstext'          => 'نمایش یک‌جای تمام سیاهه‌های موجود در {{SITENAME}}.
@@ -2264,12 +2271,13 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'sp-deletedcontributions-contribs' => 'مشارکت‌ها',
 
 # Special:LinkSearch
-'linksearch'       => 'پیوندهای بیرونی',
+'linksearch'       => 'جستجوی پیوندهای بیرونی',
 'linksearch-pat'   => 'جستجوی الگو:',
 'linksearch-ns'    => 'فضای نام:',
 'linksearch-ok'    => 'جستجو',
-'linksearch-text'  => 'نشانه‌هایی مانند «‎*.wikipedia.org» را می‌توان استفاده کرد.<br />
-پروتکل‌های پشتیبانی‌شده: <tt>$1</tt>',
+'linksearch-text'  => 'نشانه‌هایی مانند «‎*.wikipedia.org» را می‌توان استفاده کرد.
+حداقل یک دامنه سطح بالا ، به عنوان مثال "*.org" نیاز دارد.<br />
+پروتکل‌های پشتیبانی‌شده: <tt>$1</tt> (هیچ یک از این موارد را در جستجوی خود نیافزایید)',
 'linksearch-line'  => '$1 از $2 پیوند دارد',
 'linksearch-error' => 'نشانه‌ها فقط در ابتدای نام میزبان اینترنتی می‌توانند استفاده شوند.',
 
@@ -2373,7 +2381,7 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'watchmethod-list'     => 'بررسی صفحه‌های مورد پی‌گیری برای ویرایش‌های اخیر',
 'watchlistcontains'    => 'فهرست پی‌گیری‌های شما حاوی $1 {{PLURAL:$1|صفحه|صفحه}} است.',
 'iteminvalidname'      => 'مشکل با مورد «$1»، نام نامعتبر است...',
-'wlnote'               => 'در زیر آخرین $1 تغییر در $2 ساعت آخر {{PLURAL:$1|آمده‌است|آمده‌اند}}.',
+'wlnote'               => "در زیر {{PLURAL:$1|آخرین تغییرات موجود است|آخرین تغییرات  '''$1''' موجود است }} آخرین  {{PLURAL:$2|ساعت|'''$2''' ساعت}}, در تاریخ $3, $4.",
 'wlshowlast'           => 'نمایش آخرین $1 ساعت $2 روز $3',
 'watchlist-options'    => 'گزینه‌های پیگیری',
 
@@ -2486,7 +2494,10 @@ $NEWPAGE
 'unprotectedarticle'          => 'صفحهٔ «[[$1]]» را از محافظت خارج کرد',
 'movedarticleprotection'      => 'تنظیمات محافظت را از «[[$2]]» به «[[$1]]» منتقل کرد',
 'protect-title'               => 'تغییر وضعیت محافظت «$1»',
+'protect-title-notallowed'    => 'مشاهده سطح حفاظت  " $1 "',
 'prot_1movedto2'              => '[[$1]] به [[$2]] منتقل شد',
+'protect-badnamespace-title'  => 'فضای نام بدون محافظت',
+'protect-badnamespace-text'   => 'صفحات موجود در این فضای نام، نمی‌توانند حفاظت شوند.',
 'protect-legend'              => 'تأیید محافظت',
 'protectcomment'              => 'دلیل:',
 'protectexpiry'               => 'زمان سرآمدن:',
@@ -2578,6 +2589,7 @@ $NEWPAGE
 
 برای دیدن سیاههٔ حذف‌ها و احیاهای اخیر به  [[Special:Log/delete|سیاههٔ حذف]] رجوع کنید.",
 'undelete-header'              => 'برای دیدن صفحه‌های حذف‌شدهٔ اخیر [[Special:Log/delete|سیاههٔ حذف]] را ببینید.',
+'undelete-search-title'        => 'جستجوی صفحه‌های حذف شده',
 'undelete-search-box'          => 'جستجوی صفحه‌های حذف‌شده.',
 'undelete-search-prefix'       => 'نمایش صفحه‌ها با شروع از:',
 'undelete-search-submit'       => 'برو',
@@ -2587,6 +2599,7 @@ $NEWPAGE
 'undelete-cleanup-error'       => 'خطا در حذف تاریخچهٔ استفاده نشدهٔ «$1».',
 'undelete-missing-filearchive' => 'امکان احیای تاریخچهٔ شمارهٔ $1 وجود ندارد زیرا اطلاعات در پایگاه داده وجود ندارد.
 ممکن است پیشتر احیا شده باشد.',
+'undelete-error'               => 'خطا صفحه غیرقابل حذف',
 'undelete-error-short'         => 'خطا در احیای پرونده: $1',
 'undelete-error-long'          => 'در زمان احیای پرونده خطا رخ داد:
 
@@ -2897,7 +2910,7 @@ $1',
 لطفاً یک نام دیگر برگزینید.',
 
 # Export
-'export'            => 'برون‌بری صفحه‌ها',
+'export'            => 'برون‌ریزی صفحه‌ها',
 'exporttext'        => 'شما می‌توانید متن و تاریخچهٔ ویرایش یک صفحهٔ مشخص یا مجموعه‌ای از صفحه‌ها را به شکل پوشیده در اکس‌ام‌ال برون‌بری کنید.
 این اطلاعات را می‌توان در ویکی دیگری که نرم‌افزار «مدیاویکی» را اجرا می‌کند از طریق [[Special:Import|صفحهٔ درون‌ریزی]] وارد کرد.
 
@@ -2907,6 +2920,7 @@ $1',
 'exportcuronly'     => 'فقط نسخهٔ فعلی شامل شود، نه کل تاریخچه',
 'exportnohistory'   => "----
 '''توجه:''' امکان برون‌بری تاریخچهٔ کامل صفحه‌ها از طریق این صفحه به دلایل اجرایی از کار انداخته شده‌است.",
+'exportlistauthors' => 'محتوی لیست کامل مشارکت‌کنندگان هر صفحه',
 'export-submit'     => 'برون‌بری',
 'export-addcattext' => 'افزودن صفحه‌ها از رده:',
 'export-addcat'     => 'افزودن',
@@ -2934,7 +2948,7 @@ $1',
 'allmessages-filter-submit'     => 'برو',
 
 # Thumbnails
-'thumbnail-more'           => 'بزرگ شود',
+'thumbnail-more'           => 'بزرگ‌کردن',
 'filemissing'              => 'پرونده وجود ندارد',
 'thumbnail_error'          => 'خطا در ایجاد بندانگشتی: $1',
 'djvu_page_error'          => 'صفحهٔ DjVu خارج از حدود مجاز',
@@ -3010,37 +3024,37 @@ $1',
 'tooltip-ca-talk'                 => 'گفتگو پیرامون صفحهٔ محتوا',
 'tooltip-ca-edit'                 => 'شما می‌توانید این صفحه را ویرایش کنید. لطفاً پیش از ذخیره از دکمهٔ پیش‌نمایش استفاده کنید.',
 'tooltip-ca-addsection'           => 'یک بخش جدید ایجاد کنید',
-'tooltip-ca-viewsource'           => 'این صفحه محافظت‌شده است.
-می‌توانید متن مبدأ آن را مشاهده کنید',
+'tooltip-ca-viewsource'           => 'این صفحه محافظت‌شده‌است.
+می‌توانید متن مبدأ آن را ببینید',
 'tooltip-ca-history'              => 'نسخه‌های پیشین این صفحه',
 'tooltip-ca-protect'              => 'محافظت از این صفحه',
 'tooltip-ca-unprotect'            => 'تغییر محافظت این صفحه',
 'tooltip-ca-delete'               => 'حذف این صفحه',
 'tooltip-ca-undelete'             => 'بازگرداندن نسخه‌های صفحهٔ حذف‌شده',
 'tooltip-ca-move'                 => 'انتقال این صفحه',
-'tooltip-ca-watch'                => 'اضافه کردن این صفحه به فهرست پی‌گیری‌های شما',
+'tooltip-ca-watch'                => 'افزودن این صفحه به فهرست پی‌گیری‌هایتان',
 'tooltip-ca-unwatch'              => 'حذف این صفحه از فهرست پی‌گیری‌های شما',
 'tooltip-search'                  => 'جستجو در {{SITENAME}}',
 'tooltip-search-go'               => 'در صورت امکان به صفحه‌ای با همین نام برو',
-'tooltip-search-fulltext'         => 'این عبارت را در صفحه‌ها جستجو کن',
+'tooltip-search-fulltext'         => 'جستجوی صفحه‌ها برای این عبارت',
 'tooltip-p-logo'                  => 'مشاهدهٔ صفحهٔ اصلی',
 'tooltip-n-mainpage'              => 'مشاهدهٔ صفحهٔ اصلی',
 'tooltip-n-mainpage-description'  => 'مشاهدهٔ صفحهٔ اصلی',
-'tooltip-n-portal'                => 'پیرامون پروژه، آن‌چه‌ می‌توانید بکنید و این که چه چیز را کجا پیدا می‌کنید',
+'tooltip-n-portal'                => 'پیرامون پروژه، آنچه‌ می‌توانید بکنید و اینکه چه چیز را کجا پیدا کنید',
 'tooltip-n-currentevents'         => 'یافتن اطلاعات پیش‌زمینه پیرامون وقایع کنونی',
 'tooltip-n-recentchanges'         => 'فهرست تغییرات اخیر در ویکی',
 'tooltip-n-randompage'            => 'آوردن یک صفحهٔ تصادفی',
 'tooltip-n-help'                  => 'مکانی برای دریافتن',
-'tooltip-t-whatlinkshere'         => 'فهرست تمام صفحه‌هایی که به این صفحه پیوند می‌دهند',
-'tooltip-t-recentchangeslinked'   => 'تغییرات اخیر در صفحه‌هایی که این صفحه به آن‌ها پیوند دارد',
+'tooltip-t-whatlinkshere'         => 'فهرست همهٔ صفحه‌هایی که به این صفحه پیوند می‌دهند',
+'tooltip-t-recentchangeslinked'   => 'تغییرات اخیر صفحه‌هایی که این صفحه به آن‌ها پیوند دارد',
 'tooltip-feed-rss'                => 'خبرنامه آراس‌اس برای این صفحه',
 'tooltip-feed-atom'               => 'خبرنامهٔ اتم برای این صفحه',
 'tooltip-t-contributions'         => 'مشاهدهٔ فهرست مشارکت‌های این کاربر',
 'tooltip-t-emailuser'             => 'ارسال پست الکترونیکی به این کاربر',
 'tooltip-t-upload'                => 'بارگذاری تصاویر و پرونده‌های دیگر',
-'tooltip-t-specialpages'          => 'فهرست تمام صفحه‌های ویژه',
+'tooltip-t-specialpages'          => 'فهرست همهٔ صفحه‌های ویژه',
 'tooltip-t-print'                 => 'نسخهٔ قابل چاپ این صفحه',
-'tooltip-t-permalink'             => 'پیوند پایدار به این نسخه از این صفحه',
+'tooltip-t-permalink'             => 'پیوند پایدار به این نسخه از صفحه',
 'tooltip-ca-nstab-main'           => 'دیدن صفحهٔ محتویات',
 'tooltip-ca-nstab-user'           => 'نمایش صفحهٔ کاربر',
 'tooltip-ca-nstab-media'          => 'دیدن صفحهٔ مدیا',
@@ -3059,8 +3073,8 @@ $1',
 'tooltip-watch'                   => 'این صفحه را به فهرست پی‌گیری‌های خود بیافزایید.',
 'tooltip-recreate'                => 'ایجاد دوبارهٔ صفحه صرف نظر از حذف شدن قبلی آن',
 'tooltip-upload'                  => 'شروع بارگذاری',
-'tooltip-rollback'                => '«واگردانی» ویرایش(های) آخرین ویرایش‌کننده در این صفحه را با یک کلیک باز می‌گرداند.',
-'tooltip-undo'                    => '«خنثی‌سازی» این ویرایش را خنثی می‌کند و فرم ویرایش را در حالت پیش‌نمایش باز می‌کند تا امکان افزودن دلیلی در خلاصه ویرایش را بدهد.',
+'tooltip-rollback'                => '«واگردانی» ویرایش(های) آخرین ویرایش‌کنندهٔ این صفحه را با یک کلیک بازمی‌گرداند.',
+'tooltip-undo'                    => '«خنثی‌سازی» این ویرایش را خنثی می‌کند و جعبهٔ ویرایش را در حالت پیش‌نمایش باز می‌کند تا افزودن دلیل در خلاصهٔ ویرایش ممکن شود.',
 'tooltip-preferences-save'        => 'ذخیره کردن ترجیحات',
 'tooltip-summary'                 => 'خلاصه‌ای وارد کنید',
 
@@ -3182,13 +3196,17 @@ $1',
 'sp-newimages-showfrom' => 'نشان‌دادن تصویرهای جدید از $2، $1 به بعد',
 
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
-'ago' => '$1 پیش',
+'seconds' => '{{PLURAL:$1|$1ثانیه| $1  ثانیه}}',
+'minutes' => '{{PLURAL: $1|دقیقه|دقیقه}}',
+'hours'   => '{{PLURAL: $1|ساعت|ساعت}}',
+'days'    => '{{PLURAL: $1|روز|روز}}',
+'ago'     => '$1 پیش',
 
 # Bad image list
-'bad_image_list' => 'اطلاعات را باید به این شکل وارد کنید:
+'bad_image_list' => 'اطلاعات را باید اینگونه وارد کنید:
 
-فقط سطرهایی که با * شروع شوند در نظر گرفته می‌شوند. اولین پیوند در هر سطر، باید پیوندی به یک تصویر بد باشد.
-پیوندهایی بعدی در همان سطر، به عنوان موارد استثنا در نظر گرفته می‌شوند.',
+فقط سطرهایی که با * شروع شوند در نظر گرفته می‌شوند. نخستین پیوند هر سطر باید پیوندی به یک تصویر بد باشد.
+پیوندهایی بعدی در همان سطر استثنا در نظر گرفته می‌شوند.',
 
 # Metadata
 'metadata'          => 'متاداده',
@@ -3823,6 +3841,9 @@ $5
 'hebrew-calendar-m10-gen' => 'تموز',
 'hebrew-calendar-m11-gen' => 'آب',
 'hebrew-calendar-m12-gen' => 'ایلول',
+
+# Signatures
+'signature' => '[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|بحث]])',
 
 # Core parser functions
 'unknown_extension_tag' => 'برچسب ناشناختهٔ افزونه «$1»',

@@ -997,14 +997,16 @@ Links aus Namensräume wern da net aufglistet.',
 'booksources-go'            => 'Suach',
 
 # Special:Log
-'log'           => 'Logbiacher',
-'all-logs-page' => 'Olle effmtlichen Logbiacher',
-'alllogstext'   => 'Des is de kombinierte Anzeige vo alle in {{SITENAME}} gführten Logbiacha. Die Ausgabe ko durch de Auswahl vom Logbuchtyp, vom Benutzer oder vom Seitntitel eigschränkt wern.',
-'logempty'      => 'Koane passenden Einträg.',
+'log'                => 'Logbiacher',
+'all-logs-page'      => 'Olle effmtlichen Logbiacher',
+'alllogstext'        => 'Des is de kombinierte Anzeige vo alle in {{SITENAME}} gführten Logbiacha. Die Ausgabe ko durch de Auswahl vom Logbuchtyp, vom Benutzer oder vom Seitntitel eigschränkt wern.',
+'logempty'           => 'Koane passenden Einträg.',
+'log-title-wildcard' => 'Da Titel faungt auh mid ....',
 
 # Special:AllPages
 'allpages'          => 'Olle Seiten',
 'alphaindexline'    => '$1 bis $2',
+'nextpage'          => 'Naxde Seiten ($1)',
 'prevpage'          => 'Vurherige Seiten ($1)',
 'allpagesfrom'      => 'Seiten auhzoang ob:',
 'allpagesto'        => 'Seiten auhzoang bis:',
@@ -1019,14 +1021,19 @@ Links aus Namensräume wern da net aufglistet.',
 'allpages-bad-ns'   => 'Dén Naumensraum „$1“ gibts in {{SITENAME}} néd.',
 
 # Special:Categories
-'categories' => 'Kategorien',
+'categories'                    => 'Kategorien',
+'special-categories-sort-count' => 'Sortiarung noch da Auhzoi',
+'special-categories-sort-abc'   => "Sortiarung noch 'm Alfabet",
 
 # Special:DeletedContributions
 'deletedcontributions' => 'Gléschde Beitrég',
 
 # Special:LinkSearch
 'linksearch'      => 'Weblinks suacher',
+'linksearch-pat'  => 'Suachmuster:',
+'linksearch-ns'   => 'Nåmensraum:',
 'linksearch-ok'   => 'Suacher',
+'linksearch-text' => "Dé Speziaalseiten do daméglicht d' Suach noch Seiten, in dénen bstimmte Weblinks enthoiden san. Dodabei kennern Blootzhoiter wia beispüsweis  <tt>*.beispü.at</tt> hergnummer wern. Es muass mindastens a Top-Level-Domain, z. Bsp. „*.org“. auhgeem wern. <br />Unterstytzde Protokói: <tt>$1</tt> (Dé bittscheh bei da Suachauhgob auhgeem.)",
 'linksearch-line' => '$1 is valinkt voh $2',
 
 # Special:ListUsers
@@ -1055,24 +1062,30 @@ Zuasätzlige Informaziónen ywer dé oahzelnen Rechtt kennan [[{{MediaWiki:Listg
 'listgrouprights-addgroup-self-all' => 'Kauh olle Gruppm zum oagern Kóntó dazuadoah',
 
 # E-mail user
-'mailnologin'    => 'Du bist néd auhgmödt',
-'emailuser'      => 'E-Póst an dén Benutzer',
-'emailpage'      => 'E-Mail aun Benutzer',
-'noemailtitle'   => 'Koah E-Mail-Adress',
-'emailfrom'      => 'Voh:',
-'emailto'        => 'Aun:',
-'emailsubject'   => 'Bedreff:',
-'emailmessage'   => 'Noochricht:',
-'emailsend'      => 'Senden',
-'emailccme'      => 'Schick a Kopii vo da E-Mail an mi söiwer',
-'emailccsubject' => 'a Kópie voh deiner Noochricht an $1: $2',
-'emailsent'      => 'E-Mail is vaschickt worn',
-'emailsenttext'  => 'Dai E-Mäil is vaschickt worn.',
+'mailnologin'     => 'Du bist néd auhgmödt',
+'emailuser'       => 'E-Póst an dén Benutzer',
+'emailpage'       => 'E-Mail aun Benutzer',
+'noemailtitle'    => 'Koah E-Mail-Adress',
+'emailfrom'       => 'Voh:',
+'emailto'         => 'Aun:',
+'emailsubject'    => 'Bedreff:',
+'emailmessage'    => 'Noochricht:',
+'emailsend'       => 'Senden',
+'emailccme'       => 'Schick a Kópie voh da E-Mail aun mi söwer',
+'emailccsubject'  => 'a Kópie voh deiner Noochricht an $1: $2',
+'emailsent'       => 'E-Mail is vaschickt worn',
+'emailsenttext'   => 'Deih E-Mail is vaschickt worn.',
+'emailuserfooter' => 'Dé E-Mail is voh {{SITENAME}}-Benutzer „$1“ an „$2“ gsendt worn.',
+
+# User Messenger
+'usermessage-summary' => 'Systémnoochricht gspeicherd.',
+'usermessage-editor'  => 'Systém-Messenger',
 
 # Watchlist
 'watchlist'            => 'Beówochtungslisten',
 'mywatchlist'          => 'Beówochtungslisten',
 'watchlistfor2'        => 'Voh $1 $2',
+'nowatchlist'          => 'Es gibt koane Eihträg auf deiner Beówochtungslisten.',
 'watchlistanontext'    => "Du muasst dé $1, um deih Beówchtungslisten z' seeng óder Eihträg borweiten z' kenner.",
 'watchnologin'         => 'Du bist néd auhgmödt',
 'watchnologintext'     => "Du muasst [[Special:UserLogin|auhgmödt]] seih, um deih Beówochtungslisten beorweiten z' kenner.",
@@ -1112,7 +1125,8 @@ Waunnst dé Seiten wieder voh deiner Beówochtungslisten weggerddoah mechst, dru
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
 'changed'                      => 'gänderd',
 'created'                      => 'erstöd',
-'enotif_lastvisited'           => 'Olle Änderrungen auf oahn Blick: $1',
+'enotif_subject'               => '[{{SITENAME}}] Dé Seiten „$PAGETITLE“ is voh $PAGEEDITOR $CHANGEDORCREATED',
+'enotif_lastvisited'           => 'Olle Änderrungen auf oan Blick: $1',
 'enotif_lastdiff'              => 'Schaug auf $1 noch derer Änderrung.',
 'enotif_anon_editor'           => 'Anonymer Benutzer $1',
 'enotif_body'                  => 'Servas $WATCHINGUSERNAME,
@@ -1142,12 +1156,12 @@ Um d\' Seiten voh deiner Beówochtungslisten ower z\' doah, bsuachst $UNWATCHURL
 Ryckmödungen und a weidre Hüf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
-'deletepage'             => 'Seiten leschen',
+'deletepage'             => 'Seiten léschen',
 'confirm'                => 'Bstäting',
 'excontent'              => "Oider Inhoid: '$1'",
-'excontentauthor'        => 'Da Inhoid is gweesen: „$1“ (oanziger Beorweiter: [[Special:Contributions/$2|$2]])',
+'excontentauthor'        => 'Da Inhoid is gwésen: „$1“ (oahziger Beorweiter: [[Special:Contributions/$2|$2]])',
 'exbeforeblank'          => 'Da Inhoid vurm Laarn voh da Seiten: „$1“',
-'exblank'                => "D' Seiten is laar gweesen",
+'exblank'                => "D' Seiten is laar gwén",
 'delete-confirm'         => 'Léschen voh „$1“',
 'delete-legend'          => 'Léschen',
 'historywarning'         => "'''Ochtung:''' Dé Seiten, dé du léschen mecherst, hod a Versiónsgschicht mid epper $1 {{PLURAL:$1|Versión|Versiónen}}:",
@@ -1168,7 +1182,9 @@ Ryckmödungen und a weidre Hüf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'delete-edit-reasonlist' => 'Léschgrynd beorwaten',
 
 # Rollback
-'rollbacklink' => 'Zrucksétzen',
+'rollbacklink'   => 'Zrucksétzen',
+'rollbackfailed' => 'Zruckésétzen gscheiterd',
+'cantrollback'   => "D' Änderrung kauh néd zruckégsétzd wern, weis koane friarern Autorn gibt.",
 
 # Protect
 'protectlogpage'              => 'Seitenschutz-Logbuach',
@@ -1202,18 +1218,19 @@ Ryckmödungen und a weidre Hüf: {{canonicalurl:{{MediaWiki:Helppage}}}}',
 'restriction-move' => 'vaschiam',
 
 # Undelete
-'undelete'               => 'Gléschde Seiten weiderherstön',
-'undeletehistorynoadmin' => 'Dé Seiten is gléscht worn. Da Léschgrund is in da Zaummfossung auhgeem, 
+'undelete'                  => 'Gléschde Seiten weiderherstön',
+'undeletehistorynoadmin'    => 'Dé Seiten is gléscht worn. Da Léschgrund is in da Zaummfossung auhgeem, 
 genauasó wia Details zum létzden Benutzer, der dé Seiten vur da Léschung borweidt hod.
 Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagänglich.',
-'undelete-revision'      => 'Geléschde Versión voh $1 (vom $4 um $5 Uar), $3:',
-'undeletebtn'            => 'Wiederherstön',
-'undeletelink'           => 'åschauh / wiaderherstön',
-'undeleteviewlink'       => 'åschaung',
-'undeletereset'          => 'Zrucksétzen',
-'undeletedfiles'         => '$1 {{plural:$1|Datei|Dateien}} san wieda hergstellt worn',
-'undelete-search-box'    => 'Suach noch gléschde Seiten',
-'undelete-search-submit' => 'Suach',
+'undelete-revision'         => 'Geléschde Versión voh $1 (vom $4 um $5 Uar), $3:',
+'undeletebtn'               => 'Wiederherstön',
+'undeletelink'              => 'åschauh / wiaderherstön',
+'undeleteviewlink'          => 'åschaung',
+'undeletereset'             => 'Zrucksétzen',
+'undeletedfiles'            => '$1 {{plural:$1|Datei|Dateien}} san wieda hergstellt worn',
+'undelete-search-box'       => 'Suach noch gléschde Seiten',
+'undelete-search-submit'    => 'Suach',
+'undelete-show-file-submit' => 'Jo',
 
 # Namespace form on various pages
 'namespace'             => 'Nåmensraum:',
@@ -1261,6 +1278,9 @@ Da aktuöje Text voh da gléschden Seiten is netter fyr Administraatorn zuagäng
 'whatlinkshere-filters'    => 'Füter',
 
 # Block/unblock
+'autoblockid'                 => 'Autómaatische Sperrung #$1',
+'block'                       => 'Benutzer sperrn',
+'unblock'                     => 'Benutzer freigeem',
 'blockip'                     => 'IP-Adress/Benytzer sperrn',
 'blockip-title'               => 'Benytzer sperrn',
 'blockip-legend'              => 'IP-Adresse/Benutzer sperrn',
@@ -1279,12 +1299,13 @@ Gib bittschee an Grund fyr d' Sperrn å.",
 ** néd åbrochts Vahoiden
 ** Missbrauch mid mererne Benutzerkontós
 ** néd geigneter Benutzernåm',
-'ipbcreateaccount'            => "D' Erstöiung vo Benytzerkontos vahindern",
-'ipbemailban'                 => 'E-Mäil-Vasånd sperrn',
-'ipbenableautoblock'          => "Sperr de aktuöi vo dem Benytzer gnytzte IP-Adress sowia automaatisch olle foiganden, vo denen aus er Beorwaitungen oder 's Åleeng vo naiche Benytzerkontos vasuacht",
-'ipbsubmit'                   => 'IP-Adress/Benytzer sperrn',
-'ipbother'                    => 'Åndare Dauer (auf englisch):',
-'ipboptions'                  => '2 Stund:2 hours,1 Dog:1 day,3 Dog:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Monad:1 month,3 Monad:3 months,6 Monad:6 months,1 Jor:1 year,Leemslång:infinite',
+'ipb-hardblock'               => 'Auhgmödte Benutzer dodrauh hindern, daas Beorweitungen unter derer IP-Adress vurgnummer wern',
+'ipbcreateaccount'            => "D' Erstöung voh Benutzerkóntós vahindern",
+'ipbemailban'                 => 'E-Mail-Vasånd sperrn',
+'ipbenableautoblock'          => "Sperr dé aktuö voh dém Benutzer gnutzde IP-Adress sówia autómaatisch olle fóiganden, voh dénen aus er Beorweitungen óder 's Auhléng voh Benutzerkóntós vasuacht.",
+'ipbsubmit'                   => 'IP-Adress/Benutzer sperrn',
+'ipbother'                    => 'Åndre Dauer (auf englisch):',
+'ipboptions'                  => '2 Stund:2 hours,1 Dog:1 day,3 Dog:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Monad:1 month,3 Monad:3 months,6 Monad:6 months,1 Jor:1 year, Leemslång:infinite',
 'ipbotheroption'              => 'Åndre Dauer:',
 'ipbotherreason'              => 'Ånderner/ergenznder Grund:',
 'ipbhidename'                 => 'An Benytzernåmen in Beorwaitungen und Linsten vastecken',

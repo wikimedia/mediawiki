@@ -1477,6 +1477,7 @@ Tindakan ini tidak boleh dibatalkan.',
 'action-userrights'           => 'mengubah semua hak pengguna',
 'action-userrights-interwiki' => 'mengubah hak pengguna dari wiki lain',
 'action-siteadmin'            => 'mengunci atau membuka kunci pangkalan data wiki ini',
+'action-sendemail'            => 'menghantar e-mel',
 
 # Recent changes
 'nchanges'                          => '$1 perubahan',

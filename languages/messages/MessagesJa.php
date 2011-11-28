@@ -1679,6 +1679,7 @@ HTMLタグを見直してください。',
 'action-userrights'           => '全利用者権限の変更',
 'action-userrights-interwiki' => '他のウィキ上の利用者の利用者権限変更',
 'action-siteadmin'            => 'データベースのロックもしくはロック解除',
+'action-sendemail'            => '電子メールの送信',
 
 # Recent changes
 'nchanges'                          => '$1回の変更',
@@ -3441,6 +3442,9 @@ Variants for Chinese language
 
 # EXIF attributes
 'exif-compression-1' => '無圧縮',
+'exif-compression-2' => 'CCITT Group 3 1次元修正ハフマン連長符号化',
+'exif-compression-3' => 'CCITT Group 3 ファックス符号化',
+'exif-compression-4' => 'CCITT Group 4 ファックス符号化',
 'exif-compression-6' => 'JPEG (旧式)',
 
 'exif-copyrighted-true'  => '著作権あり',
@@ -3608,6 +3612,8 @@ Variants for Chinese language
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真方位',
 'exif-gpsdirection-m' => '磁方位',
+
+'exif-ycbcrpositioning-1' => '中央寄せ',
 
 'exif-dc-contributor' => '貢献者',
 'exif-dc-coverage'    => 'メディアの空間的または時間的範囲',
