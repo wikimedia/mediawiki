@@ -5,7 +5,18 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 
 == MediaWiki 1.17.1 ==
 
-This a maintenance release of the MediaWiki 1.17 branch.
+2011-11-24
+
+This a maintenance and security release of the MediaWiki 1.17 branch.
+
+=== Security changes ===
+* (bug 32276) Skins were generating output using the internal page title which
+  would allow anonymous users to determine wheter a page exists, potentially
+  leaking private data. In fact, the curid and oldid request parameters would
+  allow page titles to be enumerated even when they are not guessable.
+* (bug 32616) action=ajax requests were dispatched to the relevant internal
+  functions without any read permission checks being done. This could lead to
+  data leakage on private wikis.
 
 === Summary of selected changes in 1.17 ===
 

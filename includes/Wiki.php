@@ -149,10 +149,21 @@ class MediaWiki {
 	 * @return boolean true if successful
 	 */
 	function preliminaryChecks( &$title, &$output ) {
+		global $wgTitle;
 		// If the user is not logged in, the Namespace:title of the article must be in
 		// the Read array in order for the user to see it. (We have to check here to
 		// catch special pages etc. We check again in Article::view())
 		if( !is_null( $title ) && !$title->userCanRead() ) {
+			// Bug 32276: allowing the skin to generate output with $wgTitle 
+			// set to the input title would allow anonymous users to 
+			// determine whether a page exists, potentially leaking private data. In fact, the 
+			// curid and oldid request  parameters would allow page titles to be enumerated even 
+			// when they are not guessable. So we reset the title to Special:Badtitle before the 
+			// permissions error is displayed.
+			$badtitle = SpecialPage::getTitleFor( 'Badtitle' );
+			$output->setTitle( $badtitle );
+			$wgTitle = $badtitle;
+
 			$output->loginToUse();
 			$this->finalCleanup( $output );
 			$output->disable();
