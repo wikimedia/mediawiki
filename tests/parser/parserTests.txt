@@ -1484,7 +1484,7 @@ Indented table markup mixed with indented pre content (proposed in bug 6200)
  <table>
  <tr>
  <td>
- pre
+ Text that should be rendered preformatted
  </td>
  </tr>
  </table>
@@ -1492,7 +1492,7 @@ Indented table markup mixed with indented pre content (proposed in bug 6200)
  <table>
  <tr>
  <td>
-<pre>pre
+<pre>Text that should be rendered preformatted
 </pre>
  </td>
  </tr>
