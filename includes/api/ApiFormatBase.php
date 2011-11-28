@@ -265,6 +265,8 @@ See <a href='https://www.mediawiki.org/wiki/API'>complete documentation</a>, or
 		$text = preg_replace( "#(($protos).*?)(&quot;)?([ \\'\"<>\n]|&lt;|&gt;|&quot;)#", '<a href="\\1">\\1</a>\\3\\4', $text );
 		// identify requests to api.php
 		$text = preg_replace( "#api\\.php\\?[^ \\()<\n\t]+#", '<a href="\\0">\\0</a>', $text );
+		// identify requests to index.php
+		$text = preg_replace( "#index\\.php\\?[^ \\()<\n\t]+#", '<a href="\\0">\\0</a>', $text );
 		if ( $this->mHelp ) {
 			// make strings inside * bold
 			$text = preg_replace( "#\\*[^<>\n]+\\*#", '<b>\\0</b>', $text );
