@@ -40,19 +40,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$wgSitename, $wgFileExtensions, $wgExtensionAssetsPath,
 			$wgCookiePrefix, $wgResourceLoaderMaxQueryLength, $wgLegacyJavaScriptGlobals;
 
-		// Pre-process information
-		$separatorTransTable = $wgContLang->separatorTransformTable();
-		$separatorTransTable = $separatorTransTable ? $separatorTransTable : array();
-		$compactSeparatorTransTable = array(
-			implode( "\t", array_keys( $separatorTransTable ) ),
-			implode( "\t", $separatorTransTable ),
-		);
-		$digitTransTable = $wgContLang->digitTransformTable();
-		$digitTransTable = $digitTransTable ? $digitTransTable : array();
-		$compactDigitTransTable = array(
-			implode( "\t", array_keys( $digitTransTable ) ),
-			implode( "\t", $digitTransTable ),
-		);
 		$mainPage = Title::newMainPage();
 
 		/**
@@ -91,8 +78,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'wgDefaultDateFormat' => $wgContLang->getDefaultDateFormat(),
 			'wgMonthNames' => $wgContLang->getMonthNamesArray(),
 			'wgMonthNamesShort' => $wgContLang->getMonthAbbreviationsArray(),
-			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
-			'wgDigitTransformTable' => $compactDigitTransTable,
 			'wgMainPageTitle' => $mainPage ? $mainPage->getPrefixedText() : null,
 			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
 			'wgNamespaceIds' => $namespaceIds,
