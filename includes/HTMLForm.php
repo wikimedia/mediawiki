@@ -72,6 +72,8 @@ class HTMLForm extends ContextSource {
 		'submit' => 'HTMLSubmitField',
 		'hidden' => 'HTMLHiddenField',
 		'edittools' => 'HTMLEditTools',
+		'namespaces' => 'HTMLNamespacesField',
+		'restrictionlevels' => 'HTMLRestrictionLevelsField',
 
 		# HTMLTextField will output the correct type="" attribute automagically.
 		# There are about four zillion other HTML5 input types, like url, but
@@ -853,6 +855,16 @@ class HTMLForm extends ContextSource {
 	 */
 	public function getFlatFields() {
 		return $this->mFlatFields;
+	}
+
+	/**
+	 * Returns a value of a field
+	 *
+	 * @param $field string Field name
+	 * @return mixed
+	 */
+	public function getVal( $field ) {
+		return $this->mFieldData[$field];
 	}
 }
 
@@ -2002,5 +2014,86 @@ class HTMLEditTools extends HTMLFormField {
 			. '<div class="mw-editTools">'
 			. $msg->parseAsBlock()
 			. "</div></td></tr>\n";
+	}
+}
+
+/**
+ * Dropdown for namespaces
+ */
+class HTMLNamespacesField extends HTMLSelectField {
+	function __construct( $params ) {
+		global $wgContLang;
+		parent::__construct( $params );
+
+		$namespaces = $wgContLang->getFormattedNamespaces();
+
+		$options = array();
+		$options[ wfMessage( 'namespacesall' )->escaped() ] = ''; // TODO: Make an option
+
+		foreach ( $namespaces as $index => $name ) {
+			// Don't include things like SpecialPages
+			if ( $index < NS_MAIN ) {
+				continue;
+			}
+
+			if ( $index === 0 ) {
+				$name = wfMessage( 'blanknamespace' )->escaped();
+			}
+
+			$options[$name] = $index;
+		}
+
+		$this->mParams['options'] = $options;
+	}
+}
+
+/**
+ * Dropdown for protection levels
+ */
+class HTMLRestrictionLevelsField extends HTMLSelectField {
+
+	/**
+	 * Should this field be displayed? If it hits a condition where it should
+	 * be hidden, set this to false.
+	 *
+	 * @var bool
+	 */
+	protected $enabled = true;
+
+	function __construct( $params ) {
+		global $wgRestrictionLevels;
+		parent::__construct( $params );
+
+		$options = array( wfMsg('restriction-level-all') => 0 ); // Temporary array
+
+		// First pass to load the level names
+		foreach( $wgRestrictionLevels as $type ) {
+			if ( $type != '' && $type != '*' ) {
+				$text = wfMsg("restriction-level-$type");
+				$options[$text] = $type;
+			}
+		}
+
+		// Is there only one level (aside from "all")?
+		if( count($options) <= 2 ) {
+			$this->enabled = false;
+			return;
+		}
+
+		$this->mParams['options'] = $options;
+	}
+
+	/**
+	 * Returns false where
+	 *
+	 * @param $value
+	 * @return String
+	 */
+	function getTableRow( $value ) {
+		if ( $this->enabled ) {
+			return parent::getTableRow( $value );
+		}
+
+		return '';
 	}
 }

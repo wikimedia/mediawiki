@@ -28,9 +28,6 @@
  */
 class SpecialProtectedtitles extends SpecialPage {
 
-	protected $IdLevel = 'level';
-	protected $IdType  = 'type';
-
 	public function __construct() {
 		parent::__construct( 'Protectedtitles' );
 	}
@@ -44,16 +41,8 @@ class SpecialProtectedtitles extends SpecialPage {
 			Title::purgeExpiredRestrictions();
 		}
 
-		$request = $this->getRequest();
-		$type = $request->getVal( $this->IdType );
-		$level = $request->getVal( $this->IdLevel );
-		$sizetype = $request->getVal( 'sizetype' );
-		$size = $request->getIntOrNull( 'size' );
-		$NS = $request->getIntOrNull( 'namespace' );
-
-		$pager = new ProtectedTitlesPager( $this, array(), $type, $level, $NS, $sizetype, $size );
-
-		$this->getOutput()->addHTML( $this->showOptions( $NS, $type, $level ) );
+		$pager = new ProtectedTitlesPager( $this );
+		$this->getOutput()->addHTML( $pager->buildHTMLForm() );
 
 		if ( $pager->getNumRows() ) {
 			$s = $pager->getNavigationBar();
@@ -70,6 +59,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	/**
 	 * Callback function to output a restriction
 	 *
+	 * @param $row
 	 * @return string
 	 */
 	function formatRow( $row ) {
@@ -107,74 +97,6 @@ class SpecialProtectedtitles extends SpecialPage {
 
 		return '<li>' . $lang->specialList( $link, implode( $description_items, ', ' ) ) . "</li>\n";
 	}
-
-	/**
-	 * @param $namespace Integer:
-	 * @param $type string
-	 * @param $level string
-	 * @private
-	 */
-	function showOptions( $namespace, $type='edit', $level ) {
-		global $wgScript;
-		$action = htmlspecialchars( $wgScript );
-		$title = $this->getTitle();
-		$special = htmlspecialchars( $title->getPrefixedDBkey() );
-		return "<form action=\"$action\" method=\"get\">\n" .
-			'<fieldset>' .
-			Xml::element( 'legend', array(), wfMsg( 'protectedtitles' ) ) .
-			Html::hidden( 'title', $special ) . "&#160;\n" .
-			$this->getNamespaceMenu( $namespace ) . "&#160;\n" .
-			$this->getLevelMenu( $level ) . "&#160;\n" .
-			"&#160;" . Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "\n" .
-			"</fieldset></form>";
-	}
-
-	/**
-	 * Prepare the namespace filter drop-down; standard namespace
-	 * selector, sans the MediaWiki namespace
-	 *
-	 * @param $namespace Mixed: pre-select namespace
-	 * @return string
-	 */
-	function getNamespaceMenu( $namespace = null ) {
-		return Xml::label( wfMsg( 'namespace' ), 'namespace' )
-			. '&#160;'
-			. Xml::namespaceSelector( $namespace, '' );
-	}
-
-	/**
-	 * @return string Formatted HTML
-	 * @private
-	 */
-	function getLevelMenu( $pr_level ) {
-		global $wgRestrictionLevels;
-
-		$m = array( wfMsg('restriction-level-all') => 0 ); // Temporary array
-		$options = array();
-
-		// First pass to load the log names
-		foreach( $wgRestrictionLevels as $type ) {
-			if ( $type !='' && $type !='*') {
-				$text = wfMsg("restriction-level-$type");
-				$m[$text] = $type;
-			}
-		}
-		// Is there only one level (aside from "all")?
-		if( count($m) <= 2 ) {
-			return '';
-		}
-		// Third pass generates sorted XHTML content
-		foreach( $m as $text => $type ) {
-			$selected = ($type == $pr_level );
-			$options[] = Xml::option( $text, $type, $selected );
-		}
-
-		return
-			Xml::label( wfMsg('restriction-level') , $this->IdLevel ) . '&#160;' .
-			Xml::tags( 'select',
-				array( 'id' => $this->IdLevel, 'name' => $this->IdLevel ),
-				implode( "\n", $options ) );
-	}
 }
 
 /**
@@ -182,14 +104,23 @@ class SpecialProtectedtitles extends SpecialPage {
  * @ingroup Pager
  */
 class ProtectedTitlesPager extends AlphabeticPager {
-	public $mForm, $mConds;
+	/**
+	 * @var SpecialProtectedtitles
+	 */
+	public $mForm;
 
-	function __construct( $form, $conds = array(), $type, $level, $namespace, $sizetype='', $size=0 ) {
+	/**
+	 * @var array
+	 */
+	public $mConds;
+
+	/**
+	 * @param $form SpecialProtectedtitles
+	 * @param $conds array
+	 */
+	function __construct( $form, $conds = array() ) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
-		$this->level = $level;
-		$this->namespace = $namespace;
-		$this->size = intval($size);
 		parent::__construct( $form->getContext() );
 	}
 
@@ -225,10 +156,14 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	function getQueryInfo() {
 		$conds = $this->mConds;
 		$conds[] = 'pt_expiry>' . $this->mDb->addQuotes( $this->mDb->timestamp() );
-		if( $this->level )
-			$conds['pt_create_perm'] = $this->level;
-		if( !is_null($this->namespace) )
-			$conds[] = 'pt_namespace=' . $this->mDb->addQuotes( $this->namespace );
+
+		if ( $this->mHTMLForm->getVal( 'Level' ) ) {
+			$conds['pt_create_perm'] = $this->mHTMLForm->getVal( 'Level' );
+		}
+		if ( $this->mHTMLForm->getVal( 'Namespace' ) !== '' ) {
+			$conds['pt_namespace'] = $this->mHTMLForm->getVal( 'Namespace' );
+		}
+
 		return array(
 			'tables' => 'protected_titles',
 			'fields' => 'pt_namespace,pt_title,pt_create_perm,pt_expiry,pt_timestamp',
@@ -239,5 +174,28 @@ class ProtectedTitlesPager extends AlphabeticPager {
 	function getIndexField() {
 		return 'pt_timestamp';
 	}
+
+	protected function getHTMLFormFields() {
+		return array(
+			 'Namespace' => array(
+				 'type' => 'namespaces',
+				 'label-message' => 'namespace',
+			 ),
+			 'Level' => array(
+				 'type' => 'restrictionlevels',
+				 'label-message' => 'restriction-level',
+			 ),
+		 );
+	}
+
+	protected function getHTMLFormSubmit() {
+		return 'allpagessubmit';
+	}
+
+	protected function getHTMLFormLegend() {
+		return 'protectedtitles';
+	}
+
+
 }
 

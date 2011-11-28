@@ -100,6 +100,13 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected $mLastShown, $mFirstShown, $mPastTheEndIndex, $mDefaultQuery, $mNavigationBar;
 
 	/**
+	 * HTMLForm object
+	 *
+	 * @var HTMLForm
+	 */
+	protected $mHTMLForm;
+
+	/**
 	 * Result object for the query. Warning: seek before use.
 	 *
 	 * @var ResultWrapper
@@ -569,27 +576,25 @@ abstract class IndexPager extends ContextSource implements Pager {
 			throw new MWException( __METHOD__ . " was called without any form fields being defined" );
 		}
 
-		$form = new HTMLForm( $this->getHTMLFormFields(), $this->getContext() );
-		$form->setMethod( 'get' );
-		$form->setWrapperLegendMsg( $this->getHTMLFormLegend() );
-		$form->setSubmitTextMsg( $this->getHTMLFormSubmit() );
-		$this->addHiddenFields( $form );
-		$this->modifyHTMLForm( $form );
-		$form->prepareForm();
+		$this->mHTMLForm = new HTMLForm( $this->getHTMLFormFields(), $this->getContext() );
+		$this->mHTMLForm->setMethod( 'get' );
+		$this->mHTMLForm->setWrapperLegendMsg( $this->getHTMLFormLegend() );
+		$this->mHTMLForm->setSubmitTextMsg( $this->getHTMLFormSubmit() );
+		$this->addHiddenFields();
+		$this->modifyHTMLForm( $this->mHTMLForm );
+		$this->mHTMLForm->prepareForm();
 
-		return $form->getHTML( '' );
+		return $this->mHTMLForm->getHTML( '' );
 	}
 
 	/**
 	 * Adds hidden elements to forms for things that are in the query string.
 	 * This is so that parameters like offset stick through form submissions
-	 *
-	 * @param HTMLForm $form
 	 */
-	protected function addHiddenFields( HTMLForm $form ) {
+	protected function addHiddenFields() {
 		$query = $this->getRequest()->getQueryValues();
 		$fieldsBlacklist = array( 'title' );
-		$fields = $form->getFlatFields();
+		$fields = $this->mHTMLForm->getFlatFields();
 		foreach ( $fields as $name => $field ) {
 			$fieldsBlacklist[] = $field->getName();
 		}
@@ -597,7 +602,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 			if ( in_array( $name, $fieldsBlacklist ) ) {
 				continue;
 			}
-			$form->addHiddenField( $name, $value );
+			$this->mHTMLForm->addHiddenField( $name, $value );
 		}
 	}
 
