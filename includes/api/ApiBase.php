@@ -539,7 +539,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getFinalDescription() {
 		$desc = $this->getDescription();
-		wfRunHooks( 'ApiGetDescription', array( &$this, &$desc ) );
+		wfRunHooks( 'APIGetDescription', array( &$this, &$desc ) );
 		return $desc;
 	}
 
