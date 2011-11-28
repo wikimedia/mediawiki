@@ -730,9 +730,11 @@ class LocalFile extends File {
 		$files = $this->getThumbnails();
 		
 		// Give media handler a chance to filter the purge list
-		$handler = $this->getHandler();
-		if ( $handler ) {
-			$handler->filterThumbnailPurgeList( $files, $options );
+		if ( !empty( $options['forRefresh'] ) ) {
+			$handler = $this->getHandler();
+			if ( $handler ) {
+				$handler->filterThumbnailPurgeList( $files, $options );
+			}
 		}
 		
 		$dir = array_shift( $files );
