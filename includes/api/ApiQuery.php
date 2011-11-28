@@ -101,6 +101,8 @@ class ApiQuery extends ApiBase {
 	private $mSlaveDB = null;
 	private $mNamedDB = array();
 
+	protected $mAllowedGenerators = array();
+
 	public function __construct( $main, $action ) {
 		parent::__construct( $main, $action );
 
@@ -114,9 +116,8 @@ class ApiQuery extends ApiBase {
 		$this->mListModuleNames = array_keys( $this->mQueryListModules );
 		$this->mMetaModuleNames = array_keys( $this->mQueryMetaModules );
 
-		// Allow the entire list of modules at first,
-		// but during module instantiation check if it can be used as a generator.
-		$this->mAllowedGenerators = array_merge( $this->mListModuleNames, $this->mPropModuleNames );
+		$this->makeHelpMsgHelper( $this->mQueryPropModules, 'prop' );
+		$this->makeHelpMsgHelper( $this->mQueryListModules, 'list' );
 	}
 
 	/**
@@ -631,6 +632,9 @@ class ApiQuery extends ApiBase {
 		$moduleDescriptions = array();
 
 		foreach ( $moduleList as $moduleName => $moduleClass ) {
+			/**
+			 * @var $module ApiQueryBase
+			 */
 			$module = new $moduleClass( $this, $moduleName, null );
 
 			$msg = ApiMain::makeHelpMsgHeader( $module, $paramName );
