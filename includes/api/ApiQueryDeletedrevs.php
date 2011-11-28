@@ -394,7 +394,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Deletedrevs';
+		return 'https://www.mediawiki.org/wiki/API:Deletedrevs';
 	}
 
 	public function getVersion() {

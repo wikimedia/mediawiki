@@ -243,7 +243,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Meta#userinfo_.2F_ui';
+		return 'https://www.mediawiki.org/wiki/API:Meta#userinfo_.2F_ui';
 	}
 
 	public function getVersion() {

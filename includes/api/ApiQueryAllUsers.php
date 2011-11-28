@@ -229,7 +229,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				ApiBase::dieDebug( __METHOD__,
 					'MediaWiki configuration error: the database contains more user groups than known to User::getAllGroups() function' );
 			}
-			
+
 			$lastUserObj = User::newFromName( $lastUser );
 
 			// Add user's group info
@@ -366,7 +366,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Allusers';
+		return 'https://www.mediawiki.org/wiki/API:Allusers';
 	}
 
 	public function getVersion() {

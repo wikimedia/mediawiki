@@ -220,7 +220,7 @@ class ApiProtect extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Protect';
+		return 'https://www.mediawiki.org/wiki/API:Protect';
 	}
 
 	public function getVersion() {

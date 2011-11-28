@@ -503,7 +503,7 @@ class ApiEditPage extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Edit';
+		return 'https://www.mediawiki.org/wiki/API:Edit';
 	}
 
 	public function getVersion() {

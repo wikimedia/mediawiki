@@ -241,7 +241,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 			'prop' => 'Which properties to get',
 			'enableparser' => array( 'Set to enable parser, will preprocess the wikitext of message',
 							'Will substitute magic words, handle templates etc.' ),
-			'nocontent' => 'If set, do not include the content of the messages in the output.', 
+			'nocontent' => 'If set, do not include the content of the messages in the output.',
 			'includelocal' => array( "Also include local messages, i.e. messages that don't exist in the software but do exist as a MediaWiki: page.",
 							"This lists all MediaWiki: pages, so it will also list those that aren't 'really' messages such as Common.js",
 			),
@@ -268,7 +268,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Meta#allmessages_.2F_am';
+		return 'https://www.mediawiki.org/wiki/API:Meta#allmessages_.2F_am';
 	}
 
 	public function getVersion() {

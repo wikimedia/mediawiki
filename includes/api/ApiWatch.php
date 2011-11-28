@@ -120,7 +120,7 @@ class ApiWatch extends ApiBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Watch';
+		return 'https://www.mediawiki.org/wiki/API:Watch';
 	}
 
 	public function getVersion() {

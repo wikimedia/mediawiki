@@ -463,7 +463,7 @@ abstract class ApiBase extends ContextSource {
 		// This is necessary to make stuff like ApiMain::getVersion()
 		// returning the version string for ApiBase work
 		if ( $path ) {
-			return "{$matches[0]}\n   http://svn.wikimedia.org/" .
+			return "{$matches[0]}\n   https://svn.wikimedia.org/" .
 				"viewvc/mediawiki/trunk/" . dirname( $path ) .
 				"/{$matches[2]}";
 		}

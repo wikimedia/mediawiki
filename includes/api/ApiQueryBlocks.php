@@ -339,7 +339,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Blocks';
+		return 'https://www.mediawiki.org/wiki/API:Blocks';
 	}
 
 	public function getVersion() {

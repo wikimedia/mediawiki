@@ -322,7 +322,7 @@ class ApiQueryUsers extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Users';
+		return 'https://www.mediawiki.org/wiki/API:Users';
 	}
 
 	public function getVersion() {

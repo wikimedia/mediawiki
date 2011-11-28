@@ -790,7 +790,7 @@ class ApiMain extends ApiBase {
 				'wait until the replication lag is less than the specified value.',
 				'In case of a replag error, a HTTP 503 error is returned, with the message like',
 				'"Waiting for $host: $lag seconds lagged\n".',
-				'See http://www.mediawiki.org/wiki/Manual:Maxlag_parameter for more information',
+				'See https://www.mediawiki.org/wiki/Manual:Maxlag_parameter for more information',
 			),
 			'smaxage' => 'Set the s-maxage header to this many seconds. Errors are never cached',
 			'maxage' => 'Set the max-age header to this many seconds. Errors are never cached',
@@ -813,7 +813,7 @@ class ApiMain extends ApiBase {
 			'**                      This is an auto-generated MediaWiki API documentation page                      **',
 			'**                                                                                                      **',
 			'**                                    Documentation and Examples:                                       **',
-			'**                                 http://www.mediawiki.org/wiki/API                                    **',
+			'**                                 https://www.mediawiki.org/wiki/API                                    **',
 			'**                                                                                                      **',
 			'**********************************************************************************************************',
 			'',
@@ -828,7 +828,7 @@ class ApiMain extends ApiBase {
 			'                       In the case of an invalid action being passed, these will have a value',
 			'                       of "unknown_action"',
 			'',
-			'                       For more information see http://www.mediawiki.org/wiki/API:Errors_and_warnings',
+			'                       For more information see https://www.mediawiki.org/wiki/API:Errors_and_warnings',
 			'',
 			'Documentation:         https://www.mediawiki.org/wiki/API:Main_page',
 			'FAQ                    https://www.mediawiki.org/wiki/API:FAQ',
@@ -870,7 +870,7 @@ class ApiMain extends ApiBase {
 			'    Yuri Astrakhan <Firstname><Lastname>@gmail.com (creator, lead developer Sep 2006-Sep 2007)',
 			'',
 			'Please send your comments, suggestions and questions to mediawiki-api@lists.wikimedia.org',
-			'or file a bug report at http://bugzilla.wikimedia.org/'
+			'or file a bug report at https://bugzilla.wikimedia.org/'
 		);
 	}
 
@@ -997,7 +997,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function getVersion() {
 		$vers = array();
-		$vers[] = 'MediaWiki: ' . SpecialVersion::getVersion() . "\n    http://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/";
+		$vers[] = 'MediaWiki: ' . SpecialVersion::getVersion() . "\n    https://svn.wikimedia.org/viewvc/mediawiki/trunk/phase3/";
 		$vers[] = __CLASS__ . ': $Id$';
 		$vers[] = ApiBase::getBaseVersion();
 		$vers[] = ApiFormatBase::getBaseVersion();

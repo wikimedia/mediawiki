@@ -636,7 +636,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function getHelpUrls() {
-		return 'http://www.mediawiki.org/wiki/API:Meta#siteinfo_.2F_si';
+		return 'https://www.mediawiki.org/wiki/API:Meta#siteinfo_.2F_si';
 	}
 
 	public function getVersion() {
