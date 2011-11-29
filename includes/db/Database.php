@@ -226,6 +226,8 @@ abstract class DatabaseBase implements DatabaseType {
 
 	protected $preparedArgs;
 
+	protected $htmlErrors;
+
 # ------------------------------------------------------------------------------
 # Accessors
 # ------------------------------------------------------------------------------
@@ -621,6 +623,11 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Same as new DatabaseMysql( ... ), kept for backward compatibility
 	 * @deprecated since 1.17
 	 *
+	 * @param $server
+	 * @param $user
+	 * @param $password
+	 * @param $dbName
+	 * @param $flags int
 	 * @return DatabaseMysql
 	 */
 	static function newFromParams( $server, $user, $password, $dbName, $flags = 0 ) {
@@ -692,6 +699,10 @@ abstract class DatabaseBase implements DatabaseType {
 		}
 	}
 
+	/**
+	 * @param $errno
+	 * @param $errstr
+	 */
 	protected function connectionErrorHandler( $errno,  $errstr ) {
 		$this->mPHPError = $errstr;
 	}
@@ -1542,8 +1553,10 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
-	 * @todo document
 	 * mysql_field_type() wrapper
+	 * @param $res
+	 * @param $index
+	 * @return string
 	 */
 	function fieldType( $res, $index ) {
 		if ( $res instanceof ResultWrapper ) {
@@ -2278,6 +2291,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * which index to pick.  Anyway, other databases might have different
 	 * indexes on a given table.  So don't bother overriding this unless you're
 	 * MySQL.
+	 * @param $index
+	 * @return string
 	 */
 	function useIndexClause( $index ) {
 		return '';
