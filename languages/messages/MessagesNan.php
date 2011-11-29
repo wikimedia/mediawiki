@@ -1377,6 +1377,28 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'filename-tooshort'          => '檔案名傷短',
 'filetype-banned'            => '這類的檔案被禁止',
 'verification-error'         => '這个檔案無通過驗證',
+'hookaborted'                => '你欲做的編輯因為擴展鈎(extension hook)去跳開。',
+'illegal-filename'           => '無合用的檔案名稱',
+'overwrite'                  => '袂使覆寫已經佇咧的檔案',
+'unknown-error'              => '發生一个不知的錯誤',
+'tmp-create-error'           => '無法度建立臨時檔案',
+'tmp-write-error'            => '寫入臨時檔案的時陣發生錯誤',
+'large-file'                 => '建議檔案的大小袂當超過 $1，本檔案大小是 $2。',
+'largefileserver'            => '這个檔案比伺服器配置所允許的較大。',
+'emptyfile'                  => '你欲上載的檔案敢若是空的，
+這有可能是拍毋著檔案名稱，
+請檢查你確定是欲上載這个檔案。',
+'fileexists'                 => "已經有一个仝名的檔案，你若無確定你欲要共改，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
+'filepageexists'             => "這个檔案的描述頁已經佇'''<tt>[[:$1]]</tt>'''建立，毋過這个名稱的檔案猶未有，
+你所輸入的概要袂顯示佇彼个描述頁當中，若欲概要佇遐看會著，你愛手動編輯。
+[[$1|thumb]]",
+'fileexists-extension'       => "一个親像檔名的檔案已經佇咧: [[$2|thumb]]
+* 上載檔案的檔名: '''<tt>[[:$1]]</tt>'''
+* 這馬檔案的檔名: '''<tt>[[:$2]]</tt>'''
+請選一个無仝的名。",
+'fileexists-thumbnail-yes'   => "這个檔案若親像是一幅圖的縮小版本''（縮圖）''。 [[$1|thumb]]
+請檢查檔案'''<tt>[[:$1]]</tt>'''，
+若檢查的檔案是仝幅圖的縮圖，就毋免閣上載一幅縮圖。",
 'uploadwarning'              => 'Upload kéng-kò',
 'savefile'                   => 'Pó-chûn tóng-àn',
 'uploadedimage'              => 'thoân "[[$1]]" chiūⁿ-bāng',

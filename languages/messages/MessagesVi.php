@@ -1575,6 +1575,7 @@ Nếu bạn đồng ý cung cấp, nó sẽ dùng để ghi nhận công lao c�
 'action-userrights'           => 'sửa đổi mọi quyền người dùng',
 'action-userrights-interwiki' => 'sửa đổi quyền của người dùng tại wiki khác',
 'action-siteadmin'            => 'khóa hoặc mở khóa cơ sở dữ liệu',
+'action-sendemail'            => 'gửi thư điện tử',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|thay đổi|thay đổi}}',

@@ -1391,12 +1391,12 @@ $1",
 'group-suppress'      => 'Ревизори',
 'group-all'           => '(всички)',
 
-'group-user-member'          => 'Потребител',
+'group-user-member'          => '{{GENDER:$1|потребител}}',
 'group-autoconfirmed-member' => 'Автоматично одобрен потребител',
 'group-bot-member'           => 'Бот',
 'group-sysop-member'         => 'Администратор',
-'group-bureaucrat-member'    => 'Бюрократ',
-'group-suppress-member'      => 'Ревизор',
+'group-bureaucrat-member'    => '{{GENDER:$1|бюрократ}}',
+'group-suppress-member'      => '{{GENDER:$1|ревизор}}',
 
 'grouppage-user'          => '{{ns:project}}:Потребители',
 'grouppage-autoconfirmed' => '{{ns:project}}:Автоматично одобрени потребители',
@@ -2211,6 +2211,7 @@ $UNWATCHURL
 'movedarticleprotection'      => 'преместване на настройките за защита от „[[$2]]“ на „[[$1]]“',
 'protect-title'               => 'Смяна на нивото на защита на "$1"',
 'prot_1movedto2'              => '„[[$1]]“ преместена като „[[$2]]“',
+'protect-badnamespace-text'   => 'Страниците в това именно пространство не могат да бъдат защитени.',
 'protect-legend'              => 'Потвърждение на защитата',
 'protectcomment'              => 'Причина:',
 'protectexpiry'               => 'Изтича на:',
@@ -2881,6 +2882,7 @@ $1',
 'minutes' => '{{PLURAL:$1|$1 минута|$1 минути}}',
 'hours'   => '{{PLURAL:$1|$1 час|$1 часа}}',
 'days'    => '{{PLURAL:$1|$1 ден|$1 дни}}',
+'ago'     => 'преди $1',
 
 # Bad image list
 'bad_image_list' => 'Спазва се следният формат:

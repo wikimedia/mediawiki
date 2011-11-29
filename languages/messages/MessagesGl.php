@@ -546,8 +546,8 @@ A última consulta á base de datos foi:
 desde a función "$2".
 A base de datos devolveu o erro "$3: $4"',
 'laggedslavemode'      => "'''Aviso:''' A páxina pode non conter as actualizacións recentes.",
-'readonly'             => 'Base de datos fechada',
-'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
+'readonly'             => 'Base de datos pechada',
+'enterlockreason'      => 'Dea unha razón para o peche, incluíndo unha estimación de até cando se manterá',
 'readonlytext'         => 'Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento, tras as que volverá á normalidade.
 
 O administrador que a pechou deu esta explicación: $1',
@@ -946,10 +946,10 @@ Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría 
 '''NON ENVÍE SEN PERMISO TRABALLOS CON DEREITOS DE COPIA!'''",
 'longpageerror'                    => "'''Erro: O texto que pretende gardar ocupa $1 kilobytes, e existe un límite dun máximo de $2 kilobytes.'''
 Polo tanto, non se pode gardar.",
-'readonlywarning'                  => "'''Atención: A base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.'''
+'readonlywarning'                  => "'''Atención: A base de datos foi pechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.'''
 Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.
 
-O administrador que a fechou deu esta explicación: $1",
+O administrador que a pechou deu esta explicación: $1",
 'protectedpagewarning'             => "'''Aviso: Esta páxina foi protexida de xeito que só os usuarios con privilexios de administrador a poidan editar.'''
 Velaquí está a última entrada no rexistro, por se quere consultala:",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta páxina foi protexida de xeito que só os usuarios rexistrados a poidan editar.
@@ -1452,7 +1452,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-bot'                   => 'Ser tratado coma un proceso automatizado',
 'right-nominornewtalk'        => 'As edicións pequenas nas páxinas de conversa non lanzan o aviso de mensaxes novas',
 'right-apihighlimits'         => 'Usar os límites superiores nas peticións API',
-'right-writeapi'              => 'Usar o API para modificar o wiki',
+'right-writeapi'              => 'Usar a API para modificar o wiki',
 'right-delete'                => 'Borrar páxinas',
 'right-bigdelete'             => 'Borrar páxinas con historiais grandes',
 'right-deleterevision'        => 'Borrar e restaurar versións específicas de páxinas',
@@ -1486,7 +1486,7 @@ Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
 'right-mergehistory'          => 'Fusionar o historial das páxinas',
 'right-userrights'            => 'Editar todos os dereitos de usuario',
 'right-userrights-interwiki'  => 'Editar os dereitos de usuario dos usuarios doutros wikis',
-'right-siteadmin'             => 'Fechar e abrir a base de datos',
+'right-siteadmin'             => 'Pechar e abrir a base de datos',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
 'right-sendemail'             => 'Enviar correos electrónicos a outros usuarios',
 'right-passwordreset'         => 'Ver os correos electrónicos de restablecemento de contrasinais',
@@ -1641,7 +1641,7 @@ Por favor, cambie o nome do ficheiro e intente cargalo de novo.',
 'tmp-create-error'            => 'Non se puido crear o ficheiro temporal.',
 'tmp-write-error'             => 'Houbo un erro ao gravar o ficheiro temporal.',
 'large-file'                  => 'Recoméndase que o tamaño dos ficheiros non supere os $1; este ficheiro ocupa $2.',
-'largefileserver'             => 'Este ficheiro é de maior tamaño có permitido pola configuración do servidor.',
+'largefileserver'             => 'Este ficheiro é de maior tamaño ca o permitido pola configuración do servidor.',
 'emptyfile'                   => 'O ficheiro que cargou semella estar baleiro.
 Isto pode deberse a un erro ortográfico no seu nome.
 Por favor, verifique se realmente quere cargar este ficheiro.',
@@ -2579,20 +2579,20 @@ Polo tanto, non pode crear unha conta",
 'ipbnounblockself'                => 'Non ten os permisos necesarios para desbloquearse a si mesmo',
 
 # Developer tools
-'lockdb'              => 'Fechar a base de datos',
+'lockdb'              => 'Pechar a base de datos',
 'unlockdb'            => 'Desbloquear a base de datos',
-'lockdbtext'          => 'Ao fechar a base de datos quitaralles aos usuarios a posibilidade de editar páxinas, cambiar as súas preferencias, editar as súas listas de vixilancia e outras cousas que requiren cambios na base de datos.
+'lockdbtext'          => 'Ao pechar a base de datos quitaralles aos usuarios a posibilidade de editar páxinas, cambiar as súas preferencias, editar as súas listas de vixilancia e outras cousas que requiren cambios na base de datos.
 Por favor, confirme que isto é o que realmente quere facer e que retirará o bloqueo da base de datos cando remate co mantemento.',
 'unlockdbtext'        => 'O desbloqueo da base de datos vai permitir que os usuarios poidan editar páxinas, cambiar as súas preferencias, editar as súas listas de vixilancia e outras accións que requiran cambios na base de datos.
 Por favor confirme que isto é o que quere facer.',
-'lockconfirm'         => 'Si, realmente quero fechar a base de datos.',
+'lockconfirm'         => 'Si, realmente quero pechar a base de datos.',
 'unlockconfirm'       => 'Si, realmente quero desbloquear a base de datos',
-'lockbtn'             => 'Fechar a base de datos',
+'lockbtn'             => 'Pechar a base de datos',
 'unlockbtn'           => 'Desbloquear a base de datos',
 'locknoconfirm'       => 'Non marcou a caixa de confirmación.',
-'lockdbsuccesssub'    => 'A base de datos foi fechada con éxito',
+'lockdbsuccesssub'    => 'A base de datos foi pechada correctamente',
 'unlockdbsuccesssub'  => 'Quitouse a protección da base de datos',
-'lockdbsuccesstext'   => 'Fechouse a base de datos.<br />
+'lockdbsuccesstext'   => 'Pechouse a base de datos.<br />
 Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu mantemento.',
 'unlockdbsuccesstext' => 'A base de datos foi desbloqueada.',
 'lockfilenotwritable' => 'Non se pode escribir no ficheiro de bloqueo da base de datos. Para bloquear ou desbloquear a base de datos, o servidor web ten que poder escribir neste ficheiro.',

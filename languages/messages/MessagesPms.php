@@ -1330,6 +1330,7 @@ Costa anformassion a sarà pùblica.",
 'action-userrights'           => "modifiché tùit ij drit dj'utent",
 'action-userrights-interwiki' => "modifiché ij drit ëd j'utent ansima a d'àutre wiki",
 'action-siteadmin'            => 'bloché o dësbloché la base ëd dàit',
+'action-sendemail'            => 'mandé un corel',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modìfica|modìfiche}}',
@@ -1812,8 +1813,8 @@ Për piasì, ch'a nòta che d'àutri sit an sl'aragnà a peulo coleghesse a n'ar
 'booksources-invalid-isbn'  => "L'ISBN dàit a smija che a sia pa vàlid; ch'a contròla s'a-i é n'eror an copiand da la sorgiss original.",
 
 # Special:Log
-'specialloguserlabel'  => 'Utent:',
-'speciallogtitlelabel' => 'Tìtol:',
+'specialloguserlabel'  => 'Esecutor:',
+'speciallogtitlelabel' => 'Obietiv (tìtol o utent):',
 'log'                  => 'Registr',
 'all-logs-page'        => 'Tùit ij registr pùblich',
 'alllogstext'          => 'Visualisassion combinà ëd tùit ij registr ëd {{SITENAME}}.
