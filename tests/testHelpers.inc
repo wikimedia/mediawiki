@@ -355,6 +355,7 @@ class TestFileIterator implements Iterator {
 	private $parserTest; /* An instance of ParserTest (parserTests.php) or MediaWikiParserTest (phpunit) */
 	private $index = 0;
 	private $test;
+	private $section = null; /** String|null: current test section being analyzed */
 	private $lineNum;
 	private $eof;
 
@@ -410,36 +411,29 @@ class TestFileIterator implements Iterator {
 
 	function readNextTest() {
 		$data = array();
-		$section = null;
+		$this->section = null;
 
 		while ( false !== ( $line = fgets( $this->fh ) ) ) {
 			$this->lineNum++;
 			$matches = array();
 
 			if ( preg_match( '/^!!\s*(\w+)/', $line, $matches ) ) {
-				$section = strtolower( $matches[1] );
+				$this->section = strtolower( $matches[1] );
 
-				if ( $section == 'endarticle' ) {
-					if ( !isset( $data['text'] ) ) {
-						throw new MWException( "'endarticle' without 'text' at line {$this->lineNum} of $this->file\n" );
-					}
-
-					if ( !isset( $data['article'] ) ) {
-						throw new MWException( "'endarticle' without 'article' at line {$this->lineNum} of $this->file\n" );
-					}
+				if ( $this->section == 'endarticle' ) {
+					$this->checkSection( $data, 'text'    );
+					$this->checkSection( $data, 'article' );
 
 					$this->parserTest->addArticle( ParserTest::chomp( $data['article'] ), $data['text'], $this->lineNum );
 
 					$data = array();
-					$section = null;
+					$this->section = null;
 
 					continue;
 				}
 
-				if ( $section == 'endhooks' ) {
-					if ( !isset( $data['hooks'] ) ) {
-						throw new MWException( "'endhooks' without 'hooks' at line {$this->lineNum} of $this->file\n" );
-					}
+				if ( $this->section == 'endhooks' ) {
+					$this->checkSection( $data, 'hooks' );
 
 					foreach ( explode( "\n", $data['hooks'] ) as $line ) {
 						$line = trim( $line );
@@ -452,15 +446,13 @@ class TestFileIterator implements Iterator {
 					}
 
 					$data = array();
-					$section = null;
+					$this->section = null;
 
 					continue;
 				}
 
-				if ( $section == 'endfunctionhooks' ) {
-					if ( !isset( $data['functionhooks'] ) ) {
-						throw new MWException( "'endfunctionhooks' without 'functionhooks' at line {$this->lineNum} of $this->file\n" );
-					}
+				if ( $this->section == 'endfunctionhooks' ) {
+					$this->checkSection( $data, 'functionhooks' );
 
 					foreach ( explode( "\n", $data['functionhooks'] ) as $line ) {
 						$line = trim( $line );
@@ -473,23 +465,15 @@ class TestFileIterator implements Iterator {
 					}
 
 					$data = array();
-					$section = null;
+					$this->section = null;
 
 					continue;
 				}
 
-				if ( $section == 'end' ) {
-					if ( !isset( $data['test'] ) ) {
-						throw new MWException( "'end' without 'test' at line {$this->lineNum} of $this->file\n" );
-					}
-
-					if ( !isset( $data['input'] ) ) {
-						throw new MWException( "'end' without 'input' at line {$this->lineNum} of $this->file\n" );
-					}
-
-					if ( !isset( $data['result'] ) ) {
-						throw new MWException( "'end' without 'result' at line {$this->lineNum} of $this->file\n" );
-					}
+				if ( $this->section == 'end' ) {
+					$this->checkSection( $data, 'test'   );
+					$this->checkSection( $data, 'input'  );
+					$this->checkSection( $data, 'result' );
 
 					if ( !isset( $data['options'] ) ) {
 						$data['options'] = '';
@@ -502,7 +486,7 @@ class TestFileIterator implements Iterator {
 							 || !preg_match( "/" . $this->parserTest->regex . "/i", $data['test'] ) )  ) {
 						# disabled test
 						$data = array();
-						$section = null;
+						$this->section = null;
 
 						continue;
 					}
@@ -517,20 +501,46 @@ class TestFileIterator implements Iterator {
 					return true;
 				}
 
-				if ( isset ( $data[$section] ) ) {
+				if ( isset ( $data[$this->section] ) ) {
 					throw new MWException( "duplicate section '$section' at line {$this->lineNum} of $this->file\n" );
 				}
 
-				$data[$section] = '';
+				$data[$this->section] = '';
 
 				continue;
 			}
 
-			if ( $section ) {
-				$data[$section] .= $line;
+			if ( $this->section ) {
+				$data[$this->section] .= $line;
 			}
 		}
 
 		return false;
+	}
+
+	/**
+	 * Verify the first parameter array ($data) has a value for the second  
+	 * parameter key name ($token).
+	 * Throw an exception if it is not set, referencing current section
+	 * and adding the current file name and line number
+	 *
+	 * @param $data Array: an array of parser test data. See readNextTest()
+	 * @param $token String: expected token that should have been mentionned before closing this section 
+	 */
+	private function checkSection( $data, $token ) {
+		if( is_null( $this->section ) ) {
+			throw new MWException( __METHOD__ . " could not verify a null section!\n" );
+		}
+
+		if( !isset($data[$token]) ) {
+			throw new MWException( sprintf(
+				"'%s' without '%s' at line %s of %s\n",
+				$this->section,
+				$token,
+				$this->lineNum,
+				$this->file
+			));
+		}
+		return true;
 	}
 }
