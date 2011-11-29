@@ -885,11 +885,13 @@ $wgAutoloadLocalClasses = array(
 	'textStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'wikiStatsOutput' => 'maintenance/language/StatOutputs.php',
 
+	# maintenance/term
+	'AnsiTermColorer'  => 'maintenance/term/MWTerm.php',
+	'DummyTermColorer' => 'maintenance/term/MWTerm.php',
+
 	# tests
-	'AnsiTermColorer' => 'tests/testHelpers.inc',
 	'DbTestPreviewer' => 'tests/testHelpers.inc',
 	'DbTestRecorder' => 'tests/testHelpers.inc',
-	'DummyTermColorer' => 'tests/testHelpers.inc',
 	'TestFileIterator' => 'tests/testHelpers.inc',
 	'TestRecorder' => 'tests/testHelpers.inc',
 
