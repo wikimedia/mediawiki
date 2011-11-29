@@ -64,6 +64,7 @@ abstract class LBFactory {
 
 	/**
 	 * Construct a factory based on a configuration array (typically from $wgLBFactoryConf)
+	 * @param $conf
 	 */
 	abstract function __construct( $conf );
 
@@ -110,6 +111,8 @@ abstract class LBFactory {
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
+	 * @param $callback
+	 * @param array $params
 	 */
 	abstract function forEachLB( $callback, $params = array() );
 
@@ -121,6 +124,8 @@ abstract class LBFactory {
 
 	/**
 	 * Call a method of each tracked load balancer
+	 * @param $methodName
+	 * @param $args array
 	 */
 	function forEachLBCallMethod( $methodName, $args = array() ) {
 		$this->forEachLB( array( $this, 'callMethod' ), array( $methodName, $args ) );
@@ -128,6 +133,9 @@ abstract class LBFactory {
 
 	/**
 	 * Private helper for forEachLBCallMethod
+	 * @param $loadBalancer
+	 * @param $methodName
+	 * @param $args
 	 */
 	function callMethod( $loadBalancer, $methodName, $args ) {
 		call_user_func_array( array( $loadBalancer, $methodName ), $args );
@@ -232,6 +240,8 @@ class LBFactory_Simple extends LBFactory {
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
+	 * @param $callback
+	 * @param $params array
 	 */
 	function forEachLB( $callback, $params = array() ) {
 		if ( isset( $this->mainLB ) ) {

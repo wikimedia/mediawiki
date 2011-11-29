@@ -1832,6 +1832,8 @@ function wfSetVar( &$dest, $source, $force = false ) {
  * @param $dest Int
  * @param $bit Int
  * @param $state Bool
+ *
+ * @return bool
  */
 function wfSetBit( &$dest, $bit, $state = true ) {
 	$temp = (bool)( $dest & $bit );

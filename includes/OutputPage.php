@@ -2030,9 +2030,9 @@ class OutputPage extends ContextSource {
 		) {
 			$displayReturnto = null;
 
-			# Due to bug 32276, if a user does not have read permissions, 
-			# $this->getTitle() will just give Special:Badtitle, which is 
-			# not especially useful as a returnto parameter. Use the title 
+			# Due to bug 32276, if a user does not have read permissions,
+			# $this->getTitle() will just give Special:Badtitle, which is
+			# not especially useful as a returnto parameter. Use the title
 			# from the request instead, if there was one.
 			$request = $this->getRequest();
 			$returnto = Title::newFromURL( $request->getVal( 'title', '' ) );
@@ -2721,6 +2721,7 @@ $templates
 	 * - in other words, page-independent/site-wide variables (without state).
 	 * You will only be adding bloat to the html page and causing page caches to
 	 * have to be purged on configuration changes.
+	 * @return array
 	 */
 	protected function getJSVars() {
 		global $wgUseAjax, $wgEnableMWSuggest;

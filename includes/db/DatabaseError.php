@@ -82,6 +82,9 @@ class DBConnectionError extends DBError {
 		parent::__construct( $db, $msg );
 	}
 
+	/**
+	 * @return bool
+	 */
 	function useOutputPage() {
 		// Not likely to work
 		return false;
@@ -105,6 +108,9 @@ class DBConnectionError extends DBError {
 		return wfMsgReplaceArgs( $message, $args );
 	}
 
+	/**
+	 * @return bool
+	 */
 	function getLogMessage() {
 		# Don't send to the exception log
 		return false;
@@ -254,6 +260,13 @@ EOT;
 class DBQueryError extends DBError {
 	public $error, $errno, $sql, $fname;
 
+	/**
+	 * @param $db DatabaseBase
+	 * @param $error
+	 * @param $errno
+	 * @param $sql
+	 * @param $fname
+	 */
 	function __construct( DatabaseBase &$db, $error, $errno, $sql, $fname ) {
 		$message = "A database error has occurred.  Did you forget to run maintenance/update.php after upgrading?  See: https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .
 		  "Query: $sql\n" .
@@ -307,6 +320,9 @@ class DBQueryError extends DBError {
 		}
 	}
 
+	/**
+	 * @return bool
+	 */
 	function getLogMessage() {
 		# Don't send to the exception log
 		return false;

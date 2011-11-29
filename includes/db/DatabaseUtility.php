@@ -10,6 +10,9 @@ class DBObject {
 		$this->mData = $data;
 	}
 
+	/**
+	 * @return bool
+	 */
 	function isLOB() {
 		return false;
 	}

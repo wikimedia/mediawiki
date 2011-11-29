@@ -90,6 +90,8 @@ class LoadBalancer {
 
 	/**
 	 * Get or set arbitrary data used by the parent object, usually an LBFactory
+	 * @param $x
+	 * @return \Mixed
 	 */
 	function parentInfo( $x = null ) {
 		return wfSetVar( $this->mParentInfo, $x );
@@ -334,6 +336,8 @@ class LoadBalancer {
 
 	/**
 	 * Wait for a specified number of microseconds, and return the period waited
+	 * @param $t
+	 * @return
 	 */
 	function sleep( $t ) {
 		wfProfileIn( __METHOD__ );
@@ -347,6 +351,7 @@ class LoadBalancer {
 	 * Set the master wait position
 	 * If a DB_SLAVE connection has been opened already, waits
 	 * Otherwise sets a variable telling it to wait if such a connection is opened
+	 * @param $pos
 	 */
 	public function waitFor( $pos ) {
 		wfProfileIn( __METHOD__ );
@@ -364,6 +369,7 @@ class LoadBalancer {
 
 	/**
 	 * Set the master wait position and wait for ALL slaves to catch up to it
+	 * @param $pos
 	 */
 	public function waitForAll( $pos ) {
 		wfProfileIn( __METHOD__ );
@@ -378,7 +384,8 @@ class LoadBalancer {
 	 * Get any open connection to a given server index, local or foreign
 	 * Returns false if there is no connection open
 	 *
-	 * @return DatabaseBase
+	 * @param $i
+	 * @return DatabaseBase|false
 	 */
 	function getAnyOpenConnection( $i ) {
 		foreach ( $this->mConns as $conns ) {
@@ -666,6 +673,8 @@ class LoadBalancer {
 	 * Returns a Database object whether or not the connection was successful.
 	 * @access private
 	 *
+	 * @param $server
+	 * @param $dbNameOverride bool
 	 * @return DatabaseBase
 	 */
 	function reallyOpenConnection( $server, $dbNameOverride = false ) {
@@ -706,6 +715,10 @@ class LoadBalancer {
 		return $db;
 	}
 
+	/**
+	 * @param $conn
+	 * @throws DBConnectionError
+	 */
 	function reportConnectionError( &$conn ) {
 		wfProfileIn( __METHOD__ );
 
@@ -733,6 +746,7 @@ class LoadBalancer {
 	/**
 	 * Returns true if the specified index is a valid server index
 	 *
+	 * @param $i
 	 * @return bool
 	 */
 	function haveIndex( $i ) {
@@ -742,6 +756,7 @@ class LoadBalancer {
 	/**
 	 * Returns true if the specified index is valid and has non-zero load
 	 *
+	 * @param $i
 	 * @return bool
 	 */
 	function isNonZeroLoad( $i ) {
@@ -760,6 +775,8 @@ class LoadBalancer {
 	/**
 	 * Get the host name or IP address of the server with the specified index
 	 * Prefer a readable name if available.
+	 * @param $i
+	 * @return string
 	 */
 	function getServerName( $i ) {
 		if ( isset( $this->mServers[$i]['hostName'] ) ) {
@@ -773,6 +790,8 @@ class LoadBalancer {
 
 	/**
 	 * Return the server info structure for a given index, or false if the index is invalid.
+	 * @param $i
+	 * @return bool
 	 */
 	function getServerInfo( $i ) {
 		if ( isset( $this->mServers[$i] ) ) {
@@ -784,6 +803,8 @@ class LoadBalancer {
 
 	/**
 	 * Sets the server info structure for the given index. Entry at index $i is created if it doesn't exist
+	 * @param $i
+	 * @param $serverInfo
 	 */
 	function setServerInfo( $i, $serverInfo ) {
 		$this->mServers[$i] = $serverInfo;
@@ -834,6 +855,7 @@ class LoadBalancer {
 	 * Deprecated function, typo in function name
 	 *
 	 * @deprecated in 1.18
+	 * @param $conn
 	 */
 	function closeConnecton( $conn ) {
 		$this->closeConnection( $conn );
@@ -910,7 +932,11 @@ class LoadBalancer {
 		return $this->mLaggedSlaveMode;
 	}
 
-	/* Disables/enables lag checks */
+	/**
+	 * Disables/enables lag checks
+	 * @param $mode null
+	 * @return bool
+	 */
 	function allowLagged( $mode = null ) {
 		if ( $mode === null) {
 			return $this->mAllowLagged;
@@ -937,6 +963,8 @@ class LoadBalancer {
 
 	/**
 	 * Call a function with each open connection object
+	 * @param $callback
+	 * @param array $params
 	 */
 	function forEachOpenConnection( $callback, $params = array() ) {
 		foreach ( $this->mConns as $conns2 ) {

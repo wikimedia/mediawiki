@@ -53,6 +53,9 @@ class LBFactory_Multi extends LBFactory {
 	var $conf, $mainLBs = array(), $extLBs = array();
 	var $lastWiki, $lastSection;
 
+	/**
+	 * @param $conf
+	 */
 	function __construct( $conf ) {
 		$this->chronProt = new ChronologyProtector;
 		$this->conf = $conf;
@@ -169,6 +172,9 @@ class LBFactory_Multi extends LBFactory {
 	/**
 	 * Make a new load balancer object based on template and load array
 	 *
+	 * @param $template
+	 * @param $loads
+	 * @param $groupLoads
 	 * @return LoadBalancer
 	 */
 	function newLoadBalancer( $template, $loads, $groupLoads ) {
