@@ -855,10 +855,10 @@ abstract class Installer {
 	/**
 	 * Environment check for the server hostname.
 	 */
-	protected function envCheckServer() {
-		if ( $this->getVar( 'wgServer' ) ) {
+	protected function envCheckServer( $srv = null ) {
+		if ( $srv ) {
 			// wgServer was pre-defined, perhaps by the cli installer
-			$server = $this->getVar( 'wgServer' );
+			$server = $srv;
 		} else {
 			$server = WebRequest::detectServer();
 		}

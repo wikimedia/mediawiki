@@ -183,6 +183,13 @@ class CliInstaller extends Installer {
 		return parent::envCheckPath();
 	}
 
+	protected function envCheckServer( $srv = null ) {
+		if ( $this->getVar( 'wgServer' ) ) {
+			$srv = $this->getVar( 'wgServer' );
+		}
+		return parent::envCheckServer( $srv );
+	}
+
 	public function dirIsExecutable( $dir, $url ) {
 		$this->showMessage( 'config-no-cli-uploads-check', $dir );
 		return false;
