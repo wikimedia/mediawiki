@@ -492,11 +492,12 @@ class TestFileIterator implements Iterator {
 					}
 
 					$this->test = array(
-						'test' => ParserTest::chomp( $data['test'] ),
-						'input' => ParserTest::chomp( $data['input'] ),
-						'result' => ParserTest::chomp( $data['result'] ),
+						'test'    => ParserTest::chomp( $data['test']    ),
+						'input'   => ParserTest::chomp( $data['input']   ),
+						'result'  => ParserTest::chomp( $data['result']  ),
 						'options' => ParserTest::chomp( $data['options'] ),
-						'config' => ParserTest::chomp( $data['config'] ) );
+						'config'  => ParserTest::chomp( $data['config']  ),
+					);
 
 					return true;
 				}
@@ -517,6 +518,8 @@ class TestFileIterator implements Iterator {
 
 		return false;
 	}
+
+
 
 	/**
 	 * Verify the first parameter array ($data) has a value for the second  
