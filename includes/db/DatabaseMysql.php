@@ -22,6 +22,10 @@ class DatabaseMysql extends DatabaseBase {
 		return 'mysql';
 	}
 
+	/**
+	 * @param $sql
+	 * @return resource
+	 */
 	protected function doQuery( $sql ) {
 		if( $this->bufferResults() ) {
 			$ret = mysql_query( $sql, $this->mConn );
@@ -31,6 +35,14 @@ class DatabaseMysql extends DatabaseBase {
 		return $ret;
 	}
 
+	/**
+	 * @param $server
+	 * @param $user
+	 * @param $password
+	 * @param $dbName
+	 * @return bool
+	 * @throws DBConnectionError
+	 */
 	function open( $server, $user, $password, $dbName ) {
 		global $wgAllDBsAreLocalhost;
 		wfProfileIn( __METHOD__ );
@@ -154,6 +166,10 @@ class DatabaseMysql extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @param $res
+	 * @throws DBUnexpectedError
+	 */
 	function freeResult( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -166,6 +182,11 @@ class DatabaseMysql extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @param $res
+	 * @return object|stdClass
+	 * @throws DBUnexpectedError
+	 */
 	function fetchObject( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -179,6 +200,11 @@ class DatabaseMysql extends DatabaseBase {
 		return $row;
 	}
 
+	/**
+	 * @param $res
+	 * @return array
+	 * @throws DBUnexpectedError
+	 */
 	function fetchRow( $res ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -240,6 +266,11 @@ class DatabaseMysql extends DatabaseBase {
 		return mysql_insert_id( $this->mConn );
 	}
 
+	/**
+	 * @param $res
+	 * @param $row
+	 * @return bool
+	 */
 	function dataSeek( $res, $row ) {
 		if ( $res instanceof ResultWrapper ) {
 			$res = $res->result;
@@ -247,6 +278,9 @@ class DatabaseMysql extends DatabaseBase {
 		return mysql_data_seek( $res, $row );
 	}
 
+	/**
+	 * @return int
+	 */
 	function lastErrno() {
 		if ( $this->mConn ) {
 			return mysql_errno( $this->mConn );
@@ -255,6 +289,9 @@ class DatabaseMysql extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @return string
+	 */
 	function lastError() {
 		if ( $this->mConn ) {
 			# Even if it's non-zero, it can still be invalid
@@ -280,6 +317,13 @@ class DatabaseMysql extends DatabaseBase {
 		return mysql_affected_rows( $this->mConn );
 	}
 
+	/**
+	 * @param $table
+	 * @param $uniqueIndexes
+	 * @param $rows
+	 * @param $fname string
+	 * @return ResultWrapper
+	 */
 	function replace( $table, $uniqueIndexes, $rows, $fname = 'DatabaseMysql::replace' ) {
 		return $this->nativeReplace( $table, $rows, $fname );
 	}
@@ -289,6 +333,11 @@ class DatabaseMysql extends DatabaseBase {
 	 * Returns estimated count, based on EXPLAIN output
 	 * Takes same arguments as Database::select()
 	 *
+	 * @param $table string|array
+	 * @param $vars string|array
+	 * @param $conds string|array
+	 * @param $fname string
+	 * @param $options string|array
 	 * @return int
 	 */
 	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'DatabaseMysql::estimateRowCount', $options = array() ) {
@@ -333,6 +382,9 @@ class DatabaseMysql extends DatabaseBase {
 	 * Get information about an index into an object
 	 * Returns false if the index does not exist
 	 *
+	 * @param $table
+	 * @param $index
+	 * @param $fname string
 	 * @return false|array
 	 */
 	function indexInfo( $table, $index, $fname = 'DatabaseMysql::indexInfo' ) {
@@ -497,6 +549,7 @@ class DatabaseMysql extends DatabaseBase {
 	 *
 	 * @param $pos DBMasterPos object
 	 * @param $timeout Integer: the maximum number of seconds to wait for synchronisation
+	 * @return bool|string
 	 */
 	function masterPosWait( DBMasterPos $pos, $timeout ) {
 		$fname = 'DatabaseBase::masterPosWait';
@@ -598,10 +651,16 @@ class DatabaseMysql extends DatabaseBase {
 		return '[http://www.mysql.com/ MySQL]';
 	}
 
+	/**
+	 * @return bool
+	 */
 	function standardSelectDistinct() {
 		return false;
 	}
 
+	/**
+	 * @param $options array
+	 */
 	public function setSessionOptions( array $options ) {
 		if ( isset( $options['connTimeout'] ) ) {
 			$timeout = (int)$options['connTimeout'];
@@ -610,6 +669,12 @@ class DatabaseMysql extends DatabaseBase {
 		}
 	}
 
+	/**
+	 * @param $lockName
+	 * @param $method
+	 * @param $timeout int
+	 * @return bool
+	 */
 	public function lock( $lockName, $method, $timeout = 5 ) {
 		$lockName = $this->addQuotes( $lockName );
 		$result = $this->query( "SELECT GET_LOCK($lockName, $timeout) AS lockstatus", $method );
@@ -625,6 +690,9 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * FROM MYSQL DOCS: http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
+	 * @param $lockName
+	 * @param $method string
+	 * @return
 	 */
 	public function unlock( $lockName, $method ) {
 		$lockName = $this->addQuotes( $lockName );
@@ -633,6 +701,12 @@ class DatabaseMysql extends DatabaseBase {
 		return $row->lockstatus;
 	}
 
+	/**
+	 * @param $read
+	 * @param $write
+	 * @param $method
+	 * @param $lowPriority bool
+	 */
 	public function lockTables( $read, $write, $method, $lowPriority = true ) {
 		$items = array();
 
@@ -649,6 +723,9 @@ class DatabaseMysql extends DatabaseBase {
 		$this->query( $sql, $method );
 	}
 
+	/**
+	 * @param $method string
+	 */
 	public function unlockTables( $method ) {
 		$this->query( "UNLOCK TABLES", $method );
 	}
@@ -663,6 +740,10 @@ class DatabaseMysql extends DatabaseBase {
 		return 'SearchMySQL';
 	}
 
+	/**
+	 * @param bool $value
+	 * @return mixed
+	 */
 	public function setBigSelects( $value = true ) {
 		if ( $value === 'default' ) {
 			if ( $this->mDefaultBigSelects === null ) {
@@ -680,6 +761,13 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * DELETE where the condition is a join. MySql uses multi-table deletes.
+	 * @param $delTable
+	 * @param $joinTable
+	 * @param $delVar
+	 * @param $joinVar
+	 * @param $conds array|string
+	 * @param $fname bool
+	 * @return bool|\ResultWrapper
 	 */
 	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'DatabaseBase::deleteJoin' ) {
 		if ( !$conds ) {
@@ -745,6 +833,12 @@ class DatabaseMysql extends DatabaseBase {
 			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
 	}
 
+	/**
+	 * @param $oldName
+	 * @param $newName
+	 * @param $temporary bool
+	 * @param $fname string
+	 */
 	function duplicateTableStructure( $oldName, $newName, $temporary = false, $fname = 'DatabaseMysql::duplicateTableStructure' ) {
 		$tmp = $temporary ? 'TEMPORARY ' : '';
 		$newName = $this->addIdentifierQuotes( $newName );
@@ -758,6 +852,7 @@ class DatabaseMysql extends DatabaseBase {
 	 *
 	 * @param $prefix Only show tables with this prefix, e.g. mw_
 	 * @param $fname String: calling function name
+	 * @return array
 	 */
 	function listTables( $prefix = null, $fname = 'DatabaseMysql::listTables' ) {
 		$result = $this->query( "SHOW TABLES", $fname);
@@ -801,6 +896,7 @@ class DatabaseMysql extends DatabaseBase {
 	/**
 	 * Get status information from SHOW STATUS in an associative array
 	 *
+	 * @param $which string
 	 * @return array
 	 */
 	function getMysqlStatus( $which = "%" ) {
@@ -858,6 +954,9 @@ class MySQLField implements Field {
 		return $this->tableName;
 	}
 
+	/**
+	 * @return string
+	 */
 	function type() {
 		return $this->type;
 	}

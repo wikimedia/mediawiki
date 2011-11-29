@@ -66,11 +66,15 @@ class LoadMonitor_Null implements LoadMonitor {
 	function postConnectionBackoff( $conn, $threshold ) {
 	}
 
+	/**
+	 * @param $serverIndexes
+	 * @param $wiki
+	 * @return array
+	 */
 	function getLagTimes( $serverIndexes, $wiki ) {
 		return array_fill_keys( $serverIndexes, 0 );
 	}
 }
-
 
 /**
  * Basic MySQL load monitor with no external dependencies
