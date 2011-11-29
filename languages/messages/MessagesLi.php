@@ -1434,6 +1434,7 @@ Deze informatie is zichbaar veur angere gebroekers.',
 'action-userrights'           => 'alle gebroekersrechte te bewerke',
 'action-userrights-interwiki' => "gebroekersrechte van gebroekers van anger wiki's te bewerke",
 'action-siteadmin'            => 'de database aaf te sloete of aope te stelle',
+'action-sendemail'            => 'Sjik e-mails',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkinge}}',

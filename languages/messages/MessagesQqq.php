@@ -330,6 +330,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 # Cologne Blue skin
 'qbfind'         => 'Alternative for "search" as used in Cologne Blue skin.
 {{Identical|Find}}',
+'qbbrowse'       => '{{Identical|Browse}}',
 'qbedit'         => '{{Identical|Edit}}',
 'qbmyoptions'    => '{{Identical|My pages}}',
 'qbspecialpages' => '{{Identical|Special pages}}',
@@ -353,7 +354,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 'vector-action-unprotect'        => 'Tab at top of page, in vector skin.
 
 {{Identical|Unprotect}}',
-'vector-simplesearch-preference' => 'ವರ್ಧಿಸಿದ ಹುಡುಕು ಸಲಹೆಗಳನ್ನು (ಕೇವಲ ವೆಕ್ಟರ್ ಚರ್ಮ) ಸಕ್ರಿಯಗೊಳಿಸಿ',
+'vector-simplesearch-preference' => 'Preference for enhanced search suggestion in the Vector skin.',
 'vector-view-create'             => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Foo?useskin=vector
 {{Identical|Create}}',
 'vector-view-edit'               => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
@@ -3640,7 +3641,7 @@ This can come from IPTC-iim 2:25 keyword field, or XMP's dc:subject field.",
 'exif-provinceorstatecreated'      => 'Province, state, territory, or other secondary political division (bigger than a city, smaller then a country) where that the picture was taken in.  Note this is where it was taken, not what province/state is depicted in the picture.',
 'exif-citycreated'                 => 'City that the picture was taken in.  Note this is where it was taken, not what city is depicted in the picture. This is generally only used if different from the city depicted in photo.',
 'exif-sublocationcreated'          => 'Sub-location of the city that the picture was taken in. This might be a street, a part of town, etc.  Note this is where it was taken, not what sub-location is depicted in the picture.',
-'exif-worldregiondest'             => 'जगाचा भाग दाखवला आहे',
+'exif-worldregiondest'             => 'World region shown. This generally means the continent, but could have the value of world as well.',
 'exif-countrydest'                 => 'Country shown. See also {{msg-mw|exif-countrycreated}}.',
 'exif-countrycodedest'             => 'ISO Code for country shown',
 'exif-provinceorstatedest'         => 'Province, state, territory, or other secondary political division shown.',
@@ -3678,8 +3679,8 @@ This is taken from IPTC-iim 2:135 and XMP's dc:language.
 'exif-iimcategory'                 => 'Primary Category of image (or other media). Technically supposed to be limited to 3 characters, however that is not always followed. Some common 3 letter category abbreviations are expanded by mediawiki. Similar to {{msg-mw|exif-keywords}}.
 {{identical|Category}}',
 'exif-iimsupplementalcategory'     => 'Supplemental categories. Like {{msg-mw|exif-iimcategory}} but for categories beyond the main one.',
-'exif-datetimeexpires'             => '(निर्देशित दिनांका) नंतर वापर करू नये',
-'exif-datetimereleased'            => ' या वेळी/दिवशी प्रसृत (प्रसारण )केले/मुक्त केले',
+'exif-datetimeexpires'             => 'Date after which not to use the image (media). This is often used in news situations were certain things (like forecasts) should not be used after a specified date.',
+'exif-datetimereleased'            => 'Earliest date the image (media) can be used. See 2:30 of http://www.iptc.org/std/IIM/4.1/specification/IIMV4.1.pdf',
 'exif-originaltransmissionref'     => 'This is basically a job id. This could help an individual keep track of for what reason the image was created. See Job Id on page 19 of http://www.iptc.org/std/photometadata/specification/IPTC-PhotoMetadata-201007_1.pdf',
 'exif-identifier'                  => 'A formal identifier for the image. Often this is a URL.',
 'exif-lens'                        => 'Description of lens used. This is taken from aux:Lens XMP property. See http://www.adobe.com/content/dam/Adobe/en/devnet/xmp/pdfs/XMPSpecificationPart2.pdf',

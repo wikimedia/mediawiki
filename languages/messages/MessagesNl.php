@@ -1668,7 +1668,7 @@ Deze informatie is zichtbaar voor andere gebruikers.',
 'action-userrights'           => 'alle gebruikersrechten te bewerken',
 'action-userrights-interwiki' => "gebruikersrechten van gebruikers van andere wiki's te bewerken",
 'action-siteadmin'            => 'de database af te sluiten of open te stellen',
-'action-sendemail'            => 'e-mails verzenden',
+'action-sendemail'            => 'e-mails te verzenden',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|bewerking|bewerkingen}}',

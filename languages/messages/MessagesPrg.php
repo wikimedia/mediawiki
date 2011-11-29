@@ -440,7 +440,7 @@ Ik ainunts kits ast tenginnuns šan madlin, anga assei etminītun si kliptaswīr
 'passwordsent'               => 'Nāuns kliptaswīrds pastāi tengīntan  en e-mail adressin stesse tērpautajan" $1".
 Panzdau gaūsenin, enjaīs etkūmps.',
 'blocked-mailpassword'       => 'Twajā IP adressi ast blōkitan ezze redigīsnai be stesse paggan ni assei enwarīntan tērpautun kliptaswīrdas etgaūsnas funkciōnin, kāi pakūntlai ezze wargaitērpausnai.',
-'eauthentsent'               => 'Padrūktinsenis pastāi tengīntan na e-mail adressin.
+'eauthentsent'               => 'Padrūktinsna pastāi tengīntan na e-mail adressin.
 Ēmpirzdan ainuntkawīdas kittas waīstis wīrst būwušas tengīntan na šan adressin, prawerru izpilnintun instrukciōnins papeisātans en e-mailu. Tīt tu wīrst padrūktinuns(si), kāi šī e-mail adressi perlānke prei tin.',
 'throttled-mailpassword'     => 'Kliptaswīrdas preiminīsenis ast jāu tengīntan en {{PLURAL:$1|panzdauman stūndin|panzdaumans $1 stūndins}}.
 Kāi pakūntlai ezze wargaitērpausnai, tēr aīns kliptaswīrdas preiminīsenis ast tengīntan en {{PLURAL:$1|stūndin|$1 stūndins}}.',
@@ -1007,7 +1007,7 @@ Tū mazzi dīgi etrīnktun dātun kitēimans drāugautwei sen tin pra tērpautaj
 'right-reupload-own'          => 'Kirsāi peisāis ekzistīntins, ānkstais enkraūtans zūrbrukins',
 'right-reupload-shared'       => 'Lōkalai kirsāi peisāis zūrbrukins en dallautasmu repōzitōrijan',
 'right-upload_by_url'         => 'Enkraūneis zūrbrukins iz URL adressin',
-'right-purge'                 => 'Skistinnais pāusas rānkas minīsnan šlāit prasīsenin ezze padrūktinsenin',
+'right-purge'                 => 'Skistinnais pāusas rānkas minīsnan šlāit prasīsenin ezze padrūktinsnan',
 'right-autoconfirmed'         => 'Redigīs delīkiskai pakūnstans pāusans',
 'right-bot'                   => 'Ebzentlis redigīsenins, kāigi segītans autōmatiskai',
 'right-nominornewtalk'        => 'Malkas kitawīdinsnas en tērpautajan diskusiōnis pāusamans ni dīlina pawakīsenin ezze nāunan waīstin',
@@ -1919,7 +1919,7 @@ Tū ni mazzi teīktun rekkenan',
 'unlockconfirm'       => 'Tīt, as perarwi kwaitēi etkaūtun dātanbazin.',
 'lockbtn'             => 'Auklaūjais dātanbazin',
 'unlockbtn'           => 'Etklaūjais dātanbazin',
-'locknoconfirm'       => 'Ni assei pazentliwuns(si) padrūktinsenin.',
+'locknoconfirm'       => 'Ni assei pazentliwuns(si) padrūktinsnan.',
 'lockdbsuccesssub'    => 'Dātanbazis auklaūsenis izpalla',
 'unlockdbsuccesssub'  => 'Dātanbazi etklaūtan',
 'lockdbsuccesstext'   => 'Dātanbazi pastāi auklaūtan. <br />
@@ -2173,11 +2173,11 @@ Sta preiwērpja enpeisātun brewīnslin en kitawīdisnan ebpeisāseņu.',
 'nocredits'        => 'Ni ast infōrmaciōni ezze šisse pāusas autōrans.',
 
 # Spam protection
-'spamprotectiontitle' => 'Spamas filteris',
+'spamprotectiontitle' => 'Spammas filteris',
 'spamprotectiontext'  => 'Pāusan, kawīdan tū kwaitēi enpeisātun pastāi blōkitan pra spammas filterin.
 Sta ast druwīminai dīlintan pra autengīnsenin prēi izwinaīnan pāusan iz kīrsnan listin.',
-'spamprotectionmatch' => 'Ripīnts teksts ast enskattinuns spamas filterin: $1',
-'spambot_username'    => 'MediaWiki - spamas skistīnsna',
+'spamprotectionmatch' => 'Ripīnts teksts ast enskattinuns spammas filterin: $1',
+'spambot_username'    => 'MediaWiki - spammas skistīnsna',
 'spam_reverting'      => 'Etwārtai wartīnsna stesses panzdauman wersiōnin, ni turrintes ēn sin autengīnsenins prei $1',
 'spam_blanking'       => 'Wissas wesiōnis turēi en sin autengīnsenins prei $1. Pāusas skistīnsna.',
 
@@ -2276,8 +2276,8 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-samplesperpixel'             => 'Izimlis per pikselin',
 'exif-ycbcrsubsampling'            => 'Y en C pōizimlinsnā',
 'exif-ycbcrpositioning'            => 'Y be C poziciōni',
-'exif-xresolution'                 => 'Uricōntala rezoluciōni',
-'exif-yresolution'                 => 'Wertikāla rezoluciōni',
+'exif-xresolution'                 => 'Uricōntala rezōluciōni',
+'exif-yresolution'                 => 'Wertikāla rezōluciōni',
 'exif-stripoffsets'                => 'Bildis dātas deīktan',
 'exif-rowsperstrip'                => 'Rīndas gīrbis per bildes sawinzlin',
 'exif-stripbytecounts'             => 'Bāitas gīrbis per bildis sawinzlin',
@@ -2285,10 +2285,10 @@ Kitāi wīrst būwusis kliptan auprestaminai.
 'exif-jpeginterchangeformatlength' => 'JPEG dātas bāitan gīrbis',
 'exif-whitepoint'                  => 'Gaīliskwas punkts',
 'exif-primarychromaticities'       => 'Trīs galwas bārwis',
-'exif-ycbcrcoefficients'           => 'Bārwin plattibis iz RGB en YCbCr prawartīnsenes matrica',
+'exif-ycbcrcoefficients'           => 'Bārwin plattibis iz RGB en YCbCr prawartīnsenes matrīci',
 'exif-referenceblackwhite'         => 'Kīrsnas be gaīlas autengīnsnas wērtibin pūran',
 'exif-datetime'                    => 'Zūrbrukes kitawīdinsnas dātan be kerdā',
-'exif-imagedescription'            => 'Bildes tītelis',
+'exif-imagedescription'            => 'Bildes tītels',
 'exif-make'                        => 'Kāmeras tikīntajs',
 'exif-model'                       => 'Kāmeras mōdeli',
 'exif-software'                    => 'Tērpautas prōgraminis',
@@ -2533,7 +2533,7 @@ Kōdan mazzi būtwei jāu ni aktuālin.',
 'confirmemail_success'     => 'Twajā e-mail adressi pastāi padrūktintan.
 Tu mazzi jāu [[Special:UserLogin|enēitwei]] be tuldītun si sen wiki.',
 'confirmemail_loggedin'    => 'Twajā e-mail adressi pastāi padrūktintan.',
-'confirmemail_error'       => 'Tikka blāndas prei twāise padrūktinsenes enpeisāsnan.',
+'confirmemail_error'       => 'Tikka blāndas prei twāise padrūktinsnas enpeisāsnan.',
 'confirmemail_subject'     => '{{SITENAME}} e-mail adressis',
 'confirmemail_invalidated' => 'E-mailas adressis padrūktinsna naikīntan',
 'invalidateemail'          => 'Naikinnais e-mail padrūktinsnan',
@@ -2670,7 +2670,7 @@ Enpeisāis zūrbrukes pabilīsnan šlāit "{{ns:file}}:" prefiksan.',
 'specialpages-group-pagetools'   => 'Pāusas pagabtis',
 'specialpages-group-wiki'        => 'Wiki dātan be pagabtis',
 'specialpages-group-redirects'   => 'Speciālai praweddintei pāusai',
-'specialpages-group-spam'        => 'Spamas pagaptis',
+'specialpages-group-spam'        => 'Spammas pagaptis',
 
 # Special:BlankPage
 'blankpage'              => 'Pāustan pāusan',

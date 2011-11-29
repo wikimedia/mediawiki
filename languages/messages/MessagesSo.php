@@ -600,7 +600,8 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",
 'yourdiff'                         => 'Kala duwanaanshaha',
 'protectedpagewarning'             => "'''Digniin: Boggaan waa la difaacay si ee isticmaalada heesto maamulnimada kaliya wax uuga badali karaan'''
 Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
-'semiprotectedpagewarning'         => "'''Fiiro gaar ah:''' Beyjkan waa laxiray, kuwa magaca gudagal ka leh kaliya ayaa wax ka badalikara.",
+'semiprotectedpagewarning'         => "'''Fiiro gaar ah:''' Boggaan waa difaacay si ee isticmaalada isdiiwaan geliyay kaliya wax uuga badalaan.
+Fariintii gudagalihii ugu danbeeyay hoostaan ee ku qorontahay:",
 'cascadeprotectedwarning'          => "'''Digniin:''' Boggaan waa la difaacay si ee maamulada kaliya wax uuga badalaan, sababtoo ah waxaa ku jirto kaskadyadaan la difaacay oo soo sosocoto {{PLURAL:$1|bog|boggaga}}:",
 'templatesused'                    => '{{PLURAL:$1|Tusmo|Tusmooyinka}} lagu isticmaalay boggaan:',
 'template-protected'               => '(waa la difaacay)',

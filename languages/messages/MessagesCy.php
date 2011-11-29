@@ -1392,6 +1392,7 @@ Mae'r wybodaeth hon ar gael i'r cyhoedd.",
 'action-userrights'           => 'golygu holl alluoedd y defnyddwyr',
 'action-userrights-interwiki' => 'golygu galluoedd y defnyddwyr ar wicïau eraill',
 'action-siteadmin'            => "cloi neu ddatgloi'r databas",
+'action-sendemail'            => 'anfon e-bost',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|newid|newid|newid|newid|newid|o newidiadau}}',

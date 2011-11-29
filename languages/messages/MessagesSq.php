@@ -10,6 +10,7 @@
  * @author Andejkendej
  * @author Cradel
  * @author Dashohoxha
+ * @author Dasius
  * @author Dori
  * @author Eagleal
  * @author Ergon
@@ -209,20 +210,20 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Lejo redaktimin e seksioneve me djathtas-shtypje<br /> mbi emrin e seksionit (JavaScript)',
 'tog-showtoc'                 => 'Trego tabelën e përmbajtjeve<br />(për faqet me më shume se 3 tituj)',
 'tog-rememberpassword'        => 'Mbaj mënd fjalëkalimin për vizitën e ardhshme (më së shumti për $1 {{PLURAL:$1|ditë|ditë}})',
-'tog-watchcreations'          => 'Shto faqet që krijoj tek lista mbikqyrëse',
-'tog-watchdefault'            => 'Shto faqet që redaktoj tek lista mbikqyrëse',
-'tog-watchmoves'              => 'Shto faqet që zhvendos tek lista mbikqyrëse',
-'tog-watchdeletion'           => 'Shto faqet që gris tek lista mbikqyrëse',
-'tog-minordefault'            => 'Shëno të gjitha redaktimet si të vogla paraprakisht',
-'tog-previewontop'            => 'Trego parapamjen përpara kutisë redaktuese, jo mbas saj',
-'tog-previewonfirst'          => 'Trego parapamje në redaktim të parë',
-'tog-nocache'                 => 'Mos ruaj kopje te faqeve',
-'tog-enotifwatchlistpages'    => 'Më ço email kur ndryshojnë faqet nga lista ime mbikqyrëse',
-'tog-enotifusertalkpages'     => 'Më ço email kur ndryshon faqja ime e diskutimit',
-'tog-enotifminoredits'        => 'Më ço email kur ka redaktime të vogla të faqeve',
-'tog-enotifrevealaddr'        => 'Trego adresën time në email-et njoftuese',
-'tog-shownumberswatching'     => 'Trego numrin e përdoruesve mbikqyrës',
-'tog-oldsig'                  => 'Pamje e nënshkrimit ekzistues:',
+'tog-watchcreations'          => 'Shtoi faqet e krijuara prej meje tek lista e faqeve që unë mbikqyr',
+'tog-watchdefault'            => 'Shtoi faqet e redaktuara prej meje tek lista e faqeve që unë mbikqyr',
+'tog-watchmoves'              => 'Shtoi faqet e zhvendosura prej meje tek lista e faqeve që unë mbikqyr',
+'tog-watchdeletion'           => 'Shtoi faqet e fshira prej meje tek lista e faqeve që unë mbikqyr',
+'tog-minordefault'            => 'Shënoi të gjitha redaktimet si të vogla automatikisht',
+'tog-previewontop'            => 'Vendose kutinë e bocetit sipër kutisë së redaktimeve',
+'tog-previewonfirst'          => 'Tregoje bocetin në redaktimin e parë',
+'tog-nocache'                 => "Ç'aktivizo ruajtjen e faqeve të vizituara",
+'tog-enotifwatchlistpages'    => 'Më njofto me e-mail kur ndryshohet një faqe nga lista ime e faqeve të mbikqyrura',
+'tog-enotifusertalkpages'     => 'Më njofto me e-mail kur faqja ime e dikutimeve të përdoruesit ndryshohet',
+'tog-enotifminoredits'        => 'Më njofto me e-mail edhe kur ka redaktime të vogla në faqe',
+'tog-enotifrevealaddr'        => 'Tregoje adresën time të e-mail-it në e-mail-et njoftuese',
+'tog-shownumberswatching'     => 'Trego numrin e përdoruesve që mbikqyrin këtë faqe',
+'tog-oldsig'                  => 'Nënshkrimit ekzistues:',
 'tog-fancysig'                => 'Mos e përpuno nënshkrimin për formatim',
 'tog-externaleditor'          => 'Përdor program të jashtëm për redaktime',
 'tog-externaldiff'            => 'Përdor program të jashtëm për të treguar ndryshimet',

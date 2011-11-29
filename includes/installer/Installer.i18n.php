@@ -3137,6 +3137,7 @@ Instalace přerušena.',
 	'config-using531' => 'MediaWiki nelze používat na PHP $1 kvůli chybě při předávání parametrů odkazem do <code>__call()</code>.
 Pro vyřešení upgradujte na PHP 5.3.2 nebo vyšší nebo downgradujte na PHP 5.3.0.
 Instalace přerušena.',
+	'config-suhosin-max-value-length' => 'Je nainstalován Suhosin, který omezuje délku parametrů GET na $1 bajtů. Komponenta ResourceLoader z MediaWiki dokáže s tímto omezením pracovat, ale sníží to výkon. Pokud to je alespoň trochu možné, měli byste v php.ini nastavit suhosin.get.max_value_length na 1024 nebo vyšší a na stejnou hodnotu nastavit v LocalSettings.php proměnnou $wgResourceLoaderMaxQueryLength.',
 	'config-db-type' => 'Typ databáze:',
 	'config-db-host' => 'Databázový server:',
 	'config-db-host-help' => 'Pokud je váš databázový server na jiném počítači, zadejte zde jméno stroje nebo IP adresu.
@@ -3146,28 +3147,55 @@ Pokud používáte sdílený webový hosting, váš poskytovatel by vám měl v 
 Pokud instalujete na server běžící na Windows a používáte MySQL, jméno „localhost“ nemusí fungovat. V takovém případě zkuste jako místní IP adresu zadat „127.0.0.1“.
 
 Pokud používáte PostgreSQL, můžete se připojit Unixovými sockety tak, že toto pole necháte prázdné.',
+	'config-db-host-oracle' => 'Databázové TNS:',
+	'config-db-host-oracle-help' => 'Zadejte platné [http://download.oracle.com/docs/cd/B28359_01/network.111/b28317/tnsnames.htm Local Connect Name]; tato instalace musí vidět soubor tnsnames.ora.<br />Pokud používáte klientské knihovny verze 10g nebo novější, můžete také používat názvy [http://download.oracle.com/docs/cd/E11882_01/network.112/e10836/naming.htm Easy Connect].',
 	'config-db-wiki-settings' => 'Identifikace této wiki',
 	'config-db-name' => 'Jméno databáze:',
 	'config-db-name-help' => 'Zvolte jméno, které označuje vaši wiki.
 Nemělo by obsahovat mezery.
 
 Pokud používáte sdílený webový hosting, váš poskytovatel vám buď sdělí konkrétní jméno databáze, nebo vás nechá vytvářet databáze pomocí nějakého ovládacího panelu.',
+	'config-db-name-oracle' => 'Databázové schéma:',
+	'config-db-account-oracle-warn' => 'Existují tři podporované možnosti pro instalaci s použitím databáze Oracle.
+
+Pokud chcete v rámci instalace založit databázový účet, zadejte jako databázový účet pro instalaci účet s rolí SYSDBA a uveďte požadované údaje pro účet pro webový přístup, jinak můžete vytvořit účet pro webový přístup ručně a zadat pouze tento účet (pokud má dostatečná oprávnění k zakládání objektů schématu) nebo poskytnout dva různé účty, jeden s oprávněními k zakládání, druhý omezený pro webový přístup.
+
+Skript pro založení účtu s potřebnými privilegii můžete v této instalaci nalézt v adresáři „maintenance/oracle/“. Nezapomeňte, že použití omezeného účtu znepřístupní veškeré možnosti údržby přes implicitní účet.',
 	'config-db-install-account' => 'Uživatelský účet pro instalaci',
 	'config-db-username' => 'Databázové uživatelské jméno:',
 	'config-db-password' => 'Databázové heslo:',
+	'config-db-password-empty' => 'Zadejte heslo pro nového databázového uživatele: $1.
+Přestože může jít zakládat nové uživatele i bez hesel, není to bezpečné.',
 	'config-db-install-username' => 'Zadejte uživatelské jméno, které se použije pro připojení k databázi v průběhu instalace.
 Toto není jméno uživatelského účtu MediaWiki; toto je uživatelské jméno k vaší databázi.',
 	'config-db-install-password' => 'Zadejte heslo, které se použije pro připojení k databázi v průběhu instalace.
 Toto není heslo uživatelského účtu MediaWiki; toto je heslo k vaší databázi.',
+	'config-db-install-help' => 'Zadejte uživatelské jméno a heslo, které se použijí pro připojení k databázi v průběhu instalace.',
+	'config-db-account-lock' => 'Použít stejné uživatelské jméno a heslo pro běžnou činnost',
+	'config-db-wiki-account' => 'Uživatelský účet pro běžnou činnost',
+	'config-db-wiki-help' => 'Zadejte uživatelské jméno a heslo, které se bude používat pro připojení k databázi za běžného provozu wiki.
+Pokud účet neexistuje a instalační účet má dostatečná oprávnění, bude tento uživatelský účet založen s minimálními oprávněními potřebnými k provozu wiki.',
 	'config-db-prefix' => 'Prefix databázových tabulek:',
 	'config-db-prefix-help' => 'Pokud potřebujete sdílet jednu databázi mezi vícero wiki, případně mezi MediaWiki a další webovou aplikací, můžete přidat k názvu každé tabulky prefix, abyste se vyhnuli konfliktům.
 Nepoužívejte mezery.
 
 Toto pole se zpravidla ponechává prázdné.',
+	'config-db-charset' => 'Znaková sada databáze',
+	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binární',
+	'config-charset-mysql5' => 'MySQL 4.1/5.0 UTF-8',
+	'config-charset-mysql4' => 'MySQL 4.0 zpětně kompatibilní UTF-8',
+	'config-charset-help' => "'''Upozornění:''' Pokud použijete '''zpětně kompatibilní UTF-8''' na MySQL 4.1+ a následně zazálohujete databázi pomocí <code>mysqldump</code>, může to zničit všechny ne-ASCII znaky, což nevratně poškodí vaše zálohy!
+
+V '''binárním režimu''' ukládá MediaWiki text v UTF-8 do databáze v binárních sloupcích.
+To je výkonnější než UTF-8 režim MySQL a umožňuje využít plný rozsah znaků Unicode.
+V '''režimu UTF-8''' bude MySQL znát znakovou sadu vašich dat a může je příslušně zobrazovat a převádět,
+ale neumožní vám uložit znaky mimo [//en.wikipedia.org/wiki/Mapping_of_Unicode_character_planes Basic Multilingual Plane].",
+	'config-mysql-old' => 'Je vyžadováno MySQL $1 nebo novější, vy máte $2.',
 	'config-db-port' => 'Databázový port:',
 	'config-db-schema' => 'Schéma pro MediaWiki:',
 	'config-db-schema-help' => 'Toto schéma zpravidla stačí.
 Měňte ho, jen pokud víte, že je to potřeba.',
+	'config-pg-test-error' => "Nelze se připojit k databázi '''$1''': $2",
 	'config-sqlite-dir' => 'Adresář pro data SQLite:',
 	'config-sqlite-dir-help' => "SQLite ukládá veškerá data v jediném souboru.
 
@@ -3179,6 +3207,8 @@ Instalátor do adresáře přidá soubor <code>.htaccess</code>, ale pokud to se
 To zahrnuje syrová uživatelská data (e-mailové adresy, hašovaná hesla), jako i smazané revize a další data s omezeným přístupem z vaší wiki.
 
 Zvažte umístění databáze někam zcela jinam, například do <code>/var/lib/mediawiki/mojewiki</code>.",
+	'config-oracle-def-ts' => 'Implicitní tabulkový prostor:',
+	'config-oracle-temp-ts' => 'Dočasný tabulkový prostor:',
 	'config-type-mysql' => 'MySQL',
 	'config-type-postgres' => 'PostgreSQL',
 	'config-type-sqlite' => 'SQLite',
@@ -3199,6 +3229,23 @@ Pokud v nabídce níže nevidíte databázový systém, který chcete použít, 
 	'config-header-sqlite' => 'Nastavení SQLite',
 	'config-header-oracle' => 'Nastavení Oracle',
 	'config-header-ibm_db2' => 'Nastavení IBM DB2',
+	'config-invalid-db-type' => 'Chybný typ databáze',
+	'config-missing-db-name' => 'Musíte zadat hodnotu pro „Jméno databáze“',
+	'config-missing-db-host' => 'Musíte zadat hodnotu pro „Databázový server“',
+	'config-missing-db-server-oracle' => 'Musíte zadat hodnotu pro „Databázové TNS“',
+	'config-invalid-db-server-oracle' => 'Chybné databázové TNS „$1“.
+Používejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a tečku (.).',
+	'config-invalid-db-name' => 'Chybné jméno databáze „$1“.
+Používejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a spojovník (-).',
+	'config-invalid-db-prefix' => 'Chybný databázový prefix „$1“.
+Používejte pouze ASCII písmena (a-z, A-Z), čísla (0-9), podtržítko (_) a spojovník (-).',
+	'config-connection-error' => '$1.
+
+Zkontrolujte server, uživatelské jméno a heslo a zkuste to znovu.',
+	'config-invalid-schema' => 'Neplatné schéma pro MediaWiki „$1“.
+Používejte pouze ASCII písmena (a-z, A-Z), čísla (0-9) a podtržítko (_).',
+	'config-db-sys-create-oracle' => 'Instalátor podporuje zakládání nového účtu pouze prostřednictvím účtu SYSDBA.',
+	'config-db-sys-user-exists-oracle' => 'Uživatelský účet „$1“ již existuje. SYSDBA lze použít pouze pro založení nového účtu!',
 	'config-postgres-old' => 'Je vyžadován PostgreSQL $1 nebo novější, vy máte $2.',
 	'config-sqlite-name-help' => 'Zvolte jméno, které označuje vaši wiki.
 Nepoužívejte mezery a spojovníky.
