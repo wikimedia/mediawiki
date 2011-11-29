@@ -356,6 +356,7 @@ class TestFileIterator implements Iterator {
 	private $index = 0;
 	private $test;
 	private $section = null; /** String|null: current test section being analyzed */
+	private $sectionData = array();
 	private $lineNum;
 	private $eof;
 
@@ -410,8 +411,7 @@ class TestFileIterator implements Iterator {
 	}
 
 	function readNextTest() {
-		$data = array();
-		$this->section = null;
+		$this->clearSection();
 
 		while ( false !== ( $line = fgets( $this->fh ) ) ) {
 			$this->lineNum++;
@@ -421,21 +421,20 @@ class TestFileIterator implements Iterator {
 				$this->section = strtolower( $matches[1] );
 
 				if ( $this->section == 'endarticle' ) {
-					$this->checkSection( $data, 'text'    );
-					$this->checkSection( $data, 'article' );
+					$this->checkSection( 'text'    );
+					$this->checkSection( 'article' );
 
-					$this->parserTest->addArticle( ParserTest::chomp( $data['article'] ), $data['text'], $this->lineNum );
+					$this->parserTest->addArticle( ParserTest::chomp( $this->sectionData['article'] ), $this->sectionData['text'], $this->lineNum );
 
-					$data = array();
-					$this->section = null;
+					$this->clearSection();
 
 					continue;
 				}
 
 				if ( $this->section == 'endhooks' ) {
-					$this->checkSection( $data, 'hooks' );
+					$this->checkSection( 'hooks' );
 
-					foreach ( explode( "\n", $data['hooks'] ) as $line ) {
+					foreach ( explode( "\n", $this->sectionData['hooks'] ) as $line ) {
 						$line = trim( $line );
 
 						if ( $line ) {
@@ -445,16 +444,15 @@ class TestFileIterator implements Iterator {
 						}
 					}
 
-					$data = array();
-					$this->section = null;
+					$this->clearSection();
 
 					continue;
 				}
 
 				if ( $this->section == 'endfunctionhooks' ) {
-					$this->checkSection( $data, 'functionhooks' );
+					$this->checkSection( 'functionhooks' );
 
-					foreach ( explode( "\n", $data['functionhooks'] ) as $line ) {
+					foreach ( explode( "\n", $this->sectionData['functionhooks'] ) as $line ) {
 						$line = trim( $line );
 
 						if ( $line ) {
@@ -464,55 +462,53 @@ class TestFileIterator implements Iterator {
 						}
 					}
 
-					$data = array();
-					$this->section = null;
+					$this->clearSection();
 
 					continue;
 				}
 
 				if ( $this->section == 'end' ) {
-					$this->checkSection( $data, 'test'   );
-					$this->checkSection( $data, 'input'  );
-					$this->checkSection( $data, 'result' );
+					$this->checkSection( 'test'   );
+					$this->checkSection( 'input'  );
+					$this->checkSection( 'result' );
 
-					if ( !isset( $data['options'] ) ) {
-						$data['options'] = '';
+					if ( !isset( $this->sectionData['options'] ) ) {
+						$this->sectionData['options'] = '';
 					}
 
-					if ( !isset( $data['config'] ) )
-						$data['config'] = '';
+					if ( !isset( $this->sectionData['config'] ) )
+						$this->sectionData['config'] = '';
 
-					if ( ( ( preg_match( '/\\bdisabled\\b/i', $data['options'] ) && !$this->parserTest->runDisabled )
-							 || !preg_match( "/" . $this->parserTest->regex . "/i", $data['test'] ) )  ) {
+					if ( ( ( preg_match( '/\\bdisabled\\b/i', $this->sectionData['options'] ) && !$this->parserTest->runDisabled )
+							 || !preg_match( "/" . $this->parserTest->regex . "/i", $this->sectionData['test'] ) )  ) {
 						# disabled test
-						$data = array();
-						$this->section = null;
+						$this->clearSection();
 
 						continue;
 					}
 
 					$this->test = array(
-						'test'    => ParserTest::chomp( $data['test']    ),
-						'input'   => ParserTest::chomp( $data['input']   ),
-						'result'  => ParserTest::chomp( $data['result']  ),
-						'options' => ParserTest::chomp( $data['options'] ),
-						'config'  => ParserTest::chomp( $data['config']  ),
+						'test'    => ParserTest::chomp( $this->sectionData['test']    ),
+						'input'   => ParserTest::chomp( $this->sectionData['input']   ),
+						'result'  => ParserTest::chomp( $this->sectionData['result']  ),
+						'options' => ParserTest::chomp( $this->sectionData['options'] ),
+						'config'  => ParserTest::chomp( $this->sectionData['config']  ),
 					);
 
 					return true;
 				}
 
-				if ( isset ( $data[$this->section] ) ) {
+				if ( isset ( $this->sectionData[$this->section] ) ) {
 					throw new MWException( "duplicate section '$section' at line {$this->lineNum} of $this->file\n" );
 				}
 
-				$data[$this->section] = '';
+				$this->sectionData[$this->section] = '';
 
 				continue;
 			}
 
 			if ( $this->section ) {
-				$data[$this->section] .= $line;
+				$this->sectionData[$this->section] .= $line;
 			}
 		}
 
@@ -520,22 +516,29 @@ class TestFileIterator implements Iterator {
 	}
 
 
+	/**
+	 * Clear section name and its data
+	 */
+	private function clearSection() {
+		$this->sectionData = array();
+		$this->section = null;
+		
+	}
 
 	/**
-	 * Verify the first parameter array ($data) has a value for the second  
-	 * parameter key name ($token).
+	 * Verify the current section data has some value for the given token
+	 * name (first parameter).
 	 * Throw an exception if it is not set, referencing current section
 	 * and adding the current file name and line number
 	 *
-	 * @param $data Array: an array of parser test data. See readNextTest()
 	 * @param $token String: expected token that should have been mentionned before closing this section 
 	 */
-	private function checkSection( $data, $token ) {
+	private function checkSection( $token ) {
 		if( is_null( $this->section ) ) {
-			throw new MWException( __METHOD__ . " could not verify a null section!\n" );
+			throw new MWException( __METHOD__ . " can not verify a null section!\n" );
 		}
 
-		if( !isset($data[$token]) ) {
+		if( !isset($this->sectionData[$token]) ) {
 			throw new MWException( sprintf(
 				"'%s' without '%s' at line %s of %s\n",
 				$this->section,
