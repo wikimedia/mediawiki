@@ -8588,18 +8588,18 @@ comment
 !! end
 
 !! test
+Bad images - basic functionality
 !! options
 disabled
-Bad images - basic functionality
 !! input
 [[File:Bad.jpg]]
 !! result
 !! end
 
 !! test
+Bad images - bug 16039: text after bad image disappears
 !! options
 disabled
-Bad images - bug 16039: text after bad image disappears
 !! input
 Foo bar
 [[File:Bad.jpg]]
