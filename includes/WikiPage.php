@@ -724,7 +724,7 @@ class WikiPage extends Page {
 
 	/**
 	 * Get a ParserOutput for the given ParserOptions and revision ID.
-	 * The the parser cache will be used if possible.
+	 * The parser cache will be used if possible.
 	 *
 	 * @since 1.19
 	 * @param $parserOptions ParserOptions to use for the parse operation
@@ -733,8 +733,6 @@ class WikiPage extends Page {
 	 * @return ParserOutput or false if the revision was not found
 	 */
 	public function getParserOutput( ParserOptions $parserOptions, $oldid = null ) {
-		global $wgParser;
-
 		wfProfileIn( __METHOD__ );
 
 		$useParserCache = $this->isParserCacheUsed( $parserOptions, $oldid );
