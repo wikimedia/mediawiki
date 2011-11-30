@@ -73,7 +73,7 @@ class PathRouter {
 
 		foreach ( $params as $paramName => $paramData ) {
 			if ( is_string( $paramData ) ) {
-				if ( preg_match( '/\$(\d+|key)/', $paramData ) ) {
+				if ( preg_match( '/\$(\d+|key)/u', $paramData ) ) {
 					$paramArrKey = 'pattern';
 				} else {
 					// If there's no replacement use a value instead
@@ -87,7 +87,7 @@ class PathRouter {
 		}
 
 		foreach ( $options as $optionName => $optionData ) {
-			if ( preg_match( '/^\$\d+$/', $optionName ) ) {
+			if ( preg_match( '/^\$\d+$/u', $optionName ) ) {
 				if ( !is_array( $optionData ) ) {
 					$options[$optionName] = array( $optionData );
 				}
@@ -147,10 +147,10 @@ class PathRouter {
 
 		# For each level of the path
 		foreach( $path as $piece ) {
-			if ( preg_match( '/^\$(\d+|key)$/', $piece ) ) {
+			if ( preg_match( '/^\$(\d+|key)$/u', $piece ) ) {
 				# For a piece that is only a $1 variable add 1 points of weight
 				$weight += 1;
-			} elseif ( preg_match( '/\$(\d+|key)/', $piece ) ) {
+			} elseif ( preg_match( '/\$(\d+|key)/u', $piece ) ) {
 				# For a piece that simply contains a $1 variable add 2 points of weight
 				$weight += 2;
 			} else {
@@ -160,7 +160,7 @@ class PathRouter {
 		}
 
 		foreach ( $pattern->options as $key => $option ) {
-			if ( preg_match( '/^\$\d+$/', $key ) ) {
+			if ( preg_match( '/^\$\d+$/u', $key ) ) {
 				# Add 0.5 for restrictions to values
 				# This way given two separate "/$2/$1" patterns the
 				# one with a limited set of $2 values will dominate
@@ -195,8 +195,8 @@ class PathRouter {
 
 	protected static function extractTitle( $path, $pattern ) {
 		$regexp = preg_quote( $pattern->path, '#' );
-		$regexp = preg_replace( '#\\\\\$1#', '(?P<par1>.*)', $regexp );
-		$regexp = preg_replace( '#\\\\\$(\d+)#', '(?P<par$1>.+?)', $regexp );
+		$regexp = preg_replace( '#\\\\\$1#u', '(?P<par1>.*)', $regexp );
+		$regexp = preg_replace( '#\\\\\$(\d+)#u', '(?P<par$1>.+?)', $regexp );
 		$regexp = "#^{$regexp}$#";
 
 		$matches = array();
@@ -204,9 +204,9 @@ class PathRouter {
 
 		if ( preg_match( $regexp, $path, $m ) ) {
 			foreach ( $pattern->options as $key => $option ) {
-				if ( preg_match( '/^\$\d+$/', $key ) ) {
+				if ( preg_match( '/^\$\d+$/u', $key ) ) {
 					$n = intval( substr( $key, 1 ) );
-					$value = $m["par{$n}"];
+					$value = rawurldecode( $m["par{$n}"] );
 					if ( !in_array( $value, $option ) ) {
 						return null;
 					}
@@ -214,9 +214,9 @@ class PathRouter {
 			}
 
 			foreach ( $m as $matchKey => $matchValue ) {
-				if ( preg_match( '/^par\d+$/', $matchKey ) ) {
+				if ( preg_match( '/^par\d+$/u', $matchKey ) ) {
 					$n = intval( substr( $matchKey, 3 ) );
-					$data['$'.$n] = $matchValue;
+					$data['$'.$n] = rawurldecode( $matchValue );
 				}
 			}
 			if ( isset( $pattern->key ) ) {
@@ -225,7 +225,7 @@ class PathRouter {
 
 			foreach ( $pattern->params as $paramName => $paramData ) {
 				$value = null;
-				if ( preg_match( '/^data:/', $paramName ) ) {
+				if ( preg_match( '/^data:/u', $paramName ) ) {
 					$isData = true;
 					$key = substr( $paramName, 5 );
 				} else {
@@ -238,15 +238,15 @@ class PathRouter {
 				} elseif ( isset( $paramData['pattern'] ) ) {
 					$value = $paramData['pattern'];
 					foreach ( $m as $matchKey => $matchValue ) {
-						if ( preg_match( '/^par\d+$/', $matchKey ) ) {
+						if ( preg_match( '/^par\d+$/u', $matchKey ) ) {
 							$n = intval( substr( $matchKey, 3 ) );
-							$value = str_replace( '$' . $n, $matchValue, $value );
+							$value = str_replace( '$' . $n, rawurldecode( $matchValue ), $value );
 						}
 					}
 					if ( isset( $pattern->key ) ) {
 						$value = str_replace( '$key', $pattern->key, $value );
 					}
-					if ( preg_match( '/\$(\d+|key)/', $value ) ) {
+					if ( preg_match( '/\$(\d+|key)/u', $value ) ) {
 						// Still contains $# or $key patterns after replacement
 						// Seams like we don't have all the data, abort
 						return null;

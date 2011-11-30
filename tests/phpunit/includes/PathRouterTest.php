@@ -5,13 +5,17 @@
 
 class PathRouterTest extends MediaWikiTestCase {
 
+	public function setUp() {
+		$router = new PathRouter;
+		$router->add("/wiki/$1");
+		$this->basicRouter = $router;
+	}
+
 	/**
 	 * Test basic path parsing
 	 */
 	public function testBasic() {
-		$router = new PathRouter;
-		$router->add("/$1");
-		$matches = $router->parse( "/Foo" );
+		$matches = $this->basicRouter->parse( "/wiki/Foo" );
 		$this->assertEquals( $matches, array( 'title' => "Foo" ) );
 	}
 
@@ -111,7 +115,7 @@ class PathRouterTest extends MediaWikiTestCase {
 			array( 'a' => 'b', 'data:foo' => 'bar' ),
 			array( 'callback' => array( $this, 'callbackForTest' ) )
 		);
-		$matches = $router->parse( '/Foo');
+		$matches = $router->parse( '/Foo' );
 		$this->assertEquals( $matches, array(
 			'title' => "Foo",
 			'x' => 'Foo',
@@ -150,6 +154,52 @@ class PathRouterTest extends MediaWikiTestCase {
 		) as $path => $result ) {
 			$this->assertEquals( $router->parse( $path ), $result );
 		}
+	}
+
+	/**
+	 * Make sure the router handles titles like Special:Recentchanges correctly
+	 */
+	public function testSpecial() {
+		$matches = $this->basicRouter->parse( "/wiki/Special:Recentchanges" );
+		$this->assertEquals( $matches, array( 'title' => "Special:Recentchanges" ) );
+	}
+
+	/**
+	 * Make sure the router decodes urlencoding properly
+	 */
+	public function testUrlencoding() {
+		$matches = $this->basicRouter->parse( "/wiki/Title_With%20Space" );
+		$this->assertEquals( $matches, array( 'title' => "Title_With Space" ) );
+	}
+
+	/**
+	 * Make sure the router handles characters like +&() properly
+	 */
+	public function testCharacters() {
+		$matches = $this->basicRouter->parse( "/wiki/Plus+And&Stuff()" );
+		$this->assertEquals( $matches, array( 'title' => "Plus+And&Stuff()" ) );
+	}
+
+	/**
+	 * Make sure the router handles unicode characters correctly
+	 * @depends testSpecial
+	 * @depends testUrlencoding
+	 * @depends testCharacters
+	 */
+	public function testUnicode() {
+		$matches = $this->basicRouter->parse( "/wiki/Spécial:Modifications_récentes" );
+		$this->assertEquals( $matches, array( 'title' => "Spécial:Modifications_récentes" ) );
+
+		$matches = $this->basicRouter->parse( "/wiki/Sp%C3%A9cial:Modifications_r%C3%A9centes" );
+		$this->assertEquals( $matches, array( 'title' => "Spécial:Modifications_récentes" ) );
+	}
+
+	/**
+	 * Ensure the router doesn't choke on long paths.
+	 */
+	public function testLength() {
+		$matches = $this->basicRouter->parse( "/wiki/Lorem_ipsum_dolor_sit_amet,_consectetur_adipisicing_elit,_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua._Ut_enim_ad_minim_veniam,_quis_nostrud_exercitation_ullamco_laboris_nisi_ut_aliquip_ex_ea_commodo_consequat._Duis_aute_irure_dolor_in_reprehenderit_in_voluptate_velit_esse_cillum_dolore_eu_fugiat_nulla_pariatur._Excepteur_sint_occaecat_cupidatat_non_proident,_sunt_in_culpa_qui_officia_deserunt_mollit_anim_id_est_laborum." );
+		$this->assertEquals( $matches, array( 'title' => "Lorem_ipsum_dolor_sit_amet,_consectetur_adipisicing_elit,_sed_do_eiusmod_tempor_incididunt_ut_labore_et_dolore_magna_aliqua._Ut_enim_ad_minim_veniam,_quis_nostrud_exercitation_ullamco_laboris_nisi_ut_aliquip_ex_ea_commodo_consequat._Duis_aute_irure_dolor_in_reprehenderit_in_voluptate_velit_esse_cillum_dolore_eu_fugiat_nulla_pariatur._Excepteur_sint_occaecat_cupidatat_non_proident,_sunt_in_culpa_qui_officia_deserunt_mollit_anim_id_est_laborum." ) );
 	}
 
 }
