@@ -40,7 +40,6 @@ production.
 * Installer now issues a warning if mod_security is present.
 * (bug 29455) Add support for a filter callback function in jQuery byteLimit
   plugin.
-* Extensions can now participate in the extraction of titles from url paths.
 * Added two new GetLocalURL hooks to better serve extensions working on a
   limited type of titles.
 * Added a --no-updates flag to importDump.php that skips updating the links
