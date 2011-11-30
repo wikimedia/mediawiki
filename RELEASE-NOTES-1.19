@@ -167,6 +167,10 @@ production.
 * (bug 27721) Make JavaScript variables wgSeparatorTransformTable and
   wgDigitTransformTable depend on page content language so the sort script
   sorts correctly more often
+* (bug 32230) Expose wgRedirectedFrom in JavaScript
+* (bug 31212) History tab not collapsed when the screen is narrow
+* (bug 15521) Use new section summary when the action of adding a new section
+  also happens to create the page
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
