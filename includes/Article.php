@@ -823,6 +823,9 @@ class Article extends Page {
 					'href' => $this->getTitle()->getLocalURL() )
 				);
 
+				// Tell $wgOut the user arrived at this article through a redirect
+				$wgOut->setRedirectedFrom( $this->mRedirectedFrom );
+
 				return true;
 			}
 		} elseif ( $rdfrom ) {
