@@ -2,7 +2,7 @@
 
 	// ensure we have a generic URI parser if not running in a browser
 	if ( !mw.Uri ) {
-		mw.Uri = mw.UriRelative( 'http://sample.com/' );
+		mw.Uri = mw.UriRelative( 'http://example.com/' );
 	}
 
 	describe( "mw.Uri", function() {
