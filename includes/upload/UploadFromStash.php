@@ -161,4 +161,40 @@ class UploadFromStash extends UploadBase {
 		$this->unsaveUploadedFile();
 		return $rv;
 	}
+
+	/**
+	 * Append a chunk to the temporary file.
+	 *
+	 * @param $chunk
+	 * @param $chunkSize
+	 * @param $offset
+	 * @return Status
+	 */
+	public function appendChunk( $chunk, $chunkSize, $offset ) {
+		//to use $this->getFileSize() here, db needs to be updated
+		//in appendToUploadFile for that
+		$fileSize = $this->stash->getFile( $this->mFileKey )->getSize();
+		if ( $fileSize + $chunkSize > $this->getMaxUploadSize()) {
+			$status = Status::newFatal( 'file-too-large' );
+		} else {
+			//append chunk
+			if ( $fileSize == $offset ) {
+				$status = $this->appendToUploadFile( $chunk,
+					$this->mVirtualTempPath );
+			} else {
+				$status = Status::newFatal( 'invalid-chunk-offset' );
+			}
+		}
+		return $status;
+	}
+
+	/**
+	 * Append the final chunk and ready file for parent::performUpload()
+	 * @return void
+	 */
+	public function finalizeFile() {
+		$this->appendFinish ( $this->mVirtualTempPath );
+		$this->cleanupTempFile();
+		$this->mTempPath = $this->getRealPath( $this->mVirtualTempPath );
+	}
 }

@@ -313,63 +313,11 @@ class FSRepo extends FileRepo {
 			wfRestoreWarnings();
 		}
 	}
+
 	/**
-	 * Concatenate a list of files into a target file location. 
-	 * 
-	 * @param $fileList array of files
-	 * @param $targetFile String target path
-	 * @param $flags Integer: bitwise combination of the following flags:
-	 *     self::FILES_ONLY     Mark file as existing only if it is a file (not directory)
-	 */
-	function concatenate( $fileList, $targetPath, $flags = 0 ){
-		$status = $this->newGood();
-		// Resolve the virtual URL for taget: 
-		if ( self::isVirtualUrl( $targetPath ) ) {
-			$targetPath = $this->resolveVirtualUrl( $targetPath );
-			// empty out the target file:  
-			if ( is_file( $targetPath ) ){
-				unlink( $targetPath );
-			}
-		}
-		foreach( $fileList as $sourcePath ){
-			// Resolve the virtual URL for source: 
-			if ( self::isVirtualUrl( $sourcePath ) ) {
-				$sourcePath = $this->resolveVirtualUrl( $sourcePath );
-			}
-			if ( !is_file( $sourcePath ) )
-				$status->fatal( 'filenotfound', $sourcePath );
-	
-			if ( !$status->isOk() ){
-				return $status;
-			}
-	
-			// Do the append
-			$chunk = file_get_contents( $sourcePath );
-			if( $chunk === false ) {
-				$status->fatal( 'fileconcatenateerrorread', $sourcePath );
-				return $status;
-			}
-			if( $status->isOk() ) {
-				if ( file_put_contents( $targetPath, $chunk, FILE_APPEND ) ) {
-					$status->value = $targetPath;
-				} else {
-					$status->fatal( 'fileconcatenateerror', $sourcePath,  $targetPath);
-				}
-			}
-			if ( $flags & self::DELETE_SOURCE ) {
-				unlink( $sourcePath );
-			}
-		}
-		return $status;
-	}
-	/**
-	 * @deprecated 1.19
-	 * 
 	 * @return Status
 	 */
 	function append( $srcPath, $toAppendPath, $flags = 0 ) {
-		wfDeprecated(__METHOD__);
-		
 		$status = $this->newGood();
 
 		// Resolve the virtual URL
