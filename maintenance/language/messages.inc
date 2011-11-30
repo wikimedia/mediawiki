@@ -1362,6 +1362,7 @@ $wgMessageStructure = array(
 		'uploadstash-badtoken',
 		'uploadstash-errclear',
 		'uploadstash-refresh',
+		'invalid-chunk-offset',
 	),
 
 	'img-auth' => array(
