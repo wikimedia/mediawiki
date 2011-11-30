@@ -867,7 +867,8 @@ class EditPage {
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
 				$query = $resultDetails['redirect'] ? 'redirect=no' : '';
-				$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $resultDetails['sectionanchor'] );
+				$anchor = isset ( $resultDetails['sectionanchor'] ) ? $resultDetails['sectionanchor'] : '';
+				$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $anchor );
 				return false;
 
 			case self::AS_SUCCESS_UPDATE:
