@@ -2191,14 +2191,8 @@ $title: Title object
 $redirect: whether the page is a redirect
 $skin: Skin object
 
-'WebRequestGetPathInfoRequestURI': while extracting path info from REQUEST_URI.
-	Allows an extension to extend the extraction of titles from paths.
-	Implementing hooks should follow the pattern used in core:
-	* Use the `$matches = WebRequest::extractTitle` pattern
-	* Ensure that you test `if ( !$matches ) {` before you try extracting a title
-	  from the path so that you don't override an already found match.
-$path: The request path to extract a title from.
-&$matches: The array to apply matches to.
+'WebRequestPathInfoRouter': While building the PathRouter to parse the REQUEST_URI.
+$router: The PathRouter instance
 
 'WikiExporter::dumpStableQuery': Get the SELECT query for "stable" revisions
 dumps
