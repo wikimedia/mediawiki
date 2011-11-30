@@ -1867,6 +1867,9 @@ Extensions making use of it:
 
 
 {{Identical|Internal error}}',
+'invalid-chunk-offset' =>  'Error that can happen if chunkd get uploaded out of order.
+As a result of this error, clients can continue from offset provided or restart upload.
+Used on [[Special:UploadWizard]]',
 
 # ZipDirectoryReader
 'zip-unsupported' => "Perhaps translations of 'software' can be used instead of 'features' and 'understood' or 'handled' instead of 'supported'.",
