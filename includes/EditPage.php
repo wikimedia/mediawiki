@@ -867,7 +867,7 @@ class EditPage {
 
 			case self::AS_SUCCESS_NEW_ARTICLE:
 				$query = $resultDetails['redirect'] ? 'redirect=no' : '';
-				$wgOut->redirect( $this->mTitle->getFullURL( $query ) );
+				$wgOut->redirect( $this->mTitle->getFullURL( $query ) . $resultDetails['sectionanchor'] );
 				return false;
 
 			case self::AS_SUCCESS_UPDATE:
@@ -1112,8 +1112,17 @@ class EditPage {
 			}
 
 			$text = $this->textbox1;
+			$result['sectionanchor'] == '';
 			if ( $this->section == 'new' && $this->summary != '' ) {
 				$text = wfMsgForContent( 'newsectionheaderdefaultlevel', $this->summary ) . "\n\n" . $text;
+			
+				# Jump to the new section
+				$result['sectionanchor'] = $wgParser->guessLegacySectionNameFromWikiText( $this->summary );
+
+				# This is a new section, so create a link to the new section
+				# in the revision summary.
+				$cleanSummary = $wgParser->stripSectionName( $this->summary );
+				$this->summary = wfMsgForContent( 'newsectionsummary', $cleanSummary );
 			}
 
 			$status->value = self::AS_SUCCESS_NEW_ARTICLE;
