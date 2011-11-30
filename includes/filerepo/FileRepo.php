@@ -421,14 +421,6 @@ abstract class FileRepo {
 
 
 	/**
-	 * Concatenate and array of file sources. 
-	 * @param $fileList Array of file sources
-	 * @param $targetPath String target destination for file.
-	 * @throws MWException
-	 */
-	abstract function concatenate( $fileList, $targetPath, $flags = 0 );
-	
-	/**
 	 * Append the contents of the source path to the given file, OR queue
 	 * the appending operation in anticipation of a later appendFinish() call.
 	 * @param $srcPath String: location of the source file
