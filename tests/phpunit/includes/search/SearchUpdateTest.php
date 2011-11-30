@@ -77,4 +77,14 @@ EOT
 			'Bug 18609'
 		);
 	}
+
+	function testBug32712() {
+		$text = "text „http://example.com“ text";
+		$result = $this->updateText( $text );
+		$processed = preg_replace( '/Q/u', 'Q', $result );
+		$this->assertTrue(
+			$processed != '',
+			'Link surrounded by unicode quotes should not fail UTF-8 validation'
+		);
+	}
 }
