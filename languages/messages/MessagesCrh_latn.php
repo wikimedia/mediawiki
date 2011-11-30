@@ -1841,9 +1841,9 @@ Faylnı işletip işletim sistemañızğa zarar ketirip olursıñız.",
 'widthheightpage' => '$1 × $2, {{PLURAL:$3|1|$3}} saife',
 'file-info'       => 'fayl büyükligi: $1, MIME çeşiti: $2',
 'file-info-size'  => '$1 × $2 piksel, fayl büyükligi: $3, MIME çeşiti: $4',
-'file-nohires'    => 'Daa yüksek çezinirlikke saip versiya yoq.',
+'file-nohires'    => 'Daa yüksek ayırımlılıqqa saip versiya yoq.',
 'svg-long-desc'   => 'SVG faylı, nominal $1 × $2 piksel, fayl büyükligi: $3',
-'show-big-image'  => 'Tam çezinirlik',
+'show-big-image'  => 'Tam ayırımlılıq',
 
 # Special:NewFiles
 'newimages'             => 'Yañı resimler',

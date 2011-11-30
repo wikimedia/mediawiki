@@ -619,10 +619,12 @@ Potrebbe essere stato già cancellato da qualcun altro.',
 Funzione: $1<br />
 Query: $2',
 'viewsource'           => 'Visualizza sorgente',
+'viewsource-title'     => 'Visualizza sorgente di $1',
 'actionthrottled'      => 'Azione ritardata',
 'actionthrottledtext'  => "Come misura di sicurezza contro lo spam, l'esecuzione di alcune azioni è limitata a un numero massimo di volte in un determinato periodo di tempo, limite che in questo caso è stato superato. Si prega di riprovare tra qualche minuto.",
 'protectedpagetext'    => 'Questa pagina è stata protetta per impedirne la modifica.',
 'viewsourcetext'       => 'È possibile visualizzare e copiare il codice sorgente di questa pagina:',
+'viewyourtext'         => "È possibile visualizzare e copiare il codice sorgente delle '''tue modifiche''' a questa pagina:",
 'protectedinterface'   => "Questa pagina contiene un elemento che fa parte dell'interfaccia utente del software; è quindi protetta per evitare possibili abusi.",
 'editinginterface'     => "'''Attenzione:''' Il testo di questa pagina fa parte dell'interfaccia utente del sito. Tutte le modifiche apportate a questa pagina si riflettono sui messaggi visualizzati per tutti gli utenti.
 Per le traduzioni, considera la possibilità di usare [//translatewiki.net/wiki/Main_Page?setlang=it translatewiki.net], il progetto MediaWiki per la localizzazione.",
@@ -1435,7 +1437,7 @@ L'operazione non può essere annullata.",
 'right-deleterevision'        => 'Nasconde revisioni specifiche delle pagine',
 'right-deletedhistory'        => 'Visualizza le revisioni della cronologia cancellate senza il testo associato',
 'right-deletedtext'           => 'Visualizza testo cancellato e modifiche fra revisioni cancellate',
-'right-browsearchive'         => 'Visualizza pagine cancellate',
+'right-browsearchive'         => 'Ricerca nelle pagine cancellate',
 'right-undelete'              => 'Recupera una pagina',
 'right-suppressrevision'      => 'Rivede e recupera revisioni nascoste agli amministratori',
 'right-suppressionlog'        => 'Visualizza log privati',
@@ -1510,6 +1512,7 @@ L'operazione non può essere annullata.",
 'action-userrights'           => 'modificare tutti i diritti degli utenti',
 'action-userrights-interwiki' => 'modificare i diritti degli utenti su altre wiki',
 'action-siteadmin'            => 'bloccare e sbloccare il database',
+'action-sendemail'            => 'inviare e-mail',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|modifica|modifiche}}',
@@ -1877,7 +1880,7 @@ Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizion
 'statistics-users-active-desc' => "Utenti che hanno effettuato un'azione {{PLURAL:$1|nell'ultimo giorno|negli ultimi $1 giorni}}",
 'statistics-mostpopular'       => 'Pagine più visitate',
 
-'disambiguations'      => 'Pagine di disambiguazione',
+'disambiguations'      => 'Pagine che si collegano a pagine di disambiguazione',
 'disambiguationspage'  => 'Template:Disambigua',
 'disambiguations-text' => "Le pagine nella lista che segue contengono dei collegamenti a '''pagine di disambiguazione''' e non all'argomento cui dovrebbero fare riferimento.<br />Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:Disambiguationspage]]",
 
@@ -2020,8 +2023,9 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'linksearch-pat'   => 'Pattern di ricerca:',
 'linksearch-ns'    => 'Namespace:',
 'linksearch-ok'    => 'Cerca',
-'linksearch-text'  => 'È possibile fare uso di metacaratteri, ad es. "*.wikipedia.org".<br />
-Protocolli supportati: <tt>$1</tt>',
+'linksearch-text'  => 'È possibile fare uso di metacaratteri, ad esempio "*.wikipedia.org".<br />
+È necessario almeno un dominio di primo livello, ad esempio "*.org".<br />
+Protocolli supportati: <tt>$1</tt> (non aggiungere nessuno di questi nella tua ricerca).',
 'linksearch-line'  => '$1 presente nella pagina $2',
 'linksearch-error' => "I metacaratteri possono essere usati solo all'inizio dell'indirizzo.",
 
@@ -2319,6 +2323,7 @@ Il testo contenuto nelle revisioni cancellate è disponibile solo agli amministr
 
 Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni e i recuperi più recenti.",
 'undelete-header'              => 'Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cancellazioni più recenti.',
+'undelete-search-title'        => 'Ricerca nelle pagine cancellate',
 'undelete-search-box'          => 'Ricerca nelle pagine cancellate',
 'undelete-search-prefix'       => 'Mostra le pagine il cui titolo inizia con:',
 'undelete-search-submit'       => 'Cerca',
@@ -2327,6 +2332,7 @@ Consultare il [[Special:Log/delete|log delle cancellazioni]] per vedere le cance
 'undelete-bad-store-key'       => 'Impossibile annullare la cancellazione della revisione del file con timestamp $1: file non disponibile prima della cancellazione.',
 'undelete-cleanup-error'       => 'Errore nella cancellazione del file di archivio non utilizzato "$1".',
 'undelete-missing-filearchive' => "Impossibile ripristinare l'ID $1 dell'archivio file in quanto non è presente nel database. Potrebbe essere stato già ripristinato.",
+'undelete-error'               => 'Errore nel ripristino della pagina',
 'undelete-error-short'         => 'Errore nel ripristino del file: $1',
 'undelete-error-long'          => 'Si sono verificati degli errori nel tentativo di annullare la cancellazione del file:
 
@@ -2623,6 +2629,7 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[{{#S
 'exportcuronly'     => "Includi solo la revisione attuale, non l'intera cronologia",
 'exportnohistory'   => "----
 '''Nota:''' l'esportazione dell'intera cronologia delle pagine attraverso questa interfaccia è stata disattivata per motivi legati alle prestazioni del sistema.",
+'exportlistauthors' => "Includi l'elenco completo dei contributori per ogni pagina",
 'export-submit'     => 'Esporta',
 'export-addcattext' => 'Aggiungi pagine dalla categoria:',
 'export-addcat'     => 'Aggiungi',

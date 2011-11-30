@@ -2321,7 +2321,7 @@ $1',
 
 # action=purge
 'confirm_purge_button' => 'OK',
-'confirm-purge-top'    => 'Бу битнең кэшын чистартыргамы?',
+'confirm-purge-top'    => 'Бу битнең кэшы чистартылсынмы?',
 'confirm-purge-bottom' => 'Кэшны чистартудан соң аның соңгы юрамасы күрсәтеләчәк.',
 
 # Multipage image navigation

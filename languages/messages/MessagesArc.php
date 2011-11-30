@@ -234,6 +234,7 @@ $messages = array(
 'printableversion'  => 'ܨܚܚܐ ܡܬܛܒܥܢܐ',
 'permalink'         => 'ܐܣܘܪܐ ܦܝܘܫܐ',
 'print'             => 'ܛܒܘܥ',
+'view'              => 'ܚܘܝ',
 'edit'              => 'ܫܚܠܦ',
 'create'            => 'ܒܪܝ',
 'editthispage'      => 'ܫܚܠܦ ܦܐܬܐ ܗܕܐ',
@@ -279,6 +280,8 @@ $messages = array(
 ܦܝܣܐ ܡܢܟ ܣܟܝ ܩܠܝܠ ܡܢ ܩܕܡ ܕܓܪܒܬ ܠܡܛܝܐ ܠܐܗܐ ܦܐܬܐ ܬܢܝܢܘܬ.
 
 $1',
+'pool-timeout'      => 'ܫܠܡ ܥܕܢܐ ܣܒܪܬܐ ܠܚܠܩܐ',
+'pool-queuefull'    => 'ܣܕܪܐ ܕܦܘܣܣܐ ܡܠܝܐ',
 'pool-errorunknown' => 'ܦܘܕܐ ܠܐ ܝܕܝܥܐ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -301,7 +304,8 @@ $1',
 'privacy'              => 'ܦܘܪܢܣܐ ܕܕܝܠܢܝܘܬܐ',
 'privacypage'          => 'Project:ܦܘܪܢܣܐ ܕܕܝܠܢܝܘܬܐ',
 
-'badaccess' => 'ܦܘܕܐ ܒܦܣܣܐ',
+'badaccess'        => 'ܦܘܕܐ ܒܦܣܣܐ',
+'badaccess-group0' => 'ܠܬ ܠܟ ܦܣܣܐ ܠܚܘܩܩܐ ܕܥܒܕܐ ܕܐܢܬ ܫܐܠܬܝ.',
 
 'ok'                      => 'ܛܒ',
 'youhavenewmessages'      => 'ܐܝܬ ܠܟ $1 ($2).',

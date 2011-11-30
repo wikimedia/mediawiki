@@ -2037,9 +2037,9 @@ Eine Seite gilt als Begriffsklärungsseite, wenn sie eine der in [[MediaWiki:Dis
 Links aus Namensräumen werden hier nicht aufgelistet.',
 
 'doubleredirects'                   => 'Doppelte Weiterleitungen',
-'doubleredirectstext'               => 'Diese Liste enthält Weiterleitungen, die auf weitere Weiterleitungen verlinken.
-Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.
-<del>Durchgestrichene</del> Einträge wurden bereits erledigt.',
+'doubleredirectstext'               => 'Diese Liste enthält Weiterleitungen, die auf Weiterleitungen verlinken.
+Jede Zeile enthält Links zur ersten und zweiten Weiterleitung sowie dem Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.
+<del>Durchgestrichene</del> Einträge wurden bereits erfolgreich bearbeitet.',
 'double-redirect-fixed-move'        => '[[$1]] wurde verschoben und leitet nun nach [[$2]] weiter.',
 'double-redirect-fixed-maintenance' => 'Bereinigung der doppelten Weiterleitung von [[$1]] nach [[$2]].',
 'double-redirect-fixer'             => 'RedirectBot',
