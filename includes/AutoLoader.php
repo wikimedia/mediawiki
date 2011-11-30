@@ -873,6 +873,7 @@ $wgAutoloadLocalClasses = array(
 	'PopulateParentId' => 'maintenance/populateParentId.php',
 	'PopulateRevisionLength' => 'maintenance/populateRevisionLength.php',
 	'PopulateRevisionSha1' => 'maintenance/populateRevisionSha1.php',
+	'RefreshLinks' => 'maintenance/refreshLinks.php',
 	'SevenZipStream' => 'maintenance/7zip.inc',
 	'Sqlite' => 'maintenance/sqlite.inc',
 	'UpdateCollation' => 'maintenance/updateCollation.php',
