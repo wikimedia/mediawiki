@@ -2252,7 +2252,7 @@ It cannot be properly checked for security.',
 'uploadstash-badtoken' => 'Performing of that action was unsuccessful, perhaps because your editing credentials expired. Try again.',
 'uploadstash-errclear' => 'Clearing the files was unsuccessful.',
 'uploadstash-refresh'  => 'Refresh the list of files',
-'invalid-chunk-offset' =>  'Invalid chunk offset',
+'invalid-chunk-offset' => 'Invalid chunk offset',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Access denied',

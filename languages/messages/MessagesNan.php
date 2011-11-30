@@ -1330,83 +1330,113 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'recentchangeslinked-to'       => '顯示連到我拍入的頁名閣有改過的',
 
 # Upload
-'upload'                     => 'Kā tóng-àn chiūⁿ-bāng',
-'uploadbtn'                  => 'Kā tóng-àn chiūⁿ-bāng',
-'reuploaddesc'               => 'Tò khì sàng-chiūⁿ-bāng ê pió.',
-'upload-tryagain'            => '送出改過了後的檔案描述',
-'uploadnologin'              => 'Bô teng-ji̍p',
-'uploadnologintext'          => 'Bô [[Special:UserLogin|teng-ji̍p]] bē-sái-tit kā tóng-àn sàng-chiūⁿ-bāng.',
-'upload_directory_missing'   => '無上傳的目錄（$1），彼袂當由網頁伺服器建立。',
-'upload_directory_read_only' => '無上載目錄（$1），抑是網頁伺服器無權寫入',
-'uploaderror'                => 'Upload chhò-gō·',
-'upload-recreate-warning'    => "'''注意：一个仝名的檔案捌hông刣掉抑是徙去別位。'''
+'upload'                      => 'Kā tóng-àn chiūⁿ-bāng',
+'uploadbtn'                   => 'Kā tóng-àn chiūⁿ-bāng',
+'reuploaddesc'                => 'Tò khì sàng-chiūⁿ-bāng ê pió.',
+'upload-tryagain'             => '送出改過了後的檔案描述',
+'uploadnologin'               => 'Bô teng-ji̍p',
+'uploadnologintext'           => 'Bô [[Special:UserLogin|teng-ji̍p]] bē-sái-tit kā tóng-àn sàng-chiūⁿ-bāng.',
+'upload_directory_missing'    => '無上傳的目錄（$1），彼袂當由網頁伺服器建立。',
+'upload_directory_read_only'  => '無上載目錄（$1），抑是網頁伺服器無權寫入',
+'uploaderror'                 => 'Upload chhò-gō·',
+'upload-recreate-warning'     => "'''注意：一个仝名的檔案捌hông刣掉抑是徙去別位。'''
 
 這頁的刣掉、徙振動記錄佇下跤通參考：",
-'uploadtext'                 => "用下跤的表來共檔案上載。
+'uploadtext'                  => "用下跤的表來共檔案上載。
 若欲看抑是揣往過上載的檔案，會使進入[[Special:FileList|檔案上載清單]]，（重）上載嘛會記錄佇[[Special:Log/upload|上傳記錄]]，若刣掉就會記錄佇[[Special:Log/delete|刪除記錄]]。
 
 若欲佇頁加入檔案，用下跤的一種方式來連結：
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.jpg]]</nowiki></tt>'''使用檔案的完整版本
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:File.png|200px|thumb|left|替換文字]]</nowiki></tt>'''用一个囥佇倒爿的一个200 像素圖相框，「替換文字」做說明
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>'''直接連結到檔案，毋過無顯示檔案",
-'upload-permitted'           => '准許的檔案類型: $1',
-'upload-preferred'           => '建議的檔案類型: $1',
-'upload-prohibited'          => '禁止的檔案類型: $1。',
-'uploadlog'                  => '上載記錄',
-'uploadlogpage'              => '上載記錄',
-'uploadlogpagetext'          => 'Í-hā sī chòe-kīn sàng-chiūⁿ-bāng ê tóng-àn ê lia̍t-toaⁿ.',
-'filename'                   => 'Tóng-àn',
-'filedesc'                   => 'Khài-iàu',
-'fileuploadsummary'          => 'Khài-iàu:',
-'filereuploadsummary'        => '改換檔案的說明:',
-'filestatus'                 => '版權狀況:',
-'filesource'                 => '來源：',
-'uploadedfiles'              => 'Tóng-àn í-keng sàng chiūⁿ-bāng',
-'ignorewarning'              => 'Mài chhap kéng-kò, kā tóng-àn pó-chûn khí lâi.',
-'ignorewarnings'             => 'Mài chhap kéng-kò',
-'minlength1'                 => '檔案的名上少愛有一字',
-'illegalfilename'            => '檔案名“$1”有袂用得用佇標題的字，
+'upload-permitted'            => '准許的檔案類型: $1',
+'upload-preferred'            => '建議的檔案類型: $1',
+'upload-prohibited'           => '禁止的檔案類型: $1。',
+'uploadlog'                   => '上載記錄',
+'uploadlogpage'               => '上載記錄',
+'uploadlogpagetext'           => 'Í-hā sī chòe-kīn sàng-chiūⁿ-bāng ê tóng-àn ê lia̍t-toaⁿ.',
+'filename'                    => 'Tóng-àn',
+'filedesc'                    => 'Khài-iàu',
+'fileuploadsummary'           => 'Khài-iàu:',
+'filereuploadsummary'         => '改換檔案的說明:',
+'filestatus'                  => '版權狀況:',
+'filesource'                  => '來源：',
+'uploadedfiles'               => 'Tóng-àn í-keng sàng chiūⁿ-bāng',
+'ignorewarning'               => 'Mài chhap kéng-kò, kā tóng-àn pó-chûn khí lâi.',
+'ignorewarnings'              => 'Mài chhap kéng-kò',
+'minlength1'                  => '檔案的名上少愛有一字',
+'illegalfilename'             => '檔案名“$1”有袂用得用佇標題的字，
 請改名了後重新上載。',
-'badfilename'                => 'Iáⁿ-siōng ê miâ í-keng kái chò "$1".',
-'filetype-bad-ie-mime'       => '袂當上載這个檔案，因為 Internet Explorer 會共伊偵測做 "$1"，彼種袂使，可能是有所危害的檔案類型。',
-'filetype-unwanted-type'     => "'''\".\$1\"'''是袂當上載的檔案類型，
+'badfilename'                 => 'Iáⁿ-siōng ê miâ í-keng kái chò "$1".',
+'filetype-badmime'            => 'MIME類別"$1"的檔案袂當上載',
+'filetype-bad-ie-mime'        => '袂當上載這个檔案，因為 Internet Explorer 會共伊偵測做 "$1"，彼種袂使，可能是有所危害的檔案類型。',
+'filetype-unwanted-type'      => "'''\".\$1\"'''是袂當上載的檔案類型，
 適當的{{PLURAL:\$3|檔案類型|檔案類型}}是\$2。",
-'filetype-missing'           => '彼个檔案名稱無副檔名 （親像 ".jpg"）。',
-'empty-file'                 => '你送出來的檔案是空的',
-'file-too-large'             => '你送出來的檔案傷過大',
-'filename-tooshort'          => '檔案名傷短',
-'filetype-banned'            => '這類的檔案被禁止',
-'verification-error'         => '這个檔案無通過驗證',
-'hookaborted'                => '你欲做的編輯因為擴展鈎(extension hook)去跳開。',
-'illegal-filename'           => '無合用的檔案名稱',
-'overwrite'                  => '袂使覆寫已經佇咧的檔案',
-'unknown-error'              => '發生一个不知的錯誤',
-'tmp-create-error'           => '無法度建立臨時檔案',
-'tmp-write-error'            => '寫入臨時檔案的時陣發生錯誤',
-'large-file'                 => '建議檔案的大小袂當超過 $1，本檔案大小是 $2。',
-'largefileserver'            => '這个檔案比伺服器配置所允許的較大。',
-'emptyfile'                  => '你欲上載的檔案敢若是空的，
+'filetype-missing'            => '彼个檔案名稱無副檔名 （親像 ".jpg"）。',
+'empty-file'                  => '你送出來的檔案是空的',
+'file-too-large'              => '你送出來的檔案傷過大',
+'filename-tooshort'           => '檔案名傷短',
+'filetype-banned'             => '這類的檔案被禁止',
+'verification-error'          => '這个檔案無通過驗證',
+'hookaborted'                 => '你欲做的編輯因為擴展鈎(extension hook)去跳開。',
+'illegal-filename'            => '無合用的檔案名稱',
+'overwrite'                   => '袂使覆寫已經佇咧的檔案',
+'unknown-error'               => '發生一个不知的錯誤',
+'tmp-create-error'            => '無法度建立臨時檔案',
+'tmp-write-error'             => '寫入臨時檔案的時陣發生錯誤',
+'large-file'                  => '建議檔案的大小袂當超過 $1，本檔案大小是 $2。',
+'largefileserver'             => '這个檔案比伺服器配置所允許的較大。',
+'emptyfile'                   => '你欲上載的檔案敢若是空的，
 這有可能是拍毋著檔案名稱，
 請檢查你確定是欲上載這个檔案。',
-'fileexists'                 => "已經有一个仝名的檔案，你若無確定你欲要共改，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
-'filepageexists'             => "這个檔案的描述頁已經佇'''<tt>[[:$1]]</tt>'''建立，毋過這个名稱的檔案猶未有，
+'fileexists'                  => "已經有一个仝名的檔案，你若無確定你欲要共改，請檢查'''<tt>[[:$1]]</tt>'''。 [[$1|thumb]]",
+'filepageexists'              => "這个檔案的描述頁已經佇'''<tt>[[:$1]]</tt>'''建立，毋過這个名稱的檔案猶未有，
 你所輸入的概要袂顯示佇彼个描述頁當中，若欲概要佇遐看會著，你愛手動編輯。
 [[$1|thumb]]",
-'fileexists-extension'       => "一个親像檔名的檔案已經佇咧: [[$2|thumb]]
+'fileexists-extension'        => "一个親像檔名的檔案已經佇咧: [[$2|thumb]]
 * 上載檔案的檔名: '''<tt>[[:$1]]</tt>'''
 * 這馬檔案的檔名: '''<tt>[[:$2]]</tt>'''
 請選一个無仝的名。",
-'fileexists-thumbnail-yes'   => "這个檔案若親像是一幅圖的縮小版本''（縮圖）''。 [[$1|thumb]]
+'fileexists-thumbnail-yes'    => "這个檔案若親像是一幅圖的縮小版本''（縮圖）''。 [[$1|thumb]]
 請檢查檔案'''<tt>[[:$1]]</tt>'''，
 若檢查的檔案是仝幅圖的縮圖，就毋免閣上載一幅縮圖。",
-'uploadwarning'              => 'Upload kéng-kò',
-'savefile'                   => 'Pó-chûn tóng-àn',
-'uploadedimage'              => 'thoân "[[$1]]" chiūⁿ-bāng',
-'uploaddisabled'             => 'Pháiⁿ-sè, sàng chiūⁿ-bāng ê kong-lêng bô khui.',
-'sourcefilename'             => 'Tóng-àn goân miâ:',
-'destfilename'               => 'Tóng-àn sin miâ:',
-'watchthisupload'            => 'Kàm-sī chit ê tóng-àn',
-'upload-success-subj'        => 'Sàng-chiūⁿ-bāng sêng-kong',
+'file-thumbnail-no'           => "以'''<tt>$1</tt>'''做名的檔案，
+伊敢若是某幅圖的縮小版本''（縮圖）''。
+你欲就上載完整大小的版本，若無請改檔案名稱。",
+'fileexists-forbidden'        => '已經有一个仝名的檔案，而且袂檔覆寫，
+若你欲上載你的檔案，請退倒轉去，閣用一个新名來。
+[[File:$1|thumb|center|$1]]',
+'fileexists-shared-forbidden' => '已經有一个仝名的檔案佇分享檔案庫，
+若你欲上載你的檔案，請退倒轉去，閣用一个新名來。
+[[File:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => '這个檔案佮下跤的{{PLURAL:$1|个檔案|个檔案}}是仝款的：',
+'file-deleted-duplicate'      => '一个仝名的檔案 （[[:$1]]） 佇進前捌予人刣掉，
+你應當佇欲閣重新上載進前，先檢查彼个檔案的刣掉記錄。',
+'uploadwarning'               => 'Upload kéng-kò',
+'uploadwarning-text'          => '請改下跤的檔案描述才閣試',
+'savefile'                    => 'Pó-chûn tóng-àn',
+'uploadedimage'               => 'thoân "[[$1]]" chiūⁿ-bāng',
+'overwroteimage'              => '已經上載「[[$1]]」的新版本',
+'uploaddisabled'              => 'Pháiⁿ-sè, sàng chiūⁿ-bāng ê kong-lêng bô khui.',
+'copyuploaddisabled'          => '袂當透過網址上載',
+'uploadfromurl-queued'        => '你的上載已經咧排隊',
+'uploaddisabledtext'          => '袂當上載檔案',
+'php-uploaddisabledtext'      => '佇PHP袂當上載檔案，
+請檢查file_uploads 設定。',
+'uploadscripted'              => '這个檔案內底有HTML抑是腳本代碼，網路瀏覽器可能會錯誤翻譯。',
+'uploadvirus'                 => '彼个檔案有一个病毒！
+細情：$1',
+'upload-source'               => '來源檔案',
+'sourcefilename'              => 'Tóng-àn goân miâ:',
+'sourceurl'                   => '來源網址(URL)：',
+'destfilename'                => 'Tóng-àn sin miâ:',
+'upload-maxfilesize'          => '檔案上大：$1',
+'upload-description'          => '檔案說明',
+'upload-options'              => '上載選項',
+'watchthisupload'             => 'Kàm-sī chit ê tóng-àn',
+'filewasdeleted'              => '進前有上載一个仝名的檔案，而且後來予人刣掉，
+佇欲閣上載進前，你應該先檢查$1。',
+'upload-success-subj'         => 'Sàng-chiūⁿ-bāng sêng-kong',
 
 'license'        => 'Siū-khoân:',
 'license-header' => 'Siū-khoân',

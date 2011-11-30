@@ -941,7 +941,7 @@ $1",
 'logdelete-success'           => "'''Log ikusgarritasuna ondo ezarri da.'''",
 'logdelete-failure'           => "'''Erregistroaren ikusgaitasuna ezin da honela ezarri:'''
 $1",
-'revdel-restore'              => 'Ikusgarritasuna aldatu',
+'revdel-restore'              => 'Aldatu ikusgaitasuna',
 'revdel-restore-deleted'      => 'ezabatutako berraztertzeak',
 'revdel-restore-visible'      => 'ageriko berrikuspenak',
 'pagehist'                    => 'Orriaren historia',
@@ -3073,7 +3073,7 @@ Egiaztapen kode hau $4 iraungiko da.',
 
 # Auto-summaries
 'autosumm-blank'   => 'Orritik eduki guztia ezabatuta',
-'autosumm-replace' => "Orrialdea '$1'(r)engatik ordezten",
+'autosumm-replace' => 'Orriaren edukiaren ordez, «$1» jarri da',
 'autoredircomment' => '[[$1]] orrialdera birzuzentzentzen',
 'autosumm-new'     => 'Orrialde berria $1-(e)kin sortua',
 
