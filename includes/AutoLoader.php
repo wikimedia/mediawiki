@@ -839,6 +839,7 @@ $wgAutoloadLocalClasses = array(
 	# includes/upload
 	'UploadBase' => 'includes/upload/UploadBase.php',
 	'UploadFromFile' => 'includes/upload/UploadFromFile.php',
+	'UploadFromChunks' => 'includes/upload/UploadFromChunks.php',
 	'UploadFromStash' => 'includes/upload/UploadFromStash.php',
 	'UploadFromUrl' => 'includes/upload/UploadFromUrl.php',
 	'UploadStash' => 'includes/upload/UploadStash.php',

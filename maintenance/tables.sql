@@ -966,6 +966,8 @@ CREATE TABLE /*_*/uploadstash (
 	us_timestamp varbinary(14) not null,
 
 	us_status varchar(50) not null,
+	
+	us_chunk_inx int unsigned NULL,
 
 	-- file properties from File::getPropsFromPath.  these may prove unnecessary.
 	--

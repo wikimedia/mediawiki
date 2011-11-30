@@ -199,23 +199,31 @@ abstract class UploadBase {
 	/**
 	 * Append a file to the Repo file
 	 *
+	 * @deprecated since 1.19
+	 * 
 	 * @param $srcPath String: path to source file
 	 * @param $toAppendPath String: path to the Repo file that will be appended to.
 	 * @return Status Status
 	 */
 	protected function appendToUploadFile( $srcPath, $toAppendPath ) {
+		wfDeprecated(__METHOD__);
+		
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$status = $repo->append( $srcPath, $toAppendPath );
 		return $status;
 	}
-
+	
 	/**
 	 * Finish appending to the Repo file
-	 *
+	 * 
+	 * @deprecated since 1.19
+	 * 
 	 * @param $toAppendPath String: path to the Repo file that will be appended to.
 	 * @return Status Status
 	 */
 	protected function appendFinish( $toAppendPath ) {
+		wfDeprecated(__METHOD__);
+		
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$status = $repo->appendFinish( $toAppendPath );
 		return $status;
@@ -760,7 +768,6 @@ abstract class UploadBase {
 	public function stashFile() {
 		// was stashSessionFile
 		$stash = RepoGroup::singleton()->getLocalRepo()->getUploadStash();
-
 		$file = $stash->stashFile( $this->mTempPath, $this->getSourceType() );
 		$this->mLocalFile = $file;
 		return $file;
