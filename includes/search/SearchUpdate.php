@@ -62,7 +62,7 @@ class SearchUpdate implements DeferrableUpdate {
 		  "\\1\\2 \\2 \\2\\3", $text ); # Emphasize headings
 
 		# Strip external URLs
-		$uc = "A-Za-z0-9_\\/:.,~%\\-+&;#?!=()@\\xA0-\\xFF";
+		$uc = "A-Za-z0-9_\\/:.,~%\\-+&;#?!=()@\\x80-\\xFF";
 		$protos = "http|https|ftp|mailto|news|gopher";
 		$pat = "/(^|[^\\[])({$protos}):[{$uc}]+([^{$uc}]|$)/";
 		$text = preg_replace( $pat, "\\1 \\3", $text );
