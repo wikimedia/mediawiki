@@ -97,6 +97,10 @@ class ForeignAPIRepo extends FileRepo {
 		return false;
 	}
 
+	function concatenate( $fileList, $targetPath, $flags = 0 ){
+		return false;
+	}
+
 	function append( $srcPath, $toAppendPath, $flags = 0 ){
 		return false;
 	}
