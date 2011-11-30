@@ -44,4 +44,7 @@ class NullRepo extends FileRepo {
 	function findFile( $title, $options = array() ) {
 		return false;
 	}
+	function concatenate( $fileList, $targetPath, $flags = 0 ) {
+		return false;
+	}
 }
