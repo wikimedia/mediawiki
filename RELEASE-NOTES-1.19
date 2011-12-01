@@ -130,7 +130,7 @@ production.
 * (bug 30245) Use the correct way to construct a log page title.
 * (bug 31081) $wgEnotifUseJobQ caused many unnecessary jobs to be queued.
 * (bug 30202) File names are now restricted on upload to 240 bytes, because of
-  restrictions on some of the database fields..
+  restrictions on some of the database fields.
 * Timezones are now recognised in user preferences when offset is different
   due to DST.
 * (bug 31692) "summary" parameter now also work when undoing revisions.
