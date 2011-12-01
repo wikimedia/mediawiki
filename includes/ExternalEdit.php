@@ -80,7 +80,7 @@ class ExternalEdit extends ContextSource {
 		} else {
 			if ( $this->getRequest()->getVal( 'mode' ) == 'file' ) {
 				$type = "Edit file";
-				$image = wfLocalFile( $this->title );
+				$image = wfLocalFile( $this->getTitle() );
 				$urls = array( 'File' => array(
 					'Extension' => $image->getExtension(),
 					'URL' => $image->getCanonicalURL()
