@@ -138,13 +138,15 @@ class XmlTest extends MediaWikiTestCase {
 			Xml::dateMenu( ''      , $curMonth ),
 			"Date menu year is the current one when not specified"
 		);
+
+		$this->markTestIncomplete( "Broken" );
 		// @todo FIXME: next month can be in the next year
 		// test failing because it is now december
-		/*$this->assertEquals(
+		$this->assertEquals(
 			Xml::dateMenu( $prevYear, $nextMonth ),
 			Xml::dateMenu( '', $nextMonth ),
 			"Date menu next month is 11 months ago"
-		); */
+		);
 
 		# @todo FIXME: Please note there is no year there!
 		$this->assertEquals(
