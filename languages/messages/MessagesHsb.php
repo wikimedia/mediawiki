@@ -1619,6 +1619,7 @@ Tohodla njeda so jeje wěstota porjadnje přepruwować.',
 'uploadstash-badtoken' => 'Wuwjedźenje teje akcije je so njeporadźiło, snano dokelž twoje wobdźěłowanske daty su spadnjene. Spytaj hišće raz.',
 'uploadstash-errclear' => 'Wotstronjenje datajow je so njeporadźiło.',
 'uploadstash-refresh'  => 'Lisćinu datajow aktualizować',
+'invalid-chunk-offset' => 'Njepłaćiwy startowy dypk',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Přistup wotpokazany',

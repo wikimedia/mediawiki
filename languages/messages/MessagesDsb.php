@@ -1616,6 +1616,7 @@ Togodla njedajo se jeje wěstoty pśekontrolěrowaś.',
 'uploadstash-badtoken' => 'Wuwjeźenje teje akcije jo se njeraźiło, snaź dokulaž twóje wobźěłowańske daty su spadnjone. Wopytaj hyšći raz.',
 'uploadstash-errclear' => 'Wótpóranje datajow jo se njeraźiło.',
 'uploadstash-refresh'  => 'Lisćinu datajow aktualizěrowaś',
+'invalid-chunk-offset' => 'Njepłaśiwy startowy dypk',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Pśistup zawobarany',

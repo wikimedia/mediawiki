@@ -1738,6 +1738,7 @@ $1',
 'uploadstash-badtoken' => 'Немагчыма выканаць гэтае дзеяньне, верагодна скончыўся тэрмін дзеяньня Вашага дазволу на рэдагаваньне. Паспрабуйце зноў.',
 'uploadstash-errclear' => 'Немагчыма ачысьціць файлы.',
 'uploadstash-refresh'  => 'Абнавіць сьпіс файлаў.',
+'invalid-chunk-offset' => 'Няслушнае зрушэньне фрагмэнту',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Доступ забаронены',

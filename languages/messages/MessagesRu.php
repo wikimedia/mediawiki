@@ -1799,6 +1799,7 @@ $1',
 'uploadstash-badtoken' => 'Не удалось выполнить указанные действия. Возможно, истёк срок действия вашего жетона безопасности. Попробуйте ещё раз.',
 'uploadstash-errclear' => 'Очистка файлов не удалась.',
 'uploadstash-refresh'  => 'Обновить список файлов',
+'invalid-chunk-offset' => 'Недопустимое смещение фрагмента',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Доступ запрещён',

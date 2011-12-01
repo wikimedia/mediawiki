@@ -1784,6 +1784,7 @@ Không thể kiểm tra nó về bảo mật.',
 'uploadstash-badtoken' => 'Tác vụ bị thất bại, có lẽ vì thông tin đăng nhập của bạn đã hết hạn. Hãy thử lại.',
 'uploadstash-errclear' => 'Việc dọn sạch các tập tin bị thất bại.',
 'uploadstash-refresh'  => 'Làm mới danh sách tập tin',
+'invalid-chunk-offset' => 'Khúc lệch (chunk offset) không hợp lệ',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Không cho phép truy cập',
