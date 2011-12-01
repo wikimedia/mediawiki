@@ -115,7 +115,6 @@ class User {
 		'deletedhistory',
 		'deletedtext',
 		'deleterevision',
-		'disableaccount',
 		'edit',
 		'editinterface',
 		'editusercssjs', #deprecated
@@ -2143,7 +2142,7 @@ class User {
 		global $wgRealNameInInterface;
 		if ( is_null( $this->mDisplayName ) ) {
 			$displayName = null;
-			
+
 			// Allow hooks to set a display name
 			wfRunHooks( 'UserDisplayName', array( $this, &$displayName ) );
 
@@ -2151,7 +2150,7 @@ class User {
 				// If $wgRealNameInInterface is true use the real name as the display name if it's set
 				$displayName = $this->getRealName();
 			}
-			
+
 			if ( is_null( $displayName ) ) {
 				$displayName = $this->getName();
 			}
@@ -3192,8 +3191,8 @@ class User {
 
 	/**
 	 * Alias for getEditToken.
-	 * @deprecated since 1.19, use getEditToken instead. 
-	 * 
+	 * @deprecated since 1.19, use getEditToken instead.
+	 *
 	 * @param $salt String|Array of Strings Optional function-specific data for hashing
 	 * @param $request WebRequest object to use or null to use $wgRequest
 	 * @return String The new edit token
@@ -3201,7 +3200,7 @@ class User {
 	public function editToken( $salt = '', $request = null ) {
 		return $this->getEditToken( $salt, $request );
 	}
-	
+
 	/**
 	 * Initialize (if necessary) and return a session token value
 	 * which can be used in edit forms to show that the user's
