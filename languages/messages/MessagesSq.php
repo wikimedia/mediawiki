@@ -1482,10 +1482,10 @@ Kjo informatë është publike.',
 'rc-enhanced-hide'                  => 'Fshih detajet',
 
 # Recent changes linked
-'recentchangeslinked'          => 'Ndryshimet fqinje',
-'recentchangeslinked-feed'     => 'Ndryshimet fqinje',
-'recentchangeslinked-toolbox'  => 'Ndryshimet fqinje',
-'recentchangeslinked-title'    => 'Ndryshimet në lidhje me "$1"',
+'recentchangeslinked'          => 'Ndryshime të ndërvarura',
+'recentchangeslinked-feed'     => 'Ndryshime të ndërvarura',
+'recentchangeslinked-toolbox'  => 'Ndryshime të ndërvarura',
+'recentchangeslinked-title'    => 'Ndryshime që kanë lidhje me "$1"',
 'recentchangeslinked-noresult' => 'Nuk ka pasur ndryshime tek faqet e lidhura gjatë kohës së dhënë.',
 'recentchangeslinked-summary'  => "Kjo është një listë e ndryshimeve së fundmi të faqeve të lidhura nga faqja e dhënë (ose bëjnë pjesë tek kategoria e dhënë).
 Faqet [[Special:Watchlist|nën mbikqyrjen tuaj]] duken të '''theksuara'''.",

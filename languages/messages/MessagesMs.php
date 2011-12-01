@@ -1598,11 +1598,12 @@ Ringkasan yang anda masukkan tidak akan muncul di laman penerangan tersebut. Unt
 * Nama fail yang dimuat naik: '''<tt>[[:$1]]</tt>'''
 * Nama fail yang sedia ada: '''<tt>[[:$2]]</tt>'''
 Sila pilih nama lain.",
-'fileexists-thumbnail-yes'    => "Fail ini kelihatan seperti sebuah imej yang telah dikecilkan ''(imej ringkas)''. [[$1|thumb]]
+'fileexists-thumbnail-yes'    => "Fail ini kelihatan seperti sebuah imej yang telah dikecilkan ''(gambar kenit)''. [[$1|thumb]]
 Sila semak fail '''<tt>[[:$1]]</tt>'''.
-Jika fail yang disemak itu adalah sama dengan yang saiz asal, maka anda tidak perlu memuat naik imej ringkas tambahan.",
-'file-thumbnail-no'           => "Nama fail ini bermula dengan '''<tt>$1</tt>'''. Barangkali ia adalah sebuah imej yang telah dikecilkan ''(imej ringkas)''.
-Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. Sebaliknya, sila tukar nama fail ini.",
+Jika fail yang disemak itu adalah sama dengan yang saiz asal, maka anda tidak perlu memuat naik gambar kenit tambahan.",
+'file-thumbnail-no'           => "Nama fail ini bermula dengan '''<tt>$1</tt>'''.
+Barangkali ia adalah sebuah imej yang telah dikecilkan ''(gambar kenit)''.
+Jika anda memiliki imej ini dalam leraian penuh, sila muat naik fail tersebut. Jika tidak, sila tukar nama fail ini.",
 'fileexists-forbidden'        => 'Sebuah fail dengan nama ini telah pun wujud, dan tidak boleh ditulis ganti. Jika anda masih mahu memuat naik fail ini, sila berundur dan muat naik fail ini dengan nama lain. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Sebuah fail dengan nama ini telah pun wujud dalam gedung fail kongsi. Jika anda masih mahu memuat naik fail ini, sila kembali ke borang muat naik dan gunakan nama lain. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Fail ini adalah salinan bagi {{PLURAL:$1|fail|fail-fail}} berikut:',
@@ -1667,6 +1668,7 @@ Ia tidak dapat diperiksa dengan betul demi keselamatan.',
 'uploadstash-badtoken' => 'Tindakan tadi tidak berjaya, mungkin kerana kelayakan menyunting anda telah luput. Cuba lagi.',
 'uploadstash-errclear' => 'Gagal membersihkan fail-fail tersebut.',
 'uploadstash-refresh'  => 'Segarkan semula senarai fail',
+'invalid-chunk-offset' => 'Ofset ketulan tidak sah',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Capaian ditolak',
@@ -1715,7 +1717,7 @@ Apabila ditapis oleh pengguna, hanya fail-fail yang dimuat naik versi terkininya
 'listfiles_search_for'  => 'Cari nama imej:',
 'imgfile'               => 'fail',
 'listfiles'             => 'Senarai fail',
-'listfiles_thumb'       => 'Thumbnail',
+'listfiles_thumb'       => 'Gambar kenit',
 'listfiles_date'        => 'Tarikh',
 'listfiles_name'        => 'Nama',
 'listfiles_user'        => 'Pengguna',
@@ -1732,9 +1734,9 @@ Apabila ditapis oleh pengguna, hanya fail-fail yang dimuat naik versi terkininya
 'filehist-revert'                   => 'balik',
 'filehist-current'                  => 'semasa',
 'filehist-datetime'                 => 'Tarikh/Waktu',
-'filehist-thumb'                    => 'Imej ringkas',
-'filehist-thumbtext'                => 'Imej ringkas bagi versi pada $1',
-'filehist-nothumb'                  => 'Tiada imej ringkas',
+'filehist-thumb'                    => 'Gambar kenit',
+'filehist-thumbtext'                => 'Gambar kenit bagi versi pada $1',
+'filehist-nothumb'                  => 'Tiada gambar kenit',
 'filehist-user'                     => 'Pengguna',
 'filehist-dimensions'               => 'Ukuran',
 'filehist-filesize'                 => 'Saiz fail',
@@ -2647,14 +2649,14 @@ Sila lawat [//www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [
 # Thumbnails
 'thumbnail-more'           => 'Besarkan',
 'filemissing'              => 'Fail hilang',
-'thumbnail_error'          => 'Berlaku ralat ketika mencipta imej ringkas: $1',
+'thumbnail_error'          => 'Berlaku ralat ketika mencipta gambar kenit: $1',
 'djvu_page_error'          => 'Laman DjVu di luar julat',
 'djvu_no_xml'              => 'Gagal mendapatkan data XML bagi fail DjVu',
-'thumbnail_invalid_params' => 'Parameter imej ringkas tidak sah',
+'thumbnail_invalid_params' => 'Parameter gambar kenit tidak sah',
 'thumbnail_dest_directory' => 'Direktori destinasi gagal diwujudkan',
 'thumbnail_image-type'     => 'Jenis imej tidak disokong',
 'thumbnail_gd-library'     => 'Tatarajah perpustakaan GD tidak lengkap: kehilangan fungsi $1',
-'thumbnail_image-missing'  => 'Fail hilang: $1',
+'thumbnail_image-missing'  => 'Fail ini nampaknya hilang: $1',
 
 # Special:Import
 'import'                     => 'Import laman',
@@ -2866,7 +2868,7 @@ $1',
 'mediawarning'           => "'''Amaran''': Fail jenis ini mungkin mengandungi kod berbahaya.
 Dengan menjalankannya, komputer anda mungkin akan terjejas.",
 'imagemaxsize'           => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
-'thumbsize'              => 'Saiz imej ringkas:',
+'thumbsize'              => 'Saiz gambar kenit:',
 'widthheight'            => '$1 × $2',
 'widthheightpage'        => '$1×$2, $3 halaman',
 'file-info'              => 'saiz file: $1, jenis MIME: $2',

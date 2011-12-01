@@ -1828,6 +1828,7 @@ Nelze náležitě zkontrolovat jeho bezpečnost.',
 'uploadstash-badtoken' => 'Operace se nezdařila, možná vypršela platnost vašeho oprávnění k editaci. Zkuste to znovu.',
 'uploadstash-errclear' => 'Soubory se nepodařilo vymazat.',
 'uploadstash-refresh'  => 'Aktualizovat seznam souborů',
+'invalid-chunk-offset' => 'Neplatný posun bloku',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Přístup odepřen',

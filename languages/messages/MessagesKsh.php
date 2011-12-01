@@ -1624,6 +1624,7 @@ Ene zohfällesch ußjewörfelte Schlößel, dää De nämme künnß, wöhr: <cod
 'action-userrights'           => 'alle Metmaacher ier Rääschte ze ändere',
 'action-userrights-interwiki' => 'dä Metmaacher fun ander Wikis ier Rääschte ze ändere',
 'action-siteadmin'            => 'de Datebank ze sperre udder widder freizejävve',
+'action-sendemail'            => '<i lang="en">e-mails</i> ze verschecke',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|Ein Änderung|$1 Änderunge|Kein Änderung}}',
@@ -1855,6 +1856,7 @@ Se kann nit aanjemäße jeprööf wääde, of se sescher es.',
 'uploadstash-badtoken' => 'Dat ze donn hät nit jeflupp. Velleich wohre Ding Daate zom Deil verschött jejange udder afjeloufe. Versöhg et nor_rens.',
 'uploadstash-errclear' => 'Mer kunnte de Dateie nit fottschmieße.',
 'uploadstash-refresh'  => 'De Leß met de Dateie op ene neue Shtand bränge',
+'invalid-chunk-offset' => 'Ene onjöltijje Aanfangspungk för dä Rötsch',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Keine Zohjang',

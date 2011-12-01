@@ -1872,9 +1872,9 @@ Extensions making use of it:
 'zip-unsupported' => "Perhaps translations of 'software' can be used instead of 'features' and 'understood' or 'handled' instead of 'supported'.",
 
 # Special:UploadStash
-'invalid-chunk-offset' => 'Error that can happen if chunkd get uploaded out of order.
-As a result of this error, clients can continue from offset provided or restart upload.
-Used on [[Special:UploadWizard]]',
+'invalid-chunk-offset' => 'Error that can happen if chunks get uploaded out of order.
+As a result of this error, clients can continue from an offset provided or restart the upload.
+Used on [[Special:UploadWizard]].',
 
 # img_auth script messages
 'img-auth-accessdenied' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Access Denied

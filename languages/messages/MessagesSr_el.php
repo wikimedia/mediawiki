@@ -1697,6 +1697,7 @@ Ona se ne može ispravno proveriti u vezi sa sigurnošću.',
 'uploadstash-badtoken' => 'Izvršavanje date radnje nije uspelo. Razlog tome može biti istek vremena za uređivanje. Pokušajte ponovo.',
 'uploadstash-errclear' => 'Čišćenje datoteka nije uspelo.',
 'uploadstash-refresh'  => 'Osveži spisak datoteka',
+'invalid-chunk-offset' => 'Neispravna polazna tačka',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Pristup onemogućen',

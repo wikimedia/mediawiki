@@ -1948,6 +1948,7 @@ $1',
 'uploadstash-badtoken' => 'Извршавање дате радње није успело. Разлог томе може бити истек времена за уређивање. Покушајте поново.',
 'uploadstash-errclear' => 'Чишћење датотека није успело.',
 'uploadstash-refresh'  => 'Освежи списак датотека',
+'invalid-chunk-offset' => 'Неисправна полазна тачка',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Приступ је одбијен',

@@ -632,6 +632,7 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'badarticleerror'      => 'Ova akcija ne može biti izvršena na ovoj stranici.',
 'cannotdelete'         => 'Ne može se obrisati stranica ili datoteka "$1".
 Moguće je da ju je neko drugi već obrisao.',
+'cannotdelete-title'   => 'Ne mogu izbrisati stranicu "$1"',
 'badtitle'             => 'Loš naslov',
 'badtitletext'         => 'Zahtjevani naslov stranice je bio neispravan, prazan ili neispravno povezan međujezički ili interviki naslov.',
 'perfcached'           => 'Slijedeći podaci su keširani i možda neće biti u potpunosti ažurirani.',
@@ -642,10 +643,12 @@ Podaci koji se ovdje nalaze ne moraju biti aktuelni.',
 Funkcija: $1<br />
 Pretraga: $2',
 'viewsource'           => 'pogledaj kod',
+'viewsource-title'     => 'Prikaz izvora stranice $1',
 'actionthrottled'      => 'Akcija je usporena',
 'actionthrottledtext'  => 'Kao anti-spam mjera, ograničene su vam izmjene u određenom vremenu, i trenutačno ste dostigli to ograničenje. Pokušajte ponovo poslije nekoliko minuta.',
 'protectedpagetext'    => 'Ova stranica je zaključana da bi se spriječile izmjene.',
 'viewsourcetext'       => 'Možete vidjeti i kopirati izvorni tekst ove stranice:',
+'viewyourtext'         => "Možete da pogledate i kopirate izvor '''vaših izmjena''' na ovoj stranici:",
 'protectedinterface'   => 'Ova stranica je zaštićena jer sadrži tekst MediaWiki programa.',
 'editinginterface'     => "'''Upozorenje:''' Mijenjate stranicu koja sadrži aktivan tekst programa.
 Promjene na ovoj stranici dovode i do promjena za druge korisnike.
@@ -747,6 +750,7 @@ Nijedan e-mail neće biti poslan za bilo koju uslugu od slijedećih.',
 'emailconfirmlink'           => 'Potvrdite Vašu e-mail adresu',
 'invalidemailaddress'        => 'Ova e-mail adresa ne može biti prihvaćena jer je u neodgovarajućem obliku.
 Molimo vas da unesete ispravnu adresu ili ostavite prazno polje.',
+'cannotchangeemail'          => 'Na ovom wikiju ne možete promijeniti e-mail adresu računa.',
 'accountcreated'             => 'Korisnički račun je napravljen',
 'accountcreatedtext'         => 'Korisnički račun za $1 je napravljen.',
 'createaccount-title'        => 'Pravljenje korisničkog računa za {{SITENAME}}',
@@ -3799,8 +3803,16 @@ Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktn
 'sqlite-no-fts'  => '$1 bez podrške pretrage cijelog teksta',
 
 # New logging system
-'revdelete-restricted'   => 'primijenjena ograničenja za administratore',
-'revdelete-unrestricted' => 'uklonjena ograničenja za administratore',
-'newuserlog-byemail'     => 'šifra je poslana putem e-maila',
+'revdelete-content-hid'         => 'skriveni sadržaj',
+'revdelete-summary-hid'         => 'sažetak izmjene je sakriven',
+'revdelete-uname-hid'           => 'sažetak izmjene je sakriven',
+'revdelete-content-unhid'       => 'sadržaj je otkriven',
+'revdelete-summary-unhid'       => 'sažetak izmjene je otkriven',
+'revdelete-uname-unhid'         => 'korisničko ime je otkriveno',
+'revdelete-restricted'          => 'primijenjena ograničenja za administratore',
+'revdelete-unrestricted'        => 'uklonjena ograničenja za administratore',
+'logentry-move-move'            => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4',
+'logentry-move-move-noredirect' => '$1 {{GENDER:$2|je premjestio|je premjestila|premjesti}} stranicu $3 na $4 bez ostavljanja preusmjerenja',
+'newuserlog-byemail'            => 'šifra je poslana putem e-maila',
 
 );
