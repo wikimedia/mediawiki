@@ -98,7 +98,6 @@ class XmlTest extends MediaWikiTestCase {
 		$nextMonth = $curMonth + 1;
 		if( $nextMonth == 13 ) { $nextMonth = 1; }
 
-
 		$this->assertEquals(
 			'<label for="year">From year (and earlier):</label> <input name="year" size="4" value="2011" id="year" maxlength="4" /> <label for="month">From month (and earlier):</label> <select id="month" name="month" class="mw-month-selector"><option value="-1">all</option>' . "\n" .
 '<option value="1">January</option>' . "\n" .
@@ -139,13 +138,14 @@ class XmlTest extends MediaWikiTestCase {
 			"Date menu year is the current one when not specified"
 		);
 
+		$this->markTestIncomplete( "Broken" );
 		// @todo FIXME: next month can be in the next year
 		// test failing because it is now december
-		/*$this->assertEquals(
+		$this->assertEquals(
 			Xml::dateMenu( $prevYear, $nextMonth ),
 			Xml::dateMenu( '', $nextMonth ),
 			"Date menu next month is 11 months ago"
-		); */
+		);
 
 		# @todo FIXME: Please note there is no year there!
 		$this->assertEquals(
