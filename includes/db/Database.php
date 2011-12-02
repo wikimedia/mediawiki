@@ -1697,32 +1697,28 @@ abstract class DatabaseBase implements DatabaseType {
 	/**
 	 * UPDATE wrapper. Takes a condition array and a SET array.
 	 *
-	 * @param $table  String|array name of the table to UPDATE. This will be passed through
+	 * @param $table  String name of the table to UPDATE. This will be passed through
 	 *                DatabaseBase::tableName().
 	 *
-	 * @param $values Array An array of values to SET. For each array element,
+	 * @param $values Array:  An array of values to SET. For each array element,
 	 *                the key gives the field name, and the value gives the data
 	 *                to set that field to. The data will be quoted by
 	 *                DatabaseBase::addQuotes().
 	 *
-	 * @param $conds  Array  An array of conditions (WHERE). See
+	 * @param $conds  Array:  An array of conditions (WHERE). See
 	 *                DatabaseBase::select() for the details of the format of
 	 *                condition arrays. Use '*' to update all rows.
 	 *
-	 * @param $fname  String The function name of the caller (from __METHOD__),
+	 * @param $fname  String: The function name of the caller (from __METHOD__),
 	 *                for logging and profiling.
 	 *
-	 * @param $options Array An array of UPDATE options, can be:
+	 * @param $options Array: An array of UPDATE options, can be:
 	 *                   - IGNORE: Ignore unique key conflicts
 	 *                   - LOW_PRIORITY: MySQL-specific, see MySQL manual.
 	 * @return Boolean
 	 */
 	function update( $table, $values, $conds, $fname = 'DatabaseBase::update', $options = array() ) {
-		if ( is_array( $table ) ) {
-			$table =  implode( ',', array_map( array( $this, 'tableName' ), $table ) );
-		} else {
-			$table = $this->tableName( $table );
-		}
+		$table = $this->tableName( $table );
 		$opts = $this->makeUpdateOptions( $options );
 		$sql = "UPDATE $opts $table SET " . $this->makeList( $values, LIST_SET );
 
