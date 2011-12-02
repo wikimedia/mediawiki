@@ -51,7 +51,7 @@ class Status {
 	/**
 	 * Change operation result
 	 *
-	 * @param $ok Boolean: whether to operation completed
+	 * @param $ok Boolean: whether the operation completed
 	 * @param $value Mixed
 	 */
 	function setResult( $ok, $value = null ) {
