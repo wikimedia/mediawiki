@@ -19,6 +19,11 @@ $.fn.extend( {
 	 * @param callback Function to call
 	 */
 	delayedBind: function( timeout, event, data, callback ) {
+		if ( arguments.length == 3 ) {
+			// Shift optional parameter down
+			callback = data;
+			data = undefined;
+		}
 		var encEvent = encodeEvent( event );
 		return this.each( function() {
 			var that = this;
