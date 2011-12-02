@@ -3,6 +3,8 @@
 require( dirname( __FILE__ ) . '/Maintenance.php' );
 
 class PurgeParserCache extends Maintenance {
+	var $lastProgress;
+
 	function __construct() {
 		parent::__construct();
 		$this->addDescription( "Remove old objects from the parser cache. " . 
@@ -31,12 +33,26 @@ class PurgeParserCache extends Maintenance {
 		echo "Deleting objects expiring before " . $english->timeanddate( $date ) . "\n";
 
 		$pc = wfGetParserCacheStorage();
-		$success = $pc->deleteObjectsExpiringBefore( $date );
+		$success = $pc->deleteObjectsExpiringBefore( $date, array( $this, 'showProgress' ) );
 		if ( !$success ) {
-			echo "Cannot purge this kind of parser cache.\n";
+			echo "\nCannot purge this kind of parser cache.\n";
 			exit( 1 );
 		}
-		echo "Done\n";
+		$this->showProgress( 100 );
+		echo "\nDone\n";
+	}
+
+	function showProgress( $percent ) {
+		$percentString = sprintf( "%.2f", $percent );
+		if ( $percentString === $this->lastProgress ) {
+			return;
+		}
+		$this->lastProgress = $percentString;
+
+		$stars = floor( $percent / 2 );
+		echo '[' . str_repeat( '*', $stars ), str_repeat( '.', 50 - $stars ) . '] ' .
+			"$percentString%\r";
+
 	}
 }
 $maintClass = 'PurgeParserCache';

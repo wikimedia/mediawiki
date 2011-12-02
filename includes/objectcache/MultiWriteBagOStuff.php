@@ -101,10 +101,10 @@ class MultiWriteBagOStuff extends BagOStuff {
 	 *
 	 * Succeed if any of the child caches succeed.
 	 */
-	public function deleteObjectsExpiringBefore( $date ) {
+	public function deleteObjectsExpiringBefore( $date, $progressCallback = false ) {
 		$ret = false;
 		foreach ( $this->caches as $cache ) {
-			if ( $cache->deleteObjectsExpiringBefore( $date ) ) {
+			if ( $cache->deleteObjectsExpiringBefore( $date, $progressCallback ) ) {
 				$ret = true;
 			}
 		}
