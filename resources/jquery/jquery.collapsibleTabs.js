@@ -24,7 +24,7 @@
 		// if we haven't already bound our resize hanlder, bind it now
 		if( !$.collapsibleTabs.boundEvent ) {
 			$( window )
-				.delayedBind( '500', 'resize', null, function( ) { $.collapsibleTabs.handleResize(); } );
+				.delayedBind( '500', 'resize', function( ) { $.collapsibleTabs.handleResize(); } );
 		}
 		// call our resize handler to setup the page
 		$.collapsibleTabs.handleResize();
