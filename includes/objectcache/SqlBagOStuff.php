@@ -311,18 +311,67 @@ class SqlBagOStuff extends BagOStuff {
 	/**
 	 * Delete objects from the database which expire before a certain date.
 	 */
-	public function deleteObjectsExpiringBefore( $timestamp ) {
+	public function deleteObjectsExpiringBefore( $timestamp, $progressCallback = false ) {
 		$db = $this->getDB();
 		$dbTimestamp = $db->timestamp( $timestamp );
+		$totalSeconds = false;
+		$baseConds = array( 'exptime < ' . $db->addQuotes( $dbTimestamp ) );
 
 		try {
 			for ( $i = 0; $i < $this->shards; $i++ ) {
-				$db->begin();
-				$db->delete(
-					$this->getTableByShard( $i ),
-					array( 'exptime < ' . $db->addQuotes( $dbTimestamp ) ),
-					__METHOD__ );
-				$db->commit();
+				$maxExpTime = false;
+				while ( true ) {
+					$conds = $baseConds;
+					if ( $maxExpTime !== false ) {
+						$conds[] = 'exptime > ' . $db->addQuotes( $maxExpTime );
+					}
+					$rows = $db->select( 
+						$this->getTableByShard( $i ),
+						array( 'keyname', 'exptime' ),
+						$conds,
+						__METHOD__,
+						array( 'LIMIT' => 100, 'ORDER BY' => 'exptime' ) );
+					if ( !$rows->numRows() ) {
+						break;
+					}
+					$keys = array();
+					$row = $rows->current();
+					$minExpTime = $row->exptime;
+					if ( $totalSeconds === false ) {
+						$totalSeconds = wfTimestamp( TS_UNIX, $timestamp )
+							- wfTimestamp( TS_UNIX, $minExpTime );
+					}
+					foreach ( $rows as $row ) {
+						$keys[] = $row->keyname;
+						$maxExpTime = $row->exptime;
+					}
+
+					$db->begin();
+					$db->delete(
+						$this->getTableByShard( $i ),
+						array( 
+							'exptime >= ' . $db->addQuotes( $minExpTime ),
+							'exptime < ' . $db->addQuotes( $dbTimestamp ),
+							'keyname' => $keys
+						),
+						__METHOD__ );
+					$db->commit();
+
+					if ( $progressCallback ) {
+						if ( intval( $totalSeconds ) === 0 ) {
+							$percent = 0;
+						} else {
+							$remainingSeconds = wfTimestamp( TS_UNIX, $timestamp ) 
+								- wfTimestamp( TS_UNIX, $maxExpTime );
+							if ( $remainingSeconds > $totalSeconds ) {
+								$totalSeconds = $remainingSeconds;
+							}
+							$percent = ( $i + $remainingSeconds / $totalSeconds ) 
+								/ $this->shards * 100;
+						}
+						call_user_func( $progressCallback, $percent );
+					}
+				}
 			}
 		} catch ( DBQueryError $e ) {
 			$this->handleWriteError( $e );
