@@ -2938,7 +2938,7 @@ class User {
 			return false;
 		}
 
-		return (bool)$userblock->doAutoblock( $this->getRequest()->getIP() );
+		return (bool)$userblock->doAutoblock( wfGetIP() );
 	}
 
 	/**
