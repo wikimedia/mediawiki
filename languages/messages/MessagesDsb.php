@@ -327,7 +327,7 @@ $messages = array(
 'variants'                       => 'Warianty',
 
 'errorpagetitle'    => 'Zmólka',
-'returnto'          => 'Slědk k boku $1.',
+'returnto'          => 'Slědk k bokoju $1.',
 'tagline'           => 'Z {{GRAMMAR:genitiw|{{SITENAME}}}}',
 'help'              => 'Pomoc',
 'search'            => 'Pytaś',

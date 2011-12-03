@@ -1588,6 +1588,7 @@ Ni all gael ei wirio'n ddigonol er sicrhau diogelwch.",
 'uploadstash-badtoken' => 'Ni lwyddodd y weithred, efallai oherwydd bod eich cymwysterau golygu wedi dod i ben. Ceisiwch eto.',
 'uploadstash-errclear' => "Ni lwyddwyd i glirio'r ffeiliau.",
 'uploadstash-refresh'  => 'Adnewyddu rhestr y ffeiliau',
+'invalid-chunk-offset' => "Atred annilys i'r talpiau",
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Ni chaniatawyd mynediad',

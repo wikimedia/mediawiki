@@ -1542,6 +1542,7 @@ A peul pa esse controlà da bin për la sicurëssa.",
 'uploadstash-badtoken' => "L'esecussion dë st'assion a l'é pa andàita bin, miraco përchè toe credensiaj ëd modìfica a son scadùe. Preuva torna.",
 'uploadstash-errclear' => "La scancelassion ëd j'archivi a l'é falìa.",
 'uploadstash-refresh'  => "Agiorné la lista dj'archivi",
+'invalid-chunk-offset' => 'Inissi dël blòch pa bon',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acess negà',

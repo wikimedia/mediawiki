@@ -1680,6 +1680,7 @@ Un verification correcte de su securitate es impossibile.',
 'uploadstash-badtoken' => 'Le execution de iste action non succedeva, forsan proque le datos del session expirava. Tenta lo de novo.',
 'uploadstash-errclear' => 'Le radimento del files non succedeva.',
 'uploadstash-refresh'  => 'Refrescar le lista de files',
+'invalid-chunk-offset' => 'Position de segmento invalide',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accesso refusate',

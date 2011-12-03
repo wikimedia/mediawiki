@@ -664,6 +664,7 @@ Lütfen URL\'yi not ederek bunu bir [[Special:ListUsers/sysop|hizmetliye]] ileti
 'badarticleerror'      => 'Yapmak istediğiniz işlem geçersizdir.',
 'cannotdelete'         => '"$1" sayfa ya da dosyası silinemedi.
 Başka bir kullanıcı tarafından silinmiş olabilir.',
+'cannotdelete-title'   => '"$1" sayfasını silemezsiniz',
 'badtitle'             => 'Geçersiz başlık',
 'badtitletext'         => 'Girilen sayfa adı ya hatalı ya boş ya da diller arası bağlantı veya vikiler arası bağlantı içerdiğinden geçerli değil. Başlıklarda kullanılması yasak olan bir ya da daha çok karakter içeriyor olabilir.',
 'perfcached'           => 'Veriler daha önceden hazırlanmış olabilir. Bu sebeple güncel olmayabilir!',

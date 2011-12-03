@@ -1209,7 +1209,7 @@ $3による理由は以下の通りです：''$2''",
 内容を見ることができます。[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 秘匿記録]に詳細情報があるかもしれません。",
 'rev-deleted-no-diff'         => "どちらかの版が'''削除されているため'''、差分表示できません。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。",
-'rev-suppressed-no-diff'      => "指定された差分は'''削除された'''版を含んでいるため表示出来ません。",
+'rev-suppressed-no-diff'      => "指定された差分は'''削除された'''版を含んでいるため、閲覧することができません。",
 'rev-deleted-unhide-diff'     => "この差分の一方の版は'''削除されています'''。
 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 削除記録]に詳細情報があるかもしれません。
 このまま[$1 この差分を見る]ことができます。",
@@ -1900,6 +1900,7 @@ $1',
 'uploadstash-badtoken' => '実行することができませんでした。これは、編集するための認証が無効になったためである可能性があります。再度お試しください。',
 'uploadstash-errclear' => 'ファイルの消去に失敗しました。',
 'uploadstash-refresh'  => 'ファイルの一覧を更新',
+'invalid-chunk-offset' => '不正なチャンクオフセット',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'アクセスが拒否されました',
@@ -2150,7 +2151,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'listusers-editsonly'     => '投稿記録のある利用者のみを表示',
 'listusers-creationsort'  => '作成日順に整列',
 'usereditcount'           => '$1回の編集',
-'usercreated'             => '$1$2に{{GENDER:$3|作成}}',
+'usercreated'             => '$1 $2 に{{GENDER:$3|作成}}',
 'newpages'                => '新しいページ',
 'newpages-username'       => '利用者名：',
 'ancientpages'            => '最古のページ',
@@ -2274,7 +2275,7 @@ contenttype/subtypeの形式で指定してください（例：<tt>image/jpeg</
 'emailpagetext'        => '下のフォームを通じて、この利用者にメールを送ることができます。
 [[Special:Preferences|利用者の個人設定]]で登録した電子メールアドレスが「差出人」アドレスとして表示され、受信者は返事を直接出せるようになっています。',
 'usermailererror'      => 'メールが以下のエラーを返しました：',
-'defemailsubject'      => '利用者 "$1" からの {{SITENAME}} 電子メール',
+'defemailsubject'      => '利用者「$1」からの {{SITENAME}} 電子メール',
 'usermaildisabled'     => '利用者メール機能は無効になっています',
 'usermaildisabledtext' => 'このウィキ上で他の利用者へメールを送ることはできません。',
 'noemailtitle'         => 'メールアドレスがありません',
@@ -2859,9 +2860,9 @@ hideuser権限を持っていないため、この利用者のブロックを閲
 # Export
 'export'            => 'ページの書き出し',
 'exporttext'        => 'ここでは単独あるいは複数のページの本文と編集履歴を、XMLの形で書き出すことができます。
-このXMLは、他のMediaWikiを使用しているウィキで[[Special:Import|取り込みページ]]を使って取り込めます。
+このXMLは、他のMediaWikiを使用しているウィキで[[Special:Import|取り込みページ]]を使って取り込むことができます。
 
-ページを書き出すには、下の入力ボックスに書き出したいページの名前を一行に一つずつ記入してください。また、編集履歴とともにすべての過去版を含んで書き出すのか、最新版のみを書き出すのか選択してください。
+ページを書き出すには、下の入力ボックスに一行に一つずつ書き出したいページの名前を記入してください。また、編集履歴とともにすべての過去版を含めて書き出すのか、最新版のみを書き出すのか選択してください。
 
 後者の場合ではリンクの形で使うこともできます。例えば、[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]はページ「[[{{MediaWiki:Mainpage}}]]」が対象になります。',
 'exportcuronly'     => 'すべての履歴はなしで、最新版のみを含める',
@@ -3142,7 +3143,7 @@ $1',
 'nextdiff'     => '新しい編集→',
 
 # Media information
-'mediawarning'           => "'''警告：'''このファイルは悪意のあるコードを含んでいる可能性があります。
+'mediawarning'           => "'''警告：'''この種類のファイルは悪意のあるコードを含んでいる可能性があります。
 実行するとシステムが危険にさらされる可能性があります。",
 'imagemaxsize'           => "画像のサイズ制限：<br />''（ファイルページに対する）''",
 'thumbsize'              => 'サムネイルの大きさ：',
@@ -3242,8 +3243,8 @@ Variants for Chinese language
 
 # Metadata
 'metadata'          => 'メタデータ',
-'metadata-help'     => 'このファイルは、追加情報を含んでいます（おそらく、デジタルカメラやスキャナーが作成あるいはデジタル化し追加したもの）。
-このファイルが元の状態から変更されている場合、いくつかの項目は、修正されたファイルへ完全に反映されていないかもしれません。',
+'metadata-help'     => 'このファイルには、追加情報があります（おそらく、作成やデジタル化する際に使われたデジタルカメラやスキャナーによって追加されたものです）。
+このファイルが元の状態から変更されている場合、いくつかの項目は、修正されたファイルを完全に反映していないかもしれません。',
 'metadata-expand'   => '拡張項目を表示',
 'metadata-collapse' => '拡張項目を非表示',
 'metadata-fields'   => 'ここのメッセージにあるEXIFメタデータフィールドは、メタデータ表が折りたたまれている状態のときに画像ページに読み込まれます。

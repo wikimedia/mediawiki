@@ -1436,7 +1436,28 @@ Tī pat-lâng liân-lo̍k lí ê sî-chūn bē kā e-mail tsū-tsí siá chhut--
 'watchthisupload'             => 'Kàm-sī chit ê tóng-àn',
 'filewasdeleted'              => '進前有上載一个仝名的檔案，而且後來予人刣掉，
 佇欲閣上載進前，你應該先檢查$1。',
+'filename-bad-prefix'         => "你上載的檔案名是以'''「$1」'''做頭，這一般是數位相機自動編的，彼無啥意義，
+請替你的檔案號一个較有意義的名。",
 'upload-success-subj'         => 'Sàng-chiūⁿ-bāng sêng-kong',
+'upload-success-msg'          => '你對[$2]遐的上載已經成功，伊佇：[[:{{ns:file}}:$1]]',
+'upload-failure-subj'         => '上載問題',
+'upload-failure-msg'          => '你[$2]的上載出現問題：
+
+$1',
+'upload-warning-subj'         => '上載警示',
+'upload-warning-msg'          => '你對[$2]遐的上載出問題，你會當回轉去[[Special:Upload/stash/$1|上載表]]修改問題。',
+
+'upload-proto-error'        => '毋著的協議(protocol)',
+'upload-proto-error-text'   => '遠程上載愛網址(URL)是以 <code>http://</code> 抑 <code>ftp://</code> 做頭。',
+'upload-file-error'         => '內部的錯誤',
+'upload-file-error-text'    => '佇伺服器欲開一个臨時檔案的時陣，發生一个內部錯誤，
+請佮[[Special:ListUsers/sysop|管理員]]聯絡。',
+'upload-too-many-redirects' => '網址(URL)包傷濟个轉向',
+'upload-unknown-size'       => '大小毋知',
+'upload-http-error'         => '發生一个HTTP錯誤：$1',
+
+# img_auth script messages
+'img-auth-accessdenied' => '拒絕讀寫',
 
 'license'        => 'Siū-khoân:',
 'license-header' => 'Siū-khoân',

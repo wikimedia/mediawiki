@@ -1748,6 +1748,7 @@ Non pode superar adecuadamente as comprobacións de seguridade.',
 'uploadstash-badtoken' => 'A acción non se puido completar, seica porque caducou a información de acceso. Inténteo de novo.',
 'uploadstash-errclear' => 'Fallou o borrado de ficheiros.',
 'uploadstash-refresh'  => 'Actualizar a lista de ficheiros',
+'invalid-chunk-offset' => 'Desprazamento inválido do fragmento',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acceso rexeitado',
