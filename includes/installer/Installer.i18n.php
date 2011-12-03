@@ -1884,6 +1884,7 @@ $1
 	'config-memory-bad' => "'''Предупреждение:''' <code>memory_limit</code> на PHP е $1.
 Стойността вероятно е твърде ниска.
 Възможно е инсталацията да се провали!",
+	'config-ctype' => "'''Фатално''': Необходимо е PHP да бъде компилиран с поддръжка на [http://www.php.net/manual/en/ctype.installation.php разширението Ctype].",
 	'config-xcache' => '[http://xcache.lighttpd.net/ XCache] е инсталиран',
 	'config-apc' => '[http://www.php.net/apc APC] е инсталиран',
 	'config-wincache' => '[http://www.iis.net/download/WinCacheForPhp WinCache] е инсталиран',
@@ -1971,7 +1972,7 @@ $1
 $1
 
 Ако не виждате желаната за използване система в списъка по-долу, следвайте инструкциите за активиране на поддръжка по-горе.',
-	'config-support-mysql' => '* $1 е най-фобре поддържата система за база от данни, най-добре поддържана от МедияУики ([http://www.php.net/manual/en/mysql.installation.php Как се компилира PHP с поддръжка на MySQL])',
+	'config-support-mysql' => '* $1 е най-добре поддържаната система за база от данни, с най-добра поддръжка от МедияУики ([http://www.php.net/manual/en/mysql.installation.php Как се компилира PHP с поддръжка на MySQL])',
 	'config-support-postgres' => '* $1 е популярна система за бази от данни с отворен изходен код, която е алтернатива на MySQL ([http://www.php.net/manual/en/pgsql.installation.php как се компилира PHP с поддръжка на PostgreSQL]). Възможно е все още да има грешки, затова не се препоръчва да се използва в общодостъпна среда.',
 	'config-support-sqlite' => '* $1 е лека система за база от данни, която е много добре поддържана. ([http://www.php.net/manual/en/pdo.installation.php Как се компилира PHP с поддръжка на SQLite], използва PDO)',
 	'config-support-oracle' => '* $1 е комерсиална корпоративна база от данни. ([http://www.php.net/manual/en/oci8.installation.php Как се компилира PHP с поддръжка на OCI8])',
@@ -3276,6 +3277,7 @@ Změňte na něm oprávnění, aby do něj mohl webový server zapisovat, a zkus
 Zkontrolujte datový adresář a jméno databáze níže a zkuste to znovu.',
 	'config-sqlite-readonly' => 'Do souboru <code>$1</code> nelze zapisovat.',
 	'config-sqlite-cant-create-db' => 'Nepodařilo se vytvořit databázový soubor <code>$1</code>.',
+	'config-sqlite-fts3-downgrade' => 'PHP neobsahuje podporu FTS3, downgradují se tabulky',
 	'config-can-upgrade' => "V této databázi jsou tabulky MediaWiki.
 Pokud je chcete aktualizovat na MediaWiki $1, klikněte na '''Pokračovat'''.",
 	'config-upgrade-done' => "Aktualizace byla dokončena.
@@ -3433,6 +3435,10 @@ Pokud logo nechcete, ponechte toto pole prázdné.',
 Aby to bylo možné, potřebuje mít MediaWiki přístup k internetu.
 
 Více informací o této funkci, včetně instrukcí, jak ji nastavit pro jiné wiki než Wikimedia Commons, najdete v [//mediawiki.org/wiki/Manual:$wgForeignFileRepos příručce].',
+	'config-cc-error' => 'Volič licence Creative Commons nevrátil žádný výsledek.
+Zadejte název licence ručně.',
+	'config-cc-again' => 'Zvolit znovu…',
+	'config-cc-not-chosen' => 'Zvolte si požadovanou licenci Creative Commons a klikněte na tlačítko.',
 	'config-advanced-settings' => 'Pokročilá konfigurace',
 	'config-cache-options' => 'Nastavení cachování objektů:',
 	'config-cache-help' => 'Cachování objektů se používá pro vylepšení rychlosti MediaWiki tím, že se cachují často používaná data.
@@ -3463,8 +3469,17 @@ Pokud ještě chcete udělat nějaké změny, stiskněte tlačítko zpět.',
 	'config-install-extensions' => 'Vkládají se rozšíření',
 	'config-install-database' => 'Připravuje se databáze',
 	'config-install-schema' => 'Vytváří se schéma',
+	'config-install-pg-schema-not-exist' => 'Schéma PostgreSQL neexistuje.',
+	'config-install-pg-schema-failed' => 'Založení tabulek se nezdařilo.
+Ujistěte se, že uživatel „$1“ může zapisovat do schématu „$2“.',
+	'config-install-pg-commit' => 'Potvrzují se změny',
 	'config-install-pg-plpgsql' => 'Kontroluje se jazyk PL/pgSQL',
 	'config-pg-no-plpgsql' => 'Musíte do databáze $1 nainstalovat jazyk PL/pgSQL',
+	'config-pg-no-create-privs' => 'Účet zadaný pro instalaci nemá oprávnění k založení uživatelského účtu.',
+	'config-pg-not-in-role' => 'Účet zadaný pro webového uživatele již existuje
+Účet zadaný pro instalaci není superuživatelský a není členem role webového uživatele, takže nemůže zakládat objekty vlastněné webovým uživatelem.
+
+MediaWiki v současné době vyžaduje, aby byl vlastníkem tabulek webový uživatel. Uveďte jiný název účtu webového uživatele nebo klikněte na „zpět“ a zadejte instalačního uživatele s odpovídajícími oprávněními.',
 	'config-install-user' => 'Vytváří se databázový uživatel',
 	'config-install-user-alreadyexists' => 'Uživatel „$1“ už existuje',
 	'config-install-user-create-failed' => 'Vytváření uživatele „$1“ selhalo: $2',
@@ -3476,6 +3491,35 @@ Pokud ho chcete založit, zaškrtněte možnost „založit účet“ níže.',
 	'config-install-tables-exist' => "'''Upozornění''': Vypadá to, že tabulky MediaWiki již existují.
 Přeskakuje se jejich zakládání.",
 	'config-install-tables-failed' => "'''Chyba''': Vytvoření tabulek selhalo s následující chybou: $1",
+	'config-install-interwiki' => 'Tabulka interwiki se plní implicitními položkami',
+	'config-install-interwiki-list' => 'Nelze přečíst soubor <code>interwiki.list</code>.',
+	'config-install-interwiki-exists' => "'''Upozornění''': Vypadá to, že tabulka interwiki již obsahuje nějaké záznamy.
+Přeskakuje se implicitní seznam.",
+	'config-install-stats' => 'Inicializují se statistiky',
+	'config-install-keys' => 'Vytvářejí se tajné klíče',
+	'config-insecure-keys' => "'''Upozornění:''' {{PLURAL:$2|Tajný klíč|Tajné klíče}} ($1) vytvořené v průběhu instalace {{PLURAL:$2|není|nejsou}} zcela {{PLURAL:$2|bezpečný|bezpečné}}. Zvažte {{PLURAL:$2|jeho|jejich}} ruční změnu.",
+	'config-install-sysop' => 'Zakládá se uživatelský účet správce',
+	'config-install-subscribe-fail' => 'Nelze se přihlásit k odběru mediawiki-announce: $1',
+	'config-install-subscribe-notpossible' => 'Není nainstalován cURL a není dostupné allow_url_fopen.',
+	'config-install-mainpage' => 'Vytváří se počáteční obsah hlavní strany',
+	'config-install-extension-tables' => 'Vytvářejí se tabulky pro zapnutá rozšíření',
+	'config-install-mainpage-failed' => 'Nepodařilo se vložit hlavní stranu: $1',
+	'config-install-done' => "'''Gratulujeme!'''
+Úspěšně jste nainstalovali MediaWiki.
+
+Instalátor vytvořil soubor <code>LocalSettings.php</code>.
+Ten obsahuje veškerou vaši konfiguraci.
+
+Budete si ho muset stáhnout a uložit do základního adresáře vaší instalace wiki (do stejného adresáře jako soubor index.php). Stažení souboru se mělo spustit automaticky.
+
+Pokud se vám stažení nenabídlo nebo jste ho zrušili, můžete ho spustit znovu kliknutím na následující odkaz:
+
+$3
+
+'''Poznámka''': Pokud to neuděláte hned, tento vygenerovaný konfigurační soubor nebude později dostupný, pokud instalaci opustíte, aniž byste si ho stáhli.
+
+Až to dokončíte, můžete '''[$2 vstoupit do své wiki]'''.",
+	'config-download-localsettings' => 'Stáhnout LocalSettings.php',
 	'config-help' => 'nápověda',
 	'mainpagetext' => "'''MediaWiki byla úspěšně nainstalována.'''",
 	'mainpagedocfooter' => '[//meta.wikimedia.org/wiki/Help:Contents Uživatelská příručka] vám napoví, jak MediaWiki používat.
@@ -5406,10 +5450,10 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-db-wiki-settings' => 'Identifiar cél vouiqui',
 	'config-db-name' => 'Nom de la bâsa de balyês :',
 	'config-db-name-oracle' => 'Plan de bâsa de balyês :',
-	'config-db-install-account' => 'Compto utilisator por l’enstalacion',
+	'config-db-install-account' => 'Compto usanciér por l’enstalacion',
 	'config-db-username' => 'Nom d’utilisator de la bâsa de balyês :',
 	'config-db-password' => 'Contresegno de la bâsa de balyês :',
-	'config-db-wiki-account' => 'Compto utilisator por l’opèracion normala',
+	'config-db-wiki-account' => 'Compto usanciér por l’opèracion normala',
 	'config-db-prefix' => 'Prèfixo de les trâbles de la bâsa de balyês :',
 	'config-db-charset' => 'Juè de caractèros de la bâsa de balyês',
 	'config-charset-mysql5-binary' => 'MySQL 4.1/5.0 binèro',
@@ -5474,7 +5518,7 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-license-cc-choose' => 'Chouèsir una licence Creative Commons pèrsonalisâ',
 	'config-email-settings' => 'Paramètres de mèssageria èlèctronica',
 	'config-enable-email' => 'Activar los mèssâjos que sôrtont',
-	'config-email-user' => 'Activar los mèssâjos d’utilisator a utilisator',
+	'config-email-user' => 'Activar los mèssâjos d’usanciér a usanciér',
 	'config-email-usertalk' => 'Activar la notificacion de les pâges de discussion ux utilisators',
 	'config-email-watchlist' => 'Activar la notificacion de la lista de survelyence',
 	'config-email-auth' => 'Activar l’ôtenticacion per mèssageria èlèctronica',
@@ -5498,7 +5542,7 @@ Portant, MediaWiki at fôta de PHP $2 ou ben ples hôt.',
 	'config-install-pg-schema-not-exist' => 'Lo plan PostgreSQL ègziste pas',
 	'config-install-pg-commit' => 'Validacion des changements',
 	'config-install-pg-plpgsql' => 'Contrôlo du lengâjo PL/pgSQL',
-	'config-install-user' => 'Crèacion d’un utilisator de la bâsa de balyês',
+	'config-install-user' => 'Crèacion d’un usanciér de la bâsa de balyês',
 	'config-install-user-alreadyexists' => 'L’utilisator « $1 » ègziste ja',
 	'config-install-user-create-failed' => 'Falyita pendent la crèacion a l’utilisator « $1 » : $2',
 	'config-install-user-grant-failed' => 'Falyita pendent l’aponsa de pèrmissions a l’utilisator « $1 » : $2',
@@ -9331,8 +9375,9 @@ chmod a+w $3</pre>',
 	'config-ns-site-name' => 'ウィキ名と同じ：$1',
 	'config-ns-other' => 'その他(指定してください)',
 	'config-ns-other-default' => 'マイウィキ',
-	'config-project-namespace-help' => "ウィキペディアの例に従えば、多くのウィキは「'''プロジェクトの名前空間'''」において、コンテンツのページとは分離した独自のポリシーページを持つ。
-伝統的にはこの接頭辞はウィキのページから派生される。しかし、\"#\" や \":\"のような句切り記号は含んでいない。",
+	'config-project-namespace-help' => "ウィキペディアの例に従い、多くのウィキは、コンテンツのページとは分離したポリシーページを「'''プロジェクトの名前空間'''」に持っています。
+この名前空間のページのタイトルはすべて、ある接頭辞で始まります。それをここで指定することができます。
+この接頭辞はウィキの名前に由来するのが伝統的ですが、「#」や「:」のような区切り記号を含めることはできません。",
 	'config-ns-invalid' => '"<nowiki>$1</nowiki>"のように指定された名前空間は無効です。
 違うプロジェクト名前空間を指定してください。',
 	'config-admin-box' => '管理アカウント',
@@ -9419,10 +9464,10 @@ GNUフリー文書利用許諾契約書はウィキペディアが採用して�
 	'config-upload-deleted-help' => '削除されるファイルを保存するためのディレクトリを選択してください。
 これがウェブからアクセスできないことが理想です。',
 	'config-logo' => 'ロゴのURL:',
-	'config-logo-help' => 'メディアウィキの初期のスキンは最上部左角にある135x160ピクセルのロゴのためにスペースを含んでいます。
-適切なサイズのイメージをアップロードし、ここにURLを入力してください。
+	'config-logo-help' => 'MediaWikiの未設定状態のスキンでは、サイドバー上部に135x160ピクセルのロゴ用の余白があります。
+適切なサイズの画像をアップロードし、そのURLをここに入力してください。
 
-もし、ロゴを望まないならば、このボックスを空白状態のままにしてください。',
+もしロゴが要らないならば、このボックスを空白のままにしてください。',
 	'config-instantcommons' => 'InstantCommons機能を有効にする',
 	'config-instantcommons-help' => '[//www.mediawiki.org/wiki/InstantCommons InstantCommons]は、[//commons.wikimedia.org/ ウィキメディア・コモンズ]のサイトで見つかった画像や音声、その他のメディアをウィキ上で利用することができるようになる機能です。
 これを有効化するには、MediaWikiはインターネットに接続できなければなりません。

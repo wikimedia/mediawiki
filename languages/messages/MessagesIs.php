@@ -2897,7 +2897,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 'exif-imagedescription'            => 'Titill myndar',
 'exif-make'                        => 'Framleiðandi myndavélar',
 'exif-model'                       => 'Tegund',
-'exif-software'                    => 'Hugbúnaður notaður',
+'exif-software'                    => 'Hugbúnaður',
 'exif-artist'                      => 'Höfundur',
 'exif-copyright'                   => 'höfundur',
 'exif-exifversion'                 => 'Exif-útgáfa',

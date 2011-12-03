@@ -1868,6 +1868,7 @@ $1',
 'uploadstash-badtoken' => 'ביצוע הפעולה נכשל, אולי בגלל פקיעת תוקפו של אסימון העריכה שלכם. נסו שוב.',
 'uploadstash-errclear' => 'מחיקת הקבצים נכשלה.',
 'uploadstash-refresh'  => 'רענון רשימת הקבצים',
+'invalid-chunk-offset' => 'היסט גוש לא תקין',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'הגישה נדחתה',

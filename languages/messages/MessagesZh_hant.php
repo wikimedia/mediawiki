@@ -3630,6 +3630,7 @@ MediaWiki是基於使用目的而加以發佈，然而不負任何擔保責任�
 'logentry-move-move-noredirect'       => '$1{{GENDER:$2|移動}}$3頁面至$4，不留重定向',
 'logentry-move-move_redir'            => '$1通過重定向{{GENDER:$2|移動}}$3頁面至$4',
 'logentry-move-move_redir-noredirect' => '$1通過重定向{{GENDER:$2|移動}}$3頁面至$4，不留重定向',
+'logentry-newusers-newusers'          => '$1{{GENDER:$2|建立}}新帳號',
 'newuserlog-byemail'                  => '密碼已由電子郵件寄出',
 
 );

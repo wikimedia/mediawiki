@@ -1712,6 +1712,7 @@ Ni mogoče ustrezno preveriti njene varnosti.',
 'uploadstash-badtoken' => 'Izvedba dejanja ni bila uspešna, morda zaradi izteklih poverilnic za urejanje. Poskusite znova.',
 'uploadstash-errclear' => 'Čiščenje datotek ni bilo uspešno.',
 'uploadstash-refresh'  => 'Osveži seznam datotek',
+'invalid-chunk-offset' => 'Neveljaven odmik delčka',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Dostop zavrnjen',

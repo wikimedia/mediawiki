@@ -556,19 +556,19 @@ $2',
 
 倷嗰封鎖ID係$5。請到查詢嗰時間都要緊標到佢。',
 'blockednoreason'                  => '冇話理由',
-'whitelistedittext'                => '起先倷要$1才編得正箇頁。',
+'whitelistedittext'                => '起先汝要$1才編得正箇頁。',
 'confirmedittext'                  => '確認嘞email才能編寫箇頁。麻煩用[[Special:Preferences|參數設置]]設置同確認倷嗰email。',
 'nosuchsectiontitle'               => '冇箇隻段落',
 'nosuchsectiontext'                => '汝試得編寫嗰段落伓存在。',
 'loginreqtitle'                    => '需要登入',
 'loginreqlink'                     => '登入',
-'loginreqpagetext'                 => '倷要$1才眵得正別嗰頁面。',
-'accmailtitle'                     => '密碼寄出嘞',
-'accmailtext'                      => "'$1'嗰密碼發到$2嘞。",
+'loginreqpagetext'                 => '汝要$1才眵得正別嗰頁面。',
+'accmailtitle'                     => '密碼寄出哩',
+'accmailtext'                      => "'[[User talk:$1|$1]]'嗰密碼發到$2哩。",
 'newarticle'                       => '（新）',
 'newarticletext'                   => '箇係隻冇拕建立嗰頁面。
-要新開箇隻頁面，請到下頭嗰方框裡頭編寫內容（望吖[[{{MediaWiki:Helppage}}|説明]]嗰細節）。
-要係倷伓係特試來到箇首，捺吖瀏覽器嗰「返回」鍵即可去還。',
+要新開箇隻頁面，請到下首嗰方框裡頭編寫內容（望吖[[{{MediaWiki:Helppage}}|説明]]嗰細節）。
+若係汝伓係特事來到箇首，捺吖瀏覽器嗰「去還」鍵即得去還。',
 'anontalkpagetext'                 => "---- ''箇係匿名用戶嗰討論頁，話伓定佢哈冇開隻帳戶。別人單用得正IP地址同佢聯繫。箇隻IP地址可能有好幾隻用戶共用。如果倷係匿名用戶，覺得箇頁嗰內容同倷冇關，歡迎去[[Special:UserLogin|開隻新帳戶或登入]]，省得同別嗰匿名用戶扤混來。''",
 'noarticletext'                    => '眼下箇頁哈冇內容，倷可以到別嗰頁面[[Special:Search/{{PAGENAME}}|尋吖箇頁嗰標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} 尋吖有關日誌]或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編寫箇頁]</span>。',

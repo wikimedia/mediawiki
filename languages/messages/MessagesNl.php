@@ -1891,6 +1891,7 @@ De veiligheid kan niet worden gecontroleerd.',
 'uploadstash-badtoken' => 'Het uitvoeren van de handeling is mislukt. Dit komt mogelijk doordat uw bewerkingsreferenties zijn verlopen. Probeer het opnieuw.',
 'uploadstash-errclear' => 'Het verwijderen van de bestanden is mislukt.',
 'uploadstash-refresh'  => 'Lijst met bestanden bijwerken',
+'invalid-chunk-offset' => 'Ongeldige chunkoffset',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Toegang geweigerd',
