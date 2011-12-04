@@ -203,16 +203,6 @@ span.subpages { display: block; }
 }
 .catlinks { margin: 0; padding: 0; }
 
-
-/* currently unused, intended to be used by a metadata box
-in the bottom-right corner of the content area */
-.documentDescription {
-	/* The summary text describing the document */
-	font-weight: bold;
-	display: block;
-	margin: 1em 0em;
-	line-height: 1.5em;
-}
 .documentByLine {
 	text-align: right;
 	font-size: 90%;
