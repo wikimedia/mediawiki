@@ -1,0 +1,111 @@
+.mw-debug {
+	width: 100%;
+	text-align: left;
+	position: fixed;
+	bottom: 0;
+	background-color: #eee;
+	border-top: 1px solid #ccc;
+}
+
+.mw-debug pre {
+	font-family: Monaco, "Consolas", "Lucida Console", "Courier New", monospace;
+	font-size: 11px;
+	padding: 0;
+	margin: 0;
+	background: none;
+	border: none;
+}
+
+.mw-debug ul {
+	margin: 0;
+	list-style: none;
+	box-sizing: border-box;
+}
+
+.mw-debug li {
+	padding: 2px 5px;
+	width: 100%;
+	display: table;
+}
+
+.mw-debug-bit {
+	min-height: 25px;
+	display: inline-block;
+	padding: 5px;
+	border-right: 1px solid #ccc;
+	font-size: 13px;
+}
+
+.mw-debug-pane {
+	max-height: 300px;
+	overflow: scroll;
+	border-top: 2px solid #ccc;
+	display: none;
+	font-size: 11px;
+	background-color: #e1eff2;
+	box-sizing: border-box;
+}
+
+.mw-debug-right {
+	float: right;
+}
+
+#mw-debug-querylist tr {
+
+}
+
+#mw-debug-querylist td {
+	padding: 2px 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+.mw-debug-query-time {
+	color: #808080;
+}
+
+#mw-debug-pane-request {
+	padding: 20px;
+}
+
+#mw-debug-pane-request table {
+	width: 100%;
+	margin: 10px 0 30px;
+}
+
+#mw-debug-pane-request tr,
+#mw-debug-pane-request th,
+#mw-debug-pane-request td,
+#mw-debug-pane-request table {
+	border: 1px solid #D0DBB3;
+	border-collapse: collapse;
+	margin: 0;
+}
+
+#mw-debug-pane-request th,
+#mw-debug-pane-request td {
+	font-size: 12px;
+	padding: 8px 10px;
+}
+
+#mw-debug-pane-request th {
+	background-color: #F1F7E2;
+	font-weight: bold;
+}
+
+#mw-debug-pane-request td {
+	background-color: white;
+}
+
+#mw-debug-pane-querylist table {
+	border-spacing: 0;
+}
+
+#mw-debug-pane-includes li,
+#mw-debug-pane-querylist tr td {
+	background-color: #ccc;
+}
+
+#mw-debug-pane-includes li:nth-child(odd),
+#mw-debug-pane-querylist tr:nth-child(odd) td {
+	background-color: #ddd;
+}

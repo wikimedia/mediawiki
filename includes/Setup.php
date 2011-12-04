@@ -328,6 +328,8 @@ if ( $wgCookieSecure === 'detect' ) {
 	$wgCookieSecure = ( substr( $wgServer, 0, 6 ) === 'https:' );
 }
 
+MWDebug::init();
+
 if ( !defined( 'MW_COMPILED' ) ) {
 	if ( !MWInit::classExists( 'AutoLoader' ) ) {
 		require_once( "$IP/includes/AutoLoader.php" );
@@ -392,6 +394,7 @@ if ( $wgCommandLineMode ) {
 		}
 	}
 	wfDebug( "$debug\n" );
+	MWDebug::processRequest( $wgRequest );
 }
 
 wfProfileOut( $fname . '-misc1' );

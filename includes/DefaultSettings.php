@@ -4160,6 +4160,14 @@ $wgParserTestRemote = false;
  */
 $wgWikiID = false;
 
+/**
+ * Display the new debugging toolbar. This also enables profiling on database
+ * queries and other useful output.
+ *
+ * @since 1.19
+ */
+$wgDebugToolbar = false;
+
 /** @} */ # end of profiling, testing and debugging }
 
 /************************************************************************//**

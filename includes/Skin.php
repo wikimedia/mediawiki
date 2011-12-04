@@ -531,13 +531,15 @@ abstract class Skin extends ContextSource {
 	protected function generateDebugHTML() {
 		global $wgShowDebug;
 
+		$html = MWDebug::getDebugHTML();
+
 		if ( $wgShowDebug ) {
 			$listInternals = $this->formatDebugHTML( $this->getOutput()->mDebugtext );
-			return "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">" .
+			$html .= "\n<hr />\n<strong>Debug data:</strong><ul id=\"mw-debug-html\">" .
 				$listInternals . "</ul>\n";
 		}
 
-		return '';
+		return $html;
 	}
 
 	/**
