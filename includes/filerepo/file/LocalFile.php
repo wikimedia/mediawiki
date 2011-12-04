@@ -1007,6 +1007,9 @@ class LocalFile extends File {
 		);
 
 		if ( $dbw->affectedRows() == 0 ) {
+			if ( $oldver == '' ) {
+				throw new MWException( "Empty oi_archive_name. Database and storage out of sync?" );
+			}
 			$reupload = true;
 
 			# Collision, this is an update of a file
