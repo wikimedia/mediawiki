@@ -203,14 +203,6 @@ span.subpages { display: block; }
 }
 .catlinks { margin: 0; padding: 0; }
 
-.documentByLine {
-	text-align: right;
-	font-size: 90%;
-	clear: both;
-	font-weight: normal;
-	color: #76797c;
-}
-
 /* emulate center */
 .center {
 	width: 100%;
