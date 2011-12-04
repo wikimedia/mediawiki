@@ -97,6 +97,7 @@ production.
 * (bug 32666) Special:ActiveUsers now allows a subpage to be used as the
   username (eg. Special:ActiveUsers/Username)
 * New JavaScript variable wgPageContentLanguage
+* Added new debugging toolbar, enabled with $wgDebugToolbar
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.

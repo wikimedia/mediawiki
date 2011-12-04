@@ -374,7 +374,7 @@ class Article extends Page {
 	 */
 	public function view() {
 		global $wgUser, $wgOut, $wgRequest, $wgParser;
-		global $wgUseFileCache, $wgUseETag;
+		global $wgUseFileCache, $wgUseETag, $wgDebugToolbar;
 
 		wfProfileIn( __METHOD__ );
 
@@ -429,7 +429,7 @@ class Article extends Page {
 		}
 
 		# Try client and file cache
-		if ( $oldid === 0 && $this->mPage->checkTouched() ) {
+		if ( !$wgDebugToolbar && $oldid === 0 && $this->mPage->checkTouched() ) {
 			if ( $wgUseETag ) {
 				$wgOut->setETag( $parserCache->getETag( $this, $parserOptions ) );
 			}

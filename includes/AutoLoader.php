@@ -436,6 +436,9 @@ $wgAutoloadLocalClasses = array(
 	'ResultWrapper' => 'includes/db/DatabaseUtility.php',
 	'SQLiteField' => 'includes/db/DatabaseSqlite.php',
 
+	# includes/debug
+	'MWDebug' => 'includes/debug/Debug.php',
+
 	# includes/diff
 	'_DiffEngine' => 'includes/diff/DairikiDiff.php',
 	'_DiffOp' => 'includes/diff/DairikiDiff.php',

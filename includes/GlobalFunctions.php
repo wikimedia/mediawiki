@@ -835,6 +835,8 @@ function wfDebug( $text, $logonly = false ) {
 			wfErrorLog( $text, $wgDebugLogFile );
 		}
 	}
+
+	MWDebug::debugMsg( $text );
 }
 
 /**

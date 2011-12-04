@@ -840,8 +840,12 @@ abstract class DatabaseBase implements DatabaseType {
 			throw new MWException( 'Tainted query found' );
 		}
 
+		$queryId = MWDebug::query( $sql, $fname, $isMaster );
+
 		# Do the query and handle errors
 		$ret = $this->doQuery( $commentedSql );
+
+		MWDebug::queryTime( $queryId );
 
 		# Try reconnecting if the connection was lost
 		if ( false === $ret && $this->wasErrorReissuable() ) {

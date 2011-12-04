@@ -489,6 +489,10 @@ return array(
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
 		'debugRaw' => false,
 	),
+	'mediawiki.debug' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
+		'styles' => 'resources/mediawiki/mediawiki.debug.css',
+	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
 	),
