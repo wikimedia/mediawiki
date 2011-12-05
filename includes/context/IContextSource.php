@@ -68,6 +68,7 @@ interface IContextSource {
 	 * Get the Language object
 	 *
 	 * @return Language
+	 * @since 1.19
 	 */
 	public function getLanguage();
 
