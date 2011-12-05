@@ -42,7 +42,6 @@ abstract class LBFactory {
 
 	/**
 	 * Shut down, close connections and destroy the cached instance.
-	 *
 	 */
 	static function destroyInstance() {
 		if ( self::$instance ) {
@@ -111,7 +110,7 @@ abstract class LBFactory {
 	 * Execute a function for each tracked load balancer
 	 * The callback is called with the load balancer as the first parameter,
 	 * and $params passed as the subsequent parameters.
-	 * @param $callback
+	 * @param $callback string|array
 	 * @param array $params
 	 */
 	abstract function forEachLB( $callback, $params = array() );
@@ -124,7 +123,7 @@ abstract class LBFactory {
 
 	/**
 	 * Call a method of each tracked load balancer
-	 * @param $methodName
+	 * @param $methodName string
 	 * @param $args array
 	 */
 	function forEachLBCallMethod( $methodName, $args = array() ) {
@@ -134,7 +133,7 @@ abstract class LBFactory {
 	/**
 	 * Private helper for forEachLBCallMethod
 	 * @param $loadBalancer
-	 * @param $methodName
+	 * @param $methodName string
 	 * @param $args
 	 */
 	function callMethod( $loadBalancer, $methodName, $args ) {

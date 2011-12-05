@@ -54,7 +54,7 @@ class LBFactory_Multi extends LBFactory {
 	var $lastWiki, $lastSection;
 
 	/**
-	 * @param $conf
+	 * @param $conf array
 	 */
 	function __construct( $conf ) {
 		$this->chronProt = new ChronologyProtector;
@@ -173,7 +173,7 @@ class LBFactory_Multi extends LBFactory {
 	 * Make a new load balancer object based on template and load array
 	 *
 	 * @param $template
-	 * @param $loads
+	 * @param $loads array
 	 * @param $groupLoads
 	 * @return LoadBalancer
 	 */
@@ -191,7 +191,7 @@ class LBFactory_Multi extends LBFactory {
 	 * Make a server array as expected by LoadBalancer::__construct, using a template and load array
 	 *
 	 * @param $template
-	 * @param $loads
+	 * @param $loads array
 	 * @param $groupLoads
 	 * @return array
 	 */
@@ -248,7 +248,7 @@ class LBFactory_Multi extends LBFactory {
 
 	/**
 	 * Get the database name and prefix based on the wiki ID
-	 * @param bool $wiki
+	 * @param $wiki bool
 	 * @return array
 	 */
 	function getDBNameAndPrefix( $wiki = false ) {

@@ -262,10 +262,10 @@ class DBQueryError extends DBError {
 
 	/**
 	 * @param $db DatabaseBase
-	 * @param $error
-	 * @param $errno
-	 * @param $sql
-	 * @param $fname
+	 * @param $error string
+	 * @param $errno int|string
+	 * @param $sql string
+	 * @param $fname string
 	 */
 	function __construct( DatabaseBase &$db, $error, $errno, $sql, $fname ) {
 		$message = "A database error has occurred.  Did you forget to run maintenance/update.php after upgrading?  See: https://www.mediawiki.org/wiki/Manual:Upgrading#Run_the_update_script\n" .

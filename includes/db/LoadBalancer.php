@@ -101,7 +101,7 @@ class LoadBalancer {
 	 * Given an array of non-normalised probabilities, this function will select
 	 * an element and return the appropriate key
 	 *
-	 * @param $weights
+	 * @param $weights array
 	 *
 	 * @return int
 	 */
@@ -132,7 +132,7 @@ class LoadBalancer {
 	}
 
 	/**
-	 * @param $loads
+	 * @param $loads array
 	 * @param $wiki bool
 	 * @return bool|int|string
 	 */
@@ -336,8 +336,8 @@ class LoadBalancer {
 
 	/**
 	 * Wait for a specified number of microseconds, and return the period waited
-	 * @param $t
-	 * @return
+	 * @param $t int
+	 * @return int
 	 */
 	function sleep( $t ) {
 		wfProfileIn( __METHOD__ );
@@ -351,7 +351,7 @@ class LoadBalancer {
 	 * Set the master wait position
 	 * If a DB_SLAVE connection has been opened already, waits
 	 * Otherwise sets a variable telling it to wait if such a connection is opened
-	 * @param $pos
+	 * @param $pos int
 	 */
 	public function waitFor( $pos ) {
 		wfProfileIn( __METHOD__ );
@@ -369,7 +369,7 @@ class LoadBalancer {
 
 	/**
 	 * Set the master wait position and wait for ALL slaves to catch up to it
-	 * @param $pos
+	 * @param $pos int
 	 */
 	public function waitForAll( $pos ) {
 		wfProfileIn( __METHOD__ );
@@ -384,7 +384,7 @@ class LoadBalancer {
 	 * Get any open connection to a given server index, local or foreign
 	 * Returns false if there is no connection open
 	 *
-	 * @param $i
+	 * @param $i int
 	 * @return DatabaseBase|false
 	 */
 	function getAnyOpenConnection( $i ) {

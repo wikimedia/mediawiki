@@ -2280,7 +2280,7 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Any implementation of this function should *not* involve reusing
 	 * sequence numbers created for rolled-back transactions.
 	 * See http://bugs.mysql.com/bug.php?id=30767 for details.
-	 * @param $seqName
+	 * @param $seqName string
 	 * @return null
 	 */
 	function nextSequenceValue( $seqName ) {
@@ -2374,9 +2374,9 @@ abstract class DatabaseBase implements DatabaseType {
 	 * REPLACE query wrapper for MySQL and SQLite, which have a native REPLACE
 	 * statement.
 	 *
-	 * @param $table Table name
-	 * @param $rows Rows to insert
-	 * @param $fname Caller function name
+	 * @param $table string Table name
+	 * @param $rows array Rows to insert
+	 * @param $fname string Caller function name
 	 *
 	 * @return ResultWrapper
 	 */
@@ -3017,8 +3017,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * don't allow simple quoted strings to be inserted. To insert into such
 	 * a field, pass the data through this function before passing it to
 	 * DatabaseBase::insert().
-	 * @param $b
-	 * @return
+	 * @param $b string
+	 * @return string
 	 */
 	function encodeBlob( $b ) {
 		return $b;
@@ -3028,8 +3028,8 @@ abstract class DatabaseBase implements DatabaseType {
 	 * Some DBMSs return a special placeholder object representing blob fields
 	 * in result objects. Pass the object through this function to return the
 	 * original string.
-	 * @param $b
-	 * @return
+	 * @param $b string
+	 * @return string
 	 */
 	function decodeBlob( $b ) {
 		return $b;

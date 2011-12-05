@@ -23,7 +23,7 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $sql
+	 * @param $sql string
 	 * @return resource
 	 */
 	protected function doQuery( $sql ) {
@@ -36,10 +36,10 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $server
-	 * @param $user
-	 * @param $password
-	 * @param $dbName
+	 * @param $server string
+	 * @param $user string
+	 * @param $password string
+	 * @param $dbName string
 	 * @return bool
 	 * @throws DBConnectionError
 	 */
@@ -167,7 +167,7 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $res
+	 * @param $res ResultWrapper
 	 * @throws DBUnexpectedError
 	 */
 	function freeResult( $res ) {
@@ -183,7 +183,7 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $res
+	 * @param $res ResultWrapper
 	 * @return object|stdClass
 	 * @throws DBUnexpectedError
 	 */
@@ -201,7 +201,7 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $res
+	 * @param $res ResultWrapper
 	 * @return array
 	 * @throws DBUnexpectedError
 	 */
@@ -220,7 +220,7 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * @throws DBUnexpectedError
-	 * @param $res
+	 * @param $res ResultWrapper
 	 * @return int
 	 */
 	function numRows( $res ) {
@@ -237,7 +237,7 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $res
+	 * @param $res ResultWrapper
 	 * @return int
 	 */
 	function numFields( $res ) {
@@ -248,8 +248,8 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $res
-	 * @param $n
+	 * @param $res ResultWrapper
+	 * @param $n string
 	 * @return string
 	 */
 	function fieldName( $res, $n ) {
@@ -267,7 +267,7 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $res
+	 * @param $res ResultWrapper
 	 * @param $row
 	 * @return bool
 	 */
@@ -318,9 +318,9 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $table
+	 * @param $table string
 	 * @param $uniqueIndexes
-	 * @param $rows
+	 * @param $rows array
 	 * @param $fname string
 	 * @return ResultWrapper
 	 */
@@ -382,8 +382,8 @@ class DatabaseMysql extends DatabaseBase {
 	 * Get information about an index into an object
 	 * Returns false if the index does not exist
 	 *
-	 * @param $table
-	 * @param $index
+	 * @param $table string
+	 * @param $index string
 	 * @param $fname string
 	 * @return false|array
 	 */
@@ -670,8 +670,8 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $lockName
-	 * @param $method
+	 * @param $lockName string
+	 * @param $method string
 	 * @param $timeout int
 	 * @return bool
 	 */
@@ -690,9 +690,9 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * FROM MYSQL DOCS: http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
-	 * @param $lockName
+	 * @param $lockName string
 	 * @param $method string
-	 * @return
+	 * @return bool
 	 */
 	public function unlock( $lockName, $method ) {
 		$lockName = $this->addQuotes( $lockName );
@@ -702,9 +702,9 @@ class DatabaseMysql extends DatabaseBase {
 	}
 
 	/**
-	 * @param $read
-	 * @param $write
-	 * @param $method
+	 * @param $read array
+	 * @param $write array
+	 * @param $method string
 	 * @param $lowPriority bool
 	 */
 	public function lockTables( $read, $write, $method, $lowPriority = true ) {
@@ -761,13 +761,13 @@ class DatabaseMysql extends DatabaseBase {
 
 	/**
 	 * DELETE where the condition is a join. MySql uses multi-table deletes.
-	 * @param $delTable
-	 * @param $joinTable
-	 * @param $delVar
-	 * @param $joinVar
+	 * @param $delTable string
+	 * @param $joinTable string
+	 * @param $delVar string
+	 * @param $joinVar string
 	 * @param $conds array|string
 	 * @param $fname bool
-	 * @return bool|\ResultWrapper
+	 * @return bool|ResultWrapper
 	 */
 	function deleteJoin( $delTable, $joinTable, $delVar, $joinVar, $conds, $fname = 'DatabaseBase::deleteJoin' ) {
 		if ( !$conds ) {
