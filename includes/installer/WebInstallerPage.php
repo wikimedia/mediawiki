@@ -280,7 +280,7 @@ class WebInstaller_ExistingWiki extends WebInstallerPage {
 			$this->startForm();
 			$this->addHTML( $this->parent->getInfoBox(
 				wfMsgNoTrans( 'config-upgrade-key-missing',
-					"<pre>\$wgUpgradeKey = '" . $this->getVar( 'wgUpgradeKey' ) . "';</pre>" )
+					"<pre dir=\"ltr\">\$wgUpgradeKey = '" . $this->getVar( 'wgUpgradeKey' ) . "';</pre>" )
 			) );
 			$this->endForm( 'continue' );
 			return 'output';
