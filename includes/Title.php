@@ -1951,7 +1951,7 @@ class Title {
 	 * Please make use of this instead of comparing to getNamespace()
 	 * This function is much more resistant to changes we may make
 	 * to namespaces than code that makes direct comparisons.
-	 * @param $ns The namespace
+	 * @param $ns int The namespace
 	 * @return bool
 	 * @since 1.19
 	 */
