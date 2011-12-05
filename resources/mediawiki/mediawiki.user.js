@@ -1,5 +1,5 @@
 /*
- * Implementation for mediaWiki.log stub
+ * Implementation for mediaWiki.user
  */
 
 (function( $ ) {
