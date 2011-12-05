@@ -574,8 +574,8 @@ Notit mat e c'hallo pajennoù zo kenderc'hel da vezañ diskwelet evel pa vefec'h
 
 Krouet eo bet ho kont implijer.
 Na zisoñjit ket resisaat ho [[Special:Preferences|penndibaboù evit {{SITENAME}}]].',
-'yourname'                   => "Hoc'h anv implijer",
-'yourpassword'               => 'Ho ker-tremen',
+'yourname'                   => 'Anv implijer :',
+'yourpassword'               => 'Ger-tremen :',
 'yourpasswordagain'          => 'Skrivit ho ker-tremen en-dro',
 'remembermypassword'         => "Derc'hel soñj eus ma ger-tremen war an urzhiataer-mañ (evit $1 devezh{{PLURAL:$1||}} d'ar muiañ)",
 'securelogin-stick-https'    => 'Chom kevreet da HTTPS goude bezañ bet kevreet',
@@ -1457,6 +1457,7 @@ Ma skrivit anezhañ e vo implijet evit lakaat war wel ar pezh a vo bet degaset g
 'action-userrights'           => 'Kemmañ an holl wirioù implijer',
 'action-userrights-interwiki' => 'Kemmañ gwirioù an implijerien war wikioù all',
 'action-siteadmin'            => 'Prennañ pe dibrennañ ar bank roadennoù',
+'action-sendemail'            => 'Kas posteloù',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|kemm|kemm}}',
@@ -1664,6 +1665,7 @@ N'hall ket bezañ gwiriet ervat evit ar surentez.",
 'uploadstash-badtoken' => "N'haller ket kas an ober-mañ da benn vat, marteze a-walc'h abalamour m'eo aet d'o zermen an titouroù kred ho poa roet. Klaskit en-dro.",
 'uploadstash-errclear' => "N'eus ket bet gallet riñsañ ar restroù.",
 'uploadstash-refresh'  => 'Freskaat roll ar restroù',
+'invalid-chunk-offset' => 'Direizh eo offset ar rannad',
 
 # img_auth script messages
 'img-auth-accessdenied'     => "Moned nac'het",
@@ -1769,23 +1771,24 @@ Diskouezet eo deskrivadur he [$2 fajenn zeskrivañ] amañ dindan.',
 'filerevert-badversion'     => "N'eus stumm lec'hel kent ebet eus ar restr-mañ d'ar mare spisaet.",
 
 # File deletion
-'filedelete'                  => 'Diverkañ $1',
-'filedelete-legend'           => 'Diverkañ ar restr',
-'filedelete-intro'            => "War-nes diverkañ '''[[Media:$1|$1]]''' a-gevret gant e istor emaoc'h.",
-'filedelete-intro-old'        => "Emaoc'h o tiverkañ stumm '''[[Media:$1|$1]]''' eus [$4 $3, $2].",
-'filedelete-comment'          => 'Abeg :',
-'filedelete-submit'           => 'Diverkañ',
-'filedelete-success'          => "Diverket eo bet '''$1'''.",
-'filedelete-success-old'      => "Diverket eo bet ar stumm '''[[Media:$1|$1]]''' eus an $2 da $3.",
-'filedelete-nofile'           => "N'eus ket eus '''$1'''.",
-'filedelete-nofile-old'       => "N'eus stumm diellaouet ebet eus '''$1''' gant an dezverkoù lakaet.",
-'filedelete-otherreason'      => 'Abeg all/ouzhpenn :',
-'filedelete-reason-otherlist' => 'Abeg all',
-'filedelete-reason-dropdown'  => "*Abegoù diverkañ boas
+'filedelete'                   => 'Diverkañ $1',
+'filedelete-legend'            => 'Diverkañ ar restr',
+'filedelete-intro'             => "War-nes diverkañ '''[[Media:$1|$1]]''' a-gevret gant e istor emaoc'h.",
+'filedelete-intro-old'         => "Emaoc'h o tiverkañ stumm '''[[Media:$1|$1]]''' eus [$4 $3, $2].",
+'filedelete-comment'           => 'Abeg :',
+'filedelete-submit'            => 'Diverkañ',
+'filedelete-success'           => "Diverket eo bet '''$1'''.",
+'filedelete-success-old'       => "Diverket eo bet ar stumm '''[[Media:$1|$1]]''' eus an $2 da $3.",
+'filedelete-nofile'            => "N'eus ket eus '''$1'''.",
+'filedelete-nofile-old'        => "N'eus stumm diellaouet ebet eus '''$1''' gant an dezverkoù lakaet.",
+'filedelete-otherreason'       => 'Abeg all/ouzhpenn :',
+'filedelete-reason-otherlist'  => 'Abeg all',
+'filedelete-reason-dropdown'   => "*Abegoù diverkañ boas
 ** Gaou ouzh ar gwirioù perc'hennañ
 ** Restr zo anezhi dija",
-'filedelete-edit-reasonlist'  => 'Kemmañ a ra an abegoù diverkañ',
-'filedelete-maintenance'      => "Evit ar mare eo diweredekaet an diverkañ hag an assevel restroù, amzer d'ober un tamm trezalc'h.",
+'filedelete-edit-reasonlist'   => 'Kemmañ a ra an abegoù diverkañ',
+'filedelete-maintenance'       => "Evit ar mare eo diweredekaet an diverkañ hag an assevel restroù, amzer d'ober un tamm trezalc'h.",
+'filedelete-maintenance-title' => 'Dibosupl diverkañ ar restr',
 
 # MIME search
 'mimesearch'         => 'Klask MIME',
@@ -1935,7 +1938,7 @@ Na zisoñjit ket e c'hall lec'hiennoù all kaout ul liamm eeun war-du ur restr b
 
 # Special:Log
 'specialloguserlabel'  => 'Implijer :',
-'speciallogtitlelabel' => 'Titl :',
+'speciallogtitlelabel' => 'Bukadenn (titl pe implijer) :',
 'log'                  => 'Marilhoù',
 'all-logs-page'        => 'An holl varilhoù foran',
 'alllogstext'          => "Diskwel a-gevret an holl varilhoù hegerz war {{SITENAME}}.
@@ -1979,8 +1982,9 @@ Gwelet ivez ar [[Special:WantedCategories|rummadoù a vank]].',
 'linksearch-pat'   => 'Klask an droienn :',
 'linksearch-ns'    => 'Esaouenn anv :',
 'linksearch-ok'    => 'Klask',
-'linksearch-text'  => 'Gallout a reer implijout arouezennoù "joker" evel, da skouer, "*.wikipedia.org".<br />
-Protokoloù skoret : <tt>$1</tt>',
+'linksearch-text'  => 'Gallout a reer implijout arouezennoù "joker" evel, da skouer, "*.wikipedia.org".
+Rekis eo dezho un domani a-us da nebeutañ evel, da skouer, "*.org".<br />
+Protokoloù skoret : <tt>$1</tt> (na lakait hini ebet eus ar re-se en ho klask)',
 'linksearch-line'  => '$1 gant ul liamm adal $2',
 'linksearch-error' => "N'hall an arouezennoù joker bezañ implijet nemet e deroù anv domani an ostiz.",
 
@@ -2605,6 +2609,7 @@ Mard eo se e c'hallit ivez implijout ul liamm a seurt gant [[{{#Special:Export}}
 'exportcuronly'     => 'Ezporzhiañ hepken ar stumm red hep an istor anezhañ',
 'exportnohistory'   => "----
 '''Notenn :''' Dilezet eo bet an ezporzhiañ istor klok ar pajennoù evit poent peogwir e veze gorrekaet ar reizhiad diwar se.",
+'exportlistauthors' => 'Lakaat e-barzh ur roll klok eus ar berzhidi evit pep pajenn',
 'export-submit'     => 'Ezporzhiañ',
 'export-addcattext' => 'Ouzhpennañ pajennoù ar rummad :',
 'export-addcat'     => 'Ouzhpennañ',

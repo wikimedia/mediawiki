@@ -1576,6 +1576,7 @@ Nun se pue comprobar la seguridá de mou afayadizu.",
 'uploadstash-badtoken' => 'Nun se pudo facer esa operación, seique porque caducó la identificación pa editar. Vuelvi a intentalo.',
 'uploadstash-errclear' => 'Nun se pudieron desaniciar los ficheros.',
 'uploadstash-refresh'  => 'Anovar la llista de ficheros',
+'invalid-chunk-offset' => 'Allugamientu inválidu del fragmentu',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accesu denegáu',

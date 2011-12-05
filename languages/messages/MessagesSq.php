@@ -357,7 +357,7 @@ $messages = array(
 'vector-view-edit'               => 'Redakto',
 'vector-view-history'            => 'Shiko historikun',
 'vector-view-view'               => 'Lexo',
-'vector-view-viewsource'         => 'Shiko burimin',
+'vector-view-viewsource'         => 'Shiko tekstin',
 'actions'                        => 'Veprimet',
 'namespaces'                     => 'Hapsirat e emrit',
 'variants'                       => 'Variante',
@@ -461,9 +461,9 @@ $1",
 'youhavenewmessagesmulti' => 'Ju keni mesazhe të reja në $1',
 'editsection'             => 'redaktoni',
 'editold'                 => 'redaktoni',
-'viewsourceold'           => 'shikoni burimin',
+'viewsourceold'           => 'Shiko tekstin',
 'editlink'                => 'redakto',
-'viewsourcelink'          => 'shih burimin',
+'viewsourcelink'          => 'Shiko tekstin',
 'editsectionhint'         => 'Redaktoni seksionin:
 Edit section: $1',
 'toc'                     => 'Përmbajtje',
@@ -557,22 +557,27 @@ Mund të jetë fshirë nga dikush tjetër.',
 Mund të përmbajë një ose më shumë germa, të cilat nuk mund të përdoren në tituj.',
 'perfcached'           => 'Informacioni i mëposhtëm është kopje e ruajtur dhe mund të mos jetë e përditësuar.',
 'perfcachedts'         => 'Informacioni i mëposhtëm është një kopje e rifreskuar më $1.',
-'querypage-no-updates' => 'Rifreskimi i kësaj faqeje tani për tani është ndaluar, prandaj dhe informacioni i mëposhtëm mund të jetë i vjetërsuar.',
-'wrong_wfQuery_params' => 'Parametra gabim tek wfQuery()<br />
+'querypage-no-updates' => "Përditësimet për këtë faqe për momentin janë të ç'aktivizuara.
+Këtu informacioni nuk do të jetë i përditësuar.",
+'wrong_wfQuery_params' => 'Parametrat gabim tek wfQuery()<br />
 Funksioni: $1<br />
-Pyetja: $2',
-'viewsource'           => 'Shikoni tekstin',
-'actionthrottled'      => 'Veprim i kufizuar',
-'actionthrottledtext'  => 'Për tu ruajtur nga redaktime automatike "spam" të padëshiruara na duhet të kufizojmë veprimet tuaja pasi janë të shumta në një kohë të shkurtër.
-Ju lutem provojeni përsëri pas disa minutash.',
-'protectedpagetext'    => 'Kjo faqe është mbyllur për të ndaluar redaktimin.',
-'viewsourcetext'       => 'Ju mund të shikoni dhe kopjoni tekstin burimor të kësaj faqe:',
-'protectedinterface'   => 'Kjo faqe përmban tekst për pamjen gjuhësorë të softuerit dhe është e mbrojtur për të penguar keqpërdorimet.',
-'editinginterface'     => "'''Kujdes:''' Po redaktoni një faqe që përdoret për tekstin ose pamjen e softuerit. Ndryshimet e kësaj faqeje do të prekin tekstin ose pamjen për të gjithë përdoruesit e tjerë. Për përkthime, ju lutem konsideroni përdorimin e [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], projektit të përkthimit të MediaWiki-it.",
-'sqlhidden'            => '(Pyetje SQL e fshehur)',
-'cascadeprotected'     => 'Kjo faqe është mbrojtur nga redaktimi pasi është përfshirë në {{PLURAL:$1|faqen|faqet}} e mëposhtme që {{PLURAL:$1|është|janë}} mbrojtur sipas metodës "ujëvarë":
+Query: $2',
+'viewsource'           => 'Shiko tekstin',
+'viewsource-title'     => 'Shiko tekstin për $1',
+'actionthrottled'      => 'Veprim u ndalua',
+'actionthrottledtext'  => 'Si masë sigurie anti-spam, është e ndaluar kryerja e shpeshtë e një veprimi brenda një hapësire kohore shumë të shkurtër. Ju kryet shumë herë të njëjtin veprim brenda një kohe shumë të shkurtër.
+Ju lutemi, provojeni përsëri pas disa minutash.',
+'protectedpagetext'    => 'Kjo faqe është e mbrojtur dhe nuk mund të redaktohet.',
+'viewsourcetext'       => 'Ju mund të shikoni dhe kopjoni tekstin e kësaj faqeje:',
+'viewyourtext'         => "Ju mund të shikoni dhe të kopjoni tekstin e '''ndryshimeve tuaja''' tek kjo faqe:",
+'protectedinterface'   => 'Kjo faqe përmban tekstin e dritares së programit, për këtë arsye mbrohet për të shmangur abuzimet.',
+'editinginterface'     => "'''Kujdes:''' Po redaktoni një faqe që përdoret për tekstin dritares së programit. 
+Ndryshimet në këtë faqe do të ndikojnë pamjen e dritares për përdoruesit e tjerë.
+Për përkthime, ju lutem konsideroni përdorimin e [//translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], projektin e lokalizimit MediaWiki.",
+'sqlhidden'            => '(Query SQL e fshehur)',
+'cascadeprotected'     => 'Kjo faqe është mbrojtur nga redaktimi pasi është përfshirë në {{PLURAL:$1|faqen|faqet}} e mëposhtme që {{PLURAL:$1|është|janë}} mbrojtur sipas metodës "cascading":
 $2',
-'namespaceprotected'   => "Nuk ju lejohet redaktimi i faqeve të hapësirës '''$1'''.",
+'namespaceprotected'   => "Nuk ju lejohet redaktimi i faqeve në hapsirën '''$1'''.",
 'customcssprotected'   => "Ju nuk keni leje për të redaktuar këtë faqe CSS, sepse ai përmban cilësimet personale tjetër user's.",
 'customjsprotected'    => "Ju nuk keni leje për të redaktuar këtë faqe JavaScript, sepse ai përmban cilësimet personale tjetër user's.",
 'ns-specialprotected'  => "Faqet speciale s'mund të redaktohen.",
@@ -656,6 +661,7 @@ Ju lutemi ndiqni këshillat në eMailin e pranuar.',
 'noemailprefs'               => 'Detyrohet një adresë email-i për të përdorur këtë mjet.',
 'emailconfirmlink'           => 'Vërtetoni adresën tuaj',
 'invalidemailaddress'        => 'Posta elektronike nuk mund të pranohet kështu si është pasi ka format jo valid. Ju lutemi, vendoni një postë mirë të formatuar, ose zbrazeni fushën.',
+'cannotchangeemail'          => 'Adresat e-mail të llogarive nuk mund të ndryshohen në këtë wiki.',
 'accountcreated'             => 'Llogarija e Përdoruesit u krijua',
 'accountcreatedtext'         => 'Llogarija e Përdoruesit për $1 u krijua',
 'createaccount-title'        => 'Hapja e llogarive për {{SITENAME}}',
@@ -689,15 +695,17 @@ Për të hyrë tërësisht duhet të vendosni një fjalëkalim të ri këtu:',
 'resetpass-temp-password'   => 'Fjalëkalimi i përkohshëm:',
 
 # Special:PasswordReset
-'passwordreset'                => 'Ndrysho fjalkalimin',
-'passwordreset-text'           => 'Plotësoni këtë formular për të marrë një këshillë e-mail të dhënat e llogarisë suaj.',
-'passwordreset-legend'         => 'Ndrysho fjalkalimin',
-'passwordreset-disabled'       => 'Rivendosja e fjalëkalimit është deaktivizuar në këtë wiki.',
-'passwordreset-pretext'        => '{{PLURAL:$1| | Shkruani një nga pjesët e të dhënave më poshtë}}',
-'passwordreset-username'       => 'Nofka:',
-'passwordreset-email'          => 'Posta elektronike',
-'passwordreset-emailtitle'     => 'Detajet e llogarisë në {{SITENAME}}',
-'passwordreset-emailtext-ip'   => 'Dikush (ndoshta ju, nga IP adresa $1) kërkoi një kujtesë për 
+'passwordreset'                    => 'Ndrysho fjalkalimin',
+'passwordreset-text'               => 'Plotësoni këtë formular për të marrë një këshillë e-mail të dhënat e llogarisë suaj.',
+'passwordreset-legend'             => 'Ndrysho fjalkalimin',
+'passwordreset-disabled'           => 'Rivendosja e fjalëkalimit është deaktivizuar në këtë wiki.',
+'passwordreset-pretext'            => '{{PLURAL:$1| | Shkruani një nga pjesët e të dhënave më poshtë}}',
+'passwordreset-username'           => 'Nofka:',
+'passwordreset-capture'            => 'Dëshiron të shikosh e-mail-in që rezulton?',
+'passwordreset-capture-help'       => "Nëse shënoni këtë kuti, e-mail-i (dhe fjalekalimi i përkohshëm) që do t'i dërgohen përdoruesit, do të të tregohen edhe ty.",
+'passwordreset-email'              => 'Posta elektronike',
+'passwordreset-emailtitle'         => 'Detajet e llogarisë në {{SITENAME}}',
+'passwordreset-emailtext-ip'       => 'Dikush (ndoshta ju, nga IP adresa $1) kërkoi një kujtesë për 
 detajet e llogarisë suaj {{SITENAME}} ($4).Përdoruesi në vijim {{PLURAL: $3 | llogari është | llogaritë janë}} të lidhur me këtë postë elektronike:
 
 $2
@@ -705,37 +713,39 @@ $2
 {{PLURAL: $ 3 | Ky fjalëkalim i përkohshëm | Këto fjalëkalime të përkohshme}} do të përfundojë për {{PLURAL: $5 | një ditë | $5 ditë}}.
 
 Ju duhet të kyçeni dhe të zgjidhni një fjalëkalim të ri tani. Nëse dikush tjetër e ka bërë këtë kërkesës, ose në qoftë se ju mbani mend fjalëkalimin tuaj origjinal, dhe ju nuk dëshirojni të ndryshoni atë, ju mund të injoroni këtë mesazh dhe do të vazhdoni përdorimin e fjalëkalimit tuaj të vjetër.',
-'passwordreset-emailtext-user' => 'Përdoruesi  $1 në {{SITENAME }} ka kërkuar një kujtesë për të dhënat e llogarisë suaj për {{SITENAME }} ($4). Përdoruesi në vijim {{PLURAL: $3 | llogaria është | llogaritë janë}} të lidhur me këtë postë elektronike: 
+'passwordreset-emailtext-user'     => 'Përdoruesi  $1 në {{SITENAME }} ka kërkuar një kujtesë për të dhënat e llogarisë suaj për {{SITENAME }} ($4). Përdoruesi në vijim {{PLURAL: $3 | llogaria është | llogaritë janë}} të lidhur me këtë postë elektronike: 
 
 $2
 
 {{PLURAL: $3 | Ky fjalëkalim i përkohshëm | Këto fjalëkalime të përkohshme}} do të përfundojë në {{PLURAL: $5 | një ditë | $5 ditë}}.
 Ju duhet të kyçeni dhe të zgjidhni një fjalëkalim të ri tani. Nëse dikush tjetër e ka bërë këtë kërkesës, ose në qoftë se ju mbani mend fjalëkalimin tuaj origjinal, dhe ju nuk dëshirojni të ndryshoni atë, ju mund të injoroni këtë mesazh dhe do të vazhdoni përdorimin e fjalëkalimit tuaj të vjetër.',
-'passwordreset-emailelement'   => 'Nofka: $1
+'passwordreset-emailelement'       => 'Nofka: $1
 Fjalëkalimi i përkohshëm: $2',
-'passwordreset-emailsent'      => 'Një korrespondencë kujtese është dërguar',
+'passwordreset-emailsent'          => 'Një korrespondencë kujtese është dërguar',
+'passwordreset-emailsent-capture'  => 'U dërgua një e-mail kujtesë, i cili tregohet më poshtë.',
+'passwordreset-emailerror-capture' => 'U dërgua një e-mail kujtesë, i cili tregohet më poshtë, por dërgesa për tek përdoruesi qe e pamundur: $1',
 
 # Special:ChangeEmail
 'changeemail'          => 'Ndrysho postën elektronike',
 'changeemail-header'   => 'Ndrysho llogarinë e adresës së postës elektronike',
 'changeemail-text'     => 'Plotësoni këtë formular për të ndryshuar adresën tuaj të postës elektronike. Ju duhet të shkruani fjalëkalimin tuaj për të konfirmuar këtë ndryshim.',
-'changeemail-no-info'  => 'Ju duhet të jeni i kyçur që të keni qasje direkte në këtë faqe.',
-'changeemail-oldemail' => 'Posta elektronike aktuale:',
+'changeemail-no-info'  => 'Ju duhet të identifikoheni në mënyrë që të keni të drejtë hyrjeje në këtë faqe.',
+'changeemail-oldemail' => 'Posta elektronike e aktuale:',
 'changeemail-newemail' => 'Posta elektronike e re:',
-'changeemail-none'     => '(Asnjë)',
+'changeemail-none'     => '(asgjë)',
 'changeemail-submit'   => 'Ndrysho postën elektronike',
 'changeemail-cancel'   => 'Anulo',
 
 # Edit page toolbar
-'bold_sample'     => 'Tekst i trashë',
-'bold_tip'        => 'Tekst i trashë',
+'bold_sample'     => 'Stil i theksuar i tekstit',
+'bold_tip'        => 'Stil i theksuar i tekstit',
 'italic_sample'   => 'Tekst i pjerrët',
 'italic_tip'      => 'Tekst i pjerrët',
 'link_sample'     => 'Titulli i lidhjes',
 'link_tip'        => 'Lidhje e brendshme',
-'extlink_sample'  => 'http://www.example.com Titulli i lidhjes',
+'extlink_sample'  => 'http://www.example.com titulli i lidhjes',
 'extlink_tip'     => 'Lidhje e jashtme (most harro prefiksin http://)',
-'headline_sample' => 'Titull shembull',
+'headline_sample' => 'Titulli',
 'headline_tip'    => 'Titull i nivelit 2',
 'nowiki_sample'   => 'Vendos tekst që nuk duhet të formatohet',
 'nowiki_tip'      => 'Mos përdor format wiki',
@@ -766,7 +776,7 @@ Nëse kryeni ndryshimet redaktimi juaj do të ruhet pa titull.",
 'summary-preview'                  => 'Inspekto përmbledhjen:',
 'subject-preview'                  => 'Inspekto titullin/subjektin:',
 'blockedtitle'                     => 'Përdoruesi është bllokuar',
-'blockedtext'                      => "'''Llogaria juaj ose adresa e IP-së është bllokuar'''
+'blockedtext'                      => "'''Llogaria juaj ose adresa e IP është bllokuar'''
 
 Bllokimi u bë nga $1 dhe arsyeja e dhënë ishte '''$2'''.
 

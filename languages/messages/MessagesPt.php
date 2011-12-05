@@ -3737,9 +3737,8 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 # Special:SpecialPages
 'specialpages'                   => 'Páginas especiais',
 'specialpages-note'              => '----
-*Páginas normais especiais
-* <span class="mw-specialpagerestricted">Restricted special pages.</span>
-* <span class="mw-specialpagecached">Cached special pages (might be obsolete).</span>',
+* Páginas especiais normais.
+* <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registar-se',

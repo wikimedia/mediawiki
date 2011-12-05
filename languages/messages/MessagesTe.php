@@ -1272,7 +1272,7 @@ $1",
 'userrights-no-interwiki'      => 'ఇతర వికీలలో వాడుకరి హక్కులను మార్చడానికి మీకు అనుమతి లేదు.',
 'userrights-nodatabase'        => '$1 అనే డేటాబేసు లేదు లేదా అది స్థానికం కాదు.',
 'userrights-nologin'           => 'వాడుకరి హక్కులను ఇవ్వడానికి మీరు తప్పనిసరిగా ఓ నిర్వాహక ఖాతాతో [[Special:UserLogin|లోనికి ప్రవేశించాలి]].',
-'userrights-notallowed'        => 'వాడుకరి హక్కులను మార్చగలిగే అనుమతి మీ ఖాతాకు లేదు.',
+'userrights-notallowed'        => 'వాడుకరి హక్కులను చేర్చే మరియు తొలగించే అనుమతి మీ ఖాతాకు లేదు.',
 'userrights-changeable-col'    => 'మీరు మార్చదగిన గుంపులు',
 'userrights-unchangeable-col'  => 'మీరు మార్చలేని గుంపులు',
 
@@ -1288,7 +1288,7 @@ $1",
 
 'group-user-member'          => '{{GENDER:$1|వాడుకరి}}',
 'group-autoconfirmed-member' => 'ఆటోమాటిగ్గా నిర్థారించబడిన వాడుకరి',
-'group-bot-member'           => 'బాట్',
+'group-bot-member'           => '{{GENDER:$1|బాట్}}',
 'group-sysop-member'         => '{{GENDER:$1|నిర్వాహకుడు|నిర్వాహకురాలు}}',
 'group-bureaucrat-member'    => '{{GENDER:$1|అధికారి|అధికారిణి}}',
 'group-suppress-member'      => 'పరాకు',
@@ -1854,8 +1854,8 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization చూడండి.',
 'booksources-invalid-isbn'  => 'మీరిచ్చిన ISBN సరైనదిగా అనిపించుటలేదు; అసలు మూలాన్నుండి కాపీ చేయడంలో పొరపాట్లున్నాయేమో చూసుకోండి.',
 
 # Special:Log
-'specialloguserlabel'  => 'వాడుకరి:',
-'speciallogtitlelabel' => 'పేరు:',
+'specialloguserlabel'  => 'కర్త:',
+'speciallogtitlelabel' => 'లక్ష్యం (శీర్షిక లేదా వాడుకరి):',
 'log'                  => 'చిట్టాలు',
 'all-logs-page'        => 'అన్ని బహిరంగ చిట్టాలు',
 'alllogstext'          => '{{SITENAME}}  యొక్క అందుబాటులో ఉన్న అన్ని చిట్టాల యొక్క సంయుక్త ప్రదర్శన.
@@ -3434,6 +3434,7 @@ $5
 'revdelete-restricted'       => 'నిర్వాహకులకు ఆంక్షలు విధించాను',
 'revdelete-unrestricted'     => 'నిర్వాహకులకున్న ఆంక్షలను ఎత్తేశాను',
 'logentry-newusers-newusers' => '$1 వాడుకరి ఖాతాను {{GENDER:$2|సృష్టించారు}}',
+'logentry-newusers-create'   => '$1 ఒక వాడుకరి ఖాతాను {{GENDER:$2|సృష్టించారు}}',
 'newuserlog-byemail'         => 'ఈ-మెయిలులో సంకేతపదం పంపించాం',
 
 );
