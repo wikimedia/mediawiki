@@ -13,6 +13,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $useTemporaryTables = true;
 	protected $reuseDB = false;
 	private static $dbSetup = false;
+	private static $tablesCloned = array();
 
 	/**
 	 * Table name prefixes. Oracle likes it shorter.
@@ -54,7 +55,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->oldTablePrefix = $wgDBprefix;
 
 			if( !self::$dbSetup ) {
-				$this->initDB();
+				self::$tablesCloned = $this->initDB();
 				self::$dbSetup = true;
 			}
 
@@ -140,7 +141,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			throw new MWException( 'Cannot run unit tests, the database prefix is already "unittest_"' );
 		}
 
-		$dbClone = new CloneDatabase( $this->db, $this->listTables(), $this->dbPrefix() );
+		$tablesCloned = $this->listTables();
+		$dbClone = new CloneDatabase( $this->db, $tablesCloned, $this->dbPrefix() );
 		$dbClone->useTemporaryTables( $this->useTemporaryTables );
 
 		if ( ( $this->db->getType() == 'oracle' || !$this->useTemporaryTables ) && $this->reuseDB ) {
@@ -154,6 +156,8 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $this->db->getType() == 'oracle' ) {
 			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 		}
+
+		return $tablesCloned;
 	}
 
 	/**
@@ -166,43 +170,19 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 					wfGetLB()->closeAll();
 					$this->db = wfGetDB( DB_MASTER );
 				} else {
-					foreach( $this->listTables() as $tbl ) {
+					foreach( self::$tablesCloned as $tbl ) {
 						if( $tbl == 'interwiki') continue;
 						$this->db->query( 'TRUNCATE TABLE '.$this->db->tableName($tbl), __METHOD__ );
 					}
 				}
 			} else {
-				foreach( $this->listTables() as $tbl ) {
+				foreach( self::$tablesCloned as $tbl ) {
 					if( $tbl == 'interwiki' || $tbl == 'user' ) continue;
-						$this->db->delete( $tbl, '*', __METHOD__ );
+					$this->db->delete( $tbl, '*', __METHOD__ );
 				}
 			}
 		}
 	}
-
-	protected function destroyDB() {
-		if ( is_null( $this->db ) || 
-			( $this->useTemporaryTables && $this->db->getType() != 'oracle' ) ||
-			( $this->reuseDB ) ) {
-			# Don't need to do anything
-			return;
-		}
-
-		$tables = $this->db->listTables( $this->dbPrefix(), __METHOD__ );
-
-		foreach ( $tables as $table ) {
-			try {
-				$sql = $this->db->getType() == 'oracle' ? "DROP TABLE $table CASCADE CONSTRAINTS PURGE" : "DROP TABLE `$table`";
-				$this->db->query( $sql, __METHOD__ );
-			} catch( MWException $mwe ) {}
-		}
-
-		if ( $this->db->getType() == 'oracle' )
-			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;', __METHOD__ );
-
-		CloneDatabase::changePrefix( $this->oldTablePrefix );
-	}
-
 
 	function __call( $func, $args ) {
 		static $compatibility = array(
