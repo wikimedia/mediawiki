@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bartek50003
+ * @author BdgwksxD
  * @author Beau
  * @author Derbeth
  * @author Equadus
@@ -1553,6 +1554,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'action-userrights'           => 'edytowania uprawnień wszystkich użytkowników',
 'action-userrights-interwiki' => 'edytowania uprawnień użytkowników na innych witrynach wiki',
 'action-siteadmin'            => 'blokowania i odblokowywania bazy danych',
+'action-sendemail'            => 'wysyłania e-maili',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|zmiana|zmiany|zmian}}',
@@ -1766,6 +1768,7 @@ Plik nie może zostać odpowiednio sprawdzony pod kątem bezpieczeństwa.',
 'uploadstash-badtoken' => 'Operacja nie powiodła się. Możliwą przyczyną jest, że Twoje upoważnienie do edytowania wygasło. Spróbuj ponownie.',
 'uploadstash-errclear' => 'Czyszczenie plików nie powiodło się.',
 'uploadstash-refresh'  => 'Odśwież listę plików',
+'invalid-chunk-offset' => 'Nieprawidłowe przesunięcie fragmentu',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Odmowa dostępu',

@@ -319,6 +319,8 @@ $messages = array(
 'noarticletext-nopermission' => 'нꙑнѣ с̑ьдє ничєсожє нє напьсано ѥстъ ⁙
 [[Special:Search/{{PAGENAME}}|си страницѧ имѧ искати]] дроугꙑ страницѧ или
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} съвѧꙁанꙑ їсторїѩ видѣти]</span> можєши',
+'userpage-userdoesnotexist'  => 'польꙃєватєльска мѣста ⁖ $1 ⁖ нꙑнѣ нѣстъ ⁙
+прѣдъ сътворѥниѥмь или исправлѥниѥмь си страницѧ помꙑсли жє ащє исто тъ дѣиство ноуждьно ли',
 'clearyourcache'             => 'НАРОЧИТО: По съхранѥнии можєши обити своѥго съмотрила съхранъ да видѣлъ би мѣнꙑ ⁙ Mozilla ли Firefox ли Safari ли жьмꙑи Shift а мꙑшиѭ жьми Reload или жьми Ctrl-Shift-R (Cmd-Shift-R вън Apple Mac)  ⁙ Konqueror ли жьми кромѣ Reload или F5 ⁙ Опєрꙑ польꙃєватєльмъ можєть бꙑти ноужда пльнѣ поничьжити ихъ съмотрила съхранъ въ Tools > Preferences ⁙ IE ли жьмꙑи Ctrl а мꙑшиѭ жьми Refresh или жьми Ctrl-F5',
 'note'                       => "'''НАРОЧИТО:'''",
 'editing'                    => 'исправлѥниѥ: $1',
@@ -739,7 +741,8 @@ $messages = array(
 'autosumm-new' => 'нова страница ⁖ $1 ⁖ сътворєна  ѥстъ',
 
 # Size units
-'size-bytes' => '$1 Б҃',
+'size-bytes'     => '$1 Б҃',
+'size-kilobytes' => '$1 Х҃Б',
 
 # Special:Version
 'version'                  => 'MediaWiki обраꙁъ',

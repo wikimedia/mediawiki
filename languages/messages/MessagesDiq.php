@@ -1757,6 +1757,7 @@ qey heqê şexsi de [[{{MediaWiki:Listgrouprights-helppage}}|hema malumato ziyed
 'noemailtext'          => 'no/na karber yew e-postayo meqbul nêdawa/o',
 'nowikiemailtitle'     => 'E-postayan re destur çino',
 'nowikiemailtext'      => 'no/na karber/e, karberanê binani ra gırewtışê e-postayi tercih nêkerd.',
+'emailusername'        => 'Nameyê karberi:',
 'email-legend'         => 'karberê {{SITENAME}} binan re e-posta bıerşaw',
 'emailfrom'            => 'Kam ra',
 'emailto'              => 'Kam rê',
@@ -2105,6 +2106,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'unblocked-id'                    => 'Blokê $1î wedariyayo',
 'ipblocklist'                     => 'Karberê kılitbiyaey',
 'ipblocklist-legend'              => 'Yew karberê blok biyaye bivîne',
+'blocklist-reason'                => 'Sebeb:',
 'ipblocklist-submit'              => 'Bigêre',
 'ipblocklist-localblock'          => 'blokê mehelli',
 'ipblocklist-otherblocks'         => '{{PLURAL:$1|blokê|blokê}} bini',
@@ -2121,6 +2123,7 @@ Cıkewtışo tewr peyêno ke bloke biyo, cêr seba referansi belikerdeyo:',
 'unblocklink'                     => 'ake',
 'change-blocklink'                => 'kılit-kerdışi bıvurne',
 'contribslink'                    => 'iştıraki',
+'emaillink'                       => 'e-poste bırışe',
 'autoblocker'                     => 'Şıma otomatikmen kılit biy, çıke adresa şımawa \'\'IP\'\'y terefê "[[User:$1|$1]]" gureniyena.
 Sebebê kılit-biyayışê $1\'i: "$2"o',
 'blocklogpage'                    => 'Protokolê kıliti',
@@ -2456,6 +2459,9 @@ Tı eşkeno yew sebeb bınus.',
 'spambot_username'    => 'wikimedya spam-pakkerdışi',
 'spam_reverting'      => 'agêriyeno revizyon o ke tawayê $1 ıney piya çiniyo',
 'spam_blanking'       => 'revizyonê hemeyi de ıney $1 re gıreyi estî, deverdiyeno',
+
+# Info page
+'pageinfo-subjectpage' => 'Pele',
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Nişan bike ke devriye biyo',

@@ -1848,6 +1848,7 @@ Il ne peut pas être correctement vérifé pour la sécurité.',
 'uploadstash-badtoken' => "L'exécution de cette action a échoué, peut-être parce que vos informations d'identification ont expiré. Réessayez.",
 'uploadstash-errclear' => "L'effacement des fichiers a échoué.",
 'uploadstash-refresh'  => 'Actualiser la liste des fichiers',
+'invalid-chunk-offset' => 'Offset de segment non valide',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accès refusé',

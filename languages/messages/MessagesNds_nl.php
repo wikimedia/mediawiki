@@ -1584,6 +1584,7 @@ Disse informasie is zichtbaor veur aandere gebrukers.',
 'action-userrights'           => 'alle gebrukersrechten bewarken',
 'action-userrights-interwiki' => "de rechten van gebrukers op aandere wiki's bewarken",
 'action-siteadmin'            => 'de databanke blokkeren of vriegeven',
+'action-sendemail'            => 'netpostberichten versturen',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|wieziging|wiezigingen}}',
@@ -1780,6 +1781,7 @@ De veiligheid kan niet ekontroleerd wörden.',
 'uploadstash-badtoken' => 't Uutvoeren van de haandeling is mislokt. Dit kump warschienlik deurdat joew bewarkingsreferensies verleupen bin. Probeer t opniej.',
 'uploadstash-errclear' => 't Vortdoon van de bestaanden is mislokt.',
 'uploadstash-refresh'  => 'Lieste mit bestaanden biewarken',
+'invalid-chunk-offset' => 'Ongeldig startpunt',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Toegang eweigerd',
@@ -1883,23 +1885,24 @@ De [[Special:WhatLinksHere/$2|hele lieste]] is oek beschikbaor.',
 'filerevert-badversion'     => 'Der is gien veurige lokale versie van dit bestaand mit de op-egeven tied.',
 
 # File deletion
-'filedelete'                  => '$1 vortdoon',
-'filedelete-legend'           => 'Bestaand vortdoon',
-'filedelete-intro'            => "Je doon t bestaand '''[[Media:$1|$1]]''' noen vort samen mit de geschiedenisse dervan.",
-'filedelete-intro-old'        => "Je bin de versie van '''[[Media:$1|$1]]''' van [$4 $3, $2] vort an t doon.",
-'filedelete-comment'          => 'Reden:',
-'filedelete-submit'           => 'Vortdoon',
-'filedelete-success'          => "'''$1''' is vortedaon.",
-'filedelete-success-old'      => "De versie van '''[[Media:$1|$1]]''' van $3, $2 is vortedaon.",
-'filedelete-nofile'           => "'''$1''' besteet niet.",
-'filedelete-nofile-old'       => "Der is gien versie van '''$1''' in t archief mit de an-egeven eigenschappen.",
-'filedelete-otherreason'      => 'Aandere reden:',
-'filedelete-reason-otherlist' => 'Aandere reden',
-'filedelete-reason-dropdown'  => "*Veulveurkoemende redens veur t vortdoon van pagina's
+'filedelete'                   => '$1 vortdoon',
+'filedelete-legend'            => 'Bestaand vortdoon',
+'filedelete-intro'             => "Je doon t bestaand '''[[Media:$1|$1]]''' noen vort samen mit de geschiedenisse dervan.",
+'filedelete-intro-old'         => "Je bin de versie van '''[[Media:$1|$1]]''' van [$4 $3, $2] vort an t doon.",
+'filedelete-comment'           => 'Reden:',
+'filedelete-submit'            => 'Vortdoon',
+'filedelete-success'           => "'''$1''' is vortedaon.",
+'filedelete-success-old'       => "De versie van '''[[Media:$1|$1]]''' van $3, $2 is vortedaon.",
+'filedelete-nofile'            => "'''$1''' besteet niet.",
+'filedelete-nofile-old'        => "Der is gien versie van '''$1''' in t archief mit de an-egeven eigenschappen.",
+'filedelete-otherreason'       => 'Aandere reden:',
+'filedelete-reason-otherlist'  => 'Aandere reden',
+'filedelete-reason-dropdown'   => "*Veulveurkoemende redens veur t vortdoon van pagina's
 ** Auteursrechtenschending
 ** Dit bestaand he'w dubbel",
-'filedelete-edit-reasonlist'  => 'Reden veur t vortdoon bewarken',
-'filedelete-maintenance'      => 't Vortdoon en weerummeplaotsen kan noen effen niet umda-w bezig bin mit onderhoud.',
+'filedelete-edit-reasonlist'   => 'Reden veur t vortdoon bewarken',
+'filedelete-maintenance'       => 't Vortdoon en weerummeplaotsen kan noen effen niet umda-w bezig bin mit onderhoud.',
+'filedelete-maintenance-title' => 'Kan bestaand niet vortdoon',
 
 # MIME search
 'mimesearch'         => 'Zeuken op MIME-type',
@@ -2050,8 +2053,8 @@ n Bestaand kan hier dus verkeerd op-eneumen ween.",
 'booksources-invalid-isbn'  => "De op-egeven ISBN klop niet; kiek effen nao o'j gien fout emaakt hebben bie de invoer.",
 
 # Special:Log
-'specialloguserlabel'  => 'Gebruker:',
-'speciallogtitlelabel' => 'Naam:',
+'specialloguserlabel'  => 'Uutvoerende gebruker:',
+'speciallogtitlelabel' => 'Doel (paginanaam of gebruker):',
 'log'                  => 'Logboeken',
 'all-logs-page'        => 'Alle publieke logboeken',
 'alllogstext'          => 'Dit is t kombinasielogboek van {{SITENAME}}.
@@ -2095,8 +2098,9 @@ Zie oek [[Special:WantedCategories|gewunste kategorieën]].",
 'linksearch-pat'   => 'Zeukpetroon:',
 'linksearch-ns'    => 'Naamruumte:',
 'linksearch-ok'    => 'Zeuken',
-'linksearch-text'  => 'Jokers zo as "*.wikipedia.org" of "*.org" bin toe-estaon.<br />
-Ondersteunde protokollen: <tt>$1</tt>',
+'linksearch-text'  => 'Jokers zo as "*.wikipedia.org" of "*.org" bin toe-estaon.
+Hef tenminsten n topdomein, zo as "*.org".<br />
+Ondersteunde protokollen: <tt>$1</tt> (zet t niet in joew zeukopdrachte).',
 'linksearch-line'  => '$1 hef n verwiezing in $2',
 'linksearch-error' => 'Jokers bin allinnig toe-estaon an t begin van n webadres.',
 
@@ -2717,6 +2721,7 @@ A'j dat leste doon willen dan ku'j oek n verwiezing gebruken, bieveurbeeld [[{{#
 'exportcuronly'     => 'Allinnig de actuele versie, niet de veurgeschiedenisse',
 'exportnohistory'   => "----
 '''NB:''' t uutvoeren van de hele geschiedenisse is uuteschakeld vanwegen prestasieredens.",
+'exportlistauthors' => 'De hele auteurslieste opnemen veur elke pagina',
 'export-submit'     => 'Uutvoeren',
 'export-addcattext' => "Pagina's derbie doon uut de kategorie:",
 'export-addcat'     => 'Derbie doon',

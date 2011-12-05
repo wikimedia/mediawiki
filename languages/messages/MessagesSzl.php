@@ -780,18 +780,20 @@ Powody wyćepańo idźe znejść we [{{fullurl:{{#Special:Log}}/suppress|page={{
 'revisiondelete'              => 'Wyćep/wćep nazod wersyje',
 'revdelete-nooldid-title'     => 'Ńy wybrano wersyji',
 'revdelete-nooldid-text'      => 'Ńy wybrano wersyji na kerych mo zostać wykůnano ta uoperacyjo.',
+'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''{{PLURAL:$2|Wybrano wersyja|Wybrane wersyje}} zajty [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wybrane zdařyńy s rejeru|Wybrane zdařyńa s rejeru}}:'''",
-'revdelete-text'              => "'''Wyćepane wersyje bydům dali widočne w historyji zajty, nale jejich treść ńy bydźe publičńy dostympna.'''
+'revdelete-text'              => "'''Wyćepane wersyje bydům dali widoczne w historyji zajty, nale jejich treść ńy bydźe publiczńy dostympna.'''
 
-Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji a bydům můgli je wćepać nazod, chyba aže uoperator serwisu nouožůu dodatkowe uograńičyńo.",
+Inkśi admińistratorzi {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp do schrůńůnych wersyji a bydům můgli je wćepać nazod, chyba aże uoperator serwisu nouożůł dodatkowe uograńiczyńo.",
 'revdelete-legend'            => 'Naštaluj uograńičyńo lo wersyji:',
 'revdelete-hide-text'         => 'Schrůń tekst wersyji',
 'revdelete-hide-image'        => 'Schrůń zawartość plika',
 'revdelete-hide-name'         => 'Schrůń akcyjo a cyl',
 'revdelete-hide-comment'      => 'Schrůń kůmyntoř sprowjyńo',
 'revdelete-hide-user'         => 'Schrůń mjano užytkowńika/adres IP',
-'revdelete-hide-restricted'   => 'Wprowadź te uograńičyńo zarůwno lo admińistratorůw jak i lo inkšych',
+'revdelete-hide-restricted'   => 'Schrůń informacyje zarůwno przed admińistratorůma jak i przed inkszymi',
+'revdelete-radio-same'        => '(byz pomjyń)',
 'revdelete-radio-set'         => 'Ja',
 'revdelete-radio-unset'       => 'Ńy',
 'revdelete-suppress'          => 'Schrůń informacyje zarůwno před admińistratorůma jak i před inkšymi',

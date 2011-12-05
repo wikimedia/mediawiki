@@ -1633,6 +1633,7 @@ Tu dirección de correo-e no se revela cuando otros usuarios te contactan.',
 'action-userrights'           => 'modificar todos los derechos de usuario',
 'action-userrights-interwiki' => 'modificar los derechos de usuarios en otros wikis',
 'action-siteadmin'            => 'bloquear o desbloquear la base de datos',
+'action-sendemail'            => 'enviar correos electrónicos',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cambio|cambios}}',
@@ -2070,7 +2071,7 @@ Las entradas <del>tachadas</del> han sido resueltas.',
 'listusers-editsonly'     => 'Muestra sólo usuarios con ediciones',
 'listusers-creationsort'  => 'Ordenado por fecha de creación',
 'usereditcount'           => '$1 {{PLURAL:$1|edición|ediciones}}',
-'usercreated'             => '{{GENDER:$3|Creado|Creada}} el $1, $2',
+'usercreated'             => '{{GENDER:$3|Registrado|Registrada}} el $1 a las $2',
 'newpages'                => 'Páginas nuevas',
 'newpages-username'       => 'Nombre de usuario',
 'ancientpages'            => 'Artículos más antiguos',
@@ -2097,7 +2098,7 @@ Por favor note que otros sitios web pueden vincular a un archivo con un URL dire
 
 # Special:Log
 'specialloguserlabel'  => 'Usuario:',
-'speciallogtitlelabel' => 'Título:',
+'speciallogtitlelabel' => 'Objetivo (título o usuario):',
 'log'                  => 'Registros',
 'all-logs-page'        => 'Todos los registros públicos',
 'alllogstext'          => 'Vista combinada de todos los registros de {{SITENAME}}.

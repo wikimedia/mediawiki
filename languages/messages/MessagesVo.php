@@ -2764,7 +2764,7 @@ Magods pajonons ma fomät gudikün, ragivasots votik pamaifükons stedöfo kobü
 'specialpages'                   => 'Pads patik',
 'specialpages-note'              => '----
 * Pads patik nomik.
-* <strong class="mw-specialpagerestricted">Pads patik pemiedüköl.</strong>',
+* <span class="mw-specialpagerestricted">Pads patik pemiedüköl.</span>',
 'specialpages-group-maintenance' => 'Nunods tefü kiped',
 'specialpages-group-other'       => 'Pads patik votik',
 'specialpages-group-login'       => 'Nunädön oki / jafön kali',
