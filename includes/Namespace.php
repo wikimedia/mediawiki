@@ -155,8 +155,8 @@ class MWNamespace {
 	 * of this function rather than directly doing comparison will make
 	 * sure that code will not potentially break.
 	 *
-	 * @param $ns1 The first namespace index
-	 * @param $ns2 The second namespae index
+	 * @param $ns1 int The first namespace index
+	 * @param $ns2 int The second namespae index
 	 *
 	 * @return bool
 	 * @since 1.19
@@ -170,8 +170,8 @@ class MWNamespace {
 	 * eg: NS_USER and NS_USER wil return true, as well
 	 *     NS_USER and NS_USER_TALK will return true.
 	 *
-	 * @param $ns1 The first namespace index
-	 * @param $ns2 The second namespae index
+	 * @param $ns1 int The first namespace index
+	 * @param $ns2 int The second namespae index
 	 *
 	 * @return bool
 	 * @since 1.19
