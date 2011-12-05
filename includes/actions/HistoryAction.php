@@ -171,7 +171,7 @@ class HistoryAction extends FormlessAction {
 			'</fieldset></form>'
 		);
 
-		wfRunHooks( 'PageHistoryBeforeList', array( &$this->getArticle() ) );
+		wfRunHooks( 'PageHistoryBeforeList', array( &$this->article ) );
 
 		// Create and output the list.
 		$pager = new HistoryPager( $this, $year, $month, $tagFilter, $conds );
