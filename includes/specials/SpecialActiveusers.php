@@ -53,7 +53,7 @@ class ActiveUsersPager extends UsersPager {
 		parent::__construct( $context );
 
 		$this->RCMaxAge = $wgActiveUserDays;
-		$un = $this->getRequest()->getText( 'wpUsername', $par );
+		$un = $this->getRequest()->getText( 'username', $par );
 		$this->requestedUser = '';
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
@@ -68,16 +68,16 @@ class ActiveUsersPager extends UsersPager {
 	public function setupOptions() {
 		$this->opts = new FormOptions();
 
-		$this->opts->add( 'wpHideBots', false, FormOptions::BOOL );
-		$this->opts->add( 'wpHideSysops', false, FormOptions::BOOL );
+		$this->opts->add( 'hidebots', false, FormOptions::BOOL );
+		$this->opts->add( 'hidesysops', false, FormOptions::BOOL );
 
 		$this->opts->fetchValuesFromRequest( $this->getRequest() );
 
 		$this->groups = array();
-		if ( $this->opts->getValue( 'wpHideBots' ) == 1 ) {
+		if ( $this->opts->getValue( 'hidebots' ) == 1 ) {
 			$this->groups['bot'] = true;
 		}
-		if ( $this->opts->getValue( 'wpHideSysops' ) == 1 ) {
+		if ( $this->opts->getValue( 'hidesysops' ) == 1 ) {
 			$this->groups['sysop'] = true;
 		}
 	}
@@ -143,32 +143,30 @@ class ActiveUsersPager extends UsersPager {
 		return Html::rawElement( 'li', array(), "{$item} [{$count}]{$blocked}" );
 	}
 
-	protected function getHTMLFormFields() {
-		$f = array(
-			'Username' => array(
-				'type' => 'text',
-				'label-message' => 'activeusers-from',
-				'size' => 30,
-			),
-			'HideBots' => array(
-				'type' => 'check',
-				'label-message' => 'activeusers-hidebots',
-			),
-			'HideSysops' => array(
-				'type' => 'check',
-				'label-message' => 'activeusers-hidesysops',
-			),
-		);
+	function getPageHeader() {
+		global $wgScript;
 
-		return $f;
-	}
+		$self = $this->getTitle();
+		$limit = $this->mLimit ? Html::hidden( 'limit', $this->mLimit ) : '';
 
-	protected function getHTMLFormLegend() {
-		return 'activeusers';
-	}
+		$out = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ); # Form tag
+		$out .= Xml::fieldset( $this->msg( 'activeusers' )->text() ) . "\n";
+		$out .= Html::hidden( 'title', $self->getPrefixedDBkey() ) . $limit . "\n";
 
-	protected function getHTMLFormSubmit() {
-		return 'allpagessubmit';
+		$out .= Xml::inputLabel( $this->msg( 'activeusers-from' )->text(),
+			'username', 'offset', 20, $this->requestedUser ) . '<br />';# Username field
+
+		$out .= Xml::checkLabel( $this->msg( 'activeusers-hidebots' )->text(),
+			'hidebots', 'hidebots', $this->opts->getValue( 'hidebots' ) );
+
+		$out .= Xml::checkLabel( $this->msg( 'activeusers-hidesysops' )->text(),
+			'hidesysops', 'hidesysops', $this->opts->getValue( 'hidesysops' ) ) . '<br />';
+
+		$out .= Xml::submitButton( $this->msg( 'allpagessubmit' )->text() ) . "\n";# Submit button and form bottom
+		$out .= Xml::closeElement( 'fieldset' );
+		$out .= Xml::closeElement( 'form' );
+
+		return $out;
 	}
 }
 
@@ -204,7 +202,7 @@ class SpecialActiveUsers extends SpecialPage {
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
 
-		$out->addHTML( $up->buildHTMLForm() );
+		$out->addHTML( $up->getPageHeader() );
 		if ( $usersbody ) {
 			$out->addHTML(
 				$up->getNavigationBar() .

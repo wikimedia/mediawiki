@@ -100,13 +100,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	protected $mLastShown, $mFirstShown, $mPastTheEndIndex, $mDefaultQuery, $mNavigationBar;
 
 	/**
-	 * HTMLForm object
-	 *
-	 * @var HTMLForm
-	 */
-	protected $mHTMLForm;
-
-	/**
 	 * Result object for the query. Warning: seek before use.
 	 *
 	 * @var ResultWrapper
@@ -567,46 +560,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	}
 
 	/**
-	 * Assembles an HTMLForm for the Pager and returns the HTML
-	 *
-	 * @return string
-	 */
-	public function buildHTMLForm() {
-		if ( $this->getHTMLFormFields() === null ) {
-			throw new MWException( __METHOD__ . " was called without any form fields being defined" );
-		}
-
-		$this->mHTMLForm = new HTMLForm( $this->getHTMLFormFields(), $this->getContext() );
-		$this->mHTMLForm->setMethod( 'get' );
-		$this->mHTMLForm->setWrapperLegendMsg( $this->getHTMLFormLegend() );
-		$this->mHTMLForm->setSubmitTextMsg( $this->getHTMLFormSubmit() );
-		$this->addHiddenFields();
-		$this->modifyHTMLForm( $this->mHTMLForm );
-		$this->mHTMLForm->prepareForm();
-
-		return $this->mHTMLForm->getHTML( '' );
-	}
-
-	/**
-	 * Adds hidden elements to forms for things that are in the query string.
-	 * This is so that parameters like offset stick through form submissions
-	 */
-	protected function addHiddenFields() {
-		$query = $this->getRequest()->getQueryValues();
-		$fieldsBlacklist = array( 'title' );
-		$fields = $this->mHTMLForm->getFlatFields();
-		foreach ( $fields as $name => $field ) {
-			$fieldsBlacklist[] = $field->getName();
-		}
-		foreach ( $query as $name => $value ) {
-			if ( in_array( $name, $fieldsBlacklist ) ) {
-				continue;
-			}
-			$this->mHTMLForm->addHiddenField( $name, $value );
-		}
-	}
-
-	/**
 	 * Abstract formatting function. This should return an HTML string
 	 * representing the result row $row. Rows will be concatenated and
 	 * returned by getBody()
@@ -682,43 +635,6 @@ abstract class IndexPager extends ContextSource implements Pager {
 	 * @return Boolean
 	 */
 	protected function getDefaultDirections() { return false; }
-
-	/**
-	 * Returns an array for HTMLForm fields for the pager
-	 *
-	 * Only used if the pager makes use of HTMLForms
-	 *
-	 * @return array|null
-	 */
-	protected function getHTMLFormFields() { return null; }
-
-	/**
-	 * Message name for the fieldset legend text
-	 *
-	 * Only used if the pager makes use of HTMLForms
-	 *
-	 * @return string
-	 */
-	protected function getHTMLFormLegend() { return ''; }
-
-	/**
-	 * Message name for the submit button text
-	 *
-	 * Only used if the pager makes use of HTMLForms
-	 *
-	 * @return string
-	 */
-	protected function getHTMLFormSubmit() { return ''; }
-
-	/**
-	 * If the pager needs to do any modifications to the Form, override this
-	 * function.
-	 *
-	 * Only used if the pager makes use of HTMLForms
-	 *
-	 * @param HTMLForm $form
-	 */
-	protected function modifyHTMLForm( HTMLForm $form ) {}
 }
 
 
@@ -1156,27 +1072,6 @@ abstract class TablePager extends IndexPager {
 	}
 
 	/**
-	 * Returns an HTMLFormField definition for the "Items per page:" dropdown
-	 *
-	 * @return array
-	 */
-	protected function getHTMLFormLimitSelect() {
-		$f = array(
-			'class' => 'HTMLItemsPerPageField',
-			'label-message' => 'table_pager_limit_label',
-			'options' => array(),
-			'default' => $this->mDefaultLimit,
-			'name' => 'limit',
-		);
-
-		foreach( $this->mLimitsShown as $limit ) {
-			$f['options'][$this->getLanguage()->formatNum( $limit )] = $limit;
-		}
-
-		return $f;
-	}
-
-	/**
 	 * Get <input type="hidden"> elements for use in a method="get" form.
 	 * Resubmits all defined elements of the query string, except for a
 	 * blacklist, passed in the $blacklist parameter.
@@ -1262,31 +1157,4 @@ abstract class TablePager extends IndexPager {
 	 * @return Array
 	 */
 	abstract function getFieldNames();
-}
-
-/**
- * Items per page dropdown for HTMLForm
- */
-class HTMLItemsPerPageField extends HTMLSelectField {
-	/**
-	 * Basically don't do any validation. If it's a number that's fine. Also,
-	 * add it to the list if it's not there already
-	 *
-	 * @param $value
-	 * @param $alldata
-	 * @return bool
-	 */
-	function validate( $value, $alldata ) {
-		if ( $value == '' ) {
-			return true;
-		}
-
-		if ( !in_array( $value, $this->mParams['options'] ) ) {
-			$this->mParams['options'][ $this->mParent->getLanguage()->formatNum( $value ) ] = intval($value);
-			asort( $this->mParams['options'] );
-		}
-
-		return true;
-	}
-
 }
