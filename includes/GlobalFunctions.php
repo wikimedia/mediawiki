@@ -2188,7 +2188,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	} elseif ( preg_match( '/^-?\d{1,13}$/D', $ts ) ) {
 		# TS_UNIX
 		$uts = $ts;
-		$strtime = "@$ts"; // Undocumented?
+		$strtime = "@$ts"; // http://php.net/manual/en/datetime.formats.compound.php
 	} elseif ( preg_match( '/^\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}.\d{6}$/', $ts ) ) {
 		# TS_ORACLE // session altered to DD-MM-YYYY HH24:MI:SS.FF6
 		$strtime = preg_replace( '/(\d\d)\.(\d\d)\.(\d\d)(\.(\d+))?/', "$1:$2:$3",
