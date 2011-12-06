@@ -548,6 +548,7 @@ class User {
 			return false;
 		}
 
+
 		// Ensure that the name can't be misresolved as a different title,
 		// such as with extra namespace keys at the start.
 		$parsed = Title::newFromText( $name );
