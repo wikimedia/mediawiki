@@ -98,6 +98,8 @@ production.
   username (eg. Special:ActiveUsers/Username)
 * New JavaScript variable wgPageContentLanguage
 * Added new debugging toolbar, enabled with $wgDebugToolbar
+* Differences in the history page now uses slightly better colors for people
+  perceiving colors differently. Colors comes from the French Wikipedia.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.

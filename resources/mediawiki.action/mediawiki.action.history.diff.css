@@ -2,9 +2,10 @@
 ** Diff rendering
 */
 table.diff,
+td.diff-context,
 td.diff-otitle,
 td.diff-ntitle {
-	background-color: white;
+	background-color: transparent;
 }
 
 td.diff-otitle,
@@ -21,17 +22,16 @@ td.diff-lineno {
 }
 
 td.diff-addedline {
-	background: #D1E7F6;
+	background: #D8E4F6;
 	font-size: smaller;
 }
 
 td.diff-deletedline {
-	background: #F6E0D1;
+	background: #E4F6D8;
 	font-size: smaller;
 }
 
 td.diff-context {
-	background: #eee;
 	font-size: smaller;
 }
 
@@ -44,11 +44,15 @@ td.diff-context {
 }
 
 td.diff-addedline .diffchange {
-	background: #75BCD8;
+	background: #B0C0F0;
+	color: #001040;
+	font-weight: bold;
 }
 
 td.diff-deletedline .diffchange {
-	background: #D98462;
+	background: #B0E897;
+	color: #104000;
+	font-weight: bold;
 }
 
 table.diff {
