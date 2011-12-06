@@ -1186,12 +1186,12 @@ class Preferences {
 	 * @return string
 	 */
 	static function cleanSignature( $signature, $alldata, $form ) {
-		global $wgParser;
 		if ( isset( $alldata['fancysig'] ) && $alldata['fancysig'] ) {
+			global $wgParser;
 			$signature = $wgParser->cleanSig( $signature );
 		} else {
 			// When no fancy sig used, make sure ~{3,5} get removed.
-			$signature = $wgParser->cleanSigInSig( $signature );
+			$signature = Parser::cleanSigInSig( $signature );
 		}
 
 		return $signature;
