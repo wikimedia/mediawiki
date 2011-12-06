@@ -1243,7 +1243,7 @@ For å søkja i alle, bruk prefikset ''all:'' (det inkluderer diskusjonssider, m
 'powersearch-ns'                   => 'Søk i namnerom:',
 'powersearch-redir'                => 'Vis omdirigeringar',
 'powersearch-field'                => 'Søk etter',
-'powersearch-togglelabel'          => 'Merk:',
+'powersearch-togglelabel'          => 'Haka av:',
 'powersearch-toggleall'            => 'Alle',
 'powersearch-togglenone'           => 'Ingen',
 'search-external'                  => 'Eksternt søk',
