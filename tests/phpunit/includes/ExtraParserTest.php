@@ -93,12 +93,18 @@ class ExtraParserTest extends MediaWikiTestCase {
 	
 	/**
 	 * cleanSigInSig() just removes tildes
+	 * @dataProvider provideStringsForCleanSigInSig
 	 */
-	function testCleanSigInSig() {
-		$title = Title::newFromText( __FUNCTION__ );
-		$outputText = $this->parser->cleanSigInSig( "{{Foo}} ~~~~" );
-		
-		$this->assertEquals( "{{Foo}} ", $outputText );
+	function testCleanSigInSig( $in, $out ) {
+		$this->assertEquals( Parser::cleanSigInSig( $in), $out );
+	}
+	
+	function provideStringsForCleanSigInSig() {
+		return array(
+			array( "{{Foo}} ~~~~", "{{Foo}} " ),
+			array( "~~~", "" ),
+			array( "~~~~~", "" ),
+		);
 	}
 	
 	function testGetSection() {
