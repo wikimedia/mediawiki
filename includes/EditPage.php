@@ -1720,7 +1720,7 @@ HTML
 	 * @return Mixed|string or false
 	 */
 	public static function extractSectionTitle( $text ) {
-		preg_match( "/^(=+)(.+)\\1/mi", $text, $matches );
+		preg_match( "/^(=+)(.+)\\1(\n|$)/i", $text, $matches );
 		if ( !empty( $matches[2] ) ) {
 			global $wgParser;
 			return $wgParser->stripSectionName(trim($matches[2]));
