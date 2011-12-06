@@ -636,6 +636,19 @@ abstract class DatabaseBase implements DatabaseType {
 	}
 
 	/**
+	 * Same as new factory( ... ), kept for backward compatibility
+	 * @deprecated since 1.18
+	 * @see Database::factory()
+	 */
+	public final static function newFromType( $dbType, $p = array() ) {
+		wfDeprecated( __METHOD__ );
+		if ( isset( $p['tableprefix'] ) ) {
+			$p['tablePrefix'] = $p['tableprefix'];
+		}
+		return self::factory( $dbType, $p );
+	}
+
+	/**
 	 * Given a DB type, construct the name of the appropriate child class of
 	 * DatabaseBase. This is designed to replace all of the manual stuff like:
 	 *	$class = 'Database' . ucfirst( strtolower( $type ) );
