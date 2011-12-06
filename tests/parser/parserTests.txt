@@ -8957,6 +8957,23 @@ __TOC__
 
 !! end
 
+!! test
+Bug 26375: TOC with bold 
+!! options
+title=[[Main Page]]
+!! input
+__TOC__
+== '''should be bold''' then normal text ==
+!! result
+<table id="toc" class="toc"><tr><td><div id="toctitle"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#should_be_bold_then_normal_text"><span class="tocnumber">1</span> <span class="toctext"><b>should be bold</b> then normal text</span></a></li>
+</ul>
+</td></tr></table>
+<h2><span class="editsection">[<a href="/index.php?title=Main_Page&amp;action=edit&amp;section=1" title="Edit section: should be bold then normal text">edit</a>]</span> <span class="mw-headline" id="should_be_bold_then_normal_text"> <b>should be bold</b> then normal text </span></h2>
+
+!! end
+
 !! article
 MediaWiki:Bug32057
 !! text
