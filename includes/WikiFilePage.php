@@ -163,6 +163,6 @@ class WikiFilePage extends WikiPage {
 			// to be updated (in case the cached information is wrong)
 			$this->mFile->purgeCache( array( 'forRefresh' => true ) );
 		}
-		parent::doPurge();
+		return parent::doPurge();
 	}
 }
