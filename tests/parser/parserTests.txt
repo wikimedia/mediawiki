@@ -1210,7 +1210,7 @@ disabled
 !! input
 http://[2404:130:0:1000::187:2]/index.php
 !! result
-<p><a rel="nofollow" class="external free" href="http://[2404:130:0:1000::187:2]/index.php">http://2404:130:0:1000::187:2/index.php</a>
+<p><a rel="nofollow" class="external free" href="http://[2404:130:0:1000::187:2]/index.php">http://[2404:130:0:1000::187:2]/index.php</a>
 </p>
 !! end
 
