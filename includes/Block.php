@@ -1140,6 +1140,15 @@ class Block {
 	}
 
 	/**
+	 * @since 1.19
+	 *
+	 * @return Mixed|string
+	 */
+	public function getExpiry() {
+		return $this->mExpiry;
+	}
+
+	/**
 	 * Set the target for this block, and update $this->type accordingly
 	 * @param $target Mixed
 	 */
