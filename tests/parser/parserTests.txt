@@ -1071,7 +1071,7 @@ http://www.example.com/?title=AT%26T
 !! end
 
 !! test
-Bug 4781, 5267: %26 in URL
+Bug 4781, 5267: %25 in URL
 !! input
 http://www.example.com/?title=100%25_Bran
 !! result
