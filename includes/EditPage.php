@@ -1713,6 +1713,22 @@ HTML
 		wfProfileOut( __METHOD__ );
 	}
 
+	/**
+	 * Extract the section title from current section text, if any.
+	 *
+	 * @param string $text
+	 * @return Mixed|string or false
+	 */
+	public static function extractSectionTitle( $text ) {
+		preg_match( "/^(=+)(.+)\\1/mi", $text, $matches );
+		if ( !empty( $matches[2] ) ) {
+			global $wgParser;
+			return $wgParser->stripSectionName(trim($matches[2]));
+		} else {
+			return false;
+		}
+	}
+
 	protected function showHeader() {
 		global $wgOut, $wgUser, $wgMaxArticleSize, $wgLang;
 		if ( $this->isConflict ) {
@@ -1730,12 +1746,9 @@ HTML
 			if ( $this->section != '' && $this->section != 'new' ) {
 				$matches = array();
 				if ( !$this->summary && !$this->preview && !$this->diff ) {
-					preg_match( "/^(=+)(.+)\\1/mi", $this->textbox1, $matches );
-					if ( !empty( $matches[2] ) ) {
-						global $wgParser;
-						$this->summary = "/* " .
-							$wgParser->stripSectionName(trim($matches[2])) .
-							" */ ";
+					$sectionTitle = self::extractSectionTitle( $this->textbox1 );
+					if ( $sectionTitle !== false ) {
+						$this->summary = "/* $sectionTitle */ ";
 					}
 				}
 			}
