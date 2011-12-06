@@ -1627,6 +1627,7 @@ De veiligheid kin neet waere gekónterleerdj.",
 'uploadstash-badtoken' => "Kin de hanjeling neet oetveure. Dit kump mesjien omdet dien bewèrkingsrefs verloupe zeen. Perbeer 't obbenuits.",
 'uploadstash-errclear' => 'Wisse van bestandj mislök.',
 'uploadstash-refresh'  => 'Wèrk lies van bestenj bie',
+'invalid-chunk-offset' => 'Óngèljige chunckaafzatj',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Toegank geweigerd',

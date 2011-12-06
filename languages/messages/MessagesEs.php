@@ -1825,6 +1825,7 @@ No puede comprobarse adecuadamente su seguridad.',
 'uploadstash-badtoken' => 'No fue posible ejecutar esa operación, tal vez porque sus credenciales de edición expiraron. Reinténtelo.',
 'uploadstash-errclear' => 'El borrado de los archivos no tuvo éxito.',
 'uploadstash-refresh'  => 'Actualizar la lista de archivos',
+'invalid-chunk-offset' => 'Desplazamiento inválido del fragmento',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Acceso denegado',

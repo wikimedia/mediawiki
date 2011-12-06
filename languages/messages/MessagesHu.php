@@ -1793,6 +1793,7 @@ Nem lehet megfelelően ellenőrizni a biztonságosságát.',
 'uploadstash-badtoken' => 'A művelet végrehajtása sikertelen volt. Lehetséges, hogy lejártak a szerkesztést hitelesítő adataid. Próbáld újra!',
 'uploadstash-errclear' => 'A fájlok törlése nem sikerült.',
 'uploadstash-refresh'  => 'Fájlok listájának frissítése',
+'invalid-chunk-offset' => 'Érvénytelen darab eltolás',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Hozzáférés megtagadva',

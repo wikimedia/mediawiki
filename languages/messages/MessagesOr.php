@@ -2123,6 +2123,8 @@ A page is treated as disambiguation page if it uses a template which is linked f
 
 # Special:ListGroupRights
 'listgrouprights'                      => 'ସଭ୍ୟ ଗୋଠ ଅଧିକାରସମୂହ',
+'listgrouprights-summary'              => 'ତଳେ ଉଇକି ସ୍ଥିର କରାଯାଇଥିବା ଏକ ଏକ ବ୍ୟବହାରକାରୀ ଗୋଠର ତାଲିକା ଦିଆଯାଇଛି, ସେଥିରେ ସେମାନଙ୍କ ବ୍ୟବହାର ଅଧିକାର ବାବଦରେ ମଧ୍ୟ ଦିଆଯାଇଛି ।
+ସେଥିରେ ବୋଧେ [[{{MediaWiki:Listgrouprights-helppage}}|ଅଧିକ ବ୍ୟକ୍ତିଗତ ବିବରଣୀ ଥାଇପାରେ]] ।',
 'listgrouprights-key'                  => '* <span class="listgrouprights-granted">ଅନୁମୋଦିତ ଅଧିକାର</span>
 * <span class="listgrouprights-revoked">ଫେରାଇ ନିଆଯାଇଥିବା ଅଧିକାର</span>',
 'listgrouprights-group'                => 'ଗୋଠ',
@@ -2182,6 +2184,8 @@ A page is treated as disambiguation page if it uses a template which is linked f
 'watchnologin'         => 'ଲଗ‌‌ ଇନ କରିନାହାନ୍ତି',
 'watchnologintext'     => 'ଆପଣା ଦେଖଣାତାଲିକା ବଦଳାଇବା ନିମନ୍ତେ ଆପଣଙ୍କୁ [[Special:UserLogin|ଲଗ ଇନ]] କରିବାକୁ ପଡ଼ିବ ।',
 'addwatch'             => 'ଦେଖଣାତାଲିକାରେ ଯୋଡ଼ିବେ',
+'addedwatchtext'       => "\"[[:\$1]]\" ପୃଷ୍ଠାଟି ଆପଣଙ୍କ [[Special:Watchlist|ଦେଖଣାତାଲିକା]]ରେ ଯୋଡ଼ିଦିଆଗଲା ।
+ଏହି ପୃଷ୍ଠାରେ ଭବିଷ୍ୟତର ଅଦଳ ବଦଳ ଓ ତାହା ସହ ଯୋଡ଼ା ଆଲୋଚନା ପୃଷ୍ଠା ଏଠାରେ ଦିଆଯିବ, ଆଉ ପୃଷ୍ଠାଟି [[Special:RecentChanges|ନଗଦ ବଦଳ ତାଲିକା]]ରେ ସହଜରେ ବାଛିବା ପାଇଁ '''ମୋଟା ଅକ୍ଷର''' ହୋଇ ଦେଖାଯିବ ।",
 'removewatch'          => 'ଦେଖଣା ତାଲିକାରୁ ହଟାଇବେ',
 'removedwatchtext'     => '"[[:$1]]" ପୃଷ୍ଠାଟି [[Special:Watchlist|ଆପଣଙ୍କ ଦେଖଣାତାଳିକା]]ରୁ ହଟାଗଲା ।',
 'watch'                => 'ଦେଖିବେ',
@@ -2276,6 +2280,11 @@ $UNWATCHURL ଦେଖନ୍ତୁ
 ** ସତ୍ଵାଧିକାର ଉଲଂଘନ
 ** ଅନୀତିକର କାମ',
 'delete-edit-reasonlist' => 'ଲିଭାଇବା କାରଣମାନ ବଦଳାଇବେ',
+'delete-toobig'          => 'ଏହି ପୃଷ୍ଠାର ଏକ ଲମ୍ବା ସମ୍ପାଦନା ଇତିହାସ ଅଛି, ଯେଉଁଥିରେ $1  {{PLURAL:$1|ଟି ସଂସ୍କରଣ|ଗୋଟି ସଂସ୍କରଣ}} ରହିଛି ।
+{{SITENAME}}ରେ ଦୁର୍ଘଟଣାବଶତ ଅସୁବିଧାକୁ ଏଡ଼ାଇବା ପାଇଁ ଏହାକୁ ଲିଭାଇବାରୁ ବାରଣ କରାଯାଇଛି ।',
+'delete-warning-toobig'  => 'ଏହି ପୃଷ୍ଠାର ଏକ ଲମ୍ବ ସମ୍ପାଦନ ଇତିହାସ ରହିଛି, ଯେଉଁଥିରେ $1 {{PLURAL:$1|ଗୋଟି ସଂସ୍କରଣ|ଗୋଟି ସଂସ୍କରଣ}} ରହିଛି ।
+ଏହାକୁ ଲିଭାଇଲେ {{SITENAME}}ରେ ଅସୁବିଧା ହୋଇପାରେ ।
+ସାବଧାନତାର ସହ ଆଗକୁ ବଢ଼ନ୍ତୁ ।',
 
 # Rollback
 'rollback'          => 'ପୁରାପୁରି ପଛକୁ ଫେରିବା ବଦଳ',
@@ -2284,6 +2293,10 @@ $UNWATCHURL ଦେଖନ୍ତୁ
 'rollbackfailed'    => 'ପୁରାପୁରି ପଛକୁ ଫେରିବା ବିଫଳ ହେଲା',
 'cantrollback'      => 'ବଦଳକୁ ପଛକୁ ଫେରାଇ ପାରିବେ ନାହିଁ;
 ଶେଷ ଦାତାଜଣଙ୍କ ଏହି ପୃଷ୍ଠାର ଜଣେମାତ୍ର ଦାତା ।',
+'alreadyrolled'     => '[[User:$2|$2]]([[User talk:$2|talk]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]])ଙ୍କ ଦେଇ [[:$1]]ରେ ହୋଇଥିବା ଶେଷ ବଦଳକୁ ପଛକୁ ଫେରାଯାଇପାରିବ ନାହିଁ ;
+ଏହାକୁ ଆଉ କେହି ସମ୍ପାଦନା କରିଛି ବା ପୁରାପୁରି ପଛକୁ ଫେରାଇଦେଇଛି ।
+
+The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'       => "ସମ୍ପାଦନାର ସାରକଥା ଥିଲା: \"''\$1''\" ।",
 'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|ଆଲୋଚନା]])ଙ୍କ ଦେଇ କରାଯାଇଥିବା ବଦଳକୁ [[User:$1|$1]]ଙ୍କ ଦେଇ କରାଯାଇଥିବା ଶେଷ ବଦଳକୁ ଫେରାଇ ଦିଆଗଲା',
 'revertpage-nouser' => '(ଇଉଜର ନାମ ବାହାର କରିଦିଆଯାଇଅଛି)ଙ୍କ ଦେଇ କରାଯାଇଥିବା ବଦଳକୁ [[User:$1|$1]]ଙ୍କ ଦେଇ କରାଯାଇଥିବା ଶେଷ ବଦଳକୁ ଲେଉଟାଇଦିଆଗଲା',
@@ -3237,6 +3250,9 @@ $5
 'ascending_abbrev'         => 'asc',
 'table_pager_next'         => 'ପର ପୃଷ୍ଠା',
 'table_pager_prev'         => 'ଆଗ ପୃଷ୍ଠା',
+'table_pager_first'        => 'ପ୍ରଥମ ପୃଷ୍ଠା',
+'table_pager_last'         => 'ଶେଷ ପୃଷ୍ଠା',
+'table_pager_limit'        => 'ପ୍ରତି ପୃଷ୍ଠାରେ $1ଟି ଜିନିଷ ଦେଖାଉଛି',
 'table_pager_limit_submit' => 'ଯିବା',
 'table_pager_empty'        => 'ଫଳହୀନ',
 
