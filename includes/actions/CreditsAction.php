@@ -29,10 +29,6 @@ class CreditsAction extends FormlessAction {
 		return 'credits';
 	}
 
-	public function getRestriction() {
-		return null;
-	}
-
 	protected function getDescription() {
 		return wfMsg( 'creditspage' );
 	}

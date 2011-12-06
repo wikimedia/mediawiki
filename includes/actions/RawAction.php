@@ -24,10 +24,6 @@ class RawAction extends FormlessAction {
 		return 'raw';
 	}
 
-	public function getRestriction() {
-		return null;
-	}
-
 	public function requiresWrite() {
 		return false;
 	}

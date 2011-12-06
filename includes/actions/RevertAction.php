@@ -34,10 +34,6 @@ class RevertAction extends Action {
 		return 'revert';
 	}
 
-	public function getRestriction() {
-		return null;
-	}
-
 	public function show() {
 		$this->getOutput()->showErrorPage( 'nosuchaction', 'nosuchactiontext' );
 	}

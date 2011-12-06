@@ -31,10 +31,6 @@ class PurgeAction extends FormAction {
 		return 'purge';
 	}
 
-	public function getRestriction() {
-		return null;
-	}
-
 	public function requiresUnblock() {
 		return false;
 	}

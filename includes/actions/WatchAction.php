@@ -26,10 +26,6 @@ class WatchAction extends FormAction {
 		return 'watch';
 	}
 
-	public function getRestriction() {
-		return null;
-	}
-
 	public function requiresUnblock() {
 		return false;
 	}

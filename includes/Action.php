@@ -201,8 +201,11 @@ abstract class Action {
 	/**
 	 * Get the permission required to perform this action.  Often, but not always,
 	 * the same as the action name
+	 * @return String|null
 	 */
-	public abstract function getRestriction();
+	public function getRestriction() {
+		return null;
+	}
 
 	/**
 	 * Checks if the given user (identified by an object) can perform this action.  Can be
