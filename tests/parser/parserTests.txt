@@ -1070,6 +1070,8 @@ http://www.example.com/?title=AT%26T
 </p>
 !! end
 
+# According to http://dev.w3.org/html5/spec/Overview.html#parsing-urls a plain
+# % is actually legal in HTML5. Any change in output would need testing though.
 !! test
 Bug 4781, 5267: %25 in URL
 !! input
