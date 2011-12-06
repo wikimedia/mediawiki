@@ -94,12 +94,12 @@ function wfImageAuthMain() {
 		return;
 	}
 
-	// Extract the file name and chop off the size specifier
+	// Extract the file name and chop off the size specifier.
 	// (e.g. 120px-Foo.png => Foo.png or page2-120px-Foo.png => Foo.png).
-	// This only applies to thumbnails, and all thumbnails should have
-	// a width indicator and be under a folder that has the source file name.
+	// This only applies to thumbnails, and all thumbnails should
+	// be under a folder that has the source file name.
 	$name = wfBaseName( $path );
-	if ( preg_match( '!(?:[^-]*-)*?\d+px-(.*)!i', $name ) ) {
+	if ( strpos( $path, '/thumb/' ) === 0 ) {
 		$name = wfBaseName( dirname( $path ) ); // this file is a thumbnail
 	}
 
