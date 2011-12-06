@@ -3,14 +3,34 @@
 <head>
 	<link rel="stylesheet" href="../../resources/mediawiki.action/mediawiki.action.history.diff.css" />
 </head>
-<body>
+<body style="background-color: #C0C0C0;">
 <p>
-This show various styles for our diff action. The reference style sheet is:</p>
+This show various styles for our diff action, the background being hardcoded to gray (<tt>#C0C0C0</tt>) The reference style sheet is:</p>
 <p>
 <tt><a href="../../resources/mediawiki.action/mediawiki.action.history.diff.css">resources/mediawiki.action/mediawiki.action.history.diff.css</a></tt>.
 </p>
 <p>
 This file might help us fix our diff colors which have been a recurring issues among the community for a loooong time.</p>
+
+<p>
+First, show the diff mostly like it would be chown on a wiki</p>
+<table class="diff">
+<tr>
+	<td class="diff-marker">-</td>
+	<td class="diff-deletedline"><div>
+		Some content <span class="diffchange diffchange-inline">deleted / replaced</span>
+	</div></td>
+	<td class="diff-marker">+</td>
+	<td class="diff-addedline"><div>
+		Some content <span class="diffchange diffchange-inline">added / replacement</span>
+	</div></td>
+</tr>
+</table>
+
+
+<p>
+Below are some basic lines being applied one or two classes. Mainly for debugging purposes</p>
+
 <table class="diff">
 
 	<tr><th>Diff</th></tr>
@@ -20,12 +40,18 @@ This file might help us fix our diff colors which have been a recurring issues a
 	<tr><td class="diff-context"><tt>diff-context</tt>: context</td></tr>
 
 
-	<tr><th>Same as above with <tt>diffchange</tt> class</th></tr>
+	<tr><th>Same as above with a <tt>&lt;span&gt;</tt> child element having the <tt>diffchange</tt> class</th></tr>
 
 	<tr><td class="diffchange">Diffchange</td></tr>
-	<tr><td class="diff-addedline diffchange">Added line + diffchange</td></tr>
-	<tr><td class="diff-deletedline diffchange">Deleted line + diffchange</td></tr>
-	<tr><td class="diff-context diffchange">Context + diffchange</td></tr>
+	<tr><td class="diff-addedline">
+		<span class="diffchange">Added line + diffchange</span>
+	</td></tr>
+	<tr><td class="diff-deletedline">
+		<span class="diffchange">Deleted line + diffchange</span>
+	</td></tr>
+	<tr><td class="diff-context">
+		<span class="diffchange">Context + diffchange</span>
+	</td></tr>
 </table>
 
 </body></html>
