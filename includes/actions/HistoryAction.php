@@ -23,10 +23,6 @@ class HistoryAction extends FormlessAction {
 		return 'history';
 	}
 
-	public function getRestriction() {
-		return null;
-	}
-
 	public function requiresWrite() {
 		return false;
 	}

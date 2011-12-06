@@ -29,10 +29,6 @@ class InfoAction extends FormlessAction {
 		return 'info';
 	}
 
-	public function getRestriction() {
-		return null;
-	}
-
 	protected function getDescription() {
 		return '';
 	}

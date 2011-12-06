@@ -28,10 +28,6 @@ class MarkpatrolledAction extends FormlessAction {
 		return 'markpatrolled';
 	}
 
-	public function getRestriction() {
-		return null;
-	}
-
 	protected function getDescription() {
 		return '';
 	}

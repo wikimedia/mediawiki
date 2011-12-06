@@ -29,10 +29,6 @@ class RevisiondeleteAction extends FormlessAction {
 		return 'revisiondelete';
 	}
 
-	public function getRestriction() {
-		return null;
-	}
-
 	public function requiresUnblock() {
 		return false;
 	}
