@@ -1529,6 +1529,8 @@ $wgParserCacheType = CACHE_ANYTHING;
  * given, giving a callable function which will generate a suitable cache object.
  *
  * The other parameters are dependent on the class used.
+ * - CACHE_DBA uses $wgTmpDirectory by default. The 'dir' parameter let you
+ *   overrides that.
  */
 $wgObjectCaches = array(
 	CACHE_NONE => array( 'class' => 'EmptyBagOStuff' ),
