@@ -193,7 +193,10 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Add a maintenance script to be run after the database updates are complete
+	 * Add a maintenance script to be run after the database updates are complete.
+	 * 
+	 * @since 1.19
+	 * 
 	 * @param $class string Name of a Maintenance subclass
 	 */
 	public function addPostDatabaseUpdateMaintenance( $class ) {
@@ -210,6 +213,8 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
+	 * @since 1.17
+	 * 
 	 * @return array
 	 */
 	public function getPostDatabaseUpdateMaintenance() {
