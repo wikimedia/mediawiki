@@ -15,6 +15,7 @@ setting since version 1.2.0. If you have it on, turn it '''off''' if you can.
 * (bug 3901) Lang, hreflang attribs added to sidebar interlanguage links for screen readers
 * (bug 30774) mediawiki.html: Add support for numbers and booleans in the
   attribute values and element contents.
+* (bug 32473) [[Special:PasswordReset]] can not be used on private wiki
 
 
 == MediaWiki 1.18 ==
