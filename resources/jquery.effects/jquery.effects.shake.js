@@ -1,23 +1,23 @@
 /*
- * jQuery UI Effects Shake 1.8.2
+ * jQuery UI Effects Shake 1.8.16
  *
- * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT (MIT-LICENSE.txt)
- * and GPL (GPL-LICENSE.txt) licenses.
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Effects/Shake
  *
  * Depends:
  *	jquery.effects.core.js
  */
-(function($) {
+(function( $, undefined ) {
 
 $.effects.shake = function(o) {
 
 	return this.queue(function() {
 
 		// Create element
-		var el = $(this), props = ['position','top','left'];
+		var el = $(this), props = ['position','top','bottom','left','right'];
 
 		// Set options
 		var mode = $.effects.setMode(el, o.options.mode || 'effect'); // Set Mode

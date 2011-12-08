@@ -1,16 +1,16 @@
 /*
- * jQuery UI Effects Scale 1.8.2
+ * jQuery UI Effects Scale 1.8.16
  *
- * Copyright (c) 2010 AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT (MIT-LICENSE.txt)
- * and GPL (GPL-LICENSE.txt) licenses.
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Effects/Scale
  *
  * Depends:
  *	jquery.effects.core.js
  */
-(function($) {
+(function( $, undefined ) {
 
 $.effects.puff = function(o) {
 	return this.queue(function() {
@@ -84,8 +84,8 @@ $.effects.size = function(o) {
 	return this.queue(function() {
 
 		// Create element
-		var el = $(this), props = ['position','top','left','width','height','overflow','opacity'];
-		var props1 = ['position','top','left','overflow','opacity']; // Always restore
+		var el = $(this), props = ['position','top','bottom','left','right','width','height','overflow','opacity'];
+		var props1 = ['position','top','bottom','left','right','overflow','opacity']; // Always restore
 		var props2 = ['width','height','overflow']; // Copy for children
 		var cProps = ['fontSize'];
 		var vProps = ['borderTopWidth', 'borderBottomWidth', 'paddingTop', 'paddingBottom'];
