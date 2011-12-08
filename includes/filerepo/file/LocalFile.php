@@ -759,7 +759,12 @@ class LocalFile extends File {
 	 * @param $files array of strings: relative filenames (to $dir)
 	 */
 	protected function purgeThumbList($dir, $files) {
-		wfDebug( __METHOD__ . ": " . var_export( $files, true ) . "\n" );
+		$fileListDebug = strtr(
+			var_export( $files, true ),
+			array("\n"=>'')
+		);
+		wfDebug( __METHOD__ . ": $fileListDebug\n" );
+
 		foreach ( $files as $file ) {
 			# Check that the base file name is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
