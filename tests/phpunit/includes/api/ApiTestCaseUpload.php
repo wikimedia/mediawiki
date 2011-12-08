@@ -19,6 +19,10 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 		$this->clearFakeUploads();
 	}
 
+	public function tearDown() {
+		$this->clearTempUpload();
+	}
+
 	/**
 	 * Helper function -- remove files and associated articles by Title
 	 * @param $title Title: title to be removed
@@ -99,6 +103,15 @@ abstract class ApiTestCaseUpload extends ApiTestCase {
 
 		return true;
 
+	}
+
+	function clearTempUpload() {
+		if( isset( $_FILES['file']['tmp_name'] ) ) {
+			$tmp = $_FILES['file']['tmp_name'];
+			if( file_exists( $tmp ) ) {
+				unlink( $tmp );
+			}
+		}
 	}
 
 	/**
