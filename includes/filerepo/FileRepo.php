@@ -277,6 +277,15 @@ abstract class FileRepo {
 	}
 
 	/**
+	 * Get the number of hash directory levels
+	 *
+	 * @return integer
+	 */
+	function getHashLevels() {
+		return $this->hashLevels;
+	}
+
+	/**
 	 * Get a relative path including trailing slash, e.g. f/fa/
 	 * If the repo is not hashed, returns an empty string
 	 *
