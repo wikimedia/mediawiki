@@ -165,7 +165,7 @@ production.
 * Installer now refuses to install if php was not compiled with Ctype support.
 * (bug 29475) Remove "trackback" feature entirely from core
 * (bug 32665) Special:BlockList prefills the username in the input field if
-  using the Special:BlockList\username URL
+  using the Special:BlockList/username URL
 * (bug 27721) Make JavaScript variables wgSeparatorTransformTable and
   wgDigitTransformTable depend on page content language so the sort script
   sorts correctly more often
