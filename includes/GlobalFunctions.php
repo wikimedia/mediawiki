@@ -3210,8 +3210,10 @@ function wfGetPrecompiledData( $name ) {
  * @return String
  */
 function wfMemcKey( /*... */ ) {
+	global $wgCachePrefix;
+	$prefix = $wgCachePrefix === false ? wfWikiID() : $wgCachePrefix;
 	$args = func_get_args();
-	$key = wfWikiID() . ':' . implode( ':', $args );
+	$key = $prefix . ':' . implode( ':', $args );
 	$key = str_replace( ' ', '_', $key );
 	return $key;
 }
@@ -3241,10 +3243,8 @@ function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
  * @return String
  */
 function wfWikiID() {
-	global $wgDBprefix, $wgDBname, $wgWikiID;
-	if ( $wgWikiID !== false ) {
-		return $wgWikiID;
-	} elseif ( $wgDBprefix ) {
+	global $wgDBprefix, $wgDBname;
+	if ( $wgDBprefix ) {
 		return "$wgDBname-$wgDBprefix";
 	} else {
 		return $wgDBname;

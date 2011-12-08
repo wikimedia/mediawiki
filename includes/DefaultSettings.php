@@ -4156,11 +4156,10 @@ $wgParserTestRemote = false;
 
 
 /**
- * Overwrite the caching key prefix with custom value.  Do not set if using
- * load balancer, since it depends on the key being in certain format.
+ * Overwrite the caching key prefix with custom value.
  * @since 1.19
  */
-$wgWikiID = false;
+$wgCachePrefix = false;
 
 /**
  * Display the new debugging toolbar. This also enables profiling on database
