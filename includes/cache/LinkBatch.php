@@ -104,8 +104,8 @@ class LinkBatch {
 	protected function executeInto( &$cache ) {
 		wfProfileIn( __METHOD__ );
 		$res = $this->doQuery();
-		$ids = $this->addResultToCache( $cache, $res );
 		$this->doGenderQuery();
+		$ids = $this->addResultToCache( $cache, $res );
 		wfProfileOut( __METHOD__ );
 		return $ids;
 	}
