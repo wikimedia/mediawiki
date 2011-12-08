@@ -457,10 +457,14 @@ class Sanitizer {
 								# and see if we find a match below them
 								$optstack = array();
 								array_push( $optstack, $ot );
-								$ot = @array_pop( $tagstack );
+								wfSuppressWarnings();
+								$ot = array_pop( $tagstack );
+								wfRestoreWarnings();
 								while ( $ot != $t && isset( $htmlsingleallowed[$ot] ) ) {
 									array_push( $optstack, $ot );
-									$ot = @array_pop( $tagstack );
+									wfSuppressWarnings();
+									$ot = array_pop( $tagstack );
+									wfRestoreWarnings();
 								}
 								if ( $t != $ot ) {
 									# No match. Push the optional elements back again

@@ -279,7 +279,7 @@ class BitmapHandler extends ImageHandler {
 					< $wgSharpenReductionThreshold ) {
 				$sharpen = "-sharpen " . wfEscapeShellArg( $wgSharpenParameter );
 			}
-			if ( version_compare( $this->getMagickVersion(), "6.3.5" ) >= 0 ) {
+			if ( version_compare( $this->getMagickVersion(), "6.5.6" ) >= 0 ) {
 				// JPEG decoder hint to reduce memory, available since IM 6.5.6-2
 				$decoderHint = "-define jpeg:size={$params['physicalDimensions']}";
 			}
