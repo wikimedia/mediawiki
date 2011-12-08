@@ -486,4 +486,41 @@ test( 'data-sort-value attribute, when available, should override sorting positi
 
 });
 
+var numbers = [
+	[ '12'    ],
+	[  '7'    ],
+	[ '13,000'],
+	[  '9'    ],
+	[ '14'    ],
+	[  '8.0'  ],
+];
+var numbersAsc = [
+	[  '7'    ],
+	[  '8.0'  ],
+	[  '9'    ],
+	[ '12'    ],
+	[ '14'    ],
+	[ '13,000'],
+];
+
+tableTest( 'bug 8115: sort numbers with commas (ascending)',
+	['Numbers'], numbers, numbersAsc,
+	function( $table ) {
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click();
+	}
+);
+
+alert( mw.config.get( "wgContentLanguage" ) );
+
+tableTest( 'bug 8115: sort numbers with commas (descending)',
+	['Numbers'], numbers, reversed(numbersAsc),
+	function( $table ) {
+		$table.tablesorter();
+		$table.find( '.headerSort:eq(0)' ).click().click();
+	}
+);
+// TODO add numbers sorting tests for bug 8115 with a different language
+
+
 })();
