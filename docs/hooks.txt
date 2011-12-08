@@ -867,6 +867,10 @@ $ip: The ip address of the user
 'ExtensionTypes': called when generating the extensions credits, use this to change the tables headers
 &$extTypes: associative array of extensions types
 
+'ExtractThumbParameters': called when extracting thumbnail parameters from a thumbnail file name
+$thumbname: the base name of the thumbnail file
+&$params: the currently extracted params (has source name, temp or archived zone)
+
 'FetchChangesList': When fetching the ChangesList derivative for
 a particular user
 $user: User the list is being fetched for

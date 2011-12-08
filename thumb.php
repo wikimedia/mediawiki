@@ -13,26 +13,68 @@ if ( isset( $_SERVER['MW_COMPILED'] ) ) {
 	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
 }
 
-$wgTrivialMimeDetection = true; //don't use fancy mime detection, just check the file extension for jpg/gif/png.
+// Don't use fancy mime detection, just check the file extension for jpg/gif/png
+$wgTrivialMimeDetection = true;
 
-wfThumbMain();
+if ( defined( 'THUMB_HANDLER' ) ) {
+	// Called from thumb_handler.php via 404; extract params from the URI...
+	wfThumbHandle404();
+} else {
+	// Called directly, use $_REQUEST params
+	wfThumbHandleRequest();
+}
 wfLogProfilingData();
 
 //--------------------------------------------------------------------------
 
-function wfThumbMain() {
+/**
+ * Handle a thumbnail request via query parameters
+ *
+ * @return void
+ */
+function wfThumbHandleRequest() {
+	$params = get_magic_quotes_gpc()
+		? array_map( 'stripslashes', $_REQUEST )
+		: $_REQUEST;
+
+	wfStreamThumb( $params ); // stream the thumbnail
+}
+
+/**
+ * Handle a thumbnail request via thumbnail file URL
+ *
+ * @return void
+ */
+function wfThumbHandle404() {
+	# lighttpd puts the original request in REQUEST_URI, while
+	# sjs sets that to the 404 handler, and puts the original
+	# request in REDIRECT_URL.
+	if ( isset( $_SERVER['REDIRECT_URL'] ) ) {
+		# The URL is un-encoded, so put it back how it was.
+		$uri = str_replace( "%2F", "/", urlencode( $_SERVER['REDIRECT_URL'] ) );
+	} else {
+		$uri = $_SERVER['REQUEST_URI'];
+	}
+
+	$params = wfExtractThumbParams( $uri ); // basic wiki URL param extracting
+	if ( $params == null ) {
+		wfThumbError( 404, 'The source file for the specified thumbnail does not exist.' );
+		return;
+	}
+
+	wfStreamThumb( $params ); // stream the thumbnail
+}
+
+/**
+ * Stream a thumbnail specified by parameters
+ *
+ * @param $params Array
+ * @return void
+ */
+function wfStreamThumb( array $params ) {
 	wfProfileIn( __METHOD__ );
 
-	$headers = array();
-
-	// Get input parameters
-	if ( defined( 'THUMB_HANDLER' ) ) {
-		$params = $_REQUEST; // called from thumb_handler.php
-	} else {
-		$params = get_magic_quotes_gpc()
-			? array_map( 'stripslashes', $_REQUEST )
-			: $_REQUEST;
-	}
+	$headers = array(); // HTTP headers to send
 
 	$fileName = isset( $params['f'] ) ? $params['f'] : '';
 	unset( $params['f'] );
@@ -64,7 +106,7 @@ function wfThumbMain() {
 			return;
 		}
 		$title = Title::makeTitleSafe( NS_FILE, $bits[1] );
-		if ( is_null( $title ) ) {
+		if ( !$title ) {
 			wfThumbError( 404, wfMsg( 'badtitletext' ) );
 			wfProfileOut( __METHOD__ );
 			return;
@@ -169,11 +211,63 @@ function wfThumbMain() {
 }
 
 /**
- * @param $status
- * @param $msg
+ * Extract the required params for thumb.php from the thumbnail request URI.
+ * At least 'width' and 'f' should be set if the result is an array.
+ *
+ * @param $uri String Thumbnail request URI
+ * @return Array|null associative params array or null
+ */
+function wfExtractThumbParams( $uri ) {
+	$repo = RepoGroup::singleton()->getLocalRepo();
+
+	$hashDirRegex = $subdirRegex = '';
+	for ( $i = 0; $i < $repo->getHashLevels(); $i++ ) {
+		$subdirRegex .= '[0-9a-f]';
+		$hashDirRegex .= "$subdirRegex/";
+	}
+	$zoneUrlRegex = preg_quote( $repo->getZoneUrl( 'thumb' ) );
+
+	$thumbUrlRegex = "!^$zoneUrlRegex(/archive|/temp|)/$hashDirRegex([^/]*)/([^/]*)$!";
+
+	// Check if this is a valid looking thumbnail request...
+	if ( preg_match( $thumbUrlRegex, $uri, $matches ) ) {
+		list( /* all */, $archOrTemp, $filename, $thumbname ) = $matches;
+
+		$params = array( 'f' => $filename );
+		if ( $archOrTemp == '/archive' ) {
+			$params['archived'] = 1;
+		} elseif ( $archOrTemp == '/temp' ) {
+			$params['temp'] = 1;
+		}
+
+		// Check if the parameters can be extracted from the thumbnail name...
+		// @TODO: remove 'page' stuff and make ProofreadPage handle it via hook.
+		if ( preg_match( '!^(page(\d*)-)*(\d*)px-[^/]*$!', $thumbname, $matches ) ) {
+			list( /* all */, $pagefull, $pagenum, $size ) = $matches;
+			$params['width'] = $size;
+			if ( $pagenum ) {
+				$params['page'] = $pagenum;
+			}
+			return $params; // valid thumbnail URL
+		// Hooks return false if they manage to *resolve* the parameters
+		} elseif ( !wfRunHooks( 'ExtractThumbParameters', array( $thumbname, &$params ) ) ) {
+			return $params; // valid thumbnail URL (via extension or config)
+		}
+	}
+
+	return null; // not a valid thumbnail URL
+}
+
+/**
+ * Output a thumbnail generation error message
+ *
+ * @param $status integer
+ * @param $msg string
+ * @return void
  */
 function wfThumbError( $status, $msg ) {
 	global $wgShowHostnames;
+
 	header( 'Cache-Control: no-cache' );
 	header( 'Content-Type: text/html; charset=utf-8' );
 	if ( $status == 404 ) {
