@@ -511,8 +511,6 @@ tableTest( 'bug 8115: sort numbers with commas (ascending)',
 	}
 );
 
-alert( mw.config.get( "wgContentLanguage" ) );
-
 tableTest( 'bug 8115: sort numbers with commas (descending)',
 	['Numbers'], numbers, reversed(numbersAsc),
 	function( $table ) {
