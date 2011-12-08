@@ -449,6 +449,11 @@ return array(
 		'dependencies' => 'jquery.effects.core',
 		'group' => 'jquery.ui',
 	),
+	'jquery.effects.fade' => array(
+		'scripts' => 'resources/jquery.effects/jquery.effects.fade.js',
+		'dependencies' => 'jquery.effects.core',
+		'group' => 'jquery.ui',
+	),
 	'jquery.effects.fold' => array(
 		'scripts' => 'resources/jquery.effects/jquery.effects.fold.js',
 		'dependencies' => 'jquery.effects.core',
