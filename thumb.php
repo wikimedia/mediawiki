@@ -8,9 +8,9 @@
  */
 define( 'MW_NO_OUTPUT_COMPRESSION', 1 );
 if ( isset( $_SERVER['MW_COMPILED'] ) ) {
-	require ( 'phase3/includes/WebStart.php' );
+	require( 'phase3/includes/WebStart.php' );
 } else {
-	require ( dirname( __FILE__ ) . '/includes/WebStart.php' );
+	require( dirname( __FILE__ ) . '/includes/WebStart.php' );
 }
 
 // Don't use fancy mime detection, just check the file extension for jpg/gif/png
