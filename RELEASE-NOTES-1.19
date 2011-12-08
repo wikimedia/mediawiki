@@ -100,6 +100,7 @@ production.
 * Added new debugging toolbar, enabled with $wgDebugToolbar
 * Differences in the history page now uses slightly better colors for people
   perceiving colors differently. Colors comes from the French Wikipedia.
+* (bug 32879) Upgrade jQuery to 1.7.1
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
