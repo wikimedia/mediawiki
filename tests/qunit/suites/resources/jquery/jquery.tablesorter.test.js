@@ -3,9 +3,10 @@
 module( 'jquery.tablesorter' );
 
 // setup hack
-mw.config.set( 'wgMonthNames', ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
-mw.config.set( 'wgMonthNamesShort', ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']);
+mw.config.set( 'wgMonthNames', [ '', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December' ] );
+mw.config.set( 'wgMonthNamesShort', ['', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'] );
 mw.config.set( 'wgDefaultDateFormat', 'dmy' );
+
 
 test( '-- Initial check', function() {
 	expect(1);
@@ -23,8 +24,9 @@ test( '-- Initial check', function() {
 var tableCreate = function( header, data ) {
 	var $table = $( '<table class="sortable"><thead></thead><tbody></tbody></table>' ),
 		$thead = $table.find( 'thead' ),
-		$tbody = $table.find( 'tbody' );
-	var $tr = $( '<tr>' );
+		$tbody = $table.find( 'tbody' ),
+		$tr = $( '<tr>' );
+
 	$.each( header, function( i, str ) {
 		var $th = $( '<th>' );
 		$th.text( str ).appendTo( $tr );
@@ -50,6 +52,7 @@ var tableCreate = function( header, data ) {
  */
 var tableExtract = function( $table ) {
 	var data = [];
+
 	$table.find( 'tbody' ).find( 'tr' ).each( function( i, tr ) {
 		var row = [];
 		$( tr ).find( 'td,th' ).each( function( i, td ) {
@@ -93,18 +96,18 @@ var reversed = function(arr) {
 	return arr2;
 };
 
-// Sample data set: some planets!
-var header = ['Planet', 'Radius (km)'],
-	mercury = ['Mercury', '2439.7'],
-	venus = ['Venus', '6051.8'],
-	earth = ['Earth', '6371.0'],
-	mars = ['Mars', '3390.0'],
-	jupiter = ['Jupiter', '69911'],
-	saturn = ['Saturn', '58232'];
+// Sample data set using planets named and their radius
+var header  = [ 'Planet' , 'Radius (km)'],
+	mercury = [ 'Mercury', '2439.7' ],
+	venus   = [ 'Venus'  , '6051.8' ],
+	earth   = [ 'Earth'  , '6371.0' ],
+	mars    = [ 'Mars'   , '3390.0' ],
+	jupiter = [ 'Jupiter',  '69911' ],
+	saturn  = [ 'Saturn' ,  '58232' ];
 
 // Initial data set
-var planets = [mercury, venus, earth, mars, jupiter, saturn];
-var ascendingName = [earth, jupiter, mars, mercury, saturn, venus];
+var planets         = [mercury, venus, earth, mars, jupiter, saturn];
+var ascendingName   = [earth, jupiter, mars, mercury, saturn, venus];
 var ascendingRadius = [mercury, mars, venus, earth, saturn, jupiter];
 
 tableTest(
@@ -161,18 +164,16 @@ tableTest(
 
 // Regression tests!
 tableTest(
-	'Bug 28775: German-style short numeric dates',
+	'Bug 28775: German-style (dmy) short numeric dates',
 	['Date'],
-	[
-		// German-style dates are day-month-year
+	[ // German-style dates are day-month-year
 		['11.11.2011'],
 		['01.11.2011'],
 		['02.10.2011'],
 		['03.08.2011'],
 		['09.11.2011']
 	],
-	[
-		// Sorted by ascending date
+	[ // Sorted by ascending date
 		['03.08.2011'],
 		['02.10.2011'],
 		['01.11.2011'],
@@ -186,19 +187,18 @@ tableTest(
 		$table.find( '.headerSort:eq(0)' ).click();
 	}
 );
+
 tableTest(
-	'Bug 28775: American-style short numeric dates',
+	'Bug 28775: American-style (mdy) short numeric dates',
 	['Date'],
-	[
-		// American-style dates are month-day-year
+	[ // American-style dates are month-day-year
 		['11.11.2011'],
 		['01.11.2011'],
 		['02.10.2011'],
 		['03.08.2011'],
 		['09.11.2011']
 	],
-	[
-		// Sorted by ascending date
+	[ // Sorted by ascending date
 		['01.11.2011'],
 		['02.10.2011'],
 		['03.08.2011'],
@@ -235,6 +235,7 @@ var ipv4Sorted = [
 	['204.204.132.158'],
 	['247.240.82.209']
 ];
+
 tableTest(
 	'Bug 17141: IPv4 address sorting',
 	['IP'],
@@ -288,7 +289,7 @@ tableTest(
 	function( $table ) {
 		mw.config.set( 'tableSorterCollation', {
 			'ä': 'ae',
-			'ö' : 'oe',
+			'ö': 'oe',
 			'ß': 'ss',
 			'ü':'ue'
 		} );
@@ -302,7 +303,7 @@ var planetsRowspan = [["Earth","6051.8"], jupiter, ["Mars","6051.8"], mercury, s
 var planetsRowspanII = [jupiter, mercury, saturn, ['Venus', '6371.0'], venus, ['Venus', '3390.0']];
 
 tableTest(
-	'Basic planet table: Same value for multiple rows via rowspan',
+	'Basic planet table: same value for multiple rows via rowspan',
 	header,
 	planets,
 	planetsRowspan,
