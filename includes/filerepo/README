@@ -47,7 +47,6 @@ File defines an abstract class File.
     LocalFile extends File.
         ForeignDBFile extends LocalFile
         Image extends LocalFile
-        SwiftFile extends LocalFile
     UnregisteredLocalFile extends File.
         UploadStashFile extends UnregisteredLocalFile.
 FileRepo defines an abstract class FileRepo.
@@ -56,8 +55,6 @@ FileRepo defines an abstract class FileRepo.
         LocalRepo extends FSRepo
             ForeignDBRepo extends LocalRepo
             ForeignDBViaLBRepo extends LocalRepo
-            SwiftRepo extends LocalRepo
     NullRepo extends FileRepo
 
 Russ Nelson, March 2011
-
