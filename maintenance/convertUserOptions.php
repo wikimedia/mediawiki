@@ -33,12 +33,12 @@ class ConvertUserOptions extends Maintenance {
 	}
 
 	public function execute() {
-		$this->output( "Beginning batch conversion of user options.\n" );
+		$this->output( "...batch conversion of user_options: " );
 		$id = 0;
 		$dbw = wfGetDB( DB_MASTER );
 
 		if ( !$dbw->fieldExists( 'user', 'user_options', __METHOD__ ) ) {
-			$this->output( "No user_options field in the user table. Nothing to migrate..." );
+			$this->output( "nothing to migrate. " );
 			return;
 		}
 		while ( $id !== null ) {
@@ -57,7 +57,7 @@ class ConvertUserOptions extends Maintenance {
 				$this->output( "--Converted to ID $id\n" );
 			}
 		}
-		$this->output( "Conversion done. Converted " . $this->mConversionCount . " user records.\n" );
+		$this->output( "done. Converted " . $this->mConversionCount . " user records.\n" );
 	}
 
 	/**
