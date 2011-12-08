@@ -1,5 +1,5 @@
 /*
- * jQuery UI Autocomplete 1.8.16
+ * jQuery UI Autocomplete 1.8.17
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -215,6 +215,13 @@ $.widget( "ui.autocomplete", {
 		if ( $.fn.bgiframe ) {
 			 this.menu.element.bgiframe();
 		}
+		// turning off autocomplete prevents the browser from remembering the
+		// value when navigating through history, so we re-enable autocomplete
+		// if the page is unloaded before the widget is destroyed. #7790
+		self.beforeunloadHandler = function() {
+			self.element.removeAttr( "autocomplete" );
+		};
+		$( window ).bind( "beforeunload", self.beforeunloadHandler );
 	},
 
 	destroy: function() {
@@ -225,6 +232,7 @@ $.widget( "ui.autocomplete", {
 			.removeAttr( "aria-autocomplete" )
 			.removeAttr( "aria-haspopup" );
 		this.menu.element.remove();
+		$( window ).unbind( "beforeunload", this.beforeunloadHandler );
 		$.Widget.prototype.destroy.call( this );
 	},
 
@@ -375,7 +383,9 @@ $.widget( "ui.autocomplete", {
 	_resizeMenu: function() {
 		var ul = this.menu.element;
 		ul.outerWidth( Math.max(
-			ul.width( "" ).outerWidth(),
+			// Firefox wraps long text (possibly a rounding bug)
+			// so we add 1px to avoid the wrapping (#7513)
+			ul.width( "" ).outerWidth() + 1,
 			this.element.outerWidth()
 		) );
 	},

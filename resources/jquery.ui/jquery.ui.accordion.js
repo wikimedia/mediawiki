@@ -1,5 +1,5 @@
 /*
- * jQuery UI Accordion 1.8.16
+ * jQuery UI Accordion 1.8.17
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
  * Dual licensed under the MIT or GPL Version 2 licenses.
@@ -518,7 +518,7 @@ $.widget( "ui.accordion", {
 });
 
 $.extend( $.ui.accordion, {
-	version: "1.8.16",
+	version: "1.8.17",
 	animations: {
 		slide: function( options, additions ) {
 			options = $.extend({
@@ -550,11 +550,11 @@ $.extend( $.ui.accordion, {
 			// fix width before calculating height of hidden element
 			var s = options.toShow;
 			originalWidth = s[0].style.width;
-			s.width( parseInt( s.parent().width(), 10 )
-				- parseInt( s.css( "paddingLeft" ), 10 )
-				- parseInt( s.css( "paddingRight" ), 10 )
-				- ( parseInt( s.css( "borderLeftWidth" ), 10 ) || 0 )
-				- ( parseInt( s.css( "borderRightWidth" ), 10) || 0 ) );
+			s.width( s.parent().width()
+				- parseFloat( s.css( "paddingLeft" ) )
+				- parseFloat( s.css( "paddingRight" ) )
+				- ( parseFloat( s.css( "borderLeftWidth" ) ) || 0 )
+				- ( parseFloat( s.css( "borderRightWidth" ) ) || 0 ) );
 
 			$.each( fxAttrs, function( i, prop ) {
 				hideProps[ prop ] = "hide";
