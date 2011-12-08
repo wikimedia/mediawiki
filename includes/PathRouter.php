@@ -17,10 +17,8 @@
  *   - Matches /foo/Bar explicitly and uses "Baz" as the title
  * $router->add( '/help/$1', array( 'title' => 'Help:$1' ) );
  *   - Matches /help/Foo with "Help:Foo" as the title
- * $router->add( '/help/$1', array( 'title' => 'Help:$1' ) );
- *   - Matches 
  * $router->add( '/$1', array( 'foo' => array( 'value' => 'bar$2' ) );
- *   - Matches /Foo and sets 'foo=bar$2' without $2 being replaced
+ *   - Matches /Foo and sets 'foo' to 'bar$2' without $2 being replaced
  * $router->add( '/$1', array( 'data:foo' => 'bar' ), array( 'callback' => 'functionname' ) );
  *   - Matches /Foo, adds the key 'foo' with the value 'bar' to the data array
  *     and calls functionname( &$matches, $data );
@@ -32,23 +30,26 @@
  *
  * Params:
  *   - In a pattern $1, $2, etc... will be replaced with the relevant contents
- *   - If you used a keyed array as a path pattern $key will be replaced with the relevant contents
- *   - The default behavior is equivalent to `array( 'title' => '$1' )`, if you don't want the title parameter you can explicitly use `array( 'title' => false )`
- *   - You can specify a value that won't have replacements in it using `'foo' => array( 'value' => 'bar' );`
+ *   - If you used a keyed array as a path pattern, $key will be replaced with
+ *     the relevant contents
+ *   - The default behavior is equivalent to `array( 'title' => '$1' )`,
+ *     if you don't want the title parameter you can explicitly use `array( 'title' => false )`
+ *   - You can specify a value that won't have replacements in it 
+ *     using `'foo' => array( 'value' => 'bar' );`
  *
  * Options:
- *   - The option keys $1, $2, etc... can be specified to restrict the possible values of that variable.
- *     A string can be used for a single value, or an array for multiple.
+ *   - The option keys $1, $2, etc... can be specified to restrict the possible values
+ *     of that variable. A string can be used for a single value, or an array for multiple.
  *   - When the option key 'strict' is set (Using addStrict is simpler than doing this directly)
  *     the path won't have $1 implicitly added to it.
  *   - The option key 'callback' can specify a callback that will be run when a path is matched.
- *     The callback will have the arguments ( &$matches, $data ) and the matches array can be modified.
+ *     The callback will have the arguments ( &$matches, $data ) and the matches array can
+ *     be modified.
  *
  * @since 1.19
  * @author Daniel Friesen
  */
 class PathRouter {
-	
 	protected function doAdd( $path, $params, $options, $key = null ) {
 		if ( $path[0] !== '/' ) {
 			$path = '/' . $path;
@@ -95,10 +96,10 @@ class PathRouter {
 		}
 
 		$pattern = (object)array(
-			'path' => $path,
-			'params' => $params,
+			'path'    => $path,
+			'params'  => $params,
 			'options' => $options,
-			'key' => $key,
+			'key'     => $key,
 		);
 		$pattern->weight = self::makeWeight( $pattern );
 		$this->patterns[] = $pattern;
