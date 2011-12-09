@@ -389,6 +389,8 @@ $1',
 'page-rss-feed'           => '"$1" - RSS lentası',
 'page-atom-feed'          => '"$1" - Atom lentası',
 'red-link-title'          => '$1 (böyle saife yоq)',
+'sort-descending'         => 'Eksilmesi sayın sırala',
+'sort-ascending'          => 'Artması sayın sırala',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Saife',

@@ -31,6 +31,7 @@
  * @author Liangent
  * @author Mark85296341
  * @author MarkAHershberger
+ * @author Mys 721tx
  * @author O
  * @author Onecountry
  * @author PhiLiP
@@ -1757,24 +1758,25 @@ $1',
 'filerevert-badversion'     => '文件并无所请求时间戳下的早期本地版本。',
 
 # File deletion
-'filedelete'                  => '删除$1',
-'filedelete-legend'           => '删除文件',
-'filedelete-intro'            => "您现正删除文件'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'        => "你现正删除'''[[Media:$1|$1]]'''于[$4 $2 $3]的版本。",
-'filedelete-comment'          => '理由：',
-'filedelete-submit'           => '删除',
-'filedelete-success'          => "'''$1'''已经删除。",
-'filedelete-success-old'      => "'''[[Media:$1|$1]]'''于 $2 $3 的版本已经删除。",
-'filedelete-nofile'           => "'''$1'''不存在。",
-'filedelete-nofile-old'       => "在已指定属性的情况下，这里没有'''$1'''的保存版本。",
-'filedelete-otherreason'      => '其它／附加的理由：',
-'filedelete-reason-otherlist' => '其他原因',
-'filedelete-reason-dropdown'  => '
+'filedelete'                   => '删除$1',
+'filedelete-legend'            => '删除文件',
+'filedelete-intro'             => "您现正删除文件'''[[Media:$1|$1]]'''。",
+'filedelete-intro-old'         => "你现正删除'''[[Media:$1|$1]]'''于[$4 $2 $3]的版本。",
+'filedelete-comment'           => '理由：',
+'filedelete-submit'            => '删除',
+'filedelete-success'           => "'''$1'''已经删除。",
+'filedelete-success-old'       => "'''[[Media:$1|$1]]'''于 $2 $3 的版本已经删除。",
+'filedelete-nofile'            => "'''$1'''不存在。",
+'filedelete-nofile-old'        => "在已指定属性的情况下，这里没有'''$1'''的保存版本。",
+'filedelete-otherreason'       => '其它／附加的理由：',
+'filedelete-reason-otherlist'  => '其他原因',
+'filedelete-reason-dropdown'   => '
 *常用删除理由
 ** 侵犯版权
 ** 重复文件',
-'filedelete-edit-reasonlist'  => '编辑删除埋由',
-'filedelete-maintenance'      => '当在维护时已经暂时停用文件删除和恢复。',
+'filedelete-edit-reasonlist'   => '编辑删除埋由',
+'filedelete-maintenance'       => '当在维护时已经暂时停用文件删除和恢复。',
+'filedelete-maintenance-title' => '无法删除文件',
 
 # MIME search
 'mimesearch'         => 'MIME 搜索',

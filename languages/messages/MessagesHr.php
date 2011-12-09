@@ -3650,13 +3650,16 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 'tags-hitcount'           => '$1 {{PLURAL:$1|promjena|promjene|promjena}}',
 
 # Special:ComparePages
-'comparepages'     => 'Usporedite stranice',
-'compare-selector' => 'Usporedite inačice stranice',
-'compare-page1'    => 'Stranica 1',
-'compare-page2'    => 'Stranica 2',
-'compare-rev1'     => 'Izmjena 1',
-'compare-rev2'     => 'Izmjena 2',
-'compare-submit'   => 'Usporedite',
+'comparepages'                => 'Usporedite stranice',
+'compare-selector'            => 'Usporedite inačice stranice',
+'compare-page1'               => 'Stranica 1',
+'compare-page2'               => 'Stranica 2',
+'compare-rev1'                => 'Izmjena 1',
+'compare-rev2'                => 'Izmjena 2',
+'compare-submit'              => 'Usporedite',
+'compare-invalid-title'       => 'Naslov koji ste naveli je nevažeći.',
+'compare-title-not-exists'    => 'Naslov koji ste naveli ne postoji.',
+'compare-revision-not-exists' => 'Navedena izmjena stranice ne postoji.',
 
 # Database error messages
 'dberr-header'      => 'Ovaj wiki ima problem',
