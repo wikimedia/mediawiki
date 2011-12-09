@@ -131,7 +131,7 @@ class FeedUtils {
 
 			if ( $wgFeedDiffCutoff <= 0 || ( strlen( $diffText ) > $wgFeedDiffCutoff ) ) {
 				// Omit large diffs
-				$diffText = self::getDiffText( $title, $newid, $oldid);
+				$diffText = self::getDiffLink( $title, $newid, $oldid );
 			} elseif ( $diffText === false ) {
 				// Error in diff engine, probably a missing revision
 				$diffText = "<p>Can't load revision $newid</p>";
@@ -150,7 +150,7 @@ class FeedUtils {
 			}
 			if ( $wgFeedDiffCutoff <= 0 || strlen( $newtext ) > $wgFeedDiffCutoff ) {
 				// Omit large new page diffs, bug 29110
-				$diffText = self::getDiffText( $title, $newid );
+				$diffText = self::getDiffLink( $title, $newid );
 			} else {
 				$diffText = '<p><b>' . wfMsg( 'newpage' ) . '</b></p>' .
 					'<div>' . nl2br( htmlspecialchars( $newtext ) ) . '</div>';
@@ -170,17 +170,16 @@ class FeedUtils {
 	 * @param $newid Integer newid for this diff
 	 * @param $oldid Integer|null oldid for the diff. Null means it is a new article
 	 */
-	protected static function getDiffText( Title $title, $newid, $oldid = null ) {
+	protected static function getDiffLink( Title $title, $newid, $oldid = null ) {
 		$queryParameters = ($oldid == null)
 			? "diff={$newid}"
 			: "diff={$newid}&oldid={$oldid}" ;
-		$diffLink = $title->escapeFullUrl( $queryParameters );
+		$diffUrl = $title->escapeFullUrl( $queryParameters );
 
-		$diffText = Html::RawElement( 'a', array( 'href' => $diffLink ),
-			htmlspecialchars( wfMsgForContent( 'showdiff' ) )
-		);
+		$diffLink = Html::element( 'a', array( 'href' => $diffUrl ),
+			wfMsgForContent( 'showdiff' ) );
 
-		return $diffText;
+		return $diffLink;
 	}
 
 	/**
