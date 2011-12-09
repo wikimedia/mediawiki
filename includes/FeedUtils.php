@@ -102,8 +102,8 @@ class FeedUtils {
 		$anon = new User();
 		$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
 
-		# Early exist when the page is not an article, on errors and no newid to
-		# compare.
+		// Can't diff special pages, unreadable pages or pages with no new revision
+		// to compare against: just return the text.
 		if( $title->getNamespace() < 0 || $accErrors || !$newid ) {
 			wfProfileOut( __METHOD__ );
 			return $completeText;
