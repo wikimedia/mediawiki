@@ -85,11 +85,15 @@ abstract class CdbWriter {
 
 	/**
 	 * Create the object and open the file
+	 *
+	 * @param $fileName string
 	 */
 	abstract function __construct( $fileName );
 
 	/**
 	 * Set a key to a given value. The value will be converted to string.
+	 * @param $key string
+	 * @param $value string
 	 */
 	abstract public function set( $key, $value );
 
@@ -99,7 +103,6 @@ abstract class CdbWriter {
 	 */
 	abstract public function close();
 }
-
 
 /**
  * Reader class which uses the DBA extension

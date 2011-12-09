@@ -101,6 +101,7 @@ production.
 * Differences in the history page now uses slightly better colors for people
   perceiving colors differently. Colors comes from the French Wikipedia.
 * (bug 32879) Upgrade jQuery to 1.7.1
+* jQuery UI upgraded to 1.8.17
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
