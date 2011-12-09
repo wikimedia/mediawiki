@@ -8993,28 +8993,6 @@ title=[[Main Page]]
 
 !! end
 
-!! test
-Bug 32450: MediaWiki: js pages should ignore Category syntax
-!! options
-title=[[MediaWiki:bug32450.js]]
-!! input
-var foo = "[[Category:bug32450]]"
-!! result
-<p>var foo = "[[Category:bug32450]]"
-</p>
-!! end
-
-!! test
-Bug 32450: MediaWiki: css pages should ignore Category syntax
-!! options
-title=[[MediaWiki:bug32450.css]]
-!! input
-/** Css comment: "[[Category:bug32450]]" */
-!! result
-<p>/** Css comment: "[[Category:bug32450]]" */
-</p>
-!! end
-
 TODO:
 more images
 more tables
