@@ -6,20 +6,23 @@
  * writer locks. Intended for development use only,  as a memcached workalike
  * for systems that don't have it.
  *
+ * On construction you can pass array( 'dir' => '/some/path' ); as a parameter
+ * to override the default DBA files directory (wgTmpDirectory).
+ *
  * @ingroup Cache
  */
 class DBABagOStuff extends BagOStuff {
 	var $mHandler, $mFile, $mReader, $mWriter, $mDisabled;
 
-	public function __construct( $dir = false ) {
+	public function __construct( $params ) {
 		global $wgDBAhandler;
 
-		if ( $dir === false ) {
+		if ( !isset( $params['dir'] ) ) {
 			global $wgTmpDirectory;
-			$dir = $wgTmpDirectory;
+			$params['dir'] = $wgTmpDirectory;
 		}
 
-		$this->mFile = "$dir/mw-cache-" . wfWikiID();
+		$this->mFile = $params['dir']."/mw-cache-" . wfWikiID();
 		$this->mFile .= '.db';
 		wfDebug( __CLASS__ . ": using cache file {$this->mFile}\n" );
 		$this->mHandler = $wgDBAhandler;
