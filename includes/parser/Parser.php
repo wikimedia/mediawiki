@@ -1643,12 +1643,6 @@ class Parser {
 	 * @private
 	 */
 	function replaceInternalLinks( $s ) {
-		if( $this->getTitle()->isCssOrJsPage() ) {
-			# bug 32450 : js and script pages in MediaWiki: namespace do not want
-			# to get their code or comments altered. Think about js string:
-			# var foobar = "[[Category:" + $catname + "]];
-			return $s;
-		}
 		$this->mLinkHolders->merge( $this->replaceInternalLinks2( $s ) );
 		return $s;
 	}

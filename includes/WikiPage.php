@@ -2018,7 +2018,18 @@ class WikiPage extends Page {
 		$edit->newText = $text;
 		$edit->pst = $wgParser->preSaveTransform( $text, $this->mTitle, $user, $popts );
 		$edit->popts = $this->makeParserOptions( 'canonical' );
-		$edit->output = $wgParser->parse( $edit->pst, $this->mTitle, $edit->popts, true, true, $revid );
+
+		// Bug 32858: For a CSS/JS page, put a blank parser output into the 
+		// prepared edit, so that links etc. won't be registered in the 
+		// database. We could have set $edit->output to false or something if 
+		// we thought of this bug earlier, but now that would break the 
+		// interface with AbuseFilter etc.
+		if ( $this->mTitle->isCssOrJsPage() || $this->getTitle()->isCssJsSubpage() ) {
+			$input = '';
+		} else {
+			$input = $edit->pst;
+		}
+		$edit->output = $wgParser->parse( $input, $this->mTitle, $edit->popts, true, true, $revid );
 		$edit->oldText = $this->getRawText();
 
 		$this->mPreparedEdit = $edit;
