@@ -1220,6 +1220,17 @@ $param: Associative Array with the following additional options:
  - wrap String Wrap the message in html (usually something like "&lt;div ...>$1&lt;/div>").
  - flags Integer display flags (NO_ACTION_LINK,NO_EXTRA_USER_LINKS)
 
+'LoggableUserIPData': called when IP data for a user action can be logged by extensions like CheckUser.
+This is intended for when users do things that do not already create edits or log entries.
+$context: The context the of the action, which includes the user and request
+$data: Associative array of data for handlers to record. It must include values for:
+ - 'namespace' Integer namespace for target title (NS_SPECIAL is allowed)
+ - 'title'     Database key string for target title (empty string if not applicable)
+ - 'pageid'    Integer page ID for target title (zero if not applicable)
+ - 'action'    Wikitext string in the same format as an edit summary
+ - 'comment'   Wikitext string in the same format as an edit summary
+ - 'timestamp' Timestamp when the action occured
+
 'LoginAuthenticateAudit': a login attempt either succeeded or
 failed. This may be called before the User object is populated, so a
 user object equivalent to an anonymous user. No return data is
