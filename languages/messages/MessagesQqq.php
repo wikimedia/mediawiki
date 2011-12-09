@@ -1718,7 +1718,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 'recentchanges-label-bot'         => 'Tooltip for {{msg-mw|boteditletter}}',
 'recentchanges-label-unpatrolled' => 'Tooltip for {{msg-mw|unpatrolledletter}}',
 'rcnote'                          => 'Used on [[Special:RecentChanges]].
-Shoulds looks like the message {{msg-mw|wlnote}} used similary but on [[Special:Watchlist]]
+Similar to {{msg-mw|wlnote}} which is used on [[Special:Watchlist]].
 * $1 is the number of changes shown,
 * $2 is the number of days for which the changes are shown,
 * $3 is a date and time (deprecated),
@@ -2433,8 +2433,8 @@ Possible alternatives to the word 'content' are 'subject matter' or 'wiki subjec
 {{Identical|Content page}}",
 'watchlist-details'    => 'Message on Special page: My watchlist. This is paired with the message [[Mediawiki:Nowatchlist]] which appears instead of Watchlist-details when $1 is 0.',
 'wlheader-showupdated' => 'This message shows up near top of users watchlist page.',
-'wlnote'               => 'Used on [[Special:Watchlist]] when days > 0
-Shoulds looks like the message {{msg-mw|rcnote}} used similary but on [[Special:RecentChanges]]
+'wlnote'               => 'Used on [[Special:Watchlist]] when the maximum number of days is specified.
+Similar to {{msg-mw|rcnote}} which is used on [[Special:RecentChanges]].
 * $1 is the number of changes shown,
 * $2 is the number of days for which the changes are shown,
 * $3 is a date alone,
