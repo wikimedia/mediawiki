@@ -497,9 +497,44 @@ return array(
 		'debugScripts' => 'resources/mediawiki/mediawiki.log.js',
 		'debugRaw' => false,
 	),
+	'mediawiki.api' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.api.js',
+	),
+	'mediawiki.api.category' => array( 
+		'scripts' => 'resources/mediawiki/mediawiki.api.category.js',
+		'dependencies' => array( 
+			'mediawiki.api',
+			'mediawiki.Title' 
+		),
+	),
+	'mediawiki.api.edit' => array( 
+		'scripts' => 'resources/mediawiki/mediawiki.api.edit.js',
+		'dependencies' => array( 
+			'mediawiki.api',
+			'mediawiki.Title' 
+		),
+	),
+	'mediawiki.api.parse' => array( 
+		'scripts' => 'resources/mediawiki/mediawiki.api.parse.js',
+		'dependencies' => 'mediawiki.api',
+	),
+	'mediawiki.api.titleblacklist' => array( 
+		'scripts' => 'resources/mediawiki/mediawiki.api.titleblacklist.js',
+		'dependencies' => array( 
+			'mediawiki.api',
+			'mediawiki.Title' 
+		),
+	),
 	'mediawiki.debug' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.debug.js',
 		'styles' => 'resources/mediawiki/mediawiki.debug.css',
+	),
+	'mediawiki.feedback' => array(
+		'scripts' => 'resources/mediawiki/mediawiki.feedback.js',
+		'dependencies' => array( 
+			'mediawiki.api.edit', 
+			'mediawiki.Title' 
+		),
 	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',
