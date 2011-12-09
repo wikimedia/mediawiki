@@ -3,7 +3,7 @@
  */
 
 // Attach to window and globally alias
-window.mw = window.mediaWiki = new ( function( $ ) {
+window.mw = window.mediaWiki = new ( function( $, undefined ) {
 
 	/* Private Members */
 
