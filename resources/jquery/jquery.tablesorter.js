@@ -260,7 +260,7 @@
 		var	maxSeen = 0,
 			longest,
 			realCellIndex = 0,
-			$tableHeaders = $( 'thead:eq(0) tr', table );
+			$tableHeaders = $( 'thead:eq(0) > tr', table );
 		if ( $tableHeaders.length > 1 ) {
 			$tableHeaders.each( function() {
 				if ( this.cells.length > maxSeen ) {
