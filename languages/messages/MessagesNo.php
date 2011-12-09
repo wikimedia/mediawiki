@@ -25,6 +25,7 @@
  * @author Laaknor
  * @author Najami
  * @author Nghtwlkr
+ * @author Njardarlogar
  * @author Nsaa
  * @author Purodha
  * @author Qaqqalik
@@ -1588,6 +1589,7 @@ Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
 'action-userrights'           => 'redigere alle brukerrettigheter',
 'action-userrights-interwiki' => 'endre brukerrettigheter for brukere på andre wikier',
 'action-siteadmin'            => 'låse eller låse opp databasen',
+'action-sendemail'            => 'send e-post',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|endring|endringer}}',
@@ -1793,6 +1795,7 @@ Den kan ikke sikkerhetskontrolleres.',
 'uploadstash-badtoken' => 'Utføringen av den handlingen var mislykket, kanskje fordi dine redigeringsrettigheter har utløpt. Prøv igjen.',
 'uploadstash-errclear' => 'Fjerning av filene var mislykket.',
 'uploadstash-refresh'  => 'Oppdater listen over filer',
+'invalid-chunk-offset' => 'Ugyldig delforskyvning',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Ingen tilgang',
@@ -1898,23 +1901,24 @@ Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 'filerevert-badversion'     => 'Det er ingen tidligere lokal versjon av denne filen med det gitte tidstrykket.',
 
 # File deletion
-'filedelete'                  => 'Slett $1',
-'filedelete-legend'           => 'Slett fil',
-'filedelete-intro'            => "Du er i ferd med å slette filen '''[[Media:$1|$1]]''' sammen med hele dens historikk.",
-'filedelete-intro-old'        => "Du sletter versjonen av '''[[Media:$1|$1]]''' à [$4 $3, $2].",
-'filedelete-comment'          => 'Årsak:',
-'filedelete-submit'           => 'Slett',
-'filedelete-success'          => "'''$1''' ble slettet.",
-'filedelete-success-old'      => "Versjonen av '''[[Media:$1|$1]]''' à $3, $2 ble slettet.",
-'filedelete-nofile'           => "'''$1''' finnes ikke.",
-'filedelete-nofile-old'       => "Det er ingen arkivert versjon av '''$1''' med de gitte attributtene.",
-'filedelete-otherreason'      => 'Annen/utdypende grunn:',
-'filedelete-reason-otherlist' => 'Annen grunn',
-'filedelete-reason-dropdown'  => '*Vanlige slettingsgrunner
+'filedelete'                   => 'Slett $1',
+'filedelete-legend'            => 'Slett fil',
+'filedelete-intro'             => "Du er i ferd med å slette filen '''[[Media:$1|$1]]''' sammen med hele dens historikk.",
+'filedelete-intro-old'         => "Du sletter versjonen av '''[[Media:$1|$1]]''' à [$4 $3, $2].",
+'filedelete-comment'           => 'Årsak:',
+'filedelete-submit'            => 'Slett',
+'filedelete-success'           => "'''$1''' ble slettet.",
+'filedelete-success-old'       => "Versjonen av '''[[Media:$1|$1]]''' à $3, $2 ble slettet.",
+'filedelete-nofile'            => "'''$1''' finnes ikke.",
+'filedelete-nofile-old'        => "Det er ingen arkivert versjon av '''$1''' med de gitte attributtene.",
+'filedelete-otherreason'       => 'Annen/utdypende grunn:',
+'filedelete-reason-otherlist'  => 'Annen grunn',
+'filedelete-reason-dropdown'   => '*Vanlige slettingsgrunner
 ** Opphavsrettsbrudd
 ** Duplikatfil',
-'filedelete-edit-reasonlist'  => 'Rediger begrunnelser for sletting',
-'filedelete-maintenance'      => 'Sletting og gjenoppretting av filer er midlertidig slått av på grunn av vedlikehold.',
+'filedelete-edit-reasonlist'   => 'Rediger begrunnelser for sletting',
+'filedelete-maintenance'       => 'Sletting og gjenoppretting av filer er midlertidig slått av på grunn av vedlikehold.',
+'filedelete-maintenance-title' => 'Kan ikke slette fil',
 
 # MIME search
 'mimesearch'         => 'MIME-søk',
@@ -2061,8 +2065,8 @@ Merk at andre sider kanskje lenker til en fil med en direkte lenke, så filen li
 'booksources-invalid-isbn'  => 'Det gitte ISBN-nummeret er ugyldig; sjekk om du har angitt det riktig.',
 
 # Special:Log
-'specialloguserlabel'  => 'Bruker:',
-'speciallogtitlelabel' => 'Tittel:',
+'specialloguserlabel'  => 'Utøver:',
+'speciallogtitlelabel' => 'Mål (tittel eller bruker):',
 'log'                  => 'Logger',
 'all-logs-page'        => 'Alle offentlige logger',
 'alllogstext'          => 'Kombinert visning av alle loggene på {{SITENAME}}.
@@ -2106,7 +2110,9 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'linksearch-pat'   => 'Søkemønster:',
 'linksearch-ns'    => 'Navnerom:',
 'linksearch-ok'    => 'Søk',
-'linksearch-text'  => 'Jokertegn som «*.wikipedia.org» kan brukes.<br />Støttede protokoller: <tt>$1</tt>',
+'linksearch-text'  => 'Jokertegn som «*.wikipedia.org» kan brukes.
+Det kreves at det oppgis minst et toppnivådomene, for eksempel «*.org».<br />
+Støttede protokoller: <tt>$1</tt> (ikke legg til noen av disse i søket ditt).',
 'linksearch-line'  => '$1 lenkes fra $2',
 'linksearch-error' => 'Jokertegn kan kun brukes foran tjenernavnet.',
 
@@ -2727,6 +2733,7 @@ Dersom du bare vil ha nåværende versjon, kan du også bruke en lenke, for ekse
 'exportcuronly'     => 'Ta bare med den nåværende versjonen, ikke hele historikken.',
 'exportnohistory'   => "----
 '''Merk:''' Eksportering av hele historikken gjennom dette skjemaet har blitt slått av av ytelsesgrunner.",
+'exportlistauthors' => 'Inkluder en fullstendig liste over bidragsytere for hver side',
 'export-submit'     => 'Eksporter',
 'export-addcattext' => 'Legg til sider fra kategori:',
 'export-addcat'     => 'Legg til',

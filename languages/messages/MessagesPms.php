@@ -2175,10 +2175,10 @@ Che as varda ël [[Special:Log/delete|Registr djë scancelament]] për ës-ciair
 'undelete-no-results'          => "A-i é gnun-a pàgina parèj ant l'archivi dje scancelassion.",
 'undelete-filename-mismatch'   => "As peul nen ciapé andré la revision dl'archivi col marcatemp $1: Nòm d'archivi nen giust",
 'undelete-bad-store-key'       => "As peul pa pijesse andré la revision dl'archivi col marcatemp $1: L'archivi a-i era già pì nen anans d'esse scancelà.",
-'undelete-cleanup-error'       => 'Eror ën scanceland l\'archivi nen dovrà "$1".',
-'undelete-missing-filearchive' => "As peul nen ricuperesse l'archivi con l'identità $1 përchè a-i é pa ant la base dat. A peul esse ch'a l'abio già disdëscancelalo.",
+'undelete-cleanup-error'       => "Eror ën scanceland l'archivi nen dovrà «$1».",
+'undelete-missing-filearchive' => "As peul nen ricuperesse l'archivi con l'identità $1 përchè a-i é pa ant la base ëd dat. A peul esse ch'a l'abio già pijalo andré.",
 'undelete-error'               => "Pàgina d'eror d'arcuperassion",
-'undelete-error-short'         => "Eror ën disdëscanceland l'archivi: $1",
+'undelete-error-short'         => "Eror ën arcuperand l'archivi: $1",
 'undelete-error-long'          => "Eror antramentr ch'as disdëscancelava l'archivi:
 
 $1",

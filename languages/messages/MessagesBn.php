@@ -195,7 +195,7 @@ $messages = array(
 'noindex-category'               => 'নির্ঘণ্ট নয় এমন পাতা',
 'broken-file-category'           => 'অকার্যকর চিত্র সংযোগসহ পাতাসমূহ',
 
-'about'         => 'বৃত্তান্ত',
+'about'         => 'পরিচিতি',
 'article'       => 'বিষয়বস্তু আছে এমন পাতা',
 'newwindow'     => '(নতুন উইন্ডোতে খুলবে)',
 'cancel'        => 'বাতিল',

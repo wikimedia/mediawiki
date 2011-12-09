@@ -209,7 +209,7 @@ $messages = array(
 'tog-editsection'             => 'Lejo redaktimin e seksioneve me anë të lidhjeve [redakto]',
 'tog-editsectiononrightclick' => 'Lejo redaktimin e seksioneve duke klikuar me të djathtën mbi titullin e seksionit (kërkon JavaScript)',
 'tog-showtoc'                 => 'Trego tabelën e përmbajtjes (për faqet me më shume se 3 tituj)',
-'tog-rememberpassword'        => 'Mbaj mend fjalëkalimin tim në këtë browser (më së shumti për $1 {{PLURAL:$1|ditë|ditë}})',
+'tog-rememberpassword'        => 'Mbaj mend fjalëkalimin tim në këtë shfletues (më së shumti për $1 {{PLURAL:$1|ditë|ditë}})',
 'tog-watchcreations'          => 'Shtoi faqet e krijuara prej meje tek lista e faqeve që unë vëzhgoj',
 'tog-watchdefault'            => 'Shto faqet e redaktuara prej meje tek lista e faqeve që unë vëzhgoj',
 'tog-watchmoves'              => 'Shto faqet e zhvendosura prej meje tek lista e faqeve që unë vëzhgoj',
@@ -243,11 +243,11 @@ $messages = array(
 
 'underline-always'  => 'Gjithmonë',
 'underline-never'   => 'Asnjëherë',
-'underline-default' => 'Sipas rregullit në Browser',
+'underline-default' => 'Sipas rregullit në shfletues',
 
 # Font style option in Special:Preferences
 'editfont-style'     => 'Zgjidh stilin e gërmave të hapsirës:',
-'editfont-default'   => 'Sipas rregullit në Browser',
+'editfont-default'   => 'Sipas rregullit në shfletues',
 'editfont-monospace' => 'Gërma monospace',
 'editfont-sansserif' => 'Germa Sans-serif',
 'editfont-serif'     => 'Gërma serif',
@@ -555,7 +555,7 @@ Mund të jetë fshirë nga dikush tjetër.',
 'badtitle'             => 'Titull i pasaktë',
 'badtitletext'         => 'Titulli i faqes që kërkuat nuk ishte i saktë, ishte bosh, ose ishte një titull ndër-gjuhësor/inter-wiki me lidhje të pasaktë.
 Mund të përmbajë një ose më shumë germa, të cilat nuk mund të përdoren në tituj.',
-'perfcached'           => 'Informacioni i mëposhtëm është kopje e ruajtur dhe mund të mos jetë e përditësuar.',
+'perfcached'           => 'Informacioni i mëposhtëm është kopje e ruajtur dhe mund të mos jetë i përditësuar.',
 'perfcachedts'         => 'Informacioni i mëposhtëm është një kopje e rifreskuar më $1.',
 'querypage-no-updates' => "Përditësimet për këtë faqe për momentin janë të ç'aktivizuara.
 Këtu informacioni nuk do të jetë i përditësuar.",
@@ -581,19 +581,19 @@ $2',
 'customcssprotected'   => "Ju nuk keni leje për të redaktuar këtë faqe CSS, sepse ai përmban cilësimet personale tjetër user's.",
 'customjsprotected'    => "Ju nuk keni leje për të redaktuar këtë faqe JavaScript, sepse ai përmban cilësimet personale tjetër user's.",
 'ns-specialprotected'  => "Faqet speciale s'mund të redaktohen.",
-'titleprotected'       => "Ky titull është mbrojtur nga [[User:$1|$1]] dhe s'mund të krijohet një faqe nën të.
+'titleprotected'       => "Ky titull është mbrojtur nga [[User:$1|$1]] dhe s'mund të krijohet.
 Arsyeja e dhënë është ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => "Konfigurim i keq: skanues i panjohur virusesh: ''$1''",
-'virus-scanfailed'     => 'Hetimi dështoi (code $1)',
+'virus-badscanner'     => "Konfiguracion i parregullt: Skaner i panjohur virusesh: ''$1''",
+'virus-scanfailed'     => 'skani dështoi (code $1)',
 'virus-unknownscanner' => 'antivirus i pa njohur:',
 
 # Login and logout pages
-'logouttext'                 => "'''Ju jeni tashmë jashtë.''' 
+'logouttext'                 => "'''Ju keni dalë jashtë.''' 
 
- Ju mund të vazhdoni të përdorni {{SITENAME}} anonimisht, ose mund të [[Special:UserLogin|hyni brënda përsëri]] si përdoruesi i mëparshëm ose si një përdorues tjetër. 
- Vini re se disa faqe mund të shfaqen sikur ju të ishit identifikuar derisa të fshini ''cache''-in e shfletuesit tuaj.",
+ Ju mund të vazhdoni të përdorni {{SITENAME}} në mënyrë anonime, ose mund të [[Special:UserLogin|identifikoheni përsëri]] si përdoruesi i mëparshëm ose si një përdorues tjetër. 
+ Vini re se disa faqe mund të shfaqen sikur të ishit i identifikuar derisa të fshini ''cache''-in e shfletuesit tuaj.",
 'welcomecreation'            => '== Mirësevini, $1! == 
  Llogaria juaj është krijuar. 
  Mos harroni të ndryshoni [[Special:Preferences|{{SITENAME}} preferencat]].',

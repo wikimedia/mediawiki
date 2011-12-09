@@ -391,6 +391,8 @@ $1',
 'page-rss-feed'           => '«$1» - RSS лентасы',
 'page-atom-feed'          => '«$1» - Atom лентасы',
 'red-link-title'          => '$1 (бойле саифе ёкъ)',
+'sort-descending'         => 'Эксильмеси сайын сырала',
+'sort-ascending'          => 'Артмасы сайын сырала',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Саифе',

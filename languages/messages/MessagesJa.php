@@ -1836,7 +1836,7 @@ file_uploadsの設定を確認してください。',
 詳細：$1',
 'uploadjava'                  => 'このファイルは、Javaの.classファイルを含むZIPファイルです。
 セキュリティの制限を回避されるおそれがあるため、Javaファイルをアップロードすることは許可されていません。',
-'upload-source'               => 'アップロード先のファイル',
+'upload-source'               => 'アップロード元ファイル',
 'sourcefilename'              => 'アップロード元のファイル名：',
 'sourceurl'                   => 'アップロード元のURL：',
 'destfilename'                => 'ファイル名：',

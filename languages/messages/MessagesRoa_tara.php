@@ -1348,6 +1348,7 @@ Ce tu 'u mitte, a fatje ca è fatte t'avène ricanusciute.",
 'action-userrights'           => "cange tutte le deritte de l'utende",
 'action-userrights-interwiki' => "cange le deritte de l'utende de l'utinde de le otre Uicchi",
 'action-siteadmin'            => "blocche o sblocche 'u database",
+'action-sendemail'            => 'manne e-mail',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|cangiaminde|cangiaminde}}',
@@ -1550,6 +1551,7 @@ Non g'è possibbele verificà pa securezze.",
 'uploadstash-badtoken' => "L'esecuzione de sta azione non g'ha riuscite, pò essere purcé le credenziale pe le cangiaminde onne scadute. Pruève arrete.",
 'uploadstash-errclear' => "'A pulizie de le file non g'ha riuscite.",
 'uploadstash-refresh'  => "Aggiorne l'elenghe de le file",
+'invalid-chunk-offset' => "distanze d'u chunk invalide",
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Accesse negate',

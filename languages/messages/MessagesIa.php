@@ -2065,7 +2065,7 @@ como le adresse del expeditor del e-mail, de modo que le destinatario pote respo
 'nowikiemailtitle'     => 'E-mail non permittite',
 'nowikiemailtext'      => 'Iste usator ha optate pro non reciper e-mail de altere usatores.',
 'emailnotarget'        => 'Nomine de usator inexistente o invalide pro le destinatario.',
-'emailtarget'          => 'Entra le nomine de usator del destinatario.',
+'emailtarget'          => 'Specifica le nomine de usator del destinatario.',
 'emailusername'        => 'Nomine de usator:',
 'emailusernamesubmit'  => 'Submitter',
 'email-legend'         => 'Inviar e-mail a un altere usator de {{SITENAME}}',
