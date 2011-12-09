@@ -50,7 +50,15 @@
  * @author Daniel Friesen
  */
 class PathRouter {
+
+	/**
+	 * Protected helper to do the actual bulk work of adding a single pattern.
+	 * This is in a separate method so that add() can handle the difference between
+	 * a single string $path and an array() $path that contains multiple path
+	 * patterns each with an associated $key to pass on.
+	 */
 	protected function doAdd( $path, $params, $options, $key = null ) {
+		// Make sure all paths start with a /
 		if ( $path[0] !== '/' ) {
 			$path = '/' . $path;
 		}
@@ -65,13 +73,18 @@ class PathRouter {
 			}
 		}
 
+		// If 'title' is not specified and our path pattern contains a $1
+		// Add a default 'title' => '$1' rule to the parameters.
 		if ( !isset( $params['title'] ) && strpos( $path, '$1' ) !== false ) {
 			$params['title'] = '$1';
 		}
+		// If the user explicitly marked 'title' as false then omit it from the matches
 		if ( isset( $params['title'] ) && $params['title'] === false ) {
 			unset( $params['title'] );
 		}
 
+		// Loop over our parameters and convert basic key => string
+		// patterns into fully descriptive array form
 		foreach ( $params as $paramName => $paramData ) {
 			if ( is_string( $paramData ) ) {
 				if ( preg_match( '/\$(\d+|key)/u', $paramData ) ) {
@@ -87,6 +100,8 @@ class PathRouter {
 			}
 		}
 
+		// Loop over our options and convert any single value $# restrictions
+		// into an array so we only have to do in_array tests.
 		foreach ( $options as $optionName => $optionData ) {
 			if ( preg_match( '/^\$\d+$/u', $optionName ) ) {
 				if ( !is_array( $optionData ) ) {
@@ -131,6 +146,10 @@ class PathRouter {
 		$this->add( $path, $params, $options );
 	}
 
+	/**
+	 * Protected helper to re-sort our patterns so that the most specific
+	 * (most heavily weighted) patterns are at the start of the array.
+	 */
 	protected function sortByWeight() {
 		$weights = array();
 		foreach( $this->patterns as $key => $pattern ) {
@@ -139,7 +158,7 @@ class PathRouter {
 		array_multisort( $weights, SORT_DESC, SORT_NUMERIC, $this->patterns );
 	}
 
-	public static function makeWeight( $pattern ) {
+	protected static function makeWeight( $pattern ) {
 		# Start with a weight of 0
 		$weight = 0;
 
@@ -180,6 +199,8 @@ class PathRouter {
 	 * @return Array The array of matches for the path
 	 */
 	public function parse( $path ) {
+		// Make sure our patterns are sorted by weight so the most specific
+		// matches are tested first
 		$this->sortByWeight();
 		
 		$matches = null;
@@ -191,41 +212,58 @@ class PathRouter {
 			}
 		}
 
+		// We know the difference between null (no matches) and
+		// array() (a match with no data) but our WebRequest caller
+		// expects array() even when we have no matches so return
+		// a array() when we have null
 		return is_null( $matches ) ? array() : $matches;
 	}
 
 	protected static function extractTitle( $path, $pattern ) {
+		// Convert the path pattern into a regexp we can match with
 		$regexp = preg_quote( $pattern->path, '#' );
+		// .* for the $1
 		$regexp = preg_replace( '#\\\\\$1#u', '(?P<par1>.*)', $regexp );
+		// .+ for the rest of the parameter numbers
 		$regexp = preg_replace( '#\\\\\$(\d+)#u', '(?P<par$1>.+?)', $regexp );
 		$regexp = "#^{$regexp}$#";
 
 		$matches = array();
 		$data = array();
 
+		// Try to match the path we were asked to parse with our regexp
 		if ( preg_match( $regexp, $path, $m ) ) {
+			// Ensure that any $# restriction we have set in our {$option}s
+			// matches properly here.
 			foreach ( $pattern->options as $key => $option ) {
 				if ( preg_match( '/^\$\d+$/u', $key ) ) {
 					$n = intval( substr( $key, 1 ) );
 					$value = rawurldecode( $m["par{$n}"] );
 					if ( !in_array( $value, $option ) ) {
+						// If any restriction does not match return null
+						// to signify that this rule did not match.
 						return null;
 					}
 				}
 			}
 
+			// Give our $data array a copy of every $# that was matched
 			foreach ( $m as $matchKey => $matchValue ) {
 				if ( preg_match( '/^par\d+$/u', $matchKey ) ) {
 					$n = intval( substr( $matchKey, 3 ) );
 					$data['$'.$n] = rawurldecode( $matchValue );
 				}
 			}
+			// If present give our $data array a $key as well
 			if ( isset( $pattern->key ) ) {
 				$data['$key'] = $pattern->key;
 			}
 
+			// Go through our parameters for this match and add data to our matches and data arrays
 			foreach ( $pattern->params as $paramName => $paramData ) {
 				$value = null;
+				// Differentiate data: from normal parameters and keep the correct
+				// array key around (ie: foo for data:foo)
 				if ( preg_match( '/^data:/u', $paramName ) ) {
 					$isData = true;
 					$key = substr( $paramName, 5 );
@@ -235,15 +273,19 @@ class PathRouter {
 				}
 
 				if ( isset( $paramData['value'] ) ) {
+					// For basic values just set the raw data as the value
 					$value = $paramData['value'];
 				} elseif ( isset( $paramData['pattern'] ) ) {
+					// For patterns we have to make value replacements on the string
 					$value = $paramData['pattern'];
+					// For each $# match replace any $# within the value
 					foreach ( $m as $matchKey => $matchValue ) {
 						if ( preg_match( '/^par\d+$/u', $matchKey ) ) {
 							$n = intval( substr( $matchKey, 3 ) );
 							$value = str_replace( '$' . $n, rawurldecode( $matchValue ), $value );
 						}
 					}
+					// If a key was set replace any $key within the value
 					if ( isset( $pattern->key ) ) {
 						$value = str_replace( '$key', $pattern->key, $value );
 					}
@@ -254,6 +296,7 @@ class PathRouter {
 					}
 				}
 
+				// Send things that start with data: to $data, the rest to $matches
 				if ( $isData ) {
 					$data[$key] = $value;
 				} else {
@@ -261,12 +304,15 @@ class PathRouter {
 				}
 			}
 
+			// If this match includes a callback, execute it
 			if ( isset( $pattern->options['callback'] ) ) {
 				call_user_func_array( $pattern->options['callback'], array( &$matches, $data ) );
 			}
 		} else {
+			// Our regexp didn't match, return null to signify no match.
 			return null;
 		}
+		// Fall through, everything went ok, return our matches array
 		return $matches;
 	}
 
