@@ -62,15 +62,19 @@ class WebRequest {
 	}
 
 	/**
-	 * Extract the PATH_INFO variable even when it isn't a reasonable
-	 * value. On some large webhosts, PATH_INFO includes the script
-	 * path as well as everything after it.
+	 * Extract relevant query arguments from the http request uri's path
+	 * to be merged with the normal php provided query arguments.
+	 * Tries to use the REQUEST_URI data if available and parses it
+	 * according to the wiki's configuration looking for any known pattern.
+	 *
+	 * If the REQUEST_URI is not provided we'll fall back on the PATH_INFO
+	 * provided by the server if any and use that to set a 'title' parameter.
 	 *
 	 * @param $want string: If this is not 'all', then the function
 	 * will return an empty array if it determines that the URL is
 	 * inside a rewrite path.
 	 *
-	 * @return Array: 'title' key is the title of the article.
+	 * @return Array: Any query arguments found in path matches.
 	 */
 	static public function getPathInfo( $want = 'all' ) {
 		// PATH_INFO is mangled due to http://bugs.php.net/bug.php?id=31892
@@ -120,13 +124,6 @@ class WebRequest {
 
 				global $wgVariantArticlePath, $wgContLang;
 				if( $wgVariantArticlePath ) {
-					/*$variantPaths = array();
-					foreach( $wgContLang->getVariants() as $variant ) {
-						$variantPaths[$variant] =
-							str_replace( '$2', $variant, $wgVariantArticlePath );
-					}
-					$router->add( $variantPaths, array( 'parameter' => 'variant' ) );*/
-					// Maybe actually this?
 					$router->add( $wgVariantArticlePath,
 						array( 'variant' => '$2'),
 						array( '$2' => $wgContLang->getVariants() )
