@@ -830,7 +830,7 @@ function wfDebug( $text, $logonly = false ) {
 		if ( $wgDebugLogFile != '' && !$wgProfileOnly ) {
 			# Strip unprintables; they can switch terminal modes when binary data
 			# gets dumped, which is pretty annoying.
-			$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1a\x1c-\x1f]!', ' ', $text );
+			$text = preg_replace( '![\x00-\x08\x0b\x0c\x0e-\x1f]!', ' ', $text );
 			$text = $wgDebugLogPrefix . $text;
 			wfErrorLog( $text, $wgDebugLogFile );
 		}
