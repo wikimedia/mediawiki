@@ -2471,6 +2471,18 @@ $wgEdititis = false;
  */
 $wgBetterDirectionality = true;
 
+/**
+ * Some web hosts attempt to rewrite all responses with a 404 (not found) 
+ * status code, mangling or hiding MediaWiki's output. If you are using such a
+ * host, you should start looking for a better one. While you're doing that, 
+ * set this to false to convert some of MediaWiki's 404 responses to 200 so
+ * that the generated error pages can be seen.
+ *
+ * In cases where for technical reasons it is more important for MediaWiki to 
+ * send the correct status code than for the body to be transmitted intact,
+ * this configuration variable is ignored.
+ */
+$wgSend404Code = true;
 
 /** @} */ # End of output format settings }
 

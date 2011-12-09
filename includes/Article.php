@@ -917,7 +917,7 @@ class Article extends Page {
 	 * namespace, show the default message text. To be called from Article::view().
 	 */
 	public function showMissingArticle() {
-		global $wgOut, $wgRequest, $wgUser;
+		global $wgOut, $wgRequest, $wgUser, $wgSend404Code;
 
 		# Show info in user (talk) namespace. Does the user exist? Is he blocked?
 		if ( $this->getTitle()->getNamespace() == NS_USER || $this->getTitle()->getNamespace() == NS_USER_TALK ) {
@@ -979,7 +979,7 @@ class Article extends Page {
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";
 
-		if ( !$this->mPage->hasViewableContent() ) {
+		if ( !$this->mPage->hasViewableContent() && $wgSend404Code ) {
 			// If there's no backing content, send a 404 Not Found
 			// for better machine handling of broken links.
 			$wgRequest->response()->header( "HTTP/1.1 404 Not Found" );
