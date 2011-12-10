@@ -1522,7 +1522,7 @@ class Title {
 	 */
 	private function checkActionPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
 		if ( $action == 'protect' ) {
-			if ( $this->getUserPermissionsErrors( 'edit', $user ) != array() ) {
+			if ( count( $this->getUserPermissionsErrorsInternal( 'edit', $user, $doExpensiveQueries, true ) ) ) {
 				// If they can't edit, they shouldn't protect.
 				$errors[] = array( 'protect-cantedit' );
 			}
