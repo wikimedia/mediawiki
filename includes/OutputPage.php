@@ -197,6 +197,7 @@ class OutputPage extends ContextSource {
 
 	/// should be private. To include the variable {{REVISIONID}}
 	var $mRevisionId = null;
+	private $mRevisionTimestamp = null;
 
 	var $mFileVersion = null;
 
@@ -1337,6 +1338,27 @@ class OutputPage extends ContextSource {
 	 */
 	public function getRevisionId() {
 		return $this->mRevisionId;
+	}
+
+	/**
+	 * Set the timestamp of the revision which will be displayed. This is used
+	 * to avoid a extra DB call in Skin::lastModified().
+	 *
+	 * @param $revid Mixed: string, or null
+	 * @return Mixed: previous value
+	 */
+	public function setRevisionTimestamp( $timestmap ) {
+		return wfSetVar( $this->mRevisionTimestamp, $timestmap );
+	}
+
+	/**
+	 * Get the timestamp of displayed revision.
+	 * This will be null if not filled by setRevisionTimestamp().
+	 *
+	 * @return String or null
+	 */
+	public function getRevisionTimestamp() {
+		return $this->mRevisionTimestamp;
 	}
 
 	/**
