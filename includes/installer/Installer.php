@@ -1525,13 +1525,13 @@ abstract class Installer {
 	protected function createMainpage( DatabaseInstaller $installer ) {
 		$status = Status::newGood();
 		try {
-			$article = new Article( Title::newMainPage() );
-			$article->doEdit( wfMsgForContent( 'mainpagetext' ) . "\n\n" .
-								wfMsgForContent( 'mainpagedocfooter' ),
-								'',
-								EDIT_NEW,
-								false,
-								User::newFromName( 'MediaWiki default' ) );
+			$page = WikiPage::factory( Title::newMainPage() );
+			$page->doEdit( wfMsgForContent( 'mainpagetext' ) . "\n\n" .
+							wfMsgForContent( 'mainpagedocfooter' ),
+							'',
+							EDIT_NEW,
+							false,
+							User::newFromName( 'MediaWiki default' ) );
 		} catch (MWException $e) {
 			//using raw, because $wgShowExceptionDetails can not be set yet
 			$status->fatal( 'config-install-mainpage-failed', $e->getMessage() );
