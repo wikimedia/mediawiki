@@ -12,8 +12,9 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 	protected $oldTablePrefix;
 	protected $useTemporaryTables = true;
 	protected $reuseDB = false;
+	protected $tablesUsed = array(); // tables with data
+
 	private static $dbSetup = false;
-	private static $tablesCloned = array();
 
 	/**
 	 * Table name prefixes. Oracle likes it shorter.
@@ -55,7 +56,7 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 			$this->oldTablePrefix = $wgDBprefix;
 
 			if( !self::$dbSetup ) {
-				self::$tablesCloned = $this->initDB();
+				$this->initDB();
 				self::$dbSetup = true;
 			}
 
@@ -156,8 +157,6 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 		if ( $this->db->getType() == 'oracle' ) {
 			$this->db->query( 'BEGIN FILL_WIKI_INFO; END;' );
 		}
-
-		return $tablesCloned;
 	}
 
 	/**
@@ -170,13 +169,13 @@ abstract class MediaWikiTestCase extends PHPUnit_Framework_TestCase {
 					wfGetLB()->closeAll();
 					$this->db = wfGetDB( DB_MASTER );
 				} else {
-					foreach( self::$tablesCloned as $tbl ) {
+					foreach( $this->tablesUsed as $tbl ) {
 						if( $tbl == 'interwiki') continue;
 						$this->db->query( 'TRUNCATE TABLE '.$this->db->tableName($tbl), __METHOD__ );
 					}
 				}
 			} else {
-				foreach( self::$tablesCloned as $tbl ) {
+				foreach( $this->tablesUsed as $tbl ) {
 					if( $tbl == 'interwiki' || $tbl == 'user' ) continue;
 					$this->db->delete( $tbl, '*', __METHOD__ );
 				}
