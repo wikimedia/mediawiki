@@ -520,5 +520,31 @@ tableTest( 'bug 8115: sort numbers with commas (descending)',
 );
 // TODO add numbers sorting tests for bug 8115 with a different language
 
+test( 'bug 32888 - Tables inside a tableheader cell', function() {
+	expect(2);
+
+	var $table;
+	$table = $(
+		'<table class="sortable" id="32888">' +
+		'<tr><th>header<table id="32888-2">'+
+			'<tr><th>1</th><th>2</th></tr>' +
+		'</table></th></tr>' +
+		'<tr><td>A</td></tr>' +
+		'<tr><td>B</td></tr>' +
+		'</table>'
+		);
+	$table.tablesorter();
+
+	var test1 = equals(
+		$table.find('> thead:eq(0) > tr > th.headerSort').length,
+		1,
+		'Child tables inside a headercell should not interfere with sortable headers (bug 32888)'
+	);
+	var test1 = equals(
+		$('#32888-2').find('th.headerSort').length,
+		0,
+		'The headers of child tables inside a headercell should not be sortable themselves (bug 32888)'
+	);
+});
 
 })();
