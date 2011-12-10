@@ -404,7 +404,7 @@ class WikiPage extends Page {
 	 * @return bool Whether or not the page exists in the database
 	 */
 	public function exists() {
-		return $this->getId() > 0;
+		return $this->mTitle->exists();
 	}
 
 	/**
@@ -416,7 +416,7 @@ class WikiPage extends Page {
 	 * @return bool
 	 */
 	public function hasViewableContent() {
-		return $this->exists() || $this->mTitle->isAlwaysKnown();
+		return $this->mTitle->exists() || $this->mTitle->isAlwaysKnown();
 	}
 
 	/**
@@ -717,7 +717,7 @@ class WikiPage extends Page {
 
 		return $wgEnableParserCache
 			&& $parserOptions->getStubThreshold() == 0
-			&& $this->exists()
+			&& $this->mTitle->exists()
 			&& ( $oldid === null || $oldid === 0 || $oldid === $this->getLatest() )
 			&& $this->mTitle->isWikitextPage();
 	}
@@ -786,10 +786,10 @@ class WikiPage extends Page {
 		}
 
 		if ( $this->mTitle->getNamespace() == NS_MEDIAWIKI ) {
-			if ( $this->getId() == 0 ) {
-				$text = false;
-			} else {
+			if ( $this->mTitle->exists() ) {
 				$text = $this->getRawText();
+			} else {
+				$text = false;
 			}
 
 			MessageCache::singleton()->replace( $this->mTitle->getDBkey(), $text );
@@ -1985,7 +1985,7 @@ class WikiPage extends Page {
 		}
 
 		# Don't update page view counters on views from bot users (bug 14044)
-		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->getId() ) {
+		if ( !$wgDisableCounters && !$user->isAllowed( 'bot' ) && $this->mTitle->exists() ) {
 			DeferredUpdates::addUpdate( new ViewCountUpdate( $this->getId() ) );
 			DeferredUpdates::addUpdate( new SiteStatsUpdate( 1, 0, 0 ) );
 		}
@@ -2100,14 +2100,14 @@ class WikiPage extends Page {
 			}
 		}
 
-		$id = $this->getId();
-		$title = $this->mTitle->getPrefixedDBkey();
-		$shortTitle = $this->mTitle->getDBkey();
-
-		if ( 0 == $id ) {
+		if ( !$this->mTitle->exists() ) {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
+
+		$id = $this->getId();
+		$title = $this->mTitle->getPrefixedDBkey();
+		$shortTitle = $this->mTitle->getDBkey();
 
 		if ( !$options['changed'] ) {
 			$good = 0;
