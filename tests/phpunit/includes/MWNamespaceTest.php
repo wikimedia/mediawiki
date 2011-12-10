@@ -388,6 +388,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 
 		global $wgContentNamespaces;
 
+		$saved = $wgContentNamespaces;
 		# test !is_array( $wgcontentNamespaces )
 		$wgContentNamespaces = '';
 		$this->assertEquals( NS_MAIN, MWNamespace::getcontentNamespaces() );
@@ -423,6 +424,7 @@ class MWNamespaceTest extends MediaWikiTestCase {
 			MWNamespace::getcontentNamespaces()
 		);
 
+		$wgContentNamespaces = $saved;
 	}
 
 	/**
