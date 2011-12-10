@@ -155,6 +155,7 @@ class SkinTemplate extends Skin {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
 		$user = $this->getUser();
+		$title = $this->getTitle();
 
 		wfProfileIn( __METHOD__ . '-init' );
 		$this->initPage( $out );
@@ -163,7 +164,7 @@ class SkinTemplate extends Skin {
 		wfProfileOut( __METHOD__ . '-init' );
 
 		wfProfileIn( __METHOD__ . '-stuff' );
-		$this->thispage = $this->getTitle()->getPrefixedDBkey();
+		$this->thispage = $title->getPrefixedDBkey();
 		$this->userpage = $user->getUserPage()->getPrefixedText();
 		$query = array();
 		if ( !$request->wasPosted() ) {
@@ -185,7 +186,7 @@ class SkinTemplate extends Skin {
 			$this->userpageUrlDetails = self::makeKnownUrlDetails( $this->userpage );
 		}
 
-		$this->titletxt = $this->getTitle()->getPrefixedText();
+		$this->titletxt = $title->getPrefixedText();
 		wfProfileOut( __METHOD__ . '-stuff' );
 
 		wfProfileIn( __METHOD__ . '-stuff-head' );
@@ -215,7 +216,7 @@ class SkinTemplate extends Skin {
 			$tpl->set( 'html5version', $wgHtml5Version );
 			$tpl->set( 'headlinks', $out->getHeadLinks() );
 			$tpl->set( 'csslinks', $out->buildCssLinks() );
-			$tpl->set( 'pageclass', $this->getPageClasses( $this->getTitle() ) );
+			$tpl->set( 'pageclass', $this->getPageClasses( $title ) );
 			$tpl->set( 'skinnameclass', ( 'skin-' . Sanitizer::escapeClass( $this->getSkinName() ) ) );
 		}
 		wfProfileOut( __METHOD__ . '-stuff-head' );
@@ -225,9 +226,9 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'pagetitle', $out->getHTMLTitle() );
 		$tpl->set( 'displaytitle', $out->mPageLinkTitle );
 
-		$tpl->set( 'titleprefixeddbkey', $this->getTitle()->getPrefixedDBKey() );
-		$tpl->set( 'titletext', $this->getTitle()->getText() );
-		$tpl->set( 'articleid', $this->getTitle()->getArticleId() );
+		$tpl->set( 'titleprefixeddbkey', $title->getPrefixedDBKey() );
+		$tpl->set( 'titletext', $title->getText() );
+		$tpl->set( 'articleid', $title->getArticleId() );
 
 		$tpl->set( 'isarticle', $out->isArticle() );
 
@@ -269,12 +270,12 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'printable', $out->isPrintable() );
 		$tpl->set( 'handheld', $request->getBool( 'handheld' ) );
 		$tpl->setRef( 'loggedin', $this->loggedin );
-		$tpl->set( 'notspecialpage', !$this->getTitle()->isSpecialPage() );
+		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
 		/* XXX currently unused, might get useful later
-		$tpl->set( 'editable', ( !$this->getTitle()->isSpecialPage() ) );
-		$tpl->set( 'exists', $this->getTitle()->getArticleID() != 0 );
-		$tpl->set( 'watch', $this->getTitle()->userIsWatching() ? 'unwatch' : 'watch' );
-		$tpl->set( 'protect', count( $this->getTitle()->isProtected() ) ? 'unprotect' : 'protect' );
+		$tpl->set( 'editable', ( !$title->isSpecialPage() ) );
+		$tpl->set( 'exists', $title->getArticleID() != 0 );
+		$tpl->set( 'watch', $title->userIsWatching() ? 'unwatch' : 'watch' );
+		$tpl->set( 'protect', count( $title->isProtected() ) ? 'unprotect' : 'protect' );
 		$tpl->set( 'helppage', $this->msg( 'helppage' )->text() );
 		*/
 		$tpl->set( 'searchaction', $this->escapeSearchLink() );
@@ -327,9 +328,9 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'lastmod', false );
 		$tpl->set( 'credits', false );
 		$tpl->set( 'numberofwatchingusers', false );
-		if ( $out->isArticle() && $this->getTitle()->exists() ) {
+		if ( $out->isArticle() && $title->exists() ) {
 			if ( $this->isRevisionCurrent() ) {
-				$page = WikiPage::factory( $this->getTitle() );
+				$page = WikiPage::factory( $title );
 				if ( !$wgDisableCounters ) {
 					$viewcount = $page->getCount();
 					if ( $viewcount ) {
@@ -340,7 +341,7 @@ class SkinTemplate extends Skin {
 				if( $wgPageShowWatchingUsers ) {
 					$dbr = wfGetDB( DB_SLAVE );
 					$num = $dbr->selectField( 'watchlist', 'COUNT(*)',
-						array( 'wl_title' => $this->getTitle()->getDBkey(), 'wl_namespace' => $this->getTitle()->getNamespace() ),
+						array( 'wl_title' => $title->getDBkey(), 'wl_namespace' => $title->getNamespace() ),
 						__METHOD__
 					);
 					if( $num > 0 ) {
@@ -415,10 +416,10 @@ class SkinTemplate extends Skin {
 		# Add a <div class="mw-content-ltr/rtl"> around the body text
 		# not for special pages or file pages AND only when viewing AND if the page exists
 		# (or is in MW namespace, because that has default content)
-		if( !in_array( $this->getTitle()->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
+		if( !in_array( $title->getNamespace(), array( NS_SPECIAL, NS_FILE ) ) &&
 			in_array( $request->getVal( 'action', 'view' ), array( 'view', 'historysubmit' ) ) &&
-			( $this->getTitle()->exists() || $this->getTitle()->getNamespace() == NS_MEDIAWIKI ) ) {
-			$pageLang = $this->getTitle()->getPageLanguage();
+			( $title->exists() || $title->getNamespace() == NS_MEDIAWIKI ) ) {
+			$pageLang = $title->getPageLanguage();
 			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-'.$pageLang->getDir() );
 			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
