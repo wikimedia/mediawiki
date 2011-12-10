@@ -442,10 +442,6 @@ class Title {
 		return null;
 	}
 
-# ----------------------------------------------------------------------------
-#	Static functions
-# ----------------------------------------------------------------------------
-
 	/**
 	 * Get the prefixed DB key associated with an ID
 	 *
@@ -531,6 +527,20 @@ class Title {
 	}
 
 	/**
+	 * Escape a text fragment, say from a link, for a URL
+	 *
+	 * @param $fragment string containing a URL or link fragment (after the "#")
+	 * @return String: escaped string
+	 */
+	static function escapeFragmentForURL( $fragment ) {
+		# Note that we don't urlencode the fragment.  urlencoded Unicode
+		# fragments appear not to work in IE (at least up to 7) or in at least
+		# one version of Opera 9.x.  The W3C validator, for one, doesn't seem
+		# to care if they aren't encoded.
+		return Sanitizer::escapeId( $fragment, 'noninitial' );
+	}
+
+	/**
 	 * Determine whether the object refers to a page within
 	 * this project.
 	 *
@@ -542,6 +552,24 @@ class Title {
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * Is this Title interwiki?
+	 *
+	 * @return Bool
+	 */
+	public function isExternal() {
+		return ( $this->mInterwiki != '' );
+	}
+
+	/**
+	 * Get the interwiki prefix (or null string)
+	 *
+	 * @return String Interwiki prefix
+	 */
+	public function getInterwiki() {
+		return $this->mInterwiki;
 	}
 
 	/**
@@ -572,51 +600,40 @@ class Title {
 	}
 
 	/**
-	 * Escape a text fragment, say from a link, for a URL
-	 *
-	 * @param $fragment string containing a URL or link fragment (after the "#")
-	 * @return String: escaped string
-	 */
-	static function escapeFragmentForURL( $fragment ) {
-		# Note that we don't urlencode the fragment.  urlencoded Unicode
-		# fragments appear not to work in IE (at least up to 7) or in at least
-		# one version of Opera 9.x.  The W3C validator, for one, doesn't seem
-		# to care if they aren't encoded.
-		return Sanitizer::escapeId( $fragment, 'noninitial' );
-	}
-
-# ----------------------------------------------------------------------------
-#	Other stuff
-# ----------------------------------------------------------------------------
-
-	/** Simple accessors */
-	/**
 	 * Get the text form (spaces not underscores) of the main part
 	 *
 	 * @return String Main part of the title
 	 */
-	public function getText() { return $this->mTextform; }
+	public function getText() {
+		return $this->mTextform;
+	}
 
 	/**
 	 * Get the URL-encoded form of the main part
 	 *
 	 * @return String Main part of the title, URL-encoded
 	 */
-	public function getPartialURL() { return $this->mUrlform; }
+	public function getPartialURL() {
+		return $this->mUrlform;
+	}
 
 	/**
 	 * Get the main part with underscores
 	 *
 	 * @return String: Main part of the title, with underscores
 	 */
-	public function getDBkey() { return $this->mDbkeyform; }
+	public function getDBkey() {
+		return $this->mDbkeyform;
+	}
 
 	/**
 	 * Get the namespace index, i.e. one of the NS_xxxx constants.
 	 *
 	 * @return Integer: Namespace index
 	 */
-	public function getNamespace() { return $this->mNamespace; }
+	public function getNamespace() {
+		return $this->mNamespace;
+	}
 
 	/**
 	 * Get the namespace text
@@ -694,13 +711,6 @@ class Title {
 	}
 
 	/**
-	 * Get the interwiki prefix (or null string)
-	 *
-	 * @return String Interwiki prefix
-	 */
-	public function getInterwiki() { return $this->mInterwiki; }
-
-	/**
 	 * Get the Title fragment (i.e.\ the bit after the #) in text form
 	 *
 	 * @return String Title fragment
@@ -724,7 +734,9 @@ class Title {
 	 *
 	 * @return Int Default namespace index
 	 */
-	public function getDefaultNamespace() { return $this->mDefaultNamespace; }
+	public function getDefaultNamespace() {
+		return $this->mDefaultNamespace;
+	}
 
 	/**
 	 * Get title for search index
@@ -808,6 +820,16 @@ class Title {
 		}
 		$parts = explode( '/', $this->mTextform );
 		return( $parts[count( $parts ) - 1] );
+	}
+
+	/**
+	 * Get the HTML-escaped displayable text form.
+	 * Used for the title field in <a> tags.
+	 *
+	 * @return String the text, including any prefixes
+	 */
+	public function getEscapedText() {
+		return htmlspecialchars( $this->getPrefixedText() );
 	}
 
 	/**
@@ -995,14 +1017,6 @@ class Title {
 	}
 
 	/**
-	 * HTML-escaped version of getCanonicalURL()
-	 * @since 1.18
-	 */
-	public function escapeCanonicalURL( $query = '', $variant = false ) {
-		return htmlspecialchars( $this->getCanonicalURL( $query, $variant ) );
-	}
-
-	/**
 	 * Get the URL form for an internal link.
 	 * - Used in various Squid-related code, in case we have a different
 	 * internal hostname for the server from the exposed one.
@@ -1042,6 +1056,14 @@ class Title {
 	}
 
 	/**
+	 * HTML-escaped version of getCanonicalURL()
+	 * @since 1.18
+	 */
+	public function escapeCanonicalURL( $query = '', $variant = false ) {
+		return htmlspecialchars( $this->getCanonicalURL( $query, $variant ) );
+	}
+
+	/**
 	 * Get the edit URL for this Title
 	 *
 	 * @return String the URL, or a null string if this is an
@@ -1054,25 +1076,6 @@ class Title {
 		$s = $this->getLocalURL( 'action=edit' );
 
 		return $s;
-	}
-
-	/**
-	 * Get the HTML-escaped displayable text form.
-	 * Used for the title field in <a> tags.
-	 *
-	 * @return String the text, including any prefixes
-	 */
-	public function getEscapedText() {
-		return htmlspecialchars( $this->getPrefixedText() );
-	}
-
-	/**
-	 * Is this Title interwiki?
-	 *
-	 * @return Bool
-	 */
-	public function isExternal() {
-		return ( $this->mInterwiki != '' );
 	}
 
 	/**
