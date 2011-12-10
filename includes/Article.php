@@ -497,11 +497,10 @@ class Article extends Page {
 							# Ensure that UI elements requiring revision ID have
 							# the correct version information.
 							$wgOut->setRevisionId( $this->mPage->getLatest() );
-							$outputDone = true;
 							# Preload timestamp to avoid a DB hit
-							if ( isset( $this->mParserOutput->mTimestamp ) ) {
-								$this->mPage->setTimestamp( $this->mParserOutput->mTimestamp );
-							}
+							$wgOut->setRevisionTimestamp( $this->mParserOutput->getTimestamp() );
+							$this->mPage->setTimestamp( $this->mParserOutput->getTimestamp() );
+							$outputDone = true;
 						}
 					}
 					break;
@@ -523,6 +522,8 @@ class Article extends Page {
 					# Ensure that UI elements requiring revision ID have
 					# the correct version information.
 					$wgOut->setRevisionId( $this->getRevIdFetched() );
+					# Preload timestamp to avoid a DB hit
+					$wgOut->setRevisionTimestamp( $this->getTimestamp() );
 
 					# Pages containing custom CSS or JavaScript get special treatment
 					if ( $this->getTitle()->isCssOrJsPage() || $this->getTitle()->isCssJsSubpage() ) {

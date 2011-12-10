@@ -138,8 +138,9 @@ class ParserOutput extends CacheTime {
 		$mSections = array(),         # Table of contents
 		$mEditSectionTokens = false,  # prefix/suffix markers if edit sections were output as tokens
 		$mProperties = array(),       # Name/value pairs to be cached in the DB
-		$mTOCHTML = '';	              # HTML of the TOC
-	private $mIndexPolicy = '';	      # 'index' or 'noindex'?  Any other value will result in no change.
+		$mTOCHTML = '',               # HTML of the TOC
+		$mTimestamp;                  # Timestamp of the revision
+	private $mIndexPolicy = '';       # 'index' or 'noindex'?  Any other value will result in no change.
 	private $mAccessedOptions = array(); # List of ParserOptions (stored in the keys)
 
 	const EDITSECTION_REGEX = '#<(?:mw:)?editsection page="(.*?)" section="(.*?)"(?:/>|>(.*?)(</(?:mw:)?editsection>))#';
@@ -205,6 +206,7 @@ class ParserOutput extends CacheTime {
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
 	function getIndexPolicy()            { return $this->mIndexPolicy; }
 	function getTOCHTML()                { return $this->mTOCHTML; }
+	function getTimestamp()              { return $this->mTimestamp; }
 
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
 	function setLanguageLinks( $ll )     { return wfSetVar( $this->mLanguageLinks, $ll ); }
@@ -215,6 +217,7 @@ class ParserOutput extends CacheTime {
 	function setEditSectionTokens( $t )  { return wfSetVar( $this->mEditSectionTokens, $t ); }
 	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
 	function setTOCHTML( $tochtml )      { return wfSetVar( $this->mTOCHTML, $tochtml ); }
+	function setTimestamp( $timestamp )  { return wfSetVar( $this->mTimestamp, $timestamp ); }
 
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }

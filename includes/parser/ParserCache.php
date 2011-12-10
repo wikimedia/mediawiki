@@ -220,7 +220,7 @@ class ParserCache {
 				$popts->optionsHash( $optionsKey->mUsedOptions, $article->getTitle() ) );
 
 			// Save the timestamp so that we don't have to load the revision row on view
-			$parserOutput->mTimestamp = $article->getTimestamp();
+			$parserOutput->setTimestamp( $article->getTimestamp() );
 
 			$parserOutput->mText .= "\n<!-- Saved in parser cache with key $parserOutputKey and timestamp $now -->\n";
 			wfDebug( "Saved in parser cache with key $parserOutputKey and timestamp $now\n" );
