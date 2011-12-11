@@ -191,6 +191,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 			'1.15',
 			'1.16',
 			'1.17',
+			'1.18',
 		);
 
 		// Mismatches for these columns we can safely ignore
@@ -266,7 +267,7 @@ class DatabaseSqliteTest extends MediaWikiTestCase {
 		$list = array_flip( $db->listTables() );
 		$excluded = array(
 			'math', // moved out of core in 1.18
-			'trackbacks',
+			'trackbacks', // removed from core in 1.19
 			'searchindex',
 			'searchindex_content',
 			'searchindex_segments',
