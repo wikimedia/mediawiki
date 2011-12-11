@@ -322,7 +322,7 @@ function wfUrlencode( $s ) {
 /**
  * This function takes two arrays as input, and returns a CGI-style string, e.g.
  * "days=7&limit=100". Options in the first array override options in the second.
- * Options set to "" will not be output.
+ * Options set to null or false will not be output.
  *
  * @param $array1 Array ( String|Array )
  * @param $array2 Array ( String|Array )
@@ -336,7 +336,7 @@ function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
 
 	$cgi = '';
 	foreach ( $array1 as $key => $value ) {
-		if ( $value !== '' ) {
+		if ( !is_null($value) && $value !== false ) {
 			if ( $cgi != '' ) {
 				$cgi .= '&';
 			}
@@ -369,8 +369,7 @@ function wfArrayToCGI( $array1, $array2 = null, $prefix = '' ) {
  * This is the logical opposite of wfArrayToCGI(): it accepts a query string as
  * its argument and returns the same string in array form.  This allows compa-
  * tibility with legacy functions that accept raw query strings instead of nice
- * arrays.  Of course, keys and values are urldecode()d.  Don't try passing in-
- * valid query strings, or it will explode.
+ * arrays.  Of course, keys and values are urldecode()d.
  *
  * @param $query String: query string
  * @return array Array version of input
@@ -385,7 +384,13 @@ function wfCgiToArray( $query ) {
 		if ( $bit === '' ) {
 			continue;
 		}
-		list( $key, $value ) = explode( '=', $bit );
+		if ( strpos( $bit, '=' ) === false ) {
+			// Pieces like &qwerty become 'qwerty' => '' (at least this is what php does)
+			$key = $bit;
+			$value = '';
+		} else {
+			list( $key, $value ) = explode( '=', $bit );
+		}
 		$key = urldecode( $key );
 		$value = urldecode( $value );
 		if ( strpos( $key, '[' ) !== false ) {
