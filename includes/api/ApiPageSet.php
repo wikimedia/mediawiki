@@ -52,7 +52,7 @@ class ApiPageSet extends ApiQueryBase {
 
 	/**
 	 * Constructor
-	 * @param $query ApiQuery
+	 * @param $query ApiQueryBase
 	 * @param $resolveRedirects bool Whether redirects should be resolved
 	 * @param $convertTitles bool
 	 */
