@@ -1501,7 +1501,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * @return DatabaseBase
 	 */
-	public function getDB() {
+	protected function getDB() {
 		return wfGetDB( DB_SLAVE, 'api' );
 	}
 
