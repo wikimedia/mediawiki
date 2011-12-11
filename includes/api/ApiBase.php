@@ -1499,6 +1499,13 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * @return DatabaseBase
+	 */
+	public function getDB() {
+		return wfGetDB( DB_SLAVE, 'api' );
+	}
+
+	/**
 	 * Debugging function that prints a value and an optional backtrace
 	 * @param $value mixed Value to print
 	 * @param $name string Description of the printed value
