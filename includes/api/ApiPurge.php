@@ -47,17 +47,32 @@ class ApiPurge extends ApiBase {
 		}
 
 		$forceLinkUpdate = $params['forcelinkupdate'];
+		$pageSet = new ApiPageSet( $this );
+		$pageSet->execute();
 
 		$result = array();
-		foreach ( $params['titles'] as $t ) {
+		foreach( $pageSet->getInvalidTitles() as $title ) {
 			$r = array();
-			$title = Title::newFromText( $t );
-			if ( !$title instanceof Title ) {
-				$r['title'] = $t;
-				$r['invalid'] = '';
-				$result[] = $r;
-				continue;
-			}
+			$r['title'] = $title;
+			$r['invalid'] = '';
+			$result[] = $r;
+		}
+		foreach( $pageSet->getMissingPageIDs() as $p ) {
+			$page = array();
+			$page['pageid'] = $p;
+			$page['missing'] = '';
+			$result[] = $page;
+		}
+		foreach( $pageSet->getMissingPageIDs() as $r ) {
+			$rev = array();
+			$rev['revid'] = $r;
+			$rev['missing'] = '';
+			$result[] = $rev;
+		}
+
+		foreach ( $pageSet->getTitles() as $title ) {
+			$r = array();
+
 			ApiQueryBase::addTitleInfo( $r, $title );
 			if ( !$title->exists() ) {
 				$r['missing'] = '';
@@ -104,18 +119,15 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
-			'titles' => array(
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_REQUIRED => true
-			),
+		$psModule = new ApiPageSet( $this );
+		return $psModule->getAllowedParams() + array(
 			'forcelinkupdate' => false,
 		);
 	}
 
 	public function getParamDescription() {
-		return array(
-			'titles' => 'A list of titles',
+		$psModule = new ApiPageSet( $this );
+		return $psModule->getParamDescription() + array(
 			'forcelinkupdate' => 'Update the links tables',
 		);
 	}
@@ -127,9 +139,12 @@ class ApiPurge extends ApiBase {
 	}
 
 	public function getPossibleErrors() {
-		return array_merge( parent::getPossibleErrors(), array(
-			array( 'cantpurge' ),
-		) );
+		$psModule = new ApiPageSet( $this );
+		return array_merge(
+			parent::getPossibleErrors(),
+			array( array( 'cantpurge' ), ),
+			$psModule->getPossibleErrors()
+		);
 	}
 
 	public function getExamples() {
