@@ -49,6 +49,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 					'pb' => 'page', 'pc' => 'page' ),
 			'fields' => array ( 'pa.page_namespace AS namespace',
 					'pa.page_title AS title',
+					'pa.page_title AS value',
 					'pb.page_namespace AS nsb',
 					'pb.page_title AS tb',
 					'pc.page_namespace AS nsc',

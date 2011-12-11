@@ -176,8 +176,9 @@ production.
 * (bug 31212) History tab not collapsed when the screen is narrow
 * (bug 15521) Use new section summary when the action of adding a new section
   also happens to create the page
-* (bug 32960) remove EmailAuthenticationTimestamp from database when a
+* (bug 32960) Remove EmailAuthenticationTimestamp from database when a
   email address is removed
+* (bug 31759) Undefined property notice in querypages API
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.

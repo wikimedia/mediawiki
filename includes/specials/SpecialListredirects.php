@@ -43,6 +43,8 @@ class ListredirectsPage extends QueryPage {
 			'tables' => array( 'p1' => 'page', 'redirect', 'p2' => 'page' ),
 			'fields' => array( 'p1.page_namespace AS namespace',
 					'p1.page_title AS title',
+					'p1.page_title AS value',
+					'p1.page_title AS value',
 					'rd_namespace',
 					'rd_title',
 					'rd_fragment',
