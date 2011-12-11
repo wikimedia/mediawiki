@@ -56,7 +56,7 @@ class WikiExporter {
 	 * make additional queries to pull source data while the
 	 * main query is still running.
 	 *
-	 * @param $db Database
+	 * @param $db DatabaseBase
 	 * @param $history Mixed: one of WikiExporter::FULL, WikiExporter::CURRENT,
 	 *                 WikiExporter::RANGE or WikiExporter::STABLE,
 	 *                 or an associative array:
@@ -682,7 +682,7 @@ class XmlDumpWriter {
 	 * canonical namespace. This skips any special-casing such as gendered
 	 * user namespaces -- which while useful, are not yet listed in the
 	 * XML <siteinfo> data so are unsafe in export.
-	 * 
+	 *
 	 * @param Title $title
 	 * @return string
 	 */
@@ -897,8 +897,6 @@ class DumpBZip2Output extends DumpPipeOutput {
  * @ingroup Dump
  */
 class Dump7ZipOutput extends DumpPipeOutput {
-	protected $filename;
-
 	function __construct( $file ) {
 		$command = $this->setup7zCommand( $file );
 		parent::__construct( $command );
@@ -913,10 +911,6 @@ class Dump7ZipOutput extends DumpPipeOutput {
 		return( $command );
 	}
 
-	function closeRenameAndReopen( $newname ) {
-		$this->closeAndRename( $newname, true );
-	}
-
 	function closeAndRename( $newname, $open = false ) {
 		$newname = $this->checkRenameArgCount( $newname );
 		if ( $newname ) {
@@ -924,7 +918,7 @@ class Dump7ZipOutput extends DumpPipeOutput {
 			proc_close( $this->procOpenResource );
 			$this->renameOrException( $newname );
 			if ( $open ) {
-				$command = $this->setup7zCommand( $file );
+				$command = $this->setup7zCommand( $this->filename );
 				$this->startCommand( $command );
 			}
 		}
