@@ -203,6 +203,7 @@ production.
 * Added 'APIGetDescription' hook.
 * (bug 32688) Paraminfo for parameter "generator" of the query module shows too
   many types
+* (bug 32415) Empty page get no size attribute in API output
 
 === Languages updated in 1.19 ===
 
