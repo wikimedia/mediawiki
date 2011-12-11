@@ -5,7 +5,9 @@ DEV=$(cd -P "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
 
 set -e # DO NOT USE PIPES unless this is rewritten
 
-if [ -d "$DEV/php" -a -x "$DEV/php/bin/php" ] || [ -d "$HOME/.mwphp" -a -x "$HOME/.mwphp/bin/php" ]; then
+. "$DEV/includes/php.sh"
+
+if [ "x$PHP" != "x" -a -x "$PHP" ]; then
 	echo "PHP is already installed"
 	exit 0
 fi
@@ -16,13 +18,13 @@ PHPURL="http://snaps.php.net/$TAR"
 cd "$DEV"
 
 echo "Preparing to download and install a local copy of PHP 5.4, note that this can take some time to do."
-echo "If you wish to avoid re-doing this for uture dev installations of MediaWiki we suggest installing php in ~/.mwphp"
-echo -n "Install PHP in ~/.mwphp [y/N]: "
+echo "If you wish to avoid re-doing this for uture dev installations of MediaWiki we suggest installing php in ~/.mediawiki/php"
+echo -n "Install PHP in ~/.mediawiki/php [y/N]: "
 read INSTALLINHOME
 
 case "$INSTALLINHOME" in
 	[Yy] | [Yy][Ee][Ss] )
-		PREFIX="$HOME/.mwphp"
+		PREFIX="$HOME/.mediawiki/php"
 		;;
 	*)
 		PREFIX="$DEV/php/"
