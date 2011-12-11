@@ -296,7 +296,7 @@ abstract class ApiQueryBase extends ApiBase {
 	}
 
 	/**
-	 * Add information (title and namespace) about a Title object to a
+	 * Add information (title, ID and namespace) about a Title object to a
 	 * result array
 	 * @param $arr array Result array à la ApiResult
 	 * @param $title Title
@@ -304,6 +304,7 @@ abstract class ApiQueryBase extends ApiBase {
 	 */
 	public static function addTitleInfo( &$arr, $title, $prefix = '' ) {
 		$arr[$prefix . 'ns'] = intval( $title->getNamespace() );
+		$arr[$prefix . 'pageid'] = $title->getArticleID();
 		$arr[$prefix . 'title'] = $title->getPrefixedText();
 	}
 
