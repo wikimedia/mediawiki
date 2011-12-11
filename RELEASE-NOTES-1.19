@@ -178,7 +178,7 @@ production.
   also happens to create the page
 * (bug 32960) Remove EmailAuthenticationTimestamp from database when a
   email address is removed
-* (bug 31759) Undefined property notice in querypages API
+* (bug 32414) Empty page get a empty bytes attribute in Export/Dump
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
@@ -204,6 +204,7 @@ production.
 * (bug 32688) Paraminfo for parameter "generator" of the query module shows too
   many types
 * (bug 32415) Empty page get no size attribute in API output
+* (bug 31759) Undefined property notice in querypages API
 
 === Languages updated in 1.19 ===
 
