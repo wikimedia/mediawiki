@@ -360,7 +360,7 @@
 	'uz' => 'O\'zbek',	# Uzbek
 	've' => 'Tshivenda',		# Venda
 	'vec' => 'Vèneto',	# Venetian
-	'vep' => 'Vepsan kel\'',	# Veps
+	'vep' => 'Vepsän kel\'',	# Veps
 	'vi' => 'Tiếng Việt',	# Vietnamese
 	'vls' => 'West-Vlams', # West Flemish
 	'vmf' => 'Mainfränkisch', # Upper Franconian, Main-Franconian
