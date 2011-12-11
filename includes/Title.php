@@ -63,6 +63,7 @@ class Title {
 	var $mFragment;                   // /< Title fragment (i.e. the bit after the #)
 	var $mArticleID = -1;             // /< Article ID, fetched from the link cache on demand
 	var $mLatestID = false;           // /< ID of most recent revision
+	var $mCounter = -1;               // /< Number of times this page has been viewed (-1 means "not loaded")
 	var $mRestrictions = array();     // /< Array of groups allowed to edit this article
 	var $mOldRestrictions = false;
 	var $mCascadeRestriction;         ///< Cascade restrictions on this page to included templates and images?
@@ -272,11 +273,14 @@ class Title {
 				$this->mRedirect = (bool)$row->page_is_redirect;
 			if ( isset( $row->page_latest ) )
 				$this->mLatestID = (int)$row->page_latest;
+			if ( isset( $row->page_counter ) )
+				$this->mCounter = (int)$row->page_counter;
 		} else { // page not found
 			$this->mArticleID = 0;
 			$this->mLength = 0;
 			$this->mRedirect = false;
 			$this->mLatestID = 0;
+			$this->mCounter = 0;
 		}
 	}
 
@@ -2517,6 +2521,28 @@ class Title {
 	}
 
 	/**
+	 * Get the number of views of this page
+	 *
+	 * @return int The view count for the page
+	 */
+	public function getCount() {
+		if ( $this->mCounter == -1 ) {
+			if ( $this->exists() ) {
+				$dbr = wfGetDB( DB_SLAVE );
+				$this->mCounter = $dbr->selectField( 'page',
+					'page_counter',
+					array( 'page_id' => $this->getArticleID() ),
+					__METHOD__
+				);
+			} else {
+				$this->mCounter = 0;
+			}
+		}
+
+		return $this->mCounter;
+	}
+
+	/**
 	 * Get the article ID for this Title from the link cache,
 	 * adding it if necessary
 	 *
@@ -2628,6 +2654,7 @@ class Title {
 		$this->mRedirect = null;
 		$this->mLength = -1;
 		$this->mLatestID = false;
+		$this->mCounter = -1;
 	}
 
 	/**

@@ -330,9 +330,8 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'numberofwatchingusers', false );
 		if ( $out->isArticle() && $title->exists() ) {
 			if ( $this->isRevisionCurrent() ) {
-				$page = WikiPage::factory( $title );
 				if ( !$wgDisableCounters ) {
-					$viewcount = $page->getCount();
+					$viewcount = $title->getCount();
 					if ( $viewcount ) {
 						$tpl->set( 'viewcount', $this->msg( 'viewcount' )->numParams( $viewcount )->parse() );
 					}
@@ -352,7 +351,8 @@ class SkinTemplate extends Skin {
 				}
 
 				if ( $wgMaxCredits != 0 ) {
-					$tpl->set( 'credits', Action::factory( 'credits', $page, $this->getContext() )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
+					$tpl->set( 'credits', Action::factory( 'credits', WikiPage::factory( $title ),
+						$this->getContext() )->getCredits( $wgMaxCredits, $wgShowCreditsIfMax ) );
 				} else {
 					$tpl->set( 'lastmod', $this->lastModified() );
 				}
