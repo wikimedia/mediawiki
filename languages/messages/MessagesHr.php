@@ -1454,11 +1454,11 @@ Ne smije biti duži od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
 'group-suppress'      => 'Nadzornici',
 'group-all'           => '(svi)',
 
-'group-user-member'          => 'Suradnik',
-'group-autoconfirmed-member' => 'Automatski potvrđen suradnik',
-'group-bot-member'           => 'Bot',
-'group-sysop-member'         => 'Administrator',
-'group-bureaucrat-member'    => 'Birokrat',
+'group-user-member'          => '{{GENDER:$1|suradnik|suradnica}}',
+'group-autoconfirmed-member' => '{{GENDER:$1|automatski potvrđen suradnik|automatski potvrđena suradnica}}',
+'group-bot-member'           => '{{GENDER:$1|bot}}',
+'group-sysop-member'         => '{{GENDER:$1|administrator|administratorica}}',
+'group-bureaucrat-member'    => '{{GENDER:$1|birokrat|birokratica}}',
 'group-suppress-member'      => 'Nadzornik',
 
 'grouppage-user'          => '{{ns:project}}:Suradnici',
@@ -1926,7 +1926,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 'statistics-users-active-desc' => 'Suradnici koji su napravili neku od radnji u posljednjih {{PLURAL:$1|dan|$1 dana}}',
 'statistics-mostpopular'       => 'Najposjećenije stranice',
 
-'disambiguations'      => 'Razdvojbene stranice',
+'disambiguations'      => 'Stranice koje vode na razdvojbene stranice',
 'disambiguationspage'  => 'Template:Razdvojba',
 'disambiguations-text' => "Sljedeće stranice povezuju na '''razdvojbenu stranicu'''.
 Umjesto toga bi trebale povezivati na prikladnu temu.<br />
@@ -2000,7 +2000,7 @@ koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokaziva
 'listusers-editsonly'     => 'Pokaži samo suradnike s uređivanjem',
 'listusers-creationsort'  => 'Razvrstaj po datumu stvaranja',
 'usereditcount'           => '$1 {{PLURAL:$1|uređivanje|uređivanja|uređivanja}}',
-'usercreated'             => 'Otvoren $1 u $2',
+'usercreated'             => '{{GENDER:$3|Otvorio|Otvorila}} račun $1 u $2',
 'newpages'                => 'Nove stranice',
 'newpages-username'       => 'Suradničko ime:',
 'ancientpages'            => 'Najstarije stranice',
