@@ -535,12 +535,12 @@ test( 'bug 32888 - Tables inside a tableheader cell', function() {
 		);
 	$table.tablesorter();
 
-	var test1 = equals(
+	equals(
 		$table.find('> thead:eq(0) > tr > th.headerSort').length,
 		1,
 		'Child tables inside a headercell should not interfere with sortable headers (bug 32888)'
 	);
-	var test1 = equals(
+	equals(
 		$('#32888-2').find('th.headerSort').length,
 		0,
 		'The headers of child tables inside a headercell should not be sortable themselves (bug 32888)'
