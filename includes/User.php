@@ -2110,7 +2110,11 @@ class User {
 	 */
 	public function setEmail( $str ) {
 		$this->load();
+		if( $str == $this->mEmail ) {
+			return;
+		}
 		$this->mEmail = $str;
+		$this->invalidateEmail();
 		wfRunHooks( 'UserSetEmail', array( $this, &$this->mEmail ) );
 	}
 
