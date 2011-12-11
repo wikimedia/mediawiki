@@ -96,9 +96,9 @@ class GlobalTest extends MediaWikiTestCase {
 
 	function testArrayToCGI() {
 		$this->assertEquals(
-			"baz=AT%26T&foo=bar",
+			"baz=AT%26T&empty=&true=1&foo=bar",
 			wfArrayToCGI(
-				array( 'baz' => 'AT&T', 'ignore' => '' ),
+				array( 'baz' => 'AT&T', 'empty' => '', 'ignored' => null, 'ignored2' => false, 'true' => true ),
 				array( 'foo' => 'bar', 'baz' => 'overridden value' ) ) );
 		$this->assertEquals(
 			"path%5B0%5D=wiki&path%5B1%5D=test&cfg%5Bservers%5D%5Bhttp%5D=localhost",
@@ -110,8 +110,9 @@ class GlobalTest extends MediaWikiTestCase {
 	function testCgiToArray() {
 		$this->assertEquals(
 			array( 'path' => array( 'wiki', 'test' ),
-			'cfg' => array( 'servers' => array( 'http' => 'localhost' ) ) ),
-			wfCgiToArray( 'path%5B0%5D=wiki&path%5B1%5D=test&cfg%5Bservers%5D%5Bhttp%5D=localhost' ) );
+			'cfg' => array( 'servers' => array( 'http' => 'localhost' ) ),
+			'qwerty' => '' ),
+			wfCgiToArray( 'path%5B0%5D=wiki&path%5B1%5D=test&cfg%5Bservers%5D%5Bhttp%5D=localhost&qwerty' ) );
 	}
 
 	function testMimeTypeMatch() {
