@@ -166,19 +166,19 @@ production.
 * (bug 29747) eAccelerator shared memory caching has been removed since it is
   now disabled by default and is buggy. APC, XCache and WinCache are not affected.
 * Installer now refuses to install if php was not compiled with Ctype support.
-* (bug 29475) Remove "trackback" feature entirely from core
+* (bug 29475) Remove "trackback" feature entirely from core.
 * (bug 32665) Special:BlockList prefills the username in the input field if
-  using the Special:BlockList/username URL
+  using the Special:BlockList/username URL.
 * (bug 27721) Make JavaScript variables wgSeparatorTransformTable and
   wgDigitTransformTable depend on page content language so the sort script
-  sorts correctly more often
-* (bug 32230) Expose wgRedirectedFrom in JavaScript
+  sorts correctly more often.
+* (bug 32230) Expose wgRedirectedFrom in JavaScript.
 * (bug 31212) History tab not collapsed when the screen is narrow
 * (bug 15521) Use new section summary when the action of adding a new section
-  also happens to create the page
+  also happens to create the page.
 * (bug 32960) Remove EmailAuthenticationTimestamp from database when a
-  email address is removed
-* (bug 32414) Empty page get a empty bytes attribute in Export/Dump
+  email address is removed.
+* (bug 32414) Empty page get a empty bytes attribute in Export/Dump.
 
 === API changes in 1.19 ===
 * (bug 19838) siprop=interwikimap can now use the interwiki cache.
@@ -202,9 +202,9 @@ production.
   to Captcha extension(s).
 * Added 'APIGetDescription' hook.
 * (bug 32688) Paraminfo for parameter "generator" of the query module shows too
-  many types
-* (bug 32415) Empty page get no size attribute in API output
-* (bug 31759) Undefined property notice in querypages API
+  many types.
+* (bug 32415) Empty page get no size attribute in API output.
+* (bug 31759) Undefined property notice in querypages API.
 
 === Languages updated in 1.19 ===
 
