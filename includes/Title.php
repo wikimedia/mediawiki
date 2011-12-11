@@ -1483,7 +1483,7 @@ class Title {
 	}
 
 	/**
-	 * Can $wgUser perform $action on this page?
+	 * Can $user perform $action on this page?
 	 * This skips potentially expensive cascading permission checks
 	 * as well as avoids expensive error formatting
 	 *
@@ -1493,7 +1493,8 @@ class Title {
 	 * May provide false positives, but should never provide a false negative.
 	 *
 	 * @param $action String action that permission needs to be checked for
-	 * @param $user User to check (since 1.19)
+	 * @param $user User to check (since 1.19); $wgUser will be used if not
+	 *              provided.
 	 * @return Bool
 	 */
 	public function quickUserCan( $action, $user = null ) {
@@ -1501,11 +1502,13 @@ class Title {
 	}
 
 	/**
-	 * Can $wgUser perform $action on this page?
+	 * Can $user perform $action on this page?
 	 *
 	 * @param $action String action that permission needs to be checked for
-	 * @param $user User to check (since 1.19)
-	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary queries.
+	 * @param $user User to check (since 1.19); $wgUser will be used if not
+	 *   provided.
+	 * @param $doExpensiveQueries Bool Set this to false to avoid doing
+	 *   unnecessary queries.
 	 * @return Bool
 	 */
 	public function userCan( $action, $user = null, $doExpensiveQueries = true ) {
@@ -1523,9 +1526,10 @@ class Title {
 	 *
 	 * @param $action String action that permission needs to be checked for
 	 * @param $user User to check
-	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary queries by
-	 *   skipping checks for cascading protections and user blocks.
-	 * @param $ignoreErrors Array of Strings Set this to a list of message keys whose corresponding errors may be ignored.
+	 * @param $doExpensiveQueries Bool Set this to false to avoid doing unnecessary
+	 *   queries by skipping checks for cascading protections and user blocks.
+	 * @param $ignoreErrors Array of Strings Set this to a list of message keys
+	 *   whose corresponding errors may be ignored.
 	 * @return Array of arguments to wfMsg to explain permissions problems.
 	 */
 	public function getUserPermissionsErrors( $action, $user, $doExpensiveQueries = true, $ignoreErrors = array() ) {
