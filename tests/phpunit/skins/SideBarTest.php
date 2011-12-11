@@ -37,6 +37,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 		parent::setUp();
 		$this->initMessagesHref();
 		$this->skin = new SkinTemplate();
+		$this->skin->getContext()->setLang( Language::factory( 'en' ) );
 	}
 	function tearDown() {
 		parent::tearDown();
