@@ -409,7 +409,7 @@ $1',
 'nstab-project'   => 'প্ৰকল্প পৃষ্ঠা',
 'nstab-image'     => 'চিত্ৰ',
 'nstab-mediawiki' => 'বাৰ্তা',
-'nstab-template'  => 'সাঁচ',
+'nstab-template'  => 'Template',
 'nstab-help'      => 'সাহায্য পৃষ্ঠা',
 'nstab-category'  => 'শ্ৰেণী',
 

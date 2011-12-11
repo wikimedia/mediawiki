@@ -972,9 +972,9 @@ $2
 'previousrevision'       => '←上一修訂',
 'nextrevision'           => '下一修訂→',
 'currentrevisionlink'    => '最新修訂',
-'cur'                    => '目前',
-'next'                   => '後繼',
-'last'                   => '先前',
+'cur'                    => '現',
+'next'                   => '下',
+'last'                   => '上',
 'page_first'             => '最前',
 'page_last'              => '最後',
 'histlegend'             => "差異選擇：標記要比較修訂版本的單選按鈕並點擊底部的按鈕進行比較。<br />
@@ -1037,7 +1037,7 @@ $2
 'revdelete-show-file-confirm' => '{{GENDER:|你|妳|你}}是否真的是想去檢視於$2 $3刪除 "$1" 的檔案修訂？',
 'revdelete-show-file-submit'  => '是',
 'revdelete-selected'          => "'''選取[[:$1]]的$2次修訂:'''",
-'logdelete-selected'          => "'''選取'''$1'''的日誌項目:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|選取的日誌項目}}：'''",
 'revdelete-text'              => "'''刪除的修訂仍將顯示在頁面歷史中, 但它們的文字內容已不能被公眾訪問。'''
 在{{SITENAME}}的其他管理員將仍能訪問隱藏的內容並透過與此相同的介面恢復刪除，除非網站工作者進行了一些附加的限制。",
 'revdelete-confirm'           => '請確認您肯定去做的話，您就要明白到後果，以及這個程序符合[[{{MediaWiki:Policy-url}}|政策]]。',

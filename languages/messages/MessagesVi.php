@@ -760,7 +760,7 @@ Hãy nhập một địa chỉ có định dạng đúng hoặc bỏ trống ô 
 
 Xin hãy bỏ qua thông báo này nếu tài khoản này không phải do bạn tạo ra.',
 'usernamehasherror'          => 'Tên người dùng không thể chứa dấu rào',
-'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này
+'login-throttled'            => 'Bạn đã thử quá nhiều mật khẩu của tài khoản này.
 Xin hãy đợi chốc lát rồi thử lại.',
 'login-abort-generic'        => 'Thất bại khi đăng nhập',
 'loginlanguagelabel'         => 'Ngôn ngữ: $1',

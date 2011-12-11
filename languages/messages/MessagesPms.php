@@ -2179,10 +2179,10 @@ Che as varda ël [[Special:Log/delete|Registr djë scancelament]] për ës-ciair
 'undelete-missing-filearchive' => "As peul nen ricuperesse l'archivi con l'identità $1 përchè a-i é pa ant la base ëd dat. A peul esse ch'a l'abio già pijalo andré.",
 'undelete-error'               => "Pàgina d'eror d'arcuperassion",
 'undelete-error-short'         => "Eror ën arcuperand l'archivi: $1",
-'undelete-error-long'          => "Eror antramentr ch'as disdëscancelava l'archivi:
+'undelete-error-long'          => "Eror antramentr ch'as arcuperava l'archivi:
 
 $1",
-'undelete-show-file-confirm'   => 'É-lo sicur ëd vorèj vëdde la revision scancelà ëd l\'archivi "<nowiki>$1</nowiki>" da $2 a $3?',
+'undelete-show-file-confirm'   => "É-lo sicur ëd vorèj vëdde la revision scancelà ëd l'archivi «<nowiki>$1</nowiki>» da $2 a $3?",
 'undelete-show-file-submit'    => 'É!',
 
 # Namespace form on various pages

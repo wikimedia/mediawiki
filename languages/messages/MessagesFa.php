@@ -960,7 +960,7 @@ $2',
 'passwordreset-username'           => 'نام کاربری:',
 'passwordreset-domain'             => 'دامنه:',
 'passwordreset-capture'            => 'پست الکترونیکی نهایی نشان داده شود؟',
-'passwordreset-capture-help'       => 'در صورتی که تیک این گزینه را بزنید پست الکترونیکی (حاوی رمز عبور موقت) که به کاربر ارسال شد به شما نشان داده خواهد شد.',
+'passwordreset-capture-help'       => 'اگر این گزینه را علامت بزنید پست الکترونیکی (حاوی گذرواژهٔ موقت) به شما نشان داده خواهد شد و برای کاربر نیز فرستاده خواهد شد.',
 'passwordreset-email'              => 'نشانی پست الکترونیک:',
 'passwordreset-emailtitle'         => 'جزئیات حساب در {{SITENAME}}',
 'passwordreset-emailtext-ip'       => 'شخصی (احتمالاً شما، با نشانی آی‌پی $1) درخواست یادآوری جزئیات حساب کاربریتان در {{SITENAME}} ($4) را کرده‌است. {{PLURAL:$3|حساب|حساب‌های}} کاربری زیر با این رایانشانی مرتبط هستند:
@@ -979,7 +979,7 @@ $2
 'passwordreset-emailelement'       => 'نام کاربری: $1
 گذرواژهٔ موقت: $2',
 'passwordreset-emailsent'          => 'یک نامهٔ یادآور فرستاده شده است.',
-'passwordreset-emailsent-capture'  => 'پست الکترونیکی یادآور ارسال‌شد، که به شرح زیر است.',
+'passwordreset-emailsent-capture'  => 'پست الکترونیکی یادآور فرستاده شد، که به شرح زیر است.',
 'passwordreset-emailerror-capture' => 'پست الکترونیکی یادآور همانطور که در زیر مشاهده‌ می‌فرمایید ایجاد شد ولی ارسال آن به کاربر موفقیت‌آمیز نبود: $1',
 
 # Special:ChangeEmail

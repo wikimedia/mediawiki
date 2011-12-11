@@ -14,6 +14,7 @@
  * @author EPO
  * @author Fluff
  * @author GameOn
+ * @author Greggegorius
  * @author Grillo
  * @author Habj
  * @author Habjchen
@@ -1811,6 +1812,7 @@ Den kan inte säkerhetskontrolleras ordentligt.',
 'uploadstash-badtoken' => 'Utförandet av den åtgärden misslyckades, kanske för att din redigeringsrättigheter löpt ut. Försök igen.',
 'uploadstash-errclear' => 'Rensning av filerna misslyckades.',
 'uploadstash-refresh'  => 'Uppdatera listan över filer',
+'invalid-chunk-offset' => 'Ogiltig segmentsförskjutning',
 
 # img_auth script messages
 'img-auth-accessdenied'     => 'Åtkomst nekad',

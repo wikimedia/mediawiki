@@ -22,6 +22,7 @@
  * @author Marinsb
  * @author Najami
  * @author Nghtwlkr
+ * @author Njardarlogar
  * @author Olve Utne
  * @author Ranveig
  * @author Shauni
@@ -556,7 +557,7 @@ $1',
 'youhavenewmessagesmulti' => 'Du har nye meldingar på $1',
 'editsection'             => 'endre',
 'editold'                 => 'endre',
-'viewsourceold'           => 'vis kjeldetekst',
+'viewsourceold'           => 'sjå kjelda',
 'editlink'                => 'endre',
 'viewsourcelink'          => 'vis kjelde',
 'editsectionhint'         => 'Endre bolk: $1',
@@ -636,13 +637,15 @@ Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgj
 'badarticleerror'      => 'Handlinga kan ikkje utførast på denne sida.',
 'cannotdelete'         => 'Kunne ikkje slette sida eller fila «$1».
 Ho kan allereie vere sletta av andre.',
+'cannotdelete-title'   => 'Kan ikkje sletta sida «$1»',
 'badtitle'             => 'Feil i tittelen',
 'badtitletext'         => 'Den ønskte tittelen var ulovleg, tom eller feillenkja frå ein annan wiki. Kanskje inneheld han eitt eller fleire teikn som ikkje kan brukast i sidetitlar.',
 'perfcached'           => 'Det følgjande er frå mellomlageret åt tenaren og er ikkje nødvendigvis oppdatert.',
 'perfcachedts'         => 'Desse data er mellomlagra, og vart sist oppdaterte $1.',
 'querypage-no-updates' => 'Oppdatering av denne sida er slått av, og data her vil ikkje verte fornya.',
 'wrong_wfQuery_params' => 'Feil parameter gjevne til wfQuery()<br />Funksjon: $1<br />Førespurnad: $2',
-'viewsource'           => 'Vis kjeldetekst',
+'viewsource'           => 'Sjå kjelda',
+'viewsource-title'     => 'Sjå kjelda til $1',
 'actionthrottled'      => 'Handlinga vart stoppa',
 'actionthrottledtext'  => 'For å hindre spamming kan du ikkje utføre denne handlinga for mange gonger på kort tid. Ver venleg og prøv igjen litt seinare.',
 'protectedpagetext'    => 'Denne sida er verna for å hindre endring.',
@@ -1408,7 +1411,7 @@ Dette kan ikke tilbakestillast.',
 'group-suppress'      => 'Historikkfjernarar',
 'group-all'           => '(alle)',
 
-'group-user-member'          => 'Brukar',
+'group-user-member'          => '{{GENDER:$1|brukar}}',
 'group-autoconfirmed-member' => 'Automatisk godkjend brukar',
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Administrator',
@@ -1535,7 +1538,7 @@ Dette kan ikke tilbakestillast.',
 'recentchanges-label-minor'         => 'Dette er ei mindre endring',
 'recentchanges-label-bot'           => 'Denne endringa vart gjort av ein bot',
 'recentchanges-label-unpatrolled'   => 'Denne endringa er ikkje patruljert enno',
-'rcnote'                            => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} gjort {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, sidan $4, kl. $5.",
+'rcnote'                            => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} gjort {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, for $4, kl. $5.",
 'rcnotefrom'                        => "Nedanfor vert opp til '''$1''' endringar sidan  ''' $2''' viste.",
 'rclistfrom'                        => 'Vis nye endringar sidan $1',
 'rcshowhideminor'                   => '$1 småplukk',
@@ -1806,23 +1809,24 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'filerevert-badversion'     => 'Det finst ingen tidlegare lokal versjon av denne fila frå det oppgjevne tidspunktet.',
 
 # File deletion
-'filedelete'                  => 'Slett $1',
-'filedelete-legend'           => 'Slett fil',
-'filedelete-intro'            => "Du er i ferd med å sletta fila '''[[Media:$1|$1]]''' i lag med heile historikken hennar.",
-'filedelete-intro-old'        => "Du slettar versjonen av '''[[Media:$1|$1]]''' frå [$4 $3, $2].",
-'filedelete-comment'          => 'Årsak:',
-'filedelete-submit'           => 'Slett',
-'filedelete-success'          => "'''$1''' er sletta.",
-'filedelete-success-old'      => "Versjonen av '''[[Media:$1|$1]]''' frå $3, $2 er sletta.",
-'filedelete-nofile'           => "'''$1''' finst ikkje.",
-'filedelete-nofile-old'       => "Det finst ingen arkivert versjon av '''$1''' med dei oppgjevne attributta.",
-'filedelete-otherreason'      => 'Annan grunn/tilleggsgrunn:',
-'filedelete-reason-otherlist' => 'Annan grunn',
-'filedelete-reason-dropdown'  => '*Vanlege grunnar for sletting
+'filedelete'                   => 'Slett $1',
+'filedelete-legend'            => 'Slett fil',
+'filedelete-intro'             => "Du er i ferd med å sletta fila '''[[Media:$1|$1]]''' i lag med heile historikken hennar.",
+'filedelete-intro-old'         => "Du slettar versjonen av '''[[Media:$1|$1]]''' frå [$4 $3, $2].",
+'filedelete-comment'           => 'Årsak:',
+'filedelete-submit'            => 'Slett',
+'filedelete-success'           => "'''$1''' er sletta.",
+'filedelete-success-old'       => "Versjonen av '''[[Media:$1|$1]]''' frå $3, $2 er sletta.",
+'filedelete-nofile'            => "'''$1''' finst ikkje.",
+'filedelete-nofile-old'        => "Det finst ingen arkivert versjon av '''$1''' med dei oppgjevne attributta.",
+'filedelete-otherreason'       => 'Annan grunn/tilleggsgrunn:',
+'filedelete-reason-otherlist'  => 'Annan grunn',
+'filedelete-reason-dropdown'   => '*Vanlege grunnar for sletting
 ** Brot på opphavsretten
 ** Ligg dobbelt',
-'filedelete-edit-reasonlist'  => 'Endre grunnar til sletting',
-'filedelete-maintenance'      => 'Sletting og attoppretting af filer er mellombels ikkje mogleg på grunn av vedlikehald.',
+'filedelete-edit-reasonlist'   => 'Endre grunnar til sletting',
+'filedelete-maintenance'       => 'Sletting og attoppretting af filer er mellombels ikkje mogleg på grunn av vedlikehald.',
+'filedelete-maintenance-title' => 'Kan ikkje sletta fila',
 
 # MIME search
 'mimesearch'         => 'MIME-søk',
@@ -2107,7 +2111,7 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'watchmethod-list'     => 'sjekkar om dei overvaka sidene er vortne endra i det siste',
 'watchlistcontains'    => 'Overvakingslista di inneheld {{PLURAL:$1|éi side|$1 sider}}.',
 'iteminvalidname'      => 'Problem med «$1», ugyldig namn...',
-'wlnote'               => 'Nedanfor er {{PLURAL:$1|den siste endringa|dei siste $1 endringane}} {{PLURAL:$2|den siste timen|dei siste $2 timane}}.',
+'wlnote'               => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} {{PLURAL:$2|den siste timen|dei siste '''$2''' timane}}, for $3, kl. $4.",
 'wlshowlast'           => 'Vis siste $1 timar $2 dagar $3',
 'watchlist-options'    => 'Alternativ for overvakingslista',
 
