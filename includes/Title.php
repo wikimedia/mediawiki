@@ -480,6 +480,33 @@ class Title {
 	}
 
 	/**
+	 * Returns a simple regex that will match on characters and sequences invalid in titles.
+	 * Note that this doesn't pick up many things that could be wrong with titles, but that
+	 * replacing this regex with something valid will make many titles valid.
+	 *
+	 * @return String regex string
+	 */
+	static function getTitleInvalidRegex() {
+		static $rxTc = false;
+		if ( !$rxTc ) {
+			# Matching titles will be held as illegal.
+			$rxTc = '/' .
+				# Any character not allowed is forbidden...
+				'[^' . self::legalChars() . ']' .
+				# URL percent encoding sequences interfere with the ability
+				# to round-trip titles -- you can't link to them consistently.
+				'|%[0-9A-Fa-f]{2}' .
+				# XML/HTML character references produce similar issues.
+				'|&[A-Za-z0-9\x80-\xff]+;' .
+				'|&#[0-9]+;' .
+				'|&#x[0-9A-Fa-f]+;' .
+				'/S';
+		}
+
+		return $rxTc;
+	}
+
+	/**
 	 * Get a string representation of a title suitable for
 	 * including in a search index
 	 *
@@ -542,6 +569,22 @@ class Title {
 		# one version of Opera 9.x.  The W3C validator, for one, doesn't seem
 		# to care if they aren't encoded.
 		return Sanitizer::escapeId( $fragment, 'noninitial' );
+	}
+
+	/**
+	 * Callback for usort() to do title sorts by (namespace, title)
+	 *
+	 * @param $a Title
+	 * @param $b Title
+	 *
+	 * @return Integer: result of string comparison, or namespace comparison
+	 */
+	public static function compare( $a, $b ) {
+		if ( $a->getNamespace() == $b->getNamespace() ) {
+			return strcmp( $a->getText(), $b->getText() );
+		} else {
+			return $a->getNamespace() - $b->getNamespace();
+		}
 	}
 
 	/**
@@ -631,6 +674,15 @@ class Title {
 	}
 
 	/**
+	 * Get the DB key with the initial letter case as specified by the user
+	 *
+	 * @return String DB key
+	 */
+	function getUserCaseDBKey() {
+		return $this->mUserCaseDBKey;
+	}
+
+	/**
 	 * Get the namespace index, i.e. one of the NS_xxxx constants.
 	 *
 	 * @return Integer: Namespace index
@@ -677,15 +729,6 @@ class Title {
 	}
 
 	/**
-	 * Get the DB key with the initial letter case as specified by the user
-	 *
-	 * @return String DB key
-	 */
-	function getUserCaseDBKey() {
-		return $this->mUserCaseDBKey;
-	}
-
-	/**
 	 * Get the namespace text of the subject (rather than talk) page
 	 *
 	 * @return String Namespace text
@@ -715,22 +758,287 @@ class Title {
 	}
 
 	/**
-	 * Get the Title fragment (i.e.\ the bit after the #) in text form
+	 * Is this in a namespace that allows actual pages?
 	 *
-	 * @return String Title fragment
+	 * @return Bool
+	 * @internal note -- uses hardcoded namespace index instead of constants
 	 */
-	public function getFragment() { return $this->mFragment; }
+	public function canExist() {
+		return $this->mNamespace >= 0 && $this->mNamespace != NS_MEDIA;
+	}
 
 	/**
-	 * Get the fragment in URL form, including the "#" character if there is one
-	 * @return String Fragment in URL form
+	 * Can this title be added to a user's watchlist?
+	 *
+	 * @return Bool TRUE or FALSE
 	 */
-	public function getFragmentForURL() {
-		if ( $this->mFragment == '' ) {
-			return '';
-		} else {
-			return '#' . Title::escapeFragmentForURL( $this->mFragment );
+	public function isWatchable() {
+		return !$this->isExternal() && MWNamespace::isWatchable( $this->getNamespace() );
+	}
+
+	/**
+	 * Returns true if this is a special page.
+	 *
+	 * @return boolean
+	 */
+	public function isSpecialPage() {
+		return $this->getNamespace() == NS_SPECIAL;
+	}
+
+	/**
+	 * Returns true if this title resolves to the named special page
+	 *
+	 * @param $name String The special page name
+	 * @return boolean
+	 */
+	public function isSpecial( $name ) {
+		if ( $this->isSpecialPage() ) {
+			list( $thisName, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $this->getDBkey() );
+			if ( $name == $thisName ) {
+				return true;
+			}
 		}
+		return false;
+	}
+
+	/**
+	 * If the Title refers to a special page alias which is not the local default, resolve
+	 * the alias, and localise the name as necessary.  Otherwise, return $this
+	 *
+	 * @return Title
+	 */
+	public function fixSpecialName() {
+		if ( $this->isSpecialPage() ) {
+			list( $canonicalName, $par ) = SpecialPageFactory::resolveAlias( $this->mDbkeyform );
+			if ( $canonicalName ) {
+				$localName = SpecialPageFactory::getLocalNameFor( $canonicalName, $par );
+				if ( $localName != $this->mDbkeyform ) {
+					return Title::makeTitle( NS_SPECIAL, $localName );
+				}
+			}
+		}
+		return $this;
+	}
+
+	/**
+	 * Returns true if the title is inside the specified namespace.
+	 * 
+	 * Please make use of this instead of comparing to getNamespace()
+	 * This function is much more resistant to changes we may make
+	 * to namespaces than code that makes direct comparisons.
+	 * @param $ns int The namespace
+	 * @return bool
+	 * @since 1.19
+	 */
+	public function inNamespace( $ns ) {
+		return MWNamespace::equals( $this->getNamespace(), $ns );
+	}
+
+	/**
+	 * Returns true if the title is inside one of the specified namespaces.
+	 *
+	 * @param ...$namespaces The namespaces to check for
+	 * @return bool
+	 * @since 1.19
+	 */
+	public function inNamespaces( /* ... */ ) {
+		$namespaces = func_get_args();
+		if ( count( $namespaces ) > 0 && is_array( $namespaces[0] ) ) {
+			$namespaces = $namespaces[0];
+		}
+
+		foreach ( $namespaces as $ns ) {
+			if ( $this->inNamespace( $ns ) ) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Returns true if the title has the same subject namespace as the
+	 * namespace specified.
+	 * For example this method will take NS_USER and return true if namespace
+	 * is either NS_USER or NS_USER_TALK since both of them have NS_USER
+	 * as their subject namespace.
+	 *
+	 * This is MUCH simpler than individually testing for equivilance
+	 * against both NS_USER and NS_USER_TALK, and is also forward compatible.
+	 * @since 1.19
+	 */
+	public function hasSubjectNamespace( $ns ) {
+		return MWNamespace::subjectEquals( $this->getNamespace(), $ns );
+	}
+
+	/**
+	 * Is this Title in a namespace which contains content?
+	 * In other words, is this a content page, for the purposes of calculating
+	 * statistics, etc?
+	 *
+	 * @return Boolean
+	 */
+	public function isContentPage() {
+		return MWNamespace::isContent( $this->getNamespace() );
+	}
+
+	/**
+	 * Would anybody with sufficient privileges be able to move this page?
+	 * Some pages just aren't movable.
+	 *
+	 * @return Bool TRUE or FALSE
+	 */
+	public function isMovable() {
+		if ( !MWNamespace::isMovable( $this->getNamespace() ) || $this->getInterwiki() != '' ) {
+			// Interwiki title or immovable namespace. Hooks don't get to override here
+			return false;
+		}
+
+		$result = true;
+		wfRunHooks( 'TitleIsMovable', array( $this, &$result ) );
+		return $result;
+	}
+
+	/**
+	 * Is this the mainpage?
+	 * @note Title::newFromText seams to be sufficiently optimized by the title
+	 * cache that we don't need to over-optimize by doing direct comparisons and
+	 * acidentally creating new bugs where $title->equals( Title::newFromText() )
+	 * ends up reporting something differently than $title->isMainPage();
+	 *
+	 * @since 1.18
+	 * @return Bool
+	 */
+	public function isMainPage() {
+		return $this->equals( Title::newMainPage() );
+	}
+
+	/**
+	 * Is this a subpage?
+	 *
+	 * @return Bool
+	 */
+	public function isSubpage() {
+		return MWNamespace::hasSubpages( $this->mNamespace )
+			? strpos( $this->getText(), '/' ) !== false
+			: false;
+	}
+
+	/**
+	 * Is this a conversion table for the LanguageConverter?
+	 *
+	 * @return Bool
+	 */
+	public function isConversionTable() {
+		return $this->getNamespace() == NS_MEDIAWIKI &&
+			strpos( $this->getText(), 'Conversiontable' ) !== false;
+	}
+
+	/**
+	 * Does that page contain wikitext, or it is JS, CSS or whatever?
+	 *
+	 * @return Bool
+	 */
+	public function isWikitextPage() {
+		$retval = !$this->isCssOrJsPage() && !$this->isCssJsSubpage();
+		wfRunHooks( 'TitleIsWikitextPage', array( $this, &$retval ) );
+		return $retval;
+	}
+
+	/**
+	 * Could this page contain custom CSS or JavaScript, based
+	 * on the title?
+	 *
+	 * @return Bool
+	 */
+	public function isCssOrJsPage() {
+		$retval = $this->mNamespace == NS_MEDIAWIKI
+			&& preg_match( '!\.(?:css|js)$!u', $this->mTextform ) > 0;
+		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$retval ) );
+		return $retval;
+	}
+
+	/**
+	 * Is this a .css or .js subpage of a user page?
+	 * @return Bool
+	 */
+	public function isCssJsSubpage() {
+		return ( NS_USER == $this->mNamespace and preg_match( "/\\/.*\\.(?:css|js)$/", $this->mTextform ) );
+	}
+
+	/**
+	 * Is this a *valid* .css or .js subpage of a user page?
+	 *
+	 * @return Bool
+	 * @deprecated since 1.17
+	 */
+	public function isValidCssJsSubpage() {
+		return $this->isCssJsSubpage();
+	}
+
+	/**
+	 * Trim down a .css or .js subpage title to get the corresponding skin name
+	 *
+	 * @return string containing skin name from .css or .js subpage title
+	 */
+	public function getSkinFromCssJsSubpage() {
+		$subpage = explode( '/', $this->mTextform );
+		$subpage = $subpage[ count( $subpage ) - 1 ];
+		$lastdot = strrpos( $subpage, '.' );
+		if ( $lastdot === false )
+			return $subpage; # Never happens: only called for names ending in '.css' or '.js'
+		return substr( $subpage, 0, $lastdot );
+	}
+
+	/**
+	 * Is this a .css subpage of a user page?
+	 *
+	 * @return Bool
+	 */
+	public function isCssSubpage() {
+		return ( NS_USER == $this->mNamespace && preg_match( "/\\/.*\\.css$/", $this->mTextform ) );
+	}
+
+	/**
+	 * Is this a .js subpage of a user page?
+	 *
+	 * @return Bool
+	 */
+	public function isJsSubpage() {
+		return ( NS_USER == $this->mNamespace && preg_match( "/\\/.*\\.js$/", $this->mTextform ) );
+	}
+
+	/**
+	 * Is this a talk page of some sort?
+	 *
+	 * @return Bool
+	 */
+	public function isTalkPage() {
+		return MWNamespace::isTalk( $this->getNamespace() );
+	}
+
+	/**
+	 * Get a Title object associated with the talk page of this article
+	 *
+	 * @return Title the object for the talk page
+	 */
+	public function getTalkPage() {
+		return Title::makeTitle( MWNamespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
+	}
+
+	/**
+	 * Get a title object associated with the subject page of this
+	 * talk page
+	 *
+	 * @return Title the object for the subject page
+	 */
+	public function getSubjectPage() {
+		// Is this the same title?
+		$subjectNS = MWNamespace::getSubject( $this->getNamespace() );
+		if ( $this->getNamespace() == $subjectNS ) {
+			return $this;
+		}
+		return Title::makeTitle( $subjectNS, $this->getDBkey() );
 	}
 
 	/**
@@ -750,6 +1058,61 @@ class Title {
 	 */
 	public function getIndexTitle() {
 		return Title::indexTitle( $this->mNamespace, $this->mTextform );
+	}
+
+	/**
+	 * Get the Title fragment (i.e.\ the bit after the #) in text form
+	 *
+	 * @return String Title fragment
+	 */
+	public function getFragment() {
+		return $this->mFragment;
+	}
+
+	/**
+	 * Get the fragment in URL form, including the "#" character if there is one
+	 * @return String Fragment in URL form
+	 */
+	public function getFragmentForURL() {
+		if ( $this->mFragment == '' ) {
+			return '';
+		} else {
+			return '#' . Title::escapeFragmentForURL( $this->mFragment );
+		}
+	}
+
+	/**
+	 * Set the fragment for this title. Removes the first character from the
+	 * specified fragment before setting, so it assumes you're passing it with
+	 * an initial "#".
+	 *
+	 * Deprecated for public use, use Title::makeTitle() with fragment parameter.
+	 * Still in active use privately.
+	 *
+	 * @param $fragment String text
+	 */
+	public function setFragment( $fragment ) {
+		$this->mFragment = str_replace( '_', ' ', substr( $fragment, 1 ) );
+	}
+
+	/**
+	 * Prefix some arbitrary text with the namespace or interwiki prefix
+	 * of this object
+	 *
+	 * @param $name String the text
+	 * @return String the prefixed text
+	 * @private
+	 */
+	private function prefix( $name ) {
+		$p = '';
+		if ( $this->mInterwiki != '' ) {
+			$p = $this->mInterwiki . ':';
+		}
+
+		if ( 0 != $this->mNamespace ) {
+			$p .= $this->getNsText() . ':';
+		}
+		return $p . $name;
 	}
 
 	/**
@@ -781,6 +1144,14 @@ class Title {
 	}
 
 	/**
+	 * Return a string representation of this title
+	 *
+	 * @return String representation of this title
+	 */
+	public function __toString() {
+		return $this->getPrefixedText();
+	}
+
 	/**
 	 * Get the prefixed title with spaces, plus any fragment
 	 * (part beginning with '#')
@@ -1080,101 +1451,6 @@ class Title {
 		$s = $this->getLocalURL( 'action=edit' );
 
 		return $s;
-	}
-
-	/**
-	 * Is this page "semi-protected" - the *only* protection is autoconfirm?
-	 *
-	 * @param $action String Action to check (default: edit)
-	 * @return Bool
-	 */
-	public function isSemiProtected( $action = 'edit' ) {
-		if ( $this->exists() ) {
-			$restrictions = $this->getRestrictions( $action );
-			if ( count( $restrictions ) > 0 ) {
-				foreach ( $restrictions as $restriction ) {
-					if ( strtolower( $restriction ) != 'autoconfirmed' ) {
-						return false;
-					}
-				}
-			} else {
-				# Not protected
-				return false;
-			}
-			return true;
-		} else {
-			# If it doesn't exist, it can't be protected
-			return false;
-		}
-	}
-
-	/**
-	 * Does the title correspond to a protected article?
-	 *
-	 * @param $action String the action the page is protected from,
-	 * by default checks all actions.
-	 * @return Bool
-	 */
-	public function isProtected( $action = '' ) {
-		global $wgRestrictionLevels;
-
-		$restrictionTypes = $this->getRestrictionTypes();
-
-		# Special pages have inherent protection
-		if( $this->isSpecialPage() ) {
-			return true;
-		}
-
-		# Check regular protection levels
-		foreach ( $restrictionTypes as $type ) {
-			if ( $action == $type || $action == '' ) {
-				$r = $this->getRestrictions( $type );
-				foreach ( $wgRestrictionLevels as $level ) {
-					if ( in_array( $level, $r ) && $level != '' ) {
-						return true;
-					}
-				}
-			}
-		}
-
-		return false;
-	}
-
-	/**
-	 * Determines if $user is unable to edit this page because it has been protected
-	 * by $wgNamespaceProtection.
-	 *
-	 * @param $user User object to check permissions
-	 * @return Bool
-	 */
-	public function isNamespaceProtected( User $user ) {
-		global $wgNamespaceProtection;
-
-		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
-			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
-				if ( $right != '' && !$user->isAllowed( $right ) ) {
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Is this a conversion table for the LanguageConverter?
-	 *
-	 * @return Bool
-	 */
-	public function isConversionTable() {
-		if(
-			$this->getNamespace() == NS_MEDIAWIKI &&
-			strpos( $this->getText(), 'Conversiontable' ) !== false
-		)
-		{
-			return true;
-		}
-
-		return false;
 	}
 
 	/**
@@ -1796,6 +2072,79 @@ class Title {
 	}
 
 	/**
+	 * Protect css subpages of user pages: can $wgUser edit
+	 * this page?
+	 *
+	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
+	 * @return Bool
+	 */
+	public function userCanEditCssSubpage() {
+		global $wgUser;
+		wfDeprecated( __METHOD__ );
+		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'editusercss' ) )
+			|| preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
+	}
+
+	/**
+	 * Protect js subpages of user pages: can $wgUser edit
+	 * this page?
+	 *
+	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
+	 * @return Bool
+	 */
+	public function userCanEditJsSubpage() {
+		global $wgUser;
+		wfDeprecated( __METHOD__ );
+		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'edituserjs' ) )
+			   || preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
+	}
+
+	/**
+	 * Get a filtered list of all restriction types supported by this wiki.
+	 * @param bool $exists True to get all restriction types that apply to
+	 * titles that do exist, False for all restriction types that apply to
+	 * titles that do not exist
+	 * @return array
+	 */
+	public static function getFilteredRestrictionTypes( $exists = true ) {
+		global $wgRestrictionTypes;
+		$types = $wgRestrictionTypes;
+		if ( $exists ) {
+			# Remove the create restriction for existing titles
+			$types = array_diff( $types, array( 'create' ) );
+		} else {
+			# Only the create and upload restrictions apply to non-existing titles
+			$types = array_intersect( $types, array( 'create', 'upload' ) );
+		}
+		return $types;
+	}
+
+	/**
+	 * Returns restriction types for the current Title
+	 *
+	 * @return array applicable restriction types
+	 */
+	public function getRestrictionTypes() {
+		if ( $this->isSpecialPage() ) {
+			return array();
+		}
+
+		$types = self::getFilteredRestrictionTypes( $this->exists() );
+
+		if ( $this->getNamespace() != NS_FILE ) {
+			# Remove the upload restriction for non-file titles
+			$types = array_diff( $types, array( 'upload' ) );
+		}
+
+		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
+
+		wfDebug( __METHOD__ . ': applicable restrictions to [[' .
+			$this->getPrefixedText() . ']] are {' . implode( ',', $types ) . "}\n" );
+
+		return $types;
+	}
+
+	/**
 	 * Is this title subject to title protection?
 	 * Title protection is the one applied against creation of such title.
 	 *
@@ -1905,86 +2254,57 @@ class Title {
 	}
 
 	/**
-	 * Would anybody with sufficient privileges be able to move this page?
-	 * Some pages just aren't movable.
+	 * Is this page "semi-protected" - the *only* protection is autoconfirm?
 	 *
-	 * @return Bool TRUE or FALSE
+	 * @param $action String Action to check (default: edit)
+	 * @return Bool
 	 */
-	public function isMovable() {
-		if ( !MWNamespace::isMovable( $this->getNamespace() ) || $this->getInterwiki() != '' ) {
-			// Interwiki title or immovable namespace. Hooks don't get to override here
+	public function isSemiProtected( $action = 'edit' ) {
+		if ( $this->exists() ) {
+			$restrictions = $this->getRestrictions( $action );
+			if ( count( $restrictions ) > 0 ) {
+				foreach ( $restrictions as $restriction ) {
+					if ( strtolower( $restriction ) != 'autoconfirmed' ) {
+						return false;
+					}
+				}
+			} else {
+				# Not protected
+				return false;
+			}
+			return true;
+		} else {
+			# If it doesn't exist, it can't be protected
 			return false;
 		}
-
-		$result = true;
-		wfRunHooks( 'TitleIsMovable', array( $this, &$result ) );
-		return $result;
 	}
 
 	/**
-	 * Is this the mainpage?
-	 * @note Title::newFromText seams to be sufficiently optimized by the title
-	 * cache that we don't need to over-optimize by doing direct comparisons and
-	 * acidentally creating new bugs where $title->equals( Title::newFromText() )
-	 * ends up reporting something differently than $title->isMainPage();
+	 * Does the title correspond to a protected article?
 	 *
-	 * @since 1.18
+	 * @param $action String the action the page is protected from,
+	 * by default checks all actions.
 	 * @return Bool
 	 */
-	public function isMainPage() {
-		return $this->equals( Title::newMainPage() );
-	}
+	public function isProtected( $action = '' ) {
+		global $wgRestrictionLevels;
 
-	/**
-	 * Is this a talk page of some sort?
-	 *
-	 * @return Bool
-	 */
-	public function isTalkPage() {
-		return MWNamespace::isTalk( $this->getNamespace() );
-	}
+		$restrictionTypes = $this->getRestrictionTypes();
 
-	/**
-	 * Is this a subpage?
-	 *
-	 * @return Bool
-	 */
-	public function isSubpage() {
-		return MWNamespace::hasSubpages( $this->mNamespace )
-			? strpos( $this->getText(), '/' ) !== false
-			: false;
-	}
-
-	/**
-	 * Returns true if the title is inside the specified namespace.
-	 * 
-	 * Please make use of this instead of comparing to getNamespace()
-	 * This function is much more resistant to changes we may make
-	 * to namespaces than code that makes direct comparisons.
-	 * @param $ns int The namespace
-	 * @return bool
-	 * @since 1.19
-	 */
-	public function inNamespace( $ns ) {
-		return MWNamespace::equals( $this->getNamespace(), $ns );
-	}
-
-	/**
-	 * Returns true if the title is inside one of the specified namespaces.
-	 *
-	 * @param ...$namespaces The namespaces to check for
-	 * @return bool
-	 * @since 1.19
-	 */
-	public function inNamespaces( /* ... */ ) {
-		$namespaces = func_get_args();
-		if ( count( $namespaces ) > 0 && is_array( $namespaces[0] ) ) {
-			$namespaces = $namespaces[0];
+		# Special pages have inherent protection
+		if( $this->isSpecialPage() ) {
+			return true;
 		}
 
-		foreach ( $namespaces as $ns ) {
-			if ( $this->inNamespace( $ns ) ) {
-				return true;
+		# Check regular protection levels
+		foreach ( $restrictionTypes as $type ) {
+			if ( $action == $type || $action == '' ) {
+				$r = $this->getRestrictions( $type );
+				foreach ( $wgRestrictionLevels as $level ) {
+					if ( in_array( $level, $r ) && $level != '' ) {
+						return true;
+					}
+				}
 			}
 		}
 
@@ -1992,175 +2312,23 @@ class Title {
 	}
 
 	/**
-	 * Returns true if the title has the same subject namespace as the
-	 * namespace specified.
-	 * For example this method will take NS_USER and return true if namespace
-	 * is either NS_USER or NS_USER_TALK since both of them have NS_USER
-	 * as their subject namespace.
+	 * Determines if $user is unable to edit this page because it has been protected
+	 * by $wgNamespaceProtection.
 	 *
-	 * This is MUCH simpler than individually testing for equivilance
-	 * against both NS_USER and NS_USER_TALK, and is also forward compatible.
-	 * @since 1.19
-	 */
-	public function hasSubjectNamespace( $ns ) {
-		return MWNamespace::subjectEquals( $this->getNamespace(), $ns );
-	}
-
-	/**
-	 * Does this have subpages?  (Warning, usually requires an extra DB query.)
-	 *
+	 * @param $user User object to check permissions
 	 * @return Bool
 	 */
-	public function hasSubpages() {
-		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
-			# Duh
-			return false;
+	public function isNamespaceProtected( User $user ) {
+		global $wgNamespaceProtection;
+
+		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
+			foreach ( (array)$wgNamespaceProtection[$this->mNamespace] as $right ) {
+				if ( $right != '' && !$user->isAllowed( $right ) ) {
+					return true;
+				}
+			}
 		}
-
-		# We dynamically add a member variable for the purpose of this method
-		# alone to cache the result.  There's no point in having it hanging
-		# around uninitialized in every Title object; therefore we only add it
-		# if needed and don't declare it statically.
-		if ( isset( $this->mHasSubpages ) ) {
-			return $this->mHasSubpages;
-		}
-
-		$subpages = $this->getSubpages( 1 );
-		if ( $subpages instanceof TitleArray ) {
-			return $this->mHasSubpages = (bool)$subpages->count();
-		}
-		return $this->mHasSubpages = false;
-	}
-
-	/**
-	 * Get all subpages of this page.
-	 *
-	 * @param $limit Int maximum number of subpages to fetch; -1 for no limit
-	 * @return mixed TitleArray, or empty array if this page's namespace
-	 *  doesn't allow subpages
-	 */
-	public function getSubpages( $limit = -1 ) {
-		if ( !MWNamespace::hasSubpages( $this->getNamespace() ) ) {
-			return array();
-		}
-
-		$dbr = wfGetDB( DB_SLAVE );
-		$conds['page_namespace'] = $this->getNamespace();
-		$conds[] = 'page_title ' . $dbr->buildLike( $this->getDBkey() . '/', $dbr->anyString() );
-		$options = array();
-		if ( $limit > -1 ) {
-			$options['LIMIT'] = $limit;
-		}
-		return $this->mSubpages = TitleArray::newFromResult(
-			$dbr->select( 'page',
-				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' ),
-				$conds,
-				__METHOD__,
-				$options
-			)
-		);
-	}
-
-	/**
-	 * Does that page contain wikitext, or it is JS, CSS or whatever?
-	 *
-	 * @return Bool
-	 */
-	public function isWikitextPage() {
-		$retval = !$this->isCssOrJsPage() && !$this->isCssJsSubpage();
-		wfRunHooks( 'TitleIsWikitextPage', array( $this, &$retval ) );
-		return $retval;
-	}
-
-	/**
-	 * Could this page contain custom CSS or JavaScript, based
-	 * on the title?
-	 *
-	 * @return Bool
-	 */
-	public function isCssOrJsPage() {
-		$retval = $this->mNamespace == NS_MEDIAWIKI
-			&& preg_match( '!\.(?:css|js)$!u', $this->mTextform ) > 0;
-		wfRunHooks( 'TitleIsCssOrJsPage', array( $this, &$retval ) );
-		return $retval;
-	}
-
-	/**
-	 * Is this a .css or .js subpage of a user page?
-	 * @return Bool
-	 */
-	public function isCssJsSubpage() {
-		return ( NS_USER == $this->mNamespace and preg_match( "/\\/.*\\.(?:css|js)$/", $this->mTextform ) );
-	}
-
-	/**
-	 * Is this a *valid* .css or .js subpage of a user page?
-	 *
-	 * @return Bool
-	 * @deprecated since 1.17
-	 */
-	public function isValidCssJsSubpage() {
-		return $this->isCssJsSubpage();
-	}
-
-	/**
-	 * Trim down a .css or .js subpage title to get the corresponding skin name
-	 *
-	 * @return string containing skin name from .css or .js subpage title
-	 */
-	public function getSkinFromCssJsSubpage() {
-		$subpage = explode( '/', $this->mTextform );
-		$subpage = $subpage[ count( $subpage ) - 1 ];
-		$lastdot = strrpos( $subpage, '.' );
-		if ( $lastdot === false )
-			return $subpage; # Never happens: only called for names ending in '.css' or '.js'
-		return substr( $subpage, 0, $lastdot );
-	}
-
-	/**
-	 * Is this a .css subpage of a user page?
-	 *
-	 * @return Bool
-	 */
-	public function isCssSubpage() {
-		return ( NS_USER == $this->mNamespace && preg_match( "/\\/.*\\.css$/", $this->mTextform ) );
-	}
-
-	/**
-	 * Is this a .js subpage of a user page?
-	 *
-	 * @return Bool
-	 */
-	public function isJsSubpage() {
-		return ( NS_USER == $this->mNamespace && preg_match( "/\\/.*\\.js$/", $this->mTextform ) );
-	}
-
-	/**
-	 * Protect css subpages of user pages: can $wgUser edit
-	 * this page?
-	 *
-	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
-	 * @return Bool
-	 */
-	public function userCanEditCssSubpage() {
-		global $wgUser;
-		wfDeprecated( __METHOD__ );
-		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'editusercss' ) )
-			|| preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
-	}
-
-	/**
-	 * Protect js subpages of user pages: can $wgUser edit
-	 * this page?
-	 *
-	 * @deprecated in 1.19; will be removed in 1.20. Use getUserPermissionsErrors() instead.
-	 * @return Bool
-	 */
-	public function userCanEditJsSubpage() {
-		global $wgUser;
-		wfDeprecated( __METHOD__ );
-		return ( ( $wgUser->isAllowedAll( 'editusercssjs', 'edituserjs' ) )
-			   || preg_match( '/^' . preg_quote( $wgUser->getName(), '/' ) . '\//', $this->mTextform ) );
+		return false;
 	}
 
 	/**
@@ -2269,6 +2437,34 @@ class Title {
 
 		wfProfileOut( __METHOD__ );
 		return array( $sources, $pagerestrictions );
+	}
+
+	/**
+	 * Accessor/initialisation for mRestrictions
+	 *
+	 * @param $action String action that permission needs to be checked for
+	 * @return Array of Strings the array of groups allowed to edit this article
+	 */
+	public function getRestrictions( $action ) {
+		if ( !$this->mRestrictionsLoaded ) {
+			$this->loadRestrictions();
+		}
+		return isset( $this->mRestrictions[$action] )
+				? $this->mRestrictions[$action]
+				: array();
+	}
+
+	/**
+	 * Get the expiry time for the restriction against a given action
+	 *
+	 * @return String|Bool 14-char timestamp, or 'infinity' if the page is protected forever
+	 * 	or not protected at all, or false if the action is not recognised.
+	 */
+	public function getRestrictionExpiry( $action ) {
+		if ( !$this->mRestrictionsLoaded ) {
+			$this->loadRestrictions();
+		}
+		return isset( $this->mRestrictionsExpiry[$action] ) ? $this->mRestrictionsExpiry[$action] : false;
 	}
 
 	/**
@@ -2445,31 +2641,58 @@ class Title {
 	}
 
 	/**
-	 * Accessor/initialisation for mRestrictions
+	 * Does this have subpages?  (Warning, usually requires an extra DB query.)
 	 *
-	 * @param $action String action that permission needs to be checked for
-	 * @return Array of Strings the array of groups allowed to edit this article
+	 * @return Bool
 	 */
-	public function getRestrictions( $action ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions();
+	public function hasSubpages() {
+		if ( !MWNamespace::hasSubpages( $this->mNamespace ) ) {
+			# Duh
+			return false;
 		}
-		return isset( $this->mRestrictions[$action] )
-				? $this->mRestrictions[$action]
-				: array();
+
+		# We dynamically add a member variable for the purpose of this method
+		# alone to cache the result.  There's no point in having it hanging
+		# around uninitialized in every Title object; therefore we only add it
+		# if needed and don't declare it statically.
+		if ( isset( $this->mHasSubpages ) ) {
+			return $this->mHasSubpages;
+		}
+
+		$subpages = $this->getSubpages( 1 );
+		if ( $subpages instanceof TitleArray ) {
+			return $this->mHasSubpages = (bool)$subpages->count();
+		}
+		return $this->mHasSubpages = false;
 	}
 
 	/**
-	 * Get the expiry time for the restriction against a given action
+	 * Get all subpages of this page.
 	 *
-	 * @return String|Bool 14-char timestamp, or 'infinity' if the page is protected forever
-	 * 	or not protected at all, or false if the action is not recognised.
+	 * @param $limit Int maximum number of subpages to fetch; -1 for no limit
+	 * @return mixed TitleArray, or empty array if this page's namespace
+	 *  doesn't allow subpages
 	 */
-	public function getRestrictionExpiry( $action ) {
-		if ( !$this->mRestrictionsLoaded ) {
-			$this->loadRestrictions();
+	public function getSubpages( $limit = -1 ) {
+		if ( !MWNamespace::hasSubpages( $this->getNamespace() ) ) {
+			return array();
 		}
-		return isset( $this->mRestrictionsExpiry[$action] ) ? $this->mRestrictionsExpiry[$action] : false;
+
+		$dbr = wfGetDB( DB_SLAVE );
+		$conds['page_namespace'] = $this->getNamespace();
+		$conds[] = 'page_title ' . $dbr->buildLike( $this->getDBkey() . '/', $dbr->anyString() );
+		$options = array();
+		if ( $limit > -1 ) {
+			$options['LIMIT'] = $limit;
+		}
+		return $this->mSubpages = TitleArray::newFromResult(
+			$dbr->select( 'page',
+				array( 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' ),
+				$conds,
+				__METHOD__,
+				$options
+			)
+		);
 	}
 
 	/**
@@ -2655,73 +2878,6 @@ class Title {
 		$this->mLength = -1;
 		$this->mLatestID = false;
 		$this->mCounter = -1;
-	}
-
-	/**
-	 * Updates page_touched for this page; called from LinksUpdate.php
-	 *
-	 * @return Bool true if the update succeded
-	 */
-	public function invalidateCache() {
-		if ( wfReadOnly() ) {
-			return false;
-		}
-		$dbw = wfGetDB( DB_MASTER );
-		$success = $dbw->update(
-			'page',
-			array( 'page_touched' => $dbw->timestamp() ),
-			$this->pageCond(),
-			__METHOD__
-		);
-		HTMLFileCache::clearFileCache( $this );
-		return $success;
-	}
-
-	/**
-	 * Prefix some arbitrary text with the namespace or interwiki prefix
-	 * of this object
-	 *
-	 * @param $name String the text
-	 * @return String the prefixed text
-	 * @private
-	 */
-	private function prefix( $name ) {
-		$p = '';
-		if ( $this->mInterwiki != '' ) {
-			$p = $this->mInterwiki . ':';
-		}
-
-		if ( 0 != $this->mNamespace ) {
-			$p .= $this->getNsText() . ':';
-		}
-		return $p . $name;
-	}
-
-	/**
-	 * Returns a simple regex that will match on characters and sequences invalid in titles.
-	 * Note that this doesn't pick up many things that could be wrong with titles, but that
-	 * replacing this regex with something valid will make many titles valid.
-	 *
-	 * @return String regex string
-	 */
-	static function getTitleInvalidRegex() {
-		static $rxTc = false;
-		if ( !$rxTc ) {
-			# Matching titles will be held as illegal.
-			$rxTc = '/' .
-				# Any character not allowed is forbidden...
-				'[^' . Title::legalChars() . ']' .
-				# URL percent encoding sequences interfere with the ability
-				# to round-trip titles -- you can't link to them consistently.
-				'|%[0-9A-Fa-f]{2}' .
-				# XML/HTML character references produce similar issues.
-				'|&[A-Za-z0-9\x80-\xff]+;' .
-				'|&#[0-9]+;' .
-				'|&#x[0-9A-Fa-f]+;' .
-				'/S';
-		}
-
-		return $rxTc;
 	}
 
 	/**
@@ -2936,44 +3092,6 @@ class Title {
 		$this->mTextform = str_replace( '_', ' ', $dbkey );
 
 		return true;
-	}
-
-	/**
-	 * Set the fragment for this title. Removes the first character from the
-	 * specified fragment before setting, so it assumes you're passing it with
-	 * an initial "#".
-	 *
-	 * Deprecated for public use, use Title::makeTitle() with fragment parameter.
-	 * Still in active use privately.
-	 *
-	 * @param $fragment String text
-	 */
-	public function setFragment( $fragment ) {
-		$this->mFragment = str_replace( '_', ' ', substr( $fragment, 1 ) );
-	}
-
-	/**
-	 * Get a Title object associated with the talk page of this article
-	 *
-	 * @return Title the object for the talk page
-	 */
-	public function getTalkPage() {
-		return Title::makeTitle( MWNamespace::getTalk( $this->getNamespace() ), $this->getDBkey() );
-	}
-
-	/**
-	 * Get a title object associated with the subject page of this
-	 * talk page
-	 *
-	 * @return Title the object for the subject page
-	 */
-	public function getSubjectPage() {
-		// Is this the same title?
-		$subjectNS = MWNamespace::getSubject( $this->getNamespace() );
-		if ( $this->getNamespace() == $subjectNS ) {
-			return $this;
-		}
-		return Title::makeTitle( $subjectNS, $this->getDBkey() );
 	}
 
 	/**
@@ -3714,15 +3832,6 @@ class Title {
 	}
 
 	/**
-	 * Can this title be added to a user's watchlist?
-	 *
-	 * @return Bool TRUE or FALSE
-	 */
-	public function isWatchable() {
-		return !$this->isExternal() && MWNamespace::isWatchable( $this->getNamespace() );
-	}
-
-	/**
 	 * Get categories to which this Title belongs and return an array of
 	 * categories' names.
 	 *
@@ -3968,31 +4077,6 @@ class Title {
 	}
 
 	/**
-	 * Callback for usort() to do title sorts by (namespace, title)
-	 *
-	 * @param $a Title
-	 * @param $b Title
-	 *
-	 * @return Integer: result of string comparison, or namespace comparison
-	 */
-	public static function compare( $a, $b ) {
-		if ( $a->getNamespace() == $b->getNamespace() ) {
-			return strcmp( $a->getText(), $b->getText() );
-		} else {
-			return $a->getNamespace() - $b->getNamespace();
-		}
-	}
-
-	/**
-	 * Return a string representation of this title
-	 *
-	 * @return String representation of this title
-	 */
-	public function __toString() {
-		return $this->getPrefixedText();
-	}
-
-	/**
 	 * Check if page exists.  For historical reasons, this function simply
 	 * checks for the existence of the title in the page table, and will
 	 * thus return false for interwiki links, special pages and the like.
@@ -4103,13 +4187,23 @@ class Title {
 	}
 
 	/**
-	 * Is this in a namespace that allows actual pages?
+	 * Updates page_touched for this page; called from LinksUpdate.php
 	 *
-	 * @return Bool
-	 * @internal note -- uses hardcoded namespace index instead of constants
+	 * @return Bool true if the update succeded
 	 */
-	public function canExist() {
-		return $this->mNamespace >= 0 && $this->mNamespace != NS_MEDIA;
+	public function invalidateCache() {
+		if ( wfReadOnly() ) {
+			return false;
+		}
+		$dbw = wfGetDB( DB_MASTER );
+		$success = $dbw->update(
+			'page',
+			array( 'page_touched' => $dbw->timestamp() ),
+			$this->pageCond(),
+			__METHOD__
+		);
+		HTMLFileCache::clearFileCache( $this );
+		return $success;
 	}
 
 	/**
@@ -4208,61 +4302,6 @@ class Title {
 	}
 
 	/**
-	 * Returns true if this is a special page.
-	 *
-	 * @return boolean
-	 */
-	public function isSpecialPage() {
-		return $this->getNamespace() == NS_SPECIAL;
-	}
-
-	/**
-	 * Returns true if this title resolves to the named special page
-	 *
-	 * @param $name String The special page name
-	 * @return boolean
-	 */
-	public function isSpecial( $name ) {
-		if ( $this->isSpecialPage() ) {
-			list( $thisName, /* $subpage */ ) = SpecialPageFactory::resolveAlias( $this->getDBkey() );
-			if ( $name == $thisName ) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * If the Title refers to a special page alias which is not the local default, resolve
-	 * the alias, and localise the name as necessary.  Otherwise, return $this
-	 *
-	 * @return Title
-	 */
-	public function fixSpecialName() {
-		if ( $this->isSpecialPage() ) {
-			list( $canonicalName, $par ) = SpecialPageFactory::resolveAlias( $this->mDbkeyform );
-			if ( $canonicalName ) {
-				$localName = SpecialPageFactory::getLocalNameFor( $canonicalName, $par );
-				if ( $localName != $this->mDbkeyform ) {
-					return Title::makeTitle( NS_SPECIAL, $localName );
-				}
-			}
-		}
-		return $this;
-	}
-
-	/**
-	 * Is this Title in a namespace which contains content?
-	 * In other words, is this a content page, for the purposes of calculating
-	 * statistics, etc?
-	 *
-	 * @return Boolean
-	 */
-	public function isContentPage() {
-		return MWNamespace::isContent( $this->getNamespace() );
-	}
-
-	/**
 	 * Get all extant redirects to this Title
 	 *
 	 * @param $ns Int|Null Single namespace to consider; NULL to consider all namespaces
@@ -4342,50 +4381,6 @@ class Title {
 
 		return !in_array( $this->mNamespace, $bannedNamespaces );
 
-	}
-
-	/**
-	 * Returns restriction types for the current Title
-	 *
-	 * @return array applicable restriction types
-	 */
-	public function getRestrictionTypes() {
-		if ( $this->isSpecialPage() ) {
-			return array();
-		}
-
-		$types = self::getFilteredRestrictionTypes( $this->exists() );
-
-		if ( $this->getNamespace() != NS_FILE ) {
-			# Remove the upload restriction for non-file titles
-			$types = array_diff( $types, array( 'upload' ) );
-		}
-
-		wfRunHooks( 'TitleGetRestrictionTypes', array( $this, &$types ) );
-
-		wfDebug( __METHOD__ . ': applicable restrictions to [[' .
-			$this->getPrefixedText() . ']] are {' . implode( ',', $types ) . "}\n" );
-
-		return $types;
-	}
-	/**
-	 * Get a filtered list of all restriction types supported by this wiki.
-	 * @param bool $exists True to get all restriction types that apply to
-	 * titles that do exist, False for all restriction types that apply to
-	 * titles that do not exist
-	 * @return array
-	 */
-	public static function getFilteredRestrictionTypes( $exists = true ) {
-		global $wgRestrictionTypes;
-		$types = $wgRestrictionTypes;
-		if ( $exists ) {
-			# Remove the create restriction for existing titles
-			$types = array_diff( $types, array( 'create' ) );
-		} else {
-			# Only the create and upload restrictions apply to non-existing titles
-			$types = array_intersect( $types, array( 'create', 'upload' ) );
-		}
-		return $types;
 	}
 
 	/**
