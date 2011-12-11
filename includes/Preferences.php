@@ -1428,8 +1428,6 @@ class Preferences {
 				# The user has supplied a new email address on the login page
 				# new behaviour: set this new emailaddr from login-page into user database record
 				$user->setEmail( $newaddr );
-				# But flag as "dirty" = unauthenticated
-				$user->invalidateEmail();
 				if ( $wgEmailAuthentication ) {
 					# Mail a temporary password to the dirty address.
 					# User can come back through the confirmation URL to re-enable email.
@@ -1440,7 +1438,7 @@ class Preferences {
 					}
 					$info = 'eauth';
 				}
-			} else {
+			} elseif ( $newaddr != $oldaddr ) { // if the address is the same, don't change it
 				$user->setEmail( $newaddr );
 			}
 			if ( $oldaddr != $newaddr ) {
@@ -1474,7 +1472,7 @@ class Preferences {
 class PreferencesForm extends HTMLForm {
 	// Override default value from HTMLForm
 	protected $mSubSectionBeforeFields = false;
-	
+
 	private $modifiedUser;
 
 	public function setModifiedUser( $user ) {
@@ -1553,7 +1551,7 @@ class PreferencesForm extends HTMLForm {
 	function getBody() {
 		return $this->displaySection( $this->mFieldTree, '', 'mw-prefsection-' );
 	}
-	
+
 	/**
 	 * Get the <legend> for a given section key. Normally this is the
 	 * prefs-$key message but we'll allow extensions to override it.
