@@ -404,8 +404,12 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $revision->getTimestamp() );
 		}
 
-		if ( $this->fld_size && !is_null( $revision->getSize() ) ) {
-			$vals['size'] = intval( $revision->getSize() );
+		if ( $this->fld_size ) {
+			if ( !is_null( $revision->getSize() ) ) {
+				$vals['size'] = intval( $revision->getSize() );
+			} else {
+				$vals['size'] = 0;
+			}
 		}
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
