@@ -3450,6 +3450,14 @@ class Language {
 	}
 
 	/**
+	 * Get the code in Bcp47 format which we can use
+	 * inside of html lang="" tags.
+	 */
+	function getHtmlCode() {
+		return wfBcp47( $this->getCode() );
+	}
+
+	/**
 	 * @param $code string
 	 */
 	function setCode( $code ) {
