@@ -775,7 +775,7 @@ abstract class Skin extends ContextSource {
 		if ( $forContent ) {
 			$msg = $msgObj->inContentLanguage()->text();
 			if ( $this->getLanguage()->getCode() !== $wgContLang->getCode() ) {
-				$msg = Html::rawElement( 'span', array( 'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ), $msg );
+				$msg = Html::rawElement( 'span', array( 'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ), $msg );
 			}
 			return $msg;
 		} else {
@@ -1392,7 +1392,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		$notice = Html::rawElement( 'div', array( 'id' => 'localNotice',
-			'lang' => $wgContLang->getCode(), 'dir' => $wgContLang->getDir() ), $notice );
+			'lang' => $wgContLang->getHtmlCode(), 'dir' => $wgContLang->getDir() ), $notice );
 		wfProfileOut( __METHOD__ );
 		return $notice;
 	}

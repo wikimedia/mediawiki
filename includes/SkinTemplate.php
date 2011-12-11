@@ -288,9 +288,9 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'logopath', $wgLogo );
 		$tpl->setRef( 'sitename', $wgSitename );
 
-		$contentlang = $wgContLang->getCode();
+		$contentlang = $wgContLang->getHtmlCode();
 		$contentdir  = $wgContLang->getDir();
-		$userlang = $this->getLanguage()->getCode();
+		$userlang = $this->getLanguage()->getHtmlCode();
 		$userdir  = $this->getLanguage()->getDir();
 
 		$tpl->set( 'lang', $userlang );
@@ -420,7 +420,7 @@ class SkinTemplate extends Skin {
 			in_array( $request->getVal( 'action', 'view' ), array( 'view', 'historysubmit' ) ) &&
 			( $title->exists() || $title->getNamespace() == NS_MEDIAWIKI ) ) {
 			$pageLang = $title->getPageLanguage();
-			$realBodyAttribs = array( 'lang' => $pageLang->getCode(), 'dir' => $pageLang->getDir(),
+			$realBodyAttribs = array( 'lang' => $pageLang->getHtmlCode(), 'dir' => $pageLang->getDir(),
 				'class' => 'mw-content-'.$pageLang->getDir() );
 			$out->mBodytext = Html::rawElement( 'div', $realBodyAttribs, $out->mBodytext );
 		}
