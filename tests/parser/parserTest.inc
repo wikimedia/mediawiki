@@ -1167,8 +1167,8 @@ class ParserTest {
 			throw new MWException( "duplicate article '$name' at line $line\n" );
 		}
 
-		$art = new Article( $title );
-		$art->doEdit( $text, '', EDIT_NEW );
+		$page = WikiPage::factory( $title );
+		$page->doEdit( $text, '', EDIT_NEW );
 
 		$wgCapitalLinks = $oldCapitalLinks;
 	}
