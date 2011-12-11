@@ -21,7 +21,6 @@ class WikiPage extends Page {
 	/**@{{
 	 * @protected
 	 */
-	public $mCounter = -1;               // !< Integer (-1 means "not loaded")
 	public $mDataLoaded = false;         // !< Boolean
 	public $mIsRedirect = false;         // !< Boolean
 	public $mLatest = false;             // !< Integer (false means "not loaded")
@@ -240,7 +239,6 @@ class WikiPage extends Page {
 	public function clear() {
 		$this->mDataLoaded = false;
 
-		$this->mCounter = -1; # Not loaded
 		$this->mRedirectTarget = null; # Title object if set
 		$this->mLastRevision = null; # Latest revision
 		$this->mTimestamp = '';
@@ -380,7 +378,6 @@ class WikiPage extends Page {
 			# Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
-			$this->mCounter     = intval( $data->page_counter );
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
 			$this->mIsRedirect  = intval( $data->page_is_redirect );
 			$this->mLatest      = intval( $data->page_latest );
@@ -420,25 +417,12 @@ class WikiPage extends Page {
 	}
 
 	/**
+	 * Get the number of views of this page
+	 *
 	 * @return int The view count for the page
 	 */
 	public function getCount() {
-		if ( -1 == $this->mCounter ) {
-			$id = $this->getId();
-
-			if ( $id == 0 ) {
-				$this->mCounter = 0;
-			} else {
-				$dbr = wfGetDB( DB_SLAVE );
-				$this->mCounter = $dbr->selectField( 'page',
-					'page_counter',
-					array( 'page_id' => $id ),
-					__METHOD__
-				);
-			}
-		}
-
-		return $this->mCounter;
+		return $this->mTitle->getCount();
 	}
 
 	/**
