@@ -3587,4 +3587,15 @@ Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikati
 'logentry-newusers-autocreate'        => 'De Benotzerkont $1 gouf automatesch {{GENDER:$2|ugeluecht}}',
 'newuserlog-byemail'                  => "d'Passwuert gouf per E-Mail geschéckt",
 
+
+# Feedback
+'feedback-note' => 'Äre Feedback gëtt ëffentlech op der Säit "[$2 $1]" gewisen, zesumme mat Ärem Benotzernumm, der Versioun vun Ärem Browser a Betribssystem.',
+'feedback-subject' => 'Sujet:',
+'feedback-message' => 'Message:',
+'feedback-cancel' => 'Ofbriechen',
+'feedback-submit' => 'Feedback schécken',
+'feedback-adding' => "Feedback gëtt bäi d'Säit derbäigesat...",
+'feedback-error1' => 'Feeler: Resultat vum API gouf net erkannt',
+'feedback-error2' => "Feeler: D'Ännerung gouf net gespäichert",
+'feedback-error3' => 'Feeler: Keng Äntwert vum API',
 );

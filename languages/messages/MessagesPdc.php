@@ -999,4 +999,7 @@ Guck $2 fer e Lischt vun de letscht Leschunge.',
 'htmlform-reset'               => 'Enneringe zerick nemme',
 'htmlform-selectorother-other' => 'Annere',
 
+
+# Feedback
+'feedback-message' => 'Melding:',
 );

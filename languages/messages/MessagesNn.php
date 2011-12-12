@@ -3508,4 +3508,15 @@ Skriv inn filnamnet utan «{{ns:file}}:»-prefikset.',
 'revdelete-unrestricted' => 'fjerna avgrensingar for administratorar',
 'newuserlog-byemail'     => 'passordet er sendt på e-post',
 
+
+# Feedback
+'feedback-note' => 'Attendemeldinga di vil offentleggjerast på sida «[$2 $1]» i lag med brukarnamnet ditt, nettlesarversjonen din og operativsystemet ditt.',
+'feedback-subject' => 'Emne:',
+'feedback-message' => 'Melding:',
+'feedback-cancel' => 'Bryt av',
+'feedback-submit' => 'Send attendemelding',
+'feedback-adding' => 'Legg til attendemeldinga til sida...',
+'feedback-error1' => 'Feil: Ukjent resultat frå API',
+'feedback-error2' => 'Feil: Brigdinga gjekk ikkje',
+'feedback-error3' => 'Feil: Saknar svar frå API',
 );

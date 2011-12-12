@@ -3863,4 +3863,15 @@ MediaWiki распространяется в надежде, что она бу
 'logentry-newusers-autocreate'        => 'Автоматически {{GENDER:$2|создана|создана}} учётная запись $1',
 'newuserlog-byemail'                  => 'пароль отправлен по эл. почте',
 
+
+# Feedback
+'feedback-note' => 'Ваш отзыв будет размещён в проекте $1.',
+'feedback-subject' => 'Тема:',
+'feedback-message' => 'Сообщение:',
+'feedback-cancel' => 'Отмена',
+'feedback-submit' => 'Отправить отзыв',
+'feedback-adding' => 'Добавление отзыва на страницу…',
+'feedback-error1' => 'Ошибка. Неизвестный результат из API',
+'feedback-error2' => 'Ошибка. Сбой редактирования',
+'feedback-error3' => 'Ошибка. Нет ответа от API',
 );

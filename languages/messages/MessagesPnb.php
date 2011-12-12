@@ -3469,4 +3469,15 @@ the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 
 'logentry-newusers-autocreate'        => 'کھاتہ $1 اپنے آپ ای {{جنس:$2|بنایا گیا}} بنایا گیا۔',
 'newuserlog-byemail'                  => 'کنجی ای-میل راہ پیج دتی گئی۔',
 
+
+# Feedback
+'feedback-note' => 'تساں دا مشورہ عام لوکاں لئی صفہ "[$2 $1]" تے رکھیا جاوے گا، تھواڈے ورتن والے ناں نال، براؤزر ورین تے اوپریٹنگ پربندھ نال۔',
+'feedback-subject' => 'آرٹیکل',
+'feedback-message' => 'سنیعہ:',
+'feedback-cancel' => 'واپس',
+'feedback-submit' => 'مشورہ دیو',
+'feedback-adding' => 'مشورہ  صفے تے دیو۔۔۔۔۔۔۔',
+'feedback-error1' => 'غلطی: اے پی آئی توں ناں پچھانے گۓ نتارے۔',
+'feedback-error2' => 'غلطی: تبدیلی نئیں چلی',
+'feedback-error3' => 'غلطی: اے پی آئی توں کوئی جواب نئیں۔',
 );

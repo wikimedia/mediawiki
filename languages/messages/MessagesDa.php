@@ -3597,4 +3597,15 @@ Billeder vises i fuld opløsning, og andre mediatyper vil blive aktiveret med de
 'logentry-newusers-autocreate'        => 'Kontoen $1 blev automatisk {{GENDER:$2|oprettet}}',
 'newuserlog-byemail'                  => 'kodeord tilsendt pr. e-mail',
 
+
+# Feedback
+'feedback-note' => 'Dine kommentarer vil blive offentligt tilgængelige på siden "[$2 $1]", sammen med dit brugernavn, browserversion og operativsystem.',
+'feedback-subject' => 'Emne:',
+'feedback-message' => 'Besked:',
+'feedback-cancel' => 'Afbryd',
+'feedback-submit' => 'Send kommentar',
+'feedback-adding' => 'Tilføjer kommentar til side...',
+'feedback-error1' => 'Fejl: Ukendt resultat fra API',
+'feedback-error2' => 'Fejl: Redigering mislykkedes',
+'feedback-error3' => 'Fejl: Intet svar fra API',
 );

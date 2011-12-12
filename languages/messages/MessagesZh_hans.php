@@ -3643,4 +3643,15 @@ MediaWiki是基于使用目的而加以发布，然而不负任何担保责任�
 'logentry-newusers-autocreate'        => '帐户$1被自动{{GENDER:$2|创建}}',
 'newuserlog-byemail'                  => '密码已由电子邮件发出',
 
+
+# Feedback
+'feedback-note' => '您的反馈将随着您的用户名、 浏览器版本和操作系统公开张贴到页面"[$2 $1]"。',
+'feedback-subject' => '主题：',
+'feedback-message' => '内容：',
+'feedback-cancel' => '取消',
+'feedback-submit' => '提交反馈',
+'feedback-adding' => '正在提交反馈',
+'feedback-error1' => '错误：从API返回无法识别的结果',
+'feedback-error2' => '错误：编辑失败',
+'feedback-error3' => '错误：API没有响应',
 );

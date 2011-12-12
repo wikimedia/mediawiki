@@ -3676,4 +3676,15 @@ Diskouezet eo ar skeudennoù gant ur pizhder uhel, erounit a ra ar restroù all 
 'logentry-newusers-autocreate'        => '{{GENDER:$2|Krouet}} eo bet kont $1 ent emgefre',
 'newuserlog-byemail'                  => 'ger-tremen kaset dre bostel',
 
+
+# Feedback
+'feedback-note' => 'Embannet e vo ho soñj en doare foran er bajenn "[$2 $1]", asambles gant hoc\'h anv implijer, stumm ho merdeer hag ho reizhiad korvoiñ.',
+'feedback-subject' => 'Danvez :',
+'feedback-message' => 'Kemennadenn:',
+'feedback-cancel' => 'Nullañ',
+'feedback-submit' => 'Kas ho soñj',
+'feedback-adding' => "Oc'h ouzhpennañ ho soñj war ar bajenn...",
+'feedback-error1' => "Fazi : disoc'h dianav a-berzh an API",
+'feedback-error2' => "Fazi : N'eus ket bet gallet degemer ar c'hemmoù",
+'feedback-error3' => 'Fazi : respont ebet a-berzh an API',
 );

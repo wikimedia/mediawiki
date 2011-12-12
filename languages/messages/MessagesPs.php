@@ -2441,4 +2441,8 @@ $5
 'logentry-newusers-create'   => '$1 يو کارن ګڼون {{GENDER:$2|جوړ کړ}}',
 'newuserlog-byemail'         => 'پټنوم مو برېښليک ته درولېږه',
 
+
+# Feedback
+'feedback-message' => 'پيغام:',
+'feedback-cancel' => 'ناګارل',
 );

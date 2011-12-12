@@ -3848,4 +3848,15 @@ Imagens serão apresentadas pelo browser na resolução máxima; ficheiros de ou
 'logentry-newusers-autocreate'        => 'A conta $1 foi {{GENDER:$2|criada}} automaticalmente',
 'newuserlog-byemail'                  => 'palavra-chave enviada por correio-electrónico',
 
+
+# Feedback
+'feedback-note' => 'O seu comentário será publicado na página "[$2 $1]", tornando-se assim público, em conjunto com o seu nome de utilizador, versão do browser e sistema operativo.',
+'feedback-subject' => 'Assunto:',
+'feedback-message' => 'Mensagem:',
+'feedback-cancel' => 'Cancelar',
+'feedback-submit' => 'Enviar Comentários',
+'feedback-adding' => 'A acrescentar os comentários à página...',
+'feedback-error1' => 'Erro: O resultado da API não foi reconhecido',
+'feedback-error2' => 'Erro: A edição falhou',
+'feedback-error3' => 'Erro: A API não responde',
 );

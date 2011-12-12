@@ -535,6 +535,17 @@ return array(
 			'mediawiki.api.edit', 
 			'mediawiki.Title' 
 		),
+		'messages' => array( 
+			'feedback-note',
+			'feedback-subject',
+			'feedback-message',
+			'feedback-cancel',
+			'feedback-submit',
+			'feedback-adding',
+			'feedback-error1',
+			'feedback-error2',
+			'feedback-error3',
+		),
 	),
 	'mediawiki.htmlform' => array(
 		'scripts' => 'resources/mediawiki/mediawiki.htmlform.js',

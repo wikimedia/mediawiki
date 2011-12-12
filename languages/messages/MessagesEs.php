@@ -3816,4 +3816,15 @@ Este sitio está experimentando dificultades técnicas.',
 'logentry-newusers-autocreate'        => 'La cuenta $1 fue {{GENDER:$2|creada}} automáticamente',
 'newuserlog-byemail'                  => 'contraseña enviada por correo electrónico',
 
+
+# Feedback
+'feedback-note' => 'Tus comentarios se publicarán en la página «[$2 $1]», junto a tu nombre de usuario, versión de su navegador web y su sistema operativo.',
+'feedback-subject' => 'Asunto:',
+'feedback-message' => 'Mensaje:',
+'feedback-cancel' => 'Cancelar',
+'feedback-submit' => 'Enviar comentarios',
+'feedback-adding' => 'Añadiendo comentarios a la página...',
+'feedback-error1' => 'Error: No se reconoce resultado de API',
+'feedback-error2' => 'Error: Falló la edición',
+'feedback-error3' => 'Error: No hay respuesta de la API',
 );

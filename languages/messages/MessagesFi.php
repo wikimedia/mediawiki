@@ -3673,4 +3673,15 @@ Kuvat näytetään täysikokoisina. Muut tiedostot avataan niille määritetyss�
 'logentry-newusers-autocreate'        => 'Käyttäjätunnus $1 {{GENDER:$2|luotiin}} automaattisesti',
 'newuserlog-byemail'                  => 'salasana lähetetty sähköpostitse',
 
+
+# Feedback
+'feedback-note' => 'Palautteesi, käyttäjänimesi, selainversiosi ja käyttöjärjestelmäsi julkistetaan sivulla "[$2 $1]".',
+'feedback-subject' => 'Otsikko',
+'feedback-message' => 'Viesti',
+'feedback-cancel' => 'Peruuta',
+'feedback-submit' => 'Lähetä palaute',
+'feedback-adding' => 'Lisätään palautetta sivulle...',
+'feedback-error1' => 'Virhe: ohjelmointirajapinnan vastausta ei tunnistettu',
+'feedback-error2' => 'Virhe: muokkaus epäonnistui',
+'feedback-error3' => 'Virhe: ohjelmointirajapinta ei vastaa',
 );

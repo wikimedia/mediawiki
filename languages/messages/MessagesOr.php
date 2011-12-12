@@ -3584,4 +3584,15 @@ $5
 'logentry-newusers-autocreate'        => '$1 ଖାତାଟି ଆପେଆପେ {{GENDER:$2|ତିଆରିହେଲା}}',
 'newuserlog-byemail'                  => 'ଇ-ମେଲରେ ପାସବାର୍ଡ଼ ପଠାଇଦିଆଗଲା',
 
+
+# Feedback
+'feedback-note' => 'ଆପଣଙ୍କ ଇଉଜର ନାମ, ବ୍ରାଉଜର ସଙ୍କଳନ ଓ ଅପରେଟିଙ୍ଗ ସିଷ୍ଟମ ସାଙ୍ଗରେ ଆପଣଙ୍କ ମତାମତ "[$2 $1]" ପୃଷ୍ଠାରେ ସାର୍ବଜନିକ ଭାବେ ପ୍ରକାଶିତ ହେବ ।',
+'feedback-subject' => 'ବିଷୟ:',
+'feedback-message' => 'ଖବର:',
+'feedback-cancel' => 'ନାକଚ',
+'feedback-submit' => 'ମତାମତ ଦିଅନ୍ତୁ',
+'feedback-adding' => 'ପୃଷ୍ଠାରେ ମତାମତ ଦେଉଛି...',
+'feedback-error1' => 'ଭୁଲ: API ରୁ ଅଚିହ୍ନା ଫଳାଫଳ',
+'feedback-error2' => 'ଅସୁବିଧା: ସମ୍ପାଦନା ବିଫଳ ହେଲା',
+'feedback-error3' => 'ଅସୁବିଧା: API ରୁ କିଛି ଉତ୍ତର ମିଳିଲା ନାହିଁ',
 );

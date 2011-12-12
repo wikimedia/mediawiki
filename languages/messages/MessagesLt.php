@@ -3581,4 +3581,12 @@ Paveikslėliai yra rodomi pilna raiška, kiti failų tipai paleidžiami tiesiogi
 'revdelete-unrestricted' => 'pašalinti apribojimai administratoriams',
 'newuserlog-byemail'     => 'slaptažodis nusiųstas elektroniniu paštu',
 
+
+# Feedback
+'feedback-subject' => 'Tema:',
+'feedback-message' => 'Pranešimas:',
+'feedback-cancel' => 'Atšaukti',
+'feedback-submit' => 'Siųsti Atsiliepimą',
+'feedback-adding' => 'Pridedamas atsiliepimas į puslapį ...',
+'feedback-error2' => 'Klaida: Redagavimas nepavyko',
 );

@@ -4025,4 +4025,15 @@ $5
 'logentry-newusers-autocreate'        => 'Сметката $1 е {{GENDER:$2|создадена}} автоматски',
 'newuserlog-byemail'                  => 'испратена лозинка по е-пошта',
 
+
+# Feedback
+'feedback-note' => 'Вашиот одѕив ќе биде објавен на $1.',
+'feedback-subject' => 'Наслов:',
+'feedback-message' => 'Порака:',
+'feedback-cancel' => 'Откажи',
+'feedback-submit' => 'Поднеси мислење',
+'feedback-adding' => 'Го додавам искажаното мислење во страницата...',
+'feedback-error1' => 'Грешка: Непрепознаен резултат од прилогот (API)',
+'feedback-error2' => 'Грешка: Уредувањето не успеа',
+'feedback-error3' => 'Грешка: Прилогот (API) не одговара',
 );
