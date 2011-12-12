@@ -1221,7 +1221,6 @@ $wgMessageStructure = array(
 		'newpageletter',
 		'boteditletter',
 		'unpatrolledletter',
-		'sectionlink',
 		'number_of_watching_users_RCview',
 		'number_of_watching_users_pageview',
 		'rc_categories',

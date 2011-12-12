@@ -195,7 +195,6 @@ $wgOptionalMessages = array(
 	'editsection-brackets',
 	'feed-atom',
 	'feed-rss',
-	'sectionlink',
 	'unit-pixel',
 	'userrights-irreversible-marker',
 	'tog-nolangconversion',
