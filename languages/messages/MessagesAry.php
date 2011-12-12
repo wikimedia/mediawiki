@@ -1263,7 +1263,6 @@ Laḫed ana imken ikono l-indexaṫ dial {{SITENAME}} qdam o ma bqaoċ ṣalḫi
 'minoreditletter'                   => 'ṣ',
 'newpageletter'                     => 'J',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 katchof  {{PLURAL:$1|mostkhdim|mostkhdimin}}]',
 'rc_categories'                     => 'limiti tsnifat (frqha b  "|")',
 'rc_categories_any'                 => 'ay wahd',

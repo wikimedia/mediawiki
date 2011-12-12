@@ -1229,7 +1229,6 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 'minoreditletter'                   => 'k',
 'newpageletter'                     => 'Y',
 'boteditletter'                     => 'b',
-'sectionlink'                       => '→',
 'number_of_watching_users_pageview' => '[$1 izləyən istifadəçi]',
 'rc_categories'                     => 'Kateqoriyalara limit qoy ("|" ilə ayır)',
 'rc_categories_any'                 => 'Hər',
