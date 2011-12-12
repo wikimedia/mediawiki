@@ -1204,6 +1204,7 @@ class Title {
 	 * @return String the text, including any prefixes
 	 */
 	public function getEscapedText() {
+		wfDeprecated( __METHOD__, '1.19' );
 		return htmlspecialchars( $this->getPrefixedText() );
 	}
 
@@ -1406,6 +1407,7 @@ class Title {
 	 * @return String the URL
 	 */
 	public function escapeLocalURL( $query = '', $query2 = false ) {
+		wfDeprecated( __METHOD__, '1.19' );
 		return htmlspecialchars( $this->getLocalURL( $query, $query2 ) );
 	}
 
@@ -1417,6 +1419,7 @@ class Title {
 	 * @return String the URL
 	 */
 	public function escapeFullURL( $query = '', $query2 = false ) {
+		wfDeprecated( __METHOD__, '1.19' );
 		return htmlspecialchars( $this->getFullURL( $query, $query2 ) );
 	}
 
