@@ -119,7 +119,7 @@ Options:
 Fancy stuff: (Works? Add examples please.)
   --plugin=<class>[:<file>]   Load a dump plugin class
   --output=<type>:<file>      Begin a filtered output stream;
-							  <type>s: file, gzip, bzip2, 7zip
+                              <type>s: file, gzip, bzip2, 7zip
   --filter=<type>[:<options>] Add a filter on an output branch
 
 ENDS
