@@ -535,5 +535,35 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertFalse( MWNamespace::hasGenderDistinction( NS_TALK    ) );
 
 	}
+
+	####### HELPERS ###########################################################
+	function __call( $method, $args ) {
+		// Call the real method if it exists
+		if( method_exists($this, $method ) ) {
+			return $this->$method( $args );
+		}
+
+		if( preg_match( '/^assert(Has|Is)(Not|)(Subject|Talk)$/', $method, $m ) ) {
+			# Interprets arguments:
+			$ns  = $args[0];
+			$msg = isset($args[1]) ? $args[1] : " dummy message";
+
+			# Forge the namespace constant name:
+			$ns_name = "NS_" . strtoupper(  MWNamespace::getCanonicalName( $ns ) );
+			# ... and the MWNamespace method name
+			$nsMethod = strtolower( $m[1] ) . $m[3];
+
+			$expect = ($m[2] === '');
+			$expect_name = $expect ? 'TRUE' : 'FALSE';
+
+			return $this->assertEquals( $expect,
+				MWNamespace::$nsMethod( $ns, $msg ),
+				"MWNamespace::$nsMethod( $ns_name ) should returns $expect_name"
+			);
+		}
+
+		throw new Exception( __METHOD__ . " could not find a method named $method\n" );
+	}
+
 }
 
