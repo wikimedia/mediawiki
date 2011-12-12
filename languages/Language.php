@@ -61,6 +61,7 @@ class Language {
 
 	var $mVariants, $mCode, $mLoaded = false;
 	var $mMagicExtensions = array(), $mMagicHookDone = false;
+	private $mHtmlCode = null;
 
 	var $mNamespaceIds, $namespaceNames, $namespaceAliases;
 	var $dateFormatStrings = array();
@@ -3467,9 +3468,13 @@ class Language {
 	/**
 	 * Get the code in Bcp47 format which we can use
 	 * inside of html lang="" tags.
+	 * @since 1.19
 	 */
 	function getHtmlCode() {
-		return wfBcp47( $this->getCode() );
+		if ( is_null( $this->mHtmlCode ) ) {
+			$this->mHtmlCode = wfBCP47( $this->getCode() );
+		}
+		return $this->mHtmlCode;
 	}
 
 	/**
@@ -3477,6 +3482,8 @@ class Language {
 	 */
 	function setCode( $code ) {
 		$this->mCode = $code;
+		// Ensure we don't leave an incorrect html code lying around
+		unset( $this->mHtmlCode );
 	}
 
 	/**
