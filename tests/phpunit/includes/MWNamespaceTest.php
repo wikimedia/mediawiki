@@ -191,6 +191,17 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		$this->assertTrue( MWNamespace::subjectEquals( NS_MAIN, NS_TALK ) );
 		$this->assertTrue( MWNamespace::subjectEquals( NS_USER, NS_USER_TALK ) );
 		$this->assertFalse( MWNamespace::subjectEquals( NS_PROJECT, NS_TEMPLATE ) );
+		$this->assertFalse( MWNamespace::subjectEquals( NS_SPECIAL, NS_MAIN ) );
+	}
+
+	public function testSpecialAndMediaAreDifferentSubjects() {
+		$this->assertFalse( MWNamespace::subjectEquals(
+			NS_MEDIA, NS_SPECIAL
+		), "NS_MEDIA and NS_SPECIAL are different subhects" );
+		$this->assertFalse( MWNamespace::subjectEquals(
+			NS_SPECIAL, NS_MEDIA
+		), "NS_SPECIAL and NS_MEDIA are different subhects" );
+
 	}
 
 	/**
