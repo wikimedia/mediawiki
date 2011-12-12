@@ -855,16 +855,17 @@ abstract class Installer {
 	/**
 	 * Environment check for the server hostname.
 	 */
-	protected function envCheckServer( $srv = null ) {
-		if ( $srv ) {
-			// wgServer was pre-defined, perhaps by the cli installer
-			$server = $srv;
-		} else {
-			$server = WebRequest::detectServer();
-		}
+	protected abstract function envCheckServer() {
+		$server = $this->envGetDefaultServer();
 		$this->showMessage( 'config-using-server', $server );
 		$this->setVar( 'wgServer', $server );
 	}
+
+	/**
+	 * Helper function to be called from envCheckServer()
+	 * @return String
+	 */
+	protected abstract function envGetDefaultServer();
 
 	/**
 	 * Environment check for setting $IP and $wgScriptPath.
