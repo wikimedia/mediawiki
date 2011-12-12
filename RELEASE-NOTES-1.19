@@ -239,6 +239,10 @@ changes to languages because of Bugzilla reports.
   Context source and is required.
 * The Title::escape{Local,Full,Canonical}URL methods are deprecated, please use
   proper html building methods to escape the normal get{...}URL methods instead.
+* The $variant arguments in the Title::get{Local,Full,Link,Canonical}URL methods
+  have been replaced with a secondary query argument.
+* The $variant argument in the hooks for the Title::get{Local,Full,Link,Canonical}URL
+  methods have been removed, the variant is now part of the $query argument.
 
 == Compatibility ==
 

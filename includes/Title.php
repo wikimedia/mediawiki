@@ -1259,10 +1259,9 @@ class Title {
 	 * Get a real URL referring to this title, with interwiki link and
 	 * fragment
 	 *
-	 * @param $query \twotypes{\string,\array} an optional query string, not used for interwiki
-	 *   links. Can be specified as an associative array as well, e.g.,
-	 *   array( 'action' => 'edit' ) (keys and values will be URL-escaped).
-	 * @param $variant String language variant of url (for sr, zh..)
+	 * See getLocalURL for the arguments.
+	 *
+	 * @see self::getLocalURL
 	 * @return String the URL
 	 */
 	public function getFullURL( $query = '', $query2 = false ) {
@@ -1287,11 +1286,15 @@ class Title {
 	 * Get a URL with no fragment or server name.  If this page is generated
 	 * with action=render, $wgServer is prepended.
 	 *
-	 * @param $query Mixed: an optional query string; if not specified,
-	 *   $wgArticlePath will be used.  Can be specified as an associative array
-	 *   as well, e.g., array( 'action' => 'edit' ) (keys and values will be
-	 *   URL-escaped).
-	 * @param $variant String language variant of url (for sr, zh..)
+
+	 * @param $query \twotypes{\string,\array} an optional query string,
+	 *   not used for interwiki	links. Can be specified as an associative array as well,
+	 *   e.g., array( 'action' => 'edit' ) (keys and values will be URL-escaped).
+	 *   Some query patterns will trigger various shorturl path replacements.
+	 * @param $query2 Mixed: An optional secondary query array. This one MUST
+	 *   be an array. If a string is passed it will be interpreted as a deprecated
+	 *   variant argument and urlencoded into a variant= argument.
+	 *   This second query argument will be added to the $query
 	 * @return String the URL
 	 */
 	public function getLocalURL( $query = '', $query2 = false ) {
@@ -1379,11 +1382,9 @@ class Title {
 	 * The result obviously should not be URL-escaped, but does need to be
 	 * HTML-escaped if it's being output in HTML.
 	 *
-	 * @param $query Array of Strings An associative array of key => value pairs for the
-	 *   query string.  Keys and values will be escaped.
-	 * @param $variant String language variant of URL (for sr, zh..).  Ignored
-	 *   for external links.  Default is "false" (same variant as current page,
-	 *   for anonymous users).
+	 * See getLocalURL for the arguments.
+	 *
+	 * @see self::getLocalURL
 	 * @return String the URL
 	 */
 	public function getLinkURL( $query = '', $query2 = false ) {
@@ -1403,7 +1404,9 @@ class Title {
 	 * Get an HTML-escaped version of the URL form, suitable for
 	 * using in a link, without a server name or fragment
 	 *
-	 * @param $query String an optional query string
+	 * See getLocalURL for the arguments.
+	 *
+	 * @see self::getLocalURL
 	 * @return String the URL
 	 */
 	public function escapeLocalURL( $query = '', $query2 = false ) {
@@ -1415,7 +1418,9 @@ class Title {
 	 * Get an HTML-escaped version of the URL form, suitable for
 	 * using in a link, including the server name and fragment
 	 *
-	 * @param $query String an optional query string
+	 * See getLocalURL for the arguments.
+	 *
+	 * @see self::getLocalURL
 	 * @return String the URL
 	 */
 	public function escapeFullURL( $query = '', $query2 = false ) {
@@ -1432,8 +1437,9 @@ class Title {
 	 * if $wgInternalServer is not set. If the server variable used is
 	 * protocol-relative, the URL will be expanded to http://
 	 *
-	 * @param $query String an optional query string
-	 * @param $variant String language variant of url (for sr, zh..)
+	 * See getLocalURL for the arguments.
+	 *
+	 * @see self::getLocalURL
 	 * @return String the URL
 	 */
 	public function getInternalURL( $query = '', $query2 = false ) {
@@ -1452,20 +1458,25 @@ class Title {
 	 *
 	 * NOTE: Unlike getInternalURL(), the canonical URL includes the fragment
 	 *
-	 * @param $query string An optional query string
-	 * @param $variant string Language variant of URL (for sr, zh, ...)
+	 * See getLocalURL for the arguments.
+	 *
+	 * @see self::getLocalURL
 	 * @return string The URL
 	 * @since 1.18
 	 */
 	public function getCanonicalURL( $query = '', $query2 = false ) {
 		$query = self::fixUrlQueryArgs( $query, $query2 );
-		$url = wfExpandUrl( $this->getLocalURL( $query, $variant ) . $this->getFragmentForURL(), PROTO_CANONICAL );
+		$url = wfExpandUrl( $this->getLocalURL( $query ) . $this->getFragmentForURL(), PROTO_CANONICAL );
 		wfRunHooks( 'GetCanonicalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
 	/**
 	 * HTML-escaped version of getCanonicalURL()
+	 *
+	 * See getLocalURL for the arguments.
+	 *
+	 * @see self::getLocalURL
 	 * @since 1.18
 	 */
 	public function escapeCanonicalURL( $query = '', $query2 = false ) {
