@@ -124,7 +124,7 @@ class Revision {
 			'text_id'    => isset( $row->ar_text_id ) ? $row->ar_text_id : null,
 			'deleted'    => $row->ar_deleted,
 			'len'        => $row->ar_len,
-			'sha1'       => isset( $row->ar_sha1 ) ? $row->ar_sha1 : null,
+			'sha1'       => $row->ar_sha1
 		);
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
