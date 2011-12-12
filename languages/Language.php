@@ -659,14 +659,13 @@ class Language {
 
 		global $IP;
 		$names = array();
-		$dir = opendir( "$IP/languages/messages" );
-		while ( false !== ( $file = readdir( $dir ) ) ) {
-			$code = self::getCodeFromFileName( $file, 'Messages' );
-			if ( $code && isset( $allNames[$code] ) ) {
+		// We do this using a foreach over the codes instead of a directory
+		// loop so that messages files in extensions will work correctly.
+		foreach ( $allNames as $code => $value ) {
+			if ( is_readable( self::getMessagesFileName( $code ) ) ) {
 				$names[$code] = $allNames[$code];
 			}
 		}
-		closedir( $dir );
 		return $names;
 	}
 
@@ -3521,7 +3520,9 @@ class Language {
 	 */
 	static function getMessagesFileName( $code ) {
 		global $IP;
-		return self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
+		$file = self::getFileName( "$IP/languages/messages/Messages", $code, '.php' );
+		wfRunHooks( 'Language::getMessagesFileName', array( $code, &$file ) );
+		return $file;
 	}
 
 	/**

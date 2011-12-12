@@ -1103,6 +1103,10 @@ $password: The password entered by the user
 &$result: Set this and return false to override the internal checks
 $user: User the password is being validated for
 
+'Language::getMessagesFileName':
+$code: The language code or the language we're looking for a messages file for
+&$file: The messages file path, you can override this to change the location.
+
 'LanguageGetNamespaces': Provide custom ordering for namespaces or
 remove namespaces. Do not use this hook to add namespaces. Use
 CanonicalNamespaces for that.

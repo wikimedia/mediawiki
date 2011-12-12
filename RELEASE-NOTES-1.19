@@ -103,6 +103,8 @@ production.
   perceiving colors differently. Colors comes from the French Wikipedia.
 * (bug 32879) Upgrade jQuery to 1.7.1
 * jQuery UI upgraded to 1.8.17
+* Extensions can use the 'Language::getMessagesFileName' hook to define new
+  languages using messages files outside of core.
 
 === Bug fixes in 1.19 ===
 * $wgUploadNavigationUrl should be used for file redlinks if.
