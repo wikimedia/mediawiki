@@ -182,25 +182,28 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	 * Test MWNamespace::subjectEquals
 	 */
 	public function testSubjectEquals() {
-		$this->assertTrue( MWNamespace::subjectEquals( NS_MAIN, NS_MAIN ) );
-		$this->assertTrue( MWNamespace::subjectEquals( NS_MAIN, 0 ) ); // In case we make NS_MAIN 'MAIN'
-		$this->assertTrue( MWNamespace::subjectEquals( NS_USER, NS_USER ) );
-		$this->assertTrue( MWNamespace::subjectEquals( NS_USER, 2 ) );
-		$this->assertTrue( MWNamespace::subjectEquals( NS_USER_TALK, NS_USER_TALK ) );
-		$this->assertTrue( MWNamespace::subjectEquals( NS_SPECIAL, NS_SPECIAL ) );
-		$this->assertTrue( MWNamespace::subjectEquals( NS_MAIN, NS_TALK ) );
-		$this->assertTrue( MWNamespace::subjectEquals( NS_USER, NS_USER_TALK ) );
-		$this->assertFalse( MWNamespace::subjectEquals( NS_PROJECT, NS_TEMPLATE ) );
-		$this->assertFalse( MWNamespace::subjectEquals( NS_SPECIAL, NS_MAIN ) );
+		$this->assertSameSubject( NS_MAIN, NS_MAIN );
+		$this->assertSameSubject( NS_MAIN, 0 ); // In case we make NS_MAIN 'MAIN'
+		$this->assertSameSubject( NS_USER, NS_USER );
+		$this->assertSameSubject( NS_USER, 2 );
+		$this->assertSameSubject( NS_USER_TALK, NS_USER_TALK );
+		$this->assertSameSubject( NS_SPECIAL, NS_SPECIAL );
+		$this->assertSameSubject( NS_MAIN, NS_TALK );
+		$this->assertSameSubject( NS_USER, NS_USER_TALK );
+
+		$this->assertDifferentSubject( NS_PROJECT, NS_TEMPLATE );
+		$this->assertDifferentSubject( NS_SPECIAL, NS_MAIN     );
 	}
 
 	public function testSpecialAndMediaAreDifferentSubjects() {
-		$this->assertFalse( MWNamespace::subjectEquals(
-			NS_MEDIA, NS_SPECIAL
-		), "NS_MEDIA and NS_SPECIAL are different subhects" );
-		$this->assertFalse( MWNamespace::subjectEquals(
-			NS_SPECIAL, NS_MEDIA
-		), "NS_SPECIAL and NS_MEDIA are different subhects" );
+		$this->assertDifferentSubject(
+			NS_MEDIA, NS_SPECIAL,
+			"NS_MEDIA and NS_SPECIAL are different subhects"
+		);
+		$this->assertDifferentSubject(
+			NS_SPECIAL, NS_MEDIA,
+			"NS_SPECIAL and NS_MEDIA are different subhects"
+		);
 
 	}
 
@@ -580,5 +583,11 @@ class MWNamespaceTest extends MediaWikiTestCase {
 		throw new Exception( __METHOD__ . " could not find a method named $method\n" );
 	}
 
+	function assertSameSubject( $ns1, $ns2, $msg = '' ) {
+		$this->assertTrue( MWNamespace::subjectEquals( $ns1, $ns2, $msg ) );
+	}
+	function assertDifferentSubject( $ns1, $ns2, $msg = '' ) {
+		$this->assertFalse( MWNamespace::subjectEquals( $ns1, $ns2, $msg ) );
+	}
 }
 
