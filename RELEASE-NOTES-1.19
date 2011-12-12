@@ -237,6 +237,8 @@ changes to languages because of Bugzilla reports.
   'chick' and 'monobook').
 * The constructor for CategoryView has changed, the second parameter is now a
   Context source and is required.
+* The Title::escape{Local,Full,Canonical}URL methods are deprecated, please use
+  proper html building methods to escape the normal get{...}URL methods instead.
 
 == Compatibility ==
 
