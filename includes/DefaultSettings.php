@@ -2454,11 +2454,6 @@ $wgVectorUseSimpleSearch = false;
 $wgVectorUseIconWatch = false;
 
 /**
- * Show the name of the current variant as a label in the variants drop-down menu
- */
-$wgVectorShowVariantName = false;
-
-/**
  * Display user edit counts in various prominent places.
  */
 $wgEdititis = false;
