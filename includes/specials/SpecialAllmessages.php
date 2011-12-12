@@ -121,7 +121,7 @@ class AllmessagesTablePager extends TablePager {
 		if( $this->filter === 'all' ){
 			$this->custom = null; // So won't match in either case
 		} else {
-			$this->custom = ($request->getVal( 'filter' ) == 'unmodified');
+			$this->custom = ($this->filter == 'unmodified');
 		}
 
 		$prefix = $this->getLanguage()->ucfirst( $request->getVal( 'prefix', '' ) );
