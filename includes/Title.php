@@ -1559,33 +1559,34 @@ class Title {
 	 * @return Array list of errors
 	 */
 	private function checkQuickPermissions( $action, $user, $errors, $doExpensiveQueries, $short ) {
-		$ns = $this->getNamespace();
-
 		if ( $action == 'create' ) {
-			if ( ( $this->isTalkPage() && !$user->isAllowed( 'createtalk', $ns ) ) ||
-				 ( !$this->isTalkPage() && !$user->isAllowed( 'createpage', $ns ) ) ) {
+			if ( ( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
+				 ( !$this->isTalkPage() && !$user->isAllowed( 'createpage' ) ) ) {
 				$errors[] = $user->isAnon() ? array( 'nocreatetext' ) : array( 'nocreate-loggedin' );
 			}
 		} elseif ( $action == 'move' ) {
-			if ( !$user->isAllowed( 'move-rootuserpages', $ns )
-					&& $ns == NS_USER && !$this->isSubpage() ) {
+			if ( !$user->isAllowed( 'move-rootuserpages' )
+					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-user-page' );
 			}
 
 			// Check if user is allowed to move files if it's a file
-			if ( $ns == NS_FILE && !$user->isAllowed( 'movefile', $ns ) ) {
+			if ( $this->mNamespace == NS_FILE && !$user->isAllowed( 'movefile' ) ) {
 				$errors[] = array( 'movenotallowedfile' );
 			}
 
-			if ( !$user->isAllowed( 'move', $ns) ) {
+			if ( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
-
-				$userCanMove = in_array( 'move', User::getGroupPermissions(
-					array( 'user' ), $ns ), true );
-				$autoconfirmedCanMove = in_array( 'move', User::getGroupPermissions(
-					array( 'autoconfirmed' ), $ns ), true );
-
+				global $wgGroupPermissions;
+				$userCanMove = false;
+				if ( isset( $wgGroupPermissions['user']['move'] ) ) {
+					$userCanMove = $wgGroupPermissions['user']['move'];
+				}
+				$autoconfirmedCanMove = false;
+				if ( isset( $wgGroupPermissions['autoconfirmed']['move'] ) ) {
+					$autoconfirmedCanMove = $wgGroupPermissions['autoconfirmed']['move'];
+				}
 				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
 					// custom message if logged-in users without any special rights can move
 					$errors[] = array( 'movenologintext' );
@@ -1594,15 +1595,15 @@ class Title {
 				}
 			}
 		} elseif ( $action == 'move-target' ) {
-			if ( !$user->isAllowed( 'move', $ns ) ) {
+			if ( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
 				$errors[] = array( 'movenotallowed' );
-			} elseif ( !$user->isAllowed( 'move-rootuserpages', $ns )
-					&& $ns == NS_USER && !$this->isSubpage() ) {
+			} elseif ( !$user->isAllowed( 'move-rootuserpages' )
+					&& $this->mNamespace == NS_USER && !$this->isSubpage() ) {
 				// Show user page-specific message only if the user can move other pages
 				$errors[] = array( 'cant-move-to-user-page' );
 			}
-		} elseif ( !$user->isAllowed( $action, $ns ) ) {
+		} elseif ( !$user->isAllowed( $action ) ) {
 			$errors[] = $this->missingPermissionError( $action, $short );
 		}
 
@@ -1740,10 +1741,10 @@ class Title {
 			if ( $right == 'sysop' ) {
 				$right = 'protect';
 			}
-			if ( $right != '' && !$user->isAllowed( $right, $this->mNamespace ) ) {
+			if ( $right != '' && !$user->isAllowed( $right ) ) {
 				// Users with 'editprotected' permission can edit protected pages
 				// without cascading option turned on.
-				if ( $action != 'edit' || !$user->isAllowed( 'editprotected', $this->mNamespace )
+				if ( $action != 'edit' || !$user->isAllowed( 'editprotected' )
 					|| $this->mCascadeRestriction )
 				{
 					$errors[] = array( 'protectedpagetext', $right );
@@ -1780,7 +1781,7 @@ class Title {
 			if ( isset( $restrictions[$action] ) ) {
 				foreach ( $restrictions[$action] as $right ) {
 					$right = ( $right == 'sysop' ) ? 'protect' : $right;
-					if ( $right != '' && !$user->isAllowed( $right, $this->mNamespace ) ) {
+					if ( $right != '' && !$user->isAllowed( $right ) ) {
 						$pages = '';
 						foreach ( $cascadingSources as $page )
 							$pages .= '* [[:' . $page->getPrefixedText() . "]]\n";
@@ -1817,8 +1818,8 @@ class Title {
 					$title_protection['pt_create_perm'] = 'protect'; // B/C
 				}
 				if( $title_protection['pt_create_perm'] == '' ||
-						!$user->isAllowed( $title_protection['pt_create_perm'],
-						$this->mNamespace ) ) {
+					!$user->isAllowed( $title_protection['pt_create_perm'] ) ) 
+				{
 					$errors[] = array( 'titleprotected', User::whoIs( $title_protection['pt_user'] ), $title_protection['pt_reason'] );
 				}
 			}
@@ -1950,7 +1951,7 @@ class Title {
 		}
 
 		# If the user is allowed to read pages, he is allowed to read all pages
-		if ( $user->isAllowed( 'read', $this->mNamespace ) ) {
+		if ( $user->isAllowed( 'read' ) ) {
 			return $errors;
 		}
 
@@ -2017,7 +2018,7 @@ class Title {
 		}
 
 		$groups = array_map( array( 'User', 'makeGroupLinkWiki' ),
-			User::getGroupsWithPermission( $action, $this->mNamespace ) );
+			User::getGroupsWithPermission( $action ) );
 
 		if ( count( $groups ) ) {
 			global $wgLang;

@@ -3379,9 +3379,8 @@ $wgEmailConfirmToEdit = false;
 
 /**
  * Permission keys given to users in each group.
- * This is an array where the keys are all groups and each value is either:
- *    a) An array of the format (right => boolean)
- *    b) An array of the format (right => namespace => boolean)
+ * This is an array where the keys are all groups and each value is an
+ * array of the format (right => boolean).
  *
  * The second format is used to support per-namespace permissions.
  * Note that this feature does not fully work for all permission types.
