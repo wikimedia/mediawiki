@@ -183,11 +183,8 @@ class CliInstaller extends Installer {
 		return parent::envCheckPath();
 	}
 
-	protected function envCheckServer( $srv = null ) {
-		if ( $this->getVar( 'wgServer' ) ) {
-			$srv = $this->getVar( 'wgServer' );
-		}
-		return parent::envCheckServer( $srv );
+	protected function envGetDefaultServer() {
+		return $this->getVar( 'wgServer' );
 	}
 
 	public function dirIsExecutable( $dir, $url ) {

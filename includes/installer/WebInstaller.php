@@ -1089,4 +1089,8 @@ class WebInstaller extends Installer {
 		}
 		return parent::envCheckPath();
 	}
+
+	protected function envGetDefaultServer() {
+		return WebRequest::detectServer();
+	}
 }
