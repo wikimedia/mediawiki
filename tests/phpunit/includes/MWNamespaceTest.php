@@ -198,11 +198,11 @@ class MWNamespaceTest extends MediaWikiTestCase {
 	public function testSpecialAndMediaAreDifferentSubjects() {
 		$this->assertDifferentSubject(
 			NS_MEDIA, NS_SPECIAL,
-			"NS_MEDIA and NS_SPECIAL are different subhects"
+			"NS_MEDIA and NS_SPECIAL are different subject namespaces"
 		);
 		$this->assertDifferentSubject(
 			NS_SPECIAL, NS_MEDIA,
-			"NS_SPECIAL and NS_MEDIA are different subhects"
+			"NS_SPECIAL and NS_MEDIA are different subject namespaces"
 		);
 
 	}
