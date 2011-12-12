@@ -345,7 +345,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function otherLanguages() {
-		global $wgOut, $wgContLang, $wgHideInterlanguageLinks;
+		global $wgOut, $wgLang, $wgHideInterlanguageLinks;
 
 		if ( $wgHideInterlanguageLinks ) {
 			return '';
@@ -360,8 +360,8 @@ class LegacyTemplate extends BaseTemplate {
 		$s = wfMsg( 'otherlanguages' ) . wfMsg( 'colon-separator' );
 		$first = true;
 
-		if ( $wgContLang->isRTL() ) {
-			$s .= '<span dir="LTR">';
+		if ( $wgLang->isRTL() ) {
+			$s .= '<span dir="ltr">';
 		}
 
 		foreach ( $a as $l ) {
@@ -379,7 +379,7 @@ class LegacyTemplate extends BaseTemplate {
 				$text == '' ? $l : $text );
 		}
 
-		if ( $wgContLang->isRTL() ) {
+		if ( $wgLang->isRTL() ) {
 			$s .= '</span>';
 		}
 
