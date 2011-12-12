@@ -22,8 +22,11 @@ class ApiPurgeTest extends ApiTestCase {
 			'action' => 'purge',
 			'titles' => 'UTPage|' . $somePage . '|%5D' ) );
 
-		$this->assertArrayHasKey( 'purge', $data[0] );
-		$this->assertEquals( 3, count( $data[0]['purge'] ) );
+		$this->assertArrayHasKey( 'purge', $data[0],
+			"Must receive a 'purge' result from API" );
+
+		$this->assertEquals( 3, count( $data[0]['purge'] ),
+			"Purge request for three articles should give back three results received: " . var_export( $data[0]['purge'], true ) );
 
 		$pages = array( 'UTPage' => 'purged', $somePage => 'missing', '%5D' => 'invalid' );
 		foreach( $data[0]['purge'] as $v ) {
