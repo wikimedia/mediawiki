@@ -189,7 +189,7 @@ class LanguageConverter {
 	 * @param $variant String: the variant to validate
 	 * @return Mixed: returns the variant if it is valid, null otherwise
 	 */
-	protected function validateVariant( $variant = null ) {
+	public function validateVariant( $variant = null ) {
 		if ( $variant !== null && in_array( $variant, $this->mVariants ) ) {
 			return $variant;
 		}

@@ -3260,6 +3260,14 @@ class Language {
 	}
 
 	/**
+	 * Return the LanguageConverter used in the Language
+	 * @return LanguageConverter
+	 */
+	function getConverter() {
+		return $this->mConverter;
+	}
+
+	/**
 	 * convert text to all supported variants
 	 *
 	 * @param $text string
@@ -3297,6 +3305,14 @@ class Language {
 	 */
 	function hasVariants() {
 		return sizeof( $this->getVariants() ) > 1;
+	}
+
+	/**
+	 * Check if the language has the specific variant
+	 * @return bool
+	 */
+	function hasVariant( $variant ) {
+		return (bool)$this->mConverter->validateVariant( $variant );
 	}
 
 	/**
