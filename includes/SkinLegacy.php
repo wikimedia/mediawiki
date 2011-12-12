@@ -345,7 +345,7 @@ class LegacyTemplate extends BaseTemplate {
 	}
 
 	function otherLanguages() {
-		global $wgOut, $wgLang, $wgHideInterlanguageLinks;
+		global $wgOut, $wgLang, $wgContLang, $wgHideInterlanguageLinks;
 
 		if ( $wgHideInterlanguageLinks ) {
 			return '';
