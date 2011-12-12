@@ -3255,4 +3255,10 @@ Irudiak bereizmen handienean daude, bestelako fitxategi motak beraiei esleitutak
 'revdelete-unrestricted' => 'administratzaileentzako mugak kendu dira',
 'newuserlog-byemail'     => 'pasahitza e-postaz bidali da',
 
+
+# Feedback
+'feedback-subject' => 'Gaia:',
+'feedback-message' => 'Mezua:',
+'feedback-cancel' => 'Utzi',
+'feedback-submit' => 'Feedbacka bidali',
 );

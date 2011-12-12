@@ -4431,4 +4431,13 @@ Parameter $4, the target page, is also not visible to parser functions.',
 
 $4 is the gender of the target user.',
 
+# Feedback
+'feedback-subject' => 'Label for a text input
+{{Identical|Subject}}',
+'feedback-message' => 'Label for a textarea; signature referrs to a Wikitext signature.',
+'feedback-cancel' => 'Button label
+{{Identical|Cancel}}',
+'feedback-submit' => 'Button label',
+'feedback-adding' => 'Progress notice',
+
 );

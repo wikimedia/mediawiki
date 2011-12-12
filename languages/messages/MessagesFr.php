@@ -3875,4 +3875,15 @@ Les images sont montrées dans leur pleine résolution, les autres fichiers sont
 'logentry-newusers-autocreate'        => 'Le compte $1 a été {{GENDER:$2|créé}} automatiquement',
 'newuserlog-byemail'                  => 'mot de passe envoyé par courriel',
 
+
+# Feedback
+'feedback-note' => "Vos commentaires seront affichés publiquement sur la page « [$2 $1] » avec votre nom d'utilisateur, la version de votre navigateur et le système d'exploitation.",
+'feedback-subject' => 'Objet :',
+'feedback-message' => 'Message :',
+'feedback-cancel' => 'Annuler',
+'feedback-submit' => 'Envoyer vos commentaires',
+'feedback-adding' => 'Ajout de vos commentaires à la page...',
+'feedback-error1' => "Erreur : Résultat de l'API non reconnu",
+'feedback-error2' => 'Erreur : la modification a échoué',
+'feedback-error3' => "Erreur : aucune réponse de l'API",
 );

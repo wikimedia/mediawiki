@@ -3540,4 +3540,14 @@ Le immaggine sonde fatte vedè jndr'à resoluziona megghie, otre tipe de file re
 'logentry-newusers-autocreate'        => "'U cunde utende $1 ha state {{GENDER:$2|ccrejate}} automaticamende",
 'newuserlog-byemail'                  => 'password mannete pe e-mail',
 
+
+# Feedback
+'feedback-subject' => 'Oggette:',
+'feedback-message' => 'Messàgge:',
+'feedback-cancel' => 'Annulle',
+'feedback-submit' => "Conferme 'u feedback",
+'feedback-adding' => "Aggiunge feedback a 'a pàgene...",
+'feedback-error1' => "Errore: resultate inaspettate da l'API",
+'feedback-error2' => 'Errore: Cangiamende fallite',
+'feedback-error3' => "Errore: Nisciuna resposte da l'API",
 );

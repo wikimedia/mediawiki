@@ -3673,4 +3673,13 @@ Beelde word in hulle volle resolusie gewys. Ander lêertipes word direk met hull
 'logentry-newusers-autocreate'        => 'Die gebruiker $1 is outomaties {{GENDER:$2|geskep}}',
 'newuserlog-byemail'                  => 'wagwoord is per e-pos versend',
 
+
+# Feedback
+'feedback-subject' => 'Onderwerp:',
+'feedback-message' => 'Boodskap:',
+'feedback-cancel' => 'Kanselleer',
+'feedback-submit' => 'Stuur terugvoer',
+'feedback-error1' => 'Fout: onbekende resultaat van die API',
+'feedback-error2' => 'Fout: Wysiging het gefaal',
+'feedback-error3' => 'Fout: Geen reaksie van API',
 );

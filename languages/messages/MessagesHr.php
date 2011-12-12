@@ -3691,4 +3691,8 @@ Slike se na taj način prikazuju u punoj rezoluciji, a drugi tipovi datoteka se 
 'revdelete-unrestricted' => 'uklonjeno ograničenje za administratore',
 'newuserlog-byemail'     => 'lozinka poslana e-poštom',
 
+
+# Feedback
+'feedback-subject' => 'Tema:',
+'feedback-message' => 'Poruka:',
 );

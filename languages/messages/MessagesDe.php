@@ -3867,4 +3867,15 @@ Eine [{{SERVER}}{{SCRIPTPATH}}/COPYING Kopie der ''GNU General Public License'']
 'logentry-newusers-autocreate'        => 'Benutzerkonto $1 wurde automatisch {{GENDER:$2|erstellt}}',
 'newuserlog-byemail'                  => 'das Passwort wurde per E-Mail versandt',
 
+
+# Feedback
+'feedback-note' => 'Die Rückmeldung wird auf der öffentlich einsehbaren Seite „[$2 $1]“ gespeichert, zusammen mit dem Benutzernamen, der verwendeten Webbrowser-Version und dem Betriebssystem.',
+'feedback-subject' => 'Betreff:',
+'feedback-message' => 'Nachricht:',
+'feedback-cancel' => 'Abbrechen',
+'feedback-submit' => 'Rückmeldung senden',
+'feedback-adding' => 'Rückmeldung wird zur Seite hinzugefügt …',
+'feedback-error1' => 'Fehler: Unbekanntes Ergebnis der API',
+'feedback-error2' => 'Fehler: Bearbeitung gescheitert',
+'feedback-error3' => 'Fehler: Keine Antwort von der API',
 );

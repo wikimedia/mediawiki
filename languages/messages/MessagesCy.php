@@ -3550,4 +3550,14 @@ Dangosir delweddau ar eu maint llawn, dechreuir ffeiliau o fathau eraill yn unio
 'logentry-newusers-autocreate'        => '{{GENDER:$2|Crëwyd}} y cyfrif $1 yn awtomatig',
 'newuserlog-byemail'                  => 'anfonwyd y cyfrinair trwy e-bost',
 
+
+# Feedback
+'feedback-subject' => 'Gwrthrych:',
+'feedback-message' => 'Neges:',
+'feedback-cancel' => 'Diddymer',
+'feedback-submit' => 'Cyflwyner yr Adborth',
+'feedback-adding' => "Wrthi'n ychwanegu adborth i'r dudalen...",
+'feedback-error1' => "Gwall: Canlyniad anhysbys o'r API",
+'feedback-error2' => 'Gwall: Methodd y golygu',
+'feedback-error3' => 'Gwall: Dim ymateb gan yr API',
 );

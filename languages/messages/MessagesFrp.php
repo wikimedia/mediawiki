@@ -3980,4 +3980,15 @@ Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs son
 'logentry-newusers-autocreate'        => 'Lo compto $1 at étâ {{GENDER:$2|fêt}} ôtomaticament',
 'newuserlog-byemail'                  => 'contresegno mandâ per mèssageria èlèctronica',
 
+
+# Feedback
+'feedback-note' => 'Voutron avis serat postâ publicament sur la pâge « [$2 $1] », avouéc voutron nom d’utilisator, la vèrsion de voutron navigator et pués voutron sistèmo d’èxplouètacion.',
+'feedback-subject' => 'Sujèt :',
+'feedback-message' => 'Mèssâjo :',
+'feedback-cancel' => 'Anular',
+'feedback-submit' => 'Mandar voutron avis',
+'feedback-adding' => 'Aponsa de voutros avis a la pâge...',
+'feedback-error1' => 'Èrror : rèsultat de l’API pas recognu',
+'feedback-error2' => 'Èrror : lo changement at pas reussi',
+'feedback-error3' => 'Èrror : gins de rèponsa de l’API',
 );

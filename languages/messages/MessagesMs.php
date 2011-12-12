@@ -3659,4 +3659,15 @@ Imej ditunjuk dalam leraian penuh, jenis fail yang lain dibuka dengan atur cara 
 'logentry-newusers-autocreate'        => 'Akaun $1 {{GENDER:$2|dibuka}} secara automatik',
 'newuserlog-byemail'                  => 'kata laluan dihantar melalui e-mel',
 
+
+# Feedback
+'feedback-note' => 'Mkalum balas anda akan disiarkan kepada umum di laman "[$2 $1]", beserta nama pengguna, versi pelayar dan sistem pengendalian (OS) anda.',
+'feedback-subject' => 'Perkara:',
+'feedback-message' => 'Pesanan:',
+'feedback-cancel' => 'Batalkan',
+'feedback-submit' => 'Hantar Maklum Balas',
+'feedback-adding' => 'Maklum balas sedang diisikan ke dalam laman...',
+'feedback-error1' => 'Perhatian: Hasil dari API tidak dikenali',
+'feedback-error2' => 'Perhatian: Penyuntingan gagal',
+'feedback-error3' => 'Perhatian: Tiada gerak balas dari API',
 );

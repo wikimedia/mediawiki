@@ -3593,4 +3593,15 @@ Les imáxenes amuésense a resolución completa; les demás tribes d'archivu exe
 'logentry-newusers-autocreate'        => 'La cuenta $1 {{GENDER:$2|se creó}} automáticamente',
 'newuserlog-byemail'                  => 'clave unviada per corréu electrónicu',
 
+
+# Feedback
+'feedback-note' => 'Los comentarios s\'asoleyarán en públicu na páxina "[$2 $1]", xunto col to nome d\'usuariu, la versión del to restolador y sistema operativu.',
+'feedback-subject' => 'Asuntu:',
+'feedback-message' => 'Mensaxe:',
+'feedback-cancel' => 'Encaboxar',
+'feedback-submit' => 'Unviar comentarios',
+'feedback-adding' => 'Amestando el comentariu a la páxina...',
+'feedback-error1' => 'Fallu: Resultáu de la API non reconocíu',
+'feedback-error2' => 'Fallu: Falló la edición',
+'feedback-error3' => 'Fallu: Ensin respuesta de la API',
 );

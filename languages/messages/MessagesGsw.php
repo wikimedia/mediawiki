@@ -3506,4 +3506,15 @@ Di aagfrogt Datei wird diräkt dargstellt bzw. mit dr verchnipfte Aawändig gsta
 'logentry-newusers-autocreate'        => 'S Benutzerchonto $1 isch automatisch {{GENDER:$2|erstellt}} worde',
 'newuserlog-byemail'                  => 's Passwort isch per E-Mail gschickt wore',
 
+
+# Feedback
+'feedback-note' => 'Die Ruggmäldig wird uff de öffentliche Syte „[$2 $1]“ gspyycheret, zämme mit em Benutzername, de Webbrowser-Version un em Betriebssystem, wo du bruuchsch.',
+'feedback-subject' => 'Beträff:',
+'feedback-message' => 'Noochricht:',
+'feedback-cancel' => 'Abbräche',
+'feedback-submit' => 'Ruggmäldig abschigge',
+'feedback-adding' => 'Ruggmäldig wird zur Syte dezuegfiegt …',
+'feedback-error1' => 'Fäälermäldig: Unbekannts Ergebniss vo de API',
+'feedback-error2' => 'Fääler: Bearbeitig fehlgschlo',
+'feedback-error3' => 'Fäälermäldig: Kei Antwort vo de API',
 );

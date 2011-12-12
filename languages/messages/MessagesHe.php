@@ -3931,4 +3931,15 @@ $5
 'logentry-newusers-autocreate'        => 'החשבון $1 {{GENDER:$2|נוצר|נוצר}} אוטומטית',
 'newuserlog-byemail'                  => 'הסיסמה נשלחה בדוא"ל',
 
+
+# Feedback
+'feedback-note' => 'התגובות שלכם תפורסמנה באופן לציבור בדף "[$2 $1]", יחד עם שם המשתמש שלכם, גרסת הדפדפן שלכם ומערכת ההפעלה שלכם.',
+'feedback-subject' => 'נושא',
+'feedback-message' => 'הודעה:',
+'feedback-cancel' => 'ביטול',
+'feedback-submit' => 'שליחת משוב',
+'feedback-adding' => 'הוספת משוב לדף...',
+'feedback-error1' => 'שגיאה: תוצאה לא מזוהה מה־API',
+'feedback-error2' => 'שגיאה: העריכה נכשלה',
+'feedback-error3' => 'שגיאה: אין תשובה מה־API',
 );

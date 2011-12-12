@@ -3758,4 +3758,15 @@ Gambar ditampilkan dalam resolusi penuh dan tipe lain berkas akan dibuka langsun
 'revdelete-unrestricted'  => 'pembatasan akses opsis dihapuskan',
 'newuserlog-byemail'      => 'kata sandi dikirim melalui surel',
 
+
+# Feedback
+'feedback-note' => 'Umpan balik Anda akan dipublikasikan ke halaman "[$2 $1]", bersama dengan nama pengguna, versi peramban, dan sistem operasi.',
+'feedback-subject' => 'Perihal:',
+'feedback-message' => 'Pesan:',
+'feedback-cancel' => 'Batal',
+'feedback-submit' => 'Kirim Umpan Balik',
+'feedback-adding' => 'Menambahkan umpan balik ke halaman...',
+'feedback-error1' => 'Galat: Hasil tidak dikenal dari API',
+'feedback-error2' => 'Galat: Penyuntingan gagal',
+'feedback-error3' => 'Error: API tidak merespons',
 );

@@ -1,15 +1,48 @@
+/** 
+ * mediawiki.Feedback
+ *
+ * @author Ryan Kaldari, 2010
+ * @author Neil Kandalgaonkar, 2010-11
+ * @since 1.19
+ *
+ * This is a way of getting simple feedback from users. It's useful
+ * for testing new features -- users can give you feedback without 
+ * the difficulty of opening a whole new talk page. For this reason,
+ * it also tends to collect a wider range of both positive and negative
+ * comments. However you do need to tend to the feedback page. It will 
+ * get long relatively quickly, and you often get multiple messages 
+ * reporting the same issue.
+ *
+ * It takes the form of thing on your page which, when clicked, opens a small
+ * dialog box. Submitting that dialog box appends its contents to a 
+ * wiki page that you specify, as a new section.
+ *
+ * Not compatible with LiquidThreads.
+ * 
+ * How to use it:
+ * 
+ *    var feedback = new mw.Feedback( api, myFeedbackPageTitle );
+ *    $( '#myButton' ).click( function() { feedback.launch(); } ); 
+ * 
+ * You can also launch the feedback form with a prefilled subject and body. 
+ * See the docs for the launch() method. 
+ */
 ( function( mw, $, undefined ) {
 
 	/**
 	 * Thingy for collecting user feedback on a wiki page
-	 * @param {mw.Api}  api properly configured to talk to this wiki
+	 * @param {mw.api}  api properly configured to talk to this wiki
 	 * @param {mw.Title} the title of the page where you collect feedback
-	 * @param {id} a string identifying this feedback form to separate it from others on the same page
+	 * @param {String} optional - message key for the title of the dialog box
 	 */
-	mw.Feedback = function( api, feedbackTitle ) {
+	mw.Feedback = function( api, feedbackTitle, dialogTitleMessageKey ) {
 		var _this = this;
 		this.api = api;
 		this.feedbackTitle = feedbackTitle;
+		this.dialogTitleMessageKey = dialogTitleMessageKey;
+		if ( this.dialogTitleMessageKey === undefined ) {
+			this.dialogTitleMessageKey = 'feedback-submit';
+		}
 		this.setup();
 	};
 
@@ -25,21 +58,21 @@
 			var $feedbackPageLink = $j( '<a></a>' ).attr( { 'href': _this.feedbackTitle.getUrl(), 'target': '_blank' } );
 			this.$dialog = 
 				$( '<div style="position:relative;"></div>' ).append( 
-					$( '<div class="mwe-upwiz-feedback-mode mwe-upwiz-feedback-form"></div>' ).append( 
+					$( '<div class="feedback-mode feedback-form"></div>' ).append( 
 						$( '<div style="margin-top:0.4em;"></div>' ).append( 
-							$( '<small></small>' ).msg( 'mwe-upwiz-feedback-note', 
+							$( '<small></small>' ).msg( 'feedback-note', 
 										    _this.feedbackTitle.getNameText(), 
 										    $feedbackPageLink ) 
 						),
 						$( '<div style="margin-top:1em;"></div>' ).append( 
 							mw.msg( 'mwe-upwiz-feedback-subject' ), 
 							$( '<br/>' ), 
-							$( '<input type="text" class="mwe-upwiz-feedback-subject" name="subject" maxlength="60" style="width:99%;"/>' ) 
+							$( '<input type="text" class="feedback-subject" name="subject" maxlength="60" style="width:99%;"/>' ) 
 						),
 						$( '<div style="margin-top:0.4em;"></div>' ).append( 
 							mw.msg( 'mwe-upwiz-feedback-message' ), 
 							$( '<br/>' ), 
-							$( '<textarea name="message" class="mwe-upwiz-feedback-message" style="width:99%;" rows="5" cols="60"></textarea>' ) 
+							$( '<textarea name="message" class="feedback-message" style="width:99%;" rows="5" cols="60"></textarea>' ) 
 						)
 					),
 					$( '<div class="mwe-upwiz-feedback-mode mwe-upwiz-feedback-submitting" style="text-align:center;margin:3em 0;"></div>' ).append( 
@@ -47,8 +80,8 @@
 						$( '<br/>' ), 
 						$( '<img src="http://upload.wikimedia.org/wikipedia/commons/4/42/Loading.gif" />' ) 
 					),
-					$( '<div class="mwe-upwiz-feedback-mode mwe-upwiz-feedback-error" style="position:relative;"></div>' ).append( 
-						$( '<div class="mwe-upwiz-feedback-error-msg style="color:#990000;margin-top:0.4em;"></div>' )
+					$( '<div class="feedback-mode feedback-error" style="position:relative;"></div>' ).append( 
+						$( '<div class="feedback-error-msg style="color:#990000;margin-top:0.4em;"></div>' )
 
 					)
 				).dialog({
@@ -59,21 +92,27 @@
 					buttons: _this.buttons
 				}); 
 
-			this.subjectInput = this.$dialog.find( 'input.mwe-upwiz-feedback-subject' ).get(0);
-			this.messageInput = this.$dialog.find( 'textarea.mwe-upwiz-feedback-message' ).get(0);
+			this.subjectInput = this.$dialog.find( 'input.feedback-subject' ).get(0);
+			this.messageInput = this.$dialog.find( 'textarea.feedback-message' ).get(0);
 			this.displayForm();		
 		},
 
 		display: function( s ) {
 			this.$dialog.dialog( { buttons:{} } ); // hide the buttons
-			this.$dialog.find( '.mwe-upwiz-feedback-mode' ).hide(); // hide everything
-			this.$dialog.find( '.mwe-upwiz-feedback-' + s ).show(); // show the desired div 
+			this.$dialog.find( '.feedback-mode' ).hide(); // hide everything
+			this.$dialog.find( '.feedback-' + s ).show(); // show the desired div 
 		},
 
 		displaySubmitting: function() {	
 			this.display( 'submitting' );
 		},
 
+		/**
+		 * Display the feedback form
+		 * @param {Object} optional prefilled contents for the feedback form. Object with properties:
+		 *						subject: {String}
+		 *						message: {String}
+		 */
 		displayForm: function( contents ) {
 			this.subjectInput.value = (contents && contents.subject) ? contents.subject : '';
 			this.messageInput.value = (contents && contents.message) ? contents.message : '';
@@ -84,7 +123,7 @@
 
 		displayError: function( message ) {
 			this.display( 'error' );
-			this.$dialog.find( '.mwe-upwiz-feedback-error-msg' ).msg( message ); 
+			this.$dialog.find( '.feedback-error-msg' ).msg( message ); 
 		},
 
 		cancel: function() { 
@@ -110,15 +149,15 @@
 					if ( result.edit.result === 'Success' ) {
 						_this.$dialog.dialog( 'close' ); // edit complete, close dialog box
 					} else {
-						_this.displayError( 'mwe-upwiz-feedback-error1' ); // unknown API result
+						_this.displayError( 'feedback-error1' ); // unknown API result
 					}
 				} else {
-					displayError( 'mwe-upwiz-feedback-error2' ); // edit failed
+					displayError( 'feedback-error2' ); // edit failed
 				}
 			};
 
 			var err = function( code, info ) {
-				displayError( 'mwe-upwiz-feedback-error3' ); // ajax request failed
+				displayError( 'feedback-error3' ); // ajax request failed
 			};
 		
 			this.api.newSection( this.feedbackTitle, subject, message, ok, err );
@@ -126,6 +165,12 @@
 		}, // close submit button function
 
 
+		/**
+		 * Modify the display form, and then open it, focusing interface on the subject.
+		 * @param {Object} optional prefilled contents for the feedback form. Object with properties:
+		 *						subject: {String}
+		 *						message: {String}
+		 */
 		launch: function( contents ) {
 			this.displayForm( contents );
 			this.$dialog.dialog( 'open' );

@@ -4108,4 +4108,15 @@ $5
 'logentry-newusers-autocreate'        => '{{GENDER:$2|أنشئ}} حساب $1 تلقائياً',
 'newuserlog-byemail'                  => 'كلمة السر تم إرسالها بواسطة البريد الإلكتروني',
 
+
+# Feedback
+'feedback-note' => 'ستنشر علنا الملاحظات الخاصة بك إلى الصفحة "[$2 $1]"، جنبا إلى جنب مع اسم المستخدم الخاص بك وإصدار المستعرض ونظام التشغيل.',
+'feedback-subject' => 'الموضوع:',
+'feedback-message' => 'الرسالة:',
+'feedback-cancel' => 'ألغِ',
+'feedback-submit' => 'أرسل الملاحظات',
+'feedback-adding' => 'إضافة تعليقات إلى الصفحة...',
+'feedback-error1' => 'خطأ: لا يمكن التعرف عليها من API',
+'feedback-error2' => 'خطأ: فشل في تحرير',
+'feedback-error3' => 'خطأ : لا توجد استجابة من API',
 );

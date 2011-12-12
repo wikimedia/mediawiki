@@ -4629,4 +4629,15 @@ This site is experiencing technical difficulties.',
 'logentry-newusers-autocreate'        => 'Account $1 was {{GENDER:$2|created}} automatically',
 'newuserlog-byemail'                  => 'password sent by e-mail',
 
+
+# Feedback
+'feedback-note' => 'Your feedback will be posted publicly to the page "[$2 $1]", along with your user name, browser version and operating system.',
+'feedback-subject' => 'Subject:',
+'feedback-message' => 'Message:',
+'feedback-cancel' => 'Cancel',
+'feedback-submit' => 'Submit Feedback',
+'feedback-adding' => 'Adding feedback to page...',
+'feedback-error1' => 'Error: Unrecognized result from API',
+'feedback-error2' => 'Error: Edit failed',
+'feedback-error3' => 'Error: No response from API',
 );

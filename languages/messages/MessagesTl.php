@@ -3577,4 +3577,15 @@ Ipasok ang pangalan ng talaksan na hindi kasama ang unlaping "{{ns:image}}:".',
 'revdelete-unrestricted' => 'tinanggal ang mga pagbabawal para sa mga tagapangasiwa',
 'newuserlog-byemail'     => 'Ipinadala ang hudyat sa pamamagitan ng e-liham',
 
+
+# Feedback
+'feedback-note' => 'Ang iyong pakaing-tugon ay ipapaskil sa $1.',
+'feedback-subject' => 'Paksa:',
+'feedback-message' => 'Mensahe:',
+'feedback-cancel' => 'Huwag ituloy',
+'feedback-submit' => 'Ipasa ang Pakaing-tugon',
+'feedback-adding' => 'Idinaragdag ang pakaing-tugon sa pahina...',
+'feedback-error1' => 'Kamalian: Hindi nakikilalang kinalabasan mula sa API',
+'feedback-error2' => 'Kamalian: Nabigo ang pagpatnugot',
+'feedback-error3' => 'Kamalian: Walang tugon mula sa API',
 );

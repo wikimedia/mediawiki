@@ -2425,4 +2425,8 @@ Tóbájẹ́pé fáìlì ọ̀hún ti jẹ́ títúnṣe sí bóṣewà ní bẹ
 'logentry-newusers-autocreate'        => 'Àkópamọ́ $1 jẹ́ {{GENDER:$2|dídá}} fúnrarẹ̀',
 'newuserlog-byemail'                  => 'ọ̀rọ̀ìpamọ́ jẹ́ fífiránṣẹ́ pẹ̀lú e-mail',
 
+
+# Feedback
+'feedback-message' => 'Ìránṣẹ́:',
+'feedback-cancel' => 'Fagilé',
 );

@@ -2720,4 +2720,7 @@ $5
 'revdelete-unrestricted' => 'αἱρεθέντες περιορισμοὶ διὰ τοὺς ἐπιτρόπους',
 'newuserlog-byemail'     => 'σύνθημα ἀπεσταλμένον μέσῳ ἠλ-ταχυδρομείου',
 
+
+# Feedback
+'feedback-cancel' => 'Ἀκυροῦν',
 );
