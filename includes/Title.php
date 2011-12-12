@@ -1230,6 +1230,31 @@ class Title {
 	}
 
 	/**
+	 * Helper to fix up the get{Local,Full,Link,Canonical}URL args
+	 */
+	private static function fixUrlQueryArgs( $query, $query2 ) {
+		if ( is_array( $query ) ) {
+			$query = wfArrayToCGI( $query );
+		}
+		if ( $query2 ) {
+			if ( is_string( $query2 ) ) {
+				// $query2 is a string, we will consider this to be
+				// a deprecated $variant argument and add it to the query
+				$query2 = wfArrayToCGI( array( 'variant' => $query2 ) );
+			} else {
+				$query2 = wfArrayToCGI( $query2 );
+			}
+			// If we have $query content add a & to it first
+			if ( $query ) {
+				$query .= '&';
+			}
+			// Now append the queries together
+			$query .= $query2;
+		}
+		return $query;
+	}
+
+	/**
 	 * Get a real URL referring to this title, with interwiki link and
 	 * fragment
 	 *
@@ -1239,9 +1264,11 @@ class Title {
 	 * @param $variant String language variant of url (for sr, zh..)
 	 * @return String the URL
 	 */
-	public function getFullURL( $query = '', $variant = false ) {
+	public function getFullURL( $query = '', $query2 = false ) {
+		$query = self::fixUrlQueryArgs( $query, $query2 );
+
 		# Hand off all the decisions on urls to getLocalURL
-		$url = $this->getLocalURL( $query, $variant );
+		$url = $this->getLocalURL( $query );
 
 		# Expand the url to make it a full url. Note that getLocalURL has the
 		# potential to output full urls for a variety of reasons, so we use
@@ -1251,7 +1278,7 @@ class Title {
 		# Finally, add the fragment.
 		$url .= $this->getFragmentForURL();
 
-		wfRunHooks( 'GetFullURL', array( &$this, &$url, $query, $variant ) );
+		wfRunHooks( 'GetFullURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
@@ -1266,13 +1293,10 @@ class Title {
 	 * @param $variant String language variant of url (for sr, zh..)
 	 * @return String the URL
 	 */
-	public function getLocalURL( $query = '', $variant = false ) {
+	public function getLocalURL( $query = '', $query2 = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest;
-		global $wgVariantArticlePath;
 
-		if ( is_array( $query ) ) {
-			$query = wfArrayToCGI( $query );
-		}
+		$query = self::fixUrlQueryArgs( $query, $query2 );
 
 		$interwiki = Interwiki::fetch( $this->mInterwiki );
 		if ( $interwiki ) {
@@ -1287,22 +1311,13 @@ class Title {
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
-				if ( $variant != false && $this->getPageLanguage()->hasVariants() ) {
-					if ( !$wgVariantArticlePath ) {
-						$variantArticlePath =  "$wgScript?title=$1&variant=$2"; // default
-					} else {
-						$variantArticlePath = $wgVariantArticlePath;
-					}
-					$url = str_replace( '$2', urlencode( $variant ), $variantArticlePath );
-					$url = str_replace( '$1', $dbkey, $url  );
-				} else {
-					$url = str_replace( '$1', $dbkey, $wgArticlePath );
-					wfRunHooks( 'GetLocalURL::Article', array( &$this, &$url ) );
-				}
+				$url = str_replace( '$1', $dbkey, $wgArticlePath );
+				wfRunHooks( 'GetLocalURL::Article', array( &$this, &$url ) );
 			} else {
-				global $wgActionPaths;
+				global $wgVariantArticlePath, $wgActionPaths;
 				$url = false;
 				$matches = array();
+
 				if ( !empty( $wgActionPaths ) &&
 					preg_match( '/^(.*&|)action=([^&]*)(&(.*)|)$/', $query, $matches ) )
 				{
@@ -1319,6 +1334,20 @@ class Title {
 					}
 				}
 
+				if ( $url === false &&
+					$wgVariantArticlePath &&
+					$this->getPageLanguage()->hasVariants() &&
+					preg_match( '/^variant=([^&]*)$/', $query, $matches ) )
+				{
+					$variant = urldecode( $matches[1] );
+					if ( $this->getPageLanguage()->hasVariant( $variant ) ) {
+						// Only do the variant replacement if the given variant is a valid
+						// variant for the page's language.
+						$url = str_replace( '$2', urlencode( $variant ), $wgVariantArticlePath );
+						$url = str_replace( '$1', $dbkey, $url );
+					}
+				}
+
 				if ( $url === false ) {
 					if ( $query == '-' ) {
 						$query = '';
@@ -1327,7 +1356,7 @@ class Title {
 				}
 			}
 
-			wfRunHooks( 'GetLocalURL::Internal', array( &$this, &$url, $query, $variant ) );
+			wfRunHooks( 'GetLocalURL::Internal', array( &$this, &$url, $query ) );
 
 			// @todo FIXME: This causes breakage in various places when we
 			// actually expected a local URL and end up with dupe prefixes.
@@ -1335,7 +1364,7 @@ class Title {
 				$url = $wgServer . $url;
 			}
 		}
-		wfRunHooks( 'GetLocalURL', array( &$this, &$url, $query, $variant ) );
+		wfRunHooks( 'GetLocalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
@@ -1356,14 +1385,14 @@ class Title {
 	 *   for anonymous users).
 	 * @return String the URL
 	 */
-	public function getLinkURL( $query = array(), $variant = false ) {
+	public function getLinkURL( $query = '', $query2 = false ) {
 		wfProfileIn( __METHOD__ );
 		if ( $this->isExternal() ) {
-			$ret = $this->getFullURL( $query );
+			$ret = $this->getFullURL( $query, $query2 );
 		} elseif ( $this->getPrefixedText() === '' && $this->getFragment() !== '' ) {
 			$ret = $this->getFragmentForURL();
 		} else {
-			$ret = $this->getLocalURL( $query, $variant ) . $this->getFragmentForURL();
+			$ret = $this->getLocalURL( $query, $query2 ) . $this->getFragmentForURL();
 		}
 		wfProfileOut( __METHOD__ );
 		return $ret;
@@ -1376,8 +1405,8 @@ class Title {
 	 * @param $query String an optional query string
 	 * @return String the URL
 	 */
-	public function escapeLocalURL( $query = '' ) {
-		return htmlspecialchars( $this->getLocalURL( $query ) );
+	public function escapeLocalURL( $query = '', $query2 = false ) {
+		return htmlspecialchars( $this->getLocalURL( $query, $query2 ) );
 	}
 
 	/**
@@ -1387,8 +1416,8 @@ class Title {
 	 * @param $query String an optional query string
 	 * @return String the URL
 	 */
-	public function escapeFullURL( $query = '' ) {
-		return htmlspecialchars( $this->getFullURL( $query ) );
+	public function escapeFullURL( $query = '', $query2 = false ) {
+		return htmlspecialchars( $this->getFullURL( $query, $query2 ) );
 	}
 
 	/**
@@ -1404,11 +1433,12 @@ class Title {
 	 * @param $variant String language variant of url (for sr, zh..)
 	 * @return String the URL
 	 */
-	public function getInternalURL( $query = '', $variant = false ) {
+	public function getInternalURL( $query = '', $query2 = false ) {
 		global $wgInternalServer, $wgServer;
+		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$server = $wgInternalServer !== false ? $wgInternalServer : $wgServer;
-		$url = wfExpandUrl( $server . $this->getLocalURL( $query, $variant ), PROTO_HTTP );
-		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query, $variant ) );
+		$url = wfExpandUrl( $server . $this->getLocalURL( $query ), PROTO_HTTP );
+		wfRunHooks( 'GetInternalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
@@ -1424,9 +1454,10 @@ class Title {
 	 * @return string The URL
 	 * @since 1.18
 	 */
-	public function getCanonicalURL( $query = '', $variant = false ) {
+	public function getCanonicalURL( $query = '', $query2 = false ) {
+		$query = self::fixUrlQueryArgs( $query, $query2 );
 		$url = wfExpandUrl( $this->getLocalURL( $query, $variant ) . $this->getFragmentForURL(), PROTO_CANONICAL );
-		wfRunHooks( 'GetCanonicalURL', array( &$this, &$url, $query, $variant ) );
+		wfRunHooks( 'GetCanonicalURL', array( &$this, &$url, $query ) );
 		return $url;
 	}
 
@@ -1434,8 +1465,9 @@ class Title {
 	 * HTML-escaped version of getCanonicalURL()
 	 * @since 1.18
 	 */
-	public function escapeCanonicalURL( $query = '', $variant = false ) {
-		return htmlspecialchars( $this->getCanonicalURL( $query, $variant ) );
+	public function escapeCanonicalURL( $query = '', $query2 = false ) {
+		wfDeprecated( __METHOD__, '1.19' );
+		return htmlspecialchars( $this->getCanonicalURL( $query, $query2 ) );
 	}
 
 	/**

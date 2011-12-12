@@ -3009,7 +3009,7 @@ $templates
 						$tags[] = Html::element( 'link', array(
 							'rel' => 'alternate',
 							'hreflang' => $_v,
-							'href' => $this->getTitle()->getLocalURL( '', $_v ) )
+							'href' => $this->getTitle()->getLocalURL( array( 'variant' => $_v ) ) )
 						);
 					}
 				} else {
