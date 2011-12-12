@@ -144,11 +144,7 @@ class WebInstallerOutput {
 	 */
 	public function getDir() {
 		global $wgLang;
-		if( !is_object( $wgLang ) || !$wgLang->isRtl() ) {
-			return 'ltr';
-		} else {
-			return 'rtl';
-		}
+		return is_object( $wgLang ) ? $wgLang->getDir() : 'ltr';
 	}
 
 	/**
@@ -156,11 +152,7 @@ class WebInstallerOutput {
 	 */
 	public function getLanguageCode() {
 		global $wgLang;
-		if( !is_object( $wgLang ) ) {
-			return 'en';
-		} else {
-			return $wgLang->getCode();
-		}
+		return is_object( $wgLang ) ? $wgLang->getCode() : 'en';
 	}
 
 	/**
