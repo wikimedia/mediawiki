@@ -5,7 +5,10 @@ test( '-- Initial check', function() {
 	ok( jQuery.client, 'jQuery.client defined' );
 });
 
-var uacount = 0, uas = (function() {
+/** Number of user-agent defined */
+var uacount = 0;
+
+var uas = (function() {
 
 	// Object keyed by userAgent. Value is an array (human-readable name, client-profile object, navigator.platform value)
 	// Info based on results from http://toolserver.org/~krinkle/testswarm/job/174/
@@ -241,6 +244,8 @@ test( 'profile return validation for current user agent', function() {
 });
 
 // Example from WikiEditor
+// Make sure to use raw numbers, a string like "7.0" would fail on a
+// version 10 browser since in string comparaison "10" is before "7.0" :)
 var testMap = {
 	'ltr': {
 		'msie': [['>=', 7.0]],
@@ -278,7 +283,7 @@ test( 'test', function() {
 });
 
 test( 'User-agent matches against WikiEditor\'s compatibility map', function() {
-	expect( uacount * 2 );
+	expect( uacount * 2 ); // double since we test both LTR and RTL
 
 	// Loop through and run tests
 	$.each( uas, function( agent, data ) {
