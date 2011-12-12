@@ -855,7 +855,7 @@ abstract class Installer {
 	/**
 	 * Environment check for the server hostname.
 	 */
-	protected abstract function envCheckServer() {
+	protected function envCheckServer() {
 		$server = $this->envGetDefaultServer();
 		$this->showMessage( 'config-using-server', $server );
 		$this->setVar( 'wgServer', $server );
