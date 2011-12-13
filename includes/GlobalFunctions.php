@@ -3460,7 +3460,7 @@ function wfDeprecated( $function, $version = false, $component = false ) {
 	if ( !isset( $functionsWarned[$function] ) ) {
 		$functionsWarned[$function] = true;
 		
-		if ( $version ) {
+		if ( $version && $component === false ) {
 			global $wgDeprecationReleaseLimit;
 			
 			if ( $wgDeprecationReleaseLimit ) {
