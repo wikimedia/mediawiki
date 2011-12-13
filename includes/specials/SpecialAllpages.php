@@ -278,7 +278,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$queryparams = $namespace ? "namespace=$namespace&" : '';
 		$special = $this->getTitle();
-		$link = $special->escapeLocalUrl( $queryparams . 'from=' . urlencode($inpoint) . '&to=' . urlencode($outpoint) );
+		$link = htmlspecialchars( $special->getLocalUrl( $queryparams . 'from=' . urlencode($inpoint) . '&to=' . urlencode($outpoint) ) );
 
 		$out = $this->msg( 'alphaindexline' )->rawParams(
 			"<a href=\"$link\">$inpointf</a></td><td>",

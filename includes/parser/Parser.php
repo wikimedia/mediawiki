@@ -1176,7 +1176,7 @@ class Parser {
 			));
 			$titleObj = SpecialPage::getTitleFor( 'Booksources', $num );
 			return'<a href="' .
-				$titleObj->escapeLocalUrl() .
+				htmlspecialchars( $titleObj->getLocalUrl() ) .
 				"\" class=\"internal mw-magiclink-isbn\">ISBN $isbn</a>";
 		} else {
 			return $m[0];
