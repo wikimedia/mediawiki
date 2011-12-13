@@ -258,7 +258,7 @@ class FileDeleteForm {
 	 */
 	private function showLogEntries() {
 		global $wgOut;
-		$wgOut->addHTML( '<h2>' . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
+		$wgOut->addHTML( '<h2>' . htmlspecialchars( LogPage::getName( 'delete' ) ) . "</h2>\n" );
 		LogEventsList::showLogExtract( $wgOut, 'delete', $this->title );
 	}
 

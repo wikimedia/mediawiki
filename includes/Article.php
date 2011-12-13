@@ -1276,7 +1276,7 @@ class Article extends Page {
 			$wgOut->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 					array( 'cannotdelete', wfEscapeWikiText( $title->getPrefixedText() ) )
 				);
-			$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+			$wgOut->addHTML( Xml::element( 'h2', null, LogPage::getName( 'delete' ) ) );
 			LogEventsList::showLogExtract(
 				$wgOut,
 				'delete',
@@ -1456,7 +1456,7 @@ class Article extends Page {
 			}
 
 		$wgOut->addHTML( $form );
-		$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+		$wgOut->addHTML( Xml::element( 'h2', null, LogPage::getName( 'delete' ) ) );
 		LogEventsList::showLogExtract( $wgOut, 'delete',
 			$this->getTitle()->getPrefixedText()
 		);
@@ -1489,7 +1489,7 @@ class Article extends Page {
 				$wgOut->wrapWikiMsg( "<div class=\"error mw-error-cannotdelete\">\n$1\n</div>",
 					array( 'cannotdelete', wfEscapeWikiText( $this->getTitle()->getPrefixedText() ) )
 				);
-				$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+				$wgOut->addHTML( Xml::element( 'h2', null, LogPage::getName( 'delete' ) ) );
 
 				LogEventsList::showLogExtract(
 					$wgOut,

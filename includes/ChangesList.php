@@ -666,7 +666,7 @@ class EnhancedChangesList extends ChangesList {
 			if( $logType ) {
 				$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
 				$clink = '(' . Linker::linkKnown( $logtitle,
-					LogPage::logName( $logType ) ) . ')';
+					LogPage::getName( $logType ) ) . ')';
 			} else {
 				$clink = Linker::link( $rc->getTitle() );
 			}
@@ -676,7 +676,7 @@ class EnhancedChangesList extends ChangesList {
 			list( $specialName, $logtype ) = SpecialPageFactory::resolveAlias( $rc->mAttribs['rc_title'] );
 			if ( $specialName == 'Log' ) {
 				# Log updates, etc
-				$logname = LogPage::logName( $logtype );
+				$logname = LogPage::getName( $logtype );
 				$clink = '(' . Linker::linkKnown( $rc->getTitle(), $logname ) . ')';
 			} else {
 				wfDebug( "Unexpected special page in recentchanges\n" );
@@ -1124,7 +1124,7 @@ class EnhancedChangesList extends ChangesList {
 		# Article or log link
 		if( $logType ) {
 			$logtitle = SpecialPage::getTitleFor( 'Log', $logType );
-			$logname = LogPage::logName( $logType );
+			$logname = LogPage::getName( $logType );
 			$r .= '(' . Linker::linkKnown( $logtitle, htmlspecialchars( $logname ) ) . ')';
 		} else {
 			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
