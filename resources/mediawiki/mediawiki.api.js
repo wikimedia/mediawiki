@@ -12,15 +12,21 @@
 	 *   can override the parameter defaults and ajax default options.
 	 *	XXX document!
 	 *  
+	 * TODO share api objects with exact same config.
+	 *
 	 * ajax options can also be overriden on every get() or post()
 	 * 
 	 * @param options {Mixed} can take many options, but must include at minimum the API url.
 	 */
 	mw.Api = function( options ) {
 
+		if ( options === undefined ) {
+			options = {};
+		}
+
 		// make sure we at least have a URL endpoint for the API
 		if ( options.url === undefined ) {
-			throw new Error( 'Configuration error - needs url property' );
+			options.url = mw.config.get( 'wgServer' ) + mw.config.get( 'wgScriptPath' ) + '/api' + mw.config.get( 'wgScriptExtension' );
 		}
 
 		this.url = options.url;
