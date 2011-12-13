@@ -31,18 +31,32 @@
 
 	/**
 	 * Thingy for collecting user feedback on a wiki page
-	 * @param {mw.api}  api properly configured to talk to this wiki
-	 * @param {mw.Title} the title of the page where you collect feedback
-	 * @param {String} optional - message key for the title of the dialog box
+	 * @param {Array} options -- optional, all properties optional.
+	 *		api: {mw.Api} if omitted, will just create a standard API
+	 * 		title: {mw.Title} the title of the page where you collect feedback. Defaults to "Feedback".
+	 * 		dialogTitleMessageKey: {String} message key for the title of the dialog box
 	 */
-	mw.Feedback = function( api, feedbackTitle, dialogTitleMessageKey ) {
-		var _this = this;
-		this.api = api;
-		this.feedbackTitle = feedbackTitle;
-		this.dialogTitleMessageKey = dialogTitleMessageKey;
-		if ( this.dialogTitleMessageKey === undefined ) {
-			this.dialogTitleMessageKey = 'feedback-submit';
+	mw.Feedback = function( options ) {
+
+		if ( options === undefined ) {
+			options = {};
 		}
+
+		if ( options.api === undefined ) {
+			options.api = new mw.Api();
+		}
+
+		if ( options.title === undefined ) {
+			options.title = new mw.Title( 'Feedback' );
+		}
+
+		if ( options.dialogTitleMessageKey === undefined ) {
+			options.dialogTitleMessageKey = 'feedback-submit';
+		}
+
+		this.api = options.api;
+		this.feedbackTitle = options.title;
+		this.dialogTitleMessageKey = options.dialogTitleMessageKey;
 		this.setup();
 	};
 
