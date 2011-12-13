@@ -13,6 +13,7 @@
  * @return string
  */
 function wfGetForwardedFor() {
+	wfDeprecated( __METHOD__, '1.19' );
 	global $wgRequest;
 	return $wgRequest->getHeader( 'X-Forwarded-For' );
 }
@@ -25,7 +26,7 @@ function wfGetForwardedFor() {
  * @return string
  */
 function wfGetAgent() {
-	wfDeprecated( __FUNCTION__ );
+	wfDeprecated( __METHOD__, '1.18' );
 	global $wgRequest;
 	return $wgRequest->getHeader( 'User-Agent' );
 }
@@ -38,6 +39,7 @@ function wfGetAgent() {
  * @return string
  */
 function wfGetIP() {
+	wfDeprecated( __METHOD__, '1.19' );
 	global $wgRequest;
 	return $wgRequest->getIP();
 }

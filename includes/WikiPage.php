@@ -2157,6 +2157,7 @@ class WikiPage extends Page {
 	 * @deprecated since 1.18, use doEditUpdates()
 	 */
 	public function createUpdates( $rev ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		global $wgUser;
 		$this->doEditUpdates( $rev, $wgUser, array( 'created' => true ) );
 	}
@@ -2176,7 +2177,7 @@ class WikiPage extends Page {
 	public function preSaveTransform( $text, User $user = null, ParserOptions $popts = null ) {
 		global $wgParser, $wgUser;
 
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.19' );
 
 		$user = is_null( $user ) ? $wgUser : $user;
 
@@ -2686,6 +2687,7 @@ class WikiPage extends Page {
 	 * @deprecated since 1.18
 	 */
 	public function quickEdit( $text, $comment = '', $minor = 0 ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		global $wgUser;
 		return $this->doQuickEdit( $text, $wgUser, $comment, $minor );
 	}
@@ -2694,6 +2696,7 @@ class WikiPage extends Page {
 	 * @deprecated since 1.18
 	 */
 	public function viewUpdates() {
+		wfDeprecated( __METHOD__, '1.18' );
 		global $wgUser;
 		return $this->doViewUpdates( $wgUser );
 	}
@@ -2702,6 +2705,7 @@ class WikiPage extends Page {
 	 * @deprecated since 1.18
 	 */
 	public function useParserCache( $oldid ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		global $wgUser;
 		return $this->isParserCacheUsed( ParserOptions::newFromUser( $wgUser ), $oldid );
 	}

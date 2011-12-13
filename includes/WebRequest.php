@@ -743,6 +743,7 @@ class WebRequest {
 	 * @return integer
 	 */
 	public function getFileSize( $key ) {
+		wfDeprecated( __METHOD__, '1.17' );
 		$file = new WebRequestUpload( $this, $key );
 		return $file->getSize();
 	}
@@ -955,6 +956,7 @@ HTML;
 	 * @return bool
 	 */
 	public function isPathInfoBad( $extWhitelist = array() ) {
+		wfDeprecated( __METHOD__, '1.17' );
 		global $wgScriptExtension;
 		$extWhitelist[] = ltrim( $wgScriptExtension, '.' );
 		return IEUrlExtension::areServerVarsBad( $_SERVER, $extWhitelist );

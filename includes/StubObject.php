@@ -118,6 +118,7 @@ class StubObject {
 class StubContLang extends StubObject {
 
 	function __construct() {
+		wfDeprecated( __CLASS__, '1.18' );
 		parent::__construct( 'wgContLang' );
 	}
 

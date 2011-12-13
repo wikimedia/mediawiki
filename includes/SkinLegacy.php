@@ -532,6 +532,7 @@ class LegacyTemplate extends BaseTemplate {
 	 * @deprecated in 1.19
 	 */
 	function getQuickbarCompensator( $rows = 1 ) {
+		wfDeprecated( __METHOD__, '1.19' );
 		return "<td width='152' rowspan='{$rows}'>&#160;</td>";
 	}
 
