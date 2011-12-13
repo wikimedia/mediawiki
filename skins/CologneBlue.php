@@ -68,7 +68,7 @@ class CologneBlueTemplate extends LegacyTemplate {
 		  '<table width="100%" border="0" cellspacing="0" cellpadding="8"><tr>';
 
 		$s .= '<td class="top" nowrap="nowrap">';
-		$s .= '<a href="' . $mainPageObj->escapeLocalURL() . '">';
+		$s .= '<a href="' . htmlspecialchars( $mainPageObj->getLocalURL() ) . '">';
 		$s .= '<span id="sitetitle">' . wfMsg( 'sitetitle' ) . '</span></a>';
 
 		$s .= '</td><td class="top" id="top-syslinks" width="100%">';
