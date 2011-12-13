@@ -206,7 +206,7 @@ abstract class UploadBase {
 	 * @return Status Status
 	 */
 	protected function appendToUploadFile( $srcPath, $toAppendPath ) {
-		wfDeprecated(__METHOD__);
+		wfDeprecated( __METHOD__, '1.19' );
 		
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$status = $repo->append( $srcPath, $toAppendPath );
@@ -222,7 +222,7 @@ abstract class UploadBase {
 	 * @return Status Status
 	 */
 	protected function appendFinish( $toAppendPath ) {
-		wfDeprecated(__METHOD__);
+		wfDeprecated( __METHOD__, '1.19' );
 		
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$status = $repo->appendFinish( $toAppendPath );

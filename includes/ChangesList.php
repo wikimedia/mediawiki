@@ -67,6 +67,7 @@ class ChangesList extends ContextSource {
 	 * @return ChangesList|EnhancedChangesList|OldChangesList derivative
 	 */
 	public static function newFromUser( $unused ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return self::newFromContext( RequestContext::getMain() );
 	}
 

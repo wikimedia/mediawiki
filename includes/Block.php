@@ -105,6 +105,7 @@ class Block {
 	 * @deprecated since 1.18
 	 */
 	public static function newFromDB( $address, $user = 0 ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return self::newFromTarget( User::whoIs( $user ), $address );
 	}
 
@@ -159,6 +160,7 @@ class Block {
 	 * @deprecated since 1.18
 	 */
 	public function clear() {
+		wfDeprecated( __METHOD__, '1.18' );
 		# Noop
 	}
 
@@ -171,7 +173,7 @@ class Block {
 	 * @deprecated since 1.18
 	 */
 	public function load( $address = '', $user = 0 ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		if( $user ){
 			$username = User::whoIs( $user );
 			$block = self::newFromTarget( $username, $address );
@@ -807,6 +809,7 @@ class Block {
 	 * @param $x Bool
 	 */
 	public function forUpdate( $x = null ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		# noop
 	}
 
@@ -895,6 +898,7 @@ class Block {
 	 * @deprecated since 1.18; use $dbw->encodeExpiry() instead
 	 */
 	public static function encodeExpiry( $expiry, $db ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return $db->encodeExpiry( $expiry );
 	}
 
@@ -907,6 +911,7 @@ class Block {
 	 * @deprecated since 1.18; use $wgLang->formatExpiry() instead
 	 */
 	public static function decodeExpiry( $expiry, $timestampType = TS_MW ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		global $wgContLang;
 		return $wgContLang->formatExpiry( $expiry, $timestampType );
 	}
@@ -931,6 +936,7 @@ class Block {
 	 * @deprecated since 1.18, call IP::sanitizeRange() directly
 	 */
 	public static function normaliseRange( $range ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		return IP::sanitizeRange( $range );
 	}
 
@@ -950,6 +956,7 @@ class Block {
 	 * @return String
 	 */
 	public static function infinity() {
+		wfDeprecated( __METHOD__, '1.18' );
 		return wfGetDB( DB_SLAVE )->getInfinity();
 	}
 
@@ -961,6 +968,8 @@ class Block {
 	 * @deprecated since 1.18; use $wgLang->formatExpiry() instead
 	 */
 	public static function formatExpiry( $encoded_expiry ) {
+		wfDeprecated( __METHOD__, '1.18' );
+		
 		global $wgContLang;
 		static $msg = null;
 
@@ -994,7 +1003,7 @@ class Block {
 	 * @deprecated since 1.18 moved to SpecialBlock::parseExpiryInput()
 	 */
 	public static function parseExpiryInput( $expiry ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		return SpecialBlock::parseExpiryInput( $expiry );
 	}
 

@@ -23,7 +23,7 @@ class Linker {
 	 * @deprecated since 1.18 Just pass the external class directly to something using Html::expandAttributes
 	 */
 	static function getExternalLinkAttributes( $class = 'external' ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		return self::getLinkAttributesInternal( '', $class );
 	}
 
@@ -359,7 +359,7 @@ class Linker {
 	 */
 	static function makeSizeLinkObj( $size, $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		global $wgUser;
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.17' );
 
 		$threshold = $wgUser->getStubThreshold();
 		$colour = ( $size < $threshold ) ? 'stub' : '';
@@ -1873,6 +1873,8 @@ class Linker {
 	 *               the end of the link.
 	 */
 	static function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
+		wfDeprecated( __METHOD__, '1.16' );
+		
 		$nt = Title::newFromText( $title );
 		if ( $nt instanceof Title ) {
 			return self::makeBrokenLinkObj( $nt, $text, $query, $trail );
@@ -1899,6 +1901,8 @@ class Linker {
 	 * @param $prefix String: optional prefix. As trail, only before instead of after.
 	 */
 	static function makeLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		wfDeprecated( __METHOD__, '1.16' );
+		
 		wfProfileIn( __METHOD__ );
 		$query = wfCgiToArray( $query );
 		list( $inside, $trail ) = self::splitTrail( $trail );
@@ -1931,6 +1935,8 @@ class Linker {
 	static function makeKnownLinkObj(
 		$title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = ''
 	) {
+		wfDeprecated( __METHOD__, '1.16' );
+		
 		wfProfileIn( __METHOD__ );
 
 		if ( $text == '' ) {
@@ -1964,6 +1970,8 @@ class Linker {
 	 * @param $prefix String: Optional prefix
 	 */
 	static function makeBrokenLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		wfDeprecated( __METHOD__, '1.16' );
+		
 		wfProfileIn( __METHOD__ );
 
 		list( $inside, $trail ) = self::splitTrail( $trail );
@@ -1993,6 +2001,8 @@ class Linker {
 	 * @param $prefix String: Optional prefix
 	 */
 	static function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		wfDeprecated( __METHOD__, '1.16' );
+		
 		if ( $colour != '' ) {
 			$style = self::getInternalLinkAttributesObj( $nt, $text, $colour );
 		} else {
@@ -2023,9 +2033,13 @@ class Linker {
 
 	/**
 	 * @deprecated since 1.14
+	 * TODO: remove?!
+	 * 
 	 * Returns raw bits of HTML, use titleAttrib()
 	 */
 	public static function tooltip( $name, $options = null ) {
+		wfDeprecated( __METHOD__, '1.14' );
+		
 		# @todo FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
 		# would be two lines.

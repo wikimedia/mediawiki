@@ -159,6 +159,7 @@ abstract class Action {
 	 * @return Skin
 	 */
 	public final function getLang() {
+		wfDeprecated( __METHOD__, '1.19' );
 		return $this->getLanguage();
 	}
 

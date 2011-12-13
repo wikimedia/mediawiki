@@ -162,6 +162,7 @@ class DerivativeContext extends ContextSource {
 	 * @param $l Mixed Language instance or language code
 	 */
 	public function setLang( $l ) {
+		wfDeprecated( __METHOD__, '1.19' );
 		$this->setLanguage( $l );
 	}
 
@@ -188,6 +189,7 @@ class DerivativeContext extends ContextSource {
 	 * @return Language
 	 */
 	public function getLang() {
+		wfDeprecated( __METHOD__, '1.19' );
 		$this->getLanguage();
 	}
 

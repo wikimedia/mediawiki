@@ -858,6 +858,7 @@ class LoadBalancer {
 	 * @param $conn
 	 */
 	function closeConnecton( $conn ) {
+		wfDeprecated( __METHOD__, '1.18' );
 		$this->closeConnection( $conn );
 	}
 

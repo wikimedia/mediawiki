@@ -270,6 +270,7 @@ class Article extends Page {
 	 * @deprecated in 1.19; use fetchContent()
 	 */
 	function loadContent() {
+		wfDeprecated( __METHOD__, '1.19' );
 		$this->fetchContent();
 	}
 
@@ -338,7 +339,7 @@ class Article extends Page {
 	 * @deprecated since 1.18
 	 */
 	public function forUpdate() {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 	}
 
 	/**
@@ -1620,6 +1621,7 @@ class Article extends Page {
 	 * @deprecated since 1.19
 	 */
 	public function info() {
+		wfDeprecated( __METHOD__, '1.19' );
 		Action::factory( 'info', $this )->show();
 	}
 
@@ -1628,6 +1630,7 @@ class Article extends Page {
 	 * @deprecated since 1.18
 	 */
 	public function markpatrolled() {
+		wfDeprecated( __METHOD__, '1.18' );
 		Action::factory( 'markpatrolled', $this )->show();
 	}
 
@@ -1644,6 +1647,7 @@ class Article extends Page {
 	 * @deprecated since 1.19
 	 */
 	public function revert() {
+		wfDeprecated( __METHOD__, '1.19' );
 		Action::factory( 'revert', $this )->show();
 	}
 
@@ -1652,6 +1656,7 @@ class Article extends Page {
 	 * @deprecated since 1.19
 	 */
 	public function rollback() {
+		wfDeprecated( __METHOD__, '1.19' );
 		Action::factory( 'rollback', $this )->show();
 	}
 
@@ -1661,6 +1666,7 @@ class Article extends Page {
 	 * @deprecated since 1.18
 	 */
 	public function watch() {
+		wfDeprecated( __METHOD__, '1.18' );
 		Action::factory( 'watch', $this )->show();
 	}
 
@@ -1674,6 +1680,7 @@ class Article extends Page {
 	 */
 	public function doWatch() {
 		global $wgUser;
+		wfDeprecated( __METHOD__, '1.18' );
 		return WatchAction::doWatch( $this->getTitle(), $wgUser );
 	}
 
@@ -1683,6 +1690,7 @@ class Article extends Page {
 	 * @deprecated since 1.18
 	 */
 	public function unwatch() {
+		wfDeprecated( __METHOD__, '1.18' );
 		Action::factory( 'unwatch', $this )->show();
 	}
 
@@ -1693,6 +1701,7 @@ class Article extends Page {
 	 */
 	public function doUnwatch() {
 		global $wgUser;
+		wfDeprecated( __METHOD__, '1.18' );
 		return WatchAction::doUnwatch( $this->getTitle(), $wgUser );
 	}
 
@@ -1706,7 +1715,7 @@ class Article extends Page {
 	 * @param $extraQuery String: extra query params
 	 */
 	public function doRedirect( $noRedir = false, $sectionAnchor = '', $extraQuery = '' ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		global $wgOut;
 
 		if ( $noRedir ) {

@@ -537,7 +537,7 @@ class Exif {
 	 * @deprecated since 1.18
 	 */
 	function makeFormattedData( ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		$this->mFormattedExifData = FormatMetadata::getFormattedData(
 			$this->mFilteredExifData );
 	}
@@ -569,7 +569,7 @@ class Exif {
 	 * @deprecated since 1.18
 	 */
 	function getFormattedData() {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.18' );
 		if (!$this->mFormattedExifData) {
 			$this->makeFormattedData();
 		}

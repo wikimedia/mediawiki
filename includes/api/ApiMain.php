@@ -286,6 +286,7 @@ class ApiMain extends ApiBase {
 	 * $this->setCacheMode('private')
 	 */
 	public function setCachePrivate() {
+		wfDeprecated( __METHOD__, '1.17' );
 		$this->setCacheMode( 'private' );
 	}
 
@@ -314,6 +315,7 @@ class ApiMain extends ApiBase {
 	 * @deprecated since 1.17 Use setCacheMode( 'anon-public-user-private' )
 	 */
 	public function setVaryCookie() {
+		wfDeprecated( __METHOD__, '1.17' );
 		$this->setCacheMode( 'anon-public-user-private' );
 	}
 

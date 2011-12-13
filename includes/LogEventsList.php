@@ -77,7 +77,7 @@ class LogEventsList {
 	 * @deprecated in 1.19
 	 */
 	public function showHeader( $type ) {
-		wfDeprecated( __METHOD__ );
+		wfDeprecated( __METHOD__, '1.19' );
 		// If only one log type is used, then show a special message...
 		$headerType = (count($type) == 1) ? $type[0] : '';
 		if( LogPage::isLogType( $headerType ) ) {

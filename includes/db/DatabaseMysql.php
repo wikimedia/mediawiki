@@ -511,6 +511,7 @@ class DatabaseMysql extends DatabaseBase {
 	 * @return bool|int
 	 */
 	function getLagFromProcesslist() {
+		wfDeprecated( __METHOD__, '1.19' );
 		$res = $this->query( 'SHOW PROCESSLIST', __METHOD__ );
 		if( !$res ) {
 			return false;
